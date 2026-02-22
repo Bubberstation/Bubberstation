@@ -22,10 +22,10 @@
 /datum/action/cooldown/mob_cooldown/throw_spider
 	name = "Throw meat spider ball"
 	button_icon_state = "berserk_mode"
-	cooldown_time = 12 SECONDS
+	cooldown_time = 6 SECONDS
 	shared_cooldown = NONE
 
-	var/mob_type = /mob/living/basic/khara_mutant/flesh_spider
+	var/mob_type = /mob/living/basic/khara_mutant/flesh_spider/weaker
 
 /datum/action/cooldown/mob_cooldown/throw_spider/Activate(atom/target)
 	. = ..()
@@ -142,18 +142,18 @@
 	cooldown_time = 7 SECONDS
 	shared_cooldown = NONE
 
-	var/damage = 28
-	var/obj_damage_mult = 3
-	var/wound_bonus = 15
-	var/armour_penetration = 20
+	var/damage = 50
+	var/obj_damage_mult = 4
+	var/wound_bonus = 30
+	var/armour_penetration = 50
 	var/slash_color = "#ff3333"
-	var/attack_sound = 'sound/items/weapons/bladeslice.ogg'
+	var/attack_sound = 'modular_zvents/sounds/mobs/slash_attack_sound.ogg'
 	var/attack_cd = CLICK_CD_MELEE
 	var/range = 1
 
 
 /datum/action/cooldown/mob_cooldown/aoe_slash/Activate(atom/target)
-	if(!target)
+	if(!target || !get_dist(target, owner) > 1)
 		return FALSE
 	var/turf/target_turf = get_turf(target)
 	if(isclosedturf(target_turf))
@@ -171,7 +171,7 @@
 
 /datum/action/cooldown/mob_cooldown/aoe_slash/proc/do_slash(turf/target)
 	owner.do_attack_animation(target, ATTACK_EFFECT_SLASH)
-	new /obj/effect/temp_visual/slash(target, target, world.icon_size / 2, world.icon_size / 2, slash_color)
+	new /obj/effect/temp_visual/huge_slash(target, target, world.icon_size / 2, world.icon_size / 2, slash_color)
 
 	playsound(target, attack_sound, 50, vary = TRUE)
 
@@ -216,6 +216,32 @@
 					armour_penetration
 				)
 
+
+/obj/effect/temp_visual/huge_slash
+	icon_state = "highfreq_slash"
+	alpha = 170
+	duration = 0.5 SECONDS
+	layer = ABOVE_ALL_MOB_LAYER
+	plane = ABOVE_GAME_PLANE
+
+/obj/effect/temp_visual/huge_slash/Initialize(mapload, atom/target, x_slashed, y_slashed, slash_color)
+	. = ..()
+	if(!target)
+		return
+	var/matrix/new_transform = matrix()
+	new_transform.Turn(rand(1, 360))
+	var/datum/decompose_matrix/decomp = target.transform.decompose()
+	new_transform.Translate((x_slashed - ICON_SIZE_X/2) * decomp.scale_x, (y_slashed - ICON_SIZE_Y/2) * decomp.scale_y)
+
+
+	new_transform.Turn(decomp.rotation)
+	new_transform.Translate(decomp.shift_x, decomp.shift_y)
+	new_transform.Translate(target.pixel_x, target.pixel_y)
+	transform = new_transform
+
+	var/matrix/scaled_transform = new_transform + matrix(new_transform.a, new_transform.b, 0, new_transform.d, new_transform.e, 0)
+	scaled_transform.Scale(2, 2)
+	animate(src, duration*0.5, color = slash_color, transform = scaled_transform, alpha = 255)
 
 /datum/action/cooldown/mob_cooldown/boss_charge/weak
 	max_range = 6

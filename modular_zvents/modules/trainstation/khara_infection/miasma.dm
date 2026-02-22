@@ -6,7 +6,7 @@
 	taste_description = "bitter iron and rot"
 	taste_mult = 1.4
 	chemical_flags = REAGENT_IGNORE_STASIS | REAGENT_INVISIBLE
-	metabolization_rate = REAGENTS_METABOLISM * 8
+	metabolization_rate = REAGENTS_METABOLISM * 4
 	toxpwr = 0
 	liver_damage_multiplier = 0
 	silent_toxin = TRUE
@@ -25,5 +25,5 @@
 	if(SPT_PROB(35, seconds_per_tick))
 		M.emote("cough")
 
-	if(SPT_PROB(15, seconds_per_tick))
+	if(SPT_PROB(10, seconds_per_tick))
 		M.ForceContractDisease(new /datum/disease/khara(), del_on_fail = TRUE)

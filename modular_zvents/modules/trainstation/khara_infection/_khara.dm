@@ -1,6 +1,6 @@
 #define KHARA_SPREADING_MODIFIER 1.4
 #define KHARA_FINAL_EMERGENCE_DELAY (90 SECONDS)
-#define KHARA_EMERGENCE_BRUTE_DAMAGE 280
+#define KHARA_EMERGENCE_BRUTE_DAMAGE 200
 #define KHARA_TUMOR_THRESHOLD_STAGE 5
 
 /datum/disease/khara
@@ -12,7 +12,7 @@
 			After full development, the carrier's body will be destroyed by a new form of life that has formed inside it."
 	form = "Bioengineered Disease"
 	agent = "Veral khara spores"
-	visibility_flags = HIDDEN_MEDHUD | HIDDEN_SCANNER
+	visibility_flags = NONE
 	spread_flags = DISEASE_SPREAD_SPECIAL
 	stage_prob = 12
 	max_stages = 7
@@ -21,22 +21,23 @@
 				Anacea toxin destroys spores very effectively. Technetium-99 greatly enhances Anacea."
 	viable_mobtypes = list(/mob/living/carbon/human)
 	bypasses_immunity = TRUE
-	severity = DISEASE_SEVERITY_BIOHAZARD
+	severity = DISEASE_SEVERITY_UNCURABLE
 	process_dead = FALSE
 	spreading_modifier = KHARA_SPREADING_MODIFIER
 	cures = list()
 
 	var/stage_process = 0
-	var/base_stage_speed = 0.65
+	var/base_stage_speed = 0.8
 
 	var/list/inverters = list(
-		/datum/reagent/medicine/rezadone = 0.55,
-		/datum/reagent/medicine/haloperidol = 0.75,
-		/datum/reagent/toxin/anacea = 4.1,
+		/datum/reagent/medicine/rezadone = 1,
+		/datum/reagent/medicine/haloperidol = 3,
+		/datum/reagent/toxin/anacea = 6.5,
 	)
 	var/invert_catalyst = /datum/reagent/inverse/technetium
 	var/thing_emerg = /mob/living/basic/khara_mutant/reaper
 
+	COOLDOWN_DECLARE(stage_process_cd)
 	COOLDOWN_DECLARE(organ_failure_cd)
 	COOLDOWN_DECLARE(miasma_spread_cd)
 	COOLDOWN_DECLARE(tumor_pain_cd)
@@ -45,6 +46,11 @@
 	var/list/khara_tumors = list()
 	var/emerging = FALSE
 
+/datum/disease/khara/infect(mob/living/infectee, make_copy)
+	. = ..()
+	stage = 1
+	stage_process = 0
+
 
 /datum/disease/khara/update_stage(new_stage)
 	if(stage_process < 100 && new_stage > stage)
@@ -52,7 +58,7 @@
 	. = ..()
 	if(!.)
 		return
-
+	stage_process = 0
 	switch(new_stage)
 		if(4)
 			to_chat(affected_mob, span_userdanger("Something heavy and wrong pulses deep inside your abdomen…"))
@@ -61,7 +67,6 @@
 		if(5)
 			visibility_flags = NONE
 			to_chat(affected_mob, span_userdanger("Your skin bulges and writhes — something is growing far too fast!"))
-			// spread_miasma_chance = 0.8
 		if(6)
 			to_chat(affected_mob, span_bolddanger("Your bones creak and crack under impossible internal pressure!"))
 		if(7)
@@ -70,101 +75,90 @@
 
 /datum/disease/khara/proc/stage_evolution_process(seconds_per_tick)
 	var/base = base_stage_speed
+	var/has_invert_catalyst = affected_mob.has_reagent(invert_catalyst, 1, TRUE)
+	if(has_invert_catalyst || HAS_TRAIT(affected_mob, TRAIT_VIRUS_RESISTANCE))
+		base *= 0.5
 
-	if(affected_mob.has_reagent(invert_catalyst, 1, TRUE))
-		base *= 0.2
-
+	var/healing = 0
 	for(var/inverter in inverters)
 		if(affected_mob.has_reagent(inverter, 1, TRUE))
-			base -= inverters[inverter]
+			healing += inverters[inverter]
 
-	if(base < 0 && stage >= 4)
-		base *= 0.65
+	if(healing > 0 && stage >= 4 && !has_invert_catalyst)
+		healing *= 0.5
 
-	stage_process = clamp(stage_process + (base * seconds_per_tick * 1.6), 0, 100)
-
-	if(stage_process >= 100)
-		if(stage < max_stages)
-			update_stage(stage + 1)
-			stage_process = 0
-		else
-			stage_process = 100
-
-	else if(stage_process <= 0 && stage > 1)
+	var/stage_step = base - healing
+	stage_process = min(stage_process + (stage_step * seconds_per_tick), 100)
+	if(stage_process <= 0 && stage > 1)
 		update_stage(stage - 1)
 		stage_process = 0
-
-/datum/disease/khara/stage_act(seconds_per_tick, times_fired)
-	. = ..()
-	stage_evolution_process(seconds_per_tick)
 
 /datum/disease/khara/stage_act(seconds_per_tick, times_fired)
 	. = ..()
 	if(!.)
 		return
 
-	stage_evolution_process(seconds_per_tick)
-
 	if(emerging)
 		return
 
+	if(COOLDOWN_FINISHED(src, stage_process_cd))
+		stage_evolution_process(seconds_per_tick)
+		COOLDOWN_START(src, stage_process_cd, 3 SECONDS)
+
 	switch(stage)
 		if(1)
-			if(SPT_PROB(1.2, seconds_per_tick))
+			if(SPT_PROB(5, seconds_per_tick))
 				affected_mob.emote("cough")
-			if(SPT_PROB(0.8, seconds_per_tick))
+			if(SPT_PROB(5, seconds_per_tick))
 				to_chat(affected_mob, span_warning("You feel a strange warmth spreading under your skin…"))
 
 		if(2 to 3)
-			if(SPT_PROB(2 + stage, seconds_per_tick))
+			if(SPT_PROB(5 + stage, seconds_per_tick))
 				to_chat(affected_mob, span_warning("A dull, throbbing pain blooms somewhere inside you."))
-			if(SPT_PROB(1.1, seconds_per_tick))
+			if(SPT_PROB(3, seconds_per_tick))
 				affected_mob.adjust_tox_loss(1.2, forced = TRUE)
 
 		if(4)
 			if(SPT_PROB(3, seconds_per_tick))
 				to_chat(affected_mob, span_danger("You feel something hard and wrong growing inside your [pick("chest","abdomen","side")]."))
-			if(SPT_PROB(1.4, seconds_per_tick))
+			if(SPT_PROB(5, seconds_per_tick))
 				affected_mob.adjust_brute_loss(rand(2,5), forced = TRUE)
 
-			if(SPT_PROB(0.9, seconds_per_tick) && COOLDOWN_FINISHED(src, tumor_pain_cd))
+			if(SPT_PROB(5, seconds_per_tick) && COOLDOWN_FINISHED(src, tumor_pain_cd))
 				affected_mob.emote("scream")
+				affected_mob.adjust_brute_loss(rand(10, 20), forced = TRUE)
 				COOLDOWN_START(src, tumor_pain_cd, 25 SECONDS)
 
 		if(5)
-			if(SPT_PROB(4, seconds_per_tick))
+			if(SPT_PROB(5, seconds_per_tick))
 				to_chat(affected_mob, span_userdanger("Your flesh bulges grotesquely — something is alive in there!"))
-			if(SPT_PROB(2.2, seconds_per_tick))
+			if(SPT_PROB(3, seconds_per_tick))
 				damage_random_organ(rand(8, 14))
-			if(SPT_PROB(1.8, seconds_per_tick) && COOLDOWN_FINISHED(src, miasma_spread_cd))
+			if(SPT_PROB(5, seconds_per_tick) && COOLDOWN_FINISHED(src, miasma_spread_cd))
 				spread_khara_miasma()
 				COOLDOWN_START(src, miasma_spread_cd, 35 SECONDS)
 
 		if(6)
-			if(SPT_PROB(3.5, seconds_per_tick))
+			if(SPT_PROB(4, seconds_per_tick))
 				to_chat(affected_mob, span_bolddanger("Your ribs groan and shift — something is forcing them apart!"))
-			if(SPT_PROB(2.5, seconds_per_tick))
+			if(SPT_PROB(5, seconds_per_tick))
 				affected_mob.adjust_brute_loss(rand(6,11), forced = TRUE)
-			if(SPT_PROB(2, seconds_per_tick))
+			if(SPT_PROB(3, seconds_per_tick))
 				affected_mob.vomit(VOMIT_CATEGORY_BLOOD|VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = FALSE)
-			if(SPT_PROB(1.6, seconds_per_tick) && COOLDOWN_FINISHED(src, crack_bones_cd))
+			if(SPT_PROB(5, seconds_per_tick) && COOLDOWN_FINISHED(src, crack_bones_cd))
 				affected_mob.emote("scream")
 				affected_mob.adjust_brute_loss(8, forced = TRUE)
 				COOLDOWN_START(src, crack_bones_cd, 28 SECONDS)
 
-			if(SPT_PROB(2.2, seconds_per_tick))
+			if(SPT_PROB(2, seconds_per_tick))
 				spread_khara_miasma()
 
 		if(7)
-			if(!COOLDOWN_FINISHED(src, organ_failure_cd))
+			if(!COOLDOWN_FINISHED(src, organ_failure_cd) && stage_process < 100)
 				return
 
-			to_chat(affected_mob, span_bolddanger("Your body can no longer contain it."))
-			affected_mob.visible_message(span_danger("[affected_mob]'s body convulses violently — something is tearing its way out!"))
-
-			affected_mob.Paralyze(8 SECONDS)
-			affected_mob.Knockdown(12 SECONDS)
-			affected_mob.StaminaKnockdown(80)
+			to_chat(affected_mob, span_boldnicegreen("You feel the pain receding! Everything is fine."))
+			visibility_flags = HIDDEN_SCANNER|HIDDEN_PANDEMIC|HIDDEN_MEDHUD
 
 			emerging = TRUE
 			addtimer(CALLBACK(src, PROC_REF(perform_emergence)), KHARA_FINAL_EMERGENCE_DELAY)
@@ -172,9 +166,18 @@
 /datum/disease/khara/proc/perform_emergence()
 	if(QDELETED(affected_mob))
 		return
+	visibility_flags = NONE
+	affected_mob.visible_message(span_userdanger("[affected_mob]'s body convulses violently — something is tearing its way out!"), span_userdanger("It's over for you!"))
+	affected_mob.Paralyze(8 SECONDS)
+	affected_mob.Knockdown(12 SECONDS)
+	for(var/i = 1 to rand(5, 8))
+		affected_mob.spray_blood(rand(GLOB.cardinals), rand(2, 3))
+		sleep(1.5 SECONDS)
+		affected_mob.apply_damage(KHARA_EMERGENCE_BRUTE_DAMAGE/10, BRUTE, wound_bonus = 70, spread_damage = TRUE)
+		affected_mob.Shake()
 
 	affected_mob.visible_message(
-		span_bolddanger("[affected_mob]'s torso ruptures in a spray of blood and black ichor as a malformed creature tears free!"),
+		span_userdanger("[affected_mob]'s torso ruptures in a spray of blood and black ichor as a malformed creature tears free!"),
 		span_userdanger("Your body explodes from the inside — you are no more.")
 	)
 
@@ -270,8 +273,12 @@
 		var/obj/item/organ/lungs/lungs = human.get_organ_slot(ORGAN_SLOT_LUNGS)
 		if(lungs && (lungs.organ_flags & ORGAN_ORGANIC))
 			does_breath = TRUE
-	if(!does_breath && !human.can_be_spread_airborne_disease())
+
+	var/obj/item/clothing/hat = human.is_mouth_covered(ITEM_SLOT_HEAD)
+	var/obj/item/clothing/mask = human.is_mouth_covered(ITEM_SLOT_MASK)
+	var/total_prot = (hat?.get_armor_rating(BIO) + mask?.get_armor_rating(BIO))
+	if(!does_breath && total_prot >= 50)
 		return
 	if(human.has_reagent(/datum/reagent/toxin/khara, 10))
 		return //Already enough
-	weather_reagent_holder.reagents.expose(human, INHALE | VAPOR, show_message = TRUE)
+	weather_reagent_holder.reagents.expose(human, VAPOR, show_message = TRUE)

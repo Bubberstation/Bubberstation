@@ -1550,9 +1550,8 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/caves)
 "fC" = (
-/obj/effect/spawner/random/structure/crate_abandoned,
-/turf/open/floor/iron/shuttle/exploration/side,
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/turf/open/indestructible/meat,
+/area/trainstation/outdoor)
 "fD" = (
 /obj/structure/broken_flooring/plating/directional/south,
 /obj/structure/door_assembly/door_assembly_material{
@@ -1738,9 +1737,11 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "gu" = (
-/obj/structure/prop/tank_larva,
-/turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "splatter3"
+	},
+/turf/open/indestructible/meat,
+/area/trainstation/outdoor)
 "gv" = (
 /obj/structure/decorative/fluff{
 	name = "broken thermomachine";
@@ -3695,9 +3696,20 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab)
 "mT" = (
-/obj/structure/marker_beacon/indigo,
-/turf/open/floor/iron/shuttle/exploration/doubleside,
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "splatter3"
+	},
+/obj/structure/decorative{
+	anchored = 1;
+	name = "egg cluster";
+	desc = "Something's moving inside...";
+	icon = 'icons/mob/simple/meteor_heart.dmi';
+	icon_state = "flesh_pod_open";
+	pixel_x = 3;
+	pixel_y = -7
+	},
+/turf/open/indestructible/meat,
+/area/trainstation/outdoor)
 "mU" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 8
@@ -4250,14 +4262,12 @@
 /turf/open/floor/iron/shuttle/exploration/blanktile,
 /area/trainstation/indoors/station/collapsed_lab)
 "oP" = (
-/obj/structure/prop/vehicle/zengarbagetruck,
-/obj/structure/marker_beacon/indigo,
-/turf/open/floor/iron/shuttle/exploration/side,
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/obj/effect/spawner/structure/window/reinforced/indestructible,
+/turf/open/floor/plating/reinforced,
+/area/trainstation/outdoor)
 "oQ" = (
-/obj/effect/spawner/random/engineering/material_rare,
-/turf/open/floor/iron/shuttle/exploration/quadinvertcorner,
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/turf/closed/indestructible/rock,
+/area/trainstation/outdoor)
 "oR" = (
 /obj/effect/turf_decal/siding/thinplating/light{
 	dir = 4
@@ -4623,11 +4633,11 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/caves)
 "qd" = (
-/obj/effect/spawner/random/engineering/material_rare,
+/mob/living/basic/khara_mutant/spreader,
 /turf/open/floor/iron/shuttle/exploration/uside{
 	dir = 4
 	},
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/area/trainstation/outdoor)
 "qe" = (
 /obj/structure/chair/sofa/bench/tram/left{
 	dir = 1
@@ -4862,9 +4872,10 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "qT" = (
-/obj/structure/prop/tank_larva,
-/turf/open/floor/iron/shuttle/exploration/doubleside,
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/turf/open/floor/iron/shuttle/exploration/side{
+	dir = 8
+	},
+/area/trainstation/outdoor)
 "qV" = (
 /obj/effect/ctf/dead_barricade,
 /turf/open/floor/iron/shuttle/exploration/doubleside,
@@ -4878,7 +4889,7 @@
 /turf/open/floor/iron/shuttle/exploration/uside{
 	dir = 1
 	},
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/area/trainstation/outdoor)
 "qX" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 10
@@ -5998,9 +6009,11 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "uY" = (
-/mob/living/basic/corrupted_arachnid,
-/turf/open/floor/catwalk_floor,
-/area/trainstation/indoors/station/collapsed_lab)
+/obj/structure/statue/bone/rib{
+	dir = 8
+	},
+/turf/open/indestructible/meat,
+/area/trainstation/outdoor)
 "uZ" = (
 /obj/structure/decorative{
 	anchored = 1;
@@ -6320,11 +6333,11 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "vF" = (
-/obj/structure/prop/tank_larva,
-/turf/open/floor/iron/shuttle/exploration/uside{
-	dir = 4
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "splatter3"
 	},
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/outdoor)
 "vG" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 5
@@ -6966,7 +6979,7 @@
 /area/trainstation/indoors/station/collapsed_lab/caves)
 "yt" = (
 /turf/open/floor/iron/shuttle/exploration/quadinvertcorner,
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/area/trainstation/outdoor)
 "yu" = (
 /obj/structure/grille/broken,
 /obj/item/shard{
@@ -7511,12 +7524,11 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/caves)
 "Ay" = (
-/mob/living/basic/flesh_mutant_spider,
-/obj/effect/decal/cleanable/blood/old{
-	icon_state = "vomit_2"
+/obj/effect/turf_decal/box/white/corners{
+	dir = 1
 	},
-/turf/open/floor/iron/shuttle/exploration/blanktile,
-/area/trainstation/indoors/station/collapsed_lab)
+/turf/open/floor/iron/shuttle/exploration/corner,
+/area/trainstation/outdoor)
 "AA" = (
 /obj/machinery/door/airlock/multi_tile/public/glass{
 	dir = 4;
@@ -7787,6 +7799,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
+"BD" = (
+/turf/open/floor/iron/shuttle/exploration/side{
+	dir = 4
+	},
+/area/trainstation/outdoor)
 "BF" = (
 /obj/effect/decal/cleanable/blood/old{
 	icon_state = "vomit_2"
@@ -8307,9 +8324,11 @@
 /turf/open/chasm,
 /area/trainstation/indoors/station/collapsed_lab)
 "Dm" = (
-/mob/living/basic/corrupted_arachnid,
-/turf/open/floor/iron/white,
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/obj/effect/turf_decal/box/white/corners,
+/turf/open/floor/iron/shuttle/exploration/corner{
+	dir = 1
+	},
+/area/trainstation/outdoor)
 "Dp" = (
 /obj/structure/prop/general/centerroadbarrier2{
 	pixel_y = 29;
@@ -8585,9 +8604,8 @@
 /turf/open/floor/plating,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "En" = (
-/obj/effect/spawner/random/structure/crate_abandoned,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/area/trainstation/outdoor)
 "Eo" = (
 /obj/effect/turf_decal/box/white/corners{
 	dir = 4
@@ -8733,11 +8751,10 @@
 /turf/open/floor/iron/white,
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "EU" = (
-/obj/effect/spawner/random/structure/crate_abandoned,
 /turf/open/floor/iron/shuttle/exploration/uside{
 	dir = 4
 	},
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/area/trainstation/outdoor)
 "EW" = (
 /obj/structure/decorative/fluff{
 	name = "scrapped cyborg";
@@ -9956,9 +9973,10 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "JO" = (
-/obj/effect/spawner/random/structure/crate_abandoned,
-/turf/open/floor/iron/shuttle/exploration/doubleside,
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/turf/open/floor/iron/shuttle/exploration/doubleinvertcorner_side{
+	dir = 8
+	},
+/area/trainstation/outdoor)
 "JP" = (
 /obj/item/kitchen/fork/plastic{
 	pixel_x = -5;
@@ -10489,9 +10507,10 @@
 /turf/open/floor/iron/large,
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "LI" = (
-/obj/effect/spawner/random/engineering/material_rare,
-/turf/open/floor/iron/shuttle/exploration/doubleside,
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
+/area/trainstation/outdoor)
 "LJ" = (
 /obj/effect/mapping_helpers/turf_cracks,
 /turf/closed/indestructible/steel,
@@ -10505,10 +10524,8 @@
 /turf/open/floor/plating/reinforced,
 /area/trainstation/indoors/station/collapsed_lab)
 "LL" = (
-/obj/structure/prop/vehicle/zengarbagetruck,
-/obj/structure/marker_beacon/indigo,
 /turf/open/floor/iron/shuttle/exploration/blanktile,
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/area/trainstation/outdoor)
 "LM" = (
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	alpha = 160;
@@ -10542,14 +10559,11 @@
 /turf/open/floor/iron/white/corner,
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "LS" = (
-/obj/structure/prop/vehicle/zentruck2{
-	dir = 1
+/obj/effect/turf_decal/box/white/corners{
+	dir = 4
 	},
-/obj/structure/marker_beacon/indigo,
-/turf/open/floor/iron/shuttle/exploration/side{
-	dir = 1
-	},
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/turf/open/indestructible/meat,
+/area/trainstation/outdoor)
 "LT" = (
 /obj/effect/turf_decal/tile/dark/half{
 	dir = 1;
@@ -11585,10 +11599,9 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "Qd" = (
-/turf/open/floor/iron/shuttle/exploration/uside{
-	dir = 4
-	},
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/obj/structure/marker_beacon/indigo,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/trainstation/outdoor)
 "Qg" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -12600,9 +12613,12 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "Uv" = (
-/obj/effect/spawner/random/engineering/material_rare,
-/turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/obj/structure/shipping_container/nakamura{
+	icon_state = "kosmologistika"
+	},
+/obj/structure/marker_beacon/indigo,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/trainstation/outdoor)
 "Uz" = (
 /turf/open/floor/iron/white/side{
 	dir = 8
@@ -12666,12 +12682,9 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "UG" = (
-/obj/structure/shipping_container/nakamura{
-	icon_state = "kosmologistika"
-	},
-/obj/structure/marker_beacon/indigo,
-/turf/open/floor/iron/shuttle/exploration/doubleside,
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/obj/effect/turf_decal/tile/neutral/tram,
+/turf/open/floor/iron/shuttle/exploration/blanktile,
+/area/trainstation/outdoor)
 "UH" = (
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/shipping_container/nakamura{
@@ -12809,9 +12822,10 @@
 /turf/open/floor/iron/white/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/facility)
 "Vl" = (
-/mob/living/basic/flesh_mutant_spider,
-/turf/open/misc/dirt/icy_planet,
-/area/trainstation/indoors/station/collapsed_lab/caves)
+/turf/open/floor/iron/shuttle/exploration/side{
+	dir = 1
+	},
+/area/trainstation/outdoor)
 "Vp" = (
 /obj/structure/railing{
 	dir = 4;
@@ -13016,7 +13030,6 @@
 	},
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "Wd" = (
-/mob/living/basic/flesh_mutant_spider,
 /obj/structure/decorative{
 	anchored = 1;
 	name = "egg cluster";
@@ -13398,9 +13411,10 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "Xo" = (
-/obj/structure/shipping_container/biosustain,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/trainstation/indoors/station/collapsed_lab/facility)
+/turf/closed/indestructible/rock{
+	icon_state = "rock2"
+	},
+/area/trainstation/outdoor)
 "Xp" = (
 /obj/machinery/light/red/directional/west,
 /turf/open/floor/iron/shuttle/exploration/uside{
@@ -13859,7 +13873,6 @@
 	pixel_x = 5;
 	pixel_y = -2
 	},
-/mob/living/basic/flesh_mutant_spider,
 /turf/open/floor/iron,
 /area/trainstation/indoors/station/collapsed_lab/cargo)
 "Zm" = (
@@ -18042,7 +18055,7 @@ Ec
 Er
 jU
 Dw
-Vl
+Er
 BP
 jU
 yC
@@ -18825,7 +18838,7 @@ jg
 Er
 Er
 nb
-Vl
+Er
 Db
 Rd
 de
@@ -19709,7 +19722,7 @@ eY
 eY
 eY
 rP
-Ay
+aa
 eY
 eY
 Kb
@@ -20912,7 +20925,7 @@ qm
 aL
 pX
 pX
-uY
+pX
 pX
 pX
 hH
@@ -22625,9 +22638,9 @@ gj
 Nl
 UY
 Xp
-FF
-Wn
-sm
+En
+Ay
+BD
 sm
 sm
 Ym
@@ -22677,10 +22690,10 @@ gj
 oy
 ER
 Qh
-Uv
+En
 fC
-uc
-fS
+LL
+UG
 uc
 Wo
 FF
@@ -22728,13 +22741,13 @@ ld
 gj
 jE
 AZ
-zF
-FF
-oP
-uc
+Vz
+En
+fC
+mT
 LL
-uc
-LS
+LL
+Wo
 FF
 zF
 VC
@@ -22780,13 +22793,13 @@ yj
 gj
 EI
 nX
-LD
-FF
-Bj
-uc
-fS
-uc
-Wo
+Qd
+vF
+uY
+gu
+UG
+LL
+Vl
 FF
 zF
 jE
@@ -22833,12 +22846,12 @@ gj
 AD
 PI
 qW
-FF
-ta
-RZ
-RZ
-RZ
-jD
+En
+LS
+fC
+qT
+qT
+Dm
 Ak
 Nl
 PI
@@ -22884,13 +22897,13 @@ Du
 gj
 oy
 ER
-Qh
-FF
-zF
-gu
-Xo
+Uv
 En
-zF
+fC
+gu
+fC
+En
+Vz
 FF
 zF
 CE
@@ -22936,14 +22949,14 @@ Du
 gj
 jE
 AZ
-zF
+Vz
 EU
-zF
-vF
-zF
+fC
+fC
+fC
 qd
-zF
-Qd
+Vz
+EU
 zF
 VC
 nX
@@ -22989,13 +23002,13 @@ gj
 EI
 nX
 LD
-LI
-zF
-qT
-zF
-dF
-zF
-JO
+Ua
+fC
+fC
+fC
+Ua
+Vz
+Ua
 zF
 jE
 DZ
@@ -23042,13 +23055,13 @@ AD
 Ji
 gR
 yt
-UY
+gu
+fC
+fC
 yt
-UY
-yt
-UY
+Xo
 oQ
-UY
+LI
 Ji
 bk
 gj
@@ -23093,14 +23106,14 @@ gj
 oy
 ER
 Qh
-dF
-zF
-UG
-zF
-qT
+Ua
+Vz
+fC
+fC
 Xo
-dF
-zF
+Xo
+oQ
+Vz
 tQ
 pE
 MI
@@ -23146,13 +23159,13 @@ jE
 AZ
 zF
 dF
-zF
-dF
-zF
-qT
-zF
-dF
-zF
+Vz
+Ua
+Vz
+Xo
+oQ
+Ua
+Vz
 VC
 nX
 MI
@@ -23199,11 +23212,11 @@ nX
 LD
 dF
 zF
-mT
-zF
-qT
-zF
-dF
+Ua
+Vz
+Ua
+Vz
+Ua
 zF
 jE
 DZ
@@ -23252,10 +23265,10 @@ dh
 eh
 UY
 eh
-UY
-eh
-UY
-eh
+LI
+JO
+LI
+JO
 dh
 UY
 bo
@@ -23305,8 +23318,8 @@ MI
 MI
 MI
 MI
-MI
-MI
+oP
+oP
 MI
 gj
 FF
@@ -23914,7 +23927,7 @@ GU
 tu
 Cf
 QN
-Dm
+kC
 kC
 dV
 dg

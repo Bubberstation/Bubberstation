@@ -11,12 +11,12 @@
 		return COMPONENT_INCOMPATIBLE
 	src.disease = disease
 	src.only_with_wounds = only_with_wounds
-	RegisterSignal(parent, COMSIG_LIVING_ATTACK_ATOM, PROC_REF(on_parent_attack), TRUE)
+	RegisterSignal(parent, COMSIG_LIVING_UNARMED_ATTACK, PROC_REF(on_parent_attack), TRUE)
 
 
-/datum/component/infection_attack/proc/on_parent_attack(mob/living/attacker, atom/attacked, list/modifiers)
+/datum/component/infection_attack/proc/on_parent_attack(mob/living/attacker, atom/attacked, proximity)
 	SIGNAL_HANDLER
-	if(!ishuman(attacked))
+	if(!ishuman(attacked) || !proximity)
 		return
 	var/mob/living/carbon/human/human = attacked
 	if(!human.all_wounds && only_with_wounds)
@@ -104,6 +104,7 @@
 	max_stamina_slowdown = 12
 	habitable_atmos = null
 
+	var/spread_miasma_amount = 12
 	var/spread_miasma_chance = 5
 	var/spreads_miasma = FALSE
 	var/regeneration_delay = 4 SECONDS
@@ -148,14 +149,14 @@
 
 /mob/living/basic/khara_mutant/Life(seconds_per_tick, times_fired)
 	. = ..()
-	if(spreads_miasma && SPT_PROB_RATE(spread_miasma_chance, seconds_per_tick) && COOLDOWN_FINISHED(src, spread_cd))
+	if(spreads_miasma && SPT_PROB(spread_miasma_chance, seconds_per_tick) && COOLDOWN_FINISHED(src, spread_cd))
 		COOLDOWN_START(src, spread_cd, spread_minimal_cooldown)
 		spread_miasma()
 
 /mob/living/basic/khara_mutant/proc/spread_miasma()
-	var/datum/reagents/R = new(12)
+	var/datum/reagents/R = new(spread_miasma_amount)
 	R.my_atom = src
-	R.add_reagent(/datum/reagent/toxin/khara, 5)
+	R.add_reagent(/datum/reagent/toxin/khara, spread_miasma_amount)
 
 	var/datum/effect_system/fluid_spread/smoke/chem/S = new()
 	S.set_up(1.4, holder = src, location = get_turf(src), carry = R)
@@ -188,7 +189,8 @@
 	response_disarm_continuous = "gently pushes aside"
 	response_disarm_simple = "gently push aside"
 	ai_controller = /datum/ai_controller/basic_controller/giant_spider
-
+	health = 125
+	maxHealth = 125
 	innate_actions = list(
 		/datum/action/cooldown/mob_cooldown/boss_bone_shard = BB_MOB_ABILITY_BONESHARD
 	)
@@ -201,6 +203,12 @@
 	AddElement(/datum/element/web_walker, /datum/movespeed_modifier/fast_web)
 	AddElement(/datum/element/nerfed_pulling, GLOB.typecache_general_bad_things_to_easily_move)
 
+
+/mob/living/basic/khara_mutant/flesh_spider/weaker
+	health = 75
+	maxHealth = 75
+	melee_damage_lower = 10
+	melee_damage_upper = 10
 
 /mob/living/basic/khara_mutant/arachnid
 	name = "Corrupted arachnid"
@@ -245,9 +253,10 @@
 	armour_penetration = 20
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-	maxHealth = 300
-	health = 300
+	maxHealth = 200
+	health = 200
 
+	speed = 0
 	regeneration_delay = 15 SECONDS
 	health_regen_per_second = 10
 
@@ -257,7 +266,7 @@
 
 	speak_emote = list("roarss")
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
-	attack_vis_effect = ATTACK_EFFECT_SLASH
+	attack_vis_effect = null
 	ai_controller = /datum/ai_controller/basic_controller/corrupted_arachnid
 
 	innate_actions = list(
@@ -265,7 +274,26 @@
 		/datum/action/cooldown/mob_cooldown/boss_charge/weak = BB_MOB_ABILITY_FAST_CHARGE,
 	)
 
+/mob/living/basic/khara_mutant/reaper/melee_attack(atom/target, list/modifiers, ignore_cooldown)
+	if(isliving(target))
+		new /obj/effect/temp_visual/slash(get_turf(target), target, world.icon_size / 2, world.icon_size / 2, COLOR_RED)
+	. = ..()
+	if(!. || !ishuman(target) || !prob(70))
+		return
 
+	var/mob/living/carbon/human/victim = target
+	var/obj/item/bodypart/to_cut = null
+	for(var/obj/item/bodypart/part in victim.bodyparts)
+		if(part.max_damage >= LIMB_MAX_HP_CORE)
+			continue
+		if(part.brute_dam >= (part.max_damage * 0.8))
+			to_cut = part
+			break
+	if(!to_cut)
+		return
+	new /obj/effect/temp_visual/slash(get_turf(target), target, world.icon_size / 2, world.icon_size / 2, COLOR_RED)
+	do_attack_animation(target)
+	to_cut.dismember(silent=FALSE)
 
 
 /mob/living/basic/khara_mutant/spreader
@@ -292,8 +320,10 @@
 	plane = MASSIVE_OBJ_PLANE
 	ai_controller = null
 
+	spread_miasma_amount = 24
+	spreads_miasma = TRUE
 	spread_miasma_chance = 100
-	spread_minimal_cooldown = 6 SECONDS
+	spread_minimal_cooldown = 15 SECONDS
 
 	ai_controller = /datum/ai_controller/basic_controller/boss_spreader
 	innate_actions = list(
@@ -301,6 +331,7 @@
 		/datum/action/cooldown/mob_cooldown/throw_spider = BB_MOB_ABILITY_MEAT_BALL,
 		/datum/action/cooldown/mob_cooldown/rumble = BB_MOB_ABILITY_RUMBLE,
 	)
+
 
 /mob/living/basic/khara_mutant/spreader/Initialize(mapload)
 	. = ..()
