@@ -200,7 +200,7 @@
 /obj/projectile/kinetic/shockwave
 	name = "concussive kinetic force"
 	icon_state = null
-	damage = 4 // 8 projectiles, apparently firing twice per shot. No reason for it to be doing that. From 640 dmg per shot to 64. STILL the highest damage.
+	damage = 20 // Half normal dmg, 8 projectiles in a 360 around you. Good for CC and rock clearing.
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 1
