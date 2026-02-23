@@ -89,6 +89,7 @@
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
 	max_mod_capacity = 75
+	disabled_modkits = /obj/item/borg/upgrade/modkit/aoe // Should cover all AOE variants
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/shockwave/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	target = get_edge_target_turf(user, user.dir)
