@@ -522,7 +522,7 @@
 	if(genital_type == "pair")
 		max_size = findtext(genital_name, "(Alt)") ? 19 : 16
 	if(genital_type == "quad")
-		max_size = findtext(genital_name, "(Alt)") ? 19 : 16
+		max_size = findtext(genital_name, "(Alt)") ? 19 : 5
 	var/current_size = FLOOR(genital_size, 1)
 	if(current_size < 0)
 		current_size = 0
