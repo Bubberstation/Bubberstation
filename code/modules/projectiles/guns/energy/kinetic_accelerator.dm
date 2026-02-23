@@ -17,7 +17,7 @@
 	///The max capacity of modkits the PKA can have installed at once.
 	var/max_mod_capacity = 100
 	var/disablemodification = FALSE // Bubber edit, stops removal and addition of mods.
-	var/disabled_modkits = list() // // BUBBER EDIT - ADDITION - Additional var to handle certain modkits being disallwoed on specific PKAs
+	var/disabled_modkits // BUBBER EDIT - ADDITION - Additional var to handle certain modkits being disallwoed on specific PKAs
 
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/add_bayonet_point()
@@ -345,7 +345,7 @@
 
 	if(KA.get_remaining_mod_capacity() >= cost)
 		if(.)
-			if(KA.disabled_modkits != src) // BUBBER EDIT - ADDITION - If statement to check if this modkit is disabled on this PKA
+			if(!is_type_in_list(src, KA.disabled_modkits)) // BUBBER EDIT - ADDITION - If statement to check if this modkit is disabled on this PKA
 				if(transfer_to_loc && !user.transferItemToLoc(src, KA))
 					return
 				to_chat(user, span_notice("You install the modkit."))
