@@ -200,7 +200,7 @@
 /obj/projectile/kinetic/shockwave
 	name = "concussive kinetic force"
 	icon_state = null
-	damage = 20 // Half normal dmg, 8 projectiles in a 360 around you. Good for CC and rock clearing.
+	damage = 40 // 8 projectiles in a 360 around you. Good for CC and rock clearing.
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 1
