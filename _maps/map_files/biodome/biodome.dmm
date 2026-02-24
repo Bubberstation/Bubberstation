@@ -694,6 +694,9 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/science)
 "amJ" = (
@@ -2220,6 +2223,23 @@
 	},
 /turf/open/floor/iron,
 /area/station/security/prison)
+"aQA" = (
+/obj/structure/sign/poster/random/directional/north,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 5
+	},
+/obj/effect/turf_decal/trimline/red/filled/mid_joiner{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/red/filled/mid_joiner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_red/line{
+	dir = 5
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/turf/open/floor/iron/smooth_large,
+/area/station/security/brig)
 "aQJ" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp,
@@ -2414,6 +2434,10 @@
 /obj/machinery/flasher/directional/east,
 /turf/open/floor/circuit,
 /area/station/ai/upload/chamber)
+"aUj" = (
+/obj/effect/spawner/random/vending/colavend,
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/fore)
 "aUr" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/electrical{
@@ -3895,6 +3919,9 @@
 /obj/effect/turf_decal/trimline/dark_red/line{
 	dir = 6
 	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
 /turf/open/floor/iron/smooth_large,
 /area/station/security/brig)
 "bwK" = (
@@ -4599,10 +4626,6 @@
 	},
 /turf/open/floor/catwalk_floor/iron,
 /area/station/hallway/primary/port)
-"bIn" = (
-/obj/effect/spawner/random/vending/colavend,
-/turf/open/floor/iron/dark,
-/area/station/hallway/primary/aft)
 "bIu" = (
 /obj/item/stack/cable_coil,
 /turf/open/misc/asteroid/airless,
@@ -7791,6 +7814,7 @@
 /obj/machinery/camera/directional/west{
 	c_tag = "Security - Mechbay"
 	},
+/obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron/dark/small,
 /area/station/security/mechbay)
 "cLv" = (
@@ -9641,10 +9665,6 @@
 /obj/machinery/recharge_station,
 /turf/open/floor/iron/dark/smooth_half,
 /area/station/security/office)
-"dwq" = (
-/obj/machinery/vending/imported,
-/turf/open/floor/stone,
-/area/station/biodome)
 "dwu" = (
 /turf/open/floor/iron/grimy,
 /area/station/service/lawoffice)
@@ -9782,12 +9802,6 @@
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/iron/dark,
 /area/station/cargo/bitrunning/den)
-"dyC" = (
-/obj/structure/chair/sofa/bench/left{
-	dir = 1
-	},
-/turf/open/floor/stone,
-/area/station/biodome)
 "dyH" = (
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
 /obj/effect/turf_decal/stripes/asteroid/line{
@@ -9978,10 +9992,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/eighties/red,
 /area/station/maintenance/abandon_arcade)
-"dBQ" = (
-/obj/effect/spawner/random/vending/snackvend,
-/turf/open/floor/iron/dark,
-/area/station/hallway/primary/starboard)
 "dBV" = (
 /obj/structure/chair/comfy/brown,
 /obj/effect/landmark/start/assistant,
@@ -20728,6 +20738,10 @@
 	},
 /turf/open/misc/asteroid,
 /area/station/cargo/miningdock)
+"hAu" = (
+/obj/machinery/vending/imported,
+/turf/open/floor/stone,
+/area/station/biodome)
 "hAw" = (
 /obj/machinery/portable_atmospherics/canister/goblin,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
@@ -21474,6 +21488,9 @@
 /obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/port/lower)
@@ -26327,7 +26344,6 @@
 /turf/open/floor/iron,
 /area/station/maintenance/disposal/incinerator)
 "jBO" = (
-/obj/machinery/computer/security/telescreen/prison/directional/east,
 /obj/structure/closet/secure_closet/warden,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 5
@@ -26802,6 +26818,10 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/station/maintenance/port/lower)
+"jKr" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/starboard)
 "jKI" = (
 /obj/docking_port/stationary/escape_pod{
 	dir = 2
@@ -28995,6 +29015,7 @@
 /turf/open/floor/wood/large,
 /area/station/maintenance/starboard/lower)
 "kup" = (
+/obj/structure/transit_tube/horizontal,
 /turf/open/floor/plating,
 /area/station/engineering/transit_tube)
 "kut" = (
@@ -29955,6 +29976,9 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/science)
 "kKz" = (
@@ -32440,7 +32464,7 @@
 	name = "Biodome Skybridge"
 	},
 /obj/structure/cable,
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark,
 /area/station/hallway/primary/central/biodome_bridge)
 "lAk" = (
 /obj/structure/lattice/catwalk,
@@ -35584,6 +35608,9 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "mFc" = (
@@ -35737,10 +35764,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/abandon_wrestle)
-"mIY" = (
-/obj/effect/spawner/random/vending/colavend,
-/turf/open/floor/iron/dark,
-/area/station/hallway/primary/fore)
 "mJd" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -36993,8 +37016,16 @@
 /turf/open/floor/plating,
 /area/station/cargo/storage)
 "nfp" = (
-/obj/machinery/vending/cigarette,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/trimline/red/real_red/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "nfx" = (
 /obj/structure/table,
@@ -39403,6 +39434,9 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "nXS" = (
@@ -40231,13 +40265,6 @@
 /obj/structure/plasticflaps/opaque,
 /turf/open/floor/plating,
 /area/station/maintenance/port/upper)
-"onf" = (
-/obj/structure/closet/firecloset,
-/obj/structure/railing{
-	dir = 6
-	},
-/turf/open/floor/stone,
-/area/station/biodome)
 "onm" = (
 /obj/machinery/shower/directional/south,
 /obj/structure/curtain,
@@ -41592,6 +41619,9 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/science)
 "oNd" = (
@@ -43825,6 +43855,13 @@
 /obj/effect/spawner/random/structure/closet_empty/crate,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/maintenance/department/cargo)
+"pFR" = (
+/obj/structure/closet/firecloset,
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/floor/stone,
+/area/station/biodome)
 "pGa" = (
 /obj/structure/plasticflaps,
 /turf/open/floor/plating,
@@ -43905,12 +43942,10 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "pHl" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Biodome Skybridge"
-	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/iron,
-/area/station/hallway/primary/central/biodome_bridge)
+/obj/effect/spawner/structure/window,
+/obj/structure/holosign/barrier/atmos/leaf,
+/turf/open/floor/plating,
+/area/station/biodome/aft)
 "pHD" = (
 /obj/machinery/computer/security/telescreen/vault/directional/north,
 /turf/open/floor/carpet,
@@ -47050,6 +47085,9 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/port/lower)
 "qJS" = (
@@ -49046,12 +49084,9 @@
 /turf/open/floor/iron,
 /area/station/science/research)
 "rqG" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/public/glass{
-	name = "Biodome Skybridge"
-	},
-/turf/open/floor/iron,
-/area/station/hallway/primary/central/biodome_bridge)
+/obj/effect/landmark/firealarm_sanity,
+/turf/open/floor/plating,
+/area/station/hallway/secondary/service)
 "rqO" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/machinery/rnd/production/circuit_imprinter/department/science,
@@ -49066,6 +49101,10 @@
 /obj/structure/shipping_container/cybersun,
 /turf/open/misc/asteroid/airless,
 /area/station/asteroid)
+"rrp" = (
+/obj/effect/spawner/random/vending/snackvend,
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/fore)
 "rrr" = (
 /obj/structure/table/wood,
 /obj/machinery/fax{
@@ -50008,6 +50047,8 @@
 /obj/effect/turf_decal/trimline/white/line{
 	dir = 4
 	},
+/obj/machinery/computer/security/telescreen/prison/directional/east,
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/security/warden)
 "rGi" = (
@@ -51401,9 +51442,10 @@
 /turf/open/floor/glass/reinforced,
 /area/station/maintenance/starboard/upper)
 "scC" = (
-/obj/effect/landmark/firealarm_sanity,
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/transit_tube/horizontal,
 /turf/open/floor/plating,
-/area/station/hallway/secondary/service)
+/area/station/engineering/transit_tube)
 "scJ" = (
 /obj/item/stack/sheet/rglass{
 	amount = 50
@@ -54441,13 +54483,6 @@
 /obj/structure/sink/directional/east,
 /turf/open/floor/iron/freezer,
 /area/station/commons/toilet)
-"tjF" = (
-/obj/effect/landmark/start/assistant,
-/obj/structure/chair/sofa/bench/right{
-	dir = 1
-	},
-/turf/open/floor/stone,
-/area/station/biodome)
 "tjK" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -57110,17 +57145,10 @@
 /turf/open/floor/iron/textured_large,
 /area/station/science/robotics/mechbay)
 "udX" = (
-/obj/effect/turf_decal/trimline/red/real_red/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron,
-/area/station/hallway/primary/starboard)
+/obj/machinery/light/floor/biodome,
+/obj/effect/landmark/start/hangover,
+/turf/open/floor/stone,
+/area/station/biodome)
 "uee" = (
 /obj/structure/window/reinforced/spawner/directional/north{
 	pixel_y = 2
@@ -57759,7 +57787,7 @@
 "umC" = (
 /obj/effect/spawner/random/vending/snackvend,
 /turf/open/floor/iron/dark,
-/area/station/hallway/primary/aft)
+/area/station/hallway/primary/starboard)
 "umG" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -59334,10 +59362,9 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/hfr_room)
 "uQu" = (
-/obj/effect/spawner/structure/window,
-/obj/structure/holosign/barrier/atmos/leaf,
-/turf/open/floor/plating,
-/area/station/biodome/aft)
+/obj/effect/spawner/random/vending/colavend,
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/aft)
 "uQI" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Mail Room"
@@ -60681,7 +60708,6 @@
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "vru" = (
-/obj/machinery/firealarm/directional/west,
 /obj/vehicle/sealed/mecha/ripley/paddy/preset,
 /obj/machinery/camera/directional/west{
 	c_tag = "Security - Office - Port"
@@ -63630,6 +63656,12 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/rd)
+"wrw" = (
+/obj/structure/chair/sofa/bench/left{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/station/biodome)
 "wrx" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible{
 	dir = 4
@@ -65879,8 +65911,10 @@
 	},
 /area/station/science/robotics/augments)
 "xcX" = (
-/obj/machinery/light/floor/biodome,
-/obj/effect/landmark/start/hangover,
+/obj/effect/landmark/start/assistant,
+/obj/structure/chair/sofa/bench/right{
+	dir = 1
+	},
 /turf/open/floor/stone,
 /area/station/biodome)
 "xcY" = (
@@ -67150,7 +67184,7 @@
 "xBu" = (
 /obj/effect/spawner/random/vending/snackvend,
 /turf/open/floor/iron/dark,
-/area/station/hallway/primary/fore)
+/area/station/hallway/primary/aft)
 "xBz" = (
 /obj/effect/spawner/random/structure/crate_abandoned,
 /turf/open/floor/plating,
@@ -97441,7 +97475,7 @@ cCZ
 cCZ
 cCZ
 rNf
-rNf
+scC
 rNf
 fgL
 rNf
@@ -99806,7 +99840,7 @@ vQj
 fwY
 wju
 ngd
-onf
+pFR
 lhR
 asD
 akn
@@ -100833,7 +100867,7 @@ hUs
 vxL
 rlo
 rwt
-xcX
+udX
 lhR
 bdX
 bdX
@@ -104948,7 +104982,7 @@ qgW
 wkf
 uSm
 ngd
-dyC
+wrw
 dFA
 igB
 dFA
@@ -105205,7 +105239,7 @@ tqP
 pjF
 ngd
 ngd
-tjF
+xcX
 dFA
 ftC
 eMh
@@ -105719,7 +105753,7 @@ pbk
 cNw
 psf
 ngd
-dwq
+hAu
 dFA
 dFA
 igB
@@ -164541,7 +164575,7 @@ peI
 siE
 tRv
 arv
-xBu
+rrp
 grZ
 wQg
 rGt
@@ -164798,9 +164832,9 @@ bqd
 imb
 tRv
 eXz
-mIY
+aUj
 grZ
-scC
+rqG
 wsv
 eRl
 cZt
@@ -167158,8 +167192,8 @@ fQs
 fQs
 gkt
 fQs
-uQu
-umC
+pHl
+xBu
 laS
 jHx
 qVS
@@ -167415,8 +167449,8 @@ fQs
 fNT
 fQs
 fQs
+pHl
 uQu
-bIn
 laS
 jHx
 qVS
@@ -168442,7 +168476,7 @@ edL
 mVd
 tSo
 tSo
-pHl
+dyT
 tSo
 mVd
 qTI
@@ -169215,7 +169249,7 @@ kPu
 hdg
 hdg
 xzA
-rqG
+dVP
 rYE
 nIr
 qVS
@@ -169470,7 +169504,7 @@ xKI
 mVd
 tSo
 tSo
-pHl
+dyT
 tSo
 mVd
 mNt
@@ -172328,7 +172362,7 @@ kGv
 oQU
 mTa
 hvU
-xcY
+aQA
 etF
 bwI
 kHf
@@ -173341,9 +173375,9 @@ hdP
 cTv
 ujE
 eCA
+lbF
+lbF
 eCA
-lbF
-lbF
 eCA
 eCA
 bMI
@@ -177174,7 +177208,7 @@ nrl
 ceU
 aPt
 xOo
-udX
+nfp
 fqp
 paS
 oOO
@@ -177439,8 +177473,8 @@ lLK
 pzj
 gqP
 kPb
-dBQ
-nfp
+umC
+jKr
 pos
 bpt
 wLS
