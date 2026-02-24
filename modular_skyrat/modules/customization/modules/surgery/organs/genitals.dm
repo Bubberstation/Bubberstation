@@ -192,17 +192,36 @@
 /obj/item/organ/genital/penis/update_genital_icon_state()
 	var/size_affix
 	var/measured_size = FLOOR(genital_size,1)
-	if(measured_size < 1)
-		measured_size = 1
-	switch(measured_size)
-		if(1 to 8)
-			size_affix = "1"
-		if(9 to 15)
-			size_affix = "2"
-		if(16 to 24)
-			size_affix = "3"
-		else
-			size_affix = "4"
+	if(findtext(genital_name, "(Alt)"))
+		if(measured_size < 1)
+			measured_size = 1
+		switch(measured_size)
+			if(1 to 10)
+				size_affix = "1"
+			if(11 to 20)
+				size_affix = "2"
+			if(21 to 30)
+				size_affix = "3"
+			if(31 to 40)
+				size_affix = "4"
+			if(41 to 50)
+				size_affix = "5"
+			if(51 to 61)
+				size_affix = "6"
+			else
+				size_affix = "7"
+	else
+		if(measured_size < 1)
+			measured_size = 1
+		switch(measured_size)
+			if(1 to 8)
+				size_affix = "1"
+			if(9 to 15)
+				size_affix = "2"
+			if(16 to 24)
+				size_affix = "3"
+			else
+				size_affix = "4"
 	var/passed_string = "penis_[genital_type]_[size_affix]"
 	if(uses_skintones)
 		passed_string += "_s"
@@ -220,17 +239,36 @@
 	var/is_erect = 0
 	if(aroused == AROUSAL_FULL)
 		is_erect = 1
-	if(measured_size < 1)
-		measured_size = 1
-	switch(measured_size)
-		if(1 to 8)
-			size_affix = "1"
-		if(9 to 15)
-			size_affix = "2"
-		if(16 to 24)
-			size_affix = "3"
-		else
-			size_affix = "4"
+	if(findtext(genital_name, "(Alt)"))
+		if(measured_size < 1)
+			measured_size = 1
+		switch(measured_size)
+			if(1 to 10)
+				size_affix = "1"
+			if(11 to 20)
+				size_affix = "2"
+			if(21 to 30)
+				size_affix = "3"
+			if(31 to 40)
+				size_affix = "4"
+			if(41 to 50)
+				size_affix = "5"
+			if(51 to 61)
+				size_affix = "6"
+			else
+				size_affix = "7"
+	else
+		if(measured_size < 1)
+			measured_size = 1
+		switch(measured_size)
+			if(1 to 8)
+				size_affix = "1"
+			if(9 to 15)
+				size_affix = "2"
+			if(16 to 24)
+				size_affix = "3"
+			else
+				size_affix = "4"
 	var/passed_string = "[genital_type]_[size_affix]_[is_erect]"
 	if(uses_skintones)
 		passed_string += "_s"
@@ -273,7 +311,11 @@
 	layers = EXTERNAL_ADJACENT | EXTERNAL_BEHIND
 
 /obj/item/organ/genital/testicles/update_genital_icon_state()
-	var/measured_size = clamp(genital_size, 1, TESTICLES_MAX_SIZE)
+	var/measured_size = FLOOR(genital_size,1)
+	var/max_size = TESTICLES_MAX_SIZE
+	if(genital_name != "Pair (Alt)" && genital_name != "Sheathed Pair")
+		max_size -= 2
+	measured_size = clamp(measured_size, 1, max_size)
 	var/passed_string = "testicles_[genital_type]_[measured_size]"
 	if(uses_skintones)
 		passed_string += "_s"
@@ -297,7 +339,10 @@
 
 /obj/item/organ/genital/testicles/get_sprite_size_string()
 	var/measured_size = FLOOR(genital_size,1)
-	measured_size = clamp(measured_size, 0, TESTICLES_MAX_SIZE)
+	var/max_size = TESTICLES_MAX_SIZE
+	if(genital_name != "Pair (Alt)" && genital_name != "Sheathed Pair")
+		max_size -= 2
+	measured_size = clamp(measured_size, 0, max_size)
 	var/passed_string = "[genital_type]_[measured_size]"
 	if(uses_skintones)
 		passed_string += "_s"
