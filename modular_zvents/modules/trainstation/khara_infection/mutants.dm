@@ -318,12 +318,17 @@
 
 	mob_size = MOB_SIZE_HUGE
 	plane = MASSIVE_OBJ_PLANE
-	ai_controller = null
+	layer = LARGE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_OPAQUE
 
-	spread_miasma_amount = 24
+	move_force = MOVE_FORCE_OVERPOWERING
+	move_resist = MOVE_FORCE_OVERPOWERING
+	pull_force = MOVE_FORCE_OVERPOWERING
+
+	spread_miasma_amount = 36
 	spreads_miasma = TRUE
 	spread_miasma_chance = 100
-	spread_minimal_cooldown = 15 SECONDS
+	spread_minimal_cooldown = 25 SECONDS
 
 	ai_controller = /datum/ai_controller/basic_controller/boss_spreader
 	innate_actions = list(
@@ -343,3 +348,5 @@
 			weather.wind_down()
 			break
 	. = ..()
+
+/obj/item/clothing/mask/gas

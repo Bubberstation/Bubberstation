@@ -274,9 +274,9 @@
 		if(lungs && (lungs.organ_flags & ORGAN_ORGANIC))
 			does_breath = TRUE
 
-	var/obj/item/clothing/hat = human.is_mouth_covered(ITEM_SLOT_HEAD)
+	var/obj/item/clothing/suit = human.is_mouth_covered(ITEM_SLOT_OCLOTHING)
 	var/obj/item/clothing/mask = human.is_mouth_covered(ITEM_SLOT_MASK)
-	var/total_prot = (hat?.get_armor_rating(BIO) + mask?.get_armor_rating(BIO))
+	var/total_prot = (suit?.get_armor_rating(BIO) + mask?.get_armor_rating(BIO))
 	if(!does_breath && total_prot >= 50)
 		return
 	if(human.has_reagent(/datum/reagent/toxin/khara, 10))

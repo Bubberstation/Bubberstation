@@ -1,12 +1,20 @@
+/proc/cmp_threat_level_asc(datum/train_station/A, datum/train_station/B)
+	var/numA = SStrain_controller.threat_levels_by_number[A.threat_level] || 0
+	var/numB = SStrain_controller.threat_levels_by_number[B.threat_level] || 0
+	return numA - numB
+
 /datum/trainmap_path
 	var/datum/trainmap_object/start
 	var/datum/trainmap_object/end
 	var/angle = 0
 
 /datum/trainmap_path/proc/calculate_angle()
-	if(!start || !end) return
-	angle = SStrain_controller.global_map.calculate_angle(start.position_x, start.position_y, end.position_x, end.position_y)
-
+	if(!start || !end)
+		return
+	angle = SStrain_controller.global_map.calculate_angle(
+		start.position_x, start.position_y,
+		end.position_x, end.position_y
+	)
 
 /datum/trainmap_object
 	var/name = "Map object"
@@ -20,7 +28,6 @@
 /datum/trainmap_object/proc/set_position(x, y)
 	position_x = x
 	position_y = y
-
 
 /datum/train_global_map
 	var/list/objects = list()
@@ -45,56 +52,117 @@
 	if(!length(SStrain_controller.region_order))
 		SStrain_controller.connect_stations()
 
-	var/list/stations = list()
-	for(var/region in SStrain_controller.region_order)
-		stations += SStrain_controller.stations_by_regions[region]
-
 	var/list/valid_stations = list()
-	for(var/datum/train_station/S in stations)
-		if(!S.visible || (S.station_flags & TRAINSTATION_ABSCTRACT))
-			continue
-		if(!S.map_object)
+	for(var/datum/train_station/S in SStrain_controller.known_stations)
+		if(!S.visible || (S.station_flags & TRAINSTATION_ABSCTRACT) || !S.map_object)
 			continue
 		valid_stations += S
 
-	var/num = length(valid_stations)
-	if(!num)
+	if(!length(valid_stations))
 		return
 
-	var/angle_step = 360 / num
-	var/base_angle = rand(0, 359)
-	var/current_idx = 0
+	var/list/local_centers = list()
+	for(var/datum/train_station/S in valid_stations)
+		if(S.station_flags & TRAINSTATION_LOCAL_CENTER)
+			local_centers += S
+
+	local_centers = sortTim(local_centers, GLOBAL_PROC_REF(cmp_threat_level_asc))
+
+	var/center_angle_step = 360 / max(1, length(local_centers))
+	var/base_center_angle = rand(0, 359)
+
+	for(var/i in 1 to length(local_centers))
+		var/datum/train_station/lc = local_centers[i]
+		var/datum/trainmap_object/O = lc.map_object
+
+		var/threat_num = SStrain_controller.threat_levels_by_number[lc.threat_level] || 0
+		var/threat_factor = threat_num / 4.0
+
+		var/hub_radius = min_radius + (max_radius - min_radius) * (0.35 + 0.55 * threat_factor)
+
+		var/this_angle = base_center_angle + (i - 1) * center_angle_step + rand(-15, 15)
+
+		var/rad = this_angle * 0.0174532925
+		var/px = center_x + hub_radius * cos(rad)
+		var/py = center_y + hub_radius * sin(rad)
+
+		O.set_position(px, py)
+
+		var/attempts = 25
+		while(attempts-- && check_overlap(O))
+			this_angle += rand(-12, 12)
+			rad = this_angle * 0.0174532925
+			px = center_x + hub_radius * cos(rad)
+			py = center_y + hub_radius * sin(rad)
+			O.set_position(px, py)
+
+		objects += O
+
+	var/list/region_to_hub = list()
+	for(var/datum/train_station/lc in local_centers)
+		region_to_hub[lc.region] = lc
 
 	for(var/datum/train_station/S in valid_stations)
-		current_idx++
-		var/datum/trainmap_object/O = S.map_object
+		if(S.station_flags & TRAINSTATION_LOCAL_CENTER)
+			continue
 
-		var/this_angle = base_angle + (current_idx - 1) * angle_step
+		var/datum/trainmap_object/O = S.map_object
+		var/datum/train_station/parent_hub = region_to_hub[S.region]
+
 		var/placed = FALSE
 		var/attempts = 60
 
-		while(attempts-- && !placed)
-			var/radius = rand(min_radius, max_radius)
-			var/rad = this_angle * 0.0174532925 // ≈ PI/180
+		if(parent_hub)
+			var/datum/trainmap_object/H = parent_hub.map_object
+			while(attempts--)
+				var/offset_angle = rand(0, 359) * 0.0174532925
+				var/offset_dist = 45 + rand(25, 135)   // плотный кластер
+				var/px = H.position_x + offset_dist * cos(offset_angle)
+				var/py = H.position_y + offset_dist * sin(offset_angle)
 
-			var/px = center_x + radius * cos(rad)
-			var/py = center_y + radius * sin(rad)
+				px += rand(-28, 28)
+				py += rand(-28, 28)
 
-			O.set_position(px, py)
+				O.set_position(px, py)
 
-			if(!check_overlap(O))
-				placed = TRUE
-			else
-				this_angle += rand(-3, 3)
+				if(!check_overlap(O))
+					placed = TRUE
+					break
+		else
+			while(attempts--)
+				var/px = rand(80, 920)
+				var/py = rand(80, 920)
+				O.set_position(px, py)
+
+				var/dist = sqrt((px - center_x)**2 + (py - center_y)**2)
+				if(dist >= min_radius * 0.5 && dist <= max_radius && !check_overlap(O))
+					placed = TRUE
+					break
 
 		if(!placed)
-			attempts = 60
-			while(attempts--)
-				O.set_position(rand(80, 920), rand(80, 920))
-				var/dist = sqrt((O.position_x - center_x)**2 + (O.position_y - center_y)**2)
-				if(dist >= min_radius && dist <= max_radius && !check_overlap(O))
-					break
+			O.set_position(rand(120, 880), rand(120, 880))
+
 		objects += O
+
+	for(var/datum/train_station/S in valid_stations)
+		S.possible_next.Cut()
+
+	for(var/datum/train_station/S in valid_stations)
+		if(S.station_flags & TRAINSTATION_NO_FORKS)
+			continue
+
+		var/is_hub = (S.station_flags & TRAINSTATION_LOCAL_CENTER)
+		var/max_dist = is_hub ? 340 : 230
+		var/max_count = is_hub ? rand(4, 6) : rand(2, 4)
+
+		var/list/nearest = get_nearest_stations(S.map_object, max_dist, max_count)
+
+		for(var/datum/trainmap_object/NO in nearest)
+			var/datum/train_station/NS = NO.associated_station
+			if(NS && NS != S)
+				S.possible_next += NS
+
+	ensure_fully_connected()
 
 	for(var/datum/train_station/S in valid_stations)
 		var/datum/trainmap_object/O = S.map_object
@@ -110,6 +178,99 @@
 				paths += P
 
 	update_train_position()
+
+	for(var/datum/train_station/station in SStrain_controller.known_stations)
+		station.connect_stations()
+
+/datum/train_global_map/proc/get_nearest_stations(datum/trainmap_object/center, max_dist = 250, max_count = 4)
+	var/list/cands = list()
+	for(var/datum/trainmap_object/O in objects)
+		if(O == center)
+			continue
+		var/dx = O.position_x - center.position_x
+		var/dy = O.position_y - center.position_y
+		var/dist = sqrt(dx*dx + dy*dy)
+		if(dist <= max_dist && dist > 10)
+			cands[O] = dist
+
+	if(!length(cands))
+		return list()
+
+	cands = sortTim(cands, GLOBAL_PROC_REF(cmp_numeric_asc), associative = TRUE)
+
+	var/list/result = list()
+	for(var/i in 1 to min(max_count, length(cands)))
+		result += cands[i]
+	return result
+
+/datum/train_global_map/proc/ensure_fully_connected()
+	var/list/graph = build_graph()
+	var/list/components = get_connected_components(graph)
+
+	if(length(components) <= 1)
+		return
+
+	for(var/i in 1 to length(components)-1)
+		var/list/compA = components[i]
+		var/list/compB = components[i+1]
+
+		var/min_dist = 999999
+		var/datum/trainmap_object/bestA
+		var/datum/trainmap_object/bestB
+
+		for(var/datum/trainmap_object/A in compA)
+			for(var/datum/trainmap_object/B in compB)
+				var/dx = A.position_x - B.position_x
+				var/dy = A.position_y - B.position_y
+				var/d = sqrt(dx*dx + dy*dy)
+				if(d < min_dist)
+					min_dist = d
+					bestA = A
+					bestB = B
+
+		if(bestA && bestB)
+			var/datum/train_station/sA = bestA.associated_station
+			var/datum/train_station/sB = bestB.associated_station
+			if(sA && sB)
+				if(!(sA.station_flags & TRAINSTATION_NO_FORKS) && !sA.possible_next.Find(sB))
+					sA.possible_next += sB
+				if(!(sB.station_flags & TRAINSTATION_NO_FORKS) && !sB.possible_next.Find(sA))
+					sB.possible_next += sA
+
+/datum/train_global_map/proc/build_graph()
+	var/list/graph = list()
+	for(var/datum/trainmap_object/O in objects)
+		graph[O] = list()
+
+	for(var/datum/train_station/S in SStrain_controller.known_stations)
+		if(!S.map_object)
+			continue
+		var/datum/trainmap_object/O = S.map_object
+		for(var/datum/train_station/NS in S.possible_next)
+			var/datum/trainmap_object/TO = NS.map_object
+			if(TO)
+				graph[O] += TO
+				if(!(TO in graph)) graph[TO] = list()
+				graph[TO] += O
+	return graph
+
+/datum/train_global_map/proc/get_connected_components(list/graph)
+	var/list/visited = list()
+	var/list/components = list()
+
+	for(var/datum/trainmap_object/O in graph)
+		if(!visited[O])
+			var/list/component = list()
+			dfs(O, graph, visited, component)
+			components += list(component)
+	return components
+
+/datum/train_global_map/proc/dfs(datum/trainmap_object/node, list/graph, list/visited, list/component)
+	visited[node] = TRUE
+	component += node
+	for(var/datum/trainmap_object/neigh in graph[node])
+		if(!visited[neigh])
+			dfs(neigh, graph, visited, component)
 
 /datum/train_global_map/proc/check_overlap(datum/trainmap_object/new_obj)
 	for(var/datum/trainmap_object/O in objects)
@@ -128,16 +289,15 @@
 /datum/train_global_map/proc/calculate_angle(sx, sy, ex, ey)
 	var/dx = ex - sx
 	var/dy = ey - sy
-	if(abs(dx) == 0 && abs(dy) == 0) return 0
-
+	if(!dx && !dy)
+		return 0
 	if(abs(dx) >= abs(dy) * 1.5)
 		return dx > 0 ? 0 : 180
 	else if(abs(dy) >= abs(dx) * 1.5)
 		return dy > 0 ? 90 : 270
 	else if(dx > 0)
 		return dy > 0 ? 45 : 315
-	else
-		return dy > 0 ? 135 : 225
+	return dy > 0 ? 135 : 225
 
 /datum/train_global_map/proc/update_train_position()
 	if(!SStrain_controller.is_moving() || !SStrain_controller.loaded_station)
@@ -202,3 +362,5 @@
 	data["height"] = 1000
 	return data
 
+
+/mob/living/simple_animal/hostile/megafauna
