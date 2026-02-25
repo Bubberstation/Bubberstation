@@ -3,7 +3,7 @@
 	var/sound
 	var/behavior
 	var/sharpness
-	var/speed = 2 // Better than normal, worse than upgraded.
+	var/speed = 0.5 // Better than normal (1), worse than upgraded(0.3).
 	var/requires_emag = FALSE
 
 /datum/holotool_mode/proc/on_set(obj/item/holotool/holotool)
@@ -58,11 +58,11 @@
 
 /datum/holotool_mode/welder/on_set(obj/item/holotool/holotool)
 	..()
-	holotool.AddElement(/datum/element/tool_flash, holotool.light_range)
+	holotool.AddElement(holotool.light_range)
 
 /datum/holotool_mode/welder/on_unset(obj/item/holotool/holotool)
 	..()
-	holotool.RemoveElement(/datum/element/tool_flash, holotool.light_range)
+	holotool.RemoveElement(holotool.light_range)
 
 ////////////////////////////////////////////////
 
