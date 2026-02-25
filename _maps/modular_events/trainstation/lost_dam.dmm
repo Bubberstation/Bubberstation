@@ -8,7 +8,7 @@
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/white/small,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "ai" = (
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/effect/turf_decal/stripes/line{
@@ -31,7 +31,7 @@
 /turf/open/floor/iron/stairs/old{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "al" = (
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/railing{
@@ -45,7 +45,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "av" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -89,7 +89,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "aP" = (
 /obj/machinery/door/poddoor/story,
 /turf/open/floor/asphalt,
@@ -108,7 +108,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "aS" = (
 /obj/effect/turf_decal/tile/dark/full{
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
@@ -148,7 +148,7 @@
 	},
 /obj/effect/decal/cleanable/ash,
 /turf/open/floor/iron/dark/corner,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "aZ" = (
 /obj/structure/chair/office{
 	dir = 4
@@ -165,13 +165,13 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "bl" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/corner{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "br" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow/corner{
@@ -200,7 +200,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "bQ" = (
 /obj/effect/turf_decal/tile/dark/full{
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
@@ -246,7 +246,7 @@
 /obj/item/radio/off,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "cg" = (
 /turf/closed/indestructible/rock/snow/ice/ore,
 /area/trainstation/outdoor)
@@ -258,15 +258,33 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"cj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/deployable_barricade/metal{
+	dir = 1
+	},
+/obj/machinery/porta_turret/syndicate{
+	faction = list("hostile")
+	},
+/turf/open/floor/iron,
+/area/trainstation/indoors/station/powered)
 "cn" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "cq" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/indoors/station/controll)
+"cr" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "splatter3"
+	},
+/obj/effect/gibspawner/human,
+/mob/living/basic/npc/police/military/bad_guys,
+/turf/open/indestructible/meat,
+/area/trainstation/indoors/station/powered)
 "ct" = (
 /obj/structure/prop/city/buildingventbig11_off{
 	name = "Generator";
@@ -296,7 +314,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "cz" = (
 /turf/closed/wall/ice,
 /area/trainstation/outdoor)
@@ -305,17 +323,18 @@
 /obj/structure/prop/general/coffeecuppaijoe{
 	icon_state = "coffeecuppajoe"
 	},
+/mob/living/basic/npc/police/military/bad_guys,
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "cL" = (
 /obj/item/rack_parts/shelf,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "cN" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing,
@@ -338,7 +357,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "cV" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 5
@@ -349,7 +368,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/white/small,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "dc" = (
 /obj/structure/table,
 /obj/item/storage/pill_bottle/psicodine{
@@ -366,7 +385,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 6
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "de" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -375,7 +394,7 @@
 	density = 1
 	},
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "do" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 5
@@ -385,6 +404,12 @@
 	},
 /turf/open/misc/ice/coldroom,
 /area/trainstation/outdoor)
+"dw" = (
+/obj/machinery/door/airlock/shuttle/ferry{
+	name = "Magnetic Airlock"
+	},
+/turf/open/misc/asteroid/snow/indestructible,
+/area/trainstation/indoors/station/powered)
 "dC" = (
 /obj/structure/fluff/paper/stack,
 /obj/effect/decal/cleanable/dirt,
@@ -399,7 +424,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "dH" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 6
@@ -424,7 +449,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "ec" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -454,7 +479,7 @@
 "ed" = (
 /obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "ee" = (
 /obj/structure/closet/secure_closet/personal{
 	icon_state = "eng";
@@ -465,7 +490,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/radio/intercom/directional/north,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "em" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -567,11 +592,17 @@
 /mob/living/basic/bear/snow,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
+"eU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/side{
+	dir = 8
+	},
+/area/trainstation/indoors/station/powered)
 "eW" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/gibs/torso,
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "fa" = (
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/railing{
@@ -579,12 +610,19 @@
 	},
 /turf/open/floor/plating,
 /area/trainstation/outdoor)
+"fd" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "splatter3"
+	},
+/obj/effect/gibspawner/human,
+/turf/open/indestructible/meat,
+/area/trainstation/indoors/station/powered)
 "fh" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "fl" = (
 /obj/effect/overlay/water{
 	alpha = 90
@@ -611,7 +649,7 @@
 	pixel_y = -3
 	},
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "fr" = (
 /obj/machinery/power/energy_accumulator/tesla_coil{
 	pixel_x = 9;
@@ -628,7 +666,7 @@
 	density = 1
 	},
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "ft" = (
 /obj/effect/turf_decal/siding/dark,
 /turf/open/floor/iron/shuttle/exploration/doubleside,
@@ -640,7 +678,14 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"fy" = (
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/station/powered)
 "fF" = (
 /obj/structure/closet/secure_closet/personal{
 	icon_state = "eng";
@@ -652,14 +697,15 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "fJ" = (
 /obj/machinery/light/warm/directional/west,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/reagent_dispensers/watertank,
+/obj/machinery/light/red/directional/west,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "fM" = (
 /obj/structure/fence/interlink{
 	uses_integrity = 0;
@@ -687,7 +733,7 @@
 	pixel_y = 1
 	},
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "fP" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing,
@@ -749,13 +795,13 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "gu" = (
 /obj/item/rolling_table_dock,
 /obj/effect/spawner/surgery_tray,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "gy" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/decorative{
@@ -767,7 +813,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "gz" = (
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
@@ -775,7 +821,7 @@
 /obj/structure/curtain,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "gK" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/catwalk_floor/iron_dark,
@@ -795,8 +841,9 @@
 	pixel_y = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/red/directional/east,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "gS" = (
 /obj/structure/prop/tgmc_console4,
 /obj/structure/railing{
@@ -804,7 +851,7 @@
 	pixel_y = 0
 	},
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "gT" = (
 /obj/structure/table,
 /obj/item/chair{
@@ -815,20 +862,20 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "gV" = (
 /obj/effect/spawner/random/trash,
 /obj/structure/deployable_barricade/metal{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "gW" = (
 /obj/structure/prop/general/highvoltagegrille{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "ha" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -849,14 +896,24 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "hc" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 4
 	},
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"hy" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/npc/police/military/bad_guys,
+/turf/open/floor/iron,
+/area/trainstation/indoors/station/powered)
+"hA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron,
+/area/trainstation/indoors/station/powered)
 "hD" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -871,7 +928,7 @@
 /obj/structure/fluff/shower_drain,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/white/textured_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "hQ" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -894,7 +951,7 @@
 /obj/effect/mob_spawn/corpse/human,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "hW" = (
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/railing,
@@ -911,7 +968,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "ic" = (
 /obj/structure/railing{
 	dir = 8;
@@ -931,7 +988,15 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"ix" = (
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/weather/snow/corner,
+/turf/open/water/deep_beach/lethal,
+/area/trainstation/indoors/station/powered)
 "iB" = (
 /obj/machinery/door/airlock/shuttle/ferry{
 	name = "Magnetic Airlock"
@@ -945,6 +1010,23 @@
 	},
 /turf/open/misc/ice/coldroom,
 /area/trainstation/outdoor)
+"iM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/decorative/fluff{
+	name = "broken console";
+	desc = "Ruthlessly broken.";
+	icon_state = "computer_broken";
+	icon = 'icons/obj/machines/computer.dmi';
+	anchored = 1;
+	color = "#ecd6c9";
+	density = 1;
+	can_be_unanchored = 1;
+	dir = 2
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 9
+	},
+/area/trainstation/indoors/station/powered)
 "iQ" = (
 /obj/effect/turf_decal/tile/dark/full{
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
@@ -1026,7 +1108,23 @@
 /obj/structure/chair/sofa/bench/left,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"jC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/decorative/fluff{
+	name = "metal barrel";
+	desc = "So metal.";
+	icon_state = "vat";
+	icon = 'icons/obj/medical/chemical_tanks.dmi';
+	anchored = 1;
+	color = "#ecd6c9";
+	density = 1;
+	can_be_unanchored = 1
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 4
+	},
+/area/trainstation/indoors/station/powered)
 "jL" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1034,10 +1132,13 @@
 /obj/structure/deployable_barricade/metal{
 	dir = 8
 	},
+/obj/machinery/porta_turret/syndicate{
+	faction = list("hostile")
+	},
 /turf/open/floor/iron/dark/side{
 	dir = 6
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "jS" = (
 /obj/machinery/suit_storage_unit,
 /turf/open/floor/iron/dark/smooth_large,
@@ -1081,13 +1182,19 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "kj" = (
 /obj/effect/mob_spawn/corpse/human/nanotrasensoldier,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/side,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"kk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/red/directional/east,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/station/powered)
 "kl" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/iron/dark/smooth_large,
@@ -1126,7 +1233,7 @@
 /area/trainstation/outdoor)
 "kp" = (
 /turf/open/floor/iron,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "kq" = (
 /obj/item/reagent_containers/syringe{
 	pixel_x = -5;
@@ -1139,7 +1246,7 @@
 /turf/open/floor/iron/dark/corner{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "kx" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 5
@@ -1149,15 +1256,12 @@
 	},
 /turf/open/water/deep_beach/lethal,
 /area/trainstation/outdoor)
-"kA" = (
-/turf/closed/wall/city/siding,
-/area/trainstation/indoors/station/controll)
 "kJ" = (
 /obj/structure/prop/general/hospitalcurtain,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "kO" = (
 /obj/effect/turf_decal/weather/snow/corner,
 /obj/effect/turf_decal/weather/snow/corner{
@@ -1197,7 +1301,11 @@
 /turf/open/floor/iron/dark/side{
 	dir = 10
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"kY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/side,
+/area/trainstation/indoors/station/powered)
 "lc" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 10
@@ -1216,7 +1324,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 5
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "lA" = (
 /obj/item/chair{
 	pixel_x = 0;
@@ -1228,7 +1336,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 10
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "lF" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow/corner{
@@ -1254,13 +1362,13 @@
 /turf/open/floor/iron/dark/side{
 	dir = 6
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "lN" = (
 /obj/structure/frame/machine/secured,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "lQ" = (
 /obj/structure/prop/big/alteviangenwrecked,
 /obj/effect/turf_decal/stripes/line{
@@ -1270,7 +1378,7 @@
 	density = 1
 	},
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "lU" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow/corner{
@@ -1283,7 +1391,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "mb" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow/corner{
@@ -1317,7 +1425,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "mp" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/ammo_casing/c357/spent{
@@ -1330,7 +1438,7 @@
 	pixel_x = -6
 	},
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "mu" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -1349,6 +1457,11 @@
 	desc = "The wall of this now-frozen dam. Looks nigh-impenetrable to damage."
 	},
 /area/trainstation/outdoor)
+"mD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/station/powered)
 "mE" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -1370,7 +1483,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "mL" = (
 /obj/structure/rack,
 /obj/item/soap/deluxe{
@@ -1379,7 +1492,7 @@
 /obj/effect/turf_decal/siding/thinplating_new/light/end,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/white/small,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "mQ" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -1404,27 +1517,55 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "nc" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"nd" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/paper/trainstation_password,
+/turf/open/floor/plating,
+/area/trainstation/indoors/station/powered)
 "nf" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/innards,
+/mob/living/basic/npc/police/military/bad_guys,
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"nk" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-1-2";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/effect/spawner/random/trash,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/trainstation/indoors/station/powered)
+"no" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/deployable_barricade/metal{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/trainstation/indoors/station/powered)
 "np" = (
 /obj/effect/spawner/random/trash,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/side{
 	dir = 9
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "nr" = (
 /obj/structure/table,
 /obj/effect/mob_spawn/corpse/human,
@@ -1440,7 +1581,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "nw" = (
 /obj/structure/closet/secure_closet/personal/wall{
 	pixel_y = 29
@@ -1449,7 +1590,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "ny" = (
 /obj/structure/closet/secure_closet/personal{
 	icon_state = "eng";
@@ -1459,7 +1600,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "nF" = (
 /obj/structure/railing{
 	dir = 8
@@ -1468,12 +1609,12 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "nO" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/iron,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "nR" = (
 /obj/machinery/door/airlock/shuttle/ferry{
 	name = "Magnetic interlock control"
@@ -1506,14 +1647,14 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "oi" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "ok" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow/corner{
@@ -1548,7 +1689,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/ash,
 /turf/open/floor/iron,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "oq" = (
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/railing{
@@ -1561,7 +1702,7 @@
 /obj/effect/spawner/random/trash,
 /obj/effect/spawner/random/trash,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "ov" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -1577,7 +1718,7 @@
 /obj/structure/fluff/shower_drain,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/white/textured_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "oy" = (
 /obj/structure/railing{
 	dir = 10
@@ -1586,10 +1727,17 @@
 /area/trainstation/outdoor)
 "oz" = (
 /obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/npc/police/military/bad_guys,
 /turf/open/floor/iron/checker{
 	dir = 1
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"oB" = (
+/obj/machinery/porta_turret/syndicate{
+	faction = list("hostile")
+	},
+/turf/open/floor/plating,
+/area/trainstation/indoors/station/powered)
 "oE" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 8
@@ -1602,7 +1750,6 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/fancy/donut_box,
 /obj/effect/spawner/random/engineering/tool,
-/obj/item/paper/trainstation_password,
 /turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/indoors/station/controll)
 "oL" = (
@@ -1612,7 +1759,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark/side,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "oR" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -1645,7 +1792,7 @@
 	density = 1
 	},
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "pi" = (
 /obj/structure/railing/corner{
 	dir = 1
@@ -1659,12 +1806,20 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"pj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/deployable_barricade/metal{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/trainstation/indoors/station/powered)
 "po" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/calendar/directional/south,
 /turf/open/floor/iron/dark/side,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "pv" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/storage/medkit/toxin{
@@ -1681,11 +1836,11 @@
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "px" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "pA" = (
 /obj/structure/chair/sofa/corp/left{
 	dir = 8
@@ -1694,7 +1849,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "pI" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -1716,7 +1871,17 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"qf" = (
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
+/turf/open/water/deep_beach/lethal,
+/area/trainstation/indoors/station/powered)
 "qk" = (
 /obj/machinery/light/small/directional/west,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1735,7 +1900,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 10
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "qm" = (
 /obj/structure/rack/shelf,
 /obj/effect/decal/cleanable/dirt,
@@ -1743,7 +1908,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/sign/clock/directional/west,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "qr" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -1757,6 +1922,10 @@
 	},
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
+"qv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron,
+/area/trainstation/indoors/station/powered)
 "qw" = (
 /obj/structure/railing/unbreakable{
 	dir = 9
@@ -1792,7 +1961,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "qz" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/blood/old{
@@ -1816,7 +1985,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "qA" = (
 /obj/structure/railing/corner{
 	dir = 8
@@ -1830,13 +1999,13 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "qJ" = (
 /obj/machinery/door/airlock/bathroom{
 	name = "Restroom"
 	},
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "qO" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 5
@@ -1851,7 +2020,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "qZ" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -1874,7 +2043,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "ri" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow/corner{
@@ -1889,6 +2058,19 @@
 /obj/structure/prop/general/highvoltagegrille_off,
 /turf/open/indestructible/plating,
 /area/trainstation/outdoor)
+"rr" = (
+/turf/closed/indestructible/rock{
+	icon_state = "rock2"
+	},
+/area/trainstation/outdoor)
+"rs" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/fluff/paper/stack{
+	dir = 5
+	},
+/turf/open/floor/iron,
+/area/trainstation/indoors/station/powered)
 "rx" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1896,14 +2078,14 @@
 /turf/open/floor/iron/dark/side{
 	dir = 9
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "rN" = (
 /obj/effect/decal/cleanable/vomit,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/side{
 	dir = 5
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "sg" = (
 /obj/structure/prop/city/buildingventbig9{
 	pixel_x = -15
@@ -1912,7 +2094,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "sp" = (
 /obj/structure/table,
 /obj/effect/mob_spawn/corpse/human,
@@ -1923,7 +2105,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/eyechart/directional/south,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "sq" = (
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/railing{
@@ -1936,10 +2118,11 @@
 /area/trainstation/outdoor)
 "sy" = (
 /obj/effect/decal/cleanable/dirt,
+/mob/living/basic/npc/police/military/bad_guys,
 /turf/open/floor/iron/checker{
 	dir = 1
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "sB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1947,7 +2130,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 10
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "sD" = (
 /obj/structure/flora/rock/style_random,
 /turf/open/floor/plating/snowed/smoothed,
@@ -1957,7 +2140,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/vending/colavend,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "sP" = (
 /obj/structure/fluff/paper/stack{
 	dir = 1;
@@ -1967,17 +2150,17 @@
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "sR" = (
 /obj/machinery/light/warm/directional/north,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "sS" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "sU" = (
 /obj/structure/closet/secure_closet/personal{
 	icon_state = "eng";
@@ -1988,7 +2171,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "sZ" = (
 /obj/structure/closet/secure_closet/personal{
 	icon_state = "eng";
@@ -1999,7 +2182,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "te" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/structure/table/reinforced,
@@ -2016,8 +2199,11 @@
 /obj/structure/deployable_barricade/metal{
 	dir = 4
 	},
+/obj/machinery/porta_turret/syndicate{
+	faction = list("hostile")
+	},
 /turf/open/floor/iron,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "tl" = (
 /obj/structure/fluff/paper/stack{
 	dir = 9
@@ -2032,7 +2218,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 9
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "tu" = (
 /obj/effect/particle_effect/water,
 /turf/open/water/deep_beach/lethal,
@@ -2045,7 +2231,16 @@
 /obj/structure/trash_pile,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"tK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/paper/stack{
+	dir = 5
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 10
+	},
+/area/trainstation/indoors/station/powered)
 "tM" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -2073,7 +2268,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "tR" = (
 /obj/structure/sign/warning/electric_shock,
 /turf/closed/wall/city/siding/style/style_1,
@@ -2097,7 +2292,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "ud" = (
 /obj/structure/sign/directions/supply{
 	pixel_y = 0;
@@ -2123,7 +2318,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "us" = (
 /obj/effect/turf_decal/trimline/yellow/line{
 	dir = 4
@@ -2143,7 +2338,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 5
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "uA" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -2171,7 +2366,7 @@
 /obj/structure/frame/machine/secured,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "uJ" = (
 /obj/structure/closet/secure_closet/personal{
 	icon_state = "eng";
@@ -2180,7 +2375,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "uK" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow/corner{
@@ -2199,7 +2394,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/deployable_barricade/metal,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "uV" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 9
@@ -2215,7 +2410,18 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/white/small,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"vd" = (
+/obj/structure/fluff/paper/stack{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/npc/police/military/bad_guys,
+/turf/open/floor/iron/dark/corner{
+	dir = 1
+	},
+/area/trainstation/indoors/station/powered)
 "vj" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 6
@@ -2262,12 +2468,20 @@
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"vF" = (
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/station/powered)
 "vG" = (
 /obj/item/radio/intercom/directional/north,
 /obj/effect/spawner/random/trash,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "vH" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -2283,7 +2497,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "vU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -2293,7 +2507,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "vZ" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing,
@@ -2321,12 +2535,12 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "wt" = (
 /obj/machinery/light/warm/directional/north,
 /obj/effect/spawner/random/trash,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "wv" = (
 /obj/machinery/light/small/directional/south,
 /obj/effect/decal/cleanable/dirt,
@@ -2336,7 +2550,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 10
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "wC" = (
 /obj/structure/railing/unbreakable{
 	dir = 1
@@ -2413,7 +2627,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 5
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "xe" = (
 /obj/effect/turf_decal/weather/snow,
 /turf/open/water/deep_beach/lethal,
@@ -2451,13 +2665,13 @@
 /turf/open/floor/iron/dark/side{
 	dir = 10
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "xD" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "xE" = (
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/railing{
@@ -2502,7 +2716,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "xW" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow/corner{
@@ -2519,7 +2733,7 @@
 	},
 /obj/effect/spawner/random/structure/barricade,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "ye" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
@@ -2528,7 +2742,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "yk" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow/corner{
@@ -2562,13 +2776,20 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "yr" = (
 /obj/machinery/door/airlock/shuttle/ferry{
 	name = "Magnetic interlock control"
 	},
 /turf/open/indestructible/vault,
 /area/trainstation/indoors/station/controll)
+"ys" = (
+/obj/structure/frame/machine,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/red/directional/west,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/station/powered)
 "yv" = (
 /turf/open/floor/plating/snowed/smoothed,
 /area/trainstation/outdoor)
@@ -2576,7 +2797,7 @@
 /obj/structure/reagent_dispensers/water_cooler,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "yG" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow/corner{
@@ -2597,7 +2818,7 @@
 	},
 /obj/machinery/light/small/dim/directional/south,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "yI" = (
 /obj/structure/flora/tree/pine/style_random,
 /turf/open/misc/asteroid/snow/indestructible,
@@ -2612,7 +2833,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "yT" = (
 /obj/structure/closet/secure_closet/personal{
 	icon_state = "eng";
@@ -2623,7 +2844,13 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"yW" = (
+/obj/machinery/door/airlock/shuttle/ferry{
+	name = "Magnetic Airlock"
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/station/powered)
 "yZ" = (
 /obj/effect/overlay/water{
 	alpha = 90
@@ -2650,11 +2877,11 @@
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "zx" = (
 /obj/item/kirbyplants/organic/plant21,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "zz" = (
 /obj/structure/flora/tree/pine/style_random,
 /obj/structure/flora/bush/snow/style_random,
@@ -2675,7 +2902,7 @@
 	density = 1
 	},
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "zH" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 9
@@ -2690,7 +2917,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/iron/white/small,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "zT" = (
 /turf/closed/indestructible/steel,
 /area/trainstation/outdoor)
@@ -2713,8 +2940,27 @@
 	color = "#222222"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/porta_turret/syndicate{
+	faction = list("hostile")
+	},
 /turf/open/floor/plating,
+/area/trainstation/indoors/station/powered)
+"Ag" = (
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
+/turf/open/water/deep_beach/lethal,
+/area/trainstation/indoors/station/powered)
+"Ai" = (
+/obj/structure/flora/bush/snow/style_random,
+/turf/open/floor/iron/dark/side{
+	dir = 9
+	},
 /area/trainstation/outdoor)
+"Ak" = (
+/turf/closed/indestructible/meat,
+/area/trainstation/indoors/station/powered)
 "Am" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -2752,7 +2998,7 @@
 	icon_state = "coffeecuppajoestack2"
 	},
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Az" = (
 /obj/item/crowbar,
 /obj/machinery/light/red/directional/west,
@@ -2761,7 +3007,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 9
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "AG" = (
 /obj/structure/railing{
 	dir = 6
@@ -2773,7 +3019,20 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"AH" = (
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 10
+	},
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
+/turf/open/water/deep_beach/lethal,
+/area/trainstation/indoors/station/powered)
 "AJ" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/decorative{
@@ -2786,7 +3045,7 @@
 /obj/effect/spawner/random/trash,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "AK" = (
 /obj/effect/decal/fakelattice,
 /obj/effect/turf_decal/siding/dark,
@@ -2835,7 +3094,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/iron,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Bd" = (
 /obj/structure/table/reinforced,
 /obj/structure/railing{
@@ -2848,7 +3107,7 @@
 	},
 /obj/machinery/light/warm/directional/south,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Bg" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow,
@@ -2874,7 +3133,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Bp" = (
 /turf/open/misc/ice/coldroom,
 /area/trainstation/outdoor)
@@ -2891,7 +3150,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 5
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "By" = (
 /obj/item/crowbar/hammer,
 /obj/structure/fluff/paper/stack{
@@ -2904,7 +3163,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 6
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Bz" = (
 /obj/structure/fluff/paper/stack{
 	dir = 4
@@ -2927,7 +3186,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/iron/dark/side,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "BE" = (
 /obj/structure/fluff/paper/stack{
 	dir = 1;
@@ -2938,7 +3197,7 @@
 /turf/open/floor/iron/dark/corner{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "BL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -2952,8 +3211,9 @@
 	},
 /obj/effect/spawner/random/trash,
 /obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/npc/police/military/bad_guys,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "BT" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -2981,7 +3241,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/white/small,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Cc" = (
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/fake_stairs/directional/south{
@@ -3005,7 +3265,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Cm" = (
 /obj/structure/decorative/fluff{
 	name = "broken thermomachine";
@@ -3019,8 +3279,9 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/red/directional/west,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Co" = (
 /obj/structure/railing{
 	dir = 5
@@ -3056,8 +3317,9 @@
 	dir = 5
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/npc/police/military/bad_guys,
 /turf/open/floor/iron,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "CB" = (
 /obj/structure/railing/corner{
 	dir = 8
@@ -3065,7 +3327,7 @@
 /obj/effect/spawner/random/trash,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "CH" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -3085,12 +3347,12 @@
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "CK" = (
 /obj/effect/spawner/random/vending/colavend,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "CQ" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 1
@@ -3103,7 +3365,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 6
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "De" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -3124,7 +3386,10 @@
 /turf/open/floor/iron/stairs/old{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"Dj" = (
+/turf/open/indestructible/meat,
+/area/trainstation/indoors/station/powered)
 "Dl" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -3151,6 +3416,10 @@
 	},
 /turf/open/floor/plating,
 /area/trainstation/outdoor)
+"Dr" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/wall/city/siding,
+/area/trainstation/indoors/station/powered)
 "Du" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
@@ -3201,6 +3470,24 @@
 /obj/effect/spawner/random/engineering,
 /turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/indoors/station/controll)
+"DT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/decorative/fluff{
+	name = "broken console";
+	desc = "Ruthlessly broken.";
+	icon_state = "computer_broken";
+	icon = 'icons/obj/machines/computer.dmi';
+	anchored = 1;
+	color = "#ecd6c9";
+	density = 1;
+	can_be_unanchored = 1;
+	dir = 8
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 4
+	},
+/area/trainstation/indoors/station/powered)
 "Et" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 6
@@ -3254,12 +3541,12 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "EM" = (
 /obj/item/radio/intercom/directional/north,
 /obj/machinery/light/small/directional/north,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "EV" = (
 /obj/item/reagent_containers/syringe/epinephrine{
 	pixel_x = -4;
@@ -3277,18 +3564,22 @@
 	pixel_y = -8
 	},
 /turf/open/floor/iron/dark/side,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Fa" = (
 /obj/structure/prop/general/hospitalcurtain,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Fb" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/iron/dark/side,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"Ff" = (
+/obj/effect/decal/cleanable/blood/innards,
+/turf/open/indestructible/meat,
+/area/trainstation/indoors/station/powered)
 "Fi" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
@@ -3299,7 +3590,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Fj" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 1
@@ -3324,6 +3615,12 @@
 	},
 /turf/open/misc/ice/coldroom,
 /area/trainstation/outdoor)
+"Fv" = (
+/obj/machinery/door/airlock/shuttle/ferry{
+	name = "Magnetic Airlock"
+	},
+/turf/open/floor/plating,
+/area/trainstation/indoors/station/powered)
 "FA" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 8
@@ -3356,7 +3653,7 @@
 /obj/machinery/holopad,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "FM" = (
 /obj/machinery/power/energy_accumulator/tesla_coil{
 	pixel_y = 8;
@@ -3373,7 +3670,7 @@
 	density = 1
 	},
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "FS" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow/corner{
@@ -3411,7 +3708,7 @@
 /obj/machinery/suit_storage_unit,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "FZ" = (
 /obj/structure/flora/rock/style_random,
 /obj/structure/railing{
@@ -3427,12 +3724,14 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/calendar/directional/north,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Gu" = (
-/obj/structure/fake_stairs/directional/north,
-/obj/structure/fake_stairs/directional/north,
-/turf/open/misc/asteroid/snow/indestructible,
-/area/trainstation/outdoor)
+/turf/open/floor/plating,
+/area/trainstation/indoors/station/powered)
+"Gv" = (
+/obj/effect/gibspawner/human,
+/turf/open/indestructible/meat,
+/area/trainstation/indoors/station/powered)
 "GF" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 5
@@ -3441,17 +3740,12 @@
 /obj/structure/bedsheetbin/empty,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/white/small,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "GN" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 10
 	},
 /turf/open/misc/ice/coldroom,
-/area/trainstation/outdoor)
-"GS" = (
-/turf/closed/indestructible/rock{
-	icon_state = "rock2"
-	},
 /area/trainstation/outdoor)
 "GV" = (
 /obj/structure/prop/general/hospitalcurtain,
@@ -3460,7 +3754,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Hc" = (
 /obj/structure/closet/secure_closet/personal{
 	icon_state = "eng";
@@ -3470,7 +3764,7 @@
 /obj/machinery/light/small/red/dim/directional/east,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Hm" = (
 /mob/living/basic/bear/snow,
 /turf/open/misc/asteroid/snow/indestructible,
@@ -3512,17 +3806,25 @@
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Hy" = (
 /obj/structure/fluff/paper/stack,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "HA" = (
-/turf/open/floor/plating,
-/area/trainstation/outdoor)
+/obj/structure/fluff/paper/stack{
+	layer = 2
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/suit/toggle/labcoat{
+	pixel_x = 3;
+	pixel_y = -4
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/station/powered)
 "HE" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 5
@@ -3549,14 +3851,14 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "HN" = (
 /obj/structure/inflatable,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "HV" = (
 /obj/structure/inflatable,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -3564,11 +3866,17 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Id" = (
 /mob/living/basic/pet/fox,
 /turf/open/misc/asteroid/snow/indestructible,
 /area/trainstation/outdoor)
+"Ii" = (
+/obj/structure/statue/bone/rib{
+	dir = 8
+	},
+/turf/open/indestructible/meat,
+/area/trainstation/indoors/station/powered)
 "Ij" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
@@ -3591,10 +3899,17 @@
 /obj/structure/deployable_barricade/metal{
 	dir = 1
 	},
+/obj/machinery/porta_turret/syndicate{
+	faction = list("hostile")
+	},
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"Iu" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/wall/city/siding,
+/area/trainstation/indoors/station/powered)
 "Iv" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -3615,7 +3930,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/iron/white/small,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "IK" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -3653,7 +3968,20 @@
 /turf/open/floor/iron/dark/side{
 	dir = 10
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"Jc" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-1-2";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/basic/npc/police/military/bad_guys,
+/turf/open/floor/plating,
+/area/trainstation/indoors/station/powered)
 "Jf" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow/corner{
@@ -3677,7 +4005,23 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/mob_spawn/corpse/human,
 /turf/open/floor/iron/white/small,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"Jh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/decorative/fluff{
+	name = "scrapped cyborg";
+	desc = "Poor thing.";
+	icon_state = "fmekacargo-wreck";
+	icon = 'modular_skyrat\modules\borgs\icons\tallrobot_cargo.dmi';
+	anchored = 1;
+	color = "#ffffff";
+	density = 1;
+	can_be_unanchored = 1;
+	pixel_x = 0;
+	pixel_y = 10
+	},
+/turf/open/floor/iron,
+/area/trainstation/indoors/station/powered)
 "Jo" = (
 /obj/structure/fluff/paper/stack{
 	dir = 1;
@@ -3691,7 +4035,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/ash,
 /turf/open/floor/iron/dark/side,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Jp" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 9
@@ -3716,7 +4060,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/iron/white/small,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Jx" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -3727,7 +4071,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "JH" = (
 /obj/machinery/light/small/directional/east,
 /obj/effect/decal/cleanable/dirt,
@@ -3735,7 +4079,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "JW" = (
 /obj/effect/turf_decal/lunar_sand/plating,
 /obj/structure/railing{
@@ -3754,14 +4098,14 @@
 /obj/structure/trash_pile,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "JZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/railing{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Ka" = (
 /obj/structure/fluff/paper/stack{
 	dir = 1;
@@ -3777,7 +4121,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Kd" = (
 /obj/structure/flora/rock/style_random,
 /obj/structure/flora/bush/snow/style_random,
@@ -3802,7 +4146,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 5
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "KD" = (
 /obj/item/clothing/glasses/welding{
 	pixel_x = -1;
@@ -3817,7 +4161,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "KF" = (
 /obj/structure/prop/tgmc_console3_on,
 /obj/structure/railing{
@@ -3825,7 +4169,7 @@
 	pixel_y = 0
 	},
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "KN" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -3856,11 +4200,11 @@
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Lf" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Lh" = (
 /obj/structure/table/reinforced,
 /obj/structure/railing{
@@ -3872,13 +4216,29 @@
 	pixel_y = 0
 	},
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Lk" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 4
 	},
 /turf/open/water/deep_beach/lethal,
 /area/trainstation/outdoor)
+"Lv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/decorative/fluff{
+	name = "broken thermomachine";
+	desc = "Wouldn't have ended up here if it worked correctly.";
+	icon_state = "thermo_base-o";
+	icon = 'icons/obj/machines/atmospherics/thermomachine.dmi';
+	anchored = 1;
+	color = "#ecd6c9";
+	density = 1;
+	can_be_unanchored = 1
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 4
+	},
+/area/trainstation/indoors/station/powered)
 "LH" = (
 /obj/structure/railing/unbreakable{
 	dir = 5
@@ -3901,6 +4261,9 @@
 	},
 /turf/open/indestructible/plating,
 /area/trainstation/outdoor)
+"LL" = (
+/turf/closed/wall/city/siding,
+/area/trainstation/indoors/station/controll)
 "LT" = (
 /obj/structure/railing{
 	dir = 4
@@ -3914,6 +4277,11 @@
 /obj/effect/spawner/random/trash/graffiti,
 /turf/open/indestructible/dark/textured,
 /area/trainstation/indoors/station/controll)
+"Mg" = (
+/turf/open/floor/iron/dark/side{
+	dir = 6
+	},
+/area/trainstation/indoors/station/powered)
 "Ml" = (
 /obj/effect/spawner/random/trash,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -3921,7 +4289,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "MF" = (
 /obj/machinery/light/small/directional/west,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -3929,7 +4297,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "MK" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 4
@@ -3954,7 +4322,7 @@
 /turf/open/floor/iron/dark/corner{
 	dir = 1
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "MT" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 6
@@ -3971,7 +4339,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/side,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "MY" = (
 /obj/structure/railing/unbreakable{
 	dir = 1
@@ -4081,6 +4449,23 @@
 	dir = 8
 	},
 /area/trainstation/indoors/station/controll)
+"ND" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/decorative/fluff{
+	name = "broken console";
+	desc = "Ruthlessly broken.";
+	icon_state = "computer_broken";
+	icon = 'icons/obj/machines/computer.dmi';
+	anchored = 1;
+	color = "#ecd6c9";
+	density = 1;
+	can_be_unanchored = 1;
+	dir = 8
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 5
+	},
+/area/trainstation/indoors/station/powered)
 "NE" = (
 /obj/structure/decorative{
 	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
@@ -4095,7 +4480,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "NH" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 8
@@ -4105,6 +4490,16 @@
 	},
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor)
+"NJ" = (
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark/smooth_large,
+/area/trainstation/indoors/station/powered)
 "NV" = (
 /obj/structure/table,
 /obj/item/reagent_containers/cup/beaker{
@@ -4119,7 +4514,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "NY" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 9
@@ -4138,7 +4533,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/ash/large,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Oc" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow/corner{
@@ -4157,16 +4552,20 @@
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Of" = (
 /obj/structure/chair/sofa/bench,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Oj" = (
 /obj/effect/turf_decal/weather/snow/corner,
 /turf/open/water/deep_beach/lethal,
 /area/trainstation/outdoor)
+"On" = (
+/obj/machinery/light/red/directional/south,
+/turf/open/floor/catwalk_floor,
+/area/trainstation/indoors/station/powered)
 "Oq" = (
 /obj/structure/railing/corner{
 	dir = 4
@@ -4184,7 +4583,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Os" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -4199,7 +4598,7 @@
 /obj/structure/fluff/paper/stack,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Ou" = (
 /obj/item/bodybag,
 /obj/effect/decal/cleanable/blood/tracks,
@@ -4211,7 +4610,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 10
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Oz" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 9
@@ -4225,7 +4624,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "OC" = (
 /obj/structure/flora/rock/style_random,
 /turf/open/misc/asteroid/snow/indestructible,
@@ -4245,7 +4644,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "ON" = (
 /obj/structure/railing/corner{
 	dir = 8
@@ -4260,6 +4659,12 @@
 /obj/structure/ore_box,
 /turf/open/floor/plating,
 /area/trainstation/outdoor)
+"Pa" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/trainstation/indoors/station/powered)
 "Pd" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 6
@@ -4267,7 +4672,7 @@
 /obj/structure/table/glass,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/white/small,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Ph" = (
 /obj/structure/fluff/paper/stack{
 	dir = 1;
@@ -4282,13 +4687,16 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Pw" = (
 /obj/structure/fluff/paper/stack{
 	dir = 5
 	},
 /turf/open/floor/iron,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"Px" = (
+/turf/open/floor/catwalk_floor,
+/area/trainstation/indoors/station/powered)
 "PC" = (
 /obj/item/radio/intercom/directional/west,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -4297,7 +4705,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "PD" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -4340,7 +4748,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "PJ" = (
 /obj/structure/fluff/paper/stack,
 /obj/structure/railing{
@@ -4354,7 +4762,7 @@
 /obj/machinery/light/small/red/dim/directional/north,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "PM" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 5
@@ -4374,7 +4782,7 @@
 "PW" = (
 /obj/structure/girder,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "PZ" = (
 /obj/item/reagent_containers/syringe/contraband,
 /obj/item/reagent_containers/syringe{
@@ -4402,20 +4810,20 @@
 /turf/open/floor/iron/dark/corner{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Qd" = (
 /obj/structure/inflatable,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Qe" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Qo" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
@@ -4426,6 +4834,26 @@
 /obj/effect/spawner/random/entertainment/plushie_delux,
 /turf/open/indestructible/dark/textured,
 /area/trainstation/indoors/station/controll)
+"Qr" = (
+/obj/item/reagent_containers/syringe{
+	pixel_x = 7;
+	pixel_y = -11
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_x = -10;
+	pixel_y = -4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/storage/pill_bottle{
+	pixel_x = 0;
+	pixel_y = 17
+	},
+/obj/item/storage/pill_bottle{
+	pixel_x = -10;
+	pixel_y = 19
+	},
+/turf/open/floor/iron/dark/side,
+/area/trainstation/indoors/station/powered)
 "Qs" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -4456,7 +4884,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "QE" = (
 /obj/structure/fluff/paper/stack{
 	dir = 4
@@ -4465,7 +4893,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "QH" = (
 /obj/structure/chair/office/tactical{
 	dir = 1
@@ -4493,13 +4921,13 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "QN" = (
 /obj/machinery/light/warm/directional/south,
 /obj/structure/trash_pile,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "QY" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -4508,6 +4936,13 @@
 /obj/machinery/status_display/evac/directional/east,
 /turf/open/indestructible/dark/textured,
 /area/trainstation/indoors/station/controll)
+"Rh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/red/directional/north,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/trainstation/indoors/station/powered)
 "Ri" = (
 /obj/structure/fluff/paper/stack{
 	dir = 10;
@@ -4518,7 +4953,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Rk" = (
 /obj/item/reagent_containers/syringe{
 	pixel_x = 7;
@@ -4539,7 +4974,7 @@
 	},
 /obj/structure/holosign/treatment_zone_warning,
 /turf/open/floor/iron/dark/side,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Rl" = (
 /obj/structure/railing{
 	dir = 6
@@ -4566,7 +5001,13 @@
 /obj/structure/sign/flag/nri/directional/north,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"Rr" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark/side{
+	dir = 8
+	},
+/area/trainstation/indoors/station/powered)
 "Rv" = (
 /obj/structure/fluff/paper/stack{
 	dir = 9
@@ -4575,14 +5016,14 @@
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Rx" = (
 /obj/effect/spawner/random/trash,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "RC" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/prop/general/coffeecuppaijoe{
@@ -4591,23 +5032,22 @@
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "RE" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/old{
 	icon_state = "splatter3"
 	},
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "RF" = (
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "RK" = (
-/obj/structure/fake_stairs/directional/north,
-/turf/open/misc/asteroid/snow/indestructible,
-/area/trainstation/outdoor)
+/turf/closed/wall/city/siding,
+/area/trainstation/indoors/station/powered)
 "RL" = (
 /obj/structure/fluff/paper/stack{
 	dir = 1;
@@ -4617,7 +5057,7 @@
 /obj/effect/decal/cleanable/vomit,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "RQ" = (
 /obj/structure/fluff/paper/stack{
 	dir = 8;
@@ -4626,7 +5066,12 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"RR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/wall/city/siding,
+/area/trainstation/indoors/station/powered)
 "RT" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 1
@@ -4642,7 +5087,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/white/small,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Sh" = (
 /obj/effect/turf_decal/tile/dark/half{
 	dir = 8
@@ -4682,7 +5127,7 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Sz" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -4691,7 +5136,7 @@
 	density = 1
 	},
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "SH" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -4741,7 +5186,7 @@
 /obj/item/radio/intercom/directional/west,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Tg" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 4
@@ -4752,7 +5197,7 @@
 /obj/effect/spawner/random/trash,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Tm" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow/corner,
@@ -4769,7 +5214,13 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"Tu" = (
+/obj/machinery/door/airlock/shuttle/ferry{
+	name = "Magnetic Airlock"
+	},
+/turf/open/floor/catwalk_floor,
+/area/trainstation/indoors/station/powered)
 "Ty" = (
 /obj/structure/railing{
 	dir = 10;
@@ -4795,14 +5246,20 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "TL" = (
 /turf/closed/wall/city/siding/style/style_1,
 /area/trainstation/indoors/station/controll)
 "TO" = (
 /obj/effect/spawner/random/trash,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"TR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/inflatable,
+/turf/open/floor/plating,
+/area/trainstation/indoors/station/powered)
 "Ue" = (
 /obj/structure/closet/secure_closet/personal/wall{
 	pixel_y = -30
@@ -4813,7 +5270,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark/side,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Um" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
@@ -4829,6 +5286,12 @@
 	},
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor)
+"UC" = (
+/obj/effect/decal/cleanable/blood/old{
+	icon_state = "splatter3"
+	},
+/turf/open/indestructible/meat,
+/area/trainstation/indoors/station/powered)
 "UE" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 6
@@ -4836,14 +5299,14 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/white/small,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "UR" = (
 /obj/structure/prop/general/trashblue{
 	pixel_y = 11
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "UT" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 6
@@ -4862,7 +5325,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Va" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow/corner,
@@ -4872,6 +5335,13 @@
 "Vj" = (
 /turf/closed/wall/city/siding,
 /area/trainstation/outdoor)
+"Vk" = (
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
+/turf/open/water/deep_beach/lethal,
+/area/trainstation/indoors/station/powered)
 "Vl" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 8
@@ -4881,6 +5351,11 @@
 	},
 /turf/open/misc/ice/coldroom,
 /area/trainstation/outdoor)
+"Vo" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/red/directional/north,
+/turf/open/floor/plating,
+/area/trainstation/indoors/station/powered)
 "Vq" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/item/radio/intercom/directional/south,
@@ -4892,7 +5367,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 6
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Vv" = (
 /obj/structure/fluff/paper/stack{
 	layer = 2
@@ -4902,8 +5377,9 @@
 	pixel_x = 3;
 	pixel_y = -4
 	},
+/obj/machinery/light/red/directional/west,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "VA" = (
 /obj/structure/railing{
 	dir = 8;
@@ -4914,13 +5390,20 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
+"VF" = (
+/obj/structure/fluff/paper/stack{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron,
+/area/trainstation/indoors/station/powered)
 "VJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "VK" = (
 /obj/effect/turf_decal/weather/snow/corner,
 /turf/open/misc/ice/coldroom,
@@ -4945,7 +5428,7 @@
 	icon_state = "vomit_2"
 	},
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "We" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 4
@@ -4990,7 +5473,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Wr" = (
 /obj/effect/turf_decal/tile/dark/full{
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
@@ -5015,7 +5498,7 @@
 	},
 /obj/structure/deployable_barricade/metal,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Wx" = (
 /obj/structure/railing{
 	dir = 4
@@ -5028,14 +5511,14 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "WH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "WN" = (
 /obj/structure/decorative{
 	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
@@ -5050,7 +5533,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "WQ" = (
 /obj/structure/fluff/paper/stack{
 	dir = 5
@@ -5060,7 +5543,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 9
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "WS" = (
 /obj/effect/turf_decal/trimline/tram,
 /obj/machinery/light/floor/transport,
@@ -5087,7 +5570,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/black,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Xs" = (
 /obj/structure/railing/corner,
 /turf/open/floor/plating/snowed/smoothed,
@@ -5116,7 +5599,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 10
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "XK" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/effect/turf_decal/weather/snow/corner{
@@ -5130,12 +5613,21 @@
 "XL" = (
 /turf/open/floor/carpet/black,
 /area/trainstation/outdoor)
+"XO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/paper/stack{
+	dir = 5
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/trainstation/indoors/station/powered)
 "Ye" = (
 /obj/structure/trash_pile,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Yf" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -5158,7 +5650,7 @@
 	dir = 8
 	},
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Ym" = (
 /obj/structure/railing{
 	dir = 8
@@ -5171,7 +5663,7 @@
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Yr" = (
 /obj/machinery/suit_storage_unit,
 /obj/structure/railing{
@@ -5184,14 +5676,14 @@
 /obj/machinery/light/small/directional/north,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "YE" = (
 /obj/effect/spawner/random/trash,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/side{
 	dir = 5
 	},
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "YK" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -5232,12 +5724,12 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Zk" = (
 /obj/structure/inflatable,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "Zl" = (
 /obj/structure/fans/tiny/invisible{
 	density = 1
@@ -5267,7 +5759,7 @@
 /obj/structure/chair/sofa/bench/right,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/dark/smooth_large,
-/area/trainstation/outdoor)
+/area/trainstation/indoors/station/powered)
 "ZN" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 5
@@ -5710,7 +6202,7 @@ cg
 gz
 gz
 gz
-GS
+rr
 zz
 xE
 oc
@@ -6170,13 +6662,13 @@ cg
 "}
 (22,1,1) = {"
 gz
-kA
+LL
 TL
-kA
-kA
-kA
+LL
+LL
+LL
 TL
-kA
+LL
 nU
 nU
 nU
@@ -6218,7 +6710,7 @@ ct
 Ap
 XE
 Qo
-kA
+LL
 nU
 nU
 nU
@@ -6260,7 +6752,7 @@ Au
 LU
 QY
 kR
-kA
+LL
 nU
 nU
 nU
@@ -6297,13 +6789,13 @@ cg
 (25,1,1) = {"
 eN
 TL
-kA
-kA
+LL
+LL
 nR
-kA
-kA
+LL
+LL
 TL
-kA
+LL
 nU
 eF
 gz
@@ -6338,7 +6830,7 @@ cg
 "}
 (26,1,1) = {"
 rp
-kA
+LL
 Du
 YS
 NB
@@ -6380,7 +6872,7 @@ cg
 "}
 (27,1,1) = {"
 MY
-kA
+LL
 mE
 QH
 gK
@@ -6429,7 +6921,7 @@ SH
 hD
 iT
 xS
-kA
+LL
 nU
 jm
 gz
@@ -6464,13 +6956,13 @@ cg
 "}
 (29,1,1) = {"
 wC
-kA
+LL
 CH
 wK
 Fn
 NB
 FT
-kA
+LL
 TL
 nU
 nU
@@ -6506,13 +6998,13 @@ cg
 "}
 (30,1,1) = {"
 rp
-kA
+LL
 vH
 zg
 WV
 zg
 te
-kA
+LL
 nU
 nU
 nU
@@ -6548,7 +7040,7 @@ cg
 "}
 (31,1,1) = {"
 Ey
-kA
+LL
 av
 gK
 WS
@@ -6590,7 +7082,7 @@ cg
 "}
 (32,1,1) = {"
 kn
-kA
+LL
 aW
 zg
 cq
@@ -6638,7 +7130,7 @@ BT
 Iv
 eH
 Um
-kA
+LL
 nU
 nU
 Et
@@ -6674,12 +7166,12 @@ cg
 "}
 (34,1,1) = {"
 gz
-kA
-kA
+LL
+LL
 TG
 TG
 TG
-kA
+LL
 TL
 MK
 Et
@@ -10848,16 +11340,16 @@ gz
 gz
 yI
 gz
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
 gz
 tB
 gz
@@ -10890,28 +11382,28 @@ OC
 gz
 tB
 gz
-Vj
-aV
-aV
-aV
-aV
-aV
-gz
-Vj
-gz
-Vj
-gz
-gz
-yI
-gz
+RK
+Vk
+Vk
+Vk
+qf
+AH
+vF
+RK
+Px
+RK
 gz
 gz
 yI
-Vj
-Vj
 gz
-Vj
-Vj
+gz
+gz
+yI
+RK
+RK
+Tu
+RK
+RK
 cg
 "}
 (135,1,1) = {"
@@ -10932,16 +11424,16 @@ yI
 gz
 gz
 gz
-Vj
-aV
-aV
-aV
-gz
-gz
-gz
-gz
-gz
-Vj
+RK
+Ag
+Ag
+ix
+NJ
+fy
+mD
+dw
+Px
+RK
 gz
 gz
 gz
@@ -10949,11 +11441,11 @@ gz
 gz
 yI
 gz
-Vj
-gz
-gz
-gz
-Vj
+RK
+Px
+Px
+Px
+RK
 cg
 "}
 (136,1,1) = {"
@@ -10974,16 +11466,16 @@ gz
 gz
 gz
 yv
-Vj
-Vj
-Vj
-Vj
-Vj
-gz
-gz
-Vj
-gz
-Vj
+RK
+RK
+RK
+RK
+RK
+mD
+mD
+RK
+Px
+RK
 gz
 gz
 gz
@@ -10991,11 +11483,11 @@ gz
 gz
 gz
 yI
-Vj
-gz
-gz
-gz
-Vj
+RK
+Px
+Px
+Px
+RK
 cg
 "}
 (137,1,1) = {"
@@ -11016,28 +11508,28 @@ gz
 gz
 gz
 tB
-Vj
+RK
+Gu
+Gu
 Gu
 RK
+mD
+mD
+RK
+Px
 RK
 RK
-gz
-gz
-Vj
-gz
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-gz
-Vj
-Vj
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+Tu
+RK
+RK
 cg
 "}
 (138,1,1) = {"
@@ -11058,28 +11550,28 @@ tB
 gz
 gz
 gz
-Vj
-RK
 RK
 Gu
+Gu
+Gu
 RK
-gz
-gz
-Vj
-gz
-gz
-gz
-gz
-gz
-gz
-gz
-gz
-gz
-gz
-gz
-gz
-gz
-Vj
+mD
+mD
+Ak
+Px
+Px
+Px
+Px
+Px
+Px
+Px
+Px
+Px
+Px
+Px
+Px
+Px
+RK
 cg
 "}
 (139,1,1) = {"
@@ -11100,28 +11592,28 @@ gz
 gz
 gz
 yv
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-HA
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-gz
-Vj
-Vj
-gz
-gz
-gz
-gz
-Vj
+RK
+RK
+RK
+RK
+RK
+Ak
+Fv
+Ak
+RK
+RK
+RK
+RK
+RK
+RK
+dw
+RK
+RK
+Px
+Px
+Px
+Px
+RK
 cg
 "}
 (140,1,1) = {"
@@ -11142,28 +11634,28 @@ gz
 gz
 gz
 yv
-Vj
-HA
-HA
-HA
-HA
-HA
-HA
-gz
-gz
-gz
-gz
-gz
-gz
-gz
-gz
-gz
-Vj
-gz
-gz
-gz
-gz
-Vj
+RK
+Dj
+Dj
+Dj
+Dj
+Ak
+fd
+dw
+Px
+Px
+Px
+Px
+Px
+Px
+Px
+Px
+RK
+Px
+Px
+Px
+Px
+RK
 cg
 "}
 (141,1,1) = {"
@@ -11184,28 +11676,28 @@ Vj
 gz
 gz
 yv
-Vj
-HA
-HA
-HA
-HA
-HA
-HA
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-gz
-Vj
+RK
+Gv
+UC
+Ak
+Ak
+Ak
+Gv
+RK
+Ak
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+Px
+RK
 cg
 "}
 (142,1,1) = {"
@@ -11226,28 +11718,28 @@ iB
 Dy
 gz
 tB
-Vj
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-Vj
+RK
+Ii
+UC
+Ak
+Ff
+UC
+fd
+UC
+UC
+Dj
+RK
 Cm
 fJ
 Cm
-lW
+ys
 CK
 pY
 To
 hb
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (143,1,1) = {"
@@ -11268,17 +11760,17 @@ Vj
 gd
 gz
 gz
-Vj
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-iB
+RK
+Dj
+UC
+Ak
+Ak
+UC
+cr
+Ii
+UC
+UC
+yW
 np
 KX
 QE
@@ -11287,9 +11779,9 @@ ul
 CJ
 Hy
 lA
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (144,1,1) = {"
@@ -11310,17 +11802,17 @@ Vj
 tB
 gz
 Dy
-Vj
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-Vj
+RK
+Dj
+fd
+UC
+UC
+UC
+UC
+UC
+UC
+Gv
+RK
 YE
 cv
 Hu
@@ -11329,9 +11821,9 @@ cJ
 Rv
 Rx
 Vu
-Vj
-gz
-Vj
+RK
+On
+RK
 cg
 "}
 (145,1,1) = {"
@@ -11352,17 +11844,17 @@ gz
 gz
 vl
 eF
-Vj
-Vj
-Vj
-Vj
-Vj
+RK
+RK
+RK
+RK
+RK
 yc
-Vj
-Vj
-Vj
-Vj
-Vj
+RK
+Ak
+Ak
+RK
+RK
 Wx
 Wx
 AG
@@ -11371,9 +11863,9 @@ Di
 Di
 FX
 gt
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (146,1,1) = {"
@@ -11394,7 +11886,7 @@ Dy
 gz
 gk
 eF
-Vj
+RK
 Qd
 tl
 Ou
@@ -11404,7 +11896,7 @@ Vv
 rx
 xt
 Qd
-Vj
+RK
 FM
 pd
 gS
@@ -11413,9 +11905,9 @@ Ac
 AJ
 de
 lQ
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (147,1,1) = {"
@@ -11436,7 +11928,7 @@ eF
 gz
 gz
 Bj
-Vj
+RK
 Gb
 nr
 kq
@@ -11446,7 +11938,7 @@ zl
 MR
 EV
 aQ
-Vj
+RK
 fr
 zE
 KF
@@ -11455,9 +11947,9 @@ gO
 gy
 Sz
 Sz
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (148,1,1) = {"
@@ -11478,7 +11970,7 @@ gd
 gz
 gz
 gz
-Vj
+RK
 kJ
 GV
 Zk
@@ -11488,18 +11980,18 @@ Fa
 Zk
 Rk
 OA
-Vj
-Vj
+RK
+RK
 EM
 Av
 cn
-Vj
+RK
 Ka
 yH
-Vj
-Vj
-gz
-Vj
+RK
+RK
+Px
+RK
 cg
 "}
 (149,1,1) = {"
@@ -11520,7 +12012,7 @@ gz
 gz
 tB
 gz
-Vj
+RK
 Bl
 oi
 qz
@@ -11530,7 +12022,7 @@ QL
 bi
 Bz
 sp
-Vj
+RK
 FM
 pd
 gS
@@ -11539,9 +12031,9 @@ gW
 gy
 de
 lQ
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (150,1,1) = {"
@@ -11562,7 +12054,7 @@ gz
 gz
 gz
 Dy
-Vj
+RK
 HV
 Fi
 aX
@@ -11572,18 +12064,18 @@ sg
 PZ
 Jo
 HN
-Vj
+RK
 fr
 zE
 KF
-BL
+nk
 gW
 gy
 Sz
 Sz
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (151,1,1) = {"
@@ -11604,7 +12096,7 @@ tB
 Dy
 gz
 kO
-Vj
+RK
 NV
 Bs
 dc
@@ -11614,18 +12106,18 @@ Ob
 rN
 By
 yq
-Vj
-Vj
+RK
+RK
 wt
 ou
 RQ
-Vj
+RK
 hS
 Bd
-Vj
-Vj
-gz
-Vj
+RK
+RK
+Px
+RK
 cg
 "}
 (152,1,1) = {"
@@ -11646,17 +12138,17 @@ gz
 KT
 NH
 eF
-Vj
-Vj
-Vj
+RK
+RK
+RK
 PW
-HA
-HA
-HA
-HA
+nd
+oB
+Gu
+Gu
 PW
-Vj
-Vj
+RK
+RK
 FM
 pd
 gS
@@ -11665,9 +12157,9 @@ JY
 gy
 de
 lQ
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (153,1,1) = {"
@@ -11688,17 +12180,17 @@ gz
 CQ
 gz
 kO
-Vj
+RK
+Qd
+tl
+Ou
+RL
+mp
 HA
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-Vj
+rx
+xt
+Qd
+RK
 fr
 zE
 KF
@@ -11707,9 +12199,9 @@ WN
 gy
 Sz
 Sz
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (154,1,1) = {"
@@ -11730,28 +12222,28 @@ PM
 yo
 oE
 Et
-Vj
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-Vj
-Vj
+RK
+Gb
+nr
+kq
+pv
+Od
+zl
+vd
+EV
+aQ
+RK
+RK
 vG
 TO
 cn
-Vj
-cn
+RK
+Vo
 Lh
-Vj
-Vj
-gz
-Vj
+RK
+RK
+Px
+RK
 cg
 "}
 (155,1,1) = {"
@@ -11768,32 +12260,32 @@ gz
 VN
 gz
 tB
-Vj
-Vj
-iB
-Vj
-Vj
-Vj
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-Vj
+RK
+RK
+yW
+RK
+RK
+Dr
+GV
+Zk
+oo
+Fa
+Fa
+Zk
+Qr
+OA
+RK
 FM
 pd
 gS
-BL
+nk
 gW
-gy
+Jc
 de
 lQ
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (156,1,1) = {"
@@ -11810,21 +12302,21 @@ gl
 cz
 yv
 gz
-Vj
+RK
 Or
 rf
 OL
 lN
-Vj
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-Vj
+Dr
+oi
+TR
+VF
+gu
+QL
+bi
+Bz
+sp
+RK
 fr
 zE
 KF
@@ -11833,9 +12325,9 @@ gW
 gy
 Sz
 Sz
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (157,1,1) = {"
@@ -11852,32 +12344,32 @@ Et
 VN
 yv
 gz
-Vj
+RK
 Yr
 pi
 cR
 fO
-Vj
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-Vj
-Vj
+Dr
+Fi
+aX
+mK
+KD
+sg
+PZ
+Jo
+HN
+RK
+RK
 dP
 gV
 yJ
-Vj
+RK
 cn
 yH
-Vj
-Vj
-gz
-Vj
+RK
+RK
+Px
+RK
 cg
 "}
 (158,1,1) = {"
@@ -11894,21 +12386,21 @@ tB
 VN
 yv
 gz
-Vj
+RK
 Or
 Cf
 nf
 uG
-Vj
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-HA
-Vj
+RK
+Bs
+dc
+nc
+kk
+Ob
+rN
+By
+yq
+RK
 FM
 pd
 gS
@@ -11917,9 +12409,9 @@ NE
 gy
 de
 lQ
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (159,1,1) = {"
@@ -11936,21 +12428,21 @@ gz
 VN
 gz
 gz
-Vj
-Vj
+RK
+RK
 aO
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
 fr
 zE
 KF
@@ -11959,9 +12451,9 @@ Ac
 gy
 Sz
 Sz
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (160,1,1) = {"
@@ -11978,12 +12470,12 @@ jm
 VN
 yv
 gz
-Vj
+RK
 Rn
 uc
 PC
 qk
-Vj
+RK
 WQ
 xT
 IY
@@ -11992,7 +12484,7 @@ ed
 SU
 Az
 kX
-Vj
+RK
 nF
 Yj
 Ml
@@ -12001,9 +12493,9 @@ cn
 cn
 Th
 tI
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (161,1,1) = {"
@@ -12020,12 +12512,12 @@ eF
 cz
 yv
 gz
-Vj
+RK
 PJ
 ci
 eW
 Fb
-iB
+yW
 xD
 FH
 MX
@@ -12034,7 +12526,7 @@ ed
 cd
 hY
 kj
-iB
+yW
 px
 uQ
 JZ
@@ -12043,9 +12535,9 @@ cn
 cn
 cn
 Th
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (162,1,1) = {"
@@ -12062,12 +12554,12 @@ PS
 VN
 yv
 gz
-Vj
+RK
 Wm
 vC
 Jx
 jL
-Vj
+RK
 xb
 Ri
 sy
@@ -12076,7 +12568,7 @@ ed
 qU
 Ku
 lL
-Vj
+RK
 sR
 Wv
 aj
@@ -12085,9 +12577,9 @@ jZ
 cn
 aj
 QN
-Vj
-gz
-Vj
+RK
+On
+RK
 cg
 "}
 (163,1,1) = {"
@@ -12104,21 +12596,21 @@ eF
 VN
 yv
 gz
-Vj
-Vj
-Vj
-iB
-Vj
-Vj
-Vj
+RK
+RK
+RK
+yW
+RK
+RK
+RK
 Xl
 xD
 po
-Vj
+RK
 ed
 ed
 ed
-Vj
+RK
 mU
 CB
 PG
@@ -12127,9 +12619,9 @@ VA
 fw
 QC
 ic
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (164,1,1) = {"
@@ -12146,13 +12638,13 @@ eF
 VN
 yv
 gz
-Vj
+RK
 yy
 MF
 Ba
 oL
 UZ
-Vj
+RK
 gT
 dC
 BE
@@ -12160,7 +12652,7 @@ Il
 xT
 sB
 vM
-Vj
+RK
 lN
 sK
 px
@@ -12169,9 +12661,9 @@ px
 mU
 lW
 Ye
-Vj
-gz
-Vj
+RK
+Px
+RK
 cg
 "}
 (165,1,1) = {"
@@ -12188,13 +12680,13 @@ PS
 VN
 yv
 gz
-Vj
+RK
 uJ
 fh
 Zn
 wh
 ny
-Vj
+RK
 qD
 WH
 Ph
@@ -12202,18 +12694,18 @@ Pw
 kp
 bl
 wv
-Vj
-Vj
-Vj
-Vj
-Vj
-iB
-Vj
-Vj
-Vj
-Vj
-gz
-Vj
+RK
+RK
+RK
+RK
+RK
+yW
+RK
+RK
+RK
+RK
+Px
+RK
 cg
 "}
 (166,1,1) = {"
@@ -12230,13 +12722,13 @@ eF
 cz
 gz
 gz
-Vj
+RK
 fF
 RE
 Of
 hc
 yT
-Vj
+RK
 UR
 lr
 JH
@@ -12245,17 +12737,17 @@ sP
 RF
 oz
 XJ
-Vj
-gz
-gz
-gz
-gz
-gz
-Vj
-gz
-gz
-gz
-Vj
+RK
+iM
+Rr
+eU
+eU
+tK
+RK
+Px
+Px
+Px
+RK
 cg
 "}
 (167,1,1) = {"
@@ -12272,32 +12764,32 @@ eF
 VN
 yv
 gz
-Vj
+RK
 ee
 tQ
 jB
 ye
 ny
-Vj
-Vj
+RK
+RK
 qJ
-Vj
+RK
 bC
 Qe
 Sy
 uy
 Dd
-iB
-gz
-gz
-gz
-gz
-gz
-Vj
-gz
-gz
-gz
-Vj
+yW
+Pa
+rs
+RR
+qv
+kY
+RK
+Px
+Px
+Px
+RK
 cg
 "}
 (168,1,1) = {"
@@ -12314,32 +12806,32 @@ Et
 VN
 gz
 gz
-Vj
-Vj
+RK
+RK
 nw
 th
 Ue
-Vj
-Vj
+RK
+RK
 Ca
 vc
-Vj
+RK
 ao
 od
 pA
 VJ
 zx
-Vj
-gz
-gz
-gz
-gz
-gz
-Vj
-gz
-gz
-gz
-Vj
+RK
+Pa
+qv
+pj
+hy
+kY
+RK
+Px
+Px
+Px
+RK
 cg
 "}
 (169,1,1) = {"
@@ -12356,32 +12848,32 @@ gz
 VN
 yv
 gz
-Vj
+RK
 uJ
 Lf
 Zn
 HM
 sZ
-Vj
+RK
 cV
 UE
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-gz
-gz
-gz
-gz
-gz
-Vj
-gz
-gz
-gz
-Vj
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+Rh
+qv
+cj
+qv
+kY
+RK
+Px
+Px
+Px
+RK
 cg
 "}
 (170,1,1) = {"
@@ -12398,32 +12890,32 @@ tB
 VN
 yv
 gz
-Vj
+RK
 mn
 Wd
 jB
 tQ
 EL
-Vj
-Vj
+RK
+RK
 qJ
-Vj
+RK
 hH
 ae
 ow
-Vj
-HA
-Vj
-gz
-gz
-gz
-gz
-gz
-Vj
-gz
-gz
-gz
-Vj
+RK
+Gu
+RK
+Pa
+qv
+no
+Pw
+kY
+RK
+Px
+Px
+Px
+RK
 cg
 "}
 (171,1,1) = {"
@@ -12440,7 +12932,7 @@ gz
 cz
 yv
 gz
-Vj
+RK
 uJ
 tQ
 Lf
@@ -12453,19 +12945,19 @@ gJ
 zR
 Jg
 mL
-Vj
-HA
-Vj
-gz
-gz
-gz
-gz
-gz
-gz
-gz
-gz
-gz
-Vj
+RK
+Gu
+RK
+XO
+Jh
+Iu
+hA
+kY
+Fv
+Px
+Px
+Px
+RK
 cg
 "}
 (172,1,1) = {"
@@ -12482,32 +12974,32 @@ jm
 VN
 gz
 gz
-Vj
+RK
 sS
 sU
 ny
 Hc
 px
-Vj
+RK
 GF
 Pd
-Vj
+RK
 hH
 RW
 ow
-Vj
-HA
-Vj
-gz
-gz
-gz
-gz
-gz
-Vj
-gz
-gz
-gz
-Vj
+RK
+Gu
+RK
+ND
+DT
+Lv
+jC
+Mg
+RK
+Px
+Px
+Px
+RK
 cg
 "}
 (173,1,1) = {"
@@ -12524,32 +13016,32 @@ eF
 VN
 yv
 gz
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
-Vj
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
+RK
 cg
 "}
 (174,1,1) = {"
@@ -12741,7 +13233,7 @@ gz
 gz
 yI
 gz
-tB
+Ai
 gz
 gz
 gz

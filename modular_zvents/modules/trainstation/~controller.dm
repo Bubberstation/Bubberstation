@@ -10,7 +10,30 @@ SUBSYSTEM_DEF(train_controller)
 		/datum/controller/subsystem/mapping,
 		/datum/controller/subsystem/daylight,
 	)
-	// В какую сторону якобы двигается наш поезд
+	/// Глобальная карта по которой двигается поезд
+	VAR_FINAL/datum/train_global_map/global_map = null
+	/// Известные, загруженные станции
+	VAR_FINAL/list/known_stations = list()
+	/// Известные станции отсортированные по регионам, включает в себя только не абстрактные станции
+	VAR_FINAL/list/stations_by_regions = list()
+	/// Порядок регионов для прогрессии (случайный при каждом connect_stations)
+	VAR_FINAL/list/region_order = list()
+	/// Уровни угрозы по циферным обозначениям
+	VAR_FINAL/threat_levels_by_number = list(
+		THREAT_LEVEL_SAFE = 0,
+		THREAT_LEVEL_RISKY = 1,
+		THREAT_LEVEL_DANGEROUS = 2,
+		THREAT_LEVEL_HAZARDOUS = 3,
+		THREAT_LEVEL_DEADLY = 4,
+	)
+	/// Станция запланированная для загрузки
+	var/datum/train_station/planned_to_load = null
+	/// Текущая загруженная станция
+	var/datum/train_station/loaded_station = null
+
+
+
+	/// В какую сторону якобы двигается наш поезд
 	var/abstract_moving_direction = EAST
 	/// Может ли наш поезд двигаться без рабочего двигателя?
 	VAR_PRIVATE/no_engine_mode = FALSE
@@ -28,12 +51,8 @@ SUBSYSTEM_DEF(train_controller)
 	var/obj/machinery/power/train_turbine/core_rotor/train_engine = null
 	// Загружается или выгружается в данный момент станция
 	var/loading = FALSE
-	// Станция запланированная для загрузки
-	var/datum/train_station/planned_to_load = null
-	// Текущая загруженная станция
-	var/datum/train_station/loaded_station = null
-	// Известные, загруженные станции
-	var/static/list/known_stations = list()
+
+
 
 	var/tain_starting = FALSE
 	var/minimum_travel_time = 15 MINUTES
@@ -76,17 +95,132 @@ SUBSYSTEM_DEF(train_controller)
 		return SS_INIT_NO_NEED
 
 	mode_active = TRUE
+	global_map = new()
 	update_tittle_screen()
 	running_events = list()
 	soundloop = new(start_immediately = FALSE)
 	RegisterSignal(SSticker, COMSIG_TICKER_ENTER_PREGAME, PROC_REF(on_enter_pregame))
-	load_stations()
 	add_startup_message("Trainstation: loading game map...")
+	load_stations()
+	connect_stations()
+	global_map.generate()
 	load_map()
 
 /datum/controller/subsystem/train_controller/proc/load_stations()
 	for(var/path in subtypesof(/datum/train_station))
 		known_stations += new path
+
+/datum/controller/subsystem/train_controller/proc/connect_stations()
+	if(!length(known_stations))
+		return
+
+	var/list/all_stations = known_stations.Copy()
+	var/list/sort_by_region = list()
+
+	for(var/datum/train_station/station in all_stations)
+		if(!station.visible || (station.station_flags & TRAINSTATION_ABSCTRACT))
+			continue
+		if(!sort_by_region[station.region])
+			sort_by_region[station.region] = list()
+		sort_by_region[station.region] += station
+
+	stations_by_regions.Cut()
+	for(var/region in sort_by_region)
+		var/list/sorted = sort_by_region[region]
+		stations_by_regions[region] = sorted.Copy()
+
+	for(var/region in stations_by_regions)
+		var/list/region_stations = stations_by_regions[region]
+		if(!length(region_stations))
+			continue
+
+		var/list/threat_groups = list()
+		for(var/datum/train_station/S in region_stations)
+			var/threat_num = threat_levels_by_number[S.threat_level] || 0
+			if(!threat_groups[num2text(threat_num)])
+				threat_groups[num2text(threat_num)] = list()
+			threat_groups[num2text(threat_num)] += S
+
+		var/list/ordered = list()
+		for(var/threat_num in 0 to 4)
+			if(threat_groups[num2text(threat_num)])
+				ordered += threat_groups[num2text(threat_num)]
+		stations_by_regions[region] = ordered
+
+	var/list/region_keys = list()
+	for(var/r in stations_by_regions)
+		region_keys += r
+	region_order = shuffle(region_keys)
+
+	for(var/i in 1 to length(region_order))
+		var/region = region_order[i]
+		var/list/region_stations = stations_by_regions[region]
+		if(!length(region_stations))
+			continue
+
+		// Последовательные связи внутри региона
+		for(var/j in 1 to length(region_stations)-1)
+			var/datum/train_station/st = region_stations[j]
+			if(length(st.possible_next) || (st.station_flags & TRAINSTATION_NO_FORKS))
+				continue
+			st.possible_next += region_stations[j+1]
+
+		// Переход в следующий регион — только ближе к концу
+		if(i < length(region_order))
+			var/next_region = region_order[i+1]
+			var/list/next_stations = stations_by_regions[next_region]
+			if(!length(next_stations))
+				continue
+
+			var/datum/train_station/next_first = next_stations[1]
+
+			var/num = length(region_stations)
+			if(num <= 1)
+				var/datum/train_station/st = region_stations[1]
+				if(!length(st.possible_next) && !(st.station_flags & TRAINSTATION_NO_FORKS))
+					st.possible_next += next_first
+				continue
+
+			var/start_idx = max(1, round(num * 0.6))
+			var/list/candidates = list()
+			for(var/k in start_idx to num)
+				var/datum/train_station/cand = region_stations[k]
+				if(!length(cand.possible_next) && !(cand.station_flags & TRAINSTATION_NO_FORKS))
+					candidates += cand
+
+			if(length(candidates))
+				var/datum/train_station/transition_from = pick(candidates)
+				transition_from.possible_next += next_first
+
+	var/list/all_local_centers = list()
+	for(var/region in stations_by_regions)
+		for(var/datum/train_station/S in stations_by_regions[region])
+			if(S.station_flags & TRAINSTATION_LOCAL_CENTER)
+				all_local_centers += S
+
+	for(var/datum/train_station/lc in all_local_centers)
+		if(lc.station_flags & TRAINSTATION_NO_FORKS)
+			continue
+
+		var/to_add = rand(3, 5)
+		var/list/possible_targets = list()
+
+		for(var/region in stations_by_regions)
+			if(region == lc.region)
+				continue
+			var/list/reg_st = stations_by_regions[region]
+			if(length(reg_st))
+				possible_targets += reg_st[1]
+				if(length(reg_st) >= 2)
+					possible_targets += reg_st[length(reg_st)]
+
+		possible_targets = shuffle(possible_targets)
+
+		for(var/k in 1 to min(to_add, length(possible_targets)))
+			var/datum/train_station/targ = possible_targets[k]
+			if(targ != lc && !(lc.possible_next.Find(targ)))
+				lc.possible_next += targ
+
 	for(var/datum/train_station/station in known_stations)
 		station.connect_stations()
 

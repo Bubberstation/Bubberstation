@@ -1,47 +1,6 @@
-/obj/effect/landmark/trainstation
-	icon_state = "tdome_admin"
-	flags_1 = NO_TURF_MOVEMENT_1
-
-/obj/effect/landmark/trainstation/Initialize(mapload)
-	. = ..()
-	ADD_TRAIT(src, TRAIT_NO_STATION_UNLOAD, INNATE_TRAIT)
-
-// Используетя для создания окрестности станции над рельсами путей
-/obj/effect/landmark/trainstation/nearstation_spawnpoint
-	name = "Near station placer"
-
-// Используется для создания станций, под рельсами путей
-/obj/effect/landmark/trainstation/station_spawnpoint
-	name = "Station Placer"
-
-/obj/effect/landmark/trainstation/nearstation_spawnpoint
-	name = "Nearstation Placer"
-
-
-/obj/effect/landmark/trainstation/train_spawnpoint
-	name = "Train Placer"
-
-/obj/effect/landmark/trainstation/crew_spawnpoint
-	name = "Crew Placer"
-
-/obj/effect/landmark/trainstation/raider_spawnpoint
-	name = "Raider spawner"
-
-
 /datum/map_template/train_station
 	name = "Train Station Template"
 	returns_created_atoms = TRUE
-
-/turf/closed/indestructible/train_border
-	name = "Iced rock"
-	icon_state = "icerock"
-
-/datum/map_template/train
-	name = "Train Template"
-	width = 200
-	height = 13
-	mappath = "_maps/modular_events/trainstation/train_general.dmm"
-
 
 /datum/train_station
 	/// Название станции
@@ -62,8 +21,13 @@
 	var/required_password = TRUE
 	/// Создатель этой станции, будет отобржен при её посещении
 	var/creator = "Fenysha"
+	/// Уровень угрозы на станции
+	var/threat_level = THREAT_LEVEL_SAFE
+	/// Регион в котором находится эта станция
+	var/region = "None"
 
-
+	/// Overmap обьект обозначающий эту станцию
+	var/datum/trainmap_object/map_object
 	/// Путь к карте станции, автоматически создает темплейт для неё
 	var/map_path
 	/// list() - эмбиет звуков, что играют на этой станции
@@ -93,6 +57,12 @@
 
 	if(ambience_sounds)
 		create_ambience()
+
+	map_object = new()
+	map_object.name = name
+	map_object.desc = desc
+	map_object.associated_station = src
+	map_object.set_position(0, 0)
 
 /datum/train_station/proc/create_ambience()
 	station_loop_soound = new(start_immediately = FALSE)
@@ -282,129 +252,3 @@
 
 /datum/train_station/near_station/get_spawn_offset(turf/spawn_turf)
 	return list("x" = spawn_turf.x, "y" = spawn_turf.y, "z" = spawn_turf.z)
-
-/datum/train_station/near_station/static_default
-	name = "Nearstation static - Default"
-	map_path = "_maps/modular_events/trainstation/nearstations/static_default.dmm"
-
-/datum/train_station/near_station/static_mountaints
-	name = "Nearstation static - Default"
-	map_path = "_maps/modular_events/trainstation/nearstations/static_mountains.dmm"
-
-
-/datum/train_station/near_station/moving_default
-	name = "Nearstation - Forest outskirts"
-	map_path = "_maps/modular_events/trainstation/nearstations/moving_default.dmm"
-
-/datum/train_station/near_station/moving_deepforerst
-	name = "Nearstation - Deep forest"
-	map_path = "_maps/modular_events/trainstation/nearstations/moving_deep_forest.dmm"
-
-
-/datum/train_station/train_backstage
-	name = "Iced forest"
-	map_path = "_maps/modular_events/trainstation/backstage.dmm"
-	station_flags = TRAINSTATION_ABSCTRACT | TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION
-	visible = FALSE
-	possible_nearstations = list(/datum/train_station/near_station/moving_default)
-
-
-/datum/train_station/near_station/abandoned_depo
-	name = "Nearstation - Abandoned depo"
-	map_path = "_maps/modular_events/trainstation/nearstations/static_abandoned_train_depo.dmm"
-
-/datum/train_station/abandoned_depo
-	name = "Abandoned depo"
-	map_path = "_maps/modular_events/trainstation/abandoned_train_depo.dm.dmm"
-	creator = "Fenysha"
-	possible_nearstations = list(/datum/train_station/near_station/abandoned_depo)
-	possible_next = list(/datum/train_station/gairen)
-	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
-
-/datum/train_station/gairen
-	name = "Gairen city"
-	map_path = "_maps/modular_events/trainstation/start_city.dmm"
-	creator = "Kierri & Fenysha"
-	ambience_sounds = list('modular_zvents/sounds/thefinalstation/piano_loop.ogg' = 33 SECONDS)
-	possible_next = list(/datum/train_station/infected_laboratory)
-	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
-
-/datum/train_station/emergency_station_a13
-	name = "Emergency station A13"
-	map_path = "_maps/modular_events/trainstation/emergency_a13.dmm"
-	creator = "Fenysha"
-	visible = FALSE
-	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
-
-/datum/train_station/infected_laboratory
-	name = "Gaizhin city"
-	map_path = "_maps/modular_events/trainstation/infected_lab.dmm"
-	creator = "Fenysha & v1s1ti"
-	station_flags = TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
-
-/datum/train_station/start_point
-	name = "Union Plasa"
-	map_path = "_maps/modular_events/trainstation/startpoint.dmm"
-	creator = "Fenysha"
-	possible_next = list()
-	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
-	required_stations = 8
-
-/datum/train_station/military_house
-	name = "Gaizhin evacuated military side"
-	creator = "Fenysha & TYWONKA"
-	map_path = "_maps/modular_events/trainstation/military_side.dmm"
-	station_flags = TRAINSTATION_BLOCKING
-
-/datum/train_station/missle_military_side
-	name = "Corrupted military Side"
-	creator = "v1s1ti"
-	map_path = "_maps/modular_events/trainstation/missle_military_side.dmm"
-	station_flags = TRAINSTATION_BLOCKING
-	required_stations = 6
-
-/datum/train_station/warehouses
-	name = "Abandoned warehousess"
-	creator = "Fenysha & TYWONKA"
-	map_path = "_maps/modular_events/trainstation/warehouse.dmm"
-	station_flags = TRAINSTATION_BLOCKING
-
-
-/datum/train_station/near_station/lost_dam
-	name = "Nearstation - Lost dam"
-	map_path = "_maps/modular_events/trainstation/nearstations/static_lost_dam.dmm"
-
-/datum/train_station/lost_dam
-	name = "Lost dam"
-	creator = "Mold & Fenysha"
-	map_path = "_maps/modular_events/trainstation/lost_dam.dmm"
-	possible_nearstations = list(/datum/train_station/near_station/lost_dam)
-
-/datum/train_station/mines
-	name = "Abandoned mines"
-	creator = "Kierri"
-	map_path = "_maps/modular_events/trainstation/abandoned_mines.dmm"
-	possible_nearstations = list(/datum/train_station/near_station/static_mountaints)
-	station_flags = TRAINSTATION_BLOCKING
-
-/datum/train_station/deep_forest
-	name = "Deep forest"
-	creator = "Fenysha"
-	map_path = "_maps/modular_events/trainstation/deep_forest.dmm"
-	possible_nearstations = list(/datum/train_station/near_station/static_mountaints)
-
-/datum/train_station/collapsed_lab
-	name = "Collapsed laboratory"
-	creator = "Mold & Fenysha"
-	map_path = "_maps/modular_events/trainstation/collapsed_lab.dmm"
-	station_flags = TRAINSTATION_BLOCKING
-	required_stations = 5
-
-/datum/train_station/radiosphere
-	name = "The Radiosphere"
-	creator = "Fenysha & Mold"
-	map_path = "_maps/modular_events/trainstation/radiosphere.dmm"
-	station_flags = TRAINSTATION_BLOCKING
-	required_stations = 5
-
-	ambience_sounds = list('modular_zvents/sounds/radiosphere_loop1.ogg' = 40 SECONDS)

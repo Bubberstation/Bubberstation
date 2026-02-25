@@ -384,24 +384,26 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/auto_detect, 24)
 
 	data["read_only"] = read_only
 	data["is_moving"] = TC.is_moving()
-	data["train_engine_active"] = TC.train_engine.is_active()
+	data["train_engine_active"] = TC.train_engine?.is_active() || FALSE
 	data["current_station"] = TC.loaded_station?.name || "Unknown"
 	data["planned_station"] = TC.planned_to_load?.name || "None"
 	data["blocking"] = TC.loaded_station?.blocking_moving || FALSE
+	data["progress"] = TC.is_moving() && TC.total_travel_time > 0 ? 1 - (TC.time_to_next_station / TC.total_travel_time) : 0
+	data["time_remaining"] = TC.time_to_next_station || 0
+
 	data["possible_next"] = list()
 	if(!TC.is_moving() && TC.loaded_station)
 		for(var/datum/train_station/next in TC.loaded_station.possible_next)
-			data["possible_next"] += list(
-				list(
-					"name" = next.name,
-					"type" = "[next.type]"
-				)
-			)
-	if(TC.is_moving() && TC.total_travel_time > 0)
-		data["progress"] = 1 - (TC.time_to_next_station / TC.total_travel_time)
-	else
-		data["progress"] = 0
-	data["time_remaining"] = TC.time_to_next_station || 0
+			data["possible_next"] += list(list(
+				"name" = next.name,
+				"type" = "[next.type]"
+			))
+
+	data["map_data"] = TC.global_map?.get_ui_data() || list(
+		"objects" = list(),
+		"paths" = list(),
+		"train" = list("x" = 500, "y" = 500, "angle" = 0)
+	)
 
 	return data
 
