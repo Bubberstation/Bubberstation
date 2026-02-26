@@ -49,7 +49,7 @@
 	name = "dark small corner tile"
 	singular_name = "dark small corner floor tile"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
-	icon_state = "dark_tile_small_corner"
+	icon_state = "tile_dark_small_corner"
 	turf_type = /turf/open/floor/iron/dark/small_corner
 	merge_type = /obj/item/stack/tile/iron/dark/small_corner
 	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST)

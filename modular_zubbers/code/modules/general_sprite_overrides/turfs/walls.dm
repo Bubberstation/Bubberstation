@@ -192,6 +192,17 @@
 /turf/closed/indestructible/alien/nodiagonal
 	icon = 'modular_zubbers/icons/turf/walls/abductor_wall.dmi'
 
+/turf/closed/indestructible/necropolis
+	icon = 'modular_zubbers/icons/turf/walls/necropolis_wall.dmi'
+	icon_state = "necro-0"
+	base_icon_state = "necro"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_NECROPOLIS_WALLS + SMOOTH_GROUP_CLOSED_TURFS
+	canSmoothWith = SMOOTH_GROUP_NECROPOLIS_WALLS
+
+/turf/closed/indestructible/meat
+	icon = 'modular_zubbers/icons/turf/walls/meat_wall.dmi'
+
 /turf/closed/indestructible/syndicate
 	icon = 'modular_zubbers/icons/turf/walls/plastitanium_wall.dmi'
 
@@ -239,3 +250,73 @@
 
 /turf/closed/wall/rock
 	icon = 'modular_zubbers/icons/turf/walls/reinforced_rock.dmi'
+
+// FALSE WALLS
+
+/obj/structure/falsewall
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/wall.dmi'
+
+/obj/structure/falsewall/reinforced
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/reinforced_wall.dmi'
+
+/obj/structure/falsewall/abductor
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/abductor_wall.dmi'
+
+/obj/structure/falsewall/bamboo
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/bamboo_wall.dmi'
+
+/obj/structure/falsewall/bananium
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/bananium_wall.dmi'
+
+/obj/structure/falsewall/diamond
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/diamond_wall.dmi'
+
+/obj/structure/falsewall/gold
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/gold_wall.dmi'
+
+/obj/structure/falsewall/iron
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/iron_wall.dmi'
+
+/obj/structure/falsewall/material
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/material_wall.dmi'
+
+/obj/structure/falsewall/plasma
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/plasma_wall.dmi'
+
+/obj/structure/falsewall/plastitanium
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/plastitanium_wall.dmi'
+
+/obj/structure/falsewall/sandstone
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/sandstone_wall.dmi'
+
+/obj/structure/falsewall/silver
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/silver_wall.dmi'
+
+/obj/structure/falsewall/snow
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/snow_wall.dmi'
+
+/obj/structure/falsewall/uranium
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/uranium_wall.dmi'
+
+/obj/structure/falsewall/wood
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/wood_wall.dmi'
+
+/obj/structure/falsewall/meat
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/meat_wall.dmi'
