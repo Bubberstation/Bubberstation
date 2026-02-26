@@ -647,6 +647,14 @@
 	name = "Upwards"
 	icon_state = "hair_upwards"
 
+/datum/sprite_accessory/hair/skyrat/tesharimohawk
+	name = "Teshari Mohawk"
+	icon_state = "hair_teshmohawk"
+
+/datum/sprite_accessory/hair/skyrat/tesharimohawkalt
+	name = "Teshari Mohawk Alt"
+	icon_state = "hair_teshmohawkalt"
+
 // Facial hair
 
 /datum/sprite_accessory/facial_hair/skyrat
