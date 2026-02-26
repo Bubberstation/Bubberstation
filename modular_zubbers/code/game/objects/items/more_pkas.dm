@@ -89,6 +89,7 @@
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
 	max_mod_capacity = 75
+	disabled_modkits = list(/obj/item/borg/upgrade/modkit/aoe) // Should cover all AOE variants
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/shockwave/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	target = get_edge_target_turf(user, user.dir)
@@ -161,7 +162,7 @@
 /obj/projectile/kinetic/railgun
 	name = "hyper kinetic force"
 	icon_state = null
-	damage = 100
+	damage = 100 // Slightly less than a crusher marked hit (110 methinks), but ranged and really fast moving, big movement slowdown and bulky.
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 6
@@ -172,7 +173,7 @@
 /obj/projectile/kinetic/repeater
 	name = "rapid kinetic force"
 	icon_state = null
-	damage = 20
+	damage = 20 // Half damage, burst fire and a bit more range.
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 4
@@ -181,7 +182,7 @@
 /obj/projectile/kinetic/shotgun
 	name = "split kinetic force"
 	icon_state = null
-	damage = 20
+	damage = 15 // 3 projectiles, 40 base damage. Theoretically more if all shots hit.
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 3
@@ -190,7 +191,7 @@
 /obj/projectile/kinetic/glock
 	name = "light kinetic force"
 	icon_state = null
-	damage = 10
+	damage = 10 // Low dmg, high modularity. Can be made great, especially when dual wielded.
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 3
@@ -199,7 +200,7 @@
 /obj/projectile/kinetic/shockwave
 	name = "concussive kinetic force"
 	icon_state = null
-	damage = 40
+	damage = 40 // 8 projectiles in a 360 around you. Good for CC and rock clearing.
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 1
