@@ -166,6 +166,7 @@
 	design_ids += "m9mm_mag"
 	design_ids += "m45_mag"
 	design_ids += "solgrenade_mag"
+	design_ids += "ntusp_conversion"
 	. = ..()
 
 /datum/techweb_node/exotic_ammo/New()
