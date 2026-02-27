@@ -10,17 +10,16 @@
 	possible_next = list(/datum/train_station/gairen)
 
 	region = TRAINSTATION_REGION_THUNDRA
-	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
+	station_flags = TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
 
 /datum/train_station/gairen
 	name = "Gairen city"
 	map_path = "_maps/modular_events/trainstation/start_city.dmm"
 	creator = "Kierri & Fenysha"
 	ambience_sounds = list('modular_zvents/sounds/thefinalstation/piano_loop.ogg' = 33 SECONDS)
-	possible_next = list(/datum/train_station/infected_laboratory)
 
 	region = TRAINSTATION_REGION_THUNDRA
-	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING | TRAINSTATION_LOCAL_CENTER
+	station_flags = TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING | TRAINSTATION_LOCAL_CENTER
 
 /datum/train_station/deep_forest
 	name = "Deep forest"

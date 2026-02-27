@@ -1,12 +1,22 @@
-import { Box, Button, LabeledList, ProgressBar, Section, Stack } from 'tgui-core/components';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  Box,
+  Button,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Stack,
+} from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { useState, useRef, useEffect, useCallback } from 'react';
-import { BooleanLike } from 'tgui-core/react';
 
 const MAP_WIDTH = 1000;
 const MAP_HEIGHT = 1000;
 const NODE_RADIUS = 14;
+const HUB_RADIUS = 22;
+/** Смещение контрольной точки кривой (в долях от длины отрезка) — стиль метро */
+const PATH_CURVE_STRENGTH = 0.18;
 
 export interface TrainMapObject {
   id: string;
@@ -58,6 +68,37 @@ export interface TrainControlData {
   map_data: MapData;
 }
 
+/** Цвет региона по имени (стабильный хеш) */
+function getRegionColor(region: string): string {
+  let hash = 0;
+  for (let i = 0; i < region.length; i++) {
+    hash = region.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const hue = Math.abs(hash) % 360;
+  return `hsl(${hue}, 70%, 52%)`;
+}
+
+/** Контрольная точка для квадратичной кривой Безье (стиль метро: изгиб перпендикулярно отрезку) */
+function getPathControlPoint(
+  startX: number,
+  startY: number,
+  endX: number,
+  endY: number,
+): { cx: number; cy: number } {
+  const mx = (startX + endX) / 2;
+  const my = (startY + endY) / 2;
+  const dx = endX - startX;
+  const dy = endY - startY;
+  const len = Math.sqrt(dx * dx + dy * dy) || 1;
+  const perpX = -dy / len;
+  const perpY = dx / len;
+  const bend = len * PATH_CURVE_STRENGTH;
+  return {
+    cx: mx + perpX * bend,
+    cy: my + perpY * bend,
+  };
+}
+
 type TrainMapCanvasProps = {
   map_data: MapData;
   scale: number;
@@ -69,16 +110,14 @@ type TrainMapCanvasProps = {
   onDragStart: (clientX: number, clientY: number) => void;
 };
 
+/** Отрисовка линий переходов (изогнутые, в стиле карты метро) и иконки поезда */
 export const TrainMapCanvas = (props: TrainMapCanvasProps) => {
-  const { map_data, scale, offsetX, offsetY, selectedId, onSelect, onZoom, onDragStart } = props;
-
+  const { map_data, scale, offsetX, offsetY, onZoom, onDragStart } = props;
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-
   const [canvasSize, setCanvasSize] = useState({ width: 800, height: 600 });
   const [isDragging, setIsDragging] = useState(false);
 
-  // Обновляем размер canvas под контейнер
   useEffect(() => {
     const updateSize = () => {
       if (containerRef.current) {
@@ -86,13 +125,11 @@ export const TrainMapCanvas = (props: TrainMapCanvasProps) => {
         setCanvasSize({ width: Math.round(width), height: Math.round(height) });
       }
     };
-
     updateSize();
     window.addEventListener('resize', updateSize);
     return () => window.removeEventListener('resize', updateSize);
   }, []);
 
-  // Устанавливаем внутренний размер canvas = отображаемому (для чёткости)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
@@ -100,15 +137,6 @@ export const TrainMapCanvas = (props: TrainMapCanvasProps) => {
       canvas.height = canvasSize.height;
     }
   }, [canvasSize]);
-
-  const getRegionColor = (region: string): string => {
-    let hash = 0;
-    for (let i = 0; i < region.length; i++) {
-      hash = region.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const hue = Math.abs(hash) % 360;
-    return `hsl(${hue}, 75%, 58%)`;
-  };
 
   const redraw = useCallback(() => {
     const canvas = canvasRef.current;
@@ -122,69 +150,33 @@ export const TrainMapCanvas = (props: TrainMapCanvasProps) => {
     ctx.translate(offsetX, offsetY);
     ctx.scale(scale, scale);
 
-    ctx.strokeStyle = '#2a2a2a';
-    ctx.lineWidth = 5.5 / scale;
+    // Линии переходов — изогнутые (квадратичная кривая Безье)
+    const lineWidth = Math.max(2, 6 / scale);
+    ctx.strokeStyle = 'rgba(120, 140, 180, 0.85)';
+    ctx.lineWidth = lineWidth;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     for (const path of map_data.paths) {
+      const { cx, cy } = getPathControlPoint(
+        path.start_x,
+        path.start_y,
+        path.end_x,
+        path.end_y,
+      );
       ctx.beginPath();
       ctx.moveTo(path.start_x, path.start_y);
-      ctx.lineTo(path.end_x, path.end_y);
+      ctx.quadraticCurveTo(cx, cy, path.end_x, path.end_y);
       ctx.stroke();
     }
 
-
-    for (const obj of map_data.objects) {
-      const isCur = !!obj.is_current;
-      const isNxt = !!obj.is_next;
-      const isSel = obj.id === selectedId;
-      const isLocal = !!obj.is_local_center;
-
-      const radius = isLocal ? NODE_RADIUS * 1.6 : NODE_RADIUS;
-
-      ctx.fillStyle = isCur ? '#0f0' : isNxt ? '#ff0' : getRegionColor(obj.region);
-      ctx.beginPath();
-      ctx.arc(obj.x, obj.y, radius, 0, Math.PI * 2);
-      ctx.fill();
-
-      if (isLocal) {
-        ctx.strokeStyle = '#ffffff';
-        ctx.lineWidth = 3.5 / scale;
-        ctx.beginPath();
-        ctx.arc(obj.x, obj.y, radius + 4, 0, Math.PI * 2);
-        ctx.stroke();
-      }
-
-      if (isSel || isCur || isNxt) {
-        ctx.strokeStyle = '#fff';
-        ctx.lineWidth = 4 / scale;
-        ctx.beginPath();
-        ctx.arc(obj.x, obj.y, radius + 6, 0, Math.PI * 2);
-        ctx.stroke();
-      }
-
-      if (scale > 0.65 || isLocal) {
-        ctx.fillStyle = '#ffffff';
-        ctx.font = `${(isLocal ? 15 : 13) / scale}px Arial`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.shadowColor = '#000';
-        ctx.shadowBlur = 6;
-        ctx.fillText(
-          obj.name + (isLocal ? ' ★' : ''),
-          obj.x,
-          obj.y - radius - (isLocal ? 18 : 14)
-        );
-        ctx.shadowBlur = 0;
-      }
-    }
-
+    // Иконка поезда
     const t = map_data.train;
     ctx.save();
     ctx.translate(t.x, t.y);
     ctx.rotate((t.angle * Math.PI) / 180);
-
-    ctx.fillStyle = '#f80';
+    ctx.fillStyle = '#e67e22';
+    ctx.strokeStyle = '#2c2c2c';
+    ctx.lineWidth = 2 / scale;
     ctx.beginPath();
     ctx.moveTo(26, 0);
     ctx.lineTo(-20, -16);
@@ -192,61 +184,37 @@ export const TrainMapCanvas = (props: TrainMapCanvasProps) => {
     ctx.lineTo(-20, 16);
     ctx.closePath();
     ctx.fill();
-
-    ctx.fillStyle = '#111';
-    ctx.beginPath(); ctx.arc(-9, 11, 7, 0, Math.PI * 2); ctx.fill();
-    ctx.beginPath(); ctx.arc(-9, -11, 7, 0, Math.PI * 2); ctx.fill();
-
+    ctx.stroke();
+    ctx.fillStyle = '#1a1a1a';
+    ctx.beginPath();
+    ctx.arc(-9, 11, 7, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(-9, -11, 7, 0, Math.PI * 2);
+    ctx.fill();
     ctx.restore();
     ctx.restore();
-  }, [map_data, scale, offsetX, offsetY, selectedId]);
+  }, [map_data, scale, offsetX, offsetY]);
 
-  useEffect(() => { redraw(); }, [redraw]);
-
-  const handleClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const rect = canvas.getBoundingClientRect();
-    const screenX = e.clientX - rect.left;
-    const screenY = e.clientY - rect.top;
-
-    const worldX = (screenX - offsetX) / scale;
-    const worldY = (screenY - offsetY) / scale;
-
-    for (const obj of map_data.objects) {
-      const isLocal = !!obj.is_local_center;
-      const r = isLocal ? NODE_RADIUS * 1.6 : NODE_RADIUS;
-      const dx = worldX - obj.x;
-      const dy = worldY - obj.y;
-      if (dx * dx + dy * dy <= r * r * 2.4) {
-        onSelect(obj.id);
-        return;
-      }
-    }
-  };
+  useEffect(() => {
+    redraw();
+  }, [redraw]);
 
   const handleWheel = (e: React.WheelEvent<HTMLCanvasElement>) => {
     e.preventDefault();
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const rect = canvas.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
-
     const wxBefore = (mouseX - offsetX) / scale;
     const wyBefore = (mouseY - offsetY) / scale;
-
     const factor = e.deltaY > 0 ? 0.92 : 1 / 0.92;
     const newScale = Math.max(0.25, Math.min(4, scale * factor));
-
     const wxAfter = (mouseX - offsetX) / newScale;
     const wyAfter = (mouseY - offsetY) / newScale;
-
     const corrX = (wxBefore - wxAfter) * newScale;
     const corrY = (wyBefore - wyAfter) * newScale;
-
     onZoom(newScale, offsetX + corrX, offsetY + corrY);
   };
 
@@ -258,6 +226,8 @@ export const TrainMapCanvas = (props: TrainMapCanvasProps) => {
         height: '100%',
         position: 'relative',
         overflow: 'hidden',
+        background: 'linear-gradient(160deg, #1a1f2e 0%, #0f1219 100%)',
+        borderRadius: '8px',
       }}
     >
       <canvas
@@ -265,7 +235,6 @@ export const TrainMapCanvas = (props: TrainMapCanvasProps) => {
         style={{
           position: 'absolute',
           inset: 0,
-          imageRendering: 'pixelated',
           cursor: isDragging ? 'grabbing' : 'grab',
           touchAction: 'none',
         }}
@@ -275,10 +244,130 @@ export const TrainMapCanvas = (props: TrainMapCanvasProps) => {
             onDragStart(e.clientX, e.clientY);
           }
         }}
+        onMouseUp={() => setIsDragging(false)}
+        onMouseLeave={() => setIsDragging(false)}
         onWheel={handleWheel}
-        onClick={handleClick}
       />
     </div>
+  );
+};
+
+type StationNodeProps = {
+  obj: TrainMapObject;
+  scale: number;
+  isSelected: boolean;
+  onClick: () => void;
+};
+
+/** Станция на карте — отдельный компонент для возможности добавить кнопки и действия */
+const StationNode = (props: StationNodeProps) => {
+  const { obj, scale, isSelected, onClick } = props;
+  const isCur = !!obj.is_current;
+  const isNxt = !!obj.is_next;
+  const isLocal = !!obj.is_local_center;
+  const radius = isLocal ? HUB_RADIUS : NODE_RADIUS;
+  const color = isCur
+    ? '#27ae60'
+    : isNxt
+      ? '#f1c40f'
+      : getRegionColor(obj.region);
+
+  const showLabel = scale > 0.5 || isLocal;
+  const labelSize = isLocal ? 12 : 10;
+  const strokeWidth = Math.max(1.5, 3.5 / scale);
+
+  return (
+    <Box
+      style={{
+        position: 'absolute',
+        left: obj.x,
+        top: obj.y,
+        width: 0,
+        height: 0,
+        transform: 'translate(-50%, -50%)',
+        pointerEvents: 'auto',
+        cursor: 'pointer',
+        zIndex: isCur || isNxt || isSelected ? 20 : 10,
+      }}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick();
+      }}
+    >
+      {showLabel && (
+        <Box
+          style={{
+            position: 'absolute',
+            left: '50%',
+            bottom: '100%',
+            transform: 'translate(-50%, -6px)',
+            whiteSpace: 'nowrap',
+            fontSize: `${labelSize}px`,
+            fontWeight: isLocal ? 700 : 500,
+            color: '#e8e8e8',
+            textShadow: '0 1px 2px rgba(0,0,0,0.8)',
+            pointerEvents: 'none',
+            userSelect: 'none',
+          }}
+        >
+          {obj.name}
+          {isLocal ? ' ★' : ''}
+        </Box>
+      )}
+      <Box
+        style={{
+          width: radius * 2,
+          height: radius * 2,
+          marginLeft: -radius,
+          marginTop: -radius,
+          borderRadius: '50%',
+          backgroundColor: color,
+          boxShadow: `0 0 0 ${strokeWidth}px ${isLocal ? '#fff' : 'rgba(255,255,255,0.4)'}, 0 2px 8px rgba(0,0,0,0.4)`,
+          border:
+            isSelected || isCur || isNxt
+              ? `${Math.max(2, 4 / scale)}px solid #fff`
+              : 'none',
+        }}
+      />
+    </Box>
+  );
+};
+
+type StationsOverlayProps = {
+  map_data: MapData;
+  scale: number;
+  offsetX: number;
+  offsetY: number;
+  selectedId: string | null;
+  onSelect: (id: string) => void;
+};
+
+/** Слой со станциями (в координатах карты), поверх canvas */
+const StationsOverlay = (props: StationsOverlayProps) => {
+  const { map_data, scale, offsetX, offsetY, selectedId, onSelect } = props;
+  return (
+    <Box
+      style={{
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        width: MAP_WIDTH,
+        height: MAP_HEIGHT,
+        transform: `translate(${offsetX}px, ${offsetY}px) scale(${scale})`,
+        transformOrigin: '0 0',
+        pointerEvents: 'none',
+      }}
+    >
+      {map_data.objects.map((obj) => (
+        <StationNode
+          key={obj.id}
+          obj={obj}
+          scale={scale}
+          isSelected={obj.id === selectedId}
+          onClick={() => onSelect(obj.id)}
+        />
+      ))}
+    </Box>
   );
 };
 
@@ -297,21 +386,31 @@ type StatusPanelProps = {
 const StatusPanel = (props: StatusPanelProps) => (
   <Section title="Статус поезда">
     <LabeledList>
-      <LabeledList.Item label="Текущая станция">{props.current_station}</LabeledList.Item>
-      <LabeledList.Item label="Следующая">{props.planned_station}</LabeledList.Item>
+      <LabeledList.Item label="Текущая станция">
+        {props.current_station}
+      </LabeledList.Item>
+      <LabeledList.Item label="Следующая">
+        {props.planned_station}
+      </LabeledList.Item>
       <LabeledList.Item label="Движение">
-        <ProgressBar value={props.progress} color={props.is_moving ? 'good' : 'average'}>
+        <ProgressBar
+          value={props.progress}
+          color={props.is_moving ? 'good' : 'average'}
+        >
           {props.is_moving ? `${props.time_remaining} сек` : 'Остановлен'}
         </ProgressBar>
       </LabeledList.Item>
     </LabeledList>
-
     {!props.read_only && (
       <Stack mt={2} justify="space-between">
         <Button
           icon="play"
           color="good"
-          disabled={!props.train_engine_active || !!props.is_moving || !props.planned_station}
+          disabled={
+            !props.train_engine_active ||
+            !!props.is_moving ||
+            !props.planned_station
+          }
           onClick={props.onStart}
         >
           Отправить поезд
@@ -341,26 +440,42 @@ type SelectedStationPanelProps = {
 const SelectedStationPanel = (props: SelectedStationPanelProps) => (
   <Section
     title={`Выбрано: ${props.selectedObject.name}`}
-    buttons={<Button icon="times" color="transparent" onClick={props.onClose} />}
+    buttons={
+      <Button icon="times" color="transparent" onClick={props.onClose} />
+    }
   >
     <LabeledList>
-      <LabeledList.Item label="Регион">{props.selectedObject.region}</LabeledList.Item>
+      <LabeledList.Item label="Регион">
+        {props.selectedObject.region}
+      </LabeledList.Item>
       {props.selectedObject.is_local_center && (
         <LabeledList.Item label="Тип" color="good">
           ЛОКАЛЬНЫЙ ЦЕНТР (ХАБ)
         </LabeledList.Item>
       )}
-      <LabeledList.Item label="Посещено">{props.selectedObject.visited} раз</LabeledList.Item>
-      <LabeledList.Item label="Описание">{props.selectedObject.desc}</LabeledList.Item>
+      <LabeledList.Item label="Посещено">
+        {props.selectedObject.visited} раз
+      </LabeledList.Item>
+      <LabeledList.Item label="Описание">
+        {props.selectedObject.desc}
+      </LabeledList.Item>
     </LabeledList>
-
-    {!props.read_only && props.possibleSet.has(props.selectedObject.id) && !props.is_moving && (
-      <Button mt={2} fluid icon="arrow-right" color="good" onClick={props.onSetAsNext}>
-        Выбрать как следующую станцию
-      </Button>
-    )}
+    {!props.read_only &&
+      props.possibleSet.has(props.selectedObject.id) &&
+      !props.is_moving && (
+        <Button
+          mt={2}
+          fluid
+          icon="arrow-right"
+          color="good"
+          onClick={props.onSetAsNext}
+        >
+          Выбрать как следующую станцию
+        </Button>
+      )}
   </Section>
 );
+
 type PossibleNextListProps = {
   possible_next: PossibleNextStation[];
   onChoose: (type: string) => void;
@@ -404,7 +519,11 @@ export const TrainControlTerminal = () => {
   const possibleSet = new Set(possible_next.map((s) => s.type));
   const selectedObject = map_data.objects.find((o) => o.id === selectedId);
 
-  const handleZoom = (newScale: number, newOffsetX: number, newOffsetY: number) => {
+  const handleZoom = (
+    newScale: number,
+    newOffsetX: number,
+    newOffsetY: number,
+  ) => {
     setScale(newScale);
     setOffsetX(newOffsetX);
     setOffsetY(newOffsetY);
@@ -416,21 +535,17 @@ export const TrainControlTerminal = () => {
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
-      if (!dragStart.x && !dragStart.y) return;
-      const newX = e.clientX - dragStart.x;
-      const newY = e.clientY - dragStart.y;
-      setOffsetX(newX);
-      setOffsetY(newY);
+      if (dragStart.x === 0 && dragStart.y === 0) return;
+      setOffsetX(e.clientX - dragStart.x);
+      setOffsetY(e.clientY - dragStart.y);
     },
     [dragStart],
   );
 
-  const handleMouseUp = useCallback(() => {
-    setDragStart({ x: 0, y: 0 });
-  }, []);
+  const handleMouseUp = useCallback(() => setDragStart({ x: 0, y: 0 }), []);
 
   useEffect(() => {
-    if (dragStart.x || dragStart.y) {
+    if (dragStart.x !== 0 || dragStart.y !== 0) {
       window.addEventListener('mousemove', handleMouseMove);
       window.addEventListener('mouseup', handleMouseUp);
       return () => {
@@ -456,45 +571,75 @@ export const TrainControlTerminal = () => {
 
   return (
     <Window title="Train Control Terminal" width={1280} height={720}>
-      <Window.Content>
-        <Stack height="100%" direction="row">
+      <Window.Content
+        style={{
+          background: 'linear-gradient(180deg, #1e2433 0%, #151a24 100%)',
+        }}
+      >
+        <Stack height="100%" direction="row" fill>
           <Stack.Item grow={1} style={{ position: 'relative', minHeight: 0 }}>
-            <TrainMapCanvas
-              map_data={map_data}
-              scale={scale}
-              offsetX={offsetX}
-              offsetY={offsetY}
-              selectedId={selectedId}
-              onSelect={setSelectedId}
-              onZoom={handleZoom}
-              onDragStart={handleDragStart}
-            />
-
+            <Box
+              style={{
+                position: 'relative',
+                width: '100%',
+                height: '100%',
+                overflow: 'hidden',
+              }}
+            >
+              <TrainMapCanvas
+                map_data={map_data}
+                scale={scale}
+                offsetX={offsetX}
+                offsetY={offsetY}
+                selectedId={selectedId}
+                onSelect={setSelectedId}
+                onZoom={handleZoom}
+                onDragStart={handleDragStart}
+              />
+              <StationsOverlay
+                map_data={map_data}
+                scale={scale}
+                offsetX={offsetX}
+                offsetY={offsetY}
+                selectedId={selectedId}
+                onSelect={setSelectedId}
+              />
+            </Box>
             <Box
               position="absolute"
-              top="8px"
-              left="8px"
-              backgroundColor="rgba(0,0,0,0.7)"
+              top="10px"
+              left="10px"
+              backgroundColor="rgba(0,0,0,0.75)"
               p={1}
-              style={{ borderRadius: '4px', zIndex: 10 }}
+              style={{
+                borderRadius: '6px',
+                zIndex: 30,
+                display: 'flex',
+                gap: '6px',
+                flexWrap: 'wrap',
+              }}
             >
               <Button onClick={resetView}>Сбросить вид</Button>
-              <Button onClick={() => setScale(s => Math.min(4, s * 1.25))}>+</Button>
-              <Button onClick={() => setScale(s => Math.max(0.25, s * 0.8))}>-</Button>
+              <Button
+                icon="plus"
+                onClick={() => setScale((s) => Math.min(4, s * 1.25))}
+              />
+              <Button
+                icon="minus"
+                onClick={() => setScale((s) => Math.max(0.25, s * 0.8))}
+              />
             </Box>
-
             <Box
               position="absolute"
-              bottom="8px"
-              left="8px"
-              backgroundColor="rgba(0,0,0,0.7)"
+              bottom="10px"
+              left="10px"
+              backgroundColor="rgba(0,0,0,0.75)"
               p={1}
-              style={{ borderRadius: '4px', zIndex: 10 }}
+              style={{ borderRadius: '6px', zIndex: 30 }}
             >
               Масштаб: {Math.round(scale * 100)}%
             </Box>
           </Stack.Item>
-
           <Stack.Item width="380px" style={{ overflowY: 'auto' }}>
             <StatusPanel
               read_only={read_only}
@@ -507,7 +652,6 @@ export const TrainControlTerminal = () => {
               onStart={() => act('start_moving')}
               onStop={() => act('stop_moving')}
             />
-
             {selectedObject && (
               <SelectedStationPanel
                 selectedObject={selectedObject}
@@ -518,7 +662,6 @@ export const TrainControlTerminal = () => {
                 onSetAsNext={setAsNext}
               />
             )}
-
             {!is_moving && possible_next.length > 0 && (
               <PossibleNextList
                 possible_next={possible_next}

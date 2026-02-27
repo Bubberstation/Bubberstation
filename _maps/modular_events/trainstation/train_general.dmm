@@ -1966,10 +1966,11 @@
 /obj/machinery/scanner_gate/preset_guns{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
-/obj/machinery/door/airlock/hos,
 /obj/structure/cable,
 /obj/structure/cable,
+/obj/machinery/door/airlock/hos{
+	req_one_access = list("brig", "command")
+	},
 /turf/open/floor/iron/dark,
 /area/trainstation/indoors/train/security)
 "ia" = (
@@ -3812,8 +3813,9 @@
 	},
 /obj/structure/cable,
 /obj/structure/cable,
-/obj/machinery/door/airlock/hos,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/machinery/door/airlock/hos{
+	req_one_access = list("brig", "command")
+	},
 /turf/open/floor/iron/dark,
 /area/trainstation/indoors/train/security)
 "qw" = (

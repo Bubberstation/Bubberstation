@@ -390,6 +390,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/auto_detect, 24)
 	data["blocking"] = TC.loaded_station?.blocking_moving || FALSE
 	data["progress"] = TC.is_moving() && TC.total_travel_time > 0 ? 1 - (TC.time_to_next_station / TC.total_travel_time) : 0
 	data["time_remaining"] = TC.time_to_next_station || 0
+	data["time_per_map_unit"] = TC.time_per_map_unit
 
 	data["possible_next"] = list()
 	if(!TC.is_moving() && TC.loaded_station)
@@ -398,6 +399,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/auto_detect, 24)
 				"name" = next.name,
 				"type" = "[next.type]"
 			))
+
+	if(TC.global_map)
+		TC.global_map.update_train_position()
 
 	data["map_data"] = TC.global_map?.get_ui_data() || list(
 		"objects" = list(),

@@ -55,11 +55,16 @@ SUBSYSTEM_DEF(train_controller)
 
 
 	var/tain_starting = FALSE
-	var/minimum_travel_time = 15 MINUTES
+	/// Минимальное время между станциями (даже при маленьком расстоянии)
+	var/minimum_travel_time = 7 MINUTES
 	var/maximum_travel_time = 30 MINUTES
+	/// Сколько времени занимает одна единица расстояния на глобальной карте
+	var/time_per_map_unit = 3 SECONDS
 	var/time_to_next_station
 	var/total_travel_time
 	var/stations_visited = 0
+	/// Последняя реальная станция, с которой отправился поезд (для глобальной карты)
+	var/datum/train_station/last_departed_station = null
 
 
 
@@ -151,7 +156,8 @@ SUBSYSTEM_DEF(train_controller)
 	for(var/r in stations_by_regions)
 		region_keys += r
 	region_order = shuffle(region_keys)
-
+	for(var/datum/train_station/TS in known_stations)
+		TS.connect_stations()
 
 /datum/controller/subsystem/train_controller/proc/load_map()
 	load_train()
@@ -334,8 +340,25 @@ SUBSYSTEM_DEF(train_controller)
 			return
 		planned_to_load = pick(loaded_station.possible_next)
 
+	// Запоминаем, с какой реальной станции мы уехали, чтобы корректно отображать поезд на глобальной карте
+	if(loaded_station && !(loaded_station.station_flags & TRAINSTATION_ABSCTRACT) && !istype(loaded_station, /datum/train_station/train_backstage))
+		last_departed_station = loaded_station
+
 	if(!(loaded_station.station_flags & TRAINSTATION_ABSCTRACT))
-		var/time_to_next = rand(minimum_travel_time, maximum_travel_time)
+		var/time_to_next
+		if(global_map && planned_to_load?.map_object && loaded_station.map_object)
+			var/datum/trainmap_object/start_obj = loaded_station.map_object
+			var/datum/trainmap_object/end_obj = planned_to_load.map_object
+			var/dx = end_obj.position_x - start_obj.position_x
+			var/dy = end_obj.position_y - start_obj.position_y
+			var/dist = sqrt(dx*dx + dy*dy)
+			time_to_next = dist * time_per_map_unit
+			if(time_to_next < minimum_travel_time)
+				time_to_next = minimum_travel_time
+			if(time_to_next > maximum_travel_time)
+				time_to_next = maximum_travel_time
+		else
+			time_to_next = rand(minimum_travel_time, maximum_travel_time)
 		total_travel_time = time_to_next
 		time_to_next_station = time_to_next
 		stations_visited += 1
