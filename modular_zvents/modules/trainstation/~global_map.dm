@@ -1,30 +1,30 @@
 // Центр и размер холста карты
 #define MAP_CENTER_X 500
 #define MAP_CENTER_Y 500
-#define MAP_MIN_RADIUS 280
-#define MAP_MAX_RADIUS 420
+#define MAP_MIN_RADIUS 370
+#define MAP_MAX_RADIUS 550
 
 // Шаг по вертикали между регионами и смещение веток (умеренная длина пути)
-#define REGION_Y_STEP 180
-#define CENTER_Y_OFFSET_MIN 75
-#define CENTER_Y_OFFSET_MAX 115
+#define REGION_Y_STEP 230
+#define CENTER_Y_OFFSET_MIN 90
+#define CENTER_Y_OFFSET_MAX 150
 
 // Начальное смещение ветки от центра влево/вправо
-#define INITIAL_BRANCH_OFFSET_MIN 15
-#define INITIAL_BRANCH_OFFSET_MAX 30
+#define INITIAL_BRANCH_OFFSET_MIN 20
+#define INITIAL_BRANCH_OFFSET_MAX 40
 
 // Шаг по Y между станциями на ветке
 #define BRANCH_STEP_Y_MIN 60
-#define BRANCH_STEP_Y_MAX 90
+#define BRANCH_STEP_Y_MAX 100
 
 // Минимальная дистанция между точками; пороги для «близких» станций
-#define OVERLAP_MIN_DISTANCE 40
-#define NEAR_STATION_CHECK_DIST 210
-#define NEAR_STATION_SIDE_THRESHOLD 45
-#define NEAR_STATION_SIDE_COUNT_THRESHOLD 18
+#define OVERLAP_MIN_DISTANCE 50
+#define NEAR_STATION_CHECK_DIST 270
+#define NEAR_STATION_SIDE_THRESHOLD 60
+#define NEAR_STATION_SIDE_COUNT_THRESHOLD 25
 
 // Остановка ветки у конечной станции; лимит итераций подбора
-#define BRANCH_TOO_CLOSE_DIST 140
+#define BRANCH_TOO_CLOSE_DIST 160
 #define BRANCH_MAX_CANDIDATES_TRIES 100
 
 
@@ -138,6 +138,8 @@
 	// Группировка по регионам
 	var/list/regions_to_stations = list()
 	for(var/datum/train_station/S in valid_stations)
+		if(S.station_flags & TRAINSTATION_FINAL_STATION)
+			continue
 		if(!(S.region in regions_to_stations))
 			regions_to_stations[S.region] = list()
 		regions_to_stations[S.region] += S
@@ -241,8 +243,9 @@
 		// Переходная ветка из последнего локального центра
 		if(length(transition_stations) && length(all_centers_in_order))
 			var/datum/train_station/last_local = all_centers_in_order[length(all_centers_in_order)]
-			place_transition_branch(last_local, transition_stations)
-
+			var/list/branch = place_transition_branch(last_local, transition_stations)
+			if(length(branch))
+				last_region_station = branch[length(branch)]
 
 		var/list/possible_near_stations = list()
 		for(var/datum/train_station/S in region_stations)
@@ -288,6 +291,23 @@
 			last_region_station = updated_last
 
 		connect_stations(region_stations)
+
+	// После всех регионов — отдельная финальная станция, если она объявлена
+	var/datum/train_station/final_station = SStrain_controller.pick_final_station()
+	if(final_station && final_station.map_object && !(final_station.station_flags & TRAINSTATION_ABSCTRACT))
+		if(!is_placed_on_map(final_station))
+			var/base_x = last_region_station?.map_object?.position_x || center_x
+			var/base_y = (last_region_station?.map_object?.position_y || current_y) + REGION_Y_STEP * 2
+
+			var/x = base_x
+			var/y = base_y
+			var/tries = 40
+			while(tries-- && !place_station_on_map(final_station, x, y))
+				x = base_x + rand(-80, 80)
+				y = base_y + rand(BRANCH_STEP_Y_MIN, BRANCH_STEP_Y_MAX)
+
+		if(is_placed_on_map(final_station))
+			connect_stations(valid_stations + final_station)
 
 
 /datum/train_global_map/proc/place_branch(datum/train_station/start, datum/train_station/end, list/available_stations)
@@ -412,6 +432,7 @@
 	var/initial_offset_x = rand(INITIAL_BRANCH_OFFSET_MIN, INITIAL_BRANCH_OFFSET_MAX) * side
 	var/last_x = center_obj.position_x + initial_offset_x
 	var/last_y = center_obj.position_y + rand(CENTER_Y_OFFSET_MIN, CENTER_Y_OFFSET_MAX)
+	var/list/branch = list()
 
 	for(var/datum/train_station/picked in shuffle(stations_to_place))
 		if(!picked?.map_object)
@@ -438,10 +459,11 @@
 
 		if(!place_station_on_map(picked, desired_x, desired_y, ignore_overlap = TRUE))
 			continue
+		branch += picked
 
 		last_x = desired_x
 		last_y = desired_y
-
+	return branch
 
 /// Размещение одной cargo_station рядом со станцией + соединение
 /datum/train_global_map/proc/place_cargo_near(datum/train_station/near_station, datum/train_station/cargo_station)
@@ -500,6 +522,8 @@
 				P.end = near_station.map_object
 				paths += P
 
+			connect_cargo_to_nearby(cargo_station)
+
 			return TRUE
 
 	// Если не получилось — случайный поиск
@@ -526,6 +550,8 @@
 				P.end = near_station.map_object
 				paths += P
 
+			connect_cargo_to_nearby(cargo_station)
+
 			return TRUE
 
 	return FALSE
@@ -540,6 +566,46 @@
 	return FALSE
 
 
+/datum/train_global_map/proc/connect_cargo_to_nearby(datum/train_station/cargo_station)
+	if(!cargo_station?.map_object)
+		return
+	if(!is_placed_on_map(cargo_station))
+		return
+
+	var/datum/trainmap_object/center = cargo_station.map_object
+	var/list/near = get_nearest_stations(center, NEAR_STATION_CHECK_DIST, 8)
+	if(!length(near))
+		return
+
+	for(var/datum/trainmap_object/O in near)
+		var/datum/train_station/S = O.associated_station
+		if(!S || S == cargo_station)
+			continue
+		add_connection(cargo_station, S, SStrain_controller.known_stations)
+
+
+/datum/train_global_map/proc/dsu_find(list/parent, datum/train_station/S)
+	if(!S)
+		return null
+	var/datum/train_station/p = parent[S]
+	if(!p || p == S)
+		parent[S] = S
+		return S
+	parent[S] = dsu_find(parent, p)
+	return parent[S]
+
+
+/datum/train_global_map/proc/dsu_union(list/parent, datum/train_station/A, datum/train_station/B)
+	if(!A || !B)
+		return FALSE
+	var/datum/train_station/ra = dsu_find(parent, A)
+	var/datum/train_station/rb = dsu_find(parent, B)
+	if(!ra || !rb || ra == rb)
+		return FALSE
+	parent[ra] = rb
+	return TRUE
+
+
 /// Соединяет станции линиями с ближайшими соседями по карте (по степени связности)
 /datum/train_global_map/proc/connect_stations(list/stations_to_connect = null)
 	if(!stations_to_connect)
@@ -551,35 +617,95 @@
 	if(!length(stations_to_connect))
 		return
 
-
-	var/list/by_degree = list()
+	// Оставляем только реально размещённые станции (иначе расстояния бессмысленны).
+	var/list/valid = list()
 	for(var/datum/train_station/S in stations_to_connect)
-		by_degree[S] = get_station_degree(S, stations_to_connect)
+		if(is_placed_on_map(S))
+			valid += S
 
-	by_degree = sortTim(by_degree, GLOBAL_PROC_REF(cmp_numeric_asc), associative = TRUE)
+	if(length(valid) < 2)
+		return
 
-	for(var/datum/train_station/S in by_degree)
-		if(!is_placed_on_map(S))
+	// 1) Гарантированно соединяем КАЖДУЮ станцию с её ближайшей.
+	for(var/datum/train_station/S in valid)
+		var/datum/train_station/nearest = null
+		var/best_dist = INFINITY
+
+		for(var/datum/train_station/T in valid)
+			if(T == S)
+				continue
+			var/d = get_distance_to_station(S.map_object, T.map_object)
+			if(d > 0 && d < best_dist)
+				best_dist = d
+				nearest = T
+
+		if(!nearest)
 			continue
 
-		var/datum/trainmap_object/my_obj = S.map_object
-		var/list/closest = get_nearest_stations(my_obj, max_dist = BRANCH_TOO_CLOSE_DIST, max_count = 5)
+		if(add_connection(S, nearest, valid, max_degree = 6))
+			if(!has_path_between(S.map_object, nearest.map_object))
+				var/datum/trainmap_path/P = new
+				P.start = S.map_object
+				P.end = nearest.map_object
+				paths += P
 
-		for(var/datum/trainmap_object/neigh_obj in closest)
-			var/datum/train_station/neigh = neigh_obj.associated_station
-			if(!neigh || neigh == S)
-				continue
+	// 2) Гарантируем связность региона: соединяем ближайшие компоненты, пока не останется одна.
+	var/list/parent = list()
+	for(var/datum/train_station/S in valid)
+		parent[S] = S
 
-			if(add_connection(S, neigh, stations_to_connect, max_degree = 3))
-				if(!has_path_between(my_obj, neigh_obj))
-					var/datum/trainmap_path/P = new
-					P.start = my_obj
-					P.end = neigh_obj
-					paths += P
+	for(var/datum/train_station/A in valid)
+		for(var/datum/train_station/B in A.possible_next)
+			if(B && (B in valid))
+				dsu_union(parent, A, B)
 
-			// Ограничим количество связей на станцию
-			if(get_station_degree(S, stations_to_connect) >= 4)
-				break
+	var/list/blocked_pairs = list()
+
+	while(TRUE)
+		var/list/roots = list()
+		for(var/datum/train_station/S in valid)
+			var/datum/train_station/r = dsu_find(parent, S)
+			if(r)
+				roots[r] = TRUE
+		if(length(roots) <= 1)
+			break
+
+		var/datum/train_station/bestA = null
+		var/datum/train_station/bestB = null
+		var/best = INFINITY
+
+		for(var/i in 1 to length(valid) - 1)
+			var/datum/train_station/S1 = valid[i]
+			var/datum/train_station/r1 = dsu_find(parent, S1)
+			for(var/j in (i + 1) to length(valid))
+				var/datum/train_station/S2 = valid[j]
+				var/datum/train_station/r2 = dsu_find(parent, S2)
+				if(!r1 || !r2 || r1 == r2)
+					continue
+
+				var/key = "\ref[S1]|\ref[S2]"
+				if(blocked_pairs[key])
+					continue
+
+				var/d = get_distance_to_station(S1.map_object, S2.map_object)
+				if(d > 0 && d < best)
+					best = d
+					bestA = S1
+					bestB = S2
+
+		if(!bestA || !bestB)
+			break
+
+		if(add_connection(bestA, bestB, valid, max_degree = 6))
+			if(!has_path_between(bestA.map_object, bestB.map_object))
+				var/datum/trainmap_path/P = new
+				P.start = bestA.map_object
+				P.end = bestB.map_object
+				paths += P
+			dsu_union(parent, bestA, bestB)
+		else
+			blocked_pairs["\ref[bestA]|\ref[bestB]"] = TRUE
+			blocked_pairs["\ref[bestB]|\ref[bestA]"] = TRUE
 
 
 /datum/train_global_map/proc/has_path_between(datum/trainmap_object/A, datum/trainmap_object/B)

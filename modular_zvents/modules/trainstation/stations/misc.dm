@@ -35,3 +35,7 @@
 	maximum_visits = INFINITY
 	threat_level = THREAT_LEVEL_SAFE
 	creator = "Fenysha"
+
+/datum/train_station/cargo_station/thundra_1
+
+/datum/train_station/cargo_station/thundra_2

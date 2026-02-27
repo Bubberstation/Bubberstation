@@ -159,6 +159,23 @@ SUBSYSTEM_DEF(train_controller)
 	for(var/datum/train_station/TS in known_stations)
 		TS.connect_stations()
 
+
+/datum/controller/subsystem/train_controller/proc/pick_final_station()
+	var/list/candidates = list()
+	for(var/datum/train_station/S in known_stations)
+		if(!S.visible)
+			continue
+		if(S.station_flags & TRAINSTATION_ABSCTRACT)
+			continue
+		if(!(S.station_flags & TRAINSTATION_FINAL_STATION))
+			continue
+		candidates += S
+
+	if(!length(candidates))
+		return null
+
+	return pick(candidates)
+
 /datum/controller/subsystem/train_controller/proc/load_map()
 	load_train()
 	load_startpoint()
