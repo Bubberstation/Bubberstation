@@ -15,7 +15,6 @@ const MAP_WIDTH = 5000;
 const MAP_HEIGHT = 5000;
 const NODE_RADIUS = 14;
 const HUB_RADIUS = 22;
-/** Control point offset strength (metro style kink) */
 const PATH_CURVE_STRENGTH = 0.18;
 
 export interface TrainMapObject {
@@ -29,6 +28,7 @@ export interface TrainMapObject {
   is_next: BooleanLike;
   visited: number;
   is_local_center: BooleanLike;
+  station_type: string;
 }
 
 export interface TrainMapPath {
@@ -312,9 +312,20 @@ export const TrainMapCanvas = (props: TrainMapCanvasProps) => {
   );
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Station Node (unchanged logic, translated labels)
-// ─────────────────────────────────────────────────────────────────────────────
+function getStationColor(station: TrainMapObject): string {
+  switch (station.region) {
+    case 'Cargo':
+      return '#f1c40f';
+    case 'Emergency':
+      return '#f1c40f';
+    case 'Military':
+      return '#27ae60';
+    case 'City':
+      return '#f1c40f';
+    default:
+      return getRegionColor(station.region);
+  }
+}
 
 type StationNodeProps = {
   obj: TrainMapObject;
@@ -333,7 +344,7 @@ const StationNode = (props: StationNodeProps) => {
     ? '#27ae60'
     : isNxt
       ? '#f1c40f'
-      : getRegionColor(obj.region);
+      : getStationColor(props.obj);
 
   const showLabel = scale > 0.5 || isLocal;
   const labelSize = isLocal ? 12 : 10;
@@ -460,7 +471,7 @@ const StatusPanel = (props: StatusPanelProps) => (
           color={props.is_moving ? 'good' : 'average'}
         >
           {props.is_moving
-            ? `${props.time_remaining} sec remaining`
+            ? `${props.time_remaining / 10} sec remaining`
             : 'Stopped'}
         </ProgressBar>
       </LabeledList.Item>
@@ -512,11 +523,12 @@ const SelectedStationPanel = (props: SelectedStationPanelProps) => (
       <LabeledList.Item label="Region">
         {props.selectedObject.region}
       </LabeledList.Item>
-      {props.selectedObject.is_local_center && (
-        <LabeledList.Item label="Type" color="good">
-          LOCAL HUB
-        </LabeledList.Item>
-      )}
+      <LabeledList.Item
+        label="Type"
+        color={getStationColor(props.selectedObject)}
+      >
+        {props.selectedObject.station_type}
+      </LabeledList.Item>
       <LabeledList.Item label="Visits">
         {props.selectedObject.visited} times
       </LabeledList.Item>

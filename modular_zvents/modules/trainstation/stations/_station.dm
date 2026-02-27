@@ -25,6 +25,9 @@
 	var/threat_level = THREAT_LEVEL_SAFE
 	/// Регион в котором находится эта станция
 	var/region = "None"
+	/// Тип станции
+	var/station_type = "unknown"
+
 
 	/// Overmap обьект обозначающий эту станцию
 	var/datum/trainmap_object/map_object

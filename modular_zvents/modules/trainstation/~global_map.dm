@@ -5,26 +5,26 @@
 #define MAP_MAX_RADIUS 420
 
 // Шаг по вертикали между регионами и смещение веток (умеренная длина пути)
-#define REGION_Y_STEP 200
-#define CENTER_Y_OFFSET_MIN 35
-#define CENTER_Y_OFFSET_MAX 75
+#define REGION_Y_STEP 210
+#define CENTER_Y_OFFSET_MIN 75
+#define CENTER_Y_OFFSET_MAX 115
 
 // Начальное смещение ветки от центра влево/вправо
-#define INITIAL_BRANCH_OFFSET_MIN 40
-#define INITIAL_BRANCH_OFFSET_MAX 85
+#define INITIAL_BRANCH_OFFSET_MIN 15
+#define INITIAL_BRANCH_OFFSET_MAX 30
 
 // Шаг по Y между станциями на ветке
-#define BRANCH_STEP_Y_MIN 70
-#define BRANCH_STEP_Y_MAX 110
+#define BRANCH_STEP_Y_MIN 90
+#define BRANCH_STEP_Y_MAX 130
 
 // Минимальная дистанция между точками; пороги для «близких» станций
 #define OVERLAP_MIN_DISTANCE 38
-#define NEAR_STATION_CHECK_DIST 140
+#define NEAR_STATION_CHECK_DIST 210
 #define NEAR_STATION_SIDE_THRESHOLD 35
 #define NEAR_STATION_SIDE_COUNT_THRESHOLD 18
 
 // Остановка ветки у конечной станции; лимит итераций подбора
-#define BRANCH_TOO_CLOSE_DIST 140
+#define BRANCH_TOO_CLOSE_DIST 170
 #define BRANCH_MAX_CANDIDATES_TRIES 100
 
 
@@ -181,16 +181,32 @@
 			region_centers_placed += O
 			all_centers_in_order += LC
 
-		var/list/non_centers = list() // Обычные станции не являющиейся центральными
+		var/list/non_centers = list() // Обычные станции не являющиеся центральными
 		var/list/manul_stations = list() // Станции у которых заранее обьявлена следующая станция
+		var/list/cargo_stations = list() // Специальные карго-станции
+
 		for(var/datum/train_station/ST in region_stations)
-			if(!(ST in local_centers) && !length(ST.possible_next))
+			if(ST.station_flags & TRAINSTATION_LOCAL_CENTER)
+				continue
+			if(istype(ST, /datum/train_station/cargo_station))
+				cargo_stations += ST
+				continue
+			if(!length(ST.possible_next))
 				non_centers += ST
 			else if(!(ST in local_centers))
 				manul_stations += ST
 
 		non_centers = shuffle(non_centers)
-		// Создаем ветки от центра к центру
+
+		// 2-3 станции из региона как переход из последнего локального центра в следующий регион
+		var/list/transition_stations = list()
+		var/num_trans = rand(2, 3)
+		if(length(non_centers))
+			num_trans = min(num_trans, length(non_centers))
+			transition_stations = non_centers.Copy(1, num_trans + 1)
+			non_centers.Cut(1, num_trans + 1)
+
+		// Создаем ветки от центра к центру (используем оставшиеся обычные станции)
 		for(var/i in 1 to length(all_centers_in_order)-1)
 			var/datum/train_station/A = all_centers_in_order[i]
 			var/datum/train_station/B = all_centers_in_order[i+1]
@@ -222,12 +238,56 @@
 					continue
 				manul_stations -= station
 
+		// Переходная ветка из последнего локального центра
+		if(length(transition_stations) && length(all_centers_in_order))
+			var/datum/train_station/last_local = all_centers_in_order[length(all_centers_in_order)]
+			place_transition_branch(last_local, transition_stations)
+
+
+		var/list/possible_near_stations = list()
+		for(var/datum/train_station/S in region_stations)
+			if(!istype(S, /datum/train_station/cargo_station) && is_placed_on_map(S))
+				possible_near_stations += S
+
+		var/list/remaining_cargos = cargo_stations.Copy()
+
+		// Находим конец региона
+		var/datum/train_station/region_end_station = null
+		var/max_yy = -INFINITY
+		for(var/datum/train_station/S in region_stations)
+			if(is_placed_on_map(S) && S.map_object.position_y > max_yy)
+				max_yy = S.map_object.position_y
+				region_end_station = S
+
+		// Гарантируем хотя бы одну cargo в конце региона
+		if(length(remaining_cargos) && region_end_station)
+			var/datum/train_station/c_end = remaining_cargos[1]
+			remaining_cargos -= c_end
+			if(place_cargo_near(region_end_station, c_end))
+				possible_near_stations += c_end
+			else
+				remaining_cargos += c_end
+
+		// Остальные cargo размещаем рядом с разными станциями на разных расстояниях
+		var/cargo_placement_tries = 100
+		while(length(remaining_cargos) && cargo_placement_tries-- > 0 && length(possible_near_stations))
+			var/datum/train_station/near_s = pick(possible_near_stations)
+			var/datum/train_station/cargo = pick(remaining_cargos)
+			if(place_cargo_near(near_s, cargo))
+				remaining_cargos -= cargo
+				possible_near_stations += cargo
+
+		// Обновляем last_region_station на самую южную станцию региона (включая переход и cargo)
+		var/datum/train_station/updated_last = null
+		var/max_y = -INFINITY
+		for(var/datum/train_station/S in region_stations)
+			if(is_placed_on_map(S) && S.map_object.position_y > max_y)
+				max_y = S.map_object.position_y
+				updated_last = S
+		if(updated_last)
+			last_region_station = updated_last
+
 		connect_stations(region_stations)
-		if(length(all_centers_in_order))
-			last_region_station = all_centers_in_order[length(all_centers_in_order)]
-
-
-	update_train_position()
 
 
 /datum/train_global_map/proc/place_branch(datum/train_station/start, datum/train_station/end, list/available_stations)
@@ -286,11 +346,11 @@
 			desired_x = max(desired_x, last_x)
 
 		picked.map_object.set_position(desired_x, desired_y)
-		if(check_overlap(picked.map_object, objects))
+		if(check_overlap(picked.map_object)) // исправлено: проверяем пересечение со всеми размещёнными
 			desired_x += rand(-20, 20)
 			desired_y += rand(-15, 25)
 			picked.map_object.set_position(desired_x, desired_y)
-			if(check_overlap(picked.map_object, objects))
+			if(check_overlap(picked.map_object))
 				candidates -= picked
 				continue
 		if(!place_station_on_map(picked, desired_x, desired_y, ignore_overlap = TRUE))
@@ -305,6 +365,139 @@
 			break
 
 	return branch
+
+
+/// Переходная ветка 2-3 станций из последнего локального центра
+/datum/train_global_map/proc/place_transition_branch(datum/train_station/start, list/stations_to_place)
+	if(!start?.map_object || !length(stations_to_place))
+		return
+
+	var/datum/trainmap_object/center_obj = start.map_object
+
+	// Определяем сторону
+	var/list/near = get_nearest_stations(center_obj, NEAR_STATION_CHECK_DIST, 6)
+	var/left_occupied = FALSE
+	var/right_occupied = FALSE
+	for(var/datum/trainmap_object/O in near)
+		var/dx = O.position_x - center_obj.position_x
+		if(dx < -NEAR_STATION_SIDE_THRESHOLD)
+			left_occupied = TRUE
+		if(dx > NEAR_STATION_SIDE_THRESHOLD)
+			right_occupied = TRUE
+
+	var/side = 0
+	if(!left_occupied && !right_occupied)
+		side = pick(-1, 1)
+	else if(!left_occupied)
+		side = -1
+	else if(!right_occupied)
+		side = 1
+	else
+		var/count_left = 0
+		var/count_right = 0
+		for(var/datum/trainmap_object/O in near)
+			var/dx = O.position_x - center_obj.position_x
+			if(dx < -NEAR_STATION_SIDE_COUNT_THRESHOLD) count_left++
+			if(dx > NEAR_STATION_SIDE_COUNT_THRESHOLD) count_right++
+		side = (count_left <= count_right) ? -1 : 1
+
+	var/initial_offset_x = rand(INITIAL_BRANCH_OFFSET_MIN, INITIAL_BRANCH_OFFSET_MAX) * side
+	var/last_x = center_obj.position_x + initial_offset_x
+	var/last_y = center_obj.position_y + rand(CENTER_Y_OFFSET_MIN, CENTER_Y_OFFSET_MAX)
+
+	for(var/datum/train_station/picked in shuffle(stations_to_place))
+		if(!picked?.map_object)
+			continue
+
+		var/desired_y = last_y + rand(BRANCH_STEP_Y_MIN, BRANCH_STEP_Y_MAX) // всегда вниз — переход к следующему региону
+		var/desired_x = last_x + rand(-35, 35)
+
+		if(side < 0)
+			desired_x = min(desired_x, last_x)
+		else if(side > 0)
+			desired_x = max(desired_x, last_x)
+
+		picked.map_object.set_position(desired_x, desired_y)
+
+		var/tries = 8
+		while(tries-- && check_overlap(picked.map_object))
+			desired_x += rand(-25, 25)
+			desired_y += rand(-10, 30)
+			picked.map_object.set_position(desired_x, desired_y)
+
+		if(check_overlap(picked.map_object))
+			continue
+
+		if(!place_station_on_map(picked, desired_x, desired_y, ignore_overlap = TRUE))
+			continue
+
+		last_x = desired_x
+		last_y = desired_y
+
+
+/// Размещение одной cargo_station рядом со станцией + соединение
+/datum/train_global_map/proc/place_cargo_near(datum/train_station/near_station, datum/train_station/cargo_station)
+	if(!near_station?.map_object || !cargo_station?.map_object)
+		return FALSE
+
+	var/base_x = near_station.map_object.position_x
+	var/base_y = near_station.map_object.position_y
+
+	// Сначала пробуем разумные смещения
+	var/list/offsets = list(
+		list(55, 0), list(-55, 0), list(0, 55), list(0, -55),
+		list(65, 35), list(65, -35), list(-65, 35), list(-65, -35),
+		list(45, 65), list(-45, 65), list(45, -65), list(-45, -65)
+	)
+	offsets = shuffle(offsets)
+
+	for(var/list/off in offsets)
+		var/tx = base_x + off[1]
+		var/ty = base_y + off[2]
+		cargo_station.map_object.set_position(tx, ty)
+
+		if(!check_overlap(cargo_station.map_object) && !is_cargo_too_close(cargo_station.map_object))
+			if(place_station_on_map(cargo_station, tx, ty, ignore_overlap = TRUE))
+				// Соединяем с текущей станцией и следующей
+				add_connection(cargo_station, near_station, SStrain_controller.known_stations)
+				if(length(near_station.possible_next))
+					var/datum/train_station/next_one = pick(near_station.possible_next)
+					if(next_one && next_one != cargo_station)
+						add_connection(cargo_station, next_one, SStrain_controller.known_stations)
+				else
+					// Ищем уже связанную станцию
+					for(var/datum/train_station/poss in SStrain_controller.known_stations)
+						if(near_station in poss.possible_next && poss != cargo_station)
+							add_connection(cargo_station, poss, SStrain_controller.known_stations)
+							break
+				return TRUE
+
+	// Если не получилось — случайный поиск
+	for(var/i in 1 to 35)
+		var/tx = base_x + rand(-85, 85)
+		var/ty = base_y + rand(-65, 65)
+		cargo_station.map_object.set_position(tx, ty)
+
+		if(!check_overlap(cargo_station.map_object) && !is_cargo_too_close(cargo_station.map_object))
+			if(place_station_on_map(cargo_station, tx, ty, ignore_overlap = TRUE))
+				add_connection(cargo_station, near_station, SStrain_controller.known_stations)
+				if(length(near_station.possible_next))
+					var/datum/train_station/next_one = pick(near_station.possible_next)
+					if(next_one && next_one != cargo_station)
+						add_connection(cargo_station, next_one, SStrain_controller.known_stations)
+				return TRUE
+
+	return FALSE
+
+/datum/train_global_map/proc/is_cargo_too_close(datum/trainmap_object/new_obj, min_dist = 110)
+	for(var/datum/trainmap_object/O in objects)
+		if(O == new_obj)
+			continue
+		if(istype(O.associated_station, /datum/train_station/cargo_station))
+			if(get_distance_to_station(new_obj, O) < min_dist)
+				return TRUE
+	return FALSE
+
 
 /// Соединяет станции линиями с ближайшими соседями по карте (по степени связности)
 /datum/train_global_map/proc/connect_stations(list/stations_to_connect = null)
@@ -329,7 +522,7 @@
 			continue
 
 		var/datum/trainmap_object/my_obj = S.map_object
-		var/list/closest = get_nearest_stations(my_obj, max_dist = 220, max_count = 5)
+		var/list/closest = get_nearest_stations(my_obj, max_dist = 140, max_count = 5)
 
 		for(var/datum/trainmap_object/neigh_obj in closest)
 			var/datum/train_station/neigh = neigh_obj.associated_station
@@ -502,6 +695,7 @@
 			"id" = "[O.associated_station?.type || "unknown"]",
 			"name" = O.name,
 			"desc" = O.desc,
+			"station_type" = O.associated_station?.station_type || "unknown",
 			"region" = O.associated_station?.region || "Unknown",
 			"x" = O.position_x,
 			"y" = O.position_y,

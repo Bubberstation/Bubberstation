@@ -13,6 +13,7 @@
 
 #define TRAIT_NO_STATION_UNLOAD "!no_unload"
 
+/// Абстрактная станция, не будет отображаться в меню train_controll'ера, не будет связана с другими станциями
 #define TRAINSTATION_ABSCTRACT (1 << 1)
 #define TRAINSTATION_NO_FORKS (1 << 2)
 #define TRAINSTATION_BLOCKING (1 << 3)
@@ -25,6 +26,11 @@
 #define TRAINSTATION_REGION_THUNDRA "Thundra"
 #define TRAINSTATION_REGION_TEMPERATE "Temperate"
 #define TRAINSTATION_REGION_DESERT "Desert"
+
+#define TRAINSTATION_TYPE_CARGO "Cargo"
+#define TRAINSTATION_TYPE_EMERGENCY "Emergency"
+#define TRAINSTATION_TYPE_MILITARY "Military"
+#define TRAINSTATION_TYPE_CITY "City"
 
 #define THREAT_LEVEL_SAFE "Safe"
 #define THREAT_LEVEL_RISKY "Risky"
