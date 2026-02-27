@@ -61,3 +61,13 @@
 /obj/structure/window/reinforced/shuttle/spaceship
 	icon = 'modular_zubbers/icons/obj/smooth_structures/ship_window.dmi'
 	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_SHIPWALLS + SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE
+
+
+//MISC
+/obj/structure/window/bronze/fulltile
+	icon = 'modular_zubbers/icons/obj/smooth_structures/bronze_window.dmi'
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_WINDOW_FULLTILE_BRONZE + SMOOTH_GROUP_CLOCKWORK_WALLS
+
+/obj/structure/window/reinforced/fulltile/ice
+	icon = 'modular_zubbers/icons/obj/smooth_structures/rice_window.dmi'
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS
