@@ -199,28 +199,6 @@ SUBSYSTEM_DEF(train_controller)
 		control.set_station(loaded_station)
 
 
-/datum/controller/subsystem/train_controller/proc/pick_possible_stations()
-	var/station_count = rand(1, 2)
-	var/list/possible = shuffle(known_stations.Copy())
-	var/selected = null
-	var/selected_count = 0
-	for(var/datum/train_station/station in possible)
-		if(selected_count >= station_count)
-			break
-		if(station == loaded_station)
-			continue
-		if(stations_visited < station.required_stations)
-			continue
-		if(station.station_flags & TRAINSTATION_ABSCTRACT)
-			continue
-		if(station.station_flags & TRAINSTATION_NO_SELECTION)
-			continue
-		if(station.visited >= station.maximum_visits)
-			continue
-		LAZYADD(selected, station)
-		selected_count += 1
-	loaded_station.possible_next = selected
-
 
 /datum/controller/subsystem/train_controller/proc/on_station_unloaded()
 
@@ -264,7 +242,6 @@ SUBSYSTEM_DEF(train_controller)
 	loading = FALSE
 	if(loaded_station.station_flags & TRAINSTATION_NO_FORKS)
 		return
-	pick_possible_stations()
 
 
 /datum/controller/subsystem/train_controller/proc/show_station_logo(datum/train_station/station, silent = FALSE)
@@ -444,7 +421,19 @@ SUBSYSTEM_DEF(train_controller)
 				return
 			usr.client.debug_variables(src)
 		if("choose_next")
-			var/station_type = text2path(params["station_type"])
+			var/raw_id = params["station_type"]
+			if(!istext(raw_id))
+				return
+
+			var/station_path_text = raw_id
+			var/hash_pos = findtext(raw_id, "#")
+			if(hash_pos)
+				station_path_text = copytext(raw_id, 1, hash_pos)
+
+			var/station_type = text2path(station_path_text)
+			if(!station_type)
+				return
+
 			var/datum/train_station/next = locate(station_type) in known_stations
 			if(next && loaded_station && (next in loaded_station.possible_next))
 				planned_to_load = next
@@ -466,7 +455,19 @@ SUBSYSTEM_DEF(train_controller)
 			if(isnum(new_cd) && new_cd > 0)
 				return TRUE
 		if("load_station")
-			var/station_type = text2path(params["station_type"])
+			var/raw_id = params["station_type"]
+			if(!istext(raw_id))
+				return
+
+			var/station_path_text = raw_id
+			var/hash_pos = findtext(raw_id, "#")
+			if(hash_pos)
+				station_path_text = copytext(raw_id, 1, hash_pos)
+
+			var/station_type = text2path(station_path_text)
+			if(!station_type)
+				return
+
 			INVOKE_ASYNC(src, PROC_REF(load_station), station_type)
 			return TRUE
 		if("unload_station")

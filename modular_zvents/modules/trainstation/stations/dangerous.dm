@@ -22,7 +22,7 @@
 	map_path = "_maps/modular_events/trainstation/startpoint.dmm"
 	creator = "Fenysha"
 	possible_next = list()
-	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
+	station_flags = TRAINSTATION_NO_SELECTION | TRAINSTATION_BLOCKING
 
 	threat_level = THREAT_LEVEL_DEADLY
 	region = TRAINSTATION_REGION_THUNDRA

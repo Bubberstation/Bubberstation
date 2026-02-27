@@ -26,7 +26,7 @@
 /datum/train_station/cargo_station
 	name = "Cargo station"
 	map_path = "_maps/modular_events/trainstation/cargo_station.dmm"
-	station_flags = TRAINSTATION_NO_FORKS | TRAINSTATION_NO_SELECTION
+	station_flags = TRAINSTATION_NO_SELECTION
 	region = TRAINSTATION_REGION_THUNDRA
 	station_type = TRAINSTATION_TYPE_CARGO
 	visible = TRUE

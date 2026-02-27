@@ -537,7 +537,10 @@ const SelectedStationPanel = (props: SelectedStationPanelProps) => (
       </LabeledList.Item>
     </LabeledList>
     {!props.read_only &&
-      props.possibleSet.has(props.selectedObject.id) &&
+      (() => {
+        const base = props.selectedObject.id.split('#')[0];
+        return props.possibleSet.has(base);
+      })() &&
       !props.is_moving && (
         <Button
           mt={2}
@@ -639,10 +642,11 @@ export const TrainControlTerminal = () => {
   };
 
   const setAsNext = () => {
-    if (selectedId && possibleSet.has(selectedId)) {
-      act('choose_next', { station_type: selectedId });
-      setSelectedId(null);
-    }
+    if (!selectedObject) return;
+    const base = selectedObject.id.split('#')[0];
+    if (!possibleSet.has(base)) return;
+    act('choose_next', { station_type: selectedObject.id });
+    setSelectedId(null);
   };
 
   return (
@@ -749,7 +753,10 @@ export const TrainControlTerminal = () => {
                 possible_next={possible_next}
                 onChoose={(type) => {
                   act('choose_next', { station_type: type });
-                  setSelectedId(type);
+                  const obj = map_data.objects.find((o) =>
+                    o.id.startsWith(type),
+                  );
+                  setSelectedId(obj ? obj.id : null);
                 }}
               />
             )}

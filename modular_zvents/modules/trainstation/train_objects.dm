@@ -439,9 +439,21 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/auto_detect, 24)
 				TC.stop_moving()
 			return TRUE
 		if("choose_next")
-			var/station_type = text2path(params["station_type"])
+			var/raw_id = params["station_type"]
+			if(!istext(raw_id))
+				return
+
+			// Поддержка как "чистого" типа (/datum/train_station/...), так и id вида "/datum/train_station/...#N"
+			var/station_path_text = raw_id
+			var/hash_pos = findtext(raw_id, "#")
+			if(hash_pos)
+				// copytext конец не включителен, берём часть до '#'
+				station_path_text = copytext(raw_id, 1, hash_pos)
+
+			var/station_type = text2path(station_path_text)
 			if(!station_type)
 				return
+
 			var/datum/train_station/next = locate(station_type) in TC.known_stations
 			if(!next || !TC.loaded_station || !(next in TC.loaded_station.possible_next))
 				return
