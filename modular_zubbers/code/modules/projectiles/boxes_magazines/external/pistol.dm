@@ -33,3 +33,35 @@
 			hit_mob.Knockdown(2 SECONDS)
 			hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST)
 		qdel(src)
+
+/obj/item/ammo_box/magazine/recharge/ntusp
+	name = "small disabling power pack"
+	desc = "A small, rechargeable power pack for the NT-USP. Synthesizes up to twelve .22HL bullets that tire targets."
+	icon = 'modular_zubbers/icons/obj/weapons/guns/ammo.dmi'
+	base_icon_state = "powerpack_small"
+	icon_state = "powerpack_small-12"
+	ammo_type = /obj/item/ammo_casing/caseless/c22hl
+	max_ammo = 12
+
+/obj/item/ammo_box/magazine/recharge/ntusp/laser
+	name = "small lethal power pack"
+	desc = "A small, rechargeable power pack for the NT-USP that has been modified. Synthesizes up to eight .22LS bullets that fire lasers."
+	ammo_type = /obj/item/ammo_casing/caseless/c22ls
+	base_icon_state = "powerpack_small-l"
+	icon_state = "powerpack_small-l-8"
+	max_ammo = 8
+
+/obj/item/ammo_box/magazine/recharge/ntusp/laser/empty
+	start_empty = TRUE // so you cant field convert mags to full laser ones
+
+/obj/item/ammo_box/magazine/recharge/ntusp/empty
+	start_empty = TRUE
+
+/obj/item/ammo_box/magazine/recharge/ntusp/emp_act(severity) //shooting physical bullets wont stop you dying to an EMP
+	. = ..()
+	if(!(. & EMP_PROTECT_CONTENTS))
+		var/bullet_count = ammo_count()
+		var/bullets_to_remove = round(bullet_count / severity)
+		for(var/i = 0; i < bullets_to_remove; i++)
+			qdel(get_round())
+		update_icon()

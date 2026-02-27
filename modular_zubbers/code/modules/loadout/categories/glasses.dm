@@ -184,12 +184,6 @@
 	item_path = /obj/item/clothing/glasses/hud/ar/projector/science
 	restricted_roles = list(JOB_SCIENTIST, JOB_ROBOTICIST, JOB_GENETICIST, JOB_RESEARCH_DIRECTOR, JOB_CHEMIST, JOB_SCIENCE_GUARD)
 
-/datum/loadout_item/glasses/hud/redgigagar
-	name = "Red-tinted Giga HUD Gar Glasses"
-	item_path = /obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia
-	//ckeywhitelist = list("ultimarifox")
-	restricted_roles = list(JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER)
-
 /*
 *	SHADES
 */
