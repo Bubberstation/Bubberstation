@@ -11,11 +11,11 @@ import type { BooleanLike } from 'tgui-core/react';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
-const MAP_WIDTH = 1000;
-const MAP_HEIGHT = 1000;
+const MAP_WIDTH = 5000;
+const MAP_HEIGHT = 5000;
 const NODE_RADIUS = 14;
 const HUB_RADIUS = 22;
-/** Смещение контрольной точки кривой (в долях от длины отрезка) — стиль метро */
+/** Control point offset strength (metro style kink) */
 const PATH_CURVE_STRENGTH = 0.18;
 
 export interface TrainMapObject {
@@ -36,7 +36,6 @@ export interface TrainMapPath {
   start_y: number;
   end_x: number;
   end_y: number;
-  angle: number;
 }
 
 export interface TrainPosition {
@@ -68,7 +67,7 @@ export interface TrainControlData {
   map_data: MapData;
 }
 
-/** Цвет региона по имени (стабильный хеш) */
+/** Region color (stable hash) */
 function getRegionColor(region: string): string {
   let hash = 0;
   for (let i = 0; i < region.length; i++) {
@@ -78,24 +77,29 @@ function getRegionColor(region: string): string {
   return `hsl(${hue}, 70%, 52%)`;
 }
 
-/** Контрольная точка для квадратичной кривой Безье (стиль метро: изгиб перпендикулярно отрезку) */
-function getPathControlPoint(
+/** Quadratic Bezier control point (metro kink style) */
+function getPathKinkPoint(
   startX: number,
   startY: number,
   endX: number,
   endY: number,
+  kinkRatio: number = 0.42,
 ): { cx: number; cy: number } {
-  const mx = (startX + endX) / 2;
-  const my = (startY + endY) / 2;
   const dx = endX - startX;
   const dy = endY - startY;
   const len = Math.sqrt(dx * dx + dy * dy) || 1;
+
+  const px = startX + dx * kinkRatio;
+  const py = startY + dy * kinkRatio;
+
   const perpX = -dy / len;
   const perpY = dx / len;
+
   const bend = len * PATH_CURVE_STRENGTH;
+
   return {
-    cx: mx + perpX * bend,
-    cy: my + perpY * bend,
+    cx: px + perpX * bend,
+    cy: py + perpY * bend,
   };
 }
 
@@ -110,12 +114,14 @@ type TrainMapCanvasProps = {
   onDragStart: (clientX: number, clientY: number) => void;
 };
 
-/** Отрисовка линий переходов (изогнутые, в стиле карты метро) и иконки поезда */
 export const TrainMapCanvas = (props: TrainMapCanvasProps) => {
   const { map_data, scale, offsetX, offsetY, onZoom, onDragStart } = props;
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [canvasSize, setCanvasSize] = useState({ width: 800, height: 600 });
+  const [canvasSize, setCanvasSize] = useState({
+    width: MAP_WIDTH,
+    height: MAP_HEIGHT,
+  });
   const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
@@ -150,26 +156,79 @@ export const TrainMapCanvas = (props: TrainMapCanvasProps) => {
     ctx.translate(offsetX, offsetY);
     ctx.scale(scale, scale);
 
-    // Линии переходов — изогнутые (квадратичная кривая Безье)
-    const lineWidth = Math.max(2, 6 / scale);
-    ctx.strokeStyle = 'rgba(120, 140, 180, 0.85)';
-    ctx.lineWidth = lineWidth;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
+    ctx.strokeStyle = 'rgba(60, 80, 120, 0.18)';
+    ctx.lineWidth = 1;
+
+    const gridStepMajor = 100;
+    const gridStepMinor = 20;
+
+    ctx.beginPath();
+    for (let x = 0; x <= MAP_WIDTH; x += gridStepMinor) {
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, MAP_HEIGHT);
+    }
+    for (let y = 0; y <= MAP_HEIGHT; y += gridStepMinor) {
+      ctx.moveTo(0, y);
+      ctx.lineTo(MAP_WIDTH, y);
+    }
+    ctx.stroke();
+
+    ctx.strokeStyle = 'rgba(80, 100, 140, 0.35)';
+    ctx.beginPath();
+    for (let x = 0; x <= MAP_WIDTH; x += gridStepMajor) {
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, MAP_HEIGHT);
+    }
+    for (let y = 0; y <= MAP_HEIGHT; y += gridStepMajor) {
+      ctx.moveTo(0, y);
+      ctx.lineTo(MAP_WIDTH, y);
+    }
+    ctx.stroke();
+
+    // ─── Metro-style rail lines ──────────────────────────────────────────────
     for (const path of map_data.paths) {
-      const { cx, cy } = getPathControlPoint(
+      const { cx, cy } = getPathKinkPoint(
         path.start_x,
         path.start_y,
         path.end_x,
         path.end_y,
       );
+
+      const railGap = Math.max(1.5, 4.5 / scale);
+      const railWidth = Math.max(1, 2.4 / scale);
+
+      ctx.strokeStyle = 'rgb(70, 80, 110)';
+      ctx.lineWidth = railWidth;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'miter';
+
+      const dx = path.end_x - path.start_x;
+      const dy = path.end_y - path.start_y;
+      const len = Math.hypot(dx, dy) || 1;
+      const perpX = -dy / len;
+      const perpY = dx / len;
+
+      // Left rail
       ctx.beginPath();
-      ctx.moveTo(path.start_x, path.start_y);
-      ctx.quadraticCurveTo(cx, cy, path.end_x, path.end_y);
+      ctx.moveTo(
+        path.start_x + perpX * railGap,
+        path.start_y + perpY * railGap,
+      );
+      ctx.lineTo(cx + perpX * railGap, cy + perpX * railGap);
+      ctx.lineTo(path.end_x + perpX * railGap, path.end_y + perpY * railGap);
+      ctx.stroke();
+
+      // Right rail
+      ctx.beginPath();
+      ctx.moveTo(
+        path.start_x - perpX * railGap,
+        path.start_y - perpY * railGap,
+      );
+      ctx.lineTo(cx - perpX * railGap, cy - perpY * railGap);
+      ctx.lineTo(path.end_x - perpX * railGap, path.end_y - perpY * railGap);
       ctx.stroke();
     }
 
-    // Иконка поезда
     const t = map_data.train;
     ctx.save();
     ctx.translate(t.x, t.y);
@@ -193,6 +252,7 @@ export const TrainMapCanvas = (props: TrainMapCanvasProps) => {
     ctx.arc(-9, -11, 7, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
+
     ctx.restore();
   }, [map_data, scale, offsetX, offsetY]);
 
@@ -252,6 +312,10 @@ export const TrainMapCanvas = (props: TrainMapCanvasProps) => {
   );
 };
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Station Node (unchanged logic, translated labels)
+// ─────────────────────────────────────────────────────────────────────────────
+
 type StationNodeProps = {
   obj: TrainMapObject;
   scale: number;
@@ -259,7 +323,6 @@ type StationNodeProps = {
   onClick: () => void;
 };
 
-/** Станция на карте — отдельный компонент для возможности добавить кнопки и действия */
 const StationNode = (props: StationNodeProps) => {
   const { obj, scale, isSelected, onClick } = props;
   const isCur = !!obj.is_current;
@@ -342,7 +405,6 @@ type StationsOverlayProps = {
   onSelect: (id: string) => void;
 };
 
-/** Слой со станциями (в координатах карты), поверх canvas */
 const StationsOverlay = (props: StationsOverlayProps) => {
   const { map_data, scale, offsetX, offsetY, selectedId, onSelect } = props;
   return (
@@ -384,20 +446,22 @@ type StatusPanelProps = {
 };
 
 const StatusPanel = (props: StatusPanelProps) => (
-  <Section title="Статус поезда">
+  <Section title="Train Status">
     <LabeledList>
-      <LabeledList.Item label="Текущая станция">
-        {props.current_station}
+      <LabeledList.Item label="Current Station">
+        {props.current_station || '—'}
       </LabeledList.Item>
-      <LabeledList.Item label="Следующая">
-        {props.planned_station}
+      <LabeledList.Item label="Next Station">
+        {props.planned_station || '—'}
       </LabeledList.Item>
-      <LabeledList.Item label="Движение">
+      <LabeledList.Item label="Movement">
         <ProgressBar
           value={props.progress}
           color={props.is_moving ? 'good' : 'average'}
         >
-          {props.is_moving ? `${props.time_remaining} сек` : 'Остановлен'}
+          {props.is_moving
+            ? `${props.time_remaining} sec remaining`
+            : 'Stopped'}
         </ProgressBar>
       </LabeledList.Item>
     </LabeledList>
@@ -413,7 +477,7 @@ const StatusPanel = (props: StatusPanelProps) => (
           }
           onClick={props.onStart}
         >
-          Отправить поезд
+          Depart Train
         </Button>
         <Button
           icon="stop"
@@ -421,7 +485,7 @@ const StatusPanel = (props: StatusPanelProps) => (
           disabled={!props.is_moving}
           onClick={props.onStop}
         >
-          Остановить
+          Stop Train
         </Button>
       </Stack>
     )}
@@ -439,25 +503,25 @@ type SelectedStationPanelProps = {
 
 const SelectedStationPanel = (props: SelectedStationPanelProps) => (
   <Section
-    title={`Выбрано: ${props.selectedObject.name}`}
+    title={`Selected: ${props.selectedObject.name}`}
     buttons={
       <Button icon="times" color="transparent" onClick={props.onClose} />
     }
   >
     <LabeledList>
-      <LabeledList.Item label="Регион">
+      <LabeledList.Item label="Region">
         {props.selectedObject.region}
       </LabeledList.Item>
       {props.selectedObject.is_local_center && (
-        <LabeledList.Item label="Тип" color="good">
-          ЛОКАЛЬНЫЙ ЦЕНТР (ХАБ)
+        <LabeledList.Item label="Type" color="good">
+          LOCAL HUB
         </LabeledList.Item>
       )}
-      <LabeledList.Item label="Посещено">
-        {props.selectedObject.visited} раз
+      <LabeledList.Item label="Visits">
+        {props.selectedObject.visited} times
       </LabeledList.Item>
-      <LabeledList.Item label="Описание">
-        {props.selectedObject.desc}
+      <LabeledList.Item label="Description">
+        {props.selectedObject.desc || 'No description'}
       </LabeledList.Item>
     </LabeledList>
     {!props.read_only &&
@@ -470,7 +534,7 @@ const SelectedStationPanel = (props: SelectedStationPanelProps) => (
           color="good"
           onClick={props.onSetAsNext}
         >
-          Выбрать как следующую станцию
+          Set as Next Destination
         </Button>
       )}
   </Section>
@@ -482,7 +546,7 @@ type PossibleNextListProps = {
 };
 
 const PossibleNextList = (props: PossibleNextListProps) => (
-  <Section title="Возможные направления">
+  <Section title="Possible Directions">
     {props.possible_next.map((st) => (
       <Button
         key={st.type}
@@ -605,6 +669,8 @@ export const TrainControlTerminal = () => {
                 onSelect={setSelectedId}
               />
             </Box>
+
+            {/* Controls overlay */}
             <Box
               position="absolute"
               top="10px"
@@ -619,7 +685,7 @@ export const TrainControlTerminal = () => {
                 flexWrap: 'wrap',
               }}
             >
-              <Button onClick={resetView}>Сбросить вид</Button>
+              <Button onClick={resetView}>Reset View</Button>
               <Button
                 icon="plus"
                 onClick={() => setScale((s) => Math.min(4, s * 1.25))}
@@ -629,6 +695,7 @@ export const TrainControlTerminal = () => {
                 onClick={() => setScale((s) => Math.max(0.25, s * 0.8))}
               />
             </Box>
+
             <Box
               position="absolute"
               bottom="10px"
@@ -637,9 +704,10 @@ export const TrainControlTerminal = () => {
               p={1}
               style={{ borderRadius: '6px', zIndex: 30 }}
             >
-              Масштаб: {Math.round(scale * 100)}%
+              Zoom: {Math.round(scale * 100)}%
             </Box>
           </Stack.Item>
+
           <Stack.Item width="380px" style={{ overflowY: 'auto' }}>
             <StatusPanel
               read_only={read_only}
@@ -652,6 +720,7 @@ export const TrainControlTerminal = () => {
               onStart={() => act('start_moving')}
               onStop={() => act('stop_moving')}
             />
+
             {selectedObject && (
               <SelectedStationPanel
                 selectedObject={selectedObject}
@@ -662,6 +731,7 @@ export const TrainControlTerminal = () => {
                 onSetAsNext={setAsNext}
               />
             )}
+
             {!is_moving && possible_next.length > 0 && (
               <PossibleNextList
                 possible_next={possible_next}

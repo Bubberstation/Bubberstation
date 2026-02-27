@@ -1,46 +1,41 @@
+// Центр и размер холста карты
 #define MAP_CENTER_X 500
 #define MAP_CENTER_Y 500
 #define MAP_MIN_RADIUS 280
 #define MAP_MAX_RADIUS 420
 
-#define REGION_Y_STEP 240
-#define CENTER_Y_OFFSET_MIN 40
-#define CENTER_Y_OFFSET_MAX 90
+// Шаг по вертикали между регионами и смещение веток (умеренная длина пути)
+#define REGION_Y_STEP 200
+#define CENTER_Y_OFFSET_MIN 35
+#define CENTER_Y_OFFSET_MAX 75
 
-#define INITIAL_BRANCH_OFFSET_MIN 30
-#define INITIAL_BRANCH_OFFSET_MAX 100
+// Начальное смещение ветки от центра влево/вправо
+#define INITIAL_BRANCH_OFFSET_MIN 40
+#define INITIAL_BRANCH_OFFSET_MAX 85
 
-#define BRANCH_STEP_Y_MIN 80
-#define BRANCH_STEP_Y_MAX 120
+// Шаг по Y между станциями на ветке
+#define BRANCH_STEP_Y_MIN 70
+#define BRANCH_STEP_Y_MAX 110
 
-#define OVERLAP_MIN_DISTANCE 40
-#define NEAR_STATION_CHECK_DIST 150
-#define NEAR_STATION_SIDE_THRESHOLD 40
-#define NEAR_STATION_SIDE_COUNT_THRESHOLD 20
+// Минимальная дистанция между точками; пороги для «близких» станций
+#define OVERLAP_MIN_DISTANCE 38
+#define NEAR_STATION_CHECK_DIST 140
+#define NEAR_STATION_SIDE_THRESHOLD 35
+#define NEAR_STATION_SIDE_COUNT_THRESHOLD 18
 
-#define BRANCH_TOO_CLOSE_DIST 120
-#define BRANCH_MAX_CANDIDATES_TRIES 120
-
-#define PATH_ANGLE_SNAP_THRESHOLD 1.5
+// Остановка ветки у конечной станции; лимит итераций подбора
+#define BRANCH_TOO_CLOSE_DIST 140
+#define BRANCH_MAX_CANDIDATES_TRIES 100
 
 
 /datum/trainmap_path
 	var/datum/trainmap_object/start
 	var/datum/trainmap_object/end
-	var/angle = 0
 
 /proc/cmp_threat_level_asc(datum/train_station/A, datum/train_station/B)
 	var/numA = SStrain_controller.threat_levels_by_number[A.threat_level] || 0
 	var/numB = SStrain_controller.threat_levels_by_number[B.threat_level] || 0
 	return numA - numB
-
-/datum/trainmap_path/proc/calculate_angle()
-	if(!start || !end)
-		return
-	angle = SStrain_controller.global_map.calculate_angle(
-		start.position_x, start.position_y,
-		end.position_x, end.position_y
-	)
 
 
 /datum/trainmap_object
@@ -85,7 +80,7 @@
 		return FALSE
 	return TRUE
 
-
+/// Ставит станцию на карту в (x, y); при ignore_overlap не проверяет пересечение с другими точками
 /datum/train_global_map/proc/place_station_on_map(datum/train_station/S, x, y, ignore_overlap = FALSE)
 	if(!S || !S.map_object)
 		return FALSE
@@ -169,25 +164,20 @@
 			current_y = last_region_station.map_object.position_y
 
 		var/list/region_centers_placed = list()
-		// Размещаем локальные центры
 		for(var/i in 1 to length(local_centers))
 			var/datum/train_station/LC = local_centers[i]
 			if(!LC.map_object)
 				continue
-
 			var/datum/trainmap_object/O = LC.map_object
-			var/x = base_x + rand(-90, 90)
+			var/x = base_x + rand(-80, 80)
 			var/y = current_y + REGION_Y_STEP * 2 * i
-
 			O.set_position(x, y)
-
 			var/tries = 30
 			while(tries-- && check_overlap(O, region_centers_placed))
-				x = base_x + rand(-90, 90)
+				x = base_x + rand(-80, 80)
 				O.set_position(x, y)
-
-			objects += O
-			station_to_object[LC] = O
+			if(!place_station_on_map(LC, x, y, ignore_overlap = TRUE))
+				continue
 			region_centers_placed += O
 			all_centers_in_order += LC
 
@@ -217,21 +207,19 @@
 				var/list/side_branch = place_branch(side_start, B, non_centers)
 				non_centers -= side_branch
 
-		// Размещаем станции с заранее заданными следующими станциями
+		// Станции с заранее заданной следующей — ставим рядом с ней
 		if(length(manul_stations))
 			while(length(manul_stations))
 				var/datum/train_station/station = manul_stations[1]
 				var/datum/train_station/next = station.possible_next[1]
-				if(!(next in region_stations))
+				if(!(next in region_stations) || !next.map_object)
 					manul_stations -= station
 					continue
-				var/y = O.position_y - rand(BRANCH_STEP_Y_MIN, BRANCH_STEP_Y_MAX)
-
-				var/datum/trainmap_object/O = next.map_object
-				var/x = O.position_x + rand(-35, 35)
-				station.map_object.set_position(x, y)
-				objects += station.map_object
-				station_to_object[station] = station.map_object
+				var/x = next.map_object.position_x + rand(-35, 35)
+				var/y = next.map_object.position_y - rand(BRANCH_STEP_Y_MIN, BRANCH_STEP_Y_MAX)
+				if(!place_station_on_map(station, x, y))
+					manul_stations -= station
+					continue
 				manul_stations -= station
 
 		connect_stations(region_stations)
@@ -298,18 +286,16 @@
 			desired_x = max(desired_x, last_x)
 
 		picked.map_object.set_position(desired_x, desired_y)
-
 		if(check_overlap(picked.map_object, objects))
 			desired_x += rand(-20, 20)
 			desired_y += rand(-15, 25)
 			picked.map_object.set_position(desired_x, desired_y)
-
 			if(check_overlap(picked.map_object, objects))
 				candidates -= picked
 				continue
-
-		objects += picked.map_object
-		station_to_object[picked] = picked.map_object
+		if(!place_station_on_map(picked, desired_x, desired_y, ignore_overlap = TRUE))
+			candidates -= picked
+			continue
 		branch += picked
 		candidates -= picked
 		last_x = desired_x
@@ -320,7 +306,7 @@
 
 	return branch
 
-//Соеденяет станции с ближайшими к ним обьектами
+/// Соединяет станции линиями с ближайшими соседями по карте (по степени связности)
 /datum/train_global_map/proc/connect_stations(list/stations_to_connect = null)
 	if(!stations_to_connect)
 		stations_to_connect = list()
@@ -355,13 +341,18 @@
 					var/datum/trainmap_path/P = new
 					P.start = my_obj
 					P.end = neigh_obj
-					P.calculate_angle()
 					paths += P
 
 			// Ограничим количество связей на станцию
 			if(get_station_degree(S, stations_to_connect) >= 4)
 				break
 
+
+/datum/train_global_map/proc/has_path_between(datum/trainmap_object/A, datum/trainmap_object/B)
+	for(var/datum/trainmap_path/P in paths)
+		if((P.start == A && P.end == B) || (P.start == B && P.end == A))
+			return TRUE
+	return FALSE
 
 /datum/train_global_map/proc/get_distance_to_station(datum/trainmap_object/A, datum/trainmap_object/B)
 	if(!A || !B)
@@ -392,6 +383,7 @@
 
 	return count
 
+/// Проверяет, не пересекается ли new_obj по расстоянию OVERLAP_MIN_DISTANCE с уже размещёнными (кроме ignore)
 /datum/train_global_map/proc/check_overlap(datum/trainmap_object/new_obj, list/ignore = list())
 	for(var/datum/trainmap_object/O in objects)
 		if(O in ignore || O == new_obj)
@@ -403,6 +395,7 @@
 	return FALSE
 
 
+/// Ближайшие к center объекты на карте в радиусе max_dist, не более max_count
 /datum/train_global_map/proc/get_nearest_stations(datum/trainmap_object/center, max_dist = NEAR_STATION_CHECK_DIST, max_count = 4)
 	var/list/cands = list()
 	for(var/datum/trainmap_object/O in objects)
@@ -425,19 +418,17 @@
 	return result
 
 
-/datum/train_global_map/proc/calculate_angle(sx, sy, ex, ey)
-	var/dx = ex - sx
-	var/dy = ey - sy
+/// Угол направления в градусах (0 = вправо, 90 = вниз) для отрисовки иконки поезда.
+/datum/train_global_map/proc/angle_from_delta(dx, dy)
 	if(!dx && !dy)
 		return 0
-
-	if(abs(dx) >= abs(dy) * PATH_ANGLE_SNAP_THRESHOLD)
-		return dx > 0 ? 0 : 180
-	else if(abs(dy) >= abs(dx) * PATH_ANGLE_SNAP_THRESHOLD)
-		return dy > 0 ? 90 : 270
-	else if(dx > 0)
-		return dy > 0 ? 45 : 315
-	return dy > 0 ? 135 : 225
+	var/len = sqrt(dx * dx + dy * dy)
+	if(len <= 0)
+		return 0
+	var/rad = arccos(dx / len)
+	if(dy < 0)
+		rad = -rad
+	return rad * (180 / 3.14159)
 
 
 /datum/train_global_map/proc/add_connection(datum/train_station/A, datum/train_station/B, list/valid_stations, max_degree = 3)
@@ -496,10 +487,9 @@
 		start_obj.position_x + (end_obj.position_x - start_obj.position_x) * progress,
 		start_obj.position_y + (end_obj.position_y - start_obj.position_y) * progress
 	)
-
-	train_position.angle = calculate_angle(
-		start_obj.position_x, start_obj.position_y,
-		end_obj.position_x, end_obj.position_y
+	train_position.angle = angle_from_delta(
+		end_obj.position_x - start_obj.position_x,
+		end_obj.position_y - start_obj.position_y
 	)
 
 
@@ -529,8 +519,7 @@
 			"start_x" = P.start.position_x,
 			"start_y" = P.start.position_y,
 			"end_x" = P.end.position_x,
-			"end_y" = P.end.position_y,
-			"angle" = P.angle
+			"end_y" = P.end.position_y
 		))
 	data["paths"] = path_list
 
