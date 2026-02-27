@@ -1,3 +1,4 @@
+import { useBackend } from 'tgui/backend';
 import { Button, Stack } from 'tgui-core/components';
 import {
   type FeatureChoiced,
@@ -11,13 +12,7 @@ import { FeatureDropdownInput } from '../../dropdowns';
 const FeatureBlooperDropdownInput = (
   props: FeatureValueProps<string, string, FeatureChoicedServerData>,
 ) => {
-  const { act } = props as FeatureValueProps<
-    string,
-    string,
-    FeatureChoicedServerData
-  > & {
-    act: (action: string) => void;
-  };
+  const { act } = useBackend();
 
   return (
     <Stack>
