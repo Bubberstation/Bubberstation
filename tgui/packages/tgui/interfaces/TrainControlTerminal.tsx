@@ -57,6 +57,7 @@ export interface PossibleNextStation {
 
 export interface TrainControlData {
   read_only: BooleanLike;
+  is_blocked: BooleanLike;
   is_moving: BooleanLike;
   train_engine_active: BooleanLike;
   current_station: string;
@@ -447,6 +448,7 @@ const StationsOverlay = (props: StationsOverlayProps) => {
 type StatusPanelProps = {
   read_only: BooleanLike;
   is_moving: BooleanLike;
+  station_blocked: BooleanLike;
   train_engine_active: BooleanLike;
   current_station: string;
   planned_station: string;
@@ -456,52 +458,92 @@ type StatusPanelProps = {
   onStop: () => void;
 };
 
-const StatusPanel = (props: StatusPanelProps) => (
-  <Section title="Train Status">
-    <LabeledList>
-      <LabeledList.Item label="Current Station">
-        {props.current_station || '—'}
-      </LabeledList.Item>
-      <LabeledList.Item label="Next Station">
-        {props.planned_station || '—'}
-      </LabeledList.Item>
-      <LabeledList.Item label="Movement">
-        <ProgressBar
-          value={props.progress}
-          color={props.is_moving ? 'good' : 'average'}
+const StatusPanel = (props: StatusPanelProps) => {
+  const canDepart =
+    !!props.train_engine_active &&
+    !props.is_moving &&
+    !!props.planned_station &&
+    !props.station_blocked;
+
+  const getDepartReason = () => {
+    if (!props.train_engine_active) return 'Train engine is not active';
+    if (props.station_blocked) return 'Magnet lock engaged';
+    if (props.is_moving) return 'Train is already moving';
+    if (!props.planned_station) return 'No destination station selected';
+    return '';
+  };
+
+  return (
+    <Section title="Train Status">
+      <LabeledList>
+        <LabeledList.Item label="Current Station">
+          {props.current_station || '—'}
+        </LabeledList.Item>
+        <LabeledList.Item label="Next Station">
+          {props.planned_station || '—'}
+        </LabeledList.Item>
+        <LabeledList.Item label="Movement">
+          <ProgressBar
+            value={props.progress}
+            color={props.is_moving ? 'good' : 'average'}
+          >
+            {props.is_moving
+              ? `${Math.ceil(props.time_remaining / 10)} sec remaining`
+              : 'Stopped'}
+          </ProgressBar>
+        </LabeledList.Item>
+      </LabeledList>
+
+      {props.station_blocked && (
+        <Box mt={1} color="bad" bold>
+          Magnet lock engaged — station blocked
+        </Box>
+      )}
+
+      {!props.read_only && (
+        <Stack mt={2} justify="space-between">
+          <Button
+            icon="play"
+            color="good"
+            disabled={!canDepart}
+            tooltip={canDepart ? undefined : getDepartReason()}
+            onClick={canDepart ? props.onStart : undefined}
+          >
+            Depart Train
+          </Button>
+
+          <Button
+            icon="stop"
+            color="bad"
+            disabled={!props.is_moving}
+            tooltip={props.is_moving ? undefined : 'Train is not moving'}
+            onClick={props.onStop}
+          >
+            Stop Train
+          </Button>
+        </Stack>
+      )}
+
+      {!props.read_only && !canDepart && (
+        <Box
+          mt={2}
+          p={2}
+          style={{
+            backgroundColor: 'rgba(220, 0, 0, 0.2)',
+            border: '1px solid #c00',
+            borderRadius: '4px',
+            color: '#ffdddd',
+            textAlign: 'center',
+          }}
         >
-          {props.is_moving
-            ? `${props.time_remaining / 10} sec remaining`
-            : 'Stopped'}
-        </ProgressBar>
-      </LabeledList.Item>
-    </LabeledList>
-    {!props.read_only && (
-      <Stack mt={2} justify="space-between">
-        <Button
-          icon="play"
-          color="good"
-          disabled={
-            !props.train_engine_active ||
-            !!props.is_moving ||
-            !props.planned_station
-          }
-          onClick={props.onStart}
-        >
-          Depart Train
-        </Button>
-        <Button
-          icon="stop"
-          color="bad"
-          disabled={!props.is_moving}
-          onClick={props.onStop}
-        >
-          Stop Train
-        </Button>
-      </Stack>
-    )}
-  </Section>
-);
+          <strong>Cannot depart:</strong>
+          <br />
+          {getDepartReason() || 'Check train status'}
+        </Box>
+      )}
+    </Section>
+  );
+};
 
 type SelectedStationPanelProps = {
   selectedObject: TrainMapObject;
@@ -579,6 +621,7 @@ export const TrainControlTerminal = () => {
   const { act, data } = useBackend<TrainControlData>();
   const {
     read_only,
+    is_blocked,
     is_moving,
     train_engine_active,
     current_station,
@@ -726,6 +769,7 @@ export const TrainControlTerminal = () => {
 
           <Stack.Item width="380px" style={{ overflowY: 'auto' }}>
             <StatusPanel
+              station_blocked={is_blocked}
               read_only={read_only}
               is_moving={is_moving}
               train_engine_active={train_engine_active}
