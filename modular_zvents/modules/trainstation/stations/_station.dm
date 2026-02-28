@@ -206,7 +206,8 @@
 	if(station_loop_soound)
 		station_loop_soound.start()
 
-
+/datum/train_station/proc/pre_unload()
+	return
 
 /datum/train_station/proc/unload_station(datum/callback/unload_callback)
 	SHOULD_NOT_OVERRIDE(TRUE)

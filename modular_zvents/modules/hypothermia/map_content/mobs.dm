@@ -616,7 +616,11 @@
 		if(get_dist(owner, target) <= 1)
 			break
 		new /obj/effect/temp_visual/decoy/fading/halfsecond(owner.loc, owner)
+		var/turf/next_turf = get_step_towards(owner, target)
+		if(isclosedturf(next_turf) || next_turf.is_blocked_turf_ignore_climbable())
+			return
 		owner.forceMove(get_step_towards(owner, target))
+		sleep(0.2 SECONDS)
 
 	for(var/mob/living/living_target in target.contents)
 		if(get_dist(owner, living_target) <= 1)

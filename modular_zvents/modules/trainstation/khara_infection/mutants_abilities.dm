@@ -153,7 +153,8 @@
 
 
 /datum/action/cooldown/mob_cooldown/aoe_slash/Activate(atom/target)
-	if(!target || !get_dist(target, owner) > 1)
+	if(!target || get_dist(target, owner) > 1)
+		owner.balloon_alert(owner, "To far!")
 		return FALSE
 	var/turf/target_turf = get_turf(target)
 	if(isclosedturf(target_turf))

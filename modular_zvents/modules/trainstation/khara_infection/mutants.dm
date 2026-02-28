@@ -253,8 +253,8 @@
 	armour_penetration = 20
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-	maxHealth = 200
-	health = 200
+	maxHealth = 150
+	health = 150
 
 	speed = 0
 	regeneration_delay = 15 SECONDS

@@ -3,7 +3,7 @@
 /// Возвращает максимальное давление, если оно ниже значения
 #define PRESSURE_MAX(value) (max((value), MINIMUM_TURBINE_PRESSURE))
 /// Минимальная температура для горячего пара (в Кельвинах, >373K для кипения воды)
-#define MIN_STEAM_TEMPERATURE 400
+#define MIN_STEAM_TEMPERATURE 392
 
 // Базовый класс для частей турбины поезда
 /obj/machinery/power/train_turbine
@@ -142,14 +142,14 @@
 	var/max_rpm = 7000
 	var/produced_energy = 0
 	var/max_temperature = 1000
-	var/efficiency_rate = 120
+	var/efficiency_rate = 130
 	var/work_time = 0
 	var/damage = 0
 	var/damage_archived = 0
 	var/all_parts_connected = FALSE
 
 	var/steam_consumption_rate = 0.1
-	var/water_production_rate = 0.6
+	var/water_production_rate = 0.7
 
 	/// Целевые обороты в % от максимума (0-1). Управляется из UI.
 	var/target_rpm = 0
@@ -676,7 +676,7 @@
 	plasma_stack.use(plasma_consumed)
 	var/energy_generated = plasma_consumed * PLASMA_SHEET_BURN_ENERGY
 	if(temperature < target_temperature)
-		temperature += energy_generated / reagents.heat_capacity() * 5 * seconds_per_tick
+		temperature += energy_generated / reagents.heat_capacity() * 10 * seconds_per_tick
 
 	if(temperature < MIN_PLASMA_COMBUSTION_TEMP)
 		return

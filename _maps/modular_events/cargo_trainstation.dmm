@@ -44,6 +44,12 @@
 	dir = 4
 	},
 /area/shuttle/supply)
+"ds" = (
+/obj/structure/railing{
+	dir = 9
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shuttle/supply)
 "dY" = (
 /obj/machinery/light/directional/east,
 /turf/open/floor/iron/dark/smooth_edge{
@@ -77,9 +83,9 @@
 	},
 /area/shuttle/supply)
 "hq" = (
-/obj/structure/gangway,
-/turf/open/floor/iron/dark/textured_large,
-/area/template_noop)
+/obj/structure/cable,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shuttle/supply)
 "hw" = (
 /obj/machinery/light/directional/west,
 /turf/open/floor/iron/dark/smooth_corner{
@@ -127,9 +133,12 @@
 	dir = 4
 	},
 /area/shuttle/supply)
+"mw" = (
+/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/area/template_noop)
 "mM" = (
-/obj/machinery/door/airlock/multi_tile/metal,
 /obj/effect/mapping_helpers/airlock/access/all/supply/general,
+/obj/machinery/door/airlock/survival_pod,
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/supply)
 "mQ" = (
@@ -158,6 +167,16 @@
 	dir = 4
 	},
 /area/shuttle/supply)
+"oP" = (
+/obj/machinery/power/smes/ship,
+/turf/open/floor/iron/dark/textured_large,
+/area/template_noop)
+"pw" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shuttle/supply)
 "qo" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_edge{
@@ -182,8 +201,21 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/iron,
 /area/shuttle/supply)
+"tz" = (
+/obj/machinery/light/directional/east,
+/turf/open/floor/iron/dark/textured_large,
+/area/shuttle/supply)
 "tF" = (
 /obj/structure/gangway,
+/turf/open/floor/iron/dark/textured_large,
+/area/shuttle/supply)
+"ul" = (
+/obj/structure/closet/crate/secure/engineering,
+/obj/item/mod/module/active_sonar,
+/obj/item/mod/module/megaphone,
+/obj/item/mod/module/quick_carry,
+/obj/item/mod/module/holster,
+/obj/item/mod/module/holster,
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/supply)
 "uQ" = (
@@ -192,6 +224,12 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
+/area/shuttle/supply)
+"uZ" = (
+/obj/machinery/door/airlock/survival_pod,
+/obj/effect/mapping_helpers/airlock/access/all/supply/general,
+/obj/structure/cable,
+/turf/open/floor/iron/dark/textured_large,
 /area/shuttle/supply)
 "vc" = (
 /obj/effect/turf_decal/stripes/line{
@@ -206,6 +244,22 @@
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 1
 	},
+/area/shuttle/supply)
+"wq" = (
+/obj/structure/cable,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/template_noop)
+"wt" = (
+/obj/structure/window/reinforced/shuttle/spaceship,
+/obj/structure/grille,
+/turf/open/floor/iron/dark/textured_large,
+/area/shuttle/supply)
+"wz" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/machinery/light/cold,
+/turf/open/floor/iron/dark/textured_large,
 /area/shuttle/supply)
 "wF" = (
 /turf/open/floor/iron/dark/textured_large,
@@ -290,6 +344,11 @@
 	dir = 8
 	},
 /area/shuttle/supply)
+"AW" = (
+/obj/structure/window/reinforced/shuttle/spaceship,
+/obj/structure/grille,
+/turf/open/floor/iron/dark/textured_large,
+/area/template_noop)
 "BM" = (
 /obj/structure/fake_stairs/directional/south{
 	icon_state = "stairs-old";
@@ -343,6 +402,12 @@
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 4
 	},
+/area/shuttle/supply)
+"Er" = (
+/obj/structure/railing{
+	dir = 5
+	},
+/turf/open/floor/iron/dark/textured_large,
 /area/shuttle/supply)
 "Ey" = (
 /obj/structure/fake_stairs/directional/south{
@@ -401,6 +466,12 @@
 	dir = 10
 	},
 /turf/open/floor/iron,
+/area/shuttle/supply)
+"HI" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/textured_large,
 /area/shuttle/supply)
 "HJ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -472,6 +543,10 @@
 	dir = 1
 	},
 /area/shuttle/supply)
+"QF" = (
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron/dark/textured_large,
+/area/shuttle/supply)
 "QT" = (
 /obj/structure/fake_stairs/directional/south{
 	icon_state = "stairs-old";
@@ -498,6 +573,11 @@
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 4
 	},
+/area/shuttle/supply)
+"Ri" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/supply)
 "Ro" = (
 /obj/effect/decal/cleanable/dirt,
@@ -532,6 +612,13 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/edge,
+/area/shuttle/supply)
+"TE" = (
+/obj/structure/railing{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/open/floor/iron/dark/textured_large,
 /area/shuttle/supply)
 "TZ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -573,9 +660,23 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/edge,
 /area/shuttle/supply)
+"Wz" = (
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron/dark/textured_large,
+/area/template_noop)
+"WB" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/textured_large,
+/area/shuttle/supply)
 "WX" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/dark/textured_large,
+/area/shuttle/supply)
+"Xm" = (
+/obj/structure/table/reinforced,
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/supply)
 "XY" = (
@@ -595,6 +696,20 @@
 	},
 /turf/open/floor/iron,
 /area/shuttle/supply)
+"Zf" = (
+/obj/machinery/power/rtg/advanced{
+	power_gen = 608000
+	},
+/obj/machinery/door/window/brigdoor/right/directional/north,
+/obj/structure/window/reinforced/plasma/spawner/directional/east,
+/obj/structure/window/reinforced/plasma/spawner/directional/south,
+/obj/structure/window/reinforced/plasma/spawner/directional/west,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/shuttle/supply)
 "ZA" = (
 /obj/structure/railing{
 	dir = 4
@@ -608,6 +723,10 @@
 	dir = 8
 	},
 /area/shuttle/supply)
+"ZY" = (
+/obj/structure/cable,
+/turf/open/floor/iron/dark/textured_large,
+/area/template_noop)
 
 (1,1,1) = {"
 Fb
@@ -625,11 +744,11 @@ UD
 UD
 UD
 UD
+wt
 UD
 UD
 UD
-UD
-UD
+wt
 UD
 UD
 Fb
@@ -683,16 +802,16 @@ qG
 qG
 qG
 qG
-UD
+Ta
+qG
+QF
 qG
 qG
 qG
 qG
 qG
 qG
-qG
-qG
-qG
+QF
 UD
 Fb
 UD
@@ -739,21 +858,21 @@ Fb
 Fb
 Fb
 Fb
+wt
+qG
+WB
+WB
+WB
+wz
 UD
-qG
-qG
-qG
-qG
-qG
 UD
-UD
-qG
-qG
-qG
-qG
-qG
-qG
-qG
+yM
+yM
+yM
+yM
+yM
+yM
+yM
 qG
 UD
 Fb
@@ -801,15 +920,15 @@ Fb
 Fb
 Fb
 Fb
-UD
+wt
 qG
-qG
-qG
-qG
-qG
-qG
-UD
-qG
+ds
+pw
+pw
+pw
+Xm
+wt
+yM
 qG
 qG
 qG
@@ -863,24 +982,24 @@ Fb
 Fb
 Fb
 Fb
+wt
+qG
+Er
+TE
+TE
+TE
+Xm
+wt
+yM
+qG
+qG
+qG
+qG
+qG
+qG
+qG
 UD
-qG
-qG
-qG
-qG
-qG
-qG
-UD
-qG
-qG
-qG
-qG
-qG
-qG
-qG
-qG
-UD
-hq
+tF
 UD
 Re
 Qs
@@ -925,24 +1044,24 @@ Fb
 Fb
 Fb
 Fb
+wt
+qG
+HI
+HI
+HI
+HI
 UD
-qG
-qG
-qG
-qG
-qG
 UD
-UD
-qG
-qG
-qG
-qG
-qG
-qG
-qG
+yM
+yM
+yM
+yM
+yM
+yM
+yM
 qG
 mM
-wF
+qG
 mM
 Re
 Qs
@@ -993,19 +1112,19 @@ qG
 qG
 qG
 qG
-UD
+Ta
+qG
+tz
 qG
 qG
 qG
 qG
 qG
 qG
+tz
+mM
 qG
-qG
-qG
-qG
-wF
-qG
+mM
 xm
 Qs
 Fk
@@ -1021,9 +1140,9 @@ yM
 qG
 Wy
 nk
+mM
 qG
-qG
-qG
+mM
 xm
 Qs
 qo
@@ -1066,7 +1185,7 @@ UD
 Ta
 UD
 UD
-hq
+tF
 UD
 Re
 Qs
@@ -1111,22 +1230,22 @@ Fb
 Fb
 Fb
 Fb
-Fb
-Fb
-Fb
-Fb
-Fb
-Fb
-Fb
+mw
+wF
+wF
+wF
+Wz
+wF
+wF
 UD
 qG
+yM
 qG
 qG
 qG
 qG
-qG
-qG
-qG
+yM
+Zf
 UD
 Fb
 UD
@@ -1173,22 +1292,22 @@ Fb
 Fb
 Fb
 Fb
-Fb
-Fb
-Fb
-Fb
-Fb
-Fb
-Fb
-UD
-qG
-qG
-qG
-qG
-qG
-qG
-qG
-qG
+AW
+wq
+wq
+wq
+ZY
+ZY
+ZY
+uZ
+Ri
+hq
+hq
+hq
+hq
+hq
+hq
+Zf
 UD
 Fb
 UD
@@ -1235,22 +1354,22 @@ Fb
 Fb
 Fb
 Fb
-Fb
-Fb
-Fb
-Fb
-Fb
-Fb
-Fb
+mw
+oP
+oP
+oP
+wF
+wF
+wF
 UD
+ul
+ul
 qG
 qG
+tz
 qG
 qG
-qG
-qG
-qG
-qG
+Zf
 UD
 Fb
 UD
@@ -1297,21 +1416,21 @@ Fb
 Fb
 Fb
 Fb
-Fb
-Fb
-Fb
-Fb
-Fb
-Fb
-Fb
+mw
+mw
+mw
+AW
+mw
+AW
+mw
 UD
 UD
 UD
+wt
 UD
 UD
 UD
-UD
-UD
+wt
 UD
 UD
 Fb

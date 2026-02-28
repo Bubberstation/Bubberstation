@@ -5,6 +5,8 @@
 /datum/train_station/cargo_station
 	name = "Cargo station"
 	map_path = "_maps/modular_events/trainstation/cargo_station.dmm"
+	desc = "An old but reliable station for loading cargo onto freight trains. \
+			This particular one is located inside a mountain range."
 
 	possible_nearstations = list(/datum/train_station/near_station/cargo_station)
 	station_flags = TRAINSTATION_NO_SELECTION
@@ -17,12 +19,45 @@
 	creator = "Fenysha"
 
 /datum/train_station/cargo_station/thundra_1
+	name = "Emergency Cargo station"
 
 /datum/train_station/cargo_station/thundra_2
+	name = "River Cargo station"
+	map_path = "_maps/modular_events/trainstation/cargo_station_river.dmm"
+	desc = "An old but reliable station for loading cargo onto freight trains. \
+			This particular one is located inside a mountain range."
 
+/datum/train_station/cargo_station/after_load()
+	. = ..()
+	if(!SSshuttle.supply)
+		if(SSshuttle.load_template(new /datum/map_template/shuttle/cargo/cargo_train()))
+			SSshuttle.moveShuttle(SSshuttle.supply, "cargo_away", TRUE)
+	else if(SSshuttle.supply && !istype(SSshuttle.supply, /obj/docking_port/mobile/supply/cargo_train))
+		SSshuttle.supply.jumpToNullSpace()
+		if(SSshuttle.load_template(new /datum/map_template/shuttle/cargo/cargo_train()))
+			SSshuttle.moveShuttle(SSshuttle.supply, "cargo_away", TRUE)
 
+/datum/train_station/cargo_station/pre_unload()
+	. = ..()
+	if(SSshuttle.supply && SSshuttle.supply.getDockedId() != "cargo_away")
+		SSshuttle.moveShuttle(SSshuttle.supply, "cargo_away", TRUE)
 
+/obj/machinery/computer/cargo
+	var/is_train_cargo = FALSE
 
+/obj/machinery/computer/cargo/train_cargo
+	name = "Cargo train console"
+	desc = "Used to order supplies, approve requests, and control the cargo train."
+	safety_warning = "For safety and ethical reasons, the automated cargo train cannot transport live organisms, \
+		human remains, classified nuclear weaponry, mail, undelivered departmental order crates, syndicate bombs, \
+		homing beacons, unstable eigenstates, fax machines, or machinery housing any form of artificial intelligence."
+	is_train_cargo = TRUE
+
+/obj/machinery/computer/cargo/interact(mob/user, special_state)
+	if(SStrain_controller.mode_active && !is_train_cargo)
+		balloon_alert_to_viewers("Cargo shuttl will not work on this planet!")
+		return
+	return ..()
 
 /obj/structure/train_car_blank
 	name = "Train cargo"
@@ -127,6 +162,9 @@
 	name = "Cargo train"
 
 /obj/docking_port/mobile/supply/cargo_train
+	name = "Cargo train"
+	callTime = 3 MINUTES
+
 	var/fake_car_count = 3
 	var/fake_step_delay = 0.1 SECONDS
 	var/arrival_pre_tiles = 20
@@ -165,7 +203,7 @@
 	var/arrive_dir = REVERSE_DIR(forward_dir)
 
 	var/len = get_wagon_length(forward_dir)
-	var/spacing = len + 1 // 1 tile gap between wagons
+	var/spacing = len + 1
 
 	var/list/cars = list()
 

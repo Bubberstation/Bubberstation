@@ -103,8 +103,6 @@
 		return
 	throw_at(target_turf, dist, 3, diagonals_first = TRUE)
 	Shake()
-	for(var/mob/living/L in src.buckled_mobs)
-		shake_camera(L, 10, 5)
 	take_damage(rand(5, 10))
 
 /obj/vehicle/ridden/trainstation/bike

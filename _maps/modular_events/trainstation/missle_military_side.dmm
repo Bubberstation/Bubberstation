@@ -275,6 +275,14 @@
 	},
 /turf/open/floor/iron/shuttle/exploration/blanktile,
 /area/trainstation/outdoor/station)
+"bS" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
+/area/trainstation/outdoor/station)
 "bU" = (
 /obj/item/gun/ballistic/automatic/c20r/sc_c20r,
 /turf/open/misc/asteroid/snow/standard_air,
@@ -369,6 +377,33 @@
 	pixel_y = 8
 	},
 /turf/open/misc/asphalt/no_border,
+/area/trainstation/outdoor/station)
+"cN" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222";
+	pixel_y = -14
+	},
+/turf/open/indestructible/plating,
 /area/trainstation/outdoor/station)
 "cR" = (
 /obj/effect/turf_decal/siding{
@@ -518,10 +553,28 @@
 /obj/structure/prop/general/bigroller_up2,
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor/station)
+"dY" = (
+/obj/structure/rack/shelf,
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
+/obj/effect/spawner/random/engineering/material_cheap,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
+/area/trainstation/outdoor/station)
 "dZ" = (
 /obj/item/ammo_box/magazine/c40sol_rifle/drum/starts_empty,
 /obj/effect/decal/cleanable/blood,
 /turf/open/misc/asphalt/no_border,
+/area/trainstation/outdoor/station)
+"ea" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 9
+	},
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/entertainment/deck,
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner,
 /area/trainstation/outdoor/station)
 "eb" = (
 /obj/item/ammo_casing/b50cal{
@@ -574,6 +627,51 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/indestructible/meat,
+/area/trainstation/outdoor/station)
+"eo" = (
+/obj/structure/railing/unbreakable{
+	dir = 5
+	},
+/obj/structure/decorative{
+	density = 1;
+	anchored = 1;
+	name = "magnetic stasis emitter";
+	desc = "A machine that somehow fabricates hardlight using electrons. Seems to be impervious to conventional means of damage.";
+	icon = 'icons/obj/machines/modular_shield_generator.dmi';
+	icon_state = "charger_on_closed";
+	dir = 1;
+	uses_integrity = 0
+	},
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+	},
+/turf/open/indestructible/plating,
+/area/trainstation/outdoor/station)
+"ep" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/personal,
+/obj/effect/spawner/random/weapon,
+/obj/effect/spawner/random/medical/minor_healing,
+/turf/open/indestructible/dark/textured,
+/area/trainstation/outdoor/station)
+"er" = (
+/obj/structure/prop/city/buildingventbig11_off{
+	name = "Generator"
+	},
+/obj/structure/railing{
+	dir = 2;
+	color = "#666666";
+	pixel_y = 0
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
+/turf/open/indestructible/dark/textured,
 /area/trainstation/outdoor/station)
 "es" = (
 /obj/structure/decorative{
@@ -758,6 +856,16 @@
 /obj/item/gun/ballistic/rifle/boltaction,
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/outdoor/station)
+"fm" = (
+/obj/effect/turf_decal/siding/dark/corner,
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
+	dir = 1
+	},
+/area/trainstation/outdoor/station)
 "fq" = (
 /obj/item/ammo_casing/a223,
 /obj/item/ammo_casing/c357{
@@ -781,6 +889,14 @@
 "fv" = (
 /obj/item/ammo_casing/c357,
 /turf/open/floor/plating/cobblestone,
+/area/trainstation/outdoor/station)
+"fy" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleinvertcorner_side{
+	dir = 4
+	},
 /area/trainstation/outdoor/station)
 "fz" = (
 /obj/structure/flora/tree/massive/dead/style_2,
@@ -1076,7 +1192,9 @@
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station)
 "hI" = (
-/turf/closed/wall/city/siding/red/style/style_1,
+/obj/effect/turf_decal/trimline/tram,
+/obj/machinery/light/floor/transport,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor/station)
 "hK" = (
 /obj/structure/window/reinforced/fulltile/ice{
@@ -1085,8 +1203,8 @@
 /turf/closed/wall/city/siding,
 /area/trainstation/outdoor/station)
 "hM" = (
-/obj/structure/prop/big/laser_beam_loaded,
-/turf/open/misc/asteroid/snow/standard_air,
+/mob/living/basic/khara_mutant/reaper,
+/turf/open/floor/iron/shuttle/exploration/blanktile,
 /area/trainstation/outdoor/station)
 "hQ" = (
 /obj/effect/mob_spawn/corpse/human/charredskeleton,
@@ -1266,6 +1384,18 @@
 /obj/effect/decal/cleanable/blood/innards,
 /turf/open/indestructible/meat,
 /area/trainstation/outdoor/station)
+"iT" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 9
+	},
+/obj/machinery/light/red/directional/west,
+/obj/structure/closet/secure_closet/personal,
+/obj/item/clothing/under/syndicate/skyrat/overalls/unarmoured,
+/obj/effect/spawner/random/medical/minor_healing,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/entertainment/musical_instrument,
+/turf/open/indestructible/dark/textured,
+/area/trainstation/outdoor/station)
 "iV" = (
 /obj/structure/decorative{
 	anchored = 1;
@@ -1358,6 +1488,18 @@
 "jx" = (
 /obj/effect/mob_spawn/ghost_role/flesh_spider,
 /turf/open/floor/asphalt,
+/area/trainstation/outdoor/station)
+"jz" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
 /area/trainstation/outdoor/station)
 "jB" = (
 /obj/structure/decorative{
@@ -1780,6 +1922,13 @@
 /obj/effect/mob_spawn/ghost_role/flesh_spider,
 /turf/open/misc/asphalt/no_border,
 /area/trainstation/outdoor/station)
+"mb" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/obj/structure/prop/general/highvoltagegrille_off,
+/turf/open/indestructible/plating,
+/area/trainstation/outdoor/station)
 "mc" = (
 /mob/living/basic/khara_mutant/flesh_spider,
 /turf/open/misc/dirt/icy_planet,
@@ -1795,7 +1944,6 @@
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/outdoor/station)
 "mm" = (
-/obj/item/gun/ballistic/rifle/sniper_rifle,
 /turf/open/floor/iron/shuttle/exploration/corner,
 /area/trainstation/outdoor/station)
 "mn" = (
@@ -2026,6 +2174,10 @@
 	},
 /turf/open/misc/asphalt/no_border,
 /area/trainstation/outdoor/station)
+"nE" = (
+/obj/structure/sign/warning/electric_shock,
+/turf/closed/wall/city/siding/style/style_1,
+/area/trainstation/outdoor/station)
 "nF" = (
 /turf/closed/wall/city/siding,
 /area/trainstation/outdoor/station)
@@ -2165,6 +2317,14 @@
 "oK" = (
 /obj/structure/prop/big/laser_beam_loaded,
 /turf/open/indestructible/meat,
+/area/trainstation/outdoor/station)
+"oR" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/reinforced,
+/obj/item/storage/fancy/donut_box,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor/station)
 "oS" = (
 /obj/structure/deployable_barricade/wooden{
@@ -2323,6 +2483,12 @@
 	pixel_x = -1
 	},
 /turf/open/floor/iron/shuttle/exploration/blanktile,
+/area/trainstation/outdoor/station)
+"pB" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 9
+	},
+/turf/open/indestructible/dark/textured,
 /area/trainstation/outdoor/station)
 "pF" = (
 /obj/item/ammo_box/magazine/miecz/spawns_empty,
@@ -2521,6 +2687,36 @@
 /obj/effect/gibspawner/human,
 /turf/open/floor/iron/shuttle/exploration/blanktile,
 /area/trainstation/outdoor/station)
+"qZ" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/obj/structure/decorative{
+	density = 1;
+	anchored = 1;
+	name = "magnetic stasis emitter";
+	desc = "A machine that somehow fabricates hardlight using electrons. Seems to be impervious to conventional means of damage.";
+	icon = 'icons/obj/machines/modular_shield_generator.dmi';
+	icon_state = "charger_on_closed";
+	dir = 1;
+	uses_integrity = 0
+	},
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222";
+	pixel_y = -14
+	},
+/turf/open/indestructible/plating,
+/area/trainstation/outdoor/station)
 "rc" = (
 /obj/structure/decorative{
 	icon = 'icons/obj/machines/wallmounts.dmi';
@@ -2567,6 +2763,13 @@
 /turf/closed/indestructible/hoteldoor/fakedoor{
 	name = "Blocked door"
 	},
+/area/trainstation/outdoor/station)
+"rx" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/machinery/modular_computer/preset/civilian,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor/station)
 "rD" = (
 /obj/structure/prop/general/roadbarrierwood{
@@ -2871,7 +3074,6 @@
 	pixel_x = -16;
 	pixel_y = 11
 	},
-/obj/item/gun/ballistic/automatic/c20r/sc_c20r,
 /turf/open/indestructible/meat,
 /area/trainstation/outdoor/station)
 "tt" = (
@@ -3021,6 +3223,18 @@
 /obj/structure/flora/bush/fullgrass/style_random,
 /obj/effect/mob_spawn/ghost_role/flesh_spider,
 /turf/open/misc/asteroid/snow/standard_air,
+/area/trainstation/outdoor/station)
+"tX" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/folder/blue,
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
 /area/trainstation/outdoor/station)
 "uc" = (
 /obj/effect/gibspawner/human,
@@ -3530,6 +3744,14 @@
 /obj/structure/deployable_barricade/wooden,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station)
+"wK" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
+/area/trainstation/outdoor/station)
 "wM" = (
 /obj/effect/mob_spawn/corpse/human/charredskeleton,
 /obj/structure/decorative{
@@ -3761,6 +3983,10 @@
 	},
 /turf/open/floor/iron/shuttle/exploration/blanktile,
 /area/trainstation/outdoor/station)
+"xP" = (
+/mob/living/basic/khara_mutant/arachnid,
+/turf/open/floor/iron/shuttle/exploration/blanktile,
+/area/trainstation/outdoor/station)
 "xT" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 10
@@ -3794,8 +4020,10 @@
 /turf/closed/wall/city/siding/red/style/style_3,
 /area/trainstation/outdoor/station)
 "yf" = (
-/obj/structure/prop/big/widowmaker,
-/turf/open/misc/asteroid/snow/standard_air,
+/obj/structure/chair/office/tactical{
+	dir = 1
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/trainstation/outdoor/station)
 "yi" = (
 /obj/item/ammo_casing/mm20x138{
@@ -3856,6 +4084,13 @@
 "yA" = (
 /turf/closed/indestructible/fakedoor,
 /area/trainstation/outdoor/station)
+"yB" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/machinery/photocopier/prebuilt,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
+/area/trainstation/outdoor/station)
 "yD" = (
 /turf/open/floor/iron/shuttle/exploration/blanktile,
 /area/trainstation/outdoor/station)
@@ -3886,6 +4121,16 @@
 	color = "#d66569"
 	},
 /turf/closed/indestructible/opshuttle,
+/area/trainstation/outdoor/station)
+"yM" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/effect/spawner/random/trash/box,
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner,
 /area/trainstation/outdoor/station)
 "yR" = (
 /obj/structure/decorative{
@@ -3976,6 +4221,28 @@
 /mob/living/basic/khara_mutant/flesh_spider,
 /turf/open/floor/plating/cobblestone,
 /area/trainstation/outdoor/station)
+"zk" = (
+/obj/structure/railing/unbreakable{
+	dir = 9
+	},
+/obj/structure/decorative{
+	density = 1;
+	anchored = 1;
+	name = "magnetic stasis emitter";
+	desc = "A machine that somehow fabricates hardlight using electrons. Seems to be impervious to conventional means of damage.";
+	icon = 'icons/obj/machines/modular_shield_generator.dmi';
+	icon_state = "charger_on_closed";
+	dir = 1;
+	uses_integrity = 0
+	},
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+	},
+/turf/open/indestructible/plating,
+/area/trainstation/outdoor/station)
 "zn" = (
 /obj/effect/turf_decal/siding,
 /turf/open/misc/asteroid/snow/standard_air,
@@ -3985,8 +4252,12 @@
 /turf/open/misc/dirt/icy_planet,
 /area/trainstation/outdoor/station)
 "zD" = (
-/obj/item/gun/ballistic/shotgun/riot/sol,
-/turf/open/indestructible/meat,
+/obj/effect/turf_decal/siding/dark{
+	dir = 5
+	},
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
+	dir = 8
+	},
 /area/trainstation/outdoor/station)
 "zE" = (
 /obj/effect/decal/cleanable/blood/old,
@@ -4043,6 +4314,27 @@
 /obj/structure/prop/huge/tower/on,
 /turf/open/misc/asphalt/no_border,
 /area/trainstation/outdoor/station)
+"Al" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-2-4";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222";
+	pixel_y = -14
+	},
+/turf/open/indestructible/plating,
+/area/trainstation/outdoor/station)
 "Am" = (
 /obj/item/ammo_casing/shotgun/incendiary{
 	pixel_x = -1;
@@ -4069,7 +4361,13 @@
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station)
 "Aw" = (
-/turf/closed/wall/city/siding/red,
+/obj/structure/rack/shelf,
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/siding/dark{
+	dir = 10
+	},
+/obj/effect/spawner/random/engineering,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor/station)
 "Ax" = (
 /obj/effect/decal/cleanable/blood,
@@ -4683,6 +4981,12 @@
 	},
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station)
+"DZ" = (
+/obj/structure/window/reinforced/tinted/frosted/spawner/directional/east,
+/obj/structure/window/reinforced/tinted/frosted/spawner/directional/west,
+/obj/structure/grille/indestructible,
+/turf/open/floor/plating,
+/area/trainstation/outdoor/station)
 "Ec" = (
 /obj/structure/prop/general/zenithplatform3,
 /obj/structure/railing/corner,
@@ -4742,6 +5046,27 @@
 /turf/open/indestructible/train_platform{
 	name = "Floor"
 	},
+/area/trainstation/outdoor/station)
+"EA" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-2-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222";
+	pixel_y = -14
+	},
+/turf/open/indestructible/plating,
 /area/trainstation/outdoor/station)
 "EC" = (
 /obj/item/ammo_casing/b50cal{
@@ -4916,9 +5241,28 @@
 	},
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station)
+"Fl" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/microwave/engineering/cell_included,
+/obj/structure/table/reinforced,
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
+	dir = 4
+	},
+/area/trainstation/outdoor/station)
 "Fm" = (
 /obj/effect/gibspawner/human,
 /turf/open/misc/asteroid/snow/standard_air,
+/area/trainstation/outdoor/station)
+"Fn" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/machinery/status_display/evac/directional/north,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor/station)
 "Fo" = (
 /obj/effect/gibspawner/human,
@@ -4944,6 +5288,12 @@
 	pixel_y = -22
 	},
 /turf/open/misc/asphalt/no_border,
+/area/trainstation/outdoor/station)
+"Ft" = (
+/obj/machinery/door/airlock/shuttle/ferry{
+	name = "Magnetic interlock control"
+	},
+/turf/open/indestructible/dark/textured,
 /area/trainstation/outdoor/station)
 "Fw" = (
 /obj/structure/prop/general/wymanhole,
@@ -5033,8 +5383,7 @@
 /turf/open/floor/asphalt,
 /area/trainstation/outdoor/station)
 "Gf" = (
-/obj/structure/prop/big/single,
-/turf/open/misc/asteroid/snow/standard_air,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor/station)
 "Gk" = (
 /obj/item/ammo_casing/shotgun/incendiary{
@@ -5074,11 +5423,25 @@
 	},
 /turf/open/misc/asphalt/no_border,
 /area/trainstation/outdoor/station)
+"GC" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
+/obj/effect/spawner/random/structure/crate,
+/turf/open/indestructible/dark/textured,
+/area/trainstation/outdoor/station)
 "GJ" = (
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_y = 11
 	},
 /turf/open/misc/asteroid/snow/standard_air,
+/area/trainstation/outdoor/station)
+"GK" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/structure/table/reinforced,
+/obj/machinery/coffeemaker/impressa,
+/obj/item/storage/box/coffeepack,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor/station)
 "GO" = (
 /mob/living/basic/khara_mutant/flesh_spider,
@@ -5094,7 +5457,6 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 6
 	},
-/obj/item/gun/ballistic/automatic/c20r/sc_c20r,
 /turf/open/indestructible/meat,
 /area/trainstation/outdoor/station)
 "GT" = (
@@ -5287,6 +5649,13 @@
 	},
 /turf/open/indestructible/meat,
 /area/trainstation/outdoor/station)
+"Ie" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 5
+	},
+/obj/effect/spawner/random/trash/graffiti,
+/turf/open/indestructible/dark/textured,
+/area/trainstation/outdoor/station)
 "If" = (
 /obj/effect/mob_spawn/corpse/human/nanotrasenelitesoldier,
 /obj/structure/flora/bush/fullgrass/style_random,
@@ -5359,6 +5728,18 @@
 /obj/item/ammo_box/magazine/m12g/empty,
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station)
+"IL" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/trainstation_control{
+	dir = 8
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleinvertcorner_side{
+	dir = 8
+	},
+/area/trainstation/outdoor/station)
 "IM" = (
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_y = 9
@@ -5380,6 +5761,15 @@
 	pixel_y = 8
 	},
 /turf/open/misc/asteroid/snow/standard_air,
+/area/trainstation/outdoor/station)
+"Je" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet/directional/west,
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
 /area/trainstation/outdoor/station)
 "Jf" = (
 /obj/item/ammo_casing/c38/hotshot{
@@ -5404,8 +5794,10 @@
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station)
 "Ji" = (
-/obj/machinery/computer/trainstation_control,
-/turf/open/floor/iron/shuttle/exploration/side,
+/obj/effect/turf_decal/siding/dark{
+	dir = 5
+	},
+/turf/open/indestructible/dark/textured,
 /area/trainstation/outdoor/station)
 "Jl" = (
 /obj/structure/decorative{
@@ -5470,6 +5862,19 @@
 /obj/item/ammo_casing/c34_incendiary,
 /turf/open/indestructible/train_platform{
 	name = "Floor"
+	},
+/area/trainstation/outdoor/station)
+"JA" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/fax{
+	fax_name = "Head of Personnel's Office";
+	name = "Head of Personnel's Fax Machine"
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
 	},
 /area/trainstation/outdoor/station)
 "JC" = (
@@ -5550,6 +5955,22 @@
 	},
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station)
+"Kk" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+	},
+/obj/structure/prop/general/zcomputermachine_off{
+	desc = "A relatively low-tech solution for internal computing, internal network mail, and logging. This model appears to be quite old.";
+	name = "locked down stasis control terminal"
+	},
+/turf/open/indestructible/plating,
+/area/trainstation/outdoor/station)
 "Kn" = (
 /obj/item/gun/ballistic/rifle/boltaction,
 /turf/open/misc/asteroid/snow/standard_air,
@@ -5616,8 +6037,7 @@
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station)
 "KO" = (
-/obj/structure/prop/big/napalm,
-/turf/open/misc/asteroid/snow/standard_air,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/trainstation/outdoor/station)
 "KT" = (
 /obj/effect/mob_spawn/corpse/human/nanotrasenelitesoldier,
@@ -5677,6 +6097,10 @@
 "Lt" = (
 /obj/structure/prop/big/laser_beam,
 /turf/open/misc/asteroid/snow/standard_air,
+/area/trainstation/outdoor/station)
+"Lu" = (
+/obj/effect/turf_decal/siding/dark,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor/station)
 "Lw" = (
 /obj/item/ammo_casing/shotgun/incendiary{
@@ -5750,6 +6174,22 @@
 	pixel_y = 7
 	},
 /turf/open/misc/asteroid/snow/standard_air,
+/area/trainstation/outdoor/station)
+"LW" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp,
+/obj/item/papercutter,
+/obj/item/pen,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
+	dir = 8
+	},
 /area/trainstation/outdoor/station)
 "LY" = (
 /obj/structure/prop/city/street_dmg_animated,
@@ -5953,6 +6393,14 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/misc/asphalt/no_border,
 /area/trainstation/outdoor/station)
+"MW" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
+	dir = 4
+	},
+/area/trainstation/outdoor/station)
 "MX" = (
 /obj/effect/mob_spawn/ghost_role/flesh_spider,
 /turf/open/indestructible/meat,
@@ -5963,6 +6411,11 @@
 	},
 /obj/effect/gibspawner/human,
 /turf/open/indestructible/meat,
+/area/trainstation/outdoor/station)
+"Nb" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor/station)
 "Nc" = (
 /obj/structure/prop/general/redalert,
@@ -6066,6 +6519,44 @@
 	pixel_y = 26
 	},
 /turf/open/misc/asphalt/no_border,
+/area/trainstation/outdoor/station)
+"Nv" = (
+/obj/structure/railing/unbreakable{
+	dir = 1
+	},
+/obj/structure/emergency_shield/regenerating{
+	uses_integrity = 0;
+	pixel_y = 32;
+	name = "stasis field";
+	desc = "A stasis field that's holding the train in place. Seems to be projected by the stasis projector."
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222"
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/pipes_n_cables/layer_cable.dmi';
+	icon_state = "l4-4-8";
+	anchored = 1;
+	name = "cable";
+	color = "#222222";
+	pixel_y = -14
+	},
+/turf/open/indestructible/plating,
+/area/trainstation/outdoor/station)
+"Nz" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/trainstation/outdoor/station)
 "NB" = (
 /obj/structure/decorative{
@@ -6383,6 +6874,17 @@
 /obj/structure/prop/general/redalert,
 /turf/closed/wall/city/siding,
 /area/trainstation/outdoor/station)
+"Pd" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/machinery/modular_computer/preset/civilian{
+	dir = 4
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
+/area/trainstation/outdoor/station)
 "Pi" = (
 /obj/item/ammo_box/magazine/m12g/empty,
 /turf/open/misc/asphalt/no_border,
@@ -6414,6 +6916,17 @@
 	color = "#d66569"
 	},
 /turf/closed/wall/city/siding/style/style_2,
+/area/trainstation/outdoor/station)
+"Px" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/effect/spawner/random/entertainment/lighter,
+/obj/effect/spawner/random/medical/medkit,
+/obj/structure/table/reinforced,
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
 /area/trainstation/outdoor/station)
 "Pz" = (
 /obj/structure/decorative{
@@ -6540,6 +7053,10 @@
 	},
 /turf/open/misc/asteroid/snow/standard_air,
 /area/trainstation/outdoor/station)
+"QD" = (
+/obj/item/paper/trainstation_password,
+/turf/open/floor/iron/shuttle/exploration/blanktile,
+/area/trainstation/outdoor/station)
 "QI" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8;
@@ -6568,6 +7085,13 @@
 	pixel_x = -11
 	},
 /turf/open/misc/asteroid/snow/standard_air,
+/area/trainstation/outdoor/station)
+"QZ" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/structure/filingcabinet/medical,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor/station)
 "Rb" = (
 /obj/item/ammo_casing/shotgun/incendiary{
@@ -6966,8 +7490,10 @@
 /turf/open/indestructible/train_platform,
 /area/trainstation/outdoor/station)
 "TV" = (
-/obj/item/gun/ballistic/rifle/boltaction,
-/turf/open/misc/asphalt/no_border,
+/obj/machinery/door/airlock/shuttle/ferry{
+	name = "Magnetic interlock control"
+	},
+/turf/open/indestructible/vault,
 /area/trainstation/outdoor/station)
 "TY" = (
 /obj/item/ammo_casing/shotgun/incendiary{
@@ -6998,7 +7524,12 @@
 /turf/open/misc/asphalt/no_border,
 /area/trainstation/outdoor/station)
 "Us" = (
-/turf/closed/wall/city/siding/red/style,
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/status_display/evac/directional/east,
+/turf/open/indestructible/dark/textured,
 /area/trainstation/outdoor/station)
 "Uw" = (
 /obj/structure/decorative{
@@ -7036,6 +7567,22 @@
 	pixel_y = 10
 	},
 /turf/open/floor/iron/shuttle/exploration/blanktile,
+/area/trainstation/outdoor/station)
+"UB" = (
+/obj/structure/prop/city/buildingventbig11_off{
+	name = "Generator";
+	dir = 1;
+	pixel_x = -16
+	},
+/obj/structure/railing{
+	dir = 2;
+	color = "#666666";
+	pixel_y = 0
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 10
+	},
+/turf/open/indestructible/dark/textured,
 /area/trainstation/outdoor/station)
 "UD" = (
 /obj/item/ammo_casing/c38{
@@ -7105,10 +7652,8 @@
 /turf/open/misc/asphalt/no_border,
 /area/trainstation/outdoor/station)
 "Vi" = (
-/obj/structure/prop/general/highvoltagegrille{
-	dir = 8
-	},
-/turf/open/misc/asteroid/snow/standard_air,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/trainstation/outdoor/station)
 "Vn" = (
 /obj/effect/mob_spawn/corpse/human/charredskeleton,
@@ -7677,6 +8222,15 @@
 	},
 /turf/open/misc/asphalt/no_border,
 /area/trainstation/outdoor/station)
+"YS" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
+/obj/item/kirbyplants/random,
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
+	dir = 1
+	},
+/area/trainstation/outdoor/station)
 "YT" = (
 /obj/structure/fence/interlink{
 	dir = 2
@@ -7722,6 +8276,18 @@
 	},
 /turf/closed/indestructible/hoteldoor/fakedoor,
 /area/trainstation/outdoor/station)
+"Zk" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/structure/chair/office/tactical{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 8
+	},
+/area/trainstation/outdoor/station)
 "Zu" = (
 /obj/structure/prop/tgmc_console4{
 	pixel_x = 8
@@ -7746,6 +8312,16 @@
 	pixel_x = -20
 	},
 /turf/open/misc/asteroid/snow/standard_air,
+/area/trainstation/outdoor/station)
+"ZH" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 10
+	},
+/obj/structure/closet/secure_closet/personal,
+/obj/item/clothing/under/syndicate/skyrat/overalls/unarmoured,
+/obj/effect/spawner/random/special_lighter,
+/obj/effect/spawner/random/entertainment/plushie_delux,
+/turf/open/indestructible/dark/textured,
 /area/trainstation/outdoor/station)
 "ZK" = (
 /obj/structure/fence/interlink{
@@ -8005,7 +8581,7 @@ sh
 FQ
 SX
 yD
-yD
+hM
 qq
 yD
 fq
@@ -8045,12 +8621,12 @@ Rl
 Rl
 sh
 Ky
-yD
+QD
 qq
 px
 uS
 yD
-yD
+xP
 yD
 uZ
 xM
@@ -8086,7 +8662,7 @@ Rl
 Rl
 Rl
 sh
-Ji
+FQ
 yD
 yD
 HP
@@ -8218,7 +8794,7 @@ uf
 yD
 uS
 qq
-yD
+hM
 yD
 ov
 xM
@@ -9045,7 +9621,7 @@ Rl
 Rl
 Rl
 Rl
-Ir
+Rl
 jn
 Rl
 Rl
@@ -9456,7 +10032,7 @@ ct
 ct
 ct
 AB
-TV
+Wk
 Wk
 Wk
 Wg
@@ -10423,7 +10999,7 @@ ct
 ct
 oz
 YL
-zD
+YL
 yI
 oz
 ct
@@ -15419,11 +15995,11 @@ TQ
 TQ
 UR
 TQ
-Kd
-gq
-Rl
-Rl
-gq
+TQ
+TQ
+TQ
+TQ
+TQ
 YX
 YX
 YX
@@ -15461,11 +16037,11 @@ UR
 TQ
 TQ
 TQ
-Kd
-Rl
-Rl
-Rl
-Rl
+TQ
+TQ
+TQ
+TQ
+TQ
 YX
 YX
 YX
@@ -15497,18 +16073,18 @@ Rl
 YX
 "}
 (184,1,1) = {"
-YX
-YX
-YX
-YX
-YX
-YX
-YX
+FG
+nF
+Va
+nF
+nF
+nF
+Va
+nF
+TQ
+TQ
+TQ
 Rl
-Rl
-gq
-Rl
-YX
 YX
 YX
 YX
@@ -15539,18 +16115,18 @@ Rl
 YX
 "}
 (185,1,1) = {"
-YX
-YX
-YX
-YX
-YX
-YX
-YX
+zk
+VX
+pB
+UB
+iT
+ep
+ZH
+nF
+TQ
+TQ
+TQ
 Rl
-Rl
-Rl
-YX
-YX
 YX
 YX
 YX
@@ -15581,19 +16157,19 @@ Rl
 YX
 "}
 (186,1,1) = {"
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
+Kk
+VX
+Ji
+er
+Ie
+Us
+GC
+nF
+TQ
+TQ
+TQ
 Rl
 Rl
-YX
-YX
-YX
 YX
 YX
 YX
@@ -15623,19 +16199,19 @@ Rl
 YX
 "}
 (187,1,1) = {"
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
+Al
+Va
+nF
+nF
+Ft
+nF
+nF
+Va
+nF
+TQ
+TQ
+Rl
+Rl
 YX
 YX
 YX
@@ -15665,19 +16241,19 @@ Rl
 YX
 "}
 (188,1,1) = {"
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
+mb
+nF
+ea
+tX
+wK
+Je
+MW
+Aw
+nE
+TQ
+TQ
+Rl
+Rl
 YX
 YX
 YX
@@ -15707,19 +16283,19 @@ Rl
 YX
 "}
 (189,1,1) = {"
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
+cN
+nF
+rx
+yf
+Nz
+KO
+Gf
+Lu
+TV
+TQ
+TQ
+Rl
+Rl
 YX
 YX
 YX
@@ -15749,6 +16325,19 @@ Rl
 YX
 "}
 (190,1,1) = {"
+qZ
+VX
+LW
+Pd
+JA
+bS
+fm
+dY
+nF
+TQ
+TQ
+Rl
+Rl
 YX
 YX
 YX
@@ -15759,23 +16348,10 @@ YX
 YX
 YX
 YX
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
+YX
+YX
+YX
+YX
 YX
 YX
 YX
@@ -15791,6 +16367,19 @@ Rl
 YX
 "}
 (191,1,1) = {"
+Nv
+nF
+yM
+Zk
+fy
+wK
+Fl
+nF
+Va
+TQ
+TQ
+Rl
+Rl
 YX
 YX
 YX
@@ -15801,23 +16390,10 @@ YX
 YX
 YX
 YX
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Gf
-yf
-KO
-Rl
+YX
+YX
+YX
+YX
 YX
 YX
 YX
@@ -15833,6 +16409,18 @@ Rl
 YX
 "}
 (192,1,1) = {"
+mb
+nF
+QZ
+KO
+Gf
+KO
+GK
+nF
+Rl
+Rl
+Rl
+Rl
 YX
 YX
 YX
@@ -15843,23 +16431,11 @@ YX
 YX
 YX
 YX
-Rl
-Us
-hI
-jt
-eG
-Rl
-aA
-Va
-VX
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
+YX
+YX
+YX
+YX
+YX
 YX
 YX
 YX
@@ -15875,33 +16451,33 @@ YX
 YX
 "}
 (193,1,1) = {"
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-YX
-Rl
-Us
+EA
+nF
+yB
+Nz
 hI
-jt
-eG
-Rl
-aA
+KO
+oR
 Va
-VX
 Rl
 Rl
 Rl
 Rl
-Rl
-Rl
-Rl
-Rl
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
 YX
 YX
 YX
@@ -15917,6 +16493,17 @@ YX
 YX
 "}
 (194,1,1) = {"
+Kk
+nF
+Fn
+KO
+Vi
+KO
+Nb
+VX
+Rl
+Rl
+Rl
 YX
 YX
 YX
@@ -15927,23 +16514,12 @@ YX
 YX
 YX
 YX
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-hM
-Rl
+YX
+YX
+YX
+YX
+YX
+YX
 YX
 YX
 YX
@@ -15959,6 +16535,15 @@ YX
 YX
 "}
 (195,1,1) = {"
+eo
+VX
+zD
+Px
+IL
+jz
+YS
+nF
+Rl
 YX
 YX
 YX
@@ -15969,23 +16554,14 @@ YX
 YX
 YX
 YX
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Lt
-Rl
-Rl
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
 YX
 YX
 YX
@@ -16001,6 +16577,14 @@ YX
 YX
 "}
 (196,1,1) = {"
+FG
+nF
+nF
+DZ
+DZ
+DZ
+nF
+Va
 YX
 YX
 YX
@@ -16011,23 +16595,15 @@ YX
 YX
 YX
 YX
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
 YX
 YX
 YX
@@ -16053,23 +16629,23 @@ YX
 YX
 YX
 YX
-Rl
-wN
-Rl
-nF
-Rl
-Aw
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Vi
-Rl
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
 YX
 YX
 YX
@@ -16095,23 +16671,23 @@ YX
 YX
 YX
 YX
-Rl
-wN
-Rl
-nF
-Rl
-Aw
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Vi
-Rl
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
 YX
 YX
 YX
@@ -16137,23 +16713,23 @@ YX
 YX
 YX
 YX
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
-Rl
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
 YX
 YX
 YX
