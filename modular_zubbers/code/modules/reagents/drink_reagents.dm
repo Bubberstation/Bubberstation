@@ -97,7 +97,7 @@
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "intraverde"
 	name = "glass of intraverde"
-	desc = "A fang-rotting float, often requested by hemophage fledglings who have yet grown the taste for ichor."
+	desc = "A fang-rotting float, often requested by hemophage fledglings who have yet grown the taste for ichor. The whipped cream top is infused with blood."
 
 
 /datum/reagent/consumable/ethanol/venetianwaltz
@@ -106,7 +106,7 @@
 	color = "#38210b"
 	boozepwr = 15
 	quality = DRINK_GOOD
-	taste_description = "bloody chocolate"
+	taste_description = "dark and bloody chocolate"
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
 /datum/reagent/consumable/ethanol/venetianwaltz/expose_mob(mob/living/exposed_mob, methods, reac_volume)
@@ -149,7 +149,7 @@
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "cranberrycadillac"
 	name = "coupe of cranberry cadillac"
-	desc = "The sugar crystals that rim the glass are red with real blood, inviting the hungry to lick it clean. Served with half a lemon to counter the sweetness."
+	desc = "The sugar crystals that rim the glass are red with real blood, inviting the hungry to lick it clean. Served with half a lemon slice to counter the sweetness."
 
 
 /datum/reagent/consumable/ethanol/jubokko
@@ -158,7 +158,7 @@
 	color = "#ac1e2a"
 	boozepwr = 30
 	quality = DRINK_GOOD
-	taste_description = "danger overhead"
+	taste_description = "danger looming above you"
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
 /datum/reagent/consumable/ethanol/jubokko/expose_mob(mob/living/exposed_mob, methods, reac_volume)
@@ -175,7 +175,7 @@
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "jubokko"
 	name = "serving of jubokko"
-	desc = "The martian, blood-drinking chaebol serve this to their guests. Tasteful as it appears, any good poet knows foreshadowing when it's put in front of them. "
+	desc = "The martian, blood-drinking chaebol serve this to their guests. Tasteful as it appears, any good poet knows foreshadowing when it's put in front of them."
 
 
 /datum/reagent/consumable/ethanol/moroccocoffin
@@ -213,7 +213,7 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/moroccocoffin
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "moroccocoffin"
-	name = "glass of Morocco Coffin"
+	name = "glass of morocco coffin"
 	desc = "For waking up when the sun goes down. Cools you down and wakes you up."
 
 
@@ -235,14 +235,15 @@
 
 /datum/reagent/consumable/ethanol/batouttahell/overdose_process(mob/living/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
-	affected_mob.add_traits(list(TRAIT_ECHOLOCATION_RECEIVER, TRAIT_TRUE_NIGHT_VISION,TRAIT_GOOD_HEARING),"Overdose:/datum/reagent/consumable/ethanol/batouttahell")
+	affected_mob.add_traits(list(TRAIT_GOOD_HEARING, TRAIT_MINOR_NIGHT_VISION),"Overdose:/datum/reagent/consumable/ethanol/batouttahell")
 	metabolization_rate = 4.5 * REAGENTS_METABOLISM
+	affected_mob.set_jitter_if_lower(5 SECONDS * REM * seconds_per_tick)
 	affected_mob.set_dizzy_if_lower(5 SECONDS * REM * seconds_per_tick)
 	affected_mob.set_temp_blindness_if_lower(5 SECONDS * REM * seconds_per_tick)
 
 /datum/reagent/consumable/ethanol/batouttahell/on_mob_end_metabolize(mob/living/affected_mob)
 	. = ..()
-	affected_mob.remove_traits(list(TRAIT_ECHOLOCATION_RECEIVER, TRAIT_TRUE_NIGHT_VISION,TRAIT_GOOD_HEARING),"Overdose:/datum/reagent/consumable/ethanol/batouttahell")
+	affected_mob.remove_traits(list(TRAIT_GOOD_HEARING, TRAIT_MINOR_NIGHT_VISION),"Overdose:/datum/reagent/consumable/ethanol/batouttahell")
 
 /datum/reagent/consumable/ethanol/batouttahell/expose_mob(mob/living/exposed_mob, methods, reac_volume)
 	. = ..()
