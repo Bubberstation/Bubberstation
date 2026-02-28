@@ -44,14 +44,17 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/obj/machinery/door/airlock/public{
-	name = "Massage Parlour"
-	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/landmark/navigate_destination/autoname,
+/obj/machinery/door/airlock/public/glass{
+	name = "Massage Parlour"
+	},
+/obj/structure/curtain/cloth/fancy/mechanical{
+	id = "barbershopcurtains"
+	},
 /turf/open/floor/iron,
 /area/station/service/barber)
 "j" = (
@@ -137,12 +140,11 @@
 /turf/open/floor/iron,
 /area/station/service/barber)
 "B" = (
-/obj/structure/disposalpipe/junction{
-	dir = 4
+/obj/structure/sign/barber/directional/north{
+	pixel_y = 16
 	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/station/maintenance/starboard/fore)
+/turf/open/floor/iron,
+/area/station/hallway/primary/starboard)
 "C" = (
 /obj/structure/bed/pod,
 /obj/structure/window/spawner/directional/south,
@@ -205,10 +207,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall,
 /area/station/service/barber)
-"U" = (
-/obj/structure/sign/barber/directional/north,
-/turf/open/floor/iron,
-/area/station/hallway/primary/starboard)
 "V" = (
 /obj/machinery/vending/barbervend,
 /obj/effect/turf_decal/tile/purple{
@@ -254,11 +252,11 @@ W
 o
 f
 c
-x
+w
 a
 "}
 (3,1,1) = {"
-B
+a
 S
 l
 K
@@ -275,7 +273,7 @@ I
 m
 b
 x
-U
+a
 "}
 (5,1,1) = {"
 a
@@ -295,5 +293,5 @@ w
 w
 w
 w
-a
+B
 "}
