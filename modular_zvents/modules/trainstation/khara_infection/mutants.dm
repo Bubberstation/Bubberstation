@@ -348,5 +348,3 @@
 			weather.wind_down()
 			break
 	. = ..()
-
-/obj/item/clothing/mask/gas
