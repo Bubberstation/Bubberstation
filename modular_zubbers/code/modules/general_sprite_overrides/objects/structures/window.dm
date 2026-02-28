@@ -58,10 +58,6 @@
 	icon = 'modular_zubbers/icons/obj/smooth_structures/pod_window.dmi'
 	canSmoothWith =  SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_SURVIVAL_TITANIUM_POD
 
-/obj/structure/window/reinforced/shuttle/spaceship
-	icon = 'modular_zubbers/icons/obj/smooth_structures/ship_window.dmi'
-	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_SHIPWALLS + SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE
-
 
 //MISC
 /obj/structure/window/bronze/fulltile

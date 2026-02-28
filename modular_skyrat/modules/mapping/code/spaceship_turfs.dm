@@ -3,15 +3,15 @@
 //Also make sure you properly var-edit everything hnngh
 
 /turf/closed/wall/mineral/titanium/spaceship
-	icon = 'modular_skyrat/modules/mapping/icons/unique/spaceships/shipwalls.dmi'
+	icon = 'modular_zubbers/icons/turf/walls/ship_wall.dmi'
 	icon_state = "ship_walls-0"
 	base_icon_state = "ship_walls"
 	sheet_type = /obj/item/stack/sheet/spaceship
 	smoothing_groups = SMOOTH_GROUP_SHIPWALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
-	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_SHIPWALLS + SMOOTH_GROUP_SURVIVAL_TITANIUM_POD
+	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_SHIPWALLS + SMOOTH_GROUP_SURVIVAL_TITANIUM_POD + SMOOTH_GROUP_TITANIUM_WALLS
 
 /turf/closed/wall/mineral/titanium/spaceship/nodiagonal
-	icon_state = "map-shuttle_nd"
+	icon_state = "ship_walls-15"
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/wall/mineral/titanium/spaceship/nosmooth
@@ -19,7 +19,8 @@
 	smoothing_flags = NONE
 
 /turf/closed/wall/mineral/titanium/spaceship/overspace
-	icon_state = "map-overspace"
+	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/ship_wall.dmi', 'modular_skyrat/modules/mapping/icons/unique/spaceships/shipwalls.dmi')
+	icon_state = MAP_SWITCH("map-overspace", "ship_walls-0")
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
 	fixed_underlay = list("space" = TRUE)
 
@@ -47,13 +48,13 @@
 /obj/structure/window/reinforced/shuttle/spaceship
 	name = "spaceship window"
 	desc = "A pressure-resistant spaceship window."
-	icon = 'modular_skyrat/modules/mapping/icons/unique/spaceships/shipwindows.dmi'
+	icon = 'modular_zubbers/icons/obj/smooth_structures/ship_window.dmi'
 	icon_state = "pod_window-0"
 	base_icon_state = "pod_window"
 	glass_type = /obj/item/stack/sheet/spaceshipglass
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE + SMOOTH_GROUP_SHIPWALLS
-	canSmoothWith = SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_SHIPWALLS + SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE
 	obj_flags = CAN_BE_HIT
 	custom_materials = list(/datum/material/alloy/plastitaniumglass = SHEET_MATERIAL_AMOUNT * 2)
 

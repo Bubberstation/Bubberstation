@@ -138,9 +138,6 @@
 /turf/closed/wall/mineral/titanium/survival/pod
 	icon = 'modular_zubbers/icons/turf/walls/survival_pod_walls.dmi'
 
-/turf/closed/wall/mineral/titanium/spaceship
-	icon = 'modular_zubbers/icons/turf/walls/survival_pod_walls.dmi'
-
 
 // INDESTRUCTIBLE WALLS
 /turf/closed/indestructible/steel
