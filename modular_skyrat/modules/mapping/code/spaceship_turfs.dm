@@ -20,7 +20,7 @@
 
 /turf/closed/wall/mineral/titanium/spaceship/overspace
 	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/ship_wall.dmi', 'modular_skyrat/modules/mapping/icons/unique/spaceships/shipwalls.dmi')
-	icon_state = MAP_SWITCH("map-overspace", "ship_walls-0")
+	icon_state = MAP_SWITCH("ship_walls-0", "map-overspace")
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
 	fixed_underlay = list("space" = TRUE)
 

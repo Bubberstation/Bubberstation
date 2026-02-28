@@ -298,6 +298,10 @@
 	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
 	fake_icon = 'modular_zubbers/icons/turf/walls/sandstone_wall.dmi'
 
+/obj/structure/falsewall/titanium
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/shuttle_wall.dmi'
+
 /obj/structure/falsewall/silver
 	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
 	fake_icon = 'modular_zubbers/icons/turf/walls/silver_wall.dmi'
