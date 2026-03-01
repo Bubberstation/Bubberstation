@@ -191,6 +191,12 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/port)
+"acI" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/wood/tile,
+/area/station/science/breakroom)
 "acJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -1326,6 +1332,7 @@
 	dir = 4
 	},
 /obj/machinery/airalarm/directional/east,
+/obj/structure/closet/emcloset,
 /turf/open/floor/iron,
 /area/station/science/research)
 "axt" = (
@@ -16839,6 +16846,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood/tile,
 /area/station/science/breakroom)
 "gas" = (
@@ -23684,6 +23692,12 @@
 /obj/effect/landmark/start/depsec/supply,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/security/checkpoint/supply)
+"izS" = (
+/obj/structure/table,
+/obj/machinery/power/apc/auto_name/directional/south,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/station/science/breakroom)
 "iAd" = (
 /obj/structure/transit_tube/curved{
 	dir = 4
@@ -23865,7 +23879,6 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood/tile,
 /area/station/science/breakroom)
@@ -26127,6 +26140,7 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/east,
+/obj/structure/closet/firecloset,
 /turf/open/floor/iron,
 /area/station/science/research)
 "jtS" = (
@@ -28735,6 +28749,7 @@
 "kmS" = (
 /obj/structure/table,
 /obj/machinery/light/directional/south,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/science/breakroom)
 "kmT" = (
@@ -32270,7 +32285,6 @@
 /turf/open/floor/plating,
 /area/station/maintenance/abandon_wrestle)
 "lsN" = (
-/obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/chair/comfy/beige{
 	dir = 1
 	},
@@ -32793,12 +32807,10 @@
 /turf/open/floor/wood/large,
 /area/station/commons/lounge)
 "lCe" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
 /mob/living/basic/pet/penguin/baby/permanent{
 	dir = 8
 	},
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/tile,
 /area/station/science/breakroom)
 "lCf" = (
@@ -58780,11 +58792,11 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/storage/gas)
 "uwP" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
 	},
 /turf/open/floor/wood/tile,
 /area/station/science/breakroom)
@@ -167219,8 +167231,8 @@ edz
 rqA
 pkS
 mTy
-lCe
-kmS
+acI
+izS
 doz
 bEA
 hwj
