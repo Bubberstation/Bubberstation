@@ -44,9 +44,44 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
 
-/*
+/obj/item/clothing/under/rank/security/trousers
+	name = "security trousers"
+	desc = "Some Security-red combat trousers. Probably should pair it with a vest for safety."
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
+	icon_state = "workpants_red"
+	body_parts_covered = GROIN|LEGS
+	can_adjust = FALSE
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	female_sprite_flags = FEMALE_UNIFORM_NO_BREASTS
 
-	// VIROSEC
+/obj/item/clothing/under/rank/security/trousers/shorts
+	name = "security shorts"
+	desc = "Some Security-red combat shorts. Definitely should pair it with a vest for safety."
+	icon_state = "workshorts_red"
 
-*/
+/obj/item/clothing/under/rank/security/trousers/shorts/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_peacekeeper_shorts)
 
+/datum/atom_skin/security_peacekeeper_shorts
+	abstract_type = /datum/atom_skin/security_peacekeeper_shorts
+
+/datum/atom_skin/security_peacekeeper_shorts/short
+	preview_name = "Short"
+	new_icon_state = "workshorts_red"
+
+/datum/atom_skin/security_peacekeeper_shorts/short_short
+	preview_name = "Short Short"
+	new_icon_state = "workshorts_red_short"
+
+/obj/item/clothing/under/rank/security/miniskirt
+	name = "security miniskirt"
+	desc = "This miniskirt was originally featured in a gag calendar, but entered official use once they realized its potential for arid climates."
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
+	icon_state = "miniskirt_red"
+	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+	gets_cropped_on_taurs = FALSE
+	can_adjust = TRUE
+	body_parts_covered = GROIN | LEGS
