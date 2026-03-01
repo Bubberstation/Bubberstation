@@ -31,6 +31,9 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
+"e" = (
+/turf/open/floor/iron,
+/area/station/hallway/primary/starboard)
 "f" = (
 /obj/structure/mirror/directional/west,
 /obj/effect/turf_decal/tile/purple{
@@ -49,11 +52,8 @@
 	},
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/landmark/navigate_destination/autoname,
-/obj/machinery/door/airlock/public/glass{
+/obj/machinery/door/airlock/public{
 	name = "Massage Parlour"
-	},
-/obj/structure/curtain/cloth/fancy/mechanical{
-	id = "barbershopcurtains"
 	},
 /turf/open/floor/iron,
 /area/station/service/barber)
@@ -187,6 +187,11 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/iron,
 /area/station/service/barber)
+"M" = (
+/obj/machinery/airalarm/directional/north,
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron,
+/area/station/hallway/primary/starboard)
 "N" = (
 /obj/structure/chair/comfy/barber_chair{
 	dir = 8
@@ -252,8 +257,8 @@ W
 o
 f
 c
-w
-a
+x
+e
 "}
 (3,1,1) = {"
 a
@@ -273,7 +278,7 @@ I
 m
 b
 x
-a
+e
 "}
 (5,1,1) = {"
 a
@@ -283,7 +288,7 @@ C
 L
 V
 w
-a
+B
 "}
 (6,1,1) = {"
 a
@@ -293,5 +298,5 @@ w
 w
 w
 w
-B
+M
 "}
