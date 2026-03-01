@@ -680,3 +680,8 @@
 	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
 	armor_type = /datum/armor/none
 	resistance_flags = FIRE_PROOF
+
+// Ablative hood
+/obj/item/clothing/head/hooded/ablative
+	// new teshari sprites
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
