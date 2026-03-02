@@ -155,7 +155,8 @@
 
 	if (!internal_magazine && istype(tool, /obj/item/ammo_box/magazine))
 		if (tac_reloads)
-			eject_magazine(user)
-			insert_magazine(user, tool)
+			eject_magazine(user, display_message = FALSE)
+			insert_magazine(user, tool, display_message = FALSE)
+			balloon_alert(user, "[src.magazine_wording] loaded")
 			return ITEM_INTERACT_SUCCESS
 	..()
