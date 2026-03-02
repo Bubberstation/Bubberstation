@@ -11,6 +11,10 @@
 	return GLOB.always_state
 
 /datum/privacy_policy_ui/ui_close(mob/user)
+	if(owner?.prefs?.privacy_policy_acknowledged != TRUE)
+		if(owner)
+			to_chat(owner, span_danger("You must accept the Privacy Policy to continue playing."))
+			qdel(owner)
 	qdel(src)
 
 /datum/privacy_policy_ui/ui_data(mob/user)
