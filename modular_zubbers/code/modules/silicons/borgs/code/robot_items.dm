@@ -117,16 +117,16 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/charge_cost = (STANDARD_CELL_CHARGE *  3.2)
-	var/datum/effect_system/spark_spread/spark_system
+	var/datum/effect_system/basic/spark_spread/spark_system
 	var/datum/action/innate/dash/research/jaunt
 	var/mob/living/silicon/robot/cyborg
 
 /obj/item/experimental_dash/Initialize(mapload)
 	. = ..()
 	jaunt = new(src)
-	spark_system = new /datum/effect_system/spark_spread()
-	spark_system.set_up(5, 0, src)
+	spark_system = new(src, 5, FALSE)
 	spark_system.attach(src)
+	spark_system.start()
 
 
 /obj/item/experimental_dash/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)

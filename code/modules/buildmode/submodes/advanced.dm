@@ -63,7 +63,7 @@
 			qdel(object)
 			if(T && c.prefs.read_preference(/datum/preference/toggle/admin/delete_sparks))
 				playsound(T, 'sound/effects/magic/repulse.ogg', 100, 1)
-				var/datum/effect_system/spark_spread/quantum/sparks = new
+				var/datum/effect_system/basic/spark_spread/quantum/sparks = new
 				sparks.set_up(10, 1, T)
 				sparks.attach(T)
 				sparks.start()
