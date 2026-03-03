@@ -7,7 +7,7 @@
 
 /obj/item/clothing/accessory/newbie_badge/accessory_equipped(obj/item/clothing/under/clothes, mob/living/user)
 	. = ..()
-	if(ishuman(user) && user.client.get_exp_living(pure_numeric = TRUE) < CONFIG_GET(number/newbie_hours_threshold) * 60)
+	if(ishuman(user) && !isnull(user.client) && user.client.get_exp_living(pure_numeric = TRUE) < CONFIG_GET(number/newbie_hours_threshold) * 60)
 		var/mob/living/carbon/human/human_equipper = user
 		human_equipper.newbie_hud_set_badge()
 
