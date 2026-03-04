@@ -263,7 +263,7 @@
 
 /turf/closed/indestructible/rock/snow
 	icon = 'modular_zubbers/icons/turf/walls/mountain_wall.dmi'
-	icon_state = "mountainrock"
+	icon_state = "mountain_wall-0"
 	base_icon_state = "mountain_wall"
 	canSmoothWith = SMOOTH_GROUP_CLOSED_TURFS
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
@@ -271,7 +271,7 @@
 
 /turf/closed/indestructible/rock/snow/ice
 	icon = 'modular_zubbers/icons/turf/walls/icerock_wall.dmi'
-	icon_state = "icerock"
+	icon_state = "icerock_wall-0"
 	base_icon_state = "icerock_wall"
 	canSmoothWith = SMOOTH_GROUP_CLOSED_TURFS
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
