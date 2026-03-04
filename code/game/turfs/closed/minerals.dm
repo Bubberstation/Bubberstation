@@ -4,7 +4,7 @@
 
 /turf/closed/mineral //wall piece
 	name = "rock"
-	icon = MAP_SWITCH('modular_skyrat/modules/liquids/icons/turf/smoothrocks.dmi', 'icons/turf/mining.dmi') // SKYRAT EDIT CHANGE
+	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/smoothrocks.dmi', 'icons/turf/mining.dmi') // BUBBER EDIT
 	icon_state = "rock"
 	smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_MINERAL_WALLS
 	canSmoothWith = SMOOTH_GROUP_MINERAL_WALLS
@@ -314,13 +314,11 @@
 		var/path = pick(spawn_chance_list)
 		if(ispath(path, /turf))
 			var/stored_flags = 0
-			var/stored_color = color //SKYRAT EDIT ADDITION
 			if(turf_flags & NO_RUINS)
 				stored_flags |= NO_RUINS
 			var/turf/T = ChangeTurf(path,null,CHANGETURF_IGNORE_AIR)
 			T.flags_1 |= stored_flags
 
-			T.color = stored_color //SKYRAT EDIT ADDITION
 			if(ismineralturf(T))
 				var/turf/closed/mineral/M = T
 				M.turf_type = src.turf_type
