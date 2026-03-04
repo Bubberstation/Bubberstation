@@ -50,11 +50,11 @@
 
 /turf/closed/wall/mineral/sandstone
 	icon = 'modular_zubbers/icons/turf/walls/sandstone_wall.dmi'
-	canSmoothWith = SMOOTH_GROUP_SANDSTONE_WALLS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE
+	canSmoothWith = SMOOTH_GROUP_SANDSTONE_WALLS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS
 
 /turf/closed/wall/mineral/snow
 	icon = 'modular_zubbers/icons/turf/walls/snow_wall.dmi'
-	canSmoothWith = SMOOTH_GROUP_SNOW_WALLS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE
+	canSmoothWith = SMOOTH_GROUP_SNOW_WALLS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS
 
 /turf/closed/wall/mineral/bronze
 	icon = 'modular_zubbers/icons/turf/walls/clockwork_wall.dmi'

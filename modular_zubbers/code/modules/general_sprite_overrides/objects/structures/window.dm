@@ -67,3 +67,8 @@
 /obj/structure/window/reinforced/fulltile/ice
 	icon = 'modular_zubbers/icons/obj/smooth_structures/rice_window.dmi'
 	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS
+
+/turf/closed/indestructible/fakeglass
+	icon = MAP_SWITCH('modular_zubbers/icons/obj/smooth_structures/reinforced_window.dmi', 'icons/obj/smooth_structures/structure_variations.dmi')
+	icon_state = MAP_SWITCH("reinforced_window-0", "fake_window")
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS
