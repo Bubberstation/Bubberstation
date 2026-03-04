@@ -2,16 +2,16 @@ Any time you make a change to the schema files, remember to increment the databa
 
 Make sure to also update `DB_MAJOR_VERSION` and `DB_MINOR_VERSION`, which can be found in `code/__DEFINES/subsystem.dm`.
 
-The latest database version is 5.35 (for bubberstation) (5.33 for /tg/); The query to update the schema revision table is:
+The latest database version is 5.36 (for bubberstation) (5.33 for /tg/); The query to update the schema revision table is:
 
 ```sql
-INSERT INTO `schema_revision` (`major`, `minor`) VALUES (5, 35);
+INSERT INTO `schema_revision` (`major`, `minor`) VALUES (5, 36);
 ```
 
 or
 
 ```sql
-INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (5, 35);
+INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (5, 36);
 ```
 
 In any query remember to add a prefix to the table names if you use one.
