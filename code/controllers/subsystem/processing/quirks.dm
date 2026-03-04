@@ -31,7 +31,7 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	//SKYRAT EDIT ADDITION BEGIN
 	list(/datum/quirk/equipping/nerve_staple, /datum/quirk/nonviolent),
 	list(/datum/quirk/equipping/nerve_staple, /datum/quirk/item_quirk/nearsighted),
-	list(/datum/quirk/no_guns, /datum/quirk/bighands, /datum/quirk/poor_aim),
+	list(/datum/quirk/no_guns, /datum/quirk/poor_aim),
 	list(/datum/quirk/no_guns, /datum/quirk/nonviolent),
 	list(/datum/quirk/spacer_born, /datum/quirk/oversized),
 	list(/datum/quirk/felinid_aspect, /datum/quirk/item_quirk/canine, /datum/quirk/item_quirk/avian),
@@ -96,8 +96,6 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	for(var/type in quirk_list)
 		var/datum/quirk/quirk_type = type
 		// SKYRAT EDIT ADDITION START
-		if(initial(quirk_type.abstract_parent_type) == type)
-			continue
 
 		if(initial(quirk_type.erp_quirk) && CONFIG_GET(flag/disable_erp_preferences))
 			continue

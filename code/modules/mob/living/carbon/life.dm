@@ -533,7 +533,7 @@
 		for(var/obj/item/organ/organ in organs)
 			// On-death is where organ decay is handled
 			if(organ?.owner) // organ + owner can be null due to reagent metabolization causing organ shuffling
-				rot_count += organ.on_death(seconds_per_tick, times_fired) //BUBBERSTATION ADDITION: MIASMA_COUNT. NOTE THIS ISN'T CALLED ON ROBOTIC ORGANS.
+				rot_count += organ.on_death(seconds_per_tick) //BUBBERSTATION ADDITION: MIASMA_COUNT. NOTE THIS ISN'T CALLED ON ROBOTIC ORGANS.
 			// We need to re-check the stat every organ, as one of our others may have revived us
 			if(stat != DEAD)
 				break

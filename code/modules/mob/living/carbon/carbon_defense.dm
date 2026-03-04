@@ -353,7 +353,7 @@
 			return
 		else
 			playsound(src, 'modular_zubbers/sound/emotes/nose_boop.ogg', 50, 0)
-			if(HAS_TRAIT(src, TRAIT_SENSITIVESNOUT) && get_location_accessible(src, BODY_ZONE_PRECISE_MOUTH))
+			if(HAS_TRAIT(src, TRAIT_SENSITIVESNOUT) && !is_mouth_covered(ITEM_SLOT_MASK))
 				to_chat(src, span_warning("[helper] boops you on your sensitive nose, sending you to the ground!"))
 				src.Knockdown(20)
 				src.apply_damage(30, STAMINA)
