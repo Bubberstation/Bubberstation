@@ -27,3 +27,7 @@
 
 /obj/item/organ/eyes/moth
 	eye_icon_state = "motheyes_white"
+/obj/item/organ/eyes/robotic/moth
+	eye_icon_state = "motheyes_white"
+/obj/item/organ/eyes/robotic/glow/moth
+	eye_icon_state = "motheyes_white"
