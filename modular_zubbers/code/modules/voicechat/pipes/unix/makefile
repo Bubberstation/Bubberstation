@@ -1,8 +1,6 @@
 # Makefile
-# APE SHIT - theres got to be a better way man
-BYOND_ROOT = $(PWD)/../../../../../Byond
-BYOND_VERSION = $(shell cat $(BYOND_ROOT)/ActiveVersion.txt)
-BYOND_PATH = $(BYOND_ROOT)/$(BYOND_VERSION)/byond/bin
+## make TGS_INSTANCE_ROOT=$TGS_INSTANCE_ROOT BYOND_VERSION=$3
+BYOND_PATH = $(TGS_INSTANCE_ROOT)/Byond/$(BYOND_VERSION)/byond/bin
 
 CC = gcc
 CPP = g++

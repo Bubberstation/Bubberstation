@@ -1,34 +1,57 @@
-// Connects a client to voice chat via an external browser
-/datum/controller/subsystem/voicechat/proc/join_vc(client/C, show_link_only=FALSE)
-	var/node_port = CONFIG_GET(number/port_voicechat) // I see no good reasons why admins should be able to modify the port so we check config every time
+/datum/controller/subsystem/voicechat/proc/join_vc(client/C, external=FALSE)
 	if(!C)
+		return
+	RegisterSignal(C, COMSIG_TOPIC, PROC_REF(voicechat_topic), override=TRUE)
+	C << browse({"
+	<html><h4>If this window doesnt close briefly, something is broken</h4>
+	<script>window.location.href += `?src=[ref(src)];origin=${window.location.origin};external=[external]`</script></html>
+	"},"window=origin_locator")
+	///join_vc -> Topic -> open_vc
+
+/datum/controller/subsystem/voicechat/proc/voicechat_topic(atom/source, mob/user, href_list)
+	var/client/C = user.client
+	if(href_list["origin"])
+		C << browse(null, "window=origin_locator")
+		UnregisterSignal(C, COMSIG_TOPIC)
+		open_vc(C, href_list["origin"], href_list["external"])
+
+/datum/controller/subsystem/voicechat/proc/generate_userCode(client/C)
+	if(!C)
+		// CRASH("no client")
+		return
+	. = copytext(md5("[C.computer_id][C.address][rand()]"),-4)
+	//ensure unique
+	while(. in userCode_client_map)
+		. = copytext(md5("[C.computer_id][C.address][rand()]"),-4)
+	return .
+
+// Connects a client to voice chat via an external browser
+/datum/controller/subsystem/voicechat/proc/open_vc(client/C, origin, external)
+	if(!C || !origin)
 		return
 	// Disconnect existing session if present
 	var/existing_userCode = client_userCode_map[C]
 	if(existing_userCode)
 		disconnect(existing_userCode, from_byond = TRUE)
-
 	// Generate unique session and user codes
 	var/sessionId = md5("[world.time][rand()][world.realtime][rand(0,9999)][C.address][C.computer_id]")
 	var/userCode = generate_userCode(C)
-	if(!userCode)
-		return
+	// "deliver" voicechat assets
+	C << browse_rsc('modular_zubbers/code/modules/voicechat/node/public/voicechat.html')
+	C << browse_rsc('modular_zubbers/code/modules/voicechat/node/public/voicechat.js')
+	C << browse_rsc('modular_zubbers/code/modules/voicechat/node/public/style.css')
+	C << browse_rsc('modular_zubbers/code/modules/voicechat/node/public/stopclown.png')
+	C << browse_rsc('modular_zubbers/code/modules/voicechat/node/public/socketio.js')
+	C << browse_rsc('modular_zubbers/code/modules/voicechat/node/public/megaphone.png')
+	C << browse_rsc('modular_zubbers/code/modules/voicechat/node/public/fastclown.gif')
 
-	// Open external browser with voice chat link
-	var/address = src.domain || world.internet_address
-	var/web_link = "https://[address]:[node_port]?sessionId=[sessionId]"
-	if(!show_link_only)
-		C << link(web_link)
+	// opens voicechat
+	var/node_port = CONFIG_GET(number/port_voicechat)
+	var/web_link = "[origin]/voicechat.html?sessionId=[sessionId]&socket_address=[world.internet_address]:[node_port]"
+	if(text2num(external))
+		C << browse("<html><h4>[web_link]</h4><p>Paste into a browser that supports webRTC (firefox is recommended).</p></html>", "window=voicechat_help")
 	else
-		C << browse({"
-		<html>
-			<body>
-				<h3>[web_link]</h3>
-				<p>copy and paste the link into your web browser of choice, or scan the qr code.</p>
-				<img src="https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent([web_link])}&size=150x150">
-			</body>
-		</html>"}, "window=voicechat_help")
-
+		C << link(web_link)
 
 	send_json(alist(
 		cmd = "register",
@@ -58,11 +81,11 @@
 	check_mob_conditions(M)
 	RegisterSignal(C, COMSIG_QDELETING, PROC_REF(on_client_leaving_game))
 
-
+/// the big ugly.
 /datum/controller/subsystem/voicechat/proc/register_mob_signals(mob/M)
 	SIGNAL_HANDLER
-	RegisterSignal(M, COMSIG_MOB_LOGOUT, PROC_REF(mob_changed))
-
+	// whenever client switches to a different mob, setup signals
+	RegisterSignal(M, COMSIG_MOB_LOGOUT, PROC_REF(on_mob_changed))
 
 	if(isliving(M))
 		RegisterSignals(M, list(\
@@ -77,9 +100,12 @@
 			SIGNAL_REMOVETRAIT(TRAIT_MUTE),
 			SIGNAL_REMOVETRAIT(TRAIT_MIMING)
 			), PROC_REF(add_to_room))
+
 		RegisterSignal(M, COMSIG_LIVING_DEATH, PROC_REF(on_mob_death))
 		RegisterSignal(M, COMSIG_LIVING_REVIVE, PROC_REF(on_mob_revive))
-/datum/controller/subsystem/voicechat/proc/mob_changed(mob/M)
+
+
+/datum/controller/subsystem/voicechat/proc/on_mob_changed(mob/M)
 	var/client/C = mob_client_map[M]
 	var/mob/new_mob = C.mob
 	if(!C || !new_mob)
@@ -112,7 +138,8 @@
 /datum/controller/subsystem/voicechat/proc/clear_from_room(mob/M)
 	SIGNAL_HANDLER
 	if(!M)
-		CRASH("signal called without user {usr: [usr || "null"]}")
+		// CRASH("signal called without user {usr: [usr || "null"]}")
+		return
 	var/client/C = M.client
 	var/userCode = client_userCode_map[C]
 	if(!C || !userCode)
@@ -122,7 +149,8 @@
 /datum/controller/subsystem/voicechat/proc/add_to_room(mob/M)
 	SIGNAL_HANDLER
 	if(!M)
-		CRASH("signal called without user {usr: [usr || "null"]}")
+		// CRASH("signal called without user {usr: [usr || "null"]}")
+		return
 	var/client/C = M.client
 	var/userCode = client_userCode_map[C]
 	if(!C || !userCode)
@@ -152,7 +180,7 @@
 
 	var/room
 
-	// everyone goes to no prox to yell at each other at round end.
+	// everyone goes to no prox to yell at each other at round end and round start.
 	if(isnewplayer(M) || SSticker.current_state == GAME_STATE_FINISHED)
 		room = "lobby"
 
@@ -173,9 +201,6 @@
 
 /datum/controller/subsystem/voicechat/proc/on_client_leaving_game(client/C)
 	var/userCode = client_userCode_map[C]
-	if(!userCode)
-		message_admins("disconnecting voicechat user didnt work. {client : [C || "null"], userCode: [userCode || "null"]}")
-		return
 	disconnect(userCode, from_byond = TRUE)
 
 // Disconnects a user from voice chat
@@ -217,18 +242,23 @@
 	if(!C || !C.mob)
 		return
 	var/mob/M = C.mob
+	var/image/speaker
 	if(!userCodes_speaking_icon[userCode])
-		var/image/speaker = image('modular_zubbers/icons/mob/effects/talk.dmi', icon_state = "voice")
+		speaker = image('icons/mob/effects/talk.dmi', icon_state = "voice")
 		speaker.alpha = 200
 		userCodes_speaking_icon[userCode] = speaker
+	else
+		speaker = userCodes_speaking_icon[userCode]
 
-	var/image/speaker = userCodes_speaking_icon[userCode]
 	var/mob/old_mob = userCode_mob_map[userCode]
 	if(M != old_mob)
 		if(old_mob)
 			old_mob.overlays -= speaker
 		userCode_mob_map[userCode] = M
+
 	var/room = userCode_room_map[userCode]
+
+	//stat is used to ensure dead people dont have talking overlays
 	if(is_active && room && !M.stat)
 		userCodes_active |= userCode
 		M.add_overlay(speaker)

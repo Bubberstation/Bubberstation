@@ -340,10 +340,6 @@ GLOBAL_VAR(restart_counter)
 				return FALSE
 
 /world/Reboot(reason = 0, fast_track = FALSE)
-	// BUBBER EDIT - ADDITION: VOICE CHAT - START
-	if(SSvoicechat && SSvoicechat.initialized)
-		SSvoicechat.Shutdown()
-	// BUBBER EDIT - ADDITION: VOICE CHAT - END
 	if (reason || fast_track) //special reboot, do none of the normal stuff
 		if (usr)
 			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
@@ -377,10 +373,6 @@ GLOBAL_VAR(restart_counter)
 	#endif
 
 /world/Del()
-	// BUBBER EDIT - ADDITION: VOICE CHAT - START
-	if(SSvoicechat && SSvoicechat.initialized)
-		SSvoicechat.Shutdown()
-	// BUBBER EDIT - ADDITION: VOICE CHAT - END
 	QDEL_NULL(Tracy)
 	QDEL_NULL(Debugger)
 	. = ..()

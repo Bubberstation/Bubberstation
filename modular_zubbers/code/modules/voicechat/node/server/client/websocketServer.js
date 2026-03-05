@@ -1,36 +1,18 @@
-const express = require('express');
-const https = require('https');
-const fs = require('fs');
-const path = require('path');
+const http = require('http');
 const { Server } = require('socket.io');
 const { createConnectionHandler } = require('./websocketHandlers');
 
-const node_path = path.resolve(process.cwd(), 'voicechat/node');
-const cert_path = path.resolve(node_path, 'certs');
-
 function startWebSocketServer(byondPort, nodePort) {
-  const options = {
-    key: fs.readFileSync(path.resolve(cert_path, 'key.pem')),
-    cert: fs.readFileSync(path.resolve(cert_path, 'cert.pem')),
-  };
-  const app = express();
-  const server = https.createServer(options, app);
-  const io = new Server(server);
-  const public_path = path.resolve(node_path, 'public');
-  app.use(express.static(public_path));
-  app.get('/', (req, res) => {
-    res.sendFile(path.resolve(public_path, 'voicechat.html'));
+  const httpserver = http.createServer();
+  httpserver.listen(nodePort, '0.0.0.0');
+  const io = new Server(httpserver, {
+    cors: {
+      origin: true,
+    },
   });
-
   const handleConnection = createConnectionHandler(byondPort, io);
   io.on('connection', handleConnection);
-
-  const PORT = nodePort;
-  server.listen(PORT, () => {
-    console.log(`HTTPS server running on port ${PORT}`);
-  });
-
-  return { io, server };
+  return { io, httpserver };
 }
 
 function disconnectAllClients(io) {
@@ -46,5 +28,4 @@ function disconnectAllClients(io) {
     });
   }, 2000);
 }
-
 module.exports = { startWebSocketServer, disconnectAllClients };

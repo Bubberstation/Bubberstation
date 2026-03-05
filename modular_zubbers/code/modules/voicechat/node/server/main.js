@@ -12,14 +12,14 @@ const byondPort = argv['byond-port'];
 const nodePort = argv['node-port'];
 const byondPID = argv['byond-pid'];
 
-const nodePidPath = 'data/node.pid';
+const nodePidPath = 'node.pid';
 
 const shutdown_function = () => {
   fs.unlinkSync(nodePidPath);
   disconnectAllClients(io);
   turnServer.stop();
   io.close(() => {
-    wsServer.close(() => {
+    httpserver.close(() => {
       ByondServer.close(() => {
         console.log('shutdown_function called');
         setTimeout(() => {
@@ -60,7 +60,7 @@ function monitorParentProcess(shutdown_function) {
 monitorParentProcess(shutdown_function);
 
 // Start servers
-const { io, server: wsServer } = startWebSocketServer(byondPort, nodePort);
+const { io, httpserver } = startWebSocketServer(byondPort, nodePort);
 const ByondServer = startByondServer(byondPort, io, shutdown_function);
 const turnServer = startTurnServer();
 fs.writeFileSync(nodePidPath, process.pid.toString());

@@ -2,7 +2,7 @@
 /mob/verb/join_vc()
 	set name = "Join"
 	set category = "ProxChat"
-	if(!SSvoicechat || !SSvoicechat.initialized)
+	if(!SSvoicechat || !SSvoicechat.actually_initialized)
 		to_chat(src, span_ooc("voicechat disabled"))
 		return
 	SSvoicechat.join_vc(client)
@@ -10,12 +10,12 @@
 /mob/verb/join_with_url()
 	set name = "Join with URL"
 	set category = "ProxChat"
-	if(!SSvoicechat || !SSvoicechat.initialized)
+	if(!SSvoicechat || !SSvoicechat.actually_initialized)
 		to_chat(src, span_ooc("voicechat disabled"))
 		return
 
 	if(SSvoicechat)
-		SSvoicechat.join_vc(client, show_link_only=TRUE)
+		SSvoicechat.join_vc(client, external=TRUE)
 
 /mob/verb/help_voicechat()
 	set name = "Help"
@@ -27,10 +27,9 @@
 			Try <b>join</b> to load with default browser.
 			If the browser fails to open, try <b>"Join with URL"</b> instead.<br>
 			Once the external browser is loaded:<br>
-				1. Ignore the bad cert and <b>continue onto the site</b>.<br>
-				2. When prompted, allow mic perms,.<br>
-				3. Verify this is working, by looking for a voice indicator over your mob when speaking.<br>
-				4. Drag voicechat to its own window so its only the <b>active tab</b><br>
+				1. When prompted, allow mic perms,.<br>
+				2. Verify this is working, by looking for a voice indicator over your mob when speaking.<br>
+				3. Drag voicechat to its own window so its only the <b>active tab</b><br>
 			If you open a different tab it stops detecting microphone input.
 			So make sure voicechat is in its to its own browser window.
 		</p>
@@ -47,7 +46,7 @@
 		<p>
 			* Ensure browser extensions are off and the page is whitelisted.<br>
 			* VPNS occasionally break voicechat.<br>
-			* For best results, use firefox browser
+			* For best results, look up if your browser supports webRTC well.
 		</p>
 		<h4>Issues</h4>
 		<p>
@@ -55,21 +54,16 @@
 			the Join verbs</b>
 		</p>
 		<p>
-			If your are still having issues, its most likely with microphone setup or rtc connections, (roughly 10% connections
-			fail).
+			If your are still having issues, its most likely with microphone setup or rtc connections.
 			To verify the microphone is connected on the website, open the settings tabs and click test mic. If you can hear your
 			mic playback then its working fine.
 			To check if its an RTC connection issue, open your browser debugger console and check for connection failed errors.
 			If you confirmed its a connection failure, try messing with your firewall to open the correct ports (usually
 			3000).
-			You can also try connecting with your phone using the <b>QR code generated from Join with URL</b>
 		</p>
-		<h4>Further help/Bug reporting</h4>
-		<p>Try yelling at the staff or yelling at <b>a_forg</b> on discord.</p>
 		<h4>Source</h4>
 		<p>
 			A small demo is availible at <a href="https://github.com/forgman6/voice_chat_byond">github.com/forgman6/voice_chat_byond</a><br>
-			Contributions are always welcome. Currently this is a solo project.
 		</p>
 	</html>
 	"}, "window=voicechat_help")
@@ -102,10 +96,13 @@
 	to_chat(src, span_ooc("Disconnected"))
 
 ADMIN_VERB(restart_voicechat, R_ADMIN, "Restart Voicechat", "Disconnects voicechat clients and restarts voicechat", "ProxChat.Admin")
-	if(SSvoicechat)
+	if(!SSvoicechat)
+		return
+
+	var/confirm = alert(usr, "Restarting will disconnect everyone from voicechat.", "Restart Voicechat?", "yes", "no")
+
+	if(confirm == "yes")
 		SSvoicechat.restart()
-	else
-		to_chat(src, span_admin("voicechat subsystem not initialized, cant start"))
 
 ADMIN_VERB(stop_voicechat, R_ADMIN, "Stop Voicechat", "disconnects voicechat clients and stops voicechat", "ProxChat.Admin")
 	if(SSvoicechat)

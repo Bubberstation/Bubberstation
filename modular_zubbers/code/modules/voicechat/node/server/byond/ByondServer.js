@@ -5,8 +5,7 @@ const path = require('path');
 const { sendJSON } = require('./ByondCommunication');
 const { handleRequest } = require('./ByondHandlers');
 
-const PIPE_NAME =
-  process.platform === 'win32' ? '\\\\.\\pipe\\byond_node' : 'byond_node.sock';
+const PIPE_NAME = 'byond_node.sock';
 const PIPE_PATH = path.resolve(process.cwd(), PIPE_NAME);
 
 function cleanUpExistingSocket(PIPE_PATH) {
