@@ -16,20 +16,20 @@ I dont understand most ss13 build systems so you will have to run a few commands
 * or all at once: **run from project root**
 
     ```bash
-    sudo apt install g++-multilib npm -y && cd voicechat/pipes && make && cd ../node && npm install && cd ../..
+    sudo apt install g++-multilib npm -y && cd modular_zubbers/code/modules/voicechat/pipes && make && cd ../node && npm install && cd ../..
     ```
 
 1. ensure you have **g++-multilib** and **npm** installed
     * `sudo apt install g++-multilib npm`
 2. build **byondsocket.so** library
     * to talk to node from byond I use [unix sockets](https://en.wikipedia.org/wiki/Unix_domain_socket) and so we make a simple library to send stuff through an existing socket from byond.
-    * `cd voicechat/pipes && make`
+    * `cd modular_zubbers/code/modules/voicechat/pipes && make`
     * the only thing stopping me from making this crossplatform, is that I couldnt figure out how to make socket DLL for windows.
 3. install **node dependencies**
     * while this **could be done through TGS** I dont understand it, so I use something more idiot proof like **node** to handle signaling and hosting static webpage
     * `cd ../node && npm install`
 4. verify it worked
-    * to **test node**, run `node voicechat/node/server/main.js`
+    * to **test node**, run `node modular_zubbers/code/modules/voicechat/node/server/main.js`
     * if it worked it should run but with message about missing arguements
 
         ```txt
