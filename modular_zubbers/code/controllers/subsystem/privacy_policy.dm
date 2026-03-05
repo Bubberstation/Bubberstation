@@ -9,8 +9,6 @@ SUBSYSTEM_DEF(privacy)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/privacy/proc/load_initial_acceptances()
-	set waitfor = FALSE
-
 	if(!SSdbcore.IsConnected())
 		return
 
