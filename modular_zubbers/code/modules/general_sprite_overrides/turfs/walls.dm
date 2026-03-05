@@ -54,7 +54,7 @@
 
 /turf/closed/wall/mineral/sandstone
 	icon = 'modular_zubbers/icons/turf/walls/sandstone_wall.dmi'
-	canSmoothWith = SMOOTH_GROUP_SANDSTONE_WALLS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_SANDSTONE_WALLS + SMOOTH_GROUP_WALLS
 
 /turf/closed/wall/mineral/snow
 	icon = 'modular_zubbers/icons/turf/walls/snow_wall.dmi'
@@ -121,7 +121,7 @@
 
 /turf/closed/wall/r_wall/plastitanium/syndicate
 	icon = 'modular_zubbers/icons/turf/walls/plastitanium_wall.dmi'
-	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_SYNDICATE_WALLS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_WALLS
+	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_SYNDICATE_WALLS
 
 /turf/closed/wall/r_wall/plastitanium/syndicate/cruiser
 	icon = 'modular_zubbers/icons/turf/walls/plastitanium_wall.dmi'
@@ -177,7 +177,7 @@
 /turf/closed/indestructible/sandstone
 	icon = 'modular_zubbers/icons/turf/walls/sandstone_wall.dmi'
 	smoothing_groups = SMOOTH_GROUP_SANDSTONE_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
-	canSmoothWith = SMOOTH_GROUP_SANDSTONE_WALLS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_SANDSTONE_WALLS + SMOOTH_GROUP_WALLS
 
 /turf/closed/indestructible/iron
 	icon = 'modular_zubbers/icons/turf/walls/iron_wall.dmi'
@@ -209,15 +209,18 @@
 
 /turf/closed/indestructible/syndicate
 	icon = 'modular_zubbers/icons/turf/walls/plastitanium_wall.dmi'
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_WALLS
 
 /turf/closed/indestructible/titanium
 	icon = 'modular_zubbers/icons/turf/walls/shuttle_wall.dmi'
+	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_TITANIUM_WALLS + SMOOTH_GROUP_WALLS
 
 /turf/closed/indestructible/titanium/nodiagonal
 	icon = 'modular_zubbers/icons/turf/walls/shuttle_wall.dmi'
 
 /turf/closed/indestructible/reinforced/titanium
 	icon = 'modular_zubbers/icons/turf/walls/shuttle_wall.dmi'
+	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_TITANIUM_WALLS + SMOOTH_GROUP_WALLS
 
 
 // ROCK WALLS
@@ -335,7 +338,7 @@
 /obj/structure/falsewall/sandstone
 	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
 	fake_icon = 'modular_zubbers/icons/turf/walls/sandstone_wall.dmi'
-	canSmoothWith = SMOOTH_GROUP_SANDSTONE_WALLS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_SANDSTONE_WALLS + SMOOTH_GROUP_WALLS
 
 /obj/structure/falsewall/titanium
 	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
