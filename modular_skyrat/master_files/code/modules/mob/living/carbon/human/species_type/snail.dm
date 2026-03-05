@@ -18,79 +18,80 @@
 	slowdown = 6 // The snail's shell is what's making them slow.
 	obj_flags = IMMUTABLE_SLOW //This should hopefully solve other issues involing it as well.
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER //This makes them layer over tails like the cult backpack; some tails really shouldn't appear over them!
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Conical Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "coneshell",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "coneshell"
-		),
-		"Round Shell" = list(
-			RESKIN_ICON = 'icons/obj/storage/backpack.dmi',
-			RESKIN_ICON_STATE = "snailshell",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/back/backpack.dmi',
-			RESKIN_WORN_ICON_STATE = "snailshell"
-		),
-		"Cinnamon Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "cinnamonshell",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "cinnamonshell"
-		),
-		"Caramel Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "caramelshell",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "caramelshell"
-		),
-		"Metal Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "mechashell",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "mechashell"
-		),
-		"Pyramid Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "pyramidshell",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "pyramidshell"
-		),
-		"Ivory Pyramid Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "pyramidshellwhite",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "pyramidshellwhite"
-		),
-		"Spiral Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "spiralshell",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "spiralshell"
-		),
-		"Ivory Spiral Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "spiralshellwhite",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "spiralshellwhite"
-		),
-		"Rocky Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "rockshell",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "rockshell"
-		),
-		"Ivory Rocky Shell" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi',
-			RESKIN_ICON_STATE = "rockshellwhite",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi',
-			RESKIN_WORN_ICON_STATE = "rockshellwhite"
-		),
-	)
 
 /obj/item/storage/backpack/snail/Initialize(mapload)
 	. = ..()
 	atom_storage.max_total_storage = 30
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/snail_shell)
+
+/datum/atom_skin/snail_shell
+	abstract_type = /datum/atom_skin/snail_shell
+
+/datum/atom_skin/snail_shell/conical
+	preview_name = "Conical Shell"
+	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
+	new_icon_state = "coneshell"
+	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi'
+
+/datum/atom_skin/snail_shell/round
+	preview_name = "Round Shell"
+	new_icon = 'icons/obj/storage/backpack.dmi'
+	new_icon_state = "snailshell"
+	new_worn_icon = 'icons/mob/clothing/back/backpack.dmi'
+
+/datum/atom_skin/snail_shell/cinnamon
+	preview_name = "Cinnamon Shell"
+	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
+	new_icon_state = "cinnamonshell"
+	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi'
+
+/datum/atom_skin/snail_shell/caramel
+	preview_name = "Caramel Shell"
+	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
+	new_icon_state = "caramelshell"
+	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi'
+
+/datum/atom_skin/snail_shell/metal
+	preview_name = "Metal Shell"
+	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
+	new_icon_state = "mechashell"
+	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi'
+
+/datum/atom_skin/snail_shell/pyramid
+	preview_name = "Pyramid Shell"
+	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
+	new_icon_state = "pyramidshell"
+	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi'
+
+/datum/atom_skin/snail_shell/pyramid_ivory
+	preview_name = "Ivory Pyramid Shell"
+	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
+	new_icon_state = "pyramidshellwhite"
+	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi'
+
+/datum/atom_skin/snail_shell/spiral
+	preview_name = "Spiral Shell"
+	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
+	new_icon_state = "spiralshell"
+	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi'
+
+/datum/atom_skin/snail_shell/spiral_ivory
+	preview_name = "Ivory Spiral Shell"
+	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
+	new_icon_state = "spiralshellwhite"
+	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi'
+
+/datum/atom_skin/snail_shell/rocky
+	preview_name = "Rocky Shell"
+	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
+	new_icon_state = "rockshell"
+	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi'
+
+/datum/atom_skin/snail_shell/rocky_ivory
+	preview_name = "Ivory Rocky Shell"
+	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
+	new_icon_state = "rockshellwhite"
+	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi'
 
 /obj/item/storage/backpack/snail/attackby(obj/item/core, mob/user)
 	if(!istype(core, /obj/item/assembly/signaler/anomaly/bluespace))

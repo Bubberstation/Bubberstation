@@ -36,7 +36,7 @@
 
 /datum/nanite_program/sensor/repeat/on_trigger(comm_message)
 	var/datum/nanite_extra_setting/ES = extra_settings[NES_DELAY]
-	addtimer(CALLBACK(src, .proc/send_code), ES.get_value() * 10)
+	addtimer(CALLBACK(src, PROC_REF(send_code)), ES.get_value() * 10)
 
 /datum/nanite_program/sensor/relay_repeat
 	name = "Relay Signal Repeater"
@@ -53,7 +53,7 @@
 
 /datum/nanite_program/sensor/relay_repeat/on_trigger(comm_message)
 	var/datum/nanite_extra_setting/ES = extra_settings[NES_DELAY]
-	addtimer(CALLBACK(src, .proc/send_code), ES.get_value() * 10)
+	addtimer(CALLBACK(src, PROC_REF(send_code)), ES.get_value() * 10)
 
 /datum/nanite_program/sensor/relay_repeat/send_code()
 	var/datum/nanite_extra_setting/relay = extra_settings[NES_RELAY_CHANNEL]
@@ -197,13 +197,13 @@
 	var/damage_amt = 0
 	switch(type.get_value())
 		if(BRUTE)
-			damage_amt = host_mob.getBruteLoss()
+			damage_amt = host_mob.get_brute_loss()
 		if(BURN)
-			damage_amt = host_mob.getFireLoss()
+			damage_amt = host_mob.get_fire_loss()
 		if(TOX)
-			damage_amt = host_mob.getToxLoss()
+			damage_amt = host_mob.get_tox_loss()
 		if(OXY)
-			damage_amt = host_mob.getOxyLoss()
+			damage_amt = host_mob.get_oxy_loss()
 
 	if(check_above)
 		if(damage_amt >= damage.get_value())
@@ -242,7 +242,7 @@
 
 /datum/nanite_program/sensor/voice/on_mob_add()
 	. = ..()
-	RegisterSignal(host_mob, COMSIG_MOVABLE_HEAR, .proc/on_hear)
+	RegisterSignal(host_mob, COMSIG_MOVABLE_HEAR, PROC_REF(on_hear))
 
 /datum/nanite_program/sensor/voice/on_mob_remove()
 	UnregisterSignal(host_mob, COMSIG_MOVABLE_HEAR)

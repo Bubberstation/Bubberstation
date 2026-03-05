@@ -101,6 +101,13 @@
 /obj/structure/cable/layer1,
 /turf/open/floor/iron/dark/textured,
 /area/ruin/syndielab)
+"cP" = (
+/obj/effect/mapping_helpers/bombable_wall,
+/turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal{
+	desc = "An ominous looking wall. It has extra insulation to keep the heat in.";
+	name = "plastitanium wall"
+	},
+/area/ruin/syndielab)
 "dD" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/condiment/bbqsauce{
@@ -181,13 +188,6 @@
 	pixel_x = -5
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/syndielab)
-"jL" = (
-/obj/machinery/light/warm/directional/north,
-/obj/effect/decal/cleanable/blood/splatter/oil,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
-/obj/structure/cable/layer1,
-/turf/open/floor/iron/dark/textured,
 /area/ruin/syndielab)
 "lW" = (
 /obj/structure/filingcabinet,
@@ -321,6 +321,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/syndielab)
+"tb" = (
+/obj/machinery/light/warm/directional/north,
+/obj/effect/decal/cleanable/blood/splatter/oil,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
+/obj/structure/cable/layer1,
+/turf/open/floor/iron/dark/textured,
+/area/ruin/syndielab)
 "tC" = (
 /obj/structure/cable/layer1,
 /turf/open/floor/iron/dark/textured,
@@ -373,7 +380,7 @@
 	},
 /obj/structure/fans/tiny,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -450,8 +457,7 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndielab)
-"AT" = (
-/obj/effect/mapping_helpers/bombable_wall,
+"AR" = (
 /turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal{
 	desc = "An ominous looking wall. It has extra insulation to keep the heat in.";
 	name = "plastitanium wall"
@@ -592,12 +598,6 @@
 /obj/structure/rack,
 /obj/item/storage/toolbox/syndicate,
 /turf/open/floor/iron/dark/textured,
-/area/ruin/syndielab)
-"Ig" = (
-/turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal{
-	desc = "An ominous looking wall. It has extra insulation to keep the heat in.";
-	name = "plastitanium wall"
-	},
 /area/ruin/syndielab)
 "IQ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
@@ -766,7 +766,7 @@
 /obj/structure/fans/tiny,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -918,10 +918,10 @@ MW
 MW
 MW
 Xt
-Ig
-Ig
+AR
+AR
 vO
-Ig
+AR
 Xt
 Xt
 Xt
@@ -936,13 +936,13 @@ MW
 Xt
 Xt
 Xt
-Ig
+AR
 cg
 xg
-Ig
-Ig
-AT
-Ig
+AR
+AR
+cP
+AR
 Xt
 Xt
 Xt
@@ -950,65 +950,65 @@ MW
 "}
 (4,1,1) = {"
 MW
-Ig
-Ig
-Ig
-Ig
-Ig
-Ig
+AR
+AR
+AR
+AR
+AR
+AR
 UF
-Ig
+AR
 na
 mi
-Ig
-Ig
-Ig
+AR
+AR
+AR
 Xt
 Xt
 "}
 (5,1,1) = {"
 Xt
-Ig
+AR
 aa
 Wn
 bC
 EY
 el
 el
-Ig
+AR
 iQ
 iy
 vE
 Xe
-Ig
-Ig
+AR
+AR
 Xt
 "}
 (6,1,1) = {"
 Xt
-Ig
+AR
 Ts
 sj
 FJ
-Ig
+AR
 qy
 el
-Ig
+AR
 AD
 ry
 ey
 VO
 Tl
-Ig
+AR
 Xt
 "}
 (7,1,1) = {"
 Xt
-Ig
+AR
 bn
 Vf
 xa
-Ig
+AR
 Ze
 Gi
 cu
@@ -1017,30 +1017,30 @@ ey
 wl
 sa
 Hq
-Ig
+AR
 Xt
 "}
 (8,1,1) = {"
 Xt
-Ig
-Ig
-Ig
+AR
+AR
+AR
 EY
-Ig
+AR
 qC
 qC
-Ig
-jL
+AR
+tb
 HS
 ey
 sp
 UM
-Ig
+AR
 Xt
 "}
 (9,1,1) = {"
 Xt
-Ig
+AR
 pK
 KV
 el
@@ -1052,13 +1052,13 @@ el
 Sq
 cM
 Hs
-Ig
-Ig
+AR
+AR
 Xt
 "}
 (10,1,1) = {"
 Xt
-Ig
+AR
 JF
 sj
 el
@@ -1070,31 +1070,31 @@ el
 oY
 Fz
 Zx
-Ig
+AR
 Xt
 Xt
 "}
 (11,1,1) = {"
 Xt
-Ig
+AR
 Jc
 ey
 FJ
-Ig
+AR
 qC
 qC
-Ig
+AR
 GV
-Ig
+AR
 qC
 qC
-Ig
+AR
 Xt
 MW
 "}
 (12,1,1) = {"
 Xt
-Ig
+AR
 HH
 GL
 hl
@@ -1106,68 +1106,68 @@ Te
 hu
 TB
 lW
-Ig
+AR
 Xt
 MW
 "}
 (13,1,1) = {"
 Xt
-Ig
+AR
 QO
 hn
 el
 Xm
 rO
 aP
-Ig
+AR
 Lt
 AX
 yW
 YH
-Ig
+AR
 Xt
 MW
 "}
 (14,1,1) = {"
 Xt
-Ig
-Ig
-Ig
+AR
+AR
+AR
 EY
 qC
 qC
 qC
-Ig
+AR
 ZW
 uT
 yW
 Vu
-Ig
+AR
 Xt
 MW
 "}
 (15,1,1) = {"
 Xt
 Xt
-Ig
+AR
 gE
 el
 wj
 dD
 Co
-Ig
+AR
 cd
 Wo
 yW
 Dd
-Ig
+AR
 Xt
 MW
 "}
 (16,1,1) = {"
 MW
 Xt
-Ig
+AR
 sV
 NM
 tC
@@ -1178,25 +1178,25 @@ WO
 vr
 CS
 wJ
-Ig
+AR
 Xt
 MW
 "}
 (17,1,1) = {"
 MW
 Xt
-Ig
-Ig
-Ig
+AR
+AR
+AR
 nD
 wh
 De
-Ig
-Ig
-Ig
-Ig
-Ig
-Ig
+AR
+AR
+AR
+AR
+AR
+AR
 MW
 MW
 "}
@@ -1205,11 +1205,11 @@ MW
 MW
 Xt
 Xt
-Ig
-Ig
-Ig
-Ig
-Ig
+AR
+AR
+AR
+AR
+AR
 Xt
 Xt
 Xt

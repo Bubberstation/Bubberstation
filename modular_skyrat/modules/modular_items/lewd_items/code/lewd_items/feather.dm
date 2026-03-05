@@ -77,7 +77,7 @@
 	if(prob(70))
 		target.try_lewd_autoemote(pick("laugh", "giggle", "twitch", "twitch_s", "moan", ))
 	target.do_jitter_animation()
-	target.adjustStaminaLoss(4)
+	target.adjust_stamina_loss(4)
 	target.add_mood_event("tickled", /datum/mood_event/tickled)
 	carbon_target?.adjust_arousal(3)
 	user.visible_message(span_purple("[user] [message]!"))

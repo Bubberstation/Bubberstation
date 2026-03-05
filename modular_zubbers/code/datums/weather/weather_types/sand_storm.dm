@@ -187,8 +187,8 @@
 			victim_as_human.apply_damage(WEATHER_BASE_DAMAGE*(1/6)*0.5, BURN, BODY_ZONE_R_LEG)
 
 	else
-		victim.adjustBruteLoss(WEATHER_BASE_DAMAGE*0.5)
-		victim.adjustFireLoss(WEATHER_BASE_DAMAGE*0.5)
+		victim.adjust_brute_loss(WEATHER_BASE_DAMAGE*0.5)
+		victim.adjust_fire_loss(WEATHER_BASE_DAMAGE*0.5)
 
 #undef WEATHER_BASE_DAMAGE
 

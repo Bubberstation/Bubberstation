@@ -47,3 +47,20 @@
 	id = "robotic_blessed_trauma_surgery"
 	surgery = /datum/surgery/robot_trauma_surgery/blessed
 	research_icon_state = "surgery_head"
+
+//////////Medical Lathe Designs////////////
+
+/datum/design/surgical_processor
+	name = "Surgical Processor"
+	id = "surgical_processor"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+	/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5,
+	/datum/material/glass =SHEET_MATERIAL_AMOUNT*2,
+	/datum/material/silver =SHEET_MATERIAL_AMOUNT*2,
+	)
+	build_path = /obj/item/surgical_processor
+	category = list(
+	RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ALIEN
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL

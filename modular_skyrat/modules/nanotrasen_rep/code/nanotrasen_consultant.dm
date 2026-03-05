@@ -2,7 +2,6 @@
 	title = JOB_NT_REP
 	rpg_title = "Guild Adviser"
 	description = "Represent Nanotrasen on the station, argue with the HoS about why he can't just field execute people for petty theft, get drunk in your office."
-	department_head = list(JOB_CENTCOM)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -37,7 +36,7 @@
 		/obj/item/reagent_containers/cup/glass/bottle/champagne = 10
 	)
 
-	job_flags = STATION_JOB_FLAGS | JOB_BOLD_SELECT_TEXT | JOB_CANNOT_OPEN_SLOTS
+	job_flags = STATION_JOB_FLAGS | JOB_BOLD_SELECT_TEXT | HEAD_OF_STAFF_JOB_FLAGS
 
 /datum/outfit/job/nanotrasen_consultant
 	name = "Nanotrasen Consultant"

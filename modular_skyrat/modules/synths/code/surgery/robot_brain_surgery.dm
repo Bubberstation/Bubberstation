@@ -55,7 +55,7 @@
 	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/brainwashed))
 		target.mind.remove_antag_datum(/datum/antagonist/brainwashed)
 
-	target.setOrganLoss(ORGAN_SLOT_BRAIN, target.get_organ_loss(ORGAN_SLOT_BRAIN) - 60)	//we set damage in this case in order to clear the "failing" flag
+	target.set_organ_loss(ORGAN_SLOT_BRAIN, target.get_organ_loss(ORGAN_SLOT_BRAIN) - 60)	//we set damage in this case in order to clear the "failing" flag
 	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY) //Lobotomy tier fix cause you can't clone this!
 	target.apply_status_effect(/datum/status_effect/vulnerable_to_damage/surgery)
@@ -75,7 +75,7 @@
 			"[user] completes the surgery on [target]'s posibrain.",
 		)
 
-		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 60)
+		target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 60)
 		target.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
 	else
 		user.visible_message(span_warning("[user] suddenly notices that the posibrain [user.p_they()] [user.p_were()] working on is not there anymore."), span_warning("You suddenly notice that the posibrain you were working on is not there anymore."))
@@ -113,7 +113,7 @@
 		"[user] completes the surgery on [target]'s posibrain.",
 	)
 
-	target.setOrganLoss(ORGAN_SLOT_BRAIN, target.get_organ_loss(ORGAN_SLOT_BRAIN) - 60)	//we set damage in this case in order to clear the "failing" flag
+	target.set_organ_loss(ORGAN_SLOT_BRAIN, target.get_organ_loss(ORGAN_SLOT_BRAIN) - 60)	//we set damage in this case in order to clear the "failing" flag
 	target.cure_all_traumas(TRAUMA_RESILIENCE_SURGERY)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
 	target.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)

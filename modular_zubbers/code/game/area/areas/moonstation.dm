@@ -11,7 +11,7 @@
 	icon_state = "engine_hallway"
 
 
-//Additiional Station Areas
+//Additional Station Areas
 
 /area/station/common/cryopods/aux
 	name = "\improper Aux. Cryopods Room"
@@ -57,7 +57,7 @@
 /area/station/terminal
 	name = "\improper Arrivals Terminal"
 	icon_state = "station"
-	area_flags = UNIQUE_AREA | EVENT_PROTECTED
+	area_flags = EVENT_PROTECTED
 
 /area/station/terminal/cryo
 	name = "\improper Arrivals Terminal Cryo"
@@ -98,7 +98,8 @@
 	icon_state = "mining"
 	default_gravity = STANDARD_GRAVITY
 	flags_1 = NONE
-	area_flags = UNIQUE_AREA | FLORA_ALLOWED
+	area_flags = NONE
+	area_flags_mapping = UNIQUE_AREA | FLORA_ALLOWED
 	ambience_index = AMBIENCE_ICEMOON
 	sound_environment = SOUND_AREA_ICEMOON
 	ambient_buzz = 'sound/ambience/lavaland/magma.ogg'
@@ -113,7 +114,7 @@
 	power_equip = FALSE
 	power_light = FALSE
 	requires_power = TRUE
-	area_flags = UNIQUE_AREA | FLORA_ALLOWED
+	area_flags_mapping = UNIQUE_AREA | FLORA_ALLOWED
 	min_ambience_cooldown = 70 SECONDS
 	max_ambience_cooldown = 220 SECONDS
 
@@ -137,7 +138,8 @@
 
 /area/moonstation/surface/unexplored //monsters and ruins spawn here
 	icon_state = "unexplored"
-	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
+	area_flags = VALID_TERRITORY
+	area_flags_mapping = UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
 	map_generator = /datum/map_generator/cave_generator/moonstation
 
 /area/moonstation/underground
@@ -148,22 +150,24 @@
 	power_environ = FALSE
 	power_equip = FALSE
 	power_light = FALSE
-	area_flags = UNIQUE_AREA | FLORA_ALLOWED
+	area_flags = NONE
+	area_flags_mapping = UNIQUE_AREA | FLORA_ALLOWED
 	min_ambience_cooldown = 70 SECONDS
 	max_ambience_cooldown = 220 SECONDS
 
 /area/moonstation/underground/unexplored
 	icon_state = "unexplored"
-	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
+	area_flags = VALID_TERRITORY
+	area_flags_mapping = UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
 	map_generator = /datum/map_generator/cave_generator/moonstation/cave
 
 /area/station/cargo/miningelevators
 	name = "\improper Mining Elevators"
 	icon_state = "unknown"
-	area_flags = UNIQUE_AREA | EVENT_PROTECTED
+	area_flags = EVENT_PROTECTED
 
 /area/station/cargo/miningfoundry/event_protected
-	area_flags = UNIQUE_AREA | EVENT_PROTECTED
+	area_flags = EVENT_PROTECTED
 
 /area/station/maintenance/department/medical/psychology
 	name = "\improper Psychology Maintenance"
@@ -217,7 +221,7 @@
 /area/loopstation/solars
 	icon_state = "panels"
 	requires_power = FALSE
-	area_flags = UNIQUE_AREA | NO_GRAVITY | EVENT_PROTECTED
+	area_flags = NO_GRAVITY | EVENT_PROTECTED
 	flags_1 = NONE
 	ambience_index = AMBIENCE_ENGI
 	airlock_wires = /datum/wires/airlock/engineering

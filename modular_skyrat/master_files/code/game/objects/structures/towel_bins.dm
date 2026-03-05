@@ -6,6 +6,7 @@
 	anchored = TRUE
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
 	/// How many towels there is in the bin (separate from the towels list because we won't instanciate 10 towels per bin in existance).
 	var/amount = 10
 	/// The list of already-instanciated towels, for when people put them back in it.

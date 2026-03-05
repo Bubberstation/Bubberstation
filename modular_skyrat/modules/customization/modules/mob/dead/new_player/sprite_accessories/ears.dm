@@ -5,24 +5,7 @@
 	color_src = USE_MATRIXED_COLORS
 
 /datum/sprite_accessory/ears/is_hidden(mob/living/carbon/human/wearer)
-	if(!wearer.head)
-		return FALSE
-
-	// Can hide if wearing hat
-	if(key in wearer.try_hide_mutant_parts)
-		return TRUE
-
-	// Exception for MODs
-	if(istype(wearer.head, /obj/item/clothing/head/mod))
-		return FALSE
-
-	// Hide accessory if flagged to do so
-	if(((wearer.covered_slots & HIDEHAIR) || (wearer.covered_slots & HIDEEARS)) \
-		// This line basically checks if we FORCE accessory-ears to show, for items with earholes like Balaclavas and Luchador masks
-		&& ((wearer.head && !(wearer.head.flags_inv & SHOWSPRITEEARS)) || (wearer.wear_mask && !(wearer.wear_mask?.flags_inv & SHOWSPRITEEARS))))
-		return TRUE
-
-	return FALSE
+	return is_deely_bobber_hidden(wearer, (HIDEHAIR | HIDEEARS), SHOWSPRITEEARS)
 
 /datum/sprite_accessory/ears/none
 	name = SPRITE_ACCESSORY_NONE
@@ -299,6 +282,10 @@
 	name = "Teshari Regular"
 	icon_state = "teshari_regular"
 
+/datum/sprite_accessory/ears/mutant/teshari/regularalt
+	name = "Teshari Regular Alt"
+	icon_state = "teshari_feathers_regalt"
+
 /datum/sprite_accessory/ears/mutant/teshari/feathers_bushy
 	name = "Teshari Feathers Bushy"
 	icon_state = "teshari_feathers_bushy"
@@ -351,11 +338,6 @@
 /datum/sprite_accessory/ears/mutant/teshari/feathers_backstrafe
 	name = "Teshari Feathers Backstrafe"
 	icon_state = "teshari_feathers_backstrafe"
-	color_src = USE_ONE_COLOR
-
-/datum/sprite_accessory/ears/mutant/teshari/feathers_thinmohawk
-	name = "Teshari Feathers Thin Mohawk"
-	icon_state = "teshari_feathers_thinmohawk"
 	color_src = USE_ONE_COLOR
 
 /datum/sprite_accessory/ears/mutant/teshari/feathers_thin

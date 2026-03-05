@@ -1077,6 +1077,9 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 			else if ((mutant_styles & STYLE_TAUR_HOOF) && worn_icon_taur_hoof)
 				override_file = worn_icon_taur_hoof
 				using_taur_variant = TRUE
+			else if ((mutant_styles & STYLE_TAUR_BIG) && worn_icon_taur_big)
+				override_file = worn_icon_taur_big
+				using_taur_variant = TRUE
 	// SKYRAT EDIT END
 	//Find a valid icon_state from variables+arguments
 	var/t_state = override_state || (isinhands ? inhand_icon_state : worn_icon_state) || icon_state
@@ -1120,12 +1123,14 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	if (mutant_styles & STYLE_TAUR_ALL)
 		if (!using_taur_variant)
 			var/cropping_state = DEFAULT_TAUR_CLIPPING_MASK
+			var/taur_cache_key = "[t_state]-[file2use]-[female_uniform]-[is_digi]-[type]-[greyscale_colors]-[cropping_state]"
 			if (ishuman(loc))
 				var/mob/living/carbon/human/humie = loc
 				var/obj/item/organ/taur_body/taur = humie.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
 				cropping_state = (taur ? taur.clothing_cropping_state : DEFAULT_TAUR_CLIPPING_MASK)
+				taur_cache_key = "[t_state]-[file2use]-[female_uniform]-[is_digi]-[type]-[greyscale_colors]-[cropping_state]"
 
-			draw_target = wear_taur_version(draw_target.icon_state, draw_target.icon, layer2use, female_uniform, greyscale_colors, cropping_state)
+			draw_target = wear_taur_version(draw_target.icon_state, draw_target.icon, layer2use, female_uniform, greyscale_colors, cropping_state, taur_cache_key)
 		else
 			draw_target.pixel_w -= 16 // it doesnt look right otherwise
 	// SKYRAT EDIT ADDITION END
@@ -1198,7 +1203,7 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 
 /mob/living/carbon/human/proc/update_underwear() // OVERRIDDEN IN MODULAR_ZUBBERS
 	remove_overlay(BODY_LAYER)
-	if(HAS_TRAIT(src, TRAIT_HUSK) || HAS_TRAIT(src, TRAIT_INVISIBLE_MAN))
+	if(HAS_TRAIT(src, TRAIT_HUSK) || HAS_TRAIT(src, TRAIT_INVISIBLE_MAN) || HAS_TRAIT(src, TRAIT_NO_UNDERWEAR))
 		return
 	// Underwear, Undershirts & Socks
 	var/list/standing = list()
