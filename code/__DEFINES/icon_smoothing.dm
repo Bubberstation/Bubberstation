@@ -247,10 +247,10 @@ DEFINE_BITFIELD(smoothing_junction, list(
 //SKYRAT EDIT END
 
 //BUBBER EDIT ADDITION
-#define SMOOTH_GROUP_SNOW_WALLS S_OBJ(90) ///turf/closed/wall/mineral/snow
-#define SMOOTH_GROUP_CLOCKWORK_WALLS S_OBJ(91) ///turf/closed/wall/mineral/bronze
-#define SMOOTH_GROUP_CULT_WALLS S_OBJ(92) ///turf/closed/wall/mineral/cult
-#define SMOOTH_GROUP_NECROPOLIS_WALLS S_OBJ(93) ///turf/closed/indestructible/necropolis
+#define SMOOTH_GROUP_SNOW_WALLS S_OBJ(92) ///turf/closed/wall/mineral/snow
+#define SMOOTH_GROUP_CLOCKWORK_WALLS S_OBJ(93) ///turf/closed/wall/mineral/bronze
+#define SMOOTH_GROUP_CULT_WALLS S_OBJ(94) ///turf/closed/wall/mineral/cult
+#define SMOOTH_GROUP_NECROPOLIS_WALLS S_OBJ(95) ///turf/closed/indestructible/necropolis
 //BUBBER EDIT END
 
 /// Performs the work to set smoothing_groups and canSmoothWith.
