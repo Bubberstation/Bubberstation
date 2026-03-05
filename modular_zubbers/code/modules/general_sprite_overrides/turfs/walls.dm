@@ -165,7 +165,7 @@
 
 /turf/closed/indestructible/riveted/plastinum
 	icon = 'modular_zubbers/icons/turf/walls/plastinum_wall.dmi'
-	canSmoothWith = SMOOTH_GROUP_PLASTINUM_WALLS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_PLASTINUM_WALLS
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_PLASTINUM_WALLS
 
 /turf/closed/indestructible/riveted/plastinum/nodiagonal
 	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/plastinum_wall.dmi', 'icons/turf/walls/misc_wall.dmi')
