@@ -1,6 +1,8 @@
 /obj/item/clothing/accessory/newbie_badge
 	name = "\improper Shoshinsha Badge"
-	desc = "A shiny enamel pin typically attached onto the uniform of new employees at the Bubber sector of Nanotrasen."
+	desc = "A shiny enamel pin typically attached onto the uniform of new employees at the Bubber sector of Nanotrasen.\
+		You can see on the backside, it reads: 'Welcome to Bubberstation! We hope you have fun with us.'\
+		Why would someone say that about a workplace?"
 	icon = 'modular_zubbers/icons/obj/clothing/accessories.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/accessories.dmi'
 	icon_state = "shoshinsha_badge"
@@ -42,6 +44,11 @@
 	if(!istype(spawned))
 		return
 
-	var/obj/item/clothing/under/underclothing = human_spawned.w_uniform
-	if(istype(underclothing) && player_client.get_exp_living(pure_numeric = TRUE) < CONFIG_GET(number/newbie_hours_threshold) * 60)
-		underclothing.attach_accessory(SSwardrobe.provide_type(/obj/item/clothing/accessory/newbie_badge, spawned))
+	if(player_client.get_exp_living(pure_numeric = TRUE) < CONFIG_GET(number/newbie_hours_threshold) * 60)
+		var/obj/item/clothing/under/underclothing = human_spawned.w_uniform
+		var/obj/item/clothing/accessory/newbie_badge/newbadge = new() //SSwardrobe.provide_type(/obj/item/clothing/accessory/newbie_badge, spawned)
+		if(istype(underclothing) && newbadge.can_attach_accessory(underclothing))
+			underclothing.attach_accessory(newbadge, spawned, FALSE)
+			human_spawned.newbie_hud_set_badge() //just in case the human's client is null at this point
+		else
+			spawned.put_in_hands(newbadge)
