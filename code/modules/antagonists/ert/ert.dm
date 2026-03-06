@@ -36,7 +36,7 @@
 		forge_objectives()
 	if(equip_ert)
 		equipERT()
-	owner?.current.faction |= FACTION_ERT // SKYRAT EDIT ADDITION
+	owner?.current.add_faction(FACTION_ERT) // SKYRAT EDIT ADDITION
 	. = ..()
 
 /datum/antagonist/ert/get_team()

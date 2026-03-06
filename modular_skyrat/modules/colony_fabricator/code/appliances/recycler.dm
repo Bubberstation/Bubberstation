@@ -12,7 +12,7 @@
 	/// The sound made when an item is eaten
 	var/item_recycle_sound = 'modular_skyrat/modules/reagent_forging/sound/forge.ogg'
 	/// The recycler's internal materials storage, for when items recycled don't produce enough to make a full sheet of that material
-	var/datum/component/material_container/materials
+	var/datum/material_container/materials
 	/// The list of all the materials we can recycle
 	var/static/list/allowed_materials = list(
 		/datum/material/iron,
@@ -34,8 +34,8 @@
 	. = ..()
 	AddElement(/datum/element/repackable, repacked_type, 5 SECONDS)
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
-	materials = AddComponent( \
-		/datum/component/material_container, \
+	materials = new ( \
+		src, \
 		allowed_materials, \
 		INFINITY, \
 		MATCONTAINER_EXAMINE, \

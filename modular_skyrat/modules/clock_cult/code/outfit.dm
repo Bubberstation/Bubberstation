@@ -14,7 +14,7 @@
 	)
 
 /datum/outfit/clock/pre_equip(mob/living/carbon/human/equip_human, visualsOnly)
-	equip_human.faction |= FACTION_CLOCK
+	equip_human.add_faction(FACTION_CLOCK)
 
 
 /datum/outfit/clock/armor

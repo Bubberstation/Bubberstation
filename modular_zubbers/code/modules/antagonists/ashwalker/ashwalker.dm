@@ -3,4 +3,4 @@
 
 /datum/species/lizard/ashwalker/on_species_gain(mob/living/carbon/carbon_target, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
-	carbon_target.faction |= FACTION_ASHWALKER
+	carbon_target.add_faction(FACTION_ASHWALKER)

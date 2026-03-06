@@ -61,7 +61,7 @@
 
 /datum/outfit/cin_soldier_player/post_equip(mob/living/carbon/human/user, visualsOnly)
 	. = ..()
-	user.faction |= ROLE_SYNDICATE
+	user.add_faction(ROLE_SYNDICATE)
 
 	// make sure we update the ID's name too
 	var/obj/item/card/id/id_card = user.wear_id

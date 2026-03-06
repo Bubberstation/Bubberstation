@@ -28,7 +28,7 @@
 
 /datum/outfit/science_team/post_equip(mob/living/carbon/human/equipped_human, visualsOnly)
 	. = ..()
-	equipped_human.faction |= FACTION_BLACKMESA
+	equipped_human.add_faction(FACTION_BLACKMESA)
 
 /datum/id_trim/science_team
 	assignment = "Science Team Scientist"
@@ -65,7 +65,7 @@
 
 /datum/outfit/security_guard/post_equip(mob/living/carbon/human/equipped_human, visualsOnly)
 	. = ..()
-	equipped_human.faction |= FACTION_BLACKMESA
+	equipped_human.add_faction(FACTION_BLACKMESA)
 
 /datum/id_trim/security_guard
 	assignment = "Security Guard"
@@ -170,7 +170,7 @@
 
 /datum/outfit/hecu/post_equip(mob/living/carbon/human/equipped_human, visualsOnly)
 	. = ..()
-	equipped_human.faction |= FACTION_HECU
+	equipped_human.add_faction(FACTION_HECU)
 
 /datum/id_trim/hecu
 	assignment = "HECU Marine"
@@ -222,7 +222,7 @@
 
 /datum/outfit/hecu/leader/post_equip(mob/living/carbon/human/equipped_human, visualsOnly)
 	. = ..()
-	equipped_human.faction |= FACTION_HECU
+	equipped_human.add_faction(FACTION_HECU)
 
 /datum/id_trim/hecu_leader
 	assignment = "HECU Captain"

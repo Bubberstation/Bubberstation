@@ -132,7 +132,7 @@
 
 	set_highest_scar(null)
 
-/datum/wound/burn/robotic/overheat/remove_wound(ignore_limb, replaced)
+/datum/wound/burn/robotic/overheat/remove_wound(ignore_limb, replaced, destroying)
 	if (!replaced && highest_scar)
 		already_scarred = TRUE
 		highest_scar.lazy_attach(limb)

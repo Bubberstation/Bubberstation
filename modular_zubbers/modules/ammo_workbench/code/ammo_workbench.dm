@@ -50,6 +50,7 @@
 	/// can this print any round of any caliber given a correct ammo_box? (you varedit this at your own risk, especially if used in a player-facing context.)
 	/// does not force ammo to load in. just makes it able to print wacky ammotypes e.g. lionhunter 7.62, techshells
 	var/adminbus = FALSE
+	var/datum/material_container/materials
 
 /obj/machinery/ammo_workbench/unlocked
 	allowed_harmful = TRUE
@@ -66,8 +67,9 @@
 	)
 
 /obj/machinery/ammo_workbench/Initialize(mapload)
-	AddComponent( \
-		/datum/component/material_container, \
+	var/datum/material_container/materials = new( \
+		src, \
+		/datum/material_container, \
 		SSmaterials.materials_by_category[MAT_CATEGORY_ITEM_MATERIAL], \
 		200000, \
 		MATCONTAINER_EXAMINE, \
@@ -78,7 +80,6 @@
 
 /obj/machinery/ammo_workbench/examine(mob/user)
 	. += ..()
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("The status display reads: Storing up to <b>[materials.max_amount]</b> material units.<br>Material consumption at <b>[creation_efficiency*100]%</b>.")
 
@@ -171,11 +172,10 @@
 	data["turboBoost"] = turbo_boost
 
 	data["materials"] = list()
-	var/datum/component/material_container/mat_container = GetComponent(/datum/component/material_container)
-	if (mat_container)
-		for(var/mat in mat_container.materials)
+	if (materials)
+		for(var/mat in materials.materials)
 			var/datum/material/M = mat
-			var/amount = mat_container.materials[M]
+			var/amount = materials.materials[M]
 			var/sheet_amount = amount / SHEET_MATERIAL_AMOUNT
 			var/ref = REF(M)
 			data["materials"] += list(list("name" = M.name, "id" = ref, "amount" = sheet_amount))
@@ -226,13 +226,11 @@
 
 		if("Release")
 
-			var/datum/component/material_container/mat_container = GetComponent(/datum/component/material_container)
-
-			if(!mat_container)
+			if(!materials)
 				return
 			var/datum/material/mat = locate(params["id"])
 
-			var/amount = mat_container.materials[mat]
+			var/amount = materials.materials[mat]
 			if(!amount)
 				return
 
@@ -247,7 +245,7 @@
 
 			var/sheets_to_remove = round(min(desired,50,stored_amount))
 
-			mat_container.retrieve_stack(sheets_to_remove, mat, loc)
+			materials.retrieve_stack(sheets_to_remove, mat, loc)
 			. = TRUE
 
 		if("ReadDisk")
@@ -343,8 +341,6 @@
 
 	if(!loaded_magazine)
 		return
-
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 
 	var/obj/item/ammo_casing/new_casing = new casing_type
 
@@ -457,7 +453,6 @@
 	for(var/datum/stock_part/matter_bin/new_matter_bin in component_parts)
 		mat_capacity += new_matter_bin.tier * (40 * SHEET_MATERIAL_AMOUNT)
 
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	materials.max_amount = mat_capacity
 	update_ammotypes()
 
