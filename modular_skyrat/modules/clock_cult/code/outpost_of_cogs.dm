@@ -27,7 +27,7 @@
 	SSmapping.lazy_load_template(LAZY_TEMPLATE_KEY_OUTPOST_OF_COGS)
 
 	for(var/mob/target as anything in GLOB.player_list)
-		if(!isnewplayer(target) && target.can_hear() && is_station_level(target.z))
+		if(!isnewplayer(target) && !HAS_TRAIT(target, TRAIT_DEAF) && is_station_level(target.z))
 			to_chat(target, span_brass("You hear a distant, faint clanking of cogs..."))
 
 	sleep(7 SECONDS)

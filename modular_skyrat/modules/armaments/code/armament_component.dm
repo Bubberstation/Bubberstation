@@ -240,7 +240,7 @@
 
 	//if they're strange and have a hacky ID card as an animal
 	else if(isanimal(user))
-		var/mob/living/simple_animal/animal = user
+		var/mob/living/basic/animal = user
 		if(check_access_obj(animal.access_card))
 			return TRUE
 

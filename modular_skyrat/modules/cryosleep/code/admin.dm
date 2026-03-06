@@ -3,9 +3,6 @@
 	//effect
 	playsound(loc, 'sound/effects/magic/Repulse.ogg', 100, 1)
 	var/datum/effect_system/basic/spark_spread/quantum/sparks = new
-	sparks.set_up(10, 1, loc)
-	sparks.attach(loc)
-	sparks.start()
 
 	//make a paper if need
 	if(with_paper)
