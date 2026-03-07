@@ -38,7 +38,7 @@ async function main() {
   const bot = new MWBot();
 
   await bot.loginGetEditToken({
-    apiUrl: "https://wiki.tgstation13.org/api.php",
+    apiUrl: 'https://wiki.bubberstation.org/api.php', // BUBBER EDIT - CHANGE - PREVIOUS: https://tgstation13.org/wiki/api.php
     username: USERNAME,
     password: PASSWORD,
   });
