@@ -57,3 +57,10 @@
 // Skyrat wet floor sign from code\modules\clothing\suits\wetfloor.dm
 /obj/item/clothing/suit/caution
 	worn_icon_digi = 'icons/mob/clothing/suits/utility.dmi' // Fixed, GMode purple placeholder appeared for digi dolls without it
+
+// Ablative trenchcoat
+/obj/item/clothing/suit/hooded/ablative
+	// digi sprites (ironically, from skyrat), purple missing coat otherwise
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor_digi.dmi'
+	// new teshari sprites
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
