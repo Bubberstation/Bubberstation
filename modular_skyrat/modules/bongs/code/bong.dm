@@ -128,11 +128,11 @@
 	name = "lit [name]"
 
 	if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
-		reagent_explode(datum/reagents/reagents)
+		reagent_explode(reagents)
 		qdel(src)
 		return
 	if(reagents.get_reagent_amount(/datum/reagent/fuel)) // the fuel explodes, too, but much less violently
-		reagent_explode(datum/reagents/reagents)
+		reagent_explode(reagents)
 		qdel(src)
 		return
 

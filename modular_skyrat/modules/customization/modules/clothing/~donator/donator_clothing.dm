@@ -152,8 +152,8 @@
 			return
 		switch(yesnomaybe)
 			if("Yes")
-				reset_grid()
-				SStgui.update_uis(src)
+/* 				reset_grid() Broken
+ */				SStgui.update_uis(src)
 			if("No")
 				return
 			if("Maybe")

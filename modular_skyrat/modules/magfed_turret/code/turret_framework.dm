@@ -350,8 +350,6 @@
 	var/datum/weakref/target_override
 	//////Target Assessment System. Whether or not it's targeting according to flags or even ignoring everyone.
 	var/target_assessment = TURRET_FLAG_SHOOT_EVERYONE
-	//////Ally system.
-	var/allies = list()
 	//////Do we want this to shut up? Mostly for testing and debugging purposes purposes.
 	var/claptrap_moment = TRUE
 	////// Do we want it to eject casings?
@@ -787,6 +785,7 @@
 
 /// Handles the firing process. Will need edited for special ammo types like 980.
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/proc/handle_firing(obj/item/ammo_casing/casing, atom/movable/target)
+	var/ignored_factions = list()
 	var/obj/projectile/our_projectile = casing.loaded_projectile
 	if(ignore_faction)
 		our_projectile.ignored_factions = (faction + allies)
