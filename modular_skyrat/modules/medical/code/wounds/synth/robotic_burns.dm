@@ -11,13 +11,12 @@
 
 /datum/wound/burn/robotic/overheat
 	treat_text = "Introduction of a cold environment or lowering of body temperature."
-
+	treat_text_short = "Cool the patient down with low temperature chemicals or put them under a shower."
 	simple_desc = "Metals are overheated, increasing damage taken significantly and raising body temperature!"
 	simple_treat_text = "Ideally <b>cryogenics</b>, but any source of <b>low body temperature</b> can work. <b>Spraying</b> with <b>spray bottles/extinguishers/showers</b> \
 	will quickly cool the limb, but <b>cause damage</b>. <b>Hercuri</b> is <b>especially effective</b> in quick cooling. \
 	<b>Clothing</b> reduces the water/hercuri that makes it to the metal, and <b>gauze</b> binds it and <b>reduces</b> the <b>damage</b> taken."
 	homemade_treat_text = "You can also splash <b>any liquid</b> on it for a rather <b>inefficient</b> and <b>damaging</b> coolant!"
-	treat_text_short = "Lower body temperature."
 
 	default_scar_file = METAL_SCAR_FILE
 
@@ -163,7 +162,7 @@
 /datum/wound/burn/robotic/get_limb_examine_description()
 	return span_warning("The metal on this limb is glowing radiantly.")
 
-/datum/wound/burn/robotic/overheat/handle_process(seconds_per_tick, times_fired)
+/datum/wound/burn/robotic/overheat/handle_process(seconds_per_tick)
 	if (isnull(victim))
 		var/turf/our_turf = get_turf(limb)
 		if (!isnull(our_turf))
@@ -214,15 +213,15 @@
  * Equalizes temp to the reagent temp, but also causes thermal shock. Basically, does damage based on the temp differential.
  * Clothes reduce the effects massively. Hercuri reduces the thermal shock and gets a special temp buff.
  */
-/datum/wound/burn/robotic/overheat/proc/victim_exposed_to_reagents(datum/signal_source, list/reagents, datum/reagents/source, methods, show_message)
+/datum/wound/burn/robotic/overheat/proc/victim_exposed_to_reagents(datum/signal_source, list/reagents, datum/reagents/source, methods, volume_modifier, show_message)
 	SIGNAL_HANDLER
 
 	var/reagent_coeff = base_reagent_temp_coefficient
-	if (!get_location_accessible(victim, limb.body_zone))
+	if(!victim.is_location_accessible(limb.body_zone))
 		if (ishuman(victim))
-			// hi! its niko! small rant
+			// hi! it's niko! small rant
 			// this proc has no goddamn reason to be on human, it could so easily just have used a proc on carbon that would get the required bodyparts to check
-			// but no. it had to hardcode the list in the proc itself so its impossible to modularly fix this
+			// but no. it had to hardcode the list in the proc itself so it's impossible to modularly fix this
 			// so instead we just say fuck it and hope to god only human subtypes get this wound
 			// tldr; ryll why
 			var/mob/living/carbon/human/human_victim = victim
@@ -237,7 +236,7 @@
 		return
 
 	if (istype(source.my_atom, /obj/machinery/shower))
-		expose_temperature(source.chem_temp, (15 * reagent_coeff), TRUE)
+		expose_temperature(source.chem_temp, (15 * volume_modifier * reagent_coeff), TRUE)
 		return
 
 	var/total_reagent_amount = 0
@@ -252,7 +251,7 @@
 
 	var/local_chem_temp = max(source.chem_temp - chem_temp_increment, 0)
 
-	expose_temperature(local_chem_temp, (reagent_coeff * total_reagent_amount), TRUE, heat_shock_damage_mult = thermal_shock_mult)
+	expose_temperature(local_chem_temp, (reagent_coeff * volume_modifier * total_reagent_amount), TRUE, heat_shock_damage_mult = thermal_shock_mult)
 
 /// Adjusts chassis_temperature by the delta between temperature and itself, multiplied by coeff.
 /// If heat_shock is TRUE, limb will receive brute damage based on the delta.
@@ -281,7 +280,7 @@
 
 		if (victim)
 			var/gauze_or_not = (!isnull(gauze) ? ", but [gauze] helps to keep it together" : "")
-			var/clothing_text = (!get_location_accessible(victim, limb.body_zone) ? ", [victim.p_their()] clothing absorbing some of the liquid" : "")
+			var/clothing_text = (!victim.is_location_accessible(limb.body_zone) ? ", [victim.p_their()] clothing absorbing some of the liquid" : "")
 			victim.visible_message(span_warning("[victim]'s [limb.plaintext_zone] strains from the thermal shock[clothing_text][gauze_or_not]!"))
 			playsound(victim, 'sound/items/tools/welder.ogg', 25)
 
@@ -320,8 +319,8 @@
 	var/heat_fahrenheit = round(heating_threshold * 1.8-459.67, 0.1)
 
 	return "Its current temperature is [span_blue("[current_temp_celcius ] &deg;C ([current_temp_fahrenheit] &deg;F)")], \
-	and needs to cool to [span_nicegreen("[cool_celcius] &deg;C ([cool_fahrenheit] &deg;F)")][(heating_threshold && heating_threshold != INFINITY) ?  ", but \
-	will worsen if heated to [span_purple("[heat_celcius] &deg;C ([heat_fahrenheit] &deg;F)")]" : ""]."
+	and needs to cool to [span_nicegreen("[cool_celcius] &deg;C ([cool_fahrenheit] &deg;F)")], but \
+	will worsen if heated to [span_purple("[heat_celcius] &deg;C ([heat_fahrenheit] &deg;F)")]."
 
 /datum/wound/burn/robotic/overheat/get_scanner_description(mob/user)
 	. = ..()

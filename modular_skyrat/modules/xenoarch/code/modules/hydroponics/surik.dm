@@ -24,5 +24,7 @@
 	filling_color = "#FF4500"
 	bite_consumption_mod = 0.5
 	foodtypes = FRUIT
-	juice_typepath = /datum/reagent/brimdust
 	tastes = list("crystals" = 1)
+
+/obj/item/food/grown/surik/juice_typepath()
+	return /datum/reagent/brimdust

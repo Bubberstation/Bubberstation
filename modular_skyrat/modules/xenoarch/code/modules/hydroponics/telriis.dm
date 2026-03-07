@@ -25,5 +25,7 @@
 	filling_color = "#FF4500"
 	bite_consumption_mod = 0.5
 	foodtypes = FRUIT
-	juice_typepath = /datum/reagent/consumable/coconut_milk
 	tastes = list("milk" = 1)
+
+/obj/item/food/grown/telriis/juice_typepath()
+	return /datum/reagent/consumable/coconut_milk

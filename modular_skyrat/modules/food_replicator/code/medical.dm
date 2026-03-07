@@ -26,8 +26,10 @@
 	sanitization = 0.5
 	flesh_regeneration = 1.75
 	stop_bleeding = 0.25
-	grind_results = list(/datum/reagent/medicine/coagulant = 2)
 	merge_type = /obj/item/stack/medical/mesh/bloody
+
+/obj/item/stack/medical/mesh/bloody/grind_results()
+	return list(/datum/reagent/medicine/coagulant = 2)
 
 /obj/item/stack/medical/mesh/bloody/update_icon_state()
 	if(is_open)

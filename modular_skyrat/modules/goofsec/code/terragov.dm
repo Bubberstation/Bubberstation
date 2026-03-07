@@ -829,7 +829,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 					message_admins("[ADMIN_LOOKUPFLW(user)] has beamed out [living_user.pulling] alongside them.")
 				var/turf/pulling_turf = get_turf(living_user.pulling)
 				playsound(pulling_turf, 'sound/effects/magic/Repulse.ogg', 100, 1)
-				var/datum/effect_system/basic/spak_spread/quantum/sparks = new
+				var/datum/effect_system/basic/spark_spread/quantum/sparks = new
 				do_sparks(10, 1, pulling_turf)
 				qdel(living_user.pulling)
 			var/turf/user_turf = get_turf(living_user)

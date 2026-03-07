@@ -62,89 +62,126 @@
 	balloon_alert_to_viewers(anchored ? "secured" : "unsecured")
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-/obj/structure/large_mortar/attackby(obj/item/attacking_item, mob/living/carbon/human/user)
-	if(istype(attacking_item, /obj/item/storage/bag))
+/obj/structure/large_mortar/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
+	if(attacking_item.is_refillable())
+		return
+
+/obj/structure/large_mortar/item_interaction(mob/living/user, obj/item/tool, list/modifiers, is_right_clicking)
+	. = ..()
+
+	if(. || user.combat_mode || tool.is_refillable())
+		return .
+
+	if(istype(tool, /obj/item/storage/bag))
 		if(length(contents) >= maximum_contained_items)
-			balloon_alert(user, "already full")
-			return TRUE
+			balloon_alert(user, "already full!")
+			return ITEM_INTERACT_BLOCKING
 
-		if(!length(attacking_item.contents))
+		if(!length(tool.contents))
 			balloon_alert(user, "nothing to transfer!")
-			return TRUE
+			return ITEM_INTERACT_BLOCKING
 
-		for(var/obj/item/target_item in attacking_item.contents)
+		for(var/obj/item/target_item in tool.contents)
 			if(length(contents) >= maximum_contained_items)
 				break
 
-			if(target_item.juice_typepath || target_item.grind_results)
+			if(target_item.juice_typepath() || target_item.grind_results())
 				target_item.forceMove(src)
 
 		if (length(contents) >= maximum_contained_items)
-			balloon_alert(user, "filled!")
+			balloon_alert(user, "filled")
+
 		else
 			balloon_alert(user, "transferred")
-		return TRUE
 
-	if(istype(attacking_item, /obj/item/pestle))
+		return ITEM_INTERACT_SUCCESS
+
+	if(istype(tool, /obj/item/pestle))
 		if(!anchored)
-			balloon_alert(user, "secure to ground first")
-			return
+			balloon_alert(user, "not secured!")
+			return ITEM_INTERACT_BLOCKING
 
-		if(!length(contents))
-			balloon_alert(user, "nothing to grind")
-			return
-
-		if(user.get_stamina_loss() > LARGE_MORTAR_STAMINA_MINIMUM)
-			balloon_alert(user, "too tired")
-			return
+		if(!length(contents) && reagents.total_volume == 0)
+			balloon_alert(user, "mortar empty!")
+			return ITEM_INTERACT_BLOCKING
 
 		var/list/choose_options = list(
 			"Grind" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_grind"),
-			"Juice" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_juice")
+			"Juice" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_juice"),
+			"Mix" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_mix"),
 		)
 		var/picked_option = show_radial_menu(user, src, choose_options, radius = 38, require_near = TRUE)
 
-		if(!length(contents) || !in_range(src, user) || !user.is_holding(attacking_item) && !picked_option)
-			return
+		if(user.get_stamina_loss() > LARGE_MORTAR_STAMINA_MINIMUM)
+			balloon_alert(user, "too tired!")
+			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert_to_viewers("grinding...")
-		var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
+		if(!in_range(src, user) || !user.is_holding(tool) || !picked_option)
+			return ITEM_INTERACT_BLOCKING
+
+		var/act_verb = LOWER_TEXT(picked_option)
+		var/act_verb_ing
+		if(act_verb == "juice")
+			act_verb_ing = "juicing"
+
+		else
+			act_verb_ing = "[act_verb]ing"
+
+		var/has_resource
+		if(picked_option == "Mix")
+			has_resource = reagents.total_volume > 0
+
+		else
+			has_resource = length(contents) > 0
+
+		if(!has_resource)
+			balloon_alert(user, "nothing to [act_verb]!")
+			return ITEM_INTERACT_BLOCKING
+
+		balloon_alert_to_viewers("[act_verb_ing]...")
+		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, 5 SECONDS * skill_modifier, target = src))
-			balloon_alert_to_viewers("stopped grinding")
-			return
+			balloon_alert_to_viewers("stopped [act_verb_ing]")
+			return ITEM_INTERACT_BLOCKING
 
-		var/stamina_use = LARGE_MORTAR_STAMINA_USE
-		if(prob(user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
-			stamina_use *= 0.5 //so it uses half the amount of stamina (35 instead of 70)
-
-		user.adjust_stamina_loss(stamina_use) //This is a bit more tiring than a normal sized mortar and pestle
-		user.mind.adjust_experience(/datum/skill/primitive, 5)
+		user.adjust_stamina_loss(LARGE_MORTAR_STAMINA_USE) //This is a bit more tiring than a normal sized mortar and pestle
 		switch(picked_option)
 			if("Juice")
 				for(var/obj/item/target_item as anything in contents)
-					if(target_item.juice_typepath)
+					if (reagents.total_volume >= reagents.maximum_volume)
+						balloon_alert(user, "overflowing!")
+						break
+
+					if(target_item.juice_typepath())
 						juice_target_item(target_item, user)
+
 					else
 						grind_target_item(target_item, user)
 
 			if("Grind")
 				for(var/obj/item/target_item as anything in contents)
-					if(target_item.grind_results)
+					if (reagents.total_volume >= reagents.maximum_volume)
+						balloon_alert(user, "overflowing!")
+						break
+
+					if(target_item.grind_results())
 						grind_target_item(target_item, user)
+
 					else
 						juice_target_item(target_item, user)
-		return
 
-	if(!attacking_item.grind_results && !attacking_item.juice_typepath)
-		balloon_alert(user, "can't grind this")
-		return ..()
+		return ITEM_INTERACT_SUCCESS
+
+	if(!tool.grind_results() && !tool.juice_typepath())
+		balloon_alert(user, "can't grind this!")
+		return ITEM_INTERACT_BLOCKING
 
 	if(length(contents) >= maximum_contained_items)
-		balloon_alert(user, "already full")
-		return
+		balloon_alert(user, "already full!")
+		return ITEM_INTERACT_BLOCKING
 
-	attacking_item.forceMove(src)
-	return ..()
+	tool.forceMove(src)
+	return ITEM_INTERACT_SUCCESS
 
 ///Juices the passed target item, and transfers any contained chems to the mortar as well
 /obj/structure/large_mortar/proc/juice_target_item(obj/item/to_be_juiced, mob/living/carbon/human/user)
