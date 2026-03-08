@@ -31,14 +31,12 @@
 
 	harmful = FALSE //Erm, technically
 
-
 /obj/item/ammo_casing/c980grenade/fire_casing(atom/target, mob/living/user, params, distro, quiet, zone_override, spread, atom/fired_from)
 	var/obj/item/gun/ballistic/automatic/sol_grenade_launcher/firing_launcher = fired_from
 	if(istype(firing_launcher))
 		loaded_projectile.range = firing_launcher.target_range
 
 	. = ..()
-
 
 /obj/projectile/bullet/c980grenade
 	name = ".980 Tydhouer practice grenade"
@@ -51,23 +49,19 @@
 
 	sharpness = NONE
 
-
 /obj/projectile/bullet/c980grenade/on_hit(atom/target, blocked = 0, pierce_hit)
 	..()
 	fuse_activation(target)
 	return BULLET_ACT_HIT
 
-
 /obj/projectile/bullet/c980grenade/on_range()
 	fuse_activation(get_turf(src))
 	return ..()
-
 
 /// Generic proc that is called when the projectile should 'detonate', being either on impact or when the range runs out
 /obj/projectile/bullet/c980grenade/proc/fuse_activation(atom/target)
 	playsound(src, 'modular_zubbers/sound/weapons/grenade_burst.ogg', 50, TRUE, -3)
 	do_sparks(3, FALSE, src)
-
 
 /obj/item/ammo_box/c980grenade
 	name = "ammo box (.980 Tydhouer practice)"
@@ -84,7 +78,6 @@
 	ammo_type = /obj/item/ammo_casing/c980grenade
 	max_ammo = 4
 
-
 // .980 smoke grenade
 
 /obj/item/ammo_casing/c980grenade/smoke
@@ -95,18 +88,13 @@
 
 	projectile_type = /obj/projectile/bullet/c980grenade/smoke
 
-
 /obj/projectile/bullet/c980grenade/smoke
 	name = ".980 Tydhouer smoke grenade"
-
 
 /obj/projectile/bullet/c980grenade/smoke/fuse_activation(atom/target)
 	playsound(src, 'modular_zubbers/sound/weapons/grenade_burst.ogg', 50, TRUE, -3)
 	playsound(src, 'sound/effects/smoke.ogg', 50, TRUE, -3)
-	var/datum/effect_system/fluid_spread/smoke/bad/smoke = new
-	smoke.set_up(GRENADE_SMOKE_RANGE, holder = src, location = src)
-	smoke.start()
-
+	do_smoke(GRENADE_SMOKE_RANGE, src, src, smoke_type = /datum/effect_system/fluid_spread/smoke/bad)
 
 /obj/item/ammo_box/c980grenade/smoke
 	name = "ammo box (.980 Tydhouer smoke)"
@@ -115,7 +103,6 @@
 	icon_state = "980box_smoke"
 
 	ammo_type = /obj/item/ammo_casing/c980grenade/smoke
-
 
 // .980 shrapnel grenade
 
@@ -132,13 +119,11 @@
 
 	harmful = TRUE
 
-
 /obj/projectile/bullet/c980grenade/shrapnel
 	name = ".980 Tydhouer shrapnel grenade"
 
 	/// What type of casing should we put inside the bullet to act as shrapnel later
 	var/casing_to_spawn = /obj/item/grenade/c980payload
-
 
 /obj/projectile/bullet/c980grenade/shrapnel/fuse_activation(atom/target)
 	var/obj/item/grenade/shrapnel_maker = new casing_to_spawn(get_turf(src))
@@ -148,7 +133,6 @@
 
 	playsound(src, 'modular_zubbers/sound/weapons/grenade_burst.ogg', 50, TRUE, -3)
 
-
 /obj/item/ammo_box/c980grenade/shrapnel
 	name = "ammo box (.980 Tydhouer shrapnel)"
 	desc = "A box of four .980 Tydhouer shrapnel grenades. Instructions on the box indicate these are shrapnel rounds. Its also covered in hazard signs, odd."
@@ -156,7 +140,6 @@
 	icon_state = "980box_explosive"
 
 	ammo_type = /obj/item/ammo_casing/c980grenade/shrapnel
-
 
 /obj/item/grenade/c980payload
 	shrapnel_type = /obj/projectile/bullet/shrapnel/short_range
@@ -166,10 +149,8 @@
 	ex_light = 0
 	ex_flame = 0
 
-
 /obj/projectile/bullet/shrapnel/short_range
 	range = 2
-
 
 // .980 phosphor grenade
 
@@ -183,21 +164,16 @@
 
 	custom_materials = AMMO_MATS_GRENADE_INCENDIARY
 
-
 /obj/projectile/bullet/c980grenade/shrapnel/phosphor
 	name = ".980 Tydhouer phosphor grenade"
 
 	casing_to_spawn = /obj/item/grenade/c980payload/phosphor
 
-
 /obj/projectile/bullet/c980grenade/shrapnel/phosphor/fuse_activation(atom/target)
 	. = ..()
 
 	playsound(src, 'sound/effects/smoke.ogg', 50, TRUE, -3)
-	var/datum/effect_system/fluid_spread/smoke/quick/smoke = new
-	smoke.set_up(GRENADE_SMOKE_RANGE, holder = src, location = src)
-	smoke.start()
-
+	do_smoke(GRENADE_SMOKE_RANGE, src, src, smoke_type = /datum/effect_system/fluid_spread/smoke/quick)
 
 /obj/item/ammo_box/c980grenade/shrapnel/phosphor
 	name = "ammo box (.980 Tydhouer phosphor)"
@@ -207,20 +183,16 @@
 
 	ammo_type = /obj/item/ammo_casing/c980grenade/shrapnel/phosphor
 
-
 /obj/item/ammo_casing/shrapnel_exploder/phosphor
 	pellets = 8
 
 	projectile_type = /obj/projectile/bullet/incendiary/fire/backblast/short_range
 
-
 /obj/item/grenade/c980payload/phosphor
 	shrapnel_type = /obj/projectile/bullet/incendiary/fire/backblast/short_range
 
-
 /obj/projectile/bullet/incendiary/fire/backblast/short_range
 	range = 2
-
 
 // .980 tear gas grenade
 
@@ -232,18 +204,13 @@
 
 	projectile_type = /obj/projectile/bullet/c980grenade/riot
 
-
 /obj/projectile/bullet/c980grenade/riot
 	name = ".980 Tydhouer tear gas grenade"
 
 /obj/projectile/bullet/c980grenade/riot/fuse_activation(atom/target)
 	playsound(src, 'modular_zubbers/sound/weapons/grenade_burst.ogg', 50, TRUE, -3)
 	playsound(src, 'sound/effects/smoke.ogg', 50, TRUE, -3)
-	var/datum/effect_system/fluid_spread/smoke/chem/smoke = new()
-	smoke.chemholder.add_reagent(/datum/reagent/consumable/condensedcapsaicin, 10)
-	smoke.set_up(GRENADE_SMOKE_RANGE, holder = src, location = src)
-	smoke.start()
-
+	do_chem_smoke(GRENADE_SMOKE_RANGE, src, src, /datum/reagent/consumable/condensedcapsaicin, 10, smoke_type = /datum/effect_system/fluid_spread/smoke/chem)
 
 /obj/item/ammo_box/c980grenade/riot
 	name = "ammo box (.980 Tydhouer tear gas)"
