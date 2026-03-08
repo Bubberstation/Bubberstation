@@ -93,6 +93,11 @@
 /obj/item/stack/tile
 	icon = 'modular_zubbers/icons/obj/tiles.dmi'
 
+/obj/item/stack/light_w
+	icon = 'modular_zubbers/icons/obj/tiles.dmi'
+// This isn't under stack/tile..... Look at you, light_w, you get an entire two lines to yourself!
+// Enjoy it, because people only make you out of mistake.
+
 /obj/item/stack/tile/mineral/titanium
 	tile_reskin_types = list(
 		/obj/item/stack/tile/mineral/titanium,
