@@ -1,6 +1,8 @@
 /// To make upstream mapping easier we overwrote the color for Red to be not red but blue for our weird bluesec
 /// This re-adds a red coloring to be used by mappers in other areas.
 
+// No longer needed, but w/ever
+
 /// Real Red Tiles
 
 /obj/effect/turf_decal/tile/red/real_red

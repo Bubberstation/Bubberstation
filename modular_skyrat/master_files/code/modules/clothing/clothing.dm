@@ -53,10 +53,10 @@ GLOBAL_LIST_EMPTY(taur_clothing_icons)
  *
  * Returns a taur-compatible mutable_appearance!
  */
-/proc/wear_taur_version(icon_state, icon/icon_to_process, layer, female_type, greyscale_colors, cropping_state)
+/proc/wear_taur_version(icon_state, icon/icon_to_process, layer, female_type, greyscale_colors, cropping_state, cache_key = null)
 	RETURN_TYPE(/mutable_appearance)
 
-	var/index = "[icon_state]-[greyscale_colors]-[female_type]-[cropping_state]"
+	var/index = cache_key || "[icon_state]-[greyscale_colors]-[female_type]-[cropping_state]"
 	var/icon/taur_clothing_icon = GLOB.taur_clothing_icons[index]
 	if(!taur_clothing_icon) 	//Create standing/laying icons if they don't exist
 		generate_taur_clothing(index, icon_to_process, icon_state, cropping_state)

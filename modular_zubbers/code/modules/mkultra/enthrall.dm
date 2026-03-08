@@ -97,8 +97,8 @@
 		enthrall_mob = get_mob_by_key(enthrall_ckey)
 		lewd = (owner.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis)) && (enthrall_mob.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis))
 
-	RegisterSignal(owner, COMSIG_LIVING_RESIST, .proc/owner_resist) //Do resistance calc if resist is pressed#
-	RegisterSignal(owner, COMSIG_MOVABLE_HEAR, .proc/owner_hear)
+	RegisterSignal(owner, COMSIG_LIVING_RESIST, PROC_REF(owner_resist)) //Do resistance calc if resist is pressed#
+	RegisterSignal(owner, COMSIG_MOVABLE_HEAR, PROC_REF(owner_hear))
 	mental_capacity = 500 - enthrall_victim.get_organ_loss(ORGAN_SLOT_BRAIN)//It's their brain!
 	var/message = "[(lewd ? "I am a good pet for [enthrall_gender]." : "[enthrall_mob] is a really inspirational person!")]"
 	enthrall_victim.add_mood_event("enthrall", /datum/mood_event/enthrall, message)
@@ -456,13 +456,13 @@
 			//Speak (Forces player to talk)
 			if(LOWER_TEXT(custom_triggers[trigger][1]) == "speak")//trigger2
 				var/saytext = "Your mouth moves on it's own before you can even catch it."
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthralled_mob, span_hear(saytext)), 5)
-				addtimer(CALLBACK(enthralled_mob, /atom/movable/proc/say, "[custom_triggers[trigger][2]]"), 5)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthralled_mob, span_hear(saytext)), 5)
+				addtimer(CALLBACK(enthralled_mob, TYPE_PROC_REF(/atom/movable, say), "[custom_triggers[trigger][2]]"), 5)
 
 
 			//Echo (repeats message!) allows customisation, but won't display var calls! Defaults to hypnophrase.
 			else if(LOWER_TEXT(custom_triggers[trigger][1]) == "echo")//trigger2
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, enthralled_mob, span_velvet("[custom_triggers[trigger][2]]")), 5)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), enthralled_mob, span_velvet("[custom_triggers[trigger][2]]")), 5)
 				//(to_chat(owner, "<span class='hypnophrase'><i>[custom_triggers[trigger][2]]</i></span>"))//trigger3
 
 			//Shocking truth!

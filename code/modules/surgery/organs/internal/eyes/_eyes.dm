@@ -130,6 +130,11 @@
 	if(CONFIG_GET(flag/native_fov) && native_fov)
 		affected_human.add_fov_trait(type, native_fov)
 
+	// BUBBER EDIT ADDITION - EMISSIVES
+	if (affected_human.emissive_eyes)
+		is_emissive = TRUE
+	// BUBBER EDIT END
+
 	if(call_update)
 		affected_human.update_body()
 
@@ -164,6 +169,7 @@
 
 	organ_owner.update_tint()
 	organ_owner.update_sight()
+	is_emissive = FALSE // BUBBER EDIT ADDITION
 	UnregisterSignal(organ_owner, list(
 		COMSIG_ATOM_BULLET_ACT,
 		COMSIG_COMPONENT_CLEAN_FACE_ACT,
@@ -321,6 +327,15 @@
 		var/mutable_appearance/left_scar = mutable_appearance('icons/mob/human/human_eyes.dmi', "eye_scar_left", -EYES_LAYER, parent)
 		left_scar.color = my_head.draw_color
 		overlays += left_scar
+
+	// BUBBER EDIT START - Customization Emissives
+	if(is_emissive)
+		var/mutable_appearance/emissive_left = emissive_appearance_copy(eye_left, owner)
+		var/mutable_appearance/emissive_right = emissive_appearance_copy(eye_right, owner)
+
+		overlays += emissive_left
+		overlays += emissive_right
+	// BUBBER EDIT END - Customization Emissives
 
 	if(my_head.worn_face_offset)
 		for (var/mutable_appearance/overlay as anything in overlays)
@@ -514,7 +529,7 @@
 /obj/item/organ/eyes/proc/blink(duration = BLINK_DURATION, restart_animation = TRUE)
 	var/left_delayed = prob(50)
 	// Storing blink delay so mistimed blinks of lizards don't get cut short
-	var/sync_blinking = synchronized_blinking && (owner.get_organ_loss(ORGAN_SLOT_BRAIN) < BRAIN_DAMAGE_ASYNC_BLINKING)
+	var/sync_blinking = TRUE //BUBBERSTATION CHANGE: DISABLES SYNCED BLINKING UNTIL /TG/ AND/OR BYOND FIXES IT. OLD CODE: synchronized_blinking && (owner.get_organ_loss(ORGAN_SLOT_BRAIN) < BRAIN_DAMAGE_ASYNC_BLINKING)
 	var/blink_delay = sync_blinking ? 0 : rand(0, RAND_BLINKING_DELAY)
 	animate(eyelid_left, alpha = 0, time = 0)
 	if (!sync_blinking && left_delayed)
@@ -532,7 +547,7 @@
 		addtimer(CALLBACK(src, PROC_REF(animate_eyelids), owner), blink_delay + duration)
 
 /obj/item/organ/eyes/proc/animate_eyelids(mob/living/carbon/human/parent)
-	var/sync_blinking = synchronized_blinking && (parent.get_organ_loss(ORGAN_SLOT_BRAIN) < BRAIN_DAMAGE_ASYNC_BLINKING)
+	var/sync_blinking = TRUE //BUBBERSTATION CHANGE: DISABLES SYNCED BLINKING UNTIL /TG/ AND/OR BYOND FIXES IT. OLD CODE: synchronized_blinking && (parent.get_organ_loss(ORGAN_SLOT_BRAIN) < BRAIN_DAMAGE_ASYNC_BLINKING)
 	// Randomize order for unsynched animations
 	if (sync_blinking || prob(50))
 		var/list/anim_times = animate_eyelid(eyelid_left, parent, sync_blinking)
