@@ -53,7 +53,7 @@
 	message = LOWER_TEXT(message)
 	var/list/mob/living/listeners = list()
 	for(var/mob/living/enthrall_listener in get_hearers_in_view(8, user))
-		if(enthrall_listener.can_hear() && enthrall_listener.stat != DEAD)
+		if((HAS_TRAIT(enthrall_listener, TRAIT_DEAF)) && enthrall_listener.stat != DEAD)
 			if(enthrall_listener.has_status_effect(/datum/status_effect/chem/enthrall))//Check to see if they have the status
 				var/datum/status_effect/chem/enthrall/enthrall_chem = enthrall_listener.has_status_effect(/datum/status_effect/chem/enthrall)//Check to see if pet is on cooldown from last command and if the enthrall_mob is right
 				if(enthrall_chem.enthrall_mob != user)

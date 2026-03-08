@@ -801,7 +801,7 @@
 	playsound(src, 'modular_skyrat/modules/horrorform/sound/horror_scream.ogg', 100, TRUE)
 	manual_emote("screams violently!")
 	for(var/mob/living/iterating_mob in get_hearers_in_range(scream_effect_range, src))
-		if(!iterating_mob.can_hear())
+		if(HAS_TRAIT(iterating_mob, TRAIT_DEAF))
 			continue
 		if(faction_check(faction, iterating_mob.faction))
 			continue

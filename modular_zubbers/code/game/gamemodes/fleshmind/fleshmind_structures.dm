@@ -552,7 +552,7 @@
 	playsound(src, 'modular_skyrat/modules/horrorform/sound/horror_scream.ogg', 100, TRUE)
 	flick("[base_icon_state]-anim", src)
 	for(var/mob/living/iterating_mob in get_hearers_in_range(activation_range, src))
-		if(!iterating_mob.can_hear())
+		if(HAS_TRAIT(iterating_mob, TRAIT_DEAF))
 			continue
 		if(faction_check(faction_types, iterating_mob.faction))
 			continue
