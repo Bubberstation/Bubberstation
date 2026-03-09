@@ -27,54 +27,6 @@
 			owner.adjust_stutter(15 SECONDS)
 			owner.adjust_confusion(3 SECONDS)
 
-// Hybrid repair option
-/obj/item/organ/brain/cybernetic/cortical/check_for_repair(obj/item/item, mob/user)
-	if(damage && item.is_drainable() && item.reagents.has_reagent(/datum/reagent/medicine/mannitol) && (organ_flags & ORGAN_ORGANIC)) //ganic repair option
-		if(brainmob?.health <= HEALTH_THRESHOLD_DEAD) //if the brain is fucked anyway, do nothing
-			to_chat(user, span_warning("[src] is far too damaged, there's nothing else we can do for it!"))
-			return TRUE
-
-		user.visible_message(span_notice("[user] starts to slowly pour the contents of [item] onto [src]."), span_notice("You start to slowly pour the contents of [item] onto [src]."))
-		if(!do_after(user, 3 SECONDS, src))
-			to_chat(user, span_warning("You failed to pour the contents of [item] onto [src]!"))
-			return TRUE
-		var/and_bright_shade = !shade_color ? "" : " and turn a slightly brighter shade of [shade_color]"
-		user.visible_message(span_notice("[user] pours the contents of [item] onto [src], causing it to reform its original shape[and_bright_shade]."), span_notice("You pour the contents of [item] onto [src], causing it to reform its original shape[and_bright_shade]."))
-		var/amount = item.reagents.get_reagent_amount(/datum/reagent/medicine/mannitol)
-		var/healto = max(0, damage - amount * 2)
-		item.reagents.remove_all(ROUND_UP(item.reagents.total_volume / amount * (damage - healto) * 0.5)) //only removes however much solution is needed while also taking into account how much of the solution is mannitol
-		set_organ_damage(healto) //heals 2 damage per unit of mannitol, and by using "set_organ_damage", we clear the failing variable if that was up
-		return TRUE
-	else if (item.tool_behaviour == TOOL_MULTITOOL && (organ_flags & ORGAN_ROBOTIC)) //robotic repair option
-		if (brainmob?.health <= HEALTH_THRESHOLD_DEAD) //if the brain is fucked anyway, do nothing
-			to_chat(user, span_warning("[src] is far too damaged, there's nothing else we can do for it!"))
-			return TRUE
-
-		if (DOING_INTERACTION(user, src))
-			to_chat(user, span_warning("you're already repairing [src]!"))
-			return TRUE
-
-		user.visible_message(span_notice("[user] slowly starts to repair [src] with [item]."), span_notice("You slowly start to repair [src] with [item]."))
-		var/did_repair = FALSE
-		while(damage > 0)
-			if(item.use_tool(src, user, 3 SECONDS, volume = 50))
-				did_repair = TRUE
-				set_organ_damage(max(0, damage - 20))
-			else
-				break
-
-		if (did_repair)
-			if (damage > 0)
-				user.visible_message(span_notice("[user] partially repairs [src] with [item]."), span_notice("You partially repair [src] with [item]."))
-			else
-				user.visible_message(span_notice("[user] fully repairs [src] with [item], causing its warning light to stop flashing."), span_notice("You fully repair [src] with [item], causing its warning light to stop flashing."))
-		else
-			to_chat(user, span_warning("You failed to repair [src] with [item]!"))
-
-		return TRUE
-
-	return FALSE
-
 //New vox Brain
 /obj/item/organ/brain/cybernetic/cortical/vox
 	name = "vox-augmented brain"
@@ -82,7 +34,7 @@
 	organ_flags = ORGAN_ROBOTIC | ORGAN_VITAL | ORGAN_PROMINENT //Vox brains weren't organic originally. See no reason to change it
 	emp_dmg_mult = 1 //20/10 is the voxs' original damage factor
 
-//surplus; TBI to prosthetic organ quirk
+//surplus; Used in prosthetic organ quirk
 //note that this is a direct child of the android brain, and is thus not organic
 /obj/item/organ/brain/cybernetic/surplus
 	name = "surplus augmented brain"
@@ -93,5 +45,5 @@
 
 /obj/item/organ/brain/cybernetic/surplus/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/dangerous_organ_removal, /*surgical = */ TRUE, /*annihilate = */ FALSE)
+	AddElement(/datum/element/dangerous_organ_removal, /*surgical = */ TRUE, /*annihilate = */ FALSE) //annihilate just means it wont qdel when removed
 
