@@ -429,7 +429,7 @@
 
 /turf/closed/mineral/random/snow
 	name = "snowy mountainside"
-	icon = MAP_SWITCH('icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi')
+	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi') // BUBBER EDIT
 	icon_state = "mountainrock"
 	base_icon_state = "mountain_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
@@ -444,7 +444,7 @@
 /turf/closed/mineral/random/snow/Change_Ore(ore_type, random = 0)
 	. = ..()
 	if(mineralType)
-		icon = 'icons/turf/walls/icerock_wall.dmi'
+		icon = 'modular_zubbers/icons/turf/walls/icerock_wall.dmi' // BUBBER EDIT
 		icon_state = "icerock_wall-0"
 		base_icon_state = "icerock_wall"
 		smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
@@ -525,7 +525,7 @@
 // Subtypes for mappers placing ores manually.
 /turf/closed/mineral/random/labormineral/ice
 	name = "snowy mountainside"
-	icon = MAP_SWITCH('icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi')
+	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi') // BUBBER EDIT
 	icon_state = "mountainrock"
 	base_icon_state = "mountain_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
@@ -545,7 +545,7 @@
 /turf/closed/mineral/random/labormineral/ice/Change_Ore(ore_type, random = 0)
 	. = ..()
 	if(mineralType)
-		icon = 'icons/turf/walls/icerock_wall.dmi'
+		icon = 'modular_zubbers/icons/turf/walls/icerock_wall.dmi' // BUBBER EDIT
 		icon_state = "icerock_wall-0"
 		base_icon_state = "icerock_wall"
 		smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
@@ -562,7 +562,7 @@
 
 /turf/closed/mineral/iron/ice
 	icon_state = "icerock_iron"
-	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
+	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi') // BUBBER EDIT
 	base_icon_state = "icerock_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	turf_type = /turf/open/misc/asteroid/snow/ice
@@ -592,7 +592,7 @@
 
 /turf/closed/mineral/diamond/ice
 	icon_state = "icerock_iron"
-	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
+	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi') // BUBBER EDIT
 	base_icon_state = "icerock_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	turf_type = /turf/open/misc/asteroid/snow/ice
@@ -647,7 +647,7 @@
 
 /turf/closed/mineral/plasma/ice
 	icon_state = "icerock_plasma"
-	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
+	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi') // BUBBER EDIT
 	base_icon_state = "icerock_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	turf_type = /turf/open/misc/asteroid/snow/ice
@@ -708,7 +708,7 @@
 
 /turf/closed/mineral/snowmountain
 	name = "snowy mountainside"
-	icon = MAP_SWITCH('icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi')
+	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi') // BUBBER EDIT
 	icon_state = "mountainrock"
 	base_icon_state = "mountain_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
@@ -731,7 +731,7 @@
 
 /turf/closed/mineral/snowmountain/cavern
 	name = "ice cavern rock"
-	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
+	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi') // BUBBER EDIT
 	icon_state = "icerock"
 	base_icon_state = "icerock_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER

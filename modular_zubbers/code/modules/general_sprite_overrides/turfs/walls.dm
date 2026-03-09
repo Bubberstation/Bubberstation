@@ -224,12 +224,6 @@
 
 
 // ROCK WALLS
-/turf/closed/mineral/snowmountain
-	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi')
-
-/turf/closed/mineral/snowmountain/cavern
-	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
-
 /turf/closed/mineral/asteroid
 	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/red_wall.dmi', 'icons/turf/mining.dmi')
 
