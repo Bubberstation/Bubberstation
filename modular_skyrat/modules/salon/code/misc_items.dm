@@ -148,7 +148,7 @@
 			to_chat(user, span_warning("There is no hair to shave!"))
 			return
 
-		if(!get_location_accessible(target_human, location))
+		if(!target_human.is_location_accessible(location))
 			to_chat(user, span_warning("The headgear is in the way!"))
 			return
 

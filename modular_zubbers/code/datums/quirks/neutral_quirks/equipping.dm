@@ -1,5 +1,5 @@
 /datum/quirk/equipping
-	abstract_parent_type = /datum/quirk/equipping
+	abstract_type = /datum/quirk/equipping
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
 	icon = FA_ICON_BOX_OPEN
 	/// the items that will be equipped, formatted in the way of [item_path = list of slots it can be equipped to], will not equip over nodrop items

@@ -62,7 +62,6 @@
 
 	create_reagents(max_reagent_volume)
 	AddComponent(/datum/component/liquids_interaction, TYPE_PROC_REF(/obj/item/towel, attack_on_liquids_turf))
-	AddComponent(/datum/component/surgery_initiator) // Since you can do it with bedsheets, why not with towels too?
 
 	register_context()
 	register_item_context()
