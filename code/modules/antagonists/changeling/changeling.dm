@@ -575,6 +575,10 @@
 	new_profile.undershirt_color = target.undershirt_color
 	new_profile.socks_color = target.socks_color
 	new_profile.bra_color = target.bra_color
+	new_profile.blooper = target.blooper
+	new_profile.blooper_speed = target.blooper_speed
+	new_profile.blooper_pitch = target.blooper_pitch
+	new_profile.blooper_pitch_range = target.blooper_pitch_range
 	new_profile.eye_color_left = target.eye_color_left
 	new_profile.eye_color_right = target.eye_color_right
 	new_profile.emissive_eyes = target.emissive_eyes
@@ -584,12 +588,6 @@
 	new_profile.target_size = target.mob_size
 	//SKYRAT EDIT ADDITION END
 	// Hair and facial hair gradients, alongside their colours.
-	//THE BUBBER EDIT ADDITION BEGIN - Voice Bark
-	new_profile.blooper_id = target.blooper_id
-	new_profile.blooper_pitch = target.blooper_pitch
-	new_profile.blooper_speed = target.blooper_speed
-	new_profile.blooper_pitch_range = target.blooper_pitch_range
-	//THE BUBBER EDIT END
 	// Grab skillchips they have
 	new_profile.skillchips = target.clone_skillchip_list(TRUE)
 
@@ -829,6 +827,10 @@
 	user.undershirt_color = chosen_profile.undershirt_color
 	user.socks_color = chosen_profile.socks_color
 	user.bra_color = chosen_profile.bra_color
+	user.blooper = chosen_profile.blooper
+	user.blooper_speed = chosen_profile.blooper_speed
+	user.blooper_pitch = chosen_profile.blooper_pitch
+	user.blooper_pitch_range = chosen_profile.blooper_pitch_range
 	user.emissive_eyes = chosen_profile.emissive_eyes
 	user.dna.mutant_bodyparts = chosen_dna.mutant_bodyparts.Copy()
 	user.dna.body_markings = chosen_dna.body_markings.Copy()
@@ -970,13 +972,6 @@
 	//this has to be at the end of the proc or it breaks everything below it, womp womp
 	user.set_mob_height(chosen_profile.target_body_scaling)
 	// SKYRAT EDIT END
-//THE BUBBER EDIT ADDITION BEGIN - Voice Bark
-	user.blooper = null
-	user.blooper_id = chosen_profile.blooper_id
-	user.blooper_pitch = chosen_profile.blooper_pitch
-	user.blooper_speed = chosen_profile.blooper_speed
-	user.blooper_pitch_range = chosen_profile.blooper_pitch_range
-	//THE BUBBER EDIT END
 // Changeling profile themselves. Store a data to store what every DNA instance looked like.
 /datum/changeling_profile
 	/// The name of the profile / the name of whoever this profile source.
@@ -1075,6 +1070,10 @@
 	new_profile.socks_color = socks_color
 	new_profile.bra = bra
 	new_profile.bra_color = bra_color
+	new_profile.blooper = blooper
+	new_profile.blooper_speed = blooper_speed
+	new_profile.blooper_pitch = blooper_pitch
+	new_profile.blooper_pitch_range = blooper_pitch_range
 	new_profile.eye_color_left = eye_color_left
 	new_profile.eye_color_right = eye_color_right
 	new_profile.emissive_eyes = emissive_eyes
