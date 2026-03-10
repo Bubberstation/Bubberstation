@@ -19,6 +19,7 @@
 	desc = "A set of cybernetic lungs adapted to low temperatures, though they are more susceptible to high temperatures"
 	failing_desc = "seems to be broken."
 	icon_state = "lungs-c"
+	icon = "lungs-c"
 	breath_noise = "a steady whirr"
 	organ_flags = ORGAN_ROBOTIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
