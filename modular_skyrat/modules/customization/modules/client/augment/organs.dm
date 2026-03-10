@@ -132,7 +132,7 @@
 
 /datum/augment_item/organ/eyes/cybernetic/moth
 	name = "Basic cybernetic moth eyes"
-	path = /obj/item/organ/eyes/robotic/moth/basic
+	path = /obj/item/organ/eyes/robotic/basic/moth
 	cost = -1
 
 /datum/augment_item/organ/eyes/highlumi
