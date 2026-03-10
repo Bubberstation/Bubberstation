@@ -113,7 +113,7 @@
 	cost = 1
 
 /datum/augment_item/organ/lungs/oxycyber
-	name = "Cybernetic Low-Oxygen-Engineered Lungs"
+	name = "Cybernetic Low-Oxygen Engineered Lungs"
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/lungs/adaptive/oxy/cybernetic
 	cost = 1
