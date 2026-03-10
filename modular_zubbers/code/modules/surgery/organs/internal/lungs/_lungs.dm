@@ -14,7 +14,7 @@
 			if(3)
 				breather.reagents.add_reagent(SSair.chosen_goblin_reagent_drug, min(goblin_pp*0.25,10))
 
-/obj/item/organ/lungs/adaptive/cold
+/obj/item/organ/lungs/adaptive/cold/cybernetic
 	name = "cybernetic cold-adapted lungs"
 	desc = "A set of cybernetic lungs adapted to low temperatures, though they are more susceptible to high temperatures"
 	failing_desc = "seems to be broken."
