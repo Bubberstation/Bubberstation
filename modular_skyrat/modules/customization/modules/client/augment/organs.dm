@@ -88,6 +88,11 @@
 	name = "Basic cybernetic lungs"
 	path = /obj/item/organ/lungs/cybernetic
 
+/datum/augment_item/organ/lungs/cybernetic
+	name = "Cybernetic lungs"
+	path = /obj/item/organ/lungs/cybernetic/tier2
+	cost = 3
+
 //LIVERS
 /datum/augment_item/organ/liver
 	slot = AUGMENT_SLOT_LIVER
@@ -103,7 +108,7 @@
 /datum/augment_item/organ/stomach/cybernetic
 	name = "Basic cybernetic stomach"
 	path = /obj/item/organ/stomach/cybernetic
-/datum/augment_item/organ/stomach/cybernetic/tier2
+/datum/augment_item/organ/stomach/cybernetic
 	name = "Cybernetic stomach"
 	path = /obj/item/organ/stomach/cybernetic/tier2
 	cost = 2
@@ -180,9 +185,10 @@
 	slot = AUGMENT_SLOT_EARS
 
 /datum/augment_item/organ/ears/cybernetic
-	name = "Cybernetic ears"
+	name = "Basic cybernetic ears"
 	path = /obj/item/organ/ears/cybernetic
 
-/datum/augment_item/organ/ears/cybernetic/tier2
-	name = "Cybernetic ears"
-	path = /obj/item/organ/ears/cybernetic/tier2
+/datum/augment_item/organ/ears/cybernetic
+	name = "Upgraded cybernetic ears"
+	path = /obj/item/organ/ears/cybernetic/upgraded
+	cost = 2
