@@ -95,6 +95,7 @@
 /datum/supply_pack/security/armory/laser_carbine
 	cost = CARGO_CRATE_VALUE * 7
 
+/* ugly takyon sprites - readd later VIROWIP
 /datum/supply_pack/security/combine
 	name = "Civil Protection Uniforms"
 	desc = "Extra supplies we got from some weird old guy in a blue suit. Contains six uniforms, \
@@ -102,11 +103,25 @@
 	cost = 1116
 	order_flags = ORDER_CONTRABAND
 	contains = list(/obj/item/clothing/head/helmet/metrocophelmet = 6,
-					/obj/item/clothing/suit/armor/vest/alt/sec/metrocop = 6,
-					/obj/item/clothing/under/rank/security/metrocop = 6,
-					/obj/item/clothing/gloves/color/black/security/metrocop = 6,
-					/obj/item/clothing/shoes/jackboots/combine = 6,
-					/obj/item/trash/can = 3,
-				)
+		/obj/item/clothing/suit/armor/vest/alt/sec/metrocop = 6,
+		/obj/item/clothing/under/rank/security/metrocop = 6,
+		/obj/item/clothing/gloves/color/black/security/metrocop = 6,
+		/obj/item/clothing/shoes/jackboots/combine = 6,
+		/obj/item/trash/can = 3,
+			)
 	crate_name = "benefactor supply crate"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
+*/
+
+/datum/supply_pack/security/ntusp
+	name = "NT-USP Crate"
+	desc = "Three stamina-draining ballistic weapons, along with 3 extra clips. Requires Security access to open."
+	cost = CARGO_CRATE_VALUE * 5.5
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/ntusp,
+					/obj/item/gun/ballistic/automatic/pistol/ntusp,
+					/obj/item/gun/ballistic/automatic/pistol/ntusp,
+					/obj/item/ammo_box/magazine/recharge/ntusp,
+					/obj/item/ammo_box/magazine/recharge/ntusp,
+					/obj/item/ammo_box/magazine/recharge/ntusp)
+	crate_name = "nt-usp crate"
