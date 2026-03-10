@@ -96,7 +96,7 @@
 /datum/augment_item/organ/lungs/coldcyber
 	name = "Cybernetic Cold-Adapted Lungs"
 	slot = AUGMENT_SLOT_LUNGS
-	path = /obj/item/organ/lungs/adaptive/cybernetic/cold
+	path = /obj/item/organ/lungs/adaptive/cold/cybernetic
 	cost = 1
 
 //LIVERS
