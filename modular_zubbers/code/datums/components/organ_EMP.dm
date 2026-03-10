@@ -20,7 +20,7 @@
 	if(protection & EMP_PROTECT_SELF)
 		return
 	if(!COOLDOWN_FINISHED(src, organ.severe_cooldown))
-		emp_special_effects(source)
+		emp_special_effects(parent)
 		COOLDOWN_START(src, organ.severe_cooldown, 30 SECONDS)
 	if(prob(emp_vulnerability/severity))
 		organ.organ_flags |= ORGAN_EMP
