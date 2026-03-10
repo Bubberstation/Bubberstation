@@ -11,11 +11,11 @@
 /datum/augment_item/implant/brain
 	slot = AUGMENT_SLOT_BRAIN_IMPLANT
 
+//BUBBER EDIT BEGIN
 //CHEST IMPLANTS
 /datum/augment_item/implant/chest
 	slot = AUGMENT_SLOT_CHEST_IMPLANT
 
-//BUBBER EDIT BEGIN
 /datum/augment_item/implant/organ_slot_scanner
 	name = "Internal medical analyzer"
 	cost = 4

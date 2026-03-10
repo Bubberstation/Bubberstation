@@ -91,7 +91,7 @@
 /datum/augment_item/organ/lungs/cybernetic/tier2
 	name = "Cybernetic lungs"
 	path = /obj/item/organ/lungs/cybernetic/tier2
-	cost = 3
+	cost = 3 // compared to the biological lungs already selectable, barely an upgrade.
 
 //LIVERS
 /datum/augment_item/organ/liver
@@ -100,11 +100,6 @@
 /datum/augment_item/organ/liver/cybernetic
 	name = "Basic cybernetic liver"
 	path = /obj/item/organ/liver/cybernetic
-
-/datum/augment_item/organ/liver/cybernetic/tier2
-	name = "Cybernetic liver"
-	path = /obj/item/organ/liver/cybernetic/tier2
-	cost = 8
 
 //STOMACHES
 /datum/augment_item/organ/stomach
@@ -129,7 +124,7 @@
 /datum/augment_item/organ/eyes/cybernetic
 	name = "Basic cybernetic eyes"
 	path = /obj/item/organ/eyes/robotic/basic
-	cost = -1
+	cost = -1 // Sensitive to flashes like moth eyes. Less health.
 
 /datum/augment_item/organ/eyes/cybernetic/moth
 	name = "Cybernetic moth eyes"
@@ -138,7 +133,7 @@
 /datum/augment_item/organ/eyes/cybernetic/moth
 	name = "Basic cybernetic moth eyes"
 	path = /obj/item/organ/eyes/robotic/basic/moth
-	cost = -1
+	cost = -1 // Less health than standard.
 
 /datum/augment_item/organ/eyes/highlumi
 	name = "High-luminosity eyes"
@@ -201,6 +196,6 @@
 /datum/augment_item/organ/ears/cybernetic/upgraded
 	name = "Upgraded cybernetic ears"
 	path = /obj/item/organ/ears/cybernetic/upgraded
-	cost = 2
+	cost = 2 // Takes x0.75 damage from sources. No additional health.
 
 //BUBBER EDIT END
