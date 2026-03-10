@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -481,15 +481,9 @@ const PhysicalActions = () => {
     glob_factions,
   } = data;
   const [mobScale, setMobScale] = useState(1);
-  const [mobSpeed, setMobSpeed] = useState(mob_speed || 0);
   const limbs = Object.keys(glob_limbs);
   const limb_flags = limbs.map((_, i) => 1 << i);
   const [delimbOption, setDelimbOption] = useState(0);
-
-  // Update local speed state when server data changes
-  useEffect(() => {
-    setMobSpeed(mob_speed || 0);
-  }, [mob_speed]);
 
   return (
     <Section fill>
@@ -693,17 +687,16 @@ const PhysicalActions = () => {
               cursor: 'help',
             }}
           >
-            Current speed: {mobSpeed}
+            Current speed: {mob_speed}
           </Box>
         </Tooltip>
         <Slider
           minValue={-10}
           maxValue={10}
-          value={mobSpeed}
+          value={mob_speed}
           stepPixelSize={6}
           step={0.25}
           onChange={(_event, value: number) => {
-            setMobSpeed(value);
             act('set_speed', { speed: value });
           }}
           unit="Speed"
