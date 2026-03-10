@@ -49,3 +49,20 @@
   ibexgoetia:
   - rscadd: Nanotrasen Consultants and Heads of Personnel may rejoice the presence
       of a Paperwork Implant autosurgeon in their lockers.
+2026-03-10:
+  aKromatopzia:
+  - rscadd: Previously-unobtainable surplus-cybernetic brain added to Prosthetic Organ
+      quirk
+  - rscadd: Cybernetic brains given the ORGAN_PROMINENT trait, following normal brains.
+  - rscadd: Vox Primalis unique cybernetic brain has been finally added to their species
+      descriptions. (Bet you didn't know they had one)
+  - balance: (Roundstart) Cortical brains given ORGAN_ORGANIC, so they can be fixed
+      with both mannitol and a multitool. Vox brains are excluded
+  - balance: Brain options in character prefs have been given a 1 quirkiness-point
+      cost.
+  - bugfix: Cybernetic/Cortical brains have their repair hints updated to reflect
+      what they can actually be repaired by
+  - code_imp: Prosthetic Organ quirk moved to modular_zubbers
+  - code_imp: '''Vox Primalis'' now considered a collective noun'
+  - code_imp: dangerous_organ_removal has a new variable to toggle between organ qdel
+      or having its damage set to max health.
