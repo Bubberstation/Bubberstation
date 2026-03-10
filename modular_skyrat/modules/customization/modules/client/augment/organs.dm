@@ -88,7 +88,7 @@
 	name = "Basic cybernetic lungs"
 	path = /obj/item/organ/lungs/cybernetic
 
-/datum/augment_item/organ/lungs/cybernetic
+/datum/augment_item/organ/lungs/cybernetic/tier2
 	name = "Cybernetic lungs"
 	path = /obj/item/organ/lungs/cybernetic/tier2
 	cost = 3
@@ -108,7 +108,7 @@
 /datum/augment_item/organ/stomach/cybernetic
 	name = "Basic cybernetic stomach"
 	path = /obj/item/organ/stomach/cybernetic
-/datum/augment_item/organ/stomach/cybernetic
+/datum/augment_item/organ/stomach/cybernetic/tier2
 	name = "Cybernetic stomach"
 	path = /obj/item/organ/stomach/cybernetic/tier2
 	cost = 2
