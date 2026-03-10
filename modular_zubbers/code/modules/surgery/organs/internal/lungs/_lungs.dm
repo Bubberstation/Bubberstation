@@ -17,7 +17,7 @@
 
 /obj/item/organ/lungs/adaptive/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/organ_emp_effects, 80)
+	AddComponent(/datum/component/organ_emp_effectsorgan_EMP, 80)
 // //Cold cyber lungs
 /obj/item/organ/lungs/adaptive/cold/cybernetic
 	name = "cybernetic cold-engineered lungs"
@@ -39,17 +39,6 @@
 	breath_noise = "a steady whirr"
 	organ_flags = ORGAN_ROBOTIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
-	var/emp_vulnerability = 80 //Chance of permanent effects if emp-ed.
-
-/obj/item/organ/lungs/adaptive/hot/cybernetic/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	if(!COOLDOWN_FINISHED(src, severe_cooldown))
-		owner.losebreath += 20
-		COOLDOWN_START(src, severe_cooldown, 30 SECONDS)
-	if(prob(emp_vulnerability/severity))
-		organ_flags |= ORGAN_EMP
 
 //Toxin cyber lungs
 /obj/item/organ/lungs/adaptive/toxin/cybernetic
@@ -61,17 +50,6 @@
 	breath_noise = "a steady whirr"
 	organ_flags = ORGAN_ROBOTIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
-	var/emp_vulnerability = 80 //Chance of permanent effects if emp-ed.
-
-/obj/item/organ/lungs/adaptive/hot/cybernetic/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	if(!COOLDOWN_FINISHED(src, severe_cooldown))
-		owner.losebreath += 20
-		COOLDOWN_START(src, severe_cooldown, 30 SECONDS)
-	if(prob(emp_vulnerability/severity))
-		organ_flags |= ORGAN_EMP
 
 //Low Oxy cyber lungs
 /obj/item/organ/lungs/adaptive/oxy/cybernetic
@@ -83,14 +61,3 @@
 	breath_noise = "a steady whirr"
 	organ_flags = ORGAN_ROBOTIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
-	var/emp_vulnerability = 80 //Chance of permanent effects if emp-ed.
-
-/obj/item/organ/lungs/adaptive/hot/cybernetic/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	if(!COOLDOWN_FINISHED(src, severe_cooldown))
-		owner.losebreath += 20
-		COOLDOWN_START(src, severe_cooldown, 30 SECONDS)
-	if(prob(emp_vulnerability/severity))
-		organ_flags |= ORGAN_EMP
