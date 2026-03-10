@@ -15,6 +15,7 @@
 /datum/augment_item/implant/chest
 	slot = AUGMENT_SLOT_CHEST_IMPLANT
 
+//BUBBER EDIT BEGIN
 //LEFT ARM IMPLANTS
 /datum/augment_item/implant/l_arm
 	slot = AUGMENT_SLOT_LEFT_ARM_IMPLANT
@@ -53,8 +54,6 @@
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/lighter
 
-//BUBBER EDIT END
-
 //EYES IMPLANTS
 /datum/augment_item/implant/eyes
 	slot = AUGMENT_SLOT_EYES_IMPLANT
@@ -63,6 +62,8 @@
 	name = "Civilian HUD Implant"
 	cost = 4
 	path = /obj/item/organ/cyberimp/eyes/hud/civilian
+
+//BUBBER EDIT END
 
 //MOUTH IMPLANTS
 /datum/augment_item/implant/mouth

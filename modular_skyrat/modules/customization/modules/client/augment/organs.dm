@@ -93,6 +93,12 @@
 	path = /obj/item/organ/lungs/cybernetic/tier2
 	cost = 3 // comparable to the biological lungs already selectable in terms of usable air pressure. No additional resistances to temperature or plasma filtering.
 
+/datum/augment_item/organ/lungs/coldcyber
+	name = "Cybernetic Cold-Adapted Lungs"
+	slot = AUGMENT_SLOT_LUNGS
+	path = /obj/item/organ/lungs/adaptive/cybernetic/cold
+	cost = 1
+
 //LIVERS
 /datum/augment_item/organ/liver
 	slot = AUGMENT_SLOT_LIVER
