@@ -17,7 +17,7 @@
 
 /obj/item/organ/lungs/adaptive/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/organ_emp_effectsorgan_EMP, 80)
+	AddComponent(/datum/component/organ_emp_effects, 80)
 // //Cold cyber lungs
 /obj/item/organ/lungs/adaptive/cold/cybernetic
 	name = "cybernetic cold-engineered lungs"
