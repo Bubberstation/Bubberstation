@@ -104,7 +104,7 @@
 /datum/augment_item/organ/liver/cybernetic/tier2
 	name = "Cybernetic liver"
 	path = /obj/item/organ/liver/cybernetic/tier2
-	cost = 4
+	cost = 8
 
 //STOMACHES
 /datum/augment_item/organ/stomach

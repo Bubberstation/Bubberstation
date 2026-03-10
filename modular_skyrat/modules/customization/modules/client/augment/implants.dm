@@ -43,7 +43,7 @@
 /datum/augment_item/implant/l_arm/toolkit/lighter
 	name = "Left Lighter Implant"
 	cost = 1
-	path = /obj/item/organ/cyberimp/arm/toolkit/lighter/left_arm
+	path = /obj/item/organ/cyberimp/arm/toolkit/lighter
 
 //RIGHT ARM IMPLANTS
 /datum/augment_item/implant/r_arm
@@ -62,7 +62,7 @@
 /datum/augment_item/implant/r_arm/toolkit/lighter
 	name = "Right Lighter Implant"
 	cost = 1
-	path = /obj/item/organ/cyberimp/arm/toolkit/lighter/right_arm
+	path = /obj/item/organ/cyberimp/arm/toolkit/lighter
 
 //BUBBER EDIT END
 
