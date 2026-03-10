@@ -101,7 +101,7 @@
 	name = "Basic cybernetic liver"
 	path = /obj/item/organ/liver/cybernetic
 
-	/datum/augment_item/organ/liver/cybernetic/tier2
+/datum/augment_item/organ/liver/cybernetic/tier2
 	name = "Cybernetic liver"
 	path = /obj/item/organ/liver/cybernetic/tier2
 	cost = 4
@@ -116,7 +116,7 @@
 /datum/augment_item/organ/stomach/cybernetic/tier2
 	name = "Cybernetic stomach"
 	path = /obj/item/organ/stomach/cybernetic/tier2
-	cost = 2
+	cost = 3
 
 //EYES
 /datum/augment_item/organ/eyes
@@ -201,6 +201,6 @@
 /datum/augment_item/organ/ears/cybernetic/upgraded
 	name = "Upgraded cybernetic ears"
 	path = /obj/item/organ/ears/cybernetic/upgraded
-	cost = 1
+	cost = 2
 
 //BUBBER EDIT END
