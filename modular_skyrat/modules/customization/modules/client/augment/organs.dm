@@ -91,7 +91,7 @@
 /datum/augment_item/organ/lungs/cybernetic/tier2
 	name = "Cybernetic lungs"
 	path = /obj/item/organ/lungs/cybernetic/tier2
-	cost = 3 // compared to the biological lungs already selectable, barely an upgrade.
+	cost = 3 // comparable to the biological lungs already selectable in terms of usable air pressure. No additional resistances to temperature or plasma filtering.
 
 //LIVERS
 /datum/augment_item/organ/liver

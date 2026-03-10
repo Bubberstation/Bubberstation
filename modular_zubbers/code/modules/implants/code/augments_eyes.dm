@@ -4,4 +4,4 @@
 	icon = 'modular_zubbers/icons/obj/medical/organs/organs.dmi'
 	icon_state = "eye_implant_civilian"
 	HUD_traits = list(TRAIT_SECURITY_HUD_ID_ONLY)
-	hud_color = "#71d482"
+	hud_color = "#25aa3b"
