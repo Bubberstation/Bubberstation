@@ -142,7 +142,7 @@ export const PlayerPanel = () => {
                   <Input
                     width="100%"
                     value={mob_name}
-                    onChange={(value) => act('set_name', { name: value })}
+                    onBlur={(value) => act('set_name', { name: value })}
                   />
                 </Stack.Item>
                 {!!client_ckey && (
