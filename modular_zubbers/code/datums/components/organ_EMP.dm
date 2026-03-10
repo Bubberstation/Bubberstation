@@ -3,7 +3,7 @@
 	var/valid_type = /obj/item/organ
 
 /datum/component/organ_emp_effects/Initialize(emp_vulnerability)
-	if(istype(parent, valid_type))
+	if(ispath(parent, valid_type))
 		return COMPONENT_INCOMPATIBLE
 
 	if(emp_vulnerability)
