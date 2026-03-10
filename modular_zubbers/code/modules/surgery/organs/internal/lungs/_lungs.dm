@@ -15,7 +15,10 @@
 				breather.reagents.add_reagent(SSair.chosen_goblin_reagent_drug, min(goblin_pp*0.25,10))
 
 
-//Cold cyber lungs
+/obj/item/organ/lungs/adaptive/Initialize(mapload)
+	. = ..()
+
+// //Cold cyber lungs
 /obj/item/organ/lungs/adaptive/cold/cybernetic
 	name = "cybernetic cold-engineered lungs"
 	desc = "A set of cybernetic lungs engineered for low temperatures, though they are more susceptible to high temperatures and EMPs. Considerably more fragile than its organic counterpart."
