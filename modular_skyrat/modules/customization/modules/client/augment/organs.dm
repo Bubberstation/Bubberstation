@@ -101,6 +101,11 @@
 	name = "Basic cybernetic liver"
 	path = /obj/item/organ/liver/cybernetic
 
+	/datum/augment_item/organ/liver/cybernetic/tier2
+	name = "Cybernetic liver"
+	path = /obj/item/organ/liver/cybernetic/tier2
+	cost = 4
+
 //STOMACHES
 /datum/augment_item/organ/stomach
 	slot = AUGMENT_SLOT_STOMACH
@@ -147,7 +152,6 @@
 	allowed_biotypes = MOB_ORGANIC|MOB_ROBOTIC
 	cost = 1
 
-//EDIT END
 //TONGUES
 /datum/augment_item/organ/tongue
 	slot = AUGMENT_SLOT_TONGUE
@@ -180,6 +184,12 @@
 	name = "Aquatic tongue"
 	path = /obj/item/organ/tongue/akula
 
+/datum/augment_item/organ/tongue/moth
+	name = "Fluttery tongue"
+	path = /obj/item/organ/tongue/moth
+
+/datum/augment_item/organ/tongue
+
 //EARS
 /datum/augment_item/organ/ears
 	slot = AUGMENT_SLOT_EARS
@@ -191,4 +201,6 @@
 /datum/augment_item/organ/ears/cybernetic/upgraded
 	name = "Upgraded cybernetic ears"
 	path = /obj/item/organ/ears/cybernetic/upgraded
-	cost = 2
+	cost = 1
+
+//BUBBER EDIT END

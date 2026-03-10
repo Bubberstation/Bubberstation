@@ -26,7 +26,6 @@
 	cost = 3
 	path = /obj/item/organ/cyberimp/chest/nutriment
 
-//BUBBER EDIT END
 //LEFT ARM IMPLANTS
 /datum/augment_item/implant/l_arm
 	slot = AUGMENT_SLOT_LEFT_ARM_IMPLANT
@@ -41,6 +40,11 @@
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/rope/left_arm
 
+/datum/augment_item/implant/l_arm/toolkit/lighter
+	name = "Left Lighter Implant"
+	cost = 1
+	path = /obj/item/organ/cyberimp/arm/toolkit/lighter/left_arm
+
 //RIGHT ARM IMPLANTS
 /datum/augment_item/implant/r_arm
 	slot = AUGMENT_SLOT_RIGHT_ARM_IMPLANT
@@ -54,6 +58,13 @@
 	name = "Right Climbing Hook"
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/rope/right_arm
+
+/datum/augment_item/implant/r_arm/toolkit/lighter
+	name = "Right Lighter Implant"
+	cost = 1
+	path = /obj/item/organ/cyberimp/arm/toolkit/lighter/right_arm
+
+//BUBBER EDIT END
 
 //EYES IMPLANTS
 /datum/augment_item/implant/eyes
