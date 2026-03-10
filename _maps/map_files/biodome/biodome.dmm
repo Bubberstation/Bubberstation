@@ -2299,6 +2299,11 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/iron/dark,
 /area/station/tcommsat/computer)
+"aQN" = (
+/obj/effect/landmark/start/bridge_assistant,
+/obj/machinery/light/floor,
+/turf/open/floor/wood,
+/area/station/command/bridge)
 "aQO" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction,
@@ -20994,6 +20999,11 @@
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 5
 	},
+/obj/machinery/button/door/directional/west{
+	name = "Custodial Shutters";
+	id = "custodialshutters";
+	req_access = list("janitor")
+	},
 /turf/open/floor/grass,
 /area/station/biodome/fore)
 "hAX" = (
@@ -21311,6 +21321,10 @@
 /obj/structure/sign/poster/contraband/random/directional/west,
 /turf/open/misc/asteroid,
 /area/station/cargo/miningdock)
+"hGU" = (
+/obj/machinery/light/floor,
+/turf/open/floor/wood,
+/area/station/command/bridge)
 "hHb" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/effect/mapping_helpers/damaged_window,
@@ -21730,6 +21744,11 @@
 	},
 /turf/open/floor/plating,
 /area/station/engineering/atmos)
+"hPt" = (
+/obj/effect/mapping_helpers/burnt_floor,
+/obj/structure/window/reinforced/tinted/spawner/directional/north,
+/turf/open/floor/plating,
+/area/station/maintenance/port/lower)
 "hPB" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
@@ -23028,13 +23047,17 @@
 /obj/item/restraints/legcuffs/beartrap,
 /obj/item/storage/box/mousetraps,
 /obj/item/storage/box/mousetraps,
-/obj/machinery/airalarm/directional/east,
 /obj/structure/table,
 /obj/machinery/requests_console/directional/south{
 	department = "Janitorial";
 	name = "Janitorial Requests Console"
 	},
 /obj/effect/mapping_helpers/requests_console/assistance,
+/obj/machinery/button/door/directional/east{
+	name = "Custodial Shutters";
+	id = "custodialshutters";
+	req_access = list("janitor")
+	},
 /turf/open/floor/iron/smooth_large,
 /area/station/service/janitor)
 "inr" = (
@@ -25797,6 +25820,7 @@
 /obj/item/grenade/chem_grenade/cleaner,
 /obj/item/grenade/chem_grenade/cleaner,
 /obj/structure/table,
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron/smooth_large,
 /area/station/service/janitor)
 "jkq" = (
@@ -53316,6 +53340,7 @@
 /area/station/commons/lounge)
 "sxT" = (
 /obj/structure/closet/l3closet/janitor,
+/obj/structure/window/reinforced/tinted/spawner/directional/south,
 /turf/open/floor/iron/smooth_large,
 /area/station/service/janitor)
 "syh" = (
@@ -58959,7 +58984,6 @@
 	dir = 4;
 	id = "robo2"
 	},
-/obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/table/reinforced,
 /obj/structure/plasticflaps,
 /obj/machinery/door/firedoor,
@@ -59356,6 +59380,11 @@
 /obj/machinery/barsign/directional/north,
 /turf/open/floor/wood/large,
 /area/station/commons/lounge)
+"uBt" = (
+/obj/structure/cable,
+/obj/machinery/light/floor,
+/turf/open/floor/wood,
+/area/station/command/bridge)
 "uBC" = (
 /obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
 	dir = 6
@@ -60311,9 +60340,12 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/lower)
 "uSm" = (
-/obj/machinery/light/floor,
-/turf/open/floor/stone,
-/area/station/biodome)
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/window/left/directional/east{
+	req_access = list("janitor")
+	},
+/turf/open/floor/iron/smooth_large,
+/area/station/service/janitor)
 "uSw" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -63323,6 +63355,16 @@
 /obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /turf/open/floor/plating,
 /area/station/cargo/storage)
+"vZu" = (
+/obj/effect/mapping_helpers/burnt_floor,
+/obj/structure/plasticflaps/opaque,
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=8";
+	location = "Janitor";
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/station/service/janitor)
 "vZx" = (
 /obj/effect/turf_decal/tile/dark_red/half/contrasted{
 	dir = 1
@@ -64062,6 +64104,7 @@
 /obj/effect/turf_decal/plaque{
 	icon_state = "L8"
 	},
+/obj/machinery/light/floor,
 /obj/effect/landmark/observer_start,
 /turf/open/floor/stone,
 /area/station/biodome)
@@ -96140,8 +96183,8 @@ nSA
 nSA
 nSA
 nSA
-nSA
-reG
+vZu
+hPt
 reG
 ecH
 ecH
@@ -96397,7 +96440,7 @@ pEv
 hpx
 tRl
 sxT
-nSA
+uSm
 nSA
 rNa
 rNa
@@ -105928,7 +105971,7 @@ ngd
 ngd
 qgW
 wkf
-uSm
+ngd
 ngd
 wrw
 dFA
@@ -175564,7 +175607,7 @@ fVh
 dAB
 uHZ
 sCu
-kPa
+uBt
 sCu
 qSr
 aZH
@@ -175572,7 +175615,7 @@ aZH
 aZH
 qSr
 qSr
-qSr
+hGU
 qSr
 gAI
 uVv
@@ -175823,11 +175866,11 @@ fNQ
 duw
 kPa
 qSr
-qSr
+hGU
 aZH
 tAY
 aZH
-sCu
+aQN
 qSr
 qSr
 duw
