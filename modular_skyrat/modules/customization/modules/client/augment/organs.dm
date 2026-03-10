@@ -95,25 +95,25 @@
 	cost = 3 // comparable to the biological lungs already selectable in terms of usable air pressure. No additional resistances to temperature or plasma filtering.
 
 /datum/augment_item/organ/lungs/coldcyber
-	name = "Cybernetic Cold-Adjusted Lungs"
+	name = "Cybernetic Cold-Engineered Lungs"
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/lungs/adaptive/cold/cybernetic
 	cost = 1
 
 /datum/augment_item/organ/lungs/hotcyber
-	name = "Cybernetic Heat-Adjusted Lungs"
+	name = "Cybernetic Heat-Engineered Lungs"
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/lungs/adaptive/hot/cybernetic
 	cost = 1
 
 /datum/augment_item/organ/lungs/toxincyber
-	name = "Cybernetic Toxin-Adjusted Lungs"
+	name = "Cybernetic Toxin-Engineered Lungs"
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/lungs/adaptive/toxin/cybernetic
 	cost = 1
 
 /datum/augment_item/organ/lungs/oxycyber
-	name = "Cybernetic Low-Oxygen-Adjusted Lungs"
+	name = "Cybernetic Low-Oxygen-Engineered Lungs"
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/lungs/adaptive/oxy/cybernetic
 	cost = 1

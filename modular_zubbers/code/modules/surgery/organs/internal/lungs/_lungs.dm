@@ -21,7 +21,7 @@
 // //Cold cyber lungs
 /obj/item/organ/lungs/adaptive/cold/cybernetic
 	name = "cybernetic cold-engineered lungs"
-	desc = "A set of cybernetic lungs engineered for low temperatures, though they are more susceptible to high temperatures and EMPs. Considerably more fragile than its organic counterpart."
+	desc = "A set of cybernetic lungs built for low temperatures, though they are more susceptible to high temperatures and EMPs. Considerably more fragile than its organic counterpart."
 	failing_desc = "seems to be broken."
 	icon = 'icons/obj/medical/organs/organs.dmi'
 	icon_state = "lungs-c"
@@ -42,7 +42,7 @@
 
 //Toxin cyber lungs
 /obj/item/organ/lungs/adaptive/toxin/cybernetic
-	name = "cybernetic toxin-adapted lungs"
+	name = "cybernetic toxin-engineered lungs"
 	desc = "A set of cybernetic lungs built for toxic environments, though more susceptible to extreme temperatures and EMPs. Considerably more fragile than its organic counterpart."
 	failing_desc = "seems to be broken."
 	icon = 'icons/obj/medical/organs/organs.dmi'
@@ -54,7 +54,7 @@
 //Low Oxy cyber lungs
 /obj/item/organ/lungs/adaptive/oxy/cybernetic
 	name = "cybernetic low-oxygen lungs"
-	desc = "A set of cybernetic lungs engineered for low oxygen environments, though more susceptible to extreme temperatures and EMPs. Considerably more fragile than its organic counterpart."
+	desc = "A set of cybernetic lungs ebuilt for low oxygen environments, though more susceptible to extreme temperatures and EMPs. Considerably more fragile than its organic counterpart."
 	failing_desc = "seems to be broken."
 	icon = 'icons/obj/medical/organs/organs.dmi'
 	icon_state = "lungs-c"
