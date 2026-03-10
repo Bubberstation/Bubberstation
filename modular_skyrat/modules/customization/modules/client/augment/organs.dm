@@ -188,7 +188,7 @@
 	name = "Basic cybernetic ears"
 	path = /obj/item/organ/ears/cybernetic
 
-/datum/augment_item/organ/ears/cybernetic
+/datum/augment_item/organ/ears/cybernetic/upgraded
 	name = "Upgraded cybernetic ears"
 	path = /obj/item/organ/ears/cybernetic/upgraded
 	cost = 2
