@@ -44,14 +44,13 @@
 	path = /obj/item/organ/brain/cybernetic/cortical
 	cost = 1 // technically a downgrade in most applications, but has uses.
 
-//EDIT END
 
 //HEARTS
 /datum/augment_item/organ/heart
 	slot = AUGMENT_SLOT_HEART
 
 /datum/augment_item/organ/heart/cybernetic
-	name = "Cybernetic heart"
+	name = "Basic Cybernetic heart"
 	path = /obj/item/organ/heart/cybernetic
 
 //LUNGS
@@ -86,7 +85,7 @@
 	path = /obj/item/organ/lungs/oxy
 	cost = 1
 /datum/augment_item/organ/lungs/cybernetic
-	name = "Cybernetic lungs"
+	name = "Basic Cybernetic lungs"
 	path = /obj/item/organ/lungs/cybernetic
 
 //LIVERS
@@ -94,7 +93,7 @@
 	slot = AUGMENT_SLOT_LIVER
 
 /datum/augment_item/organ/liver/cybernetic
-	name = "Cybernetic liver"
+	name = "Basic Cybernetic liver"
 	path = /obj/item/organ/liver/cybernetic
 
 //STOMACHES
@@ -102,8 +101,12 @@
 	slot = AUGMENT_SLOT_STOMACH
 
 /datum/augment_item/organ/stomach/cybernetic
-	name = "Cybernetic stomach"
+	name = "Basic Cybernetic stomach"
 	path = /obj/item/organ/stomach/cybernetic
+/datum/augment_item/organ/stomach/cybernetic/tier2
+	name = "Cybernetic stomach"
+	path = /obj/item/organ/stomach/cybernetic/tier2
+	cost = 2
 
 //EYES
 /datum/augment_item/organ/eyes
@@ -129,6 +132,7 @@
 	allowed_biotypes = MOB_ORGANIC|MOB_ROBOTIC
 	cost = 1
 
+//EDIT END
 //TONGUES
 /datum/augment_item/organ/tongue
 	slot = AUGMENT_SLOT_TONGUE
