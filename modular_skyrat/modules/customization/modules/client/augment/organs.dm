@@ -43,7 +43,7 @@
 	slot = AUGMENT_SLOT_BRAIN
 	path = /obj/item/organ/brain/cybernetic/cortical
 	cost = 1 // technically a downgrade in most applications, but has uses.
-
+//BUBBER EDIT END
 
 //HEARTS
 /datum/augment_item/organ/heart
@@ -53,6 +53,7 @@
 	name = "Basic cybernetic heart"
 	path = /obj/item/organ/heart/cybernetic
 
+//BUBBER EDIT BEGIN
 //LUNGS
 /datum/augment_item/organ/lungs
 	slot = AUGMENT_SLOT_LUNGS
@@ -99,6 +100,12 @@
 	path = /obj/item/organ/lungs/adaptive/cold/cybernetic
 	cost = 1
 
+	/datum/augment_item/organ/lungs/hotcyber
+	name = "Cybernetic Heat-Adapted Lungs"
+	slot = AUGMENT_SLOT_LUNGS
+	path = /obj/item/organ/lungs/adaptive/hot/cybernetic
+	cost = 1
+//BUBBER EDIT END
 //LIVERS
 /datum/augment_item/organ/liver
 	slot = AUGMENT_SLOT_LIVER
@@ -119,6 +126,7 @@
 	path = /obj/item/organ/stomach/cybernetic/tier2
 	cost = 3
 
+//BUBBER EDIT BEGIN
 //EYES
 /datum/augment_item/organ/eyes
 	slot = AUGMENT_SLOT_EYES

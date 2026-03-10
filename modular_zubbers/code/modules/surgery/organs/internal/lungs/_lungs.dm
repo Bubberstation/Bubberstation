@@ -14,12 +14,14 @@
 			if(3)
 				breather.reagents.add_reagent(SSair.chosen_goblin_reagent_drug, min(goblin_pp*0.25,10))
 
+
+
 /obj/item/organ/lungs/adaptive/cold/cybernetic
 	name = "cybernetic cold-adapted lungs"
 	desc = "A set of cybernetic lungs adapted to low temperatures, though they are more susceptible to high temperatures"
 	failing_desc = "seems to be broken."
+	icon = 'icons/obj/medical/organs/organs.dmi'
 	icon_state = "lungs-c"
-	icon = "lungs-c"
 	breath_noise = "a steady whirr"
 	organ_flags = ORGAN_ROBOTIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
@@ -34,3 +36,25 @@
         COOLDOWN_START(src, severe_cooldown, 30 SECONDS)
     if(prob(emp_vulnerability/severity))
         organ_flags |= ORGAN_EMP
+
+/obj/item/organ/lungs/adaptive/hot/cybernetic
+	name = "cybernetic heat-adapted lungs"
+	desc = "A set of cybernetic lungs adapted to high temperatures, though they are more susceptible to low temperatures"
+	failing_desc = "seems to be broken."
+	icon = 'icons/obj/medical/organs/organs.dmi'
+	icon_state = "lungs-c"
+	breath_noise = "a steady whirr"
+	organ_flags = ORGAN_ROBOTIC
+	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
+	var/emp_vulnerability = 80 //Chance of permanent effects if emp-ed.
+
+/obj/item/organ/lungs/adaptive/hot/cybernetic/emp_act(severity)
+    . = ..()
+    if(. & EMP_PROTECT_SELF)
+        return
+    if(!COOLDOWN_FINISHED(src, severe_cooldown))
+        owner.losebreath += 20
+        COOLDOWN_START(src, severe_cooldown, 30 SECONDS)
+    if(prob(emp_vulnerability/severity))
+        organ_flags |= ORGAN_EMP
+
