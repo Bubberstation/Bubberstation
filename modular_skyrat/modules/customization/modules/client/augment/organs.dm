@@ -50,7 +50,7 @@
 	slot = AUGMENT_SLOT_HEART
 
 /datum/augment_item/organ/heart/cybernetic
-	name = "Basic Cybernetic heart"
+	name = "Basic cybernetic heart"
 	path = /obj/item/organ/heart/cybernetic
 
 //LUNGS
@@ -85,7 +85,7 @@
 	path = /obj/item/organ/lungs/oxy
 	cost = 1
 /datum/augment_item/organ/lungs/cybernetic
-	name = "Basic Cybernetic lungs"
+	name = "Basic cybernetic lungs"
 	path = /obj/item/organ/lungs/cybernetic
 
 //LIVERS
@@ -93,7 +93,7 @@
 	slot = AUGMENT_SLOT_LIVER
 
 /datum/augment_item/organ/liver/cybernetic
-	name = "Basic Cybernetic liver"
+	name = "Basic cybernetic liver"
 	path = /obj/item/organ/liver/cybernetic
 
 //STOMACHES
@@ -101,7 +101,7 @@
 	slot = AUGMENT_SLOT_STOMACH
 
 /datum/augment_item/organ/stomach/cybernetic
-	name = "Basic Cybernetic stomach"
+	name = "Basic cybernetic stomach"
 	path = /obj/item/organ/stomach/cybernetic
 /datum/augment_item/organ/stomach/cybernetic/tier2
 	name = "Cybernetic stomach"
@@ -116,9 +116,19 @@
 	name = "Cybernetic eyes"
 	path = /obj/item/organ/eyes/robotic
 
+/datum/augment_item/organ/eyes/cybernetic
+	name = "Basic cybernetic eyes"
+	path = /obj/item/organ/eyes/robotic/basic
+	cost = -1
+
 /datum/augment_item/organ/eyes/cybernetic/moth
 	name = "Cybernetic moth eyes"
 	path = /obj/item/organ/eyes/robotic/moth
+
+/datum/augment_item/organ/eyes/cybernetic/moth
+	name = "Basic cybernetic moth eyes"
+	path = /obj/item/organ/eyes/robotic/moth/basic
+	cost = -1
 
 /datum/augment_item/organ/eyes/highlumi
 	name = "High-luminosity eyes"
@@ -172,3 +182,7 @@
 /datum/augment_item/organ/ears/cybernetic
 	name = "Cybernetic ears"
 	path = /obj/item/organ/ears/cybernetic
+
+/datum/augment_item/organ/ears/cybernetic/tier2
+	name = "Cybernetic ears"
+	path = /obj/item/organ/ears/cybernetic/tier2
