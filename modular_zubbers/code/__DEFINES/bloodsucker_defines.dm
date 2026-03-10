@@ -262,6 +262,8 @@
 #define BLOODSUCKER_SIGHT_COLOR_CUTOFF list(25, 8, 5)
 #define POLL_IGNORE_GHOUL "ghoul"
 
+#define BLOODSUCKER_ANTIMAGIC MAGIC_RESISTANCE_MIND|MAGIC_RESISTANCE_HOLY
+
 // Why waste memory on a dynamic global list if we can just bake it in on compile time?
 #define BLOODSUCKER_BLACKLISTED_ROLES list( \
 	JOB_CAPTAIN, \

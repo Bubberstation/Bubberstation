@@ -73,7 +73,7 @@
 	if(!can_pay_cost() || !can_use(owner) || !CheckCanTarget(target))
 		return FALSE
 	if(power_activates_immediately)
-		PowerActivatedSuccesfully() // Mesmerize pays only after success.
+		power_activated_successfully() // Mesmerize pays only after success.
 	power_in_use = FALSE
 	return TRUE
 
@@ -100,7 +100,7 @@
 		owner.click_intercept = null
 
 /// The power went off! We now pay the cost of the power.
-/datum/action/cooldown/bloodsucker/targeted/proc/PowerActivatedSuccesfully(cooldown_override, cost_override)
+/datum/action/cooldown/bloodsucker/targeted/proc/power_activated_successfully(cooldown_override, cost_override)
 	StartCooldown(cooldown_override)
 	unset_click_ability(owner)
 	pay_cost(cost_override)

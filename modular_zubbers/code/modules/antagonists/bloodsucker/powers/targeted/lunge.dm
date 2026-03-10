@@ -124,7 +124,7 @@
 	lunge_end(hit_atom, targeted_turf)
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/proc/lunge_end(atom/hit_atom, turf/target_turf)
-	PowerActivatedSuccesfully()
+	power_activated_successfully()
 	// Am I next to my target to start giving the effects?
 	if(!owner.Adjacent(hit_atom))
 		return
