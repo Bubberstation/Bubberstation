@@ -172,6 +172,8 @@
 // BUBBER EDIT ADDITION: START - Adding the kinetic bodytype
 ///The limb is a kinetic prosthetic.
 #define BODYTYPE_KINETIC (1<<14)
+///The limb is synthetic, this is for an additional surgery check.
+#define BODYTYPE_SYNTHETIC (1<<15)
 // BUBBER EDIT ADDITION: END
 
 // SKYRAT EDIT END

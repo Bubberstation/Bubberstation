@@ -1157,7 +1157,7 @@
 	for(var/mob/living/possible_target in view(DEFAULT_VIEW_RANGE, phaser_owner))
 		if(possible_target == src)
 			continue
-		if(faction_check(phaser_owner.faction, possible_target.faction))
+		if(!faction_check_atom(phaser_owner, possible_target))
 			continue
 		possible_targets += possible_target
 

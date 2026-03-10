@@ -1,8 +1,8 @@
 /datum/atom_skin
 	/// Optional, worn_icon to change the atom to when applied
-	var/new_worn_icon
+/* 	var/new_worn_icon */  //already defined upstream in code/datums/components/reskinnable_atom.dm
 	/// The in-hand icon state for held items.
-	var/new_inhand_icon_state
+/* 	var/new_inhand_icon_state */ //already defined upstream in code/datums/components/reskinnable_atom.dm
 	/// The left side in-hand icon state for held items.
 	var/new_left_inhand
 	/// The right side in-hand icon state for held items.

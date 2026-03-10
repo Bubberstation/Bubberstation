@@ -91,7 +91,7 @@
 	if(arriving_mob.stat != CONSCIOUS)
 		return
 
-	if(faction_check(faction_types, arriving_mob.faction)) // A friend :)
+	if(faction_check_atom(arriving_mob)) // A friend :)
 		return
 
 	activate_ability(arriving_mob)
@@ -213,7 +213,7 @@
 
 /obj/structure/fleshmind/structure/wireweed_door/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	if(!faction_check(faction_types, user.faction))
+	if(faction_check_atom(user))
 		return
 	if(!user.can_interact_with(src))
 		return
@@ -225,7 +225,7 @@
 	if(!isliving(bumped_atom))
 		return
 	var/mob/living/bumped_mob = bumped_atom
-	if(!faction_check(faction_types, bumped_mob.faction))
+	if(faction_check_atom(bumped_mob))
 		return
 	toggle_door()
 
@@ -373,7 +373,7 @@
 	var/has_attacked
 	if(istype(thing, /mob/living))
 		var/mob/living/living_thing = thing
-		if(!faction_check(faction_types, living_thing.faction))
+		if(faction_check_atom(living_thing))
 			switch(attack_damage_type)
 				if(BRUTE)
 					living_thing.take_bodypart_damage(brute = attack_damage, check_armor = TRUE)
@@ -419,7 +419,7 @@
 	for(var/mob/living/iterating_mob in view(whip_range, src))
 		if(iterating_mob == src)
 			continue
-		if(faction_check(faction_types, iterating_mob.faction))
+		if(faction_check_atom(iterating_mob))
 			continue
 		playsound(iterating_mob, 'sound/items/weapons/whip.ogg', 70, TRUE)
 		new /obj/effect/temp_visual/kinetic_blast(get_turf(iterating_mob))
@@ -439,7 +439,7 @@
 	balloon_alert_to_viewers("lets out an earbleeding shriek!")
 	playsound(src, 'modular_skyrat/modules/horrorform/sound/horror_scream.ogg', 100, TRUE)
 	for(var/mob/living/basic/fleshmind/mob_in_range in range(rally_range, src))
-		if(faction_check(faction_types, mob_in_range.faction))
+		if(faction_check_atom(mob_in_range))
 			mob_in_range.ai_controller.set_blackboard_key(BB_BASIC_MOB_REINFORCEMENT_TARGET, src)
 			mob_in_range.emote("scream")
 			mob_in_range.alert_sound()
@@ -554,7 +554,7 @@
 	for(var/mob/living/iterating_mob in get_hearers_in_range(activation_range, src))
 		if(HAS_TRAIT(iterating_mob, TRAIT_DEAF))
 			continue
-		if(faction_check(faction_types, iterating_mob.faction))
+		if(faction_check_atom(iterating_mob))
 			continue
 		iterating_mob.Knockdown(100)
 		iterating_mob.apply_status_effect(/datum/status_effect/jitter, 20 SECONDS)
@@ -607,7 +607,7 @@
 			continue
 		if(iterating_human.stat != CONSCIOUS)
 			continue
-		if(faction_check(faction_types, iterating_human.faction))
+		if(faction_check_atom(iterating_human))
 			continue
 		possible_candidates += iterating_human
 
@@ -687,7 +687,7 @@
 
 /obj/structure/fleshmind/structure/assembler/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	if(!faction_check(faction_types, user.faction))
+	if(faction_check_atom(user))
 		return
 	if(!user.can_interact_with(src))
 		return
@@ -748,7 +748,7 @@
 		return
 	var/list/targets = list()
 	for(var/mob/living/target_mob in view(activation_range, src))
-		if(faction_check(target_mob.faction, faction_types))
+		if(faction_check_atom(target_mob))
 			continue
 		if(target_mob.stat != CONSCIOUS)
 			continue
@@ -770,10 +770,10 @@
 	flick("[base_icon_state]-anim", src)
 	playsound(loc, 'modular_zubbers/sound/fleshmind/laser.ogg', 75, TRUE)
 	var/obj/projectile/new_projectile = new projectile_type
+	APPLY_FACTION_AND_ALLIES_FROM(new_projectile, src)
 	new_projectile.aim_projectile(triggered_mob, src)
 	new_projectile.firer = src
 	new_projectile.fired_from = src
-	new_projectile.ignored_factions = faction_types
 	new_projectile.fire()
 
 /obj/projectile/fleshmind_flechette

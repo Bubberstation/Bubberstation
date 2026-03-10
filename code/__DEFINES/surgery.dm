@@ -38,8 +38,11 @@
 #define ORGAN_MUTANT (1<<15)
 /// The organ has been chomped or otherwise rendered unusable.
 #define ORGAN_UNUSABLE (1<<16)
-/// BUBBER EDIT ADD - Nanoswarm organ
+/// BUBBER EDIT ADDITION START
 #define ORGAN_NANOMACHINE (1<<17)
+/// Synthetic organ granted by a species (for use for organ replacements between species)
+#define ORGAN_SYNTHETIC_FROM_SPECIES (1<<18)
+///BUBBER EDIT ADDITION END
 /// Organ flags that correspond to bodytypes
 #define ORGAN_TYPE_FLAGS (ORGAN_ORGANIC | ORGAN_ROBOTIC | ORGAN_MINERAL | ORGAN_GHOST)
 

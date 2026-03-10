@@ -3,7 +3,7 @@
 	icon_state = "eyes_cyber"
 	desc = "A very basic set of optical sensors with no extra vision modes or functions."
 	maxHealth = 1 * STANDARD_ORGAN_THRESHOLD
-	organ_flags = ORGAN_ROBOTIC
+	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 
 /obj/item/organ/eyes/synth/emp_act(severity)
 	. = ..()

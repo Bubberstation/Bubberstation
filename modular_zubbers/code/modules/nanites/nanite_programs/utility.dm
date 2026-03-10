@@ -171,14 +171,15 @@
 	potential_items += host_mob.get_inactive_held_item()
 	potential_items += host_mob.pulling
 
-	if(ishuman(host_mob))
+//We now use the simple_access component.
+/* 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
 		potential_items += H.wear_id
 	else if(isanimal(host_mob))
 		var/mob/living/simple_animal/A = host_mob
-		potential_items += A.access_card
+		potential_items += A.access_card */
 
-	var/list/new_access = list()
+	var/list/new_access = list(COMSIG_MOB_RETRIEVE_ACCESS)
 	for(var/obj/item/I in potential_items)
 		new_access += I.GetAccess()
 

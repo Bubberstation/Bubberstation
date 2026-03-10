@@ -13,7 +13,7 @@
 		/obj/item = 5,
 	)
 	time = 6.4 SECONDS
-	required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = (~BODYTYPE_ROBOTIC & ~BODYTYPE_SYNTHETIC) // NOVA EDIT CHANGE - SYNTH FLAGS  -Orginal: required_bodytype = ~BODYTYPE_ROBOTIC
 	preop_sound = list(
 		/obj/item/circular_saw = 'sound/items/handling/surgery/saw.ogg',
 		/obj/item = 'sound/items/handling/surgery/scalpel1.ogg',
