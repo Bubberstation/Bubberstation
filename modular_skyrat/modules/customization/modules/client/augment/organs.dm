@@ -109,13 +109,13 @@
 /datum/augment_item/organ/lungs/toxincyber
 	name = "Cybernetic Toxin-Engineered Lungs"
 	slot = AUGMENT_SLOT_LUNGS
-	path = /obj/item/organ/lungs/adaptive/toxin/cybernetic
+	path = /obj/item/organ/lungs/toxin/cybernetic
 	cost = 1
 
 /datum/augment_item/organ/lungs/oxycyber
 	name = "Cybernetic Low-Oxygen Engineered Lungs"
 	slot = AUGMENT_SLOT_LUNGS
-	path = /obj/item/organ/lungs/adaptive/oxy/cybernetic
+	path = /obj/item/organ/lungs/oxy/cybernetic
 	cost = 1
 //BUBBER EDIT END
 //LIVERS
