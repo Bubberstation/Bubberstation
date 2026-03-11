@@ -49,7 +49,5 @@
 	if(SSprivacy.has_accepted(mob?.ckey, CURRENT_PRIVACY_KEY))
 		return
 
-	SStgui.close_user_uis(mob)
-
 	var/datum/privacy_policy_ui/ui = new(src)
 	ui.ui_interact(mob)
