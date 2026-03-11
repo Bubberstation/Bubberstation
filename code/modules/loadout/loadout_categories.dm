@@ -17,6 +17,7 @@
 	/// List of all loadout items in this category
 	VAR_FINAL/list/datum/loadout_item/associated_items
 
+/* BUBBERSTATION CHANGE START: BUBBERSTATION CHANGE: THIS IS MOVED TO MODULAR
 /datum/loadout_category/New()
 	. = ..()
 	associated_items = get_items()
@@ -24,6 +25,7 @@
 		if(GLOB.all_loadout_datums[item.item_path])
 			stack_trace("Loadout datum collision - [item.item_path] is shared between multiple loadout datums.")
 		GLOB.all_loadout_datums[item.item_path] = item
+*/
 
 /datum/loadout_category/Destroy(force, ...)
 	if(!force)
