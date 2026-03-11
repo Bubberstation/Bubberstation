@@ -3,6 +3,10 @@
 	allowed_biotypes = MOB_ORGANIC|MOB_ROBOTIC
 	///Hardcoded styles that can be chosen from and apply to limb, if it's true
 	var/uses_robotic_styles = TRUE
+	///Should we draw these greyscale?
+	var/uses_greyscale = FALSE
+	///Used for legs - if it has a digitigrade sprite variant, set to TRUE.
+	var/supports_digitigrade = FALSE
 
 /datum/augment_item/limb/apply(mob/living/carbon/human/augmented, character_setup = FALSE, datum/preferences/prefs)
 	if(character_setup)
@@ -38,7 +42,7 @@
 		if(uses_robotic_styles && prefs.augment_limb_styles[slot])
 			var/datum/robotic_style/chosen_style = GLOB.robotic_styles_list[prefs.augment_limb_styles[slot]] // Shit's fucked. Start testing on spawn?
 			new_limb.current_style = prefs.augment_limb_styles[slot]
-			var/dimorphic_override = LAZYACCESS(chosen_style.dimorphic_overrides, new_limb.body_zone)
+				var/dimorphic_override = LAZYACCESS(chosen_style.dimorphic_overrides, new_limb.body_zone)
 			if(!isnull(dimorphic_override))
 				new_limb.is_dimorphic = dimorphic_override
 			if(chosen_style.limb_id_override)
@@ -47,7 +51,12 @@
 				new_limb.set_icon_static(chosen_style.icon)
 			else
 				new_limb.set_icon_greyscale(chosen_style.icon)
-		new_limb.replace_limb(augmented, special = TRUE)
+		if(supports_digitigrade == TRUE && old_limb.limb_id == BODYPART_ID_DIGITIGRADE)
+			new_limb.limb_id = BODYPART_ID_DIGITIGRADE
+			new_limb.base_limb_id = BODYPART_ID_DIGITIGRADE
+			new_limb.bodyshape = old_limb.bodyshape
+
+		new_limb.replace_limb(augmented)
 		qdel(old_limb)
 
 //HEADS
