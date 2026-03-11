@@ -1,5 +1,3 @@
-#define CURRENT_PRIVACY_KEY "privacy_v1"
-
 /datum/privacy_policy_ui
 	var/client/owner
 
@@ -42,6 +40,9 @@
 	ui.open()
 
 /client/proc/show_privacy_policy()
+	if(!CONFIG_GET(flag/sql_enabled))
+		return
+
 	if(!mob)
 		return
 
@@ -52,5 +53,3 @@
 
 	var/datum/privacy_policy_ui/ui = new(src)
 	ui.ui_interact(mob)
-
-#undef CURRENT_PRIVACY_KEY

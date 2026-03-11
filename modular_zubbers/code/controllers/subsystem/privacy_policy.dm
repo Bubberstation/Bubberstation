@@ -5,6 +5,8 @@ SUBSYSTEM_DEF(privacy)
 	VAR_PRIVATE/list/completed_by_ckey = list()
 
 /datum/controller/subsystem/privacy/Initialize()
+	if(!CONFIG_GET(flag/sql_enabled))
+		return
 	load_initial_acceptances()
 	return SS_INIT_SUCCESS
 
