@@ -38,6 +38,10 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NEWBIE_NOTICER, INNATE_TRAIT)
 
+/mob/dead/observer/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NEWBIE_NOTICER, INNATE_TRAIT)
+
 /datum/job/after_spawn(mob/living/spawned, client/player_client)
 	. = ..(spawned, player_client)
 	var/mob/living/carbon/human/human_spawned = spawned
