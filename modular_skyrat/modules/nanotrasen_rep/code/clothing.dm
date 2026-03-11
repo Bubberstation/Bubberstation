@@ -111,4 +111,3 @@
 	icon = 'modular_zubbers/icons/obj/storage/backpack.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
 	icon_state = "satchel-nanotrasen"
-	inhand_icon_state = "satchel-nanotrasen"
