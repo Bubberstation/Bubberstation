@@ -3,6 +3,9 @@
 	make_default_mutant_bodypart_references()
 	make_body_marking_references()
 	make_body_marking_set_references()
+	//BUBBER EDIT BEGIN
+	make_robotic_style_references()
+	//BUBBER EDIT END
 	populate_total_ui_len_by_block()
 	populate_total_uf_len_by_block()
 	make_augment_references()
@@ -63,6 +66,13 @@
 		if(initial(BM.name))
 			BM = new path()
 			GLOB.body_marking_sets[BM.name] = BM
+
+//BUBBER EDIT BEGIN
+/proc/make_robotic_style_references()
+	for(var/path in valid_subtypesof(/datum/robotic_style))
+		var/datum/robotic_style/style = path
+		GLOB.robotic_styles_list[style::name] = new style()
+//BUBBER EDIT END
 
 /proc/init_skyrat_stack_recipes()
 	var/list/additional_stack_recipes = list(
