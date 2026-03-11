@@ -12,11 +12,6 @@ GLOBAL_LIST_INIT(possible_genitals, list(
 GLOBAL_LIST_EMPTY(body_markings)
 GLOBAL_LIST_EMPTY_TYPED(body_markings_per_limb, /list)
 GLOBAL_LIST_EMPTY(body_marking_sets)
-//BUBBER EDIT BEGIN
-
-GLOBAL_LIST_EMPTY(robotic_styles_list)
-
-//BUBBER EDIT END
 GLOBAL_LIST_EMPTY(loadout_items)
 GLOBAL_LIST_EMPTY(loadout_category_to_subcategory_to_items)
 
