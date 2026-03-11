@@ -42,6 +42,7 @@ type Data = {
   data_byond_version: string;
   data_old_names: string;
   mob_speed: number;
+  mob_scale: number;
   mob_status_flags: number;
   current_faction: string[];
 
@@ -474,13 +475,13 @@ const PhysicalActions = () => {
   const {
     glob_limbs,
     glob_status_flags,
+    mob_scale,
     mob_speed,
     mob_status_flags,
     mob_type,
     current_faction,
     glob_factions,
   } = data;
-  const [mobScale, setMobScale] = useState(1);
   const limbs = Object.keys(glob_limbs);
   const limb_flags = limbs.map((_, i) => 1 << i);
   const [delimbOption, setDelimbOption] = useState(0);
@@ -639,7 +640,6 @@ const PhysicalActions = () => {
           <Button
             icon="sync"
             onClick={() => {
-              setMobScale(1);
               act('scale', { new_scale: 1 });
             }}
           >
@@ -650,12 +650,11 @@ const PhysicalActions = () => {
         <Slider
           minValue={0.25}
           maxValue={8}
-          value={mobScale}
+          value={mob_scale}
           stepPixelSize={12}
           step={0.25}
           onChange={(_event, value: number) => {
-            setMobScale(value); // Update slider value
-            act('scale', { new_scale: value }); // Update mob's value
+            act('scale', { new_scale: value });
           }}
           unit="x"
         />
