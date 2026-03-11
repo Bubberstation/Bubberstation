@@ -5,7 +5,7 @@
 	organ_flags = ORGAN_ROBOTIC | ORGAN_VITAL | ORGAN_PROMINENT //BUBBER EDIT - Added ORGAN_PROMINENT
 	failing_desc = "seems to be broken, and will not work without repairs."
 	shade_color = null
-	var/emp_dmg_mult = 1 //BUBBER EDIT - Variable multiplier for damage from EMPs. Note the base damage is 20.
+	var/emp_dmg_mult = 1 //BUBBER EDIT - Variable multiplier for damage from EMPs. Note the base damage is 20/10.
 	var/emp_dmg_max = 999 ///BUBBER EDIT - Threshold before the organ simply stops taking damage from EMPs. Defaults to kill
 
 /* BUBBER EDIT - Reformatted this to change text based on flags
@@ -43,6 +43,7 @@
 /* BUBBER EDIT - Expands this proc for hybrid brain_size.
 ORIGINAL:
 /obj/item/organ/brain/cybernetic/check_for_repair(obj/item/item, mob/user)
+
 	if (item.tool_behaviour == TOOL_MULTITOOL) //attempt to repair the brain
 		if (brainmob?.health <= HEALTH_THRESHOLD_DEAD) //if the brain is fucked anyway, do nothing
 			to_chat(user, span_warning("[src] is far too damaged, there's nothing else we can do for it!"))
