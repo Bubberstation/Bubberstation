@@ -119,11 +119,6 @@
 	icon = BODYPART_ICON_MOTH
 	limb_id_override = /obj/item/bodypart/chest/moth::limb_id
 
-/datum/robotic_style/dimorphic/ramatan
-	name = "Ramatan"
-	icon = BODYPART_ICON_RAMATAE
-	limb_id_override = /obj/item/bodypart/chest/mutant/ramatae::limb_id
-
 /datum/robotic_style/dimorphic/vox
 	name = "Vox"
 	icon = BODYPART_ICON_VOX
