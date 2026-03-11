@@ -13069,7 +13069,7 @@
 /area/station/maintenance/department/medical/central)
 "cyz" = (
 /obj/machinery/computer/operating,
-/obj/item/radio/intercom/directional/north,
+/obj/machinery/vitals_reader/directional/north,
 /turf/open/floor/iron,
 /area/station/medical/surgery)
 "cyC" = (
@@ -34412,18 +34412,6 @@
 /obj/effect/landmark/start/hangover,
 /turf/open/floor/wood,
 /area/station/hallway/primary/port)
-"gAC" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/requests_console/auto_name/directional/north,
-/obj/effect/mapping_helpers/requests_console/assistance,
-/turf/open/floor/iron/white,
-/area/station/medical/medbay/central)
 "gAF" = (
 /obj/effect/spawner/random/structure/crate,
 /turf/open/floor/plating,
@@ -57316,7 +57304,7 @@
 /obj/machinery/computer/operating{
 	dir = 1
 	},
-/obj/item/radio/intercom/directional/south,
+/obj/machinery/vitals_reader/directional/south,
 /turf/open/floor/iron,
 /area/station/medical/surgery)
 "kVb" = (
@@ -66501,6 +66489,7 @@
 /obj/structure/table/glass,
 /obj/structure/window/spawner/directional/east,
 /obj/item/stack/medical/gauze,
+/obj/machinery/vitals_reader/directional/south,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "mKz" = (
@@ -73892,6 +73881,9 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/item/radio/intercom/directional/north{
+	pixel_y = 34
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/surgery)
 "ogv" = (
@@ -99749,6 +99741,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
+/obj/item/radio/intercom/directional/south{
+	pixel_y = -42
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/surgery)
 "sZC" = (
@@ -109370,7 +109365,7 @@
 /obj/structure/table/glass,
 /obj/structure/window/spawner/directional/east,
 /obj/item/clothing/neck/stethoscope,
-/obj/machinery/status_display/evac/directional/north,
+/obj/machinery/vitals_reader/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "uRM" = (
@@ -126362,6 +126357,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/requests_console/auto_name/directional/north,
+/obj/effect/mapping_helpers/requests_console/assistance,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "yce" = (
@@ -230149,7 +230146,7 @@ nJi
 qfY
 mKs
 atX
-gAC
+evr
 ved
 ewB
 pVw

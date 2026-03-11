@@ -1,4 +1,4 @@
-/obj/item/bitrunning_disk/prefs
+/obj/item/disk/bitrunning/prefs
 	name = "DeForest biological simulation disk"
 	desc = "A disk containing the biological simulation data necessary to load custom characters into bitrunning domains."
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
@@ -11,18 +11,18 @@
 
 	var/include_loadout = FALSE
 
-/obj/item/bitrunning_disk/prefs/examine(mob/user)
+/obj/item/disk/bitrunning/prefs/examine(mob/user)
 	. = ..()
 	if(!isnull(loaded_preference))
 		var/name = loaded_preference.read_preference(/datum/preference/name/real_name)
 		. += "It currently has the character [name] loaded, with loadouts [(include_loadout ? "enabled" : "disabled")]"
 		. += span_notice("Ctrl-Click to change loadout loading")
 
-/obj/item/bitrunning_disk/prefs/item_ctrl_click(mob/user)
+/obj/item/disk/bitrunning/prefs/item_ctrl_click(mob/user)
 	include_loadout = !include_loadout // We just switch this around. Elegant!
 	balloon_alert(user, include_loadout ? "Loadout enabled" : "Loadout disabled")
 
-/obj/item/bitrunning_disk/prefs/attack_self(mob/user, modifiers)
+/obj/item/disk/bitrunning/prefs/attack_self(mob/user, modifiers)
 	. = ..()
 
 	var/list/prefdata_names = user.client.prefs?.create_character_profiles()
@@ -43,9 +43,9 @@
 	to_chat(user, span_notice("Character set to [choice] sucessfully!"))
 
 /datum/outfit/job/bitrunner
-	r_pocket = /obj/item/bitrunning_disk/prefs
+	r_pocket = /obj/item/disk/bitrunning/prefs
 
 /datum/orderable_item/bitrunning_tech/pref_item
 	cost_per_order = 500
-	purchase_path = /obj/item/bitrunning_disk/prefs
+	purchase_path = /obj/item/disk/bitrunning/prefs
 	desc = "This disk contains a program that lets you load in custom characters."

@@ -2144,9 +2144,16 @@
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 4
 	},
-/obj/item/toy/figure/md{
-	pixel_x = -8;
-	pixel_y = 6
+/obj/item/reagent_containers/chem_pack{
+	pixel_x = 10;
+	pixel_y = 10
+	},
+/obj/item/stack/medical/mesh{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/obj/item/stack/medical/gauze{
+	pixel_x = 8
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/exam_room)
@@ -5666,17 +5673,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
-"bXe" = (
-/obj/machinery/stasis{
-	dir = 4
-	},
-/obj/effect/turf_decal/box,
-/obj/machinery/defibrillator_mount/directional/west,
-/obj/effect/turf_decal/tile/neutral/half/contrasted{
-	dir = 4
-	},
-/turf/open/floor/iron/dark,
-/area/station/medical/exam_room)
 "bXf" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/cable,
@@ -6750,13 +6746,16 @@
 /area/space/nearstation)
 "clH" = (
 /obj/structure/table,
-/obj/item/healthanalyzer,
-/obj/item/crowbar/red,
 /obj/machinery/airalarm/directional/north,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 4
 	},
-/obj/machinery/computer/med_data/laptop,
+/obj/item/storage/box/gloves{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/masks,
+/obj/item/healthanalyzer,
 /turf/open/floor/iron/dark,
 /area/station/medical/exam_room)
 "clL" = (
@@ -22880,20 +22879,13 @@
 /turf/open/floor/plating,
 /area/station/security/prison)
 "huR" = (
-/obj/structure/table,
-/obj/item/reagent_containers/chem_pack{
-	pixel_x = 10;
-	pixel_y = 10
-	},
-/obj/item/stack/medical/gauze{
-	pixel_x = 8
-	},
-/obj/item/stack/medical/mesh{
-	pixel_x = -4;
-	pixel_y = 3
-	},
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 4
+	},
+/obj/machinery/defibrillator_mount/mobile,
+/obj/item/toy/figure/md{
+	pixel_x = -4;
+	pixel_y = 9
 	},
 /turf/open/floor/iron/dark,
 /area/station/medical/exam_room)
@@ -42312,11 +42304,11 @@
 /turf/open/floor/iron/dark,
 /area/station/security/interrogation)
 "nBZ" = (
-/obj/machinery/newscaster/directional/west,
 /obj/structure/table,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /obj/effect/spawner/surgery_tray/full,
+/obj/machinery/vitals_reader/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/medical/surgery/fore)
 "nCc" = (
@@ -71552,11 +71544,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/box,
-/obj/machinery/defibrillator_mount/directional/west,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 4
 	},
-/obj/machinery/computer/med_data/laptop,
+/obj/machinery/vitals_reader/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/medical/exam_room)
 "wLX" = (
@@ -74542,6 +74533,7 @@
 	},
 /obj/structure/table,
 /obj/effect/spawner/surgery_tray/full,
+/obj/machinery/vitals_reader/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/surgery/aft)
 "xLk" = (
@@ -95556,7 +95548,7 @@ gsy
 clH
 wLP
 huR
-bXe
+wLP
 gsy
 qaR
 uZT
