@@ -249,7 +249,7 @@
 		/obj/item/storage/hypospraykit,
 		/obj/item/storage/pill_bottle,
 		/obj/item/tank/internals/emergency_oxygen,
-		/obj/item/tourniquet,
+		//		/obj/item/tourniquet,
 		/obj/item/storage/box/bandages,
 		/obj/item/bodybag,
 	))
@@ -361,7 +361,7 @@
 		/obj/item/surgical_processor,
 		/obj/item/surgicaldrill,
 		/obj/item/tank/internals/emergency_oxygen,
-		/obj/item/tourniquet,
+		//		/obj/item/tourniquet,
 		/obj/item/weaponcell/medical,
 		/obj/item/handheld_soulcatcher,
 		/obj/item/wrench/medical,
@@ -467,7 +467,7 @@
 		/obj/item/storage/hypospraykit,
 		/obj/item/storage/pill_bottle,
 		/obj/item/tank/internals/emergency_oxygen,
-		/obj/item/tourniquet,
+		//		/obj/item/tourniquet,
 		/obj/item/storage/box/bandages,
 		/obj/item/bodybag,
 	))

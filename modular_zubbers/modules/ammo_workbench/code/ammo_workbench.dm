@@ -67,7 +67,7 @@
 	)
 
 /obj/machinery/ammo_workbench/Initialize(mapload)
-	var/datum/material_container/materials = new( \
+	materials = new( \
 		src, \
 		/datum/material_container, \
 		SSmaterials.materials_by_category[MAT_CATEGORY_ITEM_MATERIAL], \
