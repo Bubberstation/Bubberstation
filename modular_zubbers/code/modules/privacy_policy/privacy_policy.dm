@@ -12,7 +12,7 @@
 	if(!SSprivacy.has_accepted(owner.ckey, CURRENT_PRIVACY_KEY))
 		if(owner)
 			to_chat(owner, span_danger("You must accept the Privacy Policy to continue playing."))
-			qdel(owner)
+			New(owner)
 	qdel(src)
 
 /datum/privacy_policy_ui/ui_data(mob/user)
