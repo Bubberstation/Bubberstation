@@ -1,5 +1,5 @@
+
 import { Component } from 'react';
-import { useDispatch } from 'tgui/backend';
 import { Icon, KeyListener } from 'tgui-core/components';
 import { globalEvents, type KeyEvent } from 'tgui-core/events';
 import { KEY_CTRL } from 'tgui-core/keycodes';
@@ -12,7 +12,7 @@ import {
 } from 'tgui-core/random';
 
 import { resolveAsset } from '../assets';
-import { backendSuspendStart, useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
 import { Window } from '../layouts';
 
 type Bait = {
@@ -143,7 +143,7 @@ class FishingMinigame extends Component<
     this.updateAnimation = this.updateAnimation.bind(this);
     this.moveFish = this.moveFish.bind(this);
     this.moveBait = this.moveBait.bind(this);
-    this.updateCompletion = this.updateCompletion.bind(this);
+    // this.updateCompletion = this.updateCompletion.bind(this);
   }
 
   componentDidMount() {
@@ -173,7 +173,7 @@ class FishingMinigame extends Component<
     let newState: FishingMinigameState = { ...this.state };
     newState = this.moveFish(newState, delta, timestamp);
     newState = this.moveBait(newState, delta);
-    newState = this.updateCompletion(newState, delta);
+    // newState = this.updateCompletion(newState, delta);
     this.setState(newState);
     // wait for next frame
     this.last_frame = timestamp;
@@ -366,7 +366,7 @@ class FishingMinigame extends Component<
     return newState;
   }
 
-  updateCompletion(
+/*   updateCompletion(
     currentState: FishingMinigameState,
     delta: number,
   ): FishingMinigameState {
@@ -400,7 +400,7 @@ class FishingMinigame extends Component<
     }
 
     return newState;
-  }
+  } */
 
   fishOnBait(fish: Fish, bait: Bait): boolean {
     const upperBoundCheck = fish.position >= bait.position;
