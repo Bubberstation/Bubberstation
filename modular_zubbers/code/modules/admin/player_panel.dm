@@ -165,6 +165,9 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 	var/mob/admin_mob = ui.user
 	var/client/admin_client = admin_mob.client
 
+	if(!check_rights(R_ADMIN))
+		return FALSE
+
 	switch(action)
 		// If this mob used to be player controlled but isn't anymore, this action will open the player panel for the mob that player is now controlling.
 		if ("open_latest_panel")
