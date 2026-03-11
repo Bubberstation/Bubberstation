@@ -8,6 +8,7 @@
 	construction_path_type = "spaceship"
 	merge_type = /obj/item/stack/sheet/spaceship
 	walltype = /turf/closed/wall/mineral/titanium/spaceship
+	mats_per_unit = list(/datum/material/titanium = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/stack/sheet/spaceshipglass
 	name = "spaceship window plates"
@@ -17,6 +18,7 @@
 	inhand_icon_state = "sheet-plastitaniumglass"
 	singular_name = "spaceship window plate"
 	merge_type = /obj/item/stack/sheet/spaceshipglass
+	mats_per_unit = list(/datum/material/alloy/plastitaniumglass = SHEET_MATERIAL_AMOUNT)
 
 GLOBAL_LIST_INIT(spaceshipglass_recipes, list(
 	new/datum/stack_recipe("spaceship window", /obj/structure/window/reinforced/shuttle/spaceship/unanchored, 2, time = 4 SECONDS,  crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND | CRAFT_IS_FULLTILE, category = CAT_WINDOWS), \

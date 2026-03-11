@@ -12,6 +12,7 @@
 	density = TRUE
 	anchored = TRUE
 	resistance_flags = FIRE_PROOF
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 30)
 	var/lit = FALSE
 	var/fuel_amount = 0
 	var/water_amount = 0

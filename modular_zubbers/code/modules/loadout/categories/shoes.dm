@@ -43,25 +43,9 @@
 	name = "High-Heel Jackboots"
 	item_path = /obj/item/clothing/shoes/jackboots/heel
 
-/datum/loadout_item/shoes/boots/jackboots/rax_armadyne_boots
-	name = "Tactical Boots"
-	item_path = /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne/rax
-	//ckeywhitelist = list("raxraus")
-	restricted_roles = list(ALL_JOBS_SEC)
-
 /datum/loadout_item/shoes/boots/jackboots/kneeboots
 	name = "Knee Boots"
 	item_path = /obj/item/clothing/shoes/jackboots/knee
-
-/datum/loadout_item/shoes/boots/jackboots/peacekeeper
-	name = "Armadyne Combat Boots"
-	item_path = /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne
-	restricted_roles = list(ALL_JOBS_SEC)
-
-/datum/loadout_item/shoes/boots/jackboots/gogo_boots
-	name = "Tactical Go-Go boots"
-	item_path = /obj/item/clothing/shoes/jackboots/gogo_boots
-	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/shoes/boots/diesel_m
 	name = "Male Diesel Boots"
@@ -86,12 +70,6 @@
 /datum/loadout_item/shoes/boots/jackboots/black
 	name = "Black Jackboots"
 	item_path = /obj/item/clothing/shoes/jackboots/black
-
-/datum/loadout_item/shoes/boots/elofy
-	name = "Solar Admiral Boots"
-	item_path = /obj/item/clothing/shoes/jackboots/elofy
-	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
-//	ckeywhitelist = list("october23")
 
 /*
 *	MISC BOOTS
@@ -194,6 +172,10 @@
 /datum/loadout_item/shoes/tribal/clothwrap
 	name = "Colourable Cloth Wraps"
 	item_path = /obj/item/clothing/shoes/wraps/cloth
+
+/datum/loadout_item/shoes/tribal/clearcuffs
+	name = "Clear Leg Wraps"
+	item_path = /obj/item/clothing/shoes/wraps/clear
 
 /*
 *	FORMAL

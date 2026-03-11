@@ -17,18 +17,6 @@
 	name = "Crow Feather Cloak"
 	item_path = /obj/item/clothing/neck/binary
 
-/datum/loadout_item/neck/security_cape
-	name = "Security Cape"
-	item_path = /obj/item/clothing/neck/security_cape
-	restricted_roles = list(ALL_JOBS_SEC)
-	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
-
-/datum/loadout_item/neck/security_cape/armplate
-	name = "Security Gauntlet"
-	item_path = /obj/item/clothing/neck/security_cape/armplate
-	restricted_roles = list(ALL_JOBS_SEC)
-	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
-
 /datum/loadout_item/neck/pauldron
 	name = "Lieutenant Commander's Pauldron"
 	item_path = /obj/item/clothing/neck/pauldron
@@ -56,7 +44,6 @@
 /datum/loadout_item/neck/scarf/pride
 	name = "Pride Scarf"
 	item_path = /obj/item/clothing/neck/scarf/pride
-	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
 
 /datum/loadout_item/neck/holobadge/hos
 	name = "Head of Security's Holobadge"

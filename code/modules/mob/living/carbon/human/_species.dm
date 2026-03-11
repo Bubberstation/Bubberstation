@@ -1039,7 +1039,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		to_chat(owner, span_warning("You attempt to touch [target]!"))
 		return
 
-	SEND_SIGNAL(owner, COMSIG_MOB_ATTACK_HAND, owner, target, attacker_style)
+	SEND_SIGNAL(owner, COMSIG_MOB_ATTACK_HAND, owner, target, attacker_style, modifiers) //BUBBER EDIT - Original line SEND_SIGNAL(owner, COMSIG_MOB_ATTACK_HAND, owner, target, attacker_style)
 
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		disarm(owner, target, attacker_style)

@@ -62,38 +62,6 @@
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 1
 
-/datum/supply_pack/goody/mars_single
-	special = FALSE
-
-/datum/supply_pack/goody/dumdum38
-	special = FALSE
-
-/datum/supply_pack/goody/match38
-	special = FALSE
-
-/datum/supply_pack/goody/rubber
-	special = FALSE
-
-/datum/supply_pack/goody/ballistic_single
-	special = FALSE
-
-/datum/supply_pack/goody/disabler_single
-	special = FALSE
-
-/datum/supply_pack/goody/energy_single
-	cost = PAYCHECK_COMMAND * 7
-	special = FALSE
-
-/datum/supply_pack/goody/laser_single
-	cost = PAYCHECK_COMMAND * 7
-	special = FALSE
-
-/datum/supply_pack/goody/hell_single
-	cost = PAYCHECK_CREW * 5
-	special = FALSE
-
-/datum/supply_pack/goody/thermal_single
-	special = FALSE
 
 /datum/supply_pack/goody/medkit_surgery
 	name = "High Capacity Surgical Medkit"
@@ -164,7 +132,7 @@
 	desc ="A suit by Honk Ltd. Protects against low humor environments. Most of the tech went to lower the power cost."
 	cost = PAYCHECK_COMMAND * 2
 	contains = list(/obj/item/mod/construction/plating/cosmohonk)
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/goody/magnetic_deployable
 	name = "MOD Magnetic Deployment Module"

@@ -114,12 +114,6 @@
 	name = "Security Gloves"
 	item_path = /obj/item/clothing/gloves/color/black/security
 	restricted_roles = list(ALL_JOBS_SEC)
-	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
-
-/datum/loadout_item/gloves/combat/peacekeeper/armadyne
-	name = "Armadyne Combat Gloves"
-	item_path = /obj/item/clothing/gloves/combat/peacekeeper/armadyne
-	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/gloves/frontier_colonist
 	name = "Frontier Gloves"
@@ -143,12 +137,6 @@
 	name = "Starlight Singer Gloves"
 	item_path = /obj/item/clothing/gloves/mikugloves
 	//ckeywhitelist = list("grandvegeta")
-
-/datum/loadout_item/gloves/elofy
-	name = "Solar Admiral Gloves"
-	item_path = /obj/item/clothing/gloves/elofy
-	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
-//	ckeywhitelist = list("october23")
 
 /datum/loadout_item/gloves/hypnoring_sharkenning
 	name = "Suspiciously Glossy Ring"

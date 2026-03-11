@@ -16,7 +16,6 @@
 		OFFSET_HEAD = list(0, 2),
 		OFFSET_HAIR = list(0, 1),
 	)
-	eyes_icon = 'modular_skyrat/modules/organs/icons/akula_eyes.dmi'
 	mutanteyes = /obj/item/organ/eyes/akula
 	mutanttongue = /obj/item/organ/tongue/akula
 	inherent_traits = list(
@@ -109,7 +108,7 @@
 /obj/item/organ/eyes/akula
 	// Eyes over hair as bandaid for the low amounts of head matching hair
 	eyes_layer = HAIR_LAYER-0.1
-
+	eye_icon = 'modular_skyrat/modules/organs/icons/akula_eyes.dmi'
 
 /obj/item/organ/tongue/akula
 	liked_foodtypes = SEAFOOD | RAW

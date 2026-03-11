@@ -148,7 +148,10 @@
 		/mob/living/proc/emote_moo,
 		/mob/living/proc/emote_honk1,
 		/mob/living/proc/emote_mggaow,
-		/mob/living/proc/emote_slowclap
+		/mob/living/proc/emote_slowclap,
+		/mob/living/proc/emote_teshchirp,
+		/mob/living/proc/emote_teshsqueak,
+		/mob/living/proc/emote_teshtrill,
 	)
 	all_emotes += skyrat_living_emotes
 
@@ -871,6 +874,46 @@
 	set name = "> Honk"
 	set category = "Emotes+"
 	usr.emote("honk1", intentional = TRUE)
+
+/mob/living/proc/emote_neigh()
+	set name = "> Neigh"
+	set category = "Emotes+"
+	usr.emote("neigh", intentional = TRUE)
+
+/mob/living/proc/emote_neigh2()
+	set name = "> Neigh2"
+	set category = "Emotes+"
+	usr.emote("neigh2", intentional = TRUE)
+
+/mob/living/proc/emote_snort()
+	set name = "> Snort"
+	set category = "Emotes+"
+	usr.emote("snort", intentional = TRUE)
+
+/mob/living/proc/emote_bray()
+	set name = "> Bray"
+	set category = "Emotes+"
+	usr.emote("bray", intentional = TRUE)
+
+/mob/living/proc/emote_bellow()
+	set name = "> Bellow"
+	set category = "Emotes+"
+	usr.emote("bellow", intentional = TRUE)
+
+/mob/living/proc/emote_teshchirp()
+	set name = "> Tesh Chirp"
+	set category = "Emotes+"
+	usr.emote("teshchirp", intentional = TRUE)
+
+/mob/living/proc/emote_teshsqueak()
+	set name = "> Tesh Squeak"
+	set category = "Emotes+"
+	usr.emote("teshsqueak", intentional = TRUE)
+
+/mob/living/proc/emote_teshtrill()
+	set name = "> Tesh Trill"
+	set category = "Emotes+"
+	usr.emote("teshtrill", intentional = TRUE)
 
 // code\modules\mob\living\brain\emote.dm
 

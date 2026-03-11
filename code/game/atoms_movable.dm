@@ -510,12 +510,6 @@
 		if(NAMEOF(src, glide_size))
 			set_glide_size(var_value)
 			. = TRUE
-		// THE BUBBER EDIT ADDITION BEGIN - BLOOPER
-		if(NAMEOF(src, blooper)) // Sorry, Vishenka.
-			if(isfile(var_value))
-				blooper = sound(var_value) //bark() expects vocal_bark to already be a sound datum, for performance reasons. adminbus QoL!
-			. = TRUE
-		// THE BUBBER EDIT ADDITION END
 	if(!isnull(.))
 		datum_flags |= DF_VAR_EDITED
 		return
@@ -587,7 +581,7 @@
 		if(pulling_mob.buckled && pulling_mob.buckled.buckle_prevents_pull) //if they're buckled to something that disallows pulling, prevent it
 			stop_pulling()
 			return FALSE
-	if(moving_atom == loc && pulling.density)
+	if(get_turf(moving_atom) == loc && pulling.density)
 		return FALSE
 	var/move_dir = get_dir(pulling.loc, moving_atom)
 	if(!Process_Spacemove(move_dir))

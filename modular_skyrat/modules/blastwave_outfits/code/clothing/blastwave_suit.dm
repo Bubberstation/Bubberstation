@@ -6,36 +6,30 @@
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suit_digi.dmi'
 	icon_state = "blastwave_suit"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Default (Purple)" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
-			RESKIN_ICON_STATE = "blastwave_suit",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
-			RESKIN_WORN_ICON_STATE = "blastwave_suit"
-		),
-		"Red" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
-			RESKIN_ICON_STATE = "blastwave_suit_r",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
-			RESKIN_WORN_ICON_STATE = "blastwave_suit_r"
-		),
-		"Green" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
-			RESKIN_ICON_STATE = "blastwave_suit_g",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
-			RESKIN_WORN_ICON_STATE = "blastwave_suit_g"
-		),
-		"Blue" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
-			RESKIN_ICON_STATE = "blastwave_suit_b",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
-			RESKIN_WORN_ICON_STATE = "blastwave_suit_b"
-		),
-		"Yellow" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
-			RESKIN_ICON_STATE = "blastwave_suit_y",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
-			RESKIN_WORN_ICON_STATE = "blastwave_suit_y"
-		)
-	)
+
+/obj/item/clothing/suit/blastwave/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/blastwave_trenchcoat)
+
+/datum/atom_skin/blastwave_trenchcoat
+	abstract_type = /datum/atom_skin/blastwave_trenchcoat
+
+/datum/atom_skin/blastwave_trenchcoat/default
+	preview_name = "Default (Purple)"
+	new_icon_state = "blastwave_suit"
+
+/datum/atom_skin/blastwave_trenchcoat/red
+	preview_name = "Red"
+	new_icon_state = "blastwave_suit_r"
+
+/datum/atom_skin/blastwave_trenchcoat/green
+	preview_name = "Green"
+	new_icon_state = "blastwave_suit_g"
+
+/datum/atom_skin/blastwave_trenchcoat/blue
+	preview_name = "Blue"
+	new_icon_state = "blastwave_suit_b"
+
+/datum/atom_skin/blastwave_trenchcoat/yellow
+	preview_name = "Yellow"
+	new_icon_state = "blastwave_suit_y"

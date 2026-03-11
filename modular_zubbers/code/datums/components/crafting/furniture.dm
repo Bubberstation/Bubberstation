@@ -131,6 +131,7 @@
 	)
 	result = /obj/item/sign/flag/usa
 	category = CAT_FURNITURE
+	requirements_mats_blacklist = list(/obj/item/gun/ballistic/automatic/pistol/deagle)
 
 // STRUCTURES
 

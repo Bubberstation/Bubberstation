@@ -2,6 +2,7 @@
 	name = "magnifying glass"
 	desc = "A tool that, with the assistance of a magnifying lens, allows you to view what is small."
 	icon_state = "magnifying_glass"
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/glassblowing/magnifying_glass/examine(mob/user)
 	. = ..()
