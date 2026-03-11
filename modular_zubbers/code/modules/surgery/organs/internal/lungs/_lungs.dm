@@ -41,7 +41,7 @@
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
 
 //Toxin cyber lungs
-/obj/item/organ/lungs/adaptive/toxin/cybernetic
+/obj/item/organ/lungs/toxin/cybernetic
 	name = "cybernetic toxin-engineered lungs"
 	desc = "A set of cybernetic lungs built for toxic environments, though more susceptible to extreme temperatures and EMPs. Considerably more fragile than its organic counterpart."
 	failing_desc = "seems to be broken."
@@ -52,9 +52,9 @@
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
 
 //Low Oxy cyber lungs
-/obj/item/organ/lungs/adaptive/oxy/cybernetic
-	name = "cybernetic low-oxygen lungs"
-	desc = "A set of cybernetic lungs ebuilt for low oxygen environments, though more susceptible to extreme temperatures and EMPs. Considerably more fragile than its organic counterpart."
+/obj/item/organ/lungs/oxy/cybernetic
+	name = "cybernetic low-oxygen-engineered lungs"
+	desc = "A set of cybernetic lungs built for low oxygen environments, though more susceptible to extreme temperatures and EMPs. Considerably more fragile than its organic counterpart."
 	failing_desc = "seems to be broken."
 	icon = 'icons/obj/medical/organs/organs.dmi'
 	icon_state = "lungs-c"
