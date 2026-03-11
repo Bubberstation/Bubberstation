@@ -138,16 +138,16 @@
 	name = "Cybernetic eyes"
 	path = /obj/item/organ/eyes/robotic
 
-/datum/augment_item/organ/eyes/cybernetic
+/datum/augment_item/organ/eyes/cyberneticbasic
 	name = "Basic cybernetic eyes"
 	path = /obj/item/organ/eyes/robotic/basic
-	cost = -1 // Sensitive to flashes like moth eyes. Less health.
+	cost = -1 // Sensitive to flashes like moth eyes. Less health?.
 
 /datum/augment_item/organ/eyes/cybernetic/moth
 	name = "Cybernetic moth eyes"
 	path = /obj/item/organ/eyes/robotic/moth
 
-/datum/augment_item/organ/eyes/cybernetic/moth
+/datum/augment_item/organ/eyes/cybernetic/mothbasic
 	name = "Basic cybernetic moth eyes"
 	path = /obj/item/organ/eyes/robotic/basic/moth
 	cost = -1 // Less health than standard.
