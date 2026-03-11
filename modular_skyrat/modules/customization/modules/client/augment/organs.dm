@@ -89,11 +89,6 @@
 	name = "Basic cybernetic lungs"
 	path = /obj/item/organ/lungs/cybernetic
 
-/datum/augment_item/organ/lungs/cybernetic/tier2
-	name = "Cybernetic lungs"
-	path = /obj/item/organ/lungs/cybernetic/tier2
-	cost = 3 // comparable to the biological lungs already selectable in terms of usable air pressure. No additional resistances to temperature or plasma filtering.
-
 /datum/augment_item/organ/lungs/coldcyber
 	name = "Cybernetic Cold-Engineered Lungs"
 	slot = AUGMENT_SLOT_LUNGS
@@ -133,10 +128,6 @@
 /datum/augment_item/organ/stomach/cybernetic
 	name = "Basic cybernetic stomach"
 	path = /obj/item/organ/stomach/cybernetic
-/datum/augment_item/organ/stomach/cybernetic/tier2
-	name = "Cybernetic stomach"
-	path = /obj/item/organ/stomach/cybernetic/tier2
-	cost = 3
 
 //BUBBER EDIT BEGIN
 //EYES
