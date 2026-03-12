@@ -1157,8 +1157,6 @@
 	for(var/mob/living/possible_target in view(DEFAULT_VIEW_RANGE, phaser_owner))
 		if(possible_target == src)
 			continue
-		if(!phaser_owner.faction != possible_target)
-			continue
 		possible_targets += possible_target
 
 	if(!LAZYLEN(possible_targets))
