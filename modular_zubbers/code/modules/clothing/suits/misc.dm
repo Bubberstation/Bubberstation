@@ -64,3 +64,10 @@
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor_digi.dmi'
 	// new teshari sprites
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+// bulletproof armor
+/obj/item/clothing/suit/armor/bulletproof
+	// "new" digi sprites, purple missing coat otherwise
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
+	// new teshari sprites
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
