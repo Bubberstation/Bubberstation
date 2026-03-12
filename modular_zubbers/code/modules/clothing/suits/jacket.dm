@@ -849,6 +849,7 @@
 	desc = "one down, cmon now"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
 	icon_state = "bomber"
 
 
