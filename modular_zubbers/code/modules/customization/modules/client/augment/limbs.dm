@@ -124,16 +124,16 @@
 	path = /obj/item/bodypart/arm/left/plasmaman
 	uses_robotic_styles = FALSE
 
-/datum/augment_item/limb/l_arm/peg
-	name = "Left peg arm"
-	path = /obj/item/bodypart/arm/left/ghetto
-	cost = -2
-	uses_robotic_styles = FALSE
-
 /datum/augment_item/limb/l_arm/self_destruct
 	name = "No Left Arm"
 	path = /obj/item/bodypart/arm/left/self_destruct
 	cost = -3
+	uses_robotic_styles = FALSE
+
+/datum/augment_item/limb/l_arm/kinetic
+	name = "Kinetic prosthetic left arm"
+	path = /obj/item/bodypart/arm/left/kinetic
+	cost = -2
 	uses_robotic_styles = FALSE
 
 //RIGHT ARMS
@@ -165,16 +165,16 @@
 	path = /obj/item/bodypart/arm/right/plasmaman
 	uses_robotic_styles = FALSE
 
-/datum/augment_item/limb/r_arm/peg
-	name = "Right peg arm"
-	path = /obj/item/bodypart/arm/right/ghetto
-	cost = -2
-	uses_robotic_styles = FALSE
-
 /datum/augment_item/limb/r_arm/self_destruct
 	name = "No Right Arm"
 	path = /obj/item/bodypart/arm/right/self_destruct
 	cost = -3
+	uses_robotic_styles = FALSE
+
+/datum/augment_item/limb/r_arm/kinetic
+	name = "Kinetic prosthetic right arm"
+	path = /obj/item/bodypart/arm/right/kinetic
+	cost = -2
 	uses_robotic_styles = FALSE
 
 //LEFT LEGS
@@ -191,7 +191,6 @@
 	name = "Prosthetic left leg (Greyscale)"
 	supports_digitigrade = TRUE
 	path = /obj/item/bodypart/leg/left/robot/surplus/greyscale
-	cost = -1
 
 /datum/augment_item/limb/l_leg/cyborg
 	name = "Cyborg left leg"
@@ -208,15 +207,16 @@
 	path = /obj/item/bodypart/leg/left/plasmaman
 	uses_robotic_styles = FALSE
 
-/datum/augment_item/limb/l_leg/peg
-	name = "Left peg leg"
-	path = /obj/item/bodypart/leg/left/ghetto
-	cost = -2
-
 /datum/augment_item/limb/l_leg/self_destruct
 	name = "No Left Leg"
 	path = /obj/item/bodypart/leg/left/self_destruct
 	cost = -3
+	uses_robotic_styles = FALSE
+
+/datum/augment_item/limb/l_leg/kinetic
+	name = "Kinetic prosthetic left leg"
+	path = /obj/item/bodypart/leg/left/kinetic
+	cost = -2
 	uses_robotic_styles = FALSE
 
 //RIGHT LEGS
@@ -233,7 +233,6 @@
 	supports_digitigrade = TRUE
 	name = "Prosthetic right leg (Greyscale)"
 	path = /obj/item/bodypart/leg/right/robot/surplus/greyscale
-	cost = -1
 
 /datum/augment_item/limb/r_leg/cyborg
 	name = "Cyborg right leg"
@@ -250,11 +249,6 @@
 	path = /obj/item/bodypart/leg/right/plasmaman
 	uses_robotic_styles = FALSE
 
-/datum/augment_item/limb/r_leg/peg
-	name = "Right peg leg"
-	path = /obj/item/bodypart/leg/right/ghetto
-	cost = -2
-
 /datum/augment_item/limb/r_leg/self_destruct
 	name = "No Right Leg"
 	path = /obj/item/bodypart/leg/right/self_destruct
@@ -264,24 +258,5 @@
 /datum/augment_item/limb/r_leg/kinetic
 	name = "Kinetic prosthetic right leg"
 	path = /obj/item/bodypart/leg/right/kinetic
-	cost = -2
-	uses_robotic_styles = FALSE
-
-
-/datum/augment_item/limb/l_arm/kinetic
-	name = "Kinetic prosthetic left arm"
-	path = /obj/item/bodypart/arm/left/kinetic
-	cost = -2
-	uses_robotic_styles = FALSE
-
-/datum/augment_item/limb/r_arm/kinetic
-	name = "Kinetic prosthetic right arm"
-	path = /obj/item/bodypart/arm/right/kinetic
-	cost = -2
-	uses_robotic_styles = FALSE
-
-/datum/augment_item/limb/l_leg/kinetic
-	name = "Kinetic prosthetic left leg"
-	path = /obj/item/bodypart/leg/left/kinetic
 	cost = -2
 	uses_robotic_styles = FALSE
