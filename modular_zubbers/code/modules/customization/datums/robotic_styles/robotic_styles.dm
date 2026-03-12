@@ -96,17 +96,17 @@
 	)
 
 /datum/robotic_style/dimorphic/akula
-	name = "Akula"
+	name = "Akula (Robotic)"
 	icon = BODYPART_ICON_AKULA
 	limb_id_override = /obj/item/bodypart/chest/mutant/akula::limb_id
 
 /datum/robotic_style/dimorphic/anthro
-	name = "Anthro"
+	name = "Anthro (Robotic)"
 	icon = BODYPART_ICON_MAMMAL
 	limb_id_override = /obj/item/bodypart/chest/mutant::limb_id
 
 /datum/robotic_style/dimorphic/lizard
-	name = "Lizard"
+	name = "Lizard (Robotic)"
 	icon = BODYPART_ICON_LIZARD
 	limb_id_override = /obj/item/bodypart/chest/lizard::limb_id
 	dimorphic_overrides = list(
@@ -115,17 +115,17 @@
 	)
 
 /datum/robotic_style/dimorphic/moth
-	name = "Moth"
+	name = "Moth (Robotic)"
 	icon = BODYPART_ICON_MOTH
 	limb_id_override = /obj/item/bodypart/chest/moth::limb_id
 
 /datum/robotic_style/dimorphic/vox
-	name = "Vox"
+	name = "Vox (Robotic)"
 	icon = BODYPART_ICON_VOX
 	limb_id_override = /obj/item/bodypart/chest/mutant/vox::limb_id
 
 /datum/robotic_style/dimorphic/xenohybrid
-	name = "Xenohybrid"
+	name = "Xenohybrid (Robotic)"
 	icon = BODYPART_ICON_XENO
 	limb_id_override = /obj/item/bodypart/chest/mutant/xenohybrid::limb_id
 
