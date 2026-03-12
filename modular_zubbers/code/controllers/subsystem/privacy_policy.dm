@@ -17,8 +17,9 @@ SUBSYSTEM_DEF(privacy)
 		)
 	if(!query.warn_execute())
 		qdel(query)
-		return
+		return FALSE
 	qdel(query)
+	return TRUE
 
 /datum/controller/subsystem/privacy/proc/mark_accepted(ckey, policy_key)
 	. = has_accepted(ckey, policy_key)
