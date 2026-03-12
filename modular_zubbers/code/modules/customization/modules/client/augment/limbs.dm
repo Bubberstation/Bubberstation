@@ -14,10 +14,17 @@
 		var/obj/item/bodypart/new_limb = path
 		var/body_zone = initial(new_limb.body_zone)
 		var/obj/item/bodypart/old_limb = augmented.get_bodypart(body_zone)
+		if(isnull(old_limb))
+			return body_zone
 
-		old_limb.limb_id = initial(new_limb.limb_id)
-		old_limb.base_limb_id = initial(new_limb.limb_id)
+		if(old_limb.limb_id != BODYPART_ID_DIGITIGRADE || supports_digitigrade == FALSE) //Retain digitigrade status
+			old_limb.limb_id = initial(new_limb.limb_id)
+			old_limb.base_limb_id = initial(new_limb.limb_id)
 		old_limb.is_dimorphic = initial(new_limb.is_dimorphic)
+		if(istype(old_limb, /obj/item/bodypart/head))
+			var/obj/item/bodypart/head/old_head = old_limb
+			var/obj/item/bodypart/head/new_head = new_limb
+			old_head.eyes_icon = new_head.eyes_icon
 
 		if(uses_robotic_styles && prefs.augment_limb_styles[slot])
 			var/datum/robotic_style/chosen_style = GLOB.robotic_styles_list[prefs.augment_limb_styles[slot]]
@@ -28,12 +35,15 @@
 			if(chosen_style.limb_id_override)
 				old_limb.limb_id = chosen_style.limb_id_override
 			if(!uses_greyscale)
-			old_limb.set_icon_static(chosen_style.icon)
+				old_limb.set_icon_static(chosen_style.icon)
 			else
 				old_limb.set_icon_greyscale(chosen_style.icon)
 		else
-			old_limb.set_icon_static(initial(new_limb.icon))
-		old_limb.should_draw_greyscale = FALSE
+			if(!uses_greyscale)
+				old_limb.set_icon_static(initial(new_limb.icon))
+			else
+				old_limb.set_icon_greyscale(UNLINT(initial(new_limb.icon_greyscale))) // stupid var_protected memes
+		old_limb.should_draw_greyscale = uses_greyscale
 
 		return body_zone
 	else
@@ -42,7 +52,7 @@
 		if(uses_robotic_styles && prefs.augment_limb_styles[slot])
 			var/datum/robotic_style/chosen_style = GLOB.robotic_styles_list[prefs.augment_limb_styles[slot]] // Shit's fucked. Start testing on spawn?
 			new_limb.current_style = prefs.augment_limb_styles[slot]
-				var/dimorphic_override = LAZYACCESS(chosen_style.dimorphic_overrides, new_limb.body_zone)
+			var/dimorphic_override = LAZYACCESS(chosen_style.dimorphic_overrides, new_limb.body_zone)
 			if(!isnull(dimorphic_override))
 				new_limb.is_dimorphic = dimorphic_override
 			if(chosen_style.limb_id_override)
@@ -114,16 +124,16 @@
 	path = /obj/item/bodypart/arm/left/plasmaman
 	uses_robotic_styles = FALSE
 
+/datum/augment_item/limb/l_arm/peg
+	name = "Left peg arm"
+	path = /obj/item/bodypart/arm/left/ghetto
+	cost = -2
+	uses_robotic_styles = FALSE
+
 /datum/augment_item/limb/l_arm/self_destruct
 	name = "No Left Arm"
 	path = /obj/item/bodypart/arm/left/self_destruct
 	cost = -3
-	uses_robotic_styles = FALSE
-
-/datum/augment_item/limb/l_arm/kinetic
-	name = "Kinetic prosthetic left arm"
-	path = /obj/item/bodypart/arm/left/kinetic
-	cost = -2
 	uses_robotic_styles = FALSE
 
 //RIGHT ARMS
@@ -155,16 +165,16 @@
 	path = /obj/item/bodypart/arm/right/plasmaman
 	uses_robotic_styles = FALSE
 
+/datum/augment_item/limb/r_arm/peg
+	name = "Right peg arm"
+	path = /obj/item/bodypart/arm/right/ghetto
+	cost = -2
+	uses_robotic_styles = FALSE
+
 /datum/augment_item/limb/r_arm/self_destruct
 	name = "No Right Arm"
 	path = /obj/item/bodypart/arm/right/self_destruct
 	cost = -3
-	uses_robotic_styles = FALSE
-
-/datum/augment_item/limb/r_arm/kinetic
-	name = "Kinetic prosthetic right arm"
-	path = /obj/item/bodypart/arm/right/kinetic
-	cost = -2
 	uses_robotic_styles = FALSE
 
 //LEFT LEGS
@@ -181,6 +191,7 @@
 	name = "Prosthetic left leg (Greyscale)"
 	supports_digitigrade = TRUE
 	path = /obj/item/bodypart/leg/left/robot/surplus/greyscale
+	cost = -1
 
 /datum/augment_item/limb/l_leg/cyborg
 	name = "Cyborg left leg"
@@ -197,16 +208,15 @@
 	path = /obj/item/bodypart/leg/left/plasmaman
 	uses_robotic_styles = FALSE
 
+/datum/augment_item/limb/l_leg/peg
+	name = "Left peg leg"
+	path = /obj/item/bodypart/leg/left/ghetto
+	cost = -2
+
 /datum/augment_item/limb/l_leg/self_destruct
 	name = "No Left Leg"
 	path = /obj/item/bodypart/leg/left/self_destruct
 	cost = -3
-	uses_robotic_styles = FALSE
-
-/datum/augment_item/limb/l_leg/kinetic
-	name = "Kinetic prosthetic left leg"
-	path = /obj/item/bodypart/leg/left/kinetic
-	cost = -2
 	uses_robotic_styles = FALSE
 
 //RIGHT LEGS
@@ -223,6 +233,7 @@
 	supports_digitigrade = TRUE
 	name = "Prosthetic right leg (Greyscale)"
 	path = /obj/item/bodypart/leg/right/robot/surplus/greyscale
+	cost = -1
 
 /datum/augment_item/limb/r_leg/cyborg
 	name = "Cyborg right leg"
@@ -239,6 +250,11 @@
 	path = /obj/item/bodypart/leg/right/plasmaman
 	uses_robotic_styles = FALSE
 
+/datum/augment_item/limb/r_leg/peg
+	name = "Right peg leg"
+	path = /obj/item/bodypart/leg/right/ghetto
+	cost = -2
+
 /datum/augment_item/limb/r_leg/self_destruct
 	name = "No Right Leg"
 	path = /obj/item/bodypart/leg/right/self_destruct
@@ -248,5 +264,24 @@
 /datum/augment_item/limb/r_leg/kinetic
 	name = "Kinetic prosthetic right leg"
 	path = /obj/item/bodypart/leg/right/kinetic
+	cost = -2
+	uses_robotic_styles = FALSE
+
+
+/datum/augment_item/limb/l_arm/kinetic
+	name = "Kinetic prosthetic left arm"
+	path = /obj/item/bodypart/arm/left/kinetic
+	cost = -2
+	uses_robotic_styles = FALSE
+
+/datum/augment_item/limb/r_arm/kinetic
+	name = "Kinetic prosthetic right arm"
+	path = /obj/item/bodypart/arm/right/kinetic
+	cost = -2
+	uses_robotic_styles = FALSE
+
+/datum/augment_item/limb/l_leg/kinetic
+	name = "Kinetic prosthetic left leg"
+	path = /obj/item/bodypart/leg/left/kinetic
 	cost = -2
 	uses_robotic_styles = FALSE
