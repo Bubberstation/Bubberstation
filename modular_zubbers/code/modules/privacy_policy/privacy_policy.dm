@@ -9,10 +9,10 @@
 	return GLOB.always_state
 
 /datum/privacy_policy_ui/ui_close(mob/user)
-	if(!SSprivacy.has_accepted(owner.ckey, CURRENT_PRIVACY_KEY))
-		if(owner)
-			to_chat(owner, span_danger("You must accept the Privacy Policy to continue playing."))
-			New(owner)
+	// we spawned async and this has already been checked if we reached this point, we don't need further checks
+	if(owner)
+		to_chat(owner, span_danger("You must accept the Privacy Policy to continue playing."))
+		new type(owner.mob)
 	qdel(src)
 
 /datum/privacy_policy_ui/ui_data(mob/user)
