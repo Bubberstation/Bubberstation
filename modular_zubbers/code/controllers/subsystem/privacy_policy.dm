@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(privacy)
 /datum/controller/subsystem/privacy/proc/has_accepted(ckey, policy_key)
 	if(!SSdbcore.IsConnected())
 		return
-	var/datum/db_query/query = SSdbcore.NewQuery("SELECT ckey, policy_key FROM privacy_policy_acceptances WHERE ckey = :ckey AND policy_key = :policy_key",
+	var/datum/db_query/query = SSdbcore.NewQuery("SELECT ckey, policy_key FROM [format_table_name("privacy_policy_acceptances")] WHERE ckey = :ckey AND policy_key = :policy_key",
 	list(
 		"ckey" = ckey,
 		"policy_key" = policy_key)
