@@ -19,10 +19,9 @@
 
 /obj/item/hhmirror/fullmagic/New()
 	if(!choosable_races.len)
-		for(var/speciestype in subtypesof(/datum/species))
-			var/datum/species/iterated_species = new speciestype()
-			if(!(iterated_species.id in races_blacklist))
-				choosable_races += iterated_species.id
+		for(var/datum/species/iterated_species as anything in subtypesof(/datum/species))
+			if(!(iterated_species::id in races_blacklist))
+				choosable_races += iterated_species::id
 	..()
 
 /obj/item/hhmirror/fullmagic/attack_self(mob/user)

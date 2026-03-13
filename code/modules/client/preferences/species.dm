@@ -47,7 +47,7 @@
 /datum/preference/choiced/species/compile_constant_data()
 	var/list/data = list()
 
-	for (var/species_id in (get_selectable_species() + get_customizable_races())) //SKYRAT EDIT CHANGE
+	for (var/species_id in (get_selectable_species() + get_customizable_races())) // SKYRAT EDIT CHANGE - ORIGINAL: for (var/species_id in get_selectable_species())
 		var/species_type = GLOB.species_list[species_id]
 		var/datum/species/species = GLOB.species_prototypes[species_type]
 

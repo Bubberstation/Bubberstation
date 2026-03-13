@@ -3,7 +3,12 @@ Lizard subspecies: ASHWALKERS
 */
 
 /datum/species/lizard/ashwalker/
-	language_prefs_whitelist = list(/datum/language/ashtongue, /datum/language/sylvan, /datum/language/xenocommon, /datum/language/draconic)
+	language_prefs_whitelist = list(
+		/datum/language/ashtongue = TRUE,
+		/datum/language/sylvan = TRUE,
+		/datum/language/xenocommon = TRUE,
+		/datum/language/draconic = TRUE,
+	)
 
 /datum/species/lizard/ashwalker/create_pref_language_perk()
 	var/list/to_add = list()

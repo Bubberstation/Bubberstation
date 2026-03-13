@@ -224,14 +224,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	for(var/species_type in subtypesof(/datum/species))
 		var/datum/species/species = GLOB.species_prototypes[species_type]
 		if(species.check_roundstart_eligible())
-			selectable_species += species.id
+			selectable_species[species.id] = TRUE // BUBBER EDIT - CHANGE - Make assoc for fast lookup - ORIGINAL: selectable_species += species.id
 			var/datum/language_holder/temp_holder = GLOB.prototype_language_holders[species.species_language_holder]
 			for(var/datum/language/spoken_language as anything in temp_holder.understood_languages)
 				GLOB.uncommon_roundstart_languages |= spoken_language
 
 	GLOB.uncommon_roundstart_languages -= /datum/language/common
 	if(!selectable_species.len)
-		selectable_species += SPECIES_HUMAN
+		selectable_species[SPECIES_HUMAN] = TRUE // BUBBER EDIT - CHANGE - ORIGINAL: selectable_species += SPECIES_HUMAN
 
 	return selectable_species
 
