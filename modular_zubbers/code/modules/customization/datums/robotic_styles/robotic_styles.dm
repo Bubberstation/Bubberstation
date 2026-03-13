@@ -14,11 +14,11 @@
 
 /datum/robotic_style/scrappyipc
 	name = "Scrappy"
-	icon = 'modular_zubbers/master_files/icons/mob/augmentation/scrappyipc.dmi' // for ones that don't have associated limb atoms just setting icon works fine
+	icon = 'modular_zubbers/icons/mob/augmentation/scrappyipc.dmi' // for ones that don't have associated limb atoms just setting icon works fine
 
 /datum/robotic_style/scrappyipc_greyscale
 	name = "Scrappy (Greyscale)"
-	icon = 'modular_zubbers/master_files/icons/mob/augmentation/scrappyipc_greyscale.dmi'
+	icon = 'modular_zubbers/icons/mob/augmentation/scrappyipc_greyscale.dmi'
 
 /datum/robotic_style/surplus
 	name = "Surplus"
@@ -42,51 +42,51 @@
 
 /datum/robotic_style/mcgipc
 	name = "Morpheus Cyberkinetics"
-	icon = 'modular_zubbers/master_files/icons/mob/augmentation/mcgipc.dmi'
+	icon = 'modular_zubbers/icons/mob/augmentation/mcgipc.dmi'
 
 /datum/robotic_style/bshipc
 	name = "Bishop Cyberkinetics"
-	icon = 'modular_zubbers/master_files/icons/mob/augmentation/bshipc.dmi'
+	icon = 'modular_zubbers/icons/mob/augmentation/bshipc.dmi'
 
 /datum/robotic_style/bs2ipc
 	name = "Bishop Cyberkinetics 2.0"
-	icon = 'modular_zubbers/master_files/icons/mob/augmentation/bs2ipc.dmi'
+	icon = 'modular_zubbers/icons/mob/augmentation/bs2ipc.dmi'
 
 /datum/robotic_style/e3n
 	name = "E3N AI"
-	icon = 'modular_zubbers/master_files/icons/mob/augmentation/e3n.dmi'
+	icon = 'modular_zubbers/icons/mob/augmentation/e3n.dmi'
 
 /datum/robotic_style/hsiipc
 	name = "Hephaestus Industries"
-	icon = 'modular_zubbers/master_files/icons/mob/augmentation/hsiipc.dmi'
+	icon = 'modular_zubbers/icons/mob/augmentation/hsiipc.dmi'
 
 /datum/robotic_style/hi2ipc
 	name = "Hephaestus Industries 2.0"
-	icon = 'modular_zubbers/master_files/icons/mob/augmentation/hi2ipc.dmi'
+	icon = 'modular_zubbers/icons/mob/augmentation/hi2ipc.dmi'
 
 /datum/robotic_style/sgmipc
 	name = "Shellguard Munitions Standard Series"
-	icon = 'modular_zubbers/master_files/icons/mob/augmentation/sgmipc.dmi'
+	icon = 'modular_zubbers/icons/mob/augmentation/sgmipc.dmi'
 
 /datum/robotic_style/wtmipc
 	name = "Ward-Takahashi Manufacturing"
-	icon = 'modular_zubbers/master_files/icons/mob/augmentation/wtmipc.dmi'
+	icon = 'modular_zubbers/icons/mob/augmentation/wtmipc.dmi'
 
 /datum/robotic_style/xmgipc
 	name = "Xion Manufacturing Group"
-	icon = 'modular_zubbers/master_files/icons/mob/augmentation/xmgipc.dmi'
+	icon = 'modular_zubbers/icons/mob/augmentation/xmgipc.dmi'
 
 /datum/robotic_style/xm2ipc
 	name = "Xion Manufacturing Group 2.0"
-	icon ='modular_zubbers/master_files/icons/mob/augmentation/xm2ipc.dmi'
+	icon ='modular_zubbers/icons/mob/augmentation/xm2ipc.dmi'
 
 /datum/robotic_style/zhpipc
 	name = "Zeng-Hu Pharmaceuticals"
-	icon = 'modular_zubbers/master_files/icons/mob/augmentation/zhpipc.dmi'
+	icon = 'modular_zubbers/icons/mob/augmentation/zhpipc.dmi'
 
 /datum/robotic_style/mariinskyipc
 	name = "Mariinsky Ballet Company"
-	icon = 'modular_zubbers/master_files/icons/mob/augmentation/mariinskyipc.dmi'
+	icon = 'modular_zubbers/icons/mob/augmentation/mariinskyipc.dmi'
 
 /datum/robotic_style/dimorphic // subtype so we don't have to define dimorphic head+chest every single time
 	abstract_type = /datum/robotic_style/dimorphic
