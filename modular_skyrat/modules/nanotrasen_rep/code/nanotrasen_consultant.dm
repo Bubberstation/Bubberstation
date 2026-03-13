@@ -148,6 +148,7 @@
 /obj/structure/closet/secure_closet/nanotrasen_consultant/PopulateContents()
 	..()
 	new /obj/item/storage/backpack/satchel/leather(src)
+	new /obj/item/storage/backpack/satchel/nanotrasen(src)
 	new /obj/item/clothing/neck/petcollar(src)
 	new /obj/item/pet_carrier(src)
 	new /obj/item/clothing/suit/armor/vest(src)
