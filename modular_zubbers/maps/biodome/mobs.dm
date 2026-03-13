@@ -23,5 +23,15 @@
 	. = ..()
 	AddElement(/datum/element/sedated_mob, /datum/ai_controller/basic_controller/creature)
 
+/obj/structure/closet/foxbox
+	name = "FOX BOX (DO NOT OPEN)"
+	welded = TRUE
+
+/obj/structure/closet/foxbox/PopulateContents()
+	..()
+	var/total_foxes = 15
+	for(var/i=1; i<=total_foxes; i++)
+		new /mob/living/basic/pet/fox/docile(src)
+
 /datum/ai_controller/basic_controller/creature/docile
 	planning_subtrees = list()
