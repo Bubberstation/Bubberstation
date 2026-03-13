@@ -76,6 +76,8 @@
 	regenerate_organs(tesh, src, visual_only = TRUE)
 	tesh.update_body(TRUE)
 
+
+
 /datum/species/teshari/on_species_gain(mob/living/carbon/human/new_teshari, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	passtable_on(new_teshari, SPECIES_TRAIT)
