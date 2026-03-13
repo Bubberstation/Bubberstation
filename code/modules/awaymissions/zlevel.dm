@@ -11,7 +11,7 @@ GLOBAL_LIST_INIT(potentialConfigRandomZlevels, generate_map_list_from_directory(
 	else
 		return to_chat(world, span_boldannounce("No valid away mission files, loading aborted."))
 	to_chat(world, span_boldannounce("Loading away mission..."))
-	var/loaded = load_new_z_level(map, "Away Mission", config_gateway)
+	var/loaded = load_new_z_level(map, "Away Mission") // BUBBER EDIT - CHANGE - PREVIOUS: var/loaded = load_new_z_level(map, "Away Mission", config_gateway)
 	to_chat(world, span_boldannounce("Away mission [loaded ? "loaded" : "aborted due to errors"]."))
 	if(!loaded)
 		message_admins("Away mission [map] loading failed due to errors.")
