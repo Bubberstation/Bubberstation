@@ -15,6 +15,7 @@
 /datum/augment_item/implant/chest
 	slot = AUGMENT_SLOT_CHEST_IMPLANT
 
+//BUBBER EDIT BEGIN
 //LEFT ARM IMPLANTS
 /datum/augment_item/implant/l_arm
 	slot = AUGMENT_SLOT_LEFT_ARM_IMPLANT
@@ -28,6 +29,11 @@
 	name = "Left Climbing Hook"
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/rope/left_arm
+
+/datum/augment_item/implant/l_arm/toolkit/lighter
+	name = "Left Lighter Implant"
+	cost = 1
+	path = /obj/item/organ/cyberimp/arm/toolkit/lighter
 
 //RIGHT ARM IMPLANTS
 /datum/augment_item/implant/r_arm
@@ -43,6 +49,11 @@
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/rope/right_arm
 
+/datum/augment_item/implant/r_arm/toolkit/lighter
+	name = "Right Lighter Implant"
+	cost = 1
+	path = /obj/item/organ/cyberimp/arm/toolkit/lighter
+
 //EYES IMPLANTS
 /datum/augment_item/implant/eyes
 	slot = AUGMENT_SLOT_EYES_IMPLANT
@@ -51,6 +62,8 @@
 	name = "Civilian HUD Implant"
 	cost = 4
 	path = /obj/item/organ/cyberimp/eyes/hud/civilian
+
+//BUBBER EDIT END
 
 //MOUTH IMPLANTS
 /datum/augment_item/implant/mouth

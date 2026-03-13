@@ -15,3 +15,49 @@
 				breather.reagents.add_reagent(SSair.chosen_goblin_reagent_drug, min(goblin_pp*0.25,10))
 
 
+/obj/item/organ/lungs/adaptive/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/organ_emp_effects, 80)
+// //Cold cyber lungs
+/obj/item/organ/lungs/adaptive/cold/cybernetic
+	name = "cybernetic cold-engineered lungs"
+	desc = "A set of cybernetic lungs built for low temperatures, though they are more susceptible to high temperatures and EMPs. Considerably more fragile than its organic counterpart."
+	failing_desc = "seems to be broken."
+	icon = 'icons/obj/medical/organs/organs.dmi'
+	icon_state = "lungs-c"
+	breath_noise = "a steady whirr"
+	organ_flags = ORGAN_ROBOTIC
+	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
+
+//Hot cyber lungs
+/obj/item/organ/lungs/adaptive/hot/cybernetic
+	name = "cybernetic heat-engineered lungs"
+	desc = "A set of cybernetic lungs built for high temperatures, though they are more susceptible to low temperatures and EMPs. Considerably more fragile than its organic counterpart."
+	failing_desc = "seems to be broken."
+	icon = 'icons/obj/medical/organs/organs.dmi'
+	icon_state = "lungs-c"
+	breath_noise = "a steady whirr"
+	organ_flags = ORGAN_ROBOTIC
+	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
+
+//Toxin cyber lungs
+/obj/item/organ/lungs/toxin/cybernetic
+	name = "cybernetic toxin-engineered lungs"
+	desc = "A set of cybernetic lungs built for toxic environments, though more susceptible to extreme temperatures and EMPs. Considerably more fragile than its organic counterpart."
+	failing_desc = "seems to be broken."
+	icon = 'icons/obj/medical/organs/organs.dmi'
+	icon_state = "lungs-c"
+	breath_noise = "a steady whirr"
+	organ_flags = ORGAN_ROBOTIC
+	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
+
+//Low Oxy cyber lungs
+/obj/item/organ/lungs/oxy/cybernetic
+	name = "cybernetic low-oxygen-engineered lungs"
+	desc = "A set of cybernetic lungs built for low oxygen environments, though more susceptible to extreme temperatures and EMPs. Considerably more fragile than its organic counterpart."
+	failing_desc = "seems to be broken."
+	icon = 'icons/obj/medical/organs/organs.dmi'
+	icon_state = "lungs-c"
+	breath_noise = "a steady whirr"
+	organ_flags = ORGAN_ROBOTIC
+	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5

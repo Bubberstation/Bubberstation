@@ -43,17 +43,17 @@
 	slot = AUGMENT_SLOT_BRAIN
 	path = /obj/item/organ/brain/cybernetic/cortical
 	cost = 1 // technically a downgrade in most applications, but has uses.
-
-//EDIT END
+//BUBBER EDIT END
 
 //HEARTS
 /datum/augment_item/organ/heart
 	slot = AUGMENT_SLOT_HEART
 
 /datum/augment_item/organ/heart/cybernetic
-	name = "Cybernetic heart"
+	name = "Basic cybernetic heart"
 	path = /obj/item/organ/heart/cybernetic
 
+//BUBBER EDIT BEGIN
 //LUNGS
 /datum/augment_item/organ/lungs
 	slot = AUGMENT_SLOT_LUNGS
@@ -86,15 +86,39 @@
 	path = /obj/item/organ/lungs/oxy
 	cost = 1
 /datum/augment_item/organ/lungs/cybernetic
-	name = "Cybernetic lungs"
+	name = "Basic cybernetic lungs"
 	path = /obj/item/organ/lungs/cybernetic
 
+/datum/augment_item/organ/lungs/coldcyber
+	name = "Cybernetic Cold-Engineered Lungs"
+	slot = AUGMENT_SLOT_LUNGS
+	path = /obj/item/organ/lungs/adaptive/cold/cybernetic
+	cost = 1
+
+/datum/augment_item/organ/lungs/hotcyber
+	name = "Cybernetic Heat-Engineered Lungs"
+	slot = AUGMENT_SLOT_LUNGS
+	path = /obj/item/organ/lungs/adaptive/hot/cybernetic
+	cost = 1
+
+/datum/augment_item/organ/lungs/toxincyber
+	name = "Cybernetic Toxin-Engineered Lungs"
+	slot = AUGMENT_SLOT_LUNGS
+	path = /obj/item/organ/lungs/toxin/cybernetic
+	cost = 1
+
+/datum/augment_item/organ/lungs/oxycyber
+	name = "Cybernetic Low-Oxygen Engineered Lungs"
+	slot = AUGMENT_SLOT_LUNGS
+	path = /obj/item/organ/lungs/oxy/cybernetic
+	cost = 1
+//BUBBER EDIT END
 //LIVERS
 /datum/augment_item/organ/liver
 	slot = AUGMENT_SLOT_LIVER
 
 /datum/augment_item/organ/liver/cybernetic
-	name = "Cybernetic liver"
+	name = "Basic cybernetic liver"
 	path = /obj/item/organ/liver/cybernetic
 
 //STOMACHES
@@ -102,9 +126,10 @@
 	slot = AUGMENT_SLOT_STOMACH
 
 /datum/augment_item/organ/stomach/cybernetic
-	name = "Cybernetic stomach"
+	name = "Basic cybernetic stomach"
 	path = /obj/item/organ/stomach/cybernetic
 
+//BUBBER EDIT BEGIN
 //EYES
 /datum/augment_item/organ/eyes
 	slot = AUGMENT_SLOT_EYES
@@ -113,9 +138,19 @@
 	name = "Cybernetic eyes"
 	path = /obj/item/organ/eyes/robotic
 
+/datum/augment_item/organ/eyes/cyberneticbasic
+	name = "Basic cybernetic eyes"
+	path = /obj/item/organ/eyes/robotic/basic
+	cost = -1 // Sensitive to flashes like moth eyes. Less health?.
+
 /datum/augment_item/organ/eyes/cybernetic/moth
 	name = "Cybernetic moth eyes"
 	path = /obj/item/organ/eyes/robotic/moth
+
+/datum/augment_item/organ/eyes/cybernetic/mothbasic
+	name = "Basic cybernetic moth eyes"
+	path = /obj/item/organ/eyes/robotic/basic/moth
+	cost = -1 // Less health than standard.
 
 /datum/augment_item/organ/eyes/highlumi
 	name = "High-luminosity eyes"
@@ -161,10 +196,18 @@
 	name = "Aquatic tongue"
 	path = /obj/item/organ/tongue/akula
 
+/datum/augment_item/organ/tongue/moth
+	name = "Fluttery tongue"
+	path = /obj/item/organ/tongue/moth
+
+/datum/augment_item/organ/tongue
+
 //EARS
 /datum/augment_item/organ/ears
 	slot = AUGMENT_SLOT_EARS
 
 /datum/augment_item/organ/ears/cybernetic
-	name = "Cybernetic ears"
+	name = "Basic cybernetic ears"
 	path = /obj/item/organ/ears/cybernetic
+
+//BUBBER EDIT END
