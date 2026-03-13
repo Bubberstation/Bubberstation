@@ -1491,12 +1491,10 @@
 	},
 /area/centcom/holding/cafe/park)
 "aKa" = (
-/obj/machinery/door/airlock/centcom{
-	name = "ERT Access"
-	},
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
+/obj/machinery/door/airlock/interlink_access/public/glass,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "aKc" = (
@@ -1904,13 +1902,9 @@
 	},
 /area/centcom/holding/cafe/park)
 "aUU" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/dark_green/filled/corner{
-	dir = 4
-	},
-/turf/open/floor/iron,
+/obj/effect/turf_decal/trimline/green/filled/arrow_ccw,
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "aUX" = (
 /obj/effect/light_emitter/interlink,
@@ -2035,15 +2029,7 @@
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "aXQ" = (
-/obj/machinery/vending/access/command{
-	pixel_x = 28;
-	density = 0;
-	shut_up = 1
-	},
 /obj/machinery/vending/wardrobe/cent_wardrobe{
-	density = 0;
-	pixel_y = 31;
-	pixel_x = 6;
 	shut_up = 1
 	},
 /turf/open/floor/wood/large,
@@ -2380,14 +2366,6 @@
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/iron,
 /area/centcom/interlink)
-"btJ" = (
-/obj/machinery/door/airlock{
-	id_tag = "stall2";
-	name = "Stall"
-	},
-/obj/effect/turf_decal/siding/white,
-/turf/open/floor/iron/white,
-/area/centcom/interlink)
 "buc" = (
 /obj/structure/plaque/static_plaque/golden/captain{
 	pixel_x = -32
@@ -2685,13 +2663,14 @@
 /turf/closed/indestructible/weeb,
 /area/centcom/holding/cafe)
 "bJb" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Interlink Security Post"
-	},
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /obj/effect/turf_decal/siding/white{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
+/obj/machinery/door/airlock/interlink_access/security/glass,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "bJT" = (
@@ -2911,11 +2890,13 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe/station/commons/fitness)
 "bRw" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	dir = 8;
-	name = "Interlink Longue"
-	},
 /obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
+	},
+/obj/machinery/door/airlock/interlink_access/multi_tile{
 	dir = 4
 	},
 /turf/open/floor/iron/dark,
@@ -3488,11 +3469,8 @@
 /turf/open/floor/carpet/black,
 /area/centcom/interlink)
 "czF" = (
-/obj/machinery/door/airlock{
-	id_tag = "stall3";
-	name = "E-Stall"
-	},
 /obj/effect/turf_decal/siding/white,
+/obj/machinery/door/airlock/bathroom,
 /turf/open/floor/iron/white,
 /area/centcom/interlink)
 "cAd" = (
@@ -3573,6 +3551,15 @@
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron/recharge_floor,
 /area/centcom/holding/cafe/station/science/robotics/augments)
+"cEK" = (
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
+/obj/machinery/door/airlock/interlink_access/multi_tile{
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
+/area/centcom/interlink)
 "cEL" = (
 /obj/structure/railing{
 	dir = 8
@@ -3636,6 +3623,16 @@
 /obj/structure/flora/bush/sparsegrass,
 /turf/open/floor/grass/fairy,
 /area/centcom/holding/cafe/ruin/caves)
+"cHb" = (
+/obj/effect/light_emitter/interlink,
+/obj/structure/fence/interlink{
+	dir = 4
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/turf/open/floor/grass,
+/area/centcom/interlink)
 "cHl" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/window/reinforced/spawner/directional/west,
@@ -3666,15 +3663,13 @@
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "cIO" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Interlink Locker Room"
-	},
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/wideplating{
 	dir = 4
 	},
+/obj/machinery/door/airlock/interlink_access/public/glass,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "cJw" = (
@@ -3777,15 +3772,6 @@
 /obj/effect/turf_decal/tile/purple/half/contrasted,
 /turf/open/floor/iron,
 /area/centcom/holding/cafe/station/science/robotics/augments)
-"cOV" = (
-/obj/machinery/door/airlock/centcom{
-	name = "Administrative Offices"
-	},
-/obj/effect/turf_decal/siding/white{
-	dir = 8
-	},
-/turf/open/floor/iron,
-/area/centcom/interlink)
 "cPy" = (
 /obj/effect/light_emitter/interlink,
 /obj/effect/turf_decal/siding/wideplating/corner{
@@ -4035,12 +4021,9 @@
 /turf/open/floor/eighties,
 /area/centcom/holding/cafe/station/commons/lounge)
 "dcq" = (
-/obj/effect/turf_decal/trimline/dark_green/filled/line{
-	dir = 5
-	},
 /obj/structure/sign/poster/random/directional/north,
 /obj/structure/table,
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "dcs" = (
 /obj/structure/sign/poster/contraband/space_cola/directional/north,
@@ -4178,9 +4161,7 @@
 	dir = 8
 	},
 /obj/effect/mapping_helpers/airlock/access/all/admin/general,
-/obj/machinery/door/airlock/centcom{
-	name = "Administrative Office"
-	},
+/obj/machinery/door/airlock/corporate,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "dhg" = (
@@ -4204,9 +4185,8 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 1
 	},
-/obj/machinery/door/airlock/public/glass{
-	name = "Interlink Shuttle"
-	},
+/obj/effect/mapping_helpers/airlock/unres,
+/obj/machinery/door/airlock/interlink_access/public/glass,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "dhs" = (
@@ -4329,19 +4309,16 @@
 /turf/open/floor/iron/herringbone,
 /area/centcom/interlink)
 "dqJ" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Interlink Garden"
-	},
+/obj/machinery/door/airlock/interlink_access/public/glass,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "drq" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Interlink Shuttle"
-	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/unres,
+/obj/machinery/door/airlock/interlink_access/public/glass,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "drE" = (
@@ -4512,11 +4489,10 @@
 	},
 /area/centcom/holding/cafe/station/command)
 "dCa" = (
-/obj/machinery/door/airlock/bathroom{
-	name = "Unisex Bathroom"
-	},
 /obj/effect/turf_decal/siding/white,
 /obj/machinery/duct,
+/obj/effect/mapping_helpers/airlock/unres,
+/obj/machinery/door/airlock/interlink_access/bathroom,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "dCx" = (
@@ -4544,13 +4520,6 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /turf/open/floor/iron/white,
 /area/centcom/holding/cafe/station/medical)
-"dFj" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Interlink Medbay"
-	},
-/obj/effect/turf_decal/siding/white,
-/turf/open/floor/iron,
-/area/centcom/interlink)
 "dFu" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/donkpockets/donkpocketpizza,
@@ -4627,10 +4596,9 @@
 	},
 /area/cruiser_dock)
 "dIM" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Interlink Shuttle"
-	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/mapping_helpers/airlock/unres,
+/obj/machinery/door/airlock/interlink_access/public/glass,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "dIN" = (
@@ -4858,9 +4826,8 @@
 /turf/open/floor/wood,
 /area/centcom/interlink)
 "dXN" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	name = "Interlink Bar"
-	},
+/obj/effect/mapping_helpers/airlock/unres,
+/obj/machinery/door/airlock/interlink_access/multi_tile,
 /turf/open/floor/iron/cafeteria,
 /area/centcom/interlink)
 "dYb" = (
@@ -4925,11 +4892,8 @@
 /turf/open/floor/wood,
 /area/centcom/interlink)
 "eaY" = (
-/obj/effect/turf_decal/trimline/dark_green/filled/line{
-	dir = 1
-	},
 /obj/structure/chair/sofa/bench/right,
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "ebm" = (
 /obj/structure/toilet,
@@ -5600,14 +5564,15 @@
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "eLt" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Interlink Medbay"
-	},
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 1
 	},
 /obj/structure/sign/departments/medbay/alt/directional/north,
 /obj/effect/turf_decal/trimline/blue/filled/arrow_cw,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
+	},
+/obj/machinery/door/airlock/interlink_access/medical/glass,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "eLu" = (
@@ -5717,6 +5682,16 @@
 	dir = 1
 	},
 /turf/open/floor/iron/white,
+/area/centcom/interlink)
+"eSQ" = (
+/obj/effect/light_emitter/interlink,
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/catwalk_floor/iron_smooth,
 /area/centcom/interlink)
 "eTo" = (
 /obj/effect/turf_decal/siding/wood,
@@ -6480,6 +6455,9 @@
 /area/centcom/interlink)
 "fIk" = (
 /obj/machinery/light/directional/east,
+/obj/machinery/vending/access/command{
+	shut_up = 1
+	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "fIP" = (
@@ -6643,10 +6621,13 @@
 /turf/open/floor/grass,
 /area/centcom/interlink)
 "fTY" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Interlink Dormitories Wing"
-	},
 /obj/machinery/duct,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
+/obj/machinery/door/airlock/interlink_access/multi_tile{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "fVh" = (
@@ -6971,9 +6952,10 @@
 /turf/open/indestructible/carpet,
 /area/centcom/interlink)
 "gkJ" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	name = "Interlink Locker Room"
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
 	},
+/obj/machinery/door/airlock/interlink_access/multi_tile,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "gkL" = (
@@ -7304,10 +7286,9 @@
 /turf/open/floor/carpet/cyan,
 /area/centcom/holding/cafe/station/service/library)
 "gBR" = (
-/obj/machinery/door/airlock/medical{
-	name = "Interlink Medical Cold Room"
-	},
 /obj/effect/turf_decal/siding/white,
+/obj/effect/mapping_helpers/airlock/unres,
+/obj/machinery/door/airlock/interlink_access/medical,
 /turf/open/floor/iron/white,
 /area/centcom/interlink)
 "gBT" = (
@@ -7876,10 +7857,6 @@
 /obj/effect/turf_decal/trimline/dark_green/line,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
-"hjK" = (
-/obj/machinery/light/directional/north,
-/turf/closed/indestructible/riveted,
-/area/centcom/interlink)
 "hkv" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /obj/machinery/iv_drip,
@@ -8063,7 +8040,6 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/green/filled/arrow_ccw,
-/obj/effect/turf_decal/trimline/green/filled/arrow_ccw,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "htk" = (
@@ -8183,9 +8159,7 @@
 /turf/open/floor/wood,
 /area/centcom/interlink)
 "hAL" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Interlink Cryogenics"
-	},
+/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "hAU" = (
@@ -8222,15 +8196,17 @@
 /turf/open/misc/dirt/planet,
 /area/centcom/holding/cafe/ruin/icemoon)
 "hEj" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	dir = 4;
-	name = "Interlink Aux Garden"
-	},
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
+/obj/machinery/door/airlock/interlink_access/multi_tile{
+	dir = 4
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
@@ -8468,6 +8444,10 @@
 	icon_state = "darkfull"
 	},
 /area/centcom/holding/cafe/dorms)
+"hSA" = (
+/obj/machinery/door/airlock/interlink_access/service/glass,
+/turf/open/floor/iron/dark,
+/area/centcom/interlink)
 "hSC" = (
 /obj/structure/table/wood,
 /obj/item/folder{
@@ -8761,9 +8741,6 @@
 /turf/open/floor/grass,
 /area/centcom/interlink)
 "ife" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	name = "Interlink Access"
-	},
 /obj/machinery/door/poddoor/shutters/window/indestructible/preopen{
 	id = "evac_hall";
 	name = "Windowed Interlink Access Shutters"
@@ -8772,6 +8749,8 @@
 	id = "evac_hall";
 	name = "Interlink Access Shutters"
 	},
+/obj/effect/mapping_helpers/airlock/unres,
+/obj/machinery/door/airlock/interlink_access/multi_tile,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "ifE" = (
@@ -9066,6 +9045,16 @@
 	smoothing_flags = 0
 	},
 /area/centcom/holding/cafe/park)
+"itM" = (
+/obj/effect/light_emitter/interlink,
+/obj/effect/turf_decal/siding/white{
+	dir = 6
+	},
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/floor/catwalk_floor/iron_smooth,
+/area/centcom/interlink)
 "itS" = (
 /obj/structure/weightmachine,
 /obj/effect/turf_decal/siding/wood{
@@ -9808,6 +9797,11 @@
 /obj/item/stack/sheet/mineral/wood/fifty,
 /turf/open/misc/dirt/planet,
 /area/centcom/holding/cafe/ruin/ash_walkers)
+"jeu" = (
+/obj/effect/mapping_helpers/airlock/unres,
+/obj/machinery/door/airlock/interlink_access/public/glass,
+/turf/open/floor/iron/dark,
+/area/centcom/interlink)
 "jeT" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 4
@@ -10488,9 +10482,7 @@
 /obj/effect/turf_decal/siding/wideplating{
 	dir = 8
 	},
-/obj/machinery/door/airlock/public/glass{
-	name = "Interlink Garden"
-	},
+/obj/machinery/door/airlock/interlink_access/public/glass,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "jPq" = (
@@ -10588,9 +10580,10 @@
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "jUK" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Interlink Medbay"
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
 	},
+/obj/machinery/door/airlock/interlink_access/medical/glass,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "jVY" = (
@@ -10798,11 +10791,8 @@
 	},
 /area/centcom/holding/cafe/station/command/cap)
 "kgf" = (
-/obj/effect/turf_decal/trimline/dark_green/filled/line{
-	dir = 9
-	},
 /obj/item/kirbyplants/random,
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "kgI" = (
 /obj/structure/flora/biolumi/flower{
@@ -10895,13 +10885,12 @@
 	},
 /area/centcom/interlink)
 "kmV" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	name = "Interlink Access"
-	},
 /obj/machinery/door/poddoor/shutters/indestructible/preopen{
 	id = "evac_hall";
 	name = "Interlink Access Shutters"
 	},
+/obj/effect/mapping_helpers/airlock/unres,
+/obj/machinery/door/airlock/interlink_access/multi_tile,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "knL" = (
@@ -11114,9 +11103,10 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe/station/commons/lounge)
 "kFj" = (
-/obj/machinery/door/airlock/freezer{
-	name = "Freezer"
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
 	},
+/obj/machinery/door/airlock/interlink_access/freezer,
 /turf/open/floor/iron/freezer,
 /area/centcom/interlink)
 "kFx" = (
@@ -11534,13 +11524,6 @@
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/centcom/interlink)
-"laN" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	name = "Interlink Longue"
-	},
-/obj/effect/turf_decal/siding/wood,
-/turf/open/floor/iron/dark,
-/area/centcom/interlink)
 "laX" = (
 /obj/structure/fans/tiny/invisible,
 /obj/structure/railing/corner{
@@ -11614,9 +11597,7 @@
 /obj/effect/turf_decal/siding/white,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
-/obj/machinery/door/airlock/centcom{
-	name = "Blueshield's Office"
-	},
+/obj/machinery/door/airlock/interlink_access/corporate,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "lhg" = (
@@ -11944,9 +11925,10 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/supply/hidden{
 	dir = 1
 	},
-/obj/machinery/door/airlock/centcom{
-	name = "Communications Access"
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
 	},
+/obj/machinery/door/airlock/interlink_access/centcom,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "lAx" = (
@@ -12003,6 +11985,13 @@
 /obj/machinery/light/warm/directional/east,
 /turf/open/floor/bamboo,
 /area/centcom/holding/cafe)
+"lDA" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/machinery/door/airlock/interlink_access/multi_tile,
+/turf/open/floor/iron/dark,
+/area/centcom/interlink)
 "lDL" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/turf_decal/siding/thinplating/corner{
@@ -12065,12 +12054,13 @@
 /turf/open/floor/carpet/executive,
 /area/centcom/interlink)
 "lGc" = (
-/obj/machinery/door/airlock/centcom{
-	name = "Administrative Confrence Room"
-	},
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
+	},
+/obj/machinery/door/airlock/interlink_access/corporate/glass,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "lGv" = (
@@ -12496,10 +12486,11 @@
 /turf/open/floor/iron/white,
 /area/centcom/holding/cafe/station/medical)
 "mbx" = (
-/obj/machinery/door/airlock/medical{
-	name = "Interlink Operating Room"
-	},
 /obj/machinery/duct,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
+	},
+/obj/machinery/door/airlock/interlink_access/medical/glass,
 /turf/open/floor/iron/white,
 /area/centcom/interlink)
 "mbV" = (
@@ -12736,9 +12727,10 @@
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "mnG" = (
-/obj/machinery/door/airlock/service{
-	name = "Interlink Bar"
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
 	},
+/obj/machinery/door/airlock/interlink_access/service/glass,
 /turf/open/floor/iron/cafeteria,
 /area/centcom/interlink)
 "moe" = (
@@ -12937,6 +12929,11 @@
 "mzf" = (
 /obj/effect/turf_decal/trimline/green/filled/arrow_ccw,
 /obj/effect/turf_decal/siding/white,
+/turf/open/floor/iron/dark,
+/area/centcom/interlink)
+"mAs" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/door/airlock/interlink_access/multi_tile,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "mAQ" = (
@@ -13367,10 +13364,9 @@
 /turf/open/misc/beach/sand,
 /area/centcom/holding/cafe/beach)
 "mVc" = (
-/obj/machinery/door/airlock/hatch{
-	name = "Custodial Closet"
-	},
 /obj/machinery/duct,
+/obj/effect/mapping_helpers/airlock/unres,
+/obj/machinery/door/airlock/interlink_access/centcom,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "mVf" = (
@@ -13649,6 +13645,11 @@
 /obj/structure/bonfire/prelit,
 /turf/open/misc/dirt/planet,
 /area/centcom/holding/cafe/ruin/icemoon)
+"nkP" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/door/airlock/interlink_access/multi_tile,
+/turf/open/floor/wood/parquet,
+/area/centcom/interlink)
 "nlm" = (
 /turf/open/floor/wood/large,
 /area/centcom/holding/cafe/station/service/barber)
@@ -14218,9 +14219,10 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 8
 	},
-/obj/machinery/door/airlock/centcom{
-	name = "Nanotrasen Consultant's Office"
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
 	},
+/obj/machinery/door/airlock/interlink_access/corporate,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "nOf" = (
@@ -14485,6 +14487,14 @@
 /obj/structure/shipping_container/vitezstvi,
 /turf/open/floor/iron/dark/textured_large,
 /area/cruiser_dock)
+"ocN" = (
+/obj/effect/light_emitter/interlink,
+/obj/structure/fake_stairs/directional/south,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/centcom/interlink)
 "ocS" = (
 /obj/structure/flora/bush/sparsegrass,
 /obj/structure/flora/bush/reed,
@@ -14585,11 +14595,8 @@
 /area/centcom/interlink/dorm_rooms)
 "oih" = (
 /obj/structure/chair/sofa/bench/left,
-/obj/effect/turf_decal/trimline/dark_green/filled/line{
-	dir = 1
-	},
 /obj/machinery/light/directional/north,
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "oja" = (
 /obj/effect/turf_decal/stripes/line{
@@ -14841,8 +14848,8 @@
 	},
 /area/centcom/holding/cafe/station/command)
 "oBN" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Interlink Dormitories Wing"
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
@@ -15738,9 +15745,6 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe/station/service/library)
 "pDd" = (
-/obj/machinery/door/airlock/centcom{
-	name = "Administrative Offices"
-	},
 /obj/machinery/button/door/directional/west{
 	id = "evac_hall_lookout";
 	name = "Lookout Shutters Control";
@@ -15754,6 +15758,7 @@
 	name = "Interlink Access Shutters"
 	},
 /obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/machinery/door/airlock/interlink_access/corporate,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "pDp" = (
@@ -15793,14 +15798,15 @@
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
 "pFr" = (
-/obj/machinery/door/airlock/security{
-	name = "Interlink Security Processing"
-	},
 /obj/effect/turf_decal/siding/white{
 	dir = 8
 	},
 /obj/structure/sign/departments/security/directional/north,
 /obj/effect/turf_decal/trimline/dark_red/filled/corner,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
+	},
+/obj/machinery/door/airlock/interlink_access/security,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "pFs" = (
@@ -15859,9 +15865,6 @@
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "pHe" = (
-/obj/machinery/door/airlock/centcom{
-	name = "Administrative Offices"
-	},
 /obj/effect/turf_decal/trimline/dark_green/corner,
 /obj/machinery/door/poddoor/shutters/indestructible{
 	id = "evac_hall_lookout_2";
@@ -15873,6 +15876,8 @@
 	name = "Lookout Shutters Control";
 	pixel_y = 8
 	},
+/obj/effect/mapping_helpers/airlock/unres,
+/obj/machinery/door/airlock/interlink_access/corporate/glass,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "pHi" = (
@@ -16359,15 +16364,10 @@
 	smoothing_flags = 0
 	},
 /area/centcom/holding/cafe/park)
-"qhn" = (
-/obj/machinery/light/very_dim/directional/east,
-/turf/open/floor/iron/dark,
-/area/centcom/interlink)
 "qhz" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Interlink Shuttle"
-	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/siding/white,
+/obj/machinery/door/airlock/interlink_access/medical/glass,
+/turf/open/floor/iron,
 /area/centcom/interlink)
 "qhR" = (
 /obj/structure/chair/comfy/brown{
@@ -16924,9 +16924,11 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	dir = 4;
-	name = "Interlink Cafe"
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
+/obj/machinery/door/airlock/interlink_access/multi_tile{
+	dir = 4
 	},
 /turf/open/floor/wood/parquet,
 /area/centcom/interlink)
@@ -17076,9 +17078,10 @@
 /obj/effect/turf_decal/siding/thinplating_new/light{
 	dir = 8
 	},
-/obj/machinery/door/airlock/public/glass{
-	name = "Interlink Cryogenics"
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
 	},
+/obj/machinery/door/airlock/interlink_access/public/glass,
 /turf/open/floor/iron/white,
 /area/centcom/interlink)
 "qVg" = (
@@ -17232,6 +17235,9 @@
 /obj/structure/fence/interlink{
 	dir = 4
 	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
 /turf/open/floor/grass,
 /area/centcom/interlink)
 "raz" = (
@@ -17295,9 +17301,11 @@
 /turf/open/floor/wood/large,
 /area/centcom/interlink/dorm_rooms)
 "reM" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	dir = 4;
-	name = "Interlink Locker Room"
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
+	},
+/obj/machinery/door/airlock/interlink_access/multi_tile{
+	dir = 4
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
@@ -17722,9 +17730,10 @@
 /area/centcom/interlink)
 "rGb" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/hatch{
-	name = "Disposals"
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
 	},
+/obj/machinery/door/airlock/interlink_access/centcom,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "rGd" = (
@@ -17857,10 +17866,10 @@
 /turf/open/floor/plating,
 /area/centcom/interlink)
 "rMY" = (
-/obj/machinery/light/very_dim/directional/east,
 /obj/effect/turf_decal/trimline/green/filled/arrow_cw{
 	dir = 4
 	},
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "rMZ" = (
@@ -17959,9 +17968,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
-/obj/machinery/door/airlock/centcom{
-	name = "Blueshield's Office"
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
 	},
+/obj/machinery/door/airlock/interlink_access/corporate,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "rRz" = (
@@ -18024,9 +18034,7 @@
 "rUr" = (
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/effect/mapping_helpers/airlock/access/any/cent_com/rep_or_captain,
-/obj/machinery/door/airlock/centcom{
-	name = "Communications Access"
-	},
+/obj/machinery/door/airlock/interlink_access/centcom,
 /turf/open/floor/plating,
 /area/centcom/interlink)
 "rUx" = (
@@ -18148,6 +18156,20 @@
 /obj/item/paper_bin,
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe/station/commons/lounge)
+"sdl" = (
+/obj/machinery/door/airlock/external/glass,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/access/any/admin/thunderdome,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
+/area/centcom/interlink)
 "sea" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/folder/white{
@@ -18417,14 +18439,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/centcom/interlink)
-"svm" = (
-/obj/machinery/door/airlock{
-	id_tag = "stall1";
-	name = "Stall"
-	},
-/obj/effect/turf_decal/siding/white,
-/turf/open/floor/iron/white,
-/area/centcom/interlink)
 "swx" = (
 /turf/open/misc/beach/sand{
 	dir = 8
@@ -18690,10 +18704,11 @@
 	},
 /area/centcom/holding/cafe/station/service/kitchen)
 "sOk" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Interlink Evac Library"
-	},
 /obj/effect/turf_decal/trimline/green/filled/arrow_cw,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
+	},
+/obj/machinery/door/airlock/interlink_access/service/glass,
 /turf/open/floor/iron,
 /area/centcom/interlink)
 "sPq" = (
@@ -18768,9 +18783,10 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe/station/service/library)
 "sSX" = (
-/obj/machinery/door/airlock/medical{
-	name = "Interlink Operating Room"
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
 	},
+/obj/machinery/door/airlock/interlink_access/medical,
 /turf/open/floor/iron/white,
 /area/centcom/interlink)
 "sTH" = (
@@ -19219,13 +19235,14 @@
 /turf/open/indestructible/hotelwood,
 /area/centcom/holding/cafe/dorms)
 "tsi" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Interlink Security Post"
-	},
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
+	},
+/obj/machinery/door/airlock/interlink_access/security/glass,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "tsj" = (
@@ -19907,10 +19924,6 @@
 	},
 /turf/open/lava/fake,
 /area/centcom/holding/cafe/ruin/ash_walkers)
-"ufv" = (
-/obj/machinery/light/very_dim/directional/south,
-/turf/open/floor/iron/dark,
-/area/centcom/interlink)
 "ufC" = (
 /obj/structure/chair/sofa/corner/brown{
 	dir = 4
@@ -20105,15 +20118,6 @@
 	icon_state = "darkfull"
 	},
 /area/centcom/holding/cafe/station/service/hydroponics)
-"una" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	name = "Interlink Public Garden"
-	},
-/obj/effect/turf_decal/siding/white{
-	dir = 1
-	},
-/turf/open/floor/iron/dark,
-/area/centcom/interlink)
 "unc" = (
 /obj/effect/light_emitter/interlink,
 /obj/effect/turf_decal/siding/thinplating{
@@ -20191,9 +20195,7 @@
 /area/centcom/holding/cafe/station/command/cap)
 "uqJ" = (
 /obj/effect/turf_decal/siding/white,
-/obj/machinery/door/airlock/centcom{
-	name = "Nanotrasen Consultant's Office"
-	},
+/obj/machinery/door/airlock/interlink_access/corporate,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "urm" = (
@@ -21482,11 +21484,6 @@
 	},
 /turf/open/floor/iron,
 /area/centcom/interlink)
-"vGe" = (
-/obj/machinery/light/very_dim/directional/north,
-/obj/effect/turf_decal/trimline/green/filled/arrow_ccw,
-/turf/open/floor/iron/dark,
-/area/centcom/interlink)
 "vGv" = (
 /obj/structure/window/spawner/directional/south,
 /obj/structure/reagent_dispensers/water_cooler,
@@ -21592,14 +21589,13 @@
 /turf/closed/indestructible/rock,
 /area/centcom/interlink)
 "vLY" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	dir = 4;
-	name = "Interlink Bar"
-	},
 /obj/effect/turf_decal/trimline/green/corner{
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/green/filled/arrow_ccw,
+/obj/machinery/door/airlock/interlink_access/multi_tile{
+	dir = 4
+	},
 /turf/open/floor/iron/cafeteria,
 /area/centcom/interlink)
 "vMa" = (
@@ -21671,12 +21667,13 @@
 	},
 /area/centcom/interlink)
 "vRf" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	dir = 4;
-	name = "Interlink Garden"
-	},
-/obj/effect/turf_decal/trimline/green/arrow_ccw,
 /obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
+/obj/machinery/door/airlock/interlink_access/multi_tile{
 	dir = 4
 	},
 /turf/open/floor/iron/dark,
@@ -21899,6 +21896,13 @@
 	},
 /turf/open/floor/carpet/black,
 /area/centcom/interlink)
+"wde" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/machinery/door/airlock/interlink_access/corporate/glass,
+/turf/open/floor/iron,
+/area/centcom/interlink)
 "wdC" = (
 /turf/open/floor/carpet,
 /area/centcom/holding/cafe/beach)
@@ -21957,7 +21961,6 @@
 "wfS" = (
 /obj/structure/sign/poster/random/directional/north,
 /obj/effect/turf_decal/trimline/green/filled/arrow_ccw,
-/obj/machinery/light/directional/north,
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "wgp" = (
@@ -22564,8 +22567,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/airlock/public/glass{
-	name = "Interlink Dormitories Wing"
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
@@ -22618,12 +22621,6 @@
 	icon_state = "darkfull"
 	},
 /area/centcom/holding/cafe/station/command)
-"wNN" = (
-/obj/machinery/door/airlock/service{
-	name = "Interlink Kitchen"
-	},
-/turf/open/floor/iron/dark,
-/area/centcom/interlink)
 "wOp" = (
 /obj/structure/stone_tile/surrounding_tile/cracked,
 /obj/structure/flora/ash/stem_shroom,
@@ -23345,13 +23342,6 @@
 /obj/item/clothing/gloves/latex,
 /turf/open/floor/carpet/black,
 /area/centcom/holding/cafe/station/service/barber)
-"xIR" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	name = "Interlink Cafe"
-	},
-/turf/open/floor/wood/parquet,
-/area/centcom/interlink)
 "xJe" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 1
@@ -23726,11 +23716,12 @@
 /turf/open/floor/iron,
 /area/centcom/holding/cafe/station/commons/fitness/locker_room)
 "xYp" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	name = "Interlink Cafe"
-	},
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/duct,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
+/obj/machinery/door/airlock/interlink_access/multi_tile,
 /turf/open/floor/wood/tile,
 /area/centcom/interlink)
 "xYs" = (
@@ -31041,7 +31032,7 @@ bXo
 tvw
 aWb
 hIH
-svm
+czF
 eGf
 tvw
 cTQ
@@ -31300,8 +31291,8 @@ aWb
 dkE
 tvw
 tvw
-hjK
-aXG
+tvw
+aHp
 aXG
 ubn
 sci
@@ -31555,7 +31546,7 @@ reM
 tvw
 kdy
 hIH
-btJ
+czF
 pSx
 tvw
 iEd
@@ -31815,7 +31806,7 @@ hIH
 tvw
 tvw
 tvw
-aXG
+aHp
 aXG
 ubn
 sci
@@ -32577,7 +32568,7 @@ sBH
 sBH
 sBH
 sBH
-una
+lDA
 wUm
 ykt
 dCa
@@ -33116,7 +33107,7 @@ kZQ
 tvw
 vdv
 cuM
-dFj
+qhz
 eSC
 sTH
 nZP
@@ -33330,9 +33321,9 @@ vat
 vat
 vat
 tvw
-aDg
-aDg
-aDg
+hPB
+hPB
+hPB
 tvw
 hTa
 hTa
@@ -34108,7 +34099,7 @@ dRE
 dRE
 dRE
 xPL
-aDg
+hPB
 pSV
 bbk
 qco
@@ -34357,7 +34348,7 @@ hjm
 vat
 vat
 dZF
-aDg
+hPB
 hWO
 dRE
 scs
@@ -34614,7 +34605,7 @@ hjm
 vat
 vat
 vat
-aDg
+hPB
 lxl
 gNL
 wfd
@@ -34622,7 +34613,7 @@ xwd
 xwd
 wgN
 kYE
-aDg
+hPB
 hnK
 bbk
 vXO
@@ -34871,7 +34862,7 @@ hjm
 vat
 vat
 vat
-aDg
+hPB
 cyc
 woB
 lBw
@@ -34879,7 +34870,7 @@ lBw
 lBw
 stk
 dPq
-aDg
+hPB
 ygu
 bbk
 xrD
@@ -35126,8 +35117,8 @@ pNv
 pNv
 tvw
 tvw
-aDg
-aDg
+hPB
+hPB
 tvw
 tvw
 tvw
@@ -35161,7 +35152,7 @@ tvw
 tvw
 aDg
 aDg
-cOV
+wde
 aDg
 aDg
 tvw
@@ -35381,7 +35372,7 @@ pNv
 jRU
 pNv
 pNv
-aDg
+hPB
 pmJ
 aXG
 bfm
@@ -35895,7 +35886,7 @@ pNv
 pNv
 pNv
 pNv
-aDg
+hPB
 cal
 nIy
 iqA
@@ -36152,7 +36143,7 @@ pNv
 jRU
 pNv
 pNv
-aDg
+hPB
 cal
 sYb
 oIL
@@ -36688,7 +36679,7 @@ azO
 jMu
 jMu
 eeP
-laN
+mAs
 wUm
 hvQ
 nud
@@ -37180,7 +37171,7 @@ pNv
 jRU
 pNv
 pNv
-aDg
+hPB
 cal
 cGQ
 reT
@@ -37437,7 +37428,7 @@ pNv
 jRU
 pNv
 pNv
-aDg
+hPB
 cal
 fjr
 dPi
@@ -37459,7 +37450,7 @@ kOZ
 kOZ
 kOZ
 wHJ
-qhz
+jeu
 wUm
 hvQ
 nud
@@ -37685,7 +37676,7 @@ tvw
 tvw
 vLx
 fHV
-fHV
+vat
 vat
 rSa
 tqe
@@ -37716,7 +37707,7 @@ hvQ
 hvQ
 hvQ
 cGt
-qhz
+jeu
 hhj
 fnX
 nud
@@ -37951,7 +37942,7 @@ pNv
 pNv
 pNv
 pNv
-aDg
+hPB
 jXO
 aXG
 rnP
@@ -38004,7 +37995,7 @@ sKg
 rMY
 sKg
 aXG
-qhn
+jXO
 aXG
 aXG
 aXG
@@ -38199,7 +38190,7 @@ aaa
 tvw
 vLx
 vat
-vat
+fHV
 vat
 stg
 tqe
@@ -38210,19 +38201,19 @@ ewI
 pNv
 tvw
 tvw
-aDg
-aDg
+sdl
+hPB
 tvw
-lPi
-lPi
-lPi
-lPi
-lPi
-lPi
+hPB
+hPB
+hPB
+hPB
+hPB
+hPB
 tvw
 jHw
 wLA
-oBN
+cEK
 tvw
 tvw
 tvw
@@ -38259,8 +38250,8 @@ qPw
 lPi
 lPi
 wyF
-vGe
-ufv
+rjf
+aXG
 wyF
 lPi
 lPi
@@ -38465,10 +38456,10 @@ pNv
 jRU
 pNv
 pNv
-hjm
-vat
-vat
-vat
+ocN
+eSQ
+eSQ
+itM
 pFM
 vat
 www
@@ -38516,8 +38507,8 @@ hcR
 csC
 uDr
 tvw
-rjf
-aXG
+aUU
+xZJ
 tvw
 nbv
 oOM
@@ -38748,7 +38739,7 @@ mNq
 tvw
 iMY
 fEa
-qhz
+dqJ
 cSX
 rPg
 rPg
@@ -38983,7 +38974,7 @@ hjm
 vat
 vat
 vat
-pFM
+cHb
 vat
 gjz
 nzA
@@ -39029,7 +39020,7 @@ nqW
 ocT
 hcR
 hcR
-xIR
+nkP
 rjf
 aXG
 dXN
@@ -39240,7 +39231,7 @@ hjm
 vat
 vat
 vat
-pFM
+cHb
 vat
 xYs
 cSn
@@ -39497,7 +39488,7 @@ hjm
 vat
 vat
 vat
-pFM
+cHb
 eDf
 vIq
 xYO
@@ -39545,7 +39536,7 @@ nqW
 wHm
 tvw
 wfS
-ufv
+aXG
 tvw
 cBR
 hNU
@@ -39793,7 +39784,7 @@ tvw
 iUg
 aXG
 jXO
-wNN
+hSA
 phc
 nQF
 nQF
@@ -39801,8 +39792,8 @@ nQF
 bul
 gsc
 tvw
-rjf
-aXG
+aUU
+xZJ
 tvw
 vEI
 fMS
@@ -41305,7 +41296,7 @@ aqG
 bAO
 tvw
 kgf
-ivR
+jRq
 lWb
 xEM
 xtw
@@ -41562,7 +41553,7 @@ aqG
 aqG
 tvw
 eaY
-eKW
+jRq
 raz
 tvw
 tqz
@@ -41819,7 +41810,7 @@ aqG
 aqG
 tvw
 oih
-eKW
+jRq
 raz
 tvw
 tvw
@@ -42076,7 +42067,7 @@ aqG
 aqG
 tvw
 dcq
-aUU
+jRq
 raz
 tvw
 pdp

@@ -59,6 +59,7 @@
 // BUBBER EDIT ADDITION START
 #define NANITE_HUD "28"
 #define DIAG_NANITE_FULL_HUD "29"
+#define NEWBIE_HUD "30"
 // BUBBER EDIT ADDITION END
 
 //by default everything in the hud_list of an atom is an image
@@ -77,7 +78,10 @@
 #define DATA_HUD_AI_DETECT 8
 #define DATA_HUD_FAN 9
 #define DATA_HUD_MALF_APC 10
-#define DATA_HUD_PERMIT 11 //BUBBER EDIT
+//BUBBER EDIT START -- Define HUD elements unique to our server
+#define DATA_HUD_PERMIT 11
+#define DATA_HUD_NEWBIE 12
+//BUBBER EDIT END
 
 /// cooldown for being shown the images for any particular data hud
 #define ADD_HUD_TO_COOLDOWN 20

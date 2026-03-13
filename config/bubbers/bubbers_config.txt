@@ -25,3 +25,6 @@ RESPAWN_GRACE_PERIOD 18000
 
 ## Offsets the station time by this amount (in minutes) when SHIFT_TIME_REALTIME is enabled. Minimum 0, Maximum 1439.
 #SHIFT_TIME_CLOCK_OFFSET 0
+
+## Players with less hours of playtime than this are considered new players. New players cannot access the Interlink without assistance and spawn with a badge indicating they're new. Negative numbers turns off the feature. Default is -1.
+#NEWBIE_HOURS_THRESHOLD -1

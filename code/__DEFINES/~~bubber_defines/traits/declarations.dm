@@ -62,5 +62,8 @@
 // For Bloodsuckers/Hemophages that vomit blood
 #define TRAIT_STOMACH_BLOOD_VOMIT "stomach_blood_vomit"
 
+// so that players can see the newbie badge
+#define TRAIT_NEWBIE_NOTICER "newbie_noticer"
+
 /// The trait that determines if someone has the robotic limb reattachment quirk.
 #define TRAIT_ROBOTIC_LIMBATTACHMENT "trait_robotic_limbattachment"
