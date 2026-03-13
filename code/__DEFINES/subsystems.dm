@@ -298,3 +298,5 @@
 
 /// Returned by [/datum/vote/proc/can_be_initiated] to denote the vote is valid and can be initiated.
 #define VOTE_AVAILABLE "Vote Available"
+
+#define INIT_ORDER_VOICECHAT 83 // BUBBER EDIT - ADDITION: VOICE CHAT
