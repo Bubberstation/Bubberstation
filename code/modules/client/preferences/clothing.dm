@@ -31,9 +31,14 @@
 		DSATCHEL,
 		DDUFFELBAG,
 		DMESSENGER,
+		//BUBBER EDIT BEGIN
 		FBACKPACK,
 		FSATCHEL,
 		FMESSENGER,
+		TPACKA,
+		TPACKB,
+		TPACKC,
+		//BUBBER EDIT END
 	)
 
 /datum/preference/choiced/backpack/create_default_value()
@@ -51,12 +56,19 @@
 			return /obj/item/storage/backpack/duffelbag
 		if (GMESSENGER)
 			return /obj/item/storage/backpack/messenger
+			//BUBBER EDIT BEGIN
 		if (FBACKPACK)
 			return /obj/item/storage/backpack/industrial/frontier_colonist
 		if (FSATCHEL)
 			return /obj/item/storage/backpack/industrial/frontier_colonist/satchel
 		if (FMESSENGER)
 			return /obj/item/storage/backpack/industrial/frontier_colonist/messenger
+		if (TPACKA)
+			return /obj/item/storage/backpack/tinypaka
+		if (TPACKB)
+			return /obj/item/storage/backpack/tinypakb
+		if (TPACKC)
+			return /obj/item/storage/backpack/tinypakc
 
 		// In a perfect world, these would be your department's backpack.
 		// However, this doesn't factor in assistants, or no high slot, and would

@@ -388,12 +388,20 @@
 				back = /obj/item/storage/backpack/satchel/leather //Leather Satchel
 			if(GMESSENGER)
 				back = /obj/item/storage/backpack/messenger //Grey messenger bag
+			//BUBBER EDIT BEGIN
 			if(FBACKPACK)
 				back = /obj/item/storage/backpack/industrial/frontier_colonist
 			if(FSATCHEL)
 				back = /obj/item/storage/backpack/industrial/frontier_colonist/satchel
 			if(FMESSENGER)
 				back = /obj/item/storage/backpack/industrial/frontier_colonist/messenger
+			if(TPACKA)
+				back = /obj/item/storage/backpack/tinypaka
+			if(TPACKB)
+				back = /obj/item/storage/backpack/tinypakb
+			if(TPACKC)
+				back = /obj/item/storage/backpack/tinypakc
+			//BUBBER EDIT END
 			if(DSATCHEL)
 				back = satchel //Department satchel
 			if(DMESSENGER)
