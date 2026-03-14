@@ -72,4 +72,8 @@
 #define FBACKPACK "Frontier Backpack"
 #define FSATCHEL "Frontier Satchel"
 #define FMESSENGER "Frontier Messenger Bag"
+//
+#define TPACKWAIST "Waistpack"
+#define TPACKBELT "Beltpack"
+#define TPACKCHEST "Chest pack"
 // BUBBER EDIT END
