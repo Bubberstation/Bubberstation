@@ -20,7 +20,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 
-/obj/item/storage/backpack/tinypakc
+/obj/item/storage/backpack/chest_pack
 	name = "chest pack"
 	desc = "Like a fannypack, but for your chest!"
 	icon_state = "tinypakc"
