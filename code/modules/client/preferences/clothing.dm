@@ -64,11 +64,11 @@
 		if (FMESSENGER)
 			return /obj/item/storage/backpack/industrial/frontier_colonist/messenger
 		if (TPACKWAIST)
-			return /obj/item/storage/backpack/tinypaka
+			return /obj/item/storage/backpack/waist_pack
 		if (TPACKBELT)
-			return /obj/item/storage/backpack/tinypakb
+			return /obj/item/storage/backpack/storage_belt
 		if (TPACKCHEST)
-			return /obj/item/storage/backpack/tinypakc
+			return /obj/item/storage/backpack/chest_pack
 
 		// In a perfect world, these would be your department's backpack.
 		// However, this doesn't factor in assistants, or no high slot, and would
