@@ -63,11 +63,11 @@
 			return /obj/item/storage/backpack/industrial/frontier_colonist/satchel
 		if (FMESSENGER)
 			return /obj/item/storage/backpack/industrial/frontier_colonist/messenger
-		if (TPACKA)
+		if (TPACKWAIST)
 			return /obj/item/storage/backpack/tinypaka
-		if (TPACKB)
+		if (TPACKBELT)
 			return /obj/item/storage/backpack/tinypakb
-		if (TPACKC)
+		if (TPACKCHEST)
 			return /obj/item/storage/backpack/tinypakc
 
 		// In a perfect world, these would be your department's backpack.
