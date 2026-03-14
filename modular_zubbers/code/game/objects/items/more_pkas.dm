@@ -183,7 +183,7 @@
 /obj/projectile/kinetic/shotgun
 	name = "split kinetic force"
 	icon_state = null
-	damage = 15 // 3 projectiles, 40 base damage. Theoretically more if all shots hit.
+	damage = 20 // 3 projectiles, 60 base damage. Theoretically more if all shots hit.
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 3
