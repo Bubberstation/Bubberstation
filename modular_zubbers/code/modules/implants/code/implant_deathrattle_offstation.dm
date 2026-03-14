@@ -55,7 +55,7 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 	return active_players
 
 /datum/offstation_deathrattle_group/proc/should_bypass_headset_requirement()
-	return active_player_count() < 10
+	return active_player_count() <= 10
 
 /datum/offstation_deathrattle_group/proc/headset_recipient(obj/item/radio/headset/headset)
 	if(!istype(headset))
