@@ -1,5 +1,5 @@
 /// DEATHRATTLE MEANT FOR MINERS AND SPACETIDERS
-/// Send a message with all players that have a headset with cargo OR medical encryptions when the user dies. On lowpop (less than 10 players), everyone gets the message regardless of the channels they have. Silicons also always get the messagebecause why not.
+/// Sends a message to all players that have a headset with cargo OR medical encryptions when the user dies. On lowpop (less than 10 players), everyone gets the message regardless of the channels they have. Silicons also always get the message because why not.
 
 GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 
