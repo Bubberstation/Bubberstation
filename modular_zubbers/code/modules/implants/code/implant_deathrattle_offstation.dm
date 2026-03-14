@@ -3,7 +3,9 @@
 
 GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 
-/datum/deathrattle_group/offstation
+/datum/offstation_deathrattle_group
+	var/name
+	var/list/implants = list()
 	var/list/offstation_traits = list(
 		ZTRAIT_LAVA_RUINS,
 		ZTRAIT_ICE_RUINS,
@@ -17,7 +19,32 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 		'sound/items/knell/knell4.ogg',
 	)
 
-/datum/deathrattle_group/offstation/proc/active_player_count()
+/datum/offstation_deathrattle_group/New(name)
+	if(name)
+		src.name = name
+	else
+		src.name = "off-station group"
+
+/datum/offstation_deathrattle_group/proc/register(obj/item/implant/deathrattle/implant)
+	if(implant in implants)
+		return
+
+	RegisterSignal(implant, COMSIG_IMPLANT_IMPLANTED, PROC_REF(on_implant_implantation))
+	RegisterSignal(implant, COMSIG_IMPLANT_REMOVED, PROC_REF(on_implant_removal))
+	RegisterSignal(implant, COMSIG_QDELETING, PROC_REF(on_implant_destruction))
+
+	implants += implant
+
+	if(implant.imp_in)
+		on_implant_implantation(implant, implant.imp_in)
+
+/datum/offstation_deathrattle_group/proc/on_implant_removal(obj/item/implant/implant, mob/living/source, silent = FALSE, special = 0)
+	UnregisterSignal(source, COMSIG_MOB_STATCHANGE)
+
+/datum/offstation_deathrattle_group/proc/on_implant_destruction(obj/item/implant/implant)
+	implants -= implant
+
+/datum/offstation_deathrattle_group/proc/active_player_count()
 	var/active_players = 0
 	for(var/mob/living/player as anything in GLOB.player_list)
 		if(!player.client)
@@ -27,10 +54,10 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 		active_players++
 	return active_players
 
-/datum/deathrattle_group/offstation/proc/should_bypass_headset_requirement()
+/datum/offstation_deathrattle_group/proc/should_bypass_headset_requirement()
 	return active_player_count() < 10
 
-/datum/deathrattle_group/offstation/proc/headset_recipient(obj/item/radio/headset/headset)
+/datum/offstation_deathrattle_group/proc/headset_recipient(obj/item/radio/headset/headset)
 	if(!istype(headset))
 		return FALSE
 
@@ -39,13 +66,13 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 
 	return (RADIO_CHANNEL_SUPPLY in headset.channels) || (RADIO_CHANNEL_MEDICAL in headset.channels)
 
-/datum/deathrattle_group/offstation/proc/notify_recipient(mob/living/recipient, victim_name, victim_area, sound)
+/datum/offstation_deathrattle_group/proc/notify_recipient(mob/living/recipient, victim_name, victim_area, sound)
 	var/radio_prefix = span_radio("Your headset crackles with a strange, robotic voice...")
 	var/death_notice = span_robot("<b>[victim_name]</b> has died at <b>[victim_area]</b>.")
 	to_chat(recipient, "[radio_prefix] \"[death_notice]\"")
 	recipient.playsound_local(get_turf(recipient), sound, vol = 75, vary = FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 
-/datum/deathrattle_group/offstation/proc/area_auth(mob/living/owner)
+/datum/offstation_deathrattle_group/proc/area_auth(mob/living/owner)
 	if(!istype(owner))
 		return FALSE
 
@@ -73,9 +100,7 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 
 	return FALSE
 
-/datum/deathrattle_group/offstation/on_implant_implantation(obj/item/implant/implant, mob/living/target, mob/user, silent = FALSE, force = FALSE)
-	SIGNAL_HANDLER
-
+/datum/offstation_deathrattle_group/proc/on_implant_implantation(obj/item/implant/implant, mob/living/target, mob/user, silent = FALSE, force = FALSE)
 	if(!target && istype(implant, /mob/living))
 		target = implant
 
@@ -84,9 +109,7 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 
 	RegisterSignal(target, COMSIG_MOB_STATCHANGE, PROC_REF(on_user_statchange))
 
-/datum/deathrattle_group/offstation/on_user_statchange(mob/living/owner, new_stat)
-	SIGNAL_HANDLER
-
+/datum/offstation_deathrattle_group/proc/on_user_statchange(mob/living/owner, new_stat)
 	if(new_stat != DEAD)
 		return
 
@@ -126,9 +149,9 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 	. = ..()
 
 	if(!GLOB.offstation_deathrattle_group)
-		GLOB.offstation_deathrattle_group = new /datum/deathrattle_group/offstation("off-station group")
+		GLOB.offstation_deathrattle_group = new /datum/offstation_deathrattle_group("off-station group")
 
-	var/datum/deathrattle_group/offstation/group = GLOB.offstation_deathrattle_group
+	var/datum/offstation_deathrattle_group/group = GLOB.offstation_deathrattle_group
 	group.register(src)
 
 /obj/item/implantcase/deathrattle/offstation
@@ -147,7 +170,7 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 
 	var/obj/item/implantcase/deathrattle/offstation/case = new(src)
 	if(!GLOB.offstation_deathrattle_group)
-		GLOB.offstation_deathrattle_group = new /datum/deathrattle_group/offstation("off-station group")
+		GLOB.offstation_deathrattle_group = new /datum/offstation_deathrattle_group("off-station group")
 
-	var/datum/deathrattle_group/offstation/group = GLOB.offstation_deathrattle_group
+	var/datum/offstation_deathrattle_group/group = GLOB.offstation_deathrattle_group
 	group.register(case.imp)
