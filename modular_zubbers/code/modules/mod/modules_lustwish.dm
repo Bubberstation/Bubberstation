@@ -14,7 +14,7 @@
 	required_slots = list(ITEM_SLOT_HEAD)
 	overlay_icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
 
-	module_type = MODULE_PASSIVE //These three are changed when the control wire is snipped
+	module_type = MODULE_TOGGLE //These three are changed when the control wire is snipped
 	overlay_state_active = null
 	overlay_state_inactive = "module_hypno_overlay"
 
@@ -25,7 +25,7 @@
 /obj/item/mod/module/hypno_visor/examine(mob/user)
 	. = ..()
 	. += span_info("It's currently programmed with the following directive: \"[hypno_message]\" Use it in-hand to rewrite it.")
-	. += span_info("Its visor will [visor_effect ? "" : "<b>not</b>"] display an external hypnotic effect. Use a screwdriver to toggle.")
+	. += span_info("Its visor will [visor_effect ? "" : "<b>not</b> "]display an external hypnotic effect. Use a screwdriver to toggle.")
 	. += span_info("Its control wire is currently [(module_type == MODULE_TOGGLE) ? \
 						"<b>intact,</b> allowing for on-the-fly configuration via the MOD UI." \
 						: \
