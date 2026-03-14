@@ -1,0 +1,28 @@
+/datum/round_event_control/floor_cluwne
+	name = "Floor Cluwne"
+	typepath = /datum/round_event/floor_cluwne
+	max_occurrences = 1
+	min_players = 20
+	weight = 5
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_SPOOKY, TAG_TARGETED)
+	description = "a floor cluwne will spawn to seek out victims."
+
+/datum/round_event/floor_cluwne/start()
+	var/list/spawn_locs = list()
+	for(var/X in GLOB.generic_maintenance_landmarks)
+		spawn_locs += X
+
+	if(!spawn_locs.len)
+		message_admins("No valid spawn locations found, aborting...")
+		return MAP_ERROR
+
+	var/turf/T = get_turf(pick(spawn_locs))
+	var/mob/living/simple_animal/hostile/floor_cluwne/S = new(T)
+	playsound(S, 'yogstation/sound/misc/bikehorn_creepy.ogg', 50, 1, -1)
+	message_admins("A floor cluwne has been spawned at [COORD(T)][ADMIN_JMP(T)]")
+	log_game("A floor cluwne has been spawned at [COORD(T)]")
+	announce_to_ghosts(S)
+	return SUCCESSFUL_SPAWN
+
+
