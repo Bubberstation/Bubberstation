@@ -2677,14 +2677,8 @@
 /turf/closed/wall/r_wall,
 /area/station/engineering/atmos)
 "aXo" = (
-/obj/machinery/light/directional/west,
-/obj/machinery/button/door/directional/west{
-	id = "meeting_room_blast";
-	name = "Meeting Room Blast Doors";
-	req_access = list("command")
-	},
-/turf/open/floor/wood/tile,
-/area/station/command/meeting_room)
+/turf/open/floor/plating/airless,
+/area/space)
 "aXu" = (
 /obj/structure/closet,
 /obj/item/crowbar,
@@ -6762,8 +6756,8 @@
 /turf/open/floor/iron/smooth,
 /area/station/cargo/warehouse)
 "ctj" = (
-/turf/open/floor/iron,
-/area/station/science/lower)
+/turf/open/floor/plating/airless,
+/area/station/science/research)
 "cto" = (
 /obj/structure/table,
 /obj/item/clothing/mask/gas,
@@ -10019,6 +10013,12 @@
 /obj/structure/transit_tube,
 /turf/open/openspace,
 /area/station/biodome/aft)
+"dAb" = (
+/obj/effect/turf_decal/tile/purple/opposingcorners,
+/obj/structure/cable,
+/obj/effect/landmark/start/scientist,
+/turf/open/floor/iron/white,
+/area/station/science/lab)
 "dAf" = (
 /obj/machinery/light/warm/directional/north,
 /turf/open/floor/iron,
@@ -14021,11 +14021,9 @@
 /turf/open/misc/asteroid/airless,
 /area/station/asteroid)
 "eVv" = (
-/obj/effect/turf_decal/tile/purple/opposingcorners,
-/obj/structure/cable,
-/obj/effect/landmark/start/scientist,
-/turf/open/floor/iron/white,
-/area/station/science/lab)
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/station/science/research)
 "eVx" = (
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 8
@@ -15316,8 +15314,18 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/upper)
 "fuP" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/effect/turf_decal/loading_area/white,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/window/elevator/right/directional/north{
+	elevator_mode = 1;
+	transport_linked_id = "biodome_science_lift"
+	},
+/turf/open/floor/iron/dark,
 /area/station/science/research)
 "fuQ" = (
 /turf/open/floor/iron,
@@ -47038,24 +47046,14 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
 "qwW" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/machinery/light/directional/west,
+/obj/machinery/button/door/directional/west{
+	id = "meeting_room_blast";
+	name = "Meeting Room Blast Doors";
+	req_access = list("command")
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/obj/machinery/camera/directional/north{
-	c_tag = "Research - Under Junction";
-	network = list("ss13","rd")
-	},
-/obj/machinery/lift_indicator/directional/north{
-	linked_elevator_id = "biodome_science_lift"
-	},
-/obj/machinery/button/elevator/directional/north{
-	id = "biodome_science_lift"
-	},
-/turf/open/floor/iron,
-/area/station/science/lower)
+/turf/open/floor/wood/tile,
+/area/station/command/meeting_room)
 "qwZ" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
@@ -47541,19 +47539,8 @@
 /turf/open/openspace,
 /area/station/maintenance/port/upper)
 "qEy" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/obj/effect/turf_decal/loading_area/white,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/door/window/elevator/right/directional/north{
-	elevator_mode = 1;
-	transport_linked_id = "biodome_science_lift"
-	},
-/turf/open/floor/iron/dark,
-/area/station/science/research)
+/turf/open/floor/iron,
+/area/station/science/lower)
 "qEO" = (
 /obj/structure/cable,
 /obj/structure/lattice/catwalk,
@@ -56131,6 +56118,25 @@
 	},
 /turf/open/floor/holofloor/dark,
 /area/station/science/cytology)
+"tvJ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/camera/directional/north{
+	c_tag = "Research - Under Junction";
+	network = list("ss13","rd")
+	},
+/obj/machinery/lift_indicator/directional/north{
+	linked_elevator_id = "biodome_science_lift"
+	},
+/obj/machinery/button/elevator/directional/north{
+	id = "biodome_science_lift"
+	},
+/turf/open/floor/iron,
+/area/station/science/lower)
 "twh" = (
 /obj/effect/spawner/random/trash/graffiti,
 /turf/open/floor/plating,
@@ -101816,7 +101822,7 @@ pbc
 jZo
 jkM
 jZo
-qwW
+tvJ
 cAe
 jZo
 gvX
@@ -102071,8 +102077,8 @@ mtw
 jnn
 qEX
 jZo
-ctj
-ctj
+qEy
+qEy
 coU
 wuh
 jZo
@@ -107770,7 +107776,7 @@ qNp
 xPt
 pSz
 iux
-aXo
+qwW
 uMp
 uMp
 gtl
@@ -161166,7 +161172,7 @@ hHc
 hHc
 hHc
 ran
-hHc
+aXo
 dUQ
 hHc
 hHc
@@ -167095,7 +167101,7 @@ hCG
 bMG
 vUU
 vUU
-qEy
+fuP
 dCg
 dCg
 cGu
@@ -167350,7 +167356,7 @@ bMG
 bMG
 pOc
 bMG
-fuP
+eVv
 czJ
 bcs
 fCm
@@ -168123,7 +168129,7 @@ uMy
 bMG
 vUU
 wdH
-dCg
+ctj
 dCg
 ina
 dCg
@@ -172761,7 +172767,7 @@ gVh
 hKk
 iEQ
 pwK
-eVv
+dAb
 vji
 cZQ
 qpK
