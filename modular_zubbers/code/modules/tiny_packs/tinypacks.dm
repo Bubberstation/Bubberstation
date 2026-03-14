@@ -1,4 +1,4 @@
-/obj/item/storage/backpack/tinypakb
+/obj/item/storage/backpack/storage_belt
 	name = "storage belt"
 	desc = "A small belt coated from front to back in pouches."
 	icon_state = "tinypakb"
