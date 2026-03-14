@@ -395,12 +395,12 @@
 				back = /obj/item/storage/backpack/industrial/frontier_colonist/satchel
 			if(FMESSENGER)
 				back = /obj/item/storage/backpack/industrial/frontier_colonist/messenger
-			if(TPACKA)
-				back = /obj/item/storage/backpack/tinypaka
-			if(TPACKB)
-				back = /obj/item/storage/backpack/tinypakb
-			if(TPACKC)
-				back = /obj/item/storage/backpack/tinypakc
+			if(TPACKWAIST)
+				back = /obj/item/storage/backpack/waist_pack
+			if(TPACKBELT)
+				back = /obj/item/storage/backpack/storage_belt
+			if(TPACKCHEST)
+				back = /obj/item/storage/backpack/chest_pack
 			//BUBBER EDIT END
 			if(DSATCHEL)
 				back = satchel //Department satchel
