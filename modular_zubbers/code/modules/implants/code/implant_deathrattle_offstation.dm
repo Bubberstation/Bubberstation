@@ -32,9 +32,7 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 	RegisterSignal(implant, COMSIG_IMPLANT_IMPLANTED, PROC_REF(on_implant_implantation))
 	RegisterSignal(implant, COMSIG_IMPLANT_REMOVED, PROC_REF(on_implant_removal))
 	RegisterSignal(implant, COMSIG_QDELETING, PROC_REF(on_implant_destruction))
-
 	implants += implant
-
 	if(implant.imp_in)
 		on_implant_implantation(implant, implant.imp_in)
 
@@ -60,10 +58,8 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 /datum/offstation_deathrattle_group/proc/headset_recipient(obj/item/radio/headset/headset)
 	if(!istype(headset))
 		return FALSE
-
 	if(!length(headset.channels))
 		return FALSE
-
 	return (RADIO_CHANNEL_SUPPLY in headset.channels) || (RADIO_CHANNEL_MEDICAL in headset.channels)
 
 /datum/offstation_deathrattle_group/proc/notify_recipient(mob/living/recipient, victim_name, victim_area, sound)
@@ -75,15 +71,12 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 /datum/offstation_deathrattle_group/proc/area_auth(mob/living/owner)
 	if(!istype(owner))
 		return FALSE
-
 	var/turf/owner_turf = get_turf(owner)
 	if(!owner_turf)
 		return FALSE
-
 	var/owner_z = owner_turf?.z
 	if(!owner_z || is_station_level(owner_z))
 		return FALSE
-
 	// Ignores CentCom & Interlink specifically
 	if(is_centcom_level(owner_z) || is_away_level(owner_z) || istype(get_area(owner_turf), /area/centcom/interlink))
 		return FALSE
@@ -99,43 +92,33 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 /datum/offstation_deathrattle_group/proc/on_implant_implantation(obj/item/implant/implant, mob/living/target, mob/user, silent = FALSE, force = FALSE)
 	if(!target && istype(implant, /mob/living))
 		target = implant
-
 	if(!istype(target))
 		return
-
 	RegisterSignal(target, COMSIG_MOB_STATCHANGE, PROC_REF(on_user_statchange))
 
 /datum/offstation_deathrattle_group/proc/on_user_statchange(mob/living/owner, new_stat)
 	if(new_stat != DEAD)
 		return
-
 	if(!area_auth(owner))
 		return
-
 	var/victim_name = owner.mind ? owner.mind.name : owner.real_name
 	var/victim_area = get_area_name(get_turf(owner))
 	var/sound = pick(deathrattle_sounds)
 	var/bypass_headset_requirement = should_bypass_headset_requirement()
-
 	for(var/mob/living/recipient as anything in GLOB.player_list)
 		if(recipient == owner || recipient.stat == DEAD || !recipient.client)
 			continue
-
 		if(istype(recipient, /mob/living/silicon))
 			notify_recipient(recipient, victim_name, victim_area, sound)
 			continue
-
 		var/mob/living/carbon/human/human_recipient = recipient
 		if(!istype(human_recipient))
 			continue
-
 		var/obj/item/radio/headset/listener_headset = human_recipient.ears
 		if(!istype(listener_headset))
 			continue
-
 		if(!bypass_headset_requirement && !headset_recipient(listener_headset))
 			continue
-
 		notify_recipient(recipient, victim_name, victim_area, sound)
 
 /obj/item/implant/deathrattle/offstation
@@ -143,10 +126,8 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 
 /obj/item/implant/deathrattle/offstation/Initialize(mapload)
 	. = ..()
-
 	if(!GLOB.offstation_deathrattle_group)
 		GLOB.offstation_deathrattle_group = new /datum/offstation_deathrattle_group("off-station group")
-
 	var/datum/offstation_deathrattle_group/group = GLOB.offstation_deathrattle_group
 	group.register(src)
 
@@ -163,10 +144,8 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 
 /obj/item/storage/box/offstation_deathrattle/PopulateContents()
 	new /obj/item/implanter(src)
-
 	var/obj/item/implantcase/deathrattle/offstation/case = new(src)
 	if(!GLOB.offstation_deathrattle_group)
 		GLOB.offstation_deathrattle_group = new /datum/offstation_deathrattle_group("off-station group")
-
 	var/datum/offstation_deathrattle_group/group = GLOB.offstation_deathrattle_group
 	group.register(case.imp)
