@@ -87,17 +87,13 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 	// Ignores CentCom & Interlink specifically
 	if(is_centcom_level(owner_z) || is_away_level(owner_z) || istype(get_area(owner_turf), /area/centcom/interlink))
 		return FALSE
-
 	if(isspaceturf(owner_turf))
 		return TRUE
-
 	if(is_mining_level(owner_z) || is_spaceruins_level(owner_z))
 		return TRUE
-
 	for(var/trait in offstation_traits)
 		if(SSmapping.level_trait(owner_z, trait))
 			return TRUE
-
 	return FALSE
 
 /datum/offstation_deathrattle_group/proc/on_implant_implantation(obj/item/implant/implant, mob/living/target, mob/user, silent = FALSE, force = FALSE)
