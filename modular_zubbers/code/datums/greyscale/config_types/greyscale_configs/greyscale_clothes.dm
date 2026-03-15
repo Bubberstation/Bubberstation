@@ -23,3 +23,11 @@
 /datum/greyscale_config/fancy_suit/worn/teshari
 	name = "Fancy Suit (Worn, Teshari)"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
+
+/datum/greyscale_config/jester_suit/worn/digi
+	name = "Jester Suit (Worn, Digi)"
+	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/civilian_digi.dmi'
+
+/datum/greyscale_config/jester_suit/worn/teshari
+	name = "Jester Suit (Worn, Teshari)"
+	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
