@@ -217,7 +217,7 @@
 	alert_sound_to_playing(sound_to_play, players = players)
 
 	for(var/mob/target in players)
-		if(isnewplayer(target) || !HAS_TRAIT(target, TRAIT_DEAF))
+		if(isnewplayer(target) || HAS_TRAIT(target, TRAIT_DEAF))
 			continue
 
 		to_chat(target, announcement)
