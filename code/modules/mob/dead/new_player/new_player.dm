@@ -5,7 +5,7 @@
 	invisibility = INVISIBILITY_ABSTRACT
 	density = FALSE
 	stat = DEAD
-	//hud_type = /datum/hud/new_player SKYRAT EDIT REMOVAL
+	hud_type = /datum/hud/new_player
 	hud_possible = list()
 
 	/// String Values tied to Defines that state whether the new_player is ready to play or not.
@@ -85,10 +85,8 @@
 	var/this_is_like_playing_right = alert(usr, "Are you sure you wish to observe?[less_input_message]", "Observe", "Yes", "No") //SKYRAT EDIT CHANGE
 	if(QDELETED(src) || !src.client || this_is_like_playing_right != "Yes")
 		ready = PLAYER_NOT_READY
-		show_title_screen() // SKYRAT EDIT ADDITION
 		return FALSE
 
-	hide_title_screen() // SKYRAT EDIT ADDITION - Skyrat Titlescreen
 	var/mob/dead/observer/observer = new()
 	spawning = TRUE
 
@@ -219,7 +217,6 @@
 
 	var/latejoin_period = CEILING(STATION_TIME_PASSED() / (5 MINUTES), 5)
 	SSblackbox.record_feedback("tally", "latejoin_time", 1, latejoin_period)
-	hide_title_screen()// SKYRAT EDIT ADDITION
 	mind.late_joiner = TRUE
 	var/atom/destination = mind.assigned_role.get_latejoin_spawn_point()
 	if(!destination)
@@ -306,8 +303,6 @@
 /// Creates, assigns and returns the new_character to spawn as. Assumes a valid mind.assigned_role exists.
 /mob/dead/new_player/proc/create_character(atom/destination)
 	spawning = TRUE
-
-	hide_title_screen() // SKYRAT EDIT ADDITION - titlescreen
 
 	mind.active = FALSE //we wish to transfer the key manually
 	var/mob/living/spawning_mob = mind.assigned_role.get_spawn_mob(client, destination)

@@ -300,8 +300,7 @@
 		CHECK_TICK
 
 	var/message = "[name] terrain population finished in [(REALTIMEOFDAY - start_time)/10]s!"
-	add_startup_message(message) //SKYRAT EDIT CHANGE
-	//to_chat(world, span_boldannounce("[message]"), MESSAGE_TYPE_DEBUG) //SKYRAT EDIT ORIGINAL
+	to_chat(world, span_boldannounce("[message]"), MESSAGE_TYPE_DEBUG)
 	log_world(message)
 
 

@@ -439,7 +439,7 @@ Used by the AI doomsday and the self-destruct nuke.
 		SSautomapper.load_templates_from_cache(files)
 	// SKYRAT EDIT ADDITION END
 	if(!silent)
-		add_startup_message("Loaded [name] in [(REALTIMEOFDAY - start_time)/10]s!") //SKYRAT EDIT CHANGE
+		INIT_ANNOUNCE("Loaded [name] in [(REALTIMEOFDAY - start_time)/10]s!")
 	return parsed_maps
 
 /datum/controller/subsystem/mapping/proc/loadWorld()
