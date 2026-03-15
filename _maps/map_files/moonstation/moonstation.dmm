@@ -2595,7 +2595,7 @@
 /obj/machinery/modular_computer/preset/id{
 	dir = 4
 	},
-/obj/item/computer_disk/quartermaster,
+/obj/item/disk/computer/quartermaster,
 /obj/machinery/keycard_auth/wall_mounted/directional/south,
 /turf/open/floor/mineral/gold,
 /area/station/command/heads_quarters/qm)
@@ -7321,6 +7321,7 @@
 	dir = 1
 	},
 /obj/item/toy/figure/paramedic,
+/obj/item/radio/intercom/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "bTq" = (
@@ -16927,7 +16928,7 @@
 	dir = 8
 	},
 /obj/structure/table,
-/obj/item/computer_disk/ordnance,
+/obj/item/disk/computer/ordnance,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
 "esm" = (
@@ -39522,7 +39523,6 @@
 /area/station/engineering/atmos/pumproom)
 "kjm" = (
 /obj/structure/sink/directional/east,
-/obj/structure/mirror/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
@@ -39530,6 +39530,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/machinery/vitals_reader/directional/west,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery)
 "kjq" = (
@@ -42731,10 +42732,10 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 8
 	},
-/obj/item/radio/intercom/directional/west,
 /obj/machinery/stasis{
 	dir = 4
 	},
+/obj/machinery/vitals_reader/directional/west,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "kXK" = (
@@ -47870,11 +47871,11 @@
 /area/moonstation/underground)
 "mkG" = (
 /obj/structure/sink/directional/east,
-/obj/structure/mirror/directional/west,
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/vitals_reader/directional/west,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery)
 "mkH" = (
@@ -53447,16 +53448,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
-"nMx" = (
-/obj/effect/turf_decal/tile/blue/half/contrasted{
-	dir = 8
-	},
-/obj/machinery/airalarm/directional/west,
-/obj/machinery/stasis{
-	dir = 4
-	},
-/turf/open/floor/iron/white,
-/area/station/medical/treatment_center)
 "nMy" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 8
@@ -54652,7 +54643,6 @@
 /obj/structure/closet/crate/wooden/toy,
 /obj/item/toy/figure/clown,
 /obj/item/toy/figure/mime,
-/obj/item/inspector/clown/bananium,
 /obj/item/radio/intercom/directional/south,
 /obj/item/bot_assembly/honkbot,
 /obj/item/bikehorn,
@@ -61533,7 +61523,7 @@
 	dir = 1
 	},
 /obj/machinery/modular_computer/preset/cargochat/security,
-/obj/item/computer_disk/security,
+/obj/item/disk/computer/security,
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "pNC" = (
@@ -63902,11 +63892,11 @@
 "qsl" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/table,
-/obj/item/computer_disk,
-/obj/item/computer_disk{
+/obj/item/disk/computer,
+/obj/item/disk/computer{
 	pixel_y = 3
 	},
-/obj/item/computer_disk{
+/obj/item/disk/computer{
 	pixel_y = 6
 	},
 /obj/effect/turf_decal/tile/purple/half/contrasted{
@@ -72690,13 +72680,13 @@
 "sIP" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /obj/effect/spawner/random/medical/patient_stretcher,
-/obj/item/radio/intercom/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "sIU" = (
@@ -90560,7 +90550,7 @@
 /area/station/commons/storage/primary)
 "xsY" = (
 /obj/structure/table/glass/plasmaglass,
-/obj/item/computer_disk/ordnance,
+/obj/item/disk/computer/ordnance,
 /obj/item/circuitboard/aicore,
 /turf/open/floor/carpet/purple,
 /area/station/command/heads_quarters/rd)
@@ -90788,6 +90778,7 @@
 /obj/item/stack/sheet/cloth/ten,
 /obj/item/stack/sheet/cloth/ten,
 /obj/machinery/status_display/evac/directional/east,
+/obj/item/radio/intercom/directional/south,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "xwm" = (
@@ -262498,8 +262489,8 @@ nYT
 oRp
 lnj
 eDj
-jiA
 eDj
+jiA
 fcw
 eDj
 fcw
@@ -263018,7 +263009,7 @@ aPY
 onI
 pXP
 tqH
-nMx
+kXG
 dgT
 neH
 dHp

@@ -53,11 +53,11 @@
 	var/power = 5 + round(explode_vol/12, 1) //MKU strengthdiv is 12, same as meth.
 	if(power <= 0)
 		return
-	var/turf/T = get_turf(holder.my_atom)
+	var/turf/explosion_turf = get_turf(holder.my_atom)
 	var/inside_msg
 	if(ismob(holder.my_atom))
-		var/mob/M = holder.my_atom
-		inside_msg = " inside [ADMIN_LOOKUPFLW(M)]"
+		var/mob/failed_chemist = holder.my_atom
+		inside_msg = " inside [ADMIN_LOOKUPFLW(failed_chemist)]"
 		return
 	var/lastkey = holder.my_atom.fingerprintslast
 	var/touch_msg = "N/A"
@@ -65,9 +65,8 @@
 		var/mob/toucher = get_mob_by_key(lastkey)
 		touch_msg = "[ADMIN_LOOKUPFLW(toucher)]"
 	if(!istype(holder.my_atom, /obj/machinery/plumbing)) //excludes standard plumbing equipment from spamming admins with this shit
-		message_admins("Reagent explosion reaction occurred at [ADMIN_VERBOSEJMP(T)][inside_msg]. Last Fingerprint: [touch_msg].")
-	log_game("Reagent explosion reaction occurred at [AREACOORD(T)]. Last Fingerprint: [lastkey ? lastkey : "N/A"]." )
-	var/datum/effect_system/reagents_explosion/e = new()
-	e.set_up(power, T, 0, 0)
-	e.start(holder.my_atom)
+		message_admins("Reagent explosion reaction occurred at [ADMIN_VERBOSEJMP(explosion_turf)][inside_msg]. Last Fingerprint: [touch_msg].")
+	log_game("Reagent explosion reaction occurred at [AREACOORD(explosion_turf)]. Last Fingerprint: [lastkey ? lastkey : "N/A"]." )
+	var/datum/effect_system/reagents_explosion/explosion = new(explosion_turf, power, FALSE, FALSE)
+	explosion.start(holder.my_atom)
 	holder.clear_reagents()

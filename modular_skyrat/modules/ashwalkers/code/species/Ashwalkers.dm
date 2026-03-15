@@ -14,12 +14,12 @@
 	. = ..()
 	RegisterSignal(carbon_target, COMSIG_MOB_ITEM_ATTACK, PROC_REF(mob_attack))
 	carbon_target.AddComponent(/datum/component/ash_age)
-	carbon_target.faction |= FACTION_ASHWALKER
+	carbon_target.add_faction(FACTION_ASHWALKER)
 
 /datum/species/lizard/ashwalker/on_species_loss(mob/living/carbon/carbon_target)
 	. = ..()
 	UnregisterSignal(carbon_target, COMSIG_MOB_ITEM_ATTACK)
-	carbon_target.faction &= FACTION_ASHWALKER
+	carbon_target.remove_faction(FACTION_ASHWALKER)
 
 /datum/species/lizard/ashwalker/proc/mob_attack(datum/source, mob/mob_target, mob/user, list/modifiers)
 	SIGNAL_HANDLER

@@ -7,7 +7,7 @@
 	slot = ORGAN_SLOT_EARS
 	gender = PLURAL
 	maxHealth = 1 * STANDARD_ORGAN_THRESHOLD
-	organ_flags = ORGAN_ROBOTIC
+	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 	overrides_sprite_datum_organ_type = TRUE
 	bodypart_overlay = /datum/bodypart_overlay/mutant/ears
 

@@ -66,14 +66,14 @@
 	var/mob/living/silicon/robot/cyborg = loc
 	cyborg.scrambledcodes = TRUE
 	cyborg.req_access = list(ACCESS_CENT_GENERAL)
-	cyborg.faction |= ROLE_DEATHSQUAD //You're part of CENTCOM now
+	cyborg.add_faction(ROLE_DEATHSQUAD) //You're part of CENTCOM now
 
 /obj/item/robot_model/centcom/remove_module(obj/item/removed_module, delete_after)
 	..()
 	var/mob/living/silicon/robot/cyborg = loc
 	cyborg.scrambledcodes = FALSE
 	cyborg.req_access = list(ACCESS_ROBOTICS)
-	cyborg.faction -= ROLE_DEATHSQUAD //You're no longer part of CENTCOM
+	cyborg.remove_faction(ROLE_DEATHSQUAD) //You're no longer part of CENTCOM
 
 /* Research cyborgs */
 

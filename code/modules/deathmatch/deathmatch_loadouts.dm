@@ -851,6 +851,7 @@
 	gloves = /obj/item/clothing/gloves/color/plasmaman/atmos
 	shoes = /obj/item/clothing/shoes/workboots
 	r_pocket = /obj/item/tank/internals/plasmaman/belt/full
+	internals_slot = ITEM_SLOT_RPOCKET
 
 	back = /obj/item/storage/backpack/industrial
 
@@ -986,7 +987,7 @@
 /datum/outfit/deathmatch_loadout/heresy/pre_equip(mob/living/carbon/human/user, visuals_only)
 	. = ..()
 	ADD_TRAIT(user, TRAIT_ACT_AS_HERETIC, REF(src))
-	user.AddElement(/datum/element/leeching_walk)
+	user.AddElement(/datum/element/rust_healing)
 
 	// Creates the knowledge as an isolated datum inside the target, allowing passive knowledges to work still.
 	for(var/datum/heretic_knowledge/knowhow as anything in knowledge_to_grant)

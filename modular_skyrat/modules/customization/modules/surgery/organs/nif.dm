@@ -1,66 +1,47 @@
 // A surgery that repairs the patient's NIF
-/datum/surgery/repair_nif
+/datum/surgery_operation/organ/repair_nif
 	name = "Repair NIF"
-	steps = list(
-		/datum/surgery_step/incise,
-		/datum/surgery_step/retract_skin,
-		/datum/surgery_step/saw,
-		/datum/surgery_step/clamp_bleeders,
-		/datum/surgery_step/incise,
-		/datum/surgery_step/repair_nif,
-		/datum/surgery_step/close,
-	)
-
-	target_mobtypes = list(/mob/living/carbon/human)
-	possible_locs = list(BODY_ZONE_HEAD)
 	desc = "A surgical procedure that restores the integrity of an installed NIF."
-
-/datum/surgery/repair_nif/can_start(mob/user, mob/living/patient)
-	var/mob/living/carbon/human/nif_patient = patient
-	var/obj/item/organ/cyberimp/brain/nif/installed_nif = nif_patient.get_organ_by_type(/obj/item/organ/cyberimp/brain/nif)
-
-	if(!nif_patient || !installed_nif)
-		return FALSE
-
-	return ..()
-
-/datum/surgery_step/repair_nif
-	name = "repair installed NIF (multitool)"
-	repeatable = FALSE
 	implements = list(
-		TOOL_MULTITOOL = 100,
-		TOOL_HEMOSTAT = 35,
-		TOOL_SCREWDRIVER = 15,
+		TOOL_MULTITOOL = 1,
+		TOOL_HEMOSTAT = 2.85,
+		TOOL_SCREWDRIVER = 6.67,
 	)
+	target_type = /obj/item/organ/cyberimp/brain/nif
 	time = 12 SECONDS
+	all_surgery_states_required = SURGERY_SKIN_OPEN | SURGERY_BONE_SAWED | SURGERY_ORGANS_CUT
+	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED
 
-/datum/surgery_step/repair_nif/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, span_notice("You begin to restore the integrity of [target]'s NIF..."),
-		"[user] begins to fix [target]'s NIF.",
-		"[user] begins to perform repairs on [target]'s NIF."
+/datum/surgery_operation/organ/repair_nif/on_preop(obj/item/organ/cyberimp/brain/nif/installed_nif, mob/living/surgeon, obj/item/tool, list/operation_args)
+	display_results(
+		surgeon,
+		installed_nif.owner,
+		span_notice("You begin to restore the integrity of [FORMAT_ORGAN_OWNER(installed_nif)]'s NIF..."),
+		span_notice("[surgeon] begins to fix [FORMAT_ORGAN_OWNER(installed_nif)]'s NIF."),
+		span_notice("[surgeon] begins to perform repairs on [FORMAT_ORGAN_OWNER(installed_nif)]'s NIF."),
 	)
 
-/datum/surgery_step/repair_nif/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, span_notice("You succeed in restoring the integrity of [target]'s NIF."),
-		"[user] successfully repairs [target]'s NIF!",
-		"[user] completes the repair on [target]'s NIF."
+/datum/surgery_operation/organ/repair_nif/on_success(obj/item/organ/cyberimp/brain/nif/installed_nif, mob/living/surgeon, tool, list/operation_args)
+	display_results(
+		surgeon,
+		installed_nif.owner,
+		span_notice("You succeed in restoring the integrity of [FORMAT_ORGAN_OWNER(installed_nif)]'s NIF."),
+		span_notice("[surgeon] successfully repairs [FORMAT_ORGAN_OWNER(installed_nif)]'s NIF!"),
+		span_notice("[surgeon] completes the repair on [FORMAT_ORGAN_OWNER(installed_nif)]'s NIF."),
 	)
-
-	var/mob/living/carbon/human/nif_patient = target
-	var/obj/item/organ/cyberimp/brain/nif/installed_nif = nif_patient.get_organ_by_type(/obj/item/organ/cyberimp/brain/nif)
-
-
 	installed_nif.durability = installed_nif.max_durability
 	installed_nif.send_message("Restored to full integrity!")
 
 	return ..()
 
-/datum/surgery_step/repair_nif/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(target.get_organ_slot(ORGAN_SLOT_BRAIN))
-		display_results(user, target, span_warning("You screw up, causing [target] brain damage!"),
-			span_warning("[user] screws up, while trying to repair [target]'s NIF!"),
-			"[user] fails to complete the repair on [target]'s NIF.")
-
-		target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 20)
+/datum/surgery_operation/organ/repair_nif/on_failure(obj/item/organ/cyberimp/brain/nif/installed_nif, mob/living/surgeon, obj/item/tool, list/operation_args)
+	display_results(
+		surgeon,
+		installed_nif.owner,
+		span_warning("You screw up, causing [FORMAT_ORGAN_OWNER(installed_nif)] brain damage!"),
+		span_warning("[surgeon] screws up, while trying to repair [FORMAT_ORGAN_OWNER(installed_nif)]'s NIF!"),
+		span_notice("[surgeon] completes the repair on [FORMAT_ORGAN_OWNER(installed_nif)]'s NIF."),
+	)
+	installed_nif.owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, 20)
 	return FALSE
 

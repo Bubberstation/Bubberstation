@@ -31,8 +31,13 @@
 			if(istype(teleatom, /obj/item/storage/backpack/holding))
 				precision = rand(1,100)
 
-			var/static/list/bag_cache = typecacheof(/obj/item/storage/backpack/holding)
+			var/static/list/bag_cache = typecacheof(/obj/item/storage/backpack/holding, /obj/item/mod/control, /obj/item/mod/module/storage)
 			var/list/bagholding = typecache_filter_list(teleatom.get_all_contents(), bag_cache)
+			for(var/obj/item/mod/modsuit_or_module in bagholding)
+				var/datum/storage/storage = modsuit_or_module.atom_storage
+				if(istype(storage, /datum/storage/bag_of_holding) && storage.real_location == storage.parent)
+					continue
+				bagholding -= modsuit_or_module
 			if(bagholding.len)
 				precision = max(rand(1,100)*bagholding.len,100)
 				if(isliving(teleatom))
@@ -41,8 +46,7 @@
 
 			// if effects are not specified and not explicitly disabled, sparks
 			if((!effectin || !effectout) && !no_effects)
-				var/datum/effect_system/spark_spread/sparks = new
-				sparks.set_up(5, 1, teleatom)
+				var/datum/effect_system/basic/spark_spread/sparks = new(teleatom, 5, TRUE)
 				if (!effectin)
 					effectin = sparks
 				if (!effectout)
@@ -50,8 +54,7 @@
 		if(TELEPORT_CHANNEL_QUANTUM)
 			// if effects are not specified and not explicitly disabled, rainbow sparks
 			if ((!effectin || !effectout) && !no_effects)
-				var/datum/effect_system/spark_spread/quantum/sparks = new
-				sparks.set_up(5, 1, teleatom)
+				var/datum/effect_system/basic/spark_spread/quantum/sparks = new(teleatom, 5, TRUE)
 				if (!effectin)
 					effectin = sparks
 				if (!effectout)
@@ -122,8 +125,7 @@
 	if(sound)
 		playsound(location, sound, 60, TRUE)
 	if(effect)
-		effect.attach(location)
-		effect.start()
+		effect.attach(location).start()
 
 /**
  * Attempts to find a "safe" floor turf within some given z-levels

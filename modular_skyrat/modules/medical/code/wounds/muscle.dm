@@ -52,7 +52,7 @@
 
 	return ..()
 
-/datum/wound/muscle/remove_wound(ignore_limb, replaced)
+/datum/wound/muscle/remove_wound(ignore_limb, replaced, destroying)
 	limp_slowdown = 0
 	return ..()
 

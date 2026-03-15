@@ -42,7 +42,7 @@
 /obj/item/storage/medkit/regular/PopulateContents()
 	if(empty)
 		return
-	var/static/items_inside = list(
+	var/list/items_inside = list(
 		/obj/item/stack/medical/gauze = 1,
 		/obj/item/stack/medical/suture = 2,
 		/obj/item/stack/medical/mesh = 2,
@@ -60,7 +60,7 @@
 /obj/item/storage/medkit/emergency/PopulateContents()
 	if(empty)
 		return
-	var/static/items_inside = list(
+	var/list/items_inside = list(
 		/obj/item/healthanalyzer/simple = 1,
 		/obj/item/stack/medical/gauze = 1,
 		/obj/item/stack/medical/bandage = 1,
@@ -81,7 +81,7 @@
 /obj/item/storage/medkit/surgery/PopulateContents()
 	if(empty)
 		return
-	var/static/items_inside = list(
+	var/list/items_inside = list(
 		/obj/item/healthanalyzer = 1,
 		/obj/item/stack/medical/gauze/twelve = 1,
 		/obj/item/stack/medical/suture = 2,
@@ -105,7 +105,7 @@
 /obj/item/storage/medkit/surgery_syndie/PopulateContents()
 	if(empty)
 		return
-	var/static/items_inside = list(
+	var/list/items_inside = list(
 		/obj/item/scalpel/advanced = 1,
 		/obj/item/retractor/advanced = 1,
 		/obj/item/cautery/advanced = 1,
@@ -131,7 +131,7 @@
 /obj/item/storage/medkit/ancient/PopulateContents()
 	if(empty)
 		return
-	var/static/items_inside = list(
+	var/list/items_inside = list(
 		/obj/item/stack/medical/gauze = 1,
 		/obj/item/stack/medical/bruise_pack = 3,
 		/obj/item/stack/medical/ointment= 3)
@@ -158,7 +158,7 @@
 /obj/item/storage/medkit/fire/PopulateContents()
 	if(empty)
 		return
-	var/static/items_inside = list(
+	var/list/items_inside = list(
 		/obj/item/reagent_containers/applicator/patch/aiuri = 3,
 		/obj/item/reagent_containers/spray/hercuri = 1,
 		/obj/item/reagent_containers/hypospray/medipen/oxandrolone = 1,
@@ -183,7 +183,7 @@
 /obj/item/storage/medkit/toxin/PopulateContents()
 	if(empty)
 		return
-	var/static/items_inside = list(
+	var/list/items_inside = list(
 		/obj/item/storage/pill_bottle/multiver/less = 1,
 		/obj/item/reagent_containers/syringe/syriniver = 3,
 		/obj/item/storage/pill_bottle/potassiodide = 1,
@@ -209,7 +209,7 @@
 /obj/item/storage/medkit/o2/PopulateContents()
 	if(empty)
 		return
-	var/static/items_inside = list(
+	var/list/items_inside = list(
 		/obj/item/reagent_containers/syringe/convermol = 3,
 		/obj/item/reagent_containers/hypospray/medipen/salbutamol = 1,
 		/obj/item/reagent_containers/hypospray/medipen = 1,
@@ -233,7 +233,7 @@
 /obj/item/storage/medkit/brute/PopulateContents()
 	if(empty)
 		return
-	var/static/items_inside = list(
+	var/list/items_inside = list(
 		/obj/item/reagent_containers/applicator/patch/libital = 3,
 		/obj/item/stack/medical/gauze = 1,
 		/obj/item/storage/pill_bottle/probital = 1,
@@ -256,7 +256,7 @@
 /obj/item/storage/medkit/advanced/PopulateContents()
 	if(empty)
 		return
-	var/static/items_inside = list(
+	var/list/items_inside = list(
 		/obj/item/reagent_containers/applicator/patch/synthflesh = 3,
 		/obj/item/reagent_containers/hypospray/medipen/atropine = 2,
 		/obj/item/stack/medical/gauze = 1,
@@ -275,7 +275,7 @@
 /obj/item/storage/medkit/tactical_lite/PopulateContents()
 	if(empty)
 		return
-	var/static/list/items_inside = list(
+	var/list/items_inside = list(
 		/obj/item/healthanalyzer/advanced = 1,
 		/obj/item/reagent_containers/hypospray/medipen/atropine = 1,
 		/obj/item/stack/medical/gauze = 1,
@@ -298,7 +298,7 @@
 /obj/item/storage/medkit/tactical/PopulateContents()
 	if(empty)
 		return
-	var/static/list/items_inside = list(
+	var/list/items_inside = list(
 		/obj/item/cautery = 1,
 		/obj/item/scalpel = 1,
 		/obj/item/healthanalyzer/advanced = 1,
@@ -320,13 +320,15 @@
 	desc = "May or may not contain traces of lead."
 	icon_state = "medkit_tactical_premium"
 	inhand_icon_state = "medkit-tactical-premium"
-	grind_results = list(/datum/reagent/lead = 10)
 	storage_type = /datum/storage/medkit/tactical/premium
+
+/obj/item/storage/medkit/tactical/premium/grind_results()
+	return list(/datum/reagent/lead = 10)
 
 /obj/item/storage/medkit/tactical/premium/PopulateContents()
 	if(empty)
 		return
-	var/static/list/items_inside = list(
+	var/list/items_inside = list(
 		/obj/item/stack/medical/suture/medicated = 2,
 		/obj/item/stack/medical/mesh/advanced = 2,
 		/obj/item/reagent_containers/applicator/patch/libital = 3,
@@ -357,7 +359,7 @@
 /obj/item/storage/medkit/coroner/PopulateContents()
 	if(empty)
 		return
-	var/static/items_inside = list(
+	var/list/items_inside = list(
 		/obj/item/reagent_containers/cup/bottle/formaldehyde = 1,
 		/obj/item/reagent_containers/medigel/sterilizine = 1,
 		/obj/item/reagent_containers/blood = 1,
@@ -470,8 +472,8 @@
 		var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
 		if(myhead)
 			user.visible_message(span_suicide("[user] puts [user.p_their()] head into \the [src] and begins closing it! It looks like [user.p_theyre()] trying to commit suicide!"))
-			myhead.dismember()
-			myhead.forceMove(src) //force your enemies to kill themselves with your head collection box!
+			if (myhead.dismember())
+				myhead.forceMove(src) //force your enemies to kill themselves with your head collection box!
 			playsound(user, "desecration-01.ogg", 50, TRUE, -1)
 			return BRUTELOSS
 		user.visible_message(span_suicide("[user] is beating [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))

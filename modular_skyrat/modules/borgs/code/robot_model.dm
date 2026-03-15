@@ -467,11 +467,11 @@
 /obj/item/robot_model/ninja/rebuild_modules()
 	. = ..()
 	var/mob/living/silicon/robot/Ninja = loc
-	Ninja.faction  -= "silicon" //ai turrets hostile against assault and medical
+	Ninja.remove_faction("silicon") //ai turrets hostile against assault and medical
 
 /obj/item/robot_model/ninja/remove_module(obj/item/I, delete_after)
 	var/mob/living/silicon/robot/Ninja = loc
-	Ninja.faction += "silicon"
+	Ninja.add_faction("silicon")
 	. = ..()
 
 /obj/item/robot_model/ninja/ninja_medical

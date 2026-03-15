@@ -53,9 +53,7 @@
 		step(affected_mob, pick(GLOB.cardinals))
 
 		to_chat(affected_mob, span_danger("You feel a sharp shock from the collar!"))
-		var/datum/effect_system/spark_spread/created_sparks = new /datum/effect_system/spark_spread
-		created_sparks.set_up(3, 1, affected_mob)
-		created_sparks.start()
+		do_sparks(3, TRUE, affected_mob)
 
 		affected_mob.Paralyze(30)
 		affected_mob.adjust_pain(10)

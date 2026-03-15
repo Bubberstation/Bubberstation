@@ -38,7 +38,7 @@
 		/obj/item/reagent_containers/cup = 10,
 		/obj/item/stock_parts/subspace = 8,
 		/obj/item/banhammer = 8,
-		/obj/item/computer_disk/maintenance = 1,
+		/obj/item/disk/computer/maintenance = 1,
 	)
 	rpg_title = "Code Whisperer"
 	job_flags = STATION_JOB_FLAGS

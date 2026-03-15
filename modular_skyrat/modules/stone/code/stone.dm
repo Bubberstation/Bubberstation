@@ -10,7 +10,6 @@
 	throwforce = 15
 	resistance_flags = FIRE_PROOF
 	merge_type = /obj/item/stack/sheet/mineral/stone
-	grind_results = null
 	material_type = /datum/material/stone
 	matter_amount = 0
 	source = null

@@ -120,8 +120,9 @@
 			to_chat(user, span_warning("There is no facial hair to shave!"))
 			return
 
-		if(!get_location_accessible(target_human, location))
-			to_chat(user, span_warning("The mask is in the way!"))
+		var/covering = target_human.is_mouth_covered()
+		if(covering)
+			to_chat(user, span_warning("[covering] is in the way!"))
 			return
 
 		if(HAS_TRAIT(target_human, TRAIT_SHAVED))
@@ -147,7 +148,7 @@
 			to_chat(user, span_warning("There is no hair to shave!"))
 			return
 
-		if(!get_location_accessible(target_human, location))
+		if(!target_human.is_location_accessible(location))
 			to_chat(user, span_warning("The headgear is in the way!"))
 			return
 

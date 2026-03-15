@@ -81,7 +81,7 @@
 	ini_dir = dir
 
 	AddElement(/datum/element/climbable, climb_time = 20, climb_stun = 0)
-	AddComponent(/datum/component/simple_rotation, ROTATION_NEEDS_ROOM)
+	AddElement(/datum/element/simple_rotation, ROTATION_NEEDS_ROOM)
 
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_enter),

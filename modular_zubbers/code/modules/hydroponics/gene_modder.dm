@@ -11,7 +11,7 @@
 	pass_flags = PASSTABLE
 
 	var/obj/item/seeds/seed
-	var/obj/item/disk/plantgene/disk
+	var/obj/item/disk/computer/plantgene/disk
 
 	var/list/core_genes = list()
 	var/list/reagent_genes = list()
@@ -95,7 +95,7 @@
 		insert_seed(I)
 		to_chat(user, "<span class='notice'>You add [I] to the machine.</span>")
 		interact(user)
-	else if(istype(I, /obj/item/disk/plantgene))
+	else if(istype(I, /obj/item/disk/computer/plantgene))
 		if (operation)
 			to_chat(user, "<span class='notice'>Please complete current operation.</span>")
 			return
@@ -277,7 +277,7 @@
 			eject_seed()
 	else if(href_list["eject_disk"] && !operation)
 		var/obj/item/I = usr.get_active_held_item()
-		if(istype(I, /obj/item/disk/plantgene))
+		if(istype(I, /obj/item/disk/computer/plantgene))
 			if(!usr.transferItemToLoc(I, src))
 				return
 			eject_disk()
@@ -437,32 +437,32 @@
  *  Plant DNA disk
  */
 
-/obj/item/disk/plantgene
+/obj/item/disk/computer/plantgene
 	name = "plant data disk"
 	desc = "A disk for storing plant genetic data."
 	icon_state = "datadisk_hydro"
 	custom_materials = list(/datum/material/iron=30, /datum/material/glass=10)
 	var/datum/plant_gene/gene
-	var/read_only = 0 //Well, it's still a floppy disk
+	read_only = FALSE //Well, it's still a floppy disk
 	obj_flags = UNIQUE_RENAME
 
-/obj/item/disk/plantgene/Initialize(mapload)
+/obj/item/disk/computer/plantgene/Initialize(mapload)
 	. = ..()
 	add_overlay("datadisk_gene")
 	src.pixel_x = rand(-5, 5)
 	src.pixel_y = rand(-5, 5)
 
-/obj/item/disk/plantgene/proc/update_disk_name()
+/obj/item/disk/computer/plantgene/proc/update_disk_name()
 	if(gene)
 		name = "[gene.get_name()] (plant data disk)"
 	else
 		name = "plant data disk"
 
-/obj/item/disk/plantgene/attack_self(mob/user)
+/obj/item/disk/computer/plantgene/attack_self(mob/user)
 	read_only = !read_only
 	to_chat(user, "<span class='notice'>You flip the write-protect tab to [src.read_only ? "protected" : "unprotected"].</span>")
 
-/obj/item/disk/plantgene/examine(mob/user)
+/obj/item/disk/computer/plantgene/examine(mob/user)
 	. = ..()
 	if(gene && (istype(gene, /datum/plant_gene/core/potency)))
 		. += "<span class='notice'>Percent is relative to potency, not maximum volume of the plant.</span>"

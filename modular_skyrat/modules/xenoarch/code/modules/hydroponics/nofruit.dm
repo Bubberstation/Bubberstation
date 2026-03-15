@@ -24,5 +24,7 @@
 	filling_color = "#FF4500"
 	bite_consumption_mod = 0.5
 	foodtypes = FRUIT
-	juice_typepath = /datum/reagent/consumable/nothing
 	tastes = list("nothing" = 1)
+
+/obj/item/food/grown/nofruit/juice_typepath()
+	return /datum/reagent/consumable/nothing

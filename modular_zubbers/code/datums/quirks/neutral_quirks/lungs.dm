@@ -1,5 +1,5 @@
 /datum/quirk/equipping/lungs
-	abstract_parent_type = /datum/quirk/equipping/lungs
+	abstract_type = /datum/quirk/equipping/lungs
 	icon = FA_ICON_LUNGS
 	var/old_lungs = null
 	var/lungs_typepath = /obj/item/organ/lungs
