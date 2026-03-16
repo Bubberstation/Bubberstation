@@ -15,7 +15,6 @@
 /datum/augment_item/implant/chest
 	slot = AUGMENT_SLOT_CHEST_IMPLANT
 
-//BUBBER EDIT BEGIN
 //LEFT ARM IMPLANTS
 /datum/augment_item/implant/l_arm
 	slot = AUGMENT_SLOT_LEFT_ARM_IMPLANT
