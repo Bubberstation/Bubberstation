@@ -53,7 +53,6 @@
 	name = "Basic cybernetic heart"
 	path = /obj/item/organ/heart/cybernetic
 
-//BUBBER EDIT BEGIN
 //LUNGS
 /datum/augment_item/organ/lungs
 	slot = AUGMENT_SLOT_LUNGS
