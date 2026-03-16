@@ -18,7 +18,7 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_HEAVY
-	max_mod_capacity = 15 // A crumb of mod capacity as a treat
+	max_mod_capacity = 0
 	recoil = 3 //railgun go brrrrr
 	gun_flags = NOT_A_REAL_GUN
 
@@ -37,7 +37,8 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
-	max_mod_capacity = 75
+	max_mod_capacity = 60
+	disabled_modkits = list(/obj/item/borg/upgrade/modkit/aoe) // Should cover all AOE variants
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/shotgun
 	name = "proto-kinetic shotgun"
