@@ -209,4 +209,3 @@
 	name = "Basic cybernetic ears"
 	path = /obj/item/organ/ears/cybernetic
 
-//BUBBER EDIT END
