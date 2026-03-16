@@ -15,9 +15,6 @@
 				breather.reagents.add_reagent(SSair.chosen_goblin_reagent_drug, min(goblin_pp*0.25,10))
 
 
-/obj/item/organ/lungs/adaptive/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/organ_emp_effects/lungs, 80)
 // //Cold cyber lungs
 /obj/item/organ/lungs/adaptive/cold/cybernetic
 	name = "cybernetic cold-engineered lungs"
@@ -28,6 +25,10 @@
 	breath_noise = "a steady whirr"
 	organ_flags = ORGAN_ROBOTIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
+
+/obj/item/organ/lungs/adaptive/cold/cybernetic/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/organ_emp_effects/lungs, 80)
 
 //Hot cyber lungs
 /obj/item/organ/lungs/adaptive/hot/cybernetic
@@ -40,6 +41,10 @@
 	organ_flags = ORGAN_ROBOTIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
 
+/obj/item/organ/lungs/adaptive/hot/cybernetic/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/organ_emp_effects/lungs, 80)
+
 //Toxin cyber lungs
 /obj/item/organ/lungs/toxin/cybernetic
 	name = "cybernetic toxin-engineered lungs"
@@ -51,6 +56,10 @@
 	organ_flags = ORGAN_ROBOTIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
 
+/obj/item/organ/lungs/toxin/cybernetic/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/organ_emp_effects/lungs, 80)
+
 //Low Oxy cyber lungs
 /obj/item/organ/lungs/oxy/cybernetic
 	name = "cybernetic low-oxygen-engineered lungs"
@@ -61,3 +70,7 @@
 	breath_noise = "a steady whirr"
 	organ_flags = ORGAN_ROBOTIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
+
+/obj/item/organ/lungs/toxin/cybernetic/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/organ_emp_effects/lungs, 80)
