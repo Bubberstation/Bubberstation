@@ -129,7 +129,6 @@
 	name = "Basic cybernetic stomach"
 	path = /obj/item/organ/stomach/cybernetic
 
-//BUBBER EDIT BEGIN
 //EYES
 /datum/augment_item/organ/eyes
 	slot = AUGMENT_SLOT_EYES
