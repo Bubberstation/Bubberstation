@@ -110,7 +110,6 @@
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/lungs/oxy/cybernetic
 	cost = 1
-//BUBBER EDIT END
 //LIVERS
 /datum/augment_item/organ/liver
 	slot = AUGMENT_SLOT_LIVER
