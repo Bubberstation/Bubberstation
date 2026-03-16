@@ -43,7 +43,6 @@
 	slot = AUGMENT_SLOT_BRAIN
 	path = /obj/item/organ/brain/cybernetic/cortical
 	cost = 1 // technically a downgrade in most applications, but has uses.
-//BUBBER EDIT END
 
 //HEARTS
 /datum/augment_item/organ/heart
