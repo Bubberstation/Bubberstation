@@ -565,9 +565,11 @@
 	desc = "A salmon colored short-sleeved dress shirt with a white nametag, bearing the name of the employee. Along with some snazzy dark grey slacks, a formal attire for a classy joint."
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/costume_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/costume_teshari.dmi'
 	icon_state = "allamerican"
 	body_parts_covered = CHEST|GROIN|LEGS
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/allamerican/manager
