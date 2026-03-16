@@ -62,8 +62,6 @@
 	cost = 4
 	path = /obj/item/organ/cyberimp/eyes/hud/civilian
 
-//BUBBER EDIT END
-
 //MOUTH IMPLANTS
 /datum/augment_item/implant/mouth
 	slot = AUGMENT_SLOT_MOUTH_IMPLANT
