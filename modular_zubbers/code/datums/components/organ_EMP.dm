@@ -2,12 +2,11 @@
 	var/emp_vulnerability = 0
 	var/valid_type = /obj/item/organ
 
-/datum/component/organ_emp_effects/Initialize(emp_vulnerability)
+/datum/component/organ_emp_effects/Initialize(emp_vulnerability = 0)
 	if(ispath(parent, valid_type))
 		return COMPONENT_INCOMPATIBLE
 
-	if(emp_vulnerability)
-		src.emp_vulnerability = emp_vulnerability
+	src.emp_vulnerability = emp_vulnerability
 
 /datum/component/organ_emp_effects/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, PROC_REF(on_parent_emp))
