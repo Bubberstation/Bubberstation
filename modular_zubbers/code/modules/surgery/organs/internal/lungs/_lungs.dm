@@ -71,6 +71,6 @@
 	organ_flags = ORGAN_ROBOTIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
 
-/obj/item/organ/lungs/toxin/cybernetic/Initialize(mapload)
+/obj/item/organ/lungs/oxy/cybernetic/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/organ_emp_effects/lungs, 80)
