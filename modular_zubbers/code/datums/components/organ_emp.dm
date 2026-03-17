@@ -18,7 +18,7 @@
 	SIGNAL_HANDLER
 	if(protection & EMP_PROTECT_SELF)
 		return
-	if(!COOLDOWN_FINISHED(organ, severe_cooldown))
+	if(COOLDOWN_FINISHED(organ, severe_cooldown))
 		emp_special_effects(parent)
 		COOLDOWN_START(organ, severe_cooldown, 30 SECONDS)
 	if(prob(emp_vulnerability/severity))
