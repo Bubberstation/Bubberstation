@@ -189,6 +189,10 @@
 	range = 3
 	log_override = TRUE
 
+/obj/item/borg/upgrade/modkit/indoors/modify_projectile(obj/projectile/kinetic/shotgun/K)
+	..()
+	K.pressure_decrease = min(K.pressure_decrease, 0.5)
+
 /obj/projectile/kinetic/glock
 	name = "light kinetic force"
 	icon_state = null
