@@ -6,7 +6,7 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 	var/icon = "None"
 	/// If this style should override the default limb_id
 	var/limb_id_override
-	/// If this style's source utilizes a dimorphic bodypart, it goes in this list assoc list keyed to the body_zone
+	/// Lazylist. If this style's source utilizes a dimorphic bodypart, it goes in this assoc list keyed to the body_zone
 	var/list/dimorphic_overrides
 
 /datum/robotic_style/New()
