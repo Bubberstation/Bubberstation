@@ -1,1 +1,0 @@
-GLOBAL_LIST_EMPTY(robotic_styles_list)

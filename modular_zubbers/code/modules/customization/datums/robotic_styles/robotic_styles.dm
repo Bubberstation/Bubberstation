@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(robotic_styles_list)
+
 /datum/robotic_style
 	var/name = "None"
 	/// The .dmi path for this robotic style
