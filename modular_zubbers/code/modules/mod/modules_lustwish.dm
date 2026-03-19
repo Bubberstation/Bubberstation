@@ -44,6 +44,7 @@
 	visor_effect = !visor_effect
 	playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 	to_chat(user, span_notice("You turn the visor display of [src] [visor_effect ? "on" : "off"]."))
+	balloon_alert(user, "visor effect [visor_effect ? "on" : "off"]")
 	return TRUE
 
 /obj/item/mod/module/hypno_visor/wirecutter_act(mob/living/user, obj/item/tool)
@@ -57,6 +58,7 @@
 		overlay_state_inactive = null
 	playsound(src, 'sound/items/tools/wirecutter.ogg', 30, TRUE)
 	to_chat(user, span_notice("You [(module_type == MODULE_TOGGLE) ? "mend" : "snip"] the control wire on [src]."))
+	balloon_alert(user, "control wire [(module_type == MODULE_TOGGLE) ? "mend" : "snipp"]ed")
 	return TRUE
 
 /obj/item/mod/module/hypno_visor/on_install()
