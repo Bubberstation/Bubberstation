@@ -1,6 +1,6 @@
 # Makefile
 ## make TGS_INSTANCE_ROOT=$TGS_INSTANCE_ROOT BYOND_VERSION=$3
-BYOND_PATH = $(TGS_INSTANCE_ROOT)/Byond/$(BYOND_VERSION)/byond/bin
+BYOND_PATH = /byond/bin
 
 CC = gcc
 CPP = g++
