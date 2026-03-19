@@ -83,7 +83,7 @@ TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/yellow)
 
 /obj/effect/turf_decal/tile/red
 	name = "red tile decal"
-	color = "#DE3A3A"
+	color = "#486091" // SKYRAT EDIT CHANGE
 
 TILE_DECAL_SUBTYPE_HELPER(/obj/effect/turf_decal/tile/red)
 
@@ -275,7 +275,7 @@ TRIMLINE_SUBTYPE_HELPER(/obj/effect/turf_decal/trimline/white)
 
 /// Red trimlines
 /obj/effect/turf_decal/trimline/red
-	color = "#DE3A3A"
+	color = "#486091" //SKYRAT EDIT CHANGE
 
 TRIMLINE_SUBTYPE_HELPER(/obj/effect/turf_decal/trimline/red)
 
