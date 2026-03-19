@@ -8,7 +8,6 @@
 	anchored = TRUE
 	max_integrity = 75
 	layer = BELOW_MOB_LAYER
-	pseudo_z_axis = 9 //stepping onto the pole makes you raise upwards!
 	density = 0 //easy to step up on
 	light_system = COMPLEX_LIGHT
 	light_range = 3
@@ -79,6 +78,7 @@
 	update_brightness()
 	if(!length(pole_designs))
 		populate_pole_designs()
+	AddElement(/datum/element/elevation, pixel_shift = 9)
 
 
 /obj/structure/stripper_pole/update_icon_state()
@@ -109,8 +109,6 @@
 	user.visible_message(pick(span_purple("[user] dances on [src]!"), span_purple("[user] flexes their hip-moving skills on [src]!")))
 	dance_animate(user)
 	pole_in_use = FALSE
-	user.pixel_y = 0
-	user.pixel_z = pseudo_z_axis //incase we are off it when we jump on!
 	dancer = null
 
 /// The proc used to make the user 'dance' on the pole. Basically just consists of pixel shifting them around a bunch and sleeping. Could probably be improved a lot.
@@ -147,10 +145,6 @@
 /obj/structure/stripper_pole/Destroy()
 	if(dancer)
 		dancer.SetStun(0)
-		dancer.pixel_y = 0
-		dancer.pixel_x = 0
-		dancer.pixel_z = pseudo_z_axis
-		dancer.layer = layer
 		dancer.forceMove(get_turf(src))
 		dancer = null
 	. = ..()
