@@ -269,6 +269,7 @@
 
 /obj/structure/chair/pillow_small/Initialize(mapload)
 	update_icon()
+	AddElement(/datum/element/elevation, pixel_shift = 4)
 	return ..()
 
 /obj/structure/chair/pillow_small/post_buckle_mob(mob/living/affected_mob)
@@ -381,6 +382,7 @@
 
 /obj/structure/bed/pillow_large/Initialize(mapload)
 	update_icon()
+	AddElement(/datum/element/elevation, pixel_shift = 4)
 	return ..()
 
 /obj/structure/bed/pillow_large/post_buckle_mob(mob/living/affected_mob)
