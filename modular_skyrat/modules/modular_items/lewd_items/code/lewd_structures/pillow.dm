@@ -249,7 +249,6 @@
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/pillows.dmi'
 	icon_state = "pillowpile_small_pink"
 	base_icon_state = "pillowpile_small"
-	pseudo_z_axis = 4
 	var/current_color = "pink"
 	has_armrest = TRUE
 
@@ -270,6 +269,7 @@
 
 /obj/structure/chair/pillow_small/Initialize(mapload)
 	update_icon()
+	AddElement(/datum/element/elevation, pixel_shift = 4)
 	return ..()
 
 /obj/structure/chair/pillow_small/post_buckle_mob(mob/living/affected_mob)
@@ -360,7 +360,6 @@
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/pillows.dmi'
 	icon_state = "pillowpile_large_pink"
 	base_icon_state = "pillowpile_large"
-	pseudo_z_axis = 4
 	var/current_color = "pink"
 	//Containing pillows that we have here
 	var/pillow1_color = "pink"
@@ -383,6 +382,7 @@
 
 /obj/structure/bed/pillow_large/Initialize(mapload)
 	update_icon()
+	AddElement(/datum/element/elevation, pixel_shift = 4)
 	return ..()
 
 /obj/structure/bed/pillow_large/post_buckle_mob(mob/living/affected_mob)
