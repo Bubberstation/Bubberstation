@@ -42,6 +42,7 @@
 
 /obj/item/mod/module/hypno_visor/screwdriver_act(mob/living/user, obj/item/tool)
 	visor_effect = !visor_effect
+	playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 	to_chat(user, span_notice("You turn the visor display of [src] [visor_effect ? "on" : "off"]."))
 	return TRUE
 
@@ -54,7 +55,7 @@
 		module_type = MODULE_TOGGLE
 		overlay_state_active = "module_hypno_overlay"
 		overlay_state_inactive = null
-
+	playsound(src, 'sound/items/tools/wirecutter.ogg', 30, TRUE)
 	to_chat(user, span_notice("You [(module_type == MODULE_TOGGLE) ? "mend" : "snip"] the control wire on [src]."))
 	return TRUE
 
@@ -64,7 +65,10 @@
 		overlay_state_inactive = null // Visual thing. Removes the overlay if it's not a part of the lustwish suit.
 		overlay_state_active = null
 		visor_effect = FALSE
-		balloon_alert(usr, "visor effect unavailable for this plating!")
+		addtimer(CALLBACK(src, PROC_REF(say_visor_no_worky), usr), 0.5 SECONDS)
+
+/obj/item/mod/module/hypno_visor/proc/say_visor_no_worky(user)
+		balloon_alert(user, "visor effect unavailable for this plating!")
 
 /obj/item/mod/module/hypno_visor/on_uninstall(deleting = FALSE)
 	. = ..()
