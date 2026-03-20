@@ -42,9 +42,9 @@
 	required_reagents = list(/datum/reagent/consumable/hakka_mate = 3, /datum/reagent/consumable/pwr_game = 1, /datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/ethanol/screwdrivercocktail = 5)
 
 /datum/chemical_reaction/drink/electric_avenue
-	results = list (/datum/reagent/consumable/ethanol/electric_avenue = 10)
+	results = list(/datum/reagent/consumable/ethanol/electric_avenue = 10)
 	required_reagents = list(/datum/reagent/consumable/salt = 1, /datum/reagent/consumable/triple_citrus = 6, /datum/reagent/consumable/ethanol/goldschlager = 3)
 
 /datum/chemical_reaction/drink/ira_de_zeus
-	results = list (/datum/reagent/consumable/ethanol/ira_de_zeus = 5)
+	results = list(/datum/reagent/consumable/ethanol/ira_de_zeus = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/blue_blazer = 3,/datum/reagent/consumable/ethanol/wine_voltaic = 1, /datum/reagent/consumable/ethanol/curacao = 1)

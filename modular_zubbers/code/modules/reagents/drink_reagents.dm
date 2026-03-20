@@ -278,7 +278,7 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	taste_description = "bitter, watered down energy"
 
-/datum/reagent/consumable/karakrak/expose_mob(mob/living/affected_mob, methods=TOUCH, reac_volume)
+/datum/reagent/consumable/ethanol/karakrak/expose_mob(mob/living/affected_mob, methods=TOUCH, reac_volume)
 	. = ..()
 	if(!(methods & (INGEST|INJECT|PATCH)) || !iscarbon(affected_mob))
 		return
@@ -307,7 +307,7 @@
 	metabolized_traits = list(TRAIT_STIMULATED)
 	var/obj/effect/light_holder
 
-/datum/reagent/consumable/szzszz/expose_mob(mob/living/affected_mob, methods=TOUCH, reac_volume)
+/datum/reagent/consumable/ethanol/szzszz/expose_mob(mob/living/affected_mob, methods=TOUCH, reac_volume)
 	. = ..()
 	if(!(methods & (INGEST|INJECT|PATCH)) || !iscarbon(affected_mob))
 		return
@@ -364,7 +364,7 @@
 	else
 		affected_mob.set_jitter_if_lower(10 SECONDS * REM * reac_volume)
 
-/datum/reagent/consumable/ethanol/blumpkin_compot/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+/datum/reagent/consumable/blumpkin_compot/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
 	affected_mob.adjust_dizzy(-10 SECONDS * REM * seconds_per_tick)
 	affected_mob.adjust_drowsiness(-6 SECONDS * REM * seconds_per_tick)
@@ -380,7 +380,7 @@
 /datum/reagent/consumable/ethanol/storm_over_avon
 	name = "Storm-Over-Avon"
 	description = "A ginny, minty cocktail for ethereal artisans."
-	color = "#c0941b"
+	color = "#ffca37"
 	boozepwr = 50
 	quality = DRINK_VERYGOOD
 	taste_description = "energetic snobbery"
