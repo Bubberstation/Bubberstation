@@ -63,11 +63,12 @@
 
 /obj/item/mod/module/hypno_visor/on_install()
 	. = ..()
-	if(mod.skin != "lustwish" && visor_effect == TRUE)
+	if(mod.skin != "lustwish")
 		overlay_state_inactive = null // Visual thing. Removes the overlay if it's not a part of the lustwish suit.
 		overlay_state_active = null
-		visor_effect = FALSE
-		addtimer(CALLBACK(src, PROC_REF(say_visor_no_worky), usr), 0.5 SECONDS)
+		if(visor_effect == TRUE)
+			visor_effect = FALSE
+			addtimer(CALLBACK(src, PROC_REF(say_visor_no_worky), usr), 0.5 SECONDS)
 
 /obj/item/mod/module/hypno_visor/proc/say_visor_no_worky(user)
 		balloon_alert(user, "visor effect unavailable for this plating!")
