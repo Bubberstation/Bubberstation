@@ -271,9 +271,9 @@
 
 /datum/reagent/consumable/ethanol/karakrak
 	name = "Karakrak"
-	description = "A lightly charged grog made with wine"
+	description = "A lightly charged ration made with filtered wine"
 	color = "#5c0b12"
-	boozepwr = 1
+	boozepwr = 0
 	quality = DRINK_NICE
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	taste_description = "bitter, watered down energy"
@@ -293,7 +293,7 @@
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "karakrak"
 	name = "Karakrak"
-	desc = "A sort of electric grog served to the lowest castes of the ethereal masses, typically distributed by the clergy. Served on a rubber coaster to keep what very little charge exists from dissipating into the table."
+	desc = "A sort of electric, alcohol-stripped wine served to the lowest castes of the ethereal masses, typically distributed by the clergy. Served on a rubber coaster to keep what very little charge exists from dissipating into the table."
 
 
 /datum/reagent/consumable/ethanol/szzszz
