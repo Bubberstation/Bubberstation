@@ -62,13 +62,16 @@
 	COOLDOWN_DECLARE(heating_remainder)
 	//the time between each strike
 	COOLDOWN_DECLARE(striking_cooldown)
-	///the amount of times it takes for the item to become ready
-	var/average_hits = 30
-	///the amount of times the item has been hit currently
-	var/times_hit = 0
+
+	///the quality points of the incomplete item; goes up on good/perfect hits, goes down on bad hits
+	var/quality_points = 0
+	///the quality points required for it to be considered usable for crafting
+	var/completion_quality_points = 30
+	///the quality points required for it to break; going under this will break the item
+	var/breakage_quality_points = -10
 	///the required time before each strike to prevent spamming
 	var/average_wait = 1 SECONDS
-	///the number of current perfect hits (really only impacts weapons atm)
+	///the number of current perfect hits
 	var/current_perfects = 0
 	///the path of the item that will be spawned upon completion
 	var/spawn_item
@@ -83,17 +86,32 @@
 	forceMove(tool)
 	tool.icon_state = "tong_full"
 
+/obj/item/forging/incomplete/proc/good_hit()
+	quality_points++
+
+/obj/item/forging/incomplete/proc/perfect_hit()
+	good_hit()
+	current_perfects++
+
+/obj/item/forging/incomplete/proc/bad_hit()
+	quality_points -= 2
+	check_for_breakage()
+
+/obj/item/forging/incomplete/proc/check_for_breakage()
+	if(quality_points < breakage_quality_points)
+		qdel(locate_incomplete)
+
 /obj/item/forging/incomplete/chain
 	name = "incomplete chain"
 	icon_state = "hot_chain"
-	average_hits = 10
+	completion_quality_points = 10
 	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/chain
 
 /obj/item/forging/incomplete/plate
 	name = "incomplete plate"
 	icon_state = "hot_plate"
-	average_hits = 10
+	completion_quality_points = 10
 	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/plate
 
@@ -150,7 +168,7 @@
 /obj/item/forging/incomplete/arrowhead
 	name = "incomplete arrowhead"
 	icon_state = "hot_arrowhead"
-	average_hits = 12
+	completion_quality_points = 12
 	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/arrowhead
 
@@ -158,7 +176,7 @@
 	name = "incomplete rail nail"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/railroad.dmi'
 	icon_state = "hot_nail"
-	average_hits = 10
+	completion_quality_points = 10
 	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/rail_nail
 

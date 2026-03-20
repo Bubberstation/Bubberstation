@@ -30,6 +30,9 @@
 
 	if(length(contents))
 		. += span_notice("It has [contents[1]] sitting on it.")
+		. += span_notice("<b>Left Click</b> with a <b>forging mallet</b> to <b>hammer the metal with precise strikes</b>.")
+		. += span_notice("<b>Right Click</b> with a <b>forging mallet</b> to <b>hammer the metal with a steady tempo</b>.")
+		. += span_notice("You could remove [contents[1]] with some <b>tongs.</b>")
 
 /obj/structure/reagent_anvil/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -85,38 +88,7 @@
 	//do we have an incomplete item to hammer out? if so, here is our block of code
 	var/obj/item/forging/incomplete/locate_incomplete = locate() in contents
 	if(locate_incomplete)
-		if(locate_incomplete.times_hit >= locate_incomplete.average_hits) //to prevent people from getting perfect perfects
-			user.balloon_alert(user, "[locate_incomplete] sounds ready")
-			return ITEM_INTERACT_SUCCESS
-
-		if(COOLDOWN_FINISHED(locate_incomplete, heating_remainder))
-			balloon_alert(user, "metal too cool")
-			locate_incomplete.times_hit -= 3
-			return ITEM_INTERACT_SUCCESS
-
-		if(COOLDOWN_FINISHED(locate_incomplete, striking_cooldown))
-			var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) * locate_incomplete.average_wait
-			COOLDOWN_START(locate_incomplete, striking_cooldown, skill_modifier)
-			locate_incomplete.times_hit++
-			if(prob(user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_PROBS_MODIFIER)))
-				balloon_alert(user, "perfect hit!")
-				locate_incomplete.current_perfects++
-				user.mind.adjust_experience(/datum/skill/smithing, 10) //A perfect hit gives good experience
-				return ITEM_INTERACT_SUCCESS
-
-			balloon_alert(user, "good hit")
-			user.mind.adjust_experience(/datum/skill/smithing, 1) //A good hit gives minimal experience
-			return ITEM_INTERACT_SUCCESS
-
-		locate_incomplete.times_hit -= 3
-		balloon_alert(user, "bad hit")
-
-		if(locate_incomplete.times_hit <= -locate_incomplete.average_hits)
-			balloon_alert_to_viewers("[locate_incomplete] breaks")
-			qdel(locate_incomplete)
-			update_appearance()
-
-		return ITEM_INTERACT_SUCCESS
+		return hammer_work(user, tool, locate_incomplete)
 
 	//okay, so we didn't find an incomplete item to hammer, do we have a hammerable item?
 	var/obj/locate_obj = locate() in contents
@@ -155,6 +127,43 @@
 
 /obj/structure/reagent_anvil/hammer_act_secondary(mob/living/user, obj/item/tool)
 	hammer_act(user, tool)
+
+/obj/structure/reagent_anvil/proc/hammer_work(mob/living/user, obj/item/tool, obj/item/forging/incomplete/incomplete_item)
+
+	if(incomplete_item.times_hit >= incomplete_item.average_hits) //to prevent people from getting perfect perfects
+		user.balloon_alert(user, "[incomplete_item] sounds ready")
+		return ITEM_INTERACT_SUCCESS
+
+	if(COOLDOWN_FINISHED(incomplete_item, heating_remainder))
+		incomplete_item.bad_hit()
+		balloon_alert(user, "metal too cool")
+		conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 2.2, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
+		return ITEM_INTERACT_SUCCESS
+
+	if(COOLDOWN_FINISHED(incomplete_item, striking_cooldown))
+		var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) * incomplete_item.average_wait
+		COOLDOWN_START(incomplete_item, striking_cooldown, skill_modifier)
+		if(prob(user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_PROBS_MODIFIER)))
+			incomplete_item.perfect_hit()
+			balloon_alert(user, "perfect hit!")
+			conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vary = TRUE, frequency = 1.0, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
+			user.mind.adjust_experience(/datum/skill/smithing, 10) //A perfect hit gives good experience
+			return ITEM_INTERACT_SUCCESS
+		else
+			incomplete_item.good_hit()
+			balloon_alert(user, "good hit")
+			conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vary = TRUE, frequency = 1.2, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
+			user.mind.adjust_experience(/datum/skill/smithing, 2) //A good hit gives mild experience
+			return ITEM_INTERACT_SUCCESS
+	else
+		incomplete_item.bad_hit()
+		balloon_alert(user, "bad hit")
+		conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 1.8, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
+
+	if(locate_incomplete.times_hit <= -locate_incomplete.average_hits)
+		balloon_alert_to_viewers("[locate_incomplete] breaks")
+		update_appearance()
+
 
 /obj/structure/reagent_anvil/onZImpact(turf/impacted_turf, levels, message = TRUE)
 	var/mob/living/poor_target = locate(/mob/living) in impacted_turf
