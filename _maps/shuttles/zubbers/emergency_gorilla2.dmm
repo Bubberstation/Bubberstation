@@ -464,10 +464,11 @@
 /turf/open/floor/iron/freezer,
 /area/shuttle/escape)
 "IR" = (
-/obj/structure/broken_flooring/corner/directional,
+/obj/structure/broken_flooring/corner/directional{
+	dir = 1
+	},
 /obj/effect/turf_decal/stripes/line{
-	dir = 4;
-	layer = 10014
+	dir = 4
 	},
 /obj/structure/closet/crate/trashcart/laundry,
 /turf/open/floor/plating,
