@@ -78,5 +78,5 @@
 	name = "Breacher-Class Stockade Shuttle"
 	description = "This older NanoTrasen Breacher-class Stockade Shuttle makes up for it's lack of shields and advanced technologies with absolute heft and durability. Sporting an incredibly up-armored hull, laser defence turrets and an asteroid plow, there's not much that's going to get through this beast of a ship."
 	admin_notes = "Big and chonky, where every door is a secure door. Features turrets used on the Raven shuttle. Not terribly special otherwise."
-	credit_cost = CARGO_CRATE_VALUE * 100
+	credit_cost = CARGO_CRATE_VALUE * 125
 	occupancy_limit = "80"
