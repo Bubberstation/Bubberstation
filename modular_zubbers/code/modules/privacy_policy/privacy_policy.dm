@@ -1,5 +1,3 @@
-#define CURRENT_PRIVACY_VERSION 1
-
 /datum/privacy_policy_ui
 	var/client/owner
 
@@ -11,6 +9,10 @@
 	return GLOB.always_state
 
 /datum/privacy_policy_ui/ui_close(mob/user)
+	if(!SSprivacy.has_accepted(owner.ckey, CURRENT_PRIVACY_KEY))
+		if(owner)
+			to_chat(owner, span_danger("You must accept the Privacy Policy to continue playing."))
+			New(owner)
 	qdel(src)
 
 /datum/privacy_policy_ui/ui_data(mob/user)
@@ -22,9 +24,8 @@
 	. = ..()
 	switch(action)
 		if("accept")
-			if(owner?.prefs)
-				owner.prefs.privacy_policy_acknowledged = TRUE
-				owner.prefs.save_preferences()
+			if(owner?.ckey)
+				SSprivacy.mark_accepted(owner.ckey, CURRENT_PRIVACY_KEY)
 			ui.close()
 			return TRUE
 
@@ -39,10 +40,14 @@
 	ui.open()
 
 /client/proc/show_privacy_policy()
+	if(!CONFIG_GET(flag/sql_enabled))
+		return
+
 	if(!mob)
+		return
+
+	if(SSprivacy.has_accepted(mob?.ckey, CURRENT_PRIVACY_KEY))
 		return
 
 	var/datum/privacy_policy_ui/ui = new(src)
 	ui.ui_interact(mob)
-
-#undef CURRENT_PRIVACY_VERSION

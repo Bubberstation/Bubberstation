@@ -39,6 +39,12 @@
 	desc = "A modsuit module which provides long range suit sensor broadcasting. Useful in a modsuit as it will cover kheiral cuffs!"
 	cost_per_order = 450
 
+/datum/orderable_item/mining/offstation_deathrattle
+	purchase_path = /obj/item/storage/box/offstation_deathrattle
+	name = "Off-Station Deathrattle Kit"
+	desc = "Going on an adventure far from the comforts of your station? Unsure you'll make it back in one piece? Kahraman Industries and Nanotrasen present the Off-Station Deathrattle implant! This little chip connected to your vitals will send an automatic distress signal in case of your early demise. It will only work outside of Station areas. Warranty is void if death results from falling into pits or diving into lava or plasma lakes."
+	cost_per_order = 675
+
 
 /// PODS
 /obj/item/survivalcapsule/plap
