@@ -29,6 +29,10 @@
 	item_path = /obj/item/clothing/glasses/rosecolored
 	//ckeywhitelist = list("1ceres", "irrigoimport", "zeskorion", "wizardlywoz", "duckymomo", "samarai1000", "funkyfetusstrikesback", "m97screwsyourparents", "lynxqueen", "kaynite", "mahalia", "sapphoqueer", "emmakisst", "ceasethebridge", "valorthix" )
 
+/datum/loadout_item/glasses/hypno
+	name = "Hypnotic Goggles"
+	item_path = /obj/item/clothing/glasses/hypno
+
 /*
 *	GOGGLES
 */
@@ -36,10 +40,6 @@
 /datum/loadout_item/glasses/goggles
 	abstract_type = /datum/loadout_item/glasses/goggles
 	group = "Goggles"
-
-/datum/loadout_item/glasses/goggles/hypno
-	name = "Hypnotic Goggles"
-	item_path = /obj/item/clothing/glasses/hypno
 
 /datum/loadout_item/glasses/goggles/geist
 	name = "Geist Gazers"
