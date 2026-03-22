@@ -44,6 +44,9 @@
 	desc = "A uniform worn by CentCom's interning employees, with a polo shirt for easy identification of their rank."
 	icon = 'modular_zubbers/icons/obj/clothing/under/centcom.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/centcom.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/centcom_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/centcom_teshari.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/centcom/officer
 	name = "\improper CentCom tactical turtleneck"
