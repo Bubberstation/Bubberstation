@@ -26,10 +26,6 @@
 	name = "Sombrero"
 	item_path = /obj/item/clothing/head/costume/sombrero
 
-/datum/loadout_item/head/deprivation_helmet
-	name = "Deprivation Helmet"
-	item_path = /obj/item/clothing/head/deprivation_helmet
-
 /datum/loadout_item/head/hats/caphat/drill
 	name = "Captain's Campaign Hat"
 	item_path = /obj/item/clothing/head/hats/warden/drill/captain

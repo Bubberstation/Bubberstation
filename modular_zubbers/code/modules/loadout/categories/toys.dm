@@ -142,5 +142,25 @@
 /datum/loadout_item/toys/plush/myrthel_plush
 	name = "Extra Hot Moth Plush"
 	item_path = /obj/item/toy/plush/myrthel_plush
+/*
+*	SEX TOYS AND OTHER STUFF THAT NEEDS PREFS TO USE (otherwise fails to render on the character preview)
+*/
+/datum/loadout_item/toys/lewd
+	group = "Lewd Toys"
+	abstract_type = /datum/loadout_item/toys/lewd
 
+/datum/loadout_item/toys/lewd/corset
+	name = "Corset"
+	item_path = /obj/item/clothing/suit/corset
 
+/datum/loadout_item/toys/lewd/hypno
+	name = "Hypnotic Goggles"
+	item_path = /obj/item/clothing/glasses/hypno
+
+/datum/loadout_item/toys/lewd/deprivation_helmet
+	name = "Deprivation Helmet"
+	item_path = /obj/item/clothing/head/deprivation_helmet
+
+/datum/loadout_item/toys/lewd/bdsm_mask
+	name = "Latex Gas Mask"
+	item_path = /obj/item/clothing/mask/gas/bdsm_mask

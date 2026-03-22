@@ -156,10 +156,6 @@
 	item_path = /obj/item/clothing/mask/gas/larpswat
 	//ckeywhitelist = list("erdinyobarboza")
 
-/datum/loadout_item/mask/gas/bdsm_mask
-	name = "Latex Gas Mask"
-	item_path = /obj/item/clothing/mask/gas/bdsm_mask
-
 /*
 *	MASQUERADE MASKS
 */

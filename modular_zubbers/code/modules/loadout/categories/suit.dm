@@ -24,10 +24,6 @@
 	name = "Pirate Coat"
 	item_path = /obj/item/clothing/suit/costume/pirate
 
-/datum/loadout_item/suit/corset
-	name = "Corset"
-	item_path = /obj/item/clothing/suit/corset
-
 // OFFICER
 
 /datum/loadout_item/suit/armor/vest/sec/viro
