@@ -232,7 +232,7 @@
 		target.AddComponent(/datum/component/mutant_infection)
 		return TRUE
 
-	if(HAS_TRAIT(target, TRAIT_NO_ZOMBIFY))
+	if(HAS_TRAIT(target, TRAIT_NO_ZOMBIFY) || HAS_TRAIT(target, TRAIT_MUTANT_IMMUNE))
 		// cannot infect any NOZOMBIE subspecies (such as high functioning
 		// mutants)
 		return FALSE
@@ -243,10 +243,25 @@
 	if(!target.can_inject(user))
 		return FALSE
 
-	if(prob(INFECT_CHANCE))
+
+	if(HAS_TRAIT(target, TRAIT_VIRUS_RESISTANCE) && !HAS_TRAIT(target, TRAIT_IMMUNODEFICIENCY) && prob(75))
+		return
+
+	var/obj/item/bodypart/actual_limb = target.get_bodypart(def_zone)
+
+	if(!actual_limb)
+		return
+
+	var/limb_damage = actual_limb.get_damage()
+	var/limb_armor = max(0, target.getarmor(actual_limb, BIO) - 25)
+	for(var/obj/item/clothing/iter_clothing in target.get_clothing_on_part(actual_limb))
+		if(iter_clothing.clothing_flags & THICKMATERIAL)
+			limb_armor += 25
+
+	if(limb_armor > limb_damage)
 		return FALSE
 
-	if(HAS_TRAIT(target, TRAIT_MUTANT_IMMUNE))
+	if(prob(INFECT_CHANCE))
 		return FALSE
 
 	target.AddComponent(/datum/component/mutant_infection)
