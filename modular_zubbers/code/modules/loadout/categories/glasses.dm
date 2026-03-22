@@ -37,6 +37,10 @@
 	abstract_type = /datum/loadout_item/glasses/goggles
 	group = "Goggles"
 
+/datum/loadout_item/glasses/goggles/hypno
+	name = "Hypnotic Goggles"
+	item_path = /obj/item/clothing/glasses/hypno
+
 /datum/loadout_item/glasses/goggles/geist
 	name = "Geist Gazers"
 	item_path = /obj/item/clothing/glasses/geist_gazers
