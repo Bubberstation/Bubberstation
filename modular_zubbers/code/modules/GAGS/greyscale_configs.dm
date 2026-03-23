@@ -302,3 +302,8 @@
 /datum/greyscale_config/camo/worn/digi
 	name = "Camouflage (Worn, Digi)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+
+// teshari buttondown stuff (not done yet)
+/datum/greyscale_config/buttondown_slacks/worn/teshari
+	name = "Buttondown with Slacks (Worn, Teshari)"
+	icon_file = "modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts_teshari.dmi"
