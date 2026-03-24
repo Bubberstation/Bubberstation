@@ -302,4 +302,3 @@
 /datum/greyscale_config/camo/worn/digi
 	name = "Camouflage (Worn, Digi)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
-
