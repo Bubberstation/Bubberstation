@@ -173,3 +173,6 @@
 	item_path = /obj/item/clothing/gloves/ring/hypno/bippys
 	ckeywhitelist = list("bippys")
 
+/datum/loadout_item/gloves/latex_gloves
+	name = "Latex Gloves"
+	item_path = /obj/item/clothing/gloves/latex_gloves

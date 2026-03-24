@@ -1,0 +1,6 @@
+author: "Arturlang"
+delete-after: True
+changes:
+  - bugfix: "HNZ hands not being cleaned up on the species and infection being removed"
+  - balance: "HNZ infections now works much like romerol's, meaning thick armor no longer renders you entirely immune, but requires you to be damaged up to the bio armor value + 25 if thick clothing before you start rolling infection chances, since infection is going to be a bit harder to roll when it does, chances are upped to 40% from 30%,\nalso spaceallinin confers a 75% chance to shrug it off"
+  - admin: "HNZ infection chance is now a global, the chance that it rolls when all other conditions valid, on the variable called mutant_infection_chance"
