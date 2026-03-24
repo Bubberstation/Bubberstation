@@ -139,6 +139,10 @@
 	path = /obj/item/organ/eyes/robotic/basic
 	cost = -1 // Sensitive to flashes like moth eyes. Less health?.
 
+/datum/augment_item/organ/eyes/moth
+	name = "Moth eyes"
+	path = /obj/item/organ/eyes/moth
+
 /datum/augment_item/organ/eyes/cybernetic/moth
 	name = "Cybernetic moth eyes"
 	path = /obj/item/organ/eyes/robotic/moth
