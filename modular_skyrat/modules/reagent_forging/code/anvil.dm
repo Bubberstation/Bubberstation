@@ -2,6 +2,7 @@
 #define ANVIL_HAMMER_HIT_GOOD 1
 #define ANVIL_HAMMER_HIT_BAD 0
 #define ANVIL_HAMMER_HIT_PERFECT 2
+#define ANVIL_SMITHING_CHIP_QUALITY_BONUS 1
 
 /obj/structure/reagent_anvil
 	name = "smithing anvil"
@@ -151,23 +152,20 @@
 	if(COOLDOWN_FINISHED(incomplete_item, heating_remainder))
 		incomplete_item.bad_hit()
 		balloon_alert(user, "metal too cool")
-		conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 2.2, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 		return ITEM_INTERACT_SUCCESS
 
 	switch(get_hit_quality(user, tool))
 		if(ANVIL_HAMMER_HIT_BAD)
-			incomplete_item.bad_hit()
+			incomplete_item.bad_hit(playsound = TRUE)
 			balloon_alert(user, "bad hit")
-			conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 1.8, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 		if(ANVIL_HAMMER_HIT_GOOD)
-			incomplete_item.good_hit()
+			var/quality_to_add = 1 + (HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
+			incomplete_item.good_hit(playsound = TRUE)
 			balloon_alert(user, "good hit")
-			conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vary = TRUE, frequency = 1.2, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 			user.mind.adjust_experience(/datum/skill/smithing, 1) //A good hit gives mild experience
 		if(ANVIL_HAMMER_HIT_PERFECT)
-			incomplete_item.perfect_hit()
+			incomplete_item.perfect_hit(playsound = TRUE)
 			balloon_alert(user, "perfect hit!")
-			conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vary = TRUE, frequency = 1.0, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 			user.mind.adjust_experience(/datum/skill/smithing, 10) //A perfect hit gives good experience
 
 	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) * incomplete_item.average_wait

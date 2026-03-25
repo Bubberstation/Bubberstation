@@ -13,8 +13,8 @@
 	var/relevant_skill = /datum/skill/smithing
 	/// What skill level is required in that creation?
 	var/relevant_skill_level = 0
-	/// Does the recipe also require the smithing chip?
-	var/requires_smithing_chip_knowledge = FALSE
+	/// Does the recipe also require a specific trait?
+	var/required_trait  = null
 	/// How much experience in our relevant skill do we give upon completion?
 	var/relevant_skill_reward = 30
 
@@ -23,6 +23,7 @@
 	recipe_requirements = list(
 		/obj/item/stack/sheet/mineral/wood = 2,
 	)
+	required_trait = TRAIT_KNOW_ADVANCED_SMITHING
 
 /datum/crafting_bench_recipe/plate_helmet
 	recipe_name = "plate helmet"
@@ -103,6 +104,7 @@
 	)
 	resulting_item = /obj/item/shield/buckler/reagent_weapon/pavise
 	required_good_hits = 16
+	required_trait = TRAIT_KNOW_ADVANCED_SMITHING
 
 /datum/crafting_bench_recipe/buckler
 	recipe_name = "buckler"
@@ -111,6 +113,7 @@
 	)
 	resulting_item = /obj/item/shield/buckler/reagent_weapon
 	required_good_hits = 10
+	required_trait = TRAIT_KNOW_ADVANCED_SMITHING
 
 /datum/crafting_bench_recipe/coil
 	recipe_name = "coil"
@@ -144,6 +147,7 @@
 	)
 	resulting_item = /obj/item/forging/reagent_weapon/bokken
 	required_good_hits = 8
+	required_trait = TRAIT_KNOW_ADVANCED_SMITHING
 
 /datum/crafting_bench_recipe/bow
 	recipe_name = "bow"
@@ -152,6 +156,7 @@
 	)
 	resulting_item = /obj/item/forging/incomplete_bow
 	required_good_hits = 8
+	required_trait = TRAIT_KNOW_ADVANCED_SMITHING
 
 /datum/crafting_bench_recipe/empty_circuit
 	recipe_name = "circuit"
@@ -161,3 +166,4 @@
 	)
 	resulting_item = /obj/item/empty_circuit
 	required_good_hits = 4
+	required_trait = TRAIT_KNOW_ADVANCED_SMITHING

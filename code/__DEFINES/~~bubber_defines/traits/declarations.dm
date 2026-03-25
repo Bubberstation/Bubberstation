@@ -15,6 +15,7 @@
 
 ///Characters that know how to make advanced smithing equipment
 #define TRAIT_KNOW_ADVANCED_SMITHING "know_advanced_smithing"
+#define TRAIT_KNOW_GUNSMITHING "know_gunsmithing"
 
 //For the hemophage quirk that allows hemophages to eat/drink normal food/drink.
 #define TRAIT_MASQUERADE_FOOD "masquerade_food"

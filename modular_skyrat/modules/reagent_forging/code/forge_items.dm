@@ -33,28 +33,41 @@
 	forceMove(tool)
 	tool.icon_state = "tong_full"
 
-/obj/item/forging/incomplete/proc/good_hit()
-	quality_points++
+/obj/item/forging/incomplete/proc/good_hit(amount = 1, playsound = FALSE)
+	quality_points += amount
+	if(playsound)
+		conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vary = TRUE, frequency = 1.2, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 
-/obj/item/forging/incomplete/proc/perfect_hit()
-	good_hit()
+/obj/item/forging/incomplete/proc/perfect_hit(amount = 1, playsound = FALSE)
+	good_hit(amount, FALSE)
+	if(playsound)
+		conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vary = TRUE, frequency = 1.0, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 	if(current_perfects < max_perfect_hits)
-		current_perfects++
+		current_perfects += amount
 
-/obj/item/forging/incomplete/proc/bad_hit(var/amount = 2)
+/obj/item/forging/incomplete/proc/bad_hit(amount = 2, perfect_reduction = 3, playsound = FALSE)
 	quality_points -= amount
-	current_perfects = max(current_perfects - amount, 0)
-	check_for_breakage()
+	current_perfects = max(current_perfects - perfect_reduction, 0)
+	if(check_for_breakage())
+		forging_breakage()
+	else
+		if(playsound)
+			conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 2.2, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 
 /obj/item/forging/incomplete/proc/check_for_breakage()
 	if(quality_points < breakage_quality_points)
-		balloon_alert_to_viewers("the [name] shattered!")
-		qdel(src)
+		return TRUE
+	return FALSE
+
+/obj/item/forging/incomplete/proc/forging_breakage()
+	balloon_alert_to_viewers("the [name] shattered!")
+	qdel(src)
 
 /obj/item/forging/incomplete/proc/is_finished_smithing()
 	if(quality_points >= completion_quality_points)
 		return TRUE
 	return FALSE
+
 
 /obj/item/forging/incomplete/chain
 	name = "incomplete chain"
@@ -149,11 +162,27 @@
 	var/perfect_ratio = 0
 	//because who doesn't want to have a plasma sword?
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
+	///does it cut the user's hand when used as a weapon?
+	var/double_edged_damage = 0
 
 /obj/item/forging/complete/examine(mob/user)
 	. = ..()
 	if(spawning_item)
 		. += span_notice("<br>In order to finish this item, a workbench will be necessary!")
+
+/obj/item/forging/complete/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
+	if(double_edged_damage <= 0)
+		return
+
+	if(!iscarbon(user) || !user.is_holding(src))
+		return
+
+	var/mob/living/carbon/jab = user
+	if(jab.get_all_covered_flags() & HANDS)
+		return
+
+	to_chat(user, span_warning("[src] cuts into your hand!"))
+	jab.apply_damage(double_edged_damage, BRUTE, user.get_active_hand(), attacking_item = src)
 
 /obj/item/forging/complete/chain
 	name = "chain"
@@ -170,24 +199,28 @@
 	desc = "A sword blade, ready to get some wood for completion."
 	icon_state = "blade"
 	spawning_item = /obj/item/forging/reagent_weapon/sword
+	double_edged_damage = 3
 
 /obj/item/forging/complete/katana
 	name = "katana blade"
 	desc = "A katana blade, ready to get some wood for completion."
 	icon_state = "katanablade"
 	spawning_item = /obj/item/forging/reagent_weapon/katana
+	double_edged_damage = 3
 
 /obj/item/forging/complete/rapier
 	name = "rapier blade"
 	desc = "A rapier blade, ready to get some wood for completion."
 	icon_state = "rapierblade"
 	spawning_item = /obj/item/forging/reagent_weapon/rapier
+	double_edged_damage = 3
 
 /obj/item/forging/complete/dagger
 	name = "dagger blade"
 	desc = "A dagger blade, ready to get some wood for completion."
 	icon_state = "daggerblade"
 	spawning_item = /obj/item/forging/reagent_weapon/dagger
+	double_edged_damage = 2
 
 /obj/item/forging/complete/staff
 	name = "staff head"
@@ -200,6 +233,7 @@
 	desc = "A spear head, ready to get some wood for completion."
 	icon_state = "spearhead"
 	spawning_item = /obj/item/forging/reagent_weapon/spear
+	double_edged_damage = 2
 
 /obj/item/forging/complete/axe
 	name = "axe head"
@@ -230,6 +264,7 @@
 	desc = "An arrowhead, ready to get some wood for completion."
 	icon_state = "arrowhead"
 	spawning_item = /obj/item/arrow_spawner
+	double_edged_damage = 2
 
 /obj/item/forging/complete/rail_nail
 	name = "rail nail"

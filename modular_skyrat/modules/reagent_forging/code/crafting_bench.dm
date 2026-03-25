@@ -161,9 +161,9 @@
 /obj/structure/reagent_crafting_bench/proc/user_can_craft(mob/living/user, key)
 	if(isnull(user?.mind))
 		return FALSE
-	if(isnull(choice_list_skill_filter[key]) && user.mind.get_skill_level(choice_list_skill_filter[key]) < choice_list_skill_level_filter[key])
+	if(!isnull(choice_list_skill_filter[key]) && user.mind.get_skill_level(choice_list_skill_filter[key]) < choice_list_skill_level_filter[key])
 		return FALSE
-	if(!HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING) && choice_list_smithing_chip_filter[key])
+	if(!isnull(choice_list_smithing_chip_filter[key]) && !HAS_TRAIT(user, choice_list_smithing_chip_filter[key]))
 		return FALSE
 	return TRUE
 

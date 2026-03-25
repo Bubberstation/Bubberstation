@@ -1,7 +1,7 @@
 /obj/item/skillchip/job/blacksmith
 	name = "Smithing F0RG-3M4573-R skillchip"
 	desc = "Grants skills related to blacksmithing and metalworking."
-	auto_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
+	auto_traits = list(TRAIT_KNOW_ADVANCED_SMITHING, TRAIT_KNOW_GUNSMITHING)
 	skill_name = "Advanced Smithing"
 	skill_description = "Contains schematics for more advanced equipment forging, as well as how to best apply it."
 	skill_icon = "gavel"
