@@ -11,6 +11,10 @@
 	var/required_good_hits = 6
 	/// What skill is relevant to the creation of this item?
 	var/relevant_skill = /datum/skill/smithing
+	/// What skill level is required in that creation?
+	var/relevant_skill_level = 0
+	/// Does the recipe also require the smithing chip?
+	var/requires_smithing_chip_knowledge = FALSE
 	/// How much experience in our relevant skill do we give upon completion?
 	var/relevant_skill_reward = 30
 

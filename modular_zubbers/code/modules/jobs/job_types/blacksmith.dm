@@ -52,3 +52,4 @@
 	ears = /obj/item/radio/headset/headset_cargo
 	shoes = /obj/item/clothing/shoes/workboots
 	gloves = /obj/item/clothing/gloves/color/brown
+	skillchips = list(/obj/item/skillchip/job/blacksmith)

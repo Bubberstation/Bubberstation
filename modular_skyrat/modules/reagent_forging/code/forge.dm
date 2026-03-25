@@ -422,11 +422,11 @@
 		smelt_ore(attacking_item, user)
 		return
 
-	if(attacking_item.GetComponent(/datum/component/reagent_weapon))
+	if(attacking_item.GetComponent(/datum/component/reagent_imbued/weapon))
 		handle_weapon_imbue(attacking_item, user)
 		return
 
-	if(attacking_item.GetComponent(/datum/component/reagent_clothing))
+	if(attacking_item.GetComponent(/datum/component/reagent_imbued/clothing))
 		handle_clothing_imbue(attacking_item, user)
 		return
 
@@ -453,11 +453,11 @@
 		smelt_ore(attacking_item, user)
 		return TRUE
 
-	if(attacking_item.GetComponent(/datum/component/reagent_weapon))
+	if(attacking_item.GetComponent(/datum/component/reagent_imbued/weapon))
 		handle_weapon_imbue(attacking_item, user)
 		return TRUE
 
-	if(attacking_item.GetComponent(/datum/component/reagent_clothing))
+	if(attacking_item.GetComponent(/datum/component/reagent_imbued/clothing))
 		handle_clothing_imbue(attacking_item, user)
 		return TRUE
 
@@ -585,7 +585,7 @@
 
 	var/obj/item/attacking_weapon = attacking_item
 
-	var/datum/component/reagent_weapon/weapon_component = attacking_weapon.GetComponent(/datum/component/reagent_weapon)
+	var/datum/component/reagent_imbued/weapon/weapon_component = attacking_weapon.GetComponent(/datum/component/reagent_imbued/weapon)
 	if(!weapon_component)
 		fail_message(user, "cannot imbue")
 		return
@@ -632,7 +632,7 @@
 
 	var/obj/item/attacking_clothing = attacking_item
 
-	var/datum/component/reagent_clothing/clothing_component = attacking_clothing.GetComponent(/datum/component/reagent_clothing)
+	var/datum/component/reagent_imbued/clothing/clothing_component = attacking_clothing.GetComponent(/datum/component/reagent_imbued/clothing)
 	if(!clothing_component)
 		fail_message(user, "cannot imbue")
 		return

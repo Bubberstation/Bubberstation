@@ -1,58 +1,3 @@
-/obj/item/forging
-	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
-	lefthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_l.dmi'
-	righthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_r.dmi'
-	toolspeed = 1 SECONDS
-	///whether the item is in use or not
-	var/in_use = FALSE
-
-/obj/item/forging/tongs
-	name = "forging tongs"
-	desc = "A set of tongs specifically crafted for use in forging. A wise man once said 'I lift things up and put them down.'"
-	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
-	icon_state = "tong_empty"
-	tool_behaviour = TOOL_TONG
-
-/obj/item/forging/tongs/primitive
-	name = "primitive forging tongs"
-	toolspeed = 2 SECONDS
-	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
-
-/obj/item/forging/tongs/attack_self(mob/user, modifiers)
-	. = ..()
-	var/obj/search_obj = locate(/obj) in contents
-	if(search_obj)
-		search_obj.forceMove(get_turf(src))
-		icon_state = "tong_empty"
-		return
-
-/obj/item/forging/hammer
-	name = "forging mallet"
-	desc = "A mallet specifically crafted for use in forging. Used to slowly shape metal; careful, you could break something with it!"
-	icon_state = "hammer"
-	inhand_icon_state = "hammer"
-	worn_icon_state = "hammer_back"
-	tool_behaviour = TOOL_HAMMER
-	///the list of things that, if attacked, will set the attack speed to rapid
-	var/static/list/fast_attacks = list(
-		/obj/structure/reagent_anvil,
-		/obj/structure/reagent_crafting_bench
-	)
-
-/obj/item/forging/hammer/primitive
-	name = "primitive forging hammer"
-	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
-
-/obj/item/forging/billow
-	name = "forging billow"
-	desc = "A billow specifically crafted for use in forging. Used to stoke the flames and keep the forge lit."
-	icon_state = "billow"
-	tool_behaviour = TOOL_BILLOW
-
-/obj/item/forging/billow/primitive
-	name = "primitive forging billow"
-	toolspeed = 2 SECONDS
-	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 
 //incomplete pre-complete items
 /obj/item/forging/incomplete
@@ -60,19 +5,21 @@
 	desc = "An incomplete forge item, continue to work hard to be rewarded for your efforts."
 	//the time remaining that you can hammer before too cool
 	COOLDOWN_DECLARE(heating_remainder)
-	//the time between each strike
-	COOLDOWN_DECLARE(striking_cooldown)
 
 	///the quality points of the incomplete item; goes up on good/perfect hits, goes down on bad hits
 	var/quality_points = 0
 	///the quality points required for it to be considered usable for crafting
 	var/completion_quality_points = 30
-	///the quality points required for it to break; going under this will break the item
-	var/breakage_quality_points = -10
 	///the required time before each strike to prevent spamming
 	var/average_wait = 1 SECONDS
+	///the quality points required for it to break; going under this will break the item
+	var/breakage_quality_points = -10
+
 	///the number of current perfect hits
 	var/current_perfects = 0
+	///maximum number of perfect hits before perfect hits no longer improve the quality
+	var/max_perfect_hits = 20
+
 	///the path of the item that will be spawned upon completion
 	var/spawn_item
 	//because who doesn't want to have a plasma sword?
@@ -91,15 +38,23 @@
 
 /obj/item/forging/incomplete/proc/perfect_hit()
 	good_hit()
-	current_perfects++
+	if(current_perfects < max_perfect_hits)
+		current_perfects++
 
-/obj/item/forging/incomplete/proc/bad_hit()
-	quality_points -= 2
+/obj/item/forging/incomplete/proc/bad_hit(var/amount = 2)
+	quality_points -= amount
+	current_perfects = max(current_perfects - amount, 0)
 	check_for_breakage()
 
 /obj/item/forging/incomplete/proc/check_for_breakage()
 	if(quality_points < breakage_quality_points)
-		qdel(locate_incomplete)
+		balloon_alert_to_viewers("the [name] shattered!")
+		qdel(src)
+
+/obj/item/forging/incomplete/proc/is_finished_smithing()
+	if(quality_points >= completion_quality_points)
+		return TRUE
+	return FALSE
 
 /obj/item/forging/incomplete/chain
 	name = "incomplete chain"
@@ -190,8 +145,8 @@
 /obj/item/forging/complete
 	///the path of the item that will be created
 	var/spawning_item
-	///the amount of perfect hits on the item, if it was allowed
-	var/current_perfects = 0
+	///how many perfect hits did we get, out of the max?
+	var/perfect_ratio = 0
 	//because who doesn't want to have a plasma sword?
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 

@@ -3,6 +3,8 @@
 
 /// The number of hits you are set back when a bad hit is made
 #define BAD_HIT_PENALTY 3
+/// The maximum force that can be given to a weapon via perfect hits
+#define MAX_PERFECT_FORCE_BONUS 3
 
 /obj/structure/reagent_crafting_bench
 	name = "forging workbench"
@@ -31,38 +33,38 @@
 		/datum/crafting_bench_recipe/horse_shoes,
 		/datum/crafting_bench_recipe/ring,
 		/datum/crafting_bench_recipe/collar,
-		/datum/crafting_bench_recipe/handcuffs,
-		/datum/crafting_bench_recipe/borer_cage,
 		/datum/crafting_bench_recipe/pavise,
 		/datum/crafting_bench_recipe/buckler,
+		/datum/crafting_bench_recipe/bow,
+		/datum/crafting_bench_recipe/handcuffs,
+		/datum/crafting_bench_recipe/borer_cage,
 		/datum/crafting_bench_recipe/coil,
 		/datum/crafting_bench_recipe/seed_mesh,
 		/datum/crafting_bench_recipe/centrifuge,
 		/datum/crafting_bench_recipe/bokken,
-		/datum/crafting_bench_recipe/bow,
 		/datum/crafting_bench_recipe/empty_circuit,
 	)
 	/// Radial options for recipes in the allowed_choices list, populated by populate_radial_choice_list
 	var/list/radial_choice_list = list()
 	/// An associative list of names --> recipe path that the radial recipe picker will choose from later
 	var/list/recipe_names_to_path = list()
-
-/obj/structure/reagent_crafting_bench/Initialize(mapload)
-	. = ..()
-	populate_radial_choice_list()
+	/// Filters the radial choice list by required skill
+	var/list/choice_list_skill_filter = list()
+	/// Filters the radial choice list by required level in its skill; true means corresponding element requires it
+	var/list/choice_list_skill_level_filter = list()
+	/// Filters the radial choice list by if it requires the smithing skillchip; true means corresponding element requires it
+	var/list/choice_list_smithing_chip_filter = list()
 
 /obj/structure/reagent_crafting_bench/proc/populate_radial_choice_list()
-	if(!length(allowed_choices))
-		return
-
-	if(length(radial_choice_list) && length(recipe_names_to_path)) // We already have both of these and don't need it, if this is called after these are generated for some reason
-		return
 
 	for(var/recipe in allowed_choices)
 		var/datum/crafting_bench_recipe/recipe_to_take_from = new recipe()
 		var/obj/recipe_resulting_item = recipe_to_take_from.resulting_item
 		radial_choice_list[recipe_to_take_from.recipe_name] = image(icon = initial(recipe_resulting_item.icon), icon_state = initial(recipe_resulting_item.icon_state))
 		recipe_names_to_path[recipe_to_take_from.recipe_name] = recipe
+		choice_list_skill_filter[recipe_to_take_from.recipe_name] = recipe_to_take_from.relevant_skill
+		choice_list_skill_level_filter[recipe_to_take_from.recipe_name] = recipe_to_take_from.relevant_skill_level
+		choice_list_smithing_chip_filter[recipe_to_take_from.recipe_name] = recipe_to_take_from.requires_smithing_chip_knowledge
 		qdel(recipe_to_take_from)
 
 
@@ -132,7 +134,7 @@
 		update_appearance()
 		return
 
-	var/chosen_recipe = show_radial_menu(user, src, radial_choice_list, radius = 38, require_near = TRUE, tooltips = TRUE)
+	var/chosen_recipe = show_radial_menu(user, src, get_filtered_radial_choices(user), radius = 38, require_near = TRUE, tooltips = TRUE)
 
 	if(!chosen_recipe)
 		balloon_alert(user, "no recipe choice")
@@ -143,6 +145,27 @@
 
 	balloon_alert(user, "recipe chosen")
 	update_appearance()
+
+///Exclusively gives all the radial choices that the user can know how to make.
+/obj/structure/reagent_crafting_bench/proc/get_filtered_radial_choices(mob/living/user)
+	var/returner = list()
+	if(isnull(user?.mind))
+		return returner
+
+	for(var/key,value in radial_choice_list)
+		if(user_can_craft(user, key))
+			returner[key] = value
+
+	return returner
+
+/obj/structure/reagent_crafting_bench/proc/user_can_craft(mob/living/user, key)
+	if(isnull(user?.mind))
+		return FALSE
+	if(isnull(choice_list_skill_filter[key]) && user.mind.get_skill_level(choice_list_skill_filter[key]) < choice_list_skill_level_filter[key])
+		return FALSE
+	if(!HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING) && choice_list_smithing_chip_filter[key])
+		return FALSE
+	return TRUE
 
 /// Clears the current recipe and sets hits to completion to zero
 /obj/structure/reagent_crafting_bench/proc/clear_recipe()
@@ -185,43 +208,26 @@
 /obj/structure/reagent_crafting_bench/hammer_act(mob/living/user, obj/item/tool)
 	conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 35, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 	if(length(contents))
-		if(!istype(contents[1], /obj/item/forging/complete))
-			balloon_alert(user, "invalid item")
-			return ITEM_INTERACT_SUCCESS
+		return try_weapon_completion(user, tool)
 
-		var/obj/item/forging/complete/weapon_to_finish = contents[1]
+	if(check_craftability_general(user, tool) == ITEM_INTERACT_BLOCKING)
+		return ITEM_INTERACT_BLOCKING
 
-		if(!weapon_to_finish.spawning_item)
-			balloon_alert(user, "[weapon_to_finish] cannot be completed")
-			return ITEM_INTERACT_SUCCESS
+	var/obj/item/forging/hammer/hammertool = tool
+	return work_on_recipe(user, hammertool)
+/obj/structure/reagent_crafting_bench/hammer_act_secondary(mob/living/user, obj/item/tool)
+	balloon_alert_to_viewers("hammering steadily...")
+	while(!should_stop_autohammering())
+		hammer_act(user, tool)
+		var/wait_between_swings = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) DECISECONDS
+		wait_between_swings += 1 SECONDS
+		if(!do_after(wait_between_swings))
+			balloon_alert_to_viewers("stopped hammering")
+			break
 
-		var/list/wood_required_for_weapons = list(
-			/obj/item/stack/sheet/mineral/wood = WEAPON_COMPLETION_WOOD_AMOUNT,
-		)
+	return ITEM_INTERACT_SUCCESS
 
-		if(!can_we_craft_this(wood_required_for_weapons))
-			balloon_alert(user, "not enough wood")
-			return ITEM_INTERACT_SUCCESS
-
-		var/list/things_to_use = can_we_craft_this(wood_required_for_weapons, TRUE)
-		var/obj/thing_just_made = create_thing_from_requirements(things_to_use, user = user, skill_to_grant = /datum/skill/smithing, skill_amount = 30, completing_a_weapon = TRUE)
-
-		if(!thing_just_made)
-			message_admins("[src] just tried to finish a weapon but somehow created nothing! This is not working as intended!")
-			return ITEM_INTERACT_SUCCESS
-
-		balloon_alert_to_viewers("[thing_just_made] created")
-		update_appearance()
-		return ITEM_INTERACT_SUCCESS
-
-	if(!selected_recipe)
-		balloon_alert(user, "no recipe selected")
-		return ITEM_INTERACT_SUCCESS
-
-	if(!can_we_craft_this(selected_recipe.recipe_requirements))
-		balloon_alert(user, "missing ingredients")
-		return ITEM_INTERACT_SUCCESS
-
+/obj/structure/reagent_crafting_bench/proc/work_on_recipe(mob/living/user, obj/item/forging/hammer)
 	var/skill_modifier = user.mind.get_skill_modifier(selected_recipe.relevant_skill, SKILL_SPEED_MODIFIER) * 1 SECONDS
 
 	if(!COOLDOWN_FINISHED(src, hit_cooldown)) // If you hit it before the cooldown is done, you get a bad hit, setting you back three good hits
@@ -230,10 +236,10 @@
 		if(current_hits_to_completion <= -(selected_recipe.required_good_hits))
 			balloon_alert_to_viewers("recipe failed")
 			clear_recipe()
-			return ITEM_INTERACT_SUCCESS
+			return ITEM_INTERACT_BLOCKING
 
 		balloon_alert(user, "bad hit")
-		return ITEM_INTERACT_SUCCESS
+		return ITEM_INTERACT_BLOCKING
 
 	COOLDOWN_START(src, hit_cooldown, skill_modifier)
 
@@ -247,8 +253,54 @@
 	balloon_alert(user, "good hit")
 	user.mind.adjust_experience(selected_recipe.relevant_skill, selected_recipe.relevant_skill_reward / 15) // Good hits towards the current item grants experience in that skill
 	return ITEM_INTERACT_SUCCESS
-
 /// Takes the given list of item requirements and checks the surroundings for them, returns TRUE unless return_ingredients_list is set, in which case a list of all the items to use is returned
+/obj/structure/reagent_crafting_bench/proc/try_weapon_completion(mob/living/user, obj/item/tool)
+	if(!istype(contents[1], /obj/item/forging/complete))
+		balloon_alert(user, "invalid item")
+		return ITEM_INTERACT_BLOCKING
+
+	var/obj/item/forging/complete/weapon_to_finish = contents[1]
+
+	if(!weapon_to_finish.spawning_item)
+		balloon_alert(user, "[weapon_to_finish] cannot be completed")
+		return ITEM_INTERACT_BLOCKING
+
+	var/list/wood_required_for_weapons = list(
+		/obj/item/stack/sheet/mineral/wood = WEAPON_COMPLETION_WOOD_AMOUNT,
+	)
+
+	if(!can_we_craft_this(wood_required_for_weapons))
+		balloon_alert(user, "not enough wood")
+		return ITEM_INTERACT_BLOCKING
+
+	var/list/things_to_use = can_we_craft_this(wood_required_for_weapons, TRUE)
+	var/obj/thing_just_made = create_thing_from_requirements(things_to_use, user = user, skill_to_grant = /datum/skill/smithing, skill_amount = 30, completing_a_weapon = TRUE)
+
+	if(!thing_just_made)
+		message_admins("[src] just tried to finish a weapon but somehow created nothing! This is not working as intended!")
+		return ITEM_INTERACT_SUCCESS
+
+	balloon_alert_to_viewers("[thing_just_made] created")
+	update_appearance()
+	return ITEM_INTERACT_SUCCESS
+/obj/structure/reagent_crafting_bench/proc/check_craftability_general(mob/living/user, obj/item/tool)
+	if(!selected_recipe)
+		balloon_alert(user, "no recipe selected")
+		return ITEM_INTERACT_BLOCKING
+
+	if(!user_can_craft(user, selected_recipe.recipe_name))
+		balloon_alert(user, "you're not skilled enough!")
+		return ITEM_INTERACT_BLOCKING
+
+	if(!istype(tool, /obj/item/forging/hammer))
+		balloon_alert(user, "you need a forging hammer")
+		return ITEM_INTERACT_BLOCKING
+
+	if(!can_we_craft_this(selected_recipe.recipe_requirements))
+		balloon_alert(user, "missing ingredients")
+		return ITEM_INTERACT_BLOCKING
+
+	return ITEM_INTERACT_SUCCESS
 /obj/structure/reagent_crafting_bench/proc/can_we_craft_this(list/required_items, return_ingredients_list = FALSE)
 	if(!length(required_items))
 		message_admins("[src] just tried to check for ingredients nearby without having a list of items to check for!")
@@ -314,7 +366,7 @@
 		var/obj/item/forging/complete/completed_forge_item = contents[1]
 		newly_created_thing = new completed_forge_item.spawning_item(src)
 		if(newly_created_thing.force > 0) //we don't want the staff to get added damage
-			newly_created_thing.force += min(round(completed_forge_item.current_perfects * INVERSE(10)), 3) //adds a maximum of 3 force, and 6 if dual-wielded
+			newly_created_thing.force += clamp(completed_forge_item.perfect_ratio * MAX_PERFECT_FORCE_BONUS, 0, MAX_PERFECT_FORCE_BONUS)
 
 		if(completed_forge_item.custom_materials) // We need to add the weapon head's materials to the completed item, too
 			for(var/custom_material in completed_forge_item.custom_materials)
@@ -373,6 +425,13 @@
 			qdel(requirement_item)
 
 	return materials_to_transfer
+
+/obj/structure/reagent_crafting_bench/proc/should_stop_autohammering(mob/living/user, obj/item/tool)
+	if(isnull(selected_recipe))
+		return TRUE
+	if(!check_craftability_general(user, tool))
+		return TRUE
+	return FALSE
 
 /// Gets movable atoms within one tile of range of the crafting bench
 /obj/structure/reagent_crafting_bench/proc/get_environment()

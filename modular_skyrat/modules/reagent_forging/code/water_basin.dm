@@ -81,12 +81,7 @@
 
 	playsound(src, 'modular_skyrat/modules/reagent_forging/sound/hot_hiss.ogg', 50, TRUE)
 
-	if(search_incomplete?.times_hit < search_incomplete.average_hits)
-		to_chat(user, span_warning("You cool down [search_incomplete], but it wasn't ready yet."))
-		COOLDOWN_RESET(search_incomplete, heating_remainder)
-		return ITEM_INTERACT_SUCCESS
-
-	if(search_incomplete?.times_hit >= search_incomplete.average_hits)
+	if(search_incomplete.is_finished_smithing())
 		to_chat(user, span_notice("You cool down [search_incomplete] and it's ready."))
 		user.mind.adjust_experience(/datum/skill/smithing, 10) //using the water basin on a ready item gives decent experience.
 
@@ -96,11 +91,16 @@
 
 		if(istype(spawned_obj, /obj/item/forging/complete))
 			var/obj/item/forging/complete/complete_spawned = spawned_obj
-			complete_spawned.current_perfects = search_incomplete.current_perfects
+			complete_spawned.perfect_ratio = search_incomplete.current_perfects / search_incomplete.max_perfect_hits
 
 		qdel(search_incomplete)
 		tool.icon_state = "tong_empty"
-	return ITEM_INTERACT_SUCCESS
+		return ITEM_INTERACT_SUCCESS
+	else
+		to_chat(user, span_warning("You cool down [search_incomplete], but it wasn't ready yet."))
+		COOLDOWN_RESET(search_incomplete, heating_remainder)
+		return ITEM_INTERACT_SUCCESS
+
 
 /// Fishing source for fishing out of basins that have been upgraded, contains saltwater fish (lizard fish fall under this too!)
 /datum/fish_source/water_basin

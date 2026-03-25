@@ -10,7 +10,7 @@
 
 /obj/item/forging/reagent_weapon/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_weapon)
+	AddComponent(/datum/component/reagent_imbued/weapon)
 
 /obj/item/forging/reagent_weapon/examine(mob/user)
 	. = ..()
@@ -348,7 +348,7 @@
 
 /obj/item/shield/buckler/reagent_weapon/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_weapon)
+	AddComponent(/datum/component/reagent_imbued/weapon)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
 /obj/item/shield/buckler/reagent_weapon/examine(mob/user)
@@ -394,14 +394,14 @@
 
 /obj/item/pickaxe/reagent_weapon/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_weapon)
+	AddComponent(/datum/component/reagent_imbued/weapon)
 
 /obj/item/shovel/reagent_weapon
 	name = "reagent shovel"
 
 /obj/item/shovel/reagent_weapon/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_weapon)
+	AddComponent(/datum/component/reagent_imbued/weapon)
 
 /obj/item/ammo_casing/arrow/attackby(obj/item/attacking_item, mob/user, params)
 	var/spawned_item
