@@ -1691,7 +1691,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
@@ -16631,10 +16630,11 @@
 /turf/open/floor/iron/dark/telecomms,
 /area/station/tcommsat/server)
 "eQS" = (
-/obj/effect/spawner/structure/window/reinforced/plasma,
-/obj/machinery/atmospherics/pipe/layer_manifold/brown/visible,
+/obj/structure/trash_pile,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
-/area/station/engineering/atmos/upper)
+/area/station/maintenance/port/lesser)
 "eQW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
@@ -17485,9 +17485,7 @@
 /obj/effect/turf_decal/box/corners{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/binary/pump{
-	name = "CO2 to Pure"
-	},
+/obj/machinery/atmospherics/pipe/layer_manifold/brown/visible,
 /turf/open/floor/engine,
 /area/station/engineering/atmos/upper)
 "fdc" = (
@@ -28401,9 +28399,11 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/simple/yellow/visible,
 /obj/machinery/atmospherics/pipe/bridge_pipe/scrubbers/visible{
 	dir = 4
+	},
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "Plasma to Pure"
 	},
 /turf/open/floor/engine,
 /area/station/engineering/atmos/upper)
@@ -33502,7 +33502,9 @@
 	},
 /area/station/service/salon)
 "jIO" = (
-/obj/machinery/atmospherics/pipe/smart/simple/yellow/visible,
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "N2O to Pure"
+	},
 /turf/open/floor/engine,
 /area/station/engineering/atmos/upper)
 "jIV" = (
@@ -46541,9 +46543,11 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/treatment_center)
 "noW" = (
-/obj/machinery/atmospherics/pipe/smart/simple/yellow/visible,
 /obj/machinery/atmospherics/pipe/bridge_pipe/scrubbers/visible{
 	dir = 4
+	},
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "CO2 to Pure"
 	},
 /turf/open/floor/engine,
 /area/station/engineering/atmos/upper)
@@ -51869,12 +51873,6 @@
 	},
 /turf/open/floor/glass/reinforced,
 /area/station/hallway/primary/central/aft)
-"oVE" = (
-/obj/structure/trash_pile,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/plating,
-/area/station/maintenance/port/lesser)
 "oVJ" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/cable,
@@ -52145,14 +52143,11 @@
 /turf/open/floor/plating,
 /area/station/commons/vacant_room/office)
 "paD" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/machinery/atmospherics/pipe/layer_manifold/scrubbers/visible{
+	dir = 8
 	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/dark,
-/area/station/science/robotics/mechbay)
+/turf/open/floor/plating,
+/area/station/maintenance/port/fore)
 "pbd" = (
 /obj/structure/lattice,
 /obj/structure/railing,
@@ -54652,7 +54647,9 @@
 "pMa" = (
 /obj/structure/rack/shelf,
 /obj/effect/spawner/random/maintenance/three,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/layer_manifold/supply/visible{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
 "pMi" = (
@@ -56015,7 +56012,9 @@
 /area/station/engineering/storage/tech)
 "qfs" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
-/obj/machinery/atmospherics/pipe/layer_manifold/pink/visible,
+/obj/machinery/atmospherics/pipe/smart/simple/pink/visible{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/station/engineering/atmos/upper)
 "qfB" = (
@@ -67514,7 +67513,7 @@
 /area/station/maintenance/starboard/fore)
 "tAs" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
-/obj/machinery/atmospherics/pipe/layer_manifold/green/visible,
+/obj/machinery/atmospherics/pipe/smart/simple/green/visible,
 /turf/open/floor/plating,
 /area/station/engineering/atmos/upper)
 "tAH" = (
@@ -69700,8 +69699,8 @@
 	},
 /area/station/security/processing)
 "ujo" = (
-/obj/machinery/atmospherics/pipe/layer_manifold/scrubbers/visible{
-	dir = 8
+/obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible{
+	dir = 4
 	},
 /turf/closed/wall/r_wall,
 /area/station/engineering/atmos)
@@ -72235,9 +72234,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/binary/pump{
-	name = "Plasma to Pure"
-	},
+/obj/machinery/atmospherics/pipe/layer_manifold/pink/visible,
 /turf/open/floor/engine,
 /area/station/engineering/atmos/upper)
 "uTs" = (
@@ -79181,7 +79178,7 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "wMM" = (
-/obj/machinery/atmospherics/pipe/layer_manifold/supply/visible{
+/obj/machinery/atmospherics/pipe/smart/simple/supply/visible{
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
@@ -80600,7 +80597,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/landmark/start/roboticist,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/mechbay)
@@ -82930,9 +82926,7 @@
 /obj/effect/turf_decal/box/corners{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/binary/pump{
-	name = "N2O to Pure"
-	},
+/obj/machinery/atmospherics/pipe/layer_manifold/green/visible,
 /turf/open/floor/engine,
 /area/station/engineering/atmos/upper)
 "xVN" = (
@@ -109794,7 +109788,7 @@ laO
 gqh
 pMa
 ngm
-trB
+paD
 uNs
 oSf
 cNz
@@ -113157,7 +113151,7 @@ oHE
 dJe
 hBU
 pXj
-paD
+aAK
 dcx
 pyc
 iHi
@@ -173557,7 +173551,7 @@ wEl
 nJD
 gHA
 nke
-oVE
+eQS
 xaP
 xaP
 eGr
@@ -176332,7 +176326,7 @@ fac
 fac
 fac
 fac
-fac
+laO
 fac
 fac
 fac
@@ -176603,7 +176597,7 @@ wPY
 wPY
 imk
 tey
-eQS
+tey
 fcQ
 noW
 eyE
