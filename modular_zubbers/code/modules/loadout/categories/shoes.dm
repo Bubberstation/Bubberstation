@@ -219,6 +219,10 @@
 	name = "Latex Heels"
 	item_path = /obj/item/clothing/shoes/latex_heels
 
+/datum/loadout_item/shoes/formal/latex_heels/ballet_heels
+	name = "Ballet Heels"
+	item_path = /obj/item/clothing/shoes/latex_heels/ballet_heels
+
 //Casual
 
 /datum/loadout_item/shoes/casual
@@ -286,6 +290,10 @@
 /datum/loadout_item/shoes/fun/jackfrost
 	name = "Frosty Boots"
 	item_path = /obj/item/clothing/shoes/jackbros
+
+/datum/loadout_item/shoes/fun/latex_socks
+	name = "Latex Socks"
+	item_path = /obj/item/clothing/shoes/latex_socks
 
 /*
 *	SEASONAL
