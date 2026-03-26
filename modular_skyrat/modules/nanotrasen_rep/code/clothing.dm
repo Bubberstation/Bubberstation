@@ -104,3 +104,10 @@
 /obj/item/clothing/gloves/combat/naval/nanotrasen_consultant
 	name = "\improper CentCom gloves"
 	desc = "A high quality pair of thick gloves covered in gold stitching."
+
+/obj/item/storage/backpack/satchel/nanotrasen
+	name = "nanotrasen satchel"
+	desc = "An expensive green branded Nanotrasen satchel."
+	icon = 'modular_zubbers/icons/obj/storage/backpack.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
+	icon_state = "satchel-nanotrasen"

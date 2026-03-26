@@ -142,5 +142,61 @@
 /datum/loadout_item/toys/plush/myrthel_plush
 	name = "Extra Hot Moth Plush"
 	item_path = /obj/item/toy/plush/myrthel_plush
+/*
+*	SEX TOYS AND OTHER STUFF THAT NEEDS PREFS TO USE (otherwise fails to render on the character preview)
+*/
+/datum/loadout_item/toys/lewd
+	group = "Lewd Toys"
+	abstract_type = /datum/loadout_item/toys/lewd
 
+/datum/loadout_item/toys/lewd/corset
+	name = "Corset"
+	item_path = /obj/item/clothing/suit/corset
 
+/datum/loadout_item/toys/lewd/hypno
+	name = "Hypnotic Goggles"
+	item_path = /obj/item/clothing/glasses/hypno
+
+/datum/loadout_item/toys/lewd/deprivation_helmet
+	name = "Deprivation Helmet"
+	item_path = /obj/item/clothing/head/deprivation_helmet
+
+/datum/loadout_item/toys/lewd/bdsm_mask
+	name = "Latex Gas Mask"
+	item_path = /obj/item/clothing/mask/gas/bdsm_mask
+
+/datum/loadout_item/toys/lewd/hypno_visor
+	name = "MOD Hypnotic Visor Module"
+	item_path = /obj/item/mod/module/hypno_visor
+
+/datum/loadout_item/toys/lewd/erp_leash
+	name = "Leash"
+	item_path = /obj/item/clothing/erp_leash
+
+/datum/loadout_item/toys/lewd/shibari_rope
+	name = "Shibari Ropes"
+	item_path = /obj/item/stack/shibari_rope
+
+/datum/loadout_item/toys/lewd/dildo
+	name = "Dildo"
+	item_path = /obj/item/clothing/sextoy/dildo
+
+/datum/loadout_item/toys/lewd/fleshlight
+	name = "Fleshlight"
+	item_path = /obj/item/clothing/sextoy/fleshlight
+
+/datum/loadout_item/toys/lewd/buttplug
+	name = "Buttplug"
+	item_path = /obj/item/clothing/sextoy/buttplug
+
+/datum/loadout_item/toys/lewd/leatherwhip
+	name = "Leather Whip"
+	item_path = /obj/item/clothing/mask/leatherwhip
+
+/datum/loadout_item/toys/lewd/venom_milker
+	name = "Venom Siphon"
+	item_path = /obj/item/reagent_containers/venom_milker
+
+/datum/loadout_item/toys/lewd/strapon
+	name = "Strapon"
+	item_path = /obj/item/clothing/strapon
