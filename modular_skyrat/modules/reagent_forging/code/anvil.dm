@@ -154,21 +154,24 @@
 		balloon_alert(user, "metal too cool")
 		return ITEM_INTERACT_SUCCESS
 
+	var/quality_points_to_give = 1 + (HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING) ? ANVIL_SMITHING_CHIP_QUALITY_BONUS : 0)
 	switch(get_hit_quality(user, tool))
 		if(ANVIL_HAMMER_HIT_BAD)
 			incomplete_item.bad_hit(playsound = TRUE)
 			balloon_alert(user, "bad hit")
 		if(ANVIL_HAMMER_HIT_GOOD)
-			var/quality_to_add = 1 + (HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
-			incomplete_item.good_hit(playsound = TRUE)
+			incomplete_item.good_hit(amount = quality_points_to_give, playsound = TRUE)
 			balloon_alert(user, "good hit")
 			user.mind.adjust_experience(/datum/skill/smithing, 1) //A good hit gives mild experience
+			do_sparks(1, FALSE, src)
 		if(ANVIL_HAMMER_HIT_PERFECT)
-			incomplete_item.perfect_hit(playsound = TRUE)
+			incomplete_item.perfect_hit(amount = quality_points_to_give, playsound = TRUE)
 			balloon_alert(user, "perfect hit!")
 			user.mind.adjust_experience(/datum/skill/smithing, 10) //A perfect hit gives good experience
+			do_sparks(2, FALSE, src)
 
 	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) * incomplete_item.average_wait
+	//todo: change tool cooldown to be attached onto the user
 	COOLDOWN_START(tool, striking_cooldown, skill_modifier)
 	COOLDOWN_START(tool, perfect_strike_window, skill_modifier + user.mind.get_skill_level(/datum/skill/smithing) DECISECONDS)
 

@@ -12,8 +12,10 @@
 	var/completion_quality_points = 30
 	///the required time before each strike to prevent spamming
 	var/average_wait = 1 SECONDS
-	///the quality points required for it to break; going under this will break the item
-	var/breakage_quality_points = -10
+	///total current bad hits
+	var/bad_hits_total = 0
+	///the bad hits required for it to break; exceeding this will break the item
+	var/bad_hit_maximum = 5
 
 	///the number of current perfect hits
 	var/current_perfects = 0
@@ -45,9 +47,8 @@
 	if(current_perfects < max_perfect_hits)
 		current_perfects += amount
 
-/obj/item/forging/incomplete/proc/bad_hit(amount = 2, perfect_reduction = 3, playsound = FALSE)
-	quality_points -= amount
-	current_perfects = max(current_perfects - perfect_reduction, 0)
+/obj/item/forging/incomplete/proc/bad_hit(amount = 2, playsound = FALSE)
+	bad_hits_total += amount
 	if(check_for_breakage())
 		forging_breakage()
 	else
@@ -55,11 +56,14 @@
 			conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 2.2, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 
 /obj/item/forging/incomplete/proc/check_for_breakage()
-	if(quality_points < breakage_quality_points)
+	if(bad_hits_total > bad_hit_maximum)
 		return TRUE
 	return FALSE
 
-/obj/item/forging/incomplete/proc/forging_breakage()
+/obj/item/forging/incomplete/proc/forging_breakage(playsound = TRUE)
+	if(playsound)
+		conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 35, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
+
 	balloon_alert_to_viewers("the [name] shattered!")
 	qdel(src)
 
@@ -68,6 +72,28 @@
 		return TRUE
 	return FALSE
 
+/obj/item/forging/incomplete/pickup(mob/living/user)
+	var/hand_protected = FALSE
+	var/mob/living/carbon/human/human_user = user
+	if(!istype(human_user) || HAS_TRAIT(human_user, TRAIT_RESISTHEAT) || HAS_TRAIT(human_user, TRAIT_RESISTHEATHANDS))
+		hand_protected = TRUE
+	else if(!istype(human_user.gloves, /obj/item/clothing/gloves))
+		hand_protected = FALSE
+	else
+		var/obj/item/clothing/gloves/gloves = human_user.gloves
+		if(gloves.max_heat_protection_temperature)
+			hand_protected = (gloves.max_heat_protection_temperature > 360)
+
+	..()
+	if(hand_protected)
+		var/hitzone = user.held_index_to_dir(user.active_hand_index) == "r" ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND
+		user.apply_damage(5, BURN, hitzone)
+		to_chat(user, span_danger("You burn your hand trying to pick up [src]!"))
+		user.add_mood_event("burnt_thumb", /datum/mood_event/burnt_thumb)
+		user.dropItemToGround(src)
+
+/obj/item/forging/incomplete/can_be_pulled(user, force) // no drag memes
+	return FALSE
 
 /obj/item/forging/incomplete/chain
 	name = "incomplete chain"
@@ -184,6 +210,14 @@
 	to_chat(user, span_warning("[src] cuts into your hand!"))
 	jab.apply_damage(double_edged_damage, BRUTE, user.get_active_hand(), attacking_item = src)
 
+/obj/item/forging/complete/tong_act(mob/living/user, obj/item/tool)
+	. = ..()
+	if(length(tool.contents) > 0)
+		user.balloon_alert(user, "tongs are full already!")
+		return
+	forceMove(tool)
+	tool.icon_state = "tong_full"
+
 /obj/item/forging/complete/chain
 	name = "chain"
 	desc = "A singular chain, best used in combination with multiple chains."
@@ -199,6 +233,7 @@
 	desc = "A sword blade, ready to get some wood for completion."
 	icon_state = "blade"
 	spawning_item = /obj/item/forging/reagent_weapon/sword
+	force = 5
 	double_edged_damage = 3
 
 /obj/item/forging/complete/katana
@@ -206,6 +241,7 @@
 	desc = "A katana blade, ready to get some wood for completion."
 	icon_state = "katanablade"
 	spawning_item = /obj/item/forging/reagent_weapon/katana
+	force = 5
 	double_edged_damage = 3
 
 /obj/item/forging/complete/rapier
@@ -213,6 +249,7 @@
 	desc = "A rapier blade, ready to get some wood for completion."
 	icon_state = "rapierblade"
 	spawning_item = /obj/item/forging/reagent_weapon/rapier
+	force = 5
 	double_edged_damage = 3
 
 /obj/item/forging/complete/dagger
@@ -220,6 +257,7 @@
 	desc = "A dagger blade, ready to get some wood for completion."
 	icon_state = "daggerblade"
 	spawning_item = /obj/item/forging/reagent_weapon/dagger
+	force = 3
 	double_edged_damage = 2
 
 /obj/item/forging/complete/staff
@@ -233,6 +271,7 @@
 	desc = "A spear head, ready to get some wood for completion."
 	icon_state = "spearhead"
 	spawning_item = /obj/item/forging/reagent_weapon/spear
+	force = 3
 	double_edged_damage = 2
 
 /obj/item/forging/complete/axe
@@ -240,18 +279,21 @@
 	desc = "An axe head, ready to get some wood for completion."
 	icon_state = "axehead"
 	spawning_item = /obj/item/forging/reagent_weapon/axe
+	force = 5
 
 /obj/item/forging/complete/hammer
 	name = "hammer head"
 	desc = "A hammer head, ready to get some wood for completion."
 	icon_state = "hammerhead"
 	spawning_item = /obj/item/forging/reagent_weapon/hammer
+	force = 5
 
 /obj/item/forging/complete/pickaxe
 	name = "pickaxe head"
 	desc = "A pickaxe head, ready to get some wood for completion."
 	icon_state = "pickaxehead"
 	spawning_item = /obj/item/pickaxe/reagent_weapon
+	force = 5
 
 /obj/item/forging/complete/shovel
 	name = "shovel head"
@@ -264,6 +306,7 @@
 	desc = "An arrowhead, ready to get some wood for completion."
 	icon_state = "arrowhead"
 	spawning_item = /obj/item/arrow_spawner
+	force = 3
 	double_edged_damage = 2
 
 /obj/item/forging/complete/rail_nail
@@ -272,6 +315,7 @@
 	icon = 'modular_skyrat/modules/ashwalkers/icons/railroad.dmi'
 	icon_state = "nail"
 	spawning_item = /obj/item/stack/rail_track/ten
+	force = 3
 
 /obj/item/forging/coil
 	name = "coil"
@@ -295,7 +339,7 @@
 	name = "arrow spawner"
 	desc = "You shouldn't see this."
 	/// the amount of arrows that are spawned from the spawner
-	var/spawning_amount = 4
+	var/spawning_amount = 8
 
 /obj/item/arrow_spawner/Initialize(mapload)
 	. = ..()
@@ -316,13 +360,21 @@
 
 /obj/item/stack/tong_act(mob/living/user, obj/item/tool)
 	. = ..()
+	if(amount < 1)
+		user.balloon_alert(user, "not enough material in the stack!")
+		return FALSE
 	if(length(tool.contents) > 0)
 		user.balloon_alert(user, "tongs are full already!")
 		return FALSE
 	if(!material_type && !custom_materials)
 		user.balloon_alert(user, "invalid material!")
 		return
-	forceMove(tool)
+
+	if(amount == 1)
+		forceMove(tool)
+	else
+		var/obj/item/stack/newstack = split_stack(1)
+		newstack.forceMove(tool)
 	tool.icon_state = "tong_full"
 
 /obj/tong_act(mob/living/user, obj/item/tool)

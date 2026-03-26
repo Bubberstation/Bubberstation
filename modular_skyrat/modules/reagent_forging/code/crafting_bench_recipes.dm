@@ -7,14 +7,14 @@
 	var/resulting_item = /obj/item/forging
 	/// If we use the materials from the component parts
 	var/transfers_materials = TRUE
-	/// How many times should you have to swing the hammer to finish this item
-	var/required_good_hits = 6
+	/// How long it takes at the crafting bench to assemble
+	var/time_to_assemble = 2 SECONDS
 	/// What skill is relevant to the creation of this item?
 	var/relevant_skill = /datum/skill/smithing
 	/// What skill level is required in that creation?
 	var/relevant_skill_level = 0
 	/// Does the recipe also require a specific trait?
-	var/required_trait  = null
+	var/required_traits = null
 	/// How much experience in our relevant skill do we give upon completion?
 	var/relevant_skill_reward = 30
 
@@ -23,7 +23,7 @@
 	recipe_requirements = list(
 		/obj/item/stack/sheet/mineral/wood = 2,
 	)
-	required_trait = TRAIT_KNOW_ADVANCED_SMITHING
+	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 /datum/crafting_bench_recipe/plate_helmet
 	recipe_name = "plate helmet"
@@ -31,7 +31,7 @@
 		/obj/item/forging/complete/plate = 4,
 	)
 	resulting_item = /obj/item/clothing/head/helmet/forging_plate_helmet
-	required_good_hits = 8
+	time_to_assemble = 1.5 SECONDS
 
 /datum/crafting_bench_recipe/plate_vest
 	recipe_name = "plate vest"
@@ -39,7 +39,7 @@
 		/obj/item/forging/complete/plate = 6,
 	)
 	resulting_item = /obj/item/clothing/suit/armor/forging_plate_armor
-	required_good_hits = 12
+	time_to_assemble = 3 SECONDS
 
 /datum/crafting_bench_recipe/plate_gloves
 	recipe_name = "plate gloves"
@@ -47,7 +47,7 @@
 		/obj/item/forging/complete/plate = 2,
 	)
 	resulting_item = /obj/item/clothing/gloves/forging_plate_gloves
-	required_good_hits = 4
+	time_to_assemble = 2 SECONDS
 
 /datum/crafting_bench_recipe/plate_boots
 	recipe_name = "plate boots"
@@ -55,7 +55,7 @@
 		/obj/item/forging/complete/plate = 4,
 	)
 	resulting_item = /obj/item/clothing/shoes/forging_plate_boots
-	required_good_hits = 8
+	time_to_assemble = 2 SECONDS
 
 /datum/crafting_bench_recipe/horse_shoes
 	recipe_name = "horse shoes"
@@ -63,7 +63,7 @@
 		/obj/item/forging/complete/chain = 4,
 	)
 	resulting_item = /obj/item/clothing/shoes/horseshoe/reagent_clothing
-	required_good_hits = 8
+	time_to_assemble = 1.5 SECONDS
 
 /datum/crafting_bench_recipe/ring
 	recipe_name = "ring"
@@ -71,7 +71,7 @@
 		/obj/item/forging/complete/chain = 2,
 	)
 	resulting_item = /obj/item/clothing/gloves/ring/reagent_clothing
-	required_good_hits = 4
+	time_to_assemble = 4 SECONDS
 
 /datum/crafting_bench_recipe/collar
 	recipe_name = "collar"
@@ -79,7 +79,7 @@
 		/obj/item/forging/complete/chain = 3,
 	)
 	resulting_item = /obj/item/clothing/neck/collar/reagent_clothing
-	required_good_hits = 6
+	time_to_assemble = 3 SECONDS
 
 /datum/crafting_bench_recipe/handcuffs
 	recipe_name = "handcuffs"
@@ -87,7 +87,7 @@
 		/obj/item/forging/complete/chain = 5,
 	)
 	resulting_item = /obj/item/restraints/handcuffs/reagent_clothing
-	required_good_hits = 10
+	time_to_assemble = 5 SECONDS
 
 /datum/crafting_bench_recipe/borer_cage
 	recipe_name = "cortical borer cage"
@@ -95,7 +95,7 @@
 		/obj/item/forging/complete/plate = 6,
 	)
 	resulting_item = /obj/item/cortical_cage
-	required_good_hits = 12
+	time_to_assemble = 2 SECONDS
 
 /datum/crafting_bench_recipe/pavise
 	recipe_name = "pavise"
@@ -103,8 +103,8 @@
 		/obj/item/forging/complete/plate = 8,
 	)
 	resulting_item = /obj/item/shield/buckler/reagent_weapon/pavise
-	required_good_hits = 16
-	required_trait = TRAIT_KNOW_ADVANCED_SMITHING
+	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
+	time_to_assemble = 6 SECONDS
 
 /datum/crafting_bench_recipe/buckler
 	recipe_name = "buckler"
@@ -112,8 +112,8 @@
 		/obj/item/forging/complete/plate = 5,
 	)
 	resulting_item = /obj/item/shield/buckler/reagent_weapon
-	required_good_hits = 10
-	required_trait = TRAIT_KNOW_ADVANCED_SMITHING
+	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
+	time_to_assemble = 3 SECONDS
 
 /datum/crafting_bench_recipe/coil
 	recipe_name = "coil"
@@ -121,7 +121,7 @@
 		/obj/item/forging/complete/chain = 2,
 	)
 	resulting_item = /obj/item/forging/coil
-	required_good_hits = 4
+	time_to_assemble = 2 SECONDS
 
 /datum/crafting_bench_recipe/seed_mesh
 	recipe_name = "seed mesh"
@@ -130,7 +130,7 @@
 		/obj/item/forging/complete/chain = 2,
 	)
 	resulting_item = /obj/item/seed_mesh
-	required_good_hits = 10
+	time_to_assemble = 10 SECONDS
 
 /datum/crafting_bench_recipe/centrifuge
 	recipe_name = "centrifuge"
@@ -138,7 +138,7 @@
 		/obj/item/forging/complete/plate = 1,
 	)
 	resulting_item = /obj/item/reagent_containers/cup/primitive_centrifuge
-	required_good_hits = 4
+	time_to_assemble = 7 SECONDS
 
 /datum/crafting_bench_recipe/bokken
 	recipe_name = "bokken"
@@ -146,8 +146,8 @@
 		/obj/item/stack/sheet/mineral/wood = 4,
 	)
 	resulting_item = /obj/item/forging/reagent_weapon/bokken
-	required_good_hits = 8
-	required_trait = TRAIT_KNOW_ADVANCED_SMITHING
+	time_to_assemble = 3 SECONDS
+	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 /datum/crafting_bench_recipe/bow
 	recipe_name = "bow"
@@ -155,8 +155,8 @@
 		/obj/item/stack/sheet/mineral/wood = 4,
 	)
 	resulting_item = /obj/item/forging/incomplete_bow
-	required_good_hits = 8
-	required_trait = TRAIT_KNOW_ADVANCED_SMITHING
+	time_to_assemble = 4 SECONDS
+	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 /datum/crafting_bench_recipe/empty_circuit
 	recipe_name = "circuit"
@@ -165,5 +165,5 @@
 		/obj/item/forging/coil = 1,
 	)
 	resulting_item = /obj/item/empty_circuit
-	required_good_hits = 4
-	required_trait = TRAIT_KNOW_ADVANCED_SMITHING
+	time_to_assemble = 20 SECONDS
+	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)

@@ -5,6 +5,8 @@
 #define BAD_HIT_PENALTY 3
 /// The maximum force that can be given to a weapon via perfect hits
 #define MAX_PERFECT_FORCE_BONUS 3
+/// Speed of creating weapons
+#define WEAPON_ASSEMBLY_SPEED 2 SECONDS
 
 /obj/structure/reagent_crafting_bench
 	name = "forging workbench"
@@ -18,8 +20,6 @@
 
 	/// What the currently picked recipe is
 	var/datum/crafting_bench_recipe/selected_recipe
-	/// How many successful hits towards completion of the item have we done
-	var/current_hits_to_completion = 0
 	/// Is this bench able to complete forging items? Exists to allow non-forging workbenches to exist
 	var/finishes_forging_weapons = TRUE
 	/// The cooldown from the last hit before we allow another 'good hit' to happen
@@ -53,7 +53,7 @@
 	/// Filters the radial choice list by required level in its skill; true means corresponding element requires it
 	var/list/choice_list_skill_level_filter = list()
 	/// Filters the radial choice list by if it requires the smithing skillchip; true means corresponding element requires it
-	var/list/choice_list_smithing_chip_filter = list()
+	var/list/choice_list_trait_filter = list()
 
 /obj/structure/reagent_crafting_bench/proc/populate_radial_choice_list()
 
@@ -64,7 +64,7 @@
 		recipe_names_to_path[recipe_to_take_from.recipe_name] = recipe
 		choice_list_skill_filter[recipe_to_take_from.recipe_name] = recipe_to_take_from.relevant_skill
 		choice_list_skill_level_filter[recipe_to_take_from.recipe_name] = recipe_to_take_from.relevant_skill_level
-		choice_list_smithing_chip_filter[recipe_to_take_from.recipe_name] = recipe_to_take_from.requires_smithing_chip_knowledge
+		choice_list_trait_filter[recipe_to_take_from.recipe_name] = recipe_to_take_from.requires_smithing_chip_knowledge
 		qdel(recipe_to_take_from)
 
 
@@ -163,14 +163,15 @@
 		return FALSE
 	if(!isnull(choice_list_skill_filter[key]) && user.mind.get_skill_level(choice_list_skill_filter[key]) < choice_list_skill_level_filter[key])
 		return FALSE
-	if(!isnull(choice_list_smithing_chip_filter[key]) && !HAS_TRAIT(user, choice_list_smithing_chip_filter[key]))
-		return FALSE
+	if(!isnull(choice_list_trait_filter[key]))
+		for(var/my_trait in choice_list_trait_filter)
+			if !HAS_TRAIT(user, my_trait)
+				return FALSE
 	return TRUE
 
 /// Clears the current recipe and sets hits to completion to zero
 /obj/structure/reagent_crafting_bench/proc/clear_recipe()
 	QDEL_NULL(selected_recipe)
-	current_hits_to_completion = 0
 
 /obj/structure/reagent_crafting_bench/attackby(obj/item/attacking_item, mob/user, params)
 	if(istype(attacking_item, /obj/item/forging/complete))
@@ -206,53 +207,23 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reagent_crafting_bench/hammer_act(mob/living/user, obj/item/tool)
-	conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 35, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
+
 	if(length(contents))
 		return try_weapon_completion(user, tool)
 
 	if(check_craftability_general(user, tool) == ITEM_INTERACT_BLOCKING)
 		return ITEM_INTERACT_BLOCKING
 
-	var/obj/item/forging/hammer/hammertool = tool
-	return work_on_recipe(user, hammertool)
-/obj/structure/reagent_crafting_bench/hammer_act_secondary(mob/living/user, obj/item/tool)
-	balloon_alert_to_viewers("hammering steadily...")
-	while(!should_stop_autohammering())
-		hammer_act(user, tool)
-		var/wait_between_swings = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) DECISECONDS
-		wait_between_swings += 1 SECONDS
-		if(!do_after(wait_between_swings))
-			balloon_alert_to_viewers("stopped hammering")
-			break
+	var/skill_modifier = user.mind.get_skill_modifier(selected_recipe.relevant_skill, SKILL_SPEED_MODIFIER)
 
-	return ITEM_INTERACT_SUCCESS
-
-/obj/structure/reagent_crafting_bench/proc/work_on_recipe(mob/living/user, obj/item/forging/hammer)
-	var/skill_modifier = user.mind.get_skill_modifier(selected_recipe.relevant_skill, SKILL_SPEED_MODIFIER) * 1 SECONDS
-
-	if(!COOLDOWN_FINISHED(src, hit_cooldown)) // If you hit it before the cooldown is done, you get a bad hit, setting you back three good hits
-		current_hits_to_completion -= BAD_HIT_PENALTY
-
-		if(current_hits_to_completion <= -(selected_recipe.required_good_hits))
-			balloon_alert_to_viewers("recipe failed")
-			clear_recipe()
-			return ITEM_INTERACT_BLOCKING
-
-		balloon_alert(user, "bad hit")
-		return ITEM_INTERACT_BLOCKING
-
-	COOLDOWN_START(src, hit_cooldown, skill_modifier)
-
-	if((current_hits_to_completion >= selected_recipe.required_good_hits) && !length(contents))
+	playsound(source, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)
+	if(do_after(selected_recipe.time_to_assemble * skill_modifier) && !length(contents))
 		var/list/things_to_use = can_we_craft_this(selected_recipe.recipe_requirements, TRUE)
 
 		create_thing_from_requirements(things_to_use, selected_recipe, user, selected_recipe.relevant_skill, selected_recipe.relevant_skill_reward)
 		return ITEM_INTERACT_SUCCESS
 
-	current_hits_to_completion++
-	balloon_alert(user, "good hit")
-	user.mind.adjust_experience(selected_recipe.relevant_skill, selected_recipe.relevant_skill_reward / 15) // Good hits towards the current item grants experience in that skill
-	return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_BLOCKING
 /// Takes the given list of item requirements and checks the surroundings for them, returns TRUE unless return_ingredients_list is set, in which case a list of all the items to use is returned
 /obj/structure/reagent_crafting_bench/proc/try_weapon_completion(mob/living/user, obj/item/tool)
 	if(!istype(contents[1], /obj/item/forging/complete))
@@ -273,6 +244,10 @@
 		balloon_alert(user, "not enough wood")
 		return ITEM_INTERACT_BLOCKING
 
+	if(!do_after(WEAPON_ASSEMBLY_SPEED))
+		return ITEM_INTERACT_BLOCKING
+
+	playsound(source, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)
 	var/list/things_to_use = can_we_craft_this(wood_required_for_weapons, TRUE)
 	var/obj/thing_just_made = create_thing_from_requirements(things_to_use, user = user, skill_to_grant = /datum/skill/smithing, skill_amount = 30, completing_a_weapon = TRUE)
 
@@ -290,10 +265,6 @@
 
 	if(!user_can_craft(user, selected_recipe.recipe_name))
 		balloon_alert(user, "you're not skilled enough!")
-		return ITEM_INTERACT_BLOCKING
-
-	if(!istype(tool, /obj/item/forging/hammer))
-		balloon_alert(user, "you need a forging hammer")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!can_we_craft_this(selected_recipe.recipe_requirements))
@@ -426,12 +397,6 @@
 
 	return materials_to_transfer
 
-/obj/structure/reagent_crafting_bench/proc/should_stop_autohammering(mob/living/user, obj/item/tool)
-	if(isnull(selected_recipe))
-		return TRUE
-	if(!check_craftability_general(user, tool))
-		return TRUE
-	return FALSE
 
 /// Gets movable atoms within one tile of range of the crafting bench
 /obj/structure/reagent_crafting_bench/proc/get_environment()
