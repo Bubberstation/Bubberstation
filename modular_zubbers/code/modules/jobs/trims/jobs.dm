@@ -13,7 +13,9 @@
 
 /datum/id_trim/job/blacksmith //Place Holder. You'll probably wanna come by and set these up correctly.
 	assignment = "Blacksmith"
-	trim_state = "trim_cargotechnician"
+	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
+	trim_state = "trim_blacksmith"
+
 	department_color = COLOR_CARGO_BROWN
 	subdepartment_color = COLOR_CARGO_BROWN
 	sechud_icon_state = SECHUD_CARGO_TECHNICIAN
