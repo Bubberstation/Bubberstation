@@ -67,19 +67,22 @@
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mutant_zombie/infectious,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mutant_zombie/infectious,
 	)
-	var/hands_to_give = /obj/item/hnz_mutant_hand
+	var/hands_to_give = /obj/item/mutant_hand/hnz_mutant_hand
 	/// The rate the mutants regenerate at
 	var/heal_rate = 1
 	/// The cooldown before the mutant can start regenerating
 	COOLDOWN_DECLARE(regen_cooldown)
+	/// component reference to the mutant hands we add
+	var/datum/component/mutant_hands/mutant_hands_component
 
 /datum/species/mutant/infectious/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
-	human_who_gained_species.AddComponent(/datum/component/mutant_hands, mutant_hand_path = hands_to_give)
+	mutant_hands_component = human_who_gained_species.AddComponent(__IMPLIED_TYPE__, mutant_hand_path = hands_to_give)
 	RegisterSignal(human_who_gained_species, COMSIG_MOB_AFTER_APPLY_DAMAGE, PROC_REF(queue_regeneration))
 
 /datum/species/mutant/infectious/on_species_loss(mob/living/carbon/human/human_who_lost_species, datum/species/new_species, pref_load)
 	. = ..()
+	QDEL_NULL(mutant_hands_component)
 	UnregisterSignal(human_who_lost_species, COMSIG_MOB_AFTER_APPLY_DAMAGE)
 
 /obj/item/bodypart/leg/left/mutant_zombie/infectious
@@ -91,7 +94,7 @@
 /datum/species/mutant/infectious/fast
 	name = "Fast Mutated Abomination"
 	id = SPECIES_MUTANT_FAST
-	hands_to_give = /obj/item/hnz_mutant_hand/fast
+	hands_to_give = /obj/item/mutant_hand/hnz_mutant_hand/fast
 	damage_modifier = 0
 	/// The rate the mutants regenerate at
 	heal_rate = 0.5
@@ -173,7 +176,10 @@
 	else
 		. = ..()
 
-/obj/item/hnz_mutant_hand
+
+GLOBAL_VAR_INIT(mutant_infection_chance, 40)
+
+/obj/item/mutant_hand/hnz_mutant_hand
 	name = "mutant claw"
 	desc = "A mutant's claw is its primary tool, capable of infecting \
 		humans, butchering all other living things to \
@@ -191,45 +197,29 @@
 	sharpness = SHARP_EDGED
 	wound_bonus = -20
 	damtype = BRUTE
-	var/icon_left = "bloodhand_left"
-	var/icon_right = "bloodhand_right"
 
-/obj/item/hnz_mutant_hand/fast
+/obj/item/mutant_hand/hnz_mutant_hand/fast
 	name = "weak mutant claw"
 	force = 21
 	sharpness = NONE
 	wound_bonus = -40
 
-/obj/item/hnz_mutant_hand/Initialize(mapload)
-	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
-/obj/item/hnz_mutant_hand/equipped(mob/user, slot)
-	. = ..()
-	//these are intentionally inverted
-	var/i = user.get_held_index_of_item(src)
-	if(!(i % 2))
-		icon_state = icon_left
-	else
-		icon_state = icon_right
-
-/obj/item/hnz_mutant_hand/afterattack(atom/target, mob/user, click_parameters)
+/obj/item/mutant_hand/hnz_mutant_hand/afterattack(atom/target, mob/user, click_parameters)
 	if(isliving(target))
 		if(ishuman(target))
-			try_to_mutant_infect(target, user = user)
+			try_to_mutant_infect(target, user = user, def_zone = user.zone_selected)
 		else
 			check_feast(target, user)
 
-#define INFECT_CHANCE 70
-
-/proc/try_to_mutant_infect(mob/living/carbon/human/target, forced = FALSE, mob/user)
+/proc/try_to_mutant_infect(mob/living/carbon/human/target, forced = FALSE, mob/user, def_zone = BODY_ZONE_CHEST)
 	CHECK_DNA_AND_SPECIES(target)
 
 	if(forced)
 		target.AddComponent(/datum/component/mutant_infection)
 		return TRUE
 
-	if(HAS_TRAIT(target, TRAIT_NO_ZOMBIFY))
+	if(HAS_TRAIT(target, TRAIT_NO_ZOMBIFY) || HAS_TRAIT(target, TRAIT_MUTANT_IMMUNE))
 		// cannot infect any NOZOMBIE subspecies (such as high functioning
 		// mutants)
 		return FALSE
@@ -237,26 +227,37 @@
 	if(target.GetComponent(/datum/component/mutant_infection))
 		return FALSE
 
-	if(!target.can_inject(user))
+
+	if(HAS_TRAIT(target, TRAIT_VIRUS_RESISTANCE) && !HAS_TRAIT(target, TRAIT_IMMUNODEFICIENCY) && prob(75))
+		return
+
+	var/obj/item/bodypart/actual_limb = target.get_bodypart(def_zone)
+
+	if(!actual_limb)
+		return
+
+	var/limb_damage = actual_limb.get_damage()
+	var/limb_armor = max(0, target.getarmor(actual_limb, BIO) - 25)
+	for(var/obj/item/clothing/iter_clothing in target.get_clothing_on_part(actual_limb))
+		if(iter_clothing.clothing_flags & THICKMATERIAL)
+			limb_armor += 25
+
+	if(limb_armor > limb_damage)
 		return FALSE
 
-	if(prob(INFECT_CHANCE))
-		return FALSE
-
-	if(HAS_TRAIT(target, TRAIT_MUTANT_IMMUNE))
+	if(!prob(GLOB.mutant_infection_chance))
 		return FALSE
 
 	target.AddComponent(/datum/component/mutant_infection)
 	return TRUE
 
-#undef INFECT_CHANCE
 
 /proc/try_to_mutant_cure(mob/living/carbon/target) //For things like admin procs
 	var/datum/component/mutant_infection/infection = target.GetComponent(/datum/component/mutant_infection)
 	if(infection)
 		qdel(infection)
 
-/obj/item/hnz_mutant_hand/proc/check_feast(mob/living/target, mob/living/user)
+/obj/item/mutant_hand/hnz_mutant_hand/proc/check_feast(mob/living/target, mob/living/user)
 	if(target.stat == DEAD)
 		var/hp_gained = target.maxHealth
 		target.investigate_log("has been feasted upon by the mutant [user].", INVESTIGATE_DEATHS)
