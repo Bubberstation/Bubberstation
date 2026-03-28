@@ -104,12 +104,12 @@
 	name = "Read Me"
 	desc = "It is rumored that the literacy rates among the frontier stations are as low as 50%"
 	default_raw_text =  "<li>To whom it may concern, this is lieutenant Pristine here, serving with the nanotrasen expeditionary squad.</li> \
-    <li>If you are reading this note, this means youve ended up here in this hell, these hallways, that means you fucking screwed up.</li> \
-    <li>These hallways are cruel and unforgiving- yet, kind and gentle when you are at youre worst, so here are some tips to help you get through things. Because ive been here for a long time.</li> \
-    <li>First things first, the red lights, if you see red lights at a door- fucking think twice before opening it, like the meaning most associated with the color RED it means BAD, but risk equals reward so take it at your own risk.</li> \
-    <li>Second thing is situational awareness, most things here- are not as they seem, if you see corpses near a door theres probably a fucking demon behind it or some fuckoff anomaly-</li> \
-    <li>This tends to scale with the number of corpses (fucking obviously), something we found out in my squad is that the remains, have no DNA but the corpses do, its like if the remains are a</li> \
-    <li>warning from this place itself rather than former corpses of the living meanwhile the corpses are- just that.</li> \
-    <li>Third things last- take things slow, this place tends to be forgiving if you are slow, you wont die, if you see a red light and want to take it on, plan out a course</li> \
-    <li>to run to in case you need space to shoot them down while theyre chasing you- make sure to take note of where dead ends are and where the doors are too, i reccomend</li> \
-    <li>bolting the doors open as that way you wont lose precious time running from -it- from having to stop and re-open doors. Also, dont listen to the Void, I learnt that quickly. It likes to pretend to be your loved ones.</li>"
+	<li>If you are reading this note, this means youve ended up here in this hell, these hallways, that means you fucking screwed up.</li> \
+	<li>These hallways are cruel and unforgiving- yet, kind and gentle when you are at youre worst, so here are some tips to help you get through things. Because ive been here for a long time.</li> \
+	<li>First things first, the red lights, if you see red lights at a door- fucking think twice before opening it, like the meaning most associated with the color RED it means BAD, but risk equals reward so take it at your own risk.</li> \
+	<li>Second thing is situational awareness, most things here- are not as they seem, if you see corpses near a door theres probably a fucking demon behind it or some fuckoff anomaly-</li> \
+	<li>This tends to scale with the number of corpses (fucking obviously), something we found out in my squad is that the remains, have no DNA but the corpses do, its like if the remains are a</li> \
+	<li>warning from this place itself rather than former corpses of the living meanwhile the corpses are- just that.</li> \
+	<li>Third things last- take things slow, this place tends to be forgiving if you are slow, you wont die, if you see a red light and want to take it on, plan out a course</li> \
+	<li>to run to in case you need space to shoot them down while theyre chasing you- make sure to take note of where dead ends are and where the doors are too, i reccomend</li> \
+	<li>bolting the doors open as that way you wont lose precious time running from -it- from having to stop and re-open doors. Also, dont listen to the Void, I learnt that quickly. It likes to pretend to be your loved ones.</li>"
