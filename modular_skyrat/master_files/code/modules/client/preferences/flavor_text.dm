@@ -18,7 +18,7 @@
 	return FALSE // To prevent the not-implemented runtime
 
 /datum/preference/text/ooc_notes
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_OOC_PREFS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ooc_notes"
 	maximum_value_length = MAX_FLAVOR_LEN
