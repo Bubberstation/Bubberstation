@@ -8,7 +8,7 @@
 	target.dna.features["flavor_text"] = value
 
 /datum/preference/text/silicon_flavor_text
-	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
+	category = PREFERENCE_CATEGORY_SILICON_PREFS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "silicon_flavor_text"
 	maximum_value_length = MAX_FLAVOR_LEN
