@@ -29,7 +29,7 @@
 		return
 	if(sub.stat == DEAD)
 		return
-	examine_list += span_purple("You can sense submissiveness irradiating from them.")
+	examine_list += span_purple("You sense an aura of submissiveness radiating from them.")
 
 /datum/quirk/dominant_aura/proc/on_snap(atom/source, datum/emote/emote_args)
 	SIGNAL_HANDLER
