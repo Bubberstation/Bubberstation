@@ -202,6 +202,8 @@ export type PreferencesMenuData = {
       [otherKey: string]: unknown;
     };
     secondary_features: Record<string, unknown>;
+    character_basics: Record<string, unknown>; // BUBBER EDIT ADDITION: more character setup tabs
+    ooc_preferences: Record<string, unknown>; // BUBBER EDIT ADDITION: more character setup tabs
     supplemental_features: Record<string, unknown>;
     manually_rendered_features: Record<string, string>;
 

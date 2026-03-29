@@ -14,3 +14,6 @@
 #define ORGAN_PREF_POSI_BRAIN "Positronic Brain"
 #define ORGAN_PREF_MMI_BRAIN "Man-Machine Interface"
 #define ORGAN_PREF_CIRCUIT_BRAIN "Circuitboard"
+
+#define PREFERENCE_CATEGORY_CHARACTER_BASICS "character_basics"
+#define PREFERENCE_CATEGORY_OOC_PREFS "ooc_preferences"

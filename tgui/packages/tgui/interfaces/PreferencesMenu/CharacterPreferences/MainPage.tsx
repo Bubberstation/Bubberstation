@@ -495,6 +495,13 @@ export function MainPage(props: MainPageProps) {
   const contextualPreferences =
     data.character_preferences.secondary_features || [];
 
+  // BUBBER EDIT ADDITION BEGIN: more character setup tabs
+  const characterBasicsPreferences =
+    data.character_preferences.character_basics || [];
+
+  const oocPrefPreferences = data.character_preferences.ooc_preferences || [];
+  // BUBBER EDIT ADDITION END: more character setup tabs
+
   const mainFeatures = [
     ...Object.entries(data.character_preferences.clothing ?? {}),
     ...Object.entries(data.character_preferences.features ?? {}),
@@ -525,14 +532,42 @@ export function MainPage(props: MainPageProps) {
 
   // BUBBER EDIT ADDITION BEGIN: SWAPPABLE PREF MENUS
   enum PrefPage {
+    CharBasics, // Character basics
+    OOCPref, // OOC preferences
     Visual, // The visual parts
     Lore, // Lore, Flavor Text, Age, Records
   }
 
-  const [currentPrefPage, setCurrentPrefPage] = useState(PrefPage.Visual);
+  const [currentPrefPage, setCurrentPrefPage] = useState(PrefPage.CharBasics);
 
   let prefPageContents;
   switch (currentPrefPage) {
+    case PrefPage.CharBasics:
+      prefPageContents = (
+        <PreferenceList
+          randomizations={getRandomization(
+            characterBasicsPreferences,
+            serverData,
+            randomBodyEnabled,
+          )}
+          preferences={characterBasicsPreferences}
+          maxHeight="auto"
+        />
+      );
+      break;
+    case PrefPage.OOCPref:
+      prefPageContents = (
+        <PreferenceList
+          randomizations={getRandomization(
+            oocPrefPreferences,
+            serverData,
+            randomBodyEnabled,
+          )}
+          preferences={oocPrefPreferences}
+          maxHeight="auto"
+        />
+      );
+      break;
     case PrefPage.Visual:
       prefPageContents = (
         <PreferenceList
@@ -701,6 +736,24 @@ export function MainPage(props: MainPageProps) {
         <Stack.Item grow basis={0} ml="4px">
           <Stack vertical fill>
             <Stack>
+              <Stack.Item grow={2}>
+                <PageButton
+                  currentPage={currentPrefPage}
+                  page={PrefPage.CharBasics}
+                  setPage={setCurrentPrefPage}
+                >
+                  Character Basics
+                </PageButton>
+              </Stack.Item>
+              <Stack.Item grow={2}>
+                <PageButton
+                  currentPage={currentPrefPage}
+                  page={PrefPage.OOCPref}
+                  setPage={setCurrentPrefPage}
+                >
+                  OOC Preferences
+                </PageButton>
+              </Stack.Item>
               <Stack.Item grow={2}>
                 <PageButton
                   currentPage={currentPrefPage}
