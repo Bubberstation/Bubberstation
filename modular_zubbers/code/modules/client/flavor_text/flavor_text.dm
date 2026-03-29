@@ -12,7 +12,7 @@
 	var/art_ref = ""
 
 /datum/preference/text/flavor_text_nsfw
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "flavor_text_nsfw"
 	maximum_value_length = MAX_FLAVOR_LEN
