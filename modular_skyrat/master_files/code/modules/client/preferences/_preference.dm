@@ -92,7 +92,7 @@
  */
 /datum/preference/toggle/mutant_toggle
 	abstract_type = /datum/preference/toggle/mutant_toggle
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	default_value = FALSE
 
@@ -109,7 +109,7 @@
  */
 /datum/preference/choiced/mutant_choice
 	abstract_type = /datum/preference/choiced/mutant_choice
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 
 	/// Path to the default sprite accessory

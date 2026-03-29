@@ -131,7 +131,7 @@
 	usr?.client?.prefs.art_ref = value
 
 /datum/preference/toggle/art_ref_nsfw
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "art_ref_nsfw"
 	default_value = FALSE

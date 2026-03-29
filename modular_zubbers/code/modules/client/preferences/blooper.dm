@@ -1,5 +1,5 @@
 /datum/preference/choiced/blooper
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "blooper_choice"
 
@@ -26,7 +26,7 @@
 	return data
 
 /datum/preference/numeric/blooper_speed
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "blooper_speed"
 	minimum = 0
@@ -42,7 +42,7 @@
 	return ..() && length(SSblooper.blooper_list)
 
 /datum/preference/numeric/blooper_pitch
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "blooper_pitch"
 	minimum = 0
@@ -58,7 +58,7 @@
 	return ..() && length(SSblooper.blooper_list)
 
 /datum/preference/numeric/blooper_pitch_range
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "blooper_pitch_range"
 	minimum = 0
