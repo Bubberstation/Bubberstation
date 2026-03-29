@@ -79,8 +79,9 @@
 	return ..()
 
 /obj/item/mod/module/hypno_visor/on_part_activation()
+	overlay_state_inactive = null // Have you tried turning it off and back on again?
+	overlay_state_active = null
 	if(module_type == MODULE_PASSIVE)
-		overlay_state_inactive = null // Have you tried turning it off and back on again?
 		if(visor_effect)
 			overlay_state_inactive = "module_hypno_overlay"
 		apply_hypnosis()
@@ -90,8 +91,9 @@
 		mod.wearer.cure_trauma_type(/datum/brain_trauma/very_special/induced_hypnosis, TRAUMA_RESILIENCE_MAGIC)
 
 /obj/item/mod/module/hypno_visor/on_activation(mob/activator)
+	overlay_state_inactive = null // Have you tried turning it off and back on again?
+	overlay_state_active = null
 	if(module_type == MODULE_TOGGLE)
-		overlay_state_active = null // Have you tried turning it off and back on again?
 		if(visor_effect)
 			overlay_state_active = "module_hypno_overlay"
 		apply_hypnosis()
