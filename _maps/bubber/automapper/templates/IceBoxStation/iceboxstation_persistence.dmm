@@ -1457,7 +1457,8 @@
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "de" = (
 /obj/machinery/computer/rdconsole{
-	dir = 4
+	dir = 4;
+	req_access = list("syndicate")
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
@@ -1588,6 +1589,7 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/west,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service/lounge)
 "dq" = (
@@ -5488,6 +5490,7 @@
 	},
 /obj/structure/noticeboard/directional/east,
 /obj/machinery/light/directional/east,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service/lounge)
 "lS" = (
@@ -6091,7 +6094,8 @@
 /obj/structure/fans/tiny,
 /obj/machinery/door/firedoor/heavy,
 /obj/machinery/door/airlock/hatch{
-	id_tag = "syndishipengibed"
+	id_tag = "syndishipengibed";
+	name = "Engineering Officer"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -9064,9 +9068,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/door/firedoor/heavy,
 /obj/machinery/door/airlock/science{
-	id_tag = "syndishipscienced";
-	name = "Head of Research's Quarters";
-	desc = "No sleep more sacred than theirs."
+	name = "Nanite Programming Lab"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
@@ -9460,7 +9462,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/sci/rnd)
 "tK" = (
 /obj/machinery/door/airlock/highsecurity{
-	id_tag = "syndishipmanager";
+	id_tag = "syndishipmanager2";
 	name = "Admiral's Quarters"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -9472,8 +9474,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/duct,
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
 "tL" = (
@@ -11225,6 +11227,7 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service/lounge)
 "xi" = (
@@ -20764,9 +20767,9 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/machinery/netpod,
 /obj/structure/window/reinforced/plasma/spawner/directional/east,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/persistance/sec/interrogation)
 "QG" = (
@@ -24415,6 +24418,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
 "Yw" = (
 /obj/machinery/power/smes/full,
+/obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/utilities)
 "Yx" = (
@@ -24581,8 +24585,8 @@
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "YM" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/machinery/photocopier/gratis,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service/lounge)
 "YN" = (
