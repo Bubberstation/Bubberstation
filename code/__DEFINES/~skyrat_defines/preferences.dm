@@ -17,3 +17,4 @@
 
 #define PREFERENCE_CATEGORY_CHARACTER_BASICS "character_basics"
 #define PREFERENCE_CATEGORY_OOC_PREFS "ooc_preferences"
+#define PREFERENCE_CATEGORY_SILICON_PREFS "silicon_preferences"

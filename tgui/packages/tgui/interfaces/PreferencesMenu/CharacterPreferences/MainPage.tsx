@@ -500,6 +500,9 @@ export function MainPage(props: MainPageProps) {
     data.character_preferences.character_basics || [];
 
   const oocPrefPreferences = data.character_preferences.ooc_preferences || [];
+
+  const siliconPreferences =
+    data.character_preferences.silicon_preferences || [];
   // BUBBER EDIT ADDITION END: more character setup tabs
 
   const mainFeatures = [
@@ -536,6 +539,7 @@ export function MainPage(props: MainPageProps) {
     OOCPref, // OOC preferences
     Visual, // The visual parts
     Lore, // Lore, Flavor Text, Age, Records
+    Silicon, // Silicon prefs
   }
 
   const [currentPrefPage, setCurrentPrefPage] = useState(PrefPage.CharBasics);
@@ -590,6 +594,19 @@ export function MainPage(props: MainPageProps) {
             randomBodyEnabled,
           )}
           preferences={nonContextualPreferences}
+          maxHeight="auto"
+        />
+      );
+      break;
+    case PrefPage.Silicon:
+      prefPageContents = (
+        <PreferenceList
+          randomizations={getRandomization(
+            siliconPreferences,
+            serverData,
+            randomBodyEnabled,
+          )}
+          preferences={siliconPreferences}
           maxHeight="auto"
         />
       );
@@ -770,6 +787,15 @@ export function MainPage(props: MainPageProps) {
                   setPage={setCurrentPrefPage}
                 >
                   Character Lore
+                </PageButton>
+              </Stack.Item>
+              <Stack.Item grow={2}>
+                <PageButton
+                  currentPage={currentPrefPage}
+                  page={PrefPage.Silicon}
+                  setPage={setCurrentPrefPage}
+                >
+                  Silicon Preferences
                 </PageButton>
               </Stack.Item>
             </Stack>
