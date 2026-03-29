@@ -111,8 +111,8 @@
 	if(locate_obj && (locate_obj.skyrat_obj_flags & ANVIL_REPAIR))
 		if(locate_obj.GetComponent(/datum/component/reagent_imbued))
 			var/datum/component/reagent_imbued/reagent_component = locate_obj.GetComponent(/datum/component/reagent_imbued)
-			if(length(reagent_component.imbued_reagent) && user.mind.get_skill_level(/datum/skill/smithing) < SKILL_LEVEL_EXPERT)
-				to_chat(user, span_danger("You need more experience to repair imbued weapons!"))
+			if(reagent_component.imbued_reagent.reagent_list.len >= 1 && !HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
+				to_chat(user, span_danger("You don't know the right trick to repair imbued weapons!"))
 				return ITEM_INTERACT_BLOCKING
 		if(locate_obj.get_integrity() >= locate_obj.max_integrity)
 			balloon_alert(user, "already repaired")
@@ -172,8 +172,8 @@
 
 	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) * incomplete_item.average_wait
 	//todo: change tool cooldown to be attached onto the user
-	COOLDOWN_START(tool, striking_cooldown, skill_modifier)
-	COOLDOWN_START(tool, perfect_strike_window, skill_modifier + user.mind.get_skill_level(/datum/skill/smithing) DECISECONDS)
+	COOLDOWN_START(user, striking_cooldown, skill_modifier)
+	COOLDOWN_START(user, perfect_strike_window, skill_modifier + user.mind.get_skill_level(/datum/skill/smithing) DECISECONDS)
 
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -182,10 +182,10 @@
 	if(HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
 		if(user.mind.get_skill_level(/datum/skill/smithing) >= SKILL_LEVEL_LEGENDARY)
 			return ANVIL_HAMMER_HIT_PERFECT
-		if(!COOLDOWN_FINISHED(tool, perfect_strike_window) && COOLDOWN_FINISHED(tool, striking_cooldown))
+		if(!COOLDOWN_FINISHED(user, perfect_strike_window) && COOLDOWN_FINISHED(user, striking_cooldown))
 			return ANVIL_HAMMER_HIT_PERFECT
 
-	if(!COOLDOWN_FINISHED(tool, striking_cooldown))
+	if(!COOLDOWN_FINISHED(user, striking_cooldown))
 		return ANVIL_HAMMER_HIT_BAD
 
 	return ANVIL_HAMMER_HIT_GOOD

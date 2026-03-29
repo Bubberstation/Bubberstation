@@ -1,7 +1,7 @@
 /obj/item/skillchip/job/blacksmith
 	name = "Smithing F0RG-3M4573-R skillchip"
 	desc = "Grants skills related to blacksmithing and metalworking."
-	auto_traits = list(TRAIT_KNOW_ADVANCED_SMITHING, TRAIT_KNOW_GUNSMITHING)
+	auto_traits = list(TRAIT_KNOW_ADVANCED_SMITHING, TRAIT_KNOW_GUNSMITHING, TRAIT_KNOW_CIRCUIT_SMITHING)
 	skill_name = "Advanced Smithing"
 	skill_description = "Contains schematics for more advanced equipment forging, as well as how to best apply it."
 	skill_icon = "gavel"
@@ -19,5 +19,5 @@
 /datum/supply_pack/misc/smithing_skillchips
 	name = "Smithing Skillchips Crate"
 	desc = "Learn the art of metalworking and build your own weapons! Contains two smithing skillchips."
-	cost = CARGO_CRATE_VALUE * 2.5
+	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/storage/box/skillchips/supply,)

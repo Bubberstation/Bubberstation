@@ -3,8 +3,6 @@
 
 /// The number of hits you are set back when a bad hit is made
 #define BAD_HIT_PENALTY 3
-/// The maximum force that can be given to a weapon via perfect hits
-#define MAX_PERFECT_FORCE_BONUS 3
 /// Speed of creating weapons
 #define WEAPON_ASSEMBLY_SPEED 2 SECONDS
 
@@ -64,7 +62,7 @@
 		recipe_names_to_path[recipe_to_take_from.recipe_name] = recipe
 		choice_list_skill_filter[recipe_to_take_from.recipe_name] = recipe_to_take_from.relevant_skill
 		choice_list_skill_level_filter[recipe_to_take_from.recipe_name] = recipe_to_take_from.relevant_skill_level
-		choice_list_trait_filter[recipe_to_take_from.recipe_name] = recipe_to_take_from.requires_smithing_chip_knowledge
+		choice_list_trait_filter[recipe_to_take_from.recipe_name] = recipe_to_take_from.required_traits
 		qdel(recipe_to_take_from)
 
 
@@ -165,7 +163,7 @@
 		return FALSE
 	if(!isnull(choice_list_trait_filter[key]))
 		for(var/my_trait in choice_list_trait_filter)
-			if !HAS_TRAIT(user, my_trait)
+			if (!HAS_TRAIT(user, my_trait))
 				return FALSE
 	return TRUE
 
@@ -216,7 +214,7 @@
 
 	var/skill_modifier = user.mind.get_skill_modifier(selected_recipe.relevant_skill, SKILL_SPEED_MODIFIER)
 
-	playsound(source, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)
+	playsound(src, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)
 	if(do_after(selected_recipe.time_to_assemble * skill_modifier) && !length(contents))
 		var/list/things_to_use = can_we_craft_this(selected_recipe.recipe_requirements, TRUE)
 
@@ -247,7 +245,7 @@
 	if(!do_after(WEAPON_ASSEMBLY_SPEED))
 		return ITEM_INTERACT_BLOCKING
 
-	playsound(source, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)
+	playsound(src, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)
 	var/list/things_to_use = can_we_craft_this(wood_required_for_weapons, TRUE)
 	var/obj/thing_just_made = create_thing_from_requirements(things_to_use, user = user, skill_to_grant = /datum/skill/smithing, skill_amount = 30, completing_a_weapon = TRUE)
 
@@ -326,34 +324,15 @@
 	if(completing_a_weapon)
 		recipe_to_follow = new /datum/crafting_bench_recipe/weapon_completion_recipe
 
-	var/materials_to_transfer = list()
-	var/list/temporary_materials_list = use_or_delete_recipe_requirements(things_to_use, recipe_to_follow)
-	for(var/material in temporary_materials_list)
-		materials_to_transfer[material] += temporary_materials_list[material]
-
 	var/obj/newly_created_thing
 
 	if(completing_a_weapon)
-		var/obj/item/forging/complete/completed_forge_item = contents[1]
-		newly_created_thing = new completed_forge_item.spawning_item(src)
-		if(newly_created_thing.force > 0) //we don't want the staff to get added damage
-			newly_created_thing.force += clamp(completed_forge_item.perfect_ratio * MAX_PERFECT_FORCE_BONUS, 0, MAX_PERFECT_FORCE_BONUS)
-
-		if(completed_forge_item.custom_materials) // We need to add the weapon head's materials to the completed item, too
-			for(var/custom_material in completed_forge_item.custom_materials)
-				materials_to_transfer[custom_material] += completed_forge_item.custom_materials[custom_material]
-
-		qdel(completed_forge_item) // And then we also need to 'use' the item
-
-	else
-		newly_created_thing = new recipe_to_follow.resulting_item(src)
+		things_to_use.Add(contents[1])
+	newly_created_thing = recipe_to_follow.create_using_item_list(src)
 
 	if(!newly_created_thing)
 		message_admins("[src] just failed to create something while crafting!")
 		return FALSE
-
-	if(recipe_to_follow.transfers_materials)
-		newly_created_thing.set_custom_materials(materials_to_transfer, multiplier = 1)
 
 	user.mind.adjust_experience(skill_to_grant, skill_amount)
 
@@ -361,41 +340,6 @@
 	update_appearance()
 	return newly_created_thing
 
-/// Takes the given list, things_to_use, compares it to recipe_to_follow's requirements, then either uses items from a stack, or deletes them otherwise. Returns custom material of forge items in the end.
-/obj/structure/reagent_crafting_bench/proc/use_or_delete_recipe_requirements(list/things_to_use, datum/crafting_bench_recipe/recipe_to_follow)
-	var/list/materials_to_transfer = list()
-
-	for(var/obj/requirement_item as anything in things_to_use)
-		if(isstack(requirement_item))
-			var/stack_type
-			for(var/recipe_thing_to_reference in recipe_to_follow.recipe_requirements)
-				if(!istype(requirement_item, recipe_thing_to_reference))
-					continue
-				stack_type = recipe_thing_to_reference
-				break
-
-			var/obj/item/stack/requirement_stack = requirement_item
-
-			if(requirement_stack.amount < recipe_to_follow.recipe_requirements[stack_type])
-				recipe_to_follow.recipe_requirements[stack_type] -= requirement_stack.amount
-				requirement_stack.use(requirement_stack.amount)
-				continue
-
-			requirement_stack.use(recipe_to_follow.recipe_requirements[stack_type])
-
-		else if(istype(requirement_item, /obj/item/forging/complete))
-			if(!requirement_item.custom_materials || !recipe_to_follow.transfers_materials)
-				qdel(requirement_item)
-				continue
-
-			for(var/custom_material in requirement_item.custom_materials)
-				materials_to_transfer += custom_material
-			qdel(requirement_item)
-
-		else
-			qdel(requirement_item)
-
-	return materials_to_transfer
 
 
 /// Gets movable atoms within one tile of range of the crafting bench

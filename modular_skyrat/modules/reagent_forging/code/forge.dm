@@ -572,12 +572,8 @@
 
 /// Handles weapon reagent imbuing
 /obj/structure/reagent_forge/proc/handle_weapon_imbue(obj/attacking_item, mob/living/user)
-	if(user.mind.get_skill_level(/datum/skill/smithing) < SKILL_LEVEL_MASTER)
-		to_chat(user, span_danger("You need more experience to understand the fine workings of imbuing!"))
-		return
-	//This code will refuse all non-ashwalkers & non-icecats from imbuing
-	if(!ishuman(user))
-		to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
+	if(!HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
+		to_chat(user, span_danger("You don't know the right trick to imbue this weapon!"))
 		return
 
 	in_use = TRUE
@@ -590,27 +586,12 @@
 		fail_message(user, "cannot imbue")
 		return
 
-	if(length(weapon_component.imbued_reagent))
-		fail_message(user, "already imbued")
-		return
-
 	if(!do_after(user, 10 SECONDS, target = src))
 		fail_message(user, "stopped imbuing")
 		return
 
-	for(var/datum/reagent/weapon_reagent as anything in attacking_weapon.reagents.reagent_list)
-		if(weapon_reagent.volume < MINIMUM_IMBUING_REAGENT_AMOUNT)
-			attacking_weapon.reagents.remove_reagent(weapon_reagent.type)
-			continue
+	weapon_component.set_reagent_imbue(attacking_weapon.reagents, clear_source_reagents = TRUE, smithing_oil_bonus = TRUE)
 
-		weapon_component.imbued_reagent += weapon_reagent.type
-		attacking_weapon.name = "[weapon_reagent.name] [attacking_weapon.name]"
-
-	attacking_weapon.color = mix_color_from_reagents(attacking_weapon.reagents.reagent_list)
-	if(attacking_weapon.armour_penetration < 10)
-		attacking_weapon.armour_penetration = 0
-	else
-		attacking_weapon.armour_penetration -= 10
 	balloon_alert_to_viewers("imbued [attacking_weapon]")
 	user.mind.adjust_experience(/datum/skill/smithing, 60)
 	playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
@@ -645,15 +626,7 @@
 		fail_message(user, "stopped imbuing")
 		return
 
-	for(var/datum/reagent/clothing_reagent as anything in attacking_clothing.reagents.reagent_list)
-		if(clothing_reagent.volume < MINIMUM_IMBUING_REAGENT_AMOUNT)
-			attacking_clothing.reagents.remove_reagent(clothing_reagent.type, include_subtypes = TRUE)
-			continue
-
-		clothing_component.imbued_reagent += clothing_reagent.type
-		attacking_clothing.name = "[clothing_reagent.name] [attacking_clothing.name]"
-
-	attacking_clothing.color = mix_color_from_reagents(attacking_clothing.reagents.reagent_list)
+	clothing_component.set_reagent_imbue(attacking_clothing.reagents, clear_source_reagents = TRUE, smithing_oil_bonus = TRUE)
 	balloon_alert_to_viewers("imbued [attacking_clothing]")
 	user.mind.adjust_experience(/datum/skill/smithing, 60)
 	playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)

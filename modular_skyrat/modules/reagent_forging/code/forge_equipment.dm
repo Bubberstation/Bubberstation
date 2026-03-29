@@ -38,6 +38,8 @@
 		/obj/structure/reagent_anvil,
 		/obj/structure/reagent_crafting_bench
 	)
+
+/mob/living
 	//the time between each strike
 	COOLDOWN_DECLARE(striking_cooldown)
 	//the time it takes to prepare a perfect strike. should always be > striking_cooldown

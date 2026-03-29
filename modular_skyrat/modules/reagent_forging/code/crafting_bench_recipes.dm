@@ -1,3 +1,6 @@
+/// The maximum force that can be given to a weapon via perfect hits
+#define MAX_PERFECT_FORCE_BONUS 3
+
 /datum/crafting_bench_recipe
 	/// The name of the recipe to show
 	var/recipe_name = "generic debug recipe"
@@ -17,6 +20,61 @@
 	var/required_traits = null
 	/// How much experience in our relevant skill do we give upon completion?
 	var/relevant_skill_reward = 30
+	/// Do the crafting pieces go into the result item, or get qdel'd?
+	var/insert_ingredients_into_product_contents
+
+///Creates the item using the given list of ingredients -- it's assumed that this is only called after the list is verified to contain all ingredients. Probably shouldn't be parent called due to ingredient deletion.
+/datum/crafting_bench_recipe/proc/create_using_item_list(list/item_list, mob/living/user)
+	var/obj/item/returner = new resulting_item(src)
+
+	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner, user)
+	put_materials_in_product_from_ingredients(item_list, returner)
+	consume_crafting_ingredients(item_list, returner)
+	return returner
+
+/datum/crafting_bench_recipe/proc/transfer_reagent_imbues_from_ingredients_to_product(list/ingredients, obj/item/product, mob/living/user)
+	//imbued of the final product should be approx. imbued of all containing products
+	var/datum/component/reagent_imbued/output_reagent_component = product.GetComponent(/datum/component/reagent_imbued)
+	var/datum/reagents/my_reagents = combine_reagent_imbues(ingredients)
+	output_reagent_component.set_reagent_imbue(my_reagents, clear_source_reagents = TRUE, smithing_oil_bonus = HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
+
+/datum/crafting_bench_recipe/proc/combine_reagent_imbues(list/reagent_imbued_items)
+	var/datum/reagents/reagents_sum = new(maximum = 4096, new_flags = NO_REACT)
+	var/datum/component/reagent_imbued/current_reagent_component
+	for(var/item in reagent_imbued_items)
+		current_reagent_component = item.GetComponent(/datum/component/reagent_imbued)
+		if(!isnull(current_reagent_component))
+			current_reagent_component.imbued_reagent.trans_to(reagents_sum, current_reagent_component.imbued_reagent.total_volume)
+
+	return reagents_sum
+
+/datum/crafting_bench_recipe/proc/put_materials_in_product_from_ingredients(list/ingredients, obj/item/product)
+	if(transfers_materials)
+		var/materials_to_transfer = list()
+		for(var/obj/requirement_item as anything in ingredients)
+			if(istype(requirement_item, /obj/item/forging/complete))
+				if(!requirement_item.custom_materials || !transfers_materials)
+					continue
+
+				for(var/custom_material in requirement_item.custom_materials)
+					materials_to_transfer += custom_material
+
+		product.set_custom_materials(materials_to_transfer, multiplier = 1)
+
+
+/datum/crafting_bench_recipe/proc/consume_crafting_ingredients(list/things_to_use, obj/item/product)
+	for(var/obj/item/thing in things_to_use)
+		if(isstack(thing))
+			var/obj/item/stack/stack_thing
+			stack_thing = thing
+			var/stack_type = stack_thing.type
+			var/amount_to_subtract = recipe_requirements[stack_type]
+			if(insert_ingredients_into_product_contents)
+				stack_thing.split_stack(amount_to_subtract).forceMove(product)
+			else
+				stack_thing.use(amount_to_subtract, transfer = FALSE, check = TRUE)
+		else
+			qdel_null(thing)
 
 /datum/crafting_bench_recipe/weapon_completion_recipe //Exists so I don't have to modify the code too much for weapon completion
 	recipe_name = "generic weapon completion recipe (should not be visible)"
@@ -24,6 +82,21 @@
 		/obj/item/stack/sheet/mineral/wood = 2,
 	)
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
+
+/datum/crafting_bench_recipe/weapon_completion_recipe/create_using_item_list(list/item_list, mob/living/user)
+	var/obj/item/forging/complete/completed_forge_item = is_path_in_list(/obj/item/forging/complete/, item_list, TRUE)
+	if(isnull(completed_forge_item))
+		stack_trace("[src] didn't contain a valid reagent smithing item when completed!")
+
+	var/obj/item/returner = new weapon_head.resulting_item(src)
+	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner)
+	put_materials_in_product_from_ingredients(item_list, returner, user)
+
+	if(returner.force > 0) //we don't want the staff to get added damage
+		returner.force += clamp(completed_forge_item.perfect_ratio * MAX_PERFECT_FORCE_BONUS, 0, MAX_PERFECT_FORCE_BONUS)
+
+	consume_crafting_ingredients(item_list, returner)
+	return returner
 
 /datum/crafting_bench_recipe/plate_helmet
 	recipe_name = "plate helmet"
@@ -166,4 +239,6 @@
 	)
 	resulting_item = /obj/item/empty_circuit
 	time_to_assemble = 20 SECONDS
-	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
+	required_traits = list(TRAIT_KNOW_CIRCUIT_SMITHING)
+
+#undef MAX_PERFECT_FORCE_BONUS
