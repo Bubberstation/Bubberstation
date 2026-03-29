@@ -15,8 +15,8 @@
 	overlay_icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
 
 	module_type = MODULE_TOGGLE //These three are changed when the control wire is snipped
-	overlay_state_active = null
-	overlay_state_inactive = "module_hypno_overlay"
+	overlay_state_active = "module_hypno_overlay"
+	overlay_state_inactive = null
 
 	var/hypno_message = "Obey"
 		///Does the visor overlay show on the character sprite when installed? Only eligible with certain skins.
