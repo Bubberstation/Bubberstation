@@ -50,7 +50,7 @@
 	desc = "A bleeding-edge armored suit designed by Cybersun Industries in tandem with Nakamura Engineering."
 	extended_desc = "A strikingly unique looking up-armored MODsuit which calls back to Cybersun's long lineage, \
 		the Daimyo MODsuit was designed in tandem with Nakamura Engineering's top divisions. It utilizes advanced technology\
-    	provided to them by a secretive Cybersun West subsidiary known only as the Invictia Research Division. \
+		provided to them by a secretive Cybersun West subsidiary known only as the Invictia Research Division. \
 		Created as a response to the Apocryphal MODsuit, the Daimyo MODsuit provides less overall protection \
 		to lean on a more agressive approach to confrontations. Only seen worn by Cybersun Executives and \
 		high ranking employees, this MODsuit symbolizes Cybersun excellence and power. This one has been modified \
@@ -90,7 +90,7 @@
 				SEALED_INVISIBILITY = HIDEJUMPSUIT,
 				UNSEALED_MESSAGE = CHESTPLATE_UNSEAL_MESSAGE,
 				SEALED_MESSAGE = CHESTPLATE_SEAL_MESSAGE,
-				),
+			),
 			/obj/item/clothing/gloves/mod = list(
 				UNSEALED_CLOTHING = THICKMATERIAL,
 				SEALED_CLOTHING = STOPSPRESSUREDAMAGE,
