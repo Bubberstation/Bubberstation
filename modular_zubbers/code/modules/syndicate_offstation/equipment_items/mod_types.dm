@@ -25,6 +25,7 @@
 /obj/item/mod/control/pre_equipped/daimyo
     theme = /datum/mod_theme/daimyo
     applied_cell = /obj/item/stock_parts/power_store/cell/hyper
+    starting_frequency = MODLINK_FREQ_SYNDICATE
     applied_modules = list(
         /obj/item/mod/module/storage/syndicate,
         /obj/item/mod/module/dna_lock,
@@ -76,7 +77,7 @@
 			MOD_WORN_ICON_OVERRIDE = 'modular_zubbers/icons/mob/clothing/modsuit/mod_clothing.dmi',
             /obj/item/clothing/head/mod = list(
                 UNSEALED_CLOTHING = SNUG_FIT|THICKMATERIAL,
-                SEALED_CLOTHING = STOPSPRESSUREDAMAGE|HEADINTERNALS,
+                SEALED_CLOTHING = STOPSPRESSUREDAMAGE|HEADINTERNALS|BLOCK_GAS_SMOKE_EFFECT,
                 UNSEALED_INVISIBILITY = HIDEEARS|HIDEHAIR,
                 SEALED_INVISIBILITY = HIDEFACIALHAIR|HIDEMASK|HIDEEYES|HIDEFACE|HIDESNOUT,
                 SEALED_COVER = HEADCOVERSMOUTH|HEADCOVERSEYES|PEPPERPROOF,
