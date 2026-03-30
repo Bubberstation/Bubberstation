@@ -12,7 +12,10 @@
 	wound_bonus = CANT_WOUND
 	range = 16
 	embed_type = /datum/embedding/arrow
-	var/tribal_damage_bonus = 20 //If you're an icemoon dweller, or an ashwalker.
+	/// If you're an icemoon dweller, or an ashwalker, you gain this on top of being more effective against armor.
+	var/tribal_damage_bonus = 20
+	/// Does this arrow benefit from being a tribal?
+	var/gets_tribal_bonus = TRUE
 	faction_bonus_force = 10 //Bonus force dealt against certain factions
 	nemesis_paths = list(
 		/mob/living/simple_animal/hostile/asteroid,
@@ -25,9 +28,18 @@
 	if(isnull(target))
 		return ..()
 
-	if(istype(user?.mind?.assigned_role, /datum/job/ash_walker) || istype(user?.mind?.assigned_role, /datum/job/primitive_catgirl))
+	var/effective_usage = FALSE
+
+	if(!isnull(fired_from) && HAS_TRAIT(fired_from, TRAIT_POWERFUL_BOW))
+		effective_usage = TRUE
+	else if(!gets_tribal_bonus && istype(user?.mind?.assigned_role, /datum/job/ash_walker) || istype(user?.mind?.assigned_role, /datum/job/primitive_catgirl))
 		damage += tribal_damage_bonus
+		effective_usage = TRUE
+
+	if(effective_usage)
 		weak_against_armour = FALSE
+		if (wound_bonus <= CANT_WOUND)
+			wound_bonus = -10
 
 	return ..()
 

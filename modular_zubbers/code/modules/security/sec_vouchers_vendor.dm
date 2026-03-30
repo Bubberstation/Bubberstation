@@ -66,6 +66,39 @@
 		/obj/item/shield/riot/flash,
 		)
 
+/datum/voucher_set/security/primary/archery
+	name = "Archery Kit"
+	description = "A powerful bow, a training manual, and a quiver with non/less-than-lethal arrows. You will still need to order the fletching kit from cargo if you want to make lethal arrows."
+	icon = 'icons/obj/weapons/bows/bows.dmi'
+	icon_state = "hardlightbow"
+	set_items = list(
+		/obj/item/gun/ballistic/bow/security,
+		/obj/item/storage/bag/quiver/lesser/security,
+		/obj/item/book/granter/crafting_recipe/fletching/advanced,
+		/obj/item/hatchet,
+	)
+
+/obj/item/storage/bag/quiver/lesser/security
+
+/obj/item/storage/bag/quiver/lesser/security/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/ammo_casing/arrow/blunt = 9,
+		/obj/item/ammo_casing/arrow/taser = 1
+	)
+
+	generate_items_inside(items_inside, src)
+
+/obj/item/book/granter/crafting_recipe/fletching/advanced
+	name = "Aim for the knees, not the eyes!"
+	desc = "A manual on how to construct sub-lethal bows & arrows, how best to use them... and how to construct violins?"
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/shortbow,
+		/datum/crafting_recipe/blunted_arrow,
+		/datum/crafting_recipe/taser_arrow,
+		/datum/crafting_recipe/violin,
+	)
+	uses = 1
+
 /datum/voucher_set/security/primary/nt_usp
 	name = "NT-USP Pistol"
 	description = "A small pistol that uses hardlight technology to synthesize bullets. Due to its low power, it doesn't have much use besides tiring out criminals."
