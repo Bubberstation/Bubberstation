@@ -37,7 +37,7 @@
 
 	if(!isnull(fired_from) && HAS_TRAIT(fired_from, TRAIT_POWERFUL_BOW))
 		effective_usage = TRUE
-	else if(gets_tribal_bonus && istype(user?.mind?.assigned_role, /datum/job/ash_walker) || istype(user?.mind?.assigned_role, /datum/job/primitive_catgirl))
+	if(gets_tribal_bonus && istype(user?.mind?.assigned_role, /datum/job/ash_walker) || istype(user?.mind?.assigned_role, /datum/job/primitive_catgirl))
 		damage += tribal_damage_bonus
 		effective_usage = TRUE
 
