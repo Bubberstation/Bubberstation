@@ -242,7 +242,7 @@
 		balloon_alert(user, "not enough wood")
 		return ITEM_INTERACT_BLOCKING
 
-	if(!do_after(WEAPON_ASSEMBLY_SPEED))
+	if(!do_after(user, WEAPON_ASSEMBLY_SPEED))
 		return ITEM_INTERACT_BLOCKING
 
 	playsound(src, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)

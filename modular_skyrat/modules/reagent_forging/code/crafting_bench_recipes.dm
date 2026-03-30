@@ -41,7 +41,7 @@
 /datum/crafting_bench_recipe/proc/combine_reagent_imbues(list/reagent_imbued_items)
 	var/datum/reagents/reagents_sum = new(maximum = 4096, new_flags = NO_REACT)
 	var/datum/component/reagent_imbued/current_reagent_component
-	for(var/item in reagent_imbued_items)
+	for(var/obj/item in reagent_imbued_items)
 		current_reagent_component = item.GetComponent(/datum/component/reagent_imbued)
 		if(!isnull(current_reagent_component))
 			current_reagent_component.imbued_reagent.trans_to(reagents_sum, current_reagent_component.imbued_reagent.total_volume)
@@ -70,11 +70,15 @@
 			var/stack_type = stack_thing.type
 			var/amount_to_subtract = recipe_requirements[stack_type]
 			if(insert_ingredients_into_product_contents)
-				stack_thing.split_stack(amount_to_subtract).forceMove(product)
+				var/obj/item/stack/temp_stack = stack_thing.split_stack(amount_to_subtract)
+				temp_stack.forceMove(product)
 			else
 				stack_thing.use(amount_to_subtract, transfer = FALSE, check = TRUE)
 		else
-			qdel_null(thing)
+			if(insert_ingredients_into_product_contents)
+				thing.forceMove(product)
+			else
+				qdel(thing)
 
 /datum/crafting_bench_recipe/weapon_completion_recipe //Exists so I don't have to modify the code too much for weapon completion
 	recipe_name = "generic weapon completion recipe (should not be visible)"
@@ -84,16 +88,16 @@
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 /datum/crafting_bench_recipe/weapon_completion_recipe/create_using_item_list(list/item_list, mob/living/user)
-	var/obj/item/forging/complete/completed_forge_item = is_path_in_list(/obj/item/forging/complete/, item_list, TRUE)
-	if(isnull(completed_forge_item))
-		stack_trace("[src] didn't contain a valid reagent smithing item when completed!")
+	var/obj/item/forging/complete/weapon_head = is_path_in_list(/obj/item/forging/complete/, item_list, TRUE)
+	if(isnull(weapon_head))
+		stack_trace("[src] didn't contain a valid reagent smithing weapon head when its recipe was completed!")
 
-	var/obj/item/returner = new weapon_head.resulting_item(src)
+	var/obj/item/returner = new weapon_head.spawning_item(src)
 	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner)
 	put_materials_in_product_from_ingredients(item_list, returner, user)
 
 	if(returner.force > 0) //we don't want the staff to get added damage
-		returner.force += clamp(completed_forge_item.perfect_ratio * MAX_PERFECT_FORCE_BONUS, 0, MAX_PERFECT_FORCE_BONUS)
+		returner.force += clamp(weapon_head.perfect_ratio * MAX_PERFECT_FORCE_BONUS, 0, MAX_PERFECT_FORCE_BONUS)
 
 	consume_crafting_ingredients(item_list, returner)
 	return returner

@@ -1,4 +1,7 @@
+///amount of chems that can be stored into the result
 #define MAX_PRE_IMBUE_STORAGE 250
+///amount of chems that the result reads as
+#define DEFAULT_IMBUE_STORAGE 10
 #define REAGENT_CLOTHING_INJECT_AMOUNT 1
 #define REAGENT_WEAPON_INJECT_AMOUNT 4
 #define REAGENT_STAFF_INJECT_AMOUNT 10
@@ -11,7 +14,7 @@
 	///required type to attach to
 	var/obj/item/required_type = /obj/item
 	//the imbued reagents
-	var/datum/reagents/imbued_reagent
+	var/datum/reagents/imbued_reagent = new(10, NO_REACT)
 	///the text to show the player what happens
 	var/examine_imbued_description = "It is currently imbued with the following:"
 
@@ -20,7 +23,6 @@
 		return COMPONENT_INCOMPATIBLE //they need to be clothing, I already said this
 	parent_item = parent
 	parent_item.create_reagents(MAX_PRE_IMBUE_STORAGE, INJECTABLE | REFILLABLE)
-
 
 /datum/component/reagent_imbued/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
@@ -56,7 +58,7 @@
 	var/checking_slot
 	///the human that is wearing the parent_item
 	var/mob/living/carbon/human/cloth_wearer
-	var/datum/reagents/imbued_reagent = new(maximum = REAGENT_CLOTHING_INJECT_AMOUNT, new_flags = NO_REACT)
+	imbued_reagent = new(maximum = REAGENT_CLOTHING_INJECT_AMOUNT, new_flags = NO_REACT)
 
 
 	examine_imbued_description = "It will slowly administer the following to its wearer:"
@@ -108,7 +110,7 @@
 //the component that is attached to weapons that allows them to be imbued
 //ONLY USE THIS FOR WEAPONS
 /datum/component/reagent_imbued/weapon
-	imbued_reagent = new(maximum = REAGENT_WEAPON_INJECT_AMOUNT, NO_REACT)
+	imbued_reagent = new(REAGENT_WEAPON_INJECT_AMOUNT, NO_REACT)
 	examine_imbued_description = "Upon hit, it will inject the following to its victim:"
 	var/extra_force_oil_bonus = 0
 /datum/component/reagent_imbued/weapon/Initialize(...)
