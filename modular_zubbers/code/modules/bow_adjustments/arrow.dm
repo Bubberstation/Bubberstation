@@ -16,6 +16,8 @@
 	var/tribal_damage_bonus = 20
 	/// Does this arrow benefit from being a tribal?
 	var/gets_tribal_bonus = TRUE
+	/// If TRUE, this arrow will not obtain any benefits from being used by tribals or from a powerful bow.
+	var/already_effective = FALSE
 	faction_bonus_force = 10 //Bonus force dealt against certain factions
 	nemesis_paths = list(
 		/mob/living/simple_animal/hostile/asteroid,
@@ -24,6 +26,9 @@
 	)
 
 /obj/projectile/bullet/arrow/prehit_pierce(mob/living/target)
+	if (already_effective)
+		return ..()
+
 	var/mob/living/carbon/human/user = firer
 	if(isnull(target))
 		return ..()
@@ -66,3 +71,6 @@
 	wound_bonus = CANT_WOUND
 	faction_bonus_force = 90
 	embed_type = /datum/embedding/arrow
+
+/obj/projectile/bullet/arrow/plastic
+	already_effective = TRUE

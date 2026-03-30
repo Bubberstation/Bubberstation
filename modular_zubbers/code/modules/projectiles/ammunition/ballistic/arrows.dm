@@ -65,7 +65,7 @@
 	damage = 0 // lol
 	stamina = 5
 	/// Staimna damage to be dealt by the shock. Separate from stamina - insulated individuals might be immune to the shock.
-	var/shock_damage = 65
+	var/shock_damage = 40 //stamcrit in three
 	gets_tribal_bonus = FALSE // technically a modern arrow + meant to be less lethal
 	embed_type = null
 	sharpness = NONE
@@ -75,7 +75,7 @@
 
 	if (pierce_hit)
 		return
-	do_sparks(1, TRUE, src)
+	do_sparks(3, TRUE, src)
 	if (. == BULLET_ACT_BLOCK || blocked >= 100 || !isliving(target))
 		return
 	var/mob/living/living_target = target
