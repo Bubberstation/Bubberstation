@@ -56,7 +56,7 @@
 /obj/item/ammo_casing/arrow/blunt
 	name = "blunt arrow"
 	desc = "An arrow with its head reduced to a blunt tip. Suitable for breaking bones and subduing targets without excessive physical damage."
-	icon = 'modular_zubbers/code/modules/security/icons/arrows.dmi'
+	icon = 'modular_zubbers/icons/obj/weapons/guns/arrows.dmi'
 	icon_state = "blunt_arrow"
 	projectile_type = /obj/projectile/bullet/arrow/blunt
 
@@ -74,7 +74,7 @@
 	name = "taser arrow"
 	desc = "An arrow, the head removed, replaced with an igniter, and hooked up to a power cell. Negligible damage, but capable of delivering a terrible electric shock.\n\
 	Likely to break apart on impact. Ineffective against those insulated against electricity."
-	icon = 'modular_zubbers/code/modules/security/icons/arrows.dmi'
+	icon = 'modular_zubbers/icons/obj/weapons/guns/arrows.dmi'
 	icon_state = "taser_arrow"
 	reusable = FALSE
 	projectile_type = /obj/projectile/bullet/arrow/taser
@@ -84,7 +84,7 @@
 /obj/projectile/bullet/arrow/taser
 	name = "taser arrow"
 	desc = "A jury-rigged taser arrow, capable of delivering a terrible electric shock, and not much else."
-	icon = 'modular_zubbers/code/modules/security/icons/arrows.dmi'
+	icon = 'modular_zubbers/icons/obj/weapons/guns/arrows.dmi'
 	icon_state = "taser_arrow_projectile"
 	damage = 0 // lol
 	stamina = 5
