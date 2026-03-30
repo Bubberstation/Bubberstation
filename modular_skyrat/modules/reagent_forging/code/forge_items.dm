@@ -1,4 +1,6 @@
-
+#define MAX_QUENCH_HEAT 600
+#define MIN_VOLUME_TO_QUENCH 300
+#define MIN_VOLUME_TO_IMBUE 300
 //incomplete pre-complete items
 /obj/item/forging/incomplete
 	name = "parent dev item"
@@ -71,6 +73,32 @@
 	if(quality_points >= completion_quality_points)
 		return TRUE
 	return FALSE
+
+/obj/item/forging/incomplete/proc/quench_item(datum/reagents/dunk_reagents, mob/living/quencher)
+	if(dunk_reagents.chem_temp > MAX_QUENCH_HEAT)
+		balloon_alert(user, "[src] is too hot to cool [item]!")
+		return
+	if(dunk_reagents.volume < MIN_VOLUME_TO_QUENCH)
+		balloon_alert(user, "[src] doesn't contain enough fluid to immerse [item]!")
+		return
+
+	playsound(src, 'modular_skyrat/modules/reagent_forging/sound/hot_hiss.ogg', 50, TRUE)
+	if(is_finished_smithing())
+		to_chat(quencher, span_notice("You cool down [item]."))
+		quencher.mind.adjust_experience(/datum/skill/smithing, 10)
+	else
+		to_chat(quencher, span_warning("You cool down [item]. You're not sure if it's ready yet..."))
+
+	var/obj/spawned_obj = new item.spawn_item(get_turf(src))
+	if(item.custom_materials)
+		spawned_obj.set_custom_materials(item.custom_materials, 1) //lets set its material
+
+	if(istype(spawned_obj, /obj/item/forging/complete))
+		var/obj/item/forging/complete/complete_spawned = spawned_obj
+		complete_spawned.perfect_ratio = item.current_perfects / item.max_perfect_hits
+
+	qdel(item)
+	return spawned_obj
 
 /obj/item/forging/incomplete/pickup(mob/living/user)
 	var/hand_protected = FALSE

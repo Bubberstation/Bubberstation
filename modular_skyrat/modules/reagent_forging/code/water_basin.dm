@@ -1,70 +1,47 @@
-/obj/structure/reagent_water_basin
-	name = "water basin"
-	desc = "A basin full of water, ready to quench the hot metal."
+/obj/structure/reagent_dispensers/smithing_trough
+	name = "smithing trough"
+	desc = "A basin meant to quench heated smithing equipment and cool it."
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_structures.dmi'
 	icon_state = "water_basin"
 	anchored = TRUE
 	density = TRUE
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
+	reagent_id = /datum/reagent/fuel/oil/smithing
+	//deliberate choice -- matches the volume of a bluespace beaker
+	tank_volume = 300
 
 	/// Tracks if you can fish from this basin
 	var/datum/component/fishing_spot/fishable
 
-/obj/structure/reagent_water_basin/Initialize(mapload)
-	. = ..()
+/obj/structure/reagent_dispensers/smithing_trough/empty
+	reagent_id = null
+
+/obj/structure/reagent_dispenser/smithing_trough/Initialize()
+	fishable = AddComponent(/datum/component/fishing_spot, /datum/fish_source/water_basin)
 
 /obj/structure/reagent_water_basin/Destroy()
 	QDEL_NULL(fishable)
 	return ..()
 
-/obj/structure/reagent_water_basin/examine(mob/user)
+/obj/structure/reagent_dispensers/smithing_trough/examine(mob/user)
 	. = ..()
-	if(!fishable)
-		. += span_notice("[src] can be upgraded through a bluespace crystal or a journeyman smithy!")
-
+	if(HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
+		. += span_notice("Dipping smithed items in this trough will imbue it with its chemicals!")
 	else
-		. += span_notice("[src] looks to be a bottomless basin of water... You can even see fish swimming around down there!")
+		. += span_notice("You could use this for imbuing reagents into equipment if you knew the right trick...")
 
-/obj/structure/reagent_water_basin/attack_hand(mob/living/user, list/modifiers)
-	. = ..()
-	attempt_upgrade(user)
+/obj/structure/reagent_dispensers/attackby(obj/item/attacking_item, mob/living/user, params)
+	if(istype(attacking_item, /obj/item/forging/incomplete))
+		var/obj/item/forging/incomplete/incomplete_item = attacking_item
+		if(can_quench(user, incomplete_item))
+			var/obj/item/quenched_item = do_quench(user, incomplete)
+			if(can_imbue(user, incomplete_item, FALSE))
 
-/obj/structure/reagent_water_basin/attack_robot(mob/living/user)
-	. = ..()
-	attempt_upgrade(user)
-
-/obj/structure/reagent_water_basin/proc/attempt_upgrade(mob/living/user)
-	var/smithing_skill = user.mind.get_skill_level(/datum/skill/smithing)
-	if(smithing_skill < SKILL_LEVEL_JOURNEYMAN || fishable)
-		return
-
-	balloon_alert(user, "the water deepens!")
-	fishable = AddComponent(/datum/component/fishing_spot, /datum/fish_source/water_basin)
-
-/obj/structure/reagent_water_basin/attackby(obj/item/attacking_item, mob/living/user, params)
-	if(istype(attacking_item, /obj/item/stack/ore/glass))
-		var/obj/item/stack/ore/glass/glass_obj = attacking_item
-		if(!glass_obj.use(1))
-			return
-
-		new /obj/item/stack/clay(get_turf(src))
-		user.mind.adjust_experience(/datum/skill/production, 1)
-		return
-
-	if(istype(attacking_item, /obj/item/stack/ore/bluespace_crystal))
-		if(fishable)
-			return
-		var/obj/item/stack/ore/bluespace_crystal/bs_crystal = attacking_item
-
-		if(!bs_crystal.use(1))
-			return
-
-		balloon_alert(user, "the water deepens!")
-		fishable = AddComponent(/datum/component/fishing_spot, /datum/fish_source/water_basin)
-		return
+			return ITEM_INTERACT_SUCCESS
 
 	return ..()
 
+/*
 /obj/structure/reagent_water_basin/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
 
@@ -73,33 +50,30 @@
 
 	qdel(src)
 	return TRUE
-
+*/
 /obj/structure/reagent_water_basin/tong_act(mob/living/user, obj/item/tool)
-	var/obj/item/forging/incomplete/search_incomplete = locate(/obj/item/forging/incomplete) in tool.contents
-	if(!search_incomplete)
-		return ITEM_INTERACT_SUCCESS
-
-	playsound(src, 'modular_skyrat/modules/reagent_forging/sound/hot_hiss.ogg', 50, TRUE)
-
-	if(search_incomplete.is_finished_smithing())
-		to_chat(user, span_notice("You cool down [search_incomplete] and it's ready."))
-		user.mind.adjust_experience(/datum/skill/smithing, 10) //using the water basin on a ready item gives decent experience.
-
-		var/obj/spawned_obj = new search_incomplete.spawn_item(get_turf(src))
-		if(search_incomplete.custom_materials)
-			spawned_obj.set_custom_materials(search_incomplete.custom_materials, 1) //lets set its material
-
-		if(istype(spawned_obj, /obj/item/forging/complete))
-			var/obj/item/forging/complete/complete_spawned = spawned_obj
-			complete_spawned.perfect_ratio = search_incomplete.current_perfects / search_incomplete.max_perfect_hits
-
-		qdel(search_incomplete)
-		tool.icon_state = "tong_empty"
+	var/obj/item/tongs_contents = locate(/obj/item) in tool.contents
+	if(!tongs_contents)
+		to_chat(user, span_notice("No item to dip!"))
 		return ITEM_INTERACT_SUCCESS
 	else
-		to_chat(user, span_warning("You cool down [search_incomplete], but it wasn't ready yet."))
-		COOLDOWN_RESET(search_incomplete, heating_remainder)
-		return ITEM_INTERACT_SUCCESS
+		. = attackby(tongs_contents, user)
+		if(tool.contents.len == 0)
+			tool.icon_state = "tong_empty"
+
+/obj/structure/reagent_dispensers/proc/can_imbue(mob/living/user, obj/item, silent)
+	if(HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
+		if(!silent)
+			balloon_alert(user, "You don't know how to imbue [item]!")
+		return FALSE
+	if(reagents.volume < MIN_VOLUME_TO_IMBUE)
+		if(!silent)
+			balloon_alert(user, "[src] doesn't contain enough fluid to imbue [item]!")
+		return FALSE
+	return TRUE
+
+/obj/structure/reagent_dispensers/proc/quench_smithing_item(mob/living/user, obj/item/forging/incomplete/item)
+
 
 
 /// Fishing source for fishing out of basins that have been upgraded, contains saltwater fish (lizard fish fall under this too!)
