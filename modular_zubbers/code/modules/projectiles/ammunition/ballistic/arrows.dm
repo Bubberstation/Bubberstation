@@ -18,7 +18,7 @@
 	reqs = list(
 		/obj/item/ammo_casing/arrow = 1,
 	)
-	tool_behaviors = TOOL_SAW
+	tool_behaviors = list(TOOL_SAW)
 	category = CAT_WEAPON_AMMO
 	non_craftable = TRUE
 	steps = list("Smooth the arrowhead with the saw.")
@@ -50,7 +50,7 @@
 		/obj/item/assembly/igniter = 1,
 		/obj/item/stock_parts/power_store/cell = 1,
 	)
-	tool_behaviors = TOOL_SAW
+	tool_behaviors = list(TOOL_SAW)
 	category = CAT_WEAPON_AMMO
 
 /obj/item/ammo_casing/arrow/blunt
