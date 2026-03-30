@@ -41,7 +41,7 @@
 	name = "blunt arrow"
 	desc = "A blunted arrow."
 	damage = 5 // ow
-	stamina = 30 // its okay
+	stamina = 35 // its okay
 	wound_bonus = 35 // will sometimes cause dislocations at close range
 	gets_tribal_bonus = FALSE // technically a modern arrow + meant to be less lethal
 	embed_type = null
