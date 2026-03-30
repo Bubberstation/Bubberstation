@@ -603,8 +603,8 @@ export function MainPage(props: MainPageProps) {
       prefPageContents = (
         <>
           <NoticeBox info>
-            This tab is for customizing your automated silicon station
-            equipment!
+            This tab is for preferences that only apply when playing the AI or
+            Cyborg jobs!
           </NoticeBox>
           <PreferenceList
             randomizations={getRandomization(
