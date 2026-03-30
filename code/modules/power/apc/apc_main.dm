@@ -14,6 +14,10 @@
 ///Charge percentage at which the APC icon indicates discharging
 #define APC_CHANNEL_ALARM_TRESHOLD 75
 
+/obj/machinery/power/apc/proc/clap_handle()
+	lighting = APC_CHANNEL_IS_ON(lighting) ? 0 : 2
+	update()
+
 /obj/machinery/power/apc
 	name = "area power controller"
 	desc = "A control terminal for the area's electrical systems."

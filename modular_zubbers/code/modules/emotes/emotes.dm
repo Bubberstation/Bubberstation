@@ -73,6 +73,28 @@
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	sound = 'sound/mobs/humanoids/human/snap/fingersnap1.ogg'
 
+/datum/emote/living/snap/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	for(var/obj/machinery/power/apc/this in oview(7, user))
+		this.clap_handle()
+
+/datum/emote/living/snap2/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	for(var/obj/machinery/power/apc/this in oview(7, user))
+		this.clap_handle()
+/datum/emote/living/snap3/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	for(var/obj/machinery/power/apc/this in oview(7, user))
+		this.clap_handle()
+/datum/emote/living/clap/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	for(var/obj/machinery/power/apc/this in oview(7, user))
+		this.clap_handle()
+/datum/emote/living/clap1/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	for(var/obj/machinery/power/apc/this in oview(7, user))
+		this.clap_handle()
+
 /datum/emote/living/meow_alt
 	key = "meow1"
 	key_third_person = "meowalt"
