@@ -8,6 +8,7 @@ import {
   Floating,
   Input,
   LabeledList,
+  NoticeBox,
   Section,
   Stack,
 } from 'tgui-core/components';
@@ -600,15 +601,21 @@ export function MainPage(props: MainPageProps) {
       break;
     case PrefPage.Silicon:
       prefPageContents = (
-        <PreferenceList
-          randomizations={getRandomization(
-            siliconPreferences,
-            serverData,
-            randomBodyEnabled,
-          )}
-          preferences={siliconPreferences}
-          maxHeight="auto"
-        />
+        <>
+          <NoticeBox info>
+            This tab is for customizing your automated silicon station
+            equipment!
+          </NoticeBox>
+          <PreferenceList
+            randomizations={getRandomization(
+              siliconPreferences,
+              serverData,
+              randomBodyEnabled,
+            )}
+            preferences={siliconPreferences}
+            maxHeight="auto"
+          />
+        </>
       );
       break;
     default:
