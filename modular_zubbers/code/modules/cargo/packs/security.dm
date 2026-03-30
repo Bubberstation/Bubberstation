@@ -125,3 +125,25 @@
 					/obj/item/ammo_box/magazine/recharge/ntusp,
 					/obj/item/ammo_box/magazine/recharge/ntusp)
 	crate_name = "nt-usp crate"
+
+/datum/supply_pack/security/armory/archery_kit
+	name = "Archery Crate"
+	desc = "Two hardlight bows capable of defeating armor, alongside a mix of lethal and non/less-than-lethal arrows."
+	cost = CARGO_CRATE_VALUE * 6
+	contains = list(
+		/obj/item/gun/ballistic/bow/security,
+		/obj/item/gun/ballistic/bow/security,
+		/obj/item/storage/bag/quiver/lesser/armory,
+		/obj/item/storage/bag/quiver/lesser/armory,
+	)
+
+/obj/item/storage/bag/quiver/lesser/armory
+
+/obj/item/storage/bag/quiver/lesser/armory/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/ammo_casing/arrow/blunt = 5,
+		/obj/item/ammo_casing/arrow = 4,
+		/obj/item/ammo_casing/arrow/taser = 1
+	)
+
+	generate_items_inside(items_inside, src)

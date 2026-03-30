@@ -12,6 +12,17 @@
 	category = CAT_WEAPON_AMMO
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
+/datum/crafting_recipe/blunted_arrow_conversion
+	name = "Blunt Arrow Conversion"
+	result = /obj/item/ammo_casing/arrow/blunt
+	reqs = list(
+		/obj/item/ammo_casing/arrow = 1,
+	)
+	tool_behaviors = TOOL_SAW
+	category = CAT_WEAPON_AMMO
+	non_craftable = TRUE
+	steps = list("Smooth the arrowhead with the saw.")
+
 /datum/crafting_recipe/taser_arrow
 	name = "Arrow (Electric, Non-lethal)"
 	result = /obj/item/ammo_casing/arrow/taser
@@ -29,6 +40,18 @@
 	time = 5 SECONDS
 	category = CAT_WEAPON_AMMO
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
+
+/datum/crafting_recipe/taser_arrow_conversion
+	name = "Taser Arrow Conversion"
+	result = /obj/item/ammo_casing/arrow/taser
+	reqs = list(
+		/obj/item/ammo_casing/arrow = 1,
+		/obj/item/stack/cable_coil = 1,
+		/obj/item/assembly/igniter = 1,
+		/obj/item/stock_parts/power_store/cell = 1,
+	)
+	tool_behaviors = TOOL_SAW
+	category = CAT_WEAPON_AMMO
 
 /obj/item/ammo_casing/arrow/blunt
 	name = "blunt arrow"
@@ -56,6 +79,7 @@
 	reusable = FALSE
 	projectile_type = /obj/projectile/bullet/arrow/taser
 	harmful = FALSE
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.2, /datum/material/wood = SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 1.1)
 
 /obj/projectile/bullet/arrow/taser
 	name = "taser arrow"

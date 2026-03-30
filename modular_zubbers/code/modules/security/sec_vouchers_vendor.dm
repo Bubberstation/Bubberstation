@@ -74,7 +74,7 @@
 	set_items = list(
 		/obj/item/gun/ballistic/bow/security,
 		/obj/item/storage/bag/quiver/lesser/security,
-		/obj/item/book/granter/crafting_recipe/fletching/advanced,
+		/obj/item/book/granter/crafting_recipe/fletching/nonlethal,
 		/obj/item/hatchet,
 	)
 
@@ -88,7 +88,7 @@
 
 	generate_items_inside(items_inside, src)
 
-/obj/item/book/granter/crafting_recipe/fletching/advanced
+/obj/item/book/granter/crafting_recipe/fletching/nonlethal
 	name = "Aim for the knees, not the eyes!"
 	desc = "A manual on how to construct sub-lethal bows & arrows, how best to use them... and how to construct violins?"
 	crafting_recipe_types = list(
