@@ -537,9 +537,9 @@ export function MainPage(props: MainPageProps) {
   // BUBBER EDIT ADDITION BEGIN: SWAPPABLE PREF MENUS
   enum PrefPage {
     CharBasics, // Character basics
-    OOCPref, // OOC preferences
     Visual, // The visual parts
     Lore, // Lore, Flavor Text, Age, Records
+    OOCPref, // OOC preferences
     Silicon, // Silicon prefs
   }
 
@@ -556,19 +556,6 @@ export function MainPage(props: MainPageProps) {
             randomBodyEnabled,
           )}
           preferences={characterBasicsPreferences}
-          maxHeight="auto"
-        />
-      );
-      break;
-    case PrefPage.OOCPref:
-      prefPageContents = (
-        <PreferenceList
-          randomizations={getRandomization(
-            oocPrefPreferences,
-            serverData,
-            randomBodyEnabled,
-          )}
-          preferences={oocPrefPreferences}
           maxHeight="auto"
         />
       );
@@ -595,6 +582,19 @@ export function MainPage(props: MainPageProps) {
             randomBodyEnabled,
           )}
           preferences={nonContextualPreferences}
+          maxHeight="auto"
+        />
+      );
+      break;
+    case PrefPage.OOCPref:
+      prefPageContents = (
+        <PreferenceList
+          randomizations={getRandomization(
+            oocPrefPreferences,
+            serverData,
+            randomBodyEnabled,
+          )}
+          preferences={oocPrefPreferences}
           maxHeight="auto"
         />
       );
@@ -772,15 +772,6 @@ export function MainPage(props: MainPageProps) {
               <Stack.Item grow={2}>
                 <PageButton
                   currentPage={currentPrefPage}
-                  page={PrefPage.OOCPref}
-                  setPage={setCurrentPrefPage}
-                >
-                  OOC Preferences
-                </PageButton>
-              </Stack.Item>
-              <Stack.Item grow={2}>
-                <PageButton
-                  currentPage={currentPrefPage}
                   page={PrefPage.Visual}
                   setPage={setCurrentPrefPage}
                 >
@@ -794,6 +785,15 @@ export function MainPage(props: MainPageProps) {
                   setPage={setCurrentPrefPage}
                 >
                   Character Lore
+                </PageButton>
+              </Stack.Item>
+              <Stack.Item grow={2}>
+                <PageButton
+                  currentPage={currentPrefPage}
+                  page={PrefPage.OOCPref}
+                  setPage={setCurrentPrefPage}
+                >
+                  OOC Preferences
                 </PageButton>
               </Stack.Item>
               <Stack.Item grow={2}>
