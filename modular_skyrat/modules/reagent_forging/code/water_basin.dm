@@ -5,19 +5,28 @@
 	icon_state = "water_basin"
 	anchored = TRUE
 	density = TRUE
+	can_be_tanked = FALSE
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
-	reagent_id = /datum/reagent/fuel/oil/smithing
+	reagent_id = null
 	//deliberate choice -- matches the volume of a bluespace beaker
 	tank_volume = 300
 
 	/// Tracks if you can fish from this basin
 	var/datum/component/fishing_spot/fishable
 
-/obj/structure/reagent_dispensers/smithing_trough/empty
-	reagent_id = null
+/obj/structure/reagent_dispensers/smithing_trough/prefilled
+	reagent_id = /datum/reagent/fuel/oil/smithing
 
 /obj/structure/reagent_dispenser/smithing_trough/Initialize()
-	fishable = AddComponent(/datum/component/fishing_spot, /datum/fish_source/water_basin)
+	. = ..()
+	check_fishable()
+
+/obj/structure/reagent_dispenser/smithing_trough/check_fishable()
+	if(isnull(fishable) && reagents.total_volume >= tank_volume)
+		fishable = AddComponent(/datum/component/fishing_spot, /datum/fish_source/water_basin)
+	else if(!isnull(fishable) && reagents.total_volume < tank_volume)
+		RemoveComponentSource(src, /datum/component/fishing_spot)
+
 
 /obj/structure/reagent_water_basin/Destroy()
 	QDEL_NULL(fishable)
@@ -41,44 +50,19 @@
 
 	return ..()
 
-/*
-/obj/structure/reagent_water_basin/wrench_act(mob/living/user, obj/item/tool)
-	tool.play_tool_sound(src)
-
-	for(var/i in 1 to 5)
-		new /obj/item/stack/sheet/mineral/wood(get_turf(src))
-
-	qdel(src)
-	return TRUE
-*/
-/obj/structure/reagent_water_basin/tong_act(mob/living/user, obj/item/tool)
+/obj/structure/reagent_dispensers/tong_act(mob/living/user, obj/item/tool)
 	var/obj/item/tongs_contents = locate(/obj/item) in tool.contents
 	if(!tongs_contents)
 		to_chat(user, span_notice("No item to dip!"))
-		return ITEM_INTERACT_SUCCESS
+		return ITEM_INTERACT_BLOCKING
 	else
 		. = attackby(tongs_contents, user)
 		if(tool.contents.len == 0)
 			tool.icon_state = "tong_empty"
 
-/obj/structure/reagent_dispensers/proc/can_imbue(mob/living/user, obj/item, silent)
-	if(HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
-		if(!silent)
-			balloon_alert(user, "You don't know how to imbue [item]!")
-		return FALSE
-	if(reagents.volume < MIN_VOLUME_TO_IMBUE)
-		if(!silent)
-			balloon_alert(user, "[src] doesn't contain enough fluid to imbue [item]!")
-		return FALSE
-	return TRUE
-
-/obj/structure/reagent_dispensers/proc/quench_smithing_item(mob/living/user, obj/item/forging/incomplete/item)
-
-
-
 /// Fishing source for fishing out of basins that have been upgraded, contains saltwater fish (lizard fish fall under this too!)
 /datum/fish_source/water_basin
-	catalog_description = "Bottomless Water Basins"
+	catalog_description = "Filled Blacksmithing Quenching Troughs"
 	fish_table = list(
 		/obj/item/fish/clownfish = 15,
 		/obj/item/fish/pufferfish = 10,
@@ -89,6 +73,7 @@
 		/obj/item/fish/gunner_jellyfish = 15,
 		/obj/item/fish/needlefish = 10,
 		/obj/item/fish/armorfish = 10,
+		/obj/item/fish/swordfish = 10,
 		/obj/effect/spawner/random/maintenance = 10,
 		/obj/effect/spawner/random/trash/garbage = 15,
 	)

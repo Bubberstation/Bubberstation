@@ -39,6 +39,8 @@
 	for (var/datum/reagent/reagent in imbued_reagent.reagent_list)
 		examine_list += span_notice("[reagent.volume] units of [reagent.name]")
 
+/datum/component/reagent_imbued/prooc/on_examine_more(obj/item/source, mob/examiner, list/examine_list)
+
 ///Replaces the imbued_reagent with the given new_reagents.
 /datum/component/reagent_imbued/proc/set_reagent_imbue(datum/reagents/new_reagents, clear_source_reagents = TRUE, smithing_oil_bonus = TRUE)
 	imbued_reagent.clear_reagents()
@@ -73,6 +75,7 @@
 		RegisterSignal(parent_item, COMSIG_ITEM_EQUIPPED, PROC_REF(set_wearer))
 		RegisterSignal(parent_item, COMSIG_ITEM_PRE_UNEQUIP, PROC_REF(remove_wearer))
 		RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+		RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE_MORE, PROC_REF(on_examine_more))
 		START_PROCESSING(SSdcs, src)
 
 /datum/component/reagent_imbued/clothing/Destroy(force, silent)

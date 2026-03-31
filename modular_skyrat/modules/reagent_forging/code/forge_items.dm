@@ -237,7 +237,12 @@
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 	///does it cut the user's hand when used as a weapon?
 	var/double_edged_damage = 0
+	var/has_reagent_component = TRUE
 
+/obj/item/forging/complete/Initialize(mapload)
+	. = ..()
+	if(has_reagent_component)
+		AddComponent(/datum/component/reagent_imbued)
 
 /obj/item/forging/complete/examine(mob/user)
 	. = ..()
@@ -256,7 +261,7 @@
 		return
 
 	to_chat(user, span_warning("[src] cuts into your hand!"))
-	jab.apply_damage(double_edged_damage, BRUTE, user.get_active_hand(), attacking_item = src)
+	jab.apply_damage(double_edged_damage * hammer_completion_amount, BRUTE, user.get_active_hand(), attacking_item = src)
 
 /obj/item/forging/complete/tong_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -265,6 +270,8 @@
 		return
 	forceMove(tool)
 	tool.icon_state = "tong_full"
+
+
 
 /obj/item/forging/complete/chain
 	name = "chain"
