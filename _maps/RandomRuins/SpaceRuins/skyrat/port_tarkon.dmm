@@ -246,8 +246,9 @@
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 8
 	},
-/obj/machinery/computer/rdconsole{
-	dir = 4
+/obj/machinery/computer/rdconsole/unlocked{
+	dir = 4;
+	req_access = null
 	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
@@ -2216,6 +2217,13 @@
 	amount = 5
 	},
 /obj/item/mod/module/jetpack/advanced,
+/obj/item/circuitboard/computer/rdconsole/unlocked{
+	req_access = null
+	},
+/obj/item/circuitboard/computer/rdconsole/unlocked{
+	req_access = null;
+	pixel_y = -4
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/port_tarkon/developement)
 "hz" = (
