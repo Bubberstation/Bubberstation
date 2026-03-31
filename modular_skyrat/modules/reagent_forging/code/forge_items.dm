@@ -26,6 +26,9 @@
 
 	///the path of the item that will be spawned upon completion
 	var/spawn_item
+	///does this item break if it's not finished hammering when it's quenched?
+	//this is mostly for working on stuff that has no effect based on completion amount, preventing cheesing
+	var/break_on_early_quench = FALSE
 	//because who doesn't want to have a plasma sword?
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 
@@ -76,28 +79,39 @@
 
 /obj/item/forging/incomplete/proc/quench_item(datum/reagents/dunk_reagents, mob/living/quencher)
 	if(dunk_reagents.chem_temp > MAX_QUENCH_HEAT)
-		balloon_alert(user, "[src] is too hot to cool [item]!")
+		balloon_alert(quencher, "This is too hot to cool [src]!")
 		return
 	if(dunk_reagents.volume < MIN_VOLUME_TO_QUENCH)
-		balloon_alert(user, "[src] doesn't contain enough fluid to immerse [item]!")
+		balloon_alert(quencher, "This doesn't contain enough fluid to immerse [src]!")
 		return
 
 	playsound(src, 'modular_skyrat/modules/reagent_forging/sound/hot_hiss.ogg', 50, TRUE)
+	var/obj/spawned_obj = new item.spawn_item(get_turf(src))
 	if(is_finished_smithing())
-		to_chat(quencher, span_notice("You cool down [item]."))
+		to_chat(quencher, span_notice("You cool down [src] to produce a [spawned_obj]."))
 		quencher.mind.adjust_experience(/datum/skill/smithing, 10)
 	else
-		to_chat(quencher, span_warning("You cool down [item]. You're not sure if it's ready yet..."))
+		if(break_on_early_quench)
+			to_chat(quencher, span_warning("The [src] breaks from the thermal shock! Metalworking this type of object requires it to be hammered into completion."))
+			qdel(src)
+			return
+		else
+			to_chat(quencher, span_warning("You cool down [src] to produce a [spawned_obj]. You're not sure if it was ready yet..."))
 
-	var/obj/spawned_obj = new item.spawn_item(get_turf(src))
-	if(item.custom_materials)
-		spawned_obj.set_custom_materials(item.custom_materials, 1) //lets set its material
+	if(custom_materials)
+		spawned_obj.set_custom_materials(custom_materials, 1) //lets set its material
 
 	if(istype(spawned_obj, /obj/item/forging/complete))
 		var/obj/item/forging/complete/complete_spawned = spawned_obj
-		complete_spawned.perfect_ratio = item.current_perfects / item.max_perfect_hits
+		complete_spawned.perfect_ratio = current_perfects / max_perfect_hits
+		complete_spawned.hammer_completion_amount = quality_points / completion_quality_points
 
-	qdel(item)
+	var/datum/component/reagent_imbued/new_reagent_component = spawned_obj.GetComponent(datum/component/reagent_imbued)
+	if(!isnull(new_reagent_component) && HAS_TRAIT(quencher, TRAIT_KNOW_ADVANCED_SMITHING))
+		new_reagent_component.set_reagent_imbue(dunk_reagents, FALSE, TRUE)
+		to_chat(quencher, span_notice("The [spawned_obj] is imbued with reagents."))
+
+	qdel(src)
 	return spawned_obj
 
 /obj/item/forging/incomplete/pickup(mob/living/user)
@@ -129,6 +143,7 @@
 	completion_quality_points = 10
 	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/chain
+	break_on_early_quench = TRUE
 
 /obj/item/forging/incomplete/plate
 	name = "incomplete plate"
@@ -201,12 +216,14 @@
 	completion_quality_points = 10
 	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/rail_nail
+	break_on_early_quench = TRUE
 
 /obj/item/forging/incomplete/rail_cart
 	name = "incomplete rail cart"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/railroad.dmi'
 	icon_state = "hot_cart"
 	spawn_item = /obj/vehicle/ridden/rail_cart
+	break_on_early_quench = TRUE
 
 //"complete" pre-complete items
 /obj/item/forging/complete
@@ -214,10 +231,13 @@
 	var/spawning_item
 	///how many perfect hits did we get, out of the max?
 	var/perfect_ratio = 0
+	///when this was worked at an anvil, how many hits were actually applied of the max?
+	var/hammer_completion_amount = 0
 	//because who doesn't want to have a plasma sword?
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 	///does it cut the user's hand when used as a weapon?
 	var/double_edged_damage = 0
+
 
 /obj/item/forging/complete/examine(mob/user)
 	. = ..()
