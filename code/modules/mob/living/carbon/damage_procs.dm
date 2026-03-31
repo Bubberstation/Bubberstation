@@ -26,8 +26,27 @@
 	// Taking brute or burn to bodyparts gives a damage flash
 	if(def_zone && (damagetype == BRUTE || damagetype == BURN))
 		damageoverlaytemp += .
-
+	var/obj/effect/overlay/hitmarker/hitmarker = new()
+	hitmarker.animate_damage(damage, src)
 	return .
+
+/obj/effect/overlay/hitmarker
+	icon = 'icons/effects/96x160.dmi'
+	plane = POINT_PLANE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	alpha = 255
+	var/mob/living/carbon/my_carbon_mob
+	proc/animate_damage(damage, my_mob)
+
+		my_carbon_mob = my_mob
+		pixel_z = rand(-32,32)
+		pixel_w = rand(-32,64)
+		appearance_flags |= (KEEP_TOGETHER|RESET_COLOR|RESET_TRANSFORM)
+		my_carbon_mob.vis_contents |= src
+		maptext = MAPTEXT_SPESSFONT("[ROUND_UP(damage)]!")
+		animate(src, pixel_z = rand(-32,32), pixel_w = rand(-32,64), time = 1 SECONDS, easing = BOUNCE_EASING, alpha = 32)
+		QDEL_IN(src, 1.5 SECONDS)
+
 
 /mob/living/carbon/human/get_damage_mod(damage_type)
 	if (!dna?.species?.damage_modifier)

@@ -15,7 +15,7 @@
 #define APC_CHANNEL_ALARM_TRESHOLD 75
 
 /obj/machinery/power/apc/proc/clap_handle()
-	lighting = APC_CHANNEL_IS_ON(lighting) ? 0 : 2
+	lighting = APC_CHANNEL_IS_ON(lighting) ? 0 : 2 // owo
 	update()
 
 /obj/machinery/power/apc
