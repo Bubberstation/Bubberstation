@@ -23,6 +23,8 @@
 		return COMPONENT_INCOMPATIBLE //they need to be clothing, I already said this
 	parent_item = parent
 	parent_item.create_reagents(MAX_PRE_IMBUE_STORAGE, INJECTABLE | REFILLABLE)
+	RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE_MORE, PROC_REF(on_examine_more))
 
 /datum/component/reagent_imbued/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
@@ -74,8 +76,6 @@
 			checking_slot = set_slot
 		RegisterSignal(parent_item, COMSIG_ITEM_EQUIPPED, PROC_REF(set_wearer))
 		RegisterSignal(parent_item, COMSIG_ITEM_PRE_UNEQUIP, PROC_REF(remove_wearer))
-		RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
-		RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE_MORE, PROC_REF(on_examine_more))
 		START_PROCESSING(SSdcs, src)
 
 /datum/component/reagent_imbued/clothing/Destroy(force, silent)
@@ -120,7 +120,6 @@
 	. = ..()
 	if(. != COMPONENT_INCOMPATIBLE)
 		RegisterSignal(parent_item, COMSIG_ITEM_ATTACK, PROC_REF(inject_attacked))
-		RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 /datum/component/reagent_imbued/weapon/Destroy(force, silent)
 	parent_item = null

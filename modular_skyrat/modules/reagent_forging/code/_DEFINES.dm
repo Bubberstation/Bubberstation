@@ -24,3 +24,4 @@
 )
 
 //the list of possible things people can make if they have maxed forging skill
+#define COMSIG_SMITHING_DONE "smithing_done"
