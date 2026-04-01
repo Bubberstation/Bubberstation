@@ -2407,11 +2407,9 @@
 /obj/effect/turf_decal/trimline/red/real_red/filled/line{
 	dir = 1
 	},
-/obj/machinery/computer/camera_advanced{
-	dir = 8
-	},
 /obj/machinery/light/directional/north,
 /obj/item/radio/intercom/directional/north,
+/obj/machinery/computer/security,
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "aEJ" = (
@@ -4282,9 +4280,7 @@
 	},
 /area/station/hallway/primary/port)
 "baX" = (
-/obj/machinery/computer/camera_advanced{
-	dir = 8
-	},
+/obj/machinery/computer/security/hos,
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
 "bba" = (
@@ -16247,10 +16243,10 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
 	},
-/obj/machinery/computer/camera_advanced{
+/obj/machinery/newscaster/directional/south,
+/obj/machinery/computer/security{
 	dir = 1
 	},
-/obj/machinery/newscaster/directional/south,
 /turf/open/floor/iron/smooth,
 /area/station/security/checkpoint/medical)
 "dKW" = (
@@ -16353,8 +16349,8 @@
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer4{
 	dir = 1
 	},
-/obj/machinery/computer/security/telescreen/research/directional/west,
 /obj/structure/cable,
+/obj/machinery/computer/security/telescreen/research/directional/west,
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 4
 	},
@@ -19360,7 +19356,6 @@
 /obj/effect/turf_decal/siding/dark/end{
 	dir = 1
 	},
-/obj/machinery/computer/camera_advanced/syndie,
 /obj/item/toy/figure/ce{
 	name = "Cardinal Station Architect";
 	toysay = "Welcome to Cardinal Station. After 3 years in development, hopefully it will have been worth the wait. Thanks and have fun.";
@@ -19368,6 +19363,7 @@
 	pixel_y = 16
 	},
 /obj/item/radio/intercom/syndicate/directional/north,
+/obj/machinery/computer/camera_advanced/syndie,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered)
 "eAH" = (
@@ -19606,8 +19602,8 @@
 	pixel_y = 10
 	},
 /obj/machinery/camera/autoname/directional/south,
-/obj/machinery/computer/security/telescreen/entertainment/directional/east,
 /obj/machinery/airalarm/directional/south,
+/obj/machinery/computer/security/telescreen/entertainment/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/service/theater_dressing)
 "eDs" = (
@@ -21462,9 +21458,6 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "fdt" = (
-/obj/machinery/computer/camera_advanced{
-	dir = 4
-	},
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
 	},
@@ -21489,6 +21482,9 @@
 /obj/item/radio/intercom/prison/directional/west{
 	pixel_x = -37;
 	pixel_y = -10
+	},
+/obj/machinery/computer/security{
+	dir = 4
 	},
 /turf/open/floor/iron/dark/smooth_corner{
 	dir = 4
@@ -24167,8 +24163,9 @@
 /area/station/service/theater)
 "fKI" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/corner,
-/obj/machinery/computer/camera_advanced{
-	dir = 4
+/obj/machinery/computer/security{
+	dir = 4;
+	pixel_y = -3
 	},
 /turf/open/floor/iron/textured_large,
 /area/station/command/bridge)
@@ -44027,7 +44024,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "kmw" = (
-/obj/machinery/computer/camera_advanced{
+/obj/machinery/computer/security{
 	dir = 8
 	},
 /turf/open/floor/iron/dark/textured_large,
@@ -44180,15 +44177,15 @@
 /area/station/engineering/atmos)
 "knN" = (
 /obj/structure/table/wood,
-/obj/machinery/computer/security/wooden_tv{
-	pixel_y = 4;
-	pixel_x = 2
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
 /obj/structure/fluff/paper/corner{
 	dir = 8
+	},
+/obj/machinery/computer/security/wooden_tv{
+	pixel_y = 4;
+	pixel_x = 2
 	},
 /turf/open/floor/wood,
 /area/station/security/detectives_office)
@@ -45647,10 +45644,10 @@
 /turf/open/floor/carpet/black,
 /area/station/common/night_club)
 "kIn" = (
+/obj/structure/extinguisher_cabinet/directional/south,
 /obj/machinery/computer/camera_advanced/xenobio{
 	dir = 1
 	},
-/obj/structure/extinguisher_cabinet/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
 "kIo" = (
@@ -52257,9 +52254,6 @@
 /turf/open/floor/iron/white,
 /area/station/science/research)
 "mlF" = (
-/obj/machinery/computer/security/mining{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 5
 	},
@@ -52271,6 +52265,9 @@
 	},
 /obj/machinery/status_display/supply{
 	pixel_y = 32
+	},
+/obj/machinery/computer/security/mining{
+	dir = 8
 	},
 /turf/open/floor/iron/diagonal,
 /area/station/cargo/miningdock)
@@ -56498,13 +56495,13 @@
 /turf/open/floor/iron/white,
 /area/station/medical/storage)
 "nlG" = (
-/obj/machinery/computer/security/telescreen/entertainment/directional/south,
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 1
 	},
+/obj/machinery/computer/security/telescreen/entertainment/directional/south,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/cmo)
 "nlU" = (
@@ -59514,11 +59511,11 @@
 	},
 /area/station/service/hydroponics/garden)
 "nVm" = (
-/obj/machinery/computer/security/mining{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
+	},
+/obj/machinery/computer/security/mining{
+	dir = 8
 	},
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/hop)
@@ -63131,10 +63128,10 @@
 /turf/open/floor/iron/textured_half,
 /area/shuttle/abandoned)
 "oNU" = (
-/obj/machinery/computer/camera_advanced{
+/obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/machinery/computer/security{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/supply)
 "oOa" = (
@@ -69220,12 +69217,12 @@
 	},
 /area/station/engineering/hallway)
 "qhA" = (
-/obj/machinery/computer/security/labor,
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
 /obj/machinery/digital_clock/directional/north,
+/obj/machinery/computer/security/labor,
 /turf/open/floor/iron/dark,
 /area/station/security/brig/upper)
 "qhK" = (
@@ -69972,13 +69969,13 @@
 /turf/open/floor/plating,
 /area/station/maintenance/central/greater)
 "qqK" = (
-/obj/machinery/computer/camera_advanced{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 5
 	},
 /obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/machinery/computer/security{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/engineering)
 "qqN" = (
@@ -77951,12 +77948,10 @@
 	},
 /area/station/security/brig/upper)
 "sfi" = (
-/obj/machinery/computer/camera_advanced{
-	dir = 8
-	},
 /obj/machinery/status_display/supply{
 	pixel_y = 32
 	},
+/obj/machinery/computer/security/qm,
 /turf/open/floor/carpet/orange,
 /area/station/command/heads_quarters/qm)
 "sfr" = (
@@ -83644,13 +83639,11 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/thinplating_new,
-/obj/machinery/computer/camera_advanced{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /obj/effect/turf_decal/tile/dark/opposingcorners{
 	dir = 1
 	},
+/obj/machinery/computer/security,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/science)
 "tzA" = (
@@ -86127,7 +86120,6 @@
 	},
 /obj/item/clothing/gloves/fingerless,
 /obj/machinery/light/small/directional/south,
-/obj/machinery/computer/security/telescreen/entertainment/directional/south,
 /obj/item/storage/box/ids{
 	pixel_x = 3;
 	pixel_y = 3
@@ -86137,6 +86129,7 @@
 	pixel_y = 3
 	},
 /obj/item/storage/lockbox/loyalty,
+/obj/machinery/computer/security/telescreen/entertainment/directional/south,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/hop)
 "uek" = (
@@ -91353,12 +91346,12 @@
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 5
 	},
-/obj/machinery/computer/camera_advanced/xenobio{
-	dir = 8
-	},
 /obj/machinery/light/directional/north,
 /obj/machinery/status_display/ai/directional/north,
 /obj/machinery/newscaster/directional/east,
+/obj/machinery/computer/camera_advanced/xenobio{
+	dir = 8
+	},
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
 "voQ" = (
@@ -102652,10 +102645,10 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
 	},
+/obj/machinery/camera/autoname/directional/south,
 /obj/machinery/computer/security/mining{
 	dir = 1
 	},
-/obj/machinery/camera/autoname/directional/south,
 /obj/machinery/computer/security/telescreen/aiupload/directional/south,
 /turf/open/floor/iron/textured_large,
 /area/station/command/bridge)
