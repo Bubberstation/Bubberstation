@@ -139,6 +139,7 @@
 #define SPECIES_FELINE_PRIMITIVE "primitive_felinid"
 #define SPECIES_PROTEAN "protean"
 #define SPECIES_GAS "serpentid"
+#define SPECIES_SHRIMP "shrimp"
 
 #define SPECIES_MUTANT "mutant"
 #define SPECIES_MUTANT_INFECTIOUS "infectious_mutant"
