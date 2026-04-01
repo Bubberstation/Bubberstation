@@ -11110,21 +11110,18 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "dpT" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/disposalpipe/segment{
-	dir = 8
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "ceprivate";
+	name = "Chief Engineer's Privacy Shutters"
 	},
-/obj/structure/cable,
-/obj/effect/turf_decal/tile/red{
-	dir = 2
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
+/obj/machinery/door/firedoor,
+/obj/effect/turf_decal/caution/stand_clear{
+	dir = 1
 	},
 /obj/machinery/incident_display/delam/directional/south,
-/turf/open/floor/iron,
-/area/station/hallway/primary/starboard)
+/turf/open/floor/iron/dark,
+/area/station/engineering/lobby)
 "dqa" = (
 /obj/item/kirbyplants{
 	icon_state = "plant-21"
@@ -20171,6 +20168,7 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
 	},
+/obj/machinery/incident_display/disease/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
 "fXy" = (
@@ -30971,7 +30969,6 @@
 	},
 /obj/item/crowbar/red,
 /obj/item/clothing/mask/gas,
-/obj/machinery/incident_display/disease/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "iWm" = (
@@ -31251,7 +31248,6 @@
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
 	dir = 4
 	},
-/obj/machinery/incident_display/disease/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/medbay/lobby)
 "jas" = (
@@ -37775,6 +37771,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/incident_display/delam/directional/south,
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "kWz" = (
@@ -39332,7 +39329,6 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/incident_display/delam/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/engineering/lobby)
 "lsb" = (
@@ -49828,6 +49824,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
+/obj/machinery/incident_display/disease/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "oBf" = (
@@ -53806,7 +53803,6 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
 	},
-/obj/machinery/incident_display/disease/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/exam_room)
 "pJs" = (
@@ -62784,7 +62780,7 @@
 	},
 /obj/item/reagent_containers/cup/glass/bottle/beer{
 	desc = "A station exclusive. Consumption may result in seizures, blindness, drunkenness, or even death.";
-	list(/datum/reagent/consumable/ethanol/thirteenloko   =   30);
+	list(/datum/reagent/consumable/ethanol/thirteenloko    =    30);
 	name = "Kilo-Kocktail";
 	pixel_x = -5;
 	pixel_y = -5
@@ -79175,6 +79171,7 @@
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
 	dir = 1
 	},
+/obj/machinery/incident_display/disease/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/exam_room)
 "wOB" = (
@@ -111414,7 +111411,7 @@ vWF
 vzy
 oGV
 vWv
-dpT
+rpN
 ihU
 uIx
 fKx
@@ -113177,7 +113174,7 @@ vRo
 vRo
 rea
 lZV
-hqW
+obh
 okp
 fCX
 cPM
@@ -113434,7 +113431,7 @@ uyK
 uyK
 piD
 hNj
-obh
+hqW
 lOX
 idk
 mno
@@ -114227,7 +114224,7 @@ jzk
 eHc
 xDj
 piN
-xDj
+dpT
 jjs
 alL
 sXJ
@@ -116287,7 +116284,7 @@ ddI
 bSX
 xAw
 jhg
-xsJ
+mnO
 bax
 wRE
 pmu
@@ -116544,7 +116541,7 @@ mwn
 kBs
 nxi
 dtt
-mnO
+xsJ
 bax
 bax
 bax

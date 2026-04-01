@@ -4213,6 +4213,10 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden,
+/obj/machinery/door/airlock/multi_tile/public/glass{
+	name = "Mining Bay"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /turf/open/floor/iron,
 /area/station/cargo/miningoffice)
 "aYa" = (
@@ -5635,6 +5639,9 @@
 /obj/machinery/duct,
 /obj/machinery/door/firedoor,
 /obj/structure/cable,
+/obj/machinery/door/airlock/multi_tile/public/glass{
+	name = "Laundromat"
+	},
 /turf/open/floor/iron,
 /area/station/commons/dorms/laundry)
 "boS" = (
@@ -8577,9 +8584,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	name = "Laundromat"
-	},
 /turf/open/floor/iron,
 /area/station/commons/dorms/laundry)
 "bXl" = (
@@ -24151,6 +24155,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
 	},
+/obj/machinery/incident_display/delam/directional/south,
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "fqA" = (
@@ -27988,7 +27993,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners{
 	dir = 1
 	},
-/obj/machinery/incident_display/bridge/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "gfB" = (
@@ -42107,9 +42111,6 @@
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "jte" = (
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	name = "Laundromat"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -54606,13 +54607,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
-/obj/structure/cable,
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 8
 	},
-/obj/machinery/incident_display/delam/directional/south,
-/turf/open/floor/iron,
-/area/station/engineering/main)
+/obj/machinery/incident_display/disease/directional/south,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay)
 "mep" = (
 /obj/item/kirbyplants/random,
 /obj/machinery/firealarm/directional/north,
@@ -59817,7 +59817,7 @@
 /obj/effect/spawner/random/structure/table_fancy,
 /obj/item/reagent_containers/cup/glass/bottle/beer{
 	desc = "Whatever it is, it reeks of foul, putrid froth.";
-	list(/datum/reagent/consumable/ethanol/bacchus_blessing  =  15);
+	list(/datum/reagent/consumable/ethanol/bacchus_blessing    =    15);
 	name = "Delta-Down";
 	pixel_x = -5;
 	pixel_y = -5
@@ -61612,6 +61612,9 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/multi_tile/public/glass{
+	name = "Laundromat"
+	},
 /turf/open/floor/iron,
 /area/station/commons/dorms/laundry)
 "nGy" = (
@@ -67424,9 +67427,14 @@
 /turf/open/floor/iron,
 /area/station/commons/storage/primary)
 "oWT" = (
-/obj/machinery/incident_display/disease,
-/turf/closed/wall,
-/area/station/medical/medbay/lobby)
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/obj/effect/turf_decal/tile/neutral/fourcorners{
+	dir = 1
+	},
+/obj/machinery/incident_display/bridge/directional/north,
+/turf/open/floor/iron/dark,
+/area/station/command/bridge)
 "oWV" = (
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/stripes/line{
@@ -75685,10 +75693,6 @@
 /area/station/ai/satellite/interior)
 "qKr" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	name = "Mining Bay"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /turf/open/floor/iron,
 /area/station/cargo/miningoffice)
 "qKy" = (
@@ -96023,7 +96027,6 @@
 /obj/item/toy/figure/atmos{
 	pixel_x = -6
 	},
-/obj/machinery/incident_display/delam/directional/south,
 /turf/open/floor/wood,
 /area/station/engineering/break_room)
 "vnR" = (
@@ -106522,9 +106525,13 @@
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics/garden)
 "xDl" = (
-/obj/machinery/incident_display/disease,
-/turf/closed/wall,
-/area/station/medical/storage)
+/obj/structure/bed/medical/emergency,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/machinery/incident_display/disease/directional/north,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/lobby)
 "xDw" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/entertainment/cigarette_pack{
@@ -106539,6 +106546,7 @@
 	pixel_x = 13;
 	pixel_y = -7
 	},
+/obj/machinery/incident_display/delam/directional/south,
 /turf/open/floor/wood,
 /area/station/engineering/break_room)
 "xDy" = (
@@ -133367,7 +133375,7 @@ cZa
 rmI
 cZa
 eoa
-bEd
+xDl
 xCA
 jWu
 vJm
@@ -133602,7 +133610,7 @@ oIX
 oIX
 oIX
 dwC
-kOZ
+mek
 ejr
 ejr
 byV
@@ -133623,7 +133631,7 @@ yav
 csG
 mwb
 fWr
-oWT
+eoa
 idj
 ncN
 eLN
@@ -133860,7 +133868,7 @@ iua
 oIX
 xiv
 viD
-xDl
+ejr
 sOj
 qsV
 jnH
@@ -134691,7 +134699,7 @@ bkk
 bkk
 bkk
 bkk
-gps
+oWT
 ukt
 oBM
 aGM
@@ -149844,7 +149852,7 @@ hKO
 djI
 cQB
 uOC
-mek
+eIC
 gOD
 fek
 fek
@@ -152407,7 +152415,7 @@ kKq
 aoq
 sgg
 tfH
-mIH
+evD
 gJM
 gJM
 sxg
@@ -152664,7 +152672,7 @@ mAW
 dQt
 dQt
 wxe
-evD
+mIH
 gJM
 mbk
 aiW
@@ -154452,7 +154460,7 @@ ihd
 epT
 wzX
 cis
-rGg
+gzW
 nmK
 tdv
 sjL
@@ -154709,7 +154717,7 @@ eEY
 oAR
 khT
 cis
-gzW
+rGg
 enR
 rjt
 djH
