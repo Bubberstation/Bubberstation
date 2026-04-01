@@ -2279,7 +2279,7 @@
 /area/station/commons/dorms)
 "aqs" = (
 /obj/effect/spawner/liquids_spawner{
-	list(/datum/reagent/ants/fire    =    190)
+	list(/datum/reagent/ants/fire     =     190)
 	},
 /turf/open/floor/iron/pool/cobble/corner,
 /area/station/maintenance/starboard/fore)
@@ -4371,7 +4371,7 @@
 /obj/item/food/pizzaslice/ants,
 /obj/item/food/pizzaslice/ants,
 /obj/effect/spawner/liquids_spawner{
-	list(/datum/reagent/ants/fire    =    190)
+	list(/datum/reagent/ants/fire     =     190)
 	},
 /obj/machinery/button/door{
 	id = "maint3";
@@ -4617,7 +4617,9 @@
 /turf/open/floor/iron/dark,
 /area/station/commons/fitness/recreation/entertainment)
 "aBC" = (
-/obj/structure/disposalpipe/sorting/mail,
+/obj/structure/disposalpipe/sorting/mail{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
@@ -5848,7 +5850,9 @@
 /obj/machinery/disposal/bin{
 	dir = 1
 	},
-/obj/structure/disposalpipe/trunk,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/station/service/library)
 "aHe" = (
@@ -6376,7 +6380,9 @@
 /turf/open/floor/iron,
 /area/station/commons/storage/primary)
 "aJc" = (
-/obj/structure/disposalpipe/trunk,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /obj/machinery/disposal/bin{
 	dir = 1
 	},
@@ -13205,7 +13211,9 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/hop)
 "bnR" = (
-/obj/structure/disposalpipe/trunk,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /obj/machinery/disposal/bin{
 	dir = 1
 	},
@@ -14565,7 +14573,9 @@
 /area/station/engineering/atmos)
 "buy" = (
 /obj/structure/cable,
-/obj/structure/disposalpipe/sorting/mail,
+/obj/structure/disposalpipe/sorting/mail{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/mail_sorting/medbay/general,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
@@ -14915,7 +14925,9 @@
 /turf/open/floor/iron/dark/telecomms,
 /area/station/tcommsat/server)
 "bvz" = (
-/obj/structure/disposalpipe/junction,
+/obj/structure/disposalpipe/junction{
+	dir = 1
+	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -17529,7 +17541,9 @@
 /obj/structure/disposaloutlet{
 	dir = 2
 	},
-/obj/structure/disposalpipe/trunk,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /turf/open/floor/engine/xenobio,
 /area/station/science/xenobiology)
 "bIA" = (
@@ -27496,7 +27510,9 @@
 /turf/open/floor/iron/edge,
 /area/station/hallway/primary/starboard)
 "cTS" = (
-/obj/structure/disposalpipe/sorting/mail,
+/obj/structure/disposalpipe/sorting/mail{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 8
 	},
@@ -31885,7 +31901,9 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 10
 	},
-/obj/structure/disposalpipe/trunk,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/textured,
 /area/station/science/genetics)
 "exz" = (
@@ -34297,18 +34315,20 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central/fore)
 "fqu" = (
-/obj/structure/disposalpipe/trunk,
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
 	},
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 1
 	},
-/obj/structure/disposaloutlet{
-	dir = 1
-	},
 /obj/structure/window/reinforced/spawner/directional/south{
 	pixel_y = -4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/structure/disposaloutlet{
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
@@ -41022,7 +41042,9 @@
 /obj/machinery/disposal/bin{
 	dir = 1
 	},
-/obj/structure/disposalpipe/trunk,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/east,
 /turf/open/floor/wood/parquet,
@@ -50669,12 +50691,23 @@
 /turf/open/floor/iron/dark,
 /area/station/security/courtroom)
 "kYk" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/plaque/static_plaque/golden/commission/squarestation,
-/turf/open/floor/iron/dark/textured_large,
-/area/station/hallway/primary/central)
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 1
+	},
+/obj/structure/window/reinforced/spawner/directional/south{
+	pixel_y = -4
+	},
+/obj/structure/disposaloutlet{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/station/science/xenobiology)
 "kYl" = (
 /obj/structure/chair/office/light{
 	dir = 2;
@@ -53979,7 +54012,7 @@
 /area/station/science/xenobiology)
 "mdr" = (
 /obj/effect/spawner/liquids_spawner{
-	list(/datum/reagent/ants/fire    =    190)
+	list(/datum/reagent/ants/fire     =     190)
 	},
 /mob/living/basic/ant,
 /turf/open/floor/iron/pool/cobble/corner{
@@ -55983,7 +56016,9 @@
 /obj/machinery/disposal/bin{
 	dir = 1
 	},
-/obj/structure/disposalpipe/trunk,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	alpha = 160;
 	color = "#6a3182";
@@ -56810,9 +56845,6 @@
 /area/station/command/heads_quarters/hop)
 "ndY" = (
 /obj/structure/disposalpipe/trunk,
-/obj/structure/disposaloutlet{
-	dir = 1
-	},
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
 	},
@@ -56821,6 +56853,12 @@
 	},
 /obj/structure/window/reinforced/spawner/directional/south{
 	pixel_y = -4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/structure/disposaloutlet{
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
@@ -60801,7 +60839,7 @@
 /area/station/hallway/secondary/exit)
 "oBk" = (
 /obj/effect/spawner/liquids_spawner{
-	list(/datum/reagent/ants/fire    =    190)
+	list(/datum/reagent/ants/fire     =     190)
 	},
 /obj/machinery/light/small/directional/north,
 /turf/open/floor/iron/pool/cobble/corner{
@@ -62442,7 +62480,9 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/disposalpipe/trunk,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
 	},
@@ -65995,7 +66035,7 @@
 	pixel_x = -9;
 	pixel_y = -1;
 	desc = "I CAN QUIT ANY TIME I WANT!";
-	list(/datum/reagent/drug/blastoff    =    50);
+	list(/datum/reagent/drug/blastoff     =     50);
 	name = "extended bLaSToFF ampoule"
 	},
 /turf/open/floor/iron/dark/smooth_large,
@@ -66456,12 +66496,13 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/spawner/directional/east,
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/disposal/bin{
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/structure/disposalpipe/trunk,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/disposal/incinerator)
@@ -68787,18 +68828,18 @@
 /obj/machinery/light/small/directional/south,
 /obj/structure/closet/secure_closet/freezer/fridge/all_access,
 /obj/item/reagent_containers/condiment/rice{
-	list(/datum/reagent/consumable/rice     =     150);
+	list(/datum/reagent/consumable/rice      =      150);
 	name = "Basmati Rice Sack (4KG)";
 	volume = 150
 	},
 /obj/item/reagent_containers/condiment/enzyme{
-	list(/datum/reagent/consumable/enzyme     =     500);
+	list(/datum/reagent/consumable/enzyme      =      500);
 	name = "universe-sized universal enyzyme";
 	volume = 500
 	},
 /obj/item/reagent_containers/condiment/milk,
 /obj/item/reagent_containers/condiment/flour{
-	list(/datum/reagent/consumable/flour     =     600);
+	list(/datum/reagent/consumable/flour      =      600);
 	name = "Premium All-Purpose Flour (16KG)";
 	volume = 600
 	},
@@ -69176,7 +69217,9 @@
 /obj/machinery/disposal/bin{
 	dir = 1
 	},
-/obj/structure/disposalpipe/trunk,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 1
 	},
@@ -71223,7 +71266,9 @@
 /obj/machinery/disposal/bin{
 	dir = 1
 	},
-/obj/structure/disposalpipe/trunk,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /obj/structure/cable,
 /obj/machinery/firealarm/directional/west,
 /obj/effect/turf_decal/tile/dark_red/opposingcorners{
@@ -71450,14 +71495,16 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/fore)
 "stP" = (
-/obj/structure/disposalpipe/trunk,
-/obj/structure/disposaloutlet{
-	dir = 1
-	},
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
 	},
 /obj/effect/turf_decal/siding/dark/corner{
+	dir = 1
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/structure/disposaloutlet{
 	dir = 1
 	},
 /turf/open/floor/engine,
@@ -81132,7 +81179,9 @@
 /obj/machinery/disposal/bin{
 	dir = 1
 	},
-/obj/structure/disposalpipe/trunk,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/service/chapel/office)
 "vLo" = (
@@ -86370,7 +86419,9 @@
 /obj/machinery/disposal/bin{
 	dir = 1
 	},
-/obj/structure/disposalpipe/trunk,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/purple/full{
 	dir = 1
 	},
@@ -111733,7 +111784,7 @@ bzs
 bDb
 vYW
 tLd
-ndY
+kYk
 vYW
 hPj
 fqu
@@ -125129,7 +125180,7 @@ nyA
 bAf
 kJC
 ntZ
-kYk
+vWb
 aga
 aPJ
 aOz
