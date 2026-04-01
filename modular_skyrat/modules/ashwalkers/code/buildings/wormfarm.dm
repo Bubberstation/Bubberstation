@@ -5,6 +5,7 @@
 	icon_state = "wormbarrel"
 	density = TRUE
 	anchored = FALSE
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 	/// How many worms can the barrel hold
 	var/max_worm = 10
 	/// How many worms the barrel is currently holding

@@ -8,39 +8,6 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	icon_state = "hilbertshotel"
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE + EXTRA STUFF
-	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library", "Cultist's Cavern", "Winter Woods", "Evacuated Station", "Prison", "Corporate Office", "Recovery Wing", "Grotto", "Grotto (Night)", "Fox Bar", "The Nightclub", "EVA", "Oasis", "Oasis (Night)", "Public Pool", "Mini Engineering", "Syndicate Office", "Syndicate Ops Centre")
-	//standart - hilber's hotel room
-	//apartment - see /datum/map_template/ghost_cafe_rooms
-	//beach condo - Beach themed apartment
-	//stationside - a station-themed hotel room
-	var/datum/map_template/ghost_cafe_rooms/apartment/ghost_cafe_rooms_apartment
-	var/datum/map_template/ghost_cafe_rooms/beach_condo/ghost_cafe_rooms_beach_condo
-	var/datum/map_template/ghost_cafe_rooms/stationside/ghost_cafe_rooms_stationside
-	var/datum/map_template/ghost_cafe_rooms/library/ghost_cafe_rooms_library
-	//Skyrat EDIT END
-
-	//BUBBER EDIT ADDITION BEGIN - Infinite Dorm Maps Add
-	var/datum/map_template/ghost_cafe_rooms/cultcave/ghost_cafe_rooms_cultcave
-	var/datum/map_template/ghost_cafe_rooms/winterwoods/ghost_cafe_rooms_winterwoods
-	var/datum/map_template/ghost_cafe_rooms/evacuationstation/ghost_cafe_rooms_evacuationstation
-	var/datum/map_template/ghost_cafe_rooms/prisoninfdorm/ghost_cafe_rooms_prisoninfdorm
-	var/datum/map_template/ghost_cafe_rooms/corporateoffice/ghost_cafe_rooms_corporateoffice
-	var/datum/map_template/ghost_cafe_rooms/recwing/ghost_cafe_rooms_recwing
-	var/datum/map_template/ghost_cafe_rooms/grotto/ghost_cafe_rooms_grotto
-	var/datum/map_template/ghost_cafe_rooms/grotto2/ghost_cafe_rooms_grotto2
-	var/datum/map_template/ghost_cafe_rooms/foxbar/ghost_cafe_rooms_foxbar
-	var/datum/map_template/ghost_cafe_rooms/nightclub/ghost_cafe_rooms_nightclub
-	var/datum/map_template/ghost_cafe_rooms/eva/ghost_cafe_rooms_eva
-	var/datum/map_template/ghost_cafe_rooms/oasis/ghost_cafe_rooms_oasis
-	var/datum/map_template/ghost_cafe_rooms/oasisalt/ghost_cafe_rooms_oasisalt
-
-	var/datum/map_template/ghost_cafe_rooms/pool/ghost_cafe_rooms_pool
-	var/datum/map_template/ghost_cafe_rooms/engineering/ghost_cafe_rooms_engineering
-	var/datum/map_template/ghost_cafe_rooms/syndieoffice/ghost_cafe_rooms_syndieoffice
-	var/datum/map_template/ghost_cafe_rooms/synopcenter/ghost_cafe_rooms_synopcenter
-	//BUBBER EDIT END
-
 	var/datum/map_template/hilbertshotel/hotelRoomTemp
 	var/datum/map_template/hilbertshotel/empty/hotelRoomTempEmpty
 	var/datum/map_template/hilbertshotel/lore/hotelRoomTempLore
@@ -59,33 +26,6 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	hotelRoomTemp = new()
 	hotelRoomTempEmpty = new()
 	hotelRoomTempLore = new()
-	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE
-	ghost_cafe_rooms_apartment = new()
-	ghost_cafe_rooms_beach_condo = new()
-	ghost_cafe_rooms_stationside = new()
-	ghost_cafe_rooms_library = new()
-	//SKYRAT EDIT END
-	//BUBBER EDIT ADDITION BEGIN - Infinite Dorm Maps Add
-	ghost_cafe_rooms_cultcave = new()
-	ghost_cafe_rooms_winterwoods = new()
-	ghost_cafe_rooms_evacuationstation = new()
-	ghost_cafe_rooms_prisoninfdorm = new()
-	ghost_cafe_rooms_corporateoffice = new()
-	ghost_cafe_rooms_recwing = new()
-	ghost_cafe_rooms_grotto = new()
-	ghost_cafe_rooms_grotto2 = new()
-	ghost_cafe_rooms_foxbar = new()
-	ghost_cafe_rooms_nightclub = new()
-	ghost_cafe_rooms_eva = new()
-	ghost_cafe_rooms_oasis = new()
-	ghost_cafe_rooms_oasisalt = new()
-
-	ghost_cafe_rooms_pool = new()
-	ghost_cafe_rooms_engineering = new()
-	ghost_cafe_rooms_syndieoffice = new()
-	ghost_cafe_rooms_synopcenter = new()
-	//BUBBER EDIT END
-
 	var/area/currentArea = get_area(src)
 	if(currentArea.type == /area/ruin/space/has_grav/powered/hilbertresearchfacility/secretroom)
 		ruinSpawned = TRUE
@@ -136,8 +76,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		to_chat(target, span_warning("You aren't able to activate \the [src] anymore!"))
 
 	// Has the user thrown it away or otherwise disposed of it such that it's no longer in their hands or in some storage connected to them?
-	// if(get_atom_on_turf(src, /mob) != user) SKYRAT EDIT ORIGINAL
-	if(!Adjacent(user)) // SKYRAT EDIT -- Ghost Cafe Static Hilbertspawner
+	if(get_atom_on_turf(src, /mob) != user)
 		if(user == target)
 			to_chat(user, span_warning("\The [src] is no longer in your possession!"))
 		else
@@ -155,11 +94,6 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		else if(!user.dropItemToGround(src))
 			to_chat(user, span_warning("You can't seem to drop \the [src]! It must be stuck to your hand somehow! Prepare for unforeseen consequences..."))
 
-	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE
-	var/chosen_room = "Nothing"
-	if(istype(src, /obj/item/hilbertshotel/ghostdojo)) //to don't add another one var
-		chosen_room = tgui_input_list(user, "Choose desired room:", "Time to choose", hotel_maps)
-	//SKYRAT EDIT END
 	if(!storageTurf) //Blame subsystems for not allowing this to be in Initialize
 		if(!GLOB.hhStorageTurf)
 			var/datum/map_template/hilbertshotelstorage/storageTemp = new()
@@ -173,7 +107,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		return
 	if(tryStoredRoom(chosenRoomNumber, target))
 		return
-	sendToNewRoom(chosenRoomNumber, target, chosen_room) //SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE. Was sendToNewRoom(chosenRoomNumber, target)
+	sendToNewRoom(chosenRoomNumber, target)
 
 /obj/item/hilbertshotel/proc/tryActiveRoom(roomNumber, mob/user)
 	if(activeRooms["[roomNumber]"])
@@ -219,78 +153,13 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 		return TRUE
 	return FALSE
 
-/obj/item/hilbertshotel/proc/sendToNewRoom(roomNumber, mob/user, chosen_room) //SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE. Was sendToNewRoom(roomNumber, mob/user)
+/obj/item/hilbertshotel/proc/sendToNewRoom(roomNumber, mob/user)
 	var/datum/turf_reservation/roomReservation = SSmapping.request_turf_block_reservation(hotelRoomTemp.width, hotelRoomTemp.height, 1)
 	var/turf/bottom_left = roomReservation.bottom_left_turfs[1]
 	var/datum/map_template/load_from = hotelRoomTemp
 
 	if(ruinSpawned && roomNumber == GLOB.hhMysteryRoomNumber)
 		load_from = hotelRoomTempLore
-	//SKYRAT EDIT ADDITION START - GHOST HOTEL UPDATE
-	else if(chosen_room == "Apartment")
-		load_from = ghost_cafe_rooms_apartment
-
-	else if(chosen_room == "Beach Condo")
-		load_from = ghost_cafe_rooms_beach_condo
-
-	else if(chosen_room == "Station Side")
-		load_from = ghost_cafe_rooms_stationside
-	else if(chosen_room == "Library")
-		load_from = ghost_cafe_rooms_library
-	//SKYRAT EDIT ADDITION END
-	//BUBBER EDIT ADDITION BEGIN - Infinite Dorm Maps Add
-	else if(chosen_room == "Cultist's Cavern")
-		load_from = ghost_cafe_rooms_cultcave
-
-	else if(chosen_room == "Winter Woods")
-		load_from = ghost_cafe_rooms_winterwoods
-
-	else if(chosen_room == "Evacuated Station")
-		load_from = ghost_cafe_rooms_evacuationstation
-
-	else if(chosen_room == "Prison")
-		load_from = ghost_cafe_rooms_prisoninfdorm
-
-	else if(chosen_room == "Corporate Office")
-		load_from = ghost_cafe_rooms_corporateoffice
-
-	else if(chosen_room == "Recovery Wing")
-		load_from = ghost_cafe_rooms_recwing
-
-	else if(chosen_room == "Grotto")
-		load_from = ghost_cafe_rooms_grotto
-
-	else if(chosen_room == "Grotto (Night)")
-		load_from = ghost_cafe_rooms_grotto2
-
-	else if(chosen_room == "Fox Bar")
-		load_from = ghost_cafe_rooms_foxbar
-
-	else if(chosen_room == "The Nightclub")
-		load_from = ghost_cafe_rooms_nightclub
-
-	else if(chosen_room == "EVA")
-		load_from = ghost_cafe_rooms_eva
-
-	else if(chosen_room == "Oasis")
-		load_from = ghost_cafe_rooms_oasis
-
-	else if(chosen_room == "Oasis (Night)")
-		load_from = ghost_cafe_rooms_oasisalt
-
-	else if(chosen_room == "Public Pool")
-		load_from = ghost_cafe_rooms_pool
-
-	else if(chosen_room == "Mini Engineering")
-		load_from = ghost_cafe_rooms_engineering
-
-	else if(chosen_room == "Syndicate Office")
-		load_from = ghost_cafe_rooms_syndieoffice
-
-	else if(chosen_room == "Syndicate Ops Centre")
-		load_from = ghost_cafe_rooms_synopcenter
-	//BUBBER EDIT END
-
 
 	load_from.load(bottom_left)
 	activeRooms["[roomNumber]"] = roomReservation
@@ -432,6 +301,11 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	icon_state = "hoteldoor"
 	explosive_resistance = INFINITY
 	var/obj/item/hilbertshotel/parentSphere
+	// BUBBER EDIT ADDITION START - Condos
+	var/leave_message = "Hilbert's Hotel would like to remind you that while we will do everything we can to protect the belongings \
+		you leave behind, we make no guarantees of their safety while you're gone, especially that of the health of any living creatures. \
+		With that in mind, are you ready to leave?"
+	// BUBBER EDIT ADDITION END
 
 /turf/closed/indestructible/hoteldoor/Initialize(mapload)
 	. = ..()
@@ -450,7 +324,12 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	if(!parentSphere)
 		to_chat(user, span_warning("The door seems to be malfunctioning and refuses to operate!"))
 		return
+	/// BUBBER EDIT CHANGE START - Condos
+	/* Original:
 	if(tgui_alert(user, "Hilbert's Hotel would like to remind you that while we will do everything we can to protect the belongings you leave behind, we make no guarantees of their safety while you're gone, especially that of the health of any living creatures. With that in mind, are you ready to leave?", "Exit", list("Leave", "Stay")) == "Leave")
+	*/
+	if(tgui_alert(user, leave_message, "Exit", list("Leave", "Stay")) == "Leave") // BUBBER EDIT CHANGE - Moved blurb to leave_message variable
+	/// BUBBER EDIT CHANGE END
 		if(HAS_TRAIT(user, TRAIT_IMMOBILIZED) || (get_dist(get_turf(src), get_turf(user)) > 1)) //no teleporting around if they're dead or moved away during the prompt.
 			return
 		user.forceMove(get_turf(parentSphere))
@@ -509,7 +388,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	desc = "Stop looking through the bluespace peephole."
 	button_icon_state = "cancel_peephole"
 
-/datum/action/peephole_cancel/Trigger(trigger_flags)
+/datum/action/peephole_cancel/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	to_chat(owner, span_warning("You move away from the peephole."))
 	owner.reset_perspective()
@@ -525,10 +404,9 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	requires_power = FALSE
 	default_gravity = STANDARD_GRAVITY
 	area_flags = NOTELEPORT | HIDDEN_AREA
+	area_flags_mapping = NONE
 	static_lighting = TRUE
-	/* 	SKYRAT EDIT REMOVAL - GHOST HOTEL UPDATE
-	ambientsounds = list('sound/ambience/servicebell.ogg')
-	SKYRAT EDIT END */
+	// ambientsounds = list('sound/ambience/ruin/servicebell.ogg') // BUBBER EDIT REMOVAL
 	var/roomnumber = 0
 	var/obj/item/hilbertshotel/parentSphere
 	var/datum/turf_reservation/reservation
@@ -615,9 +493,9 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	icon = 'icons/area/areas_ruins.dmi'
 	icon_state = "hilbertshotel"
 	requires_power = FALSE
-	area_flags = HIDDEN_AREA | NOTELEPORT | UNIQUE_AREA
+	area_flags = HIDDEN_AREA | NOTELEPORT
+	area_flags_mapping = UNIQUE_AREA
 	default_gravity = STANDARD_GRAVITY
-
 
 /obj/item/abstracthotelstorage
 	anchored = TRUE
@@ -650,7 +528,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	name = "Hilbert Research Facility"
 
 /area/ruin/space/has_grav/powered/hilbertresearchfacility/secretroom
-	area_flags = UNIQUE_AREA | NOTELEPORT | HIDDEN_AREA
+	area_flags = NOTELEPORT | HIDDEN_AREA
 
 /obj/item/analyzer/hilbertsanalyzer
 	name = "custom rigged analyzer"

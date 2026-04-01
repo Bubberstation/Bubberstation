@@ -38,8 +38,8 @@
 	if(stat_evolution)
 		string += "STAT AVAIL: [stat_evolution] \n"
 	if(human_host)
-		var/brute = "<span style=color:red>[human_host.getBruteLoss()]</span>" // Limbs
-		var/burn = "<span style=color:white>[human_host.getFireLoss()]</span>" // Limbs
+		var/brute = "<span style=color:red>[human_host.get_brute_loss()]</span>" // Limbs
+		var/burn = "<span style=color:white>[human_host.get_fire_loss()]</span>" // Limbs
 		var/tox = "<span style=color:green>[human_host.toxloss]</span>"
 		var/oxy = "<span style=color:blue>[human_host.oxyloss]</span>"
 		var/blood = "<span style=color:magenta>[human_host.blood_volume]</span>"

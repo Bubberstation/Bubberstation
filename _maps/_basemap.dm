@@ -34,6 +34,7 @@
 		#include "map_files\moonstation\moonstation.dmm"
 		#include "map_files\BoxStation\BoxStation.dmm"
 		#include "map_files\CardinalStation\CardinalStation.dmm"
+		#include "map_files\Ouroboros\Ouroboros.dmm"
 		// BUBBER EDIT ADDITION END
 	#endif
 	#ifdef ALL_TEMPLATES

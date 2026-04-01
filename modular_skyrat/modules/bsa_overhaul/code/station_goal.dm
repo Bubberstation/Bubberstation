@@ -19,7 +19,7 @@
 /datum/station_goal/bluespace_cannon/on_report()
 	//Unlock BSA parts
 	var/datum/supply_pack/engineering/bsa/parts = SSshuttle.supply_packs[/datum/supply_pack/engineering/bsa]
-	parts.special_enabled = TRUE
+	parts.order_flags = ORDER_SPECIAL | ORDER_SPECIAL_ENABLED
 
 /datum/station_goal/bluespace_cannon/check_completion()
 	if(..())

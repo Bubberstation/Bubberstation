@@ -304,17 +304,21 @@
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "caligram_cap_tan"
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Tan Variant" = list(
-			RESKIN_ICON_STATE = "caligram_cap_tan",
-			RESKIN_WORN_ICON_STATE = "caligram_cap_tan"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "caligram_cap_blue",
-			RESKIN_WORN_ICON_STATE = "caligram_cap_blue"
-		)
-	)
+
+/obj/item/clothing/head/caligram_cap_tan/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/caligram_cap)
+
+/datum/atom_skin/caligram_cap
+	abstract_type = /datum/atom_skin/caligram_cap
+
+/datum/atom_skin/caligram_cap/tan
+	preview_name = "Tan Variant"
+	new_icon_state = "caligram_cap_tan"
+
+/datum/atom_skin/caligram_cap/blue
+	preview_name = "Blue Variant"
+	new_icon_state = "caligram_cap_blue"
 
 // Donation reward for Raxraus
 /obj/item/clothing/under/jumpsuit/caligram_fatigues_tan
@@ -325,17 +329,21 @@
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
 	icon_state = "caligram_fatigues_tan"
 	worn_icon_state = "caligram_fatigues_tan"
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Tan Variant" = list(
-			RESKIN_ICON_STATE = "caligram_fatigues_tan",
-			RESKIN_WORN_ICON_STATE = "caligram_fatigues_tan"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "caligram_fatigues_blue",
-			RESKIN_WORN_ICON_STATE = "caligram_fatigues_blue"
-		)
-	)
+
+/obj/item/clothing/under/jumpsuit/caligram_fatigues_tan/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/caligram_fatigues)
+
+/datum/atom_skin/caligram_fatigues
+	abstract_type = /datum/atom_skin/caligram_fatigues
+
+/datum/atom_skin/caligram_fatigues/tan
+	preview_name = "Tan Variant"
+	new_icon_state = "caligram_fatigues_tan"
+
+/datum/atom_skin/caligram_fatigues/blue
+	preview_name = "Blue Variant"
+	new_icon_state = "caligram_fatigues_blue"
 
 // Donation reward for Raxraus
 /obj/item/clothing/suit/jacket/caligram_parka_tan
@@ -346,21 +354,25 @@
 	icon_state = "caligram_parka_tan"
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|LEGS|ARMS|HANDS
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Tan Variant" = list(
-			RESKIN_ICON_STATE = "caligram_parka_tan",
-			RESKIN_WORN_ICON_STATE = "caligram_parka_tan"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "caligram_parka_blue",
-			RESKIN_WORN_ICON_STATE = "caligram_parka_blue"
-		),
-		"Blue Patchless Variant" = list(
-			RESKIN_ICON_STATE = "caligram_parka_patchless_blue",
-			RESKIN_WORN_ICON_STATE = "caligram_parka_patchless_blue"
-		)
-	)
+
+/obj/item/clothing/suit/jacket/caligram_parka_tan/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/caligram_parka)
+
+/datum/atom_skin/caligram_parka
+	abstract_type = /datum/atom_skin/caligram_parka
+
+/datum/atom_skin/caligram_parka/tan
+	preview_name = "Tan Variant"
+	new_icon_state = "caligram_parka_tan"
+
+/datum/atom_skin/caligram_parka/blue
+	preview_name = "Blue Variant"
+	new_icon_state = "caligram_parka_blue"
+
+/datum/atom_skin/caligram_parka/blue_patchless
+	preview_name = "Blue Patchless Variant"
+	new_icon_state = "caligram_parka_patchless_blue"
 
 // Donation reward for Raxraus
 /obj/item/clothing/suit/armor/vest/caligram_parka_vest_tan
@@ -372,17 +384,21 @@
 	inhand_icon_state = "armor"
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|LEGS|ARMS|HANDS
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Tan Variant" = list(
-			RESKIN_ICON_STATE = "caligram_parka_vest_tan",
-			RESKIN_WORN_ICON_STATE = "caligram_parka_vest_tan"
-		),
-		"Blue Variant" = list(
-			RESKIN_ICON_STATE = "caligram_parka_vest_blue",
-			RESKIN_WORN_ICON_STATE = "caligram_parka_vest_blue"
-		)
-	)
+
+/obj/item/clothing/suit/armor/vest/caligram_parka_vest_tan/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/caligram_parka_vest)
+
+/datum/atom_skin/caligram_parka_vest
+	abstract_type = /datum/atom_skin/caligram_parka_vest
+
+/datum/atom_skin/caligram_parka_vest/tan
+	preview_name = "Tan Variant"
+	new_icon_state = "caligram_parka_vest_tan"
+
+/datum/atom_skin/caligram_parka_vest/blue
+	preview_name = "Blue Variant"
+	new_icon_state = "caligram_parka_vest_blue"
 
 // Donation reward for ChillyLobster
 /obj/item/clothing/suit/jacket/brasspriest
@@ -581,7 +597,6 @@
 	icon_state = "silver_dress_boots"
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/feet.dmi'
 	supports_variations_flags = NONE
-	uses_advanced_reskins = FALSE
 
 
 /****************LEGACY REWARDS***************/
@@ -877,7 +892,7 @@
 	icon_state = "plasmaman_jax"
 
 // Donation reward for Raxraus
-/obj/item/clothing/shoes/jackboots/peacekeeper/armadyne/rax
+/obj/item/clothing/shoes/jackboots/armadyne/rax
 	name = "tactical boots"
 	desc = "Tactical and sleek. This model seems to resemble Armadyne's."
 
@@ -1291,13 +1306,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
 
-/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia
-	name = "red-tinted giga HUD gar glasses"
-	desc = "GIGA GAR glasses with a security hud implanted in the lens. Reminds you of a time before the color blue."
-	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/glasses.dmi'
-	icon_state = "supergarsred"
-	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/eyes.dmi'
-
 //Donation reward for Konstyantyn
 /obj/item/clothing/accessory/badge/holo/jade
 	name = "jade holobadge"
@@ -1418,7 +1426,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 
 /obj/item/clothing/shoes/fancy_heels/drag/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/squeak, list('modular_skyrat/modules/modular_items/lewd_items/sounds/highheel1.ogg' = 1, 'modular_skyrat/modules/modular_items/lewd_items/sounds/highheel2.ogg' = 1), 70)
+	AddComponent(/datum/component/squeak, list('modular_zubbers/sound/effects/footstep/highheel1.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel2.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel3.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel4.ogg' = 1), 70)
 
 // Donation reward for Razurath
 
@@ -1634,113 +1642,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	desc = "A sinister colored jacket from a familiar company."
 	base_icon_state = "digicoat_interdyne"
 	icon_state = "digicoat_interdyne"
-
-/obj/item/clothing/suit/armor/hos/elofy
-	name = "anime admiral coat"
-	desc = "This coat is a near perfect replica of the one worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
-		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
-		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
-		but hasn't had much spread outside of the Terran Government."
-	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
-	icon_state = "coat_blackblue"
-	inhand_icon_state = "hostrench"
-	blood_overlay_type = "coat"
-	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	cold_protection = CHEST|GROIN|LEGS|ARMS
-	supports_variations_flags = NONE
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Black-Blue" = list(
-			RESKIN_ICON_STATE = "coat_blackblue",
-			RESKIN_WORN_ICON_STATE = "coat_blackblue"
-		),
-		"Black-Red" = list(
-			RESKIN_ICON_STATE = "coat_blackred",
-			RESKIN_WORN_ICON_STATE = "coat_blackred"
-		),
-		"White-Red" = list(
-			RESKIN_ICON_STATE = "coat_whitered",
-			RESKIN_WORN_ICON_STATE = "coat_whitered"
-		),
-		"White-Blue" = list(
-			RESKIN_ICON_STATE = "coat_whiteblue",
-			RESKIN_WORN_ICON_STATE = "coat_whiteblue"
-		)
-	)
-
-/obj/item/clothing/suit/armor/hos/elofy/examine_more(mob/user)
-	. = ..()
-	. += "It seems particularly soft and has subtle ballistic fibers intwined with the soft fabric that is perfectedly tailored to the body that wears it. Each golden engraving seems to reflect against your eyes with a slightly blinding flare. This is part of a full set of Luna Wolves Legion battle garb."
-
-
-/obj/item/clothing/head/hats/hos/elofy
-	name = "anime admiral hat"
-	desc = "This hat is a near perfect replica of the one worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
-		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
-		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
-		but hasn't had much spread outside of the Terran Government."
-	icon ='modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
-	icon_state = "hat_black"
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"White" = list(
-			RESKIN_ICON_STATE = "hat_white",
-			RESKIN_WORN_ICON_STATE = "hat_white"
-		),
-		"Black" = list(
-			RESKIN_ICON_STATE = "hat_black",
-			RESKIN_WORN_ICON_STATE = "hat_black"
-		)
-	)
-
-
-/obj/item/clothing/gloves/elofy
-	name = "anime admiral gloves"
-	desc = "These gloves are a near perfect replica of those worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
-		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
-		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
-		but hasn't had much spread outside of the Terran Government."
-	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/hands.dmi'
-	icon_state = "gloves_black"
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"White" = list(
-			RESKIN_ICON_STATE = "gloves_white",
-			RESKIN_WORN_ICON_STATE = "gloves_white"
-		),
-		"Black" = list(
-			RESKIN_ICON_STATE = "gloves_black",
-			RESKIN_WORN_ICON_STATE = "gloves_black"
-		)
-	)
-
-/obj/item/clothing/shoes/jackboots/elofy
-	name = "anime admiral boots"
-	desc = "These boots are a near perfect replica of those worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
-		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
-		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
-		but hasn't had much spread outside of the Terran Government."
-	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/shoes.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/feet.dmi'
-	icon_state = "boots_blackblue"
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Black-Red" = list(
-			RESKIN_ICON_STATE = "boots_blackred",
-			RESKIN_WORN_ICON_STATE = "boots_blackred"
-		),
-		"White-Red" = list(
-			RESKIN_ICON_STATE = "boots_whitered",
-			RESKIN_WORN_ICON_STATE = "boots_whitered"
-		),
-		"White-Blue" = list(
-			RESKIN_ICON_STATE = "boots_whiteblue",
-			RESKIN_WORN_ICON_STATE = "boots_whiteblue"
-		)
-	)
 
 // Donation reward for grasshand
 /obj/item/clothing/under/rank/civilian/chaplain/divine_archer/noble

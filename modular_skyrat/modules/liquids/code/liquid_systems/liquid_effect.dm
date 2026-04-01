@@ -472,7 +472,7 @@
 				var/datum/reagents/tempr = take_reagents_flat(CHOKE_REAGENTS_INGEST_ON_FALL_AMOUNT)
 				tempr.trans_to(falling_carbon, tempr.total_volume, methods = INGEST)
 				qdel(tempr)
-				falling_carbon.adjustOxyLoss(5)
+				falling_carbon.adjust_oxy_loss(5)
 				//C.emote("cough")
 				INVOKE_ASYNC(falling_carbon, TYPE_PROC_REF(/mob, emote), "cough")
 				to_chat(falling_carbon, span_userdanger("You fall in and swallow some [reagents_to_text()]!"))

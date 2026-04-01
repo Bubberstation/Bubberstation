@@ -359,8 +359,8 @@
 			else
 				repair_amount = -1
 				energy_cost = 0.01 * STANDARD_CELL_CHARGE
-			cyborg.adjustBruteLoss(repair_amount)
-			cyborg.adjustFireLoss(repair_amount)
+			cyborg.adjust_brute_loss(repair_amount)
+			cyborg.adjust_fire_loss(repair_amount)
 			cyborg.updatehealth()
 			cyborg.cell.use(energy_cost)
 		else
@@ -598,13 +598,6 @@
 		to_chat(usr, span_warning("This unit already has an expand module installed!"))
 		return FALSE
 
-	// SKYRAT EDIT ADDITION BEGIN
-	if(TRAIT_R_EXPANDER_BLOCKED in borg.model.model_features)
-		to_chat(usr, span_warning("This unit is unable to equip an expand module!"))
-		return FALSE
-
-	var/resize_amount = 1.6
-	// SKYRAT EDIT ADDITION END
 	ADD_TRAIT(borg, TRAIT_NO_TRANSFORM, REF(src))
 	var/prev_lockcharge = borg.lockcharge
 	borg.SetLockdown(TRUE)
@@ -627,7 +620,7 @@
 	borg.set_anchored(FALSE)
 	REMOVE_TRAIT(borg, TRAIT_NO_TRANSFORM, REF(src))
 	borg.hasExpanded = TRUE
-	borg.update_transform(resize_amount) // SKYRAT EDIT CHANGE - ORIGINAL: borg.update_transform(2)
+	borg.update_transform(1.6) // SKYRAT EDIT CHANGE - ORIGINAL: borg.update_transform(2)
 
 /obj/item/borg/upgrade/expand/deactivate(mob/living/silicon/robot/borg, mob/living/user = usr)
 	. = ..()

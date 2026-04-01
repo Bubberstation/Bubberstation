@@ -310,7 +310,7 @@
 	if(time_to_choke_left <= 0)
 		if(tt <= 0)
 			if(affected_carbon.stat == CONSCIOUS)
-				affected_carbon.adjustOxyLoss(rand(4, 8)) // Oxy dmg
+				affected_carbon.adjust_oxy_loss(rand(4, 8)) // Oxy dmg
 				affected_carbon.try_lewd_autoemote(pick("gasp", "choke", "moan"))
 				tt = time
 			else
@@ -331,8 +331,6 @@
 	desc = "A strange looking air filter. It may not be a good idea to breathe this in..."
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
 	icon_state = "filter_pink"
-	unique_reskin = list("pink" = "filter_pink",
-						"teal" = "filter_teal")
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
@@ -348,6 +346,18 @@
 /obj/item/reagent_containers/cup/lewd_filter/Initialize(mapload)
 	. = ..()
 	update_icon()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/lewd_filter)
+
+/datum/atom_skin/lewd_filter
+	abstract_type = /datum/atom_skin/lewd_filter
+
+/datum/atom_skin/lewd_filter/pink
+	preview_name = "pink"
+	new_icon_state = "filter_pink"
+
+/datum/atom_skin/lewd_filter/teal
+	preview_name = "teal"
+	new_icon_state = "filter_teal"
 
 // Legacy code from reagent_containers class. Most likely not really needed and can be cleared
 /obj/item/reagent_containers/cup/lewd_filter/get_part_rating()

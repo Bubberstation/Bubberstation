@@ -18,20 +18,42 @@
 	resistance_flags = FLAMMABLE
 	actions_types = list(/datum/action/item_action/adjust)
 	dog_fashion = /datum/dog_fashion/head/clown
-	obj_flags = parent_type::obj_flags | INFINITE_RESKIN
-	unique_reskin = list(
-			"Down Clown" = "blueclown",
-			"Jumbo" = "greenclown",
-			"Stepchild" = "redclown",
-			"Banana Brained" = "yellowclown",
-			"Rhubarb Rubber" = "purpleclown"
-	)
+	obj_flags = parent_type::obj_flags
 
-/obj/item/clothing/mask/gas/bubber/clown/reskin_obj(mob/user)
+/obj/item/clothing/mask/gas/bubber/clown/Initialize(mapload)
 	. = ..()
-	user.update_worn_mask()
-	voice_filter = null // performer masks expect to be talked through
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/coloured_clown_mask, infinite = TRUE)
+	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
 
+/datum/atom_skin/coloured_clown_mask
+	abstract_type = /datum/atom_skin/coloured_clown_mask
+
+/datum/atom_skin/coloured_clown_mask/down_clown
+	preview_name = "Down Clown"
+	new_icon_state = "blueclown"
+
+/datum/atom_skin/coloured_clown_mask/jumbo
+	preview_name = "Jumbo"
+	new_icon_state = "greenclown"
+
+/datum/atom_skin/coloured_clown_mask/stepchild
+	preview_name = "Stepchild"
+	new_icon_state = "redclown"
+
+/datum/atom_skin/coloured_clown_mask/banana_brained
+	preview_name = "Banana Brained"
+	new_icon_state = "yellowclown"
+
+/datum/atom_skin/coloured_clown_mask/rhubarb_rubber
+	preview_name = "Rhubarb Rubber"
+	new_icon_state = "purpleclown"
+
+/obj/item/clothing/mask/gas/bubber/clown/proc/on_reskin(datum/source, skin_name)
+	SIGNAL_HANDLER
+	if(ismob(loc))
+		var/mob/clown = loc
+		clown.update_worn_mask()
+	voice_filter = null // performer masks expect to be talked through
 
 /obj/item/clothing/mask/gas/half_mask
 	name = "tacticool neck gaiter"

@@ -130,7 +130,7 @@
 		balloon_alert(user, "nothing to mill")
 		return
 
-	if(user.getStaminaLoss() > MILLSTONE_STAMINA_MINIMUM)
+	if(user.get_stamina_loss() > MILLSTONE_STAMINA_MINIMUM)
 		balloon_alert(user, "too tired")
 		return
 
@@ -146,7 +146,7 @@
 	if(prob(user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
 		stamina_use *= 0.5 //so it uses half the amount of stamina (50 instead of 100)
 
-	user.adjustStaminaLoss(stamina_use) // Prevents spamming it
+	user.adjust_stamina_loss(stamina_use) // Prevents spamming it
 
 	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 	if(!do_after(user, 5 SECONDS * skill_modifier, target = src))

@@ -11,6 +11,7 @@
 	resistance_flags = FIRE_PROOF
 	processing_flags = START_PROCESSING_MANUALLY
 	variant = 1
+	custom_materials = list(/datum/material/stone = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/machinery/griddle/Initialize(mapload)
 	. = ..()

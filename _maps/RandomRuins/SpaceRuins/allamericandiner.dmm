@@ -32,19 +32,6 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/allamericandiner)
-"cH" = (
-/obj/structure/table/reinforced,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = -1;
-	pixel_y = 5
-	},
-/obj/item/rag{
-	pixel_x = 8;
-	pixel_y = 3
-	},
-/turf/open/floor/iron/kitchen/small,
-/area/ruin/space/has_grav/allamericandiner)
 "cQ" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/reagent_dispensers/watertank,
@@ -148,6 +135,19 @@
 /obj/item/food/meat/slab/monkey,
 /obj/effect/turf_decal/bot/left,
 /turf/open/floor/iron/freezer,
+/area/ruin/space/has_grav/allamericandiner)
+"ga" = (
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = -1;
+	pixel_y = 5
+	},
+/obj/item/rag{
+	pixel_x = 8;
+	pixel_y = 3
+	},
+/turf/open/floor/iron/kitchen/small,
 /area/ruin/space/has_grav/allamericandiner)
 "gl" = (
 /obj/structure/chair/sofa/left/maroon{
@@ -488,6 +488,10 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/allamericandiner)
+"wW" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/allamericandiner)
 "xa" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/suit_storage_unit/open,
@@ -752,7 +756,7 @@
 	pixel_x = -6;
 	pixel_y = 4
 	},
-/obj/item/stamp{
+/obj/item/stamp/granted{
 	pixel_x = 7;
 	pixel_y = 9
 	},
@@ -763,9 +767,7 @@
 /turf/open/floor/iron/grimy,
 /area/ruin/space/has_grav/allamericandiner)
 "HF" = (
-/obj/structure/noticeboard/directional/north{
-	dir = 2
-	},
+/obj/structure/noticeboard/directional/north,
 /obj/machinery/deepfryer,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/paper/fluff/ruins/allamericandiner,
@@ -1133,10 +1135,6 @@
 /obj/structure/sink/directional/south,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/allamericandiner)
-"Ve" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/allamericandiner)
 "Vq" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light/dim/directional/east,
@@ -1370,12 +1368,12 @@ oN
 oN
 EK
 EK
-Ve
+wW
 EK
 EK
-Ve
+wW
 EK
-Ve
+wW
 EK
 EK
 EK
@@ -1452,7 +1450,7 @@ db
 vp
 fL
 fL
-Ve
+wW
 SU
 SU
 SU
@@ -1563,7 +1561,7 @@ FB
 PW
 fL
 fL
-Ve
+wW
 SU
 SU
 SU
@@ -1817,12 +1815,12 @@ zw
 jZ
 Qn
 Fr
-cH
+ga
 rG
 PW
 yl
 yl
-Ve
+wW
 SU
 SU
 SU
@@ -1933,7 +1931,7 @@ Ka
 PW
 fL
 fL
-Ve
+wW
 SU
 SU
 SU

@@ -38,6 +38,7 @@
 	var/list/all_designs = list()
 	var/list/exceptions = list(
 		/datum/design/surgery/healing, // Ignored due to the above test
+		/datum/design/telescreen_monastery, // It's map-specific, so it doesn't always have a source.
 		// BUBBER EDIT ADDITION BEGIN - Exclude tg designs that we've removed from the techweb
 		/datum/design/mag_autorifle,
 		/datum/design/mag_autorifle/ap_mag,

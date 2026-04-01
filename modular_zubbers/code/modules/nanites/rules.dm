@@ -122,13 +122,13 @@
 	var/damage_amt = 0
 	switch(damage_type)
 		if(BRUTE)
-			damage_amt = program.host_mob.getBruteLoss()
+			damage_amt = program.host_mob.get_brute_loss()
 		if(BURN)
-			damage_amt = program.host_mob.getFireLoss()
+			damage_amt = program.host_mob.get_fire_loss()
 		if(TOX)
-			damage_amt = program.host_mob.getToxLoss()
+			damage_amt = program.host_mob.get_tox_loss()
 		if(OXY)
-			damage_amt = program.host_mob.getOxyLoss()
+			damage_amt = program.host_mob.get_oxy_loss()
 
 	if(above)
 		if(damage_amt >= threshold)

@@ -28,6 +28,7 @@
 		"Colonist",
 		"Contractor",
 		"Civilian",
+		"Duchess",
 		"Duke",
 		"Diplomat",
 		"Entertainer",
@@ -54,6 +55,7 @@
 		"Firefighter",
 		"Life Support Technician",
 		"HVAC Engineer",
+		"Habitability Technician",
 	)
 
 /datum/job/barber
@@ -93,6 +95,7 @@
 		"Blueshield",
 		"Command Bodyguard",
 		"Executive Protection Agent",
+		"Command Security Specialist",
 		"Command Protection Officer",
 		"Henchman",
 	)
@@ -135,6 +138,7 @@
 		"Site Manager",
 		"Station Commander",
 		"Facility Director",
+		"Chief Executive Officer",
 	)
 
 /datum/job/cargo_technician
@@ -194,6 +198,7 @@
 		"Head Crystallomancer",
 		"Engineering Foreman",
 		"Head of Engineering",
+		"Chief Technical Officer",
 	)
 
 /datum/job/chief_medical_officer
@@ -266,6 +271,7 @@
 		"Cyborg",
 		"Android",
 		"Robot",
+		"Synthetic",
 	)
 
 /datum/job/detective
@@ -275,6 +281,7 @@
 		"Forensic Technician",
 		"Private Investigator",
 		"CID Officer",
+		"Criminal Investigator",
 		"Gumshoe",
 	)
 
@@ -299,6 +306,8 @@
 		"Genemancer",
 		"Gene Tailor",
 		"Mutation Researcher",
+		"Genetics Researcher",
+		"Genetic Engineer",
 	)
 
 /datum/job/head_of_personnel
@@ -317,7 +326,9 @@
 		"Chief Constable",
 		"Chief of Security",
 		"Security Commander",
+		"Chief Security Officer",
 		"Sheriff",
+		"Security Commissioner",
 	)
 
 /datum/job/janitor
@@ -357,14 +368,13 @@
 		"Nanotrasen Advisor",
 		"Nanotrasen Diplomat",
 		"Nanotrasen Representative",
-		"Nanotrasen Liason",
-		"Central Command Consultant",
-		"Central Command Advisor",
-		"Central Command Diplomat",
-		"Central Command Representative",
-		"Central Command Liason",
-		"Corporate Liason",
-		"Corporate Consultant",
+		"Nanotrasen Liaison",
+		"Command Consultant",
+		"Command Advisor",
+		"Corporate Diplomat",
+		"Corporate Representative",
+		"Corporate Liaison",
+		"Corporate Interest Officer",
 	)
 
 /datum/job/orderly
@@ -490,6 +500,7 @@
 		"EVA Technician",
 		"Mechanic",
 		"Apprentice Engineer",
+		"Repairs Technician",
 	)
 
 /datum/job/telecomms_specialist

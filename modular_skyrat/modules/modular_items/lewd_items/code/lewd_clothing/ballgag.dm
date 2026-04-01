@@ -138,11 +138,11 @@
 		return
 	switch(gag_size)
 		if("small")
-			wearer.adjustOxyLoss(rand(0, 2))
+			wearer.adjust_oxy_loss(rand(0, 2))
 		if("medium")
-			wearer.adjustOxyLoss(rand(0, 3))
+			wearer.adjust_oxy_loss(rand(0, 3))
 		if("large")
-			wearer.adjustOxyLoss(rand(1, 4))
+			wearer.adjust_oxy_loss(rand(1, 4))
 	if(prob(10))
 		wearer.try_lewd_autoemote(pick("gasp", "choke", "moan"))
 	choke_timer = 0

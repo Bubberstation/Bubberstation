@@ -3,8 +3,7 @@
 	description = "Coordinate security personnel, ensure they are not corrupt, \
 		make sure every department is protected."
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY
-	department_head = list(JOB_CAPTAIN)
-	head_announce = list(RADIO_CHANNEL_SECURITY)
+	head_announce = RADIO_CHANNEL_SECURITY
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -41,10 +40,8 @@
 
 	voice_of_god_power = 1.4 //Command staff has authority
 
-
 /datum/job/head_of_security/get_captaincy_announcement(mob/living/captain)
 	return "Due to staffing shortages, newly promoted Acting Captain [captain.real_name] on deck!"
-
 
 /datum/outfit/job/hos
 	name = "Head of Security"
@@ -54,7 +51,7 @@
 	id_trim = /datum/id_trim/job/head_of_security
 	uniform = /obj/item/clothing/under/rank/security/head_of_security
 	suit = /obj/item/clothing/suit/armor/hos/trenchcoat
-	suit_store = /obj/item/gun/energy/e_gun //BUBBER EDIT - REVERTS SKYRAT REMOVAL
+	suit_store = /obj/item/gun/energy/e_gun
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
 		/obj/item/melee/baton/security/loaded/hos = 1,

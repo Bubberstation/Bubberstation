@@ -1,6 +1,8 @@
 // MODULAR ID TRIM ACCESS OVERRIDES GO HERE!!
 
 //(Most) of Security has inverted IDs, with custom blue-on-black icons. This is to distinguish them from their head, who has a white-on-blue icon
+// not anymore
+/*
 /datum/id_trim/job/head_of_security
 	subdepartment_color = COLOR_ASSEMBLY_BLACK
 
@@ -18,7 +20,7 @@
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	department_color = COLOR_ASSEMBLY_BLACK
 	subdepartment_color = COLOR_ASSEMBLY_BLACK
-
+*/
 
 /datum/id_trim/job/chief_engineer/New()
 	. = ..()
@@ -57,7 +59,7 @@
 	minimal_access = list(
 		ACCESS_CAPTAIN, ACCESS_BRIG_ENTRANCE, ACCESS_COMMAND, ACCESS_CONSTRUCTION, ACCESS_DETECTIVE, ACCESS_ENGINEERING,
 		ACCESS_GATEWAY, ACCESS_MAINT_TUNNELS, ACCESS_MEDICAL, ACCESS_RC_ANNOUNCE, ACCESS_SCIENCE, ACCESS_WEAPONS,
-		ACCESS_BRIG, ACCESS_CARGO, ACCESS_COURT, ACCESS_SECURITY, ACCESS_HOP
+		ACCESS_BRIG, ACCESS_CARGO, ACCESS_COURT, ACCESS_SECURITY, ACCESS_HOP, ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_BUDGET
 	)
 	minimal_wildcard_access = list()
 	template_access = list(ACCESS_CAPTAIN)
@@ -80,10 +82,10 @@
 
 /datum/id_trim/job/corrections_officer
 	assignment = "Corrections Officer"
-	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
+	trim_icon = 'modular_zubbers/icons/obj/card.dmi' // BUBBER EDIT
 	trim_state = "trim_corrections_officer"
-	department_color = COLOR_ASSEMBLY_BLACK
-	subdepartment_color = COLOR_ASSEMBLY_BLACK
+	department_color = COLOR_SECURITY_RED // BUBBER EDIT
+	subdepartment_color = COLOR_SECURITY_RED // BUBBER EDIT
 	sechud_icon_state = SECHUD_CORRECTIONS_OFFICER
 	extra_access = list()
 	minimal_access = list(

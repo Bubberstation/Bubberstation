@@ -72,6 +72,7 @@
 				/obj/item/clothing/under/misc/latex_halfcatsuit = 8,
 				/obj/item/clothing/gloves/latex_gloves = 8,
 				/obj/item/clothing/shoes/latex_heels = 4,
+				/obj/item/clothing/shoes/latex_heels/ballet_heels = 4,
 				/obj/item/clothing/shoes/latex_socks = 8,
 
 				/obj/item/storage/belt/erpbelt = 5,//Leather Belt, holds a lot of tools.
@@ -185,7 +186,10 @@
 					/obj/item/reagent_containers/applicator/pill/hexacrocin = 10,
 					/obj/item/reagent_containers/applicator/pill/pentacamphor = 5,
 					/obj/item/reagent_containers/cup/bottle/hexacrocin = 4,
-					/obj/item/reagent_containers/cup/bottle/pentacamphor = 2)
+					/obj/item/reagent_containers/cup/bottle/pentacamphor = 2,
+					/obj/item/reagent_containers/cup/bottle/plushmium = 1,
+					/obj/item/clothing/sextoy/fleshlight/bluespace = 1
+				)
 
 	refill_canister = /obj/item/vending_refill/lustwish
 	payment_department = ACCOUNT_SRV

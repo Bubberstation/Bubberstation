@@ -49,7 +49,7 @@
 		to_chat(M, span_warning("[high_message]"))
 	M.AdjustKnockdown(-20 * REM * seconds_per_tick)
 	M.AdjustImmobilized(-20 * REM * seconds_per_tick)
-	M.adjustStaminaLoss(-10 * REM * seconds_per_tick, 0)
+	M.adjust_stamina_loss(-10 * REM * seconds_per_tick, 0)
 	M.AdjustStun(-10 * REM * seconds_per_tick) //this is absolutely rediculous
 	M.overlay_fullscreen("pcp_rage", /atom/movable/screen/fullscreen/color_vision/rage_color)
 	M.sound_environment_override = SOUND_ENVIRONMENT_DRUGGED
@@ -76,10 +76,10 @@
 	..()
 
 /datum/reagent/drug/pcp/overdose_process(mob/living/M, seconds_per_tick, times_fired)
-	M.adjustToxLoss(2 * REM * seconds_per_tick, 0)
-	M.adjustOrganLoss(ORGAN_SLOT_HEART, (2 * REM * seconds_per_tick))
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, (2 * REM * seconds_per_tick))
-	M.adjustStaminaLoss(15 * REM * seconds_per_tick, 0) //reverses stamina loss
+	M.adjust_tox_loss(2 * REM * seconds_per_tick, 0)
+	M.adjust_organ_loss(ORGAN_SLOT_HEART, (2 * REM * seconds_per_tick))
+	M.adjust_organ_loss(ORGAN_SLOT_BRAIN, (2 * REM * seconds_per_tick))
+	M.adjust_stamina_loss(15 * REM * seconds_per_tick, 0) //reverses stamina loss
 	M.set_jitter_if_lower(5 SECONDS)
 	if(SPT_PROB(2.5, seconds_per_tick))
 		M.emote(pick("twitch","drool"))

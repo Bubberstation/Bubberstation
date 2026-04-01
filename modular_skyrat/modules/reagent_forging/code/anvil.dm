@@ -6,6 +6,7 @@
 
 	anchored = TRUE
 	density = TRUE
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
 /obj/structure/reagent_anvil/Initialize(mapload)
 	. = ..()
@@ -79,7 +80,7 @@
 		return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reagent_anvil/hammer_act(mob/living/user, obj/item/tool)
-	conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 50, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
+	conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 35, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 
 	//do we have an incomplete item to hammer out? if so, here is our block of code
 	var/obj/item/forging/incomplete/locate_incomplete = locate() in contents
@@ -148,7 +149,7 @@
 
 			locate_obj.repair_damage(locate_obj.get_integrity() + 10)
 			user.mind.adjust_experience(/datum/skill/smithing, 5) //repairing does give some experience
-			playsound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', 50, TRUE, ignore_walls = FALSE)
+			conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 35, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 
 	return ITEM_INTERACT_SUCCESS
 

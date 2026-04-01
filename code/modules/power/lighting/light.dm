@@ -55,6 +55,7 @@
 	var/nightshift_light_power = 0.45
 	///Basecolor of the nightshift light
 	var/nightshift_light_color = "#FFDDCC"
+	//BUBBER NIGHT COLOR: 250ACC
 	///If true, the light is in low power mode
 	var/low_power_mode = FALSE
 	///If true, this light cannot ever be in low power mode
@@ -83,11 +84,6 @@
 	var/power_consumption_rate = 20
 	///break if moved, if false also makes it ignore if the wall its on breaks
 	var/break_if_moved = TRUE
-
-/obj/machinery/light/Move()
-	if(status != LIGHT_BROKEN && break_if_moved)
-		break_light_tube(TRUE)
-	return ..()
 
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload)
@@ -121,9 +117,12 @@
 	AddElement(/datum/element/atmos_sensitive, mapload)
 	AddElement(/datum/element/contextual_screentip_bare_hands, rmb_text = "Remove bulb")
 	if(mapload)
-		find_and_hang_on_wall()
+		find_and_mount_on_atom(mark_for_late_init = TRUE)
 
-/obj/machinery/light/find_and_hang_on_wall()
+/obj/machinery/light/get_turfs_to_mount_on()
+	return list(get_step(src, dir))
+
+/obj/machinery/light/find_and_mount_on_atom(mark_for_late_init, late_init)
 	if(break_if_moved)
 		return ..()
 
@@ -145,6 +144,11 @@
 	if(local_area)
 		on = FALSE
 	QDEL_NULL(cell)
+	return ..()
+
+/obj/machinery/light/Move()
+	if(status != LIGHT_BROKEN && break_if_moved)
+		break_light_tube(TRUE)
 	return ..()
 
 /obj/machinery/light/Exited(atom/movable/gone, direction)
@@ -256,19 +260,22 @@
 			if(!color)
 				// BUBBER EDIT CHANGE START - Dynamic nightshift color
 				// color_set = nightshift_light_color
-				// Adjust light values to be warmer. I doubt caching would speed this up by any worthwhile amount, as it's all very fast number and string operations.
-				// Convert to numbers for easier manipulation.
-				var/list/color_parts = rgb2num(bulb_colour)
-				var/red = color_parts[1]
-				var/green = color_parts[2]
-				var/blue = color_parts[3]
+				if(isnull(nightshift_light_color))
+					// Adjust light values to be warmer. I doubt caching would speed this up by any worthwhile amount, as it's all very fast number and string operations.
+					// Convert to numbers for easier manipulation.
+					var/list/color_parts = rgb2num(bulb_colour)
+					var/red = color_parts[1]
+					var/green = color_parts[2]
+					var/blue = color_parts[3]
 
-				red += round(red * NIGHTSHIFT_COLOR_MODIFIER)
-				green -= round(green * NIGHTSHIFT_COLOR_MODIFIER * 0.3)
-				red = clamp(red, 0, 255) // clamp to be safe, or you can end up with an invalid hex value
-				green = clamp(green, 0, 255)
-				blue = clamp(blue, 0, 255)
-				color_set = rgb(red, green, blue) // Splice the numbers together and turn them back to hex.
+					red += round(red * NIGHTSHIFT_COLOR_MODIFIER)
+					green -= round(green * NIGHTSHIFT_COLOR_MODIFIER * 0.3)
+					red = clamp(red, 0, 255) // clamp to be safe, or you can end up with an invalid hex value
+					green = clamp(green, 0, 255)
+					blue = clamp(blue, 0, 255)
+					color_set = rgb(red, green, blue) // Splice the numbers together and turn them back to hex.
+				else
+					color_set = nightshift_light_color
 				// BUBBER EDIT ADDITION END
 		if (cached_color_filter)
 			color_set = apply_matrix_to_color(color_set, cached_color_filter["color"], cached_color_filter["space"] || COLORSPACE_RGB)
@@ -752,6 +759,20 @@
 	fitting = "floor bulb"
 	nightshift_brightness = 4
 	fire_brightness = 4.5
+
+/obj/machinery/light/floor/get_turfs_to_mount_on()
+	return list(get_turf(src))
+
+/obj/machinery/light/floor/is_mountable_turf(turf/target)
+	return !isgroundlessturf(target)
+
+/obj/machinery/light/floor/get_moutable_objects()
+	var/static/list/attachables = list(
+		/obj/structure/thermoplastic,
+		/obj/structure/lattice/catwalk,
+	)
+
+	return attachables
 
 /obj/machinery/light/floor/get_light_offset()
 	return list(0, 0)

@@ -17,7 +17,6 @@
 	siemens_coefficient = 0
 	complexity_max = DEFAULT_MAX_COMPLEXITY
 	slowdown_deployed = 0.25
-	inbuilt_modules = list(/obj/item/mod/module/hearing_protection)
 	allowed_suit_storage = list(
 		/obj/item/ammo_box,
 		/obj/item/ammo_casing,

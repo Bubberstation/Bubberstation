@@ -177,6 +177,8 @@
 		blocker.dir = dir
 		blocker.appearance_flags = appearance_flags | EMISSIVE_APPEARANCE_FLAGS
 		blocker.plane = GET_NEW_PLANE(EMISSIVE_PLANE, PLANE_TO_OFFSET(plane)) // Takes a light path through the normal macro for a microop
+		if (IS_TOPDOWN_PLANE(plane))
+			blocker.layer = TOPDOWN_TO_EMISSIVE_LAYER(layer)
 		// Ok so this is really cursed, but I want to set with this blocker cheaply while
 		// Still allowing it to be removed from the overlays list later
 		// So I'm gonna flatten it, then insert the flattened overlay into overlays AND the managed overlays list, directly
@@ -508,12 +510,6 @@
 		if(NAMEOF(src, glide_size))
 			set_glide_size(var_value)
 			. = TRUE
-		// THE BUBBER EDIT ADDITION BEGIN - BLOOPER
-		if(NAMEOF(src, blooper)) // Sorry, Vishenka.
-			if(isfile(var_value))
-				blooper = sound(var_value) //bark() expects vocal_bark to already be a sound datum, for performance reasons. adminbus QoL!
-			. = TRUE
-		// THE BUBBER EDIT ADDITION END
 	if(!isnull(.))
 		datum_flags |= DF_VAR_EDITED
 		return
@@ -585,7 +581,7 @@
 		if(pulling_mob.buckled && pulling_mob.buckled.buckle_prevents_pull) //if they're buckled to something that disallows pulling, prevent it
 			stop_pulling()
 			return FALSE
-	if(moving_atom == loc && pulling.density)
+	if(get_turf(moving_atom) == loc && pulling.density)
 		return FALSE
 	var/move_dir = get_dir(pulling.loc, moving_atom)
 	if(!Process_Spacemove(move_dir))

@@ -67,7 +67,7 @@
 	if(level_current >= HASTE_GETUP_LEVEL && user.body_position == LYING_DOWN)
 		to_chat(user, span_danger("Your heart takes a beat, and you force yourself to stand up!"))
 		user.SetKnockdown(0)
-		user.setStaminaLoss(0)
+		user.set_stamina_loss(0)
 		user.set_resting(FALSE, FALSE, TRUE)
 		stuns_mobs = FALSE
 		temp_cooldown = GetGetupCooldown()
@@ -99,7 +99,7 @@
 			sleep(world.tick_lag)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	hit.Cut()
-	user.adjustStaminaLoss(-user.staminaloss)
+	user.adjust_stamina_loss(-user.staminaloss)
 	PowerActivatedSuccesfully(temp_cooldown)
 
 /datum/action/cooldown/bloodsucker/targeted/haste/proc/GetKnockdown()

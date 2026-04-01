@@ -14,18 +14,18 @@
 		return
 
 	var/mob/living/living_crosser = crosser
-	living_crosser.adjustBruteLoss(-MUTATION_HEAL_AMOUNT_CROSS)
-	living_crosser.adjustFireLoss(-MUTATION_HEAL_AMOUNT_CROSS)
-	living_crosser.adjustToxLoss(-MUTATION_HEAL_AMOUNT_CROSS)
+	living_crosser.adjust_brute_loss(-MUTATION_HEAL_AMOUNT_CROSS)
+	living_crosser.adjust_fire_loss(-MUTATION_HEAL_AMOUNT_CROSS)
+	living_crosser.adjust_tox_loss(-MUTATION_HEAL_AMOUNT_CROSS)
 
 /datum/spacevine_mutation/flesh_mending/on_eat(obj/structure/spacevine/vine_object, mob/living/eater)
 	if(!isliving(eater))
 		return
 
 	var/mob/living/living_eater = eater
-	living_eater.adjustBruteLoss(-MUTATION_HEAL_AMOUNT_EAT)
-	living_eater.adjustFireLoss(-MUTATION_HEAL_AMOUNT_EAT)
-	living_eater.adjustToxLoss(-MUTATION_HEAL_AMOUNT_EAT)
+	living_eater.adjust_brute_loss(-MUTATION_HEAL_AMOUNT_EAT)
+	living_eater.adjust_fire_loss(-MUTATION_HEAL_AMOUNT_EAT)
+	living_eater.adjust_tox_loss(-MUTATION_HEAL_AMOUNT_EAT)
 
 
 // Will prevent the vine from opening doors
@@ -61,7 +61,7 @@
 		space_turf.color = hue
 /turf/open/floor/plating/kudzu
 	name = "vine flooring"
-	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi'
+	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
 	icon_state = "vinefloor"
 
 /turf/open/floor/plating/kudzu/attacked_by(obj/item/attacking_item, mob/living/user)

@@ -17,6 +17,7 @@
 	will quickly cool the limb, but <b>cause damage</b>. <b>Hercuri</b> is <b>especially effective</b> in quick cooling. \
 	<b>Clothing</b> reduces the water/hercuri that makes it to the metal, and <b>gauze</b> binds it and <b>reduces</b> the <b>damage</b> taken."
 	homemade_treat_text = "You can also splash <b>any liquid</b> on it for a rather <b>inefficient</b> and <b>damaging</b> coolant!"
+	treat_text_short = "Lower body temperature."
 
 	default_scar_file = METAL_SCAR_FILE
 
@@ -319,8 +320,8 @@
 	var/heat_fahrenheit = round(heating_threshold * 1.8-459.67, 0.1)
 
 	return "Its current temperature is [span_blue("[current_temp_celcius ] &deg;C ([current_temp_fahrenheit] &deg;F)")], \
-	and needs to cool to [span_nicegreen("[cool_celcius] &deg;C ([cool_fahrenheit] &deg;F)")], but \
-	will worsen if heated to [span_purple("[heat_celcius] &deg;C ([heat_fahrenheit] &deg;F)")]."
+	and needs to cool to [span_nicegreen("[cool_celcius] &deg;C ([cool_fahrenheit] &deg;F)")][(heating_threshold && heating_threshold != INFINITY) ?  ", but \
+	will worsen if heated to [span_purple("[heat_celcius] &deg;C ([heat_fahrenheit] &deg;F)")]" : ""]."
 
 /datum/wound/burn/robotic/overheat/get_scanner_description(mob/user)
 	. = ..()
@@ -343,6 +344,7 @@
 	occur_text = "lets out a slight groan as it turns a dull shade of thermal red"
 	examine_desc = "is glowing a dull thermal red and giving off heat"
 	treat_text = "Reduction of body temperature to expedite the passive heat dissipation - or, if thermal shock is to be risked, application of a fire extinguisher/shower."
+	treat_text_short = "Apply gauze or grasp limb before spraying the wound with coolant, lower body temperature, or wait."
 	severity = WOUND_SEVERITY_MODERATE
 
 	damage_multiplier_penalty = 1.15 //1.15x damage taken
@@ -393,6 +395,7 @@
 	examine_desc = "appears discolored and polychromatic, parts of it glowing a dull orange"
 	treat_text = "Isolation from physical hazards, and accommodation of passive heat dissipation - active cooling may be used, but temperature differentials significantly \
 		raise the risk of thermal shock."
+	treat_text_short = "Apply gauze and grasp limb before spraying the wound with coolant, or lower body temperature and wait."
 	severity = WOUND_SEVERITY_SEVERE
 
 	a_or_from = "from"
@@ -437,6 +440,7 @@
 	examine_desc = "is a blinding shade of white, almost melting from the heat"
 	treat_text = "Immediate confinement to cryogenics, as rapid overheating and physical vulnerability may occur. Active cooling is not advised, \
 		since the thermal shock may be lethal with such a temperature differential."
+	treat_text_short = "Apply cryogenics or lower body temperature without direct exposure to cold liquid."
 	severity = WOUND_SEVERITY_CRITICAL
 
 	a_or_from = "from"

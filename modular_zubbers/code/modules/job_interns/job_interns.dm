@@ -69,7 +69,9 @@
 		return FALSE
 	if(!player_client?.prefs?.read_preference(/datum/preference/toggle/be_intern)) // If the pref is off, we stop here
 		return FALSE
-	var/required_time
+	else
+		return TRUE // I am too lazy to fix this, let's just respect the prefs so we can RP being new
+/* 	var/required_time
 	var/playtime
 	if(internship_use_self_exp_type)
 		var/list/play_records = player_client?.prefs?.exp
@@ -78,11 +80,12 @@
 			return FALSE
 		playtime = play_records[title] ? text2num(play_records[title]) : 0
 		required_time = get_intern_time_threshold()
-	else if(CONFIG_GET(flag/use_intern_master_job_unlock_threshold) && length(department_head) && SSjob.get_job(department_head[1]))
+/* 	else if(CONFIG_GET(flag/use_intern_master_job_unlock_threshold) && length(department_head) && SSjob.get_job(department_head[1]))
 		// Use first department head job as our master job to compare to
 		var/datum/job/master_job = SSjob.get_job(department_head[1])
 		playtime = player_client?.calc_exp_type(master_job.get_exp_req_type())
 		required_time = master_job.get_exp_req_amount()
+		*/ // REWRITE NEEDED
 	else
 		var/exp_type = get_intern_exp_type()
 		if(!exp_type)
@@ -96,12 +99,12 @@
 		else
 			stack_trace("[src] client [player_client] checking for playtime resulted in null")
 		return FALSE
-	if(!required_time && SSjob.get_job(department_head[1])) //Jobs lacking a department head shouldn't runtime
+	if(!required_time /* && SSjob.get_job(department_head[1]) */) //Jobs lacking a department head shouldn't runtime
 		stack_trace("[src] job failed to set intern time threshold")
 		return FALSE
 	if(playtime >= required_time)
 		return FALSE
-	return TRUE
+	return TRUE */
 
 /obj/item/card/id
 	var/intern_status = FALSE

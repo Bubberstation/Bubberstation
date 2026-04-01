@@ -8,7 +8,7 @@
 	static_lighting = TRUE
 	requires_power = FALSE
 	default_gravity = STANDARD_GRAVITY
-	area_flags = UNIQUE_AREA | NOTELEPORT
+	area_flags = NOTELEPORT
 	flags_1 = NONE
 
 // This is just to define the category
@@ -147,7 +147,6 @@
 	name = "Thunderdome Observation"
 	icon_state = "thunder_observe"
 
-
 // ENEMY
 
 // Wizard
@@ -157,16 +156,15 @@
 	static_lighting = TRUE
 	requires_power = FALSE
 	default_gravity = STANDARD_GRAVITY
-	area_flags = UNIQUE_AREA | NOTELEPORT
+	area_flags = NOTELEPORT
 	flags_1 = NONE
-
 
 //Abductors
 /area/centcom/abductor_ship
 	name = "Abductor Ship"
 	icon_state = "abductor_ship"
 	requires_power = FALSE
-	area_flags = UNIQUE_AREA | NOTELEPORT
+	area_flags = NOTELEPORT
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 	default_gravity = STANDARD_GRAVITY
@@ -178,7 +176,7 @@
 	icon_state = "syndie-ship"
 	requires_power = FALSE
 	default_gravity = STANDARD_GRAVITY
-	area_flags = UNIQUE_AREA | NOTELEPORT
+	area_flags = NOTELEPORT
 	flags_1 = NONE
 	ambience_index = AMBIENCE_DANGER
 
@@ -223,12 +221,11 @@
 	name = "Mafia Minigame"
 	icon_state = "mafia"
 	static_lighting = FALSE
-
 	base_lighting_alpha = 255
 	requires_power = FALSE
 	default_gravity = STANDARD_GRAVITY
 	flags_1 = NONE
-	area_flags = BLOCK_SUICIDE | UNIQUE_AREA
+	area_flags = BLOCK_SUICIDE
 
 //CAPTURE THE FLAG
 /area/centcom/ctf
@@ -239,7 +236,7 @@
 	base_lighting_alpha = 255
 	default_gravity = STANDARD_GRAVITY
 	flags_1 = NONE
-	area_flags = UNIQUE_AREA | NOTELEPORT | NO_DEATH_MESSAGE | BLOCK_SUICIDE
+	area_flags = NOTELEPORT | NO_DEATH_MESSAGE | BLOCK_SUICIDE
 
 /area/centcom/ctf/control_room
 	name = "Control Room A"
@@ -283,7 +280,6 @@
 	icon_state = "asteroid"
 	requires_power = FALSE
 	default_gravity = STANDARD_GRAVITY
-	area_flags = UNIQUE_AREA
 	ambience_index = AMBIENCE_MINING
 	flags_1 = CAN_BE_DIRTY_1
 	sound_environment = SOUND_AREA_ASTEROID
@@ -293,7 +289,7 @@
 	ambience_index = AMBIENCE_RUINS
 	always_unpowered = FALSE
 	requires_power = TRUE
-	area_flags = UNIQUE_AREA | BLOBS_ALLOWED
+	area_flags = BLOBS_ALLOWED
 
 /area/centcom/asteroid/nearstation/bomb_site
 	name = "\improper Bomb Testing Asteroid"

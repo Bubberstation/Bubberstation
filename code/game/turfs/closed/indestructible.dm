@@ -18,17 +18,15 @@
 /turf/closed/indestructible/singularity_act()
 	return
 
-/turf/closed/indestructible/attackby(obj/item/attacking_item, mob/user, list/modifiers)
-	if(istype(attacking_item, /obj/item/poster) && Adjacent(user))
-		return place_poster(attacking_item, user)
-	//BUBBER EDIT START - Its almost certain that people are going to want to make use of lewd portals on the interlink so they can be placed on reinforced walls
+/turf/closed/indestructible/attackby(obj/item/attacking_item, mob/user, list/modifiers)	//BUBBER EDIT START - Its almost certain that people are going to want to make use of lewd portals on the interlink so they can be placed on reinforced walls
+
 	if(istype(attacking_item, /obj/item/wallframe/lewd_portal) && Adjacent(user))
 		var/obj/item/wallframe/lewd_portal = attacking_item
 		if(lewd_portal.try_build(src, user))
-			lewd_portal.attach(src, user)
+			lewd_portal.interact_with_atom(src, user)
 			return TRUE
-	//BUBBER EDIT END
-	return ..()
+	return ..()	//BUBBER EDIT END
+
 
 /turf/closed/indestructible/oldshuttle
 	name = "strange shuttle wall"

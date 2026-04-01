@@ -467,7 +467,7 @@
 	boxtag = "9mm Pepperoni"
 	foodtypes = MEAT|GRAIN|DAIRY|VEGETABLES
 	crafting_complexity = FOOD_COMPLEXITY_4
-	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 8, /datum/material/meat = MEATSLAB_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 16, /datum/material/meat = MEATSLAB_MATERIAL_AMOUNT) // BUBBER EDIT CHANGE - Material parity - Original: custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 8, /datum/material/meat = MEATSLAB_MATERIAL_AMOUNT)
 
 /obj/item/food/pizza/arnold/raw
 	name = "raw Arnold pizza"

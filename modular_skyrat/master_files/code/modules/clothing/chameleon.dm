@@ -32,6 +32,7 @@
 		target_clothing.worn_icon_taur_snake = initial(picked_clothing.worn_icon_taur_snake)
 		target_clothing.worn_icon_taur_paw = initial(picked_clothing.worn_icon_taur_paw)
 		target_clothing.worn_icon_taur_hoof = initial(picked_clothing.worn_icon_taur_hoof)
+		target_clothing.worn_icon_taur_big = initial(picked_clothing.worn_icon_taur_big)
 		target_clothing.worn_icon_muzzled = initial(picked_clothing.worn_icon_muzzled)
 		target_clothing.flags_inv = initial(picked_clothing.flags_inv)
 		target_clothing.visor_flags_cover = initial(picked_clothing.visor_flags_cover)

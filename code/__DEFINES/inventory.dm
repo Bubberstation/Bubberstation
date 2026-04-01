@@ -122,6 +122,8 @@ DEFINE_BITFIELD(no_equip_flags, list(
 /// If this has our taur variant, do we hide our taur part?
 #define HIDETAUR (1<<20)
 //SKYRAT EDIT ADDITION END
+/// BUBBER ADDITION - hides frills
+#define HIDEFRILLS (1<<21)
 //Bitflags for hair appendage zones
 #define HAIR_APPENDAGE_FRONT (1<<0)
 #define HAIR_APPENDAGE_LEFT (1<<1)

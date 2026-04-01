@@ -36,17 +36,6 @@
 	slot_flags = ITEM_SLOT_NECK
 	w_class = WEIGHT_CLASS_SMALL
 	interaction_flags_click = NEED_DEXTERITY
-	unique_reskin = list("Cyan" = "collar_cyan",
-						"Yellow" = "collar_yellow",
-						"Green" = "collar_green",
-						"Red" = "collar_red",
-						"Latex" = "collar_latex",
-						"Orange" = "collar_orange",
-						"White" = "collar_white",
-						"Purple" = "collar_purple",
-						"Black" = "collar_black",
-						"Black-teal" = "collar_tealblack",
-						"Spike" = "collar_spike")
 	kink_collar = TRUE
 	/// What the name on the tag is
 	var/tagname = null
@@ -67,6 +56,54 @@
 	var/id = REF(src)
 	var/obj/item/key/kink_collar/collar_key = key
 	collar_key.key_id = id
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/kink_collar)
+
+/datum/atom_skin/kink_collar
+	abstract_type = /datum/atom_skin/kink_collar
+
+/datum/atom_skin/kink_collar/cyan
+	preview_name = "Cyan"
+	new_icon_state = "collar_cyan"
+
+/datum/atom_skin/kink_collar/yellow
+	preview_name = "Yellow"
+	new_icon_state = "collar_yellow"
+
+/datum/atom_skin/kink_collar/green
+	preview_name = "Green"
+	new_icon_state = "collar_green"
+
+/datum/atom_skin/kink_collar/red
+	preview_name = "Red"
+	new_icon_state = "collar_red"
+
+/datum/atom_skin/kink_collar/latex
+	preview_name = "Latex"
+	new_icon_state = "collar_latex"
+
+/datum/atom_skin/kink_collar/orange
+	preview_name = "Orange"
+	new_icon_state = "collar_orange"
+
+/datum/atom_skin/kink_collar/white
+	preview_name = "White"
+	new_icon_state = "collar_white"
+
+/datum/atom_skin/kink_collar/purple
+	preview_name = "Purple"
+	new_icon_state = "collar_purple"
+
+/datum/atom_skin/kink_collar/black
+	preview_name = "Black"
+	new_icon_state = "collar_black"
+
+/datum/atom_skin/kink_collar/black_teal
+	preview_name = "Black-teal"
+	new_icon_state = "collar_tealblack"
+
+/datum/atom_skin/kink_collar/spike
+	preview_name = "Spike"
+	new_icon_state = "collar_spike"
 
 //rename collar code
 
@@ -86,17 +123,6 @@
 	icon_state = "lock_collar_cyan"
 	treat_path = /obj/item/key/kink_collar
 	interaction_flags_click = NEED_DEXTERITY
-	unique_reskin = list("Cyan" = "lock_collar_cyan",
-						"Yellow" = "lock_collar_yellow",
-						"Green" = "lock_collar_green",
-						"Red" = "lock_collar_red",
-						"Latex" = "lock_collar_latex",
-						"Orange" = "lock_collar_orange",
-						"White" = "lock_collar_white",
-						"Purple" = "lock_collar_purple",
-						"Black" = "lock_collar_black",
-						"Black-teal" = "lock_collar_tealblack",
-						"Spike" = "lock_collar_spike")
 	/// If the collar is currently locked
 	var/locked = FALSE
 	/// If the collar has been broken or not
@@ -105,6 +131,54 @@
 /obj/item/clothing/neck/kink_collar/locked/Initialize(mapload)
 	. = ..()
 	create_storage(storage_type = /datum/storage/pockets/small/kink_collar/locked)
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/kink_collar_locked)
+
+/datum/atom_skin/kink_collar_locked
+	abstract_type = /datum/atom_skin/kink_collar_locked
+
+/datum/atom_skin/kink_collar_locked/cyan
+	preview_name = "Cyan"
+	new_icon_state = "lock_collar_cyan"
+
+/datum/atom_skin/kink_collar_locked/yellow
+	preview_name = "Yellow"
+	new_icon_state = "lock_collar_yellow"
+
+/datum/atom_skin/kink_collar_locked/green
+	preview_name = "Green"
+	new_icon_state = "lock_collar_green"
+
+/datum/atom_skin/kink_collar_locked/red
+	preview_name = "Red"
+	new_icon_state = "lock_collar_red"
+
+/datum/atom_skin/kink_collar_locked/latex
+	preview_name = "Latex"
+	new_icon_state = "lock_collar_latex"
+
+/datum/atom_skin/kink_collar_locked/orange
+	preview_name = "Orange"
+	new_icon_state = "lock_collar_orange"
+
+/datum/atom_skin/kink_collar_locked/white
+	preview_name = "White"
+	new_icon_state = "lock_collar_white"
+
+/datum/atom_skin/kink_collar_locked/purple
+	preview_name = "Purple"
+	new_icon_state = "lock_collar_purple"
+
+/datum/atom_skin/kink_collar_locked/black
+	preview_name = "Black"
+	new_icon_state = "lock_collar_black"
+
+/datum/atom_skin/kink_collar_locked/black_teal
+	preview_name = "Black-teal"
+	new_icon_state = "lock_collar_tealblack"
+
+/datum/atom_skin/kink_collar_locked/spike
+	preview_name = "Spike"
+	new_icon_state = "lock_collar_spike"
 
 //spawn thing in collar
 
@@ -169,17 +243,57 @@
 	var/keyname = null
 	/// The ID of the key to pair with a collar. Will normally be the ref of the collar
 	var/key_id = null //Adding same unique id to key
-	unique_reskin = list("Cyan" = "collar_key_blue",
-						"Yellow" = "collar_key_yellow",
-						"Green" = "collar_key_green",
-						"Red" = "collar_key_red",
-						"Latex" = "collar_key_latex",
-						"Orange" = "collar_key_orange",
-						"White" = "collar_key_white",
-						"Purple" = "collar_key_purple",
-						"Black" = "collar_key_black",
-						"Metal" = "collar_key_metal",
-						"Black-teal" = "collar_key_tealblack")
+
+/obj/item/key/kink_collar/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/kink_collar_key)
+
+/datum/atom_skin/kink_collar_key
+	abstract_type = /datum/atom_skin/kink_collar_key
+
+/datum/atom_skin/kink_collar_key/cyan
+	preview_name = "Cyan"
+	new_icon_state = "collar_key_blue"
+
+/datum/atom_skin/kink_collar_key/yellow
+	preview_name = "Yellow"
+	new_icon_state = "collar_key_yellow"
+
+/datum/atom_skin/kink_collar_key/green
+	preview_name = "Green"
+	new_icon_state = "collar_key_green"
+
+/datum/atom_skin/kink_collar_key/red
+	preview_name = "Red"
+	new_icon_state = "collar_key_red"
+
+/datum/atom_skin/kink_collar_key/latex
+	preview_name = "Latex"
+	new_icon_state = "collar_key_latex"
+
+/datum/atom_skin/kink_collar_key/orange
+	preview_name = "Orange"
+	new_icon_state = "collar_key_orange"
+
+/datum/atom_skin/kink_collar_key/white
+	preview_name = "White"
+	new_icon_state = "collar_key_white"
+
+/datum/atom_skin/kink_collar_key/purple
+	preview_name = "Purple"
+	new_icon_state = "collar_key_purple"
+
+/datum/atom_skin/kink_collar_key/black
+	preview_name = "Black"
+	new_icon_state = "collar_key_black"
+
+/datum/atom_skin/kink_collar_key/metal
+	preview_name = "Metal"
+	new_icon_state = "collar_key_metal"
+
+/datum/atom_skin/kink_collar_key/black_teal
+	preview_name = "Black-teal"
+	new_icon_state = "collar_key_tealblack"
 
 //changing name of key in case if we using multiple collars with same color
 /obj/item/key/kink_collar/attack_self(mob/user)

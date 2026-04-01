@@ -2,7 +2,6 @@
 	title = JOB_TELECOMMS_SPECIALIST
 	description = "Monitor, configure, and maintain all station communications \
 		and assist with light engineering work."
-	department_head = list(JOB_CHIEF_ENGINEER)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1

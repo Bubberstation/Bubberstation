@@ -94,7 +94,7 @@
 			balloon_alert(user, "nothing to grind")
 			return
 
-		if(user.getStaminaLoss() > LARGE_MORTAR_STAMINA_MINIMUM)
+		if(user.get_stamina_loss() > LARGE_MORTAR_STAMINA_MINIMUM)
 			balloon_alert(user, "too tired")
 			return
 
@@ -117,7 +117,7 @@
 		if(prob(user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
 			stamina_use *= 0.5 //so it uses half the amount of stamina (35 instead of 70)
 
-		user.adjustStaminaLoss(stamina_use) //This is a bit more tiring than a normal sized mortar and pestle
+		user.adjust_stamina_loss(stamina_use) //This is a bit more tiring than a normal sized mortar and pestle
 		user.mind.adjust_experience(/datum/skill/primitive, 5)
 		switch(picked_option)
 			if("Juice")

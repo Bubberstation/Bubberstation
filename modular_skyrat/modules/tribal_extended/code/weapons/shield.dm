@@ -12,3 +12,4 @@
 	w_class = WEIGHT_CLASS_BULKY
 	shield_break_sound = 'sound/effects/bang.ogg'
 	shield_break_leftover = /obj/item/stack/sheet/animalhide/goliath_hide
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 4)

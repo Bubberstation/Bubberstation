@@ -1,0 +1,25 @@
+/area/template_noop:
+  banned_neighbors:
+    - /turf/baseturf_bottom
+    - /turf/baseturf_skipover
+    - /turf/closed
+    - /turf/cordon
+    - /turf/open
+    - /obj
+  skip_files:
+    - _maps/map_files/tramstation/maintenance_modules
+    - _maps/modular_generic
+    - _maps/shuttles/emergency_scrapheap
+    - _maps/templates
+    - _maps/minigame/deathmatch/OSHA_Violator.dmm
+    - _maps/minigame/deathmatch/maint_mania.dmm
+    - _maps/RandomRuins/IceRuins
+    - _maps/RandomRuins/LavaRuins
+    # BUBBER ADDITION area/noop TO SKIP
+    # (This includes automappers and more that rely on noop and isn't in space.)
+    # (So if your map is triggering CI errors and is not in space, add it to this list)
+    - _maps/skyrat/automapper
+    - _maps/skyrat/holodeck_wargame.dmm
+    - _maps/RandomRuins/SpaceRuins/skyrat/port_tarkon
+    - _maps/bubber/automapper
+    - _maps/bubber/pods/listeningbasics.dmm

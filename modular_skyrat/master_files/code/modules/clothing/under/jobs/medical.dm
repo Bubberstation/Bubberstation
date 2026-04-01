@@ -96,8 +96,3 @@
 /*
 *	CHIEF MEDICAL OFFICER
 */
-
-/obj/item/clothing/under/rank/medical/chief_medical_officer/skyrat/imperial //Rank pins of the Brigadier General
-	desc = "A teal, sterile naval suit with a rank badge denoting the Officer of the Medical Corps. Doesn't protect against blaster fire."
-	name = "chief medical officer's naval jumpsuit"
-	icon_state = "impcmo"

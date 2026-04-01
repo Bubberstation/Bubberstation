@@ -73,7 +73,7 @@
 	. = ..()
 
 	if(human.stat == SOFT_CRIT || human.stat == HARD_CRIT)
-		human.adjustFireLoss(1) //Still deal some damage in case a cold environment would be preventing us from the sweet release to robot heaven
+		human.adjust_fire_loss(1) //Still deal some damage in case a cold environment would be preventing us from the sweet release to robot heaven
 		human.adjust_bodytemperature(13) //We're overheating!!
 		if(prob(10))
 			to_chat(human, span_warning("Alert: Critical damage taken, all systems failing."))
@@ -83,7 +83,7 @@
 	if(!lungs || (lungs.organ_flags & ORGAN_FAILING))
 		// No lungs or failing lungs present, apply overheating
 		human.adjust_bodytemperature(50)
-		human.adjustFireLoss(1)
+		human.adjust_fire_loss(1)
 		if(prob(10))
 			to_chat(human, span_warning("Alert: Cooling system is non-functional or missing, OVERHEATING is imminent."))
 			do_sparks(3, TRUE, human)
@@ -121,7 +121,7 @@
 	if(!screen && screen_mutant_bodypart && screen_mutant_bodypart[MUTANT_INDEX_NAME] && screen_mutant_bodypart[MUTANT_INDEX_NAME] != "None")
 
 		if(eyes)
-			eyes.eye_icon_state = "None"
+			eyes.eye_icon_state = null
 
 		screen = new(human_who_gained_species)
 		screen.Grant(human_who_gained_species)

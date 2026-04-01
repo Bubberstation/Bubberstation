@@ -29,6 +29,7 @@
 				/obj/item/stack/ore/glass/basalt = 5)
 	time = 5 SECONDS
 	category = CAT_CLOTHING
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/bonesuit_ochre
 	name = "ochre Bone Armor"
@@ -37,6 +38,7 @@
 				/obj/item/stack/ore/glass/basalt = 5)
 	time = 5 SECONDS
 	category = CAT_CLOTHING
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/skullhelm_ochre
 	name = "Ochre Skull"
@@ -45,6 +47,7 @@
 				/obj/item/stack/ore/glass/basalt = 5)
 	time = 5 SECONDS
 	category = CAT_CLOTHING
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/modulator_gasmask
 	name = "Voice Modulator Gasmask"
@@ -77,6 +80,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	reqs = list(/obj/item/clothing/glasses/hud/civilian/sunglasses = 1)
 	category = CAT_EQUIPMENT
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 // Metal H2 Rework by Xiska
 

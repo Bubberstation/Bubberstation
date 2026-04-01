@@ -9,6 +9,7 @@
 		/obj/item/radio,
 		/obj/item/melee/sickly_blade/lock,
 		/obj/item/reagent_containers/cup/soda_cans,
+		/obj/item/holotool, // BUBBER EDIT ADDITION
 	))
 
 ///Medical belt

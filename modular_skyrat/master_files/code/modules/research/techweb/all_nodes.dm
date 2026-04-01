@@ -233,6 +233,7 @@
 		"brute3medicell",
 		"burn3medicell",
 		"oxy3medicell",
+		"surgical_processor",
 		"toxin3medicell",
 	)
 	return ..()
@@ -292,8 +293,7 @@
 
 /datum/techweb_node/borg_engi/New()
 	design_ids += list(
-		"advanced_materials",
-		"borg_upgrade_welding",
+		"advanced_materials"
 	)
 	return ..()
 

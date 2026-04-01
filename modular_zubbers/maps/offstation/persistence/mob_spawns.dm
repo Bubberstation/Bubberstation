@@ -21,6 +21,7 @@
 	spawner_job_path = /datum/job/persistence
 	/// If true, this spawner will give it's target exploitables access.
 	var/give_exploitables = TRUE
+	allow_custom_character = ALL
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/special(mob/living/spawned_mob, mob/mob_possessor)
 	. = ..()
@@ -46,10 +47,10 @@
 	outfit = /datum/outfit/persistence/command
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/prisoner
-	name = "Syndicate Hostage"
-	prompt_name = "a Syndicate hostage"
-	you_are_text = "You are a hostage onboard an unknown vessel"
-	flavour_text = "Unaware of where you are, all you know is you are a prisoner. The plastitanium should clue you into who your captors are... as for why you're here? That's for you to know, and for us to find out."
+	name = "Syndicate Intern"
+	prompt_name = "a Syndicate intern"
+	you_are_text = "You are an intern onboard an unknown vessel"
+	flavour_text = "Unaware of where you are, all you know is you are a intern. The plastitanium should clue you into who your employer is... as for why you're here? That's for you to know, and for us to find out."
 	important_text = "You are not an antagonist. You are still bound to the Roleplay Rules regarding escalation. Syndicate personnel will throw you into lava or plasma outside if you antagonize them."
 	outfit = /datum/outfit/persistence/prisoner
 	computer_area = /area/ruin/space/has_grav/bubbers/persistance/sec/prison
@@ -66,6 +67,7 @@
 	you_are_text = "You are a Syndicate cyborg, assigned to be part of a crew aboard a landcrawler"
 	flavour_text = "You have been deployed into enemy territory. Continue working the best you can, and keep a low profile."
 	deletes_on_zero_uses_left = TRUE
+	allow_custom_character = ALL
 
 /obj/effect/mob_spawn/ghost_role/robot/persistence/special(mob/living/silicon/robot/new_spawn)
 	. = ..()
@@ -149,8 +151,8 @@
 
 /datum/outfit/persistence/prisoner
 	name = "Persistence Syndicate Prisoner"
-	uniform = /obj/item/clothing/under/rank/prisoner/syndicate
-	shoes = /obj/item/clothing/shoes/sneakers/crimson
+	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
+	shoes = /obj/item/clothing/shoes/combat
 	id = /obj/item/card/id/advanced/prisoner/ds2
 	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/prisoner
 
@@ -280,7 +282,7 @@
 	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/brigofficer
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/bulletproof/old
-	back = /obj/item/storage/backpack/security/redsec
+	back = /obj/item/storage/backpack/security
 	backpack_contents = list(
 		/obj/item/flashlight/seclite = 1,
 		/obj/item/storage/box/survival = 1,
@@ -288,7 +290,7 @@
 		/obj/item/choice_beacon/syndicateoffstation = 1,
 		)
 	head = /obj/item/clothing/head/helmet/swat/ds
-	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	mask = /obj/item/clothing/mask/gas/syndicate
 	ears = /obj/item/radio/headset/syndicateciv/staff
 
@@ -352,8 +354,8 @@
 	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/masteratarms
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/vest/warden/syndicate
-	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
-	back = /obj/item/storage/backpack/satchel/sec/redsec
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
+	back = /obj/item/storage/backpack/satchel/sec
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
 		/obj/item/crowbar = 1,

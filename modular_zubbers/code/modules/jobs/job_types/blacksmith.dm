@@ -1,7 +1,6 @@
 /datum/job/blacksmith
 	title = JOB_BLACKSMITH
 	description = "Smith wares, Sell them."
-	department_head = list(JOB_QUARTERMASTER)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1

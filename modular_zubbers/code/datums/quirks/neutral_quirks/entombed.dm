@@ -37,7 +37,7 @@
 	if (!modsuit || life_support_failed)
 		if (!HAS_TRAIT(human_holder, TRAIT_STASIS))
 			// we've got no modsuit or life support and we're not on stasis. take damage ow
-			human_holder.adjustToxLoss(ENTOMBED_TICK_DAMAGE * seconds_per_tick, updating_health = TRUE, forced = TRUE)
+			human_holder.adjust_tox_loss(ENTOMBED_TICK_DAMAGE * seconds_per_tick, updating_health = TRUE, forced = TRUE)
 			human_holder.set_jitter_if_lower(10 SECONDS)
 			return
 
