@@ -34,7 +34,7 @@
 	current_grudges = null
 	. = ..()
 
-/obj/structure/peanut/Initialize()
+/obj/structure/peanut/Initialize(mapload)
 	. = ..()
 	proximity_monitor = new(src, PEANUT_MAX_SEARCH_DISTANCE)
 
