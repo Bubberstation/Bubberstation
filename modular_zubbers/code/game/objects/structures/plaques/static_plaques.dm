@@ -6,3 +6,19 @@
 // Blueshift: added September 30th 2021
 /obj/structure/plaque/static_plaque/golden/commission/blueshift
 	desc = "Spinward Sector Station SS-13\n'Blueshift' Class Outpost\nCommissioned 30/09/2561\n'The Unsinkable'"
+
+// CubicStation: added April 1st 2025
+/obj/structure/plaque/static_plaque/golden/commission/cubicstation
+	desc = "Spinward Sector Station SS-13\n'CubicStation' Class Outpost\nCommissioned 01/04/2565\n'Contested Boxing Champion'"
+
+// MegaStation: added April 1st 2025
+/obj/structure/plaque/static_plaque/golden/commission/megastation
+	desc = "Spinward Sector Station SS-13\n'MegaStation' Class Outpost\nCommissioned 01/04/2565\n'Always Something.'"
+
+// ParaStation: added April 1st 2025
+/obj/structure/plaque/static_plaque/golden/commission/parastation
+	desc = "Spinward Sector Station SS-13\n'ParaStation' Class Outpost\nCommissioned 01/04/2565\n'The Paragon of Station Design'"
+
+// ZetaStation: added April 1st 2025
+/obj/structure/plaque/static_plaque/golden/commission/zetastation
+	desc = "Spinward Sector Station SS-13\n'ZetaStation' Class Outpost\nCommissioned 01/04/2565\n'We run it back.'"
