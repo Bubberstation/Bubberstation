@@ -32,19 +32,19 @@
 
 /obj/effect/overlay/hitmarker
 	icon = 'icons/effects/96x160.dmi'
-	plane = POINT_PLANE
+	plane = BALLOON_CHAT_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	alpha = 255
+	alpha = 64
 	var/mob/living/carbon/my_carbon_mob
 	proc/animate_damage(damage, my_mob)
-
 		my_carbon_mob = my_mob
-		pixel_z = rand(-32,32)
-		pixel_w = rand(-32,64)
+		pixel_z = rand(-8,8)
+		pixel_w = rand(-8,8)
 		appearance_flags |= (KEEP_TOGETHER|RESET_COLOR|RESET_TRANSFORM)
 		my_carbon_mob.vis_contents |= src
 		maptext = MAPTEXT_SPESSFONT("[ROUND_UP(damage)]!")
-		animate(src, pixel_z = rand(-32,32), pixel_w = rand(-32,64), time = 1 SECONDS, easing = BOUNCE_EASING, alpha = 32)
+		animate(src, pixel_z = rand(-64,64), pixel_w = rand(-64,64), time = 1 SECONDS, easing = BOUNCE_EASING, alpha = 255)
+		animate(alpha = 0, time = 0.5 SECONDS)
 		QDEL_IN(src, 1.5 SECONDS)
 
 
