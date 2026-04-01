@@ -15039,13 +15039,13 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/newscaster/directional/west,
 /obj/effect/turf_decal/bot/right{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
 	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /turf/open/floor/iron,
 /area/station/science/ordnance/office)
 "drb" = (
@@ -55798,9 +55798,6 @@
 /obj/effect/turf_decal/bot{
 	dir = 1
 	},
-/obj/item/disk/computer/engineering,
-/obj/item/disk/computer/engineering,
-/obj/item/disk/computer/engineering,
 /obj/structure/rack,
 /obj/effect/turf_decal/tile/neutral/fourcorners{
 	dir = 1
@@ -59839,7 +59836,7 @@
 /obj/effect/spawner/random/structure/table_fancy,
 /obj/item/reagent_containers/cup/glass/bottle/beer{
 	desc = "Whatever it is, it reeks of foul, putrid froth.";
-	list(/datum/reagent/consumable/ethanol/bacchus_blessing = 15);
+	list(/datum/reagent/consumable/ethanol/bacchus_blessing  =  15);
 	name = "Delta-Down";
 	pixel_x = -5;
 	pixel_y = -5
@@ -63758,27 +63755,12 @@
 	pixel_x = -4;
 	pixel_y = -1
 	},
-/obj/item/disk/computer{
-	pixel_y = -4
-	},
-/obj/machinery/power/apc/auto_name/directional/south{
-	pixel_y = -25
-	},
-/obj/structure/cable,
-/obj/item/disk/computer{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/disk/computer,
-/obj/item/disk/computer/ordnance{
-	pixel_x = 4;
-	pixel_y = 1
-	},
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
 	dir = 2
 	},
 /obj/machinery/light/directional/south,
+/obj/machinery/newscaster/directional/south,
 /turf/open/floor/iron,
 /area/station/science/ordnance/office)
 "ogn" = (
@@ -76914,15 +76896,6 @@
 /area/station/ai/satellite/chamber)
 "qXy" = (
 /obj/structure/table/reinforced,
-/obj/item/disk/computer/ordnance{
-	pixel_x = -3
-	},
-/obj/item/disk/computer/ordnance{
-	pixel_x = 2
-	},
-/obj/item/disk/computer/ordnance{
-	pixel_y = -2
-	},
 /obj/item/toy/figure/rd,
 /obj/machinery/airalarm/directional/north,
 /obj/effect/turf_decal/tile/purple{
@@ -87101,12 +87074,6 @@
 /area/station/command/bridge)
 "tmR" = (
 /obj/structure/table,
-/obj/item/disk/computer/medical{
-	pixel_x = -3
-	},
-/obj/item/disk/computer/medical{
-	pixel_x = 3
-	},
 /obj/item/toy/figure/cmo,
 /obj/machinery/camera/directional/south{
 	c_tag = "Medbay - Chief Medical Officer's Office";
@@ -89763,9 +89730,6 @@
 /area/station/science/research)
 "tQn" = (
 /obj/structure/table/reinforced,
-/obj/item/disk/computer/quartermaster,
-/obj/item/disk/computer/quartermaster,
-/obj/item/disk/computer/quartermaster,
 /obj/item/gps/mining,
 /obj/item/paper_bin/carbon,
 /obj/effect/turf_decal/tile/neutral/fourcorners{
@@ -94093,13 +94057,6 @@
 /area/station/service/kitchen/abandoned)
 "uPB" = (
 /obj/structure/table,
-/obj/item/disk/computer{
-	pixel_x = -7;
-	pixel_y = -2
-	},
-/obj/item/disk/computer{
-	pixel_x = 2
-	},
 /obj/machinery/light_switch/directional/west{
 	pixel_x = -38
 	},
