@@ -81,7 +81,7 @@
 	if(dunk_reagents.chem_temp > MAX_QUENCH_HEAT)
 		balloon_alert(quencher, "This is too hot to cool [src]!")
 		return
-	if(dunk_reagents.volume < MIN_VOLUME_TO_QUENCH)
+	if(dunk_reagents.total_volume < MIN_VOLUME_TO_QUENCH)
 		balloon_alert(quencher, "This doesn't contain enough fluid to immerse [src]!")
 		return
 
@@ -106,7 +106,7 @@
 		complete_spawned.perfect_ratio = current_perfects / max_perfect_hits
 		complete_spawned.hammer_completion_amount = quality_points / completion_quality_points
 
-	var/datum/component/reagent_imbued/new_reagent_component = spawned_obj.GetComponent(datum/component/reagent_imbued)
+	var/datum/component/reagent_imbued/new_reagent_component = spawned_obj.GetComponent(/datum/component/reagent_imbued)
 	if(!isnull(new_reagent_component) && HAS_TRAIT(quencher, TRAIT_KNOW_ADVANCED_SMITHING))
 		new_reagent_component.set_reagent_imbue(dunk_reagents, FALSE, TRUE)
 		to_chat(quencher, span_notice("The [spawned_obj] is imbued with reagents."))

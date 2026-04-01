@@ -42,11 +42,8 @@
 /obj/structure/reagent_dispensers/attackby(obj/item/attacking_item, mob/living/user, params)
 	if(istype(attacking_item, /obj/item/forging/incomplete))
 		var/obj/item/forging/incomplete/incomplete_item = attacking_item
-		if(can_quench(user, incomplete_item))
-			var/obj/item/quenched_item = do_quench(user, incomplete)
-			if(can_imbue(user, incomplete_item, FALSE))
-
-			return ITEM_INTERACT_SUCCESS
+		incomplete_item.quench_item(reagents, user)
+		return ITEM_INTERACT_SUCCESS
 
 	return ..()
 

@@ -145,9 +145,6 @@
 		return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reagent_anvil/proc/hammer_work(mob/living/user, obj/item/forging/hammer/tool, obj/item/forging/incomplete/incomplete_item)
-	if(incomplete_item.is_finished_smithing()) //to prevent people from getting perfect perfects
-		user.balloon_alert(user, "[incomplete_item] seems ready")
-		return ITEM_INTERACT_SUCCESS
 
 	if(COOLDOWN_FINISHED(incomplete_item, heating_remainder))
 		incomplete_item.bad_hit()
@@ -155,20 +152,32 @@
 		return ITEM_INTERACT_SUCCESS
 
 	var/quality_points_to_give = 1 + (HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING) ? ANVIL_SMITHING_CHIP_QUALITY_BONUS : 0)
-	switch(get_hit_quality(user, tool))
+	var/hit_quality = get_hit_quality(user, tool)
+	switch(hit_quality)
 		if(ANVIL_HAMMER_HIT_BAD)
 			incomplete_item.bad_hit(playsound = TRUE)
-			balloon_alert(user, "bad hit")
 		if(ANVIL_HAMMER_HIT_GOOD)
 			incomplete_item.good_hit(amount = quality_points_to_give, playsound = TRUE)
-			balloon_alert(user, "good hit")
 			user.mind.adjust_experience(/datum/skill/smithing, 1) //A good hit gives mild experience
 			do_sparks(1, FALSE, src)
 		if(ANVIL_HAMMER_HIT_PERFECT)
 			incomplete_item.perfect_hit(amount = quality_points_to_give, playsound = TRUE)
-			balloon_alert(user, "perfect hit!")
 			user.mind.adjust_experience(/datum/skill/smithing, 10) //A perfect hit gives good experience
 			do_sparks(2, FALSE, src)
+
+	if(incomplete_item.is_finished_smithing())
+		if(incomplete_item.perfect_hit >= incomplete_item.max_perfect_hits)
+			balloon_alert(user, "[incomplete_item] is perfected!")
+		else
+			balloon_alert(user, "[incomplete_item] seems good enough")
+	else
+		switch(hit_quality)
+			if(ANVIL_HAMMER_HIT_BAD)
+				balloon_alert(user, "bad hit")
+			if(ANVIL_HAMMER_HIT_GOOD)
+				balloon_alert(user, "good hit")
+			if(ANVIL_HAMMER_HIT_PERFECT)
+				balloon_alert(user, "perfect hit!")
 
 	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) * incomplete_item.average_wait
 	//todo: change tool cooldown to be attached onto the user
