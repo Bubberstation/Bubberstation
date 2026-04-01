@@ -6153,7 +6153,9 @@
 /obj/machinery/door/airlock/external{
 	name = "Abandoned External Airlock"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/construction,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/fore)
@@ -13344,7 +13346,9 @@
 /area/station/hallway/secondary/entry)
 "dZS" = (
 /obj/machinery/door/airlock/atmos/glass,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/atmos,
 /turf/open/floor/engine,
 /area/station/maintenance/disposal/incinerator)
@@ -19182,7 +19186,9 @@
 	name = "Labor Camp Shuttle Airlock";
 	shuttledocked = 1
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/iron/dark,
@@ -19797,7 +19803,9 @@
 	name = "Science Escape Pod";
 	space_dir = 1
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/maintenance/starboard)
 "fRw" = (
@@ -23111,7 +23119,9 @@
 	name = "Labor Camp Shuttle Airlock";
 	shuttledocked = 1
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/security/processing)
@@ -26670,7 +26680,9 @@
 	name = "Security Escape Pod";
 	space_dir = 2
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/port/aft)
@@ -34967,7 +34979,9 @@
 /obj/machinery/door/airlock/security{
 	name = "Transferring Centre"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/effect/mapping_helpers/airlock/unres/delayed,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/all/security/brig,
@@ -36284,7 +36298,9 @@
 	heat_proof = 1;
 	name = "Supermatter Chamber"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/effect/turf_decal/delivery{
 	dir = 1
 	},
@@ -41796,7 +41812,9 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/visible,
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
@@ -43911,7 +43929,9 @@
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Server Room"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/tcoms,
 /turf/open/floor/iron/dark,
@@ -56185,7 +56205,9 @@
 /obj/machinery/door/airlock/external{
 	name = "Satellite External Airlock"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/construction,
 /turf/open/floor/iron/dark,
@@ -61218,7 +61240,9 @@
 "rQZ" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/maintenance,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/effect/mapping_helpers/airlock/unres/delayed,
 /obj/effect/mapping_helpers/airlock/access/any/security/maintenance,
 /turf/open/floor/plating,
@@ -62780,7 +62804,7 @@
 	},
 /obj/item/reagent_containers/cup/glass/bottle/beer{
 	desc = "A station exclusive. Consumption may result in seizures, blindness, drunkenness, or even death.";
-	list(/datum/reagent/consumable/ethanol/thirteenloko    =    30);
+	list(/datum/reagent/consumable/ethanol/thirteenloko     =     30);
 	name = "Kilo-Kocktail";
 	pixel_x = -5;
 	pixel_y = -5
@@ -65664,7 +65688,9 @@
 /obj/machinery/door/airlock/external{
 	name = "Arrival Shuttle Airlock"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
 "tbS" = (
@@ -69343,7 +69369,9 @@
 /obj/machinery/door/airlock/external{
 	name = "Abandoned External Airlock"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/external,

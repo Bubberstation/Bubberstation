@@ -356,7 +356,9 @@
 /obj/machinery/door/airlock/external{
 	name = "Security External Airlock"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/effect/mapping_helpers/airlock/access/any/security/general,
 /turf/open/floor/plating,
 /area/station/security/office)
@@ -467,7 +469,9 @@
 /turf/open/floor/iron/large,
 /area/station/hallway/primary/central)
 "adW" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/machinery/door/airlock/engineering{
 	name = "Engine Room"
 	},
@@ -1333,7 +1337,9 @@
 	},
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/general,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/solars/port/fore)
 "ali" = (
@@ -2273,7 +2279,7 @@
 /area/station/commons/dorms)
 "aqs" = (
 /obj/effect/spawner/liquids_spawner{
-	list(/datum/reagent/ants/fire   =   190)
+	list(/datum/reagent/ants/fire    =    190)
 	},
 /turf/open/floor/iron/pool/cobble/corner,
 /area/station/maintenance/starboard/fore)
@@ -2336,7 +2342,9 @@
 /turf/open/floor/iron,
 /area/station/maintenance/starboard/fore)
 "aqJ" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/machinery/door/airlock/external{
 	name = "External Access"
 	},
@@ -4363,7 +4371,7 @@
 /obj/item/food/pizzaslice/ants,
 /obj/item/food/pizzaslice/ants,
 /obj/effect/spawner/liquids_spawner{
-	list(/datum/reagent/ants/fire   =   190)
+	list(/datum/reagent/ants/fire    =    190)
 	},
 /obj/machinery/button/door{
 	id = "maint3";
@@ -11041,7 +11049,9 @@
 /turf/open/floor/iron/large,
 /area/station/hallway/secondary/exit)
 "beK" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/machinery/door/airlock/external{
 	name = "Port Docking Bay 4"
 	},
@@ -11052,7 +11062,9 @@
 /turf/open/floor/plating,
 /area/station/hallway/secondary/entry)
 "beL" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/machinery/door/airlock/external{
 	name = "Port Docking Bay 3"
 	},
@@ -11622,7 +11634,9 @@
 "bhB" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/machinery/door/airlock/research{
 	name = "Research Division Access"
 	},
@@ -20124,7 +20138,9 @@
 /obj/machinery/door/airlock/external{
 	name = "External Access"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/unres/delayed,
 /turf/open/floor/plating,
@@ -22850,7 +22866,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/solars/starboard/aft)
 "cnk" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance"
 	},
@@ -23272,7 +23290,9 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/main)
 "cqA" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -23305,7 +23325,9 @@
 /area/station/engineering/supermatter)
 "cqE" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/machinery/door/airlock/engineering/glass/critical{
 	heat_proof = 1;
 	name = "Supermatter Chamber"
@@ -23501,7 +23523,9 @@
 "crX" = (
 /obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /obj/effect/landmark/navigate_destination/dockescpod4,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod Four"
 	},
@@ -33327,7 +33351,9 @@
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/unres,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
@@ -48026,7 +48052,9 @@
 	name = "External Access"
 	},
 /obj/effect/mapping_helpers/airlock/unres,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "keS" = (
@@ -53951,7 +53979,7 @@
 /area/station/science/xenobiology)
 "mdr" = (
 /obj/effect/spawner/liquids_spawner{
-	list(/datum/reagent/ants/fire   =   190)
+	list(/datum/reagent/ants/fire    =    190)
 	},
 /mob/living/basic/ant,
 /turf/open/floor/iron/pool/cobble/corner{
@@ -55903,7 +55931,9 @@
 /area/station/science/robotics/mechbay)
 "mOX" = (
 /obj/effect/mapping_helpers/airlock/access/any/engineering/general,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 6
 	},
@@ -60057,7 +60087,9 @@
 /turf/open/floor/iron/white/smooth_corner,
 /area/station/medical/treatment_center)
 "ooW" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 2
@@ -60769,7 +60801,7 @@
 /area/station/hallway/secondary/exit)
 "oBk" = (
 /obj/effect/spawner/liquids_spawner{
-	list(/datum/reagent/ants/fire   =   190)
+	list(/datum/reagent/ants/fire    =    190)
 	},
 /obj/machinery/light/small/directional/north,
 /turf/open/floor/iron/pool/cobble/corner{
@@ -65543,7 +65575,9 @@
 /area/station/medical/medbay/aft)
 "qlJ" = (
 /obj/machinery/door/airlock/public/glass/incinerator/atmos_interior,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/airlock_controller/incinerator_atmos{
 	pixel_x = 24
@@ -65961,7 +65995,7 @@
 	pixel_x = -9;
 	pixel_y = -1;
 	desc = "I CAN QUIT ANY TIME I WANT!";
-	list(/datum/reagent/drug/blastoff   =   50);
+	list(/datum/reagent/drug/blastoff    =    50);
 	name = "extended bLaSToFF ampoule"
 	},
 /turf/open/floor/iron/dark/smooth_large,
@@ -67955,7 +67989,9 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door_buttons/access_button{
@@ -68751,18 +68787,18 @@
 /obj/machinery/light/small/directional/south,
 /obj/structure/closet/secure_closet/freezer/fridge/all_access,
 /obj/item/reagent_containers/condiment/rice{
-	list(/datum/reagent/consumable/rice    =    150);
+	list(/datum/reagent/consumable/rice     =     150);
 	name = "Basmati Rice Sack (4KG)";
 	volume = 150
 	},
 /obj/item/reagent_containers/condiment/enzyme{
-	list(/datum/reagent/consumable/enzyme    =    500);
+	list(/datum/reagent/consumable/enzyme     =     500);
 	name = "universe-sized universal enyzyme";
 	volume = 500
 	},
 /obj/item/reagent_containers/condiment/milk,
 /obj/item/reagent_containers/condiment/flour{
-	list(/datum/reagent/consumable/flour    =    600);
+	list(/datum/reagent/consumable/flour     =     600);
 	name = "Premium All-Purpose Flour (16KG)";
 	volume = 600
 	},
@@ -70837,7 +70873,9 @@
 /area/station/security/prison)
 "slk" = (
 /obj/machinery/door/airlock/maintenance,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -72443,7 +72481,9 @@
 	},
 /area/station/engineering/main)
 "sKC" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance"
 	},
@@ -78405,7 +78445,9 @@
 	name = "Captain's Office Maintenance"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/command/captain,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/central/lesser)
 "uPj" = (
@@ -80824,7 +80866,9 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/effect/mapping_helpers/airlock/access/any/security/brig,
 /obj/structure/cable,
 /obj/effect/turf_decal/delivery/red{
