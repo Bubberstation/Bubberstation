@@ -10,6 +10,8 @@
 	icon_state = "peanut"
 
 	density = TRUE
+	resistance_flags = INDESTRUCTIBLE
+	anchored = TRUE
 
 	var/list/mob/living/current_grudges = list()
 	var/mob/living/current_target = null
