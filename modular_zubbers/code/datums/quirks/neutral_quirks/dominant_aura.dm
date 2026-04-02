@@ -1,13 +1,15 @@
 /datum/quirk/dominant_aura
 	name = "Dominant Aura"
-	desc = "Your personality is assertive enough to appear as powerful to other people, so much in fact that the weaker kind can't help but throw themselves at your feet on command."
+	desc = "You are assertive enough to command your more obedient cohorts. At a snap of your fingers, you can compel their attention-- or send them to the floor."
 	icon = "fa-sort-up"
-	medical_record_text = "Patient displays a high level of assertiveness within their personality."
+	medical_record_text = "Patient displays a highly assertive personality."
 	value = 0
 	gain_text = span_notice("You feel like making someone your pet.")
-	lose_text = span_notice("You feel less assertive than before")
+	lose_text = span_notice("You feel less assertive than before.")
 	quirk_flags = QUIRK_HIDE_FROM_SCAN
 	erp_quirk = TRUE // Disables on ERP config.
+	/// Subs will only be affected by this quirk if both the dom and sub prefer each others' gender.
+	var/list/preferred_genders_to_dom = list(MALE, FEMALE, PLURAL, NEUTER)
 
 /datum/quirk/dominant_aura/add(client/client_source)
 	. = ..()
@@ -19,6 +21,11 @@
 	UnregisterSignal(quirk_holder, COMSIG_MOB_EXAMINING)
 	UnregisterSignal(quirk_holder, COMSIG_MOB_EMOTE)
 
+/datum/quirk/dominant_aura/proc/check_if_sub_is_preferred(mob/living/carbon/human/sub)
+	for(var/checked_gender in preferred_genders_to_dom)
+		if(sub.gender == checked_gender)
+			return TRUE
+
 /datum/quirk/dominant_aura/proc/on_sub_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
@@ -27,9 +34,11 @@
 	var/mob/living/carbon/human/sub = user
 	if(!sub.has_quirk(/datum/quirk/well_trained))
 		return
+	if(!check_if_sub_is_preferred(sub))
+		return
 	if(sub.stat == DEAD)
 		return
-	examine_list += span_purple("You sense an aura of submissiveness radiating from them.")
+	examine_list += span_purple("[%PRONOUN_They] seem[%PRONOUN_s] submissive towards you.")
 
 /datum/quirk/dominant_aura/proc/on_snap(atom/source, datum/emote/emote_args)
 	SIGNAL_HANDLER
