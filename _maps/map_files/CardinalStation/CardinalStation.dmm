@@ -2602,6 +2602,7 @@
 	dir = 6
 	},
 /obj/structure/cable,
+/obj/effect/landmark/start/cyborg,
 /turf/open/floor/iron/dark,
 /area/station/ai/satellite/maintenance/storage)
 "aHc" = (
@@ -4061,6 +4062,7 @@
 /obj/machinery/atmospherics/pipe/smart/simple/general/visible{
 	dir = 9
 	},
+/obj/effect/landmark/start/cyborg,
 /turf/open/floor/plating,
 /area/station/ai/satellite/maintenance/storage)
 "aYR" = (
@@ -23571,7 +23573,6 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos)
 "fDS" = (
-/obj/effect/landmark/start/cyborg,
 /obj/effect/turf_decal/siding/dark_blue,
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
@@ -27607,6 +27608,7 @@
 /obj/machinery/camera/motion/directional/west,
 /obj/item/radio/intercom/directional/west,
 /obj/machinery/atmospherics/pipe/smart/simple/general/hidden,
+/obj/effect/landmark/start/cyborg,
 /turf/open/floor/plating,
 /area/station/ai/satellite/maintenance/storage)
 "gxT" = (
@@ -50997,6 +50999,18 @@
 /obj/effect/landmark/start/chaplain,
 /turf/open/floor/iron/dark,
 /area/station/service/chapel/office)
+"lWx" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/obj/effect/landmark/start/scientist,
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 4
+	},
+/area/station/science/xenobiology)
 "lWJ" = (
 /obj/machinery/light/floor,
 /turf/open/floor/carpet/purple,
@@ -64779,6 +64793,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/effect/landmark/start/cyborg,
 /turf/open/floor/iron/dark,
 /area/station/ai/satellite/maintenance/storage)
 "pfF" = (
@@ -67821,7 +67836,6 @@
 /obj/machinery/recharge_station,
 /obj/machinery/light/small/directional/south,
 /obj/effect/landmark/event_spawn,
-/obj/effect/landmark/start/cyborg,
 /turf/open/floor/iron/white,
 /area/station/commons/dorms/laundry)
 "pQP" = (
@@ -74120,6 +74134,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold/general/visible{
 	dir = 8
 	},
+/obj/effect/landmark/start/cyborg,
 /turf/open/floor/plating,
 /area/station/ai/satellite/maintenance/storage)
 "rnj" = (
@@ -75811,17 +75826,9 @@
 /turf/open/floor/plating,
 /area/station/cargo/warehouse)
 "rGM" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 8
-	},
-/obj/effect/landmark/start/scientist,
-/turf/open/floor/iron/dark/smooth_edge{
-	dir = 4
-	},
-/area/station/science/xenobiology)
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/iron/textured,
+/area/station/hallway/primary/aft)
 "rGS" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
@@ -82902,10 +82909,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/service/kitchen)
-"tqM" = (
-/obj/effect/landmark/start/assistant,
-/turf/open/floor/iron/textured,
-/area/station/hallway/primary/aft)
 "tqO" = (
 /obj/structure/flora/grass/jungle/b{
 	pixel_x = -10
@@ -96113,7 +96116,6 @@
 /area/station/ai/upload/foyer)
 "wtP" = (
 /obj/effect/turf_decal/bot,
-/obj/effect/landmark/start/cyborg,
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
@@ -99704,7 +99706,6 @@
 /area/station/science/ordnance)
 "xpb" = (
 /obj/effect/turf_decal/bot,
-/obj/effect/landmark/start/cyborg,
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
@@ -101703,6 +101704,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
 /obj/structure/cable,
+/obj/effect/landmark/start/cyborg,
 /turf/open/floor/iron/dark,
 /area/station/ai/satellite/maintenance/storage)
 "xNu" = (
@@ -130399,7 +130401,7 @@ fQb
 opw
 wHa
 kyZ
-rGM
+lWx
 qgU
 qGw
 uuL
@@ -147553,7 +147555,7 @@ fsE
 jYZ
 tVi
 pny
-tqM
+rGM
 szL
 szL
 nJy
