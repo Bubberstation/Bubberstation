@@ -1354,7 +1354,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "aln" = (
-/obj/docking_port/stationary/escape_pod,
+/obj/docking_port/stationary/escape_pod{
+	dir = 2
+	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "alp" = (
@@ -2279,7 +2281,7 @@
 /area/station/commons/dorms)
 "aqs" = (
 /obj/effect/spawner/liquids_spawner{
-	list(/datum/reagent/ants/fire     =     190)
+	list(/datum/reagent/ants/fire      =      190)
 	},
 /turf/open/floor/iron/pool/cobble/corner,
 /area/station/maintenance/starboard/fore)
@@ -4371,7 +4373,7 @@
 /obj/item/food/pizzaslice/ants,
 /obj/item/food/pizzaslice/ants,
 /obj/effect/spawner/liquids_spawner{
-	list(/datum/reagent/ants/fire     =     190)
+	list(/datum/reagent/ants/fire      =      190)
 	},
 /obj/machinery/button/door{
 	id = "maint3";
@@ -54012,7 +54014,7 @@
 /area/station/science/xenobiology)
 "mdr" = (
 /obj/effect/spawner/liquids_spawner{
-	list(/datum/reagent/ants/fire     =     190)
+	list(/datum/reagent/ants/fire      =      190)
 	},
 /mob/living/basic/ant,
 /turf/open/floor/iron/pool/cobble/corner{
@@ -60839,7 +60841,7 @@
 /area/station/hallway/secondary/exit)
 "oBk" = (
 /obj/effect/spawner/liquids_spawner{
-	list(/datum/reagent/ants/fire     =     190)
+	list(/datum/reagent/ants/fire      =      190)
 	},
 /obj/machinery/light/small/directional/north,
 /turf/open/floor/iron/pool/cobble/corner{
@@ -66035,7 +66037,7 @@
 	pixel_x = -9;
 	pixel_y = -1;
 	desc = "I CAN QUIT ANY TIME I WANT!";
-	list(/datum/reagent/drug/blastoff     =     50);
+	list(/datum/reagent/drug/blastoff      =      50);
 	name = "extended bLaSToFF ampoule"
 	},
 /turf/open/floor/iron/dark/smooth_large,
@@ -66061,6 +66063,10 @@
 	dir = 4
 	},
 /area/station/science/research)
+"qsr" = (
+/obj/docking_port/stationary/escape_pod,
+/turf/closed/wall/r_wall,
+/area/station/security/office)
 "qsA" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/window/reinforced/spawner/directional/east,
@@ -68828,18 +68834,18 @@
 /obj/machinery/light/small/directional/south,
 /obj/structure/closet/secure_closet/freezer/fridge/all_access,
 /obj/item/reagent_containers/condiment/rice{
-	list(/datum/reagent/consumable/rice      =      150);
+	list(/datum/reagent/consumable/rice       =       150);
 	name = "Basmati Rice Sack (4KG)";
 	volume = 150
 	},
 /obj/item/reagent_containers/condiment/enzyme{
-	list(/datum/reagent/consumable/enzyme      =      500);
+	list(/datum/reagent/consumable/enzyme       =       500);
 	name = "universe-sized universal enyzyme";
 	volume = 500
 	},
 /obj/item/reagent_containers/condiment/milk,
 /obj/item/reagent_containers/condiment/flour{
-	list(/datum/reagent/consumable/flour      =      600);
+	list(/datum/reagent/consumable/flour       =       600);
 	name = "Premium All-Purpose Flour (16KG)";
 	volume = 600
 	},
@@ -87599,7 +87605,8 @@
 "xSI" = (
 /obj/docking_port/stationary/random{
 	name = "lavaland";
-	shuttle_id = "pod_3_lavaland"
+	shuttle_id = "pod_3_lavaland";
+	dir = 2
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
@@ -122170,7 +122177,7 @@ adR
 bgZ
 iTY
 dak
-adR
+qsr
 cgh
 sUX
 xzh
