@@ -2,9 +2,9 @@
 	name = "Well-Trained"
 	desc = "You absolutely love being dominated. The thought of someone with a stronger character than yours is enough to make you act up. They can snap their fingers to send you to the floor."
 	icon = "fa-sort-down"
-	medical_record_text = "Patient can be easily swayed by a sufficiently assertive individual"
+	medical_record_text = "Patient can be easily swayed by a sufficiently assertive individual."
 	value = 0
-	gain_text = "<span class='notice'>You feel like being someone's pet</span>"
+	gain_text = "<span class='notice'>You feel like being someone's pet.</span>"
 	lose_text = "<span class='notice'>You no longer feel like being a pet...</span>"
 	quirk_flags = QUIRK_HIDE_FROM_SCAN | QUIRK_PROCESSES
 	erp_quirk = TRUE
