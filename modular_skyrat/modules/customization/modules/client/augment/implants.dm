@@ -59,7 +59,7 @@
 
 /datum/augment_item/implant/eyes/civhud
 	name = "Civilian HUD Implant"
-	cost = 4
+	cost = 2
 	path = /obj/item/organ/cyberimp/eyes/hud/civilian
 
 //MOUTH IMPLANTS
