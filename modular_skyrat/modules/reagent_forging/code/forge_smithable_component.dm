@@ -40,9 +40,9 @@
 	can_perfect_hit = can_perfect
 
 	if(!isnull(on_quench))
-		RegisterSignal(parent_item, COMSIG_SMITHING_QUENCH, TYPE_PROC_REF(parent_item.type, on_quench))
+		RegisterSignal(parent_item, COMSIG_SMITHING_QUENCH, on_quench)
 	if(!isnull(on_passive_cool))
-		RegisterSignal(parent_item, COMSIG_SMITHING_PASSIVE_COOLED, TYPE_PROC_REF(parent_item.type, on_passive_cool))
+		RegisterSignal(parent_item, COMSIG_SMITHING_PASSIVE_COOLED, on_passive_cool)//TYPE_PROC_REF(parent_item.type, on_passive_cool))
 
 
 /datum/component/forge_smithable/proc/good_hit(amount = 1, playsound = FALSE)
@@ -74,7 +74,7 @@
 	if(playsound)
 		conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 35, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 
-	balloon_alert_to_viewers("the [parent_item] shattered!")
+	parent_item.balloon_alert_to_viewers("the [parent_item] shattered!")
 	qdel(src)
 
 /datum/component/forge_smithable/proc/is_finished_smithing()
@@ -133,7 +133,7 @@
 
 ////////////////////// FOR ACTUAL SMITHING ACTIONS /////////////////////////
 
-/datum/component/forge_smithable/proc/anvil_work(mob/living/user, mob/item/tool)
+/datum/component/forge_smithable/proc/anvil_work(mob/living/user, obj/item/tool)
 	if(COOLDOWN_FINISHED(src, heating_remainder))
 		bad_hit()
 		user.balloon_alert(user, "metal too cool")
@@ -162,12 +162,12 @@
 	COOLDOWN_START(user, striking_cooldown, skill_modifier)
 	COOLDOWN_START(user, perfect_strike_window, skill_modifier + user.mind.get_skill_level(/datum/skill/smithing) DECISECONDS)
 
-/datum/component/forge_smithable/proc/try_quench(/datum/reagents/dunk_reagents, dunk_object, /mob/living/user)
+/datum/component/forge_smithable/proc/try_quench(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
 	if(dunk_reagents.chem_temp > MAX_QUENCH_HEAT)
-		user.balloon_alert(quencher, "[dunk_object] is too hot to cool [src]!")
+		user.balloon_alert(user, "[dunk_object] is too hot to cool [parent_item]!")
 		return
 	if(dunk_reagents.total_volume < MIN_VOLUME_TO_QUENCH)
-		user.balloon_alert(quencher, "[dunk_object] doesn't contain enough fluid to immerse [src]!")
+		user.balloon_alert(user, "[dunk_object] doesn't contain enough fluid to immerse [parent_item]!")
 		return
 	dunk_reagents.expose_temperature(600)
 	SEND_SIGNAL(parent_item, COMSIG_SMITHING_QUENCH, dunk_reagents, dunk_object, user)

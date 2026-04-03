@@ -17,18 +17,18 @@
 /obj/structure/reagent_dispensers/smithing_trough/prefilled
 	reagent_id = /datum/reagent/fuel/oil/smithing
 
-/obj/structure/reagent_dispenser/smithing_trough/Initialize()
+/obj/structure/reagent_dispensers/smithing_trough/Initialize()
 	. = ..()
 	check_fishable()
 
-/obj/structure/reagent_dispenser/smithing_trough/check_fishable()
+/obj/structure/reagent_dispensers/smithing_trough/proc/check_fishable()
 	if(isnull(fishable) && reagents.total_volume >= tank_volume)
 		fishable = AddComponent(/datum/component/fishing_spot, /datum/fish_source/water_basin)
 	else if(!isnull(fishable) && reagents.total_volume < tank_volume)
 		RemoveComponentSource(src, /datum/component/fishing_spot)
 
 
-/obj/structure/reagent_water_basin/Destroy()
+/obj/structure/reagent_dispensers/smithing_trough/Destroy()
 	QDEL_NULL(fishable)
 	return ..()
 

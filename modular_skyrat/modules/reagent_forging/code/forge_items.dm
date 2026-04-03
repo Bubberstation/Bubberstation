@@ -34,7 +34,7 @@
 
 /obj/item/forging/incomplete/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_imbued/weapon, completion_quality_points, TRUE, max_perfect_hits, bad_hit_maximum, average_wait, PROC_REF(quench_item))
+	AddComponent(/datum/component/forge_smithable, completion_quality_points, TRUE, max_perfect_hits, bad_hit_maximum, average_wait, PROC_REF(quench_item))
 
 
 /obj/item/forging/incomplete/tong_act(mob/living/user, obj/item/tool)
@@ -61,7 +61,7 @@
 		else
 			to_chat(quencher, span_warning("You cool down [src]. You're not sure if it was ready yet..."))
 
-	var/obj/spawned_obj = new item.spawn_item(get_turf(src))
+	var/obj/spawned_obj = new spawn_item(get_turf(src))
 	if(custom_materials)
 		spawned_obj.set_custom_materials(custom_materials, 1) //lets set its material
 
@@ -401,7 +401,7 @@
 	if(length(tool.contents))
 		user.balloon_alert(user, "tongs are full already!")
 		return FALSE
-	if(skyrat_obj_flags & ANVIL_REPAIR)
+	if(!isnull(GetComponent(/datum/component/forge_smithable/)) || !isnull(GetComponent(/datum/component/reagent_imbued)))
 		forceMove(tool)
 		tool.icon_state = "tong_full"
 

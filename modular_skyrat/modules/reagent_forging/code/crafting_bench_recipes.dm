@@ -127,8 +127,8 @@
 		if(pieces_completion_amount < 1)
 			product.force *= lerp(MIN_INCOMPLETE_DAMAGE_MULT, MAX_INCOMPLETE_DAMAGE_MULT, pieces_completion_amount)
 	else
-		var/datum/component/reagent_imbued/staff_component = product.get_total_completion_amount(/datum/component/reagent_imbued)
-		if(pieces_completion_amount < 1)
+		var/datum/component/reagent_imbued/staff_component = weapon_head.GetComponent(/datum/component/reagent_imbued)
+		if(!isnull(staff_component) && pieces_completion_amount < 1)
 			staff_component.imbued_reagent.maximum_volume = round(staff_component.imbued_reagent.maximum_volume * lerp(MIN_INCOMPLETE_STAFF_INJECT_MULT, MAX_INCOMPLETE_STAFF_INJECT_MULT, pieces_completion_amount))
 
 
@@ -188,7 +188,7 @@
 	resulting_item = /obj/item/clothing/neck/collar/reagent_clothing
 	time_to_assemble = 3 SECONDS
 
-/datum/crafting_bench_recipe/handcuffs
+/datum/crafting_bench_recipe/wearable/handcuffs
 	recipe_name = "handcuffs"
 	recipe_requirements = list(
 		/obj/item/forging/complete/chain = 5,
