@@ -94,35 +94,28 @@
 		return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reagent_anvil/hammer_act(mob/living/user, obj/item/tool)
-	conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 35, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
-
-	//do we have an incomplete item to hammer out? if so, here is our block of code
-	var/obj/item/forging/incomplete/locate_incomplete = locate() in contents
-	if(locate_incomplete)
-		if(istype(tool, /obj/item/forging/hammer))
-			var/obj/item/forging/hammer/hammer_tool = tool
-			return hammer_work(user, hammer_tool, locate_incomplete)
-		else
-			balloon_alert(user, "You need a forging hammer to forge!")
-
-
-	//okay, so we didn't find an incomplete item to hammer, do we have a hammerable item?
+	//do we have a hammerable item?
 	var/obj/locate_obj = locate() in contents
-	if(locate_obj && (locate_obj.skyrat_obj_flags & ANVIL_REPAIR))
-		if(locate_obj.GetComponent(/datum/component/reagent_imbued))
-			var/datum/component/reagent_imbued/reagent_component = locate_obj.GetComponent(/datum/component/reagent_imbued)
-			if(reagent_component.imbued_reagent.reagent_list.len >= 1 && !HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
-				to_chat(user, span_danger("You don't know the right trick to repair imbued weapons!"))
+	if(!isnull(locate_obj))
+		var/datum/component/forge_smithable/smith_component = locate_obj.GetComponent(/datum/component/forge_smithable/)
+		if(!isnull(smith_component))
+			smith_component.anvil_work(user, tool)
+			return ITEM_INTERACT_SUCCESS
+		else if(locate_obj.skyrat_obj_flags & ANVIL_REPAIR)
+			if(locate_obj.GetComponent(/datum/component/reagent_imbued))
+				var/datum/component/reagent_imbued/reagent_component = locate_obj.GetComponent(/datum/component/reagent_imbued)
+				if(reagent_component.imbued_reagent.reagent_list.len >= 1 && !HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
+					to_chat(user, span_danger("You don't know the right trick to repair imbued weapons!"))
+					return ITEM_INTERACT_BLOCKING
+			if(locate_obj.get_integrity() >= locate_obj.max_integrity)
+				balloon_alert(user, "already repaired")
 				return ITEM_INTERACT_BLOCKING
-		if(locate_obj.get_integrity() >= locate_obj.max_integrity)
-			balloon_alert(user, "already repaired")
-			return ITEM_INTERACT_BLOCKING
 
-		locate_obj.repair_damage(locate_obj.get_integrity() + 10)
-		user.mind.adjust_experience(/datum/skill/smithing, 5) //repairing does give some experience
-		conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 35, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
+			locate_obj.repair_damage(locate_obj.get_integrity() + 10)
+			user.mind.adjust_experience(/datum/skill/smithing, 5) //repairing does give some experience
+			conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 35, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 
-	return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_BLOCKING
 
 /obj/structure/reagent_anvil/hammer_act_secondary(mob/living/user, obj/item/tool)
 	var/obj/item/forging/incomplete/my_anvil_item = contents[1]
@@ -146,58 +139,9 @@
 
 /obj/structure/reagent_anvil/proc/hammer_work(mob/living/user, obj/item/forging/hammer/tool, obj/item/forging/incomplete/incomplete_item)
 
-	if(COOLDOWN_FINISHED(incomplete_item, heating_remainder))
-		incomplete_item.bad_hit()
-		balloon_alert(user, "metal too cool")
-		return ITEM_INTERACT_SUCCESS
-
-	var/quality_points_to_give = 1 + (HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING) ? ANVIL_SMITHING_CHIP_QUALITY_BONUS : 0)
-	var/hit_quality = get_hit_quality(user, tool)
-	switch(hit_quality)
-		if(ANVIL_HAMMER_HIT_BAD)
-			incomplete_item.bad_hit(playsound = TRUE)
-		if(ANVIL_HAMMER_HIT_GOOD)
-			incomplete_item.good_hit(amount = quality_points_to_give, playsound = TRUE)
-			user.mind.adjust_experience(/datum/skill/smithing, 1) //A good hit gives mild experience
-			do_sparks(1, FALSE, src)
-		if(ANVIL_HAMMER_HIT_PERFECT)
-			incomplete_item.perfect_hit(amount = quality_points_to_give, playsound = TRUE)
-			user.mind.adjust_experience(/datum/skill/smithing, 10) //A perfect hit gives good experience
-			do_sparks(2, FALSE, src)
-
-	if(incomplete_item.is_finished_smithing())
-		if(incomplete_item.perfect_hit >= incomplete_item.max_perfect_hits)
-			balloon_alert(user, "[incomplete_item] is perfected!")
-		else
-			balloon_alert(user, "[incomplete_item] seems good enough")
-	else
-		switch(hit_quality)
-			if(ANVIL_HAMMER_HIT_BAD)
-				balloon_alert(user, "bad hit")
-			if(ANVIL_HAMMER_HIT_GOOD)
-				balloon_alert(user, "good hit")
-			if(ANVIL_HAMMER_HIT_PERFECT)
-				balloon_alert(user, "perfect hit!")
-
-	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) * incomplete_item.average_wait
-	//todo: change tool cooldown to be attached onto the user
-	COOLDOWN_START(user, striking_cooldown, skill_modifier)
-	COOLDOWN_START(user, perfect_strike_window, skill_modifier + user.mind.get_skill_level(/datum/skill/smithing) DECISECONDS)
-
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
-/obj/structure/reagent_anvil/proc/get_hit_quality(mob/living/user, obj/item/forging/hammer/tool)
-	if(HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
-		if(user.mind.get_skill_level(/datum/skill/smithing) >= SKILL_LEVEL_LEGENDARY)
-			return ANVIL_HAMMER_HIT_PERFECT
-		if(!COOLDOWN_FINISHED(user, perfect_strike_window) && COOLDOWN_FINISHED(user, striking_cooldown))
-			return ANVIL_HAMMER_HIT_PERFECT
-
-	if(!COOLDOWN_FINISHED(user, striking_cooldown))
-		return ANVIL_HAMMER_HIT_BAD
-
-	return ANVIL_HAMMER_HIT_GOOD
 
 /obj/structure/reagent_anvil/proc/should_stop_autohammering()
 	if(istype(contents[1], /obj/item/forging/incomplete))

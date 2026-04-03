@@ -25,3 +25,4 @@
 
 //the list of possible things people can make if they have maxed forging skill
 #define COMSIG_SMITHING_DONE "smithing_done"
+#define COMSIG_SMITHING_PASSIVE_COOLED "smithing_passive_cooled"

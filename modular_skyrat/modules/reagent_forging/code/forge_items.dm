@@ -40,43 +40,6 @@
 	forceMove(tool)
 	tool.icon_state = "tong_full"
 
-/obj/item/forging/incomplete/proc/good_hit(amount = 1, playsound = FALSE)
-	quality_points += amount
-	if(playsound)
-		conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vary = TRUE, frequency = 1.2, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
-
-/obj/item/forging/incomplete/proc/perfect_hit(amount = 1, playsound = FALSE)
-	good_hit(amount, FALSE)
-	if(playsound)
-		conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vary = TRUE, frequency = 1.0, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
-	if(current_perfects < max_perfect_hits)
-		current_perfects += amount
-
-/obj/item/forging/incomplete/proc/bad_hit(amount = 2, playsound = FALSE)
-	bad_hits_total += amount
-	if(check_for_breakage())
-		forging_breakage()
-	else
-		if(playsound)
-			conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 2.2, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
-
-/obj/item/forging/incomplete/proc/check_for_breakage()
-	if(bad_hits_total > bad_hit_maximum)
-		return TRUE
-	return FALSE
-
-/obj/item/forging/incomplete/proc/forging_breakage(playsound = TRUE)
-	if(playsound)
-		conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 35, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
-
-	balloon_alert_to_viewers("the [name] shattered!")
-	qdel(src)
-
-/obj/item/forging/incomplete/proc/is_finished_smithing()
-	if(quality_points >= completion_quality_points)
-		return TRUE
-	return FALSE
-
 /obj/item/forging/incomplete/proc/quench_item(datum/reagents/dunk_reagents, mob/living/quencher)
 	if(dunk_reagents.chem_temp > MAX_QUENCH_HEAT)
 		balloon_alert(quencher, "This is too hot to cool [src]!")
