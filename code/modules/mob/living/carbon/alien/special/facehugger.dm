@@ -323,13 +323,6 @@
 	worn_icon_state = "facehugger_impregnated"
 	stat = DEAD
 
-/obj/item/clothing/mask/facehugger/infertile
-	inhand_icon_state = "facehugger_inactive"
-	desc = "It has some sort of a tube at the end of its tail."
-	real = TRUE
-	sterile = TRUE
-	tint = 3 //Makes it feel more authentic when it latches on
-
 /obj/item/clothing/mask/facehugger/toy
 	inhand_icon_state = "facehugger_inactive"
 	desc = "A toy often used to play pranks on other miners by putting it in their beds. It takes a bit to recharge after latching onto something."
