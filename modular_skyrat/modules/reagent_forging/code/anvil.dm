@@ -1,8 +1,4 @@
 #define AUTO_SMITHING_SPEED_PENALTY 6 DECISECONDS
-#define ANVIL_HAMMER_HIT_GOOD 1
-#define ANVIL_HAMMER_HIT_BAD 0
-#define ANVIL_HAMMER_HIT_PERFECT 2
-#define ANVIL_SMITHING_CHIP_QUALITY_BONUS 1
 
 /obj/structure/reagent_anvil
 	name = "smithing anvil"
@@ -16,7 +12,6 @@
 
 /obj/structure/reagent_anvil/Initialize(mapload)
 	. = ..()
-
 	AddElement(/datum/element/falling_hazard, damage = 40, wound_bonus = 10, hardhat_safety = FALSE, crushes = TRUE)
 
 /obj/structure/reagent_anvil/update_appearance()
@@ -100,21 +95,9 @@
 		var/datum/component/forge_smithable/smith_component = locate_obj.GetComponent(/datum/component/forge_smithable/)
 		if(!isnull(smith_component))
 			smith_component.anvil_work(user, tool)
+			update_appearance()
 			return ITEM_INTERACT_SUCCESS
-		else if(locate_obj.skyrat_obj_flags & ANVIL_REPAIR)
-			if(locate_obj.GetComponent(/datum/component/reagent_imbued))
-				var/datum/component/reagent_imbued/reagent_component = locate_obj.GetComponent(/datum/component/reagent_imbued)
-				if(reagent_component.imbued_reagent.reagent_list.len >= 1 && !HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
-					to_chat(user, span_danger("You don't know the right trick to repair imbued weapons!"))
-					return ITEM_INTERACT_BLOCKING
-			if(locate_obj.get_integrity() >= locate_obj.max_integrity)
-				balloon_alert(user, "already repaired")
-				return ITEM_INTERACT_BLOCKING
-
-			locate_obj.repair_damage(locate_obj.get_integrity() + 10)
-			user.mind.adjust_experience(/datum/skill/smithing, 5) //repairing does give some experience
-			conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 35, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
-
+	update_appearance()
 	return ITEM_INTERACT_BLOCKING
 
 /obj/structure/reagent_anvil/hammer_act_secondary(mob/living/user, obj/item/tool)
@@ -137,18 +120,13 @@
 
 		return ITEM_INTERACT_SUCCESS
 
-/obj/structure/reagent_anvil/proc/hammer_work(mob/living/user, obj/item/forging/hammer/tool, obj/item/forging/incomplete/incomplete_item)
-
-	update_appearance()
-	return ITEM_INTERACT_SUCCESS
-
-
 /obj/structure/reagent_anvil/proc/should_stop_autohammering()
 	if(istype(contents[1], /obj/item/forging/incomplete))
 		var/obj/item/forging/incomplete/my_incomplete_item = contents[1]
-		if(my_incomplete_item.is_finished_smithing())
+		var/datum/component/forge_smithable/my_forge_component = my_incomplete_item.GetComponent(/datum/component/forge_smithable/)
+		if(my_forge_component.is_finished_smithing())
 			return TRUE
-		if(COOLDOWN_FINISHED(my_incomplete_item, heating_remainder))
+		if(COOLDOWN_FINISHED(my_forge_component, heating_remainder))
 			return TRUE
 		return FALSE
 

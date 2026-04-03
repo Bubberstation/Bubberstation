@@ -32,6 +32,11 @@
 	//because who doesn't want to have a plasma sword?
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 
+/obj/item/forging/incomplete/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reagent_imbued/weapon, completion_quality_points, TRUE, max_perfect_hits, bad_hit_maximum, average_wait, PROC_REF(quench_item))
+
+
 /obj/item/forging/incomplete/tong_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(length(tool.contents) > 0)
@@ -40,18 +45,13 @@
 	forceMove(tool)
 	tool.icon_state = "tong_full"
 
-/obj/item/forging/incomplete/proc/quench_item(datum/reagents/dunk_reagents, mob/living/quencher)
-	if(dunk_reagents.chem_temp > MAX_QUENCH_HEAT)
-		balloon_alert(quencher, "This is too hot to cool [src]!")
-		return
-	if(dunk_reagents.total_volume < MIN_VOLUME_TO_QUENCH)
-		balloon_alert(quencher, "This doesn't contain enough fluid to immerse [src]!")
-		return
-
+/obj/item/forging/incomplete/proc/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/quencher)
+	SIGNAL_HANDLER
 	playsound(src, 'modular_skyrat/modules/reagent_forging/sound/hot_hiss.ogg', 50, TRUE)
-	var/obj/spawned_obj = new item.spawn_item(get_turf(src))
-	if(is_finished_smithing())
-		to_chat(quencher, span_notice("You cool down [src] to produce a [spawned_obj]."))
+
+	var/datum/component/forge_smithable/forge_component = GetComponent(/datum/component/forge_smithable)
+	if(forge_component.is_finished_smithing())
+		to_chat(quencher, span_notice("You cool down [src]."))
 		quencher.mind.adjust_experience(/datum/skill/smithing, 10)
 	else
 		if(break_on_early_quench)
@@ -59,15 +59,16 @@
 			qdel(src)
 			return
 		else
-			to_chat(quencher, span_warning("You cool down [src] to produce a [spawned_obj]. You're not sure if it was ready yet..."))
+			to_chat(quencher, span_warning("You cool down [src]. You're not sure if it was ready yet..."))
 
+	var/obj/spawned_obj = new item.spawn_item(get_turf(src))
 	if(custom_materials)
 		spawned_obj.set_custom_materials(custom_materials, 1) //lets set its material
 
 	if(istype(spawned_obj, /obj/item/forging/complete))
 		var/obj/item/forging/complete/complete_spawned = spawned_obj
-		complete_spawned.perfect_ratio = current_perfects / max_perfect_hits
-		complete_spawned.hammer_completion_amount = quality_points / completion_quality_points
+		complete_spawned.perfect_ratio = forge_component.get_perfect_ratio()
+		complete_spawned.hammer_completion_amount = forge_component.get_completion_ratio()
 
 	var/datum/component/reagent_imbued/new_reagent_component = spawned_obj.GetComponent(/datum/component/reagent_imbued)
 	if(!isnull(new_reagent_component) && HAS_TRAIT(quencher, TRAIT_KNOW_ADVANCED_SMITHING))

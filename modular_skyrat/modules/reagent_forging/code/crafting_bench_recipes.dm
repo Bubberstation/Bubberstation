@@ -96,7 +96,7 @@
 	total_completion /= total_forge_items
 	return total_completion
 
-/datum/crafting_bench_recipe/proc/apply_perfect_and_completion_bonuses(list/things_to_use, obj/item/product, completion_amount)
+/datum/crafting_bench_recipe/proc/apply_perfect_and_completion_bonuses(list/things_to_use, obj/item/product)
 
 /datum/crafting_bench_recipe/weapon_completion_recipe //Exists so I don't have to modify the code too much for weapon completion
 	recipe_name = "generic weapon completion recipe (should not be visible)"
@@ -111,7 +111,7 @@
 		stack_trace("[src] didn't contain a valid reagent smithing weapon head when its recipe was completed!")
 
 	var/obj/item/returner = new weapon_head.spawning_item(src)
-	apply_perfect_and_completion_bonuses(things_to_use, returner)
+	apply_perfect_and_completion_bonuses(item_list, returner)
 	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner)
 	put_materials_in_product_from_ingredients(item_list, returner, user)
 
@@ -119,6 +119,7 @@
 	return returner
 
 /datum/crafting_bench_recipe/weapon_completion_recipe/apply_perfect_and_completion_bonuses(list/things_to_use, obj/item/product)
+	var/obj/item/forging/complete/weapon_head = is_path_in_list(/obj/item/forging/complete/, things_to_use, TRUE)
 	var/pieces_completion_amount = get_total_completion_amount(things_to_use)
 	if(!istype(weapon_head, /obj/item/forging/complete/staff)) //we don't want the staff to get added damage
 		product.force += clamp(weapon_head.perfect_ratio * MAX_PERFECT_FORCE_BONUS, 0, MAX_PERFECT_FORCE_BONUS)

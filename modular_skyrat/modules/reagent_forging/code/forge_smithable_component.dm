@@ -1,3 +1,9 @@
+#define ANVIL_HAMMER_HIT_GOOD 1
+#define ANVIL_HAMMER_HIT_BAD 0
+#define ANVIL_HAMMER_HIT_PERFECT 2
+#define ANVIL_HAMMER_HIT_CANNOT_WORK 3
+#define ANVIL_SMITHING_CHIP_QUALITY_BONUS 1
+
 
 /datum/component/forge_smithable/
 	///the item that the component is attached to
@@ -5,7 +11,7 @@
 	///required type to attach to
 	var/obj/item/required_type = /obj/item
 
-	///the quality points of the incomplete item; goes up on good/perfect hits, goes down on bad hits
+	///the quality points of the incomplete item; goes up on good/perfect hits
 	var/quality_points = 0
 	///the quality points required for it to be considered usable for crafting
 	var/completion_quality_points = 1
@@ -23,7 +29,7 @@
 
 	COOLDOWN_DECLARE(heating_remainder)
 
-/datum/component/forge_smithable/Initialize(completion_needed, time_between_hits, can_perfect, max_perfection, max_breakage, wait_time, on_quench = null, on_passive_cool = null)
+/datum/component/forge_smithable/Initialize(completion_needed, can_perfect, max_perfection, max_breakage, wait_time, on_quench = null, on_passive_cool = null)
 	if(!istype(parent, required_type))
 		return COMPONENT_INCOMPATIBLE
 	parent_item = parent
@@ -34,7 +40,7 @@
 	can_perfect_hit = can_perfect
 
 	if(!isnull(on_quench))
-		RegisterSignal(parent_item, COMSIG_SMITHING_DONE, TYPE_PROC_REF(parent_item.type, on_quench))
+		RegisterSignal(parent_item, COMSIG_SMITHING_QUENCH, TYPE_PROC_REF(parent_item.type, on_quench))
 	if(!isnull(on_passive_cool))
 		RegisterSignal(parent_item, COMSIG_SMITHING_PASSIVE_COOLED, TYPE_PROC_REF(parent_item.type, on_passive_cool))
 
@@ -76,30 +82,43 @@
 		return TRUE
 	return FALSE
 
+/datum/component/forge_smithable/proc/get_completion_ratio()
+	return quality_points / completion_quality_points
+
 /datum/component/forge_smithable/proc/is_perfected()
 	if(current_perfects >= max_perfect_hits)
 		return TRUE
 	return FALSE
 
+/datum/component/forge_smithable/proc/get_perfect_ratio()
+	return current_perfects / max_perfect_hits
+
 /datum/component/forge_smithable/proc/show_balloon_alert(mob/living/user, hit_quality)
 	switch(hit_quality)
+		if(ANVIL_HAMMER_HIT_CANNOT_WORK)
+			user.balloon_alert(user,"can't work!")
 		if(ANVIL_HAMMER_HIT_BAD)
-			balloon_alert(user,"bad hit")
+			user.balloon_alert(user,"bad hit")
 		if(ANVIL_HAMMER_HIT_GOOD)
 			if(is_finished_smithing())
 				if(is_perfected())
-					balloon_alert(user,"[parent_item] is perfected!")
+					user.balloon_alert(user,"[parent_item] is perfected!")
 				else
-					balloon_alert(user,"[parent_item] sounds done")
+					user.balloon_alert(user,"[parent_item] sounds done")
 			else
-				balloon_alert(user, "good hit")
+				user.balloon_alert(user, "good hit")
 		if(ANVIL_HAMMER_HIT_PERFECT)
 			if(is_finished_smithing() && is_perfected())
-				balloon_alert(user,"[parent_item] is perfected!")
+				user.balloon_alert(user,"[parent_item] is perfected!")
 			else
-				balloon_alert(user, "perfect hit!")
+				user.balloon_alert(user, "perfect hit!")
 
 /datum/component/forge_smithable/proc/get_hit_quality(mob/living/user, obj/item/forging/hammer/tool)
+	if(parent_item.GetComponent(/datum/component/reagent_imbued))
+		var/datum/component/reagent_imbued/reagent_component = parent_item.GetComponent(/datum/component/reagent_imbued)
+		if(reagent_component.imbued_reagent.reagent_list.len >= 1 && !HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
+			return ANVIL_HAMMER_HIT_CANNOT_WORK
+
 	if(HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING) && can_perfect_hit)
 		if(user.mind.get_skill_level(/datum/skill/smithing) >= SKILL_LEVEL_LEGENDARY)
 			return ANVIL_HAMMER_HIT_PERFECT
@@ -117,15 +136,17 @@
 /datum/component/forge_smithable/proc/anvil_work(mob/living/user, mob/item/tool)
 	if(COOLDOWN_FINISHED(src, heating_remainder))
 		bad_hit()
-		balloon_alert(user, "metal too cool")
+		user.balloon_alert(user, "metal too cool")
 		return ITEM_INTERACT_SUCCESS
 
 	var/quality_points_to_give = 1 + (HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING) ? ANVIL_SMITHING_CHIP_QUALITY_BONUS : 0)
 	var/hit_quality = get_hit_quality(user, tool)
 	switch(hit_quality)
+		if(ANVIL_HAMMER_HIT_CANNOT_WORK)
+			bad_hit(playsound = TRUE)
+			to_chat(user, span_warning("You don't know how to work with reagent imbued items!"))
 		if(ANVIL_HAMMER_HIT_BAD)
 			bad_hit(playsound = TRUE)
-			balloon_alert(user, "bad hit")
 		if(ANVIL_HAMMER_HIT_GOOD)
 			good_hit(amount = quality_points_to_give, playsound = TRUE)
 			user.mind.adjust_experience(/datum/skill/smithing, 1) //A good hit gives mild experience
@@ -137,7 +158,16 @@
 
 	show_balloon_alert(user, hit_quality)
 
-	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) * incomplete_item.average_wait
-	//todo: change tool cooldown to be attached onto the user
+	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) * average_wait
 	COOLDOWN_START(user, striking_cooldown, skill_modifier)
 	COOLDOWN_START(user, perfect_strike_window, skill_modifier + user.mind.get_skill_level(/datum/skill/smithing) DECISECONDS)
+
+/datum/component/forge_smithable/proc/try_quench(/datum/reagents/dunk_reagents, dunk_object, /mob/living/user)
+	if(dunk_reagents.chem_temp > MAX_QUENCH_HEAT)
+		user.balloon_alert(quencher, "[dunk_object] is too hot to cool [src]!")
+		return
+	if(dunk_reagents.total_volume < MIN_VOLUME_TO_QUENCH)
+		user.balloon_alert(quencher, "[dunk_object] doesn't contain enough fluid to immerse [src]!")
+		return
+	dunk_reagents.expose_temperature(600)
+	SEND_SIGNAL(parent_item, COMSIG_SMITHING_QUENCH, dunk_reagents, dunk_object, user)

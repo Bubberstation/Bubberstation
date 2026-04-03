@@ -41,7 +41,7 @@
 	for (var/datum/reagent/reagent in imbued_reagent.reagent_list)
 		examine_list += span_notice("[reagent.volume] units of [reagent.name]")
 
-/datum/component/reagent_imbued/prooc/on_examine_more(obj/item/source, mob/examiner, list/examine_list)
+/datum/component/reagent_imbued/proc/on_examine_more(obj/item/source, mob/examiner, list/examine_list)
 
 ///Replaces the imbued_reagent with the given new_reagents.
 /datum/component/reagent_imbued/proc/set_reagent_imbue(datum/reagents/new_reagents, clear_source_reagents = TRUE, smithing_oil_bonus = TRUE)
