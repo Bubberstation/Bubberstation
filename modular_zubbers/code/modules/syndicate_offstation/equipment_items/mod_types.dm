@@ -36,7 +36,6 @@
 		/obj/item/mod/module/noslip,
 		/obj/item/mod/module/jetpack/advanced,
 		/obj/item/mod/module/shove_blocker,
-		/obj/item/mod/module/headprotector,
 		/obj/item/mod/module/night,
 		/obj/item/mod/module/welding/syndicate,
 	)
