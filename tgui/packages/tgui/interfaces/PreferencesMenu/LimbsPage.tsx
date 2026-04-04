@@ -47,6 +47,7 @@ export const Markings = (props) => {
                 width="100%"
                 options={props.limb.markings.marking_choices}
                 selected={marking.name}
+                buttons
                 onSelected={(shit) =>
                   act('change_marking', {
                     limb_slot: props.limb.slot,

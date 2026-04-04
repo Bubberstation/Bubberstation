@@ -20,7 +20,7 @@ import { ServerPrefs } from './useServerPrefs';
 
 export function PreferencesMenu(props) {
   return (
-    <Window width={1024} height={790}>
+    <Window width={1100} height={790}>
       {/* BUBBER change line 23 bigger char setup */}
       <Window.Content>
         <Suspense fallback={<LoadingScreen />}>

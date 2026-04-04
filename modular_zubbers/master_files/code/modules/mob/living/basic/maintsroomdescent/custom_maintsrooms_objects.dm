@@ -56,6 +56,13 @@
 	block_chance = 65
 	max_integrity = 2000
 
+/obj/item/clothing/mask/facehugger/infertile
+	inhand_icon_state = "facehugger_inactive"
+	desc = "It has some sort of a tube at the end of its tail."
+	real = TRUE
+	sterile = TRUE
+	tint = 3 //Makes it feel more authentic when it latches on
+
 /obj/item/paper/carbon/rare_pepe
 	name = "Strange Anthropomorphic Frog Poster"
 	desc = "A poster of a strange looking frog, its grinning."
