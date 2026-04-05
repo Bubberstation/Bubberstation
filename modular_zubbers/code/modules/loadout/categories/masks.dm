@@ -218,10 +218,6 @@
 	item_path = /obj/item/clothing/mask/whistle
 	restricted_roles = list(ALL_JOBS_SEC)
 
-/datum/loadout_item/mask/utility/bridle
-	name = "Bridle"
-	item_path = /obj/item/clothing/mask/bridle
-
 /*
 *	COSTUMES
 */
