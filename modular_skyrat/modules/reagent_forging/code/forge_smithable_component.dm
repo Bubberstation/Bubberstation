@@ -4,8 +4,7 @@
 #define ANVIL_HAMMER_HIT_CANNOT_WORK 3
 #define ANVIL_SMITHING_CHIP_QUALITY_BONUS 1
 
-
-/datum/component/forge_smithable/
+/datum/component/forge_smithable
 	///the item that the component is attached to
 	var/obj/item/parent_item
 	///required type to attach to
@@ -26,10 +25,11 @@
 	///maximum number of perfect hits before perfect hits no longer improve the quality
 	var/max_perfect_hits = 1
 	var/can_perfect_hit = TRUE
-
+	var/datum/callback/quench_callback = null
+	var/datum/callback/passive_cool_callback = null
 	COOLDOWN_DECLARE(heating_remainder)
 
-/datum/component/forge_smithable/Initialize(completion_needed, can_perfect, max_perfection, max_breakage, wait_time, on_quench = null, on_passive_cool = null)
+/datum/component/forge_smithable/Initialize(completion_needed, can_perfect, max_perfection, max_breakage, wait_time, datum/callback/on_quench = null, datum/callback/on_passive_cool = null, datum/callback/on_forging_heat = null)
 	if(!istype(parent, required_type))
 		return COMPONENT_INCOMPATIBLE
 	parent_item = parent
@@ -39,6 +39,8 @@
 	bad_hit_maximum = max_breakage
 	can_perfect_hit = can_perfect
 
+	quench_callback = on_quench
+	passive_cool_callback = on_passive_cool
 	if(!isnull(on_quench))
 		RegisterSignal(parent_item, COMSIG_SMITHING_QUENCH, on_quench)
 	if(!isnull(on_passive_cool))
@@ -48,12 +50,12 @@
 /datum/component/forge_smithable/proc/good_hit(amount = 1, playsound = FALSE)
 	quality_points += amount
 	if(playsound)
-		conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vary = TRUE, frequency = 1.2, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
+		parent_item.conditional_pref_sound(parent_item, 'sound/items/weapons/parry.ogg', vary = TRUE, frequency = 1.2, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 
 /datum/component/forge_smithable/proc/perfect_hit(amount = 1, playsound = FALSE)
 	good_hit(amount, FALSE)
 	if(playsound)
-		conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vary = TRUE, frequency = 1.0, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
+		parent_item.conditional_pref_sound(parent_item, 'sound/items/weapons/parry.ogg', vary = TRUE, frequency = 1.0, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 	if(current_perfects < max_perfect_hits)
 		current_perfects += amount
 
@@ -63,7 +65,7 @@
 		forging_breakage()
 	else
 		if(playsound)
-			conditional_pref_sound(src, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 2.2, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
+			parent_item.conditional_pref_sound(parent_item, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 2.2, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 
 /datum/component/forge_smithable/proc/check_for_breakage()
 	if(bad_hits_total > bad_hit_maximum)
@@ -72,9 +74,10 @@
 
 /datum/component/forge_smithable/proc/forging_breakage(playsound = TRUE)
 	if(playsound)
-		conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 35, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
+		conditional_pref_sound(parent_item, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 35, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 
 	parent_item.balloon_alert_to_viewers("the [parent_item] shattered!")
+	qdel(parent_item)
 	qdel(src)
 
 /datum/component/forge_smithable/proc/is_finished_smithing()
@@ -96,22 +99,22 @@
 /datum/component/forge_smithable/proc/show_balloon_alert(mob/living/user, hit_quality)
 	switch(hit_quality)
 		if(ANVIL_HAMMER_HIT_CANNOT_WORK)
-			user.balloon_alert(user,"can't work!")
+			parent_item.balloon_alert(user,"can't work!")
 		if(ANVIL_HAMMER_HIT_BAD)
-			user.balloon_alert(user,"bad hit")
+			parent_item.balloon_alert(user,"bad hit")
 		if(ANVIL_HAMMER_HIT_GOOD)
 			if(is_finished_smithing())
 				if(is_perfected())
-					user.balloon_alert(user,"[parent_item] is perfected!")
+					parent_item.balloon_alert(user,"[parent_item] is perfected!")
 				else
-					user.balloon_alert(user,"[parent_item] sounds done")
+					parent_item.balloon_alert(user,"[parent_item] sounds done")
 			else
-				user.balloon_alert(user, "good hit")
+				parent_item.balloon_alert(user, "good hit")
 		if(ANVIL_HAMMER_HIT_PERFECT)
 			if(is_finished_smithing() && is_perfected())
-				user.balloon_alert(user,"[parent_item] is perfected!")
+				parent_item.balloon_alert(user,"[parent_item] is perfected!")
 			else
-				user.balloon_alert(user, "perfect hit!")
+				parent_item.balloon_alert(user, "perfect hit!")
 
 /datum/component/forge_smithable/proc/get_hit_quality(mob/living/user, obj/item/forging/hammer/tool)
 	if(parent_item.GetComponent(/datum/component/reagent_imbued))
@@ -154,7 +157,7 @@
 		if(ANVIL_HAMMER_HIT_PERFECT)
 			perfect_hit(amount = quality_points_to_give, playsound = TRUE)
 			user.mind.adjust_experience(/datum/skill/smithing, 10) //A perfect hit gives good experience
-			do_sparks(2, FALSE, src)
+			do_sparks(2, FALSE, parent_item)
 
 	show_balloon_alert(user, hit_quality)
 
@@ -170,4 +173,14 @@
 		user.balloon_alert(user, "[dunk_object] doesn't contain enough fluid to immerse [parent_item]!")
 		return
 	dunk_reagents.expose_temperature(600)
-	SEND_SIGNAL(parent_item, COMSIG_SMITHING_QUENCH, dunk_reagents, dunk_object, user)
+	quench_callback.Invoke(dunk_reagents, dunk_object, user)
+	//SEND_SIGNAL(parent_item, COMSIG_SMITHING_QUENCH, dunk_reagents, dunk_object, user)
+
+/datum/component/forge_smithable/proc/heat_for_smithing(heat_time)
+	COOLDOWN_START(src, heating_remainder, heat_time + COOLDOWN_TIMELEFT(src, heating_remainder))
+
+/mob/living
+	//the time between each strike
+	COOLDOWN_DECLARE(striking_cooldown)
+	//the time it takes to prepare a perfect strike. should always be > striking_cooldown
+	COOLDOWN_DECLARE(perfect_strike_window)

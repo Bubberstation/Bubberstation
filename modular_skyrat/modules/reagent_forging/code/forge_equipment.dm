@@ -3,8 +3,6 @@
 	lefthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_l.dmi'
 	righthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_r.dmi'
 	toolspeed = 1 SECONDS
-	///whether the item is in use or not
-	var/in_use = FALSE
 
 /obj/item/forging/tongs
 	name = "forging tongs"
@@ -39,11 +37,6 @@
 		/obj/structure/reagent_crafting_bench
 	)
 
-/mob/living
-	//the time between each strike
-	COOLDOWN_DECLARE(striking_cooldown)
-	//the time it takes to prepare a perfect strike. should always be > striking_cooldown
-	COOLDOWN_DECLARE(perfect_strike_window)
 
 /obj/item/forging/hammer/primitive
 	name = "primitive forging hammer"

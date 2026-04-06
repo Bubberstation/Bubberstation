@@ -328,7 +328,7 @@
 
 	if(completing_a_weapon)
 		things_to_use.Add(contents[1])
-	newly_created_thing = recipe_to_follow.create_using_item_list(src)
+	newly_created_thing = recipe_to_follow.create_using_item_list(things_to_use, user)
 
 	if(!newly_created_thing)
 		message_admins("[src] just failed to create something while crafting!")

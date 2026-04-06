@@ -5,22 +5,13 @@
 /obj/item/forging/incomplete
 	name = "parent dev item"
 	desc = "An incomplete forge item, continue to work hard to be rewarded for your efforts."
-	//the time remaining that you can hammer before too cool
-	COOLDOWN_DECLARE(heating_remainder)
 
-	///the quality points of the incomplete item; goes up on good/perfect hits, goes down on bad hits
-	var/quality_points = 0
 	///the quality points required for it to be considered usable for crafting
 	var/completion_quality_points = 30
 	///the required time before each strike to prevent spamming
 	var/average_wait = 1 SECONDS
-	///total current bad hits
-	var/bad_hits_total = 0
 	///the bad hits required for it to break; exceeding this will break the item
 	var/bad_hit_maximum = 5
-
-	///the number of current perfect hits
-	var/current_perfects = 0
 	///maximum number of perfect hits before perfect hits no longer improve the quality
 	var/max_perfect_hits = 20
 
@@ -34,16 +25,7 @@
 
 /obj/item/forging/incomplete/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/forge_smithable, completion_quality_points, TRUE, max_perfect_hits, bad_hit_maximum, average_wait, PROC_REF(quench_item))
-
-
-/obj/item/forging/incomplete/tong_act(mob/living/user, obj/item/tool)
-	. = ..()
-	if(length(tool.contents) > 0)
-		user.balloon_alert(user, "tongs are full already!")
-		return
-	forceMove(tool)
-	tool.icon_state = "tong_full"
+	AddComponent(/datum/component/forge_smithable, completion_quality_points, TRUE, max_perfect_hits, bad_hit_maximum, average_wait, CALLBACK(src, TYPE_PROC_REF(/obj/item/forging/incomplete, quench_item)))// TYPE_PROC_REF(/obj/item/forging/incomplete/, quench_item))
 
 /obj/item/forging/incomplete/proc/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/quencher)
 	SIGNAL_HANDLER
@@ -77,6 +59,15 @@
 
 	qdel(src)
 	return spawned_obj
+
+/obj/item/forging/incomplete/tong_act(mob/living/user, obj/item/tool)
+	. = ..()
+	if(length(tool.contents) > 0)
+		user.balloon_alert(user, "tongs are full already!")
+		return
+	forceMove(tool)
+	tool.icon_state = "tong_full"
+
 
 /obj/item/forging/incomplete/pickup(mob/living/user)
 	var/hand_protected = FALSE

@@ -40,9 +40,9 @@
 		. += span_notice("You could use this for imbuing reagents into equipment if you knew the right trick...")
 
 /obj/structure/reagent_dispensers/attackby(obj/item/attacking_item, mob/living/user, params)
-	if(istype(attacking_item, /obj/item/forging/incomplete))
-		var/obj/item/forging/incomplete/incomplete_item = attacking_item
-		incomplete_item.quench_item(reagents, user)
+	var/datum/component/forge_smithable/smith_component = attacking_item.GetComponent(/datum/component/forge_smithable/)
+	if(!isnull(smith_component))
+		smith_component.try_quench(reagents, src, user)
 		return ITEM_INTERACT_SUCCESS
 
 	return ..()

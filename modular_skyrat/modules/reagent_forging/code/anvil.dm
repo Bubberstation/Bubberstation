@@ -71,10 +71,6 @@
 	var/obj/item/forging/forge_item = tool
 	var/obj/obj_anvil_search = locate() in contents
 
-	if(forge_item.in_use)
-		balloon_alert(user, "already in use")
-		return ITEM_INTERACT_SUCCESS
-
 	var/obj/obj_tong_search = locate() in forge_item.contents
 	if(obj_anvil_search && !obj_tong_search)
 		obj_anvil_search.forceMove(forge_item)
@@ -103,22 +99,24 @@
 /obj/structure/reagent_anvil/hammer_act_secondary(mob/living/user, obj/item/tool)
 	var/obj/item/forging/incomplete/my_anvil_item = contents[1]
 	if(!isnull(my_anvil_item))
-		balloon_alert_to_viewers("hammering steadily...")
-		while(!should_stop_autohammering())
-			var/wait_between_swings = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) DECISECONDS
-			if(istype(my_anvil_item, /obj/item/forging/incomplete))
-				wait_between_swings *= my_anvil_item.average_wait
-			else
-				wait_between_swings += 1 SECONDS
-			wait_between_swings += AUTO_SMITHING_SPEED_PENALTY
+		if(!should_stop_autohammering)
+			balloon_alert_to_viewers("hammering steadily...")
+			while(!should_stop_autohammering())
+				var/wait_between_swings = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) DECISECONDS
+				if(istype(my_anvil_item, /obj/item/forging/incomplete))
+					wait_between_swings *= my_anvil_item.average_wait
+				else
+					wait_between_swings += 1 SECONDS
+				wait_between_swings += AUTO_SMITHING_SPEED_PENALTY
 
-			if(!do_after(user, wait_between_swings, target = src))
-				balloon_alert_to_viewers("stopped hammering")
-				break
-			else
-				hammer_act(user, tool)
+				if(!do_after(user, wait_between_swings, target = src))
+					balloon_alert_to_viewers("stopped hammering")
+					break
+				else
+					hammer_act(user, tool)
 
-		return ITEM_INTERACT_SUCCESS
+			return ITEM_INTERACT_SUCCESS
+
 
 /obj/structure/reagent_anvil/proc/should_stop_autohammering()
 	if(istype(contents[1], /obj/item/forging/incomplete))
@@ -129,6 +127,7 @@
 		if(COOLDOWN_FINISHED(my_forge_component, heating_remainder))
 			return TRUE
 		return FALSE
+	return TRUE
 
 
 /obj/structure/reagent_anvil/onZImpact(turf/impacted_turf, levels, message = TRUE)
