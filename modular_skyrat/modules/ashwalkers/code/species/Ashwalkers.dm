@@ -38,12 +38,11 @@
 
 /**
  * 15 minutes = armor
- * 30 minutes = base punch
- * 45 minutes = boulder breaking
+ * 30 minutes = base punch + boulder breaking
+ * 45 minutes = hivemind
  * 60 minutes = speed
  * 75 minutes = mutated armblade
- * 90 minutes = lavaproof
- * 105 minutes = firebreath
+ * 90 minutes = lavaproof + firebreath
  */
 
 /datum/component/ash_age
@@ -89,11 +88,13 @@
 				right_arm.unarmed_damage_low += 5
 				right_arm.unarmed_damage_high += 5
 
-			to_chat(human_target, span_notice("Your arms seem denser..."))
+			ADD_TRAIT(human_target, TRAIT_BOULDER_BREAKER, REF(src))
+			to_chat(human_target, span_notice("Your arms seem denser and stronger..."))
 
 		if(3)
-			ADD_TRAIT(human_target, TRAIT_BOULDER_BREAKER, REF(src))
-			to_chat(human_target, span_notice("The boulders look easier to break open, even with your hands..."))
+			var/datum/action/ashen_actions/hivemind_speak/grant_hivemind = new /datum/action/ashen_actions/hivemind_speak(human_target)
+			grant_hivemind.Grant(human_target)
+
 		if(4)
 			human_target.add_movespeed_modifier(/datum/movespeed_modifier/ash_aged)
 			to_chat(human_target, span_notice("Your body seems lighter..."))
@@ -105,15 +106,12 @@
 
 		if(6)
 			ADD_TRAIT(human_target, TRAIT_LAVA_IMMUNE, REF(src))
-			to_chat(human_target, span_notice("Your body feels hotter..."))
-
-		if(7)
 			var/datum/action/cooldown/mob_cooldown/fire_breath/granted_action
 			granted_action = new(human_target)
 			granted_action.Grant(human_target)
-			to_chat(human_target, span_notice("Your throat feels larger..."))
+			to_chat(human_target, span_notice("Your body feels hotter..."))
 
-		if(8 to INFINITY)
+		if(7 to INFINITY)
 			to_chat(human_target, span_warning("You have already reached the pinnacle of your current body!"))
 
 /// Speed mod
@@ -141,7 +139,7 @@
 	var/obj/item/melee/ashen_blade/summoned_armblade
 
 	/// The armblade action given to the owner so they can summon and unsummon the armblade
-	var/datum/action/summon_ashblade/granted_action
+	var/datum/action/ashen_actions/summon_ashblade/granted_action
 
 /obj/item/organ/ashen_armblade/Initialize(mapload)
 	. = ..()
@@ -165,17 +163,19 @@
 	if(!locate(summoned_armblade) in src) //if the armblade isnt in the organ when it is removed, move the armblade back into the organ
 		summoned_armblade.forceMove(src)
 
-/datum/action/summon_ashblade
-	name = "Ashen Armblade"
+/datum/action/ashen_actions
 	button_icon = 'modular_skyrat/modules/ashwalkers/icons/actions.dmi'
-	button_icon_state = "armblade"
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "bg_demon_border"
+
+/datum/action/ashen_actions/summon_ashblade
+	name = "Ashen Armblade"
+	button_icon_state = "armblade"
 
 	/// the organ that is connected to this action
 	var/obj/item/organ/ashen_armblade/connected_organ
 
-/datum/action/summon_ashblade/Trigger(trigger_flags)
+/datum/action/ashen_actions/summon_ashblade/Trigger(trigger_flags)
 	. = ..()
 	if(!.)
 		return
@@ -289,3 +289,40 @@
 		return ITEM_INTERACT_BLOCKING
 
 	return ..()
+
+/datum/action/ashen_actions/hivemind_speak
+	name = "Ashen Hivemend Speak"
+	desc = "Enter what you wish to say into the ashen hivemind."
+	button_icon_state = "hivemind"
+
+	/// is this button currently in use?
+	var/currently_used = FALSE
+
+/datum/action/ashen_actions/hivemind_speak/Trigger(trigger_flags)
+	. = ..()
+	if(!.)
+		return
+
+	if(currently_used)
+		return
+
+	currently_used = TRUE
+
+	var/inserted_message = tgui_input_text(owner, "What would you like to say over the ashen hivemind?", "Ashen Hivemind Message", max_length = CHAT_MESSAGE_MAX_LENGTH)
+	if(isnull(inserted_message))
+		currently_used = FALSE
+		return
+
+	for(var/mob/living/living_ashwalker in GLOB.player_list)
+		if(!isashwalker(living_ashwalker))
+			continue
+
+		to_chat(living_ashwalker, span_rose("<b>Ashen Hivemind: [owner] sings, \"[inserted_message]\"</b>"))
+
+	for(var/mob/dead_mob in GLOB.dead_mob_list)
+		var/link = FOLLOW_LINK(dead_mob, src)
+		to_chat(dead_mob, span_rose("[link] <b>Ashen Hivemind: [owner] sings, \"[inserted_message]\"</b>"))
+
+	var/logging_text = "[key_name(owner)] spoke into the hivemind: [inserted_message]"
+	log_say(logging_text)
+	currently_used = FALSE
