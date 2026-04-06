@@ -118,6 +118,8 @@
 		if(TOOL_ANALYZER)
 			act_result = is_left_clicking ? analyzer_act(user, tool) : analyzer_act_secondary(user, tool)
 		// SKYRAT EDIT ADDITION START - SKYRAT TOOLS
+		if(TOOL_SHOVEL)
+			act_result = is_left_clicking ? shovel_act(user, tool) : shovel_act_secondary(user, tool)
 		if(TOOL_BILLOW)
 			act_result = is_left_clicking ? billow_act(user, tool) : billow_act_secondary(user, tool)
 		if(TOOL_TONG)

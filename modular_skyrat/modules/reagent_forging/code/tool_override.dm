@@ -29,3 +29,9 @@
 /// Called on an object when a tool with wrench capabilities is used to right click an object
 /atom/proc/blowrod_act_secondary(mob/living/user, obj/item/tool)
 	return
+
+/// Called on an object when a tool with shovel capabilities is used to left click an object
+/atom/proc/shovel_act(mob/living/user, obj/item/tool)
+
+/// Called on an object when a tool with shovel capabilities is used to right click an object
+/atom/proc/shovel_act_secondary(mob/living/user, obj/item/tool)
