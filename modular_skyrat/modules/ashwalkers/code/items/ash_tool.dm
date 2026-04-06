@@ -10,6 +10,7 @@
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
 	greyscale_config_worn = null
+	post_init_icon_state = null
 
 /datum/crafting_recipe/ash_recipe/ash_screwdriver
 	name = "Ash Screwdriver"
@@ -26,6 +27,7 @@
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
 	greyscale_config_worn = null
+	post_init_icon_state = null
 
 /datum/crafting_recipe/ash_recipe/ash_cutters
 	name = "Ash Wirecutters"
@@ -42,6 +44,7 @@
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
 	greyscale_config_worn = null
+	post_init_icon_state = null
 
 /datum/crafting_recipe/ash_recipe/ash_wrench
 	name = "Ash Wrench"
@@ -58,6 +61,7 @@
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
 	greyscale_config_worn = null
+	post_init_icon_state = null
 
 /datum/crafting_recipe/ash_recipe/ash_crowbar
 	name = "Ash Crowbar"
@@ -75,6 +79,7 @@
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
 	greyscale_config_worn = null
+	post_init_icon_state = null
 	toolspeed = 4
 
 /datum/crafting_recipe/ash_recipe/ash_chisel
@@ -104,9 +109,9 @@
 	. = ..()
 	. += span_notice("In order to be planted, it is required to be on the mining level as well as on basalt.")
 
-/obj/item/ash_seed/proc/harm_user(mob/living/user, var/sent_message, var/damage_amount)
+/obj/item/ash_seed/proc/harm_user(mob/living/user, sent_message, damage_amount)
 	to_chat(user, span_warning(sent_message))
-	user.adjustBruteLoss(damage_amount)
+	user.adjust_brute_loss(damage_amount)
 	if(!do_after(user, 4 SECONDS, target = src))
 		to_chat(user, span_warning("You stop the process of planting [src]!"))
 		return FALSE

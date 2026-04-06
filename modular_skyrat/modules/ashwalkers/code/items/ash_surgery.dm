@@ -3,13 +3,15 @@
 	name = "primitive cautery"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "cautery"
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/bone = SMALL_MATERIAL_AMOUNT * 1)
 
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
 	greyscale_config_worn = null
+	post_init_icon_state = null
+	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /datum/crafting_recipe/ash_recipe/ash_cautery
 	name = "Ash Cautery"
@@ -19,13 +21,15 @@
 	name = "primitive surgical drill"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "surgical_drill"
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/bone = SMALL_MATERIAL_AMOUNT * 1)
 
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
 	greyscale_config_worn = null
+	post_init_icon_state = null
+	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /datum/crafting_recipe/ash_recipe/ash_drill
 	name = "Ash Surgical Drill"
@@ -35,13 +39,15 @@
 	name = "primitive scalpel"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "scalpel"
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/bone = SMALL_MATERIAL_AMOUNT * 1)
 
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
 	greyscale_config_worn = null
+	post_init_icon_state = null
+	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /datum/crafting_recipe/ash_recipe/ash_scalpel
 	name = "Ash Scalpel"
@@ -51,13 +57,15 @@
 	name = "primitive circular saw"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "surgical_saw"
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/bone = SMALL_MATERIAL_AMOUNT * 1)
 
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
 	greyscale_config_worn = null
+	post_init_icon_state = null
+	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /datum/crafting_recipe/ash_recipe/ash_saw
 	name = "Ash Circular Saw"
@@ -67,13 +75,15 @@
 	name = "primitive retractor"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "retractors"
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/bone = SMALL_MATERIAL_AMOUNT * 1)
 
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
 	greyscale_config_worn = null
+	post_init_icon_state = null
+	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /datum/crafting_recipe/ash_recipe/ash_retractor
 	name = "Ash Retractor"
@@ -83,13 +93,15 @@
 	name = "primitive hemostat"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "hemostat"
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/bone = SMALL_MATERIAL_AMOUNT * 1)
 
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
 	greyscale_config_worn = null
+	post_init_icon_state = null
+	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /datum/crafting_recipe/ash_recipe/ash_hemostat
 	name = "Ash Hemostat"
@@ -99,13 +111,15 @@
 	name = "primitive bonesetter"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "bonesetter"
-	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/bone = SMALL_MATERIAL_AMOUNT * 1)
 
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
 	greyscale_config_worn = null
+	post_init_icon_state = null
+	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /datum/crafting_recipe/ash_recipe/ash_bonesetter
 	name = "Ash Bonesetter"

@@ -1,3 +1,99 @@
+/datum/ash_ritual
+	/// the name of the ritual
+	var/name = "Summon Coders"
+	/// the description of the ritual
+	var/desc
+
+	/// the components necessary for a successful ritual
+	var/list/required_components = list()
+
+	/// the list that checks whether the components will be consumed
+	var/list/consumed_components = list()
+
+	/// if the ritual is successful, it will go through each item in the list to be spawned
+	var/list/ritual_success_items
+
+	/// the effect that is spawned when the components are consumed, etc.
+	var/ritual_effect = /obj/effect/particle_effect/sparks
+
+	/// the time it takes to process each stage of the ritual
+	var/ritual_time = 5 SECONDS
+
+	/// whether the ritual is in use
+	var/in_use = FALSE
+
+/datum/ash_ritual/proc/ritual_start(obj/effect/ash_rune/rune)
+
+	if(in_use)
+		return
+	in_use = TRUE
+
+	rune.balloon_alert_to_viewers("ritual has begun...")
+	new ritual_effect(rune.loc)
+
+	// it is entirely possible to have your own effects here... this is just a suggestion
+	var/atom/movable/warp_effect/warp = new(rune)
+	rune.vis_contents += warp
+
+	sleep(ritual_time)
+
+	if(!check_component_list(rune))
+		rune.vis_contents -= warp
+		warp = null
+		return
+
+	ritual_success(rune)
+
+	// make sure to remove your effects at the end
+	rune.vis_contents -= warp
+	warp = null
+
+/datum/ash_ritual/proc/check_component_list(obj/effect/ash_rune/checked_rune)
+	for(var/checked_component in required_components)
+		var/set_direction = text2dir(checked_component)
+		var/turf/checked_turf = get_step(checked_rune, set_direction)
+		var/atom_check = locate(required_components[checked_component]) in checked_turf.contents
+		if(!atom_check)
+			ritual_fail(checked_rune)
+			return FALSE
+		if(isliving(atom_check))
+			var/mob/living/human_sacrifice = atom_check
+			if(human_sacrifice.stat < DEAD)
+				ritual_fail(checked_rune)
+				return FALSE
+		if(is_type_in_list(atom_check, consumed_components))
+			qdel(atom_check)
+			checked_rune.balloon_alert_to_viewers("[checked_component] component has been consumed...")
+
+		else
+			checked_rune.balloon_alert_to_viewers("[checked_component] component has been checked...")
+
+		new ritual_effect(checked_rune.loc)
+		sleep(ritual_time)
+
+	return TRUE
+
+/datum/ash_ritual/proc/ritual_fail(obj/effect/ash_rune/failed_rune)
+	new ritual_effect(failed_rune.loc)
+	failed_rune.balloon_alert_to_viewers("ritual has failed...")
+	failed_rune.current_ritual = null
+	in_use = FALSE
+	return
+
+/datum/ash_ritual/proc/ritual_success(obj/effect/ash_rune/success_rune)
+	new ritual_effect(success_rune.loc)
+	success_rune.balloon_alert_to_viewers("ritual has been successful...")
+	log_game("[name] ritual has been successfully activated.")
+
+	var/turf/rune_turf = get_turf(success_rune)
+	if(length(ritual_success_items))
+		for(var/type in ritual_success_items)
+			new type(rune_turf)
+
+	success_rune.current_ritual = null
+	in_use = FALSE
+	return TRUE
+
 /datum/ash_ritual/summon_staff
 	name = "Summon Ash Staff"
 	desc = "Summon a staff that is imbued with the power of the tendril. Requires permission from the mother tendril."
@@ -28,7 +124,7 @@
 		/obj/item/stack/sheet/sinew,
 	)
 	ritual_success_items = list(
-		/obj/item/clothing/neck/necklace/ashwalker,
+		/obj/item/clothing/neck/necklace/translator,
 	)
 
 /datum/ash_ritual/summon_key
@@ -66,25 +162,6 @@
 		/obj/item/cursed_dagger,
 	)
 
-/datum/ash_ritual/summon_cursed_carver
-	name = "Summon Cursed Ash Carver"
-	desc = "Summons a weapon that mimics the invader's tools, allowing us to collect trophies from the hunt."
-	required_components = list(
-		"north" = /obj/item/organ/monster_core/regenerative_core,
-		"south" = /obj/item/cursed_dagger,
-		"east" = /obj/item/stack/sheet/bone,
-		"west" = /obj/item/stack/sheet/sinew,
-	)
-	consumed_components = list(
-		/obj/item/organ/monster_core/regenerative_core,
-		/obj/item/cursed_dagger,
-		/obj/item/stack/sheet/bone,
-		/obj/item/stack/sheet/sinew,
-	)
-	ritual_success_items = list(
-		/obj/item/kinetic_crusher/cursed,
-	)
-
 /datum/ash_ritual/summon_tendril_seed
 	name = "Summon Tendril Seed"
 	desc = "Summons a seed that, when used in the hand, will cause a tendril to come through at your location."
@@ -108,13 +185,13 @@
 	name = "Incite Megafauna"
 	desc = "Causes a horrible, unrecognizable sound that will attract the large fauna from around the planet."
 	required_components = list(
-		"north" = /mob/living/carbon/human,
+		"north" = /obj/item/organ/monster_core/regenerative_core,
 		"south" = /obj/item/ash_seed/tendril,
-		"east" = /mob/living/carbon/human,
-		"west" = /mob/living/carbon/human,
+		"east" = /obj/item/organ/monster_core/regenerative_core,
+		"west" = /obj/item/organ/monster_core/regenerative_core,
 	)
 	consumed_components = list(
-		/mob/living/carbon/human,
+		/obj/item/organ/monster_core/regenerative_core,
 		/obj/item/ash_seed/tendril,
 	)
 
@@ -156,13 +233,12 @@
 	name = "Ashen Age Ceremony"
 	desc = "Those who partake in the ceremony and are ready will age, increasing their value to the kin."
 	required_components = list(
-		"north" = /mob/living/carbon/human,
+		"north" = /obj/item/organ/monster_core/regenerative_core,
 		"south" = /obj/item/organ/monster_core/regenerative_core,
 		"east" = /obj/item/stack/sheet/bone,
 		"west" = /obj/item/stack/sheet/sinew,
 	)
 	consumed_components = list(
-		/mob/living/carbon/human,
 		/obj/item/organ/monster_core/regenerative_core,
 		/obj/item/stack/sheet/bone,
 		/obj/item/stack/sheet/sinew,
@@ -175,32 +251,34 @@
 
 /datum/ash_ritual/summon_lavaland_creature
 	name = "Summon Lavaland Creature"
-	desc = "Summons a random, wild monster from another region in space."
+	desc = "Summons two random, wild monsters from another region in space."
 	required_components = list(
 		"north" = /obj/item/organ/monster_core/regenerative_core,
-		"south" = /mob/living/basic/mining/ice_whelp,
+		"south" = /obj/item/stack/sheet/animalhide/ashdrake,
 		"east" = /obj/item/stack/ore/bluespace_crystal,
 		"west" = /obj/item/stack/ore/bluespace_crystal,
 	)
 	consumed_components = list(
 		/obj/item/organ/monster_core/regenerative_core,
-		/mob/living/basic/mining/ice_whelp,
+		/obj/item/stack/sheet/animalhide/ashdrake,
 	)
 
 /datum/ash_ritual/summon_lavaland_creature/ritual_success(obj/effect/ash_rune/success_rune)
 	. = ..()
-	var/mob_type = pick(
-		/mob/living/basic/mining/goliath,
-		/mob/living/basic/mining/legion,
-		/mob/living/basic/mining/brimdemon,
-		/mob/living/basic/mining/watcher,
-		/mob/living/basic/mining/lobstrosity/lava,
-	)
-	new mob_type(success_rune.loc)
+	for(var/iterate in 1 to 2)
+		var/mob_type = pick(
+			/mob/living/basic/mining/goliath,
+			/mob/living/basic/mining/legion,
+			/mob/living/basic/mining/brimdemon,
+			/mob/living/basic/mining/watcher,
+			/mob/living/basic/mining/lobstrosity/lava,
+			/mob/living/basic/mining/bileworm,
+		)
+		new mob_type(success_rune.drop_location())
 
 /datum/ash_ritual/summon_icemoon_creature
 	name = "Summon Icemoon Creature"
-	desc = "Summons a random, wild monster from another region in space."
+	desc = "Summons two random, wild monsters from another region in space."
 	required_components = list(
 		"north" = /obj/item/organ/monster_core/regenerative_core,
 		"south" = /obj/item/food/grown/surik,
@@ -214,15 +292,17 @@
 
 /datum/ash_ritual/summon_icemoon_creature/ritual_success(obj/effect/ash_rune/success_rune)
 	. = ..()
-	var/mob_type = pick(
-		/mob/living/basic/mining/ice_demon,
-		/mob/living/basic/mining/ice_whelp,
-		/mob/living/basic/mining/lobstrosity,
-		/mob/living/simple_animal/hostile/asteroid/polarbear,
-		/mob/living/basic/mining/wolf,
-	)
-	new mob_type(success_rune.loc)
+	for(var/iterate in 1 to 2)
+		var/mob_type = pick(
+			/mob/living/basic/mining/ice_demon,
+			/mob/living/basic/mining/ice_whelp,
+			/mob/living/basic/mining/lobstrosity,
+			/mob/living/simple_animal/hostile/asteroid/polarbear,
+			/mob/living/basic/mining/wolf,
+		)
+		new mob_type(success_rune.drop_location())
 
+/// Xenobio Ritual
 /datum/ash_ritual/uncover_rocks
 	name = "Uncover Strange Rocks"
 	desc = "All the mysterious rocks that are in the center of the rune will try to uncover themselves."
@@ -314,9 +394,9 @@
 
 		asked_voters += poll_human
 
-	var/list/yes_voters = SSpolling.poll_candidates("Do you wish to banish [find_banished.name]?", poll_time = 10 SECONDS, group = asked_voters)
+	var/list/yes_voters = SSpolling.poll_candidates("Do you wish to banish [find_banished]?", poll_time = 10 SECONDS, group = asked_voters)
 
-	if(length(yes_voters) < length(asked_voters))
+	if(length(yes_voters) < max(1, ceil(length(asked_voters) / 2 + 0.01))) // you need a simple majority (ex: 10 people vote, need 6)
 		find_banished.balloon_alert_to_viewers("banishment failed!")
 		return
 
@@ -391,3 +471,62 @@
 
 	find_animal.revive(HEAL_ALL)
 	return TRUE
+
+/datum/ash_ritual/pacification
+	name = "Attune your body to the land"
+	desc = "Pacifies creatures in the wastes to come to your aide instead, the tradeoff being your ability to fight."
+	required_components = list(
+		"north" = /obj/item/food/grown/ash_flora/fireblossom,
+		"south" = /obj/item/organ/monster_core/regenerative_core,
+		"east" = /obj/item/stack/sheet/sinew,
+		"west" = /obj/item/stack/sheet/sinew,
+	)
+	consumed_components = list(
+		/obj/item/food/grown/ash_flora/fireblossom,
+		/obj/item/organ/monster_core/regenerative_core,
+		/obj/item/stack/sheet/sinew,
+	)
+
+/datum/ash_ritual/pacification/ritual_success(obj/effect/ash_rune/success_rune)
+	. = ..()
+	for(var/mob/living/carbon/human/lizard_target in range(2, get_turf(success_rune)))
+		lizard_target.faction.Add(FACTION_MINING_FAUNA)
+		ADD_TRAIT(lizard_target, TRAIT_PACIFISM, SPECIES_TRAIT)
+
+/// Summon Ore Seed
+/datum/ash_ritual/summon_ore_seed
+	name = "Summon Ore Seed"
+	desc = "Summons a seed that, when used in the hand, will cause a tendril to dig through the crust of the surface causing an ore vent to appear."
+	required_components = list(
+		"north" = /obj/item/crusher_trophy/legion_skull,
+		"south" = /obj/item/organ/monster_core/regenerative_core,
+		"east" = /obj/item/crusher_trophy/watcher_wing,
+		"west" = /obj/item/crusher_trophy/goliath_tentacle,
+	)
+	consumed_components = list(
+		/obj/item/crusher_trophy/legion_skull,
+		/obj/item/organ/monster_core/regenerative_core,
+		/obj/item/crusher_trophy/watcher_wing,
+		/obj/item/crusher_trophy/goliath_tentacle,
+	)
+	ritual_success_items = list(
+		/obj/item/ash_seed/vent,
+	)
+
+/// Summon Tunneling Worm
+/datum/ash_ritual/summon_tunneling_worm
+	name = "Summon Tunneling Worm"
+	desc = "Summons a worm that has the ability to create deep tunnels that connect to one another."
+	required_components = list(
+		"north" = /obj/item/crusher_trophy/bileworm_spewlet,
+		"south" = /obj/item/organ/monster_core/regenerative_core,
+		"east" = /obj/item/stack/ore/bluespace_crystal,
+		"west" = /obj/item/stack/ore/bluespace_crystal,
+	)
+	consumed_components = list(
+		/obj/item/crusher_trophy/bileworm_spewlet,
+		/obj/item/organ/monster_core/regenerative_core,
+	)
+	ritual_success_items = list(
+		/obj/item/tunneling_worm,
+	)

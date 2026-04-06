@@ -21,3 +21,6 @@
 
 // Decay subsystem nest faction
 #define NEST_FACTION "nest spawned"
+
+// Lavaland Mobs
+#define FACTION_MINING_FAUNA "mining_fauna"
