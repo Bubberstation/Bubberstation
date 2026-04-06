@@ -2,35 +2,35 @@
 	icon = 'modular_skyrat/modules/ashwalkers/icons/uniforms.dmi'
 	worn_icon = 'modular_skyrat/modules/ashwalkers/icons/uniform.dmi'
 	name = "ash covered leaves"
-	desc = "Green leaves coated with a thick layer of ash. Praise the Nercopolis."
+	desc = "Green leaves coated with a thick layer of ash. Praise the Necropolis."
 	icon_state = "tribal_m"
 
 /obj/item/clothing/under/costume/gladiator/ash_walker/yellow
 	icon = 'modular_skyrat/modules/ashwalkers/icons/uniforms.dmi'
 	worn_icon = 'modular_skyrat/modules/ashwalkers/icons/uniform.dmi'
 	name = "ash walker rags"
-	desc = "Rags from Lavaland, coated with light ash. This one seems to be for the juniors of a tribe. Praise the Nercopolis."
+	desc = "Rags from Lavaland, coated with light ash. This one seems to be for the juniors of a tribe. Praise the Necropolis."
 	icon_state = "tribalrags"
 
 /obj/item/clothing/under/costume/gladiator/ash_walker/chiefrags
 	icon = 'modular_skyrat/modules/ashwalkers/icons/uniforms.dmi'
 	worn_icon = 'modular_skyrat/modules/ashwalkers/icons/uniform.dmi'
 	name = "old ash walker rags"
-	desc = "Rags from Lavaland, coated with heavy ash. This one seems to be for the elders of a tribe. Praise the Nercopolis."
+	desc = "Rags from Lavaland, coated with heavy ash. This one seems to be for the elders of a tribe. Praise the Necropolis."
 	icon_state = "chiefrags"
 
 /obj/item/clothing/under/costume/gladiator/ash_walker/shaman
 	icon = 'modular_skyrat/modules/ashwalkers/icons/uniforms.dmi'
 	worn_icon = 'modular_skyrat/modules/ashwalkers/icons/uniform.dmi'
 	name = "decorated ash walker rags"
-	desc = "Rags from Lavaland, drenched with ash, it has fine jewel coated bones sewn around the neck. This one seems to be for the shaman of a tribe. Praise the Nercopolis."
+	desc = "Rags from Lavaland, drenched with ash, it has fine jewel coated bones sewn around the neck. This one seems to be for the shaman of a tribe. Praise the Necropolis."
 	icon_state = "shamanrags"
 
 /obj/item/clothing/under/costume/gladiator/ash_walker/robe
 	icon = 'modular_skyrat/modules/ashwalkers/icons/uniforms.dmi'
 	worn_icon = 'modular_skyrat/modules/ashwalkers/icons/uniform.dmi'
 	name = "ash walker robes"
-	desc = "A robe from the ashlands. This one seems to be for ...Everyone, really. Praise the Nercopolis."
+	desc = "A robe from the ashlands. This one seems to be for ...Everyone, really. Praise the Necropolis."
 	icon_state = "robe_liz"
 
 /obj/item/clothing/under/costume/gladiator/ash_walker/tribal
