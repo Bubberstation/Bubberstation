@@ -3675,7 +3675,9 @@
 /obj/effect/turf_decal/tile/holiday/rainbow/half{
 	dir = 8
 	},
-/obj/machinery/wall_healer/directional/west,
+/obj/structure/closet/secure_closet/personal/wall{
+	pixel_x = -25
+	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/commons/fitness/locker_room)
 "aTk" = (
@@ -6988,13 +6990,11 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/station/science/ordnance)
 "bOB" = (
-/obj/structure/closet/secure_closet/personal/wall{
-	pixel_x = -25
-	},
+/obj/machinery/firealarm/directional/north,
+/obj/item/radio/intercom/directional/west,
 /obj/effect/turf_decal/tile/holiday/rainbow/half{
 	dir = 8
 	},
-/obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron/showroomfloor,
 /area/station/commons/fitness/locker_room)
 "bOQ" = (
@@ -35750,6 +35750,9 @@
 	dir = 8
 	},
 /obj/machinery/requests_console/auto_name/directional/east,
+/obj/effect/mapping_helpers/requests_console/assistance,
+/obj/effect/mapping_helpers/requests_console/information,
+/obj/effect/mapping_helpers/requests_console/supplies,
 /turf/open/floor/iron/dark,
 /area/station/medical/paramedic)
 "jih" = (
@@ -39603,6 +39606,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
+/obj/machinery/status_display/evac/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/medical/surgery)
 "kjq" = (
@@ -64604,8 +64608,7 @@
 "qyL" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/structure/closet/crate/freezer/surplus_limbs,
-/obj/machinery/airalarm/directional/west,
-/obj/effect/mapping_helpers/airalarm/tlv_cold_room,
+/obj/machinery/light/cold/directional/west,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/medical/coldroom)
 "qyM" = (
@@ -70262,7 +70265,6 @@
 /turf/closed/wall,
 /area/station/commons/toilet/restrooms)
 "rWp" = (
-/obj/machinery/camera/autoname/medbay/directional/south,
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
 	},
@@ -71429,6 +71431,7 @@
 "smN" = (
 /obj/effect/turf_decal/weather/snow,
 /obj/machinery/portable_atmospherics/canister/anesthetic_mix,
+/obj/item/radio/intercom/directional/south,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/medical/coldroom)
 "smO" = (
@@ -72853,7 +72856,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/obj/item/radio/intercom/directional/north,
+/obj/machinery/airalarm/directional/west,
+/obj/effect/mapping_helpers/airalarm/tlv_cold_room,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
 /area/station/medical/coldroom)
 "sIB" = (
@@ -82248,8 +82252,7 @@
 /obj/effect/turf_decal/trimline/white/arrow_ccw{
 	dir = 8
 	},
-/obj/machinery/requests_console/auto_name/directional/west,
-/obj/effect/mapping_helpers/requests_console/assistance,
+/obj/machinery/status_display/evac/directional/west,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "vfG" = (
@@ -85909,6 +85912,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/surgery_tray/full,
+/obj/machinery/camera/autoname/medbay/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/surgery)
 "wcq" = (
