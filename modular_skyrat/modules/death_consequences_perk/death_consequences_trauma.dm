@@ -61,14 +61,14 @@
 	/// The degradation we will stop reducing the crit threshold at.
 	var/crit_threshold_max_degradation = 200
 	/// The amount our victims crit threshold will be reduced by at [crit_threshold_max_degradation] degradation.
-	var/max_crit_threshold_reduction = 0
+	var/max_crit_threshold_reduction = 100
 
 	/// The degradation we will begin applying stamina damage at.
 	var/stamina_damage_minimum_degradation = 100
 	/// The degradation we will stop increasing the stamina damage at.
 	var/stamina_damage_max_degradation = 500
 	/// The amount our victims crit threshold will be reduced by at [stamina_damage_max_degradation] degradation.
-	var/max_stamina_damage = 0
+	var/max_stamina_damage = 80
 
 	/// Used for updating our crit threshold reduction. We store the previous value, then subtract it from crit threshold, to get the value we had before we adjusted.
 	var/crit_threshold_currently_reduced_by = 0
@@ -298,10 +298,9 @@
 
 /// Refreshes all our effects and updates their values. Kills the victim if they opted in and their degradation equals their maximum.
 /datum/brain_trauma/severe/death_consequences/proc/update_effects()
-	if(max_crit_threshold_reduction > 0)
-		var/threshold_adjustment = get_crit_threshold_adjustment()
-		owner.crit_threshold = ((owner.crit_threshold - crit_threshold_currently_reduced_by) + threshold_adjustment)
-		crit_threshold_currently_reduced_by = threshold_adjustment
+	var/threshold_adjustment = get_crit_threshold_adjustment()
+	owner.crit_threshold = ((owner.crit_threshold - crit_threshold_currently_reduced_by) + threshold_adjustment)
+	crit_threshold_currently_reduced_by = threshold_adjustment
 
 	if (permakill_if_at_max_degradation && (current_degradation >= max_degradation))
 		and_so_your_story_ends()
@@ -322,9 +321,6 @@
 
 /// Ensures our victim's stamina is at or above the minimum stamina they're supposed to have.
 /datum/brain_trauma/severe/death_consequences/proc/damage_stamina(seconds_per_tick)
-	if(max_stamina_damage == 0)
-		return
-
 	if (victim_properly_resting())
 		return
 
@@ -451,19 +447,19 @@
 
 	var/owner_organic = (owner.dna.species.reagent_flags & PROCESS_ORGANIC)
 	message += span_danger("\nCurrent degradation/max: [span_blue("<b>[current_degradation]</b>")]/<b>[max_degradation]</b>.")
-	if (base_degradation_reduction_per_second_while_alive > 0)
+	if (base_degradation_reduction_per_second_while_alive)
 		message += span_danger("\nWhile alive, subject will recover from degradation at a rate of [span_blue("[base_degradation_reduction_per_second_while_alive] per second")].")
-	if (base_degradation_per_second_while_dead > 0)
+	if (base_degradation_per_second_while_dead)
 		message += span_danger("\nWhile dead, subject will suffer degradation at a rate of [span_bolddanger("[base_degradation_per_second_while_dead] per second")].")
-		if (owner_organic && formaldehyde_death_degradation_mult < 1)
+		if (owner_organic && formaldehyde_death_degradation_mult != 1)
 			message += span_danger(" In such an event, formaldehyde will alter the degradation by <b>[span_blue("[formaldehyde_death_degradation_mult]")]</b>x.")
 		if (stasis_passive_degradation_multiplier < 1)
 			message += span_danger(" Stasis may be effective in slowing (or even stopping) degradation.")
-	if (base_degradation_on_death > 0)
+	if (base_degradation_on_death)
 		message += span_danger("\nDeath will incur a <b>[base_degradation_on_death]</b> degradation penalty.")
-	if (owner_organic && rezadone_degradation_decrease > 0)
+	if (owner_organic && rezadone_degradation_decrease)
 		message += span_danger("\nRezadone of purity at or above <i>[DEATH_CONSEQUENCES_REZADONE_MINIMUM_PURITY]</i>% will reduce degradation by [span_blue("[rezadone_degradation_decrease]")] per second when metabolized.")
-	if (eigenstasium_degradation_decrease > 0)
+	if (eigenstasium_degradation_decrease)
 		message += span_danger("\nEigenstasium will reduce degradation by [span_blue("[eigenstasium_degradation_decrease]")] per second when present.")
 	if (base_degradation_reduction_per_second_while_alive > 0 || rezadone_degradation_decrease > 0 && eigenstasium_degradation_decrease > 0)
 		message += span_danger("\nAll degradation reduction can be [span_blue("expedited")] by [span_blue("resting, sleeping, or being buckled to something comfortable")].")
