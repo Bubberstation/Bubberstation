@@ -7,8 +7,6 @@
 	maxHealth = 150
 	health = 150
 	icon_state = "alienrunner"
-	/// Holds the evade ability to be granted to the runner later
-	var/datum/action/cooldown/alien/skyrat/evade/evade_ability
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	next_evolution = null
