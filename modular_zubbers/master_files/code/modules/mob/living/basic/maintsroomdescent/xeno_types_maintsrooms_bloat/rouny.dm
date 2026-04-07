@@ -1,16 +1,7 @@
 /// MAINTSROOMS FREINDBENOS
 
 /mob/living/carbon/alien/adult/skyrat/runner/maintsroom
-	name = "alien runner"
-	desc = "A short alien with sleek red chitin, clearly abiding by the 'red ones go faster' theorem and almost always running on all fours."
-	caste = "runner"
-	maxHealth = 150
-	health = 150
-	icon_state = "alienrunner"
-	melee_damage_lower = 15
-	melee_damage_upper = 20
 	next_evolution = null
-	on_fire_pixel_y = 0
 	default_organ_types_by_slot = list(
 		ORGAN_SLOT_BRAIN = /obj/item/organ/brain/alien,
 		ORGAN_SLOT_XENO_HIVENODE = /obj/item/organ/alien,

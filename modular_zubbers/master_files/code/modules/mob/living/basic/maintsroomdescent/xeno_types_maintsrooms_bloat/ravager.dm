@@ -1,14 +1,7 @@
 /// MAINTSROOMS FREINDBENOS
 
 /mob/living/carbon/alien/adult/skyrat/ravager/maintsroom
-	name = "alien ravager"
-	desc = "An alien with angry red chitin, with equally intimidating looking blade-like claws in place of normal hands. That sharp tail looks like it'd probably hurt."
-	caste = "ravager"
-	maxHealth = 350
-	health = 350
-	icon_state = "alienravager"
-	melee_damage_lower = 30
-	melee_damage_upper = 35
+	next_evolution = null
 	default_organ_types_by_slot = list(
 		ORGAN_SLOT_BRAIN = /obj/item/organ/brain/alien,
 		ORGAN_SLOT_XENO_HIVENODE = /obj/item/organ/alien,
