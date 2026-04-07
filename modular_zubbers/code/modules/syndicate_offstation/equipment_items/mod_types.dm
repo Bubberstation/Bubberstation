@@ -36,8 +36,8 @@
 		/obj/item/mod/module/noslip,
 		/obj/item/mod/module/jetpack/advanced,
 		/obj/item/mod/module/shove_blocker,
-		/obj/item/mod/module/headprotector,
 		/obj/item/mod/module/night,
+		/obj/item/mod/module/welding/syndicate,
 	)
 	default_pins = list(
 		/obj/item/mod/module/jetpack/advanced,
@@ -63,7 +63,10 @@
 	atom_flags = PREVENT_CONTENTS_EXPLOSION_1
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	siemens_coefficient = 0
+	slowdown_deployed = 0
+	ui_theme = "syndicate"
 	complexity_max = DEFAULT_MAX_COMPLEXITY + 10
+	hearing_protection = EAR_PROTECTION_NORMAL
 	allowed_suit_storage = list(
 		/obj/item/restraints/handcuffs,
 		/obj/item/assembly/flash,
