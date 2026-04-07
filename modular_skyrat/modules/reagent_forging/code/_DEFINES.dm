@@ -28,3 +28,4 @@
 #define COMSIG_SMITHING_PASSIVE_COOLED "smithing_passive_cooled"
 
 #define DOAFTER_SMITHING_FORGE "smithing_forging_doafter"
+#define DOAFTER_SMITHING_ANVIL "smithing_anvil_doafter"

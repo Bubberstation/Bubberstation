@@ -90,6 +90,23 @@
 	)
 	/// List of possible choices for the selection radial
 	var/list/radial_choice_list = list()
+	/// Filters the radial choice list by required skill
+	var/list/choice_list_skill_filter = list(
+	)
+	/// Filters the radial choice list by required level in its skill; true means corresponding element requires it
+	var/list/choice_list_skill_level_filter = list(
+	)
+	/// Filters the radial choice list by if it requires the smithing skillchip; true means corresponding element requires it
+	var/list/choice_list_trait_filter = list(
+		"Sword" = list(TRAIT_KNOW_ADVANCED_SMITHING)
+		"Katana" =list(TRAIT_KNOW_ADVANCED_SMITHING)
+		"Dagger" =list(TRAIT_KNOW_ADVANCED_SMITHING)
+		"Rapier" =list(TRAIT_KNOW_ADVANCED_SMITHING)
+		"Staff" = list(TRAIT_KNOW_ADVANCED_SMITHING)
+		"Spear" = list(TRAIT_KNOW_ADVANCED_SMITHING)
+		"Axe" = list(TRAIT_KNOW_ADVANCED_SMITHING)
+		"Arrowhead" = list(TRAIT_KNOW_ADVANCED_SMITHING)
+	)
 
 /obj/structure/reagent_forge/examine(mob/user)
 	. = ..()
@@ -160,9 +177,33 @@
 	if(length(radial_choice_list))
 		return
 
+	var/obj/resulting_item
 	for(var/forge_option in choice_list)
-		var/obj/resulting_item = choice_list[forge_option]
+		resulting_item = choice_list[forge_option]
 		radial_choice_list[forge_option] = image(icon = initial(resulting_item.icon), icon_state = initial(resulting_item.icon_state))
+
+///Exclusively gives all the radial choices that the user can know how to make.
+/obj/structure/reagent_crafting_bench/proc/get_filtered_radial_choices(mob/living/user)
+	var/returner = list()
+	if(isnull(user?.mind))
+		return returner
+
+	for(var/key,value in radial_choice_list)
+		if(user_can_craft(user, key))
+			returner[key] = value
+
+	return returner
+
+/obj/structure/reagent_crafting_bench/proc/user_can_craft(mob/living/user, key)
+	if(isnull(user?.mind))
+		return FALSE
+	if(!isnull(choice_list_skill_filter[key]) && user.mind.get_skill_level(choice_list_skill_filter[key]) < choice_list_skill_level_filter[key])
+		return FALSE
+	if(!isnull(choice_list_trait_filter[key]))
+		for(var/my_trait in choice_list_trait_filter)
+			if (!HAS_TRAIT(user, my_trait))
+				return FALSE
+	return TRUE
 
 /obj/structure/reagent_forge/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -733,7 +774,8 @@
 	// Here we check the item used on us (tongs) for a stack of some kind to create an object from
 	var/obj/item/stack/search_stack = locate(/obj/item/stack) in forge_item.contents
 	if(search_stack)
-		var/user_choice = show_radial_menu(user, src, radial_choice_list, radius = 38, require_near = TRUE, tooltips = TRUE)
+		var/list/my_list = get_filtered_radial_choices(user)
+		var/user_choice = show_radial_menu(user, src, my_list, radius = 38, require_near = TRUE, tooltips = TRUE)
 		if(!user_choice)
 			balloon_alert(user, "nothing chosen")
 			return ITEM_INTERACT_SUCCESS

@@ -97,38 +97,38 @@
 	return ITEM_INTERACT_BLOCKING
 
 /obj/structure/reagent_anvil/hammer_act_secondary(mob/living/user, obj/item/tool)
-	var/obj/item/forging/incomplete/my_anvil_item = contents[1]
-	if(!isnull(my_anvil_item))
-		if(!should_stop_autohammering)
+	if(DOING_INTERACTION(user, DOAFTER_SMITHING_ANVIL))
+		return
+
+	var/obj/item/my_anvil_item = contents[1]
+	var/datum/component/forge_smithable/smith_component = my_anvil_item.GetComponent(/datum/component/forge_smithable)
+	if(!isnull(my_anvil_item) && !isnull(smith_component))
+		if(!should_stop_autohammering())
 			balloon_alert_to_viewers("hammering steadily...")
 			while(!should_stop_autohammering())
 				var/wait_between_swings = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) DECISECONDS
-				if(istype(my_anvil_item, /obj/item/forging/incomplete))
-					wait_between_swings *= my_anvil_item.average_wait
-				else
-					wait_between_swings += 1 SECONDS
+				wait_between_swings *= smith_component.average_wait
 				wait_between_swings += AUTO_SMITHING_SPEED_PENALTY
 
-				if(!do_after(user, wait_between_swings, target = src))
+				if(!do_after(user, wait_between_swings, target = src, interaction_key = DOAFTER_SMITHING_ANVIL))
 					balloon_alert_to_viewers("stopped hammering")
 					break
 				else
 					hammer_act(user, tool)
 
-			return ITEM_INTERACT_SUCCESS
-
+		return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_BLOCKING
 
 /obj/structure/reagent_anvil/proc/should_stop_autohammering()
-	if(istype(contents[1], /obj/item/forging/incomplete))
-		var/obj/item/forging/incomplete/my_incomplete_item = contents[1]
-		var/datum/component/forge_smithable/my_forge_component = my_incomplete_item.GetComponent(/datum/component/forge_smithable/)
+	var/obj/item/forging/incomplete/my_incomplete_item = contents[1]
+	var/datum/component/forge_smithable/my_forge_component = my_incomplete_item.GetComponent(/datum/component/forge_smithable/)
+	if(!isnull(my_forge_component))
 		if(my_forge_component.is_finished_smithing())
 			return TRUE
 		if(COOLDOWN_FINISHED(my_forge_component, heating_remainder))
 			return TRUE
 		return FALSE
 	return TRUE
-
 
 /obj/structure/reagent_anvil/onZImpact(turf/impacted_turf, levels, message = TRUE)
 	var/mob/living/poor_target = locate(/mob/living) in impacted_turf
