@@ -5,14 +5,25 @@
 /turf/open/water/jungle/biodome
 	name="Biodome Lake"
 	fishing_datum = /datum/fish_source/ocean/beach
+	planetary_atmos = FALSE
+
+/turf/open/water/beach/biodome
+	name="Biodome Waters"
+	planetary_atmos = FALSE
+
+/turf/open/misc/beach/sand/biodome
+	name="Biodome Beach"
+	planetary_atmos = FALSE
 
 /turf/open/misc/ashplanet/wateryrock/biodome
 	name="Biodome Lake Rocks"
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	planetary_atmos = FALSE
 
 /turf/open/lava/plasma/biodome
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	baseturfs = /turf/open/lava/plasma/biodome
+	planetary_atmos = FALSE
 
 /turf/open/floor/fake_iron_sand
 	desc = "Wait a minute. This martian soil is just painted on!"

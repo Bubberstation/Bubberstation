@@ -100,27 +100,6 @@
 	icon_state = "messenger_hydroponics"
 	inhand_icon_state = "messenger_hydroponics"
 
-/obj/item/storage/backpack/messenger/sec
-	name = "security messenger bag"
-	desc = "A robust messenger bag for security related needs."
-	icon_state = "messenger_security_black"
-	inhand_icon_state = "messenger_security_black"
-
-/obj/item/storage/backpack/messenger/sec/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/sec_messenger)
-
-/datum/atom_skin/sec_messenger
-	abstract_type = /datum/atom_skin/sec_messenger
-
-/datum/atom_skin/sec_messenger/black
-	preview_name = "Black Variant"
-	new_icon_state = "messenger_security_black"
-
-/datum/atom_skin/sec_messenger/white
-	preview_name = "White Variant"
-	new_icon_state = "messenger_security_white"
-
 /obj/item/storage/backpack/messenger/explorer
 	name = "explorer messenger bag"
 	desc = "A robust messenger bag for stashing your loot, as well as making a remarkably cute accessory for your drakebone armor."

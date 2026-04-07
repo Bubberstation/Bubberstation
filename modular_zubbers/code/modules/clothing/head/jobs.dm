@@ -40,23 +40,5 @@
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
 	greyscale_colors = "#3E3E48#FFFFFF"
 
-/obj/item/clothing/head/security_beanie
-	name = "security beanie"
-	desc = "A robust beanie with the security insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
-	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
-	icon_state = "beanie_sec"
-	armor_type = /datum/armor/beanie_sec
-
 /obj/item/clothing/head/utility/surgerycap
 	flags_inv = null
-
-/datum/armor/beanie_sec
-	melee = 30
-	bullet = 25
-	laser = 25
-	energy = 35
-	bomb = 25
-	fire = 20
-	acid = 50
-	wound = 4

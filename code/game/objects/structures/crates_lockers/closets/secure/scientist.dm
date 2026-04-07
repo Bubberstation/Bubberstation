@@ -19,6 +19,7 @@
 	new /obj/item/storage/photo_album/rd(src)
 	new /obj/item/storage/box/skillchips/science(src)
 	new /obj/item/card/id/departmental_budget/sci(src) //SKYRAT EDIT ADDITION
+	new /obj/item/holotool(src) // BUBBER EDIT ADDITION
 
 /obj/structure/closet/secure_closet/research_director/populate_contents_immediate()
 	. = ..()

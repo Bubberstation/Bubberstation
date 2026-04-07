@@ -162,8 +162,9 @@
 	design_ids = list(
 		"ci-breather",
 		"ci-nutriment",
+		"ci-nutrimentplus", // BUBBER EDIT - ADDITION
 		"ci-thrusters",
-		"ci-herculean",
+		//"ci-herculean", // BUBBER EDIT - REMOVAL
 		"ci-connector",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
@@ -183,6 +184,7 @@
 		"ci-reviver",
 		"ci-antidrop",
 		"ci-antistun",
+		"ci-herculean", // BUBBER EDIT - ADDITION
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_MEDICAL)
@@ -193,7 +195,7 @@
 	description = "Decades of contraband smuggling by assistants have led to the development of a full toolbox that fits seamlessly into your arm."
 	prereq_ids = list(TECHWEB_NODE_COMBAT_IMPLANTS, TECHWEB_NODE_EXP_TOOLS)
 	design_ids = list(
-		"ci-nutrimentplus",
+		//"ci-nutrimentplus", // BUBBER EDIT - REMOVAL
 		"ci-toolset",
 		"ci-surgery",
 	)

@@ -8,6 +8,7 @@ import {
   Floating,
   Input,
   LabeledList,
+  NoticeBox,
   Section,
   Stack,
 } from 'tgui-core/components';
@@ -495,6 +496,16 @@ export function MainPage(props: MainPageProps) {
   const contextualPreferences =
     data.character_preferences.secondary_features || [];
 
+  // BUBBER EDIT ADDITION BEGIN: more character setup tabs
+  const characterBasicsPreferences =
+    data.character_preferences.character_basics || [];
+
+  const oocPrefPreferences = data.character_preferences.ooc_preferences || [];
+
+  const siliconPreferences =
+    data.character_preferences.silicon_preferences || [];
+  // BUBBER EDIT ADDITION END: more character setup tabs
+
   const mainFeatures = [
     ...Object.entries(data.character_preferences.clothing ?? {}),
     ...Object.entries(data.character_preferences.features ?? {}),
@@ -525,14 +536,30 @@ export function MainPage(props: MainPageProps) {
 
   // BUBBER EDIT ADDITION BEGIN: SWAPPABLE PREF MENUS
   enum PrefPage {
+    CharBasics, // Character basics
     Visual, // The visual parts
     Lore, // Lore, Flavor Text, Age, Records
+    OOCPref, // OOC preferences
+    Silicon, // Silicon prefs
   }
 
-  const [currentPrefPage, setCurrentPrefPage] = useState(PrefPage.Visual);
+  const [currentPrefPage, setCurrentPrefPage] = useState(PrefPage.CharBasics);
 
   let prefPageContents;
   switch (currentPrefPage) {
+    case PrefPage.CharBasics:
+      prefPageContents = (
+        <PreferenceList
+          randomizations={getRandomization(
+            characterBasicsPreferences,
+            serverData,
+            randomBodyEnabled,
+          )}
+          preferences={characterBasicsPreferences}
+          maxHeight="auto"
+        />
+      );
+      break;
     case PrefPage.Visual:
       prefPageContents = (
         <PreferenceList
@@ -557,6 +584,38 @@ export function MainPage(props: MainPageProps) {
           preferences={nonContextualPreferences}
           maxHeight="auto"
         />
+      );
+      break;
+    case PrefPage.OOCPref:
+      prefPageContents = (
+        <PreferenceList
+          randomizations={getRandomization(
+            oocPrefPreferences,
+            serverData,
+            randomBodyEnabled,
+          )}
+          preferences={oocPrefPreferences}
+          maxHeight="auto"
+        />
+      );
+      break;
+    case PrefPage.Silicon:
+      prefPageContents = (
+        <>
+          <NoticeBox info>
+            This tab is for preferences that only apply when playing the AI or
+            Cyborg jobs!
+          </NoticeBox>
+          <PreferenceList
+            randomizations={getRandomization(
+              siliconPreferences,
+              serverData,
+              randomBodyEnabled,
+            )}
+            preferences={siliconPreferences}
+            maxHeight="auto"
+          />
+        </>
       );
       break;
     default:
@@ -704,6 +763,15 @@ export function MainPage(props: MainPageProps) {
               <Stack.Item grow={2}>
                 <PageButton
                   currentPage={currentPrefPage}
+                  page={PrefPage.CharBasics}
+                  setPage={setCurrentPrefPage}
+                >
+                  Character Basics
+                </PageButton>
+              </Stack.Item>
+              <Stack.Item grow={2}>
+                <PageButton
+                  currentPage={currentPrefPage}
                   page={PrefPage.Visual}
                   setPage={setCurrentPrefPage}
                 >
@@ -717,6 +785,24 @@ export function MainPage(props: MainPageProps) {
                   setPage={setCurrentPrefPage}
                 >
                   Character Lore
+                </PageButton>
+              </Stack.Item>
+              <Stack.Item grow={2}>
+                <PageButton
+                  currentPage={currentPrefPage}
+                  page={PrefPage.OOCPref}
+                  setPage={setCurrentPrefPage}
+                >
+                  OOC Preferences
+                </PageButton>
+              </Stack.Item>
+              <Stack.Item grow={2}>
+                <PageButton
+                  currentPage={currentPrefPage}
+                  page={PrefPage.Silicon}
+                  setPage={setCurrentPrefPage}
+                >
+                  Silicon Preferences
                 </PageButton>
               </Stack.Item>
             </Stack>

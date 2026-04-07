@@ -1123,12 +1123,14 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	if (mutant_styles & STYLE_TAUR_ALL)
 		if (!using_taur_variant)
 			var/cropping_state = DEFAULT_TAUR_CLIPPING_MASK
+			var/taur_cache_key = "[t_state]-[file2use]-[female_uniform]-[is_digi]-[type]-[greyscale_colors]-[cropping_state]"
 			if (ishuman(loc))
 				var/mob/living/carbon/human/humie = loc
 				var/obj/item/organ/taur_body/taur = humie.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAUR)
 				cropping_state = (taur ? taur.clothing_cropping_state : DEFAULT_TAUR_CLIPPING_MASK)
+				taur_cache_key = "[t_state]-[file2use]-[female_uniform]-[is_digi]-[type]-[greyscale_colors]-[cropping_state]"
 
-			draw_target = wear_taur_version(draw_target.icon_state, draw_target.icon, layer2use, female_uniform, greyscale_colors, cropping_state)
+			draw_target = wear_taur_version(draw_target.icon_state, draw_target.icon, layer2use, female_uniform, greyscale_colors, cropping_state, taur_cache_key)
 		else
 			draw_target.pixel_w -= 16 // it doesnt look right otherwise
 	// SKYRAT EDIT ADDITION END

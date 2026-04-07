@@ -66,6 +66,15 @@
 		/obj/item/shield/riot/flash,
 		)
 
+/datum/voucher_set/security/primary/nt_usp
+	name = "NT-USP Pistol"
+	description = "A small pistol that uses hardlight technology to synthesize bullets. Due to its low power, it doesn't have much use besides tiring out criminals."
+	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
+	icon_state = "ntusp_full"
+	set_items = list(
+		/obj/item/gun/ballistic/automatic/pistol/ntusp,
+		/obj/item/ammo_box/magazine/recharge/ntusp,
+		)
 
 /datum/voucher_set/security/utility/sec_projector
 	name = "Security Holobarrier Projector"

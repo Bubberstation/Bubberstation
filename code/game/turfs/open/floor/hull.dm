@@ -12,6 +12,9 @@
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	temperature = T20C
 
+/turf/open/floor/engine/hull/lavaland
+	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
+
 /turf/open/floor/engine/hull/ceiling
 	name = "shuttle ceiling plating"
 

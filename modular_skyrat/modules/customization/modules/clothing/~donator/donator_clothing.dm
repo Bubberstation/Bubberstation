@@ -892,7 +892,7 @@
 	icon_state = "plasmaman_jax"
 
 // Donation reward for Raxraus
-/obj/item/clothing/shoes/jackboots/peacekeeper/armadyne/rax
+/obj/item/clothing/shoes/jackboots/armadyne/rax
 	name = "tactical boots"
 	desc = "Tactical and sleek. This model seems to resemble Armadyne's."
 
@@ -1306,13 +1306,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
 
-/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia
-	name = "red-tinted giga HUD gar glasses"
-	desc = "GIGA GAR glasses with a security hud implanted in the lens. Reminds you of a time before the color blue."
-	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/glasses.dmi'
-	icon_state = "supergarsred"
-	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/eyes.dmi'
-
 //Donation reward for Konstyantyn
 /obj/item/clothing/accessory/badge/holo/jade
 	name = "jade holobadge"
@@ -1649,128 +1642,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	desc = "A sinister colored jacket from a familiar company."
 	base_icon_state = "digicoat_interdyne"
 	icon_state = "digicoat_interdyne"
-
-/obj/item/clothing/suit/armor/hos/elofy
-	name = "anime admiral coat"
-	desc = "This coat is a near perfect replica of the one worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
-		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
-		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
-		but hasn't had much spread outside of the Terran Government."
-	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
-	icon_state = "coat_blackblue"
-	inhand_icon_state = "hostrench"
-	blood_overlay_type = "coat"
-	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	cold_protection = CHEST|GROIN|LEGS|ARMS
-	supports_variations_flags = NONE
-
-/obj/item/clothing/suit/armor/hos/elofy/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/anime_coat)
-
-/datum/atom_skin/anime_coat
-	abstract_type = /datum/atom_skin/anime_coat
-
-/datum/atom_skin/anime_coat/black_blue
-	preview_name = "Black-Blue"
-	new_icon_state = "coat_blackblue"
-
-/datum/atom_skin/anime_coat/black_red
-	preview_name = "Black-Red"
-	new_icon_state = "coat_blackred"
-
-/datum/atom_skin/anime_coat/white_red
-	preview_name = "White-Red"
-	new_icon_state = "coat_whitered"
-
-/datum/atom_skin/anime_coat/white_blue
-	preview_name = "White-Blue"
-	new_icon_state = "coat_whiteblue"
-
-/obj/item/clothing/suit/armor/hos/elofy/examine_more(mob/user)
-	. = ..()
-	. += "It seems particularly soft and has subtle ballistic fibers intwined with the soft fabric that is perfectedly tailored to the body that wears it. Each golden engraving seems to reflect against your eyes with a slightly blinding flare. This is part of a full set of Luna Wolves Legion battle garb."
-
-
-/obj/item/clothing/head/hats/hos/elofy
-	name = "anime admiral hat"
-	desc = "This hat is a near perfect replica of the one worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
-		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
-		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
-		but hasn't had much spread outside of the Terran Government."
-	icon ='modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
-	icon_state = "hat_black"
-
-/obj/item/clothing/head/hats/hos/elofy/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/anime_hat)
-
-/datum/atom_skin/anime_hat
-	abstract_type = /datum/atom_skin/anime_hat
-
-/datum/atom_skin/anime_hat/white
-	preview_name = "White"
-	new_icon_state = "hat_white"
-
-/datum/atom_skin/anime_hat/black
-	preview_name = "Black"
-	new_icon_state = "hat_black"
-
-/obj/item/clothing/gloves/elofy
-	name = "anime admiral gloves"
-	desc = "These gloves are a near perfect replica of those worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
-		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
-		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
-		but hasn't had much spread outside of the Terran Government."
-	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/gloves.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/hands.dmi'
-	icon_state = "gloves_black"
-
-/obj/item/clothing/gloves/elofy/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/anime_gloves)
-
-/datum/atom_skin/anime_gloves
-	abstract_type = /datum/atom_skin/anime_gloves
-
-/datum/atom_skin/anime_gloves/white
-	preview_name = "White"
-	new_icon_state = "gloves_white"
-
-/datum/atom_skin/anime_gloves/black
-	preview_name = "Black"
-	new_icon_state = "gloves_black"
-
-/obj/item/clothing/shoes/jackboots/elofy
-	name = "anime admiral boots"
-	desc = "These boots are a near perfect replica of those worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
-		an animated war drama set between the Free Planetary Trade Union and the Second Galactic Empire. \
-		It proved to be a sensational piece among those who appreciate animated cartoons and period war dramas, \
-		but hasn't had much spread outside of the Terran Government."
-	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/shoes.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/feet.dmi'
-	icon_state = "boots_blackblue"
-
-/obj/item/clothing/shoes/jackboots/elofy/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/anime_boots)
-
-/datum/atom_skin/anime_boots
-	abstract_type = /datum/atom_skin/anime_boots
-
-/datum/atom_skin/anime_boots/black_red
-	preview_name = "Black-Red"
-	new_icon_state = "boots_blackred"
-
-/datum/atom_skin/anime_boots/white_red
-	preview_name = "White-Red"
-	new_icon_state = "boots_whitered"
-
-/datum/atom_skin/anime_boots/white_blue
-	preview_name = "White-Blue"
-	new_icon_state = "boots_whiteblue"
 
 // Donation reward for grasshand
 /obj/item/clothing/under/rank/civilian/chaplain/divine_archer/noble
