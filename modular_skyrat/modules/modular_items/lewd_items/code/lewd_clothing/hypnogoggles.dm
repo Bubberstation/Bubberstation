@@ -34,6 +34,8 @@
 
 /obj/item/clothing/glasses/hypno/dropped(mob/user)//Removing hypnosis on unequip
 	. = ..()
+	if(!victim) //prevents a runtime where it tries to unequip from a nonexistent victim
+		return
 	if(!(victim.glasses == src))
 		return
 	victim.cure_trauma_type(/datum/brain_trauma/very_special/induced_hypnosis, TRAUMA_RESILIENCE_MAGIC)

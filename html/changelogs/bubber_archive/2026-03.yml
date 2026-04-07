@@ -100,3 +100,87 @@
 2026-03-19:
   TealSeer:
   - bugfix: fixed buckled mob offsets resetting as soon as you moved
+  ibexgoetia:
+  - rscadd: Added the Off-Station Deathrattle Implant, for use by Miners and Spacetiders.
+      It will notify Cargo, Medical and Silicons of your demise via radio.
+2026-03-21:
+  BingusTheClown:
+  - rscadd: Added a NT themed satchel in the NT Rep locker
+2026-03-22:
+  MintyPhresh:
+  - rscdel: Removed a Skyrat restriction on activating MOD modules with a partially-deployed
+      suit.
+2026-03-23:
+  BurgerBB:
+  - rscadd: Adds a reagent that lets you remove c4 stuck to people. It can be made
+      by mixing Space Lube, Space Cleaner, and Drying Reagent together and spraying
+      it on someone.
+  MintyPhresh:
+  - rscadd: 13 Lewd toys and 6 clothes items added to the loadout.
+  aKromatopzia:
+  - balance: vox get to keep their min brain health threshold from emps, removed it
+      from roundstart aug brains.
+  - rscdel: surplus cybernetic brain is gone again
+2026-03-24:
+  Arturlang:
+  - bugfix: HNZ hands not being cleaned up on the species and infection being removed
+  - balance: 'HNZ infections now works much like romerol''s, meaning thick armor no
+      longer renders you entirely immune, but requires you to be damaged up to the
+      bio armor value + 25 if thick clothing before you start rolling infection chances,
+      since infection is going to be a bit harder to roll when it does, chances are
+      upped to 40% from 30%,
+
+      also spaceallinin confers a 75% chance to shrug it off'
+  - admin: HNZ infection chance is now a global, the chance that it rolls when all
+      other conditions valid, on the variable called mutant_infection_chance
+  BurgerBB:
+  - balance: Mining Equipment that requires low pressure to work now works in areas
+      with water vapor in it.
+  Jinshee:
+  - rscadd: Added Giant Scarf uniform in loadout/ClothesMate
+2026-03-27:
+  MrGloopy:
+  - bugfix: fixes chest bag sprite. again.
+  - rscadd: Basic cybernetic eyes and Basic cybernetic moth eyes to augs+ for -1 quirk
+      point.
+  - rscadd: Cybernetic versions of the "Adapted" lungs. Stat-wise, they are on par
+      with Basic.
+  - rscadd: The funny lighter implant to augs+ for 1 quirk point.
+  - rscadd: '"Fluttery" tongue to augs+. Selectable moth tongue.'
+  - rscadd: Moth eyes (organic) to augs+, mainly for those with smaller sprites that
+      would like larger eyes.
+  - qol: Renamed cybernetics in augs+ to reflect what organ they actually give you.
+  - code_imp: Added component for EMP behaviour on new cybernetics because Artur made
+      me (send help)
+  - code_imp: Dimmed Civillian HUD implant colour on carbon sprite a little
+  - bugfix: Fixed sprite of the chest pack. Teshari unaffected as it wasn't broken
+      on them in the first place.
+  Seijan-Etroix:
+  - rscadd: Adds 7 new ethereal drinks! Karakrak, Szz Szz, Blumpkin Compot, Storm-Over-Avon,
+      Ira De Zeus, Coilhouse Cocktail, and the Electric Avenue.
+  - bugfix: Vampire drink names not matching other drinks.
+  - bugfix: Minor sprite adjustments to vamp drinks; should sit better on tables when
+      poured.
+2026-03-28:
+  SomeCabbage:
+  - rscadd: Added 4 new shuttles to the purchasable lineup, with varying prices and
+      qualities.
+2026-03-29:
+  Majkl-J:
+  - balance: The leather saddle and peacekeeper saddle are now equipped in belt slots
+  - balance: The peacekeeper saddle is now bulky and can hold a baton and cuffs.
+  - image: Cuff and baton overlays for the peacekeeper saddle
+  ibexgoetia:
+  - bugfix: The off-station implant now includes an implant pad
+2026-03-30:
+  Hemshire:
+  - rscadd: 'New MODSuit
+
+      :cl:'
+  TealSeer:
+  - bugfix: fixed mismatched parts toggle doing nothing
+  Yobrocharlie:
+  - balance: Made the maintsroom slightly easier
+2026-03-31:
+  nevimer:
+  - code_imp: privacy policy loads on connection rather than server load
