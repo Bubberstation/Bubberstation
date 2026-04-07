@@ -41,7 +41,7 @@
  * 30 minutes = base punch + boulder breaking
  * 45 minutes = hivemind
  * 60 minutes = speed
- * 75 minutes = mutated armblade
+ * 75 minutes = mutated claws
  * 90 minutes = lavaproof + firebreath
  */
 
@@ -101,7 +101,7 @@
 			to_chat(human_target, span_notice("Your body seems lighter..."))
 
 		if(5)
-			var/obj/item/organ/ashen_armblade/summoned_organ = new /obj/item/organ/ashen_armblade()
+			var/obj/item/organ/claw_bones/summoned_organ = new /obj/item/organ/claw_bones()
 			summoned_organ.Insert(human_target)
 			to_chat(human_target, span_notice("Your arm shakes in agitation..."))
 
@@ -139,75 +139,74 @@
 	icon = 'modular_skyrat/modules/ashwalkers/icons/screen_alert.dmi'
 	icon_state = "ash_age"
 
-/obj/item/organ/ashen_armblade
-	name = "ashen tentacle"
-	desc = "The organ wriggles around, touching around for something."
-	zone = BODY_ZONE_CHEST
+/obj/item/organ/claw_bones
+	name = "ashen knuckle bones"
+	desc = "The bones of an ash walker's right hand."
+	zone = BODY_ZONE_R_ARM
 
-	/// The summoned armblade
-	var/obj/item/melee/ashen_blade/summoned_armblade
+	/// The summoned claws
+	var/obj/item/melee/strengthened_claws/grown_claws
 
-	/// The armblade action given to the owner so they can summon and unsummon the armblade
-	var/datum/action/ashen_actions/summon_ashblade/granted_action
+	/// The claws action given to the owner so they can summon and unsummon the claws
+	var/datum/action/ashen_actions/grow_claws/granted_action
 
-/obj/item/organ/ashen_armblade/Initialize(mapload)
+/obj/item/organ/claw_bones/Initialize(mapload)
 	. = ..()
-	summoned_armblade = new /obj/item/melee/ashen_blade(src)
+	grown_claws = new /obj/item/melee/strengthened_claws(src)
 
-/obj/item/organ/ashen_armblade/Destroy()
-	QDEL_NULL(summoned_armblade)
+/obj/item/organ/claw_bones/Destroy()
+	QDEL_NULL(grown_claws)
 	QDEL_NULL(granted_action)
 	return ..()
 
-/obj/item/organ/ashen_armblade/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
+/obj/item/organ/claw_bones/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
 	granted_action = new()
 	granted_action.Grant(organ_owner)
 	granted_action.connected_organ = src
 
-/obj/item/organ/ashen_armblade/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
+/obj/item/organ/claw_bones/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
 	granted_action.connected_organ = null
 	granted_action.Remove(organ_owner)
-	if(!locate(summoned_armblade) in src) //if the armblade isnt in the organ when it is removed, move the armblade back into the organ
-		summoned_armblade.forceMove(src)
+	if(!locate(grown_claws) in src) //if the claws isnt in the organ when it is removed, move the claws back into the organ
+		grown_claws.forceMove(src)
 
 /datum/action/ashen_actions
 	button_icon = 'modular_skyrat/modules/ashwalkers/icons/actions.dmi'
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "bg_demon_border"
 
-/datum/action/ashen_actions/summon_ashblade
-	name = "Ashen Armblade"
-	button_icon_state = "armblade"
+/datum/action/ashen_actions/grow_claws
+	name = "Strengthened Claws"
+	button_icon_state = "strong_claws"
 
 	/// the organ that is connected to this action
-	var/obj/item/organ/ashen_armblade/connected_organ
+	var/obj/item/organ/claw_bones/connected_organ
 
-/datum/action/ashen_actions/summon_ashblade/Trigger(trigger_flags)
+/datum/action/ashen_actions/grow_claws/Trigger(trigger_flags)
 	. = ..()
 	if(!.)
 		return
 
-	if(locate(connected_organ.summoned_armblade) in connected_organ)
-		owner.put_in_active_hand(connected_organ.summoned_armblade)
-		owner.visible_message(span_warning("A grotesque blade forms around [owner]\'s arm!"), span_warning("Our arm twists and mutates, transforming it into a deadly blade."), span_hear("You hear organic matter ripping and tearing!"))
+	if(locate(connected_organ.grown_claws) in connected_organ)
+		owner.put_in_active_hand(connected_organ.grown_claws)
+		owner.visible_message(span_warning("A pair of strong, sharp claws grow on [owner]\'s hand!"), span_warning("Our hand quickly grows a sharp looking pair of claws."), span_hear("You hear organic matter ripping and tearing!"))
 		playsound(get_turf(owner), 'sound/effects/blob/blobattack.ogg', 30, TRUE)
 
 	else
-		connected_organ.summoned_armblade.forceMove(connected_organ)
-		owner.visible_message(span_warning("With a sickening crunch, [owner] reforms [owner.p_their()] [connected_organ.summoned_armblade] into an arm!"), span_notice("We assimilate the [connected_organ.summoned_armblade] back into our body."), span_italics("You hear organic matter ripping and tearing!"))
+		connected_organ.grown_claws.forceMove(connected_organ)
+		owner.visible_message(span_warning("Suddenly [owner] retracts [owner.p_their()] [connected_organ.grown_claws] back into their hand!"), span_notice("We retract the [connected_organ.grown_claws] back into our hand."), span_italics("You hear organic matter ripping and tearing!"))
 		playsound(get_turf(owner), 'sound/effects/blob/blobattack.ogg', 30, TRUE)
 
-/obj/item/melee/ashen_blade
-	name = "ashen arm blade"
-	desc = "A grotesque blade made out of bone and flesh that cleaves through people as a hot knife through butter."
-	icon = 'icons/obj/weapons/changeling_items.dmi'
-	icon_state = "arm_blade"
-	inhand_icon_state = "arm_blade"
-	icon_angle = 180
-	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
+/obj/item/melee/strengthened_claws
+	name = "strengthened claws"
+	desc = "A pair of claws that cuts through people as a hot knife through butter. These have been strengthened by unknown means."
+	icon = 'modular_skyrat/modules/ashwalkers/icons/gloves.dmi'
+	icon_state = "strong_claws"
+	inhand_icon_state = "strong_claws"
+	lefthand_file = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_clothing_left.dmi'
+	righthand_file = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_clothing_right.dmi'
 	item_flags = NEEDS_PERMIT | ABSTRACT
 	w_class = WEIGHT_CLASS_HUGE
 	force = 5
@@ -229,50 +228,22 @@
 	var/max_trophies = 7
 
 	/// the alternate continuous sharpness phrases
-	var/list/alt_continuous = list("stabs", "pierces", "impales")
+	var/list/alt_continuous = list("cuts", "slashes", "claw")
 
 	/// the alternate simple sharpness phrases
-	var/list/alt_simple = list("stab", "pierce", "impale")
+	var/list/alt_simple = list("cut", "slash", "claw")
 
-/obj/item/melee/ashen_blade/Initialize(mapload)
+/obj/item/melee/strengthened_claws/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, REF(src))
 	alt_continuous = string_list(alt_continuous)
 	alt_simple = string_list(alt_simple)
-	AddComponent(/datum/component/alternative_sharpness, SHARP_POINTY, alt_continuous, alt_simple, -5)
+	AddComponent(/datum/component/alternative_sharpness, SHARP_EDGED, alt_continuous, alt_simple, -5)
 	AddComponent(/datum/component/butchering, speed = 6 SECONDS, effectiveness = 80)
 
-/obj/item/melee/ashen_blade/afterattack(atom/target, mob/user, click_parameters)
-	if(istype(target, /obj/structure/table))
-		var/obj/smash = target
-		smash.deconstruct(FALSE)
-
-	else if(istype(target, /obj/machinery/computer))
-		target.attack_alien(user) //muh copypasta
-
-	else if(istype(target, /obj/machinery/door/airlock))
-		var/obj/machinery/door/airlock/opening = target
-
-		if((!opening.requiresID() || opening.allowed(user)) && opening.hasPower()) //This is to prevent stupid shit like hitting a door with an arm blade, the door opening because you have acces and still getting a "the airlocks motors resist our efforts to force it" message, power requirement is so this doesn't stop unpowered doors from being pried open if you have access
-			return
-		if(opening.locked)
-			opening.balloon_alert(user, "bolted!")
-			return
-
-		if(opening.hasPower())
-			user.visible_message(span_warning("[user] jams [src] into the airlock and starts prying it open!"), span_warning("We start forcing the [opening] open."), \
-			span_hear("You hear a metal screeching sound."))
-			playsound(opening, 'sound/machines/airlock/airlock_alien_prying.ogg', 100, TRUE)
-			if(!do_after(user, 10 SECONDS, target = opening))
-				return
-
-		user.visible_message(span_warning("[user] forces the airlock to open with [user.p_their()] [src]!"), span_warning("We force the [opening] to open."), \
-		span_hear("You hear a metal screeching sound."))
-		opening.open(BYPASS_DOOR_CHECKS)
-
-/obj/item/melee/ashen_blade/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+/obj/item/melee/strengthened_claws/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/crusher_trophy))
-		if(prob(25)) //by chance, you should get at least every 3 out of 4 trophies.
+		if(prob(25)) // by chance, you should get at least every 3 out of 4 trophies.
 			to_chat(user, span_warning("Your [src] consumes [tool] without benefit!"))
 			qdel(tool)
 			return ITEM_INTERACT_BLOCKING
@@ -281,7 +252,7 @@
 		playsound(get_turf(src), 'sound/effects/magic/demon_attack1.ogg', 50, TRUE)
 		qdel(tool)
 		consumed_trophies += 1
-		if(isliving(user)) //give a reason to consume past the increased damage
+		if(isliving(user)) // give a reason to consume past the increased damage
 			var/mob/living/living_user = user
 			var/need_mob_update
 			need_mob_update += living_user.adjust_brute_loss(-5, updating_health = FALSE)
@@ -295,7 +266,7 @@
 			wound_bonus += 2
 			exposed_wound_bonus += 2
 
-		else if(consumed_trophies == (max_trophies + 1)) //just so you aren't spammed...
+		else if(consumed_trophies == (max_trophies + 1)) // just so you aren't spammed...
 			to_chat(user, span_warning("[src] can no longer grow stronger!"))
 
 		return ITEM_INTERACT_BLOCKING
