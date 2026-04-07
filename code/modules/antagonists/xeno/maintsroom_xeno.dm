@@ -1,5 +1,5 @@
 /datum/antagonist/beno
-	name = "\improper Xenomorph"
+	name = "Lost Xenomorph"
 	pref_flag = ROLE_ALIEN
 	show_in_antagpanel = FALSE
 	antagpanel_category = ANTAG_GROUP_XENOS
