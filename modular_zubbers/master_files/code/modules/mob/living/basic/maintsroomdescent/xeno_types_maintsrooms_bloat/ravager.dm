@@ -11,7 +11,7 @@
 	melee_damage_upper = 35
 	default_organ_types_by_slot = list(
 		ORGAN_SLOT_BRAIN = /obj/item/organ/brain/alien,
-		ORGAN_SLOT_XENO_HIVENODE = null,
+		ORGAN_SLOT_XENO_HIVENODE = /obj/item/organ/alien,
 		ORGAN_SLOT_TONGUE = /obj/item/organ/tongue/alien,
 		ORGAN_SLOT_EYES = /obj/item/organ/eyes/alien,
 		ORGAN_SLOT_LIVER = /obj/item/organ/liver/alien,
