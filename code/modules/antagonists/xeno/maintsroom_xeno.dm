@@ -109,3 +109,36 @@
 		return FALSE
 	mob_type = chosen_beno
 	return TRUE
+	// call it here either after or before <-----------
+
+/obj/effect/mob_spawn/ghost_role/beno/proc/beno_name(mob/user)
+	var/new_name = tgui_input_text(user, "Who are you again?", user.name, MAX_NAME_LEN)
+	if(isnull(new_name))
+		return "Dingus"
+	return new_name
+
+/obj/effect/mob_spawn/ghost_role/beno/proc/beno_desc(mob/user)
+	var/new_desc = tgui_input_text(user, "What has happened to you?", user.desc, MAX_MESSAGE_LEN)
+	if(isnull(new_desc))
+		return "A normal looking xenomorph"
+	return new_desc
+
+	var/chosen_beno = length(potentialspawns) > 1 ? get_radial_choice(user) : potentialspawns[1]
+	if(isnull(chosen_beno))
+		return FALSE
+	mob_type = chosen_beno
+	return TRUE
+// alrighty, missing sanitize_name
+// /proc/sanitize_name(target, allow_numbers = FALSE, cap_after_symbols = TRUE)
+// it's for seeing if the name inputted is bad or not, run the result of tgui_input_text with santiize_name
+// quite confusing for an edge case that may never be used, let me see if this even works first
+
+// /proc/sanitize_name(beno_name, allow_numbers = FALSE, cap_after_symbols = TRUE)
+//	if(is_ic_filtered(target) || is_soft_ic_filtered(target))
+//		tgui_alert(usr, "You cannot set a name that contains a word prohibited in IC chat!")
+//		return ""
+//	var/result = reject_bad_name(target, allow_numbers = allow_numbers, strict = TRUE, cap_after_symbols = cap_after_symbols)
+//	if(!result)
+//		tgui_alert(usr, "Invalid name.")
+//		return ""
+//	return sanitize(result)
