@@ -100,11 +100,7 @@
 		display_benos[initial(beno.name)] = option
 		sort_list(display_benos)
 
-		var/image/image = image(icon = initial(beno.icon), icon_state = initial(beno.icon_state))
-		image.x = -16
-		option.image = image
-
-	var/chosen_beno = show_radial_menu(user, src, display_benos, radius = 50, require_near = TRUE)
+	var/chosen_beno = show_radial_menu(user, src, display_benos, radius = 70, require_near = TRUE)
 	return beno_list[chosen_beno]
 
 /obj/effect/mob_spawn/ghost_role/beno/pre_ghost_take(mob/dead/observer/user)
