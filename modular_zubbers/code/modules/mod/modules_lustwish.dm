@@ -14,18 +14,16 @@
 	required_slots = list(ITEM_SLOT_HEAD)
 	overlay_icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
 
-	module_type = MODULE_PASSIVE //These three are changed when the control wire is snipped
-	overlay_state_active = null
-	overlay_state_inactive = "module_hypno_overlay"
-
-	var/hypno_message = "Obey"
-		///Does the visor overlay show on the character sprite when installed? Only eligible with certain skins.
+	module_type = MODULE_TOGGLE //This is changed when the control wire is snipped
+	///Does the visor overlay show on the character sprite when installed? Only eligible with certain skins.
 	var/visor_effect = TRUE
+	var/hypno_message = "Obey"
+
 
 /obj/item/mod/module/hypno_visor/examine(mob/user)
 	. = ..()
 	. += span_info("It's currently programmed with the following directive: \"[hypno_message]\" Use it in-hand to rewrite it.")
-	. += span_info("Its visor will [visor_effect ? "" : "<b>not</b>"] display an external hypnotic effect. Use a screwdriver to toggle.")
+	. += span_info("Its visor will [visor_effect ? "" : "<b>not</b> "]display an external hypnotic effect. Use a screwdriver to toggle.")
 	. += span_info("Its control wire is currently [(module_type == MODULE_TOGGLE) ? \
 						"<b>intact,</b> allowing for on-the-fly configuration via the MOD UI." \
 						: \
@@ -42,34 +40,29 @@
 
 /obj/item/mod/module/hypno_visor/screwdriver_act(mob/living/user, obj/item/tool)
 	visor_effect = !visor_effect
+	playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 	to_chat(user, span_notice("You turn the visor display of [src] [visor_effect ? "on" : "off"]."))
+	balloon_alert(user, "visor effect [visor_effect ? "on" : "off"]")
 	return TRUE
 
 /obj/item/mod/module/hypno_visor/wirecutter_act(mob/living/user, obj/item/tool)
 	if(module_type == MODULE_TOGGLE) // If it's not toggle, make it so. If it is, make it passive.
 		module_type = MODULE_PASSIVE
-		overlay_state_active = null
-		overlay_state_inactive = "module_hypno_overlay"
 	else
 		module_type = MODULE_TOGGLE
-		overlay_state_active = "module_hypno_overlay"
-		overlay_state_inactive = null
-
+	playsound(src, 'sound/items/tools/wirecutter.ogg', 30, TRUE)
 	to_chat(user, span_notice("You [(module_type == MODULE_TOGGLE) ? "mend" : "snip"] the control wire on [src]."))
+	balloon_alert(user, "control wire [(module_type == MODULE_TOGGLE) ? "mend" : "snipp"]ed")
 	return TRUE
 
 /obj/item/mod/module/hypno_visor/on_install()
 	. = ..()
 	if(mod.skin != "lustwish" && visor_effect == TRUE)
-		overlay_state_inactive = null // Visual thing. Removes the overlay if it's not a part of the lustwish suit.
-		overlay_state_active = null
 		visor_effect = FALSE
-		balloon_alert(usr, "visor effect unavailable for this plating!")
+		addtimer(CALLBACK(src, PROC_REF(say_visor_no_worky), usr), 0.5 SECONDS)
 
-/obj/item/mod/module/hypno_visor/on_uninstall(deleting = FALSE)
-	. = ..()
-	overlay_state_inactive = initial(overlay_state_inactive) //This part only matters for visor/passive
-	overlay_state_active = initial(overlay_state_active) //This part only matters for visor/toggleable
+/obj/item/mod/module/hypno_visor/proc/say_visor_no_worky(user)
+		balloon_alert(user, "visor effect unavailable for this plating!")
 
 /obj/item/mod/module/hypno_visor/proc/apply_hypnosis()
 	if(!(mod.wearer.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis) && mod.wearer.client.prefs.read_preference(/datum/preference/toggle/erp/sex_toy)))
@@ -86,7 +79,11 @@
 	return ..()
 
 /obj/item/mod/module/hypno_visor/on_part_activation()
+	overlay_state_inactive = null // Have you tried turning it off and back on again?
+	overlay_state_active = null
 	if(module_type == MODULE_PASSIVE)
+		if(visor_effect)
+			overlay_state_inactive = "module_hypno_overlay"
 		apply_hypnosis()
 
 /obj/item/mod/module/hypno_visor/on_part_deactivation(deleting = FALSE)
@@ -94,7 +91,11 @@
 		mod.wearer.cure_trauma_type(/datum/brain_trauma/very_special/induced_hypnosis, TRAUMA_RESILIENCE_MAGIC)
 
 /obj/item/mod/module/hypno_visor/on_activation(mob/activator)
+	overlay_state_inactive = null // Have you tried turning it off and back on again?
+	overlay_state_active = null
 	if(module_type == MODULE_TOGGLE)
+		if(visor_effect)
+			overlay_state_active = "module_hypno_overlay"
 		apply_hypnosis()
 
 /obj/item/mod/module/hypno_visor/on_deactivation(mob/activator, display_message = TRUE, deleting = FALSE)
@@ -117,7 +118,6 @@
 			if(mod.skin != "lustwish")
 				return balloon_alert(usr, "visor effect unavailable for this plating!")
 			visor_effect = text2num(value)
-			overlay_state_active = visor_effect ? "module_hypno_overlay" : null
 			if(active)
 				balloon_alert(usr, "restart to finalize changes")
 

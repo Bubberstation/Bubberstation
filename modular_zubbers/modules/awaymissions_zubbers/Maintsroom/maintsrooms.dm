@@ -8,4 +8,3 @@
 /area/awaymission/caves/maintsroom/deeper
 	name = "deeper"
 	icon_state = "away3"
-
