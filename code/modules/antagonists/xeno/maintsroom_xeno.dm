@@ -89,7 +89,7 @@
 		/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom,
 	)
 
-for(var/mob/living/carbon/alien/beno as anything in potentialspawns)
+	for(var/mob/living/carbon/alien/beno as anything in potentialspawns)
 		beno_list[initial(beno.name)] = chosen_beno
 		var/datum/radial_menu_choice/option = new
 		display_benos[initial(beno.name)] = option
@@ -104,7 +104,6 @@ for(var/mob/living/carbon/alien/beno as anything in potentialspawns)
 		return FALSE
 	mob_type = chosen_beno
 	return TRUE
-
 /// Pick a spider type from a radial menu
 /obj/effect/mob_spawn/ghost_role/beno/proc/get_radial_choice(mob/user)
 	var/list/beno_list = list(
