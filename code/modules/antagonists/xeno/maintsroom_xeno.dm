@@ -1,3 +1,6 @@
+/datum/team/beno
+	name = "Lost Aliens"
+
 /datum/antagonist/beno
 	name = "Lost Xenomorph"
 	pref_flag = ROLE_ALIEN
@@ -58,3 +61,44 @@
 	..()
 	if(mind.has_antag_datum(/datum/antagonist/xeno))
 		mind.add_antag_datum(/datum/antagonist/beno)
+
+/obj/effect/mob_spawn/ghost_role/spider/beno
+	name = "Xenomorph in a coma"
+	desc = "They are in a deep sleep but they seem passive, dont hurt them."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "eggs"
+	show_flavor = TRUE
+	you_are_text = "You are a lost xenomorph."
+	flavour_text = "You are a lost xenomorph, you are disconnected from the hive and you have been stuck here only god knows how long a decade or two? a century? this place might have changed you due to the intensity of the anomalies or you may be the exact same- you dont remember anything before arriving here as you were born here."
+	important_text = "You should nuetral to the crew you are not really an antagonist, THE XENOMORPHS INHERIT THE FLAVOR TEXT/NAME/DESC FROM YOUR CURRENTLY SELECTED CHARACTER."
+	faction = list(ROLE_ALIEN)
+	spawner_job_path = /datum/job/xenomorph
+	role_ban = ROLE_ALIEN
+	prompt_ghost = FALSE
+	random_appearance = FALSE
+	/// Prevents spawning from this mob_spawn until TRUE, set by the egg growing
+	ready = TRUE
+	var/cluster_type = /obj/structure/spider/eggcluster
+	/// Physical structure housing the spawner
+	var/obj/effect/mob_spawn/ghost_role/spider/beno
+	/// Which antag datum do we grant?
+	var/granted_datum = /datum/antagonist/beno
+	/// The types of spiders that the spawner can produce
+	var/list/potentialspawns = list(
+		/mob/living/carbon/alien/adult/skyrat/defender/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/drone/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/praetorian/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/ravager/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/runner/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/sentinel/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/spitter/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom,
+	)
+
+/obj/structure/spider/eggcluster/benos
+	name = "egg cluster"
+	icon = 'icons/effects/effects.dmi'
+	desc = "There's a sleeping xenomorph."
+	icon_state = "eggs"
+	/// Mob spawner handling the actual spawn of the spider
+	var/obj/effect/mob_spawn/ghost_role/spider/beno
