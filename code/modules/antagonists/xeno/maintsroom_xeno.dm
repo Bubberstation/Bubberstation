@@ -22,45 +22,10 @@
 /datum/objective/maints_benos/New()
 	explanation_text = "Survive, escape your cell, you remember nothing of time before you came here youve been here for god knows how long- a decade? a century? this place has changed you be it the time the environment of the bioscramblers you are not what you once were."
 
-/mob/living/carbon/alien/adult/skyrat/drone/maintsroom/mind_initialize()
-	..()
-	if(mind.has_antag_datum(/datum/antagonist/xeno))
-		mind.remove_antag_datum(/datum/antagonist/xeno)
+/mob/living/carbon/alien
+	gives_default_antag_datum = TRUE
 
-/mob/living/carbon/alien/adult/skyrat/defender/maintsroom/mind_initialize()
-	..()
-	if(mind.has_antag_datum(/datum/antagonist/xeno))
-		mind.remove_antag_datum(/datum/antagonist/xeno)
 
-/mob/living/carbon/alien/adult/skyrat/praetorian/maintsroom/mind_initialize()
-	..()
-	if(mind.has_antag_datum(/datum/antagonist/xeno))
-		mind.remove_antag_datum(/datum/antagonist/xeno)
-
-/mob/living/carbon/alien/adult/skyrat/ravager/maintsroom/mind_initialize()
-	..()
-	if(mind.has_antag_datum(/datum/antagonist/xeno))
-		mind.remove_antag_datum(/datum/antagonist/xeno)
-
-/mob/living/carbon/alien/adult/skyrat/runner/maintsroom/mind_initialize()
-	..()
-	if(mind.has_antag_datum(/datum/antagonist/xeno))
-		mind.remove_antag_datum(/datum/antagonist/xeno)
-
-/mob/living/carbon/alien/adult/skyrat/sentinel/maintsroom/mind_initialize()
-	..()
-	if(mind.has_antag_datum(/datum/antagonist/xeno))
-		mind.remove_antag_datum(/datum/antagonist/xeno)
-
-/mob/living/carbon/alien/adult/skyrat/spitter/maintsroom/mind_initialize()
-	..()
-	if(mind.has_antag_datum(/datum/antagonist/xeno))
-		mind.remove_antag_datum(/datum/antagonist/xeno)
-
-/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom/mind_initialize()
-	..()
-	if(mind.has_antag_datum(/datum/antagonist/xeno))
-		mind.remove_antag_datum(/datum/antagonist/xeno)
 
 /obj/effect/mob_spawn/ghost_role/beno
 	name = "Xenomorph in a coma"

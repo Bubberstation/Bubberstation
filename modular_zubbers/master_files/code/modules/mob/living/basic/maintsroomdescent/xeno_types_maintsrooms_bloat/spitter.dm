@@ -2,6 +2,7 @@
 
 /mob/living/carbon/alien/adult/skyrat/spitter/maintsroom
 	next_evolution = null
+	gives_default_antag_datum = FALSE
 	default_organ_types_by_slot = list(
 		ORGAN_SLOT_BRAIN = /obj/item/organ/brain/alien,
 		ORGAN_SLOT_TONGUE = /obj/item/organ/tongue/alien,
