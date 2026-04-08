@@ -77,7 +77,7 @@
 	random_appearance = FALSE
 	/// Which antag datum do we grant?
 	var/granted_datum = /datum/antagonist/beno
-	/// The types of spiders that the spawner can produce
+	/// The types of xenomorphs that the spawner can produce, these ones cannot evolve.
 	var/list/potentialspawns = list(
 		/mob/living/carbon/alien/adult/skyrat/defender/maintsroom,
 		/mob/living/carbon/alien/adult/skyrat/drone/maintsroom,
@@ -100,7 +100,7 @@
 		display_benos[initial(beno.name)] = option
 		sort_list(display_benos)
 
-		var/image/image = image(icon = initial(spider.icon), icon_state = initial(spider.icon_state))
+		var/image/image = image(icon = initial(beno.icon), icon_state = initial(beno.icon_state))
 		image.x = -16
 		option.image = image
 
