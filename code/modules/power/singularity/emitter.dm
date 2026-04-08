@@ -160,17 +160,10 @@
 	. += overlay
 
 /obj/machinery/power/emitter/update_icon_state()
-	// BUBBER EDIT - emitter icon states
-	if(!active || !powernet)
-		icon_state = base_icon_state
-		return ..()
-	// BUBBER EDIT END
 	if(panel_open)
 		icon_state = "[base_icon_state]_open"
-		// BUBBER EDIT
-		return ..()
-	icon_state = avail(active_power_usage) ? icon_state_on : icon_state_underpowered
-	// BUBBER EDIT END
+	else
+		icon_state = base_icon_state
 	return ..()
 
 /obj/machinery/power/emitter/interact(mob/user)
