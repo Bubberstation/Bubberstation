@@ -274,7 +274,7 @@
 			. += "<span class='warning'><b>[GP.source.name] [GP.source.p_are()] holding [t_him] at gunpoint with [GP.aimed_gun.name]!</b></span>\n"
 
 	//SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
-	if(!isnull(dna.species))
+	if(!isnull(dna?.species))
 		for(var/genital in GLOB.possible_genitals)
 			if(dna.species.mutant_bodyparts[genital])
 				var/datum/sprite_accessory/genital/G = SSaccessories.sprite_accessories[genital][dna.species.mutant_bodyparts[genital][MUTANT_INDEX_NAME]]
