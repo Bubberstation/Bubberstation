@@ -88,6 +88,8 @@
 		/mob/living/carbon/alien/adult/skyrat/spitter/maintsroom,
 		/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom,
 	)
+	var/new_mob_name = "Dingus"
+	var/new_mob_desc = "A normal looking xenomorph"
 
 //try building
 /obj/effect/mob_spawn/ghost_role/beno/proc/get_radial_choice(mob/user)
@@ -104,30 +106,29 @@
 	return beno_list[chosen_beno]
 
 /obj/effect/mob_spawn/ghost_role/beno/pre_ghost_take(mob/dead/observer/user)
-	var/chosen_beno = length(potentialspawns) > 1 ? get_radial_choice(user) : potentialspawns[1]
-	if(isnull(chosen_beno))
-		return FALSE
-	mob_type = chosen_beno
-	return TRUE
+	// time 2 call beno_name & beno_desc
 	// call it here either after or before <-----------
-
-/obj/effect/mob_spawn/ghost_role/beno/proc/beno_name(mob/user)
-	var/new_name = tgui_input_text(user, "Who are you again?", user.name, MAX_NAME_LEN)
-	if(isnull(new_name))
-		return "Dingus"
-	return new_name
-
-/obj/effect/mob_spawn/ghost_role/beno/proc/beno_desc(mob/user)
-	var/new_desc = tgui_input_text(user, "What has happened to you?", user.desc, MAX_MESSAGE_LEN)
-	if(isnull(new_desc))
-		return "A normal looking xenomorph"
-	return new_desc
-
 	var/chosen_beno = length(potentialspawns) > 1 ? get_radial_choice(user) : potentialspawns[1]
 	if(isnull(chosen_beno))
 		return FALSE
 	mob_type = chosen_beno
+
+	new_mob_name = initial(new_mob_name)
+	new_mob_name = sanitize_name(tgui_input_text(user, "Who are you again?", new_mob_name, MAX_NAME_LEN))
+
+	new_mob_desc = initial(new_mob_desc)
+	new_mob_desc = tgui_input_text(user, "What has happened to you?", new_mob_desc, MAX_MESSAGE_LEN)
+
 	return TRUE
+
+/obj/effect/mob_spawn/ghost_role/beno/special(mob/living/spawned_mob, mob/mob_possessor, apply_prefs)
+	. = ..()
+	spawned_mob.real_name = new_mob_name
+	spawned_mob.name = new_mob_name
+	var/mob/living/carbon/carbon_mob = spawned_mob
+	carbon_mob.desc = new_mob_desc
+
+
 // alrighty, missing sanitize_name
 // /proc/sanitize_name(target, allow_numbers = FALSE, cap_after_symbols = TRUE)
 // it's for seeing if the name inputted is bad or not, run the result of tgui_input_text with santiize_name
