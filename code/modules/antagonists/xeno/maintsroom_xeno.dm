@@ -92,6 +92,10 @@
 		/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom,
 	)
 
+/obj/structure/spider/eggcluster/benos
+	name = "Sleeping xeno"
+	color = rgb(0, 148, 211)
+
 /obj/effect/mob_spawn/ghost_role/beno/pre_ghost_take(mob/dead/observer/user)
 	var/chosen_beno = length(potentialspawns) > 1 ? get_radial_choice(user) : potentialspawns[1]
 	if(isnull(chosen_beno))
