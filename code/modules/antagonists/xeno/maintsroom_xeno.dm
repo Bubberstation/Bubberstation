@@ -89,13 +89,22 @@
 		/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom,
 	)
 
+//try building
+/obj/effect/mob_spawn/ghost_role/beno/proc/get_radial_choice(mob/user)
+	var/list/beno_list = list()
+	var/list/display_benos = list()
 	for(var/mob/living/carbon/alien/beno as anything in potentialspawns)
-		beno_list[initial(beno.name)] = chosen_beno
+		beno_list[initial(beno.name)] = beno
 		var/datum/radial_menu_choice/option = new
+		option.image = image(icon = initial(beno.icon), icon_state = initial(beno.icon_state))//like this or would i want to just smack this right on the line above?
 		display_benos[initial(beno.name)] = option
-	sort_list(display_benos)
-	return beno_list[chosen_beno]
-	var/chosen_beno = show_radial_menu(user, egg, display_benos, radius = 38, require_near = TRUE)
+		sort_list(display_benos)
+
+		var/image/image = image(icon = initial(spider.icon), icon_state = initial(spider.icon_state))
+		image.x = -16
+		option.image = image
+
+	var/chosen_beno = show_radial_menu(user, src, display_benos, radius = 50, require_near = TRUE)
 	return beno_list[chosen_beno]
 
 /obj/effect/mob_spawn/ghost_role/beno/pre_ghost_take(mob/dead/observer/user)
@@ -104,16 +113,3 @@
 		return FALSE
 	mob_type = chosen_beno
 	return TRUE
-/// Pick a spider type from a radial menu
-/obj/effect/mob_spawn/ghost_role/beno/proc/get_radial_choice(mob/user)
-	var/list/beno_list = list(
-		/mob/living/carbon/alien/adult/skyrat/defender/maintsroom,
-		/mob/living/carbon/alien/adult/skyrat/drone/maintsroom,
-		/mob/living/carbon/alien/adult/skyrat/praetorian/maintsroom,
-		/mob/living/carbon/alien/adult/skyrat/ravager/maintsroom,
-		/mob/living/carbon/alien/adult/skyrat/runner/maintsroom,
-		/mob/living/carbon/alien/adult/skyrat/sentinel/maintsroom,
-		/mob/living/carbon/alien/adult/skyrat/spitter/maintsroom,
-		/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom,
-	)
-	var/list/display_benos = list()
