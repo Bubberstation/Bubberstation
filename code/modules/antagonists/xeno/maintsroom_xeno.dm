@@ -81,7 +81,7 @@
 	/// Which antag datum do we grant?
 	granted_datum = /datum/antagonist/beno
 	/// The types of spiders that the spawner can produce
-	potentialspawns = list(
+	var/list/potentialspawns = list(
 		/mob/living/carbon/alien/adult/skyrat/defender/maintsroom,
 		/mob/living/carbon/alien/adult/skyrat/drone/maintsroom,
 		/mob/living/carbon/alien/adult/skyrat/praetorian/maintsroom,
@@ -98,6 +98,18 @@
 		return FALSE
 	mob_type = chosen_beno
 	return TRUE
+
+/obj/effect/mob_spawn/ghost_role/beno/Initialize(mapload)
+	. = ..()
+	START_PROCESSING(SSobj, src)
+	potentialspawns = string_list(potentialspawns)
+	egg = new cluster_type(get_turf(loc))
+	egg.spawner = src
+	forceMove(egg)
+
+/obj/effect/mob_spawn/ghost_role/beno/Destroy()
+	egg = null
+	return ..()
 
 /// Pick a spider type from a radial menu
 /obj/effect/mob_spawn/ghost_role/beno/proc/get_radial_choice(mob/user)
