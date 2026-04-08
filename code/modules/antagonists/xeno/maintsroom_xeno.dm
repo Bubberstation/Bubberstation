@@ -78,13 +78,13 @@
 	random_appearance = FALSE
 	/// Prevents spawning from this mob_spawn until TRUE, set by the egg growing
 	ready = TRUE
-	var/cluster_type = /obj/structure/spider/eggcluster
+	cluster_type = /obj/structure/spider/eggcluster/benos
 	/// Physical structure housing the spawner
 	var/obj/effect/mob_spawn/ghost_role/spider/beno
 	/// Which antag datum do we grant?
-	var/granted_datum = /datum/antagonist/beno
+	granted_datum = /datum/antagonist/beno
 	/// The types of spiders that the spawner can produce
-	var/list/potentialspawns = list(
+	potentialspawns = list(
 		/mob/living/carbon/alien/adult/skyrat/defender/maintsroom,
 		/mob/living/carbon/alien/adult/skyrat/drone/maintsroom,
 		/mob/living/carbon/alien/adult/skyrat/praetorian/maintsroom,
