@@ -25,44 +25,44 @@
 /mob/living/carbon/alien/adult/skyrat/drone/maintsroom/mind_initialize()
 	..()
 	if(mind.has_antag_datum(/datum/antagonist/xeno))
-		mind.add_antag_datum(/datum/antagonist/beno)
+		mind.remove_antag_datum(/datum/antagonist/xeno)
 
 /mob/living/carbon/alien/adult/skyrat/defender/maintsroom/mind_initialize()
 	..()
 	if(mind.has_antag_datum(/datum/antagonist/xeno))
-		mind.add_antag_datum(/datum/antagonist/beno)
+		mind.remove_antag_datum(/datum/antagonist/xeno)
 
 /mob/living/carbon/alien/adult/skyrat/praetorian/maintsroom/mind_initialize()
 	..()
 	if(mind.has_antag_datum(/datum/antagonist/xeno))
-		mind.add_antag_datum(/datum/antagonist/beno)
+		mind.remove_antag_datum(/datum/antagonist/xeno)
 
 /mob/living/carbon/alien/adult/skyrat/ravager/maintsroom/mind_initialize()
 	..()
 	if(mind.has_antag_datum(/datum/antagonist/xeno))
-		mind.add_antag_datum(/datum/antagonist/beno)
+		mind.remove_antag_datum(/datum/antagonist/xeno)
 
 /mob/living/carbon/alien/adult/skyrat/runner/maintsroom/mind_initialize()
 	..()
 	if(mind.has_antag_datum(/datum/antagonist/xeno))
-		mind.add_antag_datum(/datum/antagonist/beno)
+		mind.remove_antag_datum(/datum/antagonist/xeno)
 
 /mob/living/carbon/alien/adult/skyrat/sentinel/maintsroom/mind_initialize()
 	..()
 	if(mind.has_antag_datum(/datum/antagonist/xeno))
-		mind.add_antag_datum(/datum/antagonist/beno)
+		mind.remove_antag_datum(/datum/antagonist/xeno)
 
 /mob/living/carbon/alien/adult/skyrat/spitter/maintsroom/mind_initialize()
 	..()
 	if(mind.has_antag_datum(/datum/antagonist/xeno))
-		mind.add_antag_datum(/datum/antagonist/beno)
+		mind.remove_antag_datum(/datum/antagonist/xeno)
 
 /mob/living/carbon/alien/adult/skyrat/warrior/maintsroom/mind_initialize()
 	..()
 	if(mind.has_antag_datum(/datum/antagonist/xeno))
-		mind.add_antag_datum(/datum/antagonist/beno)
+		mind.remove_antag_datum(/datum/antagonist/xeno)
 
-/obj/effect/mob_spawn/ghost_role/spider/beno
+/obj/effect/mob_spawn/ghost_role/beno
 	name = "Xenomorph in a coma"
 	desc = "They are in a deep sleep but they seem passive, dont hurt them."
 	icon = 'icons/effects/effects.dmi'
@@ -72,15 +72,12 @@
 	flavour_text = "You are a lost xenomorph, you are disconnected from the hive and you have been stuck here only god knows how long a decade or two? a century? this place might have changed you due to the intensity of the anomalies or you may be the exact same- you dont remember anything before arriving here as you were born here."
 	important_text = "You should nuetral to the crew you are not really an antagonist, THE XENOMORPHS INHERIT THE FLAVOR TEXT/NAME/DESC FROM YOUR CURRENTLY SELECTED CHARACTER."
 	faction = list(ROLE_ALIEN)
-	spawner_job_path = /datum/job/xenomorph
 	role_ban = ROLE_ALIEN
 	prompt_ghost = FALSE
 	random_appearance = FALSE
 	/// Prevents spawning from this mob_spawn until TRUE, set by the egg growing
 	ready = TRUE
 	cluster_type = /obj/structure/spider/eggcluster/benos
-	/// Physical structure housing the spawner
-	var/obj/effect/mob_spawn/ghost_role/spider/beno
 	/// Which antag datum do we grant?
 	granted_datum = /datum/antagonist/beno
 	/// The types of spiders that the spawner can produce
@@ -95,10 +92,43 @@
 		/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom,
 	)
 
-/obj/structure/spider/eggcluster/benos
-	name = "egg cluster"
-	icon = 'icons/effects/effects.dmi'
-	desc = "There's a sleeping xenomorph."
-	icon_state = "eggs"
-	/// Mob spawner handling the actual spawn of the spider
-	var/obj/effect/mob_spawn/ghost_role/spider/beno
+/obj/effect/mob_spawn/ghost_role/beno/pre_ghost_take(mob/dead/observer/user)
+	var/chosen_spider = length(potentialspawns) > 1 ? get_radial_choice(user) : potentialspawns[1]
+	if(isnull(chosen_beno))
+		return FALSE
+	mob_type = chosen_beno
+	return TRUE
+
+/// Pick a spider type from a radial menu
+/obj/effect/mob_spawn/ghost_role/beno/proc/get_radial_choice(mob/user)
+	var/list/beno_list = list(
+		/mob/living/carbon/alien/adult/skyrat/defender/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/drone/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/praetorian/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/ravager/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/runner/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/sentinel/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/spitter/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom,
+	)
+	var/list/display_benos = list(
+		/mob/living/carbon/alien/adult/skyrat/defender/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/drone/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/praetorian/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/ravager/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/runner/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/sentinel/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/spitter/maintsroom,
+		/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom,
+	)
+	for(var/choice in potentialspawns)
+		beno_list[initial(beno.name)] = chosen_beno
+
+		var/datum/radial_menu_choice/option = new
+
+		display_benos[initial(beno.name)] = option
+	sort_list(display_benos)
+	return beno_list[chosen_beno]
+
+	var/chosen_beno = show_radial_menu(user, egg, display_benos, radius = 38, require_near = TRUE)
+	return beno_list[chosen_beno]
