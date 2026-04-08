@@ -77,7 +77,7 @@
 	random_appearance = FALSE
 	/// Prevents spawning from this mob_spawn until TRUE, set by the egg growing
 	ready = TRUE
-	cluster_type = /obj/structure/spider/eggcluster/benos
+	var/fuster_type = /obj/structure/spider/eggcluster/benos
 	/// Which antag datum do we grant?
 	granted_datum = /datum/antagonist/beno
 	/// The types of spiders that the spawner can produce
@@ -93,7 +93,7 @@
 	)
 
 /obj/effect/mob_spawn/ghost_role/beno/pre_ghost_take(mob/dead/observer/user)
-	var/chosen_spider = length(potentialspawns) > 1 ? get_radial_choice(user) : potentialspawns[1]
+	var/chosen_beno = length(potentialspawns) > 1 ? get_radial_choice(user) : potentialspawns[1]
 	if(isnull(chosen_beno))
 		return FALSE
 	mob_type = chosen_beno
@@ -103,7 +103,7 @@
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	potentialspawns = string_list(potentialspawns)
-	egg = new cluster_type(get_turf(loc))
+	egg = new fuster_type(get_turf(loc))
 	egg.spawner = src
 	forceMove(egg)
 
