@@ -53,6 +53,10 @@
 	/// Filters the radial choice list by if it requires the smithing skillchip; true means corresponding element requires it
 	var/list/choice_list_trait_filter = list()
 
+/obj/structure/reagent_forge/Initialize(mapload)
+	. = ..()
+	populate_radial_choice_list()
+
 /obj/structure/reagent_crafting_bench/proc/populate_radial_choice_list()
 
 	for(var/recipe in allowed_choices)
@@ -60,9 +64,9 @@
 		var/obj/recipe_resulting_item = recipe_to_take_from.resulting_item
 		radial_choice_list[recipe_to_take_from.recipe_name] = image(icon = initial(recipe_resulting_item.icon), icon_state = initial(recipe_resulting_item.icon_state))
 		recipe_names_to_path[recipe_to_take_from.recipe_name] = recipe
-		choice_list_skill_filter[recipe_to_take_from.recipe_name] = recipe_to_take_from.relevant_skill
-		choice_list_skill_level_filter[recipe_to_take_from.recipe_name] = recipe_to_take_from.relevant_skill_level
-		choice_list_trait_filter[recipe_to_take_from.recipe_name] = recipe_to_take_from.required_traits
+		choice_list_skill_filter[recipe_to_take_from.recipe_name] = initial(recipe_to_take_from.relevant_skill)
+		choice_list_skill_level_filter[recipe_to_take_from.recipe_name] = initial(recipe_to_take_from.relevant_skill_level)
+		choice_list_trait_filter[recipe_to_take_from.recipe_name] = initial(recipe_to_take_from.required_traits)
 		qdel(recipe_to_take_from)
 
 
@@ -162,7 +166,7 @@
 	if(!isnull(choice_list_skill_filter[key]) && user.mind.get_skill_level(choice_list_skill_filter[key]) < choice_list_skill_level_filter[key])
 		return FALSE
 	if(!isnull(choice_list_trait_filter[key]))
-		for(var/my_trait in choice_list_trait_filter)
+		for(var/my_trait in choice_list_trait_filter[key])
 			if (!HAS_TRAIT(user, my_trait))
 				return FALSE
 	return TRUE
