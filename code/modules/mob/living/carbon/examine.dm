@@ -287,7 +287,6 @@
 	if(flavor_text_link)
 		. += flavor_text_link
 
-
 	//BUBBER EDIT ADDITION BEGIN - EXAMINE RECORDS
 	if (isobserver(user) || user.mind.can_see_exploitables || user.mind.has_exploitables_override)
 		var/perpname = get_face_name(get_id_name(""))
