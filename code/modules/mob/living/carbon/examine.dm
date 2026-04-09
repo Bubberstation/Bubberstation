@@ -278,8 +278,8 @@
 		for(var/genital in GLOB.possible_genitals)
 			if(dna.species.mutant_bodyparts[genital])
 				var/datum/sprite_accessory/genital/G = SSaccessories.sprite_accessories[genital][dna.species.mutant_bodyparts[genital][MUTANT_INDEX_NAME]]
-				if(Greg)
-					if(!(Greg.is_hidden(src)))
+				if(G)
+					if(!(G.is_hidden(src)))
 						. += "<span class='notice'>[t_He] [t_has] exposed genitals... <a href='byond://?src=[REF(src)];lookup_info=genitals'>\[Look closer...\]</a></span>"
 						break
 
