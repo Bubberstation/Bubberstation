@@ -13,3 +13,8 @@
 		ORGAN_SLOT_XENO_PLASMAVESSEL = /obj/item/organ/alien/plasmavessel/small,
 		ORGAN_SLOT_XENO_NEUROTOXINGLAND = /obj/item/organ/alien/neurotoxin/sentinel,
 	)
+
+/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom/Initialize(mapload)
+	. = ..()
+
+	qdel(holder.GetComponent(/datum/component/itempicky))

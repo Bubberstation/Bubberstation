@@ -14,3 +14,8 @@
 		ORGAN_SLOT_XENO_RESINSPINNER = /obj/item/organ/alien/resinspinner,
 		ORGAN_SLOT_XENO_ACIDGLAND = /obj/item/organ/alien/acid,
 	)
+
+/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom/Initialize(mapload)
+	. = ..()
+
+	qdel(holder.GetComponent(/datum/component/itempicky))

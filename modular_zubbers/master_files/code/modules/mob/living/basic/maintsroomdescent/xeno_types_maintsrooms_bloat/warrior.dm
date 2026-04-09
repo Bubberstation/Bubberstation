@@ -12,3 +12,8 @@
 		ORGAN_SLOT_STOMACH = /obj/item/organ/stomach/alien,
 		ORGAN_SLOT_XENO_PLASMAVESSEL = /obj/item/organ/alien/plasmavessel,
 	)
+
+/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom/Initialize(mapload)
+	. = ..()
+
+	qdel(holder.GetComponent(/datum/component/itempicky))
