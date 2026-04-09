@@ -28,7 +28,7 @@
 
 
 /obj/effect/mob_spawn/ghost_role/beno
-	name = "Xenomorph in a coma"
+	name = "Comatose Xenomorph"
 	desc = "They are in a deep sleep but they seem passive, dont hurt them."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "eggs"
