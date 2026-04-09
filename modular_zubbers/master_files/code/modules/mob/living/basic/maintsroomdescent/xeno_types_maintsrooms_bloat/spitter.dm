@@ -14,7 +14,7 @@
 		ORGAN_SLOT_XENO_NEUROTOXINGLAND = /obj/item/organ/alien/neurotoxin/spitter,
 	)
 
-/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom/Initialize(mapload)
+/mob/living/carbon/alien/adult/skyrat/spitter/maintsroom/Initialize(mapload)
 	. = ..()
 
-	qdel(holder.GetComponent(/datum/component/itempicky))
+	qdel(GetComponent(/datum/component/itempicky))

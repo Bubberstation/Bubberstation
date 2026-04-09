@@ -15,7 +15,7 @@
 		ORGAN_SLOT_XENO_ACIDGLAND = /obj/item/organ/alien/acid,
 	)
 
-/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom/Initialize(mapload)
+/mob/living/carbon/alien/adult/skyrat/drone/maintsroom/Initialize(mapload)
 	. = ..()
 
-	qdel(holder.GetComponent(/datum/component/itempicky))
+	qdel(GetComponent(/datum/component/itempicky))

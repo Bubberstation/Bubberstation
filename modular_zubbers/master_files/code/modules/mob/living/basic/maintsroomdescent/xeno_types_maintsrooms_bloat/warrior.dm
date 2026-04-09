@@ -16,4 +16,4 @@
 /mob/living/carbon/alien/adult/skyrat/warrior/maintsroom/Initialize(mapload)
 	. = ..()
 
-	qdel(holder.GetComponent(/datum/component/itempicky))
+	qdel(GetComponent(/datum/component/itempicky))
