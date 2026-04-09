@@ -141,8 +141,8 @@
 
 /obj/item/storage/bag/quiver/lesser/armory/PopulateContents()
 	var/static/items_inside = list(
-		/obj/item/ammo_casing/arrow/blunt = 5,
-		/obj/item/ammo_casing/arrow = 4,
+		/obj/item/ammo_casing/arrow/blunt = 3,
+		/obj/item/ammo_casing/arrow = 6,
 		/obj/item/ammo_casing/arrow/taser = 1
 	)
 

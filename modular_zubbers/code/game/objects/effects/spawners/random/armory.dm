@@ -29,6 +29,8 @@
 		/obj/item/storage/box/rubbershot,
 		/obj/item/storage/box/beanbag,
 		/obj/item/storage/box/beanbag,
+		/obj/item/storage/bag/quiver/lesser/armory,
+		/obj/item/storage/bag/quiver/lesser/armory,
 	)
 	spawn_all_loot = TRUE
 
@@ -60,7 +62,8 @@
 	spawn_all_loot = TRUE
 /obj/effect/spawner/random/armory/shotgun
 	loot = list(
-		/obj/item/gun/ballistic/shotgun/riot
+		/obj/item/gun/ballistic/shotgun/riot,
+		/obj/item/gun/ballistic/bow/security,
 	)
 	spawn_loot_count = 3
 

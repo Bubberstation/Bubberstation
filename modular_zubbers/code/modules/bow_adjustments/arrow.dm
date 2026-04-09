@@ -25,6 +25,13 @@
 		/mob/living/basic/wumborian_fugu,
 	)
 
+/obj/item/gun/ballistic/bow
+	/// If this bow counts as being effectively used, which makes arrows not weak to armor and enables wounding.
+	var/effective = FALSE
+
+/obj/item/gun/ballistic/bow/divine
+	effective = TRUE
+
 /obj/projectile/bullet/arrow/prehit_pierce(mob/living/target)
 	if (already_effective)
 		return ..()
@@ -35,8 +42,10 @@
 
 	var/effective_usage = FALSE
 
-	if(!isnull(fired_from) && HAS_TRAIT(fired_from, TRAIT_POWERFUL_BOW))
-		effective_usage = TRUE
+	if(!isnull(fired_from) && istype(fired_from, /obj/item/gun/ballistic/bow))
+		var/obj/item/gun/ballistic/bow/bow = fired_from
+		if (bow.effective)
+			effective_usage = TRUE
 	if(gets_tribal_bonus && istype(user?.mind?.assigned_role, /datum/job/ash_walker) || istype(user?.mind?.assigned_role, /datum/job/primitive_catgirl))
 		damage += tribal_damage_bonus
 		effective_usage = TRUE

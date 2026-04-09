@@ -82,8 +82,8 @@
 
 /obj/item/storage/bag/quiver/lesser/security/PopulateContents()
 	var/static/items_inside = list(
-		/obj/item/ammo_casing/arrow/blunt = 9,
-		/obj/item/ammo_casing/arrow/taser = 1
+		/obj/item/ammo_casing/arrow/blunt = 7,
+		/obj/item/ammo_casing/arrow/taser = 3
 	)
 
 	generate_items_inside(items_inside, src)

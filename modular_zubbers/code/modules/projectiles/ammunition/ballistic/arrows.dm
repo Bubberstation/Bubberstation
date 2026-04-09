@@ -37,7 +37,6 @@
 	tool_paths = list(
 		/obj/item/hatchet,
 	)
-	time = 5 SECONDS
 	category = CAT_WEAPON_AMMO
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
@@ -50,6 +49,10 @@
 		/obj/item/assembly/igniter = 1,
 		/obj/item/stock_parts/power_store/cell = 1,
 	)
+	blacklist = list(
+		/obj/item/ammo_casing/arrow/taser
+	)
+	time = 1 SECONDS
 	tool_behaviors = list(TOOL_SAW)
 	category = CAT_WEAPON_AMMO
 
