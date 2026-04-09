@@ -25,8 +25,6 @@
 /mob/living/carbon/alien
 	var/gives_default_antag_datum = TRUE
 
-
-
 /obj/effect/mob_spawn/ghost_role/beno
 	name = "Comatose Xenomorph"
 	desc = "They are in a deep sleep but they seem passive, dont hurt them."
