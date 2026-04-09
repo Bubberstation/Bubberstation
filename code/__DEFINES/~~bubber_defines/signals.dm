@@ -71,3 +71,6 @@
 #define COMSIG_MECHIVER_CONVERT "mechiver_convert"
 
 //#define COMSIG_CORE_DEATH "fleshmind_core_death"
+
+/// Used to trigger a signal to custom tongue quirk's proc.
+#define COMSIG_SET_SAY_MODIFIERS "set_say_modifiers"

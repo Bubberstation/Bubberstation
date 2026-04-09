@@ -1,9 +1,28 @@
-/obj/item/organ/tongue/copy_traits_from(obj/item/organ/tongue/old_tongue, copy_actions = FALSE)
+/obj/item/organ/tongue/copy_traits_from(obj/item/organ/tongue/old_tongue, mob/living/carbon/organ_receiver, copy_actions = FALSE)
 	. = ..()
 	// make sure we get food preferences too, because those are now tied to tongues for some reason
 	liked_foodtypes = old_tongue.liked_foodtypes
 	disliked_foodtypes = old_tongue.disliked_foodtypes
 	toxic_foodtypes = old_tongue.toxic_foodtypes
+	if (!organ_receiver || !organ_receiver.get_quirk(/datum/quirk/custom_tongue))
+		return
+	set_say_modifiers(organ_receiver)
+
+/// Used to set the say modifiers on organ_receiver (ideally a player.) Early returns if the target has a signal listening (runs /datum/quirk/custom_tongue/proc/tongue_setup())
+/obj/item/organ/tongue/proc/set_say_modifiers(mob/living/carbon/organ_receiver, ask, exclaim, whisper, yell, say)
+	var/obj/item/organ/tongue/tongue = organ_receiver.get_organ_slot(ORGAN_SLOT_TONGUE)
+	if(SEND_SIGNAL(organ_receiver, COMSIG_SET_SAY_MODIFIERS))
+		return // Early return so other quirks don't overwrite custom tongue.
+	if(ask)
+		organ_receiver.verb_ask = ask
+	if(exclaim)
+		organ_receiver.verb_exclaim = exclaim
+	if(whisper)
+		organ_receiver.verb_whisper = whisper
+	if(yell)
+		organ_receiver.verb_yell = yell
+	if(say)
+		tongue.say_mod = say
 
 /obj/item/organ/tongue/dog
 	name = "long tongue"
@@ -14,10 +33,7 @@
 
 /obj/item/organ/tongue/dog/on_mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	. = ..()
-	signer.verb_ask = "arfs"
-	signer.verb_exclaim = "wans"
-	signer.verb_whisper = "whimpers"
-	signer.verb_yell = "barks"
+	set_say_modifiers(signer, "arfs", "wans", "whimpers", "barks")
 
 /obj/item/organ/tongue/dog/on_mob_remove(mob/living/carbon/speaker, special = FALSE, movement_flags)
 	. = ..()
@@ -29,10 +45,7 @@
 
 /obj/item/organ/tongue/cat/on_mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	. = ..()
-	signer.verb_ask = "mrrps"
-	signer.verb_exclaim = "mrrowls"
-	signer.verb_whisper = "purrs"
-	signer.verb_yell = "yowls"
+	set_say_modifiers(signer, "mrrps", "mrrowls", "purrs", "yowls")
 
 /obj/item/organ/tongue/cat/on_mob_remove(mob/living/carbon/speaker, special = FALSE, movement_flags)
 	. = ..()
@@ -50,10 +63,7 @@
 
 /obj/item/organ/tongue/avian/on_mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	. = ..()
-	signer.verb_ask = "peeps"
-	signer.verb_exclaim = "squawks"
-	signer.verb_whisper = "murmurs"
-	signer.verb_yell = "shrieks"
+	set_say_modifiers(signer, "peeps", "squawks", "murmurs", "shrieks")
 
 /obj/item/organ/tongue/avian/on_mob_remove(mob/living/carbon/speaker, special = FALSE, movement_flags)
 	. = ..()
@@ -72,10 +82,7 @@
 
 /obj/item/organ/tongue/bovine/on_mob_insert(mob/living/carbon/signer, special = FALSE, movement_flags = DELETE_IF_REPLACED)
 	. = ..()
-	signer.verb_ask = "lows"
-	signer.verb_exclaim = "huffs"
-	signer.verb_whisper = "hums"
-	signer.verb_yell = "brays"
+	set_say_modifiers(signer, "lows", "huffs", "hums", "brays")
 
 /obj/item/organ/tongue/bovine/on_mob_remove(mob/living/carbon/speaker, special = FALSE, movement_flags)
 	. = ..()
