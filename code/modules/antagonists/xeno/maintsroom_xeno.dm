@@ -35,7 +35,7 @@
 	show_flavor = TRUE
 	you_are_text = "You are a lost xenomorph."
 	flavour_text = "You are a lost xenomorph, you are disconnected from the hive and you have been stuck here only god knows how long a decade or two? a century? this place might have changed you due to the intensity of the anomalies or you may be the exact same- you dont remember anything before arriving here as you were born here."
-	important_text = "You should nuetral to the crew you are not really an antagonist, THE XENOMORPHS INHERIT THE FLAVOR TEXT/NAME/DESC FROM YOUR CURRENTLY SELECTED CHARACTER."
+	important_text = "You should nuetral to the crew you are not really an antagonist, when you load in you will be presented with two pop ups to choose your name, then your decription these will be your xenos name/desc, along with this if you choose any xenos except the ravager and rouny- you will get hands."
 	faction = list(ROLE_ALIEN)
 	role_ban = ROLE_ALIEN
 	prompt_ghost = FALSE
