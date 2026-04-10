@@ -38,13 +38,9 @@
 /area/shuttle/supply)
 "dY" = (
 /obj/structure/fans/tiny,
-/obj/machinery/door/poddoor{
-	id_tag = "cargoload";
-	name = "supply Dock Loading Door"
-	},
 /obj/machinery/conveyor{
 	dir = 4;
-	id_tag = "cargoload"
+	id = "cargoload"
 	},
 /obj/structure/plasticflaps,
 /turf/open/floor/iron/sepia,
@@ -130,7 +126,7 @@
 /obj/machinery/conveyor/inverted,
 /obj/machinery/conveyor/inverted{
 	dir = 10;
-	id_tag = "cargoload"
+	id = "cargoload"
 	},
 /obj/structure/railing/corner,
 /obj/effect/turf_decal/stripes/full,
@@ -151,7 +147,8 @@
 	id_tag = "CargoAirlocks"
 	},
 /obj/docking_port/mobile/supply{
-	dir = 4
+	dir = 4;
+	width = 13
 	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/supply)
@@ -179,13 +176,9 @@
 /area/shuttle/supply)
 "uA" = (
 /obj/structure/fans/tiny,
-/obj/machinery/door/poddoor{
-	id_tag = "cargounload";
-	name = "supply Dock Unloading Door"
-	},
 /obj/machinery/conveyor{
 	dir = 8;
-	id_tag = "cargounload"
+	id = "cargounload"
 	},
 /obj/structure/plasticflaps,
 /turf/open/floor/iron/sepia,
@@ -226,7 +219,7 @@
 "BA" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	id_tag = "cargoload"
+	id = "cargoload"
 	},
 /obj/effect/turf_decal/stripes/full,
 /obj/structure/railing/corner{
@@ -239,7 +232,7 @@
 /area/shuttle/supply)
 "BH" = (
 /obj/machinery/conveyor_switch/oneway{
-	id_tag = "cargoload"
+	id = "cargoload"
 	},
 /obj/effect/turf_decal/tile/brown/opposingcorners,
 /obj/effect/turf_decal/siding/thinplating_new/dark,
@@ -249,18 +242,7 @@
 /obj/effect/turf_decal/arrows{
 	dir = 4
 	},
-/obj/machinery/button/door{
-	id_tag = "cargounload";
-	name = "Loading Doors";
-	pixel_x = -24;
-	pixel_y = 8
-	},
-/obj/machinery/button/door{
-	id_tag = "cargoload";
-	name = "Loading Doors";
-	pixel_x = -24;
-	pixel_y = -8
-	},
+/obj/machinery/camera/directional/west,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/supply)
 "CL" = (
@@ -272,7 +254,7 @@
 	},
 /obj/machinery/conveyor_switch/oneway{
 	dir = 8;
-	id_tag = "cargounload"
+	id = "cargounload"
 	},
 /obj/effect/turf_decal/tile/brown/opposingcorners,
 /turf/open/floor/mineral/plastitanium,
@@ -280,7 +262,7 @@
 "DA" = (
 /obj/machinery/conveyor{
 	dir = 10;
-	id_tag = "cargounload"
+	id = "cargounload"
 	},
 /obj/effect/turf_decal/stripes/full,
 /turf/open/floor/mineral/plastitanium,
@@ -297,7 +279,7 @@
 "Et" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	id_tag = "cargoload"
+	id = "cargoload"
 	},
 /obj/effect/turf_decal/stripes/full,
 /obj/structure/railing,
@@ -321,7 +303,7 @@
 /area/shuttle/supply)
 "Jx" = (
 /obj/machinery/conveyor{
-	id_tag = "cargounload"
+	id = "cargounload"
 	},
 /obj/machinery/light/directional/west,
 /obj/effect/turf_decal/stripes/full,
@@ -330,7 +312,7 @@
 "LB" = (
 /obj/machinery/conveyor{
 	dir = 1;
-	id_tag = "cargoload"
+	id = "cargoload"
 	},
 /obj/structure/railing/corner,
 /obj/effect/turf_decal/stripes/full,
@@ -360,7 +342,7 @@
 /area/shuttle/supply)
 "RH" = (
 /obj/machinery/conveyor{
-	id_tag = "cargounload"
+	id = "cargounload"
 	},
 /obj/effect/turf_decal/stripes/full,
 /turf/open/floor/mineral/plastitanium,
