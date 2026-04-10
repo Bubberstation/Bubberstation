@@ -1,31 +1,31 @@
 import { type Feature, FeatureShortTextInput } from '../../base';
 
-export const custom_tongue_ask: Feature<string> = {
-  name: 'Ask?',
+export const custom_speech_modifier_ask: Feature<string> = {
+  name: 'Custom Speech Modifier: Ask?',
   description: 'Automated Ask say modifier. A-Z Only, no spaces.',
   component: FeatureShortTextInput,
 };
 
-export const custom_tongue_exclaim: Feature<string> = {
-  name: 'Exclaim!',
+export const custom_speech_modifier_exclaim: Feature<string> = {
+  name: 'Custom Speech Modifier: Exclaim!',
   description: 'Automated Exclaim say modifier. A-Z Only, no spaces.',
   component: FeatureShortTextInput,
 };
 
-export const custom_tongue_whisper: Feature<string> = {
-  name: 'whisper',
+export const custom_speech_modifier_whisper: Feature<string> = {
+  name: 'Custom Speech Modifier: whisper',
   description: 'Automated Whisper say modifier. A-Z Only, no spaces.',
   component: FeatureShortTextInput,
 };
 
-export const custom_tongue_yell: Feature<string> = {
-  name: 'Yell!!',
+export const custom_speech_modifier_yell: Feature<string> = {
+  name: 'Custom Speech Modifier: Yell!!',
   description: 'Automated Yell say modifier. A-Z Only, no spaces.',
   component: FeatureShortTextInput,
 };
 
-export const custom_tongue_say: Feature<string> = {
-  name: 'Say.',
+export const custom_speech_modifier_say: Feature<string> = {
+  name: 'Custom Speech Modifier: Say.',
   description: 'Automated Say say modifier. A-Z Only, no spaces.',
   component: FeatureShortTextInput,
 };
