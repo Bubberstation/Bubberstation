@@ -2,7 +2,6 @@
 
 /mob/living/carbon/alien/adult/skyrat/ravager/maintsroom
 	next_evolution = null
-	gives_default_antag_datum = FALSE
 	default_organ_types_by_slot = list(
 		ORGAN_SLOT_BRAIN = /obj/item/organ/brain/alien,
 		ORGAN_SLOT_XENO_HIVENODE = /obj/item/organ/alien,
