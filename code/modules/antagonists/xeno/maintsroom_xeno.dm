@@ -22,9 +22,6 @@
 /datum/objective/maints_benos/New()
 	explanation_text = "Escape your cell and survive. You remember nothing of time before you came here. You've been here for god knows how long-- A decade? A century? This place has changed you. Be it the time, the environment, or the bioscramblers. You are not what you once were."
 
-/mob/living/carbon/alien
-	var/gives_default_antag_datum = TRUE
-
 /obj/effect/mob_spawn/ghost_role/beno
 	name = "Comatose Xenomorph"
 	desc = "They are in a deep sleep but they seem passive, don't hurt them."
