@@ -43,6 +43,7 @@
 		/obj/item/gun/ballistic/shotgun/riot/sol,
 		/obj/item/gun/ballistic/shotgun/riot/sol,
 		/obj/item/gun/ballistic/shotgun/riot/sol,
+		/obj/item/gun/ballistic/bow/security,
 	)
 
 /obj/structure/closet/ammunitionlocker/useful/PopulateContents()
@@ -50,6 +51,7 @@
 	new /obj/item/storage/box/rubbershot(src)
 	new /obj/item/storage/box/rubbershot(src)
 	new /obj/item/storage/box/rubbershot(src)
+	new /obj/item/storage/bag/quiver/lesser/armory(src)
 
 /*
 *	AMMO BOXES
