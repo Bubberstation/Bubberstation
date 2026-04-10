@@ -57,6 +57,13 @@
 
 	return ..()
 
+/obj/projectile/bullet/arrow/poison
+	damage = 20
+
+/obj/projectile/bullet/arrow/sticky
+	damage = 3 // decrease from 30 - makes it less lethal on initial impact and awful to tear out
+	stamina = 30
+
 /obj/projectile/bullet/arrow/holy
 	damage = 25 // Increase from 20
 	embed_type = /datum/embedding/arrow
