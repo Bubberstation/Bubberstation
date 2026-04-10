@@ -147,3 +147,32 @@
 	)
 
 	generate_items_inside(items_inside, src)
+
+/datum/supply_pack/security/armory/lethal_arrows
+	name = "Arrow Crate"
+	desc = "Two quivers containing nine normal arrows and one randomly selected specialty arrow."
+	cost = CARGO_CRATE_VALUE * 3
+	contains = list(
+		/obj/item/storage/bag/quiver/lesser/lethal,
+		/obj/item/storage/bag/quiver/lesser/lethal
+	)
+
+/obj/item/storage/bag/quiver/lesser/lethal
+
+/obj/item/storage/bag/quiver/lesser/lethal/PopulateContents()
+	var/static/list/static_items = list(
+		/obj/item/ammo_casing/arrow = 9
+	)
+	/// Typepath -> Weight
+	var/static/list/bonus_items = list(
+		/obj/item/ammo_casing/arrow/sticky = 10,
+		/obj/item/ammo_casing/arrow/poison = 10,
+		/obj/item/ammo_casing/arrow/plastic = 6,
+		/obj/item/ammo_casing/arrow/bronze = 1,
+		/obj/item/ammo_casing/arrow/taser = 1,
+	)
+
+	var/list/obj/item/ammo_casing/arrow/to_spawn = static_items.Copy()
+	to_spawn[pick_weight(bonus_items)] = 1
+
+	generate_items_inside(to_spawn, src)
