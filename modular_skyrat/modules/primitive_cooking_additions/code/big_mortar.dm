@@ -129,13 +129,13 @@
 
 			if("Grind")
 				for(var/obj/item/target_item as anything in contents)
-					if(target_item.grind_results)
+					if(target_item.grind_results || target_item.reagents?.total_volume)
 						grind_target_item(target_item, user)
 					else
 						juice_target_item(target_item, user)
 		return
 
-	if(!attacking_item.grind_results && !attacking_item.juice_typepath)
+	if(!attacking_item.grind_results && !attacking_item.juice_typepath && !attacking_item.reagents?.total_volume)
 		balloon_alert(user, "can't grind this")
 		return ..()
 
