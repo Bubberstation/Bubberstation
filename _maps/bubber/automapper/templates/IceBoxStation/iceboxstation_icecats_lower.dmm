@@ -216,6 +216,7 @@
 	dir = 1
 	},
 /obj/structure/water_source/puddle,
+/obj/effect/turf_decal/weather/snow/corner,
 /turf/open/misc/dirt/icemoon,
 /area/ruin/unpowered/primitive_catgirl_den)
 "fd" = (
@@ -1165,12 +1166,12 @@
 /area/ruin/unpowered/primitive_catgirl_den)
 "AV" = (
 /obj/structure/closet/crate/wooden/storage_barrel,
-/obj/item/stack/ore/glass/thirty,
 /obj/item/stack/ore/glass/thirty{
-	pixel_y = 5
+	pixel_y = 5;
+	amount = 50
 	},
-/obj/item/stack/ore/glass/thirty{
-	pixel_y = -6
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 10
 	},
 /turf/open/misc/dirt/icemoon,
 /area/ruin/unpowered/primitive_catgirl_den)
@@ -1675,6 +1676,9 @@
 /obj/item/stack/sheet/mineral/stone/five{
 	pixel_y = -5;
 	pixel_x = 7
+	},
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 1
 	},
 /turf/open/misc/dirt/icemoon,
 /area/ruin/unpowered/primitive_catgirl_den)
