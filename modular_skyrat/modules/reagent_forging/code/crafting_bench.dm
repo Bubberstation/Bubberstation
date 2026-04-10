@@ -53,7 +53,7 @@
 	/// Filters the radial choice list by if it requires the smithing skillchip; true means corresponding element requires it
 	var/list/choice_list_trait_filter = list()
 
-/obj/structure/reagent_forge/Initialize(mapload)
+/obj/structure/reagent_crafting_bench/Initialize(mapload)
 	. = ..()
 	populate_radial_choice_list()
 
