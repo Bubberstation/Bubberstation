@@ -91,18 +91,42 @@
 	var/mob/living/carbon/carbon_mob = spawned_mob
 	carbon_mob.desc = new_mob_desc
 
+/mob/living/carbon/alien/adult/skyrat/drone/maintsroom/mind_initialize()
+	..()
+	if(mind.has_antag_datum(/datum/antagonist/xeno))
+		mind.remove_antag_datum(/datum/antagonist/xeno)
 
-// alrighty, missing sanitize_name
-// /proc/sanitize_name(target, allow_numbers = FALSE, cap_after_symbols = TRUE)
-// it's for seeing if the name inputted is bad or not, run the result of tgui_input_text with santiize_name
-// quite confusing for an edge case that may never be used, let me see if this even works first
+/mob/living/carbon/alien/adult/skyrat/defender/maintsroom/mind_initialize()
+	..()
+	if(mind.has_antag_datum(/datum/antagonist/xeno))
+		mind.remove_antag_datum(/datum/antagonist/xeno)
 
-// /proc/sanitize_name(beno_name, allow_numbers = FALSE, cap_after_symbols = TRUE)
-//	if(is_ic_filtered(target) || is_soft_ic_filtered(target))
-//		tgui_alert(usr, "You cannot set a name that contains a word prohibited in IC chat!")
-//		return ""
-//	var/result = reject_bad_name(target, allow_numbers = allow_numbers, strict = TRUE, cap_after_symbols = cap_after_symbols)
-//	if(!result)
-//		tgui_alert(usr, "Invalid name.")
-//		return ""
-//	return sanitize(result)
+/mob/living/carbon/alien/adult/skyrat/praetorian/maintsroom/mind_initialize()
+	..()
+	if(mind.has_antag_datum(/datum/antagonist/xeno))
+		mind.remove_antag_datum(/datum/antagonist/xeno)
+
+/mob/living/carbon/alien/adult/skyrat/ravager/maintsroom/mind_initialize()
+	..()
+	if(mind.has_antag_datum(/datum/antagonist/xeno))
+		mind.remove_antag_datum(/datum/antagonist/xeno)
+
+/mob/living/carbon/alien/adult/skyrat/runner/maintsroom/mind_initialize()
+	..()
+	if(mind.has_antag_datum(/datum/antagonist/xeno))
+		mind.remove_antag_datum(/datum/antagonist/xeno)
+
+/mob/living/carbon/alien/adult/skyrat/sentinel/maintsroom/mind_initialize()
+	..()
+	if(mind.has_antag_datum(/datum/antagonist/xeno))
+		mind.remove_antag_datum(/datum/antagonist/xeno)
+
+/mob/living/carbon/alien/adult/skyrat/spitter/maintsroom/mind_initialize()
+	..()
+	if(mind.has_antag_datum(/datum/antagonist/xeno))
+		mind.remove_antag_datum(/datum/antagonist/xeno)
+
+/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom/mind_initialize()
+	..()
+	if(mind.has_antag_datum(/datum/antagonist/xeno))
+		mind.remove_antag_datum(/datum/antagonist/xeno)
