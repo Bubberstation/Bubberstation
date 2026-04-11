@@ -73,6 +73,19 @@
 	embed_type = null
 	sharpness = NONE
 
+/obj/projectile/bullet/arrow/blunt/on_hit(atom/target, blocked, pierce_hit)
+	. = ..()
+
+	if (pierce_hit)
+		return
+	if (. == BULLET_ACT_BLOCK || blocked >= 100 || !isliving(target))
+		return
+
+	var/mob/living/living_target = target
+	var/percent_blocked = blocked / 100
+
+	living_target.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * (1 - percent_blocked), 10 SECONDS) // it hits really hard
+
 /obj/item/ammo_casing/arrow/taser
 	name = "taser arrow"
 	desc = "An arrow, the head removed, replaced with an igniter, and hooked up to a power cell. Negligible damage, but capable of delivering a terrible electric shock.\n\
