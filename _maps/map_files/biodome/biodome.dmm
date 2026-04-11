@@ -10698,6 +10698,7 @@
 /obj/effect/turf_decal/trimline/dark_red/line{
 	dir = 9
 	},
+/obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron/smooth_large,
 /area/station/security/brig)
 "dNK" = (
@@ -14426,11 +14427,11 @@
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Incinerator"
 	},
-/obj/effect/turf_decal/tile/red/full,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/all/security/brig,
-/turf/open/floor/iron/smooth_large,
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron/dark/textured,
 /area/station/security/brig)
 "fdc" = (
 /obj/structure/table/wood,
@@ -41951,6 +41952,7 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/structure/table/reinforced,
+/obj/structure/wall_torch/spawns_lit/directional/west,
 /turf/open/floor/plating,
 /area/station/cargo/blacksmith)
 "oIM" = (
@@ -54793,11 +54795,6 @@
 	c_tag = "Research - Ordnance Freezer";
 	network = list("ss13","rd")
 	},
-/obj/item/tank/internals/generic,
-/obj/item/tank/internals/generic,
-/obj/item/tank/internals/generic,
-/obj/item/tank/internals/generic,
-/obj/item/tank/internals/generic,
 /turf/open/floor/iron/white,
 /area/station/science/ordnance)
 "sZj" = (
