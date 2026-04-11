@@ -889,7 +889,7 @@
 
 /turf/closed/mineral/gibtonite/ice
 	MAP_SWITCH(, icon_state = "icerock_Gibtonite_inactive")
-	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
+	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi') // BUBBER EDIT
 	base_icon_state = "icerock_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	turf_type = /turf/open/misc/asteroid/snow/ice
@@ -898,6 +898,7 @@
 	defer_change = TRUE
 
 /turf/closed/mineral/gibtonite/ice/icemoon
+	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi') // BUBBER EDIT
 	turf_type = /turf/open/misc/asteroid/snow/ice/icemoon
 	baseturfs = /turf/open/misc/asteroid/snow/ice/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
