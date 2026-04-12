@@ -18665,17 +18665,22 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line,
-/obj/effect/spawner/random/weapon/full_gun{
-	pixel_x = 0;
-	pixel_y = 4
+/obj/item/gun/energy/laser/carbine{
+	pixel_x = -1;
+	pixel_y = 8
 	},
-/obj/effect/spawner/random/weapon/full_gun{
-	pixel_x = 0;
-	pixel_y = 0
+/obj/item/gun/energy/laser/carbine{
+	pixel_x = -3;
+	pixel_y = 6
 	},
-/obj/effect/spawner/random/weapon/full_gun{
-	pixel_x = 0;
-	pixel_y = 2
+/obj/item/gun/energy/laser/musket/prime,
+/obj/item/gun/energy/pulse/pistol{
+	pixel_x = 2;
+	pixel_y = -7
+	},
+/obj/item/gun/energy/pulse/pistol{
+	pixel_x = -8;
+	pixel_y = -8
 	},
 /turf/open/floor/iron/dark/textured,
 /area/station/security/armory)
@@ -26220,6 +26225,7 @@
 /obj/item/clothing/head/hats/hos/beret,
 /obj/item/clothing/mask/gas/sechailer/swat/spacepol,
 /obj/structure/cable,
+/obj/item/organ/cyberimp/arm/toolkit/gun/laser,
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
 "ggJ" = (
@@ -29204,6 +29210,7 @@
 /obj/effect/spawner/random/armory/laser_gun,
 /obj/effect/spawner/random/armory/e_gun,
 /obj/effect/spawner/random/armory/laser_gun,
+/obj/item/gun/energy/laser/scatter,
 /turf/open/floor/iron/dark/textured,
 /area/station/security/armory)
 "gQy" = (
@@ -39287,6 +39294,7 @@
 	},
 /obj/effect/turf_decal/delivery,
 /obj/machinery/camera/autoname/directional/west,
+/obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "jhp" = (
@@ -39794,6 +39802,7 @@
 	},
 /obj/structure/closet/secure_closet/research_director,
 /obj/machinery/firealarm/directional/north,
+/obj/item/gun/energy/ionrifle,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/rd)
 "jmP" = (
@@ -48976,6 +48985,7 @@
 	move_force = 1;
 	pull_force = 1
 	},
+/obj/item/gun/energy/laser/luxurypaywall,
 /turf/open/floor/carpet/orange,
 /area/station/command/heads_quarters/qm)
 "lvh" = (
@@ -51241,19 +51251,11 @@
 /turf/open/floor/iron/white,
 /area/station/medical/office)
 "lXl" = (
-/obj/structure/sign/poster/official/random/directional/north,
-/obj/structure/disposalpipe/segment{
-	dir = 8
+/obj/machinery/computer/order_console/bitrunning{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/iron/white,
-/area/station/medical/medbay/central)
+/turf/open/floor/iron/dark,
+/area/station/cargo/bitrunning/den)
 "lXr" = (
 /obj/item/bedsheet/medical,
 /obj/effect/turf_decal/bot_white,
@@ -62742,6 +62744,7 @@
 /obj/effect/spawner/random/armory/laser_gun,
 /obj/effect/spawner/random/armory/laser_gun,
 /obj/effect/spawner/random/armory/e_gun,
+/obj/item/gun/energy/laser/scatter,
 /turf/open/floor/iron/dark/textured,
 /area/station/security/armory)
 "oHY" = (
@@ -65515,6 +65518,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/spawner/random/armory/shotgun,
 /obj/machinery/firealarm/directional/north,
+/obj/effect/spawner/random/armory/shotgun,
 /turf/open/floor/iron/dark/textured,
 /area/station/security/armory)
 "plP" = (
@@ -69022,6 +69026,7 @@
 	},
 /obj/machinery/light/directional/north,
 /obj/structure/rack,
+/obj/effect/spawner/random/armory/shotgun,
 /obj/effect/spawner/random/armory/shotgun,
 /turf/open/floor/iron/dark/textured,
 /area/station/security/armory)
@@ -80266,6 +80271,7 @@
 	dir = 6
 	},
 /obj/item/pinpointer/nuke,
+/obj/item/gun/energy/disabler/smoothbore/prime,
 /turf/open/floor/carpet/royalblue,
 /area/station/command/heads_quarters/captain/private)
 "sGt" = (
@@ -84639,6 +84645,7 @@
 	dir = 1
 	},
 /obj/machinery/light/directional/south,
+/obj/structure/extinguisher_cabinet/directional/south,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "tIE" = (
@@ -86197,6 +86204,11 @@
 /obj/machinery/light/directional/north,
 /obj/effect/spawner/random/armory/disablers,
 /obj/effect/spawner/random/armory/disablers,
+/obj/item/gun/energy/disabler/smoothbore,
+/obj/item/gun/energy/laser/scatter/shotty{
+	pixel_x = 0;
+	pixel_y = 9
+	},
 /turf/open/floor/iron/dark/textured,
 /area/station/security/armory)
 "ubq" = (
@@ -93980,6 +93992,12 @@
 	dir = 4
 	},
 /obj/structure/rack,
+/obj/item/organ/cyberimp/arm/toolkit/gun/taser{
+	pixel_x = 0;
+	pixel_y = 6
+	},
+/obj/item/organ/cyberimp/arm/toolkit/gun/taser,
+/obj/item/bikehorn/rubberducky,
 /obj/item/bikehorn/rubberducky{
 	pixel_x = 7;
 	pixel_y = 10
@@ -93988,8 +94006,6 @@
 	pixel_x = -6;
 	pixel_y = 8
 	},
-/obj/item/organ/cyberimp/arm/toolkit/gun/taser,
-/obj/item/bikehorn/rubberducky,
 /turf/open/floor/iron/dark/textured,
 /area/station/security/armory)
 "vPo" = (
@@ -96133,7 +96149,6 @@
 /area/station/maintenance/department/science/xenobiology)
 "wpI" = (
 /obj/machinery/light/directional/north,
-/obj/structure/extinguisher_cabinet/directional/north,
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
@@ -96144,6 +96159,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/machinery/incident_display/disease/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "wpK" = (
@@ -103139,6 +103155,7 @@
 /obj/machinery/airalarm/directional/south,
 /obj/effect/spawner/random/contraband/armory,
 /obj/effect/spawner/random/contraband/armory,
+/obj/item/gun/energy/marksman_revolver,
 /turf/open/floor/iron/dark/textured,
 /area/station/security/armory)
 "xZj" = (
@@ -143133,7 +143150,7 @@ ury
 qAw
 aIP
 cTA
-cTA
+lXl
 fQw
 nuO
 nuO
@@ -152874,7 +152891,7 @@ ehR
 jhb
 nup
 wmW
-lXl
+qna
 eHb
 rAh
 ina
