@@ -15,15 +15,7 @@ export enum BodyZone {
   Groin = 'groin',
 }
 
-const renderTogetherIfImprecise = {
-  [BodyZone.Chest]: [BodyZone.Groin],
-};
-
-function bodyZonePixelToZone(
-  x: number,
-  y: number,
-  precise: boolean,
-): BodyZone | null {
+function bodyZonePixelToZone(x: number, y: number): BodyZone | null {
   // TypeScript translation of /atom/movable/screen/zone_sel/proc/get_zone_at
   if (y < 1) {
     return null;
@@ -37,7 +29,7 @@ function bodyZonePixelToZone(
     if (x > 8 && x < 11) {
       return BodyZone.RightArm;
     } else if (x > 12 && x < 20) {
-      return precise ? BodyZone.Groin : BodyZone.Chest;
+      return BodyZone.Groin;
     } else if (x > 21 && x < 24) {
       return BodyZone.LeftArm;
     }
@@ -51,9 +43,9 @@ function bodyZonePixelToZone(
     }
   } else if (y < 30 && x > 12 && x < 20) {
     if (y > 23 && y < 24 && x > 15 && x < 17) {
-      return precise ? BodyZone.Mouth : BodyZone.Head;
+      return BodyZone.Mouth;
     } else if (y > 25 && y < 27 && x > 14 && x < 18) {
-      return precise ? BodyZone.Eyes : BodyZone.Head;
+      return BodyZone.Eyes;
     } else {
       return BodyZone.Head;
     }
@@ -62,63 +54,11 @@ function bodyZonePixelToZone(
   return null;
 }
 
-type BodyImageProps = {
-  zone: BodyZone;
-  scale?: number;
-  theme?: string;
-  opacity?: number;
-  precise?: boolean;
-};
-
-function BodyImage(props: BodyImageProps) {
-  const {
-    zone,
-    scale = 3,
-    theme = 'midnight',
-    opacity = 1,
-    precise = true,
-  } = props;
-
-  return (
-    <>
-      <Image
-        src={resolveAsset(`body_zones.${zone}.png`)}
-        style={{
-          opacity: opacity,
-          pointerEvents: 'none',
-          position: 'absolute',
-          width: `${32 * scale}px`,
-          height: `${32 * scale}px`,
-        }}
-      />
-      {!precise &&
-        renderTogetherIfImprecise[zone]?.map((otherZone) => (
-          <Image
-            key={otherZone}
-            src={resolveAsset(`body_zones.${otherZone}.png`)}
-            style={{
-              opacity: opacity,
-              pointerEvents: 'none',
-              position: 'absolute',
-              width: `${32 * scale}px`,
-              height: `${32 * scale}px`,
-            }}
-          />
-        ))}
-    </>
-  );
-}
-
-function HoverImage(props: BodyImageProps) {
-  return <BodyImage {...props} opacity={0.5} />;
-}
-
 type BodyZoneSelectorProps = {
   onClick?: (zone: BodyZone) => void;
   scale?: number;
   selectedZone: BodyZone | null;
   theme?: string;
-  precise?: boolean;
 };
 
 type BodyZoneSelectorState = {
@@ -136,12 +76,7 @@ export class BodyZoneSelector extends Component<
 
   render() {
     const { hoverZone } = this.state;
-    const {
-      scale = 3,
-      selectedZone,
-      theme = 'midnight',
-      precise = true,
-    } = this.props;
+    const { scale = 3, selectedZone, theme = 'midnight' } = this.props;
 
     return (
       <div
@@ -174,7 +109,7 @@ export class BodyZoneSelector extends Component<
             const y = 32 * scale - (event.clientY - rect.top);
 
             this.setState({
-              hoverZone: bodyZonePixelToZone(x / scale, y / scale, precise),
+              hoverZone: bodyZonePixelToZone(x / scale, y / scale),
             });
           }}
           style={{
@@ -183,9 +118,30 @@ export class BodyZoneSelector extends Component<
             height: `${32 * scale}px`,
           }}
         />
-        {selectedZone && <BodyImage {...this.props} zone={selectedZone} />}
+
+        {selectedZone && (
+          <Image
+            src={resolveAsset(`body_zones.${selectedZone}.png`)}
+            style={{
+              pointerEvents: 'none',
+              position: 'absolute',
+              width: `${32 * scale}px`,
+              height: `${32 * scale}px`,
+            }}
+          />
+        )}
+
         {hoverZone && hoverZone !== selectedZone && (
-          <HoverImage {...this.props} zone={hoverZone} />
+          <Image
+            src={resolveAsset(`body_zones.${hoverZone}.png`)}
+            style={{
+              opacity: '0.5',
+              pointerEvents: 'none',
+              position: 'absolute',
+              width: `${32 * scale}px`,
+              height: `${32 * scale}px`,
+            }}
+          />
         )}
       </div>
     );

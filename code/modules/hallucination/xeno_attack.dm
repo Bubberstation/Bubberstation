@@ -4,9 +4,6 @@
 	hallucination_tier = HALLUCINATION_TIER_RARE
 
 /datum/hallucination/xeno_attack/start()
-	if(hallucinator.stat >= UNCONSCIOUS)
-		return FALSE
-
 	var/turf/xeno_attack_source
 	for(var/obj/machinery/atmospherics/components/unary/vent_pump/nearby_pump in orange(7, hallucinator))
 		if(nearby_pump.welded)

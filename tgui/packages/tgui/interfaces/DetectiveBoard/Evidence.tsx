@@ -170,6 +170,7 @@ export function Evidence(props: Props) {
               {evidence.type === 'photo' ? (
                 <img className="Evidence__Icon" src={evidence.photo_url} />
               ) : (
+                // biome-ignore lint/security/noDangerouslySetInnerHtml: ignore
                 <div dangerouslySetInnerHTML={{ __html: evidence.text }} />
               )}
             </Box>

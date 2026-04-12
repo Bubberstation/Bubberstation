@@ -7,15 +7,15 @@
 	dir = 4
 	},
 /obj/machinery/newscaster/directional/north,
-/turf/open/floor/iron/dark,
-/area/station/hallway/secondary/entry)
+/turf/template_noop,
+/area/template_noop)
 "f" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
-/obj/machinery/light/cold/dim/directional/east,
-/turf/open/floor/iron/dark,
-/area/station/hallway/secondary/entry)
+/obj/machinery/light/cold/dim/directional/north,
+/turf/template_noop,
+/area/template_noop)
 "j" = (
 /obj/machinery/door/airlock/maintenance,
 /turf/open/floor/engine/hull,
@@ -114,6 +114,11 @@
 	},
 /turf/template_noop,
 /area/template_noop)
+"M" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
 "N" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
@@ -122,8 +127,12 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
 "P" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/iron/dark,
+/obj/machinery/door/airlock/external{
+	name = "Auxiliary Ship Docks"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/catwalk_floor,
 /area/station/hallway/secondary/entry)
 "Q" = (
 /obj/machinery/door/airlock/external{
@@ -154,7 +163,7 @@
 (1,1,1) = {"
 u
 u
-G
+u
 P
 z
 c
@@ -173,7 +182,7 @@ u
 u
 u
 d
-Y
+M
 Y
 x
 Y
@@ -207,7 +216,7 @@ u
 "}
 (4,1,1) = {"
 u
-G
+u
 f
 E
 Y
@@ -225,8 +234,8 @@ u
 "}
 (5,1,1) = {"
 u
-G
-G
+u
+u
 G
 z
 z
@@ -244,10 +253,10 @@ u
 (6,1,1) = {"
 u
 u
+u
 Z
-Z
-Z
-Z
+u
+u
 u
 u
 u

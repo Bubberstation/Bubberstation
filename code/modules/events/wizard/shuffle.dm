@@ -34,7 +34,9 @@
 		moblocs.len -= 1
 
 	for(var/mob/living/carbon/human/victim in GLOB.alive_mob_list)
-		do_smoke(0, victim, victim.loc)
+		var/datum/effect_system/fluid_spread/smoke/smoke = new
+		smoke.set_up(0, holder = victim, location = victim.loc)
+		smoke.start()
 
 //---//
 
@@ -67,7 +69,9 @@
 		mobnames.len -= 1
 
 	for(var/mob/living/carbon/human/victim in GLOB.alive_mob_list)
-		do_smoke(0, victim, victim.loc)
+		var/datum/effect_system/fluid_spread/smoke/smoke = new
+		smoke.set_up(0, holder = victim, location = victim.loc)
+		smoke.start()
 
 //---//
 
@@ -103,4 +107,6 @@
 	qdel(swapper)
 
 	for(var/mob/living/carbon/human/alive_human in GLOB.alive_mob_list)
-		do_smoke(0, alive_human, alive_human.loc)
+		var/datum/effect_system/fluid_spread/smoke/smoke = new()
+		smoke.set_up(0, holder = alive_human, location = alive_human.loc)
+		smoke.start()

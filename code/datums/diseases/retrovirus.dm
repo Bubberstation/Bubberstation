@@ -27,7 +27,7 @@
 	D.restcure = restcure
 	return D
 
-/datum/disease/dna_retrovirus/stage_act(seconds_per_tick)
+/datum/disease/dna_retrovirus/stage_act(seconds_per_tick, times_fired)
 	. = ..()
 	if(!.)
 		return

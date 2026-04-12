@@ -181,13 +181,14 @@ DEFINE_BITFIELD(no_equip_flags, list(
 #define DIGITIGRADE_STYLE 2
 
 //Flags (actual flags, fucker ^) for /obj/item/var/supports_variations_flags
+/// No alternative sprites or handling based on bodytype
+#define CLOTHING_NO_VARIATION (1<<0)
 /// Has a sprite for digitigrade legs specifically.
-#define CLOTHING_DIGITIGRADE_VARIATION (1<<0)
+#define CLOTHING_DIGITIGRADE_VARIATION (1<<1)
 /// The sprite works fine for digitigrade legs as-is.
-#define CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON (1<<1)
+#define CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON (1<<2)
 /// Auto-generates the leg portion of the sprite with GAGS
-#define CLOTHING_DIGITIGRADE_MASK (1<<2)
-
+#define CLOTHING_DIGITIGRADE_MASK (1<<3)
 // SKYRAT EDIT ADDITION START
 /// The sprite works fine for snouts.
 #define CLOTHING_SNOUTED_VARIATION (1<<4)
@@ -254,8 +255,7 @@ GLOBAL_LIST_INIT(any_suit_storage, typecacheof(list(
 	/obj/item/cigarette,
 	/obj/item/gun/energy/laser/bluetag,
 	/obj/item/gun/energy/laser/redtag,
-	/obj/item/storage/belt/holster,
-	/obj/item/storage/belt/sheath
+	/obj/item/storage/belt/holster
 )))
 
 //Allowed equipment lists for security vests.

@@ -20,8 +20,6 @@
 	base_message_chance = 50
 	symptom_delay_min = 30
 	symptom_delay_max = 60
-	symptom_cure = /datum/reagent/acetaldehyde
-	cure_color = "orange"
 	var/excludemuts = NONE
 	var/no_reset = FALSE
 	var/mutadone_proof = NONE

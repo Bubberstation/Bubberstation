@@ -50,7 +50,7 @@
 
 /datum/ai_planning_subtree/random_speech/when_has_target/mimic_machine
 	speech_chance = 7
-	emote_hear = null
+	emote_hear = list()
 	speak = list(
 		"HUMANS ARE IMPERFECT!",
 		"YOU SHALL BE ASSIMILATED!",

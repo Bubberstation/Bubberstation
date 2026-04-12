@@ -34,7 +34,9 @@
 
 /// Proc that returns true or false if the organ should show its examine check.
 /datum/element/noticable_organ/proc/should_show_text(mob/living/carbon/examined)
-	return examined.is_location_accessible(body_zone)
+	if(body_zone && (body_zone in examined.get_covered_body_zones()))
+		return FALSE
+	return TRUE
 
 /datum/element/noticable_organ/proc/enable_description(obj/item/organ/target, mob/living/carbon/receiver)
 	SIGNAL_HANDLER

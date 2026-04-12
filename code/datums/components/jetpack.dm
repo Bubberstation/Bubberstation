@@ -94,8 +94,9 @@
 /datum/component/jetpack/proc/setup_trail(mob/user)
 	if(trail)
 		QDEL_NULL(trail)
-	trail = new effect_type(user)
+	trail = new effect_type
 	trail.auto_process = FALSE
+	trail.set_up(user)
 	trail.start()
 
 /datum/component/jetpack/proc/activate(datum/source, mob/new_user)

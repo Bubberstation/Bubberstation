@@ -27,7 +27,7 @@
 
 /obj/item/clothing/gloves/combat/wizard/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/adjust_fishing_difficulty, -5) //something something wizard casting
+	AddComponent(/datum/component/adjust_fishing_difficulty, -5) //something something wizard casting
 
 /obj/item/clothing/gloves/combat/floortile
 	name = "floortile camouflage gloves"
@@ -37,4 +37,4 @@
 
 /obj/item/clothing/gloves/combat/floortile/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/adjust_fishing_difficulty, -5) //tacticool
+	AddComponent(/datum/component/adjust_fishing_difficulty, -5) //tacticool

@@ -2,7 +2,7 @@
 
 /obj/structure/window/reinforced/fulltile/Initialize(mapload, direct)
 	. = ..()
-	RemoveElement(/datum/element/simple_rotation)
+	qdel(GetComponent(/datum/component/simple_rotation))
 	AddElement(/datum/element/airbag)
 
 /**

@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	maxHealth = 250
 	health = 250
 	gender = NEUTER
-	mob_biotypes = MOB_MINERAL
+	mob_biotypes = NONE
 	pass_flags = PASSFLAPS
 	melee_damage_lower = 8
 	melee_damage_upper = 12
@@ -283,7 +283,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	copied_ref = null
 	return ..()
 
-/mob/living/basic/mimic/copy/Life(seconds_per_tick = SSMOBS_DT)
+/mob/living/basic/mimic/copy/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(!.) //dead or deleted
 		return

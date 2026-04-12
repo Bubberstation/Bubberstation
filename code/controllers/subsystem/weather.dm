@@ -109,8 +109,7 @@ SUBSYSTEM_DEF(weather)
 
 
 	var/datum/weather/W = new weather_datum_type(z_levels, weather_data)
-	W.telegraph(weather_data)
-	return W
+	W.telegraph()
 
 /datum/controller/subsystem/weather/proc/make_eligible(z, possible_weather)
 	eligible_zlevels[z] = possible_weather

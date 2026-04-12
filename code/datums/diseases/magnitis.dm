@@ -15,7 +15,7 @@
 	process_dead = TRUE
 
 
-/datum/disease/magnitis/stage_act(seconds_per_tick)
+/datum/disease/magnitis/stage_act(seconds_per_tick, times_fired)
 	. = ..()
 	if(!.)
 		return

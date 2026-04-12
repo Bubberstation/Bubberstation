@@ -12,7 +12,7 @@
 
 /obj/item/clothing/gloves/color/black/Initialize(mapload)
 	. = ..()
-	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/radio_containing/radiogloves)
+	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/radiogloves)
 
 	AddElement(
 		/datum/element/slapcrafting,\
@@ -44,7 +44,7 @@
 /obj/item/clothing/gloves/fingerless/Initialize(mapload)
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/gripperoffbrand)
-	AddElement(/datum/element/adjust_fishing_difficulty, -4)
+	AddComponent(/datum/component/adjust_fishing_difficulty, -4)
 
 	AddElement(
 		/datum/element/slapcrafting,\

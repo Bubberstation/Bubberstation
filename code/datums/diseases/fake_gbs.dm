@@ -11,7 +11,7 @@
 	severity = DISEASE_SEVERITY_BIOHAZARD
 
 
-/datum/disease/fake_gbs/stage_act(seconds_per_tick)
+/datum/disease/fake_gbs/stage_act(seconds_per_tick, times_fired)
 	. = ..()
 	if(!.)
 		return

@@ -76,13 +76,13 @@
 
 	switch(action)
 		if("random_domain")
-			server.cold_boot_map(server.get_random_domain_id(), was_random_selection = TRUE)
+			server.cold_boot_map(server.get_random_domain_id())
 			return TRUE
 		if("refresh")
 			ui.send_full_update()
 			return TRUE
 		if("set_domain")
-			server.cold_boot_map(params["id"], was_random_selection = FALSE)
+			server.cold_boot_map(params["id"])
 			return TRUE
 		if("stop_domain")
 			server.begin_shutdown(usr)

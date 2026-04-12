@@ -117,7 +117,7 @@
 
 /obj/item/clothing/head/collectable/pirate/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/adjust_fishing_difficulty, -4)
+	AddComponent(/datum/component/adjust_fishing_difficulty, -4)
 
 /obj/item/clothing/head/collectable/kitty
 	name = "collectable kitty ears"
@@ -143,7 +143,7 @@
 
 /obj/item/clothing/head/collectable/wizard/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/adjust_fishing_difficulty, -2)
+	AddComponent(/datum/component/adjust_fishing_difficulty, -2)
 
 /obj/item/clothing/head/collectable/hardhat
 	name = "collectable hard hat"
@@ -192,4 +192,4 @@
 
 /obj/item/clothing/head/collectable/swat/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/adjust_fishing_difficulty, 2)
+	AddComponent(/datum/component/adjust_fishing_difficulty, 2)

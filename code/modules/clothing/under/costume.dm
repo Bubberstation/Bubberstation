@@ -197,7 +197,6 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/singer
-	abstract_type = /obj/item/clothing/under/costume/singer
 	desc = "Just looking at this makes you want to sing."
 	body_parts_covered = CHEST|GROIN|ARMS
 	alternate_worn_layer = ABOVE_SHOES_LAYER
@@ -212,12 +211,6 @@
 /obj/item/clothing/under/costume/singer/blue
 	name = "blue performer's outfit"
 	icon_state = "bsing"
-	inhand_icon_state = null
-	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
-
-/obj/item/clothing/under/costume/singer/red
-	name = "red performer's outfit"
-	icon_state = "rsing"
 	inhand_icon_state = null
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 
@@ -313,7 +306,8 @@
 	alternate_worn_layer = GLOVES_LAYER //covers hands but gloves can go over it. This is how these things work in my head.
 	can_adjust = FALSE
 
-/obj/item/clothing/under/costume/mech_suit/setup_reskins()
+/obj/item/clothing/under/costume/mech_suit/Initialize(mapload)
+	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/mech_suit)
 
 /obj/item/clothing/under/costume/russian_officer

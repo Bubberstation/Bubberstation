@@ -261,9 +261,7 @@
 	throw_range = 3
 	attack_verb_continuous = list("roasts", "scorches", "burns")
 	attack_verb_simple = list("roast", "scorch", "burn")
-
-/obj/item/grown/novaflower/grind_results()
-	return list(/datum/reagent/consumable/capsaicin = 0, /datum/reagent/consumable/condensedcapsaicin = 0)
+	grind_results = list(/datum/reagent/consumable/capsaicin = 0, /datum/reagent/consumable/condensedcapsaicin = 0)
 
 // Rose
 /obj/item/seeds/rose

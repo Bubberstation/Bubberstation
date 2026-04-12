@@ -338,7 +338,8 @@
 	can_be_sawn_off = TRUE
 	pb_knockback = 3 // it's a super shotgun!
 
-/obj/item/gun/ballistic/shotgun/doublebarrel/setup_reskins()
+/obj/item/gun/ballistic/shotgun/doublebarrel/Initialize(mapload)
+	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/bar_shotgun)
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/sawoff(mob/user)

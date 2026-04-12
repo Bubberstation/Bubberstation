@@ -211,8 +211,11 @@
 	return FALSE
 
 /obj/structure/reagent_dispensers/proc/knock_down()
+	var/datum/effect_system/fluid_spread/smoke/chem/smoke = new ()
 	var/range = reagents.total_volume / REAGENT_SPILL_DIVISOR
-	do_chem_smoke(round(range), drop_location(), drop_location(), carry = reagents, silent = FALSE, log = TRUE)
+	smoke.attach(drop_location())
+	smoke.set_up(round(range), holder = drop_location(), location = drop_location(), carry = reagents, silent = FALSE)
+	smoke.start(log = TRUE)
 	reagents.clear_reagents()
 	qdel(src)
 
@@ -666,7 +669,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/virusfood, 30
 
 /obj/structure/reagent_dispensers/plumbed/storage/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/simple_rotation)
+	AddComponent(/datum/component/simple_rotation)
 
 
 /obj/structure/reagent_dispensers/plumbed/storage/update_overlays()

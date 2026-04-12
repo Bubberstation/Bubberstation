@@ -196,7 +196,7 @@
 
 /obj/structure/puzzle_element
 	name = "mysterious pillar"
-	desc = "Puzzling..."
+	desc = "puzzling..."
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "puzzle_pillar"
 	anchored = FALSE
@@ -315,7 +315,7 @@
 	return
 
 /obj/item/prisoncube
-	name = "prison cube"
+	name = "Prison Cube"
 	desc = "Dusty cube with humanoid imprint on it."
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "prison_cube"

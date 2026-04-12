@@ -4,15 +4,13 @@
 #define ACTIVATOR_COOLDOWN_MULTIPLIER 0.25
 /// Base timeout for creating mutation injectors
 #define MIN_INJECTOR_TIMEOUT 10 SECONDS
-/// Base cooldown multiplier for injector upgrades
+/// Base cooldown multiplier for injecotr upgrades
 #define INJECTOR_COOLDOWN_MULTIPLIER 0.15
 
 /// Base timeout for creating advanced injectors
 #define MIN_ADVANCED_TIMEOUT 15 SECONDS
 /// Base cooldown multiplier for advanced injector upgrades
 #define ADVANCED_COOLDOWN_MULTIPLIER 0.1
-/// Hard cap for advanced injector cooldown
-#define ADVANCED_INJECTOR_MAX_COOLDOWN 90 SECONDS
 
 /// Used for other things like UI/UE/Initial CD
 #define MISC_INJECTOR_TIMEOUT 60 SECONDS
@@ -1603,9 +1601,7 @@
 				// 10% reduction per tier
 				cd_reduction_mult -= ADVANCED_COOLDOWN_MULTIPLIER * (connected_scanner.precision_coeff)
 
-			// Applies a hard cap to advanced injector cooldowns to avoid excessive wait times
-			var/adv_cd_time = min(ADVANCED_INJECTOR_MAX_COOLDOWN, (base_cd_time * cd_reduction_mult))
-			injector_ready = world.time + adv_cd_time
+			injector_ready = world.time + (base_cd_time * cd_reduction_mult)
 			return
 
 		// Adds a mutation to an advanced injector
@@ -2365,7 +2361,6 @@
 
 #undef MIN_ADVANCED_TIMEOUT
 #undef ADVANCED_COOLDOWN_MULTIPLIER
-#undef ADVANCED_INJECTOR_MAX_COOLDOWN
 
 #undef MISC_INJECTOR_TIMEOUT
 

@@ -11,7 +11,7 @@
 	var/sound_type
 
 /datum/hallucination/fake_sound/start()
-	if(HAS_TRAIT(hallucinator, TRAIT_DEAF))
+	if(!hallucinator.can_hear())
 		return FALSE
 
 	var/sound_to_play = islist(sound_type) ? pick(sound_type) : sound_type

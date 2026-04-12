@@ -32,6 +32,7 @@
 #define RAD_IRRADIATE_THRESHOLD_BULB 15
 #define RAD_IRRADIATE_THRESHOLD_CORE 10
 
+
 /datum/mold_type
 	var/name = "debug"
 	/// The tier of the mold, used to decide whether it can spawn on lowpop
@@ -53,6 +54,7 @@
 	/// The mold type's preferred atmospheric conditions
 	var/preferred_atmos_conditions
 
+
 /**
  * What happens when the core is attacked.
  *
@@ -64,6 +66,7 @@
  */
 /datum/mold_type/proc/core_defense(obj/structure/mold/structure/core/core)
 	return
+
 
 /**
  * What happens when a bulb discharges.
@@ -80,6 +83,7 @@
 	bulb.visible_message(span_warning("[bulb] ruptures!"))
 	return
 
+
 /**
  * The optional bonus effect alongside conditioner's puff of atmos.
  *
@@ -90,6 +94,7 @@
  */
 /datum/mold_type/proc/bonus_conditioner_effects(obj/structure/mold/structure/conditioner/conditioner)
 	return
+
 
 /**
  * A release of foam from a mold structure.
@@ -109,7 +114,11 @@
 	var/datum/reagents/spewed_reagents = new /datum/reagents(reagent_capacity)
 	spewed_reagents.my_atom = source
 	spewed_reagents.add_reagent(reagent_to_add, amount_of_reagent)
-	do_foam(range, source, get_turf(source), carry = spewed_reagents)
+	var/datum/effect_system/fluid_spread/foam/foam = new
+	var/turf/source_turf = get_turf(source)
+	foam.set_up(range, location = source_turf, carry = spewed_reagents)
+	foam.start()
+
 
 /**
  * Fire mold
@@ -140,6 +149,7 @@
 	var/turf/source_turf = get_turf(source)
 	source_turf.atmos_spawn_air("plasma=10;TEMP=300")
 
+
 /**
  * Disease mold
  *
@@ -169,14 +179,17 @@
 	var/datum/reagents/reagents = new/datum/reagents(TEMP_REAGENT_HOLDER_CAPACITY_LARGE)
 	reagents.my_atom = source
 	reagents.add_reagent(/datum/reagent/toxin/histamine, PUFF_REAGENT_AMOUNT)
-	do_chem_smoke(
+	var/datum/effect_system/fluid_spread/smoke/chem/smoke_machine/puff = new
+	var/turf/source_turf = get_turf(source)
+	puff.set_up(
 		range,
-		holder = source,
-		location = get_turf(source),
+		location = source_turf,
 		carry = reagents,
-		carry_limit = PUFF_REAGENT_EFFICIENCY,
-		smoke_type = /datum/effect_system/fluid_spread/smoke/chem/smoke_machine
+		efficiency = PUFF_REAGENT_EFFICIENCY,
 	)
+	puff.attach(source)
+	puff.start()
+
 
 /**
  * EMP mold
@@ -201,6 +214,7 @@
 		light_emp_range = ELECTRICAL_DISCHARGE_LIGHT_RANGE,
 		guarantee_emp = TRUE,
 		)
+
 
 /datum/mold_type/emp/bulb_discharge(obj/structure/mold/structure/bulb/bulb)
 	. = ..()
@@ -243,6 +257,7 @@
 		source = source,
 	)
 
+
 /**
  * Toxic mold
  *
@@ -275,6 +290,7 @@
 		reagent_capacity = TEMP_REAGENT_HOLDER_CAPACITY_LARGE,
 		reagent_to_add = /datum/reagent/toxin,
 		)
+
 
 /**
  * Radioactive mold
@@ -326,6 +342,7 @@
 
 	if(fire_nuclear_particle)
 		source.fire_nuclear_particle()
+
 
 #undef MAX_MOLD_FOAM_RANGE_BULB
 #undef MAX_MOLD_FOAM_RANGE_CORE

@@ -16,7 +16,7 @@
 	. = ..()
 	if(check_holidays(HALLOWEEN))
 		update_icon(UPDATE_OVERLAYS)
-	AddElement(/datum/element/adjust_fishing_difficulty, 8)
+	AddComponent(/datum/component/adjust_fishing_difficulty, 8)
 
 /obj/item/clothing/suit/costume/ghost_sheet/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
 	. = ..()

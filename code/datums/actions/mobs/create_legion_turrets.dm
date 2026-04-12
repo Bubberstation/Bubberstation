@@ -64,7 +64,7 @@
 	for(var/mob/living/possible_target in oview(9, src))
 		if(possible_target.stat == DEAD || possible_target.stat == UNCONSCIOUS)
 			continue
-		if(faction_check_atom(possible_target))
+		if(faction_check(faction, possible_target.faction))
 			continue
 		fire(possible_target)
 		return

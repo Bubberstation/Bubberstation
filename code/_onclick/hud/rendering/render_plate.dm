@@ -138,12 +138,7 @@
 /atom/movable/screen/plane_master/rendering_plate/emissive_bloom/Initialize(mapload, datum/hud/hud_owner, datum/plane_master_group/home, offset)
 	. = ..()
 	add_filter("emissive_mask", 1, alpha_mask_filter(render_source = OFFSET_RENDER_TARGET(EMISSIVE_BLOOM_MASK_RENDER_TARGET, offset)))
-	var/bloom_scale = hud_owner?.mymob?.client?.prefs?.read_preference(/datum/preference/numeric/emissive_bloom)
-	if (isnull(bloom_scale))
-		bloom_scale = DEFAULT_EMISSIVE_BLOOM_SIZE
-	// 0 disables the bloom
-	if (bloom_scale)
-		add_filter("emissive_bloom", 2, bloom_filter(threshold = COLOR_BLACK, size = bloom_scale, offset = ceil(bloom_scale / 2)))
+	add_filter("emissive_bloom", 2, bloom_filter(threshold = COLOR_BLACK, size = 2, offset = 1))
 
 /atom/movable/screen/plane_master/rendering_plate/specular_mask
 	name = "Specular mask plate"

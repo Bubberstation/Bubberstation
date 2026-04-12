@@ -232,9 +232,8 @@
 				var/new_style = tgui_input_list(user, "Select a facial hairstyle", "Grooming", SSaccessories.facial_hairstyles_list)
 				if(isnull(new_style))
 					return
-				var/covering = human_target.is_mouth_covered()
-				if(covering)
-					to_chat(user, span_warning("[covering] is in the way!"))
+				if(!get_location_accessible(human_target, location))
+					to_chat(user, span_warning("The headgear is in the way!"))
 					return
 				if(!(noggin.head_flags & HEAD_FACIAL_HAIR))
 					to_chat(user, span_warning("There is no facial hair to style!"))
@@ -251,9 +250,8 @@
 			else
 				return
 		else
-			var/covering = human_target.is_mouth_covered()
-			if(covering)
-				to_chat(user, span_warning("[covering] is in the way!"))
+			if(!get_location_accessible(human_target, location))
+				to_chat(user, span_warning("The mask is in the way!"))
 				return
 			if(!(noggin.head_flags & HEAD_FACIAL_HAIR))
 				to_chat(user, span_warning("There is no facial hair to shave!"))
@@ -290,7 +288,7 @@
 			var/new_style = tgui_input_list(user, "Select a hairstyle", "Grooming", SSaccessories.hairstyles_list)
 			if(isnull(new_style))
 				return
-			if(!human_target.is_location_accessible(location))
+			if(!get_location_accessible(human_target, location))
 				to_chat(user, span_warning("The headgear is in the way!"))
 				return
 			if(!(noggin.head_flags & HEAD_HAIR))
@@ -306,7 +304,7 @@
 				human_target.set_hairstyle(new_style, update = TRUE)
 				return
 		else
-			if(!human_target.is_location_accessible(location))
+			if(!get_location_accessible(human_target, location))
 				to_chat(user, span_warning("The headgear is in the way!"))
 				return
 			if(!(noggin.head_flags & HEAD_HAIR))

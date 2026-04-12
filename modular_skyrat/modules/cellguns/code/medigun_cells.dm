@@ -491,7 +491,9 @@
 	body.visible_message(span_notice("[body]'s body teleports to [firer]!"))
 
 /obj/projectile/energy/medical/utility/body_teleporter/proc/teleport_effect(location)
-	do_sparks(5, 1, get_turf(location))
+	var/datum/effect_system/spark_spread/quantum/sparks = new /datum/effect_system/spark_spread/quantum //uses the teleport effect from quantum pads
+	sparks.set_up(5, 1, get_turf(location))
+	sparks.start()
 
 //Objects Used by medicells.
 /obj/item/clothing/suit/toggle/labcoat/hospitalgown/hardlight

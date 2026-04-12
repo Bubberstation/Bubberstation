@@ -362,9 +362,9 @@
 			return TRUE
 	return FALSE
 
-/turf/open/floor/rust_turf(magic = FALSE)
+/turf/open/floor/rust_turf()
 	if(HAS_TRAIT(src, TRAIT_RUSTY))
-		return FALSE
+		return
 	ChangeTurf(/turf/open/floor/plating)
 	return ..()
 

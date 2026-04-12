@@ -340,7 +340,7 @@
 				my_atom.visible_message(span_notice("[iconhtml] \The [my_atom]'s power is consumed in the reaction."))
 				extract.name = "used slime extract"
 				extract.desc = "This extract has been used up."
-				extract.can_grind = FALSE
+				LAZYNULL(extract.grind_results)
 
 	//finish the reaction
 	selected_reaction.on_reaction(src, null, multiplier)

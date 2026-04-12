@@ -6,8 +6,7 @@
 	gain_text = span_danger("You feel erratic.") // say that again?
 	lose_text = span_notice("You feel more stable.")
 	medical_record_text = "Patient has a bipolar personality disorder."
-	medical_symptom_text = "Exhibits sudden and unpredictable changes in personality, mood, and behavior, often swinging between extremes of emotion and demeanor."
-	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_MOODLET_BASED|QUIRK_PROCESSES|QUIRK_TRAUMALIKE
+	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_MOODLET_BASED|QUIRK_PROCESSES
 	hardcore_value = 3
 	mail_goodies = list(/obj/item/storage/pill_bottle/psicodine)
 	/// Cooldown between personality randomizations

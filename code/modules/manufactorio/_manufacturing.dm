@@ -16,7 +16,7 @@
 /obj/machinery/power/manufacturing/Initialize(mapload)
 	. = ..()
 	if(may_be_moved)
-		AddElement(/datum/element/simple_rotation)
+		AddComponent(/datum/component/simple_rotation)
 	if(anchored)
 		connect_to_network()
 

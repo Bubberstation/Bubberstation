@@ -163,7 +163,7 @@
 /datum/status_effect/choke/proc/attempt_eat(mob/source, atom/eating)
 	SIGNAL_HANDLER
 	source.balloon_alert(source, "can't get it down!")
-	return BLOCK_EAT_ATTEMPT
+	return COMSIG_CARBON_BLOCK_EAT
 
 /datum/status_effect/choke/proc/helped(mob/source, mob/helping)
 	SIGNAL_HANDLER

@@ -2,26 +2,33 @@
 
 ///Storage - Adds a storage component to the suit.
 /obj/item/mod/module/storage
-	name = "MOD compact storage module"
+	name = "MOD storage module"
 	desc = "What amounts to a series of integrated storage compartments and specialized pockets installed across \
-		the surface of the suit, useful for storing various bits, and or bobs. This version has been trimmed down to save space."
+		the surface of the suit, useful for storing various bits, and or bobs."
 	icon_state = "storage"
-	complexity = 1
+	complexity = 3
 	incompatible_modules = list(/obj/item/mod/module/storage, /obj/item/mod/module/plate_compression)
 	required_slots = list(ITEM_SLOT_BACK)
-	/// The storage type to create for the module
-	var/datum/storage/storage_type = /datum/storage/mod_storage
+	/// Max weight class of items in the storage.
+	var/max_w_class = WEIGHT_CLASS_NORMAL
+	/// Max combined weight of all items in the storage.
+	var/max_combined_w_class = 15
+	/// Max amount of items in the storage.
+	var/max_items = 7
+	/// Is nesting same-size storage items allowed?
+	var/big_nesting = FALSE
 
 /obj/item/mod/module/storage/Initialize(mapload)
 	. = ..()
-	if(storage_type)
-		create_storage(storage_type = storage_type)
-		atom_storage.set_locked(STORAGE_FULLY_LOCKED)
+	create_storage(max_specific_storage = max_w_class, max_total_storage = max_combined_w_class, max_slots = max_items)
+	atom_storage.allow_big_nesting = TRUE
+	atom_storage.set_locked(STORAGE_FULLY_LOCKED)
 
 /obj/item/mod/module/storage/on_install()
 	. = ..()
-	var/datum/storage/modstorage = mod.create_storage(storage_type = storage_type)
+	var/datum/storage/modstorage = mod.create_storage(max_specific_storage = max_w_class, max_total_storage = max_combined_w_class, max_slots = max_items)
 	modstorage.set_real_location(src)
+	modstorage.allow_big_nesting = big_nesting
 	atom_storage.set_locked(STORAGE_NOT_LOCKED)
 	var/obj/item/clothing/suit = mod.get_part_from_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(suit))
@@ -48,22 +55,22 @@
 	mod.wearer.temporarilyRemoveItemFromInventory(mod.wearer.s_store)
 
 /obj/item/mod/module/storage/large_capacity
-	name = "MOD storage module"
+	name = "MOD expanded storage module"
 	desc = "Reverse engineered by Nakamura Engineering from Donk Company designs, this system of hidden compartments \
 		is entirely within the suit, distributing items and weight evenly to ensure a comfortable experience for the user; \
 		whether smuggling, or simply hauling."
-	complexity = 3
 	icon_state = "storage_large"
-	storage_type = /datum/storage/mod_storage/expanded
+	max_combined_w_class = 21
+	max_items = 14
 
 /obj/item/mod/module/storage/syndicate
 	name = "MOD syndicate storage module"
 	desc = "A storage system using nanotechnology developed by Cybersun Industries, these compartments use \
 		esoteric technology to compress the physical matter of items put inside of them, \
 		essentially shrinking items for much easier and more portable storage."
-	complexity = 3
 	icon_state = "storage_syndi"
-	storage_type = /datum/storage/mod_storage/syndicate
+	max_combined_w_class = 30
+	max_items = 21
 
 /obj/item/mod/module/storage/belt
 	name = "MOD case storage module"
@@ -72,16 +79,20 @@
 		If you find this equipped to a standard modular suit, then someone has almost certainly shortchanged you on a proper storage module."
 	icon_state = "storage_case"
 	complexity = 0
+	max_w_class = WEIGHT_CLASS_SMALL
+	max_combined_w_class = 21
+	max_items = 7
 	required_slots = list(ITEM_SLOT_BELT)
-	storage_type = /datum/storage/mod_storage/belt
 
 /obj/item/mod/module/storage/bluespace
 	name = "MOD bluespace storage module"
 	desc = "A storage system developed by Nanotrasen, these compartments employ \
 		miniaturized bluespace pockets for the ultimate in storage technology; regardless of the weight of objects put inside."
-	complexity = 3
 	icon_state = "storage_large"
-	storage_type = /datum/storage/mod_storage/bluespace
+	max_w_class = WEIGHT_CLASS_GIGANTIC
+	max_combined_w_class = 60
+	max_items = 21
+	big_nesting = TRUE
 
 ///Ion Jetpack - Lets the user fly freely through space using battery charge.
 /obj/item/mod/module/jetpack
@@ -462,7 +473,7 @@
 /obj/item/mod/module/flashlight/configure_edit(key, value)
 	switch(key)
 		if("light_color")
-			value = tgui_color_picker(usr, "Pick new light color", "Flashlight Color")
+			value = tgui_color_picker(usr, "Pick new light color", "Flashlight Color") // BUBBERSTATION EDIT: TGUI COLOR PICKER
 			if(!value)
 				return
 			if(is_color_dark(value, 50))
@@ -829,7 +840,7 @@
 	)
 	/// Materials that will be extracted.
 	var/list/accepted_mats
-	var/datum/material_container/container
+	var/datum/component/material_container/container
 
 /obj/item/mod/module/recycler/Initialize(mapload)
 	. = ..()
@@ -837,8 +848,8 @@
 	if(!length(accepted_mats))
 		accepted_mats = SSmaterials.materials_by_category[MAT_CATEGORY_SILO]
 
-	container = new ( \
-		src, \
+	container = AddComponent( \
+		/datum/component/material_container, \
 		accepted_mats, \
 		50 * SHEET_MATERIAL_AMOUNT, \
 		MATCONTAINER_EXAMINE | MATCONTAINER_NO_INSERT, \
@@ -848,7 +859,7 @@
 	)
 
 /obj/item/mod/module/recycler/Destroy()
-	QDEL_NULL(container)
+	container = null
 	return ..()
 
 /obj/item/mod/module/recycler/on_activation(mob/activator)
@@ -1007,19 +1018,19 @@
 	var/obj/item/gloves = mod.get_part_from_slot(ITEM_SLOT_GLOVES)
 	if(!gloves)
 		return
-	gloves.AddElement(/datum/element/adjust_fishing_difficulty, -5)
+	gloves.AddComponent(/datum/component/adjust_fishing_difficulty, -5)
 	if(equipped)
 		gloves.AddComponent(/datum/component/profound_fisher, equipped, delete_rod_when_deleted = FALSE)
 
 /obj/item/mod/module/fishing_glove/on_part_deactivation(deleting = FALSE)
 	var/obj/item/gloves = mod.get_part_from_slot(ITEM_SLOT_GLOVES)
 	if(gloves && !deleting)
-		gloves.RemoveElement(/datum/element/adjust_fishing_difficulty)
+		qdel(gloves.GetComponent(/datum/component/adjust_fishing_difficulty))
 		qdel(gloves.GetComponent(/datum/component/profound_fisher))
 
 /obj/item/mod/module/shock_absorber
 	name = "MOD shock absorption module"
-	desc = "A module that makes the user resistant to the knockdown and CNS disruption inflicted by Stun Batons."
+	desc = "A module that makes the user resistant to the knockdown inflicted by Stun Batons."
 	icon_state = "no_baton"
 	complexity = 1
 	use_energy_cost = DEFAULT_CHARGE_DRAIN
@@ -1039,4 +1050,6 @@
 /obj/item/mod/module/shock_absorber/proc/mob_batoned(datum/source)
 	SIGNAL_HANDLER
 	drain_power(use_energy_cost)
-	do_sparks(5, TRUE, mod.wearer.loc)
+	var/datum/effect_system/lightning_spread/sparks = new /datum/effect_system/lightning_spread
+	sparks.set_up(number = 5, cardinals_only = TRUE, location = mod.wearer.loc)
+	sparks.start()

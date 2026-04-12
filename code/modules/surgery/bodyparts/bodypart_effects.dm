@@ -132,9 +132,7 @@
 
 	// Heal in the dark
 	owner.heal_overall_damage(brute = 0.5 * bodypart_coefficient, burn = 0.5 * bodypart_coefficient, required_bodytype = BODYTYPE_SHADOW)
-
-	var/mob/living/carbon/carbon_owner = owner
-	if(carbon_owner.dna.species.id != SPECIES_NIGHTMARE) // Somewhat awkward, but let's not duplicate the alerts
+	if(!owner.has_status_effect(/datum/status_effect/shadow/nightmare)) // Somewhat awkward, but let's not duplicate the alerts
 		// This only appears when in shadows, don't move to bodypart effect so people with nightvision can still tell if they're in light or not
 		owner.apply_status_effect(/datum/status_effect/shadow)
 

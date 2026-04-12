@@ -51,12 +51,10 @@ ADMIN_VERB(cancel_shuttle, R_ADMIN, "Cancel Shuttle", "Recall the shuttle, regar
 	if(EMERGENCY_AT_LEAST_DOCKED)
 		return
 
-	if(tgui_alert(user, "You sure?", "Confirm Shuttle Cancellation", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, "You sure?", "Confirm", list("Yes", "No")) != "Yes")
 		return
-
-	if(!SSshuttle.cancel_evac(user.mob)) // handles the case where the shuttle is set to unrecallable by another admin or the code
-		return
-
+	SSshuttle.admin_emergency_no_recall = FALSE
+	SSshuttle.emergency.cancel()
 	BLACKBOX_LOG_ADMIN_VERB("Cancel Shuttle")
 	log_admin("[key_name(user)] admin-recalled the emergency shuttle.")
 	message_admins(span_adminnotice("[key_name_admin(user)] admin-recalled the emergency shuttle."))

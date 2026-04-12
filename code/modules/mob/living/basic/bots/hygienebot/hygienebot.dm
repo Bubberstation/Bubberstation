@@ -68,7 +68,9 @@
 	RegisterSignal(src, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, PROC_REF(on_attack))
 
 /mob/living/basic/bot/hygienebot/explode()
-	do_foam(2, src, loc)
+	var/datum/effect_system/fluid_spread/foam/foam = new
+	foam.set_up(2, holder = src, location = loc)
+	foam.start()
 	return ..()
 
 /mob/living/basic/bot/hygienebot/generate_speak_list()

@@ -244,7 +244,7 @@ Then the player gets the profit from selling his own wasted time.
 	if(unit_name)
 		msg += unit_name
 		if(total_amount > 1)
-			msg += plural_s(unit_name)
+			msg += "s"
 		if(message)
 			msg += " "
 

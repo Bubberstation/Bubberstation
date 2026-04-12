@@ -10,5 +10,6 @@
 	icon = 'modular_zubbers/icons/obj/watercloset.dmi'
 	icon_state = "sink_basin"
 	pixel_z = 0
+	pixel_shift = 0
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink/basin, (0))

@@ -12,23 +12,21 @@ Bonus
 	name = "Necrotizing Fasciitis"
 	desc = "The virus aggressively attacks bone cells, causing excessive wobbliness and falling down a lot."
 	illness = "Jellyitis"
-	stealth = -2
-	resistance = -1
+	stealth = -3
+	resistance = -4
 	stage_speed = 0
-	transmittable = -1
+	transmittable = -3
 	level = 6
 	severity = 5
 	base_message_chance = 50
 	symptom_delay_min = 15
 	symptom_delay_max = 60
-	symptom_cure = /datum/reagent/medicine/omnizine
-	cure_color = "orange"
+	var/bleed = FALSE
+	var/pain = FALSE
 	threshold_descs = list(
 		"Resistance 7" = "Host will bleed profusely during necrosis.",
 		"Transmission 8" = "Causes extreme pain to the host, weakening it.",
 	)
-	var/bleed = FALSE
-	var/pain = FALSE
 
 /datum/symptom/flesh_eating/Start(datum/disease/advance/A)
 	. = ..()
@@ -95,8 +93,6 @@ Bonus
 	base_message_chance = 50
 	symptom_delay_min = 3
 	symptom_delay_max = 6
-	symptom_cure = /datum/reagent/medicine/earthsblood // Good luck finding THAT.
-	cure_color = "red"
 	var/chems = FALSE
 	threshold_descs = list(
 		"Stage Speed 7" = "Synthesizes Heparin and Lipolicide inside the host, causing increased bleeding and hunger.",

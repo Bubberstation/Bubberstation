@@ -172,16 +172,16 @@
 		return
 	to_chat(affected_mob, span_notice("This food has a funny taste!"))
 
-/datum/reagent/rat_spit/overdose_start(mob/living/affected_mob, metabolization_ratio)
+/datum/reagent/rat_spit/overdose_start(mob/living/affected_mob)
 	. = ..()
 	var/mob/living/carbon/victim = affected_mob
-	if (istype(victim) && !victim.has_faction(FACTION_RAT))
+	if (istype(victim) && !(FACTION_RAT in victim.faction))
 		to_chat(victim, span_userdanger("With this last sip, you feel your body convulsing horribly from the contents you've ingested. As you contemplate your actions, you sense an awakened kinship with rat-kind and their newly risen leader!"))
-		victim.add_faction(FACTION_RAT)
+		victim.faction |= FACTION_RAT
 		victim.vomit(VOMIT_CATEGORY_DEFAULT)
 	metabolization_rate = 10 * REAGENTS_METABOLISM
 
-/datum/reagent/rat_spit/on_mob_life(mob/living/carbon/affected_mob, metabolization_ratio)
+/datum/reagent/rat_spit/on_mob_life(mob/living/carbon/affected_mob)
 	. = ..()
 	if(prob(15))
 		to_chat(affected_mob, span_notice("You feel queasy!"))

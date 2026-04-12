@@ -12,8 +12,6 @@
 	sheet_type = /obj/item/stack/sheet/plasteel
 	sheet_amount = 1
 	girder_type = /obj/structure/girder/reinforced
-	girder_state = GIRDER_REINF
-	make_delay = 5 SECONDS
 	explosive_resistance = 2
 	rad_insulation = RAD_HEAVY_INSULATION
 	rust_resistance = RUST_RESISTANCE_REINFORCED
@@ -229,10 +227,10 @@
 	if(the_rcd.canRturf || rcd_data[RCD_DESIGN_MODE] == RCD_WALLFRAME)
 		return ..()
 
-/turf/closed/wall/r_wall/rust_turf(magic = FALSE)
+/turf/closed/wall/r_wall/rust_turf()
 	if(HAS_TRAIT(src, TRAIT_RUSTY))
 		ChangeTurf(/turf/closed/wall/rust)
-		return TRUE
+		return
 	return ..()
 
 /turf/closed/wall/r_wall/plastitanium

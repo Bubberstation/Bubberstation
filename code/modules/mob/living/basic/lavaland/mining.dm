@@ -58,6 +58,6 @@
 /mob/living/basic/mining/proc/check_ashwalker_peace_violation(datum/source, mob/living/carbon/human/possible_ashwalker)
 	SIGNAL_HANDLER
 
-	if(!isashwalker(possible_ashwalker) || !has_faction(FACTION_ASHWALKER))
+	if(!isashwalker(possible_ashwalker) || !(FACTION_ASHWALKER in faction))
 		return
-	remove_faction(FACTION_ASHWALKER)
+	faction.Remove(FACTION_ASHWALKER)

@@ -24,7 +24,7 @@ Skyrat removal START, moved to modular file
 
 /obj/machinery/atmospherics/components/binary/circulator/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/simple_rotation)
+	AddComponent(/datum/component/simple_rotation)
 
 //default cold circ for mappers
 /obj/machinery/atmospherics/components/binary/circulator/cold

@@ -2848,11 +2848,11 @@
 /turf/open/floor/plating,
 /area/station/science/ordnance/burnchamber)
 "aTd" = (
+/obj/machinery/digital_clock/directional/south,
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 8
 	},
 /obj/machinery/smartfridge/organ,
-/obj/machinery/vitals_reader/directional/south,
 /turf/open/floor/iron/dark/smooth_half{
 	dir = 1
 	},
@@ -7338,7 +7338,7 @@
 /obj/item/stamp/head/hop{
 	pixel_y = 12
 	},
-/obj/item/stamp/granted{
+/obj/item/stamp{
 	pixel_y = 6;
 	pixel_x = 6
 	},
@@ -20633,7 +20633,7 @@
 /obj/item/stamp/head/qm{
 	pixel_y = 5
 	},
-/obj/item/stamp/granted{
+/obj/item/stamp{
 	pixel_x = 5
 	},
 /obj/item/stamp/denied{
@@ -22031,6 +22031,9 @@
 "gwj" = (
 /turf/open/openspace,
 /area/station/security/brig/entrance)
+"gwo" = (
+/turf/open/floor/plating,
+/area/station/medical/break_room)
 "gws" = (
 /obj/effect/landmark/start/hangover,
 /obj/machinery/firealarm/directional/south,
@@ -23775,7 +23778,7 @@
 	},
 /obj/machinery/light/small/directional/south,
 /turf/open/floor/plating,
-/area/station/maintenance/aft/greater)
+/area/station/medical/break_room)
 "gWD" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -27184,16 +27187,9 @@
 /turf/open/floor/carpet/green,
 /area/station/service/library/lounge)
 "hVa" = (
+/obj/machinery/chem_heater/withbuffer,
 /obj/effect/turf_decal/tile/yellow/opposingcorners{
 	dir = 1
-	},
-/obj/item/stack/sheet/mineral/plasma{
-	pixel_x = 6
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/reagentgrinder{
-	pixel_y = 7;
-	pixel_x = -4
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/pharmacy)
@@ -38084,7 +38080,7 @@
 	pixel_x = -3;
 	pixel_y = 7
 	},
-/obj/item/stamp/granted{
+/obj/item/stamp{
 	pixel_x = 10;
 	pixel_y = 6
 	},
@@ -40253,7 +40249,6 @@
 	name = "privacy shutters control"
 	},
 /obj/effect/turf_decal/box/white,
-/obj/machinery/vitals_reader/directional/west,
 /turf/open/floor/iron/dark/smooth_half,
 /area/station/medical/surgery/theatre)
 "lCL" = (
@@ -40450,11 +40445,17 @@
 /obj/effect/turf_decal/tile/yellow/half{
 	dir = 1
 	},
+/obj/machinery/reagentgrinder{
+	pixel_y = 9
+	},
+/obj/item/stack/sheet/mineral/plasma{
+	pixel_x = 6
+	},
+/obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/chem_heater/withbuffer,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 1
 	},
@@ -44718,7 +44719,7 @@
 	pixel_x = -7;
 	pixel_y = 9
 	},
-/obj/item/stamp/granted{
+/obj/item/stamp{
 	pixel_x = -7;
 	pixel_y = 1
 	},
@@ -46369,7 +46370,7 @@
 /area/station/service/barber)
 "nlK" = (
 /obj/machinery/dna_infuser,
-/obj/item/tgui_book/manual/infuser{
+/obj/item/infuser_book{
 	pixel_x = -6
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -58005,11 +58006,11 @@
 /turf/open/floor/iron/white/diagonal,
 /area/station/common/spa)
 "qKI" = (
+/obj/machinery/digital_clock/directional/north,
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 8
 	},
 /obj/machinery/smartfridge/organ,
-/obj/machinery/vitals_reader/directional/north,
 /turf/open/floor/iron/dark/smooth_half{
 	dir = 1
 	},
@@ -58922,6 +58923,10 @@
 "raG" = (
 /turf/closed/wall/r_wall,
 /area/station/maintenance/solars/port/aft)
+"raJ" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/station/medical/break_room)
 "raK" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/structure/table/reinforced,
@@ -60267,7 +60272,6 @@
 	name = "privacy shutters control"
 	},
 /obj/effect/turf_decal/box/white,
-/obj/machinery/vitals_reader/directional/east,
 /turf/open/floor/iron/dark/smooth_half,
 /area/station/medical/surgery/theatre)
 "rwy" = (
@@ -60822,7 +60826,6 @@
 /obj/effect/turf_decal/bot_white,
 /obj/structure/table/optable,
 /obj/effect/turf_decal/tile/blue/full,
-/obj/machinery/defibrillator_mount/directional/north,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/surgery/fore)
 "rGe" = (
@@ -61555,6 +61558,7 @@
 /turf/open/misc/asteroid/moon/airless,
 /area/station/asteroid)
 "rRh" = (
+/obj/machinery/defibrillator_mount/directional/west,
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 4
 	},
@@ -67645,7 +67649,7 @@
 	pixel_x = 4;
 	pixel_y = 2
 	},
-/obj/item/stamp/granted{
+/obj/item/stamp{
 	pixel_x = -3
 	},
 /turf/open/floor/iron/dark,
@@ -122178,11 +122182,11 @@ nMP
 cDG
 nMO
 uOJ
-ePd
-pFw
+ogC
+raJ
 gWo
-ePd
-yiW
+ogC
+gwo
 dxe
 jxw
 bpS

@@ -122,7 +122,9 @@
 	doteleport(user, target_pad)
 
 /obj/machinery/quantumpad/proc/sparks()
-	do_sparks(5, TRUE, src, spark_type = /datum/effect_system/basic/spark_spread/quantum)
+	var/datum/effect_system/spark_spread/quantum/s = new /datum/effect_system/spark_spread/quantum
+	s.set_up(5, 1, get_turf(src))
+	s.start()
 
 /obj/machinery/quantumpad/attack_ghost(mob/dead/observer/ghost)
 	. = ..()

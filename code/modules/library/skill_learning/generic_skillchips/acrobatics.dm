@@ -12,7 +12,7 @@
 	max_integrity = 100
 	/// list of emotes whose cd is overridden by this skillchip. can be edited in mapping or ingame
 	var/list/affected_emotes = list("spin", "flip", "backflip")
-	var/datum/effect_system/basic/spark_spread/sparks
+	var/datum/effect_system/spark_spread/sparks
 	/// you can use this without lowering integrity! let's be honest. nobody's doing that
 	var/allowed_usage = 5
 	/// How many seconds does it take for it to recover one allowed usage
@@ -49,8 +49,7 @@
 	take_damage(1, sound_effect = FALSE)
 
 	if(!sparks)
-		sparks = new(src, 5, FALSE)
-		sparks.attach(src)
+		sparks = new(src)
 
 	// minimum roll is by default capped at 50, with the min value lowering as integrity is reduced.
 	var/mintegrity = clamp(50 - (100 - get_integrity()), 1, 100)
@@ -85,7 +84,8 @@
 
 			// does not necessarily kill you directly. instead it causes cranial fissure + something to drop from your head. could be eyes, tongue, ears, brain, even implants
 			new /obj/effect/gibspawner/generic(get_turf(bozo), bozo)
-			sparks.amount = 15
+
+			sparks.set_up(15, cardinals_only = FALSE, location = get_turf(src))
 			sparks.start()
 
 			qdel(src)
@@ -101,7 +101,8 @@
 				bozo.set_eye_blur_if_lower(10 SECONDS)
 			// but the rest of the effects will happen either way
 			bozo.adjust_organ_loss(ORGAN_SLOT_BRAIN, 20 - get_integrity())
-			sparks.amount = 5
+
+			sparks.set_up(5, cardinals_only = FALSE, location = get_turf(src))
 			sparks.start()
 
 		// brain Smoking. you should probably stop now
@@ -141,7 +142,8 @@
 			particle_effect.set_particle_position(-2, 12, 0)
 			bozo.apply_status_effect(/datum/status_effect/temperature_over_time/chip_overheat, 15 SECONDS)
 			QDEL_IN(particle_effect, 15 SECONDS)
-			sparks.amount = 10
+
+			sparks.set_up(10, cardinals_only = FALSE, location = get_turf(src))
 			sparks.start()
 
 		// hey, something isn't right...
@@ -150,7 +152,7 @@
 				span_warning("[bozo]'s head sparks."),
 			)
 
-			sparks.amount = rand(1, 2)
+			sparks.set_up(rand(1,2), cardinals_only = TRUE, location = get_turf(src))
 			sparks.start()
 
 	return COMPONENT_EMOTE_COOLDOWN_BYPASS

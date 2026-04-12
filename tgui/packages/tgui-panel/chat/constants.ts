@@ -45,18 +45,8 @@ export const MESSAGE_TYPE_REMOTE_LOOC = 'rlooc';
 export const MESSAGE_TYPE_SUBTLE = 'subtle';
 // BUBBER EDIT ADDITION END
 
-type MessageType = {
-  type: string;
-  name: string;
-  description: string;
-} & Partial<{
-  selector: string;
-  important: boolean;
-  admin: boolean;
-}>;
-
 // Metadata for each message type
-export const MESSAGE_TYPES: MessageType[] = [
+export const MESSAGE_TYPES = [
   // Always-on types
   {
     type: MESSAGE_TYPE_SYSTEM,

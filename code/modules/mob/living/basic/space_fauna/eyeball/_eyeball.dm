@@ -119,4 +119,4 @@
 /mob/living/basic/eyeball/tamed(mob/living/tamer, atom/food)
 	spin(spintime = 2 SECONDS, speed = 1)
 	//become passive to the humens
-	APPLY_FACTION_AND_ALLIES_FROM(src, tamer)
+	faction |= tamer.faction

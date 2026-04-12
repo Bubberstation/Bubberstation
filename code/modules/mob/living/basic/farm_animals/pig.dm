@@ -29,7 +29,6 @@
 	ai_controller = /datum/ai_controller/basic_controller/pig
 
 /datum/emote/pig
-	abstract_type = /datum/emote/pig
 	mob_type_allowed_typecache = /mob/living/basic/pig
 	mob_type_blacklist_typecache = list()
 
@@ -40,7 +39,6 @@
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sound = SFX_PIG_OINK
-
 /mob/living/basic/pig/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/pet_bonus, "oink")

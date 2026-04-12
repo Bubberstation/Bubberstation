@@ -253,11 +253,11 @@ const ContractsTab = (props) => {
             data.ongoing_contract &&
             contract.status !== CONTRACT_STATUS_ACTIVE
           ) {
-            return CONTRACT_STATUS_INACTIVE;
+            return;
           }
           const active = contract.status > CONTRACT_STATUS_INACTIVE;
           if (contract.status >= CONTRACT_STATUS_COMPLETE) {
-            return CONTRACT_STATUS_COMPLETE;
+            return;
           }
           return (
             <Section

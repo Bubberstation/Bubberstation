@@ -226,7 +226,7 @@
 			gibs.streak(dirs)
 
 	var/obj/item/bodypart/chest/new_chest = new(null)
-	new_chest.replace_limb(owner)
+	new_chest.replace_limb(owner, TRUE)
 	qdel(chest)
 
 #undef REJECTION_VOMIT_FLAGS

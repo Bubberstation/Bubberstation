@@ -167,7 +167,7 @@
 	if(!isliving(user))
 		return
 	var/mob/living/living_user = user
-	if((living_user.has_faction(FACTION_FLESHMIND)))
+	if((FACTION_FLESHMIND in living_user.faction))
 		return
 	if(!living_user.can_interact_with(parent_machinery))
 		return

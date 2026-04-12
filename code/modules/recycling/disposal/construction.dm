@@ -33,14 +33,12 @@
 
 	pipename = initial(pipe_type.name)
 
-	AddElement(/datum/element/simple_rotation, post_rotation_proccall = PROC_REF(post_rotation))
+	AddComponent(/datum/component/simple_rotation, post_rotation = CALLBACK(src, PROC_REF(post_rotation)))
 	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 
-	// this only gets used by pipes created by RPDs or pipe dispensers
 	if(flip)
-		// Rotate, bypassing simple_rotation for 180 degrees at once
-		setDir(turn(dir, ROTATION_FLIP))
-		post_rotation(usr, ROTATION_FLIP)
+		var/datum/component/simple_rotation/rotcomp = GetComponent(/datum/component/simple_rotation)
+		rotcomp.rotate(usr, ROTATION_FLIP) // this only gets used by pipes created by RPDs or pipe dispensers
 
 	update_appearance(UPDATE_ICON)
 

@@ -45,9 +45,10 @@
 /obj/item/language_manual/proc/use_charge(mob/user)
 	charges--
 	if(!charges)
-		user.visible_message(span_notice("The cover of [user]'s book start shifting and changing! It falls out of [user.p_their()] hands!"),
-							span_warning("The cover and contents of [src] start shifting and changing! It slips out of your hands!"))
-		new /obj/item/book/manual/random(get_turf(src))
+		var/turf/T = get_turf(src)
+		T.visible_message(span_warning("The cover and contents of [src] start shifting and changing! It slips out of your hands!"))
+
+		new /obj/item/book/manual/random(T)
 		qdel(src)
 
 /obj/item/language_manual/codespeak_manual

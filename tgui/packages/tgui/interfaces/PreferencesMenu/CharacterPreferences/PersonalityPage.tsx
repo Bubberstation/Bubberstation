@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -11,6 +10,8 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
+
+import { useBackend } from '../../../backend';
 import type { Personality, PreferencesMenuData } from '../types';
 import { useServerPrefs } from '../useServerPrefs';
 

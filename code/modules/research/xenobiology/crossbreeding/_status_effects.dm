@@ -490,7 +490,7 @@
 
 /datum/status_effect/stabilized/grey/tick(seconds_between_ticks)
 	for(var/mob/living/basic/slime/slimes_in_range in range(1, get_turf(owner)))
-		if(!slimes_in_range.has_ally(owner))
+		if(!(REF(owner) in slimes_in_range.faction))
 			to_chat(owner, span_notice("[linked_extract] pulses gently as it communicates with [slimes_in_range]."))
 			slimes_in_range.befriend(owner)
 	return ..()
@@ -879,20 +879,26 @@
 
 /datum/status_effect/stabilized/pink/on_apply()
 	faction_name = FACTION_PINK_EXTRACT(owner)
-	owner.add_ally(faction_name)
+	owner.faction |= faction_name
 	to_chat(owner, span_notice("[linked_extract] pulses, generating a fragile aura of peace."))
 	return ..()
 
 /datum/status_effect/stabilized/pink/tick(seconds_between_ticks)
 	update_nearby_mobs()
-	var/has_ally = owner.has_ally(faction_name)
-	if(has_ally)
+	var/has_faction = FALSE
+	for (var/check_faction in owner.faction)
+		if(check_faction != faction_name)
+			continue
+		has_faction = TRUE
+		break
+
+	if(has_faction)
 		if(owner.has_status_effect(/datum/status_effect/brokenpeace))
-			owner.remove_ally(faction_name)
+			owner.faction -= faction_name
 			to_chat(owner, span_userdanger("The peace has been broken! Hostile creatures will now react to you!"))
 	else if(!owner.has_status_effect(/datum/status_effect/brokenpeace))
 		to_chat(owner, span_notice("[linked_extract] pulses, generating a fragile aura of peace."))
-		owner.add_ally(faction_name)
+		owner.faction |= faction_name
 	return ..()
 
 /// Pacifies mobs you can see and unpacifies mobs you no longer can
@@ -911,7 +917,7 @@
 			return // No point continuing from here if we're going to end the effect
 		if(beast in visible_things)
 			continue
-		beast.remove_ally(faction_name)
+		beast.faction -= faction_name
 		beast.remove_status_effect(/datum/status_effect/pinkdamagetracker)
 		mobs -= weak_mob
 
@@ -924,16 +930,16 @@
 			continue
 		mobs += weak_mob
 		beast.apply_status_effect(/datum/status_effect/pinkdamagetracker)
-		beast.add_faction(faction_name)
+		beast.faction |= faction_name
 
 /datum/status_effect/stabilized/pink/on_remove()
 	for(var/datum/weakref/weak_mob as anything in mobs)
 		var/mob/living/beast = weak_mob.resolve()
 		if(isnull(beast))
 			continue
-		beast.remove_faction(faction_name)
+		beast.faction -= faction_name
 		beast.remove_status_effect(/datum/status_effect/pinkdamagetracker)
-	owner.remove_faction(faction_name)
+	owner.faction -= faction_name
 
 /datum/status_effect/stabilized/oil
 	id = "stabilizedoil"

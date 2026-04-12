@@ -72,7 +72,10 @@
 		step(L, pick(GLOB.cardinals))
 
 		to_chat(L, span_danger("You feel a sharp shock!"))
-		do_sparks(3, TRUE, L)
+		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+		s.set_up(3, 1, L)
+		s.start()
+
 		L.Paralyze(100)
 
 	if(master)

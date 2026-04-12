@@ -3,7 +3,7 @@
  * Bitrunning gimmick loadouts themed around sports.
  * Mostly for fun, have niche or little advantages.
  */
-/obj/item/disk/bitrunning/gimmick/sports
+/obj/item/bitrunning_disk/gimmick/sports
 	name = "bitrunning gimmick: sports"
 	selectable_loadouts = list(
 		/datum/bitrunning_gimmick/boxer,

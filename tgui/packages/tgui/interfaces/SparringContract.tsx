@@ -99,7 +99,9 @@ export const SparringContract = (props) => {
                     selected={weaponlist[weapon - 1]}
                     options={weaponlist}
                     onSelected={(value) =>
-                      setWeapon(weaponlist.indexOf(value) + 1)
+                      setWeapon(
+                        weaponlist.findIndex((title) => title === value) + 1,
+                      )
                     }
                   />
                 </Stack.Item>
@@ -136,7 +138,9 @@ export const SparringContract = (props) => {
                     selected={stakelist[stakes - 1]}
                     options={stakelist}
                     onSelected={(value) =>
-                      setStakes(stakelist.indexOf(value) + 1)
+                      setStakes(
+                        stakelist.findIndex((title) => title === value) + 1,
+                      )
                     }
                   />
                 </Stack.Item>

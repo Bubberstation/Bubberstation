@@ -23,6 +23,6 @@
 		return FALSE
 	if (the_target in controller.blackboard[BB_BASIC_MOB_RETALIATE_LIST])
 		return FALSE
-	if (the_target.has_faction(FACTION_CARP))
+	if (FACTION_CARP in the_target.faction)
 		return FALSE
 	return TRUE

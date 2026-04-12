@@ -33,7 +33,7 @@
 	stored_research = GLOB.autounlock_techwebs[/datum/techweb/autounlocking/limbgrower]
 	. = ..()
 	AddComponent(/datum/component/plumbing/simple_demand)
-	AddElement(/datum/element/simple_rotation)
+	AddComponent(/datum/component/simple_rotation)
 	register_context()
 
 /obj/machinery/limbgrower/add_context(atom/source, list/context, obj/item/held_item, mob/user)

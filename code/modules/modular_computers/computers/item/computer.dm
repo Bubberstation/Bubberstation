@@ -19,7 +19,7 @@
 	///The alt slot, only used by certain UIs like the access app.
 	var/obj/item/card/id/alt_stored_id
 	///The disk in this PDA. If set, this will be inserted on Initialize.
-	var/obj/item/disk/computer/inserted_disk
+	var/obj/item/computer_disk/inserted_disk
 	///The power cell the computer uses to run on.
 	var/obj/item/stock_parts/power_store/internal_cell = /obj/item/stock_parts/power_store/cell
 	///A pAI currently loaded into the modular computer.
@@ -626,7 +626,7 @@
 	physical.loc.visible_message(span_notice("[icon2html(physical, viewers(physical.loc))] \The [src] displays a [call_source.filedesc] notification: [alerttext]"))
 
 /obj/item/modular_computer/proc/ring(ringtone, list/balloon_alertees) // bring bring
-	if(!use_energy(check_programs = FALSE))
+	if(!use_energy())
 		return
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PDA_GLITCHED))
 		playsound(src, pick(
@@ -873,8 +873,6 @@
 /obj/item/modular_computer/wrench_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
 	tool.play_tool_sound(src, user, 20, volume=20)
-	if(!do_after(user, 2 SECONDS, target = physical))
-		return ITEM_INTERACT_BLOCKING
 	deconstruct(TRUE)
 	user.balloon_alert(user, "disassembled")
 	return ITEM_INTERACT_SUCCESS
@@ -930,7 +928,7 @@
 	if(istype(tool, /obj/item/paper_bin))
 		return paper_bin_act(user, tool)
 
-	if(istype(tool, /obj/item/disk/computer))
+	if(istype(tool, /obj/item/computer_disk))
 		return computer_disk_act(user, tool)
 
 	return NONE
@@ -967,7 +965,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/modular_computer/proc/photo_act(mob/user, obj/item/photo/scanned_photo)
-	if(!store_file(new /datum/computer_file/picture(scanned_photo.picture), user))
+	if(!store_file(new /datum/computer_file/picture(scanned_photo.picture)))
 		balloon_alert(user, "no space!")
 		return ITEM_INTERACT_BLOCKING
 	balloon_alert(user, "photo scanned")
@@ -1002,7 +1000,7 @@
 	bin.update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
-/obj/item/modular_computer/proc/computer_disk_act(mob/user, obj/item/disk/computer/disk)
+/obj/item/modular_computer/proc/computer_disk_act(mob/user, obj/item/computer_disk/disk)
 	if(!user.transferItemToLoc(disk, src))
 		return ITEM_INTERACT_BLOCKING
 	if(inserted_disk)

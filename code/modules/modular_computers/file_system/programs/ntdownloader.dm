@@ -11,8 +11,6 @@
 
 	///The program currently being downloaded.
 	var/datum/computer_file/program/downloaded_file
-	///weak ref to the user who began the download
-	var/datum/weakref/download_user
 	///Boolean on whether the `downloaded_file` is being downloaded from the Syndicate store,
 	///in which case it will appear as 'ENCRYPTED' in logs, rather than display file name.
 	var/hacked_download = FALSE
@@ -37,7 +35,7 @@
 	ui_header = null
 	. = ..()
 
-/datum/computer_file/program/ntnetdownload/proc/begin_file_download(filename, mob/user)
+/datum/computer_file/program/ntnetdownload/proc/begin_file_download(filename)
 	if(downloaded_file)
 		return FALSE
 
@@ -66,7 +64,6 @@
 		hacked_download = FALSE
 
 	downloaded_file = PRG.clone()
-	download_user = WEAKREF(user)
 
 	// If the filesize is 0 (or somehow lower), we instantly download to avoid invalid number issues with stepwise download.
 	if(downloaded_file.size <= 0)
@@ -79,19 +76,17 @@
 	downloaded_file = null
 	download_completion = FALSE
 	ui_header = null
-	download_user = null
 
 /datum/computer_file/program/ntnetdownload/proc/complete_file_download()
 	if(!downloaded_file)
 		return
 	generate_network_log("Completed download of file [hacked_download ? "**ENCRYPTED**" : "[downloaded_file.filename].[downloaded_file.filetype]"].")
-	if(!computer || !computer.store_file(downloaded_file, download_user?.resolve()))
+	if(!computer || !computer.store_file(downloaded_file))
 		// The download failed
 		downloaderror = "I/O ERROR - Unable to save file. Check whether you have enough free space on your hard drive and whether your hard drive is properly connected. If the issue persists contact your system administrator for assistance."
 	downloaded_file = null
 	download_completion = FALSE
 	ui_header = "downloader_finished.gif"
-	download_user = null
 
 /datum/computer_file/program/ntnetdownload/process_tick(seconds_per_tick)
 	if(!downloaded_file)
@@ -122,7 +117,7 @@
 	switch(action)
 		if("PRG_downloadfile")
 			if(!downloaded_file)
-				begin_file_download(params["filename"], usr)
+				begin_file_download(params["filename"])
 			return TRUE
 		if("PRG_reseterror")
 			if(downloaderror)

@@ -260,7 +260,7 @@ export const PlayerPanel = () => {
                   <Tabs vertical>
                     {PAGES.map((page, i) => {
                       if (page.canAccess && !page.canAccess(data)) {
-                        return <Tabs.Tab />;
+                        return;
                       }
 
                       return (

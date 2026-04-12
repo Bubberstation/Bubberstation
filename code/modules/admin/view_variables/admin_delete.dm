@@ -26,11 +26,10 @@
 			qdel(D)
 			if(!QDELETED(D))
 				vv_update_display(D, "deleted", "")
-		// BUBBER EDIT - ADDITION - START
+		// Skyrat edit addition start -- optional bluespace sparks on delete
 		if(T && prefs.read_preference(/datum/preference/toggle/admin/delete_sparks))
 			playsound(T, 'sound/effects/magic/repulse.ogg', 100, 1)
-			var/datum/effect_system/basic/spark_spread/quantum/sparks = new
-			sparks = new(T, 2, FALSE)
+			var/datum/effect_system/spark_spread/quantum/sparks = new
+			sparks.set_up(10, 1, T)
 			sparks.attach(T)
 			sparks.start()
-		// BUBBER EDIT - ADDITION - END

@@ -174,6 +174,9 @@
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()
+	design_ids -= "mag_autorifle"
+	design_ids -= "mag_autorifle_ap"
+	design_ids -= "mag_autorifle_ic"
 	design_ids += "wt550_ammo_incendiary"
 	design_ids += "mod_mind_transfer"
 	. = ..()

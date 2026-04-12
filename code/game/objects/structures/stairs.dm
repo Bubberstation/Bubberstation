@@ -340,7 +340,7 @@
 
 /obj/structure/stairs_frame/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/simple_rotation)
+	AddComponent(/datum/component/simple_rotation)
 
 /obj/structure/stairs_frame/examine(mob/living/carbon/human/user)
 	. = ..()

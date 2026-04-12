@@ -568,10 +568,8 @@ Behavior that's still missing from this component that original food items had t
 		qdel(food)
 		return FALSE
 
-	if(SEND_SIGNAL(eater, COMSIG_CARBON_ATTEMPT_EAT, food) & BLOCK_EAT_ATTEMPT)
-		return FALSE
-	if(SEND_SIGNAL(food, COMSIG_FOOD_ATTEMPT_EAT, eater, feeder) & BLOCK_EAT_ATTEMPT)
-		return FALSE
+	if(SEND_SIGNAL(eater, COMSIG_CARBON_ATTEMPT_EAT, food) & COMSIG_CARBON_BLOCK_EAT)
+		return
 	return TRUE
 
 ///Applies food buffs according to the crafting complexity

@@ -55,13 +55,12 @@
  *
  * required user the mob currently interacting with the ui
  * optional ui ui to be updated
- * always_instant when set to true stops the ui update cooldown from happening
  */
-/datum/proc/update_static_data(mob/user, datum/tgui/ui, always_instant)
+/datum/proc/update_static_data(mob/user, datum/tgui/ui)
 	if(!ui)
 		ui = SStgui.get_open_ui(user, src)
 	if(ui)
-		ui.send_full_update(always_instant = always_instant)
+		ui.send_full_update()
 
 /**
  * public

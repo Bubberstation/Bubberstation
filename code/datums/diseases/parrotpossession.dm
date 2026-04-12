@@ -19,7 +19,7 @@
 	var/datum/ai_controller/basic_controller/parrot_controller
 
 
-/datum/disease/parrot_possession/stage_act(seconds_per_tick)
+/datum/disease/parrot_possession/stage_act(seconds_per_tick, times_fired)
 	. = ..()
 
 	if(!. || isnull(parrot_controller))

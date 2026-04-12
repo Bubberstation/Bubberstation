@@ -116,8 +116,7 @@
 	var/original_speed = shell.loaded_projectile.speed
 	var/original_wounds_bonus = shell.loaded_projectile.wound_bonus
 	var/original_bare_wounds_bonus = shell.loaded_projectile.exposed_wound_bonus
-	var/original_ignored_faction = shell.loaded_projectile.get_faction()
-	var/original_ignored_allies = shell.loaded_projectile.allies
+	var/original_ignored_faction = shell.loaded_projectile.ignored_factions
 
 	for(var/i in 1 to num_pellets)
 		shell.ready_proj(target, user, SUPPRESSED_VERY, zone_override, fired_from)
@@ -134,8 +133,7 @@
 		shell.loaded_projectile.speed = original_speed
 		shell.loaded_projectile.wound_bonus = original_wounds_bonus
 		shell.loaded_projectile.exposed_wound_bonus = original_bare_wounds_bonus
-		shell.loaded_projectile.set_faction(original_ignored_faction)
-		shell.loaded_projectile.set_allies(original_ignored_allies)
+		shell.loaded_projectile.ignored_factions = original_ignored_faction
 		pellets += shell.loaded_projectile
 		var/turf/current_loc = get_turf(fired_from)
 		if (!istype(target_loc) || !istype(current_loc) || !(shell.loaded_projectile))

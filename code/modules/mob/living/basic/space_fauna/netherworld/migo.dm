@@ -60,7 +60,7 @@
 		return
 	make_migo_sound()
 
-/mob/living/basic/migo/Life(seconds_per_tick = SSMOBS_DT)
+/mob/living/basic/migo/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(!.) //dead or deleted
 		return

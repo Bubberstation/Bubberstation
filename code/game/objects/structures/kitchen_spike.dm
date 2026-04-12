@@ -123,12 +123,10 @@
 	desc = "A spike for collecting meat from animals."
 	density = TRUE
 	anchored = TRUE
-	buckle_lying = 180
-	buckle_dir = SOUTH
+	buckle_lying = FALSE
 	can_buckle = TRUE
 	max_integrity = 250
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7)
-	buckle_delay = 10 SECONDS
 
 /obj/structure/kitchenspike/Initialize(mapload)
 	. = ..()
@@ -167,12 +165,8 @@
 /obj/structure/kitchenspike/user_buckle_mob(mob/living/target, mob/user, check_loc = TRUE)
 	if(!iscarbon(target) && !isanimal_or_basicmob(target))
 		return
-	if(target != user || target.loc == loc)
-		return ..()
 	if(!do_after(user, 10 SECONDS, target))
 		return
-	if(!is_user_buckle_possible(target, user, check_loc))
-		return FALSE
 	return ..()
 
 /obj/structure/kitchenspike/post_buckle_mob(mob/living/target)
@@ -180,11 +174,12 @@
 	target.emote("scream")
 	target.add_splatter_floor()
 	target.adjust_brute_loss(30)
-	target.add_offsets(type, x_add = -1)
-	target.set_lying_angle(buckle_lying)
+	target.setDir(2)
+	var/matrix/m180 = matrix(target.transform)
+	m180.Turn(180)
+	animate(target, transform = m180, time = 3)
+	target.add_offsets(type, y_add = -6, animate = FALSE)
 	ADD_TRAIT(target, TRAIT_MOVE_UPSIDE_DOWN, REF(src))
-	// So you can butcher people too
-	target.AddComponentFrom(REF(src), /datum/component/free_operation)
 
 /obj/structure/kitchenspike/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
 	if(buckled_mob != user)
@@ -212,9 +207,11 @@
 	buckled_mob.adjust_brute_loss(30)
 	INVOKE_ASYNC(buckled_mob, TYPE_PROC_REF(/mob, emote), "scream")
 	buckled_mob.AdjustParalyzed(20)
-	buckled_mob.remove_offsets(type)
+	var/matrix/m180 = matrix(buckled_mob.transform)
+	m180.Turn(180)
+	animate(buckled_mob, transform = m180, time = 3)
+	buckled_mob.remove_offsets(type, animate = FALSE)
 	REMOVE_TRAIT(buckled_mob, TRAIT_MOVE_UPSIDE_DOWN, REF(src))
-	buckled_mob.RemoveComponentSource(REF(src), /datum/component/free_operation)
 
 /obj/structure/kitchenspike/atom_deconstruct(disassembled = TRUE)
 	if(disassembled)

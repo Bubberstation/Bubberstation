@@ -83,7 +83,9 @@
 		victims += target
 
 	for(var/mob/living/carbon/human/victim as anything in victims)
-		do_smoke(0, victim, victim.loc)
+		var/datum/effect_system/fluid_spread/smoke/smoke = new
+		smoke.set_up(0, holder = victim, location = victim.loc)
+		smoke.start()
 
 #undef BIG_FAT_DOOBIE
 #undef BOXING

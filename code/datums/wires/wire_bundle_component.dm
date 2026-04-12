@@ -11,7 +11,7 @@
 		CRASH("Holder does not have a shell component!")
 	var/wire_count = clamp(round(shell_comp.capacity / CAPACITY_PER_WIRE, 1), 1, MAX_WIRE_COUNT)
 	for(var/index in 1 to wire_count)
-		LAZYADD(wires, "Port [index]")
+		wires += "Port [index]"
 	..()
 
 /datum/wires/wire_bundle_component/always_reveal_wire(color)

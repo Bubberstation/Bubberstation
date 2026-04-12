@@ -65,7 +65,7 @@
 /datum/mutation/hulk/proc/scream_attack(mob/living/carbon/human/source)
 	source.say("WAAAAAAAAAAAAAAGH!", forced="hulk")
 
-/datum/mutation/hulk/on_life(seconds_per_tick)
+/datum/mutation/hulk/on_life(seconds_per_tick, times_fired)
 	if(owner.health < owner.crit_threshold)
 		on_losing(owner)
 		to_chat(owner, span_danger("You suddenly feel very weak."))
@@ -276,7 +276,7 @@
 		TRAIT_NO_OXYLOSS_PASSOUT,
 	) // fight till your last breath
 
-/datum/mutation/hulk/superhuman/on_life(seconds_per_tick)
+/datum/mutation/hulk/superhuman/on_life(seconds_per_tick, times_fired)
 	return
 
 /datum/mutation/hulk/ork

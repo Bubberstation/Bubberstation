@@ -17,7 +17,7 @@
 
 /obj/item/clothing/shoes/galoshes/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/adjust_fishing_difficulty, fishing_modifier)
+	AddComponent(/datum/component/adjust_fishing_difficulty, fishing_modifier)
 
 /obj/item/clothing/shoes/galoshes/dry
 	name = "absorbent galoshes"

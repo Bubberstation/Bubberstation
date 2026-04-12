@@ -21,7 +21,6 @@
 	loot = list(
 		/obj/item/stamp/granted = 3,
 		/obj/item/stamp/denied = 1,
-		/obj/item/stamp/void = 1,
 	)
 
 /obj/effect/spawner/random/bureaucracy/crayon

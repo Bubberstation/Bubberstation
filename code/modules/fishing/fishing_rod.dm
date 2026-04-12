@@ -1,3 +1,5 @@
+#define FISHING_ROD_REEL_CAST_RANGE 2
+
 /obj/item/fishing_rod
 	name = "fishing rod"
 	desc = "You can fish with this."
@@ -238,7 +240,7 @@
 	if(isnull(reward))
 		return
 	var/isfish = isfish(reward)
-	if((material_flags & MATERIAL_EFFECTS) && isfish && length(custom_materials) && HAS_TRAIT(reward, TRAIT_FISH_JUST_SPAWNED))
+	if((material_flags & MATERIAL_EFFECTS) && isfish && length(custom_materials))
 		if(prob(get_material_fish_chance(user)))
 			var/obj/item/fish/fish = reward
 			var/datum/material/material = get_master_material()
@@ -313,24 +315,18 @@
 	user.mind?.adjust_experience(/datum/skill/fishing, time * 0.13 * experience_multiplier)
 
 	//Try to move it 'till it's under the user's feet, then try to pick it up
+	if(isitem(currently_hooked))
+		var/obj/item/item = currently_hooked
+		step_towards(item, get_turf(src))
+		if(item.loc == user.loc && (item.interaction_flags_item & INTERACT_ITEM_ATTACK_HAND_PICKUP))
+			user.put_in_inactive_hand(item)
+			QDEL_NULL(fishing_line)
 	//Not an item, so just delete the line if it's adjacent to the user.
-	if(!isitem(currently_hooked) && get_dist(currently_hooked, get_turf(src)) < 1)
-		QDEL_NULL(fishing_line)
-		return
-
-	if(line?.fishing_line_traits & FISHING_LINE_PHASE)
-		currently_hooked.forceMove(get_step_towards(currently_hooked, get_turf(src)))
-	else
+	else if(get_dist(currently_hooked,get_turf(src)) > 1)
 		step_towards(currently_hooked, get_turf(src))
-
-	if(!isitem(currently_hooked))
 		if(get_dist(currently_hooked,get_turf(src)) <= 1)
 			QDEL_NULL(fishing_line)
-		return
-
-	var/obj/item/item = currently_hooked
-	if(item.loc == user.loc && (item.interaction_flags_item & INTERACT_ITEM_ATTACK_HAND_PICKUP))
-		user.put_in_inactive_hand(item)
+	else
 		QDEL_NULL(fishing_line)
 
 /obj/item/fishing_rod/proc/fishing_line_check()
@@ -366,7 +362,7 @@
 	currently_hooked = null
 
 /obj/item/fishing_rod/proc/get_cast_range(mob/living/user)
-	. = max(cast_range + line?.cast_range, 1)
+	. = max(cast_range, 1)
 	user = user || loc
 	if (!isliving(user) || !user.mind || !user.is_holding(src))
 		return
@@ -392,29 +388,11 @@
 // Checks fishing line for interruptions and range
 /obj/item/fishing_rod/proc/check_los(datum/beam/source)
 	SIGNAL_HANDLER
+	. = NONE
 
-	var/cast_range = get_cast_range()
-	if(!(line?.fishing_line_traits & FISHING_LINE_PHASE))
-		if(!CheckToolReach(src, source.target, cast_range))
-			qdel(source)
-			return BEAM_CANCEL_DRAW
-		return NONE
-
-
-	//Bluespace fishing lines are simplier and only check the distance and if there're r-walls in the way.
-	if(source.target.z != loc.z || get_dist(loc, source.target) > cast_range)
+	if(!CheckToolReach(src, source.target, get_cast_range()))
 		qdel(source)
 		return BEAM_CANCEL_DRAW
-
-	//Check that there are no r-walls in the way of our bluespace fishing line
-	var/list/bresenham_line = get_line(loc, source.target)
-	bresenham_line -= get_turf(source.target) //We don't check if the target is on a r-wall already, just the turfs separating us from it.
-	bresenham_line -= get_turf(loc) //ditto with our own turf.
-	for(var/turf/turf as anything in bresenham_line)
-		if(isindestructiblewall(turf) || istype(turf, /turf/closed/wall/r_wall))
-			qdel(source)
-			return BEAM_CANCEL_DRAW
-	return NONE
 
 /obj/item/fishing_rod/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	//this prevent trying to use telekinesis to fish (which would be broken anyway), also whacking people with a rod.
@@ -454,9 +432,8 @@
 		return
 	if(!COOLDOWN_FINISHED(src, casting_cd))
 		return
-	var/cast_range = get_cast_range(user)
 	// Inside of storages, or camera weirdness
-	if(target.z != user.z || get_dist(user, target) > (cast_range + 3))
+	if(target.z != user.z || !(target in view(user.client?.view || world.view, user)))
 		return
 	COOLDOWN_START(src, casting_cd, 1 SECONDS)
 	// skip firing a projectile if the target is adjacent and can be reached (no order windows in the way),
@@ -475,8 +452,6 @@
 	cast_projectile.fired_from = src
 	cast_projectile.firer = user
 	cast_projectile.impacted = list(WEAKREF(user) = TRUE)
-	if(line?.fishing_line_traits & FISHING_LINE_PHASE)
-		cast_projectile.pass_flags = ALL
 	cast_projectile.aim_projectile(target, user)
 	cast_projectile.fire()
 
@@ -671,6 +646,7 @@
 			hook = equipment
 		if(ROD_SLOT_LINE)
 			line = equipment
+			cast_range += FISHING_ROD_REEL_CAST_RANGE
 		else
 			CRASH("set_slot called with an undefined slot: [slot]")
 
@@ -685,6 +661,7 @@
 		REMOVE_TRAIT(src, TRAIT_ROD_REMOVE_FISHING_DUD, INNATE_TRAIT)
 	if(gone == line)
 		slot = ROD_SLOT_LINE
+		cast_range -= FISHING_ROD_REEL_CAST_RANGE
 		line = null
 	if(gone == hook)
 		slot = ROD_SLOT_HOOK
@@ -889,55 +866,26 @@
 	suppressed =  SUPPRESSED_VERY
 	can_hit_turfs = TRUE
 	projectile_angle = 180
+
 	var/obj/item/fishing_rod/owner
+	var/datum/beam/our_line
 
 /obj/projectile/fishing_cast/fire(angle, atom/direct_target)
 	if(owner.hook)
 		icon_state = owner.hook.icon_state
 	. = ..()
 	if(!QDELETED(src))
-		owner.create_fishing_line(src, firer)
-
-///If the fishing line is phasing, we don't care about anything entering our turf
-/obj/projectile/fishing_cast/on_entered(datum/source, atom/movable/entered_atom)
-	if(owner.line?.fishing_line_traits & FISHING_LINE_PHASE)
-		return
-	return ..()
-
-///Override of the generic scan_moved_turf so we don't scan for mobs when we move. Also cannot phase through r-walls for balance reasons (stealing from the armory *wink wink*)
-/obj/projectile/fishing_cast/scan_moved_turf()
-	if(can_hit_target(original, TRUE, FALSE))
-		impact(original)
-		return
-	if(isindestructiblewall(loc) || istype(loc, /turf/closed/wall/r_wall))
-		qdel(src)
+		our_line = owner.create_fishing_line(src, firer)
 
 /obj/projectile/fishing_cast/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	QDEL_NULL(owner.fishing_line) //we need to delete the old beam datum, otherwise it won't let you fish.
-	owner.casting = FALSE //set the casting value to false so we don't delete the new fishing line (different target) on Destroy()
-	if(blocked >= 100)
-		return
-	owner.hook_hit(target, firer)
-
-	if(!isturf(target) || owner.fishing_line)
-		return
-
-	//So, the target is a turf and we couldn't enstablish a fishing line to it, so let's pick a random thing from that turf.
-	var/list/possible_picks = list()
-	for(var/atom/movable/movable as anything in get_turf(src))
-		if(movable == src)
-			continue
-		if(can_hit_target(movable, direct_target = TRUE, ignore_loc = TRUE))
-			possible_picks += movable
-	if(length(possible_picks))
-		impact(pick(possible_picks))
-		return
+	if(blocked < 100)
+		QDEL_NULL(our_line) //we need to delete the old beam datum, otherwise it won't let you fish.
+		owner.hook_hit(target, firer)
 
 /obj/projectile/fishing_cast/Destroy()
-	if(owner?.casting)
-		owner.casting = FALSE
-		QDEL_NULL(owner.fishing_line)
+	QDEL_NULL(our_line)
+	owner?.casting = FALSE
 	owner = null
 	return ..()
 
@@ -982,7 +930,7 @@
 /datum/beam/fishing_line/proc/handle_dir_change(atom/movable/source, olddir, newdir)
 	SIGNAL_HANDLER
 	update_offsets(newdir)
-	INVOKE_ASYNC(src, TYPE_PROC_REF(/datum/beam, redrawing))
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/datum/beam/, redrawing))
 
 /datum/beam/fishing_line/proc/update_offsets(user_dir)
 	switch(user_dir)
@@ -1001,3 +949,5 @@
 
 	override_origin_pixel_x += origin.pixel_x
 	override_origin_pixel_y += origin.pixel_y
+
+#undef FISHING_ROD_REEL_CAST_RANGE

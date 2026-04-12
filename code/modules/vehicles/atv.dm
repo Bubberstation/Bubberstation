@@ -108,7 +108,9 @@
 		return PROCESS_KILL
 	if(SPT_PROB(10, seconds_per_tick))
 		return
-	do_smoke(0, src, src)
+	var/datum/effect_system/fluid_spread/smoke/smoke = new
+	smoke.set_up(0, holder = src, location = src)
+	smoke.start()
 
 /obj/vehicle/ridden/atv/projectile_hit(obj/projectile/hitting_projectile, def_zone, piercing_hit, blocked)
 	if(prob(50) || !LAZYLEN(buckled_mobs))

@@ -829,11 +829,17 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 					message_admins("[ADMIN_LOOKUPFLW(user)] has beamed out [living_user.pulling] alongside them.")
 				var/turf/pulling_turf = get_turf(living_user.pulling)
 				playsound(pulling_turf, 'sound/effects/magic/Repulse.ogg', 100, 1)
-				do_sparks(10, 1, pulling_turf)
+				var/datum/effect_system/spark_spread/quantum/sparks = new
+				sparks.set_up(10, 1, pulling_turf)
+				sparks.attach(pulling_turf)
+				sparks.start()
 				qdel(living_user.pulling)
 			var/turf/user_turf = get_turf(living_user)
 			playsound(user_turf, 'sound/effects/magic/Repulse.ogg', 100, 1)
-			do_sparks(10, 1, user_turf)
+			var/datum/effect_system/spark_spread/quantum/sparks = new
+			sparks.set_up(10, 1, user_turf)
+			sparks.attach(user_turf)
+			sparks.start()
 			qdel(user)
 	else
 		user.balloon_alert(user, "beam-out cancelled")

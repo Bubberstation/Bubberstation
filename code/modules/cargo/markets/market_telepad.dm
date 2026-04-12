@@ -366,7 +366,11 @@
 		receiving.post_purchase_effects(receiving.item)
 
 		use_energy(energy_usage_per_teleport / power_efficiency)
-		do_sparks(5, TRUE, src, receiving.item)
+		var/datum/effect_system/spark_spread/sparks = new
+		sparks.set_up(5, 1, get_turf(src))
+		sparks.attach(receiving.item)
+		sparks.start()
+
 		transmitting = receiving
 		receiving = null
 

@@ -114,13 +114,10 @@
 
 	var/mob/living/carbon/human/human_user = user
 	var/obj/item/bodypart/their_poor_arm = human_user.get_active_hand()
-	if (!their_poor_arm)
-		return TRUE
-
 	if(prob(25))
 		to_chat(human_user, span_userdanger("An otherwordly presence tears and atomizes your [their_poor_arm.name] as you try to touch the hole in the very fabric of reality!"))
-		if (their_poor_arm.dismember())
-			their_poor_arm.forceMove(src) // stored for later fishage
+		their_poor_arm.dismember()
+		their_poor_arm.forceMove(src) // stored for later fishage
 	else
 		to_chat(human_user,span_danger("You pull your hand away from the hole as the eldritch energy flails, trying to latch onto existence itself!"))
 	return TRUE
@@ -146,12 +143,14 @@
 	// A very elaborate way to suicide
 	visible_message(span_userdanger("Psychic tendrils lash out from [src], psychically grabbing onto [user]'s psychically sensitive mind and tearing [user.p_their()] head off!"))
 	var/obj/item/bodypart/head/head = locate() in human_user.bodyparts
-	if(head?.dismember())
+	if(head)
+		head.dismember()
 		head.forceMove(src) // stored for later fishage
 	else
 		human_user.gib(DROP_ALL_REMAINS)
 	human_user.investigate_log("has died from using telekinesis on a heretic influence.", INVESTIGATE_DEATHS)
-	var/datum/effect_system/reagents_explosion/explosion = new(get_turf(human_user), 1, 1, 1)
+	var/datum/effect_system/reagents_explosion/explosion = new()
+	explosion.set_up(1, get_turf(human_user), TRUE, 0)
 	explosion.start(src)
 */
 

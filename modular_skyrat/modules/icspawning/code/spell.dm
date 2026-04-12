@@ -21,7 +21,10 @@
 
 	var/mob/dead/observer/ghost = user.ghostize(FALSE)
 
-	do_sparks(10, TRUE, user, spark_type = /datum/effect_system/basic/spark_spread/quantum)
+	var/datum/effect_system/spark_spread/quantum/sparks = new
+	sparks.set_up(10, 1, user)
+	sparks.attach(user.loc)
+	sparks.start()
 
 	qdel(user)
 

@@ -1,4 +1,4 @@
-/mob/living/carbon/alien/Life(seconds_per_tick = SSMOBS_DT)
+/mob/living/carbon/alien/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(!.) //dead or deleted
 		return
@@ -43,8 +43,8 @@
 	//BREATH TEMPERATURE
 	handle_breath_temperature(breath)
 
-/mob/living/carbon/alien/adult/Life(seconds_per_tick)
+/mob/living/carbon/alien/adult/Life(seconds_per_tick, times_fired)
 	. = ..()
 	if(QDELETED(src))
 		return
-	handle_organs(seconds_per_tick)
+	handle_organs(seconds_per_tick, times_fired)

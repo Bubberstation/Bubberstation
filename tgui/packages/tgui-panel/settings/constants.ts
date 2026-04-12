@@ -4,23 +4,6 @@
  * @license MIT
  */
 
-export const THEMES = ['light', 'dark'] as const;
-
-export const COLORS = {
-  DARK: {
-    BG_BASE: '#202020',
-    BG_SECOND: '#151515',
-    BUTTON: '#404040',
-    TEXT: '#A6A6A6',
-  },
-  LIGHT: {
-    BG_BASE: '#EEEEEE',
-    BG_SECOND: '#FFFFFF',
-    BUTTON: '#FFFFFF',
-    TEXT: '#000000',
-  },
-} as const;
-
 export const SETTINGS_TABS = [
   {
     id: 'general',
@@ -39,7 +22,7 @@ export const SETTINGS_TABS = [
     id: 'statPanel',
     name: 'Stat Panel',
   },
-] as const;
+];
 
 export const FONTS_DISABLED = 'Default';
 
@@ -55,6 +38,6 @@ export const FONTS = [
   'Trebuchet MS',
   'Courier New',
   'Lucida Console',
-] as const;
+];
 
 export const WARN_AFTER_HIGHLIGHT_AMT = 10;

@@ -15,7 +15,7 @@
 
 /obj/item/assembly_holder/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/simple_rotation)
+	AddComponent(/datum/component/simple_rotation)
 
 /obj/item/assembly_holder/Destroy()
 	QDEL_LAZYLIST(assemblies)
@@ -125,7 +125,7 @@
 /obj/item/assembly_holder/dropped(mob/user)
 	. = ..()
 	for(var/obj/item/assembly/assembly as anything in assemblies)
-		assembly.dropped(user)
+		assembly.dropped()
 
 /obj/item/assembly_holder/attack_hand(mob/living/user, list/modifiers)//Perhapse this should be a holder_pickup proc instead, can add if needbe I guess
 	. = ..()

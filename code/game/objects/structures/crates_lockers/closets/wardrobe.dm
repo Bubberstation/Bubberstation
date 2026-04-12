@@ -51,6 +51,7 @@
 		new /obj/item/clothing/mask/bandana/skull/black(src)
 	return
 
+
 /obj/structure/closet/wardrobe/green
 	name = "green wardrobe"
 	icon_door = "green"
@@ -66,6 +67,7 @@
 	new /obj/item/clothing/mask/bandana/green(src)
 	return
 
+
 /obj/structure/closet/wardrobe/orange
 	name = "prison wardrobe"
 	desc = "It's a storage unit for Nanotrasen-regulation prisoner attire."
@@ -79,6 +81,7 @@
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/shoes/sneakers/orange(src)
 	return
+
 
 /obj/structure/closet/wardrobe/yellow
 	name = "yellow wardrobe"
@@ -94,6 +97,7 @@
 	new /obj/item/clothing/mask/bandana/gold(src)
 	new /obj/item/clothing/mask/bandana/gold(src)
 	return
+
 
 /obj/structure/closet/wardrobe/white
 	name = "white wardrobe"
@@ -129,6 +133,7 @@
 		new /obj/item/clothing/shoes/sneakers/white(src)
 	return
 
+
 /obj/structure/closet/wardrobe/grey
 	name = "grey wardrobe"
 	icon_door = "grey"
@@ -157,6 +162,7 @@
 	if(prob(30))
 		new /obj/item/clothing/accessory/pocketprotector(src)
 	return
+
 
 /obj/structure/closet/wardrobe/mixed
 	name = "mixed wardrobe"

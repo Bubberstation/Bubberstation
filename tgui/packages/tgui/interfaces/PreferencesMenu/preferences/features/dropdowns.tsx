@@ -14,7 +14,7 @@ import type {
   FeatureValueProps,
 } from './base';
 
-export type DropdownInputProps = FeatureValueProps<
+type DropdownInputProps = FeatureValueProps<
   string,
   string,
   FeatureChoicedServerData
@@ -34,54 +34,37 @@ export type FeatureWithIcons<T> = Feature<string, T, FeatureChoicedServerData>;
 
 type DropdownOptions = ComponentProps<typeof Dropdown>['options'];
 
-type DropdownEntry = {
-  displayText: ReactNode;
-  value: string | number;
-};
-
-export function generateOptions(
-  serverData: FeatureChoicedServerData,
-): DropdownEntry[] {
-  const { choices = [] } = serverData;
-
-  const newOptions: DropdownEntry[] = [];
-
-  for (const choice of choices) {
-    const displayText: ReactNode = serverData.display_names
-      ? serverData.display_names[choice]
-      : capitalizeFirst(choice);
-
-    newOptions.push({
-      displayText,
-      value: choice,
-    });
-  }
-
-  return newOptions;
-}
-
 export function FeatureDropdownInput(props: DropdownInputProps) {
-  return FeatureDropdownInputCore(props, (serverData, setDropdownOptions) =>
-    setDropdownOptions(generateOptions(serverData)),
-  );
-}
-
-export function FeatureDropdownInputCore(
-  props: DropdownInputProps,
-  populateOptions: (
-    serverData: FeatureChoicedServerData,
-    setDropdownOptions: (newValue: DropdownOptions) => void,
-  ) => void,
-) {
   const { serverData, disabled, buttons, handleSetValue, value } = props;
 
   const [dropdownOptions, setDropdownOptions] = useState<DropdownOptions>([]);
 
+  function populateOptions() {
+    if (!serverData) return;
+
+    const { choices = [] } = serverData;
+
+    const newOptions: DropdownOptions = [];
+
+    for (const choice of choices) {
+      const displayText: ReactNode = serverData.display_names
+        ? serverData.display_names[choice]
+        : capitalizeFirst(choice);
+
+      newOptions.push({
+        displayText,
+        value: choice,
+      });
+    }
+
+    setDropdownOptions(newOptions);
+  }
+
   useEffect(() => {
     if (serverData) {
-      populateOptions(serverData, setDropdownOptions);
+      populateOptions();
     }
-  }, [serverData, populateOptions]);
+  }, [serverData]);
 
   const displayText = serverData?.display_names?.[value] || String(value);
 
@@ -153,7 +136,6 @@ export function FeatureIconnedDropdownInput(props: IconnedDropdownInputProps) {
       options={dropdownOptions}
       selected={value}
       width="100%"
-      menuWidth="max-content"
     />
   );
 }

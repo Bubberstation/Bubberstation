@@ -13,7 +13,7 @@
 		var/datum/personality/personality = SSpersonalities.personalities_by_key[personality_key]
 		personality.apply_to_mob(target)
 
-/datum/preference/personality/is_valid(value, datum/preferences/preferences)
+/datum/preference/personality/is_valid(value)
 	return islist(value) || isnull(value)
 
 /datum/preference/personality/deserialize(input, datum/preferences/preferences)

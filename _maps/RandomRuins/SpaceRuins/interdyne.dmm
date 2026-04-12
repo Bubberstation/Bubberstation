@@ -8,6 +8,12 @@
 /obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
+"aI" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/interdyne)
 "aY" = (
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/interdyne)
@@ -48,7 +54,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/effect/gibspawner/generic,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "cJ" = (
@@ -106,7 +111,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "eL" = (
-/obj/item/tgui_book/manual/infuser,
+/obj/item/infuser_book,
 /obj/structure/cable,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
@@ -665,6 +670,11 @@
 /obj/machinery/light/blacklight/directional/north,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/interdyne)
+"DA" = (
+/mob/living/basic/zombie,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/interdyne)
 "DH" = (
 /turf/open/floor/iron/showroomfloor,
 /area/ruin/space/has_grav/interdyne)
@@ -984,12 +994,6 @@
 "Oo" = (
 /obj/structure/sink/directional/south,
 /turf/open/floor/iron/showroomfloor,
-/area/ruin/space/has_grav/interdyne)
-"OU" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "OW" = (
 /obj/machinery/power/smes/engineering{
@@ -1779,8 +1783,8 @@ fu
 eJ
 WU
 Zi
-oO
-OU
+gV
+vd
 xb
 Zi
 Rn
@@ -1815,7 +1819,7 @@ Yi
 US
 NG
 In
-QD
+SE
 FF
 Zi
 Rn
@@ -2157,7 +2161,7 @@ mp
 Zi
 fu
 Nb
-uy
+DA
 ga
 Zi
 Gk
@@ -2192,7 +2196,7 @@ SC
 Zi
 ub
 cG
-OU
+aI
 QD
 Zi
 XS

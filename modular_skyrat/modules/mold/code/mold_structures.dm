@@ -238,7 +238,7 @@
 	if(!isliving(nearby_atom))
 		return
 	var/mob/living/nearby_mob = nearby_atom
-	if(!(nearby_mob.has_faction(FACTION_MOLD)))
+	if(!(FACTION_MOLD in nearby_mob.faction))
 		INVOKE_ASYNC(src, PROC_REF(discharge))
 
 /obj/structure/mold/structure/bulb/proc/make_full()
@@ -267,7 +267,7 @@
 	addtimer(CALLBACK(src, PROC_REF(make_full)), 1 MINUTES, TIMER_UNIQUE|TIMER_NO_HASH_WAIT)
 
 /obj/structure/mold/structure/bulb/attack_generic(mob/user, damage_amount, damage_type, damage_flag, sound_effect, armor_penetration)
-	if(user.has_faction(FACTION_MOLD))
+	if(FACTION_MOLD in user.faction)
 		return ..()
 	discharge()
 	. = ..()

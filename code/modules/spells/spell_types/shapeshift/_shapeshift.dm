@@ -29,9 +29,6 @@
 	/// This should be implemented even if there is only one choice.
 	var/list/atom/possible_shapes
 
-	/// The shapechange status effect to apply to our mob, it should be a subtype of this if you change it
-	var/shapechange_type = /datum/status_effect/shapechange_mob/from_spell
-
 /datum/action/cooldown/spell/shapeshift/Remove(mob/remove_from)
 	unshift_owner()
 	return ..()
@@ -149,7 +146,7 @@
 /// Actually does the shapeshift, for the caster.
 /datum/action/cooldown/spell/shapeshift/proc/do_shapeshift(mob/living/caster)
 	var/mob/living/new_shape = create_shapeshift_mob(caster.loc)
-	var/datum/status_effect/shapechange_mob/shapechange = new_shape.apply_status_effect(shapechange_type, caster, src)
+	var/datum/status_effect/shapechange_mob/shapechange = new_shape.apply_status_effect(/datum/status_effect/shapechange_mob/from_spell, caster, src)
 	if(!shapechange)
 		// We failed to shift, maybe because we were already shapeshifted?
 		// Whatver the case, this shouldn't happen, so throw a stack trace.
@@ -160,9 +157,7 @@
 	// Make sure it's castable even in their new form.
 	pre_shift_requirements = spell_requirements
 	spell_requirements &= ~(SPELL_REQUIRES_HUMAN|SPELL_REQUIRES_WIZARD_GARB)
-
-	// If you shapeshift into a pet subtype we don't want to update Poly's deathcount or something when you die
-	new_shape.add_traits(list(TRAIT_DONT_WRITE_MEMORY, TRAIT_SHAPESHIFTED), SHAPESHIFT_TRAIT)
+	ADD_TRAIT(new_shape, TRAIT_DONT_WRITE_MEMORY, SHAPESHIFT_TRAIT) // If you shapeshift into a pet subtype we don't want to update Poly's deathcount or something when you die
 
 	// Make sure that if you shapechanged into a bot, the AI can't just turn you off.
 	var/mob/living/simple_animal/bot/polymorph_bot = new_shape
@@ -174,7 +169,7 @@
 
 /// Actually does the un-shapeshift, from the caster. (Caster is a shapeshifted mob.)
 /datum/action/cooldown/spell/shapeshift/proc/do_unshapeshift(mob/living/caster)
-	var/datum/status_effect/shapechange_mob/shapechange = caster.has_status_effect(shapechange_type)
+	var/datum/status_effect/shapechange_mob/shapechange = caster.has_status_effect(/datum/status_effect/shapechange_mob/from_spell)
 	if(!shapechange)
 		// We made it to do_unshapeshift without having a shapeshift status effect, this shouldn't happen.
 		to_chat(caster, span_warning("You can't un-shapeshift from this form!"))
@@ -186,7 +181,7 @@
 	pre_shift_requirements = null
 
 	var/mob/living/unshapeshifted_mob = shapechange.caster_mob
-	caster.remove_status_effect(shapechange_type)
+	caster.remove_status_effect(/datum/status_effect/shapechange_mob/from_spell)
 	return unshapeshifted_mob
 
 /// Helper proc that instantiates the mob we shapeshift into.

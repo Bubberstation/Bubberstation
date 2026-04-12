@@ -52,7 +52,8 @@
 	var/self_delay = 30
 	custom_price = PAYCHECK_CREW * 2
 
-/obj/item/reagent_containers/medigel/setup_reskins()
+/obj/item/reagent_containers/medigel/Initialize(mapload)
+	. = ..()
 	if(icon_state == "medigel") // oh yeah baby raw icon state check to make sure we can't reskin preset gels
 		AddComponent(/datum/component/reskinable_item, /datum/atom_skin/med_gel)
 

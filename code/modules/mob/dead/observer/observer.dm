@@ -40,7 +40,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	///Flags of huds the ghost currently has enabled, data huds & ghost vision by default.
 	///Selection: GHOST_DATA_HUDS | GHOST_VISION | GHOST_HEALTH | GHOST_CHEM | GHOST_GAS
-	var/ghost_hud_flags = NONE
+	var/ghost_hud_flags = GHOST_DATA_HUDS | GHOST_VISION
 	///The shape the ghost will make while orbiting mobs.
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 
@@ -145,12 +145,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	grant_all_languages()
 	setup_hud_traits()
-	toggle_ghost_hud_flag(GHOST_VISION | GHOST_DATA_HUDS)
+	show_data_huds()
 
 	SSpoints_of_interest.make_point_of_interest(src)
 	ADD_TRAIT(src, TRAIT_HEAR_THROUGH_DARKNESS, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_GOOD_HEARING, INNATE_TRAIT)
-	ADD_TRAIT(src, TRAIT_DETECT_STORM, INNATE_TRAIT)
 
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
@@ -542,7 +541,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/verb/toggle_ghostsee()
 	set name = "Toggle Ghost Vision"
 
-	toggle_ghost_hud_flag(GHOST_VISION)
+	ghost_hud_flags ^= GHOST_VISION
 	update_sight()
 	to_chat(usr, span_boldnotice("You [(ghost_hud_flags & GHOST_VISION) ? "now" : "no longer"] have ghost vision."))
 
@@ -608,16 +607,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/verb/toggle_data_huds()
 	set name = "Toggle Sec/Med/Diag HUD"
 
-	toggle_ghost_hud_flag(GHOST_DATA_HUDS)
+	ghost_hud_flags ^= GHOST_DATA_HUDS
 	if(ghost_hud_flags & GHOST_DATA_HUDS)
+		show_data_huds()
 		to_chat(src, span_notice("Data HUDs enabled."))
 	else
+		remove_data_huds()
 		to_chat(src, span_notice("Data HUDs disabled."))
 
 /mob/dead/observer/verb/toggle_health_scan()
 	set name = "Toggle Health Scan"
 
-	toggle_ghost_hud_flag(GHOST_HEALTH)
+	ghost_hud_flags ^= GHOST_HEALTH
 	if(ghost_hud_flags & GHOST_HEALTH)
 		to_chat(src, span_notice("Health scan enabled."))
 	else
@@ -626,7 +627,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/verb/toggle_chem_scan()
 	set name = "Toggle Chem Scan"
 
-	toggle_ghost_hud_flag(GHOST_CHEM)
+	ghost_hud_flags ^= GHOST_CHEM
 	if(ghost_hud_flags & GHOST_CHEM)
 		to_chat(src, span_notice("Chem scan enabled."))
 	else
@@ -635,7 +636,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/verb/toggle_gas_scan()
 	set name = "Toggle Gas Scan"
 
-	toggle_ghost_hud_flag(GHOST_GAS)
+	ghost_hud_flags ^= GHOST_GAS
 	if(ghost_hud_flags & GHOST_GAS)
 		to_chat(src, span_notice("Gas scan enabled."))
 	else
@@ -651,18 +652,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(mind)
 			mind.ghostname = real_name
 		name = real_name
-
-/// Toggles a flag from ghost hud and updates the mob accordingly
-/mob/dead/observer/proc/toggle_ghost_hud_flag(toggled)
-	ghost_hud_flags ^= toggled
-	if(ghost_hud_flags & GHOST_DATA_HUDS)
-		show_data_huds()
-	else
-		remove_data_huds()
-	update_sight()
-	for(var/atom/movable/screen/ghost/hudbox/hud in hud_used?.static_inventory)
-		if(hud.relevant_flag & toggled)
-			hud.update_appearance(UPDATE_ICON_STATE)
 
 // This is the ghost's follow verb with an argument
 /mob/dead/observer/proc/ManualFollow(atom/movable/target)
@@ -730,6 +719,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		set_invis_see(SEE_INVISIBLE_OBSERVER)
 
+
 	updateghostimages()
 	..()
 
@@ -785,7 +775,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return FALSE
 
 	target.PossessByPlayer(key)
-	target.set_faction(list(FACTION_NEUTRAL))
+	target.faction = list(FACTION_NEUTRAL)
 	return TRUE
 
 /mob/dead/observer/_pointed(atom/pointed_at)
@@ -855,13 +845,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return
 
 /mob/dead/observer/proc/show_data_huds()
-	PRIVATE_PROC(TRUE)
-	ghost_hud_flags |= GHOST_DATA_HUDS // only for safety, it should be set already.
 	add_traits(observer_hud_traits, REF(src))
 
 /mob/dead/observer/proc/remove_data_huds()
-	PRIVATE_PROC(TRUE)
-	ghost_hud_flags &= ~GHOST_DATA_HUDS // only for safety, it should be unset already.
 	remove_traits(observer_hud_traits, REF(src))
 
 /mob/dead/observer/proc/set_ghost_appearance()

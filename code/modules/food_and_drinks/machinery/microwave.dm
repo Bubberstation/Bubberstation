@@ -643,7 +643,9 @@
 
 /obj/machinery/microwave/proc/spark()
 	visible_message(span_warning("Sparks fly around [src]!"))
-	do_sparks(2, TRUE, src)
+	var/datum/effect_system/spark_spread/sparks = new
+	sparks.set_up(2, 1, src)
+	sparks.start()
 
 /**
  * The start of the cook loop

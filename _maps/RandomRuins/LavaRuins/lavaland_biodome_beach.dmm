@@ -146,6 +146,10 @@
 /obj/structure/fluff/beach_umbrella/engine,
 /turf/open/misc/beach/sand,
 /area/ruin/powered/beach)
+"ct" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/wood,
+/area/ruin/powered/beach)
 "cE" = (
 /obj/effect/turf_decal/sand,
 /obj/effect/turf_decal/stripes/asteroid/line{
@@ -259,7 +263,7 @@
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
 "gX" = (
-/obj/machinery/atmospherics/components/unary/passive_vent/layer4,
+/obj/machinery/atmospherics/components/unary/outlet_injector/layer4,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/explored)
 "hj" = (
@@ -300,9 +304,7 @@
 /area/ruin/powered/beach)
 "hC" = (
 /obj/machinery/light/directional/east,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
-	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/structure/chair/stool/bar/directional/south,
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
@@ -328,6 +330,7 @@
 	dir = 1
 	},
 /obj/structure/table/wood,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
 "hX" = (
@@ -355,6 +358,12 @@
 /obj/item/storage/bag/tray,
 /obj/item/reagent_containers/cup/glass/colocup,
 /turf/open/floor/wood,
+/area/ruin/powered/beach)
+"kg" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/pod/light,
 /area/ruin/powered/beach)
 "kh" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -432,15 +441,6 @@
 /obj/item/reagent_containers/condiment/flour,
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
-"oe" = (
-/obj/effect/spawner/random/bedsheet{
-	dir = 4
-	},
-/obj/structure/bed{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/beach)
 "og" = (
 /obj/structure/weightmachine/weightlifter,
 /turf/open/floor/pod/dark,
@@ -460,6 +460,9 @@
 /area/ruin/powered/beach)
 "oU" = (
 /obj/machinery/seed_extractor,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4{
+	dir = 4
+	},
 /turf/open/floor/pod/light,
 /area/ruin/powered/beach)
 "pz" = (
@@ -549,15 +552,6 @@
 /obj/item/toy/beach_ball,
 /turf/open/misc/beach/sand,
 /area/ruin/powered/beach)
-"rO" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/pod/light,
-/area/ruin/powered/beach)
 "rU" = (
 /obj/item/reagent_containers/condiment/enzyme,
 /obj/item/reagent_containers/cup/beaker{
@@ -611,6 +605,7 @@
 /turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/ruin/powered/beach)
 "vf" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/table/wood/poker,
 /obj/item/storage/dice,
 /obj/item/stack/spacecash/c1000,
@@ -826,14 +821,31 @@
 	},
 /turf/closed/wall/mineral/sandstone,
 /area/ruin/powered/beach)
+"CZ" = (
+/obj/machinery/hydroponics/constructable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/iron/grimy,
+/area/ruin/powered/beach)
 "Df" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/wood,
+/area/ruin/powered/beach)
+"Dg" = (
+/obj/machinery/hydroponics/constructable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/iron/grimy,
 /area/ruin/powered/beach)
 "Ds" = (
 /obj/structure/closet/secure_closet/freezer/kitchen/all_access,
+/turf/open/floor/wood,
+/area/ruin/powered/beach)
+"Eq" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
 "Eu" = (
@@ -946,7 +958,7 @@
 /area/ruin/powered/beach)
 "Iq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/pod/light,
 /area/ruin/powered/beach)
@@ -1001,7 +1013,7 @@
 /area/ruin/powered/beach)
 "JP" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/pod/light,
 /area/ruin/powered/beach)
@@ -1096,7 +1108,9 @@
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
 "OP" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
 /obj/machinery/light/directional/south,
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
@@ -1503,8 +1517,8 @@ aj
 HW
 aC
 aC
-kh
-aC
+Eq
+ct
 hS
 cd
 Bp
@@ -1645,7 +1659,7 @@ Ti
 Ti
 hC
 vf
-aC
+ct
 BN
 Lm
 Lm
@@ -2142,9 +2156,9 @@ Lm
 hX
 VO
 og
-gC
-gC
-rO
+wY
+wY
+wY
 Fr
 yc
 Bp
@@ -2164,7 +2178,7 @@ kh
 aj
 de
 TC
-oe
+hq
 MZ
 hj
 mw
@@ -2206,9 +2220,9 @@ dc
 hX
 VO
 og
-wY
+gC
 EN
-wY
+kg
 wY
 Pr
 MZ
@@ -2238,7 +2252,7 @@ CL
 wY
 wY
 wY
-wY
+gC
 oF
 oU
 wY
@@ -2270,9 +2284,9 @@ qF
 BE
 yc
 FD
+gC
 wY
-wY
-wY
+kg
 wY
 AY
 MZ
@@ -2302,9 +2316,9 @@ UZ
 IL
 MZ
 sV
-sV
+Dg
 jh
-sV
+CZ
 sV
 Zi
 Mf

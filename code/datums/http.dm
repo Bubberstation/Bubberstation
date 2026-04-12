@@ -27,11 +27,6 @@
 	src.output_file = output_file
 	src.timeout_seconds = timeout_seconds
 
-/datum/http_request/proc/fire_and_forget()
-	var/result = rustg_http_request_fire_and_forget(method, url, body, headers, build_options())
-	if(result != "ok")
-		CRASH("[result]")
-
 /datum/http_request/proc/execute_blocking()
 	_raw_response = rustg_http_request_blocking(method, url, body, headers, build_options())
 
@@ -42,17 +37,16 @@
 	id = rustg_http_request_async(method, url, body, headers, build_options())
 
 	if (isnull(text2num(id)))
+		stack_trace("Proc error: [id]")
 		_raw_response = "Proc error: [id]"
-		CRASH("Proc error: [id]")
 	else
 		in_progress = TRUE
 
 /datum/http_request/proc/build_options()
 	return json_encode(list(
-		"output_filename" = output_file ? output_file : null,
-		"body_filename" = null,
-		"timeout_seconds" = timeout_seconds ? timeout_seconds : null,
-	))
+		"output_filename"=(output_file ? output_file : null),
+		"body_filename"=null,
+		"timeout_seconds"=(timeout_seconds ? timeout_seconds : null)))
 
 /datum/http_request/proc/is_complete()
 	if (isnull(id))
@@ -61,28 +55,28 @@
 	if (!in_progress)
 		return TRUE
 
-	var/response = rustg_http_check_request(id)
+	var/r = rustg_http_check_request(id)
 
-	if (response == RUSTG_JOB_NO_RESULTS_YET)
+	if (r == RUSTG_JOB_NO_RESULTS_YET)
 		return FALSE
 	else
-		_raw_response = response
+		_raw_response = r
 		in_progress = FALSE
 		return TRUE
 
-/datum/http_request/proc/into_response() as /datum/http_response
-	var/datum/http_response/response = new
+/datum/http_request/proc/into_response()
+	var/datum/http_response/R = new()
 
 	try
-		var/list/response_data = json_decode(_raw_response)
-		response.status_code = response_data["status_code"]
-		response.headers = response_data["headers"]
-		response.body = response_data["body"]
+		var/list/L = json_decode(_raw_response)
+		R.status_code = L["status_code"]
+		R.headers = L["headers"]
+		R.body = L["body"]
 	catch
-		response.errored = TRUE
-		response.error = _raw_response
+		R.errored = TRUE
+		R.error = _raw_response
 
-	return response
+	return R
 
 /datum/http_response
 	var/status_code

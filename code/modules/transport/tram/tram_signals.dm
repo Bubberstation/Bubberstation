@@ -275,11 +275,13 @@
 	if(updated_controller.specific_transport_id != configured_transport_id)
 		return
 
-	if(new_status)
-		if(operating_status == TRANSPORT_REMOTE_FAULT)
-			operating_status = TRANSPORT_SYSTEM_NORMAL
-	else if(operating_status == TRANSPORT_SYSTEM_NORMAL)
-		operating_status = TRANSPORT_REMOTE_FAULT
+	switch(new_status)
+		if(TRUE)
+			if(operating_status == TRANSPORT_REMOTE_FAULT)
+				operating_status = TRANSPORT_SYSTEM_NORMAL
+		if(FALSE)
+			if(operating_status == TRANSPORT_SYSTEM_NORMAL)
+				operating_status = TRANSPORT_REMOTE_FAULT
 
 /**
  * Update processing state.

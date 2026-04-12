@@ -63,7 +63,6 @@
 	return capitalize(newname)
 
 /datum/antagonist/nukeop/leader/create_team(datum/team/nuclear/new_team)
-	spawn_infiltrator()
 	if(new_team)
 		return ..()
 	// Leaders always make new teams

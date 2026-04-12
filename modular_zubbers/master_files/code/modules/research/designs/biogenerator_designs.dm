@@ -84,5 +84,5 @@
 	id = "diskplantgene"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 10)
-	build_path = /obj/item/disk/computer/plantgene
+	build_path = /obj/item/disk/plantgene
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_MATERIALS)

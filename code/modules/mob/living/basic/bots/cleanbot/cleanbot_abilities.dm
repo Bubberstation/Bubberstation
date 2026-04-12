@@ -29,6 +29,8 @@
 
 /datum/action/cooldown/mob_cooldown/bot/foam/Activate(mob/living/firer, atom/target)
 	owner.visible_message(span_danger("[owner] whirs and bubbles violently, before releasing a plume of froth!"))
-	do_foam(foam_range, owner, owner.loc)
+	var/datum/effect_system/fluid_spread/foam/foam = new
+	foam.set_up(foam_range, holder = owner, location = owner.loc)
+	foam.start()
 	StartCooldown()
 	return TRUE

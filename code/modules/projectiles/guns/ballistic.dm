@@ -221,10 +221,11 @@
 	. = ..()
 
 	if(selector_switch_icon)
-		if(burst_fire_selection)
-			. += "[initial(icon_state)]_burst"
-		else
-			. += "[initial(icon_state)]_semi"
+		switch(burst_fire_selection)
+			if(FALSE)
+				. += "[initial(icon_state)]_semi"
+			if(TRUE)
+				. += "[initial(icon_state)]_burst"
 
 	if(show_bolt_icon)
 		if (bolt_type == BOLT_TYPE_LOCKING)
@@ -563,7 +564,7 @@
 /obj/item/gun/ballistic/proc/load_gun(obj/item/ammo, mob/living/user)
 	if (chambered && !chambered.loaded_projectile)
 		chambered.forceMove(drop_location())
-		if(length(magazine?.stored_ammo) && chambered != magazine.stored_ammo[1])
+		if(chambered != magazine?.stored_ammo[1])
 			magazine.stored_ammo -= chambered
 		chambered = null
 

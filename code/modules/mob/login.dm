@@ -100,7 +100,7 @@
 	update_mouse_pointer()
 	update_ambience_area(get_area(src))
 
-	if(HAS_TRAIT(src, TRAIT_DEAF))
+	if(!can_hear())
 		stop_sound_channel(CHANNEL_AMBIENCE)
 
 	if(client)

@@ -35,7 +35,7 @@
 /obj/item/clothing/glasses/Initialize(mapload)
 	. = ..()
 	if(glass_colour_type)
-		AddElement(/datum/element/wearable_client_colour, glass_colour_type, ITEM_SLOT_EYES, GLASSES_TRAIT, forced = forced_glass_color, comsig_toggle = COMSIG_CLICK_ALT_SECONDARY)
+		AddElement(/datum/element/wearable_client_colour, glass_colour_type, ITEM_SLOT_EYES, GLASSES_TRAIT, forced = forced_glass_color)
 
 /obj/item/clothing/glasses/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] is stabbing \the [src] into [user.p_their()] eyes! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -504,7 +504,7 @@
 /obj/item/clothing/glasses/welding/Initialize(mapload)
 	. = ..()
 	if(!up)
-		AddElement(/datum/element/adjust_fishing_difficulty, 8)
+		AddComponent(/datum/component/adjust_fishing_difficulty, 8)
 
 /obj/item/clothing/glasses/welding/attack_self(mob/living/user)
 	adjust_visor(user)
@@ -512,9 +512,9 @@
 /obj/item/clothing/glasses/welding/adjust_visor(mob/user)
 	. = ..()
 	if(up)
-		RemoveElement(/datum/element/adjust_fishing_difficulty)
+		qdel(GetComponent(/datum/component/adjust_fishing_difficulty))
 	else
-		AddElement(/datum/element/adjust_fishing_difficulty, 8)
+		AddComponent(/datum/component/adjust_fishing_difficulty, 8)
 
 /obj/item/clothing/glasses/welding/update_icon_state()
 	. = ..()
@@ -537,7 +537,7 @@
 
 /obj/item/clothing/glasses/blindfold/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/adjust_fishing_difficulty, 8)
+	AddComponent(/datum/component/adjust_fishing_difficulty, 8)
 
 /obj/item/clothing/glasses/trickblindfold
 	name = "blindfold"
@@ -589,10 +589,7 @@
 /obj/item/clothing/glasses/thermal/xray
 	name = "syndicate xray goggles"
 	desc = "A pair of xray goggles manufactured by the Syndicate."
-	icon_state = "material"
-	color_cutoffs = null
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
-	glass_colour_type = /datum/client_colour/glass_colour/lightblue
 
 /obj/item/clothing/glasses/thermal/xray/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -717,7 +714,7 @@
 
 /obj/item/clothing/glasses/debug/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/adjust_fishing_difficulty, -15)
+	AddComponent(/datum/component/adjust_fishing_difficulty, -15)
 
 /obj/item/clothing/glasses/debug/click_alt(mob/user)
 	if(!ishuman(user))
@@ -790,7 +787,7 @@
 
 /obj/item/clothing/glasses/nightmare_vision/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/adjust_fishing_difficulty, 13)
+	AddComponent(/datum/component/adjust_fishing_difficulty, 13)
 
 /obj/item/clothing/glasses/nightmare_vision/Destroy()
 	QDEL_NULL(stored_hallucination)

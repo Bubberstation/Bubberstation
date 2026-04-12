@@ -28,6 +28,15 @@
 /obj/structure/chair/sofa/bench/tram/left,
 /turf/open/water,
 /area/station/hallway/secondary/entry)
+"fD" = (
+/obj/effect/turf_decal/tile/dark_blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/dark_blue,
+/obj/machinery/status_display/evac/directional/north,
+/obj/structure/chair/sofa/bench/tram/left,
+/turf/open/floor/iron/white,
+/area/station/hallway/secondary/entry)
 "iU" = (
 /obj/effect/landmark/start/assistant,
 /obj/effect/turf_decal/tile/dark_blue{
@@ -74,7 +83,6 @@
 	},
 /obj/effect/turf_decal/tile/dark_blue,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/hallway/secondary/entry)
 "mO" = (
@@ -83,14 +91,9 @@
 /area/template_noop)
 "mW" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/turf_decal/tile/dark_blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/dark_blue,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/turf/open/floor/iron/white,
-/area/station/hallway/secondary/entry)
+/turf/template_noop,
+/area/template_noop)
 "ne" = (
 /obj/effect/turf_decal/tile/dark_blue{
 	dir = 1
@@ -118,6 +121,8 @@
 "ry" = (
 /obj/structure/flora/bush/fullgrass/style_random,
 /obj/structure/flora/bush/ferny/style_random,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/grass,
 /area/station/hallway/secondary/entry)
 "ty" = (
@@ -220,6 +225,10 @@
 /obj/effect/turf_decal/siding/brown{
 	dir = 10
 	},
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
 /obj/effect/turf_decal/tile/dark_blue{
 	dir = 1
 	},
@@ -245,8 +254,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/white,
 /area/station/hallway/secondary/entry)
 "FP" = (
@@ -333,14 +340,6 @@
 /obj/machinery/computer/shuttle/arrivals/recall,
 /turf/open/water,
 /area/station/hallway/secondary/entry)
-"NX" = (
-/obj/effect/turf_decal/tile/dark_blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/dark_blue,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/white,
-/area/station/hallway/secondary/entry)
 "Oa" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/camera/autoname/directional/south,
@@ -400,14 +399,20 @@
 	},
 /obj/effect/turf_decal/tile/dark_blue,
 /obj/structure/disposalpipe/segment{
-	dir = 5
+	dir = 4
 	},
 /turf/open/floor/iron/white,
 /area/station/hallway/secondary/entry)
 "Ru" = (
-/obj/structure/cable,
-/turf/template_noop,
-/area/template_noop)
+/obj/effect/turf_decal/tile/dark_blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/dark_blue,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/iron/white,
+/area/station/hallway/secondary/entry)
 "RA" = (
 /obj/item/kirbyplants/random,
 /turf/template_noop,
@@ -420,7 +425,6 @@
 /obj/effect/turf_decal/tile/dark_blue,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/station/hallway/secondary/entry)
 "RZ" = (
@@ -485,17 +489,6 @@
 /obj/structure/sign/poster/timeclock_psa/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
-"UQ" = (
-/obj/effect/landmark/start/assistant,
-/obj/effect/turf_decal/tile/dark_blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/dark_blue,
-/obj/structure/chair/sofa/bench/tram/right,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/white,
-/area/station/hallway/secondary/entry)
 "UZ" = (
 /obj/machinery/light/directional/west,
 /turf/template_noop,
@@ -530,7 +523,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/dark_blue,
-/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
 /area/station/hallway/secondary/entry)
 "Zv" = (
@@ -607,7 +601,7 @@ jp
 jp
 jp
 jp
-NX
+jp
 rc
 BJ
 tI
@@ -931,7 +925,7 @@ wG
 "}
 (16,1,1) = {"
 kX
-UQ
+iU
 Da
 jp
 zG
@@ -945,7 +939,7 @@ UP
 BE
 rc
 rc
-rc
+Ru
 UE
 Cs
 MZ
@@ -957,22 +951,22 @@ wG
 "}
 (17,1,1) = {"
 kX
-RZ
+fD
 BY
 RQ
 RQ
 lA
-mW
-mW
-mW
+jp
+jp
+jp
+jp
+jp
+jp
+jp
+jp
+jp
+jp
 Zk
-Zk
-Zk
-Zk
-rc
-rc
-rc
-rc
 BJ
 tI
 zH
@@ -994,11 +988,11 @@ kX
 kX
 mO
 kX
-Ru
 kX
 kX
 kX
 kX
+mW
 RA
 kX
 kX
@@ -1020,7 +1014,7 @@ kX
 kX
 kX
 kX
-Ru
+kX
 kX
 kX
 kX

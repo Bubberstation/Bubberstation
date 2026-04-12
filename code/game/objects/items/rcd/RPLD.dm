@@ -217,9 +217,10 @@
 
 	playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
 	if(ispath(blueprint, /obj/machinery/duct))
-		new blueprint(destination, GLOB.pipe_paint_colors[current_color], GLOB.plumbing_layers[current_layer])
+		var/is_omni = current_color == DUCT_COLOR_OMNI
+		new blueprint(destination, FALSE, GLOB.pipe_paint_colors[current_color], GLOB.plumbing_layers[current_layer], null, is_omni)
 	else
-		new blueprint(destination, GLOB.plumbing_layers[current_layer])
+		new blueprint(destination, FALSE, GLOB.plumbing_layers[current_layer])
 	useResource(cost, user)
 	return TRUE
 
@@ -228,7 +229,20 @@
 		return FALSE
 	if(initial(blueprint.density) && destination.is_blocked_turf(exclude_mobs = FALSE, source_atom = null, ignore_atoms = null))
 		return FALSE
-	return isnull(ducting_layer_check(destination, (ispath(blueprint, /obj/machinery/duct) ? 1 : -1) * GLOB.plumbing_layers[current_layer]))
+	. = TRUE
+
+	var/layer_id = GLOB.plumbing_layers[current_layer]
+	for(var/obj/content_obj in destination.contents)
+		// Make sure plumbling isn't overlapping.
+		for(var/datum/component/plumbing/plumber as anything in content_obj.GetComponents(/datum/component/plumbing))
+			if(plumber.ducting_layer & layer_id)
+				return FALSE
+
+		// Make sure ducts aren't overlapping.
+		if(istype(content_obj, /obj/machinery/duct))
+			var/obj/machinery/duct/duct_machine = content_obj
+			if(duct_machine.duct_layer & layer_id)
+				return FALSE
 
 /obj/item/construction/plumbing/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	. = ..()

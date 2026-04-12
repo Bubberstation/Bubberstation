@@ -48,7 +48,7 @@
 	source.set_fire_stacks(0, remove_wet_stacks = FALSE)
 
 /// Maintain our summoner at a stable body temperature
-/mob/living/basic/guardian/gaseous/proc/on_summoner_life(mob/living/source, seconds_per_tick)
+/mob/living/basic/guardian/gaseous/proc/on_summoner_life(mob/living/source, seconds_per_tick, times_fired)
 	SIGNAL_HANDLER
 	source.adjust_bodytemperature(get_temp_change_amount((summoner.get_body_temp_normal() - summoner.bodytemperature), temp_stabilization_rate * seconds_per_tick))
 
@@ -82,8 +82,6 @@
 	button_icon_state = "smoke"
 	cooldown_time = 0 SECONDS // We're here for the interface not the cooldown
 	click_to_activate = FALSE
-	/// Particle effect we use to show smoke
-	VAR_PRIVATE/obj/effect/abstract/particle_holder/mob_smoke
 	/// Gas being expelled.
 	var/active_gas = null
 	/// Associative list of types of gases to moles we create every life tick.
@@ -134,10 +132,13 @@
 	owner.investigate_log("set their gas type to [picked_gas].", INVESTIGATE_ATMOS)
 	var/had_gas = !isnull(active_gas)
 	active_gas = gas_type
-	if(isnull(mob_smoke))
-		mob_smoke = new(owner, /particles/smoke/steam/guardian)
+	if(isnull(owner.particles))
+		owner.particles = new /particles/smoke/steam()
+		owner.particles.position = list(-1, 8, 0)
+		owner.particles.fadein = 5
+		owner.particles.height = 200
 	var/datum/gas/chosen_gas = active_gas // Casting it so that we can access gas vars in initial, it's still a typepath
-	mob_smoke.color = initial(chosen_gas.primary_color)
+	owner.particles.color = initial(chosen_gas.primary_color)
 	if (!had_gas)
 		RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 
@@ -147,11 +148,11 @@
 	if (!isnull(active_gas))
 		to_chat(src, span_notice("You stop releasing gas."))
 	active_gas = null
-	QDEL_NULL(mob_smoke)
+	QDEL_NULL(owner.particles)
 	UnregisterSignal(owner, COMSIG_LIVING_LIFE)
 
 /// Release gas every life tick while active
-/datum/action/cooldown/mob_cooldown/expel_gas/proc/on_life(datum/source, seconds_per_tick)
+/datum/action/cooldown/mob_cooldown/expel_gas/proc/on_life(datum/source, seconds_per_tick, times_fired)
 	SIGNAL_HANDLER
 	if (isnull(active_gas))
 		return // We shouldn't even be registered at this point but just in case

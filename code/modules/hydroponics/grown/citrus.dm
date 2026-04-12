@@ -30,9 +30,7 @@
 	name = "lime"
 	desc = "It's so sour, your face will twist."
 	icon_state = "lime"
-
-/obj/item/food/grown/citrus/lime/juice_typepath()
-	return /datum/reagent/consumable/limejuice
+	juice_typepath = /datum/reagent/consumable/limejuice
 
 // Orange
 /obj/item/seeds/orange
@@ -59,10 +57,8 @@
 	desc = "It's a tangy fruit."
 	icon_state = "orange"
 	foodtypes = ORANGES | FRUIT
+	juice_typepath = /datum/reagent/consumable/orangejuice
 	distill_reagent = /datum/reagent/consumable/ethanol/triple_sec
-
-/obj/item/food/grown/citrus/orange/juice_typepath()
-	return /datum/reagent/consumable/orangejuice
 
 // Lemon
 /obj/item/seeds/lemon
@@ -87,9 +83,7 @@
 	name = "lemon"
 	desc = "When life gives you lemons, make lemonade."
 	icon_state = "lemon"
-
-/obj/item/food/grown/citrus/lemon/juice_typepath()
-	return /datum/reagent/consumable/lemonjuice
+	juice_typepath = /datum/reagent/consumable/lemonjuice
 
 // Combustible lemon
 /obj/item/seeds/firelemon //combustible lemon is too long so firelemon
@@ -144,11 +138,9 @@
 	foodtypes = ORANGES
 	alt_icon = "orange"
 	bite_consumption_mod = 2
+	juice_typepath = /datum/reagent/consumable/orangejuice
 	distill_reagent = /datum/reagent/toxin/mindbreaker
 	tastes = list("polygons" = 1, "bluespace" = 1, "the true nature of reality" = 1)
-
-/obj/item/food/grown/citrus/orange_3d/juice_typepath()
-	return /datum/reagent/consumable/orangejuice
 
 /obj/item/food/grown/citrus/orange_3d/pickup(mob/user)
 	. = ..()

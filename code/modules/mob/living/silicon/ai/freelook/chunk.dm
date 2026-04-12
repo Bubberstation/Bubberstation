@@ -121,8 +121,7 @@
 			if(get_dist(point, current_camera) > CHUNK_SIZE + (CHUNK_SIZE / 2))
 				continue
 
-			// The return value of can_see being the left-hand operand here is a load-bearing performance pillar
-			for(var/turf/vis_turf as anything in current_camera.can_see() & turfs)
+			for(var/turf/vis_turf as anything in turfs & current_camera.can_see())
 				updated_visible_turfs[vis_turf] = vis_turf
 
 	///new turfs that we couldnt see last update but can now
@@ -165,6 +164,7 @@
 
 		client.images += active_static_images
 
+
 /// Create a new camera chunk, since the chunks are made as they are needed.
 /datum/camerachunk/New(x, y, lower_z)
 	x = GET_CHUNK_COORD(x)
@@ -206,7 +206,7 @@
 			if(!camera.can_use())
 				continue
 
-			for(var/turf/vis_turf as anything in camera.can_see() & turfs)
+			for(var/turf/vis_turf as anything in turfs & camera.can_see())
 				visibleTurfs[vis_turf] = vis_turf
 
 	for(var/turf/obscured_turf as anything in turfs - visibleTurfs)

@@ -106,7 +106,7 @@
 
 		var/obj/item/bodypart/old_bodypart = victim.get_bodypart(target_zone)
 		var/obj/item/bodypart/new_bodypart = new part_type()
-		new_bodypart.replace_limb(victim)
+		new_bodypart.replace_limb(victim, TRUE)
 		qdel(old_bodypart)
 
 /// Contaminated sample

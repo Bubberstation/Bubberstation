@@ -59,7 +59,7 @@
 		if(!QDELETED(bodypart))
 			qdel(bodypart)
 
-/mob/living/basic/living_limb_flesh/Life(seconds_per_tick = SSMOBS_DT)
+/mob/living/basic/living_limb_flesh/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(stat == DEAD)
 		return
@@ -153,7 +153,7 @@
 
 	var/obj/item/bodypart/new_bodypart = new part_type()
 	forceMove(new_bodypart)
-	new_bodypart.replace_limb(target)
+	new_bodypart.replace_limb(target, TRUE)
 	register_to_limb(new_bodypart)
 
 /mob/living/basic/living_limb_flesh/proc/owner_shocked(datum/source, shock_damage, shock_source, siemens_coeff, flags)

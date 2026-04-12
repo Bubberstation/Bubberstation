@@ -9,11 +9,9 @@
 		"borg_syndicate_module",
 		"donksoft_refill",
 		"largecrossbow",
-		/* BUBBER EDIT REMOVAL BEGIN
 		"mag_autorifle",
 		"mag_autorifle_ap",
 		"mag_autorifle_ic",
-		*/// BUBBER EDIT REMOVAL END
 		"rapidsyringe",
 		"suppressor",
 		"super_pointy_tape",

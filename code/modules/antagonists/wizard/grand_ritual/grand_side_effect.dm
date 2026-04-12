@@ -247,7 +247,9 @@
 /datum/grand_side_effect/smoke/trigger(potency, turf/ritual_location, mob/invoker)
 	playsound(src, 'sound/effects/magic/smoke.ogg', 50, TRUE)
 	var/range = LERP(2, 4, potency/GRAND_RITUAL_FINALE_COUNT)
-	do_smoke(round(range), ritual_location, ritual_location, smoke_type = /datum/effect_system/fluid_spread/smoke/colourful)
+	var/datum/effect_system/fluid_spread/smoke/colourful/smoke = new
+	smoke.set_up(range, holder = ritual_location, location = ritual_location)
+	smoke.start()
 
 /// Spawns randomly coloured smoke
 /datum/effect_system/fluid_spread/smoke/colourful

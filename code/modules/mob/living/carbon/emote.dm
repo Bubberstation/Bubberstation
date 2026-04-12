@@ -1,5 +1,4 @@
 /datum/emote/living/carbon
-	abstract_type = /datum/emote/living/carbon
 	mob_type_allowed_typecache = list(/mob/living/carbon)
 
 /datum/emote/living/carbon/airguitar

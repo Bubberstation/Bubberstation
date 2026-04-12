@@ -412,7 +412,7 @@ export class KeybindingsPage extends Component<any, KeybindingsPageState> {
     }
 
     if (lastKeyboardEvent === undefined) {
-      return 'Set New / ESC to Clear';
+      return '...';
     }
 
     return formatKeyboardEvent(lastKeyboardEvent);

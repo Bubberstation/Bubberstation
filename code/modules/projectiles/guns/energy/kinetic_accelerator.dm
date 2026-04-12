@@ -710,5 +710,5 @@
 /obj/item/borg/upgrade/modkit/tracer/adjustable/proc/choose_bolt_color(mob/user)
 	set waitfor = FALSE
 
-	var/new_color = tgui_color_picker(user, "", "Choose Color", bolt_color)
+	var/new_color = tgui_color_picker(usr, "", "Choose Color", bolt_color)	// BUBBERSTATION EDIT: TGUI COLOR PICKER
 	bolt_color = new_color || bolt_color

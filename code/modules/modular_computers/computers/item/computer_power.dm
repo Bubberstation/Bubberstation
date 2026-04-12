@@ -9,7 +9,7 @@
 
 	if(!internal_cell)
 		return FALSE
-	if(!amount || internal_cell.use(amount))
+	if(internal_cell.use(amount))
 		return TRUE
 	if(!check_programs)
 		return FALSE

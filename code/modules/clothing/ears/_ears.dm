@@ -27,7 +27,7 @@
 	. = ..()
 	AddElement(/datum/element/earhealing)
 	AddComponent(/datum/component/wearertargeting/earprotection)
-	AddElement(/datum/element/adjust_fishing_difficulty, -2)
+	AddComponent(/datum/component/adjust_fishing_difficulty, -2)
 
 /obj/item/clothing/ears/earmuffs/debug
 	name = "debug earmuffs"

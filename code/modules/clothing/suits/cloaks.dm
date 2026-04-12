@@ -13,7 +13,7 @@
 
 /obj/item/clothing/neck/cloak/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/surgery_aid, "cloak")
+	AddComponent(/datum/component/surgery_initiator)
 
 /obj/item/clothing/neck/cloak/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] is strangling [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -86,3 +86,4 @@
 	desc = "Worn by the wisest of veteran employees, this legendary cloak is only attainable by maintaining a living employment agreement with Nanotrasen for over <b>five thousand hours</b>. This status symbol represents a being is better than you in nearly every quantifiable way, simple as that."
 	icon_state = "playercloak"
 	element_type = /datum/element/skill_reward/veteran
+

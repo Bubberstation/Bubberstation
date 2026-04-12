@@ -10,7 +10,7 @@
 
 	gender = NEUTER
 	status_flags = CANPUSH
-	mob_biotypes = MOB_BUG|MOB_ROBOTIC|MOB_MINERAL
+	mob_biotypes = MOB_BUG|MOB_ROBOTIC
 	speak_emote = list("vibrates")
 
 

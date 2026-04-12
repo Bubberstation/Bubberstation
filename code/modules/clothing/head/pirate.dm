@@ -7,7 +7,7 @@
 
 /obj/item/clothing/head/costume/pirate/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/adjust_fishing_difficulty, -5)
+	AddComponent(/datum/component/adjust_fishing_difficulty, -5)
 
 /obj/item/clothing/head/costume/pirate/equipped(mob/user, slot)
 	. = ..()
@@ -45,6 +45,7 @@
 
 /obj/item/clothing/head/costume/pirate/bandana
 	name = "pirate bandana"
+	desc = "Yarr."
 	icon_state = "bandana"
 	inhand_icon_state = null
 

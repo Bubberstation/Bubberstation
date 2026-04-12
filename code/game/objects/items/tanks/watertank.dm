@@ -358,7 +358,9 @@
 	anchored = TRUE
 
 /obj/effect/resin_container/proc/Smoke()
-	do_foam(4, src, loc, foam_type = /datum/effect_system/fluid_spread/foam/metal/resin)
+	var/datum/effect_system/fluid_spread/foam/metal/resin/foaming = new
+	foaming.set_up(4, holder = src, location = loc)
+	foaming.start()
 	playsound(src,'sound/effects/bamf.ogg',100,TRUE)
 	qdel(src)
 

@@ -86,7 +86,7 @@
 	skull.melee_attack(target)
 	return TRUE
 
-/obj/item/organ/legion_tumour/on_life(seconds_per_tick)
+/obj/item/organ/legion_tumour/on_life(seconds_per_tick, times_fired)
 	. = ..()
 	if (QDELETED(src) || QDELETED(owner))
 		return

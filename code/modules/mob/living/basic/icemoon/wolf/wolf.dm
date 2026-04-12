@@ -83,5 +83,5 @@
 	. = ..()
 	if(isnull(.))
 		return
-	SET_FACTION_AND_ALLIES_FROM(src, new_friend)
+	faction = new_friend.faction.Copy()
 	visible_message(span_notice("[src] lowers [src.p_their()] snout at [new_friend]'s offering and begins to wag [src.p_their()] tail."))

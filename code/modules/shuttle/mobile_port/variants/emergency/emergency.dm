@@ -55,20 +55,19 @@
 		color_override = "orange",
 		)
 
-/// This proc will assume you have done all of the necessary checks to see if the shuttle can be recalled, it will always recall when invoked.
-/// signal_origin is an optional parameter that will log where the recall signal was sent from
-/obj/docking_port/mobile/emergency/cancel(area/signal_origin = null)
+/obj/docking_port/mobile/emergency/cancel(area/signalOrigin)
 	if(mode != SHUTTLE_CALL)
+		return
+	if(SSshuttle.emergency_no_recall)
 		return
 
 	invertTimer()
 	mode = SHUTTLE_RECALL
 
 	if(prob(70))
-		SSshuttle.emergency_last_call_loc = signal_origin
+		SSshuttle.emergency_last_call_loc = signalOrigin
 	else
 		SSshuttle.emergency_last_call_loc = null
-
 	priority_announce(
 		text = "The emergency shuttle has been recalled.[SSshuttle.emergency_last_call_loc ? " Recall signal traced. Results can be viewed on any communications console." : "" ]",
 		title = "Emergency Shuttle Recalled",

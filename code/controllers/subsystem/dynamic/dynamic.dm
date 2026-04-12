@@ -140,8 +140,7 @@ SUBSYSTEM_DEF(dynamic)
 	// put rulesets in the queue (if admins didn't)
 	// this will even handle the case in which the tier wants 0 roundstart rulesets
 	if(!length(queued_rulesets))
-		for(var/ruleset in pick_roundstart_rulesets(antag_candidates))
-			queue_ruleset(ruleset)
+		queued_rulesets += pick_roundstart_rulesets(antag_candidates)
 	// we got what we needed, reset so we can do real job selection later
 	// reset only happens AFTER roundstart selection so we can verify stuff like "can we get 3 heads of staff for revs?"
 	SSjob.reset_occupations()
@@ -151,7 +150,7 @@ SUBSYSTEM_DEF(dynamic)
 		// NOTE: !! THIS CAN SLEEP !!
 		if(!ruleset.prepare_execution( num_real_players, antag_candidates ))
 			log_dynamic("Roundstart: Selected ruleset [ruleset.config_tag], but preparation failed! [ruleset.log_data]")
-			unqueue_ruleset(ruleset)
+			queued_rulesets -= ruleset
 			qdel(ruleset)
 			continue
 
@@ -295,8 +294,8 @@ SUBSYSTEM_DEF(dynamic)
 
 		rulesets_weighted[picked_ruleset] -= picked_ruleset.repeatable_weight_decrease
 		total_weight -= picked_ruleset.repeatable_weight_decrease
-		picked_rulesets += picked_ruleset.type
-		// Rulesets are not singletons. Queue_ruleset() will make them one.
+		// Rulesets are not singletons. We need to to make a new one
+		picked_rulesets += new picked_ruleset.type(dynamic_config)
 
 	// clean up unused rulesets
 	QDEL_LIST(rulesets_weighted)
@@ -460,7 +459,7 @@ SUBSYSTEM_DEF(dynamic)
 			continue
 		message_admins("Latejoin (forced): [ADMIN_LOOKUPFLW(latejoiner)] has been selected for [queued.config_tag].")
 		log_dynamic("Latejoin (forced): [key_name(latejoiner)] has been selected for [queued.config_tag].")
-		unqueue_ruleset(queued)
+		queued_rulesets -= queued
 		executed_rulesets += queued
 		queued.execute()
 		return
@@ -539,15 +538,6 @@ SUBSYSTEM_DEF(dynamic)
 		CRASH("queue_ruleset() was called with an invalid type: [ruleset_typepath]")
 
 	queued_rulesets += new ruleset_typepath(dynamic_config)
-
-/**
- * Unqueues a ruleset because it has executed
- */
-/datum/controller/subsystem/dynamic/proc/unqueue_ruleset(datum/dynamic_ruleset/ruleset)
-	if(!istype(ruleset, /datum/dynamic_ruleset/latejoin) && !istype(ruleset, /datum/dynamic_ruleset/roundstart))
-		CRASH("queue_ruleset() was called with an invalid type: [ruleset.type]")
-
-	queued_rulesets -= ruleset
 
 /**
  * Get the cooldown between attempts to spawn a ruleset of the given type
@@ -648,7 +638,7 @@ SUBSYSTEM_DEF(dynamic)
 		var/datum/dynamic_ruleset/to_remove = locate(href_list["admin_dequeue"]) in queued_rulesets
 		if(!istype(to_remove))
 			return
-		unqueue_ruleset(to_remove)
+		queued_rulesets -= to_remove
 		qdel(to_remove)
 		message_admins(span_adminnotice("[key_name_admin(usr)] [to_remove.config_tag] from the latejoin queue."))
 		log_admin("[key_name(usr)] removed [to_remove.config_tag] from the latejoin queue.")

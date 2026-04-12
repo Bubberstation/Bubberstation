@@ -33,7 +33,6 @@
 		"normtrash",
 		"wirebrush",
 		"flashlight",
-		"flare",
 		"water_balloon",
 		"ticket_machine",
 		"radio_entertainment",
@@ -53,7 +52,6 @@
 		"beartrap",
 		"buffer",
 		"vacuum",
-		"washing_machine",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	discount_experiments = list(/datum/experiment/scanning/random/janitor_trash = TECHWEB_TIER_2_POINTS)
@@ -207,8 +205,6 @@
 	prereq_ids = list(TECHWEB_NODE_FISHING_EQUIP_ADV)
 	design_ids = list(
 		"bioelec_gen",
-		"bluespace_reel",
-		"fish_genegun",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	// only available if you've done the first fishing experiment (thus unlocking fishing tech), but not a strict requirement to get the tech

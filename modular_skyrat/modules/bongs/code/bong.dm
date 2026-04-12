@@ -128,11 +128,15 @@
 	name = "lit [name]"
 
 	if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
-		reagent_explode(reagents)
+		var/datum/effect_system/reagents_explosion/explosion = new()
+		explosion.set_up(round(reagents.get_reagent_amount(/datum/reagent/toxin/plasma) * 0.4, 1), get_turf(src), 0, 0)
+		explosion.start()
 		qdel(src)
 		return
 	if(reagents.get_reagent_amount(/datum/reagent/fuel)) // the fuel explodes, too, but much less violently
-		reagent_explode(reagents)
+		var/datum/effect_system/reagents_explosion/explosion = new()
+		explosion.set_up(round(reagents.get_reagent_amount(/datum/reagent/fuel) * 0.2, 1), get_turf(src), 0, 0)
+		explosion.start()
 		qdel(src)
 		return
 

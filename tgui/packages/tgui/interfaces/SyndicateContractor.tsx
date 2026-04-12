@@ -259,11 +259,11 @@ function ContractsTab(props) {
       >
         {contracts.map((contract) => {
           if (ongoing_contract && contract.status !== CONTRACT.Active) {
-            return null;
+            return;
           }
           const active = contract.status > CONTRACT.Inactive;
           if (contract.status >= CONTRACT.Complete) {
-            return null;
+            return;
           }
           return (
             <Section

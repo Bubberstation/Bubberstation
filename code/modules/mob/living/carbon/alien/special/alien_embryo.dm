@@ -25,7 +25,7 @@
 		if(prob(10))
 			attempt_grow(gib_on_success = FALSE)
 
-/obj/item/organ/body_egg/alien_embryo/on_life(seconds_per_tick)
+/obj/item/organ/body_egg/alien_embryo/on_life(seconds_per_tick, times_fired)
 	. = ..()
 	if(QDELETED(src) || QDELETED(owner))
 		return
@@ -77,8 +77,14 @@
 
 /obj/item/organ/body_egg/alien_embryo/egg_process()
 	if(stage == 6 && prob(50))
-		// If we are mid surgery we won't gib the mob, isn't that neat?
-		attempt_grow(gib_on_success = !LIMB_HAS_SURGERY_STATE(bodypart_owner, SURGERY_SKIN_OPEN|SURGERY_BONE_SAWED))
+		for(var/datum/surgery/operations as anything in owner.surgeries)
+			if(operations.location != BODY_ZONE_CHEST)
+				continue
+			if(!ispath(operations.steps[operations.status], /datum/surgery_step/manipulate_organs/internal))
+				continue
+			attempt_grow(gib_on_success = FALSE)
+			return
+		attempt_grow()
 
 /// Attempt to burst an alien outside of the host, getting a ghost to play as the xeno.
 /obj/item/organ/body_egg/alien_embryo/proc/attempt_grow(gib_on_success = TRUE)
@@ -164,9 +170,7 @@ Des: Removes all images from the mob infected by this embryo
 ----------------------------------------*/
 /obj/item/organ/body_egg/alien_embryo/RemoveInfectionImages()
 	for(var/mob/living/carbon/alien/alien in GLOB.player_list)
-		var/list/image/to_remove = list()
-		for(var/image/client_image in alien.client?.images)
+		for(var/image/I in alien.client?.images)
 			var/searchfor = "infected"
-			if(client_image.loc == owner && findtext(client_image.icon_state, searchfor, 1, length(searchfor) + 1))
-				to_remove += client_image
-		alien.client?.images -= to_remove
+			if(I.loc == owner && findtext(I.icon_state, searchfor, 1, length(searchfor) + 1))
+				qdel(I)

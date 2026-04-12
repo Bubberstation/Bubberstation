@@ -22,7 +22,7 @@
 	/// Whether the host has carp ability
 	var/ability_granted = FALSE
 
-/datum/disease/carpellosis/stage_act(seconds_per_tick)
+/datum/disease/carpellosis/stage_act(seconds_per_tick, times_fired)
 	. = ..()
 	if(!.)
 		return

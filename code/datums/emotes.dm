@@ -10,7 +10,6 @@
  *
  */
 /datum/emote
-	abstract_type = /datum/emote
 	/// What calls the emote.
 	var/key = ""
 	/// This will also call the emote.
@@ -135,7 +134,7 @@
 			if(isnull(viewer.client))
 				continue
 			if(!is_important && viewer != user && (!is_visual || !is_audible))
-				if(is_audible && HAS_TRAIT(viewer, TRAIT_DEAF))
+				if(is_audible && !viewer.can_hear())
 					continue
 				if(is_visual && viewer.is_blind())
 					continue

@@ -59,7 +59,7 @@
 	AddElement(/datum/element/death_drops, /obj/item/stack/sheet/mineral/wood)
 	AddComponent(/datum/component/aggro_emote, emote_list = string_list(list("growls")), emote_chance = 20)
 
-/mob/living/basic/tree/Life(seconds_per_tick = SSMOBS_DT)
+/mob/living/basic/tree/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(!.) //dead or deleted
 		return

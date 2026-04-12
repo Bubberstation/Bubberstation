@@ -45,7 +45,6 @@
 	)
 
 /datum/emote/mouse
-	abstract_type = /datum/emote/mouse
 	mob_type_allowed_typecache = /mob/living/basic/mouse
 	mob_type_blacklist_typecache = list()
 
@@ -82,7 +81,7 @@
 
 /mob/living/basic/mouse/proc/make_tameable()
 	if (tame)
-		add_faction(FACTION_NEUTRAL)
+		faction |= FACTION_NEUTRAL
 	else
 		var/static/list/food_types = list(/obj/item/food/cheese)
 		AddComponent(/datum/component/tameable, food_types = food_types, tame_chance = 100)
@@ -197,7 +196,7 @@
 /// Called when a mouse is hand-fed some cheese, it will stop being afraid of humans
 /mob/living/basic/mouse/tamed(mob/living/tamer, obj/item/food/cheese/cheese)
 	new /obj/effect/temp_visual/heart(loc)
-	add_faction(FACTION_NEUTRAL)
+	faction |= FACTION_NEUTRAL
 	tame = TRUE
 	try_consume_cheese(cheese)
 	ai_controller.CancelActions() // Interrupt any current fleeing
@@ -343,6 +342,7 @@
 	eatverbs = list("devour")
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	foodtypes = GORE | MEAT | RAW
+	grind_results = list(/datum/reagent/blood = 20, /datum/reagent/consumable/liquidgibs = 5)
 	decomp_req_handle = TRUE
 	ant_attracting = FALSE
 	decomp_type = /obj/item/food/deadmouse/moldy
@@ -353,9 +353,6 @@
 	. = ..()
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_MOUSE, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 10)
 	RegisterSignal(src, COMSIG_ATOM_ON_LAZARUS_INJECTOR, PROC_REF(use_lazarus))
-
-/obj/item/food/deadmouse/grind_results()
-	return list(/datum/reagent/blood = 20, /datum/reagent/consumable/liquidgibs = 5)
 
 /// Copy properties from an imminently dead mouse
 /obj/item/food/deadmouse/proc/copy_corpse(mob/living/basic/mouse/dead_critter)
@@ -418,10 +415,8 @@
 	icon_state = "mouse_gray_dead"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/mold = 10)
 	foodtypes = GORE | MEAT | RAW | GROSS
+	grind_results = list(/datum/reagent/blood = 20, /datum/reagent/consumable/liquidgibs = 5, /datum/reagent/consumable/mold = 10)
 	preserved_food = TRUE
-
-/obj/item/food/deadmouse/moldy/grind_results()
-	return list(/datum/reagent/blood = 20, /datum/reagent/consumable/liquidgibs = 5, /datum/reagent/consumable/mold = 10)
 
 /// The mouse AI controller
 /datum/ai_controller/basic_controller/mouse

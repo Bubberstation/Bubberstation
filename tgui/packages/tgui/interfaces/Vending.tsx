@@ -98,7 +98,7 @@ export const Vending = () => {
   }
 
   const filteredCategories = Object.fromEntries(
-    Object.entries(categories).filter(([categoryName]) => {
+    Object.entries(data.categories).filter(([categoryName]) => {
       return inventory.find((product) => {
         if ('category' in product) {
           return product.category === categoryName;

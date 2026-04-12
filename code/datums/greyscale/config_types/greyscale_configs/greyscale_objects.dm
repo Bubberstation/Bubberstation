@@ -82,11 +82,6 @@
 	icon_file = 'icons/obj/storage/wrapping.dmi'
 	json_config = 'code/datums/greyscale/json_configs/giftdeliverypackage1.json'
 
-/datum/greyscale_config/giftdeliveryfloppy
-	name = "Gift Floppy Disk Package"
-	icon_file = 'icons/obj/storage/wrapping.dmi'
-	json_config = 'code/datums/greyscale/json_configs/giftdeliveryfloppy.json'
-
 /datum/greyscale_config/wrap_paper
 	name = "Wrapping Paper"
 	icon_file = 'icons/obj/stack_objects.dmi'

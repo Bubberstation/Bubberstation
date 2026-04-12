@@ -3,7 +3,7 @@
  * Bitrunning gimmick loadouts themed around dungeon crawling.
  * Mostly for fun, have niche but not insignificant advantages.
  */
-/obj/item/disk/bitrunning/gimmick/dungeon
+/obj/item/bitrunning_disk/gimmick/dungeon
 	name = "bitrunning gimmick: dungeon crawling"
 	selectable_loadouts = list(
 		/datum/bitrunning_gimmick/alchemist,
@@ -30,9 +30,8 @@
 	name = "unlabeled bottle"
 	desc = "A small bottle. You don't remember what you put in it."
 
-/obj/item/reagent_containers/cup/bottle/alchemist_basic/add_initial_reagents()
 	/// List of possible reagents we may pick from
-	var/list/possible_reagents = list(
+	var/static/list/possible_reagents = list(
 		/datum/reagent/aluminium, // Basic chems
 		/datum/reagent/bromine,
 		/datum/reagent/carbon,
@@ -64,6 +63,7 @@
 		/datum/reagent/consumable/coffee,
 	)
 
+/obj/item/reagent_containers/cup/bottle/alchemist_basic/add_initial_reagents()
 	var/our_reagent = pick(possible_reagents)
 	reagents.add_reagent(our_reagent, 50)
 

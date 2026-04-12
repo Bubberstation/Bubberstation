@@ -28,7 +28,7 @@
 
 /obj/item/assembly/infra/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/simple_rotation)
+	AddComponent(/datum/component/simple_rotation)
 
 /obj/item/assembly/infra/Destroy()
 	QDEL_NULL(active_beam)

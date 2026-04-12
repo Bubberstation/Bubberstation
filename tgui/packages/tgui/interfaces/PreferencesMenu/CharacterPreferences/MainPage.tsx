@@ -1,8 +1,7 @@
 import { sortBy } from 'es-toolkit';
 import { filter, map } from 'es-toolkit/compat';
 import { type ReactNode, useState } from 'react';
-import { useBackend } from 'tgui/backend';
-import { sendAct } from 'tgui/events/act';
+import { type sendAct, useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -26,7 +25,7 @@ import {
   type FeatureChoicedServerData,
   FeatureValueInput,
 } from '../preferences/features/base';
-import { GENDERS, Gender } from '../preferences/gender';
+import { Gender, GENDERS } from '../preferences/gender';
 import {
   createSetPreference,
   type PreferencesMenuData,
@@ -366,8 +365,8 @@ function MainFeature(props: MainFeatureProps) {
 }
 
 const createSetRandomization =
-  (preference: string) => (newSetting: RandomSetting) => {
-    sendAct('set_random_preference', {
+  (act: typeof sendAct, preference: string) => (newSetting: RandomSetting) => {
+    act('set_random_preference', {
       preference,
       value: newSetting,
     });
@@ -425,7 +424,7 @@ export function PreferenceList(props: PreferenceListProps) {
                   {randomSetting && (
                     <Stack.Item>
                       <RandomizationButton
-                        setValue={createSetRandomization(featureId)}
+                        setValue={createSetRandomization(act, featureId)}
                         value={randomSetting}
                       />
                     </Stack.Item>
@@ -455,9 +454,13 @@ export function getRandomization(
   serverData: ServerData | undefined,
   randomBodyEnabled: boolean,
 ): Record<string, RandomSetting> {
+  if (!serverData) {
+    return {};
+  }
+
   const { data } = useBackend<PreferencesMenuData>();
 
-  if (!randomBodyEnabled || !serverData) {
+  if (!randomBodyEnabled) {
     return {};
   }
 
@@ -480,7 +483,6 @@ type MainPageProps = {
 
 export function MainPage(props: MainPageProps) {
   const { act, data } = useBackend<PreferencesMenuData>();
-
   const [deleteCharacterPopupOpen, setDeleteCharacterPopupOpen] =
     useState(false);
   const [multiNameInputOpen, setMultiNameInputOpen] = useState(false);
@@ -742,7 +744,10 @@ export function MainPage(props: MainPageProps) {
                       currentValue={clothing}
                       handleSelect={createSetPreference(act, clothingKey)}
                       randomization={randomizationOfMainFeatures[clothingKey]}
-                      setRandomization={createSetRandomization(clothingKey)}
+                      setRandomization={createSetRandomization(
+                        act,
+                        clothingKey,
+                      )}
                     />
                   )}
                 </Stack.Item>

@@ -117,7 +117,7 @@
 		name = new_name
 		real_name = new_name
 
-/mob/living/basic/pet/dog/breaddog/Life(seconds_per_tick = SSMOBS_DT)
+/mob/living/basic/pet/dog/breaddog/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(!.) //dead or deleted
 		return

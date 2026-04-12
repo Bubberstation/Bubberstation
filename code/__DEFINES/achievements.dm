@@ -2,7 +2,6 @@
 
 /// Achievements icon set
 #define ACHIEVEMENTS_SET 'icons/ui/achievements/achievements.dmi'
-#define PDA_THEMES_PROGRESS_SET 'icons/ui/achievements/pda_themes.dmi'
 
 #define ACHIEVEMENT_DEFAULT "default"
 #define ACHIEVEMENT_SCORE "score"
@@ -62,7 +61,6 @@
 #define MEDAL_CIGARETTES "Cigarettes"
 #define MEDAL_SHARKDRAGON "Sharkdragon"
 #define MEDAL_THEORETICAL_LIMITS "All Within Theoretical Limits"
-#define MEDAL_DESENSITIZED "In Flanders Fields"
 
 //Skill medal hub IDs
 #define MEDAL_LEGENDARY_MINER "Legendary Miner"
@@ -151,9 +149,6 @@
 
 ///DB ID for all the different kinds of fish that you've caught so far.
 #define FISH_SCORE "Fish Score"
-
-///Database ID for unlockable PDA themes, purely costmetic
-#define PDA_THEMES_SCORE "PDA Themes"
 
 // Tourist related achievements and scores
 

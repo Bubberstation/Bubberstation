@@ -89,7 +89,7 @@
 	head.unarmed_attack_effect = initial(head.unarmed_attack_effect)
 	head.unarmed_sharpness = initial(head.unarmed_sharpness)
 
-/obj/item/organ/tongue/carp/on_life(seconds_per_tick)
+/obj/item/organ/tongue/carp/on_life(seconds_per_tick, times_fired)
 	. = ..()
 	if(owner.stat != CONSCIOUS || !prob(0.1))
 		return

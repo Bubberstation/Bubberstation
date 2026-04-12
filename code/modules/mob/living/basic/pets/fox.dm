@@ -39,7 +39,6 @@
 	)
 
 /datum/emote/fox
-	abstract_type = /datum/emote/fox
 	mob_type_allowed_typecache = /mob/living/basic/pet/fox
 	mob_type_blacklist_typecache = list()
 

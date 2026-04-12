@@ -7,6 +7,8 @@
 	is_dimorphic = FALSE
 	should_draw_greyscale = FALSE
 	dmg_overlay_type = null
+	brute_modifier = 1.5 //Plasmemes are weak
+	burn_modifier = 1.5 //Plasmemes are weak
 	head_flags = HEAD_EYESPRITES
 	bodypart_flags = BODYPART_UNHUSKABLE
 	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/plasma_based)
@@ -20,6 +22,8 @@
 	is_dimorphic = FALSE
 	should_draw_greyscale = FALSE
 	dmg_overlay_type = null
+	brute_modifier = 1.5 //Plasmemes are weak
+	burn_modifier = 1.5 //Plasmemes are weak
 	bodypart_flags = BODYPART_UNHUSKABLE
 	wing_types = null
 	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/plasma_based)
@@ -35,6 +39,8 @@
 	limb_id = SPECIES_PLASMAMAN
 	should_draw_greyscale = FALSE
 	dmg_overlay_type = null
+	brute_modifier = 1.5 //Plasmemes are weak
+	burn_modifier = 1.5 //Plasmemes are weak
 	bodypart_flags = BODYPART_UNHUSKABLE
 	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/plasma_based)
 
@@ -46,6 +52,8 @@
 	limb_id = SPECIES_PLASMAMAN
 	should_draw_greyscale = FALSE
 	dmg_overlay_type = null
+	brute_modifier = 1.5 //Plasmemes are weak
+	burn_modifier = 1.5 //Plasmemes are weak
 	bodypart_flags = BODYPART_UNHUSKABLE
 	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/plasma_based)
 
@@ -57,6 +65,8 @@
 	limb_id = SPECIES_PLASMAMAN
 	should_draw_greyscale = FALSE
 	dmg_overlay_type = null
+	brute_modifier = 1.5 //Plasmemes are weak
+	burn_modifier = 1.5 //Plasmemes are weak
 	bodypart_flags = BODYPART_UNHUSKABLE
 	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/plasma_based)
 
@@ -68,5 +78,7 @@
 	limb_id = SPECIES_PLASMAMAN
 	should_draw_greyscale = FALSE
 	dmg_overlay_type = null
+	brute_modifier = 1.5 //Plasmemes are weak
+	burn_modifier = 1.5 //Plasmemes are weak
 	bodypart_flags = BODYPART_UNHUSKABLE
 	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/plasma_based)

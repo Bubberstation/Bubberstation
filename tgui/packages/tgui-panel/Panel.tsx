@@ -4,33 +4,31 @@
  * @license MIT
  */
 
-import { useAtom, useAtomValue } from 'jotai';
 import { Pane } from 'tgui/layouts';
 import { Button, Section, Stack } from 'tgui-core/components';
-import { visibleAtom } from './audio/atoms';
-import { NowPlayingWidget } from './audio/NowPlayingWidget';
-import { ChatPanel } from './chat/ChatPanel';
-import { ChatTabs } from './chat/ChatTabs';
-import { useChatPersistence } from './chat/use-chat-persistence';
-import { gameAtom } from './game/atoms';
-import { useKeepAlive } from './game/use-keep-alive';
-import { Notifications } from './Notifications';
-import { PingIndicator } from './ping/PingIndicator';
-import { ReconnectButton } from './reconnect';
-import { settingsVisibleAtom } from './settings/atoms';
-import { SettingsPanel } from './settings/SettingsPanel';
-import { useSettings } from './settings/use-settings';
 
-export function Panel(props) {
-  const [audioVisible, setAudioVisible] = useAtom(visibleAtom);
-  const game = useAtomValue(gameAtom);
-  const { settings } = useSettings();
-  const [settingsVisible, setSettingsVisible] = useAtom(settingsVisibleAtom);
-  useChatPersistence();
-  useKeepAlive();
+import { NowPlayingWidget, useAudio } from './audio';
+import { ChatPanel, ChatTabs } from './chat';
+import { useGame } from './game';
+import { Notifications } from './Notifications';
+import { PingIndicator } from './ping';
+import { ReconnectButton } from './reconnect';
+import { SettingsPanel, useSettings } from './settings';
+
+export const Panel = (props) => {
+  const audio = useAudio();
+  const settings = useSettings();
+  const game = useGame();
+  if (process.env.NODE_ENV !== 'production') {
+    const { useDebug, KitchenSink } = require('tgui/debug');
+    const debug = useDebug();
+    if (debug.kitchenSink) {
+      return <KitchenSink panel />;
+    }
+  }
 
   return (
-    <Pane theme={settings.theme} canSuspend={false}>
+    <Pane theme={settings.theme}>
       <Stack fill vertical>
         <Stack.Item>
           <Section fitted>
@@ -44,40 +42,42 @@ export function Panel(props) {
               <Stack.Item>
                 <Button
                   color="grey"
-                  selected={audioVisible}
+                  selected={audio.visible}
                   icon="music"
                   tooltip="Music player"
                   tooltipPosition="bottom-start"
-                  onClick={() => setAudioVisible((v) => !v)}
+                  onClick={() => audio.toggle()}
                 />
               </Stack.Item>
               <Stack.Item>
                 <Button
-                  icon={settingsVisible ? 'times' : 'cog'}
-                  selected={settingsVisible}
-                  tooltip={settingsVisible ? 'Close settings' : 'Open settings'}
+                  icon={settings.visible ? 'times' : 'cog'}
+                  selected={settings.visible}
+                  tooltip={
+                    settings.visible ? 'Close settings' : 'Open settings'
+                  }
                   tooltipPosition="bottom-start"
-                  onClick={() => setSettingsVisible((v) => !v)}
+                  onClick={() => settings.toggle()}
                 />
               </Stack.Item>
             </Stack>
           </Section>
         </Stack.Item>
-        {audioVisible && (
+        {audio.visible && (
           <Stack.Item>
             <Section>
               <NowPlayingWidget />
             </Section>
           </Stack.Item>
         )}
-        {settingsVisible && (
+        {settings.visible && (
           <Stack.Item>
             <SettingsPanel />
           </Stack.Item>
         )}
         <Stack.Item grow>
           <Section fill fitted position="relative">
-            <Pane.Content scrollable id="chat-pane">
+            <Pane.Content scrollable>
               <ChatPanel lineHeight={settings.lineHeight} />
             </Pane.Content>
             <Notifications>
@@ -99,4 +99,4 @@ export function Panel(props) {
       </Stack>
     </Pane>
   );
-}
+};

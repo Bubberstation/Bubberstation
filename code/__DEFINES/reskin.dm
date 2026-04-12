@@ -1,10 +1,5 @@
 /// Global list of available atom skins
-GLOBAL_LIST_EMPTY_TYPED(atom_skins, /datum/atom_skin)
-
-/proc/get_atom_skins()
-	if(!length(GLOB.atom_skins))
-		GLOB.atom_skins = init_subtypes_w_path_keys(/datum/atom_skin)
-	return GLOB.atom_skins
+GLOBAL_LIST_INIT_TYPED(atom_skins, /datum/atom_skin, init_subtypes_w_path_keys(/datum/atom_skin))
 
 /// Sets the atom's varname to newvalue if newvalue is not null, otherwise resets it to its initial value if resetcondition is true
 #define APPLY_VAR_OR_RESET_INITIAL(atom, varname, newvalue, resetcondition) \

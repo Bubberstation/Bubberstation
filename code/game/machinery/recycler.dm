@@ -16,16 +16,16 @@
 	var/crush_damage = 1000
 	var/eat_victim_items = TRUE
 	var/item_recycle_sound = 'sound/items/tools/welder.ogg'
-	var/datum/material_container/materials
+	var/datum/component/material_container/materials
 
 /obj/machinery/recycler/Initialize(mapload)
-	materials = new (
-		src, \
+	materials = AddComponent(
+		/datum/component/material_container, \
 		SSmaterials.materials_by_category[MAT_CATEGORY_SILO], \
 		INFINITY, \
 		MATCONTAINER_NO_INSERT \
 	)
-	AddElement(/datum/element/simple_rotation)
+	AddComponent(/datum/component/simple_rotation)
 	AddComponent(
 		/datum/component/butchering/recycler, \
 		speed = 0.1 SECONDS, \
@@ -45,7 +45,7 @@
 	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/machinery/recycler/Destroy()
-	QDEL_NULL(materials)
+	materials = null
 	return ..()
 
 /obj/machinery/recycler/RefreshParts()

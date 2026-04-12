@@ -262,6 +262,7 @@ function SettingsDisplay(props) {
 }
 
 enum ControlType {
+  MedbotSync = 'sync_tech',
   MedbotThreshold = 'heal_threshold',
   FloorbotTiles = 'tile_stack',
   FloorbotLine = 'line_mode',
@@ -279,6 +280,8 @@ function ControlHelper(props: ControlProps) {
   const { control } = props;
 
   switch (control[0]) {
+    case ControlType.MedbotSync:
+      return <MedbotSync />;
     case ControlType.MedbotThreshold:
       return <MedbotThreshold control={control} />;
     case ControlType.FloorbotTiles:
@@ -295,6 +298,25 @@ function ControlHelper(props: ControlProps) {
         />
       );
   }
+}
+
+/** Small button to sync medbots with research. */
+function MedbotSync(props) {
+  const { act } = useBackend<Data>();
+
+  return (
+    <Tooltip
+      content={`Synchronize surgical data with research network.
+       Improves Tending Efficiency.`}
+    >
+      <Icon
+        color="purple"
+        name="cloud-download-alt"
+        size={2}
+        onClick={() => act('sync_tech')}
+      />
+    </Tooltip>
+  );
 }
 
 /** Slider button for medbot healing thresholds */

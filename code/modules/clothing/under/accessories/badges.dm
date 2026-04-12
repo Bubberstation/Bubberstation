@@ -219,7 +219,8 @@
 	icon_state = "pride"
 	obj_flags = UNIQUE_RENAME
 
-/obj/item/clothing/accessory/pride/setup_reskins()
+/obj/item/clothing/accessory/pride/Initialize(mapload)
+	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/pride_pin, infinite = TRUE)
 
 /obj/item/clothing/accessory/deaf_pin

@@ -43,11 +43,11 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	///Stores the real name of the person who originally got this dna datum. Used primarily for changelings
 	var/real_name
 	///All mutations are from now on here
-	var/list/mutations
+	var/list/mutations = list()
 	///Temporary changes to the UE
-	var/list/temporary_mutations
+	var/list/temporary_mutations = list()
 	///For temporary name/ui/ue/blood_type modifications
-	var/list/previous
+	var/list/previous = list()
 	var/mob/living/holder
 	///List of which mutations this carbon has and its assigned block
 	var/mutation_index[DNA_MUTATION_BLOCKS]
@@ -76,9 +76,9 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 
 	QDEL_NULL(species)
 
-	LAZYNULL(mutations) //This only references mutations, just dereference.
-	LAZYNULL(temporary_mutations) //^
-	LAZYNULL(previous) //^
+	mutations.Cut() //This only references mutations, just dereference.
+	temporary_mutations.Cut() //^
+	previous.Cut() //^
 
 	return ..()
 
@@ -89,7 +89,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	new_dna.unique_features = unique_features
 	new_dna.features = features.Copy()
 	new_dna.real_name = real_name
-	new_dna.temporary_mutations = LAZYLISTDUPLICATE(temporary_mutations)
+	new_dna.temporary_mutations = temporary_mutations.Copy()
 	new_dna.mutation_index = mutation_index
 	new_dna.default_mutation_genes = default_mutation_genes
 	// BUBBER EDIT ADDITION BEGIN - CUSTOMIZATION

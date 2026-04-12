@@ -93,7 +93,6 @@
 	design_ids = list(
 		"bag_holding",
 		"cybernetic_heart_anomalock",
-		"mod_storage_holding",
 		"wormholeprojector",
 		"gravitygun",
 		"polymorph_belt",

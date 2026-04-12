@@ -18,7 +18,9 @@
 	var/rating_base = STANDARD_CELL_CHARGE
 	///Maximum charge in cell units
 	var/maxcharge = STANDARD_CELL_CHARGE
-	///If the power cell was damaged by an explosion, chance for it to become corrupted and function the same as if it was rigged with plasma.
+	///If the cell has been booby-trapped by injecting it with plasma. Chance on use() to explode.
+	var/rigged = FALSE
+	///If the power cell was damaged by an explosion, chance for it to become corrupted and function the same as rigged.
 	var/corrupted = FALSE
 	///How much power is given per second in a recharger.
 	var/chargerate = STANDARD_CELL_RATE * 0.05
@@ -41,7 +43,7 @@
 /obj/item/stock_parts/power_store/get_save_vars()
 	. = ..()
 	. += NAMEOF(src, charge)
-	. += NAMEOF(src, corrupted)
+	. += NAMEOF(src, rigged)
 	return .
 
 /obj/item/stock_parts/power_store/Initialize(mapload, override_maxcharge)
@@ -105,6 +107,10 @@
 
 	return .
 
+/obj/item/stock_parts/power_store/create_reagents(max_vol, flags)
+	. = ..()
+	RegisterSignal(reagents, COMSIG_REAGENTS_HOLDER_UPDATED, PROC_REF(on_reagent_change))
+
 /obj/item/stock_parts/power_store/update_overlays()
 	. = ..()
 	if(grown_battery)
@@ -157,7 +163,8 @@
 /// Returns: The power used from the cell in joules.
 /obj/item/stock_parts/power_store/use(used, force = FALSE)
 	var/power_used = min(used, charge)
-	if(power_used > 0 && try_explode())
+	if(rigged && power_used > 0)
+		explode()
 		return 0 // The cell decided to explode so we won't be able to use it.
 	if(!force && charge < used)
 		return 0
@@ -173,8 +180,8 @@
 /obj/item/stock_parts/power_store/proc/give(amount)
 	var/power_used = min(maxcharge-charge,amount)
 	charge += power_used
-	if (amount)
-		try_explode()
+	if(rigged && amount > 0)
+		explode()
 	return power_used
 
 /**
@@ -186,51 +193,46 @@
 /obj/item/stock_parts/power_store/proc/change(amount)
 	var/energy_used = clamp(amount, -charge, maxcharge - charge)
 	charge += energy_used
-	if(energy_used)
-		try_explode()
+	if(rigged && energy_used)
+		explode()
 	return energy_used
 
 /obj/item/stock_parts/power_store/examine(mob/user)
 	. = ..()
-	if(corrupted)
+	if(rigged)
 		. += span_danger("This [name] seems to be faulty!")
 	else if(!isnull(charge_light_type))
 		. += "The charge meter reads [CEILING(percent(), 0.1)]%." //so it doesn't say 0% charge when the overlay indicates it still has charge
 
-/obj/item/stock_parts/power_store/proc/try_explode(max_charge = FALSE)
-	var/check_charge = charge
-	if (max_charge)
-		check_charge = maxcharge
+/obj/item/stock_parts/power_store/proc/on_reagent_change(datum/reagents/holder)
+	SIGNAL_HANDLER
 
-	if(!check_charge)
-		return FALSE
+	rigged = corrupted || !!holder.has_reagent(/datum/reagent/toxin/plasma, 5) //has_reagent returns the reagent datum
 
-	if (!corrupted)
-		if (!(reagents?.spark_act(check_charge, SPARK_ACT_ENCLOSED) & SPARK_ACT_DESTRUCTIVE))
-			return FALSE
-		message_admins("[ADMIN_LOOKUPFLW(usr)] has triggered a rigged power cell explosion at [AREACOORD(loc)].")
-		usr?.log_message("triggered a rigged power cell explosion", LOG_GAME)
-		usr?.log_message("triggered a rigged power cell explosion", LOG_VICTIM, log_globally = FALSE)
-		qdel(src)
-		return TRUE
-
-	var/range_heavy = round(sqrt(check_charge / (3.6 * rating_base)))
-	var/range_light = round(sqrt(check_charge / (0.9 * rating_base)))
+/obj/item/stock_parts/power_store/proc/explode()
+	if(!charge)
+		return
+	var/range_devastation = -1
+	var/range_heavy = round(sqrt(charge / (3.6 * rating_base)))
+	var/range_light = round(sqrt(charge / (0.9 * rating_base)))
+	var/range_flash = range_light
 	if(!range_light)
+		rigged = FALSE
 		corrupt()
-		return FALSE
+		return
 
-	message_admins("[ADMIN_LOOKUPFLW(usr)] has triggered a corrupted power cell explosion at [AREACOORD(loc)].")
-	usr?.log_message("triggered a corrupted power cell explosion", LOG_GAME)
-	usr?.log_message("triggered a corrupted power cell explosion", LOG_VICTIM, log_globally = FALSE)
-	explosion(src, devastation_range = -1, heavy_impact_range = range_heavy, light_impact_range = range_light, flash_range = range_light)
+	message_admins("[ADMIN_LOOKUPFLW(usr)] has triggered a rigged/corrupted power cell explosion at [AREACOORD(loc)].")
+	usr?.log_message("triggered a rigged/corrupted power cell explosion", LOG_GAME)
+	usr?.log_message("triggered a rigged/corrupted power cell explosion", LOG_VICTIM, log_globally = FALSE)
+
+	explosion(src, devastation_range = range_devastation, heavy_impact_range = range_heavy, light_impact_range = range_light, flash_range = range_flash)
 	qdel(src)
-	return TRUE
 
 /obj/item/stock_parts/power_store/proc/corrupt(force)
 	charge /= 2
 	maxcharge = max(maxcharge/2, chargerate)
 	if (force || prob(10))
+		rigged = TRUE //broken batterys are dangerous
 		corrupted = TRUE
 
 /obj/item/stock_parts/power_store/emp_act(severity)
@@ -281,7 +283,7 @@
 	if(discharged_energy < STANDARD_BATTERY_CHARGE)
 		return
 	user.dropItemToGround(src)
-	user.dust(just_ash = TRUE, drop_items = TRUE)
+	user.dust(just_ash = TRUE)
 	playsound(src, 'sound/effects/magic/lightningshock.ogg', 50, TRUE, 10)
 	tesla_zap(source = src, zap_range = 10, power = discharged_energy)
 

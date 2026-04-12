@@ -31,7 +31,8 @@
 	clothing_flags = MASKINTERNALS
 	flags_inv = HIDESNOUT
 
-/obj/item/clothing/mask/joy/setup_reskins()
+/obj/item/clothing/mask/joy/Initialize(mapload)
+	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/joy_mask, infinite = TRUE)
 
 /obj/item/clothing/mask/mummy

@@ -371,15 +371,10 @@ again.
 	return ..()
 
 /obj/effect/spawner/structure/electrified_grille
-	name = "electrified grille spawner"
+	name = "electrified grill spawner"
 	icon = 'icons/obj/structures_spawners.dmi'
 	icon_state = "electrified_grille"
 	spawn_list = list(/obj/structure/grille, /obj/structure/cable)
-
-/obj/effect/spawner/structure/electrified_grille/layer1
-	name = "layer 1 electrified grille spawner"
-	icon_state = "red_electrified_grille"
-	spawn_list = list(/obj/structure/grille, /obj/structure/cable/layer1)
 
 ///flipped tables
 /obj/effect/spawner/structure/flipped_table

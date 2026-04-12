@@ -4,11 +4,18 @@
 	change_base_icon_state = TRUE
 	new_icon = 'icons/obj/mining.dmi'
 	new_icon_state = "ipickaxe"
-	new_inhand_icon_state = "ipickaxe"
+	/// Specifies the icon state for the crusher's appearance in hand. Should appear in both new_lefthand_file and new_righthand_file.
+	var/new_inhand_icon = "ipickaxe"
 	/// Specifies the icon file in which the crusher's projectile sprite is located.
 	var/new_projectile_icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	/// For if the retool kit changes the projectile's appearance.
 	var/new_projectile_icon_state
+	/// Specifies the left hand inhand icon file. Don't forget to set the right hand file as well.
+	var/new_lefthand_file
+	/// Specifies the right hand inhand icon file. Don't forget to set the left hand file as well.
+	var/new_righthand_file
+	/// Specifies the worn icon file.
+	var/new_worn_file
 	/// Specifies the X dimensions of the new inhand, only relevant with different inhand files.
 	var/new_inhandx
 	/// Specifies the Y dimensions of the new inhand, only relevant with different inhand files.
@@ -16,15 +23,25 @@
 
 /datum/atom_skin/crusher_skin/apply(obj/item/kinetic_crusher/apply_to)
 	. = ..()
+	APPLY_VAR_OR_RESET_INITIAL(apply_to, inhand_icon_state, new_inhand_icon, reset_missing)
 	APPLY_VAR_OR_RESET_INITIAL(apply_to, projectile_icon, new_projectile_icon, reset_missing)
 	APPLY_VAR_OR_RESET_INITIAL(apply_to, projectile_icon_state, new_projectile_icon_state, reset_missing)
+	APPLY_VAR_OR_RESET_INITIAL(apply_to, lefthand_file, new_lefthand_file, reset_missing)
+	APPLY_VAR_OR_RESET_INITIAL(apply_to, righthand_file, new_righthand_file, reset_missing)
+	APPLY_VAR_OR_RESET_INITIAL(apply_to, worn_icon, new_worn_file, reset_missing)
+	APPLY_VAR_OR_RESET_INITIAL(apply_to, worn_icon_state, new_icon_state, reset_missing)
 	APPLY_VAR_OR_RESET_INITIAL(apply_to, inhand_x_dimension, new_inhandx, reset_missing)
 	APPLY_VAR_OR_RESET_INITIAL(apply_to, inhand_y_dimension, new_inhandy, reset_missing)
 
 /datum/atom_skin/crusher_skin/clear_skin(obj/item/kinetic_crusher/clear_from)
 	. = ..()
+	RESET_INITIAL_IF_SET(clear_from, inhand_icon_state, new_inhand_icon)
 	RESET_INITIAL_IF_SET(clear_from, projectile_icon, new_projectile_icon)
 	RESET_INITIAL_IF_SET(clear_from, projectile_icon_state, new_projectile_icon_state)
+	RESET_INITIAL_IF_SET(clear_from, lefthand_file, new_lefthand_file)
+	RESET_INITIAL_IF_SET(clear_from, righthand_file, new_righthand_file)
+	RESET_INITIAL_IF_SET(clear_from, worn_icon, new_worn_file)
+	RESET_INITIAL_IF_SET(clear_from, worn_icon_state, new_icon_state)
 	RESET_INITIAL_IF_SET(clear_from, inhand_x_dimension, new_inhandx)
 	RESET_INITIAL_IF_SET(clear_from, inhand_y_dimension, new_inhandy)
 
@@ -32,20 +49,20 @@
 	new_name = "proto-kinetic sword"
 	preview_name = "Sword"
 	new_icon_state = "crusher_sword"
-	new_inhand_icon_state = "crusher_sword"
+	new_inhand_icon = "crusher_sword"
 
 /datum/atom_skin/crusher_skin/harpoon
 	new_name = "proto-kinetic harpoon"
 	preview_name = "Harpoon"
 	new_icon_state = "crusher_harpoon"
-	new_inhand_icon_state = "crusher_harpoon"
+	new_inhand_icon = "crusher_harpoon"
 	new_projectile_icon_state = "pulse_harpoon"
 
-/datum/atom_skin/crusher_skin/harpoon/apply(atom/apply_to, mob/user)
+/datum/atom_skin/crusher_skin/harpoon/apply(atom/apply_to)
 	. = ..()
 	RegisterSignal(apply_to, COMSIG_ITEM_ATTACK_ANIMATION, PROC_REF(on_attack_animation))
 
-/datum/atom_skin/crusher_skin/harpoon/clear_skin(atom/clear_from, mob/user)
+/datum/atom_skin/crusher_skin/harpoon/clear_skin(atom/clear_from)
 	. = ..()
 	UnregisterSignal(clear_from, COMSIG_ITEM_ATTACK_ANIMATION)
 
@@ -60,14 +77,14 @@
 	new_name = "proto-kinetic dual dagger and blaster"
 	preview_name = "Dagger and Blaster"
 	new_icon_state = "crusher_dagger"
-	new_inhand_icon_state = "crusher_dagger"
+	new_inhand_icon = "crusher_dagger"
 
-/datum/atom_skin/crusher_skin/dagger/apply(atom/apply_to, mob/user)
+/datum/atom_skin/crusher_skin/dagger/apply(atom/apply_to)
 	. = ..()
 	RegisterSignal(apply_to, COMSIG_ITEM_ATTACK_ANIMATION, PROC_REF(on_attack_animation))
 	RegisterSignal(apply_to, COMSIG_CRUSHER_FIRED_BLAST, PROC_REF(on_fired_blast))
 
-/datum/atom_skin/crusher_skin/dagger/clear_skin(atom/clear_from, mob/user)
+/datum/atom_skin/crusher_skin/dagger/clear_skin(atom/clear_from)
 	. = ..()
 	UnregisterSignal(clear_from, COMSIG_ITEM_ATTACK_ANIMATION)
 	UnregisterSignal(clear_from, COMSIG_CRUSHER_FIRED_BLAST)
@@ -103,7 +120,7 @@
 	new_name = "proto-kinetic glaive"
 	preview_name = "Glaive"
 	new_icon_state = "crusher_glaive"
-	new_inhand_icon_state = "crusher_glaive"
+	new_inhand_icon = "crusher_glaive"
 	new_lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	new_righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	new_inhandx = 64
@@ -116,7 +133,7 @@
 /datum/atom_skin/crusher_skin/locked/ashen_skull
 	preview_name = "Skull"
 	new_icon_state = "crusher_skull"
-	new_inhand_icon_state = "crusher_skull"
+	new_inhand_icon = "crusher_skull"
 	new_projectile_icon_state = "pulse_skull"
 
 /// Unlockable (or forced) skins

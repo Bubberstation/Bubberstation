@@ -384,13 +384,15 @@ export const ZubbersStorytellerEventPanelCategory = (
       {Object.entries(current.events)
         .sort((a, b) => b[1].weight - a[1].weight)
         .map(([event_type, event]) => {
-          return (
-            <ZubbersStorytellerEvent
-              key={event_type}
-              type={event_type}
-              event={event}
-            />
-          );
+          if (Boolean(event.roundstart) === roundstart) {
+            return (
+              <ZubbersStorytellerEvent
+                key={event_type}
+                type={event_type}
+                event={event}
+              />
+            );
+          }
         })}
     </>
   );

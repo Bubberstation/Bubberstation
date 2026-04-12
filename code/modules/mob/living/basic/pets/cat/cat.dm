@@ -63,7 +63,6 @@
 	var/datum/callback/post_birth_callback
 
 /datum/emote/cat
-	abstract_type = /datum/emote/cat
 	mob_type_allowed_typecache = /mob/living/basic/pet/cat
 	mob_type_blacklist_typecache = list()
 

@@ -47,7 +47,7 @@
 	QDEL_LIST(random_targeted_spells)
 	return ..()
 
-/datum/disease/wizarditis/stage_act(seconds_per_tick)
+/datum/disease/wizarditis/stage_act(seconds_per_tick, times_fired)
 	. = ..()
 	if(!.)
 		return

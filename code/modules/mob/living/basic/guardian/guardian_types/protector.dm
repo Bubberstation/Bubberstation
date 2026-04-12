@@ -71,9 +71,7 @@
 	/// Overlay for our protection shield.
 	var/mutable_appearance/shield_overlay
 	/// Damage coefficients when shielded
-	var/static/list/shielded_damage = list(BRUTE = 0.05, BURN = 0.05, TOX = 0.05, STAMINA = 0, OXY = 0.05)
-	// What the damage coefficients were previously
-	var/list/original_damage_coeff
+	var/list/shielded_damage = list(BRUTE = 0.05, BURN = 0.05, TOX = 0.05, STAMINA = 0, OXY = 0.05)
 
 /datum/status_effect/protector_shield/on_apply()
 	if (isguardian(owner))
@@ -88,7 +86,6 @@
 
 	if (isbasicmob(owner)) // Better hope you are or this status is doing basically nothing useful for you
 		var/mob/living/basic/basic_owner = owner
-		original_damage_coeff = basic_owner.damage_coeff
 		basic_owner.damage_coeff = shielded_damage
 
 	to_chat(owner, span_bolddanger("You enter protection mode."))
@@ -104,7 +101,7 @@
 
 	if (isbasicmob(owner))
 		var/mob/living/basic/basic_owner = owner
-		basic_owner.damage_coeff = original_damage_coeff
+		basic_owner.damage_coeff = initial(basic_owner.damage_coeff)
 
 	to_chat(owner, span_bolddanger("You return to your normal mode."))
 	UnregisterSignal(owner, list(COMSIG_ATOM_UPDATE_OVERLAYS) + COMSIG_LIVING_ADJUST_STANDARD_DAMAGE_TYPES)

@@ -181,18 +181,13 @@
 	return attacking_item.attack_atom(src, user, modifiers, attack_modifiers)
 
 /mob/living/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	if(user.combat_mode)
-		return NONE
-
-	if(HAS_TRAIT(src, TRAIT_READY_TO_OPERATE))
-		var/surgery_ret = user.perform_surgery(src, tool, LAZYACCESS(modifiers, RIGHT_CLICK))
-		if(surgery_ret)
-			return surgery_ret
-
-	if(src == user)
-		var/manual_cauterization = try_manual_cauterize(tool)
-		if(manual_cauterization & ITEM_INTERACT_ANY_BLOCKER)
-			return manual_cauterization
+	for(var/datum/surgery/operation as anything in surgeries)
+		if(IS_IN_INVALID_SURGICAL_POSITION(src, operation))
+			continue
+		if(!(operation.surgery_flags & SURGERY_SELF_OPERABLE) && (user == src) && !HAS_TRAIT(user, TRAIT_SELF_SURGERY))
+			continue
+		if(operation.next_step(user, modifiers))
+			return ITEM_INTERACT_SUCCESS
 
 	return NONE
 
@@ -338,11 +333,11 @@
 		), ARMOR_MAX_BLOCK)
 
 	var/final_force = CALCULATE_FORCE(attacking_item, attack_modifiers)
-	if(mob_biotypes & (MOB_ROBOTIC|MOB_MINERAL|MOB_SKELETAL)) // this should probably check hit bodypart for humanoids
+	if(mob_biotypes & MOB_ROBOTIC)
 		final_force *= attacking_item.get_demolition_modifier(src)
 
 	var/wounding = attacking_item.wound_bonus
-	if((attacking_item.item_flags & SURGICAL_TOOL) && !user.combat_mode && HAS_TRAIT(user, TRAIT_READY_TO_OPERATE))
+	if((attacking_item.item_flags & SURGICAL_TOOL) && !user.combat_mode && body_position == LYING_DOWN && (LAZYLEN(surgeries) > 0))
 		wounding = CANT_WOUND
 
 	if(user != src)

@@ -184,7 +184,9 @@
 
 	if(!hidden)
 		playsound(target, 'sound/items/weapons/flash.ogg', 25, TRUE)
-		do_sparks(5, TRUE, target, spark_type = /datum/effect_system/basic/spark_spread/quantum)
+		var/datum/effect_system/spark_spread/quantum/spark_system = new /datum/effect_system/spark_spread/quantum()
+		spark_system.set_up(5, TRUE, target)
+		spark_system.start()
 
 	sleep(teleport_speed)
 

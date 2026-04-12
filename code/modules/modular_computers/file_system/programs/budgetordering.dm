@@ -48,9 +48,10 @@
 
 	//Aquire access from the inserted ID card.
 	if(!length(access))
-		access = computer?.GetAccess()
-		if(!length(access))
+		var/obj/item/card/id/D = computer?.stored_id?.GetID()
+		if(!D)
 			return FALSE
+		access = D.GetAccess()
 
 	if(paccess_to_check in access)
 		return TRUE
@@ -172,8 +173,6 @@
 /datum/computer_file/program/budgetorders/ui_static_data(mob/user)
 	var/list/data = list()
 	data["max_order"] = CARGO_MAX_ORDER
-	data["displayed_currency_full_name"] = " [MONEY_NAME]"
-	data["displayed_currency_name"] = " [MONEY_SYMBOL]"
 	return data
 
 /datum/computer_file/program/budgetorders/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)

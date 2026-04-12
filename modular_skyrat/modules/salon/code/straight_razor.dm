@@ -36,9 +36,8 @@
 			if(!(noggin.head_flags & HEAD_FACIAL_HAIR))
 				to_chat(user, span_warning("There is no facial hair to shave!"))
 				return
-			var/covering = target_human.is_mouth_covered()
-			if(covering)
-				to_chat(user, span_warning("[covering] is in the way!"))
+			if(!get_location_accessible(target_human, location))
+				to_chat(user, span_warning("The mask is in the way!"))
 				return
 			if(target_human.facial_hairstyle == "Shaved")
 				to_chat(user, span_warning("Already clean-shaven!"))
