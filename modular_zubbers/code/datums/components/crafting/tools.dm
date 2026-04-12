@@ -21,3 +21,7 @@
 	reqs = list(/obj/item/weldingtool/experimental = 1,
 	/obj/item/grenade/gas_crystal/proto_nitrate_crystal = 1)
 	category = CAT_TOOLS
+
+/datum/crafting_recipe/jaws_of_recovery
+	category = null
+	crafting_flags = CRAFT_MUST_BE_LEARNED

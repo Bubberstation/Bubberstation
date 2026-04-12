@@ -41,6 +41,8 @@
 	var/tagname = null
 	/// Item path of on-init creation in the collar's storage
 	var/treat_path = /obj/item/food/cookie
+	/// Whether to add reskin component in Initialize
+	var/reskins = TRUE
 
 //spawn thing in collar
 
@@ -56,7 +58,8 @@
 	var/id = REF(src)
 	var/obj/item/key/kink_collar/collar_key = key
 	collar_key.key_id = id
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/kink_collar)
+	if(reskins)
+		AddComponent(/datum/component/reskinable_item, /datum/atom_skin/kink_collar)
 
 /datum/atom_skin/kink_collar
 	abstract_type = /datum/atom_skin/kink_collar
@@ -131,7 +134,8 @@
 /obj/item/clothing/neck/kink_collar/locked/Initialize(mapload)
 	. = ..()
 	create_storage(storage_type = /datum/storage/pockets/small/kink_collar/locked)
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/kink_collar_locked)
+	if(reskins)
+		AddComponent(/datum/component/reskinable_item, /datum/atom_skin/kink_collar_locked)
 
 /datum/atom_skin/kink_collar_locked
 	abstract_type = /datum/atom_skin/kink_collar_locked

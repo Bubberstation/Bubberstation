@@ -277,7 +277,7 @@
 	ears = /obj/item/radio/headset/syndicateciv/staff
 
 /datum/outfit/ds2/syndicate/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 	return ..()
 
 //DS-2 Command
@@ -334,7 +334,7 @@
 	id_trim = /datum/id_trim/syndicom/skyrat/ds2/stationadmiral
 
 /datum/outfit/ds2/syndicate_command/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 	return ..()
 
 /datum/outfit/hotelstaff
