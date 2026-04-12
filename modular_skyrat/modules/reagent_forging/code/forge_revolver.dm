@@ -39,21 +39,30 @@
 			do_after(user, hammer_pull_speed_fanning, src, timed_action_flags = IGNORE_USER_LOC_CHANGE, interaction_key = DOAFTER_REVOLVER_HAMMER_COCK, hidden = TRUE )
 		hammer_is_primed = TRUE
 
-		user.balloon_alert("cocked the hammer")
+		balloon_alert(user, "cocked the hammer")
 		if(!istype(magazine,/obj/item/ammo_box/magazine/internal/cylinder))
 			stack_trace("[usr] has a magazine that isn't a revolver cylinder!")
 		var/obj/item/ammo_box/magazine/internal/cylinder/my_cylinder = magazine
 		my_cylinder.rotate()
 	else
 		hammer_is_primed = FALSE
-		user.balloon_alert("decocked the hammer")
+		balloon_alert(user, "decocked the hammer")
 	update_appearance()
 
-/obj/item/gun/ballistic/revolver/handcrafted_single_action/can_shoot()
+/obj/item/gun/ballistic/revolver/handcrafted_single_action/try_fire_gun(atom/target, mob/living/user, params)
 	if(hammer_is_primed)
 		return ..()
 	else
+		balloon_alert(user, "hammer isn't cocked!")
 		return FALSE
+
+
+/obj/item/gun/ballistic/revolver/handcrafted_single_action/fire_gun(atom/target, mob/living/user, flag, params)
+	hammer_is_primed = FALSE
+
+/obj/item/gun/ballistic/revolver/handcrafted_single_action/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
+	hammer_is_primed = FALSE
+	. = ..()
 
 /obj/item/ammo_box/magazine/internal/cylinder/handcrafted_single_action
 	name = "handcrafted revolver cylinder"
@@ -68,3 +77,6 @@
 		casing = new casing(src)
 		stored_ammo[1] = casing
 	return casing
+
+/obj/item/ammo_box/magazine/internal/cylinder/handcrafted_single_action/spin()
+	. = ..()
