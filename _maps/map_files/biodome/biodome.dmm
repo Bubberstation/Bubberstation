@@ -196,14 +196,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
-"acV" = (
-/obj/structure/extinguisher_cabinet/directional/west,
-/obj/structure/sign/departments/exam_room/directional/west,
-/obj/effect/turf_decal/tile/blue/half/contrasted{
-	dir = 8
-	},
-/turf/open/floor/iron/white,
-/area/station/medical/medbay/central)
 "acX" = (
 /turf/open/floor/iron/white,
 /area/station/science/genetics)
@@ -6600,11 +6592,6 @@
 /obj/item/storage/fish_case/random/freshwater,
 /turf/open/misc/beach/sand/biodome,
 /area/station/biodome/aft)
-"cqp" = (
-/obj/structure/sign/departments/exam_room/directional/west,
-/obj/effect/landmark/firealarm_sanity,
-/turf/open/openspace,
-/area/station/medical/medbay/central)
 "cqs" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
@@ -10814,6 +10801,7 @@
 /obj/item/reagent_containers/syringe,
 /obj/machinery/light/cold/directional/east,
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted,
+/obj/machinery/vitals_reader/directional/east,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "dQN" = (
@@ -12054,16 +12042,16 @@
 /area/station/asteroid)
 "elH" = (
 /obj/structure/table,
-/obj/item/computer_disk{
+/obj/item/disk/computer{
 	pixel_x = -4;
 	pixel_y = -3
 	},
-/obj/item/computer_disk{
+/obj/item/disk/computer{
 	pixel_x = 2;
 	pixel_y = 8
 	},
 /obj/machinery/airalarm/directional/south,
-/obj/item/computer_disk/ordnance{
+/obj/item/disk/computer/ordnance{
 	pixel_x = -5;
 	pixel_y = 6
 	},
@@ -14072,10 +14060,10 @@
 	c_tag = "Medbay - Trauma Center Fore";
 	network = list("ss13","medbay")
 	},
-/obj/item/radio/intercom/directional/north,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
+/obj/item/radio/intercom/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "eWU" = (
@@ -26201,10 +26189,10 @@
 /area/station/science/ordnance)
 "jqn" = (
 /obj/structure/table,
-/obj/item/computer_disk{
+/obj/item/disk/computer{
 	pixel_x = -2
 	},
-/obj/item/computer_disk{
+/obj/item/disk/computer{
 	pixel_x = 2;
 	pixel_y = 8
 	},
@@ -26440,10 +26428,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
-"jur" = (
-/obj/structure/table/wood,
-/turf/open/floor/iron/white,
-/area/station/medical/treatment_center)
 "juC" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -28308,7 +28292,7 @@
 /turf/open/floor/iron/white/smooth_large,
 /area/station/service/hydroponics)
 "kca" = (
-/obj/item/stack/sheet/animalhide/lizard,
+/obj/item/stack/sheet/animalhide/carbon/lizard,
 /turf/open/floor/plating,
 /area/station/maintenance/department/cargo)
 "kcb" = (
@@ -30837,8 +30821,8 @@
 /area/station/service/chapel)
 "kSQ" = (
 /obj/structure/table/glass,
-/obj/item/computer_disk/medical,
-/obj/item/computer_disk/medical,
+/obj/item/disk/computer/medical,
+/obj/item/disk/computer/medical,
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted,
@@ -35499,6 +35483,7 @@
 /obj/structure/table/glass,
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/effect/spawner/surgery_tray/full,
+/obj/machinery/vitals_reader/directional/west,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery/fore)
 "mtT" = (
@@ -35722,6 +35707,7 @@
 /obj/structure/table/glass,
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/effect/spawner/surgery_tray/full,
+/obj/machinery/vitals_reader/directional/west,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery/aft)
 "mye" = (
@@ -41543,9 +41529,10 @@
 /area/station/science/xenobiology)
 "oBb" = (
 /obj/structure/table/reinforced,
-/obj/item/computer_disk/engineering,
-/obj/item/computer_disk/engineering,
-/obj/item/computer_disk/engineering,
+/obj/item/disk/computer/engineering,
+/obj/item/disk/computer/engineering,
+/obj/item/disk/computer/engineering,
+/obj/machinery/keycard_auth/wall_mounted/directional/east,
 /obj/effect/turf_decal/tile/neutral/full,
 /obj/machinery/keycard_auth/wall_mounted/directional/east,
 /turf/open/floor/iron/dark,
@@ -43495,7 +43482,7 @@
 	pixel_x = -7;
 	pixel_y = 6
 	},
-/obj/item/computer_disk/ordnance{
+/obj/item/disk/computer/ordnance{
 	pixel_y = 7;
 	pixel_x = 5
 	},
@@ -44674,10 +44661,10 @@
 /area/station/security/detectives_office)
 "pJg" = (
 /obj/machinery/stasis,
-/obj/machinery/defibrillator_mount/directional/east,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 4
 	},
+/obj/machinery/defibrillator_mount/directional/east,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "pJD" = (
@@ -60474,13 +60461,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plating,
 /area/station/maintenance/fore/upper)
-"uUV" = (
-/obj/structure/sign/departments/chemistry/pharmacy/directional/west,
-/obj/effect/turf_decal/tile/blue/half/contrasted{
-	dir = 8
-	},
-/turf/open/floor/iron/white,
-/area/station/medical/medbay/central)
 "uVf" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 8
@@ -63679,6 +63659,7 @@
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 4
 	},
+/obj/machinery/vitals_reader/directional/east,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "wda" = (
@@ -65674,7 +65655,7 @@
 /area/station/commons/fitness)
 "wLE" = (
 /obj/machinery/dna_infuser,
-/obj/item/infuser_book,
+/obj/item/tgui_book/manual/infuser,
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/science/genetics)
@@ -67366,7 +67347,6 @@
 	},
 /obj/item/stack/medical/mesh,
 /obj/item/stack/medical/suture,
-/obj/machinery/status_display/evac/directional/south,
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
@@ -158742,7 +158722,7 @@ rRZ
 wMb
 rRZ
 puo
-jur
+kLh
 qAr
 sZX
 jjj
@@ -159762,8 +159742,8 @@ wHM
 hac
 vWT
 cye
-uUV
-acV
+vWT
+vWT
 ulj
 aZD
 gxh
@@ -159771,7 +159751,7 @@ raL
 mXw
 vWT
 dVr
-cqp
+giP
 giE
 wAW
 xBr
