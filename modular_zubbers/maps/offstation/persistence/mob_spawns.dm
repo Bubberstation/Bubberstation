@@ -72,8 +72,8 @@
 /obj/effect/mob_spawn/ghost_role/robot/persistence/special(mob/living/silicon/robot/new_spawn)
 	. = ..()
 	if(new_spawn.client) //It should have a client, right?
-		new_spawn.faction += ROLE_SYNDICATE
-		new_spawn.faction += ROLE_PERSISTENCE //This is the one to select the cyborg model.
+		new_spawn.add_faction(ROLE_SYNDICATE)
+		new_spawn.add_faction(ROLE_PERSISTENCE) //This is the one to select the cyborg model.
 		new_spawn.radio.keyslot = new /obj/item/encryptionkey/headset_syndicate/cybersun(src)
 		new_spawn.radio.recalculateChannels()
 		new_spawn.UnlinkSelf() //This should prevent AI linking and consoles to see or lock them down.
@@ -328,7 +328,7 @@
 
 //gives syndicate role so turrets don't shoot operative
 /datum/outfit/persistence/syndicate/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 	return ..()
 
 // Dauntless Command
@@ -394,7 +394,7 @@
 
 //gives syndicate role so turrets don't shoot operatives
 /datum/outfit/persistence/command/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 	return ..()
 
 //Give cyborg a specific chameleon item that do not disrupt, still lose power though.

@@ -15,13 +15,13 @@
 	RegisterSignal(carbon_target, COMSIG_MOB_ITEM_ATTACK, PROC_REF(mob_attack))
 	carbon_target.AddComponent(/datum/component/ash_age)
 	carbon_target.apply_status_effect(/datum/status_effect/ash_age)
-	carbon_target.faction |= list(FACTION_ASHWALKER,FACTION_NEUTRAL)
+	carbon_target.add_faction(list(FACTION_ASHWALKER,FACTION_NEUTRAL))
 
 /datum/species/lizard/ashwalker/on_species_loss(mob/living/carbon/carbon_target)
 	. = ..()
 	REMOVE_TRAIT(carbon_target, TRAIT_ASHSTORM_IMMUNE, SPECIES_TRAIT)
 	UnregisterSignal(carbon_target, COMSIG_MOB_ITEM_ATTACK)
-	carbon_target.faction &= list(FACTION_ASHWALKER,FACTION_NEUTRAL)
+	carbon_target.remove_faction(list(FACTION_ASHWALKER,FACTION_NEUTRAL))
 
 /datum/species/lizard/ashwalker/proc/mob_attack(datum/source, mob/mob_target, mob/user)
 	SIGNAL_HANDLER

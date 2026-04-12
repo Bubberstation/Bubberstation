@@ -206,7 +206,7 @@
 		flash_color(select_mob, flash_color = "#FF0000", flash_time = 3 SECONDS)
 
 	var/megafauna_choice = pick(
-		/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner,
+		/mob/living/basic/boss/blood_drunk_miner,
 		/mob/living/simple_animal/hostile/megafauna/dragon,
 		/mob/living/simple_animal/hostile/megafauna/hierophant,
 	)
@@ -444,7 +444,7 @@
 	if(find_animal.sentience_type != SENTIENCE_ORGANIC)
 		return FALSE
 
-	find_animal.faction = list(FACTION_ASHWALKER)
+	find_animal.set_faction(list(FACTION_ASHWALKER))
 
 	if(ishostile(find_animal))
 		var/mob/living/simple_animal/hostile/hostile_animal = find_animal
@@ -467,7 +467,7 @@
 	if(find_animal.sentience_type != SENTIENCE_ORGANIC)
 		return FALSE
 
-	find_animal.faction = list(FACTION_ASHWALKER)
+	find_animal.set_faction(list(FACTION_ASHWALKER))
 
 	find_animal.revive(HEAL_ALL)
 	return TRUE

@@ -54,12 +54,12 @@
 //TODO - this needs a better method, can we do this as a SQUISH thing like digitigrade?
 /obj/item/clothing/head/helmet/space/changeling
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
-	supports_variations_flags = CLOTHING_NO_VARIATION
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/head/helmet/space/freedom
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
-	supports_variations_flags = CLOTHING_NO_VARIATION
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/head/helmet/space/santahat
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
-	supports_variations_flags = CLOTHING_NO_VARIATION
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
