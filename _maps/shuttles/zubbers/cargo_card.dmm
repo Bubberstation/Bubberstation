@@ -38,10 +38,6 @@
 /area/shuttle/supply)
 "dY" = (
 /obj/structure/fans/tiny,
-/obj/machinery/door/poddoor{
-	id = "QMLoaddoor2";
-	name = "Supply Dock Loading Door"
-	},
 /obj/machinery/conveyor{
 	dir = 4;
 	id_tag = "cargoload"
@@ -179,10 +175,6 @@
 /area/shuttle/supply)
 "uA" = (
 /obj/structure/fans/tiny,
-/obj/machinery/door/poddoor{
-	id = "QMLoaddoor";
-	name = "Supply Dock Loading Door"
-	},
 /obj/machinery/conveyor{
 	dir = 8;
 	id_tag = "cargounload"
@@ -248,18 +240,6 @@
 	},
 /obj/effect/turf_decal/arrows{
 	dir = 4
-	},
-/obj/machinery/button/door/directional/west{
-	id = "QMLoaddoor";
-	name = "Off Ramp Toggle";
-	pixel_y = 8;
-	req_access = list("cargo")
-	},
-/obj/machinery/button/door/directional/west{
-	id = "QMLoaddoor2";
-	name = "On Ramp Toggle";
-	pixel_y = -8;
-	req_access = list("cargo")
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/supply)
