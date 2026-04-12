@@ -490,7 +490,7 @@
 /datum/ash_ritual/pacification/ritual_success(obj/effect/ash_rune/success_rune)
 	. = ..()
 	for(var/mob/living/carbon/human/lizard_target in range(2, get_turf(success_rune)))
-		lizard_target.faction.Add(FACTION_MINING_FAUNA)
+		lizard_target.add_faction(FACTION_MINING_FAUNA)
 		ADD_TRAIT(lizard_target, TRAIT_PACIFISM, SPECIES_TRAIT)
 
 /// Summon Ore Seed
