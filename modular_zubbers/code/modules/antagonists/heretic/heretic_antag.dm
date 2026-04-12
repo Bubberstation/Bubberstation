@@ -1,3 +1,33 @@
+/datum/antagonist/heretic
+	var/max_combat_capability = 100
+
+/datum/antagonist/heretic/proc/get_allocated_combat_points()
+	var/total = 0
+	for (var/typepath as anything in researched_knowledge)
+		var/datum/heretic_knowledge/knowledge = researched_knowledge[typepath]
+		if (!istype(knowledge))
+			CRASH("null knowledge during allocated combat points, somehow. [typepath]")
+		total += knowledge.combat_specialty
+	return total
+
+/datum/antagonist/heretic/purchase_knowledge(datum/heretic_knowledge/knowledge_type, category, update)
+	var/budget = max_combat_capability - get_allocated_combat_points()
+	var/wanted = knowledge_type::combat_specialty
+	if (wanted > budget)
+		return FALSE
+
+	return ..()
+
+/datum/antagonist/heretic/get_knowledge_data(datum/heretic_knowledge/knowledge, list/source_list, done, category)
+	. = ..()
+
+	.["combat_specialty"] = knowledge.combat_specialty
+
+/datum/antagonist/heretic/ui_data(mob/user)
+	. = ..()
+
+	.["combat_points"] = get_allocated_combat_points()
+
 /datum/antagonist/heretic/roundend_report()
 	var/list/parts = list()
 	var/cultiewin = TRUE //BUBBERSTATION EDIT
