@@ -46,6 +46,8 @@
 	color = "#ff0000"
 	wound_bonus = -15
 	exposed_wound_bonus = 5
+	embed_type = null
+	shrapnel_type = null
 
 /obj/item/ntusp_conversion_kit
 	name = "NT22-HCS conversion kit"

@@ -16,6 +16,7 @@
 	base_icon_state = "powerpack"
 	icon_state = "powerpack"
 	max_ammo = 20
+	custom_materials = null
 
 /obj/item/ammo_box/magazine/recharge/ntmp5/proc/get_charge_overlay_state()
 	var/current_ammo = ammo_count()
