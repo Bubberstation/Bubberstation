@@ -297,7 +297,7 @@
 	head = /obj/item/clothing/head/soft/black
 
 /datum/outfit/dauntless/syndicate/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 	return ..()
 
 // Dauntless Command
@@ -356,5 +356,5 @@
 	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/stationadmiral
 
 /datum/outfit/dauntless/command/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 	return ..()
