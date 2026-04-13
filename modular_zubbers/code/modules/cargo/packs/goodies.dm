@@ -115,6 +115,31 @@
 	access = ACCESS_SECURITY
 	contains = list(/obj/item/gun/energy/e_gun/advtaser)
 
+/datum/supply_pack/security/miecz
+	name = "Miecz Submachine Gun Single-Pack"
+	crate_name = "Miecz submachinegun crate"
+	desc = "Contains a Miecz submachinegun and a spare magazine for it."
+	contains = list(/obj/item/gun/ballistic/automatic/miecz = 1,
+	/obj/item/ammo_box/magazine/miecz = 1)
+	cost = CARGO_CRATE_VALUE * 10
+	access = ACCESS_SECURITY
+
+/datum/supply_pack/goody/shotgun_revolver
+	name = "Bóbr 12 GA Revolver Single-Pack"
+	desc = "Contains 1 civilian-modified Bóbr revolver, chambered in 12 gauge. For when you really want the power of a shotgun in the palm of your hand. Comes with a box of beanbag shells."
+	contains = list(/obj/item/gun/ballistic/revolver/shotgun_revolver/civvie = 1,
+	/obj/item/ammo_box/advanced/s12gauge/bean = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 20
+
+/datum/supply_pack/goody/plasma_projector
+	name = "Słońce Plasma Projector Single-Pack"
+	desc = "Contains one Słońce Plasma Projector. Spews an inaccurate stream of searing plasma out the magnetic barrel so long as it has power."
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/plasma_thrower = 1,
+	/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 6
+
 /datum/supply_pack/goody/standard_mod_core
 	name = "MOD standard core"
 	desc = "The basic core module for all MODsuits. Provides essential functionality and compatibility."
