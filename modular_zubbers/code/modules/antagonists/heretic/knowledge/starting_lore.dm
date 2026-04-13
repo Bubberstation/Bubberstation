@@ -4,10 +4,10 @@
 
 /datum/heretic_knowledge/bookworm
 	is_starting_knowledge = FALSE
-	drafting_tier = 2
-	cost = 2
+	drafting_tier = 1
+	cost = 1
 
 /datum/heretic_knowledge/spell/cloak_of_shadows
 	is_starting_knowledge = FALSE
-	drafting_tier = 2
-	cost = 2
+	drafting_tier = 1
+	cost = 1

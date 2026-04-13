@@ -432,13 +432,14 @@
 		healing_amount = -15 * seconds_between_ticks
 	if(!amulet_equipped)
 		healing_amount *= 0.5 // Half healing if you dont have the moon amulet
+	healing_amount *= 0.5 // BUBBER EDIT ADDITION - moon heals brain damage half as fast
 	owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, healing_amount)
 
 	var/obj/item/organ/brain/our_brain = owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!our_brain)
 		return
 	for(var/datum/brain_trauma/trauma as anything in our_brain.traumas)
-		if(istype(trauma, BRAIN_TRAUMA_MILD) || istype(trauma, BRAIN_TRAUMA_SEVERE))
+		if(istype(trauma, BRAIN_TRAUMA_MILD) || istype(trauma, BRAIN_TRAUMA_SEVERE) && SPT_PROB(2, seconds_between_ticks)) // BUBBER EDIT CHANGE - was if(istype(trauma, BRAIN_TRAUMA_MILD) || istype(trauma, BRAIN_TRAUMA_SEVERE))
 			our_brain.cure_trauma_type(trauma.type, trauma.resilience)
 
 /datum/status_effect/heretic_passive/moon/heretic_level_upgrade()

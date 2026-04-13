@@ -72,7 +72,7 @@
 
 /obj/item/ether/attack_self(mob/living/user, modifiers)
 	. = ..()
-	user.revive(HEAL_ALL)
+	user.revive(HEAL_BODY|HEAL_AFFLICTIONS) // BUBBER EDIT CHANGE - was HEAL_ALL
 	for(var/obj/item/implant/to_remove in user.implants)
 		to_remove.removed(user)
 

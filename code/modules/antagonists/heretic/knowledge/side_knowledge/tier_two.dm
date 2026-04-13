@@ -153,13 +153,13 @@
 		)
 		return TRUE
 
-	if(locate(/obj/item/trash) in atoms)
+	/*if(locate(/obj/item/trash) in atoms)
 		src.result_atoms = list(/obj/item/wallframe/painting/eldritch/rust)
 		src.required_atoms = list(
 			/obj/item/canvas = 1,
 			/obj/item/trash = 1,
 		)
-		return TRUE
+		return TRUE*/ // BUBBER EDIT REMOVAL - No rust paintings oh my god bruh
 
 	user.balloon_alert(user, "no additional atom present!")
 	return FALSE

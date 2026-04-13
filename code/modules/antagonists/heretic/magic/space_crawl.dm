@@ -35,6 +35,11 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	// BUBBER EDIT ADDITION BEGIN - a brief period to interrupt the heretic
+	owner.balloon_alert_to_viewers("phasing out...")
+	if (!do_after(owner, 2 SECONDS, owner, IGNORE_HELD_ITEM|IGNORE_SLOWDOWNS|IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE))
+		return FALSE
+	// BUBBER EDIT ADDITION END
 	var/turf/my_turf = get_turf(owner)
 	if(isspaceturf(my_turf))
 		return TRUE

@@ -28,6 +28,9 @@
 
 	.["combat_points"] = get_allocated_combat_points()
 
+/datum/antagonist/heretic/should_show_aura()
+	return FALSE // no aura thx
+
 /datum/antagonist/heretic/roundend_report()
 	var/list/parts = list()
 	var/cultiewin = TRUE //BUBBERSTATION EDIT

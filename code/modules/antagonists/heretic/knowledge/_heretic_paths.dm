@@ -223,8 +223,8 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 	// BUBBER EDIT ADDITION BEGIN - Passive upgrades
 	// TODO remove if this doesnt work its ok if its at the top
 	heretic_research_tree[heretic_path.passive_upgrade1][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.1
-	heretic_research_tree[heretic_path.passive_upgrade2][HKT_DEPTH] = HKT_DEPTH_ROBES - 0.1
-	heretic_research_tree[heretic_path.passive_upgrade3][HKT_DEPTH] = HKT_DEPTH_ARMOR - 0.1
+	heretic_research_tree[heretic_path.passive_upgrade2][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.2
+	heretic_research_tree[heretic_path.passive_upgrade3][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.3
 	// BUBBER EDIT ADDITION END
 	return heretic_research_tree
 
@@ -262,11 +262,11 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 	var/datum/heretic_knowledge/guaranteed_draft_t2 = heretic_path.guaranteed_side_tier2
 	var/datum/heretic_knowledge/guaranteed_draft_t3 = heretic_path.guaranteed_side_tier3
 
-	var/list/guaranteed_drafts = list(
+	/*var/list/guaranteed_drafts = list(
 		guaranteed_draft_t1,
 		guaranteed_draft_t2,
 		guaranteed_draft_t3,
-	)
+	)*/ // BUBBER EDIT REMOVAL
 
 	var/list/shop_unlock_order = list(
 		knowledge_tier1,
@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 	)
 
 	var/list/draft_ineligible = path_knowledges.Copy()
-	draft_ineligible += guaranteed_drafts
+	//draft_ineligible += guaranteed_drafts // BUBBER EDIT ADDITION - this puts these in the shop
 
 	var/list/elligible_knowledge = list()
 	var/list/shop_knowledge = list()
@@ -320,16 +320,7 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 			HKT_DEPTH = HKT_DEPTH_DRAFT_4,
 		)
 	)
-	// BUBBER EDIT ADDITION BEGIN - Only one draft
-	drafts.Cut() // we can think of this like traitor discounts, you just get one item for free
-	drafts = list(
-		list(
-			"parent_knowledge" = heretic_path.start,
-			"probabilities" = list("1" = 75, "2" = 50, "3" = 10, "4" = 5, "5" = 2),
-			HKT_DEPTH = HKT_DEPTH_START + 0.1
-		)
-	)
-	// BUBBER EDIT ADDITION END
+	drafts.Cut() // BUBBER EDIT ADDITION - no drafts
 	/// generate 3 drafts for each draft tier, while banning you from picking multiple drafts
 	for(var/draft in drafts)
 		var/parent_knowledge_path = draft["parent_knowledge"]
@@ -397,7 +388,7 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 
 	var/gun_path = /datum/heretic_knowledge/rifle
 	var/ammo_path = /datum/heretic_knowledge/rifle_ammo
-	shop[ammo_path] = make_knowledge_entry(ammo_path, null, HERETIC_KNOWLEDGE_SHOP, 2)
+	shop[ammo_path] = make_knowledge_entry(ammo_path, null, HERETIC_KNOWLEDGE_SHOP, 2, /datum/heretic_knowledge/rifle_ammo::cost) // BUBBER EDIT CHANGE - was shop[ammo_path] = make_knowledge_entry(ammo_path, null, HERETIC_KNOWLEDGE_SHOP, 2)
 	var/ammo_id = shop[ammo_path][HKT_ID]
 	shop[gun_path][HKT_NEXT] |= ammo_id
 
