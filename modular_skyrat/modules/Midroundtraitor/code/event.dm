@@ -63,5 +63,5 @@
 	id_trim = /datum/id_trim/chameleon/operative
 
 /datum/outfit/syndicateinfiltrator/post_equip(mob/living/carbon/human/H)
-	H.faction |= ROLE_SYNDICATE
+	H.add_faction(ROLE_SYNDICATE)
 	H.update_icons()

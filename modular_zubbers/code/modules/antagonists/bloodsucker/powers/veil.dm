@@ -148,10 +148,7 @@
 /datum/action/cooldown/bloodsucker/veil/proc/cast_effect()
 	// Effect
 	playsound(get_turf(owner), 'sound/effects/magic/smoke.ogg', 20, 1)
-	var/datum/effect_system/steam_spread/bloodsucker/puff = new /datum/effect_system/steam_spread/()
-	puff.set_up(3, 0, get_turf(owner))
-	puff.attach(owner) //OPTIONAL
-	puff.start()
+	do_smoke(3, FALSE, get_turf(owner), smoke_type = /obj/effect/particle_effect/fluid/smoke/vampsmoke)
 	owner.spin(8, 1) //Spin around like a loon.
 
 /obj/effect/particle_effect/fluid/smoke/vampsmoke

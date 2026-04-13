@@ -48,7 +48,7 @@
 
 /datum/atom_skin/midnight_gown
 	abstract_type = /datum/atom_skin/midnight_gown
-	reset_missing = FALSE
+	greyscale_item_path = /obj/item/clothing/under/dress/bubber/midnight_gown
 
 /datum/atom_skin/midnight_gown/right
 	preview_name = "Right"
@@ -64,7 +64,7 @@
 
 /datum/atom_skin/giant_scarf
 	abstract_type = /datum/atom_skin/giant_scarf
-	reset_missing = FALSE
+	greyscale_item_path = /obj/item/clothing/under/dress/bubber/giant_scarf
 
 /datum/atom_skin/giant_scarf/giant_scarf
 	preview_name = "Plain"
