@@ -103,15 +103,15 @@
 
 /datum/supply_pack/goody/ntusp_single
 	name = "NT22-HCS 'Enforcer' Single-Pack"
-	desc = "Contains one NT22-HCS 'Enforcer' pistol case, complete with a power pack magazine."
+	desc = "Contains one NT22-HCS 'Enforcer' pistol case, a non-lethal weapon that fires hardlight, non-lethal projectiles. Includes two power pack magazines."
 	cost = PAYCHECK_CREW * 12
 	access = ACCESS_SECURITY
 	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/ntusp)
 
 /datum/supply_pack/goody/ntmp5_single
 	name = "NT22-HCS-MP 'Lancer' Single-Pack"
-	desc = "Contains one NT22-HCS-MP 'Lancer' submachine gun case, complete with a power pack magazine."
-	cost = PAYCHECK_CREW * 20
+	desc = "Contains one NT22-HCS-MP 'Lancer' submachine gun, a non-lethal weapon that fires hardlight, non-lethal projectiles at high speed. It comes with a retractable stock. Includes two power pack magazines."
+	cost = PAYCHECK_COMMAND * 8
 	access = ACCESS_SECURITY
 	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5)
 

@@ -115,7 +115,7 @@
 
 /datum/supply_pack/security/ntusp
 	name = "NT22-HCS Crate"
-	desc = "Three NT22-HCS 'Enforcer' pistol cases, each containing a weapon and a power pack. Requires Security access to open."
+	desc = "Three NT22-HCS 'Enforcer' pistol cases, each containing a weapon and a power pack."
 	cost = CARGO_CRATE_VALUE * 5.5
 	access = ACCESS_SECURITY
 	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/ntusp,
@@ -125,7 +125,7 @@
 
 /datum/supply_pack/security/ntmp5
 	name = "NT22-HCS-MP Crate"
-	desc = "Three NT22-HCS-MP 'Lancer' submachine gun cases, each containing a weapon and a power pack. Each weapon can retract its stock to fit inside backpacks. Requires Security access to open."
+	desc = "Three NT22-HCS-MP 'Lancer' submachine gun cases, each containing a weapon and a power pack. Each weapon can retract its stock to fit inside backpacks."
 	cost = CARGO_CRATE_VALUE * 6.5
 	access = ACCESS_SECURITY
 	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5,
