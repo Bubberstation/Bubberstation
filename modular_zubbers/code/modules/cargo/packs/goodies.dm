@@ -62,7 +62,6 @@
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 1
 
-
 /datum/supply_pack/goody/medkit_surgery
 	name = "High Capacity Surgical Medkit"
 	desc = "A high capacity aid kit, full of medical supplies and basic surgical equipment."
@@ -114,15 +113,6 @@
 	cost = PAYCHECK_CREW * 12
 	access = ACCESS_SECURITY
 	contains = list(/obj/item/gun/energy/e_gun/advtaser)
-
-/datum/supply_pack/security/miecz
-	name = "Miecz Submachine Gun Single-Pack"
-	crate_name = "Miecz submachinegun crate"
-	desc = "Contains a Miecz submachinegun and a spare magazine for it."
-	contains = list(/obj/item/gun/ballistic/automatic/miecz = 1,
-	/obj/item/ammo_box/magazine/miecz = 1)
-	cost = CARGO_CRATE_VALUE * 10
-	access = ACCESS_SECURITY
 
 /datum/supply_pack/goody/shotgun_revolver
 	name = "Bóbr 12 GA Revolver Single-Pack"
