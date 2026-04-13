@@ -29,4 +29,4 @@
 	projectile_type = /obj/projectile/bullet/c22ls/ntmp5
 
 /obj/projectile/bullet/c22ls/ntmp5
-	damage = 15
+	damage = 14
