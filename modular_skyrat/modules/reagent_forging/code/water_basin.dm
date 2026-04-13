@@ -1,4 +1,4 @@
-/obj/structure/reagent_dispensers/smithing_trough
+/obj/structure/reagent_dispensers/reagent_smithing_basin
 	name = "smithing trough"
 	desc = "A basin meant to quench heated smithing equipment and cool it."
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_structures.dmi'
@@ -14,25 +14,25 @@
 	/// Tracks if you can fish from this basin
 	var/datum/component/fishing_spot/fishable
 
-/obj/structure/reagent_dispensers/smithing_trough/prefilled
+/obj/structure/reagent_dispensers/reagent_smithing_basin/prefilled
 	reagent_id = /datum/reagent/fuel/oil/smithing
 
-/obj/structure/reagent_dispensers/smithing_trough/Initialize()
+/obj/structure/reagent_dispensers/reagent_smithing_basin/Initialize()
 	. = ..()
 	check_fishable()
 
-/obj/structure/reagent_dispensers/smithing_trough/proc/check_fishable()
+/obj/structure/reagent_dispensers/reagent_smithing_basin/proc/check_fishable()
 	if(isnull(fishable) && reagents.total_volume >= tank_volume)
 		fishable = AddComponent(/datum/component/fishing_spot, /datum/fish_source/water_basin)
 	else if(!isnull(fishable) && reagents.total_volume < tank_volume)
 		RemoveComponentSource(src, /datum/component/fishing_spot)
 
 
-/obj/structure/reagent_dispensers/smithing_trough/Destroy()
+/obj/structure/reagent_dispensers/reagent_smithing_basin/Destroy()
 	QDEL_NULL(fishable)
 	return ..()
 
-/obj/structure/reagent_dispensers/smithing_trough/examine(mob/user)
+/obj/structure/reagent_dispensers/reagent_smithing_basin/examine(mob/user)
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
 		. += span_notice("Dipping smithed items in this trough will imbue it with its chemicals!")

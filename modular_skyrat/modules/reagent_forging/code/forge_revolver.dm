@@ -4,7 +4,7 @@
 	icon_state = "revolver"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/handcrafted_single_action
 	fire_sound_volume = 90
-	bolt_type = BOLT_TYPE_STANDARD
+	bolt_type = BOLT_TYPE_NO_BOLT
 	semi_auto = FALSE
 	mag_display = FALSE
 	bolt_wording = "hammer"
@@ -15,8 +15,6 @@
 	//is the hammer primed (ready to fire) or released (safe)?
 	var/hammer_is_primed = FALSE
 	var/hammer_pull_speed_onehanded = 7 DECISECONDS
-	var/hammer_pull_speed_fanning = 3 DECISECONDS
-
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/Initialize(mapload)
 	. = ..()
@@ -34,9 +32,8 @@
 	if(!hammer_is_primed)
 		var/obj/item/bodypart/other_hand = user.has_hand_for_held_index(user.get_inactive_hand_index()) //
 		if(user.get_inactive_held_item() || !other_hand)
-			do_after(user, hammer_pull_speed_onehanded, src, timed_action_flags = IGNORE_USER_LOC_CHANGE, interaction_key = DOAFTER_REVOLVER_HAMMER_COCK, hidden = TRUE )
-		else
-			do_after(user, hammer_pull_speed_fanning, src, timed_action_flags = IGNORE_USER_LOC_CHANGE, interaction_key = DOAFTER_REVOLVER_HAMMER_COCK, hidden = TRUE )
+			if(!do_after(user, hammer_pull_speed_onehanded, src, timed_action_flags = IGNORE_USER_LOC_CHANGE, interaction_key = DOAFTER_REVOLVER_HAMMER_COCK, hidden = TRUE ))
+				return
 		hammer_is_primed = TRUE
 
 		balloon_alert(user, "cocked the hammer")
@@ -57,8 +54,11 @@
 		return FALSE
 
 
+/*
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/fire_gun(atom/target, mob/living/user, flag, params)
 	hammer_is_primed = FALSE
+	. = ..()
+*/
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	hammer_is_primed = FALSE

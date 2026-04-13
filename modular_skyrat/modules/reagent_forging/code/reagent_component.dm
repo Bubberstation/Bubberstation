@@ -17,12 +17,15 @@
 	var/datum/reagents/imbued_reagent = new(10, NO_REACT)
 	///the text to show the player what happens
 	var/examine_imbued_description = "It is currently imbued with the following:"
+	///required parent item integrity% for reagent effects
+	var/integrity_required
 
-/datum/component/reagent_imbued/Initialize(set_slot = null)
+/datum/component/reagent_imbued/Initialize(set_slot = null, integrity = 0.85)
 	if(!istype(parent, required_type))
 		return COMPONENT_INCOMPATIBLE //they need to be clothing, I already said this
 	parent_item = parent
 	parent_item.create_reagents(MAX_PRE_IMBUE_STORAGE, INJECTABLE | REFILLABLE)
+	integrity_required = integrity
 	RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE_MORE, PROC_REF(on_examine_more))
 
@@ -37,9 +40,12 @@
 		add_reagent_imbue_description(examine_list)
 
 /datum/component/reagent_imbued/proc/add_reagent_imbue_description(list/examine_list)
-	examine_list += span_notice(examine_imbued_description)
-	for (var/datum/reagent/reagent in imbued_reagent.reagent_list)
-		examine_list += span_notice("[reagent.volume] units of [reagent.name]")
+	if(parent_item.get_integrity_percentage() < integrity_required)
+		examine_list += span_notice("It must be repaired before its imbued reagent effects can work...")
+	else
+		examine_list += span_notice(examine_imbued_description)
+		for (var/datum/reagent/reagent in imbued_reagent.reagent_list)
+			examine_list += span_notice("[reagent.volume] units of [reagent.name]")
 
 /datum/component/reagent_imbued/proc/on_examine_more(obj/item/source, mob/examiner, list/examine_list)
 
@@ -103,6 +109,9 @@
 	if(parent_item != cloth_wearer.get_item_by_slot(checking_slot))
 		return
 
+	if(parent_item.get_integrity_percentage() < integrity_required)
+		return
+
 	if(!COOLDOWN_FINISHED(src, imbue_cooldown))
 		return
 
@@ -134,6 +143,9 @@
 
 	//don't have the weapon or any imbued reagents? don't try
 	if(!parent_item || !length(imbued_reagent))
+		return
+
+	if(parent_item.get_integrity_percentage() < integrity_required)
 		return
 
 	//lets inject that target
