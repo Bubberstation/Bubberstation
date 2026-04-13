@@ -35,6 +35,7 @@
 	vary_fire_sound = FALSE
 	fire_sound_volume = 80
 	spawn_magazine_type = /obj/item/ammo_box/magazine/recharge/ntmp5
+	show_bolt_icon = FALSE
 	var/stock_retracted = TRUE
 	var/extended_spread = 7
 	var/retracted_spread = 12

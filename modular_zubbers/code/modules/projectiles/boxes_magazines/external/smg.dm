@@ -12,6 +12,7 @@
 	name = "large disabling power pack"
 	desc = "A rechargeable power pack for the NT22-HCS-MP 'Lancer'. Synthesizes up to twenty .22HL bullets that tire targets."
 	parent_type = /obj/item/ammo_box/magazine/recharge/ntusp
+	ammo_type = /obj/item/ammo_casing/caseless/c22hl/ntmp5
 	base_icon_state = "powerpack"
 	icon_state = "powerpack"
 	max_ammo = 20
@@ -46,7 +47,7 @@
 /obj/item/ammo_box/magazine/recharge/ntmp5/lethal
 	name = "large lethal power pack"
 	desc = "A rechargeable power pack for the NT22-HCS-MP 'Lancer' that has been modified. Synthesizes up to sixteen .22LS bullets that fire lasers."
-	ammo_type = /obj/item/ammo_casing/caseless/c22ls
+	ammo_type = /obj/item/ammo_casing/caseless/c22ls/ntmp5
 	base_icon_state = "powerpack-l"
 	icon_state = "powerpack-l"
 	max_ammo = 16
