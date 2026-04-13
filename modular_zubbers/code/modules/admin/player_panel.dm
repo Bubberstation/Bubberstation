@@ -68,12 +68,6 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 		.["mob_scale"] = living_mob.current_size
 		.["mob_speed"] = living_mob.cached_multiplicative_slowdown
 		.["mob_status_flags"] = living_mob.status_flags
-		if(islist(living_mob.faction))
-			.["current_faction"] = living_mob.faction
-		else if(living_mob.faction)
-			.["current_faction"] = list(living_mob.faction)
-		else
-			.["current_faction"] = list()
 
 	.["discord_id"] = discord_id_cache
 
@@ -720,46 +714,6 @@ GLOBAL_LIST_INIT(pp_limbs, list(
 
 			living_mob.remove_movespeed_modifier(/datum/movespeed_modifier/admin_varedit)
 			log_admin("[key_name(admin_client)] reset speed modifier of [key_name(target_mob)].")
-			return TRUE
-
-		/// Adds a faction to the selected mob
-		if ("add_faction")
-			var/mob/living/living_mob = target_mob
-			if(!istype(living_mob))
-				return FALSE
-
-			var/new_faction = params["faction"]
-			if(new_faction == "Custom")
-				new_faction = tgui_input_text(admin_client, "Enter custom faction name:", "Custom Faction")
-				if(!new_faction)
-					return FALSE
-
-			if(!living_mob.faction)
-				living_mob.faction = list()
-			else if(!islist(living_mob.faction))
-				living_mob.faction = list(living_mob.faction)
-
-			if(!(new_faction in living_mob.faction))
-				living_mob.faction += new_faction
-
-			log_admin("[key_name(admin_client)] added faction [new_faction] to [key_name(target_mob)].")
-			message_admins(span_adminnotice("[key_name_admin(admin_client)] added faction [new_faction] to [key_name_admin(target_mob)]."))
-			return TRUE
-
-		/// Removes a faction from the selected mob
-		if ("remove_faction")
-			var/mob/living/living_mob = target_mob
-			if(!istype(living_mob))
-				return FALSE
-
-			var/faction_to_remove = params["faction"]
-			if(!living_mob.faction || !islist(living_mob.faction))
-				return FALSE
-
-			LAZYREMOVE(living_mob.faction, faction_to_remove)
-
-			log_admin("[key_name(admin_client)] removed faction [faction_to_remove] from [key_name(target_mob)].")
-			message_admins(span_adminnotice("[key_name_admin(admin_client)] removed faction [faction_to_remove] from [key_name_admin(target_mob)]."))
 			return TRUE
 
 		/// Loads the client's preferences onto the selected human mob

@@ -2,7 +2,12 @@
 	var/warning_range_low = 60
 	var/warning_range_high = TIME_BLOODSUCKER_DAY_WARN
 
-/datum/component/weather_announcer/Initialize(state_normal, state_warning, state_danger)
+/datum/component/weather_announcer/Initialize(
+	state_normal,
+	state_warning,
+	state_danger,
+	radar_z_trait,
+)
 	. = ..()
 	RegisterSignal(SSsunlight, COMSIG_SOL_NEAR_START, PROC_REF(on_daylight_warning))
 

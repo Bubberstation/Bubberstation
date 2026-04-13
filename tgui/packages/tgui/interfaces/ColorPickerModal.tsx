@@ -6,8 +6,8 @@
 
 import {
   colorList,
-  hexToHsva,
   type HsvaColor,
+  hexToHsva,
   hsvaToHex,
   hsvaToHslString,
   hsvaToRgba,
@@ -47,7 +47,7 @@ interface ColorPickerData {
   default_color: string;
 }
 
-type ColorPickerModalProps = {}
+type ColorPickerModalProps = { [k: string]: never };
 
 export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
   const { data } = useBackend<ColorPickerData>();
