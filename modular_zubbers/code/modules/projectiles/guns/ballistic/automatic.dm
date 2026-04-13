@@ -23,7 +23,7 @@
 	inhand_icon_state = "arg"
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
-	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
+	slot_flags = ITEM_SLOT_BELT
 	accepted_magazine_type = /obj/item/ammo_box/magazine/recharge/ntusp
 	burst_size = 1
 	actions_types = list()
@@ -122,10 +122,8 @@
 /obj/item/gun/ballistic/automatic/ntmp5/proc/update_stock_state()
 	if(stock_retracted)
 		update_weight_class(WEIGHT_CLASS_NORMAL)
-		slot_flags &= ~ITEM_SLOT_BACK
 		spread = retracted_spread
 	else
 		update_weight_class(WEIGHT_CLASS_BULKY)
-		slot_flags |= ITEM_SLOT_BACK
 		spread = extended_spread
 	update_appearance()

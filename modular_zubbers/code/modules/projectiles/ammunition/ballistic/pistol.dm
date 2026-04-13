@@ -6,7 +6,7 @@
 	. = ..()
 	AddElement(/datum/element/caseless)
 
-/obj/item/ammo_casing/caseless/c22hl/Moved()
+/obj/item/ammo_casing/caseless/c22hl/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(isturf(loc))
 		qdel(src)
@@ -31,7 +31,7 @@
 	. = ..()
 	AddElement(/datum/element/caseless)
 
-/obj/item/ammo_casing/caseless/c22ls/Moved()
+/obj/item/ammo_casing/caseless/c22ls/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(isturf(loc))
 		qdel(src)
