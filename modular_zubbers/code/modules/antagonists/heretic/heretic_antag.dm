@@ -1,13 +1,13 @@
 /datum/antagonist/heretic
+	knowledge_points = 12 + 1
+	unlimited_blades = TRUE
+	passive_level = 0
 	var/max_combat_capability = 100
 
 /datum/antagonist/heretic/proc/get_allocated_combat_points()
 	var/total = 0
-	for (var/typepath as anything in researched_knowledge)
-		var/datum/heretic_knowledge/knowledge = researched_knowledge[typepath]
-		if (!istype(knowledge))
-			CRASH("null knowledge during allocated combat points, somehow. [typepath]")
-		total += knowledge.combat_specialty
+	for (var/datum/heretic_knowledge/knowledge as anything in researched_knowledge)
+		total += knowledge::combat_specialty
 	return total
 
 /datum/antagonist/heretic/purchase_knowledge(datum/heretic_knowledge/knowledge_type, category, update)

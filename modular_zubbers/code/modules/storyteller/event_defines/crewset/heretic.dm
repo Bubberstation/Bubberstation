@@ -4,11 +4,11 @@
 
 	antag_flag = ROLE_HERETIC
 	antag_datum = /datum/antagonist/heretic
-	weight = 0 //Disabled, but people can still opfor.
-	max_occurrences = 0
+	weight = 8 //Disabled, but people can still opfor.
+	max_occurrences = 4
 	min_players = 30
 
-	maximum_antags_global = 2
+	maximum_antags_global = 3
 
 	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_CREW_ANTAG)
 

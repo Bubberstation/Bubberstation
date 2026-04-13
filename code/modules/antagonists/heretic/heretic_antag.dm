@@ -1015,6 +1015,19 @@
 /datum/antagonist/heretic/proc/get_researchable_knowledge()
 	var/list/researchable_knowledge = list()
 	var/list/banned_knowledge = list()
+	// BUBBER EDIT ADDITION - Heretics can buy everything
+	var/list/tree = heretic_shops[HERETIC_KNOWLEDGE_TREE]
+	for (var/knowledge_type in tree)
+		if (ispath(knowledge_type, /datum/heretic_knowledge/passive_upgrade))
+			var/datum/heretic_knowledge/passive_upgrade/passive = knowledge_type
+			if (passive_level != (passive::level - 1))
+				continue
+		researchable_knowledge += tree[knowledge_type][HKT_ID]
+
+	var/list/shop = heretic_shops[HERETIC_KNOWLEDGE_SHOP]
+	for (var/knowledge_type in shop)
+		researchable_knowledge += shop[knowledge_type][HKT_ID]
+	// BUBBER EDIT ADDITION END
 	for(var/knowledge_type in researched_knowledge)
 		var/list/knowledge_info = researched_knowledge[knowledge_type]
 		researchable_knowledge |= knowledge_info[HKT_NEXT]

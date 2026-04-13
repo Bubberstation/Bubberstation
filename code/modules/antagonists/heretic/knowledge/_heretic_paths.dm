@@ -180,13 +180,16 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 	var/list/tree_paths = list()
 
 	tree_paths += list(
+		heretic_path.passive_upgrade1, // BUBBER EDIT ADDITION
 		heretic_path.knowledge_tier1,
 		heretic_path.knowledge_tier2,
 		heretic_path.knowledge_tier3,
 		heretic_path.knowledge_tier4,
+		heretic_path.passive_upgrade2, // BUBBER EDIT ADDITION
 		heretic_path.robes,
+		heretic_path.passive_upgrade3, // BUBBER EDIT ADDITION
 		heretic_path.blade,
-		heretic_path.ascension,
+		//heretic_path.ascension, // BUBBER EDIT REMOVAL
 	)
 
 	for(var/datum/heretic_knowledge/type as anything in tree_paths)
@@ -210,13 +213,19 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 
 	heretic_research_tree[knowledge_tier4][HKT_DEPTH] = HKT_DEPTH_TIER_4
 	heretic_research_tree[heretic_path.blade][HKT_NEXT] += heretic_research_tree[knowledge_tier4][HKT_ID]
-	heretic_research_tree[knowledge_tier4][HKT_NEXT] += heretic_research_tree[heretic_path.ascension][HKT_ID]
+	//heretic_research_tree[knowledge_tier4][HKT_NEXT] += heretic_research_tree[heretic_path.ascension][HKT_ID] // BUBBER EDIT REMOVAL - no ascensions
 
 	//depth stuff
 	heretic_research_tree[heretic_path.robes][HKT_DEPTH] = HKT_DEPTH_ROBES
 	heretic_research_tree[heretic_path.blade][HKT_DEPTH] = HKT_DEPTH_ARMOR
-	heretic_research_tree[heretic_path.ascension][HKT_DEPTH] = HKT_DEPTH_ASCENSION
+	//heretic_research_tree[heretic_path.ascension][HKT_DEPTH] = HKT_DEPTH_ASCENSION // BUBBER EDIT REMOVAL - no ascensions
 	//and we're done
+	// BUBBER EDIT ADDITION BEGIN - Passive upgrades
+	// TODO remove if this doesnt work its ok if its at the top
+	heretic_research_tree[heretic_path.passive_upgrade1][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.1
+	heretic_research_tree[heretic_path.passive_upgrade2][HKT_DEPTH] = HKT_DEPTH_ROBES - 0.1
+	heretic_research_tree[heretic_path.passive_upgrade3][HKT_DEPTH] = HKT_DEPTH_ARMOR - 0.1
+	// BUBBER EDIT ADDITION END
 	return heretic_research_tree
 
 /**
@@ -311,6 +320,16 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 			HKT_DEPTH = HKT_DEPTH_DRAFT_4,
 		)
 	)
+	// BUBBER EDIT ADDITION BEGIN - Only one draft
+	drafts.Cut() // we can think of this like traitor discounts, you just get one item for free
+	drafts = list(
+		list(
+			"parent_knowledge" = heretic_path.start,
+			"probabilities" = list("1" = 75, "2" = 50, "3" = 10, "4" = 5, "5" = 2),
+			HKT_DEPTH = HKT_DEPTH_START + 0.1
+		)
+	)
+	// BUBBER EDIT ADDITION END
 	/// generate 3 drafts for each draft tier, while banning you from picking multiple drafts
 	for(var/draft in drafts)
 		var/parent_knowledge_path = draft["parent_knowledge"]

@@ -16,11 +16,11 @@
 	research_tree_icon_path = 'icons/obj/clothing/suits/armor.dmi'
 	research_tree_icon_state = "eldritch_armor"
 	research_tree_icon_frame = 1
-
-/datum/heretic_knowledge/armor/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
+// BUBBER EDIT REMOVAL - You have to pay for your upgrades now
+/*/datum/heretic_knowledge/armor/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
 	if(!heretic_datum)
 		return
 	SEND_SIGNAL(heretic_datum, COMSIG_HERETIC_PASSIVE_UPGRADE_FIRST)
-	heretic_datum.gain_knowledge(/datum/heretic_knowledge/knowledge_ritual)
+	heretic_datum.gain_knowledge(/datum/heretic_knowledge/knowledge_ritual)*/
