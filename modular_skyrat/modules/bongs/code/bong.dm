@@ -6,6 +6,7 @@
 	righthand_file = 'modular_skyrat/modules/bongs/icons/righthand.dmi'
 	icon_state = "bongoff"
 	inhand_icon_state = "bongoff"
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 10, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
 
 	///The icon state when the bong is lit
 	var/icon_on = "bongon"
@@ -127,15 +128,11 @@
 	name = "lit [name]"
 
 	if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
-		var/datum/effect_system/reagents_explosion/explosion = new()
-		explosion.set_up(round(reagents.get_reagent_amount(/datum/reagent/toxin/plasma) * 0.4, 1), get_turf(src), 0, 0)
-		explosion.start()
+		reagent_explode(reagents)
 		qdel(src)
 		return
 	if(reagents.get_reagent_amount(/datum/reagent/fuel)) // the fuel explodes, too, but much less violently
-		var/datum/effect_system/reagents_explosion/explosion = new()
-		explosion.set_up(round(reagents.get_reagent_amount(/datum/reagent/fuel) * 0.2, 1), get_turf(src), 0, 0)
-		explosion.start()
+		reagent_explode(reagents)
 		qdel(src)
 		return
 
@@ -186,6 +183,7 @@
 	chem_volume = 50
 	smoke_range = 7
 	moan_chance = 50
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 20, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
 #define MAX_FAKE_STEAM_STAGES 5
 #define STAGE_DOWN_TIME (10 SECONDS)

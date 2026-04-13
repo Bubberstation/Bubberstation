@@ -19,7 +19,6 @@
 					/obj/item/ammo_box/speedloader/c38/hotshot,
 					/obj/item/ammo_box/speedloader/c38/iceblox,
 				)
-	special = FALSE
 //This makes the Security ammo crate use the cool advanced ammo boxes instead of the old ones
 
 
@@ -96,18 +95,84 @@
 /datum/supply_pack/security/armory/laser_carbine
 	cost = CARGO_CRATE_VALUE * 7
 
+/* ugly takyon sprites - readd later VIROWIP
 /datum/supply_pack/security/combine
 	name = "Civil Protection Uniforms"
 	desc = "Extra supplies we got from some weird old guy in a blue suit. Contains six uniforms, \
 		vests, boots, gloves and helmets."
 	cost = 1116
-	contraband = TRUE
+	order_flags = ORDER_CONTRABAND
 	contains = list(/obj/item/clothing/head/helmet/metrocophelmet = 6,
-					/obj/item/clothing/suit/armor/vest/alt/sec/metrocop = 6,
-					/obj/item/clothing/under/rank/security/metrocop = 6,
-					/obj/item/clothing/gloves/color/black/security/metrocop = 6,
-					/obj/item/clothing/shoes/jackboots/combine = 6,
-					/obj/item/trash/can = 3,
-				)
+		/obj/item/clothing/suit/armor/vest/alt/sec/metrocop = 6,
+		/obj/item/clothing/under/rank/security/metrocop = 6,
+		/obj/item/clothing/gloves/color/black/security/metrocop = 6,
+		/obj/item/clothing/shoes/jackboots/combine = 6,
+		/obj/item/trash/can = 3,
+			)
 	crate_name = "benefactor supply crate"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
+*/
+
+/datum/supply_pack/security/ntusp
+	name = "NT-USP Crate"
+	desc = "Three stamina-draining ballistic weapons, along with 3 extra clips. Requires Security access to open."
+	cost = CARGO_CRATE_VALUE * 5.5
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/ntusp,
+					/obj/item/gun/ballistic/automatic/pistol/ntusp,
+					/obj/item/gun/ballistic/automatic/pistol/ntusp,
+					/obj/item/ammo_box/magazine/recharge/ntusp,
+					/obj/item/ammo_box/magazine/recharge/ntusp,
+					/obj/item/ammo_box/magazine/recharge/ntusp)
+	crate_name = "nt-usp crate"
+
+/datum/supply_pack/security/armory/archery_kit
+	name = "Archery Crate"
+	desc = "Two hardlight bows capable of defeating armor, alongside a mix of lethal and non/less-than-lethal arrows."
+	cost = CARGO_CRATE_VALUE * 6
+	contains = list(
+		/obj/item/gun/ballistic/bow/security,
+		/obj/item/gun/ballistic/bow/security,
+		/obj/item/storage/bag/quiver/lesser/security/armory,
+		/obj/item/storage/bag/quiver/lesser/security/armory,
+	)
+
+/obj/item/storage/bag/quiver/lesser/security/armory
+
+/obj/item/storage/bag/quiver/lesser/security/armory/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/ammo_casing/arrow/blunt = 3,
+		/obj/item/ammo_casing/arrow = 6,
+		/obj/item/ammo_casing/arrow/taser = 1
+	)
+
+	generate_items_inside(items_inside, src)
+
+/datum/supply_pack/security/armory/lethal_arrows
+	name = "Arrow Crate"
+	desc = "Two quivers containing nine normal arrows and one randomly selected specialty arrow."
+	cost = CARGO_CRATE_VALUE * 3
+	contains = list(
+		/obj/item/storage/bag/quiver/lesser/security/lethal,
+		/obj/item/storage/bag/quiver/lesser/security/lethal
+	)
+
+/obj/item/storage/bag/quiver/lesser/security/lethal
+
+/obj/item/storage/bag/quiver/lesser/security/lethal/PopulateContents()
+	var/static/list/static_items = list(
+		/obj/item/ammo_casing/arrow = 9
+	)
+	/// Typepath -> Weight
+	var/static/list/bonus_items = list(
+		/obj/item/ammo_casing/arrow/sticky = 10,
+		/obj/item/ammo_casing/arrow/poison = 10,
+		/obj/item/ammo_casing/arrow/plastic = 6,
+		/obj/item/ammo_casing/arrow/bronze = 1,
+		/obj/item/ammo_casing/arrow/taser = 1,
+	)
+
+	var/list/obj/item/ammo_casing/arrow/to_spawn = static_items.Copy()
+	to_spawn[pick_weight(bonus_items)] = 1
+
+	generate_items_inside(to_spawn, src)

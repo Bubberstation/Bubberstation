@@ -167,6 +167,7 @@ GLOBAL_VAR(antag_prototypes)
 		else //Show removal and current one
 			priority_sections |= antag_category
 			antag_header_parts += span_bad("[current_antag.name]")
+			antag_header_parts += "<a href='byond://?src=[REF(src)];reroll_antag=[REF(current_antag)]'>Remove and reassign to new player</a>" // BUBBER EDIT ADDITION - ANTAG RE-ROLLING
 			antag_header_parts += "<a href='byond://?src=[REF(src)];remove_antag=[REF(current_antag)]'>Remove</a>"
 			antag_header_parts += "<a href='byond://?src=[REF(src)];open_antag_vv=[REF(current_antag)]'>Open VV</a>"
 
@@ -180,7 +181,7 @@ GLOBAL_VAR(antag_prototypes)
 				pref_source = prototype
 				break
 		if(pref_source.pref_flag)
-			antag_header_parts += pref_source.enabled_in_preferences(src) ? "Enabled in Prefs" : "Disabled in Prefs"
+			antag_header_parts += pref_source.enabled_in_preferences(src) ? "<br/>Enabled in Prefs" : "<br/>Disabled in Prefs" // BUBBER EDIT CHANGE - ORIGINAL: "Enabled in Prefs" : "Disabled in Prefs"
 
 		//Traitor : None | Traitor | IAA
 		// Command1 | Command2 | Command3

@@ -219,16 +219,8 @@
 	name = "glass of strawberry daiquiri"
 	desc = "Pink looking drink with flowers and a big straw to sip it. Looks sweet and refreshing, perfect for warm days."
 
-/datum/reagent/consumable/ethanol/liz_fizz
-	name = "Liz Fizz"
-	description = "Triple citrus layered with some ice and cream."
-	boozepwr = 0
-	color = "#D8FF59"
-	quality = DRINK_NICE
-	taste_description = "brain freezing sourness"
-
 /datum/glass_style/drinking_glass/liz_fizz
-	required_drink_type = /datum/reagent/consumable/ethanol/liz_fizz
+	required_drink_type = /datum/reagent/consumable/liz_fizz
 	icon = 'modular_skyrat/master_files/icons/obj/drinks.dmi'
 	icon_state = "liz_fizz"
 	name = "glass of liz fizz"

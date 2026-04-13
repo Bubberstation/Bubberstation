@@ -10,6 +10,7 @@
 	treat_text = "A tight splint on the affected limb, as well as plenty of rest and sleep."
 	examine_desc = "appears to be moving sluggishly"
 	occur_text = "jitters for a moment before moving sluggishly"
+	treat_text_short = "Gauze and rest"
 	severity = WOUND_SEVERITY_MODERATE
 	interaction_efficiency_penalty = 1.5
 	limp_slowdown = 2
@@ -30,6 +31,7 @@
 	treat_text = "A tight splint on the affected limb, as well as plenty of rest and sleep."
 	examine_desc = "is stiffly limp, the extremities splayed out widely"
 	occur_text = "goes completely stiff, seeming to lock into position"
+	treat_text_short = "Gauze and rest"
 	severity = WOUND_SEVERITY_SEVERE
 	interaction_efficiency_penalty = 2
 	limp_slowdown = 5

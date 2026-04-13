@@ -124,7 +124,7 @@
 
 		if(!unvetted_notified && !trigger_unvetted_warning())
 			return FALSE
-		ready = !ready
+		ready = is_ready_to_play() ? PLAYER_NOT_READY : PLAYER_READY_TO_PLAY
 		client << output(ready, "title_browser:toggle_ready")
 		return
 

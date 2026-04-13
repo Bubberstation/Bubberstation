@@ -53,9 +53,11 @@
 					You may want to check your loadout settings."))
 			continue
 
+		var/datum/loadout_item/loadout_item = GLOB.all_loadout_datums[real_path]
+		if(loadout_item.is_disabled())
+			continue // this just falls off silently
 		// SKYRAT EDIT ADDITION
 		else if(owner_client)
-			var/datum/loadout_item/loadout_item = GLOB.all_loadout_datums[real_path]
 			if(loadout_item?.ckeywhitelist && !(owner_client?.ckey in loadout_item.ckeywhitelist))
 				continue
 		// SKYRAT EDIT END

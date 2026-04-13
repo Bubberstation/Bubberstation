@@ -20,7 +20,7 @@ import { ServerPrefs } from './useServerPrefs';
 
 export function PreferencesMenu(props) {
   return (
-    <Window width={1024} height={790}>
+    <Window width={1100} height={790}>
       {/* BUBBER change line 23 bigger char setup */}
       <Window.Content>
         <Suspense fallback={<LoadingScreen />}>
@@ -38,6 +38,17 @@ function PrefsWindowInner(props) {
 
   const [serverData, setServerData] = useState<ServerData>();
   const randomization = useState(false);
+
+  useEffect(() => {
+    fetchRetry(resolveAsset('preferences.json'))
+      .then((response) => response.json())
+      .then((data) => {
+        setServerData(data);
+      })
+      .catch((error) => {
+        logger.log('Failed to fetch preferences.json', error);
+      });
+  }, []);
 
   let content;
   let title;
@@ -61,17 +72,6 @@ function PrefsWindowInner(props) {
     default:
       exhaustiveCheck(window);
   }
-
-  useEffect(() => {
-    fetchRetry(resolveAsset('preferences.json'))
-      .then((response) => response.json())
-      .then((data) => {
-        setServerData(data);
-      })
-      .catch((error) => {
-        logger.log('Failed to fetch preferences.json', error);
-      });
-  }, []);
 
   return (
     <ServerPrefs.Provider value={serverData}>

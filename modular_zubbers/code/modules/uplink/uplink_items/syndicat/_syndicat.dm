@@ -1,5 +1,5 @@
 //Just the ears alone
-/datum/uplink_item/implant/super_kitty_ears
+/datum/uplink_item/implants/super_kitty_ears
 	name = "Super Syndie-Kitty Ears"
 	desc = "Developed by several Interdyne Pharmaceutics scientists and Wizard Federation archmages during a record-breaking rager, \
 			this set of feline ears combines the finest of bio-engineering and thamaturgy to allow the user to transform to and from a genetically modified cat at will, \

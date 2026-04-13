@@ -24,5 +24,7 @@
 	filling_color = "#FF4500"
 	bite_consumption_mod = 0.5
 	foodtypes = FRUIT
-	juice_typepath = /datum/reagent/silver
 	tastes = list("silver" = 1)
+
+/obj/item/food/grown/thaadra/juice_typepath()
+	return /datum/reagent/silver

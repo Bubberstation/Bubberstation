@@ -32,7 +32,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn_digi.dmi'
-	uses_advanced_reskins = FALSE
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/under/rank/idma_utility

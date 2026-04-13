@@ -5,6 +5,7 @@
 	icon_state = "plant_tank_e"
 	anchored = FALSE
 	density = TRUE
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 4, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
 	///the amount of times the tank can produce-- can be increased through feeding the tank
 	var/operation_number = 0
 

@@ -4,7 +4,8 @@
 
 	antag_flag = ROLE_HERETIC
 	antag_datum = /datum/antagonist/heretic
-	weight = 5
+	weight = 0 //Disabled, but people can still opfor.
+	max_occurrences = 0
 	min_players = 30
 
 	maximum_antags_global = 2
@@ -18,3 +19,10 @@
 /datum/round_event_control/antagonist/solo/heretic/midround
 	name = "Midround Heretics"
 	roundstart = FALSE
+
+/datum/round_event_control/antagonist/solo/heretic/event
+	name = "Event Generated Heretic"
+	roundstart = FALSE
+	tags = list(TAG_ANTAG_REROLL)
+	max_occurrences = 0
+	maximum_antags = 1

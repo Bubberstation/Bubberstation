@@ -104,9 +104,7 @@
 	update_indicator()
 
 	if(stationary)
-		AddComponent(/datum/component/usb_port, list(
-			/obj/item/circuit_component/bluespace_launchpad,
-		))
+		AddComponent(/datum/component/usb_port, typecacheof(list(/obj/item/circuit_component/bluespace_launchpad), only_root_path = TRUE))
 
 /// Whether this launchpad can send or receive.
 /obj/machinery/launchpad/proc/is_available()
@@ -186,9 +184,7 @@
 
 	if(!hidden)
 		playsound(target, 'sound/items/weapons/flash.ogg', 25, TRUE)
-		var/datum/effect_system/spark_spread/quantum/spark_system = new /datum/effect_system/spark_spread/quantum()
-		spark_system.set_up(5, TRUE, target)
-		spark_system.start()
+		do_sparks(5, TRUE, target, spark_type = /datum/effect_system/basic/spark_spread/quantum)
 
 	sleep(teleport_speed)
 

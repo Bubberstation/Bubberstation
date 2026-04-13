@@ -29,11 +29,11 @@
 			var/mutable_appearance/heat_overlay = mutable_appearance(icon, "platform_heat")
 			heat_overlay.appearance_flags |= RESET_COLOR
 			if(vent_reverse_direction)
-				heat_overlay.color = heat2colour(buffer_gases.temperature)
-				heat_overlay.alpha = min( (rod_mix.temperature - T0C) * (1/500) * 255,255)
+				heat_overlay.color = heat2colour(buffer_gases.temperature*0.25)
+				heat_overlay.alpha = min( (rod_mix.temperature - T0C) * (1/2000) * 255,255)
 			else
-				heat_overlay.color = heat2colour(rod_mix.temperature)
-				heat_overlay.alpha = min( (rod_mix.temperature - T0C) * (1/500) * 255,255)
+				heat_overlay.color = heat2colour(rod_mix.temperature*0.5)
+				heat_overlay.alpha = min( (rod_mix.temperature - T0C) * (1/2000) * 255,255)
 			. += heat_overlay
 
 		if(!active && !jammed && rod_mix.gases[/datum/gas/tritium])

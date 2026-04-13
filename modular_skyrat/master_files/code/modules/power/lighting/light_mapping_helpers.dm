@@ -22,4 +22,4 @@
 	brightness = 5.5
 	bulb_colour = LIGHT_COLOR_TUNGSTEN
 	nightshift_light_color = null
-	nightshift_brightness = 4
+	nightshift_brightness = 5

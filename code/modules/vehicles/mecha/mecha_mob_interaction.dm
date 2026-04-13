@@ -103,6 +103,7 @@
 	brain_mob.reset_perspective(src)
 	brain_mob.remote_control = src
 	brain_mob.update_mouse_pointer()
+	RegisterSignal(brain_mob, COMSIG_MOB_RETRIEVE_ACCESS, PROC_REF(retrieve_access))
 	setDir(SOUTH)
 	log_message("[brain_obj] moved in as pilot.", LOG_MECHA)
 	if(!internal_damage)
@@ -112,12 +113,14 @@
 	return TRUE
 
 /obj/vehicle/sealed/mecha/mob_exit(mob/M, silent = FALSE, randomstep = FALSE, forced = FALSE)
+	// FIXME: this code is really bad (shocker). Needs a refactor
 	var/atom/movable/mob_container
 	var/turf/newloc = get_turf(src)
 	if(ishuman(M))
 		mob_container = M
 	else if(isbrain(M))
 		var/mob/living/brain/brain = M
+		UnregisterSignal(brain, COMSIG_MOB_RETRIEVE_ACCESS)
 		mob_container = brain.container
 	else if(isAI(M))
 		var/mob/living/silicon/ai/AI = M
@@ -147,9 +150,7 @@
 		if(!forced && !silent)
 			to_chat(AI, span_notice("Returning to core..."))
 		mecha_flags &= ~SILICON_PILOT
-		newloc = get_turf(AI.linked_core)
-		qdel(AI.linked_core)
-		AI.forceMove(newloc)
+		AI.resolve_core_link()
 		if(forced)
 			to_chat(AI, span_danger("ZZUZULU.ERR--ERRR-NEUROLOG-- PERCEP--- DIST-B**@"))
 			for(var/count in 1 to 5)

@@ -211,6 +211,7 @@
 	worn_icon_state = "emergency_engi"
 	tank_holder_icon_state = "holder_emergency_engi"
 	volume = 12 //If it's double of the above, shouldn't it be double the volume??
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT) // BUBBER EDIT ADDITION - Needed for material parity with crafting recipe
 
 /obj/item/tank/internals/emergency_oxygen/double/empty/populate_gas()
 	return

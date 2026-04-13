@@ -403,7 +403,7 @@
 		if("save_recording")
 			if(!is_operational)
 				return
-			var/name = tgui_input_text(ui.user, "What do you want to name this recipe?", "Recipe Name", max_length = MAX_NAME_LEN)
+			var/name = tgui_input_text(ui.user, "What do you want to name this recipe?", "Recipe Name", max_length = MAX_NAME_LEN, encode = FALSE)
 			if(!ui.user.can_perform_action(src, ALLOW_SILICON_REACH))
 				return
 			if(saved_recipes[name] && tgui_alert(ui.user, "\"[name]\" already exists, do you want to overwrite it?",, list("Yes", "No")) == "No")
@@ -686,7 +686,7 @@
 		/datum/reagent/consumable/tonic,
 		/datum/reagent/water,
 	)
-	upgrade_reagents = null
+	// upgrade_reagents = null // BUBBER EDIT REMOVAL - Multi-tiered dispenser upgrades
 	/// The default list of emagged reagents dispensable by the soda dispenser
 	var/static/list/drink_emagged_reagents = list(
 		/datum/reagent/consumable/ethanol/thirteenloko,
@@ -716,7 +716,7 @@
 		upgrade3_reagents = sort_list(upgrade3_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
 	// BUBBER EDIT ADDITION END - Multi-tiered dispenser upgrades
 	. = ..()
-	AddComponent(/datum/component/simple_rotation)
+	AddElement(/datum/element/simple_rotation)
 
 /obj/machinery/chem_dispenser/drinks/setDir()
 	var/old = dir

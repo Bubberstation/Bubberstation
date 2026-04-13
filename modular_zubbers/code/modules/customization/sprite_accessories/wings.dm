@@ -314,3 +314,15 @@
 	dimension_x = 32
 	dimension_y = 32
 	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/wings/mammal/arms_two
+	name = "Second Arms (Non-Functional)"
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/wings.dmi'
+	icon_state = "arms_two"
+	dimension_x = 32
+	dimension_y = 32
+	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/wings/mammal/arms_two/grey
+	name = "Second Arms (Greyscale - Non-Functional)"
+	icon_state = "arms_two_grey"

@@ -144,3 +144,23 @@
 						'modular_skyrat/modules/modular_items/lewd_items/sounds/bang5.ogg',
 						'modular_skyrat/modules/modular_items/lewd_items/sounds/bang6.ogg'), 70, 1, -1)
 
+
+/obj/item/clothing/sextoy/fleshlight/bluespace
+	name = "bluespace fleshlight"
+	color_changed = TRUE
+	current_color = "teal"
+	desc = "Internal design based on the captain's mother."
+	custom_premium_price = PAYCHECK_COMMAND * 10
+
+/obj/item/clothing/sextoy/fleshlight/bluespace/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/effect_remover, \
+		tip_text = "Capture rod", \
+		on_clear_callback = CALLBACK(src, PROC_REF(rod_johnson)), \
+		effects_we_clear = list(/obj/effect/immovablerod)\
+	)
+
+/obj/item/clothing/sextoy/fleshlight/bluespace/proc/rod_johnson(obj/effect/immovablerod/target, mob/living/user)
+	user.throw_at(get_step(user,target.dir),12,4)
+	playsound(target, 'sound/effects/cartoon_sfx/cartoon_pop.ogg', 75, TRUE)
+	target.audible_message(span_danger("You hear a POP!"))

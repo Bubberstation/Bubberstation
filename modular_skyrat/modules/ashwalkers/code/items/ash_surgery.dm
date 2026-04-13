@@ -3,6 +3,7 @@
 	name = "primitive cautery"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "cautery"
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 	greyscale_colors = null
 	greyscale_config = null
@@ -18,6 +19,7 @@
 	name = "primitive surgical drill"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "surgical_drill"
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 	greyscale_colors = null
 	greyscale_config = null
@@ -33,6 +35,7 @@
 	name = "primitive scalpel"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "scalpel"
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 	greyscale_colors = null
 	greyscale_config = null
@@ -48,6 +51,7 @@
 	name = "primitive circular saw"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "surgical_saw"
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 	greyscale_colors = null
 	greyscale_config = null
@@ -63,6 +67,7 @@
 	name = "primitive retractor"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "retractors"
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 	greyscale_colors = null
 	greyscale_config = null
@@ -78,6 +83,7 @@
 	name = "primitive hemostat"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "hemostat"
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 	greyscale_colors = null
 	greyscale_config = null
@@ -93,6 +99,7 @@
 	name = "primitive bonesetter"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "bonesetter"
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
 
 	greyscale_colors = null
 	greyscale_config = null

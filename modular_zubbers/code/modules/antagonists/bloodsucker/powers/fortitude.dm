@@ -20,16 +20,20 @@
 	. += "You will additionally gain resistance to both brute, burn and stamina damage, scaling with level."
 	. += "Fortitude will make you receive [GetFortitudeResist() * 10]% less brute and and stamina and [GetBurnResist() * 10]% less burn damage."
 	. += "While using Fortitude, attempting to run will crush you."
-	. += "At level [FORTITUDE_STUN_IMMUNITY_LEVEL], you gain complete stun immunity."
+	. += "At level [FORTITUDE_STUN_IMMUNITY_LEVEL], you gain complete stun immunity while [src] is active."
 	. += "Higher levels will increase Brute and Stamina resistance."
+
+/datum/action/cooldown/bloodsucker/fortitude/upgrade_power()
+	. = ..()
+	if(level_current >= FORTITUDE_STUN_IMMUNITY_LEVEL)
+		traits_to_add |= TRAIT_STUNIMMUNE
 
 /datum/action/cooldown/bloodsucker/fortitude/ActivatePower(atom/target)
 	owner.balloon_alert(owner, "fortitude turned on.")
 	to_chat(owner, span_notice("Your flesh, skin, and muscles become as steel."))
 	// Traits & Effects
 	owner.add_traits(traits_to_add, BLOODSUCKER_TRAIT)
-	if(level_current >= FORTITUDE_STUN_IMMUNITY_LEVEL)
-		ADD_TRAIT(owner, TRAIT_STUNIMMUNE, BLOODSUCKER_TRAIT)
+
 	var/mob/living/carbon/human/bloodsucker_user = owner
 	if(IS_BLOODSUCKER(owner) || IS_GHOUL(owner))
 		fortitude_resist = GetFortitudeResist()

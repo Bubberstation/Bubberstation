@@ -403,9 +403,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/evac, 32)
 	// register for radio system
 	SSradio.add_object(src, frequency)
 	// Circuit USB
-	AddComponent(/datum/component/usb_port, list(
-		/obj/item/circuit_component/status_display,
-	))
+	AddComponent(/datum/component/usb_port, typecacheof(list(/obj/item/circuit_component/status_display), only_root_path = TRUE))
 	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_sec_level_change))
 	if(mapload)
 		find_and_mount_on_atom()
@@ -1035,7 +1033,7 @@ GLOBAL_LIST_EMPTY_TYPED(greenscreen_displays, /obj/effect/abstract/greenscreen_d
 
 /obj/machinery/greenscreen_camera/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/simple_rotation, ROTATION_IGNORE_ANCHORED)
+	AddElement(/datum/element/simple_rotation, ROTATION_IGNORE_ANCHORED)
 	update_appearance(UPDATE_OVERLAYS)
 
 /obj/machinery/greenscreen_camera/Destroy()

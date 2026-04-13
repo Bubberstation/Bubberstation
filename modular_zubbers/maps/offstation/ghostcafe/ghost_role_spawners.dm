@@ -18,6 +18,7 @@
 	you_are_text = "You are a Cafe Robot!"
 	flavour_text = "Who could have thought? This awesome local cafe accepts cyborgs too!"
 	mob_type = /mob/living/silicon/robot/model/roleplay
+	random_appearance = FALSE
 	allow_custom_character = ALL
 
 /obj/effect/mob_spawn/ghost_role/robot/ghostcafe/special(mob/living/silicon/robot/new_spawn)
@@ -30,8 +31,8 @@
 		var/area/A = get_area(src)
 		//new_spawn.AddElement(/datum/element/ghost_role_eligibility, free_ghosting = TRUE) SKYRAT PORT -- Needs to be completely rewritten
 		new_spawn.AddElement(/datum/element/dusts_on_catatonia)
-		new_spawn.AddElement(/datum/element/dusts_on_leaving_area,list(A.type, /area/misc/hilbertshotel, /area/misc/hilbertshotel/winterwoods,
-		/area/centcom/holding/cafe, /area/centcom/holding/cafe/vox, /area/centcom/holding/cafe/dorms, /area/centcom/holding/cafe/park))
+		new_spawn.AddElement(/datum/element/dusts_on_leaving_area, list(A.type) + GLOB.ghost_cafe_areas)
+		new_spawn.RegisterSignal(new_spawn, COMSIG_MOVABLE_USING_RADIO, TYPE_PROC_REF(/mob/living, on_using_radio))
 		ADD_TRAIT(new_spawn, TRAIT_SIXTHSENSE, TRAIT_GHOSTROLE)
 		ADD_TRAIT(new_spawn, TRAIT_FREE_GHOST, TRAIT_GHOSTROLE)
 		to_chat(new_spawn,span_warning("<b>Ghosting is free!</b>"))
@@ -60,22 +61,36 @@
 	if(new_spawn.client)
 		var/area/A = get_area(src)
 		new_spawn.AddElement(/datum/element/dusts_on_catatonia)
-		new_spawn.AddElement(/datum/element/dusts_on_leaving_area,list(A.type, /area/misc/hilbertshotel, /area/misc/hilbertshotel/winterwoods,
-		/area/centcom/holding/cafe, /area/centcom/holding/cafe/vox, /area/centcom/holding/cafe/dorms, /area/centcom/holding/cafe/park))
+		new_spawn.AddElement(/datum/element/dusts_on_leaving_area, list(A.type) + GLOB.ghost_cafe_areas)
+		new_spawn.RegisterSignal(new_spawn, COMSIG_MOVABLE_USING_RADIO, TYPE_PROC_REF(/mob/living, on_using_radio))
 		ADD_TRAIT(new_spawn, TRAIT_SIXTHSENSE, TRAIT_GHOSTROLE)
 		ADD_TRAIT(new_spawn, TRAIT_FREE_GHOST, TRAIT_GHOSTROLE)
 		to_chat(new_spawn,span_warning("<b>Ghosting is free!</b>"))
 		var/datum/action/toggle_dead_chat_mob/D = new(new_spawn)
 		D.Grant(new_spawn)
 
+/mob/living/proc/on_using_radio(atom/movable/talking_movable)
+	SIGNAL_HANDLER
+
+	var/area/target_area = get_area(talking_movable)
+	if(target_area.type in GLOB.ghost_cafe_areas)
+		return COMPONENT_CANNOT_USE_RADIO
+
 /datum/outfit/ghostcafe
-	name = "ID, jumpsuit and shoes"
-	uniform = /obj/item/clothing/under/color/random
-	shoes = /obj/item/clothing/shoes/sneakers/black
+	name = "Cafe Visitor"
+	uniform = /obj/item/clothing/under/chameleon
+	shoes = /obj/item/clothing/shoes/chameleon
 	id = /obj/item/card/id/advanced/chameleon/ghost_cafe
 	back = /obj/item/storage/backpack/chameleon
 	backpack_contents = list(/obj/item/storage/box/syndie_kit/chameleon/ghostcafe = 1)
 	skillchips = list(/obj/item/skillchip/job/roboticist, /obj/item/skillchip/job/engineer)
+
+/datum/outfit/ghostcafe/pre_equip(mob/living/carbon/human/visitor, visuals_only = FALSE)
+	..()
+	if (isplasmaman(visitor))
+		backpack_contents += list(/obj/item/tank/internals/plasmaman/belt/full = 2)
+	if(isvox(visitor) || isvoxprimalis(visitor))
+		backpack_contents += list(/obj/item/tank/internals/nitrogen/belt/full = 2)
 
 /datum/action/toggle_dead_chat_mob
 	button_icon = 'icons/mob/simple/mob.dmi'

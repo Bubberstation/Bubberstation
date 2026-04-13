@@ -59,10 +59,14 @@
 /datum/view_data/proc/isZooming()
 	return (width || height)
 
+// BUBBER EDIT START - Replaced with modular version that uses choiced dropdown in modular_zubbers/code/datums/view.dm
+/*
 /datum/view_data/proc/getScreenSize()
 	if(chief.prefs.read_preference(/datum/preference/toggle/widescreen))
 		return WIDESCREEN_VIEWPORT_SIZE
 	return SQUARE_VIEWPORT_SIZE
+*/
+// BUBBER EDIT END
 
 /datum/view_data/proc/resetToDefault()
 	width = 0

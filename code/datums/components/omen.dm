@@ -298,6 +298,35 @@
 
 	return
 
+// Variant of the quirk omen, also permanent, but only causes the limbs to be removed on death.
+/datum/component/omen/loose_limbs
+	incidents_left = INFINITY
+	luck_mod = 0 // 0% chance of bad things happening
+	damage_mod = 0 // 0% of normal damage
+	//luck and damage modifiers set to 0%, to ensure the other cursed effects are disabled.
+/datum/component/omen/loose_limbs/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_LIVING_DEATH, PROC_REF(check_death))
+
+/datum/component/omen/loose_limbs/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_LIVING_DEATH)
+
+/datum/component/omen/loose_limbs/check_death(mob/living/our_guy)
+	if(!iscarbon(our_guy))
+		our_guy.gib(DROP_ALL_REMAINS)
+		return
+
+	// Don't explode if buckled to a stasis bed
+	if(our_guy.buckled)
+		var/obj/machinery/stasis/stasis_bed = our_guy.buckled
+		if(istype(stasis_bed))
+			return
+
+	death_explode(our_guy)
+	var/mob/living/carbon/player = our_guy
+	player.spread_bodyparts()
+	//causes minor explosion and removes limbs, does not spawn gibs.
+	return
+
 /**
  * The bible omen.
  * While it lasts, parent gets a cursed aura filter.

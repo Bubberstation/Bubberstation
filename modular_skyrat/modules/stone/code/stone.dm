@@ -10,7 +10,6 @@
 	throwforce = 15
 	resistance_flags = FIRE_PROOF
 	merge_type = /obj/item/stack/sheet/mineral/stone
-	grind_results = null
 	material_type = /datum/material/stone
 	matter_amount = 0
 	source = null
@@ -18,7 +17,7 @@
 	stairs_type = /obj/structure/stairs/stone
 
 GLOBAL_LIST_INIT(stone_recipes, list ( \
-	new/datum/stack_recipe("stone brick wall", /turf/closed/wall/mineral/stone, 5, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_APPLIES_MATS, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("stone brick wall", /turf/closed/wall/mineral/stone, 5, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_TRANSFERS_REAGENTS, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("stone brick tile", /obj/item/stack/tile/mineral/stone, 1, 4, 20, category = CAT_TILES),
 	new/datum/stack_recipe("millstone", /obj/structure/millstone, 6, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE),
 	new/datum/stack_recipe("stone cauldron", /obj/machinery/cauldron, 5, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE),
@@ -79,7 +78,7 @@ GLOBAL_LIST_INIT(stone_recipes, list ( \
 	inhand_icon_state = "tile"
 	turf_type = /turf/open/floor/stone
 	mineralType = "stone"
-	mats_per_unit = list(/datum/material/stone= HALF_SHEET_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/stone = HALF_SHEET_MATERIAL_AMOUNT / 2)
 	merge_type = /obj/item/stack/tile/mineral/stone
 
 /turf/open/floor/stone

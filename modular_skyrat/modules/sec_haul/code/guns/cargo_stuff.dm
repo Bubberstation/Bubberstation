@@ -23,6 +23,5 @@
 					/obj/item/ammo_box/speedloader/c38/hotshot,
 					/obj/item/ammo_box/speedloader/c38/iceblox,
 				)
-	special = FALSE
 
 //This makes the Security ammo crate use the cool advanced ammo boxes instead of the old ones

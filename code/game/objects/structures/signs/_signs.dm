@@ -129,19 +129,6 @@
 	is_editable = TRUE
 	sign_change_name = "Blank Sign"
 
-/obj/structure/sign/nanotrasen
-	name = "\improper Nanotrasen logo sign"
-	sign_change_name = "Corporate Logo - Nanotrasen"
-	desc = "A sign with the Nanotrasen logo on it. Glory to Nanotrasen!"
-	icon_state = "nanotrasen"
-	is_editable = TRUE
-
-/obj/structure/sign/logo
-	name = "\improper Nanotrasen logo sign"
-	desc = "The Nanotrasen corporate logo."
-	icon_state = "nanotrasen_sign1"
-	buildable_sign = FALSE
-
 /obj/item/sign
 	name = "sign backing"
 	desc = "A plastic sign backing, use a pen to change the decal. It can be placed on a wall."
@@ -241,6 +228,9 @@
 		span_notice("You finish repairing [src]."))
 	atom_integrity = max_integrity
 	return TRUE
+
+/obj/item/sign/screwdriver_act(mob/living/user, obj/item/tool)
+	return interact_with_atom(get_step(get_turf(user), user.dir), user)
 
 /obj/item/sign/proc/set_sign_type(obj/structure/sign/fake_type)
 	name = initial(fake_type.name)

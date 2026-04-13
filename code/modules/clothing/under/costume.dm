@@ -197,6 +197,7 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/singer
+	abstract_type = /obj/item/clothing/under/costume/singer
 	desc = "Just looking at this makes you want to sing."
 	body_parts_covered = CHEST|GROIN|ARMS
 	alternate_worn_layer = ABOVE_SHOES_LAYER
@@ -211,6 +212,12 @@
 /obj/item/clothing/under/costume/singer/blue
 	name = "blue performer's outfit"
 	icon_state = "bsing"
+	inhand_icon_state = null
+	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+
+/obj/item/clothing/under/costume/singer/red
+	name = "red performer's outfit"
+	icon_state = "rsing"
 	inhand_icon_state = null
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 
@@ -275,6 +282,26 @@
 	can_adjust = FALSE
 	resistance_flags = NONE
 
+// Mech suit skins
+/datum/atom_skin/mech_suit
+	abstract_type = /datum/atom_skin/mech_suit
+
+/datum/atom_skin/mech_suit/red
+	preview_name = "Red"
+	new_icon_state = "red_mech_suit"
+
+/datum/atom_skin/mech_suit/white
+	preview_name = "White"
+	new_icon_state = "white_mech_suit"
+
+/datum/atom_skin/mech_suit/blue
+	preview_name = "Blue"
+	new_icon_state = "blue_mech_suit"
+
+/datum/atom_skin/mech_suit/black
+	preview_name = "Black"
+	new_icon_state = "black_mech_suit"
+
 /obj/item/clothing/under/costume/mech_suit
 	name = "mech pilot's suit"
 	desc = "A mech pilot's suit. Might make your butt look big."
@@ -286,13 +313,8 @@
 	alternate_worn_layer = GLOVES_LAYER //covers hands but gloves can go over it. This is how these things work in my head.
 	can_adjust = FALSE
 
-	unique_reskin = list(
-						"Red" = "red_mech_suit",
-						"White" = "white_mech_suit",
-						"Blue" = "blue_mech_suit",
-						"Black" = "black_mech_suit",
-						)
-
+/obj/item/clothing/under/costume/mech_suit/setup_reskins()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/mech_suit)
 
 /obj/item/clothing/under/costume/russian_officer
 	name = "\improper Russian officer's uniform"
