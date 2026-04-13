@@ -147,7 +147,7 @@ function CatalogTabs(props: CatalogTabsProps & Props) {
                 setActiveSupplyName(supply.name);
                 setSearchText('');
               }}
-              style={supply.name === "Goodies" ? {display: 'none'} : undefined}
+              //style={supply.name === "Goodies" ? {display: 'none'} : undefined} //BUBBER EDIT REMOVAL - We want the goodies tab thanks.
             >
               <Stack justify="space-between">
                 <span>{supply.name}</span>
