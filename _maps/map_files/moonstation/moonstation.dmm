@@ -2596,7 +2596,7 @@
 /obj/machinery/modular_computer/preset/id{
 	dir = 4
 	},
-/obj/item/computer_disk/quartermaster,
+/obj/item/disk/computer/quartermaster,
 /obj/machinery/keycard_auth/wall_mounted/directional/south,
 /turf/open/floor/mineral/gold,
 /area/station/command/heads_quarters/qm)
@@ -12066,10 +12066,11 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/obj/effect/spawner/random/trash/moisture_trap,
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 8
 	},
+/obj/structure/sink/directional/east,
+/obj/structure/mirror/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/command/secure_bunker)
 "dfp" = (
@@ -16969,7 +16970,7 @@
 	dir = 8
 	},
 /obj/structure/table,
-/obj/item/computer_disk/ordnance,
+/obj/item/disk/computer/ordnance,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
 "esm" = (
@@ -18330,12 +18331,6 @@
 /obj/machinery/status_display/shuttle/directional/south,
 /turf/open/floor/grass,
 /area/station/service/hydroponics)
-"eKI" = (
-/obj/structure/sink/directional/east,
-/obj/structure/mirror/directional/west,
-/obj/structure/lattice/catwalk,
-/turf/open/openspace,
-/area/station/command/secure_bunker)
 "eKL" = (
 /turf/closed/wall/r_wall/rust,
 /area/station/security/execution/education)
@@ -54797,7 +54792,6 @@
 /obj/structure/closet/crate/wooden/toy,
 /obj/item/toy/figure/clown,
 /obj/item/toy/figure/mime,
-/obj/item/inspector/clown/bananium,
 /obj/item/radio/intercom/directional/south,
 /obj/item/bot_assembly/honkbot,
 /obj/item/bikehorn,
@@ -61711,7 +61705,7 @@
 	dir = 1
 	},
 /obj/machinery/modular_computer/preset/cargochat/security,
-/obj/item/computer_disk/security,
+/obj/item/disk/computer/security,
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "pNC" = (
@@ -64080,11 +64074,11 @@
 "qsl" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/table,
-/obj/item/computer_disk,
-/obj/item/computer_disk{
+/obj/item/disk/computer,
+/obj/item/disk/computer{
 	pixel_y = 3
 	},
-/obj/item/computer_disk{
+/obj/item/disk/computer{
 	pixel_y = 6
 	},
 /obj/effect/turf_decal/tile/purple/half/contrasted{
@@ -72659,6 +72653,7 @@
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 4
 	},
+/obj/effect/spawner/random/trash/moisture_trap,
 /turf/open/floor/iron/dark,
 /area/station/command/secure_bunker)
 "sFC" = (
@@ -81219,11 +81214,11 @@
 /turf/open/floor/iron/white,
 /area/station/science/lab)
 "uRQ" = (
-/obj/structure/sign/warning/secure_area/directional/east,
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 8
 	},
 /obj/effect/turf_decal/sand/plating,
+/obj/structure/sign/warning/secure_area/directional/east,
 /turf/open/floor/plating/rust/moonstation,
 /area/moonstation/surface)
 "uSe" = (
@@ -90775,7 +90770,7 @@
 /area/station/commons/storage/primary)
 "xsY" = (
 /obj/structure/table/glass/plasmaglass,
-/obj/item/computer_disk/ordnance,
+/obj/item/disk/computer/ordnance,
 /obj/item/circuitboard/aicore,
 /turf/open/floor/carpet/purple,
 /area/station/command/heads_quarters/rd)
@@ -255209,7 +255204,7 @@ hwC
 syq
 mAM
 vNa
-eKI
+dJP
 dfn
 epC
 mAM

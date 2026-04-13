@@ -16,7 +16,7 @@
 					/obj/item/disk/data,
 					/obj/item/disk/design_disk,
 					/obj/item/disk/tech_disk,
-					/obj/item/computer_disk,//ordinance
+					/obj/item/disk/computer,//ordinance
 					/obj/item/disk/nanite_program,
 					/obj/item/stock_parts,
 					/obj/item/reagent_containers/cup/beaker,
