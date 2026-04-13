@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/automatic/pistol/ntusp
 	name = "\improper NT22-HCS 'Enforcer'"
-	desc = "A compact hardlight compliance sidearm from Nanotrasen's applied weapons program."
+	desc = "A compact hardlight compliance sidearm from Nanotrasen's internal defense and security program."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "ntusp"
 	w_class = WEIGHT_CLASS_NORMAL
