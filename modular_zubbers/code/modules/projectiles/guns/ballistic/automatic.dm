@@ -31,6 +31,7 @@
 	bolt_wording = "charging handle"
 	fire_delay = 0.15 SECONDS
 	spread = 7
+	mag_display = FALSE
 	can_suppress = TRUE
 	vary_fire_sound = FALSE
 	fire_sound_volume = 80
