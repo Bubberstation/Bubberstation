@@ -46,12 +46,15 @@
 		/obj/item/gun/ballistic/bow/security,
 	)
 
+/obj/effect/spawner/armory_spawn/shotguns/Initialize(mapload)
+	. = ..()
+	new /obj/item/storage/bag/quiver/lesser/security/armory(loc)
+
 /obj/structure/closet/ammunitionlocker/useful/PopulateContents()
 	new /obj/item/storage/box/rubbershot(src)
 	new /obj/item/storage/box/rubbershot(src)
 	new /obj/item/storage/box/rubbershot(src)
 	new /obj/item/storage/box/rubbershot(src)
-	new /obj/item/storage/bag/quiver/lesser/armory(src)
 
 /*
 *	AMMO BOXES

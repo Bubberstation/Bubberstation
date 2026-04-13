@@ -79,6 +79,9 @@
 	)
 
 /obj/item/storage/bag/quiver/lesser/security
+	name = "security quiver"
+	desc = "A lightweight, low-capacity quiver capable of being folded into pockets, but nothing else."
+	slot_flags = ITEM_SLOT_LPOCKET|ITEM_SLOT_RPOCKET|ITEM_SLOT_BELT
 
 /obj/item/storage/bag/quiver/lesser/security/PopulateContents()
 	var/static/items_inside = list(

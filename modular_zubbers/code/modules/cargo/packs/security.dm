@@ -133,13 +133,13 @@
 	contains = list(
 		/obj/item/gun/ballistic/bow/security,
 		/obj/item/gun/ballistic/bow/security,
-		/obj/item/storage/bag/quiver/lesser/armory,
-		/obj/item/storage/bag/quiver/lesser/armory,
+		/obj/item/storage/bag/quiver/lesser/security/armory,
+		/obj/item/storage/bag/quiver/lesser/security/armory,
 	)
 
-/obj/item/storage/bag/quiver/lesser/armory
+/obj/item/storage/bag/quiver/lesser/security/armory
 
-/obj/item/storage/bag/quiver/lesser/armory/PopulateContents()
+/obj/item/storage/bag/quiver/lesser/security/armory/PopulateContents()
 	var/static/items_inside = list(
 		/obj/item/ammo_casing/arrow/blunt = 3,
 		/obj/item/ammo_casing/arrow = 6,
@@ -153,13 +153,13 @@
 	desc = "Two quivers containing nine normal arrows and one randomly selected specialty arrow."
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(
-		/obj/item/storage/bag/quiver/lesser/lethal,
-		/obj/item/storage/bag/quiver/lesser/lethal
+		/obj/item/storage/bag/quiver/lesser/security/lethal,
+		/obj/item/storage/bag/quiver/lesser/security/lethal
 	)
 
-/obj/item/storage/bag/quiver/lesser/lethal
+/obj/item/storage/bag/quiver/lesser/security/lethal
 
-/obj/item/storage/bag/quiver/lesser/lethal/PopulateContents()
+/obj/item/storage/bag/quiver/lesser/security/lethal/PopulateContents()
 	var/static/list/static_items = list(
 		/obj/item/ammo_casing/arrow = 9
 	)
