@@ -504,7 +504,7 @@
 		return // sanity
 
 	var/ckey = LOWER_TEXT(owner.mind?.key)
-	if (isnull(ckey) || ckey != source.ckey)
+	if (isnull(ckey))
 		return // sanity
 
 	var/datum/preferences/victim_prefs = source.prefs
