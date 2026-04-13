@@ -2,6 +2,15 @@
 	caliber = ENERGY
 	projectile_type = /obj/projectile/bullet/c22hl
 
+/obj/item/ammo_casing/caseless/c22hl/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/caseless)
+
+/obj/item/ammo_casing/caseless/c22hl/Moved()
+	. = ..()
+	if(isturf(loc))
+		qdel(src)
+
 /obj/projectile/bullet/c22hl //.22 HL
 	name = "hardlight beam"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/projectiles.dmi'
@@ -10,12 +19,22 @@
 	damage = 1 //ouch ouch my skin ouchie
 	damage_type = BURN
 	sharpness = NONE
+	embed_type = null
 	shrapnel_type = null
 	stamina = 20
 
 /obj/item/ammo_casing/caseless/c22ls
 	caliber = LASER
 	projectile_type = /obj/projectile/bullet/c22ls
+
+/obj/item/ammo_casing/caseless/c22ls/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/caseless)
+
+/obj/item/ammo_casing/caseless/c22ls/Moved()
+	. = ..()
+	if(isturf(loc))
+		qdel(src)
 
 /obj/projectile/bullet/c22ls //.22LS
 	name = "laser beam"
@@ -29,8 +48,8 @@
 	exposed_wound_bonus = 5
 
 /obj/item/ntusp_conversion_kit
-	name = "NT-USP magazine conversion kit"
-	desc = "A standard conversion kit for use in converting NT-USP magazines to be more lethal or less lethal."
+	name = "NT22-HCS conversion kit"
+	desc = "A standard conversion kit for use in converting NT22-HCS magazines to be more lethal or less lethal."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/usp_modkit.dmi'
 	icon_state = "modkit_ntusp"
 	w_class = WEIGHT_CLASS_TINY

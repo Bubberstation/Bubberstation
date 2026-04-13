@@ -36,7 +36,7 @@
 
 /obj/item/ammo_box/magazine/recharge/ntusp
 	name = "small disabling power pack"
-	desc = "A small, rechargeable power pack for the NT-USP. Synthesizes up to twelve .22HL bullets that tire targets."
+	desc = "A small, rechargeable power pack for the NT22 HCS 'Enforcer'. Synthesizes up to twelve .22HL bullets that tire targets."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ammo.dmi'
 	base_icon_state = "powerpack_small"
 	icon_state = "powerpack_small-12"
@@ -45,7 +45,7 @@
 
 /obj/item/ammo_box/magazine/recharge/ntusp/laser
 	name = "small lethal power pack"
-	desc = "A small, rechargeable power pack for the NT-USP that has been modified. Synthesizes up to eight .22LS bullets that fire lasers."
+	desc = "A small, rechargeable power pack for the NT22 HCS 'Enforcer' that has been modified. Synthesizes up to eight .22LS bullets that fire lasers."
 	ammo_type = /obj/item/ammo_casing/caseless/c22ls
 	base_icon_state = "powerpack_small-l"
 	icon_state = "powerpack_small-l-8"

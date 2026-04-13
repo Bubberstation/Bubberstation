@@ -101,6 +101,20 @@
 	cost = PAYCHECK_COMMAND * 5
 	contains = list(/obj/item/storage/box/offstation_deathrattle)
 
+/datum/supply_pack/goody/ntusp_single
+	name = "NT22-HCS 'Enforcer' Single-Pack"
+	desc = "Contains one NT22-HCS 'Enforcer' pistol case, complete with a power pack magazine."
+	cost = PAYCHECK_CREW * 12
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/ntusp)
+
+/datum/supply_pack/goody/ntmp5_single
+	name = "NT22-HCS-MP 'Lancer' Single-Pack"
+	desc = "Contains one NT22-HCS-MP 'Lancer' submachine gun case, complete with a power pack magazine."
+	cost = PAYCHECK_CREW * 20
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5)
+
 /datum/supply_pack/goody/pepperball_gun
 	name = "Pepperball Gun Single-Pack"
 	desc = "Contains one pepperball gun, a non-lethal weapon that fires pepper-filled projectiles."
