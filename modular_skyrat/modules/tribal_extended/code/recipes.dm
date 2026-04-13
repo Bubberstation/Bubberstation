@@ -47,6 +47,7 @@
 	)
 	category = CAT_WEAPON_AMMO
 	non_craftable = TRUE
+	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 	steps = list("Reinforce the arrowhead with bronze.")
 
 /datum/crafting_recipe/goliathshield
