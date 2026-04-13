@@ -11,8 +11,7 @@
 		if(prob(10))
 			balloon_alert(user, "found something")
 			if(prob(1))
-				var/datum/effect_system/spark_spread/quantum/sparks = new
-				sparks.set_up(5, 1, loc)
+				do_sparks(5, TRUE, loc, spark_type = /datum/effect_system/basic/spark_spread/quantum)
 				new /obj/item/disk/nuclear/fake(loc)
 			else
 				// New epic way of making money. Totally

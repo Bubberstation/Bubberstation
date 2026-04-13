@@ -168,6 +168,7 @@
 	desc = "A datadisk that can be used to upload a loaded NIFSoft to the user's NIF"
 	icon = 'modular_skyrat/modules/modular_implants/icons/obj/disks.dmi'
 	icon_state = "base_disk"
+	sticker_icon_state = null
 	///What NIFSoft is currently loaded in?
 	var/datum/nifsoft/loaded_nifsoft = /datum/nifsoft
 	///Is the datadisk reusable?

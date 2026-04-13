@@ -207,7 +207,7 @@
 	pixel_y = 4
 	},
 /obj/machinery/firealarm/directional/east,
-/obj/item/computer_disk/quartermaster{
+/obj/item/disk/computer/quartermaster{
 	pixel_x = -6;
 	pixel_y = 4
 	},
@@ -5577,10 +5577,10 @@
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "bWn" = (
-/obj/structure/barricade/wooden,
 /obj/machinery/door/airlock/maintenance,
 /obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /obj/effect/mapping_helpers/airlock/locked,
+/obj/effect/spawner/random/structure/barricade/crude,
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/central)
 "bWp" = (
@@ -16159,7 +16159,7 @@
 /obj/effect/turf_decal/tile/neutral/opposingcorners{
 	dir = 1
 	},
-/obj/item/computer_disk/ordnance,
+/obj/item/disk/computer/ordnance,
 /obj/machinery/light/warm/directional/south,
 /obj/item/coffee_cartridge/fancy,
 /turf/open/floor/iron/dark,
@@ -20634,10 +20634,10 @@
 "hgB" = (
 /obj/machinery/door/airlock/maintenance/external,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/structure/barricade/wooden,
 /obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 8
 	},
+/obj/effect/spawner/random/structure/barricade/crude,
 /turf/open/floor/plating,
 /area/station/science/lobby)
 "hgN" = (
@@ -23269,11 +23269,11 @@
 /obj/item/radio/intercom/directional/east,
 /obj/structure/table,
 /obj/effect/turf_decal/bot,
-/obj/item/computer_disk{
+/obj/item/disk/computer{
 	pixel_x = 7;
 	pixel_y = 2
 	},
-/obj/item/computer_disk{
+/obj/item/disk/computer{
 	pixel_x = -5;
 	pixel_y = 8
 	},
@@ -36688,7 +36688,7 @@
 /turf/open/floor/iron,
 /area/station/security)
 "mEN" = (
-/obj/item/computer_disk/maintenance/spectre_meter,
+/obj/item/disk/computer/maintenance/spectre_meter,
 /turf/open/misc/asteroid/airless,
 /area/station/asteroid)
 "mEQ" = (
@@ -49511,7 +49511,7 @@
 /obj/machinery/modular_computer/preset/civilian{
 	dir = 1
 	},
-/obj/item/computer_disk/ordnance{
+/obj/item/disk/computer/ordnance{
 	pixel_x = 1
 	},
 /turf/open/floor/iron/dark,
@@ -51084,7 +51084,7 @@
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /obj/effect/landmark/navigate_destination,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/barricade/wooden,
+/obj/effect/spawner/random/structure/barricade/crude,
 /turf/open/floor/iron,
 /area/station/construction/mining/aux_base)
 "rBZ" = (
@@ -61069,7 +61069,7 @@
 /area/station/science/xenobiology)
 "uUx" = (
 /obj/machinery/dna_infuser,
-/obj/item/infuser_book,
+/obj/item/tgui_book/manual/infuser,
 /turf/open/floor/iron/white/textured,
 /area/station/science/genetics)
 "uUA" = (
@@ -64433,7 +64433,7 @@
 "whG" = (
 /obj/structure/table/reinforced/rglass,
 /obj/item/folder/blue,
-/obj/item/computer_disk/medical,
+/obj/item/disk/computer/medical,
 /obj/item/stamp/head/cmo,
 /turf/open/floor/holofloor/dark,
 /area/station/command/heads_quarters/cmo)

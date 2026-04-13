@@ -164,10 +164,7 @@
 		span_notice("The impact knocks a cloud of grime and dust off you!")
 	)
 
-	var/datum/effect_system/fluid_spread/smoke/dirty/smoke = new /datum/effect_system/fluid_spread/smoke/dirty()
-	smoke.color = dirt_color
-	smoke.set_up(0, holder = quirk_holder, location = get_turf(quirk_holder))
-	smoke.start()
+	do_smoke(0, quirk_holder, get_turf(quirk_holder), smoke_type = /datum/effect_system/fluid_spread/smoke/dirty)
 
 	cloud_charged = FALSE
 

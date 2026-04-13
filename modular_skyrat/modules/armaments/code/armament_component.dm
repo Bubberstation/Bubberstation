@@ -241,7 +241,7 @@
 	//if they're strange and have a hacky ID card as an animal
 	else if(isanimal(user))
 		var/mob/living/simple_animal/animal = user
-		if(check_access_obj(animal.access_card))
+		if(check_access_obj(animal.get_idcard()))
 			return TRUE
 
 /datum/component/armament/proc/check_access_obj(obj/item/id)
