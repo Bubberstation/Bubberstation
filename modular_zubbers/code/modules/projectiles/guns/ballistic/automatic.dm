@@ -16,7 +16,7 @@
 
 /obj/item/gun/ballistic/automatic/ntmp5
 	name = "\improper NT22-HCS-MP 'Lancer'"
-	desc = "A hardlight compliance submachine gun variant designed for sustained non-lethal suppression details. It has a retractable stock included in its design, allowing for easier concealment, making this a popular choice among bodyguards."
+	desc = "A hardlight compliance submachine gun variant designed for sustained non-lethal confrontations. It has a retractable stock included in its design, allowing for easier concealment. And yes, it includes the slap."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic32x64.dmi'
 	icon_state = "ntmp5"
 	base_icon_state = "ntmp5"
@@ -37,14 +37,13 @@
 	spawn_magazine_type = /obj/item/ammo_box/magazine/recharge/ntmp5
 	show_bolt_icon = FALSE
 	var/stock_retracted = TRUE
-	var/extended_spread = 7
-	var/retracted_spread = 12
 	var/extended_icon_state = "ntmp5-stock"
 	var/retracted_icon_state = "ntmp5"
 	var/weapon_charge_overlay_state
 	var/suppressor_overlay_state
 	var/seclite_overlay_x = 26
 	var/seclite_overlay_y = 11
+	var/datum/component/automatic_fire/autofire_component
 
 /obj/item/gun/ballistic/automatic/ntmp5/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_NANOTRASEN)
@@ -52,7 +51,7 @@
 /obj/item/gun/ballistic/automatic/ntmp5/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_CLICK_CTRL, PROC_REF(on_ctrl_click_stock_toggle))
-	AddComponent(/datum/component/automatic_fire, 0.15 SECONDS, allow_akimbo = FALSE)
+	autofire_component = AddComponent(/datum/component/automatic_fire, fire_delay, allow_akimbo = FALSE)
 	AddElement(/datum/element/examine_lore, \
 		lore_hint = span_notice("You can " + EXAMINE_HINT("look closer") + " to learn a little more about [src]."), \
 		lore = "An adaptation of the NT22-HCS platform, the NT22-HCS-MP refines applied hardlight weaponry for sustained engagement scenarios. This variant is conceptualised for riot control, crowd suppression and union busting.<br>\
@@ -65,6 +64,7 @@
 		<br>\
 		While classified as non-lethal, the cumulative effects of repeated exposure to hardlight impacts remain insufficiently documented." \
 	)
+	update_fire_delay_state()
 	update_stock_state()
 
 /obj/item/gun/ballistic/automatic/ntmp5/examine(mob/user)
@@ -106,6 +106,24 @@
 	if(suppressed)
 		suppressor_overlay_state = "ntmp5-suppressor"
 
+/obj/item/gun/ballistic/automatic/ntmp5/proc/update_fire_delay_state()
+	if(istype(magazine, /obj/item/ammo_box/magazine/recharge/ntmp5/laser) || magazine?.type == /obj/item/ammo_box/magazine/recharge/ntusp)
+		fire_delay = 0.25 SECONDS
+	else
+		fire_delay = 0.15 SECONDS
+
+	if(autofire_component)
+		autofire_component.autofire_shot_delay = fire_delay
+
+/obj/item/gun/ballistic/automatic/ntmp5/insert_magazine(mob/user, obj/item/ammo_box/magazine/AM, display_message)
+	. = ..()
+	if(.)
+		update_fire_delay_state()
+
+/obj/item/gun/ballistic/automatic/ntmp5/eject_magazine(mob/user, display_message, obj/item/ammo_box/magazine/tac_load)
+	. = ..()
+	update_fire_delay_state()
+
 /obj/item/gun/ballistic/automatic/ntmp5/update_overlays()
 	var/previous_can_unsuppress = can_unsuppress
 	can_unsuppress = FALSE
@@ -123,8 +141,8 @@
 /obj/item/gun/ballistic/automatic/ntmp5/proc/update_stock_state()
 	if(stock_retracted)
 		update_weight_class(WEIGHT_CLASS_NORMAL)
-		spread = retracted_spread
+		spread = 8
 	else
 		update_weight_class(WEIGHT_CLASS_BULKY)
-		spread = extended_spread
+		spread = 5
 	update_appearance()

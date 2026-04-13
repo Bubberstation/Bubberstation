@@ -44,7 +44,7 @@
 	if(charge_overlay_state)
 		. += charge_overlay_state
 
-/obj/item/ammo_box/magazine/recharge/ntmp5/lethal
+/obj/item/ammo_box/magazine/recharge/ntmp5/laser
 	name = "large lethal power pack"
 	desc = "A rechargeable power pack for the NT22-HCS-MP 'Lancer' that has been modified. Synthesizes up to sixteen .22LS bullets that fire lasers."
 	ammo_type = /obj/item/ammo_casing/caseless/c22ls/ntmp5
@@ -52,7 +52,7 @@
 	icon_state = "powerpack-l"
 	max_ammo = 16
 
-/obj/item/ammo_box/magazine/recharge/ntmp5/lethal/empty
+/obj/item/ammo_box/magazine/recharge/ntmp5/laser/empty
 	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/recharge/ntmp5/empty
@@ -61,12 +61,12 @@
 /obj/item/ammo_box/magazine/recharge/ntmp5/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ntusp_conversion_kit))
 		to_chat(user, span_danger("[A] makes a whirring sound as it modifies \the [src]'s lens to fabricate more lethal rounds."))
-		new /obj/item/ammo_box/magazine/recharge/ntmp5/lethal/empty(get_turf(src))
+		new /obj/item/ammo_box/magazine/recharge/ntmp5/laser/empty(get_turf(src))
 		qdel(src)
 	else
 		return ..()
 
-/obj/item/ammo_box/magazine/recharge/ntmp5/lethal/attackby(obj/item/A, mob/user)
+/obj/item/ammo_box/magazine/recharge/ntmp5/laser/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ntusp_conversion_kit))
 		to_chat(user, span_notice("[A] makes a whirring sound as it modifies \the [src]'s lens to fabricate less lethal rounds."))
 		new /obj/item/ammo_box/magazine/recharge/ntmp5/empty(get_turf(src))

@@ -45,5 +45,5 @@
 	new /obj/item/storage/box/glasseskit(src)
 	new /obj/item/storage/medkit/brute(src)
 //BUBBER EDIT - NT22-HCS-MP gun case
-	new /obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5(src)
+	new /obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5/blueshield(src)
 //BUBBER EDIT END
