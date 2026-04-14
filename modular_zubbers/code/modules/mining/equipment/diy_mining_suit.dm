@@ -57,7 +57,7 @@
 		return CLICK_ACTION_BLOCKING
 	seva_kit = !seva_kit
 	name = "DIY [seva_kit ? "SEVA" : "explorer"] suit kit"
-	balloon_alert(user, "Mode changed!")
+	balloon_alert(user, "mode changed!")
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/miningsuitupgradekit/examine(mob/user)
