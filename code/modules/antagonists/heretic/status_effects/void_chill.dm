@@ -106,11 +106,11 @@
 	if(chill_effect.stacks >= 5)
 		overlay_state = "void_chill_oh_fuck"
 	return ..()
-
-/atom/movable/screen/alert/status_effect/void_chill/update_desc(updates)
+// BUBBER EDIT REMOVAL - Static desc
+/*/atom/movable/screen/alert/status_effect/void_chill/update_desc(updates)
 	. = ..()
 	if(!istype(attached_effect, /datum/status_effect/void_chill))
 		return
 	var/datum/status_effect/void_chill/chill_effect = attached_effect
 	if(chill_effect.stacks >= 5)
-		desc = "You had your chance to run, now it's too late. You may never feel warmth again..."
+		desc = "You had your chance to run, now it's too late. You may never feel warmth again..."*/
