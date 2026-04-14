@@ -15,9 +15,11 @@
 	//Reference: Laser Gun 22 damage per 0.4 seconds = 55DPS
 
 /obj/item/gun/ballistic/automatic/ntmp5
+	burst_size = 1
+	actions_types = list()
 	name = "\improper NT22-HCS-MP 'Lancer'"
-	desc = "A hardlight compliance submachine gun variant designed for sustained non-lethal confrontations. It has a retractable stock included in its design, allowing for easier concealment. And yes, it includes the slap."
-	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic32x64.dmi'
+	desc = "A hardlight compliance submachine gun variant designed for sustained non-lethal confrontations. It has a retractable stock included in its design, allowing for easier concealment."
+	icon = 'modular_zubbers/icons/obj/weapons/guns/ntmp5.dmi'
 	icon_state = "ntmp5"
 	base_icon_state = "ntmp5"
 	inhand_icon_state = "arg"
@@ -25,10 +27,8 @@
 	weapon_weight = WEAPON_MEDIUM
 	slot_flags = ITEM_SLOT_BELT
 	accepted_magazine_type = /obj/item/ammo_box/magazine/recharge/ntusp
-	burst_size = 1
-	actions_types = list()
-	bolt_type = BOLT_TYPE_LOCKING
-	bolt_wording = "charging handle"
+	bolt_type = BOLT_TYPE_STANDARD
+	bolt_wording = "cocking handle"
 	fire_delay = 0.15 SECONDS
 	spread = 7
 	mag_display = FALSE
@@ -42,7 +42,7 @@
 	var/retracted_icon_state = "ntmp5"
 	var/weapon_charge_overlay_state
 	var/suppressor_overlay_state
-	var/seclite_overlay_x = 26
+	var/seclite_overlay_x = 25
 	var/seclite_overlay_y = 11
 	var/datum/component/automatic_fire/autofire_component
 
@@ -55,15 +55,13 @@
 	autofire_component = AddComponent(/datum/component/automatic_fire, fire_delay, allow_akimbo = FALSE)
 	AddElement(/datum/element/examine_lore, \
 		lore_hint = span_notice("You can " + EXAMINE_HINT("look closer") + " to learn a little more about [src]."), \
-		lore = "An adaptation of the NT22-HCS platform, the NT22-HCS-MP refines applied hardlight weaponry for sustained engagement scenarios. This variant is conceptualised for riot control, crowd suppression and union busting.<br>\
-		<br>\
-		Maintaining compatibility with proprietary .22HL caseless hardlight projectiles, the NT22-HCS-MP utilizes an expanded energy cycling system to support automatic fire. Each shot is generated in real time from larger rechargeable battery packs housed within the magazine well, allowing for extended conflicts without the use of conventional ammunition. The increased rate of fire allows rapid overloading of muscular pathways for whoever is on the wrong end of this gun.<br>\
-		<br>\
-		Like its sidearm counterpart, the NT22-HCS-MP leaves no recoverable trace. Projectiles dissipate instantly upon impact, producing only superficial burns resulting from the high speed achieved by the bullet.<br>\
-		<br>\
-		The weapon features a retractable stock, allowing it to be concealed beneath standard-issue outerwear or inside carry bags when collapsed.<br>\
-		<br>\
-		While classified as non-lethal, the cumulative effects of repeated exposure to hardlight impacts remain insufficiently documented." \
+			lore = "An adaptation of the NT22-HCS, the NT22-HCS-MP, also known as the Lancer, is a Machine Pistol refined for sustained engagement scenarios. This variant was designed for operations requiring rapid, repeatable application across multiple subjects, such as crowd suppression, access denial, riot control, and 'labour dispute resolutions'.<br>\
+			<br>\
+			Maintaining full compatibility with the .22HL battery packs of the Enforcer, the NT22-HCS-MP integrates an expanded energy cycling architecture capable of sustaining automatic fire. Each projectile is synthesized in real time. Reloading follows a simple sequence, designed to be familiar with those trained with regular ballistic weaponry. The bolt is retracted and locked, the battery is inserted and the bolt is then released, typically with the characteristic 'slap'.<br>\
+			<br>\
+			.22HL rounds are accelerated to considerable velocity, which deliver significant kinetic force at the point of impact, dissipating instantly, leaving no embedded material. The increased rate of fire comes at the cost of slightly less effective bullets produced by the weapon. Nevertheless, the subjects struck by .22HL will suffer significant pain response, exhaustion and loss of voluntary motor function.<br>\
+			<br>\
+			The NT22-HCS-MP features a collapsible stock, reducing its size and allowing it to be discreetly concealed under jackets or bags. Operational guidelines recommend deployment against non-compliant subjects where verbal deterrence has failed, and escalation to lethal response is not warranted. Nevertheless, longitudinal data on cumulative .22HL exposure remains limited, a consequence of the particularly restricted circulation of post-incident reports." \
 	)
 	update_fire_delay_state()
 	update_stock_state()
