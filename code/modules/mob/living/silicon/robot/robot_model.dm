@@ -397,6 +397,7 @@
 		/obj/item/picket_sign/cyborg,
 		/obj/item/reagent_containers/borghypo/clown,
 		/obj/item/extinguisher/mini,
+		/obj/item/gps/cyborg, // Bubber Addition
 	)
 	emag_modules = list(
 		/obj/item/reagent_containers/borghypo/clown/hacked,
@@ -442,6 +443,7 @@
 		/obj/item/construction/rtd/borg,
 		/obj/item/stack/cable_coil,
 		/obj/item/airlock_painter/decal/cyborg,
+		/obj/item/gps/cyborg, // Bubber Addition
 	)
 	radio_channels = list(RADIO_CHANNEL_ENGINEERING)
 	emag_modules = list(
@@ -497,6 +499,7 @@
 		/obj/item/reagent_containers/spray/cyborg_drying,
 		/obj/item/wirebrush,
 		/obj/item/pushbroom, // Bubber Addition
+		/obj/item/gps/cyborg, // Bubber Addition
 	)
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
 	emag_modules = list(
@@ -767,6 +770,7 @@
 		/obj/item/borg/apparatus/organ_storage,
 		/obj/item/borg/lollipop,
 		/obj/item/storage/bag/chemistry,
+		/obj/item/gps/cyborg, // Bubber Addition
 
 	)
 	radio_channels = list(RADIO_CHANNEL_MEDICAL)
@@ -836,6 +840,7 @@
 		/obj/item/borg/cyborghug/peacekeeper,
 		/obj/item/extinguisher,
 		/obj/item/borg/projectile_dampen,
+		/obj/item/gps/cyborg, // Bubber Addition
 	)
 	emag_modules = list(
 		/obj/item/reagent_containers/borghypo/peace/hacked,
@@ -859,6 +864,7 @@
 		/obj/item/gun/energy/disabler/cyborg,
 		/obj/item/clothing/mask/gas/sechailer/cyborg,
 		/obj/item/extinguisher/mini,
+		/obj/item/gps/cyborg, // Bubber Addition
 	)
 	radio_channels = list(RADIO_CHANNEL_SECURITY)
 	emag_modules = list(
@@ -906,6 +912,7 @@
 		/obj/item/rsf,
 		/obj/item/storage/bag/tray,
 		/obj/item/storage/bag/tray, // SKYRAT EDIT: Moves the second tray up to be near the default one
+		/obj/item/gps/cyborg, // Bubber Addition
 		// SKYRAT EDIT START - COMMENTS OUT STUFF, MOVING IT TO SPECIALIZED MODULES
 		/*
 		// Moved to artistic module

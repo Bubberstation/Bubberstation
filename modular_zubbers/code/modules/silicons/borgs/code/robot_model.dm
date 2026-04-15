@@ -25,6 +25,7 @@
 		/obj/item/crowbar/cyborg,
 		/obj/item/picket_sign/cyborg,
 		/obj/item/borg/stun,
+		/obj/item/gps/cyborg,
 	)
 	radio_channels = list(RADIO_CHANNEL_CENTCOM, RADIO_CHANNEL_COMMAND)
 	model_traits = list(TRAIT_PUSHIMMUNE, TRAIT_NOFLASH)
@@ -103,6 +104,7 @@
 		/obj/item/experi_scanner,
 		/obj/item/stack/medical/gauze,
 		/obj/item/borg/apparatus/tank_manipulator,
+		/obj/item/gps/cyborg,
 	)
 	radio_channels = list(RADIO_CHANNEL_SCIENCE)
 
