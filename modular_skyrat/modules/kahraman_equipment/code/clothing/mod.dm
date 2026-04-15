@@ -20,7 +20,6 @@
 	charge_drain = DEFAULT_CHARGE_DRAIN * 2
 	slowdown_deployed = 1
 	inbuilt_modules = list(
-		/obj/item/mod/module/plate_compression/permanent,
 		/obj/item/mod/module/joint_torsion/permanent
 	)
 	allowed_suit_storage = list(
