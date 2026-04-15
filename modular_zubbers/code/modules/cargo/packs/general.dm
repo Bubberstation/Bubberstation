@@ -46,4 +46,7 @@ datum/supply_pack/emergency/survivalsuit
 	)
 	cost = CARGO_CRATE_VALUE * 6
 	access = ACCESS_EVA
+	crate_name = "EVA Suit Crate"
+	crate_type = /obj/structure/closet/crate/secure
+
 
