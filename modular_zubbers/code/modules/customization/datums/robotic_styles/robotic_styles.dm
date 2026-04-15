@@ -138,6 +138,10 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 	name = "Technomancer"
 	icon = 'modular_zubbers/icons/mob/augmentation/technomancer.dmi'
 
+/datum/robotic_style/blackshield
+	name = "Blackshield"
+	icon = 'modular_zubbers/icons/mob/augmentation/blackshield.dmi'
+
 /datum/robotic_style/dimorphic // subtype so we don't have to define dimorphic head+chest every single time
 	abstract_type = /datum/robotic_style/dimorphic
 	dimorphic_overrides = list(
