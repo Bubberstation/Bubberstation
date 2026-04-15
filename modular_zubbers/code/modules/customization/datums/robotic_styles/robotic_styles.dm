@@ -110,6 +110,14 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 	name = "Unmarked"
 	icon = 'modular_zubbers/icons/mob/augmentation/unmarked.dmi'
 
+/datum/robotic_style/holy_masc
+	name = "Holy Brass Masc"
+	icon = 'modular_zubbers/icons/mob/augmentation/holy_masc.dmi'
+
+/datum/robotic_style/holy_femme
+	name = "Holy Brass Femme"
+	icon = 'modular_zubbers/icons/mob/augmentation/holy_femme.dmi'
+
 /datum/robotic_style/dimorphic // subtype so we don't have to define dimorphic head+chest every single time
 	abstract_type = /datum/robotic_style/dimorphic
 	dimorphic_overrides = list(
