@@ -33,7 +33,7 @@
 	name = "9x19mm Murphy bullet"
 	damage = 20
 	wound_bonus = -20
-	armour_penetration = 40
+	armour_penetration = 40 // Sounds like a lot, isn't. Means it does 15 damage against a redsuit instead of 10.
 
 /obj/projectile/bullet/c9mm
 	damage = 25
