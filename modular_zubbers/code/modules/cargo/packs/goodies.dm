@@ -166,7 +166,7 @@
 
 /datum/supply_pack/goody/tacticool_laser
 	name = "Tacticool Energy Gun Single-Pack"
-	desc = "Contains one tacticool energy gun, for all your francophile and operator needs."
+	desc = "Contains one tacticool energy gun, for all your operator needs."
 	cost = PAYCHECK_COMMAND * 6
 	contains = list(/obj/item/gun/energy/tacticool)
 
