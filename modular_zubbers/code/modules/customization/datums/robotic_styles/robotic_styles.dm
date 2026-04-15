@@ -118,6 +118,26 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 	name = "Holy Brass Femme"
 	icon = 'modular_zubbers/icons/mob/augmentation/holy_femme.dmi'
 
+/datum/robotic_style/junktech
+	name = "Junktech"
+	icon = 'modular_zubbers/icons/mob/augmentation/advanced_ghetto.dmi'
+
+/datum/robotic_style/radical
+	name = "Radical"
+	icon = 'modular_zubbers/icons/mob/augmentation/radical.dmi'
+
+/datum/robotic_style/lonestar
+	name = "Lone Star"
+	icon = 'modular_zubbers/icons/mob/augmentation/lonestar.dmi'
+
+/datum/robotic_style/moebius
+	name = "Moebius"
+	icon = 'modular_zubbers/icons/mob/augmentation/moebius.dmi'
+
+/datum/robotic_style/technomancer
+	name = "Technomancer"
+	icon = 'modular_zubbers/icons/mob/augmentation/technomancer.dmi'
+
 /datum/robotic_style/dimorphic // subtype so we don't have to define dimorphic head+chest every single time
 	abstract_type = /datum/robotic_style/dimorphic
 	dimorphic_overrides = list(
