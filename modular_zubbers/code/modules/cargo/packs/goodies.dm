@@ -168,5 +168,6 @@
 	name = "Tacticool Energy Gun Single-Pack"
 	desc = "Contains one tacticool energy gun, for all your operator needs."
 	cost = PAYCHECK_COMMAND * 6
+	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/tacticool)
 
