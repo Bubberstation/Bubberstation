@@ -72,7 +72,7 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 
 /datum/robotic_style/hifbp
 	name = "Hephaestus Industries FBP 2.0"
-	icon = 'modular_zubbers/icons/mob/augmentation/fi2fbp.dmi'
+	icon = 'modular_zubbers/icons/mob/augmentation/hi2fbp.dmi'
 
 /datum/robotic_style/sgmipc
 	name = "Shellguard Munitions Standard Series"
