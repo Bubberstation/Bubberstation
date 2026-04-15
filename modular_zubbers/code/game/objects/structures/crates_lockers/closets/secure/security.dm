@@ -6,8 +6,8 @@
 	. = ..()
 	new /obj/item/stamp/granted(src)
 	new /obj/item/stamp/denied(src)
-	new /obj/item/autosurgeon/paperwork(src)
+	new /obj/item/autosurgeon/paperwork/single_use(src)
 
 /obj/structure/closet/secure_closet/nanotrasen_consultant/PopulateContents()
 	. = ..()
-	new /obj/item/autosurgeon/paperwork(src)
+	new /obj/item/autosurgeon/paperwork/single_use(src)
