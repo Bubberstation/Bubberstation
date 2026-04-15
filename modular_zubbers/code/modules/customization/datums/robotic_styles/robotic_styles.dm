@@ -82,6 +82,10 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 	name = "Ward-Takahashi Manufacturing"
 	icon = 'modular_zubbers/icons/mob/augmentation/wtmipc.dmi'
 
+/datum/robotic_style/wtspirit
+	name = "Ward-Takahashi Manufacturing Spirit"
+	icon = 'modular_zubbers/icons/mob/augmentation/wtmspirit.dmi'
+
 /datum/robotic_style/wtmfbpmasc
 	name = "Ward-Takahashi Manufacturing Masc FBP"
 	icon = 'modular_zubbers/icons/mob/augmentation/wtmfbpmasc.dmi'
@@ -93,6 +97,10 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 /datum/robotic_style/xmgipc
 	name = "Xion Manufacturing Group"
 	icon = 'modular_zubbers/icons/mob/augmentation/xmgipc.dmi'
+
+/datum/robotic_style/xmgalt
+	name = "Xion Manufacturing Group Alt"
+	icon = 'modular_zubbers/icons/mob/augmentation/xmgalt.dmi'
 
 /datum/robotic_style/xm2ipc
 	name = "Xion Manufacturing Group 2.0"
@@ -141,6 +149,10 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 /datum/robotic_style/blackshield
 	name = "Blackshield"
 	icon = 'modular_zubbers/icons/mob/augmentation/blackshield.dmi'
+
+/datum/robotic_style/excelsior
+	name = "Excelsior"
+	icon = 'modular_zubbers/icons/mob/augmentation/excelsior.dmi'
 
 /datum/robotic_style/dimorphic // subtype so we don't have to define dimorphic head+chest every single time
 	abstract_type = /datum/robotic_style/dimorphic
