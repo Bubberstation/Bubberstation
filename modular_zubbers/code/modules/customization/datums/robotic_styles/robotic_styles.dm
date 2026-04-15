@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 	icon = 'modular_zubbers/icons/mob/augmentation/hi2ipc.dmi'
 
 /datum/robotic_style/hifbp
-	name = "Hephaestus Industries 2.0 FBP"
+	name = "Hephaestus Industries FBP 2.0"
 	icon = 'modular_zubbers/icons/mob/augmentation/fi2fbp.dmi'
 
 /datum/robotic_style/sgmipc
@@ -81,6 +81,14 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 /datum/robotic_style/wtmipc
 	name = "Ward-Takahashi Manufacturing"
 	icon = 'modular_zubbers/icons/mob/augmentation/wtmipc.dmi'
+
+/datum/robotic_style/wtmfbpmasc
+	name = "Ward-Takahashi Manufacturing Masc FBP"
+	icon = 'modular_zubbers/icons/mob/augmentation/wtmfbpmasc.dmi'
+
+/datum/robotic_style/wtmfbpfemme
+	name = "Ward-Takahashi Manufacturing Femme FBP"
+	icon = 'modular_zubbers/icons/mob/augmentation/wtmfbpfemme.dmi'
 
 /datum/robotic_style/xmgipc
 	name = "Xion Manufacturing Group"
