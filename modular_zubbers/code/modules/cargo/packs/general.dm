@@ -37,3 +37,11 @@
 	)
 	cost = 3000
 	crate_name = "construction kit crate"
+
+datum/supply_pack/misc/survival_mod
+	name = "Survival MOD crate"
+	desc = "Contains one Kahraman Industries produced survival MODsuit, for when you need a cheap suit on the fly."
+	contains = list(
+		/obj/item/mod/control/pre_equipped/frontier_colonist
+	)
+	cost = CARGO_CRATE_VALUE * 6
