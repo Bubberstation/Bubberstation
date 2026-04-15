@@ -18,7 +18,7 @@
 	burst_size = 1
 	actions_types = list()
 	name = "\improper NT22-HCS-MP 'Lancer'"
-	desc = "A hardlight compliance submachine gun variant designed for sustained non-lethal confrontations. It has a retractable stock included in its design, allowing for easier concealment."
+	desc = "A hardlight compliance submachine gun variant designed for sustained non-lethal confrontations. It has a retractable stock included in its design, allowing for easier concealment. Without the stock, its recoil is strong enough that it needs two hands to use effectively."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ntmp5.dmi'
 	icon_state = "ntmp5"
 	base_icon_state = "ntmp5"
@@ -30,7 +30,8 @@
 	bolt_type = BOLT_TYPE_STANDARD
 	bolt_wording = "cocking handle"
 	fire_delay = 0.15 SECONDS
-	spread = 7
+	recoil = 1
+	spread = 5
 	mag_display = FALSE
 	can_suppress = TRUE
 	vary_fire_sound = FALSE
@@ -140,8 +141,12 @@
 /obj/item/gun/ballistic/automatic/ntmp5/proc/update_stock_state()
 	if(stock_retracted)
 		update_weight_class(WEIGHT_CLASS_NORMAL)
-		spread = 8
+		weapon_weight = WEAPON_HEAVY
+		recoil = 1
+		spread = 12
 	else
 		update_weight_class(WEIGHT_CLASS_BULKY)
+		weapon_weight = WEAPON_MEDIUM
+		recoil = 0
 		spread = 5
 	update_appearance()
