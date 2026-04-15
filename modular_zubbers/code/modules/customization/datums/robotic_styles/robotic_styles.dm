@@ -70,7 +70,7 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 	name = "Hephaestus Industries 2.0"
 	icon = 'modular_zubbers/icons/mob/augmentation/hi2ipc.dmi'
 
-/datum/robotic_style/hifbp
+/datum/robotic_style/hi2fbp
 	name = "Hephaestus Industries FBP 2.0"
 	icon = 'modular_zubbers/icons/mob/augmentation/hi2fbp.dmi'
 
