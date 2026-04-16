@@ -1,5 +1,6 @@
 /mob/living/simple_animal/hostile/megafauna/devour(mob/living/victim)
-	if(isanimal_or_basicmob(victim) || !victim.key)
+	var/mob/dead/observer/ghost = victim.get_ghost(TRUE, TRUE)
+	if(!(ghost?.can_reenter_corpse && ghost?.client) && !victim.client)
 		victim.gib()
 
 	if(isnull(victim) || victim.has_status_effect(/datum/status_effect/gutted))
