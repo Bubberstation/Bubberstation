@@ -132,13 +132,6 @@
 					/obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5,
 					/obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5)
 	crate_name = "nt22-hcs-mp crate"
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/ntusp,
-					/obj/item/gun/ballistic/automatic/pistol/ntusp,
-					/obj/item/gun/ballistic/automatic/pistol/ntusp,
-					/obj/item/ammo_box/magazine/recharge/ntusp,
-					/obj/item/ammo_box/magazine/recharge/ntusp,
-					/obj/item/ammo_box/magazine/recharge/ntusp)
-	crate_name = "nt-usp crate"
 
 /datum/supply_pack/security/armory/archery_kit
 	name = "Archery Crate"
