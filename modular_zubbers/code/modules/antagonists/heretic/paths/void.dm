@@ -5,6 +5,9 @@
 /datum/heretic_knowledge_tree_column/void
 	knowledge_tier3 = /datum/heretic_knowledge/spell/void_stealth
 
+/datum/heretic_knowledge/spell/void_pull
+	route = null
+
 /datum/heretic_knowledge/spell/void_stealth
 	name = "Cloak of the dark"
 	desc = "Cloaks you in inpermeable void, rendering you invisible to observers. You chill the air around you in this state, so don't stay in \
