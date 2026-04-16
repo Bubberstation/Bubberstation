@@ -4,7 +4,7 @@
 
 /obj/item/storage/box/disks_plantgene/PopulateContents()
 	for(var/i in 1 to 7)
-		new /obj/item/disk/plantgene(src)
+		new /obj/item/disk/computer/plantgene(src)
 
 // Syndicate Admiral's Medals box
 /obj/item/storage/lockbox/medal/bubber/synd

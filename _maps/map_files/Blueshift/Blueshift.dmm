@@ -6497,19 +6497,19 @@
 /obj/effect/mapping_helpers/requests_console/assistance,
 /obj/effect/turf_decal/bot,
 /obj/structure/table,
-/obj/item/computer_disk{
+/obj/item/disk/computer{
 	pixel_x = -5;
 	pixel_y = 8
 	},
-/obj/item/computer_disk{
+/obj/item/disk/computer{
 	pixel_x = 7;
 	pixel_y = 2
 	},
-/obj/item/computer_disk{
+/obj/item/disk/computer{
 	pixel_x = -8;
 	pixel_y = -3
 	},
-/obj/item/computer_disk,
+/obj/item/disk/computer,
 /turf/open/floor/iron,
 /area/station/science/ordnance)
 "bop" = (
@@ -8206,12 +8206,12 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
-/obj/item/computer_disk/ordnance{
+/obj/item/disk/computer/ordnance{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/computer_disk/ordnance,
-/obj/item/computer_disk/ordnance{
+/obj/item/disk/computer/ordnance,
+/obj/item/disk/computer/ordnance{
 	pixel_x = -3;
 	pixel_y = -3
 	},
@@ -13069,7 +13069,7 @@
 /area/station/maintenance/department/medical/central)
 "cyz" = (
 /obj/machinery/computer/operating,
-/obj/item/radio/intercom/directional/north,
+/obj/machinery/vitals_reader/directional/north,
 /turf/open/floor/iron,
 /area/station/medical/surgery)
 "cyC" = (
@@ -19201,12 +19201,12 @@
 /area/station/ai/satellite/chamber)
 "dFZ" = (
 /obj/structure/table/reinforced,
-/obj/item/computer_disk/engineering,
-/obj/item/computer_disk/engineering,
-/obj/item/computer_disk/engineering,
-/obj/item/computer_disk/engineering,
-/obj/item/computer_disk/engineering,
-/obj/item/computer_disk/engineering,
+/obj/item/disk/computer/engineering,
+/obj/item/disk/computer/engineering,
+/obj/item/disk/computer/engineering,
+/obj/item/disk/computer/engineering,
+/obj/item/disk/computer/engineering,
+/obj/item/disk/computer/engineering,
 /obj/item/reagent_containers/applicator/patch/aiuri,
 /obj/effect/turf_decal/tile/yellow/full,
 /turf/open/floor/iron/large,
@@ -24497,7 +24497,7 @@
 /area/station/command/gateway)
 "eHc" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/station/maintenance/abandon_diner)
 "eHi" = (
@@ -29932,7 +29932,7 @@
 /area/station/cargo/miningdock)
 "fIT" = (
 /obj/structure/decorative/shelf,
-/obj/item/computer_disk/maintenance/theme{
+/obj/item/disk/computer/maintenance/theme{
 	pixel_y = -10
 	},
 /turf/open/floor/iron/smooth_edge{
@@ -32776,8 +32776,8 @@
 	pixel_y = 4
 	},
 /obj/item/book/manual/wiki/medicine,
-/obj/item/computer_disk/medical,
-/obj/item/computer_disk/medical,
+/obj/item/disk/computer/medical,
+/obj/item/disk/computer/medical,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/cmo)
 "glr" = (
@@ -34412,18 +34412,6 @@
 /obj/effect/landmark/start/hangover,
 /turf/open/floor/wood,
 /area/station/hallway/primary/port)
-"gAC" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/requests_console/auto_name/directional/north,
-/obj/effect/mapping_helpers/requests_console/assistance,
-/turf/open/floor/iron/white,
-/area/station/medical/medbay/central)
 "gAF" = (
 /obj/effect/spawner/random/structure/crate,
 /turf/open/floor/plating,
@@ -39158,7 +39146,7 @@
 /obj/machinery/computer/records/medical/laptop{
 	pixel_y = 1
 	},
-/obj/item/infuser_book{
+/obj/item/tgui_book/manual/infuser{
 	pixel_x = -18
 	},
 /turf/open/floor/iron/dark,
@@ -57316,7 +57304,7 @@
 /obj/machinery/computer/operating{
 	dir = 1
 	},
-/obj/item/radio/intercom/directional/south,
+/obj/machinery/vitals_reader/directional/south,
 /turf/open/floor/iron,
 /area/station/medical/surgery)
 "kVb" = (
@@ -62485,15 +62473,15 @@
 /obj/item/hand_labeler{
 	pixel_y = 17
 	},
-/obj/item/computer_disk/quartermaster{
+/obj/item/disk/computer/quartermaster{
 	pixel_x = 6;
 	pixel_y = 5
 	},
-/obj/item/computer_disk/quartermaster{
+/obj/item/disk/computer/quartermaster{
 	pixel_x = 6;
 	pixel_y = 5
 	},
-/obj/item/computer_disk/quartermaster{
+/obj/item/disk/computer/quartermaster{
 	pixel_x = 6;
 	pixel_y = 5
 	},
@@ -66501,6 +66489,7 @@
 /obj/structure/table/glass,
 /obj/structure/window/spawner/directional/east,
 /obj/item/stack/medical/gauze,
+/obj/machinery/vitals_reader/directional/south,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "mKz" = (
@@ -69981,7 +69970,7 @@
 /turf/open/floor/iron/freezer,
 /area/station/commons/dorms/room4)
 "nvg" = (
-/obj/item/stack/sheet/animalhide/human,
+/obj/item/stack/sheet/animalhide/carbon/human,
 /turf/open/floor/plating,
 /area/station/maintenance/department/science/xenobiology)
 "nvh" = (
@@ -73600,8 +73589,8 @@
 /area/station/common/wrestling/arena)
 "oek" = (
 /obj/structure/door_assembly/door_assembly_hatch,
-/obj/structure/barricade/wooden,
 /obj/structure/cable,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "oem" = (
@@ -73892,6 +73881,9 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/item/radio/intercom/directional/north{
+	pixel_y = 34
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/surgery)
 "ogv" = (
@@ -76861,8 +76853,8 @@
 /obj/machinery/door/airlock/grunge{
 	name = "Forbidden Chapel"
 	},
-/obj/structure/barricade/wooden,
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/cult_chapel_maint)
 "oIq" = (
@@ -99749,6 +99741,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
+/obj/item/radio/intercom/directional/south{
+	pixel_y = -42
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/surgery)
 "sZC" = (
@@ -100971,7 +100966,7 @@
 /turf/open/floor/iron/freezer,
 /area/station/command/heads_quarters/cmo)
 "tkV" = (
-/obj/item/stack/sheet/animalhide/human,
+/obj/item/stack/sheet/animalhide/carbon/human,
 /turf/open/floor/material/meat,
 /area/station/maintenance/department/science/xenobiology)
 "tkX" = (
@@ -108664,8 +108659,8 @@
 /area/station/security/execution/education)
 "uJQ" = (
 /obj/machinery/door/airlock/hatch,
-/obj/structure/barricade/wooden,
 /obj/structure/cable,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/station/maintenance/department/science/lower)
 "uJT" = (
@@ -108675,7 +108670,6 @@
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-flat-1"
 	},
-/obj/structure/barricade/wooden,
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Maintenance Hatch"
 	},
@@ -108686,6 +108680,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/station/maintenance/abandon_art_studio)
 "uJZ" = (
@@ -109370,7 +109365,7 @@
 /obj/structure/table/glass,
 /obj/structure/window/spawner/directional/east,
 /obj/item/clothing/neck/stethoscope,
-/obj/machinery/status_display/evac/directional/north,
+/obj/machinery/vitals_reader/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "uRM" = (
@@ -112183,12 +112178,12 @@
 /obj/machinery/door/airlock/maintenance{
 	name = "Abandoned Art Studio"
 	},
-/obj/structure/barricade/wooden,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/iron,
 /area/station/service/electronic_marketing_den)
 "vtW" = (
@@ -112756,7 +112751,7 @@
 /area/station/escapepodbay)
 "vyn" = (
 /obj/structure/table/wood/fancy/royalblack,
-/obj/item/stack/sheet/animalhide/monkey{
+/obj/item/stack/sheet/animalhide/carbon/monkey{
 	pixel_y = 4
 	},
 /obj/effect/decal/cleanable/blood,
@@ -117482,7 +117477,6 @@
 "wry" = (
 /obj/structure/window/reinforced/tinted/spawner/directional/north,
 /obj/structure/grille,
-/obj/structure/barricade/wooden,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/station/maintenance/starboard/fore)
@@ -118210,11 +118204,11 @@
 /obj/machinery/door/airlock/command{
 	name = "Auxiliary E.V.A. Storage"
 	},
-/obj/structure/barricade/wooden,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/access/all/command/eva,
 /obj/structure/cable,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/station/maintenance/aux_eva)
 "wyF" = (
@@ -126362,6 +126356,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/requests_console/auto_name/directional/north,
+/obj/effect/mapping_helpers/requests_console/assistance,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "yce" = (
@@ -230149,7 +230145,7 @@ nJi
 qfY
 mKs
 atX
-gAC
+evr
 ved
 ewB
 pVw

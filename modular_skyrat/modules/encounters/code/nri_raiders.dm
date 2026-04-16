@@ -100,8 +100,8 @@ GLOBAL_VAR(first_officer)
 
 /datum/outfit/pirate/nri/post_equip(mob/living/carbon/human/equipped)
 	. = ..()
-	equipped.faction -= "pirate"
-	equipped.faction |= "raider"
+	equipped.remove_faction("pirate")
+	equipped.add_faction("raider")
 
 	// make sure we update the ID's name too
 	var/obj/item/card/id/id_card = equipped.wear_id

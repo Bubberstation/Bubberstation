@@ -24,7 +24,7 @@
 	var/obj/item/implant/weapons_auth/weapons_authorisation = new/obj/item/implant/weapons_auth(equipping_human)
 	weapons_authorisation.implant(equipping_human)
 
-	equipping_human.faction |= ROLE_SYNDICATE
+	equipping_human.add_faction(ROLE_SYNDICATE)
 
 	equipping_human.update_icons()
 
