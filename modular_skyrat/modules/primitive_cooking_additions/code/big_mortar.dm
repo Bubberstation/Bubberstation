@@ -170,6 +170,8 @@
 					else
 						juice_target_item(target_item, user)
 
+			return ITEM_INTERACT_SUCCESS
+
 	if(!attacking_item.grind_results && !attacking_item.juice_typepath && !attacking_item.reagents?.total_volume)
 		balloon_alert(user, "can't grind this")
 		return ITEM_INTERACT_BLOCKING
