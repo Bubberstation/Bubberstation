@@ -294,3 +294,12 @@
 	name = "Eastern Dragon 2"
 	icon_state = "easternd2"
 	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
+
+/datum/body_marking_set/zombie
+	name = "Zombie"
+	body_marking_list = list("Zombie")
+
+/datum/body_marking/bubber/zombie
+	name = "Zombie"
+	icon_state = "zombie"
+	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT

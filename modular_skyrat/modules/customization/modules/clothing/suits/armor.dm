@@ -6,6 +6,7 @@
 	desc = "Stunning. Menacing. Perfect for the man who gets bullied for leaving the brig."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor_digi.dmi'
 	icon_state = "warden_syndie"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 

@@ -29,6 +29,11 @@
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/rope/left_arm
 
+/datum/augment_item/implant/l_arm/toolkit/lighter
+	name = "Left Lighter Implant"
+	cost = 1
+	path = /obj/item/organ/cyberimp/arm/toolkit/lighter
+
 //RIGHT ARM IMPLANTS
 /datum/augment_item/implant/r_arm
 	slot = AUGMENT_SLOT_RIGHT_ARM_IMPLANT
@@ -43,13 +48,18 @@
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/rope/right_arm
 
+/datum/augment_item/implant/r_arm/toolkit/lighter
+	name = "Right Lighter Implant"
+	cost = 1
+	path = /obj/item/organ/cyberimp/arm/toolkit/lighter
+
 //EYES IMPLANTS
 /datum/augment_item/implant/eyes
 	slot = AUGMENT_SLOT_EYES_IMPLANT
 
 /datum/augment_item/implant/eyes/civhud
 	name = "Civilian HUD Implant"
-	cost = 4
+	cost = 2
 	path = /obj/item/organ/cyberimp/eyes/hud/civilian
 
 //MOUTH IMPLANTS

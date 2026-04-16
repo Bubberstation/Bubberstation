@@ -170,7 +170,7 @@
 	if(!only_listener)
 		// Play voice for all mobs in the z level
 		for(var/mob/player_mob in GLOB.player_list)
-			if(!player_mob.can_hear() || !(safe_read_pref(player_mob.client, /datum/preference/toggle/sound_announcements)))
+			if(!HAS_TRAIT(player_mob, TRAIT_DEAF) || !(safe_read_pref(player_mob.client, /datum/preference/toggle/sound_announcements)))
 				continue
 
 			var/turf/player_turf = get_turf(player_mob)

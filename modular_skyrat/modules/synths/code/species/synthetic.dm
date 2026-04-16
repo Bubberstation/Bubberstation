@@ -121,7 +121,7 @@
 	if(!screen && screen_mutant_bodypart && screen_mutant_bodypart[MUTANT_INDEX_NAME] && screen_mutant_bodypart[MUTANT_INDEX_NAME] != "None")
 
 		if(eyes)
-			eyes.eye_icon_state = "None"
+			eyes.eye_icon_state = null
 
 		screen = new(human_who_gained_species)
 		screen.Grant(human_who_gained_species)

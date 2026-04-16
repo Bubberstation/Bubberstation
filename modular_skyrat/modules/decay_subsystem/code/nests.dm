@@ -73,7 +73,7 @@
 		spawn_delay = world.time + spawn_cooldown
 		spawn_mob()
 
-/obj/structure/mob_spawner/proc/proximity_trigger(datum/source, atom/movable/AM)
+/obj/structure/mob_spawner/proc/proximity_trigger(datum/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs) // Bubber edit ORG: /obj/structure/mob_spawner/proc/proximity_trigger(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
 	if(spawned_mobs >= max_mobs)
 		return
@@ -81,12 +81,12 @@
 		return
 	spawn_delay = world.time + spawn_cooldown
 
-	if(!isliving(AM))
+	if(!isliving(arrived))
 		return
 
-	var/mob/living/entered_mob = AM
+	var/mob/living/entered_mob = arrived
 
-	if((NEST_FACTION in entered_mob.faction))
+	if((entered_mob.has_faction(NEST_FACTION)))
 		return
 
 	spawn_mob()
@@ -102,7 +102,7 @@
 	var/mob/living/spawned_mob = new chosen_mob_type(loc)
 
 	spawned_mob.flags_1 |= (flags_1 & ADMIN_SPAWNED_1)
-	spawned_mob.faction = faction
+	spawned_mob.set_faction(faction)
 	spawned_mob.ghost_controllable = ghost_controllable
 
 	RegisterSignal(spawned_mob, COMSIG_LIVING_DEATH, PROC_REF(mob_death))

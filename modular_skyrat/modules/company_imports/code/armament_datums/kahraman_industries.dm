@@ -51,7 +51,7 @@
 	cost = PAYCHECK_COMMAND * 2
 
 /datum/armament_entry/company_import/kahraman/ppe/sensors_cuffs
-	item_type = /obj/item/kheiral_cuffs
+	item_type = /obj/item/clothing/accessory/kheiral_cuffs
 	cost = PAYCHECK_COMMAND * 5
 
 // Hand held mining equipment

@@ -507,33 +507,24 @@
  * If the virus is severity DANGEROUS we do not hide it from health scanners at event start.
  * If the virus is airborne, also don't hide it.
  */
-/datum/disease/advance/event/assign_properties() // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
+/datum/disease/advance/event/assign_properties()
 
 	if(!length(properties))
 		stack_trace("Advanced virus properties were empty or null!")
 		return
 
-	/* BUBBER EDIT CHANGE START - DISEASE OUTBREAK UPDATES - ORIGINAL:
 	incubation_time = round(world.time + (((ADV_ANNOUNCE_DELAY * 2) - 10) SECONDS))
 	properties["transmittable"] = rand(4,7)
 	spreading_modifier = max(CEILING(0.4 * properties["transmittable"], 1), 1)
-	cure_chance = clamp(7.5 - (0.5 * properties["resistance"]), 5, 10) // Can be between 5 and 10
-	stage_prob = max(0.4 * properties["stage_rate"], 1)
-	*/
-	properties["transmittable"] = rand(6,9)
-	spreading_modifier = clamp(properties["transmittable"] - 5, 1, 4)
-	infectivity = clamp(21 + (spreading_modifier * 7), 28, 56)
-	cure_chance = rand(14, 21) // cure quickly once they've hit medbay
-	stage_prob = rand(7, 9) * 0.1 // we progress slower than normal diseases, giving it a chance to incubate and medical to respond
-	// BUBBER EDIT CHANGE END - DISEASE OUTBREAK UPDATES
+	cure_chance = clamp(10 * (0.94 ** properties["resistance"]), 3.5, 12)
+	stage_prob = max(0.4 * properties["stage_rate"], 1) // 33% faster than regular advanced diseases
 	set_severity(properties["severity"])
 
 	//If we have an advanced (high stage) disease, add it to the name.
 	if(properties["stage_rate"] >= 7)
 		name = "Advanced [name]"
 
-	log_virus_public("stage speed is [stage_prob], spreading modifier is [spreading_modifier], infectivity is [infectivity]") // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
-	generate_cure(properties)
+	cure_text = "If you can see this, something has gone wrong."
 
 /**
  * Set the transmission methods on the generated virus
@@ -551,37 +542,6 @@
 		if(DISEASE_SPREAD_AIRBORNE)
 			update_spread_flags(DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_AIRBORNE)
 			spread_text = "Respiration"
-
-/**
- * Determine the cure
- *
- * Rolls one of five possible cure groups, then selects a cure from it and applies it to the virus.
- */
-/datum/disease/advance/event/generate_cure()// BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
-	if(!length(properties))
-		stack_trace("Advanced virus properties were empty or null!")
-		return
-
-	// BUBBER EDIT CHANGE START - DISEASE OUTBREAK UPDATES
-	/*
-	var/res = rand(4, 7)
-	cures = list(pick(advance_cures[res]))
-	oldres = res
-	// Get the cure name from the cure_id
-	var/datum/reagent/cure = GLOB.chemical_reagents_list[cures[1]]
-	cure_text = cure.name
-	*/
-	var/list/cures_list = advance_cures.Copy()
-	if(properties["stage_rate"] >= 7)
-		cures = list(pick_n_take(cures_list[rand(4, 7)]), pick_n_take(cures_list[3])) // require some help outside medbay (list 3)
-		var/datum/reagent/cure_1 = GLOB.chemical_reagents_list[cures[1]]
-		var/datum/reagent/cure_2 = GLOB.chemical_reagents_list[cures[2]]
-		cure_text = "[cure_1.name] and [cure_2.name]"
-	else
-		cures = list(pick_n_take(cures_list[rand(4, 7)]))
-		var/datum/reagent/cure_1 = GLOB.chemical_reagents_list[cures[1]]
-		cure_text = cure_1.name
-	// BUBBER EDIT CHANGE END - DISEASE OUTBREAK UPDATES
 
 #undef ADV_MIN_SYMPTOMS
 #undef ADV_MAX_SYMPTOMS

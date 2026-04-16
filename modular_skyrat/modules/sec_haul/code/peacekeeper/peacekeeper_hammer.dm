@@ -32,6 +32,7 @@
 
 /// Removes any form of tracking from the user and the item , make sure to call it on he proper item
 /obj/item/melee/breaching_hammer/proc/remove_track(mob/living/carbon/human/user)
+	REMOVE_TRAIT(user, TRAIT_AIRLOCK_SHOCKIMMUNE, REF(src))
 	breaching = FALSE
 	user.balloon_alert(user, "you put your hammer down!")
 	breacher = null
@@ -43,6 +44,7 @@
 
 	else if(istype(target, /obj/machinery/door/airlock))
 		var/obj/machinery/door/airlock/opening = target
+		ADD_TRAIT(user, TRAIT_AIRLOCK_SHOCKIMMUNE, REF(src))
 		try_breaching(opening, user)
 
 /obj/item/melee/breaching_hammer/proc/try_breaching(obj/machinery/door/airlock/target, mob/living/carbon/human/user)

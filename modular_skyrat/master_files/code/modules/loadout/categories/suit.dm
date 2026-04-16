@@ -575,35 +575,6 @@
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/miner
 
 // JACKETS
-/datum/loadout_item/suit/navybluejacketofficer
-	name = "Security Officer's Navy Blue Formal Jacket"
-	item_path = /obj/item/clothing/suit/jacket/officer/blue
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
-
-/datum/loadout_item/suit/navybluejacketwarden
-	name = "Warden's Navy Blue Formal Jacket"
-	item_path = /obj/item/clothing/suit/jacket/warden/blue
-	restricted_roles = list(JOB_WARDEN)
-
-/datum/loadout_item/suit/navybluejackethos
-	name = "Head of Security's Navy Blue Formal Jacket"
-	item_path = /obj/item/clothing/suit/jacket/hos/blue
-	restricted_roles = list(JOB_HEAD_OF_SECURITY)
-
-/datum/loadout_item/suit/security_jacket
-	name = "Security Jacket"
-	item_path = /obj/item/clothing/suit/toggle/jacket/sec
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY) //Not giving this one to COs because it's actually better than the one they spawn with
-
-/datum/loadout_item/suit/brit
-	name = "High Vis Armored Vest"
-	item_path = /obj/item/clothing/suit/armor/vest/peacekeeper/brit
-	restricted_roles = list(JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
-
-/datum/loadout_item/suit/british_jacket
-	name = "Peacekeeper Officer Coat"
-	item_path = /obj/item/clothing/suit/british_officer
-	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/suit/offdep_jacket
 	name = "Off-Department Jacket"

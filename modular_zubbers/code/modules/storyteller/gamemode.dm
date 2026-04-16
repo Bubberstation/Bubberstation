@@ -404,7 +404,7 @@ SUBSYSTEM_DEF(gamemode)
 			continue
 		ASYNC
 			event.try_start()
-//		INVOKE_ASYNC(event, /datum/round_event.proc/try_start)
+//		INVOKE_ASYNC(event, TYPE_PROC_REF(/datum/round_event, try_start))
 
 /// Schedules an event to run later.
 /datum/controller/subsystem/gamemode/proc/schedule_event(datum/round_event_control/passed_event, passed_time, passed_cost, passed_ignore, passed_announce)
@@ -558,7 +558,7 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/post_setup(report) //Gamemodes can override the intercept report. Passing TRUE as the argument will force a report.
 	if(!report)
 		report = !CONFIG_GET(flag/no_intercept_report)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/display_roundstart_logout_report), 15 MINUTES)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(display_roundstart_logout_report)), 15 MINUTES)
 
 	if(SSdbcore.Connect())
 		var/list/to_set = list()
