@@ -142,11 +142,14 @@ export const eye_emissives: FeatureToggle = {
   component: CheckboxInput,
 };
 
-export const invisible_eyes: FeatureToggle = {
-	name: 'Invisible Eyes',
-	description: 'Disables eyes being displayed if checked',
+export const feature_eyes_opacity_toggle: FeatureToggle = {
+	name: 'Eyes Opacity Override',
 	component: CheckboxInput
+};
 
+export const feature_eyes_opacity: Feature<number> = {
+  name: 'Eyes Opacity',
+  component: FeatureNumberInput,
 };
 
 export const mutant_colors_color: Feature<string[]> = {

@@ -6,7 +6,6 @@
 #define TRAIT_RESEARCH_CYBORG "research_cyborg"
 #define TRAIT_BILINGUAL "Bilingual"
 #define TRAIT_DIRTY "dirty"
-#define TRAIT_INVISIBLE_EYES "invisible_eyes"
 
 /// Cyborgs with unique sprites
 /// 32x32 quadruped skins with resting, sitting, and belly up sprites

@@ -31,12 +31,3 @@
 	eye_icon_state = "motheyes_white"
 /obj/item/organ/eyes/robotic/glow/moth
 	eye_icon_state = "motheyes_white"
-
-if(HAS_TRAIT(owner, TRAIT_INVISIBLE_EYES)),
-	var/mutable_appearance/eye_left = mutable_appearance(eye_icon, "[eye_icon_state]_l", -eyes_layer, parent)
-	var/mutable_appearance/eye_right = mutable_appearance(eye_icon, "[eye_icon_state]_r", -eyes_layer, parent)
-	var/list/overlays = list(eye_left, eye_right)
-
-	if(overlay_ignore_lighting && !(parent.obscured_slots & HIDEEYES))
-		overlays += (eye_left.icon, eye_left.icon_state, parent, -EYES_LAYER, alpha = eye_left.alpha = 0)
-		overlays += (eye_right.icon, eye_right.icon_state, parent, -EYES_LAYER, alpha = eye_right.alpha = 0)
