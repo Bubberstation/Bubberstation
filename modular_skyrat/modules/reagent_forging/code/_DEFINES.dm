@@ -1,4 +1,4 @@
-//The list of possible things anyone can make with materials used on the forge
+/The list of possible things anyone can make with materials used on the forge
 #define FORGING_ASDF list( \"Chain" = /obj/machinery/door/airlock, \
 /obj/structure/door_assembly, /obj/machinery/door/firedoor, /obj/machinery/door/window)
 #define FORGING_ITEMS_ANYONE list(\
@@ -31,3 +31,19 @@
 #define DOAFTER_SMITHING_ANVIL "smithing_anvil_doafter"
 
 #define DOAFTER_REVOLVER_HAMMER_COCK "smithing_revolver_hammer_cock_doafter"
+
+#define FORGING_WEAPON_REFORGING_MAX_QUALITY 16
+#define FORGING_WEAPON_REFORGING_AVERAGE_WAIT 2 SECONDS
+#define FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS 10
+#define FORGING_WEAPON_REFORGING_MAX_BAD_HITS 6
+
+/// Minimum and maximum force multiplier if a weapon contains incomplete parts
+#define MIN_INCOMPLETE_DAMAGE_MULT 0.1
+#define MAX_INCOMPLETE_DAMAGE_MULT 0.5
+//ditto, with staff reagents
+#define MIN_INCOMPLETE_STAFF_INJECT_MULT 0.2
+#define MAX_INCOMPLETE_STAFF_INJECT_MULT 0.5
+/// The maximum force that can be given to a weapon via perfect hits
+#define MAX_PERFECT_FORCE_BONUS 3
+/// maximum force that can be given to a reagent staff via perfect hits
+#define MAX_PERFECT_STAFF_INTEG_BONUS 20

@@ -1,12 +1,9 @@
-/// The maximum force that can be given to a weapon via perfect hits
-#define MAX_PERFECT_FORCE_BONUS 3
 /// Minimum and maximum force multiplier if a weapon contains incomplete parts
 #define MIN_INCOMPLETE_DAMAGE_MULT 0.1
 #define MAX_INCOMPLETE_DAMAGE_MULT 0.5
 //ditto, with staff reagents
 #define MIN_INCOMPLETE_STAFF_INJECT_MULT 0.2
 #define MAX_INCOMPLETE_STAFF_INJECT_MULT 0.5
-
 
 /datum/crafting_bench_recipe
 	/// The name of the recipe to show
@@ -91,7 +88,7 @@
 	var/total_completion = 0
 	var/total_forge_items = 0
 	for(var/obj/item/forging/complete/complete_forging_item in things_to_use)
-		total_completion += complete_forging_item.hammer_completion_amount
+		total_completion += complete_forging_item.ha mmer_completion_amount
 		total_forge_items ++
 	total_completion /= total_forge_items
 	return total_completion
@@ -106,12 +103,16 @@
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 /datum/crafting_bench_recipe/weapon_completion_recipe/create_using_item_list(list/item_list, mob/living/user)
-	var/asfdsf = LAZYLEN(item_list)
-	user.balloon_alert(user, "[asfdsf]")
-	if(!is_type_in_list(/obj/item/forging/complete, item_list))
-		stack_trace("[src] didn't contain a valid reagent smithing weapon head when its recipe was completed!")
+	//apparently i fuggin have to write my own version of is_type_in_list
+	var/obj/item/forging/complete/weapon_head
+	for(var/obj/item/forging/complete/temp_item in item_list)
+		if(!isnull(temp_item))
+			weapon_head = temp_item
+			break
 
-	var/obj/item/forging/complete/weapon_head = item_list[is_path_in_list(/obj/item/forging/complete/, item_list, TRUE)]
+	if(isnull(weapon_head))
+		stack_trace("[src] didn't contain a valid reagent smithing weapon head when its recipe was completed!")
+		return
 	var/obj/item/returner = new weapon_head.spawning_item(src)
 	apply_perfect_and_completion_bonuses(item_list, returner)
 	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner)
@@ -123,16 +124,9 @@
 /datum/crafting_bench_recipe/weapon_completion_recipe/apply_perfect_and_completion_bonuses(list/things_to_use, obj/item/product)
 	var/obj/item/forging/complete/weapon_head = is_path_in_list(/obj/item/forging/complete, things_to_use, TRUE)
 	var/pieces_completion_amount = get_total_completion_amount(things_to_use)
-	if(!istype(weapon_head, /obj/item/forging/complete/staff)) //we don't want the staff to get added damage
-		product.force += clamp(weapon_head.perfect_ratio * MAX_PERFECT_FORCE_BONUS, 0, MAX_PERFECT_FORCE_BONUS)
-		//recalculate force based on if the components were quenched too early
-		if(pieces_completion_amount < 1)
-			product.force *= lerp(MIN_INCOMPLETE_DAMAGE_MULT, MAX_INCOMPLETE_DAMAGE_MULT, pieces_completion_amount)
-	else
-		var/datum/component/reagent_imbued/staff_component = weapon_head.GetComponent(/datum/component/reagent_imbued)
-		if(!isnull(staff_component) && pieces_completion_amount < 1)
-			staff_component.imbued_reagent.maximum_volume = round(staff_component.imbued_reagent.maximum_volume * lerp(MIN_INCOMPLETE_STAFF_INJECT_MULT, MAX_INCOMPLETE_STAFF_INJECT_MULT, pieces_completion_amount))
-
+	if(istype(product, /obj/item/forging/weapon))
+		var/obj/item/forging/weapon/weaponforged = product
+		weaponforged.apply_perfect_and_completion_bonuses(pieces_completion_amount, weapon_head.perfect_ratio)
 
 /datum/crafting_bench_recipe/wearable/plate_helmet
 	recipe_name = "plate helmet"

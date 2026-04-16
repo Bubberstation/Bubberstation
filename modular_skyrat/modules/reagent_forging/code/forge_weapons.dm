@@ -8,9 +8,37 @@
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 	obj_flags = UNIQUE_RENAME
 
+	//keeps track of how much force was taken away from incomplete forging
+	var/completion_force_penalty = 0
+	//keeps track of how much force was given from perfect hammering
+	var/perfect_forging_bonus = 0
+
 /obj/item/forging/reagent_weapon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/weapon)
+	AddComponent(/datum/component/forge_smithable,
+		FORGING_WEAPON_REFORGING_MAX_QUALITY,
+		TRUE,
+		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS,
+		FORGING_WEAPON_REFORGING_MAX_BAD_HITS,
+		FORGING_WEAPON_REFORGING_AVERAGE_WAIT,
+		CALLBACK(src, TYPE_PROC_REF(/obj/item/forging/reagent_weapon, quench_item)))
+
+/obj/item/forging/reagent_weapon/quench_item()
+/obj/item/forging/reagent_weapon/passive_cool_item()
+/obj/item/forging/reagent_weapon/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
+	var/new_force_penalty = 0
+	if(completion_ratio < 1 || force_incomplete_penalty)
+		new_force_penalty = initial(force) * (1.0 - lerp(MIN_INCOMPLETE_DAMAGE_MULT, MAX_INCOMPLETE_DAMAGE_MULT, completion_ratio))
+	force += completion_force_penalty
+	force -= new_force_penalty
+	completion_force_penalty = new_force_penalty
+
+	update_integrity(max(round(lerp(0, max_integrity, completion_ratio)), integrity))
+
+	var/new_perfect_force_bonus = max(perfect_forging_bonus, clamp(perfect_ratio * MAX_PERFECT_FORCE_BONUS, 0, MAX_PERFECT_FORCE_BONUS))
+	product.force += max(0, new_perfect_force_bonus - perfect_forging_bonus)
+	perfect_forging_bonus = new_perfect_force_bonus
 
 /obj/item/forging/reagent_weapon/sword
 	name = "reagent sword"
@@ -204,16 +232,27 @@
 	icon_state = "staff"
 	inhand_icon_state = "staff"
 	worn_icon_state = "staff_back"
+	hitsound = 'sound/effects/magic/staff_healing.ogg'
 	throwforce = 0
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FIRE_PROOF
-	attack_verb_continuous = list("bonks", "bashes", "whacks", "pokes", "prods")
-	attack_verb_simple = list("bonk", "bash", "whack", "poke", "prod")
+	attack_verb_continuous = list("reagent casts on", "waves a staff over")
+	attack_verb_simple = list("reagent cast on", "wave a staff over")
 
 /obj/item/forging/reagent_weapon/staff/attack(mob/living/M, mob/living/user, params)
 	. = ..()
 	user.changeNext_move(CLICK_CD_RANGE)
+
+/obj/item/forging/reagent_weapon/staff/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
+	var/datum/component/reagent_imbued/staff_component = weapon_head.GetComponent(/datum/component/reagent_imbued)
+	if(!isnull(staff_component) && completion_ratio < 1)
+		staff_component.imbued_reagent.maximum_volume = round(staff_component.imbued_reagent.maximum_volume * lerp(MIN_INCOMPLETE_STAFF_INJECT_MULT, MAX_INCOMPLETE_STAFF_INJECT_MULT, pieces_completion_amount))
+
+	var/new_max_integrity_bonus = max(perfect_forging_bonus, clamp(perfect_ratio * MAX_PERFECT_STAFF_INTEG_BONUS, 0, MAX_PERFECT_STAFF_INTEG_BONUS))
+	product.force += max(0, new_max_integrity_bonus - perfect_forging_bonus)
+	perfect_forging_bonus = new_max_integrity_bonus
+	update_integrity(max(round(lerp(0, max_integrity, completion_ratio)), integrity))
 
 /obj/item/forging/reagent_weapon/spear
 	name = "reagent spear"

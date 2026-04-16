@@ -25,11 +25,13 @@
 	///maximum number of perfect hits before perfect hits no longer improve the quality
 	var/max_perfect_hits = 1
 	var/can_perfect_hit = TRUE
+	//what color does the parent item turn when heated? if null, then parent item doesn't change color when heated
+	var/heat_color = null
 	var/datum/callback/quench_callback = null
 	var/datum/callback/passive_cool_callback = null
 	COOLDOWN_DECLARE(heating_remainder)
 
-/datum/component/forge_smithable/Initialize(completion_needed, can_perfect, max_perfection, max_breakage, wait_time, datum/callback/on_quench = null, datum/callback/on_passive_cool = null, datum/callback/on_forging_heat = null)
+/datum/component/forge_smithable/Initialize(completion_needed, can_perfect, max_perfection, max_breakage, wait_time, datum/callback/on_quench = null, datum/callback/on_passive_cool = null, datum/callback/on_forging_heat = null, color = "#FF4400")
 	if(!istype(parent, required_type))
 		return COMPONENT_INCOMPATIBLE
 	parent_item = parent
@@ -45,7 +47,7 @@
 		RegisterSignal(parent_item, COMSIG_SMITHING_QUENCH, on_quench)
 	if(!isnull(on_passive_cool))
 		RegisterSignal(parent_item, COMSIG_SMITHING_PASSIVE_COOLED, on_passive_cool)//TYPE_PROC_REF(parent_item.type, on_passive_cool))
-
+	heat_color = color
 
 /datum/component/forge_smithable/proc/good_hit(amount = 1, playsound = FALSE)
 	quality_points += amount
@@ -133,6 +135,10 @@
 
 	return ANVIL_HAMMER_HIT_GOOD
 
+/datum/component/forge_smithable/proc/reset()
+	current_perfects = 0
+	quality_points = 0
+	bad_hits_total = 0
 
 ////////////////////// FOR ACTUAL SMITHING ACTIONS /////////////////////////
 
@@ -167,17 +173,24 @@
 
 /datum/component/forge_smithable/proc/try_quench(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
 	if(dunk_reagents.chem_temp > MAX_QUENCH_HEAT)
-		user.balloon_alert(user, "[dunk_object] is too hot to cool [parent_item]!")
+		balloon_alert(user, "[dunk_object] is too hot to cool [parent_item]!")
 		return
 	if(dunk_reagents.total_volume < MIN_VOLUME_TO_QUENCH)
-		user.balloon_alert(user, "[dunk_object] doesn't contain enough fluid to immerse [parent_item]!")
+		balloon_alert(user, "[dunk_object] doesn't contain enough fluid to immerse [parent_item]!")
 		return
 	dunk_reagents.expose_temperature(600)
+	if(!isnull(color))
+		parent_item.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 	quench_callback.Invoke(dunk_reagents, dunk_object, user)
 	//SEND_SIGNAL(parent_item, COMSIG_SMITHING_QUENCH, dunk_reagents, dunk_object, user)
 
-/datum/component/forge_smithable/proc/heat_for_smithing(heat_time)
-	COOLDOWN_START(src, heating_remainder, heat_time + COOLDOWN_TIMELEFT(src, heating_remainder))
+/datum/component/forge_smithable/proc/heat_for_smithing(heat_time, additive = FALSE)
+	if(!isnull(color))
+		parent_item.add_atom_colour(color_transition_filter(paint_color, SATURATION_OVERRIDE), TEMPORARY_COLOUR_PRIORITY)
+	if(additive)
+		COOLDOWN_START(src, heating_remainder, heat_time + COOLDOWN_TIMELEFT(src, heating_remainder))
+	else
+		COOLDOWN_START(src, heating_remainder, heat_time)
 
 /mob/living
 	//the time between each strike
