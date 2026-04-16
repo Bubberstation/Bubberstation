@@ -157,7 +157,7 @@
 
 	return ITEM_INTERACT_BLOCKING
 
-/datum/status_effect/void_stealth/proc/on_unarmed_attack(datum/source, mob/living/source, atom/target, proximity, modifiers)
+/datum/status_effect/void_stealth/proc/on_unarmed_attack(datum/signal_source, mob/living/source, atom/target, proximity, modifiers)
 	SIGNAL_HANDLER
 
 	return COMPONENT_CANCEL_ATTACK_CHAIN
