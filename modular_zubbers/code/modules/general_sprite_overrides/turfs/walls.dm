@@ -147,14 +147,6 @@
 
 
 // INDESTRUCTIBLE WALLS
-/turf/closed/indestructible/steel
-	icon = 'modular_zubbers/icons/turf/walls/wall.dmi'
-	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS
-
-/turf/closed/indestructible/normal_wall
-	icon = 'modular_zubbers/icons/turf/walls/wall.dmi'
-	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS
-
 /turf/closed/indestructible/reinforced
 	icon = 'modular_zubbers/icons/turf/walls/reinforced_wall.dmi'
 	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS
@@ -370,6 +362,9 @@
 
 /obj/structure/tram/spoiler
 	icon = 'modular_zubbers/icons/obj/tram/tram_structure.dmi'
+	icon_state = "tram-spoiler-retracted"
+	base_icon_state = "tram-spoiler"
+	smoothing_groups = SMOOTH_GROUP_TRAM_STRUCTURE
 
 /obj/structure/tram/alt/titanium
 	icon = 'modular_zubbers/icons/turf/walls/shuttle_wall.dmi'
