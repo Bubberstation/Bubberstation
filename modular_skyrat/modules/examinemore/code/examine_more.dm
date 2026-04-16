@@ -55,7 +55,7 @@ would only be recognisable with someone that had the syndicate trait.
 			if(EXAMINE_CHECK_SYNDICATE)
 				if(user.mind)
 					var/datum/mind/M = user.mind
-					if((ROLE_TRAITOR in M.get_special_roles()) || (ROLE_SYNDICATE in user.faction))
+					if((ROLE_TRAITOR in M.get_special_roles()) || (user.has_faction(ROLE_SYNDICATE)))
 						composed_message = "You note the following because of your <span class='red'><b>[special_desc_affiliation ? special_desc_affiliation : "Syndicate Affiliation"]</b></span>: <br>"
 						composed_message += special_desc
 						. += composed_message
@@ -67,7 +67,7 @@ would only be recognisable with someone that had the syndicate trait.
 			if(EXAMINE_CHECK_SYNDICATE_TOY)
 				if(user.mind)
 					var/datum/mind/M = user.mind
-					if((ROLE_TRAITOR in M.get_special_roles()) || (ROLE_SYNDICATE in user.faction))
+					if((ROLE_TRAITOR in M.get_special_roles()) || (user.has_faction(ROLE_SYNDICATE)))
 						composed_message = "You note the following because of your <span class='red'><b>[special_desc_affiliation ? special_desc_affiliation : "Syndicate Affiliation"]</b></span>: <br>"
 						composed_message += special_desc
 						. += composed_message
@@ -99,7 +99,7 @@ would only be recognisable with someone that had the syndicate trait.
 			//Standard faction checks
 			if(EXAMINE_CHECK_FACTION)
 				for(var/faction_i in special_desc_factions)
-					if(faction_i in user.faction)
+					if(user.has_faction(faction_i))
 						composed_message = "You note the following because of your loyalty to <b>[faction_i]</b>: <br>"
 						composed_message += special_desc
 						. += composed_message

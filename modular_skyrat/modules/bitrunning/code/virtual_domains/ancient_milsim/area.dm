@@ -70,3 +70,8 @@
 /area/virtual_domain/ancient_milsim/snpc_exit
 	name = "'Time Of Valor 2' SNPC Base Exit Tunnel"
 	icon_state = "awaycontent17"
+
+/area/virtual_domain/protected_space/ancient_milsim
+	name = "'Time Of Valor 2' Secret Encounter"
+	icon = 'icons/area/areas_away_missions.dmi'
+	icon_state = "awaycontent18"

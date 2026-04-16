@@ -1,6 +1,6 @@
 /datum/storyteller/fragile
-	name = "Fragile (Medium-Low Chaos)"
-	desc = "The Fragile will limit destructive, combat-focused, and chaotic events. \
+	name = "Mid-Low Event/Antag Rolls"
+	desc = "Formerly called Fragile, this storyteller will limit destructive, combat-focused, and chaotic events. \
 	Spawns more events and allows for more combat than the Chill, but remains lower in frequency than Default Andy. It will also repeat events less than the Chill."
 	welcome_text = "Handle with care!"
 

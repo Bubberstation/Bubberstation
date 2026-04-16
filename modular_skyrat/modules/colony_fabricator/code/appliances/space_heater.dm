@@ -67,10 +67,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted, 29)
 	/// lazy-initialized cell stored in the actual heater (so that it can start with one without making a new one every placement)
 	var/obj/item/stock_parts/power_store/cell = /obj/machinery/space_heater::cell
 
-/obj/item/wallframe/wall_heater/Initialize(mapload)
-	. = ..()
-	register_context()
-
 /obj/item/wallframe/wall_heater/after_attach(obj/machinery/space_heater/wall_mounted/attached_to)
 	. = ..()
 	if(!istype(attached_to))

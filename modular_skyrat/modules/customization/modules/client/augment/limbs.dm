@@ -2,7 +2,6 @@
 	category = AUGMENT_CATEGORY_LIMBS
 	allowed_biotypes = MOB_ORGANIC|MOB_ROBOTIC
 	///Hardcoded styles that can be chosen from and apply to limb, if it's true
-	var/uses_robotic_styles = TRUE
 
 /datum/augment_item/limb/apply(mob/living/carbon/human/augmented, character_setup = FALSE, datum/preferences/prefs)
 	if(character_setup)
@@ -31,7 +30,7 @@
 			var/chosen_style = GLOB.robotic_styles_list[prefs.augment_limb_styles[slot]]
 			new_limb.set_icon_static(chosen_style)
 			new_limb.current_style = prefs.augment_limb_styles[slot]
-		new_limb.replace_limb(augmented, special = TRUE)
+		new_limb.replace_limb(augmented)
 		qdel(old_limb)
 
 //HEADS
