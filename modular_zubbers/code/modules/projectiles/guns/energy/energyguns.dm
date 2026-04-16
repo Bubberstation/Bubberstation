@@ -6,8 +6,8 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/sec/tacticool, /obj/item/ammo_casing/energy/disabler/tacticool, /obj/item/ammo_casing/energy/laser/tacticool)
 
 /obj/item/ammo_casing/energy/disabler/tacticool
-  e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
+	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
 /obj/item/ammo_casing/energy/electrode/sec/tacticool
-  e_cost = LASER_SHOTS(2, STANDARD_CELL_CHARGE)
+	e_cost = LASER_SHOTS(2, STANDARD_CELL_CHARGE)
 /obj/item/ammo_casing/energy/laser/tacticool
-  e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
+	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
