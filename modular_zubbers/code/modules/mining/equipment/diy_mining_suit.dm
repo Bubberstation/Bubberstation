@@ -28,6 +28,7 @@
 	if(istype(upgraded_item, /obj/item/clothing/suit))
 		var/obj/item/clothing/suit/upgraded_suit = upgraded_item
 		upgraded_suit.allowed = GLOB.mining_suit_allowed
+		upgraded_suit.flags_inv = NONE
 		exosuit_uses--
 
 	if(istype(upgraded_item, /obj/item/clothing/head))
