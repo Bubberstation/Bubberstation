@@ -1,7 +1,8 @@
-import { type Feature, CheckboxInput, FeatureToggle } from '../../base';
-export const invisible_eyes_toggle: Feature<string>= {
+import { CheckboxInput, type FeatureToggle } from '../../base';
+
+export const be_round_removed: FeatureToggle = {
     name: 'Invisible Eyes',
-    description: 'Whether your eyes are invisible or not',
-    component: FeatureCheckboxinput,
+    description: 'Whether your eyes display on your sprite or not',
+    component: CheckboxInput
 
 };
