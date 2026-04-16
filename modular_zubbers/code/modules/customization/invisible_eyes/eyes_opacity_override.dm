@@ -1,12 +1,13 @@
-/datum/preference/toggle/mutant_toggle/eyes_opacity
+/datum/preference/toggle/eyes_opacity
 	savefile_key = "feature_eyes_opacity_toggle"
 	relevant_mutant_bodypart = EYE_COLOR
+	default_value = FALSE
 
 /datum/preference/numeric/eyes_opacity
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "feature_eyes_opacity"
-	relevant_mutant_bodypart = EYE_COLOR	
+	relevant_mutant_bodypart = EYE_COLOR
 	maximum = 255
 	minimum = 0
 
