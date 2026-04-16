@@ -2,6 +2,9 @@
 // possinly also make it just not do damage bc sleep is kinda strong
 // damage resistance on the wakeup attack?
 
+/datum/action/cooldown/spell/pointed/void_phase
+	cooldown_time = 50 SECONDS // extra thick cooldown for a very strong teleport ability
+
 /datum/heretic_knowledge_tree_column/void
 	knowledge_tier3 = /datum/heretic_knowledge/spell/void_stealth
 
