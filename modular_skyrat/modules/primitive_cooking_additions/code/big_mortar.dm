@@ -175,7 +175,7 @@
 	if(!tool.grind_results() && !tool.juice_typepath() && !tool.reagents?.total_volume)
 		balloon_alert(user, "can't grind this!")
 		return ITEM_INTERACT_BLOCKING
-    
+
 	if(length(contents) >= maximum_contained_items)
 		balloon_alert(user, "already full!")
 		return ITEM_INTERACT_BLOCKING
