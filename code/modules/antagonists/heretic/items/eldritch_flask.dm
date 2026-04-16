@@ -45,6 +45,11 @@
 		to_chat(living_target, span_warning("You feel a tiny prick!"))
 		COOLDOWN_START(src, drain_cooldown, 5 SECONDS)
 		playsound(src, 'sound/effects/chemistry/catalyst.ogg', 20, TRUE, extrarange = SILENCED_SOUND_EXTRARANGE, falloff_exponent = 10)
+		// BUBBER EDIT ADDITION BEGIN - marks blood as gotten by the phylactery
+		var/datum/reagent/blood/blood = reagents.has_reagent(/datum/reagent/blood)
+		if (blood.data["real_name"] == living_target.real_name)
+			blood.data["phlyacterized"] = TRUE
+		// BUBBER EDIT ADDITION END
 	else
 		to_chat(user, span_warning("You are unable to draw any blood from [living_target]!"))
 	return ITEM_INTERACT_SUCCESS
