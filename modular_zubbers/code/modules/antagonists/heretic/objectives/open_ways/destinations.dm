@@ -208,6 +208,7 @@
 
 	new /obj/item/stack/sheet/mineral/bananium(get_turf(way), bananium_sheet_size)
 
+	playsound(way, 'sound/items/airhorn/airhorn.ogg', 100, TRUE)
 	for(var/mob/living/honk_victim in hearers(6, way))
 		if(issilicon(honk_victim))
 			continue
