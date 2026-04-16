@@ -23,7 +23,7 @@
 /datum/action/cooldown/spell/paranoias_eye/cast(atom/cast_on)
 	. = ..()
 
-	for (var/mob/living/iter_living in get_hearers_in_range(12, owner)) // medium-large range
+	for (var/mob/living/iter_living in get_hearers_in_range(20, owner)) // large range
 		if (IS_HERETIC_OR_MONSTER(iter_living))
 			continue
 		if (iter_living.can_block_magic(antimagic_flags))

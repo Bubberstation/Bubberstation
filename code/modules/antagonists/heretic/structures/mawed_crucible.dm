@@ -279,7 +279,7 @@
 		//to_chat(user, span_danger("You down some of the liquid from [src]. The taste causes you to retch, and the glass vanishes.")) // BUBBER EDIT REMOVAL - Allows for potion shop gimmicks
 		//user.reagents?.add_reagent(/datum/reagent/eldritch, 10) // BUBBER EDIT REMOVAL - Allows for potion shop gimmicks
 		to_chat(user, span_warning("The taste is disgusting, but you force down the potion anyway.")) // BUBBER EDIT ADDITION - Allows for potion shop gimmicks
-		potion_effect(src) // BUBBER EDIT ADDITION - Allows for potion shop gimmicks
+		potion_effect(user) // BUBBER EDIT ADDITION - Allows for potion shop gimmicks
 		user.adjust_disgust(50)
 		qdel(src)
 		return TRUE

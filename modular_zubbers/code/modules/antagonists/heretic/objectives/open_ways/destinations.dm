@@ -136,7 +136,7 @@
 	while (to_spawn-- > 0)
 		var/mob/living/basic/heretic_summon/typepath = pick_weight(potential_mob_spawns)
 		var/mob/living/monster = new typepath(pick(potential_locations))
-		monster.set_faction(FACTION_HERETIC_WILD)
+		monster.set_faction(list(FACTION_HERETIC_WILD))
 
 	var/to_spawn_organs = organs_to_spawn
 	while (to_spawn_organs-- > 0)
@@ -174,7 +174,7 @@
 	var/to_spawn = mobs_to_spawn
 	while (to_spawn-- > 0)
 		var/mob/living/maid = new /mob/living/basic/heretic_summon/maid_in_the_mirror(pick(potential_locations))
-		maid.set_faction(FACTION_HERETIC_WILD)
+		maid.set_faction(list(FACTION_HERETIC_WILD))
 
 	var/to_spawn_organs = books_to_spawn
 	while (to_spawn_organs-- > 0)
@@ -277,7 +277,7 @@
 	while (to_spawn-- > 0)
 		var/obj/effect/anomaly/typepath = pick_weight(potential_mob_spawns)
 		var/mob/living/monster = new typepath(pick(potential_locations))
-		monster.set_faction(FACTION_HERETIC_WILD)
+		monster.set_faction(list(FACTION_HERETIC_WILD))
 
 /datum/way_destination/emp
 	name = "The Soulstorm"

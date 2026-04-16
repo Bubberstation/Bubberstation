@@ -68,7 +68,7 @@
 		account.adjust_money(-to_steal, "##^@%%$^")
 		if (curr_mob != null)
 			to_chat(curr_mob, span_warning("You feel the cold grasp of capitalism gripping your finanaces and tearing them away... someone just stole some of your money through the mansus!"))
-			curr_mob?.balloon_alert(curr_mob, "money stolen!")
+			curr_mob.balloon_alert(curr_mob, "money stolen!")
 
 		// no space cash bc space cash is picky
 		var/obj/item/holochip/cash = new /obj/item/holochip(loc)
