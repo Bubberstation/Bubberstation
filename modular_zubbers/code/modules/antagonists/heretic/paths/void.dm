@@ -313,7 +313,7 @@
 	color = "#00c878"
 	metabolization_rate = 0.75
 	overdose_threshold = 0
-	reagent_flags = NONE
+	chemical_flags = NONE
 	process_flags = REAGENT_ORGANIC|REAGENT_SYNTHETIC // yes synths. u get healing 2
 
 /datum/heretic_knowledge/spell/void_conduit
