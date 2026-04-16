@@ -310,7 +310,8 @@
 	color = "#00c878"
 	metabolization_rate = 0.75
 	overdose_threshold = 0
-	chemical_flags = REAGENT_ORGANIC|REAGENT_SYNTHETIC // yes synths. u get healing 2
+	reagent_flags = NONE
+	process_flags = REAGENT_ORGANIC|REAGENT_SYNTHETIC // yes synths. u get healing 2
 
 /datum/heretic_knowledge/spell/void_conduit
 	desc = "Grants you Void Conduit, a spell which summons a pulsing gate to the Void itself. Every pulse freezes the air, while afflicting heathens with void chill and drowsiness. Heretics instead receive low pressure resistance."

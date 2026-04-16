@@ -10,3 +10,6 @@ GLOBAL_DATUM_INIT(noncapital_i, /regex, regex("\\b\[i]\\b", "g")) */ // TODO: RE
 
 /// Crew monitoring console update period. Why is this not a global define, why do I have to define it again
 #define SENSORS_UPDATE_PERIOD (7 SECONDS)
+
+/// Used by the Trickster's Promise heretic spell. This food tastes better and has trace healing chems.
+#define TRAIT_TRICKSTER_TASTE "trickster_taste"
