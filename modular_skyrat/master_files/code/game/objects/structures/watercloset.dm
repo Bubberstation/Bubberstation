@@ -24,7 +24,6 @@
 		washed_towel.set_wet(TRUE)
 		washed_towel.make_used(user, silent = TRUE)
 
-		begin_reclamation()
 		user.visible_message(span_notice("[user] finishes washing [attacking_item] in [src]."), span_notice("You finish washing [washed_towel] in [src], leaving it quite wet."))
 		playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 

@@ -115,7 +115,7 @@
 			span_danger("You bash [src] with [I]!"), null, COMBAT_MESSAGE_RANGE)
 		playsound(src, "sound/items/tools/drill_use.ogg", 80, TRUE, -1)
 		var/obj/machinery/porta_turret/syndicate/pod/toolbox/nri/turret = new(get_turf(loc))
-		turret.faction = list(FACTION_NEUTRAL, FACTION_ERT)
+		turret.add_faction(FACTION_NEUTRAL, FACTION_ERT)
 		qdel(src)
 
 	..()
