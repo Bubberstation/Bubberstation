@@ -2,7 +2,6 @@
 	name = "Paranoia's Eye"
 	desc = "Forces nearby heathens to hallucinate everyone around them as a dangerous heretic, including you. Lasts for one minute. (Can be casted without a focus)"
 	gain_text = "The blinding light of The Open Way blinds them. It would blind me, if not for my own resolve."
-	cost = 1
 	drafting_tier = 1
 	action_to_add = /datum/action/cooldown/spell/paranoias_eye
 

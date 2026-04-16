@@ -1,6 +1,6 @@
 
 /// The number of influences spawned per heretic
-#define NUM_INFLUENCES_PER_HERETIC 5
+#define NUM_INFLUENCES_PER_HERETIC 10 // BUBBER EDIT CHANGE - was 5
 
 /**
  * #Reality smash tracker
@@ -255,7 +255,8 @@
 	user.cut_overlay(draining_overlay)
 
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
-	heretic_datum.adjust_knowledge_points(knowledge_to_gain)
+	heretic_datum.adjust_drained(1) // BUBBER EDIT ADDITION
+	//heretic_datum.adjust_knowledge_points(knowledge_to_gain) // BUBBER EDIT REMOVAL - influences no longer grant knowledge
 
 	// Aaand now we delete it
 	after_drain(user)

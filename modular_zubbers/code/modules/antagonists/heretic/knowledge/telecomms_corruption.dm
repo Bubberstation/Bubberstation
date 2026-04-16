@@ -10,7 +10,6 @@ GLOBAL_VAR_INIT(processors_cursed, FALSE)
 		/obj/item/organ/ears,
 		/obj/item/stack/ore/bluespace_crystal
 	)
-	cost = 2
 	research_tree_icon_path = 'icons/obj/machines/telecomms.dmi'
 	research_tree_icon_state = "blackbox_b"
 	drafting_tier = 1

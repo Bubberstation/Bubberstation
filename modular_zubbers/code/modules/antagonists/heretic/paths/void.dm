@@ -107,7 +107,15 @@
 	RegisterSignal(owner, COMSIG_USER_PRE_ITEM_ATTACK, PROC_REF(before_attack))
 	RegisterSignal(owner, COMSIG_USER_ITEM_INTERACTION, PROC_REF(on_item_interaction))
 	RegisterSignal(owner, COMSIG_LIVING_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
+	RegisterSignal(owner, COMSIG_MOB_BEFORE_SPELL_CAST, PROC_REF(before_spell_cast))
 	return TRUE
+
+/datum/status_effect/void_stealth/proc/before_spell_cast(datum/source, datum/spell)
+	SIGNAL_HANDLER
+	if(!istype(spell, /datum/action/cooldown/spell/void_stealth))
+		owner.balloon_alert(owner, "cant cast spells while cloaked!")
+		return SPELL_CANCEL_CAST
+
 
 /datum/status_effect/void_stealth/on_remove()
 	// Remove traits and modifiers
@@ -119,7 +127,8 @@
 		COMSIG_LIVING_CHECK_BLOCK,
 		COMSIG_USER_PRE_ITEM_ATTACK,
 		COMSIG_USER_ITEM_INTERACTION,
-		COMSIG_LIVING_UNARMED_ATTACK
+		COMSIG_LIVING_UNARMED_ATTACK,
+		COMSIG_MOB_BEFORE_SPELL_CAST
 	))
 
 /// Signal proc for [COMSIG_USER_PRE_ITEM_ATTACK], disallows the use of weapons while stealth is active
@@ -166,7 +175,7 @@
 	return TRUE // self cast
 
 /datum/status_effect/void_prison
-	var/healing_per_second = 2
+	var/healing_per_second = -2
 
 /datum/status_effect/void_prison/tick(seconds_between_ticks)
 	. = ..()
@@ -243,6 +252,7 @@
 			duration -= bonus_sleepy_time
 		should_reduce_timer_on_wakeup = FALSE
 		owner.SetSleeping(0)
+		owner.adjust_drowsiness(-60 SECONDS)
 		UnregisterSignal(owner, list(COMSIG_MOB_STATCHANGE, COMSIG_LIVING_CHECK_BLOCK))
 		if (!iscarbon(owner))
 			return

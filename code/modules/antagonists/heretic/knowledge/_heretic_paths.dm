@@ -370,13 +370,14 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 	for(var/drafting_tier in 1 to length(shop_knowledge))
 		var/unlocked_by = shop_unlock_order[drafting_tier]
 		var/list/eligible_tier = shop_knowledge[drafting_tier]
-		for(var/knowledge_type in eligible_tier)
+		for(var/datum/heretic_knowledge/knowledge_type as anything in eligible_tier) // BUBBER EDIT CHANGE - was for(var/knowledge_type in eligible_tier)
 			shop[knowledge_type] = make_knowledge_entry(
 				knowledge_type,
 				null,
 				HERETIC_KNOWLEDGE_SHOP,
 				drafting_tier,
-				shop_costs[drafting_tier],
+				//shop_costs[drafting_tier],// BUBBER EDIT CHANGE - based on types now
+				knowledge_type::drafting_cost ? knowledge_type::drafting_cost : shop_costs[drafting_tier] // BUBBER EDIT ADDITION
 			)
 			var/shop_id = shop[knowledge_type][HKT_ID]
 			heretic_research_tree[unlocked_by][HKT_NEXT] |= shop_id
@@ -388,7 +389,7 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 
 	var/gun_path = /datum/heretic_knowledge/rifle
 	var/ammo_path = /datum/heretic_knowledge/rifle_ammo
-	shop[ammo_path] = make_knowledge_entry(ammo_path, null, HERETIC_KNOWLEDGE_SHOP, 2, /datum/heretic_knowledge/rifle_ammo::cost) // BUBBER EDIT CHANGE - was shop[ammo_path] = make_knowledge_entry(ammo_path, null, HERETIC_KNOWLEDGE_SHOP, 2)
+	shop[ammo_path] = make_knowledge_entry(ammo_path, null, HERETIC_KNOWLEDGE_SHOP, 2, /datum/heretic_knowledge/rifle_ammo::drafting_cost) // BUBBER EDIT CHANGE - was shop[ammo_path] = make_knowledge_entry(ammo_path, null, HERETIC_KNOWLEDGE_SHOP, 2)
 	var/ammo_id = shop[ammo_path][HKT_ID]
 	shop[gun_path][HKT_NEXT] |= ammo_id
 

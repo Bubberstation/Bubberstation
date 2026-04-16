@@ -1,8 +1,49 @@
 /datum/antagonist/heretic
-	knowledge_points = 12 + 1
+	knowledge_points = 10 + 1 // we always have to spend one to unlock a path
 	unlimited_blades = TRUE
 	passive_level = 0
+	passive_gain_timer = 70 MINUTES // passive progression is VERY... SLOW...
 	var/max_combat_capability = 100
+	/// How many influences have we personally drained?
+	var/drained_num = 0
+	var/datum/objective/drain_influences/drain_obj
+	var/met_drained_num = FALSE
+	var/datum/objective/open_ways/way_obj
+	var/ways_opened = 0
+	var/met_ways_num = FALSE
+
+/datum/antagonist/heretic/forge_primary_objectives(heretic_research_tree)
+	// total override
+
+	var/datum/objective/drain_influences/drain_obj = new()
+	drain_obj.owner = owner
+	src.drain_obj = drain_obj
+	objectives += drain_obj
+
+	var/datum/objective/open_ways/way_obj = new()
+	way_obj.owner = owner
+	src.way_obj = way_obj
+	objectives += way_obj
+
+/datum/antagonist/heretic/proc/adjust_drained(adjustment)
+	drained_num += adjustment
+	if (!drain_obj)
+		return
+	if (drained_num >= drain_obj.target_amount && !met_drained_num)
+		met_drained_num = TRUE
+		to_chat(owner, span_hypnophrase("The SEAMS of the WORLD have REVEALED THEMSELVES TO YOU. You have risen HIGH! AND you SEE!!"))
+		// its important we only give heretics very limtied progression. while progression is nice, unchecked progression ruins the way nonantags interact with them
+		adjust_knowledge_points(2)
+
+/datum/antagonist/heretic/proc/adjust_ways_opened(adjustment)
+	ways_opened += adjustment
+	if (!way_obj)
+		return
+	if (ways_opened >= way_obj.target_amount && !met_ways_num)
+		met_ways_num = TRUE
+		to_chat(owner, span_hypnophrase("Your mind DAZZLES with the LIGHT! You have seen MORE of the MANSUS with your OWN EYES than ANY MORTAL could ever DREAM!!"))
+		// its important we only give heretics very limtied progression. while progression is nice, unchecked progression ruins the way nonantags interact with them
+		adjust_knowledge_points(4)
 
 /datum/antagonist/heretic/proc/get_allocated_combat_points()
 	var/total = 0
