@@ -100,3 +100,6 @@
 		blood_data += list(list(account, account.account_balance, iter_blood.holder.get_reagent_amount(/datum/reagent/blood), iter_blood.data["phlyacterized"], curr_mob, iter_blood.holder))
 
 	return blood_data
+
+#undef BLOOD_AMOUNT_TO_STEAL_PERCENT_RATIO
+#undef PHYLACTERY_ACCOUNT_MIN
