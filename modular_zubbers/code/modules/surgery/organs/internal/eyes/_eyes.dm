@@ -31,3 +31,5 @@
 	eye_icon_state = "motheyes_white"
 /obj/item/organ/eyes/robotic/glow/moth
 	eye_icon_state = "motheyes_white"
+
+if(HAS_TRAIT(owner, TRAIT_INVISIBLE_EYES))
