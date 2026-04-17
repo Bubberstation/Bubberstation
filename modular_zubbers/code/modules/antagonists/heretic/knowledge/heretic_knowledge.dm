@@ -2,3 +2,5 @@
 	var/combat_specialty = 0
 	/// If not null, this will override the default shop drafting costs.
 	var/drafting_cost
+	/// If TRUE, will not trigger CI failures - this has been intentionally made unreachable.
+	var/unreachable

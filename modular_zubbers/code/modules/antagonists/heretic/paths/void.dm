@@ -34,6 +34,9 @@
 		"Void Conduit is your signature ability. It freezes the air around it, while putting nearby enemies to sleep. Use it to expand your chilled domain and incapacitate attackers.",
 	)
 
+/datum/heretic_knowledge/spell/void_pull
+	unreachable = TRUE
+
 /datum/heretic_knowledge/spell/void_stealth
 	name = "Cloak of the dark"
 	desc = "Cloaks you in inpermeable void, rendering you invisible to observers. You chill the air around you in this state, so don't stay in \
