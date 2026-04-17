@@ -176,3 +176,13 @@
 	to_spawn[pick_weight(bonus_items)] = 1
 
 	generate_items_inside(to_spawn, src)
+
+/datum/supply_pack/security/armory/tacticool_laser_crate
+	name = "Tacticool energy gun crate"
+	desc = "Three tacticool energy guns to express your individuality compared to all those other energy gun users!"
+	cost = CARGO_CRATE_VALUE * 8
+	contains = list(
+		/obj/item/gun/energy/tacticool,
+		/obj/item/gun/energy/tacticool,
+		/obj/item/gun/energy/tacticool,
+	)
