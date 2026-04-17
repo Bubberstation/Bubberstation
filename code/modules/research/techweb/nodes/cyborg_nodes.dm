@@ -184,6 +184,7 @@
 		"ci-reviver",
 		"ci-antidrop",
 		"ci-antistun",
+		"ci-tacvisor",
 		"ci-herculean", // BUBBER EDIT - ADDITION
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)

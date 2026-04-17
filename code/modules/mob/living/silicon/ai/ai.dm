@@ -173,8 +173,11 @@
 
 /mob/living/silicon/ai
 	var/selected_display_name
+	var/mutable_appearance/portrait_appearance
 
 /mob/living/silicon/ai/proc/set_core_display_icon(input, client/C)
+	portrait_appearance = null
+
 	var/preferred_choice
 	if(input)
 		preferred_choice = input
@@ -734,6 +737,15 @@
 
 	to_chat(src, "Camera lights activated.")
 
+// Allows AIs to turn their hologram instead on alt-move
+/mob/living/silicon/ai/keybind_face_direction(direction)
+	var/obj/machinery/holopad/active_pad = current
+	if(istype(active_pad) && active_pad.masters[src])
+		var/obj/effect/overlay/holo_pad_hologram/ai_holo = active_pad.masters[src]
+		ai_holo.setDir(direction)
+		return
+	return ..()
+
 //AI_CAMERA_LUMINOSITY
 
 /mob/living/silicon/ai/proc/light_cameras()
@@ -1023,6 +1035,8 @@
 	button_icon_state = "ai_shell"
 
 /datum/action/innate/deploy_shell/Trigger(mob/clicker, trigger_flags)
+	if(!..())
+		return
 	var/mob/living/silicon/ai/AI = owner
 	if(!AI)
 		return
@@ -1036,6 +1050,8 @@
 	var/mob/living/silicon/robot/last_used_shell
 
 /datum/action/innate/deploy_last_shell/Trigger(mob/clicker, trigger_flags)
+	if(!..())
+		return
 	if(!owner)
 		return
 	if(last_used_shell)
@@ -1225,7 +1241,7 @@
 /mob/living/silicon/ai/update_overlays()
 	. = ..()
 
-	var/screen_state
+	var/screen_state // Display
 	var/lights_state // Lights
 
 	if(!client && !mind)
@@ -1244,16 +1260,26 @@
 		else
 			screen_state = "ai_dead"
 
-		lights_state = "lights_dead"
+		var/mutable_appearance/screen_overlay = mutable_appearance(icon, screen_state)
+		screen_overlay.appearance_flags = RESET_COLOR | KEEP_APART
+		. += screen_overlay
 
+		lights_state = "lights_dead"
 		set_light(0.2, 0.2, LIGHT_COLOR_FAINT_CYAN)
 
 	else
-		screen_state = display_icon_override || "ai"
-
 		lights_state = "lights_active"
-
 		set_light(0.3, 0.3, LIGHT_COLOR_CYAN)
+
+		if(portrait_appearance)
+			. += portrait_appearance
+		else
+			screen_state = display_icon_override || "ai"
+			var/mutable_appearance/screen_overlay = mutable_appearance(icon, screen_state)
+			screen_overlay.layer = FLOAT_LAYER + 0.1
+			screen_overlay.appearance_flags = RESET_COLOR | KEEP_APART
+			. += screen_overlay
+			. += emissive_appearance(icon, screen_state, src)
 
 
 	// Lights
@@ -1263,15 +1289,6 @@
 	. += lights_overlay
 
 	. += emissive_appearance(icon, lights_state, src)
-
-
-	// Display
-	var/mutable_appearance/screen_overlay = mutable_appearance(icon, screen_state)
-	screen_overlay.layer = FLOAT_LAYER + 0.1
-	screen_overlay.appearance_flags = RESET_COLOR | KEEP_APART
-	. += screen_overlay
-
-	. += emissive_appearance(icon, screen_state, src)//AI glow!
 
 
 #undef HOLOGRAM_CHOICE_CHARACTER
