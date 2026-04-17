@@ -24,8 +24,16 @@
 		FORGING_WEAPON_REFORGING_AVERAGE_WAIT,
 		CALLBACK(src, TYPE_PROC_REF(/obj/item/forging/reagent_weapon, quench_item)))
 
-/obj/item/forging/reagent_weapon/quench_item()
+/obj/item/forging/reagent_weapon/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
+	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
+	if(!isnull(smith_component))
+		smith_component.reset()
+		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio)
 /obj/item/forging/reagent_weapon/passive_cool_item()
+	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
+	if(!isnull(smith_component))
+		smith_component.reset()
+		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio, TRUE)
 /obj/item/forging/reagent_weapon/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
 	var/new_force_penalty = 0
 	if(completion_ratio < 1 || force_incomplete_penalty)

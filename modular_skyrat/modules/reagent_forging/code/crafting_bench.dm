@@ -35,7 +35,7 @@
 		/datum/crafting_bench_recipe/buckler,
 		/datum/crafting_bench_recipe/bow,
 		/datum/crafting_bench_recipe/wearable/handcuffs,
-		/datum/crafting_bench_recipe/borer_cage,
+		////datum/crafting_bench_recipe/borer_cage,
 		/datum/crafting_bench_recipe/coil,
 		/datum/crafting_bench_recipe/seed_mesh,
 		/datum/crafting_bench_recipe/centrifuge,

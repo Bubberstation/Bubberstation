@@ -1,13 +1,8 @@
-/// Minimum and maximum force multiplier if a weapon contains incomplete parts
-#define MIN_INCOMPLETE_DAMAGE_MULT 0.1
-#define MAX_INCOMPLETE_DAMAGE_MULT 0.5
-//ditto, with staff reagents
-#define MIN_INCOMPLETE_STAFF_INJECT_MULT 0.2
-#define MAX_INCOMPLETE_STAFF_INJECT_MULT 0.5
-
 /datum/crafting_bench_recipe
 	/// The name of the recipe to show
 	var/recipe_name = "generic debug recipe"
+	/// What appears in the infobox when viewed in the crafting menu
+	var/recipe_desc = "generic debug recipe"
 	/// The items required to create the resulting item
 	var/list/recipe_requirements
 	/// What the end result of this recipe should be
@@ -95,6 +90,10 @@
 
 /datum/crafting_bench_recipe/proc/apply_perfect_and_completion_bonuses(list/things_to_use, obj/item/product)
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// WEAPON COMPLETION /////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /datum/crafting_bench_recipe/weapon_completion_recipe //Exists so I don't have to modify the code too much for weapon completion
 	recipe_name = "generic weapon completion recipe (should not be visible)"
 	recipe_requirements = list(
@@ -128,120 +127,103 @@
 		var/obj/item/forging/weapon/weaponforged = product
 		weaponforged.apply_perfect_and_completion_bonuses(pieces_completion_amount, weapon_head.perfect_ratio)
 
-/datum/crafting_bench_recipe/wearable/plate_helmet
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// ARMOR COMPLETION //////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/crafting_bench_recipe/wearable/plate_armor/plate_helmet
 	recipe_name = "plate helmet"
+	recipe_desc = "Protective headgear. Smithing oil and perfected metalworking will make it even more protective."
 	recipe_requirements = list(
-		/obj/item/forging/complete/plate = 4,
+		/obj/item/forging/complete/plate = 2,
 	)
 	resulting_item = /obj/item/clothing/head/helmet/forging_plate_helmet
 	time_to_assemble = 1.5 SECONDS
 
-/datum/crafting_bench_recipe/wearable/plate_vest
+/datum/crafting_bench_recipe/wearable/plate_armor/plate_vest
 	recipe_name = "plate vest"
+	recipe_desc = "Protective chestplating. Smithing oil and perfected metalworking will make it even more protective."
 	recipe_requirements = list(
-		/obj/item/forging/complete/plate = 6,
+		/obj/item/forging/complete/plate = 3,
 	)
 	resulting_item = /obj/item/clothing/suit/armor/forging_plate_armor
 	time_to_assemble = 3 SECONDS
 
-/datum/crafting_bench_recipe/wearable/plate_gloves
+/datum/crafting_bench_recipe/wearable/plate_armor/plate_gloves
 	recipe_name = "plate gloves"
+	recipe_desc = "Protective bracers. Smithing oil and perfected metalworking will make it even more protective."
 	recipe_requirements = list(
-		/obj/item/forging/complete/plate = 2,
+		/obj/item/forging/complete/plate = 1,
 	)
 	resulting_item = /obj/item/clothing/gloves/forging_plate_gloves
 	time_to_assemble = 2 SECONDS
 
-/datum/crafting_bench_recipe/wearable/plate_boots
+/datum/crafting_bench_recipe/wearable/plate_armor/plate_boots
 	recipe_name = "plate boots"
+	recipe_desc = "Protective greaves. Smithing oil and perfected metalworking will make it even more protective."
 	recipe_requirements = list(
-		/obj/item/forging/complete/plate = 4,
+		/obj/item/forging/complete/plate = 2,
 	)
 	resulting_item = /obj/item/clothing/shoes/forging_plate_boots
 	time_to_assemble = 2 SECONDS
 
-/datum/crafting_bench_recipe/wearable/horse_shoes
+/datum/crafting_bench_recipe/wearable/plate_armor/horse_shoes
 	recipe_name = "horse shoes"
+	recipe_desc = "Protective... horse shoes? Smithing oil and perfected metalworking will make it even more protective."
 	recipe_requirements = list(
-		/obj/item/forging/complete/chain = 4,
+		/obj/item/forging/complete/chain = 1,
 	)
 	resulting_item = /obj/item/clothing/shoes/horseshoe/reagent_clothing
 	time_to_assemble = 1.5 SECONDS
 
 /datum/crafting_bench_recipe/wearable/ring
 	recipe_name = "ring"
+	recipe_desc = "A small ring that imbues the wearer with reagents. Perfected metalworking will make it imbue more reagents at once. Smithing oil increases its durability."
 	recipe_requirements = list(
-		/obj/item/forging/complete/chain = 2,
+		/obj/item/forging/complete/chain = 1,
 	)
 	resulting_item = /obj/item/clothing/gloves/ring/reagent_clothing
 	time_to_assemble = 4 SECONDS
 
 /datum/crafting_bench_recipe/wearable/collar
 	recipe_name = "collar"
+	recipe_desc = "A small collar that imbues the wearer with reagents. Perfected metalworking will make it imbue more reagents at once. Smithing oil increases its durability."
 	recipe_requirements = list(
-		/obj/item/forging/complete/chain = 3,
+		/obj/item/forging/complete/chain = 2,
 	)
 	resulting_item = /obj/item/clothing/neck/collar/reagent_clothing
 	time_to_assemble = 3 SECONDS
 
 /datum/crafting_bench_recipe/wearable/handcuffs
 	recipe_name = "handcuffs"
+	recipe_desc = "A pair of handcuffs. Perfected metalworking will make it imbue more reagents at once. Smithing oil will make it harder to break."
 	recipe_requirements = list(
-		/obj/item/forging/complete/chain = 5,
+		/obj/item/forging/complete/chain = 3,
 	)
 	resulting_item = /obj/item/restraints/handcuffs/reagent_clothing
 	time_to_assemble = 5 SECONDS
 
-/datum/crafting_bench_recipe/borer_cage
-	recipe_name = "cortical borer cage"
-	recipe_requirements = list(
-		/obj/item/forging/complete/plate = 6,
-	)
-	resulting_item = /obj/item/cortical_cage
-	time_to_assemble = 2 SECONDS
-
-/datum/crafting_bench_recipe/pavise
-	recipe_name = "pavise"
-	recipe_requirements = list(
-		/obj/item/forging/complete/plate = 8,
-	)
-	resulting_item = /obj/item/shield/buckler/reagent_weapon/pavise
-	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
-	time_to_assemble = 6 SECONDS
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// SPECIAL WEAPONS ///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/crafting_bench_recipe/buckler
 	recipe_name = "buckler"
 	recipe_requirements = list(
-		/obj/item/forging/complete/plate = 5,
+		/obj/item/forging/complete/plate = 2,
 	)
 	resulting_item = /obj/item/shield/buckler/reagent_weapon
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 	time_to_assemble = 3 SECONDS
 
-/datum/crafting_bench_recipe/coil
-	recipe_name = "coil"
+/datum/crafting_bench_recipe/pavise
+	recipe_name = "pavise"
 	recipe_requirements = list(
-		/obj/item/forging/complete/chain = 2,
+		/obj/item/forging/complete/plate = 4,
 	)
-	resulting_item = /obj/item/forging/coil
-	time_to_assemble = 2 SECONDS
-
-/datum/crafting_bench_recipe/seed_mesh
-	recipe_name = "seed mesh"
-	recipe_requirements = list(
-		/obj/item/forging/complete/plate = 1,
-		/obj/item/forging/complete/chain = 2,
-	)
-	resulting_item = /obj/item/seed_mesh
-	time_to_assemble = 10 SECONDS
-
-/datum/crafting_bench_recipe/centrifuge
-	recipe_name = "centrifuge"
-	recipe_requirements = list(
-		/obj/item/forging/complete/plate = 1,
-	)
-	resulting_item = /obj/item/reagent_containers/cup/primitive_centrifuge
-	time_to_assemble = 7 SECONDS
+	resulting_item = /obj/item/shield/buckler/reagent_weapon/pavise
+	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
+	time_to_assemble = 6 SECONDS
 
 /datum/crafting_bench_recipe/bokken
 	recipe_name = "bokken"
@@ -260,6 +242,44 @@
 	resulting_item = /obj/item/forging/incomplete_bow
 	time_to_assemble = 4 SECONDS
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// MISC  COMPLETION //////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/crafting_bench_recipe/borer_cage
+	recipe_name = "cortical borer cage"
+	recipe_requirements = list(
+		/obj/item/forging/complete/plate = 3,
+	)
+	resulting_item = /obj/item/cortical_cage
+	time_to_assemble = 2 SECONDS
+
+
+/datum/crafting_bench_recipe/coil
+	recipe_name = "coil"
+	recipe_requirements = list(
+		/obj/item/forging/complete/chain = 1,
+	)
+	resulting_item = /obj/item/forging/coil
+	time_to_assemble = 2 SECONDS
+
+/datum/crafting_bench_recipe/seed_mesh
+	recipe_name = "seed mesh"
+	recipe_requirements = list(
+		/obj/item/forging/complete/plate = 1,
+		/obj/item/forging/complete/chain = 1,
+	)
+	resulting_item = /obj/item/seed_mesh
+	time_to_assemble = 10 SECONDS
+
+/datum/crafting_bench_recipe/centrifuge
+	recipe_name = "centrifuge"
+	recipe_requirements = list(
+		/obj/item/forging/complete/plate = 1,
+	)
+	resulting_item = /obj/item/reagent_containers/cup/primitive_centrifuge
+	time_to_assemble = 7 SECONDS
 
 /datum/crafting_bench_recipe/empty_circuit
 	recipe_name = "circuit"
