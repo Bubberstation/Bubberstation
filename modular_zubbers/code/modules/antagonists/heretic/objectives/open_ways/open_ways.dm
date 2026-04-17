@@ -1,4 +1,4 @@
-#define NUM_WAYS_PER_HERETIC 3
+#define NUM_WAYS_PER_HERETIC 4
 #define OPENING_DURATION 60 SECONDS
 
 // ideas
@@ -233,7 +233,7 @@
 
 	var/static/list/potential_uncommoner_items = list(
 		/obj/item/restraints/handcuffs/cable/zipties,
-		/obj/item/melee/baton,
+		/obj/item/melee/baton/security,
 		/obj/item/circular_saw,
 		/obj/item/scalpel,
 		/obj/item/clothing/gloves/color/yellow,

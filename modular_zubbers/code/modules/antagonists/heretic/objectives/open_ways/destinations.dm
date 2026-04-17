@@ -281,12 +281,12 @@
 
 /datum/way_destination/emp
 	name = "The Soulstorm"
-	desc = "Those that miss the bone-gates and find themselves lost in the mansus may alternately find this maelstrom of eldritch energy. \
+	desc = "Those that miss the bone-gates and find themselves lost in the Mansus may alternately find this maelstrom of eldritch energy. \
 	Under the patronage of the Aristocrat, the soulstorm is a manifestation of despair, dread, and the soul-void of these poor souls that were lost. \
 	Exceedingly dangerous. This way may not remain safe for long."
 	glimpse = "PURPLE MAELSTROMS OF SCREAMING AND LIGHTING AND AN EVERGROWING PRESENCE"
 	glimpse_heretic = "It's hard to look. Screaming, agonizing souls swirl in infinite circles, contorting and writing in every way imaginable. \
-	In the background, the void smiles."
+	In the background, the void smiles. And yet... you still find a glimmer of Light."
 	spawn_text = "and just before it closes fully a strand from the soulstorm itself strikes the way, unleashing horrible energies!"
 
 /datum/way_destination/emp/open(obj/effect/unopened_way/way, mob/living/opener)
