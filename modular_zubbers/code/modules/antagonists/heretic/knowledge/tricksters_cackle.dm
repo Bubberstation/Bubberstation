@@ -42,8 +42,10 @@
 	var/right_clicked = !!(trigger_flags & TRIGGER_SECONDARY_ACTION)
 	if (right_clicked)
 		mode = show_radial_menu(clicker, clicker, modes_to_images)
+		if (isnull(mode))
+			return TRUE
 		cooldown_time = modes[mode]
-		clicker.balloon_alert(clicker, "selected [lowertext(mode)]")
+		clicker.balloon_alert(clicker, "selected [LOWER_TEXT(mode)]")
 		return TRUE
 	else
 		return ..()
