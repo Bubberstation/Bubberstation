@@ -55,6 +55,8 @@
 	var/location_sanity = 0
 	while((length(ways) + ways_opened) < how_many_can_we_make && location_sanity < 500)
 		var/turf/chosen_location = get_safe_random_important_station_turf_equal_weight()
+		if (isnull(chosen_location))
+			continue // sometimes we get a null bc of unit tests... just ignore it
 
 		for(var/turf/nearby_turf as anything in RANGE_TURFS(1, chosen_location))
 			if(!isopenturf(nearby_turf) || is_type_in_typecache(nearby_turf, /datum/antagonist/heretic::blacklisted_rune_turfs))
