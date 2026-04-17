@@ -5,7 +5,7 @@
 #define HIDDEN_SCANNER (1<<0)
 #define HIDDEN_PANDEMIC (1<<1)
 #define HIDDEN_BOOK (1<<2)
-#define HIDDEN_MEDHUD (1<<2) // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
+#define HIDDEN_MEDHUD (1<<3) // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 
 //Bitfield for Visibility Flags
 DEFINE_BITFIELD(visibility_flags, list(
