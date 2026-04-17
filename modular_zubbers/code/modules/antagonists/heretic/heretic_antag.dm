@@ -3,6 +3,7 @@
 	unlimited_blades = TRUE
 	passive_level = 0
 	passive_gain_timer = 70 MINUTES // passive progression is VERY... SLOW...
+	ui_name = "AntagInfoHereticV2"
 	var/max_combat_capability = 100
 	/// How many influences have we personally drained?
 	var/drained_num = 0
@@ -68,6 +69,8 @@
 	. = ..()
 
 	.["combat_points"] = get_allocated_combat_points()
+	.["influences_drained"] = drained_num
+	.["ways_opened"] = ways_opened
 
 /datum/antagonist/heretic/should_show_aura()
 	return FALSE // no aura thx

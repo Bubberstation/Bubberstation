@@ -1,3 +1,7 @@
+/datum/heretic_knowledge/spell/space_phase
+	desc = "Grants you Space Phase, a spell that allows you to move freely through space. \
+		You can only phase in and out when you are on a space or misc turf. Has a short windup period before activating."
+
 /datum/action/cooldown/spell/jaunt/space_crawl/before_cast(atom/cast_on)
 	. = ..()
 

@@ -238,12 +238,20 @@
 		/obj/item/scalpel,
 		/obj/item/clothing/gloves/color/yellow,
 		/obj/item/clothing/glasses/sunglasses,
-		/obj/item/stock_parts/subspace/crystal,
+	)
+
+	// harder items
+	var/static/list/potential_secondary_items = list(
+		/obj/item/assembly/flash,
+		/mob/living/carbon/human,
+		/obj/item/flashlight/seclite,
+		/obj/item/stock_parts/subspace/crystal
 	)
 
 	open_requirements[pick(potential_organs)] += 1
 	open_requirements[pick(potential_easy_items)] += 1
 	open_requirements[pick(potential_uncommoner_items)] += 1
+	open_requirements[pick(potential_secondary_items)] += 1
 
 #undef NUM_WAYS_PER_HERETIC
 #undef OPENING_DURATION

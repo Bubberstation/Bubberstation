@@ -101,10 +101,10 @@
 				owner.balloon_alert(owner, "too far!")
 				return FALSE
 			if (!isitem(cast_on))
-				owner.balloon_alert("not an item!")
+				owner.balloon_alert(owner, "not an item!")
 				return FALSE
 			if (cast_on.light != null)
-				owner.balloon_alert("already luminous!")
+				owner.balloon_alert(owner, "already luminous!")
 				return FALSE
 			cast_on.set_light(
 				3,
