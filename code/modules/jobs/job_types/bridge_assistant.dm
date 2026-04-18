@@ -32,8 +32,10 @@
 	)
 	rpg_title = "Royal Guard"
 	allow_bureaucratic_error = FALSE
-	// BUBBER EDIT - Previous: job_flags = STATION_JOB_FLAGS | JOB_ANTAG_BLACKLISTED | JOB_CANNOT_OPEN_SLOTS
+	// BUBBER EDIT START
+	// - Previous: job_flags = STATION_JOB_FLAGS | JOB_ANTAG_BLACKLISTED | JOB_CANNOT_OPEN_SLOTS
 	job_flags = STATION_JOB_FLAGS | JOB_ANTAG_BLACKLISTED | HEAD_OF_STAFF_JOB_FLAGS
+	// BUBBER EDIT END
 	human_authority = JOB_AUTHORITY_NON_HUMANS_ALLOWED
 
 /obj/effect/landmark/start/bridge_assistant
@@ -87,7 +89,7 @@
 	l_pocket = /obj/item/gun/energy/e_gun/mini
 	r_pocket = /obj/item/assembly/flash/handheld
 	pda_slot = ITEM_SLOT_BACK
-
+	implants = list(/obj/item/implant/mindshield) //BUBBER EDIT: command staff get mindshields because they are trustworthy
 // Coffeemaker time!
 /datum/job/bridge_assistant/New()
 	. = ..()

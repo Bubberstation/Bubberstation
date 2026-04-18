@@ -87,6 +87,7 @@
 	chameleon_extras = /obj/item/stamp/head/ce
 	skillchips = list(/obj/item/skillchip/job/engineer)
 	pda_slot = ITEM_SLOT_LPOCKET
+	implants = list(/obj/item/implant/mindshield) //BUBBER EDIT: command staff get mindshields because they are trustworthy
 
 /datum/outfit/job/ce/mod
 	name = "Chief Engineer (MODsuit)"

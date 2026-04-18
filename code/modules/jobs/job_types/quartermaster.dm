@@ -54,3 +54,4 @@
 	l_hand = /obj/item/clipboard
 
 	chameleon_extras = /obj/item/stamp/head/qm
+	implants = list(/obj/item/implant/mindshield) //BUBBER EDIT: command staff get mindshields because they are trustworthy

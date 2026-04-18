@@ -78,6 +78,7 @@
 
 	chameleon_extras = /obj/item/stamp/head/rd
 	skillchips = list(/obj/item/skillchip/research_director, /obj/item/skillchip/job/roboticist)
+	implants = list(/obj/item/implant/mindshield) //BUBBER EDIT: command staff get mindshields because they are trustworthy
 
 /datum/outfit/job/rd/mod
 	name = "Research Director (MODsuit)"

@@ -81,6 +81,7 @@
 		/obj/item/stamp/head/cmo,
 		)
 	skillchips = list(/obj/item/skillchip/entrails_reader)
+	implants = list(/obj/item/implant/mindshield) //BUBBER EDIT: command staff get mindshields because they are trustworthy
 
 /datum/outfit/job/cmo/mod
 	name = "Chief Medical Officer (MODsuit)"

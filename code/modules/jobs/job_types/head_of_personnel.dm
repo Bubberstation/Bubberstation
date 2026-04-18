@@ -109,6 +109,7 @@
 		/obj/item/gun/energy/e_gun,
 		/obj/item/stamp/head/hop,
 		)
+	implants = list(/obj/item/implant/mindshield) //BUBBER EDIT: command staff get mindshields because they are trustworthy
 
 /datum/outfit/job/hop/pre_equip(mob/living/carbon/human/H)
 	..()
