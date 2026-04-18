@@ -135,9 +135,12 @@
 	if(CONFIG_GET(flag/native_fov) && native_fov)
 		affected_human.add_fov_trait(type, native_fov)
 
-	// BUBBER EDIT ADDITION - EMISSIVES
+	// BUBBER EDIT ADDITION - EMISSIVES AND OPACITY
 	if (affected_human.emissive_eyes)
 		is_emissive = TRUE
+	if(affected_human.client)
+		alpha = affected_human.client.prefs.read_preference(eyes_opacity)
+
 	// BUBBER EDIT END
 
 	if(call_update)
