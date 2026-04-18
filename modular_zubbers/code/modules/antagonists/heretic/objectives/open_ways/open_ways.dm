@@ -33,7 +33,6 @@
 				/area/station/security/armory,
 				/area/station/engineering/atmos/pumproom,
 				/area/station/medical/medbay/lobby,
-				/area/station/science/xenobiology,
 				/area/station/science/robotics,
 			)
 		important_areas |= typesof(/area/station/security/brig)
