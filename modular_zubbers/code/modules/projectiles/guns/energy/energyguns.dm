@@ -1,7 +1,7 @@
 /obj/item/gun/energy/tacticool
 	name = "tacticool energy gun"
 	desc = "An older edition of a tactical energy gun, clearly having not been maintained very well. The weapon's cell seems to be stressed extremely by it's taser."
-	icon_state = "energytac"
+	icon_state = "tacegun"
 	ammo_x_offset = 2
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/sec/tacticool, /obj/item/ammo_casing/energy/disabler/tacticool, /obj/item/ammo_casing/energy/laser/tacticool)
 
