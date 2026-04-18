@@ -62,9 +62,17 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 	name = "Hephaestus Industries"
 	icon = 'modular_zubbers/icons/mob/augmentation/hsiipc.dmi'
 
+/datum/robotic_style/hifbp
+	name = "Hephaestus Industries FBP"
+	icon = 'modular_zubbers/icons/mob/augmentation/hsifbp.dmi'
+
 /datum/robotic_style/hi2ipc
 	name = "Hephaestus Industries 2.0"
 	icon = 'modular_zubbers/icons/mob/augmentation/hi2ipc.dmi'
+
+/datum/robotic_style/hi2fbp
+	name = "Hephaestus Industries FBP 2.0"
+	icon = 'modular_zubbers/icons/mob/augmentation/hi2fbp.dmi'
 
 /datum/robotic_style/sgmipc
 	name = "Shellguard Munitions Standard Series"
@@ -74,9 +82,25 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 	name = "Ward-Takahashi Manufacturing"
 	icon = 'modular_zubbers/icons/mob/augmentation/wtmipc.dmi'
 
+/datum/robotic_style/wtspirit
+	name = "Ward-Takahashi Manufacturing Spirit"
+	icon = 'modular_zubbers/icons/mob/augmentation/wtmspirit.dmi'
+
+/datum/robotic_style/wtmfbpmasc
+	name = "Ward-Takahashi Manufacturing Masc FBP"
+	icon = 'modular_zubbers/icons/mob/augmentation/wtmfbpmasc.dmi'
+
+/datum/robotic_style/wtmfbpfemme
+	name = "Ward-Takahashi Manufacturing Femme FBP"
+	icon = 'modular_zubbers/icons/mob/augmentation/wtmfbpfemme.dmi'
+
 /datum/robotic_style/xmgipc
 	name = "Xion Manufacturing Group"
 	icon = 'modular_zubbers/icons/mob/augmentation/xmgipc.dmi'
+
+/datum/robotic_style/xmgalt
+	name = "Xion Manufacturing Group Alt"
+	icon = 'modular_zubbers/icons/mob/augmentation/xmgalt.dmi'
 
 /datum/robotic_style/xm2ipc
 	name = "Xion Manufacturing Group 2.0"
@@ -89,6 +113,46 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 /datum/robotic_style/mariinskyipc
 	name = "Mariinsky Ballet Company"
 	icon = 'modular_zubbers/icons/mob/augmentation/mariinskyipc.dmi'
+
+/datum/robotic_style/unmarked
+	name = "Unmarked"
+	icon = 'modular_zubbers/icons/mob/augmentation/unmarked.dmi'
+
+/datum/robotic_style/holy_masc
+	name = "Holy Brass Masc"
+	icon = 'modular_zubbers/icons/mob/augmentation/holy_masc.dmi'
+
+/datum/robotic_style/holy_femme
+	name = "Holy Brass Femme"
+	icon = 'modular_zubbers/icons/mob/augmentation/holy_femme.dmi'
+
+/datum/robotic_style/junktech
+	name = "Junktech"
+	icon = 'modular_zubbers/icons/mob/augmentation/advanced_ghetto.dmi'
+
+/datum/robotic_style/radical
+	name = "Radical"
+	icon = 'modular_zubbers/icons/mob/augmentation/radical.dmi'
+
+/datum/robotic_style/lonestar
+	name = "Lone Star"
+	icon = 'modular_zubbers/icons/mob/augmentation/lonestar.dmi'
+
+/datum/robotic_style/moebius
+	name = "Moebius"
+	icon = 'modular_zubbers/icons/mob/augmentation/moebius.dmi'
+
+/datum/robotic_style/technomancer
+	name = "Technomancer"
+	icon = 'modular_zubbers/icons/mob/augmentation/technomancer.dmi'
+
+/datum/robotic_style/blackshield
+	name = "Blackshield"
+	icon = 'modular_zubbers/icons/mob/augmentation/blackshield.dmi'
+
+/datum/robotic_style/excelsior
+	name = "Excelsior"
+	icon = 'modular_zubbers/icons/mob/augmentation/excelsior.dmi'
 
 /datum/robotic_style/dimorphic // subtype so we don't have to define dimorphic head+chest every single time
 	abstract_type = /datum/robotic_style/dimorphic
