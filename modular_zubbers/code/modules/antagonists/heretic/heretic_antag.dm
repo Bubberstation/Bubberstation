@@ -33,6 +33,7 @@
 	if (drained_num >= drain_obj.target_amount && !met_drained_num)
 		met_drained_num = TRUE
 		to_chat(owner, span_hypnophrase("The SEAMS of the WORLD have REVEALED THEMSELVES TO YOU. You have risen HIGH! AND you SEE!!"))
+		SEND_SOUND(owner, 'sound/effects/magic/knock.ogg')
 		// its important we only give heretics very limtied progression. while progression is nice, unchecked progression ruins the way nonantags interact with them
 		adjust_knowledge_points(2)
 
@@ -43,6 +44,7 @@
 	if (ways_opened >= way_obj.target_amount && !met_ways_num)
 		met_ways_num = TRUE
 		to_chat(owner, span_hypnophrase("Your mind DAZZLES with the LIGHT! You have seen MORE of the MANSUS with your OWN EYES than ANY MORTAL could ever DREAM!!"))
+		SEND_SOUND(owner, 'sound/effects/magic/knock.ogg')
 		// its important we only give heretics very limtied progression. while progression is nice, unchecked progression ruins the way nonantags interact with them
 		adjust_knowledge_points(4)
 
