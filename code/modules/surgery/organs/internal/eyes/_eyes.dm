@@ -138,8 +138,8 @@
 	// BUBBER EDIT ADDITION - EMISSIVES AND OPACITY
 	if (affected_human.emissive_eyes)
 		is_emissive = TRUE
-	if(affected_human.client)
-		eyes_opacity = affected_human.client.prefs?.read_preference(/datum/preference/numeric/eyes_opacity)
+	if(affected_human.client && affected_human.client.prefs)
+		eyes_opacity = affected_human.client.prefs.read_preference(/datum/preference/numeric/eyes_opacity)
 	// BUBBER EDIT END
 
 	if(call_update)
