@@ -13,3 +13,5 @@ GLOBAL_DATUM_INIT(noncapital_i, /regex, regex("\\b\[i]\\b", "g")) */ // TODO: RE
 
 /// Used by the Trickster's Promise heretic spell. This food tastes better and has trace healing chems.
 #define TRAIT_TRICKSTER_TASTE "trickster_taste"
+/// Used by The Blacksmith's Hammer heretic ritual - tracks if their funny hand will emag the next thing they right click with
+#define TRAIT_EMAGGING_HAND "emagging_hand"
