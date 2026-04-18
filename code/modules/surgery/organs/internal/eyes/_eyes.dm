@@ -70,7 +70,7 @@
 
 	//BUBBER EDIT BEGIN
 	///This enables alpha values for eyes, adjusted using preferences
-	var/eyes_opacity =
+	var/eyes_opacity = 255
 	//BUBBER EDIT END
 
 /obj/item/organ/eyes/Initialize(mapload)
