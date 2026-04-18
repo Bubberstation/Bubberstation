@@ -68,6 +68,11 @@
 	/// do these eyes have pupils (or equivalent) that react to light when penlighted.
 	var/light_reactive = TRUE
 
+	//BUBBER EDIT BEGIN
+	///This enables alpha values for eyes, adjusted using preferences
+	var/eyes_opacity = 
+	//BUBBER EDIT END
+
 /obj/item/organ/eyes/Initialize(mapload)
 	. = ..()
 	if (blink_animation)
@@ -298,9 +303,9 @@
 
 	if(isnull(eye_icon_state))
 		return list()
-
-	var/mutable_appearance/eye_left = mutable_appearance(eye_icon, "[eye_icon_state]_l", -EYES_LAYER, parent)
-	var/mutable_appearance/eye_right = mutable_appearance(eye_icon, "[eye_icon_state]_r", -EYES_LAYER, parent)
+	//BUBBER EDIT BEGIN - EYES OPACITY
+	var/mutable_appearance/eye_left = mutable_appearance(eye_icon, "[eye_icon_state]_l", -EYES_LAYER, parent, alpha = eyes_opacity)
+	var/mutable_appearance/eye_right = mutable_appearance(eye_icon, "[eye_icon_state]_r", -EYES_LAYER, parent, alpha = eyes_opacity)
 	var/list/overlays = list(eye_left, eye_right)
 
 	if(!(parent.obscured_slots & HIDEEYES))
@@ -319,23 +324,23 @@
 			overlays += eyelids
 
 	if (scarring & RIGHT_EYE_SCAR)
-		var/mutable_appearance/right_scar = mutable_appearance('icons/mob/human/human_eyes.dmi', "eye_scar_right", -EYES_LAYER, parent)
+		var/mutable_appearance/right_scar = mutable_appearance('icons/mob/human/human_eyes.dmi', "eye_scar_right", -EYES_LAYER, parent, alpha = eyes_opacity)
 		right_scar.color = my_head.draw_color
 		overlays += right_scar
 
 	if (scarring & LEFT_EYE_SCAR)
-		var/mutable_appearance/left_scar = mutable_appearance('icons/mob/human/human_eyes.dmi', "eye_scar_left", -EYES_LAYER, parent)
+		var/mutable_appearance/left_scar = mutable_appearance('icons/mob/human/human_eyes.dmi', "eye_scar_left", -EYES_LAYER, parent, alpha = eyes_opacity)
 		left_scar.color = my_head.draw_color
 		overlays += left_scar
-
-	// BUBBER EDIT START - Customization Emissives
+	//BUBBER EDIT END - EYES OPACITY
+	// BUBBER EDIT START - Customization Emissives and eyes opacity
 	if(is_emissive)
 		var/mutable_appearance/emissive_left = emissive_appearance_copy(eye_left, owner)
 		var/mutable_appearance/emissive_right = emissive_appearance_copy(eye_right, owner)
 
 		overlays += emissive_left
 		overlays += emissive_right
-	// BUBBER EDIT END - Customization Emissives
+	// BUBBER EDIT END - Customization Emissives and eyes opacity
 
 	if(my_head.worn_face_offset)
 		for (var/mutable_appearance/overlay as anything in overlays)
@@ -1222,3 +1227,4 @@
 	desc = "A pair of highly reflective eyes with slit pupils, like those of a cat."
 	pupils_name = "slit pupils"
 	penlight_message = "shine under the pearly light"
+

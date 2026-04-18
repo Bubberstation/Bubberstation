@@ -142,12 +142,7 @@ export const eye_emissives: FeatureToggle = {
   component: CheckboxInput,
 };
 
-export const feature_eyes_opacity_toggle: FeatureToggle = {
-	name: 'Eyes Opacity Override',
-	component: CheckboxInput
-};
-
-export const feature_eyes_opacity: Feature<number> = {
+export const eyes_opacity: Feature<number> = {
   name: 'Eyes Opacity',
   component: FeatureNumberInput,
 };
