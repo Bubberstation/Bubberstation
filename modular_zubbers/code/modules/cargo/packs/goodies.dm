@@ -95,6 +95,12 @@
 	cost = PAYCHECK_CREW * 12
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/rope)
 
+/datum/supply_pack/goody/offstation_deathrattle
+	name = "Off-Station Deathrattle Kit"
+	desc = "Going on an adventure far from the comforts of your station? Unsure you'll make it back in one piece? Kahraman Industries and Nanotrasen present the Off-Station Deathrattle implant! This little chip connected to your vitals will send an automatic distress signal in case of your early demise. It will only work outside of Station areas. Warranty is void if death results from falling into pits or diving into lava or plasma lakes."
+	cost = PAYCHECK_COMMAND * 5
+	contains = list(/obj/item/storage/box/offstation_deathrattle)
+
 /datum/supply_pack/goody/pepperball_gun
 	name = "Pepperball Gun Single-Pack"
 	desc = "Contains one pepperball gun, a non-lethal weapon that fires pepper-filled projectiles."
@@ -157,3 +163,11 @@
 	desc = "Recommended for emergency self-cleaning, passive-aggressive demonstrations, or reminding others that hygiene is, in fact, part of the job."
 	cost = PAYCHECK_LOWER * 3
 	contains = list(/obj/item/soap/deluxe)
+
+/datum/supply_pack/goody/tacticool_laser
+	name = "Tacticool Energy Gun Single-Pack"
+	desc = "Contains one tacticool energy gun, for all your operator needs."
+	cost = PAYCHECK_COMMAND * 6
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/energy/tacticool)
+
