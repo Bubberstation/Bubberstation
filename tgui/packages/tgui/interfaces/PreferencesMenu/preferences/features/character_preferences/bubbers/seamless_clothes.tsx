@@ -11,6 +11,6 @@ export const seamless_heel_type: FeatureChoiced = {
 };
 
 export const seamless_shoe_color: Feature<string> = {
-  name: 'Heel Colour',
+  name: 'Shoe Colour',
   component: FeatureColorInput,
 };
