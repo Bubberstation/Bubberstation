@@ -68,6 +68,11 @@
 	/// do these eyes have pupils (or equivalent) that react to light when penlighted.
 	var/light_reactive = TRUE
 
+	//BUBBER EDIT BEGIN
+	///This enables alpha values for eyes, adjusted using preferences
+	var/eyes_opacity = 255
+	//BUBBER EDIT END
+
 /obj/item/organ/eyes/Initialize(mapload)
 	. = ..()
 	if (blink_animation)
@@ -130,9 +135,11 @@
 	if(CONFIG_GET(flag/native_fov) && native_fov)
 		affected_human.add_fov_trait(type, native_fov)
 
-	// BUBBER EDIT ADDITION - EMISSIVES
+	// BUBBER EDIT ADDITION - EMISSIVES AND OPACITY
 	if (affected_human.emissive_eyes)
 		is_emissive = TRUE
+	if(affected_human.client && affected_human.client.prefs)
+		eyes_opacity = affected_human.client.prefs.read_preference(/datum/preference/numeric/eyes_opacity)
 	// BUBBER EDIT END
 
 	if(call_update)
@@ -298,9 +305,9 @@
 
 	if(isnull(eye_icon_state))
 		return list()
-
-	var/mutable_appearance/eye_left = mutable_appearance(eye_icon, "[eye_icon_state]_l", -EYES_LAYER, parent)
-	var/mutable_appearance/eye_right = mutable_appearance(eye_icon, "[eye_icon_state]_r", -EYES_LAYER, parent)
+	//BUBBER EDIT BEGIN - EYES OPACITY
+	var/mutable_appearance/eye_left = mutable_appearance(eye_icon, "[eye_icon_state]_l", -EYES_LAYER, parent, alpha = eyes_opacity)
+	var/mutable_appearance/eye_right = mutable_appearance(eye_icon, "[eye_icon_state]_r", -EYES_LAYER, parent, alpha = eyes_opacity)
 	var/list/overlays = list(eye_left, eye_right)
 
 	if(!(parent.obscured_slots & HIDEEYES))
@@ -319,12 +326,12 @@
 			overlays += eyelids
 
 	if (scarring & RIGHT_EYE_SCAR)
-		var/mutable_appearance/right_scar = mutable_appearance('icons/mob/human/human_eyes.dmi', "eye_scar_right", -EYES_LAYER, parent)
+		var/mutable_appearance/right_scar = mutable_appearance('icons/mob/human/human_eyes.dmi', "eye_scar_right", -EYES_LAYER, parent, alpha = eyes_opacity)
 		right_scar.color = my_head.draw_color
 		overlays += right_scar
 
 	if (scarring & LEFT_EYE_SCAR)
-		var/mutable_appearance/left_scar = mutable_appearance('icons/mob/human/human_eyes.dmi', "eye_scar_left", -EYES_LAYER, parent)
+		var/mutable_appearance/left_scar = mutable_appearance('icons/mob/human/human_eyes.dmi', "eye_scar_left", -EYES_LAYER, parent, alpha = eyes_opacity)
 		left_scar.color = my_head.draw_color
 		overlays += left_scar
 
@@ -1235,3 +1242,4 @@
 	desc = "A pair of highly reflective eyes with slit pupils, like those of a cat."
 	pupils_name = "slit pupils"
 	penlight_message = "shine under the pearly light"
+
