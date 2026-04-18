@@ -1,6 +1,5 @@
 //heels item
 /obj/item/clothing/shoes/latex_heels
-	parent_type = /obj/item/clothing/shoes/jackboots //BUBBER EDIT - They make heel sounds now
 	name = "latex heels"
 	desc = "Lace up before use. It's pretty difficult to walk in these."
 	icon_state = "latexheels"
