@@ -125,6 +125,7 @@
 /obj/item/forging/incomplete/dagger
 	name = "incomplete dagger blade"
 	icon_state = "hot_daggerblade"
+	completion_quality_points = 12
 	spawn_item = /obj/item/forging/complete/dagger
 
 /obj/item/forging/incomplete/staff
@@ -134,6 +135,7 @@
 
 /obj/item/forging/incomplete/spear
 	name = "incomplete spear head"
+	completion_quality_points = 8 ///crazy low completion required (spears are historically an easy weapon to make that are used for widespread arming)
 	icon_state = "hot_spearhead"
 	spawn_item = /obj/item/forging/complete/spear
 

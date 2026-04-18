@@ -83,7 +83,7 @@
 	var/total_completion = 0
 	var/total_forge_items = 0
 	for(var/obj/item/forging/complete/complete_forging_item in things_to_use)
-		total_completion += complete_forging_item.ha mmer_completion_amount
+		total_completion += complete_forging_item.hammer_completion_amount
 		total_forge_items ++
 	total_completion /= total_forge_items
 	return total_completion
@@ -123,7 +123,7 @@
 /datum/crafting_bench_recipe/weapon_completion_recipe/apply_perfect_and_completion_bonuses(list/things_to_use, obj/item/product)
 	var/obj/item/forging/complete/weapon_head = is_path_in_list(/obj/item/forging/complete, things_to_use, TRUE)
 	var/pieces_completion_amount = get_total_completion_amount(things_to_use)
-	if(istype(product, /obj/item/forging/weapon))
+	if(istype(product, /obj/item/forging/reagent_weapon))
 		var/obj/item/forging/weapon/weaponforged = product
 		weaponforged.apply_perfect_and_completion_bonuses(pieces_completion_amount, weapon_head.perfect_ratio)
 
@@ -209,6 +209,7 @@
 
 /datum/crafting_bench_recipe/buckler
 	recipe_name = "buckler"
+	recipe_desc = "A small shield. Perfected metalworking will make it more protective. Smithing oil will enhance its stopping power."
 	recipe_requirements = list(
 		/obj/item/forging/complete/plate = 2,
 	)
@@ -218,6 +219,7 @@
 
 /datum/crafting_bench_recipe/pavise
 	recipe_name = "pavise"
+	recipe_desc = "A large shield. Perfected metalworking will make it more protective. Smithing oil will enhance its stopping power."
 	recipe_requirements = list(
 		/obj/item/forging/complete/plate = 4,
 	)
@@ -227,6 +229,7 @@
 
 /datum/crafting_bench_recipe/bokken
 	recipe_name = "bokken"
+	recipe_desc = "A wooden sword, typically meant for practice swordfighting."
 	recipe_requirements = list(
 		/obj/item/stack/sheet/mineral/wood = 4,
 	)
@@ -236,6 +239,7 @@
 
 /datum/crafting_bench_recipe/bow
 	recipe_name = "bow"
+	recipe_desc = "A length of curved wood attached at both ends with string. Launches arrows."
 	recipe_requirements = list(
 		/obj/item/stack/sheet/mineral/wood = 4,
 	)
@@ -258,6 +262,7 @@
 
 /datum/crafting_bench_recipe/coil
 	recipe_name = "coil"
+	recipe_desc = "A helically-shaped length of metal. Purged of reagents, it is used for crafting other materials."
 	recipe_requirements = list(
 		/obj/item/forging/complete/chain = 1,
 	)
@@ -266,6 +271,7 @@
 
 /datum/crafting_bench_recipe/seed_mesh
 	recipe_name = "seed mesh"
+	recipe_desc = "A sifting mesh used to pull seeds from sand. Reagents have no effect on this."
 	recipe_requirements = list(
 		/obj/item/forging/complete/plate = 1,
 		/obj/item/forging/complete/chain = 1,
@@ -275,6 +281,7 @@
 
 /datum/crafting_bench_recipe/centrifuge
 	recipe_name = "centrifuge"
+	recipe_desc = "A centrifuge is used to separate reagents in a solution. It typically must be purged of reagents to keep the solution clean."
 	recipe_requirements = list(
 		/obj/item/forging/complete/plate = 1,
 	)
@@ -283,6 +290,7 @@
 
 /datum/crafting_bench_recipe/empty_circuit
 	recipe_name = "circuit"
+	recipe_desc = "Hand-made circuitry that can be used in electronic devices. Reagents are usually cleaned out before it can function correctly."
 	recipe_requirements = list(
 		/obj/item/forging/complete/plate = 1,
 		/obj/item/forging/coil = 1,

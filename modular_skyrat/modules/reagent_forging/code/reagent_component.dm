@@ -1,11 +1,4 @@
-///amount of chems that can be stored into the result
-#define MAX_PRE_IMBUE_STORAGE 250
-///amount of chems that the result reads as
-#define DEFAULT_IMBUE_STORAGE 10
-#define REAGENT_CLOTHING_INJECT_AMOUNT 0.5
-#define REAGENT_WEAPON_INJECT_AMOUNT 4
-#define REAGENT_STAFF_INJECT_AMOUNT 10
-#define MAX_OIL_AP_AMOUNT 10
+
 
 ///Parent component that stores shared info
 /datum/component/reagent_imbued/
@@ -20,6 +13,8 @@
 	///required parent item integrity% for reagent effects
 	var/integrity_required
 
+/// * set_slot: Used for clothing only, ignore if this isn't the case.
+/// * integrity: what integ % is required to use the reagent imbue?
 /datum/component/reagent_imbued/Initialize(set_slot = null, integrity = 0.85)
 	if(!istype(parent, required_type))
 		return COMPONENT_INCOMPATIBLE //they need to be clothing, I already said this

@@ -15,7 +15,11 @@
 
 /obj/item/forging/reagent_weapon/Initialize(mapload)
 	. = ..()
+	apply_reagent_component()
+	apply_smithing_component()
+/obj/item/forging/reagent_weapon/proc/apply_reagent_component()
 	AddComponent(/datum/component/reagent_imbued/weapon)
+/obj/item/forging/reagent_weapon/proc/apply_smithing_component()
 	AddComponent(/datum/component/forge_smithable,
 		FORGING_WEAPON_REFORGING_MAX_QUALITY,
 		TRUE,
@@ -28,12 +32,12 @@
 	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
 	if(!isnull(smith_component))
 		smith_component.reset()
-		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio)
+		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio())
 /obj/item/forging/reagent_weapon/passive_cool_item()
 	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
 	if(!isnull(smith_component))
 		smith_component.reset()
-		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio, TRUE)
+		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio(), TRUE)
 /obj/item/forging/reagent_weapon/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
 	var/new_force_penalty = 0
 	if(completion_ratio < 1 || force_incomplete_penalty)
@@ -42,10 +46,10 @@
 	force -= new_force_penalty
 	completion_force_penalty = new_force_penalty
 
-	update_integrity(max(round(lerp(0, max_integrity, completion_ratio)), integrity))
+	update_integrity(max(round(lerp(0, max_integrity, completion_ratio)), atom_integrity))
 
 	var/new_perfect_force_bonus = max(perfect_forging_bonus, clamp(perfect_ratio * MAX_PERFECT_FORCE_BONUS, 0, MAX_PERFECT_FORCE_BONUS))
-	product.force += max(0, new_perfect_force_bonus - perfect_forging_bonus)
+	force += max(0, new_perfect_force_bonus - perfect_forging_bonus)
 	perfect_forging_bonus = new_perfect_force_bonus
 
 /obj/item/forging/reagent_weapon/sword
@@ -208,7 +212,7 @@
 
 /obj/item/forging/reagent_weapon/rapier
 	name = "reagent rapier"
-	desc = "A lightweight rapier with a light and quick swing, even while being so thin, you feel like you can stop all harm with this"
+	desc = "A lightweight rapier. Usually kept as a self-defense weapon; good at parrying attacks but cannot be two-handed for extra power."
 	force = 12
 	armour_penetration = 25
 	block_chance = 35
@@ -247,6 +251,9 @@
 	resistance_flags = FIRE_PROOF
 	attack_verb_continuous = list("reagent casts on", "waves a staff over")
 	attack_verb_simple = list("reagent cast on", "wave a staff over")
+
+/obj/item/forging/reagent_weapon/staff/apply_reagent_component()
+	AddComponent(/datum/component/reagent_imbued/weapon, null, 0.7)
 
 /obj/item/forging/reagent_weapon/staff/attack(mob/living/M, mob/living/user, params)
 	. = ..()
