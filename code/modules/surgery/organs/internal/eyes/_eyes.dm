@@ -139,7 +139,7 @@
 	if (affected_human.emissive_eyes)
 		is_emissive = TRUE
 	if(affected_human.client)
-		eyes_opacity = affected_human.client.prefs.read_preference(/datum/preference/numeric/eyes_opacity)
+		eyes_opacity = affected_human.client.prefs?.read_preference(/datum/preference/numeric/eyes_opacity)
 	// BUBBER EDIT END
 
 	if(call_update)
