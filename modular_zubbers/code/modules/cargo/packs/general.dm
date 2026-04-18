@@ -38,7 +38,7 @@
 	cost = 3000
 	crate_name = "construction kit crate"
 
-datum/supply_pack/emergency/survivalsuit
+/datum/supply_pack/emergency/survivalsuit
 	name = "Survival MOD crate"
 	desc = "Contains one Kahraman Industries produced survival MODsuit, for when you need a cheap suit on the fly."
 	contains = list(
