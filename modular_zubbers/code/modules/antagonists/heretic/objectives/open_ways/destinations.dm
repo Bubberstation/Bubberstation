@@ -18,7 +18,7 @@
 
 	turfs += get_turf(way)
 
-	for(var/turf/nearby_turf in oview(1, get_turf(way))) // oview, since we always add our loc to the list
+	for(var/turf/nearby_turf in oview(range, get_turf(way))) // oview, since we always add our loc to the list
 		if(!nearby_turf.is_blocked_turf())
 			turfs += nearby_turf
 
