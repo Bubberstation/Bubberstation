@@ -174,12 +174,11 @@
 
 /datum/design/cyberimp_pillow
 	name = "Cyberpillow™ Arm Implant"
-	desc = "An inflatable pillow installedu under a cover plate in the arm."
+	desc = "An inflatable pillow installed under a cover plate in the arm."
 	id = "ci-cyberpillow"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list (
-		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
-		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT,
 	)
 	construction_time = 100
 	build_path = /obj/item/organ/cyberimp/arm/toolkit/seclite

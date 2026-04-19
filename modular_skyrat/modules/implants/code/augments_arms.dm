@@ -219,12 +219,17 @@
 /obj/item/organ/cyberimp/arm/toolkit/seclite
 	name = "seclite implant"
 	desc = "An implanted model of seclite installed in the wrist. Press in to eject. It has a retaining wire. Warranty is voided if used as a flail."
-	items_to_create = list(/obj/item/seclite)
+	items_to_create = list(/obj/item/flashlight/seclite)
 
-/ob/item/organ/cyberimp/arm/toolkit/pillow
+/obj/item/organ/cyberimp/arm/toolkit/pillow
 	name = "cyberpillow™ implant"
 	desc = "A \"luxurious\" auto-inflating pillow attached to the arm under a cover plate. Gas bottle refill not included."
-	items_to_create = list(/obj/item/pillow)
+	items_to_create = list(/obj/item/pillow/random)
+
+/obj/item/organ/cyberimp/arm/toolkit/synth_powercord
+	name = "synth charging implant"
+	desc = "An internal power cord. Useful if you run on elecricity. Not so much otherwise."
+	items_to_create = list(/obj/item/synth_powercord)
 
 #undef KNIFE_HITSOUND
 #undef KNIFE_USESOUND

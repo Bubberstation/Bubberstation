@@ -19,6 +19,10 @@
 /datum/augment_item/implant/l_arm
 	slot = AUGMENT_SLOT_LEFT_ARM_IMPLANT
 
+/datum/augment_item/implant/l_arm/power_cord
+	name = "Left Synth Charging Implant"
+	path = /obj/item/organ/cyberimp/arm/toolkit/power_cord
+
 /datum/augment_item/implant/l_arm/razor_claws
 	name = "Left Razor Claws"
 	cost = 4
@@ -46,6 +50,10 @@
 //RIGHT ARM IMPLANTS
 /datum/augment_item/implant/r_arm
 	slot = AUGMENT_SLOT_RIGHT_ARM_IMPLANT
+
+/datum/augment_item/implant/r_arm/power_cord
+	name = "Right Synth Charging Implant"
+	path = /obj/item/organ/cyberimp/arm/toolkit/power_cord
 
 /datum/augment_item/implant/r_arm/razor_claws
 	name = "Right Razor Claws"
