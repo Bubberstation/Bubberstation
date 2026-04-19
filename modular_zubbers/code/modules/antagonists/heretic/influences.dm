@@ -29,7 +29,7 @@
 	for (var/mob/living/iter_living in get_hearers_in_view(7, src))
 		if (IS_HERETIC_OR_MONSTER(iter_living))
 			continue
-		if (iter_living.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND))
+		if (iter_living.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND), charge_cost = 0)
 			continue
 		iter_living.mob_mood?.sanity -= SANITY_DECREASE_PER_SEC
 		if (SPT_PROB(1, seconds_per_tick))

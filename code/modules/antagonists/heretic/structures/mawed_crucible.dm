@@ -191,6 +191,7 @@
 		CRASH("[type] attempted to create a potion that wasn't an eldritch potion! (got: [spawned_type])")
 
 	var/obj/item/spawned_pot = new spawned_type(drop_location())
+	spawned_pot.is_from_crucible = TRUE // BUBBER EDIT ADDITION - Influence potions cant be drunk by non-heretics
 
 	playsound(src, 'sound/effects/desecration/desecration-02.ogg', 75, TRUE)
 	visible_message(span_notice("[src]'s shining liquid drains into a flask, creating a [spawned_pot.name]!"))
@@ -276,13 +277,22 @@
 	playsound(src, 'sound/effects/bubbles/bubbles.ogg', 50, TRUE)
 
 	if(!IS_HERETIC_OR_MONSTER(user))
-		//to_chat(user, span_danger("You down some of the liquid from [src]. The taste causes you to retch, and the glass vanishes.")) // BUBBER EDIT REMOVAL - Allows for potion shop gimmicks
-		//user.reagents?.add_reagent(/datum/reagent/eldritch, 10) // BUBBER EDIT REMOVAL - Allows for potion shop gimmicks
-		to_chat(user, span_warning("The taste is disgusting, but you force down the potion anyway.")) // BUBBER EDIT ADDITION - Allows for potion shop gimmicks
-		potion_effect(user) // BUBBER EDIT ADDITION - Allows for potion shop gimmicks
+		/*to_chat(user, span_danger("You down some of the liquid from [src]. The taste causes you to retch, and the glass vanishes.")) // BUBBER EDIT REMOVAL - Potion shop gimmick
+		user.reagents?.add_reagent(/datum/reagent/eldritch, 10)
 		user.adjust_disgust(50)
 		qdel(src)
+		return TRUE*/
+		// BUBBER EDIT ADDITION BEGIN - Allows for potion shop gimmicks
+		if (!is_from_crucible)
+			to_chat(user, span_danger("You down some of the liquid from [src]. The taste causes you to retch, and the glass vanishes."))
+			user.reagents?.add_reagent(/datum/reagent/eldritch, 10)
+			user.adjust_disgust(50)
+			qdel(src)
+			return TRUE
+		to_chat(user, span_warning("The taste is disgusting, but you force down the potion anyway.")) // BUBBER EDIT ADDITION - Allows for potion shop gimmicks
+		potion_effect(user) // BUBBER EDIT ADDITION - Allows for potion shop gimmicks
 		return TRUE
+		// BUBBER EDIT ADDITION END
 
 	to_chat(user, span_notice("You drink the viscous liquid from [src], causing the glass to dematerialize."))
 	potion_effect(user)

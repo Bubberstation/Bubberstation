@@ -6,3 +6,4 @@
 			Great Chaparral Over Rolling Hills: Requires any plant produce. Spreads kudzu when placed, and supplies you with poppies and harebells. \
 			Lady of the Gate: Requires any pair of Gloves. Clears your mutations, mutates non-heretics and curses them with scratching."
 	// rust painting is gone
+	drafting_tier = null // fully disabled, this thing is fundumentally ass

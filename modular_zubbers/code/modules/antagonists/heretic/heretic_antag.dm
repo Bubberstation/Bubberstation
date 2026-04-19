@@ -1,8 +1,8 @@
 /datum/antagonist/heretic
-	knowledge_points = 12 + 1 // we always have to spend one to unlock a path
+	knowledge_points = 14 + 1 // we always have to spend one to unlock a path
 	unlimited_blades = TRUE
 	passive_level = 0
-	passive_gain_timer = 70 MINUTES // passive progression is VERY... SLOW...
+	passive_gain_timer = 35 MINUTES // passive progression is VERY... SLOW...
 	ui_name = "AntagInfoHereticV2"
 	var/max_combat_capability = 100
 	/// How many influences have we personally drained?

@@ -18,3 +18,7 @@
 	owner.AdjustKnockdown(1 SECONDS)
 
 	return ..()
+
+/obj/item/eldritch_potion
+	/// If this is TRUE, nonheretics can dirnk this.
+	var/is_from_crucible = FALSE

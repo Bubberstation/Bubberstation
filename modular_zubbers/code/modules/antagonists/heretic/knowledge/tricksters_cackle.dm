@@ -1,9 +1,9 @@
 // prestidigitation
 /datum/heretic_knowledge/spell/tricksters_cackle
 	name = "Trickster's Promise"
-	desc = "Allows you to pick from a small list of party tricks and somewhat useful abilities, such as cleaning, confetti, etc. Right click to select the mode. Left click to cast."
+	desc = "Allows you to pick from a small list of party tricks and somewhat useful abilities, such as cleaning, confetti, etc. Right click to select the mode. Left click to cast. (Can be casted without a focus)"
 	gain_text = "The Trickster, true to its name, is a trickster. It always holds a deck of cards, or perhaps a paintbrush. Offer a smile and a wink to the god, \
-	and it might just grant you its promise. (Can be casted without a focus)"
+	and it might just grant you its promise."
 	drafting_tier = 1
 	drafting_cost = 1 // has actual uses - free cleaning? free synth-compatible healing? yes please
 	action_to_add = /datum/action/cooldown/spell/pointed/tricksters_cackle
