@@ -60,12 +60,12 @@
 /datum/augment_item/implant/r_arm/toolkit/lighter
 	name = "Right Lighter Implant"
 	cost = 1
-	path = /obj/item/organ/cyberimp/arm/toolkit/lighter/right_arm
+	path = /obj/item/organ/cyberimp/arm/toolkit/lighter
 
 /datum/augment_item/implant/r_arm/toolkit/seclite
 	name = "Right Arm Seclite"
 	cost = 2
-	path = /obj/item/organ/cyberimp/arm/toolkit/seclite/right_arm
+	path = /obj/item/organ/cyberimp/arm/toolkit/seclite
 
 /datum/augment_item/implant/r_arm/toolkit/pillow
 	name = "Right Arm Cyberpillow™"
