@@ -226,11 +226,6 @@
 	desc = "A \"luxurious\" auto-inflating pillow attached to the arm under a cover plate. Gas bottle refill not included."
 	items_to_create = list(/obj/item/pillow/random)
 
-/obj/item/organ/cyberimp/arm/toolkit/synth_powercord
-	name = "synth charging implant"
-	desc = "An internal power cord. Useful if you run on elecricity. Not so much otherwise."
-	items_to_create = list(/obj/item/synth_powercord)
-
 #undef KNIFE_HITSOUND
 #undef KNIFE_USESOUND
 #undef KNIFE_ATTACK_VERB_CONTINUOUS
