@@ -32,12 +32,16 @@
 /datum/augment_item/implant/l_arm/toolkit/lighter
 	name = "Left Lighter Implant"
 	cost = 1
-	path = /obj/item/organ/cyberimp/arm/toolkit/lighter
+	path = /obj/item/organ/cyberimp/arm/toolkit/lighter/left_arm
 
 /datum/augment_item/implant/l_arm/toolkit/seclite
 	name = "Left Arm Seclite"
 	cost = 2
-	path = /obj/item/organ/cyberimp/arm/toolkit/seclite
+	path = /obj/item/organ/cyberimp/arm/toolkit/seclite/left_arm
+
+/datum/augment_item/implant/l_arm/toolkit/pillow
+	name = "Right Arm Cyberpillow™"
+	path = /obj/item/organ/cyberimp/arm/toolkit/pillow/left_arm
 
 //RIGHT ARM IMPLANTS
 /datum/augment_item/implant/r_arm
@@ -56,12 +60,16 @@
 /datum/augment_item/implant/r_arm/toolkit/lighter
 	name = "Right Lighter Implant"
 	cost = 1
-	path = /obj/item/organ/cyberimp/arm/toolkit/lighter
+	path = /obj/item/organ/cyberimp/arm/toolkit/lighter/right_arm
 
 /datum/augment_item/implant/r_arm/toolkit/seclite
 	name = "Right Arm Seclite"
 	cost = 2
-	path = /obj/item/organ/cyberimp/arm/toolkit/seclite
+	path = /obj/item/organ/cyberimp/arm/toolkit/seclite/right_arm
+
+/datum/augment_item/implant/r_arm/toolkit/pillow
+	name = "Right Arm Cyberpillow™"
+	path = /obj/item/organ/cyberimp/arm/toolkit/pillow/right_arm
 
 //EYES IMPLANTS
 /datum/augment_item/implant/eyes

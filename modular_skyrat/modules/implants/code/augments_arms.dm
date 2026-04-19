@@ -219,6 +219,12 @@
 /obj/item/organ/cyberimp/arm/toolkit/seclite
 	name = "seclite implant"
 	desc = "An implanted model of seclite installed in the wrist. Press in to eject. It has a retaining wire. Warranty is voided if used as a flail."
+	items_to_create = list(/obj/item/Seclite)
+
+/ob/item/organ/cyberimp/arm/toolkit/pillow
+	name = "cyberpillow™ implant"
+	desc = "A 'luxurious' auto-inflating pillow attached to the arm under a cover plate. Gas bottle refill not included."
+	items_to_create = list(/obj/item/pillow)
 
 #undef KNIFE_HITSOUND
 #undef KNIFE_USESOUND
