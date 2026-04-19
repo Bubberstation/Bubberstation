@@ -216,6 +216,10 @@
 	obj_flags |= EMAGGED
 	return TRUE
 
+/obj/item/organ/cyberimp/arm/toolkit/seclite
+	name = "seclite implant"
+	desc = "An implanted model of seclite installed in the wrist. Press in to eject. It has a retaining wire. Warranty is voided if used as a flail."
+
 #undef KNIFE_HITSOUND
 #undef KNIFE_USESOUND
 #undef KNIFE_ATTACK_VERB_CONTINUOUS

@@ -156,6 +156,23 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SERVICE
 
+/datum/design/cyberimp_seclite
+	name = "Seclite Arm Implant"
+	desc = "A wrist implanted seclite with a retaining wire.
+	id = "ci-seclite"
+	build_type = PROTOLATHE | MECHFAB
+	materials = list (
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	construction_time = 100
+	build_path = /obj/item/organ/cyberimp/arm/toolkit/seclite
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_MISC,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SECURITY
+
 /datum/design/cyberimp_thermals
 	name = "Thermal Eyes"
 	id = "ci-thermals"

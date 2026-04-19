@@ -34,6 +34,11 @@
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/lighter
 
+/datum/augment_item/implant/l_arm/toolkit/seclite
+	name = "Left Arm Seclite"
+	cost = 2
+	path = /obj/item/organ/cyberimp/arm/toolkit/seclite
+
 //RIGHT ARM IMPLANTS
 /datum/augment_item/implant/r_arm
 	slot = AUGMENT_SLOT_RIGHT_ARM_IMPLANT
@@ -52,6 +57,11 @@
 	name = "Right Lighter Implant"
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/lighter
+
+/datum/augment_item/implant/r_arm/toolkit/seclite
+	name = "Right Arm Seclite"
+	cost = 2
+	path = /obj/item/organ/cyberimp/arm/toolkit/seclite
 
 //EYES IMPLANTS
 /datum/augment_item/implant/eyes
