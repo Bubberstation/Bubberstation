@@ -40,7 +40,7 @@
 	path = /obj/item/organ/cyberimp/arm/toolkit/seclite/left_arm
 
 /datum/augment_item/implant/l_arm/toolkit/pillow
-	name = "Right Arm Cyberpillow™"
+	name = "Left Arm Cyberpillow™"
 	path = /obj/item/organ/cyberimp/arm/toolkit/pillow/left_arm
 
 //RIGHT ARM IMPLANTS
