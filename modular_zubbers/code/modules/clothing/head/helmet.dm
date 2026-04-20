@@ -726,3 +726,4 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	icon_state = "plasmaxl_black"
 	light_color = "#f399ff"
+	visor_icon = "plasmaxl_black-envisor"
