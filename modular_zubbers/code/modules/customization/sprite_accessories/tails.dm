@@ -169,3 +169,8 @@
 /datum/sprite_accessory/tails/mammal/wagging/vulpkanin/fox/chemlight/alt
 	name = "Striped tail"
 	icon_state = "chemlight_alt"
+
+/datum/sprite_accessory/tails/mammal/wagging/easterndragon
+	name = "Eastern Dragon"
+	icon_state = "easternd"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'

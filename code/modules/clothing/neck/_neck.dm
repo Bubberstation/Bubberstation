@@ -218,7 +218,7 @@
 
 /obj/item/clothing/neck/robe_cape/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/surgery_initiator)
+	AddElement(/datum/element/surgery_aid, "cape")
 
 /obj/item/clothing/neck/tie/detective
 	name = "loose tie"
@@ -238,7 +238,7 @@
 
 /obj/item/clothing/neck/stethoscope/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -3) //FISH DOCTOR?!
+	AddElement(/datum/element/adjust_fishing_difficulty, -3) //FISH DOCTOR?!
 
 /obj/item/clothing/neck/stethoscope/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] puts \the [src] to [user.p_their()] chest! It looks like [user.p_they()] won't hear much!"))
@@ -270,7 +270,7 @@
 	switch (body_part)
 		if(BODY_ZONE_CHEST)//Listening to the chest
 			user.visible_message(span_notice("[user] places [src] against [carbon_patient]'s [body_part] and listens attentively."), ignored_mobs = user)
-			if(!user.can_hear())
+			if(HAS_TRAIT(user, TRAIT_DEAF))
 				to_chat(user, span_notice("You place [src] against [carbon_patient]'s [body_part]. Fat load of good it does you though, since you can't hear."))
 				return
 			else
@@ -496,6 +496,7 @@
 	desc = "It's for pets."
 	icon_state = "petcollar"
 	var/tagname = null
+	var/human_wearable = FALSE
 
 /datum/armor/large_scarf_syndie
 	fire = 50
@@ -503,10 +504,13 @@
 
 /*
 /obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE, indirect_action = FALSE)
-	if(!ismonkey(M))
+	if(!ismonkey(M) && !human_wearable)
 		return FALSE
 	return ..()
 */ //BUBBER EDIT END: LET ME WEAR MY PET COLLARS
+
+/obj/item/clothing/neck/petcollar/wearable
+	human_wearable = TRUE
 
 /obj/item/clothing/neck/petcollar/attack_self(mob/user)
 	tagname = sanitize_name(tgui_input_text(user, "Would you like to change the name on the tag?", "Pet Naming", "Spot", MAX_NAME_LEN))
@@ -546,7 +550,8 @@
 
 	if(price)
 		var/true_price = round(price*profit_scaling)
-		to_chat(user, span_notice("[selling ? "Sold" : "Getting the price of"] [interacting_with], value: <b>[true_price]</b> credits[interacting_with.contents.len ? " (exportable contents included)" : ""].[profit_scaling < 1 && selling ? "<b>[round(price-true_price)]</b> credit\s taken as processing fee\s." : ""]"))
+		var/fee_display = round(price-true_price)
+		to_chat(user, span_notice("[selling ? "Sold" : "Getting the price of"] [interacting_with], value: <b>[true_price]</b> [MONEY_NAME][interacting_with.contents.len ? " (exportable contents included)" : ""].[profit_scaling < 1 && selling ? "<b>[fee_display]</b> [MONEY_NAME_AUTOPURAL(fee_display)] taken as processing fee\s." : ""]"))
 		if(selling)
 			new /obj/item/holochip(get_turf(user), true_price)
 	else
@@ -575,6 +580,7 @@
 	worn_y_offset = 10
 	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/clothing/neck/wreath/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
 	. = ..()
@@ -586,3 +592,4 @@
 	desc = "An elaborate crown made from the twisted flesh and sinew of an icewing watcher. \
 		Wearing it sends shivers down your spine just from being near it."
 	icon_state = "icewing_wreath"
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 2)

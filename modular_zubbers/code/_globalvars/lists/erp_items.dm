@@ -1,5 +1,6 @@
 GLOBAL_LIST_INIT(erp_items, list(
 	/obj/item/bdsm_candle,
+	/obj/item/clicker,
 	/obj/item/clothing/ears/kinky_headphones,
 	/obj/item/clothing/erp_leash,
 	/obj/item/clothing/glasses/blindfold/kinky,

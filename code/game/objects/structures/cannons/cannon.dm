@@ -22,7 +22,7 @@
 /obj/structure/cannon/Initialize(mapload)
 	. = ..()
 	create_reagents(charge_size)
-	AddComponent(/datum/component/simple_rotation)
+	AddElement(/datum/element/simple_rotation)
 
 /obj/structure/cannon/examine(mob/user)
 	. = ..()
@@ -117,6 +117,7 @@
 	icon_state = "garbagegun"
 	anchored = FALSE
 	anchorable_cannon = FALSE
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 11.15, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 1.5)
 	var/fires_before_deconstruction = 5
 
 /obj/structure/cannon/trash/fire()

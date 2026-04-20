@@ -81,7 +81,7 @@
 /obj/item/borg/upgrade/welder
 	name = "mining cyborg welder upgrade"
 	desc = "A normal welder with a larger tank for cyborgs."
-	icon_state = "module_engineer"
+	icon_state = "module_miner"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
@@ -280,9 +280,7 @@
 	var/prev_lockcharge = borg.lockcharge
 	borg.SetLockdown(TRUE)
 	borg.set_anchored(TRUE)
-	var/datum/effect_system/fluid_spread/smoke/smoke = new
-	smoke.set_up(1, holder = borg, location = borg.loc)
-	smoke.start()
+	do_smoke(4, src, loc, smoke_type = /datum/effect_system/fluid_spread/smoke)
 	sleep(0.2 SECONDS)
 	for(var/i in 1 to 4)
 		playsound(borg, pick(
@@ -331,4 +329,5 @@
 						/obj/item/spanking_pad,
 						/obj/item/tickle_feather,
 						/obj/item/clothing/erp_leash,
+						/obj/item/clicker
 						)

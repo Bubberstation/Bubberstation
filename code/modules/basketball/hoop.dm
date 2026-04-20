@@ -18,6 +18,7 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
 	interaction_flags_click = NEED_DEXTERITY | NEED_HANDS | FORBID_TELEKINESIS_REACH
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3.5)
 	/// Keeps track of the total points scored
 	var/total_score = 0
 	/// The chance to score a ball into the hoop based on distance
@@ -25,7 +26,7 @@
 
 /obj/structure/hoop/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/simple_rotation, ROTATION_REQUIRE_WRENCH|ROTATION_IGNORE_ANCHORED, post_rotation = CALLBACK(src, PROC_REF(reset_appearance)))
+	AddElement(/datum/element/simple_rotation, ROTATION_REQUIRE_WRENCH|ROTATION_IGNORE_ANCHORED, post_rotation_proccall = PROC_REF(post_rotation))
 	update_appearance()
 	register_context()
 
@@ -33,7 +34,7 @@
 	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Reset score"
 	return CONTEXTUAL_SCREENTIP_SET
 
-/obj/structure/hoop/proc/reset_appearance()
+/obj/structure/hoop/proc/post_rotation(mob/user, degrees)
 	update_appearance()
 
 /obj/structure/hoop/proc/score(obj/item/toy/basketball/ball, mob/living/baller, points)

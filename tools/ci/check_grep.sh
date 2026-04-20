@@ -22,14 +22,14 @@ if command -v rg >/dev/null 2>&1; then
 	code_files="code/**/**.dm modular_skyrat/**/**.dm modular_zubbers/**/**.dm" # BUBBER EDIT - Adds modular folders
 	map_files="_maps/**/**.dmm"
 	shuttle_map_files="_maps/shuttles/**.dmm"
-	code_x_515="code/**/!(__byond_version_compat).dm"
+	code_x_515="code/**/!(__byond_version_compat).dm modular_skyrat/**/**.dm modular_zubbers/**/**.dm" # BUBBER EDIT - Adds modular folders
 else
 	pcre2_support=0
 	grep=grep
 	code_files="-r --include=code/**/**.dm --include=modular_skyrat/**/**.dm --include=modular_zubbers/**/**.dm" # BUBBER EDIT - Adds modular folders
 	map_files="-r --include=_maps/**/**.dmm"
 	shuttle_map_files="-r --include=_maps/shuttles/**.dmm"
-	code_x_515="-r --include=code/**/!(__byond_version_compat).dm"
+	code_x_515="-r --include=code/**/!(__byond_version_compat).dm --include=modular_skyrat/**/**.dm --include=modular_zubbers/**/**.dm" # BUBBER EDIT - Adds modular folders
 fi
 
 echo -e "${BLUE}Using grep provider at $(which $grep)${NC}"
@@ -89,14 +89,19 @@ if $grep 'NanoTrasen' $map_files; then
     echo -e "${RED}ERROR: Misspelling(s) of Nanotrasen detected in maps, please uncapitalize the T(s).${NC}"
     st=1
 fi;
-if $grep -i'centcomm' $map_files; then
+if $grep -i 'centcomm' $map_files; then
 	echo
     echo -e "${RED}ERROR: Misspelling(s) of CentCom detected in maps, please remove the extra M(s).${NC}"
     st=1
 fi;
-if $grep -i'eciev' $map_files; then
+if $grep -i 'eciev' $map_files; then
 	echo
     echo -e "${RED}ERROR: Common I-before-E typo detected in maps.${NC}"
+    st=1
+fi;
+if $grep -i 'maintainance|maintainence|maintenence' $map_files; then
+    echo
+    echo -e "${RED}ERROR: Misspelling(s) of 'maintenance' detected in maps, please fix.${NC}";
     st=1
 fi;
 
@@ -248,9 +253,14 @@ if $grep 'NanoTrasen' $code_files; then
     echo -e "${RED}ERROR: Misspelling(s) of Nanotrasen detected in code, please uncapitalize the T(s).${NC}"
     st=1
 fi;
-if $grep -i'eciev' $code_files; then
+if $grep -i 'eciev' $code_files; then
 	echo
     echo -e "${RED}ERROR: Common I-before-E typo detected in code.${NC}"
+    st=1
+fi;
+if $grep -i 'maintainance|maintainence|maintenence' $code_files; then
+    echo
+    echo -e "${RED}ERROR: Misspelling(s) of 'maintenance' detected in code, please fix.${NC}";
     st=1
 fi;
 part "map json naming"

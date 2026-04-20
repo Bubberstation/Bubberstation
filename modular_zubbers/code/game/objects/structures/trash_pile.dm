@@ -116,6 +116,8 @@
 			searched_by_ckeys[user.ckey] = 0
 		return
 
+	SEND_SIGNAL(user, COMSIG_LIVING_SEARCHED_TRASH_PILE, src)
+
 	if(searched_by_ckeys[user.ckey])
 		balloon_alert(user, "empty...")
 		return TRUE

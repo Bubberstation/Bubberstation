@@ -718,25 +718,29 @@
 	visor_flags_inv = null
 	visor_flags = null
 	slowdown = 0
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Basic" = list(
-			RESKIN_ICON_STATE = "hecu_helm",
-			RESKIN_WORN_ICON_STATE = "hecu_helm"
-		),
-		"Corpsman" = list(
-			RESKIN_ICON_STATE = "hecu_helm_medic",
-			RESKIN_WORN_ICON_STATE = "hecu_helm_medic"
-		),
-		"Basic Black" = list(
-			RESKIN_ICON_STATE = "hecu_helm_black",
-			RESKIN_WORN_ICON_STATE = "hecu_helm_black"
-		),
-		"Corpsman Black" = list(
-			RESKIN_ICON_STATE = "hecu_helm_medic_black",
-			RESKIN_WORN_ICON_STATE = "hecu_helm_medic_black"
-		),
-	)
+
+/obj/item/clothing/head/helmet/space/hev_suit/pcv/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/pcv_helmet)
+
+/datum/atom_skin/pcv_helmet
+	abstract_type = /datum/atom_skin/pcv_helmet
+
+/datum/atom_skin/pcv_helmet/basic
+	preview_name = "Basic"
+	new_icon_state = "hecu_helm"
+
+/datum/atom_skin/pcv_helmet/corpsman
+	preview_name = "Corpsman"
+	new_icon_state = "hecu_helm_medic"
+
+/datum/atom_skin/pcv_helmet/basic_black
+	preview_name = "Basic Black"
+	new_icon_state = "hecu_helm_black"
+
+/datum/atom_skin/pcv_helmet/corpsman_black
+	preview_name = "Corpsman Black"
+	new_icon_state = "hecu_helm_medic_black"
 
 /datum/armor/hev_suit_pcv
 	melee = 30
@@ -777,25 +781,6 @@
 	resistance_flags = FIRE_PROOF|ACID_PROOF|FREEZE_PROOF
 	clothing_flags = SNUG_FIT
 	show_hud = FALSE
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Basic" = list(
-			RESKIN_ICON_STATE = "hecu_vest",
-			RESKIN_WORN_ICON_STATE = "hecu_vest"
-		),
-		"Corpsman" = list(
-			RESKIN_ICON_STATE = "hecu_vest_medic",
-			RESKIN_WORN_ICON_STATE = "hecu_vest_medic"
-		),
-		"Basic Black" = list(
-			RESKIN_ICON_STATE = "hecu_vest_black",
-			RESKIN_WORN_ICON_STATE = "hecu_vest_black"
-		),
-		"Corpsman Black" = list(
-			RESKIN_ICON_STATE = "hecu_vest_medic_black",
-			RESKIN_WORN_ICON_STATE = "hecu_vest_medic_black"
-		),
-	)
 
 	activation_song = null // removal of song only standard suit will have the song
 
@@ -843,9 +828,35 @@
 	acid_static_cooldown = PCV_COOLDOWN_ACID
 	suit_name = "PCV MARK II"
 
+/obj/item/clothing/suit/space/hev_suit/pcv/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/pcv_vest)
+
+/datum/atom_skin/pcv_vest
+	abstract_type = /datum/atom_skin/pcv_vest
+
+/datum/atom_skin/pcv_vest/basic
+	preview_name = "Basic"
+	new_icon_state = "hecu_vest"
+
+/datum/atom_skin/pcv_vest/corpsman
+	preview_name = "Corpsman"
+	new_icon_state = "hecu_vest_medic"
+
+/datum/atom_skin/pcv_vest/basic_black
+	preview_name = "Basic Black"
+	new_icon_state = "hecu_vest_black"
+
+/datum/atom_skin/pcv_vest/corpsman_black
+	preview_name = "Corpsman Black"
+	new_icon_state = "hecu_vest_medic_black"
+
 /obj/item/clothing/suit/space/hev_suit/pcv/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	if(!current_skin)
+	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
+	if(!reskin_component)
+		return
+	if(!reskin_component.has_skin())
 		context[SCREENTIP_CONTEXT_ALT_LMB] = "Reskin"
 		return CONTEXTUAL_SCREENTIP_SET
 

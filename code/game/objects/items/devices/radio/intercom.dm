@@ -63,30 +63,52 @@
 	else
 		. += span_notice("It has a frequency lock set to [frequency/10].")
 
-/obj/item/radio/intercom/screwdriver_act(mob/living/user, obj/item/tool)
+/obj/item/radio/intercom/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	if(held_item?.tool_behaviour == TOOL_SCREWDRIVER)
+		context[SCREENTIP_CONTEXT_RMB] = unscrewed ? "Secure to wall" : "Unscrew from wall"
+		context[SCREENTIP_CONTEXT_LMB] = isnull(keyslot) ? context[SCREENTIP_CONTEXT_RMB] : "Remove encryption key" // sometimes same behavior
+		. = CONTEXTUAL_SCREENTIP_SET
+
+	if(held_item?.tool_behaviour == TOOL_WRENCH && unscrewed)
+		context[SCREENTIP_CONTEXT_RMB] = "Detach from wall"
+		context[SCREENTIP_CONTEXT_LMB] = context[SCREENTIP_CONTEXT_LMB] // same behavior
+		. = CONTEXTUAL_SCREENTIP_SET
+
+/obj/item/radio/intercom/screwdriver_act_secondary(mob/living/user, obj/item/tool)
 	if(unscrewed)
 		user.visible_message(span_notice("[user] starts tightening [src]'s screws..."), span_notice("You start screwing in [src]..."))
 		if(tool.use_tool(src, user, 30, volume=50))
 			user.visible_message(span_notice("[user] tightens [src]'s screws!"), span_notice("You tighten [src]'s screws."))
 			unscrewed = FALSE
+			update_appearance(UPDATE_OVERLAYS)
 	else
 		user.visible_message(span_notice("[user] starts loosening [src]'s screws..."), span_notice("You start unscrewing [src]..."))
 		if(tool.use_tool(src, user, 40, volume=50))
 			user.visible_message(span_notice("[user] loosens [src]'s screws!"), span_notice("You unscrew [src], loosening it from the wall."))
 			unscrewed = TRUE
-	return TRUE
+			update_appearance(UPDATE_OVERLAYS)
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/radio/intercom/screwdriver_act(mob/living/user, obj/item/tool)
+	if(isnull(keyslot))
+		return screwdriver_act_secondary(user, tool)
+	return ..()
 
 /obj/item/radio/intercom/wrench_act(mob/living/user, obj/item/tool)
-	. = TRUE
 	if(!unscrewed)
 		to_chat(user, span_warning("You need to unscrew [src] from the wall first!"))
-		return
+		return ITEM_INTERACT_BLOCKING
 	user.visible_message(span_notice("[user] starts unsecuring [src]..."), span_notice("You start unsecuring [src]..."))
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 80))
 		user.visible_message(span_notice("[user] unsecures [src]!"), span_notice("You detach [src] from the wall."))
 		playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 		deconstruct(TRUE)
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/radio/intercom/wrench_act_secondary(mob/living/user, obj/item/tool)
+	return wrench_act(user, tool)
 
 /**
  * Override attack_tk_grab instead of attack_tk because we actually want attack_tk's
@@ -197,7 +219,7 @@
 	icon_state = "intercom"
 	result_path = /obj/item/radio/intercom/unscrewed
 	pixel_shift = 26
-	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.75, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.25)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom, 27)
 
@@ -231,8 +253,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom, 27)
 	desc = "A custom-made Syndicate-issue intercom used to transmit on all Nanotrasen frequencies. Particularly expensive."
 	freerange = TRUE
 
+/obj/item/radio/intercom/mi13
+	name = "intercom"
+	desc = "Talk through this to talk to whoever is in this facility with you."
+	freerange = TRUE
+
 MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/prison, 27)
 MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/chapel, 27)
 MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/command, 27)
 MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/syndicate, 27)
 MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/syndicate/freerange, 27)
+MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/mi13, 27)

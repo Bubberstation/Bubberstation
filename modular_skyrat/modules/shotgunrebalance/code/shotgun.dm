@@ -247,3 +247,17 @@
 	AddElement(/datum/element/gun_launches_little_guys, throwing_force = 1, throwing_range = 1, knockdown_time = 0, gentle = TRUE)
 
 	return ..()
+
+// Deal with materials disparity between hand crafting and ammo bench recipes
+
+/datum/crafting_recipe/meteorslug
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
+
+/datum/crafting_recipe/pulseslug
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
+
+/datum/crafting_recipe/dragonsbreath
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
+
+/datum/crafting_recipe/ionslug
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY

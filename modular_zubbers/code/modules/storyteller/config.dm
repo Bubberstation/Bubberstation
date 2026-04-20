@@ -147,3 +147,8 @@
 	default = GHOSTSET_POP_SCALE_PENALTY
 	integer = TRUE
 	min_val = 0
+
+/datum/config_entry/number/disallow_crew_antags_time_threshold
+	default = -1
+	integer = TRUE
+	min_val = -1

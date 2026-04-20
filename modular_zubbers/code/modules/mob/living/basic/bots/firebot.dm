@@ -11,11 +11,9 @@
 /mob/living/basic/bot/firebot/hotice_upgrade/atmos_expose(datum/gas_mixture/air, exposed_temperature)
 	if(!COOLDOWN_FINISHED(src, foam_cooldown))
 		return
-	var/datum/effect_system/fluid_spread/foam/firefighting_freon/foam = new
-	foam.set_up(5, holder = src, location = loc)
-	foam.start()
+	do_foam(5, src, loc, foam_type = /datum/effect_system/fluid_spread/foam/firefighting_freon)
 
-	COOLDOWN_START(src, foam_cooldown, 5 SECONDS)
+	COOLDOWN_START(src, foam_cooldown, 8 SECONDS)
 
 /mob/living/basic/bot/firebot/hotice_upgrade/update_overlays()
 	. = ..()
@@ -45,6 +43,7 @@
 /obj/effect/particle_effect/fluid/foam/firefighting_freon/Initialize(mapload)
 	. = ..()
 	RemoveElement(/datum/element/atmos_sensitive)
+	src.add_atom_colour("#00fff7", FIXED_COLOUR_PRIORITY)
 
 /obj/effect/particle_effect/fluid/foam/firefighting_freon/process()
 	..()

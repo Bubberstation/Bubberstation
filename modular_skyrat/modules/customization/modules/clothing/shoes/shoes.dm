@@ -20,6 +20,11 @@
 	desc = "Ankle coverings. Hang ten, brother."
 	icon_state = "bluecuffs"
 
+/obj/item/clothing/shoes/wraps/clear
+	name = "clear leg wraps"
+	desc = "A simple, inconspicuous replacement for shoes."
+	icon_state = "clearcuffs"
+
 /obj/item/clothing/shoes/cowboyboots
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
@@ -44,6 +49,10 @@
 	greyscale_config_worn_digi = /datum/greyscale_config/heels/worn/digi
 	greyscale_colors = "#FFFFFF"
 	flags_1 = IS_PLAYER_COLORABLE_1
+
+/obj/item/clothing/shoes/high_heels/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/squeak, list('modular_zubbers/sound/effects/footstep/highheel1.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel2.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel3.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel4.ogg' = 1), 70)
 
 /obj/item/clothing/shoes/fancy_heels
 	name = "fancy heels"

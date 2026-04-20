@@ -518,7 +518,6 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/folder/syndicate = 1,
 		/obj/item/folder/white = 25,
 		/obj/item/folder/yellow = 25,
-		/obj/item/paper/fake_report = 50,
 		/obj/item/paper/joker = 5,
 		/obj/item/paper/pamphlet/centcom/visitor_info = 10,
 		/obj/item/paper/pamphlet/cybernetics = 10,

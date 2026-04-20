@@ -6,22 +6,25 @@
 	icon_state = "vest_worn"
 	inhand_icon_state = null
 	armor_type = /datum/armor/suit_armor
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Red Pattern" = list(
-			RESKIN_ICON_STATE = "vest_worn_red",
-			RESKIN_WORN_ICON_STATE = "vest_worn_red"
-		),
-		"Neutral Pattern" = list(
-			RESKIN_ICON_STATE = "vest_worn",
-			RESKIN_WORN_ICON_STATE = "vest_worn",
-		),
-		"Blue Pattern" = list(
-			RESKIN_ICON_STATE = "vest_worn_blue",
-			RESKIN_WORN_ICON_STATE = "vest_worn_blue",
-			RESKIN_SUPPORTS_VARIATIONS_FLAGS = NONE
-		)
-	)
+
+/datum/atom_skin/collared_vest
+	abstract_type = /datum/atom_skin/collared_vest
+
+/datum/atom_skin/collared_vest/red
+	preview_name = "Red Pattern"
+	new_icon_state = "vest_worn_red"
+
+/datum/atom_skin/collared_vest/neutral
+	preview_name = "Neutral Pattern"
+	new_icon_state = "vest_worn"
+
+/datum/atom_skin/collared_vest/blue
+	preview_name = "Blue Pattern"
+	new_icon_state = "vest_worn_blue"
+
+/obj/item/clothing/suit/armor/vest/collared_vest/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/collared_vest)
 
 /obj/item/clothing/suit/armor/vest/secjacket // Port from TG Station (DrTuxedo)
 	name = "security jacket"
@@ -93,6 +96,7 @@
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF
 	flags_inv = HIDEJUMPSUIT | HIDESHOES | HIDEGLOVES | HIDETAIL
+	custom_materials = list(/datum/material/metalhydrogen = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/clothing/suit/armor/elder_atmosian/Initialize(mapload)
 	. = ..()
@@ -110,42 +114,3 @@
 	fire = 100
 	acid = 50
 	wound = 25
-
-//MetroCop armor, by HL13 station.
-/obj/item/clothing/suit/armor/vest/alt/sec/metrocop
-	name = "metrocop armor"
-	desc = "Pick up that can. Uses advanced GigaSlop brand Matrixes to allow alternative variants!"
-	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	icon_state = "civilprotection"
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Metro Cop" = list(
-			RESKIN_ICON_STATE = "civilprotection",
-			RESKIN_WORN_ICON_STATE = "civilprotection"
-		),
-		"MetroCop Coat" = list(
-			RESKIN_ICON_STATE = "cp_trenchcoat",
-			RESKIN_WORN_ICON_STATE = "cp_trenchcoat"
-		),
-		"Medic" = list(
-			RESKIN_ICON_STATE = "medicalofficer",
-			RESKIN_WORN_ICON_STATE = "medicalofficer"
-		),
-		"Red Trim" = list(
-			RESKIN_ICON_STATE = "dv_vest",
-			RESKIN_WORN_ICON_STATE = "dv_vest"
-		),
-		"White Overwatch" = list(
-			RESKIN_ICON_STATE = "overwatch_white",
-			RESKIN_WORN_ICON_STATE = "overwatch_white"
-		),
-		"Overwatch" = list(
-			RESKIN_ICON_STATE = "overwatch",
-			RESKIN_WORN_ICON_STATE = "overwatch"
-		),
-		"Red Overwatch" = list(
-			RESKIN_ICON_STATE = "overwatch_red",
-			RESKIN_WORN_ICON_STATE = "overwatch_red"
-		),
-	)

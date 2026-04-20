@@ -21,17 +21,21 @@
 	worn_icon_state = "webbing_exp_corps"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Webbing" = list(
-			RESKIN_ICON_STATE = "webbing_exp_corps",
-			RESKIN_WORN_ICON_STATE = "webbing_exp_corps"
-		),
-		"Belt" = list(
-			RESKIN_ICON_STATE = "belt_exp_corps",
-			RESKIN_WORN_ICON_STATE = "belt_exp_corps"
-		),
-	)
+
+/obj/item/storage/belt/military/expeditionary_corps/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/exp_corps_webbing)
+
+/datum/atom_skin/exp_corps_webbing
+	abstract_type = /datum/atom_skin/exp_corps_webbing
+
+/datum/atom_skin/exp_corps_webbing/webbing
+	preview_name = "Webbing"
+	new_icon_state = "webbing_exp_corps"
+
+/datum/atom_skin/exp_corps_webbing/belt
+	preview_name = "Belt"
+	new_icon_state = "belt_exp_corps"
 
 /obj/item/storage/belt/military/expeditionary_corps/combat_tech
 	name = "combat tech's chest rig"
@@ -134,17 +138,21 @@
 	inhand_icon_state = "backpack"
 	icon = 'modular_skyrat/modules/exp_corps/icons/backpack.dmi'
 	worn_icon = 'modular_skyrat/modules/exp_corps/icons/mob_backpack.dmi'
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Backpack" = list(
-			RESKIN_ICON_STATE = "exp_corps",
-			RESKIN_WORN_ICON_STATE = "exp_corps"
-		),
-		"Belt" = list(
-			RESKIN_ICON_STATE = "exp_corps_satchel",
-			RESKIN_WORN_ICON_STATE = "exp_corps_satchel"
-		),
-	)
+
+/obj/item/storage/backpack/duffelbag/expeditionary_corps/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/exp_corps_bag)
+
+/datum/atom_skin/exp_corps_bag
+	abstract_type = /datum/atom_skin/exp_corps_bag
+
+/datum/atom_skin/exp_corps_bag/backpack
+	preview_name = "Backpack"
+	new_icon_state = "exp_corps"
+
+/datum/atom_skin/exp_corps_bag/belt
+	preview_name = "Belt"
+	new_icon_state = "exp_corps_satchel"
 
 /obj/item/clothing/suit/armor/vest/expeditionary_corps
 	name = "expeditionary corps armor vest"

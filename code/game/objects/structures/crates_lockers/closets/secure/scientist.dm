@@ -9,7 +9,7 @@
 	new /obj/item/clothing/suit/bio_suit/scientist(src)
 	new /obj/item/clothing/head/bio_hood/scientist(src)
 	new /obj/item/storage/bag/garment/research_director(src)
-	new /obj/item/computer_disk/command/rd(src)
+	new /obj/item/disk/computer/command/rd(src)
 	new /obj/item/radio/headset/heads/rd(src)
 	new /obj/item/megaphone/command(src)
 	new /obj/item/storage/lockbox/medal/sci(src)
@@ -19,6 +19,7 @@
 	new /obj/item/storage/photo_album/rd(src)
 	new /obj/item/storage/box/skillchips/science(src)
 	new /obj/item/card/id/departmental_budget/sci(src) //SKYRAT EDIT ADDITION
+	new /obj/item/holotool(src) // BUBBER EDIT ADDITION
 
 /obj/structure/closet/secure_closet/research_director/populate_contents_immediate()
 	. = ..()

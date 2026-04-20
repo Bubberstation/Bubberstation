@@ -3,7 +3,7 @@
 // ABSTRACT TYPES
 
 /datum/preference/toggle/allow_genitals
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "allow_genitals_toggle"
 	default_value = TRUE
@@ -19,7 +19,7 @@
 	return erp_allowed && passed_initial_check
 
 /datum/preference/choiced/genital
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	abstract_type = /datum/preference/choiced/genital
 
@@ -74,7 +74,7 @@
 	return assoc_to_keys_features(SSaccessories.sprite_accessories[relevant_mutant_bodypart])
 
 /datum/preference/toggle/genital_skin_tone
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	default_value = FALSE
 	abstract_type = /datum/preference/toggle/genital_skin_tone
@@ -91,7 +91,7 @@
 	return erp_allowed && (passed_initial_check || allowed)
 
 /datum/preference/toggle/genital_skin_color
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	default_value = FALSE
 	abstract_type = /datum/preference/toggle/genital_skin_color
@@ -123,7 +123,7 @@
 
 
 /datum/preference/tri_color/genital
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	check_mode = TRICOLOR_CHECK_ACCESSORY
 	abstract_type = /datum/preference/tri_color/genital
@@ -141,7 +141,7 @@
 	return erp_allowed && can_color && passed_initial_check
 
 /datum/preference/tri_bool/genital
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	check_mode = TRICOLOR_CHECK_ACCESSORY
 	abstract_type = /datum/preference/tri_bool/genital

@@ -11,6 +11,7 @@
 	pass_flags = PASSTABLE
 	layer = BELOW_OBJ_LAYER //So newly spawned food appears on top of the board rather than under it
 	resistance_flags = FLAMMABLE
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 	///List containg list of possible inputs and resulting recipe items, taken from processor.dm and processor_recipes.dm
 	var/static/list/processor_inputs
 

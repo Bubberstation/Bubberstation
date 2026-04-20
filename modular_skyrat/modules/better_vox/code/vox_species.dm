@@ -1,7 +1,6 @@
 /datum/species/vox_primalis
 	name = "Vox"
 	id = SPECIES_VOX_PRIMALIS
-	eyes_icon = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_eyes.dmi'
 	can_augment = FALSE
 	body_size_restricted = TRUE
 	digitigrade_customization = DIGITIGRADE_NEVER // We have our own unique sprites!
@@ -14,6 +13,7 @@
 	inherent_biotypes = MOB_ORGANIC | MOB_HUMANOID
 	mutantlungs = /obj/item/organ/lungs/nitrogen/vox
 	mutantbrain = /obj/item/organ/brain/cybernetic/cortical/vox //BUBBER EDIT - new brain dropped
+	mutanteyes = /obj/item/organ/eyes/vox_primalis
 	breathid = "n2"
 	mutant_bodyparts = list()
 	meat = /obj/item/food/meat/slab/chicken/human //item file in teshari module
@@ -103,3 +103,7 @@
 	for(var/obj/item/bodypart/limb as anything in human_who_gained_species.bodyparts)
 		limb.limb_id = "[SPECIES_VOX_PRIMALIS]_[vox_color]"
 	human_who_gained_species.update_body()
+
+/obj/item/organ/eyes/vox_primalis
+	name = "vox eyes"
+	eye_icon = 'modular_skyrat/modules/better_vox/icons/bodyparts/vox_eyes.dmi'

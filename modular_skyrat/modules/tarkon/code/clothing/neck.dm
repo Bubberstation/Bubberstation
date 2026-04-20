@@ -4,14 +4,18 @@
 	worn_icon = 'modular_skyrat/modules/tarkon/icons/mob/clothing/neck.dmi'
 	icon = 'modular_skyrat/modules/tarkon/icons/obj/clothing/neck.dmi'
 	icon_state = "armplate_shemaugh"
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Caped Variant" = list(
-			RESKIN_ICON_STATE = "armplate_shemaugh",
-			RESKIN_WORN_ICON_STATE = "armplate_shemaugh"
-		),
-		"Capeless Variant" = list(
-			RESKIN_ICON_STATE = "armplate",
-			RESKIN_WORN_ICON_STATE = "armplate"
-		),
-	)
+
+/obj/item/clothing/neck/security_cape/tarkon/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/tarkon_gauntlet)
+
+/datum/atom_skin/tarkon_gauntlet
+	abstract_type = /datum/atom_skin/tarkon_gauntlet
+
+/datum/atom_skin/tarkon_gauntlet/caped
+	preview_name = "Caped Variant"
+	new_icon_state = "armplate_shemaugh"
+
+/datum/atom_skin/tarkon_gauntlet/capeless
+	preview_name = "Capeless Variant"
+	new_icon_state = "armplate"

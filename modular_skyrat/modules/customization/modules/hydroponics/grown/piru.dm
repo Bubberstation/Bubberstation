@@ -23,5 +23,8 @@
 	icon = 'modular_skyrat/master_files/icons/obj/hydroponics/harvest.dmi'
 	icon_state = "piru"
 	foodtypes = VEGETABLES
-	grind_results = list(/datum/reagent/consumable/piru_flour = 0)
 	tastes = list("chalky dryness" = 1)
+
+/obj/item/food/grown/piru/grind_results()
+	return list(/datum/reagent/consumable/piru_flour = 0)
+

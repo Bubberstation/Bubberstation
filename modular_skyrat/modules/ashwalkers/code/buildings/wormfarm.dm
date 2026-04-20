@@ -5,6 +5,7 @@
 	icon_state = "wormbarrel"
 	density = TRUE
 	anchored = FALSE
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 	/// How many worms can the barrel hold
 	var/max_worm = 10
 	/// How many worms the barrel is currently holding
@@ -148,6 +149,8 @@
 	desc = "When you fed your worms, you should have expected this."
 	icon = 'modular_skyrat/modules/ashwalkers/icons/misc_tools.dmi'
 	icon_state = "fertilizer"
-	grind_results = list(/datum/reagent/plantnutriment/eznutriment = 3, /datum/reagent/plantnutriment/left4zednutriment = 3, /datum/reagent/plantnutriment/robustharvestnutriment = 3)
 	singular_name = "fertilizer"
 	merge_type = /obj/item/stack/worm_fertilizer
+
+/obj/item/stack/worm_fertilizer/grind_results()
+	return list(/datum/reagent/plantnutriment/eznutriment = 3, /datum/reagent/plantnutriment/left4zednutriment = 3, /datum/reagent/plantnutriment/robustharvestnutriment = 3)

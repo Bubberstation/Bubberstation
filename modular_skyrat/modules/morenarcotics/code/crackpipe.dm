@@ -44,13 +44,3 @@
 				to_chat(user, span_warning("There is nothing to smoke!"))
 		else
 			return ..()
-
-/datum/crafting_recipe/crackpipe
-	name = "Crack pipe"
-	result = /obj/item/cigarette/pipe/crackpipe
-	reqs = list(/obj/item/stack/cable_coil = 5,
-				/obj/item/shard = 1,
-				/obj/item/stack/rods = 10)
-	parts = list(/obj/item/shard = 1)
-	time = 20
-	category = CAT_CHEMISTRY
