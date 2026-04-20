@@ -15,7 +15,7 @@
 /datum/augment_item/implant/chest
 	slot = AUGMENT_SLOT_CHEST_IMPLANT
 
-//ARM IMPLANT DATUMS MOVED TO modular_zubbers/code/modules/implants/code/augments_arms.dm
+//LEFT ARM IMPLANTS
 /datum/augment_item/implant/l_arm
 	slot = AUGMENT_SLOT_LEFT_ARM_IMPLANT
 
@@ -39,16 +39,18 @@
 	path = /obj/item/organ/cyberimp/arm/toolkit/lighter/left_arm
 
 /datum/augment_item/implant/l_arm/toolkit/seclite
-	name = "Left Seclite"
+	name = "Left Arm Seclite"
 	cost = 2
 	path = /obj/item/organ/cyberimp/arm/toolkit/seclite/left_arm
 
 /datum/augment_item/implant/l_arm/toolkit/pillow
 	name = "Left Cyberpillow™"
+	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/pillow/left_arm
 
 /datum/augment_item/implant/l_arm/toolkit/survival_pen
 	name = "Left Survival Finger Pen"
+	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/survival_pen/left_arm
 
 //RIGHT ARM IMPLANTS
@@ -81,10 +83,12 @@
 
 /datum/augment_item/implant/r_arm/toolkit/pillow
 	name = "Right Cyberpillow™"
+	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/pillow/right_arm
 
 /datum/augment_item/implant/l_arm/toolkit/survival_pen
 	name = "Right Survival Finger Pen"
+	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/survival_pen/right_arm
 
 //EYES IMPLANTS
