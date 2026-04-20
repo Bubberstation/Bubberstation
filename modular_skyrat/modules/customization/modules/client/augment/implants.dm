@@ -41,7 +41,7 @@
 /datum/augment_item/implant/l_arm/toolkit/seclite
 	name = "Left Arm Seclite"
 	cost = 2
-	path = /obj/item/organ/cyberimp/arm/toolkit/seclite
+	path = /obj/item/organ/cyberimp/arm/toolkit/seclite/left_arm
 
 /datum/augment_item/implant/l_arm/toolkit/pillow
 	name = "Left Arm Cyberpillow™"
