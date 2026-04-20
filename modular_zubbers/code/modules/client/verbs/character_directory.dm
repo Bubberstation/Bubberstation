@@ -11,7 +11,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 //The advertisement that you show to people looking through the directory
 /datum/preference/text/character_ad
 	savefile_key = "character_ad"
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_OOC_PREFS
 	savefile_identifier = PREFERENCE_CHARACTER
 	maximum_value_length = MAX_FLAVOR_LEN
 
@@ -25,7 +25,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 
 /datum/preference/choiced/attraction
 	savefile_key = "attraction"
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_OOC_PREFS
 	savefile_identifier = PREFERENCE_CHARACTER
 
 /datum/preference/choiced/attraction/init_possible_values()
@@ -39,7 +39,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 
 /datum/preference/choiced/display_gender
 	savefile_key = "display_gender"
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_OOC_PREFS
 	savefile_identifier = PREFERENCE_CHARACTER
 
 /datum/preference/choiced/display_gender/init_possible_values()

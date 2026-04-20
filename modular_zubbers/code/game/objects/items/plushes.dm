@@ -264,7 +264,6 @@
 	icon_state = "johnghoul"
 	attack_verb_continuous = list("ghouls")
 	attack_verb_simple = list("ghoul")
-	squeak_override = list('modular_zubbers/code/modules/blooper/voice/bloopers/kazooie/ehh.ogg' = 1)
 
 // plushie for BeoTheKobold
 // sprite by Cepha, code by Mitryll

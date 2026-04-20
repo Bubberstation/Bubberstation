@@ -188,6 +188,7 @@
 				/obj/item/clothing/under/dress/skyrat/short_dress = 5,
 				/obj/item/clothing/under/dress/skyrat/strapless = 5,
 				/obj/item/clothing/under/dress/bubber/midnight_gown = 5,
+				/obj/item/clothing/under/dress/bubber/giant_scarf = 5,
 			),
 		),
 

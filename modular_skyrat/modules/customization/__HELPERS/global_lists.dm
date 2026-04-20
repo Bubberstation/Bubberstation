@@ -1,9 +1,9 @@
 /proc/make_skyrat_datum_references()
 	init_prefs_emotes()
-	make_bloopers()
 	make_default_mutant_bodypart_references()
 	make_body_marking_references()
 	make_body_marking_set_references()
+	make_robotic_style_references()
 	populate_total_ui_len_by_block()
 	populate_total_uf_len_by_block()
 	make_augment_references()
@@ -64,6 +64,11 @@
 		if(initial(BM.name))
 			BM = new path()
 			GLOB.body_marking_sets[BM.name] = BM
+
+/proc/make_robotic_style_references()
+	for(var/path in valid_subtypesof(/datum/robotic_style))
+		var/datum/robotic_style/style = path
+		GLOB.robotic_styles_list[style::name] = new style()
 
 /proc/init_skyrat_stack_recipes()
 	var/list/additional_stack_recipes = list(
@@ -181,12 +186,3 @@
 			continue
 
 		SSaccessories.bra_m -= sprite_name
-
-// Text bloopers
-/proc/make_bloopers()
-	GLOB.blooper_list = list()
-	for(var/sound_blooper_path in subtypesof(/datum/blooper))
-		var/datum/blooper/bloop = new sound_blooper_path()
-		GLOB.blooper_list[bloop.id] = sound_blooper_path
-		if(bloop.allow_random)
-			GLOB.blooper_random_list[bloop.id] = sound_blooper_path

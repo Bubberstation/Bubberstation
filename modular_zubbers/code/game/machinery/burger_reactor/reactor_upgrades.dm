@@ -2,7 +2,7 @@
 /obj/item/rbmk_upgrade
 	name = "\improper RB-MK2 software upgrade disk"
 	desc = "It seems to be empty. Good fucking job, coders."
-	icon = 'icons/obj/devices/circuitry_n_data.dmi'
+	icon = 'icons/obj/devices/floppy_disks.dmi'
 	icon_state = "datadisk2"
 
 /obj/item/rbmk_upgrade/proc/apply_upgrade(obj/machinery/power/rbmk2/machine)

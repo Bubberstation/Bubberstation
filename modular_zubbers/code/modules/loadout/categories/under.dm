@@ -159,3 +159,14 @@
 	name = "Security Shorts"
 	item_path = /obj/item/clothing/under/rank/security/trousers/shorts
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
+/datum/loadout_item/uniform/miscellaneous/giant_scarf
+	name = "Giant Scarf"
+	item_path = /obj/item/clothing/under/dress/bubber/giant_scarf
+
+/datum/loadout_item/uniform/miscellaneous/lewdmaid
+	name = "Latex Maid Costume"
+	item_path = /obj/item/clothing/under/costume/lewdmaid
+
+/datum/loadout_item/uniform/miscellaneous/stripper_outfit
+	name = "Stripper Outfit"
+	item_path = /obj/item/clothing/under/stripper_outfit

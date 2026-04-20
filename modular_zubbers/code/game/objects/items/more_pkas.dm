@@ -55,7 +55,8 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_HEAVY
-	max_mod_capacity = 75
+	max_mod_capacity = 60
+	disabled_modkits = list(/obj/item/borg/upgrade/modkit/aoe) // Should cover all AOE variants
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/glock
 	name = "proto-kinetic pistol"
@@ -182,11 +183,15 @@
 /obj/projectile/kinetic/shotgun
 	name = "split kinetic force"
 	icon_state = null
-	damage = 15 // 3 projectiles, 40 base damage. Theoretically more if all shots hit.
+	damage = 20 // 3 projectiles, 60 base damage. Theoretically more if all shots hit.
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 3
 	log_override = TRUE
+
+/obj/item/borg/upgrade/modkit/indoors/modify_projectile(obj/projectile/kinetic/shotgun/K)
+	..()
+	K.pressure_decrease = min(K.pressure_decrease, 0.5)
 
 /obj/projectile/kinetic/glock
 	name = "light kinetic force"

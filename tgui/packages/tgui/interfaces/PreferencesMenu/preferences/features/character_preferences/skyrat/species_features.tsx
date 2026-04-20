@@ -142,9 +142,15 @@ export const eye_emissives: FeatureToggle = {
   component: CheckboxInput,
 };
 
+export const eyes_opacity: Feature<number> = {
+  name: 'Eyes Opacity',
+  component: FeatureNumberInput,
+};
+
 export const mutant_colors_color: Feature<string[]> = {
   name: 'Mutant Colors',
   component: FeatureTriColorInput,
+  description: 'Body color used for non-human species.',
 };
 
 export const body_markings_toggle: FeatureToggle = {

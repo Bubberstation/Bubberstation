@@ -1,3 +1,7 @@
+/// the regex.find() proc returns 0 if it has found nothing.
+/// So we're replacing the magic number with a name.
+#define NO_MATCH 0
+
 /datum/unit_test/modular_digitigrade_sprites
 	var/type_to_test = /obj/item/clothing/under
 	var/list/modular_folders = list(
@@ -6,7 +10,7 @@
 	)
 
 /datum/unit_test/modular_digitigrade_sprites/proc/get_folders_of_typepaths()
-	var/typepath_files = list()
+	var/typepaths_to_check = list()
 	for(var/folder_name in modular_folders)
 		var/dir = "[folder_name]/"
 		for(var/file in flist(dir))
@@ -18,17 +22,23 @@
 				var/list/matches = parse_typepaths_from_text(text)
 				if(!length(matches))
 					continue
-				typepath_files |= parse_typepaths_from_text(text)
-	return typepath_files
+				typepaths_to_check |= matches
+	return typepaths_to_check
 
 /datum/unit_test/modular_digitigrade_sprites/proc/parse_typepaths_from_text(text)
 	var/type_string = "[type_to_test]"
 	// escape the slashes in the typepath itself to make it valid for regex
 	type_string = replacetext(type_string, "/", "\\/")
-	var/regex/matcher = regex(type_string + @"[^s\n]*")
-	if(!matcher.Find(text))
-		return list()
-	return matcher.group
+	// make sure we only look at the ones defined/overwritten in our folders (by using ^ and $ to find start and end of lines)
+	var/regex_string = "^" + type_string + @"[^\n]*$"
+	// g flag to find all, m flag to make sure ^ and $ work
+	var/regex/matcher = regex(regex_string, "gm")
+	var/list/matches = list()
+	var/match_index = matcher.Find(text)
+	while (match_index != NO_MATCH)
+		matches.Add(matcher.match)
+		match_index = matcher.Find(text, match_index)
+	return matches
 
 /datum/unit_test/modular_digitigrade_sprites/proc/find_all_dm_files(dir)
 	var/list/results = list()
@@ -41,11 +51,13 @@
 	return results
 
 /datum/unit_test/modular_digitigrade_sprites/Run()
-	var/list/typepath_files = get_folders_of_typepaths()
-	for(var/obj/item/clothing/under/valid_subtype as anything in subtypesof(/obj/item/clothing/under))
+	var/list/typepaths_to_check = get_folders_of_typepaths()
+	for(var/obj/item/clothing/under/valid_subtype as anything in subtypesof(type_to_test))
 		var/subtype_string = "[valid_subtype]"
-		if(subtype_string in typepath_files)
+		if(!(subtype_string in typepaths_to_check))
 			continue
 		var/flags = valid_subtype::supports_variations_flags
 		if(!(flags & CLOTHING_DIGITIGRADE_VARIATION) && !(flags & CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON))
 			TEST_FAIL("[subtype_string] is missing required digitigrade variation flags.")
+
+#undef NO_MATCH

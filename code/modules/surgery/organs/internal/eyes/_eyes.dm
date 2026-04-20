@@ -68,6 +68,11 @@
 	/// do these eyes have pupils (or equivalent) that react to light when penlighted.
 	var/light_reactive = TRUE
 
+	//BUBBER EDIT BEGIN
+	///This enables alpha values for eyes, adjusted using preferences
+	var/eyes_opacity = 255
+	//BUBBER EDIT END
+
 /obj/item/organ/eyes/Initialize(mapload)
 	. = ..()
 	if (blink_animation)
@@ -130,9 +135,11 @@
 	if(CONFIG_GET(flag/native_fov) && native_fov)
 		affected_human.add_fov_trait(type, native_fov)
 
-	// BUBBER EDIT ADDITION - EMISSIVES
+	// BUBBER EDIT ADDITION - EMISSIVES AND OPACITY
 	if (affected_human.emissive_eyes)
 		is_emissive = TRUE
+	if(affected_human.client && affected_human.client.prefs)
+		eyes_opacity = affected_human.client.prefs.read_preference(/datum/preference/numeric/eyes_opacity)
 	// BUBBER EDIT END
 
 	if(call_update)
@@ -298,9 +305,9 @@
 
 	if(isnull(eye_icon_state))
 		return list()
-
-	var/mutable_appearance/eye_left = mutable_appearance(eye_icon, "[eye_icon_state]_l", -EYES_LAYER, parent)
-	var/mutable_appearance/eye_right = mutable_appearance(eye_icon, "[eye_icon_state]_r", -EYES_LAYER, parent)
+	//BUBBER EDIT BEGIN - EYES OPACITY
+	var/mutable_appearance/eye_left = mutable_appearance(eye_icon, "[eye_icon_state]_l", -EYES_LAYER, parent, alpha = eyes_opacity)
+	var/mutable_appearance/eye_right = mutable_appearance(eye_icon, "[eye_icon_state]_r", -EYES_LAYER, parent, alpha = eyes_opacity)
 	var/list/overlays = list(eye_left, eye_right)
 
 	if(!(parent.obscured_slots & HIDEEYES))
@@ -319,23 +326,23 @@
 			overlays += eyelids
 
 	if (scarring & RIGHT_EYE_SCAR)
-		var/mutable_appearance/right_scar = mutable_appearance('icons/mob/human/human_eyes.dmi', "eye_scar_right", -EYES_LAYER, parent)
+		var/mutable_appearance/right_scar = mutable_appearance('icons/mob/human/human_eyes.dmi', "eye_scar_right", -EYES_LAYER, parent, alpha = eyes_opacity)
 		right_scar.color = my_head.draw_color
 		overlays += right_scar
 
 	if (scarring & LEFT_EYE_SCAR)
-		var/mutable_appearance/left_scar = mutable_appearance('icons/mob/human/human_eyes.dmi', "eye_scar_left", -EYES_LAYER, parent)
+		var/mutable_appearance/left_scar = mutable_appearance('icons/mob/human/human_eyes.dmi', "eye_scar_left", -EYES_LAYER, parent, alpha = eyes_opacity)
 		left_scar.color = my_head.draw_color
 		overlays += left_scar
-
-	// BUBBER EDIT START - Customization Emissives
+	//BUBBER EDIT END - EYES OPACITY
+	// BUBBER EDIT START - Customization Emissives and eyes opacity
 	if(is_emissive)
 		var/mutable_appearance/emissive_left = emissive_appearance_copy(eye_left, owner)
 		var/mutable_appearance/emissive_right = emissive_appearance_copy(eye_right, owner)
 
 		overlays += emissive_left
 		overlays += emissive_right
-	// BUBBER EDIT END - Customization Emissives
+	// BUBBER EDIT END - Customization Emissives and eyes opacity
 
 	if(my_head.worn_face_offset)
 		for (var/mutable_appearance/overlay as anything in overlays)
@@ -635,10 +642,10 @@
 	name = "undead eyes"
 	desc = "Somewhat counterintuitively, these half-rotten eyes actually have superior vision to those of a living human."
 	color_cutoffs = list(25, 35, 5)
-	penlight_message = "are rotten and decayed"
+	penlight_message = "are rotten and decayed!"
 
 /obj/item/organ/eyes/zombie/penlight_examine(mob/living/viewer, obj/item/examtool)
-	return span_danger(penlight_message)
+	return span_danger("[owner.p_Their()] eyes [penlight_message]")
 
 /obj/item/organ/eyes/alien
 	name = "alien eyes"
@@ -722,8 +729,9 @@
 	eye_color_left = "#3cb8a5"
 	eye_color_right = "#3cb8a5"
 	sight_flags = SEE_MOBS | SEE_OBJS | SEE_TURFS
+	flash_protect = FLASH_PROTECTION_SENSITIVE
 	organ_traits = list(TRAIT_XRAY_VISION)
-	penlight_message = "replaced by small radiation emitters and detectors"
+	penlight_message = "are replaced by small radiation emitters and detectors"
 
 /obj/item/organ/eyes/robotic/thermals
 	name = "thermal eyes"
@@ -893,12 +901,12 @@
 			set_beam_range(new_range)
 			return TRUE
 		if("pick_color")
-			var/new_color = input(
+			var/new_color = tgui_color_picker(
 				usr,
 				"Choose eye color color:",
 				"High Luminosity Eyes Menu",
 				light_color_string
-			) as color|null
+			)
 			if(new_color)
 				var/to_update = params["to_update"]
 				set_beam_color(new_color, to_update)
@@ -1105,7 +1113,7 @@
 	eye_color_left = "#3c4e52"
 	eye_color_right = "#3c4e52"
 	blink_animation = FALSE
-	flash_protect = FLASH_PROTECTION_SENSITIVE
+	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE
 	pupils_name = "aperture clusters"
 
 /obj/item/organ/eyes/robotic/shield/moth
@@ -1130,13 +1138,14 @@
 	penlight_message = "are bulbous clusters of LEDs and cameras"
 	pupils_name = "aperture clusters"
 
-/obj/item/organ/eyes/robotic/thermals/moth //we inherit flash weakness from thermals
+/obj/item/organ/eyes/robotic/thermals/moth
 	name = "thermal moth eyes"
 	icon_state = "eyes_moth_cyber_thermal"
 	eye_icon_state = "motheyes_white"
 	eye_color_left = "#901f38"
 	eye_color_right = "#901f38"
 	blink_animation = FALSE
+	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE
 	pupils_name = "sensor clusters"
 	penlight_message = "are two clustered hemispheres of thermal sensors"
 
@@ -1188,15 +1197,15 @@
 	low_light_cutoff = list(5, 12, 20)
 	medium_light_cutoff = list(15, 20, 30)
 	high_light_cutoff = list(30, 35, 50)
-	penlight_message = "glow a foggy red, sizzling under the light"
+	penlight_message = "glow a foggy red, sizzling under the light!"
 
 /obj/item/organ/eyes/night_vision/maintenance_adapted/penlight_examine(mob/living/viewer, obj/item/examtool)
 	if(!owner.is_blind())
 		to_chat(owner, span_danger("Your eyes sizzle agonizingly as light is shone on them!"))
 		apply_organ_damage(20 * examtool.light_power) //that's 0.5 lightpower for a penlight, so one penlight shining is equivalent to two seconds in a lit area
-	return span_danger("[owner.p_Their()] eyes [penlight_message].")
+	return span_danger("[owner.p_Their()] eyes [penlight_message]")
 
-/obj/item/organ/eyes/night_vision/maintenance_adapted/on_life(seconds_per_tick, times_fired)
+/obj/item/organ/eyes/night_vision/maintenance_adapted/on_life(seconds_per_tick)
 	if(owner.get_eye_protection() <= FLASH_PROTECTION_SENSITIVE && !owner.is_blind() && isturf(owner.loc) && owner.has_light_nearby(light_amount=0.5)) //we allow a little more than usual so we can produce light from the adapted eyes
 		to_chat(owner, span_danger("Your eyes! They burn in the light!"))
 		apply_organ_damage(10) //blind quickly
@@ -1220,3 +1229,4 @@
 	desc = "A pair of highly reflective eyes with slit pupils, like those of a cat."
 	pupils_name = "slit pupils"
 	penlight_message = "shine under the pearly light"
+
