@@ -111,10 +111,10 @@
 		// beneficial
 		/datum/way_destination/atmosphere = 50,
 		/datum/way_destination/flesh_organs = 30,
-		/datum/way_destination/chemical_spill = 30,
+		///datum/way_destination/chemical_spill = 30, // TODO - fix liquid SS
 		///datum/way_destination/dimension_shift = 20, // dimension shifts nearby walls and floors into a valuable mineral
-		/datum/way_destination/anomalies = 10,
-		/datum/way_destination/knowledgebooks = 10, // spawns crafting books, maids in the mirror, and flash freezes the nearby area
+		/datum/way_destination/anomalies = 15,
+		/datum/way_destination/knowledgebooks = 15, // spawns crafting books, maids in the mirror, and flash freezes the nearby area
 		/datum/way_destination/clown_planet = 1, // honk (bananium, clown mobs)
 		// bad
 		/datum/way_destination/heretic_mobs = 20,
@@ -238,7 +238,6 @@
 	)
 
 	var/static/list/potential_uncommoner_items = list(
-		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/melee/baton/security,
 		/obj/item/circular_saw,
 		/obj/item/scalpel,

@@ -19,6 +19,7 @@
 	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND
 	invocation_type = INVOCATION_NONE // sneaky spell
 	spell_requirements = NONE
+	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_CONSCIOUS
 
 /datum/action/cooldown/spell/paranoias_eye/cast(atom/cast_on)
 	. = ..()
@@ -53,16 +54,10 @@
 /datum/hallucination/delusion/paranoias_eye/start()
 	. = ..()
 
-	RegisterSignal(hallucinator, COMSIG_CARBON_MID_EXAMINE, PROC_REF(on_examining))
 	ADD_TRAIT(hallucinator, TRAIT_BLOCK_SECHUD, REF(src))
+	ADD_TRAIT(hallucinator, TRAIT_PARANOIAS_EYE, REF(src))
 
 /datum/hallucination/delusion/paranoias_eye/Destroy()
+	REMOVE_TRAIT(hallucinator, TRAIT_PARANOIAS_EYE, REF(src))
 	REMOVE_TRAIT(hallucinator, TRAIT_BLOCK_SECHUD, REF(src))
 	return ..()
-
-/datum/hallucination/delusion/paranoias_eye/proc/on_examining(datum/signal_source, mob/examined, list/examine_text)
-	SIGNAL_HANDLER
-
-	if (examined in delusions)
-		examine_text.Cut()
-		examine_text += span_hypnophrase("THE LIGHT BLINDS YOU.")

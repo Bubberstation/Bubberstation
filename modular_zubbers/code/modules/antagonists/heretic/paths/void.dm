@@ -374,7 +374,7 @@
 					affected_mob.adjust_drowsiness_up_to(10 SECONDS, 70 SECONDS)
 					if (!affected_mob.IsSleeping())
 						var/datum/status_effect/drowsiness/drowsiness = affected_mob.has_status_effect(/datum/status_effect/drowsiness)
-						if (drowsiness.duration >= 60 SECONDS && prob(40))
+						if (!isnull(drowsiness) && drowsiness.duration >= 60 SECONDS && prob(40))
 							affected_mob.AdjustSleeping(5 SECONDS) // ko
 						if (prob(15))
 							to_chat(affected_mob, span_warning("The cold makes you sleepy..."))

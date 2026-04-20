@@ -35,6 +35,7 @@
 	spell_requirements = NONE
 	button_icon_state = "hburger"
 	cooldown_time = 5 SECONDS
+	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_HANDS_BLOCKED|AB_CHECK_CONSCIOUS
 
 	var/mode = "Spawn Confetti"
 

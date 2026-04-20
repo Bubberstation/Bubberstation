@@ -68,7 +68,7 @@ const IntroductionSection = (props) => {
   return (
     <Stack justify="space-evenly" height="100%" width="100%">
       <Stack.Item grow>
-        <Section title="You are the Heretic!" fill fontSize="14px">
+        <Section title="You are the Acolyte!" fill fontSize="14px">
           <Stack vertical>
             <FlavorSection />
             <Stack.Divider />
@@ -119,23 +119,23 @@ const GuideSection = () => {
           <span style={hereticPurple}>influences</span>
           &nbsp;around the station invisible to the normal eye and&nbsp;
           <b>right click</b> on them to harvest them for&nbsp;
-          <span style={hereticBlue}>knowledge points</span> once you harvest
-          enough of them. Tapping them makes them visible to all after a short
-          time, which will drain their sanity, cause hallucinations, and spawn
-          monsters. Predict the crew becoming hostile once you start draining
-          influences.
+          <span style={hereticBlue}>knowledge points</span>, up to your
+          objective's maximum. Tapping them makes them visible to all after a
+          short time, which will drain their sanity, cause hallucinations, and
+          spawn monsters. Predict the crew becoming hostile once you start
+          draining influences.
         </Stack.Item>
         <Stack.Item>
           - Use your&nbsp;
           <span style={hereticYellow}>Knock of the Twin-finger ritual</span>
           &nbsp;to track down&nbsp;
-          <span style={hereticYellow}>ways</span>. Ways are powerful gateways
-          into the mansus that you can open for{' '}
-          <span style={hereticBlue}>knowledge points</span> once you've opened
-          enough. Ways require a full ritual to open as well as a collection of
-          items - using the ritual away from any way will show you the nearest,
-          and their items. Opening a way will create a dangerous event in its
-          vicinity after a minute!
+          <span style={hereticYellow}>ways</span>, up to your objective's
+          maximum. Ways are powerful gateways into the mansus that you can open
+          for a few <span style={hereticBlue}>knowledge points</span>. Ways
+          require a full ritual to open as well as a collection of items - using
+          the ritual away from any way will show you all ways, and their items.
+          Opening a way will create a dangerous event in its vicinity after a
+          minute!
         </Stack.Item>
         <Stack.Item>
           - Draw a&nbsp;
@@ -157,6 +157,10 @@ const GuideSection = () => {
           <span style={hereticPurple}>Codex Cicatrix</span> will also make you
           very obvious as a heretic when draining&nbsp;
           <span style={hereticYellow}>influences</span>
+          <br />
+          Creatures spawned from <span style={hereticPurple}>influences</span>{' '}
+          and Creatures spawned from <span style={hereticYellow}>ways</span> are
+          not friendly to you.
         </Stack.Item>
       </Stack>
     </Stack.Item>

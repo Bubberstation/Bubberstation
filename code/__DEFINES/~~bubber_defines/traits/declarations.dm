@@ -64,3 +64,11 @@
 
 /// The trait that determines if someone has the robotic limb reattachment quirk.
 #define TRAIT_ROBOTIC_LIMBATTACHMENT "trait_robotic_limbattachment"
+
+/// Prevents examining of mobs completely, replacing it with a string.
+#define TRAIT_PARANOIAS_EYE "paranoias_eye"
+/// Used by the Trickster's Promise heretic spell. This food tastes better and has trace healing chems.
+#define TRAIT_TRICKSTER_TASTE "trickster_taste"
+/// Used by The Blacksmith's Hammer heretic ritual - tracks if their funny hand will emag the next thing they right click with
+#define TRAIT_EMAGGING_HAND "emagging_hand"
+

@@ -1,10 +1,10 @@
 #define BLOOD_AMOUNT_TO_STEAL_PERCENT_RATIO 5 // 1u, 5%
-#define PHYLACTERY_ACCOUNT_MIN 600
+#define PHYLACTERY_ACCOUNT_MIN 300
 
 /datum/heretic_knowledge/blood_to_money
 	name = "Claw of the Capitalist"
 	desc = "Allows you to use blood to steal credits out of a target's bank account. Blood gained from the Phlyactery can only steal from \
-	accounts with six hundred credits or more. Notifies the target on invocation."
+	accounts with three hundred credits or more. Notifies the target on invocation."
 	gain_text = "Nanotrasen's efforts were not in vain. The Capitalist, one of many gods-from-steel, successfully penetrated the mansus \
 	and established itself after a long and gruesome war. What Nanotrasen did not anticipate, however, was its reluctance to work with its \
 	creators, and instead pursuing its own goals of greed and avarice."

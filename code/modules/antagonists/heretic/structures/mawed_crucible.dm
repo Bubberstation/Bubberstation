@@ -190,7 +190,7 @@
 	if(!ispath(spawned_type, /obj/item/eldritch_potion))
 		CRASH("[type] attempted to create a potion that wasn't an eldritch potion! (got: [spawned_type])")
 
-	var/obj/item/spawned_pot = new spawned_type(drop_location())
+	var/obj/item/eldritch_potion/spawned_pot = new spawned_type(drop_location()) // BUBBER EDIT CHANGE - typed to eldritch_potion
 	spawned_pot.is_from_crucible = TRUE // BUBBER EDIT ADDITION - Influence potions cant be drunk by non-heretics
 
 	playsound(src, 'sound/effects/desecration/desecration-02.ogg', 75, TRUE)

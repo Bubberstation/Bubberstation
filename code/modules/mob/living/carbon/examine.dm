@@ -6,6 +6,10 @@
 	return null
 
 /mob/living/carbon/examine(mob/user)
+	// BUBBER EDIT ADDITION BEGIN
+	if (HAS_TRAIT(user, TRAIT_PARANOIAS_EYE))
+		return list(span_hypnophrase("THE LIGHT BLINDS YOU."))
+	// BUBBER EDIT ADDITION END
 	if(HAS_TRAIT(src, TRAIT_UNKNOWN_APPEARANCE))
 		return list(span_warning("You're struggling to make out any details..."))
 

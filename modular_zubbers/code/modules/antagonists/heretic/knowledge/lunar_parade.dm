@@ -1,2 +1,2 @@
 /obj/projectile/moon_parade
-	range = 45
+	range = 40

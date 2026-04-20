@@ -179,13 +179,15 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 
 	tree_paths += list(
 		heretic_path.passive_upgrade1, // BUBBER EDIT ADDITION
+		heretic_path.passive_upgrade2, // BUBBER EDIT ADDITION
+		heretic_path.passive_upgrade3, // BUBBER EDIT ADDITION
+		/datum/heretic_knowledge/enable_blades, // BUBBER EDIT ADDITION
+		heretic_path.mark_upgrade, // BUBBER EDIT ADDITION
 		heretic_path.knowledge_tier1,
 		heretic_path.knowledge_tier2,
 		heretic_path.knowledge_tier3,
 		heretic_path.knowledge_tier4,
-		heretic_path.passive_upgrade2, // BUBBER EDIT ADDITION
 		heretic_path.robes,
-		heretic_path.passive_upgrade3, // BUBBER EDIT ADDITION
 		heretic_path.blade,
 		//heretic_path.ascension, // BUBBER EDIT REMOVAL
 	)
@@ -218,11 +220,14 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 	heretic_research_tree[heretic_path.blade][HKT_DEPTH] = HKT_DEPTH_ARMOR
 	//heretic_research_tree[heretic_path.ascension][HKT_DEPTH] = HKT_DEPTH_ASCENSION // BUBBER EDIT REMOVAL - no ascensions
 	//and we're done
-	// BUBBER EDIT ADDITION BEGIN - Passive upgrades
+	// BUBBER EDIT ADDITION BEGIN - Starting upgrades
 	// TODO remove if this doesnt work its ok if its at the top
 	heretic_research_tree[heretic_path.passive_upgrade1][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.1
 	heretic_research_tree[heretic_path.passive_upgrade2][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.2
 	heretic_research_tree[heretic_path.passive_upgrade3][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.3
+
+	heretic_research_tree[/datum/heretic_knowledge/enable_blades][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.4
+	heretic_research_tree[heretic_path.mark_upgrade][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.5
 	// BUBBER EDIT ADDITION END
 	return heretic_research_tree
 

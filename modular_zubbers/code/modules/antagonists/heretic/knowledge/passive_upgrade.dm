@@ -48,11 +48,6 @@
 
 	SEND_SIGNAL(our_heretic, COMSIG_HERETIC_PASSIVE_UPGRADE_FINAL)
 
-/datum/heretic_knowledge_tree_column
-	var/datum/heretic_knowledge/passive_upgrade/passive_upgrade1 = /datum/heretic_knowledge/passive_upgrade/one
-	var/datum/heretic_knowledge/passive_upgrade/passive_upgrade2 = /datum/heretic_knowledge/passive_upgrade/two
-	var/datum/heretic_knowledge/passive_upgrade/passive_upgrade3 = /datum/heretic_knowledge/passive_upgrade/three
-
 /datum/heretic_knowledge_tree_column/void
 	passive_upgrade1 = /datum/heretic_knowledge/passive_upgrade/one/void
 	passive_upgrade2 = /datum/heretic_knowledge/passive_upgrade/two/void

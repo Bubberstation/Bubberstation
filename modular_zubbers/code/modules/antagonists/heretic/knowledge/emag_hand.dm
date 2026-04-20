@@ -19,6 +19,7 @@
 /datum/heretic_knowledge/emag_hand/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	ADD_TRAIT(user, TRAIT_EMAGGING_HAND, "emag_hand")
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK_SECONDARY, PROC_REF(emag_on_mansus_grasp_secondary))
+	to_chat(user, span_warning("Your next mansus grasp right-click will emag whatever you hit."))
 	return TRUE
 
 /datum/heretic_knowledge/emag_hand/proc/emag_on_mansus_grasp_secondary(mob/living/source, atom/target)

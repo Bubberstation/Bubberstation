@@ -15,6 +15,11 @@
 	/// Have we spawned our monster?
 	var/spawned_monster = FALSE
 
+/obj/effect/visible_heretic_influence/examine(mob/living/user)
+	. = ..()
+
+	. += span_warning("You can use a [EXAMINE_HINT("anomaly neutralizer")] to remove the influence.")
+
 /obj/effect/visible_heretic_influence/Initialize(mapload)
 	. = ..()
 
@@ -29,10 +34,10 @@
 	for (var/mob/living/iter_living in get_hearers_in_view(7, src))
 		if (IS_HERETIC_OR_MONSTER(iter_living))
 			continue
-		if (iter_living.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND), charge_cost = 0)
+		if (iter_living.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND, charge_cost = 0))
 			continue
 		iter_living.mob_mood?.sanity -= SANITY_DECREASE_PER_SEC
-		if (SPT_PROB(1, seconds_per_tick))
+		if (SPT_PROB(2, seconds_per_tick))
 			to_chat(iter_living, span_warning("Something from [src] whispers into your mind..."))
 			iter_living.adjust_hallucinations_up_to(10 SECONDS, 60 SECONDS)
 

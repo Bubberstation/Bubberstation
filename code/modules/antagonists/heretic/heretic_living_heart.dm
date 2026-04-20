@@ -14,13 +14,13 @@
 /datum/component/living_heart/Initialize()
 	if(!isorgan(parent))
 		return COMPONENT_INCOMPATIBLE
-
-	var/obj/item/organ/organ_parent = parent
+	// BUBBER EDIT REMOVAL - sac is disabled for now
+	/*var/obj/item/organ/organ_parent = parent
 	action = new(src)
-	action.Grant(organ_parent.owner)
+	action.Grant(organ_parent.owner)*/
 
 /datum/component/living_heart/Destroy(force)
-	QDEL_NULL(action)
+	//QDEL_NULL(action) // BUBBER EDIT REMOVAL - sac is disabled for now
 	return ..()
 
 /datum/component/living_heart/RegisterWithParent()

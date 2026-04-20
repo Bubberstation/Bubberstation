@@ -119,60 +119,31 @@
 /datum/heretic_knowledge/open_way/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	var/obj/effect/unopened_way/way = get_nearest_way(loc, 1)
 	if (isnull(way))
-		var/obj/effect/unopened_way/far_away_way = get_nearest_way(loc, INFINITY)
-		if (isnull(far_away_way))
-			to_chat(user, span_warning("No ways present!"))
-			return TRUE
+		for (var/obj/effect/unopened_way/far_away_way in GLOB.reality_smash_track.ways)
+			var/list/what_are_we_missing = list()
+			var/list/requirements_list = far_away_way.open_requirements
+			for(var/req_type in requirements_list)
+				var/number_of_things = requirements_list[req_type]
+				// <= 0 means it's fulfilled, skip
+				if(number_of_things <= 0)
+					continue
 
-		var/list/what_are_we_missing = list()
-		var/list/requirements_list = far_away_way.open_requirements
-		for(var/req_type in requirements_list)
-			var/number_of_things = requirements_list[req_type]
-			// <= 0 means it's fulfilled, skip
-			if(number_of_things <= 0)
-				continue
+				// > 0 means it's unfilfilled - the ritual has failed, we should tell them why
+				// Lets format the thing they're missing and put it into our list
+				var/formatted_thing = "[number_of_things] "
+				if(islist(req_type))
+					var/list/req_type_list = req_type
+					var/list/req_text_list = list()
+					for(var/atom/possible_type as anything in req_type_list)
+						req_text_list += parse_required_item(possible_type)
+					formatted_thing += english_list(req_text_list, and_text = "or")
+				else
+					formatted_thing = parse_required_item(req_type)
 
-			// > 0 means it's unfilfilled - the ritual has failed, we should tell them why
-			// Lets format the thing they're missing and put it into our list
-			var/formatted_thing = "[number_of_things] "
-			if(islist(req_type))
-				var/list/req_type_list = req_type
-				var/list/req_text_list = list()
-				for(var/atom/possible_type as anything in req_type_list)
-					req_text_list += parse_required_item(possible_type)
-				formatted_thing += english_list(req_text_list, and_text = "or")
-			else
-				formatted_thing = parse_required_item(req_type)
+				what_are_we_missing += formatted_thing
 
-			what_are_we_missing += formatted_thing
-
-		var/area/target_area = get_area(far_away_way)
-		to_chat(user, span_notice("The nearest unopened way is in [target_area.name], and will require [english_list(what_are_we_missing)]."))
-
-		var/dist = get_dist(user, far_away_way)
-		var/dir = get_dir(user, far_away_way)
-		var/arrow_color
-
-		switch(dist)
-			if (0)
-				return
-			if(5 to 20)
-				arrow_color = COLOR_GREEN
-			if(21 to 50)
-				arrow_color = COLOR_YELLOW
-			if(51 to 100)
-				arrow_color = COLOR_ORANGE
-			else
-				arrow_color = COLOR_RED
-
-		var/datum/hud/user_hud = user.hud_used
-		if(!user_hud || !istype(user_hud, /datum/hud) || !islist(user_hud.infodisplay))
-			return
-
-		var/atom/movable/screen/multitool_arrow/arrow = new(null, user_hud)
-		arrow.color = arrow_color
-		arrow.screen_loc = around_player
-		arrow.transform = matrix(dir2angle(dir), MATRIX_ROTATE)
+			var/area/target_area = get_area(far_away_way)
+			to_chat(user, span_notice("There is a way in [target_area.name], and will require [english_list(what_are_we_missing)]."))
 
 		return TRUE
 

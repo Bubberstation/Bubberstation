@@ -79,8 +79,8 @@
 /obj/item/ether/attack_self(mob/living/user, modifiers)
 	. = ..()
 	user.revive(HEAL_BODY|HEAL_AFFLICTIONS) // BUBBER EDIT CHANGE - was HEAL_ALL
-	for(var/obj/item/implant/to_remove in user.implants)
-		to_remove.removed(user)
+	/*for(var/obj/item/implant/to_remove in user.implants)
+		to_remove.removed(user)*/ // BUBBER EDIT REMOVAL
 
 	user.apply_status_effect(/datum/status_effect/eldritch_sleep)
 	user.SetSleeping(60 SECONDS)

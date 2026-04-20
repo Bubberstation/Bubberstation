@@ -315,8 +315,8 @@
 /datum/heretic_knowledge/limited_amount/starting/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 	SHOULD_CALL_PARENT(TRUE)
-
-	create_mark(source, target)
+	if (should_create_mark(source, target)) // BUBBER EDIT ADDITION - have to buy the mark
+		create_mark(source, target) // BUBBER EDIT CHANGE - have to buy the mark
 
 /**
  * Signal proc for [COMSIG_HERETIC_BLADE_ATTACK].
