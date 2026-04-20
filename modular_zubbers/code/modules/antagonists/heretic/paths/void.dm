@@ -196,12 +196,12 @@
 
 /datum/heretic_knowledge/spell/void_prison
 	desc = "Grants you Void Prison, a spell that places your victim into a ball. In this state, \
-	the target is undamageable and slowly heals. If cast on a heathen with combat mode, chills them when they exit. Can be self-cast."
+	the target is undamageable and slowly heals. Can be self-cast."
 
 /datum/action/cooldown/spell/pointed/void_prison
 	desc = "Sends a target into the void for 10 seconds. \
 		They will be unable to perform any actions for the duration, and will be untouchable and slowly heal. \
-		Afterwards, they will be chilled (if cast with combat mode) and returned to the mortal plane. Can be self-cast."
+		Afterwards, they will be returned to the mortal plane. Can be self-cast."
 
 /datum/action/cooldown/spell/pointed/void_prison/is_valid_target(atom/cast_on)
 	return TRUE // self cast
