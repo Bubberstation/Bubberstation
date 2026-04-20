@@ -31,6 +31,7 @@
 		/datum/crafting_bench_recipe/wearable/plate_armor/horse_shoes,
 		/datum/crafting_bench_recipe/wearable/ring,
 		/datum/crafting_bench_recipe/wearable/collar,
+		/datum/crafting_bench_recipe/crusader_belt,
 		/datum/crafting_bench_recipe/pavise,
 		/datum/crafting_bench_recipe/buckler,
 		/datum/crafting_bench_recipe/bow,

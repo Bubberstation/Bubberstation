@@ -35,7 +35,8 @@
 	//imbued of the final product should be approx. imbued of all containing products
 	var/datum/component/reagent_imbued/output_reagent_component = product.GetComponent(/datum/component/reagent_imbued)
 	var/datum/reagents/my_reagents = combine_reagent_imbues(ingredients)
-	output_reagent_component.set_reagent_imbue(my_reagents, clear_source_reagents = TRUE, smithing_oil_bonus = HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
+	if(!isnull(output_reagent_component))
+		output_reagent_component.set_reagent_imbue(my_reagents, clear_source_reagents = TRUE, smithing_oil_bonus = HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
 
 /datum/crafting_bench_recipe/proc/combine_reagent_imbues(list/reagent_imbued_items)
 	var/datum/reagents/reagents_sum = new(maximum = 4096, new_flags = NO_REACT)
@@ -245,6 +246,22 @@
 	)
 	resulting_item = /obj/item/forging/incomplete_bow
 	time_to_assemble = 4 SECONDS
+	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// BELT COMPLETION ///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/crafting_bench_recipe/crusader_belt
+	recipe_name = "scabbard-utility belt"
+	recipe_desc = "A belt that holds one sword and has a number of side-pouches for holding miscellaneous items."
+	recipe_requirements = list(
+		/obj/item/stack/sheet/leather = 3,
+		/obj/item/stack/sheet/cloth = 2,
+		/obj/item/stack/sheet/mineral/gold = 1,
+	)
+	relevant_skill_level = 7
+	time_to_assemble = 3 SECONDS
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////

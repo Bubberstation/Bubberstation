@@ -1,6 +1,3 @@
-#define MAX_QUENCH_HEAT 600
-#define MIN_VOLUME_TO_QUENCH 300
-#define MIN_VOLUME_TO_IMBUE 300
 //incomplete pre-complete items
 /obj/item/forging/incomplete
 	name = "parent dev item"
@@ -142,6 +139,7 @@
 /obj/item/forging/incomplete/axe
 	name = "incomplete axe head"
 	icon_state = "hot_axehead"
+	completion_quality_points = 16
 	spawn_item = /obj/item/forging/complete/axe
 
 /obj/item/forging/incomplete/hammer
@@ -371,7 +369,6 @@
 	return ..()
 
 /obj/item/stack/tong_act(mob/living/user, obj/item/tool)
-	. = ..()
 	if(amount < 1)
 		user.balloon_alert(user, "not enough material in the stack!")
 		return FALSE
@@ -382,12 +379,18 @@
 		user.balloon_alert(user, "invalid material!")
 		return
 
+	var/obj/item/stack/stack_to_move
 	if(amount == 1)
-		forceMove(tool)
+		stack_to_move = src
 	else
-		var/obj/item/stack/newstack = split_stack(1)
-		newstack.forceMove(tool)
-	tool.icon_state = "tong_full"
+		stack_to_move = split_stack(1)
+
+	if(!isnull(stack_to_move))
+		stack_to_move.forceMove(tool)
+		user.balloon_alert(user, "took one []")
+		tool.icon_state = "tong_full"
+	else
+		stack_trace("[src] was grabbed by [tool] and couldn't pull one sheet!")
 
 /obj/tong_act(mob/living/user, obj/item/tool)
 	. = ..()
