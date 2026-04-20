@@ -53,6 +53,11 @@
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/survival_pen/left_arm
 
+/datum/augment_item/implant/l_arm/toolkit/laser_pointer
+	name = "Left Laser Pointer Finger"
+	cost = 1
+	path = /obj/item/organ/cyberimp/arm/toolkit/laser_pointer/left_arm
+
 //RIGHT ARM IMPLANTS
 /datum/augment_item/implant/r_arm
 	slot = AUGMENT_SLOT_RIGHT_ARM_IMPLANT
@@ -86,10 +91,15 @@
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/pillow/right_arm
 
-/datum/augment_item/implant/l_arm/toolkit/survival_pen
+/datum/augment_item/implant/r_arm/toolkit/survival_pen
 	name = "Right Survival Finger Pen"
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/survival_pen/right_arm
+
+/datum/augment_item/implant/r_arm/toolkit/laser_pointer
+	name = "Right Laser Pointer Finger"
+	cost = 1
+	path = /obj/item/organ/cyberimp/arm/toolkit/laser_pointer/right_arm
 
 //EYES IMPLANTS
 /datum/augment_item/implant/eyes

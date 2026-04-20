@@ -40,7 +40,9 @@
 	zone = BODY_ZONE_L_ARM
 	slot = ORGAN_SLOT_LEFT_ARM_AUG
 
-
+/obj/item/organ/cyberimp/arm/toolkit/laser_pointer/left_arm
+	zone = BODY_ZONE_L_ARM
+	slot = ORGAN_SLOT_LEFT_ARM_AUG
 
 //RIGHT ARM IMPLANTS
 /obj/item/organ/cyberimp/arm/toolkit/power_cord/right_arm
@@ -66,3 +68,7 @@
 /obj/item/organ/cyberimp/arm/toolkit/survival_pen/right_arm
 	zone = BODY_ZONE_R_ARM
 	slot = ORGAN_SLOT_RIGHT_ARM_AUG
+
+/obj/item/organ/cyberimp/arm/toolkit/laser_pointer/right_arm
+	zone = BODY_ZONE_R_ARM
+	slot = RIGHT_ARM_AUG
