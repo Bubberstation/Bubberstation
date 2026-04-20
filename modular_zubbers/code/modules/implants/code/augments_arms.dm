@@ -9,6 +9,12 @@
 	desc = "A \"luxurious\" auto-inflating pillow attached to the arm under a cover plate. Gas bottle refill not included."
 	items_to_create = list(/obj/item/pillow/random)
 
+/obj/item/organ/cyberimp/arm/toolkit/survival_pen
+	name = "Survival Pen Implant"
+	desc = "A cybernetic index finger replacement containing a pen and a diamond dipped claw for breaking rock in an emergency."
+	items_to_create = list(/obj/item/pen/survival)
+
+
 //LEFT ARM IMPLANTS
 /obj/item/organ/cyberimp/arm/toolkit/power_cord/left_arm
 	zone = BODY_ZONE_L_ARM
@@ -30,6 +36,12 @@
 	zone = BODY_ZONE_L_ARM
 	slot = ORGAN_SLOT_LEFT_ARM_AUG
 
+/obj/item/organ/cyberimp/arm/toolkit/survival_pen/left_arm
+	zone = BODY_ZONE_L_ARM
+	slot = ORGAN_SLOT_LEFT_ARM_AUG
+
+
+
 //RIGHT ARM IMPLANTS
 /obj/item/organ/cyberimp/arm/toolkit/power_cord/right_arm
 	zone = BODY_ZONE_R_ARM
@@ -48,5 +60,9 @@
 	slot = ORGAN_SLOT_RIGHT_ARM_AUG
 
 /obj/item/organ/cyberimp/arm/toolkit/pillow/right_arm
+	zone = BODY_ZONE_R_ARM
+	slot = ORGAN_SLOT_RIGHT_ARM_AUG
+
+/obj/item/organ/cyberimp/arm/toolkit/survival_pen/right_arm
 	zone = BODY_ZONE_R_ARM
 	slot = ORGAN_SLOT_RIGHT_ARM_AUG
