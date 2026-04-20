@@ -28,20 +28,22 @@
 	melee_damage_upper = 50
 	ghost_controllable = 1
 
-/obj/effect/mob_spawn/ghost_role/savior
-	name = "Savior"
-	desc = "A being that is a fragment of a far greater being is sleeping soundly in the bed."
+/obj/effect/mob_spawn/ghost_role/pure_radiant_light
+	name = "Pure radiant light"
+	mob_type = /mob/living/basic/voidwalker/sunwalker/maintsroom
+	prompt_name = "a fragment"
+	you_are_text = "You're a fragment"
+	flavour_text = "You are a part of the god of light, you are stuck up, you are rude, but due to your nature of being a mere fragment of the greater being you have plenty of leeway for a good personality."
+	important_text = "This is a comms larp role, you are over-glorified comms agent, you are a fragment of a greater being that being of one of pure light, as such you think you are godlike and superior to all else, feel free to ghost and re-enter your body at will with this one but never give out any information relating to outside the maintsroom and only help people out if theyve been struggling with something for more than an hour- with the final section excluded, dont help them at all with that. if you want to have somebody in your chamber/leave your chamber, ask the admins."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	show_flavor = TRUE
-	you_are_text = "You are a second chance."
-	flavour_text = "You are a infitesimally small fragment of the light or the shadow god, the only difference is in flavor in which the light god is more arrogant and above thee while the shadow god is more respectful and down to earth and normal, the fragment itself can have its own personality though so go nuts."
-	important_text = "Your role and your goal is extremely simple you give people who died in the initial stages of the maintsrooms a second chance- only if there is no way they are being recovered, otherwise no. you should NEVER be engaging in any form of combat ever, doing so is against ze rules for this ghost role- unless in the specific circumstances that somebody clearly trying to pick a fight with you specifically in which case make an a-help and if you are approved to- you may kill whoever was trying to fight you. Furthermore you can ghost in and out of your body as you please- but be warned others can take your body."
-	faction = list(FACTION_NEUTRAL)
-	prompt_ghost = FALSE
-	random_appearance = FALSE
-	/// the option between the light and the dark, i do not feel a need to add icons for these as there are only two
-	var/list/potentialspawns = list(
-		/mob/living/basic/voidwalker/maintsroom,
-		/mob/living/basic/voidwalker/sunwalker/maintsroom,
-	)
+
+/obj/effect/mob_spawn/ghost_role/absence
+	name = "Absence"
+	mob_type = /mob/living/basic/voidwalker/maintsroom
+	prompt_name = "a fragment"
+	you_are_text = "You're a fragment"
+	flavour_text = "You are a part of the god of shadows, you are down to earth, you are polite, but due to your nature of being a mere fragment of the greater being you have plenty of leeway for a good personality."
+	important_text = "This is a comms larp role, you are over-glorified comms agent, you are a fragment of a greater being that being of one of pure light, as such you are more down to earth and more so just like a normal person, feel free to ghost and re-enter your body at will with this one but never give out any information relating to outside the maintsroom and only help people out if theyve been struggling with something for more than an hour- with the final section excluded, dont help them at all with that. if you want to have somebody in your chamber/leave your chamber, ask the admins."
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"

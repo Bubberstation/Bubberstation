@@ -1724,10 +1724,6 @@
 /obj/structure/sign/warning/secure_area/directional/east,
 /turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
-"fB" = (
-/obj/effect/spawner/random/maintsrooms,
-/turf/closed/wall,
-/area/awaymission/caves/maintsroom/deeper)
 "fC" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/yellow{
@@ -2788,17 +2784,9 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "iY" = (
-/obj/item/bedsheet/black/double{
-	dir = 1;
-	layer = 3.3
+/turf/closed/indestructible/reinforced{
+	color = "#000000"
 	},
-/obj/structure/bed/double{
-	dir = 1
-	},
-/obj/structure/curtain/bounty,
-/obj/effect/light_emitter/fake_outdoors,
-/obj/effect/mob_spawn/ghost_role/savior,
-/turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "iZ" = (
 /obj/structure/disposalpipe/segment,
@@ -3067,11 +3055,8 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "jO" = (
-/obj/effect/light_emitter/fake_outdoors,
-/obj/effect/oneway{
-	dir = 4
-	},
-/turf/open/floor/white,
+/obj/effect/mob_spawn/ghost_role/absence,
+/turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "jP" = (
 /obj/machinery/light/floor,
@@ -4095,8 +4080,8 @@
 /turf/open/floor/iron/cafeteria,
 /area/awaymission/caves/maintsroom)
 "mV" = (
-/obj/effect/light_emitter/fake_outdoors,
-/obj/machinery/vending/imported/tiziran,
+/obj/structure/table/wood/fancy/royalblue,
+/obj/item/radio,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "mW" = (
@@ -5586,8 +5571,7 @@
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "rO" = (
-/obj/effect/light_emitter/fake_outdoors,
-/obj/machinery/vending/imported,
+/obj/effect/mob_spawn/ghost_role/pure_radiant_light,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "rP" = (
@@ -9717,12 +9701,10 @@
 /turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "FC" = (
-/obj/structure/closet/cabinet,
-/obj/effect/light_emitter/fake_outdoors,
-/obj/item/bodybag/bluespace,
-/obj/item/stack/rods/fifty,
-/obj/item/stack/sheet/iron/fifty,
-/turf/open/floor/black,
+/obj/structure/chair/comfy{
+	dir = 1
+	},
+/turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "FD" = (
 /obj/machinery/door/airlock/maintenance,
@@ -11782,8 +11764,9 @@
 /turf/open/floor/bronze/filled,
 /area/awaymission/caves/maintsroom)
 "Mp" = (
-/obj/effect/light_emitter/fake_outdoors,
-/obj/machinery/vending/imported/mothic,
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
 /turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "Mq" = (
@@ -12410,9 +12393,9 @@
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "Om" = (
-/obj/effect/light_emitter/fake_outdoors,
-/obj/machinery/vending/deforest_medvend,
-/turf/open/floor/white,
+/obj/structure/table/wood/fancy/black,
+/obj/item/radio,
+/turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "On" = (
 /obj/item/storage/backpack/duffelbag/syndie/c4,
@@ -12614,13 +12597,7 @@
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "OY" = (
-/obj/machinery/launchpad{
-	range = 100
-	},
-/obj/effect/light_emitter/fake_outdoors,
-/obj/structure/window/reinforced/plasma/spawner/directional/south{
-	max_integrity = 50000
-	},
+/obj/structure/table/wood/fancy/black,
 /turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "OZ" = (
@@ -13827,7 +13804,7 @@
 /turf/open/floor/circuit/green,
 /area/awaymission/caves/maintsroom)
 "SU" = (
-/obj/effect/light_emitter/fake_outdoors,
+/obj/structure/table/wood/fancy/royalblue,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "SV" = (
@@ -13944,16 +13921,6 @@
 /area/awaymission/caves/maintsroom)
 "Tm" = (
 /turf/open/floor/bamboo,
-/area/awaymission/caves/maintsroom)
-"Tn" = (
-/obj/machinery/computer/launchpad{
-	dir = 8
-	},
-/obj/effect/light_emitter/fake_outdoors,
-/obj/effect/oneway{
-	dir = 1
-	},
-/turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "To" = (
 /obj/structure/fluff/tram_rail{
@@ -16842,10 +16809,10 @@ jf
 jf
 jf
 jf
-rO
-Mp
-mV
-iY
+jf
+jf
+jf
+jf
 jf
 jf
 jf
@@ -17062,10 +17029,10 @@ jf
 jf
 jf
 jf
-qE
-SU
-qE
-SU
+jf
+jf
+jf
+jf
 jf
 jf
 jf
@@ -17282,10 +17249,10 @@ jf
 jf
 jf
 jf
-jO
-qE
-SU
-qE
+jf
+jf
+jf
+jf
 jf
 jf
 jf
@@ -17502,10 +17469,10 @@ jf
 jf
 jf
 jf
-OY
-Tn
-FC
-Om
+jf
+jf
+jf
+jf
 jf
 jf
 jf
@@ -23957,13 +23924,13 @@ jf
 (37,1,1) = {"
 jf
 jf
-jf
-jf
-jf
-jf
-jf
-jf
-jf
+iY
+iY
+iY
+iY
+iY
+iY
+iY
 jf
 WH
 WH
@@ -24177,13 +24144,13 @@ jf
 (38,1,1) = {"
 jf
 jf
-jf
-jf
-jf
-jf
-jf
-jf
-jf
+iY
+kd
+kd
+kd
+kd
+kd
+iY
 jf
 Jp
 Jp
@@ -24397,13 +24364,13 @@ jf
 (39,1,1) = {"
 jf
 jf
-jf
-jf
-jf
-jf
-jf
-jf
-jf
+iY
+OY
+OY
+kd
+kd
+kd
+iY
 jf
 Jp
 Jp
@@ -24617,13 +24584,13 @@ jf
 (40,1,1) = {"
 jf
 jf
-jf
-jf
-jf
-jf
-jf
-jf
-jf
+iY
+jO
+OY
+kd
+Mp
+kd
+iY
 jf
 Jp
 Jp
@@ -24837,13 +24804,13 @@ jf
 (41,1,1) = {"
 jf
 jf
-jf
-jf
-jf
-jf
-jf
-jf
-jf
+iY
+Om
+OY
+kd
+kd
+kd
+iY
 jf
 Jp
 Jp
@@ -25057,13 +25024,13 @@ jf
 (42,1,1) = {"
 jf
 jf
-jf
-jf
-jf
-jf
-jf
-jf
-jf
+iY
+kd
+kd
+kd
+kd
+kd
+iY
 jf
 Jp
 Jp
@@ -25277,13 +25244,13 @@ jf
 (43,1,1) = {"
 jf
 jf
-jf
-jf
-jf
-jf
-jf
-jf
-jf
+iY
+iY
+iY
+iY
+iY
+iY
+iY
 jf
 Jp
 Jp
@@ -25497,13 +25464,13 @@ jf
 (44,1,1) = {"
 jf
 jf
-jf
-jf
-jf
-jf
-jf
-jf
-jf
+wH
+wH
+wH
+wH
+wH
+wH
+wH
 jf
 Jp
 Jp
@@ -25717,13 +25684,13 @@ jf
 (45,1,1) = {"
 jf
 jf
-jf
-jf
-jf
-jf
-jf
-jf
-jf
+wH
+PZ
+PZ
+PZ
+PZ
+PZ
+wH
 jf
 Jp
 Jp
@@ -25937,13 +25904,13 @@ jf
 (46,1,1) = {"
 jf
 jf
-jf
-jf
-jf
-jf
-jf
-jf
-jf
+wH
+SU
+SU
+PZ
+PZ
+PZ
+wH
 jf
 Jp
 Jp
@@ -26157,13 +26124,13 @@ jf
 (47,1,1) = {"
 jf
 jf
-jf
-jf
-jf
-jf
-jf
-jf
-jf
+wH
+rO
+SU
+PZ
+FC
+PZ
+wH
 wH
 Jp
 Jp
@@ -26377,13 +26344,13 @@ jf
 (48,1,1) = {"
 jf
 jf
-jf
-jf
-jf
-jf
-jf
-jf
-jf
+wH
+mV
+SU
+PZ
+PZ
+PZ
+wH
 wH
 Jp
 Jp
@@ -26597,13 +26564,13 @@ jf
 (49,1,1) = {"
 jf
 jf
-jf
-jf
-jf
-jf
-jf
-jf
-jf
+wH
+PZ
+PZ
+PZ
+PZ
+PZ
+wH
 wH
 Jp
 Jp
@@ -26817,13 +26784,13 @@ jf
 (50,1,1) = {"
 jf
 jf
-jf
-jf
-jf
-jf
-jf
-jf
-jf
+wH
+wH
+wH
+wH
+wH
+wH
+wH
 jf
 kd
 Jp
@@ -46512,7 +46479,7 @@ AK
 AK
 AK
 AK
-fB
+AK
 AK
 AK
 AK
