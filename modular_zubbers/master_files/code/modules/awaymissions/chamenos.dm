@@ -51,3 +51,11 @@
 	important_text = "This is a comms larp role, you are over-glorified comms agent, you are a fragment of a greater being that being of one of pure light, as such you are more down to earth and more so just like a normal person, feel free to ghost and re-enter your body at will with this one but never give out any information relating to outside the maintsroom and only help people out if theyve been struggling with something for more than an hour- with the final section excluded, dont help them at all with that. if you want to have somebody in your chamber/leave your chamber, ask the admins."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
+
+/mob/living/basic/voidwalker/maintsroom/Initialize(mapload)
+	. = ..()
+	add_traits(list(TRAIT_ADVANCEDTOOLUSER, TRAIT_CAN_STRIP))
+
+/mob/living/basic/voidwalker/sunwalker/maintsroom/Initialize(mapload)
+	. = ..()
+	add_traits(list(TRAIT_ADVANCEDTOOLUSER, TRAIT_CAN_STRIP))
