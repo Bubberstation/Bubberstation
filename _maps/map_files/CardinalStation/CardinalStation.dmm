@@ -1904,6 +1904,9 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/spawner/random/armory/dragnet,
 /obj/effect/spawner/random/armory/dragnet,
+/obj/item/gun/energy/recharge/resonant_system{
+	desc = "The \"Advanced Resonance Control System\" or \"A.R.C.S\" is an advanced, ranged version of a mining resonator. While its main case looks nothing more fancy than a modified proto-kinetic accelerator... One could guess thats not far off the truth. The lugs for a bayonette are missing, but atleast you can play with the new adjustment dial on the side."ddddddd"
+	},
 /turf/open/floor/iron/dark/textured,
 /area/station/security/armory)
 "ayS" = (
@@ -3873,7 +3876,7 @@
 "aVH" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	id_tag = "garbage"
+	id = "garbage"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -4557,7 +4560,7 @@
 "bdT" = (
 /obj/machinery/conveyor{
 	dir = 1;
-	id_tag = "packageSort2"
+	id = "packageSort2"
 	},
 /obj/structure/plasticflaps,
 /turf/open/floor/iron/dark/smooth_large,
@@ -6903,7 +6906,7 @@
 /turf/open/floor/iron/dark,
 /area/station/medical/pharmacy)
 "bFt" = (
-/obj/structure/chair/sofa/bench/solo{
+/obj/structure/chair/sofa/bench/right{
 	dir = 1
 	},
 /turf/open/floor/grass,
@@ -8718,7 +8721,7 @@
 /area/station/medical/morgue)
 "bZO" = (
 /obj/machinery/conveyor{
-	id_tag = "garbage"
+	id = "garbage"
 	},
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/structure/window/reinforced/spawner/directional/west,
@@ -11744,7 +11747,7 @@
 "cHM" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	id_tag = "garbage"
+	id = "garbage"
 	},
 /obj/effect/decal/cleanable/crayon{
 	icon_state = "Gib";
@@ -12108,7 +12111,7 @@
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor{
 	dir = 1;
-	id_tag = "cargolobbyin"
+	id = "cargolobbyin"
 	},
 /obj/machinery/door/poddoor/shutters{
 	name = "Output Shutters";
@@ -16844,7 +16847,7 @@
 "dQk" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id_tag = "cargolobbyout"
+	id = "cargolobbyout"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -18066,7 +18069,7 @@
 "ehg" = (
 /obj/machinery/conveyor/inverted{
 	dir = 6;
-	id_tag = "cargolobbyin"
+	id = "cargolobbyin"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -18787,10 +18790,6 @@
 /obj/item/gun/energy/photon{
 	pixel_x = -2;
 	pixel_y = -8
-	},
-/obj/item/gun/energy/photon{
-	pixel_x = -2;
-	pixel_y = -10
 	},
 /turf/open/floor/iron/dark/textured,
 /area/station/security/armory)
@@ -19958,7 +19957,7 @@
 /area/station/commons/dorms/laundry)
 "eFu" = (
 /obj/structure/flora/bush/flowers_yw/style_random,
-/obj/structure/chair/sofa/bench/solo,
+/obj/structure/chair/sofa/bench/right,
 /turf/open/floor/grass,
 /area/station/hallway/primary/aft)
 "eFy" = (
@@ -22266,7 +22265,7 @@
 "fjS" = (
 /obj/machinery/conveyor{
 	dir = 1;
-	id_tag = "cargounload"
+	id = "cargounload"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -24540,7 +24539,6 @@
 	pixel_x = 4
 	},
 /obj/effect/landmark/start/hangover,
-/obj/item/mod/module/springlock,
 /turf/open/floor/iron/grimy,
 /area/station/maintenance/disposal)
 "fLD" = (
@@ -26390,6 +26388,7 @@
 /obj/item/clothing/mask/gas/sechailer/swat/spacepol,
 /obj/structure/cable,
 /obj/item/organ/cyberimp/arm/toolkit/gun/laser,
+/obj/item/gun/energy/e_gun/hos,
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
 "ggJ" = (
@@ -26933,7 +26932,7 @@
 	},
 /obj/machinery/conveyor{
 	dir = 8;
-	id_tag = "cargolobbyin"
+	id = "cargolobbyin"
 	},
 /obj/machinery/camera/autoname/directional/west,
 /turf/open/floor/iron/large,
@@ -28002,7 +28001,7 @@
 "gyA" = (
 /obj/machinery/conveyor/inverted{
 	dir = 10;
-	id_tag = "cargoload"
+	id = "cargoload"
 	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -31719,7 +31718,7 @@
 "htP" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id_tag = "cargounload"
+	id = "cargounload"
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/iron/dark/smooth_large,
@@ -31965,7 +31964,7 @@
 "hwT" = (
 /obj/machinery/conveyor{
 	dir = 1;
-	id_tag = "packageSort2"
+	id = "packageSort2"
 	},
 /obj/structure/sign/poster/official/random/directional/east,
 /turf/open/floor/iron/dark/smooth_large,
@@ -32393,7 +32392,7 @@
 "hCr" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	id_tag = "cargoload"
+	id = "cargoload"
 	},
 /obj/structure/plasticflaps,
 /obj/effect/decal/cleanable/dirt,
@@ -33880,7 +33879,7 @@
 "hTx" = (
 /obj/machinery/conveyor{
 	dir = 1;
-	id_tag = "packageSort2"
+	id = "packageSort2"
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/cargo/sorting)
@@ -34561,7 +34560,7 @@
 "iaY" = (
 /obj/machinery/conveyor/inverted{
 	dir = 9;
-	id_tag = "garbage"
+	id = "garbage"
 	},
 /obj/structure/plasticflaps,
 /turf/open/floor/plating,
@@ -37356,7 +37355,7 @@
 "iIo" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id_tag = "cargolobbyin"
+	id = "cargolobbyin"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -37731,7 +37730,7 @@
 "iKL" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	id_tag = "cargoload"
+	id = "cargoload"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -37986,7 +37985,7 @@
 "iNC" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id_tag = "boulderbelt"
+	id = "boulderbelt"
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/cargo/warehouse)
@@ -41600,7 +41599,7 @@
 /turf/open/floor/iron/white,
 /area/station/science/research/abandoned)
 "jHl" = (
-/mob/living/basic/lizard/tegu/gus,
+/mob/living/basic/snake/banded/harmless,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/central/lesser)
 "jHC" = (
@@ -42466,7 +42465,7 @@
 "jRs" = (
 /obj/machinery/conveyor/inverted{
 	dir = 5;
-	id_tag = "cargolobbyout"
+	id = "cargolobbyout"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -42902,7 +42901,7 @@
 	},
 /obj/machinery/conveyor_switch/oneway{
 	dir = 8;
-	id_tag = "cargounload"
+	id = "cargoload"
 	},
 /turf/open/floor/iron/diagonal,
 /area/station/cargo/storage)
@@ -49536,7 +49535,7 @@
 	},
 /obj/machinery/conveyor{
 	dir = 1;
-	id_tag = "packageSort2"
+	id = "packageSort2"
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 8
@@ -53768,7 +53767,7 @@
 "myo" = (
 /obj/machinery/conveyor/inverted{
 	dir = 6;
-	id_tag = "cargounload"
+	id = "cargounload"
 	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -55444,7 +55443,7 @@
 "mRA" = (
 /obj/machinery/conveyor{
 	dir = 5;
-	id_tag = "cargoload"
+	id = "cargoload"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -55662,7 +55661,7 @@
 	},
 /obj/machinery/conveyor{
 	dir = 8;
-	id_tag = "cargolobbyout"
+	id = "cargolobbyout"
 	},
 /turf/open/floor/iron/large,
 /area/station/cargo/storage)
@@ -58196,7 +58195,7 @@
 "nyc" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	id_tag = "garbage"
+	id = "garbage"
 	},
 /obj/machinery/door/poddoor/preopen{
 	name = "disposal Exit Vent";
@@ -58588,6 +58587,12 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science/research/abandoned)
+"nDf" = (
+/obj/structure/chair/sofa/bench/left{
+	dir = 1
+	},
+/turf/open/floor/grass,
+/area/station/hallway/primary/aft)
 "nDk" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/structure/disposalpipe/segment{
@@ -59351,7 +59356,7 @@
 "nNf" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id_tag = "cargounload"
+	id = "cargounload"
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/camera/autoname/directional/west,
@@ -60223,7 +60228,7 @@
 "nXa" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/conveyor_switch/oneway{
-	id_tag = "boulderbelt"
+	id = "boulderbelt"
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/cargo/warehouse)
@@ -61181,7 +61186,7 @@
 "ohQ" = (
 /obj/machinery/conveyor/inverted{
 	dir = 6;
-	id_tag = "boulderbelt"
+	id = "boulderbelt"
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/cargo/warehouse)
@@ -62058,7 +62063,7 @@
 "otc" = (
 /obj/machinery/conveyor{
 	dir = 6;
-	id_tag = "garbage"
+	id = "garbage"
 	},
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/machinery/light/small/broken/directional/north,
@@ -63846,7 +63851,7 @@
 "oPi" = (
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor{
-	id_tag = "cargolobbyout"
+	id = "cargolobbyout"
 	},
 /obj/machinery/door/poddoor/shutters{
 	name = "Input Shutters";
@@ -63984,6 +63989,10 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"oRf" = (
+/mob/living/basic/lizard/tegu/gus,
+/turf/open/floor/plating/rust,
+/area/station/science/robotics/storage)
 "oRn" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 6
@@ -66233,7 +66242,7 @@
 "pqq" = (
 /obj/item/toy/plush/lizard_plushie/greyscale{
 	name = "Ashwalker plushie";
-	desc = "An adorable stuffed toy that resembles an ashwalker. This one has been custom made. A tag on it reads 'I'm Gansk"
+	desc = "An adorable stuffed toy that resembles an ashwalker. This one has been custom made. A tag on it reads 'I'm Gansk'"
 	},
 /turf/open/floor/fakebasalt,
 /area/station/maintenance/department/science/upper)
@@ -66440,17 +66449,10 @@
 /turf/open/floor/iron/dark,
 /area/station/security/prison)
 "psG" = (
-/obj/effect/turf_decal/trimline/neutral/filled/line{
+/obj/structure/chair/sofa/bench{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/neutral/line{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/obj/structure/chair/sofa/bench/solo,
-/turf/open/floor/iron,
+/turf/open/floor/grass,
 /area/station/hallway/primary/aft)
 "psM" = (
 /turf/closed/wall/r_wall,
@@ -67167,7 +67169,7 @@
 "pAU" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id_tag = "cargounload"
+	id = "cargounload"
 	},
 /obj/machinery/door/poddoor{
 	name = "Supply Dock Unloading Door";
@@ -68973,7 +68975,6 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
-/obj/structure/displaycase,
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
 "pXD" = (
@@ -70150,7 +70151,6 @@
 /obj/effect/turf_decal/tile/neutral/half{
 	dir = 1
 	},
-/obj/structure/chair/sofa/bench/solo,
 /turf/open/floor/iron/half,
 /area/station/hallway/primary/central)
 "qln" = (
@@ -73609,7 +73609,7 @@
 "ral" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id_tag = "boulderbelt"
+	id = "boulderbelt"
 	},
 /obj/machinery/bouldertech/refinery/smelter,
 /turf/open/floor/iron/dark/textured_large,
@@ -74525,7 +74525,7 @@
 /turf/closed/wall/rust,
 /area/station/maintenance/department/medical/morgue)
 "rkH" = (
-/obj/structure/chair/sofa/bench/solo,
+/obj/structure/chair/sofa/bench/left,
 /turf/open/floor/grass,
 /area/station/hallway/primary/aft)
 "rkL" = (
@@ -78156,7 +78156,7 @@
 "saO" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id_tag = "garbage"
+	id = "garbage"
 	},
 /obj/machinery/door/window/brigdoor/right/directional/south,
 /turf/open/floor/plating,
@@ -78851,7 +78851,8 @@
 "siC" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id_tag = "cargounload"
+	id_tag = "cargounload";
+	id = "cargounload"
 	},
 /obj/structure/plasticflaps,
 /turf/open/floor/plating,
@@ -78942,16 +78943,16 @@
 /area/station/common/night_club)
 "sjX" = (
 /obj/machinery/conveyor_switch/oneway{
-	id_tag = "cargolobbyin";
 	dir = 1;
 	pixel_y = -4;
-	pixel_x = -10
+	pixel_x = -10;
+	id = "cargolobbyin"
 	},
 /obj/machinery/conveyor_switch/oneway{
-	id_tag = "cargolobbyout";
 	pixel_y = -4;
 	pixel_x = 10;
-	dir = 1
+	dir = 1;
+	id = "cargolobbyout"
 	},
 /obj/effect/landmark/start/cargo_technician,
 /turf/open/floor/iron/large,
@@ -80131,7 +80132,7 @@
 "szC" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	id_tag = "boulderbelt"
+	id = "boulderbelt"
 	},
 /obj/machinery/brm,
 /turf/open/floor/iron/dark/textured_large,
@@ -83125,7 +83126,7 @@
 "tlf" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	id_tag = "cargoload"
+	id = "cargoload"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor{
@@ -85400,7 +85401,7 @@
 /area/station/cargo/warehouse)
 "tMc" = (
 /obj/effect/landmark/start/assistant,
-/obj/structure/chair/sofa/bench/solo,
+/obj/structure/chair/sofa/bench,
 /turf/open/floor/grass,
 /area/station/hallway/primary/aft)
 "tMm" = (
@@ -86864,6 +86865,7 @@
 	},
 /obj/item/storage/lockbox/loyalty,
 /obj/machinery/computer/security/telescreen/entertainment/directional/south,
+/obj/item/clothing/under/costume/dragon_maid,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/hop)
 "uek" = (
@@ -89311,17 +89313,12 @@
 /turf/open/floor/iron/textured_half,
 /area/station/service/kitchen)
 "uHf" = (
-/obj/effect/turf_decal/trimline/neutral/filled/line,
-/obj/effect/turf_decal/trimline/neutral/line,
-/obj/machinery/camera/autoname/directional/south,
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/obj/structure/chair/sofa/bench/solo{
+/obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/item/mecha_parts/chassis,
 /turf/open/floor/iron,
-/area/station/hallway/primary/aft)
+/area/station/maintenance/central/greater)
 "uHk" = (
 /obj/structure/table,
 /obj/item/kirbyplants/random{
@@ -90161,6 +90158,7 @@
 /obj/structure/closet/crate/wooden/toy,
 /obj/item/extendohand,
 /obj/structure/sign/poster/official/random/directional/east,
+/obj/item/mod/module/springlock,
 /turf/open/floor/iron/dark,
 /area/station/service/theater_dressing)
 "uRc" = (
@@ -90479,7 +90477,7 @@
 "uVx" = (
 /obj/machinery/conveyor{
 	dir = 1;
-	id_tag = "boulderbelt"
+	id = "boulderbelt"
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/cargo/warehouse)
@@ -91019,7 +91017,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/conveyor{
 	dir = 9;
-	id_tag = "cargounload"
+	id = "cargounload"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -91269,7 +91267,7 @@
 "vdI" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	id_tag = "garbage"
+	id = "garbage"
 	},
 /obj/machinery/recycler{
 	dir = 8
@@ -94624,7 +94622,7 @@
 /area/station/medical/virology)
 "vQW" = (
 /obj/machinery/conveyor_switch/oneway{
-	id_tag = "cargoload"
+	id = "cargoload"
 	},
 /obj/effect/turf_decal/siding/thinplating_new,
 /obj/effect/turf_decal/arrows{
@@ -94638,9 +94636,9 @@
 	dir = 4
 	},
 /obj/machinery/conveyor_switch/oneway{
-	id_tag = "packageSort2";
 	pixel_x = -2;
-	pixel_y = 12
+	pixel_y = 12;
+	id = "packageSort2"
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -98142,6 +98140,7 @@
 "wJn" = (
 /obj/structure/closet/crate/bin,
 /obj/item/toy/talking/ai,
+/obj/item/organ/brain/cybernetic/ai,
 /turf/open/floor/plating/rust,
 /area/station/maintenance/department/science/central)
 "wJs" = (
@@ -99044,7 +99043,7 @@
 /area/station/commons/vacant_room/office)
 "wVJ" = (
 /obj/machinery/conveyor{
-	id_tag = "garbage"
+	id = "garbage"
 	},
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/machinery/door/window/brigdoor/right/directional/west,
@@ -99150,7 +99149,7 @@
 "wXm" = (
 /obj/machinery/conveyor{
 	dir = 1;
-	id_tag = "cargoload"
+	id = "cargoload"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -102419,7 +102418,7 @@
 "xJE" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	id_tag = "boulderbelt"
+	id = "boulderbelt"
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/cargo/warehouse)
@@ -102978,7 +102977,7 @@
 "xQr" = (
 /obj/machinery/conveyor/inverted{
 	dir = 10;
-	id_tag = "boulderbelt"
+	id = "boulderbelt"
 	},
 /obj/machinery/bouldertech/refinery,
 /turf/open/floor/iron/dark/textured_large,
@@ -131254,7 +131253,7 @@ ovd
 cXc
 tij
 dPg
-rum
+uHf
 gza
 hSE
 xko
@@ -132344,7 +132343,7 @@ nHq
 tGs
 dea
 pUt
-pMu
+oRf
 viv
 wOg
 abI
@@ -140785,7 +140784,7 @@ oLe
 hWI
 hWI
 ewK
-uHf
+pnT
 mzY
 mxq
 gFv
@@ -143352,7 +143351,7 @@ wrP
 wrP
 mUx
 liQ
-bFt
+nDf
 eFu
 eHM
 caW
@@ -143609,7 +143608,7 @@ rds
 wrP
 xVo
 liQ
-bFt
+psG
 tMc
 eHM
 caW
@@ -146434,7 +146433,7 @@ ezH
 sru
 sru
 sru
-psG
+cyS
 fhu
 hWI
 hWI
