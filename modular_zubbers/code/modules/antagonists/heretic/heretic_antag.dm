@@ -112,9 +112,9 @@
 				hereticwin = FALSE
 			count++
 	if(hereticwin)
-		parts += span_greentext("The [LOWER_TEXT(heretic_path.name)] acolyte was successful!")
+		parts += span_greentext("The [LOWER_TEXT(heretic_path.route)] acolyte was successful!")
 	else
-		parts += span_redtext("The [LOWER_TEXT(heretic_path.name)] acolyte has failed.")
+		parts += span_redtext("The [LOWER_TEXT(heretic_path.route)] acolyte has failed.")
 
 	parts += "<b>Knowledge Researched:</b> "
 
