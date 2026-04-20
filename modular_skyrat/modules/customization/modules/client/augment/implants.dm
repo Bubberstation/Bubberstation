@@ -21,7 +21,7 @@
 
 /datum/augment_item/implant/l_arm/power_cord
 	name = "Left Synth Charging Implant"
-	path = /obj/item/organ/cyberimp/arm/toolkit/power_cord
+	path = /obj/item/organ/cyberimp/arm/toolkit/power_cord/left_arm
 
 /datum/augment_item/implant/l_arm/razor_claws
 	name = "Left Razor Claws"
@@ -36,7 +36,7 @@
 /datum/augment_item/implant/l_arm/toolkit/lighter
 	name = "Left Lighter Implant"
 	cost = 1
-	path = /obj/item/organ/cyberimp/arm/toolkit/lighter
+	path = /obj/item/organ/cyberimp/arm/toolkit/lighter/left_arm
 
 /datum/augment_item/implant/l_arm/toolkit/seclite
 	name = "Left Arm Seclite"
@@ -45,7 +45,7 @@
 
 /datum/augment_item/implant/l_arm/toolkit/pillow
 	name = "Left Arm Cyberpillow™"
-	path = /obj/item/organ/cyberimp/arm/toolkit/pillow
+	path = /obj/item/organ/cyberimp/arm/toolkit/pillow/left_arm
 
 //RIGHT ARM IMPLANTS
 /datum/augment_item/implant/r_arm
@@ -53,7 +53,7 @@
 
 /datum/augment_item/implant/r_arm/power_cord
 	name = "Right Synth Charging Implant"
-	path = /obj/item/organ/cyberimp/arm/toolkit/power_cord
+	path = /obj/item/organ/cyberimp/arm/toolkit/power_cord/right_arm
 
 /datum/augment_item/implant/r_arm/razor_claws
 	name = "Right Razor Claws"
@@ -68,16 +68,16 @@
 /datum/augment_item/implant/r_arm/toolkit/lighter
 	name = "Right Lighter Implant"
 	cost = 1
-	path = /obj/item/organ/cyberimp/arm/toolkit/lighter
+	path = /obj/item/organ/cyberimp/arm/toolkit/lighter/right_arm
 
 /datum/augment_item/implant/r_arm/toolkit/seclite
 	name = "Right Arm Seclite"
 	cost = 2
-	path = /obj/item/organ/cyberimp/arm/toolkit/seclite
+	path = /obj/item/organ/cyberimp/arm/toolkit/seclite/right_arm
 
 /datum/augment_item/implant/r_arm/toolkit/pillow
 	name = "Right Arm Cyberpillow™"
-	path = /obj/item/organ/cyberimp/arm/toolkit/pillow
+	path = /obj/item/organ/cyberimp/arm/toolkit/pillow/right_arm
 
 //EYES IMPLANTS
 /datum/augment_item/implant/eyes
