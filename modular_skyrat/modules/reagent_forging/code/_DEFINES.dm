@@ -1,4 +1,4 @@
-/The list of possible things anyone can make with materials used on the forge
+//The list of possible things anyone can make with materials used on the forge
 #define FORGING_ASDF list( \"Chain" = /obj/machinery/door/airlock, \
 /obj/structure/door_assembly, /obj/machinery/door/firedoor, /obj/machinery/door/window)
 #define FORGING_ITEMS_ANYONE list(\

@@ -20,25 +20,25 @@
 /obj/item/forging/reagent_weapon/proc/apply_reagent_component()
 	AddComponent(/datum/component/reagent_imbued/weapon)
 /obj/item/forging/reagent_weapon/proc/apply_smithing_component()
-	AddComponent(/datum/component/forge_smithable,
-		FORGING_WEAPON_REFORGING_MAX_QUALITY,
-		TRUE,
-		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS,
-		FORGING_WEAPON_REFORGING_MAX_BAD_HITS,
-		FORGING_WEAPON_REFORGING_AVERAGE_WAIT,
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
+		FORGING_WEAPON_REFORGING_AVERAGE_WAIT, \
 		CALLBACK(src, TYPE_PROC_REF(/obj/item/forging/reagent_weapon, quench_item)))
 
-/obj/item/forging/reagent_weapon/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
+/obj/item/forging/reagent_weapon/proc/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
 	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
 	if(!isnull(smith_component))
 		smith_component.reset()
 		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio())
-/obj/item/forging/reagent_weapon/passive_cool_item()
+/obj/item/forging/reagent_weapon/proc/passive_cool_item()
 	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
 	if(!isnull(smith_component))
 		smith_component.reset()
 		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio(), TRUE)
-/obj/item/forging/reagent_weapon/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
+/obj/item/forging/reagent_weapon/proc/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
 	var/new_force_penalty = 0
 	if(completion_ratio < 1 || force_incomplete_penalty)
 		new_force_penalty = initial(force) * (1.0 - lerp(MIN_INCOMPLETE_DAMAGE_MULT, MAX_INCOMPLETE_DAMAGE_MULT, completion_ratio))
@@ -260,14 +260,14 @@
 	user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/forging/reagent_weapon/staff/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
-	var/datum/component/reagent_imbued/staff_component = weapon_head.GetComponent(/datum/component/reagent_imbued)
+	var/datum/component/reagent_imbued/staff_component = GetComponent(/datum/component/reagent_imbued)
 	if(!isnull(staff_component) && completion_ratio < 1)
-		staff_component.imbued_reagent.maximum_volume = round(staff_component.imbued_reagent.maximum_volume * lerp(MIN_INCOMPLETE_STAFF_INJECT_MULT, MAX_INCOMPLETE_STAFF_INJECT_MULT, pieces_completion_amount))
+		staff_component.imbued_reagent.maximum_volume = round(staff_component.imbued_reagent.maximum_volume * lerp(MIN_INCOMPLETE_STAFF_INJECT_MULT, MAX_INCOMPLETE_STAFF_INJECT_MULT, completion_ratio))
 
 	var/new_max_integrity_bonus = max(perfect_forging_bonus, clamp(perfect_ratio * MAX_PERFECT_STAFF_INTEG_BONUS, 0, MAX_PERFECT_STAFF_INTEG_BONUS))
-	product.force += max(0, new_max_integrity_bonus - perfect_forging_bonus)
+	force += max(0, new_max_integrity_bonus - perfect_forging_bonus)
 	perfect_forging_bonus = new_max_integrity_bonus
-	update_integrity(max(round(lerp(0, max_integrity, completion_ratio)), integrity))
+	update_integrity(max(round(lerp(0, max_integrity, completion_ratio)), get_integrity()))
 
 /obj/item/forging/reagent_weapon/spear
 	name = "reagent spear"

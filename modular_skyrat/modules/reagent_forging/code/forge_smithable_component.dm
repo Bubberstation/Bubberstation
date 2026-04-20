@@ -173,20 +173,20 @@
 
 /datum/component/forge_smithable/proc/try_quench(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
 	if(dunk_reagents.chem_temp > MAX_QUENCH_HEAT)
-		balloon_alert(user, "[dunk_object] is too hot to cool [parent_item]!")
+		parent_item.balloon_alert(user, "[dunk_object] is too hot to cool [parent_item]!")
 		return
 	if(dunk_reagents.total_volume < MIN_VOLUME_TO_QUENCH)
-		balloon_alert(user, "[dunk_object] doesn't contain enough fluid to immerse [parent_item]!")
+		parent_item.balloon_alert(user, "[dunk_object] doesn't contain enough fluid to immerse [parent_item]!")
 		return
 	dunk_reagents.expose_temperature(600)
-	if(!isnull(color))
+	if(!isnull(heat_color))
 		parent_item.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 	quench_callback.Invoke(dunk_reagents, dunk_object, user)
 	//SEND_SIGNAL(parent_item, COMSIG_SMITHING_QUENCH, dunk_reagents, dunk_object, user)
 
 /datum/component/forge_smithable/proc/heat_for_smithing(heat_time, additive = FALSE)
-	if(!isnull(color))
-		parent_item.add_atom_colour(color_transition_filter(paint_color, SATURATION_OVERRIDE), TEMPORARY_COLOUR_PRIORITY)
+	if(!isnull(heat_color))
+		parent_item.add_atom_colour(color_transition_filter(heat_color, SATURATION_OVERRIDE), TEMPORARY_COLOUR_PRIORITY)
 	if(additive)
 		COOLDOWN_START(src, heating_remainder, heat_time + COOLDOWN_TIMELEFT(src, heating_remainder))
 	else

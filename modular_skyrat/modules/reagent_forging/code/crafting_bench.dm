@@ -24,11 +24,11 @@
 	COOLDOWN_DECLARE(hit_cooldown)
 	/// What recipes are we allowed to choose from?
 	var/list/allowed_choices = list(
-		/datum/crafting_bench_recipe/wearable/plate_helmet,
-		/datum/crafting_bench_recipe/wearable/plate_vest,
-		/datum/crafting_bench_recipe/wearable/plate_gloves,
-		/datum/crafting_bench_recipe/wearable/plate_boots,
-		/datum/crafting_bench_recipe/wearable/horse_shoes,
+		/datum/crafting_bench_recipe/wearable/plate_armor/plate_helmet,
+		/datum/crafting_bench_recipe/wearable/plate_armor/plate_vest,
+		/datum/crafting_bench_recipe/wearable/plate_armor/plate_gloves,
+		/datum/crafting_bench_recipe/wearable/plate_armor/plate_boots,
+		/datum/crafting_bench_recipe/wearable/plate_armor/horse_shoes,
 		/datum/crafting_bench_recipe/wearable/ring,
 		/datum/crafting_bench_recipe/wearable/collar,
 		/datum/crafting_bench_recipe/pavise,

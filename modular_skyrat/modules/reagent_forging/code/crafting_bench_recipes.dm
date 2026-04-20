@@ -124,8 +124,8 @@
 	var/obj/item/forging/complete/weapon_head = is_path_in_list(/obj/item/forging/complete, things_to_use, TRUE)
 	var/pieces_completion_amount = get_total_completion_amount(things_to_use)
 	if(istype(product, /obj/item/forging/reagent_weapon))
-		var/obj/item/forging/weapon/weaponforged = product
-		weaponforged.apply_perfect_and_completion_bonuses(pieces_completion_amount, weapon_head.perfect_ratio)
+		var/obj/item/forging/reagent_weapon/weaponforged = product
+		weaponforged.apply_smithing_bonuses(pieces_completion_amount, weapon_head.perfect_ratio)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// ARMOR COMPLETION //////////////////////////////////////////////////////
@@ -298,5 +298,3 @@
 	resulting_item = /obj/item/empty_circuit
 	time_to_assemble = 20 SECONDS
 	required_traits = list(TRAIT_KNOW_CIRCUIT_SMITHING)
-
-#undef MAX_PERFECT_FORCE_BONUS
