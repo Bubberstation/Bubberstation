@@ -100,13 +100,10 @@
 		balloon_alert(user, "stand in line with wall!")
 		return FALSE
 	var/turf/T = get_turf(user)
-	if(!isfloorturf(T))
+	if(!isfloorturf(T) && !bypass_floor) //BUBBER EDIT - allows for wallmounts in floorless areas
 		balloon_alert(user, "cannot place here!")
 		return FALSE
 	var/area/A = get_area(T)
-	if(!isfloorturf(T) && !bypass_floor) //BUBBER EDIT - allows for wallmounts in floorless areas
-		balloon_alert(user, "cannot place here!")
-		return
 	if(A.always_unpowered && !bypass_unpowered) //BUBBER EDIT - allows for wallmounts in unpowered areas
 		balloon_alert(user, "cannot place in this area!")
 		return
