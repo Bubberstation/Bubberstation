@@ -12,6 +12,7 @@
 		/obj/item/ammo_box/advanced/s12gauge/bean = 2,
 		/obj/item/clothing/glasses/hud/security/red = 6,
 		/obj/item/clothing/glasses/hud/security/red/sunglasses = 6,
+		/obj/item/clothing/mask/gas/sechailer/red = 12,
 	)
 	contraband = list(
 		/obj/item/clothing/glasses/sunglasses = 2,
