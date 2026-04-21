@@ -100,7 +100,7 @@
 	var/real_icon_state = "emark7"
 	anchored = TRUE
 	interaction_flags_atom = INTERACT_ATOM_NO_FINGERPRINT_ATTACK_HAND|INTERACT_ATOM_NO_FINGERPRINT_INTERACT
-	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 	invisibility = INVISIBILITY_OBSERVER
 	var/opening = FALSE
 	// typepaths
