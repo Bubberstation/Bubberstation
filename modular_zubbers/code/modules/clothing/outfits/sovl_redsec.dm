@@ -1,8 +1,8 @@
 /obj/item/clothing/under/rank/security/red
 	icon = 'icons/obj/clothing/under/security.dmi'
-	worn_icon = "rsecurity"
-	abstract_type = /obj/item/clothing/under/rank/security
-	armor_type = /datum/armor/clothing_under/rank_security
+	worn_icon = 'icons/obj/clothing/under/security.dmi'
+	abstract_type = /obj/item/clothing/under/rank/security/red
+	armor_type = /datum/armor/clothing_under/rank_security/red
 	strip_delay = 5 SECONDS
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
