@@ -24,6 +24,8 @@
 					/obj/item/clothing/suit/armor/vest/alt/sec/viro/leatherjacket = 6,
 					/obj/item/clothing/suit/armor/vest/alt/sec/viro/softshell = 6,
 					/obj/item/clothing/head/helmet/sec = 6,
+					/obj/item/clothing/head/helmet/red/alt/ = 6,
+					/obj/item/clothing/head/helmet/red = 6,
 					/obj/item/clothing/head/beret/sec/viro = 6,
 					/obj/item/clothing/head/soft/sec = 6,
 					/obj/item/clothing/head/security_beanie = 6,
