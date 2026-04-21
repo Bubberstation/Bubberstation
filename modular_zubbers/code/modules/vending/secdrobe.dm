@@ -29,6 +29,7 @@
 					/obj/item/clothing/head/beret/sec/viro = 6,
 					/obj/item/clothing/head/soft/sec = 6,
 					/obj/item/clothing/head/security_beanie = 6,
+					/obj/item/clothing/head/costume/ushanka/sec = 6,
 					/obj/item/clothing/mask/bandana/sec = 6,
 					/obj/item/clothing/gloves/color/black = 6,
 					/obj/item/clothing/gloves/color/black/security = 6,
