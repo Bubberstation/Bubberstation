@@ -36,7 +36,7 @@
 					/obj/item/storage/backpack/messenger/sec = 6,
 					/obj/item/clothing/shoes/jackboots = 6,
 					/obj/item/clothing/shoes/jackboots/sec = 6,
-					/obj/item/clothing/glasses/hud/security/red = 6
+					/obj/item/clothing/glasses/hud/security/red = 6,
 					/obj/item/clothing/glasses/hud/security/red/sunglasses = 6,
 				),
 			),
