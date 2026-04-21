@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(mansus_eye_commands_regex, list(
 	to create a localized effect on targets the eye could see without x-ray vision. Only one eye can exist at a time - be careful with it."
 	gain_text = "It is said the Owl gifted mankind sight. Humans could see far more, once, until the Owl realized its mistake and plucked out our \
 	third eye. But through an elaborate process, one can still obtain - and open, that missing eye."
-	research_tree_icon_path = 'modular_zubbers/code/modules/antagonists/heretic/icons/heretic_misc.dmi'
+	research_tree_icon_path = 'modular_zubbers/icons/obj/heretic_misc.dmi'
 	research_tree_icon_state = "watching_eye_open"
 	required_atoms = list(/obj/item/organ/eyes = 1, /obj/item/stack/sheet/plasmaglass = 1, /obj/item/clothing/glasses/blindfold = 1)
 	result_atoms = list(/obj/item/mansus_eye)
@@ -27,7 +27,7 @@ GLOBAL_LIST_INIT(mansus_eye_commands_regex, list(
 /obj/item/mansus_eye
 	name = "watching eye"
 	desc = "An eerie eye stares back at you, unblinking, tracking your every movement."
-	icon = 'modular_zubbers/code/modules/antagonists/heretic/icons/heretic_misc.dmi'
+	icon = 'modular_zubbers/icons/obj/heretic_misc.dmi'
 	icon_state = "watching_eye_open"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	w_class = WEIGHT_CLASS_SMALL
@@ -221,7 +221,7 @@ GLOBAL_LIST_INIT(mansus_eye_commands_regex, list(
 	<b>Sleep</b>: Afflicts everoyne in view with drowsiness and eye blur.\n\
 	Every time a phrase is uttered, the eye will briefly become visible and will also go on cooldown for some time.\
 	The effects only apply if the eye could see the target without x-ray vision."
-	button_icon = 'modular_zubbers/code/modules/antagonists/heretic/icons/heretic_misc.dmi'
+	button_icon = 'modular_zubbers/icons/obj/heretic_misc.dmi'
 	button_icon_state = "watching_eye_open"
 	background_icon_state = "bg_heretic"
 	cooldown_time = 1 SECONDS
