@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/megafauna/claw
 	name = "Trooper \"Claw\""
 	desc = "This is Trooper \"Claw\".\nThey are holding a armblade in their right hand."
-	health = 750
-	maxHealth = 750
+	health = 2000
+	maxHealth = 2000
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	attack_sound = 'sound/creatures/claw_attack.ogg'
@@ -57,8 +57,6 @@
 	speed = 5
 	move_to_delay = 5
 	speak_emote = list("verbalizes")
-	mob_trophy = /obj/item/nullrod/armblade/tentacle
-	loot = list(/obj/effect/spawner/clawloot)
 	health = 2250
 	maxHealth = 2250
 	shouldnt_move = TRUE //we want to show the transforming animation
