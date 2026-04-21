@@ -1,6 +1,6 @@
 /obj/item/clothing/under/rank/security/red
-	icon = 'icons/obj/clothing/under/security.dmi'
-	worn_icon = 'icons/mob/clothing/under/security.dmi'
+	icon = "rsecurity"
+	worn_icon = "rsecurity"
 	abstract_type = /obj/item/clothing/under/rank/security
 	armor_type = /datum/armor/clothing_under/rank_security
 	strip_delay = 5 SECONDS
