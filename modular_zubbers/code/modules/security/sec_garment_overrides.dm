@@ -44,5 +44,6 @@
 	new /obj/item/clothing/suit/armor/red/hos/trenchcoat/winter(src)
 	new /obj/item/clothing/suit/armor/red/hos(src)
 	new	/obj/item/clothing/neck/cloak/hos(src)
+	new /obj/item/clothing/neck/cloak/hos/red(src)
 	new	/obj/item/clothing/mask/gas/sechailer/swat(src)
 	new	/obj/item/clothing/shoes/sneakers/brown(src)

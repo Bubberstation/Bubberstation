@@ -189,6 +189,7 @@
 		/obj/item/clothing/suit/armor/hos/overcoat = 1,
 		/obj/item/clothing/suit/armor/hos/vest = 1,
 		/obj/item/clothing/neck/cloak/hos = 1,
+		/obj/item/clothing/neck/cloak/hos/red = 1,
 		/obj/item/clothing/mask/gas/sechailer/swat = 1,
 		/obj/item/clothing/shoes/sneakers/brown = 1,
 	)

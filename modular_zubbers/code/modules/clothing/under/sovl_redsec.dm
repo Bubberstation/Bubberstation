@@ -115,3 +115,10 @@
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+/obj/item/clothing/neck/cloak/hos/red
+	name = "head of security's cloak"
+	desc = "Worn by Securistan, ruling the station with an iron fist."
+	icon = 'icons/obj/clothing/cloaks.dmi'
+	worn_icon = 'icons/mob/clothing/neck.dmi'
+	icon_state = "hoscloak"
