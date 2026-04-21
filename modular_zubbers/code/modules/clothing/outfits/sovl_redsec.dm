@@ -7,7 +7,7 @@
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
 
-/datum/armor/clothing_under/rank_security
+/datum/armor/clothing_under/rank_security/red
 	melee = 10
 	fire = 30
 	acid = 30
