@@ -18,9 +18,11 @@
 	preview_name = "Neutral Pattern"
 	new_icon_state = "vest_worn"
 
-/datum/atom_skin/collared_vest/blue
-	preview_name = "Blue Pattern"
-	new_icon_state = "vest_worn_blue"
+// /datum/atom_skin/collared_vest/blue
+	//preview_name = "Blue Pattern"
+	// new_icon_state = "vest_worn_blue"
+
+// Commenting out the blue option, but the sprites still do exist
 
 /obj/item/clothing/suit/armor/vest/collared_vest/Initialize(mapload)
 	. = ..()
