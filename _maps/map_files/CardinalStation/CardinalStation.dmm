@@ -15423,6 +15423,7 @@
 /obj/effect/spawner/random/exotic/antag_gear_weak,
 /obj/effect/spawner/random/exotic/syndie,
 /obj/effect/spawner/random/exotic/antag_gear_weak,
+/obj/item/device/traitor_announcer/infinite,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered)
 "dyy" = (
@@ -24702,6 +24703,7 @@
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/blood/innards,
 /obj/effect/decal/cleanable/blood/gibs/up,
+/obj/item/organ/brain/cybernetic/ai,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/maintenance/department/science/central)
 "fOZ" = (
@@ -26891,6 +26893,7 @@
 	pixel_x = -4
 	},
 /obj/machinery/light/small/directional/south,
+/obj/item/crowbar/power,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/hallway)
 "gmT" = (
@@ -47670,6 +47673,11 @@
 /obj/structure/table/reinforced{
 	color = "#c2bfa3"
 	},
+/obj/item/rbmk_upgrade/overclock,
+/obj/item/organ/cyberimp/arm/toolkit/toolset{
+	pixel_x = -15;
+	pixel_y = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/hallway)
 "laE" = (
@@ -50147,6 +50155,11 @@
 /obj/item/rcd_upgrade/silo_link{
 	pixel_x = -4;
 	pixel_y = -1
+	},
+/obj/item/rcd_upgrade/cooling,
+/obj/item/rcd_upgrade/furnishing{
+	pixel_x = 5;
+	pixel_y = 2
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/hallway)
@@ -54789,6 +54802,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
 	},
+/obj/machinery/power/rtg/portable,
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/atmos/hallway)
 "mJM" = (
@@ -66577,6 +66591,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/item/borg/upgrade/transform/security,
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "ptW" = (
@@ -74360,6 +74375,7 @@
 	dir = 6
 	},
 /obj/machinery/firealarm/directional/east,
+/obj/machinery/power/emitter/prototype,
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/atmos/hallway)
 "rio" = (
@@ -90226,6 +90242,7 @@
 /area/station/maintenance/department/medical/chemistry)
 "uRB" = (
 /obj/structure/alien/weeds,
+/obj/item/borg/upgrade/modkit/aoe/mobs/andturfs,
 /turf/open/floor/plating,
 /area/station/science/robotics/storage)
 "uRI" = (
@@ -98149,7 +98166,10 @@
 "wJn" = (
 /obj/structure/closet/crate/bin,
 /obj/item/toy/talking/ai,
-/obj/item/organ/brain/cybernetic/ai,
+/obj/item/malf_upgrade{
+	desc = "A very stratched up datadisk, theres writing on it but the only words you can make out are '...insert into...AI...ever!!' the rest is completely unreadable";
+	name = "Suspicous looking disk"
+	},
 /turf/open/floor/plating/rust,
 /area/station/maintenance/department/science/central)
 "wJs" = (
@@ -99116,6 +99136,7 @@
 	},
 /obj/structure/closet/secure_closet/engineering_chief,
 /obj/structure/sign/poster/official/random/directional/south,
+/obj/item/weldingtool/electric,
 /turf/open/floor/carpet/orange,
 /area/station/command/heads_quarters/ce)
 "wWU" = (
