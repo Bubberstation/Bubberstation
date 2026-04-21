@@ -22,7 +22,7 @@
 	name = "security HUD"
 	desc = "A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records."
 	icon = 'icons/obj/clothing/glasses.dmi'
-	worn_icon = 'icons/obj/clothing/glasses.dmi'
+	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	icon_state = "securityhud"
 	clothing_traits = list(TRAIT_SECURITY_HUD)
 	glass_colour_type = /datum/client_colour/glass_colour/red
@@ -32,6 +32,7 @@
 	name = "security HUDSunglasses"
 	desc = "Sunglasses with a security HUD."
 	icon_state = "sunhudsec"
+	worn_icon = 'icons/mob/clothing/eyes.dmi'
 	flash_protect = FLASH_PROTECTION_FLASH
 	flags_cover = GLASSESCOVERSEYES
 	tint = 1
