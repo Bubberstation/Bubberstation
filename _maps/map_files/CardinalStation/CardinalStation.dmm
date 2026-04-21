@@ -19622,7 +19622,7 @@
 /area/station/engineering/atmos)
 "eBe" = (
 /obj/structure/flora/bush/fullgrass/style_random,
-/obj/structure/chair/sofa/bench/solo,
+/obj/structure/chair/sofa/bench,
 /turf/open/floor/grass,
 /area/station/hallway/primary/fore)
 "eBt" = (
@@ -28222,7 +28222,6 @@
 /turf/closed/wall/r_wall,
 /area/station/engineering/atmos/hallway)
 "gBD" = (
-/obj/effect/decal/cleanable/cobweb,
 /obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6/directional/west,
 /turf/open/floor/iron/vaporwave,
 /area/station/command/heads_quarters/captain/private)
@@ -38179,8 +38178,8 @@
 "iOZ" = (
 /obj/machinery/conveyor_switch/oneway{
 	dir = 8;
-	id_tag = "garbage";
-	name = "disposal conveyor"
+	name = "disposal conveyor";
+	id = "garbage"
 	},
 /obj/effect/turf_decal/box,
 /obj/effect/landmark/event_spawn,
@@ -40159,7 +40158,9 @@
 	},
 /area/station/science/genetics)
 "jnT" = (
-/obj/effect/landmark/start/assistant,
+/obj/structure/chair/sofa/bench/left{
+	dir = 1
+	},
 /turf/open/floor/grass,
 /area/station/hallway/primary/fore)
 "jnX" = (
@@ -42234,7 +42235,6 @@
 /area/shuttle/abandoned)
 "jPp" = (
 /obj/structure/sign/directions/evac/directional/north,
-/obj/structure/chair/sofa/bench/solo,
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "jPr" = (
@@ -51330,13 +51330,10 @@
 	desc = "oh god..."
 	},
 /obj/structure/sign/poster/contraband/lusty_xenomorph/directional/east,
-/obj/item/paperwork{
-	pixel_x = -8;
-	pixel_y = 4;
-	name = "Captains search history";
-	desc = "holy shit, why is there so much porn"
-	},
 /obj/effect/landmark/start/hangover,
+/obj/structure/chair/comfy/carp{
+	dir = 8
+	},
 /turf/open/floor/iron/vaporwave,
 /area/station/command/heads_quarters/captain/private)
 "lTM" = (
@@ -54986,7 +54983,9 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
 "mLC" = (
-/obj/structure/flora/bush/leavy/style_3,
+/obj/structure/chair/sofa/bench/right{
+	dir = 1
+	},
 /turf/open/floor/grass,
 /area/station/hallway/primary/fore)
 "mLH" = (
@@ -58830,7 +58829,7 @@
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
 "nGq" = (
-/obj/structure/chair/sofa/bench/solo{
+/obj/structure/chair/sofa/bench{
 	dir = 1
 	},
 /turf/open/floor/grass,
@@ -68278,6 +68277,7 @@
 /area/station/maintenance/central/greater)
 "pNz" = (
 /obj/effect/landmark/start/hangover,
+/obj/structure/chair/sofa/bench/left,
 /turf/open/floor/grass,
 /area/station/hallway/primary/fore)
 "pNN" = (
@@ -70831,6 +70831,12 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/hangover,
+/obj/item/paperwork{
+	pixel_x = -8;
+	pixel_y = 4;
+	name = "Captains search history";
+	desc = "holy shit, why is there so much porn"
+	},
 /turf/open/floor/iron/vaporwave,
 /area/station/command/heads_quarters/captain/private)
 "qtP" = (
@@ -75262,9 +75268,10 @@
 /turf/open/floor/iron/dark/smooth_edge,
 /area/station/security/brig/lower)
 "rsx" = (
-/obj/structure/chair/sofa/bench/solo,
-/turf/open/floor/iron,
-/area/station/hallway/primary/starboard)
+/obj/effect/landmark/start/assistant,
+/obj/structure/chair/sofa/bench/right,
+/turf/open/floor/grass,
+/area/station/hallway/primary/fore)
 "rsG" = (
 /obj/effect/turf_decal/trimline/red/real_red/filled/line,
 /obj/structure/disposalpipe/segment{
@@ -77022,6 +77029,10 @@
 	pixel_y = -4;
 	name = "Captains porn stash";
 	desc = "You probably shouldn't look at these... though surely a peek wouldn't hurt..."
+	},
+/obj/item/modular_computer/laptop/gamer{
+	pixel_x = -6;
+	pixel_y = -6
 	},
 /turf/open/floor/iron/vaporwave,
 /area/station/command/heads_quarters/captain/private)
@@ -129729,7 +129740,7 @@ dZE
 bZx
 raV
 jnT
-uxs
+rsx
 kNV
 wqu
 bSl
@@ -130712,7 +130723,7 @@ jGh
 eLf
 tnz
 dGw
-rsx
+aXZ
 tum
 eQp
 gIo
