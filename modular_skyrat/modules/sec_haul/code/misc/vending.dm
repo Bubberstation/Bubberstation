@@ -10,6 +10,8 @@
 		/obj/item/restraints/legcuffs/bola/energy = 20,
 		/obj/item/clothing/gloves/tackler/security = 5,
 		/obj/item/ammo_box/advanced/s12gauge/bean = 2,
+		/obj/item/clothing/glasses/hud/security/red = 6,
+		/obj/item/clothing/glasses/hud/security/red/sunglasses = 6,
 	)
 	contraband = list(
 		/obj/item/clothing/glasses/sunglasses = 2,
