@@ -1,7 +1,7 @@
 /datum/quirk/resilient_traumas
 	name = "Unrobust Brain"
 	desc = "Your nervous system is particularly weak, making you more susceptible to neurological traumas. All of the brain traumas you get will be more resilient and could be permanent."
-	icon = FA_ICON_BRAIN
+	icon = FA_ICON_HOUSE_CRACK //replace with something more fitting, i can't find anything nice looking for this
 	value = -4
 	mob_trait = TRAIT_RESILIENT_TRAUMAS
 	gain_text = span_danger("Your brain becomes more soft!")
