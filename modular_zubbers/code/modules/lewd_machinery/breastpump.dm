@@ -20,32 +20,6 @@
 /obj/item/breastpump/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
-/*
-/obj/item/breastpump/update_overlays()
-	. = ..()
-	update_overlays()
-	. = ..()
-	if(!beaker)
-		return
-	if(beaker.reagents.total_volume)
-		var/beaker_spritetype = "chem-color"
-		if(istype(beaker, /obj/item/reagent_containers/cup/beaker/large))
-			vial_spritetype += "[beaker.type_suffix]"
-		else
-			vial_spritetype += "-s"
-		var/mutable_appearance/chem_loaded = mutable_appearance(original_icon, vial_spritetype)
-		chem_loaded.color = vial.chem_color
-		. += chem_loaded
-	if(vial.greyscale_colors != null)
-		var/mutable_appearance/vial_overlay = mutable_appearance(original_icon, "[vial.icon_state]-body")
-		vial_overlay.color = vial.greyscale_colors
-		. += vial_overlay
-		var/mutable_appearance/vial_overlay_glass = mutable_appearance(original_icon, "[vial.icon_state]-glass")
-		. += vial_overlay_glass
-	else
-		var/mutable_appearance/vial_overlay = mutable_appearance(original_icon, vial.icon_state)
-		. += vial_overlay
-*/
 
 /obj/item/breastpump/examine(mob/user)
 	. = ..()
@@ -90,91 +64,54 @@
 	if(isnull(beaker) || quickload)
 		insert_beaker(tool, user)
 		return ITEM_INTERACT_SUCCESS
-	to_chat(user, span_warning("[src] can not hold more than one beaker!"))
+	to_chat(user, span_warning("[src] is only able to hold one beaker!"))
 	return ITEM_INTERACT_BLOCKING
 
-/*
 
+
+// Must be used on self only, to prevent abuse
 /obj/item/reagent_containers/breastpump/attack_self(mob/user)
 	. = ..()
-	if(vial)
-		vial.attack_self(user)
+	if(beaker)
+		beaker.attack_self(user)
 		return TRUE
 
-/obj/item/reagent_containers/breastpump/attack_self_secondary(mob/user)
-	. = ..()
-	if(vial)
-		vial.attack_self_secondary(user)
-		return TRUE
+// Breast Pump Workflow Processor
+/obj/item/breastpump/process(seconds_per_tick, mob/living/user)
+	//Get the breasts
+	var/obj/item/organ/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
 
-/obj/item/reagent_containers/breastpump/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
-	if(istype(interacting_with, /obj/item/reagent_containers/cup/vial))
-		insert_vial(interacting_with, user)
-		return ITEM_INTERACT_SUCCESS
-	return do_inject(interacting_with, user, mode=HYPO_SPRAY)
+	if(!breasts || !breasts.lactates || !user)
+		return FALSE
 
-/obj/item/reagent_containers/breastpump/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
-	return do_inject(interacting_with, user, mode=HYPO_INJECT)
+	// Hard stop at 120 so it doesn't go forever
+	if(beaker.reagents.total_volume == 120)
+		return FALSE
 
-/obj/item/reagent_containers/breastpump/proc/do_inject(mob/living/injectee, mob/living/user, mode)
-	if(!isliving(injectee))
-		return NONE
+	retrieve_liquids_from_breasts(seconds_per_tick)
+	increase_current_mob_arousal(seconds_per_tick)
 
-	if(!injectee.reagents || !injectee.can_inject(user, user.zone_selected, penetrates))
-		return NONE
+	return TRUE
 
-	if(iscarbon(injectee))
-		var/obj/item/bodypart/affecting = injectee.get_bodypart(check_zone(user.zone_selected))
-		if(!affecting)
-			to_chat(user, span_warning("The limb is missing!"))
-			return ITEM_INTERACT_BLOCKING
-	//Always log attemped injections for admins
-	var/contained = vial.reagents.get_reagent_log_string()
-	log_combat(user, injectee, "attemped to inject", src, addition="which had [contained]")
+/obj/item/breastpump/proc/retrieve_liquids_from_breasts(seconds_per_tick, mob/living/user)
+	var/obj/item/organ/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
+	var/fluid_multiplier = 1
 
-	if(!vial)
-		to_chat(user, span_notice("[src] doesn't have any vial installed!"))
-		return ITEM_INTERACT_BLOCKING
-	if(!vial.reagents.total_volume)
-		to_chat(user, span_notice("[src]'s vial is empty!"))
-		return ITEM_INTERACT_BLOCKING
+	if(user.has_status_effect(/datum/status_effect/climax))
+		fluid_multiplier = 2
 
-	var/fp_verb = mode == HYPO_SPRAY ? "spray" : "inject"
+	if(!beaker || breasts.reagents.total_volume <= 0)
+		return FALSE
 
-	if(injectee != user)
-		injectee.visible_message(span_danger("[user] is trying to [fp_verb] [injectee] with [src]!"), \
-						span_userdanger("[user] is trying to [fp_verb] you with [src]!"))
+	breasts.reagents.trans_to(beaker, 1 * fluid_multiplier * seconds_per_tick)
+	return TRUE
 
-	var/selected_wait_time
-	if(injectee == user)
-		selected_wait_time = (mode == HYPO_INJECT) ? inject_self : spray_self
-	else
-		selected_wait_time = (mode == HYPO_INJECT) ? inject_wait : spray_wait
+// Handling the process of the impact of the machine on the organs of the mob
+/obj/item/breastpump/proc/increase_current_mob_arousal(seconds_per_tick, mob/living/user)
+	var/mob/living/carbon/human/producer = user
+	producer.adjust_arousal(1 * seconds_per_tick)
+	producer.adjust_pleasure(0.2 * seconds_per_tick)
 
-	if(!do_after(user, selected_wait_time, injectee, extra_checks = CALLBACK(injectee, /mob/living/proc/can_inject, user, user.zone_selected, penetrates)))
-		return ITEM_INTERACT_BLOCKING
-	if(!vial || !vial.reagents.total_volume)
-		return ITEM_INTERACT_BLOCKING
-	log_attack("<font color='red'>[user.name] ([user.ckey]) applied [src] to [injectee.name] ([injectee.ckey]), which had [contained] (COMBAT MODE: [uppertext(user.combat_mode)]) (MODE: [mode])</font>")
-	if(injectee != user)
-		injectee.visible_message(span_danger("[user] uses the [src] on [injectee]!"), \
-						span_userdanger("[user] uses the [src] on you!"))
-	else
-		injectee.log_message("<font color='orange'>applied [src] to themselves ([contained]).</font>", LOG_ATTACK)
-
-	switch(mode)
-		if(HYPO_INJECT)
-			vial.reagents.trans_to(injectee, vial.amount_per_transfer_from_this, methods = INJECT)
-		if(HYPO_SPRAY)
-			vial.reagents.trans_to(injectee, vial.amount_per_transfer_from_this, methods = PATCH)
-
-	var/long_sound = vial.amount_per_transfer_from_this >= 15
-	playsound(loc, long_sound ? 'modular_skyrat/modules/hyposprays/sound/hypospray_long.ogg' : pick('modular_skyrat/modules/hyposprays/sound/hypospray.ogg','modular_skyrat/modules/hyposprays/sound/hypospray2.ogg'), 50, 1, -1)
-	to_chat(user, span_notice("You [fp_verb] [vial.amount_per_transfer_from_this] units of the solution. The hypospray's cartridge now contains [vial.reagents.total_volume] units."))
-	update_appearance()
-	return ITEM_INTERACT_SUCCESS
-
-*/
 
 /obj/item/breastpump/attack_hand(mob/living/user)
 	if(user && loc == user && user.is_holding(src))
