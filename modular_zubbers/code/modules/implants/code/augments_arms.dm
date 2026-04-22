@@ -31,7 +31,7 @@
 
 /obj/item/organ/cyberimp/arm/toolkit/tape_recorder
 	name = "universal recorder implant"
-	desc = "A tape recorder implanted within the forearm. Triple press button on forearm to quickly start and stop recording. Further controls on other side of panel."
+	desc = "A tape recorder implanted within the forearm. Triple press button on wrist to quickly start and stop recording. Further controls on inside facing of casette slot panel."
 	items_to_create = list(/obj/item/taperecorder)
 
 /obj/item/organ/cyberimp/arm/toolkit/foamforce_implant
