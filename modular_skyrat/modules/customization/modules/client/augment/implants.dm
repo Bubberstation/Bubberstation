@@ -45,7 +45,7 @@
 
 /datum/augment_item/implant/l_arm/toolkit/pillow
 	name = "Left Cyberpillow™"
-	cost = 1
+	cost = 2
 	path = /obj/item/organ/cyberimp/arm/toolkit/pillow/left_arm
 
 /datum/augment_item/implant/l_arm/toolkit/survival_pen
@@ -53,10 +53,25 @@
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/survival_pen/left_arm
 
+/datum/augment_item/implant/l_arm/toolkit/penscrewdriver
+	name = "Left Screwdriver Pen"
+	cost = 4
+	path = /obj/item/organ/cyberimp/arm/toolkit/penscrewdriver/left_arm
+
 /datum/augment_item/implant/l_arm/toolkit/laser_pointer
 	name = "Left Laser Pointer Finger"
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/laser_pointer/left_arm
+
+/datum/augment_item/implant/l_arm/toolkit/tape_recorder
+	name = "Left Tape Recorder"
+	cost = 1
+	path = /obj/item/organ/cyberimp/arm/toolkit/tape_recorder/left_arm
+
+/datum/augment_item/implant/l_arm/toolkit/mini_extinguisher
+	name = "Left Mini Extinguisher"
+	cost = 1
+	path = /obj/item/organ/cyberimp/arm/toolkit/mini_extinguisher/left_arm
 
 //RIGHT ARM IMPLANTS
 /datum/augment_item/implant/r_arm
@@ -88,7 +103,7 @@
 
 /datum/augment_item/implant/r_arm/toolkit/pillow
 	name = "Right Cyberpillow™"
-	cost = 1
+	cost = 2
 	path = /obj/item/organ/cyberimp/arm/toolkit/pillow/right_arm
 
 /datum/augment_item/implant/r_arm/toolkit/survival_pen
@@ -96,10 +111,25 @@
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/survival_pen/right_arm
 
+/datum/augment_item/implant/r_arm/toolkit/penscrewdriver
+	name = "Right Screwdriver Pen"
+	cost = 4
+	path = /obj/item/organ/cyberimp/arm/toolkit/penscrewdriver/right_arm
+
 /datum/augment_item/implant/r_arm/toolkit/laser_pointer
 	name = "Right Laser Pointer Finger"
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/laser_pointer/right_arm
+
+/datum/augment_item/implant/r_arm/toolkit/tape_recorder
+	name = "Right Tape Recorder"
+	cost = 1
+	path = /obj/item/organ/cyberimp/arm/toolkit/tape_recorder/right_arm
+
+/datum/augment_item/implant/r_arm/toolkit/mini_extinguisher
+	name = "Right Mini Extinguisher"
+	cost = 1
+	path = /obj/item/organ/cyberimp/arm/toolkit/mini_extinguisher/right_arm
 
 //EYES IMPLANTS
 /datum/augment_item/implant/eyes
