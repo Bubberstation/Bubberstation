@@ -4,9 +4,14 @@
 	desc = "An implanted grappling hook."
 	items_to_create = list(/obj/item/climbing_hook/implanted)
 
+/obj/item/organ/cyberimp/arm/toolkit/seclite
+	name = "seclite implant"
+	desc = "An implanted model of seclite installed in the wrist. Press in to eject. It has a retaining wire. Warranty void if used as a flail."
+	items_to_create = list(/obj/item/seclite)
+
 /obj/item/organ/cyberimp/arm/toolkit/pillow
 	name = "cyberpillow™ implant"
-	desc = "A \"luxurious\" auto-inflating pillow attached to the arm under a cover plate. Gas bottle refill not included."
+	desc = "A \"luxurious\" auto-inflating pillow attached to the arm under a cover plate. Warranty void if used in pillow fights."
 	items_to_create = list(/obj/item/pillow/random)
 
 /obj/item/organ/cyberimp/arm/toolkit/survival_pen
@@ -21,17 +26,17 @@
 
 /obj/item/organ/cyberimp/arm/toolkit/laser_pointer
 	name = "laser pointer implant"
-	desc = "A cybernetic fingertip replacement containing a red laser pointer. Due to the compact design, upgraded parts are incompatible. Only available in red."
+	desc = "A cybernetic fingertip replacement containing a laser pointer. Due to the compact design, upgraded parts are incompatible. Only available in red."
 	items_to_create = list(/obj/item/laser_pointer/limited/red)
 
 /obj/item/organ/cyberimp/arm/toolkit/tape_recorder
-	name = "tape recorder implant"
-	desc = "An implanted tape recorder within the forearm. Spare tapes not included."
+	name = "universal recorder implant"
+	desc = "A tape recorder implanted within the forearm. Triple press button on forearm to quickly start and stop recording. Further controls beneath panel."
 	items_to_create = list(/obj/item/taperecorder)
 
-	/obj/item/organ/cyberimp/arm/toolkit/mini_extinguisher
+/obj/item/organ/cyberimp/arm/toolkit/mini_extinguisher
 	name = "mini fire extinguisher implant"
-	desc = "An implanted compact fire extinguisher. Water tank located inside forearm. Nozzle located on palm under cover plate."
+	desc = "An implanted compact fire extinguisher. Water tank located inside forearm, with attached nozzle. Ensure safety is removed before use."
 	items_to_create = list(/obj/item/extinguisher/mini)
 
 

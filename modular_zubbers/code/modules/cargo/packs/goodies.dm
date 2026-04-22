@@ -171,3 +171,44 @@
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/tacticool)
 
+/datum/supply_pack/goody/seclite_implant
+	name = "Seclite Implant"
+	desc = "Contains a seclite implant for lighting up dark maintenance tunnels. Or bludgeoning things with."
+	cost = PAYCHECK_CREW * 7
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/seclite)
+
+/datum/supply_pack/goody/pillow_implant
+	name = "Cyberpillow™ Implant"
+	desc = "A pack containing one Cyberpillow™ for those sudden locker naps and bouts of SSD."
+	cost = PAYCHECK_CREW * 3
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/pillow)
+
+/datum/supply_pack/goody/survival_pen_implant
+	name = "Fingertip Survival Pen Implant"
+	desc = "Contains a cybernetic fingertip replacement that features a diamond tipped extendable claw and a pen. Claw can break rock in case of emergency."
+	cost = PAYCHECK_CREW * 5
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/survival_pen)
+
+/datum/supply_pack/goody/penscrewdriver_implant
+	name = "Fingertip Screwdriver Pen Implant"
+	desc = "A cybernetic fingertip replacement that houses a pen and extendable screwdriver bit."
+	cost = PAYCHECK_CREW * 8
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/penscrewdriver)
+
+/datum/supply_pack/goody/laser_pointer_implant
+	name = "Fingertip Laser Pointer Implant"
+	desc = "An implanted laser pointer that replaces a fingertip of your choosing. Set contains differently sized housings for proper fitment. Due to its compact design, it is unable to accept upgraded parts. Do not aim at eyes."
+	cost = PAYCHECK_CREW * 5
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/laser_pointer)
+
+/datum/supply_pack/goody/tape_recorder_implant
+	name = "Universal Recorder Implant"
+	desc = "A recording device installed in the forearm under a discrete panel. Accepts standard EMP resistant tapes. Spare tape included."
+	cost = PAYCHECK_CREW * 6
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/tape_recorder, /obj/item/tape/random)
+
+/datum/supply_pack/goody/mini_extinguisher_implant
+	name = "Mini Fire Extinguisher Implant"
+	desc = "A compact fire extinguisher installed in the forearm. Do not use on slimepeople."
+	cost = PAYCHECK_CREW * 6
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/mini_extinguisher)
