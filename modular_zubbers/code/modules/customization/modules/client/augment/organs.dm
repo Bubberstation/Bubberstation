@@ -1,7 +1,7 @@
 /datum/augment_item/organ/eyes/jelly
 	name = "Slime Tri-eyes"
 	path = /obj/item/organ/eyes/jelly
-  
+	
 /datum/augment_item/organ/tongue/xenobubble_tongue
 	name = "Alien tongue"
 	path = /obj/item/organ/tongue/xenobubble_tongue
