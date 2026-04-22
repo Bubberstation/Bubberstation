@@ -18743,7 +18743,7 @@
 	dir = 4
 	},
 /obj/machinery/light/small/directional/north,
-/turf/open/floor/circuit/green/telecomms/mainframe,
+/turf/open/floor/circuit/off,
 /area/station/maintenance/department/science/upper)
 "eqX" = (
 /obj/effect/landmark/start/bitrunner,
@@ -43522,6 +43522,14 @@
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/cryo)
 "kdk" = (
+/obj/machinery/transformer{
+	name = "Dusty-Looking Machine";
+	desc = "A dustry, and rusted over machine, you cant tell if it still works, or what its supposed to even do. Although, you think you can see faded out inscriptions for an input and output."
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "oldMachine"
+	},
 /turf/open/floor/iron/dark/textured_half{
 	initial_gas_mix = "n2=100;TEMP=80"
 	},
@@ -63127,6 +63135,10 @@
 /area/station/security/armory)
 "oHY" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "oldMachine"
+	},
 /turf/open/floor/iron/dark/textured_half{
 	initial_gas_mix = "n2=100;TEMP=80"
 	},
@@ -65604,7 +65616,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 5
 	},
-/turf/open/floor/circuit/telecomms/server,
+/obj/structure/sign/warning/directional/south,
+/turf/open/floor/circuit/off,
 /area/station/maintenance/department/science/upper)
 "phx" = (
 /obj/structure/disposalpipe/segment{
@@ -66258,6 +66271,10 @@
 /area/station/maintenance/department/science/upper)
 "pqs" = (
 /obj/structure/window/reinforced/spawner/directional/west,
+/obj/machinery/conveyor_switch{
+	id = "oldMachine"
+	},
+/obj/structure/sign/warning/directional/north,
 /turf/open/floor/pod,
 /area/station/maintenance/department/science/upper)
 "pqJ" = (
@@ -73636,6 +73653,10 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
 	dir = 8
 	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "oldMachine"
+	},
 /turf/open/floor/iron/dark/textured_half{
 	initial_gas_mix = "n2=100;TEMP=80"
 	},
@@ -74578,7 +74599,7 @@
 	dir = 4
 	},
 /obj/machinery/light/small/directional/south,
-/turf/open/floor/circuit/telecomms/server,
+/turf/open/floor/circuit/off,
 /area/station/maintenance/department/science/upper)
 "rla" = (
 /obj/structure/sign/nanotrasen,
@@ -78790,6 +78811,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock/access/any/science/maintenance,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/pod,
 /area/station/maintenance/department/science/upper)
 "shD" = (
@@ -84104,7 +84126,8 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 6
 	},
-/turf/open/floor/circuit/green/telecomms/mainframe,
+/obj/structure/sign/warning/directional/north,
+/turf/open/floor/circuit/off,
 /area/station/maintenance/department/science/upper)
 "twD" = (
 /obj/structure/chair/office,
@@ -88050,6 +88073,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/structure/sign/warning/directional/west,
 /turf/open/floor/pod,
 /area/station/maintenance/department/science/upper)
 "urU" = (
@@ -91994,7 +92018,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 9
 	},
-/turf/open/floor/circuit/telecomms/server,
+/turf/open/floor/circuit/off,
 /area/station/maintenance/department/science/upper)
 "vlL" = (
 /obj/structure/window/reinforced/spawner/directional/west,
@@ -95521,6 +95545,7 @@
 "wbY" = (
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/machinery/airalarm/directional/east,
+/obj/structure/sign/warning/directional/south,
 /turf/open/floor/pod,
 /area/station/maintenance/department/science/upper)
 "wca" = (
@@ -98401,7 +98426,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 10
 	},
-/turf/open/floor/circuit/green/telecomms/mainframe,
+/turf/open/floor/circuit/off,
 /area/station/maintenance/department/science/upper)
 "wMl" = (
 /obj/effect/decal/cleanable/dirt,
@@ -103340,14 +103365,14 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction{
 	dir = 8
 	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 6
-	},
 /obj/machinery/atmospherics/pipe/smart/simple/supply/hidden/layer2{
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/hidden/layer4{
 	dir = 5
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
 /turf/open/floor/iron/dark/textured_half{
 	initial_gas_mix = "n2=100;TEMP=80"
@@ -123875,7 +123900,7 @@ iMj
 sbO
 roK
 ubd
-vjR
+ubd
 ubd
 rlh
 rlh
