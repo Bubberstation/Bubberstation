@@ -29,10 +29,14 @@
 	//hide the mood
 	var/datum/mood/mob_mood = quirk_holder.mob_mood
 	var/atom/movable/screen/mood/mood_icon = mob_mood.mood_screen_object
-	mood_icon.screen_loc = hide ? "EAST-1:-999,CENTER:21" : ui_mood //moves it off the screen so you cant see it
 
 	var/datum/hud/human/humanhud = quirk_holder.hud_used
 	var/atom/movable/screen/hunger/hunger_icon = humanhud.hunger
+
+	if(isnull(mood_icon) || isnull(hunger_icon))
+		return
+
+	mood_icon.screen_loc = hide ? "EAST-1:-999,CENTER:21" : ui_mood //moves it off the screen so you cant see it
 	hunger_icon.screen_loc = hide ? ui_mood : ui_hunger
 
 //slowdown handled the same way it is handled when disable_human_mood is enabled
