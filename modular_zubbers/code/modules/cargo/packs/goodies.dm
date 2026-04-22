@@ -206,9 +206,3 @@
 	desc = "A recording device installed in the forearm under a discrete panel. Accepts standard EMP resistant tapes. Spare tape included."
 	cost = PAYCHECK_CREW * 6
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/tape_recorder, /obj/item/tape/random)
-
-/datum/supply_pack/goody/mini_extinguisher_implant
-	name = "Mini Fire Extinguisher Implant"
-	desc = "A compact fire extinguisher installed in the forearm. Do not use on slimepeople."
-	cost = PAYCHECK_CREW * 6
-	contains = list(/obj/item/organ/cyberimp/arm/toolkit/mini_extinguisher)

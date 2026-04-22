@@ -7,7 +7,7 @@
 /obj/item/organ/cyberimp/arm/toolkit/seclite
 	name = "seclite implant"
 	desc = "An implanted model of seclite installed in the wrist. Press in to eject. It has a retaining wire. Warranty void if used as a flail."
-	items_to_create = list(/obj/item/seclite)
+	items_to_create = list(/obj/item/flashlight/seclite)
 
 /obj/item/organ/cyberimp/arm/toolkit/pillow
 	name = "cyberpillow™ implant"
@@ -33,12 +33,6 @@
 	name = "universal recorder implant"
 	desc = "A tape recorder implanted within the forearm. Triple press button on forearm to quickly start and stop recording. Further controls on other side of panel."
 	items_to_create = list(/obj/item/taperecorder)
-
-/obj/item/organ/cyberimp/arm/toolkit/mini_extinguisher
-	name = "mini fire extinguisher implant"
-	desc = "An implanted compact fire extinguisher. The water tank is located inside the forearm, with attached nozzle. Ensure safety is removed before use."
-	items_to_create = list(/obj/item/extinguisher/mini)
-
 
 //LEFT ARM IMPLANTS
 /obj/item/organ/cyberimp/arm/toolkit/power_cord/left_arm

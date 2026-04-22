@@ -19,6 +19,7 @@
 	name = "Chest Internal Wound Analyzer"
 	cost = 1
 	path = /obj/item/organ/cyberimp/chest/wound_scanner
+	slot = ORGAN_SLOT_SCANNER
 
 //LEFT ARM IMPLANTS
 /datum/augment_item/implant/l_arm
@@ -73,11 +74,6 @@
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/tape_recorder/left_arm
 
-/datum/augment_item/implant/l_arm/toolkit/mini_extinguisher
-	name = "Left Mini Extinguisher"
-	cost = 1
-	path = /obj/item/organ/cyberimp/arm/toolkit/mini_extinguisher/left_arm
-
 //RIGHT ARM IMPLANTS
 /datum/augment_item/implant/r_arm
 	slot = AUGMENT_SLOT_RIGHT_ARM_IMPLANT
@@ -130,11 +126,6 @@
 	name = "Right Tape Recorder"
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/tape_recorder/right_arm
-
-/datum/augment_item/implant/r_arm/toolkit/mini_extinguisher
-	name = "Right Mini Extinguisher"
-	cost = 1
-	path = /obj/item/organ/cyberimp/arm/toolkit/mini_extinguisher/right_arm
 
 //EYES IMPLANTS
 /datum/augment_item/implant/eyes
