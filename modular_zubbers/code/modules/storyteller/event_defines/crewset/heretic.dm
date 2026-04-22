@@ -1,5 +1,5 @@
 /datum/round_event_control/antagonist/solo/heretic
-	name = "Heretics"
+	name = "Acolytes"
 	roundstart = TRUE
 
 	antag_flag = ROLE_HERETIC
@@ -17,11 +17,11 @@
 	. = ..()
 
 /datum/round_event_control/antagonist/solo/heretic/midround
-	name = "Midround Heretics"
+	name = "Midround Acolytes"
 	roundstart = FALSE
 
 /datum/round_event_control/antagonist/solo/heretic/event
-	name = "Event Generated Heretic"
+	name = "Event Generated Acolyte"
 	roundstart = FALSE
 	tags = list(TAG_ANTAG_REROLL)
 	max_occurrences = 0
