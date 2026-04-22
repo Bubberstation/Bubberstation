@@ -6,9 +6,8 @@
 	icon_state = "first_aid"
 	actions_types = list(/datum/action/item_action/organ_action/use/internal_wound_analyzer)
 	w_class = WEIGHT_CLASS_SMALL
-	give_wound_treatment_bonus = TRUE
 
-/datum/action/item_action/organ_action/use/internal__wound_analyzer
+/datum/action/item_action/organ_action/use/internal_wound_analyzer
 	desc = "Activate to get detailed wound treatment information relayed to your brain."
 
 /datum/action/item_action/organ_action/use/internal_wound_analyzer/Trigger(trigger_flags)

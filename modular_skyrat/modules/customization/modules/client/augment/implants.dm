@@ -19,7 +19,6 @@
 	name = "Chest Internal Wound Analyzer"
 	cost = 1
 	path = /obj/item/organ/cyberimp/chest/wound_scanner
-	slot = ORGAN_SLOT_SCANNER
 
 //LEFT ARM IMPLANTS
 /datum/augment_item/implant/l_arm
