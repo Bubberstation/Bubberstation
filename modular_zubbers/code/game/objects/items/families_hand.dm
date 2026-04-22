@@ -9,6 +9,36 @@
 	var/gang_to_use
 	/// The team datum that the person who uses this package should be added to.
 	var/datum/team/gang/team_to_use
+		///A list of the jobs that can not become gang members
+	var/list/cannot_join_gang = list(
+		JOB_CAPTAIN,
+		JOB_BLUESHIELD,
+		JOB_BRIDGE_ASSISTANT,
+
+		// Heads of staff
+		JOB_HEAD_OF_PERSONNEL,
+		JOB_HEAD_OF_SECURITY,
+		JOB_CHIEF_ENGINEER,
+		JOB_CHIEF_MEDICAL_OFFICER,
+		JOB_RESEARCH_DIRECTOR,
+		JOB_QUARTERMASTER,
+		JOB_NT_REP,
+
+		// Seccies
+		JOB_DETECTIVE,
+		JOB_SECURITY_OFFICER,
+		JOB_WARDEN,
+		JOB_CORRECTIONS_OFFICER,
+		JOB_PRISONER,
+		JOB_SECURITY_MEDIC,
+
+		// Department Guards-Additional
+		JOB_BOUNCER,
+		JOB_ORDERLY,
+		JOB_CUSTOMS_AGENT,
+		JOB_ENGINEERING_GUARD,
+		JOB_SCIENCE_GUARD,
+		)
 
 
 /// Adds the user to the family that this package corresponds to, dispenses the free_clothes of that family, and adds them to the handler if it exists.
@@ -43,6 +73,9 @@
 	. = TRUE
 	if (!(null in taker.held_items))
 		to_chat(taker, span_warning("You can't get taught the secret handshake if [offerer] has no free hands!"))
+		return
+	if(taker.job in cannot_join_gang)
+		to_chat(taker, "Someone in your position probably shouldn't be participating in this.")
 		return
 
 	if(HAS_TRAIT(taker, TRAIT_MINDSHIELD))
