@@ -436,7 +436,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 	for(var/obj/item/item_content in mob_occupant.get_equipped_items(INCLUDE_POCKETS | INCLUDE_HELD | INCLUDE_ACCESSORIES))
 		try_store_item(mob_occupant, item_content, control_computer)
 
-
 	GLOB.joined_player_list -= stored_ckey
 
 	handle_objectives()
