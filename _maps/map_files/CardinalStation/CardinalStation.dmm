@@ -14186,6 +14186,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
 	},
+/obj/machinery/seed_extractor,
 /turf/open/floor/iron/checker,
 /area/station/service/hydroponics)
 "djj" = (
@@ -15376,7 +15377,9 @@
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
 "dye" = (
-/obj/structure/chair/sofa/bench/left,
+/obj/structure/chair/sofa/bench/right{
+	dir = 4
+	},
 /turf/open/floor/grass,
 /area/station/hallway/primary/port)
 "dyh" = (
@@ -15424,6 +15427,8 @@
 /obj/effect/spawner/random/exotic/syndie,
 /obj/effect/spawner/random/exotic/antag_gear_weak,
 /obj/item/device/traitor_announcer/infinite,
+/obj/effect/spawner/random/exotic/antag_gear,
+/obj/effect/spawner/random/exotic/antag_gear,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered)
 "dyy" = (
@@ -26388,7 +26393,6 @@
 /obj/item/clothing/mask/gas/sechailer/swat/spacepol,
 /obj/structure/cable,
 /obj/item/organ/cyberimp/arm/toolkit/gun/laser,
-/obj/item/gun/energy/e_gun/hos,
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
 "ggJ" = (
@@ -27438,7 +27442,9 @@
 /area/station/ai/satellite/foyer)
 "gsC" = (
 /obj/structure/flora/bush/sparsegrass/style_random,
-/obj/structure/chair/sofa/bench/right,
+/obj/structure/chair/sofa/bench/left{
+	dir = 8
+	},
 /turf/open/floor/grass,
 /area/station/hallway/primary/port)
 "gsV" = (
@@ -27656,13 +27662,16 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered)
 "gvN" = (
-/obj/effect/turf_decal/trimline/neutral/filled/line,
-/obj/effect/turf_decal/trimline/neutral/line,
-/obj/structure/chair/sofa/bench/solo{
+/obj/effect/turf_decal/tile/blue/half/contrasted,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
-/turf/open/floor/iron,
-/area/station/hallway/primary/fore)
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/landmark/start/medical_doctor,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/central)
 "gvX" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -38354,13 +38363,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/service/library)
-"iRa" = (
-/obj/effect/turf_decal/siding/dark/end{
-	dir = 4
-	},
-/obj/machinery/seed_extractor,
-/turf/open/floor/iron/smooth_half,
-/area/station/service/hydroponics)
 "iRh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/structure/crate,
@@ -42902,7 +42904,7 @@
 	},
 /obj/machinery/conveyor_switch/oneway{
 	dir = 8;
-	id = "cargoload"
+	id = "cargounload"
 	},
 /turf/open/floor/iron/diagonal,
 /area/station/cargo/storage)
@@ -43525,10 +43527,6 @@
 /obj/machinery/transformer{
 	name = "Dusty-Looking Machine";
 	desc = "A dustry, and rusted over machine, you cant tell if it still works, or what its supposed to even do. Although, you think you can see faded out inscriptions for an input and output."
-	},
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "oldMachine"
 	},
 /turf/open/floor/iron/dark/textured_half{
 	initial_gas_mix = "n2=100;TEMP=80"
@@ -54736,8 +54734,8 @@
 /area/station/hallway/primary/aft)
 "mIW" = (
 /obj/structure/flora/bush/sparsegrass/style_random,
-/obj/structure/chair/sofa/bench/left{
-	dir = 1
+/obj/structure/chair/sofa/bench/right{
+	dir = 8
 	},
 /turf/open/floor/grass,
 /area/station/hallway/primary/port)
@@ -56659,9 +56657,6 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral/half,
-/obj/structure/chair/sofa/bench/solo{
-	dir = 1
-	},
 /turf/open/floor/iron/half,
 /area/station/hallway/primary/central)
 "nhr" = (
@@ -63135,10 +63130,6 @@
 /area/station/security/armory)
 "oHY" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "oldMachine"
-	},
 /turf/open/floor/iron/dark/textured_half{
 	initial_gas_mix = "n2=100;TEMP=80"
 	},
@@ -66271,9 +66262,6 @@
 /area/station/maintenance/department/science/upper)
 "pqs" = (
 /obj/structure/window/reinforced/spawner/directional/west,
-/obj/machinery/conveyor_switch{
-	id = "oldMachine"
-	},
 /obj/structure/sign/warning/directional/north,
 /turf/open/floor/pod,
 /area/station/maintenance/department/science/upper)
@@ -73653,10 +73641,6 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
 	dir = 8
 	},
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "oldMachine"
-	},
 /turf/open/floor/iron/dark/textured_half{
 	initial_gas_mix = "n2=100;TEMP=80"
 	},
@@ -76145,11 +76129,6 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
 "rBg" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11;
-	pixel_y = 5
-	},
 /obj/effect/landmark/start/botanist,
 /turf/open/floor/iron/dark/textured_half{
 	dir = 1
@@ -81820,9 +81799,9 @@
 	pixel_x = 8;
 	pixel_y = 6
 	},
-/obj/item/stamp{
+/obj/item/stamp/granted{
 	pixel_x = 8;
-	pixel_y = 2
+	pixel_y = 3
 	},
 /obj/item/stamp/head/qm{
 	pixel_x = 8;
@@ -86931,8 +86910,8 @@
 /area/station/engineering/atmos)
 "uep" = (
 /obj/structure/flora/bush/sparsegrass/style_random,
-/obj/structure/chair/sofa/bench/right{
-	dir = 1
+/obj/structure/chair/sofa/bench/left{
+	dir = 4
 	},
 /turf/open/floor/grass,
 /area/station/hallway/primary/port)
@@ -88009,15 +87988,6 @@
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron,
 /area/station/maintenance/department/science/xenobiology)
-"urc" = (
-/obj/structure/window/spawner/directional/north,
-/obj/structure/chair,
-/obj/effect/landmark/start/medical_doctor,
-/obj/effect/turf_decal/tile/blue/half/contrasted{
-	dir = 1
-	},
-/turf/open/floor/iron/white,
-/area/station/medical/medbay/central)
 "urj" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 10
@@ -127474,7 +127444,7 @@ lGe
 lbw
 lbw
 fXe
-gvN
+xlC
 wAQ
 cmA
 ceJ
@@ -138499,7 +138469,7 @@ pKK
 uPI
 paX
 uPI
-iRa
+pKK
 uPI
 eRI
 uPI
@@ -153174,7 +153144,7 @@ mbx
 fEt
 mbx
 wpI
-tst
+gvN
 czx
 ina
 ubE
@@ -155231,7 +155201,7 @@ wmW
 cLP
 pLS
 mpF
-urc
+czx
 ocw
 oYZ
 bkz
