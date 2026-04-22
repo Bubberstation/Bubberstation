@@ -4,17 +4,18 @@
 	slot = ORGAN_SLOT_SCANNER
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "first_aid"
-	actions_types = list(/datum/action/item_action/organ_action/use/internal_wound_analyzer)
+	actions_types = list(/datum/action/item_action/organ_action/use/fakescanner)
 	w_class = WEIGHT_CLASS_SMALL
+	var/obj/item/healthanalyzer/simple/fakescanner
 
-/datum/action/item_action/organ_action/use/internal_wound_analyzer
+/obj/item/organ/cyberimp/chest/wound_scanner/Initialize()
+	. = ..()
+	fakescanner = new /obj/item/healthanalyzer/simple
+
+/datum/action/item_action/organ_action/use/fakescanner
 	desc = "Activate to get detailed wound treatment information relayed to your brain."
 
-/datum/action/item_action/organ_action/use/internal_wound_analyzer/Trigger(trigger_flags)
+/datum/action/item_action/organ_action/use/fakescanner/Trigger(trigger_flags)
 	. = ..()
 	var/obj/item/organ/cyberimp/chest/wound_scanner/our_scanner = target
-	if(our_scanner.organ_flags & ORGAN_FAILING)
-		to_chat(owner, span_warning("Your health analyzer relays an error! It can't interface with your body in its current condition!"))
-		return
-	else
-		woundscan(owner, owner, simple_scan = TRUE)
+	woundscan(owner, owner, our_scanner.fakescanner, simple_scan = TRUE)

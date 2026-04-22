@@ -73,6 +73,11 @@
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/tape_recorder/left_arm
 
+/datum/augment_item/implant/l_arm/toolkit/foamforce_implant
+	name = "Temp"
+	cost = 2
+	path = /obj/item/organ/cyberimp/arm/toolkit/foamforce_implant/left_arm
+
 //RIGHT ARM IMPLANTS
 /datum/augment_item/implant/r_arm
 	slot = AUGMENT_SLOT_RIGHT_ARM_IMPLANT

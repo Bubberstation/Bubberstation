@@ -1,0 +1,21 @@
+/obj/item/gun/ballistic/toy/foamforce_implant
+	name = "Pop-up Foam Force Blaster"
+	desc = "A single shot, breech loaded Foam Force blaster that pops out of a panel on your wrist. You wonder if it was worth it."
+	icon = 'temp'
+	icon_state = "temp"
+	inhand_icon_state = "temp"
+	lefthand_file = 'temp'
+	righthand_file = 'temp'
+	force = 0
+	throwforce = 0
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/foamforce_implant
+	fire_sound = 'sound/items/syringeproj.ogg'
+	clumsy_check = FALSE
+	item_flags = NONE
+	casing_ejector = FALSE
+	can_suppress = FALSE
+	weapon_weight = WEAPON_LIGHT
+	pb_knockback = 0
+	gun_flags = TOY_FIREARM_OVERLAY | NOT_A_REAL_GUN
+	can_muzzle_flash = FALSE
+	internal_magazine = TRUE

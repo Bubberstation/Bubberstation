@@ -186,7 +186,7 @@
 /datum/supply_pack/goody/survival_pen_implant
 	name = "Fingertip Survival Pen Implant"
 	desc = "Contains a cybernetic fingertip replacement that features a diamond tipped extendable claw and a pen. Claw can break rock in case of emergency."
-	cost = PAYCHECK_CREW * 5
+	cost = PAYCHECK_CREW * 6
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/survival_pen)
 
 /datum/supply_pack/goody/penscrewdriver_implant

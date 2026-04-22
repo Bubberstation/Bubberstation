@@ -531,6 +531,10 @@
 	icon_state = "pendriver"
 	toolspeed = 1.2  // gotta have some downside
 	dart_insert_projectile_icon_state = "overlay_pendriver"
+	//BUBBER EDIT BEGIN
+	usesound = list('sound/items/tools/screwdriver.ogg', 'sound/items/tools/screwdriver2.ogg')
+	operating_sound = 'sound/items/tools/screwdriver_operating.ogg'
+		//BUBBER EDIT END
 
 /obj/item/pen/screwdriver/get_all_tool_behaviours()
 	return list(TOOL_SCREWDRIVER)
