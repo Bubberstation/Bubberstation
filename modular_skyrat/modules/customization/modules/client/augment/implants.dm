@@ -54,7 +54,7 @@
 	path = /obj/item/organ/cyberimp/arm/toolkit/survival_pen/left_arm
 
 /datum/augment_item/implant/l_arm/toolkit/penscrewdriver
-	name = "Left Screwdriver Pen"
+	name = "Left Screwdriver Finger Pen"
 	cost = 4
 	path = /obj/item/organ/cyberimp/arm/toolkit/penscrewdriver/left_arm
 
@@ -112,7 +112,7 @@
 	path = /obj/item/organ/cyberimp/arm/toolkit/survival_pen/right_arm
 
 /datum/augment_item/implant/r_arm/toolkit/penscrewdriver
-	name = "Right Screwdriver Pen"
+	name = "Right Screwdriver Finger Pen"
 	cost = 4
 	path = /obj/item/organ/cyberimp/arm/toolkit/penscrewdriver/right_arm
 
