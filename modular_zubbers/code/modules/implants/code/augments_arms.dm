@@ -35,8 +35,8 @@
 	items_to_create = list(/obj/item/taperecorder)
 
 /obj/item/organ/cyberimp/arm/toolkit/foamforce_implant
-	name = "foam force pop-up blaster implant"
-	desc = "An implanted foam dart blaster from Foam Force. Two shot capacity. Do not use non-Foam Force darts in blaster."
+	name = "donksoft pop-up blaster implant"
+	desc = "An implanted foam dart blaster from Donksoft. Two shot capacity. Do not aim at face."
 	items_to_create = list(/obj/item/gun/ballistic/toy/foamforce_implant)
 
 //LEFT ARM IMPLANTS
@@ -79,7 +79,6 @@
 /obj/item/organ/cyberimp/arm/toolkit/foamforce_implant/left_arm
 	zone = BODY_ZONE_L_ARM
 	slot = ORGAN_SLOT_LEFT_ARM_AUG
-
 
 //RIGHT ARM IMPLANTS
 /obj/item/organ/cyberimp/arm/toolkit/power_cord/right_arm
