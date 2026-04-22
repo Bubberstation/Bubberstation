@@ -8,7 +8,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	var/obj/item/healthanalyzer/simple/fakescanner
 
-/obj/item/organ/cyberimp/chest/wound_scanner/Initialize()
+/obj/item/organ/cyberimp/chest/wound_scanner/Initialize(mapload)
 	. = ..()
 	fakescanner = new /obj/item/healthanalyzer/simple
 
