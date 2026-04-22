@@ -5,11 +5,14 @@
 	light_power = 1.4
 	brightness_on = 1.7
 	var/canalarm = FALSE
+	var/alarm_timer
 	COOLDOWN_DECLARE(alarm_cooldown)
 
 /obj/machinery/computer/crew/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
 	alarm()
+	if(isnull(alarm_timer))
+		alarm_timer = addtimer(CALLBACK(src, PROC_REF(alarm)), SENSORS_UPDATE_PERIOD)
 
 /obj/machinery/computer/crew/proc/alarm()
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -46,7 +49,7 @@
 		icon_keyboard = "med_key"
 		update_appearance()
 		set_light(l_range = initial(brightness_on), l_power = initial(light_power), l_color = initial(light_color), l_on = TRUE)
-	addtimer(CALLBACK(src, PROC_REF(alarm)), SENSORS_UPDATE_PERIOD)
+	alarm_timer = addtimer(CALLBACK(src, PROC_REF(alarm)), SENSORS_UPDATE_PERIOD)
 
 	return canalarm
 
