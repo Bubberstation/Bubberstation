@@ -763,11 +763,12 @@
 			return
 		// now we have our wounding_type and are ready to carry on with wounds and dealing the actual damage
 		if(wounding_dmg >= WOUND_MINIMUM_DAMAGE && wound_bonus != CANT_WOUND)
-			// BUBBER EDIT ADDITION BEGIN - MEDICAL
-			if(istype(current_gauze, /obj/item/stack/medical/gauze))
-				var/obj/item/stack/medical/gauze/our_gauze = current_gauze
-				our_gauze.get_hit()
-			// BUBBER EDIT ADDITION END - MEDICAL
+			// BUBBER EDIT - ADDITION - START
+			var/obj/item/stack/medical/wrap/current_gauze = LAZYACCESS(applied_items, LIMB_ITEM_GAUZE)
+			if(istype(current_gauze, /obj/item/stack/medical/wrap/gauze))
+				var/obj/item/stack/medical/wrap/gauze/our_gauze = current_gauze
+				our_gauze.get_hit(src)
+			// BUBBER EDIT - ADDITION - END
 			check_wounding(wounding_type, wounding_dmg, wound_bonus, exposed_wound_bonus, attack_direction, damage_source = damage_source, wound_clothing = wound_clothing)
 
 	for(var/datum/wound/iter_wound as anything in wounds)

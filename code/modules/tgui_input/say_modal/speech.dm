@@ -12,7 +12,7 @@
 	var/list/phrases = alter_phrases || hurt_phrases
 
 	/// No OOC leaks
-	if(!entry || payload["channel"] == OOC_CHANNEL || payload["channel"] == ME_CHANNEL || payload["channel"] == LOOC_CHANNEL) // SKYRAT EDIT CHANGE - CUSTOMIZATION
+	if(!entry || payload["channel"] == OOC_CHANNEL || payload["channel"] == ME_CHANNEL || payload["channel"] == LOOC_CHANNEL) // BUBBER EDIT - CHANGE - ORIGINAL: if(!entry || payload["channel"] == OOC_CHANNEL || payload["channel"] == ME_CHANNEL)
 		return pick(phrases)
 	/// Random trimming for larger sentences
 	if(length(entry) > 50)
@@ -50,14 +50,14 @@
 		if(ADMIN_CHANNEL)
 			INVOKE_ASYNC(SSadmin_verbs, TYPE_PROC_REF(/datum/controller/subsystem/admin_verbs, dynamic_invoke_verb), client, /datum/admin_verb/cmd_admin_say, entry)
 			return TRUE
-		// SKYRAT EDIT ADDITION START - CUSTOMIZATION
+		// BUBBER EDIT - ADDITION - START
 		if(LOOC_CHANNEL)
-			client.looc(entry)
+			INVOKE_ASYNC(client, TYPE_PROC_REF(/client, looc_message), entry)
 			return TRUE
 		if(WHIS_CHANNEL)
 			client.mob.whisper_verb(entry)
 			return TRUE
-		// SKYRAT EDIT ADDITION END
+		// BUBBER EDIT - ADDITION - END
 	return FALSE
 
 /**

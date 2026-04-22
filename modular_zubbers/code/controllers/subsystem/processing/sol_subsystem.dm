@@ -5,7 +5,7 @@ PROCESSING_SUBSYSTEM_DEF(sunlight)
 	can_fire = FALSE
 	runlevels = RUNLEVEL_GAME
 	wait = 2 SECONDS
-	flags = SS_NO_INIT | SS_KEEP_TIMING | SS_TICKER
+	ss_flags = SS_NO_INIT | SS_KEEP_TIMING | SS_TICKER
 
 	///If the Sun is currently out our not.
 	var/sunlight_active = FALSE

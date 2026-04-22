@@ -572,11 +572,6 @@
 		if(bodypart_report)
 			combined_msg += "[span_notice("&rdsh;")] [bodypart_report]"
 
-		//SKYRAT EDIT ADDITION BEGIN - MEDICAL
-		if(body_part.current_gauze)
-			combined_msg += "\t [span_notice("Your [body_part.name] is [body_part.current_gauze.get_gauze_usage_prefix()] with <a href='byond://?src=[REF(body_part.current_gauze)];remove=1'>[body_part.current_gauze.get_gauze_description()]</a>.")]"
-		//SKYRAT EDIT END
-
 	var/tox = get_tox_loss() + (disgust / 5) + (HAS_TRAIT(src, TRAIT_SELF_AWARE) ? 0 : (rand(-3, 0) * 5))
 	switch(tox)
 		if(10 to 20)
