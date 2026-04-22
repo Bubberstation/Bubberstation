@@ -36,6 +36,9 @@
 
 		var/mob/living/listener = cellphone.loc
 		to_chat(listener, formatted)
+	for(var/mob/ghost in GLOB.player_list)
+		if (isobserver(ghost))
+			to_chat(ghost, formatted)
 
 /obj/item/radio/gangphone/attack_self(mob/user)
 	toggle_phone(user)
