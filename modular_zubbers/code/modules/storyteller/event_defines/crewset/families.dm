@@ -13,28 +13,6 @@
 	minimum_candidate_base = 2
 
 	tags = list(TAG_CREW_ANTAG, TAG_TEAM_ANTAG)
-	protected_roles = list(
-		JOB_CAPTAIN,
-		JOB_BLUESHIELD,
-		JOB_BRIDGE_ASSISTANT,
-
-		// Heads of staff
-		JOB_HEAD_OF_PERSONNEL,
-		JOB_HEAD_OF_SECURITY,
-		JOB_CHIEF_ENGINEER,
-		JOB_CHIEF_MEDICAL_OFFICER,
-		JOB_RESEARCH_DIRECTOR,
-		JOB_QUARTERMASTER,
-		JOB_NT_REP,
-
-		// Seccies
-		JOB_DETECTIVE,
-		JOB_SECURITY_OFFICER,
-		JOB_WARDEN,
-		JOB_CORRECTIONS_OFFICER,
-		JOB_PRISONER,
-		JOB_SECURITY_MEDIC,
-		)
 
 /datum/round_event/antagonist/families
 	var/datum/gang_handler/handler
