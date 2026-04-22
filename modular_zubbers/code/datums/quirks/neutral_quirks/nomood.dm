@@ -1,7 +1,7 @@
 /datum/quirk/nomood
 	name = "No Mood"
 	desc = "You don't receive any moodlets, your mood status will be replaced with hunger bar and you will receive slowdown based on how hungry you are."
-	icon = FA_ICON_LIGHTBULB
+	icon = FA_ICON_POWER_OFF
 	value = 0
 	mob_trait = TRAIT_NOMOOD
 	gain_text = span_danger("Your mood is way behind the fourth-wall!")
