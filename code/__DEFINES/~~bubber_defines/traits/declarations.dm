@@ -64,3 +64,6 @@
 
 /// The trait that determines if someone has the robotic limb reattachment quirk.
 #define TRAIT_ROBOTIC_LIMBATTACHMENT "trait_robotic_limbattachment"
+
+/// Trait that removes mood and replaces it with hunger bar.
+#define TRAIT_NOMOOD "trait_nomood"
