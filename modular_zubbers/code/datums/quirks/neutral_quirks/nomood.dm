@@ -28,9 +28,12 @@
 /datum/quirk/nomood/proc/toggle_mood(hide)
 	//hide the mood
 	var/datum/mood/mob_mood = quirk_holder.mob_mood
-	var/atom/movable/screen/mood/mood_icon = mob_mood.mood_screen_object
-
 	var/datum/hud/human/humanhud = quirk_holder.hud_used
+
+	if(isnull(mob_mood) || isnull(humanhud))
+		return
+
+	var/atom/movable/screen/mood/mood_icon = mob_mood.mood_screen_object
 	var/atom/movable/screen/hunger/hunger_icon = humanhud.hunger
 
 	if(isnull(mood_icon) || isnull(hunger_icon))
