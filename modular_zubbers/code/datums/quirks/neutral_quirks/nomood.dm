@@ -6,6 +6,7 @@
 	mob_trait = TRAIT_NOMOOD
 	gain_text = span_danger("Your mood is way behind the fourth-wall!")
 	lose_text = span_notice("Your mood is back to normal...")
+	medical_record_text = "Patient is incapable of feeling their own emotions."
 	var/previous_modifier = 1
 
 /datum/quirk/nomood/post_add()
