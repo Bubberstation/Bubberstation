@@ -864,6 +864,7 @@
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "emissionhelm"
+	visor_icon = "emissionhelm-envisor"
 
 // Donation reward for CandleJax
 /obj/item/clothing/head/helmet/space/plasmaman/candlejax2
@@ -872,6 +873,7 @@
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "anahead"
+	visor_icon = "anahead-envisor"
 
 // Donation reward for CandleJax
 /obj/item/clothing/under/plasmaman/candlejax

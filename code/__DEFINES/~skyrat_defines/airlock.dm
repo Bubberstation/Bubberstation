@@ -1,6 +1,5 @@
 
 
-#define AIRLOCK_LIGHT_POWER 0.5
 #define AIRLOCK_LIGHT_RANGE 2
 #define AIRLOCK_LIGHT_ENGINEERING "engineering"
 #define AIRLOCK_LIGHT_FIRE "fire"
