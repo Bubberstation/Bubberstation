@@ -171,3 +171,15 @@
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/tacticool)
 
+/datum/supply_pack/goody/armor_red
+	name = "Type I Armor Vest Single-Pack"
+	desc = "Contains one type I 'thick' variant armored vest, effective against a multitude of threats."
+	cost = PAYCHECK_COMMAND * 2
+	contains = list(/obj/item/clothing/suit/armor/red/vest/alt)
+
+/datum/supply_pack/goody/armor_red/sec
+	name = "Type I Security Armor Vest Single-Pack"
+	desc = "Contains one type I 'thick' variant armored vest, effective against a multitude of threats. This one has a distinctive red stripe."
+	cost = PAYCHECK_COMMAND * 2
+	access_view = ACCESS_SECURITY
+	contains = list(/obj/item/clothing/suit/armor/red/vest/alt/sec)
