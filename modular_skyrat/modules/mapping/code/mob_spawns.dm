@@ -6,6 +6,8 @@
 		ADD_TRAIT(spawned_human, TRAIT_NOBREATH, ROUNDSTART_TRAIT)
 		ADD_TRAIT(spawned_human, TRAIT_RESISTCOLD, ROUNDSTART_TRAIT)
 
+	spawned_human.mind?.teach_crafting_recipe(/datum/crafting_recipe/bronze_arrow)
+
 /obj/effect/mob_spawn/ghost_role/human/pirate/silverscale/special(mob/living/carbon/human/spawned_human)
 	. = ..()
 	spawned_human.grant_language(/datum/language/common, source = LANGUAGE_SPAWNER)

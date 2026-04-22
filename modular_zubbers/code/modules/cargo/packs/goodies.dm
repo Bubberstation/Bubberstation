@@ -163,3 +163,11 @@
 	desc = "Recommended for emergency self-cleaning, passive-aggressive demonstrations, or reminding others that hygiene is, in fact, part of the job."
 	cost = PAYCHECK_LOWER * 3
 	contains = list(/obj/item/soap/deluxe)
+
+/datum/supply_pack/goody/tacticool_laser
+	name = "Tacticool Energy Gun Single-Pack"
+	desc = "Contains one tacticool energy gun, for all your operator needs."
+	cost = PAYCHECK_COMMAND * 6
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/energy/tacticool)
+

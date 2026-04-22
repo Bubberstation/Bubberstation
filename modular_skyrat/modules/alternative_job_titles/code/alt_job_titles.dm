@@ -407,6 +407,7 @@
 		"Psychiatrist",
 		"Therapist",
 		"Shrink",
+		"Anger Management",
 	)
 
 /datum/job/quartermaster

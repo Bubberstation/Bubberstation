@@ -77,6 +77,13 @@
 		to_chat(user, span_warning("It'd be weird if there were multiple of you in that cave, wouldn't it?"))
 	return FALSE
 
+/obj/effect/mob_spawn/ghost_role/human/primitive_catgirl/special(mob/living/spawned_mob, mob/mob_possessor, apply_prefs)
+	. = ..()
+
+	if (ishuman(spawned_mob))
+		var/mob/living/carbon/human/human_spawned = spawned_mob
+		human_spawned.mind?.teach_crafting_recipe(/datum/crafting_recipe/bronze_arrow)
+
 // This stuff is put on equip because it turns out /special sometimes just don't get called because skyrat
 /obj/effect/mob_spawn/ghost_role/human/primitive_catgirl/equip(mob/living/carbon/human/spawned_human)
 	. = ..()

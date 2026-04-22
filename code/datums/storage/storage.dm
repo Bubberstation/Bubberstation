@@ -435,7 +435,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			user.balloon_alert(user, "can't hold!")
 		return FALSE
 
-	if(HAS_TRAIT(to_insert, TRAIT_NODROP))
+	if(HAS_TRAIT(to_insert, TRAIT_NODROP) && (to_insert.item_flags & IN_INVENTORY))
 		if(messages && user)
 			user.balloon_alert(user, "stuck on your hand!")
 		return FALSE

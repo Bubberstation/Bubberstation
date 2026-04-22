@@ -152,7 +152,7 @@
 						balloon_alert(user, "overflowing!")
 						break
 
-					if(target_item.juice_typepath())
+					if (target_item.juice_typepath())
 						juice_target_item(target_item, user)
 
 					else
@@ -164,7 +164,7 @@
 						balloon_alert(user, "overflowing!")
 						break
 
-					if(target_item.grind_results())
+					if (target_item.grind_results() || target_item.reagents?.total_volume)
 						grind_target_item(target_item, user)
 
 					else
@@ -172,7 +172,7 @@
 
 		return ITEM_INTERACT_SUCCESS
 
-	if(!tool.grind_results() && !tool.juice_typepath())
+	if(!tool.grind_results() && !tool.juice_typepath() && !tool.reagents?.total_volume)
 		balloon_alert(user, "can't grind this!")
 		return ITEM_INTERACT_BLOCKING
 

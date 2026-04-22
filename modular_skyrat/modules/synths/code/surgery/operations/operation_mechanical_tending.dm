@@ -16,11 +16,11 @@
 		TOOL_WIRECUTTER = 1.67,
 	)
 	time = 2.5 SECONDS
-	operation_flags = OPERATION_LOOPING | OPERATION_IGNORE_CLOTHES
+	operation_flags = OPERATION_LOOPING | OPERATION_IGNORE_CLOTHES | OPERATION_MECHANIC
 	success_sound = 'sound/items/tools/screwdriver_operating.ogg'
 	failure_sound = 'sound/items/handling/surgery/organ2.ogg'
-	required_biotype = MOB_ORGANIC|MOB_HUMANOID
-	required_bodytype = BODYTYPE_SYNTHETIC
+	required_biotype = MOB_ORGANIC | MOB_HUMANOID | MOB_ROBOTIC
+	required_bodytype = BODYTYPE_ROBOTIC | BODYTYPE_SYNTHETIC
 	any_surgery_states_required = ALL_SURGERY_SKIN_STATES
 	replaced_by = /datum/surgery_operation/basic/repair_synth/upgraded
 	/// Radial slice datums for every healing option we can provide
@@ -36,9 +36,7 @@
 	return ..() + list("the patient must have denting or heat damage")
 
 /datum/surgery_operation/basic/repair_synth/state_check(mob/living/patient)
-	if(issynthetic(patient))
-		return patient.get_brute_loss() > 0 || patient.get_fire_loss() > 0
-	else return FALSE
+	return patient.get_brute_loss() > 0 || patient.get_fire_loss() > 0
 
 /datum/surgery_operation/basic/repair_synth/get_default_radial_image()
 	return image(/obj/item/storage/medkit)
@@ -229,25 +227,24 @@
 
 /datum/surgery_operation/basic/repair_synth/upgraded/master
 	rnd_name = parent_type::rnd_name + "+"
-	replaced_by = /datum/surgery_operation/basic/tend_wounds/combo/synth/upgraded/master
+	replaced_by = /datum/surgery_operation/basic/repair_synth/combo/upgraded/master
 	healing_multiplier = 0.2
 
-/datum/surgery_operation/basic/tend_wounds/combo/synth
+/datum/surgery_operation/basic/repair_synth/combo
 	rnd_name = "Advanced Structural Repair"
 	operation_flags = parent_type::operation_flags | OPERATION_LOCKED
-	replaced_by = /datum/surgery_operation/basic/tend_wounds/combo/synth/upgraded
+	replaced_by = /datum/surgery_operation/basic/repair_synth/combo/upgraded
 	can_heal = COMBO_SURGERY
 	healing_amount = 3
 	time = 1 SECONDS
 
-/datum/surgery_operation/basic/tend_wounds/combo/synth/upgraded
+/datum/surgery_operation/basic/repair_synth/combo/upgraded
 	rnd_name = parent_type::rnd_name + "+"
 	operation_flags = parent_type::operation_flags | OPERATION_LOCKED
-	required_bodytype = BODYTYPE_SYNTHETIC
-	replaced_by = /datum/surgery_operation/basic/tend_wounds/combo/synth/upgraded/master
+	replaced_by = /datum/surgery_operation/basic/repair_synth/combo/upgraded/master
 	healing_multiplier = 0.1
 
-/datum/surgery_operation/basic/tend_wounds/combo/synth/upgraded/master
+/datum/surgery_operation/basic/repair_synth/combo/upgraded/master
 	rnd_name = parent_type::rnd_name + "+"
 	healing_amount = 1
 	healing_multiplier = 0.4

@@ -48,6 +48,8 @@
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	loot = list(/obj/structure/closet/crate/necropolis/gladiator)
 	crusher_loot = list(/obj/structure/closet/crate/necropolis/gladiator/crusher)
+	replace_crusher_drop = TRUE
+	butcher_results = list(/obj/item/stack/sheet/bone = 30)
 	/// Boss phase, from 1 to 3
 	var/phase = MARKED_ONE_FIRST_PHASE
 	/// People we have introduced ourselves to - WEAKREF list

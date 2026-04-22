@@ -6,7 +6,7 @@
 	base_icon_state = "9x19p"
 	ammo_type = /obj/item/ammo_casing/security
 	caliber = CALIBER_9MM_SEC
-	max_ammo = 10
+	max_ammo = 14
 	ammo_band_color = null
 	multiple_sprites = AMMO_BOX_PER_BULLET
 	multiple_sprite_use_base = TRUE
@@ -17,7 +17,7 @@
 	name = "pistol magazine (9mm Murphy Rocket Eject)"
 	desc = parent_type::desc + "With a small charge inside that sparks on ejection, this one has less room for ammo and a lethal velocity to it's ejections."
 	ammo_type = /obj/item/ammo_casing/security
-	max_ammo = 8
+	max_ammo = 10
 	base_icon_state = "9x19pI"
 	murphy_eject_sound = 'sound/items/weapons/gun/general/rocket_launch.ogg'
 

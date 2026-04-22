@@ -90,3 +90,8 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design/normtrash/New()
+	. = ..()
+	build_type |= AUTOLATHE
+	category += list(RND_CATEGORY_INITIAL)

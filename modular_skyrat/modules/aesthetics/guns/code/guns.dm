@@ -34,7 +34,6 @@
 	inhand_icon_state = "shotgun_combat"
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
-	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact
 	name = "\improper Peacekeeper compact combat shotgun"

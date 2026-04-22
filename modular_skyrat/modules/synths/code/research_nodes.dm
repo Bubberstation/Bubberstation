@@ -46,19 +46,19 @@
 /datum/design/surgery/tend_wounds_combo/synth
 	name = "Structural Repairs Combo"
 	desc = "An alternative wound treatment operation that treats both bruises and burns at the same time, albeit less effectively than their individual counterparts."
-	surgery = /datum/surgery_operation/basic/tend_wounds/combo/synth
+	surgery = /datum/surgery_operation/basic/repair_synth/combo
 	id = "synthetic_surgery_heal_combo"
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/tend_wounds_combo/synth/upgrade
 	name = "Structural Repairs Combo Upgrade"
-	surgery = /datum/surgery_operation/basic/tend_wounds/combo/synth/upgraded
+	surgery = /datum/surgery_operation/basic/repair_synth/combo/upgraded
 	id = "synthetic_surgery_heal_combo_upgrade"
 
 /datum/design/surgery/tend_wounds_combo/synth/upgrade/femto
 	name = "Structural Repairs Combo Upgrade"
 	desc = "The ultimate in wound treatment operations, treating both bruises and burns simultaneous and faster than their individual counterparts."
-	surgery = /datum/surgery_operation/basic/tend_wounds/combo/synth/upgraded/master
+	surgery = /datum/surgery_operation/basic/repair_synth/combo/upgraded/master
 	id = "synthetic_surgery_heal_combo_upgrade_femto"
 
 /**

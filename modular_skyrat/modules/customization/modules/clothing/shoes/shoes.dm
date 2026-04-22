@@ -50,6 +50,10 @@
 	greyscale_colors = "#FFFFFF"
 	flags_1 = IS_PLAYER_COLORABLE_1
 
+/obj/item/clothing/shoes/high_heels/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/squeak, list('modular_zubbers/sound/effects/footstep/highheel1.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel2.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel3.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel4.ogg' = 1), 70)
+
 /obj/item/clothing/shoes/fancy_heels
 	name = "fancy heels"
 	desc = "A pair of fancy high heels that are much smaller on your feet."

@@ -4,6 +4,8 @@
 	desc = "A how-to guide to crafting and maintaining wooden bows, fletching arrows, and... making violins?"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/arrow,
+		/datum/crafting_recipe/blunted_arrow,// BUBBER EDIT ADDITION - Nonlethal arrows
+		/datum/crafting_recipe/taser_arrow,// BUBBER EDIT ADDITION - Nonlethal arrows
 		/datum/crafting_recipe/plastic_arrow,
 		/datum/crafting_recipe/shortbow,
 		/datum/crafting_recipe/holy_arrow,

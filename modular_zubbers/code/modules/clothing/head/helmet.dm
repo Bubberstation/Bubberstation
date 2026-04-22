@@ -685,3 +685,12 @@
 /obj/item/clothing/head/hooded/ablative
 	// new teshari sprites
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/head/helmet/space/plasmaman/plasmax_black
+	name = "plasMAX envirosuit helmet"
+	desc = "Extra large version of plasmaman helmet, made to fit those with non-humanoid skulls."
+	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	icon_state = "plasmax_black"
+	light_color = "#f399ff"
+	visor_icon = "plasmax_black-envisor"

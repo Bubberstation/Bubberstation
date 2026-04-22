@@ -14,7 +14,8 @@
 
 /datum/design/welding_goggles/New()
 	. = ..()
-	build_type |= COLONY_FABRICATOR
+	build_type |= COLONY_FABRICATOR | AUTOLATHE
+	category += list(RND_CATEGORY_INITIAL)
 
 /datum/design/welding_helmet/New()
 	. = ..()

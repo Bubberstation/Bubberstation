@@ -60,7 +60,7 @@
 	spawn_all_loot = TRUE
 /obj/effect/spawner/random/armory/shotgun
 	loot = list(
-		/obj/item/gun/ballistic/shotgun/riot
+		/obj/item/gun/ballistic/shotgun/riot,
 	)
 	spawn_loot_count = 3
 

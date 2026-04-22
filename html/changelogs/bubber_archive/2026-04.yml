@@ -43,3 +43,90 @@
   ibexgoetia:
   - rscadd: Added horse bridles to the loadout menu and the lustwish vendors. They
       come equipped with settable blinders and bit.
+2026-04-20:
+  Arturlang:
+  - rscdel: for performance reasons, airlocks no longer emit their own lights
+  Hardly3D, xPokee:
+  - image: Resprited the duster.
+  KateAnbolho:
+  - rscadd: Resprited the Tacticool Laser Rifle, gave it an inhand sprite, and gives
+      it it's seclite mount for parity.
+  - rscadd: New sprites for the gun are from Niim!
+  - rscadd: Adds the Tacticool Energy Gun, a seemingly poorly maintained variant of
+      the tactical energy gun, to cargo!
+  MrGloopy:
+  - rscadd: A fuckload of cybernetic sprites from Eriscode. Some have gendered variants.
+      Many are NOT intended for IPC screens. They are located in the augs+ section.
+  - image: Supporting sprites for the limb additions. The large detail sprites are
+      still included in the code, however are not visible ingame. They're pretty cool,
+      which is why I kept them for viewing purposes.
+  - rscadd: Preference toggle for eyes opacity. Have no eyes (visually) or anywhere
+      in between.
+  - rscadd: Robotic type body parts for the more unique species sprites. Akula, Anthro,
+      Lizard, Moth, Vox, Xenohybrid and Teshari. Please note these are moreso intended
+      for making non-standard synths, as they are identical to the non-robotic versions
+      visually.
+  - rscadd: Peg limbs to augs+
+  - rscadd: Default chassis Synth sprites for augs+
+  - image: added E3N sprites for augs+
+  - code_imp: added handling for the new greyscale robotic limbs
+  NiklasNeighbor:
+  - balance: Made the Voidwalker's Unsettle ability stun for longer (2s -> 3s)
+  - balance: Voidwalkers can now also convert reinforced walls into windows.
+  Rykka-Stormheart:
+  - qol: Changed storyteller names to be more clear
+  SapphoQueer:
+  - balance: The combat shotgun that does 1.5x damage has been moved from bulky weight,
+      to huge weight.
+  - bugfix: Murphy mags no longer are invisible.
+  - balance: Reagent/Smithed spears now function similar to regular spears. 2 tiles
+      of range when one-handed, 1 tile of range but double damage and AP when wielded.
+  - balance: Murphy bullets now have a twenty AP.
+  - balance: Murphy magazines now fit 14 bullets, up from 10. Murphy rocket mags fit
+      10, up from 8.
+  SomeCabbage:
+  - rscadd: Added the ability for crafted wall torches to be mounted on walls regardless
+      of floor or area power.
+  - bugfix: The large mortar can now properly grind and juice things, including items
+      like injectors and sheets of material.
+  - bugfix: Fixed an error in wallmounting code preventing a bubber bypass from working.
+  - map: Added a small clay-working corner, glassblowing kit, serving tray and eggplant
+      seeds to the hearth.
+  Yobrocharlie:
+  - balance: Made the maintsrooms xenomorphs friendly
+  amsy2:
+  - rscadd: Added sci variants of Proto Nitrate power tools - available in crafting
+      menu
+  - bugfix: Fixed power tools not showing on the toolbelts
+  - image: Reworked Proto Nitrate icons
+  - image: 'Added sprites for power tools on toolbelt
+
+      /:cl'
+  explosivekitty:
+  - bugfix: You can no longer get duplicated loot from marked one
+  - bugfix: marked one crusher trophy now correctly drops after you kill him with
+      crusher
+  - bugfix: death degradation stasis and formaldehyde multipliers now actually work
+  - rscadd: death degradation resting multiplier info doesn't show when you have no
+      way of reducing it in first place
+  - bugfix: death degradation preferences load correctly if you readied up on round
+      start and have special characters in your ckey
+  - bugfix: Now you can see people's round removal status after they died
+  - bugfix: You can now tend to synths and augumented people via surgery
+  - bugfix: You can no longer cheese colossus by dragging a corpse behind you
+  - rscadd: megafauna now gibs legion corpses and other lavaland simplemob fauna
+  ibexgoetia:
+  - sound: All high heel shoes now make the high heel sound.
+  - rscadd: You can now choose the appearance of the heels when you pick the seamless
+      heels quirk.
+  - bugfix: Switched the reusable autosurgeon NTCs and HOPs had access to with a single
+      use one.
+  muchatras:
+  - balance: Toned down biodegrade buff
+  nikothedude:
+  - rscadd: A new security voucher - the archery kit, that gives you a bow that penetrates
+      armor and causes wounds, as well as some less-lethal arrows
+  - rscadd: An armory cargo order with two powerful bows and quivers with lethal and
+      nonlethal arrows
+  - rscadd: Two new less-lethal arrows craftable via the fletching book and blacksmithing
+  - balance: Bronze arrows can now only be crafted by ashies and hearthkin

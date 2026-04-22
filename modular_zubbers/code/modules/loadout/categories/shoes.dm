@@ -198,10 +198,6 @@
 	name = "High Heels"
 	item_path = /obj/item/clothing/shoes/high_heels
 
-/datum/loadout_item/shoes/formal/black_heels
-	name = "Fancy Heels"
-	item_path = /obj/item/clothing/shoes/fancy_heels
-
 /datum/loadout_item/shoes/formal/disco
 	name = "Green Snakeskin Shoes"
 	item_path = /obj/item/clothing/shoes/discoshoes

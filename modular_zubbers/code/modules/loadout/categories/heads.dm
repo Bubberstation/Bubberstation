@@ -181,3 +181,7 @@
 	name = "Imperial Police Helmet"
 	item_path = /obj/item/clothing/head/helmet/nri_police
 	restricted_roles = list(JOB_CUSTOMS_AGENT)
+
+/datum/loadout_item/head/soft/plasmax_black
+	name = "PlasMAX Envirosuit Helmet"
+	item_path = /obj/item/clothing/head/helmet/space/plasmaman/plasmax_black
