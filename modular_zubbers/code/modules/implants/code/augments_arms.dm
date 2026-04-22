@@ -34,6 +34,11 @@
 	desc = "A tape recorder implanted within the forearm. Triple press button on forearm to quickly start and stop recording. Further controls on other side of panel."
 	items_to_create = list(/obj/item/taperecorder)
 
+/obj/item/organ/cyberimp/arm/toolkit/foamforce_implant
+	name = "foam force pop-up blaster implant"
+	desc = "An implanted foam dart blaster from Foam Force. Two shot capacity. Do not use non-Foam Force darts in blaster."
+	items_to_create = list(/obj/item/gun/ballistic/toy/foamforce_implant)
+
 //LEFT ARM IMPLANTS
 /obj/item/organ/cyberimp/arm/toolkit/power_cord/left_arm
 	zone = BODY_ZONE_L_ARM
@@ -71,7 +76,7 @@
 	zone = BODY_ZONE_L_ARM
 	slot = ORGAN_SLOT_LEFT_ARM_AUG
 
-/obj/item/organ/cyberimp/arm/toolkit/mini_extinguisher/left_arm
+/obj/item/organ/cyberimp/arm/toolkit/foamforce_implant/left_arm
 	zone = BODY_ZONE_L_ARM
 	slot = ORGAN_SLOT_LEFT_ARM_AUG
 
@@ -113,6 +118,6 @@
 	zone = BODY_ZONE_R_ARM
 	slot = ORGAN_SLOT_RIGHT_ARM_AUG
 
-/obj/item/organ/cyberimp/arm/toolkit/mini_extinguisher/right_arm
+/obj/item/organ/cyberimp/arm/toolkit/foamforce_implant/right_arm
 	zone = BODY_ZONE_R_ARM
 	slot = ORGAN_SLOT_RIGHT_ARM_AUG

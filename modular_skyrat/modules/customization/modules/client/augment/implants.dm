@@ -74,7 +74,7 @@
 	path = /obj/item/organ/cyberimp/arm/toolkit/tape_recorder/left_arm
 
 /datum/augment_item/implant/l_arm/toolkit/foamforce_implant
-	name = "Temp"
+	name = "Foam Force Pop-up Blaster Implant"
 	cost = 2
 	path = /obj/item/organ/cyberimp/arm/toolkit/foamforce_implant/left_arm
 
@@ -130,6 +130,11 @@
 	name = "Right Tape Recorder"
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/tape_recorder/right_arm
+
+/datum/augment_item/implant/r_arm/toolkit/foamforce_implant
+	name = "Donksoft Pop-up Blaster Implant"
+	cost = 2
+	path = /obj/item/organ/cyberimp/arm/toolkit/foamforce_implant/right_arm
 
 //EYES IMPLANTS
 /datum/augment_item/implant/eyes
