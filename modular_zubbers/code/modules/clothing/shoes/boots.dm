@@ -320,6 +320,7 @@
 
 /obj/item/clothing/shoes/jackboots/heel/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/squeak, list('modular_zubbers/sound/effects/footstep/highheel1.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel2.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel3.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel4.ogg' = 1), 70)
 	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
 	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
