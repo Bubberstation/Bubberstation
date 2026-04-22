@@ -26,6 +26,11 @@
 		if(sub.gender == checked_gender)
 			return TRUE
 
+/datum/quirk/dominant_aura/proc/check_if_dom_sub_mutually_preferred(mob/living/carbon/human/sub)
+	if(!check_if_sub_is_preferred(sub))
+		return FALSE
+	if(!sub.(insert sub preference check here))
+
 /datum/quirk/dominant_aura/proc/on_sub_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
@@ -38,7 +43,7 @@
 		return
 	if(sub.stat == DEAD)
 		return
-	examine_list += span_purple("[%PRONOUN_They] seem[%PRONOUN_s] submissive towards you.")
+	examine_list += span_purple("[sub.p_They()] seem[sub.p_s()] submissive towards you.")
 
 /datum/quirk/dominant_aura/proc/on_snap(atom/source, datum/emote/emote_args)
 	SIGNAL_HANDLER
