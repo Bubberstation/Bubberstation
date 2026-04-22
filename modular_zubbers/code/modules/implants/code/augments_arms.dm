@@ -36,7 +36,7 @@
 
 /obj/item/organ/cyberimp/arm/toolkit/mini_extinguisher
 	name = "mini fire extinguisher implant"
-	desc = "An implanted compact fire extinguisher. Water tank located inside forearm, with attached nozzle. Ensure safety is removed before use."
+	desc = "An implanted compact fire extinguisher. The water tank is located inside the forearm, with attached nozzle. Ensure safety is removed before use."
 	items_to_create = list(/obj/item/extinguisher/mini)
 
 
