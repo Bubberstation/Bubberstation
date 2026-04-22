@@ -71,7 +71,7 @@
 
 /obj/item/storage/belt/crusader/click_alt(mob/user)	//This is basically the same as the normal sheath, but because there's always an item locked in the first slot it uses the second slot for swords
 	if(contents.len == 2)
-		var/obj/item/drawn_item = contents[2]
+		var/obj/item/drawn_item = contents[2]vb
 		add_fingerprint(user)
 		playsound(src, 'sound/items/unsheath.ogg', 50, TRUE, -5)
 		if(!user.put_in_hands(drawn_item))

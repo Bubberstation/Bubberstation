@@ -164,6 +164,20 @@
 	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/arrowhead
 
+/obj/item/forging/incomplete/revolver_cylinder
+	name = "incomplete revolver cylinder"
+	icon_state = "hot_revolver_cylinder"
+	completion_quality_points = 40
+	average_wait = 0.5 SECONDS
+	spawn_item = /obj/item/forging/complete/arrowhead
+
+/obj/item/forging/incomplete/revolver_frame
+	name = "incomplete revolver frame"
+	icon_state = "hot_revolver_frame"
+	completion_quality_points = 40
+	average_wait = 0.5 SECONDS
+	spawn_item = /obj/item/forging/complete/arrowhead
+
 /obj/item/forging/incomplete/rail_nail
 	name = "incomplete rail nail"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/railroad.dmi'
@@ -225,8 +239,6 @@
 		return
 	forceMove(tool)
 	tool.icon_state = "tong_full"
-
-
 
 /obj/item/forging/complete/chain
 	name = "chain"
@@ -318,6 +330,18 @@
 	spawning_item = /obj/item/arrow_spawner
 	force = 3
 	double_edged_damage = 2
+
+/obj/item/forging/complete/revolver_cylinder
+	name = "single-action revolver cylinder"
+	icon_state = "hot_revolver_cylinder"
+	average_wait = 0.5 SECONDS
+	spawn_item = /obj/item/forging/complete/arrowhead
+
+/obj/item/forging/complete/revolver_frame
+	name = "single-action revolver frame"
+	icon_state = "hot_revolver_frame"
+	average_wait = 0.5 SECONDS
+	spawn_item = /obj/item/forging/complete/arrowhead
 
 /obj/item/forging/complete/rail_nail
 	name = "rail nail"

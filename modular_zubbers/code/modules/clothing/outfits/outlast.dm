@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/leatherapron //Sprite by pacertest on discord
 	name = "leather apron"
-	desc = "A somewhat sterile apron made from thick leather, perfect for sawing limbs off without getting your uniform bloody."
+	desc = "An apron made from thick leather. Has a couple pouches for forging equipment."
 	icon = 'modular_zubbers/icons/obj/clothing/outlast.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
@@ -24,6 +24,22 @@
 		/obj/item/forging/hammer,
 		/obj/item/forging/tongs,
 		/obj/item/forging/billow,
+	)
+
+/obj/item/clothing/suit/leatherapron/Initialize(mapload)
+	create_storage(
+		max_slots = 8,
+		storage_type = /datum/storage/belt,
+		canhold = list(
+			/obj/item/forging/tongs,
+			/obj/item/forging/billow,
+			/obj/item/forging/hammer,
+			/obj/item/glassblowing/blowing_rod,
+			/obj/item/glassblowing/paddle,
+			/obj/item/glassblowing/shears,
+			/obj/item/glassblowing/jacks,
+			/obj/item/glassblowing/metal_cup,
+		),
 	)
 
 /obj/item/clothing/glasses/hud/health/surgerygoggles //Sprite by pacertest on discord
