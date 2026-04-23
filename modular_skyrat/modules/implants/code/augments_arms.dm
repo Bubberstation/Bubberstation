@@ -203,6 +203,19 @@
 	obj_flags |= EMAGGED
 	return TRUE
 
+/obj/item/organ/cyberimp/arm/toolkit/lighter
+	name = "lighter implant"
+	desc = "A... implanted lighter. Incredibly useless."
+	items_to_create = list(/obj/item/lighter/greyscale) //Hilariously useless.
+
+/obj/item/organ/cyberimp/arm/toolkit/lighter/emag_act()
+	if(obj_flags & EMAGGED)
+		return FALSE
+	to_chat(usr, span_notice("You unlock [src]'s integrated Zippo lighter! Finally, classy smoking!"))
+	items_list += WEAKREF(new /obj/item/lighter(src)) //Now you can choose between bad and worse!
+	obj_flags |= EMAGGED
+	return TRUE
+
 #undef KNIFE_HITSOUND
 #undef KNIFE_USESOUND
 #undef KNIFE_ATTACK_VERB_CONTINUOUS
