@@ -218,7 +218,7 @@
 	addtimer(CALLBACK(src, PROC_REF(emp_pulse2)), 1 SECONDS)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/emp_pulse2()
-	Shake_OFFSET(2)
+	Shake(2)
 	playsound(src, 'modular_zubbers/modules/awaymissions_zubbers/Maintsroom/Claw_assets/vox_scream_1.ogg', 300, 1, 8, 8)
 	empulse(src, 2, 4)
 	shouldnt_move = FALSE
@@ -263,7 +263,7 @@
 
 /////LIE SPIDER
 /mob/living/simple_animal/hostile/megafauna/claw/proc/summon_creatures()
-	shake(20)
+	Shake(20)
 	visible_message("<span class='danger'>[src] shudders violently and starts to split a flesh spider from it's body!</span>")
 	shouldnt_move = TRUE
 	addtimer(CALLBACK(src, PROC_REF(summon_creatures2)), 2 SECONDS)
