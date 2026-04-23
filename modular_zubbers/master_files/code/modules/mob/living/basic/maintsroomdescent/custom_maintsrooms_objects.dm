@@ -139,3 +139,13 @@
 	<li>Third things last- take things slow, this place tends to be forgiving if you are slow, you wont die, if you see a red light and want to take it on, plan out a course</li> \
 	<li>to run to in case you need space to shoot them down while theyre chasing you- make sure to take note of where dead ends are and where the doors are too, i reccomend</li> \
 	<li>bolting the doors open as that way you wont lose precious time running from -it- from having to stop and re-open doors. Also, dont listen to the Void, I learnt that quickly. It likes to pretend to be your loved ones.</li>"
+
+/obj/item/keycard/claw_card
+	name = "Biometric keycard"
+	desc = "A keycard that looks more complex than the already other complex keycards, it a simple design of a skull on it."
+	color = "#4b4b4b"
+	puzzle_id = "claw_card"
+
+/obj/machinery/door/puzzle/keycard/claw_door
+	name = "secure airlock"
+	puzzle_id = "claw_card"
