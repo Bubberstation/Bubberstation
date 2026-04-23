@@ -1,8 +1,8 @@
 /obj/item/gun/ballistic/toy/foamforce_implant
 	name = "Pop-up Donksoft Blaster"
 	desc = "A two shot, breech loaded Donksoft blaster that pops out of a panel on your wrist. You wonder if it was worth it."
-	icon = 'modular_zubbers/icons/obj/guns/foamforce_implant.dmi' //modified Derringer sprite by the wonderful Niim
-	icon_state = "popupdart"
+	icon = 'modular_zubbers/icons/obj/guns/popupdart_toy.dmi' //modified Derringer sprite by the wonderful Niim
+	icon_state = "popupdart_toy"
 	force = 0
 	throwforce = 0
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/foamforce_implant
