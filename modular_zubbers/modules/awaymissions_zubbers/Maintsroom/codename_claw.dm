@@ -19,7 +19,7 @@
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	ranged = TRUE
-	speed = 2
+	speed = 0
 	move_to_delay = 4
 	wander = FALSE
 	blood_volume = BLOOD_VOLUME_NORMAL
@@ -54,7 +54,7 @@
 		/datum/action/innate/megafauna_attack/summon_creatures,
 		/datum/action/innate/megafauna_attack/sting_attack,
 	)
-	speed = 1
+	speed = 0
 	move_to_delay = 5
 	speak_emote = list("verbalizes")
 	health = 4000
@@ -253,8 +253,8 @@
 /obj/projectile/claw_projectille
 	name = "claw's spike"
 	icon_state = "crystal_shard"
-	damage = 15
-	armour_penetration = 25
+	damage = 20
+	armour_penetration = 50
 	damage_type = BRUTE
 	speed = 4
 
