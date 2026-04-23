@@ -89,6 +89,10 @@
 		/mob/living/simple_animal/hostile/vox/ranged/space,
 		/mob/living/simple_animal/hostile/vox/ranged/space/laser,
 
+		//Bubber additions
+		/mob/living/simple_animal/hostile/megafauna/claw,
+		/mob/living/simple_animal/hostile/megafauna/claw/phase2,//That sign cant stop me because i cant read! and, more so because i have no idea how i would even begin to refractor this anyhow, and all tg's megafauna re simple animals anyhow.
+
 		// DO NOT ADD NEW ENTRIES TO THIS LIST
 		// READ THE COMMENT ABOVE
 	)
