@@ -57,16 +57,23 @@
 		balloon_alert(user, "hammer isn't cocked!")
 		return FALSE
 
-
-/*
-/obj/item/gun/ballistic/revolver/handcrafted_single_action/fire_gun(atom/target, mob/living/user, flag, params)
-	hammer_is_primed = FALSE
-	. = ..()
-*/
+////////////////////////// MISFIRE WHEN SHOVED OR ATTACKED ///////////////////////////////////////
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	hammer_is_primed = FALSE
 	. = ..()
+
+/obj/item/gun/ballistic/revolver/handcrafted_single_action/equipped(mob/user, slot, initial)
+	. = ..()
+	var/static/list/connections = list(COMSIG_ATOM_WAS_ATTACKED = PROC_REF(holster_misfire))
+	if(slot != ITEM_SLOT_HANDS)
+		AddComponent(/datum/component/connect_inventory, user, connections, allowed_slots = ITEM_SLOT_HANDS)
+
+/obj/item/gun/ballistic/revolver/handcrafted_single_action/dropped(mob/user, silent)
+	. = ..()
+	qdel(GetComponent(/datum/component/connect_inventory))
+
+/obj/item/gun/ballistic/revolver/handcrafted_single_action/proc/holster_misfire
 
 /obj/item/ammo_box/magazine/internal/cylinder/handcrafted_single_action
 	name = "handcrafted revolver cylinder"
@@ -84,3 +91,4 @@
 
 /obj/item/ammo_box/magazine/internal/cylinder/handcrafted_single_action/spin()
 	. = ..()
+
