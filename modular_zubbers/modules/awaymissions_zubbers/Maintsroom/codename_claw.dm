@@ -314,18 +314,18 @@
 	damage_type = BRUTE
 	range = 8
 	hitsound = 'sound/items/weapons/thudswoosh.ogg'
-	var/chain
+	var/hitchain
 
 /obj/projectile/tentacle/fire(setAngle)
 	if(firer)
-		chain = firer.Beam(src, icon_state = "tentacle", emissive = FALSE)
+		hitchain = firer.Beam(src, icon_state = "tentacle", emissive = FALSE)
 	..()
 
-/obj/projectile/tentacle/proc/reset_throw(mob/living/carbon/human/H)
+/obj/projectile/tentacle/proc/reset_throw_claw(mob/living/carbon/human/H)
 	if(H.throw_mode)
 		H.throw_mode_off() //Don't annoy the changeling if he doesn't catch the item
 
-/obj/projectile/tentacle/proc/tentacle_grab(mob/living/carbon/human/H, mob/living/carbon/C)
+/obj/projectile/tentacle/proc/tentacle_grab_claw(mob/living/carbon/human/H, mob/living/carbon/C)
 	if(H.Adjacent(C))
 		if(H.get_active_held_item() && !H.get_inactive_held_item())
 			H.swap_hand()
@@ -401,6 +401,6 @@
 				. = BULLET_ACT_HIT
 
 /obj/projectile/tentacle/Destroy()
-	qdel(chain)
+	qdel(hitchain)
 	return ..()
 
