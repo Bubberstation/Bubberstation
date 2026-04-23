@@ -99,7 +99,37 @@
 			damage_dealt = -1 * adjust_organ_loss(ORGAN_SLOT_BRAIN, damage_amount)
 
 	SEND_SIGNAL(src, COMSIG_MOB_AFTER_APPLY_DAMAGE, damage_dealt, damagetype, def_zone, blocked, wound_bonus, exposed_wound_bonus, sharpness, attack_direction, attacking_item, wound_clothing)
+	// BUBBER EDIT ADDITION - HIT NUMBERS
+	var/obj/effect/overlay/hitmarker/hitmarker = new()
+	hitmarker.animate_damage(damage, src, damagetype)
+	// BUBBED EDIT END
 	return damage_dealt
+
+/obj/effect/overlay/hitmarker // BUBBER EDIT - Damage Markers
+	icon = 'icons/effects/96x160.dmi'
+	plane = BALLOON_CHAT_PLANE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	alpha = 64
+	var/mob/living/carbon/my_carbon_mob
+	var/list/static/colour = list(
+		BRUTE = "#FF0000",
+		BURN = "#FF9900",
+		TOX = "#00FF00",
+		OXY = "#7777FF",
+
+	)
+	proc/animate_damage(damage, my_mob, damagetype)
+
+		my_carbon_mob = my_mob
+		pixel_z = rand(-8,8)
+		pixel_w = rand(-8,8)
+		appearance_flags |= (KEEP_TOGETHER|RESET_COLOR|RESET_TRANSFORM)
+		my_carbon_mob.vis_contents |= src
+		maptext = MAPTEXT_SPESSFONT("<span style=\"color:[damagetype];\">[ROUND_UP(damage)]!</span>")
+		animate(src, pixel_z = rand(-64,64), pixel_w = rand(-64,64), time = 1 SECONDS, easing = BOUNCE_EASING, alpha = 255)
+		animate(alpha = 0, time = 0.5 SECONDS)
+		QDEL_IN(src, 1.5 SECONDS)
+
 
 /**
  * Used in tandem with [/mob/living/proc/apply_damage] to calculate modifier applied into incoming damage
