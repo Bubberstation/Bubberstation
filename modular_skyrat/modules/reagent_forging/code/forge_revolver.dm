@@ -19,6 +19,7 @@
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 2 DECISECONDS) //have this for hammer fanning
+	AddComponent(/datum/component/reagent_imbued/weapon)
 
 ///Can't be toggled safety -- you need to manage the hammer
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/give_gun_safeties()

@@ -169,14 +169,14 @@
 	icon_state = "hot_revolver_cylinder"
 	completion_quality_points = 40
 	average_wait = 0.5 SECONDS
-	spawn_item = /obj/item/forging/complete/arrowhead
+	spawn_item = /obj/item/forging/complete/revolver_cylinder
 
 /obj/item/forging/incomplete/revolver_frame
 	name = "incomplete revolver frame"
 	icon_state = "hot_revolver_frame"
 	completion_quality_points = 40
 	average_wait = 0.5 SECONDS
-	spawn_item = /obj/item/forging/complete/arrowhead
+	spawn_item = /obj/item/forging/complete/revolver_frame
 
 /obj/item/forging/incomplete/rail_nail
 	name = "incomplete rail nail"
@@ -334,14 +334,10 @@
 /obj/item/forging/complete/revolver_cylinder
 	name = "single-action revolver cylinder"
 	icon_state = "hot_revolver_cylinder"
-	average_wait = 0.5 SECONDS
-	spawn_item = /obj/item/forging/complete/arrowhead
 
 /obj/item/forging/complete/revolver_frame
 	name = "single-action revolver frame"
 	icon_state = "hot_revolver_frame"
-	average_wait = 0.5 SECONDS
-	spawn_item = /obj/item/forging/complete/arrowhead
 
 /obj/item/forging/complete/rail_nail
 	name = "rail nail"
