@@ -63,17 +63,6 @@
 	phase = 2
 	status_flags = TRAIT_GODMODE //this is so during the animation you cant beat it up
 
-///LOOT
-/obj/effect/spawner/clawloot/Initialize()
-	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(spawn_loot)), 5 SECONDS) //this is because it dies violently exploding, so we dont want to destroy the goodies, you know?
-
-/obj/effect/spawner/clawloot/proc/spawn_loot()
-	new /obj/item/gun/energy/pulse/pistol(get_turf(src))
-	qdel(src)
-
-///LOOT END
-
 //PHASE ONE
 /datum/action/innate/megafauna_attack/swift_dash
 	name = "Swift Dash"
