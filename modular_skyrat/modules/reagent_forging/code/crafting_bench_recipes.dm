@@ -89,6 +89,12 @@
 	total_completion /= total_forge_items
 	return total_completion
 
+/datum/crafting_bench_recipe/proc/find_from_list(list/item_list, type)
+	for(var/obj/item/forging/complete/temp_item in item_list)
+		if(istype(temp_item, type))
+			return temp_item
+	return null
+
 /datum/crafting_bench_recipe/proc/apply_perfect_and_completion_bonuses(list/things_to_use, obj/item/product)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -104,25 +110,21 @@
 
 /datum/crafting_bench_recipe/weapon_completion_recipe/create_using_item_list(list/item_list, mob/living/user)
 	//apparently i fuggin have to write my own version of is_type_in_list
-	var/obj/item/forging/complete/weapon_head
-	for(var/obj/item/forging/complete/temp_item in item_list)
-		if(!isnull(temp_item))
-			weapon_head = temp_item
-			break
-
+	var/obj/item/forging/complete/weapon_head = find_from_list(item_list, /obj/item/forging/complete)
 	if(isnull(weapon_head))
 		stack_trace("[src] didn't contain a valid reagent smithing weapon head when its recipe was completed!")
 		return
 	var/obj/item/returner = new weapon_head.spawning_item(src)
 	apply_perfect_and_completion_bonuses(item_list, returner)
-	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner)
+	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner, user)
 	put_materials_in_product_from_ingredients(item_list, returner, user)
 
 	consume_crafting_ingredients(item_list, returner)
 	return returner
 
 /datum/crafting_bench_recipe/weapon_completion_recipe/apply_perfect_and_completion_bonuses(list/things_to_use, obj/item/product)
-	var/obj/item/forging/complete/weapon_head = is_path_in_list(/obj/item/forging/complete, things_to_use, TRUE)
+	var/obj/item/forging/complete/weapon_head = find_from_list(things_to_use, /obj/item/forging/complete)
+
 	var/pieces_completion_amount = get_total_completion_amount(things_to_use)
 	if(istype(product, /obj/item/forging/reagent_weapon))
 		var/obj/item/forging/reagent_weapon/weaponforged = product
@@ -248,6 +250,17 @@
 	time_to_assemble = 4 SECONDS
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
+/datum/crafting_bench_recipe/revolver
+	recipe_name = "revolver"
+	recipe_desc = "A classical single-action revolver."
+	recipe_requirements = list(
+		/obj/item/stack/sheet/mineral/wood = 1,
+		/obj/item/forging/complete/revolver_cylinder = 1,
+		/obj/item/forging/complete/revolver_frame = 1
+	)
+	resulting_item = /obj/item/gun/ballistic/revolver/handcrafted_single_action
+	time_to_assemble = 4 SECONDS
+	required_traits = list(TRAIT_KNOW_GUNSMITHING)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// BELT COMPLETION ///////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -85,6 +85,8 @@
 		"Pickaxe" = /obj/item/forging/incomplete/pickaxe,
 		"Shovel" = /obj/item/forging/incomplete/shovel,
 		"Arrowhead" = /obj/item/forging/incomplete/arrowhead,
+		"Revolver Frame" = /obj/item/forging/incomplete/revolver_frame,
+		"Revolver Cylinder" = /obj/item/forging/incomplete/revolver_cylinder,
 		"Rail Nail" = /obj/item/forging/incomplete/rail_nail,
 		"Rail Cart" = /obj/item/forging/incomplete/rail_cart,
 	)
@@ -95,6 +97,8 @@
 	)
 	/// Filters the radial choice list by required level in its skill; true means corresponding element requires it
 	var/list/choice_list_skill_level_filter = list(
+		"Revolver Frame" = 7,
+		"Revolver Cylinder" = list(TRAIT_KNOW_GUNSMITHING),
 	)
 	/// Filters the radial choice list by if it requires the smithing skillchip; true means corresponding element requires it
 	var/list/choice_list_trait_filter = list(
@@ -106,6 +110,8 @@
 		"Spear" = list(TRAIT_KNOW_ADVANCED_SMITHING),
 		"Axe" = list(TRAIT_KNOW_ADVANCED_SMITHING),
 		"Arrowhead" = list(TRAIT_KNOW_ADVANCED_SMITHING),
+		"Revolver Frame" = list(TRAIT_KNOW_GUNSMITHING),
+		"Revolver Cylinder" = list(TRAIT_KNOW_GUNSMITHING),
 	)
 
 /obj/structure/reagent_forge/examine(mob/user)

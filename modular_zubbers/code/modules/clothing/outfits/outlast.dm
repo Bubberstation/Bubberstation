@@ -27,6 +27,7 @@
 	)
 
 /obj/item/clothing/suit/leatherapron/Initialize(mapload)
+	. = ..()
 	create_storage(
 		max_slots = 8,
 		storage_type = /datum/storage/belt,
