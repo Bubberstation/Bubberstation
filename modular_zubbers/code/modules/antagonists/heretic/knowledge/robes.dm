@@ -2,4 +2,4 @@
 	damage_modifier = 1.2
 
 /datum/heretic_knowledge/armor
-	cost = 2
+	cost = 4 // nvm theyre strong asf

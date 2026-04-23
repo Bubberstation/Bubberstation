@@ -2,7 +2,7 @@
 	name = "\improper Acolyte"
 	roundend_category = "Acolytes"
 	antagpanel_category = "Acolyte"
-	knowledge_points = 15 + 1 // we always have to spend one to unlock a path
+	knowledge_points = 10 + 1 // we always have to spend one to unlock a path
 	unlimited_blades = TRUE
 	passive_level = 0
 	passive_gain_timer = 35 MINUTES // passive progression is VERY... SLOW...
@@ -19,13 +19,19 @@
 	var/can_craft_blades = FALSE
 	var/mark_enabled = FALSE
 
-	/*var/static/list/possible_wildcard_objs = list(
+	var/static/list/possible_wildcard_objs = list(
 		null = 100,
-		/datum/objective/sacrifice/lesser = 50,
-		/datum/objective/sacrifice_pets = 50,
-
+		/datum/objective/heretic_wildcard/sacrifice = 20,
+		/datum/objective/heretic_wildcard/sacrifice_pets = 20,
+		/datum/objective/heretic_wildcard/sac_heretic = 20,
+		/datum/objective/heretic_wildcard/supermatter = 50,
+		/datum/objective/heretic_wildcard/superway = 50,
+		/datum/objective/heretic_wildcard/curse = 80,
+		/datum/objective/heretic_wildcard/steal_money = 80,
+		/datum/objective/heretic_wildcard/potions = 80,
+		/datum/objective/heretic_wildcard/rd_server = 80,
 	)
-	var/datum/objective/wildcard_obj*/
+	var/datum/objective/heretic_wildcard/wildcard_obj
 
 /datum/antagonist/heretic/forge_primary_objectives(heretic_research_tree)
 	// total override

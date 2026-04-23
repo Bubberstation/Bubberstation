@@ -1,4 +1,4 @@
-#define NUM_WAYS_PER_HERETIC 4
+#define NUM_WAYS_PER_HERETIC 5
 #define OPENING_DURATION 60 SECONDS
 
 // ideas
@@ -81,7 +81,7 @@
 
 /datum/objective/open_ways/New(text)
 	. = ..()
-	target_amount = 3
+	target_amount = 4
 	update_explanation_text()
 
 /datum/objective/open_ways/update_explanation_text()
@@ -109,13 +109,13 @@
 	var/datum/way_destination/destination
 	var/static/list/datum/way_destination/event_weights = list(
 		// beneficial
-		/datum/way_destination/atmosphere = 50,
+		/datum/way_destination/atmosphere = 30,
 		/datum/way_destination/flesh_organs = 30,
 		///datum/way_destination/chemical_spill = 30, // TODO - fix liquid SS
 		///datum/way_destination/dimension_shift = 20, // dimension shifts nearby walls and floors into a valuable mineral
-		/datum/way_destination/anomalies = 15,
-		/datum/way_destination/knowledgebooks = 15, // spawns crafting books, maids in the mirror, and flash freezes the nearby area
-		/datum/way_destination/clown_planet = 1, // honk (bananium, clown mobs)
+		/datum/way_destination/anomalies = 30,
+		/datum/way_destination/knowledgebooks = 30, // spawns crafting books, maids in the mirror, and flash freezes the nearby area
+		/datum/way_destination/clown_planet = 5, // honk (bananium, clown mobs)
 		// bad
 		/datum/way_destination/heretic_mobs = 20,
 		/datum/way_destination/emp = 15,
@@ -171,6 +171,19 @@
 	GLOB.reality_smash_track.ways_opened++
 
 	visible_message(span_warning("The air shimmers as a gate to the mansus becomes clear!"))
+	priority_announce(
+		"Reality-shearing cross-dimensional anomaly detected in [area.name]. Expected excursion in [OPENING_DURATION / 10] seconds.",
+		"CentCom Thaumatergy Monitor",
+		ANNOUNCER_ANOMALIES,
+		has_important_message = TRUE
+	)
+	notify_ghosts(
+		"[opener] just opened a way towards [destination.name] in [area.name]!",
+		opener,
+		"The Gate Is Open",
+		notify_flags = NOTIFY_CATEGORY_NOFLASH,
+	)
+
 	remove_alt_appearance(/datum/atom_hud/alternate_appearance/basic/has_antagonist/heretic)
 
 	icon_state = real_icon_state
@@ -241,8 +254,8 @@
 		/obj/item/melee/baton/security,
 		/obj/item/circular_saw,
 		/obj/item/scalpel,
-		/obj/item/clothing/gloves/color/yellow,
 		/obj/item/clothing/glasses/sunglasses,
+		/obj/item/gun/energy/laser/practice,
 	)
 
 	// harder items
@@ -250,13 +263,24 @@
 		/obj/item/assembly/flash,
 		/mob/living/carbon/human,
 		/obj/item/flashlight/seclite,
-		/obj/item/stock_parts/subspace/crystal
+		/obj/item/stock_parts/subspace/crystal,
+		/obj/item/clothing/gloves/color/yellow,
 	)
 
+	// harder items
+	var/static/list/potential_tertiary_items = list(
+		/obj/item/stack/sheet/bone,
+		/obj/item/restraints/handcuffs/cable/zipties,
+		/obj/item/construction/rcd,
+		/obj/item/transfer_valve,
+	)
+
+	open_requirements[pick(potential_organs)] += 1
 	open_requirements[pick(potential_organs)] += 1
 	open_requirements[pick(potential_easy_items)] += 1
 	open_requirements[pick(potential_uncommoner_items)] += 1
 	open_requirements[pick(potential_secondary_items)] += 1
+	open_requirements[pick(potential_tertiary_items)] += 1
 
 #undef NUM_WAYS_PER_HERETIC
 #undef OPENING_DURATION

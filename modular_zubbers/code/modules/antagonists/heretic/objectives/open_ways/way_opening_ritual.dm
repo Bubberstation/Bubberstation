@@ -1,8 +1,8 @@
 /datum/heretic_knowledge/open_way
 	name = "Knock of the Twin-Finger"
 	desc = "Allows you to open Ways towards the Mansus, breaching the thin veil between dawn and dusk and allowing you a glimpse of Light. \
-	Ways tend to form in high-traffic and high-importance areas, and require a number of items to open. You can use this ritual to open a way, \
-	or find the nearest one alongst its requirements."
+	Ways tend to form in high-traffic and high-importance areas, and require a number of items to open. You can use this ritual to open a way (provided the transmutation rune is under the way), \
+	or list all ways and their requirements."
 	research_tree_icon_path = 'icons/effects/eldritch.dmi'
 	research_tree_icon_state = "emark7"
 	is_starting_knowledge = TRUE
@@ -62,6 +62,10 @@
 					continue
 			else if(!istype(nearby_atom, req_type))
 				continue
+			if (istype(nearby_atom, /obj/item/organ))
+				var/obj/item/organ/organ = nearby_atom
+				if (organ.organ_flags & ORGAN_ROBOTIC)
+					continue
 			// if list has items, check if the strict type is banned.
 			if(length(banned_atom_types))
 				if(nearby_atom.type in banned_atom_types)
@@ -147,17 +151,14 @@
 
 		return TRUE
 
+	for (var/mob/living/iter_living in get_hearers_in_range(20, user))
+		if (iter_living == user)
+			continue
+		to_chat(iter_living, span_warning("Reality shimmers around you. Someone in close proxmity is about to unleash a catastrophy...!"))
+	to_chat(user, span_warning("You begin to open the way..."))
+	if (!do_after(user, 30 SECONDS, user, IGNORE_HELD_ITEM))
+		to_chat(user, span_boldwarning("Failure! The way remain closed."))
+		return FALSE
+
 	way.open(user)
 	return TRUE
-
-/atom/movable/screen/way_arrow
-	icon = 'icons/effects/96x96.dmi'
-	icon_state = "multitool_arrow"
-	pixel_x = -32
-	pixel_y = -32
-
-/atom/movable/screen/way_arrow/Destroy()
-	if(hud)
-		hud.infodisplay -= src
-		INVOKE_ASYNC(hud, TYPE_PROC_REF(/datum/hud, show_hud), hud.hud_version)
-	return ..()

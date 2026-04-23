@@ -121,6 +121,12 @@
 					continue
 			else if(!istype(nearby_atom, req_type))
 				continue
+			// BUBBER EDIT ADDITION BEGIN - no robotic organs
+			if (istype(nearby_atom, /obj/item/organ))
+				var/obj/item/organ/organ = nearby_atom
+				if (organ.organ_flags & ORGAN_ROBOTIC)
+					continue
+			// BUBBER EDIT ADDITION END
 			// if list has items, check if the strict type is banned.
 			if(length(banned_atom_types))
 				if(nearby_atom.type in banned_atom_types)
