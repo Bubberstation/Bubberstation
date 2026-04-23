@@ -212,20 +212,20 @@
 
 /////DISSONANT SHREK
 /mob/living/simple_animal/hostile/megafauna/claw/proc/emp_pulse()
-	SHAKE_ANIMATION_OFFSET(0.5)
+	Shake(0.5)
 	visible_message("<span class='danger'>[src] stops and shudders for a moment... </span>")
 	shouldnt_move = TRUE
 	addtimer(CALLBACK(src, PROC_REF(emp_pulse2)), 1 SECONDS)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/emp_pulse2()
-	SHAKE_ANIMATION_OFFSET_OFFSET(2)
+	Shake_OFFSET(2)
 	playsound(src, 'modular_zubbers/modules/awaymissions_zubbers/Maintsroom/Claw_assets/vox_scream_1.ogg', 300, 1, 8, 8)
 	empulse(src, 2, 4)
 	shouldnt_move = FALSE
 
 /////TENTACLE
 /mob/living/simple_animal/hostile/megafauna/claw/proc/tentacle(target)
-	SHAKE_ANIMATION_OFFSET(2)
+	Shake(2)
 	projectiletype = /obj/projectile/tentacle
 	projectilesound = 'sound/effects/splat.ogg'
 	Shoot(target)
@@ -244,11 +244,11 @@
 /mob/living/simple_animal/hostile/megafauna/claw/proc/sting_attack2(target)
 	visible_message("<span class='danger'>[src] shoots all the spikes!</span>")
 	icon_state = "claw-phase2"
-	shoot_projectile(Get_Angle(src,target) + 10)
-	shoot_projectile(Get_Angle(src,target) + 5)
-	shoot_projectile(Get_Angle(src,target))
-	shoot_projectile(Get_Angle(src,target) - 5)
-	shoot_projectile(Get_Angle(src,target) - 10)
+	shoot_projectile(get_angle(src,target) + 10)
+	shoot_projectile(get_angle(src,target) + 5)
+	shoot_projectile(get_angle(src,target))
+	shoot_projectile(get_angle(src,target) - 5)
+	shoot_projectile(get_angle(src,target) - 10)
 	shouldnt_move = FALSE
 
 /obj/projectile/claw_projectille
@@ -263,13 +263,13 @@
 
 /////LIE SPIDER
 /mob/living/simple_animal/hostile/megafauna/claw/proc/summon_creatures()
-	SHAKE_ANIMATION_OFFSET(20)
+	shake(20)
 	visible_message("<span class='danger'>[src] shudders violently and starts to split a flesh spider from it's body!</span>")
 	shouldnt_move = TRUE
 	addtimer(CALLBACK(src, PROC_REF(summon_creatures2)), 2 SECONDS)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/summon_creatures2()
-	SHAKE_ANIMATION_OFFSET(5)
+	Shake(5)
 	var/mob/living/summoned_spider = new /mob/living/basic/spider/giant/hunter(get_turf(src))
 	visible_message("<span class='danger'>[summoned_spider] violently tears apart from [src]!</span>")
 	shouldnt_move = FALSE
@@ -300,7 +300,7 @@
 	empulse(src, 3, 10) //changling's emp scream, right?
 	explosion(src, 0, 0, 5) //dramatic
 	playsound(src, 'modular_zubbers/modules/awaymissions_zubbers/Maintsroom/Claw_assets/vox_scream_1.ogg', 300, 1, 8, 8) //jumpscare
-	SHAKE_ANIMATION_OFFSET(2)
+	Shake(2)
 	new /obj/effect/gibspawner/human(get_turf(src))
 	name = "The CLAW"
 	desc = "You aren't sure what this is and you are afraid to know."
