@@ -73,7 +73,7 @@
 
 /datum/crafting_recipe/muzzle_medical_mask/New()
 	..()
-	blacklist += /obj/item/clothing/mask/breath/muzzle
+	blacklist += typesof(/obj/item/clothing/mask/breath/muzzle)
 	blacklist += subtypesof(/obj/item/clothing/mask/muzzle)
 
 /datum/crafting_recipe/hudsunciv
