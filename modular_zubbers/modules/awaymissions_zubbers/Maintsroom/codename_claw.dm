@@ -324,13 +324,3 @@
 /obj/projectile/tentacle/Destroy()
 	qdel(hitchain)
 	return ..()
-
-/obj/item/keycard/weapon_anomalies
-	name = "Biometric keycard"
-	desc = "A keycard that looks more complex than the already other complex keycards, it a simple design of a skull on it."
-	color = "#4b4b4b"
-	puzzle_id = "claw_card"
-
-/obj/machinery/door/puzzle/keycard/weapon_anomalies
-	name = "secure airlock"
-	puzzle_id = "claw_card"
