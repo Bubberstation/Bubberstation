@@ -24,8 +24,8 @@
 	wander = FALSE
 	blood_volume = BLOOD_VOLUME_NORMAL
 	gps_name = "NTAF-V"
-	deathmessage = "stops moving..."
-	deathsound = "bodyfall"
+	death_message = "stops moving..."
+	death_sound = "bodyfall"
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	attack_action_types = list(
 		/datum/action/innate/megafauna_attack/swift_dash,
@@ -45,7 +45,7 @@
 	icon_state = "claw-phase2"
 	icon_living = "claw-phase2"
 	gps_name = "F453C619AE278"
-	deathsound = "bodyfall"
+	death_sound = "bodyfall"
 	attack_action_types = list(
 		/datum/action/innate/megafauna_attack/swift_dash,
 		/datum/action/innate/megafauna_attack/swift_dash_long,
@@ -61,7 +61,7 @@
 	maxHealth = 2250
 	shouldnt_move = TRUE //we want to show the transforming animation
 	phase = 2
-	status_flags = CANPUSH | GODMODE //this is so during the animation you cant beat it up
+	status_flags = CANPUSH | TRAIT_GODMODE //this is so during the animation you cant beat it up
 
 ///LOOT
 /obj/effect/spawner/clawloot/Initialize()
@@ -77,42 +77,42 @@
 //PHASE ONE
 /datum/action/innate/megafauna_attack/swift_dash
 	name = "Swift Dash"
-	icon_icon = 'icons/effects/effects.dmi'
+	icon = 'icons/effects/effects.dmi'
 	button_icon_state = "rift"
 	chosen_message = "<span class='colossus'>You will now dash forward for a short distance.</span>"
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/swift_dash_long
 	name = "Long Dash"
-	icon_icon = 'icons/effects/effects.dmi'
+	icon = 'icons/effects/effects.dmi'
 	button_icon_state = "plasmasoul"
 	chosen_message = "<span class='colossus'>You will now dash forward for a long distance.</span>"
 	chosen_attack_num = 2
 //PHASE TWO
 /datum/action/innate/megafauna_attack/emp_pulse
 	name = "Dissonant Shriek"
-	icon_icon = 'icons/effects/effects.dmi'
+	icon = 'icons/effects/effects.dmi'
 	button_icon_state = "emppulse"
 	chosen_message = "<span class='colossus'>You will now create a EMP pulse.</span>"
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/tentacle
 	name = "Tentacle"
-	icon_icon = 'icons/mob/actions/actions_changeling.dmi'
+	icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "tentacle"
 	chosen_message = "<span class='colossus'>You will now shoot your tentacle, bringing mobs ever so closer.</span>"
 	chosen_attack_num = 4
 
 /datum/action/innate/megafauna_attack/summon_creatures
 	name = "Lie Spider"
-	icon_icon = 'icons/mob/actions/actions_changeling.dmi'
+	icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "plasmasoul"
 	chosen_message = "<span class='colossus'>You will now summon a weak spider.</span>"
 	chosen_attack_num = 5
 
 /datum/action/innate/megafauna_attack/sting_attack
 	name = "Sting shotgun"
-	icon_icon = 'icons/mob/actions/actions_changeling.dmi'
+	icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "sting_cryo"
 	chosen_message = "<span class='colossus'>You stop, and telegraph a shotgun of stings.</span>"
 	chosen_attack_num = 6
@@ -270,7 +270,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/summon_creatures2()
 	shake_animation(5)
-	var/mob/living/summoned_spider = new /mob/living/simple_animal/hostile/poison/giant_spider/hunter(get_turf(src))
+	var/mob/living/summoned_spider = new /mob/living/basic/spider/giant/hunter(get_turf(src))
 	visible_message("<span class='danger'>[summoned_spider] violently tears apart from [src]!</span>")
 	shouldnt_move = FALSE
 
@@ -304,7 +304,7 @@
 	new /obj/effect/gibspawner/human(get_turf(src))
 	name = "The CLAW"
 	desc = "You aren't sure what this is and you are afraid to know."
-	status_flags &= ~GODMODE
+	status_flags &= ~TRAIT_GODMODE
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/phase2_dramatic()
 	explosion(src, 0, 5, 10)
