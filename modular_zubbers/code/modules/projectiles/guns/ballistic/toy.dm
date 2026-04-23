@@ -20,6 +20,6 @@
 	pb_knockback = 0
 	cartridge_wording = "dart"
 	pinless = TRUE
-	gun_flags = TOY_FIREARM_OVERLAY | NOT_A_REAL_GUN
+	gun_flags = NOT_A_REAL_GUN
 	can_muzzle_flash = FALSE
 	bolt_type = BOLT_TYPE_NO_BOLT

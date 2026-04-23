@@ -209,6 +209,6 @@
 
 /datum/supply_pack/goody/foamforce_implant
 	name = "Pop-up Donksoft Blaster Implant"
-	desc = "Donksoft's pop-up blaster is great for annoying coworkers and annoying bosses. Pack contains one implant and a mini box of spare darts."
+	desc = "Donksoft's pop-up blaster is great for annoying coworkers and annoying bosses. Rumour has it that it's capable of firing confetti. Pack contains one implant and a mini box of spare darts."
 	cost = PAYCHECK_CREW * 9
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/foamforce_implant, /obj/item/ammo_box/foambox/mini)
