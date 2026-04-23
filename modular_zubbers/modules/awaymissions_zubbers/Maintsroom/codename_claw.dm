@@ -241,7 +241,7 @@
 
 /obj/projectile/claw_projectille
 	name = "claw's spike"
-	icon_state = "crystal_shard"
+	icon_state = "bullet"
 	damage = 20
 	armour_penetration = 50
 	damage_type = BRUTE
