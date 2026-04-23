@@ -5,10 +5,10 @@
 	maxHealth = 2000
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
-	attack_sound = 'sound/creatures/claw_attack.ogg'
+	attack_sound = 'modular_zubbers/modules/awaymissions_zubbers/Maintsroom/Claw_assets/claw_attack.ogg'
 	icon_state = "claw-phase1"
 	icon_living = "claw-phase1"
-	icon = 'icons/mob/broadMobs.dmi'
+	icon = 'modular_zubbers/modules/awaymissions_zubbers/Maintsroom/Claw_assets/claw_megafauna.dmi'
 	health_doll_icon = "miner"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	light_color = COLOR_LIGHT_GRAYISH_RED
@@ -194,7 +194,7 @@
 		new /obj/effect/temp_visual/cult/sparks(next_turf)
 		next_turf = get_step(next_turf, dir_to_target)
 	addtimer(CALLBACK(src, PROC_REF(swift_dash2), dir_to_target, 0, distance), wait_time)
-	playsound(src, 'sound/creatures/claw_prepare.ogg', 100, 1)
+	playsound(src, 'modular_zubbers/modules/awaymissions_zubbers/Maintsroom/Claw_assets/claw_prepare.ogg', 100, 1)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/swift_dash2(move_dir, times_ran, distance_run)
 	if(times_ran > distance_run)
@@ -203,7 +203,7 @@
 	var/turf/next_turf = get_step(get_turf(src), move_dir)
 	new /obj/effect/temp_visual/small_smoke/halfsecond(next_turf)
 	forceMove(next_turf)
-	playsound(src,'sound/creatures/claw_move.ogg', 50, 1)
+	playsound(src,'modular_zubbers/modules/awaymissions_zubbers/Maintsroom/Claw_assets/claw_move.ogg', 50, 1)
 	for(var/mob/living/hit_mob in next_turf.contents - src)
 		hit_mob.Knockdown(15)
 		hit_mob.attack_animal(src)
@@ -219,7 +219,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/emp_pulse2()
 	shake_animation(2)
-	playsound(src, 'sound/voice/vox/vox_scream_1.ogg', 300, 1, 8, 8)
+	playsound(src, 'modular_zubbers/modules/awaymissions_zubbers/Maintsroom/Claw_assets/vox_scream_1.ogg', 300, 1, 8, 8)
 	empulse(src, 2, 4)
 	shouldnt_move = FALSE
 
@@ -288,7 +288,7 @@
 /mob/living/simple_animal/hostile/megafauna/claw/phase2/on_death()
 	icon_state = "claw-phase2_dying"
 	flick("claw-phase2_to_dying_anim",src)
-	playsound(src, 'sound/voice/vox/vox_scream_1.ogg', 300, 1, 8, 8)
+	playsound(src, 'modular_zubbers/modules/awaymissions_zubbers/Maintsroom/Claw_assets/vox_scream_1.ogg', 300, 1, 8, 8)
 	addtimer(CALLBACK(src, PROC_REF(phase2_dramatic), src), 3 SECONDS)
 	return
 
@@ -299,7 +299,7 @@
 	shouldnt_move = FALSE
 	empulse(src, 3, 10) //changling's emp scream, right?
 	explosion(src, 0, 0, 5) //dramatic
-	playsound(src, 'sound/voice/vox/vox_scream_1.ogg', 300, 1, 8, 8) //jumpscare
+	playsound(src, 'modular_zubbers/modules/awaymissions_zubbers/Maintsroom/Claw_assets/vox_scream_1.ogg', 300, 1, 8, 8) //jumpscare
 	shake_animation(2)
 	new /obj/effect/gibspawner/human(get_turf(src))
 	name = "The CLAW"
@@ -319,7 +319,7 @@
 	damage = 0
 	damage_type = BRUTE
 	range = 8
-	hitsound = 'sound/weapons/thudswoosh.ogg'
+	hitsound = 'sound/items/weapons/thudswoosh.ogg'
 	var/chain
 
 /obj/projectile/tentacle/fire(setAngle)
