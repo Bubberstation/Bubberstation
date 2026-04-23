@@ -100,7 +100,7 @@
 	chosen_message = "<span class='colossus'>You stop, and telegraph a shotgun of stings.</span>"
 	chosen_attack_num = 6
 
-/mob/living/simple_animal/hostile/megafauna/claw/phase2/Initialize()
+/mob/living/simple_animal/hostile/megafauna/claw/phase2/Initialize(mapload)
 	. = ..()
 	flick("claw-phase2_transform",src) //plays the transforming animation
 	addtimer(CALLBACK(src, PROC_REF(unlock_phase2)), 4.4 SECONDS)
