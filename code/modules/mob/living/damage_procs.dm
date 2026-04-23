@@ -125,7 +125,7 @@
 		pixel_w = rand(-8,8)
 		appearance_flags |= (KEEP_TOGETHER|RESET_COLOR|RESET_TRANSFORM)
 		my_carbon_mob.vis_contents |= src
-		maptext = MAPTEXT_SPESSFONT("<span style=\"color:[damagetype];\">[ROUND_UP(damage)]!</span>")
+		maptext = MAPTEXT_SPESSFONT("<span style=\"color:[colour[damagetype]];\">[ROUND_UP(damage)]!</span>")
 		animate(src, pixel_z = rand(-64,64), pixel_w = rand(-64,64), time = 1 SECONDS, easing = BOUNCE_EASING, alpha = 255)
 		animate(alpha = 0, time = 0.5 SECONDS)
 		QDEL_IN(src, 1.5 SECONDS)
