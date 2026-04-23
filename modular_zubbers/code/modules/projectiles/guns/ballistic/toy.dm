@@ -7,9 +7,6 @@
 	throwforce = 0
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/foamforce_implant
 	fire_sound = 'sound/items/syringeproj.ogg'
-	load_sound = 'sound/items/weapons/gun/revolver/load_bullet.ogg'
-	eject_sound = 'sound/items/weapons/gun/revolver/empty.ogg'
-	dry_fire_sound = 'sound/items/weapons/gun/revolver/dry_fire.ogg'
 	rack_sound_volume = 0
 	fire_delay = 3
 	clumsy_check = FALSE
