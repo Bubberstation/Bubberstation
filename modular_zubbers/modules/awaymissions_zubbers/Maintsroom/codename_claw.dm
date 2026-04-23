@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/megafauna/claw
 	name = "Trooper \"Claw\""
 	desc = "This is Trooper \"Claw\".\nThey are holding a armblade in their right hand."
-	health = 2000
-	maxHealth = 2000
+	health = 3000
+	maxHealth = 3000
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	attack_sound = 'modular_zubbers/modules/awaymissions_zubbers/Maintsroom/Claw_assets/claw_attack.ogg'
@@ -15,11 +15,11 @@
 	light_range = 5
 	movement_type = GROUND
 	speak_emote = list("says")
-	armour_penetration = 30
-	melee_damage_lower = 20
-	melee_damage_upper = 20
+	armour_penetration = 75
+	melee_damage_lower = 40
+	melee_damage_upper = 40
 	ranged = TRUE
-	speed = 4
+	speed = 2
 	move_to_delay = 4
 	wander = FALSE
 	blood_volume = BLOOD_VOLUME_NORMAL
@@ -54,11 +54,11 @@
 		/datum/action/innate/megafauna_attack/summon_creatures,
 		/datum/action/innate/megafauna_attack/sting_attack,
 	)
-	speed = 5
+	speed = 1
 	move_to_delay = 5
 	speak_emote = list("verbalizes")
-	health = 2250
-	maxHealth = 2250
+	health = 4000
+	maxHealth = 4000
 	shouldnt_move = TRUE //we want to show the transforming animation
 	phase = 2
 	status_flags = TRAIT_GODMODE //this is so during the animation you cant beat it up
@@ -324,3 +324,13 @@
 /obj/projectile/tentacle/Destroy()
 	qdel(hitchain)
 	return ..()
+
+/obj/item/keycard/weapon_anomalies
+	name = "Biometric keycard"
+	desc = "A keycard that looks more complex than the already other complex keycards, it a simple design of a skull on it."
+	color = "#4b4b4b"
+	puzzle_id = "claw_card"
+
+/obj/machinery/door/puzzle/keycard/weapon_anomalies
+	name = "secure airlock"
+	puzzle_id = "claw_card"
