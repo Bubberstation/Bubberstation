@@ -1,7 +1,10 @@
+// COMSIG_ATOM_WAS_ATTACKED check out this signal's implementation
+
 /obj/item/gun/ballistic/revolver/handcrafted_single_action
 	name = "\improper handcrafted revolver"
 	desc = "A traditional-style cowboy revolver. It's single-action, so the hammer must be cocked back to cycle the round."
-	icon_state = "revolver"
+	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
+	icon_state = "revolver_preview"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/handcrafted_single_action
 	fire_sound_volume = 90
 	bolt_type = BOLT_TYPE_NO_BOLT
