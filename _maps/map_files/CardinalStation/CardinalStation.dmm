@@ -1904,7 +1904,6 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/spawner/random/armory/dragnet,
 /obj/effect/spawner/random/armory/dragnet,
-/obj/item/gun/energy/recharge/resonant_system,
 /turf/open/floor/iron/dark/textured,
 /area/station/security/armory)
 "ayS" = (
@@ -30905,6 +30904,10 @@
 	pixel_x = 4;
 	pixel_y = 4
 	},
+/obj/item/book/granter/chuunibyou{
+	pixel_x = -9;
+	pixel_y = 2
+	},
 /turf/open/floor/wood{
 	broken = 1
 	},
@@ -31249,6 +31252,8 @@
 /obj/item/storage/box/lethalshot,
 /obj/item/storage/box/lethalshot,
 /obj/item/storage/box/lethalshot,
+/obj/effect/spawner/random/armory/buckshot,
+/obj/effect/spawner/random/armory/buckshot,
 /turf/open/floor/iron/dark/textured,
 /area/station/security/armory)
 "hnL" = (
@@ -47660,11 +47665,11 @@
 /obj/structure/table/reinforced{
 	color = "#c2bfa3"
 	},
-/obj/item/rbmk_upgrade/overclock,
 /obj/item/organ/cyberimp/arm/toolkit/toolset{
 	pixel_x = -15;
 	pixel_y = 4
 	},
+/obj/item/emitter_disk/healing,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/hallway)
 "laE" = (
@@ -56961,10 +56966,13 @@
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "nkR" = (
-/obj/structure/closet/crate,
+/obj/structure/closet/crate/trashcart,
 /obj/structure/spider/stickyweb,
 /mob/living/basic/cockroach,
 /obj/item/circuitboard/machine/experimental_cloner_scanner,
+/obj/item/food/candy_trash,
+/obj/item/trash/boritos,
+/obj/effect/spawner/random/trash,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "nkT" = (
@@ -73014,6 +73022,7 @@
 	},
 /obj/effect/spawner/random/armory/barrier_grenades,
 /obj/effect/spawner/random/armory/barrier_grenades,
+/obj/item/gun/energy/laser/soul,
 /turf/open/floor/iron/dark/textured,
 /area/station/security/armory)
 "qTK" = (
@@ -86578,10 +86587,8 @@
 /obj/structure/stone_tile/block{
 	dir = 4
 	},
-/obj/item/book/codex_gigas{
-	pixel_y = 7
-	},
 /obj/structure/destructible/cult/item_dispenser/archives,
+/obj/item/book/codex_gigas,
 /turf/open/floor/engine/cult,
 /area/station/service/library)
 "uaR" = (
@@ -101419,6 +101426,7 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
 	},
+/obj/item/book/granter/action/spell/summon_cheese,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/starboard/aft)
 "xzz" = (
