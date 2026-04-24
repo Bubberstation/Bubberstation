@@ -18,6 +18,7 @@
 	armour_penetration = 75
 	melee_damage_lower = 40
 	melee_damage_upper = 40
+	faction = list("Deathsquad")
 	ranged = TRUE
 	speed = 0
 	move_to_delay = 4
