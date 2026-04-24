@@ -39,6 +39,7 @@
 /obj/item/organ/brain/cybernetic/surplus
 	name = "surplus augmented brain"
 	desc = "A mostly-mechanized brain. Not much of the flesh remains. Does this make them an IPC?"
+	icon = 'modular_skyrat/master_files/icons/obj/medical/organs/organs.dmi'
 	icon_state = "brain-a" //visually more similar to what the description says
 	maxHealth = BRAIN_DAMAGE_DEATH*0.75 //200 -> 150, per original intention
 	emp_dmg_mult = 1.5 //Note that the base damage is 20/10
