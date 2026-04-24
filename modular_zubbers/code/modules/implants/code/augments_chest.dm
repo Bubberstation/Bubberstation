@@ -18,4 +18,4 @@
 /datum/action/item_action/organ_action/use/fakescanner/Trigger(trigger_flags)
 	. = ..()
 	var/obj/item/organ/cyberimp/chest/wound_scanner/our_scanner = target
-	woundscan(owner, owner, our_scanner.fakescanner, simple_scan = TRUE)
+	woundscan(owner, owner, our_scanner.fakescanner, simple_scan = TRUE)d
