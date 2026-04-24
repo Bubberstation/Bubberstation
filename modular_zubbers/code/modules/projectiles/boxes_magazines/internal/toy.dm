@@ -3,3 +3,4 @@
 	ammo_type = list(/obj/item/ammo_casing/foam_dart, /obj/item/ammo_casing/shotgun/honkshot)
 	caliber = CALIBER_FOAM
 	max_ammo = 2
+	start_empty
