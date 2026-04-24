@@ -114,3 +114,34 @@
 	fire = 100
 	acid = 50
 	wound = 25
+
+/obj/item/clothing/suit/armor/secjuggernaut
+	name = "Tactical Security Juggernaut Suit"
+	desc = "A bulky suit of armor infused with a gravitational anomaly core. Difficult and cumbersome to put on."
+	icon_state = "heavy"
+	inhand_icon_state = "swat_suit"
+	armor_type = /datum/armor/secjuggernaut
+	strip_delay = 25 SECONDS
+	equip_delay_self = 12 SECONDS
+	equip_delay_other = 15 SECONDS
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | IMMUTABLE_SLOW
+	cold_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
+	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT_OFF
+	heat_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
+	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
+	slowdown = 4
+	drag_slowdown = 5
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, TRAIT_PUSHIMMUNE, TRAIT_NEGATES_GRAVITY, TRAIT_NO_SLIP_WATER)
+
+/datum/armor/secjuggernaut
+	melee = 70
+	bullet = 60
+	laser = 60
+	energy = 50
+	bomb = 100
+	bio = 100
+	fire = 100
+	acid = 90
+	wound = 20
