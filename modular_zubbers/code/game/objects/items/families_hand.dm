@@ -1,7 +1,7 @@
 /// Gangster secret handshakes.
 /obj/item/hand_item/slapper/secret_handshake
 	name = "Secret Handshake"
-	icon_state = "recruit"
+	icon_state = "recruit_1"
 	icon = 'icons/obj/antags/gang/actions.dmi'
 	/// References the active families gamemode handler (if one exists), for adding new family members to.
 	var/datum/gang_handler/handler
