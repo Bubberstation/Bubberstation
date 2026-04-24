@@ -8,7 +8,7 @@
 	attack_sound = 'modular_zubbers/modules/awaymissions_zubbers/Maintsroom/Claw_assets/claw_attack.ogg'
 	icon_state = "claw-phase1"
 	icon_living = "claw-phase1"
-	icon = 'modular_zubbers/modules/awaymissions_zubbers/Maintsroom/Claw_assets/claw_megafauna.dmi'
+	icon = 'modular_zubbers/icons/mob/claw_megafauna.dmi'
 	health_doll_icon = "miner"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	light_color = COLOR_LIGHT_GRAYISH_RED
