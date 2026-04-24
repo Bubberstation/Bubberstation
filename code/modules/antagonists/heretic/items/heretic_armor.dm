@@ -1044,12 +1044,12 @@
 
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/void/robes_side_effect(mob/living/user)
 	. = ..()
-	user.adjust_bodytemperature(-INFINITY)
-	ADD_TRAIT(user, TRAIT_HYPOTHERMIC, REF(src))
+	/*user.adjust_bodytemperature(-INFINITY)
+	ADD_TRAIT(user, TRAIT_HYPOTHERMIC, REF(src))*/ // BUBBER EDIT REMOVAL - who decided this was a good idea
 	if(!isliving(user))
 		return
 	var/mob/living/victim = user
-	victim.apply_status_effect(/datum/status_effect/frozenstasis/irresistable)
+	victim.apply_status_effect(/datum/status_effect/frozenstasis) // BUBBER EDIT CHANGE - was /unresistable
 
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/void/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, final_block_chance, damage, attack_type, damage_type)
 	. = ..()

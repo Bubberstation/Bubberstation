@@ -81,7 +81,7 @@
 
 /datum/objective/open_ways/New(text)
 	. = ..()
-	target_amount = 4
+	target_amount = 3
 	update_explanation_text()
 
 /datum/objective/open_ways/update_explanation_text()
@@ -170,15 +170,16 @@
 
 	GLOB.reality_smash_track.ways_opened++
 
+	var/area/our_area = get_area(src)
 	visible_message(span_warning("The air shimmers as a gate to the mansus becomes clear!"))
 	priority_announce(
-		"Reality-shearing cross-dimensional anomaly detected in [area.name]. Expected excursion in [OPENING_DURATION / 10] seconds.",
+		"Reality-shearing cross-dimensional anomaly detected in [our_area.name]. Expected excursion in [OPENING_DURATION / 10] seconds.",
 		"CentCom Thaumatergy Monitor",
 		ANNOUNCER_ANOMALIES,
 		has_important_message = TRUE
 	)
 	notify_ghosts(
-		"[opener] just opened a way towards [destination.name] in [area.name]!",
+		"[opener] just opened a way towards [destination.name] in [our_area.name]!",
 		opener,
 		"The Gate Is Open",
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,

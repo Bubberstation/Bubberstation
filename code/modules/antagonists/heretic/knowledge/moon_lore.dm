@@ -163,10 +163,10 @@
 		)
 	target.emote(pick("giggle", "laugh"))
 	target.mob_mood?.adjust_sanity(-10)
-	if(target.stat == CONSCIOUS && target.mob_mood?.sanity >= SANITY_NEUTRAL)
+	if(target.stat == CONSCIOUS && target.mob_mood?.sanity >= SANITY_DISTURBED) // BUBBER EDIT CHANGE - was SANITY_NEUTRAL
 		target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 10)
 		return
-	target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 25)
+	target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 20) // BUBBER EDIT CHANGE - was 25
 
 /datum/heretic_knowledge/spell/moon_ringleader
 	name = "Ringleaders Rise"

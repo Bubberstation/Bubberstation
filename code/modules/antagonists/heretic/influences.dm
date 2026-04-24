@@ -241,7 +241,7 @@
 
 	// Only gives you the dripping eye effect if you have faster drain speed than default
 	var/mutable_appearance/draining_overlay = mutable_appearance('icons/mob/effects/heretic_aura.dmi', "heretic_eye_dripping")
-	if(drain_speed < 0) // BUBBER EDIT CAHNGE - was HERETIC_RIFT_DEFAULT_DRAIN_SPEED - now always displays it
+	if(drain_speed >= 0) // BUBBER EDIT CAHNGE - was HERETIC_RIFT_DEFAULT_DRAIN_SPEED - now always displays it
 		draining_overlay.pixel_y = 16
 		user.add_overlay(draining_overlay)
 

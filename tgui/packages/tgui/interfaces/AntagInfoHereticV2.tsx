@@ -123,7 +123,8 @@ const GuideSection = () => {
           objective's maximum. Tapping them makes them visible to all after a
           short time, which will drain their sanity, cause hallucinations, and
           spawn monsters. Predict the crew becoming hostile once you start
-          draining influences.
+          draining influences. Be warned - you are obvious when draining
+          influences.
         </Stack.Item>
         <Stack.Item>
           - Use your&nbsp;
@@ -153,14 +154,12 @@ const GuideSection = () => {
         <Stack.Item>
           <span style={hereticRed}>WARNING!</span>
           <br />
-          Keep in mind that using a&nbsp;
-          <span style={hereticPurple}>Codex Cicatrix</span> will also make you
-          very obvious as a heretic when draining&nbsp;
-          <span style={hereticYellow}>influences</span>
+          You are very obvious while draining&nbsp;
+          <span style={hereticYellow}>influences</span>, but a Codex can make
+          draining them significantly faster.
           <br />
           Creatures spawned from <span style={hereticPurple}>influences</span>{' '}
-          and Creatures spawned from <span style={hereticYellow}>ways</span> are
-          not friendly to you.
+          and <span style={hereticYellow}>ways</span> are not friendly to you.
         </Stack.Item>
       </Stack>
     </Stack.Item>

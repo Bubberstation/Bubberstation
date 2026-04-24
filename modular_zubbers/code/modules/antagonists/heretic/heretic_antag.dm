@@ -5,7 +5,7 @@
 	knowledge_points = 10 + 1 // we always have to spend one to unlock a path
 	unlimited_blades = TRUE
 	passive_level = 0
-	passive_gain_timer = 35 MINUTES // passive progression is VERY... SLOW...
+	passive_gain_timer = 40 MINUTES // passive progression is VERY... SLOW...
 	ui_name = "AntagInfoHereticV2"
 	var/max_combat_capability = 100
 	var/datum/objective/drain_influences/drain_obj
@@ -20,16 +20,15 @@
 	var/mark_enabled = FALSE
 
 	var/static/list/possible_wildcard_objs = list(
-		null = 100,
-		/datum/objective/heretic_wildcard/sacrifice = 20,
+		/*/datum/objective/heretic_wildcard/sacrifice = 20,
 		/datum/objective/heretic_wildcard/sacrifice_pets = 20,
-		/datum/objective/heretic_wildcard/sac_heretic = 20,
+		/datum/objective/heretic_wildcard/sac_heretic = 20,*/
 		/datum/objective/heretic_wildcard/supermatter = 50,
-		/datum/objective/heretic_wildcard/superway = 50,
+		/datum/objective/heretic_wildcard/ai_law = 50,
+		///datum/objective/heretic_wildcard/superway = 50,
 		/datum/objective/heretic_wildcard/curse = 80,
 		/datum/objective/heretic_wildcard/steal_money = 80,
 		/datum/objective/heretic_wildcard/potions = 80,
-		/datum/objective/heretic_wildcard/rd_server = 80,
 	)
 	var/datum/objective/heretic_wildcard/wildcard_obj
 
@@ -46,6 +45,12 @@
 	src.way_obj = way_obj
 	objectives += way_obj
 
+	var/datum/objective/heretic_wildcard/wildcard_type = pick_weight(possible_wildcard_objs)
+	src.wildcard_obj = new wildcard_type()
+	wildcard_obj.owner = owner
+	wildcard_obj.apply_to(src)
+	objectives += wildcard_obj
+
 /datum/antagonist/heretic/proc/adjust_drained(adjustment)
 	drained_num += adjustment
 	if (!drain_obj)
@@ -54,6 +59,7 @@
 		adjust_knowledge_points(HERETIC_POINTS_PER_INFLUENCE) // TODO - consider if codex should give more. proooobably not. codex needs a new identity...
 	if (drained_num >= drain_obj.target_amount && !met_drained_num)
 		met_drained_num = TRUE
+		drain_obj.completed = TRUE
 		to_chat(owner, span_hypnophrase("The SEAMS of the WORLD have REVEALED THEMSELVES TO YOU. You have risen HIGH! AND you SEE!!"))
 		to_chat(owner, span_warning("You can no longer obtain knowledge points from influences, as your objective has been completed."))
 		SEND_SOUND(owner, 'sound/effects/magic/knock.ogg')
@@ -66,6 +72,7 @@
 		adjust_knowledge_points(HERETIC_POINTS_PER_WAY)
 	if (ways_opened >= way_obj.target_amount && !met_ways_num)
 		met_ways_num = TRUE
+		way_obj.completed = TRUE
 		to_chat(owner, span_hypnophrase("Your mind DAZZLES with the LIGHT! You have seen MORE of the MANSUS with your OWN EYES than ANY MORTAL could ever DREAM!!"))
 		to_chat(owner, span_warning("You can no longer obtain knowledge points from ways, as your objective has been completed."))
 		SEND_SOUND(owner, 'sound/effects/magic/knock.ogg')

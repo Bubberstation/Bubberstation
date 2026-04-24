@@ -3,7 +3,7 @@
 
 /datum/objective/drain_influences/New(text)
 	. = ..()
-	target_amount = rand(8, 9)
+	target_amount = rand(7, 8)
 	update_explanation_text()
 
 /datum/objective/drain_influences/update_explanation_text()

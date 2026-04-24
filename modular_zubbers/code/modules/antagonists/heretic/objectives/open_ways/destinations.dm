@@ -81,7 +81,7 @@
 		/datum/gas/nitrous_oxide = 50,
 		/datum/gas/bz = 50,
 		// desirable
-		/datum/gas/healium = 500,
+		///datum/gas/healium = 500, // fire alarms dont activate :/
 		/datum/gas/goblin = 10, // rare asf
 		/datum/gas/hypernoblium = 200,
 		/datum/gas/freon = 300,
@@ -246,7 +246,7 @@
 	var/to_spawn = anomalies_to_spawn
 	while (to_spawn-- > 0)
 		var/obj/effect/anomaly/typepath = pick_weight(spawnable_anomalies)
-		new typepath(pick(potential_locations), 50 SECONDS)
+		new typepath(pick(potential_locations), 180 SECONDS)
 
 // bad destinations - no benefit
 

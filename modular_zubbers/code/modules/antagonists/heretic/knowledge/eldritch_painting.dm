@@ -7,3 +7,6 @@
 			Lady of the Gate: Requires any pair of Gloves. Clears your mutations, mutates non-heretics and curses them with scratching."
 	// rust painting is gone
 	drafting_tier = 0 // fully disabled, this thing is fundumentally ass
+
+/datum/status_effect/eldritch_painting
+	duration = 4 MINUTES

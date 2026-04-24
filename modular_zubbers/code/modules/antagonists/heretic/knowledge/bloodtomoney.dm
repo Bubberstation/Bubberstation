@@ -22,6 +22,7 @@
 	return length(blood_data)
 
 /datum/heretic_knowledge/blood_to_money/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
+	var/datum/antagonist/heretic/our_heretic = GET_HERETIC(user)
 	var/list/atom/atoms = list()
 	for(var/atom/close_atom as anything in range(1, loc))
 		if(!ismovable(close_atom))
@@ -73,6 +74,7 @@
 		// no space cash bc space cash is picky
 		var/obj/item/holochip/cash = new /obj/item/holochip(loc)
 		cash.credits = to_steal
+		SEND_SIGNAL(our_heretic, COMSIG_HERETIC_STOLE_MONEY, curr_mob, to_steal)
 
 		holder.remove_reagent(/datum/reagent/blood, blood_amount)
 
