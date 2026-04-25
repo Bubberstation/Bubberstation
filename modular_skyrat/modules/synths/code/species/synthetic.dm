@@ -22,6 +22,7 @@
 	reagent_flags = PROCESS_SYNTHETIC
 	payday_modifier = 1.0 // Matches the rest of the pay penalties the non-human crew have
 	species_language_holder = /datum/language_holder/machine
+	mutant_organs = list(/obj/item/organ/cyberimp/arm/toolkit/power_cord)
 	mutantbrain = /obj/item/organ/brain/synth
 	mutantstomach = /obj/item/organ/stomach/synth
 	mutantears = /obj/item/organ/ears/synth
