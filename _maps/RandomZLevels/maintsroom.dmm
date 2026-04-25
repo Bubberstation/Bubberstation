@@ -4077,7 +4077,7 @@
 /area/awaymission/caves/maintsroom)
 "mV" = (
 /obj/structure/table/wood/fancy/royalblue,
-/obj/item/radio,
+/obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "mW" = (
@@ -5246,7 +5246,10 @@
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "qS" = (
-/obj/machinery/door/puzzle/keycard/blue_required,
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "qT" = (
@@ -8120,6 +8123,13 @@
 /obj/structure/trash_pile,
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
+"At" = (
+/obj/structure/chair/comfy{
+	dir = 1
+	},
+/obj/effect/light_emitter/fake_outdoors,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom)
 "Au" = (
 /obj/item/sticker/syndicate/bomb,
 /turf/open/floor/circuit/red,
@@ -9674,10 +9684,9 @@
 /turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "FC" = (
-/obj/structure/chair/comfy{
-	dir = 1
-	},
-/turf/open/floor/white,
+/obj/effect/light_emitter/fake_outdoors,
+/obj/machinery/door/puzzle/keycard/claw_door,
+/turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "FD" = (
 /obj/machinery/door/airlock/maintenance,
@@ -11737,9 +11746,9 @@
 /turf/open/floor/bronze/filled,
 /area/awaymission/caves/maintsroom)
 "Mp" = (
-/obj/structure/chair/comfy/black{
-	dir = 1
-	},
+/obj/structure/table/wood/fancy/black,
+/obj/item/radio,
+/obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "Mq" = (
@@ -12252,6 +12261,12 @@
 /obj/structure/alien/weeds,
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
+"NV" = (
+/obj/structure/table/wood/fancy/royalblue,
+/obj/item/radio,
+/obj/effect/light_emitter/fake_outdoors,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom)
 "NW" = (
 /mob/living/simple_animal/bot/secbot/beepsky/officer{
 	faction = list("hostile","cult")
@@ -12366,8 +12381,7 @@
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "Om" = (
-/obj/structure/table/wood/fancy/black,
-/obj/item/radio,
+/obj/machinery/door/puzzle/keycard/claw_door,
 /turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "On" = (
@@ -12571,6 +12585,7 @@
 /area/awaymission/caves/maintsroom)
 "OY" = (
 /obj/structure/table/wood/fancy/black,
+/obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "OZ" = (
@@ -13767,7 +13782,7 @@
 /turf/open/floor/circuit/green,
 /area/awaymission/caves/maintsroom)
 "SU" = (
-/obj/structure/table/wood/fancy/royalblue,
+/obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "SV" = (
@@ -23886,14 +23901,14 @@ jf
 "}
 (37,1,1) = {"
 jf
+iY
+iY
+iY
+iY
+iY
+iY
+iY
 jf
-iY
-iY
-iY
-iY
-iY
-iY
-iY
 jf
 WH
 WH
@@ -24106,14 +24121,14 @@ jf
 "}
 (38,1,1) = {"
 jf
+iY
+qE
+qE
+qE
+qE
+qE
+iY
 jf
-iY
-kd
-kd
-kd
-kd
-kd
-iY
 jf
 Jp
 Jp
@@ -24326,14 +24341,14 @@ jf
 "}
 (39,1,1) = {"
 jf
+iY
+OY
+OY
+qE
+qE
+qE
+iY
 jf
-iY
-OY
-OY
-kd
-kd
-kd
-iY
 jf
 Jp
 Jp
@@ -24546,14 +24561,14 @@ jf
 "}
 (40,1,1) = {"
 jf
-jf
 iY
-kd
+qE
 OY
-kd
-Mp
-kd
+qE
+qS
+qE
 iY
+jf
 jf
 Jp
 Jp
@@ -24766,14 +24781,14 @@ jf
 "}
 (41,1,1) = {"
 jf
-jf
 iY
-Om
+Mp
 OY
-kd
-kd
-kd
+qE
+qE
+qE
 iY
+jf
 jf
 Jp
 Jp
@@ -24986,14 +25001,14 @@ jf
 "}
 (42,1,1) = {"
 jf
+iY
+qE
+qE
+qE
+qE
+qE
+iY
 jf
-iY
-kd
-kd
-kd
-kd
-kd
-iY
 jf
 Jp
 Jp
@@ -25206,14 +25221,14 @@ jf
 "}
 (43,1,1) = {"
 jf
+iY
+iY
+iY
+iY
+iY
+iY
+iY
 jf
-iY
-iY
-iY
-iY
-iY
-iY
-iY
 jf
 Jp
 Jp
@@ -25426,14 +25441,14 @@ jf
 "}
 (44,1,1) = {"
 jf
+wH
+wH
+wH
+wH
+wH
+wH
+wH
 jf
-wH
-wH
-wH
-wH
-wH
-wH
-wH
 jf
 Jp
 Jp
@@ -25646,14 +25661,14 @@ jf
 "}
 (45,1,1) = {"
 jf
+wH
+SU
+SU
+SU
+SU
+SU
+wH
 jf
-wH
-PZ
-PZ
-PZ
-PZ
-PZ
-wH
 jf
 Jp
 Jp
@@ -25866,14 +25881,14 @@ jf
 "}
 (46,1,1) = {"
 jf
+wH
+mV
+mV
+SU
+SU
+SU
+wH
 jf
-wH
-SU
-SU
-PZ
-PZ
-PZ
-wH
 jf
 Jp
 Jp
@@ -26086,14 +26101,14 @@ jf
 "}
 (47,1,1) = {"
 jf
-jf
 wH
-PZ
 SU
-PZ
-FC
-PZ
+mV
+SU
+At
+SU
 wH
+jf
 wH
 Jp
 Jp
@@ -26306,14 +26321,14 @@ jf
 "}
 (48,1,1) = {"
 jf
-jf
 wH
+NV
 mV
 SU
-PZ
-PZ
-PZ
+SU
+SU
 wH
+jf
 wH
 Jp
 Jp
@@ -26526,14 +26541,14 @@ jf
 "}
 (49,1,1) = {"
 jf
+wH
+SU
+SU
+SU
+SU
+SU
+wH
 jf
-wH
-PZ
-PZ
-PZ
-PZ
-PZ
-wH
 wH
 Jp
 Jp
@@ -26746,14 +26761,14 @@ jf
 "}
 (50,1,1) = {"
 jf
+wH
+wH
+wH
+wH
+wH
+wH
+wH
 jf
-wH
-wH
-wH
-wH
-wH
-wH
-wH
 jf
 kd
 Jp
@@ -39088,10 +39103,10 @@ kd
 kd
 kd
 kd
-qS
 kd
 kd
 kd
+Om
 kd
 kd
 kd
@@ -39308,10 +39323,10 @@ kd
 kd
 kd
 kd
-qS
 kd
 kd
-qE
+kd
+FC
 kd
 kd
 kd
@@ -39528,10 +39543,10 @@ kd
 kd
 kd
 kd
-qS
 kd
 kd
 kd
+Om
 kd
 kd
 kd
