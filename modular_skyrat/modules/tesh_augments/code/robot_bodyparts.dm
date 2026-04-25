@@ -103,8 +103,8 @@
 /obj/item/bodypart/arm/left/robot/teshari_greyscale
 	name = "cybernetic left raptoral forelimb"
 	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
-	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_parts_greyscale.dmi'
-	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_parts_greyscale.dmi'
+	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
@@ -116,8 +116,8 @@
 /obj/item/bodypart/arm/right/robot/teshari_greyscale
 	name = "cybernetic right raptoral forelimb"
 	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
-	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_parts_greyscale.dmi'
-	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_parts_greyscale.dmi'
+	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
@@ -129,8 +129,8 @@
 /obj/item/bodypart/leg/left/robot/teshari_greyscale
 	name = "cybernetic left raptoral hindlimb"
 	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
-	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_parts_greyscale.dmi'
-	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_parts_greyscale.dmi'
+	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
@@ -142,8 +142,8 @@
 /obj/item/bodypart/leg/right/robot/teshari_greyscale
 	name = "cybernetic right raptoral hindlimb"
 	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
-	icon_static =  'modular_skyrat/modules/bodyparts/icons/teshari_parts_greyscale.dmi'
-	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_parts_greyscale.dmi'
+	icon_static =  'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
@@ -155,8 +155,8 @@
 /obj/item/bodypart/chest/robot/teshari_greyscale
 	name = "cybernetic raptoral torso"
 	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell, covered in a layer of membranous feathers."
-	icon_static =  'modular_skyrat/modules/bodyparts/icons/teshari_parts_greyscale.dmi'
-	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_parts_greyscale.dmi'
+	icon_static =  'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 
 	brute_modifier = 1
@@ -167,8 +167,8 @@
 /obj/item/bodypart/head/robot/teshari_greyscale
 	name = "cybernetic raptoral head"
 	desc = "A standard reinforced braincase, with spine-plugged neural socket and sensor gimbals. A layer of membranous feathers covers the stark metal."
-	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_parts_greyscale.dmi'
-	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_parts_greyscale.dmi'
+	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
