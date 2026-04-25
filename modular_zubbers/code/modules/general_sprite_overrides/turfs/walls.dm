@@ -153,7 +153,7 @@
 
 /turf/closed/indestructible/riveted
 	icon = 'modular_zubbers/icons/turf/walls/riveted.dmi'
-	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_CLOSED_TURFS
 
 /turf/closed/indestructible/riveted/plastinum
 	icon = 'modular_zubbers/icons/turf/walls/plastinum_wall.dmi'
