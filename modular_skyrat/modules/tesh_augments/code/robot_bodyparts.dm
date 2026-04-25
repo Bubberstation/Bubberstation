@@ -105,7 +105,9 @@
 	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
 	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	should_draw_greyscale = TRUE
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
@@ -118,7 +120,9 @@
 	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
 	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	should_draw_greyscale = TRUE
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
@@ -131,7 +135,9 @@
 	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
 	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	should_draw_greyscale = TRUE
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
@@ -144,7 +150,9 @@
 	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
 	icon_static =  'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	should_draw_greyscale = TRUE
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
@@ -157,7 +165,9 @@
 	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell, covered in a layer of membranous feathers."
 	icon_static =  'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	should_draw_greyscale = TRUE
 
 	brute_modifier = 1
 	burn_modifier = 0.9
@@ -169,7 +179,9 @@
 	desc = "A standard reinforced braincase, with spine-plugged neural socket and sensor gimbals. A layer of membranous feathers covers the stark metal."
 	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	should_draw_greyscale = TRUE
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH

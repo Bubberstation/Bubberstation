@@ -48,19 +48,3 @@
 	icon_static = null
 	should_draw_greyscale = TRUE
 	icon_greyscale = 'icons/mob/augmentation/surplus_augments.dmi'
-
-//TESHARI ROBOTIC GREYSCALE
-/obj/item/bodypart/head/robot/teshari_greyscale
-	icon_static = null
-	should_draw_greyscale = TRUE
-	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
-
-/obj/item/bodypart/chest/robot/teshari_greyscale
-
-/obj/item/bodypart/leg/right/robot/teshari_greyscale
-
-/obj/item/bodypart/leg/left/robot/teshari_greyscale
-
-/obj/item/bodypart/arm/right/robot/teshari_greyscale
-
-/obj/item/bodypart/arm/left/robot/teshari_greyscale
