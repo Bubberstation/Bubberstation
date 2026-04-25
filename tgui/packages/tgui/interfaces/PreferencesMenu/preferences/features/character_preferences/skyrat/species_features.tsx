@@ -142,6 +142,11 @@ export const eye_emissives: FeatureToggle = {
   component: CheckboxInput,
 };
 
+export const eyes_opacity: Feature<number> = {
+  name: 'Eyes Opacity',
+  component: FeatureNumberInput,
+};
+
 export const mutant_colors_color: Feature<string[]> = {
   name: 'Mutant Colors',
   component: FeatureTriColorInput,
@@ -281,6 +286,11 @@ export const quad_eyes: FeatureToggle = {
 
 export const quad_eyes_offset: Feature<number> = {
   name: 'Quad Eyes Offset',
+  component: FeatureNumberInput,
+};
+
+export const quad_eyes_offset_width: Feature<number> = {
+  name: 'Quad Eyes Offset Width',
   component: FeatureNumberInput,
 };
 
