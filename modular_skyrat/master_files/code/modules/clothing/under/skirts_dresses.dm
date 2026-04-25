@@ -3,6 +3,7 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY //For reference - We dont want to cut a random hole in dresses
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON	//For reference - keep in mind some dresses will need adjusted for digi thighs - hence the link below
 	worn_icon_digi = SKIRTS_DRESSES_DIGIFILE
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses_teshari.dmi'
 	gets_cropped_on_taurs = FALSE
 	//God bless the skirt being a subtype of the dress, only need one worn_digi_icon definition
 
