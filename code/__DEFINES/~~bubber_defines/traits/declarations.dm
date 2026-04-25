@@ -72,4 +72,8 @@
 /// Used by The Blacksmith's Hammer heretic ritual - tracks if their funny hand will emag the next thing they right click with
 #define TRAIT_EMAGGING_HAND "emagging_hand"
 
+/// Trait that removes mood and replaces it with hunger bar.
+#define TRAIT_NOMOOD "trait_nomood"
+
+/// Trait that gives your brain traumas more resilance
 #define TRAIT_RESILIENT_TRAUMAS "trait_resilient_traumas"
