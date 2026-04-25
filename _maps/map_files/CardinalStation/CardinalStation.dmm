@@ -10591,11 +10591,19 @@
 /turf/open/floor/iron,
 /area/station/maintenance/department/science/upper)
 "cte" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/power/tracker,
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/aisat)
+/obj/structure/closet/emcloset,
+/obj/effect/turf_decal/trimline/yellow/filled/warning{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark,
+/turf/open/floor/vault/rock,
+/area/station/command/teleporter)
 "ctp" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -29082,10 +29090,10 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/fore)
 "gNf" = (
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/item/toy/plush/skyrat/secdrake,
-/turf/open/floor/circuit/red/anim,
-/area/station/maintenance/department/science/upper)
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/turf/open/space/basic,
+/area/station/solars/aisat)
 "gNk" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
@@ -29924,17 +29932,6 @@
 /obj/machinery/wall_healer/directional/east,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
-"gXn" = (
-/obj/machinery/conveyor{
-	id = "MeanBeanMachine"
-	},
-/obj/machinery/shower/directional/east{
-	name = "Old Rinsing Mechanism";
-	desc = "Its probably supposed to be on, instead its just leaking water onto the conveyor"
-	},
-/obj/effect/spawner/liquids_spawner/puddle,
-/turf/open/floor/circuit/off,
-/area/station/maintenance/department/science/upper)
 "gXr" = (
 /obj/machinery/light/small/directional/west,
 /obj/effect/turf_decal/siding/wood{
@@ -32202,6 +32199,12 @@
 	},
 /turf/open/floor/carpet,
 /area/station/commons/vacant_room/office)
+"hzG" = (
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/item/toy/plush/chaotic_toaster,
+/turf/open/floor/circuit/red/anim,
+/area/station/maintenance/department/science/upper)
 "hAf" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 8
@@ -35139,6 +35142,17 @@
 	},
 /turf/open/floor/iron,
 /area/station/maintenance/department/engineering/atmos)
+"igY" = (
+/obj/machinery/conveyor{
+	id = "MeanBeanMachine"
+	},
+/obj/machinery/shower/directional/east{
+	name = "Old Rinsing Mechanism";
+	desc = "Its probably supposed to be on, instead its just leaking water onto the conveyor"
+	},
+/obj/effect/spawner/liquids_spawner/puddle,
+/turf/open/floor/circuit/off,
+/area/station/maintenance/department/science/upper)
 "ihc" = (
 /obj/effect/turf_decal/siding/red/corner,
 /obj/effect/turf_decal/siding/red/corner{
@@ -37208,6 +37222,12 @@
 	},
 /turf/open/floor/iron/large,
 /area/station/cargo/storage)
+"iHk" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/power/tracker,
+/obj/structure/cable,
+/turf/open/space/basic,
+/area/station/solars/aisat)
 "iHl" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/weather/snow,
@@ -37408,16 +37428,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/large,
 /area/station/cargo/storage)
-"iIH" = (
-/obj/machinery/door/airlock/command{
-	name = "MiniSat Foyer"
-	},
-/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
-/obj/effect/mapping_helpers/airlock/access/any/command/minisat,
-/obj/effect/mapping_helpers/airlock/access/any/command,
-/obj/structure/cable,
-/turf/open/floor/iron/smooth,
-/area/station/ai/satellite/foyer)
 "iIJ" = (
 /obj/machinery/washing_machine,
 /obj/item/radio/intercom{
@@ -52469,19 +52479,12 @@
 /turf/open/floor/iron/sepia,
 /area/station/medical/power_station)
 "mhP" = (
-/obj/structure/closet/emcloset,
-/obj/effect/turf_decal/trimline/yellow/filled/warning{
-	dir = 1
+/obj/machinery/door/airlock/research{
+	name = "Robotics Lab"
 	},
-/obj/effect/turf_decal/siding/dark{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/dark,
-/turf/open/floor/vault/rock,
-/area/station/command/teleporter)
+/obj/effect/mapping_helpers/airlock/access/all/science/robotics,
+/turf/open/floor/iron/dark,
+/area/station/science/robotics/mechbay)
 "mhR" = (
 /obj/machinery/light/small/directional/west,
 /obj/structure/disposalpipe/segment{
@@ -54448,6 +54451,25 @@
 	},
 /turf/open/floor/iron/white/textured_half,
 /area/station/science/lobby)
+"mFJ" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/neutral/line{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	name = "Mech Bay Shutters";
+	pixel_x = -24;
+	pixel_y = 6;
+	req_access = list("robotics");
+	id = "robof"
+	},
+/turf/open/floor/iron,
+/area/station/hallway/primary/port)
 "mFL" = (
 /obj/effect/turf_decal/siding{
 	color = "#535c5b";
@@ -60001,12 +60023,10 @@
 /turf/open/floor/vault/rock,
 /area/station/hallway/secondary/exit/departure_lounge)
 "nTU" = (
-/obj/machinery/door/airlock/research{
-	name = "Robotics Lab"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/science/robotics,
-/turf/open/floor/iron/dark,
-/area/station/science/robotics/mechbay)
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/item/toy/plush/skyrat/secdrake,
+/turf/open/floor/circuit/red/anim,
+/area/station/maintenance/department/science/upper)
 "nUu" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
@@ -60849,10 +60869,15 @@
 	},
 /area/station/hallway/secondary/command)
 "odb" = (
-/obj/structure/lattice/catwalk,
+/obj/machinery/door/airlock/command{
+	name = "MiniSat Foyer"
+	},
+/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
+/obj/effect/mapping_helpers/airlock/access/any/command/minisat,
+/obj/effect/mapping_helpers/airlock/access/any/command,
 /obj/structure/cable,
-/turf/open/space/basic,
-/area/station/solars/aisat)
+/turf/open/floor/iron/smooth,
+/area/station/ai/satellite/foyer)
 "odd" = (
 /obj/effect/turf_decal/tile/blue/opposingcorners,
 /obj/machinery/holopad{
@@ -61198,10 +61223,12 @@
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/cargo/lobby)
 "ohK" = (
-/obj/structure/window/reinforced/spawner/directional/south,
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/item/toy/plush/chaotic_toaster,
-/turf/open/floor/circuit/red/anim,
+/obj/machinery/conveyor{
+	id = "MeanBeanMachine";
+	dir = 4
+	},
+/obj/effect/spawner/liquids_spawner/puddle,
+/turf/open/floor/circuit/off,
 /area/station/maintenance/department/science/upper)
 "ohQ" = (
 /obj/machinery/conveyor/inverted{
@@ -68946,25 +68973,6 @@
 	dir = 4
 	},
 /area/station/hallway/primary/starboard)
-"pWC" = (
-/obj/effect/turf_decal/trimline/neutral/filled/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/neutral/line{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	name = "Mech Bay Shutters";
-	pixel_x = -24;
-	pixel_y = 6;
-	req_access = list("robotics");
-	id = "robof"
-	},
-/turf/open/floor/iron,
-/area/station/hallway/primary/port)
 "pWI" = (
 /obj/effect/landmark/start/assistant,
 /obj/structure/extinguisher_cabinet/directional/west,
@@ -88046,14 +88054,6 @@
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron,
 /area/station/maintenance/department/science/xenobiology)
-"uqZ" = (
-/obj/machinery/conveyor{
-	id = "MeanBeanMachine";
-	dir = 4
-	},
-/obj/effect/spawner/liquids_spawner/puddle,
-/turf/open/floor/circuit/off,
-/area/station/maintenance/department/science/upper)
 "urc" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -104453,6 +104453,7 @@
 	name = "Supermatter Ejection Door";
 	id = "smeject"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "yhZ" = (
@@ -115006,14 +115007,14 @@ nzj
 nzj
 nzj
 hyT
-odb
-odb
-odb
-odb
-odb
-odb
-odb
-odb
+gNf
+gNf
+gNf
+gNf
+gNf
+gNf
+gNf
+gNf
 hVh
 kFe
 nzj
@@ -115270,7 +115271,7 @@ hyT
 hyT
 hVh
 hVh
-odb
+gNf
 hyT
 nzj
 nzj
@@ -115527,7 +115528,7 @@ hyT
 nzj
 hyT
 hVh
-odb
+gNf
 hVh
 kFe
 nzj
@@ -115764,7 +115765,7 @@ eWB
 nYo
 xeO
 tJY
-iIH
+odb
 scC
 fld
 pEa
@@ -115784,8 +115785,8 @@ hyT
 nzj
 nzj
 hyT
-odb
-odb
+gNf
+gNf
 hVh
 kFe
 nzj
@@ -116042,8 +116043,8 @@ nzj
 nzj
 hyT
 hVh
-odb
-odb
+gNf
+gNf
 hVh
 nzj
 nzj
@@ -116300,7 +116301,7 @@ hyT
 nzj
 hyT
 hVh
-odb
+gNf
 hyT
 nzj
 nzj
@@ -116557,7 +116558,7 @@ roA
 hyT
 hyT
 hyT
-odb
+gNf
 hyT
 nzj
 nzj
@@ -116814,7 +116815,7 @@ hkB
 nzj
 nzj
 hVh
-odb
+gNf
 hVh
 kFe
 nzj
@@ -117071,7 +117072,7 @@ hkB
 gOE
 nzj
 hVh
-odb
+gNf
 hVh
 kFe
 nzj
@@ -117325,13 +117326,13 @@ aFc
 crq
 koF
 vAw
-odb
-odb
-odb
-odb
-odb
-odb
-cte
+gNf
+gNf
+gNf
+gNf
+gNf
+gNf
+iHk
 nzj
 nzj
 nzj
@@ -117585,7 +117586,7 @@ hkB
 gOE
 nzj
 hVh
-odb
+gNf
 hVh
 kFe
 nzj
@@ -117842,7 +117843,7 @@ hkB
 nzj
 nzj
 hVh
-odb
+gNf
 hVh
 kFe
 nzj
@@ -118099,7 +118100,7 @@ jHV
 hyT
 hyT
 hyT
-odb
+gNf
 hyT
 nzj
 nzj
@@ -118356,7 +118357,7 @@ hyT
 nzj
 nzj
 hVh
-odb
+gNf
 hyT
 nzj
 nzj
@@ -118612,8 +118613,8 @@ nzj
 nzj
 hyT
 hVh
-odb
-odb
+gNf
+gNf
 hVh
 nzj
 nzj
@@ -118868,8 +118869,8 @@ hyT
 nzj
 nzj
 hyT
-odb
-odb
+gNf
+gNf
 hVh
 kFe
 nzj
@@ -119125,7 +119126,7 @@ hyT
 nzj
 nzj
 hVh
-odb
+gNf
 hVh
 kFe
 nzj
@@ -119382,7 +119383,7 @@ hyT
 hyT
 hVh
 hVh
-odb
+gNf
 hyT
 nzj
 nzj
@@ -119633,13 +119634,13 @@ kuA
 hyT
 nzj
 hyT
-odb
-odb
-odb
-odb
-odb
-odb
-odb
+gNf
+gNf
+gNf
+gNf
+gNf
+gNf
+gNf
 hVh
 kFe
 nzj
@@ -123719,7 +123720,7 @@ xui
 tRK
 nKh
 mwo
-mhP
+cte
 ubd
 ubd
 ubd
@@ -123978,10 +123979,10 @@ sbO
 iMj
 sbO
 ubd
+hzG
+igY
 ohK
-gXn
-uqZ
-gNf
+nTU
 rlh
 fCQ
 qYO
@@ -136064,7 +136065,7 @@ tot
 pfN
 waQ
 del
-nTU
+mhP
 waa
 nDE
 kpX
@@ -136322,7 +136323,7 @@ ldw
 gwV
 mRm
 qme
-pWC
+mFJ
 iJj
 qme
 qme
