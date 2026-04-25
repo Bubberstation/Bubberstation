@@ -72,3 +72,4 @@
 /// Used by The Blacksmith's Hammer heretic ritual - tracks if their funny hand will emag the next thing they right click with
 #define TRAIT_EMAGGING_HAND "emagging_hand"
 
+#define TRAIT_RESILIENT_TRAUMAS "trait_resilient_traumas"
