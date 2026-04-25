@@ -67,3 +67,6 @@
 
 /// Trait that removes mood and replaces it with hunger bar.
 #define TRAIT_NOMOOD "trait_nomood"
+
+/// Trait that gives your brain traumas more resilance
+#define TRAIT_RESILIENT_TRAUMAS "trait_resilient_traumas"

@@ -16,11 +16,10 @@
 	resistance_flags = FIRE_PROOF
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	siemens_coefficient = 0
-	complexity_max = DEFAULT_MAX_COMPLEXITY - 7
+	complexity_max = DEFAULT_MAX_COMPLEXITY - 3
 	charge_drain = DEFAULT_CHARGE_DRAIN * 2
 	slowdown_deployed = 1
 	inbuilt_modules = list(
-		/obj/item/mod/module/plate_compression/permanent,
 		/obj/item/mod/module/joint_torsion/permanent
 	)
 	allowed_suit_storage = list(
@@ -88,6 +87,7 @@
 		/obj/item/mod/module/status_readout,
 		/obj/item/mod/module/thermal_regulator,
 		/obj/item/mod/module/rad_protection,
+		/obj/item/mod/module/storage,
 	)
 	default_pins = list(
 		/obj/item/mod/module/magboot,
@@ -98,12 +98,6 @@
 /obj/item/mod/control/pre_equipped/frontier_colonist/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
-
-// Plate compression module that cannot be removed
-
-/obj/item/mod/module/plate_compression/permanent
-	removable = FALSE
-	complexity = 0
 
 // Joint torsion module that can't be removed and has no complexity
 
