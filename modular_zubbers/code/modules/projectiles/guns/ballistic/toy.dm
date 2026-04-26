@@ -1,4 +1,4 @@
-#define LOADING_TIME (2 SECONDS)
+#define LOADING_TIME (99 SECOND)
 
 /obj/item/gun/ballistic/toy/foamforce_implant
 	name = "Pop-up Donksoft Blaster"
@@ -10,7 +10,7 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/foamforce_implant
 	fire_sound = 'sound/items/syringeproj.ogg'
 	rack_sound_volume = 0
-	fire_delay = 8
+	fire_delay = 7
 	clumsy_check = FALSE
 	internal_magazine = TRUE
 	casing_ejector = FALSE
