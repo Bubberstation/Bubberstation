@@ -115,11 +115,16 @@
 	acid = 50
 	wound = 25
 
-/obj/item/clothing/suit/armor/secjuggernaut
+/obj/item/clothing/suit/hooded/secjuggernaut
 	name = "tactical security juggernaut suit"
-	desc = "An advanced suit of armor. Difficult to put on and cumbersome to wear."
-	icon_state = "heavy"
+	desc = "An advanced suit of armor. Difficult to put on and cumbersome to wear. Comes with a built-in helmet for EVA action."
+	icon_state = "security_jugger"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
 	inhand_icon_state = "swat_suit"
+	hoodtype = /obj/item/clothing/head/hooded/secjuggernaut
 	armor_type = /datum/armor/secjuggernaut
 	strip_delay = 25 SECONDS
 	equip_delay_self = 12 SECONDS
@@ -131,17 +136,35 @@
 	heat_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
 	slowdown = 5
-	drag_slowdown = 6
+	drag_slowdown = 5
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, TRAIT_PUSHIMMUNE, TRAIT_NEGATES_GRAVITY, TRAIT_NO_SLIP_WATER, TRAIT_NO_VEHICLE, TRAIT_HUGE_CLOTHES)
 
+/obj/item/clothing/head/hooded/secjuggernaut
+	name = "tactical security juggernaut helmet"
+	desc = "An advanced helmet. Easily put on compared to the armor."
+	icon_state = "security_jugger"
+	icon = "modular_zubbers/icons/obj/clothing/head/helmet.dmi"
+	worn_icon = "modular_zubbers/icons/mob/clothing/head/helmet.dmi"
+	worn_icon_muzzled = 'modular_zubbers/icons/mob/clothing/head/helmet_muzzled.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+	inhand_icon_state = "swat_suit"
+	armor_type = /datum/armor/secjuggernaut
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | IMMUTABLE_SLOW |SNUG_FIT
+	cold_protection = HEAD
+	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT_OFF
+	heat_protection = HEAD
+	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
+	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS|HIDESNOUT
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+
 /datum/armor/secjuggernaut
-	melee = 75
-	bullet = 65
-	laser = 65
-	energy = 55
+	melee = 70
+	bullet = 70
+	laser = 60
+	energy = 60
 	bomb = 100
 	bio = 100
 	fire = 100
 	acid = 90
-	wound = 20
+	wound = 30
