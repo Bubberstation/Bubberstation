@@ -154,6 +154,9 @@
 				var/mob/living/living_user = user
 				living_user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 50, 150)
 				living_user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
+	else
+		if (IS_HERETIC(user) || isobserver(user))
+			. += span_notice("You can use the [EXAMINE_HINT("Knock of the Twin-Finger")] ritual to discover this way's requirements.")
 
 // arg one is nullable
 /obj/effect/unopened_way/proc/open(mob/living/opener)

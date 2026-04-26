@@ -2,7 +2,7 @@
 	name = "Knock of the Twin-Finger"
 	desc = "Allows you to open Ways towards the Mansus, breaching the thin veil between dawn and dusk and allowing you a glimpse of Light. \
 	Ways tend to form in high-traffic and high-importance areas, and require a number of items to open. You can use this ritual to open a way (provided the transmutation rune is under the way), \
-	or list all ways and their requirements."
+	or list all ways and their requirements. Opening a way takes 30 seconds and performs a announcement detailing the way's location once its open!"
 	research_tree_icon_path = 'icons/effects/eldritch.dmi'
 	research_tree_icon_state = "emark7"
 	is_starting_knowledge = TRUE
