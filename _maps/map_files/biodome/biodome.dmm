@@ -4791,6 +4791,9 @@
 /obj/effect/turf_decal/tile/blue,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/west,
+/obj/machinery/camera/motion/directional/west{
+	c_tag = "AI Minisat - Central Hallway"
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai/satellite/interior)
 "bKh" = (
@@ -6185,7 +6188,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/medical/cmo,
 /obj/machinery/door/airlock/cmo{
-	name = "Chief Medical Officer"
+	name = "Chief Medical Officer's Office"
 	},
 /turf/open/floor/iron/white,
 /area/station/command/heads_quarters/cmo)
@@ -6694,7 +6697,7 @@
 	},
 /obj/effect/turf_decal/tile/neutral/full,
 /obj/machinery/door/airlock/cmo/glass{
-	name = "Chief Engineer"
+	name = "Chief Engineer's Office"
 	},
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/ce)
@@ -13929,12 +13932,12 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/machinery/door/window/elevator/right/directional/east{
-	elevator_mode = 1;
-	transport_linked_id = "biodome_engie_lift"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
+	},
+/obj/machinery/door/window/elevator/left/directional/east{
+	elevator_mode = 1;
+	transport_linked_id = "biodome_engie_lift"
 	},
 /turf/open/floor/iron/terracotta,
 /area/station/hallway/secondary/construction/engineering)
@@ -14602,12 +14605,6 @@
 	},
 /turf/open/floor/wood/tile,
 /area/station/science/breakroom)
-"fgq" = (
-/obj/effect/turf_decal/tile/yellow/half/contrasted{
-	dir = 1
-	},
-/turf/closed/wall,
-/area/station/cargo/storage)
 "fgs" = (
 /obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced,
@@ -16991,13 +16988,13 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/power/apc/auto_name/directional/east,
+/obj/structure/cable,
 /obj/machinery/turretid{
-	control_area = "/area/station/ai/satellite/hallway";
+	control_area = "/area/station/ai/satellite/interior";
 	name = "AI Antechamber Turret Control";
 	pixel_y = 25
 	},
-/obj/machinery/power/apc/auto_name/directional/east,
-/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/ai/satellite/foyer)
 "gcM" = (
@@ -18360,13 +18357,6 @@
 	pixel_y = 5
 	},
 /obj/item/pen,
-/obj/docking_port/stationary{
-	dwidth = 2;
-	height = 13;
-	name = "port bay 2";
-	shuttle_id = "ferry_home";
-	width = 5
-	},
 /turf/open/floor/iron,
 /area/station/security/checkpoint/customs)
 "gAY" = (
@@ -18478,7 +18468,9 @@
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/tile/purple/fourcorners,
 /obj/structure/cable,
-/obj/machinery/door/airlock/rd,
+/obj/machinery/door/airlock/rd{
+	name = "Research Director's Office"
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/rd)
 "gDW" = (
@@ -22183,7 +22175,9 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/tile/purple/fourcorners,
-/obj/machinery/door/airlock/rd,
+/obj/machinery/door/airlock/rd{
+	name = "Research Director's Office"
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/rd)
 "hWU" = (
@@ -22300,12 +22294,12 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/machinery/door/window/elevator/left/directional/west{
-	transport_linked_id = "biodome_engie_lift";
-	elevator_mode = 1
-	},
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 8
+	},
+/obj/machinery/door/window/right/directional/west{
+	transport_linked_id = "biodome_engie_lift";
+	elevator_mode = 1
 	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/aft)
@@ -27672,11 +27666,13 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/door/airlock/hos,
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/hos,
+/obj/machinery/door/airlock/hos{
+	name = "Head of Security's Office"
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/hos)
 "jRy" = (
@@ -29178,7 +29174,7 @@
 /obj/structure/disposalpipe/trunk/multiz/down{
 	dir = 1
 	},
-/turf/open/floor/engine/air,
+/turf/open/floor/engine,
 /area/station/science/cytology)
 "kpj" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -29506,7 +29502,7 @@
 /obj/machinery/elevator_control_panel/directional/south{
 	name = "Engineering's Lifts Control Panel";
 	linked_elevator_id = "biodome_engie_lift";
-	preset_destination_names = list("2"="EngineeringAccess","3"="StorageZone")
+	preset_destination_names = list("2"="Engineering Bay","3"="Upper Hallway")
 	},
 /turf/open/floor/plating/elevatorshaft,
 /area/station/hallway/secondary/construction/engineering)
@@ -32955,7 +32951,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/door/airlock/rd,
+/obj/machinery/door/airlock/rd{
+	name = "Server Room"
+	},
 /turf/open/floor/plating,
 /area/station/science/server)
 "lCh" = (
@@ -41116,7 +41114,6 @@
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/unres,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/general,
-/obj/effect/mapping_helpers/airlock/unres/delayed,
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Maintenance Hatch"
 	},
@@ -44913,7 +44910,7 @@
 /obj/structure/cable,
 /obj/machinery/light_switch/directional/north,
 /obj/machinery/button/door/directional/north{
-	id = "hosspace";
+	id = "hosroom";
 	name = "Space Shutters Control";
 	pixel_y = 26;
 	pixel_x = 9
@@ -46329,12 +46326,12 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/machinery/door/window/elevator/left/directional/east{
-	elevator_mode = 1;
-	transport_linked_id = "biodome_engie_lift"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
+	},
+/obj/machinery/door/window/elevator/right/directional/east{
+	elevator_mode = 1;
+	transport_linked_id = "biodome_engie_lift"
 	},
 /turf/open/floor/iron/terracotta,
 /area/station/hallway/secondary/construction/engineering)
@@ -49045,7 +49042,9 @@
 "rcX" = (
 /obj/effect/mapping_helpers/airlock/access/all/science/rd,
 /obj/structure/plasticflaps/kitchen,
-/obj/machinery/door/airlock/rd,
+/obj/machinery/door/airlock/rd{
+	name = "Server Room"
+	},
 /turf/open/floor/plating,
 /area/station/science/server)
 "rdb" = (
@@ -56559,7 +56558,7 @@
 /obj/machinery/elevator_control_panel/directional/south{
 	name = "Engineering's Lifts Control Panel";
 	linked_elevator_id = "biodome_engie_lift";
-	preset_destination_names = list("2"="EngineeringAccess","3"="StorageZone")
+	preset_destination_names = list("2"="Engineering Bay","3"="Upper Hallway")
 	},
 /turf/open/openspace,
 /area/station/hallway/primary/aft)
@@ -67357,9 +67356,6 @@
 	},
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/captain)
-"xlI" = (
-/turf/open/floor/plating,
-/area/station/security/prison/work)
 "xlK" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4;
@@ -69981,7 +69977,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/door/window/right/directional/west{
+/obj/machinery/door/window/elevator/left/directional/west{
 	transport_linked_id = "biodome_engie_lift";
 	elevator_mode = 1
 	},
@@ -114039,7 +114035,7 @@ fhG
 jwc
 brQ
 eMc
-xlI
+yaE
 nSK
 qsd
 mjv
@@ -184402,7 +184398,7 @@ xvk
 qYc
 qGc
 xUm
-fgq
+xvk
 xUm
 lWc
 qYc
