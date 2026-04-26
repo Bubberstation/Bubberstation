@@ -1,4 +1,4 @@
-#define LOADING_TIME (1.5 SECONDS)
+#define LOADING_TIME (3 SECONDS)
 
 /obj/item/gun/ballistic/toy/foamforce_implant
 	name = "Pop-up Donksoft Blaster"
@@ -28,7 +28,10 @@
 
 /obj/item/gun/ballistic/toy/foamforce_implant/attackby(obj/item/A, mob/user, params) // Forced delay on loading, only checks for valid ammo types/boxes though.
 	if (is_type_in_list(A, list(/obj/item/ammo_casing/foam_dart,
-								/obj/item/ammo_box/foambox)))
+								/obj/item/ammo_box/foambox,
+								/obj/item/ammo_box/foambox/mini,
+								/obj/item/ammo_box/foambox/riot,
+								/obj/item/ammo_box/foambox/riot/mini)))
 		if(!do_after(user, LOADING_TIME, src, IGNORE_USER_LOC_CHANGE)) // We are allowed to move while reloading.
 			to_chat(user, span_danger("You fail to insert a dart into [src]!"))
 			return TRUE
