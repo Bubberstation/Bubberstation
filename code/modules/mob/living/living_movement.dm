@@ -104,7 +104,7 @@
 			//BUBBER EDIT
 			//Handles extra slowdown if the person has certain clothing traits. If someone can do this more modularily, be my guest.
 			if(HAS_TRAIT(L, TRAIT_BIG_CLOTHES))
-				add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/bulky_drag, multiplicative_slowdown = PULL_OVERSIZED_SLOWDOWN)
+				add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/bulky_drag, multiplicative_slowdown = PULL_BIG_CLOTHES_SLOWDOWN)
 				return
 			if(HAS_TRAIT(L, TRAIT_BULKY_CLOTHES))
 				add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/bulky_drag, multiplicative_slowdown = PULL_BULKY_CLOTHES_SLOWDOWN)

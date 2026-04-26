@@ -66,9 +66,9 @@
 #define TRAIT_ROBOTIC_LIMBATTACHMENT "trait_robotic_limbattachment"
 
 /// Induces a dragging slowdown to the person when applied.
-#define TRAIT_BIG_CLOTHES "trait_big_clothes" // 2 slowdown
-#define TRAIT_BULKY_CLOTHES "trait_bulky_clothes" // 3 slowdown
-#define TRAIT_HUGE_CLOTHES "trait_huge_clothes" // 4 slowdown
+#define TRAIT_BIG_CLOTHES "trait_big_clothes" // 3 slowdown
+#define TRAIT_BULKY_CLOTHES "trait_bulky_clothes" // 4 slowdown
+#define TRAIT_HUGE_CLOTHES "trait_huge_clothes" // 5 slowdown
 
 /// Prevents a person from using vehicles.
 #define TRAIT_NO_VEHICLE "trait_no_vehicle"
