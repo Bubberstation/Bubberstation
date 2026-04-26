@@ -28,12 +28,6 @@
 	if(ride_check_flags & RIDER_NEEDS_ARMS && HAS_TRAIT(rider, TRAIT_HANDS_BLOCKED))
 		if(z_move_flags & ZMOVE_FEEDBACK)
 			to_chat(rider, span_warning("You can't seem to hold onto [movable_parent] to move it..."))
-	//BUBBER EDIT
-	if(HAS_TRAIT(rider, TRAIT_NO_VEHICLE))
-		if(z_move_flags & ZMOVE_FEEDBACK)
-			to_chat(rider, span_warning("You cannot seem to operate [movable_parent] right now."))
-		return COMPONENT_RIDDEN_STOP_Z_MOVE
-	//BUBBER EDIT END
 
 	return COMPONENT_RIDDEN_ALLOW_Z_MOVE
 
@@ -89,8 +83,13 @@
 		if(ride_check_flags & UNBUCKLE_DISABLED_RIDER)
 			vehicle_parent.unbuckle_mob(user, TRUE)
 			user.visible_message(span_danger("[user] falls off \the [vehicle_parent]."),\
-			span_danger("You slip off \the [vehicle_parent] as you become incapable of operating it!"))
-			user.Stun(4 SECONDS)
+			span_danger("You slip off \the [vehicle_parent] as you are incapable of operating it!"))
+
+			user.adjust_stamina_loss(50)
+			playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
+			var/atom/throw_target = get_edge_target_turf(user, pick(GLOB.cardinals))
+			user.throw_at(throw_target, 1, 1)
+			user.Stun(2 SECONDS)
 
 		if(COOLDOWN_FINISHED(src, message_cooldown))
 			to_chat(user, span_warning("You cannot operate \the [vehicle_parent] right now!"))
