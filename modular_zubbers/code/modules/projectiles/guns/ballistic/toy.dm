@@ -1,4 +1,4 @@
-#define LOADING_TIME (99 SECOND)
+#define LOADING_TIME (2 SECONDS)
 
 /obj/item/gun/ballistic/toy/foamforce_implant
 	name = "Pop-up Donksoft Blaster"
