@@ -124,7 +124,91 @@
 	AddComponent(/datum/component/armor_plate, 2)
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_FEET)
 
-// Misc
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////// BELTS ///////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+
+/obj/item/storage/belt/holster/blacksmithed
+	name = "parent dev item"
+	desc = "you shouldn't be seeing this."
+	abstract_type = /obj/item/storage/belt/holster/blacksmithed
+	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
+	icon_state = "cowboy_holster"
+	inhand_icon_state = "holster"
+	worn_icon_state = "holster"
+	alternate_worn_layer = null
+	storage_type = /datum/storage/holster
+
+/obj/item/storage/belt/holster/blacksmithed/update_overlays()
+	. = ..()
+	if(!content_overlays)
+		return
+	for(var/obj/item/I in contents)
+		if(istype(I, /obj/item/gun/ballistic/revolver))
+			. += mutable_appearance('modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi', "belt_gun_wood")
+			return
+		if(istype(I, /obj/item/gun))
+			. += mutable_appearance('modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi', "belt_gun_black")
+			return
+		if(istype(I, /obj/item/melee/baton/security))
+			. += mutable_appearance('modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi', "belt_gun_baton")
+			return
+
+/obj/item/storage/belt/holster/blacksmithed/cowboy
+	name = "quickdraw holster"
+	desc = "A rugged leather holster belt. Will handily carry a gun; <b>the leather holster pouch makes drawing your gun a cinch</b>. Also comes with some side pockets for speedloaders and magazines."
+	icon_state = "cowboy_holster"
+	inhand_icon_state = "utility"
+	worn_icon_state = "utility"
+	alternate_worn_layer = null
+	storage_type = /datum/storage/cowboy_holster
+
+/datum/storage/cowboy_holster
+	max_slots = 4
+	max_total_storage = 6
+	open_sound = 'sound/items/handling/holster_open.ogg'
+	open_sound_vary = TRUE
+
+/datum/storage/cowboy_holster/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound, list/holdables)
+	. = ..()
+	if(length(holdables))
+		set_holdable(holdables)
+		return
+
+	set_holdable(list(
+		/obj/item/gun/ballistic/automatic/pistol,
+		/obj/item/gun/ballistic/revolver,
+		/obj/item/gun/energy/e_gun/mini,
+		/obj/item/gun/energy/disabler,
+		/obj/item/gun/energy/dueling,
+		/obj/item/food/grown/banana,
+		/obj/item/gun/energy/laser/thermal,
+		/obj/item/gun/energy/laser/pistol,
+		/obj/item/gun/ballistic/rifle/boltaction, //fits if you make it an obrez
+		/obj/item/gun/energy/laser/captain,
+		/obj/item/gun/energy/e_gun/hos,
+	))
+
+/datum/storage/cowboy_holster/attempt_insert(obj/item/to_insert, mob/user, override = FALSE, force = STORAGE_NOT_LOCKED, messages = TRUE)
+	. = ..()
+	sort_contents()
+	parent.update_appearance()
+
+//resorts the contents so that guns are always the first thing pulled.
+/datum/storage/cowboy_holster/proc/sort_contents()
+	var/list/gunz = list()
+	var/list/everything_else = list()
+	/*
+	for(obj/item/i in parent.contents)
+		if(istype(i, /obj/item/gun/))
+			gunz += i
+		else
+			everything_else += i
+	parent.contents = everything_else + gunz*/
+
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////// MISC ////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 /obj/item/clothing/gloves/ring/reagent_clothing
 	name = "reagent ring"
 	desc = "A tiny ring, sized to wrap around a finger."

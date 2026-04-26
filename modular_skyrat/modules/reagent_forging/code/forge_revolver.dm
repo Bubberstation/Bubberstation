@@ -13,11 +13,12 @@
 	bolt_wording = "hammer"
 	///below stats should match or exceed the murphy's
 	throwforce = 19
-	force = 8 //this can be lower so that (with bonus) it can be more
+	force = 10
 
 	//is the hammer primed (ready to fire) or released (safe)?
 	var/hammer_is_primed = FALSE
 	var/hammer_pull_speed_onehanded = 7 DECISECONDS
+	var/static/holster_misfire_chance = 70
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/Initialize(mapload)
 	. = ..()
@@ -65,7 +66,7 @@
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/equipped(mob/user, slot, initial)
 	. = ..()
-	var/static/list/connections = list(COMSIG_ATOM_WAS_ATTACKED = PROC_REF(holster_misfire))
+	var/static/list/connections = list(COMSIG_ATOM_WAS_ATTACKED = PROC_REF(try_holster_misfire))
 	if(slot != ITEM_SLOT_HANDS)
 		AddComponent(/datum/component/connect_inventory, user, connections, allowed_slots = ITEM_SLOT_HANDS)
 
@@ -73,7 +74,12 @@
 	. = ..()
 	qdel(GetComponent(/datum/component/connect_inventory))
 
-/obj/item/gun/ballistic/revolver/handcrafted_single_action/proc/holster_misfire
+/obj/item/gun/ballistic/revolver/handcrafted_single_action/proc/try_holster_misfire(datum/source, mob/attacker, attack_flags)
+	if((attack_flags & (ATTACKER_SHOVING|ATTACKER_DAMAGING_ATTACK)))
+		return
+	if(prob(holster_misfire_chance))
+
+
 
 /obj/item/ammo_box/magazine/internal/cylinder/handcrafted_single_action
 	name = "handcrafted revolver cylinder"

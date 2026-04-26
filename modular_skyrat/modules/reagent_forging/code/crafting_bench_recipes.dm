@@ -57,7 +57,7 @@
 					continue
 
 				for(var/custom_material in requirement_item.custom_materials)
-					materials_to_transfer += custom_material
+					materials_to_transfer[custom_material] += requirement_item.custom_materials[custom_material]
 
 		product.set_custom_materials(materials_to_transfer, multiplier = 1)
 
