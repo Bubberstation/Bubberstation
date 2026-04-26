@@ -28,12 +28,12 @@
 	if(ride_check_flags & RIDER_NEEDS_ARMS && HAS_TRAIT(rider, TRAIT_HANDS_BLOCKED))
 		if(z_move_flags & ZMOVE_FEEDBACK)
 			to_chat(rider, span_warning("You can't seem to hold onto [movable_parent] to move it..."))
-//BUBBER EDIT
+	//BUBBER EDIT
 	if(HAS_TRAIT(rider, TRAIT_NO_VEHICLE))
 		if(z_move_flags & ZMOVE_FEEDBACK)
 			to_chat(rider, span_warning("You cannot seem to operate [movable_parent] right now."))
 		return COMPONENT_RIDDEN_STOP_Z_MOVE
-//BUBBER EDIT END
+	//BUBBER EDIT END
 
 	return COMPONENT_RIDDEN_ALLOW_Z_MOVE
 
@@ -84,7 +84,7 @@
 			COOLDOWN_START(src, message_cooldown, 5 SECONDS)
 		return COMPONENT_DRIVER_BLOCK_MOVE
 
-//BUBBER EDIT
+	//BUBBER EDIT
 	if(HAS_TRAIT(user, TRAIT_NO_VEHICLE))
 		if(ride_check_flags & UNBUCKLE_DISABLED_RIDER)
 			vehicle_parent.unbuckle_mob(user, TRUE)
@@ -99,7 +99,7 @@
 
 	handle_ride(user, direction)
 	return ..()
-//BUBBER EDIT END
+	//BUBBER EDIT END
 
 /// This handles the actual movement for vehicles once [/datum/component/riding/vehicle/proc/driver_move] has given us the green light
 /datum/component/riding/vehicle/proc/handle_ride(mob/user, direction)
