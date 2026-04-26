@@ -9,14 +9,22 @@
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
 	var/active = FALSE
 	var/toggle_sound = 'sound/vehicles/mecha/mechmove03.ogg'
+	var/currently_toggled = FALSE
 
 /obj/item/organ/eyes/robotic/manuallyshield/ui_action_click()
+	if(currently_toggled)
+		return
+
+	currently_toggled = TRUE
+
 	if(!do_after(owner, 1 SECONDS))
 		to_chat(owner, span_notice("You fail to concentrate on the vision shield toggle."))
+		currently_toggled = FALSE
 		return
 
 	active = !active
 	playsound(get_turf(owner), toggle_sound, 25, TRUE)
+	currently_toggled = FALSE
 
 	if(active)
 		flash_protect = FLASH_PROTECTION_NONE
