@@ -9,7 +9,10 @@
 	throwforce = 0
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/foamforce_implant
 	fire_sound = 'sound/items/syringeproj.ogg'
-	rack_sound_volume = 0
+	load_sound = 'sound/items/weapons/gun/general/mag_bullet_insert.ogg'
+	load_sound_vary = TRUE
+	rack_sound_volume = 10
+	rack_sound = 'sound/items/handling/id_card/id_card_pickup1.ogg'
 	fire_delay = 7
 	clumsy_check = FALSE
 	internal_magazine = TRUE
@@ -24,10 +27,12 @@
 	pinless = TRUE
 	gun_flags = NOT_A_REAL_GUN
 	can_muzzle_flash = FALSE
-	bolt_type = BOLT_TYPE_NO_BOLT
+	bolt_type = BOLT_TYPE_STANDARD
+	bolt_wording = "plungers"
 
 /obj/item/gun/ballistic/toy/foamforce_implant/attackby(obj/item/A, mob/user, params) // Forced delay on loading, only checks for valid ammo types/boxes though.
 	if (is_type_in_list(A, list(/obj/item/ammo_casing/foam_dart,
+								/obj/item/ammo_casing/foam_dart/riot,
 								/obj/item/ammo_box/foambox,
 								/obj/item/ammo_box/foambox/mini,
 								/obj/item/ammo_box/foambox/riot,
