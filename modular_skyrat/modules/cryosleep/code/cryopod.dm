@@ -436,6 +436,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 	for(var/obj/item/item_content in mob_occupant.get_equipped_items(INCLUDE_POCKETS | INCLUDE_HELD | INCLUDE_ACCESSORIES))
 		try_store_item(mob_occupant, item_content, control_computer)
 
+	if(iscarbon(mob_occupant))
+		var/mob/living/carbon/carbon_occupant = mob_occupant
+		for(var/obj/item/organ/surplus_organ in carbon_occupant.organs)
+			if(istype(surplus_organ, /obj/item/organ/heart/cybernetic/surplus) || istype(surplus_organ, /obj/item/organ/lungs/cybernetic/surplus) || istype(surplus_organ, /obj/item/organ/liver/cybernetic/surplus) || istype(surplus_organ, /obj/item/organ/stomach/cybernetic/surplus) || istype(surplus_organ, /obj/item/organ/brain/cybernetic/surplus))
+				qdel(surplus_organ)
+
 	GLOB.joined_player_list -= stored_ckey
 
 	handle_objectives()
