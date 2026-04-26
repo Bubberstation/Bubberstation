@@ -64,3 +64,11 @@
 
 /// The trait that determines if someone has the robotic limb reattachment quirk.
 #define TRAIT_ROBOTIC_LIMBATTACHMENT "trait_robotic_limbattachment"
+
+/// Induces a dragging slowdown to the person when applied.
+#define TRAIT_BIG_CLOTHES //2 slowdown
+#define TRAIT_BULKY_CLOTHES //3 slowdown
+#define TRAIT_HUGE_CLOTHES //4 slwodown
+
+/// Prevents a person from using vehicles.
+#define TRAIT_NO_VEHICLE

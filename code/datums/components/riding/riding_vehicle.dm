@@ -28,6 +28,9 @@
 	if(ride_check_flags & RIDER_NEEDS_ARMS && HAS_TRAIT(rider, TRAIT_HANDS_BLOCKED))
 		if(z_move_flags & ZMOVE_FEEDBACK)
 			to_chat(rider, span_warning("You can't seem to hold onto [movable_parent] to move it..."))
+	if(HAS_TRAIT(rider, TRAIT_NO_VEHICLE))
+		if(z_move_flags & ZMOVE_FEEDBACK)
+			to_chat(rider, span_warning("You cannot seem to operate [movable_parent] right now."))
 		return COMPONENT_RIDDEN_STOP_Z_MOVE
 
 	return COMPONENT_RIDDEN_ALLOW_Z_MOVE
@@ -76,6 +79,18 @@
 
 		if(COOLDOWN_FINISHED(src, message_cooldown))
 			to_chat(user, span_warning("You can't seem to hold onto \the [vehicle_parent] to move it..."))
+			COOLDOWN_START(src, message_cooldown, 5 SECONDS)
+		return COMPONENT_DRIVER_BLOCK_MOVE
+
+	if(HAS_TRAIT(user, TRAIT_NO_VEHICLE))
+		if(ride_check_flags & UNBUCKLE_DISABLED_RIDER)
+			vehicle_parent.unbuckle_mob(user, TRUE)
+			user.visible_message(span_danger("[user] falls off \the [vehicle_parent]."),\
+			span_danger("You slip off \the [vehicle_parent] as your become incapable of operating it!"))
+			user.Stun(3 SECONDS)
+
+		if(COOLDOWN_FINISHED(src, message_cooldown))
+			to_chat(user, span_warning("You cannot operate \the [vehicle_parent] right now!"))
 			COOLDOWN_START(src, message_cooldown, 5 SECONDS)
 		return COMPONENT_DRIVER_BLOCK_MOVE
 
