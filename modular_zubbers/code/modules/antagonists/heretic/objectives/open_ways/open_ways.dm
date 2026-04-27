@@ -255,7 +255,7 @@
 	)
 
 	var/static/list/potential_uncommoner_items = list(
-		/obj/item/melee/baton/security,
+		/obj/item/melee/baton/security/cattleprod,
 		/obj/item/circular_saw,
 		/obj/item/scalpel,
 		/obj/item/clothing/glasses/sunglasses,

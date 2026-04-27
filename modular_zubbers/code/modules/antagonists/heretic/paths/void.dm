@@ -53,7 +53,7 @@
 	/// The cloak currently active
 	var/datum/status_effect/void_stealth/active_cloak
 	/// The cooldown applied after our cloak is removed.
-	var/remove_time =30 SECONDS
+	var/remove_time = 30 SECONDS
 
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
