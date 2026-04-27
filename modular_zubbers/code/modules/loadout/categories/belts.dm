@@ -70,4 +70,51 @@
 	item_path = /obj/item/storage/belt/fannypack/occult
 	//ckeywhitelist = list("gamerguy14948")
 
+/datum/loadout_item/belts/deforest_frontiermedkit
+	name = "Empty Frontier Medical Kit"
+	item_path = /obj/item/storage/medkit/frontier
 
+/datum/loadout_item/belts/chestrig
+	name = "Chest rig"
+	item_path = /obj/item/storage/belt/military
+
+/datum/loadout_item/belts/cin_chestrig
+	name = "CIN Surplus Chest Rig"
+	item_path = /obj/item/storage/belt/military/cin_surplus
+
+/datum/loadout_item/belts/medicalbelt
+	name = "Medical Belt"
+	item_path = /obj/item/storage/belt/medical
+	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_CORONER, JOB_CHEMIST, JOB_CHIEF_MEDICAL_OFFICER, JOB_PARAMEDIC)
+
+/datum/loadout_item/belts/sciencebag
+	name = "Science Bag"
+	item_path = /obj/item/storage/bag/xeno
+	restricted_roles = list(JOB_RESEARCH_DIRECTOR, JOB_SCIENTIST)
+
+/datum/loadout_item/belts/toolbelt
+	name = "Tool Belt"
+	item_path = /obj/item/storage/belt/utility
+	restricted_roles = list(JOB_STATION_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN, JOB_ROBOTICIST)
+
+/datum/loadout_item/belts/trashbag
+	name = "Trash Bag"
+	item_path = /obj/item/storage/bag/trash
+
+/datum/loadout_item/belts/constructionbag
+	name = "Construction Bag"
+	item_path = /obj/item/storage/bag/construction
+	restricted_roles = list(JOB_STATION_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN, JOB_CHIEF_ENGINEER)
+
+/datum/loadout_item/belts/plantbag
+	name = "Plant Bag"
+	item_path = /obj/item/storage/bag/plants
+
+/datum/loadout_item/belts/servingtray
+	name = "Serving Tray"
+	item_path = /obj/item/storage/bag/tray
+
+/datum/loadout_item/belts/chemistrybag
+	name = "chemistry bag"
+	item_path = /obj/item/storage/bag/chemistry
+	restricted_roles = list(JOB_CHEMIST, JOB_CHIEF_MEDICAL_OFFICER)

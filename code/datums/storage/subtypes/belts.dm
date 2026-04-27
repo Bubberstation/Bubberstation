@@ -287,7 +287,7 @@
 
 ///Fanny pack
 /datum/storage/fanny_pack
-	max_slots = 3
+	//max_slots = 3
 	max_specific_storage = WEIGHT_CLASS_SMALL
 	silent = TRUE
 

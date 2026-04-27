@@ -142,10 +142,6 @@
 	name = "Random Pizza Box"
 	item_path = /obj/item/pizzabox/random
 
-/datum/loadout_item/pocket_items/deforest_frontiermedkit
-	name = "Empty Frontier Medical Kit"
-	item_path = /obj/item/storage/medkit/frontier
-
 /datum/loadout_item/pocket_items/ingredients
 	name = "Wildcard Ingredient Box"
 	item_path = /obj/item/storage/box/ingredients/wildcard
