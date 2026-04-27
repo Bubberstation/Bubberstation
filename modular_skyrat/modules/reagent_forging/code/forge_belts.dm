@@ -1,3 +1,163 @@
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////// HOLSTERS ////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+
+/obj/item/storage/belt/holster/blacksmithed
+	name = "parent dev item"
+	desc = "you shouldn't be seeing this."
+	abstract_type = /obj/item/storage/belt/holster/blacksmithed
+	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
+	icon_state = "cowboy_holster"
+	inhand_icon_state = "holster"
+	worn_icon_state = "holster"
+	alternate_worn_layer = null
+	storage_type = /datum/storage/holster
+
+/obj/item/storage/belt/holster/blacksmithed/update_overlays()
+	. = ..()
+	if(!content_overlays)
+		return
+	for(var/obj/item/I in contents)
+		if(istype(I, /obj/item/gun/ballistic/revolver))
+			. += mutable_appearance('modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi', "belt_gun_wood")
+			return
+		if(istype(I, /obj/item/gun))
+			. += mutable_appearance('modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi', "belt_gun_black")
+			return
+		if(istype(I, /obj/item/melee/baton/security))
+			. += mutable_appearance('modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi', "belt_gun_baton")
+			return
+
+/obj/item/storage/belt/holster/blacksmithed/cowboy
+	name = "quickdraw holster"
+	desc = "A rugged leather belt. Can carry a handgun; [EXAMINE_HINT("the holster pouch makes quickdrawing a cinch")]. Also comes with some side pockets for speedloaders and magazines."
+	icon_state = "cowboy_holster"
+	inhand_icon_state = "utility"
+	worn_icon_state = "utility"
+	storage_type = /datum/storage/cowboy_holster
+
+/datum/storage/cowboy_holster
+	max_slots = 4
+	max_total_storage = 6
+	open_sound = 'sound/items/handling/holster_open.ogg'
+	open_sound_vary = TRUE
+
+/datum/storage/cowboy_holster/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound, list/holdables)
+	. = ..()
+	if(length(holdables))
+		set_holdable(holdables)
+		return
+
+	set_holdable(list(
+		/obj/item/food/grown/banana,
+		/obj/item/gun/ballistic/automatic/pistol,
+		/obj/item/gun/ballistic/revolver,
+		/obj/item/gun/energy/disabler,
+		/obj/item/gun/energy/dueling,
+		/obj/item/gun/energy/e_gun/hos,
+		/obj/item/gun/energy/e_gun/mini,
+		/obj/item/gun/energy/laser/captain,
+		/obj/item/gun/energy/laser/pistol,
+		/obj/item/gun/energy/laser/thermal,
+		/obj/item/ammo_box/advanced/s12gauge,
+		/obj/item/ammo_box/magazine,
+		/obj/item/ammo_box/speedloader,
+	))
+
+/datum/storage/cowboy_holster/attempt_insert(obj/item/to_insert, mob/user, override = FALSE, force = STORAGE_NOT_LOCKED, messages = TRUE)
+	. = ..()
+	sort_contents()
+	//parent.update_appearance()
+
+//resorts the contents so that guns are always the first thing pulled.
+/datum/storage/cowboy_holster/proc/sort_contents()
+	var/list/gunz = list()
+	var/list/everything_else = list()
+	var/obj/parent_obj = parent
+	if(!isnull(parent_obj))
+		for(obj/item/i in parent_obj.contents)
+			if(istype(i, /obj/item/gun/))
+				gunz += i
+			else
+				everything_else += i
+		parent_obj.contents = everything_else + gunz
+
+/////////////////////////////////////////////////
+
+/obj/item/storage/belt/holster/blacksmithed/charging
+	name = "charging holster"
+	desc = "A sophisticated plastic holster belt. Bluespace tech allows it to store whatever a standard weapon charger can; [EXAMINE_HINT("it'll charge whatever's kept")]."
+	icon_state = "charger_belt"
+	inhand_icon_state = "sec"
+	worn_icon_state = "sec"
+	storage_type = /datum/storage/charging_holster
+	var/obj/machinery/recharger/belt_charger/my_charger
+
+/obj/item/storage/belt/holster/blacksmithed/charging/update_overlays()
+	. = ..()
+	if(!isnull(my_charger.charging))
+		var/icon_to_use = "charger_belt_[(my_charger.using_power ? "charging" : "fullcharge")]"
+		. += mutable_appearance(icon, icon_to_use, alpha = src.alpha)
+
+/datum/storage/charging_holster
+	max_slots = 1
+	max_total_storage = 12
+	open_sound = 'sound/items/handling/holster_open.ogg'
+	open_sound_vary = TRUE
+	var/obj/machinery/recharger/belt_charger/my_charger
+
+/datum/storage/charging_holster/New()
+	. = ..()
+	my_charger = new(parent)
+	if(istype(parent, /obj/item/storage/belt/holster/blacksmithed/charging))
+		var/obj/item/storage/belt/holster/blacksmithed/charging/my_belt = parent
+		my_belt.my_charger = my_charger
+		my_charger.my_belt = my_belt
+	set_holdable(my_charger.allowed_devices)
+
+/datum/storage/charging_holster/can_insert(obj/item/to_insert, mob/user, messages = TRUE, force = STORAGE_NOT_LOCKED)
+	if(istype(to_insert, /obj/item/gun/energy))
+		var/obj/item/gun/energy/energy_gun = to_insert
+		if(!energy_gun.can_charge)
+			to_chat(user, span_notice("Your gun has no external power connector."))
+			return FALSE
+	. = ..()
+
+/datum/storage/charging_holster/attempt_insert(obj/item/to_insert, mob/user, override = FALSE, force = STORAGE_NOT_LOCKED, messages = TRUE)
+	. = ..()
+	if(.)
+		my_charger.activate_with_item(to_insert)
+
+/datum/storage/charging_holster/attempt_remove(obj/item/thing, atom/remove_to_loc, silent = FALSE, visual_updates = TRUE)
+	. = ..()
+	if(.)
+		my_charger.charging = null
+
+/obj/machinery/recharger/belt_charger
+	name = "dev item"
+	desc = "You shouldn't see this."
+	recharge_coeff = 1
+	var/obj/item/storage/belt/holster/blacksmithed/charging/my_belt
+
+/obj/machinery/recharger/belt_charger/proc/activate_with_item(/obj/item/my_item)
+	if(is_type_in_typecache(arrived, allowed_devices))
+		charging = arrived
+		START_PROCESSING(SSmachines, src)
+		update_use_power(ACTIVE_POWER_USE)
+		using_power = TRUE
+		update_appearance()
+	else
+		stack_trace("[src] recieved a [my_item], which doesn't accept it!")
+
+/obj/machinery/recharger/belt_charger/process
+	. = ..()
+	if(. != PROCESS_KILL)
+		my_belt.update_appearance()
+
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////// SHEATHS /////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+
 /obj/item/storage/belt/crusader	//Belt + sheath combination - still only holds one sword at a time though
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
@@ -119,11 +279,30 @@
 
 /obj/item/storage/belt/storage_pouch/attack_hand(mob/user, list/modifiers)	//Opens the bag on click - considering it's already anchored, this makes it function similar to how ghosts can open all nested inventories
 	. = ..()
-
 	atom_storage.show_contents(user)
 
 /obj/item/storage/belt/storage_pouch/Initialize(mapload)
 	. = ..()
-
 	atom_storage.max_slots = 6
 	atom_storage.max_specific_storage = WEIGHT_CLASS_SMALL //Rather than have a huge whitelist, the belt can simply hold anything a pocket can hold - Can easily be changed if it somehow becomes an issue
+
+/////////////////////////////////////////////////
+
+/obj/item/storage/belt/knifethrowers_belt
+	name = "knifethrower's belt"
+	desc = "Stores a frankly ridiculous number of knives and comparable short, bladed weapons. The shallow pocket depth makes it poor at storing other objects."
+	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
+	icon_state = "knifethrowers"
+	inhand_icon_state = "utility"
+	worn_icon_state = "utility"
+	storage_type = /datum/storage/knifethrowers
+
+/datum/storage/knifethrowers
+	. = ..()
+
+	set_holdable(list(
+		/obj/item/knife,
+		/obj/item/shard,
+		/obj/item/forging/reagent_weapon/dagger,
+		/obj/item/pen,
+	))
