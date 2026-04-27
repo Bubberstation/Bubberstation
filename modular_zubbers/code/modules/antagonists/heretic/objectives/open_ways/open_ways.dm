@@ -259,6 +259,8 @@
 		/obj/item/circular_saw, // culty
 		/obj/item/scalpel, // culty
 		/obj/item/camera, // culty
+		/obj/item/food/meat/slab, // culty
+		/obj/item/relic, // culty
 	)
 
 	// harder items
@@ -267,6 +269,7 @@
 		/mob/living/carbon/human, // a fucking corpse lol
 		/obj/item/stock_parts/subspace/crystal, // niche, if you get one ppl know what ur doing + bluespace
 		/obj/effect/decal/cleanable/blood, // culty + you need blood
+		/obj/item/stack/sheet/animalhide/carbon/human, // human skin. lol.
 	)
 
 	// harder items

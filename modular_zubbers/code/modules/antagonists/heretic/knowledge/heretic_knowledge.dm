@@ -20,6 +20,8 @@
 		return FALSE
 
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
+	if (!heretic_datum)
+		return FALSE
 	if (heretic_datum.has_living_heart() != HERETIC_HAS_LIVING_HEART)
 		loc.balloon_alert(user, "ritual failed, no living heart!")
 		return FALSE
