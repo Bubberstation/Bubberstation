@@ -255,28 +255,29 @@
 	)
 
 	var/static/list/potential_uncommoner_items = list(
-		/obj/item/melee/baton/security/cattleprod,
-		/obj/item/circular_saw,
-		/obj/item/scalpel,
-		/obj/item/clothing/glasses/sunglasses,
-		/obj/item/gun/energy/laser/practice,
+		/obj/item/melee/baton/security/cattleprod, // makeshift weapon, illegal, bulky. sorta culty
+		/obj/item/circular_saw, // culty
+		/obj/item/scalpel, // culty
+		/obj/item/camera, // culty
 	)
 
 	// harder items
 	var/static/list/potential_secondary_items = list(
-		/obj/item/assembly/flash,
-		/mob/living/carbon/human,
-		/obj/item/flashlight/seclite,
-		/obj/item/stock_parts/subspace/crystal,
-		/obj/item/clothing/gloves/color/yellow,
+		/obj/item/spear, // illegal, bulky, a makeshift waepon. sorta culty?
+		/mob/living/carbon/human, // a fucking corpse lol
+		/obj/item/stock_parts/subspace/crystal, // niche, if you get one ppl know what ur doing + bluespace
+		/obj/effect/decal/cleanable/blood, // culty + you need blood
 	)
 
 	// harder items
 	var/static/list/potential_tertiary_items = list(
-		/obj/item/stack/sheet/bone,
-		/obj/item/restraints/handcuffs/cable/zipties,
-		/obj/item/construction/rcd,
-		/obj/item/transfer_valve,
+		/obj/item/stack/sheet/bone, // lavaland + culty
+		/obj/item/stack/sheet/sinew, // lavaland + culty
+		/obj/item/restraints/handcuffs/cable/zipties, // have to break into sec or get arrested by beepsky (lol)
+		/obj/item/codex_cicatrix, // actually kinda hard 2 make + contra + outs u as heretic
+		/obj/item/skub, // actually surprisngly hard to find + contraband + bulky???
+		///obj/item/raw_anomaly_core, // hard to get, definitely culty, if youre not science you have no reason to seek out a raw core
+		///obj/item/mod/core/ethereal, // craftable if you grind a high energy bar
 	)
 
 	open_requirements[pick(potential_organs)] += 1

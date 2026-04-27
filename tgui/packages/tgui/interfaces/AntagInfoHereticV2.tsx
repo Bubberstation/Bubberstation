@@ -136,7 +136,7 @@ const GuideSection = () => {
           require a full ritual to open as well as a collection of items - using
           the ritual away from any way will show you all ways, and their items.
           Opening a way will create a dangerous event in its vicinity after a
-          minute!
+          minute! NOTE - Items required for rituals accept subtypes as well.
         </Stack.Item>
         <Stack.Item>
           - Draw a&nbsp;
