@@ -32,6 +32,16 @@
 	)
 	var/datum/objective/heretic_wildcard/wildcard_obj
 
+/datum/antagonist/heretic/on_gain()
+	. = ..()
+
+	var/mob/living/carbon/owner_carbon = owner.current
+	if (!istype(owner_carbon))
+		return
+	if (has_living_heart() != HERETIC_HAS_LIVING_HEART)
+		var/obj/item/organ/heart/our_heart = owner_carbon.get_organ_slot(ORGAN_SLOT_HEART)
+		our_heart.AddComponent(/datum/component/living_heart) // even synths get one free go
+
 /datum/antagonist/heretic/forge_primary_objectives(heretic_research_tree)
 	// total override
 

@@ -13,3 +13,13 @@
 		if (ispath(type, /obj/item/knife))
 			required_atoms -= type
 			required_atoms[/obj/item/knife/kitchen] = 1
+
+/datum/heretic_knowledge/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
+	. = ..()
+	if (!.)
+		return FALSE
+
+	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
+	if (heretic_datum.has_living_heart() != HERETIC_HAS_LIVING_HEART)
+		loc.balloon_alert(user, "ritual failed, no living heart!")
+		return FALSE

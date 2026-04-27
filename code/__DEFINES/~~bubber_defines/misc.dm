@@ -12,4 +12,4 @@ GLOBAL_DATUM_INIT(noncapital_i, /regex, regex("\\b\[i]\\b", "g")) */ // TODO: RE
 #define SENSORS_UPDATE_PERIOD (7 SECONDS)
 
 #define HERETIC_POINTS_PER_INFLUENCE 0.5
-#define HERETIC_POINTS_PER_WAY 1.5
+#define HERETIC_POINTS_PER_WAY 2

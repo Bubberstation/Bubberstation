@@ -3,7 +3,20 @@
 // damage resistance on the wakeup attack?
 
 /datum/action/cooldown/spell/pointed/void_phase
-	cooldown_time = 40 SECONDS // extra thick cooldown for a very strong teleport ability
+	desc = "Lets you blink to your pointed destination, causes 3x3 aoe damage bubble \
+		around your pointed destination and your current location. \
+		It has a minimum range of 3 tiles and a maximum range of 9 tiles. Requires LOS on the target."
+	cooldown_time = 35 SECONDS // extra thick cooldown for a very strong teleport ability
+
+/datum/action/cooldown/spell/pointed/void_phase/before_cast(atom/cast_on)
+	. = ..()
+	if(. & SPELL_CANCEL_CAST)
+		return
+
+	var/turf/in_LOS = view(cast_range, owner)
+	if (!(cast_on in in_LOS))
+		owner.balloon_alert(owner, "need line of sight!")
+		return SPELL_CANCEL_CAST
 
 /datum/heretic_knowledge_tree_column/void
 	knowledge_tier3 = /datum/heretic_knowledge/spell/void_stealth
