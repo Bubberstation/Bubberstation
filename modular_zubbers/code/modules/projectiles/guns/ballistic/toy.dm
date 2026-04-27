@@ -108,3 +108,4 @@
 	tac_reloads = FALSE
 	bolt_wording = "plunger"
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
+	mag_display = FALSE
