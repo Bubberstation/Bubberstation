@@ -79,7 +79,7 @@
 		. += "[initial(icon_state)]" + "_bolt_locked"
 //RACKING CODE END
 
-	//AUDIO
+//AUDIO
 	fire_sound = 'sound/items/syringeproj.ogg'
 	load_sound = 'sound/items/weapons/gun/general/mag_bullet_insert.ogg'
 	load_sound_vary = TRUE
