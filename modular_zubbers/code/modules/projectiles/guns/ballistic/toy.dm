@@ -8,7 +8,7 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/foamforce_implant
 	item_flags = NONE
 
-	//JAM CODE
+//JAM CODE
 	var/jammed = FALSE
 	var/can_jam = TRUE
 	var/jamming_chance = 10
