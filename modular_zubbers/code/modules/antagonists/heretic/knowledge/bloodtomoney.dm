@@ -18,6 +18,10 @@
 	return TRUE
 
 /datum/heretic_knowledge/blood_to_money/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
+	. = ..()
+	if (!.)
+		return
+
 	var/list/blood_data = get_blood_data_from(atoms)
 	return length(blood_data)
 
