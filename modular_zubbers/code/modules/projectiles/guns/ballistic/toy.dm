@@ -1,7 +1,7 @@
 /obj/item/gun/ballistic/toy/foamforce_implant
 	name = "Pop-up Donksoft Blaster"
-	desc = "A single shot, plunger primed Donksoft blaster that pops out of a panel on your wrist. You wonder if it was worth it."
-	icon = 'modular_zubbers/icons/obj/guns/popupdart_toy.dmi' //modified Derringer sprite by the wonderful Niim
+	desc = "A spring primed Donksoft blaster that pops out of a panel on your arm. You wonder if having a high tension spring installed in your arm was a good idea."
+	icon = 'modular_zubbers/icons/obj/guns/popupdart_toy.dmi' //modified Derringer sprite by the wonderful Niim. Further modified by myself/MrGloopy.
 	icon_state = "popupdart_toy"
 	force = 0
 	throwforce = 0
@@ -40,7 +40,7 @@
 	if (bolt_locked)
 		drop_bolt(user)
 		return
-	balloon_alert(user, "plunger decocked")
+	balloon_alert(user, "plunger deprimed")
 	playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
 	handle_chamber(empty_chamber =  FALSE, from_firing = FALSE, chamber_next_round = FALSE)
 	bolt_locked = TRUE
@@ -83,8 +83,9 @@
 	fire_sound = 'sound/items/syringeproj.ogg'
 	load_sound = 'sound/items/weapons/gun/general/mag_bullet_insert.ogg'
 	load_sound_vary = TRUE
-	rack_sound_volume = 10
+	rack_sound_volume = 50
 	rack_sound = 'sound/items/weapons/gun/sniper/rack.ogg'
+	bolt_drop_sound = 'sound/items/weapons/gun/rifle/bolt_in.ogg'
 	fire_delay = 7
 	sound_vary = TRUE
 	rack_sound_vary = TRUE
