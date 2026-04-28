@@ -58,8 +58,12 @@
 #define ORDER_SPECIAL_ENABLED (1 << 6)
 /// Unavailable to departmental order consoles even if it is in an appropriate category
 #define ORDER_NOT_DEPARTMENTAL (1 << 7)
+// BUBBER EDIT START
+/// Only orderable via Interdyne Express consoles
+#define ORDER_INTERDYNE_ONLY (1 << 8)
+// BUBBER EDIT END
 /// This will notify admins when it is purchased
-#define ORDER_DANGEROUS (1 << 8)
+#define ORDER_DANGEROUS (1 << 9)
 /// This is set when something is created by an admin to make sure its contents is also marked as such
 #define ORDER_ADMIN_SPAWNED (1 << 9)
 
