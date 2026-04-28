@@ -291,6 +291,7 @@
 			qdel(src)
 			return TRUE
 		to_chat(user, span_warning("The taste is disgusting, but you force down the potion anyway.")) // BUBBER EDIT ADDITION - Allows for potion shop gimmicks
+		qdel(src) // BUBBER EDIT ADDITION - Allows for potion shop gimmicks
 		potion_effect(user) // BUBBER EDIT ADDITION - Allows for potion shop gimmicks
 		return TRUE
 		// BUBBER EDIT ADDITION END
