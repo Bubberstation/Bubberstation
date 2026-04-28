@@ -8,6 +8,10 @@
 	if (caster.has_status_effect(/datum/status_effect/void_stealth))
 		return FALSE
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(caster)
-	if (!isturf(victim) && heretic_datum?.has_living_heart() != HERETIC_HAS_LIVING_HEART)
-		caster.balloon_alert(caster, "can only draw runes with no living heart!")
-		return FALSE
+	if (!isturf(victim))
+		if (heretic_datum?.has_living_heart() != HERETIC_HAS_LIVING_HEART)
+			caster.balloon_alert(caster, "can only draw runes with no living heart!")
+			return FALSE
+		if (heretic_datum.owner?.current && HAS_TRAIT(heretic_datum.owner.current, TRAIT_MANSUS_INHIBITION))
+			caster.balloon_alert(caster, "inhibited! can only draw runes!")
+			return FALSE

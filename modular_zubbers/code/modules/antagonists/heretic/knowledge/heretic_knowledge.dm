@@ -19,6 +19,9 @@
 	if (!.)
 		return FALSE
 
+	if (HAS_TRAIT(user, TRAIT_MANSUS_INHIBITION))
+		loc.balloon_alert(user, "inhibited! can't perform ritual!")
+		return FALSE
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
 	if (!heretic_datum)
 		return FALSE
