@@ -1032,6 +1032,14 @@
 			var/datum/heretic_knowledge/passive_upgrade/passive = knowledge_type
 			if (passive_level != (passive::level - 1))
 				continue
+		if (ispath(knowledge_type, /datum/heretic_knowledge/mansus_mark))
+			var/should_continue = TRUE
+			for (var/datum/heretic_knowledge/typepath as anything in researched_knowledge)
+				if (ispath(typepath, /datum/heretic_knowledge/enable_blades))
+					should_continue = FALSE
+					break
+			if (should_continue)
+				continue
 		researchable_knowledge += tree[knowledge_type][HKT_ID]
 
 	var/list/shop = heretic_shops[HERETIC_KNOWLEDGE_SHOP]

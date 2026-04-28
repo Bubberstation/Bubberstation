@@ -1,5 +1,3 @@
-// TODO - per-path passive costs
-
 /datum/heretic_knowledge/passive_upgrade
 	abstract_type = /datum/heretic_knowledge/passive_upgrade
 	research_tree_icon_path = 'icons/obj/weapons/khopesh.dmi'
