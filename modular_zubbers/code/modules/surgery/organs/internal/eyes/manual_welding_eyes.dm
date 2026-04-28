@@ -81,5 +81,5 @@
 	. = ..()
 	active = FALSE
 	tint = 0
-	flash_protect = FLASH_PROTECTION_NONE
+	flash_protect = FLASH_PROTECTION_SENSITIVE
 	removingperson.cure_blind(FLASHLIGHT_EYES)
