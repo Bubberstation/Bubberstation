@@ -74,8 +74,5 @@
 /// Used by the antimagic collar - prevents use of rituals and most spells from Acolytes.
 #define TRAIT_MANSUS_INHIBITION "mansus_inhibition"
 
-/// Trait that removes mood and replaces it with hunger bar.
-#define TRAIT_NOMOOD "trait_nomood"
-
 /// Trait that gives your brain traumas more resilance
 #define TRAIT_RESILIENT_TRAUMAS "trait_resilient_traumas"
