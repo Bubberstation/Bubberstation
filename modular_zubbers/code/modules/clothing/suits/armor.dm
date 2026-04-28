@@ -116,7 +116,7 @@
 	wound = 25
 
 /obj/item/clothing/suit/hooded/secjuggernaut
-	name = "tactical security juggernaut suit"
+	name = "security juggernaut suit"
 	desc = "An advanced suit of armor. Difficult to put on and cumbersome to wear. Comes with a built-in helmet for EVA action."
 	icon_state = "security_jugger"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
@@ -126,11 +126,12 @@
 	inhand_icon_state = "swat_suit"
 	hoodtype = /obj/item/clothing/head/hooded/secjuggernaut
 	armor_type = /datum/armor/secjuggernaut
+	siemens_coefficient = 0
 	strip_delay = 25 SECONDS
 	equip_delay_self = 12 SECONDS
 	equip_delay_other = 15 SECONDS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | IMMUTABLE_SLOW
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | IMMUTABLE_SLOW | SNUG_FIT
 	cold_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT_OFF
 	heat_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
@@ -139,30 +140,80 @@
 	drag_slowdown = 5
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, TRAIT_PUSHIMMUNE, TRAIT_NEGATES_GRAVITY, TRAIT_NO_SLIP_WATER, TRAIT_NO_VEHICLE, TRAIT_HUGE_CLOTHES)
+	allowed = list(
+		/obj/item/gun/ballistic/shotgun/automatic/combat
+	)
+
+/obj/item/clothing/suit/hooded/secjuggernaut/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
 
 /obj/item/clothing/head/hooded/secjuggernaut
-	name = "tactical security juggernaut helmet"
+	name = "security juggernaut helmet"
 	desc = "An advanced helmet. Easily put on compared to the armor."
 	icon_state = "security_jugger"
-	icon = "modular_zubbers/icons/obj/clothing/head/helmet.dmi"
-	worn_icon = "modular_zubbers/icons/mob/clothing/head/helmet.dmi"
+	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	worn_icon_muzzled = 'modular_zubbers/icons/mob/clothing/head/helmet_muzzled.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
-	inhand_icon_state = "swat_suit"
 	armor_type = /datum/armor/secjuggernaut
-	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | IMMUTABLE_SLOW |SNUG_FIT
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | IMMUTABLE_SLOW | SNUG_FIT | HEADINTERNALS
+	clothing_traits = list(TRAIT_HEAD_INJURY_BLOCKED)
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT_OFF
 	heat_protection = HEAD
 	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
-	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS|HIDESNOUT
+	flags_inv = HIDEHAIR|HIDEFACE|HIDESNOUT
+	flags_cover = HEADCOVERSEYES|HEADCOVERSMOUTH|PEPPERPROOF
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
+	actions_types = list(/datum/action/item_action/toggle_helmet_light)
+	light_system = OVERLAY_LIGHT_DIRECTIONAL
+	light_range = 4
+	light_power = 0.8
+	light_color = "#ffcc99"
+	light_on = FALSE
+	var/on = FALSE
+
+	var/sound_on = 'sound/items/weapons/magin.ogg'
+	var/sound_off = 'sound/items/weapons/magout.ogg'
+
+/obj/item/clothing/head/hooded/secjuggernaut/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+
+/obj/item/clothing/head/hooded/secjuggernaut/proc/toggle_helmet_light(mob/living/user)
+	on = !on
+	if(on)
+		turn_on(user)
+	else
+		turn_off(user)
+	update_appearance()
+
+/obj/item/clothing/head/hooded/secjuggernaut/update_icon_state()
+	icon_state = "security_jugger[on]"
+	return ..()
+
+/obj/item/clothing/head/hooded/secjuggernaut/proc/turn_on(mob/user)
+	set_light_on(TRUE)
+
+/obj/item/clothing/head/hooded/secjuggernaut/proc/turn_off(mob/user)
+	set_light_on(FALSE)
+
+/obj/item/clothing/head/hooded/secjuggernaut/on_saboteur(datum/source, disrupt_duration)
+	. = ..()
+	if(on)
+		toggle_helmet_light()
+		return TRUE
+
+/obj/item/clothing/head/hooded/secjuggernaut/attack_self(mob/living/user)
+	toggle_helmet_light(user)
+
 /datum/armor/secjuggernaut
-	melee = 70
+	melee = 75
 	bullet = 70
 	laser = 60
-	energy = 60
+	energy = 50
 	bomb = 100
 	bio = 100
 	fire = 100
