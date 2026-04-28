@@ -264,6 +264,31 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// BELT COMPLETION ///////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/crafting_bench_recipe/cowboy_holster
+	recipe_name = "cowboy holster"
+	recipe_desc = "A quickdraw holster-belt that can additionally store extra ammo boxes."
+	recipe_requirements = list(
+		/obj/item/stack/sheet/leather = 3,
+		/obj/item/stack/sheet/mineral/gold = 1,
+		/obj/item/stack/sheet/mineral/silver = 1,
+	)
+	resulting_item = /obj/item/storage/belt/holster/blacksmithed/cowboy
+	relevant_skill_level = 7
+	time_to_assemble = 3 SECONDS
+	required_traits = list(TRAIT_KNOW_GUNSMITHING)
+/datum/crafting_bench_recipe/charging_holster
+	recipe_name = "charging holster"
+	recipe_desc = "A bluespace holster-belt that can charge electric guns stored in it."
+	recipe_requirements = list(
+		/obj/item/stack/sheet/plastic = 1,
+		/obj/item/stack/sheet/mineral/gold = 1,
+		/obj/item/stack/sheet/bluespace_crystal = 1,
+		/obj/item/circuitboard/machine/recharger = 1,
+	)
+	resulting_item = /obj/item/storage/belt/holster/blacksmithed/charging
+	relevant_skill_level = 7
+	time_to_assemble = 3 SECONDS
+	required_traits = list(TRAIT_KNOW_GUNSMITHING, TRAIT_KNOW_CIRCUIT_SMITHING)
 
 /datum/crafting_bench_recipe/crusader_belt
 	recipe_name = "scabbard-utility belt"
@@ -273,7 +298,19 @@
 		/obj/item/stack/sheet/cloth = 2,
 		/obj/item/stack/sheet/mineral/gold = 1,
 	)
+	resulting_item = /obj/item/storage/belt/crusader
 	relevant_skill_level = 7
+	time_to_assemble = 3 SECONDS
+	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
+
+/datum/crafting_bench_recipe/knifethrower
+	recipe_name = "knifethrower's belt"
+	recipe_desc = "A belt that can hold a ton of knives."
+	recipe_requirements = list(
+		/obj/item/stack/sheet/leather = 3,
+		/obj/item/stack/sheet/cloth = 2,
+	)
+	resulting_item = /obj/item/storage/belt/knifethrowers_belt
 	time_to_assemble = 3 SECONDS
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 

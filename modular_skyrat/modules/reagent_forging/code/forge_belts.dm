@@ -75,7 +75,7 @@
 	var/list/everything_else = list()
 	var/obj/parent_obj = parent
 	if(!isnull(parent_obj))
-		for(obj/item/i in parent_obj.contents)
+		for(var/obj/item/i in parent_obj.contents)
 			if(istype(i, /obj/item/gun/))
 				gunz += i
 			else
@@ -88,8 +88,8 @@
 	name = "charging holster"
 	desc = "A sophisticated plastic holster belt. Bluespace tech allows it to store whatever a standard weapon charger can; [EXAMINE_HINT("it'll charge whatever's kept")]."
 	icon_state = "charger_belt"
-	inhand_icon_state = "sec"
-	worn_icon_state = "sec"
+	inhand_icon_state = "security"
+	worn_icon_state = "security"
 	storage_type = /datum/storage/charging_holster
 	var/obj/machinery/recharger/belt_charger/my_charger
 
@@ -136,7 +136,7 @@
 /obj/machinery/recharger/belt_charger
 	name = "dev item"
 	desc = "You shouldn't see this."
-	recharge_coeff = 1
+	recharge_coeff = 0.75
 	var/obj/item/storage/belt/holster/blacksmithed/charging/my_belt
 
 /obj/machinery/recharger/belt_charger/proc/activate_with_item(/obj/item/my_item)
@@ -149,7 +149,7 @@
 	else
 		stack_trace("[src] recieved a [my_item], which doesn't accept it!")
 
-/obj/machinery/recharger/belt_charger/process
+/obj/machinery/recharger/belt_charger/process(seconds_per_tick)
 	. = ..()
 	if(. != PROCESS_KILL)
 		my_belt.update_appearance()
@@ -295,14 +295,43 @@
 	icon_state = "knifethrowers"
 	inhand_icon_state = "utility"
 	worn_icon_state = "utility"
+	drop_sound = 'sound/items/handling/toolbelt_drop.ogg'
+	pickup_sound = 'sound/items/handling/toolbelt_pickup.ogg'
 	storage_type = /datum/storage/knifethrowers
+
+/obj/item/storage/belt/knifethrowers_belt/update_overlays()
+	. = ..()
+	if(contents.len > 0)
+		var/icon_to_use = "belt_knives_[(contents.len > 8 ? 8 : contents.len)]"
+		. += mutable_appearance(icon, icon_to_use, alpha = src.alpha)
+
+/datum/storage/knifethrowers
+	max_slots = 14
+	max_total_storage = 60
+	open_sound = 'sound/items/handling/holster_open.ogg'
+	open_sound_vary = TRUE
 
 /datum/storage/knifethrowers
 	. = ..()
 
 	set_holdable(list(
-		/obj/item/knife,
-		/obj/item/shard,
 		/obj/item/forging/reagent_weapon/dagger,
+		/obj/item/knife,
 		/obj/item/pen,
+		/obj/item/scalpel,
+		/obj/item/shard,
+		/obj/item/spess_knife,
+		/obj/item/toy_dagger,
 	))
+
+/////////////////////////////////////////////////
+
+/obj/item/storage/bag/plants/bluespace
+	name = "bluespace plant bag"
+	desc = "."
+	icon_state = "BS_RPED"
+	inhand_icon_state = "BS_RPED"
+	w_class = WEIGHT_CLASS_NORMAL
+	storage_type = /datum/storage/rped/bluespace
+
+	storage_type = /datum/storage/bag/plants

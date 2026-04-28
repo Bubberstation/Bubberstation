@@ -69,17 +69,17 @@
 		return FALSE
 
 ////////////////////////// SMITHING AND SMITH REPAIRING ///////////////////////////////////////
-/obj/item/forging/reagent_weapon/proc/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
+/obj/item/gun/ballistic/revolver/handcrafted_single_action/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
 	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
 	if(!isnull(smith_component))
 		smith_component.reset()
 		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio())
-/obj/item/forging/reagent_weapon/proc/passive_cool_item()
+/obj/item/gun/ballistic/revolver/handcrafted_single_action/passive_cool_item()
 	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
 	if(!isnull(smith_component))
 		smith_component.reset()
 		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio(), TRUE)
-/obj/item/forging/reagent_weapon/proc/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
+/obj/item/gun/ballistic/revolver/handcrafted_single_action/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
 	var/new_force_penalty = 0
 	if(completion_ratio < 1 || force_incomplete_penalty)
 		new_force_penalty = initial(force) * (1.0 - lerp(MIN_INCOMPLETE_DAMAGE_MULT, MAX_INCOMPLETE_DAMAGE_MULT, completion_ratio))
