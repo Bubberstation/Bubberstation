@@ -334,15 +334,28 @@
 		var/mutable_appearance/left_scar = mutable_appearance('icons/mob/human/human_eyes.dmi', "eye_scar_left", -EYES_LAYER, parent, alpha = eyes_opacity)
 		left_scar.color = my_head.draw_color
 		overlays += left_scar
-	//BUBBER EDIT END - EYES OPACITY
-	// BUBBER EDIT START - Customization Emissives and eyes opacity
+
+	// BUBBER EDIT START - Customization Emissives & Quad Eyes
 	if(is_emissive)
 		var/mutable_appearance/emissive_left = emissive_appearance_copy(eye_left, owner)
 		var/mutable_appearance/emissive_right = emissive_appearance_copy(eye_right, owner)
 
 		overlays += emissive_left
 		overlays += emissive_right
-	// BUBBER EDIT END - Customization Emissives and eyes opacity
+
+	if(HAS_TRAIT(owner, TRAIT_QUAD_EYES)) // (*) (*) v (*) (*)
+		var/mutable_appearance/eye_left_2 = mutable_appearance('icons/mob/human/human_eyes.dmi', "eyes_l", -EYES_LAYER, parent)
+		eye_left_2.color = parent.get_left_eye_color()
+		eye_left_2.pixel_w -= parent.quad_eyes_offset_width
+		eye_left_2.pixel_z += parent.quad_eyes_offset
+		var/mutable_appearance/eye_right_2 = mutable_appearance('icons/mob/human/human_eyes.dmi', "eyes_r", -EYES_LAYER, parent)
+		eye_right_2.color = parent.get_right_eye_color()
+		eye_right_2.pixel_w += parent.quad_eyes_offset_width
+		eye_right_2.pixel_z += parent.quad_eyes_offset
+
+		overlays += eye_left_2
+		overlays += eye_right_2
+	// BUBBER EDIT END - Customization Emissives & Quad Eyes
 
 	if(my_head.worn_face_offset)
 		for (var/mutable_appearance/overlay as anything in overlays)
