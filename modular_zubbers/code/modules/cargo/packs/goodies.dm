@@ -215,9 +215,3 @@
 	desc = "Donksoft's pop-up blaster is great for annoying coworkers. Pack contains one implant and a mini box of spare darts."
 	cost = PAYCHECK_CREW * 8
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/foamforce_implant, /obj/item/ammo_box/foambox/mini)
-
-/datum/supply_pack/goody/spessknife
-	name = "Spess Knife"
-	desc = "The classic Spess Knife that holds the universe's secrets."
-	cost = PAYCHECK_CREW * 7
-	contains = list(/obj/item/spess_knife)
