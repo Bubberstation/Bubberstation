@@ -3,16 +3,17 @@
 	desc = "A cumbersome collar of antimagic nature, capable of reaching into - and cutting off - a thread of mansus wherever it may be."
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	icon_state = "antimagic_collar"
-	worn_icon_state = "collar_bomb"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	worn_icon_state = "antimagic_collar"
 	inhand_icon_state = "reverse_bear_trap"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	clothing_flags = INEDIBLE_CLOTHING|DANGEROUS_OBJECT
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_materials = list(
-		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 2,
-		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 0.25,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 0.25,
 	)
 
 	armor_type = /datum/armor/collar_bomb
