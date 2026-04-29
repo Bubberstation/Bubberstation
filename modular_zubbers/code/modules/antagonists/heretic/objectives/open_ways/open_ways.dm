@@ -274,7 +274,7 @@
 
 	// harder items
 	var/static/list/potential_tertiary_items = list(
-		/obj/item/stack/sheet/bone, // lavaland + culty
+		list(/obj/item/stack/sheet/bone, /obj/item/food/meat/slab/human/mutant/skeleton), // lavaland + culty
 		/obj/item/stack/sheet/sinew, // lavaland + culty
 		/obj/item/restraints/handcuffs/cable/zipties, // have to break into sec or get arrested by beepsky (lol)
 		/obj/item/codex_cicatrix, // actually kinda hard 2 make + contra + outs u as heretic
