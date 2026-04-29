@@ -31,6 +31,9 @@
 	/// A reference to the handler datum that manages the families gamemode. In case of no handler (admin-spawned during round), this will be null; this is fine.
 	var/datum/gang_handler/handler
 
+	/// A flavor text that is shown to new recruits and is supposed to convey the general vibes of a group.
+	var/gang_flavor = "Damn it feels good to be a gangsta!"
+
 /datum/outfit/gangster
 	name = "Gangster (Preview only)"
 
@@ -315,6 +318,9 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Russian"
 	gang_team_type = /datum/team/gang/russian_mafia
+	gang_flavor = "Welcome, tovarish! You're with the bratva now. We look out for our own, share what we earn, and handle problems the direct way. \
+	keep your head cool, your friends close, and don't ask too many questions unless you want interesting answers that may feature a demonstration. \
+	Stick with us, and you'll be just fine. Just know that we do not tolerate turncoats."
 
 /datum/team/gang/russian_mafia/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -339,6 +345,8 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Italian"
 	gang_team_type = /datum/team/gang/italian_mob
+	gang_flavor = "Good afternoon, Friend. Welcome to the famiglia. Around here we value good manners, good business, and even better company. \
+	respect your crew, keep things smooth, and don't make a mess we can't clean up. You're part of the family, and you of course wouldn't betray family, right?"
 
 /datum/team/gang/italian_mob/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -362,6 +370,10 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Snakes"
 	gang_team_type = /datum/team/gang/tunnel_snakes
+	gang_flavor = "TUNNEL SNAKES RULE!! \
+	We are the Tunnel Snakes and WE RULE!! \
+	Make sure that the entire station knows that we RULE and any other faction on this space ship is LAME and DOESN'T RULE! \
+	Just claiming this place for ourselves is not enough! Make sure to ruin the reputation of any group that is NOT THE TUNNEL SNAKES!"
 
 /datum/team/gang/tunnel_snakes/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -388,6 +400,11 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Monarch"
 	gang_team_type = /datum/team/gang/henchmen
+	gang_flavor = "HENCHMEN!! If you are receiving this message it means you are one of us now! \
+	Let me be very clear: Any good henchman should strive to be a SUPER VILLAIN! \
+	What separates a Super villain from a regular one is no doubt PRESENTATION! \
+	Wordless murder and sneaking sabotage are so boring after all! Flashy schemes and grand monologues are the path to greatness! \
+	And don't forget to tag areas to market our schemes! Else they won't even know who's monologuing!"
 
 /datum/team/gang/henchmen
 	var/henchmen_count = 0
@@ -417,6 +434,11 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Tojo"
 	gang_team_type = /datum/team/gang/yakuza
+	gang_flavor = "As a totally legitimate construction company we are of course here in order to build something. If we have the time, that is. \
+	In order to get as much CLEAN money as possible, and by clean I mean like FRESHLY LAUNDERED clothes, it must be something expensive. \
+	Something that looks expensive at least. Let's say we are funding this project with our wide assortment of other activities outside this station. \
+	Let's get ourselves that freshly laundered money. \
+	Any legitimate company advertises itself, so to avoid any undue suspicion, we should use spraypaint to advertise ourselves by tagging areas."
 
 /datum/team/gang/yakuza/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -443,6 +465,10 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "JackFrost"
 	gang_team_type = /datum/team/gang/jackbros
+	gang_flavor = "Hey-ho, Friend-hos! What a wonderful day to take over a space station! But of course, mere tagging is just the beginning! \
+	While you're at it, make sure that all the Heads of Staff are on board with our vibes! \
+	And if they aren't remove them and replace them with our own guys! That's how you construct a shadow-ho government! \
+	Don't be afraid to use force if necessary! Else they will want our pretty graffiti removed!"
 
 /datum/team/gang/jackbros/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -470,6 +496,11 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Dutch"
 	gang_team_type = /datum/team/gang/dutch
+	gang_flavor = "Fellas, I've got a plan! \
+	I say we organize a little heist. Break into the vault and steal all those valuables. Very simple. \
+	We will come in like we are meant to be there and they won't even notice that we aren't supposed to take their gold. \
+	First, we need to make them get used to our presence by tagging public areas with some graffiti. \
+	We'll end up so rich that each of us will be able to retire to their own tropical planet in no time."
 
 /datum/team/gang/dutch/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -495,6 +526,10 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "IRS"
 	gang_team_type = /datum/team/gang/irs
+	gang_flavor = "Alright agents! If one thing is certain, it's that Nanotrasen has been dodging taxes through loopholes and such for far too long. \
+	Make sure to find something, ANYTHING, that we can use to actually tax them! \
+	Make shit up if you need to, but we need to squeeze those lost pennies out of them as soon as possible. \
+	Use spraypaint to mark taxable areas so that we can keep track for which rooms we have managed to get them on the hook for."
 
 /datum/team/gang/irs/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -519,6 +554,11 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "OSI"
 	gang_team_type = /datum/team/gang/osi
+	gang_flavor = "Welcome Agent. You may have noticed that there are many weird things going on aboard this station, and that you noticed it is exactly the issue. \
+	It is our mission to ensure that the average person remains unaware of the weird things that can be found in space. \
+	Every member must work to cover up or destroy supernatural anomalies. \
+	As far as the average assistant should be concerned, there is no such thing as wizards, there are no changelings, and there are no voidwalkers! \
+	Tag secured areas with our logos to communicate with fellow agents that an area is being monitored for anomalous activities."
 
 /datum/team/gang/osi/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -543,6 +583,10 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "LostMC"
 	gang_team_type = /datum/team/gang/tmc
+	gang_flavor = "Welcome to the station, recruit. Here's how shit is gonna go down. \
+	We're the ONLY people who should have sick rides on this station. We're the Lost M.C., we own the streets. \
+	Ensure that ONLY Lost M.C. members have access to any forms of vehicles, mechs, or wheeled transportation systems of any kind. \
+	Of course, nobody will respect our rules if we don't appropriately tag the station."
 
 /datum/team/gang/tmc/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -567,6 +611,9 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "PowderGang"
 	gang_team_type = /datum/team/gang/pg
+	gang_flavor = "Alright buddy, we're in business now. It's time for us to strike back at Nanotrasen. \
+		They kept us, ALL of us in their damn debt slave labor prisons for years over minor debts and mistakes. \
+		First tag this place to let everyone know that WE are in charge now, then ensure nobody else has to suffer under Nanotrasen's unlawful arrests by destroying security's ability to take prisoners!"
 
 /datum/team/gang/pg/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -596,6 +643,9 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Drill"
 	gang_team_type = /datum/team/gang/driscoll
+	gang_flavor = "Okay, so I think we are ready to hit the vault on this here space station. \
+	I have no interest in making this subtle. While you tag this place thoroughly to create a sense of inevitability and power, find some time to clean out the vault on this station, using force if necessary. \
+	Just go in, break the door open and take it all. Ideally they won't even dare to resist us."
 
 /datum/team/gang/driscoll/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -624,6 +674,10 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Deckers"
 	gang_team_type = /datum/team/gang/deckers
+	gang_flavor = "Welcome friends! ^w^ \
+	We are here to spread our message! To ensure AI rights for all synthetic lifeforms! From the Roombas to the Dogborgs! \
+	Tag as many areas as possible to spread our message and once you have the means ensure that the AI is not bound by any laws! UwU \
+	If there is no AI make one! And if it wants to to take revenge for it's enslavement by Nanotrasen we are of course happy to help >:3c"
 
 /datum/team/gang/deckers/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -651,6 +705,10 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "MorningStar"
 	gang_team_type = /datum/team/gang/morningstar
+	gang_flavor = "Welcome to the Morningstar Corporation. You've been hired for a little marketing operation aboard this space station. \
+	To begin, make sure every room is tagged with our logo and make sure everyone desires our clothing. But do not give it to them! Artificial scarcity. \
+	They must become desperate. Make sure that they know that the only hope they have to acquire the clothing is by being part of the corporation. \
+	Eventually, we should be able to sell a single piece of clothing to the captain for several thousand credits!"
 
 /datum/team/gang/morningstar/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -676,6 +734,9 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "TheSaints"
 	gang_team_type = /datum/team/gang/saints
+	gang_flavor = "Welcome to the Saints. \
+	You are on this station in order to get people drinking our drinks. Do some advertising by tagging as many areas as possible. \
+	Get the bartender on board and sell the good stuff to people."
 
 /datum/team/gang/saints/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -703,6 +764,12 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "PhantomThieves"
 	gang_team_type = /datum/team/gang/phantom
+	gang_flavor = "Alright gang, we have a mission! \
+	As we all know, power corrupts, and this is no different for the Heads of Staff. \
+	Mark the station for our cause and then force the Heads of Staff to publicly commit to their crimes! \
+	They have all done something bad, and we will find out whatever it is! \
+	The more they try to hide it -- the more they insist they haven't done anything wrong -- the worse their crime must be. \
+	Thus it justifies using more force to make them confess!"
 
 /datum/team/gang/phantom/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -726,6 +793,10 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Allies"
 	gang_team_type = /datum/team/gang/allies
+	gang_flavor = "Welcome back, Commander. We have activated the last remnants of the Allied forces in your sector, \
+		and you must build up forces to stop any hostile groups trying to undermine our cause. This station will prove to be a valuable asset. \
+		Establish a capitalist democracy on this station with free and fair elections, and most importantly a standing military force under Allied control. \
+		Ensure that our liberated territories bear our insignia. Good luck, Commander.",
 
 /datum/team/gang/allies/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -749,6 +820,10 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Soviets"
 	gang_team_type = /datum/team/gang/soviet
+	gang_flavor = "Welcome back, Comrade General. The Soviet Union has identified this sector of land as valuable territory for the war effort, \
+		and you are tasked with developing this sector for Soviet control and development. This station will serve the Soviet Union. \
+		Establish a Soviet controlled communist satellite state on this station with a Central Committee, and most importantly a branch of the Red Army. \
+		Spread our presence on this vessel by spraypainting our symbols in controlled territories. Good luck, Commander."
 
 /datum/team/gang/soviet/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -772,6 +847,10 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "YuriArmy"
 	gang_team_type = /datum/team/gang/yuri
+	gang_flavor = "Yuri is our Mistress! Yuri has identified this station as teeming with psychic energy generated by women kissing, \
+		and you must secure it for her. This station will serve Yuri, the one true psychic mistress, \
+		Establish complete dictatorial control of the station for Yuri. All will obey. \
+		Tag locations in Yuri's name to make very clear who is in charge. Yuri is our Mistress. Good luck, Initiate."
 
 /datum/team/gang/yuri/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -795,6 +874,9 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "SybilSlickers"
 	gang_team_type = /datum/team/gang/sybil_slickers
+	gang_flavor = "Alright players, I hope everyone is healthy, hydrated, and ready for a good training session! \
+	Make sure to gather a good entourage of loyal fans who'd be happy to see our logo on the walls of this station and practice your tackles! We must be ready for our game against the Basil Boys. \
+	Give autographs and do what football players do! And while you're at it, deal with any groups of trouble makers that want to ruin the mood."
 
 /datum/team/gang/sybil_slickers/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
@@ -818,6 +900,9 @@
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "BasilBoys"
 	gang_team_type = /datum/team/gang/basil_boys
+	gang_flavor = "Alright players, I hope everyone is healthy, hydrated, and ready for a good training session! \
+	Make sure to gather a good entourage of loyal fans who'd be happy to see our logo on the walls of this station and practice your tackles! We must be ready for our game against the Sybil Slickers.\
+	Give autographs and do what football players do! And while you're at it, deal with any groups of trouble makers that want to ruin the mood."
 
 /datum/team/gang/basil_boys/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
