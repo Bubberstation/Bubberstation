@@ -85,6 +85,8 @@
 	COOLDOWN_DECLARE(cooldown_mod_move)
 	/// Person wearing the MODsuit.
 	var/mob/living/carbon/human/wearer
+	/// BUBBER EDIT - For Proteans Primarily. To stop them
+	var/drag_pickup = TRUE
 
 /obj/item/mod/control/Initialize(mapload, datum/mod_theme/new_theme, new_skin, obj/item/mod/core/new_core)
 	. = ..()
@@ -107,7 +109,8 @@
 		module = new module(src)
 		install(module)
 	START_PROCESSING(SSobj, src)
-	AddElement(/datum/element/drag_pickup)
+	if(drag_pickup) // BUBBER EDIT
+		AddElement(/datum/element/drag_pickup) // BUBBER EDIT END
 
 /obj/item/mod/control/Destroy()
 	STOP_PROCESSING(SSobj, src)

@@ -195,11 +195,6 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 	icon = BODYPART_ICON_XENO
 	limb_id_override = /obj/item/bodypart/chest/mutant/xenohybrid::limb_id
 
-/datum/robotic_style/dimorphic/teshari
-	name = "Teshari (Robotic)"
-	icon = BODYPART_ICON_TESHARI
-	limb_id_override = /obj/item/bodypart/chest/mutant/teshari::limb_id
-
 // kept at the bottom for parity with other augment dropdowns
 /datum/robotic_style/none
 	icon = 'icons/mob/augmentation/augments.dmi'
