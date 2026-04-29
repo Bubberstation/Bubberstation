@@ -6,16 +6,17 @@
 
 /obj/item/flashlight/seclite/implant
 	name = "implanted seclite"
-	desc = "A robust bulb from a seclite installed at the base of your wrist. Flex arm and press lens in to toggle."
-	icon = 'modular_zubbers/icons/obj/equipment/flashlights.dmi'
+	desc = "A robust bulb from a seclite installed at the base of your palm. Flex arm and press lens in to toggle."
+	icon = 'modular_zubbers/icons/obj/equipment/seclite_implant.dmi'
 	icon_state = "mini-light"
-	lefthand_file = null
-	righthand_file = null
-	force = 5 //marginally better than fists
+	inhand_icon_state = "mini-light"
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/seclite_implant_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/seclite_implant_righthand.dmi'
+	force = 6 //marginally better than fists, barely
 
 /obj/item/organ/cyberimp/arm/toolkit/seclite
 	name = "seclite implant"
-	desc = "An implanted model of seclite installed in the wrist."
+	desc = "An implanted model of seclite installed in the palm."
 	items_to_create = list(/obj/item/flashlight/seclite/implant)
 
 /obj/item/organ/cyberimp/arm/toolkit/pillow
