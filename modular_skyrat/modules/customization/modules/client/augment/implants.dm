@@ -45,7 +45,7 @@
 
 /datum/augment_item/implant/l_arm/toolkit/seclite
 	name = "Left Arm Seclite"
-	cost = 2
+	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/seclite/left_arm
 
 /datum/augment_item/implant/l_arm/toolkit/pillow
@@ -53,30 +53,15 @@
 	cost = 2
 	path = /obj/item/organ/cyberimp/arm/toolkit/pillow/left_arm
 
-/datum/augment_item/implant/l_arm/toolkit/survival_pen
-	name = "Left Survival Finger Pen"
+/datum/augment_item/implant/l_arm/toolkit/penfour
+	name = "Left Four Color Pen"
 	cost = 1
-	path = /obj/item/organ/cyberimp/arm/toolkit/survival_pen/left_arm
-
-/datum/augment_item/implant/l_arm/toolkit/penscrewdriver
-	name = "Left Screwdriver Finger Pen"
-	cost = 4
-	path = /obj/item/organ/cyberimp/arm/toolkit/penscrewdriver/left_arm
-
-/datum/augment_item/implant/l_arm/toolkit/laser_pointer
-	name = "Left Laser Pointer Finger"
-	cost = 1
-	path = /obj/item/organ/cyberimp/arm/toolkit/laser_pointer/left_arm
+	path = /obj/item/organ/cyberimp/arm/toolkit/penfour/left_arm
 
 /datum/augment_item/implant/l_arm/toolkit/tape_recorder
 	name = "Left Tape Recorder"
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/tape_recorder/left_arm
-
-/datum/augment_item/implant/l_arm/toolkit/foamforce_implant
-	name = "Left Donksoft Blaster Implant"
-	cost = 2
-	path = /obj/item/organ/cyberimp/arm/toolkit/foamforce_implant/left_arm
 
 //RIGHT ARM IMPLANTS
 /datum/augment_item/implant/r_arm
@@ -103,7 +88,7 @@
 
 /datum/augment_item/implant/r_arm/toolkit/seclite
 	name = "Right Arm Seclite"
-	cost = 2
+	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/seclite/right_arm
 
 /datum/augment_item/implant/r_arm/toolkit/pillow
@@ -111,30 +96,15 @@
 	cost = 2
 	path = /obj/item/organ/cyberimp/arm/toolkit/pillow/right_arm
 
-/datum/augment_item/implant/r_arm/toolkit/survival_pen
-	name = "Right Survival Finger Pen"
+/datum/augment_item/implant/r_arm/toolkit/penfour
+	name = "Right Four Color Pen"
 	cost = 1
-	path = /obj/item/organ/cyberimp/arm/toolkit/survival_pen/right_arm
-
-/datum/augment_item/implant/r_arm/toolkit/penscrewdriver
-	name = "Right Screwdriver Finger Pen"
-	cost = 4
-	path = /obj/item/organ/cyberimp/arm/toolkit/penscrewdriver/right_arm
-
-/datum/augment_item/implant/r_arm/toolkit/laser_pointer
-	name = "Right Laser Pointer Finger"
-	cost = 1
-	path = /obj/item/organ/cyberimp/arm/toolkit/laser_pointer/right_arm
+	path = /obj/item/organ/cyberimp/arm/toolkit/penfour/right_arm
 
 /datum/augment_item/implant/r_arm/toolkit/tape_recorder
 	name = "Right Tape Recorder"
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/tape_recorder/right_arm
-
-/datum/augment_item/implant/r_arm/toolkit/foamforce_implant
-	name = "Right Donksoft Blaster Implant"
-	cost = 2
-	path = /obj/item/organ/cyberimp/arm/toolkit/foamforce_implant/right_arm
 
 //EYES IMPLANTS
 /datum/augment_item/implant/eyes

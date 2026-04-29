@@ -188,7 +188,7 @@
 
 /datum/supply_pack/goody/seclite_implant
 	name = "Seclite Implant"
-	desc = "Contains a seclite implant for lighting up dark maintenance tunnels. Or bludgeoning things with."
+	desc = "Contains a seclite implant for lighting up dark maintenance tunnels."
 	cost = PAYCHECK_CREW * 7
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/seclite)
 
@@ -198,23 +198,11 @@
 	cost = PAYCHECK_CREW * 3
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/pillow)
 
-/datum/supply_pack/goody/survival_pen_implant
-	name = "Fingertip Survival Pen Implant"
-	desc = "Contains a cybernetic fingertip replacement that features a diamond tipped extendable claw and a pen. Claw can break rock in case of emergency."
-	cost = PAYCHECK_CREW * 6
-	contains = list(/obj/item/organ/cyberimp/arm/toolkit/survival_pen)
-
-/datum/supply_pack/goody/penscrewdriver_implant
-	name = "Fingertip Screwdriver Pen Implant"
-	desc = "A cybernetic fingertip replacement that houses a pen and extendable screwdriver bit."
-	cost = PAYCHECK_CREW * 8
-	contains = list(/obj/item/organ/cyberimp/arm/toolkit/penscrewdriver)
-
-/datum/supply_pack/goody/laser_pointer_implant
-	name = "Fingertip Laser Pointer Implant"
-	desc = "An implanted laser pointer that replaces a fingertip of your choosing. Set contains differently sized housings for proper fitment. Due to its compact design, it is unable to accept upgraded parts. Do not aim at eyes."
+/datum/supply_pack/goody/penfour_implant
+	name = "Fingertip Four Color Pen Implant"
+	desc = "An implanted four colour pen, replacing a fingertip. What more could you want?"
 	cost = PAYCHECK_CREW * 5
-	contains = list(/obj/item/organ/cyberimp/arm/toolkit/laser_pointer)
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/penfour)
 
 /datum/supply_pack/goody/tape_recorder_implant
 	name = "Universal Recorder Implant"
@@ -224,6 +212,12 @@
 
 /datum/supply_pack/goody/foamforce_implant
 	name = "Pop-up Donksoft Blaster Implant"
-	desc = "Donksoft's pop-up blaster is great for annoying coworkers and annoying bosses. Pack contains one implant and a mini box of spare darts."
-	cost = PAYCHECK_CREW * 9
+	desc = "Donksoft's pop-up blaster is great for annoying coworkers. Pack contains one implant and a mini box of spare darts."
+	cost = PAYCHECK_CREW * 8
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/foamforce_implant, /obj/item/ammo_box/foambox/mini)
+
+/datum/supply_pack/goody/spessknife
+	name = "Spess Knife"
+	desc = "The classic Spess Knife that holds the universe's secrets."
+	cost = PAYCHECK_CREW * 7
+	contains = list(/obj/item/spess_knife)

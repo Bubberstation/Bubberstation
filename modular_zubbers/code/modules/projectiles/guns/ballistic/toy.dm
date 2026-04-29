@@ -12,8 +12,8 @@
 	var/jammed = FALSE
 	var/can_jam = TRUE
 	var/jamming_chance = 10
-	var/unjam_chance = 50
-	var/draw_time = 1.2 SECONDS
+	var/unjam_chance = 30
+	var/draw_time = 1.3 SECONDS
 
 /obj/item/gun/ballistic/toy/foamforce_implant/attack_self(mob/user)
 	if(jammed)
