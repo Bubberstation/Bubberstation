@@ -20,6 +20,11 @@
 	cost = 1
 	path = /obj/item/organ/cyberimp/chest/wound_scanner
 
+/datum/augment_item/implant/chest/nutrimentpump
+	name = "Standard Nutriment Pump" // The STANDARD pump. Only gets you to 35% nutrition. You still need to eat ACTUAL food to be rid of the negative moodlet
+	cost = 2
+	path = /obj/item/organ/cyberimp/chest/nutriment
+
 //LEFT ARM IMPLANTS
 /datum/augment_item/implant/l_arm
 	slot = AUGMENT_SLOT_LEFT_ARM_IMPLANT

@@ -35,7 +35,7 @@
 
 /obj/item/organ/cyberimp/arm/toolkit/foamforce_implant
 	name = "donksoft pop-up blaster implant"
-	desc = "An implanted foam dart blaster from Donksoft. Two shot capacity. Do not aim at face."
+	desc = "An implanted foam dart blaster from Donksoft. Do not aim at face. Do not use modified darts."
 	items_to_create = list(/obj/item/gun/ballistic/toy/foamforce_implant)
 
 //LEFT ARM IMPLANTS

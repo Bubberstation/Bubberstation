@@ -42,7 +42,7 @@
 	flash_protect = FLASH_PROTECTION_NONE
 	removingperson.cure_blind(FLASHLIGHT_EYES)
 
-//MOTH VERSION
+//MOTH VERSION - Still vulnerable to flashes when shield is not engaged
 
 /obj/item/organ/eyes/robotic/manuallyshield/moth
 	name = "manually shielded robotic moth eyes"
