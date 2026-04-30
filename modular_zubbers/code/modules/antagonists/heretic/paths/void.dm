@@ -391,3 +391,8 @@
 							affected_mob.AdjustSleeping(5 SECONDS) // ko
 						if (prob(15))
 							to_chat(affected_mob, span_warning("The cold makes you sleepy..."))
+
+/obj/structure/void_conduit/examine(mob/user)
+	. = ..()
+
+	. += span_notice("Chills the area around it, afflicts nearby enemies with void chill as well as drowsiness, and forces sleep at a certain level of drowsiness.")

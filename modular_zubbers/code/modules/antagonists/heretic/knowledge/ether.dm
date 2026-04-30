@@ -7,3 +7,8 @@
 
 /obj/item/ether
 	desc = "A flask of nausea-inducing, thick green liquid. Restores your body's secondary ailments (missing parts, blood loss, wounds, diseases), then places you into an enhanced sleep for a full minute."
+
+/obj/item/ether/examine(mob/user)
+	. = ..()
+
+	. += span_notice("If consumed, allows the user to regrow limbs, organs, as well as purging mutations and diseases.")

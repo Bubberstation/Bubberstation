@@ -50,8 +50,8 @@
 
 /obj/structure/destructible/eldritch_crucible/examine(mob/user)
 	. = ..()
-	if(!IS_HERETIC_OR_MONSTER(user) && !isobserver(user))
-		return
+	/*if(!IS_HERETIC_OR_MONSTER(user) && !isobserver(user))
+		return*/ // BUBBER EDIT REMOVAL - expanding knowledge of heretic
 
 	if(current_mass > 0)
 		. += span_notice("You can refill an eldritch flask with this")
@@ -259,8 +259,8 @@
 
 /obj/item/eldritch_potion/examine(mob/user)
 	. = ..()
-	if(!IS_HERETIC_OR_MONSTER(user) && !isobserver(user))
-		return
+	/*if(!IS_HERETIC_OR_MONSTER(user) && !isobserver(user))
+		return*/ // BUBBER EDIT REMOVAL - all can see the tip
 
 	. += span_notice(crucible_tip)
 
