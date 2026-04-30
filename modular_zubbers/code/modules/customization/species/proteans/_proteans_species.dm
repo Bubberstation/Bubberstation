@@ -79,6 +79,7 @@
 	/// Reference to the species owner
 	var/mob/living/carbon/human/owner
 	var/list/organ_slots = list(ORGAN_SLOT_BRAIN, ORGAN_SLOT_HEART, ORGAN_SLOT_STOMACH, ORGAN_SLOT_EYES)
+	var/datum/action/protean/protean_action
 	language_prefs_whitelist = list(/datum/language/monkey)
 
 /mob/living/carbon/human/species/protean
@@ -86,6 +87,7 @@
 
 /datum/species/protean/Destroy(force)
 	QDEL_NULL(species_modsuit)
+	QDEL_NULL(protean_action)
 	owner = null
 	. = ..()
 
@@ -97,14 +99,8 @@
 	RegisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(organ_reject))
 	var/obj/item/mod/core/protean/core = species_modsuit.core
 	core?.linked_species = src
-	var/static/protean_verbs = list(
-		/mob/living/carbon/proc/protean_ui,
-		/mob/living/carbon/proc/protean_heal,
-		/mob/living/carbon/proc/lock_suit,
-		/mob/living/carbon/proc/suit_transformation,
-		/mob/living/carbon/proc/low_power
-	)
-	add_verb(gainer, protean_verbs)
+	protean_action = new(src)
+	protean_action.Grant(owner)
 
 /datum/species/protean/proc/organ_reject(mob/living/source, obj/item/organ/inserted)
 	SIGNAL_HANDLER
@@ -134,6 +130,7 @@
 	gainer.dropItemToGround(species_modsuit, TRUE)
 	if(species_modsuit)
 		QDEL_NULL(species_modsuit)
+	protean_action.Remove(owner)
 	owner = null
 
 /datum/species/protean/proc/equip_modsuit(mob/living/carbon/human/gainer)

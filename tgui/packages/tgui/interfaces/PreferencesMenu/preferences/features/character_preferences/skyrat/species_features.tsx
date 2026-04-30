@@ -289,6 +289,11 @@ export const quad_eyes_offset: Feature<number> = {
   component: FeatureNumberInput,
 };
 
+export const quad_eyes_offset_width: Feature<number> = {
+  name: 'Quad Eyes Offset Width',
+  component: FeatureNumberInput,
+};
+
 export const wings_toggle: FeatureToggle = {
   name: 'Wings',
   component: CheckboxInput,

@@ -11,6 +11,7 @@
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "infected_machine"
 	base_icon_state = "infected_machine"
+	faction = list(FACTION_FLESHMIND)
 	density = TRUE
 	layer = ABOVE_OBJ_LAYER
 	light_color = FLESHMIND_LIGHT_BLUE
