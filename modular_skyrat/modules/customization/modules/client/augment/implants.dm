@@ -120,6 +120,11 @@
 	cost = 2
 	path = /obj/item/organ/cyberimp/eyes/hud/civilian
 
+/datum/augment_item/implant/eyes/civhudinvis
+	name = "Civilian HUD Implant (Invisible)"
+	cost = 2
+	path = /obj/item/organ/cyberimp/eyes/hud/civilian/invisible
+
 //MOUTH IMPLANTS
 /datum/augment_item/implant/mouth
 	slot = AUGMENT_SLOT_MOUTH_IMPLANT
