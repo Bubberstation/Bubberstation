@@ -14,6 +14,19 @@
 	righthand_file = 'modular_zubbers/icons/mob/inhands/seclite_implant_righthand.dmi'
 	force = 0
 
+/obj/item/pillow_weak
+	name = "cyberpillow™"
+	desc = "An inflatable pillow installed in your arm. Makes locker naps 100%* more comfortable!"
+	detailed_desc = "*Percentage up to user's personal interpretation and not actual fact."
+	icon = 'icons/obj/bed.dmi'
+	icon_state = "pillow_1_t"
+	inhand_icon_state = "pillow_t"
+	lefthand_file = 'icons/mob/inhands/items/pillow_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items/pillow_righthand.dmi'
+	force = 3 // Roughly 14 hits to actually start inducing slowdown on unarmoured target. About 34 hits to stamcrit. Better off just punching at this point or grabbing a real pillow.
+	damtype = STAMINA
+	hitsound = 'sound/items/pillow/pillow_hit.ogg'
+
 /obj/item/organ/cyberimp/arm/toolkit/seclite
 	name = "seclite implant"
 	desc = "An implanted model of seclite installed in the palm."
@@ -22,7 +35,7 @@
 /obj/item/organ/cyberimp/arm/toolkit/pillow
 	name = "cyberpillow™ implant"
 	desc = "A \"luxurious\" auto-inflating pillow attached to the arm under a cover plate. Warranty void if used in pillow fights."
-	items_to_create = list(/obj/item/pillow/random)
+	items_to_create = list(/obj/item/pillow_weak)
 
 /obj/item/organ/cyberimp/arm/toolkit/penfour
 	name = "four color pen implant"
