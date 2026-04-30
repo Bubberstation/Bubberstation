@@ -20,4 +20,5 @@
 	name = "Smithing Skillchips Crate"
 	desc = "Learn the art of metalworking and build your own weapons! Contains two smithing skillchips."
 	cost = CARGO_CRATE_VALUE * 4
+	access = list(ACCESS_WEAPONS)
 	contains = list(/obj/item/storage/box/skillchips/supply,)
