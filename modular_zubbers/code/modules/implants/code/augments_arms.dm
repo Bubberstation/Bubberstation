@@ -16,8 +16,7 @@
 
 /obj/item/pillow_weak
 	name = "cyberpillow™"
-	desc = "An inflatable pillow installed in your arm. Makes locker naps 100%* more comfortable!"
-	detailed_desc = "*Percentage up to user's personal interpretation and not actual fact."
+	desc = "An inflatable pillow installed in your arm. Makes locker naps (up to) 73% more comfortable!"
 	icon = 'icons/obj/bed.dmi'
 	icon_state = "pillow_1_t"
 	inhand_icon_state = "pillow_t"
