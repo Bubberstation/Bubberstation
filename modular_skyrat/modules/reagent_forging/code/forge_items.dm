@@ -460,3 +460,5 @@
 		return
 
 	return ..()
+
+/obj/item/

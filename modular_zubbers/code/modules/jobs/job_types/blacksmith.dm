@@ -53,3 +53,28 @@
 	shoes = /obj/item/clothing/shoes/workboots
 	gloves = /obj/item/clothing/gloves/color/brown
 	skillchips = list(/obj/item/skillchip/job/blacksmith)
+
+/obj/item/paper/pamphlet/blacksmith_tutorial
+	name = "blacksmithing pamphlet"
+	default_raw_text = "Blacksmiths are the ones responsible for fine craftsmanship of all types of equipment: swords, armor, toolbelts, and more. \
+	If someone wants specialized equipment -- especially old stuff -- they should go to you. Here's a rundown on your equipment:<hr><br> \n\
+	If you have a dedicated department room, it should come with the following: \n\
+	The <b>forge</b> heats up sheets of metal to be worked into desired shapes. \n\
+	The <b>wall mounted A/C unit</b> will cool down the excess heat that your forge leaks, so that you do not burn to death. <b>Remember to turn it on!</n>\n\
+	The <b>anvil</b> can hold a heated, incomplete item.\n\
+	The <b>quenching basin</b> allows you to cool a heated item.\n\
+	The <b>workbench</b> is where you will finish crafting your equipment.\n\
+	The <b>billows</b> blow air into your forge to accelerate its heating process.\n\
+	The <b>tongs</b> let you safely insert a sheet of material into your forge, and safely handle hot items.\n\
+	The <b>forging mallet</b> is used alongside an anvil to work an item into shape.\n\
+	If you lack a dedicated department room, almost all of the above can be crafted using basic wood and iron. Use the crafting menu (the hammer icon -- bottom right of your screen) to take a look.\n\
+	\
+	<b>Epipens</b> are an effective treatment method for synthetic slash/pierce wounds!<br>\n\
+	<b>Nanite Slurry</b> is used to heal minor synthetic <b>brute</b> and <b>burn</b> damage. \
+	overdose is at <b>10u</b>. Overdose heals synthetic organ damage in exchange of overheating and brute damage.<br>\n\
+	<b>Critical system repair pills</b> inside your medkit are used to purposely inflict an overdose of nanite slurry to heal ~ <b>240 organ damage</b> per pill. (You need to manage their brute and burn!)<br>\n\
+	<b>Liquid Solder</b> is used to heal <b>positronic damage</b><br>\n\
+	<b>System Cleaner</b> is used to heal synthetic <b>toxin damage</b><br>\n\
+	<b>Dinitrogen Plasmide</b> is used to treat synthetic overheating wounds safely.<br>\n\
+	<b>Blank Synthetic Shells</b> can be produced at the exofab for practice if mining has been gathering resources.<br>\n\
+	<b>Oil</b> functions as a synthetic creatures blood. It can be obtained from Chemistry, or if you're crafty, scooped off the floor."

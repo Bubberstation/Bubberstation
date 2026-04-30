@@ -28,6 +28,10 @@
 /// The chance per piece of wood added that charcoal will form later
 #define CHARCOAL_CHANCE 45
 
+/// Stats for the expelled gas from running the forge
+#define FORGE_FUMES_HEAT FIRE_MINIMUM_TEMPERATURE_TO_EXIST
+#define FORGE_FUMES_VOLUME 1
+
 /// The minimum units of a reagent rerquired to imbue it into a weapon
 #define MINIMUM_IMBUING_REAGENT_AMOUNT 100
 
@@ -98,7 +102,7 @@
 	/// Filters the radial choice list by required level in its skill; true means corresponding element requires it
 	var/list/choice_list_skill_level_filter = list(
 		"Revolver Frame" = 7,
-		"Revolver Cylinder" = list(TRAIT_KNOW_GUNSMITHING),
+		"Revolver Cylinder" = 7,
 	)
 	/// Filters the radial choice list by if it requires the smithing skillchip; true means corresponding element requires it
 	var/list/choice_list_trait_filter = list(
@@ -285,6 +289,7 @@
 	COOLDOWN_START(src, forging_cooldown, 5 SECONDS)
 	check_fuel()
 	check_temp()
+	try_expel_gas()
 
 	if(!used_tray && check_fuel(just_checking = TRUE))
 		set_smoke_state(SMOKE_STATE_NOT_COOKING) // If there is no tray but we have fuel, use the not cooking smoke state
@@ -295,6 +300,13 @@
 		return
 
 	handle_baking_things(seconds_per_tick)
+
+/obj/structure/reagent_forge/proc/try_expel_gas()
+	if(check_fuel(just_checking = TRUE))
+		atmos_spawn_air("[GAS_CO2]=[FORGE_FUMES_VOLUME];[TURF_TEMPERATURE(FORGE_FUMES_HEAT)]")
+		var/datum/gas_mixture/expelled_gas = air_contents.remove(air_contents.total_moles())
+		var/turf/T = get_turf(src)
+		T.assume_air(expelled_gas)
 
 /// Sends signals to bake and items on the used tray, setting the smoke state of the forge according to the most cooked item in it
 /obj/structure/reagent_forge/proc/handle_baking_things(seconds_per_tick)
