@@ -12,7 +12,7 @@
 	inhand_icon_state = "mini-light"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/seclite_implant_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/seclite_implant_righthand.dmi'
-	force = 6 //marginally better than fists, barely
+	force = 0
 
 /obj/item/organ/cyberimp/arm/toolkit/seclite
 	name = "seclite implant"
