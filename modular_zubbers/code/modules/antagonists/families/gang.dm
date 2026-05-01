@@ -796,7 +796,7 @@
 	gang_flavor = "Welcome back, Commander. We have activated the last remnants of the Allied forces in your sector, \
 		and you must build up forces to stop any hostile groups trying to undermine our cause. This station will prove to be a valuable asset. \
 		Establish a capitalist democracy on this station with free and fair elections, and most importantly a standing military force under Allied control. \
-		Ensure that our liberated territories bear our insignia. Good luck, Commander.",
+		Ensure that our liberated territories bear our insignia. Good luck, Commander."
 
 /datum/team/gang/allies/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
