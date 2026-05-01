@@ -19,9 +19,11 @@
 	fire = 50
 	wound = 30
 
+
+	target_for_upgrading.set_armor(target_for_upgrading.get_armor().add_other_armor(armor_mod))
+
 /obj/item/clothing/suit/armor/forging_plate_armor/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/armor_plate, 4)
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_OCLOTHING)
 
 	allowed += /obj/item/forging/reagent_weapon
@@ -50,7 +52,6 @@
 
 /obj/item/clothing/gloves/forging_plate_gloves/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/armor_plate, 4)
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_GLOVES)
 
 // Helmets
@@ -77,7 +78,6 @@
 
 /obj/item/clothing/head/helmet/forging_plate_helmet/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/armor_plate, 4)
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_HEAD)
 
 // Boots
@@ -105,7 +105,6 @@
 
 /obj/item/clothing/shoes/forging_plate_boots/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/armor_plate, 2)
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_FEET)
 
 /obj/item/clothing/shoes/horseshoe/reagent_clothing
@@ -121,7 +120,6 @@
 
 /obj/item/clothing/shoes/horseshoe/reagent_clothing/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/armor_plate, 2)
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_FEET)
 
 ////////////////////////////////////////////////////////////////////////////

@@ -12,13 +12,20 @@
 	var/completion_force_penalty = 0
 	//keeps track of how much force was given from perfect hammering
 	var/perfect_forging_bonus = 0
+	//how much stamina damage to apply on a rightclick. set to 0 to be unable to stamdamage someone
+	var/stamina_damage = 0
+	//verbs to use when secondary attacking
+	var/list/secondary_attack_verb_continuous = list("shaft-strikes")
+	var/list/secondary_attack_verb_simple = list("shaft-strike")
 
 /obj/item/forging/reagent_weapon/Initialize(mapload)
 	. = ..()
 	apply_reagent_component()
 	apply_smithing_component()
+
 /obj/item/forging/reagent_weapon/proc/apply_reagent_component()
 	AddComponent(/datum/component/reagent_imbued/weapon)
+
 /obj/item/forging/reagent_weapon/proc/apply_smithing_component()
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
@@ -27,6 +34,34 @@
 		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
 		FORGING_WEAPON_REFORGING_AVERAGE_WAIT, \
 		CALLBACK(src, TYPE_PROC_REF(/obj/item/forging/reagent_weapon, quench_item)))
+
+// nonlethal secondary attack
+/obj/item/forging/reagent_weapon/pre_attack_secondary(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
+	. = ..()
+	if(stamina_damage > 0)
+		// when we continue to attack, deal 0 (brute) damage (just stun)
+		SET_ATTACK_FORCE(attack_modifiers, 0)
+		target.apply_damage(stamina_damage, STAMINA, blocked = armour_block)
+		attack_verb_continuous = secondary_attack_verb_continuous
+		attack_verb_simple = secondary_attack_verb_simple
+	return SECONDARY_ATTACK_CONTINUE_CHAIN
+
+/obj/item/forging/reagent_weapon/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
+	attack_verb_continuous = initial(attack_verb_continuous)
+	attack_verb_simple = initial(attack_verb_simple)
+
+/obj/item/forging/reagent_weapon/add_item_context(datum/source, list/context, atom/target, mob/living/user)
+	if (isturf(target))
+		return NONE
+
+	if (isobj(target))
+		context[SCREENTIP_CONTEXT_LMB] = "Attack"
+	else
+		context[SCREENTIP_CONTEXT_LMB] = "Attack"
+		if(stamina_damage > 0)
+			context[SCREENTIP_CONTEXT_RMB] = "Non-lethally Attack"
+
+	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/forging/reagent_weapon/proc/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
 	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
@@ -72,6 +107,9 @@
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	sharpness = SHARP_EDGED
 	max_integrity = 150
+	stamina_damage = 35
+	secondary_attack_verb_continuous = list("pommel-strikes")
+	secondary_attack_verb_simple = list("pommel-strike")
 	var/wielded = FALSE
 	var/unwielded_block_chance = 30
 	var/wielded_block_chance = 45
@@ -107,6 +145,9 @@
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	sharpness = SHARP_EDGED
+	stamina_damage = 25
+	secondary_attack_verb_continuous = list("pommel-strikes")
+	secondary_attack_verb_simple = list("pommel-strike")
 
 /obj/item/forging/reagent_weapon/katana/Initialize(mapload)
 	. = ..()
@@ -232,6 +273,9 @@
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "pierces", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	sharpness = SHARP_POINTY
+	stamina_damage = 30
+	secondary_attack_verb_continuous = list("hilt-strikes")
+	secondary_attack_verb_simple = list("hilt-strike")
 
 /obj/item/forging/reagent_weapon/rapier/Initialize(mapload)
 	. = ..()
@@ -289,6 +333,9 @@
 	wound_bonus = -10
 	exposed_wound_bonus = 20
 	sharpness = SHARP_POINTY
+	stamina_damage = 35
+	secondary_attack_verb_continuous = list("shaft-strikes")
+	secondary_attack_verb_simple = list("shaft-strike")
 
 /obj/item/forging/reagent_weapon/spear/Initialize(mapload)
 	. = ..()
@@ -316,6 +363,9 @@
 	attack_verb_continuous = list("slashes", "bashes")
 	attack_verb_simple = list("slash", "bash")
 	sharpness = SHARP_EDGED
+	stamina_damage = 40
+	secondary_attack_verb_continuous = list("blunt-strikes")
+	secondary_attack_verb_simple = list("blunt-strike")
 
 /datum/embedding/forged_axe
 	embed_chance = 65
@@ -364,6 +414,9 @@
 		/obj/structure/reagent_anvil,
 		/obj/structure/reagent_crafting_bench
 	)
+	stamina_damage = 30
+	secondary_attack_verb_continuous = list("shaft-strikes")
+	secondary_attack_verb_simple = list("shaft-strike")
 
 /obj/item/forging/reagent_weapon/hammer/Initialize(mapload)
 	. = ..()
