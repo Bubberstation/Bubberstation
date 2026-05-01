@@ -7,7 +7,7 @@
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/staves_righthand.dmi'
 	inhand_icon_state = "stun_staff"
-	worn_icon = ""
+	worn_icon = "modular_zubbers/icons/mob/clothing/back.dmi"
 	worn_icon_state = "stun_staff"
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
