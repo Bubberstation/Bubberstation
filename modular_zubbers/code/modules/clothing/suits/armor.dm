@@ -174,6 +174,7 @@
 	light_power = 0.8
 	light_color = "#ffcc99"
 	light_on = FALSE
+	var/on = FALSE
 
 	var/sound_on = 'sound/items/weapons/magin.ogg'
 	var/sound_off = 'sound/items/weapons/magout.ogg'
