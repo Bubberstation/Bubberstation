@@ -9,9 +9,9 @@
 #define SCRAM_TIME_RESTRICTION (1 * 30 MINUTES)
 
 // Export gate settings
-#define EX_CARGO_TECHNICIAN (1<<0)
-#define EX_CUSTOMS_AGENT (1<<1)
-#define EX_QUARTERMASTER (1<<2)
+#define EX_CARGO_TECHNICIAN (1 << 0)
+#define EX_CUSTOMS_AGENT (1 << 1)
+#define EX_QUARTERMASTER (1 << 2)
 
 DEFINE_BITFIELD(payment_mode, list(
 	"EX_CARGO_TECHNICIAN" = EX_CARGO_TECHNICIAN,
@@ -20,7 +20,7 @@ DEFINE_BITFIELD(payment_mode, list(
 ))
 
 // Cargo console flags
-#define CARGO_CONSOLE_INTERDYNE (1<<0)
+#define CARGO_CONSOLE_INTERDYNE (1 << 0)
 
 DEFINE_BITFIELD(cargo_console_flags, list(
 	"CARGO_CONSOLE_INTERDYNE" = CARGO_CONSOLE_INTERDYNE,
