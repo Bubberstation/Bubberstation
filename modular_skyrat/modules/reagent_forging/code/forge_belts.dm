@@ -30,7 +30,7 @@
 
 /obj/item/storage/belt/holster/blacksmithed/cowboy
 	name = "quickdraw holster"
-	desc = "A rugged leather belt. Can carry a handgun; [EXAMINE_HINT("the holster pouch makes quickdrawing a cinch")]. Also comes with some side pockets for speedloaders and magazines."
+	desc = "A rugged leather belt. Can carry a handgun; <b>the holster pouch makes quickdrawing a cinch</b>. Also comes with some side pockets for speedloaders and magazines."
 	icon_state = "cowboy_holster"
 	inhand_icon_state = "utility"
 	worn_icon_state = "utility"
@@ -86,7 +86,7 @@
 
 /obj/item/storage/belt/holster/blacksmithed/charging
 	name = "charging holster"
-	desc = "A sophisticated plastic holster belt. Bluespace tech allows it to store whatever a standard weapon charger can; [EXAMINE_HINT("it'll charge whatever's kept")]."
+	desc = "A sophisticated plastic holster belt. Bluespace tech allows it to store whatever a standard weapon charger can; <b>it'll charge whatever's kept</b>."
 	icon_state = "charger_belt"
 	inhand_icon_state = "security"
 	worn_icon_state = "security"
@@ -140,8 +140,8 @@
 	var/obj/item/storage/belt/holster/blacksmithed/charging/my_belt
 
 /obj/machinery/recharger/belt_charger/proc/activate_with_item(/obj/item/my_item)
-	if(is_type_in_typecache(arrived, allowed_devices))
-		charging = arrived
+	if(is_type_in_typecache(my_item, allowed_devices))
+		charging = my_item
 		START_PROCESSING(SSmachines, src)
 		update_use_power(ACTIVE_POWER_USE)
 		using_power = TRUE
@@ -288,6 +288,50 @@
 
 /////////////////////////////////////////////////
 
+/obj/item/storage/belt/sheath/multi
+	name = "multi-scabbard"
+	desc = "A set of harnesses that enable carrying multiple bulky swords and/or shields."
+	icon_state = "multiscabbard_swords_0"
+	inhand_icon_state = "sheath"
+	worn_icon_state = "sheath"
+	actions_types = null
+	storage_type = /datum/storage/multi_scabbard
+
+/obj/item/storage/belt/sheath/multi/update_icon(updates)
+	. = ..()
+	var/numswords
+	for(var/item/i in contents)
+		if(istype(i, /obj/melee))
+			numswords ++
+			break
+	icon_state = "multiscabbard_swords_[numswords]"
+
+/obj/item/storage/belt/sheath/multi/update_overlays()
+	. = ..()
+	var/obj/item/shield/my_shield
+	for(var/item/i in contents)
+		if(istype(i, /obj/item/shield))
+			my_shield = i
+			break
+	if(!is_null(my_shield))
+		. += mutable_appearance(my_shield.icon, my_shield.icon_state)
+
+/datum/storage/multi_scabbard
+	max_slots = 2
+	do_rustle = FALSE
+	max_specific_storage = WEIGHT_CLASS_BULKY
+	click_alt_open = FALSE
+
+/datum/storage/multi_scabbard/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
+	. = ..()
+	set_holdable(list(
+		/obj/item/forging/reagent_weapon,
+		/obj/item/shield,
+		/obj/item/melee,
+	))
+
+/////////////////////////////////////////////////
+
 /obj/item/storage/belt/knifethrowers_belt
 	name = "knifethrower's belt"
 	desc = "Stores a frankly ridiculous number of knives and comparable short, bladed weapons. The shallow pocket depth makes it poor at storing other objects."
@@ -311,9 +355,8 @@
 	open_sound = 'sound/items/handling/holster_open.ogg'
 	open_sound_vary = TRUE
 
-/datum/storage/knifethrowers
+/datum/storage/knifethrowers/New()
 	. = ..()
-
 	set_holdable(list(
 		/obj/item/forging/reagent_weapon/dagger,
 		/obj/item/knife,
@@ -328,10 +371,34 @@
 
 /obj/item/storage/bag/plants/bluespace
 	name = "bluespace plant bag"
-	desc = "."
-	icon_state = "BS_RPED"
-	inhand_icon_state = "BS_RPED"
-	w_class = WEIGHT_CLASS_NORMAL
-	storage_type = /datum/storage/rped/bluespace
+	desc = "A bluespace banana peel grants much larger storage capacity here. It malfunctions when trying to store specific mutant plants -- ironically, bluespace bananas are one such plant..."
+	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
+	icon_state = "bluespace_botany_bag"
+	worn_icon_state = "plantbag"
+	storage_type = /datum/storage/bag/plants_bluespace
 
-	storage_type = /datum/storage/bag/plants
+/datum/storage/bag/plants_bluespace
+	max_total_storage = 1000
+	max_slots = 300
+
+/datum/storage/bag/plants_bluespace/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
+	. = ..()
+	set_holdable(list(
+		/obj/item/food/grown,
+		/obj/item/graft,
+		/obj/item/grown,
+		/obj/item/food/honeycomb,
+		/obj/item/seeds,
+	), list(
+		/obj/item/food/grown/banana/bluespace,
+		/obj/item/grown/bananapeel/bluespace,
+		/obj/item/food/grown/cherry_bomb,
+		/obj/item/food/grown/firelemon,
+		/obj/item/food/grown/gatfruit,
+		/obj/item/food/grown/holymelon,
+		/obj/item/food/grown/barrelmelon,
+		/obj/item/food/grown/tomato/blue/bluespace,
+		/obj/item/food/grown/tomato/killer,
+	)
+	)
+
