@@ -22,7 +22,7 @@
 	inhand_icon_state = "pillow_t"
 	lefthand_file = 'icons/mob/inhands/items/pillow_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/pillow_righthand.dmi'
-	force = 3 // Roughly 14 hits to actually start inducing slowdown on unarmoured target. About 34 hits to stamcrit. Better off just punching at this point or grabbing a real pillow.
+	force = 1
 	damtype = STAMINA
 	hitsound = 'sound/items/pillow/pillow_hit.ogg'
 
