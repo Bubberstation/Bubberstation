@@ -18,7 +18,7 @@
 	force = 13 //bigger batong
 	throwforce = 10
 
-/obj/item/melee/baton/security/staff/Initialize(mapload) //because it'd honestly be too much of a headache to make it activate/deactivate when wielded/unwielded especially since the way the game checks for the cell.
+/obj/item/melee/baton/security/staff/Initialize(mapload) //because it'd honestly be too much of a headache (for me) to make it activate/deactivate when wielded/unwielded especially since the way the game checks for the cell.
 	. = ..()
 	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
 
@@ -31,3 +31,10 @@
 
 /obj/item/melee/baton/security/staff/loaded
 	preload_cell_type = /obj/item/stock_parts/power_store/cell/high
+
+/obj/item/melee/baton/security/staff/add_deep_lore()
+	AddElement(/datum/element/examine_lore, \
+		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
+		lore = "The Secure Apprehension Device (sometimes referred to as the SAD in the officer training manuals) is \
+		the unholy union of a mace and- hey wait a second this is just two batons strapped to each other!"
+	)
