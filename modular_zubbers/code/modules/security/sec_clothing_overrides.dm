@@ -132,6 +132,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
 	icon_state = "security_uniform"
 	female_sprite_flags = NO_FEMALE_UNIFORM
 
@@ -588,6 +589,7 @@
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/costume.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/costume_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
 	icon_state = "prisonerclassic"
 	post_init_icon_state = null
 	greyscale_colors = null
