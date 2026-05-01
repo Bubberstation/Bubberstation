@@ -1,6 +1,6 @@
 /datum/round_event/brain_trauma/traumatize(mob/living/carbon/human/H)
 
-	var/static/list/possible_traumas =
+	var/static/list/possible_traumas = list(
 		/datum/brain_trauma/special/imaginary_friend,
 		/datum/brain_trauma/magic/poltergeist,
 		/datum/brain_trauma/magic/antimagic,
