@@ -36,3 +36,23 @@
 /datum/greyscale_config/buttondown_slacks/worn/teshari
 	name = "Buttondown with Slacks (Worn, Teshari)"
 	icon_file = "modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts_teshari.dmi"
+
+/datum/greyscale_config/eth_tunic/worn/digi
+	name = "Ethereal Tunic (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume_digi.dmi'
+
+/datum/greyscale_config/eth_tunic/worn/teshari
+	name = "Ethereal Tunic (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume_teshari.dmi'
+
+/datum/greyscale_config/striped_dress/worn
+	name = "Striped dress (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses.dmi'
+
+/datum/greyscale_config/striped_dress/worn/digi
+	name = "Striped dress (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses_digi.dmi'
+
+/datum/greyscale_config/striped_dress/worn/teshari
+	name = "Striped dress (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses_teshari.dmi'
