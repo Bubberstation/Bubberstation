@@ -31,11 +31,6 @@
 	desc = "An implanted model of seclite installed in the palm."
 	items_to_create = list(/obj/item/flashlight/seclite/implant)
 
-/obj/item/organ/cyberimp/arm/toolkit/pillow
-	name = "cyberpillow™ implant"
-	desc = "A \"luxurious\" auto-inflating pillow attached to the arm under a cover plate. Warranty void if used in pillow fights."
-	items_to_create = list(/obj/item/pillow_weak)
-
 /obj/item/organ/cyberimp/arm/toolkit/penfour
 	name = "four color pen implant"
 	desc = "A cybernetic fingertip replacement containing a four color pen."

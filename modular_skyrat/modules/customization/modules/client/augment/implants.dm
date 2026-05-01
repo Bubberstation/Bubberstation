@@ -53,11 +53,6 @@
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/seclite/left_arm
 
-/datum/augment_item/implant/l_arm/toolkit/pillow
-	name = "Left Cyberpillow™"
-	cost = 2
-	path = /obj/item/organ/cyberimp/arm/toolkit/pillow/left_arm
-
 /datum/augment_item/implant/l_arm/toolkit/penfour
 	name = "Left Four Color Pen"
 	cost = 1
@@ -95,11 +90,6 @@
 	name = "Right Arm Seclite"
 	cost = 1
 	path = /obj/item/organ/cyberimp/arm/toolkit/seclite/right_arm
-
-/datum/augment_item/implant/r_arm/toolkit/pillow
-	name = "Right Cyberpillow™"
-	cost = 2
-	path = /obj/item/organ/cyberimp/arm/toolkit/pillow/right_arm
 
 /datum/augment_item/implant/r_arm/toolkit/penfour
 	name = "Right Four Color Pen"
