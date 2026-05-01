@@ -30,11 +30,15 @@
 		break
 
 /datum/round_event/brain_trauma/proc/traumatize(mob/living/carbon/human/H)
+	/* BUBBERSTATION CHANGE: CHANGES HOW RANDOM TRAUMAS WORK
 	var/resistance = pick(
 		50;TRAUMA_RESILIENCE_BASIC,
 		30;TRAUMA_RESILIENCE_SURGERY,
 		15;TRAUMA_RESILIENCE_LOBOTOMY,
 		5;TRAUMA_RESILIENCE_MAGIC)
+	BUBBERSTATION CHANGE END. */
+
+	var/resistance = TRAUMA_RESILIENCE_SURGERY //BUBBERSTATION CHANGE: CHANGES HOW RANDOM TRAUMAS WORK.
 
 	var/trauma_type = pick_weight(list(
 		BRAIN_TRAUMA_MILD = 60,
