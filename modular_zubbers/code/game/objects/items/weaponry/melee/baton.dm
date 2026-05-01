@@ -11,8 +11,9 @@
 	worn_icon_state = "stunstaff"
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
+	convertible = FALSE
 
-	block_chance = 50 //functionally a side-grade to a riot shield and baton, cannot block projectiles and is worse against tackles in exchange for being unbreakable and cool
+	block_chance = 50 //functionally a side-grade to a riot shield and baton, cannot block projectiles and is worse against tackles in exchange for being unbreakable and cool and marginally statistically better
 	block_sound = 'sound/items/weapons/genhit.ogg'
 	stamina_damage = 65 //marginally better at stamcritting
 	stun_armour_penetration = 20 //ditto
