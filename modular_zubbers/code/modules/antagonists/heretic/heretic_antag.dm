@@ -19,6 +19,9 @@
 	var/can_craft_blades = FALSE
 	var/mark_enabled = FALSE
 
+	/// Will this heretic antag datum be added to the global reality smash tracker list?
+	var/generate_influences = TRUE
+
 	var/static/list/possible_wildcard_objs = list(
 		/*/datum/objective/heretic_wildcard/sacrifice = 20,
 		/datum/objective/heretic_wildcard/sacrifice_pets = 20,
@@ -151,3 +154,8 @@
 	parts += english_list(string_of_knowledge)
 
 	return parts.Join("<br>")
+
+/datum/antagonist/heretic/event
+	name = "Acolyte (No Influence Spawning)"
+
+	generate_influences = FALSE

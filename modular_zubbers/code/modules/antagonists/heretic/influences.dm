@@ -51,5 +51,8 @@
 
 		spawned_monster = TRUE
 
+/obj/effect/heretic_influence/verify_user_can_see(mob/user)
+	return IS_HERETIC(user) // override so ALL heretics can see em
+
 #undef MONSTER_SPAWN_CHANCE_PER_SEC
 #undef SANITY_DECREASE_PER_SEC

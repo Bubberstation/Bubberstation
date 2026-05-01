@@ -386,7 +386,7 @@
 	handle_clown_mutation(our_mob, "Ancient knowledge described to you has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 	our_mob.add_faction(FACTION_HERETIC)
 
-	if(!issilicon(our_mob))
+	if(!issilicon(our_mob) && generate_influences) // BUBBER EDIT ADDITION - added && generate_influences
 		GLOB.reality_smash_track.add_tracked_mind(owner)
 
 	ADD_TRAIT(our_mob, TRAIT_MANSUS_TOUCHED, REF(src))

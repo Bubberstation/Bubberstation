@@ -120,6 +120,7 @@
 		/datum/way_destination/heretic_mobs = 20,
 		/datum/way_destination/emp = 15,
 	)
+	var/announce_opening = TRUE
 
 /obj/effect/unopened_way/Initialize(mapload)
 	. = ..()
@@ -175,18 +176,19 @@
 
 	var/area/our_area = get_area(src)
 	visible_message(span_warning("The air shimmers as a gate to the mansus becomes clear!"))
-	priority_announce(
-		"Reality-shearing cross-dimensional anomaly detected in [our_area.name]. Expected excursion in [OPENING_DURATION / 10] seconds.",
-		"CentCom Thaumatergy Monitor",
-		ANNOUNCER_ANOMALIES,
-		has_important_message = TRUE
-	)
-	notify_ghosts(
-		"[opener] just opened a way towards [destination.name] in [our_area.name]!",
-		opener,
-		"The Gate Is Open",
-		notify_flags = NOTIFY_CATEGORY_NOFLASH,
-	)
+	if (announce_opening)
+		priority_announce(
+			"Reality-shearing cross-dimensional anomaly detected in [our_area.name]. Expected excursion in [OPENING_DURATION / 10] seconds.",
+			"CentCom Thaumatergy Monitor",
+			ANNOUNCER_ANOMALIES,
+			has_important_message = TRUE
+		)
+		notify_ghosts(
+			"[opener] just opened a way towards [destination.name] in [our_area.name]!",
+			opener,
+			"The Gate Is Open",
+			notify_flags = NOTIFY_CATEGORY_NOFLASH,
+		)
 
 	remove_alt_appearance(/datum/atom_hud/alternate_appearance/basic/has_antagonist/heretic)
 
@@ -289,6 +291,9 @@
 	open_requirements[pick(potential_uncommoner_items)] += 1
 	open_requirements[pick(potential_secondary_items)] += 1
 	open_requirements[pick(potential_tertiary_items)] += 1
+
+/obj/effect/unopened_way/no_announce
+	announce_opening = FALSE
 
 #undef NUM_WAYS_PER_HERETIC
 #undef OPENING_DURATION
