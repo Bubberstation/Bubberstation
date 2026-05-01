@@ -1,6 +1,6 @@
 /obj/item/melee/baton/security/staff
 	name = "stun staff" 
-	desc = "An advanced double-ended baton. Bulky, but good for enhanced stun applications."
+	desc = "A form of the Secure Apprehension Device, integrated into a quarterstaff. Debatably more effective at incapacitating targets."
 	icon = 'modular_zubbers/icons/obj/weapons/baton.dmi'
 	icon_state = "stunstaff"
 	base_icon_state = "stunstaff"
@@ -12,11 +12,12 @@
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 
-	block_chance = 50 //functionally a side-grade to a riot shield and baton, but is worse overall in exchange for being unbreakable and cool
+	block_chance = 50 //functionally a side-grade to a riot shield and baton, cannot block projectiles and is worse against tackles in exchange for being unbreakable and cool
 	block_sound = 'sound/items/weapons/genhit.ogg'
-	stamina_damage = 65 //marginal increase because staff
-	force = 13 //bigger batong
-	throwforce = 10
+	stamina_damage = 65 //marginally better at stunning
+	stun_armour_penetration = 20 //ditto
+	force = 14 //bigger batong, downs in ~8 instead of 10
+	throwforce = 8
 
 /obj/item/melee/baton/security/staff/Initialize(mapload) //because it'd honestly be too much of a headache (for me) to make it activate/deactivate when wielded/unwielded especially since the way the game checks for the cell.
 	. = ..()
