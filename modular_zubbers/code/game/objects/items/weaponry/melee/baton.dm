@@ -1,21 +1,21 @@
 /obj/item/melee/baton/security/staff
 	name = "stun staff" 
 	desc = "An advanced double-ended baton. Bulky, but good for enhanced stun applications."
-	icon = 'icons/obj/weapons/baton.dmi'
-	icon_state = "stun_staff"
-	base_icon_state = "stun_staff"
+	icon = 'modular_zubbers/icons/obj/weapons/baton.dmi'
+	icon_state = "stunstaff"
+	base_icon_state = "stunstaff"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/staves_righthand.dmi'
-	inhand_icon_state = "stun_staff"
+	inhand_icon_state = "stunstaff"
 	worn_icon = "modular_zubbers/icons/mob/clothing/back.dmi"
-	worn_icon_state = "stun_staff"
+	worn_icon_state = "stunstaff"
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 
-	var/block_chance = 50 //functionally a side-grade to a riot shield and baton, but is worse overall in exchange for being unbreakable and cool
+	block_chance = 50 //functionally a side-grade to a riot shield and baton, but is worse overall in exchange for being unbreakable and cool
 	stamina_damage = 65 //marginal increase because staff
 	force = 13 //bigger batong
-	throw_force = 10
+	throwforce = 10
 
 /obj/item/melee/baton/security/staff/Initialize(mapload) //because it'd honestly be too much of a headache to make it activate/deactivate when wielded/unwielded especially since the way the game checks for the cell.
 	. = ..()
@@ -27,3 +27,6 @@
 	if(attack_type == PROJECTILE_ATTACK || attack_type == OVERWHELMING_ATTACK)
 		final_block_chance = 0 //Don't bring a staff to a gunfight, and also you aren't going to really block a road roller, if one happened to hit you.
 	return ..()
+
+/obj/item/melee/baton/security/staff/loaded
+	preload_cell_type = /obj/item/stock_parts/power_store/cell/high

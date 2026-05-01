@@ -125,6 +125,7 @@
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
 	inhand_icon_state = "swat_suit"
 	hoodtype = /obj/item/clothing/head/hooded/secjuggernaut
+	hood_up_affix = ""
 	armor_type = /datum/armor/secjuggernaut
 	siemens_coefficient = 0
 	strip_delay = 25 SECONDS
@@ -150,7 +151,7 @@
 
 /obj/item/clothing/head/hooded/secjuggernaut
 	name = "security juggernaut helmet"
-	desc = "An advanced helmet. Easily put on compared to the armor."
+	desc = "An advanced helmet. Easily put on compared to the armor it came with."
 	icon_state = "security_jugger"
 	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
@@ -173,7 +174,6 @@
 	light_power = 0.8
 	light_color = "#ffcc99"
 	light_on = FALSE
-	var/on = FALSE
 
 	var/sound_on = 'sound/items/weapons/magin.ogg'
 	var/sound_off = 'sound/items/weapons/magout.ogg'
@@ -185,8 +185,10 @@
 /obj/item/clothing/head/hooded/secjuggernaut/proc/toggle_helmet_light(mob/living/user)
 	on = !on
 	if(on)
+		playsound(src, sound_on, 40, TRUE)
 		turn_on(user)
 	else
+		playsound(src, sound_off, 40, TRUE)
 		turn_off(user)
 	update_appearance()
 
