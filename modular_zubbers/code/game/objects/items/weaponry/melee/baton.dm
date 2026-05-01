@@ -13,6 +13,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 
 	block_chance = 50 //functionally a side-grade to a riot shield and baton, but is worse overall in exchange for being unbreakable and cool
+	block_sound = 'sound/items/weapons/genhit.ogg'
 	stamina_damage = 65 //marginal increase because staff
 	force = 13 //bigger batong
 	throwforce = 10
