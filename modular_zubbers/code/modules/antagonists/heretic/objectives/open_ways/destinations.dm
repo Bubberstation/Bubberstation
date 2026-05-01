@@ -238,7 +238,7 @@
 		/obj/effect/anomaly/flux = 50,
 		/obj/effect/anomaly/bhole = 1
 	)
-	var/static/anomalies_to_spawn = 4
+	var/static/anomalies_to_spawn = 5
 
 /datum/way_destination/anomalies/open(obj/effect/unopened_way/way, mob/living/opener)
 	var/list/potential_locations = get_spawn_turfs(way, 1)

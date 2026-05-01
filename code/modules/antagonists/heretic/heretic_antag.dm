@@ -342,13 +342,13 @@
 	generate_heretic_starting_knowledge(heretic_shops[HERETIC_KNOWLEDGE_START])
 	if(!length(path_info))
 		for(var/datum/heretic_knowledge_tree_column/path as anything in subtypesof(/datum/heretic_knowledge_tree_column))
+			// BUBBER EDIT REMOVAL BEGIN - TEMPORARY REMOVAL OF MOST PATHS DURING REBALANCE
 			var/static/list/banned_paths = list(
 				/datum/heretic_knowledge_tree_column/blade,
 				/datum/heretic_knowledge_tree_column/ash,
 				/datum/heretic_knowledge_tree_column/cosmic,
 				/datum/heretic_knowledge_tree_column/rust,
 			)
-			// BUBBER EDIT REMOVAL BEGIN - TEMPORARY REMOVAL OF MOST PATHS DURING REBALANCE
 			if (path in banned_paths)
 				continue
 			// BUBBER EDIT REMOVAL END
