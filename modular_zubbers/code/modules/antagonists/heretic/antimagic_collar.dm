@@ -81,8 +81,10 @@
 /obj/item/clothing/neck/antimagic_collar/equipped(mob/living/user, slot)
 	. = ..()
 
-	if (slot == ITEM_SLOT_NECK && IS_HERETIC(user) && !broken)
-		to_chat(loc, span_userdanger("You feel your connection to the Mansus weaken and eventually fade!"))
+	if (slot == ITEM_SLOT_NECK)
+		if (IS_HERETIC(user) && !broken)
+			to_chat(loc, span_userdanger("You feel your connection to the Mansus weaken and eventually fade!"))
+		locked = TRUE
 
 /obj/item/clothing/neck/antimagic_collar/atom_break(damage_flag)
 	. = ..()
