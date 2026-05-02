@@ -71,7 +71,10 @@ GLOBAL_VAR(families_override_theme)
 	/// List of jobs not eligible for starting family member / undercover cop. Set externally (passed by reference) by gamemode / ruleset; used internally.
 	var/list/restricted_jobs
 	/// The current chosen gamemode theme. Decides the available Gangs, objectives, and equipment.
-	var/datum/gang_theme/current_theme
+	//var/datum/gang_theme/current_theme //DEBUG: Removed temporarily
+	///The announcement used at the beginning to announce the presence of gangs
+	var/intro_message = "You're listening to the 108.9 Swing, all jazz, all night long, no advertising. We'd like to take this time to remind you to avoid smoky backrooms and \
+	suspicious individuals in suits and hats. Don't make a deal you can't pay back."
 
 /**
  * Sets antag_candidates and restricted_jobs.
@@ -109,16 +112,11 @@ GLOBAL_VAR(families_override_theme)
  * Takes no arguments.
  */
 /datum/gang_handler/proc/pre_setup_analogue()
-	if(!GLOB.families_override_theme)
-		var/theme_to_use = pick(subtypesof(/datum/gang_theme))
-		current_theme = new theme_to_use
-	else
-		current_theme = new GLOB.families_override_theme
-	message_admins("Families has chosen the theme: [current_theme.name]")
-	log_game("FAMILIES: The following theme has been chosen: [current_theme.name]")
-	var/gangsters_to_make = length(current_theme.involved_gangs) * current_theme.starting_gangsters
+	message_admins("Families has chosen the theme: NONE")
+	log_game("FAMILIES: The following theme has been chosen: NONE")
+	var/gangsters_to_make = 2 //DEBUG: Change to scale with pop and be randomly either 2 or 3
 	for(var/i in 1 to gangsters_to_make)
-		if (!antag_candidates.len)
+		if (!antag_candidates.len) //DEBUG: Cancel starting the gamemode if antag_candidates is less than 2
 			break
 		var/taken = pick_n_take(antag_candidates) // original used antag_pick, but that's local to game_mode and rulesets use pick_n_take so this is fine maybe
 		var/datum/mind/gangbanger
@@ -153,14 +151,22 @@ GLOBAL_VAR(families_override_theme)
  * * return_if_no_gangs - Boolean that determines if the proc should return FALSE should it find no eligible family members. Should be used for dynamic only.
  */
 /datum/gang_handler/proc/post_setup_analogue(return_if_no_gangs = FALSE)
-	var/list/gangs_to_use = current_theme.involved_gangs.Copy()
-	var/amount_of_gangs = gangs_to_use.len
-	var/amount_of_gangsters = amount_of_gangs * current_theme.starting_gangsters
+	var/list/possible_gangs = subtypesof(/datum/antagonist/gang)
+	var/amount_of_gangs = rand(2, 3) //DEBUG: Weigh to prefer doing 2 gangs
+	var/list/gangs_to_use
+	var/list/chosen_gangs = list() //which gangs are involved this round
+	for(var/i = 1, i <= amount_of_gangs, i++)
+		var/gang_to_add = pick_n_take(possible_gangs)
+		chosen_gangs += gang_to_add
+	gangs_to_use = chosen_gangs.Copy()
+	for(var/datum/antagonist/gang/single_gang in chosen_gangs)
+		message_admins("Using gang: [single_gang.name]")
+	var/amount_of_gangsters = amount_of_gangs
 	for(var/_ in 1 to amount_of_gangsters)
 		if(!gangbangers.len) // We ran out of candidates!
 			break
 		if(!gangs_to_use.len)
-			gangs_to_use = current_theme.involved_gangs.Copy()
+			gangs_to_use = chosen_gangs.Copy()
 		var/gang_to_use = pick_n_take(gangs_to_use) // Evenly distributes Leaders among the gangs
 		var/datum/mind/gangster_mind = pick_n_take(gangbangers)
 		var/datum/antagonist/gang/new_gangster = new gang_to_use()
@@ -203,7 +209,7 @@ GLOBAL_VAR(families_override_theme)
 
 /// Internal. Announces the presence of families to the entire station and sets sent_announcement to true to allow other checks to occur.
 /datum/gang_handler/proc/announce_gang_locations()
-	priority_announce(current_theme.description, current_theme.name, 'sound/mobs/non-humanoids/beepsky/radio.ogg')
+	priority_announce(intro_message, "Families", 'sound/mobs/non-humanoids/beepsky/radio.ogg')
 	sent_announcement = TRUE
 
 /// Internal. Checks if our wanted level has changed; calls update_wanted_level. Only updates wanted level post the initial announcement and until the cops show up. After that, it's locked.
