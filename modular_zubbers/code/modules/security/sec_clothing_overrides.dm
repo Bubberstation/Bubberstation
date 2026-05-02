@@ -49,6 +49,16 @@
 	icon_state = "security_beanie"
 	armor_type = /datum/armor/cosmetic_sec
 	hair_mask = /datum/hair_mask/standard_hat_low
+	cold_protection = HEAD
+	min_cold_protection_temperature = HELMET_MIN_TEMP_PROTECT
+	heat_protection = HEAD
+	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
+
+/obj/item/clothing/head/security_beanie/trapper
+	name = "security trapper hat"
+	desc = "A robust trapper hat with the security insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
+	icon_state = "security_beanie"
+	hair_mask = /datum/hair_mask/winterhood
 
 // WARDEN
 
@@ -120,6 +130,22 @@
 	icon_state = "hos_cowboy"
 	hair_mask = /datum/hair_mask/standard_hat_middle
 
+// DETECTIVE
+
+/obj/item/clothing/head/fedora/det_hat/viro
+	name = "detective fedora"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "det_fedora"
+	armor_type = /datum/armor/fedora_det_hat
+
+/obj/item/clothing/head/soft/sec/det
+	name = "detectives cap"
+	desc = "An armoured black baseball cap, attached on front are embroided red letters stating '/DETECTIVE'/"
+	icon_state = "detsoft"
+	soft_type = "det"
+	armor_type = /datum/armor/fedora_det_hat
+
 /*
 	// UNIFORMS
 */
@@ -143,6 +169,11 @@
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	gets_cropped_on_taurs = FALSE
+
+/obj/item/clothing/under/rank/security/officer/viro/skirt/dress
+	name = "security battle dress"
+	desc = "A less utilitarian version of the standard-issue jumpskirt, comes with a folded 'dress' and button-up shirt instead of a one-piece jumpskirt."
+	icon_state = "security_dress"
 
 /obj/item/clothing/under/rank/security/officer/viro/jumpsuit
 	name = "security jumpsuit"
@@ -171,10 +202,20 @@
 	desc = "An alternative to the standard Security uniform, with an <i>incredibly</i> low-cut collar and cut sleeves."
 	icon_state = "security_lowcut"
 
+/obj/item/clothing/under/rank/security/officer/viro/polo
+	name = "security polo"
+	desc = "A less utilitarian version of the standard-issue uniform, comes with a folded 'dress' and button-up shirt instead of a one-piece jumpskirt."
+	icon_state = "security_lowcut"
+
+/obj/item/clothing/under/rank/security/officer/viro/shorts
+	name = "security shorts"
+	desc = "Nanotrasen Corporate Security officers are reminded that Nanotrasen, Inc. is not responsible or liable for injury or death if officers choose to wear the incorrect PPE when performing their duties."
+	icon_state = "security_shorts"
+
 /obj/item/clothing/under/rank/security/officer/viro/bodysuit
 	name = "security bodysuit"
 	desc = "Designed out of synthetic leather that automatically seals around the user to reduce overheating and snagging issues that arise while inside a MODsuit. \
-			While the bodysuit was only designed to be used while inside of and operating a MODsuit, the bodysuit found a niche with certain... eccentric officers."
+			While the bodysuit was only designed to ever be used while inside of, and operating, a MODsuit, the bodysuit later found a niche with certain... eccentric officers."
 	icon_state = "security_bodysuit"
 	can_adjust = FALSE
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
@@ -281,6 +322,46 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	gets_cropped_on_taurs = FALSE
 
+// DETECTIVE
+
+/obj/item/clothing/under/rank/security/detective/viro
+	name = "detective uniform"
+	desc = "Standard-issue Security department uniform, given to Detective's of Nanotrasen Corporate Security."
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+	icon_state = "det_uniform"
+	female_sprite_flags = NO_FEMALE_UNIFORM
+
+/obj/item/clothing/under/rank/security/detective/viro/skirt
+	name = "detective skirt"
+	desc = "Standard-issue Security department uniform, given to Detective's of Nanotrasen Corporate Security."
+	icon_state = "det_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	gets_cropped_on_taurs = FALSE
+
+/obj/item/clothing/under/rank/security/detective/cowboy
+	name = "blonde cowboy uniform"
+	desc = "A blue shirt and dark jeans, with a pair of spurred cowboy boots to boot."
+	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'	//Donator item-ish? See the /armorless one below it
+	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
+	icon_state = "cowboy_uniform"
+	can_adjust = FALSE
+
+/obj/item/clothing/under/rank/security/detective/cowboy/armorless //Donator variant, just uses the sprite.
+	armor_type = /datum/armor/clothing_under
+
+/obj/item/clothing/under/rank/security/detective/runner
+	name = "runner sweater"
+	desc = "<i>\"You look lonely.\"</i>"
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
+	icon_state = "runner"
+	can_adjust = FALSE
+
 /*
 	// ARMORS
 */
@@ -290,6 +371,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "sec_platecarrier"
+	worn_icon_digi = null
 
 /obj/item/clothing/suit/armor/vest/alt/sec/viro/heavyvest
 	name = "security heavy vest"
@@ -298,23 +380,26 @@
 	cold_protection = CHEST|GROIN|ARMS
 	heat_protection = CHEST|GROIN|ARMS
 	icon_state = "sec_heavyvest"
+	worn_icon_digi = null
 
-/obj/item/clothing/suit/armor/vest/alt/sec/viro/leatherjacket
-	name = "security leather jacket"
-	desc = "Made out of synthetic leather materials, this jacket is designed for formal events, but is applicable for general use with it's ceramic-woven leather."
+/obj/item/clothing/suit/armor/vest/alt/sec/viro/leathercoat
+	name = "security leather coat"
+	desc = "Made out of synthetic leather materials, this coat is designed for wet-weather cover, but is applicable for general use with it's ceramic-woven leather."
 	icon_state = "sec_leatherjacket"
-	body_parts_covered = CHEST|GROIN|ARMS
-	cold_protection = CHEST|GROIN|ARMS
-	heat_protection = CHEST|GROIN|ARMS
+	body_parts_covered = CHEST|GROIN|ARMS|LEGS
+	cold_protection = CHEST|GROIN|ARMS|LEGS
+	heat_protection = CHEST|GROIN|ARMS|LEGS
+	worn_icon_digi = null
 
 /obj/item/clothing/suit/armor/vest/alt/sec/viro/softshell
 	name = "security softshell"
-	desc = "A windproof, rainproof, insulation jacket made for Security — with an internal sweater sewn into the collar of the suit, the sweater keeps the wearer insulated while allowing the jacket to be unzipped."
+	desc = "A windproof, rainproof, insulation jacket made for Security—an internal sweater is sewn into the collar of the suit, which keeps the wearer insulated while allowing the jacket to be unzipped."
 	icon_state = "sec_softshell"
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|ARMS
 	heat_protection = CHEST|GROIN|ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	worn_icon_digi = null // idk why these are needed ? digi is so fucking jank bro
 
 // WARDEN
 
@@ -325,17 +410,20 @@
 	desc = "A grey armored jacket with red shoulder designations and '/Warden/' stitched into one of the chest pockets."
 	icon_state = "warden_alt"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	worn_icon_digi = null
 
 /obj/item/clothing/suit/armor/vest/warden/alt
 	name = "\proper the Warden's armoured jacket"
 	desc = "A grey jacket with silver rank pips and body armor strapped on top."
 	icon_state = "warden_jacket"
+	worn_icon_digi = null
 
 /obj/item/clothing/suit/armor/vest/warden/alt/winter
 	name = "\proper the Warden's winter jacket"
 	desc = "A modification of the Warden's standard armoured jacket, made out of synthetic cotton woven with ceramic, and lined with faux-fur. For the cozy Warden."
 	icon_state = "warden_winterjacket"
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	worn_icon_digi = null
 
 // HOS
 
@@ -349,14 +437,17 @@
 /obj/item/clothing/suit/armor/hos/trenchcoat
 	name = "\proper the Head of Security's leather trenchcoat"
 	icon_state = "hos_leathercoat"
+	worn_icon_digi = null
 
 /obj/item/clothing/suit/armor/hos/overcoat
 	name = "\proper the Head of Security's overcoat"
 	icon_state = "hos_overcoat"
+	worn_icon_digi = null
 
 /obj/item/clothing/suit/armor/hos/trenchcoat/winter
 	name = "\proper the Head of Security's winter trenchcoat"
 	icon_state = "hos_wintercoat"
+	worn_icon_digi = null
 
 /obj/item/clothing/suit/armor/hos/vest
 	name = "\proper the Head of Security's plate carrier"
@@ -369,6 +460,19 @@
 /obj/item/clothing/suit/armor/hos/hos_formal // so annoying
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
+
+//	DETECTIVE
+
+/obj/item/clothing/suit/armor/vest/alt/sec/viro/detective
+	name = "detective's leather jacket"
+	desc = "Made out of synthetic leather materials, this jacket is designed for bureaucracy, but it is applicable for general use with it's ceramic-woven leather."
+	icon_state = "det_leatherjacket"
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS
+	heat_protection = CHEST|GROIN|ARMS
+	armor_type = /datum/armor/jacket_det_suit
+	alternate_worn_layer = SUIT_STORE_LAYER
+	worn_icon_digi = null
 
 /*
 	// GLOVES
@@ -451,6 +555,14 @@
 	preview_name = "Unbloused"
 	new_icon_state = "jackboots_sec_unbloused"
 
+/obj/item/clothing/shoes/jackboots/sec/unbloused
+	icon_state = "jackboots_sec_unbloused"
+
+/obj/item/clothing/shoes/jackboots/sec/unbloused/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_jackboots, infinite = TRUE)
+
+
 /*
 	// MASK
 */
@@ -466,6 +578,18 @@
 	icon = 'icons/obj/clothing/masks.dmi'
 	worn_icon = 'icons/mob/clothing/mask.dmi'
 	worn_icon_muzzled = 'modular_skyrat/master_files/icons/mob/clothing/mask_muzzled.dmi'
+
+/obj/item/clothing/mask/balaclava_sec
+	name = "security balaclava"
+	desc = "For wet weather, and grunt work."
+	icon = 'modular_zubbers/icons/obj/clothing/mask/mask.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/mask.dmi'
+	worn_icon_muzzled = 'modular_zubbers/icons/mob/clothing/head/mask_muzzled.dmi'
+	icon_state = "balaclava_sec"
+	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
+	visor_flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
+	w_class = WEIGHT_CLASS_SMALL
+	alternate_worn_layer = LOW_FACEMASK_LAYER
 
 /*
 	// NECK
@@ -616,30 +740,6 @@
 	desc = "A dark blood red prison jumpsuit, for the known Syndicate captives, valuable targets to CentCom and interrogation. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "/obj/item/clothing/under/rank/prisoner/syndicate/station"
 	greyscale_colors = "#5c0000ff"
-
-/*
-	// DETECTIVE
-*/
-
-/obj/item/clothing/under/rank/security/detective/cowboy
-	name = "blonde cowboy uniform"
-	desc = "A blue shirt and dark jeans, with a pair of spurred cowboy boots to boot."
-	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'	//Donator item-ish? See the /armorless one below it
-	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
-	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
-	icon_state = "cowboy_uniform"
-	can_adjust = FALSE
-
-/obj/item/clothing/under/rank/security/detective/cowboy/armorless //Donator variant, just uses the sprite.
-	armor_type = /datum/armor/clothing_under
-
-/obj/item/clothing/under/rank/security/detective/runner
-	name = "runner sweater"
-	desc = "<i>\"You look lonely.\"</i>"
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
-	icon_state = "runner"
-	can_adjust = FALSE
 
 /*
 	// ANTIQUATED

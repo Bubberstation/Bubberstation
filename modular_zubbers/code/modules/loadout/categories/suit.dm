@@ -36,11 +36,6 @@
 	item_path = /obj/item/clothing/suit/armor/vest/alt/sec/viro/heavyvest
 	restricted_roles = list(ALL_JOBS_SEC)
 
-/datum/loadout_item/suit/armor/vest/sec/viro/leatherjacket
-	name = "Security Leather Jacket"
-	item_path = /obj/item/clothing/suit/armor/vest/alt/sec/viro/leatherjacket
-	restricted_roles = list(ALL_JOBS_SEC)
-
 /datum/loadout_item/suit/armor/vest/sec/viro/softshell
 	name = "Security Softshell"
 	item_path = /obj/item/clothing/suit/armor/vest/alt/sec/viro/softshell

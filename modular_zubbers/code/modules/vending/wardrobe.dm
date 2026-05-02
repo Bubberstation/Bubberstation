@@ -156,6 +156,11 @@
 
 /obj/machinery/vending/wardrobe/det_wardrobe
 	zubbers_products = list(
+		/obj/item/clothing/under/rank/security/detective/viro = 2,
+		/obj/item/clothing/under/rank/security/detective/viro/skirt = 2,
+		/obj/item/clothing/suit/armor/vest/alt/sec/viro/detective = 2,
+		/obj/item/clothing/head/fedora/det_hat/viro = 2,
+		/obj/item/clothing/head/soft/sec/det = 2,
 		/obj/item/clothing/head/fedora/beige = 2,
 		/obj/item/clothing/head/fedora/det_hat/cybergoggles = 2,
 		/obj/item/clothing/head/fedora/white = 2,

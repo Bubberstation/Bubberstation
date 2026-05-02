@@ -53,13 +53,13 @@
 	suit_store = /obj/item/flashlight/seclite
 	belt = /obj/item/modular_computer/pda/security
 	ears = /obj/item/radio/headset/headset_medsec
-	uniform = /obj/item/clothing/under/rank/security/security_medic
-	gloves = /obj/item/clothing/gloves/latex/nitrile
+	uniform = /obj/item/clothing/under/rank/security/officer/viro/security_medic
+	gloves = /obj/item/clothing/gloves/latex/nitrile/security
 	shoes = /obj/item/clothing/shoes/jackboots/sec
-	glasses = /obj/item/clothing/glasses/hud/medsechud
+	glasses = /obj/item/clothing/glasses/hud/medsechud/sunglasses
 	suit = /obj/item/clothing/suit/armor/vest/security_medic
 	l_hand = /obj/item/storage/medkit/brute
-	head = /obj/item/clothing/head/beret/sec/security_medic
+	head = /obj/item/clothing/head/helmet/sec/secmed
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
@@ -104,10 +104,9 @@
 
 /obj/item/clothing/glasses/hud/medsechud/sunglasses
 	name = "health scanner security HUD sunglasses"
-	icon = 'modular_zubbers/icons/obj/secmed_equipment.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
-	icon_state = "hud_protected"
-	worn_icon_state = "security_hud_black"
+	icon = 'modular_zubbers/icons/obj/clothing/glasses.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/eyes.dmi'
+	icon_state = "sunhudsecmed"
 	inhand_icon_state = "sunhudmed"
 	flash_protect = FLASH_PROTECTION_FLASH
 	flags_cover = GLASSESCOVERSEYES
@@ -119,15 +118,16 @@
 
 /obj/item/storage/bag/garment/secmed/PopulateContents()
 	. = ..()
-	new /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic(src)
-	new /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue(src)
-	new /obj/item/clothing/suit/hazardvest/security_medic(src)
-	new /obj/item/clothing/suit/hazardvest/security_medic/blue(src)
-	new /obj/item/clothing/head/helmet/sec/security_medic(src)
-	new /obj/item/clothing/under/rank/medical/scrubs/skyrat/red/sec(src)
-	new /obj/item/clothing/under/rank/security/security_medic/alternate(src)
-	new /obj/item/clothing/under/rank/security/security_medic(src)
-	new /obj/item/clothing/under/rank/security/security_medic/skirt(src)
+	new /obj/item/clothing/under/rank/security/officer/viro/security_medic(src)
+	new /obj/item/clothing/under/rank/security/officer/viro/security_medic/skirt(src)
+	new /obj/item/clothing/under/rank/security/officer/viro/security_medic/jumpsuit(src)
+	new /obj/item/clothing/under/rank/security/officer/viro/security_medic/scrubs(src)
+	new /obj/item/clothing/under/rank/security/officer/viro/bodysuit(src)
+	new /obj/item/clothing/suit/armor/vest/security_medic(src)
+	new /obj/item/clothing/suit/armor/vest/security_medic/jacket(src)
+	new /obj/item/clothing/suit/armor/vest/security_medic/hazvest(src)
+	new /obj/item/clothing/gloves/latex/nitrile/security(src)
+
 
 /obj/structure/closet/secure_closet/security_medic
 	name = "security medic's locker"

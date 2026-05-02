@@ -21,7 +21,14 @@
 	)
 
 /datum/outfit/job/detective
+	uniform = /obj/item/clothing/under/rank/security/detective/viro
+	suit = /obj/item/clothing/suit/armor/vest/alt/sec/viro/detective
+	shoes = /obj/item/clothing/shoes/jackboots/sec/unbloused
+	head = null
 	backpack_contents = list(
+		/obj/item/clothing/head/fedora/det_hat/viro = 1,
+		/obj/item/clothing/head/soft/sec/det = 1,
+		/obj/item/clothing/gloves/latex/nitrile/security = 1,
 		/obj/item/detective_scanner = 1,
 		/obj/item/melee/baton = 1,
 		/obj/item/storage/box/evidence = 1,

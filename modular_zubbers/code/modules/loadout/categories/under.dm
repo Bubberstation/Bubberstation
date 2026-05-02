@@ -19,20 +19,86 @@
 	item_path = /obj/item/clothing/under/rank/nanotrasen_consultant/stripper
 	restricted_roles = list(JOB_NT_REP)
 
+// OFFICER
+
+/datum/loadout_item/uniform/security/security_officer
+	name = "Security Uniform"
+	item_path = /obj/item/clothing/under/rank/security/officer/viro
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/security_officer/skirt
+	name = "Security Skirt"
+	item_path = /obj/item/clothing/under/rank/security/officer/viro/skirt
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/security_officer/jumpsuit
+	name = "Security Jumpsuit"
+	item_path = /obj/item/clothing/under/rank/security/officer/viro/jumpsuit
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/security_officer/formal
+	name = "Security Formals"
+	item_path = /obj/item/clothing/under/rank/security/officer/formal
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/security_officer/formal/skirt
+	name = "Security Formal Skirt"
+	item_path = /obj/item/clothing/under/rank/security/officer/formal/skirt
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/security_officer/formal/skirt
+	name = "Security Formal Skirt"
+	item_path = /obj/item/clothing/under/rank/security/officer/formal/skirt
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/security_officer/lowcut
+	name = "Security Low-cut"
+	item_path = /obj/item/clothing/under/rank/security/officer/viro/lowcut
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/security_officer/dress
+	name = "Security Dress"
+	item_path = /obj/item/clothing/under/rank/security/officer/viro/skirt/dress
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/security_officer/shorts
+	name = "Security Shorts"
+	item_path = /obj/item/clothing/under/rank/security/officer/viro/shorts
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/security_officer/polo
+	name = "Security Polo"
+	item_path = /obj/item/clothing/under/rank/security/officer/viro/polo
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/security_officer/bodysuit
+	name = "Security Bodysuit"
+	item_path = /obj/item/clothing/under/rank/security/officer/viro/bodysuit
+	restricted_roles = list(ALL_JOBS_SEC)
+
+// SECMED
+
 /datum/loadout_item/uniform/security/security_medic
 	name = "Security Medic Turtleneck"
-	item_path =/obj/item/clothing/under/rank/security/security_medic
+	item_path = /obj/item/clothing/under/rank/security/officer/viro/security_medic
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/uniform/security/security_medic/skirt
 	name = "Security Medic Skirtleneck"
-	item_path =/obj/item/clothing/under/rank/security/security_medic/skirt
+	item_path = /obj/item/clothing/under/rank/security/officer/viro/security_medic/skirt
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
-/datum/loadout_item/uniform/security/security_medic/alternate
+/datum/loadout_item/uniform/security/security_medic/jumpsuit
 	name = "Security Medic Jumpsuit"
-	item_path = /obj/item/clothing/under/rank/security/security_medic/alternate
+	item_path = /obj/item/clothing/under/rank/security/officer/viro/security_medic/jumpsuit
 	restricted_roles = list(JOB_SECURITY_MEDIC)
+
+/datum/loadout_item/uniform/security/security_medic/scrubs
+	name = "Security Medic Scrubs"
+	item_path = /obj/item/clothing/under/rank/security/officer/viro/security_medic/scrubs
+	restricted_roles = list(JOB_SECURITY_MEDIC)
+
+// CO
 
 /datum/loadout_item/uniform/security/corrections_officer
 	name = "Correction's Officer Jumpsuit"

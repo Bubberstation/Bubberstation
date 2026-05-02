@@ -135,7 +135,7 @@
 
 /datum/loadout_item/head/beret/sec/security_medic
 	name = "Security Medic Beret"
-	item_path = /obj/item/clothing/head/beret/sec/security_medic
+	item_path = /obj/item/clothing/head/beret/sec/viro/security_medic
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/head/lace_bow
