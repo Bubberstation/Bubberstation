@@ -26,20 +26,6 @@
 		/obj/item/storage/medkit
 		)
 
-/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue
-	icon_state = "secmed_labcoat_blue"
-
-/obj/item/clothing/suit/hazardvest/security_medic
-	name = "security medic vest"
-	desc = "A lightweight vest worn by the Security Medic."
-	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	icon_state = "secmed_vest"
-	worn_icon_state = "secmed_vest"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-	allowed = list(/obj/item/analyzer, /obj/item/stack/medical, /obj/item/dnainjector, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/hypospray, /obj/item/healthanalyzer, /obj/item/flashlight, /obj/item/reagent_containers/cup/bottle, /obj/item/reagent_containers/cup/beaker, /obj/item/reagent_containers/applicator/pill, /obj/item/storage/pill_bottle, /obj/item/paper, /obj/item/melee/baton/telescopic, /obj/item/soap, /obj/item/tank/internals/emergency_oxygen, /obj/item/gun, /obj/item/storage/medkit)
-	armor_type = /datum/armor/hazardvest_security_medic
-
 /datum/armor/hazardvest_security_medic
 	melee = 35
 	bullet = 30
@@ -90,10 +76,10 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
-/obj/item/clothing/head/beret/sec/peacekeeper/security_medic
+/obj/item/clothing/head/beret/sec/security_medic
 	name = "security medic beret"
 	desc = "A robust beret with the medical insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
-	icon_state = "/obj/item/clothing/head/beret/sec/peacekeeper/security_medic"
+	icon_state = "/obj/item/clothing/head/beret/sec/security_medic"
 	greyscale_colors = "#3F3C40#870E12"
 	post_init_icon_state = "beret_badge_med"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON

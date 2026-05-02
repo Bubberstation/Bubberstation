@@ -1,48 +1,11 @@
 /obj/machinery/vending/wardrobe/sec_wardrobe
-	name = "\improper MultiSec Outfitting Station"
-	desc = "A vending machine stocked with a multitude of security outfits, including standardized uniforms in multiple colors and general equipment. Now with more Multi!"
-	icon = 'modular_zubbers/icons/obj/machines/vending.dmi'
-	icon_state = "multisec"
+	name = "\improper Security Outfitting Station"
+	desc = "A vending machine stocked with a multitude of security outfits, including standardized uniforms and general equipment."
+	icon = 'icons/obj/machines/vending.dmi'
+	icon_state = "secdrobe"
 	light_mask = null
 	products = list() // Overriding this to the default to prevent any issues when building the product menu
 	product_categories = list(
-		list(
-			"name" = "Blue",
-			"icon" = "shield-halved",
-			"products" = list(
-					/obj/item/clothing/suit/hooded/wintercoat/security = 6,
-					/obj/item/clothing/suit/toggle/jacket/sec = 6,
-					/obj/item/clothing/suit/armor/vest/secjacket/blue = 6,
-					/obj/item/clothing/suit/armor/vest/peacekeeper/brit = 6,
-					/obj/item/clothing/neck/security_cape = 6,
-					/obj/item/clothing/neck/security_cape/armplate = 6,
-					/obj/item/storage/backpack/security = 6,
-					/obj/item/storage/backpack/satchel/sec = 6,
-					/obj/item/storage/backpack/duffelbag/sec = 6,
-					/obj/item/storage/backpack/duffelbag/sec = 6,
-					/obj/item/clothing/under/rank/security/officer = 10,
-					/obj/item/clothing/under/rank/security/officer/skirt/blue = 10,
-					/obj/item/clothing/under/rank/security/peacekeeper = 10,
-					/obj/item/clothing/under/rank/security/peacekeeper/skirt = 10,
-					/obj/item/clothing/under/rank/security/peacekeeper/shortskirt = 10,
-					/obj/item/clothing/under/rank/security/peacekeeper/miniskirt = 10,
-					/obj/item/clothing/under/rank/security/officer/blueshirt = 10,
-					/obj/item/clothing/under/rank/security/peacekeeper/trousers = 5,
-					/obj/item/clothing/under/rank/security/peacekeeper/trousers/shorts = 5,
-					/obj/item/clothing/under/rank/security/skyrat/utility = 6,
-					/obj/item/clothing/shoes/jackboots/sec = 10,
-					/obj/item/clothing/head/security_garrison = 10,
-					/obj/item/clothing/head/security_cap = 10,
-					/obj/item/clothing/head/beret/sec/peacekeeper = 6,
-					/obj/item/clothing/head/beret/sec/peacekeeper/white = 6,
-					/obj/item/clothing/head/helmet/sec/terra = 6,
-					/obj/item/clothing/head/hats/warden/police/patrol = 6,
-					/obj/item/clothing/head/costume/ushanka/sec/blue = 10,
-					/obj/item/clothing/gloves/color/black/security = 10,
-					/obj/item/clothing/head/helmet/sec/futuristic = 6,
-					/obj/item/clothing/suit/armor/vest/collared_vest = 6, //added by Bangle
-				),
-			),
 		list(
 			"name" = "Red",
 			"icon" = "shield",
@@ -60,7 +23,7 @@
 					/obj/item/clothing/head/helmet/sec/redsec = 6,
 					/obj/item/clothing/head/beret/sec = 6,
 					/obj/item/clothing/head/security_kepi = 6,
-					/obj/item/clothing/head/beret/sec/peacekeeper/armadyne = 6,
+					/obj/item/clothing/head/beret/sec/armadyne = 6,
 					/obj/item/clothing/head/soft/sec = 6,
 					/obj/item/clothing/head/security_beanie = 6,
 					/obj/item/clothing/head/costume/ushanka/sec = 10,
@@ -87,6 +50,24 @@
 					/obj/item/clothing/suit/armor/vest/peacekeeper/armadyne/armor = 6,
 					/obj/item/clothing/suit/armor/vest/caligram_parka_vest_tan = 6,
 					/obj/item/clothing/suit/toggle/jacket/zubber/bomber/sec = 6,
+					/obj/item/clothing/suit/hooded/wintercoat/security = 6,
+					/obj/item/clothing/suit/toggle/jacket/sec = 6,
+					/obj/item/clothing/neck/security_cape = 6,
+					/obj/item/clothing/neck/security_cape/armplate = 6,
+					/obj/item/storage/backpack/security = 6,
+					/obj/item/storage/backpack/satchel/sec = 6,
+					/obj/item/storage/backpack/duffelbag/sec = 6,
+					/obj/item/clothing/under/rank/security/officer = 10,
+					/obj/item/clothing/under/rank/security/peacekeeper/skirt = 10,
+					/obj/item/clothing/under/rank/security/peacekeeper/miniskirt = 10,
+					/obj/item/clothing/under/rank/security/officer/blueshirt = 10,
+					/obj/item/clothing/under/rank/security/peacekeeper/trousers = 5,
+					/obj/item/clothing/under/rank/security/peacekeeper/trousers/shorts = 5,
+					/obj/item/clothing/under/rank/security/skyrat/utility = 6,
+					/obj/item/clothing/shoes/jackboots/sec = 10,
+					/obj/item/clothing/gloves/color/black/security = 10,
+					/obj/item/clothing/head/helmet/sec/futuristic = 6,
+					/obj/item/clothing/suit/armor/vest/collared_vest = 6, //added by Bangle
 				),
 			),
 		list(
@@ -94,11 +75,9 @@
 			"icon" = "notes-medical",
 			"products" = list(
 					/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic = 3,
-					/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue = 3,
 					/obj/item/clothing/suit/hazardvest/security_medic = 3,
-					/obj/item/clothing/suit/hazardvest/security_medic/blue = 3,
 					/obj/item/clothing/head/helmet/sec/peacekeeper/security_medic = 3,
-					/obj/item/clothing/head/beret/sec/peacekeeper/security_medic = 3,
+					/obj/item/clothing/head/beret/sec/security_medic = 3,
 					/obj/item/clothing/head/playbunnyears/brig_phys = 3,
 					/obj/item/clothing/under/rank/security/brig_phys_bunnysuit = 3,
 					/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/doctor_tailcoat = 3,
@@ -142,7 +121,6 @@
 
 	contraband = list(
 					/obj/item/clothing/under/colonial/nri_police = 3,
-					/obj/item/clothing/suit/british_officer = 3,
 					/obj/item/clothing/head/cowboy/skyrat/cattleman/sec = 3,
 					/obj/item/clothing/head/cowboy/skyrat/cattleman/wide/sec = 3,
 					/obj/item/clothing/head/fedora/det_hat/cybergoggles = 3,
@@ -170,4 +148,4 @@
 
 
 /obj/item/vending_refill/wardrobe/sec_wardrobe
-	machine_name = "MultiSec Outfitting Station"
+	machine_name = "Security Outfitting Station"

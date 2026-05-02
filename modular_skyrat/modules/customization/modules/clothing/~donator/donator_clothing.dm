@@ -1682,35 +1682,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 		but hasn't had much spread outside of the Terran Government."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
-	icon_state = "coat_blackblue"
+	icon_state = "coat_blackred"
 	inhand_icon_state = "hostrench"
 	blood_overlay_type = "coat"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	supports_variations_flags = NONE
-
-/obj/item/clothing/suit/armor/hos/elofy/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/anime_coat)
-
-/datum/atom_skin/anime_coat
-	abstract_type = /datum/atom_skin/anime_coat
-
-/datum/atom_skin/anime_coat/black_blue
-	preview_name = "Black-Blue"
-	new_icon_state = "coat_blackblue"
-
-/datum/atom_skin/anime_coat/black_red
-	preview_name = "Black-Red"
-	new_icon_state = "coat_blackred"
-
-/datum/atom_skin/anime_coat/white_red
-	preview_name = "White-Red"
-	new_icon_state = "coat_whitered"
-
-/datum/atom_skin/anime_coat/white_blue
-	preview_name = "White-Blue"
-	new_icon_state = "coat_whiteblue"
 
 /obj/item/clothing/suit/armor/hos/elofy/examine_more(mob/user)
 	. = ..()
@@ -1727,21 +1704,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "hat_black"
 
-/obj/item/clothing/head/hats/hos/elofy/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/anime_hat)
-
-/datum/atom_skin/anime_hat
-	abstract_type = /datum/atom_skin/anime_hat
-
-/datum/atom_skin/anime_hat/white
-	preview_name = "White"
-	new_icon_state = "hat_white"
-
-/datum/atom_skin/anime_hat/black
-	preview_name = "Black"
-	new_icon_state = "hat_black"
-
 /obj/item/clothing/gloves/elofy
 	name = "anime admiral gloves"
 	desc = "These gloves are a near perfect replica of those worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
@@ -1752,21 +1714,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/hands.dmi'
 	icon_state = "gloves_black"
 
-/obj/item/clothing/gloves/elofy/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/anime_gloves)
-
-/datum/atom_skin/anime_gloves
-	abstract_type = /datum/atom_skin/anime_gloves
-
-/datum/atom_skin/anime_gloves/white
-	preview_name = "White"
-	new_icon_state = "gloves_white"
-
-/datum/atom_skin/anime_gloves/black
-	preview_name = "Black"
-	new_icon_state = "gloves_black"
-
 /obj/item/clothing/shoes/jackboots/elofy
 	name = "anime admiral boots"
 	desc = "These boots are a near perfect replica of those worn by Admiral Yi Sun-Sin, main character from \"Heroes of the Galactic Conflict\", \
@@ -1775,26 +1722,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 		but hasn't had much spread outside of the Terran Government."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/feet.dmi'
-	icon_state = "boots_blackblue"
-
-/obj/item/clothing/shoes/jackboots/elofy/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/anime_boots)
-
-/datum/atom_skin/anime_boots
-	abstract_type = /datum/atom_skin/anime_boots
-
-/datum/atom_skin/anime_boots/black_red
-	preview_name = "Black-Red"
-	new_icon_state = "boots_blackred"
-
-/datum/atom_skin/anime_boots/white_red
-	preview_name = "White-Red"
-	new_icon_state = "boots_whitered"
-
-/datum/atom_skin/anime_boots/white_blue
-	preview_name = "White-Blue"
-	new_icon_state = "boots_whiteblue"
+	icon_state = "boots_blackred"
 
 // Donation reward for grasshand
 /obj/item/clothing/under/rank/civilian/chaplain/divine_archer/noble

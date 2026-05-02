@@ -27,11 +27,6 @@
 	item_path = /obj/item/clothing/head/hats/warden/drill
 	restricted_roles = list(JOB_WARDEN)
 
-/datum/loadout_item/head/hats/warden/police/patrol
-	name = "Police Patrol Cap"
-	item_path = /obj/item/clothing/head/hats/warden/police/patrol
-	restricted_roles = list(ALL_JOBS_SEC)
-
 /datum/loadout_item/head/helmet/sec/futuristic
 	name = "Futuristic Security Helmet"
 	item_path = /obj/item/clothing/head/helmet/sec/futuristic
@@ -65,16 +60,6 @@
 	donator_only = TRUE
 	restricted_roles = list(JOB_NT_REP)
 
-/datum/loadout_item/head/security_garrison
-	name = "Security Garrison Cap"
-	item_path = /obj/item/clothing/head/security_garrison
-	restricted_roles = list(ALL_JOBS_SEC)
-
-/datum/loadout_item/head/security_cap
-	name = "Security Cap"
-	item_path = /obj/item/clothing/head/security_cap
-	restricted_roles = list(ALL_JOBS_SEC)
-
 /datum/loadout_item/head/security_cap/soft
 	name = "Security Soft Cap"
 	item_path = /obj/item/clothing/head/soft/sec
@@ -97,22 +82,12 @@
 
 /datum/loadout_item/head/beret/sec/peacekeeper
 	name = "Peacekeeper Beret"
-	item_path = /obj/item/clothing/head/beret/sec/peacekeeper
+	item_path = /obj/item/clothing/head/beret/sec
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/beret/sec/peacekeeper/white
 	name = "Peacekeeper White Beret"
-	item_path = /obj/item/clothing/head/beret/sec/peacekeeper/white
-	restricted_roles = list(ALL_JOBS_SEC)
-
-/datum/loadout_item/head/helmet/sec/terra
-	name = "Sol Police Helmet"
-	item_path = /obj/item/clothing/head/helmet/sec/terra
-	restricted_roles = list(ALL_JOBS_SEC)
-
-/datum/loadout_item/head/hats/warden/police/patrol
-	name = "Warden's Police Cap"
-	item_path = /obj/item/clothing/head/hats/warden/police/patrol
+	item_path = /obj/item/clothing/head/beret/sec/white
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/helmet/sec/redsec
@@ -132,7 +107,7 @@
 
 /datum/loadout_item/head/beret/sec/peacekeeper/armadyne
 	name = "Armadyne Corporate Beret"
-	item_path = /obj/item/clothing/head/beret/sec/peacekeeper/armadyne
+	item_path = /obj/item/clothing/head/beret/sec/armadyne
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/helmet/sec/peacekeeper/security_medic
@@ -142,7 +117,7 @@
 
 /datum/loadout_item/head/beret/sec/peacekeeper/security_medic
 	name = "Security Medic Beret"
-	item_path = /obj/item/clothing/head/beret/sec/peacekeeper/security_medic
+	item_path = /obj/item/clothing/head/beret/sec/security_medic
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/head/lace_bow

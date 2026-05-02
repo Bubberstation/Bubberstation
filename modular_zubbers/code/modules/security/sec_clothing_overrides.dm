@@ -6,7 +6,7 @@
 * BACKPACKS
 */
 /obj/item/storage/backpack/security
-	icon = 'icons/obj/clothing/backpacks.dmi'
+	icon = 'icons/obj/storage/backpack.dmi'
 	worn_icon = 'icons/mob/clothing/back.dmi'
 	lefthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_lefthand.dmi'
 	righthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_righthand.dmi'
@@ -14,7 +14,7 @@
 	inhand_icon_state = "backpack-security"
 
 /obj/item/storage/backpack/satchel/sec
-	icon = 'icons/obj/clothing/backpacks.dmi'
+	icon = 'icons/obj/storage/backpack.dmi'
 	worn_icon = 'icons/mob/clothing/back.dmi'
 	lefthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_lefthand.dmi'
 	righthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_righthand.dmi'
@@ -22,7 +22,7 @@
 	inhand_icon_state = "satchel-security"
 
 /obj/item/storage/backpack/duffelbag/sec
-	icon = 'icons/obj/clothing/backpacks.dmi'
+	icon = 'icons/obj/storage/backpack.dmi'
 	worn_icon = 'icons/mob/clothing/back.dmi'
 	lefthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_lefthand.dmi'
 	righthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_righthand.dmi'
@@ -80,12 +80,6 @@
 /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch
 	icon_state = "hudpatch"
 	base_icon_state = "hudpatch"
-
-/obj/item/clothing/glasses/hud/eyepatch/sec
-	name = "security eyepatch HUD"
-	desc = "Lost your eye beating an innocent clown? Thankfully your corporate overlords have made something to make up for this. May not do well against flashes."
-	clothing_traits = list(TRAIT_SECURITY_HUD)
-	glass_colour_type = /datum/client_colour/glass_colour/red
 
 /obj/item/clothing/glasses/hud/eyepatch/sec/blindfold
 	name = "sec blindfold HUD"
@@ -146,6 +140,8 @@
 
 
 /obj/item/clothing/head/helmet/sec/futuristic
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/helmet.dmi'
 	icon_state = "security_helmet_future_red"
 	base_icon_state = "security_helmet_future_red"
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON

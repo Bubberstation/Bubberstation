@@ -39,11 +39,6 @@
 	item_path = /obj/item/clothing/suit/toggle/jacket/sec/old
 	restricted_roles = list(ALL_JOBS_SEC)
 
-/datum/loadout_item/suit/secjacket
-	name = "High-Vis Security Jacket"
-	item_path = /obj/item/clothing/suit/armor/vest/secjacket/blue
-	restricted_roles = list(ALL_JOBS_SEC)
-
 /datum/loadout_item/suit/secjacket/bomber
 	name = "Security Bomber Jacket"
 	item_path = /obj/item/clothing/suit/toggle/jacket/zubber/bomber/sec
@@ -90,8 +85,8 @@
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/suit/jacket/security_medic
-	name = "Security Medic's Blue Labcoat"
-	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue
+	name = "Security Medic's Labcoat"
+	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 // Silver Jacket Mk2 but for all of Command

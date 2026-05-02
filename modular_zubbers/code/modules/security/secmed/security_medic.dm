@@ -59,7 +59,7 @@
 	glasses = /obj/item/clothing/glasses/hud/medsechud
 	suit = /obj/item/clothing/suit/armor/vest/peacekeeper/security_medic
 	l_hand = /obj/item/storage/medkit/brute
-	head = /obj/item/clothing/head/beret/sec/peacekeeper/security_medic
+	head = /obj/item/clothing/head/beret/sec/security_medic
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
@@ -120,9 +120,7 @@
 /obj/item/storage/bag/garment/secmed/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic(src)
-	new /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue(src)
 	new /obj/item/clothing/suit/hazardvest/security_medic(src)
-	new /obj/item/clothing/suit/hazardvest/security_medic/blue(src)
 	new /obj/item/clothing/head/helmet/sec/peacekeeper/security_medic(src)
 	new /obj/item/clothing/under/rank/medical/scrubs/skyrat/red/sec(src)
 	new /obj/item/clothing/under/rank/security/peacekeeper/security_medic/alternate(src)
