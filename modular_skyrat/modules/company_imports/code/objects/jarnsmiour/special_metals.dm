@@ -10,6 +10,7 @@
 	sheet_type = /obj/item/stack/sheet/cobolterium
 
 /datum/material/cobolterium/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
+	..()
 	victim.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = 5)
 	return TRUE
 
@@ -38,6 +39,7 @@
 	sheet_type = /obj/item/stack/sheet/copporcitite
 
 /datum/material/copporcitite/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
+	..()
 	victim.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = 5)
 	return TRUE
 
@@ -66,6 +68,7 @@
 	sheet_type = /obj/item/stack/sheet/tinumium
 
 /datum/material/tinumium/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
+	..()
 	victim.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = 5)
 	return TRUE
 
@@ -94,6 +97,7 @@
 	sheet_type = /obj/item/stack/sheet/brussite
 
 /datum/material/brussite/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
+	..()
 	victim.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = 5)
 	return TRUE
 
