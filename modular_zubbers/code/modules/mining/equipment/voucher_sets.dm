@@ -80,3 +80,12 @@
 	set_items = list(
 		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/mining,
 	)
+
+/datum/voucher_set/mining_suit/diy
+	name = "DIY Mining Suit"
+	description = "Do-it-yourself custom mining suit. Includes specialized kit to turn your outfit into custom explorer/SEVA suit."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "retool_kit"
+	set_items = list(
+		/obj/item/miningsuitupgradekit,
+	)
