@@ -128,3 +128,24 @@
 	research_tree_icon_state = "key_blade"
 	desc = "Grasp no longer goes on cooldown when used to open a door or locker."
 	cost = 1
+
+//cosmic
+/datum/heretic_knowledge_tree_column/cosmic
+	passive_upgrade1 = /datum/heretic_knowledge/passive_upgrade/one/cosmic
+	passive_upgrade2 = /datum/heretic_knowledge/passive_upgrade/two/cosmic
+	passive_upgrade3 = /datum/heretic_knowledge/passive_upgrade/three/cosmic
+
+/datum/heretic_knowledge/passive_upgrade/one/cosmic
+	research_tree_icon_state = "cosmic_blade"
+	desc = "Cosmic fields speed you up and regenerate stamina."
+	cost = 2
+
+/datum/heretic_knowledge/passive_upgrade/two/cosmic
+	research_tree_icon_state = "cosmic_blade"
+	desc = "Cosmic fields disrupt grenades or signalers from being activated and turn off already primed grenades."
+	cost = 2
+
+/datum/heretic_knowledge/passive_upgrade/three/cosmic
+	research_tree_icon_state = "cosmic_blade"
+	desc = "Cosmic fields slow projectiles down."
+	cost = 2

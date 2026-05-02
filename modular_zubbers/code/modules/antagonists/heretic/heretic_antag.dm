@@ -155,6 +155,11 @@
 
 	return parts.Join("<br>")
 
+/datum/antagonist/heretic/proc/purge_shop_of_duplicates()
+	for (var/iter_path in heretic_shops[HERETIC_KNOWLEDGE_SHOP])
+		if (iter_path in researched_knowledge)
+			heretic_shops[HERETIC_KNOWLEDGE_SHOP] -= iter_path
+
 /datum/antagonist/heretic/event
 	name = "Acolyte (No Influence Spawning)"
 

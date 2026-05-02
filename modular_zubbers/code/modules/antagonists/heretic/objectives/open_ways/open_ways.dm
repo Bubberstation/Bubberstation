@@ -280,7 +280,6 @@
 		/obj/item/stack/sheet/sinew, // lavaland + culty
 		/obj/item/restraints/handcuffs/cable/zipties, // have to break into sec or get arrested by beepsky (lol)
 		/obj/item/codex_cicatrix, // actually kinda hard 2 make + contra + outs u as heretic
-		/obj/item/skub, // actually surprisngly hard to find + contraband + bulky???
 		///obj/item/raw_anomaly_core, // hard to get, definitely culty, if youre not science you have no reason to seek out a raw core
 		///obj/item/mod/core/ethereal, // craftable if you grind a high energy bar
 	)

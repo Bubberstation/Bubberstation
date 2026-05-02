@@ -10,7 +10,9 @@
 /datum/objective/heretic_wildcard/proc/apply_to(datum/antagonist/heretic/our_heretic)
 	for (var/datum/heretic_knowledge/iter_knowledge as anything in knowledge_to_gain)
 		our_heretic.gain_knowledge(iter_knowledge, HERETIC_KNOWLEDGE_SHOP)
+		our_heretic.heretic_shops[HERETIC_KNOWLEDGE_SHOP] -= iter_knowledge
 		to_chat(our_heretic.owner, span_boldnotice("To accomplish your objectives, you have been given the [iter_knowledge::name] knowledge node for free."))
+		our_heretic.update_data_for_all_viewers()
 
 /datum/objective/heretic_wildcard/proc/increment_progress(datum/antagonist/heretic/our_heretic, atom/target)
 	if (is_finished())

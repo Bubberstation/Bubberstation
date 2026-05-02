@@ -14,13 +14,13 @@
 	///How many uses does it have? -1 for infinite
 	var/uses = 1
 
-/proc/try_user_announce(mob/living/user)
+/proc/try_user_announce(mob/living/user, list/available_sounds = GLOB.announcer_keys)
 	//build our announcement
 	var/origin = reject_bad_text(tgui_input_text(user, "Who is announcing, or where is the announcement coming from?", "Announcement Origin", get_area_name(user), max_length = 28))
 	if(!origin)
 		user.balloon_alert(user, "bad origin!")
 		return FALSE
-	var/audio_key = tgui_input_list(user, "Which announcement audio key should play? ('Intercept' is default)", "Announcement Audio", GLOB.announcer_keys, ANNOUNCER_INTERCEPT)
+	var/audio_key = tgui_input_list(user, "Which announcement audio key should play? ('Intercept' is default)", "Announcement Audio", available_sounds, ANNOUNCER_INTERCEPT)
 	if(!audio_key)
 		user.balloon_alert(user, "bad audio!")
 		return FALSE

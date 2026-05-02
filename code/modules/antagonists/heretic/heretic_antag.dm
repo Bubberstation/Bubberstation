@@ -346,7 +346,6 @@
 			var/static/list/banned_paths = list(
 				/datum/heretic_knowledge_tree_column/blade,
 				/datum/heretic_knowledge_tree_column/ash,
-				/datum/heretic_knowledge_tree_column/cosmic,
 				/datum/heretic_knowledge_tree_column/rust,
 			)
 			if (path in banned_paths)

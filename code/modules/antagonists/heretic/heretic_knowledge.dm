@@ -291,6 +291,7 @@
 		our_heretic.heretic_shops[HERETIC_KNOWLEDGE_SHOP],
 		our_heretic.heretic_shops[HERETIC_KNOWLEDGE_DRAFT],
 	)
+	our_heretic.purge_shop_of_duplicates() // BUBBER EDIT ADDITION - purge duplicate entries
 	SEND_SIGNAL(src, COMSIG_HERETIC_SHOP_SETUP)
 
 

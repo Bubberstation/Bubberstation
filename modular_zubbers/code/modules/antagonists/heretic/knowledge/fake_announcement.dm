@@ -1,3 +1,13 @@
+/proc/get_heretic_announcement_sounds()
+	RETURN_TYPE(/list)
+
+	var/list/base = GLOB.announcer_keys.Copy()
+	for (var/datum/heretic_knowledge/ultimate/ascension as anything in subtypesof(/datum/heretic_knowledge/ultimate))
+		if (ascension::announcement_sound)
+			base += ascension::announcement_sound
+
+	return base
+
 /datum/heretic_knowledge/fake_announcement
 	name = "Voice of the Mansus"
 	desc = "Sacrifice a radio to create a fake announcement. Can only be invoked once before it must be researched again."
@@ -13,11 +23,20 @@
 	var/datum/antagonist/heretic/heretic = GET_HERETIC(user)
 	if (isnull(heretic))
 		return FALSE
-	if (!try_user_announce(user))
+	if (!try_user_announce(user, get_heretic_announcement_sounds()))
 		return FALSE
 
 	on_lose()
 	heretic.researched_knowledge -= type
-	qdel(src)
 
+	heretic.heretic_shops[HERETIC_KNOWLEDGE_SHOP][type] = make_knowledge_entry(
+		type,
+		null,
+		HERETIC_KNOWLEDGE_SHOP,
+		drafting_tier,
+		drafting_cost
+	)
+	heretic.update_data_for_all_viewers()
+
+	qdel(src)
 	return TRUE
