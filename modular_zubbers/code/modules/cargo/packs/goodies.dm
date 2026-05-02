@@ -192,12 +192,6 @@
 	cost = PAYCHECK_CREW * 7
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/seclite)
 
-/datum/supply_pack/goody/pillow_implant
-	name = "Cyberpillow™ Implant"
-	desc = "A pack containing one Cyberpillow™ for those sudden locker naps and bouts of SSD."
-	cost = PAYCHECK_CREW * 3
-	contains = list(/obj/item/organ/cyberimp/arm/toolkit/pillow)
-
 /datum/supply_pack/goody/penfour_implant
 	name = "Fingertip Four Color Pen Implant"
 	desc = "An implanted four colour pen, replacing a fingertip. What more could you want?"
