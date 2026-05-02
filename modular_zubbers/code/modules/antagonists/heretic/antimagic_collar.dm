@@ -8,6 +8,9 @@
 	inhand_icon_state = "reverse_bear_trap"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	drop_sound = 'sound/items/handling/toolbelt_drop.ogg'
+	pickup_sound = 'sound/items/handling/toolbelt_pickup.ogg'
+	equip_sound = 'sound/items/equip/toolbelt_equip.ogg'
 	clothing_flags = INEDIBLE_CLOTHING|DANGEROUS_OBJECT
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_materials = list(
@@ -85,6 +88,8 @@
 		if (IS_HERETIC(user) && !broken)
 			to_chat(loc, span_userdanger("You feel your connection to the Mansus weaken and eventually fade!"))
 		locked = TRUE
+		balloon_alert_to_viewers("automatically locked!")
+		visible_message("[src] automatically locks!")
 
 /obj/item/clothing/neck/antimagic_collar/atom_break(damage_flag)
 	. = ..()
