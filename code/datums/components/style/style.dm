@@ -83,7 +83,7 @@
 	if(multitooled)
 		src.multitooled = multitooled
 
-	ADD_TRAIT(mob_parent, TRAIT_STYLISH, REF(src)) // SKYRAT EDIT ADD - allows style meter chads to do flips
+	ADD_TRAIT(parent, TRAIT_STYLISH, REF(src)) // SKYRAT EDIT ADD - allows style meter chads to do flips
 
 /datum/component/style/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_USER_PRE_ITEM_ATTACK, PROC_REF(hotswap))

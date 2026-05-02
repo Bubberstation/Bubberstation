@@ -194,7 +194,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/stack/sheet/rglass/fifty = 1,
 		/obj/item/stack/sheet/titaniumglass = 25,
 		/obj/item/stack/sheet/titaniumglass/fifty = 1,
-		/obj/item/stack/sheet/xenochitin = 15
+		/obj/item/stack/sheet/animalhide/xeno = 15
 	) = 300,
 	list(
 		/obj/item/stack/sheet/animalhide/cat = 10,
@@ -284,8 +284,8 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/pen/fourcolor = 5,
 		/obj/item/picket_sign = 10,
 		/obj/item/plaque = 5,
-		/obj/item/stack/sticky_tape = 25,
-		/obj/item/stack/sticky_tape/super = 1,
+		/obj/item/stack/medical/wrap/sticky_tape = 25,
+		/obj/item/stack/medical/wrap/sticky_tape/super = 1,
 		/obj/item/stack/wrapping_paper = 25,
 		/obj/item/stack/wrapping_paper/small = 10,
 		/obj/item/stack/wrapping_paper/xmas = 25,

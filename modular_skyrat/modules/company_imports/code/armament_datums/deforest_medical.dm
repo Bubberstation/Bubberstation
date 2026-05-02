@@ -58,7 +58,7 @@
 	cost = PAYCHECK_LOWER
 
 /datum/armament_entry/company_import/deforest/first_aid/sterile_gauze
-	item_type = /obj/item/stack/medical/gauze/sterilized
+	item_type = /obj/item/stack/medical/wrap/gauze/sterilized
 	cost = PAYCHECK_LOWER
 
 /datum/armament_entry/company_import/deforest/first_aid/suture

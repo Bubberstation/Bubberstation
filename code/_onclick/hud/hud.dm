@@ -139,7 +139,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	screentip_text = add_screen_object(/atom/movable/screen/screentip, HUD_MOB_SCREENTIP)
 
 	activation = new(null, src) // BUBBER EDIT ADDITION
-	static_inventory += activation // BUBBER EDIT ADDITION
+	add_screen_object(activation, null, HUD_GROUP_STATIC) // BUBBER EDIT ADDITION
 
 	for(var/mytype in subtypesof(/atom/movable/plane_master_controller))
 		var/atom/movable/plane_master_controller/controller_instance = new mytype(null,src)

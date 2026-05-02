@@ -188,7 +188,7 @@
 		/obj/item/retractor/advanced,
 		/obj/item/cautery/advanced,
 		/obj/item/scalpel/advanced,
-		/obj/item/stack/medical/gauze,
+		/obj/item/stack/medical/wrap/gauze,
 		/obj/item/borg/cyborghug/medical,
 		/obj/item/borg/lollipop,
 		/obj/item/borg/apparatus/beaker,

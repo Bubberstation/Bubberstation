@@ -470,6 +470,7 @@
 	. = ..()
 	. += get_blip_overlay()
 
+/* BUBBER REMOVAL START - Custom HTML Lobby Screen
 /atom/movable/screen/lobby/button/collapse/Click(location, control, params)
 	. = ..()
 	if(!.)
@@ -498,6 +499,9 @@
 	//we use sleep here so it can work during game setup, as addtimer would not work until the game would finish setting up
 	sleep(2 * SHUTTER_MOVEMENT_DURATION + SHUTTER_WAIT_DURATION)
 	set_button_status(TRUE)
+
+BUBBER REMOVAL END
+*/
 
 ///Proc to update the ready blip state upon new player's ready status change
 /atom/movable/screen/lobby/button/collapse/proc/on_player_ready_toggle()

@@ -49,7 +49,7 @@
 		if(LAZYACCESS(shown_station_trait_buttons, trait))
 			continue
 		var/atom/movable/screen/lobby/button/sign_up/sign_up_button = add_screen_object(/atom/movable/screen/lobby/button/sign_up, HUD_NEW_PLAYER_SIGN_UP)
-		trait.setup_lobby_button(sign_up_button)
+		sign_up_button.name = trait.name
 		LAZYSET(shown_station_trait_buttons, trait, sign_up_button)
 		RegisterSignal(trait, COMSIG_QDELETING, PROC_REF(remove_station_trait_button))
 

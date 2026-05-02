@@ -2193,18 +2193,6 @@
 	pickup_sound = initial(pickup_sound)
 	drop_sound = initial(drop_sound)
 
-/obj/item/apply_single_mat_effect(datum/material/material, mat_amount, multiplier)
-	. = ..()
-	if(!(material_flags & MATERIAL_AFFECT_STATISTICS) || !slowdown)
-		return
-	slowdown += GET_MATERIAL_MODIFIER(material.added_slowdown * mat_amount, multiplier)
-
-/obj/item/remove_single_mat_effect(datum/material/material, mat_amount, multiplier)
-	. = ..()
-	if(!(material_flags & MATERIAL_AFFECT_STATISTICS) || !slowdown)
-		return
-	slowdown -= GET_MATERIAL_MODIFIER(material.added_slowdown * mat_amount, multiplier)
-
 /**
  * Returns the atom(either itself or an internal module) that will interact/attack the target on behalf of us
  * For example an object can have different `tool_behaviours` (e.g borg omni tool) but will return an internal reference of that tool to attack for us

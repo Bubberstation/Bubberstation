@@ -163,10 +163,11 @@
 	handle_clown_mutation(current_mob, removing = FALSE)
 	if(current_mob.hud_used)
 		var/datum/hud/hud_used = current_mob.hud_used
-		hud_used.infodisplay -= blood_display
-		hud_used.infodisplay -= vamprank_display
-		QDEL_NULL(blood_display)
-		QDEL_NULL(vamprank_display)
+		hud_used.remove_screen_object(blood_display, update = FALSE)
+		hud_used.remove_screen_object(vamprank_display, update = FALSE)
+		hud_used.show_hud(hud_used.hud_version)
+		blood_display = null
+		vamprank_display = null
 
 	SSsunlight.remove_sun_sufferer(current_mob) //check if sunlight should end
 	if(iscarbon(current_mob))
@@ -181,10 +182,10 @@
 	var/datum/hud/bloodsucker_hud = owner.current.hud_used
 
 	blood_display = new(null, bloodsucker_hud)
-	bloodsucker_hud.infodisplay += blood_display
+	bloodsucker_hud.add_screen_object(blood_display, null, HUD_GROUP_INFO)
 
 	vamprank_display = new(null, bloodsucker_hud)
-	bloodsucker_hud.infodisplay += vamprank_display
+	bloodsucker_hud.add_screen_object(vamprank_display, null, HUD_GROUP_INFO)
 
 	bloodsucker_hud.show_hud(bloodsucker_hud.hud_version)
 	SSsunlight.add_sun_sufferer(owner.current)
