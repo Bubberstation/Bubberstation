@@ -345,6 +345,7 @@
 			// BUBBER EDIT REMOVAL BEGIN - TEMPORARY REMOVAL OF MOST PATHS DURING REBALANCE
 			var/static/list/banned_paths = list(
 				/datum/heretic_knowledge_tree_column/blade,
+				/datum/heretic_knowledge_tree_column/moon,
 				/datum/heretic_knowledge_tree_column/ash,
 				/datum/heretic_knowledge_tree_column/rust,
 			)
