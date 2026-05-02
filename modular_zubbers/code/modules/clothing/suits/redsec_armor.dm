@@ -35,12 +35,6 @@
 	name = "armored vest"
 	icon_state = "armor_sec"
 
-/obj/item/clothing/suit/armor/red/vest/wintercoat/red
-	name = "security winter coat"
-	desc = "An armored winter coat that provides decent protection, and keeps you cozy on those cold Freyja nights."
-	icon_state = "sec_wintercoat"
-	inhand_icon_state = "armor"
-
 /obj/item/clothing/suit/armor/red/hos
 	name = "armored greatcoat"
 	desc = "A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence."
