@@ -18,7 +18,7 @@
 	desc = "A tactical security jumpsuit for officers complete with Nanotrasen belt buckle."
 	icon_state = "rsecurity"
 	inhand_icon_state = "r_suit"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/officer/red/skirt
 	name = "security skirt"
@@ -28,7 +28,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/officer/red/battledress
 	name = "security battledress"
@@ -37,6 +37,7 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "security_skirt_redsec"
 	inhand_icon_state = "r_suit"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/officer/red/battledress/turtleneck
 	name = "security turtleneck"
@@ -44,6 +45,7 @@
 	icon_state = "jumpsuit_red"
 	inhand_icon_state = "r_suit"
 	can_adjust = TRUE
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 
 // WARDEN gear
@@ -55,6 +57,7 @@
 	worn_icon = 'icons/mob/clothing/under/security.dmi'
 	icon_state = "rwarden"
 	inhand_icon_state = "r_suit"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/warden/skirt/red
 	name = "warden's suitskirt"
@@ -66,7 +69,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 // HOS gear
 
@@ -79,6 +82,7 @@
 	inhand_icon_state = "r_suit"
 	armor_type = /datum/armor/clothing_under/security_head_of_security
 	strip_delay = 6 SECONDS
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /datum/armor/clothing_under/security_head_of_security/red
 	melee = 10
@@ -94,7 +98,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/head_of_security/red/alt
 	name = "head of security's turtleneck"
@@ -103,6 +107,7 @@
 	inhand_icon_state = "bl_suit"
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/head_of_security/red/alt/skirt
 	name = "head of security's turtleneck skirt"
@@ -114,7 +119,7 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/neck/cloak/hos/red
 	name = "head of security's cloak"

@@ -19,6 +19,7 @@
 					/obj/item/clothing/suit/armor/red/vest/alt = 6,
 					/obj/item/clothing/suit/armor/red/vest/alt/sec = 6,
 					/obj/item/clothing/suit/armor/vest/collared_vest = 6,
+					/obj/item/clothing/suit/armor/red/vest/wintercoat/red = 6,
 					/obj/item/clothing/suit/armor/vest/alt/sec/viro = 6,
 					/obj/item/clothing/suit/armor/vest/alt/sec/viro/heavyvest = 6,
 					/obj/item/clothing/suit/armor/vest/alt/sec/viro/leatherjacket = 6,
