@@ -28,6 +28,7 @@
 	new /obj/item/clothing/head/helmet/sec/hos(src)
 	new /obj/item/clothing/head/soft/sec/hos(src)
 	new /obj/item/clothing/head/hats/hos/cap/cowboy(src)
+	new /obj/item/clothing/head/hos_kepi(src)
 	new	/obj/item/clothing/suit/armor/hos(src)
 	new	/obj/item/clothing/suit/armor/hos/trenchcoat(src)
 	new	/obj/item/clothing/suit/armor/hos/trenchcoat/winter(src)
