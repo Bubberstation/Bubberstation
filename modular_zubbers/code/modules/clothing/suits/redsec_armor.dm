@@ -40,7 +40,7 @@
 	desc = "An armored winter coat that provides decent protection, and keeps you cozy on those cold Freyja nights."
 	icon = 'modular_zubbers/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	icon_state = "sec_wintercoat"
+	icon_state = "coatsecurity_winter_t"
 	inhand_icon_state = "armor"
 
 /obj/item/clothing/suit/armor/red/hos
