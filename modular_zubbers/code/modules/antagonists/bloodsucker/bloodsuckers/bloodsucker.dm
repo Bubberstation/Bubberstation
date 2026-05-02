@@ -337,10 +337,10 @@
 
 /datum/antagonist/bloodsucker/get_preview_icon()
 
-	var/icon/outfit_icon = render_preview_outfit(preview_outfit)
-	var/icon/blood_icon = icon('icons/effects/blood.dmi', "uniformblood")
-	blood_icon.Blend(BLOOD_COLOR_RED, ICON_MULTIPLY)
-	outfit_icon.Blend(blood_icon, ICON_OVERLAY)
+	var/datum/universal_icon/outfit_icon = render_preview_outfit(preview_outfit)
+	var/datum/universal_icon/blood_icon = uni_icon('icons/effects/blood.dmi', "uniformblood")
+	blood_icon.blend_color(BLOOD_COLOR_RED, ICON_MULTIPLY)
+	outfit_icon.blend_icon(blood_icon, ICON_OVERLAY)
 
 	return finish_preview_icon(outfit_icon)
 

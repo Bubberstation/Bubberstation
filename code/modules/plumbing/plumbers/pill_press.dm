@@ -71,13 +71,13 @@
 			suffix = "pill"
 		if(CAT_PATCHES)
 			suffix = "patch"
-			//SKYRAT EDIT ADDITION BEGIN - HYPOVIALS
-			if(CAT_HYPOS)
-				suffix = "vial"
-			//SKYRAT EDIT ADDITION END - HYPOVIALS
-			if(CAT_PEN_INJECTORS)
-				suffix = "injector"
-			// BUBBER EDIT for pen_medipens
+		//SKYRAT EDIT ADDITION BEGIN - HYPOVIALS
+		if(CAT_HYPOS)
+			suffix = "vial"
+		//SKYRAT EDIT ADDITION END - HYPOVIALS
+		if(CAT_PEN_INJECTORS)
+		// BUBBER EDIT for pen_medipens
+			suffix = "injector"
 		else
 			suffix = "bottle"
 	container.name = "[product_name] [suffix]"
