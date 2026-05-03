@@ -68,6 +68,18 @@
 					/obj/item/clothing/gloves/color/black/security = 10,
 					/obj/item/clothing/head/helmet/sec/futuristic = 6,
 					/obj/item/clothing/suit/armor/vest/collared_vest = 6, //added by Bangle
+					/obj/item/clothing/under/rank/security/viro/officer/ = 6,
+					/obj/item/clothing/under/rank/security/viro/officer/legs = 6,
+					/obj/item/clothing/under/rank/security/viro/officer/skirt/ = 6,
+					/obj/item/clothing/under/rank/security/viro/officer/formal/ = 6,
+					/obj/item/clothing/under/rank/security/viro/officer/bodysuit/male = 6,
+					/obj/item/clothing/under/rank/security/viro/officer/bodysuit/female = 6,
+					/obj/item/clothing/suit/armor/vest/secwintercoat = 6,
+					/obj/item/clothing/suit/armor/vest/viro = 6,
+					/obj/item/clothing/suit/armor/vest/viro/heavy = 6,
+					/obj/item/clothing/suit/armor/vest/viro/leatherjacket = 6,
+					/obj/item/clothing/suit/armor/vest/viro/softshell = 6,
+
 				),
 			),
 		list(

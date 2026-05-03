@@ -36,3 +36,13 @@
 	name = "armored bandana"
 	desc = "For ten years, we lived and died together. You couldn't possibly understand."
 	armor_type = /datum/armor/cosmetic_sec
+
+//virosec hats
+
+obj/item/colothing/head/sec/viro/beanie
+	name = "security beanie"
+	desc = "A beanie for security purposes"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "security_beanie"
+	armor_type = datum/armor/cosmetic_sec

@@ -181,6 +181,16 @@
 	inhand_icon_state = "armor"
 	blood_overlay_type = "armor"
 
+/obj/item/clothing/suit/armor/vest/viro/leatherjacket
+	name = "security leather jacket"
+	desc = "A leather jacket for security officers, with a badass red collar."
+	icon_state = "sec_leatherjacket"
+
+/obj/item/clothing/suit/armor/vest/viro/softshell
+	name = "Security softshell jacket"
+	desc = "A softshell weather-resistant jacket perfect for those plants with stormy weather."
+	icon_state = "sec_softshell"
+
 /obj/item/clothing/suit/armor/hos/viro
 	name = "armored greatcoat"
 	desc = "A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence."

@@ -717,3 +717,20 @@
 	icon_state = "plasmax_black"
 	light_color = "#f399ff"
 	visor_icon = "plasmax_black-envisor"
+
+// virosec helmets, sprites by axietheaxolotl
+
+/obj/item/clothing/head/helmet/viro
+	name = "helmet"
+	desc = "Standard Security gear. Protects the head from impacts."
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "security_helmet"
+
+/obj/item/clothing/head/helmet/viro/hos
+	name = "helmet"
+	desc = "Standard Security gear. Protects the head from impacts. This one has a golden stripe."
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "hos_helmet"
+
