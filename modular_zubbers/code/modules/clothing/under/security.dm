@@ -87,6 +87,8 @@
 /obj/item/clothing/under/rank/security/officer/viro
 	name = "security uniform"
 	desc = "A tactical security jumpsuit for officers complete with Nanotrasen belt buckle."
+	icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	icon_state = "security_jumpsuit"
 	inhand_icon_state = "r_suit"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
