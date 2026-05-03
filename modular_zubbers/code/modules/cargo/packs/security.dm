@@ -95,7 +95,6 @@
 /datum/supply_pack/security/armory/laser_carbine
 	cost = CARGO_CRATE_VALUE * 7
 
-/* ugly takyon sprites - readd later VIROWIP
 /datum/supply_pack/security/combine
 	name = "Civil Protection Uniforms"
 	desc = "Extra supplies we got from some weird old guy in a blue suit. Contains six uniforms, \
@@ -111,7 +110,6 @@
 			)
 	crate_name = "benefactor supply crate"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
-*/
 
 /datum/supply_pack/security/ntusp
 	name = "NT-USP Crate"
@@ -126,6 +124,22 @@
 					/obj/item/ammo_box/magazine/recharge/ntusp)
 	crate_name = "nt-usp crate"
 
+/datum/supply_pack/security/miecz
+	name = "Miecz Submachine Gun Single-Pack"
+	crate_name = "Miecz submachine gun crate"
+	desc = "Contains a Miecz submachine gun and a spare magazine for it."
+	contains = list(/obj/item/gun/ballistic/automatic/miecz = 1,
+	/obj/item/ammo_box/magazine/miecz = 1)
+	cost = CARGO_CRATE_VALUE * 10
+	access = ACCESS_SECURITY
+
+/datum/supply_pack/security/mieczammo
+	name = "Miecz Submachine Gun Ammo Crate"
+	crate_name = "Miecz submachine gun ammo crate"
+	desc = "Contains 4 magazines for the Miecz submachine gun."
+	contains = list(/obj/item/ammo_box/magazine/miecz = 4)
+	cost = CARGO_CRATE_VALUE * 4
+	access = ACCESS_SECURITY
 /datum/supply_pack/security/armory/archery_kit
 	name = "Archery Crate"
 	desc = "Two hardlight bows capable of defeating armor, alongside a mix of lethal and non/less-than-lethal arrows."

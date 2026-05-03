@@ -62,7 +62,6 @@
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 1
 
-
 /datum/supply_pack/goody/medkit_surgery
 	name = "High Capacity Surgical Medkit"
 	desc = "A high capacity aid kit, full of medical supplies and basic surgical equipment."
@@ -114,6 +113,22 @@
 	cost = PAYCHECK_CREW * 12
 	access = ACCESS_SECURITY
 	contains = list(/obj/item/gun/energy/e_gun/advtaser)
+
+/datum/supply_pack/goody/shotgun_revolver
+	name = "Bóbr 12 GA Revolver Single-Pack"
+	desc = "Contains 1 civilian-modified Bóbr revolver, chambered in 12 gauge. For when you really want the power of a shotgun in the palm of your hand. Comes with a box of beanbag shells."
+	contains = list(/obj/item/gun/ballistic/revolver/shotgun_revolver/civvie = 1,
+	/obj/item/ammo_box/advanced/s12gauge/bean = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 20
+
+/datum/supply_pack/goody/plasma_projector
+	name = "Słońce Plasma Projector Single-Pack"
+	desc = "Contains one Słońce Plasma Projector. Spews an inaccurate stream of searing plasma out the magnetic barrel so long as it has power."
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/plasma_thrower = 1,
+	/obj/item/ammo_box/magazine/recharge/plasma_battery = 1)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 6
 
 /datum/supply_pack/goody/standard_mod_core
 	name = "MOD standard core"
@@ -171,3 +186,26 @@
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/tacticool)
 
+/datum/supply_pack/goody/seclite_implant
+	name = "Seclite Implant"
+	desc = "Contains a seclite implant for lighting up dark maintenance tunnels."
+	cost = PAYCHECK_CREW * 7
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/seclite)
+
+/datum/supply_pack/goody/penfour_implant
+	name = "Fingertip Four Color Pen Implant"
+	desc = "An implanted four colour pen, replacing a fingertip. What more could you want?"
+	cost = PAYCHECK_CREW * 5
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/penfour)
+
+/datum/supply_pack/goody/tape_recorder_implant
+	name = "Universal Recorder Implant"
+	desc = "A recording device installed in the forearm under a discrete panel. Accepts standard EMP resistant tapes. Spare tape included."
+	cost = PAYCHECK_CREW * 6
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/tape_recorder, /obj/item/tape/random)
+
+/datum/supply_pack/goody/foamforce_implant
+	name = "Pop-up Donksoft Blaster Implant"
+	desc = "Donksoft's pop-up blaster is great for annoying coworkers. Pack contains one implant and a mini box of spare darts."
+	cost = PAYCHECK_CREW * 8
+	contains = list(/obj/item/organ/cyberimp/arm/toolkit/foamforce_implant, /obj/item/ammo_box/foambox/mini)
