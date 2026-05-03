@@ -184,6 +184,8 @@
 /obj/item/clothing/under/rank/security/viro/head_of_security/skirt
 	name = "head of security's skirt"
 	desc = "A security jumpskirt decorated for those few with the dedication to achieve the position of Head of Security."
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	icon_state = "hos_skirt"
 	inhand_icon_state = "r_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
