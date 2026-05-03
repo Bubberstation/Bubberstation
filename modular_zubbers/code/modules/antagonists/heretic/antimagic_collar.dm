@@ -87,9 +87,11 @@
 	if (slot == ITEM_SLOT_NECK)
 		if (IS_HERETIC(user) && !broken)
 			to_chat(loc, span_userdanger("You feel your connection to the Mansus weaken and eventually fade!"))
-		locked = TRUE
-		balloon_alert_to_viewers("automatically locked!")
-		visible_message("[src] automatically locks!")
+		if (!locked)
+			locked = TRUE
+			ADD_TRAIT(src, TRAIT_NO_STRIP, REF(src))
+			balloon_alert_to_viewers("automatically locked!")
+			visible_message("[src] automatically locks!")
 
 /obj/item/clothing/neck/antimagic_collar/atom_break(damage_flag)
 	. = ..()
@@ -166,7 +168,10 @@
 		to_chat(user, span_warning("With a click, the collar [locked ? "unlocks" : "locks"]!"))
 		balloon_alert_to_viewers("[locked ? "unlocked" : "locked"]!")
 		locked = !locked
-		if (!locked)
+		if (locked)
+			ADD_TRAIT(src, TRAIT_NO_STRIP, REF(src))
+		else
+			REMOVE_TRAIT(src, TRAIT_NO_STRIP, REF(src))
 			radio.talk_into(src, "Antimagic collar [set_id] unlocked using a key.", RADIO_CHANNEL_SECURITY, list(speech_span))
 	return TRUE
 
