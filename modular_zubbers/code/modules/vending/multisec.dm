@@ -61,6 +61,7 @@
 					/obj/item/clothing/under/rank/security/peacekeeper/trousers = 6,
 					/obj/item/clothing/under/rank/security/peacekeeper/trousers/shorts = 6,
 					/obj/item/clothing/under/rank/security/skyrat/utility = 6,
+					/obj/item/clothing/under/rank/security/officer/turtleneck = 6,
 					/obj/item/clothing/shoes/jackboots/sec = 6,
 					/obj/item/clothing/gloves/color/black/security = 6,
 					/obj/item/clothing/head/helmet/sec/futuristic = 6,
