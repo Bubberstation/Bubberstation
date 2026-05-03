@@ -50,7 +50,7 @@
 		complete_spawned.hammer_completion_amount = forge_component.get_completion_ratio()
 
 	var/datum/component/reagent_imbued/new_reagent_component = spawned_obj.GetComponent(/datum/component/reagent_imbued)
-	if(!isnull(new_reagent_component) && HAS_TRAIT(quencher, TRAIT_KNOW_ADVANCED_SMITHING))
+	if(!isnull(new_reagent_component) && USER_CAN_REAGENT_IMBUE(quencher))
 		new_reagent_component.set_reagent_imbue(dunk_reagents, FALSE, TRUE)
 		to_chat(quencher, span_notice("The [spawned_obj] is imbued with reagents."))
 
@@ -254,7 +254,7 @@
 	name = "sword blade"
 	desc = "A sword blade, ready to get some wood for completion."
 	icon_state = "blade"
-	spawning_item = /obj/item/forging/reagent_weapon/sword
+	spawning_item = /obj/item/melee/forged_reagent_weapon/sword
 	force = 5
 	double_edged_damage = 3
 
@@ -262,7 +262,7 @@
 	name = "katana blade"
 	desc = "A katana blade, ready to get some wood for completion."
 	icon_state = "katanablade"
-	spawning_item = /obj/item/forging/reagent_weapon/katana
+	spawning_item = /obj/item/melee/forged_reagent_weapon/katana
 	force = 5
 	double_edged_damage = 3
 
@@ -270,7 +270,7 @@
 	name = "rapier blade"
 	desc = "A rapier blade, ready to get some wood for completion."
 	icon_state = "rapierblade"
-	spawning_item = /obj/item/forging/reagent_weapon/rapier
+	spawning_item = /obj/item/melee/forged_reagent_weapon/rapier
 	force = 5
 	double_edged_damage = 3
 
@@ -278,7 +278,7 @@
 	name = "dagger blade"
 	desc = "A dagger blade, ready to get some wood for completion."
 	icon_state = "daggerblade"
-	spawning_item = /obj/item/forging/reagent_weapon/dagger
+	spawning_item = /obj/item/melee/forged_reagent_weapon/dagger
 	force = 3
 	double_edged_damage = 2
 
@@ -286,13 +286,13 @@
 	name = "staff head"
 	desc = "A staff head, ready to get some wood for completion."
 	icon_state = "staffhead"
-	spawning_item = /obj/item/forging/reagent_weapon/staff
+	spawning_item = /obj/item/melee/forged_reagent_weapon/staff
 
 /obj/item/forging/complete/spear
 	name = "spear head"
 	desc = "A spear head, ready to get some wood for completion."
 	icon_state = "spearhead"
-	spawning_item = /obj/item/forging/reagent_weapon/spear
+	spawning_item = /obj/item/melee/forged_reagent_weapon/spear
 	force = 3
 	double_edged_damage = 2
 
@@ -300,14 +300,14 @@
 	name = "axe head"
 	desc = "An axe head, ready to get some wood for completion."
 	icon_state = "axehead"
-	spawning_item = /obj/item/forging/reagent_weapon/axe
+	spawning_item = /obj/item/melee/forged_reagent_weapon/axe
 	force = 5
 
 /obj/item/forging/complete/hammer
 	name = "hammer head"
 	desc = "A hammer head, ready to get some wood for completion."
 	icon_state = "hammerhead"
-	spawning_item = /obj/item/forging/reagent_weapon/hammer
+	spawning_item = /obj/item/melee/forged_reagent_weapon/hammer
 	force = 5
 
 /obj/item/forging/complete/pickaxe

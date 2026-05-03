@@ -17,6 +17,14 @@
 /obj/structure/reagent_dispensers/reagent_smithing_basin/prefilled
 	reagent_id = /datum/reagent/fuel/oil/smithing
 
+/obj/structure/reagent_dispensers/reagent_smithing_basin/update_overlays()
+	. = ..()
+	if(reagents.total_volume >= tank_volume)
+		var/mutable_appearance/filling = mutable_appearance(icon,, "water_basin_reagent_overlay")
+		filling.color = mix_color_from_reagents(reagents.reagent_list)
+		. += filling
+		return
+
 /obj/structure/reagent_dispensers/reagent_smithing_basin/Initialize()
 	. = ..()
 	check_fishable()

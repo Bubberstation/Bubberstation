@@ -121,7 +121,7 @@
 /datum/component/forge_smithable/proc/get_hit_quality(mob/living/user, obj/item/forging/hammer/tool)
 	if(parent_item.GetComponent(/datum/component/reagent_imbued))
 		var/datum/component/reagent_imbued/reagent_component = parent_item.GetComponent(/datum/component/reagent_imbued)
-		if(reagent_component.imbued_reagent.reagent_list.len >= 1 && !HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
+		if(reagent_component.imbued_reagent.reagent_list.len >= 1 && !USER_CAN_REAGENT_IMBUE(user))
 			return ANVIL_HAMMER_HIT_CANNOT_WORK
 
 	if(HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING) && can_perfect_hit)
@@ -135,10 +135,11 @@
 
 	return ANVIL_HAMMER_HIT_GOOD
 
-/datum/component/forge_smithable/proc/reset()
-	current_perfects = 0
+/datum/component/forge_smithable/proc/reset(reset_perfects = FALSE)
 	quality_points = 0
 	bad_hits_total = 0
+	if(reset_perfects)
+		current_perfects = 0
 
 ////////////////////// FOR ACTUAL SMITHING ACTIONS /////////////////////////
 
@@ -174,14 +175,16 @@
 /datum/component/forge_smithable/proc/try_quench(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
 	if(dunk_reagents.chem_temp > MAX_QUENCH_HEAT)
 		parent_item.balloon_alert(user, "[dunk_object] is too hot to cool [parent_item]!")
-		return
+		return FALSE
 	if(dunk_reagents.total_volume < MIN_VOLUME_TO_QUENCH)
 		parent_item.balloon_alert(user, "[dunk_object] doesn't contain enough fluid to immerse [parent_item]!")
-		return
+		return FALSE
 	dunk_reagents.expose_temperature(600)
 	if(!isnull(heat_color))
 		parent_item.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
+	parent_item.update_integrity(max(round(lerp(0, parent_item.max_integrity, completion_ratio)), parent_item.get_integrity()))
 	quench_callback.Invoke(dunk_reagents, dunk_object, user)
+	return TRUE
 	//SEND_SIGNAL(parent_item, COMSIG_SMITHING_QUENCH, dunk_reagents, dunk_object, user)
 
 /datum/component/forge_smithable/proc/heat_for_smithing(heat_time, additive = FALSE)
@@ -191,6 +194,29 @@
 		COOLDOWN_START(src, heating_remainder, heat_time + COOLDOWN_TIMELEFT(src, heating_remainder))
 	else
 		COOLDOWN_START(src, heating_remainder, heat_time)
+
+////////////////////// for clothing specifically /////////////////////////
+///cause i don't want to code duplicate my fuck ass code specifically for item/clothing/head item/clothing/suit item/clothing/gloves etc. :sob:
+/datum/component/forge_smithable/armor
+	var/datum/armor/armor_penalty_from_incompletion = /datum/armor/none
+	var/datum/armor/armor_bonus_from_perfection = /datum/armor/perfect_forged_armor_bonus
+
+/datum/component/forge_smithable/armor/try_quench(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
+	. = ..()
+	if(.)
+		apply_armor_bonuses(get_completion_ratio(), get_perfect_ratio())
+
+/datum/component/forge_smithable/armor/proc/apply_armor_bonuses(completion_ratio, perfection_ratio)
+	var/datum/armor/new_armor_penalty = /datum/armor/none
+	if(quality_points < completion_quality_points)
+		new_armor_penalty = parent_item.get_armor().generate_new_with_multipliers(list(ARMOR_ALL = 1.0 - lerp(MIN_INCOMPLETE_ARMOR_MULT, MAX_INCOMPLETE_ARMOR_MULT, completion_ratio)))
+	parent_item.set_armor(parent_item.get_armor().add_other_armor(armor_penalty_from_incompletion).subtract_other_armor(new_armor_penalty))
+	armor_penalty_from_incompletion = new_armor_penalty
+
+	var/datum/armor/new_armor_bonus = /datum/armor/none
+	new_armor_bonus = perfect_forged_armor_bonus.generate_new_with_multipliers(list(ARMOR_ALL = perfection_ratio))
+	parent_item.set_armor(parent_item.get_armor().add_other_armor(new_armor_bonus).subtract_other_armor(armor_bonus_from_perfection))
+	armor_bonus_from_perfection = new_armor_bonus
 
 /mob/living
 	//the time between each strike

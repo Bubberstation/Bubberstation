@@ -1,3 +1,12 @@
+/datum/armor/perfect_forged_armor_bonus
+	melee = 5
+	bullet = 5
+	fire = 5
+
+/datum/armor/smithing_oil_armor_bonus
+	melee = 5
+	bullet = 5
+
 // Vests
 /obj/item/clothing/suit/armor/forging_plate_armor
 	name = "reagent plate vest"
@@ -13,20 +22,22 @@
 	armor_type = /datum/armor/armor_forging_plate_armor
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 
+/obj/item/clothing/suit/armor/forging_plate_armor/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_OCLOTHING)
+	allowed += /obj/item/melee/forged_reagent_weapon
+	AddComponent(/datum/component/forge_smithable/armor, \
+		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
+		FORGING_WEAPON_REFORGING_AVERAGE_WAIT)
+
 /datum/armor/armor_forging_plate_armor
 	melee = 40
 	bullet = 40
 	fire = 50
 	wound = 30
-
-
-	target_for_upgrading.set_armor(target_for_upgrading.get_armor().add_other_armor(armor_mod))
-
-/obj/item/clothing/suit/armor/forging_plate_armor/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_OCLOTHING)
-
-	allowed += /obj/item/forging/reagent_weapon
 
 // Gloves
 /obj/item/clothing/gloves/forging_plate_gloves
@@ -53,6 +64,12 @@
 /obj/item/clothing/gloves/forging_plate_gloves/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_GLOVES)
+	AddComponent(/datum/component/forge_smithable/armor, \
+		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
+		FORGING_WEAPON_REFORGING_AVERAGE_WAIT)
 
 // Helmets
 /obj/item/clothing/head/helmet/forging_plate_helmet
@@ -79,6 +96,12 @@
 /obj/item/clothing/head/helmet/forging_plate_helmet/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_HEAD)
+	AddComponent(/datum/component/forge_smithable/armor, \
+		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
+		FORGING_WEAPON_REFORGING_AVERAGE_WAIT)
 
 // Boots
 /obj/item/clothing/shoes/forging_plate_boots
@@ -106,6 +129,12 @@
 /obj/item/clothing/shoes/forging_plate_boots/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_FEET)
+	AddComponent(/datum/component/forge_smithable/armor, \
+		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
+		FORGING_WEAPON_REFORGING_AVERAGE_WAIT)
 
 /obj/item/clothing/shoes/horseshoe/reagent_clothing
 	name = "reagent horseshoes"
@@ -121,10 +150,17 @@
 /obj/item/clothing/shoes/horseshoe/reagent_clothing/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_FEET)
+	AddComponent(/datum/component/forge_smithable/armor, \
+		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
+		FORGING_WEAPON_REFORGING_AVERAGE_WAIT)
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// MISC ////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
+
 /obj/item/clothing/gloves/ring/reagent_clothing
 	name = "reagent ring"
 	desc = "A tiny ring, sized to wrap around a finger."
@@ -132,10 +168,37 @@
 	worn_icon_state = "sring"
 	inhand_icon_state = null
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
+	var/current_perfection_bonus = 0
+	var/current_completion_penalty = 0
 
 /obj/item/clothing/gloves/ring/reagent_clothing/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_GLOVES)
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
+		FORGING_WEAPON_REFORGING_AVERAGE_WAIT, \
+		CALLBACK(src, TYPE_PROC_REF(/obj/item/clothing/gloves/ring/reagent_clothing, quench_item)))
+
+/obj/item/clothing/gloves/ring/reagent_clothing/proc/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
+	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
+	if(!isnull(smith_component))
+		smith_component.reset()
+		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio())
+
+/obj/item/clothing/gloves/ring/reagent_clothing/proc/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
+	var/new_completion_penalty = 0
+	if(force_incomplete_penalty || completion_ratio < 1)
+		new_completion_penalty = lerp(MIN_INCOMPLETE_ARMOR_MULT, MAX_INCOMPLETE_ARMOR_MULT, completion_ratio) *
+	max_integrity += current_completion_penalty
+	max_integrity -= new_completion_penalty
+	current_completion_penalty = new_completion_penalty
+
+
+
+////////////////////////////////////////////////////////////////////////////
 
 /obj/item/clothing/neck/collar/reagent_clothing
 	name = "reagent collar"
@@ -152,6 +215,13 @@
 /obj/item/clothing/neck/collar/reagent_clothing/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_NECK)
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
+		FORGING_WEAPON_REFORGING_AVERAGE_WAIT, \
+		CALLBACK(src, TYPE_PROC_REF(/obj/item/clothing/suit/armor/forging_plate_armor, quench_item)))
 
 /obj/item/restraints/handcuffs/reagent_clothing
 	name = "reagent handcuffs"

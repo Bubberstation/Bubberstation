@@ -106,14 +106,6 @@
 	)
 	/// Filters the radial choice list by if it requires the smithing skillchip; true means corresponding element requires it
 	var/list/choice_list_trait_filter = list(
-		"Sword" = list(TRAIT_KNOW_ADVANCED_SMITHING),
-		"Katana" =list(TRAIT_KNOW_ADVANCED_SMITHING),
-		"Dagger" =list(TRAIT_KNOW_ADVANCED_SMITHING),
-		"Rapier" =list(TRAIT_KNOW_ADVANCED_SMITHING),
-		"Staff" = list(TRAIT_KNOW_ADVANCED_SMITHING),
-		"Spear" = list(TRAIT_KNOW_ADVANCED_SMITHING),
-		"Axe" = list(TRAIT_KNOW_ADVANCED_SMITHING),
-		"Arrowhead" = list(TRAIT_KNOW_ADVANCED_SMITHING),
 		"Revolver Frame" = list(TRAIT_KNOW_GUNSMITHING),
 		"Revolver Cylinder" = list(TRAIT_KNOW_GUNSMITHING),
 	)
@@ -602,7 +594,7 @@
 
 /// Handles weapon reagent imbuing
 /obj/structure/reagent_forge/proc/handle_weapon_imbue(obj/attacking_item, mob/living/user)
-	if(!HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
+	if(!USER_CAN_REAGENT_IMBUE(user))
 		to_chat(user, span_danger("You don't know the right trick to imbue this weapon!"))
 		return
 

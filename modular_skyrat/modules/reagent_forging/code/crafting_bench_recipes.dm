@@ -36,7 +36,7 @@
 	var/datum/component/reagent_imbued/output_reagent_component = product.GetComponent(/datum/component/reagent_imbued)
 	var/datum/reagents/my_reagents = combine_reagent_imbues(ingredients)
 	if(!isnull(output_reagent_component))
-		output_reagent_component.set_reagent_imbue(my_reagents, clear_source_reagents = TRUE, smithing_oil_bonus = HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
+		output_reagent_component.set_reagent_imbue(my_reagents, clear_source_reagents = TRUE, smithing_oil_bonus = USER_CAN_REAGENT_IMBUE(user))
 
 /datum/crafting_bench_recipe/proc/combine_reagent_imbues(list/reagent_imbued_items)
 	var/datum/reagents/reagents_sum = new(maximum = 4096, new_flags = NO_REACT)
@@ -106,7 +106,6 @@
 	recipe_requirements = list(
 		/obj/item/stack/sheet/mineral/wood = 2,
 	)
-	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 /datum/crafting_bench_recipe/weapon_completion_recipe/create_using_item_list(list/item_list, mob/living/user)
 	//apparently i fuggin have to write my own version of is_type_in_list
@@ -126,8 +125,8 @@
 	var/obj/item/forging/complete/weapon_head = find_from_list(things_to_use, /obj/item/forging/complete)
 
 	var/pieces_completion_amount = get_total_completion_amount(things_to_use)
-	if(istype(product, /obj/item/forging/reagent_weapon))
-		var/obj/item/forging/reagent_weapon/weaponforged = product
+	if(istype(product, /obj/item/melee/forged_reagent_weapon))
+		var/obj/item/melee/forged_reagent_weapon/weaponforged = product
 		weaponforged.apply_smithing_bonuses(pieces_completion_amount, weapon_head.perfect_ratio)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -217,7 +216,6 @@
 		/obj/item/forging/complete/plate = 2,
 	)
 	resulting_item = /obj/item/shield/buckler/reagent_weapon
-	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 	time_to_assemble = 3 SECONDS
 
 /datum/crafting_bench_recipe/pavise
@@ -227,7 +225,6 @@
 		/obj/item/forging/complete/plate = 4,
 	)
 	resulting_item = /obj/item/shield/buckler/reagent_weapon/pavise
-	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 	time_to_assemble = 6 SECONDS
 
 /datum/crafting_bench_recipe/bokken
@@ -236,9 +233,8 @@
 	recipe_requirements = list(
 		/obj/item/stack/sheet/mineral/wood = 4,
 	)
-	resulting_item = /obj/item/forging/reagent_weapon/bokken
+	resulting_item = /obj/item/melee/forged_reagent_weapon/bokken
 	time_to_assemble = 3 SECONDS
-	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 /datum/crafting_bench_recipe/bow
 	recipe_name = "bow"
@@ -248,7 +244,6 @@
 	)
 	resulting_item = /obj/item/forging/incomplete_bow
 	time_to_assemble = 4 SECONDS
-	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 /datum/crafting_bench_recipe/revolver
 	recipe_name = "revolver"
@@ -304,6 +299,29 @@
 	time_to_assemble = 3 SECONDS
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
+/datum/crafting_bench_recipe/multi_scabbard
+	recipe_name = "multi-scabbard harness"
+	recipe_desc = "A set of harnesses that allow the wearer to carry multiple bulky weapons."
+	recipe_requirements = list(
+		/obj/item/stack/sheet/leather = 6,
+		/obj/item/stack/sheet/cloth = 6,
+	)
+	resulting_item = /obj/item/storage/belt/sheath/multi_scabbard
+	time_to_assemble = 3 SECONDS
+	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
+
+/datum/crafting_bench_recipe/repairing_scabbard
+	recipe_name = "repairing scabbard"
+	recipe_desc = "A belt that holds one weapon and slowly restores its integrity over time."
+	recipe_requirements = list(
+		/obj/item/stack/sheet/leather = 3,
+		/obj/item/stack/sheet/mineral/silver = 1,
+		/obj/item/stack/sheet/bluespace_crystal = 1,
+	)
+	resulting_item = /obj/item/storage/belt/sheath/repairing
+	time_to_assemble = 3 SECONDS
+	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
+
 /datum/crafting_bench_recipe/knifethrower
 	recipe_name = "knifethrower's belt"
 	recipe_desc = "A belt that can hold a ton of knives."
@@ -314,7 +332,6 @@
 	resulting_item = /obj/item/storage/belt/knifethrowers_belt
 	time_to_assemble = 3 SECONDS
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
-
 
 /datum/crafting_bench_recipe/bluespace_plants
 	recipe_name = "bluespace plant bag"
@@ -328,16 +345,6 @@
 	time_to_assemble = 3 SECONDS
 	required_traits = list(TRAIT_KNOW_CIRCUIT_SMITHING)
 
-/datum/crafting_bench_recipe/knifethrower
-	recipe_name = "knifethrower's belt"
-	recipe_desc = "A belt that can hold a ton of knives."
-	recipe_requirements = list(
-		/obj/item/stack/sheet/leather = 3,
-		/obj/item/stack/sheet/cloth = 2,
-	)
-	resulting_item = /obj/item/storage/belt/knifethrowers_belt
-	time_to_assemble = 3 SECONDS
-	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// MISC  COMPLETION //////////////////////////////////////////////////////

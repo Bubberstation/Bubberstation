@@ -1,5 +1,5 @@
 // Damage is technically 10 by default since that's the max you get from perfect hits when crafting. Find a non-third-of-sth value for the multiplier to get to 18, I'll wait
-/obj/item/forging/reagent_weapon
+/obj/item/melee/forged_reagent_weapon
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
 	lefthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_l.dmi'
 	righthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_r.dmi'
@@ -12,33 +12,35 @@
 	var/completion_force_penalty = 0
 	//keeps track of how much force was given from perfect hammering
 	var/perfect_forging_bonus = 0
-	//how much stamina damage to apply on a rightclick. set to 0 to be unable to stamdamage someone
+	//how much stamina damage to apply on a rightclick, & if the weapon can do so
 	var/stamina_damage = 0
+	var/can_nonlethal_altfire = FALSE
+
 	//verbs to use when secondary attacking
 	var/list/secondary_attack_verb_continuous = list("shaft-strikes")
 	var/list/secondary_attack_verb_simple = list("shaft-strike")
 
-/obj/item/forging/reagent_weapon/Initialize(mapload)
+/obj/item/melee/forged_reagent_weapon/Initialize(mapload)
 	. = ..()
 	apply_reagent_component()
 	apply_smithing_component()
 
-/obj/item/forging/reagent_weapon/proc/apply_reagent_component()
+/obj/item/melee/forged_reagent_weapon/proc/apply_reagent_component()
 	AddComponent(/datum/component/reagent_imbued/weapon)
 
-/obj/item/forging/reagent_weapon/proc/apply_smithing_component()
+/obj/item/melee/forged_reagent_weapon/proc/apply_smithing_component()
 	AddComponent(/datum/component/forge_smithable, \
-		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
-		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
-		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
-		FORGING_WEAPON_REFORGING_AVERAGE_WAIT, \
-		CALLBACK(src, TYPE_PROC_REF(/obj/item/forging/reagent_weapon, quench_item)))
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		CALLBACK(src, TYPE_PROC_REF(/obj/item/melee/forged_reagent_weapon, quench_item)))
 
 // nonlethal secondary attack
-/obj/item/forging/reagent_weapon/pre_attack_secondary(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
+/obj/item/melee/forged_reagent_weapon/pre_attack_secondary(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
-	if(stamina_damage > 0)
+	if(can_nonlethal_altfire)
 		// when we continue to attack, deal 0 (brute) damage (just stun)
 		SET_ATTACK_FORCE(attack_modifiers, 0)
 		target.apply_damage(stamina_damage, STAMINA, blocked = armour_block)
@@ -46,11 +48,11 @@
 		attack_verb_simple = secondary_attack_verb_simple
 	return SECONDARY_ATTACK_CONTINUE_CHAIN
 
-/obj/item/forging/reagent_weapon/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
+/obj/item/melee/forged_reagent_weapon/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	attack_verb_continuous = initial(attack_verb_continuous)
 	attack_verb_simple = initial(attack_verb_simple)
 
-/obj/item/forging/reagent_weapon/add_item_context(datum/source, list/context, atom/target, mob/living/user)
+/obj/item/melee/forged_reagent_weapon/add_item_context(datum/source, list/context, atom/target, mob/living/user)
 	if (isturf(target))
 		return NONE
 
@@ -58,22 +60,22 @@
 		context[SCREENTIP_CONTEXT_LMB] = "Attack"
 	else
 		context[SCREENTIP_CONTEXT_LMB] = "Attack"
-		if(stamina_damage > 0)
+		if(can_nonlethal_altfire)
 			context[SCREENTIP_CONTEXT_RMB] = "Non-lethally Attack"
 
 	return CONTEXTUAL_SCREENTIP_SET
 
-/obj/item/forging/reagent_weapon/proc/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
+/obj/item/melee/forged_reagent_weapon/proc/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
 	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
 	if(!isnull(smith_component))
 		smith_component.reset()
 		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio())
-/obj/item/forging/reagent_weapon/proc/passive_cool_item()
+/obj/item/melee/forged_reagent_weapon/proc/passive_cool_item()
 	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
 	if(!isnull(smith_component))
 		smith_component.reset()
 		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio(), TRUE)
-/obj/item/forging/reagent_weapon/proc/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
+/obj/item/melee/forged_reagent_weapon/proc/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
 	var/new_force_penalty = 0
 	if(completion_ratio < 1 || force_incomplete_penalty)
 		new_force_penalty = initial(force) * (1.0 - lerp(MIN_INCOMPLETE_DAMAGE_MULT, MAX_INCOMPLETE_DAMAGE_MULT, completion_ratio))
@@ -81,13 +83,11 @@
 	force -= new_force_penalty
 	completion_force_penalty = new_force_penalty
 
-	update_integrity(max(round(lerp(0, max_integrity, completion_ratio)), atom_integrity))
-
 	var/new_perfect_force_bonus = max(perfect_forging_bonus, clamp(perfect_ratio * MAX_PERFECT_FORCE_BONUS, 0, MAX_PERFECT_FORCE_BONUS))
 	force += max(0, new_perfect_force_bonus - perfect_forging_bonus)
 	perfect_forging_bonus = new_perfect_force_bonus
 
-/obj/item/forging/reagent_weapon/sword
+/obj/item/melee/forged_reagent_weapon/sword
 	name = "reagent sword"
 	desc = "A sharp, maneuverable bastard sword most adept at blocking opposing melee strikes."
 	force = 7
@@ -114,20 +114,20 @@
 	var/unwielded_block_chance = 30
 	var/wielded_block_chance = 45
 
-/obj/item/forging/reagent_weapon/sword/Initialize(mapload)
+/obj/item/melee/forged_reagent_weapon/sword/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, force_multiplier = 2)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
-/obj/item/forging/reagent_weapon/sword/proc/on_wield()
+/obj/item/melee/forged_reagent_weapon/sword/proc/on_wield()
 	wielded = TRUE
 	block_chance = wielded_block_chance
 
-/obj/item/forging/reagent_weapon/sword/proc/on_unwield()
+/obj/item/melee/forged_reagent_weapon/sword/proc/on_unwield()
 	wielded = FALSE
 	block_chance = unwielded_block_chance
 
-/obj/item/forging/reagent_weapon/katana
+/obj/item/melee/forged_reagent_weapon/katana
 	name = "reagent katana"
 	desc = "A katana sharp enough to penetrate body armor, but not quite million-times-folded sharp."
 	force = 7
@@ -149,12 +149,12 @@
 	secondary_attack_verb_continuous = list("pommel-strikes")
 	secondary_attack_verb_simple = list("pommel-strike")
 
-/obj/item/forging/reagent_weapon/katana/Initialize(mapload)
+/obj/item/melee/forged_reagent_weapon/katana/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, force_multiplier = 2)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
-/obj/item/forging/reagent_weapon/dagger
+/obj/item/melee/forged_reagent_weapon/dagger
 	name = "reagent dagger"
 	desc = "A lightweight dagger historically used to stab at the gaps in armour of fallen knights of old."
 	force = 5
@@ -180,7 +180,7 @@
 	fall_chance = 1
 	pain_mult = 2
 
-/obj/item/forging/reagent_weapon/dagger/Initialize(mapload)
+/obj/item/melee/forged_reagent_weapon/dagger/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 70)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
@@ -188,7 +188,7 @@
 
 //We're not reinventing the wheel, give it extra wounding if you land it, either you do or you dont, no dmg ups. Nullblade code but modified
 
-/obj/item/forging/reagent_weapon/dagger/attack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
+/obj/item/melee/forged_reagent_weapon/dagger/attack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	//Wounds scale off damage applied, so we're going to give the illusion of damaging people with the swing, when in reality it's all in the proc.
 	if(!isliving(target))
@@ -205,7 +205,7 @@
 	if(check_for_sneak_attack(living_target, user) == TRUE)
 		critical_hit(living_target)
 
-/obj/item/forging/reagent_weapon/dagger/proc/check_for_sneak_attack(mob/living/carbon/carbon_target, mob/user)
+/obj/item/melee/forged_reagent_weapon/dagger/proc/check_for_sneak_attack(mob/living/carbon/carbon_target, mob/user)
 	// Check chaplain_nullrod.dm for original comments, I'm only leaving new ones in
 	var/successful_sneak_attack = FALSE
 
@@ -243,7 +243,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/forging/reagent_weapon/dagger/proc/critical_hit(mob/living/carbon/carbon_target, mob/user)
+/obj/item/melee/forged_reagent_weapon/dagger/proc/critical_hit(mob/living/carbon/carbon_target, mob/user)
 	var/obj/item/bodypart/affecting = carbon_target.get_bodypart(user.get_random_valid_zone(user.zone_selected))
 	var/armor_block = carbon_target.run_armor_check(affecting, MELEE, armour_penetration = armour_penetration)
 
@@ -251,7 +251,7 @@
 	carbon_target.balloon_alert(user, "sneak attack!")
 	playsound(carbon_target, 'sound/items/weapons/guillotine.ogg', 50, TRUE)
 
-/obj/item/forging/reagent_weapon/rapier
+/obj/item/melee/forged_reagent_weapon/rapier
 	name = "reagent rapier"
 	desc = "A lightweight rapier. Usually kept as a self-defense weapon; good at parrying attacks but cannot be two-handed for extra power."
 	force = 12
@@ -277,11 +277,11 @@
 	secondary_attack_verb_continuous = list("hilt-strikes")
 	secondary_attack_verb_simple = list("hilt-strike")
 
-/obj/item/forging/reagent_weapon/rapier/Initialize(mapload)
+/obj/item/melee/forged_reagent_weapon/rapier/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
-/obj/item/forging/reagent_weapon/staff //doesn't do damage. Useful for healing reagents.
+/obj/item/melee/forged_reagent_weapon/staff //doesn't do damage. Useful for healing reagents.
 	name = "reagent staff"
 	desc = "A staff most notably capable of being imbued with reagents, especially useful alongside its otherwise harmless nature."
 	force = 0
@@ -296,14 +296,14 @@
 	attack_verb_continuous = list("reagent casts on", "waves a staff over")
 	attack_verb_simple = list("reagent cast on", "wave a staff over")
 
-/obj/item/forging/reagent_weapon/staff/apply_reagent_component()
+/obj/item/melee/forged_reagent_weapon/staff/apply_reagent_component()
 	AddComponent(/datum/component/reagent_imbued/weapon, null, 0.7)
 
-/obj/item/forging/reagent_weapon/staff/attack(mob/living/M, mob/living/user, params)
+/obj/item/melee/forged_reagent_weapon/staff/attack(mob/living/M, mob/living/user, params)
 	. = ..()
 	user.changeNext_move(CLICK_CD_RANGE)
 
-/obj/item/forging/reagent_weapon/staff/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
+/obj/item/melee/forged_reagent_weapon/staff/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
 	var/datum/component/reagent_imbued/staff_component = GetComponent(/datum/component/reagent_imbued)
 	if(!isnull(staff_component) && completion_ratio < 1)
 		staff_component.imbued_reagent.maximum_volume = round(staff_component.imbued_reagent.maximum_volume * lerp(MIN_INCOMPLETE_STAFF_INJECT_MULT, MAX_INCOMPLETE_STAFF_INJECT_MULT, completion_ratio))
@@ -313,7 +313,7 @@
 	perfect_forging_bonus = new_max_integrity_bonus
 	update_integrity(max(round(lerp(0, max_integrity, completion_ratio)), get_integrity()))
 
-/obj/item/forging/reagent_weapon/spear
+/obj/item/melee/forged_reagent_weapon/spear
 	name = "reagent spear"
 	desc = "A long spear that can be wielded in two hands to boost damage at the cost of single-handed versatility."
 	force = 7
@@ -337,7 +337,7 @@
 	secondary_attack_verb_continuous = list("shaft-strikes")
 	secondary_attack_verb_simple = list("shaft-strike")
 
-/obj/item/forging/reagent_weapon/spear/Initialize(mapload)
+/obj/item/melee/forged_reagent_weapon/spear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/jousting, max_tile_charge = 9, min_tile_charge = 6)
 	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 70)
@@ -345,7 +345,7 @@
 	AddComponent(/datum/component/two_hand_reach, unwield_reach = 1, wield_reach = 2)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
-/obj/item/forging/reagent_weapon/axe
+/obj/item/melee/forged_reagent_weapon/axe
 	name = "reagent axe"
 	desc = "An axe especially balanced for throwing and embedding into fleshy targets, yet also effective at destroying shields of all sorts."
 	force = 7
@@ -372,14 +372,14 @@
 	fall_chance = 10
 	pain_mult = 2
 
-/obj/item/forging/reagent_weapon/axe/Initialize(mapload)
+/obj/item/melee/forged_reagent_weapon/axe/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 70)
 	AddComponent(/datum/component/two_handed, force_multiplier = 2)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
 
-/obj/item/forging/reagent_weapon/axe/pre_attack(mob/living/M, mob/living/user, params)
+/obj/item/melee/forged_reagent_weapon/axe/pre_attack(mob/living/M, mob/living/user, params)
 	. = ..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -393,7 +393,7 @@
 				playsound(src, 'sound/effects/tableheadsmash.ogg', 30)
 				H.apply_damage(15, STAMINA)
 
-/obj/item/forging/reagent_weapon/hammer
+/obj/item/melee/forged_reagent_weapon/hammer
 	name = "reagent hammer"
 	desc = "A heavy, weighted hammer that packs an incredible punch but can prove to be unwieldy. Useful for forging!"
 	force = 7 //strong when wielded, but boring.
@@ -418,13 +418,13 @@
 	secondary_attack_verb_continuous = list("shaft-strikes")
 	secondary_attack_verb_simple = list("shaft-strike")
 
-/obj/item/forging/reagent_weapon/hammer/Initialize(mapload)
+/obj/item/melee/forged_reagent_weapon/hammer/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/kneejerk)
 	AddComponent(/datum/component/two_handed, force_multiplier = 2.4)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
-/obj/item/forging/reagent_weapon/hammer/attack(mob/living/M, mob/living/user, params)
+/obj/item/melee/forged_reagent_weapon/hammer/attack(mob/living/M, mob/living/user, params)
 	. = ..()
 	user.changeNext_move(CLICK_CD_SLOW) //The hammer attacks slower but has more damage, that's it's thing now
 
@@ -529,7 +529,7 @@
 	user.put_in_hands(converted_arrow)
 	qdel(src)
 
-/obj/item/forging/reagent_weapon/bokken
+/obj/item/melee/forged_reagent_weapon/bokken
 	name = "bokken"
 	desc = "A wooden sword that is capable of wielded in two hands. It seems to be made to prevent permanent injuries."
 	force = 10
@@ -549,7 +549,7 @@
 	var/unwielded_block_chance = 20
 	var/wielded_block_chance = 40
 
-/obj/item/forging/reagent_weapon/bokken/Initialize(mapload)
+/obj/item/melee/forged_reagent_weapon/bokken/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed,\
 		force_multiplier = 2, \
@@ -557,15 +557,15 @@
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
 
-/obj/item/forging/reagent_weapon/bokken/proc/on_wield()
+/obj/item/melee/forged_reagent_weapon/bokken/proc/on_wield()
 	wielded = TRUE
 	block_chance = wielded_block_chance
 
-/obj/item/forging/reagent_weapon/bokken/proc/on_unwield()
+/obj/item/melee/forged_reagent_weapon/bokken/proc/on_unwield()
 	wielded = FALSE
 	block_chance = unwielded_block_chance
 
-/obj/item/forging/reagent_weapon/bokken/attack(mob/living/carbon/target_mob, mob/living/user, params)
+/obj/item/melee/forged_reagent_weapon/bokken/attack(mob/living/carbon/target_mob, mob/living/user, params)
 	. = ..()
 	if(!iscarbon(target_mob))
 		user.visible_message(span_warning("The [src] seems to be ineffective against the [target_mob]!"))

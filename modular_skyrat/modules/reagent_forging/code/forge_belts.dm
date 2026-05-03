@@ -99,6 +99,15 @@
 		var/icon_to_use = "charger_belt_[(my_charger.using_power ? "charging" : "fullcharge")]"
 		. += mutable_appearance(icon, icon_to_use, alpha = src.alpha)
 
+/obj/item/storage/belt/holster/blacksmithed/charging/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	my_charger.activate_with_item(arrived)
+
+/obj/item/storage/belt/holster/blacksmithed/charging/Exit(atom/movable/leaving, direction)
+	. = ..()
+	if(my_charger.charging == leaving)
+		my_charger.charging = null
+
 /datum/storage/charging_holster
 	max_slots = 1
 	max_total_storage = 12
@@ -122,16 +131,6 @@
 			to_chat(user, span_notice("Your gun has no external power connector."))
 			return FALSE
 	. = ..()
-
-/datum/storage/charging_holster/attempt_insert(obj/item/to_insert, mob/user, override = FALSE, force = STORAGE_NOT_LOCKED, messages = TRUE)
-	. = ..()
-	if(.)
-		my_charger.activate_with_item(to_insert)
-
-/datum/storage/charging_holster/attempt_remove(obj/item/thing, atom/remove_to_loc, silent = FALSE, visual_updates = TRUE)
-	. = ..()
-	if(.)
-		my_charger.charging = null
 
 /obj/machinery/recharger/belt_charger
 	name = "dev item"
@@ -179,11 +178,11 @@
 		storage_type = /datum/storage/belt/crusader,
 		canhold = list(
 			/obj/item/storage/belt/storage_pouch,
-			/obj/item/forging/reagent_weapon/sword,
-			/obj/item/forging/reagent_weapon/rapier,
-			/obj/item/forging/reagent_weapon/dagger,
-			/obj/item/forging/reagent_weapon/katana,
-			/obj/item/forging/reagent_weapon/bokken,
+			/obj/item/melee/forged_reagent_weapon/sword,
+			/obj/item/melee/forged_reagent_weapon/rapier,
+			/obj/item/melee/forged_reagent_weapon/dagger,
+			/obj/item/melee/forged_reagent_weapon/katana,
+			/obj/item/melee/forged_reagent_weapon/bokken,
 			/obj/item/melee/sabre,
 			/obj/item/claymore,
 			/obj/item/melee/cleric_mace,
@@ -300,20 +299,20 @@
 /obj/item/storage/belt/sheath/multi/update_icon(updates)
 	. = ..()
 	var/numswords
-	for(var/item/i in contents)
-		if(istype(i, /obj/melee))
+	for(var/obj/item/i in contents)
+		if(istype(i, /obj/item/melee))
 			numswords ++
 			break
 	icon_state = "multiscabbard_swords_[numswords]"
 
 /obj/item/storage/belt/sheath/multi/update_overlays()
 	. = ..()
-	var/obj/item/shield/my_shield
-	for(var/item/i in contents)
+	var/obj/item/shield/my_shield = null
+	for(var/obj/item/i in contents)
 		if(istype(i, /obj/item/shield))
 			my_shield = i
 			break
-	if(!is_null(my_shield))
+	if(!isnull(my_shield))
 		. += mutable_appearance(my_shield.icon, my_shield.icon_state)
 
 /datum/storage/multi_scabbard
@@ -325,7 +324,50 @@
 /datum/storage/multi_scabbard/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
 	. = ..()
 	set_holdable(list(
-		/obj/item/forging/reagent_weapon,
+		/obj/item/melee/forged_reagent_weapon,
+		/obj/item/shield,
+		/obj/item/melee,
+	))
+
+//////////////////////////////////////////////////////////////////
+
+/obj/item/storage/belt/sheath/repairing
+	name = "repairing scabbard"
+	desc = "A bluespace crystal in this scabbard causes it to slowly rejuvenate whatever's stored inside it."
+	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
+	icon_state = "repairsheath"
+	inhand_icon_state = "sheath"
+	worn_icon_state = "sheath"
+	actions_types = null
+	storage_type = /datum/storage/repairing_scabbard
+
+	var/integ_restoration_amount_per_seconds = 0.5
+
+/obj/item/storage/belt/sheath/repairing/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	START_PROCESSING(SSdcs, src)
+
+/obj/item/storage/belt/sheath/repairing/process(seconds_per_tick)
+	if(contents.len == 0)
+		return PROCESS_KILL
+
+	var/obj/item/my_item = contents[1]
+	if(my_item == null)
+		return PROCESS_KILL
+
+	if(my_item.get_integrity() < my_item.max_integrity)
+		my_item.repair_damage(integ_restoration_amount_per_seconds * seconds_per_tick)
+
+/datum/storage/repairing_scabbard
+	max_slots = 1
+	do_rustle = FALSE
+	max_specific_storage = WEIGHT_CLASS_BULKY
+	click_alt_open = FALSE
+
+/datum/storage/repairing_scabbard/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
+	. = ..()
+	set_holdable(list(
+		/obj/item/melee/forged_reagent_weapon,
 		/obj/item/shield,
 		/obj/item/melee,
 	))
@@ -358,13 +400,13 @@
 /datum/storage/knifethrowers/New()
 	. = ..()
 	set_holdable(list(
-		/obj/item/forging/reagent_weapon/dagger,
+		/obj/item/melee/forged_reagent_weapon/dagger,
 		/obj/item/knife,
 		/obj/item/pen,
 		/obj/item/scalpel,
 		/obj/item/shard,
 		/obj/item/spess_knife,
-		/obj/item/toy_dagger,
+		/obj/item/toy/toy_dagger,
 	))
 
 /////////////////////////////////////////////////
