@@ -42,8 +42,10 @@
 /obj/item/clothing/under/rank/security/peacekeeper/skirt
 	name = "security battle dress"
 	desc = "An asymmetrical, unisex uniform with the legs replaced by a utility skirt."
-	worn_icon_state = "security_skirt_red"
-	icon_state = "security_skirt_red"
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
+	worn_icon_state = "security_skirt_redsec"
+	icon_state = "security_skirt_redsec"
 	can_adjust = TRUE
 	alt_covers_chest = FALSE
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -51,6 +53,8 @@
 /obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec
 	name = "security battle dress"
 	desc = "An asymmetrical, unisex uniform with the legs replaced by a utility skirt. Now in classic security red!"
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	worn_icon_state = "security_skirt_redsec"
 	icon_state = "security_skirt_redsec"
 	can_adjust = TRUE
@@ -97,6 +101,8 @@
 /obj/item/clothing/under/rank/security/peacekeeper/jumpsuit
 	name = "security jumpsuit"
 	desc = "Turtleneck sweater commonly worn by Peacekeepers, attached with pants."
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "jumpsuit_red"
 	can_adjust = TRUE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
@@ -112,6 +118,8 @@
 /obj/item/clothing/under/rank/security/peacekeeper/miniskirt
 	name = "security miniskirt"
 	desc = "This miniskirt was originally featured in a gag calendar, but entered official use once they realized its potential for arid climates."
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "miniskirt_red"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	gets_cropped_on_taurs = FALSE

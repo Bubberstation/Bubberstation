@@ -36,9 +36,12 @@
 	acid = 50
 	wound = 10
 
-/obj/item/clothing/suit/hazardvest/security_medic/blue
-	icon_state = "secmed_vest_blue"
-	worn_icon_state = "secmed_vest_blue"
+/obj/item/clothing/suit/hazardvest/security_medic
+	name = "security medic hazard vest"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "secmed_vest"
+	worn_icon_state = "secmed_vest"
 
 /obj/item/clothing/suit/armor/vest/peacekeeper/security_medic
 	name = "security medic armor vest"
