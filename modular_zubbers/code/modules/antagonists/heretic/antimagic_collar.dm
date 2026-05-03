@@ -91,7 +91,7 @@
 			locked = TRUE
 			ADD_TRAIT(src, TRAIT_NO_STRIP, REF(src))
 			balloon_alert_to_viewers("automatically locked!")
-			visible_message("[src] automatically locks!")
+			visible_message(span_warning("[src] automatically locks!"))
 
 /obj/item/clothing/neck/antimagic_collar/atom_break(damage_flag)
 	. = ..()
