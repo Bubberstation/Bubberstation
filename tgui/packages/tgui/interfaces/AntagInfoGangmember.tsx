@@ -1,3 +1,4 @@
+import { color } from 'bun';
 import { BlockQuote, Icon, Section, Stack } from 'tgui-core/components';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -110,6 +111,9 @@ const GangObjectivePrintout = () => {
       </Stack.Item>
       <Stack.Item>
         {gang_objective || 'No objective set! This is a problem!'}
+      </Stack.Item>
+      <Stack.Item bold fontSize="14px" textColor="red">
+        {'Objective: Tag more areas than the other Families.'}
       </Stack.Item>
     </Stack>
   );

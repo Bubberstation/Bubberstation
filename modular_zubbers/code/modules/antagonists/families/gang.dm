@@ -3,7 +3,7 @@
 /datum/antagonist/gang
 	name = "\improper Family Member"
 	roundend_category = "gangsters"
-	ui_name = "AntagInfoGangmember" //This has a bunch of red errors in-game but it works fine, so I don't know what to believe.
+	ui_name = "AntagInfoGangmember"
 	antag_hud_name = "hud_gangster"
 	antagpanel_category = "Family"
 	show_in_antagpanel = FALSE // i don't *think* this base class is buggy but it's too worthless to test
@@ -167,7 +167,7 @@
 	var/list/data = list()
 	data["gang_name"] = gang_name
 	data["antag_name"] = name
-	data["gang_objective"] = gang_flavor + "\n OBJECTIVE: Tag more areas than any other gang."
+	data["gang_objective"] = gang_flavor
 
 	var/list/clothes_we_can_wear = list()
 	for(var/obj/item/accepted_item as anything in acceptable_clothes)
