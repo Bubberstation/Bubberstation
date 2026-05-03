@@ -82,6 +82,16 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
 
+/obj/item/clothing/under/rank/security/officerturtleneck
+	name = "security turtleneck"
+	desc = "A tactical turtleneck meant for those long nights out on the night shift."
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
+	icon_state = "jumpsuit_red"
+	inhand_icon_state = "r_suit"
+	can_adjust = TRUE
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
 // Virosec, sprites by axietheaxolotl
 
 /obj/item/clothing/under/rank/security/viro/officer/
