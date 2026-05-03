@@ -36,7 +36,7 @@ Skyrat removal START, moved to modular file
 
 /obj/machinery/power/thermoelectric_generator/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/simple_rotation)
+	AddElement(/datum/element/simple_rotation)
 	find_circulators()
 	connect_to_network()
 	SSair.start_processing_machine(src)

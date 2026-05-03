@@ -14,7 +14,7 @@
 	return TRUE
 
 /obj/machinery/computer/shuttle/goldeneye_cruiser/allowed(mob/to_check)
-	if(issilicon(to_check) && !(ROLE_SYNDICATE in to_check.faction))
+	if(issilicon(to_check) && !(to_check.has_faction(ROLE_SYNDICATE)))
 		return FALSE
 	return ..()
 

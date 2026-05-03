@@ -95,7 +95,6 @@
 /datum/supply_pack/security/armory/laser_carbine
 	cost = CARGO_CRATE_VALUE * 7
 
-/* ugly takyon sprites - readd later VIROWIP
 /datum/supply_pack/security/combine
 	name = "Civil Protection Uniforms"
 	desc = "Extra supplies we got from some weird old guy in a blue suit. Contains six uniforms, \
@@ -111,7 +110,6 @@
 			)
 	crate_name = "benefactor supply crate"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
-*/
 
 /datum/supply_pack/security/ntusp
 	name = "NT-USP Crate"
@@ -125,3 +123,80 @@
 					/obj/item/ammo_box/magazine/recharge/ntusp,
 					/obj/item/ammo_box/magazine/recharge/ntusp)
 	crate_name = "nt-usp crate"
+
+/datum/supply_pack/security/miecz
+	name = "Miecz Submachine Gun Single-Pack"
+	crate_name = "Miecz submachine gun crate"
+	desc = "Contains a Miecz submachine gun and a spare magazine for it."
+	contains = list(/obj/item/gun/ballistic/automatic/miecz = 1,
+	/obj/item/ammo_box/magazine/miecz = 1)
+	cost = CARGO_CRATE_VALUE * 10
+	access = ACCESS_SECURITY
+
+/datum/supply_pack/security/mieczammo
+	name = "Miecz Submachine Gun Ammo Crate"
+	crate_name = "Miecz submachine gun ammo crate"
+	desc = "Contains 4 magazines for the Miecz submachine gun."
+	contains = list(/obj/item/ammo_box/magazine/miecz = 4)
+	cost = CARGO_CRATE_VALUE * 4
+	access = ACCESS_SECURITY
+/datum/supply_pack/security/armory/archery_kit
+	name = "Archery Crate"
+	desc = "Two hardlight bows capable of defeating armor, alongside a mix of lethal and non/less-than-lethal arrows."
+	cost = CARGO_CRATE_VALUE * 6
+	contains = list(
+		/obj/item/gun/ballistic/bow/security,
+		/obj/item/gun/ballistic/bow/security,
+		/obj/item/storage/bag/quiver/lesser/security/armory,
+		/obj/item/storage/bag/quiver/lesser/security/armory,
+	)
+
+/obj/item/storage/bag/quiver/lesser/security/armory
+
+/obj/item/storage/bag/quiver/lesser/security/armory/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/ammo_casing/arrow/blunt = 3,
+		/obj/item/ammo_casing/arrow = 6,
+		/obj/item/ammo_casing/arrow/taser = 1
+	)
+
+	generate_items_inside(items_inside, src)
+
+/datum/supply_pack/security/armory/lethal_arrows
+	name = "Arrow Crate"
+	desc = "Two quivers containing nine normal arrows and one randomly selected specialty arrow."
+	cost = CARGO_CRATE_VALUE * 3
+	contains = list(
+		/obj/item/storage/bag/quiver/lesser/security/lethal,
+		/obj/item/storage/bag/quiver/lesser/security/lethal
+	)
+
+/obj/item/storage/bag/quiver/lesser/security/lethal
+
+/obj/item/storage/bag/quiver/lesser/security/lethal/PopulateContents()
+	var/static/list/static_items = list(
+		/obj/item/ammo_casing/arrow = 9
+	)
+	/// Typepath -> Weight
+	var/static/list/bonus_items = list(
+		/obj/item/ammo_casing/arrow/sticky = 10,
+		/obj/item/ammo_casing/arrow/poison = 10,
+		/obj/item/ammo_casing/arrow/plastic = 6,
+		/obj/item/ammo_casing/arrow/bronze = 1,
+		/obj/item/ammo_casing/arrow/taser = 1,
+	)
+
+	var/list/obj/item/ammo_casing/arrow/to_spawn = static_items.Copy()
+	to_spawn[pick_weight(bonus_items)] = 1
+
+	generate_items_inside(to_spawn, src)
+
+/datum/supply_pack/security/armory/tacticool_laser_crate
+	name = "Tacticool energy gun crate"
+	desc = "Three tacticool energy guns to express your individuality compared to all those other energy gun users!"
+	cost = CARGO_CRATE_VALUE * 8
+	contains = list(
+		/obj/item/gun/energy/tacticool,
+		/obj/item/gun/energy/tacticool,
+		/obj/item/gun/energy/tacticool,
+	)
