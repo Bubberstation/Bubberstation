@@ -11,7 +11,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	icon_state = "backpack-security"
-	inhand_icon_state = "backpack-security"
+	inhand_icon_state = "securitypack"
 
 /obj/item/storage/backpack/satchel/sec
 	icon = 'icons/obj/storage/backpack.dmi'
@@ -19,7 +19,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	icon_state = "satchel-security"
-	inhand_icon_state = "satchel-security"
+	inhand_icon_state = "satchel-sec"
 
 /obj/item/storage/backpack/duffelbag/sec
 	icon = 'icons/obj/storage/backpack.dmi'
@@ -27,7 +27,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	icon_state = "duffel-security"
-	inhand_icon_state = "duffel-security"
+	inhand_icon_state = "duffel-sec"
 
 /*
 * BELTS
