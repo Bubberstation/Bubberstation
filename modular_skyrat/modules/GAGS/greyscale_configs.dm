@@ -1050,6 +1050,14 @@
 	name = "Short Dress (Worn)"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
 
+/datum/greyscale_config/short_dress/worn/digi
+	name = "Short Dress (Worn, Digi)"
+	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses_digi.dmi'
+
+/datum/greyscale_config/short_dress/worn/teshari
+	name = "Short Dress (Worn, Teshari)"
+	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses_teshari.dmi'
+
 /datum/greyscale_config/strapless_dress
 	name = "Strapless Dress"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/skirts_dresses.dmi'

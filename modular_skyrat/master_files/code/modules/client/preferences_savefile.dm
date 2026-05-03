@@ -31,6 +31,17 @@
 
 	return MODULAR_SAVEFILE_UP_TO_DATE
 
+/// Check that the alt job titles in the save data exist on the server side
+/datum/preferences/proc/validate_alt_jobs(list/job_titles)
+	. = list()
+	for(var/job in job_titles)
+		var/datum/job/job_datum = SSjob.get_job(job)
+		if(!istype(job_datum))
+			continue
+		var/alt_title = job_titles[job]
+		if(!alt_title || !(alt_title in job_datum.alt_titles))
+			continue
+		.[job] = alt_title
 
 /// Loads the modular customizations of a character from the savefile
 /datum/preferences/proc/load_character_skyrat(list/save_data)
@@ -50,7 +61,7 @@
 	mismatched_customization = save_data["mismatched_customization"]
 	allow_advanced_colors = save_data["allow_advanced_colors"]
 
-	alt_job_titles = save_data["alt_job_titles"]
+	alt_job_titles = validate_alt_jobs(SANITIZE_LIST(save_data["alt_job_titles"]))
 
 	general_record = sanitize_text(general_record)
 	security_record = sanitize_text(security_record)

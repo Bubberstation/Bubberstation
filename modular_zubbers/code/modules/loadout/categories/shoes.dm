@@ -43,9 +43,25 @@
 	name = "High-Heel Jackboots"
 	item_path = /obj/item/clothing/shoes/jackboots/heel
 
+/datum/loadout_item/shoes/boots/jackboots/rax_armadyne_boots
+	name = "Tactical Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne/rax
+	//ckeywhitelist = list("raxraus")
+	restricted_roles = list(ALL_JOBS_SEC)
+
 /datum/loadout_item/shoes/boots/jackboots/kneeboots
 	name = "Knee Boots"
 	item_path = /obj/item/clothing/shoes/jackboots/knee
+
+/datum/loadout_item/shoes/boots/jackboots/peacekeeper
+	name = "Armadyne Combat Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/shoes/boots/jackboots/gogo_boots
+	name = "Tactical Go-Go boots"
+	item_path = /obj/item/clothing/shoes/jackboots/gogo_boots
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/shoes/boots/diesel_m
 	name = "Male Diesel Boots"
@@ -70,6 +86,11 @@
 /datum/loadout_item/shoes/boots/jackboots/black
 	name = "Black Jackboots"
 	item_path = /obj/item/clothing/shoes/jackboots/black
+
+/datum/loadout_item/shoes/boots/elofy
+	name = "Solar Admiral Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/elofy
+//	ckeywhitelist = list("october23")
 
 /*
 *	MISC BOOTS
@@ -198,10 +219,6 @@
 	name = "High Heels"
 	item_path = /obj/item/clothing/shoes/high_heels
 
-/datum/loadout_item/shoes/formal/black_heels
-	name = "Fancy Heels"
-	item_path = /obj/item/clothing/shoes/fancy_heels
-
 /datum/loadout_item/shoes/formal/disco
 	name = "Green Snakeskin Shoes"
 	item_path = /obj/item/clothing/shoes/discoshoes
@@ -218,6 +235,10 @@
 /datum/loadout_item/shoes/formal/latex_heels
 	name = "Latex Heels"
 	item_path = /obj/item/clothing/shoes/latex_heels
+
+/datum/loadout_item/shoes/formal/latex_heels/ballet_heels
+	name = "Ballet Heels"
+	item_path = /obj/item/clothing/shoes/latex_heels/ballet_heels
 
 //Casual
 
@@ -286,6 +307,10 @@
 /datum/loadout_item/shoes/fun/jackfrost
 	name = "Frosty Boots"
 	item_path = /obj/item/clothing/shoes/jackbros
+
+/datum/loadout_item/shoes/fun/latex_socks
+	name = "Latex Socks"
+	item_path = /obj/item/clothing/shoes/latex_socks
 
 /*
 *	SEASONAL

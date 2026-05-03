@@ -2035,16 +2035,13 @@
 /turf/open/floor/iron/dark,
 /area/centcom/interlink)
 "aXQ" = (
-/obj/machinery/vending/access/command{
-	pixel_x = 28;
-	density = 0;
-	shut_up = 1
+/obj/structure/closet/secure_closet/personal/cabinet,
+/obj/item/clothing/neck/large_scarf/green,
+/obj/item/clothing/head/hats/intern{
+	pixel_y = 9
 	},
-/obj/machinery/vending/wardrobe/cent_wardrobe{
-	density = 0;
-	pixel_y = 31;
-	pixel_x = 6;
-	shut_up = 1
+/obj/item/clothing/under/rank/centcom/intern{
+	pixel_y = -3
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin/interlink)
@@ -12975,10 +12972,6 @@
 /area/centcom/interlink/dorm_rooms)
 "mEr" = (
 /obj/structure/table/wood,
-/obj/item/stamp/centcom{
-	pixel_x = -8;
-	pixel_y = 10
-	},
 /obj/item/stamp/denied{
 	pixel_x = 8;
 	pixel_y = 10
@@ -13008,6 +13001,10 @@
 	pixel_y = -3
 	},
 /obj/effect/mapping_helpers/requests_console/announcement,
+/obj/item/stamp/granted{
+	pixel_y = 10;
+	pixel_x = -4
+	},
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "mEA" = (
@@ -14545,11 +14542,10 @@
 /turf/open/indestructible/plating,
 /area/centcom/holding/cafe/station/maint)
 "oeg" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/indestructible{
 	id = "admin_shutters"
 	},
-/turf/open/floor/wood/large,
+/turf/closed/indestructible/fakeglass,
 /area/centcom/central_command_areas/admin/interlink)
 "ogq" = (
 /obj/structure/chair/comfy/brown{
@@ -15790,7 +15786,7 @@
 /obj/item/paper_bin,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/multitool,
-/turf/open/floor/wood/large,
+/turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "pFr" = (
 /obj/machinery/door/airlock/security{
@@ -16153,7 +16149,7 @@
 /area/centcom/interlink)
 "pVD" = (
 /obj/structure/dresser,
-/turf/open/floor/wood/large,
+/turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "pWH" = (
 /obj/structure/showcase/fakeid{
@@ -20364,7 +20360,7 @@
 "uAY" = (
 /obj/structure/bed/double,
 /obj/item/bedsheet/centcom/double,
-/turf/open/floor/wood/large,
+/turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
 "uCK" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -23095,10 +23091,6 @@
 /obj/item/pen/fourcolor{
 	pixel_x = -7;
 	pixel_y = 7
-	},
-/obj/item/pen/fountain/green{
-	pixel_x = -8;
-	pixel_y = 2
 	},
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin/interlink)
@@ -44426,8 +44418,8 @@ cAd
 oMF
 lFv
 lFv
-lFv
-lFv
+cAd
+cAd
 lEu
 aaa
 vLx
@@ -44683,7 +44675,7 @@ rPG
 lEu
 aXQ
 fIk
-lFv
+cAd
 uAY
 lEu
 aaa

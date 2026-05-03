@@ -2144,9 +2144,16 @@
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 4
 	},
-/obj/item/toy/figure/md{
-	pixel_x = -8;
-	pixel_y = 6
+/obj/item/reagent_containers/chem_pack{
+	pixel_x = 10;
+	pixel_y = 10
+	},
+/obj/item/stack/medical/mesh{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/obj/item/stack/medical/gauze{
+	pixel_x = 8
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/exam_room)
@@ -5666,17 +5673,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
-"bXe" = (
-/obj/machinery/stasis{
-	dir = 4
-	},
-/obj/effect/turf_decal/box,
-/obj/machinery/defibrillator_mount/directional/west,
-/obj/effect/turf_decal/tile/neutral/half/contrasted{
-	dir = 4
-	},
-/turf/open/floor/iron/dark,
-/area/station/medical/exam_room)
 "bXf" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/cable,
@@ -6418,11 +6414,11 @@
 	pixel_x = 8;
 	pixel_y = 6
 	},
-/obj/item/computer_disk/engineering{
+/obj/item/disk/computer/engineering{
 	pixel_x = 10;
 	pixel_y = -8
 	},
-/obj/item/computer_disk/engineering{
+/obj/item/disk/computer/engineering{
 	pixel_x = 10;
 	pixel_y = -8
 	},
@@ -6750,13 +6746,16 @@
 /area/space/nearstation)
 "clH" = (
 /obj/structure/table,
-/obj/item/healthanalyzer,
-/obj/item/crowbar/red,
 /obj/machinery/airalarm/directional/north,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 4
 	},
-/obj/machinery/computer/med_data/laptop,
+/obj/item/storage/box/gloves{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/masks,
+/obj/item/healthanalyzer,
 /turf/open/floor/iron/dark,
 /area/station/medical/exam_room)
 "clL" = (
@@ -12226,7 +12225,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/siding/purple,
 /obj/machinery/dna_infuser,
-/obj/item/infuser_book,
+/obj/item/tgui_book/manual/infuser,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 4
 	},
@@ -18576,9 +18575,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/bridge)
 "gbB" = (
-/obj/item/computer_disk/medical,
-/obj/item/computer_disk/medical,
-/obj/item/computer_disk/medical,
+/obj/item/disk/computer/medical,
+/obj/item/disk/computer/medical,
+/obj/item/disk/computer/medical,
 /obj/item/clothing/neck/stethoscope{
 	pixel_y = 5
 	},
@@ -22880,20 +22879,13 @@
 /turf/open/floor/plating,
 /area/station/security/prison)
 "huR" = (
-/obj/structure/table,
-/obj/item/reagent_containers/chem_pack{
-	pixel_x = 10;
-	pixel_y = 10
-	},
-/obj/item/stack/medical/gauze{
-	pixel_x = 8
-	},
-/obj/item/stack/medical/mesh{
-	pixel_x = -4;
-	pixel_y = 3
-	},
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 4
+	},
+/obj/machinery/defibrillator_mount/mobile,
+/obj/item/toy/figure/md{
+	pixel_x = -4;
+	pixel_y = 9
 	},
 /turf/open/floor/iron/dark,
 /area/station/medical/exam_room)
@@ -23333,20 +23325,20 @@
 /turf/open/floor/iron/dark,
 /area/station/maintenance/port/fore)
 "hCY" = (
-/obj/item/computer_disk{
+/obj/item/disk/computer{
 	pixel_x = -5;
 	pixel_y = 8
 	},
-/obj/item/computer_disk{
+/obj/item/disk/computer{
 	pixel_x = 7;
 	pixel_y = 2
 	},
-/obj/item/computer_disk{
+/obj/item/disk/computer{
 	pixel_x = -8;
 	pixel_y = -3
 	},
 /obj/structure/table,
-/obj/item/computer_disk/ordnance{
+/obj/item/disk/computer/ordnance{
 	pixel_x = 2;
 	pixel_y = 1
 	},
@@ -30771,8 +30763,8 @@
 /turf/closed/wall,
 /area/station/hallway/primary/port)
 "jQR" = (
-/obj/structure/barricade/wooden,
 /obj/effect/spawner/structure/window,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
 "jQT" = (
@@ -34241,12 +34233,12 @@
 /turf/open/floor/iron/dark,
 /area/station/maintenance/fore)
 "kWW" = (
-/obj/structure/barricade/wooden,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock/maintenance,
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/effect/spawner/structure/electrified_grille,
 /obj/effect/mapping_helpers/airlock/access/any/security/maintenance,
+/obj/effect/spawner/random/structure/barricade/crude,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/port/aft)
 "kXp" = (
@@ -35721,9 +35713,9 @@
 "ltQ" = (
 /obj/structure/table,
 /obj/item/clipboard,
-/obj/item/computer_disk/ordnance,
-/obj/item/computer_disk/ordnance,
-/obj/item/computer_disk/ordnance,
+/obj/item/disk/computer/ordnance,
+/obj/item/disk/computer/ordnance,
+/obj/item/disk/computer/ordnance,
 /obj/item/circuitboard/aicore{
 	pixel_y = 5
 	},
@@ -42312,11 +42304,11 @@
 /turf/open/floor/iron/dark,
 /area/station/security/interrogation)
 "nBZ" = (
-/obj/machinery/newscaster/directional/west,
 /obj/structure/table,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /obj/effect/spawner/surgery_tray/full,
+/obj/machinery/vitals_reader/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/medical/surgery/fore)
 "nCc" = (
@@ -43305,9 +43297,9 @@
 /obj/structure/table,
 /obj/item/clipboard,
 /obj/item/folder/yellow,
-/obj/item/computer_disk/quartermaster,
-/obj/item/computer_disk/quartermaster,
-/obj/item/computer_disk/quartermaster,
+/obj/item/disk/computer/quartermaster,
+/obj/item/disk/computer/quartermaster,
+/obj/item/disk/computer/quartermaster,
 /obj/item/pen/fountain,
 /obj/item/stamp/granted{
 	pixel_x = 8;
@@ -62665,10 +62657,10 @@
 /area/station/medical/medbay/central)
 "ubC" = (
 /obj/structure/grille,
-/obj/structure/barricade/wooden,
 /obj/machinery/door/airlock/maintenance,
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/effect/mapping_helpers/airlock/access/any/security/maintenance,
+/obj/effect/spawner/random/structure/barricade/crude,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/port/aft)
 "ubF" = (
@@ -71552,11 +71544,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/box,
-/obj/machinery/defibrillator_mount/directional/west,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 4
 	},
-/obj/machinery/computer/med_data/laptop,
+/obj/machinery/vitals_reader/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/medical/exam_room)
 "wLX" = (
@@ -74542,6 +74533,7 @@
 	},
 /obj/structure/table,
 /obj/effect/spawner/surgery_tray/full,
+/obj/machinery/vitals_reader/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/medical/surgery/aft)
 "xLk" = (
@@ -95556,7 +95548,7 @@ gsy
 clH
 wLP
 huR
-bXe
+wLP
 gsy
 qaR
 uZT

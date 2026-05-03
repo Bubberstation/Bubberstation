@@ -86,7 +86,7 @@
 		var/obj/item/food/golem_food/food = eating
 		if(metal > (PROTEAN_STOMACH_FULL - 0.3) && food.owner.loc == owner)
 			balloon_alert(owner, "storage full!")
-			return COMSIG_CARBON_BLOCK_EAT
+			return BLOCK_EAT_ATTEMPT
 
 /// If we ate a sheet of metal, add it to storage.
 /obj/item/organ/stomach/protean/after_eat(atom/edible)

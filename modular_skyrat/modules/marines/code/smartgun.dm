@@ -109,14 +109,6 @@
 
 /obj/item/ammo_casing/smart/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_CHAMBERED_BULLET_FIRE, PROC_REF(iff_transfer))
-
-/obj/item/ammo_casing/smart/proc/iff_transfer(datum/source, list/iff_factions)
-	SIGNAL_HANDLER
-
-	if(istype(loaded_projectile, /obj/projectile/bullet/smart))
-		var/obj/projectile/bullet/smart/smart_proj = loaded_projectile
-		smart_proj.ignored_factions = iff_factions.Copy()
 
 /obj/item/ammo_casing/smart
 	firing_effect_type = null

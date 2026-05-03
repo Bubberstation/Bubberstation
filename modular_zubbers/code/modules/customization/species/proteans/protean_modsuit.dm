@@ -6,6 +6,7 @@
 	applied_core = /obj/item/mod/core/protean
 	applied_cell = null // Goes off stomach
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // funny nanite
+	drag_pickup = FALSE
 	/// Whether or not the wearer can undeploy parts.
 	var/modlocked = FALSE
 	var/obj/item/mod/control/stored_modsuit
@@ -18,7 +19,7 @@
 /obj/item/mod/control/pre_equipped/protean/Initialize(mapload, datum/mod_theme/new_theme, new_skin, obj/item/mod/core/new_core)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, "protean")
-	AddElement(/datum/element/strippable/protean, GLOB.strippable_human_items, TYPE_PROC_REF(/mob/living/carbon/human/, should_strip))
+	AddElement(/datum/element/strippable/protean, GLOB.strippable_human_items)
 
 /obj/item/mod/control/pre_equipped/protean/Destroy()
 	if(stored_modsuit)
@@ -185,7 +186,9 @@
 	var/obj/item/mod/core/protean/source = core
 	var/datum/species/protean/species = source.linked_species
 	if(isprotean(species.owner) && species.owner == user && user.loc == src)
-		return 2
+		return UI_INTERACTIVE
+	if(species.owner != user)
+		return UI_INTERACTIVE
 	. = ..()
 
 /obj/item/mod/control/pre_equipped/protean/proc/assimilate_theme(mob/user, plating)
@@ -311,7 +314,6 @@
 	var/t_has = protean_in_suit.p_have()
 	var/t_is = protean_in_suit.p_are()
 	if(!isnull(brain) || istype(brain))
-		. += span_notice("<b>Control Shift Click</b> to open Protean strip menu.")
 		if(brain.dead)
 			if(!open)
 				. += isnull(refactory) ? span_warning("This Protean requires critical repairs! <b>Screwdriver them open.</b>... There does seem to be a tiny reset hole on the top of the Protean, it seems a <b>Pen</b> might fit in there.. ") : span_notice("<b>Repairing systems...</b>") //Small line for how to memory reset a protean here too.
@@ -335,50 +337,30 @@
  * Protean stripping while they're in the suit.
  * Yeah I guess stripping is an element. Carry on, citizen.
  */
+
 /datum/element/strippable/protean
 
-/datum/element/strippable/protean/Attach(datum/target, list/items, should_strip_proc_path)
-	. = ..()
-	RegisterSignal(target, COMSIG_CLICK_CTRL_SHIFT, PROC_REF(click_control_shit))
-
-/datum/element/strippable/protean/Detach(datum/source)
-	. = ..()
-	UnregisterSignal(source, COMSIG_CLICK_CTRL_SHIFT)
-
-/datum/element/strippable/protean/proc/click_control_shit(datum/source, mob/user)
-	SIGNAL_HANDLER
-
+/// Overwrites the base proc for /datum/element/strippable to allow snowflake code.
+/datum/element/strippable/protean/mouse_drop_onto(datum/source, atom/over, mob/user)
 	var/obj/item/mod/control/pre_equipped/protean/suit = source
-	if(!istype(suit))
-		return
 	var/obj/item/mod/core/protean/core = suit.core
 	var/datum/species/protean/species = core.linked_species
+
 	if(species.owner == user)
 		return
-	if(suit.wearer == source)
+	if(over != user)
+		return
+	if(!user.can_perform_action(species.owner, FORBID_TELEKINESIS_REACH | ALLOW_RESTING))
 		return
 	if (!isnull(should_strip_proc_path) && !call(species.owner, should_strip_proc_path)(user))
 		return
-	suit.balloon_alert_to_viewers("stripping")
-	user.visible_message(span_warning("[user] begins to dump the contents of [source]!"))
-	ASYNC
-		var/datum/strip_menu/protean/strip_menu = LAZYACCESS(strip_menus, species.owner)
-		if (isnull(strip_menu))
-			strip_menu = new(species.owner, src)
-			LAZYSET(strip_menus, species.owner, strip_menu)
-		strip_menu.ui_interact(user)
 
-/datum/strip_menu/protean
+	var/datum/strip_menu/strip_menu = LAZYACCESS(strip_menus, species.owner)
+	if (isnull(strip_menu))
+		strip_menu = new(species.owner, src, FALSE)
+		LAZYSET(strip_menus, species.owner, strip_menu)
+	INVOKE_ASYNC(strip_menu, TYPE_PROC_REF(/datum/, ui_interact), user)
 
-/datum/strip_menu/protean/ui_status(mob/user, datum/ui_state/state) // Needs to pass a viewcheck.
-	return min(
-		ui_status_only_living(user, owner),
-		ui_status_user_has_free_hands(user, owner),
-		ui_status_user_is_adjacent(user, owner, allow_tk = FALSE, viewcheck = FALSE),
-		HAS_TRAIT(user, TRAIT_CAN_STRIP) ? UI_INTERACTIVE : UI_UPDATE,
-		max(
-			ui_status_user_is_conscious_and_lying_down(user),
-			ui_status_user_is_abled(user, owner),
-		),
-	)
+	return COMPONENT_CANCEL_MOUSEDROP_ONTO
+
 
