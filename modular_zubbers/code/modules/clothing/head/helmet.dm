@@ -645,6 +645,29 @@
 	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
 
+//BEGIN HAT SPRITES BY APRIL
+
+/obj/item/clothing/head/security_kepi
+	name = "security kepi"
+	desc = "Bonjour, inspecteur. A kepi police cap first popularized by planetary police on Pluto. This one appears armored."
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "kepi_sec_red"
+	armor_type = /datum/armor/head_helmet
+	strip_delay = 60
+	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
+
+/obj/item/clothing/head/hos_kepi
+	name = "HoS kepi"
+	desc = "Bonjour, commandante. A kepi for the Head of Security. It has a embroidered pattern going around it. This one appears well armored."
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "kepi_sec_red_hos"
+	armor_type = /datum/armor/hats_hos
+	strip_delay = 60
+
+// END HATS ADDED BY APRIL
+
 /obj/item/clothing/head/helmet/elder_atmosian
 	desc = "The pinnacle of atmospherics equipment, an expensive modified atmospherics fire helmet plated in one of the most luxurous and durable metals known to man. Providing full atmos coverage without the heavy materials to slow the user down, it also offers far greater protection to most sources of damage, even offering great protection against gases, and other nasty things that try to get into your face."
 	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'

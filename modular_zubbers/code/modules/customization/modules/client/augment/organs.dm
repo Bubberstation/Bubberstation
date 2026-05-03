@@ -7,6 +7,11 @@
 	path = /obj/item/organ/eyes/robotic/manuallyshield
 	cost = 2
 
+/datum/augment_item/organ/eyes/manuallyshield/moth
+	name = "Manual Welding Moth Eyes"
+	path = /obj/item/organ/eyes/robotic/manuallyshield/moth
+	cost = 2
+
 /datum/augment_item/organ/tongue/xenobubble_tongue
 	name = "Alien tongue"
 	path = /obj/item/organ/tongue/xenobubble_tongue

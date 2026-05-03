@@ -51,7 +51,7 @@
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/fingerless
 	ears = /obj/item/radio/headset/cybersun
-	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/armadyne
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	mask = /obj/item/clothing/mask/balaclava
 	head = /obj/item/clothing/head/helmet/cin_surplus_helmet/forest
 	back = /obj/item/storage/backpack/industrial/cin_surplus/forest

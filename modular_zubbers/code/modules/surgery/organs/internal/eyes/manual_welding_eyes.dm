@@ -41,3 +41,45 @@
 	tint = 0
 	flash_protect = FLASH_PROTECTION_NONE
 	removingperson.cure_blind(FLASHLIGHT_EYES)
+
+//MOTH VERSION - Still vulnerable to flashes when shield is not engaged
+
+/obj/item/organ/eyes/robotic/manuallyshield/moth
+	name = "manually shielded robotic moth eyes"
+	icon_state = "eyes_moth_cyber_shield"
+	eye_icon_state = "motheyes_white"
+	flash_protect = FLASH_PROTECTION_SENSITIVE
+	blink_animation = FALSE
+	pupils_name = "aperture clusters"
+	penlight_message = "have collapsible shields, protecting insectoid compound eyes."
+
+/obj/item/organ/eyes/robotic/manuallyshield/moth/ui_action_click()
+	if(currently_toggled)
+		return
+
+	currently_toggled = TRUE
+
+	if(!do_after(owner, 1 SECONDS))
+		to_chat(owner, span_notice("You fail to concentrate on the vision shield toggle."))
+		currently_toggled = FALSE
+		return
+
+	active = !active
+	playsound(get_turf(owner), toggle_sound, 25, TRUE)
+	currently_toggled = FALSE
+
+	if(active)
+		flash_protect = FLASH_PROTECTION_NONE
+		tint = INFINITY
+		owner.become_blind(FLASHLIGHT_EYES)
+	else
+		flash_protect = FLASH_PROTECTION_SENSITIVE
+		tint = 0
+		owner.cure_blind(FLASHLIGHT_EYES)
+
+/obj/item/organ/eyes/robotic/manuallyshield/moth/on_mob_remove(mob/living/carbon/removingperson)
+	. = ..()
+	active = FALSE
+	tint = 0
+	flash_protect = FLASH_PROTECTION_SENSITIVE
+	removingperson.cure_blind(FLASHLIGHT_EYES)
