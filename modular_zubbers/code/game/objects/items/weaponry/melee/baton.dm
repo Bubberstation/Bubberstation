@@ -1,5 +1,5 @@
 /obj/item/melee/baton/security/staff
-	name = "stun staff" 
+	name = "stun staff"
 	desc = "An advanced Secure Apprehension Device in the form of a quarterstaff. Debatably more effective at incapacitating targets."
 	icon = 'modular_zubbers/icons/obj/weapons/baton.dmi'
 	icon_state = "stunstaff"
@@ -38,5 +38,5 @@
 	AddElement(/datum/element/examine_lore, \
 		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
 		lore = "The Secure Apprehension Device (sometimes referred to as the SAD in the officer training manuals) is \
-		the unholy union of a mace and- hey wait a second this is just two batons strapped to each other inside a hollow casing!"
+		the unholy union of a mace and- hey wait a second this is just two batons strapped to each other inside a hollow casing!" \
 	)

@@ -29,17 +29,17 @@
 
 /datum/crafting_recipe/stunstaff
 	name = "Stun Staff"
-	result = /obj/item/melee/baton/security/stunstaff
+	result = /obj/item/melee/baton/security/staff
 	reqs = list(
-		/obj/item/melee/baton/security = 2
-		/obj/item/stack/sheet/plasteel = 3
-		/obj/item/stack/cable_coil = 5,
+		/obj/item/melee/baton/security = 2,
+		/obj/item/stack/sheet/plasteel = 3,
+		/obj/item/stack/cable_coil = 5
 	)
 	blacklist = list(
-		/obj/item/melee/baton/security/cattleprod
-		/obj/item/melee/baton/security/cattleprod/telecrystalprod
-		/obj/item/melee/baton/security/cattleprod/teleprod
-		/obj/item/melee/baton/security/boomerang
+		/obj/item/melee/baton/security/cattleprod,
+		/obj/item/melee/baton/security/cattleprod/telecrystalprod,
+		/obj/item/melee/baton/security/cattleprod/teleprod,
+		/obj/item/melee/baton/security/boomerang,
 		/obj/item/melee/baton/security/stunsword
 	)
 	tool_behaviors = list(TOOL_WELDER, TOOL_WRENCH)
