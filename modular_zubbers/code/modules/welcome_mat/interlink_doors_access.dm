@@ -19,7 +19,7 @@
 	if(istype(AM, /mob/living))
 		return ..()
 
-/obj/machinery/door/airlock/interlink_access/try_to_activate_door(mob/living/user, access_bypass = FALSE)
+/obj/machinery/door/airlock/interlink_access/try_to_activate_door(mob/user, access_bypass = FALSE, bumped = FALSE)
 	if(user_has_interlink_access(user))
 		return ..()
 
