@@ -118,7 +118,15 @@
 	alt_covers_chest = TRUE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
+/obj/item/clothing/under/rank/security/viro/officer/bodysuit/male
+	name = "seucrity officer's bodysuit"
+	desc = "The latest in form-fitting, high speed, and low drag security equipment."
+	icon_state = "security_bodysuit"
 
+/obj/item/clothing/under/rank/security/viro/officer/bodysuit/female
+	name = "seucrity officer's bodysuit"
+	desc = "The latest in form-fitting, high speed, and low drag security equipment."
+	icon_state = "security_bodysuit_female"
 
 /obj/item/clothing/under/rank/security/viro/warden/
 	name = "security suit"
