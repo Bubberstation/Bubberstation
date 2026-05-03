@@ -82,7 +82,7 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
 
-/obj/item/clothing/under/rank/security/officerturtleneck
+/obj/item/clothing/under/rank/security/officer/turtleneck
 	name = "security turtleneck"
 	desc = "A tactical turtleneck meant for those long nights out on the night shift."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
