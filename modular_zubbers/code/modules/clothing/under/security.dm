@@ -81,3 +81,37 @@
 	greyscale_colors = "#A53228#333333#292929"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
+
+// Virosec, sprites by axietheaxolotl
+
+/obj/item/clothing/under/rank/security/officer/viro
+	name = "security uniform"
+	desc = "A tactical security jumpsuit for officers complete with Nanotrasen belt buckle."
+	icon_state = "security_jumpsuit"
+	inhand_icon_state = "r_suit"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/rank/security/officer/viro/legs
+	name = "red security uniform"
+	desc = "A tactical security uniform for officers, complete with stiffer pants.."
+	icon_state = "security_uniform"
+	inhand_icon_state = "r_suit"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/rank/security/officer/skirt/viro
+	name = "security skirt"
+	desc = "A \"tactical\" security uniform with the legs replaced by a skirt."
+	icon_state = "security_skirt"
+	inhand_icon_state = "r_suit"
+	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
+	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/rank/security/officer/formal/viro
+	name = "security officer's formal uniform"
+	desc = "The latest in fashionable security outfits."
+	icon_state = "security_formals"
+	inhand_icon_state = null
+	alt_covers_chest = TRUE
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
