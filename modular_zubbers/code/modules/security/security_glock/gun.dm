@@ -8,7 +8,7 @@
 	force = 10 //same as baton
 	accepted_magazine_type = /obj/item/ammo_box/magazine/security
 	fire_sound = 'modular_zubbers/sound/weapons/gun/lock/shot.ogg'
-	fire_delay = 5
+	fire_delay = 4
 	can_suppress = FALSE
 	projectile_damage_multiplier = 1
 	actions_types = list(/datum/action/item_action/toggle_mageject)

@@ -92,9 +92,8 @@
 	return yoink
 
 /obj/item/storage/toolbox/emergency/turret/mag_fed/set_faction(obj/machinery/porta_turret/syndicate/toolbox/mag_fed/turret, mob/user)
-	if(!(user.faction in turret.faction))
-		turret.faction += user.faction
-		turret.allies += REF(user)
+	if(!turret.faction_check_atom(user))
+		APPLY_FACTION_AND_ALLIES_FROM(turret, user)
 
 /obj/item/storage/toolbox/emergency/turret/mag_fed/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!is_type_in_list(tool, list(/obj/item/wrench, /obj/item/screwdriver, /obj/item/multitool, /obj/item/toy/crayon/spraycan)))
@@ -140,7 +139,7 @@
 		playsound(src, 'sound/items/tools/drill_use.ogg', 80, TRUE, -1)
 		deploy_turret(user, loc)
 		return ITEM_INTERACT_SUCCESS
-	..()
+	return ..()
 
 /obj/item/storage/toolbox/emergency/turret/mag_fed/attack_self(mob/user, modifiers)
 	if(!easy_deploy)
@@ -350,8 +349,6 @@
 	var/datum/weakref/target_override
 	//////Target Assessment System. Whether or not it's targeting according to flags or even ignoring everyone.
 	var/target_assessment = TURRET_FLAG_SHOOT_EVERYONE
-	//////Ally system.
-	var/allies = list()
 	//////Do we want this to shut up? Mostly for testing and debugging purposes purposes.
 	var/claptrap_moment = TRUE
 	////// Do we want it to eject casings?
@@ -435,7 +432,7 @@
 	. = ..()
 	. -= span_notice("You can repair it by <b>left-clicking</b> with a combat wrench.")
 	. -= span_notice("You can fold it by <b>right-clicking</b> with a combat wrench.")
-	if((user.faction in faction) || (REF(user) in allies))
+	if(FAST_FACTION_CHECK(faction, user.get_faction(), null, null, FALSE) || has_ally(user))
 		. += span_notice("You can unlock it by <b>left-clicking</b> with an <b>id card.</b>")
 		. += span_notice("You can repair it by <b>left-clicking</b> with a <b>wrench.</b>")
 		. += span_notice("You can fold it by <b>right-clicking</b> with a <b>wrench.</b>")
@@ -670,25 +667,19 @@
 
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/in_faction(mob/target)
 	if(!faction_targeting)
-		if(REF(target) in allies)
-			return TRUE
-		else
-			return FALSE
+		return has_ally(target)
 
-	for(var/faction1 in faction)
-		if((faction1 in target.faction) || (REF(target) in allies)) // For an Ally System
-			return TRUE
-	return FALSE
+	return FAST_FACTION_CHECK(faction, target.get_faction(), allies, target.allies, FALSE)
+
 
 /// toggles between whether things are inside the ally system
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/proc/toggle_ally(mob/living/target) //leave these since it's kinda important to know which is being done.
-	if(REF(target) in allies)
-		allies -= REF(target)
+	if(remove_ally(target))
 		balloon_alert_to_viewers("ally removed!")
 		return
 	else
-		allies += REF(target)
-		balloon_alert_to_viewers("ally designated!")
+		if(add_ally(target))
+			balloon_alert_to_viewers("ally designated!")
 		return
 
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/target(atom/movable/target)
@@ -739,7 +730,6 @@
 		things_in_my_lawn -= whipper_snapper
 		if(target(whipper_snapper))
 			return TRUE
-	return FALSE
 
 /// Shoots at one specific target. Only happens if target is overridden. modularized for burst?
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/proc/trytoshootfucker(datum/weakref/target_weakref)
@@ -747,11 +737,10 @@
 	if(isnull(overridden_target))
 		target_override = null
 		burst_target = null
-		return FALSE
+		return
 	while(overridden_target)
 		if(target(overridden_target)) //ok. It's trying to shoot a weakref. Thats the issue.
 			return TRUE
-	return FALSE
 
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/shootAt(atom/movable/target)
 	if(!chambered) //Ok, We need to START the cycle
@@ -789,7 +778,7 @@
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/proc/handle_firing(obj/item/ammo_casing/casing, atom/movable/target)
 	var/obj/projectile/our_projectile = casing.loaded_projectile
 	if(ignore_faction)
-		our_projectile.ignored_factions = (faction + allies)
+		APPLY_FACTION_AND_ALLIES_FROM(our_projectile, src)
 	our_projectile.damage *= turret_damage_multiplier
 	our_projectile.stamina *= turret_damage_multiplier
 
@@ -813,7 +802,7 @@
 		fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/pistol_light.ogg'
 	else if(istype(soundmaker, /obj/item/ammo_casing/c585trappiste))
 		fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/pistol_heavy.ogg'
-	else if(istype(soundmaker, /obj/item/ammo_casing/c46x30mm))
+	else if(istype(soundmaker, /obj/item/ammo_casing/c40sol))
 		fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/rifle_heavy.ogg'
 	else if(istype(soundmaker, /obj/item/ammo_casing/strilka310))
 		fire_sound = 'modular_skyrat/modules/modular_weapons/sounds/battle_rifle.ogg'
@@ -824,7 +813,7 @@
 
 ////// Operation Handling //////
 
-/obj/machinery/porta_turret/syndicate/toolbox/mag_fed/attackby(obj/item/attacking_item, mob/living/user, params) // This hasn't been changed upstream yet.
+/obj/machinery/porta_turret/syndicate/toolbox/mag_fed/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers) // This hasn't been changed upstream yet.
 	var/obj/item/storage/toolbox/emergency/turret/mag_fed/auto_loader = mag_box?.resolve()
 	if(isnull(auto_loader))
 		mag_box = null
@@ -878,7 +867,7 @@
 		if(!claptrap_moment)
 			balloon_alert(user, "repaired!")
 
-/obj/machinery/porta_turret/syndicate/toolbox/mag_fed/attackby_secondary(obj/item/attacking_item, mob/living/user, params) //IM TIRED OF MISMATCHED VAR NAMES. IT'S ATTACK_ITEM ON MAIN, WHY WEAPON HERE?
+/obj/machinery/porta_turret/syndicate/toolbox/mag_fed/attackby_secondary(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers) //IM TIRED OF MISMATCHED VAR NAMES. IT'S ATTACK_ITEM ON MAIN, WHY WEAPON HERE?
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return

@@ -137,13 +137,14 @@ GLOBAL_VAR_INIT(offstation_deathrattle_group, null)
 	imp_type = /obj/item/implant/deathrattle/offstation
 
 /obj/item/storage/box/offstation_deathrattle
-	name = "off-station deathrattle kit"
-	desc = "A box containing an implanter and an off-station deathrattle implant, which automatically sends a distress call to the cargo and medical departments in case of premature demise. It will only work outside of Station areas."
+	name = "boxed off-station deathrattle implant kit"
+	desc = "A quick and easy kit for a single deathrattle implant that will send a distress signal to the medical and supply channels when the user dies off-station. Perfect for miners and space hikers alike!"
 	icon = 'modular_skyrat/modules/aesthetics/storage/storage.dmi'
 	icon_state = "box"
 
 /obj/item/storage/box/offstation_deathrattle/PopulateContents()
 	new /obj/item/implanter(src)
+	new /obj/item/implantpad(src)
 	var/obj/item/implantcase/deathrattle/offstation/case = new(src)
 	if(!GLOB.offstation_deathrattle_group)
 		GLOB.offstation_deathrattle_group = new /datum/offstation_deathrattle_group("off-station group")

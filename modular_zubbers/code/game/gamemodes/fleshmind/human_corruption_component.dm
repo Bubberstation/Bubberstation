@@ -60,7 +60,7 @@
 		granted_actions += new_action
 		RegisterSignal(new_action, COMSIG_QDELETING, PROC_REF(action_destroyed))
 
-	infected_human.faction |= FACTION_FLESHMIND
+	infected_human.add_faction(FACTION_FLESHMIND)
 
 	for(var/trait in traits_to_give)
 		ADD_TRAIT(infected_human, trait, "fleshmind")
@@ -73,7 +73,7 @@
 /datum/component/human_corruption/Destroy(force, silent)
 	QDEL_LIST(granted_actions)
 	var/mob/living/parent_mob = parent
-	parent_mob.faction -= FACTION_FLESHMIND
+	parent_mob.remove_faction(FACTION_FLESHMIND)
 	UnregisterSignal(parent, list(
 		COMSIG_ATOM_UPDATE_OVERLAYS,
 		COMSIG_ATOM_EXAMINE,

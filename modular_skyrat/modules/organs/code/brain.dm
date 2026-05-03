@@ -8,7 +8,6 @@
 	icon_state = "brain-c"
 	organ_flags = ORGAN_ORGANIC | ORGAN_ROBOTIC | ORGAN_VITAL | ORGAN_PROMINENT //it's a bit weird to be both organic and robotic, but yk
 	emp_dmg_mult = 1.5 //Note that the base damage is 20/10
-	emp_dmg_max = 150
 
 //Extra effects
 /obj/item/organ/brain/cybernetic/cortical/emp_act(severity)
@@ -33,12 +32,15 @@
 	desc = "A brain which has been in some part mechanized. The components are seamlessly integrated into the flesh, which protect that grey matter from biological processes."
 	organ_flags = ORGAN_ROBOTIC | ORGAN_VITAL | ORGAN_PROMINENT //Vox brains weren't organic originally. See no reason to change it
 	emp_dmg_mult = 1 //20/10 is the voxs' original damage factor
+	emp_dmg_max = 150 //this was originally in vox stuffs, as well
 
-//surplus; Used in prosthetic organ quirk
+//surplus
 //note that this is a direct child of the android brain, and is thus not organic
 /obj/item/organ/brain/cybernetic/surplus
 	name = "surplus augmented brain"
-	desc = "A mostly-mechanized brain. Not much of the flesh remains. Does this make them an IPC? "
+	desc = "A mostly-mechanized brain. Not much of the flesh remains. Does this make them an IPC?"
+	icon = 'modular_skyrat/master_files/icons/obj/medical/organs/organs.dmi'
+	icon_state = "brain-a" //visually more similar to what the description says
 	maxHealth = BRAIN_DAMAGE_DEATH*0.75 //200 -> 150, per original intention
 	emp_dmg_mult = 1.5 //Note that the base damage is 20/10
 	emp_dmg_max = 999
@@ -46,4 +48,3 @@
 /obj/item/organ/brain/cybernetic/surplus/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/dangerous_organ_removal, /*surgical = */ TRUE, /*annihilate = */ FALSE) //annihilate just means it wont qdel when removed
-

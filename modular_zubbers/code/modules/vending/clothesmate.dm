@@ -49,6 +49,7 @@
 				/obj/item/clothing/glasses/welding/steampunk_goggles = 5,
 				/obj/item/clothing/gloves/bracer/wraps = 5,
 				/obj/item/clothing/gloves/cat = 5,
+				/obj/item/clothing/gloves/elofy = 5,
 				/obj/item/clothing/gloves/fingerless/blutigen_wraps = 5,
 				/obj/item/clothing/gloves/skyy = 5,
 				/obj/item/clothing/mask/gas/nightlight = 5,
@@ -188,6 +189,7 @@
 				/obj/item/clothing/under/dress/skyrat/short_dress = 5,
 				/obj/item/clothing/under/dress/skyrat/strapless = 5,
 				/obj/item/clothing/under/dress/bubber/midnight_gown = 5,
+				/obj/item/clothing/under/dress/bubber/giant_scarf = 5,
 			),
 		),
 
@@ -201,6 +203,7 @@
 				/obj/item/clothing/shoes/horseshoe = 5,
 				/obj/item/clothing/shoes/jackboots/diesel_f = 5,
 				/obj/item/clothing/shoes/jackboots/diesel_m = 5,
+				/obj/item/clothing/shoes/jackboots/elofy = 5,
 				/obj/item/clothing/shoes/jackboots/knee = 5,
 				/obj/item/clothing/shoes/jackboots/netra = 5,
 				/obj/item/clothing/shoes/jackboots/recolorable = 5,
