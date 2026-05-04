@@ -45,6 +45,8 @@
 		var/obj/item/organ/heart/our_heart = owner_carbon.get_organ_slot(ORGAN_SLOT_HEART)
 		our_heart.AddComponent(/datum/component/living_heart) // even synths get one free go
 
+	to_chat(owner_carbon, span_doyourjobidiot("Acolyte is significnatly different from heretic. If you are a veteran, re-read everything."))
+
 /datum/antagonist/heretic/forge_primary_objectives(heretic_research_tree)
 	// total override
 

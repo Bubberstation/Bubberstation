@@ -266,6 +266,7 @@
 	/// Makes choosing to sleep a commitment that can take you out of any fight.
 	var/bonus_sleepy_time = 150 SECONDS
 	var/should_reduce_timer_on_wakeup = FALSE
+	COOLDOWN_DECLARE(wakeup_period)
 
 /datum/status_effect/void_chill/proc/put_to_bed(mob/living/sleepy_boy)
 	if (sleepy_boy.IsSleeping())
@@ -293,6 +294,7 @@
 		if (!silent)
 			to_chat(owner, span_hypnophrase("You drift away into a deep, dark dream, of death, void, and a comforting cold..."))
 	else
+		COOLDOWN_START(src, wakeup_period, 5 SECONDS)
 		if (should_reduce_timer_on_wakeup)
 			duration -= bonus_sleepy_time
 		should_reduce_timer_on_wakeup = FALSE
@@ -347,7 +349,8 @@
 			if (SPT_PROB(5, seconds_between_ticks))
 				owner.emote("yawn")
 		if (owner.IsSleeping())
-			set_sleep_status(TRUE, forced = TRUE)
+			if (COOLDOWN_FINISHED(src, wakeup_period))
+				set_sleep_status(TRUE, forced = TRUE)
 
 /datum/reagent/medicine/cryoxadone/heretic
 	name = "Voidtouch"
@@ -384,11 +387,17 @@
 					affected_mob.apply_status_effect(/datum/status_effect/void_conduit)
 				else
 					affected_mob.apply_status_effect(/datum/status_effect/void_chill, 1)
-					affected_mob.adjust_drowsiness_up_to(10 SECONDS, 70 SECONDS)
 					if (!affected_mob.IsSleeping())
-						var/datum/status_effect/drowsiness/drowsiness = affected_mob.has_status_effect(/datum/status_effect/drowsiness)
-						if (!isnull(drowsiness) && drowsiness.duration >= 60 SECONDS && prob(40))
-							affected_mob.AdjustSleeping(5 SECONDS) // ko
+						var/datum/status_effect/void_chill/chill = affected_mob.has_status_effect(/datum/status_effect/void_chill)
+						if (!isnull(chill) && chill.stacks >= 5)
+							var/tempcheck = affected_mob.get_temperature() <= 200
+							if (ishuman(affected_mob))
+								tempcheck = FALSE
+								var/mob/living/carbon/human/human_mob = affected_mob
+								if (human_mob.coretemperature <= 175)
+									tempcheck = TRUE
+							if (tempcheck && prob(40))
+								affected_mob.AdjustSleeping(3 SECONDS) // ko
 						if (prob(15))
 							to_chat(affected_mob, span_warning("The cold makes you sleepy..."))
 

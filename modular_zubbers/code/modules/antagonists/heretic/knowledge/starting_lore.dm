@@ -43,12 +43,16 @@
 	. = ..()
 	our_heretic.mark_enabled = TRUE
 
-/datum/heretic_knowledge/limited_amount/starting/can_be_invoked(datum/antagonist/heretic/invoker)
-	. = ..()
-	if (!.)
+/datum/heretic_knowledge/limited_amount/starting/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
+	var/datum/antagonist/heretic/heretic = GET_HERETIC(user)
+	if (!istype(heretic))
 		return FALSE
 
-	return invoker.can_craft_blades
+	if (!heretic.can_craft_blades)
+		loc.balloon_alert(user, "haven't researched blade crafting!")
+		return FALSE
+
+	return ..()
 
 /datum/heretic_knowledge/limited_amount/starting/proc/should_create_mark(mob/living/source, mob/living/target)
 	var/datum/antagonist/heretic/heretic = GET_HERETIC(source)

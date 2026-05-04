@@ -6,9 +6,9 @@ GLOBAL_VAR_INIT(processors_cursed, FALSE)
 	This curse will drain sanity on anyone wearing a radio and garble messages for five minutes. Can only be used twice."
 	gain_text = "The Owl is a great listener. But a whisper of the knowledge it has gained is enough to send a man to an asylum."
 	required_atoms = list(
-		/obj/item/radio,
-		/obj/item/organ/ears,
-		/obj/item/stack/ore/bluespace_crystal
+		/obj/item/radio = 1,
+		/obj/item/organ/ears = 1,
+		/obj/item/stack/ore/bluespace_crystal = 1
 	)
 	research_tree_icon_path = 'icons/obj/machines/telecomms.dmi'
 	research_tree_icon_state = "blackbox_b"
@@ -26,11 +26,13 @@ GLOBAL_VAR_INIT(processors_cursed, FALSE)
 	return TRUE
 
 /datum/heretic_knowledge/telecomms_corruption/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
+	. = ..()
+	if (!.)
+		return FALSE
+
 	if (uses_left <= 0)
 		user.balloon_alert(user, "out of uses!")
 		return FALSE
-
-	return TRUE
 
 /datum/heretic_knowledge/telecomms_corruption/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
