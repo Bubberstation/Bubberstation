@@ -61,6 +61,7 @@
 
 		if (from_phylactery)
 			if (account.account_balance < PHYLACTERY_ACCOUNT_MIN)
+				to_chat(user, span_warning("Not enough money to extract from a phylacterized sample of blood!"))
 				continue
 
 		to_steal = floor(to_steal)
