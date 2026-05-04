@@ -1,9 +1,11 @@
+/// Typecache of types that cannot be marked as heirlooms.
 GLOBAL_LIST_INIT(invalid_heirloom_types, typecacheof(list(
 	/obj/item/card/id,
 	/obj/item/disk/nuclear,
 )))
 
 /datum/quirk/item_quirk/family_heirloom
+	/// The temporary mark action we give to users who have opted out of random items.
 	var/datum/action/mark_family_heirloom/mark_action
 
 /datum/quirk/item_quirk/family_heirloom/Destroy()
