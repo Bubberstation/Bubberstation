@@ -1,4 +1,4 @@
-#define BLOOD_AMOUNT_TO_STEAL_PERCENT_RATIO 5 // 1u, 5%
+#define BLOOD_AMOUNT_TO_STEAL_PERCENT_RATIO 5 // 1u, 5%, 10u, 50%
 #define PHYLACTERY_ACCOUNT_MIN 300
 
 /datum/heretic_knowledge/blood_to_money
@@ -58,16 +58,10 @@
 			continue
 
 		var/to_steal = (creds * ((blood_amount * 0.01) * BLOOD_AMOUNT_TO_STEAL_PERCENT_RATIO))
-		var/remainder = (creds - to_steal)
 
 		if (from_phylactery)
-			if (remainder < PHYLACTERY_ACCOUNT_MIN)
-				var/overkill = account.account_balance - PHYLACTERY_ACCOUNT_MIN
-				if (overkill <= 0)
-					continue
-				to_steal -= overkill
-				if (to_steal <= 0)
-					continue
+			if (account.account_balance < PHYLACTERY_ACCOUNT_MIN)
+				continue
 
 		to_steal = floor(to_steal)
 		account.adjust_money(-to_steal, "##^@%%$^")
