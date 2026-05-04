@@ -191,7 +191,7 @@
 	/// The specific, occupied family member antagonist datum that is used to reach the handler / check objectives, and from which the above properties (sans points) are inherited.
 	var/datum/antagonist/gang/my_gang_datum
 	/// The current theme. Used to pull important stuff such as spawning equipment and objectives.
-	//var/datum/gang_theme/current_theme //DEBUG: Removed for now
+	//var/datum/gang_theme/current_theme
 
 /// Allow gangs to have custom naming schemes for their gangsters.
 /datum/team/gang/proc/rename_gangster(datum/mind/gangster, original_name, starter_gangster)

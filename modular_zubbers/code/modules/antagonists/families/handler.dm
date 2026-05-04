@@ -71,7 +71,7 @@ GLOBAL_VAR(families_override_theme)
 	/// List of jobs not eligible for starting family member / undercover cop. Set externally (passed by reference) by gamemode / ruleset; used internally.
 	var/list/restricted_jobs
 	/// The current chosen gamemode theme. Decides the available Gangs, objectives, and equipment.
-	//var/datum/gang_theme/current_theme //DEBUG: Removed temporarily
+	//var/datum/gang_theme/current_theme
 	///The announcement used at the beginning to announce the presence of gangs
 	var/intro_message = "You're listening to the 108.9 Swing, all jazz, all night long, no advertising. We'd like to take this time to remind you to avoid smoky backrooms and \
 	suspicious individuals in suits and hats. Don't make a deal you can't pay back."
@@ -112,11 +112,11 @@ GLOBAL_VAR(families_override_theme)
  * Takes no arguments.
  */
 /datum/gang_handler/proc/pre_setup_analogue()
-	message_admins("Families has chosen the theme: NONE")
-	log_game("FAMILIES: The following theme has been chosen: NONE")
-	var/gangsters_to_make = 2 //DEBUG: Change to scale with pop and be randomly either 2 or 3
+	var/player_count = get_active_player_count(TRUE, TRUE)
+	///How many total gangsters should be spawned to be starting gangsters.
+	var/gangsters_to_make = max(2, FLOOR(player_count / 10, 1))
 	for(var/i in 1 to gangsters_to_make)
-		if (!antag_candidates.len) //DEBUG: Cancel starting the gamemode if antag_candidates is less than 2
+		if (!antag_candidates.len)
 			break
 		var/taken = pick_n_take(antag_candidates) // original used antag_pick, but that's local to game_mode and rulesets use pick_n_take so this is fine maybe
 		var/datum/mind/gangbanger
@@ -152,7 +152,9 @@ GLOBAL_VAR(families_override_theme)
  */
 /datum/gang_handler/proc/post_setup_analogue(return_if_no_gangs = FALSE)
 	var/list/possible_gangs = subtypesof(/datum/antagonist/gang)
-	var/amount_of_gangs = rand(2, 3) //DEBUG: Weigh to prefer doing 2 gangs
+	var/amount_of_gangs = clamp(rand(0, 3), 2, 3) //picks random number between 0 and 3. if it is 3, is spawns 3 gangs, otherwise spawns 2 gangs
+	if (gangbangers.len < 3)
+		amount_of_gangs = 2
 	var/list/gangs_to_use
 	var/list/chosen_gangs = list() //which gangs are involved this round
 	for(var/i = 1, i <= amount_of_gangs, i++)
@@ -167,7 +169,7 @@ GLOBAL_VAR(families_override_theme)
 			break
 		if(!gangs_to_use.len)
 			gangs_to_use = chosen_gangs.Copy()
-		var/gang_to_use = pick_n_take(gangs_to_use) // Evenly distributes Leaders among the gangs
+		var/gang_to_use = pick_n_take(gangs_to_use) // Evenly distributes Leaders among the gangs. One gang might still have an extra member but that's fine.
 		var/datum/mind/gangster_mind = pick_n_take(gangbangers)
 		var/datum/antagonist/gang/new_gangster = new gang_to_use()
 		new_gangster.handler = src
@@ -402,7 +404,7 @@ GLOBAL_VAR(families_override_theme)
 
 			cop.mind.add_antag_datum(ert_antag)
 			cop.mind.set_assigned_role(ert_antag.ert_job_path)
-			//DEBUG: Should probably make a ghost role spawn for this? maybe just remove it for the sake of my sanity.
+			//TODO: Should probably make a ghost role spawn for this? maybe just remove it for the sake of my sanity.
 			// Space cops are having a staffing shortage.
 			//SSjob.SendToLateJoin(cop)
 
