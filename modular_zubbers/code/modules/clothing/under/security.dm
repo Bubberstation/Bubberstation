@@ -99,14 +99,15 @@
 	desc = "A tactical security jumpsuit for officers complete with Nanotrasen belt buckle."
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
-	icon_state = "security_jumpsuit"
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+	icon_state = "security_uniform_v"
 	inhand_icon_state = "r_suit"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
-/obj/item/clothing/under/rank/security/viro/officer/legs
-	name = "red security uniform"
-	desc = "A tactical security uniform for officers, complete with stiffer pants.."
-	icon_state = "security_uniform"
+/obj/item/clothing/under/rank/security/viro/officer/lowcut
+	name = "low-cut security uniform"
+	desc = "A tactical security uniform for officers, complete lower-cut top."
+	icon_state = "security_lowcut"
 	inhand_icon_state = "r_suit"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
@@ -128,15 +129,23 @@
 	alt_covers_chest = TRUE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
-/obj/item/clothing/under/rank/security/viro/officer/bodysuit/male
+/obj/item/clothing/under/rank/security/viro/officer/bodysuit
 	name = "seucrity officer's bodysuit"
 	desc = "The latest in form-fitting, high speed, and low drag security equipment."
 	icon_state = "security_bodysuit"
+	inhand_icon_state = "security_bodysuit"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
-/obj/item/clothing/under/rank/security/viro/officer/bodysuit/female
-	name = "seucrity officer's bodysuit"
-	desc = "The latest in form-fitting, high speed, and low drag security equipment."
-	icon_state = "security_bodysuit_female"
+/obj/item/clothing/under/rank/security/viro/officer/bodysuit/equipped(mob/living/affected_mob, slot)
+	. = ..()
+	var/mob/living/carbon/human/affected_human = affected_mob
+	if(src == affected_human.w_uniform)
+		if(affected_mob.gender == FEMALE)
+			icon_state = "security_bodysuit_female"
+		else
+			icon_state = "security_bodysuit_male"
+
+	affected_mob.update_worn_undersuit()
 
 /obj/item/clothing/under/rank/security/viro/warden/
 	name = "security suit"
@@ -196,6 +205,7 @@
 	desc = "A security jumpskirt decorated for those few with the dedication to achieve the position of Head of Security."
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
 	icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon_state = "hos_skirt"
 	inhand_icon_state = "r_suit"
 	body_parts_covered = CHEST|GROIN|ARMS

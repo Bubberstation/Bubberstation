@@ -46,7 +46,6 @@
 	icon_state = "secsoft_v"
 	armor_type = /datum/armor/cosmetic_sec
 
-
 /obj/item/clothing/head/sec/viro/beanie
 	name = "security beanie"
 	desc = "A beanie for security purposes"
