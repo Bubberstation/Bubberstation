@@ -10,32 +10,3 @@
 	quirks_enabled = TRUE // ghost role quirks
 	random_appearance = FALSE // ghost role prefs
 	deletes_on_zero_uses_left = TRUE
-
-/mob/living/basic/voidwalker/sunwalker/maintsroom
-	name = "Pure radiant light"
-	desc = "Its white, its bright, but its not blinding and it doesnt hurt to look at, it has a faint blue outline."
-	maxHealth = 12000
-	health = 12000//its a fragment of a far greater being lore wise, and mechanically it should never be fighting at all, and if it does thats an admin issue as doing so would be dis-obeying the rules of the ghost role
-	melee_damage_lower = 50
-	melee_damage_upper = 50
-	ghost_controllable = 1
-	can_speak = TRUE
-
-/mob/living/basic/voidwalker/maintsroom
-	name = "Absence"
-	desc = "An entity- it looks like a voidwalker but it doesnt look empty. It seems to be made of pure shadow- but yet you dont feel alarmed or afraid from it, it has a faint purple outline."
-	maxHealth = 12000
-	health = 12000
-	melee_damage_type = BURN
-	melee_damage_lower = 50
-	melee_damage_upper = 50
-	ghost_controllable = 1
-	can_speak = TRUE
-
-/mob/living/basic/voidwalker/maintsroom/Initialize(mapload)
-	. = ..()
-	add_traits(list(TRAIT_ADVANCEDTOOLUSER, TRAIT_CAN_STRIP))
-
-/mob/living/basic/voidwalker/sunwalker/maintsroom/Initialize(mapload)
-	. = ..()
-	add_traits(list(TRAIT_ADVANCEDTOOLUSER, TRAIT_CAN_STRIP))
