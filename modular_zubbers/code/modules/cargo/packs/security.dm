@@ -112,17 +112,24 @@
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/security/ntusp
-	name = "NT-USP Crate"
-	desc = "Three stamina-draining ballistic weapons, along with 3 extra clips. Requires Security access to open."
+	name = "NT22-HCS Crate"
+	desc = "Three NT22-HCS 'Enforcer' pistol cases, each containing a weapon and a power pack."
 	cost = CARGO_CRATE_VALUE * 5.5
 	access = ACCESS_SECURITY
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/ntusp,
-					/obj/item/gun/ballistic/automatic/pistol/ntusp,
-					/obj/item/gun/ballistic/automatic/pistol/ntusp,
-					/obj/item/ammo_box/magazine/recharge/ntusp,
-					/obj/item/ammo_box/magazine/recharge/ntusp,
-					/obj/item/ammo_box/magazine/recharge/ntusp)
-	crate_name = "nt-usp crate"
+	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/ntusp,
+					/obj/item/storage/toolbox/guncase/skyrat/pistol/ntusp,
+					/obj/item/storage/toolbox/guncase/skyrat/pistol/ntusp)
+	crate_name = "nt22-hcs crate"
+
+/datum/supply_pack/security/ntmp5
+	name = "NT22-HCS-MP Crate"
+	desc = "Three NT22-HCS-MP 'Lancer' submachine gun cases, each containing a weapon and a power pack. Each weapon can retract its stock to fit inside backpacks."
+	cost = CARGO_CRATE_VALUE * 6.5
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5,
+					/obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5,
+					/obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5)
+	crate_name = "nt22-hcs-mp crate"
 
 /datum/supply_pack/security/miecz
 	name = "Miecz Submachine Gun Single-Pack"
