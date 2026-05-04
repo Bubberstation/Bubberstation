@@ -182,7 +182,7 @@
 	dunk_reagents.expose_temperature(600)
 	if(!isnull(heat_color))
 		parent_item.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
-	parent_item.update_integrity(max(round(lerp(0, parent_item.max_integrity, completion_ratio)), parent_item.get_integrity()))
+	parent_item.update_integrity(max(round(lerp(0, parent_item.max_integrity, get_completion_ratio())), parent_item.get_integrity()))
 	quench_callback.Invoke(dunk_reagents, dunk_object, user)
 	return TRUE
 	//SEND_SIGNAL(parent_item, COMSIG_SMITHING_QUENCH, dunk_reagents, dunk_object, user)
@@ -214,7 +214,7 @@
 	armor_penalty_from_incompletion = new_armor_penalty
 
 	var/datum/armor/new_armor_bonus = /datum/armor/none
-	new_armor_bonus = perfect_forged_armor_bonus.generate_new_with_multipliers(list(ARMOR_ALL = perfection_ratio))
+	new_armor_bonus = armor_bonus_from_perfection.generate_new_with_multipliers(list(ARMOR_ALL = perfection_ratio))
 	parent_item.set_armor(parent_item.get_armor().add_other_armor(new_armor_bonus).subtract_other_armor(armor_bonus_from_perfection))
 	armor_bonus_from_perfection = new_armor_bonus
 

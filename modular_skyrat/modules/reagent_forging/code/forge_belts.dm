@@ -139,14 +139,11 @@
 	var/obj/item/storage/belt/holster/blacksmithed/charging/my_belt
 
 /obj/machinery/recharger/belt_charger/proc/activate_with_item(/obj/item/my_item)
-	if(is_type_in_typecache(my_item, allowed_devices))
-		charging = my_item
-		START_PROCESSING(SSmachines, src)
-		update_use_power(ACTIVE_POWER_USE)
-		using_power = TRUE
-		update_appearance()
-	else
-		stack_trace("[src] recieved a [my_item], which doesn't accept it!")
+	charging = my_item
+	START_PROCESSING(SSmachines, src)
+	update_use_power(ACTIVE_POWER_USE)
+	using_power = TRUE
+	update_appearance()
 
 /obj/machinery/recharger/belt_charger/process(seconds_per_tick)
 	. = ..()

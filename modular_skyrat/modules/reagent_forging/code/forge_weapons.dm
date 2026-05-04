@@ -40,10 +40,11 @@
 // nonlethal secondary attack
 /obj/item/melee/forged_reagent_weapon/pre_attack_secondary(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
-	if(can_nonlethal_altfire)
+	if(can_nonlethal_altfire && istype(target, mob/living))
 		// when we continue to attack, deal 0 (brute) damage (just stun)
 		SET_ATTACK_FORCE(attack_modifiers, 0)
-		target.apply_damage(stamina_damage, STAMINA, blocked = armour_block)
+		var/mob/living/livingtarget = target
+		livingtarget.apply_damage(stamina_damage, STAMINA, blocked = armour_block)
 		attack_verb_continuous = secondary_attack_verb_continuous
 		attack_verb_simple = secondary_attack_verb_simple
 	return SECONDARY_ATTACK_CONTINUE_CHAIN
@@ -454,10 +455,41 @@
 	shield_break_sound = 'sound/effects/bang.ogg'
 	shield_break_leftover = /obj/item/forging/complete/plate
 
+	var/current_perfect_block_bonus = 0
+	var/current_incomplete_block_penalty = 0
+
 /obj/item/shield/buckler/reagent_weapon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/weapon)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		CALLBACK(src, TYPE_PROC_REF(/obj/item/shield/buckler/reagent_weapon, quench_item)))
+/obj/item/shield/buckler/reagent_weapon/proc/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
+	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
+	if(!isnull(smith_component))
+		smith_component.reset()
+		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio())
+/obj/item/shield/buckler/reagent_weapon/proc/passive_cool_item()
+	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
+	if(!isnull(smith_component))
+		smith_component.reset()
+		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio(), TRUE)
+/obj/item/shield/buckler/reagent_weapon/proc/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
+	var/new_force_penalty = 0
+	if(completion_ratio < 1 || force_incomplete_penalty)
+		new_force_penalty = initial(force) * (1.0 - lerp(MIN_INCOMPLETE_DAMAGE_MULT, MAX_INCOMPLETE_DAMAGE_MULT, completion_ratio))
+	force += completion_force_penalty
+	force -= new_force_penalty
+	completion_force_penalty = new_force_penalty
+
+	var/new_perfect_force_bonus = max(perfect_forging_bonus, clamp(perfect_ratio * MAX_PERFECT_FORCE_BONUS, 0, MAX_PERFECT_FORCE_BONUS))
+	force += max(0, new_perfect_force_bonus - perfect_forging_bonus)
+	perfect_forging_bonus = new_perfect_force_bonus
 
 /obj/item/shield/buckler/reagent_weapon/examine(mob/user)
 	. = ..()

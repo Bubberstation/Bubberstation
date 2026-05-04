@@ -198,7 +198,7 @@
 
 /datum/crafting_bench_recipe/wearable/handcuffs
 	recipe_name = "handcuffs"
-	recipe_desc = "A pair of handcuffs. Perfected metalworking will make it imbue more reagents at once. Smithing oil will make it harder to break."
+	recipe_desc = "A pair of handcuffs; they need to be purged of reagents before they can be used."
 	recipe_requirements = list(
 		/obj/item/forging/complete/chain = 3,
 	)
@@ -306,7 +306,7 @@
 		/obj/item/stack/sheet/leather = 6,
 		/obj/item/stack/sheet/cloth = 6,
 	)
-	resulting_item = /obj/item/storage/belt/sheath/multi_scabbard
+	resulting_item = /obj/item/storage/belt/sheath/multi
 	time_to_assemble = 3 SECONDS
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 

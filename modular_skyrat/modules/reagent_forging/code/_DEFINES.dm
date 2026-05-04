@@ -18,7 +18,7 @@
 #define FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS 10
 #define FORGING_CLOTHING_REFORGING_MAX_BAD_HITS 6
 
-#define USER_CAN_REAGENT_IMBUE(user) (HAS_TRAIT(quencher, TRAIT_KNOW_ADVANCED_SMITHING) || user.mind.get_skill_level(/datum/skill/smithing) >= SKILL_LEVEL_MASTER)
+#define USER_CAN_REAGENT_IMBUE(user) (HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING) || user.mind.get_skill_level(/datum/skill/smithing) >= SKILL_LEVEL_MASTER)
 /// Minimum and maximum force multiplier if a weapon contains incomplete parts
 #define MIN_INCOMPLETE_DAMAGE_MULT 0.1
 #define MAX_INCOMPLETE_DAMAGE_MULT 0.5
@@ -41,6 +41,14 @@
 #define REAGENT_WEAPON_INJECT_AMOUNT 4
 #define REAGENT_STAFF_INJECT_AMOUNT 10
 #define MAX_OIL_AP_AMOUNT 10
+#define PERFECT_ACCESSORY_DURABILITY_BONUS 50
+#define PERFECT_HANDCUFFS_UNLOCK_SPEED_BONUS 2 SECONDS
 
 #define MAX_QUENCH_HEAT 600
 #define MIN_VOLUME_TO_QUENCH 300
+
+#define FORGE_EFFECT_FORCE "forge_effect_force"
+#define FORGE_EFFECT_ARMORPEN "forge_effect_armorpen"
+#define FORGE_EFFECT_ARMOR "forge_effect_armor"
+#define FORGE_EFFECT_DURABILITY "forge_effect_durability"
+#define FORGE_EFFECT_BLOCKCHANCE "forge_effect_block"

@@ -191,12 +191,10 @@
 /obj/item/clothing/gloves/ring/reagent_clothing/proc/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
 	var/new_completion_penalty = 0
 	if(force_incomplete_penalty || completion_ratio < 1)
-		new_completion_penalty = lerp(MIN_INCOMPLETE_ARMOR_MULT, MAX_INCOMPLETE_ARMOR_MULT, completion_ratio) *
+		new_completion_penalty = lerp(MIN_INCOMPLETE_ARMOR_MULT, MAX_INCOMPLETE_ARMOR_MULT, completion_ratio) * PERFECT_ACCESSORY_DURABILITY_BONUS
 	max_integrity += current_completion_penalty
 	max_integrity -= new_completion_penalty
 	current_completion_penalty = new_completion_penalty
-
-
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -221,7 +219,21 @@
 		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
 		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
 		FORGING_WEAPON_REFORGING_AVERAGE_WAIT, \
-		CALLBACK(src, TYPE_PROC_REF(/obj/item/clothing/suit/armor/forging_plate_armor, quench_item)))
+		CALLBACK(src, TYPE_PROC_REF(/obj/item/clothing/neck/collar/reagent_clothing, quench_item)))
+
+/obj/item/clothing/neck/collar/reagent_clothing/proc/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
+	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
+	if(!isnull(smith_component))
+		smith_component.reset()
+		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio())
+
+/obj/item/clothing/neck/collar/reagent_clothing/proc/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
+	var/new_completion_penalty = 0
+	if(force_incomplete_penalty || completion_ratio < 1)
+		new_completion_penalty = lerp(MIN_INCOMPLETE_ARMOR_MULT, MAX_INCOMPLETE_ARMOR_MULT, completion_ratio) * PERFECT_ACCESSORY_DURABILITY_BONUS
+	max_integrity += current_completion_penalty
+	max_integrity -= new_completion_penalty
+	current_completion_penalty = new_completion_penalty
 
 /obj/item/restraints/handcuffs/reagent_clothing
 	name = "reagent handcuffs"
