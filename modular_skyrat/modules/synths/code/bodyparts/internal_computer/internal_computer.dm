@@ -22,6 +22,20 @@
 	if(!istype(loc, /obj/item/organ/brain/synth) && !istype(loc, /obj/item/organ/brain/cybernetic/cortical) && !istype(loc, /obj/item/organ/brain/cybernetic/surplus))
 		return INITIALIZE_HINT_QDEL
 
+/obj/item/modular_computer/pda/synth/proc/brainpooter()
+	var/obj/item/organ/brain/cybernetic/brainpooter = loc
+	var/mob/living/brain_owner = brainpooter.owner
+	if(!isnull(brain_owner))
+		imprint_id(brain_owner.real_name, brain_owner.job)
+		var/datum/mind/owner_mind = brain_owner?.mind
+		if(!isnull(owner_mind))
+			update_ringtone(owner_mind?.assigned_role?.job_tone)
+		UpdateDisplay()
+
+		var/client/client = brainpooter.owner.client
+		if(!isnull(client))
+			update_pda_prefs(client)
+
 /obj/item/modular_computer/pda/synth/check_power_override()
 	return TRUE
 
