@@ -363,9 +363,9 @@
 	gang_name = "Tunnel Snakes"
 	gang_id = "TS"
 	acceptable_clothes = list(/obj/item/clothing/under/pants/jeans,
-		/obj/item/clothing/suit/jacket,
+		/obj/item/clothing/suit/jacket/leather,
 		/obj/item/clothing/mask/bandana/skull/black)
-	free_clothes = list(/obj/item/clothing/suit/jacket,
+	free_clothes = list(/obj/item/clothing/suit/jacket/leather,
 		/obj/item/clothing/under/pants/jeans,
 		/obj/item/toy/crayon/spraycan)
 	antag_hud_name = "Snakes"
