@@ -197,3 +197,4 @@
 			return TRUE
 
 #undef MIN_VOLUME
+#undef MAX_FLOOR_PRODUCTS // BUBBER EDIT - ADDITION
