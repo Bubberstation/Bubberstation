@@ -169,3 +169,15 @@
 
 #define MUTATION_SOURCE_SPECIES "species"
 #define MUTATION_SOURCE_QUIRK "quirk"
+
+///INTERNAL ORGANS
+
+///// Brain implants that add functionality to the user, such as a health relay
+#define ORGAN_SLOT_BRAIN_AID
+
+
+/// Defines how a mob's organs_slot is ordered
+/// Exists so Life()'s organ process order is consistent
+GLOBAL_LIST_INIT(organ_process_order, list(
+	ORGAN_SLOT_BRAIN_AID
+))
