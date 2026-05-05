@@ -95,7 +95,6 @@ GLOBAL_LIST_INIT(organ_choice, list(
 	"Lungs" = ORGAN_SLOT_LUNGS,
 	"Liver" = ORGAN_SLOT_LIVER,
 	"Stomach" = ORGAN_SLOT_STOMACH,
-	"Brain" = ORGAN_SLOT_BRAIN, //BUBBER EDIT - Added line
 ))
 
 ///Paraplegic Quirk

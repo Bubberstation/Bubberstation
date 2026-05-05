@@ -1,6 +1,7 @@
 /mob/living/carbon/human
 	/// Quad eyes offset in pixels. Positive is up, negative is down. (Suggested to not go above 2 or below -2)
 	var/quad_eyes_offset = 0
+	var/quad_eyes_offset_width = 1
 	/// Used for footstep type pref, to apply to any new legs that get added to this mob. Uses a var instead of checking prefs because there are a lot of clientless mob situations.
 	var/footstep_type
 

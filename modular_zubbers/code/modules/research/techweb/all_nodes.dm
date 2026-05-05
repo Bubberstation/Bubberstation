@@ -167,6 +167,8 @@
 	design_ids += "m45_mag"
 	design_ids += "solgrenade_mag"
 	design_ids += "ntusp_conversion"
+	design_ids += "ntusp_powerpack"
+	design_ids += "ntmp5_powerpack"
 	. = ..()
 
 /datum/techweb_node/exotic_ammo/New()

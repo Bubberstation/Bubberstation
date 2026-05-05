@@ -103,7 +103,7 @@
 	uses = 1
 
 /datum/voucher_set/security/primary/nt_usp
-	name = "NT-USP Pistol"
+	name = "NT22-HCS 'Enforcer' Pistol"
 	description = "A small pistol that uses hardlight technology to synthesize bullets. Due to its low power, it doesn't have much use besides tiring out criminals."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "ntusp_full"
