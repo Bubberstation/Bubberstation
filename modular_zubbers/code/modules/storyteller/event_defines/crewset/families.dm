@@ -1,3 +1,5 @@
+#define MINIMUM_VIABLE_FAMILY_CANDIDATES 2
+
 /datum/round_event_control/antagonist/families
 	name = "Families"
 	description = "Create a number of themed faction and send them at eachother's throats"
@@ -18,7 +20,12 @@
 	var/datum/gang_handler/handler
 
 /datum/round_event/antagonist/families/candidate_setup(datum/round_event_control/antagonist/cast_control)
-	handler = new /datum/gang_handler(cast_control.get_candidates(), cast_control.restricted_roles)
+	var/list/restricted_roles = cast_control.restricted_roles
+	var/list/possible_candidates = cast_control.get_candidates()
+	if(possible_candidates.len < MINIMUM_VIABLE_FAMILY_CANDIDATES)
+		message_admins("FAMILIES: Could not start Families round; insufficient candidates")
+		return
+	handler = new /datum/gang_handler(possible_candidates, restricted_roles)
 	handler.gang_balance_cap = clamp((get_active_player_count() - 3), 2, 5) // gang_balance_cap by indice_pop: (2,2,2,2,2,3,4,5,5,5)
 	handler.use_dynamic_timing = TRUE
 	return handler.pre_setup_analogue()
@@ -32,3 +39,5 @@
 	name = "Family head aspirant"
 	roundstart = FALSE
 	antag_flag = ROLE_FAMILY_HEAD_ASPIRANT
+
+#undef MINIMUM_VIABLE_FAMILY_CANDIDATES
