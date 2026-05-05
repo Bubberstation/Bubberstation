@@ -768,8 +768,8 @@
 	As we all know, power corrupts, and this is no different for the Heads of Staff. \
 	Mark the station for our cause and then force the Heads of Staff to publicly commit to their crimes! \
 	They have all done something bad, and we will find out whatever it is! \
-	The more they try to hide it -- the more they insist they haven't done anything wrong -- the worse their crime must be. \
-	Thus it justifies using more force to make them confess!"
+	The more they try to hide it and the more they insist they haven't done anything wrong the worse their crime must be. \
+	This justifies using more force to make them confess!"
 
 /datum/team/gang/phantom/rename_gangster(datum/mind/gangster, original_name, starter_gangster)
 	var/static/regex/last_name = new("\[^\\s-\]+$") //First word before whitespace or "-"
