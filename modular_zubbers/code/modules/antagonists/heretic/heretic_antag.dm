@@ -2,7 +2,7 @@
 	name = "\improper Acolyte"
 	roundend_category = "Acolytes"
 	antagpanel_category = "Acolyte"
-	knowledge_points = 12 + 1 // we always have to spend one to unlock a path
+	knowledge_points = 14 + 1 // we always have to spend one to unlock a path
 	unlimited_blades = TRUE
 	passive_level = 0
 	passive_gain_timer = 40 MINUTES // passive progression is VERY... SLOW...

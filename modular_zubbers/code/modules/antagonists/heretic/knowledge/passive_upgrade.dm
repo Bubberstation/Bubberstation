@@ -127,7 +127,7 @@
 /datum/heretic_knowledge/passive_upgrade/three/lock
 	research_tree_icon_state = "key_blade"
 	desc = "Grasp no longer goes on cooldown when used to open a door or locker."
-	cost = 1
+	cost = 3 // this is actually pretty powerful and makes running away easy as fuck. 8 sec cooldown severely limits urself
 
 //cosmic
 /datum/heretic_knowledge_tree_column/cosmic

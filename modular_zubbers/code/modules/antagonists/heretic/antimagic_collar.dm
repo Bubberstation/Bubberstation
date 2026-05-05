@@ -88,9 +88,7 @@
 		if (IS_HERETIC(user) && !broken)
 			to_chat(loc, span_userdanger("You feel your connection to the Mansus weaken and eventually fade!"))
 		if (!locked)
-			locked = TRUE
-			ADD_TRAIT(src, TRAIT_NO_STRIP, REF(src))
-			balloon_alert_to_viewers("automatically locked!")
+			toggle_lock(TRUE)
 			visible_message(span_warning("[src] automatically locks!"))
 
 /obj/item/clothing/neck/antimagic_collar/atom_break(damage_flag)
@@ -136,7 +134,7 @@
 					if (!locked)
 						return
 					to_chat(loc, span_userdanger("[src] malfunctions, unlocking when it REALLY shouldn't!"))
-					locked = FALSE
+					toggle_lock(FALSE)
 					radio.talk_into(src, "C@@LAR [set_id] UN$@LOCKK%$@@ED AT@%%^*!!!@B---BZZZZZZZZZZZZZ-", RADIO_CHANNEL_SECURITY, list(speech_span))
 
 /obj/item/clothing/neck/antimagic_collar/repair(mob/user)
@@ -159,20 +157,24 @@
 		if (IS_HERETIC(wearer))
 			to_chat(wearer, span_userdanger("As [src] returns to function, you feel your powers fade!"))
 
+/obj/item/clothing/neck/antimagic_collar/proc/toggle_lock(new_status, mob/living/user, obj/item/key/collar/antimagic/key)
+	if (locked == new_status)
+		return
+
+	locked = new_status
+	balloon_alert_to_viewers("[locked ? "locked!" : "unlocked!"]")
+	if (!isnull(key) && !locked)
+		radio.talk_into(src, "Antimagic collar [set_id] unlocked using a key.", RADIO_CHANNEL_SECURITY, list(speech_span))
+	if (user)
+		to_chat(user, span_warning("You [locked ? "lock" : "unlock"] the collar."))
+
 /obj/item/clothing/neck/antimagic_collar/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_ATOM_ITEM_INTERACTION, PROC_REF(try_lock))
 
 /obj/item/clothing/neck/antimagic_collar/proc/try_lock(atom/source, mob/user, obj/item/attacking_item, params)
 	if(istype(attacking_item, /obj/item/key/collar/antimagic))
-		to_chat(user, span_warning("With a click, the collar [locked ? "unlocks" : "locks"]!"))
-		balloon_alert_to_viewers("[locked ? "unlocked" : "locked"]!")
-		locked = !locked
-		if (locked)
-			ADD_TRAIT(src, TRAIT_NO_STRIP, REF(src))
-		else
-			REMOVE_TRAIT(src, TRAIT_NO_STRIP, REF(src))
-			radio.talk_into(src, "Antimagic collar [set_id] unlocked using a key.", RADIO_CHANNEL_SECURITY, list(speech_span))
+		toggle_lock(!locked, user, attacking_item)
 	return TRUE
 
 /obj/item/clothing/neck/antimagic_collar/attack_hand(mob/user)
@@ -184,6 +186,16 @@
 /obj/item/key/collar/antimagic
 	name = "antimagic collar key"
 	desc = "The only kind of key that will open an antimagic collar. Hard to come across organically."
+
+/obj/item/key/collar/antimagic/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
+	var/obj/item/clothing/neck/antimagic_collar/collar = target_mob.get_item_by_slot(ITEM_SLOT_NECK)
+	if (!istype(collar))
+		user.balloon_alert(user, "no collar!")
+		return FALSE
+
+	collar.toggle_lock(!collar.locked, user, src)
+
+	return TRUE
 
 /obj/item/storage/box/antimagic
 	name = "antimagic collar box"
