@@ -36,3 +36,18 @@
 	name = "armored bandana"
 	desc = "For ten years, we lived and died together. You couldn't possibly understand."
 	armor_type = /datum/armor/cosmetic_sec
+
+//virosec hats
+/obj/item/clothing/head/sec/viro
+	name = "security softcap"
+	desc = "A soft hat to give security operators less strain on their necks after wearing helmets all day."
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "secsoft_v"
+	armor_type = /datum/armor/cosmetic_sec
+
+/obj/item/clothing/head/sec/viro/beanie
+	name = "security beanie"
+	desc = "A beanie for security purposes"
+	icon_state = "security_beanie"
+	armor_type = /datum/armor/cosmetic_sec
