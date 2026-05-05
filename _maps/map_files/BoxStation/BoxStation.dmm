@@ -41120,7 +41120,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 10
 	},
-/obj/machinery/light_switch/directional/west,
 /obj/effect/turf_decal/trimline/dark_blue/line{
 	alpha = 210;
 	dir = 10
@@ -51973,16 +51972,6 @@
 	},
 /turf/open/floor/stone,
 /area/station/service/bar)
-"moT" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 10
-	},
-/obj/effect/turf_decal/trimline/dark_blue/line{
-	alpha = 210;
-	dir = 10
-	},
-/turf/open/floor/iron/smooth,
-/area/station/engineering/atmos/hfr_room)
 "moU" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon/olive,
@@ -54074,6 +54063,20 @@
 	},
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
+"neo" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/trimline/dark_blue/filled/line{
+	alpha = 200;
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/mid_joiner{
+	dir = 1;
+	alpha = 200
+	},
+/turf/open/floor/iron/edge{
+	dir = 1
+	},
+/area/station/hallway/primary/port)
 "neA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -66493,6 +66496,17 @@
 /obj/structure/window/plasma/spawner/directional/west,
 /turf/open/floor/glass/plasma,
 /area/station/command/heads_quarters/rd)
+"rSW" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 10
+	},
+/obj/machinery/light_switch/directional/west,
+/obj/effect/turf_decal/trimline/dark_blue/line{
+	alpha = 210;
+	dir = 10
+	},
+/turf/open/floor/iron/smooth,
+/area/station/engineering/atmos/hfr_room)
 "rTf" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
@@ -72333,7 +72347,6 @@
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "tYP" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	alpha = 200;
 	dir = 1
@@ -75967,19 +75980,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/cargo/office)
-"vmc" = (
-/obj/effect/turf_decal/trimline/dark_blue/filled/line{
-	alpha = 200;
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/dark_blue/filled/mid_joiner{
-	dir = 1;
-	alpha = 200
-	},
-/turf/open/floor/iron/edge{
-	dir = 1
-	},
-/area/station/hallway/primary/port)
 "vml" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
@@ -106045,7 +106045,7 @@ aFX
 aHj
 riu
 iNM
-vmc
+tYP
 llv
 jsh
 kIZ
@@ -106816,7 +106816,7 @@ fXT
 mEE
 ghm
 lsM
-tYP
+neo
 jTW
 gDC
 xzg
@@ -107073,7 +107073,7 @@ dhN
 ciq
 jpp
 iNM
-vmc
+tYP
 aMV
 jsh
 nMz
@@ -117167,7 +117167,7 @@ bOh
 efp
 yal
 nDy
-iwf
+rSW
 ccw
 ggE
 cUh
@@ -117941,7 +117941,7 @@ kAq
 mFD
 tQJ
 qEm
-moT
+iwf
 roC
 qhj
 xzh
