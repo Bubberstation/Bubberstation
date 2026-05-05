@@ -1205,4 +1205,4 @@
 		balloon_alert(user, "needs tram!")
 		return FALSE
 
-	return ..()
+	return TRUE
