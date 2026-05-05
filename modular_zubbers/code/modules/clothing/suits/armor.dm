@@ -45,11 +45,6 @@
 	if(!isinhands)
 		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha)
 
-/obj/item/clothing/suit/armor/vest/secjacket/blue // Port from TG Station (DrTuxedo)
-	name = "security jacket"
-	desc = "A blue jacket in blue Peacekeeper colors. It has hi-vis stripes all over it."
-	icon_state = "secjacket_blue"
-
 //Maid SEC
 //Icon by Onule!
 /obj/item/clothing/suit/armor/vest/maid

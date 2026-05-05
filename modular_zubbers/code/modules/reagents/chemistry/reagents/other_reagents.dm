@@ -416,6 +416,31 @@
 		return
 	M.emote("weh")
 
+//A chemical you can spray on plushies to turn them into a 'shell'
+//Hugging the plushie turns yourself into the plushie!
+/datum/reagent/plushmium
+	name = "Plushmium"
+	description = "A strange chemical, seeming almost fluffy, if it were not for it being a liquid. Known to have a strange effect on plushies."
+	color = "#fbcbd7"
+	taste_description = "the soft feeling of a plushie"
+	ph = 5
+
+/datum/reagent/plushmium/expose_obj(obj/exposed_obj, reac_volume, methods, show_message)
+	. = ..()
+	if(istype(exposed_obj, /obj/item/toy/plush) && reac_volume >= 5)
+		exposed_obj.loc.visible_message(span_warning("The plushie seems to be staring back at you."))
+		var/obj/item/toy/plushie_shell/new_shell = new /obj/item/toy/plushie_shell(exposed_obj.loc)
+		new_shell.name = exposed_obj.name
+		new_shell.icon = exposed_obj.icon
+		new_shell.icon_state = exposed_obj.icon_state
+		new_shell.stored_plush = exposed_obj
+		exposed_obj.forceMove(new_shell)
+
+//Extra interaction for which spraying it on an existing sentient plushie aheals them, so they can be revived!
+/datum/reagent/plushmium/expose_mob(mob/living/exposed_mob, methods, reac_volume, show_message, touch_protection)
+	. = ..()
+	if(istype(exposed_mob, /mob/living/basic/pet/plush) && reac_volume >= 1)
+		exposed_mob.revive(ADMIN_HEAL_ALL)
 
 #undef MUT_MSG_IMMEDIATE
 #undef MUT_MSG_EXTENDED

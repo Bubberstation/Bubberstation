@@ -11,6 +11,9 @@
 	var/datum/reagent/reagent = text2path(client_source?.prefs?.read_preference(/datum/preference/choiced/venomous_bite_venom))
 
 	var/mob/living/carbon/human/human_holder = quirk_holder
+	var/datum/action/cooldown/mob_cooldown/venomous_bite/existing = locate() in human_holder.actions
+	if(existing)
+		return
 	var/datum/action/cooldown/mob_cooldown/venomous_bite/action = new /datum/action/cooldown/mob_cooldown/venomous_bite(human_holder, our_reagent = reagent)
 	action.Grant(human_holder)
 

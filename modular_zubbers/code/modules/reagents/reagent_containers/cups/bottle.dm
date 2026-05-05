@@ -15,3 +15,9 @@
 	update_appearance()
 
 /obj/item/reagent_containers/cup/bottle/medi
+
+/obj/item/reagent_containers/cup/bottle/plushmium
+	name = "plushmium bottle"
+	desc = "A small bottle of plushmium."
+	icon = 'icons/obj/medical/chemical.dmi'
+	list_reagents = list(/datum/reagent/plushmium = 30)

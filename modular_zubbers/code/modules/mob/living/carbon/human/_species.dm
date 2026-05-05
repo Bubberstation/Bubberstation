@@ -9,6 +9,35 @@
 /datum/species/proc/on_bloodsucker_loss(mob/living/carbon/human/target)
 	return null
 
+/datum/species/proc/create_pref_brain_perks()
+	RETURN_TYPE(/list)
+
+	if(isnull(mutantbrain) || (TRAIT_BRAINLESS_CARBON in inherent_traits))
+		return null
+
+	var/list/to_add = list()
+
+	var/brain_flags = initial(mutantbrain.organ_flags)
+
+	if ((brain_flags & ORGAN_ROBOTIC) && (brain_flags & ORGAN_ORGANIC))
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_BRAIN,
+			SPECIES_PERK_NAME = "Cortical Augmentation",
+			SPECIES_PERK_DESC = "[plural_form] have an augmented brain, making them vulnerable to EMPs. On the bright side, their brains can be repaired with a multitool.",
+		))
+
+	if ((brain_flags & ORGAN_ROBOTIC) && !(brain_flags & ORGAN_ORGANIC))
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = FA_ICON_BRAIN,
+			SPECIES_PERK_NAME = "Superior Cortical Augmentation",
+			SPECIES_PERK_DESC = "[plural_form] have an augmented brain: Their brains can be repaired with a multitool, and aren't at risk from biological processes. However, they are vulnerable to EMPs",
+		))
+
+	return to_add
+
+
 /// Replaces a couple organs to normal variants to not cause issues. Not super happy with this, alternative is disallowing vampiric races from being bloodsuckers
 /datum/species/proc/humanize_organs(mob/living/carbon/human/target, organs = list())
 	if(!organs || !length(organs))

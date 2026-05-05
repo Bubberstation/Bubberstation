@@ -145,7 +145,7 @@
 // Off-Station
 #define JOB_SPACE_POLICE "Space Police"
 #define JOB_TERRAGOV "TerraGov"
-#define JOB_TERRAGOV_LIASON "TerraGov Liason"
+#define JOB_TERRAGOV_LIASON "TerraGov Liaison"
 // SKYRAT EDIT ADDITION END
 
 //Lost crew
@@ -323,5 +323,7 @@ DEFINE_BITFIELD(job_flags, list(
 
 /// Mind traits that should be shared by every head of staff. has to be this way cause byond lists lol
 #define HEAD_OF_STAFF_MIND_TRAITS TRAIT_FAST_TYING, TRAIT_HIGH_VALUE_RANSOM
-#define MEDICAL_MIND_TRAITS TRAIT_DESENSITIZED
-#define SECURITY_MIND_TRAITS TRAIT_DESENSITIZED
+
+/// Statistically average probability of a random cop or cop-adjacent person consisting of meat of sus domesticus of suidae family,
+/// also known as swine or hogs, calculated by the university of random numbers
+#define PIG_COP_PROBABILITY 40

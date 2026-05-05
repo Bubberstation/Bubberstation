@@ -23,3 +23,17 @@
 	icon = 'modular_zubbers/icons/mob/clothing/underwear.dmi'
 	icon_state = "turtleneck_croptop"
 	use_static = null
+
+/datum/sprite_accessory/underwear/loincloth
+	name = "Loincloth"
+	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
+	icon_state = "loincloth"
+	gender = FEMALE
+	use_static = null
+
+/datum/sprite_accessory/underwear/loincloth_alt
+	name = "Loincloth - Shorter"
+	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/clothing.dmi'
+	icon_state = "loincloth_alt"
+	gender = FEMALE
+	use_static = null
