@@ -71,8 +71,8 @@
 
 /obj/item/clothing/suit/toggle/jacket/sec
 	name = "security jacket"
-	desc = "A comfortable jacket in security blue. Probably against uniform regulations."
-	icon_state = "sec_dep_jacket"
+	desc = "A comfortable jacket in security red. Probably against uniform regulations."
+	icon_state = "sec_dep_jacket_old"
 	armor_type = /datum/armor/sec_dep_jacket
 
 /obj/item/clothing/suit/toggle/jacket/sec/Initialize(mapload)

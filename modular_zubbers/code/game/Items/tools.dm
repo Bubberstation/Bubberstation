@@ -1,11 +1,31 @@
+// Power Tools Belt Overlays
+/obj/item/crowbar/power/get_belt_overlay()
+	if(tool_behaviour != TOOL_WIRECUTTER)
+		return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "jaws")
+	return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "jaws_on")
+
+/obj/item/crowbar/power/science/get_belt_overlay()
+	if(tool_behaviour != TOOL_WIRECUTTER)
+		return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "sci_jaws")
+	return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "sci_jaws_on")
+
+/obj/item/screwdriver/power/get_belt_overlay()
+	if(tool_behaviour != TOOL_WRENCH)
+		return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "drill")
+	return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "drill_on")
+
+/obj/item/screwdriver/power/science/get_belt_overlay()
+	if(tool_behaviour != TOOL_WRENCH)
+		return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "sci_drill")
+	return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "sci_drill_on")
+
+
+// Proto Nitrate Tools
 /obj/item/crowbar/power/protonitrate
 	name = "proto nitrate jaws of life"
 	desc = "Hydraulic tool combined with Proto Nitrate Crystal for increased efficeincy."
 	icon = 'modular_zubbers/icons/obj/equipment/equipment.dmi'
 	icon_state = "pn_jaws"
-	lefthand_file = 'modular_zubbers/icons/mob/inhands/equipment/equipment_lefthand.dmi'
-	righthand_file = 'modular_zubbers/icons/mob/inhands/equipment/equipment_righthand.dmi'
-	inhand_icon_state = "pn_jaws"
 	toolspeed = 0.5
 
 /obj/item/crowbar/power/protonitrate/Initialize(mapload)
@@ -28,15 +48,42 @@
 		toolspeed = 0.25
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
+/obj/item/crowbar/power/protonitrate/get_belt_overlay()
+	if(tool_behaviour != TOOL_WIRECUTTER)
+		return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "pn_jaws")
+	return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "pn_jaws_on")
+
+/obj/item/crowbar/power/protonitrate/science
+	name = "proto nitrate hybrid cutters" // hybrid between crowbar and wirecutters
+	desc = "Hybrid cutters combined with Proto Nitrate Crystal for increased efficeincy but without the hydraulic force required to pry open doors."
+	icon_state = "pn_jaws_sci"
+	inhand_icon_state = "jaws_sci"
+	force_opens = FALSE
+
+/obj/item/crowbar/power/protonitrate/science/get_belt_overlay()
+	if(tool_behaviour != TOOL_WIRECUTTER)
+		return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "pn_sci_jaws")
+	return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "pn_sci_jaws_on")
+
 /obj/item/screwdriver/power/protonitrate
 	name = "proto nitrate hand drill"
 	desc = "Hand drill combined with Proto Nitrate Crystal for increased efficeincy."
 	icon = 'modular_zubbers/icons/obj/equipment/equipment.dmi'
 	icon_state = "pn_drill"
-	lefthand_file = 'modular_zubbers/icons/mob/inhands/equipment/equipment_lefthand.dmi'
-	righthand_file = 'modular_zubbers/icons/mob/inhands/equipment/equipment_righthand.dmi'
-	inhand_icon_state = "pn_drill"
 	toolspeed = 0.25
+
+/obj/item/screwdriver/power/protonitrate/get_belt_overlay()
+	if(tool_behaviour != TOOL_WRENCH)
+		return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "pn_drill")
+	return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "pn_drill_on")
+
+/obj/item/screwdriver/power/protonitrate/science
+	icon_state = "pn_drill_sci"
+
+/obj/item/screwdriver/power/protonitrate/science/get_belt_overlay()
+	if(tool_behaviour != TOOL_WRENCH)
+		return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "pn_sci_drill")
+	return mutable_appearance('modular_zubbers/icons/obj/clothing/belt_overlays.dmi', "pn_sci_drill_on")
 
 /obj/item/weldingtool/experimental/protonitrate
 	name = "proto nitrate welding tool"
@@ -44,3 +91,4 @@
 	icon = 'modular_zubbers/icons/obj/equipment/equipment.dmi'
 	icon_state = "pn_welder"
 	toolspeed = 0.25
+

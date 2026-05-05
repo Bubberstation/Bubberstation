@@ -63,6 +63,19 @@
 	..()
 	blacklist += subtypesof(/obj/item/clothing/mask/gas)
 
+/datum/crafting_recipe/muzzle_medical_mask
+	name = "Surgery Mask"
+	result = /obj/item/clothing/mask/breath/muzzle
+	reqs = list(/obj/item/clothing/mask/breath = 1,
+				/obj/item/clothing/mask/muzzle = 1)
+	time = 3 SECONDS
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/muzzle_medical_mask/New()
+	..()
+	blacklist += typesof(/obj/item/clothing/mask/breath/muzzle)
+	blacklist += subtypesof(/obj/item/clothing/mask/muzzle)
+
 /datum/crafting_recipe/hudsunciv
 	name = "Civilian HUDsunglasses"
 	result = /obj/item/clothing/glasses/hud/civilian/sunglasses

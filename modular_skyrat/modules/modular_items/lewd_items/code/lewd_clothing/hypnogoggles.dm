@@ -34,6 +34,8 @@
 
 /obj/item/clothing/glasses/hypno/dropped(mob/user)//Removing hypnosis on unequip
 	. = ..()
+	if(!victim) //prevents a runtime where it tries to unequip from a nonexistent victim
+		return
 	if(!(victim.glasses == src))
 		return
 	victim.cure_trauma_type(/datum/brain_trauma/very_special/induced_hypnosis, TRAUMA_RESILIENCE_MAGIC)
@@ -143,7 +145,7 @@
 			new /datum/hallucination/chat(owner, TRUE, FALSE, span_hypnophrase("[hypnotic_phrase]"))
 
 /datum/brain_trauma/very_special/induced_hypnosis/handle_hearing(datum/source, list/hearing_args)
-	if(!owner.can_hear() || owner == hearing_args[HEARING_SPEAKER])
+	if((HAS_TRAIT(owner, TRAIT_DEAF)) || owner == hearing_args[HEARING_SPEAKER])
 		return
 
 	hearing_args[HEARING_RAW_MESSAGE] = target_phrase.Replace(hearing_args[HEARING_RAW_MESSAGE], span_hypnophrase("$1"))

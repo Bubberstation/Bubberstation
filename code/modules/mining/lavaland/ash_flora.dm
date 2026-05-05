@@ -214,11 +214,8 @@
 	pixel_x = base_pixel_x + rand(-4, 4)
 	pixel_y = base_pixel_y + rand(-4, 4)
 
-/obj/item/food/grown/ash_flora/shavings //So we can't craft bowls from everything.
-	special_desc_requirement = EXAMINE_CHECK_JOB //SKYRAT EDIT
-	special_desc_jobs = list("Botanist") //SKYRAT EDIT
-	special_desc = "You feel this flora would be unwise to consume while already full." //SKYRAT EDIT
-	grind_results = list(/datum/reagent/toxin/mushroom_powder = 5)
+/obj/item/food/grown/ash_flora/shavings/grind_results()
+	return list(/datum/reagent/toxin/mushroom_powder = 5)
 
 /obj/item/food/grown/ash_flora/mushroom_leaf
 	name = "mushroom leaf"

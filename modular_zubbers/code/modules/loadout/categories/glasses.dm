@@ -101,7 +101,7 @@
 
 /datum/loadout_item/glasses/eyepatch/security
 	name = "Security Eyepatch HUD"
-	item_path = /obj/item/clothing/glasses/hud/eyepatch/sec
+	item_path = /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_BOUNCER, JOB_ORDERLY, JOB_SCIENCE_GUARD, JOB_CUSTOMS_AGENT, JOB_ENGINEERING_GUARD, JOB_BLUESHIELD)
 
 //COSTUMES

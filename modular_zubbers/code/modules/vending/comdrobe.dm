@@ -187,7 +187,6 @@
 		/obj/item/clothing/under/rank/security/head_of_security/redsec = 1,
 		/obj/item/clothing/under/rank/security/head_of_security/parade/redsec = 1,
 		/obj/item/clothing/under/rank/security/head_of_security/parade/female/redsec = 1,
-		/obj/item/clothing/under/rank/security/peacekeeper/skirt_hos = 1,
 		/obj/item/clothing/suit/jacket/hos/blue = 1,
 		/obj/item/clothing/suit/armor/hos = 1,
 		/obj/item/clothing/suit/armor/hos/trenchcoat = 1,

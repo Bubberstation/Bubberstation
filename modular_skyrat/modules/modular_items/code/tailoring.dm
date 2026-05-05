@@ -34,19 +34,21 @@
 //Eyepatches//
 /datum/crafting_recipe/secpatch
 	name = "Security Eyepatch HUD"
-	result = /obj/item/clothing/glasses/hud/eyepatch/sec
+	result = /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch
 	reqs = list(/obj/item/clothing/glasses/hud/security = 1, /obj/item/clothing/glasses/eyepatch = 1, /obj/item/stack/cable_coil = 5)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER) //Tools needed and requirements are kept the same as craftable HUD sunglasses//
 	category = CAT_CLOTHING
+	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY
 	requirements_mats_blacklist = list(/obj/item/stack/cable_coil)
 
 /datum/crafting_recipe/secpatchremoval
 	name = "Security Eyepatch HUD removal"
 	result = /obj/item/clothing/glasses/eyepatch
-	reqs = list(/obj/item/clothing/glasses/hud/eyepatch/sec = 1)
+	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/eyepatch = 1)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	category = CAT_CLOTHING
-	requirements_mats_blacklist = list(/obj/item/clothing/glasses/hud/eyepatch/sec)
+	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY
+	requirements_mats_blacklist = list(/obj/item/clothing/glasses/hud/security/sunglasses/eyepatch)
 
 /datum/crafting_recipe/medpatch
 	name = "Medical Eyepatch HUD"

@@ -171,7 +171,7 @@
 
 /datum/opposing_force_equipment/gadget_stealth/camera_app
 	name = "SyndEye Program"
-	item_type = /obj/item/computer_disk/syndicate/camera_app
+	item_type = /obj/item/disk/computer/syndicate/camera_app
 
 /datum/opposing_force_equipment/gadget_stealth/microlaser
 	name = "Radioactive Microlaser"

@@ -1050,6 +1050,14 @@
 	name = "Short Dress (Worn)"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
 
+/datum/greyscale_config/short_dress/worn/digi
+	name = "Short Dress (Worn, Digi)"
+	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses_digi.dmi'
+
+/datum/greyscale_config/short_dress/worn/teshari
+	name = "Short Dress (Worn, Teshari)"
+	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/skirts_dresses_teshari.dmi'
+
 /datum/greyscale_config/strapless_dress
 	name = "Strapless Dress"
 	icon_file = 'modular_skyrat/master_files/icons/obj/clothing/under/skirts_dresses.dmi'
@@ -1501,6 +1509,41 @@ TREK
 /datum/greyscale_config/teshari/hardsuit
 	name = "Teshari Hardsuit"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/teshari_fallbacks/hardsuit.json'
+
+/**
+ * Serpentid fallbacks.
+ * In case what we have another species with specials Json config file. We use this for our case.
+ * Check teshari fasllbacks .json config files for more datails.
+ */
+
+/datum/greyscale_config/serpentid
+	name = "Serpentid clothing"
+	icon_file = 'modular_skyrat/modules/GAGS/icons/serpentid_fallbacks.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/serpentid_fallbacks/uniform.json'
+
+/datum/greyscale_config/serpentid/cloak
+	name = "Serpentid Poncho"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/serpentid_fallbacks/neck.json'
+
+/datum/greyscale_config/serpentid/tie
+	name = "Serpentid Tie"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/serpentid_fallbacks/neck.json'
+
+/datum/greyscale_config/serpentid/scarf
+	name = "Serpentid Scarf"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/serpentid_fallbacks/neck.json'
+
+/datum/greyscale_config/serpentid/gloves
+	name = "Serpentid Gloves"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/serpentid_fallbacks/gloves.json'
+
+/datum/greyscale_config/serpentid/eyes
+	name = "Serpentid Eyes"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/serpentid_fallbacks/eyes.json'
+
+/datum/greyscale_config/serpentid/belt
+	name = "Serpentid Belt"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/serpentid_fallbacks/belt.json'
 
 /*
 *	CIN SURPLUS ARMOR

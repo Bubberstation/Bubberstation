@@ -302,3 +302,13 @@
 /datum/greyscale_config/camo/worn/digi
 	name = "Camouflage (Worn, Digi)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+
+// Giant Scarf (Sprites by Iskawhiskers)
+/datum/greyscale_config/giant_scarf
+	name = "Giant Scarf"
+	icon_file = 'modular_zubbers/icons/obj/clothing/under/skirts_dresses.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/dresses/giant_scarf.json'
+
+/datum/greyscale_config/giant_scarf/worn
+	name = "Giant Scarf (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses.dmi'

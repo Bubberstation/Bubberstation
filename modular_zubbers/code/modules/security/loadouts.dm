@@ -6,7 +6,6 @@
 		/obj/item/security_voucher/primary = 1,
 		/obj/item/security_voucher/utility = 1
 		)
-	head = /obj/item/clothing/head/security_garrison
 	glasses = /obj/item/clothing/glasses/hud/security
 
 /datum/outfit/job/corrections_officer

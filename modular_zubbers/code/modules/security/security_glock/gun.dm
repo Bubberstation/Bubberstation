@@ -8,7 +8,7 @@
 	force = 10 //same as baton
 	accepted_magazine_type = /obj/item/ammo_box/magazine/security
 	fire_sound = 'modular_zubbers/sound/weapons/gun/lock/shot.ogg'
-	fire_delay = 5
+	fire_delay = 4
 	can_suppress = FALSE
 	projectile_damage_multiplier = 1
 	actions_types = list(/datum/action/item_action/toggle_mageject)
@@ -155,7 +155,8 @@
 
 	if (!internal_magazine && istype(tool, /obj/item/ammo_box/magazine))
 		if (tac_reloads)
-			eject_magazine(user)
-			insert_magazine(user, tool)
+			eject_magazine(user, display_message = FALSE)
+			insert_magazine(user, tool, display_message = FALSE)
+			balloon_alert(user, "[src.magazine_wording] loaded")
 			return ITEM_INTERACT_SUCCESS
 	..()

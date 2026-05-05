@@ -176,6 +176,16 @@
 
 // Updates the mob's chat color in the global cache
 /datum/preferences/safe_transfer_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE, visuals_only = FALSE)
+	// clear organs that might not be replaced
+	for (var/obj/item/organ/iter_organ as anything in character.organs)
+		var/feature_key = iter_organ.bodypart_overlay?.feature_key
+		if (isnull(feature_key))
+			continue
+		if(character.dna.mutant_bodyparts[feature_key] && character.dna.mutant_bodyparts[feature_key][MUTANT_INDEX_NAME] != SPRITE_ACCESSORY_NONE)
+			qdel(iter_organ)
+
+	character.dna.mutant_bodyparts.Cut()
+
 	. = ..()
 	GLOB.chat_colors_by_mob_name[character.name] = list(character.chat_color, character.chat_color_darkened) // by now the mob has had its prefs applied to it
 

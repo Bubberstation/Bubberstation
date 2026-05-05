@@ -19,6 +19,9 @@ GLOBAL_LIST_INIT(breast_size_translation, list(
 	"14" = BREAST_SIZE_N,
 	"15" = BREAST_SIZE_O,
 	"16" = BREAST_SIZE_P,
+	"17" = BREAST_SIZE_Q,
+	"18" = BREAST_SIZE_R,
+	"19" = BREAST_SIZE_S,
 	))
 
 GLOBAL_LIST_INIT(breast_size_to_number, list(
@@ -39,6 +42,9 @@ GLOBAL_LIST_INIT(breast_size_to_number, list(
 	BREAST_SIZE_N = 14,
 	BREAST_SIZE_O = 15,
 	BREAST_SIZE_P = 16,
+	BREAST_SIZE_Q = 17,
+	BREAST_SIZE_R = 18,
+	BREAST_SIZE_S = 19,
 	))
 
 GLOBAL_LIST_INIT(balls_size_translation, list(
@@ -48,7 +54,9 @@ GLOBAL_LIST_INIT(balls_size_translation, list(
 	"3" = "Very Big",
 	"4" = "Enormous",
 	"5" = "Immense",
-	"6" = "Gargantuan"
+	"6" = "Gargantuan",
+	"7" = "Colossal",
+	"8" = "Titanic"
 	))
 
 GLOBAL_LIST_INIT(marking_zone_to_bitflag, list(
@@ -80,29 +88,10 @@ GLOBAL_LIST_INIT(preference_balls_sizes, list(
 	"Very Big",
 	"Enormous",
 	"Immense",
-	"Gargantuan"
+	"Gargantuan",
+	"Colossal",
+	"Titanic"
 	))
-
-GLOBAL_LIST_INIT(robotic_styles_list, list(
-	"None" = "None",
-	"Surplus" = 'icons/mob/augmentation/surplus_augments.dmi',
-	"Cyborg" = 'icons/mob/augmentation/augments.dmi',
-	"Engineering" = 'icons/mob/augmentation/augments_engineer.dmi',
-	"Mining" = 'icons/mob/augmentation/augments_mining.dmi',
-	"Security" = 'icons/mob/augmentation/augments_security.dmi',
-	"Morpheus Cyberkinetics" = 'modular_skyrat/master_files/icons/mob/augmentation/mcgipc.dmi',
-	"Bishop Cyberkinetics" = 'modular_skyrat/master_files/icons/mob/augmentation/bshipc.dmi',
-	"Bishop Cyberkinetics 2.0" = 'modular_skyrat/master_files/icons/mob/augmentation/bs2ipc.dmi',
-	"Hephaestus Industries" = 'modular_skyrat/master_files/icons/mob/augmentation/hsiipc.dmi',
-	"Hephaestus Industries 2.0" = 'modular_skyrat/master_files/icons/mob/augmentation/hi2ipc.dmi',
-	"Shellguard Munitions Standard Series" = 'modular_skyrat/master_files/icons/mob/augmentation/sgmipc.dmi',
-	"Ward-Takahashi Manufacturing" = 'modular_skyrat/master_files/icons/mob/augmentation/wtmipc.dmi',
-	"Xion Manufacturing Group" = 'modular_skyrat/master_files/icons/mob/augmentation/xmgipc.dmi',
-	"Xion Manufacturing Group 2.0" = 'modular_skyrat/master_files/icons/mob/augmentation/xm2ipc.dmi',
-	"Zeng-Hu Pharmaceuticals" = 'modular_skyrat/master_files/icons/mob/augmentation/zhpipc.dmi',
-	"Mariinsky Ballet Company" = 'modular_skyrat/master_files/icons/mob/augmentation/mariinskyipc.dmi'
-	))
-
 //ghoul colors
 GLOBAL_LIST_INIT(color_list_ghoul, list( \
 	"Necrotic Green" = "bfc474", \

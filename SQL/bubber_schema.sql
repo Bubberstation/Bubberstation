@@ -45,3 +45,12 @@ CREATE TABLE `stored_faxes` (
 COLLATE='utf8mb4_general_ci'
 ENGINE=InnoDB
 ;
+
+DROP TABLE IF EXISTS `privacy_policy_acceptances`;
+CREATE TABLE `privacy_policy_acceptances` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `ckey` VARCHAR(32) NOT NULL,
+  `policy_key` VARCHAR(64) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `ckey_policy_unique` (`ckey`, `policy_key`)
+);
