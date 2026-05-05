@@ -1,4 +1,3 @@
-import { color } from 'bun';
 import { BlockQuote, Icon, Section, Stack } from 'tgui-core/components';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -68,7 +67,7 @@ const GangClothesPrintout = () => {
         </Stack>
       </Stack.Item>
       <BlockQuote>
-        {gang_clothes && gang_clothes.length
+        {gang_clothes?.length
           ? gang_clothes.map((clothes_item) => (
               <Stack.Item key={clothes_item}>- {clothes_item}</Stack.Item>
             ))
