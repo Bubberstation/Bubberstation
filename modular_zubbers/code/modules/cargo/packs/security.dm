@@ -134,7 +134,7 @@
 /datum/supply_pack/security/miecz
 	name = "Miecz Submachine Gun Crate"
 	crate_name = "Miecz submachine gun crate"
-	desc = "Contains two Miecz submachine guns and a spare magazine for it."
+	desc = "Contains two Miecz submachine guns and a spare magazine for both."
 	contains = list(/obj/item/gun/ballistic/automatic/miecz = 2,
 	/obj/item/ammo_box/magazine/miecz = 2)
 	cost = CARGO_CRATE_VALUE * 10
