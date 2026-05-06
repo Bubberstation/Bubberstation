@@ -12,6 +12,10 @@
 	var/examine_imbued_description = "It is currently imbued with the following:"
 	///required parent item integrity% for reagent effects
 	var/integrity_required
+	///how much reagent to inject per tic/proc
+	var/inject_amount = 0
+	///what smithing oil does to this
+	var/list/smithing_oil_effects = list()
 
 /// * set_slot: Used for clothing only, ignore if this isn't the case.
 /// * integrity: what integ % is required to use the reagent imbue?
@@ -56,6 +60,7 @@
 
 ///This function modifies the parent item based on how much smithing oil is in our imbued reagent list. Needs to be defined in child subtypes.
 /datum/component/reagent_imbued/proc/apply_smithing_oil_bonus()
+
 //the component that is attached to clothes that allows them to be imbued
 //ONLY USE THIS FOR CLOTHING
 /datum/component/reagent_imbued/clothing
@@ -64,9 +69,8 @@
 	///the human that is wearing the parent_item
 	var/mob/living/carbon/human/cloth_wearer
 	imbued_reagent = new(maximum = REAGENT_CLOTHING_INJECT_AMOUNT, new_flags = NO_REACT)
-
-
 	examine_imbued_description = "It will slowly administer the following to its wearer:"
+	inject_amount = REAGENT_CLOTHING_INJECT_AMOUNT
 	//the cooldown between each imbue
 	COOLDOWN_DECLARE(imbue_cooldown)
 
@@ -112,7 +116,8 @@
 
 	COOLDOWN_START(src, imbue_cooldown, 3 SECONDS)
 
-	imbued_reagent.trans_to(target = cloth_wearer, amount = REAGENT_CLOTHING_INJECT_AMOUNT, methods = INJECT, copy_only = TRUE)
+	imbued_reagent.trans_to(target = cloth_wearer, amount = inject_amount, methods = INJECT, copy_only = TRUE)
+	parent_item.take_damage(1)
 
 //the component that is attached to weapons that allows them to be imbued
 //ONLY USE THIS FOR WEAPONS
@@ -120,6 +125,8 @@
 	imbued_reagent = new(REAGENT_WEAPON_INJECT_AMOUNT, NO_REACT)
 	examine_imbued_description = "Upon hit, it will inject the following to its victim:"
 	var/extra_force_oil_bonus = 0
+	inject_amount = REAGENT_WEAPON_INJECT_AMOUNT
+
 /datum/component/reagent_imbued/weapon/Initialize(...)
 	. = ..()
 	if(. != COMPONENT_INCOMPATIBLE)
@@ -146,7 +153,7 @@
 	//lets inject that target
 	var/mob/living_target = target
 	imbued_reagent.trans_to(target = living_target, amount = REAGENT_CLOTHING_INJECT_AMOUNT, transferred_by = user, methods = INJECT, copy_only = TRUE)
-
+	parent_item.take_damage(1)
 
 #undef MAX_PRE_IMBUE_STORAGE
 #undef REAGENT_CLOTHING_INJECT_AMOUNT

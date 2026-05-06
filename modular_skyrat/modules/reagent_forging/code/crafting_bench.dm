@@ -253,10 +253,10 @@
 		balloon_alert(user, "not enough wood")
 		return ITEM_INTERACT_BLOCKING
 
+	playsound(src, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)
 	if(!do_after(user, WEAPON_ASSEMBLY_SPEED))
 		return ITEM_INTERACT_BLOCKING
 
-	playsound(src, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)
 	var/list/things_to_use = can_we_craft_this(wood_required_for_weapons, TRUE)
 	var/obj/thing_just_made = create_thing_from_requirements(things_to_use, user = user, skill_to_grant = /datum/skill/smithing, skill_amount = 30, completing_a_weapon = TRUE)
 

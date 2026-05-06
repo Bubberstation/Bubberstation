@@ -35,7 +35,9 @@
 		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
 		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
 		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
-		CALLBACK(src, TYPE_PROC_REF(/obj/item/melee/forged_reagent_weapon, quench_item)))
+		perfection_effects = list(FORGE_EFFECT_FORCE = MAX_PERFECT_FORCE_BONUS)
+		incompletion_effects = list(FORGE_EFFECT_FORCE, FORGE_EFFECT_ARMORPEN)
+		)
 
 // nonlethal secondary attack
 /obj/item/melee/forged_reagent_weapon/pre_attack_secondary(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
@@ -65,28 +67,6 @@
 			context[SCREENTIP_CONTEXT_RMB] = "Non-lethally Attack"
 
 	return CONTEXTUAL_SCREENTIP_SET
-
-/obj/item/melee/forged_reagent_weapon/proc/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
-	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
-	if(!isnull(smith_component))
-		smith_component.reset()
-		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio())
-/obj/item/melee/forged_reagent_weapon/proc/passive_cool_item()
-	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
-	if(!isnull(smith_component))
-		smith_component.reset()
-		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio(), TRUE)
-/obj/item/melee/forged_reagent_weapon/proc/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
-	var/new_force_penalty = 0
-	if(completion_ratio < 1 || force_incomplete_penalty)
-		new_force_penalty = initial(force) * (1.0 - lerp(MIN_INCOMPLETE_DAMAGE_MULT, MAX_INCOMPLETE_DAMAGE_MULT, completion_ratio))
-	force += completion_force_penalty
-	force -= new_force_penalty
-	completion_force_penalty = new_force_penalty
-
-	var/new_perfect_force_bonus = max(perfect_forging_bonus, clamp(perfect_ratio * MAX_PERFECT_FORCE_BONUS, 0, MAX_PERFECT_FORCE_BONUS))
-	force += max(0, new_perfect_force_bonus - perfect_forging_bonus)
-	perfect_forging_bonus = new_perfect_force_bonus
 
 /obj/item/melee/forged_reagent_weapon/sword
 	name = "reagent sword"
@@ -300,6 +280,17 @@
 /obj/item/melee/forged_reagent_weapon/staff/apply_reagent_component()
 	AddComponent(/datum/component/reagent_imbued/weapon, null, 0.7)
 
+/obj/item/melee/forged_reagent_weapon/staff/apply_smithing_component()
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_REAGENT_INJECT = 3), \
+		incompletion_effects = list(FORGE_EFFECT_REAGENT_INJECT, FORGE_EFFECT_DURABILITY)
+		)
+
 /obj/item/melee/forged_reagent_weapon/staff/attack(mob/living/M, mob/living/user, params)
 	. = ..()
 	user.changeNext_move(CLICK_CD_RANGE)
@@ -455,61 +446,21 @@
 	shield_break_sound = 'sound/effects/bang.ogg'
 	shield_break_leftover = /obj/item/forging/complete/plate
 
-	var/current_perfect_block_bonus = 0
-	var/current_incomplete_block_penalty = 0
-
 /obj/item/shield/buckler/reagent_weapon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/weapon)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
+	apply_smithing_component()
+
+/obj/item/shield/buckler/reagent_weapon/proc/apply_smithing_component()
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
 		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
 		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
 		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
-		CALLBACK(src, TYPE_PROC_REF(/obj/item/shield/buckler/reagent_weapon, quench_item)))
-/obj/item/shield/buckler/reagent_weapon/proc/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
-	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
-	if(!isnull(smith_component))
-		smith_component.reset()
-		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio())
-/obj/item/shield/buckler/reagent_weapon/proc/passive_cool_item()
-	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
-	if(!isnull(smith_component))
-		smith_component.reset()
-		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio(), TRUE)
-/obj/item/shield/buckler/reagent_weapon/proc/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
-	var/new_force_penalty = 0
-	if(completion_ratio < 1 || force_incomplete_penalty)
-		new_force_penalty = initial(force) * (1.0 - lerp(MIN_INCOMPLETE_DAMAGE_MULT, MAX_INCOMPLETE_DAMAGE_MULT, completion_ratio))
-	force += completion_force_penalty
-	force -= new_force_penalty
-	completion_force_penalty = new_force_penalty
-
-	var/new_perfect_force_bonus = max(perfect_forging_bonus, clamp(perfect_ratio * MAX_PERFECT_FORCE_BONUS, 0, MAX_PERFECT_FORCE_BONUS))
-	force += max(0, new_perfect_force_bonus - perfect_forging_bonus)
-	perfect_forging_bonus = new_perfect_force_bonus
-
-/obj/item/shield/buckler/reagent_weapon/examine(mob/user)
-	. = ..()
-	. += span_notice("Using a hammer on [src] will repair its damage!")
-
-/obj/item/shield/buckler/reagent_weapon/attackby(obj/item/attacking_item, mob/user, params)
-	if(atom_integrity >= max_integrity)
-		return ..()
-	if(istype(attacking_item, /obj/item/forging/hammer))
-		var/obj/item/forging/hammer/attacking_hammer = attacking_item
-		var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) * attacking_hammer.toolspeed
-		while(atom_integrity < max_integrity)
-			if(!do_after(user, skill_modifier, src))
-				return
-			var/fixing_amount = min(max_integrity - atom_integrity, 5)
-			atom_integrity += fixing_amount
-			user.mind.adjust_experience(/datum/skill/smithing, 5) //useful heating means you get some experience
-			balloon_alert(user, "partially repaired!")
-		return
-	return ..()
+		perfection_effects = list(FORGE_EFFECT_BLOCKCHANCE = 5), \
+		incompletion_effects = list(FORGE_EFFECT_BLOCKCHANCE, FORGE_EFFECT_FORCE))
 
 /obj/item/shield/buckler/reagent_weapon/pavise //similar to the adamantine shield. Huge, slow, lets you soak damage and packs a wallop.
 	name = "reagent plated pavise shield"
@@ -518,16 +469,27 @@
 	icon_state = "pavise"
 	inhand_icon_state = "pavise"
 	worn_icon_state = "pavise_back"
-	block_chance = 75
-	item_flags = SLOWS_WHILE_IN_HAND
+	block_chance = 55
+	item_flags = SLOWS_WHILE_IN_HAND | IMMUTABLE_SLOW
+	slowdown = 2.0
+	drag_slowdown = 3.5
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = ITEM_SLOT_BACK
 	max_integrity = 300 //tanky
 
 /obj/item/shield/buckler/reagent_weapon/pavise/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/two_handed, require_twohands = TRUE, force_multiplier = 1.5)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
+
+/obj/item/shield/buckler/reagent_weapon/pavise/apply_smithing_component()
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_BLOCKCHANCE = 10), \
+		incompletion_effects = list(FORGE_EFFECT_BLOCKCHANCE, FORGE_EFFECT_FORCE))
 
 /obj/item/pickaxe/reagent_weapon
 	name = "reagent pickaxe"

@@ -20,14 +20,8 @@
 
 #define USER_CAN_REAGENT_IMBUE(user) (HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING) || user.mind.get_skill_level(/datum/skill/smithing) >= SKILL_LEVEL_MASTER)
 /// Minimum and maximum force multiplier if a weapon contains incomplete parts
-#define MIN_INCOMPLETE_DAMAGE_MULT 0.1
-#define MAX_INCOMPLETE_DAMAGE_MULT 0.5
-//ditto, with staff reagents
-#define MIN_INCOMPLETE_STAFF_INJECT_MULT 0.2
-#define MAX_INCOMPLETE_STAFF_INJECT_MULT 0.5
-/// Minimum and maximum force multiplier if a weapon contains incomplete parts
-#define MIN_INCOMPLETE_ARMOR_MULT 0.1
-#define MAX_INCOMPLETE_ARMOR_MULT 0.5
+#define MIN_INCOMPLETE_FORGING_SCALING_PENALTY 0.1
+#define MAX_INCOMPLETE_FORGING_SCALING_PENALTY 0.5
 /// The maximum force that can be given to a weapon via perfect hits
 #define MAX_PERFECT_FORCE_BONUS 3
 /// maximum force that can be given to a reagent staff via perfect hits
@@ -52,3 +46,4 @@
 #define FORGE_EFFECT_ARMOR "forge_effect_armor"
 #define FORGE_EFFECT_DURABILITY "forge_effect_durability"
 #define FORGE_EFFECT_BLOCKCHANCE "forge_effect_block"
+#define FORGE_EFFECT_REAGENT_INJECT "forge_effect_reagent_inject"

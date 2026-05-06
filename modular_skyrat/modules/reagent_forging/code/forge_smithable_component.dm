@@ -29,9 +29,18 @@
 	var/heat_color = null
 	var/datum/callback/quench_callback = null
 	var/datum/callback/passive_cool_callback = null
+
+	//what happens when quenched or cooled?
+	//index: what type of effect (ex. increase armor, increase AP, increase force)
+	//element: by how much to increase
+	var/list/quench_effects_perfection = list()
+	var/list/quench_effects_incompletion = list()
+	//use this to track the completion/perfection amounts last applied upon quench
+	var/perfection_ratio_applied = 0
+	var/completion_applied_multiplier = 0
 	COOLDOWN_DECLARE(heating_remainder)
 
-/datum/component/forge_smithable/Initialize(completion_needed, can_perfect, max_perfection, max_breakage, wait_time, datum/callback/on_quench = null, datum/callback/on_passive_cool = null, datum/callback/on_forging_heat = null, color = "#FF4400")
+/datum/component/forge_smithable/Initialize(completion_needed, can_perfect, max_perfection, max_breakage, wait_time, datum/callback/on_quench = null, datum/callback/on_passive_cool = null, datum/callback/on_forging_heat = null, color = "#FF4400", list/perfection_effects = null, list/incompletion_effects = null)
 	if(!istype(parent, required_type))
 		return COMPONENT_INCOMPATIBLE
 	parent_item = parent
@@ -48,6 +57,10 @@
 	if(!isnull(on_passive_cool))
 		RegisterSignal(parent_item, COMSIG_SMITHING_PASSIVE_COOLED, on_passive_cool)//TYPE_PROC_REF(parent_item.type, on_passive_cool))
 	heat_color = color
+	if(!isnull(perfection_effects))
+		quench_effects_perfection = perfection_effects
+	if(!isnull(incompletion_effects))
+		quench_effects_incompletion = incompletion_effects
 
 /datum/component/forge_smithable/proc/good_hit(amount = 1, playsound = FALSE)
 	quality_points += amount
@@ -195,28 +208,94 @@
 	else
 		COOLDOWN_START(src, heating_remainder, heat_time)
 
-////////////////////// for clothing specifically /////////////////////////
-///cause i don't want to code duplicate my fuck ass code specifically for item/clothing/head item/clothing/suit item/clothing/gloves etc. :sob:
-/datum/component/forge_smithable/armor
-	var/datum/armor/armor_penalty_from_incompletion = /datum/armor/none
-	var/datum/armor/armor_bonus_from_perfection = /datum/armor/perfect_forged_armor_bonus
+/datum/component/forge_smithable/proc/set_completion_and_perfection(completion_amount, perfection_amount)
+	quality_points = completion_amount
+	current_perfects = perfection_amount
+	apply_completion_perfection_modifiers(get_completion_ratio(), get_perfect_ratio())
 
-/datum/component/forge_smithable/armor/try_quench(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
-	. = ..()
-	if(.)
-		apply_armor_bonuses(get_completion_ratio(), get_perfect_ratio())
+/datum/component/forge_smithable/proc/set_completion_and_perfection_ratios(completion_ratio, perfection_ratio)
+	quality_points = round(completion_ratio * completion_quality_points)
+	current_perfects = round(perfection_ratio * max_perfect_hits)
+	apply_completion_perfection_modifiers(completion_ratio, perfection_ratio)
 
-/datum/component/forge_smithable/armor/proc/apply_armor_bonuses(completion_ratio, perfection_ratio)
-	var/datum/armor/new_armor_penalty = /datum/armor/none
-	if(quality_points < completion_quality_points)
-		new_armor_penalty = parent_item.get_armor().generate_new_with_multipliers(list(ARMOR_ALL = 1.0 - lerp(MIN_INCOMPLETE_ARMOR_MULT, MAX_INCOMPLETE_ARMOR_MULT, completion_ratio)))
-	parent_item.set_armor(parent_item.get_armor().add_other_armor(armor_penalty_from_incompletion).subtract_other_armor(new_armor_penalty))
-	armor_penalty_from_incompletion = new_armor_penalty
+/datum/component/forge_smithable/proc/apply_completion_perfection_modifiers(completion_ratio, perfection_ratio)
+	for(var/index in quench_effects_perfection)
+		switch(index)
+			if(FORGE_EFFECT_ARMOR)
+				if(ispath(quench_effects_perfection[FORGE_EFFECT_ARMOR]))
+					quench_effects_perfection[FORGE_EFFECT_ARMOR] = get_armor_by_type(quench_effects_perfection[FORGE_EFFECT_ARMOR])
+				var/datum/armor/indexed_armor = quench_effects_perfection[FORGE_EFFECT_ARMOR]
+				var/datum/armor/new_armor_bonus = indexed_armor.generate_new_with_multipliers(list(ARMOR_ALL = perfection_ratio))
+				var/datum/armor/previous_armor_bonus = indexed_armor.generate_new_with_multipliers(list(ARMOR_ALL = perfection_ratio_applied))
+				parent_item.set_armor(parent_item.get_armor().add_other_armor(new_armor_bonus).subtract_other_armor(previous_armor_bonus))
 
-	var/datum/armor/new_armor_bonus = /datum/armor/none
-	new_armor_bonus = armor_bonus_from_perfection.generate_new_with_multipliers(list(ARMOR_ALL = perfection_ratio))
-	parent_item.set_armor(parent_item.get_armor().add_other_armor(new_armor_bonus).subtract_other_armor(armor_bonus_from_perfection))
-	armor_bonus_from_perfection = new_armor_bonus
+			if(FORGE_EFFECT_ARMORPEN)
+				var/new_armorpen_bonus = perfection_ratio * quench_effects_perfection[FORGE_EFFECT_ARMORPEN]
+				var/previous_armorpen_bonus = perfection_ratio_applied * quench_effects_perfection[FORGE_EFFECT_ARMORPEN]
+				parent_item.armour_penetration += new_armorpen_bonus - previous_armorpen_bonus
+			if(FORGE_EFFECT_BLOCKCHANCE)
+				var/new_blockchance_bonus = perfection_ratio * quench_effects_perfection[FORGE_EFFECT_BLOCKCHANCE]
+				var/previous_blockchance_bonus = perfection_ratio_applied * quench_effects_perfection[FORGE_EFFECT_BLOCKCHANCE]
+				parent_item.block_chance += new_blockchance_bonus - previous_blockchance_bonus
+			if(FORGE_EFFECT_DURABILITY)
+				var/new_durability_bonus = perfection_ratio * quench_effects_perfection[FORGE_EFFECT_DURABILITY]
+				var/previous_durability_bonus = perfection_ratio_applied * quench_effects_perfection[FORGE_EFFECT_DURABILITY]
+				parent_item.max_integrity += new_durability_bonus - previous_durability_bonus
+			if(FORGE_EFFECT_FORCE)
+				var/new_force_bonus = perfection_ratio * quench_effects_perfection[FORGE_EFFECT_FORCE]
+				var/previous_force_bonus = perfection_ratio_applied * quench_effects_perfection[FORGE_EFFECT_FORCE]
+				parent_item.force += new_force_bonus - previous_force_bonus
+			if(FORGE_EFFECT_REAGENT_INJECT)
+				var/datum/component/reagent_imbued/reagent_component = parent_item.GetComponent(/datum/component/reagent_imbued/)
+				if(isnull(reagent_component))
+					stack_trace("Reagent inject amount was increased via forging for an item that does not have reagent imbuing!")
+
+				var/new_inject_bonus = perfection_ratio * quench_effects_perfection[FORGE_EFFECT_REAGENT_INJECT]
+				var/previous_inject_bonus = perfection_ratio_applied * quench_effects_perfection[FORGE_EFFECT_REAGENT_INJECT]
+				reagent_component.inject_amount += new_inject_bonus - previous_inject_bonus
+			else
+				stack_trace("Quench effects contains an invalid argument [index]!")
+
+	var/incompletion_multiplier
+	if(completion_ratio < 1)
+		incompletion_multiplier = lerp(MIN_INCOMPLETE_FORGING_SCALING_PENALTY, MAX_INCOMPLETE_FORGING_SCALING_PENALTY, completion_ratio)
+	else
+		incompletion_multiplier = 1
+	for(var/index in quench_effects_incompletion)
+		switch(index)
+			if(FORGE_EFFECT_ARMOR)
+				var/datum/armor/new_armorpen_penalty = parent_item.get_armor().generate_new_with_multipliers(list(ARMOR_ALL = incompletion_multiplier))
+				var/datum/armor/previous_armorpen_penalty = parent_item.get_armor().generate_new_with_multipliers(list(ARMOR_ALL = completion_applied_multiplier))
+				parent_item.set_armor(parent_item.get_armor().subtract_other_armor(new_armorpen_penalty).add_other_armor(previous_armorpen_penalty))
+			if(FORGE_EFFECT_ARMORPEN)
+				var/new_armorpen_penalty = incompletion_multiplier * initial(parent_item.armour_penetration)
+				var/previous_armorpen_penalty = completion_applied_multiplier * initial(parent_item.armour_penetration)
+				parent_item.armour_penetration += previous_armorpen_penalty - new_armorpen_penalty
+			if(FORGE_EFFECT_BLOCKCHANCE)
+				var/new_blockchance_penalty = incompletion_multiplier * initial(parent_item.block_chance)
+				var/previous_blockchance_penalty = completion_applied_multiplier * initial(parent_item.block_chance)
+				parent_item.block_chance += previous_blockchance_penalty - new_blockchance_penalty
+			if(FORGE_EFFECT_DURABILITY)
+				var/new_durability_penalty = incompletion_multiplier * initial(parent_item.max_integrity)
+				var/previous_durability_penalty = completion_applied_multiplier * initial(parent_item.max_integrity)
+				parent_item.max_integrity += previous_durability_bonus - new_durability_penalty
+			if(FORGE_EFFECT_FORCE)
+				var/new_force_penalty = incompletion_multiplier * initial(parent_item.force)
+				var/previous_force_penalty = completion_applied_multiplier * initial(parent_item.force)
+				parent_item.force += previous_force_penalty - new_force_penalty
+			if(FORGE_EFFECT_REAGENT_INJECT)
+				var/datum/component/reagent_imbued/reagent_component = parent_item.GetComponent(/datum/component/reagent_imbued/)
+				if(isnull(reagent_component))
+					stack_trace("Reagent inject amount was changed via forging for an item that does not have reagent imbuing!")
+
+				var/new_inject_penalty = incompletion_multiplier * initial(reagent_component.inject_amount)
+				var/previous_inject_penalty = completion_applied_multiplier * initial(reagent_component.inject_amount)
+				reagent_component.inject_amount += new_inject_bonus - previous_inject_bonus
+			else
+				stack_trace("Quench effects contains an invalid argument [index]!")
+
+	perfection_ratio_applied = perfection_ratio
+	completion_applied_multiplier = incompletion_multiplier
 
 /mob/living
 	//the time between each strike

@@ -30,7 +30,7 @@
 		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
 		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
 		FORGING_WEAPON_REFORGING_AVERAGE_WAIT, \
-		CALLBACK(src, TYPE_PROC_REF(/obj/item/gun/ballistic/revolver/handcrafted_single_action, quench_item)))
+		perfection_effects = list(FORGE_EFFECT_FORCE = MAX_PERFECT_FORCE_BONUS))
 
 	RegisterSignal(src, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(try_throw_misfire))
 
@@ -67,31 +67,6 @@
 		if(show_message)
 			balloon_alert(user, "hammer isn't cocked!")
 		return FALSE
-
-////////////////////////// SMITHING AND SMITH REPAIRING ///////////////////////////////////////
-/obj/item/gun/ballistic/revolver/handcrafted_single_action/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
-	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
-	if(!isnull(smith_component))
-		smith_component.reset()
-		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio())
-/obj/item/gun/ballistic/revolver/handcrafted_single_action/passive_cool_item()
-	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
-	if(!isnull(smith_component))
-		smith_component.reset()
-		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio(), TRUE)
-/obj/item/gun/ballistic/revolver/handcrafted_single_action/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
-	var/new_force_penalty = 0
-	if(completion_ratio < 1 || force_incomplete_penalty)
-		new_force_penalty = initial(force) * (1.0 - lerp(MIN_INCOMPLETE_DAMAGE_MULT, MAX_INCOMPLETE_DAMAGE_MULT, completion_ratio))
-	force += completion_force_penalty
-	force -= new_force_penalty
-	completion_force_penalty = new_force_penalty
-
-	update_integrity(max(round(lerp(0, max_integrity, completion_ratio)), atom_integrity))
-
-	var/new_perfect_force_bonus = max(perfect_forging_bonus, clamp(perfect_ratio * MAX_PERFECT_FORCE_BONUS, 0, MAX_PERFECT_FORCE_BONUS))
-	force += max(0, new_perfect_force_bonus - perfect_forging_bonus)
-	perfect_forging_bonus = new_perfect_force_bonus
 
 ////////////////////////// MISFIRE WHEN SHOVED OR ATTACKED ///////////////////////////////////////
 

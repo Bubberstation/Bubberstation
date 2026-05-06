@@ -24,20 +24,24 @@
 
 /obj/item/clothing/suit/armor/forging_plate_armor/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_OCLOTHING)
 	allowed += /obj/item/melee/forged_reagent_weapon
-	AddComponent(/datum/component/forge_smithable/armor, \
-		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_OCLOTHING)
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
-		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
-		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
-		FORGING_WEAPON_REFORGING_AVERAGE_WAIT)
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_ARMOR = /datum/armor/perfect_forged_armor_bonus), \
+		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY)
+		)
 
 /datum/armor/armor_forging_plate_armor
 	melee = 40
-	bullet = 40
+	bullet = 35
 	fire = 50
 	wound = 30
+	laser = 20
 
 // Gloves
 /obj/item/clothing/gloves/forging_plate_gloves
@@ -57,19 +61,23 @@
 
 /datum/armor/gloves_forging_plate_gloves
 	melee = 40
-	bullet = 40
+	bullet = 35
 	fire = 50
 	wound = 30
+	laser = 20
 
 /obj/item/clothing/gloves/forging_plate_gloves/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_GLOVES)
-	AddComponent(/datum/component/forge_smithable/armor, \
-		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
-		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
-		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
-		FORGING_WEAPON_REFORGING_AVERAGE_WAIT)
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_ARMOR = /datum/armor/perfect_forged_armor_bonus), \
+		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY)
+		)
 
 // Helmets
 /obj/item/clothing/head/helmet/forging_plate_helmet
@@ -89,20 +97,23 @@
 
 /datum/armor/helmet_forging_plate_helmet
 	melee = 40
-	bullet = 40
+	bullet = 35
 	fire = 50
 	wound = 30
+	laser = 20
 
 /obj/item/clothing/head/helmet/forging_plate_helmet/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_HEAD)
-	AddComponent(/datum/component/forge_smithable/armor, \
-		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
-		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
-		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
-		FORGING_WEAPON_REFORGING_AVERAGE_WAIT)
-
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_ARMOR = /datum/armor/perfect_forged_armor_bonus), \
+		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY)
+		)
 // Boots
 /obj/item/clothing/shoes/forging_plate_boots
 	name = "reagent plate boots"
@@ -129,12 +140,15 @@
 /obj/item/clothing/shoes/forging_plate_boots/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_FEET)
-	AddComponent(/datum/component/forge_smithable/armor, \
-		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
-		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
-		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
-		FORGING_WEAPON_REFORGING_AVERAGE_WAIT)
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_ARMOR = /datum/armor/perfect_forged_armor_bonus), \
+		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY)
+		)
 
 /obj/item/clothing/shoes/horseshoe/reagent_clothing
 	name = "reagent horseshoes"
@@ -150,12 +164,15 @@
 /obj/item/clothing/shoes/horseshoe/reagent_clothing/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_FEET)
-	AddComponent(/datum/component/forge_smithable/armor, \
-		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
-		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
-		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
-		FORGING_WEAPON_REFORGING_AVERAGE_WAIT)
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_ARMOR = /datum/armor/perfect_forged_armor_bonus), \
+		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY)
+		)
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// MISC ////////////////////////////////////////
@@ -175,32 +192,20 @@
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_GLOVES)
 	AddComponent(/datum/component/forge_smithable, \
-		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
-		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
-		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
-		FORGING_WEAPON_REFORGING_AVERAGE_WAIT, \
-		CALLBACK(src, TYPE_PROC_REF(/obj/item/clothing/gloves/ring/reagent_clothing, quench_item)))
-
-/obj/item/clothing/gloves/ring/reagent_clothing/proc/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
-	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
-	if(!isnull(smith_component))
-		smith_component.reset()
-		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio())
-
-/obj/item/clothing/gloves/ring/reagent_clothing/proc/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
-	var/new_completion_penalty = 0
-	if(force_incomplete_penalty || completion_ratio < 1)
-		new_completion_penalty = lerp(MIN_INCOMPLETE_ARMOR_MULT, MAX_INCOMPLETE_ARMOR_MULT, completion_ratio) * PERFECT_ACCESSORY_DURABILITY_BONUS
-	max_integrity += current_completion_penalty
-	max_integrity -= new_completion_penalty
-	current_completion_penalty = new_completion_penalty
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_REAGENT_INJECT = 0.2), \
+		incompletion_effects = list(FORGE_EFFECT_REAGENT_INJECT, FORGE_EFFECT_DURABILITY)
+		)
 
 ////////////////////////////////////////////////////////////////////////////
 
 /obj/item/clothing/neck/collar/reagent_clothing
 	name = "reagent collar"
-	desc = "A collar that is ready to be worn for certain individuals."
+	desc = "A collar that is ready to be worn for... certain individuals."
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_neck.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 	icon_state = "collar_cyan"
@@ -214,26 +219,14 @@
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_NECK)
 	AddComponent(/datum/component/forge_smithable, \
-		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
-		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
-		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
-		FORGING_WEAPON_REFORGING_AVERAGE_WAIT, \
-		CALLBACK(src, TYPE_PROC_REF(/obj/item/clothing/neck/collar/reagent_clothing, quench_item)))
-
-/obj/item/clothing/neck/collar/reagent_clothing/proc/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
-	var/datum/component/forge_smithable/smith_component = GetComponent(/datum/component/forge_smithable)
-	if(!isnull(smith_component))
-		smith_component.reset()
-		apply_smithing_bonuses(smith_component.get_completion_ratio(), smith_component.get_perfect_ratio())
-
-/obj/item/clothing/neck/collar/reagent_clothing/proc/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
-	var/new_completion_penalty = 0
-	if(force_incomplete_penalty || completion_ratio < 1)
-		new_completion_penalty = lerp(MIN_INCOMPLETE_ARMOR_MULT, MAX_INCOMPLETE_ARMOR_MULT, completion_ratio) * PERFECT_ACCESSORY_DURABILITY_BONUS
-	max_integrity += current_completion_penalty
-	max_integrity -= new_completion_penalty
-	current_completion_penalty = new_completion_penalty
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_REAGENT_INJECT = 0.2), \
+		incompletion_effects = list(FORGE_EFFECT_REAGENT_INJECT, FORGE_EFFECT_DURABILITY)
+		)
 
 /obj/item/restraints/handcuffs/reagent_clothing
 	name = "reagent handcuffs"
