@@ -33,8 +33,7 @@
 		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
 		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
 		perfection_effects = list(FORGE_EFFECT_ARMOR = /datum/armor/perfect_forged_armor_bonus), \
-		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY)
-		)
+		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY))
 
 /datum/armor/armor_forging_plate_armor
 	melee = 40
@@ -76,8 +75,7 @@
 		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
 		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
 		perfection_effects = list(FORGE_EFFECT_ARMOR = /datum/armor/perfect_forged_armor_bonus), \
-		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY)
-		)
+		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY))
 
 // Helmets
 /obj/item/clothing/head/helmet/forging_plate_helmet
@@ -112,8 +110,8 @@
 		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
 		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
 		perfection_effects = list(FORGE_EFFECT_ARMOR = /datum/armor/perfect_forged_armor_bonus), \
-		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY)
-		)
+		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY))
+
 // Boots
 /obj/item/clothing/shoes/forging_plate_boots
 	name = "reagent plate boots"
@@ -147,8 +145,7 @@
 		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
 		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
 		perfection_effects = list(FORGE_EFFECT_ARMOR = /datum/armor/perfect_forged_armor_bonus), \
-		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY)
-		)
+		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY))
 
 /obj/item/clothing/shoes/horseshoe/reagent_clothing
 	name = "reagent horseshoes"
@@ -171,8 +168,7 @@
 		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
 		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
 		perfection_effects = list(FORGE_EFFECT_ARMOR = /datum/armor/perfect_forged_armor_bonus), \
-		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY)
-		)
+		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY))
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// MISC ////////////////////////////////////////
@@ -198,8 +194,7 @@
 		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
 		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
 		perfection_effects = list(FORGE_EFFECT_REAGENT_INJECT = 0.2), \
-		incompletion_effects = list(FORGE_EFFECT_REAGENT_INJECT, FORGE_EFFECT_DURABILITY)
-		)
+		incompletion_effects = list(FORGE_EFFECT_REAGENT_INJECT, FORGE_EFFECT_DURABILITY))
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -225,8 +220,7 @@
 		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
 		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
 		perfection_effects = list(FORGE_EFFECT_REAGENT_INJECT = 0.2), \
-		incompletion_effects = list(FORGE_EFFECT_REAGENT_INJECT, FORGE_EFFECT_DURABILITY)
-		)
+		incompletion_effects = list(FORGE_EFFECT_REAGENT_INJECT, FORGE_EFFECT_DURABILITY))
 
 /obj/item/restraints/handcuffs/reagent_clothing
 	name = "reagent handcuffs"

@@ -77,9 +77,9 @@
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/equipped(mob/user, slot, initial)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_WAS_ATTACKED = PROC_REF(try_attack_misfire),
-		COMSIG_CARBON_HELP_ACT = PROC_REF(try_hug_misfire),
-		COMSIG_LIVING_Z_IMPACT = PROC_REF(try_fall_misfire),
+		COMSIG_ATOM_WAS_ATTACKED = PROC_REF(try_attack_misfire)//,
+		///COMSIG_CARBON_HELP_ACT = PROC_REF(try_hug_misfire),
+		//COMSIG_LIVING_Z_IMPACT = PROC_REF(try_fall_misfire),
 		)
 	if(slot != ITEM_SLOT_HANDS)
 		AddComponent(/datum/component/connect_inventory, user, connections, allowed_slots = ALL ^ ITEM_SLOT_HANDS)
@@ -90,15 +90,13 @@
 
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/proc/try_attack_misfire(mob/victim, mob/attacker, attack_flags)
-	SIGNAL_HANDLER
 	if(attack_flags & ATTACKER_SHOVING && prob(50))
 		if(holster_misfire(victim, attacker) == TRUE)
-			user.visible_message(span_warning("[victim]'s [src] goes off from [attacker]'s attack!"),
+			victim.visible_message(span_warning("[victim]'s [src] goes off from [attacker]'s attack!"),
 				span_danger("Your primed [src] triggers from [attacker]'s strike! "), ignored_mobs = victim)
 
-
+/*
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/proc/try_hug_misfire(mob/living/source)
-	SIGNAL_HANDLER
 	if(prob(3))
 		if(holster_misfire(victim, attacker) == TRUE)
 			user.visible_message(span_warning("[victim]'s [src] goes off from [attacker]'s hug!"),
@@ -106,12 +104,11 @@
 
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/proc/try_fall_misfire(datum/source, levels, turf/fell_on)
-	SIGNAL_HANDLER
 	if(prob(70))
 		if(holster_misfire(victim, attacker) == TRUE)
 			user.visible_message(span_warning("[victim]'s [src] goes off from [attacker]'s hug!"),
 				span_danger("Your primed [src] triggers from the sharp fall! "), ignored_mobs = victim)
-
+*/
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/proc/holster_misfire(mob/victim, mob/attacker)
 	return try_fire_gun(victim, attacker, null, FALSE)
 

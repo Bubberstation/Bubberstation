@@ -35,18 +35,17 @@
 		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
 		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
 		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
-		perfection_effects = list(FORGE_EFFECT_FORCE = MAX_PERFECT_FORCE_BONUS)
-		incompletion_effects = list(FORGE_EFFECT_FORCE, FORGE_EFFECT_ARMORPEN)
-		)
+		perfection_effects = list(FORGE_EFFECT_FORCE = MAX_PERFECT_FORCE_BONUS), \
+		incompletion_effects = list(FORGE_EFFECT_FORCE, FORGE_EFFECT_ARMORPEN))
 
 // nonlethal secondary attack
 /obj/item/melee/forged_reagent_weapon/pre_attack_secondary(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
-	if(can_nonlethal_altfire && istype(target, mob/living))
+	if(can_nonlethal_altfire && istype(target, /mob/living))
 		// when we continue to attack, deal 0 (brute) damage (just stun)
 		SET_ATTACK_FORCE(attack_modifiers, 0)
 		var/mob/living/livingtarget = target
-		livingtarget.apply_damage(stamina_damage, STAMINA, blocked = armour_block)
+		livingtarget.apply_damage(stamina_damage, STAMINA)
 		attack_verb_continuous = secondary_attack_verb_continuous
 		attack_verb_simple = secondary_attack_verb_simple
 	return SECONDARY_ATTACK_CONTINUE_CHAIN
@@ -288,22 +287,11 @@
 		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
 		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
 		perfection_effects = list(FORGE_EFFECT_REAGENT_INJECT = 3), \
-		incompletion_effects = list(FORGE_EFFECT_REAGENT_INJECT, FORGE_EFFECT_DURABILITY)
-		)
+		incompletion_effects = list(FORGE_EFFECT_REAGENT_INJECT, FORGE_EFFECT_DURABILITY))
 
 /obj/item/melee/forged_reagent_weapon/staff/attack(mob/living/M, mob/living/user, params)
 	. = ..()
 	user.changeNext_move(CLICK_CD_RANGE)
-
-/obj/item/melee/forged_reagent_weapon/staff/apply_smithing_bonuses(completion_ratio, perfect_ratio, force_incomplete_penalty = FALSE)
-	var/datum/component/reagent_imbued/staff_component = GetComponent(/datum/component/reagent_imbued)
-	if(!isnull(staff_component) && completion_ratio < 1)
-		staff_component.imbued_reagent.maximum_volume = round(staff_component.imbued_reagent.maximum_volume * lerp(MIN_INCOMPLETE_STAFF_INJECT_MULT, MAX_INCOMPLETE_STAFF_INJECT_MULT, completion_ratio))
-
-	var/new_max_integrity_bonus = max(perfect_forging_bonus, clamp(perfect_ratio * MAX_PERFECT_STAFF_INTEG_BONUS, 0, MAX_PERFECT_STAFF_INTEG_BONUS))
-	force += max(0, new_max_integrity_bonus - perfect_forging_bonus)
-	perfect_forging_bonus = new_max_integrity_bonus
-	update_integrity(max(round(lerp(0, max_integrity, completion_ratio)), get_integrity()))
 
 /obj/item/melee/forged_reagent_weapon/spear
 	name = "reagent spear"

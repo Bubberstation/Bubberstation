@@ -296,9 +296,6 @@
 /obj/structure/reagent_forge/proc/try_expel_gas()
 	if(check_fuel(just_checking = TRUE))
 		atmos_spawn_air("[GAS_CO2]=[FORGE_FUMES_VOLUME];[TURF_TEMPERATURE(FORGE_FUMES_HEAT)]")
-		var/datum/gas_mixture/expelled_gas = air_contents.remove(air_contents.total_moles())
-		var/turf/T = get_turf(src)
-		T.assume_air(expelled_gas)
 
 /// Sends signals to bake and items on the used tray, setting the smoke state of the forge according to the most cooked item in it
 /obj/structure/reagent_forge/proc/handle_baking_things(seconds_per_tick)

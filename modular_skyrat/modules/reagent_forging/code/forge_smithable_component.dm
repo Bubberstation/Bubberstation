@@ -278,7 +278,7 @@
 			if(FORGE_EFFECT_DURABILITY)
 				var/new_durability_penalty = incompletion_multiplier * initial(parent_item.max_integrity)
 				var/previous_durability_penalty = completion_applied_multiplier * initial(parent_item.max_integrity)
-				parent_item.max_integrity += previous_durability_bonus - new_durability_penalty
+				parent_item.max_integrity += previous_durability_penalty - new_durability_penalty
 			if(FORGE_EFFECT_FORCE)
 				var/new_force_penalty = incompletion_multiplier * initial(parent_item.force)
 				var/previous_force_penalty = completion_applied_multiplier * initial(parent_item.force)
@@ -290,7 +290,7 @@
 
 				var/new_inject_penalty = incompletion_multiplier * initial(reagent_component.inject_amount)
 				var/previous_inject_penalty = completion_applied_multiplier * initial(reagent_component.inject_amount)
-				reagent_component.inject_amount += new_inject_bonus - previous_inject_bonus
+				reagent_component.inject_amount += previous_inject_penalty - new_inject_penalty
 			else
 				stack_trace("Quench effects contains an invalid argument [index]!")
 

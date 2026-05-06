@@ -24,7 +24,7 @@ GLOBAL_LIST_INIT(armor_by_type, generate_armor_type_cache())
  * The armor datum holds information about different types of armor that an atom can have.
  * It also contains logic and helpers for calculating damage and effective damage
  */
-/
+/datum/armor
 	VAR_PROTECTED/acid = 0
 	VAR_PROTECTED/bio = 0
 	VAR_PROTECTED/bomb = 0

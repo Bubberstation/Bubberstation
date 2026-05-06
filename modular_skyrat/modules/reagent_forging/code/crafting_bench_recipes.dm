@@ -83,11 +83,31 @@
 /datum/crafting_bench_recipe/proc/get_total_completion_amount(list/things_to_use)
 	var/total_completion = 0
 	var/total_forge_items = 0
-	for(var/obj/item/forging/complete/complete_forging_item in things_to_use)
-		total_completion += complete_forging_item.hammer_completion_amount
-		total_forge_items ++
+	for(var/obj/item/i in things_to_use)
+		if(istype(i, /obj/item/forging/complete))
+			var/obj/item/forging/complete/complete_forging_item = i
+			total_completion += complete_forging_item.hammer_completion_amount
+			total_forge_items ++
+		else if(!isnull(i.GetComponent(/datum/component/forge_smithable)))
+			var/datum/component/forge_smithable/smithing_component = i.GetComponent(/datum/component/forge_smithable)
+			total_completion += smithing_component.quality_points
+			total_forge_items ++
 	total_completion /= total_forge_items
 	return total_completion
+
+/datum/crafting_bench_recipe/proc/get_total_perfection_amount(list/things_to_use)
+	var/total_perfection = 0
+	var/total_forge_items = 0
+	for(var/obj/item/i in things_to_use)
+		if(istype(i, /obj/item/forging/complete))
+			var/obj/item/forging/complete/complete_forging_item = i
+			total_perfection += complete_forging_item.hammer_completion_amount
+			total_forge_items ++
+		else if(!isnull(i.GetComponent(/datum/component/forge_smithable)))
+			var/datum/component/forge_smithable/smithing_component = i.GetComponent(/datum/component/forge_smithable)
+			total_perfection += smithing_component.get_perfect_ratio()
+			total_forge_items ++
+	return total_perfection / total_forge_items
 
 /datum/crafting_bench_recipe/proc/find_from_list(list/item_list, type)
 	for(var/obj/item/forging/complete/temp_item in item_list)
@@ -96,6 +116,11 @@
 	return null
 
 /datum/crafting_bench_recipe/proc/apply_perfect_and_completion_bonuses(list/things_to_use, obj/item/product)
+	var/pieces_completion_amount = get_total_completion_amount(things_to_use)
+	var/datum/component/forge_smithable/smith_component = product.GetComponent(/datum/component/forge_smithable)
+	if(!isnull(smith_component))
+		smith_component.set_completion_and_perfection_ratios(pieces_completion_amount, )
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// WEAPON COMPLETION /////////////////////////////////////////////////////
@@ -120,14 +145,6 @@
 
 	consume_crafting_ingredients(item_list, returner)
 	return returner
-
-/datum/crafting_bench_recipe/weapon_completion_recipe/apply_perfect_and_completion_bonuses(list/things_to_use, obj/item/product)
-	var/obj/item/forging/complete/weapon_head = find_from_list(things_to_use, /obj/item/forging/complete)
-
-	var/pieces_completion_amount = get_total_completion_amount(things_to_use)
-	if(istype(product, /obj/item/melee/forged_reagent_weapon))
-		var/obj/item/melee/forged_reagent_weapon/weaponforged = product
-		weaponforged.apply_smithing_bonuses(pieces_completion_amount, weapon_head.perfect_ratio)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// ARMOR COMPLETION //////////////////////////////////////////////////////

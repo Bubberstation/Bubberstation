@@ -138,7 +138,7 @@
 	recharge_coeff = 0.75
 	var/obj/item/storage/belt/holster/blacksmithed/charging/my_belt
 
-/obj/machinery/recharger/belt_charger/proc/activate_with_item(/obj/item/my_item)
+/obj/machinery/recharger/belt_charger/proc/activate_with_item(obj/item/my_item)
 	charging = my_item
 	START_PROCESSING(SSmachines, src)
 	update_use_power(ACTIVE_POWER_USE)
