@@ -22,7 +22,7 @@
 	if(!istype(loc, /obj/item/organ/brain/synth) && !istype(loc, /obj/item/organ/brain/cybernetic/cortical) && !istype(loc, /obj/item/organ/brain/cybernetic/surplus))
 		return INITIALIZE_HINT_QDEL
 
-/obj/item/modular_computer/pda/synth/proc/brainpooter()
+/obj/item/modular_computer/pda/synth/proc/update_user_settings(client/client)
 	var/obj/item/organ/brain/cybernetic/brainpooter = loc
 	var/mob/living/brain_owner = brainpooter.owner
 	if(!isnull(brain_owner))
@@ -31,8 +31,6 @@
 		if(!isnull(owner_mind))
 			update_ringtone(owner_mind?.assigned_role?.job_tone)
 		UpdateDisplay()
-
-		var/client/client = brainpooter.owner.client
 		if(!isnull(client))
 			update_pda_prefs(client)
 
@@ -196,7 +194,7 @@
 				robotbrain.internal_computer.interact(user)
 			return
 
-	// Also support cortical augmented brains and surplus
+	// Also supports cortical augmented brains and surplus
 	var/obj/item/organ/brain/cybernetic/cortical/cortbrain = targetmachine.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(istype(cortbrain))
 		if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
