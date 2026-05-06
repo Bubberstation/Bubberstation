@@ -228,6 +228,7 @@
 	name = "Miecz Submachinegun Single-Pack"
 	desc = "Contains one Miecz Submachinegun, one of the newest guns to make it out of the PSC. Due to import fees and general rarity, this one's gonna be expensive. Contains two magazines, as well."
 	cost = PAYCHECK_COMMAND * 10
+	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/ballistic/automatic/miecz, /obj/item/ammo_box/magazine/miecz, /obj/item/ammo_box/magazine/miecz)
 
 /datum/supply_pack/goody/mieczmag
