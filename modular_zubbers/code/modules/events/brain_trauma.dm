@@ -14,7 +14,6 @@
 		/datum/brain_trauma/special/death_whispers,
 		/datum/brain_trauma/special/existential_crisis,
 		/datum/brain_trauma/special/beepsky,
-		/datum/brain_trauma/special/primal_instincts
 	)
 
 	H.gain_trauma(pick(possible_traumas),TRAUMA_RESILIENCE_SURGERY)
