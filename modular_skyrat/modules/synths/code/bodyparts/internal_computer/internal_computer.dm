@@ -26,7 +26,7 @@
 	var/obj/item/organ/brain/cybernetic/brainpooter = loc
 	var/mob/living/brain_owner = brainpooter.owner
 	if(!isnull(brain_owner))
-		imprint_id(brain_owner.real_name, brain_owner.job)
+		imprint_id(brain_owner.real_name, "[brain_owner.job] Persocom")
 		var/datum/mind/owner_mind = brain_owner?.mind
 		if(!isnull(owner_mind))
 			update_ringtone(owner_mind?.assigned_role?.job_tone)
