@@ -236,6 +236,17 @@
  */
 /obj/effect/heretic_influence/proc/drain_influence(mob/living/user, knowledge_to_gain, drain_speed = HERETIC_RIFT_DEFAULT_DRAIN_SPEED)
 
+	// BUBBER EDIT ADDITION - inhibition/no heart = no draining
+	if (HAS_TRAIT(user, TRAIT_MANSUS_INHIBITION))
+		user.balloon_alert(user, "inhibited! cant drain!")
+		return
+
+	var/datum/antagonist/heretic/our_heretic = GET_HERETIC(user)
+	if (our_heretic.has_living_heart() != HERETIC_HAS_LIVING_HEART)
+		user.balloon_alert(user, "no living heart!")
+		return
+	// BUBBER EDIT ADDITION END
+
 	being_drained = TRUE
 	loc.balloon_alert(user, "draining influence...")
 
