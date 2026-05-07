@@ -15,6 +15,22 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
+
+/datum/design/internal_wound_scanner
+	name = "Internal Wound Analyzer Chip"
+	desc = "A brain implanted wound analyzing chip"
+	id = "wound_scanner_internal"
+	build_type = PROTOLATHE | MECHFAB
+	materials = list(
+	/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5,
+	/datum/material/glass =SHEET_MATERIAL_AMOUNT*2,
+	)
+	build_path = /obj/item/organ/cyberimp/brain/wound_scanner
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_HEALTH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
 //////////Medical Lathe Designs////////////
 
 /datum/design/surgical_processor

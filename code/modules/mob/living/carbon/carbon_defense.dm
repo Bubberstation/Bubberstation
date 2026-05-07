@@ -484,7 +484,7 @@
 
 /// Check ourselves to see if we've got any shrapnel, return true if we do. This is a much simpler version of what humans do, we only indicate we're checking ourselves if there's actually shrapnel
 /mob/living/carbon/proc/check_self_for_injuries()
-	if(stat >= UNCONSCIOUS)
+	if(stat >= UNCONSCIOUS)\
 		return
 
 	var/embeds = FALSE
@@ -495,6 +495,9 @@
 				// this way, we only visibly try to examine ourselves if we have something embedded, otherwise we'll still hug ourselves :)
 				visible_message(span_notice("[src] examines [p_them()]self."), \
 					span_notice("You check yourself for shrapnel."), visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE)
+				//BUBBER EDIT BEGIN
+				SEND_SIGNAL(src, COMSIG_CARBON_SELF_CHECK_FOR_INJURIES)
+				//BUBBER EDIT END
 			var/harmless = weapon.get_embed().is_harmless()
 			var/stuck_wordage = harmless ? "stuck to" : "embedded in"
 			var/embed_text = "\t <a href='byond://?src=[REF(src)];embedded_object=[REF(weapon)];embedded_limb=[REF(limb)]'> There is [icon2html(weapon, src)] \a [weapon] [stuck_wordage] your [limb.plaintext_zone]!</a>"
