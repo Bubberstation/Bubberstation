@@ -47,3 +47,41 @@
 #define FORGE_EFFECT_DURABILITY "forge_effect_durability"
 #define FORGE_EFFECT_BLOCKCHANCE "forge_effect_block"
 #define FORGE_EFFECT_REAGENT_INJECT "forge_effect_reagent_inject"
+
+///helper function - given two ratios, a forge effect, an item, and a maximal value, it gives a new modifier and resets the old modifier to the item
+/proc/give_added_modifying_effect_to_item(forge_effect, old_modifier, new_modifier, obj/item/item, max_effect)
+	switch(forge_effect)
+		if(FORGE_EFFECT_ARMOR)
+			if(ispath(max_effect))
+				max_effect = get_armor_by_type(max_effect)
+			var/datum/armor/indexed_armor = max_effect
+			var/datum/armor/new_armor_modifier = indexed_armor.generate_new_with_multipliers(list(ARMOR_ALL = new_oil_ratio))
+			var/datum/armor/previous_armor_modifier = indexed_armor.generate_new_with_multipliers(list(ARMOR_ALL = last_smithing_oil_ratio_applied))
+			parent_item.set_armor(parent_item.get_armor().add_other_armor(new_armor_modifier).subtract_other_armor(previous_armor_modifier))
+
+		if(FORGE_EFFECT_ARMORPEN)
+			var/new_armorpen_modifier = new_oil_ratio * max_effect
+			var/previous_armorpen_modifier = last_smithing_oil_ratio_applied * max_effect
+			parent_item.armour_penetration += new_armorpen_modifier - previous_armorpen_modifier
+		if(FORGE_EFFECT_BLOCKCHANCE)
+			var/new_blockchance_modifier = new_oil_ratio * max_effect
+			var/previous_blockchance_modifier = last_smithing_oil_ratio_applied * max_effect
+			parent_item.block_chance += new_blockchance_modifier - previous_blockchance_modifier
+		if(FORGE_EFFECT_DURABILITY)
+			var/new_durability_modifier = new_oil_ratio * max_effect
+			var/previous_durability_modifier = last_smithing_oil_ratio_applied * max_effect
+			parent_item.max_integrity += new_durability_modifier - previous_durability_modifier
+		if(FORGE_EFFECT_FORCE)
+			var/new_force_modifier = new_oil_ratio * max_effect
+			var/previous_force_modifier = last_smithing_oil_ratio_applied * max_effect
+			parent_item.force += new_force_modifier - previous_force_modifier
+		if(FORGE_EFFECT_REAGENT_INJECT)
+			var/datum/component/reagent_imbued/reagent_component = parent_item.GetComponent(/datum/component/reagent_imbued/)
+			if(isnull(reagent_component))
+				stack_trace("Reagent inject amount was increased via forging for an item that does not have reagent imbuing!")
+
+			var/new_inject_modifier = new_oil_ratio * max_effect
+			var/previous_inject_modifier = last_smithing_oil_ratio_applied * max_effect
+			reagent_component.inject_amount += new_inject_modifier - previous_inject_modifier
+		else
+			stack_trace("Tried to modify [item] with an invalid effect [forge_effect]!")

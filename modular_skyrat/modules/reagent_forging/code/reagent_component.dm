@@ -14,12 +14,14 @@
 	var/integrity_required
 	///how much reagent to inject per tic/proc
 	var/inject_amount = 0
-	///what smithing oil does to this
+	///what smithing oil does to this (at 100% oil imbuing it has 100% of the listed effects)
 	var/list/smithing_oil_effects = list()
+	///keeps track of how effective last smithing oil imbue did (% of total imbue capacity)
+	var/last_smithing_oil_ratio_applied = 0
 
 /// * set_slot: Used for clothing only, ignore if this isn't the case.
 /// * integrity: what integ % is required to use the reagent imbue?
-/datum/component/reagent_imbued/Initialize(set_slot = null, integrity = 0.85)
+/datum/component/reagent_imbued/Initialize(set_slot = null, integrity = 0.85, oil_effects = null)
 	if(!istype(parent, required_type))
 		return COMPONENT_INCOMPATIBLE //they need to be clothing, I already said this
 	parent_item = parent
@@ -27,6 +29,8 @@
 	integrity_required = integrity
 	RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE_MORE, PROC_REF(on_examine_more))
+	if(!isnull(oil_effects))
+		smithing_oil_effects = oil_effects
 
 /datum/component/reagent_imbued/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
@@ -34,19 +38,44 @@
 		examine_list += span_notice("[parent_item] is able to be imbued by dipping it into a container such as a quenching trough, or pouring chemicals into it and then tempering it at a forge!")
 	else
 		examine_list += span_notice("If you knew a certain smithing trick, you could imbue special chemicals into this...")
+	if(parent_item.get_integrity_percentage() < integrity_required)
+		examine_list += span_notice("It must be repaired before its imbued reagent effects can work...")
+	if(imbued_reagent.reagent_list.len >= 1 && (HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING) || HAS_TRAIT(user, TRAIT_REAGENT_SCANNER)))
+		examine_list += span_notice("You could inspect this closer to see what is imbued into it, and what smithing oil does...")
 
+
+/datum/component/reagent_imbued/proc/on_examine_more(obj/item/source, mob/examiner, list/examine_list)
 	if(imbued_reagent.reagent_list.len >= 1 && (HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING) || HAS_TRAIT(user, TRAIT_REAGENT_SCANNER)))
 		add_reagent_imbue_description(examine_list)
 
-/datum/component/reagent_imbued/proc/add_reagent_imbue_description(list/examine_list)
-	if(parent_item.get_integrity_percentage() < integrity_required)
-		examine_list += span_notice("It must be repaired before its imbued reagent effects can work...")
-	else
-		examine_list += span_notice(examine_imbued_description)
-		for (var/datum/reagent/reagent in imbued_reagent.reagent_list)
-			examine_list += span_notice("[reagent.volume] units of [reagent.name]")
+	add_oil_imbue_effect(examine_list)
 
-/datum/component/reagent_imbued/proc/on_examine_more(obj/item/source, mob/examiner, list/examine_list)
+/datum/component/reagent_imbued/proc/add_reagent_imbue_description(list/examine_list)
+	examine_list += span_notice(examine_imbued_description)
+	for (var/datum/reagent/reagent in imbued_reagent.reagent_list)
+		examine_list += span_notice("[reagent.volume] units of [reagent.name]")
+
+/datum/component/reagent_imbued/proc/add_oil_imbue_effect(list/examine_list)
+	if(smithing_oil_effects.len > 0)
+		var/list/effects_list = list()
+		for(var/i in smithing_oil_bonus)
+			switch(i)
+				if(FORGE_EFFECT_ARMOR)
+					effects_list += "cushion blows more effectively"
+				if(FORGE_EFFECT_ARMORPEN)
+					effects_list += "pierce through armor more efficiently"
+				if(FORGE_EFFECT_BLOCKCHANCE)
+					effects_list += "better at deflecting blows"
+				if(FORGE_EFFECT_DURABILITY)
+					effects_list += "reinforce its durability"
+				if(FORGE_EFFECT_FORCE)
+					effects_list += "enhance its destructive potential"
+				if(FORGE_EFFECT_REAGENT_INJECT)
+					effects_list += "inflict more of the other containing reagents"
+
+		examine_list += span_notice("Smithing oil will make it [effects_list.Join("; ")].")
+	else
+		examine_list += span_notice("Smithing oil has no effect on [parent_item], but may affect things crafted with it.")
 
 ///Replaces the imbued_reagent with the given new_reagents.
 /datum/component/reagent_imbued/proc/set_reagent_imbue(datum/reagents/new_reagents, clear_source_reagents = TRUE, smithing_oil_bonus = TRUE)
@@ -60,6 +89,10 @@
 
 ///This function modifies the parent item based on how much smithing oil is in our imbued reagent list. Needs to be defined in child subtypes.
 /datum/component/reagent_imbued/proc/apply_smithing_oil_bonus()
+	var/new_oil_ratio = imbued_reagent.remove_reagent(/datum/reagent/fuel/oil/smithing, imbued_reagent.maximum_volume, safety = TRUE, include_subtypes = FALSE) / imbued_reagent.maximum_volume
+	for(var/index in smithing_oil_effects)
+		give_added_modifying_effect_to_item(index, last_smithing_oil_ratio_applied, new_oil_ratio, parent_item, smithing_oil_effects[index])
+	last_smithing_oil_ratio_applied = new_oil_ratio
 
 //the component that is attached to clothes that allows them to be imbued
 //ONLY USE THIS FOR CLOTHING
@@ -135,10 +168,6 @@
 /datum/component/reagent_imbued/weapon/Destroy(force, silent)
 	parent_item = null
 	return ..()
-/datum/component/reagent_imbued/weapon/apply_smithing_oil_bonus()
-	parent_item.armour_penetration -= extra_force_oil_bonus
-	extra_force_oil_bonus = MAX_OIL_AP_AMOUNT * imbued_reagent.remove_reagent(/datum/reagent/fuel/oil/smithing, imbued_reagent.maximum_volume, safety = TRUE, include_subtypes = FALSE) / imbued_reagent.maximum_volume
-	parent_item.armour_penetration += extra_force_oil_bonus
 
 /datum/component/reagent_imbued/weapon/proc/inject_attacked(datum/source, mob/living/target, mob/living/user, list/modifiers)
 	SIGNAL_HANDLER
