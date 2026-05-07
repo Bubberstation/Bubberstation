@@ -9579,6 +9579,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light/directional/east,
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 5;
+	pixel_y = 1
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "csr" = (
@@ -10167,6 +10172,7 @@
 "czp" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light_switch/directional/west,
+/obj/effect/landmark/start/nanotrasen_consultant,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "czr" = (
@@ -19315,6 +19321,23 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
+"eWm" = (
+/obj/structure/safe/vault,
+/obj/item/book{
+	desc = "An undeniably handy book.";
+	icon_state = "bookknock";
+	name = "\improper A Simpleton's Guide to Safe-cracking with Stethoscopes"
+	},
+/obj/effect/spawner/random/exotic/antag_gear_weak,
+/obj/effect/turf_decal/tile/blue/full,
+/obj/effect/turf_decal/bot_white,
+/obj/item/storage/belt/sheath/sabre/cargo,
+/obj/item/ammo_box/speedloader/c357,
+/obj/item/clothing/neck/stethoscope,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/station/command/vault)
 "eWC" = (
 /obj/machinery/airalarm/directional/south,
 /obj/structure/disposalpipe/segment{
@@ -20813,7 +20836,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/effect/landmark/navigate_destination/vault,
 /turf/open/floor/iron/dark,
 /area/station/command/vault)
 "fsu" = (
@@ -22836,6 +22858,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
+/obj/effect/landmark/start/nanotrasen_consultant,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "fUq" = (
@@ -29383,11 +29406,13 @@
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/aft)
 "hEQ" = (
-/obj/structure/filingcabinet,
-/obj/effect/turf_decal/bot_white,
-/obj/item/folder/documents,
-/obj/effect/turf_decal/tile/blue/full,
-/turf/open/floor/iron/textured_large,
+/obj/machinery/light/small/directional/south,
+/obj/machinery/camera/motion/directional/south{
+	c_tag = "Vault";
+	network = list("vault")
+	},
+/obj/machinery/nuclearbomb/selfdestruct,
+/turf/open/floor/circuit,
 /area/station/command/vault)
 "hFa" = (
 /obj/effect/decal/cleanable/dirt,
@@ -33275,8 +33300,8 @@
 /turf/open/floor/pod/light,
 /area/station/maintenance/floor4/starboard)
 "iEg" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
+/obj/structure/disposalpipe/trunk/multiz{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/floor3/port/fore)
@@ -35880,7 +35905,8 @@
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/photocopier/prebuilt,
+/obj/structure/table/wood,
+/obj/structure/secure_safe/directional/east,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "joL" = (
@@ -48093,9 +48119,11 @@
 /turf/open/floor/iron/dark,
 /area/station/service/library/garden)
 "mpZ" = (
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
-/area/station/maintenance/floor4/port/fore)
+/obj/machinery/status_display/ai/directional/east,
+/obj/structure/closet/crate/silvercrate,
+/obj/effect/turf_decal/tile/blue/half/contrasted,
+/turf/open/floor/iron/dark,
+/area/station/command/vault)
 "mqc" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/middle,
 /obj/structure/girder/reinforced,
@@ -50579,6 +50607,9 @@
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/all/supply/vault,
+/obj/effect/mapping_helpers/airlock_note_placer{
+	note_info = "Hey! If you're looking for the ore silo, it's in the quartermaster's office! Yeah, I dunno either."
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/vault)
 "mWq" = (
@@ -57133,6 +57164,7 @@
 /obj/effect/mapping_helpers/requests_console/assistance,
 /obj/effect/mapping_helpers/requests_console/information,
 /obj/effect/mapping_helpers/requests_console/announcement,
+/obj/machinery/photocopier/prebuilt,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "oET" = (
@@ -57447,6 +57479,7 @@
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/all/supply/vault,
+/obj/effect/landmark/navigate_destination/vault,
 /turf/open/floor/iron/dark,
 /area/station/command/vault)
 "oIE" = (
@@ -77639,9 +77672,8 @@
 /area/station/medical/paramedic)
 "tVp" = (
 /obj/machinery/light_switch/directional/north,
-/obj/machinery/status_display/ai/directional/east,
-/obj/structure/table/reinforced/titaniumglass,
-/obj/item/piggy_bank/vault,
+/obj/structure/filingcabinet,
+/obj/item/folder/documents,
 /turf/open/floor/circuit,
 /area/station/command/vault)
 "tVq" = (
@@ -78560,7 +78592,6 @@
 /turf/open/floor/plating,
 /area/station/maintenance/floor2/port/aft)
 "uiM" = (
-/obj/effect/landmark/start/nanotrasen_consultant,
 /turf/open/floor/carpet/royalblue,
 /area/station/command/heads_quarters/nt_rep)
 "uiR" = (
@@ -79891,7 +79922,13 @@
 /turf/open/floor/plating,
 /area/station/maintenance/floor3/port/fore)
 "uCC" = (
-/obj/machinery/vending/boozeomat,
+/obj/structure/filingcabinet/security{
+	pixel_x = -11
+	},
+/obj/structure/filingcabinet/employment,
+/obj/structure/filingcabinet/medical{
+	pixel_x = 11
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "uCP" = (
@@ -80389,12 +80426,10 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "uIz" = (
-/obj/machinery/computer/bank_machine{
+/obj/effect/turf_decal/tile/blue/full,
+/turf/open/floor/iron/dark/side{
 	dir = 1
 	},
-/obj/effect/turf_decal/bot_white,
-/obj/effect/turf_decal/tile/blue/full,
-/turf/open/floor/iron/textured_large,
 /area/station/command/vault)
 "uID" = (
 /obj/structure/railing/corner{
@@ -80410,6 +80445,8 @@
 /area/station/maintenance/floor1/port/fore)
 "uIL" = (
 /obj/structure/closet/secure_closet/nanotrasen_consultant,
+/obj/item/clothing/accessory/medal/gold/nanotrasen_consultant,
+/obj/item/clothing/accessory/medal/gold/ordom,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "uIM" = (
@@ -80839,10 +80876,13 @@
 "uNm" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
-/obj/machinery/status_display/ai/directional/west,
 /obj/structure/table/reinforced/titaniumglass,
 /obj/item/maneki_neko{
-	pixel_y = 4
+	pixel_y = 4;
+	pixel_x = -8
+	},
+/obj/item/piggy_bank/vault{
+	pixel_x = 8
 	},
 /turf/open/floor/circuit,
 /area/station/command/vault)
@@ -82104,6 +82144,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/light,
 /area/station/maintenance/solars/port/aft)
+"vdr" = (
+/obj/machinery/computer/bank_machine{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue/full,
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/station/command/vault)
 "vds" = (
 /obj/structure/table,
 /obj/item/paper_bin,
@@ -85077,9 +85127,7 @@
 /area/station/hallway/secondary/exit/departure_lounge)
 "vQR" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted,
-/turf/open/floor/iron/dark/side{
-	dir = 1
-	},
+/turf/open/floor/iron/dark,
 /area/station/command/vault)
 "vQY" = (
 /obj/effect/turf_decal/tile/brown/opposingcorners,
@@ -85145,9 +85193,9 @@
 /turf/open/floor/iron,
 /area/station/hallway/floor3/aft)
 "vRC" = (
-/obj/structure/disposalpipe/trunk/multiz,
-/turf/open/floor/plating,
-/area/station/maintenance/floor3/port/fore)
+/obj/structure/bookcase/random,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/nt_rep)
 "vRF" = (
 /obj/vehicle/sealed/mecha/ripley/paddy/preset,
 /turf/open/floor/iron/recharge_floor,
@@ -89121,6 +89169,12 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/commons/dorms/room3)
+"wNO" = (
+/obj/machinery/status_display/ai/directional/west,
+/obj/structure/closet/crate/goldcrate,
+/obj/effect/turf_decal/tile/blue/half/contrasted,
+/turf/open/floor/iron/dark,
+/area/station/command/vault)
 "wNR" = (
 /obj/machinery/airalarm/directional/west,
 /obj/structure/rack,
@@ -91037,13 +91091,7 @@
 "xpi" = (
 /obj/structure/sign/poster/official/random/directional/east,
 /obj/machinery/light/small/directional/south,
-/obj/structure/filingcabinet/security{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/employment,
-/obj/structure/filingcabinet/medical{
-	pixel_x = 10
-	},
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "xpk" = (
@@ -92113,12 +92161,6 @@
 /turf/open/floor/iron/white,
 /area/station/science/circuits)
 "xDy" = (
-/obj/machinery/nuclearbomb/selfdestruct,
-/obj/machinery/camera/motion/directional/south{
-	c_tag = "Vault";
-	network = list("vault")
-	},
-/obj/machinery/light/small/directional/south,
 /turf/open/floor/circuit,
 /area/station/command/vault)
 "xDC" = (
@@ -245444,7 +245486,7 @@ xxF
 riD
 lMR
 gwL
-vRC
+smJ
 iEg
 toH
 nhF
@@ -310463,10 +310505,10 @@ eCM
 nET
 eCM
 uNm
-vQR
-hEQ
+wNO
+uIz
+eWm
 uIx
-rhJ
 rhJ
 rhJ
 pTI
@@ -310722,8 +310764,8 @@ mWn
 uFw
 vQR
 xDy
+hEQ
 uIx
-nDu
 nDu
 nDu
 xSr
@@ -310977,11 +311019,11 @@ eCM
 evo
 eCM
 tVp
-vQR
+mpZ
 uIz
+vdr
 uIx
 oqx
-mpZ
 rUN
 rSK
 rao
@@ -311236,7 +311278,7 @@ eCM
 eCM
 eCM
 eCM
-uIx
+eCM
 voT
 nDu
 nDu
@@ -313801,7 +313843,7 @@ cfu
 rti
 vuU
 wgO
-rZb
+xYS
 acL
 jKF
 fXa
@@ -314058,7 +314100,7 @@ qND
 dfm
 tBq
 vnM
-xYS
+vRC
 ltC
 csj
 joH
