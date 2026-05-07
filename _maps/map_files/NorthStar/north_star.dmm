@@ -19321,23 +19321,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
-"eWm" = (
-/obj/structure/safe/vault,
-/obj/item/book{
-	desc = "An undeniably handy book.";
-	icon_state = "bookknock";
-	name = "\improper A Simpleton's Guide to Safe-cracking with Stethoscopes"
-	},
-/obj/effect/spawner/random/exotic/antag_gear_weak,
-/obj/effect/turf_decal/tile/blue/full,
-/obj/effect/turf_decal/bot_white,
-/obj/item/storage/belt/sheath/sabre/cargo,
-/obj/item/ammo_box/speedloader/c357,
-/obj/item/clothing/neck/stethoscope,
-/turf/open/floor/iron/dark/side{
-	dir = 1
-	},
-/area/station/command/vault)
 "eWC" = (
 /obj/machinery/airalarm/directional/south,
 /obj/structure/disposalpipe/segment{
@@ -29406,13 +29389,10 @@
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/aft)
 "hEQ" = (
-/obj/machinery/light/small/directional/south,
-/obj/machinery/camera/motion/directional/south{
-	c_tag = "Vault";
-	network = list("vault")
+/obj/effect/turf_decal/tile/blue/full,
+/turf/open/floor/iron/dark/side{
+	dir = 1
 	},
-/obj/machinery/nuclearbomb/selfdestruct,
-/turf/open/floor/circuit,
 /area/station/command/vault)
 "hFa" = (
 /obj/effect/decal/cleanable/dirt,
@@ -30652,20 +30632,22 @@
 /turf/open/floor/plating,
 /area/station/maintenance/floor3/starboard/aft)
 "hUR" = (
-/obj/effect/turf_decal/trimline/blue/line{
-	dir = 4
+/obj/structure/safe/vault,
+/obj/item/book{
+	desc = "An undeniably handy book.";
+	icon_state = "bookknock";
+	name = "\improper A Simpleton's Guide to Safe-cracking with Stethoscopes"
 	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/door/firedoor/heavy,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/command{
-	name = s
+/obj/effect/spawner/random/exotic/antag_gear_weak,
+/obj/effect/turf_decal/tile/blue/full,
+/obj/effect/turf_decal/bot_white,
+/obj/item/storage/belt/sheath/sabre/cargo,
+/obj/item/ammo_box/speedloader/c357,
+/obj/item/clothing/neck/stethoscope,
+/turf/open/floor/iron/dark/side{
+	dir = 1
 	},
-/obj/effect/mapping_helpers/airlock/access/any/command/teleporter,
-/turf/open/floor/iron/dark,
-/area/station/command/teleporter)
+/area/station/command/vault)
 "hUT" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/middle{
 	dir = 4
@@ -48119,11 +48101,9 @@
 /turf/open/floor/iron/dark,
 /area/station/service/library/garden)
 "mpZ" = (
-/obj/machinery/status_display/ai/directional/east,
-/obj/structure/closet/crate/silvercrate,
-/obj/effect/turf_decal/tile/blue/half/contrasted,
-/turf/open/floor/iron/dark,
-/area/station/command/vault)
+/obj/structure/bookcase/random,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/nt_rep)
 "mqc" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/middle,
 /obj/structure/girder/reinforced,
@@ -69869,6 +69849,15 @@
 	},
 /turf/open/floor/iron/dark/side,
 /area/station/hallway/floor1/aft)
+"rVf" = (
+/obj/machinery/light/small/directional/south,
+/obj/machinery/camera/motion/directional/south{
+	c_tag = "Vault";
+	network = list("vault")
+	},
+/obj/machinery/nuclearbomb/selfdestruct,
+/turf/open/floor/circuit,
+/area/station/command/vault)
 "rVi" = (
 /obj/machinery/firealarm/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -80426,7 +80415,11 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "uIz" = (
+/obj/machinery/computer/bank_machine{
+	dir = 1
+	},
 /obj/effect/turf_decal/tile/blue/full,
+/obj/effect/turf_decal/bot_white,
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
@@ -82144,16 +82137,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/light,
 /area/station/maintenance/solars/port/aft)
-"vdr" = (
-/obj/machinery/computer/bank_machine{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue/full,
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/iron/dark/side{
-	dir = 1
-	},
-/area/station/command/vault)
 "vds" = (
 /obj/structure/table,
 /obj/item/paper_bin,
@@ -85126,6 +85109,8 @@
 /turf/open/floor/grass,
 /area/station/hallway/secondary/exit/departure_lounge)
 "vQR" = (
+/obj/machinery/status_display/ai/directional/east,
+/obj/structure/closet/crate/silvercrate,
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /turf/open/floor/iron/dark,
 /area/station/command/vault)
@@ -85193,9 +85178,9 @@
 /turf/open/floor/iron,
 /area/station/hallway/floor3/aft)
 "vRC" = (
-/obj/structure/bookcase/random,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/nt_rep)
+/obj/effect/turf_decal/tile/blue/half/contrasted,
+/turf/open/floor/iron/dark,
+/area/station/command/vault)
 "vRF" = (
 /obj/vehicle/sealed/mecha/ripley/paddy/preset,
 /turf/open/floor/iron/recharge_floor,
@@ -310506,8 +310491,8 @@ nET
 eCM
 uNm
 wNO
-uIz
-eWm
+hEQ
+hUR
 uIx
 rhJ
 rhJ
@@ -310762,9 +310747,9 @@ oID
 fst
 mWn
 uFw
-vQR
+vRC
 xDy
-hEQ
+rVf
 uIx
 nDu
 nDu
@@ -311019,9 +311004,9 @@ eCM
 evo
 eCM
 tVp
-mpZ
+vQR
+hEQ
 uIz
-vdr
 uIx
 oqx
 rUN
@@ -314100,7 +314085,7 @@ qND
 dfm
 tBq
 vnM
-vRC
+mpZ
 ltC
 csj
 joH
@@ -315384,7 +315369,7 @@ dVk
 gxn
 ePJ
 pEO
-hUR
+pjH
 aId
 aId
 dKF
