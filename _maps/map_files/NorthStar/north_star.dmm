@@ -754,14 +754,22 @@
 /turf/open/floor/iron/dark,
 /area/station/maintenance/floor2/starboard/aft)
 "aje" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/safe/vault,
+/obj/item/book{
+	desc = "An undeniably handy book.";
+	icon_state = "bookknock";
+	name = "\improper A Simpleton's Guide to Safe-cracking with Stethoscopes"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/effect/spawner/random/exotic/antag_gear_weak,
+/obj/effect/turf_decal/tile/blue/full,
+/obj/effect/turf_decal/bot_white,
+/obj/item/storage/belt/sheath/sabre/cargo,
+/obj/item/ammo_box/speedloader/c357,
+/obj/item/clothing/neck/stethoscope,
+/turf/open/floor/iron/dark/side{
+	dir = 1
 	},
-/turf/open/floor/iron/dark/side,
-/area/station/hallway/floor2/aft)
+/area/station/command/vault)
 "ajg" = (
 /obj/item/stack/sheet/iron/five,
 /turf/open/floor/iron/dark/textured_large,
@@ -3425,15 +3433,13 @@
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (KEEP OUT)"
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 8
 	},
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/wood,
 /area/station/service/abandoned_gambling_den)
 "aTl" = (
@@ -7540,11 +7546,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/kitchen,
 /area/station/service/kitchen)
-"bSg" = (
-/obj/structure/grille,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/station/service/chapel/funeral)
 "bSi" = (
 /obj/machinery/door/airlock/external{
 	name = "Labor Camp Shuttle Airlock";
@@ -15414,9 +15415,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/iron/dark/side,
 /area/station/hallway/floor2/aft)
@@ -18068,11 +18066,9 @@
 	name = "Ancient Office"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/command/gateway,
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (KEEP OUT)"
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/wood/large,
 /area/station/maintenance/floor4/starboard/aft)
 "eEf" = (
@@ -28437,10 +28433,10 @@
 	name = "Maintenance Hatch"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/structure/barricade/wooden/snowed,
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 4
 	},
+/obj/structure/barricade/wooden/crude/snow,
 /turf/open/floor/pod/light,
 /area/station/maintenance/floor2/port/aft)
 "hss" = (
@@ -30632,22 +30628,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/floor3/starboard/aft)
 "hUR" = (
-/obj/structure/safe/vault,
-/obj/item/book{
-	desc = "An undeniably handy book.";
-	icon_state = "bookknock";
-	name = "\improper A Simpleton's Guide to Safe-cracking with Stethoscopes"
-	},
-/obj/effect/spawner/random/exotic/antag_gear_weak,
-/obj/effect/turf_decal/tile/blue/full,
-/obj/effect/turf_decal/bot_white,
-/obj/item/storage/belt/sheath/sabre/cargo,
-/obj/item/ammo_box/speedloader/c357,
-/obj/item/clothing/neck/stethoscope,
-/turf/open/floor/iron/dark/side{
-	dir = 1
-	},
-/area/station/command/vault)
+/obj/structure/bookcase/random,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/nt_rep)
 "hUT" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/middle{
 	dir = 4
@@ -31993,9 +31976,7 @@
 	pixel_y = -23
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
+/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
 "inq" = (
@@ -36567,7 +36548,7 @@
 /obj/effect/turf_decal/tile/blue/anticorner,
 /obj/machinery/door/window/left/directional/east{
 	req_access = list("ai_upload");
-	name = "AI core door"
+	name = "AI Core Access"
 	},
 /turf/open/floor/iron/dark/side{
 	dir = 6
@@ -36808,18 +36789,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/white/herringbone,
 /area/station/medical/patients_rooms)
-"jzP" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/iron,
-/area/station/cargo/storage)
 "jzV" = (
 /obj/effect/turf_decal/trimline/green/filled/line,
 /turf/open/floor/iron,
@@ -38412,17 +38381,15 @@
 /turf/open/floor/pod/light,
 /area/station/maintenance/floor1/starboard)
 "jWi" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/machinery/computer/bank_machine{
+	dir = 1
 	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/effect/turf_decal/tile/blue/full,
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/iron/dark/side{
+	dir = 1
 	},
-/turf/open/floor/catwalk_floor,
-/area/station/maintenance/floor1/port/fore)
+/area/station/command/vault)
 "jWm" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/red/line,
@@ -44721,7 +44688,7 @@
 	},
 /obj/machinery/door/window/left/directional/west{
 	req_access = list("ai_upload");
-	name = "AI core door"
+	name = "AI Core Access"
 	},
 /turf/open/floor/iron/dark/side{
 	dir = 10
@@ -44917,9 +44884,6 @@
 /turf/open/floor/iron/white,
 /area/station/science/lab)
 "lCG" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -48101,9 +48065,11 @@
 /turf/open/floor/iron/dark,
 /area/station/service/library/garden)
 "mpZ" = (
-/obj/structure/bookcase/random,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/nt_rep)
+/obj/machinery/status_display/ai/directional/east,
+/obj/structure/closet/crate/silvercrate,
+/obj/effect/turf_decal/tile/blue/half/contrasted,
+/turf/open/floor/iron/dark,
+/area/station/command/vault)
 "mqc" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/middle,
 /obj/structure/girder/reinforced,
@@ -49802,15 +49768,13 @@
 	name = "Abandoned Hangar"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/command/gateway,
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (KEEP OUT)"
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
 	},
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/pod/light,
 /area/station/maintenance/floor4/starboard/aft)
 "mMm" = (
@@ -52422,12 +52386,10 @@
 	name = "Abandoned Ship Storage"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/command/gateway,
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (KEEP OUT)"
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/pod,
 /area/station/maintenance/floor4/starboard/aft)
 "ntq" = (
@@ -52705,9 +52667,7 @@
 /obj/structure/cable,
 /obj/machinery/firealarm/directional/south,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
+/obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
 "nxe" = (
@@ -69849,15 +69809,6 @@
 	},
 /turf/open/floor/iron/dark/side,
 /area/station/hallway/floor1/aft)
-"rVf" = (
-/obj/machinery/light/small/directional/south,
-/obj/machinery/camera/motion/directional/south{
-	c_tag = "Vault";
-	network = list("vault")
-	},
-/obj/machinery/nuclearbomb/selfdestruct,
-/turf/open/floor/circuit,
-/area/station/command/vault)
 "rVi" = (
 /obj/machinery/firealarm/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -73549,9 +73500,7 @@
 /obj/machinery/door/airlock/command{
 	name = "Abandoned Bunks"
 	},
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (KEEP OUT)"
-	},
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/iron,
 /area/station/maintenance/floor4/starboard)
 "sUI" = (
@@ -80415,14 +80364,13 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "uIz" = (
-/obj/machinery/computer/bank_machine{
-	dir = 1
+/obj/machinery/light/small/directional/south,
+/obj/machinery/camera/motion/directional/south{
+	c_tag = "Vault";
+	network = list("vault")
 	},
-/obj/effect/turf_decal/tile/blue/full,
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/iron/dark/side{
-	dir = 1
-	},
+/obj/machinery/nuclearbomb/selfdestruct,
+/turf/open/floor/circuit,
 /area/station/command/vault)
 "uID" = (
 /obj/structure/railing/corner{
@@ -85109,8 +85057,6 @@
 /turf/open/floor/grass,
 /area/station/hallway/secondary/exit/departure_lounge)
 "vQR" = (
-/obj/machinery/status_display/ai/directional/east,
-/obj/structure/closet/crate/silvercrate,
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /turf/open/floor/iron/dark,
 /area/station/command/vault)
@@ -85177,10 +85123,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/station/hallway/floor3/aft)
-"vRC" = (
-/obj/effect/turf_decal/tile/blue/half/contrasted,
-/turf/open/floor/iron/dark,
-/area/station/command/vault)
 "vRF" = (
 /obj/vehicle/sealed/mecha/ripley/paddy/preset,
 /turf/open/floor/iron/recharge_floor,
@@ -116450,7 +116392,7 @@ gqU
 uOT
 hJy
 fTb
-jWi
+qAK
 dnx
 nRP
 sIv
@@ -118748,7 +118690,7 @@ jUP
 gVm
 kYR
 rIy
-jzP
+hNB
 sAI
 bXB
 npD
@@ -197660,7 +197602,7 @@ sKm
 sKm
 jEk
 jLQ
-aje
+aWc
 grN
 aTc
 gxi
@@ -310492,7 +310434,7 @@ eCM
 uNm
 wNO
 hEQ
-hUR
+aje
 uIx
 rhJ
 rhJ
@@ -310747,9 +310689,9 @@ oID
 fst
 mWn
 uFw
-vRC
+vQR
 xDy
-rVf
+uIz
 uIx
 nDu
 nDu
@@ -311004,9 +310946,9 @@ eCM
 evo
 eCM
 tVp
-vQR
+mpZ
 hEQ
-uIz
+jWi
 uIx
 oqx
 rUN
@@ -314085,7 +314027,7 @@ qND
 dfm
 tBq
 vnM
-mpZ
+hUR
 ltC
 csj
 joH
@@ -333335,10 +333277,10 @@ fVV
 fVV
 fVV
 fVV
-bSg
-bSg
-bSg
-bSg
+aiL
+aiL
+aiL
+aiL
 fVV
 iKD
 fVV
