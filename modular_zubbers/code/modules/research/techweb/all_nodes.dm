@@ -71,7 +71,7 @@
 		"limbdesign_tajaran",
 	)
 
-/datum/techweb_node/cyber/cyber_implants
+/datum/techweb_node/cyber/cyber_implants/New()
 	. = ..()
 	design_ids += list(
 		"wound_scanner_internal"
