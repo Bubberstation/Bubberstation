@@ -6,7 +6,7 @@
 	slot = ORGAN_SLOT_BRAIN_AID
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "cpu_super"
-	//actions_types = list(/datum/action/item_action/organ_action/use/fakescanner)
+	actions_types = list(/datum/action/item_action/organ_action/use/fakescanner)
 	w_class = WEIGHT_CLASS_SMALL
 	var/obj/item/healthanalyzer/simple/fakescanner
 
