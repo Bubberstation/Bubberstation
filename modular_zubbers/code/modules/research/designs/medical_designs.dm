@@ -22,8 +22,9 @@
 	id = "wound_scanner_internal"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(
-	/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5,
+	/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5,
 	/datum/material/glass =SHEET_MATERIAL_AMOUNT*2,
+	/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
 	)
 	build_path = /obj/item/organ/cyberimp/brain/wound_scanner
 	category = list(

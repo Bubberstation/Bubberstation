@@ -304,4 +304,9 @@
 	design_ids -= list(
 		"borg_upgrade_pinpointer",
 	)
+ /datum/techweb_node/cyber/cyber_implants
+	. = ..()
+	design_ids += list(
+		"wound_scanner_internal"
+	)
 	return ..()
