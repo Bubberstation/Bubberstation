@@ -15,7 +15,7 @@
 	//Reference: Laser Gun 22 damage per 0.4 seconds = 55DPS
 
 /obj/item/gun/ballistic/automatic/wt550/burst
-	name = "\improper WT-552 Autoburstrifle"
+	name = "\improper WT-550-B Autoburstrifle"
 	desc = "A WT-550-based platform typically used by paramilitary troops. Outfitted with a long barrel, heavy frame, angled foregrip and a two-shot burst trigger mechanism. Seems to perform overall better than the average autorifle. Has a threaded barrel for suppressors. Uses 4.6x30mm rounds."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/wt550b.dmi'
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
@@ -31,14 +31,14 @@
 	AddComponent(/datum/component/automatic_fire, 0.5 SECONDS)
 
 /obj/item/gun/ballistic/automatic/wt550/dmr
-	name = "\improper WT-553 DMAR"
+	name = "\improper WT-550-C DMAR"
 	desc = "A WT-550-based platform typically used by paramilitary support gunners. Outfitted with the longest barrel and custom trigger to enhance performance while reducing fire rate. Equipped with a custom scope and a threaded barrel for suppressors. Uses 4.6x30mm rounds."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/wt550dmr.dmi'
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
 	weapon_weight = WEAPON_HEAVY
 	can_suppress = TRUE
 	slot_flags = ITEM_SLOT_BACK
-	projectile_damage_multiplier = 1.5 // 30 damage + wounding at half the firerate
+	projectile_damage_multiplier = 1.5 // 30 damage base + wounding at half the firerate
 	projectile_speed_multiplier = 1.5
 	projectile_wound_bonus = 10
 	burst_delay = 3
@@ -62,4 +62,4 @@
 	
 /obj/item/gun/ballistic/automatic/wt550/sawnoff/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.125 SECONDS)
+	AddComponent(/datum/component/automatic_fire, 0.15 SECONDS)

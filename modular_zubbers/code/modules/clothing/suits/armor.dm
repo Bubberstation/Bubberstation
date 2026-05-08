@@ -142,7 +142,8 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, TRAIT_PUSHIMMUNE, TRAIT_NEGATES_GRAVITY, TRAIT_NO_SLIP_WATER, TRAIT_NO_VEHICLE, TRAIT_HUGE_CLOTHES)
 	allowed = list(
-		/obj/item/gun/ballistic/shotgun/automatic/combat
+		/obj/item/gun/ballistic/shotgun/automatic/combat,
+		/obj/item/shield
 	)
 
 /obj/item/clothing/suit/hooded/secjuggernaut/Initialize(mapload)
