@@ -53,6 +53,6 @@
 /datum/supply_pack/goody/protector_revolver_single
 	name = "'Protector' Service Revolver Single-Pack"
 	desc = "A single 'Protector' revolver. Uses 'Murphy' ammo, sold separately"
-	cost = PAYCHECK_CREW * 6
+	cost = PAYCHECK_COMMAND * 5
 	contains = list(/obj/item/gun/ballistic/revolver/protector_revolver = 1)
 	access_view = ACCESS_WEAPONS

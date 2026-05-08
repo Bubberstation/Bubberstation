@@ -227,7 +227,7 @@
 /datum/supply_pack/goody/defender_revolver
 	name = "'Defender' Revolver Single-Pack"
 	desc = "Contains one 'Defender' revolver. Cheap and prone to the occasional misfire. Fires .38 rounds.'"
-	cost = PAYCHECK_COMMAND * 4
+	cost = PAYCHECK_COMMAND * 3
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/ballistic/revolver/defender_revolver)
 
