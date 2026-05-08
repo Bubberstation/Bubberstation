@@ -241,7 +241,10 @@
 			if(FORGE_EFFECT_FORCE)
 				incomplete_maximum_penalty = initial(item.force) * -1
 			if(FORGE_EFFECT_REAGENT_INJECT)
-
+				var/datum/component/reagent_imbued/reagent_component = item.GetComponent(/datum/component/reagent_imbued)
+				if(!isnull(reagent_component))
+					stack_trace("[item] has an invalid reagent imbue-enhancing effect, because it has no reagent component!")
+				incomplete_maximum_penalty = initial(reagent_component.inject_amount) * -1
 			else
 				stack_trace("Tried to modify [item] with an invalid effect [forge_effect]!")
 		give_added_modifying_effect_to_item(index, last_smithing_oil_ratio_applied, new_oil_ratio, parent_item, incomplete_maximum_penalty)
