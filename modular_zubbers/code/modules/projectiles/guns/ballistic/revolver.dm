@@ -42,6 +42,7 @@
 	bolt_type = BOLT_TYPE_NO_BOLT
 	tac_reloads = FALSE
 	w_class = WEIGHT_CLASS_SMALL
+	projectile_damage_multiplier = 0.9
 	force = 9 //slightly worse than murphy/batong
 
 //JAM CODE
