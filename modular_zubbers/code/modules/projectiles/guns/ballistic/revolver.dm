@@ -28,7 +28,7 @@
 
 /obj/item/gun/ballistic/revolver/defender_revolver
 	name = "\improper 'Defender' revolver"
-	desc = "The Defender is a cheap, subpar Martian made knockoff of the Protector series, albeit street lore is that both came out of the same factories. Fires .38 rounds, prone to misfire on occasion due to its cheap construction."
+	desc = "The Defender is a cheap, subpar Martian made knockoff of the Protector series, albeit street lore is that both came out of the same factories. Fires .38 rounds, prone to misfire on occasion due to its cheap construction. The shorter barrel slightly reduces the round's power."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "niimpocketrevolver_civvie"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/defender38
