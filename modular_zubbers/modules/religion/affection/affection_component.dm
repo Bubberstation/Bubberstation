@@ -1,5 +1,6 @@
 /datum/component/affection_favor
 	var/datum/religion_sect/affection/favor_destination
+	var/favor_gain = 1
 
 /datum/component/affection_favor/Initialize(datum/religion_sect/affection/destination)
 	. = ..()
@@ -19,7 +20,7 @@
 	if(receiver.body_position == LYING_DOWN)
 		return
 
-	favor_destination.adjust_favor(5, parent)
+	favor_destination.adjust_favor(favor_gain, parent)
 
 /datum/component/affection_favor/proc/interaction_paneled(mob/living/receiver, mob/living/helper)
 	SIGNAL_HANDLER
@@ -27,4 +28,4 @@
 	if(receiver == helper)
 		return
 
-	favor_destination.adjust_favor(5, parent)
+	favor_destination.adjust_favor(favor_gain, parent)
