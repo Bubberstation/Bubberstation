@@ -8,7 +8,7 @@
 	if(!HAS_TRAIT(src, TRAIT_NO_UNDERWEAR))
 		// underwear
 		if(underwear && !(underwear_visibility & UNDERWEAR_HIDE_UNDIES))
-			var/datum/sprite_accessory/underwear/underwear_accessory = SSaccessories.underwear_list[underwear]
+			var/datum/sprite_accessory/clothing/underwear/underwear_accessory = SSaccessories.underwear_list[underwear]
 			var/mutable_appearance/underwear_overlay
 			var/female_sprite_flags = FEMALE_UNIFORM_FULL // the default gender shaping
 			if(underwear_accessory)

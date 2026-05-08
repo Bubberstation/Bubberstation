@@ -369,141 +369,141 @@
 	use_static = TRUE
 	erp_accessory = TRUE
 
-/datum/sprite_accessory/underwear
+/datum/sprite_accessory/clothing/underwear
 	icon = 'modular_skyrat/master_files/icons/mob/clothing/underwear.dmi'
 	///Whether the underwear uses a special sprite for digitigrade style (i.e. briefs, not panties). Adds a "_d" suffix to the icon state
 	var/has_digitigrade = FALSE
 	///Whether this underwear includes a top (Because gender = FEMALE doesn't actually apply here.). Hides breasts, nothing more.
 	var/hides_breasts = FALSE
 
-/datum/sprite_accessory/underwear/male_bee
+/datum/sprite_accessory/clothing/underwear/male_bee
 	name = "Boxers - Bee"
 	icon_state = "bee_shorts"
 	has_digitigrade = TRUE
 	gender = MALE
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/panties_basic
+/datum/sprite_accessory/clothing/underwear/panties_basic
 	name = "Panties - Basic"
 	icon_state = "panties"
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/female_beekini
+/datum/sprite_accessory/clothing/underwear/female_beekini
 	name = "Panties - Bee-kini"
 	icon_state = "panties_bee-kini"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/fishnet_lower
+/datum/sprite_accessory/clothing/underwear/fishnet_lower
 	name = "Panties - Fishnet"
 	icon_state = "fishnet_lower"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/fishnet_lower/alt
+/datum/sprite_accessory/clothing/underwear/fishnet_lower/alt
 	name = "Panties - Fishnet (Greyscale)"
 	icon_state = "fishnet_lower_alt"
 	use_static = null
 
-/datum/sprite_accessory/underwear/female_beekini
+/datum/sprite_accessory/clothing/underwear/female_beekini
 	name = "Panties - Bee-kini"
 	icon_state = "panties_bee-kini"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/female_commie
+/datum/sprite_accessory/clothing/underwear/female_commie
 	name = "Panties - Commie"
 	icon_state = "panties_commie"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/female_usastripe
+/datum/sprite_accessory/clothing/underwear/female_usastripe
 	name = "Panties - Freedom"
 	icon_state = "panties_assblastusa"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/female_kinky
+/datum/sprite_accessory/clothing/underwear/female_kinky
 	name = "Panties - Kinky Black"
 	icon_state = "panties_kinky"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/panties_uk
+/datum/sprite_accessory/clothing/underwear/panties_uk
 	name = "Panties - UK"
 	icon_state = "panties_uk"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/panties_neko
+/datum/sprite_accessory/clothing/underwear/panties_neko
 	name = "Panties - Neko"
 	icon_state = "panties_neko"
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/panties_slim
+/datum/sprite_accessory/clothing/underwear/panties_slim
 	name = "Panties - Slim"
 	icon_state = "panties_slim"
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/striped_panties
+/datum/sprite_accessory/clothing/underwear/striped_panties
 	name = "Panties - Striped"
 	icon_state = "striped_panties"
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/panties_swimsuit
+/datum/sprite_accessory/clothing/underwear/panties_swimsuit
 	name = "Panties - Swimsuit"
 	icon_state = "panties_swimming"
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/panties_thin
+/datum/sprite_accessory/clothing/underwear/panties_thin
 	name = "Panties - Thin"
 	icon_state = "panties_thin"
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/swimsuit_red
+/datum/sprite_accessory/clothing/underwear/swimsuit_red
 	name = "Swimsuit, One Piece - Red"
 	icon_state = "swimming_red"
 	gender = FEMALE
 	use_static = TRUE
 	hides_breasts = TRUE
 
-/datum/sprite_accessory/underwear/swimsuit
+/datum/sprite_accessory/clothing/underwear/swimsuit
 	name = "Swimsuit, One Piece - Black"
 	icon_state = "swimming_black"
 	gender = FEMALE
 	use_static = TRUE
 	hides_breasts = TRUE
 
-/datum/sprite_accessory/underwear/swimsuit_blue
+/datum/sprite_accessory/clothing/underwear/swimsuit_blue
 	name = "Swimsuit, One Piece - Striped Blue"
 	icon_state = "swimming_blue"
 	gender = FEMALE
 	use_static = TRUE
 	hides_breasts = TRUE
 
-/datum/sprite_accessory/underwear/thong
+/datum/sprite_accessory/clothing/underwear/thong
 	name = "Thong"
 	icon_state = "thong"
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/thong_babydoll
+/datum/sprite_accessory/clothing/underwear/thong_babydoll
 	name = "Thong - Alt"
 	icon_state = "thong_babydoll"
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/chastbelt
+/datum/sprite_accessory/clothing/underwear/chastbelt
 	name = "Chastity Belt"
 	icon_state = "chastbelt"
 	use_static = TRUE
 	erp_accessory = TRUE
 
-/datum/sprite_accessory/underwear/chastcage
+/datum/sprite_accessory/clothing/underwear/chastcage
 	name = "Chastity Cage"
 	icon_state = "chastcage"
 	use_static = null
 	erp_accessory = TRUE
 
-/datum/sprite_accessory/underwear/latex
+/datum/sprite_accessory/clothing/underwear/latex
 	name = "Panties - Latex"
 	icon_state = "panties_latex"
 	use_static = TRUE
@@ -514,19 +514,19 @@
 	icon_state = "lizared_top"
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/lizared
+/datum/sprite_accessory/clothing/underwear/lizared
 	name = "LIZARED Underwear"
 	icon_state = "lizared"
 	use_static = TRUE
 	hides_breasts = TRUE
 
-/datum/sprite_accessory/underwear/boyshorts
+/datum/sprite_accessory/clothing/underwear/boyshorts
 	name = "Boyshorts"
 	icon_state = "boyshorts"
 	has_digitigrade = TRUE
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/boyshorts_alt
+/datum/sprite_accessory/clothing/underwear/boyshorts_alt
 	name = "Boyshorts (Alt)"
 	icon_state = "boyshorts_alt"
 	gender = FEMALE
@@ -535,18 +535,18 @@
 	Adding hides_breasts to TG underwears where applicable
 */
 
-/datum/sprite_accessory/underwear/swimsuit_onepiece
+/datum/sprite_accessory/clothing/underwear/swimsuit_onepiece
 	name = "One-Piece Swimsuit"
 	icon_state = "swim_onepiece"
 	gender = FEMALE
 	hides_breasts = TRUE
 
-/datum/sprite_accessory/underwear/swimsuit_strapless_onepiece
+/datum/sprite_accessory/clothing/underwear/swimsuit_strapless_onepiece
 	name = "Strapless One-Piece Swimsuit"
 	icon_state = "swim_strapless_onepiece"
 	gender = FEMALE
 	hides_breasts = TRUE
-/datum/sprite_accessory/underwear/swimsuit_stripe
+/datum/sprite_accessory/clothing/underwear/swimsuit_stripe
 	name = "Strapless Striped Swimsuit"
 	icon_state = "swim_stripe"
 	gender = FEMALE
@@ -556,31 +556,31 @@
 /*
 	End of adding hides_breasts to TG stuff, start of adding has_digitigrade to TG stuff
 */
-/datum/sprite_accessory/underwear/male_briefs
+/datum/sprite_accessory/clothing/underwear/male_briefs
 	has_digitigrade = TRUE
 
-/datum/sprite_accessory/underwear/male_boxers
+/datum/sprite_accessory/clothing/underwear/male_boxers
 	has_digitigrade = TRUE
 
-/datum/sprite_accessory/underwear/male_stripe
+/datum/sprite_accessory/clothing/underwear/male_stripe
 	has_digitigrade = TRUE
 
-/datum/sprite_accessory/underwear/male_midway
+/datum/sprite_accessory/clothing/underwear/male_midway
 	has_digitigrade = TRUE
 
-/datum/sprite_accessory/underwear/male_longjohns
+/datum/sprite_accessory/clothing/underwear/male_longjohns
 	has_digitigrade = TRUE
 
-/datum/sprite_accessory/underwear/male_hearts
+/datum/sprite_accessory/clothing/underwear/male_hearts
 	has_digitigrade = TRUE
 
-/datum/sprite_accessory/underwear/male_commie
+/datum/sprite_accessory/clothing/underwear/male_commie
 	has_digitigrade = TRUE
 
-/datum/sprite_accessory/underwear/male_usastripe
+/datum/sprite_accessory/clothing/underwear/male_usastripe
 	has_digitigrade = TRUE
 
-/datum/sprite_accessory/underwear/male_uk
+/datum/sprite_accessory/clothing/underwear/male_uk
 	has_digitigrade = TRUE
 
 /*

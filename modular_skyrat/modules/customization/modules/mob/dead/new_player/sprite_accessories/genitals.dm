@@ -35,7 +35,7 @@
 
 			//Undershirt didn't cover them, are they wearing Underwear?
 			if(target_mob.underwear != "Nude" && !(target_mob.underwear_visibility & UNDERWEAR_HIDE_UNDIES))
-				var/datum/sprite_accessory/underwear/worn_underwear = SSaccessories.underwear_list[target_mob.underwear]
+				var/datum/sprite_accessory/clothing/underwear/worn_underwear = SSaccessories.underwear_list[target_mob.underwear]
 				//Does this Underwear cover a relevant slot?
 				if(genital_location == GROIN) //(Underwear always covers groin)
 					return TRUE
