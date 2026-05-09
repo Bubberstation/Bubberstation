@@ -21,7 +21,8 @@
 	var/static/list/value_to_define = list(
 		"Shoes" = FOOTSTEP_MOB_SHOE,
 		"Claws" = FOOTSTEP_MOB_CLAW,
-		"Slither" = 'modular_zubbers/sound/effects/footstep/crawl.ogg',
+		"Slither" = list(list(
+			'sound/effects/footstep/crawl1.ogg'), 40, 1),
 		"Highheels" = list(list(
 			'modular_zubbers/sound/effects/footstep/highheel1.ogg',
 			'modular_zubbers/sound/effects/footstep/highheel2.ogg',
