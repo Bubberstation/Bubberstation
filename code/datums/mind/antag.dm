@@ -86,7 +86,7 @@
  * Returns the item found, or null if no item was found.
  */
 /mob/living/carbon/proc/get_uplink_location(desired_location = UPLINK_PDA)
-	//BUBBER EDIT BEGIN
+	//BUBBER EDIT BEGIN - original line is var/list/all_contents = get_all_contents()
 	var/list/all_contents = typecache_filter_list_reverse(get_all_contents(), GLOB.invalid_uplink_location)
 	//BUBBER EDIT END
 	var/obj/item/modular_computer/pda/my_pda = locate() in all_contents
