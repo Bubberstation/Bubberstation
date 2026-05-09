@@ -220,10 +220,11 @@
 	for(var/path in easy_access_sect.rites_list)
 		///checks to invalidate
 		var/list/rite = list()
-		var/datum/religion_rites/rite_type = path
+		var/datum/religion_rites/rite_type = new path(parent) //BUBBER CHANGE: var/datum/religion_rites/rite_type = path
 		rite["name"] = initial(rite_type.name)
 		rite["desc"] = initial(rite_type.desc)
-		var/cost = initial(rite_type.favor_cost)
+		var/cost = rite_type.get_favor_cost() //BUBBER CHANGE: var/cost = initial(rite_type.favor_cost)
+		qdel(rite_type) //BUBBER ADDITION
 		rite["favor"] = cost
 		rite["can_cast"] = cost > easy_access_sect.favor
 		rite["path"] = path

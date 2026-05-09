@@ -4,9 +4,13 @@
 	name = "Affection God"
 	quote = "A gentle touch is where true strength lies."
 	desc = "Receiving affection grants you favor. Headpats, Hugs, and Tail-tugs are all fair game."
-	rites_list = list()
+	rites_list = list(
+		/datum/religion_rites/upgrade_favor_gain,
+	)
 	smack_chance = 0
 	var/maximum_healed_per_bless = 10
+	var/favor_gain = 1
+	var/favor_gain_upgrade_cost = 10
 
 /datum/religion_sect/affection/on_conversion(mob/living/chap)
 	. = ..()
