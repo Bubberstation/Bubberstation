@@ -15,7 +15,7 @@
 	bolt_type = BOLT_TYPE_NO_BOLT
 	tac_reloads = FALSE
 	w_class = WEIGHT_CLASS_SMALL
-	force = 9 //slightly worse than murphy/batong
+	force = 9.5 //slightly worse than murphy/batong
 
 /obj/item/gun/ballistic/revolver/protector_revolver/add_seclight_point()
 	// The revolver's light comes attached but is unremovable.
@@ -28,7 +28,7 @@
 
 /obj/item/gun/ballistic/revolver/defender_revolver
 	name = "\improper 'Defender' revolver"
-	desc = "The Defender is a cheap, subpar Martian made knockoff of the Protector series, albeit street lore is that both came out of the same factories. Fires .38 rounds, prone to misfire on occasion due to its cheap construction. The shorter barrel slightly reduces the round's power."
+	desc = "The Defender is a cheap, subpar Martian made knockoff of the Protector series, albeit street lore is that both came out of the same factories. Fires .38 rounds. The poor quality of the machining slightly reduces the round's power and accuracy."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "niimpocketrevolver_civvie"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/defender38
@@ -43,30 +43,5 @@
 	tac_reloads = FALSE
 	w_class = WEIGHT_CLASS_SMALL
 	projectile_damage_multiplier = 0.9
-	force = 9 //slightly worse than murphy/batong
-
-//JAM CODE
-	var/jammed = FALSE
-	var/can_jam = TRUE
-	var/jamming_chance = 10
-	var/unjam_chance = 100
-
-/obj/item/gun/ballistic/revolver/defender_revolver/attack_self(mob/user)
-	if(jammed)
-		if(prob(unjam_chance))
-			jammed = FALSE
-			unjam_chance = initial(unjam_chance)
-		else
-			balloon_alert(user, "misfire!")
-			playsound(user,'sound/items/weapons/gun/revolver/dry_fire.ogg', 75, TRUE)
-			return FALSE
-	return ..()
-
-/obj/item/gun/ballistic/revolver/defender_revolver/process_fire(mob/user)
-	if(can_jam)
-		if(chambered.loaded_projectile)
-			if(prob(jamming_chance))
-				jammed = TRUE
-			jamming_chance = clamp (jamming_chance, 0, 100)
-	return ..()
-//JAM CODE END
+	spread = 10
+	force = 9.5 //slightly worse than murphy/batong
