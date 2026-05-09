@@ -46,7 +46,7 @@
 		return
 
 	for(var/mob/living/carbon/human/sub in hearers(world.view / 2, quirk_holder))
-		if(!sub.has_quirk(/datum/quirk/well_trained) || (sub == quirk_holder))
+		if(!sub.has_quirk(/datum/quirk/well_trained) || (sub == quirk_holder) || (HAS_TRAIT(sub, TRAIT_QUICKREFLEXES)))
 			continue
 		if(sub.stat == DEAD)
 			continue
@@ -80,7 +80,7 @@
 
 //Gotta check for borg module
 	for(var/mob/living/silicon/robot/borg_sub in hearers(world.view / 2, quirk_holder))
-		if(!borg_sub.has_quirk(/datum/quirk/well_trained) || (borg_sub == quirk_holder))
+		if(!borg_sub.has_quirk(/datum/quirk/well_trained) || (borg_sub == quirk_holder) || (HAS_TRAIT(borg_sub, TRAIT_QUICKREFLEXES)))
 			continue
 		if(borg_sub.stat == DEAD)
 			continue
