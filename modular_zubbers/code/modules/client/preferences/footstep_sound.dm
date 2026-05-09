@@ -4,7 +4,7 @@
 	savefile_key = "footstep_sound"
 
 /datum/preference/choiced/footstep_sound/init_possible_values()
-	return list("Default", "Shoes", "Highheels", "Claws", "Hooves")
+	return list("Default", "Shoes", "Slither", "Highheels", "Claws", "Hooves")
 
 /datum/preference/choiced/footstep_sound/create_default_value()
 	return "Default"
