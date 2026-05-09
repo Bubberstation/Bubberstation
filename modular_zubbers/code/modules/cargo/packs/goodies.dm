@@ -223,3 +223,16 @@
 	desc = "Donksoft's pop-up blaster is great for annoying coworkers. Pack contains one implant and a mini box of spare darts."
 	cost = PAYCHECK_CREW * 8
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/foamforce_implant, /obj/item/ammo_box/foambox/mini)
+
+/datum/supply_pack/goody/miecz
+	name = "Miecz Submachinegun Single-Pack"
+	desc = "Contains one Miecz Submachinegun, one of the newest guns to make it out of the PSC. Due to import fees and general rarity, this one's gonna be expensive. Contains two magazines, as well."
+	cost = PAYCHECK_COMMAND * 10*1.25
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/ballistic/automatic/miecz, /obj/item/ammo_box/magazine/miecz, /obj/item/ammo_box/magazine/miecz)
+
+/datum/supply_pack/goody/mieczmag
+	name = "Miecz Submachinegun Magazine Goodie Pack"
+	desc = "Contains a single magazine for the Miecz Submachinegun."
+	cost = PAYCHECK_COMMAND * 1.5
+	contains = list(/obj/item/ammo_box/magazine/miecz)
