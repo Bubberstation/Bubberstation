@@ -169,7 +169,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	if(!loadout?[item_path])
 		return FALSE
 
-	var/chosen_color = tgui_color_picker(user, "Pick new color. Setting color to pitch black will remove exiting color.", "Repaint item", "#000000")
+	var/chosen_color = tgui_color_picker(user, "Pick new color. Setting color to pitch black will remove the existing color.", "Repaint item", "#000000")
 	if(isnull(chosen_color))
 		return FALSE
 
