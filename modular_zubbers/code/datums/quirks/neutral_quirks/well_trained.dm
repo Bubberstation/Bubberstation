@@ -8,7 +8,7 @@
 	lose_text = "<span class='notice'>You no longer feel like being a pet...</span>"
 	quirk_flags = QUIRK_HIDE_FROM_SCAN | QUIRK_PROCESSES
 	erp_quirk = TRUE
-	var/mob/living/carbon/human/last_dom
+	var/mob/living/last_dom
 
 /datum/quirk_constant_data/well_trained
 	associated_typepath = /datum/quirk/well_trained
@@ -127,13 +127,17 @@
 		return
 	if(!quirk_holder)
 		return
+	if(!quirk_holder.client.prefs.read_preference(/datum/preference/toggle/well_trained/sub_sense_dom))
+		return //otherwise subs that disable this effect will be permanently mood debuffed
 	. = FALSE
 	// handles calculating nearby dominant quirk holders.
-	var/list/mob/living/carbon/human/doms = viewers(world.view / 2, quirk_holder)
+	var/list/mob/living/carbon/human/humandoms = viewers(world.view / 2, quirk_holder)
+	var/list/mob/living/silicon/robot/robodoms = viewers(world.view / 2, quirk_holder)
+	var/list/mob/living/doms = humandoms + robodoms
 	var/closest_distance
-	for(var/mob/living/carbon/human/dom in doms)
+	for(var/mob/living/dom in doms)
 		if(dom != quirk_holder && dom.has_quirk(/datum/quirk/dominant_aura)) // Does the detected players have dom aura quirk and is not src player
-			if(check_if_sub_dom_mutually_preferred(dom) && (quirk_holder.client.prefs.read_preference(/datum/preference/toggle/well_trained/sub_sense_dom) && dom.client.prefs.read_preference(/datum/preference/toggle/dominant_aura/sub_sense_dom))) // Do we like each others' genders, and do we both want the aura mechanic
+			if(check_if_sub_dom_mutually_preferred(dom) && dom.client.prefs.read_preference(/datum/preference/toggle/dominant_aura/sub_sense_dom)) // Do we like each others' genders, and does the dom want the aura mechanic
 				if(!closest_distance || get_dist(quirk_holder, dom) <= closest_distance) // If original dom is not closest, set a new one
 					. = dom // set parent to new dom.
 					closest_distance = get_dist(quirk_holder, dom) // set new closest distance.
