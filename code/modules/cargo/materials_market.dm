@@ -50,9 +50,6 @@
 	if(!isstack(exportable))
 		return
 
-	balloon_alert(user, "export not available!")
-	return ITEM_INTERACT_FAILURE
-
 	if(!is_operational)
 		balloon_alert(user, "no power!")
 		return ITEM_INTERACT_FAILURE
