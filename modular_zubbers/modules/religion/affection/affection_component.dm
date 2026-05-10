@@ -18,6 +18,9 @@
 
 	if(receiver.body_position == LYING_DOWN)
 		return
+	if(is_in_chapel())
+		favor_destination.adjust_favor(favor_destination.favor_gain * favor_destination.chapel_gain_multiplier, parent)
+		return
 
 	favor_destination.adjust_favor(favor_destination.favor_gain, parent)
 
@@ -26,5 +29,11 @@
 
 	if(receiver == helper)
 		return
-
+	if(is_in_chapel())
+		favor_destination.adjust_favor(favor_destination.favor_gain * favor_destination.chapel_gain_multiplier, parent)
+		return
 	favor_destination.adjust_favor(favor_destination.favor_gain, parent)
+
+/datum/component/affection_favor/proc/is_in_chapel()
+	var/area/current_area = get_area(parent)
+	return istype(current_area, /area/station/service/chapel)

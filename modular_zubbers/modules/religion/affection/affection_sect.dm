@@ -11,6 +11,7 @@
 	var/maximum_healed_per_bless = 10
 	var/favor_gain = 1
 	var/favor_gain_upgrade_cost = 10
+	var/chapel_gain_multiplier = 2
 
 /datum/religion_sect/affection/on_conversion(mob/living/chap)
 	. = ..()

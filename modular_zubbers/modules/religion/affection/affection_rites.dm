@@ -1,3 +1,5 @@
+#define UPGRADE_PRICE_MULTIPLIER 1.5
+
 /datum/religion_rites/upgrade_favor_gain
 	name = "Upgrade favor gain"
 	desc = "Increase the amount of favor you gain when people show you affection."
@@ -23,7 +25,7 @@
 	if (isnull(sect))
 		return FALSE
 	sect.favor_gain++
-	sect.favor_gain_upgrade_cost *= 2
+	sect.favor_gain_upgrade_cost = floor(sect.favor_gain_upgrade_cost * UPGRADE_PRICE_MULTIPLIER)
 	return TRUE
 
-
+#undef UPGRADE_PRICE_MULTIPLIER
