@@ -26,6 +26,7 @@
 	worn_icon_teshari = SHORTS_PANTS_SHIRTS_TESHARIFILE
 
 /obj/item/clothing/under/shorts
+	greyscale_config_worn_teshari = /datum/greyscale_config/shorts/worn/teshari
 	worn_icon_teshari = SHORTS_PANTS_SHIRTS_TESHARIFILE
 
 /obj/item/clothing/under/pants/slacks
