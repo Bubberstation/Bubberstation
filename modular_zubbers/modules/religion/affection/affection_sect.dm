@@ -4,8 +4,10 @@
 	name = "Affection God"
 	quote = "A gentle touch is where true strength lies."
 	desc = "Receiving affection grants you favor. Headpats, Hugs, and Tail-tugs are all fair game."
+	tgui_icon = "heart"
 	rites_list = list(
 		/datum/religion_rites/upgrade_favor_gain,
+		/datum/religion_rites/summon_call_necklace,
 	)
 	smack_chance = 0
 	var/maximum_healed_per_bless = 10

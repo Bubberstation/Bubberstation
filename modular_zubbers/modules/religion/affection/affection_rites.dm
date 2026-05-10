@@ -29,3 +29,19 @@
 	return TRUE
 
 #undef UPGRADE_PRICE_MULTIPLIER
+
+
+/datum/religion_rites/summon_call_necklace
+	name = "Summon call necklace"
+	desc = "Summons a necklace imbued with divine energy, capable of summoning the chaplain to the wearer's location"
+	ritual_length = (10 SECONDS)
+	ritual_invocations = list("Look upon the people who have shown me appreciation with their touch.",
+	"Allow me to reciprocate their affection!",
+	"Allow me to be there when they need me most")
+	invoke_msg = "Grant me a trinket to keep them safe!"
+	favor_cost = 0 //DEBUG: Change to 150
+
+/datum/religion_rites/summon_call_necklace/invoke_effect(mob/living/user, atom/religious_tool)
+	. = ..()
+	var/obj/item/clothing/neck/affection_necklace/new_necklace = new(get_turf(religious_tool))
+	new_necklace.chaplain_ref = WEAKREF(user)
