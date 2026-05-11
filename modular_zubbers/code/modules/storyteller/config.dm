@@ -152,3 +152,8 @@
 	default = -1
 	integer = TRUE
 	min_val = -1
+
+/datum/config_entry/number/roundstart_roll_delay
+	default = STORYTELLER_ROUNDSTART_DELAY_DEFAULT
+	integer = TRUE
+	min_val = 0

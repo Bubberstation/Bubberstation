@@ -375,14 +375,17 @@ SUBSYSTEM_DEF(gamemode)
 		calc_value *= (1 + (rand(-storyteller.roundstart_points_variance, storyteller.roundstart_points_variance) / 100))
 		event_track_points[track] = max(0, round(calc_value))
 
-	/// If the storyteller guarantees an antagonist roll, add points to make it so.
-	if(storyteller.guarantees_roundstart_crewset)
-		event_track_points[EVENT_TRACK_CREWSET] = point_thresholds[EVENT_TRACK_CREWSET]
-
 	/// If we have any forced events, ensure we get enough points for them
 	for(var/track in event_tracks)
 		if(forced_next_events[track] && event_track_points[track] < point_thresholds[track])
 			event_track_points[track] = point_thresholds[track]
+
+/datum/controller/subsystem/gamemode/proc/setup_roundstart_antagonists()
+	if(storyteller.disable_distribution || storyteller_halted)
+		return
+	/// If the storyteller guarantees an antagonist roll, add points to make it so.
+	if(storyteller.guarantees_roundstart_crewset)
+		event_track_points[EVENT_TRACK_CREWSET] = point_thresholds[EVENT_TRACK_CREWSET]
 
 /// Because roundstart events need 2 steps of firing for purposes of antags, here is the first step handled, happening before occupation division.
 /datum/controller/subsystem/gamemode/proc/handle_pre_setup_roundstart_events()
@@ -551,8 +554,18 @@ SUBSYSTEM_DEF(gamemode)
 	SSjob.reset_occupations()
 	calculate_ready_players()
 	roll_pre_setup_points()
-	handle_pre_setup_roundstart_events()
+
+	var/delay = CONFIG_GET(number/roundstart_roll_delay)
+	if (delay > 0)
+		addtimer(CALLBACK(src, PROC_REF(do_roundstart_rolls)), delay SECONDS)
+	else
+		do_roundstart_rolls()
+
 	return TRUE
+
+/datum/controller/subsystem/gamemode/proc/do_roundstart_rolls()
+	setup_roundstart_antagonists()
+	handle_pre_setup_roundstart_events()
 
 ///Everyone should now be on the station and have their normal gear.  This is the place to give the special roles extra things
 /datum/controller/subsystem/gamemode/proc/post_setup(report) //Gamemodes can override the intercept report. Passing TRUE as the argument will force a report.
