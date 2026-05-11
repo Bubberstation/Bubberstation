@@ -1,5 +1,5 @@
 /obj/item/clothing/neck/affection_necklace
-	name = "blessed necklace"
+	name = "call necklace"
 	desc = "A necklace imbued with divine affection."
 	icon = 'modular_zubbers/icons/obj/religion_sects/affection/affection_items.dmi'
 	icon_state = "affection_neck"
@@ -93,6 +93,7 @@
 
 	do_teleport(chaplain, target_turf)
 	playsound(chaplain, 'sound/effects/pray.ogg', 25, FALSE, -1)
+	new /obj/effect/temp_visual/spotlight/short(target_turf)
 	chaplain.visible_message(span_notice("A divine light descends as [chaplain] arrives!"))
 	qdel(necklace)
 
@@ -139,7 +140,7 @@
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
 	do_teleport(called, original_turf)
 
-	return_spell.Remove()
+	return_spell.Remove(parent)
 	qdel(return_spell)
 	qdel(src)
 

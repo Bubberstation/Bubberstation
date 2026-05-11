@@ -3,7 +3,9 @@
 /datum/religion_sect/affection
 	name = "Affection God"
 	quote = "A gentle touch is where true strength lies."
-	desc = "Receiving affection grants you favor. Headpats, Hugs, and Tail-tugs are all fair game."
+	desc = "Receiving affection grants you favor. Headpats, Hugs, and Tail-tugs are all fair game. \
+	Interactions using the Interaction Panel also count. You can spend favor to heal people. \
+	Being shown affection while in the chapel doubles the favor gained."
 	tgui_icon = "heart"
 	rites_list = list(
 		/datum/religion_rites/upgrade_favor_gain,

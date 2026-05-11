@@ -2,7 +2,7 @@
 
 /datum/religion_rites/upgrade_favor_gain
 	name = "Upgrade favor gain"
-	desc = "Increase the amount of favor you gain when people show you affection."
+	desc = "Increase the amount of favor you gain when people show you affection by 1. every upgrade increases the cost of this by 50%"
 	ritual_length = (5 SECONDS)
 	ritual_invocations = list("Look upon the people who have shown me appreciation with their touch.")
 	invoke_msg = "Let their gentle touch empower me!"
@@ -39,7 +39,7 @@
 	"Allow me to reciprocate their affection!",
 	"Allow me to be there when they need me most")
 	invoke_msg = "Grant me a trinket to keep them safe!"
-	favor_cost = 0 //DEBUG: Change to 150
+	favor_cost = 150
 
 /datum/religion_rites/summon_call_necklace/invoke_effect(mob/living/user, atom/religious_tool)
 	. = ..()
