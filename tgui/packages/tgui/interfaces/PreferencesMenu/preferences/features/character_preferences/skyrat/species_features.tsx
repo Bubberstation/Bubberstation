@@ -88,7 +88,7 @@ export const general_record: Feature<string> = {
 };
 
 export const security_record: Feature<string> = {
-  name: 'Records - Personnel',
+  name: 'Records - Security',
   description:
     'Privileged information accessible by Security, Command and the NTC. \
     Used to throw these roles a bone, and give more information to work with. \
