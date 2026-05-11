@@ -367,4 +367,4 @@
 
 /datum/greyscale_config/playsuit/worn/digi
 	name = "Playsuit (Worn, Digi)"
-	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi'
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
