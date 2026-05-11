@@ -4,8 +4,8 @@
 	fire = 5
 
 /datum/armor/smithing_oil_armor_bonus
-	melee = 5
-	bullet = 5
+	melee = 10
+	bullet = 10
 
 // Vests
 /obj/item/clothing/suit/armor/forging_plate_armor
@@ -25,7 +25,7 @@
 /obj/item/clothing/suit/armor/forging_plate_armor/Initialize(mapload)
 	. = ..()
 	allowed += /obj/item/melee/forged_reagent_weapon
-	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_OCLOTHING, list(FORGE_EFFECT_ARMOR = smithing_oil_armor_bonus))
+	AddComponent(/datum/component/reagent_imbued/clothing, list(FORGE_EFFECT_ARMOR = /datum/armor/smithing_oil_armor_bonus), set_slot = ITEM_SLOT_OCLOTHING)
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
@@ -67,7 +67,7 @@
 
 /obj/item/clothing/gloves/forging_plate_gloves/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_GLOVES, list(FORGE_EFFECT_ARMOR = smithing_oil_armor_bonus))
+	AddComponent(/datum/component/reagent_imbued/clothing, list(FORGE_EFFECT_ARMOR = /datum/armor/smithing_oil_armor_bonus), set_slot = ITEM_SLOT_GLOVES)
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
@@ -102,7 +102,7 @@
 
 /obj/item/clothing/head/helmet/forging_plate_helmet/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_HEAD, list(FORGE_EFFECT_ARMOR = smithing_oil_armor_bonus))
+	AddComponent(/datum/component/reagent_imbued/clothing, list(FORGE_EFFECT_ARMOR = /datum/armor/smithing_oil_armor_bonus), set_slot = ITEM_SLOT_HEAD)
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
@@ -137,7 +137,7 @@
 
 /obj/item/clothing/shoes/forging_plate_boots/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_FEET, list(FORGE_EFFECT_ARMOR = smithing_oil_armor_bonus))
+	AddComponent(/datum/component/reagent_imbued/clothing, list(FORGE_EFFECT_ARMOR = /datum/armor/smithing_oil_armor_bonus), set_slot = ITEM_SLOT_FEET)
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
@@ -160,7 +160,7 @@
 
 /obj/item/clothing/shoes/horseshoe/reagent_clothing/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_FEET, list(FORGE_EFFECT_ARMOR = smithing_oil_armor_bonus))
+	AddComponent(/datum/component/reagent_imbued/clothing, list(FORGE_EFFECT_ARMOR = /datum/armor/smithing_oil_armor_bonus), set_slot = ITEM_SLOT_FEET)
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
@@ -186,7 +186,7 @@
 
 /obj/item/clothing/gloves/ring/reagent_clothing/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_GLOVES, list(FORGE_EFFECT_DURABILITY = 50))
+	AddComponent(/datum/component/reagent_imbued/clothing, list(FORGE_EFFECT_DURABILITY = 50), set_slot = ITEM_SLOT_GLOVES)
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
@@ -212,7 +212,7 @@
 
 /obj/item/clothing/neck/collar/reagent_clothing/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_NECK, list(FORGE_EFFECT_DURABILITY = 50))
+	AddComponent(/datum/component/reagent_imbued/clothing, list(FORGE_EFFECT_DURABILITY = 50), set_slot = ITEM_SLOT_NECK)
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \

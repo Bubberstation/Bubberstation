@@ -85,12 +85,12 @@
 		"Spear" = /obj/item/forging/incomplete/spear,
 		"Hammer" = /obj/item/forging/incomplete/hammer,
 		"Axe" = /obj/item/forging/incomplete/axe,
-		"Staff" = /obj/item/forging/incomplete/staff,
-		"Pickaxe" = /obj/item/forging/incomplete/pickaxe,
-		"Shovel" = /obj/item/forging/incomplete/shovel,
 		"Arrowhead" = /obj/item/forging/incomplete/arrowhead,
 		"Revolver Frame" = /obj/item/forging/incomplete/revolver_frame,
 		"Revolver Cylinder" = /obj/item/forging/incomplete/revolver_cylinder,
+		"Staff" = /obj/item/forging/incomplete/staff,
+		"Pickaxe" = /obj/item/forging/incomplete/pickaxe,
+		"Shovel" = /obj/item/forging/incomplete/shovel,
 		"Rail Nail" = /obj/item/forging/incomplete/rail_nail,
 		"Rail Cart" = /obj/item/forging/incomplete/rail_cart,
 	)
@@ -451,11 +451,7 @@
 		return
 
 	if(attacking_item.GetComponent(/datum/component/reagent_imbued/weapon))
-		handle_weapon_imbue(attacking_item, user)
-		return
-
-	if(attacking_item.GetComponent(/datum/component/reagent_imbued/clothing))
-		handle_clothing_imbue(attacking_item, user)
+		handle_reagent_imbue(attacking_item, user)
 		return
 
 /obj/structure/reagent_forge/attackby(obj/item/attacking_item, mob/living/user, params)
@@ -479,12 +475,13 @@
 		smelt_ore(attacking_item, user)
 		return TRUE
 
-	if(attacking_item.GetComponent(/datum/component/reagent_imbued/weapon))
-		handle_weapon_imbue(attacking_item, user)
+	if(attacking_item.GetComponent(/datum/component/reagent_imbued) && attacking_item.reagents.total_volume > 1)
+		handle_reagent_imbue(attacking_item, user)
 		return TRUE
 
-	if(attacking_item.GetComponent(/datum/component/reagent_imbued/clothing))
-		handle_clothing_imbue(attacking_item, user)
+	if(attacking_item.GetComponent(/datum/component/forge_smithable))
+		var/datum/component/forge_smithable/mycomponent = attacking_item.GetComponent(/datum/component/forge_smithable)
+		mycomponent.heat_for_smithing(FORGE_HEATING_DURATION)
 		return TRUE
 
 	if(istype(attacking_item, /obj/item/ceramic))
@@ -589,17 +586,20 @@
 	qdel(ore_item)
 	return
 
-/// Handles weapon reagent imbuing
-/obj/structure/reagent_forge/proc/handle_weapon_imbue(obj/attacking_item, mob/living/user)
+/// Handles reagent imbuing
+/obj/structure/reagent_forge/proc/handle_reagent_imbue(obj/attacking_item, mob/living/user)
 	if(!USER_CAN_REAGENT_IMBUE(user))
 		to_chat(user, span_danger("You don't know the right trick to imbue this weapon!"))
 		return
 
+	if(attacking_item?.reagents?.total_volume < 1)
+		to_chat(user, span_danger("You need to coat the blade in a reagent before you can imbue it!"))
+		return
+
 	if(DOING_INTERACTION(user, DOAFTER_SMITHING_FORGE))
 		return
-	var/obj/item/attacking_weapon = attacking_item
 
-	var/datum/component/reagent_imbued/weapon/weapon_component = attacking_weapon.GetComponent(/datum/component/reagent_imbued/weapon)
+	var/datum/component/reagent_imbued/weapon/weapon_component = attacking_item.GetComponent(/datum/component/reagent_imbued/weapon)
 	if(!weapon_component)
 		balloon_alert(user, "cannot imbue")
 		return
@@ -610,43 +610,9 @@
 		balloon_alert(user, "stopped imbuing")
 		return
 
-	weapon_component.set_reagent_imbue(attacking_weapon.reagents, clear_source_reagents = TRUE, smithing_oil_bonus = TRUE)
+	weapon_component.set_reagent_imbue(attacking_item.reagents, clear_source_reagents = TRUE, smithing_oil_bonus = TRUE)
 
-	balloon_alert_to_viewers("imbued [attacking_weapon]")
-	user.mind.adjust_experience(/datum/skill/smithing, 60)
-	playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
-	return TRUE
-
-/// Handles clothing imbuing, extremely similar to weapon imbuing but not in the same proc because of how uhh... goofy the way this has to be done is
-/obj/structure/reagent_forge/proc/handle_clothing_imbue(obj/attacking_item, mob/living/user)
-	if(DOING_INTERACTION(user, DOAFTER_SMITHING_FORGE))
-		return
-	if(user.mind.get_skill_level(/datum/skill/smithing) < SKILL_LEVEL_MASTER)
-		to_chat(user, span_danger("You need more experience to understand the fine workings of imbuing!"))
-		return
-	//This code will refuse all non-ashwalkers & non-icecats from imbuing
-	if(!ishuman(user))
-		to_chat(user, span_danger("It is impossible for you to imbue!")) //maybe remove (ashwalkers & icecats only) after some time
-		return
-
-
-	var/obj/item/attacking_clothing = attacking_item
-
-	var/datum/component/reagent_imbued/clothing/clothing_component = attacking_clothing.GetComponent(/datum/component/reagent_imbued/clothing)
-	if(!clothing_component)
-		balloon_alert(user, "cannot imbue")
-		return
-
-	if(length(clothing_component.imbued_reagent))
-		balloon_alert(user, "already imbued")
-		return
-	balloon_alert_to_viewers("imbuing...")
-	if(!do_after(user, 10 SECONDS, target = src, interaction_key = DOAFTER_SMITHING_FORGE))
-		balloon_alert(user, "stopped imbuing")
-		return
-
-	clothing_component.set_reagent_imbue(attacking_clothing.reagents, clear_source_reagents = TRUE, smithing_oil_bonus = TRUE)
-	balloon_alert_to_viewers("imbued [attacking_clothing]")
+	balloon_alert_to_viewers("imbued [attacking_item]")
 	user.mind.adjust_experience(/datum/skill/smithing, 60)
 	playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	return TRUE
@@ -763,23 +729,21 @@
 	if(DOING_INTERACTION(user, DOAFTER_SMITHING_FORGE))
 		return
 	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER)
-	var/obj/item/forging/forge_item = tool
+	var/obj/item/tongs_contents = locate(/obj/item/) in tool.contents
 
 	if(forge_temperature < MIN_FORGE_TEMP)
 		balloon_alert(user, "forge too cool")
 		return ITEM_INTERACT_SUCCESS
 
 	// Here we check the item used on us (tongs) for an incomplete forge item of some kind to heat
-	var/obj/item/tong_item = locate(/obj/item/forging/incomplete) in forge_item.contents
-	if(!isnull(tong_item?.GetComponent(/datum/component/forge_smithable)))
-		balloon_alert_to_viewers("heating [tong_item]")
-		var/datum/component/forge_smithable/smith_component = tong_item.GetComponent(/datum/component/forge_smithable)
-		smith_component.heat_for_smithing(FORGE_HEATING_DURATION)
-		balloon_alert(user, "successfully heated [tong_item]")
+	var/datum/component/forge_smithable/smithable = tongs_contents?.GetComponent(/datum/component/forge_smithable)
+	if(!isnull(smithable))
+		smithable.heat_for_smithing(FORGE_HEATING_DURATION)
+		balloon_alert(user, "heated [tongs_contents]")
 		return ITEM_INTERACT_SUCCESS
 
 	// Here we check the item used on us (tongs) for a stack of some kind to create an object from
-	var/obj/item/stack/search_stack = locate(/obj/item/stack) in forge_item.contents
+	var/obj/item/stack/search_stack = locate(/obj/item/stack) in tool.contents
 	if(search_stack)
 		var/list/my_list = get_filtered_radial_choices(user)
 		var/user_choice = show_radial_menu(user, src, my_list, radius = 38, require_near = TRUE, tooltips = TRUE)
@@ -803,7 +767,7 @@
 
 		balloon_alert_to_viewers("heating [search_stack]")
 
-		if(!do_after(user, skill_modifier * forge_item.toolspeed, target = src))
+		if(!do_after(user, skill_modifier * tool.toolspeed, target = src))
 			balloon_alert_to_viewers("stopped heating [search_stack]")
 			return ITEM_INTERACT_SUCCESS
 
@@ -818,10 +782,10 @@
 			COOLDOWN_START(smith_component, heating_remainder, FORGE_HEATING_DURATION)
 
 		balloon_alert(user, "prepared [search_stack] into [user_choice]")
-		search_stack = locate(/obj/item/stack) in forge_item.contents
+		search_stack = locate(/obj/item/stack) in tool.contents
 
 		if(!search_stack)
-			forge_item.icon_state = "tong_empty"
+			tool.icon_state = "tong_empty"
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_SUCCESS
 

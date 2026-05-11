@@ -23,8 +23,8 @@
 	var/insert_ingredients_into_product_contents
 
 ///Creates the item using the given list of ingredients -- it's assumed that this is only called after the list is verified to contain all ingredients. Probably shouldn't be parent called due to ingredient deletion.
-/datum/crafting_bench_recipe/proc/create_using_item_list(list/item_list, mob/living/user)
-	var/obj/item/returner = new resulting_item(src)
+/datum/crafting_bench_recipe/proc/create_using_item_list(list/item_list, mob/living/user, construction_location)
+	var/obj/item/returner = new resulting_item(construction_location)
 
 	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner, user)
 	put_materials_in_product_from_ingredients(item_list, returner)
@@ -44,8 +44,8 @@
 	for(var/obj/item in reagent_imbued_items)
 		current_reagent_component = item.GetComponent(/datum/component/reagent_imbued)
 		if(!isnull(current_reagent_component))
-			current_reagent_component.imbued_reagent.trans_to(reagents_sum, current_reagent_component.imbued_reagent.total_volume)
-
+			current_reagent_component.imbued_reagent.trans_to(reagents_sum, current_reagent_component.imbued_reagent.total_volume, copy_only = TRUE)
+	reagents_sum.maximum_volume = reagents_sum.total_volume
 	return reagents_sum
 
 /datum/crafting_bench_recipe/proc/put_materials_in_product_from_ingredients(list/ingredients, obj/item/product)
@@ -101,7 +101,7 @@
 	for(var/obj/item/i in things_to_use)
 		if(istype(i, /obj/item/forging/complete))
 			var/obj/item/forging/complete/complete_forging_item = i
-			total_perfection += complete_forging_item.hammer_completion_amount
+			total_perfection += complete_forging_item.perfect_ratio
 			total_forge_items ++
 		else if(!isnull(i.GetComponent(/datum/component/forge_smithable)))
 			var/datum/component/forge_smithable/smithing_component = i.GetComponent(/datum/component/forge_smithable)
@@ -117,9 +117,10 @@
 
 /datum/crafting_bench_recipe/proc/apply_perfect_and_completion_bonuses(list/things_to_use, obj/item/product)
 	var/pieces_completion_amount = get_total_completion_amount(things_to_use)
+	var/pieces_perfection_amount = get_total_perfection_amount(things_to_use)
 	var/datum/component/forge_smithable/smith_component = product.GetComponent(/datum/component/forge_smithable)
 	if(!isnull(smith_component))
-		smith_component.set_completion_and_perfection_ratios(pieces_completion_amount, )
+		smith_component.set_completion_and_perfection_ratios(pieces_completion_amount, pieces_perfection_amount)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -132,13 +133,13 @@
 		/obj/item/stack/sheet/mineral/wood = 2,
 	)
 
-/datum/crafting_bench_recipe/weapon_completion_recipe/create_using_item_list(list/item_list, mob/living/user)
+/datum/crafting_bench_recipe/weapon_completion_recipe/create_using_item_list(list/item_list, mob/living/user, construction_location)
 	//apparently i fuggin have to write my own version of is_type_in_list
 	var/obj/item/forging/complete/weapon_head = find_from_list(item_list, /obj/item/forging/complete)
 	if(isnull(weapon_head))
 		stack_trace("[src] didn't contain a valid reagent smithing weapon head when its recipe was completed!")
 		return
-	var/obj/item/returner = new weapon_head.spawning_item(src)
+	var/obj/item/returner = new weapon_head.spawning_item(get_turf(construction_location))
 	apply_perfect_and_completion_bonuses(item_list, returner)
 	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner, user)
 	put_materials_in_product_from_ingredients(item_list, returner, user)
@@ -273,6 +274,29 @@
 	resulting_item = /obj/item/gun/ballistic/revolver/handcrafted_single_action
 	time_to_assemble = 4 SECONDS
 	required_traits = list(TRAIT_KNOW_GUNSMITHING)
+
+/datum/crafting_bench_recipe/revolver/consume_crafting_ingredients(list/things_to_use, obj/item/product)
+	var/obj/item/gun/ballistic/revolver/handcrafted_single_action/gun = product
+	for(var/obj/item/thing in things_to_use)
+		if(isstack(thing))
+			var/obj/item/stack/stack_thing
+			stack_thing = thing
+			var/stack_type = stack_thing.type
+			var/amount_to_subtract = recipe_requirements[stack_type]
+			if(insert_ingredients_into_product_contents)
+				var/obj/item/stack/temp_stack = stack_thing.split_stack(amount_to_subtract)
+				temp_stack.forceMove(product)
+			else
+				stack_thing.use(amount_to_subtract, transfer = FALSE, check = TRUE)
+		else if(istype(thing, /obj/item/forging/complete/revolver_cylinder))
+			thing.forceMove(product)
+			gun.cylinder = thing
+		else if(istype(thing, /obj/item/forging/complete/revolver_frame))
+			thing.forceMove(product)
+			gun.frame = thing
+		else
+			qdel(thing)
+	product.update_appearance()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// BELT COMPLETION ///////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////

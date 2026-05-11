@@ -10,7 +10,7 @@
 	///the bad hits required for it to break; exceeding this will break the item
 	var/bad_hit_maximum = 5
 	///maximum number of perfect hits before perfect hits no longer improve the quality
-	var/max_perfect_hits = 10
+	var/max_perfect_hits = 20
 
 	///the path of the item that will be spawned upon completion
 	var/spawn_item
@@ -40,7 +40,7 @@
 		else
 			to_chat(quencher, span_warning("You cool down [src]. You're not sure if it was ready yet..."))
 
-	var/obj/spawned_obj = new spawn_item(get_turf(src))
+	var/obj/spawned_obj = new spawn_item(get_turf(dunk_object))
 	if(custom_materials)
 		spawned_obj.set_custom_materials(custom_materials, 1) //lets set its material
 
@@ -58,7 +58,6 @@
 	return spawned_obj
 
 /obj/item/forging/incomplete/tong_act(mob/living/user, obj/item/tool)
-	. = ..()
 	if(length(tool.contents) > 0)
 		user.balloon_alert(user, "tongs are full already!")
 		return
@@ -93,6 +92,7 @@
 	name = "incomplete chain"
 	icon_state = "hot_chain"
 	completion_quality_points = 10
+	max_perfect_hits = 10
 	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/chain
 	break_on_early_quench = TRUE
@@ -101,6 +101,7 @@
 	name = "incomplete plate"
 	icon_state = "hot_plate"
 	completion_quality_points = 10
+	max_perfect_hits = 10
 	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/plate
 
@@ -123,6 +124,7 @@
 	name = "incomplete dagger blade"
 	icon_state = "hot_daggerblade"
 	completion_quality_points = 12
+	max_perfect_hits = 10
 	spawn_item = /obj/item/forging/complete/dagger
 
 /obj/item/forging/incomplete/staff
@@ -133,6 +135,7 @@
 /obj/item/forging/incomplete/spear
 	name = "incomplete spear head"
 	completion_quality_points = 8 ///crazy low completion required (spears are historically an easy weapon to make that are used for widespread arming)
+	max_perfect_hits = 8
 	icon_state = "hot_spearhead"
 	spawn_item = /obj/item/forging/complete/spear
 
@@ -140,6 +143,7 @@
 	name = "incomplete axe head"
 	icon_state = "hot_axehead"
 	completion_quality_points = 16
+	max_perfect_hits = 14
 	spawn_item = /obj/item/forging/complete/axe
 
 /obj/item/forging/incomplete/hammer
@@ -168,6 +172,7 @@
 	name = "incomplete revolver cylinder"
 	icon_state = "hot_revolver_cylinder"
 	completion_quality_points = 40
+	max_perfect_hits = 50
 	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/revolver_cylinder
 
@@ -175,6 +180,7 @@
 	name = "incomplete revolver frame"
 	icon_state = "hot_revolver_frame"
 	completion_quality_points = 40
+	max_perfect_hits = 60
 	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/revolver_frame
 
@@ -233,7 +239,6 @@
 	jab.apply_damage(double_edged_damage * hammer_completion_amount, BRUTE, user.get_active_hand(), attacking_item = src)
 
 /obj/item/forging/complete/tong_act(mob/living/user, obj/item/tool)
-	. = ..()
 	if(length(tool.contents) > 0)
 		user.balloon_alert(user, "tongs are full already!")
 		return
@@ -333,11 +338,11 @@
 
 /obj/item/forging/complete/revolver_cylinder
 	name = "single-action revolver cylinder"
-	icon_state = "hot_revolver_cylinder"
+	icon_state = "revolver_cylinder"
 
 /obj/item/forging/complete/revolver_frame
 	name = "single-action revolver frame"
-	icon_state = "hot_revolver_frame"
+	icon_state = "revolver_frame"
 
 /obj/item/forging/complete/rail_nail
 	name = "rail nail"

@@ -26,7 +26,7 @@
 	apply_smithing_component()
 
 /obj/item/melee/forged_reagent_weapon/proc/apply_reagent_component()
-	AddComponent(/datum/component/reagent_imbued/weapon)
+	AddComponent(/datum/component/reagent_imbued/weapon, oil_effects = list(FORGE_EFFECT_ARMORPEN = 10))
 
 /obj/item/melee/forged_reagent_weapon/proc/apply_smithing_component()
 	AddComponent(/datum/component/forge_smithable, \
@@ -277,7 +277,7 @@
 	attack_verb_simple = list("reagent cast on", "wave a staff over")
 
 /obj/item/melee/forged_reagent_weapon/staff/apply_reagent_component()
-	AddComponent(/datum/component/reagent_imbued/weapon, null, 0.7)
+	AddComponent(/datum/component/reagent_imbued/weapon, list(FORGE_EFFECT_REAGENT_INJECT = 3), 0.7)
 
 /obj/item/melee/forged_reagent_weapon/staff/apply_smithing_component()
 	AddComponent(/datum/component/forge_smithable, \

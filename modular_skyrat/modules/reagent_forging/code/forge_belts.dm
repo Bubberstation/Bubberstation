@@ -67,6 +67,7 @@
 /datum/storage/cowboy_holster/attempt_insert(obj/item/to_insert, mob/user, override = FALSE, force = STORAGE_NOT_LOCKED, messages = TRUE)
 	. = ..()
 	sort_contents()
+	refresh_views()
 	//parent.update_appearance()
 
 //resorts the contents so that guns are always the first thing pulled.
@@ -117,12 +118,17 @@
 
 /datum/storage/charging_holster/New()
 	. = ..()
-	my_charger = new(parent)
+	my_charger = new (src)
 	if(istype(parent, /obj/item/storage/belt/holster/blacksmithed/charging))
 		var/obj/item/storage/belt/holster/blacksmithed/charging/my_belt = parent
 		my_belt.my_charger = my_charger
 		my_charger.my_belt = my_belt
-	set_holdable(my_charger.allowed_devices)
+	set_holdable(list(
+		/obj/item/gun/energy,
+		/obj/item/melee/baton/security,
+		/obj/item/ammo_box/magazine/recharge,
+		/obj/item/modular_computer,
+		/obj/item/gun/ballistic/automatic/battle_rifle,))
 
 /datum/storage/charging_holster/can_insert(obj/item/to_insert, mob/user, messages = TRUE, force = STORAGE_NOT_LOCKED)
 	if(istype(to_insert, /obj/item/gun/energy))
@@ -287,7 +293,10 @@
 /obj/item/storage/belt/sheath/multi
 	name = "multi-scabbard"
 	desc = "A set of harnesses that enable carrying multiple bulky swords and/or shields."
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
 	icon_state = "multiscabbard_swords_0"
+	icon_preview = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
+	icon_state_preview = "multiscabbard_swords_0"
 	inhand_icon_state = "sheath"
 	worn_icon_state = "sheath"
 	actions_types = null
@@ -295,7 +304,7 @@
 
 /obj/item/storage/belt/sheath/multi/update_icon(updates)
 	. = ..()
-	var/numswords
+	var/numswords = 0
 	for(var/obj/item/i in contents)
 		if(istype(i, /obj/item/melee))
 			numswords ++

@@ -42,6 +42,7 @@
 		/datum/crafting_bench_recipe/buckler,
 		/datum/crafting_bench_recipe/bow,
 		/datum/crafting_bench_recipe/wearable/handcuffs,
+		/datum/crafting_bench_recipe/revolver,
 		////datum/crafting_bench_recipe/borer_cage,
 		/datum/crafting_bench_recipe/coil,
 		/datum/crafting_bench_recipe/seed_mesh,
@@ -226,7 +227,7 @@
 	var/skill_modifier = user.mind.get_skill_modifier(selected_recipe.relevant_skill, SKILL_SPEED_MODIFIER)
 
 	playsound(src, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)
-	if(do_after(selected_recipe.time_to_assemble * skill_modifier) && !length(contents))
+	if(do_after(user, selected_recipe.time_to_assemble * skill_modifier) && !length(contents))
 		var/list/things_to_use = can_we_craft_this(selected_recipe.recipe_requirements, TRUE)
 
 		create_thing_from_requirements(things_to_use, selected_recipe, user, selected_recipe.relevant_skill, selected_recipe.relevant_skill_reward)
@@ -339,7 +340,7 @@
 
 	if(completing_a_weapon)
 		things_to_use.Add(contents[1])
-	newly_created_thing = recipe_to_follow.create_using_item_list(things_to_use, user)
+	newly_created_thing = recipe_to_follow.create_using_item_list(things_to_use, user, src)
 
 	if(!newly_created_thing)
 		message_admins("[src] just failed to create something while crafting!")

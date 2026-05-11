@@ -27,10 +27,12 @@
 	var/can_perfect_hit = TRUE
 	//what color does the parent item turn when heated? if null, then parent item doesn't change color when heated
 	var/heat_color = null
-	var/datum/callback/quench_callback = null
-	var/datum/callback/passive_cool_callback = null
 
 	//what happens when quenched or cooled?
+	var/datum/callback/quench_callback = null
+	var/datum/callback/passive_cool_callback = null
+	//do we change the reagents imbued?
+	var/quench_causes_reimbue = TRUE
 	//index: what type of effect (ex. increase armor, increase AP, increase force)
 	//element: by how much to increase
 	var/list/quench_effects_perfection = list()
@@ -185,18 +187,41 @@
 	COOLDOWN_START(user, striking_cooldown, skill_modifier)
 	COOLDOWN_START(user, perfect_strike_window, skill_modifier + user.mind.get_skill_level(/datum/skill/smithing) DECISECONDS)
 
-/datum/component/forge_smithable/proc/try_quench(datum/reagents/dunk_reagents, dunk_object, mob/living/user)
+/datum/component/forge_smithable/proc/try_quench(datum/reagents/dunk_reagents, dunk_object, mob/living/user, show_message = TRUE)
+	if(COOLDOWN_FINISHED(src, heating_remainder))
+		if(show_message)
+			parent_item.balloon_alert(user, "[parent_item] is too cool to successfully quench!")
+		return FALSE
+	if(!(dunk_reagents.flags & DUNKABLE))
+		if(show_message)
+			parent_item.balloon_alert(user, "[dunk_object] doesn't have a large enough hole to immerse [parent_item]!")
+		return FALSE
 	if(dunk_reagents.chem_temp > MAX_QUENCH_HEAT)
-		parent_item.balloon_alert(user, "[dunk_object] is too hot to cool [parent_item]!")
+		if(show_message)
+			parent_item.balloon_alert(user, "[dunk_object] is too hot to cool [parent_item]!")
 		return FALSE
 	if(dunk_reagents.total_volume < MIN_VOLUME_TO_QUENCH)
-		parent_item.balloon_alert(user, "[dunk_object] doesn't contain enough fluid to immerse [parent_item]!")
+		if(show_message)
+			parent_item.balloon_alert(user, "[dunk_object] doesn't contain enough fluid to immerse [parent_item]!")
 		return FALSE
-	dunk_reagents.expose_temperature(600)
+
+	dunk_reagents.expose_temperature(HEAT_GIVEN_FROM_QUENCHING_METAL)
+	COOLDOWN_RESET(src, heating_remainder)
+
 	if(!isnull(heat_color))
 		parent_item.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 	parent_item.update_integrity(max(round(lerp(0, parent_item.max_integrity, get_completion_ratio())), parent_item.get_integrity()))
-	quench_callback.Invoke(dunk_reagents, dunk_object, user)
+	if(quench_causes_reimbue && USER_CAN_REAGENT_IMBUE(user))
+		var/datum/component/reagent_imbued/my_imbue = parent_item.GetComponent(/datum/component/reagent_imbued)
+		if(!isnull(my_imbue))
+			my_imbue.set_reagent_imbue(dunk_reagents, FALSE, TRUE)
+			if(show_message)
+				parent_item.balloon_alert(user, "[parent_item] is imbued!")
+	else if(show_message)
+		parent_item.balloon_alert(user, "[parent_item] is quenched!")
+
+	if(!isnull(quench_callback))
+		quench_callback.Invoke(dunk_reagents, dunk_object, user)
 	return TRUE
 	//SEND_SIGNAL(parent_item, COMSIG_SMITHING_QUENCH, dunk_reagents, dunk_object, user)
 
@@ -220,7 +245,7 @@
 
 /datum/component/forge_smithable/proc/apply_completion_perfection_modifiers(completion_ratio, perfection_ratio)
 	for(var/index in quench_effects_perfection)
-		give_added_modifying_effect_to_item(index, last_smithing_oil_ratio_applied, new_oil_ratio, parent_item, quench_effects_perfection[index])
+		give_added_modifying_effect_to_item(index, perfection_ratio_applied, perfection_ratio, parent_item, quench_effects_perfection[index])
 
 	var/incompletion_multiplier
 	var/incomplete_maximum_penalty
@@ -231,26 +256,26 @@
 	for(var/index in quench_effects_incompletion)
 		switch(index)
 			if(FORGE_EFFECT_ARMOR)
-				incomplete_maximum_penalty = initial(item.get_armor()).generate_new_with_multipliers(list(ARMOR_ALL = -1))
+				incomplete_maximum_penalty = get_armor_by_type(initial(parent_item.armor)).generate_new_with_multipliers(list(ARMOR_ALL = -1))
 			if(FORGE_EFFECT_ARMORPEN)
-				incomplete_maximum_penalty = initial(item.armour_penetration) * -1
+				incomplete_maximum_penalty = initial(parent_item.armour_penetration) * -1
 			if(FORGE_EFFECT_BLOCKCHANCE)
-				incomplete_maximum_penalty = initial(item.block_chance) * -1
+				incomplete_maximum_penalty = initial(parent_item.block_chance) * -1
 			if(FORGE_EFFECT_DURABILITY)
-				incomplete_maximum_penalty = initial(item.max_integrity) * -1
+				incomplete_maximum_penalty = initial(parent_item.max_integrity) * -1
 			if(FORGE_EFFECT_FORCE)
-				incomplete_maximum_penalty = initial(item.force) * -1
+				incomplete_maximum_penalty = initial(parent_item.force) * -1
 			if(FORGE_EFFECT_REAGENT_INJECT)
-				var/datum/component/reagent_imbued/reagent_component = item.GetComponent(/datum/component/reagent_imbued)
+				var/datum/component/reagent_imbued/reagent_component = parent_item.GetComponent(/datum/component/reagent_imbued)
 				if(!isnull(reagent_component))
-					stack_trace("[item] has an invalid reagent imbue-enhancing effect, because it has no reagent component!")
+					stack_trace("[parent_item] has an invalid reagent imbue-enhancing effect, because it has no reagent component!")
 				incomplete_maximum_penalty = initial(reagent_component.inject_amount) * -1
 			else
-				stack_trace("Tried to modify [item] with an invalid effect [forge_effect]!")
-		give_added_modifying_effect_to_item(index, last_smithing_oil_ratio_applied, new_oil_ratio, parent_item, incomplete_maximum_penalty)
+				stack_trace("Tried to modify [parent_item] with an invalid effect [index]!")
+		give_added_modifying_effect_to_item(index, completion_applied_multiplier, incompletion_multiplier, parent_item, incomplete_maximum_penalty)
 
 	perfection_ratio_applied = perfection_ratio
-	completion_applied_multiplier = completion_multiplier
+	completion_applied_multiplier = incompletion_multiplier
 
 /mob/living
 	//the time between each strike

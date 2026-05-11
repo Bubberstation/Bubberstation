@@ -20,21 +20,22 @@
 /obj/structure/reagent_dispensers/reagent_smithing_basin/update_overlays()
 	. = ..()
 	if(reagents.total_volume >= tank_volume)
-		var/mutable_appearance/filling = mutable_appearance(icon,, "water_basin_reagent_overlay")
+		var/mutable_appearance/filling = mutable_appearance(icon, "water_basin_reagent_overlay")
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
 		. += filling
 		return
 
 /obj/structure/reagent_dispensers/reagent_smithing_basin/Initialize()
 	. = ..()
+	reagents.flags = reagents.flags | REFILLABLE | DUNKABLE
 	check_fishable()
+	update_appearance()
 
 /obj/structure/reagent_dispensers/reagent_smithing_basin/proc/check_fishable()
 	if(isnull(fishable) && reagents.total_volume >= tank_volume)
 		fishable = AddComponent(/datum/component/fishing_spot, /datum/fish_source/water_basin)
 	else if(!isnull(fishable) && reagents.total_volume < tank_volume)
 		RemoveComponentSource(src, /datum/component/fishing_spot)
-
 
 /obj/structure/reagent_dispensers/reagent_smithing_basin/Destroy()
 	QDEL_NULL(fishable)
