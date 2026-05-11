@@ -119,6 +119,10 @@
 				/obj/item/clothing/under/tachawaiian/purple = 5,
 				/obj/item/clothing/under/tactichill = 5,
 				/obj/item/clothing/under/texas = 5,
+				/obj/item/clothing/under/greyscale/turtleneck = 5,
+				/obj/item/clothing/under/greyscale/turtleneck/skirt = 5,
+				/obj/item/clothing/under/greyscale/overalls = 5,
+				/obj/item/clothing/under/greyscale/overalls/skirt = 5,
 			),
 		),
 

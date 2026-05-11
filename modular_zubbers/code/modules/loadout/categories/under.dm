@@ -187,3 +187,27 @@
 /datum/loadout_item/uniform/miscellaneous/stripper_outfit
 	name = "Stripper Outfit"
 	item_path = /obj/item/clothing/under/stripper_outfit
+
+/datum/loadout_item/uniform/miscellaneous/greyscale_turtleneck
+	name = "Greyscale Turtleneck and Pants"
+	item_path = /obj/item/clothing/under/greyscale/turtleneck
+
+/datum/loadout_item/uniform/miscellaneous/greyscale_turtleneck_skirt
+	name = "Greyscale Skirtleneck"
+	item_path = /obj/item/clothing/under/greyscale/turtleneck/skirt
+
+/datum/loadout_item/uniform/miscellaneous/greyscale_gorka
+	name = "Greyscale Gorka"
+	item_path = /obj/item/clothing/under/greyscale/gorkas
+
+/datum/loadout_item/uniform/miscellaneous/greyscale_overalls
+	name = "Greyscale Turtleneck with Overalls"
+	item_path = /obj/item/clothing/under/greyscale/overalls
+
+/datum/loadout_item/uniform/miscellaneous/greyscale_overalls_skirt
+	name = "Greyscale Skirtleneck with Overalls"
+	item_path = /obj/item/clothing/under/greyscale/overalls/skirt
+
+/datum/loadout_item/uniform/miscellaneous/playsuit
+	name = "Greyscale Playsuit"
+	item_path = /obj/item/clothing/under/greyscale/playsuit
