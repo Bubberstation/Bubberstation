@@ -566,6 +566,7 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/do_roundstart_rolls()
 	setup_roundstart_antagonists()
 	handle_pre_setup_roundstart_events()
+	GLOB.did_roundstart_rolls = TRUE
 
 ///Everyone should now be on the station and have their normal gear.  This is the place to give the special roles extra things
 /datum/controller/subsystem/gamemode/proc/post_setup(report) //Gamemodes can override the intercept report. Passing TRUE as the argument will force a report.

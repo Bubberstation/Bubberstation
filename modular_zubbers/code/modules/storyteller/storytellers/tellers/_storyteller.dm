@@ -1,3 +1,5 @@
+GLOBAL_VAR_INIT(did_roundstart_rolls, FALSE)
+
 ///The storyteller datum. He operates with the SSgamemode data to run events
 /datum/storyteller
 	/// Name of our storyteller.
