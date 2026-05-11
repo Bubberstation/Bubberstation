@@ -312,3 +312,46 @@
 /datum/greyscale_config/giant_scarf/worn
 	name = "Giant Scarf (Worn)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses.dmi'
+
+/// Turtlenecks
+/datum/greyscale_config/turtlenecks
+	name = "Turtlenecks"
+	icon_file = 'modular_nova/master_files/icons/obj/clothing/under/shorts_pants_shirts.dmi'
+	json_config = 'modular_nova/modules/GAGS/json_configs/mass_greyscales/turtlenecks.json'
+
+/datum/greyscale_config/turtlenecks/worn
+	name = "Turtlenecks (Worn)"
+	icon_file = 'modular_nova/master_files/icons/mob/clothing/under/shorts_pants_shirts.dmi'
+	json_config = 'modular_nova/modules/GAGS/json_configs/mass_greyscales/turtlenecks_worn.json'
+
+/datum/greyscale_config/turtlenecks/worn/digi
+	name = "Turtlenecks (Worn, Digi)"
+	icon_file = 'modular_nova/master_files/icons/mob/clothing/under/shorts_pants_shirts_digi.dmi'
+
+/datum/greyscale_config/gorkas
+	name = "Gorkas"
+	icon_file = 'modular_nova/master_files/icons/obj/clothing/under/shorts_pants_shirts.dmi'
+	json_config = 'modular_nova/modules/GAGS/json_configs/mass_greyscales/gorkas.json'
+
+/datum/greyscale_config/gorkas/worn
+	name = "Gorkas (Worn)"
+	icon_file = 'modular_nova/master_files/icons/mob/clothing/under/shorts_pants_shirts.dmi'
+
+/datum/greyscale_config/gorkas/worn/digi
+	name = "Gorkas (Worn, Digi)"
+	icon_file = 'modular_nova/master_files/icons/mob/clothing/under/shorts_pants_shirts_digi.dmi'
+
+/// Has to be named this to avoid problems
+/datum/greyscale_config/sus_overalls
+	name = "Gorkas"
+	icon_file = 'modular_nova/master_files/icons/obj/clothing/under/shorts_pants_shirts.dmi'
+	json_config = 'modular_nova/modules/GAGS/json_configs/mass_greyscales/overalls.json'
+
+/datum/greyscale_config/sus_overalls/worn
+	name = "Gorkas (Worn)"
+	icon_file = 'modular_nova/master_files/icons/mob/clothing/under/shorts_pants_shirts.dmi'
+	json_config = 'modular_nova/modules/GAGS/json_configs/mass_greyscales/overalls_worn.json'
+
+/datum/greyscale_config/sus_overalls/worn/digi
+	name = "Gorkas (Worn, Digi)"
+	icon_file = 'modular_nova/master_files/icons/mob/clothing/under/shorts_pants_shirts_digi.dmi'
