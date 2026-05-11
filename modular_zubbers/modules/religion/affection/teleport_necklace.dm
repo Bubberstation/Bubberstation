@@ -1,8 +1,8 @@
 /obj/item/clothing/neck/affection_necklace
 	name = "blessed necklace"
 	desc = "A necklace imbued with divine affection."
-	icon = 'icons/obj/clothing/neck.dmi'
-	icon_state = "eldritch_necklace"
+	icon = 'modular_zubbers/icons/obj/religion_sects/affection/affection_items.dmi'
+	icon_state = "affection_neck"
 	worn_icon = 'icons/mob/clothing/neck.dmi'
 	worn_icon_state = "beads"
 
@@ -92,7 +92,6 @@
 	var/turf/target_turf = destination_turf
 
 	do_teleport(chaplain, target_turf)
-	var/obj/effect/temp_visual/spotlight/effect = new /obj/effect/temp_visual/spotlight/short(target_turf)
 	playsound(chaplain, 'sound/effects/pray.ogg', 25, FALSE, -1)
 	chaplain.visible_message(span_notice("A divine light descends as [chaplain] arrives!"))
 	qdel(necklace)
