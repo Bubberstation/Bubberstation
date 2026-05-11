@@ -145,7 +145,7 @@
 	qdel(src)
 
 /datum/action/cooldown/spell/return_action
-	name = "Return"
+	name = "Quick Return"
 	desc = "Return to your original location."
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
 
