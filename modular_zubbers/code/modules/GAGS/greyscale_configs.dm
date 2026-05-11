@@ -313,45 +313,58 @@
 	name = "Giant Scarf (Worn)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses.dmi'
 
-/// Turtlenecks
+/// Greyscale clothing Nova port
 /datum/greyscale_config/turtlenecks
 	name = "Turtlenecks"
-	icon_file = 'modular_nova/master_files/icons/obj/clothing/under/shorts_pants_shirts.dmi'
-	json_config = 'modular_nova/modules/GAGS/json_configs/mass_greyscales/turtlenecks.json'
+	icon_file = 'modular_zubbers\icons\mob\clothing\under\greyscale_clothing.dmi'
+	json_config = 'modular_zubbers\code\datums\greyscale\json_configs\under\turtlenecks.json'
 
 /datum/greyscale_config/turtlenecks/worn
 	name = "Turtlenecks (Worn)"
-	icon_file = 'modular_nova/master_files/icons/mob/clothing/under/shorts_pants_shirts.dmi'
-	json_config = 'modular_nova/modules/GAGS/json_configs/mass_greyscales/turtlenecks_worn.json'
+	icon_file = 'modular_zubbers\icons\mob\clothing\under\greyscale_clothing.dmi'
+	json_config = 'modular_zubbers\code\datums\greyscale\json_configs\under\turtlenecks_worn.json'
 
 /datum/greyscale_config/turtlenecks/worn/digi
 	name = "Turtlenecks (Worn, Digi)"
-	icon_file = 'modular_nova/master_files/icons/mob/clothing/under/shorts_pants_shirts_digi.dmi'
+	icon_file = 'modular_zubbers\icons\mob\clothing\under\greyscale_clothing_digi.dmi'
 
 /datum/greyscale_config/gorkas
 	name = "Gorkas"
-	icon_file = 'modular_nova/master_files/icons/obj/clothing/under/shorts_pants_shirts.dmi'
-	json_config = 'modular_nova/modules/GAGS/json_configs/mass_greyscales/gorkas.json'
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/gorkas.json'
 
 /datum/greyscale_config/gorkas/worn
 	name = "Gorkas (Worn)"
-	icon_file = 'modular_nova/master_files/icons/mob/clothing/under/shorts_pants_shirts.dmi'
+	icon_file = 'modular_zubbers\icons\mob\clothing\under\greyscale_clothing.dmi'
 
 /datum/greyscale_config/gorkas/worn/digi
 	name = "Gorkas (Worn, Digi)"
-	icon_file = 'modular_nova/master_files/icons/mob/clothing/under/shorts_pants_shirts_digi.dmi'
+	icon_file = 'modular_zubbers\icons\mob\clothing\under\greyscale_clothing_digi.dmi'
 
 /// Has to be named this to avoid problems
 /datum/greyscale_config/sus_overalls
-	name = "Gorkas"
-	icon_file = 'modular_nova/master_files/icons/obj/clothing/under/shorts_pants_shirts.dmi'
-	json_config = 'modular_nova/modules/GAGS/json_configs/mass_greyscales/overalls.json'
+	name = "Overalls"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
+	json_config = 'modular_zubbers\code\datums\greyscale\json_configs\under\overalls.json'
 
 /datum/greyscale_config/sus_overalls/worn
-	name = "Gorkas (Worn)"
-	icon_file = 'modular_nova/master_files/icons/mob/clothing/under/shorts_pants_shirts.dmi'
-	json_config = 'modular_nova/modules/GAGS/json_configs/mass_greyscales/overalls_worn.json'
+	name = "Overalls (Worn)"
+	icon_file = 'modular_zubbers\icons\mob\clothing\under\greyscale_clothing.dmi'
+	json_config = 'modular_zubbers\code\datums\greyscale\json_configs\under\overalls_worn.json'
 
 /datum/greyscale_config/sus_overalls/worn/digi
-	name = "Gorkas (Worn, Digi)"
-	icon_file = 'modular_nova/master_files/icons/mob/clothing/under/shorts_pants_shirts_digi.dmi'
+	name = "Overalls (Worn, Digi)"
+	icon_file = 'modular_zubbers\icons\mob\clothing\under\greyscale_clothing_digi.dmi'
+
+/datum/greyscale_config/playsuit
+	name = "Playsuit"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/playsuit.json'
+
+/datum/greyscale_config/playsuit/worn
+	name = "Playsuit (Worn)"
+	icon_file = 'modular_zubbers\icons\mob\clothing\under\greyscale_clothing.dmi'
+
+/datum/greyscale_config/playsuit/worn/digi
+	name = "Playsuit (Worn, Digi)"
+	icon_file = 'modular_zubbers\icons\mob\clothing\under\greyscale_clothing_digi'
