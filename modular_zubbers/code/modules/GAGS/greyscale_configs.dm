@@ -425,7 +425,7 @@
 /datum/greyscale_config/sweater_greyscale_1/worn
 	name = "Big Sweater (Worn)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/greyscale_suits.dmi'
-	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/suit/sweater/sweater.json'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/suit/sweater/sweater.json'
 
 /datum/greyscale_config/sweater_greyscale_2
 	name = "Big Sweater With Bow"
@@ -435,7 +435,7 @@
 /datum/greyscale_config/sweater_greyscale_2/worn
 	name = "Big Sweater With Bow (Worn)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/greyscale_suits.dmi'
-	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/suit/sweater/sweaterbow.json'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/suit/sweater/sweaterbow.json'
 
 /datum/greyscale_config/fluffywintercoat
 	name = "Fluffy Coat"
