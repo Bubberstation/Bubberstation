@@ -160,6 +160,7 @@
 	description = "Advanced technological enhancements integrated into the body, offering improved physical capabilities."
 	prereq_ids = list(TECHWEB_NODE_PASSIVE_IMPLANTS, TECHWEB_NODE_CYBERNETICS)
 	design_ids = list(
+		"ci-reviver", // BUBBER EDIT - MOVED
 		"ci-breather",
 		"ci-nutriment",
 		"ci-nutrimentplus", // BUBBER EDIT - ADDITION
@@ -181,7 +182,7 @@
 	description = "To make sure that you can wake the f*** up, samurai."
 	prereq_ids = list(TECHWEB_NODE_CYBER_IMPLANTS)
 	design_ids = list(
-		"ci-reviver",
+		//"ci-reviver", // BUBBER EDIT - MOVED
 		"ci-antidrop",
 		"ci-antistun",
 		"ci-herculean", // BUBBER EDIT - ADDITION
