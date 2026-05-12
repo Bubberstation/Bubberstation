@@ -237,6 +237,8 @@
 	inhand_icon_state = null
 	alt_covers_chest = TRUE
 
+// Red versions of classic bluesec gear
+
 /obj/item/clothing/under/rank/security/viro/head_of_security/formal/skirt
 	desc = "The insignia on this uniform tells you that this uniform belongs to the Head of Security."
 	name = "head of security's formal uniform skirt"
@@ -246,3 +248,154 @@
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+/obj/item/clothing/under/rank/security/officer/suit/red
+	name = "security officer's suit"
+	desc = "A sleek, formal three-piece suit with a red suit jacket dawned with security insignia, not guaranteed to be good to run in!"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	icon_state = "security_suit"
+	inhand_icon_state = "r_suit"
+	can_adjust = TRUE
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/rank/security/officer/suit/red/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
+
+/obj/item/clothing/under/rank/security/warden/suit/red
+	name = "warden's suit"
+	desc = "A sleek, formal three-piece suit with a red suit jacket dawned with security insignia, not guaranteed to be good to run in!"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	icon_state = "warden_suit"
+	inhand_icon_state = "r_suit"
+	can_adjust = TRUE
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/rank/security/warden/suit/red/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
+
+/obj/item/clothing/under/rank/security/head_of_security/suit/red
+	name = "head of security's suit"
+	desc = "A sleek, formal three-piece suit with a red suit jacket dawned with security insignia, not guaranteed to be good to run in!"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	icon_state = "hos_suit"
+	inhand_icon_state = "r_suit"
+	can_adjust = TRUE
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/rank/security/head_of_security/suit/red/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
+
+/obj/item/clothing/under/rank/security/officer/turtleneck/red
+	name = "security turtleneck"
+	desc = " comfortable turtleneck in the classic security red, dawned with security insignia. Paired with black cargo pants to look tactical!"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	icon_state = "turtleneck"
+	inhand_icon_state = "r_suit"
+	can_adjust = TRUE
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/rank/security/officer/turtleneck/red/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
+
+/obj/item/clothing/under/rank/security/officer/turtleneck/red/skirt
+	name = "security turtleneck skirt"
+	desc = "A comfortable turtleneck in the classic security red, dawned with security insignia. Paired with a black skirt to look tactical!"
+	icon_state = "turtleneck_skirt"
+
+/obj/item/clothing/under/rank/security/warden/turtleneck/red
+	name = "security turtleneck"
+	desc = " comfortable turtleneck in the classic security red, dawned with security insignia. Paired with black cargo pants to look tactical!"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	icon_state = "turtleneck_warden"
+	inhand_icon_state = "r_suit"
+	can_adjust = TRUE
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/rank/security/warden/turtleneck/red/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
+
+/obj/item/clothing/under/rank/security/warden/turtleneck/red/skirt
+	name = "warden's turtleneck skirt"
+	desc = "A comfortable turtleneck in the classic security red, dawned with security insignia. Paired with a black skirt to look tactical!"
+	icon_state = "turtleneck_warden_skirt"
+
+/obj/item/clothing/under/rank/security/head_of_security/turtleneck/red
+	name = "head of security's turtleneck"
+	desc = "A comfortable turtleneck in the classic security red, dawned with security insignia. Paired with black cargo pants to look tactical!"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	icon_state = "turtleneck_hos"
+	inhand_icon_state = "r_suit"
+	can_adjust = TRUE
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/rank/security/head_of_security/turtleneck/red/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
+
+/obj/item/clothing/under/rank/security/head_of_security/turtleneck/red/skirt
+	name = "head of security's turtleneck skirt"
+	desc = "A comfortable turtleneck in the classic security red, dawned with security insignia. Paired with a black skirt to look tactical!"
+	icon_state = "turtleneck_hos_skirt"
+
+/obj/item/clothing/under/rank/security/warden/battledress/red
+	name = "warden's battle dress"
+	desc = "An asymmetrical, unisex uniform with the legs replaced by a utility skirt. This version is specifically designed for the warden!"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	icon_state = "battledress_warden"
+	can_adjust = TRUE
+	alt_covers_chest = FALSE
+	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+
+/obj/item/clothing/under/rank/security/warden/battledress/red/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
+
+/obj/item/clothing/under/rank/security/head_of_security/battledress/red
+	name = "head of security's battle dress"
+	desc = "An asymmetrical, unisex uniform with the legs replaced by a utility skirt. This version is specifically designed for the head of security!"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
+	icon_state = "battledress_hos"
+	can_adjust = TRUE
+	alt_covers_chest = FALSE
+	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+
+/obj/item/clothing/under/rank/security/head_of_security/battledress/red/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
