@@ -1,4 +1,4 @@
-#define HEALED_HP_PER_FAVOR 5
+#define HEALED_HP_PER_FAVOR 1
 
 /datum/religion_sect/affection
 	name = "Affection God"
