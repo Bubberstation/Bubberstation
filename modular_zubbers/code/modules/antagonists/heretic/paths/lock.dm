@@ -8,3 +8,20 @@
 		"The Path of Lock revolves around access, area denial, theft and gadgets.",
 		"Pick this path if you are new to heretic, or want a less confrontational playstyle and more interested in being a slippery rat.",
 	)
+
+/obj/effect/lock_portal/Initialize(mapload, target, invert = FALSE)
+	. = ..()
+
+	RegisterSignal(src, COMSIG_ATOM_HOLYATTACK, PROC_REF(on_holy_attack))
+
+/obj/effect/lock_portal/examine(mob/user)
+	. = ..()
+
+	. += span_notice("If a non-acolyte walks through the door, they will be teleported somewhere random. Acolytes, however, will be teleported to a second portal somewhere else.")
+	. += span_notice("Can be removed with antimagic weaponry (holymelons/nullrods) or by removing the airlock.")
+
+/obj/effect/lock_portal/proc/on_holy_attack(datum/source, obj/item/weapon)
+	SIGNAL_HANDLER
+
+	visible_message(span_warning("[weapon] dispels [src]!"))
+	qdel(src)
