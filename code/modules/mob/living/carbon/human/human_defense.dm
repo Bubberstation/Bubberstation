@@ -606,6 +606,9 @@
 			combined_msg += span_info("You feel fatigued.")
 
 	to_chat(src, boxed_message(combined_msg.Join("<br>")))
+	//BUBBER EDIT BEGIN
+	SEND_SIGNAL(src, COMSIG_CARBON_SELF_CHECK_FOR_INJURIES)
+	//BUBBER EDIT END
 
 /mob/living/carbon/human/damage_clothes(damage_amount, damage_type = BRUTE, damage_flag = 0, def_zone)
 	if(damage_type != BRUTE && damage_type != BURN)

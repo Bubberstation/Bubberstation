@@ -11,14 +11,14 @@
 /datum/augment_item/implant/brain
 	slot = AUGMENT_SLOT_BRAIN_IMPLANT
 
+/datum/augment_item/implant/brain/wound_scanner
+	name = "Internal Wound Analyzer"
+	cost = 1
+	path = /obj/item/organ/cyberimp/brain/wound_scanner
+
 //CHEST IMPLANTS
 /datum/augment_item/implant/chest
 	slot = AUGMENT_SLOT_CHEST_IMPLANT
-
-/datum/augment_item/implant/chest/wound_scanner
-	name = "Chest Internal Wound Analyzer"
-	cost = 1
-	path = /obj/item/organ/cyberimp/chest/wound_scanner
 
 /datum/augment_item/implant/chest/nutrimentpump
 	name = "Standard Nutriment Pump" // The STANDARD pump. Only gets you to 35% nutrition. You still need to eat ACTUAL food to be rid of the negative moodlet

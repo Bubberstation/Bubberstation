@@ -37,7 +37,10 @@
 			for(var/mob/living/carbon/human/sub in hearers(world.view / 2, living_user))
 				if(!sub.has_quirk(/datum/quirk/well_trained) || sub == living_user || sub.stat == DEAD)
 					continue
-
+// Check for matching gender preference on sub and dom, as well as if they both want the clicker interaction
+				var/datum/quirk/well_trained/sub_quirk = sub.get_quirk(/datum/quirk/well_trained)
+				if(!sub_quirk.check_if_sub_dom_mutually_preferred(living_user) || !(sub.client.prefs.read_preference(/datum/preference/toggle/well_trained/clicker) && living_user.client.prefs.read_preference(/datum/preference/toggle/dominant_aura/clicker)))
+					continue
 				if(get_dist(sub, living_user) > world.view / 2)
 					continue
 				sub.dir = get_dir(sub, living_user)
@@ -56,6 +59,11 @@
 			for(var/mob/living/silicon/robot/borg_sub in hearers(world.view / 2, living_user))
 				if(!borg_sub.has_quirk(/datum/quirk/well_trained) || borg_sub == living_user || borg_sub.stat == DEAD)
 					continue
+// Check for matching gender preference on sub and dom, as well as if they both want the clicker interaction
+				var/datum/quirk/well_trained/sub_quirk = borg_sub.get_quirk(/datum/quirk/well_trained)
+				if(!sub_quirk.check_if_sub_dom_mutually_preferred(living_user) || !(borg_sub.client.prefs.read_preference(/datum/preference/toggle/well_trained/clicker) && living_user.client.prefs.read_preference(/datum/preference/toggle/dominant_aura/clicker)))
+					continue
+
 				borg_sub.dir = get_dir(borg_sub, living_user)
 				borg_sub.emote("me", 1, "suddenly perks up in attention!", TRUE)
 				to_chat(borg_sub, span_purple("You perk up in attention hearing <b>[living_user]</b>'s click!"))
