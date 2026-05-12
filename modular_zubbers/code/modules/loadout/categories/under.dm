@@ -215,3 +215,11 @@
 /datum/loadout_item/uniform/miscellaneous/colonial_outfit
 	name = "Colonial Outfit"
 	item_path = /obj/item/clothing/under/colonial
+
+/datum/loadout_item/uniform/miscellaneous/big_pants
+	name = "\improper JUNCO Megacargo Pants"
+	item_path = /obj/item/clothing/under/pants/greyscale/big_pants
+
+/datum/loadout_item/uniform/miscellaneous/wide_leg
+	name = "Loose Pants"
+	item_path = /obj/item/clothing/under/pants/greyscale/loose_pants

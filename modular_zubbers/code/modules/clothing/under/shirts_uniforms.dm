@@ -1,5 +1,5 @@
 /obj/item/clothing/under/greyscale
-	icon = 'modular_zubbers/icons/obj/clothing/under/greyscale.dmi'
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
 	// Defaults to FALSE for this type because greyscale items are less commonly adjustable
@@ -16,8 +16,8 @@
 /obj/item/clothing/under/greyscale/turtleneck
 	name = "turtleneck with pants"
 	desc = "A rather comfortable turtleneck worn with pants. Talk about robust threads."
-	icon = 'modular_zubbers/icons/obj/clothing/under/greyscale.dmi'
-	icon_state = "greyscaleturtleneck"
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
+	icon_state = "/obj/item/clothing/under/greyscale/turtleneck"
 	post_init_icon_state = "turtleneck"
 	greyscale_config = /datum/greyscale_config/turtlenecks
 	greyscale_config_worn = /datum/greyscale_config/turtlenecks/worn
@@ -39,8 +39,8 @@
 /obj/item/clothing/under/greyscale/gorkas
 	name = "gorka jumpsuit"
 	desc = "A somewhat comfortable gorka, as comfy as a regular jumpsuit but with a more unique design."
-	icon = 'modular_zubbers/icons/obj/clothing/under/greyscale.dmi'
-	icon_state = "greyscalegorka"
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
+	icon_state = "/obj/item/clothing/under/greyscale/gorkas"
 	post_init_icon_state = "gags_gorka"
 	greyscale_config = /datum/greyscale_config/gorkas
 	greyscale_config_worn = /datum/greyscale_config/gorkas/worn
@@ -51,8 +51,8 @@
 /obj/item/clothing/under/greyscale/overalls
 	name = "turtleneck with overalls"
 	desc = "Overalls worn over a turtleneck. A combination providing comfort and coverage... or, at the least, the coverage."
-	icon = 'modular_zubbers/icons/obj/clothing/under/greyscale.dmi'
-	icon_state = "greyscaleoveralls"
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
+	icon_state = "/obj/item/clothing/under/greyscale/overalls"
 	post_init_icon_state = "overalls"
 	greyscale_config = /datum/greyscale_config/sus_overalls
 	greyscale_config_worn = /datum/greyscale_config/sus_overalls/worn
@@ -64,7 +64,7 @@
 /obj/item/clothing/under/greyscale/overalls/skirt
 	name = "turtleneck with overalls-skirt"
 	desc = "An overalls-skirt worn over a turtleneck. A combination providing comfort and coverage... or, at the least- no, wait, this doesn't really provide either."
-	icon_state = "greyscaleoveralls_skirt"
+	icon_state = "/obj/item/clothing/under/greyscale/overalls/skirt"
 	post_init_icon_state = "overalls_skirt"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	body_parts_covered = CHEST|GROIN
@@ -74,8 +74,8 @@
 /obj/item/clothing/under/greyscale/playsuit
 	name = "playsuit"
 	desc = "For the love of the game."
-	icon = 'modular_zubbers/icons/obj/clothing/under/greyscale.dmi'
-	icon_state = "greyscaleplaysuit"
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
+	icon_state = "/obj/item/clothing/under/greyscale/playsuit"
 	post_init_icon_state = "playsuit"
 	greyscale_config = /datum/greyscale_config/playsuit
 	greyscale_config_worn = /datum/greyscale_config/playsuit/worn
@@ -83,3 +83,52 @@
 	greyscale_colors = "#787878#252525#CCCED1#787878"
 	flags_1 = IS_PLAYER_COLORABLE_1
 	can_adjust = FALSE
+
+/obj/item/clothing/under/pants/camo
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
+	icon_state = "/obj/item/clothing/under/pants/camo"
+	post_init_icon_state = "camopants"
+	greyscale_config = /datum/greyscale_config/camo_pants
+	greyscale_config_worn = /datum/greyscale_config/camo_pants/worn
+	greyscale_config_worn_digi = /datum/greyscale_config/camo_pants/worn/digi
+	greyscale_colors = "#69704C#6E5B4C#343741"
+	flags_1 = IS_PLAYER_COLORABLE_1
+
+/obj/item/clothing/under/pants/greyscale/big_pants
+	name = "\improper JUNCO megacargo pants"
+	desc = "De riguer for techno classicists, these extreme wide leg pants come back into style every \
+		now and then. This pair has generous onboard storage."
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
+	icon_state = "/obj/item/clothing/under/pants/bubbers/big_pants"
+	post_init_icon_state = "big_pants"
+	greyscale_config = /datum/greyscale_config/big_pants
+	greyscale_config_worn = /datum/greyscale_config/big_pants/worn
+	greyscale_config_worn_digi = /datum/greyscale_config/big_pants/worn/digi
+	greyscale_colors = "#874f16"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	alternate_worn_layer = LOW_FACEMASK_LAYER
+
+/obj/item/clothing/under/pants/greyscale/loose_pants
+	name = "Loose pants"
+	desc = "Some loose pants with a belt that looks comfy."
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
+	icon_state = "/obj/item/clothing/under/pants/greyscale/loose_pants"
+	post_init_icon_state = "loose_pants"
+	greyscale_config = /datum/greyscale_config/loose_pants
+	greyscale_config_worn = /datum/greyscale_config/loose_pants/worn
+	greyscale_colors = "#4d4d4d#666633#c0c0c0"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	alternate_worn_layer = LOW_FACEMASK_LAYER
+
+/obj/item/clothing/under/pants/greyscale/wide_leg
+	name = "wide legged pants"
+	desc = "An airy pair of wide-legged pants with a reasonably high waist."
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
+	icon_state = "/obj/item/clothing/under/pants/greyscale/wide_leg"
+	post_init_icon_state = "wide_leg"
+	greyscale_config = /datum/greyscale_config/wide_leg //The naming conventions behind the icons/configs here are a travesty, and I'm very sorry.
+	greyscale_config_worn = /datum/greyscale_config/wide_leg/worn	//It will happen again.
+	greyscale_config_worn_digi = /datum/greyscale_config/wide_leg/worn/digi
+	greyscale_colors = "#ba917d"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	alternate_worn_layer = LOW_FACEMASK_LAYER

@@ -1057,3 +1057,40 @@
 
 /obj/item/clothing/suit/toggle/jacket/zubber/bomber/syndicate/fake
 	armor_type = /datum/armor/hooded_wintercoat
+
+/obj/item/clothing/suit/greyscale/sweater
+	name = "big sweater"
+	desc = "A big'ol sweater! Makes for an improvised blanket with how huge this thing is."
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/greyscale/sweater"
+	post_init_icon_state = "sweater"
+	body_parts_covered = CHEST|ARMS
+	greyscale_config = /datum/greyscale_config/sweater_greyscale_1
+	greyscale_config_worn = /datum/greyscale_config/sweater_greyscale_1/worn
+	greyscale_colors = "#2d3a46"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+/obj/item/clothing/suit/greyscale/sweater/bow
+	name = "big sweater with bow"
+	desc = "A big'ol sweater with an equally big ribbon bow! Makes for an improvised blanket with how huge this thing is."
+	icon_state = "/obj/item/clothing/suit/greyscale/sweater/bow"
+	post_init_icon_state = "sweaterbow"
+	greyscale_config = /datum/greyscale_config/sweater_greyscale_2
+	greyscale_config_worn = /datum/greyscale_config/sweater_greyscale_2/worn
+	greyscale_colors = "#2d3a46#ffcc66"
+
+/obj/item/clothing/suit/greyscale/furred_trenchcoat
+	name = "furred trenchcoat"
+	desc = "A warm trenchcoat lined with fur, made for the cold, dark, and desperate winter nights."
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/greyscale/furred_trenchcoat"
+	post_init_icon_state = "coat"
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	greyscale_config = /datum/greyscale_config/fluffywintercoat
+	greyscale_config_worn = /datum/greyscale_config/fluffywintercoat/worn
+	greyscale_colors = "#eaeaea#969696#4d4d4d#ccffff"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON

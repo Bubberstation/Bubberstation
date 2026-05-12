@@ -235,3 +235,15 @@
 /datum/loadout_item/suit/trenchcoat
 	name = "Trenchcoat"
 	item_path = /obj/item/clothing/suit/toggle/jacket/trenchcoat
+
+/datum/loadout_item/suit/greyscale/sweater
+	name = "Big Sweater"
+	item_path = /obj/item/clothing/suit/greyscale/sweater
+
+/datum/loadout_item/suit/greyscale/sweater_bow
+	name = "Big Sweater with Bow"
+	item_path = /obj/item/clothing/suit/greyscale/sweater/bow
+
+/datum/loadout_item/suit/greyscale/furred_trenchcoat
+	name = "Furred Trenchcoat"
+	item_path = /obj/item/clothing/suit/greyscale/furred_trenchcoat
