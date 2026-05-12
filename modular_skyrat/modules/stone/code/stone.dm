@@ -95,7 +95,7 @@ GLOBAL_LIST_INIT(stone_recipes, list ( \
 	explosive_resistance = 2 // Rock and stone to the bone, or at least a bit longer than walls made of metal sheets!
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_STONE_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
-	canSmoothWith = SMOOTH_GROUP_STONE_WALLS
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_STONE_WALLS + SMOOTH_GROUP_WALLS
 	custom_materials = list(
 		/datum/material/stone = SHEET_MATERIAL_AMOUNT  * 2,
 	)
@@ -122,7 +122,7 @@ GLOBAL_LIST_INIT(stone_recipes, list ( \
 	base_icon_state = "wall"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_STONE_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
-	canSmoothWith = SMOOTH_GROUP_STONE_WALLS
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_STONE_WALLS + SMOOTH_GROUP_WALLS
 	custom_materials = list(
 		/datum/material/stone = SHEET_MATERIAL_AMOUNT  * 2,
 	)
@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(stone_recipes, list ( \
 	walltype = /turf/closed/wall/mineral/stone
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_STONE_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
-	canSmoothWith = SMOOTH_GROUP_STONE_WALLS
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_STONE_WALLS + SMOOTH_GROUP_WALLS
 
 /turf/closed/mineral/gets_drilled(mob/user, give_exp = FALSE)
 	if(prob(5))

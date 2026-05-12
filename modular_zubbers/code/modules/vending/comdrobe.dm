@@ -216,6 +216,10 @@
 		/obj/item/clothing/suit/armor/hos/viro/trenchcoat = 1,
 		/obj/item/clothing/suit/armor/hos/viro = 1,
 		/obj/item/clothing/head/helmet/viro/hos = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/battledress/red = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/turtleneck/red = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/turtleneck/red/skirt = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/suit/red = 1,
 	)
 
 	access_lists["[ACCESS_QM]"] = list(
