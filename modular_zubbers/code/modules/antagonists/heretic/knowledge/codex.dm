@@ -7,4 +7,4 @@
 	. = ..()
 
 	. += span_notice("This book allows the user to open influences faster, as well as draw transmutation runes more quickly.")
-	. += span_notice("Additionally, acts as a focus while held.")
+	. += span_notice("Additionally, acts as a focus while open.")
