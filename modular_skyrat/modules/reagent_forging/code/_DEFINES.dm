@@ -58,8 +58,18 @@
 			var/datum/armor/temp_test_before = item.get_armor()
 
 			var/datum/armor/indexed_armor = max_effect
-			var/datum/armor/new_armor_modifier = indexed_armor.generate_new_with_multipliers(list(ARMOR_ALL = new_modifier))
-			var/datum/armor/previous_armor_modifier = indexed_armor.generate_new_with_multipliers(list(ARMOR_ALL = old_modifier))
+			///WHY does the tgstation implementation have 0-multipler return the source armor? and not return armor/none?
+			var/datum/armor/new_armor_modifier
+			if(new_modifier == 0)
+				new_armor_modifier = new /datum/armor/none
+			else
+				new_armor_modifier = indexed_armor.generate_new_with_multipliers(list(ARMOR_ALL = new_modifier))
+			var/datum/armor/previous_armor_modifier
+			if(old_modifier == 0)
+				previous_armor_modifier = new /datum/armor/none
+			else
+				previous_armor_modifier = indexed_armor.generate_new_with_modifiers(list(ARMOR_ALL = new_modifier))
+
 			item.set_armor(item.get_armor().add_other_armor(new_armor_modifier).subtract_other_armor(previous_armor_modifier))
 			var/datum/armor/temp_test_after = item.get_armor()
 			var/datum/asdf = item.get_armor()

@@ -98,6 +98,8 @@
 	var/list/radial_choice_list = list()
 	/// Filters the radial choice list by required skill
 	var/list/choice_list_skill_filter = list(
+		"Revolver Frame" = /datum/skill/smithing,
+		"Revolver Cylinder" = /datum/skill/smithing,
 	)
 	/// Filters the radial choice list by required level in its skill; true means corresponding element requires it
 	var/list/choice_list_skill_level_filter = list(
@@ -610,7 +612,8 @@
 		balloon_alert(user, "stopped imbuing")
 		return
 
-	weapon_component.set_reagent_imbue(attacking_item.reagents, clear_source_reagents = TRUE, smithing_oil_bonus = TRUE)
+	if(USER_CAN_REAGENT_IMBUE(user))
+		weapon_component.set_reagent_imbue(attacking_item.reagents, clear_source_reagents = TRUE)
 
 	balloon_alert_to_viewers("imbued [attacking_item]")
 	user.mind.adjust_experience(/datum/skill/smithing, 60)

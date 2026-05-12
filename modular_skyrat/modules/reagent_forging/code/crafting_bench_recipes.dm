@@ -35,8 +35,8 @@
 	//imbued of the final product should be approx. imbued of all containing products
 	var/datum/component/reagent_imbued/output_reagent_component = product.GetComponent(/datum/component/reagent_imbued)
 	var/datum/reagents/my_reagents = combine_reagent_imbues(ingredients)
-	if(!isnull(output_reagent_component))
-		output_reagent_component.set_reagent_imbue(my_reagents, clear_source_reagents = TRUE, smithing_oil_bonus = USER_CAN_REAGENT_IMBUE(user))
+	if(!isnull(output_reagent_component) && USER_CAN_REAGENT_IMBUE(user))
+		output_reagent_component.set_reagent_imbue(my_reagents, clear_source_reagents = TRUE)
 
 /datum/crafting_bench_recipe/proc/combine_reagent_imbues(list/reagent_imbued_items)
 	var/datum/reagents/reagents_sum = new(maximum = 4096, new_flags = NO_REACT)

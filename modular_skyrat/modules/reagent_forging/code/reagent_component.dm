@@ -82,8 +82,7 @@
 /datum/component/reagent_imbued/proc/set_reagent_imbue(datum/reagents/new_reagents, clear_source_reagents = TRUE)
 	imbued_reagent.clear_reagents()
 	new_reagents.trans_to(imbued_reagent, amount = new_reagents.total_volume, copy_only = TRUE, no_react = TRUE)
-	if(smithing_oil_bonus)
-		apply_smithing_oil_bonus()
+	apply_smithing_oil_bonus()
 	var/new_color = mix_color_from_reagents(new_reagents.reagent_list)
 	if(length(new_color) > 7) //remove the transparency stuff
 		new_color = copytext(new_color, 1, 8) + "FF"
