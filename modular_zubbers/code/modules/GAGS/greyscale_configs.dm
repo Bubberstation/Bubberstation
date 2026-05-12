@@ -420,7 +420,7 @@
 /datum/greyscale_config/sweater_greyscale_1
 	name = "Big Sweater"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/greyscale_suits.dmi'
-	json_config = 'modular_zubbers\code\datums\greyscale\json_configs\suit\sweater\sweater.json'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/suit/sweater/sweater.json'
 
 /datum/greyscale_config/sweater_greyscale_1/worn
 	name = "Big Sweater (Worn)"
@@ -430,7 +430,7 @@
 /datum/greyscale_config/sweater_greyscale_2
 	name = "Big Sweater With Bow"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/greyscale_suits.dmi'
-	json_config = 'modular_zubbers\code\datums\greyscale\json_configs\suit\sweater\sweaterbow.json'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/suit/sweater/sweaterbow.json'
 
 /datum/greyscale_config/sweater_greyscale_2/worn
 	name = "Big Sweater With Bow (Worn)"
@@ -440,7 +440,7 @@
 /datum/greyscale_config/fluffywintercoat
 	name = "Fluffy Coat"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/greyscale_suits.dmi'
-	json_config = 'modular_zubbers\code\datums\greyscale\json_configs\suit\fluffywintercoat\coat.json'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/suit/fluffywintercoat/coat.json'
 
 /datum/greyscale_config/fluffywintercoat/worn
 	name = "Fluffy Coat (Worn)"
@@ -449,9 +449,9 @@
 /datum/greyscale_config/dagger_mantle
 	name = "'Dagger' Designer Mantle"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/greyscale_suits.dmi'
-	json_config = 'modular_zubbers\code\datums\greyscale\json_configs\neck\dagger_mantle\dagger_mantle.json'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/neck/dagger_mantle/dagger_mantle.json'
 
 /datum/greyscale_config/dagger_mantle/worn
 	name = "'Dagger' Designer Mantle (Worn)"
-	json_config = 'modular_zubbers\code\datums\greyscale\json_configs\neck\dagger_mantle\dagger_mantle_worn.json'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/neck/dagger_mantle/dagger_mantle_worn.json'
 ///Greyscale clothing Nova port end
