@@ -211,3 +211,7 @@
 /datum/loadout_item/uniform/miscellaneous/playsuit
 	name = "Greyscale Playsuit"
 	item_path = /obj/item/clothing/under/greyscale/playsuit
+
+/datum/loadout_item/uniform/miscellaneous/colonial_outfit
+	name = "Colonial Outfit"
+	item_path = /obj/item/clothing/under/colonial

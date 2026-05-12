@@ -157,3 +157,7 @@
 /datum/loadout_item/head/soft/plasmax_black
 	name = "PlasMAX Envirosuit Helmet"
 	item_path = /obj/item/clothing/head/helmet/space/plasmaman/plasmax_black
+
+/datum/loadout_item/head/colonial
+	name = "Colonial Cap"
+	item_path = /obj/item/clothing/head/hats/colonial
