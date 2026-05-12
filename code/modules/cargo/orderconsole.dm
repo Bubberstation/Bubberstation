@@ -101,8 +101,9 @@
 	data["can_send"] = can_send
 	data["can_approve_requests"] = can_approve_requests
 	data["requestonly"] = requestonly
-	// BUBBER EDIT ADDITION - allow UI to hide private toggle on unsupported consoles
+	// BUBBER EDIT START - allow UI to hide private toggle on unsupported consoles
 	data["allow_private_purchases"] = can_private_purchases
+	// BUBBER EDIT END
 	var/message = "Remember to stamp and send back the supply manifests."
 	if(SSshuttle.centcom_message)
 		message = SSshuttle.centcom_message

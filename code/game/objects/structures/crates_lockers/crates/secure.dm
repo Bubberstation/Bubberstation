@@ -163,6 +163,10 @@
 /obj/structure/closet/crate/secure/owned/examine(mob/user)
 	. = ..()
 	. += span_notice("It's locked with a privacy lock, and can only be unlocked by the buyer's ID.")
+	// BUBBER EDIT START - show department account on examine if bought with departmental funds
+	if(department_purchase)
+		. += span_notice("This crate was purchased with departmental funds from [department_account.department_name], and can be opened by anyone who has an ID linked to an account with a paycheck from that department.")
+	// BUBBER EDIT END
 
 /obj/structure/closet/crate/secure/owned/Initialize(mapload, datum/bank_account/_buyer_account)
 	. = ..()
