@@ -81,3 +81,7 @@
 /datum/loadout_item/neck/cloak/colonial_cloak
 	name = "Colonial Cloak"
 	item_path = /obj/item/clothing/neck/cloak/colonial
+
+/datum/loadout_item/suit/dagger_mantle
+	name = "'Dagger' Designer Mantle"
+	item_path = /obj/item/clothing/suit/dagger_mantle
