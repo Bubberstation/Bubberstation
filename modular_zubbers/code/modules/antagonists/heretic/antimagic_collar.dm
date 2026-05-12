@@ -19,7 +19,7 @@
 		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 0.25,
 	)
 
-	armor_type = /datum/armor/collar_bomb
+	armor_type = /datum/armor/antimagic_collar
 	equip_delay_self = 6 SECONDS
 	equip_delay_other = 8 SECONDS
 	repairable_by = /obj/item/stack/sheet/bluespace_crystal
@@ -80,6 +80,9 @@
 	. += span_notice("It seems to be [locked ? "locked" : "unlocked"].")
 	if (broken)
 		. += span_boldwarning("Its broken, and currently nonfunctional!")
+	else
+		var/hp_left = get_integrity() - (max_integrity * integrity_failure)
+		. += span_notice("It has [EXAMINE_HINT(hp_left)] integrity left til it breaks.")
 
 /obj/item/clothing/neck/antimagic_collar/equipped(mob/living/user, slot)
 	. = ..()
@@ -96,6 +99,7 @@
 
 	name = "[name] (BROKEN!)"
 	playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50)
+	broken = TRUE
 	if (isliving(loc))
 		var/mob/living/wearer = loc
 		do_sparks(3)
