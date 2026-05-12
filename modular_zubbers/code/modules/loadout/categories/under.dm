@@ -217,7 +217,7 @@
 	item_path = /obj/item/clothing/under/colonial
 
 /datum/loadout_item/uniform/miscellaneous/big_pants
-	name = "\improper JUNCO Megacargo Pants"
+	name = "JUNCO Megacargo Pants"
 	item_path = /obj/item/clothing/under/pants/greyscale/big_pants
 
 /datum/loadout_item/uniform/miscellaneous/wide_leg
