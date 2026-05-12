@@ -253,8 +253,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/buyer = buying_account.account_holder || "Account ID: [buying_account.account_id]" // BUBBER EDIT - allow goodies to be bought privately
 
 		if(buying_account_orders.len > GOODY_FREE_SHIPPING_MAX) // no free shipping, send a crate
-			var/obj/structure/closet/crate/secure/owned/our_crate = new /obj/structure/closet/crate/secure/owned(pick_n_take(empty_turfs))
-			our_crate.buyer_account = buying_account
+			var/obj/structure/closet/crate/secure/owned/our_crate = new /obj/structure/closet/crate/secure/owned(pick_n_take(empty_turfs), buying_account) // BUBBER EDIT - add init arg
 			/// SKYRAT EDIT ADDITION START - FIXES COMMAND BUDGET CASES BEING UNOPENABLE
 			if(istype(our_crate.buyer_account, /datum/bank_account/department))
 				our_crate.department_purchase = TRUE
@@ -263,7 +262,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			our_crate.name = "goody crate - purchased by [buyer]"
 			miscboxes[buyer] = our_crate
 		else //free shipping in a case
-			miscboxes[buyer] = new /obj/item/storage/lockbox/order(pick_n_take(empty_turfs))
+			miscboxes[buyer] = new /obj/item/storage/lockbox/order(pick_n_take(empty_turfs), buying_account) // BUBBER EDIT - add init arg
 			var/obj/item/storage/lockbox/order/our_case = miscboxes[buyer]
 			our_case.buyer_account = buying_account
 			/// SKYRAT EDIT ADDITION START - FIXES COMMAND BUDGET CASES BEING UNOPENABLE
