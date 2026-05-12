@@ -2,7 +2,9 @@
 
 /datum/supply_pack/goody/company_import
 	desc = "Contains one imported company item."
+	group = "Company Imports"
 	crate_name = "import package"
+	allow_non_private_purchase = TRUE
 	var/obj/item/item_type
 
 /datum/supply_pack/goody/company_import/New()

@@ -314,7 +314,7 @@
 				say("ERROR: User lacks the requisite access for this purchase request.")
 				return
 
-	if((pack.order_flags & ORDER_GOODY) && !self_paid)
+	if((pack.order_flags & ORDER_GOODY) && !self_paid && !pack.allow_non_private_purchase) // BUBBER EDIT
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 		say("ERROR: Small crates may only be purchased by private accounts.")
 		return

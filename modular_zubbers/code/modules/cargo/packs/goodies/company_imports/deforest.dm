@@ -1,4 +1,5 @@
 /datum/supply_pack/goody/deforest
+	parent_type = /datum/supply_pack/goody/company_import // BUBBER EDIT - make all DeForest packs subtypes of company imports
 	desc = "Contains one DeForest medical import item."
 	subcategory = "DeForest Medical"
 	crate_name = "DeForest supply package"

@@ -4,6 +4,10 @@
 	/// The group that the supply pack is sorted into within the cargo purchasing UI.
 	var/group = ""
 	// BUBBER EDIT START
+	/// Whether this ORDER_GOODY pack can be purchased with non-private accounts.
+	var/allow_non_private_purchase = FALSE
+	// BUBBER EDIT END
+	// BUBBER EDIT START
 	/// Optional subcategory shown as a subsection header within a group in the cargo UI.
 	var/subcategory = ""
 	// BUBBER EDIT END

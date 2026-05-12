@@ -14,7 +14,6 @@
 	contraband = TRUE
 	pod_type = /obj/structure/closet/supplypod/bluespacepod
 	console_flags = CARGO_CONSOLE_INTERDYNE
-	can_private_purchases = TRUE
 	landingzone = /area/ruin/space/has_grav/bubbers/persistance/cargo
 
 /obj/machinery/computer/cargo/express/interdyne/emag_act(mob/user, obj/item/card/emag/emag_card)
