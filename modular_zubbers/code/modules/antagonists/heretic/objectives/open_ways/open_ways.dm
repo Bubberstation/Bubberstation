@@ -258,6 +258,7 @@
 		/obj/item/organ/stomach,
 		/obj/item/organ/lungs,
 	)
+	var/list/organs_copy = potential_organs.Copy()
 
 	var/static/list/potential_easy_items = list(
 		/obj/item/shard,
@@ -298,8 +299,8 @@
 		///obj/item/mod/core/ethereal, // craftable if you grind a high energy bar
 	)
 
-	open_requirements[pick(potential_organs)] += 1
-	open_requirements[pick(potential_organs)] += 1
+	open_requirements[pick_n_take(organs_copy)] += 1
+	open_requirements[pick_n_take(organs_copy)] += 1
 	open_requirements[pick(potential_easy_items)] += 1
 	open_requirements[pick(potential_uncommoner_items)] += 1
 	open_requirements[pick(potential_secondary_items)] += 1
