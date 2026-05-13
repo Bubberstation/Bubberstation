@@ -223,3 +223,7 @@
 /datum/loadout_item/uniform/miscellaneous/wide_leg
 	name = "Loose Pants"
 	item_path = /obj/item/clothing/under/pants/greyscale/loose_pants
+
+/datum/loadout_item/uniform/miscellaneous/wide_leg
+	name = "wide legged pants"
+	item_path = /obj/item/clothing/under/pants/greyscale/wide_leg

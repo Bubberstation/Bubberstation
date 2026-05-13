@@ -109,7 +109,7 @@
 	alternate_worn_layer = LOW_FACEMASK_LAYER
 
 /obj/item/clothing/under/pants/greyscale/loose_pants
-	name = "Loose pants"
+	name = "loose pants"
 	desc = "Some loose pants with a belt that looks comfy."
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/pants/greyscale/loose_pants"
