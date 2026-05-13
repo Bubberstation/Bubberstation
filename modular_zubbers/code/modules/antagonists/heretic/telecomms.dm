@@ -8,8 +8,8 @@
 		if (prob(20))
 			to_chat(living_hearer, span_warning("The words from the radio ring in your head, wrong, all sorts of wrong..."))
 			to_chat(living_hearer, span_warning("You get the feeling that disabling any nearby radios would help."))
-			living_hearer.adjust_organ_loss(ORGAN_SLOT_BRAIN, 10, 50)
-			living_hearer.adjust_hallucinations_up_to(20 SECONDS, 1 MINUTES)
+			living_hearer.adjust_organ_loss(ORGAN_SLOT_BRAIN, 10, BRAIN_DAMAGE_MILD)
+			living_hearer.adjust_hallucinations_up_to(40 SECONDS, 5 MINUTES)
 
 /obj/machinery/telecomms/processor/update_overlays()
 	. = ..()
