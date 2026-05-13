@@ -99,7 +99,7 @@
 	desc = "De riguer for techno classicists, these extreme wide leg pants come back into style every \
 		now and then. This pair has generous onboard storage."
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
-	icon_state = "modular_zubbers/icons/mob/clothing/under/big_pants.dmi"
+	icon_state = "/obj/item/clothing/under/pants/greyscale/big_pants"
 	post_init_icon_state = "big_pants"
 	greyscale_config = /datum/greyscale_config/big_pants
 	greyscale_config_worn = /datum/greyscale_config/big_pants/worn
