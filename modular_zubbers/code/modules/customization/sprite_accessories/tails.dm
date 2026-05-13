@@ -174,13 +174,3 @@
 	name = "Eastern Dragon"
 	icon_state = "easternd"
 	icon = 'modular_zubbers/icons/customization/tails.dmi'
-
-/datum/sprite_accessory/mammal/wagging/deathclaw
-	name = "Mutant Lizard"
-	icon_state = "deathclaw"
-	icon = 'modular_zubbers/icons/customization/tails.dmi'
-
-/datum/sprite_accessory/mammal/wagging/nightstalker
-	name = "Hybrid Coyote"
-	icon_state = "nightstalker"
-	icon = 'modular_zubbers/icons/customization/tails.dmi'
