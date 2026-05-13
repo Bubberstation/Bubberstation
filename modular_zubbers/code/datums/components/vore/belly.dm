@@ -338,7 +338,7 @@
 		if(DISABLES_SENSORS)
 			if(istype(AM, /obj/item/clothing/under))
 				var/obj/item/clothing/under/sensor_clothing = AM
-				sensor_clothing.sensor_mode = SENSOR_OFF
+				sensor_clothing.set_sensor_mode(SENSOR_OFF)
 
 /// Handles prey leaving a belly
 /obj/vore_belly/Exited(atom/movable/gone, direction)
