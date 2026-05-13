@@ -40,3 +40,10 @@
 	dimension_y = 32
 	center = TRUE
 	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/tails/mammal/wagging/longstalker
+	name = "Hybrid Coyote (Large)"
+	icon_state = "longstalker"
+	icon = 'modular_zubbers/icons/customization/tails64x32.dmi'
+	center = TRUE
+	color_src = USE_MATRIXED_COLORS
