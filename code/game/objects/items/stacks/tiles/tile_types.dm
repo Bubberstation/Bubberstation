@@ -1121,8 +1121,26 @@
 	merge_type = /obj/item/stack/tile/pod
 	tile_reskin_types = list(
 		/obj/item/stack/tile/pod,
+		// BUBBER EDIT BEGIN
+		/obj/item/stack/tile/pod/edge,
+		/obj/item/stack/tile/pod/half,
+		/obj/item/stack/tile/pod/corner,
+		/obj/item/stack/tile/pod/large,
+		// BUBBER EDIT END
 		/obj/item/stack/tile/pod/light,
+		// BUBBER EDIT BEGIN
+		/obj/item/stack/tile/pod/light/edge,
+		/obj/item/stack/tile/pod/light/half,
+		/obj/item/stack/tile/pod/light/corner,
+		/obj/item/stack/tile/pod/light/large,
+		// BUBBER EDIT END
 		/obj/item/stack/tile/pod/dark,
+		// BUBBER EDIT BEGIN
+		/obj/item/stack/tile/pod/dark/edge,
+		/obj/item/stack/tile/pod/dark/half,
+		/obj/item/stack/tile/pod/dark/corner,
+		/obj/item/stack/tile/pod/dark/large,
+		// BUBBER EDIT END
 		)
 
 /obj/item/stack/tile/pod/light

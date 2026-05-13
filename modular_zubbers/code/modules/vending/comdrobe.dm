@@ -206,6 +206,20 @@
 		/obj/item/clothing/head/playbunnyears/hos = 1,
 		/obj/item/clothing/under/rank/security/head_of_security/bunnysuit = 1,
 		/obj/item/clothing/suit/armor/hos_tailcoat = 1,
+		/obj/item/clothing/under/rank/security/viro/head_of_security/viro = 1,
+		/obj/item/clothing/under/rank/security/viro/head_of_security/skirt = 1,
+		/obj/item/clothing/under/rank/security/viro/head_of_security/alt = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/alt/skirt = 1,
+		/obj/item/clothing/under/rank/security/viro/head_of_security/formal = 1,
+		/obj/item/clothing/under/rank/security/viro/head_of_security/formal/skirt = 1,
+		/obj/item/clothing/suit/armor/hos/viro/trenchcoat/winter = 1,
+		/obj/item/clothing/suit/armor/hos/viro/trenchcoat = 1,
+		/obj/item/clothing/suit/armor/hos/viro = 1,
+		/obj/item/clothing/head/helmet/viro/hos = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/battledress/red = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/turtleneck/red = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/turtleneck/red/skirt = 1,
+		/obj/item/clothing/under/rank/security/head_of_security/suit/red = 1,
 	)
 
 	access_lists["[ACCESS_QM]"] = list(

@@ -45,13 +45,6 @@
 	if(!isstack(exportable))
 		return NONE
 
-	// BUBBER EDIT ADDITION BEGIN - GMM can't sell materials
-	balloon_alert(user, "export not available!")
-	return ITEM_INTERACT_FAILURE
-	// BUBBER EDIT ADDITION END - GMM can't sell materials
-
-	// BUBBER EDIT REMOVAL BEGIN - GMM can't sell materials
-	/*
 	if(!is_operational)
 		balloon_alert(user, "no power!")
 		return ITEM_INTERACT_FAILURE
@@ -78,8 +71,6 @@
 	qdel(exportable)
 	use_energy(active_power_usage)
 	return ITEM_INTERACT_SUCCESS
-	*/
-	// BUBBER EDIT REMOVAL END - GMM can't sell materials
 
 /obj/machinery/materials_market/power_change()
 	. = ..()

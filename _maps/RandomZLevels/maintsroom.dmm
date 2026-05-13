@@ -563,6 +563,11 @@
 /obj/machinery/chem_dispenser/drinks/fullupgrade,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
+"bX" = (
+/obj/structure/table/wood/fancy/black,
+/obj/machinery/cell_charger,
+/turf/open/floor/iron/smooth,
+/area/awaymission/caves/maintsroom)
 "bY" = (
 /obj/structure/railing{
 	dir = 8
@@ -763,6 +768,7 @@
 /obj/item/clothing/sextoy/vibrator,
 /obj/item/clothing/sextoy/vibroring,
 /obj/item/clothing/sextoy/dildo,
+/obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "cG" = (
@@ -871,6 +877,10 @@
 /mob/living/basic/vatbeast,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom/deeper)
+"cU" = (
+/obj/item/paper/fluff/awaymissions/maintsroom/danger_ahead_reward,
+/turf/open/floor/iron/smooth,
+/area/awaymission/caves/maintsroom)
 "cV" = (
 /mob/living/basic/mining/legion/houndoftindalos,
 /turf/open/floor/iron/smooth,
@@ -1210,6 +1220,11 @@
 /obj/structure/frame/machine/secured,
 /obj/effect/light_emitter/fake_outdoors,
 /turf/open/misc/beach/sand,
+/area/awaymission/caves/maintsroom)
+"dZ" = (
+/obj/effect/light_emitter/fake_outdoors,
+/obj/item/paper/fluff/awaymissions/maintsroom/danger_ahead,
+/turf/open/floor/asphalt,
 /area/awaymission/caves/maintsroom)
 "ea" = (
 /obj/structure/cable,
@@ -1606,6 +1621,13 @@
 /obj/structure/flora/bush/jungle/c/style_random,
 /turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
+"fn" = (
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_x = 26;
+	pixel_y = 0
+	},
+/turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
 "fo" = (
 /obj/item/paper/fluff/awaymissions/maintsroom/acttwo,
 /turf/open/floor/iron/smooth,
@@ -1664,6 +1686,16 @@
 /obj/item/paper/fluff/awaymissions/maintsroom/actone,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
+"fv" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/surgery_tray/full,
+/obj/machinery/light/floor,
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_x = 26;
+	pixel_y = 0
+	},
+/turf/open/floor/iron/smooth,
+/area/awaymission/caves/maintsroom)
 "fw" = (
 /obj/item/cigarette/robust,
 /obj/structure/closet/emcloset,
@@ -1692,10 +1724,6 @@
 /obj/structure/sign/warning/secure_area/directional/east,
 /turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
-"fB" = (
-/obj/effect/spawner/random/maintsrooms,
-/turf/closed/wall,
-/area/awaymission/caves/maintsroom/deeper)
 "fC" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/yellow{
@@ -2438,6 +2466,12 @@
 /obj/structure/spacevine,
 /turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
+"hV" = (
+/obj/machinery/ammo_workbench,
+/obj/machinery/light/floor,
+/obj/item/disk/ammo_workbench/advanced,
+/turf/open/floor/iron/smooth,
+/area/awaymission/caves/maintsroom)
 "hW" = (
 /obj/structure/sign/poster/abductor/ayy_recruitment/directional/north,
 /turf/open/floor/plating/abductor,
@@ -2668,6 +2702,7 @@
 	id = "Thetrueend.";
 	height = 1
 	},
+/obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "iJ" = (
@@ -2686,6 +2721,10 @@
 /obj/item/instrument/harmonica,
 /obj/structure/table/reinforced/plasmarglass,
 /turf/open/floor/holofloor/white,
+/area/awaymission/caves/maintsroom)
+"iN" = (
+/obj/structure/fermenting_barrel/gunpowder,
+/turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "iO" = (
 /obj/structure/table,
@@ -2743,6 +2782,11 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/broken_flooring/corner/directional/south,
 /turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
+"iY" = (
+/turf/closed/indestructible/reinforced{
+	color = "#000000"
+	},
 /area/awaymission/caves/maintsroom)
 "iZ" = (
 /obj/structure/disposalpipe/segment,
@@ -3578,6 +3622,15 @@
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
+"lw" = (
+/obj/structure/table,
+/obj/item/restraints/handcuffs/cable/white,
+/obj/item/toy/plush/pkplush{
+	name = "C.H.E.R.U.B."
+	},
+/obj/item/surgery_tray/full,
+/turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
 "lx" = (
 /mob/living/simple_animal/bot/secbot/beepsky{
 	faction = list("hostile","cult")
@@ -3734,6 +3787,7 @@
 	projectile_damage_multiplier = 2;
 	name = "Yinbi Derringer?"
 	},
+/obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "mb" = (
@@ -4021,6 +4075,11 @@
 /obj/structure/chair/sofa/bench/left,
 /turf/open/floor/iron/cafeteria,
 /area/awaymission/caves/maintsroom)
+"mV" = (
+/obj/structure/table/wood/fancy/royalblue,
+/obj/effect/light_emitter/fake_outdoors,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom)
 "mW" = (
 /obj/machinery/light/red{
 	dir = 1
@@ -4044,6 +4103,22 @@
 /obj/machinery/light/directional/west,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
+"na" = (
+/obj/structure/table/wood/fancy/black,
+/obj/machinery/recharger{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/obj/machinery/recharger{
+	pixel_x = 10;
+	pixel_y = 4
+	},
+/obj/machinery/recharger{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "nb" = (
 /obj/structure/table/wood,
@@ -4987,6 +5062,10 @@
 /obj/machinery/light/floor,
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
+"qg" = (
+/obj/item/paper/fluff/awaymissions/maintsroom/go_to_the_xenos,
+/turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
 "qh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/mapping_helpers/burnt_floor,
@@ -5167,7 +5246,10 @@
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "qS" = (
-/obj/machinery/door/puzzle/keycard/blue_required,
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "qT" = (
@@ -5257,13 +5339,6 @@
 	},
 /turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
-"rc" = (
-/obj/effect/light_emitter/fake_outdoors,
-/mob/living/basic/blackmesa/human/blackops/ranged{
-	faction = list("Deathsquad")
-	},
-/turf/open/misc/beach/sand,
-/area/awaymission/caves/maintsroom)
 "rd" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -5340,13 +5415,6 @@
 	},
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
-"rq" = (
-/obj/effect/light_emitter/fake_outdoors,
-/mob/living/basic/blackmesa/human/blackops{
-	faction = list("Deathsquad")
-	},
-/turf/open/misc/beach/sand,
-/area/awaymission/caves/maintsroom)
 "rr" = (
 /mob/living/basic/mega_arachnid,
 /turf/open/floor/white,
@@ -5394,6 +5462,15 @@
 	faction = list("hostile","cult")
 	},
 /turf/open/floor/circuit/red,
+/area/awaymission/caves/maintsroom)
+"rB" = (
+/obj/item/keycard/yellow,
+/obj/effect/light_emitter/fake_outdoors,
+/obj/item/keycard/yellow,
+/obj/item/keycard/yellow,
+/obj/item/keycard/yellow,
+/obj/item/keycard/yellow,
+/turf/open/misc/asteroid,
 /area/awaymission/caves/maintsroom)
 "rC" = (
 /obj/structure/rack,
@@ -5457,7 +5534,15 @@
 /obj/item/reagent_containers/heroinbrick,
 /obj/item/reagent_containers/heroinbrick,
 /obj/item/reagent_containers/heroinbrick,
+/obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/white,
+/area/awaymission/caves/maintsroom)
+"rM" = (
+/obj/structure/table,
+/obj/item/storage/medkit/civil_defense/stocked,
+/obj/item/storage/medkit/civil_defense/stocked,
+/obj/item/storage/medkit/civil_defense/stocked,
+/turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "rN" = (
 /obj/structure/chair/comfy/brown{
@@ -5945,6 +6030,10 @@
 	},
 /obj/machinery/camera/xray/directional/north,
 /turf/open/floor/wood,
+/area/awaymission/caves/maintsroom)
+"tp" = (
+/obj/structure/table/optable,
+/turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "tq" = (
 /obj/effect/spawner/random/trash/box,
@@ -6673,6 +6762,13 @@
 /obj/structure/trash_pile,
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
+"vO" = (
+/obj/structure/table,
+/obj/item/reagent_containers/syringe/epinephrine,
+/obj/item/reagent_containers/syringe/epinephrine,
+/obj/item/reagent_containers/syringe/epinephrine,
+/turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
 "vP" = (
 /obj/item/trash/tray,
 /obj/item/food/breadslice/moldy/bacteria{
@@ -6799,8 +6895,8 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "wi" = (
-/obj/machinery/computer/camera_advanced/abductor,
 /obj/structure/sign/poster/abductor/ayy/directional/west,
+/obj/machinery/power/rtg/abductor,
 /turf/open/floor/plating/abductor,
 /area/awaymission/caves/maintsroom)
 "wj" = (
@@ -7017,6 +7113,7 @@
 /area/awaymission/caves/maintsroom)
 "wY" = (
 /obj/structure/closet/crate/coffin,
+/obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "wZ" = (
@@ -7031,6 +7128,10 @@
 /turf/open/floor/engine{
 	slowdown = 2
 	},
+/area/awaymission/caves/maintsroom)
+"xa" = (
+/obj/machinery/power/floodlight,
+/turf/open/misc/asteroid,
 /area/awaymission/caves/maintsroom)
 "xb" = (
 /obj/structure/sign/warning/biohazard/directional/east,
@@ -7251,6 +7352,7 @@
 	id = "Thetrueend.";
 	height = 2
 	},
+/obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "xN" = (
@@ -7615,6 +7717,7 @@
 	desc = "It has a plaque on it that says, 'Eternal Joy' the plaque is not etched in gold, its etched in pyrite.";
 	name = "Eternal Joy"
 	},
+/obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "zd" = (
@@ -7748,6 +7851,11 @@
 /obj/effect/spawner/random/structure/table,
 /obj/structure/sign/poster/contraband/random/directional/east,
 /turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
+"zB" = (
+/obj/structure/table/wood,
+/obj/machinery/recharger,
+/turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "zC" = (
 /obj/item/reagent_containers/crackbrick,
@@ -8014,6 +8122,13 @@
 /mob/living/basic/mouse/rat,
 /obj/structure/trash_pile,
 /turf/open/floor/plating/rust,
+/area/awaymission/caves/maintsroom)
+"At" = (
+/obj/structure/chair/comfy{
+	dir = 1
+	},
+/obj/effect/light_emitter/fake_outdoors,
+/turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "Au" = (
 /obj/item/sticker/syndicate/bomb,
@@ -8577,16 +8692,15 @@
 /obj/machinery/porta_turret/syndicate/hc_police/ancient_milsim/garrison_turret,
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
-"Cc" = (
-/obj/effect/light_emitter/fake_outdoors,
-/mob/living/basic/trooper/nanotrasen/ranged/elite/seargent_crowlie,
-/turf/open/misc/beach/sand,
-/area/awaymission/caves/maintsroom)
 "Cd" = (
 /obj/item/storage/medkit/brute,
 /obj/effect/spawner/random/trash/garbage,
 /mob/living/basic/mouse/rat,
 /turf/open/floor/plating/rust,
+/area/awaymission/caves/maintsroom)
+"Ce" = (
+/obj/machinery/autolathe/hacked,
+/turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "Cg" = (
 /obj/effect/rune/blood_boil,
@@ -9569,6 +9683,11 @@
 /obj/structure/chair/comfy/black,
 /turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
+"FC" = (
+/obj/effect/light_emitter/fake_outdoors,
+/obj/machinery/door/puzzle/keycard/claw_door,
+/turf/open/floor/black,
+/area/awaymission/caves/maintsroom)
 "FD" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/disposalpipe/segment,
@@ -9680,6 +9799,7 @@
 /obj/item/flashlight/flashdark,
 /obj/item/flashlight/flashdark,
 /obj/item/flashlight/flashdark,
+/obj/item/storage/medkit/tactical_lite,
 /obj/item/storage/medkit/tactical_lite,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
@@ -10303,6 +10423,11 @@
 /obj/item/clothing/neck/stethoscope,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
+"HM" = (
+/obj/machinery/door/airlock/vault,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/iron/smooth,
+/area/awaymission/caves/maintsroom)
 "HN" = (
 /obj/structure/rack/shelf,
 /obj/item/bodypart/arm/left,
@@ -10328,7 +10453,14 @@
 /obj/item/flashlight/flashdark,
 /obj/item/flashlight/flashdark,
 /obj/item/storage/medkit/expeditionary,
+/obj/item/storage/medkit/expeditionary,
 /turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
+"HS" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/indestructible/meat,
 /area/awaymission/caves/maintsroom)
 "HT" = (
 /obj/structure/chair/comfy,
@@ -10535,14 +10667,11 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "IJ" = (
-/obj/item/keycard/yellow,
-/obj/effect/light_emitter/fake_outdoors,
-/turf/open/misc/asteroid,
-/area/awaymission/caves/maintsroom)
+/turf/closed/indestructible/oldshuttle/pure_white,
+/area/awaymission/caves/maintsroom/deeper)
 "IL" = (
 /obj/structure/safe/floor,
-/obj/item/gun/energy/laser/musket,
-/obj/item/gun/energy/laser/musket,
+/obj/item/book/granter/crafting_recipe/dusting/laser_musket_prime,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "IM" = (
@@ -10831,11 +10960,9 @@
 /turf/open/floor/iron/white,
 /area/awaymission/caves/maintsroom)
 "JI" = (
-/obj/effect/turf_decal/sand/plating,
-/obj/structure/table,
-/obj/structure/alien/weeds,
-/turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
+/obj/structure/table/reinforced,
+/turf/open/floor/white,
+/area/awaymission/caves/maintsroom/deeper)
 "JJ" = (
 /obj/item/grown/bananapeel,
 /mob/living/basic/clown/clownhulk/honkmunculus,
@@ -10925,6 +11052,16 @@
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/wood,
+/area/awaymission/caves/maintsroom)
+"Kb" = (
+/obj/structure/closet/crate,
+/obj/item/storage/medkit/tactical_lite,
+/obj/item/storage/medkit/tactical_lite,
+/obj/item/storage/medkit/tactical_lite,
+/obj/item/storage/medkit/tactical_lite,
+/obj/item/storage/medkit/robotic_repair/preemo/stocked,
+/obj/item/storage/medkit/robotic_repair/preemo/stocked,
+/turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "Kc" = (
 /obj/structure/table/optable,
@@ -11536,10 +11673,9 @@
 /area/awaymission/caves/maintsroom)
 "Mb" = (
 /obj/effect/turf_decal/sand/plating,
-/obj/machinery/power/floodlight,
 /obj/structure/alien/weeds,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/misc/asteroid,
 /area/awaymission/caves/maintsroom)
 "Mc" = (
 /obj/effect/mapping_helpers/broken_floor,
@@ -11555,6 +11691,11 @@
 /area/awaymission/caves/maintsroom)
 "Me" = (
 /turf/open/floor/holofloor/beach,
+/area/awaymission/caves/maintsroom)
+"Mf" = (
+/obj/effect/mine/sound/bwoink,
+/obj/item/paper/fluff/awaymissions/maintsroom/danger_ahead_reward,
+/turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "Mg" = (
 /obj/structure/disposalpipe/trunk{
@@ -11575,9 +11716,9 @@
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "Mk" = (
-/obj/machinery/power/rtg/abductor,
 /obj/structure/sign/poster/abductor/ayy_no/directional/south,
 /obj/structure/sign/poster/abductor/ayy_cops/directional/west,
+/obj/machinery/computer/camera_advanced/abductor,
 /turf/open/floor/plating/abductor,
 /area/awaymission/caves/maintsroom)
 "Ml" = (
@@ -11603,6 +11744,12 @@
 /obj/item/clockwork/weapon/brass_battlehammer,
 /obj/effect/mob_spawn/corpse/human/clock_cultist/armored,
 /turf/open/floor/bronze/filled,
+/area/awaymission/caves/maintsroom)
+"Mp" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/radio,
+/obj/effect/light_emitter/fake_outdoors,
+/turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "Mq" = (
 /obj/structure/signpost/salvation{
@@ -12072,6 +12219,11 @@
 /obj/structure/mecha_wreckage/ripley,
 /turf/open/floor/iron/recharge_floor,
 /area/awaymission/caves/maintsroom)
+"NL" = (
+/obj/effect/light_emitter/fake_outdoors,
+/obj/item/paper/fluff/awaymissions/maintsroom/danger_ahead,
+/turf/open/floor/iron/diagonal,
+/area/awaymission/caves/maintsroom)
 "NN" = (
 /obj/effect/spawner/random/structure/closet_maintenance,
 /obj/item/extinguisher,
@@ -12108,6 +12260,12 @@
 /obj/structure/broken_flooring/singular/directional/east,
 /obj/structure/alien/weeds,
 /turf/open/floor/iron,
+/area/awaymission/caves/maintsroom)
+"NV" = (
+/obj/structure/table/wood/fancy/royalblue,
+/obj/item/radio,
+/obj/effect/light_emitter/fake_outdoors,
+/turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "NW" = (
 /mob/living/simple_animal/bot/secbot/beepsky/officer{
@@ -12221,6 +12379,10 @@
 "Ol" = (
 /obj/machinery/camera/xray/directional/west,
 /turf/open/floor/iron/smooth,
+/area/awaymission/caves/maintsroom)
+"Om" = (
+/obj/machinery/door/puzzle/keycard/claw_door,
+/turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "On" = (
 /obj/item/storage/backpack/duffelbag/syndie/c4,
@@ -12418,8 +12580,13 @@
 /area/awaymission/caves/maintsroom)
 "OX" = (
 /obj/structure/table/wood,
-/obj/item/paper/fluff/awaymissions/maintsroom/readfucker,
+/obj/machinery/cell_charger_multi,
 /turf/open/floor/wood,
+/area/awaymission/caves/maintsroom)
+"OY" = (
+/obj/structure/table/wood/fancy/black,
+/obj/effect/light_emitter/fake_outdoors,
+/turf/open/floor/black,
 /area/awaymission/caves/maintsroom)
 "OZ" = (
 /obj/structure/mineral_door/wood,
@@ -12568,17 +12735,12 @@
 /turf/open/misc/asteroid,
 /area/awaymission/caves/maintsroom)
 "PC" = (
-/obj/item/ammo_box/magazine/mmg_box,
-/obj/item/ammo_box/magazine/mmg_box,
-/obj/item/ammo_box/magazine/mmg_box,
-/obj/item/ammo_box/magazine/mmg_box,
-/obj/item/ammo_box/magazine/mmg_box,
 /obj/structure/closet/crate/secure/weapon,
-/obj/effect/light_emitter/fake_outdoors,
 /obj/item/clothing/head/helmet/marine/security,
 /obj/item/clothing/head/helmet/marine,
 /obj/item/clothing/suit/armor/vest/marine,
 /obj/item/clothing/suit/armor/vest/marine/security,
+/obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/asphalt,
 /area/awaymission/caves/maintsroom)
 "PF" = (
@@ -13095,7 +13257,7 @@
 /area/awaymission/caves/maintsroom)
 "Rk" = (
 /obj/structure/sign/poster/abductor/ayylian/directional/west,
-/turf/open/floor/plating/abductor,
+/turf/closed/wall,
 /area/awaymission/caves/maintsroom)
 "Rl" = (
 /obj/structure/toilet{
@@ -13259,16 +13421,6 @@
 /obj/effect/mapping_helpers/burnt_floor,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron,
-/area/awaymission/caves/maintsroom)
-"RI" = (
-/obj/effect/turf_decal/trimline/dark_red/line{
-	dir = 4
-	},
-/obj/effect/light_emitter/fake_outdoors,
-/mob/living/basic/blackmesa/human/blackops{
-	faction = list("Deathsquad")
-	},
-/turf/open/misc/beach/sand,
 /area/awaymission/caves/maintsroom)
 "RJ" = (
 /obj/machinery/hydroponics/constructable,
@@ -13512,6 +13664,9 @@
 /obj/item/storage/medkit/frontier/stocked,
 /obj/item/storage/medkit/frontier/stocked,
 /obj/item/storage/medkit/mechanical,
+/obj/item/storage/medkit/tactical_lite,
+/obj/item/storage/medkit/tactical_lite,
+/obj/item/storage/medkit/tactical_lite,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "Sy" = (
@@ -13598,6 +13753,10 @@
 /obj/structure/mecha_wreckage/ripley,
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
+"SP" = (
+/obj/machinery/door/airlock/vault,
+/turf/open/floor/iron/smooth,
+/area/awaymission/caves/maintsroom)
 "SQ" = (
 /obj/machinery/hydroponics/soil{
 	pixel_y = 8
@@ -13621,6 +13780,10 @@
 "ST" = (
 /obj/machinery/mechpad,
 /turf/open/floor/circuit/green,
+/area/awaymission/caves/maintsroom)
+"SU" = (
+/obj/effect/light_emitter/fake_outdoors,
+/turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "SV" = (
 /obj/effect/spawner/random/structure/closet_empty/crate,
@@ -13664,6 +13827,7 @@
 /obj/item/rag,
 /obj/structure/table/wood,
 /obj/effect/mapping_helpers/broken_floor,
+/obj/item/paper/fluff/awaymissions/maintsroom/readfucker,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "Tc" = (
@@ -14006,6 +14170,14 @@
 /obj/structure/sign/poster/contraband/random/directional/north,
 /turf/open/floor/sepia,
 /area/awaymission/caves/maintsroom)
+"Uk" = (
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/iron/fifty,
+/obj/item/stack/sheet/iron/fifty,
+/obj/item/stack/sheet/iron/fifty,
+/obj/item/stack/sheet/iron/fifty,
+/turf/open/floor/iron/smooth,
+/area/awaymission/caves/maintsroom)
 "Ul" = (
 /obj/item/paper/fluff/awaymissions/maintsroom/actthree,
 /turf/open/floor/white,
@@ -14250,12 +14422,36 @@
 /turf/open/floor/iron/large,
 /area/awaymission/caves/maintsroom)
 "UZ" = (
-/obj/machinery/vending/assist,
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plating,
+/obj/structure/rack,
+/obj/item/gun/energy/laser/musket{
+	pixel_x = 0;
+	pixel_y = 8
+	},
+/obj/item/gun/energy/laser/musket{
+	pixel_x = 0;
+	pixel_y = 5
+	},
+/obj/item/gun/energy/laser/musket{
+	pixel_x = 0;
+	pixel_y = 2
+	},
+/obj/item/gun/energy/laser/musket{
+	pixel_x = 0;
+	pixel_y = -1
+	},
+/obj/item/gun/energy/laser/musket{
+	pixel_x = 0;
+	pixel_y = -4
+	},
+/obj/item/gun/energy/laser/musket{
+	pixel_x = 0;
+	pixel_y = -7
+	},
+/turf/open/floor/carpet/green,
 /area/awaymission/caves/maintsroom)
 "Va" = (
 /obj/structure/fluff/tram_rail/end{
@@ -14482,6 +14678,14 @@
 /area/awaymission/caves/maintsroom)
 "VQ" = (
 /obj/effect/spawner/random/food_or_drink/donkpockets,
+/turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
+"VR" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/structure/holosign/barrier/atmos,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "VS" = (
@@ -14813,7 +15017,7 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "WN" = (
-/obj/machinery/door/puzzle/keycard/blue_required,
+/obj/machinery/door/puzzle/keycard/claw_door,
 /obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/asphalt,
 /area/awaymission/caves/maintsroom)
@@ -14837,10 +15041,8 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "WR" = (
-/obj/item/mounted_machine_gun_folded,
-/obj/effect/light_emitter/fake_outdoors,
-/turf/open/floor/iron/diagonal,
-/area/awaymission/caves/maintsroom)
+/turf/closed/wall/r_wall,
+/area/awaymission/caves/maintsroom/deeper)
 "WT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -15281,8 +15483,10 @@
 /turf/open/floor/iron/vaporwave,
 /area/awaymission/caves/maintsroom)
 "YB" = (
-/mob/living/basic/abductor/ranged/agent,
-/turf/open/floor/plating/abductor,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/closed/wall/material/meat,
 /area/awaymission/caves/maintsroom)
 "YD" = (
 /turf/open/floor/iron/tgmcemblem/center{
@@ -15453,6 +15657,7 @@
 /area/awaymission/caves/maintsroom)
 "Zg" = (
 /obj/structure/table,
+/obj/item/defibrillator/loaded,
 /turf/open/floor/sepia,
 /area/awaymission/caves/maintsroom)
 "Zh" = (
@@ -15556,6 +15761,11 @@
 /obj/structure/table/reinforced/plasmarglass,
 /turf/open/floor/mineral/titanium/purple,
 /area/awaymission/caves/maintsroom)
+"Zu" = (
+/obj/effect/light_emitter/fake_outdoors,
+/obj/machinery/deployable_turret/hmg,
+/turf/open/floor/asphalt,
+/area/awaymission/caves/maintsroom)
 "Zv" = (
 /obj/item/stack/sheet/iron/five,
 /obj/effect/decal/cleanable/dirt,
@@ -15563,6 +15773,7 @@
 /area/awaymission/caves/maintsroom)
 "Zw" = (
 /obj/structure/sign/poster/abductor/ayy_over_tizira/directional/south,
+/mob/living/basic/abductor/ranged/agent,
 /turf/open/floor/plating/abductor,
 /area/awaymission/caves/maintsroom)
 "Zx" = (
@@ -15986,8 +16197,10 @@ jf
 jf
 jf
 jf
+jf
 "}
 (2,1,1) = {"
+jf
 jf
 jf
 BG
@@ -16424,8 +16637,10 @@ jf
 jf
 jf
 jf
+jf
 "}
 (4,1,1) = {"
+jf
 jf
 jf
 jf
@@ -16654,6 +16869,7 @@ jf
 jf
 jf
 jf
+jf
 rf
 DT
 DT
@@ -16864,6 +17080,7 @@ jf
 jf
 "}
 (6,1,1) = {"
+jf
 jf
 jf
 jf
@@ -17092,6 +17309,7 @@ jf
 jf
 jf
 jf
+jf
 DT
 di
 di
@@ -17302,6 +17520,7 @@ jf
 jf
 "}
 (8,1,1) = {"
+jf
 jf
 jf
 jf
@@ -17530,6 +17749,7 @@ jf
 jf
 jf
 jf
+jf
 di
 di
 di
@@ -17740,6 +17960,7 @@ jf
 jf
 "}
 (10,1,1) = {"
+jf
 jf
 jf
 jf
@@ -17968,6 +18189,7 @@ jf
 jf
 jf
 jf
+jf
 di
 di
 di
@@ -18178,6 +18400,7 @@ jf
 jf
 "}
 (12,1,1) = {"
+jf
 jf
 jf
 jf
@@ -18406,6 +18629,7 @@ jf
 jf
 jf
 jf
+jf
 DT
 DT
 DT
@@ -18625,6 +18849,7 @@ jf
 jf
 jf
 jf
+jf
 DT
 DT
 DT
@@ -18809,7 +19034,7 @@ Bh
 Bh
 Hv
 Bh
-ll
+Bh
 Mo
 Bh
 Bh
@@ -18835,6 +19060,7 @@ jf
 jf
 "}
 (15,1,1) = {"
+jf
 jf
 jf
 jf
@@ -19063,6 +19289,7 @@ jf
 jf
 jf
 jf
+jf
 DT
 DT
 DT
@@ -19273,6 +19500,7 @@ jf
 jf
 "}
 (17,1,1) = {"
+jf
 jf
 jf
 jf
@@ -19500,6 +19728,7 @@ jf
 jf
 jf
 jf
+jf
 oN
 oN
 oN
@@ -19711,6 +19940,7 @@ jf
 jf
 "}
 (19,1,1) = {"
+jf
 jf
 jf
 jf
@@ -19938,6 +20168,7 @@ jf
 jf
 jf
 jf
+jf
 oN
 wF
 wF
@@ -20149,6 +20380,7 @@ jf
 jf
 "}
 (21,1,1) = {"
+jf
 jf
 jf
 jf
@@ -20376,6 +20608,7 @@ jf
 jf
 jf
 jf
+jf
 oN
 oN
 oN
@@ -20587,6 +20820,7 @@ jf
 jf
 "}
 (23,1,1) = {"
+jf
 jf
 jf
 jf
@@ -20814,6 +21048,7 @@ jf
 jf
 jf
 jf
+jf
 oN
 ff
 vf
@@ -21025,6 +21260,7 @@ jf
 jf
 "}
 (25,1,1) = {"
+jf
 jf
 jf
 jf
@@ -21252,6 +21488,7 @@ jf
 jf
 jf
 jf
+jf
 oN
 Rv
 xK
@@ -21463,6 +21700,7 @@ jf
 jf
 "}
 (27,1,1) = {"
+jf
 jf
 jf
 jf
@@ -21691,6 +21929,7 @@ jf
 jf
 jf
 jf
+jf
 oN
 TD
 oN
@@ -21901,6 +22140,7 @@ jf
 jf
 "}
 (29,1,1) = {"
+jf
 jf
 jf
 jf
@@ -22129,6 +22369,7 @@ jf
 jf
 jf
 jf
+jf
 oN
 pI
 pI
@@ -22339,6 +22580,7 @@ jf
 jf
 "}
 (31,1,1) = {"
+jf
 jf
 jf
 jf
@@ -22567,6 +22809,7 @@ jf
 jf
 jf
 jf
+jf
 WH
 Jp
 Jp
@@ -22777,6 +23020,7 @@ jf
 jf
 "}
 (33,1,1) = {"
+jf
 jf
 jf
 jf
@@ -23005,6 +23249,7 @@ jf
 jf
 jf
 jf
+jf
 WH
 KX
 WH
@@ -23215,6 +23460,7 @@ jf
 jf
 "}
 (35,1,1) = {"
+jf
 jf
 jf
 jf
@@ -23443,6 +23689,7 @@ jf
 jf
 jf
 jf
+jf
 WH
 HN
 Jp
@@ -23654,12 +23901,13 @@ jf
 "}
 (37,1,1) = {"
 jf
-jf
-jf
-jf
-jf
-jf
-jf
+iY
+iY
+iY
+iY
+iY
+iY
+iY
 jf
 jf
 WH
@@ -23873,12 +24121,13 @@ jf
 "}
 (38,1,1) = {"
 jf
-jf
-jf
-jf
-jf
-jf
-jf
+iY
+qE
+qE
+qE
+qE
+qE
+iY
 jf
 jf
 Jp
@@ -24092,12 +24341,13 @@ jf
 "}
 (39,1,1) = {"
 jf
-jf
-jf
-jf
-jf
-jf
-jf
+iY
+OY
+OY
+qE
+qE
+qE
+iY
 jf
 jf
 Jp
@@ -24311,12 +24561,13 @@ jf
 "}
 (40,1,1) = {"
 jf
-jf
-jf
-jf
-jf
-jf
-jf
+iY
+qE
+OY
+qE
+qS
+qE
+iY
 jf
 jf
 Jp
@@ -24530,12 +24781,13 @@ jf
 "}
 (41,1,1) = {"
 jf
-jf
-jf
-jf
-jf
-jf
-jf
+iY
+Mp
+OY
+qE
+qE
+qE
+iY
 jf
 jf
 Jp
@@ -24749,12 +25001,13 @@ jf
 "}
 (42,1,1) = {"
 jf
-jf
-jf
-jf
-jf
-jf
-jf
+iY
+qE
+qE
+qE
+qE
+qE
+iY
 jf
 jf
 Jp
@@ -24968,12 +25221,13 @@ jf
 "}
 (43,1,1) = {"
 jf
-jf
-jf
-jf
-jf
-jf
-jf
+iY
+iY
+iY
+iY
+iY
+iY
+iY
 jf
 jf
 Jp
@@ -25187,12 +25441,13 @@ jf
 "}
 (44,1,1) = {"
 jf
-jf
-jf
-jf
-jf
-jf
-jf
+wH
+wH
+wH
+wH
+wH
+wH
+wH
 jf
 jf
 Jp
@@ -25301,7 +25556,7 @@ wQ
 wQ
 wQ
 GS
-Rg
+VR
 GS
 jH
 En
@@ -25406,12 +25661,13 @@ jf
 "}
 (45,1,1) = {"
 jf
-jf
-jf
-jf
-jf
-jf
-jf
+wH
+SU
+SU
+SU
+SU
+SU
+wH
 jf
 jf
 Jp
@@ -25520,7 +25776,7 @@ GS
 GS
 GS
 GS
-jH
+YB
 jH
 jH
 GS
@@ -25575,7 +25831,7 @@ uG
 xI
 GS
 AR
-gx
+zB
 uz
 Tb
 uz
@@ -25625,12 +25881,13 @@ jf
 "}
 (46,1,1) = {"
 jf
-jf
-jf
-jf
-jf
-jf
-jf
+wH
+mV
+mV
+SU
+SU
+SU
+wH
 jf
 jf
 Jp
@@ -25739,7 +25996,7 @@ jH
 jH
 jH
 jH
-jH
+YB
 jH
 jH
 jH
@@ -25844,12 +26101,13 @@ jf
 "}
 (47,1,1) = {"
 jf
-jf
-jf
-jf
-jf
-jf
-jf
+wH
+SU
+mV
+SU
+At
+SU
+wH
 jf
 wH
 Jp
@@ -25958,7 +26216,7 @@ jH
 bB
 bB
 bB
-bB
+HS
 bB
 bB
 bB
@@ -26063,12 +26321,13 @@ jf
 "}
 (48,1,1) = {"
 jf
-jf
-jf
-jf
-jf
-jf
-jf
+wH
+NV
+mV
+SU
+SU
+SU
+wH
 jf
 wH
 Jp
@@ -26100,10 +26359,10 @@ Xx
 LT
 EZ
 Rf
-rq
 Rf
 Rf
-rc
+Rf
+Rf
 Rf
 Rf
 Rf
@@ -26282,12 +26541,13 @@ jf
 "}
 (49,1,1) = {"
 jf
-jf
-jf
-jf
-jf
-jf
-jf
+wH
+SU
+SU
+SU
+SU
+SU
+wH
 jf
 wH
 Jp
@@ -26501,12 +26761,13 @@ jf
 "}
 (50,1,1) = {"
 jf
-jf
-jf
-jf
-jf
-jf
-jf
+wH
+wH
+wH
+wH
+wH
+wH
+wH
 jf
 jf
 kd
@@ -26539,7 +26800,7 @@ LT
 EZ
 Rf
 Rf
-Cc
+Rf
 Rf
 Rf
 Rf
@@ -26719,6 +26980,7 @@ jf
 jf
 "}
 (51,1,1) = {"
+jf
 jf
 jf
 jf
@@ -26947,6 +27209,7 @@ jf
 jf
 jf
 jf
+jf
 kd
 Jp
 Jp
@@ -26976,10 +27239,10 @@ Xx
 LT
 gQ
 gQ
-RI
 gQ
 gQ
-rc
+gQ
+Rf
 Rf
 Rf
 Rf
@@ -27157,6 +27420,7 @@ jf
 jf
 "}
 (53,1,1) = {"
+jf
 jf
 jf
 jf
@@ -27384,6 +27648,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 Jp
 Jp
@@ -27603,6 +27868,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 Jp
 Jp
@@ -27814,6 +28080,7 @@ jf
 jf
 "}
 (56,1,1) = {"
+jf
 jf
 jf
 jf
@@ -28042,6 +28309,7 @@ jf
 jf
 jf
 jf
+jf
 kd
 kd
 Jp
@@ -28137,7 +28405,7 @@ uG
 uG
 oM
 uG
-uG
+qg
 uG
 uG
 uG
@@ -28260,6 +28528,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -28356,7 +28625,7 @@ uG
 uG
 oM
 uG
-uG
+qg
 uG
 VH
 VH
@@ -28480,6 +28749,7 @@ jf
 jf
 jf
 jf
+jf
 kd
 Jp
 kd
@@ -28575,7 +28845,7 @@ ga
 uG
 oM
 uG
-uG
+qg
 uG
 uG
 uG
@@ -28690,6 +28960,7 @@ jf
 jf
 "}
 (60,1,1) = {"
+jf
 jf
 jf
 jf
@@ -28917,6 +29188,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 Jp
 kd
@@ -29128,6 +29400,7 @@ jf
 jf
 "}
 (62,1,1) = {"
+jf
 jf
 jf
 jf
@@ -29355,6 +29628,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -29566,6 +29840,7 @@ jf
 jf
 "}
 (64,1,1) = {"
+jf
 jf
 jf
 jf
@@ -29793,6 +30068,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -29885,8 +30161,8 @@ AS
 GS
 GS
 GS
-AS
 GS
+AS
 GS
 su
 SD
@@ -30004,6 +30280,7 @@ jf
 jf
 "}
 (66,1,1) = {"
+jf
 jf
 jf
 jf
@@ -30231,6 +30508,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -30322,7 +30600,7 @@ vf
 vf
 Rv
 GS
-YB
+ei
 ei
 Ux
 GS
@@ -30442,6 +30720,7 @@ jf
 jf
 "}
 (68,1,1) = {"
+jf
 jf
 jf
 jf
@@ -30669,6 +30948,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -30880,6 +31160,7 @@ jf
 jf
 "}
 (70,1,1) = {"
+jf
 jf
 jf
 jf
@@ -31107,6 +31388,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -31318,6 +31600,7 @@ jf
 jf
 "}
 (72,1,1) = {"
+jf
 jf
 jf
 jf
@@ -31545,6 +31828,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -31756,6 +32040,7 @@ jf
 jf
 "}
 (74,1,1) = {"
+jf
 jf
 jf
 jf
@@ -31983,6 +32268,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -32194,6 +32480,7 @@ jf
 jf
 "}
 (76,1,1) = {"
+jf
 jf
 jf
 jf
@@ -32421,6 +32708,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -32632,6 +32920,7 @@ jf
 jf
 "}
 (78,1,1) = {"
+jf
 jf
 jf
 jf
@@ -32859,6 +33148,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -33070,6 +33360,7 @@ jf
 jf
 "}
 (80,1,1) = {"
+jf
 jf
 jf
 jf
@@ -33297,6 +33588,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -33508,6 +33800,7 @@ jf
 jf
 "}
 (82,1,1) = {"
+jf
 jf
 jf
 jf
@@ -33735,6 +34028,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -33888,7 +34182,7 @@ uG
 GS
 uG
 GS
-zg
+rM
 Ac
 CZ
 aX
@@ -33946,6 +34240,7 @@ jf
 jf
 "}
 (84,1,1) = {"
+jf
 jf
 jf
 jf
@@ -34173,6 +34468,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -34384,6 +34680,7 @@ jf
 jf
 "}
 (86,1,1) = {"
+jf
 jf
 jf
 jf
@@ -34611,6 +34908,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -34822,6 +35120,7 @@ jf
 jf
 "}
 (88,1,1) = {"
+jf
 jf
 jf
 jf
@@ -35049,6 +35348,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -35260,6 +35560,7 @@ jf
 jf
 "}
 (90,1,1) = {"
+jf
 jf
 jf
 jf
@@ -35487,6 +35788,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -35698,6 +36000,7 @@ jf
 jf
 "}
 (92,1,1) = {"
+jf
 jf
 jf
 jf
@@ -35925,6 +36228,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -36144,6 +36448,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 qE
@@ -36174,7 +36479,7 @@ Rf
 Rf
 Rf
 UX
-WR
+UX
 cv
 cv
 cv
@@ -36363,6 +36668,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -36393,7 +36699,7 @@ Rf
 Rf
 Rf
 UX
-cv
+Zu
 cv
 cv
 cv
@@ -36574,6 +36880,7 @@ jf
 jf
 "}
 (96,1,1) = {"
+jf
 jf
 jf
 jf
@@ -36801,6 +37108,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -37020,6 +37328,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -37050,7 +37359,7 @@ Rf
 Rf
 qE
 UX
-UX
+NL
 qE
 qE
 cv
@@ -37239,6 +37548,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -37268,9 +37578,9 @@ FR
 Rf
 Rf
 Rf
-UX
+NL
 qE
-cv
+dZ
 cv
 qE
 cv
@@ -37458,6 +37768,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 qE
@@ -37630,7 +37941,7 @@ Dt
 jS
 CS
 sN
-QA
+PB
 QA
 QA
 wQ
@@ -37669,6 +37980,7 @@ jf
 jf
 "}
 (101,1,1) = {"
+jf
 jf
 jf
 jf
@@ -37850,7 +38162,7 @@ zp
 zp
 zp
 Mb
-QA
+xa
 QA
 wQ
 kQ
@@ -37888,6 +38200,7 @@ jf
 jf
 "}
 (102,1,1) = {"
+jf
 jf
 jf
 jf
@@ -38070,7 +38383,7 @@ Dt
 jS
 jS
 PB
-QA
+PB
 wQ
 Uv
 AB
@@ -38107,6 +38420,7 @@ jf
 jf
 "}
 (103,1,1) = {"
+jf
 jf
 jf
 jf
@@ -38288,8 +38602,8 @@ jS
 og
 jS
 jS
-jS
-jS
+jf
+rS
 wQ
 Uv
 Uv
@@ -38326,6 +38640,7 @@ jf
 jf
 "}
 (104,1,1) = {"
+jf
 jf
 jf
 jf
@@ -38505,10 +38820,10 @@ wx
 Lz
 sH
 Tz
-JI
+Dt
 hQ
 jf
-rS
+rB
 jf
 mH
 Pm
@@ -38545,6 +38860,7 @@ jf
 jf
 "}
 (105,1,1) = {"
+jf
 jf
 jf
 jf
@@ -38721,13 +39037,13 @@ jS
 jS
 sZ
 GZ
-GS
-GS
-GS
-GS
-GS
 jf
-IJ
+jf
+jf
+HU
+jf
+jf
+jf
 jf
 wQ
 wQ
@@ -38772,6 +39088,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -38786,10 +39103,10 @@ kd
 kd
 kd
 kd
-qS
 kd
 kd
 kd
+Om
 kd
 kd
 kd
@@ -38941,15 +39258,15 @@ jS
 sZ
 GZ
 jf
-jf
-jf
-jf
-jf
-jf
+vO
+Ac
+Bk
+CZ
+aX
+Ie
 jf
 GZ
 OP
-jS
 jS
 jS
 jS
@@ -38991,6 +39308,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 qE
@@ -39005,10 +39323,10 @@ kd
 kd
 kd
 kd
-qS
 kd
 kd
-qE
+kd
+FC
 kd
 kd
 kd
@@ -39160,11 +39478,12 @@ jS
 sZ
 GZ
 jf
-jf
-jf
-jf
-jf
-jf
+jT
+uG
+lT
+eu
+iO
+lw
 jf
 GZ
 vl
@@ -39172,7 +39491,6 @@ jS
 jS
 jS
 og
-jS
 uu
 uu
 uu
@@ -39210,6 +39528,7 @@ jf
 jf
 jf
 jf
+jf
 wH
 kd
 kd
@@ -39224,10 +39543,10 @@ kd
 kd
 kd
 kd
-qS
 kd
 kd
 kd
+Om
 kd
 kd
 kd
@@ -39379,16 +39698,16 @@ jS
 jS
 GZ
 jf
-jf
-jf
-jf
-jf
-jf
+oo
+uG
+uG
+uG
+uG
+cb
 jf
 GZ
 OP
 OP
-jS
 jS
 jS
 jS
@@ -39421,6 +39740,7 @@ jf
 jf
 "}
 (109,1,1) = {"
+jf
 jf
 jf
 jf
@@ -39598,18 +39918,18 @@ jf
 wK
 jf
 jf
-jf
-jf
-jf
-jf
-jf
+dM
+Hf
+fn
+In
+BN
+zr
 jf
 GZ
 GZ
 GZ
 sZ
 fk
-GZ
 GZ
 GZ
 jf
@@ -39640,6 +39960,7 @@ jf
 jf
 "}
 (110,1,1) = {"
+jf
 jf
 jf
 wH
@@ -39825,11 +40146,11 @@ jf
 jf
 jf
 jf
-GZ
-GZ
-GZ
-GZ
 jf
+GZ
+GZ
+GZ
+GZ
 jf
 jf
 jf
@@ -39859,6 +40180,7 @@ jf
 jf
 "}
 (111,1,1) = {"
+jf
 jf
 jf
 wH
@@ -40080,6 +40402,7 @@ jf
 (112,1,1) = {"
 jf
 jf
+jf
 wH
 pO
 PZ
@@ -40297,6 +40620,7 @@ jf
 jf
 "}
 (113,1,1) = {"
+jf
 jf
 jf
 wH
@@ -40518,6 +40842,7 @@ jf
 (114,1,1) = {"
 jf
 jf
+jf
 wH
 ub
 PZ
@@ -40735,6 +41060,7 @@ jf
 jf
 "}
 (115,1,1) = {"
+jf
 jf
 jf
 wH
@@ -40956,6 +41282,7 @@ jf
 (116,1,1) = {"
 jf
 jf
+jf
 wH
 wH
 wH
@@ -41175,6 +41502,7 @@ jf
 (117,1,1) = {"
 jf
 jf
+jf
 wH
 wH
 wH
@@ -41389,11 +41717,12 @@ wH
 wH
 wH
 wH
-wH
+jf
 "}
 (118,1,1) = {"
 jf
 jf
+jf
 wH
 AK
 AK
@@ -41607,10 +41936,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (119,1,1) = {"
+jf
 jf
 jf
 wH
@@ -41826,10 +42156,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (120,1,1) = {"
+jf
 jf
 jf
 wH
@@ -41954,9 +42285,9 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
+WR
+WR
+WR
 AK
 AK
 AK
@@ -42045,12 +42376,13 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (121,1,1) = {"
 jf
 jf
+jf
 wH
 AK
 AK
@@ -42172,10 +42504,11 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
+JI
+JI
+LQ
 uJ
+WR
 AK
 AK
 AK
@@ -42263,11 +42596,11 @@ AK
 AK
 AK
 AK
-AK
-AK
-wH
+IJ
+jf
 "}
 (122,1,1) = {"
+jf
 jf
 jf
 wH
@@ -42391,10 +42724,10 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
-AK
+WR
+WR
+WR
+WR
 AK
 AK
 AK
@@ -42483,10 +42816,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (123,1,1) = {"
+jf
 jf
 jf
 wH
@@ -42702,10 +43036,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (124,1,1) = {"
+jf
 jf
 jf
 wH
@@ -42921,10 +43256,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (125,1,1) = {"
+jf
 jf
 jf
 wH
@@ -43140,10 +43476,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (126,1,1) = {"
+jf
 jf
 jf
 wH
@@ -43359,10 +43696,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (127,1,1) = {"
+jf
 jf
 jf
 wH
@@ -43578,10 +43916,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (128,1,1) = {"
+jf
 jf
 jf
 wH
@@ -43797,10 +44136,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (129,1,1) = {"
+jf
 jf
 jf
 wH
@@ -44016,10 +44356,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (130,1,1) = {"
+jf
 jf
 jf
 wH
@@ -44235,10 +44576,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (131,1,1) = {"
+jf
 jf
 jf
 wH
@@ -44454,10 +44796,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (132,1,1) = {"
+jf
 jf
 jf
 wH
@@ -44673,10 +45016,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (133,1,1) = {"
+jf
 jf
 jf
 wH
@@ -44892,10 +45236,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (134,1,1) = {"
+jf
 jf
 jf
 wH
@@ -45111,10 +45456,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (135,1,1) = {"
+jf
 jf
 jf
 wH
@@ -45330,10 +45676,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (136,1,1) = {"
+jf
 jf
 jf
 wH
@@ -45549,12 +45896,13 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (137,1,1) = {"
 jf
 jf
+jf
 wH
 AK
 AK
@@ -45768,12 +46116,13 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (138,1,1) = {"
 jf
 jf
+jf
 wH
 AK
 AK
@@ -45987,10 +46336,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (139,1,1) = {"
+jf
 jf
 jf
 wH
@@ -46107,7 +46457,7 @@ AK
 AK
 AK
 AK
-fB
+AK
 AK
 AK
 AK
@@ -46206,10 +46556,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (140,1,1) = {"
+jf
 jf
 jf
 wH
@@ -46425,10 +46776,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (141,1,1) = {"
+jf
 jf
 jf
 wH
@@ -46644,10 +46996,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (142,1,1) = {"
+jf
 jf
 jf
 wH
@@ -46863,10 +47216,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (143,1,1) = {"
+jf
 jf
 jf
 wH
@@ -47063,8 +47417,8 @@ AK
 AK
 AK
 jf
+bX
 xx
-pp
 cD
 Kt
 Pj
@@ -47082,10 +47436,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (144,1,1) = {"
+jf
 wH
 wH
 wH
@@ -47282,7 +47637,7 @@ AK
 AK
 AK
 jf
-pp
+na
 xc
 CE
 CE
@@ -47301,10 +47656,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (145,1,1) = {"
+jf
 wH
 PZ
 wH
@@ -47520,10 +47876,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (146,1,1) = {"
+jf
 wH
 xM
 bw
@@ -47739,10 +48096,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (147,1,1) = {"
+jf
 wH
 PZ
 wH
@@ -47958,10 +48316,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (148,1,1) = {"
+jf
 wH
 wH
 wH
@@ -48168,7 +48527,7 @@ CE
 RG
 CE
 FK
-pp
+iN
 jf
 AK
 AK
@@ -48177,10 +48536,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (149,1,1) = {"
+jf
 jf
 jf
 wH
@@ -48396,10 +48756,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (150,1,1) = {"
+jf
 jf
 jf
 wH
@@ -48597,7 +48958,7 @@ AK
 AK
 jf
 jf
-jf
+SP
 jf
 jf
 jf
@@ -48605,20 +48966,21 @@ KY
 jf
 jf
 jf
+HM
 jf
 jf
+AK
+AK
+AK
+AK
+AK
+AK
+AK
+IJ
 jf
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-AK
-wH
 "}
 (151,1,1) = {"
+jf
 jf
 jf
 wH
@@ -48814,15 +49176,19 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
-AK
+jf
+pp
+Mf
+pp
 jf
 pp
 pp
 pp
 jf
+pp
+cU
+pp
+jf
 AK
 AK
 AK
@@ -48830,16 +49196,13 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
-AK
-AK
-wH
+IJ
+jf
 "}
 (152,1,1) = {"
 jf
 jf
+jf
 wH
 AK
 AK
@@ -49033,15 +49396,19 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
-AK
+jf
+Ce
+Uk
+hV
 jf
 pp
 gU
 On
 jf
+Kb
+tp
+fv
+jf
 AK
 AK
 AK
@@ -49049,14 +49416,11 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
-AK
-AK
-wH
+IJ
+jf
 "}
 (153,1,1) = {"
+jf
 jf
 jf
 wH
@@ -49252,15 +49616,19 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
-AK
 jf
 jf
 jf
 jf
 jf
+jf
+jf
+jf
+jf
+jf
+jf
+jf
+jf
 AK
 AK
 AK
@@ -49268,14 +49636,11 @@ AK
 AK
 AK
 AK
-AK
-AK
-AK
-AK
-AK
-wH
+IJ
+jf
 "}
 (154,1,1) = {"
+jf
 jf
 jf
 wH
@@ -49491,10 +49856,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (155,1,1) = {"
+jf
 jf
 jf
 wH
@@ -49710,10 +50076,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (156,1,1) = {"
+jf
 jf
 jf
 wH
@@ -49929,10 +50296,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (157,1,1) = {"
+jf
 jf
 jf
 wH
@@ -50148,10 +50516,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (158,1,1) = {"
+jf
 jf
 jf
 wH
@@ -50367,10 +50736,11 @@ AK
 AK
 AK
 ws
-AK
-wH
+IJ
+jf
 "}
 (159,1,1) = {"
+jf
 jf
 jf
 wH
@@ -50586,10 +50956,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (160,1,1) = {"
+jf
 jf
 jf
 wH
@@ -50805,12 +51176,13 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (161,1,1) = {"
 jf
 jf
+jf
 wH
 AK
 AK
@@ -51024,12 +51396,13 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (162,1,1) = {"
 jf
 jf
+jf
 wH
 AK
 AK
@@ -51243,12 +51616,13 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (163,1,1) = {"
 jf
 jf
+jf
 wH
 AK
 AK
@@ -51462,10 +51836,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (164,1,1) = {"
+jf
 jf
 jf
 wH
@@ -51681,10 +52056,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (165,1,1) = {"
+jf
 jf
 jf
 wH
@@ -51900,12 +52276,13 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (166,1,1) = {"
 jf
 jf
+jf
 wH
 AK
 AK
@@ -52119,12 +52496,13 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (167,1,1) = {"
 jf
 jf
+jf
 wH
 AK
 AK
@@ -52338,12 +52716,13 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (168,1,1) = {"
 jf
 jf
+jf
 wH
 AK
 AK
@@ -52557,10 +52936,11 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (169,1,1) = {"
+jf
 jf
 jf
 wH
@@ -52776,12 +53156,13 @@ AK
 AK
 AK
 AK
-AK
-wH
+IJ
+jf
 "}
 (170,1,1) = {"
 jf
 jf
+jf
 wH
 wH
 wH
@@ -52996,9 +53377,10 @@ wH
 wH
 wH
 wH
-wH
+jf
 "}
 (171,1,1) = {"
+jf
 jf
 jf
 jf
