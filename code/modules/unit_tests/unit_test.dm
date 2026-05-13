@@ -373,6 +373,8 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 	// These two are locked to one type only, and shouldn't be widely available, hence why they runtime otherwise.
 	// Can't be bothered adding more to them.
 	returnable_list += list(/obj/item/organ/neck_accessory, /obj/item/organ/head_accessory)
+	// depend on areas that tests may not have active
+	returnable_list += typesof(/obj/machinery/computer/cargo/express/interdyne)
 	//SKYRAT EDIT ADDITION END
 	return returnable_list
 
