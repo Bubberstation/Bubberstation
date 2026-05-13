@@ -1580,7 +1580,7 @@
 	dir = 4
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
-/area/station/medical/pharmacy)
+/area/station/maintenance/port/lower)
 "axU" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "xenobio3";
@@ -3343,7 +3343,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/catwalk_floor/iron_smooth,
-/area/station/medical/medbay/central)
+/area/station/maintenance/port/lower)
 "aWH" = (
 /obj/effect/spawner/random/structure/crate,
 /turf/open/floor/iron/smooth,
@@ -8410,8 +8410,12 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 6
 	},
-/obj/machinery/status_display/evac/directional/east,
 /obj/effect/turf_decal/bot,
+/obj/machinery/button/door/directional/east{
+	id = "surgery";
+	name = "Privacy Shutters Control";
+	pixel_y = -7
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/surgery)
 "cAR" = (
@@ -9340,7 +9344,7 @@
 	dir = 4
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
-/area/station/medical/medbay/central)
+/area/station/maintenance/port/lower)
 "cOs" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Chapel Office"
@@ -15817,7 +15821,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/space_heater,
 /turf/open/floor/iron/smooth,
-/area/station/medical/medbay/central)
+/area/station/maintenance/port/lower)
 "eDN" = (
 /obj/structure/chair/sofa/bench/right,
 /obj/effect/turf_decal/siding/wood{
@@ -17556,8 +17560,12 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 5
 	},
-/obj/machinery/status_display/ai/directional/east,
 /obj/effect/turf_decal/bot,
+/obj/machinery/button/door/directional/east{
+	id = "surgery";
+	name = "Privacy Shutters Control";
+	pixel_y = -7
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/surgery)
 "fdG" = (
@@ -19814,7 +19822,7 @@
 "fOv" = (
 /obj/structure/trash_pile,
 /turf/open/floor/iron/smooth,
-/area/station/medical/medbay/central)
+/area/station/maintenance/port/lower)
 "fOR" = (
 /obj/machinery/camera/directional/south{
 	c_tag = "Bridge - Captain's Quarters";
@@ -39761,13 +39769,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/atmos)
-"lmh" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 8
-	},
-/obj/structure/sign/poster/official/moth_meth/directional/west,
-/turf/open/floor/iron/freezer,
-/area/station/medical/chemistry)
 "lmy" = (
 /obj/structure/chair/comfy/brown{
 	buildstackamount = 0;
@@ -44050,11 +44051,6 @@
 /area/station/hallway/primary/central/fore)
 "mtY" = (
 /obj/structure/table/optable,
-/obj/machinery/button/door/directional/east{
-	id = "surgery";
-	name = "Privacy Shutters Control";
-	pixel_y = -7
-	},
 /obj/effect/turf_decal/tile/blue/full,
 /obj/machinery/defibrillator_mount/directional/east{
 	pixel_y = 4
@@ -47140,7 +47136,7 @@
 	name = "Chemistry Maintenance"
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
-/area/station/medical/chemistry)
+/area/station/maintenance/port/lower)
 "nkA" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/iron/small,
@@ -53765,6 +53761,7 @@
 	network = list("ss13","medbay")
 	},
 /obj/structure/curtain,
+/obj/machinery/status_display/evac/directional/east,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 8
 	},
@@ -57767,7 +57764,7 @@
 /obj/effect/spawner/random/trash/garbage,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/catwalk_floor/iron_smooth,
-/area/station/medical/medbay/central)
+/area/station/maintenance/port/lower)
 "qcB" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 8
@@ -65150,7 +65147,7 @@
 "sjV" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/catwalk_floor/iron_smooth,
-/area/station/medical/medbay/central)
+/area/station/maintenance/port/lower)
 "sjW" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 4
@@ -65613,20 +65610,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron/white/small,
 /area/station/common/pool)
-"sqD" = (
-/obj/structure/table/optable,
-/obj/effect/turf_decal/tile/blue/full,
-/obj/machinery/button/door/directional/east{
-	id = "surgery";
-	name = "Privacy Shutters Control";
-	pixel_y = -7
-	},
-/obj/machinery/defibrillator_mount/directional/east{
-	pixel_y = 4
-	},
-/obj/effect/turf_decal/box/blue,
-/turf/open/floor/iron/freezer,
-/area/station/medical/surgery)
 "sqJ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/catwalk_floor/iron_smooth,
@@ -65881,7 +65864,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/catwalk_floor/iron_smooth,
-/area/station/medical/medbay/lobby)
+/area/station/maintenance/port/lower)
 "svh" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/landmark/start/lawyer,
@@ -77214,7 +77197,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/catwalk_floor/iron_smooth,
-/area/station/medical/medbay/central)
+/area/station/maintenance/port/lower)
 "vvT" = (
 /obj/machinery/door/firedoor/heavy,
 /obj/effect/turf_decal/stripes/line{
@@ -116648,7 +116631,7 @@ mtY
 fdz
 pbW
 cAQ
-sqD
+mtY
 lGN
 qDk
 qDk
@@ -117160,7 +117143,7 @@ uYj
 hKm
 gTX
 cyc
-lmh
+cyc
 cyc
 cGX
 cyc
