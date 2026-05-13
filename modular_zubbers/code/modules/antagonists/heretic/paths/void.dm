@@ -13,6 +13,10 @@
 	if(. & SPELL_CANCEL_CAST)
 		return
 
+	if (isclosedturf(get_turf(cast_on)))
+		owner.balloon_alert(owner, "cant cast on walls!")
+		return SPELL_CANCEL_CAST
+
 	var/turf/in_LOS = view(cast_range, owner)
 	if (!(cast_on in in_LOS))
 		owner.balloon_alert(owner, "need line of sight!")
@@ -61,12 +65,12 @@
 
 /datum/action/cooldown/spell/void_stealth
 	name = "Cloak of the dark"
-	desc = "Cloaks you in inpermeable void, rendering you invisible to observers. You chill the air around you in this state, so don't stay in \
+	desc = "Cloaks you in inpermeable void, rendering you nearly invisible to observers. You chill the air around you in this state, so don't stay in \
 	one place for too long or people will start to realize. You cannot attack while cloaked, and being attacked will end it immediately."
 	/// The cloak currently active
 	var/datum/status_effect/void_stealth/active_cloak
 	/// The cooldown applied after our cloak is removed.
-	var/remove_time = 30 SECONDS
+	var/remove_time = 140 SECONDS
 
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
@@ -125,7 +129,7 @@
 	)
 	StartCooldown(remove_time)
 
-/// Shadow cloak effect. Sets the owner's alpha to zero while also chilling the area around them
+/// Shadow cloak effect. Sets the owner's alpha very low while also chilling the area around them
 /// If hit at all, the cloak is cancelled and put on cooldown
 /datum/status_effect/void_stealth
 	id = "void_stealth"
@@ -143,7 +147,7 @@
 		location.air_update_turf(FALSE, FALSE)
 
 /datum/status_effect/void_stealth/on_apply()
-	animate(owner, alpha = 0, 0.5 SECONDS)
+	animate(owner, alpha = 5, 2 SECONDS)
 	// Add the relevant traits and modifiers
 	owner.add_traits(list(TRAIT_UNKNOWN_APPEARANCE), TRAIT_STATUS_EFFECT(id))
 	// Register signals to cause effects
@@ -187,7 +191,10 @@
 /datum/status_effect/void_stealth/proc/on_block_check(datum/source, atom/hit_by, damage, attack_text, attack_type, armour_penetration, damage_type)
 	SIGNAL_HANDLER
 
-	qdel(src)
+	var/datum/action/cooldown/spell/void_stealth/stealth = locate() in owner.actions
+	stealth?.uncloak_mob(owner)
+	if (!stealth)
+		qdel(src)
 
 /// Signal proc for [COMSIG_MOB_STATCHANGE], going past soft crit will stop the effect
 /datum/status_effect/void_stealth/proc/on_stat_change(datum/source, new_stat, old_stat)
@@ -195,7 +202,10 @@
 
 	// Going above unconscious will self-delete
 	if(new_stat >= UNCONSCIOUS)
-		qdel(src)
+		var/datum/action/cooldown/spell/void_stealth/stealth = locate() in owner.actions
+		stealth?.uncloak_mob()
+		if (!stealth)
+			qdel(src)
 
 /datum/status_effect/void_stealth/proc/on_item_interaction(datum/source, obj/item/tool, list/modifiers)
 	SIGNAL_HANDLER

@@ -62,10 +62,24 @@
 		if (isnull(chosen_location))
 			continue // sometimes we get a null bc of unit tests... just ignore it
 
+		var/any_valid = FALSE
+		// check each tile in a 1 tile radius for if any of them support a rune
 		for(var/turf/nearby_turf as anything in RANGE_TURFS(1, chosen_location))
-			if(!isopenturf(nearby_turf) || is_type_in_typecache(nearby_turf, /datum/antagonist/heretic::blacklisted_rune_turfs))
-				location_sanity++
-				continue
+			var/valid = TRUE // does this turf have any turfs near it that can support a rune?
+			// here, we check if any of the nearby turfs can have a rune drawn
+			for(var/turf/layer_two as anything in RANGE_TURFS(1, nearby_turf))
+				if(!isopenturf(layer_two) || is_type_in_typecache(layer_two, /datum/antagonist/heretic::blacklisted_rune_turfs))
+					// nearby_turf cant support a rune
+					valid = FALSE
+					break
+
+			if (valid)
+				any_valid = TRUE
+				break
+
+		if(!any_valid)
+			location_sanity++
+			continue
 
 		// We don't want them close to each other - at least 1 tile of separation
 		var/list/nearby_things = range(1, chosen_location)
