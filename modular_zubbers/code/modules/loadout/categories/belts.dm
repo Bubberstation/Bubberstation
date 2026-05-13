@@ -70,4 +70,29 @@
 	item_path = /obj/item/storage/belt/fannypack/occult
 	//ckeywhitelist = list("gamerguy14948")
 
+/*
+* Webbings
+*/
 
+/datum/loadout_item/belts/webbing
+	name = "Webbing - Basic"
+	item_path = /obj/item/storage/belt/fannypack/webbing
+
+/datum/loadout_item/belts/webbing_colonial
+	name = "Webbing - Colonial"
+	item_path = /obj/item/storage/belt/fannypack/colonial_webbing
+
+/datum/loadout_item/belts/webbing_vest
+	name = "Webbing - Vest"
+	item_path = /obj/item/storage/belt/fannypack/webbing/vest
+	reskin_datum = /datum/atom_skin/webbing_vest
+
+/datum/loadout_item/belts/webbing_pouch
+	name = "Webbing - Drop Pouches"
+	item_path = /obj/item/storage/belt/fannypack/webbing/pouch
+	reskin_datum = /datum/atom_skin/drop_pouches
+
+/datum/loadout_item/belts/webbing_pilot
+	name = "Webbing - Rigging"
+	item_path = /obj/item/storage/belt/fannypack/webbing/pilot
+	reskin_datum = /datum/atom_skin/storage_rigging
