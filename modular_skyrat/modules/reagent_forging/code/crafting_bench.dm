@@ -105,13 +105,7 @@
 		. += span_boldwarning("Somehow, this recipe has no requirements, report this as this shouldn't happen.")
 		return
 
-	for(var/obj/requirement_item as anything in selected_recipe.recipe_requirements)
-		if(!selected_recipe.recipe_requirements[requirement_item])
-			. += span_boldwarning("[requirement_item] does not have an amount required set, this should not happen, report it.")
-			continue
-
-		. += span_notice("<b>[selected_recipe.recipe_requirements[requirement_item]]</b> - [initial(requirement_item.name)]")
-
+	. += selected_recipe.get_recipe_requirements_description()
 	return .
 
 /obj/structure/reagent_crafting_bench/update_appearance(updates)

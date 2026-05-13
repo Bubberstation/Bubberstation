@@ -122,6 +122,18 @@
 	if(!isnull(smith_component))
 		smith_component.set_completion_and_perfection_ratios(pieces_completion_amount, pieces_perfection_amount)
 
+/datum/crafting_bench_recipe/proc/get_recipe_requirements_description()
+	var/list/returner = list()
+	for(var/obj/requirement_item as anything in recipe_requirements)
+		if(!recipe_requirements[requirement_item])
+			returner += span_boldwarning("[requirement_item] does not have an amount required set, this should not happen, report it.")
+			continue
+
+		returner += get_ingredient_description(requirement_item)
+
+/datum/crafting_bench_recipe/proc/get_ingredient_description(requirement_item)
+	return span_notice("<b>[recipe_requirements[requirement_item]]</b> - [initial(requirement_item.name)]")
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// WEAPON COMPLETION /////////////////////////////////////////////////////
@@ -155,6 +167,7 @@
 	recipe_name = "plate helmet"
 	recipe_desc = "Protective headgear. Smithing oil and perfected metalworking will make it even more protective."
 	recipe_requirements = list(
+		/obj/item/stack/sheet/leather = 1,
 		/obj/item/forging/complete/plate = 2,
 	)
 	resulting_item = /obj/item/clothing/head/helmet/forging_plate_helmet
@@ -164,6 +177,7 @@
 	recipe_name = "plate vest"
 	recipe_desc = "Protective chestplating. Smithing oil and perfected metalworking will make it even more protective."
 	recipe_requirements = list(
+		/obj/item/stack/sheet/leather = 1,
 		/obj/item/forging/complete/plate = 3,
 	)
 	resulting_item = /obj/item/clothing/suit/armor/forging_plate_armor
@@ -173,6 +187,7 @@
 	recipe_name = "plate gloves"
 	recipe_desc = "Protective bracers. Smithing oil and perfected metalworking will make it even more protective."
 	recipe_requirements = list(
+		/obj/item/stack/sheet/leather = 1,
 		/obj/item/forging/complete/plate = 1,
 	)
 	resulting_item = /obj/item/clothing/gloves/forging_plate_gloves
@@ -182,6 +197,7 @@
 	recipe_name = "plate boots"
 	recipe_desc = "Protective greaves. Smithing oil and perfected metalworking will make it even more protective."
 	recipe_requirements = list(
+		/obj/item/stack/sheet/leather = 1,
 		/obj/item/forging/complete/plate = 2,
 	)
 	resulting_item = /obj/item/clothing/shoes/forging_plate_boots
@@ -191,7 +207,8 @@
 	recipe_name = "horse shoes"
 	recipe_desc = "Protective... horse shoes? Smithing oil and perfected metalworking will make it even more protective."
 	recipe_requirements = list(
-		/obj/item/forging/complete/chain = 1,
+		/obj/item/forging/complete/chain = 2,
+		/obj/item/forging/complete/plate = 2,
 	)
 	resulting_item = /obj/item/clothing/shoes/horseshoe/reagent_clothing
 	time_to_assemble = 1.5 SECONDS
@@ -326,6 +343,13 @@
 	relevant_skill_level = 7
 	time_to_assemble = 3 SECONDS
 	required_traits = list(TRAIT_KNOW_GUNSMITHING, TRAIT_KNOW_CIRCUIT_SMITHING)
+
+/datum/crafting_bench_recipe/proc/get_ingredient_description(requirement_item)
+	//machine boards for weapon rechargers are just called "weapon recharger" so this needs to be clarified
+	if(requirement_item != /obj/item/circuitboard/machine/recharger)
+		. = ..()
+	else
+		return span_notice("<b>[recipe_requirements[requirement_item]]</b> - machine board (weapon recharger)")
 
 /datum/crafting_bench_recipe/crusader_belt
 	recipe_name = "scabbard-utility belt"
