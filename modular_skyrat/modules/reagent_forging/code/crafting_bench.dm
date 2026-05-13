@@ -63,6 +63,8 @@
 
 /obj/structure/reagent_crafting_bench/Initialize(mapload)
 	. = ..()
+	if(mapload)
+		anchored = TRUE
 	populate_radial_choice_list()
 
 /obj/structure/reagent_crafting_bench/proc/populate_radial_choice_list()
@@ -80,6 +82,8 @@
 
 /obj/structure/reagent_crafting_bench/examine(mob/user)
 	. = ..()
+	. += span_notice("You could secure or unsecure it with a wrench.")
+	. += span_notice("You could pry it apart with a crowbar.")
 
 	if(length(contents))
 		if(istype(contents[1], /obj/item/forging/complete))
@@ -211,10 +215,17 @@
 	update_appearance()
 	return
 
-/obj/structure/reagent_crafting_bench/wrench_act(mob/living/user, obj/item/tool)
+/obj/structure/reagent_forge/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
-	deconstruct(disassembled = TRUE)
-	return ITEM_INTERACT_SUCCESS
+	set_anchored(!anchored)
+	balloon_alert_to_viewers(anchored ? "secured" : "unsecured")
+	return TRUE
+
+/obj/structure/reagent_forge/crowbar_act(mob/living/user, obj/item/tool)
+	tool.play_tool_sound(src)
+	balloon_alert(user, "pried apart")
+	deconstruct(TRUE)
+	return TRUE
 
 /obj/structure/reagent_crafting_bench/hammer_act(mob/living/user, obj/item/tool)
 

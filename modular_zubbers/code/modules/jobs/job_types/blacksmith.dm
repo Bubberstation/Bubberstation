@@ -102,5 +102,18 @@
 	Normally, anything that can be imbued will be imbued upon being quenched in liquid. However, reagent imbue effects can be changed by reforging the equipment, or by manually imbuing it:<br>\n\
 	-1: Prepare at least 60 units of chemical solution to imbue.<br>\n\
 	-2: Transfer those chemicals into your smithed equipment.<br>\n\
-	-3: Insert your equipment into a heated forge to set the chemicals into the material."
+	-3: Insert your equipment into a heated forge to set the chemicals into the material.<br>\n\
+	<br>\n\
+	Other notes:<br>\n\
+	-Reagent imbuing is powerful, but if you don't know what chemical to imbue, smithing oil is a good fallback; it will enhance the expected capabilities of the equipment.<br>\n\
+	-Use your eyes! If you <b>inspect</b> your equipment -- whether it's your crafting stations or handheld tools -- you'll usually be able to discern something useful.<br>\n\
+	-As you create weapons and equipment, your muscle memory will build over time -- which will let you make new equipment. Check your forge and your crafting bench for new items."
 
+/obj/item/choice_beacon/blacksmith
+	name = "smithing supply beacon"
+	desc = "Calls a supplypod containing all the required equipment for blacksmithing."
+	icon_state = "sb_delivery"
+	inhand_icon_state = "sb_delivery"
+
+/obj/item/choice_beacon/blacksmith/generate_display_names()
+	return list()

@@ -6,12 +6,14 @@
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_structures.dmi'
 	icon_state = "anvil_empty"
 
-	anchored = TRUE
+	anchored = FALSE
 	density = TRUE
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
 /obj/structure/reagent_anvil/Initialize(mapload)
 	. = ..()
+	if(mapload)
+		anchored = TRUE
 	AddElement(/datum/element/falling_hazard, damage = 40, wound_bonus = 10, hardhat_safety = FALSE, crushes = TRUE)
 
 /obj/structure/reagent_anvil/update_appearance()
@@ -38,7 +40,8 @@
 		else
 			. += span_notice("If you had the right skillchip, you could work the metal to a higher quality...")
 		. += span_notice("<b>Right Click</b> with a <b>forging mallet</b> to <b>hammer the metal with a steady tempo</b>.")
-		. += span_notice("You could remove [contents[1]] with some <b>tongs.</b>")
+		. += span_notice("You could remove [contents[1]] with some <b>tongs</b>, or your bare hands.")
+	. += span_notice("You could <b>cut it apart</b> with a <b>welder</b>.")
 
 /obj/structure/reagent_anvil/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -48,19 +51,25 @@
 	if(!can_interact(user) || !user.can_perform_action(src))
 		return
 
+	add_fingerprint(user)
 	set_anchored(!anchored)
 	balloon_alert_to_viewers(anchored ? "secured" : "unsecured")
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-/obj/structure/reagent_anvil/wrench_act(mob/living/user, obj/item/tool)
-	balloon_alert_to_viewers("deconstructing...")
-
-	if(!do_after(user, 2 SECONDS, src))
-		balloon_alert_to_viewers("stopped deconstructing")
+/obj/structure/reagent_anvil/welder_act(mob/living/user, obj/item/tool)
+	if(!welder.tool_start_check(user, amount=2))
 		return TRUE
+	add_fingerprint(user)
 
-	tool.play_tool_sound(src)
-	deconstruct(TRUE)
+	if(welder.use_tool(src, user, 2 SECONDS, volume=2))
+		new /obj/item/sliced_pipe(drop_location())
+		user.visible_message( \
+			"[user] welds \the [src] into base components.", \
+			span_notice("You weld \the [src] into base components."), \
+			span_hear("You hear welding."))
+
+		deconstruct(TRUE)
+
 	return TRUE
 
 /obj/structure/reagent_anvil/atom_deconstruct(disassembled = TRUE)
@@ -69,8 +78,8 @@
 
 /obj/structure/reagent_anvil/tong_act(mob/living/user, obj/item/tool)
 	var/obj/item/forging/forge_item = tool
+	add_fingerprint(user)
 	var/obj/obj_anvil_search = locate() in contents
-
 	var/obj/obj_tong_search = locate() in forge_item.contents
 	if(obj_anvil_search && !obj_tong_search)
 		obj_anvil_search.forceMove(forge_item)
@@ -86,6 +95,7 @@
 
 /obj/structure/reagent_anvil/hammer_act(mob/living/user, obj/item/tool)
 	//do we have a hammerable item?
+	add_fingerprint(user)
 	var/obj/locate_obj = locate() in contents
 	if(!isnull(locate_obj))
 		var/datum/component/forge_smithable/smith_component = locate_obj.GetComponent(/datum/component/forge_smithable/)

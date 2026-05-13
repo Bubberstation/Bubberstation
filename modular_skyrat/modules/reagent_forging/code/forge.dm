@@ -48,7 +48,7 @@
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_structures.dmi'
 	icon_state = "forge_inactive"
 
-	anchored = TRUE
+	anchored = FALSE
 	density = TRUE
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
@@ -114,7 +114,8 @@
 
 /obj/structure/reagent_forge/examine(mob/user)
 	. = ..()
-
+	. += span_notice("You could secure or unsecure it with a wrench.")
+	. += span_notice("You could pry it apart with a crowbar.")
 	if(used_tray)
 		. += span_notice("It has [used_tray] in it, which can be removed with an <b>empty hand</b>.")
 	else
@@ -168,6 +169,8 @@
 
 /obj/structure/reagent_forge/Initialize(mapload)
 	. = ..()
+	if(mapload)
+		anchored = TRUE
 	START_PROCESSING(SSobj, src)
 	populate_radial_choice_list()
 	update_appearance()
@@ -827,6 +830,13 @@
 
 /obj/structure/reagent_forge/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
+	set_anchored(!anchored)
+	balloon_alert_to_viewers(anchored ? "secured" : "unsecured")
+	return TRUE
+
+/obj/structure/reagent_forge/crowbar_act(mob/living/user, obj/item/tool)
+	tool.play_tool_sound(src)
+	balloon_alert(user, "pried apart")
 	deconstruct(TRUE)
 	return TRUE
 

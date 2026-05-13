@@ -3,7 +3,7 @@
 	desc = "A basin meant to quench heated smithing equipment and cool it."
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_structures.dmi'
 	icon_state = "water_basin"
-	anchored = TRUE
+	anchored = FALSE
 	density = TRUE
 	can_be_tanked = FALSE
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
@@ -25,8 +25,10 @@
 		. += filling
 		return
 
-/obj/structure/reagent_dispensers/reagent_smithing_basin/Initialize()
+/obj/structure/reagent_dispensers/reagent_smithing_basin/Initialize(mapload)
 	. = ..()
+	if(mapload)
+		anchored = TRUE
 	reagents.flags = reagents.flags | REFILLABLE | DUNKABLE
 	check_fishable()
 	update_appearance()
@@ -47,6 +49,8 @@
 		. += span_notice("Dipping smithed items in this trough will imbue it with its chemicals!")
 	else
 		. += span_notice("You could use this for imbuing reagents into equipment if you knew the right trick...")
+	. += span_notice("You could secure or unsecure it with a wrench.")
+	. += span_notice("You could pry it apart with a crowbar.")
 
 /obj/structure/reagent_dispensers/attackby(obj/item/attacking_item, mob/living/user, params)
 	var/datum/component/forge_smithable/smith_component = attacking_item.GetComponent(/datum/component/forge_smithable/)
@@ -55,6 +59,32 @@
 		return ITEM_INTERACT_SUCCESS
 
 	return ..()
+
+/obj/structure/reagent_forge/wrench_act(mob/living/user, obj/item/tool)
+	tool.play_tool_sound(src)
+	set_anchored(!anchored)
+	balloon_alert_to_viewers(anchored ? "secured" : "unsecured")
+	return TRUE
+
+/obj/structure/reagent_forge/crowbar_act(mob/living/user, obj/item/tool)
+	if(DOING_INTERACTION(user, DOAFTER_SMITHING_WATER_BASIN))
+		return
+
+	tool.play_tool_sound(src)
+
+	if(!empty_pipe)
+		to_chat(user, span_notice("You begin to pry apart \the [src]..."))
+
+	if (reagents.total_volume > 75)
+		to_chat(user, span_warning("As you begin prying apart \the [src] you notice that it's full of fluid... maybe you should reconsider?"))
+
+	if(!do_after(user, 5 SECONDS, src, interaction_key = DOAFTER_SMITHING_WATER_BASIN))
+		return FALSE
+
+	//spill contents, then deconstruct
+	knock_down()
+	deconstruct(TRUE)
+	return TRUE
 
 /obj/structure/reagent_dispensers/tong_act(mob/living/user, obj/item/tool)
 	var/obj/item/tongs_contents = locate(/obj/item) in tool.contents
