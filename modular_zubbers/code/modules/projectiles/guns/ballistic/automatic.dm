@@ -56,6 +56,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	projectile_damage_multiplier = 0.8
 	projectile_speed_multiplier = 0.8
+	projectile_wound_bonus = -5
 	spread = 25
 	dual_wield_spread = 50
 	recoil = SAWN_OFF_RECOIL

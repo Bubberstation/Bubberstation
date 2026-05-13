@@ -83,9 +83,9 @@
 		if(ride_check_flags & UNBUCKLE_DISABLED_RIDER)
 			vehicle_parent.unbuckle_mob(user, TRUE)
 			user.visible_message(span_danger("[user] falls off \the [vehicle_parent]."),\
-			span_danger("You slip off \the [vehicle_parent] as you are incapable of operating it!"))
+			span_danger("You get thrown off \the [vehicle_parent] as you are incapable of operating it!"))
 
-			user.adjust_stamina_loss(50)
+			user.adjust_stamina_loss(35)
 			playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
 			var/atom/throw_target = get_edge_target_turf(user, pick(GLOB.cardinals))
 			user.throw_at(throw_target, 1, 1)

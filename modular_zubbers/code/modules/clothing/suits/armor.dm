@@ -117,7 +117,11 @@
 
 /obj/item/clothing/suit/hooded/secjuggernaut
 	name = "security juggernaut suit"
-	desc = "An advanced suit of armor. Difficult to put on and cumbersome to wear. Comes with a built-in helmet for EVA action."
+	desc = "An advanced suit of security armor."
+	var/extended_desc = "The Advanced Security Suit offers nigh-perfect protection of the wearer through an advanced layering of kevlar, titanium, and ceramic plates. \
+		The construction of the suit unfortunately renders it incredibly heavy and cumbersome, effectively slowing the user to a crawl. \
+		Only through recently developed micro-anti-gravitational generators can the suit actually be worn and moved in. \
+		Comes with a built-in helmet for EVA action."
 	icon_state = "security_jugger"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
@@ -152,13 +156,18 @@
 
 /obj/item/clothing/head/hooded/secjuggernaut
 	name = "security juggernaut helmet"
-	desc = "An advanced helmet. Easily put on compared to the armor it came with."
-	icon_state = "security_jugger"
+	desc = "An advanced security helmet."
+	var/extended_desc = "A helmet built into the Advanced Security Suit. It offers nigh-perfect protection with the drawback of being permanently affixed to an incredibly heavy suit. \
+		It is pressure resistant and comes with a built-in seclite for visiblity in dark areas.\
+		While made of the same materials and having the same overall construction, built-in servos and actuators allow it to be easily put on compared to the suit it comes with."
+	icon_state = "security_jugger0"
 	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	worn_icon_muzzled = 'modular_zubbers/icons/mob/clothing/head/helmet_muzzled.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
 	armor_type = /datum/armor/secjuggernaut
+	flash_protect = FLASH_PROTECTION_FLASH
+	strip_delay = 15 SECONDS
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | IMMUTABLE_SLOW | SNUG_FIT | HEADINTERNALS
 	clothing_traits = list(TRAIT_HEAD_INJURY_BLOCKED)
 	cold_protection = HEAD
@@ -183,6 +192,7 @@
 /obj/item/clothing/head/hooded/secjuggernaut/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
+	AddComponent(/datum/component/wearertargeting/earprotection)
 
 /obj/item/clothing/head/hooded/secjuggernaut/proc/toggle_helmet_light(mob/living/user)
 	on = !on
@@ -214,12 +224,12 @@
 	toggle_helmet_light(user)
 
 /datum/armor/secjuggernaut
-	melee = 75
-	bullet = 70
-	laser = 60
-	energy = 50
+	melee = 80
+	bullet = 80
+	laser = 70
+	energy = 60
 	bomb = 100
 	bio = 100
 	fire = 100
-	acid = 90
+	acid = 100
 	wound = 30
