@@ -68,7 +68,7 @@
 
 /datum/voucher_set/security/primary/archery
 	name = "Archery Kit"
-	description = "A powerful bow, a training manual, and a quiver with non/less-than-lethal arrows. You will still need to order the fletching kit from cargo if you want to make lethal arrows."
+	description = "A powerful bow, a training manual, and a quiver with non/less-than-lethal arrows. You will still need to order the fletching book from cargo if you want to make lethal arrows."
 	icon = 'icons/obj/weapons/bows/bows.dmi'
 	icon_state = "hardlightbow"
 	set_items = list(
