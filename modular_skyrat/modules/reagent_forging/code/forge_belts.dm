@@ -15,8 +15,6 @@
 
 /obj/item/storage/belt/holster/blacksmithed/update_overlays()
 	. = ..()
-	if(!content_overlays)
-		return
 	for(var/obj/item/I in contents)
 		if(istype(I, /obj/item/gun/ballistic/revolver))
 			. += mutable_appearance('modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi', "belt_gun_wood")
@@ -91,12 +89,17 @@
 	icon_state = "charger_belt"
 	inhand_icon_state = "security"
 	worn_icon_state = "security"
-	storage_type = /datum/storage/charging_holster
+	storage_type = null //datum/storage/charging_holster
 	var/obj/machinery/recharger/belt_charger/my_charger
+
+/obj/item/storage/belt/holster/blacksmithed/charging/Initialize(mapload)
+	. = ..()
+	var/datum/storage/mystorage = create_storage(storage_type = storage_type)
+	mystorage.set_real_location(src)
 
 /obj/item/storage/belt/holster/blacksmithed/charging/update_overlays()
 	. = ..()
-	if(!isnull(my_charger.charging))
+	if(!isnull(my_charger?.charging))
 		var/icon_to_use = "charger_belt_[(my_charger.using_power ? "charging" : "fullcharge")]"
 		. += mutable_appearance(icon, icon_to_use, alpha = src.alpha)
 
@@ -118,7 +121,7 @@
 
 /datum/storage/charging_holster/New()
 	. = ..()
-	my_charger = new (src)
+	my_charger = new()
 	if(istype(parent, /obj/item/storage/belt/holster/blacksmithed/charging))
 		var/obj/item/storage/belt/holster/blacksmithed/charging/my_belt = parent
 		my_belt.my_charger = my_charger
@@ -141,7 +144,7 @@
 /obj/machinery/recharger/belt_charger
 	name = "dev item"
 	desc = "You shouldn't see this."
-	recharge_coeff = 0.75
+	recharge_coeff = 0.5
 	var/obj/item/storage/belt/holster/blacksmithed/charging/my_belt
 
 /obj/machinery/recharger/belt_charger/proc/activate_with_item(obj/item/my_item)
@@ -305,10 +308,11 @@
 /obj/item/storage/belt/sheath/multi/update_icon(updates)
 	. = ..()
 	var/numswords = 0
-	for(var/obj/item/i in contents)
-		if(istype(i, /obj/item/melee))
-			numswords ++
-			break
+	if(!isnull(contents) && contents.len > 0)
+		for(var/obj/item/i in contents)
+			if(istype(i, /obj/item/melee))
+				numswords ++
+	numswords = clamp(numswords, 0, 2)
 	icon_state = "multiscabbard_swords_[numswords]"
 
 /obj/item/storage/belt/sheath/multi/update_overlays()
