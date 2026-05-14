@@ -9,7 +9,7 @@
 	. = ..()
 
 	chosen_mob.balloon_alert_to_viewers("CURSED!")
-	to_chat(chosen_mob, span_boldwarning("You've been cursed by an Acolyte using a tincture of your blood! It will fade with time..."))
+	to_chat(chosen_mob, span_boldwarning("You've been cursed by an Acolyte using a tincture of your blood! It will fade with time, but you can use holymelons to prevent further cursing!"))
 
 /datum/heretic_knowledge/curse/transmutation
 	duration = 5 MINUTES // infinit efor no fucking reason in tgcode oml
