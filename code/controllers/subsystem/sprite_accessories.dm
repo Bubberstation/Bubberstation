@@ -88,7 +88,7 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 
 	socks_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/clothing/socks)[DEFAULT_SPRITE_LIST]
 	// SKYRAT EDIT ADDITION START - Underwear/bra split
-	var/bra_lists = init_sprite_accessory_subtypes(/datum/sprite_accessory/bra)
+	var/bra_lists = init_sprite_accessory_subtypes(/datum/sprite_accessory/clothing/bra)
 	bra_list = bra_lists[DEFAULT_SPRITE_LIST]
 	bra_m = bra_lists[MALE_SPRITE_LIST]
 	bra_f = bra_lists[FEMALE_SPRITE_LIST]

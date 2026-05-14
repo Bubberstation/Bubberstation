@@ -108,7 +108,7 @@
 	if(socks_overlay)
 		. += socks_overlay
 	//SKYRAT EDIT ADDITION BEGIN - Underwear and Bra split
-	var/datum/sprite_accessory/bra/bra = SSaccessories.bra_list[bra_name]
+	var/datum/sprite_accessory/clothing/bra/bra = SSaccessories.bra_list[bra_name]
 	if(bra)
 		. += mutable_appearance(bra.icon, bra.icon_state, -BODY_LAYER)
 	//SKYRAT EDIT END
