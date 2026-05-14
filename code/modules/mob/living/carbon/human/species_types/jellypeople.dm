@@ -754,6 +754,11 @@
 	if(recipient.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
 		to_chat(telepath, span_warning("As you reach into [recipient]'s mind, you are stopped by a mental blockage. It seems you've been foiled."))
 		return
+	//BUBBER EDIT ADDITION START -  Telepathy Block Quirk
+	if(HAS_TRAIT(recipient, TRAIT_PSIONIC_DAMPENER))
+		to_chat(telepath, span_warning("As you reach into [recipient]'s mind, you are stopped by a mental blockage."))
+		return
+	//BUBBER EDIT ADDITION END
 	log_directed_talk(telepath, recipient, msg, LOG_SAY, "slime telepathy")
 	to_chat(recipient, "[span_notice("You hear an alien voice in your head... ")]<font color=#008CA2>[msg]</font>")
 	to_chat(telepath, span_notice("You telepathically said: \"[msg]\" to [recipient]"))
