@@ -4,8 +4,8 @@
 	faction = FACTION_NONE
 	supervisors = "yourself"
 	minimal_player_age = 7
-	total_positions = 20
-	spawn_positions = 20
+	total_positions = 0
+	spawn_positions = 0
 	exp_requirements = 2400
 	exp_required_type = EXP_TYPE_CREW
 	exp_granted_type = EXP_TYPE_SPECIAL
@@ -13,8 +13,8 @@
 
 	liver_traits = list(TRAIT_MAINTENANCE_METABOLISM)
 
-
-	job_flags = JOB_NEW_PLAYER_JOINABLE|JOB_REOPEN_ON_ROUNDSTART_LOSS|JOB_ASSIGN_QUIRKS|JOB_CANNOT_OPEN_SLOTS
+	allow_bureaucratic_error = FALSE
+	job_flags = JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CANNOT_OPEN_SLOTS | STATION_TRAIT_JOB_FLAGS
 
 /datum/job/assistant/stowaway/has_banned_species(datum/preferences/pref)
 	//return false cause no species should be banned from this role
