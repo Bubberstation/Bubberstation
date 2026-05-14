@@ -20,22 +20,7 @@
 	max_slots = 3
 	max_specific_storage = WEIGHT_CLASS_SMALL
 	silent = TRUE
-/*
-/datum/storage/belt/webbing_vest
-	max_slots = 3
-	max_specific_storage = WEIGHT_CLASS_SMALL
-	silent = TRUE
 
-/datum/storage/belt/webbing_pouch
-	max_slots = 3
-	max_specific_storage = WEIGHT_CLASS_SMALL
-	silent = TRUE
-
-/datum/storage/belt/webbing_pilot
-	max_slots = 3
-	max_specific_storage = WEIGHT_CLASS_SMALL
-	silent = TRUE
-*/
 //vest
 /obj/item/storage/belt/webbing_vest
 	name = "webbing vest"
