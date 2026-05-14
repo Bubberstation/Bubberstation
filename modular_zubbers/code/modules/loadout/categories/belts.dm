@@ -88,28 +88,28 @@
 
 /datum/loadout_item/belts/webbing_vest_black
 	name = "Webbing - Vest, Black"
-	item_path = /obj/item/storage/belt/webbing/vest/black
+	item_path = /obj/item/storage/belt/webbing/vestblack
 
 /datum/loadout_item/belts/webbing_vest_white
 	name = "Webbing - Vest, White"
-	item_path = /obj/item/storage/belt/webbing/vest/white
+	item_path = /obj/item/storage/belt/webbing/vestwhite
 
 /datum/loadout_item/belts/webbing_pouch_brown
 	name = "Webbing - Drop Pouches, Brown"
-	item_path = /obj/item/storage/belt/webbing/pouch
+	item_path = /obj/item/storage/belt/webbing/pouchbrown
 
 /datum/loadout_item/belts/webbing_pouch_black
 	name = "Webbing - Drop Pouches, Black"
-	item_path = /obj/item/storage/belt/webbing/pouch/black
+	item_path = /obj/item/storage/belt/webbing/pouchblack
 
 /datum/loadout_item/belts/webbing_pouch_white
 	name = "Webbing - Drop Pouches, White"
-	item_path = /obj/item/storage/belt/webbing/pouch/white
+	item_path = /obj/item/storage/belt/webbing/pouchwhite
 
 /datum/loadout_item/belts/webbing_pilot_standard
 	name = "Webbing - Rigging, Standard"
-	item_path = /obj/item/storage/belt/webbing/pilot
+	item_path = /obj/item/storage/belt/webbingpilot
 
 /datum/loadout_item/belts/webbing_pilot_low
 	name = "Webbing - Rigging, Low Slung"
-	item_path = /obj/item/storage/belt/webbing/pilot/lowslung
+	item_path = /obj/item/storage/belt/webbing/pilotlow
