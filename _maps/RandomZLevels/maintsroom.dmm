@@ -5571,6 +5571,11 @@
 /obj/machinery/scanner_gate/luxury_shuttle,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
+"rU" = (
+/obj/effect/light_emitter/fake_outdoors,
+/mob/living/basic/trooper/nanotrasen/ranged/elite/seargent_crowlie,
+/turf/open/floor/asphalt,
+/area/awaymission/caves/maintsroom)
 "rV" = (
 /obj/item/flashlight/lantern,
 /turf/open/floor/plating/rust,
@@ -8760,6 +8765,13 @@
 /area/awaymission/caves/maintsroom)
 "Cu" = (
 /turf/open/floor/iron/white,
+/area/awaymission/caves/maintsroom)
+"Cw" = (
+/obj/effect/light_emitter/fake_outdoors,
+/mob/living/simple_animal/hostile/megafauna/claw{
+	loot = list(/obj/item/keycard/claw_card)
+	},
+/turf/open/misc/beach/sand,
 /area/awaymission/caves/maintsroom)
 "Cx" = (
 /obj/effect/turf_decal/trimline/red/line,
@@ -28340,7 +28352,7 @@ LT
 Rf
 Rf
 Rf
-Rf
+Cw
 Rf
 Rf
 Rf
@@ -35161,7 +35173,7 @@ Rf
 UX
 cs
 cv
-cs
+rU
 cv
 cs
 cv
