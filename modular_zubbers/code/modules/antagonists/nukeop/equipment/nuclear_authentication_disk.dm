@@ -35,7 +35,7 @@ GLOBAL_VAR_INIT(did_sleepy_disk_announcement, FALSE)
 	priority_announce(
 		"Attention [GLOB.station_name]. It has come to our attention that your nuclear authentication disk has been stationary for an egregious period of time. \
 		There is no excuse. Your command staff will have their pay docked and employment reviewed. Failure to secure the disk in good time will result \
-		in further consequence.",
+		in further consequences.",
 		"Central Command Asset Protection",
 		'modular_skyrat/modules/alerts/sound/alerts/alert1.ogg',
 		has_important_message = TRUE
