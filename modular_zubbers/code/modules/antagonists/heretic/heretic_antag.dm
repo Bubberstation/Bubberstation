@@ -31,7 +31,6 @@
 		/datum/objective/heretic_wildcard/supermatter = 50,
 		/datum/objective/heretic_wildcard/ai_law = 50,
 		///datum/objective/heretic_wildcard/superway = 50,
-		/datum/objective/heretic_wildcard/curse = 80,
 		/datum/objective/heretic_wildcard/steal_money = 80,
 		/datum/objective/heretic_wildcard/potions = 80,
 	)
