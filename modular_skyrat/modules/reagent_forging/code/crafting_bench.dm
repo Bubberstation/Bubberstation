@@ -209,13 +209,13 @@
 	update_appearance()
 	return
 
-/obj/structure/reagent_forge/wrench_act(mob/living/user, obj/item/tool)
+/obj/structure/reagent_crafting_bench/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
 	set_anchored(!anchored)
 	balloon_alert_to_viewers(anchored ? "secured" : "unsecured")
 	return TRUE
 
-/obj/structure/reagent_forge/crowbar_act(mob/living/user, obj/item/tool)
+/obj/structure/reagent_crafting_bench/crowbar_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
 	balloon_alert(user, "pried apart")
 	deconstruct(TRUE)

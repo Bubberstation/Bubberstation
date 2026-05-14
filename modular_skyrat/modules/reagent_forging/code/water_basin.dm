@@ -60,22 +60,21 @@
 
 	return ..()
 
-/obj/structure/reagent_forge/wrench_act(mob/living/user, obj/item/tool)
+/obj/structure/reagent_dispensers/reagent_smithing_basin/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
 	set_anchored(!anchored)
 	balloon_alert_to_viewers(anchored ? "secured" : "unsecured")
 	return TRUE
 
-/obj/structure/reagent_forge/crowbar_act(mob/living/user, obj/item/tool)
+/obj/structure/reagent_dispensers/reagent_smithing_basin/crowbar_act(mob/living/user, obj/item/tool)
 	if(DOING_INTERACTION(user, DOAFTER_SMITHING_WATER_BASIN))
 		return
 
 	tool.play_tool_sound(src)
 
-	if(!empty_pipe)
+	if (reagents.total_volume < 75)
 		to_chat(user, span_notice("You begin to pry apart \the [src]..."))
-
-	if (reagents.total_volume > 75)
+	else
 		to_chat(user, span_warning("As you begin prying apart \the [src] you notice that it's full of fluid... maybe you should reconsider?"))
 
 	if(!do_after(user, 5 SECONDS, src, interaction_key = DOAFTER_SMITHING_WATER_BASIN))

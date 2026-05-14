@@ -207,6 +207,7 @@
 
 	dunk_reagents.expose_temperature(HEAT_GIVEN_FROM_QUENCHING_METAL)
 	COOLDOWN_RESET(src, heating_remainder)
+	playsound(src, 'modular_skyrat/modules/reagent_forging/sound/hot_hiss.ogg', 50, TRUE)
 
 	if(!isnull(heat_color))
 		parent_item.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)

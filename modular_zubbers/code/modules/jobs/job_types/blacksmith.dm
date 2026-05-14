@@ -47,6 +47,7 @@
 		/obj/item/forging/tongs = 1,
 		/obj/item/forging/billow = 1,
 		/obj/item/stack/sheet/mineral/wood = 25,
+		/obj/item/choice_beacon/blacksmith = 1,
 	)
 	glasses = /obj/item/clothing/glasses/hud/gun_permit
 	belt = /obj/item/modular_computer/pda/cargo
@@ -116,7 +117,7 @@
 	inhand_icon_state = "sb_delivery"
 
 /obj/item/choice_beacon/blacksmith/generate_display_names()
-	return list(/obj/structure/closet/crate/large/smithing)
+	return list("Smithing Equipment Crate" = /obj/structure/closet/crate/large/smithing)
 
 /obj/structure/closet/crate/large/smithing
 	name = "smithing equipment crate"

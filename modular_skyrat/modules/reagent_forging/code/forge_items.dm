@@ -26,7 +26,6 @@
 
 /obj/item/forging/incomplete/proc/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/quencher)
 	SIGNAL_HANDLER
-	playsound(src, 'modular_skyrat/modules/reagent_forging/sound/hot_hiss.ogg', 50, TRUE)
 
 	var/datum/component/forge_smithable/forge_component = GetComponent(/datum/component/forge_smithable)
 	if(forge_component.is_finished_smithing())

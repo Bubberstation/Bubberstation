@@ -57,11 +57,11 @@
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/reagent_anvil/welder_act(mob/living/user, obj/item/tool)
-	if(!welder.tool_start_check(user, amount=2))
+	if(!tool.tool_start_check(user, amount=2))
 		return TRUE
 	add_fingerprint(user)
 
-	if(welder.use_tool(src, user, 2 SECONDS, volume=2))
+	if(tool.use_tool(src, user, 2 SECONDS, volume=2))
 		new /obj/item/sliced_pipe(drop_location())
 		user.visible_message( \
 			"[user] welds \the [src] into base components.", \

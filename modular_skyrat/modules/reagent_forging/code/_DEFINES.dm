@@ -56,7 +56,6 @@
 		if(FORGE_EFFECT_ARMOR)
 			if(ispath(max_effect))
 				max_effect = get_armor_by_type(max_effect)
-			var/datum/armor/temp_test_before = item.get_armor()
 
 			var/datum/armor/indexed_armor = max_effect
 			///WHY does the tgstation implementation have 0-multipler return the source armor? and not return armor/none?
@@ -72,8 +71,6 @@
 				previous_armor_modifier = indexed_armor.generate_new_with_modifiers(list(ARMOR_ALL = new_modifier))
 
 			item.set_armor(item.get_armor().add_other_armor(new_armor_modifier).subtract_other_armor(previous_armor_modifier))
-			var/datum/armor/temp_test_after = item.get_armor()
-			var/datum/asdf = item.get_armor()
 		if(FORGE_EFFECT_ARMORPEN)
 			var/new_armorpen_modifier = new_modifier * max_effect
 			var/previous_armorpen_modifier = old_modifier * max_effect

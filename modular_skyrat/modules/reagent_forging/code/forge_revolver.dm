@@ -22,6 +22,7 @@
 
 	//is the hammer primed (ready to fire) or released (safe)?
 	var/hammer_is_primed = FALSE
+	var/hammer_pull_speed_fanning = 0 DECISECONDS
 	var/hammer_pull_speed_onehanded = 5 DECISECONDS
 	var/static/holster_misfire_chance = 70
 
@@ -76,7 +77,13 @@
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/attack_self(mob/living/user)
 	if(recent_rack > world.time)
 		return
-	recent_rack = world.time + rack_delay
+
+	var/rack_delay_to_use
+	if(user.get_inactive_held_item() || !other_hand) //if both hands occupied, one-handed rack
+		rack_delay_to_use = hammer_pull_speed_onehanded
+	else
+		rack_delay_to_use = hammer_pull_speed_fanning
+	recent_rack = world.time + rack_delay_to_use
 	rack(user)
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/rack(mob/user = null)
@@ -85,7 +92,6 @@
 
 	if(!hammer_is_primed)
 		var/obj/item/bodypart/other_hand = user.has_hand_for_held_index(user.get_inactive_hand_index()) //
-		if(user.get_inactive_held_item() || !other_hand)
 			if(!do_after(user, hammer_pull_speed_onehanded, src, timed_action_flags = IGNORE_USER_LOC_CHANGE, interaction_key = DOAFTER_REVOLVER_HAMMER_COCK, hidden = TRUE ))
 				return
 		hammer_is_primed = TRUE
@@ -168,12 +174,19 @@
 	caliber = CALIBER_38
 	max_ammo = 6
 
+///cause apparently tgcode doesn't have a bug check against if start_empty = false
+/obj/item/ammo_box/magazine/internal/cylinder/handcrafted_single_action
+	. = ..()
+	stored_ammo.len = max_ammo
+
 ///get round doesn't spin the cylinder; cocking the hammer (from rack()) must be used to spin the cylinder
 /obj/item/ammo_box/magazine/internal/cylinder/handcrafted_single_action/get_round()
-	var/casing = stored_ammo[1]
-	if (ispath(casing))
-		casing = new casing(src)
-		stored_ammo[1] = casing
+	var/casing = null
+	if(length(stored_ammo) >= 1)
+		casing = stored_ammo[1]
+		if (ispath(casing))
+			casing = new casing(src)
+			stored_ammo[1] = casing
 	return casing
 
 /obj/item/ammo_box/magazine/internal/cylinder/handcrafted_single_action/spin()

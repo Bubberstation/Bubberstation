@@ -11,6 +11,6 @@
 
 /obj/item/reagent_containers/cup/jerrycan/smithing_oil
 	name = "Jarnsmiour Blacksteel Foundation-brand smithing oil"
-	cap_type = CAP_RED
+	cap_type = "red"
 	desc = "Jarnsmiour Blacksteel's finest smithing oil; a favored ingredient of the intergalactic spacesmith's union, thanks to its ability to enhance the inherrent capabilities of nearly every form of metal."
 	list_reagents = list(/datum/reagent/fuel/oil/smithing = 200)

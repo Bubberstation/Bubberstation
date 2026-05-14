@@ -130,8 +130,9 @@
 			continue
 
 		returner += get_ingredient_description(requirement_item)
+	return returner
 
-/datum/crafting_bench_recipe/proc/get_ingredient_description(requirement_item)
+/datum/crafting_bench_recipe/proc/get_ingredient_description(obj/requirement_item)
 	return span_notice("<b>[recipe_requirements[requirement_item]]</b> - [initial(requirement_item.name)]")
 
 
@@ -344,7 +345,7 @@
 	time_to_assemble = 3 SECONDS
 	required_traits = list(TRAIT_KNOW_GUNSMITHING, TRAIT_KNOW_CIRCUIT_SMITHING)
 
-/datum/crafting_bench_recipe/proc/get_ingredient_description(requirement_item)
+/datum/crafting_bench_recipe/charging_holster/get_ingredient_description(requirement_item)
 	//machine boards for weapon rechargers are just called "weapon recharger" so this needs to be clarified
 	if(requirement_item != /obj/item/circuitboard/machine/recharger)
 		. = ..()
