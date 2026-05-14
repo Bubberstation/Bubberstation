@@ -8,16 +8,15 @@ GLOBAL_VAR_INIT(did_sleepy_disk_announcement, FALSE)
 	if(!SSjob || !SSjob.assigned_captain)
 		return
 
-	/// How comfy is our disk?
-	var/disk_comfort_level = 0
-
-	//Go through and check for items that make disk comfy
-	for(var/obj/comfort_item in loc)
-		if(istype(comfort_item, /obj/item/bedsheet) || istype(comfort_item, /obj/structure/bed))
-			disk_comfort_level++
-	var/comfy = disk_comfort_level >= 2
-
 	if(last_move < world.time - GRACE_PERIOD)
+		/// How comfy is our disk?
+		var/disk_comfort_level = 0
+
+		//Go through and check for items that make disk comfy
+		for(var/obj/comfort_item in loc)
+			if(istype(comfort_item, /obj/item/bedsheet) || istype(comfort_item, /obj/structure/bed))
+				disk_comfort_level++
+		var/comfy = disk_comfort_level >= 2
 		if (comfy)
 			if (GLOB.did_sleepy_disk_announcement)
 				return
