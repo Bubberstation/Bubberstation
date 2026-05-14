@@ -25,47 +25,47 @@
 	item_path = /obj/item/clothing/under/rank/nanotrasen_consultant/stripper
 	restricted_roles = list(JOB_NT_REP)
 
-/datum/loadout_item/uniform/command/blueshield
+/datum/loadout_item/uniform/command/blueshield_suit
 	name = "Blueshield's Suit"
 	item_path = /obj/item/clothing/under/rank/blueshield
 	restricted_roles = list(JOB_BLUESHIELD)
 
-/datum/loadout_item/uniform/command/blueshield
+/datum/loadout_item/uniform/command/blueshield_suitskirt
 	name = "Blueshield's Suitskirt"
 	item_path = /obj/item/clothing/under/rank/blueshield/skirt
 	restricted_roles = list(JOB_BLUESHIELD)
 
-/datum/loadout_item/uniform/command/blueshield
+/datum/loadout_item/uniform/command/blueshield_turtleneck
 	name = "Blueshield's Turtleneck"
 	item_path = /obj/item/clothing/under/rank/blueshield/turtleneck
 	restricted_roles = list(JOB_BLUESHIELD)
 
-/datum/loadout_item/uniform/command/blueshield
+/datum/loadout_item/uniform/command/blueshield_turtleneckskirt
 	name = "Blueshield's Skirtleneck"
 	item_path = /obj/item/clothing/under/rank/blueshield/turtleneck/skirt
 	restricted_roles = list(JOB_BLUESHIELD)
 
-/datum/loadout_item/uniform/command/blueshield
+/datum/loadout_item/uniform/command/blueshield_consult
 	name = "Blueshield's Consulting Suit"
 	item_path = /obj/item/clothing/under/rank/blueshield/consult
 	restricted_roles = list(JOB_BLUESHIELD)
 
-/datum/loadout_item/uniform/command/blueshield
+/datum/loadout_item/uniform/command/blueshield_consultskirt
 	name = "Blueshield's Consulting Skirt"
 	item_path = /obj/item/clothing/under/rank/blueshield/consult/skirt
 	restricted_roles = list(JOB_BLUESHIELD)
 
-/datum/loadout_item/uniform/command/blueshield
+/datum/loadout_item/uniform/command/blueshield_sweat
 	name = "Blueshield's Sweatsuit"
 	item_path = /obj/item/clothing/under/rank/blueshield/russian
 	restricted_roles = list(JOB_BLUESHIELD)
 
-/datum/loadout_item/uniform/command/blueshield
+/datum/loadout_item/uniform/command/blueshield_formal
 	name = "Blueshield's Formal Uniform"
 	item_path = /obj/item/clothing/under/rank/blueshield/formal
 	restricted_roles = list(JOB_BLUESHIELD)
 
-/datum/loadout_item/uniform/command/blueshield
+/datum/loadout_item/uniform/command/blueshield_naval
 	name = "Blueshield's Naval Uniform"
 	item_path = /obj/item/clothing/under/rank/blueshield/naval
 	restricted_roles = list(JOB_BLUESHIELD)
@@ -110,22 +110,22 @@
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/security_medic/alternate
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
-/datum/loadout_item/uniform/security/corrections_officer
+/datum/loadout_item/uniform/security/corrections_officer_jumpsuit
 	name = "Correction's Officer Jumpsuit"
 	item_path = /obj/item/clothing/under/rank/security/corrections_officer
 	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
 
-/datum/loadout_item/uniform/security/corrections_officer
+/datum/loadout_item/uniform/security/corrections_officer_jumpskirt
 	name = "Correction's Officer Jumpskirt"
 	item_path = /obj/item/clothing/under/rank/security/corrections_officer/skirt
 	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
 
-/datum/loadout_item/uniform/security/corrections_officer
+/datum/loadout_item/uniform/security/corrections_officer_sweater
 	name = "Correction's Officer Sweater"
 	item_path = /obj/item/clothing/under/rank/security/corrections_officer/sweater
 	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
 
-/datum/loadout_item/uniform/security/corrections_officer
+/datum/loadout_item/uniform/security/corrections_officer_sweaterskirt
 	name = "Correction's Officer Sweater Skirt"
 	item_path = /obj/item/clothing/under/rank/security/corrections_officer/sweater/skirt
 	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
