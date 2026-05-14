@@ -10,7 +10,7 @@
 	if (HAS_TRAIT(user, TRAIT_PARANOIAS_EYE))
 		return list(span_hypnophrase("THE LIGHT BLINDS YOU."))
 	// BUBBER EDIT ADDITION END
-	if(HAS_TRAIT(src, TRAIT_UNKNOWN_APPEARANCE))
+	if(HAS_TRAIT(src, TRAIT_UNKNOWN_APPEARANCE) && !isobserver(user))
 		return list(span_warning("You're struggling to make out any details..."))
 
 	var/t_He = p_They()
