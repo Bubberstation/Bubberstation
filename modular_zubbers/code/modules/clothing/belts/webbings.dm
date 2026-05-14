@@ -59,7 +59,7 @@
 	worn_icon = "pilot_webbing1"
 	worn_icon_state = "pilot_webbing1"
 
-/obj/item/storage/belt/webbingpilotlow
+/obj/item/storage/belt/webbing/pilotlow
 	name = "low slung rigging"
 	icon_state = "pilot_webbing2"
 	worn_icon = "pilot_webbing2"

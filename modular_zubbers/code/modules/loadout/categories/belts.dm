@@ -84,7 +84,7 @@
 
 /datum/loadout_item/belts/webbing_vest_brown
 	name = "Webbing - Vest, Brown"
-	item_path = /obj/item/storage/belt/webbing/vest
+	item_path = /obj/item/storage/belt/webbing/vestbrown
 
 /datum/loadout_item/belts/webbing_vest_black
 	name = "Webbing - Vest, Black"
