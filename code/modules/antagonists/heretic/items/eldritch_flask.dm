@@ -32,7 +32,7 @@
 	if(living_target == user)
 		return ITEM_INTERACT_BLOCKING
 	// BUBBER EDIT ADDITION BEGIN - needs LOS
-	if (!(target in view(9, user)))
+	if (!(target in get_hearers_in_LOS(9, user)))
 		target.balloon_alert(user, "needs line of sight!")
 		return ITEM_INTERACT_BLOCKING
 	// BUBBER EDIT ADDITION END
@@ -45,6 +45,12 @@
 		to_chat(living_target, span_warning("You feel a force attempt to steal your blood, but it is repelled!"))
 		return ITEM_INTERACT_BLOCKING
 	var/drawn_amount = min(reagents.maximum_volume - reagents.total_volume, 5)
+	// BUBBER EDIT ADDITION BEGIN - doafter for phylactery
+	to_chat(user, span_warning("You delicately aim the spindle at your target's neck..."))
+	if (!do_after(user, 3 SECONDS, hidden = TRUE))
+		to_chat(user, span_warning("Both you and your target must stay still!"))
+		return ITEM_INTERACT_BLOCKING
+	// BUBBER EDIT ADDITION END
 	if(living_target.transfer_blood_to(src, drawn_amount))
 		to_chat(user, span_notice("You take a blood sample from [living_target]."))
 		to_chat(living_target, span_warning("You feel a tiny prick!"))

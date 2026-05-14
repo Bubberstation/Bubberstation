@@ -244,7 +244,15 @@
 
 /atom/movable/screen/alert/status_effect/void_chill
 	desc = "There's something freezing you from within and without. You've never felt cold this oppressive before... and yet theres something soothing about it. \
-	Click this alert to enter a deep sleep that will heal you using cryoxadone. Be warned - You will only wake up if attacked or when this status disappears."
+	Click this alert to enter a deep sleep that will heal you using cryoxadone. Be warned - You will only wake up if attacked or when this status disappears. Use leporazine to beat out the slowdown!"
+
+/datum/status_effect/void_chill/update_movespeed(stacks)
+	. = ..()
+
+	if (owner.has_reagent(/datum/reagent/medicine/leporazine))
+		owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/void_chill, update = TRUE, multiplicative_slowdown = (0.1 * stacks)) // massive reduction
+	else if (owner.has_reagent(/datum/reagent/consumable/coffee) || owner.has_reagent(/datum/reagent/consumable/tea))
+		owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/void_chill, update = TRUE, multiplicative_slowdown = (0.3 * stacks)) // moderate reduction
 
 /atom/movable/screen/alert/status_effect/void_chill/Click(location, control, params)
 	. = ..()

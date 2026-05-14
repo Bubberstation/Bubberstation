@@ -75,7 +75,7 @@
 /datum/status_effect/void_chill/proc/adjust_stacks(new_stacks)
 	stacks = max(0, min(stack_limit, stacks + new_stacks))
 	update_movespeed(stacks)
-	if(stacks >= 5)
+	if(stacks >= 5 && !owner.has_reagent(/datum/reagent/leporazine)) // BUBBER EDIT ADDITION - leporazine makes it managable
 		ADD_TRAIT(owner, TRAIT_HYPOTHERMIC, TRAIT_STATUS_EFFECT(id))
 
 ///Updates the movespeed of owner based on the amount of stacks of the debuff

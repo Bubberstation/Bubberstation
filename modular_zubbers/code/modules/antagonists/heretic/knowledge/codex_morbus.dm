@@ -1,3 +1,7 @@
+/datum/heretic_knowledge/codex_morbus
+	drafting_tier = 0 // disabled for now. might revisit it. i dont want to deal with it rn LMFAO
+	unreachable = TRUE
+
 /obj/item/codex_cicatrix/morbus/Initialize(mapload)
 	. = ..()
 

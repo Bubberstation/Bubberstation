@@ -4,7 +4,7 @@
 
 	antag_flag = ROLE_HERETIC
 	antag_datum = /datum/antagonist/heretic
-	weight = 7
+	weight = 6
 	max_occurrences = 4
 	min_players = 20
 
