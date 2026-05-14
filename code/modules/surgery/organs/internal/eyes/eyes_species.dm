@@ -100,9 +100,13 @@
 	name = "pod eyes"
 	desc = "Strangest salad you've ever seen."
 	icon_state = "eyes_pod"
+	// BUBBER EDIT - REMOVAL - START
+	/*
 	eye_color_left = "#375846"
 	eye_color_right = "#375846"
 	iris_overlay = null
+	*/
+	// BUBBER EDIT - REMOVAL - END
 	foodtype_flags = PODPERSON_ORGAN_FOODTYPES
 	penlight_message = "are green and plant-like"
 
