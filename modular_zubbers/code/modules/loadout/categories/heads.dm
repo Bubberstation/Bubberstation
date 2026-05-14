@@ -60,6 +60,17 @@
 	donator_only = TRUE
 	restricted_roles = list(JOB_NT_REP)
 
+/datum/loadout_item/head/hats/blueshield_beret
+	name = "Blueshield's Beret"
+	item_path = /obj/item/clothing/head/beret/blueshield
+	restricted_roles = list(JOB_BLUESHIELD)
+
+
+/datum/loadout_item/head/hats/blueshield_beret_navy
+	name = "Navy Blueshield's Beret"
+	item_path = /obj/item/clothing/head/beret/blueshield/navy
+	restricted_roles = list(JOB_BLUESHIELD)
+
 /datum/loadout_item/head/security_cap/soft
 	name = "Security Soft Cap"
 	item_path = /obj/item/clothing/head/soft/sec
@@ -157,3 +168,7 @@
 /datum/loadout_item/head/soft/plasmax_black
 	name = "PlasMAX Envirosuit Helmet"
 	item_path = /obj/item/clothing/head/helmet/space/plasmaman/plasmax_black
+
+/datum/loadout_item/head/colonial
+	name = "Colonial Cap"
+	item_path = /obj/item/clothing/head/hats/colonial
