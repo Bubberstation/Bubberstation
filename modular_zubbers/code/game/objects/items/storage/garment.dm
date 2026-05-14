@@ -19,6 +19,10 @@
 	new /obj/item/clothing/suit/armor/hos/viro/trenchcoat(src)
 	new /obj/item/clothing/suit/armor/hos/viro(src)
 	new /obj/item/clothing/head/helmet/viro/hos(src)
+	new /obj/item/clothing/under/rank/security/head_of_security/battledress/red(src)
+	new /obj/item/clothing/under/rank/security/head_of_security/turtleneck/red(src)
+	new /obj/item/clothing/under/rank/security/head_of_security/turtleneck/red/skirt(src)
+	new /obj/item/clothing/under/rank/security/head_of_security/suit/red(src)
 
 /obj/item/storage/bag/garment/warden/PopulateContents()
 	. = ..()
@@ -29,6 +33,13 @@
 	new /obj/item/clothing/suit/armor/vest/viro/warden/wintercoat(src)
 	new /obj/item/clothing/suit/armor/vest/viro/warden/alt(src)
 	new /obj/item/clothing/suit/armor/vest/viro/warden(src)
+	new /obj/item/clothing/under/rank/security/warden/battledress/red(src)
+	new /obj/item/clothing/under/rank/security/warden/turtleneck/red(src)
+	new /obj/item/clothing/under/rank/security/warden/turtleneck/red/skirt(src)
+	new /obj/item/clothing/under/rank/security/warden/suit/red(src)
+
+
+
 
 
 
