@@ -23,7 +23,8 @@
 
 	if(!fake)
 		AddComponent(/datum/component/stationloving, !fake)
-		AddComponent(/datum/component/keep_me_secure, CALLBACK(src, PROC_REF(secured_process)), CALLBACK(src, PROC_REF(unsecured_process)), 10)
+		//AddComponent(/datum/component/keep_me_secure, CALLBACK(src, PROC_REF(secured_process)), CALLBACK(src, PROC_REF(unsecured_process)), 10) // BUBBER EDIT REMOVAL
+		AddComponent(/datum/component/keep_me_secure) // BUBBER EDIT ADDITION
 		SSpoints_of_interest.make_point_of_interest(src)
 	else
 		// Ensure fake disks still have examine text, but dont actually do anything
