@@ -25,6 +25,51 @@
 	item_path = /obj/item/clothing/under/rank/nanotrasen_consultant/stripper
 	restricted_roles = list(JOB_NT_REP)
 
+/datum/loadout_item/uniform/command/blueshield
+	name = "Blueshield's Suit"
+	item_path = /obj/item/clothing/under/rank/blueshield
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/command/blueshield
+	name = "Blueshield's Suitskirt"
+	item_path = /obj/item/clothing/under/rank/blueshield/skirt
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/command/blueshield
+	name = "Blueshield's Turtleneck"
+	item_path = /obj/item/clothing/under/rank/blueshield/turtleneck
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/command/blueshield
+	name = "Blueshield's Skirtleneck"
+	item_path = /obj/item/clothing/under/rank/blueshield/turtleneck/skirt
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/command/blueshield
+	name = "Blueshield's Consulting Suit"
+	item_path = /obj/item/clothing/under/rank/blueshield/consult
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/command/blueshield
+	name = "Blueshield's Consulting Skirt"
+	item_path = /obj/item/clothing/under/rank/blueshield/consult/skirt
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/command/blueshield
+	name = "Blueshield's Sweatsuit"
+	item_path = /obj/item/clothing/under/rank/blueshield/russian
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/command/blueshield
+	name = "Blueshield's Formal Uniform"
+	item_path = /obj/item/clothing/under/rank/blueshield/formal
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/command/blueshield
+	name = "Blueshield's Naval Uniform"
+	item_path = /obj/item/clothing/under/rank/blueshield/naval
+	restricted_roles = list(JOB_BLUESHIELD)
+
 /datum/loadout_item/uniform/medrscrubs
 	name = "Security Medic's Scrubs"
 	item_path = /obj/item/clothing/under/rank/medical/scrubs/skyrat/red/sec

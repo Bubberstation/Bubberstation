@@ -94,6 +94,16 @@
 	restricted_roles += list(JOB_HEAD_OF_SECURITY, JOB_BLUESHIELD, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_ENGINEER, JOB_CAPTAIN, JOB_QUARTERMASTER, JOB_CHIEF_MEDICAL_OFFICER)
 	return ..()
 
+/datum/loadout_item/suit/command/blueshield_jacket
+	name = "Blueshield's Jacket"
+	item_path = /obj/item/clothing/suit/armor/vest/blueshield/jacket
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/suit/command/blueshield_armor
+	name = "Blueshield's Armor"
+	item_path = /obj/item/clothing/suit/armor/vest/blueshield
+	restricted_roles = list(JOB_BLUESHIELD)
+
 // Fancy crop-top jackets
 
 /datum/loadout_item/suit/crop_jacket
