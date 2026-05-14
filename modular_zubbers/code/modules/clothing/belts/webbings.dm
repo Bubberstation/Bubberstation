@@ -28,18 +28,15 @@
 	icon = 'modular_zubbers/icons/obj/clothing/belts/belts.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belts/belts.dmi'
 	icon_state = "vest_brown"
-	worn_icon = "vest_brown"
 	worn_icon_state = "vest_brown"
 	storage_type = /datum/storage/belt/webbing
 
 /obj/item/storage/belt/webbing_vest/black
 	icon_state = "vest_black"
-	worn_icon = "vest_black"
 	worn_icon_state = "vest_black"
 
 /obj/item/storage/belt/webbing_vest/white
 	icon_state = "vest_white"
-	worn_icon = "vest_white"
 	worn_icon_state = "vest_white"
 
 //drop pouches
@@ -49,18 +46,15 @@
 	icon = 'modular_zubbers/icons/obj/clothing/belts/belts.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belts/belts.dmi'
 	icon_state = "thigh_brown"
-	worn_icon = "thigh_brown"
 	worn_icon_state = "thigh_brown"
 	storage_type = /datum/storage/belt/webbing
 
 /obj/item/storage/belt/webbing_pouch/black
 	icon_state = "thigh_black"
-	worn_icon = "thigh_black"
 	worn_icon_state = "thigh_black"
 
 /obj/item/storage/belt/webbing_pouch/white
 	icon_state = "thigh_white"
-	worn_icon = "thigh_white"
 	worn_icon_state = "thigh_white"
 
 //rigging
@@ -70,12 +64,10 @@
 	icon = 'modular_zubbers/icons/obj/clothing/belts/belts.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belts/belts.dmi'
 	icon_state = "pilot_webbing1"
-	worn_icon = "pilot_webbing1"
 	worn_icon_state = "pilot_webbing1"
 	storage_type = /datum/storage/belt/webbing
 
 /obj/item/storage/belt/webbing_pilot/low
 	name = "low slung rigging"
 	icon_state = "pilot_webbing2"
-	worn_icon = "pilot_webbing2"
 	worn_icon_state = "pilot_webbing2"
