@@ -22,7 +22,8 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	//list(/datum/quirk/quadruple_amputee, /datum/quirk/frail), // SKYRAT EDIT REMOVAL- Since we have synth wounds now, frail has a large downside for prosthetics and such
 	list(/datum/quirk/social_anxiety, /datum/quirk/mute),
 	list(/datum/quirk/mute, /datum/quirk/softspoken),
-	list(/datum/quirk/bilingual, /datum/quirk/foreigner, /datum/quirk/csl),
+	//list(/datum/quirk/bilingual, /datum/quirk/foreigner, /datum/quirk/csl),
+	list(/datum/quirk/bilingual, /datum/quirk/foreigner), //BUBBER EDIT ADD
 	//BUBBER EDIT (item_quirk)
 	list(/datum/quirk/spacer_born, /datum/quirk/item_quirk/settler),
 	list(/datum/quirk/photophobia, /datum/quirk/nyctophobia),
