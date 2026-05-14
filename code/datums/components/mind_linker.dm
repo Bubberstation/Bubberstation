@@ -90,6 +90,14 @@
 /datum/component/mind_linker/proc/link_mob(mob/living/to_link)
 	if(QDELETED(to_link) || to_link.stat == DEAD)
 		return FALSE
+	//BUBBER EDIT ADDITION START
+	if(HAS_TRAIT(to_link, TRAIT_MINDSHIELD) && linking_protection) // Mindshield implant - no dice
+		return FALSE
+	if(to_link.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) && linking_protection)
+		return FALSE
+	if(HAS_TRAIT(to_link, TRAIT_PSIONIC_DAMPENER) && linking_protection) // Telepathy blocker quirk
+		return FALSE
+	//BUBBER EDIT ADDITION END
 	if(linked_mobs[to_link])
 		return FALSE
 
