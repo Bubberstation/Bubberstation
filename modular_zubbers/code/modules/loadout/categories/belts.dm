@@ -76,23 +76,40 @@
 
 /datum/loadout_item/belts/webbing
 	name = "Webbing - Basic"
-	item_path = /obj/item/storage/belt/fannypack/webbing
+	item_path = /obj/item/storage/belt/webbing
 
 /datum/loadout_item/belts/webbing_colonial
 	name = "Webbing - Colonial"
-	item_path = /obj/item/storage/belt/fannypack/colonial_webbing
+	item_path = /obj/item/storage/belt/webbing/colonial_webbing
 
-/datum/loadout_item/belts/webbing_vest
-	name = "Webbing - Vest"
-	item_path = /obj/item/storage/belt/fannypack/webbing/vest
-	reskin_datum = /datum/atom_skin/webbing_vest
+/datum/loadout_item/belts/webbing_vest_brown
+	name = "Webbing - Vest, Brown"
+	item_path = /obj/item/storage/belt/webbing/vest
 
-/datum/loadout_item/belts/webbing_pouch
-	name = "Webbing - Drop Pouches"
-	item_path = /obj/item/storage/belt/fannypack/webbing/pouch
-	reskin_datum = /datum/atom_skin/drop_pouches
+/datum/loadout_item/belts/webbing_vest_black
+	name = "Webbing - Vest, Black"
+	item_path = /obj/item/storage/belt/webbing/vest/black
 
-/datum/loadout_item/belts/webbing_pilot
-	name = "Webbing - Rigging"
-	item_path = /obj/item/storage/belt/fannypack/webbing/pilot
-	reskin_datum = /datum/atom_skin/storage_rigging
+/datum/loadout_item/belts/webbing_vest_white
+	name = "Webbing - Vest, White"
+	item_path = /obj/item/storage/belt/webbing/vest/white
+
+/datum/loadout_item/belts/webbing_pouch_brown
+	name = "Webbing - Drop Pouches, Brown"
+	item_path = /obj/item/storage/belt/webbing/pouch
+
+/datum/loadout_item/belts/webbing_pouch_black
+	name = "Webbing - Drop Pouches, Black"
+	item_path = /obj/item/storage/belt/webbing/pouch/black
+
+/datum/loadout_item/belts/webbing_pouch_white
+	name = "Webbing - Drop Pouches, White"
+	item_path = /obj/item/storage/belt/webbing/pouch/white
+
+/datum/loadout_item/belts/webbing_pilot_standard
+	name = "Webbing - Rigging, Standard"
+	item_path = /obj/item/storage/belt/webbing/pilot
+
+/datum/loadout_item/belts/webbing_pilot_low
+	name = "Webbing - Rigging, Low Slung"
+	item_path = /obj/item/storage/belt/webbing/pilot/lowslung
