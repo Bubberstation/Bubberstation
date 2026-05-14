@@ -1,10 +1,15 @@
 
 /obj/item/security_voucher
 	name = "security voucher"
-	desc = "A token to redeem a piece of equipment. Use it on a SecTech vendor."
+	desc = "A token to redeem a piece of equipment."
 	icon = 'modular_zubbers/icons/obj/security_voucher.dmi'
 	icon_state = "security_voucher_primary"
 	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/security_voucher/examine(mob/user)
+	. = ..()
+
+	. += span_notice("You can redeem it at a [EXAMINE_HINT("security equipment vendor")] or [EXAMINE_HINT("any lathe")].")
 
 /obj/item/security_voucher/primary
 	name = "security primary voucher"
@@ -19,6 +24,11 @@
 	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/primary, /datum/voucher_set/security/primary)
 	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/utility, /datum/voucher_set/security/utility)
 
+/obj/machinery/rnd/production/techfab/Initialize(mapload)
+	. = ..()
+
+	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/primary, /datum/voucher_set/security/primary)
+	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/utility, /datum/voucher_set/security/utility)
 
 /datum/voucher_set/security
 	blackbox_key = "security_voucher_redeemed"
@@ -26,8 +36,6 @@
 /datum/voucher_set/security/primary
 
 /datum/voucher_set/security/utility
-
-/datum/voucher_set/security/brig_physician
 
 /datum/voucher_set/security/primary/disabler
 	name = "Disabler"
