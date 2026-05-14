@@ -82,7 +82,7 @@
 		. += span_boldwarning("Its broken, and currently nonfunctional!")
 	else
 		var/hp_left = get_integrity() - (max_integrity * integrity_failure)
-		. += span_notice("It has [EXAMINE_HINT(hp_left)] integrity left til it breaks.")
+		. += span_notice("It has [EXAMINE_HINT("[hp_left]")] integrity left til it breaks.")
 
 /obj/item/clothing/neck/antimagic_collar/equipped(mob/living/user, slot)
 	. = ..()

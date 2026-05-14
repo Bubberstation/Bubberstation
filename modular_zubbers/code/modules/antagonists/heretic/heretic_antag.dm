@@ -1,3 +1,5 @@
+#define OBJECTIVES_TO_WIN 2
+
 /datum/antagonist/heretic
 	name = "\improper Acolyte"
 	roundend_category = "Acolytes"
@@ -119,27 +121,33 @@
 	.["influences_drained"] = drained_num
 	.["ways_opened"] = ways_opened
 
+/datum/antagonist/heretic/ui_static_data(mob/user)
+	. = ..()
+
+	.["win_amount"] = OBJECTIVES_TO_WIN
+
 /datum/antagonist/heretic/should_show_aura()
 	return FALSE // no aura thx
 
 /datum/antagonist/heretic/roundend_report()
 	var/list/parts = list()
-	var/hereticwin = TRUE
 
 	parts += printplayer(owner)
 	parts += "<b>Influences Drained:</b> [drained_num]"
 	parts += "<b>Ways Opened:</b> [ways_opened]"
+	var/completed = 0
 	if(length(objectives))
 		var/count = 1
 		for(var/o in objectives)
 			var/datum/objective/objective = o
 			if(objective.check_completion())
 				parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='greentext'>Success!</b></span>"
+				completed++
 			else
 				parts += "<b>Objective #[count]</b>: [objective.explanation_text] [span_redtext("Fail.")]"
-				hereticwin = FALSE
 			count++
-	if(hereticwin)
+	parts += span_boldnotice("[OBJECTIVES_TO_WIN] objectives were required to succeed...")
+	if(completed >= OBJECTIVES_TO_WIN)
 		parts += span_greentext("The [LOWER_TEXT(heretic_path.route)] acolyte was successful!")
 	else
 		parts += span_redtext("The [LOWER_TEXT(heretic_path.route)] acolyte has failed.")
@@ -166,3 +174,5 @@
 	name = "Acolyte (No Influence Spawning)"
 
 	generate_influences = FALSE
+
+#undef OBJECTIVES_TO_WIN

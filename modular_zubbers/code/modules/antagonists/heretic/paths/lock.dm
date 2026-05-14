@@ -25,3 +25,14 @@
 
 	visible_message(span_warning("[weapon] dispels [src]!"))
 	qdel(src)
+
+/datum/status_effect/caretaker_refuge
+	duration = 60 SECONDS
+
+/datum/action/cooldown/spell/caretaker
+	name = "Caretaker's Last Refuge"
+	desc = "Shifts you into the Caretaker's Refuge, rendering you translucent and intangible. \
+		While in the Refuge your movement is unrestricted, but you cannot use your hands or cast any spells. \
+		You cannot enter the Refuge while near other sentient beings, \
+		and you can be removed from it upon contact with antimagical artifacts. \
+		Lasts for one minute."

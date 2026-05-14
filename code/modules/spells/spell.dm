@@ -172,6 +172,12 @@
 			to_chat(owner, span_warning("You must dedicate yourself to silence first!"))
 		return FALSE
 
+	// BUBBER EDIT ADDITION - focusless spells can be inhibited
+	if (focusless_inhibitable && HAS_TRAIT(owner, TRAIT_MANSUS_INHIBITION))
+		owner.balloon_alert(owner, "inhibited! cant cast!")
+		return FALSE
+	// BUBBER EDIT END
+
 	// If the spell requires the user has no antimagic equipped, and they're holding antimagic
 	// that corresponds with the spell's antimagic, then they can't actually cast the spell
 	if((spell_requirements & SPELL_REQUIRES_NO_ANTIMAGIC) && !owner.can_cast_magic(antimagic_flags))

@@ -59,11 +59,12 @@ type Info = {
   points_to_aura: number;
   influences_drained: number;
   ways_opened: number;
+  win_amount: number;
 };
 
 const IntroductionSection = (props) => {
   const { data } = useBackend<Info>();
-  const { objectives, ascended, can_change_objective } = data;
+  const { objectives, ascended, can_change_objective, win_amount } = data;
 
   return (
     <Stack justify="space-evenly" height="100%" width="100%">
@@ -88,7 +89,7 @@ const IntroductionSection = (props) => {
                   fill
                   titleMessage={
                     can_change_objective
-                      ? 'Your OPFOR objectives are your primary ones, but you have these tasks to fulfill' /* SKYRAT EDIT CHANGE - opfor objectives */
+                      ? `You must complete ${win_amount} of the following objectives` /* SKYRAT EDIT CHANGE - opfor objectives */
                       : 'Your OPFOR objectives are your primary ones. Use your dark knowledge to fulfill your personal goal' /* SKYRAT EDIT CHANGE - opfor objectives  */
                   }
                   objectives={objectives}

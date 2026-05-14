@@ -20,6 +20,7 @@
 	invocation_type = INVOCATION_NONE // sneaky spell
 	spell_requirements = NONE
 	check_flags = AB_CHECK_HANDS_BLOCKED|AB_CHECK_CONSCIOUS
+	focusless_inhibitable = TRUE
 
 /datum/action/cooldown/spell/paranoias_eye/cast(atom/cast_on)
 	. = ..()

@@ -322,7 +322,7 @@
 	)
 
 /datum/status_effect/caretaker_refuge/get_examine_text()
-	return span_warning("[owner.p_Theyre()] enveloped in an unholy haze!")
+	return span_warning("[owner.p_Theyre()] enveloped in an unholy haze! They cant be touched! Wait it our or hit them with antimagic!") // BUBBER EDIT ADDITION - added They cant be touched! Wait it our or hit them with antimagic!
 
 /datum/status_effect/caretaker_refuge/proc/nullrod_handler(datum/source, obj/item/weapon)
 	SIGNAL_HANDLER
