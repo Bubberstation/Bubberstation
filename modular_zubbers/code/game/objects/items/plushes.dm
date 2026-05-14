@@ -680,3 +680,88 @@
 		return
 	plushie_absorb(kisser)
 
+/obj/item/toy/plush/aeri
+	name = "Interdimensional Terrorist Plushie"
+	desc = "A highly controversial silicone 'plushie' modeled after its infamous namesake. Pulled from most storefronts after a spectacular public backlash, it now survives mainly through grey-market resellers. Rumor has it a few limited-run units shipped with a functional handheld railgun."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "aeri"
+	inhand_icon_state = null
+	attack_verb_continuous = list("cuddles", "squeaks", "hugs", "caresses")
+	attack_verb_simple = list("cuddle", "squeak", "hug", "caress")
+	squeak_override = list(
+		'modular_zubbers/sound/lewd/rubber1.ogg' = 1,
+		'modular_zubbers/sound/lewd/rubber2.ogg' = 1,
+		'modular_zubbers/sound/lewd/rubber3.ogg' = 1
+	)
+	var/clothed = TRUE
+
+/obj/item/toy/plush/aeri/Initialize(mapload)
+	. = ..()
+	update_plush_state()
+
+/obj/item/toy/plush/aeri/proc/update_plush_state()
+	if(clothed)
+		name = "Interdimensional Terrorist Plushie"
+		desc = "A highly controversial silicone 'plushie' modeled after its infamous namesake. Pulled from most storefronts after a spectacular public backlash, it now survives mainly through grey-market resellers. Rumor has it a few limited-run units shipped with a functional handheld railgun."
+		icon_state = "aeri"
+		//probably not necessary to put the verb and squeak override once again here but it kinda bugs out if I don't
+		attack_verb_continuous = list("cuddles", "squeaks", "hugs", "caresses")
+		attack_verb_simple = list("cuddle", "squeak", "hug", "caress")
+		squeak_override = list(
+			'modular_zubbers/sound/lewd/rubber1.ogg' = 1,
+			'modular_zubbers/sound/lewd/rubber2.ogg' = 1,
+			'modular_zubbers/sound/lewd/rubber3.ogg' = 1
+		)
+		force = initial(force)
+		hitsound = initial(hitsound)
+	else
+		name = "Interdimensional terrorist Doll"
+		desc = "Without the outfit, the 'plushie' label becomes much harder to defend. Beneath the clothing is a glossy, stretchable silicone shell with ribbed orifices and breasts that experts have described as 'Fuckable'."
+		icon_state = "aeri-alt"
+		attack_verb_continuous = list("cuddles", "squeaks", "hugs", "caresses")
+		attack_verb_simple = list("cuddle", "squeak", "hug", "caress")
+		squeak_override = list(
+			'modular_zubbers/sound/lewd/rubber1.ogg' = 1,
+			'modular_zubbers/sound/lewd/rubber2.ogg' = 1,
+			'modular_zubbers/sound/lewd/rubber3.ogg' = 1
+		)
+		force = 0
+		hitsound = null
+	inhand_icon_state = null
+	update_appearance()
+	update_inhand_icon()
+
+/obj/item/toy/plush/aeri/examine(mob/user)
+	. = ..()
+	if(clothed)
+		. += span_purple("Alt-click to remove the plushie's clothes.")
+	else
+		. += span_purple("Alt-click to dress the doll back up.")
+
+/obj/item/toy/plush/aeri/click_alt(mob/user)
+	clothed = !clothed
+	if(clothed)
+		to_chat(user, span_notice("You dress [src] back up."))
+	else
+		to_chat(user, span_notice("You remove [src]'s clothes."))
+	playsound(user, 'modular_zubbers/sound/lewd/rubber1.ogg', 50, TRUE)
+	update_plush_state()
+	return TRUE
+
+/obj/item/toy/plush/aeri/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+	if(clothed)
+		return ..()
+	var/obj/item/toy/plush/fleshlight/proxy = new(loc)
+	proxy.name = name
+	proxy.desc = desc
+	proxy.icon = icon
+	proxy.icon_state = icon_state
+	. = proxy.attack(target, user)
+	qdel(proxy)
+
+//If you suicide with this toy it just summons a BSA smite on you
+/obj/item/toy/plush/aeri/suicide_act(mob/living/carbon/human/user)
+	user.visible_message(span_suicide("[user] angers the plushie! Oh god, it's locking a Bluespace Artillery strike onto [user.p_them()]! It looks like [user.p_theyre()] trying to kill [user.p_them()]self!"))
+	var/datum/smite/bsa/bluespace_smite = new()
+	bluespace_smite.effect(user.client, user)
+	return BRUTELOSS
