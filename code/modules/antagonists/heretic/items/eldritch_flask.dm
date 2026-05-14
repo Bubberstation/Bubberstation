@@ -31,6 +31,11 @@
 	var/mob/living/living_target = target
 	if(living_target == user)
 		return ITEM_INTERACT_BLOCKING
+	// BUBBER EDIT ADDITION BEGIN - needs LOS
+	if (!(target in view(9, user)))
+		target.balloon_alert(user, "needs line of sight!")
+		return ITEM_INTERACT_BLOCKING
+	// BUBBER EDIT ADDITION END
 	if(reagents.total_volume >= reagents.maximum_volume)
 		to_chat(user, span_notice("[src] is full."))
 		return ITEM_INTERACT_BLOCKING
