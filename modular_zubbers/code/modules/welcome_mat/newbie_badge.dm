@@ -36,13 +36,11 @@
 
 /mob/living/Initialize(mapload)
 	. = ..()
-	if(client)
-		ADD_TRAIT(src, TRAIT_NEWBIE_NOTICER, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_NEWBIE_NOTICER, INNATE_TRAIT)
 
 /mob/dead/observer/Initialize(mapload)
 	. = ..()
-	if(client)
-		ADD_TRAIT(src, TRAIT_NEWBIE_NOTICER, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_NEWBIE_NOTICER, INNATE_TRAIT)
 
 /datum/job/after_spawn(mob/living/spawned, client/player_client)
 	. = ..(spawned, player_client)
