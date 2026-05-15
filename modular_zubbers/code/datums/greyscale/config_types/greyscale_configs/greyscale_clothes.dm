@@ -32,9 +32,54 @@
 	name = "Jester Suit (Worn, Teshari)"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
 
-// teshari buttondown stuff (not done yet)
+// shirts pants shorts teshari
 /datum/greyscale_config/buttondown_slacks/worn/teshari
 	name = "Buttondown with Slacks (Worn, Teshari)"
+	icon_file = "modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts_teshari.dmi"
+
+/datum/greyscale_config/slacks/worn/teshari
+	name = "Slacks (Worn, Teshari)"
+	icon_file = "modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts_teshari.dmi"
+
+/datum/greyscale_config/shorts/worn/teshari
+	name = "Shorts (Worn, Teshari)"
+	icon_file = "modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts_teshari.dmi"
+
+/datum/greyscale_config/jeans/worn/teshari
+	name = "Jeans (Worn, Teshari)"
+	icon_file = "modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts_teshari.dmi"
+	json_config = 'code/datums/greyscale/json_configs/jeans_worn.json'
+
+/datum/greyscale_config/jeanshorts/worn/teshari
+	name = "Jean Shorts (Worn, Teshari)"
+	icon_file = "modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts_teshari.dmi"
+
+/datum/greyscale_config/buttondown_shorts/worn/teshari
+	name = "Buttondown with Shorts (Worn, Teshari)"
+	icon_file = "modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts_teshari.dmi"
+
+/datum/greyscale_config/buttondown_skirt/worn/teshari
+	name = "Buttondown with Skirt (Worn, Teshari)"
+	icon_file = "modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts_teshari.dmi"
+
+/datum/greyscale_config/kilt/worn/teshari
+	name = "Kilt (Worn, Teshari)"
+	icon_file = "modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts_teshari.dmi"
+
+/datum/greyscale_config/buttondown_vicvest/worn/teshari
+	name = "Buttondown with Double-breasted Vest (Worn, Teshari)"
+	icon_file = "modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts_teshari.dmi"
+
+/datum/greyscale_config/yoga_pants/worn/teshari
+	name = "Yoga Pants (Worn, Teshari)"
+	icon_file = "modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts_teshari.dmi"
+
+/datum/greyscale_config/shortershorts/worn/teshari
+	name = "Shorter Shorts (Worn, Teshari)"
+	icon_file = "modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts_teshari.dmi"
+
+/datum/greyscale_config/jeans_ripped/worn/teshari
+	name = "Ripped Jeans (Worn, Teshari)"
 	icon_file = "modular_skyrat/master_files/icons/mob/clothing/under/shorts_pants_shirts_teshari.dmi"
 
 /datum/greyscale_config/eth_tunic/worn/digi
