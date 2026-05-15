@@ -169,3 +169,8 @@
 
 #define MUTATION_SOURCE_SPECIES "species"
 #define MUTATION_SOURCE_QUIRK "quirk"
+
+///INTERNAL ORGANS
+
+///// Brain implants that add functionality to the user, such as a health relay
+#define ORGAN_SLOT_BRAIN_AID "brain_aid"
