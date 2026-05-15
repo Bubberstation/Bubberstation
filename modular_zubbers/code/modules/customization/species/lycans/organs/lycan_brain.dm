@@ -5,6 +5,22 @@
 	var/list/removed_quirks = list()
 	var/last_slot
 
+/obj/item/organ/brain/lycan/on_mob_insert(mob/living/carbon/brain_owner, special, movement_flags)
+	. = ..()
+
+	addtimer(CALLBACK(src, PROC_REF(try_getting_slot)), 0.1 SECONDS)
+
+// no remove. we want it to REMEMBER.
+
+/// A delayed getter for the current slot of the mob. Used because theres no easy way to access the client when a mob is spawend...
+/obj/item/organ/brain/lycan/proc/try_getting_slot()
+	if (last_slot)
+		return
+
+	var/client/target_client = owner?.client
+	if (!isnull(target_client))
+		last_slot = target_client.prefs.savefile.get_entry("default_slot")
+
 /obj/item/organ/brain/lycan/proc/enter_beast_form()
 	var/datum/species/human/cursekin/current_wolf = owner.dna.species
 	if(!istype(current_wolf) && HAS_TRAIT_FROM(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT))
@@ -21,7 +37,8 @@
 		var/name = owner.real_name
 		var/slot = target_client.prefs.read_preference(/datum/preference/numeric/cursekin_char_slot)
 		var/transfer = TRUE
-		last_slot = target_client.prefs.savefile.get_entry("default_slot")
+		if (isnull(last_slot))
+			last_slot = target_client.prefs.savefile.get_entry("default_slot")
 		target_client.prefs.load_character(slot)
 		if (!ispath(target_client.prefs.read_preference(/datum.preference/choiced/species), current_wolf.lycanthropy_species))
 			to_chat(owner, span_warning("Your selected slot is not a lycan! Defaulting to simply changing your species..."))
