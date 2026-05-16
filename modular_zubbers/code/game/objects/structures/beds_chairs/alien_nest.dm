@@ -68,20 +68,22 @@
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/victim = M //Change from base bed: Removes check for xenopregnancy or facehugger.
-		victim.apply_status_effect(/datum/status_effect/nest_sustenance/xenohybrid) //Change from base bed: special sustenance subtype.
+		victim.apply_status_effect(/datum/status_effect/nest_sustenance_xenohybrid) //Change from base bed: special sustenance subtype.
 
 /obj/structure/bed/nest/post_unbuckle_mob(mob/living/M)
 	REMOVE_TRAIT(M, TRAIT_HANDS_BLOCKED, type)
 	M.remove_offsets(type)
 	M.layer = initial(M.layer)
 	cut_overlay(nest_overlay)
-	M.remove_status_effect(/datum/status_effect/nest_sustenance/xenohybrid) //Change from base bed: special sustenance subtype.
+	M.remove_status_effect(/datum/status_effect/nest_sustenance_xenohybrid) //Change from base bed: special sustenance subtype.
 
-/datum/status_effect/nest_sustenance/xenohybrid
+/datum/status_effect/nest_sustenance_xenohybrid
 	id = "nest_sustenance_xenohybrid"
-	alert_type = /atom/movable/screen/alert/status_effect/nest_sustenance/xenohybrid
+	duration = STATUS_EFFECT_PERMANENT
+	tick_interval = 0.4 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/nest_sustenance_xenohybrid
 
-/datum/status_effect/nest_sustenance/xenohybrid/tick(seconds_between_ticks)
+/datum/status_effect/nest_sustenance_xenohybrid/tick(seconds_between_ticks)
 	if(owner.stat == DEAD) //If the victim has died due to complications in the nest
 		qdel(src)
 		return
@@ -90,8 +92,8 @@
 	if(owner.nutrition > NUTRITION_LEVEL_ALMOST_FULL)
 		owner.set_nutrition(NUTRITION_LEVEL_ALMOST_FULL) //Change from base bed: refills hunger instead of healing and normalizing body temperature.
 
-/atom/movable/screen/alert/status_effect/nest_sustenance/xenohybrid
-	name = "Nest Vitalization"
+/atom/movable/screen/alert/status_effect/nest_sustenance_xenohybrid
+	name = "Xenohybrid Nest Vitalization"
 	desc = "The resin pulsates around you, sending sustenance through your skin. It'd almost be comfortable, if you could just move enough to plug your nose..."
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "nest_life"
