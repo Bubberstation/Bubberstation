@@ -39,7 +39,10 @@
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/restraints/handcuffs(src)
 	new /obj/item/storage/medkit/tactical/blueshield(src)
-	new /obj/item/gun/energy/e_gun(src)
+	//BUBBER EDIT - NT22-HCS-MP gun case, replaces the egun
+	//new /obj/item/gun/energy/e_gun(src)
+	new /obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5/blueshield(src)
+	//BUBBER EDIT END
 	new /obj/item/storage/bag/garment/blueshield(src)
 	new /obj/item/mod/control/pre_equipped/blueshield(src)
 	new /obj/item/storage/box/glasseskit(src)

@@ -120,13 +120,13 @@ const HelpfulTab = (props) => {
       <Stack.Item>
         <Stack fill>
           <Stack.Item>
-            <NoticeBox
-              mb={-0.5}
+            <Button
+              icon="plane-slash"
+              lineHeight={lineHeightNormal}
               width={buttonWidthNormal}
-              height={lineHeightNormal}
-            >
-              Your admin button here, coder!
-            </NoticeBox>
+              content="Fix station gravity"
+              onClick={() => act('fix_gravity')}
+            />
           </Stack.Item>
           <Stack.Item>
             <Button
@@ -422,6 +422,15 @@ const FunTab = (props) => {
               width={buttonWidthNormal}
               content="Send Shuttle Back"
               onClick={() => act('send_shuttle_back')}
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="oil-well"
+              lineHeight={lineHeightNormal}
+              width={buttonWidthNormal}
+              content="Tap Ore Vents"
+              onClick={() => act('ore_vents')}
             />
           </Stack.Item>
         </Stack>

@@ -20,88 +20,69 @@
 	// echolocation component handles blinding us already so we don't need to worry about that
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	// set up the desired echo group from our quirk preferences
-	var/client_echo_group = LOWER_TEXT(client_source?.prefs.read_preference(/datum/preference/choiced/echolocation_key))
-	if (isnull(client_echo_group))
-		client_echo_group = "echolocation"
-	if (client_echo_group == "psychic")
-		client_echo_group = "psyker" // set this non-player-facing so they share echolocation with coded chaplain psykers/pirates and the like
+	var/client_use_echo = client_source?.prefs.read_preference(/datum/preference/toggle/echolocation_overlay)
+	if (isnull(client_use_echo))
+		client_use_echo = TRUE
 
-	// Get the prefs
-	var/client_show_outline = client_source?.prefs.read_preference(/datum/preference/toggle/echolocation_overlay)
-	var/col = color_hex2color_matrix(client_source?.prefs.read_preference(/datum/preference/color/echolocation_outline))
-
-	human_holder.AddComponent(\
-		/datum/component/echolocation, \
-		blocking_trait = TRAIT_DEAF, \
-		cooldown_time = 2 SECONDS, \
-		echo_range = 7, \
-		echo_group = client_echo_group, \
-		images_are_static = FALSE, \
-		use_echo = FALSE, \
-		show_own_outline = client_show_outline, \
-		personal_color = col, \
-		blinding = TRUE \
-	)
+	human_holder.AddComponent(/datum/component/echolocation, echo_range = 5, use_echo = client_use_echo)
 	esp = human_holder.GetComponent(/datum/component/echolocation)
 
-	human_holder.remove_client_colour(REF(src))
+	var/datum/status_effect/grouped/blindness/blindness_status_effect = human_holder.has_status_effect(/datum/status_effect/grouped/blindness)
+	if(blindness_status_effect)
+		human_holder.remove_client_colour(REF(blindness_status_effect)) // get rid of the existing blind one
 	esp_color = human_holder.add_client_colour(/datum/client_colour/echolocation_custom, REF(src))
+	var/col = process_chat_color(client_source?.prefs.read_preference(/datum/preference/color/echolocation_outline))
+	esp_color.priority = 1 // mirrors PRIORITY_ABSOLUTE def inside client_color.dm, stops pipes and stuff showing as different colours
 	esp_color.update_color(col)
 
-	// add an action/spell to allow the player to toggle echolocation off for a bit (eyestrain on longer rounds, or just roleplay)
-	var/datum/action/cooldown/spell/echolocation_toggle/toggle_action = new /datum/action/cooldown/spell/echolocation_toggle()
-	toggle_action.Grant(human_holder)
-	added_action = toggle_action
-	RegisterSignal(human_holder, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine_text))
+	// double the ear/hearing damage multiplier from any source.
+	var/obj/item/organ/ears/echo_ears = human_holder.get_organ_slot(ORGAN_SLOT_EARS)
+	if (!istype(echo_ears))
+		return
+
+	echo_ears.damage_multiplier *= 2
 
 /datum/quirk/echolocation/remove()
-	QDEL_NULL(esp) // echolocation component removal handles graceful disposal of everything above
-	QDEL_NULL(added_action) // remove the stall action, too
+	QDEL_NULL(esp) // echolocation component removal handles graceful disposal of everything above except the ears
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	human_holder.remove_client_colour(REF(src)) // clean up the custom colour override we added
-	UnregisterSignal(human_holder, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine_text))
-
-/datum/quirk/echolocation/proc/on_examine_text(client/client_source, mob/user, list/examine_list)
-	SIGNAL_HANDLER
-	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/datum/quirk/echolocation/echo = human_holder.get_quirk(/datum/quirk/echolocation)
-	var/datum/component/echolocation/quirk_esp = echo.esp
-
-	if(quirk_esp.stall == TRUE)
+	var/obj/item/organ/ears/echo_ears = human_holder.get_organ_slot(ORGAN_SLOT_EARS)
+	if (!istype(echo_ears))
 		return
-	examine_list += span_cyan("[human_holder.p_They()] [human_holder.p_have()] [human_holder.p_their()] ears perked up, listening closely to even slightest noise.")
+	echo_ears.damage_multiplier = initial(echo_ears.damage_multiplier)
+	human_holder.remove_client_colour(REF(src)) // clean up the custom colour override we added
 
 /datum/client_colour/echolocation_custom
-	color = COLOR_MATRIX_SEPIATONE
-	priority = 1
-	override = TRUE
 
-/datum/action/cooldown/spell/echolocation_toggle
-	name = "Toggle echolocation"
-	desc = "Decide whether you want to stop echolocating (or start again). Useful if you need a break - it's not an easy process!"
-	spell_requirements = NONE
-	cooldown_time = 2 SECONDS
-	check_flags = AB_CHECK_CONSCIOUS
-	button_icon_state = "blink"
+/datum/quirk_constant_data/echolocation
+	associated_typepath = /datum/quirk/echolocation
+	customization_options = list(/datum/preference/color/echolocation_outline, /datum/preference/toggle/echolocation_overlay)
 
-/datum/action/cooldown/spell/echolocation_toggle/is_valid_target(atom/cast_on)
-	return ishuman(cast_on)
+// Client preference for echolocation outline colour
+/datum/preference/color/echolocation_outline
+	savefile_key = "echolocation_outline"
+	savefile_identifier = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 
-/datum/action/cooldown/spell/echolocation_toggle/cast(mob/living/carbon/human/cast_on)
-	. = ..()
-	var/datum/quirk/echolocation/echo = cast_on.get_quirk(/datum/quirk/echolocation)
-	if (isnull(echo))
-		return
+/datum/preference/color/echolocation_outline/is_accessible(datum/preferences/preferences)
+	if (!..(preferences))
+		return FALSE
 
-	var/datum/component/echolocation/quirk_esp = echo.esp
-	if (isnull(quirk_esp))
-		return
+	return "Echolocation" in preferences.all_quirks
 
-	if (quirk_esp.stall)
-		quirk_esp.stall = FALSE
-		cast_on.balloon_alert(cast_on, "started echolocating!")
-		cast_on.visible_message(span_notice("[cast_on] perks up, suddenly seeming more vigilant!"))
-	else
-		quirk_esp.stall = TRUE
-		cast_on.balloon_alert(cast_on, "stopped echolocating!")
-		cast_on.visible_message(span_notice("[cast_on] relaxes slightly, seeming less vigilant for the moment."))
+/datum/preference/color/echolocation_outline/apply_to_human(mob/living/carbon/human/target, value)
+	return
+
+// Client preference for whether we display the echolocation overlay or not
+/datum/preference/toggle/echolocation_overlay
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_key = "echolocation_use_echo"
+	savefile_identifier = PREFERENCE_CHARACTER
+
+/datum/preference/toggle/echolocation_overlay/is_accessible(datum/preferences/preferences)
+	if (!..(preferences))
+		return FALSE
+
+	return "Echolocation" in preferences.all_quirks
+
+/datum/preference/toggle/echolocation_overlay/apply_to_human(mob/living/carbon/human/target, value)
+	return

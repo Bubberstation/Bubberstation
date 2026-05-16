@@ -34,6 +34,11 @@
 	var/cargo_account = ACCOUNT_CAR
 	///Interface name for the ui_interact call for different subtypes.
 	var/interface_type = "Cargo"
+	// BUBBER EDIT START
+	/// Can this console toggle and use private account payments.
+	var/can_private_purchases = TRUE
+	var/console_flags = NONE
+	// BUBBER EDIT END
 
 /obj/machinery/computer/cargo/request
 	name = "supply request console"
@@ -96,6 +101,9 @@
 	data["can_send"] = can_send
 	data["can_approve_requests"] = can_approve_requests
 	data["requestonly"] = requestonly
+	// BUBBER EDIT START - allow UI to hide private toggle on unsupported consoles
+	data["allow_private_purchases"] = can_private_purchases
+	// BUBBER EDIT END
 	var/message = "Remember to stamp and send back the supply manifests."
 	if(SSshuttle.centcom_message)
 		message = SSshuttle.centcom_message
@@ -184,6 +192,11 @@
 		if(!express && (((pack.order_flags & ORDER_EMAG_ONLY) && !(obj_flags & EMAGGED)) || ((pack.order_flags & ORDER_SPECIAL) && !(pack.order_flags & ORDER_SPECIAL_ENABLED)) || (pack.order_flags & ORDER_POD_ONLY)))
 			continue
 
+		// BUBBER EDIT START - Interdyne-only items check
+		if((pack.order_flags & ORDER_INTERDYNE_ONLY) && !(console_flags & CARGO_CONSOLE_INTERDYNE))
+			continue
+		// BUBBER EDIT END
+
 		if((pack.order_flags & ORDER_CONTRABAND) && !contraband)
 			continue
 
@@ -199,6 +212,7 @@
 			"access" = pack.access,
 			"contraband" = (pack.order_flags & ORDER_CONTRABAND),
 			"contains" = pack.get_contents_ui_data(),
+			"subcategory" = pack.subcategory, // BUBBER EDIT
 		))
 
 	return packs
@@ -226,7 +240,7 @@
 	if(amount > CARGO_MAX_ORDER || amount < 1) // Holy shit fuck off
 		CRASH("Invalid amount passed into add_item")
 
-	if(((pack.order_flags & ORDER_EMAG_ONLY) && !(obj_flags & EMAGGED)) || ((pack.order_flags & ORDER_CONTRABAND) && !contraband) || (pack.order_flags & ORDER_POD_ONLY) || ((pack.order_flags & ORDER_SPECIAL) && !(pack.order_flags & ORDER_SPECIAL_ENABLED)))
+	if(((pack.order_flags & ORDER_EMAG_ONLY) && !(obj_flags & EMAGGED)) || ((pack.order_flags & ORDER_CONTRABAND) && !contraband) || (pack.order_flags & ORDER_POD_ONLY) || ((pack.order_flags & ORDER_SPECIAL) && !(pack.order_flags & ORDER_SPECIAL_ENABLED)) || ((pack.order_flags & ORDER_INTERDYNE_ONLY) && !(console_flags & CARGO_CONSOLE_INTERDYNE))) // BUBBER EDIT
 		return
 
 	var/name = "*None Provided*"
@@ -301,7 +315,7 @@
 				say("ERROR: User lacks the requisite access for this purchase request.")
 				return
 
-	if((pack.order_flags & ORDER_GOODY) && !self_paid)
+	if((pack.order_flags & ORDER_GOODY) && !self_paid && !pack.allow_non_private_purchase) // BUBBER EDIT
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 		say("ERROR: Small crates may only be purchased by private accounts.")
 		return
@@ -501,6 +515,9 @@
 			SSshuttle.request_list.Cut()
 			. = TRUE
 		if("toggleprivate")
+			// BUBBER EDIT ADDITION - enforce private toggle capability server-side
+			if(!can_private_purchases)
+				return
 			self_paid = !self_paid
 			. = TRUE
 	if(.)

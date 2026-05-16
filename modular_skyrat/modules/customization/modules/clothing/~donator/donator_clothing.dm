@@ -1065,9 +1065,7 @@
 
 /// We need to do a bit of code duplication here to ensure that we do the right kind of ui_action_click(), while keeping it modular.
 /datum/action/item_action/toggle_steampunk_goggles_welding_protection/Trigger(trigger_flags)
-	if(!IsAvailable())
-		return FALSE
-	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER, src) & COMPONENT_ACTION_BLOCK_TRIGGER)
+	if(!..())
 		return FALSE
 	if(!target || !istype(target, /obj/item/clothing/glasses/welding/steampunk_goggles))
 		return FALSE

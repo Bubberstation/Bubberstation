@@ -100,6 +100,20 @@
 	cost = PAYCHECK_COMMAND * 5
 	contains = list(/obj/item/storage/box/offstation_deathrattle)
 
+/datum/supply_pack/goody/ntusp_single
+	name = "NT22-HCS 'Enforcer' Single-Pack"
+	desc = "Contains one NT22-HCS 'Enforcer' pistol case, a non-lethal weapon that fires hardlight, non-lethal projectiles. Includes two power pack magazines."
+	cost = PAYCHECK_CREW * 12
+	access_view = ACCESS_SECURITY
+	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/ntusp)
+
+/datum/supply_pack/goody/ntmp5_single
+	name = "NT22-HCS-MP 'Lancer' Single-Pack"
+	desc = "Contains one NT22-HCS-MP 'Lancer' submachine gun, a non-lethal weapon that fires hardlight, non-lethal projectiles at high speed. It comes with a retractable stock. Includes two power pack magazines."
+	cost = PAYCHECK_COMMAND * 8
+	access_view = ACCESS_SECURITY
+	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5)
+
 /datum/supply_pack/goody/pepperball_gun
 	name = "Pepperball Gun Single-Pack"
 	desc = "Contains one pepperball gun, a non-lethal weapon that fires pepper-filled projectiles."
@@ -209,3 +223,23 @@
 	desc = "Donksoft's pop-up blaster is great for annoying coworkers. Pack contains one implant and a mini box of spare darts."
 	cost = PAYCHECK_CREW * 8
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/foamforce_implant, /obj/item/ammo_box/foambox/mini)
+
+/datum/supply_pack/goody/miecz
+	name = "Miecz Submachinegun Single-Pack"
+	desc = "Contains one Miecz Submachinegun, one of the newest guns to make it out of the PSC. Due to import fees and general rarity, this one's gonna be expensive. Contains two magazines, as well."
+	cost = PAYCHECK_COMMAND * 10*1.25
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/ballistic/automatic/miecz, /obj/item/ammo_box/magazine/miecz, /obj/item/ammo_box/magazine/miecz)
+
+/datum/supply_pack/goody/mieczmag
+	name = "Miecz Submachinegun Magazine Goodie Pack"
+	desc = "Contains a single magazine for the Miecz Submachinegun."
+	cost = PAYCHECK_COMMAND * 1.5
+	contains = list(/obj/item/ammo_box/magazine/miecz)
+
+/datum/supply_pack/goody/security_bow
+	name = "Hardlight Bow Single-Pack"
+	desc = "Contains a hardlight bow capable of defeating armor, alongside a quiver with nonlethal arrows. Ask your blacksmith for lethal arrows."
+	cost = PAYCHECK_COMMAND * 5
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/ballistic/bow/security, /obj/item/storage/bag/quiver/lesser/security)
