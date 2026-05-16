@@ -14,6 +14,7 @@
 	mag_display = FALSE
 	bolt_wording = "hammer"
 	rack_delay = 1
+	fire_delay = 1
 	//just a little extra damage as a treat
 	projectile_damage_multiplier = 1.2
 	///below stats should match or exceed the murphy's
@@ -71,7 +72,7 @@
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/shoot_with_empty_chamber()
 	. = ..()
-	hammer_is_primed = FALSE
+	set_hammer_cock(FALSE)
 
 ///go my snowflake code for handling the revolver's hammer!!!
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/attack_self(mob/living/user)
@@ -79,6 +80,7 @@
 		return
 
 	var/rack_delay_to_use
+	var/obj/item/bodypart/other_hand = user.has_hand_for_held_index(user.get_inactive_hand_index()) //
 	if(user.get_inactive_held_item() || !other_hand) //if both hands occupied, one-handed rack
 		rack_delay_to_use = hammer_pull_speed_onehanded
 	else
@@ -91,11 +93,7 @@
 		return
 
 	if(!hammer_is_primed)
-		var/obj/item/bodypart/other_hand = user.has_hand_for_held_index(user.get_inactive_hand_index()) //
-			if(!do_after(user, hammer_pull_speed_onehanded, src, timed_action_flags = IGNORE_USER_LOC_CHANGE, interaction_key = DOAFTER_REVOLVER_HAMMER_COCK, hidden = TRUE ))
-				return
-		hammer_is_primed = TRUE
-
+		set_hammer_cock(TRUE)
 		balloon_alert(user, "cocked the hammer")
 		playsound(src, 'sound/items/weapons/gun_mode_switch1.ogg', vol = 35, vary = TRUE, frequency = 1.8, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 		if(!istype(magazine,/obj/item/ammo_box/magazine/internal/cylinder))
@@ -104,8 +102,12 @@
 		my_cylinder.rotate()
 		chamber_round()
 	else
-		hammer_is_primed = FALSE
+		set_hammer_cock(FALSE)
 		balloon_alert(user, "decocked the hammer")
+		playsound(src, 'sound/items/weapons/gun_mode_switch1.ogg', vol = 35, vary = TRUE, frequency = 1.6, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
+
+/obj/item/gun/ballistic/revolver/handcrafted_single_action/proc/set_hammer_cock(cock)
+	hammer_is_primed = cock
 	update_appearance()
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/try_fire_gun(atom/target, mob/living/user, params)
@@ -118,7 +120,7 @@
 ////////////////////////// MISFIRE WHEN SHOVED OR ATTACKED ///////////////////////////////////////
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
-	hammer_is_primed = FALSE
+	set_hammer_cock(FALSE)
 	. = ..()
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/equipped(mob/user, slot, initial)
@@ -175,9 +177,10 @@
 	max_ammo = 6
 
 ///cause apparently tgcode doesn't have a bug check against if start_empty = false
-/obj/item/ammo_box/magazine/internal/cylinder/handcrafted_single_action
+/obj/item/ammo_box/magazine/internal/cylinder/handcrafted_single_action/Initialize(mapload)
 	. = ..()
-	stored_ammo.len = max_ammo
+	while(stored_ammo.len < max_ammo)
+		stored_ammo += null
 
 ///get round doesn't spin the cylinder; cocking the hammer (from rack()) must be used to spin the cylinder
 /obj/item/ammo_box/magazine/internal/cylinder/handcrafted_single_action/get_round()
