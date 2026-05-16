@@ -132,8 +132,7 @@
 /obj/machinery/computer/piratepad_control/syndiepad/proc/reset_icon(obj/machinery/piratepad/syndiepad/pad)
 	if(!pad)
 		return
-	flick(pad.sending_state,pad)
-	pad.icon_state = pad.idle_state
+	pad.finish_sending()
 
 #undef SYN_BOUNTY_PAD_WARM_TIME
 

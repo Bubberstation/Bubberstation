@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(area_spawn)
 	name = "Area Spawn"
-	flags = SS_NO_FIRE
+	ss_flags = SS_NO_FIRE
 	dependencies = list(
 		/datum/controller/subsystem/mapping
 	)

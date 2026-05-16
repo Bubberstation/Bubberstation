@@ -292,7 +292,7 @@
 /obj/item/gun/magic/staff/door/do_suicide(mob/living/user)
 	. = ..()
 	var/obj/machinery/door/airlock/material/door = new(user.drop_location())
-	door.set_custom_materials(list(GET_MATERIAL_REF(/datum/material/meat) = SHEET_MATERIAL_AMOUNT))
+	door.set_custom_materials(list(SSmaterials.get_material(/datum/material/meat) = SHEET_MATERIAL_AMOUNT))
 	door.update_appearance(updates = UPDATE_ICON)
 	door.name = user.real_name
 	addtimer(CALLBACK(door, TYPE_PROC_REF(/obj/machinery/door, open)), 1.5 SECONDS)
@@ -362,7 +362,7 @@
 	if (!iscarbon(user))
 		return BRUTELOSS
 	var/mob/living/carbon/suicider = user
-	for (var/obj/item/bodypart/limb in suicider.bodyparts)
+	for (var/obj/item/bodypart/limb in suicider.get_bodyparts())
 		limb.dismember(BRUTE, silent = FALSE, wounding_type = WOUND_SLASH)
 		sleep(0.25 SECONDS)
 

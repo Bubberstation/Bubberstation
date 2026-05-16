@@ -8,6 +8,8 @@
 	savedslowdown = slowdown
 
 /datum/action/chameleon_slowdown/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/obj/item/clothing/target_clothing = target
 	var/slow = target_clothing.slowdown
 	target_clothing.slowdown = savedslowdown
