@@ -18,7 +18,7 @@
 
 	department_color = COLOR_CARGO_BROWN
 	subdepartment_color = COLOR_CARGO_BROWN
-	sechud_icon_state = SECHUD_CARGO_TECHNICIAN
+	sechud_icon_state = SECHUD_BLACKSMITH
 	minimal_access = list(
 		ACCESS_BLACKSMITH,
 		ACCESS_CARGO,
@@ -26,6 +26,7 @@
 		ACCESS_MECH_MINING,
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_SHIPPING,
+		ACCESS_WEAPONS,
 		)
 	extra_access = list(
 		ACCESS_MINING,

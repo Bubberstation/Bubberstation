@@ -130,4 +130,4 @@
 	new /obj/structure/reagent_forge(src)
 	new /obj/item/reagent_containers/cup/jerrycan/smithing_oil(src)
 	new /obj/item/reagent_containers/cup/jerrycan/smithing_oil(src)
-
+	new /obj/item/wallframe/wall_heater(src)
