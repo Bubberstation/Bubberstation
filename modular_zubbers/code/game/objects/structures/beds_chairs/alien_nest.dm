@@ -97,3 +97,6 @@
 	desc = "The resin pulsates around you, sending sustenance through your skin. It'd almost be comfortable, if you could just move enough to plug your nose..."
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "nest_life"
+
+#undef BUCKLE_DURATION
+#undef UNBUCKLE_DURATION
