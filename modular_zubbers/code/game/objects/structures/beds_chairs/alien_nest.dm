@@ -60,7 +60,7 @@
 			span_danger("[user.name] drenches you in a foul-smelling resin, trapping you in [src]!"),\
 			span_hear("You hear squelching..."))
 
-/obj/structure/bed/nest/post_buckle_mob(mob/living/M)
+/obj/structure/bed/nest/xenohybrid/post_buckle_mob(mob/living/M)
 	ADD_TRAIT(M, TRAIT_HANDS_BLOCKED, type)
 	M.add_offsets(type, x_add = 2)
 	M.layer = BELOW_MOB_LAYER
@@ -70,7 +70,7 @@
 		var/mob/living/carbon/human/victim = M //Change from base bed: Removes check for xenopregnancy or facehugger.
 		victim.apply_status_effect(/datum/status_effect/nest_sustenance_xenohybrid) //Change from base bed: special sustenance subtype.
 
-/obj/structure/bed/nest/post_unbuckle_mob(mob/living/M)
+/obj/structure/bed/nest/xenohybrid/post_unbuckle_mob(mob/living/M)
 	REMOVE_TRAIT(M, TRAIT_HANDS_BLOCKED, type)
 	M.remove_offsets(type)
 	M.layer = initial(M.layer)
