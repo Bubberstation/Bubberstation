@@ -15,16 +15,22 @@
 
 /obj/item/storage/belt/holster/blacksmithed/update_overlays()
 	. = ..()
-	for(var/obj/item/I in contents)
+	. += get_guns_contained_overlays()
+
+/obj/item/storage/belt/holster/blacksmithed/proc/get_guns_contained_overlays(list/contents_to_check = null)
+	var/list/returner = list()
+	if(contents_to_check == null)
+		contents_to_check = contents
+	for(var/obj/item/I in contents_to_check)
 		if(istype(I, /obj/item/gun/ballistic/revolver))
-			. += mutable_appearance('modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi', "belt_gun_wood")
-			return
+			returner += mutable_appearance('modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi', "belt_gun_wood")
+			return returner
 		if(istype(I, /obj/item/gun))
-			. += mutable_appearance('modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi', "belt_gun_black")
-			return
+			returner += mutable_appearance('modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi', "belt_gun_black")
+			return returner
 		if(istype(I, /obj/item/melee/baton/security))
-			. += mutable_appearance('modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi', "belt_gun_baton")
-			return
+			returner += mutable_appearance('modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi', "belt_gun_baton")
+			return returner
 
 /obj/item/storage/belt/holster/blacksmithed/cowboy
 	name = "quickdraw holster"
@@ -33,6 +39,7 @@
 	inhand_icon_state = "utility"
 	worn_icon_state = "utility"
 	storage_type = /datum/storage/cowboy_holster
+
 
 /datum/storage/cowboy_holster
 	max_slots = 4
@@ -89,43 +96,43 @@
 	icon_state = "charger_belt"
 	inhand_icon_state = "security"
 	worn_icon_state = "security"
-	storage_type = null //datum/storage/charging_holster
+	storage_type = /datum/storage/charging_holster //null //datum/storage/charging_holster
 	var/obj/machinery/recharger/belt_charger/my_charger
+	var/obj/item/storage/box/real_storage
 
 /obj/item/storage/belt/holster/blacksmithed/charging/Initialize(mapload)
+	real_storage = new(src)
 	. = ..()
-	var/datum/storage/mystorage = create_storage(storage_type = storage_type)
-	mystorage.set_real_location(src)
+
+/obj/item/storage/belt/holster/blacksmithed/charging/get_guns_contained_overlays(list/contents_to_check = null)
+	. = ..(real_storage.contents)
 
 /obj/item/storage/belt/holster/blacksmithed/charging/update_overlays()
 	. = ..()
-	if(!isnull(my_charger?.charging))
-		var/icon_to_use = "charger_belt_[(my_charger.using_power ? "charging" : "fullcharge")]"
-		. += mutable_appearance(icon, icon_to_use, alpha = src.alpha)
-
-/obj/item/storage/belt/holster/blacksmithed/charging/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	. = ..()
-	my_charger.activate_with_item(arrived)
-
-/obj/item/storage/belt/holster/blacksmithed/charging/Exit(atom/movable/leaving, direction)
-	. = ..()
-	if(my_charger.charging == leaving)
-		my_charger.charging = null
+	if(length(real_storage?.contents) > 0)
+		if(!isnull(my_charger?.charging))
+			var/icon_to_use = "charger_belt_[(my_charger.using_power ? "charging" : "fullcharge")]"
+			. += mutable_appearance(icon, icon_to_use, alpha = src.alpha)
+		else
+			. += mutable_appearance(icon, "charger_belt_precharging")
 
 /datum/storage/charging_holster
 	max_slots = 1
 	max_total_storage = 12
 	open_sound = 'sound/items/handling/holster_open.ogg'
 	open_sound_vary = TRUE
+	var/delay_before_charging = 15 SECONDS
+	var/timer_id
 	var/obj/machinery/recharger/belt_charger/my_charger
 
 /datum/storage/charging_holster/New()
 	. = ..()
-	my_charger = new()
+	my_charger = new(parent)
 	if(istype(parent, /obj/item/storage/belt/holster/blacksmithed/charging))
 		var/obj/item/storage/belt/holster/blacksmithed/charging/my_belt = parent
 		my_belt.my_charger = my_charger
 		my_charger.my_belt = my_belt
+		set_real_location(my_belt.real_storage)
 	set_holdable(list(
 		/obj/item/gun/energy,
 		/obj/item/melee/baton/security,
@@ -141,29 +148,58 @@
 			return FALSE
 	. = ..()
 
+/datum/storage/charging_holster/attempt_insert(obj/item/to_insert, mob/user, override = FALSE, force = STORAGE_NOT_LOCKED, messages = TRUE)
+	. = ..()
+	if(.)
+		parent.update_overlays()
+		timer_id = addtimer(CALLBACK(my_charger, TYPE_PROC_REF(/obj/machinery/recharger/belt_charger, activate_with_item)), delay_before_charging, TIMER_STOPPABLE | TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_DELETE_ME)
+
+/datum/storage/charging_holster/attempt_remove(obj/item/thing, atom/remove_to_loc, silent = FALSE, visual_updates = TRUE)
+	. = ..()
+	if(.)
+		my_charger.charging = null
+		parent.update_overlays()
+		deltimer(timer_id)
+
 /obj/machinery/recharger/belt_charger
-	name = "dev item"
-	desc = "You shouldn't see this."
+	name = "belt charger"
+
+	desc = "the fact that you can see this means there's an error, call a dev!"
 	recharge_coeff = 0.5
 	var/obj/item/storage/belt/holster/blacksmithed/charging/my_belt
 
-/obj/machinery/recharger/belt_charger/proc/activate_with_item(obj/item/my_item)
-	charging = my_item
-	START_PROCESSING(SSmachines, src)
-	update_use_power(ACTIVE_POWER_USE)
-	using_power = TRUE
-	update_appearance()
+/obj/machinery/recharger/RefreshParts()
+	. = ..()
+	recharge_coeff = initial(recharge_coeff)
+
+/obj/machinery/recharger/belt_charger/proc/activate_with_item()
+	if(length(my_belt?.real_storage?.contents) > 0)
+		say("charging...")
+		charging = my_belt.real_storage.contents[1]
+		playsound(src, 'sound/machines/ping.ogg', 30, TRUE, frequency = 0.8)
+		START_PROCESSING(SSmachines, src)
+		update_use_power(ACTIVE_POWER_USE)
+		using_power = TRUE
+		update_appearance()
+		my_belt.update_overlays()
 
 /obj/machinery/recharger/belt_charger/process(seconds_per_tick)
+	if(length(my_belt?.real_storage?.contents) != 1 || my_belt?.real_storage.contents[1] != charging)
+		charging = null
+		return PROCESS_KILL
 	. = ..()
-	if(. != PROCESS_KILL)
-		my_belt.update_appearance()
+	my_belt.update_appearance()
+	charging.update_appearance()
+
+/obj/machinery/recharger/belt_charger/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	to_chat(user, span_warning("You should insert the [tool] into the connected holster pouch, not the charging device itself!"))
+	return ITEM_INTERACT_BLOCKING
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// SHEATHS /////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 
-/obj/item/storage/belt/crusader	//Belt + sheath combination - still only holds one sword at a time though
+/obj/item/storage/belt/cruder	//Belt + sheath combination - still only holds one sword at a time though
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
 	name = "scabbard-utility belt"
@@ -296,10 +332,8 @@
 /obj/item/storage/belt/sheath/multi
 	name = "multi-scabbard"
 	desc = "A set of harnesses that enable carrying multiple bulky swords and/or shields."
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
+	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	icon_state = "multiscabbard_swords_0"
-	icon_preview = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
-	icon_state_preview = "multiscabbard_swords_0"
 	inhand_icon_state = "sheath"
 	worn_icon_state = "sheath"
 	actions_types = null
