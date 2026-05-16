@@ -160,7 +160,8 @@
 
 			if("snap3")
 				if(quirk_holder.client.prefs.read_preference(/datum/preference/toggle/dominant_aura/snap3) && sub.client.prefs.read_preference(/datum/preference/toggle/well_trained/snap3))
-					sub.KnockToFloor(knockdown_amt = 0.1 SECONDS)
+					if(!sub.resting)
+						sub.toggle_resting()
 					step(sub, get_dir(sub, quirk_holder))
 					sub.emote("me",1,"falls to the floor and crawls closer to <b>[quirk_holder]</b>, following their command.",TRUE)
 					sub.do_jitter_animation(0.1 SECONDS)
