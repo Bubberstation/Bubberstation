@@ -32,7 +32,7 @@
 	. = ..()
 	if(iscarbon(owner))
 		var/mob/living/carbon/carbon_owner = owner
-		for(var/obj/item/bodypart/limbs as anything in carbon_owner.bodyparts)
+		for(var/obj/item/bodypart/limbs as anything in carbon_owner.get_bodyparts())
 			for(var/datum/wound/iter_wound as anything in limbs.wounds)
 				iter_wound.remove_wound()
 				limbs.receive_damage(4 * iter_wound.severity, 0, wound_bonus = CANT_WOUND) // BUBBER EDIT ADDITION - wounds cause damage on crimson cleave to damage you

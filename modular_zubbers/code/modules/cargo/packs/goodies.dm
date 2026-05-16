@@ -236,3 +236,10 @@
 	desc = "Contains a single magazine for the Miecz Submachinegun."
 	cost = PAYCHECK_COMMAND * 1.5
 	contains = list(/obj/item/ammo_box/magazine/miecz)
+
+/datum/supply_pack/goody/security_bow
+	name = "Hardlight Bow Single-Pack"
+	desc = "Contains a hardlight bow capable of defeating armor, alongside a quiver with nonlethal arrows. Ask your blacksmith for lethal arrows."
+	cost = PAYCHECK_COMMAND * 5
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/ballistic/bow/security, /obj/item/storage/bag/quiver/lesser/security)

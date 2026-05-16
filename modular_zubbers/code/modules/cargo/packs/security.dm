@@ -147,6 +147,7 @@
 	contains = list(/obj/item/ammo_box/magazine/miecz = 4)
 	cost = CARGO_CRATE_VALUE * 4
 	access = ACCESS_SECURITY
+
 /datum/supply_pack/security/armory/archery_kit
 	name = "Archery Crate"
 	desc = "Two hardlight bows capable of defeating armor, alongside a mix of lethal and non/less-than-lethal arrows."

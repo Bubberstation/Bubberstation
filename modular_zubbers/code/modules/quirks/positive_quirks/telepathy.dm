@@ -70,7 +70,7 @@
 
 		blocked = TRUE
 
-		message = autopunct_bare(capitalize(tgui_input_text(owner, "What do you wish to whisper to [last_target]?", "[src]", max_length = MAX_MESSAGE_LEN)))
+		message = autopunct_bare(capitalize(tgui_input_text(owner, "What do you wish to whisper to [last_target]?", "[src]", null, max_length = MAX_MESSAGE_LEN, multiline = TRUE)))
 		if(QDELETED(src) || QDELETED(owner) || QDELETED(last_target) || !can_cast_spell())
 			blocked = FALSE
 			return
@@ -79,10 +79,14 @@
 		blocked = FALSE
 		return
 
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/spell/pointed/telepathy/cast(mob/living/cast_on)
 	. = ..()
+	owner.visible_message(
+		span_warning("[owner]'s attention locks onto [cast_on]."),
+		ignored_mobs = owner,
+	)
 	send_thought(owner, cast_on, message)
 
 /datum/action/cooldown/spell/pointed/telepathy/proc/send_thought(mob/living/caster, mob/living/target, message)
@@ -98,16 +102,16 @@
 	// flub a runechat chat message, do something with the language later
 	if(owner.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 		owner.create_chat_message(owner, owner.get_selected_language(), message, list("italics"))
-	if(!target.can_block_magic(antimagic_flags, charge_cost = 0) && target.client) //make sure we've got a client before we bother sending anything
+	if(!target.can_block_magic(antimagic_flags, charge_cost = 0) && target.client && !(HAS_TRAIT(target, TRAIT_PSIONIC_DAMPENER))) //make sure we've got a client before we bother sending anything
 		//different messaging if the target has the telepathy mutation themselves themselves
-		if (ishuman(target))
-			var/mob/living/carbon/human/human_target = target
-			var/datum/mutation/telepathy/tele_mut = human_target.dna.get_mutation(/datum/mutation/telepathy)
+		if (ishuman(caster))
+			var/mob/living/carbon/human/human_caster = caster
+			var/datum/mutation/telepathy/tele_mut = human_caster.dna.get_mutation(/datum/mutation/telepathy)
 
 			if (tele_mut)
-				to_chat(target, span_boldnotice("[caster]'s psychic presence resounds in your mind: \"[span_purple(message)]\""))
+				to_chat(target, span_boldnotice("A psychic presence resounds in your mind: \"[span_purple(message)]\""))
 			else
-				to_chat(target, span_boldnotice("A voice echoes in your head: \"[span_purple(message)]\""))
+				to_chat(target, span_boldnotice("[caster]'s voice echoes in your head: \"[span_purple(message)]\""))
 
 		if(target.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 			target.create_chat_message(target, target.get_selected_language(), message, list("italics")) // it appears over them since they hear it in their head
@@ -142,26 +146,16 @@
 	var/datum/weakref/tele_action_ref
 
 /datum/quirk/telepathic/add(client/client_source)
-	if (iscarbon(quirk_holder))
-		var/mob/living/carbon/human/human_holder = quirk_holder
-		human_holder.dna.add_mutation(/datum/mutation/telepathy, MUTATION_SOURCE_QUIRK)
-	else if(issilicon(quirk_holder))
-		var/mob/living/silicon/robot_holder = quirk_holder
 		var/datum/action/cooldown/spell/pointed/telepathy/tele_action = new
 
-		tele_action.Grant(robot_holder)
+		tele_action.Grant(quirk_holder)
 		tele_action_ref = WEAKREF(tele_action)
 
 /datum/quirk/telepathic/remove()
 	var/datum/action/cooldown/spell/pointed/telepathy/tele_action = tele_action_ref?.resolve()
-	if(isnull(tele_action))
-		tele_action_ref = null
-	if(iscarbon(quirk_holder))
-		var/mob/living/carbon/human/human_holder = quirk_holder
-		human_holder.dna.remove_mutation(/datum/mutation/telepathy, MUTATION_SOURCE_QUIRK)
-	else if(issilicon(quirk_holder) && !isnull(tele_action))
+	if (!isnull(tele_action))
 		QDEL_NULL(tele_action)
-		tele_action_ref = null
+	tele_action_ref = null
 
 /datum/emote/living/telepathy_reply
 	key = "treply"
@@ -180,3 +174,13 @@
 				tele_action.blocked = FALSE
 
 	return ..()
+
+/datum/quirk/psionic_dampener
+	name = "Psionic Dampener"
+	desc = "Your mind is abnormally resistant to psionic intrusion. Telepathic communication fail to reach you."
+	gain_text = span_notice("Only your own thoughts echo within your mind; the whispers of others fade into silence.")
+	lose_text = span_purple("The distant hum of foreign thoughts returns, brushing gently against your own.")
+	medical_record_text = "Subject exhibits a persistent dampening of cortical resonance. Neural mapping suggests near-total immunity to telepathic or psionic contact."
+	mob_trait = TRAIT_PSIONIC_DAMPENER
+	value = 0
+	icon = FA_ICON_BELL_SLASH

@@ -69,7 +69,7 @@
 /obj/machinery/ammo_workbench/Initialize(mapload)
 	materials = new( \
 		src, \
-		SSmaterials.materials_by_category[MAT_CATEGORY_ITEM_MATERIAL], \
+		SSmaterials.get_materials_by_flag(MATERIAL_SILO_STORED), \
 		200000, \
 		MATCONTAINER_EXAMINE, \
 		allowed_items = /obj/item/stack, \
@@ -89,7 +89,7 @@
 		ui.open()
 
 	if(shocked)
-		shock(user, 80)
+		workbench_shock(user, 80)
 
 /obj/machinery/ammo_workbench/proc/update_ammotypes()
 	LAZYCLEARLIST(valid_casings)
@@ -472,7 +472,7 @@
 
 	return ..()
 
-/obj/machinery/ammo_workbench/proc/shock(mob/user, prb)
+/obj/machinery/ammo_workbench/proc/workbench_shock(mob/user, prb)
 	if(machine_stat & (BROKEN|NOPOWER)) // unpowered, no shock
 		return FALSE
 	if(!prob(prb))
@@ -637,4 +637,4 @@
 		if(WIRE_DISABLE)
 			A.disabled = !mend
 		if(WIRE_ZAP)
-			A.shock(usr, 50)
+			A.workbench_shock(usr, 50)

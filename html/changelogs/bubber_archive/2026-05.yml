@@ -85,3 +85,92 @@
   xPokee:
   - bugfix: The lighting in the Black Mesa gateway works again.
   - bugfix: Fixed security ID cards being blue -- for real this time.
+2026-05-16:
+  Arturlang:
+  - rscadd: cargo imports moved into it's own category with a brand subcategory system,
+      and orderable without a private account (god why did i do this)
+  - rscadd: persistence only agent ID single pack
+  - rscadd: persistence and tarkon can now buy stuff via ids directly
+  - rscadd: captain access can always unlock departmental orders
+  - bugfix: persistence and persistence cargo consoles sending cargo pods to the station
+      if cargo bay is selected
+  - rscdel: entire cargo company imports system
+  BurgerBB:
+  - map: Fixes some missing Moon Station stuff.
+  - balance: Buffs the security rocket launcher's mob target acquisition.
+  CatoChristopherMrow:
+  - bugfix: fixed infinite recursion bug
+  Danielance:
+  - rscadd: added teshari sprites for buttondown clothes, some jeans and pants, kilt
+      (full list on PR 5555)
+  Jinshee:
+  - rscadd: Added a new quirk Psionic Dampener, affecting telepathy from quirks, genetics,
+      slimes, xenomorphs, revenants and so on.
+  - balance: Telepathy (Quirk) no longer automatically gives the gene.
+  - qol: The telepathic communication power granted by the quirk or the genetic power
+      is only anonymous if the caster has the mutation, not the target.
+  - qol: Telepathy (Quirk) now shows when the user uses the power and on whom, but
+      not the contents of the message.
+  - qol: Telepathy is now multiline.
+  KateAnbolho:
+  - rscadd: Moves revivers back to a noncombat implant
+  - balance: allows additional bluespace, grav, and flux cores to be refined due to
+      increased uses
+  LT3:
+  - map: Void Raptor's maintenance area between pharmacy and chemistry is now protected
+      from radstorms
+  MrGloopy:
+  - rscadd: Added greyscale versions of some clothing to Clothesmate and loadout.
+  - rscadd: Frontier Radio Headset to loadout, along with a wider variant. It cannot
+      accept radio keys but works as a wearable handheld radio. Woe upon thee if you
+      have your loadout replace job items. Goodbye job headset if you do.
+  - rscadd: Ports a small selection of pants and jackets, along with a funky mantle
+      from Nova Sector. Available in loadout.
+  - rscadd: Colonial fabricator clothing to loadout because it's nice.
+  - rscadd: New belts to loadout from Nova, using their webbing sprites. Same capacity
+      as a fanny pack.
+  - rscadd: Blueshield clothing to loadout.
+  - bugfix: Correction's officer clothing in loadout not showing all of it due to
+      broken datums.
+  - rscadd: Moved Internal Wound Analyzer from being a chest implant to a head implant.
+      Expies rejoice. May need to reselect it in character options.
+  - rscadd: Internal wound analyzer to science research.
+  - refactor: Removed Internal Wound Analyzer action button. Simply examine yourself
+      to activate it. Pairs nicely with the self-aware quirk. 15 second cooldown to
+      avoid filling your chat window.
+  - balance: Removed mutual exclusivity of Common Second Language and Bilingual quirks.
+  Robwo:
+  - rscadd: Added new variations to small tiles and pod floors
+  - image: Almost all of the wall and window sprites have been redone
+  - image: The palette of wooden platforms now more closely match wooden floors
+  - image: New bronze table sprites
+  - bugfix: Fixed rock wall sprites being incorrectly (un)colored
+  - bugfix: Decal painter now sprays our override decals.
+  SapphoQueer:
+  - rscadd: The GMM can sell materials once more.
+  Yobrocharlie:
+  - bugfix: Fixed maintsrooms xenomorphs not being able to choose their name/desc
+  john-pawson:
+  - bugfix: fixed toggling icon issues for neck-worn face scarfs an the ranger poncho
+      (And other clothings too)
+  mintyphresh:
+  - rscadd: The Dominant Aura and Well-Trained quirks are now configurable in the
+      quirk menu, filtering by both gender and command.
+  - rscadd: Using the "toggle reflexes" verb now lets subs ignore snaps and clicks,
+      as well as inspect doms without flustering away.
+  nikothedude:
+  - rscadd: Family heirloom users can now use a quirk preference to, instead of getting
+      a random item, mark an item inhand as an heirloom.
+  - rscadd: A 500 credit hardlight bow goodie case for cargo
+  - rscadd: Exploitables, background, and security records are now distinct record
+      fields, instead of being combinced.
+  - rscadd: Dep. guards now have a primary security voucher instead of a taser
+  - rscadd: Hungry quirk is now -2 and customizable
+  xPokee:
+  - rscadd: You can now wear pride flags as a cloak.
+  - balance: The quirk 'Common Second Language' has been blacklisted from Security
+      and Command.
+  - rscadd: Added 'Stowaway' as a station trait with a weight of 3.
+  - rscdel: Removed 'Stowaway' from being a roundstart job by default.
+  - rscadd: 'Added two new sets of horns: Mutant Lizard and Mutant Lizard (Inverted).'
+  - rscadd: 'Added one new tail: Hybrid Coyote (Large).'

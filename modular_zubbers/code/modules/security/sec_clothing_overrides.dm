@@ -2,32 +2,6 @@
 *	Security clothing reskins and such.
 */
 
-/*
-* BACKPACKS
-*/
-/obj/item/storage/backpack/security
-	icon = 'icons/obj/storage/backpack.dmi'
-	worn_icon = 'icons/mob/clothing/back.dmi'
-	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
-	icon_state = "backpack-security"
-	inhand_icon_state = "securitypack"
-
-/obj/item/storage/backpack/satchel/sec
-	icon = 'icons/obj/storage/backpack.dmi'
-	worn_icon = 'icons/mob/clothing/back.dmi'
-	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
-	icon_state = "satchel-security"
-	inhand_icon_state = "satchel-sec"
-
-/obj/item/storage/backpack/duffelbag/sec
-	icon = 'icons/obj/storage/backpack.dmi'
-	worn_icon = 'icons/mob/clothing/back.dmi'
-	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
-	icon_state = "duffel-security"
-	inhand_icon_state = "duffel-sec"
 
 /*
 * BELTS
@@ -637,38 +611,29 @@
 *	BACK
 */
 
-/obj/item/storage/backpack/security/redsec
-	icon = 'icons/obj/storage/backpack.dmi'
-	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
-	icon_state = "backpack-security"
+// /obj/item/storage/backpack/security/Initialize(mapload)
+// 	. = ..()
+// 	if(type != /obj/item/storage/backpack/security)
+// 		return
+// 	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+// 	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+// 		qdel(reskin_component)
 
-/obj/item/storage/backpack/security/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+// /obj/item/storage/backpack/satchel/sec/Initialize(mapload)
+// 	. = ..()
+// 	if(type != /obj/item/storage/backpack/satchel/sec)
+// 		return
+// 	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+// 	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+// 		qdel(reskin_component)
 
-/obj/item/storage/backpack/satchel/sec/redsec
-	icon = 'icons/obj/storage/backpack.dmi'
-	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
-	icon_state = "satchel-security"
-
-/obj/item/storage/backpack/satchel/sec/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
-
-/obj/item/storage/backpack/duffelbag/sec/redsec
-	icon = 'icons/obj/storage/backpack.dmi'
-	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
-	icon_state = "duffel-security"
-
-/obj/item/storage/backpack/duffelbag/sec/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+// /obj/item/storage/backpack/duffelbag/sec/Initialize(mapload)
+// 	. = ..()
+// 	if(type != /obj/item/storage/backpack/duffelbag/sec)
+// 		return
+// 	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+// 	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+// 		qdel(reskin_component)
 
 /*
 *	BELT + HOLSTERS

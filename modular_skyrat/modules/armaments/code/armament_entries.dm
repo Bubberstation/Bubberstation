@@ -15,7 +15,7 @@
 
 SUBSYSTEM_DEF(armaments)
 	name = "Armaments"
-	flags = SS_NO_FIRE
+	ss_flags = SS_NO_FIRE
 	init_stage = INITSTAGE_LAST
 	var/list/entries
 

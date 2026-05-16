@@ -35,7 +35,7 @@
 		var/mob/living/living_user = user
 		if(living_user.has_quirk(/datum/quirk/dominant_aura) && TIMER_COOLDOWN_FINISHED(living_user, DOMINANT_COOLDOWN_SNAP))
 			for(var/mob/living/carbon/human/sub in hearers(world.view / 2, living_user))
-				if(!sub.has_quirk(/datum/quirk/well_trained) || sub == living_user || sub.stat == DEAD)
+				if(!sub.has_quirk(/datum/quirk/well_trained) || sub == living_user || sub.stat == DEAD || HAS_TRAIT(sub, TRAIT_QUICKREFLEXES))
 					continue
 // Check for matching gender preference on sub and dom, as well as if they both want the clicker interaction
 				var/datum/quirk/well_trained/sub_quirk = sub.get_quirk(/datum/quirk/well_trained)
@@ -57,7 +57,7 @@
 
 //For the borgs
 			for(var/mob/living/silicon/robot/borg_sub in hearers(world.view / 2, living_user))
-				if(!borg_sub.has_quirk(/datum/quirk/well_trained) || borg_sub == living_user || borg_sub.stat == DEAD)
+				if(!borg_sub.has_quirk(/datum/quirk/well_trained) || borg_sub == living_user || borg_sub.stat == DEAD || HAS_TRAIT(borg_sub, TRAIT_QUICKREFLEXES))
 					continue
 // Check for matching gender preference on sub and dom, as well as if they both want the clicker interaction
 				var/datum/quirk/well_trained/sub_quirk = borg_sub.get_quirk(/datum/quirk/well_trained)

@@ -88,9 +88,9 @@ export const general_record: Feature<string> = {
 };
 
 export const security_record: Feature<string> = {
-  name: 'Records - Personnel',
+  name: 'Records - Security',
   description:
-    'Privileged information accessible by Security, antags with information, Command and the NTC. \
+    'Privileged information accessible by Security, Command and the NTC. \
     Used to throw these roles a bone, and give more information to work with. \
     For employment and criminal history, loyalties and exploitable tidbits, and more.',
   component: FeatureTextInput,
@@ -101,6 +101,22 @@ export const medical_record: Feature<string> = {
   description:
     'Viewable with medical access. \
   For things like medical history, prescriptions, DNR orders, etc.',
+  component: FeatureTextInput,
+};
+
+export const exploitable_info: Feature<string> = {
+  name: 'Records - Exploitable',
+  description:
+    'Can be IC or OOC. Viewable by certain antagonists/OPFOR users, as well as ghosts. Generally contains \
+  things like weaknesses, strengths, important background, trigger words, etc. It ALSO may contain things like \
+  antagonist preferences, e.g. if you want to be antagonized, by whom, with what, etc.',
+  component: FeatureTextInput,
+};
+
+export const background_info: Feature<string> = {
+  name: 'Records - Background',
+  description:
+    'Only viewable by yourself and ghosts. You can have whatever you want in here - it may be valuable as a way to orient yourself to what your character is.',
   component: FeatureTextInput,
 };
 

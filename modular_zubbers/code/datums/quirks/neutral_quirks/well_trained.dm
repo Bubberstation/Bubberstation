@@ -112,6 +112,10 @@
 		return
 	if(dom.stat == DEAD)
 		return
+	if(HAS_TRAIT(quirk_holder, TRAIT_QUICKREFLEXES))
+		return
+	if(HAS_TRAIT(quirk_holder, TRAIT_QUICKREFLEXES))
+		return
 	examine_list += span_purple("You can't look at <b>[dom]</b> for long before flustering away.")
 
 	if(TIMER_COOLDOWN_FINISHED(dom, DOMINANT_COOLDOWN_EXAMINE))
