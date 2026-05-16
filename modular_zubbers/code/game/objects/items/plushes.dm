@@ -712,7 +712,6 @@
 			'modular_zubbers/sound/lewd/rubber2.ogg' = 1,
 			'modular_zubbers/sound/lewd/rubber3.ogg' = 1
 		)
-		force = initial(force)
 		hitsound = initial(hitsound)
 	else
 		name = "Interdimensional terrorist Doll"
@@ -725,7 +724,6 @@
 			'modular_zubbers/sound/lewd/rubber2.ogg' = 1,
 			'modular_zubbers/sound/lewd/rubber3.ogg' = 1
 		)
-		force = 0
 		hitsound = null
 	inhand_icon_state = null
 	update_appearance()
