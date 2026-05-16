@@ -25,7 +25,7 @@
 		return
 
 	captive.visible_message(span_warning("[captive.name] struggles to break free from the gelatinous resin!"),
-		span_notice("You struggle to break free from the gelatinous resin... (Stay still for about [UNBUCKLE_DURATION] seconds.)"),
+		span_notice("You struggle to break free from the gelatinous resin... (Stay still for about [UNBUCKLE_DURATION/10] seconds.)"),
 		span_hear("You hear squelching..."))
 
 	if(!do_after(captive, UNBUCKLE_DURATION, target = src, hidden = TRUE)) //The change in question: Escape time down to 20 seconds from 100
@@ -52,7 +52,7 @@
 		unbuckle_all_mobs()
 
 	if(!do_after(user, BUCKLE_DURATION, M)) // Another change from the base bed: Added a doafter so that you can't insta-trap people in your nests
-		to_chat(captive, span_warning("You fail to capture [M] in [src]!"))
+		to_chat(user, span_warning("You fail to capture [M] in [src]!"))
 		return
 
 	if(buckle_mob(M))
@@ -79,12 +79,19 @@
 
 /datum/status_effect/nest_sustenance/xenohybrid
 	id = "nest_sustenance_xenohybrid"
+	alert_type = /atom/movable/screen/alert/status_effect/nest_sustenance/xenohybrid
 
 /datum/status_effect/nest_sustenance/xenohybrid/tick(seconds_between_ticks)
 	if(owner.stat == DEAD) //If the victim has died due to complications in the nest
 		qdel(src)
 		return
 
-	owner.adjust_nutrition(1 * seconds_per_tick)
+	owner.adjust_nutrition(1 * seconds_between_ticks)
 	if(owner.nutrition > NUTRITION_LEVEL_ALMOST_FULL)
 		owner.set_nutrition(NUTRITION_LEVEL_ALMOST_FULL) //Change from base bed: refills hunger instead of healing and normalizing body temperature.
+
+/atom/movable/screen/alert/status_effect/nest_sustenance/xenohybrid
+	name = "Nest Vitalization"
+	desc = "The resin pulsates around you, sending sustenance through your skin. It'd almost be comfortable, if you could just move enough to plug your nose..."
+	use_user_hud_icon = USER_HUD_STYLE_INHERIT
+	overlay_state = "nest_life"

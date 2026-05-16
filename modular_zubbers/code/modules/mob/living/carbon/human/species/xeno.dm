@@ -70,7 +70,7 @@
 
 /datum/action/cooldown/alien/make_structure/resin/roundstart
 	/// A list of all structures we can make-- Unlike a normal xeno resin spinner, these can't make walls or membranes (windows)
-	var/static/list/structures = list(
+	structures = list(
 		"xenohybrid resin nest" = /obj/structure/bed/nest/xenohybrid,
 	)
 
@@ -78,5 +78,5 @@
 	name = "Plant Weeds"
 	desc = "Plants some alien weeds."
 	button_icon_state = "alien_plant"
-	plasma_cost = 50
-	made_structure_type = /obj/structure/alien/weeds/node/xenohybrid // Nodes from this action have a lower range and grow much slower.
+	plasma_cost = 25
+	made_structure_type = /obj/structure/alien/weeds/xenohybrid/node // Nodes from this action have a lower range and grow much slower.

@@ -5,9 +5,9 @@
 	name = "xenohybrid resin floor"
 	desc = "A thick resin surface covers the floor. It seems weaker than what a full-blooded xenomorph would make."
 	max_integrity = 5
-	node_range = 2
+	node_range = 1 //Lower range makes it easier to control and keep from invading public spaces
 
-/obj/structure/alien/weeds/xenohybrid/proc/try_expand()
+/obj/structure/alien/weeds/xenohybrid/try_expand()
 	//we cant grow without a parent node
 	if(!parent_node)
 		return
@@ -26,7 +26,7 @@
 		if(check_weed)
 			continue
 		//spawn a new one in the turf
-		var/obj/structure/alien/weeds/xenohybrid = new_weed
+		var/obj/structure/alien/weeds/xenohybrid/new_weed
 		new_weed = new(check_turf)
 		//set the new one's parent node to our parent node
 		new_weed.parent_node = parent_node
