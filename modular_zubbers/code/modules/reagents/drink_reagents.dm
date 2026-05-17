@@ -604,7 +604,7 @@
 /datum/reagent/consumable/ethanol/orange_creamsicle
 	name = "Orange Creamsicle"
 	color = "#f8dd64" //(248, 221, 100)
-	description = "Zesty, tangy, and fruity orange punch, which instantly melts into a smooth, creamy, and mildly sweet vanilla ice cream core."
+	description = "A sweet, tangy, and fruity orange drink with a creamy finish."
 	boozepwr = 40
 	taste_description = "sweet creamy citrus and nostalgia"
 	quality = DRINK_VERYGOOD
@@ -614,4 +614,4 @@
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "orange_creamsicle"
 	name = "Orange Creamsicle"
-	desc = "A refreshing orange creamsicle in a glass"
+	desc = "A refreshing orange creamsicle drink in a glass, topped with a swirl of whipped cream and a slice of orange. The perfect drink for a hot station day, or whenever you want to feel like you're on a tropical vacation."
