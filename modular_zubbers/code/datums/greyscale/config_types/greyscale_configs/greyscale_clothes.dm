@@ -117,3 +117,7 @@
 /datum/greyscale_config/mothcoat/worn/teshari
 	name = "Moth Coat (Worn, Teshari)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/misc_teshari.dmi'
+
+/datum/greyscale_config/labcoat/worn/digi
+	name = "Labcoat (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/labcoat_digi.dmi'
