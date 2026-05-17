@@ -600,3 +600,18 @@
 	icon_state = "ira_de_zeus"
 	name = "Ira De Zeus"
 	desc = "A radiant ethereal drink that warms the body and tickles the tongue. The original recipie, fabled to have originated from the tables of Sprout's upper-caste clergy, would imply heresy of the highest order. Good thing it's only a fable... May shock non-ethereals."
+
+/datum/reagent/consumable/ethanol/orange_creamsicle
+	name = "Orange Creamsicle"
+	color = "#f8dd64" //(248, 221, 100)
+	description = "Zesty, tangy, and fruity orange punch, which instantly melts into a smooth, creamy, and mildly sweet vanilla ice cream core."
+	boozepwr = 40
+	taste_description = "sweet citrus and vanilla"
+	quality = DRINK_VERYGOOD
+
+/datum/glass_style/drinking_glass/orange_creamsicle
+	required_drink_type = /datum/reagent/consumable/ethanol/orange_creamsicle
+	icon = 'modular_skyrat/master_files/icons/obj/drinks.dmi'
+	icon_state = "orange_creamsicle"
+	name = "Orange Creamsicle"
+	desc = "A refreshing orange creamsicle in a glass"

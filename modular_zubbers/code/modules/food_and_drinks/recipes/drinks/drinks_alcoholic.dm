@@ -1,5 +1,10 @@
+// Bubbers exclusive drinks
 
-//Hemophage / Vampire drinks
+/datum/chemical_reaction/drink/orange_creamsicle
+	results = list(/datum/reagent/consumable/ethanol/orange_creamsicle = 5)
+	required_reagents = list(/datum/reagent/consumable/orangejuice = 2, /datum/reagent/consumable/cream = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/ethanol/vodka = 2)
+
+// //Hemophage / Vampire drinks
 
 /datum/chemical_reaction/drink/venetian_waltz
 	results = list(/datum/reagent/consumable/ethanol/venetian_waltz = 9)
