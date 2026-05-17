@@ -13,4 +13,5 @@
 	desc = "A refreshing blend of tangerine juice and a bubbly fizz. The soda can features a vibrant orange Teshari mascot."
 	icon = 'modular_zubbers/icons/obj/drinks/soda.dmi'
 	icon_state = "tangorine_soda"
-	list_reagents = list(/datum/reagent/consumable/orangejuice = 15, /datum/reagent/consumable/sodawater = 10, /datum/reagent/consumable/sugar = 5)
+	drink_type = SUGAR | FRUIT
+	list_reagents = list(/datum/reagent/consumable/orangejuice = 20, /datum/reagent/consumable/sodawater = 10)
