@@ -53,8 +53,6 @@
 	always_customizable = TRUE
 	sort_bottom = TRUE
 
-	damage_modifier = 10 // 10% damage reduction
-
 /datum/species/lycan/prepare_human_for_preview(mob/living/carbon/human/lycan)
 	var/main_color = "#362d23"
 	var/secondary_color = "#bb1607"
