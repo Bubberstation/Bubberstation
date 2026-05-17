@@ -19,7 +19,7 @@
 	projectile_damage_multiplier = 1.2
 	///below stats should match or exceed the murphy's
 	throwforce = 19
-	force = 10
+	force = 8
 
 	//is the hammer primed (ready to fire) or released (safe)?
 	var/hammer_is_primed = FALSE
@@ -33,7 +33,7 @@
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_imbued/weapon)
+	AddComponent(/datum/component/reagent_imbued/weapon, oil_effects = list(FORGE_EFFECT_FORCE = 4))
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
 		TRUE, \
