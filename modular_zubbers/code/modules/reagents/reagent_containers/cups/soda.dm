@@ -30,7 +30,7 @@
 #define SODA_FIZZINESS_SHAKE 5
 
 /obj/item/reagent_containers/cup/soda_cans/bubber
-	icon = 'modular_bubber/master_files/icons/obj/drinks.dmi'
+	icon = 'modular_zubbers/master_files/icons/obj/drinks.dmi'
 	icon_state = null
 
 /obj/item/reagent_containers/cup/soda_cans/bubber/attack(mob/M, mob/living/user)
