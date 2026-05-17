@@ -8280,6 +8280,10 @@
 	pixel_y = -1
 	},
 /obj/item/pen,
+/obj/machinery/door/poddoor/preopen{
+	id = "chemistry_shutters2";
+	name = "Chemistry Shutter"
+	},
 /turf/open/floor/iron,
 /area/station/medical/treatment_center)
 "aUu" = (
@@ -13639,8 +13643,7 @@
 	dir = 4;
 	alpha = 120
 	},
-/obj/item/radio/intercom/directional/east,
-/obj/structure/extinguisher_cabinet/directional/north,
+/obj/structure/extinguisher_cabinet/directional/east,
 /turf/open/floor/iron/dark/smooth_corner{
 	dir = 8
 	},
@@ -14140,7 +14143,6 @@
 /area/station/science/research)
 "bvh" = (
 /obj/machinery/chem_dispenser,
-/obj/structure/sign/poster/official/periodic_table/directional/north,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1;
 	alpha = 120
@@ -31675,6 +31677,18 @@
 	},
 /turf/open/floor/iron/freezer,
 /area/station/maintenance/port/aft)
+"eXr" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 2;
+	alpha = 120
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/mid_joiner{
+	dir = 2;
+	alpha = 120
+	},
+/obj/machinery/newscaster/directional/south,
+/turf/open/floor/iron/white/smooth_edge,
+/area/station/medical/chemistry)
 "eXx" = (
 /obj/machinery/camera/directional/east{
 	c_tag = "Research Division South"
@@ -43889,8 +43903,13 @@
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "jtt" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/obj/structure/flora/grass/jungle,
+/obj/structure/window/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "chemistry_shutters2";
+	name = "Chemistry Shutter"
+	},
+/turf/open/floor/grass,
 /area/station/medical/chemistry)
 "jtw" = (
 /obj/structure/disposalpipe/segment{
@@ -48855,7 +48874,6 @@
 	alpha = 120;
 	dir = 10
 	},
-/obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron/white/smooth_corner{
 	dir = 4
 	},
@@ -58446,6 +58464,15 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
+"oOE" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/window/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "chemistry_shutters2";
+	name = "Chemistry Shutter"
+	},
+/turf/open/floor/grass,
+/area/station/medical/treatment_center)
 "oOF" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -72371,6 +72398,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
+/obj/item/radio/intercom/directional/north,
 /turf/open/floor/iron/dark/small,
 /area/station/medical/chemistry)
 "uaA" = (
@@ -80740,6 +80768,7 @@
 	dir = 2;
 	alpha = 160
 	},
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/medbay/central)
 "xbR" = (
@@ -83362,6 +83391,10 @@
 "xYA" = (
 /obj/effect/turf_decal/tile/yellow/fourcorners,
 /obj/machinery/smartfridge/chemistry/preloaded,
+/obj/machinery/door/poddoor/preopen{
+	id = "chemistry_shutters2";
+	name = "Chemistry Shutter"
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/treatment_center)
 "xYD" = (
@@ -117600,11 +117633,11 @@ bwv
 bwv
 hTU
 hTU
-hDl
+hTU
 pJJ
-hDl
-hDl
-hDl
+hTU
+hTU
+hTU
 hxs
 bLK
 bMS
@@ -117861,7 +117894,7 @@ hTE
 vLU
 aUu
 sym
-hDl
+hTU
 bKJ
 rgU
 bMV
@@ -118118,7 +118151,7 @@ bip
 bCE
 bip
 fxI
-hDl
+bwv
 hxs
 bLK
 bMU
@@ -118363,7 +118396,7 @@ pAR
 bjQ
 hrW
 fXE
-jtt
+bwv
 bJG
 szf
 bui
@@ -118375,7 +118408,7 @@ bip
 bRs
 bip
 rlN
-hDl
+hTU
 hxs
 bLK
 bMX
@@ -118632,7 +118665,7 @@ gDa
 psY
 bip
 mUn
-hDl
+hTU
 hxs
 bLK
 iXB
@@ -118889,7 +118922,7 @@ bzS
 pPI
 bip
 fxI
-hDl
+bwv
 hxs
 bLK
 hUf
@@ -119146,7 +119179,7 @@ bip
 bip
 bip
 hGL
-hDl
+hTU
 hxs
 bLK
 bLK
@@ -119391,7 +119424,7 @@ bof
 wnm
 ofE
 llj
-hTU
+jtt
 bvh
 fKL
 ryQ
@@ -119402,8 +119435,8 @@ bip
 bip
 oSN
 bip
-fxI
-hDl
+eXr
+hTU
 hxs
 bIH
 hLb
@@ -119648,7 +119681,7 @@ sdT
 pVg
 bpN
 sWE
-hTU
+jtt
 btg
 bDR
 xjt
@@ -119660,7 +119693,7 @@ sQp
 qMM
 nfH
 pLW
-hDl
+bwv
 hxs
 bIH
 hLb
@@ -119907,7 +119940,7 @@ uYv
 xvy
 wvH
 bCQ
-bfG
+oOE
 xYA
 aUt
 bCQ
