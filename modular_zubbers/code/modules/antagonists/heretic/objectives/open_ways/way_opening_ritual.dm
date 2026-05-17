@@ -155,7 +155,7 @@
 		if (iter_living == user)
 			continue
 		to_chat(iter_living, span_warning("Reality shimmers around you. Someone in close proxmity is about to unleash a catastrophy...!"))
-	to_chat(user, span_warning("You begin to open the way..."))
+	to_chat(user, span_warning("You begin to open the way... you can move around during this, and defend yourself!"))
 	if (!do_after(user, 30 SECONDS, loc, IGNORE_HELD_ITEM|IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(prox_check), user, loc)))
 		to_chat(user, span_boldwarning("Failure! The way remain closed."))
 		return FALSE

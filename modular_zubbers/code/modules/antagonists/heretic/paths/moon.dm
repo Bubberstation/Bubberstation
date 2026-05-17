@@ -2,7 +2,7 @@
 	damage_modifier = 1.2
 
 /obj/projectile/moon_parade
-	range = 40
+	range = 20
 
 /obj/item/clothing/neck/heretic_focus/moon_amulet/examine(mob/user)
 	. = ..()

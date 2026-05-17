@@ -36,3 +36,13 @@
 		You cannot enter the Refuge while near other sentient beings, \
 		and you can be removed from it upon contact with antimagical artifacts. \
 		Lasts for one minute."
+
+/datum/action/cooldown/spell/pointed/burglar_finesse/before_cast(atom/cast_on)
+	. = ..()
+	if(. & SPELL_CANCEL_CAST)
+		return
+
+	var/turf/in_LOS = get_hearers_in_LOS(cast_range, owner)
+	if (!(cast_on in in_LOS))
+		owner.balloon_alert(owner, "need line of sight!")
+		return SPELL_CANCEL_CAST

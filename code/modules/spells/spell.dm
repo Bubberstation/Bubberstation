@@ -175,7 +175,7 @@
 		return FALSE
 
 	// BUBBER EDIT ADDITION - focusless spells can be inhibited
-	if (focusless_inhibitable && HAS_TRAIT(owner, TRAIT_MANSUS_INHIBITION))
+	if ((focusless_inhibitable || school == SCHOOL_FORBIDDEN) && HAS_TRAIT(owner, TRAIT_MANSUS_INHIBITION))
 		owner.balloon_alert(owner, "inhibited! cant cast!")
 		return FALSE
 	// BUBBER EDIT END
