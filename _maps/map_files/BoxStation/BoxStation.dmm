@@ -14459,6 +14459,7 @@
 /obj/item/stack/medical/suture,
 /obj/effect/turf_decal/tile/blue/full,
 /obj/structure/table/glass,
+/obj/machinery/airalarm/directional/west,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/treatment_center)
 "bwF" = (
@@ -15396,12 +15397,10 @@
 /turf/open/floor/iron/white,
 /area/station/medical/chemistry)
 "bCN" = (
-/obj/effect/mapping_helpers/requests_console/assistance,
 /obj/machinery/light/directional/west,
 /obj/effect/turf_decal/tile/blue/full,
 /obj/structure/table/glass,
 /obj/item/book/manual/wiki/medicine,
-/obj/machinery/requests_console/directional/west,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/treatment_center)
 "bCO" = (
@@ -17507,11 +17506,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/medical/glass{
-	name = "Chemistry Lab"
-	},
 /obj/effect/mapping_helpers/airlock/access/any/medical/chemistry,
 /obj/effect/turf_decal/tile/yellow/full,
+/obj/machinery/door/airlock/medical{
+	name = "Chemistry"
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/chemistry)
 "bLZ" = (
@@ -28111,7 +28110,12 @@
 	color = "#8ab4cb";
 	dir = 8
 	},
-/obj/machinery/firealarm/directional/south,
+/obj/machinery/camera/directional/south{
+	c_tag = "Stasis Center";
+	network = list("ss13","medbay")
+	},
+/obj/machinery/requests_console/directional/south,
+/obj/effect/mapping_helpers/requests_console/assistance,
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/treatment_center)
 "dAl" = (
@@ -33615,6 +33619,10 @@
 	},
 /obj/item/pen,
 /obj/item/folder/red,
+/obj/item/binoculars{
+	pixel_x = 5;
+	pixel_y = -13
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/medical)
 "fHt" = (
@@ -33740,10 +33748,10 @@
 /area/station/hallway/primary/fore)
 "fKL" = (
 /obj/structure/chair/office/light{
-	dir = 4
+	dir = 1
 	},
-/obj/effect/landmark/start/chemist,
 /obj/effect/turf_decal/trimline/neutral,
+/obj/effect/landmark/start/chemist,
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 1
 	},
@@ -38851,7 +38859,6 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard)
 "hGL" = (
-/obj/structure/extinguisher_cabinet/directional/south,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 2;
 	alpha = 120
@@ -38860,6 +38867,7 @@
 	dir = 2;
 	alpha = 120
 	},
+/obj/machinery/light/directional/south,
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/chemistry)
 "hGN" = (
@@ -53481,18 +53489,6 @@
 /obj/effect/turf_decal/trimline/brown/filled/warning,
 /turf/open/floor/iron,
 /area/station/cargo/office)
-"mUn" = (
-/obj/machinery/light/directional/south,
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 2;
-	alpha = 120
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/mid_joiner{
-	dir = 2;
-	alpha = 120
-	},
-/turf/open/floor/iron/white/smooth_edge,
-/area/station/medical/chemistry)
 "mUv" = (
 /obj/item/radio/intercom/directional/south,
 /obj/effect/turf_decal/tile/neutral{
@@ -56911,6 +56907,10 @@
 	dir = 8;
 	id = "medsecprivacy";
 	name = "Privacy Shutters"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "chemistry_shutters2";
+	name = "Chemistry Shutter"
 	},
 /turf/open/floor/plating,
 /area/station/security/checkpoint/medical)
@@ -60571,10 +60571,6 @@
 	dir = 10
 	},
 /obj/machinery/iv_drip,
-/obj/machinery/camera/directional/south{
-	c_tag = "Stasis Center";
-	network = list("ss13","medbay")
-	},
 /obj/effect/turf_decal/trimline/blue/filled/mid_joiner{
 	dir = 8
 	},
@@ -61696,12 +61692,13 @@
 /turf/open/floor/engine,
 /area/station/science/explab)
 "qbE" = (
-/obj/effect/spawner/random/medical/medkit,
-/obj/effect/turf_decal/tile/blue/full,
-/obj/structure/table/glass,
-/obj/machinery/airalarm/directional/west,
-/turf/open/floor/iron/dark/smooth_large,
-/area/station/medical/treatment_center)
+/obj/machinery/door/poddoor/preopen{
+	id = "chemistry_shutters2";
+	name = "Chemistry Shutter"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/station/medical/chemistry)
 "qcs" = (
 /obj/effect/turf_decal/trimline/yellow/filled/mid_joiner{
 	dir = 4;
@@ -64945,6 +64942,7 @@
 	dir = 2;
 	alpha = 120
 	},
+/obj/structure/extinguisher_cabinet/directional/south,
 /turf/open/floor/iron/white/smooth_edge,
 /area/station/medical/chemistry)
 "rlW" = (
@@ -66368,10 +66366,6 @@
 	pixel_x = -24
 	},
 /obj/structure/table/reinforced,
-/obj/item/binoculars{
-	pixel_x = 5;
-	pixel_y = 7
-	},
 /turf/open/floor/iron/dark/small,
 /area/station/security/checkpoint/medical)
 "rQR" = (
@@ -74063,13 +74057,6 @@
 	},
 /area/station/security/execution/transfer)
 "uId" = (
-/obj/effect/turf_decal/trimline/yellow/filled/mid_joiner{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/mid_joiner,
-/obj/effect/turf_decal/trimline/yellow/filled/mid_joiner{
-	dir = 4
-	},
 /obj/machinery/holopad,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red/opposingcorners,
@@ -76837,6 +76824,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
+/obj/effect/landmark/start/chemist,
 /turf/open/floor/iron/dark,
 /area/station/medical/pharmacy)
 "vGk" = (
@@ -77552,10 +77540,6 @@
 /turf/open/floor/wood,
 /area/station/maintenance/abandon_cafeteria)
 "vVd" = (
-/obj/effect/turf_decal/trimline/yellow/filled/mid_joiner,
-/obj/effect/turf_decal/trimline/yellow/filled/mid_joiner{
-	dir = 1
-	},
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /obj/effect/turf_decal/tile/neutral/opposingcorners{
@@ -117894,7 +117878,7 @@ hTE
 vLU
 aUu
 sym
-hTU
+qbE
 bKJ
 rgU
 bMV
@@ -118150,8 +118134,8 @@ bip
 bip
 bCE
 bip
-fxI
-bwv
+eXr
+hTU
 hxs
 bLK
 bMU
@@ -118664,8 +118648,8 @@ gDa
 gDa
 psY
 bip
-mUn
-hTU
+fxI
+qbE
 hxs
 bLK
 iXB
@@ -118921,8 +118905,8 @@ bzS
 bzS
 pPI
 bip
-fxI
-bwv
+hGL
+hTU
 hxs
 bLK
 hUf
@@ -119178,7 +119162,7 @@ bip
 bip
 bip
 bip
-hGL
+fxI
 hTU
 hxs
 bLK
@@ -119435,8 +119419,8 @@ bip
 bip
 oSN
 bip
-eXr
-hTU
+fxI
+qbE
 hxs
 bIH
 hLb
@@ -119693,7 +119677,7 @@ sQp
 qMM
 nfH
 pLW
-bwv
+hTU
 hxs
 bIH
 hLb
@@ -119940,10 +119924,10 @@ uYv
 xvy
 wvH
 bCQ
-oOE
+bCQ
 xYA
 aUt
-bCQ
+oOE
 bCQ
 bCQ
 okA
@@ -120200,7 +120184,7 @@ wQK
 bwD
 ooT
 hUg
-qbE
+klp
 bCN
 svm
 mQU
