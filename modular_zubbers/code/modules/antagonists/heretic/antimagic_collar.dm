@@ -57,6 +57,7 @@
 	. = ..()
 
 	radio = new /obj/item/radio/headset/headset_sec(src)
+	ADD_TRAIT(src, TRAIT_NO_STRIP, REF(src))
 
 /obj/item/clothing/neck/antimagic_collar/attack_self(mob/user, modifiers)
 	var/new_id = tgui_input_text(user, "Input the new ID.", "ID input", timeout = 20 SECONDS, max_length = 100)
@@ -113,6 +114,7 @@
 		radio.talk_into(src, "INHIBITION FAILURE in [our_area.name] for collar id [set_id]! Please check collar for signs of damage!", RADIO_CHANNEL_SECURITY, list(speech_span))
 
 	detach_clothing_traits(TRAIT_MANSUS_INHIBITION)
+	REMOVE_TRAIT(src, TRAIT_NO_STRIP, REF(src))
 	// still locked, though
 
 /obj/item/clothing/neck/antimagic_collar/emp_act(severity)
@@ -151,6 +153,7 @@
 		return
 
 	attach_clothing_traits(TRAIT_MANSUS_INHIBITION)
+	ADD_TRAIT(src, TRAIT_NO_STRIP, REF(src))
 
 	if (isliving(loc))
 		var/mob/living/wearer = loc
