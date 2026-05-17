@@ -12688,7 +12688,6 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "bcZ" = (
-/obj/machinery/light/directional/south,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
@@ -13552,15 +13551,7 @@
 /turf/closed/wall/r_wall,
 /area/station/engineering/atmos/office)
 "bgS" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
-	dir = 8
-	},
-/turf/open/floor/iron/white/corner{
-	dir = 1
-	},
+/turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
 "bgU" = (
 /obj/structure/rack,
@@ -14348,7 +14339,6 @@
 	width = 5
 	},
 /turf/open/space/basic,
-/area/space,
 /area/space)
 "bkS" = (
 /obj/structure/closet/emcloset,
@@ -14681,15 +14671,12 @@
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
 "bmU" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
-	cycle_id = "whiteship-dock"
+/obj/machinery/light/directional/south,
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/status_display/shuttle/directional/south{
+	shuttle_id = "arrivals_shuttle"
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
-/obj/machinery/door/airlock/external{
-	name = "Auxiliary Airlock"
-	},
-/turf/open/floor/plating,
+/turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "bmV" = (
 /obj/structure/closet/l3closet/scientist,
@@ -18566,14 +18553,9 @@
 /turf/open/floor/engine/vacuum,
 /area/station/engineering/atmos)
 "bMk" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden,
-/obj/machinery/door/firedoor,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "bMl" = (
@@ -20506,10 +20488,10 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/storage/tech)
 "bVK" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/turf/open/floor/iron/dark,
+/obj/machinery/light/directional/north,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "bVL" = (
 /obj/machinery/power/smes/engineering,
@@ -28076,7 +28058,10 @@
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "evg" = (
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "evB" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
@@ -28506,6 +28491,8 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "whiteship-dock"
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
 /obj/machinery/door/airlock/external{
 	name = "Auxiliary Airlock"
 	},
@@ -36576,10 +36563,12 @@
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
 "kjm" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 4
+/obj/machinery/light/small/directional/west,
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/components/unary/airlock_pump{
+	dir = 1
 	},
-/turf/open/floor/iron,
+/turf/open/floor/plating,
 /area/station/hallway/secondary/entry)
 "kjA" = (
 /obj/machinery/atmospherics/components/binary/passive_gate{
@@ -40184,6 +40173,17 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine)
+"mIp" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/iron/white/corner{
+	dir = 1
+	},
+/area/station/hallway/secondary/entry)
 "mIK" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -42891,8 +42891,11 @@
 /turf/open/floor/iron/white,
 /area/station/medical/cryo)
 "ovM" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "ovT" = (
 /obj/effect/turf_decal/stripes/line{
@@ -44694,7 +44697,7 @@
 /area/station/service/chapel/storage)
 "pzy" = (
 /obj/effect/turf_decal/stripes/line,
-/turf/open/floor/iron,
+/turf/open/floor/plating,
 /area/station/hallway/secondary/entry)
 "pAb" = (
 /obj/machinery/power/energy_accumulator/tesla_coil,
@@ -46862,10 +46865,14 @@
 /turf/open/floor/iron/freezer,
 /area/station/commons/toilet/restrooms)
 "qLZ" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden,
+/obj/machinery/door/firedoor,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "qMX" = (
@@ -46883,10 +46890,13 @@
 /turf/open/floor/iron/dark,
 /area/station/security/armory)
 "qNi" = (
-/obj/machinery/light/directional/north,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/turf/open/floor/iron,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "whiteship-dock"
+	},
+/obj/machinery/door/airlock/external{
+	name = "Auxiliary Airlock"
+	},
+/turf/open/floor/plating,
 /area/station/hallway/secondary/entry)
 "qNy" = (
 /obj/structure/table/reinforced,
@@ -54329,8 +54339,14 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/science/lower)
 "vvo" = (
+/obj/machinery/light/directional/north,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/machinery/camera/autoname/directional/north,
+/obj/machinery/computer/shuttle/arrivals/recall,
+/obj/machinery/status_display/shuttle/directional/north{
+	shuttle_id = "arrivals_shuttle"
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
@@ -56562,12 +56578,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/science/central)
 "wOt" = (
-/obj/machinery/light/small/directional/west,
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/components/unary/airlock_pump{
-	dir = 1
+/obj/structure/chair{
+	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
 "wOF" = (
 /obj/machinery/door/poddoor/preopen{
@@ -57509,15 +57523,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/station/cargo/miningfoundry)
-"xoi" = (
-/obj/machinery/light/directional/north,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/camera/autoname/directional/north,
-/obj/machinery/computer/shuttle/arrivals/recall,
-/turf/open/floor/iron,
-/area/station/hallway/secondary/entry)
 "xoo" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
@@ -77295,7 +77300,7 @@ uDj
 aXy
 aWK
 hXW
-bgS
+mIp
 bqv
 dux
 xeP
@@ -77310,8 +77315,8 @@ ewo
 bdV
 bqv
 kqL
-bmU
-wOt
+eJl
+kjm
 cJk
 aaa
 aaa
@@ -77553,22 +77558,22 @@ gfC
 ppQ
 hXW
 oPg
-qLZ
-hXW
-hXW
-aZx
-aaa
-aaa
-aaa
-aaa
-aaa
-aZx
-hXW
-hXW
-qNi
-uib
-eJl
 ovM
+hXW
+hXW
+aZx
+aaa
+aaa
+aaa
+aaa
+aaa
+aZx
+hXW
+hXW
+bVK
+uib
+qNi
+pzy
 cJk
 cfP
 aaa
@@ -78069,7 +78074,7 @@ hXW
 oPg
 ubq
 bop
-pzy
+bcZ
 aZx
 aaa
 aaa
@@ -78077,7 +78082,7 @@ aaa
 aaa
 aaa
 aZx
-vvo
+evg
 bop
 ubq
 fLM
@@ -78326,7 +78331,7 @@ hXW
 qJm
 baL
 bop
-bcZ
+bmU
 hXW
 aaa
 aaa
@@ -78334,7 +78339,7 @@ aaa
 aaa
 aaa
 hXW
-xoi
+vvo
 bop
 baL
 fLM
@@ -78583,7 +78588,7 @@ hXW
 oPg
 ubq
 bop
-pzy
+bcZ
 aZx
 aaa
 aaa
@@ -78591,7 +78596,7 @@ aaa
 aaa
 aaa
 aZx
-vvo
+evg
 bop
 ubq
 fLM
@@ -80144,7 +80149,7 @@ btM
 aZx
 hXW
 ozE
-bVK
+wOt
 tpF
 bAK
 eLG
@@ -80385,7 +80390,7 @@ ubq
 ukz
 ayz
 xwd
-kjm
+bMk
 qiz
 slb
 cBT
@@ -80401,7 +80406,7 @@ nCW
 bop
 bwq
 bxZ
-evg
+bgS
 bzA
 igo
 eLG
@@ -80646,7 +80651,7 @@ lmU
 pMG
 qdO
 tfS
-bMk
+qLZ
 jsa
 bkT
 nyJ
