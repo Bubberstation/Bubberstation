@@ -93,7 +93,7 @@
 ///This function modifies the parent item based on how much smithing oil is in our imbued reagent list. Needs to be defined in child subtypes.
 /datum/component/reagent_imbued/proc/apply_smithing_oil_bonus()
 	if(length(smithing_oil_effects) > 0)
-		var/new_oil_ratio = imbued_reagent.remove_reagent(/datum/reagent/fuel/oil/smithing, imbued_reagent.maximum_volume, safety = TRUE, include_subtypes = FALSE)
+		var/new_oil_ratio = imbued_reagent.remove_reagent(/datum/reagent/fuel/oil/smithing, imbued_reagent.maximum_volume, include_subtypes = FALSE)
 		var/divisor_temp_test = imbued_reagent.maximum_volume
 		new_oil_ratio /= imbued_reagent.maximum_volume
 		for(var/index in smithing_oil_effects)

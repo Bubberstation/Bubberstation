@@ -2,7 +2,7 @@
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action
 	name = "\improper handcrafted revolver"
-	desc = "A traditional-style cowboy revolver. It's single-action, so the hammer must be cocked back to cycle the round."
+	desc = "A traditional-style cowboy revolver. It's single-action, so <b>the hammer must be manually cocked back to cycle the round.</b>"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
 	icon_state = "revolver_preview"
 	icon_preview = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'

@@ -42,6 +42,20 @@
 	var/completion_applied_multiplier = 0
 	COOLDOWN_DECLARE(heating_remainder)
 
+/* Gives a given item the smithable component -- which allows it to be picked up with tongs, smithed with a hammer, and quenched in reagent.
+ *
+ * completion_needed: The number of quality points (increased by hammer strikes) required to finish the item.
+ * can_perfect: If perfect strikes are possible on this equipment piece.
+ * max_perfection: Maximum perfection points to fully perfect this piece of equipment.
+ * max_breakage: How many bad hits can be done before it breaks
+ * wait_time: Time between strikes needed for it to no longer be considered a bad hit
+ * on_quench: What function on the parent item to call when this item is quenched.
+ * on_passive_cool: What function on the parent item to call when this item loses all heat.
+ * on_forging_heat: What function on the parent item to call when this item is heated in a forge.
+ * color: The color to use when the parent item is heated.
+ * perfection_effects: What effects to apply based on the % perfection. (Associative list.)
+ * incompletion_effects: What penalties to apply based on how incomplete this item is at quench. (Associative list.)
+ */
 /datum/component/forge_smithable/Initialize(completion_needed, can_perfect, max_perfection, max_breakage, wait_time, datum/callback/on_quench = null, datum/callback/on_passive_cool = null, datum/callback/on_forging_heat = null, color = "#FF4400", list/perfection_effects = null, list/incompletion_effects = null)
 	if(!istype(parent, required_type))
 		return COMPONENT_INCOMPATIBLE
@@ -139,7 +153,7 @@
 		if(reagent_component.imbued_reagent.reagent_list.len >= 1 && !USER_CAN_REAGENT_IMBUE(user))
 			return ANVIL_HAMMER_HIT_CANNOT_WORK
 
-	if(HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING) && can_perfect_hit)
+	if(can_perfect_hit)
 		if(user.mind.get_skill_level(/datum/skill/smithing) >= SKILL_LEVEL_LEGENDARY)
 			return ANVIL_HAMMER_HIT_PERFECT
 		if(!COOLDOWN_FINISHED(user, perfect_strike_window) && COOLDOWN_FINISHED(user, striking_cooldown))
@@ -158,6 +172,11 @@
 
 ////////////////////// FOR ACTUAL SMITHING ACTIONS /////////////////////////
 
+/* Tries to apply a hit onto the item using the tool. Will calculate the appropriate hit quality and increase the completion based on that.
+ *
+ * user: The user who is trying to smith.
+ * tool: The tool they are using to smith with.
+ */
 /datum/component/forge_smithable/proc/anvil_work(mob/living/user, obj/item/tool)
 	if(COOLDOWN_FINISHED(src, heating_remainder))
 		bad_hit()
@@ -187,6 +206,13 @@
 	COOLDOWN_START(user, striking_cooldown, skill_modifier)
 	COOLDOWN_START(user, perfect_strike_window, skill_modifier + user.mind.get_skill_level(/datum/skill/smithing) DECISECONDS)
 
+/* Attempts to quench the item using the given reagents. The reagents source must fill certain criteria to be elligible to do this -- and various effects can apply depending on the reagents used and their temp.
+ *
+ * dunk_reagents: The reagents source to try and use.
+ * dunk_object: The container of the reagents source.
+ * user: The person trying to quench the item.
+ * show_message: Should we show a message of the quench outcome?
+ */
 /datum/component/forge_smithable/proc/try_quench(datum/reagents/dunk_reagents, dunk_object, mob/living/user, show_message = TRUE)
 	if(COOLDOWN_FINISHED(src, heating_remainder))
 		if(show_message)
@@ -224,8 +250,12 @@
 	if(!isnull(quench_callback))
 		quench_callback.Invoke(dunk_reagents, dunk_object, user)
 	return TRUE
-	//SEND_SIGNAL(parent_item, COMSIG_SMITHING_QUENCH, dunk_reagents, dunk_object, user)
 
+/* Heats the item up for smithing -- and also colors the item with heat colors if applicable.
+ *
+ * heat_time: The time until the item cools again.
+ * additive: If reheating an already-hot item extends the time or not.
+ */
 /datum/component/forge_smithable/proc/heat_for_smithing(heat_time, additive = FALSE)
 	if(!isnull(heat_color))
 		parent_item.add_atom_colour(color_transition_filter(heat_color, SATURATION_OVERRIDE), TEMPORARY_COLOUR_PRIORITY)
@@ -234,16 +264,31 @@
 	else
 		COOLDOWN_START(src, heating_remainder, heat_time)
 
+/* Sets the item's completion and perfection amount -- and applies the bonuses and penalties based on that.
+ *
+ * completion_amount: The completion points amount to set.
+ * perfection_amount: The perfection points amount to set.
+ */
 /datum/component/forge_smithable/proc/set_completion_and_perfection(completion_amount, perfection_amount)
 	quality_points = completion_amount
 	current_perfects = perfection_amount
 	apply_completion_perfection_modifiers(get_completion_ratio(), get_perfect_ratio())
 
+/* Sets the item's completion and perfection amount perentage -- and applies the bonus and penalties based on that.
+ *
+ * completion_ratio: The completion amount to set (as a decimal from 0.0 - 1.0 inclusive)
+ * perfection_ratio: The perfection amount to set (as a decimal from 0.0 - 1.0 inclusive)
+ */
 /datum/component/forge_smithable/proc/set_completion_and_perfection_ratios(completion_ratio, perfection_ratio)
 	quality_points = round(completion_ratio * completion_quality_points)
 	current_perfects = round(perfection_ratio * max_perfect_hits)
 	apply_completion_perfection_modifiers(completion_ratio, perfection_ratio)
 
+/* Applies the incompletion penalty and perfection bonus to the item with the given amounts.
+ *
+ * completion_ratio: The completion amount to set (as a decimal from 0.0 - 1.0 inclusive)
+ * perfection_ratio: The perfection amount to set (as a decimal from 0.0 - 1.0 inclusive)
+ */
 /datum/component/forge_smithable/proc/apply_completion_perfection_modifiers(completion_ratio, perfection_ratio)
 	for(var/index in quench_effects_perfection)
 		give_added_modifying_effect_to_item(index, perfection_ratio_applied, perfection_ratio, parent_item, quench_effects_perfection[index])
