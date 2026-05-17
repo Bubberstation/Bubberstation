@@ -230,6 +230,7 @@
 	spawn_text = "a pinch of chaos escaping the way before it finally shuts for good!"
 	var/static/list/spawnable_anomalies = list(
 		/obj/effect/anomaly/pyro = 500,
+		/obj/effect/anomaly/grav/high = 500,
 		/obj/effect/anomaly/hallucination = 500,
 		/obj/effect/anomaly/dimensional = 500,
 		/obj/effect/anomaly/bluespace = 300,
