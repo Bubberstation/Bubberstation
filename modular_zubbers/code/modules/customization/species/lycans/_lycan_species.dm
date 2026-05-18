@@ -77,6 +77,11 @@
 
 /datum/species/lycan/on_species_gain(mob/living/carbon/human/gainer, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
+	gainer.AddElement(/datum/element/inorganic_rejection)
+	gainer.dna.features["body_size"] = 2
+	gainer.maptext_height = 32 * gainer.dna.features["body_size"] //Adjust runechat height
+	gainer.mob_size = MOB_SIZE_LARGE
+	gainer.dna.update_body_size()
 
 	if (HAS_TRAIT(gainer, TRAIT_GAIAN_PHYSIQUE))
 		handle_gaian_physique(gainer)
