@@ -642,7 +642,7 @@
 	balloon_alert_to_viewers("setting [ceramic_item]")
 
 	if(!do_after(user, ceramic_speed, target = src, interaction_key = DOAFTER_SMITHING_FORGE))
-		balloon_alert("stopped setting [ceramic_item]")
+		balloon_alert(user, "stopped setting [ceramic_item]")
 		return
 
 	balloon_alert(user, "finished setting [ceramic_item]")
@@ -803,7 +803,7 @@
 	var/glassblowing_amount = BASELINE_HEATING_DURATION / user.mind.get_skill_modifier(/datum/skill/production, SKILL_SPEED_MODIFIER)
 
 	if(forge_temperature < MIN_FORGE_TEMP)
-		balloon_alert(user, "The temperature is not hot enough to start heating [blowing_item].")
+		balloon_alert(user, "not hot enough to start heating [blowing_item]")
 		return ITEM_INTERACT_SUCCESS
 
 	var/obj/item/glassblowing/molten_glass/find_glass = locate() in blowing_item.contents
@@ -899,3 +899,6 @@
 #undef SMOKE_STATE_NEUTRAL
 #undef SMOKE_STATE_BAD
 #undef SMOKE_STATE_NOT_COOKING
+
+#undef FORGE_FUMES_HEAT
+#undef FORGE_FUMES_VOLUME

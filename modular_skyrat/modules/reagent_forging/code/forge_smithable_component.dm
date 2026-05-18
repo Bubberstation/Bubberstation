@@ -328,3 +328,9 @@
 	COOLDOWN_DECLARE(striking_cooldown)
 	//the time it takes to prepare a perfect strike. should always be > striking_cooldown
 	COOLDOWN_DECLARE(perfect_strike_window)
+
+#undef ANVIL_HAMMER_HIT_GOOD
+#undef ANVIL_HAMMER_HIT_BAD
+#undef ANVIL_HAMMER_HIT_PERFECT
+#undef ANVIL_HAMMER_HIT_CANNOT_WORK
+#undef ANVIL_SMITHING_CHIP_QUALITY_BONUS

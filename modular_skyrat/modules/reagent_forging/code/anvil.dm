@@ -140,7 +140,6 @@
 			balloon_alert_to_viewers("hammering steadily...")
 			while(!should_stop_autohammering())
 				var/wait_between_swings = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) DECISECONDS
-				wait_between_swings *= smith_component.average_wait
 				wait_between_swings += AUTO_SMITHING_SPEED_PENALTY
 
 				if(!do_after(user, wait_between_swings, target = src, interaction_key = DOAFTER_SMITHING_ANVIL))
@@ -184,3 +183,5 @@
 	playsound(poor_target, 'sound/effects/magic/clockwork/fellowship_armory.ogg', 50, TRUE)
 	add_memory_in_range(poor_target, 7, /datum/memory/witness_vendor_crush, protagonist = poor_target, antognist = src)
 	return TRUE
+
+#undef AUTO_SMITHING_SPEED_PENALTY

@@ -3,8 +3,6 @@
 
 /// The number of hits you are set back when a bad hit is made
 #define BAD_HIT_PENALTY 3
-/// Speed of creating weapons
-#define WEAPON_ASSEMBLY_SPEED 2 SECONDS
 
 /obj/structure/reagent_crafting_bench
 	name = "forging workbench"
