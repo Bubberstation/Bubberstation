@@ -181,12 +181,23 @@
 /obj/structure/reagent_crafting_bench/proc/clear_recipe()
 	QDEL_NULL(selected_recipe)
 
-/obj/structure/reagent_crafting_bench/attackby(obj/item/attacking_item, mob/user, params)
-	if(istype(attacking_item, /obj/item/forging/complete))
+/obj/structure/reagent_crafting_bench/item_interaction(mob/living/user, obj/item/attacking_item, params)
+	if(istype(attacking_item, /obj/item/forging/complete) && user.combat_mode == FALSE)
 		attempt_place(attacking_item, user)
 		return TRUE
 
 	return ..()
+
+/obj/structure/reagent_crafting_bench/tong_act(mob/living/user, obj/item/tool)
+	var/obj/item/forging/forge_item = tool
+	add_fingerprint(user)
+	var/obj/obj_tong_search = locate() in forge_item.contents
+	if(obj_tong_search)
+		var/returner = item_interaction(user, obj_tong_search)
+		if(length(tool.contents) < 1)
+			forge_item.icon_state = "tong_empty"
+		return returner
+	return NONE
 
 /obj/structure/reagent_crafting_bench/mouse_drop_receive(atom/movable/attacking_item, mob/living/user, params)
 	. = ..()

@@ -43,6 +43,18 @@
 		. += span_notice("You could remove [contents[1]] with some <b>tongs</b>, or your bare hands.")
 	. += span_notice("You could <b>cut it apart</b> with a <b>welder</b>.")
 
+/obj/structure/reagent_anvil/attack_hand(mob/living/user, list/modifiers)
+	. = ..()
+	if(user.combat_mode)
+		return SECONDARY_ATTACK_CALL_NORMAL
+
+	if(length(contents) > 0)
+		var/obj/item/contained_item = contents[1]
+		user.put_in_hands(contained_item)
+		balloon_alert(user, "[contained_item] retrieved")
+		update_appearance()
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
 /obj/structure/reagent_anvil/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
@@ -76,6 +88,16 @@
 	new /obj/item/stack/sheet/iron/ten(get_turf(src))
 	return ..()
 
+/obj/structure/reagent_anvil/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(user.combat_mode)
+		return NONE
+
+	if(!isnull(tool.GetComponent(/datum/component/forge_smithable)))
+		tool.forceMove(src)
+		update_appearance()
+		return ITEM_INTERACT_SUCCESS
+	return NONE
+
 /obj/structure/reagent_anvil/tong_act(mob/living/user, obj/item/tool)
 	var/obj/item/forging/forge_item = tool
 	add_fingerprint(user)
@@ -88,10 +110,11 @@
 		return ITEM_INTERACT_SUCCESS
 
 	if(!obj_anvil_search && obj_tong_search)
-		obj_tong_search.forceMove(src)
-		update_appearance()
-		forge_item.icon_state = "tong_empty"
-		return ITEM_INTERACT_SUCCESS
+		var/returner = item_interaction(user, obj_tong_search)
+		if(length(tool.contents) < 1)
+			forge_item.icon_state = "tong_empty"
+		return returner
+	return NONE
 
 /obj/structure/reagent_anvil/hammer_act(mob/living/user, obj/item/tool)
 	//do we have a hammerable item?

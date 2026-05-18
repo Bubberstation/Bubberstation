@@ -49,14 +49,14 @@
 	if(imbued_reagent.reagent_list.len >= 1 && (HAS_TRAIT(examiner, TRAIT_KNOW_ADVANCED_SMITHING) || HAS_TRAIT(examiner, TRAIT_REAGENT_SCANNER)))
 		add_reagent_imbue_description(examine_list)
 
-	add_oil_imbue_effect(examine_list)
+	add_oil_imbue_effect_description(examine_list)
 
 /datum/component/reagent_imbued/proc/add_reagent_imbue_description(list/examine_list)
 	examine_list += span_notice(examine_imbued_description)
 	for (var/datum/reagent/reagent in imbued_reagent.reagent_list)
 		examine_list += span_notice("[reagent.volume] units of [reagent.name]")
 
-/datum/component/reagent_imbued/proc/add_oil_imbue_effect(list/examine_list)
+/datum/component/reagent_imbued/proc/add_oil_imbue_effect_description(list/examine_list)
 	if(smithing_oil_effects.len > 0)
 		var/list/effects_list = list()
 		for(var/i in smithing_oil_effects)
