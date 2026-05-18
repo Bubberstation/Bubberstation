@@ -77,23 +77,12 @@
 
 /datum/species/lycan/on_species_gain(mob/living/carbon/human/gainer, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
-	gainer.AddElement(/datum/element/inorganic_rejection)
-	gainer.dna.features["body_size"] = 2
-	gainer.maptext_height = 32 * gainer.dna.features["body_size"] //Adjust runechat height
-	gainer.mob_size = MOB_SIZE_LARGE
-	gainer.dna.update_body_size()
 
 	if (HAS_TRAIT(gainer, TRAIT_GAIAN_PHYSIQUE))
 		handle_gaian_physique(gainer)
 
 /datum/species/lycan/on_species_loss(mob/living/carbon/human/loser, datum/species/new_species, pref_load)
 	. = ..()
-	loser.RemoveElement(/datum/element/inorganic_rejection)
-	if(!loser.has_quirk(/datum/quirk/oversized))
-		loser.dna.features["body_size"] = loser?.client?.prefs?.read_preference(/datum/preference/numeric/body_size) || 1
-		loser.maptext_height = 32 * loser.dna.features["body_size"]
-		loser.mob_size = MOB_SIZE_HUMAN
-		loser.dna.update_body_size()
 
 	if (HAS_TRAIT(loser, TRAIT_GAIAN_PHYSIQUE))
 		handle_gaian_physique_loss(loser)
