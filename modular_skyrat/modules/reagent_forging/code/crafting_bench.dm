@@ -4,6 +4,8 @@
 /// The number of hits you are set back when a bad hit is made
 #define BAD_HIT_PENALTY 3
 
+#define WEAPON_ASSEMBLY_SPEED 3 SECONDS
+
 /obj/structure/reagent_crafting_bench
 	name = "forging workbench"
 	desc = "A crafting bench fitted with tools, securing mechanisms, and a steady surface for blacksmithing."
@@ -383,3 +385,4 @@
 
 #undef WEAPON_COMPLETION_WOOD_AMOUNT
 #undef BAD_HIT_PENALTY
+#undef WEAPON_ASSEMBLY_SPEED
