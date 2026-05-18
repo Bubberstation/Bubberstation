@@ -101,3 +101,23 @@
 /datum/greyscale_config/striped_dress/worn/teshari
 	name = "Striped dress (Worn, Teshari)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses_teshari.dmi'
+
+/datum/greyscale_config/peacoat/worn/digi
+	name = "Peacoat (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_digi.dmi'
+
+/datum/greyscale_config/peacoat/worn/teshari
+	name = "Peacoat (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/datum/greyscale_config/mothcoat/worn/digi
+	name = "Moth Coat (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/misc_digi.dmi'
+
+/datum/greyscale_config/mothcoat/worn/teshari
+	name = "Moth Coat (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/misc_teshari.dmi'
+
+/datum/greyscale_config/labcoat/worn/digi
+	name = "Labcoat (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/labcoat_digi.dmi'

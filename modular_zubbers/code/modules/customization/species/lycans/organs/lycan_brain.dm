@@ -3,6 +3,23 @@
 	desc = "A larger than average, albeit slightly smoother brain. The hypothalamus seems larger than normal." // I read in a random medical artical that the hypothalamus controls aggression.
 	actions_types = list(/datum/action/cooldown/spell/beast_form)
 	var/list/removed_quirks = list()
+	var/last_slot
+
+/obj/item/organ/brain/lycan/on_mob_insert(mob/living/carbon/brain_owner, special, movement_flags)
+	. = ..()
+
+	addtimer(CALLBACK(src, PROC_REF(try_getting_slot)), 0.1 SECONDS)
+
+// no remove. we want it to REMEMBER.
+
+/// A delayed getter for the current slot of the mob. Used because theres no easy way to access the client when a mob is spawend...
+/obj/item/organ/brain/lycan/proc/try_getting_slot()
+	if (last_slot)
+		return
+
+	var/client/target_client = owner?.client
+	if (!isnull(target_client))
+		last_slot = target_client.prefs.savefile.get_entry("default_slot")
 
 /obj/item/organ/brain/lycan/proc/enter_beast_form()
 	var/datum/species/human/cursekin/current_wolf = owner.dna.species
@@ -15,12 +32,30 @@
 			removed_quirks += bad_quirk.type
 			owner.remove_quirk(bad_quirk.type)
 	owner.visible_message(span_warning("[owner] grows massive, their body quickly getting covered in fur!"))
-	owner.set_species(current_wolf.lycanthropy_species, TRUE, TRUE, FALSE)
+	var/client/target_client = owner.client
+	if (!isnull(target_client))
+		var/name = owner.real_name
+		var/slot = target_client.prefs.read_preference(/datum/preference/numeric/cursekin_char_slot)
+		var/transfer = TRUE
+		if (isnull(last_slot))
+			last_slot = target_client.prefs.savefile.get_entry("default_slot")
+		target_client.prefs.load_character(slot)
+		if (!ispath(target_client.prefs.read_preference(/datum.preference/choiced/species), current_wolf.lycanthropy_species))
+			to_chat(owner, span_warning("Your selected slot is not a lycan! Defaulting to simply changing your species..."))
+			target_client.prefs.load_character(last_slot)
+			owner.set_species(current_wolf.lycanthropy_species, TRUE, TRUE, FALSE)
+			last_slot = null // allows for easier switching in later procs
+			transfer = FALSE
+
+		if (transfer)
+			target_client.prefs.safe_transfer_prefs_to_with_damage(owner)
+			owner.real_name = name
+			owner.name = name
+			owner.dna.update_dna_identity()
+
+			target_client.prefs.load_character(last_slot)
+
 	ADD_TRAIT(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT)
-	owner.dna.features["body_size"] = 2
-	owner.maptext_height = 32 * owner.dna.features["body_size"] //Adjust runechat height
-	owner.dna.update_body_size()
-	owner.mob_size = MOB_SIZE_LARGE
 	playsound(owner, 'modular_zubbers/code/modules/customization/species/lycans/transform.ogg', 50)
 
 /obj/item/organ/brain/lycan/proc/leave_beast_form()
@@ -28,13 +63,16 @@
 	if(isnull(current_wolf) && !HAS_TRAIT_FROM(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT))
 		return
 	owner.visible_message(span_warning("[owner] shrinks down, their fur receding!"))
-	owner.set_species(/datum/species/human/cursekin, TRUE, TRUE, FALSE)
+
+	if (last_slot)
+		var/client/target_client = owner.client
+		if (!isnull(target_client))
+			target_client.prefs.load_character(last_slot)
+			target_client.prefs.safe_transfer_prefs_to_with_damage(owner)
+			owner.dna.update_dna_identity()
+	else
+		owner.set_species(/datum/species/human/cursekin, TRUE, TRUE, FALSE)
 	REMOVE_TRAIT(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT)
-	if(!owner.has_quirk(/datum/quirk/oversized))
-		owner.dna.features["body_size"] = owner?.client?.prefs ?owner?.client?.prefs?.read_preference(/datum/preference/numeric/body_size) : 1
-		owner.maptext_height = 32 * owner.dna.features["body_size"]
-		owner.dna.update_body_size()
-		owner.mob_size = MOB_SIZE_HUMAN
 	playsound(owner, 'modular_zubbers/code/modules/customization/species/lycans/transform.ogg', 50)
 	if(removed_quirks)
 		for(var/typepath in removed_quirks)
