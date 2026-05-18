@@ -8,7 +8,7 @@
 	if(!HAS_TRAIT(src, TRAIT_NO_UNDERWEAR))
 		// underwear
 		if(underwear && !(underwear_visibility & UNDERWEAR_HIDE_UNDIES))
-			var/datum/sprite_accessory/underwear/underwear_accessory = SSaccessories.underwear_list[underwear]
+			var/datum/sprite_accessory/clothing/underwear/underwear_accessory = SSaccessories.underwear_list[underwear]
 			var/mutable_appearance/underwear_overlay
 			var/female_sprite_flags = FEMALE_UNIFORM_FULL // the default gender shaping
 			if(underwear_accessory)
@@ -26,7 +26,7 @@
 
 		// bra
 		if(bra && !(underwear_visibility & UNDERWEAR_HIDE_BRA))
-			var/datum/sprite_accessory/bra/bra_accessory = SSaccessories.bra_list[bra]
+			var/datum/sprite_accessory/clothing/bra/bra_accessory = SSaccessories.bra_list[bra]
 			if(bra_accessory)
 				var/mutable_appearance/bra_overlay = mutable_appearance(bra_accessory.icon, bra_accessory.icon_state, -BODY_LAYER)
 				if(!bra_accessory.use_static)
@@ -35,7 +35,7 @@
 
 		// undershirt
 		if(undershirt && !(underwear_visibility & UNDERWEAR_HIDE_SHIRT))
-			var/datum/sprite_accessory/undershirt/undershirt_accessory = SSaccessories.undershirt_list[undershirt]
+			var/datum/sprite_accessory/clothing/undershirt/undershirt_accessory = SSaccessories.undershirt_list[undershirt]
 			if(undershirt_accessory)
 				var/mutable_appearance/undershirt_overlay
 				if(dna.species.sexes && physique == FEMALE)
@@ -48,7 +48,7 @@
 
 		// socks
 		if(socks && num_legs >= 2 && !dna.species.mutant_bodyparts[FEATURE_TAUR] && !(underwear_visibility & UNDERWEAR_HIDE_SOCKS))
-			var/datum/sprite_accessory/socks/socks_accessory = SSaccessories.socks_list[socks]
+			var/datum/sprite_accessory/clothing/socks/socks_accessory = SSaccessories.socks_list[socks]
 			if(socks_accessory)
 				var/mutable_appearance/socks_overlay
 				var/socks_icon_state = socks_accessory.icon_state

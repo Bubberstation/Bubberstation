@@ -113,7 +113,7 @@
 				/obj/item/reagent_containers/cup/bottle/morphine = 2,
 				/obj/item/reagent_containers/spray/dinitrogen_plasmide = 2,
 				/obj/item/reagent_containers/spray/hercuri/chilled = 2,
-				/obj/item/stack/medical/gauze = 4, // for ALL wounds
+				/obj/item/stack/medical/wrap/gauze = 4, // for ALL wounds
 				/obj/item/healthanalyzer/no_medibot = 2, // disallows medibot use so its not wasted immediately on medibots
 				/obj/item/healthanalyzer/simple = 2,
 				/obj/item/storage/pill_bottle/liquid_solder = 1,

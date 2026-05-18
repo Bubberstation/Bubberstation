@@ -11,9 +11,10 @@
 			"icon" = "shield",
 			"products" = list(
 					/obj/item/clothing/suit/hooded/wintercoat/security/redsec = 6,
-					/obj/item/storage/backpack/security/redsec = 6,
-					/obj/item/storage/backpack/satchel/sec/redsec = 6,
-					/obj/item/storage/backpack/duffelbag/sec/redsec = 6,
+					/obj/item/storage/backpack/security = 6,
+					/obj/item/storage/backpack/satchel/sec = 6,
+					/obj/item/storage/backpack/duffelbag/sec = 6,
+					/obj/item/storage/backpack/messenger/sec = 6,
 					/obj/item/clothing/under/rank/security/officer/redsec = 6,
 					/obj/item/clothing/under/rank/security/peacekeeper/armadyne = 6,
 					/obj/item/clothing/under/rank/security/camo = 6,

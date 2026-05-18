@@ -119,6 +119,13 @@
 				/obj/item/clothing/under/tachawaiian/purple = 5,
 				/obj/item/clothing/under/tactichill = 5,
 				/obj/item/clothing/under/texas = 5,
+				/obj/item/clothing/under/greyscale/turtleneck = 5,
+				/obj/item/clothing/under/greyscale/turtleneck/skirt = 5,
+				/obj/item/clothing/under/greyscale/overalls = 5,
+				/obj/item/clothing/under/greyscale/overalls/skirt = 5,
+				/obj/item/clothing/under/pants/greyscale/big_pants = 5,
+				/obj/item/clothing/under/pants/greyscale/loose_pants = 5,
+				/obj/item/clothing/under/pants/greyscale/wide_leg = 5,
 			),
 		),
 
@@ -190,6 +197,9 @@
 				/obj/item/clothing/under/dress/skyrat/strapless = 5,
 				/obj/item/clothing/under/dress/bubber/midnight_gown = 5,
 				/obj/item/clothing/under/dress/bubber/giant_scarf = 5,
+				/obj/item/clothing/suit/greyscale/sweater = 5,
+				/obj/item/clothing/suit/greyscale/sweater/bow = 5,
+				/obj/item/clothing/suit/greyscale/furred_trenchcoat = 5,
 			),
 		),
 
