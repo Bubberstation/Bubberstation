@@ -50,7 +50,7 @@
 		. += span_notice("Use while in your hand to change what type of [src] you want.")
 	if(throwforce && !is_cyborg) //do not want to divide by zero or show the message to borgs who can't throw
 		var/damage_value
-		switch(CEILING(MAX_LIVING_HEALTH / throwforce, 1)) //throws to crit a human
+		switch(ceil(MAX_LIVING_HEALTH / throwforce)) //throws to crit a human
 			if(1 to 3)
 				damage_value = "superb"
 			if(4 to 6)
@@ -1121,8 +1121,26 @@
 	merge_type = /obj/item/stack/tile/pod
 	tile_reskin_types = list(
 		/obj/item/stack/tile/pod,
+		// BUBBER EDIT BEGIN
+		/obj/item/stack/tile/pod/edge,
+		/obj/item/stack/tile/pod/half,
+		/obj/item/stack/tile/pod/corner,
+		/obj/item/stack/tile/pod/large,
+		// BUBBER EDIT END
 		/obj/item/stack/tile/pod/light,
+		// BUBBER EDIT BEGIN
+		/obj/item/stack/tile/pod/light/edge,
+		/obj/item/stack/tile/pod/light/half,
+		/obj/item/stack/tile/pod/light/corner,
+		/obj/item/stack/tile/pod/light/large,
+		// BUBBER EDIT END
 		/obj/item/stack/tile/pod/dark,
+		// BUBBER EDIT BEGIN
+		/obj/item/stack/tile/pod/dark/edge,
+		/obj/item/stack/tile/pod/dark/half,
+		/obj/item/stack/tile/pod/dark/corner,
+		/obj/item/stack/tile/pod/dark/large,
+		// BUBBER EDIT END
 		)
 
 /obj/item/stack/tile/pod/light

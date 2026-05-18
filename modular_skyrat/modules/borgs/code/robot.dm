@@ -110,8 +110,9 @@
 
 /mob/living/silicon/robot/update_module_innate()
 	..()
-	if(hands)
-		hands.icon = (model.model_select_alternate_icon ? model.model_select_alternate_icon : initial(hands.icon))
+	var/atom/movable/screen/robot_hands = hud_used?.screen_objects[HUD_CYBORG_HANDS]
+	if(robot_hands)
+		robot_hands.icon = (model.model_select_alternate_icon ? model.model_select_alternate_icon : initial(robot_hands.icon))
 
 /**
  * Safe check of the cyborg's model_features list.

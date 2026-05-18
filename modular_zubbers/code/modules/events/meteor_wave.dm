@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 
 /datum/round_event/meteor_wave
 	/// Time we give before the wave for cargo to order / engineering to set up meteor shields
-	var/warning_time = 30 EVENT_SECONDS
+	var/warning_time = 210 EVENT_SECONDS
 	/// Number of SSevent ticks for the wave to last (TG original: 60)
 	var/wave_duration = 45
 	/// Prefix for the announcement
@@ -96,7 +96,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 	if(fake)
 		return
 
-	if(warning_time > 180 EVENT_SECONDS)
+	if(warning_time > /datum/round_event/meteor_wave::warning_time)
 		addtimer(CALLBACK(src, PROC_REF(meteor_reminder)), ((start_when * 20) - 15 SECONDS))
 
 /datum/round_event/meteor_wave/proc/meteor_reminder()

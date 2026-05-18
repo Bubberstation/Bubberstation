@@ -9,11 +9,6 @@ GLOBAL_LIST_INIT(mute_bits, list(
 
 GLOBAL_DATUM_INIT(admin_state, /datum/ui_state/admin_state, new)
 
-/datum/ui_state/admin_state/can_use_topic(src_object, mob/user)
-	if(check_rights_for(user.client, R_ADMIN))
-		return UI_INTERACTIVE
-	return UI_CLOSE
-
 GLOBAL_LIST_INIT(pp_limbs, list(
 	"Head" 		= BODY_ZONE_HEAD,
 	"Left leg" 	= BODY_ZONE_L_LEG,

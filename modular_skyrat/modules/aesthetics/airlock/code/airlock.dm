@@ -142,7 +142,7 @@
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/command.dmi'
 
 /obj/machinery/door/airlock/security
-	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/security.dmi'
+	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/security2.dmi'
 
 /obj/machinery/door/airlock/security/old
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/security2.dmi'

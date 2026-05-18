@@ -221,7 +221,7 @@
 	l_pocket = /obj/item/restraints/handcuffs
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/science = 1,
-		/obj/item/gun/energy/e_gun/advtaser = 1,
+		/obj/item/security_voucher/primary = 1,
 		/obj/item/holosign_creator/security = 1
 	)
 
@@ -327,7 +327,7 @@
 	l_pocket = /obj/item/restraints/handcuffs
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/medical = 1,
-		/obj/item/gun/energy/e_gun/advtaser = 1,
+		/obj/item/security_voucher/primary = 1,
 		/obj/item/holosign_creator/security = 1
 	)
 
@@ -433,7 +433,7 @@
 	l_pocket = /obj/item/restraints/handcuffs
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/engineering = 1,
-		/obj/item/gun/energy/e_gun/advtaser = 1,
+		/obj/item/security_voucher/primary = 1,
 		/obj/item/holosign_creator/security = 1
 	)
 
@@ -540,7 +540,7 @@
 	l_pocket = /obj/item/restraints/handcuffs
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/cargo = 1,
-		/obj/item/gun/energy/e_gun/advtaser = 1,
+		/obj/item/security_voucher/primary = 1,
 		/obj/item/holosign_creator/security = 1
 	)
 
@@ -639,7 +639,7 @@
 	r_pocket = /obj/item/reagent_containers/spray/pepper
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/service = 1,
-		/obj/item/gun/energy/e_gun/advtaser = 1,
+		/obj/item/security_voucher/primary = 1,
 		/obj/item/holosign_creator/security = 1
 	)
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses

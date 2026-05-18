@@ -66,8 +66,7 @@
 		if(victim.IsSleeping())
 			regen_ticks_current += 0.5
 
-	if(limb.current_gauze)
-		regen_ticks_current += (1-limb.current_gauze.splint_factor)
+	regen_ticks_current += 1 - limb.get_splint_factor()
 
 	if(regen_ticks_current > regen_ticks_needed)
 		if(!victim || !limb)
@@ -97,37 +96,13 @@
 			limb.receive_damage(brute=rand(3,7))
 			return COMPONENT_CANCEL_ATTACK_CHAIN
 
-/datum/wound/muscle/get_examine_description(mob/user)
-	if(!limb.current_gauze)
-		return ..()
-
-	var/list/msg = list()
-	if(!limb.current_gauze)
-		msg += "[victim.p_Their()] [parse_zone(limb.body_zone)] [examine_desc]"
-	else
-		var/absorption_capacity = ""
-		// how much life we have left in these bandages
-		switch(limb.current_gauze.absorption_capacity)
-			if(0 to 1.25)
-				absorption_capacity = "just barely"
-			if(1.25 to 2.75)
-				absorption_capacity = "loosely"
-			if(2.75 to 4)
-				absorption_capacity = "mostly"
-			if(4 to INFINITY)
-				absorption_capacity = "tightly"
-
-		msg += "[victim.p_Their()] [parse_zone(limb.body_zone)] is [absorption_capacity] fastened with a [limb.current_gauze.name]!"
-
-	return "<B>[msg.Join()]</B>"
-
 /// Moderate (Muscle Tear)
 /datum/wound/muscle/moderate
 	name = "Muscle Tear"
 	desc = "Patient's muscle has torn, causing serious pain and reduced limb functionality."
 	treat_text = "A tight splint on the affected limb, as well as plenty of rest and sleep."
 	examine_desc = "appears unnaturallly red and swollen"
-	occur_text = "swells up, it's skin turning red"
+	occur_text = "swells up, its skin turning red"
 	severity = WOUND_SEVERITY_MODERATE
 	interaction_efficiency_penalty = 1.5
 	limp_slowdown = 2
@@ -152,7 +127,7 @@
 	desc = "Patient's tendon has been severed, causing significant pain and near uselessness of limb."
 	treat_text = "A tight splint on the affected limb, as well as plenty of rest and sleep."
 	examine_desc = "is limp and awkwardly twitching, skin swollen and red"
-	occur_text = "twists in pain and goes limp, it's tendon ruptured"
+	occur_text = "twists in pain and goes limp, its tendon ruptured"
 	severity = WOUND_SEVERITY_SEVERE
 	interaction_efficiency_penalty = 2
 	limp_slowdown = 5
