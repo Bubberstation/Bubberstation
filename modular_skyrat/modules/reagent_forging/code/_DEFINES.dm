@@ -70,7 +70,10 @@
 			else
 				previous_armor_modifier = indexed_armor.generate_new_with_modifiers(list(ARMOR_ALL = new_modifier))
 
-			item.set_armor(item.get_armor().add_other_armor(new_armor_modifier).subtract_other_armor(previous_armor_modifier))
+			var/datum/armor/newarmor = item.get_armor()
+			newarmor = newarmor.add_other_armor(new_armor_modifier)
+			newarmor = newarmor.subtract_other_armor(previous_armor_modifier)
+			item.set_armor(newarmor)
 		if(FORGE_EFFECT_ARMORPEN)
 			var/new_armorpen_modifier = new_modifier * max_effect
 			var/previous_armorpen_modifier = old_modifier * max_effect
