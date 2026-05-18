@@ -10,6 +10,13 @@
 	// remember what the name was before activation
 	var/original_name
 
+//BUBBER EDIT - Dullahan Hydra quirk
+/datum/quirk/hydra/is_species_appropriate(datum/species/mob_species)
+	if(ispath(mob_species, /datum/species/dullahan))
+		return FALSE
+	return ..()
+//BUBBER EDIT END
+
 /datum/quirk/hydra/add(client/client_source)
 	var/mob/living/carbon/human/hydra = quirk_holder
 	var/datum/action/innate/hydra/spell = new(hydra)
