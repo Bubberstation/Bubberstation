@@ -425,12 +425,13 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	*/
 		if(mobs.client)
 			shake_camera(M = mobs, duration = 3.2 SECONDS, strength = 0.5)
-			mobs.playsound_local(
-				turf_source = mob_turf,
-				soundin = alert_sound,
-				vol = 90,
-				vary = FALSE,
-			)
+			if(mobs.client.prefs?.read_preference(/datum/preference/toggle/sound_announcements))
+				mobs.playsound_local(
+					turf_source = mob_turf,
+					soundin = alert_sound,
+					vol = 90,
+					vary = FALSE,
+				)
 	/* Shut up Skyrat priority announcer
 	//SKYRAT EDIT ADDITON BEGIN
 	if(!SSmapping.level_has_any_trait(z, ZTRAIT_STATION)) // SHUT THE FUCK UP ABANDONED STATIONS, I DON'T CARE
