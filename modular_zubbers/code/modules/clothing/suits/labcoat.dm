@@ -47,11 +47,12 @@
 	acid = 45
 
 /obj/item/clothing/suit/toggle/labcoat/technical/cargo
-	name = "science technical jacket"
+	name = "cargo technical jacket"
 	desc = "A comfortable jacket in science purple."
 	icon_state = "technical_cargo"
 
 /obj/item/clothing/suit/toggle/labcoat/technical/cargo/guard
+	name = "cargo praetorian jacket"
 	armor_type = /datum/armor/dept_guard
 
 /obj/item/clothing/suit/toggle/labcoat/technical/engineer
@@ -104,6 +105,7 @@
 
 /obj/item/clothing/suit/toggle/labcoat/technical/medical/black/guard
 	name = "medical praetorian jacket"
+	armor_type = /datum/armor/dept_guard
 
 /obj/item/clothing/suit/toggle/labcoat/technical/science
 	name = "science technical jacket"
