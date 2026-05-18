@@ -89,6 +89,8 @@
 
 /datum/species/lycan/proc/handle_gaian_physique(mob/living/carbon/human/gainer)
 	damage_modifier += 30 // bonus percent damgae reduction
+	stunmod = 0.5
+	gainer.physiology.stamina_mod *= 0.25
 
 	var/obj/item/bodypart/arm/l_arm = gainer.get_bodypart(BODY_ZONE_L_ARM)
 	var/obj/item/bodypart/arm/r_arm = gainer.get_bodypart(BODY_ZONE_R_ARM)
@@ -105,6 +107,9 @@
 	ADD_TRAIT(gainer, TRAIT_HARDLY_WOUNDED, SPECIES_TRAIT)
 	ADD_TRAIT(gainer, TRAIT_IGNORESLOWDOWN, SPECIES_TRAIT)
 	ADD_TRAIT(gainer, TRAIT_FEARLESS, SPECIES_TRAIT)
+	ADD_TRAIT(gainer, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, SPECIES_TRAIT)
+	ADD_TRAIT(gainer, TRAIT_NO_STAGGER, SPECIES_TRAIT)
+	ADD_TRAIT(gainer, TRAIT_NO_THROW_HITPUSH, SPECIES_TRAIT)
 
 	gainer.AddComponent( \
 		/datum/component/regenerator, \
@@ -121,6 +126,12 @@
 	REMOVE_TRAIT(loser, TRAIT_HARDLY_WOUNDED, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_IGNORESLOWDOWN, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_FEARLESS, SPECIES_TRAIT)
+	REMOVE_TRAIT(loser, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, SPECIES_TRAIT)
+	REMOVE_TRAIT(loser, TRAIT_NO_STAGGER, SPECIES_TRAIT)
+	REMOVE_TRAIT(loser, TRAIT_NO_THROW_HITPUSH, SPECIES_TRAIT)
+
 	qdel(loser.GetComponent(/datum/component/regenerator))
+
+	loser.physiology.stamina_mod *= 4
 
 	// already lost the limb shit
