@@ -71,6 +71,7 @@
 	admin_notes = "No air between pods. Command pod is slightly longer to fit the console. Funny idea courtesy of a friend."
 	credit_cost = CARGO_CRATE_VALUE * 1.5
 	occupancy_limit = "36"
+	emag_only = TRUE
 
 /datum/map_template/shuttle/emergency/stockade
 	prefix = "_maps/shuttles/zubbers/"
@@ -80,3 +81,24 @@
 	admin_notes = "Big and chonky, where every door is a secure door. Features turrets used on the Raven shuttle. Not terribly special otherwise."
 	credit_cost = CARGO_CRATE_VALUE * 125
 	occupancy_limit = "80"
+
+/datum/map_template/shuttle/emergency/imfedupbutgold
+	prefix = "_maps/shuttles/zubbers/"
+	suffix = "imfedupbutgold"
+	name = "How's your sex life (Turbo Gold Premium Supporter's Edition)"
+	description = "You can love someone deep inside your heart, and there is nothing wrong with it. If a lot of people love each other, the world would be a better place to live. Now with more gold."
+	admin_notes = "Just, why?"
+	occupancy_limit = "5"
+	emag_only = TRUE
+	credit_cost = 1000000
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
+
+/datum/map_template/shuttle/emergency/vigilante
+	prefix = "_maps/shuttles/zubbers/"
+	suffix = "vigilante"
+	name = "SLRSV Vigilante"
+	description = ""
+	admin_notes = ""
+	occupancy_limit = ""
+	emag_only = TRUE
+	credit_cost = 1
