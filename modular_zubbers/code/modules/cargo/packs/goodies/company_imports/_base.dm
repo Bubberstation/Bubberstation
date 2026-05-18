@@ -21,7 +21,7 @@
 	if(CONFIG_GET(flag/permit_pins) && item_type && istype(item_type, /obj/item/gun))
 		desc += " The gun will come with a permit pin installed."
 
-/datum/supply_pack/company_import/generate(atom/A, datum/bank_account/paying_account)
+/datum/supply_pack/company_import/generate(atom/A, datum/bank_account/paying_account, crate_override)
 	. = ..()
 	var/datum/bank_account/cargo_dep = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	cargo_dep.account_balance += round(cost * CARGO_CUT)

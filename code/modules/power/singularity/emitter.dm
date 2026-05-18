@@ -157,6 +157,7 @@
 	var/mutable_appearance/overlay = mutable_appearance(icon, "emitter_overlay")
 	overlay.color = laser_color
 	. += overlay
+	. += emissive_appearance(icon, "emitter_overlay", src, alpha = src.alpha)
 
 /obj/machinery/power/emitter/update_icon_state()
 	if(panel_open)
@@ -328,14 +329,10 @@
 		return remove_gun(user)
 	if(panel_open && diskie)
 		return remove_disk(user)
-	default_deconstruction_crowbar(item)
-	return TRUE
+	return default_deconstruction_crowbar(user, item)
 
 /obj/machinery/power/emitter/screwdriver_act(mob/living/user, obj/item/item)
-	if(..())
-		return TRUE
-	default_deconstruction_screwdriver(user, "[base_icon_state]_open", base_icon_state, item)
-	return TRUE
+	return default_deconstruction_screwdriver(user, item)
 
 /// Attempt to toggle the controls lock of the emitter
 /obj/machinery/power/emitter/proc/togglelock(mob/user)

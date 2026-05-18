@@ -23,7 +23,7 @@
 	casing_ejector = FALSE
 	bolt_type = BOLT_TYPE_NO_BOLT
 
-/obj/item/gun/ballistic/derringer/process_fire() //It's a derringer, damage drops off rather quickly so it's not used as a cheap pocket rifle.
+/obj/item/gun/ballistic/derringer/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0) //It's a derringer, damage drops off rather quickly so it's not used as a cheap pocket rifle.
 	if(chambered.loaded_projectile)
 		var/projectileDamage = chambered.loaded_projectile.damage
 		var/projectileStamina = chambered.loaded_projectile.stamina

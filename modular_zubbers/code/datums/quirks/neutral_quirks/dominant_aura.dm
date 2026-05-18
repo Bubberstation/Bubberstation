@@ -127,9 +127,11 @@
 		return
 	if(!TIMER_COOLDOWN_FINISHED(quirk_holder, DOMINANT_COOLDOWN_SNAP))
 		return
+	if(!quirk_holder.client)
+		return
 
 	for(var/mob/living/carbon/human/sub in hearers(world.view / 2, quirk_holder))
-		if(sub == quirk_holder || sub.stat == DEAD)
+		if(sub == quirk_holder || sub.stat == DEAD || (HAS_TRAIT(sub, TRAIT_QUICKREFLEXES)) || !sub.client)
 			continue
 		if(!sub.has_quirk(/datum/quirk/well_trained))
 			continue
@@ -170,7 +172,7 @@
 
 //Gotta check for borg module
 	for(var/mob/living/silicon/robot/borg_sub in hearers(world.view / 2, quirk_holder))
-		if(!borg_sub.has_quirk(/datum/quirk/well_trained) || (borg_sub == quirk_holder))
+		if(!borg_sub.has_quirk(/datum/quirk/well_trained) || (borg_sub == quirk_holder) || (HAS_TRAIT(borg_sub, TRAIT_QUICKREFLEXES)) || !borg_sub.client)
 			continue
 		if(borg_sub.stat == DEAD)
 			continue

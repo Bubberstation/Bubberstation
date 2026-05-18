@@ -200,333 +200,333 @@
 /datum/sprite_accessory/legs/digitigrade_lizard
 	name = DIGITIGRADE_LEGS
 
-/datum/sprite_accessory/socks
+/datum/sprite_accessory/clothing/socks
 	icon = 'modular_skyrat/master_files/icons/mob/clothing/underwear.dmi'
 	use_static = TRUE
 
-/datum/sprite_accessory/socks/socks_norm
+/datum/sprite_accessory/clothing/socks/socks_norm
 	name = "Normal (Greyscale)"
 	icon_state = "white_norm"
 	use_static = null
 
-/datum/sprite_accessory/socks/stirrups_norm
+/datum/sprite_accessory/clothing/socks/stirrups_norm
 	name = "Normal Stirrups (Greyscale)"
 	icon_state = "socks_norm-stir"
 	use_static = null
 
-/datum/sprite_accessory/socks/socks_short
+/datum/sprite_accessory/clothing/socks/socks_short
 	name = "Short (Greyscale)"
 	icon_state = "white_short"
 	use_static = null
 
 
-/datum/sprite_accessory/socks/socks_knee
+/datum/sprite_accessory/clothing/socks/socks_knee
 	name = "Knee-high (Greyscale)"
 	icon_state = "white_knee"
 	use_static = null
 
-/datum/sprite_accessory/socks/stirrups_knee
+/datum/sprite_accessory/clothing/socks/stirrups_knee
 	name = "Knee-high Stirrups"
 	icon_state = "socks_knee-stir"
 	use_static = null
 
-/datum/sprite_accessory/socks/striped_knee
+/datum/sprite_accessory/clothing/socks/striped_knee
 	name = "Knee-high - Striped"
 	icon_state = "striped_knee"
 	use_static = null
 
-/datum/sprite_accessory/socks/thin_knee
+/datum/sprite_accessory/clothing/socks/thin_knee
 	name = "Knee-high - Thin"
 	icon_state = "thin_knee"
 	use_static = null
 
-/datum/sprite_accessory/socks/socks_thigh
+/datum/sprite_accessory/clothing/socks/socks_thigh
 	name = "Thigh-high (Greyscale)"
 	icon_state = "white_thigh"
 	use_static = null
 
-/datum/sprite_accessory/socks/stirrups_thigh
+/datum/sprite_accessory/clothing/socks/stirrups_thigh
 	name = "Thigh-high Stirrups (Greyscale)"
 	icon_state = "socks_thigh-stir"
 	use_static = null
 
-/datum/sprite_accessory/socks/striped_thigh
+/datum/sprite_accessory/clothing/socks/striped_thigh
 	name = "Thigh-high (Striped)"
 	icon_state = "striped_thigh"
 	use_static = null
 
-/datum/sprite_accessory/socks/striped_thigh/stirrups
+/datum/sprite_accessory/clothing/socks/striped_thigh/stirrups
 	name = "Thigh-high (Striped Stirrups)"
 	icon_state = "striped_thigh-stir"
 	use_static = null
 
-/datum/sprite_accessory/socks/leggings/stirrups/gym
+/datum/sprite_accessory/clothing/socks/leggings/stirrups/gym
 	name = "Thigh-high Stirrups (black with stripe)"
 	icon_state = "leggings-stir-black"
 	use_static = TRUE
 
-/datum/sprite_accessory/socks/bee_thigh
+/datum/sprite_accessory/clothing/socks/bee_thigh
 	name = "Thigh-high - Bee (Old)"
 	icon_state = "bee_thigh_old"
 
-/datum/sprite_accessory/socks/bee_knee
+/datum/sprite_accessory/clothing/socks/bee_knee
 	name = "Knee-high - Bee (Old)"
 	icon_state = "bee_knee_old"
 
-/datum/sprite_accessory/socks/christmas_norm
+/datum/sprite_accessory/clothing/socks/christmas_norm
 	name = "Normal - Christmas"
 	icon_state = "christmas_norm"
 
-/datum/sprite_accessory/socks/candycaner_norm
+/datum/sprite_accessory/clothing/socks/candycaner_norm
 	name = "Normal - Red Candy Cane"
 	icon_state = "candycaner_norm"
 
-/datum/sprite_accessory/socks/candycaneg_norm
+/datum/sprite_accessory/clothing/socks/candycaneg_norm
 	name = "Normal - Green Candy Cane"
 	icon_state = "candycaneg_norm"
 
-/datum/sprite_accessory/socks/christmas_knee
+/datum/sprite_accessory/clothing/socks/christmas_knee
 	name = "Knee-High - Christmas"
 	icon_state = "christmas_knee"
 
-/datum/sprite_accessory/socks/candycaner_knee
+/datum/sprite_accessory/clothing/socks/candycaner_knee
 	name = "Knee-High - Red Candy Cane"
 	icon_state = "candycaner_knee"
 
-/datum/sprite_accessory/socks/candycaneg_knee
+/datum/sprite_accessory/clothing/socks/candycaneg_knee
 	name = "Knee-High - Green Candy Cane"
 	icon_state = "candycaneg_knee"
 
-/datum/sprite_accessory/socks/christmas_thigh
+/datum/sprite_accessory/clothing/socks/christmas_thigh
 	name = "Thigh-high - Christmas"
 	icon_state = "christmas_thigh"
 
-/datum/sprite_accessory/socks/candycaner_thigh
+/datum/sprite_accessory/clothing/socks/candycaner_thigh
 	name = "Thigh-high - Red Candy Cane"
 	icon_state = "candycaner_thigh"
 
-/datum/sprite_accessory/socks/candycaneg_thigh
+/datum/sprite_accessory/clothing/socks/candycaneg_thigh
 	name = "Thigh-high - Green Candy Cane"
 	icon_state = "candycaneg_thigh"
 
-/datum/sprite_accessory/socks/rainbow_thigh
+/datum/sprite_accessory/clothing/socks/rainbow_thigh
 	name = "Thigh-high - Rainbow"
 	icon_state = "rainbow_thigh"
 
-/datum/sprite_accessory/socks/rainbow_knee
+/datum/sprite_accessory/clothing/socks/rainbow_knee
 	name = "Knee-high - Rainbow"
 	icon_state = "rainbow_knee"
 
-/datum/sprite_accessory/socks/rainbow_knee/stirrups
+/datum/sprite_accessory/clothing/socks/rainbow_knee/stirrups
 	name = "Knee-high - Rainbow Stirrups"
 	icon_state = "rainbow_knee-stir"
 
-/datum/sprite_accessory/socks/rainbow_thigh/stirrups
+/datum/sprite_accessory/clothing/socks/rainbow_thigh/stirrups
 	name = "Thigh-high - Rainbow Stirrups"
 	icon_state = "rainbow_thigh-stir"
 
-/datum/sprite_accessory/socks/fishnet_thigh_sr //TG has one, but this one matches with several tops that I'll get whined to if I change soooo
+/datum/sprite_accessory/clothing/socks/fishnet_thigh_sr //TG has one, but this one matches with several tops that I'll get whined to if I change soooo
 	name = "Thigh-high - Fishnet"
 	icon_state = "fishnet"
 
-/datum/sprite_accessory/socks/fishnet_thigh/alt
+/datum/sprite_accessory/clothing/socks/fishnet_thigh/alt
 	name = "Thigh-high - Fishnet (Greyscale)"
 	icon_state = "fishnet_alt"
 	use_static = null
 
-/datum/sprite_accessory/socks/pantyhose/stirrups
+/datum/sprite_accessory/clothing/socks/pantyhose/stirrups
 	name = "Pantyhose Stirrups"
 	icon_state = "pantyhose-stir"
 	use_static = null
 
-/datum/sprite_accessory/socks/pantyhose_ripped
+/datum/sprite_accessory/clothing/socks/pantyhose_ripped
 	name = "Pantyhose - Ripped"
 	icon_state = "pantyhose_ripped"
 	use_static = null
 
-/datum/sprite_accessory/socks/pantyhose_ripped/stirrups
+/datum/sprite_accessory/clothing/socks/pantyhose_ripped/stirrups
 	name = "Pantyhose - Ripped Stirrups"
 	icon_state = "pantyhose_ripped-stir"
 	use_static = null
 
-/datum/sprite_accessory/socks/stockings_ripped
+/datum/sprite_accessory/clothing/socks/stockings_ripped
 	name = "Stockings - Ripped"
 	icon_state = "stockings_ripped"
 
-/datum/sprite_accessory/socks/leggings
+/datum/sprite_accessory/clothing/socks/leggings
 	name = "Leggings"
 	icon_state = "leggings"
 	use_static = null
 
-/datum/sprite_accessory/socks/leggings/stirrups
+/datum/sprite_accessory/clothing/socks/leggings/stirrups
 	name = "Leggings - Stirrups"
 	icon_state = "leggings-stir"
 	use_static = null
 
-/datum/sprite_accessory/socks/leggings/latex
+/datum/sprite_accessory/clothing/socks/leggings/latex
 	name = "Socks - Latex"
 	icon_state = "socks_latex"
 	use_static = TRUE
 	erp_accessory = TRUE
 
-/datum/sprite_accessory/underwear
+/datum/sprite_accessory/clothing/underwear
 	icon = 'modular_skyrat/master_files/icons/mob/clothing/underwear.dmi'
 	///Whether the underwear uses a special sprite for digitigrade style (i.e. briefs, not panties). Adds a "_d" suffix to the icon state
 	var/has_digitigrade = FALSE
 	///Whether this underwear includes a top (Because gender = FEMALE doesn't actually apply here.). Hides breasts, nothing more.
 	var/hides_breasts = FALSE
 
-/datum/sprite_accessory/underwear/male_bee
+/datum/sprite_accessory/clothing/underwear/male_bee
 	name = "Boxers - Bee"
 	icon_state = "bee_shorts"
 	has_digitigrade = TRUE
 	gender = MALE
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/panties_basic
+/datum/sprite_accessory/clothing/underwear/panties_basic
 	name = "Panties - Basic"
 	icon_state = "panties"
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/female_beekini
+/datum/sprite_accessory/clothing/underwear/female_beekini
 	name = "Panties - Bee-kini"
 	icon_state = "panties_bee-kini"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/fishnet_lower
+/datum/sprite_accessory/clothing/underwear/fishnet_lower
 	name = "Panties - Fishnet"
 	icon_state = "fishnet_lower"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/fishnet_lower/alt
+/datum/sprite_accessory/clothing/underwear/fishnet_lower/alt
 	name = "Panties - Fishnet (Greyscale)"
 	icon_state = "fishnet_lower_alt"
 	use_static = null
 
-/datum/sprite_accessory/underwear/female_beekini
+/datum/sprite_accessory/clothing/underwear/female_beekini
 	name = "Panties - Bee-kini"
 	icon_state = "panties_bee-kini"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/female_commie
+/datum/sprite_accessory/clothing/underwear/female_commie
 	name = "Panties - Commie"
 	icon_state = "panties_commie"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/female_usastripe
+/datum/sprite_accessory/clothing/underwear/female_usastripe
 	name = "Panties - Freedom"
 	icon_state = "panties_assblastusa"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/female_kinky
+/datum/sprite_accessory/clothing/underwear/female_kinky
 	name = "Panties - Kinky Black"
 	icon_state = "panties_kinky"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/panties_uk
+/datum/sprite_accessory/clothing/underwear/panties_uk
 	name = "Panties - UK"
 	icon_state = "panties_uk"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/panties_neko
+/datum/sprite_accessory/clothing/underwear/panties_neko
 	name = "Panties - Neko"
 	icon_state = "panties_neko"
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/panties_slim
+/datum/sprite_accessory/clothing/underwear/panties_slim
 	name = "Panties - Slim"
 	icon_state = "panties_slim"
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/striped_panties
+/datum/sprite_accessory/clothing/underwear/striped_panties
 	name = "Panties - Striped"
 	icon_state = "striped_panties"
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/panties_swimsuit
+/datum/sprite_accessory/clothing/underwear/panties_swimsuit
 	name = "Panties - Swimsuit"
 	icon_state = "panties_swimming"
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/panties_thin
+/datum/sprite_accessory/clothing/underwear/panties_thin
 	name = "Panties - Thin"
 	icon_state = "panties_thin"
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/swimsuit_red
+/datum/sprite_accessory/clothing/underwear/swimsuit_red
 	name = "Swimsuit, One Piece - Red"
 	icon_state = "swimming_red"
 	gender = FEMALE
 	use_static = TRUE
 	hides_breasts = TRUE
 
-/datum/sprite_accessory/underwear/swimsuit
+/datum/sprite_accessory/clothing/underwear/swimsuit
 	name = "Swimsuit, One Piece - Black"
 	icon_state = "swimming_black"
 	gender = FEMALE
 	use_static = TRUE
 	hides_breasts = TRUE
 
-/datum/sprite_accessory/underwear/swimsuit_blue
+/datum/sprite_accessory/clothing/underwear/swimsuit_blue
 	name = "Swimsuit, One Piece - Striped Blue"
 	icon_state = "swimming_blue"
 	gender = FEMALE
 	use_static = TRUE
 	hides_breasts = TRUE
 
-/datum/sprite_accessory/underwear/thong
+/datum/sprite_accessory/clothing/underwear/thong
 	name = "Thong"
 	icon_state = "thong"
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/thong_babydoll
+/datum/sprite_accessory/clothing/underwear/thong_babydoll
 	name = "Thong - Alt"
 	icon_state = "thong_babydoll"
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/chastbelt
+/datum/sprite_accessory/clothing/underwear/chastbelt
 	name = "Chastity Belt"
 	icon_state = "chastbelt"
 	use_static = TRUE
 	erp_accessory = TRUE
 
-/datum/sprite_accessory/underwear/chastcage
+/datum/sprite_accessory/clothing/underwear/chastcage
 	name = "Chastity Cage"
 	icon_state = "chastcage"
 	use_static = null
 	erp_accessory = TRUE
 
-/datum/sprite_accessory/underwear/latex
+/datum/sprite_accessory/clothing/underwear/latex
 	name = "Panties - Latex"
 	icon_state = "panties_latex"
 	use_static = TRUE
 	erp_accessory = TRUE
 
-/datum/sprite_accessory/undershirt/lizared
+/datum/sprite_accessory/clothing/undershirt/lizared
 	name = "LIZARED Top"
 	icon_state = "lizared_top"
 	use_static = TRUE
 
-/datum/sprite_accessory/underwear/lizared
+/datum/sprite_accessory/clothing/underwear/lizared
 	name = "LIZARED Underwear"
 	icon_state = "lizared"
 	use_static = TRUE
 	hides_breasts = TRUE
 
-/datum/sprite_accessory/underwear/boyshorts
+/datum/sprite_accessory/clothing/underwear/boyshorts
 	name = "Boyshorts"
 	icon_state = "boyshorts"
 	has_digitigrade = TRUE
 	gender = FEMALE
 
-/datum/sprite_accessory/underwear/boyshorts_alt
+/datum/sprite_accessory/clothing/underwear/boyshorts_alt
 	name = "Boyshorts (Alt)"
 	icon_state = "boyshorts_alt"
 	gender = FEMALE
@@ -535,18 +535,18 @@
 	Adding hides_breasts to TG underwears where applicable
 */
 
-/datum/sprite_accessory/underwear/swimsuit_onepiece
+/datum/sprite_accessory/clothing/underwear/swimsuit_onepiece
 	name = "One-Piece Swimsuit"
 	icon_state = "swim_onepiece"
 	gender = FEMALE
 	hides_breasts = TRUE
 
-/datum/sprite_accessory/underwear/swimsuit_strapless_onepiece
+/datum/sprite_accessory/clothing/underwear/swimsuit_strapless_onepiece
 	name = "Strapless One-Piece Swimsuit"
 	icon_state = "swim_strapless_onepiece"
 	gender = FEMALE
 	hides_breasts = TRUE
-/datum/sprite_accessory/underwear/swimsuit_stripe
+/datum/sprite_accessory/clothing/underwear/swimsuit_stripe
 	name = "Strapless Striped Swimsuit"
 	icon_state = "swim_stripe"
 	gender = FEMALE
@@ -556,31 +556,31 @@
 /*
 	End of adding hides_breasts to TG stuff, start of adding has_digitigrade to TG stuff
 */
-/datum/sprite_accessory/underwear/male_briefs
+/datum/sprite_accessory/clothing/underwear/male_briefs
 	has_digitigrade = TRUE
 
-/datum/sprite_accessory/underwear/male_boxers
+/datum/sprite_accessory/clothing/underwear/male_boxers
 	has_digitigrade = TRUE
 
-/datum/sprite_accessory/underwear/male_stripe
+/datum/sprite_accessory/clothing/underwear/male_stripe
 	has_digitigrade = TRUE
 
-/datum/sprite_accessory/underwear/male_midway
+/datum/sprite_accessory/clothing/underwear/male_midway
 	has_digitigrade = TRUE
 
-/datum/sprite_accessory/underwear/male_longjohns
+/datum/sprite_accessory/clothing/underwear/male_longjohns
 	has_digitigrade = TRUE
 
-/datum/sprite_accessory/underwear/male_hearts
+/datum/sprite_accessory/clothing/underwear/male_hearts
 	has_digitigrade = TRUE
 
-/datum/sprite_accessory/underwear/male_commie
+/datum/sprite_accessory/clothing/underwear/male_commie
 	has_digitigrade = TRUE
 
-/datum/sprite_accessory/underwear/male_usastripe
+/datum/sprite_accessory/clothing/underwear/male_usastripe
 	has_digitigrade = TRUE
 
-/datum/sprite_accessory/underwear/male_uk
+/datum/sprite_accessory/clothing/underwear/male_uk
 	has_digitigrade = TRUE
 
 /*
@@ -589,312 +589,312 @@
 
 
 /// BRAS and all the fun stuff of moving these about.
-/datum/sprite_accessory/bra
+/datum/sprite_accessory/clothing/bra
 	icon = 'modular_skyrat/master_files/icons/mob/clothing/underwear.dmi'
 	use_static = FALSE
 	em_block = TRUE
 
-/datum/sprite_accessory/bra/nude
+/datum/sprite_accessory/clothing/bra/nude
 	name = "Nude"
 	icon_state = null
 	gender = NEUTER
 
-/datum/sprite_accessory/bra/bra
+/datum/sprite_accessory/clothing/bra/bra
 	name = "Bra"
 	icon_state = "bra"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/bra/bra_alt
+/datum/sprite_accessory/clothing/bra/bra_alt
 	name = "Bra - Alt"
 	icon_state = "bra_alt"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/bra/bra_thin
+/datum/sprite_accessory/clothing/bra/bra_thin
 	name = "Bra - Thin"
 	icon_state = "bra_thin"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/bra/bra_kinky
+/datum/sprite_accessory/clothing/bra/bra_kinky
 	name = "Bra - Kinky Black"
 	icon_state = "bra_kinky"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/bra/bra_freedom
+/datum/sprite_accessory/clothing/bra/bra_freedom
 	name = "Bra - Freedom"
 	icon_state = "bra_assblastusa"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/bra/bra_commie
+/datum/sprite_accessory/clothing/bra/bra_commie
 	name = "Bra - Commie"
 	icon_state = "bra_commie"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/bra/bra_beekini
+/datum/sprite_accessory/clothing/bra/bra_beekini
 	name = "Bra - Bee-kini"
 	icon_state = "bra_bee-kini"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/bra/bra_uk
+/datum/sprite_accessory/clothing/bra/bra_uk
 	name = "Bra - UK"
 	icon_state = "bra_uk"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/bra/bra_neko
+/datum/sprite_accessory/clothing/bra/bra_neko
 	name = "Bra - Neko"
 	icon_state = "bra_neko"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/bra/hi_vis_bra
+/datum/sprite_accessory/clothing/bra/hi_vis_bra
 	name = "Safekini"
 	icon_state = "hi_vis_bra"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/bra/halterneck_bra
+/datum/sprite_accessory/clothing/bra/halterneck_bra
 	name = "Bra - Halterneck"
 	icon_state = "halterneck_bra"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/bra/halterneck_alt
+/datum/sprite_accessory/clothing/bra/halterneck_alt
 	name = "Bra - Halterneck (Alt)"
 	icon_state = "bra_swimming"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/bra/sports_bra
+/datum/sprite_accessory/clothing/bra/sports_bra
 	name = "Bra, Sports"
 	icon_state = "sports_bra"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/bra/sports_bra_alt
+/datum/sprite_accessory/clothing/bra/sports_bra_alt
 	name = "Bra, Sports - Alt"
 	icon_state = "sports_bra_alt"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/bra/bra_strapless
+/datum/sprite_accessory/clothing/bra/bra_strapless
 	name = "Bra, Strapless"
 	icon_state = "bra_strapless"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/bra/bra_latex
+/datum/sprite_accessory/clothing/bra/bra_latex
 	name = "Bra, Latex"
 	icon_state = "bra_latex"
 	gender = FEMALE
 	use_static = TRUE
 	erp_accessory = TRUE
 
-/datum/sprite_accessory/bra/striped_bra
+/datum/sprite_accessory/clothing/bra/striped_bra
 	name = "Bra - Striped"
 	icon_state = "striped_bra"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/bra/sarashi
+/datum/sprite_accessory/clothing/bra/sarashi
 	name = "Bra - Sarashi"
 	icon_state = "bandages"
 	gender = NEUTER
 	use_static = null
 
-/datum/sprite_accessory/bra/fishnet_sleeves
+/datum/sprite_accessory/clothing/bra/fishnet_sleeves
 	name = "Fishnet - Sleeved"
 	icon_state = "fishnet_sleeves"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/bra/fishnet_sleeves/alt
+/datum/sprite_accessory/clothing/bra/fishnet_sleeves/alt
 	name = "Fishnet - Sleeved (Greyscale)"
 	icon_state = "fishnet_sleeves_alt"
 	use_static = null
 
-/datum/sprite_accessory/bra/fishnet_base
+/datum/sprite_accessory/clothing/bra/fishnet_base
 	name = "Fishnet - Sleeveless"
 	icon_state = "fishnet_body"
 	gender = FEMALE
 	use_static = TRUE
 
-/datum/sprite_accessory/bra/fishnet_base/alt
+/datum/sprite_accessory/clothing/bra/fishnet_base/alt
 	name = "Fishnet - Sleeveless (Greyscale)"
 	icon_state = "fishnet_body_alt"
 	use_static = null
 
-/datum/sprite_accessory/bra/chastbra
+/datum/sprite_accessory/clothing/bra/chastbra
 	name = "Chastity Bra"
 	icon_state = "chastbra"
 	gender = FEMALE
 	use_static = TRUE
 	erp_accessory = TRUE
 
-/datum/sprite_accessory/bra/pasties
+/datum/sprite_accessory/clothing/bra/pasties
 	name = "Pasties"
 	icon_state = "pasties"
 	gender = FEMALE
 	use_static = null
 	erp_accessory = TRUE
 
-/datum/sprite_accessory/bra/pasties_alt
+/datum/sprite_accessory/clothing/bra/pasties_alt
 	name = "Pasties - Alt"
 	icon_state = "pasties_alt"
 	gender = FEMALE
 	use_static = null
 	erp_accessory = TRUE
 
-/datum/sprite_accessory/bra/shibari
+/datum/sprite_accessory/clothing/bra/shibari
 	name = "Shibari"
 	icon_state = "shibari"
 	gender = FEMALE
 	use_static = null
 	erp_accessory = TRUE
 
-/datum/sprite_accessory/bra/shibari_sleeves
+/datum/sprite_accessory/clothing/bra/shibari_sleeves
 	name = "Shibari Sleeves"
 	icon_state = "shibari_sleeves"
 	gender = FEMALE
 	use_static = null
 	erp_accessory = TRUE
 
-/datum/sprite_accessory/bra/swimsuit
+/datum/sprite_accessory/clothing/bra/swimsuit
 	name = "Swimsuit Top"
 	icon_state = "bikini_bra"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/bra/strapless_swimsuit
+/datum/sprite_accessory/clothing/bra/strapless_swimsuit
 	name = "Strapless Swimsuit Top"
 	icon_state = "strapless_biki_bra"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/bra/strapless_swimsuit_alt
+/datum/sprite_accessory/clothing/bra/strapless_swimsuit_alt
 	name = "Strapless Swimsuit Top (Alt)"
 	icon_state = "strapless_biki_bra_alt"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/bra/binder
+/datum/sprite_accessory/clothing/bra/binder
 	name = "Binder"
 	icon_state = "binder"
 	gender = MALE
 	use_static = null
 
-/datum/sprite_accessory/bra/binder/strapless
+/datum/sprite_accessory/clothing/bra/binder/strapless
 	name = "Binder - Strapless"
 	icon_state = "binder_strapless"
 
-/datum/sprite_accessory/undershirt
+/datum/sprite_accessory/clothing/undershirt
 	icon = 'modular_skyrat/master_files/icons/mob/clothing/underwear.dmi'
 	use_static = TRUE
 	///Whether this underwear includes a bottom (For Leotards and the likes)
 	var/hides_groin = FALSE
 
-/datum/sprite_accessory/undershirt/tanktop_alt
+/datum/sprite_accessory/clothing/undershirt/tanktop_alt
 	name = "Tank Top - Alt"
 	icon_state = "tanktop_alt"
 	use_static = null
 
-/datum/sprite_accessory/undershirt/tanktop_midriff
+/datum/sprite_accessory/clothing/undershirt/tanktop_midriff
 	name = "Tank Top - Midriff"
 	icon_state = "tank_midriff"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/undershirt/tanktop_midriff_alt
+/datum/sprite_accessory/clothing/undershirt/tanktop_midriff_alt
 	name = "Tank Top - Midriff Halterneck"
 	icon_state = "tank_midriff_alt"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/undershirt/tankstripe
+/datum/sprite_accessory/clothing/undershirt/tankstripe
 	name = "Tank Top - Striped"
 	icon_state = "tank_stripes"
 	use_static = TRUE
 
-/datum/sprite_accessory/undershirt/tank_top_sun
+/datum/sprite_accessory/clothing/undershirt/tank_top_sun
 	name = "Tank top - Sun"
 	icon_state = "tank_sun"
 	use_static = TRUE
 
-/datum/sprite_accessory/undershirt/babydoll
+/datum/sprite_accessory/clothing/undershirt/babydoll
 	name = "Babydoll"
 	icon_state = "babydoll"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/undershirt/corset
+/datum/sprite_accessory/clothing/undershirt/corset
 	name = "Corset"
 	icon_state = "corset"
 	gender = FEMALE
 	use_static = TRUE
 	hides_groin = TRUE
 
-/datum/sprite_accessory/undershirt/bulletclub //4 life
+/datum/sprite_accessory/clothing/undershirt/bulletclub //4 life
 	name = "Shirt - Black Skull"
 	icon_state = "shirt_bc"
 	gender = NEUTER
 
-/datum/sprite_accessory/undershirt/striped
+/datum/sprite_accessory/clothing/undershirt/striped
 	name = "Shirt - Black Stripes"
 	icon_state = "longstripe"
 	gender = NEUTER
 	use_static = TRUE
 
-/datum/sprite_accessory/undershirt/striped/blue
+/datum/sprite_accessory/clothing/undershirt/striped/blue
 	name = "Shirt - Blue Stripes"
 	icon_state = "longstripe_blue"
 
-/datum/sprite_accessory/undershirt/turtleneck
+/datum/sprite_accessory/clothing/undershirt/turtleneck
 	name = "Sweater - Turtleneck"
 	icon_state = "turtleneck"
 	use_static = null
 	gender = NEUTER
 
-/datum/sprite_accessory/undershirt/turtleneck/smooth
+/datum/sprite_accessory/clothing/undershirt/turtleneck/smooth
 	name = "Sweater - Smooth Turtleneck"
 	icon_state = "turtleneck_smooth"
 
-/datum/sprite_accessory/undershirt/turtleneck/sleeveless
+/datum/sprite_accessory/clothing/undershirt/turtleneck/sleeveless
 	name = "Sweater - Sleeveless Turtleneck"
 	icon_state = "turtleneck_sleeveless"
 
-/datum/sprite_accessory/undershirt/offshoulder
+/datum/sprite_accessory/clothing/undershirt/offshoulder
 	name = "Shirt - Off-Shoulder"
 	icon_state = "one_arm"
 	gender = FEMALE
 	use_static = null
 
-/datum/sprite_accessory/undershirt/buttondown
+/datum/sprite_accessory/clothing/undershirt/buttondown
 	name = "Shirt - Buttondown"
 	icon_state = "buttondown"
 	gender = NEUTER
 	use_static = null
 
-/datum/sprite_accessory/undershirt/buttondown/short_sleeve
+/datum/sprite_accessory/clothing/undershirt/buttondown/short_sleeve
 	name = "Shirt - Short Sleeved Buttondown"
 	icon_state = "buttondown_short"
 
-/datum/sprite_accessory/undershirt/leotard
+/datum/sprite_accessory/clothing/undershirt/leotard
 	name = "Shirt - Leotard"
 	icon_state = "leotard"
 	gender = FEMALE
 	use_static = null
 	hides_groin = TRUE
 
-/datum/sprite_accessory/undershirt/leotard/turtleneck
+/datum/sprite_accessory/clothing/undershirt/leotard/turtleneck
 	name = "Shirt - Turtleneck Leotard"
 	icon_state = "leotard_turtleneck"
 
-/datum/sprite_accessory/undershirt/leotard/turtleneck/sleeveless
+/datum/sprite_accessory/clothing/undershirt/leotard/turtleneck/sleeveless
 	name = "Shirt - Turtleneck Leotard Sleeveless"
 	icon_state = "leotard_turtleneck_sleeveless"
