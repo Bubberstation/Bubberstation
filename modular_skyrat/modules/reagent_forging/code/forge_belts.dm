@@ -104,6 +104,11 @@
 	real_storage = new(src)
 	. = ..()
 
+/obj/item/storage/belt/holster/blacksmithed/charging/Destroy()
+	QDEL_NULL(my_charger)
+	QDEL_NULL(real_storage)
+	. = ..()
+
 /obj/item/storage/belt/holster/blacksmithed/charging/get_guns_contained_overlays(list/contents_to_check = null)
 	. = ..(real_storage.contents)
 
@@ -199,7 +204,7 @@
 ////////////////////////////// SHEATHS /////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 
-/obj/item/storage/belt/cruder	//Belt + sheath combination - still only holds one sword at a time though
+/obj/item/storage/belt/crusader	//Belt + sheath combination - still only holds one sword at a time though
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
 	name = "scabbard-utility belt"
