@@ -8634,9 +8634,6 @@
 /area/station/security/checkpoint/second)
 "cfe" = (
 /obj/machinery/airalarm/directional/south,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
-	},
 /obj/machinery/shower/directional/west,
 /obj/structure/drain,
 /turf/open/floor/iron/showroomfloor{
@@ -8939,9 +8936,6 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/station/engineering/supermatter/room)
 "cis" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
-	},
 /obj/structure/sink/directional/south,
 /obj/structure/mirror/directional/north,
 /obj/machinery/light/directional/west,
@@ -9862,6 +9856,9 @@
 /area/station/hallway/floor2/aft)
 "cub" = (
 /obj/structure/urinal/directional/west,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/iron/white,
 /area/station/command/teleporter)
 "cuc" = (
@@ -16095,13 +16092,16 @@
 /turf/open/floor/iron/checker,
 /area/station/commons/locker)
 "eae" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/obj/machinery/shower/directional/west,
-/obj/structure/drain,
-/turf/open/floor/iron/showroomfloor{
-	name = "bathroom tiles"
+/obj/effect/turf_decal/tile/blue/half{
+	dir = 4
 	},
-/area/station/security/lockers)
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 4
+	},
+/area/station/command/teleporter)
 "eai" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
@@ -16555,6 +16555,7 @@
 /area/station/cargo/sorting)
 "egJ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
 /area/station/command/teleporter)
 "ehg" = (
@@ -17899,9 +17900,6 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/commons/storage/primary)
 "ezm" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 4
-	},
 /obj/machinery/door/window/brigdoor/left/directional/west{
 	req_access = list("command");
 	name = "Teleporter Access"
@@ -27289,8 +27287,9 @@
 	},
 /area/station/engineering/storage/tech)
 "gYI" = (
-/obj/structure/fluff/shower_drain,
 /obj/machinery/duct,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/item/bikehorn/rubberducky,
 /turf/open/floor/iron/showroomfloor{
 	name = "bathroom tiles"
 	},
@@ -29359,6 +29358,7 @@
 	req_access = list("command");
 	name = "Teleporter Access"
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
@@ -31473,16 +31473,17 @@
 /turf/open/floor/iron,
 /area/station/hallway/floor2/aft)
 "ibK" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 2;
-	height = 13;
-	name = "port bay 2";
-	shuttle_id = "ferry_home";
-	width = 5
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
-/turf/open/space/openspace,
-/area/space)
+/obj/machinery/door/airlock/external{
+	name = "Transport Airlock"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/station/hallway/floor3/fore)
 "ibL" = (
 /obj/structure/cable,
 /obj/machinery/power/smes/engineering,
@@ -34092,7 +34093,6 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/item/storage/medkit/regular,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "iKb" = (
@@ -39927,13 +39927,7 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/floor2/aft)
 "khK" = (
-/obj/effect/turf_decal/tile/blue/half{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/dark/side{
-	dir = 4
-	},
+/turf/open/floor/iron/white,
 /area/station/command/teleporter)
 "khP" = (
 /obj/structure/cable,
@@ -51313,6 +51307,7 @@
 	pixel_x = 5;
 	pixel_y = -1
 	},
+/obj/effect/spawner/random/medical/minor_healing,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "mYg" = (
@@ -55157,11 +55152,17 @@
 /turf/open/floor/carpet/purple,
 /area/station/commons/dorms/apartment1)
 "nUL" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
+/obj/docking_port/stationary{
+	dheight = 3;
+	dir = 8;
+	dwidth = 8;
+	height = 11;
+	shuttle_id = "ferry_home";
+	name = "Port Bay 2";
+	width = 20
 	},
-/turf/open/floor/plating,
-/area/station/hallway/floor3/fore)
+/turf/open/space/openspace,
+/area/space)
 "nUM" = (
 /turf/open/floor/iron/textured_large,
 /area/station/cargo/office)
@@ -58657,6 +58658,7 @@
 "oPA" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/tile/blue/fourcorners,
+/obj/effect/landmark/start/security_medic,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "oPC" = (
@@ -64411,6 +64413,12 @@
 /obj/effect/landmark/start/bridge_assistant,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
+"qok" = (
+/obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron/dark,
+/area/station/command/teleporter)
 "qoq" = (
 /obj/effect/landmark/start/hangover,
 /turf/open/floor/iron/dark/side,
@@ -65986,6 +65994,8 @@
 /area/station/security/medical)
 "qFL" = (
 /obj/machinery/duct,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/showroomfloor{
 	name = "bathroom tiles"
 	},
@@ -70339,6 +70349,9 @@
 	c_tag = "Security - Showers"
 	},
 /obj/machinery/duct,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
 /turf/open/floor/iron/showroomfloor{
 	name = "bathroom tiles"
 	},
@@ -75556,12 +75569,6 @@
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/floor2/starboard/aft)
 "tgX" = (
-/obj/machinery/door/airlock/external{
-	name = "Transport Airlock"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
 /turf/open/floor/plating,
 /area/station/hallway/floor3/fore)
 "tha" = (
@@ -81318,6 +81325,7 @@
 "uHT" = (
 /obj/structure/chair/office/light,
 /obj/structure/sink/directional/west,
+/obj/effect/landmark/start/security_medic,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "uHV" = (
@@ -81855,7 +81863,6 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/item/reagent_containers/syringe,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "uNm" = (
@@ -82340,6 +82347,9 @@
 	dir = 8
 	},
 /obj/machinery/camera/autoname/directional/east,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
@@ -82569,6 +82579,9 @@
 	dir = 1
 	},
 /obj/machinery/light/directional/south,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
@@ -84249,6 +84262,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
@@ -90484,6 +90498,7 @@
 /area/station/service/chapel/office)
 "wQR" = (
 /obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/dark,
 /area/station/command/teleporter)
 "wQX" = (
@@ -94365,9 +94380,9 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/cargo/lobby)
 "xPE" = (
-/obj/item/bikehorn/rubberducky,
 /obj/machinery/light/directional/north,
 /obj/machinery/duct,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/showroomfloor{
 	name = "bathroom tiles"
 	},
@@ -94862,7 +94877,6 @@
 /turf/open/floor/iron/white,
 /area/station/medical/abandoned)
 "xWq" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/shower/directional/west,
 /obj/structure/drain,
 /turf/open/floor/iron/showroomfloor{
@@ -243119,7 +243133,7 @@ ucA
 ucA
 ucA
 ucA
-ucA
+nUL
 ucA
 ucA
 ucA
@@ -243375,9 +243389,9 @@ ucA
 ucA
 ucA
 ucA
-ucA
+atB
 ibK
-ucA
+rIc
 ucA
 ucA
 ucA
@@ -243632,7 +243646,7 @@ ucA
 ucA
 ucA
 ucA
-atB
+rIc
 tgX
 rIc
 ucA
@@ -243890,7 +243904,7 @@ eDe
 rIc
 eDe
 rIc
-nUL
+tgX
 rIc
 eDe
 rIc
@@ -246472,7 +246486,7 @@ gwL
 nZd
 toH
 toH
-pEy
+eBQ
 gwL
 kPW
 gwL
@@ -246986,7 +247000,7 @@ gwL
 toH
 uCw
 toH
-eBQ
+pEy
 gwL
 gwL
 gwL
@@ -315349,7 +315363,7 @@ xpi
 uqc
 bru
 wQR
-xMF
+qok
 xyA
 uIx
 uwP
@@ -315862,9 +315876,9 @@ jUC
 uqc
 fOj
 ghH
-khK
-vrJ
 ghH
+vrJ
+eae
 cqc
 gIl
 cis
@@ -316126,7 +316140,7 @@ cjM
 cah
 uzZ
 egJ
-egJ
+khK
 vEa
 iZA
 fTa
@@ -318433,7 +318447,7 @@ oAe
 mxO
 hwd
 mau
-eae
+xWq
 mGT
 xWq
 cfe
