@@ -411,7 +411,7 @@
 
 	if(!isnull(stack_to_move))
 		stack_to_move.forceMove(tool)
-		user.balloon_alert(user, "took one []")
+		user.balloon_alert(user, "took one")
 		tool.icon_state = "tong_full"
 	else
 		stack_trace("[src] was grabbed by [tool] and couldn't pull one sheet!")
