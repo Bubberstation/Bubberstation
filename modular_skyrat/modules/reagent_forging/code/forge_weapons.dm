@@ -19,6 +19,12 @@
 	//verbs to use when secondary attacking
 	var/list/secondary_attack_verb_continuous = list("shaft-strikes")
 	var/list/secondary_attack_verb_simple = list("shaft-strike")
+	if (/datum/material/silver in custom_materials)
+		AddElement(/datum/element/bane, /datum/species/lycan, damage_multiplier = 3, requires_combat_mode = FALSE)
+
+/obj/item/forging/reagent_weapon/examine(mob/user)
+	. = ..()
+	. += span_notice("Using a hammer on [src] will repair its damage!")
 
 /obj/item/melee/forged_reagent_weapon/Initialize(mapload)
 	. = ..()
