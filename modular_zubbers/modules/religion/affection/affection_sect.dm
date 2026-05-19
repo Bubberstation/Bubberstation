@@ -12,10 +12,13 @@
 		/datum/religion_rites/summon_call_necklace,
 	)
 	smack_chance = 0
+
+	var/mob/living/carbon/human/last_healed = null
 	var/maximum_healed_per_bless = 10
 	var/favor_gain = 1
 	var/favor_gain_upgrade_cost = 10
 	var/chapel_gain_multiplier = 2
+	var/gratitude_multiplier = 4
 
 /datum/religion_sect/affection/on_conversion(mob/living/chap)
 	. = ..()
@@ -62,6 +65,7 @@
 	to_chat(blessed, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
 	playsound(chap, SFX_PUNCH, 25, TRUE, -1)
 	blessed.add_mood_event("blessing", /datum/mood_event/blessing)
+	last_healed = target
 	return BLESSING_SUCCESS
 
 

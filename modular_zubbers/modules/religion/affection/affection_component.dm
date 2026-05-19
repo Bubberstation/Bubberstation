@@ -23,6 +23,12 @@
 
 	if(receiver.body_position == LYING_DOWN)
 		return
+	if(favor_destination.last_healed == helper)
+		favor_destination.adjust_favor(favor_destination.favor_gain * favor_destination.gratitude_multiplier, parent)
+		favor_destination.last_healed = null
+		cooldown_mobs += helper
+		addtimer(CALLBACK(src, PROC_REF(finish_cooldown), helper), affection_cooldown)
+		return
 	if(is_in_chapel())
 		favor_destination.adjust_favor(favor_destination.favor_gain * favor_destination.chapel_gain_multiplier, parent)
 		cooldown_mobs += helper
