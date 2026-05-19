@@ -39,7 +39,7 @@
 	"Allow me to reciprocate their affection!",
 	"Allow me to be there when they need me most")
 	invoke_msg = "Grant me a trinket to keep them safe!"
-	favor_cost = 150
+	favor_cost = 25
 
 /datum/religion_rites/summon_call_necklace/invoke_effect(mob/living/user, atom/religious_tool)
 	. = ..()
