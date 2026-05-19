@@ -54,10 +54,7 @@
 /proc/give_added_modifying_effect_to_item(forge_effect, old_modifier, new_modifier, obj/item/item, max_effect)
 	switch(forge_effect)
 		if(FORGE_EFFECT_ARMOR)
-			if(ispath(max_effect))
-				max_effect = get_armor_by_type(max_effect)
-
-			var/datum/armor/indexed_armor = max_effect
+			var/datum/armor/indexed_armor = get_armor_by_type(max_effect)
 			///WHY does the tgstation implementation have 0-multipler return the source armor? and not return armor/none?
 			var/datum/armor/new_armor_modifier
 			if(new_modifier == 0)
