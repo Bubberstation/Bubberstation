@@ -77,29 +77,20 @@
 
 /datum/species/lycan/on_species_gain(mob/living/carbon/human/gainer, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
-	gainer.AddElement(/datum/element/inorganic_rejection)
-	gainer.dna.features["body_size"] = 2
-	gainer.maptext_height = 32 * gainer.dna.features["body_size"] //Adjust runechat height
-	gainer.mob_size = MOB_SIZE_LARGE
-	gainer.dna.update_body_size()
 
 	if (HAS_TRAIT(gainer, TRAIT_GAIAN_PHYSIQUE))
 		handle_gaian_physique(gainer)
 
 /datum/species/lycan/on_species_loss(mob/living/carbon/human/loser, datum/species/new_species, pref_load)
 	. = ..()
-	loser.RemoveElement(/datum/element/inorganic_rejection)
-	if(!loser.has_quirk(/datum/quirk/oversized))
-		loser.dna.features["body_size"] = loser?.client?.prefs?.read_preference(/datum/preference/numeric/body_size) || 1
-		loser.maptext_height = 32 * loser.dna.features["body_size"]
-		loser.mob_size = MOB_SIZE_HUMAN
-		loser.dna.update_body_size()
 
 	if (HAS_TRAIT(loser, TRAIT_GAIAN_PHYSIQUE))
 		handle_gaian_physique_loss(loser)
 
 /datum/species/lycan/proc/handle_gaian_physique(mob/living/carbon/human/gainer)
 	damage_modifier += 30 // bonus percent damgae reduction
+	stunmod = 0.5
+	gainer.physiology.stamina_mod *= 0.25
 
 	var/obj/item/bodypart/arm/l_arm = gainer.get_bodypart(BODY_ZONE_L_ARM)
 	var/obj/item/bodypart/arm/r_arm = gainer.get_bodypart(BODY_ZONE_R_ARM)
@@ -116,6 +107,9 @@
 	ADD_TRAIT(gainer, TRAIT_HARDLY_WOUNDED, SPECIES_TRAIT)
 	ADD_TRAIT(gainer, TRAIT_IGNORESLOWDOWN, SPECIES_TRAIT)
 	ADD_TRAIT(gainer, TRAIT_FEARLESS, SPECIES_TRAIT)
+	ADD_TRAIT(gainer, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, SPECIES_TRAIT)
+	ADD_TRAIT(gainer, TRAIT_NO_STAGGER, SPECIES_TRAIT)
+	ADD_TRAIT(gainer, TRAIT_NO_THROW_HITPUSH, SPECIES_TRAIT)
 
 	gainer.AddComponent( \
 		/datum/component/regenerator, \
@@ -132,6 +126,12 @@
 	REMOVE_TRAIT(loser, TRAIT_HARDLY_WOUNDED, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_IGNORESLOWDOWN, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_FEARLESS, SPECIES_TRAIT)
+	REMOVE_TRAIT(loser, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, SPECIES_TRAIT)
+	REMOVE_TRAIT(loser, TRAIT_NO_STAGGER, SPECIES_TRAIT)
+	REMOVE_TRAIT(loser, TRAIT_NO_THROW_HITPUSH, SPECIES_TRAIT)
+
 	qdel(loser.GetComponent(/datum/component/regenerator))
+
+	loser.physiology.stamina_mod *= 4
 
 	// already lost the limb shit
