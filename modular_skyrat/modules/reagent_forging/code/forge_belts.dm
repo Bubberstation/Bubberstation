@@ -101,6 +101,8 @@
 	var/obj/item/storage/box/real_storage
 
 /obj/item/storage/belt/holster/blacksmithed/charging/Initialize(mapload)
+	my_charger = new(src)
+	my_charger.my_belt = src
 	real_storage = new(src)
 	. = ..()
 
@@ -128,15 +130,12 @@
 	open_sound_vary = TRUE
 	var/delay_before_charging = 15 SECONDS
 	var/timer_id
-	var/obj/machinery/recharger/belt_charger/my_charger
 
 /datum/storage/charging_holster/New()
 	. = ..()
-	my_charger = new(parent)
 	if(istype(parent, /obj/item/storage/belt/holster/blacksmithed/charging))
 		var/obj/item/storage/belt/holster/blacksmithed/charging/my_belt = parent
-		my_belt.my_charger = my_charger
-		my_charger.my_belt = my_belt
+		my_charger = my_belt.my_charger
 		set_real_location(my_belt.real_storage)
 	set_holdable(list(
 		/obj/item/gun/energy,
