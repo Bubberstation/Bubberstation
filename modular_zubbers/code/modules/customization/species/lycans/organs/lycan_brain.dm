@@ -2,7 +2,6 @@
 	name = "lupine brain"
 	desc = "A larger than average, albeit slightly smoother brain. The hypothalamus seems larger than normal." // I read in a random medical artical that the hypothalamus controls aggression.
 	actions_types = list(/datum/action/cooldown/spell/beast_form)
-	var/list/removed_quirks = list()
 	var/last_slot
 
 /obj/item/organ/brain/lycan/on_mob_insert(mob/living/carbon/brain_owner, special, movement_flags)
@@ -25,13 +24,6 @@
 	var/datum/species/human/cursekin/current_wolf = owner.dna.species
 	if(!istype(current_wolf) && HAS_TRAIT_FROM(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT))
 		return
-	removed_quirks = list()
-	for(var/datum/quirk/current_quirks in owner.quirks)
-		var/datum/quirk/micro/bad_quirk = locate() in current_quirks
-		for(bad_quirk in owner.quirks)
-			removed_quirks += bad_quirk.type
-			owner.remove_quirk(bad_quirk.type)
-	owner.visible_message(span_warning("[owner] grows massive, their body quickly getting covered in fur!"))
 	var/client/target_client = owner.client
 	if (!isnull(target_client))
 		var/name = owner.real_name
@@ -51,6 +43,7 @@
 			target_client.prefs.safe_transfer_prefs_to_with_damage(owner)
 			owner.real_name = name
 			owner.name = name
+			SSquirks.OverrideQuirks(owner, target_client)
 			owner.dna.update_dna_identity()
 
 			target_client.prefs.load_character(last_slot)
@@ -69,15 +62,12 @@
 		if (!isnull(target_client))
 			target_client.prefs.load_character(last_slot)
 			target_client.prefs.safe_transfer_prefs_to_with_damage(owner)
+			SSquirks.OverrideQuirks(owner, target_client)
 			owner.dna.update_dna_identity()
 	else
 		owner.set_species(/datum/species/human/cursekin, TRUE, TRUE, FALSE)
 	REMOVE_TRAIT(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT)
 	playsound(owner, 'modular_zubbers/code/modules/customization/species/lycans/transform.ogg', 50)
-	if(removed_quirks)
-		for(var/typepath in removed_quirks)
-			owner.add_quirk(typepath, owner.client, TRUE, FALSE)
-		removed_quirks = null
 
 /obj/item/organ/brain/lycan/proc/toggle_beast_form(mob/user)
 	set name = "Enter/Leave Lycan Form"
