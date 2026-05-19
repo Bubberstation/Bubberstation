@@ -11,8 +11,9 @@
 /obj/item/forging/reagent_weapon/apply_material_effects(list/materials)
 	. = ..()
 
-	if (/datum/material/silver in materials)
+	for (var/datum/material/silver/found_silver_datum in materials)
 		AddElement(/datum/element/bane, /datum/species/lycan, damage_multiplier = 3, requires_combat_mode = FALSE)
+		break
 
 /obj/item/forging/reagent_weapon/examine(mob/user)
 	. = ..()
@@ -109,7 +110,6 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 70)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
-
 
 //We're not reinventing the wheel, give it extra wounding if you land it, either you do or you dont, no dmg ups. Nullblade code but modified
 
@@ -285,7 +285,6 @@
 	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 70)
 	AddComponent(/datum/component/two_handed, force_multiplier = 2)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
-
 
 /obj/item/forging/reagent_weapon/axe/pre_attack(mob/living/M, mob/living/user, params)
 	. = ..()
