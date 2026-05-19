@@ -763,3 +763,35 @@
 	var/datum/smite/bsa/bluespace_smite = new()
 	bluespace_smite.effect(user.client, user)
 	return BRUTELOSS
+
+//Sprite from SS14 Main. Sprited by Orsoniks (rivey0 on discord)
+/obj/item/toy/plush/expi
+	name = "Experiment Plushie"
+	icon_state = "expi"
+	slot_flags = ITEM_SLOT_HEAD
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	desc = ""
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	attack_verb_simple = list("bark", "growl", "whine")
+	squeak_override = list('modular_zubbers/sound/misc/dogshake.ogg' = 1)
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
+	inhand_icon_state = "expi"
+
+/obj/item/toy/plush/expi/item_interaction(mob/living/feeder, obj/item/reagent_containers/applicator/pill/enom, list/modifiers)
+	if(!istype(enom))
+		return ..()
+	enom.forceMove(src) // go into the expi stummy
+	to_chat(feeder, span_notice("You feed the [enom] to [src] and watch as it eats..."))
+	playsound(src, 'sound/items/eatfood.ogg', 75, TRUE)
+	addtimer(CALLBACK(src, PROC_REF(eat), feeder, enom), 3 SECONDS)
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/toy/plush/expi/proc/eat(mob/living/feeder, obj/item/reagent_containers/applicator/pill/enom)
+	if(istype(enom, /obj/item/reagent_containers/applicator/pill/happy))
+		SpinAnimation(speed = 0.3 SECONDS, loops = 3)
+	else if(istype(enom, /obj/item/reagent_containers/applicator/pill))
+		spasm_animation(4 SECONDS)
+	qdel(enom)
+	return 'sound/items/weapons/thudswoosh.ogg'
+
