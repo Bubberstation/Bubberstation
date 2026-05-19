@@ -302,7 +302,10 @@
 	for(var/index in quench_effects_incompletion)
 		switch(index)
 			if(FORGE_EFFECT_ARMOR)
-				incomplete_maximum_penalty = get_armor_by_type(parent_item.get_armor().type).generate_new_with_multipliers(list(ARMOR_ALL = -1))
+				var/datum/armor/temp_armor = parent_item.get_armor()
+				temp_armor = get_armor_by_type(temp_armor.type)
+				temp_armor = temp_armor.generate_new_with_modifiers(list(ARMOR_ALL = -1))
+				incomplete_maximum_penalty = temp_armor
 			if(FORGE_EFFECT_ARMORPEN)
 				incomplete_maximum_penalty = initial(parent_item.armour_penetration) * -1
 			if(FORGE_EFFECT_BLOCKCHANCE)
