@@ -130,6 +130,7 @@
 	open_sound_vary = TRUE
 	var/delay_before_charging = 15 SECONDS
 	var/timer_id
+	var/obj/machinery/recharger/belt_charger/my_charger
 
 /datum/storage/charging_holster/New()
 	. = ..()
