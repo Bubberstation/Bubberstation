@@ -42,6 +42,7 @@
 	desc = "oh god how did this get here"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/labcoat.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/labcoat.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/labcoat.dmi'
 	icon_state = null //Keeps this from showing up under the chameleon hat
 	inhand_icon_state = "labcoat"
 	blood_overlay_type = "coat"
