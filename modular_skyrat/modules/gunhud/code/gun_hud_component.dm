@@ -29,7 +29,7 @@
 	RegisterSignals(parent, list(COMSIG_PREQDELETED, COMSIG_ITEM_DROPPED), PROC_REF(turn_off))
 	RegisterSignals(parent, list(COMSIG_UPDATE_AMMO_HUD, COMSIG_GUN_CHAMBER_PROCESSED), PROC_REF(update_hud))
 
-	hud.turn_on()
+	hud?.turn_on()
 	update_hud()
 
 /datum/component/ammo_hud/proc/turn_off()
@@ -57,6 +57,10 @@
 
 /datum/component/ammo_hud/proc/update_hud()
 	SIGNAL_HANDLER
+
+	if (isnull(hud))
+		return
+
 	if(istype(parent, /obj/item/gun/ballistic))
 		var/obj/item/gun/ballistic/pew = parent
 		hud.maptext = null
