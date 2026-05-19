@@ -1,6 +1,6 @@
 /obj/item/clothing/neck/affection_necklace
 	name = "call necklace"
-	desc = "A necklace imbued with divine affection."
+	desc = "A necklace imbued with divine affection. Looks like it can be destroyed to call the chaplain to one's aid!"
 	icon = 'modular_zubbers/icons/obj/religion_sects/affection/affection_items.dmi'
 	icon_state = "affection_neck"
 	worn_icon = 'icons/mob/clothing/neck.dmi'
