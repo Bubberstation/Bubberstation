@@ -15,10 +15,10 @@
 	SIGNAL_HANDLER
 
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.is_holding(parent))
-			if(H.hud_used)
-				hud = H.hud_used.ammo_counter
+		var/mob/living/carbon/human/human_user = user
+		if(human_user.is_holding(parent))
+			if(human_user)
+				hud = human_user.hud_used.screen_objects[HUD_MOB_AMMO_COUNTER]
 				turn_on()
 		else
 			turn_off()
