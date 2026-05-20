@@ -9,9 +9,11 @@
  */
 /datum/tgui_say/proc/alter_entry(payload)
 	var/entry = payload["entry"]
+	var/list/phrases = alter_phrases || hurt_phrases
+
 	/// No OOC leaks
-	if(!entry || payload["channel"] == OOC_CHANNEL || payload["channel"] == ME_CHANNEL || payload["channel"] == LOOC_CHANNEL) // SKYRAT EDIT CHANGE - CUSTOMIZATION
-		return pick(hurt_phrases)
+	if(!entry || payload["channel"] == OOC_CHANNEL || payload["channel"] == ME_CHANNEL || payload["channel"] == LOOC_CHANNEL) // BUBBER EDIT - CHANGE - ORIGINAL: if(!entry || payload["channel"] == OOC_CHANNEL || payload["channel"] == ME_CHANNEL)
+		return pick(phrases)
 	/// Random trimming for larger sentences
 	if(length(entry) > 50)
 		entry = trim(entry, rand(40, 50))
@@ -19,7 +21,7 @@
 		/// Otherwise limit trim to just last letter
 		if(length(entry) > 1)
 			entry = trim(entry, length(entry))
-	return entry + "-" + pick(hurt_phrases)
+	return entry + "-" + pick(phrases)
 
 /**
  * Delegates the speech to the proper channel.
@@ -42,27 +44,42 @@
 			client.mob.me_verb(entry)
 			return TRUE
 		if(OOC_CHANNEL)
-			client.ooc(entry)
+			ASYNC
+				client.ooc(entry)
 			return TRUE
 		if(ADMIN_CHANNEL)
-			SSadmin_verbs.dynamic_invoke_verb(client, /datum/admin_verb/cmd_admin_say, entry)
+			INVOKE_ASYNC(SSadmin_verbs, TYPE_PROC_REF(/datum/controller/subsystem/admin_verbs, dynamic_invoke_verb), client, /datum/admin_verb/cmd_admin_say, entry)
 			return TRUE
-		// SKYRAT EDIT ADDITION START - CUSTOMIZATION
+		// BUBBER EDIT - ADDITION - START
 		if(LOOC_CHANNEL)
-			client.looc(entry)
+			INVOKE_ASYNC(client, TYPE_PROC_REF(/client, looc_message), entry)
 			return TRUE
 		if(WHIS_CHANNEL)
 			client.mob.whisper_verb(entry)
 			return TRUE
-		// SKYRAT EDIT ADDITION END
+		// BUBBER EDIT - ADDITION - END
 	return FALSE
 
 /**
  * Force say handler.
  * Sends a message to the say modal to send its current value.
+ * Arguments:
+ * 	alter_phrases - Optional list of alternate suffixes to blurt out
+ * 	immediate - If [TRUE], the say must be invoked inline due to side effects that may cause the mob to be unable to speak
  */
-/datum/tgui_say/proc/force_say()
-	window.send_message("force")
+/datum/tgui_say/proc/force_say(list/alter_phrases = null, immediate = FALSE)
+	src.alter_phrases = alter_phrases
+	if(immediate)
+		if(!saved_text)
+			saved_text = ""
+			if(!saved_channel)
+				saved_channel = SAY_CHANNEL
+
+		handle_entry("force", list("type" = "force", "entry" = saved_text, "channel" = saved_channel))
+		window.send_message("close")
+	else
+		window.send_message("force")
+
 	stop_typing()
 
 /**
@@ -74,11 +91,14 @@
 
 /**
  * Makes the player force say what's in their current input box.
+ * Arguments:
+ * 	alter_phrases - Optional list of alternate suffixes to blurt out
+ * 	immediate - If [TRUE], the say must be invoked inline due to side effects that may cause the mob to be unable to speak
  */
-/mob/living/carbon/human/proc/force_say()
+/mob/living/carbon/human/proc/force_say(list/alter_phrases = null, immediate = FALSE)
 	if(stat != CONSCIOUS || !client?.tgui_say?.window_open)
 		return FALSE
-	client.tgui_say.force_say()
+	client.tgui_say.force_say(alter_phrases, immediate)
 	if(client.typing_indicators)
 		log_speech_indicators("[key_name(client)] FORCED to stop typing, indicators enabled.")
 	else
@@ -126,5 +146,6 @@
 		var/target_channel = payload["channel"]
 		if(target_channel == SAY_CHANNEL || target_channel == RADIO_CHANNEL)
 			saved_text = payload["entry"] // only save IC text
+			saved_channel = target_channel
 		return TRUE
 	return FALSE

@@ -111,6 +111,10 @@
 	if(account)
 		data["points"] = account.account_balance
 	data["locked"] = locked//swipe an ID to unlock
+	// BUBBER EDIT START - expose private purchase controls to express tgui
+	data["self_paid"] = self_paid
+	data["allow_private_purchases"] = can_private_purchases
+	// BUBBER EDIT END
 	data["siliconUser"] = HAS_SILICON_ACCESS(user)
 	data["beaconzone"] = beacon ? get_area(beacon) : ""//where is the beacon located? outputs in the tgui
 	data["using_beacon"] = using_beacon //is the mode set to deliver to the beacon or the cargobay?
@@ -178,14 +182,46 @@
 			if(!istype(pack))
 				CRASH("Unknown supply pack id given by express order console ui. ID: [params["id"]]")
 
-			if((pack.order_flags & ORDER_GOODY) && !self_paid && !(obj_flags & EMAGGED))
-				playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
+			if((pack.order_flags & ORDER_GOODY) && !self_paid && !pack.allow_non_private_purchase && !(obj_flags & EMAGGED)) // BUBBER EDIT
 				say("ERROR: Small crates may only be purchased by private accounts.")
 				return
 
 			var/name = "*None Provided*"
 			var/rank = "*None Provided*"
 			var/ckey = user.ckey
+			// BUBBER EDIT START - allow private account charging on approved express consoles
+			var/datum/bank_account/paying_account
+			if(self_paid)
+				if(!can_private_purchases)
+					return
+
+				if(isliving(user))
+					var/mob/living/living_user = user
+					var/obj/item/card/id/id_card = living_user.get_idcard(TRUE)
+
+					var/bypass = FALSE
+					if(istype(id_card, /obj/item/card/id/advanced/chameleon))
+						bypass = TRUE
+
+					paying_account = id_card?.registered_account
+					if(!istype(id_card))
+						say("No ID card detected.")
+						return
+					if(IS_DEPARTMENTAL_CARD(id_card))
+						say("The [src] rejects [id_card].")
+						return
+					if(!istype(paying_account))
+						say("Invalid bank account.")
+						return
+					var/list/access = id_card.GetAccess()
+					if((pack.access_view && !(pack.access_view in access)) && !bypass)
+						say("[id_card] lacks the requisite access for this purchase.")
+						return
+				else
+					say("Invalid user.")
+					return
+			// BUBBER EDIT END
+
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
 				name = H.get_authentification_name()
@@ -194,8 +230,8 @@
 				name = user.real_name
 				rank = "Silicon"
 			var/reason = ""
-			var/datum/supply_order/order = new(pack, name, rank, ckey, reason)
-			var/datum/bank_account/account = SSeconomy.get_dep_account(cargo_account)
+			var/datum/supply_order/order = new(pack, name, rank, ckey, reason, paying_account)
+			var/datum/bank_account/account = paying_account || SSeconomy.get_dep_account(cargo_account)
 			if (isnull(account) && order.pack.get_cost() > 0)
 				return
 
@@ -240,7 +276,11 @@
 			else
 				landing_turf = pick(empty_turfs)
 
-			if (!account.adjust_money(-order.pack.get_cost() * get_discount()))
+			// BUBBER EDIT ADDITION - preserve standard private 10% surcharge for non-goody orders
+			var/final_cost = order.pack.get_cost() * get_discount()
+			if(self_paid && !(pack.order_flags & ORDER_GOODY))
+				final_cost *= 1.1
+			if (!account.adjust_money(-round(final_cost)))
 				return
 
 			TIMER_COOLDOWN_START(src, COOLDOWN_EXPRESSPOD_CONSOLE, 5 SECONDS)

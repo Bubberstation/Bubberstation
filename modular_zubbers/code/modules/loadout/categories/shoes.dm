@@ -92,6 +92,10 @@
 	item_path = /obj/item/clothing/shoes/jackboots/elofy
 //	ckeywhitelist = list("october23")
 
+/datum/loadout_item/shoes/boots/jackboots/colonial_boots
+	name = "Colonial Half-Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/colonial
+
 /*
 *	MISC BOOTS
 */

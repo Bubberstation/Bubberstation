@@ -132,11 +132,11 @@
 	crate_name = "nt22-hcs-mp crate"
 
 /datum/supply_pack/security/miecz
-	name = "Miecz Submachine Gun Single-Pack"
+	name = "Miecz Submachine Gun Crate"
 	crate_name = "Miecz submachine gun crate"
-	desc = "Contains a Miecz submachine gun and a spare magazine for it."
-	contains = list(/obj/item/gun/ballistic/automatic/miecz = 1,
-	/obj/item/ammo_box/magazine/miecz = 1)
+	desc = "Contains two Miecz submachine guns and a spare magazine for both."
+	contains = list(/obj/item/gun/ballistic/automatic/miecz = 2,
+	/obj/item/ammo_box/magazine/miecz = 2)
 	cost = CARGO_CRATE_VALUE * 10
 	access = ACCESS_SECURITY
 
@@ -147,6 +147,7 @@
 	contains = list(/obj/item/ammo_box/magazine/miecz = 4)
 	cost = CARGO_CRATE_VALUE * 4
 	access = ACCESS_SECURITY
+
 /datum/supply_pack/security/armory/archery_kit
 	name = "Archery Crate"
 	desc = "Two hardlight bows capable of defeating armor, alongside a mix of lethal and non/less-than-lethal arrows."
