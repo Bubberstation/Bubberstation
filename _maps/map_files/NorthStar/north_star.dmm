@@ -9940,6 +9940,7 @@
 	dir = 2
 	},
 /obj/machinery/firealarm/directional/south,
+/obj/machinery/self_actualization_device,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "csT" = (
@@ -24384,6 +24385,7 @@
 	pixel_x = 15
 	},
 /obj/structure/chair,
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "ggC" = (
@@ -27687,7 +27689,6 @@
 	dir = 4;
 	pixel_x = -15
 	},
-/obj/effect/landmark/start/assistant,
 /obj/structure/chair,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
@@ -32862,7 +32863,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/machinery/turretid{
-	icon_state = "control_stun";
 	name = "AI Chamber turret control";
 	pixel_x = 3;
 	pixel_y = -23
@@ -34189,6 +34189,7 @@
 "iDZ" = (
 /obj/structure/sign/poster/official/random/directional/north,
 /obj/machinery/light/directional/east,
+/obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/iron/dark,
 /area/station/hallway/floor1/fore)
 "iEa" = (
@@ -71187,6 +71188,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/duct,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/pod/light,
 /area/station/maintenance/floor4/starboard/aft)
 "rLd" = (
@@ -80399,7 +80402,8 @@
 /obj/effect/turf_decal/trimline/brown/arrow_ccw{
 	dir = 10
 	},
-/obj/structure/reagent_dispensers/water_cooler,
+/obj/machinery/gbp_redemption,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/dark/side{
 	dir = 10
 	},
@@ -82829,6 +82833,8 @@
 	dir = 9
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/pod/light,
 /area/station/maintenance/floor4/starboard/aft)
 "uIN" = (
