@@ -34,8 +34,8 @@ GLOBAL_VAR_INIT(did_sleepy_disk_announcement, FALSE)
 /obj/item/disk/nuclear/proc/reprimand_command()
 	priority_announce(
 		"Attention [GLOB.station_name]. It has come to our attention that your nuclear authentication disk has been stationary for an egregious period of time. \
-		There is no excuse. Your command staff will have their pay docked and employment reviewed. Failure to secure the disk in good time will result \
-		in further consequences.",
+		There is no excuse. Your command staff will have their pay docked, and an inspector may be sent to review your captain's competency. \
+		Failure to secure the disk in good time will result in further consequences.",
 		"Central Command Asset Protection",
 		'modular_skyrat/modules/alerts/sound/alerts/alert1.ogg',
 		has_important_message = TRUE
@@ -54,6 +54,18 @@ GLOBAL_VAR_INIT(did_sleepy_disk_announcement, FALSE)
 	var/datum/component/keep_me_secure/our_component = GetComponent(/datum/component/keep_me_secure)
 	our_component.last_move = world.time
 
+	try_spawning_inspector()
+
+/obj/item/disk/nuclear/proc/try_spawning_inspector()
+	make_ert(
+		/datum/ert/centcom_official/disk_inspector,
+		1,
+		"Determine if the station's captain is suited for their position, and if necessary, demote them. Force SOMEONE to secure the disk. \
+		Additionally, perform a routine inspection while you're there.",
+		"a command competency inspector",
+		notify_players = FALSE
+	)
+
 /obj/item/disk/nuclear/secured_process(last_move)
 
 	//If there is no assigned captain, then don't run the event.
@@ -61,6 +73,16 @@ GLOBAL_VAR_INIT(did_sleepy_disk_announcement, FALSE)
 		return
 
 	. = ..()
+
+/datum/ert/centcom_official/disk_inspector
+	leader_role = /datum/antagonist/ert/official/disk_inspector
+
+/datum/antagonist/ert/official/disk_inspector
+	outfit = /datum/outfit/centcom/centcom_official/disk_inspector
+
+/datum/outfit/centcom/centcom_official/disk_inspector
+	name = "Centcom Disk Inspector"
+	r_hand = /obj/item/pinpointer/nuke
 
 #undef UNSECURED_DISK_COMMAND_PAY_PENALTY
 #undef GRACE_PERIOD
