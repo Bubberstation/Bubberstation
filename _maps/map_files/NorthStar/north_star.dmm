@@ -21522,6 +21522,11 @@
 /obj/machinery/destructive_scanner,
 /turf/open/floor/iron/dark,
 /area/station/hallway/floor2/fore)
+"fuy" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible,
+/turf/open/floor/plating,
+/area/station/maintenance/disposal/incinerator)
 "fuH" = (
 /obj/effect/turf_decal/trimline/green/warning{
 	dir = 4
@@ -37119,12 +37124,6 @@
 	},
 /turf/open/floor/iron/checker,
 /area/station/cargo/miningdock)
-"jrk" = (
-/obj/machinery/atmospherics/components/unary/passive_vent,
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
 "jrl" = (
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /obj/structure/cable,
@@ -46036,6 +46035,19 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/light,
 /area/station/maintenance/floor2/port/fore)
+"lyP" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple/layer4{
+	dir = 4
+	},
+/obj/machinery/air_sensor/engine_chamber{
+	name = "engine waste chamber gas sensor";
+	chamber_id = "waste"
+	},
+/turf/open/floor/engine/airless,
+/area/station/engineering/supermatter/waste)
 "lyS" = (
 /obj/structure/flora/bush/sparsegrass/style_random,
 /obj/structure/flora/bush/lavendergrass/style_random,
@@ -76291,19 +76303,6 @@
 /obj/item/clothing/head/mothcap,
 /turf/open/floor/iron/smooth_large,
 /area/station/hallway/secondary/entry)
-"sZh" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple/layer4{
-	dir = 4
-	},
-/obj/machinery/air_sensor/engine_chamber{
-	name = "engine waste chamber gas sensor";
-	chamber_id = "waste"
-	},
-/turf/open/floor/engine/airless,
-/area/station/engineering/supermatter/waste)
 "sZj" = (
 /obj/item/clothing/gloves/boxing,
 /obj/structure/rack,
@@ -97008,10 +97007,10 @@
 /turf/open/floor/iron/kitchen/herringbone,
 /area/station/service/kitchen)
 "ycY" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/smart/simple/brown/visible,
-/turf/open/floor/plating,
-/area/station/maintenance/disposal/incinerator)
+/obj/machinery/atmospherics/components/unary/passive_vent,
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
 "ydi" = (
 /obj/machinery/firealarm/directional/south,
 /obj/effect/landmark/navigate_destination/chapel,
@@ -136045,8 +136044,8 @@ owI
 owI
 owI
 owI
-jrk
 ycY
+fuy
 kDh
 cdS
 eAm
@@ -144544,7 +144543,7 @@ jHQ
 kTc
 sAH
 qEw
-sZh
+lyP
 qEw
 sAH
 xgW
