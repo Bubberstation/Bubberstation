@@ -44,7 +44,7 @@
 					/obj/item/clothing/neck/pauldron/commander = 6,
 					/obj/item/clothing/neck/pauldron/captain = 6,
 					/obj/item/clothing/gloves/color/black = 6,
-					/obj/item/clothing/gloves/combat/peacekeeper/armadyne = 6,
+					/obj/item/clothing/gloves/color/black/peacekeeper/armadyne = 6,
 					/obj/item/clothing/under/rank/security/officer/skirt = 6,
 					/obj/item/clothing/under/rank/security/skyrat/utility/redsec = 6,
 					/obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec = 6,
