@@ -68,7 +68,6 @@
 	icon_state = "armadyne_gloves"
 	worn_icon_state = "armadyne_gloves"
 	cut_type = null
-	siemens_coefficient = 0.5
 
 /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne
 	name = "armadyne combat boots"
