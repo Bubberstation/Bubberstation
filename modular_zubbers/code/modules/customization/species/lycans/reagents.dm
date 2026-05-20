@@ -48,3 +48,5 @@
 		intensity = 1
 
 	return intensity
+
+#undef BASE_BURN_PER_SECOND
