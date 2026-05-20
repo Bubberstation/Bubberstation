@@ -770,7 +770,7 @@
 	icon_state = "expi"
 	slot_flags = ITEM_SLOT_HEAD
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
-	desc = ""
+	desc = "A plushie of a canid of sorts. It yearns to be detonated on a landmine."
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	attack_verb_simple = list("bark", "growl", "whine")
 	squeak_override = list('modular_zubbers/sound/misc/dogshake.ogg' = 1)
