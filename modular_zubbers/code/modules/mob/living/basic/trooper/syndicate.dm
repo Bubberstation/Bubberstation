@@ -9,7 +9,6 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	armour_penetration = 10
-	speed = 0.8
 	melee_attack_cooldown = 0.70 SECONDS
 	attack_verb_continuous = "strikes"
 	attack_verb_simple = "strike"
@@ -18,6 +17,4 @@
 
 /mob/living/basic/trooper/syndicate/boggins/Initialize(mapload)
 	. = ..()
-	add_traits(list(
-		TRAIT_SILICON_ACCESS //just so he can access the ship stuff what could possibly go wrong
-	), INNATE_TRAIT)
+	AddComponent(/datum/component/simple_access, ACCESS_SYNDICATE)
