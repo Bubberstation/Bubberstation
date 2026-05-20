@@ -7,37 +7,19 @@
 	worn_icon_state = "beads"
 
 	var/datum/weakref/chaplain_ref
+	var/datum/action/cooldown/spell/summon_chaplain/action
 
 /obj/item/clothing/neck/affection_necklace/equipped(mob/user, slot)
 	. = ..()
 
 	if(slot == ITEM_SLOT_NECK)
-		user.AddComponent(/datum/component/necklace_summon_action, src)
+		action = new(user)
+		action.necklace = src
+		action.Grant(user)
 
 /obj/item/clothing/neck/affection_necklace/dropped(mob/user)
 	. = ..()
-	qdel(user.GetComponent(/datum/component/necklace_summon_action))
-
-/datum/component/necklace_summon_action
-	var/obj/item/clothing/neck/affection_necklace/necklace
-	var/datum/action/cooldown/spell/summon_chaplain/action
-
-/datum/component/necklace_summon_action/Initialize(obj/item/clothing/neck/affection_necklace/new_necklace)
-	. = ..()
-
-	if(!isliving(parent))
-		return COMPONENT_INCOMPATIBLE
-
-	necklace = new_necklace
-
-	action = new(parent)
-	action.necklace = necklace
-	action.Grant(parent)
-
-/datum/component/necklace_summon_action/Destroy(force)
 	QDEL_NULL(action)
-	necklace = null
-	return ..()
 
 /datum/action/cooldown/spell/summon_chaplain
 	name = "Summon Chaplain"
