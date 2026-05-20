@@ -173,6 +173,10 @@
 	recharge_coeff = 0.5
 	var/obj/item/storage/belt/holster/blacksmithed/charging/my_belt
 
+/obj/item/storage/belt/holster/blacksmithed/charging/Destroy()
+	my_belt = null
+	. = ..()
+
 /obj/machinery/recharger/RefreshParts()
 	. = ..()
 	recharge_coeff = initial(recharge_coeff)
