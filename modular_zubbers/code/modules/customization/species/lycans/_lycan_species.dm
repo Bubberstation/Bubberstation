@@ -41,7 +41,7 @@
 		// Lycan Specific Things
 		TRAIT_LUPINE,
 		TRAIT_BEAST_FORM,
-		TRAIT_NOGUNS,
+		TRAIT_CHUNKYFINGERS,
 		TRAIT_LYCAN,
 		TRAIT_QUICKER_CARRY, // It'd be on par with nitrile gloves.
 		TRAIT_PIERCEIMMUNE, // Thick skin
@@ -105,12 +105,13 @@
 
 	ADD_TRAIT(gainer, TRAIT_BATON_RESISTANCE, SPECIES_TRAIT)
 	ADD_TRAIT(gainer, TRAIT_HARDLY_WOUNDED, SPECIES_TRAIT)
-	ADD_TRAIT(gainer, TRAIT_IGNORESLOWDOWN, SPECIES_TRAIT)
 	ADD_TRAIT(gainer, TRAIT_FEARLESS, SPECIES_TRAIT)
 	ADD_TRAIT(gainer, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, SPECIES_TRAIT)
 	ADD_TRAIT(gainer, TRAIT_NO_STAGGER, SPECIES_TRAIT)
 	ADD_TRAIT(gainer, TRAIT_NO_THROW_HITPUSH, SPECIES_TRAIT)
+	ADD_TRAIT(gainer, TRAIT_MARTIAL_ARTS_UNUSABLE, SPECIES_TRAIT)
 
+	gainer.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	gainer.AddComponent( \
 		/datum/component/regenerator, \
 		regeneration_delay = 5 SECONDS, \
@@ -124,12 +125,13 @@
 /datum/species/lycan/proc/handle_gaian_physique_loss(mob/living/carbon/human/loser)
 	REMOVE_TRAIT(loser, TRAIT_BATON_RESISTANCE, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_HARDLY_WOUNDED, SPECIES_TRAIT)
-	REMOVE_TRAIT(loser, TRAIT_IGNORESLOWDOWN, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_FEARLESS, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_NO_STAGGER, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_NO_THROW_HITPUSH, SPECIES_TRAIT)
+	REMOVE_TRAIT(loser, TRAIT_MARTIAL_ARTS_UNUSABLE, SPECIES_TRAIT)
 
+	loser.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	qdel(loser.GetComponent(/datum/component/regenerator))
 
 	loser.physiology.stamina_mod *= 4
