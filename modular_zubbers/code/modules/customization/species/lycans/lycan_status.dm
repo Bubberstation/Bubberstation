@@ -68,7 +68,9 @@
 
 	if (lycan_brain.last_slot)
 		var/client/target_client = human_owner.client
-		if (!isnull(target_client))
+		if (isnull(target_client))
+			human_owner.set_species(initial_species, TRUE, TRUE, FALSE)
+		else
 			target_client.prefs.load_character(lycan_brain.last_slot)
 			target_client.prefs.safe_transfer_prefs_to_with_damage(human_owner)
 			SSquirks.OverrideQuirks(human_owner, target_client)
@@ -83,14 +85,13 @@
 	. = ..()
 
 	var/mob/living/carbon/human_owner = owner
-	if (human_owner.client) // very important, bc otherwise we wont actually revert to the charslot
-		if (!istype(human_owner))
-			qdel(src)
-			return
+	if (!istype(human_owner))
+		qdel(src)
+		return
 
-		if (human_owner.stat >= HARD_CRIT || human_owner.dna.species.id != SPECIES_LYCAN)
-			qdel(src)
-			return
+	if (human_owner.stat >= HARD_CRIT || human_owner.dna.species.id != SPECIES_LYCAN)
+		qdel(src)
+		return
 
 /datum/status_effect/beast_form/get_examine_text()
 	return span_notice("The NT employee manual has a entry on this species... <a href='byond://?src=[REF(src)];[BEAST_FORM_EXPOSITION_LINK]=1'>Recall what you read?</a>")
