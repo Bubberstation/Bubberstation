@@ -60,7 +60,7 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi'
 
-/obj/item/clothing/gloves/combat/peacekeeper/armadyne
+/obj/item/clothing/gloves/color/black/peacekeeper/armadyne
 	name = "armadyne combat gloves"
 	desc = "Tactical and sleek. Worn by Armadyne representatives."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
