@@ -109,6 +109,12 @@
 			SPECIES_PERK_NAME = "Lycan strength",
 			SPECIES_PERK_DESC = "While in Lycan form, your claws deal significant damage - about circular saw level.",
 		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_SHIELD,
+			SPECIES_PERK_NAME = "Lycan resilience",
+			SPECIES_PERK_DESC = "While in Lycan form, you take 50% less brute and 20% less burn.",
+		),
 	)
 
 	return to_add
@@ -130,7 +136,6 @@
 		handle_gaian_physique_loss(loser)
 
 /datum/species/lycan/proc/handle_gaian_physique(mob/living/carbon/human/gainer)
-	damage_modifier += 30 // bonus percent damgae reduction
 	stunmod = 0.5
 	gainer.physiology.stamina_mod *= 0.25
 

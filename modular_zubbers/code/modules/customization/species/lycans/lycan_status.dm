@@ -110,13 +110,13 @@
 	render_list += "<hr>"
 	render_list += span_notice("Lycans and related may come in various forms, but each have similarities in how they function.")
 	render_list += span_notice("\nLycans possess [EXAMINE_HINT("exceptionally strong claws")], about as strong as a [EXAMINE_HINT("circular saw")] without the armor penetration.")
+	render_list += span_notice("\nLycans also have [EXAMINE_HINT("significant damage resistance")] to brute, and to a lesser extent, burn.")
 	render_list += span_notice("\nHowever, Lycans [EXAMINE_HINT("cannot wear any clothes")] and cannot have synthetic organs.")
 	render_list += span_notice("\nAdditionally, each Lycan possesses a [EXAMINE_HINT("marked weakness to silver")], taking [EXAMINE_HINT("increased damage")] from weapons comprised of it.")
 	render_list += span_notice("\nFinally, Lycans [EXAMINE_HINT("cannot use batons")] nor [EXAMINE_HINT("most firearms")] due to the size of their fingers.")
 	render_list += span_notice("\nThe Lycan form can be [EXAMINE_HINT("toggled at will")], or [EXAMINE_HINT("forcefully removed")] by [EXAMINE_HINT("knocking them into hard-crit")].")
 	render_list += "<hr>"
 	render_list += span_warning("While mostly docile, tamed, and relatively weak, it is rumored that some Lycans harbor a [EXAMINE_HINT("exceptionally capable")] form of the curse. Keep an eye out for any of the following:")
-	render_list += span_warning("\n	* Moderate damage resistance to all damage")
 	render_list += span_warning("\n	* Extremely powerful claws")
 	render_list += span_warning("\n	* Aggressive health regeneration")
 	render_list += span_warning("\n	* Immunity to shoves and resistance to pain/stunning")

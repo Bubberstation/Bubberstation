@@ -1,7 +1,7 @@
 /datum/uplink_item/species_restricted/lycan_booster
 	name = "Lycanthropy Booster"
 	desc = "A highly advanced mix of nanomachines and general 'bad vibes' that will significantly boost the combat performance of your \
-	Lycan form, granting significant damage resistance, baton resistance, regeneration, and further sharpening your claws. Additionally grants you expert fitness."
+	Lycan form, baton resistance, regeneration, and further sharpening your claws. Additionally grants you expert fitness."
 	cost = 10
 	item = /obj/item/lycan_booster
 	restricted_species = list(SPECIES_CURSEKIN)
@@ -10,7 +10,7 @@
 /obj/item/lycan_booster
 	name = "lycanthropy booster"
 	desc = "A highly advanced mix of nanomachines and general 'bad vibes' that will significantly boost the combat performance of your \
-	Lycan form, granting significant damage resistance, baton resistance, regeneration, and further sharpening your claws, along other improvements. \
+	Lycan form, baton resistance, regeneration, and further sharpening your claws, along other improvements. \
 	Additionally grants you expert fitness."
 	icon = 'icons/obj/medical/syringe.dmi'
 	icon_state = "dnainjector"
