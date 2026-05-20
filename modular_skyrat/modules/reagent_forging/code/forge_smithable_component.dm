@@ -77,6 +77,25 @@
 		quench_effects_perfection = perfection_effects
 	if(!isnull(incompletion_effects))
 		quench_effects_incompletion = incompletion_effects
+	RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE_MORE, PROC_REF(on_examine_more))
+
+/datum/component/forge_smithable/proc/on_examine(datum/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+	examine_list += span_notice("It can be safely picked up with tongs.")
+	examine_list += span_notice("It can be heated by being inserted into a forge.")
+	examine_list += span_notice("It can be quenched in any open container that's large enough.")
+	if(USER_CAN_SEE_SMITHING_INFO(user))
+		examine_list += span_notice("You'd estimate that it's about [round(get_completion_ratio() * 100)]% complete.")
+		examine_list += span_notice("The careful smithing makes it look about [round(get_perfect_ratio() * 100)]% perfected.")
+		if(COOLDOWN_FINISHED(src, heating_remainder))
+			examine_list += span_notice("The metal needs to be reheated before it is malleable again.")
+		else
+			examine_list += span_notice("The metal is hot enough to work.")
+
+	else
+		examine_list += span_notice("If you were more skilled at smithing you could discern more information from it...")
+
 
 /datum/component/forge_smithable/proc/good_hit(amount = 1, playsound = FALSE)
 	quality_points += amount

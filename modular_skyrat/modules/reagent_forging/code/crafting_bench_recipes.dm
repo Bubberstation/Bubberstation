@@ -326,7 +326,7 @@
 		/obj/item/stack/sheet/mineral/gold = 1,
 		/obj/item/stack/sheet/mineral/silver = 1,
 	)
-	resulting_item = /obj/item/storage/belt/holster/blacksmithed/cowboy
+	resulting_item = /obj/item/storage/belt/hip_holster/cowboy
 	relevant_skill_level = 7
 	time_to_assemble = 3 SECONDS
 	required_traits = list(TRAIT_KNOW_GUNSMITHING)
@@ -340,7 +340,7 @@
 		/obj/item/stack/sheet/bluespace_crystal = 1,
 		/obj/item/circuitboard/machine/recharger = 1,
 	)
-	resulting_item = /obj/item/storage/belt/holster/blacksmithed/charging
+	resulting_item = /obj/item/storage/belt/hip_holster/charging
 	relevant_skill_level = 7
 	time_to_assemble = 3 SECONDS
 	required_traits = list(TRAIT_KNOW_GUNSMITHING, TRAIT_KNOW_CIRCUIT_SMITHING)

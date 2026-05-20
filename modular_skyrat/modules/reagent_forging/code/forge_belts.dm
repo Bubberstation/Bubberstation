@@ -2,10 +2,12 @@
 ////////////////////////////// HOLSTERS ////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 
-/obj/item/storage/belt/holster/blacksmithed
+//can't be a subtype of item/storage/belt/holster -- that can be suit storaged per \code\__DEFINES\inventory.dm
+//hip holsters SHOULDN'T be able to be suit storaged.
+/obj/item/storage/belt/hip_holster
 	name = "parent dev item"
 	desc = "you shouldn't be seeing this."
-	abstract_type = /obj/item/storage/belt/holster/blacksmithed
+	abstract_type = /obj/item/storage/belt/hip_holster
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	icon_state = "cowboy_holster"
 	inhand_icon_state = "holster"
@@ -13,11 +15,17 @@
 	alternate_worn_layer = null
 	storage_type = /datum/storage/holster
 
-/obj/item/storage/belt/holster/blacksmithed/update_overlays()
+//copy of the holster/equipped proc.
+/obj/item/storage/belt/hip_holster/equipped(mob/user, slot)
+	. = ..()
+	if(slot & (ITEM_SLOT_BELT|ITEM_SLOT_SUITSTORE))
+		ADD_CLOTHING_TRAIT(user, TRAIT_GUNFLIP)
+
+/obj/item/storage/belt/hip_holster/update_overlays()
 	. = ..()
 	. += get_guns_contained_overlays()
 
-/obj/item/storage/belt/holster/blacksmithed/proc/get_guns_contained_overlays(list/contents_to_check = null)
+/obj/item/storage/belt/hip_holster/proc/get_guns_contained_overlays(list/contents_to_check = null)
 	var/list/returner = list()
 	if(contents_to_check == null)
 		contents_to_check = contents
@@ -32,9 +40,9 @@
 			returner += mutable_appearance('modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi', "belt_gun_baton")
 			return returner
 
-/obj/item/storage/belt/holster/blacksmithed/cowboy
+/obj/item/storage/belt/hip_holster/cowboy
 	name = "quickdraw holster"
-	desc = "A rugged leather belt. Can carry a handgun; <b>the holster pouch makes quickdrawing a cinch</b>. Also comes with some side pockets for speedloaders and magazines."
+	desc = "A rugged leather belt. Can carry a handgun; <b>the holster pouch makes it like reflex to draw your gun</b>. Also comes with some side pockets for speedloaders and magazines."
 	icon_state = "cowboy_holster"
 	inhand_icon_state = "utility"
 	worn_icon_state = "utility"
@@ -90,7 +98,7 @@
 
 /////////////////////////////////////////////////
 
-/obj/item/storage/belt/holster/blacksmithed/charging
+/obj/item/storage/belt/hip_holster/charging
 	name = "charging holster"
 	desc = "A sophisticated plastic holster belt. Bluespace tech allows it to store whatever a standard weapon charger can; <b>it'll charge whatever's kept</b>."
 	icon_state = "charger_belt"
@@ -100,21 +108,21 @@
 	var/obj/machinery/recharger/belt_charger/my_charger
 	var/obj/item/storage/box/real_storage
 
-/obj/item/storage/belt/holster/blacksmithed/charging/Initialize(mapload)
+/obj/item/storage/belt/hip_holster/charging/Initialize(mapload)
 	my_charger = new(src)
 	my_charger.my_belt = src
 	real_storage = new(src)
 	. = ..()
 
-/obj/item/storage/belt/holster/blacksmithed/charging/Destroy()
+/obj/item/storage/belt/hip_holster/charging/Destroy()
 	QDEL_NULL(my_charger)
 	QDEL_NULL(real_storage)
 	. = ..()
 
-/obj/item/storage/belt/holster/blacksmithed/charging/get_guns_contained_overlays(list/contents_to_check = null)
+/obj/item/storage/belt/hip_holster/charging/get_guns_contained_overlays(list/contents_to_check = null)
 	. = ..(real_storage.contents)
 
-/obj/item/storage/belt/holster/blacksmithed/charging/update_overlays()
+/obj/item/storage/belt/hip_holster/charging/update_overlays()
 	. = ..()
 	if(length(real_storage?.contents) > 0)
 		if(!isnull(my_charger?.charging))
@@ -128,14 +136,15 @@
 	max_total_storage = 12
 	open_sound = 'sound/items/handling/holster_open.ogg'
 	open_sound_vary = TRUE
+	max_specific_storage = WEIGHT_CLASS_BULKY
 	var/delay_before_charging = 15 SECONDS
 	var/timer_id
 	var/obj/machinery/recharger/belt_charger/my_charger
 
 /datum/storage/charging_holster/New()
 	. = ..()
-	if(istype(parent, /obj/item/storage/belt/holster/blacksmithed/charging))
-		var/obj/item/storage/belt/holster/blacksmithed/charging/my_belt = parent
+	if(istype(parent, /obj/item/storage/belt/hip_holster/charging))
+		var/obj/item/storage/belt/hip_holster/charging/my_belt = parent
 		my_charger = my_belt.my_charger
 		set_real_location(my_belt.real_storage)
 	set_holdable(list(
@@ -168,16 +177,15 @@
 
 /obj/machinery/recharger/belt_charger
 	name = "belt charger"
-
 	desc = "the fact that you can see this means there's an error, call a dev!"
 	recharge_coeff = 0.5
-	var/obj/item/storage/belt/holster/blacksmithed/charging/my_belt
+	var/obj/item/storage/belt/hip_holster/charging/my_belt
 
 /obj/machinery/recharger/belt_charger/Destroy()
 	my_belt = null
 	. = ..()
 
-/obj/machinery/recharger/RefreshParts()
+/obj/machinery/recharger/belt_charger/RefreshParts()
 	. = ..()
 	recharge_coeff = initial(recharge_coeff)
 

@@ -20,9 +20,16 @@
 	var/list/secondary_attack_verb_continuous = list("shaft-strikes")
 	var/list/secondary_attack_verb_simple = list("shaft-strike")
 
-/obj/item/forging/reagent_weapon/examine(mob/user)
+/obj/item/melee/forged_reagent_weapon/examine(mob/user)
 	. = ..()
-	. += span_notice("Using a hammer on [src] will repair its damage!")
+	var/healthpercent = round((atom_integrity/max_integrity) * 100, 1)
+	switch(healthpercent)
+		if(50 to 99)
+			. += span_info("It looks slightly damaged.")
+		if(25 to 50)
+			. += span_info("It appears heavily damaged.")
+		if(0 to 25)
+			. += span_warning("It's falling apart!")
 
 /obj/item/melee/forged_reagent_weapon/Initialize(mapload)
 	. = ..()
