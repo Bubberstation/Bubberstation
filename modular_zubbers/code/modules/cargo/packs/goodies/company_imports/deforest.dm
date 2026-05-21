@@ -66,7 +66,7 @@
 	cost = PAYCHECK_CREW * 0.75
 
 /datum/supply_pack/company_import/deforest/first_aid/sterile_gauze
-	item_type = /obj/item/stack/medical/gauze/sterilized
+	item_type = /obj/item/stack/medical/wrap/gauze/sterilized
 	cost = PAYCHECK_CREW * 1.8
 
 /datum/supply_pack/company_import/deforest/first_aid/suture

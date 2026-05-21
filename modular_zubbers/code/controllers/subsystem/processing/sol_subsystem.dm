@@ -5,7 +5,7 @@ PROCESSING_SUBSYSTEM_DEF(sunlight)
 	can_fire = FALSE
 	runlevels = RUNLEVEL_GAME
 	wait = 2 SECONDS
-	flags = SS_NO_INIT | SS_KEEP_TIMING | SS_TICKER
+	ss_flags = SS_NO_INIT | SS_KEEP_TIMING | SS_TICKER
 
 	///If the Sun is currently out our not.
 	var/sunlight_active = FALSE
@@ -76,7 +76,7 @@ PROCESSING_SUBSYSTEM_DEF(sunlight)
 	if(is_sufferer(victim))
 		return FALSE
 	var/atom/movable/screen/bloodsucker/sunlight_counter/sun_hud = new(null, victim.hud_used)
-	victim.hud_used.infodisplay += sun_hud
+	victim.hud_used.add_screen_object(sun_hud, null, HUD_GROUP_INFO)
 	victim.hud_used.show_hud(victim.hud_used.hud_version)
 	sun_hud.update_sol_hud()
 	RegisterSignal(victim, COMSIG_QDELETING, PROC_REF(remove_sun_sufferer), victim)
@@ -93,10 +93,10 @@ PROCESSING_SUBSYSTEM_DEF(sunlight)
 	if(!is_sufferer(victim))
 		return FALSE
 	var/atom/movable/screen/bloodsucker/sunlight_counter/sun_hud = sun_sufferers[victim]
+	var/datum/hud/hud_used = victim?.hud_used
 	if(sun_hud)
-		victim?.hud_used.infodisplay -= sun_hud
+		hud_used?.remove_screen_object(sun_hud)
 		UnregisterSignal(sun_hud, COMSIG_QDELETING)
-		qdel(sun_hud)
 	sun_sufferers -= victim
 	UnregisterSignal(victim, COMSIG_QDELETING)
 	if(!length(sun_sufferers))

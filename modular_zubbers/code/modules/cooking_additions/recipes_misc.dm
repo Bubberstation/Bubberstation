@@ -9,7 +9,7 @@
 		/obj/item/reagent_containers/condiment = 1,
 	)
 	result = /obj/item/reagent_containers/condiment/red_bay
-	category = CAT_MISCFOOD
+	dish_category = DISH_CONDIMENT
 
 /datum/crafting_recipe/food/curry_powder
 	name = "Curry powder"
@@ -21,7 +21,7 @@
 		/obj/item/reagent_containers/condiment = 1,
 	)
 	result = /obj/item/reagent_containers/condiment/curry_powder
-	category = CAT_MISCFOOD
+	dish_category = DISH_CONDIMENT
 
 /datum/crafting_recipe/food/worcestershire
 	name = "Worcestershire Sauce"
@@ -34,7 +34,7 @@
 		/obj/item/reagent_containers/condiment = 1,
 	)
 	result = /obj/item/reagent_containers/condiment/worcestershire
-	category = CAT_MISCFOOD
+	dish_category = DISH_CONDIMENT
 
 /datum/crafting_recipe/food/dashiconcentrate
 	name = "Concentrated Dashi"
@@ -45,7 +45,7 @@
 		/obj/item/reagent_containers/condiment = 1,
 	)
 	result = /obj/item/reagent_containers/condiment/dashi_concentrate
-	category = CAT_MISCFOOD
+	dish_category = DISH_CONDIMENT
 
 /datum/crafting_recipe/food/chapmix
 	name = "Chap mix"
@@ -56,7 +56,7 @@
 		/datum/reagent/consumable/salt = 15,
 	)
 	result = /obj/item/food/meat/chapmix
-	category = CAT_MISCFOOD
+	meal_category = MEAL_COMPONENT
 
 /obj/item/food/meat/chapmix
 	name = "chap mix"
@@ -101,7 +101,7 @@
 		/datum/reagent/consumable/salt = 15,
 	)
 	result = /obj/item/food/meat/snailmix
-	category = CAT_MISCFOOD
+	meal_category = MEAL_COMPONENT
 
 /obj/item/food/meat/snailmix
 	name = "snail mix"
@@ -124,4 +124,4 @@
 	result = /obj/item/food/mac_balls
 	removed_foodtypes = JUNKFOOD
 	added_foodtypes = FRIED
-	category = CAT_MOTH
+	meal_category = MEAL_APPETIZER

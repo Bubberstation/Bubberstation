@@ -200,3 +200,7 @@
 /datum/loadout_item/toys/lewd/strapon
 	name = "Strapon"
 	item_path = /obj/item/clothing/strapon
+
+/datum/loadout_item/toys/lewd/aeri
+	name = "Interdimensional Terrorist Plushie"
+	item_path = /obj/item/toy/plush/aeri
