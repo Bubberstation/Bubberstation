@@ -40,7 +40,7 @@
 
 /datum/supply_pack/imports/riflecrate
 	name = "Lanca Battle Rifle Crate"
-	desc = "Need some more reliable firepower than the standard Sakhno? Look no further than these bad boys. Featuring a more modern semi-automatic action and even a low-magnification scope, these bad babies will be sure to make anyone regret messing with you. Don't mind the fees..."
+	desc = "Need some more reliable firepower than the standard Sakhno? Look no further than these bad boys. Featuring a more modern semi-automatic action, these bad babies will be sure to make anyone regret messing with you. Don't mind the fees..."
 	cost = 2500
 	contains = list(
 		/obj/item/gun/ballistic/automatic/lanca,
