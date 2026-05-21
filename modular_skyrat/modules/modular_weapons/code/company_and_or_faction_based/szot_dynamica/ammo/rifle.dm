@@ -49,4 +49,3 @@
 	armour_penetration = 30
 	wound_bonus = 10
 	demolition_mod = 1.2
-//BUBBER change, sorta just fuckin'guts the general insanity with this ammo to make it a mildly viable anti-mech/anti armor weapon
