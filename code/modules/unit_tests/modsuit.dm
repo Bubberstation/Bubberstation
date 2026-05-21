@@ -30,3 +30,16 @@
 	var/obj/item/mod/module/storage/storage = locate() in dummy.back
 	TEST_ASSERT_NOTNULL(storage, "Admin outfit MODsuit did not have a storage module.")
 	TEST_ASSERT(length(storage.contents) > 0, "Admin outfit's storage module was empty.")
+
+/datum/unit_test/mod_overslot_rejects_mod_items
+
+/datum/unit_test/mod_overslot_rejects_mod_items/Run()
+	var/obj/item/mod/control/pre_equipped/advanced/advanced_mod = allocate(/obj/item/mod/control/pre_equipped/advanced)
+	var/obj/item/mod/control/pre_equipped/infiltrator/infiltrator_mod = allocate(/obj/item/mod/control/pre_equipped/infiltrator)
+	var/obj/item/advanced_helmet = advanced_mod.get_part_from_slot(ITEM_SLOT_HEAD)
+	var/obj/item/infiltrator_helmet = infiltrator_mod.get_part_from_slot(ITEM_SLOT_HEAD)
+	var/obj/item/clothing/head/hats/caphat/captain_hat = allocate(/obj/item/clothing/head/hats/caphat)
+
+	TEST_ASSERT(advanced_mod.can_part_overslot_item(advanced_helmet, captain_hat), "MODsuit helmets should still be able to overslot normal head items.")
+	TEST_ASSERT(!advanced_mod.can_part_overslot_item(advanced_helmet, infiltrator_helmet), "MODsuit helmets should not be able to overslot other MODsuit helmets.")
+	TEST_ASSERT(!advanced_mod.can_part_overslot_item(advanced_helmet, infiltrator_mod), "MODsuit parts should not be able to overslot other MODsuit control units.")
