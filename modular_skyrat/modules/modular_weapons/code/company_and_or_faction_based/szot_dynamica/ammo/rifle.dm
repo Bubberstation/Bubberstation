@@ -44,9 +44,9 @@
 /obj/projectile/bullet/p60strela // The funny thing is, these are wild but you only get three of them a magazine
 	name =".60 Strela bullet"
 	icon_state = "gaussphase"
-	speed = 2.5
+	speed = 1.5
 	damage = 40
 	armour_penetration = 30
 	wound_bonus = 10
-	demolition_mod = 1.3
+	demolition_mod = 1.2
 //BUBBER change, sorta just fuckin'guts the general insanity with this ammo to make it a mildly viable anti-mech/anti armor weapon
