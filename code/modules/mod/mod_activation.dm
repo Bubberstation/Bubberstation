@@ -79,7 +79,7 @@
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	if(part_datum.can_overslot)
 		var/obj/item/overslot = wearer.get_item_by_slot(part.slot_flags)
-		if(istype(overslot)) // BUBBER EDIT - check for /obj/item, not /obj/item/clothing - ORIGINAL: if(istype(overslot, /obj/item/clothing))
+		if(can_part_overslot_item(part, overslot)) // BUBBER EDIT - check for /obj/item, not /obj/item/clothing - ORIGINAL: if(istype(overslot, /obj/item/clothing))
 			part_datum.overslotting = overslot
 			wearer.transferItemToLoc(overslot, part, force = TRUE)
 			RegisterSignal(part, COMSIG_ATOM_EXITED, PROC_REF(on_overslot_exit))
@@ -111,6 +111,18 @@
 		balloon_alert(user, "bodypart clothed!")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	return FALSE
+
+//BUBBER ADDITION START
+/// Checks whether an item can be nested inside a deploying MOD part as its overslotted visual underlay.
+/obj/item/mod/control/proc/can_part_overslot_item(obj/item/part, obj/item/overslot)
+	if(!istype(overslot))
+		return FALSE
+	if(is_mod_part_or_control(overslot))
+		return FALSE
+
+	return TRUE
+
+//BUBBER ADDITION END
 
 /// Retract a part of the suit from the user.
 /obj/item/mod/control/proc/retract(mob/user, obj/item/part, instant = FALSE)

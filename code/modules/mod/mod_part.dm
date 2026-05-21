@@ -29,11 +29,30 @@
 	part_item = new_part
 	RegisterSignal(part_item, COMSIG_ITEM_GET_SEPARATE_WORN_OVERLAYS, PROC_REF(get_separate_worn_overlays))
 
+//BUBBER ADDITION START
+/proc/is_mod_part_or_control(obj/item/item)
+	if(!istype(item))
+		return FALSE
+
+	var/static/list/mod_item_typecache = typecacheof(list(
+		/obj/item/clothing/glasses/mod,
+		/obj/item/clothing/gloves/mod,
+		/obj/item/clothing/head/mod,
+		/obj/item/clothing/neck/mod,
+		/obj/item/clothing/shoes/mod,
+		/obj/item/clothing/suit/mod,
+		/obj/item/mod/control,
+	))
+	return is_type_in_typecache(item, mod_item_typecache)
+//BUBBER ADDITION END
+
 // If we're overslotting an item, add its visual as an underlay
 /datum/mod_part/proc/get_separate_worn_overlays(obj/item/source, list/overlays, mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file)
 	SIGNAL_HANDLER
 
 	if (!overslotting || sealed)
+		return
+	if(is_mod_part_or_control(overslotting))
 		return
 
 	var/checked_slot = source.slot_flags
