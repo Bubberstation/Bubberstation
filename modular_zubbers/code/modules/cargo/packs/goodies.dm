@@ -224,6 +224,13 @@
 	cost = PAYCHECK_CREW * 8
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/foamforce_implant, /obj/item/ammo_box/foambox/mini)
 
+/datum/supply_pack/goody/defender_revolver
+	name = "'Defender' Revolver Single-Pack"
+	desc = "Contains one 'Defender' revolver. Cheap and prone to the occasional misfire. Fires .38 rounds.'"
+	cost = PAYCHECK_COMMAND * 3
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/ballistic/revolver/defender_revolver)
+
 /datum/supply_pack/goody/miecz
 	name = "Miecz Submachinegun Single-Pack"
 	desc = "Contains one Miecz Submachinegun, one of the newest guns to make it out of the PSC. Due to import fees and general rarity, this one's gonna be expensive. Contains two magazines, as well."
