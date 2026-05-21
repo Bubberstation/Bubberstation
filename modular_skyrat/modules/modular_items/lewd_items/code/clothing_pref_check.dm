@@ -13,7 +13,7 @@ GLOBAL_LIST_INIT(pref_checked_clothes, list(
 	/obj/item/clothing/suit/straight_jacket/kinky_sleepbag,
 	/obj/item/clothing/suit/straight_jacket/latex_straight_jacket,
 	/obj/item/clothing/gloves/ball_mittens,
-	/obj/item/clothing/gloves/ball_mittens_reinforced,
+	// BUBBER EDIT: ball_mittens_reinforced removed - variant no longer exists
 	/obj/item/clothing/suit/straight_jacket/shackles,
 	/obj/item/clothing/suit/straight_jacket/shackles/reinforced,
 	/obj/item/clothing/gloves/shibari_hands,
@@ -26,4 +26,3 @@ GLOBAL_LIST_INIT(pref_checked_clothes, list(
 		if(!(user.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy)))
 			return FALSE
 	return ..()
-

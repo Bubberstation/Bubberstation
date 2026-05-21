@@ -78,10 +78,7 @@
 	if(CONFIG_GET(flag/disable_lewd_items))
 		return INITIALIZE_HINT_QDEL
 
-/obj/item/clothing/gloves/ball_mittens_reinforced/Initialize(mapload)
-	. = ..()
-	if(CONFIG_GET(flag/disable_lewd_items))
-		return INITIALIZE_HINT_QDEL
+// AFTERMARKET EDIT: ball_mittens_reinforced Initialize block removed - variant no longer exists
 
 /obj/item/clothing/suit/straight_jacket/kinky_sleepbag/Initialize(mapload)
 	. = ..()

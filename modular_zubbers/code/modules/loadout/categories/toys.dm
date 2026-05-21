@@ -200,3 +200,11 @@
 /datum/loadout_item/toys/lewd/strapon
 	name = "Strapon"
 	item_path = /obj/item/clothing/strapon
+
+// BUBBER EDIT ADDITION
+/datum/loadout_item/toys/lewd/ball_mittens
+	name = "Ball Mittens"
+	item_path = /obj/item/clothing/gloves/ball_mittens
+	erp_item = TRUE
+
+// BUBBER EDIT ADDITION END
