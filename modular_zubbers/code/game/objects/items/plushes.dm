@@ -764,34 +764,60 @@
 	bluespace_smite.effect(user.client, user)
 	return BRUTELOSS
 
+//TODO: probably move the expie plush into its own .dm since it is a lot of lines or find a way to to squish this.
 //Sprite from SS14 Main. Sprited by Orsoniks (rivey0 on discord)
-/obj/item/toy/plush/expi
+/obj/item/toy/plush/expie
 	name = "Experiment Plushie"
-	icon_state = "expi"
+	icon_state = "expie"
 	slot_flags = ITEM_SLOT_HEAD
-	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi' // using it as a hat works but doesn't show.  TODO: make it show.
 	desc = "A plushie of a canid of sorts. It yearns to be detonated on a landmine."
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	attack_verb_simple = list("bark", "growl", "whine")
-	squeak_override = list('modular_zubbers/sound/misc/dogshake.ogg' = 1)
+	squeak_override = list('modular_zubbers/sound/misc/plushie.ogg' = 1)
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
-	inhand_icon_state = "expi"
+	inhand_icon_state = "expie"
 
-/obj/item/toy/plush/expi/item_interaction(mob/living/feeder, obj/item/reagent_containers/applicator/pill/enom, list/modifiers)
+/obj/item/toy/plush/expie/item_interaction(mob/living/feeder, obj/item/reagent_containers/applicator/pill/enom, list/modifiers)
 	if(!istype(enom))
 		return ..()
-	enom.forceMove(src) // go into the expi stummy
+	enom.forceMove(src) // go into the expie stummy
 	to_chat(feeder, span_notice("You feed the [enom] to [src] and watch as it eats..."))
-	playsound(src, 'sound/items/eatfood.ogg', 75, TRUE)
+	playsound(src, 'modular_zubbers/sound/misc/eatcrunch.ogg', 75, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(eat), feeder, enom), 3 SECONDS)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/item/toy/plush/expi/proc/eat(mob/living/feeder, obj/item/reagent_containers/applicator/pill/enom)
+/obj/item/toy/plush/expie/proc/eat(mob/living/feeder, obj/item/reagent_containers/applicator/pill/enom)
 	if(istype(enom, /obj/item/reagent_containers/applicator/pill/happy))
 		SpinAnimation(speed = 0.3 SECONDS, loops = 3)
 	else if(istype(enom, /obj/item/reagent_containers/applicator/pill))
 		spasm_animation(4 SECONDS)
-	qdel(enom)
+	qdel(enom) //TODO: actually check if the pill fed is deleted.
 	return 'sound/items/weapons/thudswoosh.ogg'
 
+// todo: make the expie react to being splashed with any reagent and shake after with dogshake.ogg
+/obj/item/toy/plush/expie/proc/splash_reagents(atom/target, mob/splasher, was_thrown = TRUE, allow_closed_splash = TRUE) //soggy doggy [unfinished]
+	if(!istype(target, /obj/plush/expie))
+		return
+	if reagents.expose(target, TOUCH)
+		playsound(src, 'modular_zubbers/sound/misc/dogshake.ogg', 75)
+		visible_message(span_warning("[src] gets soaked and shakes itself off!"))
+
+/datum/reagent/consumable/milk/expose_obj(obj/exposed_obj, reac_volume, methods=TOUCH, show_message=TRUE) //spill milk on the expie to make it milkie
+	. = ..()
+	if(!istype(exposed_obj, /obj/item/toy/plush/expie))
+		return
+	var/obj/item/toy/plush/expie/milkie = exposed_obj
+	new/obj/item/toy/plush/milkie
+
+/obj/item/toy/plush/milkie //todo: make the milkie plush. and return to normal expie if it is squeezed enough (making all the milk come out.)
+	name = ""
+	desc = ""
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "milkie"
+	attack_verb_simple = list("bark", "growl", "whine")
+	squeak_override = list('modular_zubbers/sound/misc/plushie.ogg' = 1)
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
+	inhand_icon_state = "milkie"
