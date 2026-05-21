@@ -42,6 +42,6 @@
 	bolt_type = BOLT_TYPE_NO_BOLT
 	tac_reloads = FALSE
 	w_class = WEIGHT_CLASS_SMALL
-	projectile_damage_multiplier = 0.9
+	projectile_damage_multiplier = 0.8
 	spread = 10
 	force = 9.5 //slightly worse than murphy/batong
