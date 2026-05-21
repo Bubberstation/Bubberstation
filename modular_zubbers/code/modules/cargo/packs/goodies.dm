@@ -257,3 +257,10 @@
 	cost = PAYCHECK_COMMAND * 2.5
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/ammo_box/c310_cargo_box)
+
+/datum/supply_pack/goody/lancamag
+	name = "Lanca Magazine Single-Pack"
+	desc = "Contains a single Lanca rifle magazine"
+	cost = PAYCHECK_COMMAND * 1.5
+	contains = list(/obj/item/ammo_box/magazine/lanca)
+	order_flags = ORDER_CONTRABAND
