@@ -45,15 +45,8 @@
 	name =".60 Strela bullet"
 	icon_state = "gaussphase"
 	speed = 2.5
-	damage = 50
-	armour_penetration = 50
-	wound_bonus = 20
-	exposed_wound_bonus = 30
-	demolition_mod = 1.8
-	/// How much damage we add to things that are weak to this bullet
-	var/anti_materiel_damage_addition = 30
-
-/obj/projectile/bullet/p60strela/Initialize(mapload)
-	. = ..()
-	// We do 80 total damage to anything robotic, namely borgs, and robotic simplemobs
-	AddElement(/datum/element/bane, target_type = /mob/living, mob_biotypes = MOB_ROBOTIC, damage_multiplier = 0, added_damage = anti_materiel_damage_addition)
+	damage = 40
+	armour_penetration = 30
+	wound_bonus = 10
+	demolition_mod = 1.3
+//BUBBER change, sorta just fuckin'guts the general insanity with this ammo to make it a mildly viable anti-mech/anti armor weapon

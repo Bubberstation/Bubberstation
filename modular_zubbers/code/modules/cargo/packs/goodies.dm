@@ -250,3 +250,10 @@
 	cost = PAYCHECK_COMMAND * 5
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/ballistic/bow/security, /obj/item/storage/bag/quiver/lesser/security)
+
+/datum/supply_pack/goody/russianammo
+	name = ".310 Ammo Box Single-Pack"
+	desc = "Contains a single pack of .310 rounds."
+	cost = PAYCHECK_COMMAND * 2.5
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/ammo_box/c310_cargo_box)
