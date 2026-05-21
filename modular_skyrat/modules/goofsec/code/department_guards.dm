@@ -221,7 +221,7 @@
 	l_pocket = /obj/item/restraints/handcuffs
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/science = 1,
-		/obj/item/gun/energy/e_gun/advtaser = 1,
+		/obj/item/security_voucher/primary = 1,
 		/obj/item/holosign_creator/security = 1
 	)
 
@@ -327,7 +327,7 @@
 	l_pocket = /obj/item/restraints/handcuffs
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/medical = 1,
-		/obj/item/gun/energy/e_gun/advtaser = 1,
+		/obj/item/security_voucher/primary = 1,
 		/obj/item/holosign_creator/security = 1
 	)
 
@@ -433,7 +433,7 @@
 	l_pocket = /obj/item/restraints/handcuffs
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/engineering = 1,
-		/obj/item/gun/energy/e_gun/advtaser = 1,
+		/obj/item/security_voucher/primary = 1,
 		/obj/item/holosign_creator/security = 1
 	)
 
@@ -540,7 +540,7 @@
 	l_pocket = /obj/item/restraints/handcuffs
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/cargo = 1,
-		/obj/item/gun/energy/e_gun/advtaser = 1,
+		/obj/item/security_voucher/primary = 1,
 		/obj/item/holosign_creator/security = 1
 	)
 
@@ -639,7 +639,7 @@
 	r_pocket = /obj/item/reagent_containers/spray/pepper
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/service = 1,
-		/obj/item/gun/energy/e_gun/advtaser = 1,
+		/obj/item/security_voucher/primary = 1,
 		/obj/item/holosign_creator/security = 1
 	)
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
@@ -848,6 +848,7 @@
 		/obj/item/clothing/head/helmet/blueshirt/skyrat = 2,
 		/obj/item/clothing/head/beret/sec/science = 2,
 		/obj/item/clothing/suit/armor/vest/blueshirt/skyrat = 2,
+		/obj/item/clothing/suit/toggle/labcoat/technical/science/guard = 1,
 		/obj/item/clothing/glasses/hud/security = 2,
 	), src)
 
@@ -857,13 +858,18 @@
 
 /obj/item/storage/bag/garment/orderly/PopulateContents()
 	generate_items_inside(list(
-		/obj/item/radio/headset/headset_med = 2,
-		/obj/item/clothing/shoes/sneakers/white = 2,
-		/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/orderly = 2,
-		/obj/item/clothing/head/helmet/blueshirt/skyrat/guard = 2,
-		/obj/item/clothing/head/beret/sec/medical = 2,
-		/obj/item/clothing/suit/armor/vest/blueshirt/skyrat/orderly = 2,
-		/obj/item/clothing/glasses/hud/security = 2,
+		/obj/item/radio/headset/headset_med = 1,
+		/obj/item/clothing/shoes/sneakers/white = 1,
+		/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/orderly = 1,
+		/obj/item/clothing/head/helmet/blueshirt/skyrat/guard = 1,
+		/obj/item/clothing/head/beret/sec/medical = 1,
+		/obj/item/clothing/suit/armor/vest/blueshirt/skyrat/orderly = 1,
+		/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic = 1,
+		/obj/item/clothing/suit/toggle/labcoat/technical/medical/guard = 1,
+		/obj/item/clothing/suit/toggle/labcoat/technical/medical/dark/guard = 1,
+		/obj/item/clothing/suit/toggle/labcoat/technical/medical/black/guard = 1,
+		/obj/item/clothing/under/rank/security/peacekeeper/miniskirt = 1,
+		/obj/item/clothing/glasses/hud/medsechud = 1,
 	), src)
 
 /obj/item/storage/bag/garment/engineering_guard
@@ -878,6 +884,7 @@
 		/obj/item/clothing/head/helmet/blueshirt/skyrat/guard = 2,
 		/obj/item/clothing/head/beret/sec/engineering = 2,
 		/obj/item/clothing/suit/armor/vest/blueshirt/skyrat/engineering_guard = 2,
+		/obj/item/clothing/suit/toggle/labcoat/technical/engineer/guard = 1,
 		/obj/item/clothing/glasses/hud/security = 2,
 	), src)
 
@@ -893,6 +900,7 @@
 		/obj/item/clothing/head/helmet/blueshirt/skyrat/guard = 2,
 		/obj/item/clothing/head/beret/sec/cargo = 2,
 		/obj/item/clothing/suit/armor/vest/blueshirt/skyrat/customs_agent = 2,
+		/obj/item/clothing/suit/toggle/labcoat/technical/cargo/guard = 1,
 		/obj/item/clothing/glasses/hud/security = 2,
 		/obj/item/clothing/glasses/hud/gun_permit = 2,
 	), src)

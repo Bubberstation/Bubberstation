@@ -12,6 +12,9 @@
 	. = ..()
 	AddComponent(/datum/component/reagent_weapon)
 
+	if (/datum/material/silver in custom_materials)
+		AddElement(/datum/element/bane, /datum/species/lycan, damage_multiplier = 3, requires_combat_mode = FALSE)
+
 /obj/item/forging/reagent_weapon/examine(mob/user)
 	. = ..()
 	. += span_notice("Using a hammer on [src] will repair its damage!")
@@ -245,8 +248,14 @@
 	AddComponent(/datum/component/jousting, max_tile_charge = 9, min_tile_charge = 6)
 	AddComponent(/datum/component/butchering, speed = 10 SECONDS, effectiveness = 70)
 	AddComponent(/datum/component/two_handed, force_multiplier = 2)
-	AddComponent(/datum/component/two_hand_reach, unwield_reach = 1, wield_reach = 2)
+	AddComponent(/datum/component/two_hand_reach, unwield_reach = 2, wield_reach = 1)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
+
+/obj/item/forging/reagent_weapon/spear/proc/on_wield(obj/item/source, mob/living/carbon/user)
+	armour_penetration *= 2
+
+/obj/item/forging/reagent_weapon/spear/proc/on_unwield(obj/item/source, mob/living/carbon/user)
+	armour_penetration /= 2
 
 /obj/item/forging/reagent_weapon/axe
 	name = "reagent axe"

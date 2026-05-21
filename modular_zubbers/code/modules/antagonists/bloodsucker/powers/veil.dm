@@ -104,7 +104,6 @@
 	SIGNAL_HANDLER
 
 	identity[VISIBLE_NAME_FACE] = disguise_name
-	user.get_message_voice(disguise_name)
 
 /datum/action/cooldown/bloodsucker/veil/DeactivatePower(deactivate_flags)
 	. = ..()
