@@ -1079,6 +1079,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// This mob doesn't count as looking at you if you can only act while unobserved
 #define TRAIT_UNOBSERVANT "trait_unobservant"
 
+///Trait for uwuspeech
+#define TRAIT_UWU_SPEECH "uwu_speech"
+
 /* Traits for ventcrawling.
  * Both give access to ventcrawling, but *_NUDE requires the user to be
  * wearing no clothes and holding no items. If both present, *_ALWAYS

@@ -235,7 +235,28 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 	/* all inputs should be fully figured out past this point */
 
-	var/processed_input = apply_message_emphasis(input) //This MUST be done first so that we don't get clipped by spans
+	//adds uwuspeech changes before its turned into what the character says
+	var/processed_input = input
+
+	if(HAS_TRAIT(src, TRAIT_UWU_SPEECH))
+		processed_input = replacetext(processed_input, "r", "w")
+		processed_input = replacetext(processed_input, "l", "w")
+		processed_input = replacetext(processed_input, "R", "W")
+		processed_input = replacetext(processed_input, "L", "W")
+
+		processed_input = replacetext(processed_input, "na", "nya")
+		processed_input = replacetext(processed_input, "ne", "nye")
+		processed_input = replacetext(processed_input, "ni", "nyi")
+		processed_input = replacetext(processed_input, "no", "nyo")
+		processed_input = replacetext(processed_input, "nu", "nyu")
+
+		processed_input = replacetext(processed_input, "Na", "Nya")
+		processed_input = replacetext(processed_input, "Ne", "Nye")
+		processed_input = replacetext(processed_input, "Ni", "Nyi")
+		processed_input = replacetext(processed_input, "No", "Nyo")
+		processed_input = replacetext(processed_input, "Nu", "Nyu")
+
+	processed_input = apply_message_emphasis(processed_input) //This MUST be done first so that we don't get clipped by spans
 	processed_input = attach_spans(processed_input, spans)
 
 	var/processed_say_mod = apply_message_emphasis(say_mod)
