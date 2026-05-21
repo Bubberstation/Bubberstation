@@ -20,7 +20,7 @@
 #define FORGING_CLOTHING_REFORGING_MAX_BAD_HITS 6
 
 #define USER_CAN_REAGENT_IMBUE(user) (HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING) || user.mind.get_skill_level(/datum/skill/smithing) >= SKILL_LEVEL_MASTER)
-#define USER_CAN_SEE_SMITHING_INFO(user) (user.mind.get_skill_level(/datum/skill/smithing) >= JOURNEYMAN)
+#define USER_CAN_SEE_SMITHING_INFO(user) (user.mind.get_skill_level(/datum/skill/smithing) >= SKILL_LEVEL_JOURNEYMAN)
 /// Minimum and maximum force multiplier if a weapon contains incomplete parts
 #define MIN_INCOMPLETE_FORGING_SCALING_PENALTY 0.1
 #define MAX_INCOMPLETE_FORGING_SCALING_PENALTY 0.5

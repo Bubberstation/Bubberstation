@@ -78,7 +78,6 @@
 	if(!isnull(incompletion_effects))
 		quench_effects_incompletion = incompletion_effects
 	RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
-	RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE_MORE, PROC_REF(on_examine_more))
 
 /datum/component/forge_smithable/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
