@@ -52,9 +52,10 @@
 
 	if (!overslotting || sealed)
 		return
+	//BUBBER ADDITION START
 	if(is_mod_part_or_control(overslotting))
 		return
-
+	//BUBBER ADDITION END
 	var/checked_slot = source.slot_flags
 	if (ismob(source.loc))
 		var/mob/as_mob = source.loc
