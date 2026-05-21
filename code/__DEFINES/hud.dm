@@ -69,6 +69,7 @@
 #define HUD_MOB_MOOD "mob_mood"
 #define HUD_MOB_HEALTHDOLL "mob_healthdoll"
 #define HUD_MOB_MEMORIES "mob_memories"
+#define HUD_MOB_AMMO_COUNTER "mob_ammo_counter" // BUBBER EDIT ADDITION
 
 #define HUD_OOZE_NUTRITION_DISPLAY "ooze_nutrition_display"
 
