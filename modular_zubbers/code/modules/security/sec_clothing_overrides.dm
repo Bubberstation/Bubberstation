@@ -861,19 +861,24 @@
 *	WINTER COAT
 */
 
-/obj/item/clothing/head/hooded/winterhood/security/redsec
-	desc = "A red, armour-padded winter hood. Definitely not bulletproof, especially not the part where your face goes."
-	icon = 'icons/obj/clothing/head/winterhood.dmi'
-	worn_icon = 'icons/mob/clothing/head/winterhood.dmi'
-	icon_state = "hood_security"
-
+// turning one of the duplicate security winter jackets into a wintercoat
 /obj/item/clothing/suit/hooded/wintercoat/security/redsec
-	name = "security winter jacket"
-	desc = "A red, armour-padded winter coat. It glitters with a mild ablative coating and a robust air of authority.  The zipper tab is a pair of jingly little handcuffs that get annoying after the first ten seconds."
-	icon = 'icons/obj/clothing/suits/wintercoat.dmi'
-	worn_icon = 'icons/mob/clothing/suits/wintercoat.dmi'
-	icon_state = "coatsecurity"
+	name = "security winter coat"
+	desc = "A winter coat with an armored vest resting atop it, perfect for those cold Freyja nights."
+	icon_state = "coatsecurity_winter"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/wintercoat.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/wintercoat.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/wintercoat_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/wintercoat_teshari.dmi'
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/security/redsec
+
+/obj/item/clothing/head/hooded/winterhood/security/redsec
+	name = "security winter hood"
+	desc = "A red, armour-padded winter hood. Definitely not bulletproof, especially not the part where your face goes."
+	icon = 'modular_zubbers/icons/obj/clothing/head/winterhood.dmi'
+	icon_state = "winterhood_security"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/winterhood.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/winterhood_teshari.dmi'
 
 /*
 *	ARMOR

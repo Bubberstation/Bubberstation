@@ -16,6 +16,14 @@
 /obj/item/clothing/head/hooded/winterhood/medical/coroner
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/winterhood_teshari.dmi'
 
+/obj/item/clothing/suit/hooded/wintercoat/security
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/wintercoat_teshari.dmi'
+
+/obj/item/clothing/head/hooded/winterhood/security
+	// the icon for this is wrong for some reason
+	icon = 'modular_zubbers/icons/obj/clothing/head/winterhood.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/winterhood_teshari.dmi'
+
 /obj/item/clothing/suit/hooded/wintercoat/skyrat/ratvar
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/wintercoat_teshari.dmi'
 
@@ -44,20 +52,6 @@
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/wintercoat_teshari.dmi'
 
 /obj/item/clothing/head/hooded/winterhood/eva
-	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/winterhood_teshari.dmi'
-
-// turning one of the duplicate security wintercoats into, well, a wintercoat
-/obj/item/clothing/suit/hooded/wintercoat/security/redsec
-	name = "security winter coat"
-	desc = "A winter coat with an armored vest resting atop it, perfect for those cold Freyja nights."
-	icon_state = "coatsecurity_winter"
-	icon = 'modular_zubbers/icons/obj/clothing/suits/wintercoat.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/wintercoat.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/wintercoat_digi.dmi'
-	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/wintercoat_teshari.dmi'
-
-/obj/item/clothing/head/hooded/winterhood/security/redsec
-	icon_state = "winterhood_security"
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/winterhood_teshari.dmi'
 
 // digi legs/teshari support for custom GAGS winter coats and teshari hood
