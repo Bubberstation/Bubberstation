@@ -30,10 +30,13 @@
 	return ..()
 
 /// Called by ball_mittens/equipped() after the component is added.
-/datum/component/ball_mittens_fumble/proc/register_wearer(mob/living/wearer, indirect_action = FALSE)
+/datum/component/ball_mittens_fumble/proc/register_wearer(mob/living/wearer)
 	// Spawn flavor only on loadout equip, not manual equip
 	var/obj/item/clothing/gloves/ball_mittens/mittens = parent
-	if(!mittens.spawn_flavor_shown && indirect_action)
+	// Paw moodlet - applies whenever paw skin is active regardless of how they were equipped
+	if(mittens.is_paw_skin && isliving(wearer))
+		wearer.add_mood_event("paw_mittens", /datum/mood_event/wearing_paw_mittens)
+	if(!mittens.spawn_flavor_shown && mittens.loadout_created)
 		mittens.spawn_flavor_shown = TRUE
 		INVOKE_ASYNC(mittens, TYPE_PROC_REF(/obj/item/clothing/gloves/ball_mittens, deferred_spawn_flavor), wearer)
 	RegisterSignal(wearer, COMSIG_LIVING_TRY_PUT_IN_HAND, PROC_REF(on_try_pickup))
@@ -50,6 +53,7 @@
 /datum/component/ball_mittens_fumble/proc/unregister_wearer(mob/living/wearer)
 	if(!isliving(wearer))
 		return
+	wearer.clear_mood_event("paw_mittens")
 	UnregisterSignal(wearer, list(
 		COMSIG_LIVING_TRY_PUT_IN_HAND,
 		COMSIG_LIVING_PICKED_UP_ITEM,
@@ -141,7 +145,8 @@
 		var/truly_worn = (cloth.slot_flags && L.get_item_by_slot(cloth.slot_flags) == cloth)
 		if(in_hand || truly_worn)
 			if(istype(cloth, /obj/item/clothing/gloves/ball_mittens))
-				return COMSIG_MOB_CANCEL_CLICKON // Block the click; player must use B/resist to remove
+				INVOKE_ASYNC(cloth, TYPE_PROC_REF(/obj/item/clothing/gloves/ball_mittens, doStrip), wearer, wearer)
+				return COMSIG_MOB_CANCEL_CLICKON
 			INVOKE_ASYNC(src, PROC_REF(clothing_struggle), wearer, target)
 			return COMSIG_MOB_CANCEL_CLICKON
 
@@ -497,8 +502,10 @@
 	equip_sound = 'modular_zubbers/sound/lewd/rubber1.ogg'
 	drop_sound = 'modular_zubbers/sound/lewd/rubber2.ogg'
 	pickup_sound = 'modular_zubbers/sound/lewd/rubber3.ogg'
+	armor_type = /datum/armor/ball_mittens
 	var/is_paw_skin = FALSE
 	var/spawn_flavor_shown = FALSE
+	var/loadout_created = FALSE // Set TRUE in Initialize when created fresh by provide_type
 
 
 
@@ -515,7 +522,7 @@
 	RegisterSignal(src, COMSIG_ITEM_PRE_UNEQUIP, PROC_REF(pre_unequip_block))
 	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
 	var/datum/component/ball_mittens_fumble/comp = AddComponent(/datum/component/ball_mittens_fumble)
-	comp.register_wearer(user, !user.client) // No client = round-start loadout equip
+	comp.register_wearer(user)
 
 /obj/item/clothing/gloves/ball_mittens/dropped(mob/user)
 	. = ..()
@@ -527,6 +534,13 @@
 /obj/item/clothing/gloves/ball_mittens/proc/on_reskin(datum/source, skin_name)
 	SIGNAL_HANDLER
 	is_paw_skin = (skin_name == "Cat Paws")
+	var/mob/living/wearer = loc
+	if(!isliving(wearer))
+		return
+	if(is_paw_skin)
+		wearer.add_mood_event("paw_mittens", /datum/mood_event/wearing_paw_mittens)
+	else
+		wearer.clear_mood_event("paw_mittens")
 	var/mob/living/wearer = loc
 	if(!isliving(wearer))
 		return
@@ -610,6 +624,16 @@
 	if(user.client)
 		show_spawn_flavor(user)
 
+/datum/armor/ball_mittens
+	bio = 1
+
+/// Overrides coverage check so surgery on arms/hands isn't blocked by the mittens.
+/// Armor and slot-based systems are unaffected since those check slot, not coverage.
+/mob/living/carbon/is_location_accessible(location, exluded_equipment_slots = NONE)
+	if(istype(gloves, /obj/item/clothing/gloves/ball_mittens))
+		exluded_equipment_slots |= ITEM_SLOT_GLOVES
+	return ..()
+
 /obj/item/clothing/gloves/ball_mittens/proc/show_spawn_flavor(mob/user)
 	if(!user?.client)
 		return
@@ -679,6 +703,7 @@
 
 /obj/item/clothing/gloves/ball_mittens/loadout_paw/Initialize(mapload)
 	. = ..()
+	loadout_created = TRUE // This type is only ever created by the loadout system
 	// Remove all reskin components - loadout paw mittens are permanently in paw mode.
 	// Uses GetComponents() rather than GetComponent() to safely handle COMPONENT_DUPE_SELECTIVE.
 	for(var/datum/component/reskinable_item/c in GetComponents(/datum/component/reskinable_item))
@@ -696,6 +721,9 @@
 	set_greyscale(greyscale_colors, /datum/greyscale_config/magpaws)
 
 // ============================================================
+
+/datum/mood_event/wearing_paw_mittens
+	description = span_purple("So-ft... Ro-und... Use-less... Lo-ve it!\n")
 
 /obj/item/clothing/gloves/latex_gloves
 	name = "latex gloves"

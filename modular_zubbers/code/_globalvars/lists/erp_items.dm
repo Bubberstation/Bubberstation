@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(erp_items, list(
 	/obj/item/clothing/glasses/blindfold/kinky,
 	/obj/item/clothing/glasses/hypno,
 	/obj/item/clothing/gloves/ball_mittens,
-	// AFTERMARKET EDIT: ball_mittens_reinforced removed - variant no longer exists
+	// BUBBER EDIT: ball_mittens_reinforced removed - insulated variant no longer exists
 	/obj/item/clothing/head/domina_cap,
 	/obj/item/clothing/mask/ballgag,
 	/obj/item/clothing/mask/gas/bdsm_mask,
