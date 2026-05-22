@@ -539,14 +539,9 @@
 		return
 	if(is_paw_skin)
 		wearer.add_mood_event("paw_mittens", /datum/mood_event/wearing_paw_mittens)
-	else
-		wearer.clear_mood_event("paw_mittens")
-	var/mob/living/wearer = loc
-	if(!isliving(wearer))
-		return
-	if(is_paw_skin)
 		to_chat(wearer, span_purple("The nanite-infused rubber shifts your hands into soft, rounded paw shapes."))
 	else
+		wearer.clear_mood_event("paw_mittens")
 		to_chat(wearer, span_purple("The mittens ease back into their round ball shape. Still completely useless."))
 
 /obj/item/clothing/gloves/ball_mittens/proc/pre_unequip_block(datum/source, force)
