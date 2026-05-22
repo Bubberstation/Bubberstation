@@ -49,6 +49,8 @@
 		raid_vendor(target)
 	if(istype(target, /obj/item/food))
 		consume_food(target)
+	if(istype(target, /obj/item/storage))
+		empty_container(target)
 
 
 
@@ -61,6 +63,21 @@
 	var/turf/throw_at = get_ranged_target_turf_direct(vendor, src, 7, rand(-60,60))
 	if(spoils.safe_throw_at(throw_at, rand(2,4), rand(1,3), src, spin = TRUE))
 		playsound(get_turf(src), 'sound/items/weapons/punchmiss.ogg', 10)
+
+/mob/living/basic/bibberblub/proc/empty_container(obj/item/storage/container)
+	//toss out everything in here
+	var/datum/storage/actual_storage = container.storage_type
+	to_chat(src, span_yellow("DEBUG: You start emptying the container"))
+	for(var/obj/item/thing in actual_storage.real_location)
+		if(!do_after(src, 0.5 SECONDS, container))
+			to_chat(src, span_yellow("DEBUG: You are interrupted"))
+			return
+		actual_storage.remove_single(src, thing, get_turf(container))
+		var/turf/throw_at = get_ranged_target_turf_direct(container, src, 7, rand(-60,60))
+		if(thing.safe_throw_at(throw_at, rand(2,4), rand(1,3), src, spin = TRUE))
+			playsound(get_turf(src), 'sound/items/weapons/punchmiss.ogg', 10)
+	to_chat(src, span_red("The container is empty!"))
+
 
 
 /mob/living/basic/bibberblub/proc/consume_food(obj/item/food/our_lunch)
