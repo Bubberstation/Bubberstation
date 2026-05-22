@@ -33,7 +33,7 @@
 	suppressor_y_offset = 0
 
 	burst_size = 1
-	fire_delay = 1.2 SECONDS
+	fire_delay = 1 SECONDS
 	actions_types = list()
 
 	recoil = 0.5
@@ -42,6 +42,10 @@
 
 /obj/item/gun/ballistic/automatic/lanca/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SZOT)
+
+/obj/item/gun/ballistic/automatic/lanca/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/scope, range_modifier = 1.25)
 
 /obj/item/gun/ballistic/automatic/lanca/examine(mob/user)
 	. = ..()
