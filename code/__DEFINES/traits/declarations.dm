@@ -106,8 +106,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_HUSK "husk"
 ///Blacklisted from being revived via defibrillator
 #define TRAIT_DEFIB_BLACKLISTED "defib_blacklisted"
-///You can now speak uwuspeak aslong as you have this trait
 ///BUBBER EDIT ADDITION BEGIN
+///You can now speak uwuspeak aslong as you have this trait
 #define TRAIT_UWU_SPEECH "uwu_speech"
 ///BUBBER EDIT ADDITION END
 /// This carbon doesn't need a brain to be revived, though some revival methods like defibbing will still check for a functional brain

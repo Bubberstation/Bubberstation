@@ -275,7 +275,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		processed_input = replacetext(processed_input, "No", "Nyo")
 		processed_input = replacetext(processed_input, "Nu", "Nyu")
 
-	processed_input = apply_message_emphasis(processed_input)
+	processed_input = apply_message_emphasis(processed_input) //This MUST be done first so that we don't get clipped by spans
 	processed_input = attach_spans(processed_input, spans)
 
 	var/processed_say_mod = apply_message_emphasis(say_mod)
