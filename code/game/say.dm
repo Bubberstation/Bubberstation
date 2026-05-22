@@ -251,7 +251,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 	if(copytext_char(input, -2) == "!!")
 		spans |= SPAN_YELL
-
+		// BUBBER EDIT ADDITION BEGIN
 		// adds uwuspeech variables for any text changes for when message is sent via client before other players see it.
 
 
