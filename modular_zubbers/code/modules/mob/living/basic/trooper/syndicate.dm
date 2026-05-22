@@ -13,7 +13,7 @@
 	attack_verb_continuous = "strikes"
 	attack_verb_simple = "strike"
 	attack_sound = 'sound/items/weapons/cqchit1.ogg'
-	r_hand = /obj/item/megaphone/sec
+	r_hand = /obj/item/megaphone/sec //I can't figure out how to make this actually work like a megaphone
 
 /mob/living/basic/trooper/syndicate/boggins/Initialize(mapload)
 	. = ..()
