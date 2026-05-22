@@ -251,11 +251,9 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 	if(copytext_char(input, -2) == "!!")
 		spans |= SPAN_YELL
-
-		/* all inputs should be fully figured out past this point */
+		// BUBBER EDIT ADDITION BEGIN
 		// adds uwuspeech variables for any text changes for when message is sent via client before other players see it.
 
-	/* all inputs should be fully figured out past this point */
 
 	var/processed_input = input
 

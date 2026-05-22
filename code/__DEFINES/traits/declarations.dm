@@ -106,6 +106,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_HUSK "husk"
 ///Blacklisted from being revived via defibrillator
 #define TRAIT_DEFIB_BLACKLISTED "defib_blacklisted"
+///You can now speak uwuspeak aslong as you have this trait
+///BUBBER EDIT ADDITION BEGIN
+#define TRAIT_UWU_SPEECH "uwu_speech"
+///BUBBER EDIT ADDITION END
 /// This carbon doesn't need a brain to be revived, though some revival methods like defibbing will still check for a functional brain
 #define TRAIT_BRAINLESS_CARBON "brainless_carbon"
 #define TRAIT_BADDNA "baddna"
@@ -1078,9 +1082,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 /// This mob doesn't count as looking at you if you can only act while unobserved
 #define TRAIT_UNOBSERVANT "trait_unobservant"
-
-///Trait for uwuspeech
-#define TRAIT_UWU_SPEECH "uwu_speech"
 
 /* Traits for ventcrawling.
  * Both give access to ventcrawling, but *_NUDE requires the user to be
