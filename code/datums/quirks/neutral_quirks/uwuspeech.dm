@@ -1,6 +1,7 @@
 /datum/quirk/uwu_speech
 	name = "Uwu Speech"
 	desc = "You have an irresistibly cutesy speech pattern."
+	icon = FA_ICON_RAINBOW
 	value = 0
 	mob_trait = TRAIT_UWU_SPEECH
 	gain_text = "<span class='notice'>You feel a lot more cute and expressive.</span>"

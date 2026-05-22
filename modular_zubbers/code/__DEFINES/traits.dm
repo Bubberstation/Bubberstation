@@ -7,3 +7,5 @@
 
 /// Makes the cursekin's lycan form vastly more powerful.
 #define TRAIT_GAIAN_PHYSIQUE "gaian_physique"
+
+#define TRAIT_UWU_SPEECH "uwu_speech"
