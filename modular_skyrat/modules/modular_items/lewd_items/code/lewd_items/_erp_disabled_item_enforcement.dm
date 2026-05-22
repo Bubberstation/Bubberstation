@@ -77,8 +77,13 @@
 	. = ..()
 	if(CONFIG_GET(flag/disable_lewd_items))
 		return INITIALIZE_HINT_QDEL
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/ball_mittens_skin, FALSE)
 
-// AFTERMARKET EDIT: ball_mittens_reinforced Initialize block removed - variant no longer exists
+// Loadout paw subtype is always permitted - it goes through OOC preference gating instead
+/obj/item/clothing/gloves/ball_mittens/loadout_paw/Initialize(mapload)
+	. = ..()
+
+// BUBBER EDIT: ball_mittens_reinforced Initialize block removed - variant no longer exists
 
 /obj/item/clothing/suit/straight_jacket/kinky_sleepbag/Initialize(mapload)
 	. = ..()

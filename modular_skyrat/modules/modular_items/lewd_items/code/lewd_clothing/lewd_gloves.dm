@@ -3,18 +3,18 @@
 
 /datum/component/ball_mittens_fumble
 	dupe_mode = COMPONENT_DUPE_UNIQUE
-	var/struggle_delay_min = 10 // 1 second in deciseconds
-	var/struggle_delay_max = 25 // 2.5 seconds in deciseconds
-	var/interact_delay = 15 // 1.5 seconds in deciseconds
+	var/struggle_delay_min = 10
+	var/struggle_delay_max = 25
+	var/interact_delay = 15
 	var/max_item_size = WEIGHT_CLASS_NORMAL
 	var/max_fumble_range = 1
 	var/is_fumbling = FALSE
 	var/is_interacting = FALSE
 	var/is_looping = FALSE
 	var/cuff_resist_multiplier = 3
-	var/pickup_success_chance = 80
-	var/gun_spread_penalty = 16
-	var/obj/item/tracked_cuffs = null // FIX 6: prevents double-mutation of breakouttime
+	var/pickup_success_chance = 90
+	var/gun_spread_penalty = 12
+	var/obj/item/tracked_cuffs = null // Tracks modified cuffs so breakouttime is restored safely.
 
 /datum/component/ball_mittens_fumble/Initialize()
 	. = ..()
@@ -30,7 +30,12 @@
 	return ..()
 
 /// Called by ball_mittens/equipped() after the component is added.
-/datum/component/ball_mittens_fumble/proc/register_wearer(mob/living/wearer)
+/datum/component/ball_mittens_fumble/proc/register_wearer(mob/living/wearer, indirect_action = FALSE)
+	// Spawn flavor only on loadout equip, not manual equip
+	var/obj/item/clothing/gloves/ball_mittens/mittens = parent
+	if(!mittens.spawn_flavor_shown && indirect_action)
+		mittens.spawn_flavor_shown = TRUE
+		INVOKE_ASYNC(mittens, TYPE_PROC_REF(/obj/item/clothing/gloves/ball_mittens, deferred_spawn_flavor), wearer)
 	RegisterSignal(wearer, COMSIG_LIVING_TRY_PUT_IN_HAND, PROC_REF(on_try_pickup))
 	RegisterSignal(wearer, COMSIG_LIVING_PICKED_UP_ITEM, PROC_REF(on_picked_up))
 	RegisterSignal(wearer, COMSIG_MOB_CLICKON, PROC_REF(on_clickon))
@@ -39,6 +44,7 @@
 	RegisterSignal(wearer, COMSIG_TRY_STRIP, PROC_REF(on_try_strip))
 	RegisterSignal(wearer, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(on_mousedrop_receive))
 	RegisterSignal(wearer, COMSIG_LIVING_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
+
 
 /// Called by ball_mittens/dropped() before the component is deleted.
 /datum/component/ball_mittens_fumble/proc/unregister_wearer(mob/living/wearer)
@@ -65,9 +71,7 @@
 		return "paws"
 	return "chunky mitts"
 
-/// Intercepts all clicks before BYOND processes them.
-/// Handles ground item pickup here so BYOND's reach animation never fires,
-/// keeping the item in place during the delay.
+/// Intercepts clicks to apply mittens fumble behavior before BYOND processes them.
 /datum/component/ball_mittens_fumble/proc/on_clickon(mob/living/wearer, atom/target, list/modifiers)
 	SIGNAL_HANDLER
 	if(is_interacting || is_fumbling)
@@ -80,32 +84,35 @@
 		if(!held)
 			wearer.throw_mode_off(THROW_MODE_TOGGLE)
 			return COMSIG_MOB_CANCEL_CLICKON
-		to_chat(wearer, span_warning("You try to throw [held.name] and it drops straight to the floor."))
-		playsound(wearer, 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg', 30, TRUE)
-		wearer.dropItemToGround(held)
-		wearer.throw_mode_off(THROW_MODE_TOGGLE)
-		return COMSIG_MOB_CANCEL_CLICKON
+		// 5% chance to fumble the throw - item drops instead of flying
+		if(prob(5))
+			to_chat(wearer, span_purple("You try to grip the [held.name] with your [get_hand_descriptor(wearer)] to throw it, but it clatters noisily to the floor instead."))
+			playsound(wearer, 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg', 30, TRUE)
+			wearer.dropItemToGround(held)
+			wearer.throw_mode_off(THROW_MODE_TOGGLE)
+			return COMSIG_MOB_CANCEL_CLICKON
+		// 95% of the time throw proceeds normally - throw_mode_off happens naturally after throw
 
 	if(get_dist(wearer, target) > max_fumble_range)
 		return
 
-	// Inventory slot retrieval - only pockets and ID slot.
-	// Belt/suit/back/head are worn equipment, clicking them unequips or opens them.
+	// Retrieve items from pockets, ID slot, suit storage, and ears with a short delay.
+	// Belt and back are excluded - intercepting their clicks can break container open/drag behavior.
 	if(isitem(target) && ismob(target.loc) && !is_looping && !wearer.get_active_held_item())
 		var/obj/item/slot_item = target
 		var/slot = wearer.get_slot_by_item(slot_item)
-		// Belt and back open container UI when clicked - no delay for those.
-		// Delay only applies to slots that retrieve a small item directly to hand.
-		if(slot & (ITEM_SLOT_LPOCKET|ITEM_SLOT_RPOCKET|ITEM_SLOT_ID|ITEM_SLOT_SUITSTORE|ITEM_SLOT_EARS))
-			// Containers in these slots (e.g. wallet in ID slot) open rather than retrieve
+		// Belt and back are excluded because intercepting their click breaks
+		// the container-open and click-drag-to-remove behavior.
+		if(slot & (ITEM_SLOT_LPOCKET|ITEM_SLOT_RPOCKET|ITEM_SLOT_ID|ITEM_SLOT_SUITSTORE|ITEM_SLOT_EARS|ITEM_SLOT_BELT))
+			// Containers open on click rather than retrieving to hand; pass through
 			if(slot_item.atom_storage)
 				return
 			INVOKE_ASYNC(src, PROC_REF(inventory_retrieve), wearer, slot_item)
 			return COMSIG_MOB_CANCEL_CLICKON
 
-	// Ground/surface item pickup - only when empty-handed.
-	// Only intercept floor items (loc=turf) or elevated surface items (loc in typecache).
-	// Items inside bags/containers are excluded - they have a non-elevated obj as loc.
+	// Intercept pickup of floor items and items on elevated surfaces (tables, racks, etc).
+	// Uses the same typecache as the food degradation/ant system to distinguish surfaces from containers.
+	// Items inside bags have a non-elevated obj as loc and are intentionally excluded.
 	if(isitem(target) && (isturf(target.loc) || (istype(target.loc, /atom/movable) && GLOB.typecache_elevated_structures[target.loc.type])) && !(target in wearer.held_items) && !wearer.get_active_held_item())
 		var/obj/item/item_target = target
 		var/held_count = 0
@@ -116,7 +123,7 @@
 			to_chat(wearer, span_warning("Your [get_hand_descriptor(wearer)] are already occupied. One thing at a time."))
 			return COMSIG_MOB_CANCEL_CLICKON
 		if(item_target.item_flags & ABSTRACT)
-			return // Let abstract/virtual items (riding_offhand etc) through untouched
+			return // Abstract items like riding_offhand are internal - pass through.
 		if(!isgun(item_target) && item_target.w_class >= WEIGHT_CLASS_HUGE)
 			to_chat(wearer, span_warning("You paw at [item_target] futilely. It is far too bulky to manage with these."))
 			return COMSIG_MOB_CANCEL_CLICKON
@@ -125,24 +132,41 @@
 			INVOKE_ASYNC(src, PROC_REF(fumble_pickup_loop), wearer, item_target)
 		return COMSIG_MOB_CANCEL_CLICKON
 
-	// Worn clothing equip/removal - blocked. Empty-handed check lets item-on-clothing (e.g. soap) through.
-	if(istype(target, /obj/item/clothing) && isliving(target.loc) && !wearer.get_active_held_item())
+	// Worn clothing equip/removal - apply a delay then allow.
+	// Longer than the catsuit delay but shorter than cuff escape. 45 seconds feels right.
+	if(istype(target, /obj/item/clothing) && isliving(target.loc) && !wearer.get_active_held_item() && !wearer.combat_mode)
 		var/obj/item/clothing/cloth = target
 		var/mob/living/L = target.loc
 		var/in_hand = (target in wearer.held_items)
 		var/truly_worn = (cloth.slot_flags && L.get_item_by_slot(cloth.slot_flags) == cloth)
 		if(in_hand || truly_worn)
-			to_chat(wearer, span_warning("You work at [target] and make no progress whatsoever."))
+			if(istype(cloth, /obj/item/clothing/gloves/ball_mittens))
+				return COMSIG_MOB_CANCEL_CLICKON // Block the click; player must use B/resist to remove
+			INVOKE_ASYNC(src, PROC_REF(clothing_struggle), wearer, target)
 			return COMSIG_MOB_CANCEL_CLICKON
 
-	// Machine clicks get a fumble delay before the action fires
-	if(istype(target, /obj/machinery))
+	// Machine clicks get a fumble delay before the action fires.
+	// Skip in combat mode - the wearer is attacking the machine, not interfacing with it.
+	if(istype(target, /obj/machinery) && !wearer.combat_mode)
 		is_interacting = TRUE // Set before INVOKE_ASYNC to prevent double-queuing
 		INVOKE_ASYNC(src, PROC_REF(fumble_interact), wearer, target, modifiers)
 		return COMSIG_MOB_CANCEL_CLICKON
 
-/// Bar fills completely, then 65% success / 35% dramatic last-second fumble.
-/// Item stays in place during the delay because on_clickon intercepted the original click.
+/// Runs the item pickup fumble loop. Item stays in place because on_clickon intercepted the original click.
+/datum/component/ball_mittens_fumble/proc/clothing_struggle(mob/living/wearer, obj/item/clothing/cloth)
+	var/delay = 300 // 30 seconds
+	var/hand_desc = get_hand_descriptor(wearer)
+	to_chat(wearer, span_purple("You struggle to remove [cloth]. It's extremely difficult with your [hand_desc]... (This will take around [DisplayTimeText(delay)] and you need to stand still.)"))
+	if(!do_after(wearer, delay, cloth, timed_action_flags = IGNORE_HELD_ITEM))
+		to_chat(wearer, span_warning("You give up on [cloth]."))
+		return
+	if(QDELETED(src) || QDELETED(wearer) || QDELETED(cloth))
+		return
+	// Use the component's fumbling flag so the click doesn't re-trigger this proc
+	is_fumbling = TRUE
+	wearer.ClickOn(cloth)
+	is_fumbling = FALSE
+
 /datum/component/ball_mittens_fumble/proc/fumble_pickup_loop(mob/living/wearer, obj/item/to_pick_up)
 	is_looping = TRUE
 	var/hand_desc = get_hand_descriptor(wearer)
@@ -151,11 +175,11 @@
 		return
 	var/on_floor = is_item_on_floor(to_pick_up)
 	if(isgun(to_pick_up))
-		to_chat(wearer, span_notice("You wedge [to_pick_up] between your [hand_desc]. Are you sure about this..?"))
+		to_chat(wearer, span_purple("You wedge [to_pick_up] between your [hand_desc]. Are you sure about this..?"))
 	else if(on_floor)
-		to_chat(wearer, span_notice("You get down on your knees to grab [to_pick_up] with your [hand_desc]."))
+		to_chat(wearer, span_purple("You get down on your knees to grab [to_pick_up] with your [hand_desc]."))
 	else
-		to_chat(wearer, span_notice("You try to grab [to_pick_up] off the surface with your [hand_desc]."))
+		to_chat(wearer, span_purple("You try to grab [to_pick_up] off the surface with your [hand_desc]."))
 	var/bystander_msg = on_floor ? 		"[wearer] gets down on [wearer.p_their()] knees and starts struggling to pick up [to_pick_up] with [wearer.p_their()] [hand_desc]." : 		"[wearer] starts struggling to grab [to_pick_up] off the surface with [wearer.p_their()] [hand_desc]."
 	wearer.visible_message(span_warning(bystander_msg), span_notice("You clumsily fumble at [to_pick_up] with your [hand_desc]..."))
 
@@ -179,7 +203,7 @@
 			is_looping = FALSE
 			return
 
-		var/pick_delay = on_floor ? rand(struggle_delay_min, struggle_delay_max) : rand(5, 15) // 0.5s to 1.5s in deciseconds
+		var/pick_delay = on_floor ? rand(struggle_delay_min, struggle_delay_max) : rand(5, 15)
 		if(!do_after(wearer, pick_delay, to_pick_up, timed_action_flags = IGNORE_USER_LOC_CHANGE | IGNORE_HELD_ITEM | IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(check_pickup_range), wearer, to_pick_up), interaction_key = "mittens_pickup_[REF(to_pick_up)]"))
 			to_chat(wearer, span_warning("You give up on [to_pick_up]."))
 			is_looping = FALSE
@@ -201,28 +225,25 @@
 			return
 
 		if(!prob(pickup_success_chance))
-			to_chat(wearer, span_warning("The [to_pick_up] slips right back out of your [hand_desc]! Fuck..."))
+			to_chat(wearer, span_purple("The [to_pick_up] slips right back out of your [hand_desc]! Fuck..."))
 			wearer.visible_message(span_warning("[wearer] nearly gets [to_pick_up] between [wearer.p_their()] [hand_desc] and drops it at the last moment."))
 			playsound(wearer, 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg', 30, TRUE)
 			continue
 
 		playsound(wearer, 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg', 30, TRUE)
-		// Set is_fumbling so on_try_pickup doesn't block this pickup attempt
 		is_fumbling = TRUE
 		var/success = wearer.put_in_hands(to_pick_up, forced = TRUE)
 		is_fumbling = FALSE
 		if(!success)
 			is_looping = FALSE
 			return
-		to_chat(wearer, span_notice("You manage to press [to_pick_up] between your [hand_desc]."))
+		to_chat(wearer, span_purple("You manage to press [to_pick_up] between your [hand_desc]."))
 		is_looping = FALSE
 		return
 
 
-/// Returns TRUE if the item is directly on the floor with no elevated surface nearby.
-/// Returns FALSE if it shares a turf with a table, rack, or other elevated structure.
-/// Uses the same typecache and approach as the food decomposition/germ system -
-/// items on tables still have loc=turf, so we check the turf contents for elevated structures.
+/// Returns TRUE if the item is on the floor, FALSE if it is on an elevated surface (table, rack, etc).
+/// Items on tables still have loc=turf, so we check turf contents against typecache_elevated_structures.
 /datum/component/ball_mittens_fumble/proc/is_item_on_floor(obj/item/item)
 	if(!isturf(item.loc))
 		return FALSE // In a container - not a floor item
@@ -249,7 +270,7 @@
 		to_chat(wearer, span_warning("You paw at [to_pick_up] futilely. It is far too bulky to manage with these."))
 		return COMPONENT_LIVING_CANT_PUT_IN_HAND
 
-	var/hand_desc = get_hand_descriptor(wearer) // FIX 1a: was missing, caused literal "[hand_desc]" in output
+	var/hand_desc = get_hand_descriptor(wearer)
 	var/held_count = 0
 	for(var/obj/item/held in wearer.held_items)
 		if(!isnull(held))
@@ -266,23 +287,25 @@
 	if(isturf(to_pick_up.loc))
 		return COMPONENT_LIVING_CANT_PUT_IN_HAND
 
-/// 15% chance to fumble and drop an item retrieved from inventory/equipment slots.
-/// Lower than ground pickup to avoid stacking too many penalties.
+/// Adds a short delay when the wearer retrieves an item from a worn inventory slot.
 /datum/component/ball_mittens_fumble/proc/inventory_retrieve(mob/living/wearer, obj/item/to_retrieve)
 	is_looping = TRUE
+	is_fumbling = TRUE // Blocks concurrent pickup attempts (e.g. alt-click during the delay)
 	var/hand_desc = get_hand_descriptor(wearer)
-	to_chat(wearer, span_notice("You fish around for [to_retrieve] with your [hand_desc]."))
+	to_chat(wearer, span_purple("You fish around for [to_retrieve] with your [hand_desc]."))
 	if(!do_after(wearer, 0.8 SECONDS, to_retrieve, timed_action_flags = IGNORE_HELD_ITEM, interaction_key = "mittens_inv_[REF(to_retrieve)]"))
-		to_chat(wearer, span_notice("You are going to have to stop and actually focus on getting out [to_retrieve]!"))
+		to_chat(wearer, span_purple("You are going to have to stop and actually focus on getting out [to_retrieve]!"))
+		is_fumbling = FALSE
 		is_looping = FALSE
 		return
 	if(QDELETED(src) || QDELETED(wearer) || QDELETED(to_retrieve))
+		is_fumbling = FALSE
 		is_looping = FALSE
 		return
 	if(!ismob(to_retrieve.loc)) // item moved during delay
+		is_fumbling = FALSE
 		is_looping = FALSE
 		return
-	is_fumbling = TRUE
 	wearer.put_in_hands(to_retrieve)
 	is_fumbling = FALSE
 	is_looping = FALSE
@@ -297,15 +320,13 @@
 /datum/component/ball_mittens_fumble/proc/drop_excess_storage(mob/living/wearer, obj/item/to_drop)
 	if(QDELETED(src) || QDELETED(wearer) || QDELETED(to_drop))
 		return
-	var/hand_desc = get_hand_descriptor(wearer) // FIX 1b: was missing, caused literal "[hand_desc]" in output
+	var/hand_desc = get_hand_descriptor(wearer)
 	playsound(wearer, 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg', 30, TRUE)
-	to_chat(wearer, span_warning("[to_drop] slips out of your [hand_desc]!"))
+	to_chat(wearer, span_purple("[to_drop] slips out of your [hand_desc]!"))
 	wearer.visible_message(span_warning("[wearer] drops [to_drop] while trying to pull it out with [wearer.p_their()] [hand_desc]."))
 	wearer.dropItemToGround(to_drop)
 
-/// Blocks the wearer from stripping or equipping items on others.
-/// Allows: the wearer's own mittens being stripped off by someone else.
-/// Allows: the wearer being stripped by others.
+/// Plays a toy squeak when the wearer punches a living mob bare-handed.
 /datum/component/ball_mittens_fumble/proc/on_unarmed_attack(mob/living/wearer, atom/attack_target, proximity_flag, list/modifiers)
 	SIGNAL_HANDLER
 	if(!proximity_flag || !isliving(attack_target))
@@ -328,7 +349,7 @@
 
 /datum/component/ball_mittens_fumble/proc/delayed_drag_unequip(mob/living/wearer, obj/item/item)
 	var/hand_desc = get_hand_descriptor(wearer)
-	to_chat(wearer, span_notice("You fumble at your [item.name] with your [hand_desc]..."))
+	to_chat(wearer, span_purple("You fumble at your [item.name] with your [hand_desc]..."))
 	if(!do_after(wearer, rand(struggle_delay_min, struggle_delay_max), item, timed_action_flags = IGNORE_HELD_ITEM))
 		to_chat(wearer, span_warning("You give up on [item.name]."))
 		is_fumbling = FALSE
@@ -350,13 +371,12 @@
 	// If the item is NOT on the wearer, the wearer is trying to strip someone else - block it.
 	if(wearer.get_slot_by_item(item))
 		return // Item is on wearer - someone else is stripping them, allow it
-	to_chat(wearer, span_warning("You paw at their equipment, but can't seem to manage more than harmlessly bumping your [get_hand_descriptor(wearer)] into them."))
+	to_chat(wearer, span_purple("You paw at their equipment, but can't seem to manage more than harmlessly bumping your [get_hand_descriptor(wearer)] into them."))
 	return COMPONENT_CANT_STRIP
 
 /// Multiplies breakout time for the current cuff escape attempt.
 /// Uses a one-tick timer restore to avoid permanently mutating the cuffs var.
-/// FIX 6: tracked_cuffs guard prevents double-mutation if signal fires twice rapidly
-/// (which would cause the second call to capture an already-multiplied value as "original").
+/// tracked_cuffs guard prevents double-mutation if the signal fires twice in rapid succession.
 /datum/component/ball_mittens_fumble/proc/on_removing_cuffs(mob/living/wearer, obj/item/cuffs)
 	SIGNAL_HANDLER
 	if(!cuffs)
@@ -375,7 +395,6 @@
 	cuffs.breakouttime = original_time
 	tracked_cuffs = null
 
-/// Adds spread to the shot. Uses a one-tick timer restore.
 /// Adds spread via the bonus_spread_values list in COMSIG_MOB_FIRED_GUN.
 /// process_fire() reads this list BEFORE calculating randomized_gun_spread,
 /// making this the correct hook for per-shot spread that works on full-auto.
@@ -388,13 +407,13 @@
 /datum/component/ball_mittens_fumble/proc/fumble_interact(mob/living/wearer, atom/target, list/modifiers)
 	// is_interacting was set true in on_clickon before scheduling this
 	var/hand_desc = get_hand_descriptor(wearer)
-	var/msg // FIX 2: was a multi-line ternary which DM handles unreliably
+	var/msg
 	if(istype(target, /obj/machinery/vending))
 		msg = "You awkwardly mash your [hand_desc] against [target]'s selection screen..."
 	else
 		msg = "You awkwardly paw at [target] with your [hand_desc]..."
 	wearer.face_atom(target)
-	to_chat(wearer, span_notice(msg))
+	to_chat(wearer, span_purple(msg))
 	wearer.visible_message(span_warning("[wearer] awkwardly paws at [target] with [wearer.p_their()] [hand_desc], visibly struggling to use it."))
 	if(!do_after(wearer, interact_delay, target))
 		to_chat(wearer, span_warning("You give up on [target.name]."))
@@ -479,10 +498,9 @@
 	drop_sound = 'modular_zubbers/sound/lewd/rubber2.ogg'
 	pickup_sound = 'modular_zubbers/sound/lewd/rubber3.ogg'
 	var/is_paw_skin = FALSE
+	var/spawn_flavor_shown = FALSE
 
-/obj/item/clothing/gloves/ball_mittens/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/ball_mittens_skin, FALSE)
+
 
 
 
@@ -494,16 +512,10 @@
 		to_chat(user, span_purple("The [src.name] seal around your hands. You pull at them and find it completely impossible to remove them..."))
 	else
 		to_chat(user, span_purple("Your hands sink into [src.name]. Soft, round, and not particularly good at anything. As soon as you put them on, you hear them self inflate. Oh shit..."))
-	// Spawn flavor - fires when equipped at round start via loadout
-	if(!user.client)
-		if(is_paw_skin)
-			to_chat(user, span_purple("You look down at your paws. Round and soft and utterly useless. You blush as you think about how difficult this is going to make your day at work."))
-		else
-			to_chat(user, span_purple("You look down at [src.name]. Why did I come to work like this?"))
 	RegisterSignal(src, COMSIG_ITEM_PRE_UNEQUIP, PROC_REF(pre_unequip_block))
 	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
 	var/datum/component/ball_mittens_fumble/comp = AddComponent(/datum/component/ball_mittens_fumble)
-	comp.register_wearer(user)
+	comp.register_wearer(user, !user.client) // No client = round-start loadout equip
 
 /obj/item/clothing/gloves/ball_mittens/dropped(mob/user)
 	. = ..()
@@ -530,7 +542,11 @@
 	var/mob/living/wearer = loc
 	if(!isliving(wearer))
 		return
-	to_chat(wearer, span_warning("You work at [src.name] methodically. Nothing happens. They are not coming off."))
+	// Route to doStrip async so the full 1-minute delay + timer message plays, same as the resist key path.
+	// Show message and block. The player must use the resist key or click the mittens
+	// directly to trigger the 1-minute do_after removal via doStrip.
+	// Safeword bypasses this block via force=TRUE in inventory.dm.
+	to_chat(wearer, span_purple("You struggle furiously with [src.name], but you\'re not even sure if these can come off."))
 	return COMPONENT_ITEM_BLOCK_UNEQUIP
 
 /// Opens the GAGS recolor menu for spray can use on paw mittens.
@@ -548,7 +564,7 @@
 	if(can.check_empty())
 		user.balloon_alert(user, "empty!")
 		return ITEM_INTERACT_BLOCKING
-	if(!user.client) // FIX 9: NPCs or edge cases with no client would runtime on user.client
+	if(!user.client)
 		return ITEM_INTERACT_BLOCKING
 	var/list/allowed = list("[/datum/greyscale_config/magpaws]", "[/datum/greyscale_config/magpaws/worn]")
 	var/datum/greyscale_modify_menu/spray_paint/menu = new(
@@ -584,6 +600,24 @@
 
 /// Clicking yellow insulated gloves on ball mittens insulates them in place.
 /// The insulated gloves are consumed. Preserves paw skin and colors.
+/obj/item/clothing/gloves/ball_mittens/proc/deferred_spawn_flavor(mob/user)
+	// Poll until the client is attached, then show the message.
+	// Matches the pattern used by quirks for round-start messages.
+	var/attempts = 0
+	while(!user.client && attempts < 20)
+		sleep(10)
+		attempts++
+	if(user.client)
+		show_spawn_flavor(user)
+
+/obj/item/clothing/gloves/ball_mittens/proc/show_spawn_flavor(mob/user)
+	if(!user?.client)
+		return
+	if(is_paw_skin)
+		to_chat(user, span_purple("You look down at your paws. Round and soft and utterly useless. You blush as you think about how difficult this is going to make your day at work."))
+	else
+		to_chat(user, span_purple("You look down at [src.name]. Why did I come to work like this?"))
+
 /obj/item/clothing/gloves/ball_mittens/attackby(obj/item/item, mob/living/user, params)
 	if(!istype(item, /obj/item/clothing/gloves/color/yellow))
 		return ..()
@@ -604,8 +638,15 @@
 
 /obj/item/clothing/gloves/ball_mittens/doStrip(mob/stripper, mob/owner)
 	if(stripper == owner)
-		to_chat(owner, span_purple("You bap uselessly at [src.name]. They just make a rubbery squeak sound and don't budge."))
-		return FALSE
+		var/delay = 600 // 1 minute
+		to_chat(owner, span_purple("You attempt to remove [src.name]... (This will take around [DisplayTimeText(delay)] and you need to stand still.)"))
+		to_chat(owner, span_purple("You struggle furiously with [src.name], but you're not even sure if these can come off."))
+		playsound(owner, pick('modular_zubbers/sound/lewd/rubber1.ogg', 'modular_zubbers/sound/lewd/rubber2.ogg', 'modular_zubbers/sound/lewd/rubber3.ogg'), 40, TRUE)
+		if(!do_after(owner, delay, src, timed_action_flags = IGNORE_HELD_ITEM))
+			to_chat(owner, span_purple("You give up trying to escape [src.name]. Maybe having [src.name] isn't so bad..."))
+			return FALSE
+		if(QDELETED(src) || !isliving(loc))
+			return FALSE
 	if(!owner.dropItemToGround(src, force = TRUE))
 		return FALSE
 	if(HAS_TRAIT(stripper, TRAIT_STICKY_FINGERS))
@@ -649,8 +690,7 @@
 	. = ..()
 	if(slot != ITEM_SLOT_GLOVES)
 		return
-	// FIX 3: icon states set BEFORE set_greyscale so the pipeline reads them correctly.
-	// Setting them after could be overridden by update_appearance inside set_greyscale.
+	// Icon states must be set before set_greyscale so the pipeline reads them correctly.
 	icon_state = "magpaws"
 	worn_icon_state = "magpaws_worn"
 	set_greyscale(greyscale_colors, /datum/greyscale_config/magpaws)

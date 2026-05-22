@@ -358,12 +358,13 @@
 */
 
 // BUBBER EDIT CHANGE - ball mittens resist_restraints override
+
 // Handles breaking out of gloves that restrain people.
 /mob/living/carbon/human/resist_restraints()
-	// Ball mittens self-removal is blocked - only another player can strip them.
+	// Ball mittens self-removal goes through doStrip with a 3-minute delay.
 	// When cuffed, fall through so the cuff escape runs with the multiplied timer from the fumble component.
 	if(istype(gloves, /obj/item/clothing/gloves/ball_mittens) && !handcuffed && !legcuffed)
-		to_chat(src, span_warning("You paw helplessly at [gloves.name] - you'll need someone else to get these off!"))
+		gloves.doStrip(src, src)
 		return
 	if(gloves?.breakouttime)
 		changeNext_move(CLICK_CD_BREAKOUT)

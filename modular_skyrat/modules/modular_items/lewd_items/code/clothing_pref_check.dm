@@ -13,6 +13,8 @@ GLOBAL_LIST_INIT(pref_checked_clothes, list(
 	/obj/item/clothing/suit/straight_jacket/kinky_sleepbag,
 	/obj/item/clothing/suit/straight_jacket/latex_straight_jacket,
 	/obj/item/clothing/gloves/ball_mittens,
+	/obj/item/clothing/gloves/ball_mittens/loadout_paw,
+
 	// BUBBER EDIT: ball_mittens_reinforced removed - variant no longer exists
 	/obj/item/clothing/suit/straight_jacket/shackles,
 	/obj/item/clothing/suit/straight_jacket/shackles/reinforced,
@@ -23,6 +25,10 @@ GLOBAL_LIST_INIT(pref_checked_clothes, list(
 
 /obj/item/clothing/mob_can_equip(mob/living/user, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE, indirect_action)
 	if((slot_flags & slot) && (src.type in GLOB.pref_checked_clothes))
-		if(!(user.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy)))
-			return FALSE
+		// indirect_action = TRUE means this is an outfit/loadout equip, not a player action.
+		// Allow it through - the player selected this item in their loadout deliberately.
+		// Also allow when there is no client yet (round start character transfer not complete).
+		if(!indirect_action && user.client)
+			if(!(user.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy)))
+				return FALSE
 	return ..()
