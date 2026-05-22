@@ -1400,8 +1400,6 @@ TREK
 	icon_file = 'modular_skyrat/modules/GAGS/icons/catglove_worn.dmi'
 
 // BUBBER EDIT ADDITION - magpaw mittens GAGS configs
-// Insert these lines directly after /datum/greyscale_config/catgloves/worn in
-// modular_skyrat/modules/GAGS/greyscale_configs.dm
 
 /datum/greyscale_config/magpaws
 	name = "Magpaws"
