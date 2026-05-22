@@ -498,7 +498,7 @@
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_gloves.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_gloves.dmi'
 	strip_delay = 8 SECONDS
-	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF
 	equip_sound = 'modular_zubbers/sound/lewd/rubber1.ogg'
 	drop_sound = 'modular_zubbers/sound/lewd/rubber2.ogg'
 	pickup_sound = 'modular_zubbers/sound/lewd/rubber3.ogg'
