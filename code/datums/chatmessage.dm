@@ -340,7 +340,7 @@
 		speaker = v.source
 		spans |= "virtual-speaker"
 
-		// Ignore virtual speaker (most often radio messages) from ourselves
+	// Ignore virtual speaker (most often radio messages) from ourselves
 	if (originalSpeaker != src && speaker == src)
 		return
 		// BUBBER EDIT ADDITION BEGIN (This makes it so the chat bubble above you shows the changes to the words that you say instead of showing the original version before transformed)
