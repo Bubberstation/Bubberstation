@@ -45,7 +45,7 @@
 
 /datum/armor/antimagic_collar
 	acid = 50
-	fire = 20
+	fire = 70
 	bomb = 50
 
 /obj/item/clothing/neck/antimagic_collar/Destroy()
