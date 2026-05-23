@@ -76,6 +76,9 @@
 	if(!user)
 		return
 	if(!HAS_TRAIT(user, TRAIT_BEAST_FORM))
+		if (HAS_TRAIT(user, TRAIT_MANSUS_INHIBITION))
+			user.balloon_alert("can't transform while inhibited!")
+			return
 		enter_beast_form()
 	else if(HAS_TRAIT(user, TRAIT_BEAST_FORM))
 		leave_beast_form()
