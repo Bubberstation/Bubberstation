@@ -29,8 +29,8 @@
 /datum/supply_pack/imports/hoshi/contraband
 	name = "Hoshi Modular Carbine crate"
 	desc = "This crate includes a smuggled in Hoshi Modular Carbine, one of the newest addition to the Terran's armories."
-	cost = CARGO_CRATE_VALUE * 2.5
-	contaians = list(
+	cost = CARGO_CRATE_VALUE * 5
+	contains = list(
 		/obj/item/gun/energy/modular_laser_rifle/carbine,
 	)
 	order_flags = ORDER_CONTRABAND
