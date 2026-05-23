@@ -9,3 +9,10 @@
 	item = /obj/effect/mob_spawn/ghost_role/borer_egg/traitor
 	cost = 20
 */
+
+/datum/uplink_item/dangerous/Hyeseong
+	name = "Hyeseong Modular Laser Rifle"
+	desc = "One of the newest Cybersun products. This weapon can switch modes on the fly, from a lethal laser to a shotgun to even a plasma grenade. These are rare, and don't come cheap. Luckily for you, it also can slowly recharge itself."
+	item = /obj/item/gun/energy/modular_laser_rifle
+	cost = 8
+	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
