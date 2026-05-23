@@ -8,7 +8,7 @@ Regenerative extracts:
 	desc = "It's filled with a milky substance, and pulses like a heartbeat."
 	effect = "regenerative"
 	icon_state = "regenerative"
-	effect_desc = "Completely heals your injuries, with no extra effects."
+	effect_desc = "Completely heals your injuries (excluding physical damage), with no extra effects." // BUBBER EDIT CHANGE - cant be used in combat effectively
 
 /obj/item/slimecross/regenerative/proc/core_effect(mob/living/carbon/human/target, mob/user)
 	return
@@ -30,7 +30,14 @@ Regenerative extracts:
 			span_notice("You squeeze [src], and it bursts in your hand, splashing you with milky goo which quickly regenerates your injuries!"))
 	core_effect_before(H, user)
 	user.do_attack_animation(interacting_with)
-	H.revive(HEAL_ALL & ~HEAL_REFRESH_ORGANS)
+	//H.revive(HEAL_ALL & ~HEAL_REFRESH_ORGANS) // BUBBER EDIT REMOVAL
+	// BUBBER EDIT ADDITION BEGIN - regen extracts arent very good in combat
+	H.heal_damage_type(10, BRUTE)
+	H.heal_damage_type(10, BURN)
+	H.heal_damage_type(10, TOX)
+	// BUBBER EDIT ADDITION END
+
+	H.fully_heal((HEAL_AFFLICTIONS|HEAL_BODY) & ~(HEAL_REFRESH_ORGANS))
 	core_effect(H, user)
 	playsound(H, 'sound/effects/splat.ogg', 40, TRUE)
 	qdel(src)
