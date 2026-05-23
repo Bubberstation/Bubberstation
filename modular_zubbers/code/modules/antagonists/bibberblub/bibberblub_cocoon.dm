@@ -18,3 +18,13 @@
 /obj/effect/mob_spawn/ghost_role/bibberblub/examine(mob/user)
 	. = ..()
 	. += "It seems to harbor [uses] creatures inside"
+
+/obj/effect/mob_spawn/ghost_role/bibberblub/Initialize(mapload)
+	. = ..()
+	notify_ghosts(
+			"A new Bibberblub cocoon has been created! Pester the Crew!",
+			source = src,
+			header = "Nuisence!",
+			click_interact = TRUE,
+			notify_flags = NOTIFY_CATEGORY_NOFLASH,
+		)

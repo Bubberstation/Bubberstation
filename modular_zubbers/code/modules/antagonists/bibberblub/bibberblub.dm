@@ -17,6 +17,15 @@
 	faction = list(FACTION_MAINT_CREATURES)
 	speed = 0.05
 
+	speak_emote = list("blorbles")
+	bubble_icon = "slime"
+	initial_language_holder = /datum/language_holder/slime
+
+	verb_say = "blorbles"
+	verb_ask = "inquisitively blorbles"
+	verb_exclaim = "loudly blorbles"
+	verb_yell = "loudly blorbles"
+
 	///Amount of reagents taken per bite
 	var/bite_consumption = 1
 	///The starting reagents of whatever food we are currently eating
@@ -66,10 +75,8 @@
 
 /mob/living/basic/bibberblub/proc/empty_container(obj/item/storage/container)
 	//toss out everything in here
-	to_chat(src, span_yellow("DEBUG: You start emptying the container"))
 	for(var/obj/item/thing in container.contents)
 		if(!do_after(src, 0.5 SECONDS, container))
-			to_chat(src, span_yellow("DEBUG: You are interrupted"))
 			return
 		container.quick_remove_item(thing, src, FALSE)
 		var/turf/throw_at = get_ranged_target_turf_direct(container, src, 7, rand(-60,60))
@@ -107,6 +114,7 @@
 
 	playsound(src, 'sound/items/eatfood.ogg', rand(10,50), TRUE)
 	if(!our_lunch.reagents.total_volume)
+		new our_lunch.trash_type(get_turf(our_lunch))
 		qdel(our_lunch)
 		return
 
@@ -132,3 +140,4 @@
 	// Any other nutriment subtype
 	if(ispath(reagent_type, /datum/reagent/consumable/nutriment))
 		nutriment_resource += amount
+
