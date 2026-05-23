@@ -30,6 +30,7 @@
 	var/list/current_food_reagents
 
 	var/datum/action/cooldown/hide/hide_ability
+	var/datum/action/cooldown/bubberblub_structures/slimy_floor/build_slime_floor
 
 	var/nutriment_resource = 0
 	var/protein_resource = 0
@@ -40,8 +41,12 @@
 /mob/living/basic/bibberblub/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
+
 	hide_ability = new()
 	hide_ability.Grant(src)
+
+	build_slime_floor = new()
+	build_slime_floor.Grant(src)
 
 /mob/living/basic/bibberblub/examine(mob/user)
 	. = ..()
