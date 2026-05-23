@@ -147,7 +147,7 @@
 /obj/projectile/beam/cybersun_laser/disable_bounce
 	icon_state = "disable_bounce"
 	damage = 0
-	stamina = 15
+	stamina = 20
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 	light_color = COLOR_BRIGHT_BLUE
 	ricochet_auto_aim_angle = 30
