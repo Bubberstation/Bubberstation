@@ -808,7 +808,7 @@
 
 /obj/item/toy/plush/expie/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_ATOM_SPLASHED, PROC_TYPE_REF(splash_reagents))
+	RegisterSignal(src, COMSIG_ATOM_SPLASHED, PROC_REF(splash_reagents))
 
 /datum/reagent/consumable/milk/expose_obj(obj/exposed_obj, reac_volume, methods=TOUCH, show_message=TRUE) //spill milk on the expie to make it milky
 	. = ..()
