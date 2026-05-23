@@ -35,7 +35,7 @@
 
 /// Stuff applied to the passed gun when the weapon mode is given to the gun
 /datum/laser_weapon_mode/proc/apply_to_weapon(obj/item/gun/energy/applied_gun)
-	applied_gun.burst_size = 2
+	applied_gun.burst_size = 1
 
 /// Stuff applied to the passed gun when the weapon mode is removed from the gun
 /datum/laser_weapon_mode/proc/remove_from_weapon(obj/item/gun/energy/applied_gun)
