@@ -104,8 +104,6 @@
 	if (isliving(loc))
 		var/mob/living/wearer = loc
 		do_sparks(3)
-		wearer.Paralyze(1 SECONDS)
-		wearer.electrocute_act(200, src, 1, SHOCK_ILLUSION|SHOCK_SUPPRESS_MESSAGE|SHOCK_NOGLOVES|SHOCK_KNOCKDOWN) // illusion so it doesnt do damage
 		say("Inhibition failure detected! Please check collar for signs of damage!")
 		if (IS_HERETIC(wearer))
 			to_chat(wearer, span_boldnotice("As [src] sputters and sparks, you feel your powers return..."))
