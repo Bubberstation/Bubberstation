@@ -53,7 +53,7 @@
 	var/datum/component/scope/scope_component
 
 /datum/laser_weapon_mode/marksman/apply_to_weapon(obj/item/gun/energy/applied_gun)
-	scope_component = applied_gun.AddComponent(/datum/component/scope, 3)
+	scope_component = applied_gun.AddComponent(/datum/component/scope, 1.5)
 
 /datum/laser_weapon_mode/marksman/remove_from_weapon(obj/item/gun/energy/applied_gun)
 	QDEL_NULL(scope_component)

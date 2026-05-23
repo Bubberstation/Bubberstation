@@ -42,7 +42,6 @@
 	var/list/weapon_mode_options = list(
 		/datum/laser_weapon_mode,
 		/datum/laser_weapon_mode/marksman,
-		/datum/laser_weapon_mode/disabler_machinegun,
 		/datum/laser_weapon_mode/launcher,
 		/datum/laser_weapon_mode/shotgun,
 	)
