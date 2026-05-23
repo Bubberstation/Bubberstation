@@ -110,8 +110,6 @@
 		if (IS_HERETIC(wearer))
 			to_chat(wearer, span_boldnotice("As [src] sputters and sparks, you feel your powers return..."))
 
-		var/area/our_area = get_area(src)
-
 	detach_clothing_traits(TRAIT_MANSUS_INHIBITION)
 	REMOVE_TRAIT(src, TRAIT_NO_STRIP, REF(src))
 	// still locked, though
