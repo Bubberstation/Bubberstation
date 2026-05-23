@@ -4566,9 +4566,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods{
-	name = "Monastery Cryopods Room"
-	})
+/area/station/common/cryopods/aux)
 "asl" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
@@ -14664,6 +14662,10 @@
 /obj/machinery/portable_atmospherics/canister/anesthetic_mix,
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/central)
+"bmq" = (
+/obj/effect/landmark/atmospheric_sanity/ignore_area,
+/turf/open/floor/iron/dark,
+/area/station/common/cryopods/aux)
 "bmv" = (
 /obj/machinery/holopad,
 /turf/open/floor/iron/white,
@@ -14977,9 +14979,7 @@
 	},
 /obj/item/radio/intercom/directional/east,
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods{
-	name = "Monastery Cryopods Room"
-	})
+/area/station/common/cryopods/aux)
 "bon" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -24740,9 +24740,11 @@
 /turf/open/floor/iron/dark,
 /area/station/service/chapel/storage)
 "cut" = (
-/obj/effect/turf_decal/tile/neutral/half/contrasted,
+/obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/side{
-	dir = 2
+	dir = 9
 	},
 /area/station/service/chapel/storage)
 "cuu" = (
@@ -27359,6 +27361,14 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/chemistry)
+"dMT" = (
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 8
+	},
+/area/station/service/chapel/storage)
 "dNr" = (
 /obj/structure/sign/warning/directional/south,
 /obj/machinery/power/shieldwallgen/xenobiologyaccess,
@@ -30890,6 +30900,14 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
+"gaF" = (
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/station/service/chapel/storage)
 "gaX" = (
 /obj/item/toy/gun,
 /obj/effect/decal/cleanable/blood/oil,
@@ -32658,14 +32676,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/freezer,
 /area/station/security/mechbay)
-"hkz" = (
-/obj/effect/turf_decal/tile/neutral/half/contrasted{
-	dir = 8
-	},
-/turf/open/floor/iron/dark/side{
-	dir = 8
-	},
-/area/station/service/chapel/storage)
 "hkA" = (
 /obj/machinery/brm,
 /obj/machinery/conveyor{
@@ -34300,14 +34310,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
-"iri" = (
-/obj/effect/turf_decal/tile/neutral/half/contrasted{
-	dir = 1
-	},
-/turf/open/floor/iron/dark/side{
-	dir = 1
-	},
-/area/station/service/chapel/storage)
 "irA" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Genetics Maintenance"
@@ -35140,9 +35142,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/west,
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods{
-	name = "Monastery Cryopods Room"
-	})
+/area/station/common/cryopods/aux)
 "iWV" = (
 /obj/machinery/light/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -35928,9 +35928,7 @@
 /obj/machinery/light/small/directional/north,
 /obj/machinery/computer/cryopod/directional/north,
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods{
-	name = "Monastery Cryopods Room"
-	})
+/area/station/common/cryopods/aux)
 "jxx" = (
 /obj/machinery/computer/exodrone_control_console{
 	dir = 8
@@ -36140,11 +36138,6 @@
 /obj/structure/sign/departments/aisat/directional/south,
 /turf/open/space/basic,
 /area/station/solars/aisat)
-"jDW" = (
-/turf/open/floor/iron/dark,
-/area/station/common/cryopods{
-	name = "Monastery Cryopods Room"
-	})
 "jEN" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -37588,9 +37581,7 @@
 	},
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods{
-	name = "Monastery Cryopods Room"
-	})
+/area/station/common/cryopods/aux)
 "kxs" = (
 /obj/item/kirbyplants/organic/plant22,
 /turf/open/floor/plating,
@@ -37995,9 +37986,7 @@
 "kLB" = (
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
-/area/station/common/cryopods{
-	name = "Monastery Cryopods Room"
-	})
+/area/station/common/cryopods/aux)
 "kLD" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -39865,9 +39854,7 @@
 /obj/structure/sign/poster/timeclock_psa/directional/north,
 /obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods{
-	name = "Monastery Cryopods Room"
-	})
+/area/station/common/cryopods/aux)
 "maH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
@@ -40568,6 +40555,10 @@
 /obj/machinery/status_display/supply,
 /turf/closed/wall,
 /area/station/cargo/storage)
+"myo" = (
+/obj/effect/landmark/blobstart,
+/turf/open/floor/iron/dark,
+/area/station/maintenance/disposal/incinerator)
 "myu" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
@@ -41569,11 +41560,8 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/exit/departure_lounge)
 "niG" = (
-/obj/effect/landmark/atmospheric_sanity/ignore_area,
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods{
-	name = "Monastery Cryopods Room"
-	})
+/area/station/common/cryopods/aux)
 "niN" = (
 /obj/structure/reagent_dispensers/plumbed{
 	dir = 8
@@ -44566,6 +44554,12 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/service/chapel)
+"oYS" = (
+/obj/effect/turf_decal/tile/neutral/half/contrasted,
+/turf/open/floor/iron/dark/side{
+	dir = 2
+	},
+/area/station/service/chapel/storage)
 "oZX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/effect/turf_decal/tile/red/half/contrasted{
@@ -47743,9 +47737,7 @@
 /obj/machinery/airalarm/directional/west,
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods{
-	name = "Monastery Cryopods Room"
-	})
+/area/station/common/cryopods/aux)
 "qOD" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
@@ -54725,9 +54717,7 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods{
-	name = "Monastery Cryopods Room"
-	})
+/area/station/common/cryopods/aux)
 "uZx" = (
 /obj/machinery/netpod,
 /turf/open/floor/plating,
@@ -55214,9 +55204,7 @@
 /area/station/engineering/atmos)
 "vtK" = (
 /turf/closed/wall/mineral/iron,
-/area/station/common/cryopods{
-	name = "Monastery Cryopods Room"
-	})
+/area/station/common/cryopods/aux)
 "vtR" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/tile/neutral{
@@ -56385,10 +56373,6 @@
 /obj/item/holosign_creator/atmos,
 /turf/open/floor/iron/white,
 /area/station/science/ordnance)
-"wew" = (
-/obj/effect/landmark/blobstart,
-/turf/open/floor/iron/dark,
-/area/station/maintenance/disposal/incinerator)
 "weH" = (
 /obj/effect/turf_decal/trimline/red/line{
 	dir = 8
@@ -59588,14 +59572,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/engineering/storage_shared)
-"xTw" = (
-/obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
-	dir = 1
-	},
-/turf/open/floor/iron/dark/side{
-	dir = 9
-	},
-/area/station/service/chapel/storage)
 "xTH" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/cup/glass/bottle/wine{
@@ -70515,8 +70491,8 @@ cdo
 lzJ
 ikq
 cgb
-xTw
-hkz
+cut
+dMT
 pzp
 nxJ
 chW
@@ -70772,7 +70748,7 @@ ctJ
 bZY
 ikq
 cul
-iri
+gaF
 cuI
 chc
 qZa
@@ -71289,7 +71265,7 @@ cfC
 cuu
 chU
 vpr
-cut
+oYS
 chZ
 slf
 ciz
@@ -72310,7 +72286,7 @@ ceB
 cee
 bZY
 jxu
-niG
+bmq
 asj
 ikq
 kvY
@@ -72567,7 +72543,7 @@ ceB
 cef
 bZY
 bok
-jDW
+niG
 kxr
 ikq
 fMp
@@ -100055,7 +100031,7 @@ udE
 aBR
 bZU
 usl
-wew
+myo
 usl
 oib
 yjt
