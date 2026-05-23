@@ -114,7 +114,8 @@
 
 	playsound(src, 'sound/items/eatfood.ogg', rand(10,50), TRUE)
 	if(!our_lunch.reagents.total_volume)
-		new our_lunch.trash_type(get_turf(our_lunch))
+		if(!isnull(our_lunch.trash_type))
+			new our_lunch.trash_type(get_turf(our_lunch))
 		qdel(our_lunch)
 		return
 
