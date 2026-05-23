@@ -21,7 +21,6 @@
 				)
 //This makes the Security ammo crate use the cool advanced ammo boxes instead of the old ones
 
-
 /datum/supply_pack/security/secmed_technician
 	name = "Security Medic Kit Crate - Technician"
 	crate_name = "security medic crate"
@@ -217,6 +216,8 @@
 		/obj/item/gun/energy/modular_laser_rifle/carbine,
 		/obj/item/gun/energy/modular_laser_rifle/carbine,
 		/obj/item/gun/energy/modular_laser_rifle/carbine,
+	)
+
 /datum/supply_pack/security/armory/peacekeepers
 	name = "Renoster Shotgun Crate"
 	desc = "Three Renoster pump-action shotguns to restock your armories with."
