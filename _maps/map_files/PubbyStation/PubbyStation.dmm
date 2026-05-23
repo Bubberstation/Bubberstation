@@ -3474,7 +3474,6 @@
 /area/station/maintenance/department/security/brig)
 "aoe" = (
 /obj/machinery/door/firedoor,
-/obj/effect/landmark/navigate_destination/engineering,
 /obj/machinery/door/airlock/engineering{
 	name = "Engineering"
 	},
@@ -4326,9 +4325,7 @@
 /turf/closed/wall/r_wall,
 /area/station/command/bridge)
 "arB" = (
-/obj/structure/window/reinforced/spawner/directional/north{
-	pixel_y = 2
-	},
+/obj/structure/window/reinforced/spawner/directional/north,
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/camera/directional/west{
 	c_tag = "Bridge MiniSat Access"
@@ -4337,9 +4334,7 @@
 /turf/open/floor/plating,
 /area/station/command/bridge)
 "arC" = (
-/obj/structure/window/reinforced/spawner/directional/north{
-	pixel_y = 2
-	},
+/obj/structure/window/reinforced/spawner/directional/north,
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/transit_tube/station/dispenser/reverse/flipped{
 	dir = 1
@@ -4347,17 +4342,13 @@
 /turf/open/floor/plating,
 /area/station/command/bridge)
 "arD" = (
-/obj/structure/window/reinforced/spawner/directional/north{
-	pixel_y = 2
-	},
+/obj/structure/window/reinforced/spawner/directional/north,
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/transit_tube/horizontal,
 /turf/open/floor/plating,
 /area/station/command/bridge)
 "arE" = (
-/obj/structure/window/reinforced/spawner/directional/north{
-	pixel_y = 2
-	},
+/obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/transit_tube/curved/flipped{
@@ -4575,7 +4566,9 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods/aux)
+/area/station/common/cryopods{
+	name = "Monastery Cryopods Room"
+	})
 "asl" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
@@ -4939,7 +4932,6 @@
 /area/station/security/brig)
 "atF" = (
 /obj/effect/landmark/event_spawn,
-/obj/effect/landmark/blobstart,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/disposal/incinerator)
 "atG" = (
@@ -10648,6 +10640,7 @@
 /obj/machinery/door/airlock/mining/glass{
 	name = "Cargo Office"
 	},
+/obj/effect/landmark/navigate_destination/cargo,
 /turf/open/floor/iron,
 /area/station/cargo/office)
 "aTm" = (
@@ -14044,6 +14037,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/yellow/fourcorners,
+/obj/effect/landmark/navigate_destination/atmos,
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
 "biC" = (
@@ -14983,7 +14977,9 @@
 	},
 /obj/item/radio/intercom/directional/east,
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods/aux)
+/area/station/common/cryopods{
+	name = "Monastery Cryopods Room"
+	})
 "bon" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -15252,6 +15248,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue/fourcorners,
+/obj/effect/landmark/navigate_destination/med,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "bpY" = (
@@ -15278,7 +15275,6 @@
 /obj/machinery/door/airlock/research{
 	name = "Research Division Access"
 	},
-/obj/effect/landmark/navigate_destination/research,
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "sci-entrance"
@@ -16603,6 +16599,7 @@
 /obj/effect/mapping_helpers/airlock/access/any/engineering/construction,
 /obj/effect/mapping_helpers/airlock/access/any/engineering/general,
 /obj/effect/turf_decal/tile/yellow/fourcorners,
+/obj/effect/landmark/navigate_destination/engineering,
 /turf/open/floor/iron,
 /area/station/hallway/primary/aft)
 "bxt" = (
@@ -16797,9 +16794,7 @@
 /turf/open/floor/engine,
 /area/station/medical/chemistry)
 "byA" = (
-/obj/structure/window/reinforced/spawner/directional/north{
-	pixel_y = 2
-	},
+/obj/structure/window/reinforced/spawner/directional/north,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -20111,7 +20106,6 @@
 /turf/open/floor/iron/dark,
 /area/station/science/lobby)
 "bTF" = (
-/obj/effect/landmark/navigate_destination/engineering,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/engineering{
 	name = "Engineering"
@@ -24746,11 +24740,19 @@
 /turf/open/floor/iron/dark,
 /area/station/service/chapel/storage)
 "cut" = (
-/turf/open/floor/iron,
+/obj/effect/turf_decal/tile/neutral/half/contrasted,
+/turf/open/floor/iron/dark/side{
+	dir = 2
+	},
 /area/station/service/chapel/storage)
 "cuu" = (
 /obj/structure/extinguisher_cabinet/directional/east,
-/turf/open/floor/iron,
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
 /area/station/service/chapel/storage)
 "cuv" = (
 /obj/structure/chair/wood{
@@ -24854,7 +24856,12 @@
 /area/station/service/hydroponics/garden/monastery)
 "cuR" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/turf/open/floor/iron,
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
 /area/station/service/chapel/storage)
 "cuS" = (
 /obj/machinery/door/airlock{
@@ -30128,9 +30135,7 @@
 /turf/open/floor/iron/freezer,
 /area/station/security/prison/toilet)
 "fAe" = (
-/obj/structure/window/reinforced/spawner/directional/north{
-	pixel_y = 2
-	},
+/obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/service/library/artgallery)
 "fAE" = (
@@ -32653,6 +32658,14 @@
 /obj/structure/cable,
 /turf/open/floor/iron/freezer,
 /area/station/security/mechbay)
+"hkz" = (
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 8
+	},
+/area/station/service/chapel/storage)
 "hkA" = (
 /obj/machinery/brm,
 /obj/machinery/conveyor{
@@ -34287,6 +34300,14 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
+"iri" = (
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/station/service/chapel/storage)
 "irA" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Genetics Maintenance"
@@ -35119,7 +35140,9 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/west,
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods/aux)
+/area/station/common/cryopods{
+	name = "Monastery Cryopods Room"
+	})
 "iWV" = (
 /obj/machinery/light/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -35905,7 +35928,9 @@
 /obj/machinery/light/small/directional/north,
 /obj/machinery/computer/cryopod/directional/north,
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods/aux)
+/area/station/common/cryopods{
+	name = "Monastery Cryopods Room"
+	})
 "jxx" = (
 /obj/machinery/computer/exodrone_control_console{
 	dir = 8
@@ -36115,6 +36140,11 @@
 /obj/structure/sign/departments/aisat/directional/south,
 /turf/open/space/basic,
 /area/station/solars/aisat)
+"jDW" = (
+/turf/open/floor/iron/dark,
+/area/station/common/cryopods{
+	name = "Monastery Cryopods Room"
+	})
 "jEN" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -37558,7 +37588,9 @@
 	},
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods/aux)
+/area/station/common/cryopods{
+	name = "Monastery Cryopods Room"
+	})
 "kxs" = (
 /obj/item/kirbyplants/organic/plant22,
 /turf/open/floor/plating,
@@ -37963,7 +37995,9 @@
 "kLB" = (
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
-/area/station/common/cryopods/aux)
+/area/station/common/cryopods{
+	name = "Monastery Cryopods Room"
+	})
 "kLD" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -39367,6 +39401,7 @@
 /obj/effect/turf_decal/tile/blue/opposingcorners{
 	dir = 1
 	},
+/obj/effect/landmark/navigate_destination/cryo,
 /turf/open/floor/iron/cafeteria,
 /area/station/commons/fitness)
 "lJW" = (
@@ -39830,7 +39865,9 @@
 /obj/structure/sign/poster/timeclock_psa/directional/north,
 /obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods/aux)
+/area/station/common/cryopods{
+	name = "Monastery Cryopods Room"
+	})
 "maH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
@@ -41532,8 +41569,11 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/exit/departure_lounge)
 "niG" = (
+/obj/effect/landmark/atmospheric_sanity/ignore_area,
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods/aux)
+/area/station/common/cryopods{
+	name = "Monastery Cryopods Room"
+	})
 "niN" = (
 /obj/structure/reagent_dispensers/plumbed{
 	dir = 8
@@ -41993,7 +42033,12 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
-/turf/open/floor/iron,
+/obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 10
+	},
 /area/station/service/chapel/storage)
 "nxW" = (
 /obj/structure/grille/broken,
@@ -44727,10 +44772,6 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay)
-"pft" = (
-/obj/effect/landmark/atmospheric_sanity/ignore_area,
-/turf/open/floor/iron/dark,
-/area/station/common/cryopods/aux)
 "pfw" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
@@ -45357,7 +45398,12 @@
 	network = list("ss13","monastery")
 	},
 /obj/item/radio/intercom/directional/west,
-/turf/open/floor/iron,
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 8
+	},
 /area/station/service/chapel/storage)
 "pzy" = (
 /obj/effect/turf_decal/stripes/line,
@@ -47697,7 +47743,9 @@
 /obj/machinery/airalarm/directional/west,
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods/aux)
+/area/station/common/cryopods{
+	name = "Monastery Cryopods Room"
+	})
 "qOD" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
@@ -48099,7 +48147,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/iron,
+/obj/effect/turf_decal/tile/neutral/half/contrasted,
+/turf/open/floor/iron/dark/side{
+	dir = 2
+	},
 /area/station/service/chapel/storage)
 "qZN" = (
 /obj/machinery/destructive_scanner,
@@ -51623,7 +51674,9 @@
 	name = "Representative's Office"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/cent_com/rep_door,
-/obj/effect/landmark/navigate_destination,
+/obj/effect/landmark/navigate_destination{
+	location = "Representative's Office"
+	},
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/nt_rep)
 "tlJ" = (
@@ -54661,7 +54714,7 @@
 /area/station/hallway/primary/central/fore)
 "uZk" = (
 /obj/machinery/door/airlock{
-	name = "Auxiliary Cryogenics"
+	name = "Cryogenics"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
@@ -54672,7 +54725,9 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark,
-/area/station/common/cryopods/aux)
+/area/station/common/cryopods{
+	name = "Monastery Cryopods Room"
+	})
 "uZx" = (
 /obj/machinery/netpod,
 /turf/open/floor/plating,
@@ -55159,7 +55214,9 @@
 /area/station/engineering/atmos)
 "vtK" = (
 /turf/closed/wall/mineral/iron,
-/area/station/common/cryopods/aux)
+/area/station/common/cryopods{
+	name = "Monastery Cryopods Room"
+	})
 "vtR" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/tile/neutral{
@@ -56328,6 +56385,10 @@
 /obj/item/holosign_creator/atmos,
 /turf/open/floor/iron/white,
 /area/station/science/ordnance)
+"wew" = (
+/obj/effect/landmark/blobstart,
+/turf/open/floor/iron/dark,
+/area/station/maintenance/disposal/incinerator)
 "weH" = (
 /obj/effect/turf_decal/trimline/red/line{
 	dir = 8
@@ -57957,9 +58018,7 @@
 /area/station/service/abandoned_gambling_den/gaming)
 "wXu" = (
 /obj/machinery/disposal/bin,
-/obj/structure/window/reinforced/spawner/directional/north{
-	pixel_y = 2
-	},
+/obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
@@ -59529,6 +59588,14 @@
 	},
 /turf/open/floor/plating,
 /area/station/engineering/storage_shared)
+"xTw" = (
+/obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 9
+	},
+/area/station/service/chapel/storage)
 "xTH" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/cup/glass/bottle/wine{
@@ -70448,8 +70515,8 @@ cdo
 lzJ
 ikq
 cgb
-cut
-cut
+xTw
+hkz
 pzp
 nxJ
 chW
@@ -70705,7 +70772,7 @@ ctJ
 bZY
 ikq
 cul
-cut
+iri
 cuI
 chc
 qZa
@@ -72243,7 +72310,7 @@ ceB
 cee
 bZY
 jxu
-pft
+niG
 asj
 ikq
 kvY
@@ -72500,7 +72567,7 @@ ceB
 cef
 bZY
 bok
-niG
+jDW
 kxr
 ikq
 fMp
@@ -99988,7 +100055,7 @@ udE
 aBR
 bZU
 usl
-usl
+wew
 usl
 oib
 yjt
