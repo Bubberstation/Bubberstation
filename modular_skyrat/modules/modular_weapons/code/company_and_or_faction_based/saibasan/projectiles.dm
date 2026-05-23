@@ -130,7 +130,7 @@
 
 /obj/projectile/beam/cybersun_laser/hellfire
 	icon_state = "hellfire"
-	damage = 30
+	damage = 25
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	speed = 1.6
 	wound_bonus = 0
@@ -147,7 +147,7 @@
 /obj/projectile/beam/cybersun_laser/disable_bounce
 	icon_state = "disable_bounce"
 	damage = 0
-	stamina = 30
+	stamina = 15
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 	light_color = COLOR_BRIGHT_BLUE
 	ricochet_auto_aim_angle = 30
@@ -172,7 +172,7 @@
 /obj/projectile/beam/cybersun_laser/flare
 	name = "plasma flare"
 	icon_state = "flare"
-	damage = 30
+	damage = 10
 	speed = 0.5
 	range = 6
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
