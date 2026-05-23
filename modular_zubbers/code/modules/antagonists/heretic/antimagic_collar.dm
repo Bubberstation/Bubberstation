@@ -76,7 +76,7 @@
 	. += span_boldnotice("Prevents the use of most Acolyte spells and all Acolyte rituals while attached to a neck.")
 	. += span_boldnotice("Use while in-hand to set the ID. Its current id is [set_id].")
 	. += span_notice("Capable of being disabled by acid and fire, or unlocked with a strong EMP.")
-	. += span_warning("Will announce to the security channel its location and ID if its unlocked or disabled! Though, if comms were jammed...")
+	. += span_warning("Will announce to the security channel if unlocked with a key! Though, if comms were jammed...")
 	. += "" // hr
 	. += span_notice("It seems to be [locked ? "locked" : "unlocked"].")
 	if (broken)
@@ -106,12 +106,11 @@
 		do_sparks(3)
 		wearer.Paralyze(1 SECONDS)
 		wearer.electrocute_act(200, src, 1, SHOCK_ILLUSION|SHOCK_SUPPRESS_MESSAGE|SHOCK_NOGLOVES|SHOCK_KNOCKDOWN) // illusion so it doesnt do damage
-		say("Inhibition failure detected! Administering failsafe shock...")
+		say("Inhibition failure detected! Please check collar for signs of damage!")
 		if (IS_HERETIC(wearer))
 			to_chat(wearer, span_boldnotice("As [src] sputters and sparks, you feel your powers return..."))
 
 		var/area/our_area = get_area(src)
-		radio.talk_into(src, "INHIBITION FAILURE in [our_area.name] for collar id [set_id]! Please check collar for signs of damage!", RADIO_CHANNEL_SECURITY, list(speech_span))
 
 	detach_clothing_traits(TRAIT_MANSUS_INHIBITION)
 	REMOVE_TRAIT(src, TRAIT_NO_STRIP, REF(src))
@@ -141,7 +140,6 @@
 						return
 					to_chat(loc, span_userdanger("[src] malfunctions, unlocking when it REALLY shouldn't!"))
 					toggle_lock(FALSE)
-					radio.talk_into(src, "C@@LAR [set_id] UN$@LOCKK%$@@ED AT@%%^*!!!@B---BZZZZZZZZZZZZZ-", RADIO_CHANNEL_SECURITY, list(speech_span))
 
 /obj/item/clothing/neck/antimagic_collar/repair(mob/user)
 	. = ..()
