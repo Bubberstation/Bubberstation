@@ -75,6 +75,51 @@
 /datum/species/lycan/get_species_lore()
 	return list("See Cursekin lore.")
 
+/datum/species/lycan/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_ROBOT,
+			SPECIES_PERK_NAME = "Inorganic rejection",
+			SPECIES_PERK_DESC = "The curse afflicting the cursekin prevents their bodies from being augmented with cybernetic organs \
+			or implants."
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_CLOUD_MOON,
+			SPECIES_PERK_NAME = "Silver weakness",
+			SPECIES_PERK_DESC = "You are burnt by silver, including silver weaponry."
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_GUN,
+			SPECIES_PERK_NAME = "Chunky fingers",
+			SPECIES_PERK_DESC = "While in Lycan form, you cannot use guns without special trigger-guards, nor batons.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_SHIRT,
+			SPECIES_PERK_NAME = "Unclothable",
+			SPECIES_PERK_DESC = "While in Lycan form, you drop all your clothing to the floor.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_MOON,
+			SPECIES_PERK_NAME = "Lycan strength",
+			SPECIES_PERK_DESC = "While in Lycan form, your claws deal significant damage - about circular saw level.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_SHIELD,
+			SPECIES_PERK_NAME = "Lycan resilience",
+			SPECIES_PERK_DESC = "While in Lycan form, you take 50% less brute and 20% less burn.",
+		),
+	)
+
+	return to_add
+
 /datum/species/lycan/on_species_gain(mob/living/carbon/human/gainer, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
 
