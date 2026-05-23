@@ -1,8 +1,8 @@
 /obj/structure/bibberblub/cocoon
 	name = "Slimy Cocoon"
-	icon = 'icons/effects/effects.dmi'
+	icon = 'modular_zubbers/icons/bibberblub/bibberblub.dmi'
 	desc = "There's something alive in there, and sooner or later it's going to find its way out."
-	icon_state = "eggs"
+	icon_state = "Cocoon"
 	max_integrity = 15
 	/// Mob spawner handling the actual spawn of the spider
 	var/obj/effect/mob_spawn/ghost_role/bibberblub/spawner
@@ -27,8 +27,8 @@
 	name = "Slimy Cocoon"
 	prompt_name = "bibberblub"
 	desc = "It seems to pulse slightly with an inner life."
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "eggs"
+	icon = 'modular_zubbers/icons/bibberblub/bibberblub.dmi'
+	icon_state = "Cocoon"
 	move_resist = MOVE_FORCE_NORMAL
 	density = FALSE
 	show_flavor = FALSE

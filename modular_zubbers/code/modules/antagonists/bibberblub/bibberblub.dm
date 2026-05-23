@@ -1,10 +1,8 @@
 /mob/living/basic/bibberblub
 	name = "Bibberblub"
 	desc = "A horrible slimy little creature and a nuisence to all! Kill it before it lays eggs!"
-	icon_state = "mouse_gray"
-	icon_living = "mouse_gray"
-	icon_dead = "mouse_gray_dead"
-	held_state = "mouse_gray"
+	icon = 'modular_zubbers/icons/bibberblub/bibberblub.dmi'
+	icon_state = "Bibberblub"
 
 	maxHealth = 5
 	health = 5
@@ -52,6 +50,9 @@
 		. += "[nutriment_resource] Nutriment"
 		. += "[protein_resource] Protein"
 		. += "[vitamin_resource] Vitamin"
+
+/mob/living/basic/bibberblub/death(gibbed)
+	. = ..()
 
 /mob/living/basic/bibberblub/melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	if(istype(target, /obj/machinery/vending))
