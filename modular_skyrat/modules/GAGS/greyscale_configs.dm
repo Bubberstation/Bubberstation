@@ -1399,7 +1399,6 @@ TREK
 	name = "Catgloves Worn"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/catglove_worn.dmi'
 
-// BUBBER EDIT ADDITION - magpaw mittens GAGS configs
 
 /datum/greyscale_config/magpaws
 	name = "Magpaws"
@@ -1411,7 +1410,6 @@ TREK
 	icon_file = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/gloves/magpaws_worn.json'
 
-// BUBBER EDIT ADDITION END
 
 // MISC SHOES
 

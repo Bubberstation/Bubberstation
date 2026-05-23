@@ -83,7 +83,6 @@
 /obj/item/clothing/gloves/ball_mittens/loadout_paw/Initialize(mapload)
 	. = ..()
 
-// BUBBER EDIT: ball_mittens_reinforced removed - insulated variant no longer exists
 
 /obj/item/clothing/suit/straight_jacket/kinky_sleepbag/Initialize(mapload)
 	. = ..()

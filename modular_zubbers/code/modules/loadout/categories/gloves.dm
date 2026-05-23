@@ -157,8 +157,6 @@
 	name = "Charcoal Fingerless Gloves"
 	item_path = /obj/item/clothing/gloves/skyy
 
-// BUBBER EDIT ADDITION
-
 // Uses a loadout-only dummy type that holds the catgloves GAGS config at type level
 // so the loadout color picker works, then swaps itself for real ball mittens in paw mode on spawn.
 // i know this is probably dumb but I couldn't figure out a better way to do it :(
@@ -166,8 +164,6 @@
 	name = "Latex Paw Mittens"
 	item_path = /obj/item/clothing/gloves/ball_mittens/loadout_paw
 	erp_item = TRUE
-
-// BUBBER EDIT ADDITION END
 
 /*
 *	RINGS

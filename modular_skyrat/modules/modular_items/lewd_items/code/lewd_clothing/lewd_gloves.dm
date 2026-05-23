@@ -21,14 +21,6 @@
 	if(!istype(parent, /obj/item/clothing/gloves/ball_mittens))
 		return COMPONENT_INCOMPATIBLE
 
-/datum/component/ball_mittens_fumble/RegisterWithParent()
-	. = ..()
-	// No signals registered here - mob signals are registered directly in
-	// ball_mittens/equipped() after AddComponent, and cleared in dropped().
-
-/datum/component/ball_mittens_fumble/UnregisterFromParent()
-	return ..()
-
 /// Called by ball_mittens/equipped() after the component is added.
 /datum/component/ball_mittens_fumble/proc/register_wearer(mob/living/wearer)
 	// Spawn flavor only on loadout equip, not manual equip
@@ -47,6 +39,7 @@
 	RegisterSignal(wearer, COMSIG_TRY_STRIP, PROC_REF(on_try_strip))
 	RegisterSignal(wearer, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(on_mousedrop_receive))
 	RegisterSignal(wearer, COMSIG_LIVING_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
+	RegisterSignal(wearer, COMSIG_LIVING_RESIST, PROC_REF(on_resist))
 
 
 /// Called by ball_mittens/dropped() before the component is deleted.
@@ -62,6 +55,7 @@
 		COMSIG_MOB_FIRED_GUN,
 		COMSIG_TRY_STRIP,
 		COMSIG_LIVING_UNARMED_ATTACK,
+		COMSIG_LIVING_RESIST,
 		COMSIG_MOUSEDROPPED_ONTO,
 	))
 
@@ -137,7 +131,7 @@
 		return COMSIG_MOB_CANCEL_CLICKON
 
 	// Worn clothing equip/removal - apply a delay then allow.
-	// Longer than the catsuit delay but shorter than cuff escape. 45 seconds feels right.
+	// Longer than the catsuit delay but shorter than cuff escape.
 	if(istype(target, /obj/item/clothing) && isliving(target.loc) && !wearer.get_active_held_item() && !wearer.combat_mode)
 		var/obj/item/clothing/cloth = target
 		var/mob/living/L = target.loc
@@ -332,6 +326,13 @@
 	wearer.dropItemToGround(to_drop)
 
 /// Plays a toy squeak when the wearer punches a living mob bare-handed.
+/datum/component/ball_mittens_fumble/proc/on_resist(mob/living/wearer)
+	SIGNAL_HANDLER
+	var/obj/item/clothing/gloves/ball_mittens/mittens = parent
+	if(!istype(mittens) || wearer.handcuffed || wearer.legcuffed)
+		return // Cuffed: let normal cuff-resist run
+	INVOKE_ASYNC(mittens, TYPE_PROC_REF(/obj/item/clothing/gloves/ball_mittens, doStrip), wearer, wearer)
+
 /datum/component/ball_mittens_fumble/proc/on_unarmed_attack(mob/living/wearer, atom/attack_target, proximity_flag, list/modifiers)
 	SIGNAL_HANDLER
 	if(!proximity_flag || !isliving(attack_target))
@@ -677,7 +678,6 @@
 // greyscale_config at type level makes is_greyscale_item() return TRUE so the
 // loadout color picker works. icon_preview points to the raw paw sprite for the
 // catalog (the loadout UI reads type-level vars via :: so instance rendering doesn't help).
-// BUBBER EDIT ADDITION - loadout integration for ball mittens
 // ============================================================
 
 /obj/item/clothing/gloves/ball_mittens/loadout_paw
@@ -729,4 +729,3 @@
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_gloves.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_gloves.dmi'
 
-// BUBBER EDIT ADDITION END

@@ -357,25 +357,6 @@
 *	MISC LOGIC
 */
 
-// BUBBER EDIT CHANGE - ball mittens resist_restraints override
-
-// Handles breaking out of gloves that restrain people.
-/mob/living/carbon/human/resist_restraints()
-	// Ball mittens self-removal goes through doStrip with a 3-minute delay.
-	// When cuffed, fall through so the cuff escape runs with the multiplied timer from the fumble component.
-	if(istype(gloves, /obj/item/clothing/gloves/ball_mittens) && !handcuffed && !legcuffed)
-		gloves.doStrip(src, src)
-		return
-	if(gloves?.breakouttime)
-		changeNext_move(CLICK_CD_BREAKOUT)
-		last_special = world.time + CLICK_CD_BREAKOUT
-		cuff_resist(gloves)
-	else
-		..()
-// BUBBER EDIT CHANGE END
-
-
-
 /// Checks if the human is wearing a condom, and also hasn't broken it.
 /mob/living/carbon/human/proc/is_wearing_condom()
 	if(!penis || !istype(penis, /obj/item/clothing/sextoy/condom))
