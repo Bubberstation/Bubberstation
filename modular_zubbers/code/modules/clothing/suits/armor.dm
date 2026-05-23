@@ -152,17 +152,6 @@
 /datum/atom_skin/metrocop_armor/overwatch_red
 	preview_name = "Red Overwatch"
 	new_icon_state = "overwatch_red"
-/*
-/obj/item/clothing/suit/armor/vest/secwintercoat
-	name = "security winter coat"
-	desc = "A winter coat with an armored vest resting atop it, perfect for those cold Freyja nights."
-	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	icon_state = "sec_wintercoat"
-	inhand_icon_state = "armor"
-	blood_overlay_type = "armor"
-	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
-*/
 
 // Virosec armor, sprites by axietheaxolotl
 
