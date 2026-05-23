@@ -88,7 +88,6 @@
 		handle_gaian_physique_loss(loser)
 
 /datum/species/lycan/proc/handle_gaian_physique(mob/living/carbon/human/gainer)
-	damage_modifier += 30 // bonus percent damgae reduction
 	stunmod = 0.5
 	gainer.physiology.stamina_mod *= 0.25
 
