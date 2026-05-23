@@ -329,8 +329,12 @@
 /datum/component/ball_mittens_fumble/proc/on_resist(mob/living/wearer)
 	SIGNAL_HANDLER
 	var/obj/item/clothing/gloves/ball_mittens/mittens = parent
-	if(!istype(mittens) || wearer.handcuffed || wearer.legcuffed)
-		return // Cuffed: let normal cuff-resist run
+	if(!istype(mittens))
+		return
+	if(ishuman(wearer))
+		var/mob/living/carbon/human/H = wearer
+		if(H.handcuffed || H.legcuffed)
+			return // Cuffed: let normal cuff-resist run
 	INVOKE_ASYNC(mittens, TYPE_PROC_REF(/obj/item/clothing/gloves/ball_mittens, doStrip), wearer, wearer)
 
 /datum/component/ball_mittens_fumble/proc/on_unarmed_attack(mob/living/wearer, atom/attack_target, proximity_flag, list/modifiers)
