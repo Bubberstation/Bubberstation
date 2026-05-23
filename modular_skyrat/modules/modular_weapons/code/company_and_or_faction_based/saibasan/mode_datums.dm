@@ -131,7 +131,7 @@
 	// And also so the visuals work :3
 	casing = /obj/item/ammo_casing/energy/cybersun_small_blade
 	weapon_icon_state = "blade"
-	charge_sections = 2
+	charge_sections = 3
 	json_speech_string = "blade"
 	gun_runetext_color = "#f8d860"
 
