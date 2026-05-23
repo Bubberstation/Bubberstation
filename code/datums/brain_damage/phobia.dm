@@ -137,3 +137,7 @@
 /datum/brain_trauma/mild/phobia/supernatural
 	phobia_type = "the supernatural"
 	random_gain = FALSE
+
+/datum/brain_trauma/mild/phobia/mousetraps // BUBBER ADDITION
+	phobia_type = "mouse traps"
+	random_gain = FALSE
