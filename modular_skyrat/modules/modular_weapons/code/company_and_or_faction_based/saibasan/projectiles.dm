@@ -124,7 +124,7 @@
 
 /obj/item/ammo_casing/energy/cybersun_small_hellfire
 	projectile_type = /obj/projectile/beam/cybersun_laser/hellfire
-	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
+	e_cost = LASER_SHOTS(6, STANDARD_CELL_CHARGE)
 	select_name = "Incinerate"
 	fire_sound = 'modular_zubbers/sound/weapons/incinerate.ogg'
 
