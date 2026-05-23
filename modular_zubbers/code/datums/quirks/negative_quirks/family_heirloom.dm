@@ -8,6 +8,11 @@ GLOBAL_LIST_INIT(invalid_heirloom_types, typecacheof(list(
 	/// The temporary mark action we give to users who have opted out of random items.
 	var/datum/action/mark_family_heirloom/mark_action
 
+/datum/quirk/item_quirk/family_heirloom/remove()
+	. = ..()
+
+	QDEL_NULL(mark_action)
+
 /datum/quirk/item_quirk/family_heirloom/Destroy()
 	. = ..()
 

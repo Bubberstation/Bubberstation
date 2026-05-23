@@ -127,9 +127,11 @@
 		return
 	if(!TIMER_COOLDOWN_FINISHED(quirk_holder, DOMINANT_COOLDOWN_SNAP))
 		return
+	if(!quirk_holder.client)
+		return
 
 	for(var/mob/living/carbon/human/sub in hearers(world.view / 2, quirk_holder))
-		if(sub == quirk_holder || sub.stat == DEAD || (HAS_TRAIT(sub, TRAIT_QUICKREFLEXES)))
+		if(sub == quirk_holder || sub.stat == DEAD || (HAS_TRAIT(sub, TRAIT_QUICKREFLEXES)) || !sub.client)
 			continue
 		if(!sub.has_quirk(/datum/quirk/well_trained))
 			continue
@@ -160,7 +162,8 @@
 
 			if("snap3")
 				if(quirk_holder.client.prefs.read_preference(/datum/preference/toggle/dominant_aura/snap3) && sub.client.prefs.read_preference(/datum/preference/toggle/well_trained/snap3))
-					sub.KnockToFloor(knockdown_amt = 0.1 SECONDS)
+					if(!sub.resting)
+						sub.toggle_resting()
 					step(sub, get_dir(sub, quirk_holder))
 					sub.emote("me",1,"falls to the floor and crawls closer to <b>[quirk_holder]</b>, following their command.",TRUE)
 					sub.do_jitter_animation(0.1 SECONDS)
@@ -170,7 +173,7 @@
 
 //Gotta check for borg module
 	for(var/mob/living/silicon/robot/borg_sub in hearers(world.view / 2, quirk_holder))
-		if(!borg_sub.has_quirk(/datum/quirk/well_trained) || (borg_sub == quirk_holder) || (HAS_TRAIT(borg_sub, TRAIT_QUICKREFLEXES)))
+		if(!borg_sub.has_quirk(/datum/quirk/well_trained) || (borg_sub == quirk_holder) || (HAS_TRAIT(borg_sub, TRAIT_QUICKREFLEXES)) || !borg_sub.client)
 			continue
 		if(borg_sub.stat == DEAD)
 			continue

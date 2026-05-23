@@ -50,10 +50,12 @@
 	)
 
 	no_equip_flags = ITEM_SLOT_ICLOTHING | ITEM_SLOT_OCLOTHING | ITEM_SLOT_GLOVES | ITEM_SLOT_FEET | ITEM_SLOT_SUITSTORE | ITEM_SLOT_BACK | ITEM_SLOT_BELT | ITEM_SLOT_EARS | ITEM_SLOT_HEAD | ITEM_SLOT_MASK | ITEM_SLOT_EYES | ITEM_SLOT_BACK | ITEM_SLOT_NECK
+	always_customizable = TRUE
+	sort_bottom = TRUE
 
 /datum/species/lycan/prepare_human_for_preview(mob/living/carbon/human/lycan)
 	var/main_color = "#362d23"
-	var/secondary_color = "#9c5852"
+	var/secondary_color = "#bb1607"
 	var/tertiary_color = "#CCF6E2"
 	lycan.dna.features["mcolor"] = main_color
 	lycan.dna.features["mcolor2"] = secondary_color
@@ -68,15 +70,68 @@
 	race = /datum/species/lycan
 
 /datum/species/lycan/get_species_description()
-	return list(placeholder_description)
+	return list("The transformed version of a Cursekin. Only available for customization of a Cursekin's transformed form.")
 
 /datum/species/lycan/get_species_lore()
-	return list(placeholder_lore)
+	return list("See Cursekin lore.")
 
 /datum/species/lycan/on_species_gain(mob/living/carbon/human/gainer, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
-	gainer.AddElement(/datum/element/inorganic_rejection)
+
+	if (HAS_TRAIT(gainer, TRAIT_GAIAN_PHYSIQUE))
+		handle_gaian_physique(gainer)
 
 /datum/species/lycan/on_species_loss(mob/living/carbon/human/loser, datum/species/new_species, pref_load)
 	. = ..()
-	loser.RemoveElement(/datum/element/inorganic_rejection)
+
+	if (HAS_TRAIT(loser, TRAIT_GAIAN_PHYSIQUE))
+		handle_gaian_physique_loss(loser)
+
+/datum/species/lycan/proc/handle_gaian_physique(mob/living/carbon/human/gainer)
+	damage_modifier += 30 // bonus percent damgae reduction
+	stunmod = 0.5
+	gainer.physiology.stamina_mod *= 0.25
+
+	var/obj/item/bodypart/arm/l_arm = gainer.get_bodypart(BODY_ZONE_L_ARM)
+	var/obj/item/bodypart/arm/r_arm = gainer.get_bodypart(BODY_ZONE_R_ARM)
+
+	// near esword level, though without blockchance
+	l_arm?.unarmed_damage_low = 27
+	l_arm?.unarmed_damage_high = 27
+	r_arm?.unarmed_damage_low = 27
+	r_arm?.unarmed_damage_high = 27
+	l_arm?.unarmed_effectiveness = 75 // massively increases damage on grabbed targets
+	r_arm?.unarmed_effectiveness = 75
+
+	ADD_TRAIT(gainer, TRAIT_BATON_RESISTANCE, SPECIES_TRAIT)
+	ADD_TRAIT(gainer, TRAIT_HARDLY_WOUNDED, SPECIES_TRAIT)
+	ADD_TRAIT(gainer, TRAIT_IGNORESLOWDOWN, SPECIES_TRAIT)
+	ADD_TRAIT(gainer, TRAIT_FEARLESS, SPECIES_TRAIT)
+	ADD_TRAIT(gainer, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, SPECIES_TRAIT)
+	ADD_TRAIT(gainer, TRAIT_NO_STAGGER, SPECIES_TRAIT)
+	ADD_TRAIT(gainer, TRAIT_NO_THROW_HITPUSH, SPECIES_TRAIT)
+
+	gainer.AddComponent( \
+		/datum/component/regenerator, \
+		regeneration_delay = 5 SECONDS, \
+		brute_per_second = 5, \
+		burn_per_second = 1, \
+		tox_per_second = 0.5, \
+		oxy_per_second = 0.5, \
+		ignore_damage_types = list(), \
+	)
+
+/datum/species/lycan/proc/handle_gaian_physique_loss(mob/living/carbon/human/loser)
+	REMOVE_TRAIT(loser, TRAIT_BATON_RESISTANCE, SPECIES_TRAIT)
+	REMOVE_TRAIT(loser, TRAIT_HARDLY_WOUNDED, SPECIES_TRAIT)
+	REMOVE_TRAIT(loser, TRAIT_IGNORESLOWDOWN, SPECIES_TRAIT)
+	REMOVE_TRAIT(loser, TRAIT_FEARLESS, SPECIES_TRAIT)
+	REMOVE_TRAIT(loser, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, SPECIES_TRAIT)
+	REMOVE_TRAIT(loser, TRAIT_NO_STAGGER, SPECIES_TRAIT)
+	REMOVE_TRAIT(loser, TRAIT_NO_THROW_HITPUSH, SPECIES_TRAIT)
+
+	qdel(loser.GetComponent(/datum/component/regenerator))
+
+	loser.physiology.stamina_mod *= 4
+
+	// already lost the limb shit
