@@ -60,6 +60,7 @@
 	forceMove(cocoon)
 
 /obj/effect/mob_spawn/ghost_role/bibberblub/Destroy()
+	qdel(cocoon)
 	cocoon = null
 	return ..()
 
