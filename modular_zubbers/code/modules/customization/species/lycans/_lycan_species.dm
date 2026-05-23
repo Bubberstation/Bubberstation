@@ -41,11 +41,10 @@
 		// Lycan Specific Things
 		TRAIT_LUPINE,
 		TRAIT_BEAST_FORM,
-		TRAIT_NOGUNS,
 		TRAIT_LYCAN,
 		TRAIT_QUICKER_CARRY, // It'd be on par with nitrile gloves.
 		TRAIT_PIERCEIMMUNE, // Thick skin
-		TRAIT_ILLITERATE, // To avoid using consoles or such.
+		TRAIT_CHUNKYFINGERS,
 		TRAIT_FAST_METABOLISM,
 	)
 
