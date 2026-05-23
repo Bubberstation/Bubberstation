@@ -208,3 +208,13 @@
 		/obj/item/gun/energy/tacticool,
 		/obj/item/gun/energy/tacticool,
 	)
+
+/datum/supply_pack/security/armory/peacekeepers
+	name = "Renoster Shotgun Crate"
+	desc = "Three Renoster pump-action shotguns to restock your armories with."
+	cost = CARGO_CRATE_VALUE * 10
+	contains = list(
+		/obj/item/gun/ballistic/shotgun/riot/sol,
+		/obj/item/gun/ballistic/shotgun/riot/sol,
+		/obj/item/gun/ballistic/shotgun/riot/sol,
+	)
