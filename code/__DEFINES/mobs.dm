@@ -177,29 +177,28 @@
 #define BODYTYPE_SHADOW (1<<7)
 //This limb is a ghost limb and can phase through walls.
 #define BODYTYPE_GHOST (1<<8)
+/// Analagous to BODYSHAPE_DIGITIGRADE, though this one is not removed if the mob's shape changed
+#define BODYTYPE_DIGITIGRADE (1<<9)
 // SKYRAT EDIT ADDITION
 
 /// Nanomachine bodypart
-#define BODYTYPE_NANO (1<<9)
+#define BODYTYPE_NANO (1<<10)
 ///The limb fits a modular custom shape
-#define BODYSHAPE_CUSTOM (1<<10)
+#define BODYSHAPE_CUSTOM (1<<11)
 ///The limb fits a taur body
-#define BODYSHAPE_TAUR (1<<11)
+#define BODYSHAPE_TAUR (1<<12)
 ///The limb causes shoes to no longer be displayed, useful for taurs.
-#define BODYSHAPE_HIDE_SHOES (1<<12)
+#define BODYSHAPE_HIDE_SHOES (1<<13)
 ///The limb causes glasses and hats to be drawn on layers 5 and 4 respectively. Currently used for snouts with the (Top) suffix, which are drawn on layer 6 and would normally cover facewear
-#define BODYSHAPE_ALT_FACEWEAR_LAYER (1<<13)
+#define BODYSHAPE_ALT_FACEWEAR_LAYER (1<<14)
 // BUBBER EDIT ADDITION: START - Adding the kinetic bodytype
 ///The limb is a kinetic prosthetic.
-#define BODYTYPE_KINETIC (1<<14)
+#define BODYTYPE_KINETIC (1<<15)
 ///The limb is synthetic, this is for an additional surgery check.
-#define BODYTYPE_SYNTHETIC (1<<15)
+#define BODYTYPE_SYNTHETIC (1<<16)
 // BUBBER EDIT ADDITION: END
 
 // SKYRAT EDIT END
-
-/// Analagous to BODYSHAPE_DIGITIGRADE, though this one is not removed if the mob's shape changed
-#define BODYTYPE_DIGITIGRADE (1<<9)
 
 // Bodyshape defines for how things can be worn, i.e., what "shape" the mob sprite is
 ///The limb fits the human mold. This is not meant to be literal, if the sprite "fits" on a human, it is "humanoid", regardless of origin.
