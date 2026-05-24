@@ -343,25 +343,6 @@
 	// Ignore virtual speaker (most often radio messages) from ourselves
 	if (originalSpeaker != src && speaker == src)
 		return
-		// BUBBER EDIT ADDITION BEGIN (This makes it so the chat bubble above you shows the changes to the words that you say instead of showing the original version before transformed)
-	if(HAS_TRAIT(speaker, TRAIT_UWU_SPEECH))
-		raw_message = replacetext(raw_message, "r", "w")
-		raw_message = replacetext(raw_message, "l", "w")
-		raw_message = replacetext(raw_message, "R", "W")
-		raw_message = replacetext(raw_message, "L", "W")
-
-		raw_message = replacetext(raw_message, "na", "nya")
-		raw_message = replacetext(raw_message, "ne", "nye")
-		raw_message = replacetext(raw_message, "ni", "nyi")
-		raw_message = replacetext(raw_message, "no", "nyo")
-		raw_message = replacetext(raw_message, "nu", "nyu")
-
-		raw_message = replacetext(raw_message, "Na", "Nya")
-		raw_message = replacetext(raw_message, "Ne", "Nye")
-		raw_message = replacetext(raw_message, "Ni", "Nyi")
-		raw_message = replacetext(raw_message, "No", "Nyo")
-		raw_message = replacetext(raw_message, "Nu", "Nyu")
-		// BUBBER EDIT ADDITION END
 
 	// Display visual above source
 	if(runechat_flags & EMOTE_MESSAGE)

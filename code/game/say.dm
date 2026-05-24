@@ -66,25 +66,6 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	if(!message || message == "")
 		return
-
-	if(HAS_TRAIT(src, TRAIT_UWU_SPEECH))
-		message = replacetext(message, "r", "w")
-		message = replacetext(message, "l", "w")
-		message = replacetext(message, "R", "W")
-		message = replacetext(message, "L", "W")
-
-		message = replacetext(message, "na", "nya")
-		message = replacetext(message, "ne", "nye")
-		message = replacetext(message, "ni", "nyi")
-		message = replacetext(message, "no", "nyo")
-		message = replacetext(message, "nu", "nyu")
-
-		message = replacetext(message, "Na", "Nya")
-		message = replacetext(message, "Ne", "Nye")
-		message = replacetext(message, "Ni", "Nyi")
-		message = replacetext(message, "No", "Nyo")
-		message = replacetext(message, "Nu", "Nyu")
-
 	spans |= speech_span
 	language ||= get_selected_language()
 	if(!message_mods[SAY_MOD_VERB])
@@ -251,31 +232,10 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 	if(copytext_char(input, -2) == "!!")
 		spans |= SPAN_YELL
-		// BUBBER EDIT ADDITION BEGIN
-		// adds uwuspeech variables for any text changes for when message is sent via client before other players see it.
 
+	/* all inputs should be fully figured out past this point */
 
-	var/processed_input = input
-
-	if(HAS_TRAIT(src, TRAIT_UWU_SPEECH))
-		processed_input = replacetext(processed_input, "r", "w")
-		processed_input = replacetext(processed_input, "l", "w")
-		processed_input = replacetext(processed_input, "R", "W")
-		processed_input = replacetext(processed_input, "L", "W")
-
-		processed_input = replacetext(processed_input, "na", "nya")
-		processed_input = replacetext(processed_input, "ne", "nye")
-		processed_input = replacetext(processed_input, "ni", "nyi")
-		processed_input = replacetext(processed_input, "no", "nyo")
-		processed_input = replacetext(processed_input, "nu", "nyu")
-
-		processed_input = replacetext(processed_input, "Na", "Nya")
-		processed_input = replacetext(processed_input, "Ne", "Nye")
-		processed_input = replacetext(processed_input, "Ni", "Nyi")
-		processed_input = replacetext(processed_input, "No", "Nyo")
-		processed_input = replacetext(processed_input, "Nu", "Nyu")
-
-	processed_input = apply_message_emphasis(processed_input) //This MUST be done first so that we don't get clipped by spans
+	var/processed_input = apply_message_emphasis(input) //This MUST be done first so that we don't get clipped by spans
 	processed_input = attach_spans(processed_input, spans)
 
 	var/processed_say_mod = apply_message_emphasis(say_mod)
