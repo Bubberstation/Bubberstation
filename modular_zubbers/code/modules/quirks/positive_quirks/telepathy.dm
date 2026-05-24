@@ -146,10 +146,10 @@
 	var/datum/weakref/tele_action_ref
 
 /datum/quirk/telepathic/add(client/client_source)
-		var/datum/action/cooldown/spell/pointed/telepathy/tele_action = new
+	var/datum/action/cooldown/spell/pointed/telepathy/tele_action = new
 
-		tele_action.Grant(quirk_holder)
-		tele_action_ref = WEAKREF(tele_action)
+	tele_action.Grant(quirk_holder)
+	tele_action_ref = WEAKREF(tele_action)
 
 /datum/quirk/telepathic/remove()
 	var/datum/action/cooldown/spell/pointed/telepathy/tele_action = tele_action_ref?.resolve()

@@ -24,6 +24,7 @@ GLOBAL_LIST_INIT(phobia_types, list(
 	"spiders" = "Arachnophobia",
 	"strangers" = "Xenophobia",
 	"the supernatural" = "Phasmophobia",
+	"mouse traps" = "Cleithrophobia", // BUBBER ADDITION
 ))
 
 GLOBAL_LIST_INIT(phobia_regexes, list(
@@ -50,6 +51,7 @@ GLOBAL_LIST_INIT(phobia_regexes, list(
 	"spiders" = construct_phobia_regex("spiders"),
 	"strangers" = construct_phobia_regex("strangers"),
 	"the supernatural" = construct_phobia_regex("the supernatural"),
+	"mouse traps" = construct_phobia_regex("mouse traps"), // BUBBER ADDITION
 ))
 
 GLOBAL_LIST_INIT(phobia_mobs, list(
@@ -534,6 +536,11 @@ GLOBAL_LIST_INIT(phobia_objs, list(
 		/obj/structure/destructible/eldritch_crucible,
 		/obj/structure/spirit_board,
 	)),
+	// BUBBER ADDITION START
+	"mouse traps" = typecacheof(list(
+		/obj/item/assembly/mousetrap,
+	)),
+	// BUBBER ADDITION END
 ))
 
 GLOBAL_LIST_INIT(phobia_turfs, list(
