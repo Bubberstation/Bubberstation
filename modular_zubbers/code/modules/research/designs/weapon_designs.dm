@@ -273,7 +273,7 @@
 
 /datum/design/m9mm_sec_speedloader
 	name = "Speed Loader (9x25mm Murphy) (Lethal)"
-	desc = "A speed loader designed to quickly reload five-chambered 9mm revolvers."
+	desc = "Designed to quickly reload five-chambered 9mm revolvers."
 	id = "m9mm_sec_speedloader"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(
