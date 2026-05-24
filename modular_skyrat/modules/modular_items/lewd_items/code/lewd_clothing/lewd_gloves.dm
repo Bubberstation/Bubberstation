@@ -502,7 +502,7 @@
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_gloves.dmi'
 	strip_delay = 8 SECONDS
 	resistance_flags = FIRE_PROOF
-	body_parts_covered = NONE // Gloves provide no armor; NONE allows surgery without removing them
+	armor_type = /datum/armor/ball_mittens
 	equip_sound = 'modular_zubbers/sound/lewd/rubber1.ogg'
 	drop_sound = 'modular_zubbers/sound/lewd/rubber2.ogg'
 	pickup_sound = 'modular_zubbers/sound/lewd/rubber3.ogg'
@@ -624,6 +624,13 @@
 
 /datum/armor/ball_mittens
 	bio = 1
+
+/// Excludes the gloves slot from surgery coverage checks when ball mittens are worn.
+/// This allows surgery on arms/hands without requiring glove removal.
+/mob/living/carbon/human/is_location_accessible(location, exluded_equipment_slots = NONE)
+	if(istype(gloves, /obj/item/clothing/gloves/ball_mittens))
+		exluded_equipment_slots |= ITEM_SLOT_GLOVES
+	return ..()
 
 /obj/item/clothing/gloves/ball_mittens/proc/show_spawn_flavor(mob/user)
 	if(!user?.client)
