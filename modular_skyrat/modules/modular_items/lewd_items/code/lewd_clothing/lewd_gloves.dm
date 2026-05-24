@@ -689,7 +689,7 @@
 	post_init_icon_state = "magpaws" // Used by greyscale_previews to render map preview icons
 	// Catalog uses icon_preview/icon_state_preview read at type level via ::
 	icon_preview = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
-	icon_state_preview = "Magpaw" // Pre-colored reference sprite shows all three layers
+	icon_state_preview = "catgloves" // Pre-colored reference sprite
 	is_paw_skin = TRUE
 	inhand_icon_state = "greyscale_gloves" // Use standard greyscale gloves inhand sprite - no magpaws inhand sprite exists
 
