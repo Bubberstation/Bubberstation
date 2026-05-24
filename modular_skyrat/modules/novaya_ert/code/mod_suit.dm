@@ -390,3 +390,32 @@
 	name = "bottle of cryptobiolin"
 	desc = "Nothing screams budget cuts like bottled suit fluid."
 	list_reagents = list(/datum/reagent/cryptobiolin = 100)
+
+/datum/crafting_recipe/voskhod_to_mod
+	name = "Depowered Voskhod-To-Refurbished Voskhod MOD Conversion"
+	desc = "While this is usually done on a specialised automated workbench, you can tinker with the suit manually for a longer while to achieve the same result."
+	result = /obj/effect/spawner/random/voskhod_refit
+	reqs = list(
+		/obj/item/clothing/suit/space/voskhod = 1,
+		/obj/item/clothing/head/helmet/space/voskhod = 1,
+		/obj/item/crafting_conversion_kit/voskhod_refit = 1,
+		/obj/item/storage/backpack/industrial/cin_surplus = 1,
+		/obj/item/mod/core = 1,
+		/obj/item/stock_parts/power_store/cell/high = 1,
+		/obj/item/stack/sheet/plasteel = 10,
+		/obj/item/stack/cable_coil = 15,
+		/obj/item/assembly/health = 1,
+	)
+	tool_behaviors = list(TOOL_WELDER, TOOL_MULTITOOL)
+	time = 30 SECONDS
+	category = CAT_CLOTHING
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
+
+/obj/effect/spawner/random/voskhod_refit
+	name = "converted MODskhod spaner"
+	icon = 'modular_nova/master_files/icons/obj/clothing/modsuit/mod_clothing.dmi'
+	icon_state = "voskhod-chestplate-sealed"
+	spawn_all_loot = TRUE
+	spawn_loot_count = 1
+	loot = list(/obj/item/mod/control/pre_equipped/voskhod)
+	custom_materials = list(/datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 10, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.95, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.45)
