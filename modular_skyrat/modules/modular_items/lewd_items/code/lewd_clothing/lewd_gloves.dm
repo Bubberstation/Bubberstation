@@ -502,6 +502,7 @@
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_gloves.dmi'
 	strip_delay = 8 SECONDS
 	resistance_flags = FIRE_PROOF
+	body_parts_covered = NONE // Gloves provide no armor; NONE allows surgery without removing them
 	equip_sound = 'modular_zubbers/sound/lewd/rubber1.ogg'
 	drop_sound = 'modular_zubbers/sound/lewd/rubber2.ogg'
 	pickup_sound = 'modular_zubbers/sound/lewd/rubber3.ogg'
@@ -565,8 +566,7 @@
 /// gags_recolorable.open_ui() uses initial() on greyscale_config which returns null
 /// for runtime-assigned configs, so we open the menu with the live config directly.
 /// Must return synchronously - INVOKE_ASYNC would return NONE and fail to block the signal chain.
-/obj/item/clothing/gloves/ball_mittens/proc/paw_spray_interact(datum/source, mob/living/user, obj/item/tool, list/modifiers)
-	SIGNAL_HANDLER
+/obj/item/clothing/gloves/ball_mittens/proc/paw_spray_interact(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/toy/crayon/spraycan))
 		return NONE
 	var/obj/item/toy/crayon/spraycan/can = tool
@@ -607,7 +607,7 @@
 /// than COMSIG_ATOM_ITEM_INTERACTION which can be missed through HUD slot click paths.
 /obj/item/clothing/gloves/ball_mittens/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(is_paw_skin && istype(tool, /obj/item/toy/crayon/spraycan))
-		return paw_spray_interact(src, user, tool, modifiers)
+		return paw_spray_interact(user, tool, modifiers)
 	return ..()
 
 /// Clicking yellow insulated gloves on ball mittens insulates them in place.
@@ -624,13 +624,6 @@
 
 /datum/armor/ball_mittens
 	bio = 1
-
-/// Overrides coverage check so surgery on arms/hands isn't blocked by the mittens.
-/// Armor and slot-based systems are unaffected since those check slot, not coverage.
-/mob/living/carbon/is_location_accessible(location, exluded_equipment_slots = NONE)
-	if(istype(gloves, /obj/item/clothing/gloves/ball_mittens))
-		exluded_equipment_slots |= ITEM_SLOT_GLOVES
-	return ..()
 
 /obj/item/clothing/gloves/ball_mittens/proc/show_spawn_flavor(mob/user)
 	if(!user?.client)
