@@ -431,6 +431,7 @@
 	return covered_flags
 
 /mob/living/carbon/is_location_accessible(location, exluded_equipment_slots = NONE)
+	SHOULD_BE_PURE(FALSE) // BUBBER EDIT - explicitly marks this override as impure to satisfy DreamChecker
 	// BUBBER EDIT ADDITION - ball mittens surgery passthrough
 	if(istype(gloves, /obj/item/clothing/gloves/ball_mittens))
 		exluded_equipment_slots |= ITEM_SLOT_GLOVES
