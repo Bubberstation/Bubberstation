@@ -872,7 +872,8 @@ SUBSYSTEM_DEF(gamemode)
 	log_admin("[key_name_admin(usr)] requested a new antagonist to replace [antag_name].")
 	if(isnull(event_control))
 		event_control = pick_weight(SSgamemode.antag_rerolls)
-	SSgamemode.inject_event(event_control = event_control)
+	var/datum/round_event_control/event = locate(event_control) in SSevents.control
+	SSgamemode.inject_event(event_control = event)
 
 ADMIN_VERB(create_antagonist, R_FUN, "Create Antagonist", "Inject a little more action into the round.", ADMIN_CATEGORY_EVENTS)
 	var/list/available_antags = list()
