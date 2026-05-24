@@ -690,6 +690,7 @@
 	icon_preview = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
 	icon_state_preview = "Magpaw" // Pre-colored reference sprite shows all three layers
 	is_paw_skin = TRUE
+	inhand_icon_state = "greyscale_gloves" // Use standard greyscale gloves inhand sprite - no magpaws inhand sprite exists
 
 /obj/item/clothing/gloves/ball_mittens/loadout_paw/Initialize(mapload)
 	. = ..()
