@@ -431,6 +431,10 @@
 	return covered_flags
 
 /mob/living/carbon/is_location_accessible(location, exluded_equipment_slots = NONE)
+	// BUBBER EDIT ADDITION - ball mittens surgery passthrough
+	if(istype(gloves, /obj/item/clothing/gloves/ball_mittens))
+		exluded_equipment_slots |= ITEM_SLOT_GLOVES
+	// BUBBER EDIT ADDITION END
 	switch(location)
 		// Snowflake checks for these precise zones
 		if(BODY_ZONE_PRECISE_EYES)

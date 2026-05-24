@@ -625,12 +625,6 @@
 /datum/armor/ball_mittens
 	bio = 1
 
-/// Excludes the gloves slot from surgery coverage checks when ball mittens are worn.
-/mob/living/carbon/is_location_accessible(location, exluded_equipment_slots = NONE)
-	if(istype(gloves, /obj/item/clothing/gloves/ball_mittens))
-		exluded_equipment_slots |= ITEM_SLOT_GLOVES
-	return ..()
-
 /obj/item/clothing/gloves/ball_mittens/proc/show_spawn_flavor(mob/user)
 	if(!user?.client)
 		return
