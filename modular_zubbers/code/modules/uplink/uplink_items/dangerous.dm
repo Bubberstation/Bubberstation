@@ -14,5 +14,10 @@
 	name = "Hyeseong Modular Laser Rifle"
 	desc = "One of the newest Cybersun products. This weapon can switch modes on the fly, from a lethal laser to a shotgun to even a plasma grenade. These are rare, and don't come cheap. Luckily for you, it also can slowly recharge itself."
 	item = /obj/item/gun/energy/modular_laser_rifle
+  
+/datum/uplink_item/dangerous/stetchkin
+	name = "Stetchkin APS Machine Pistol kit"
+	desc = "A burst-fire weapon dating all the way back to the first Soviet Union, reproduced and found uncommonly among Syndicate agents."
+	item = /obj/item/storage/toolbox/guncase/skyrat/pistol/aps
 	cost = 8
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
