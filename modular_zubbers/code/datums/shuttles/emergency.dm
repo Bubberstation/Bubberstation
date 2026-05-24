@@ -87,10 +87,10 @@
 	suffix = "imfedupbutgold"
 	name = "How's your sex life (Turbo Gold Premium Supporter's Edition)"
 	description = "You can love someone deep inside your heart, and there is nothing wrong with it. If a lot of people love each other, the world would be a better place to live. Now with more gold."
-	admin_notes = "Just, why?"
+	admin_notes = "People will hate you if you buy this."
 	occupancy_limit = "5"
 	emag_only = TRUE
-	credit_cost = 1000000
+	credit_cost = CARGO_CRATE_VALUE * 1250
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 
 /datum/map_template/shuttle/emergency/vigilante
@@ -107,7 +107,7 @@
 	prefix = "_maps/shuttles/zubbers/"
 	suffix = "millionaire"
 	name = "Millionaire Shuttle"
-	description = "Congration."
-	admin_notes = "You done it."
+	description = "An excessively expensive shuttle made of (almost) solid gold. If you can to afford to buy this, your station will forever be immortalized on the 'list of millions'. Note: List may or may not exist."
+	admin_notes = "Nice job getting a million. Enjoy the dumb shuttle."
 	occupancy_limit = "55"
 	credit_cost = 1000000
