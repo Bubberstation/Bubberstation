@@ -114,6 +114,7 @@
  * Returns FALSE if the location is covered by something
  */
 /mob/living/proc/is_location_accessible(location, exluded_equipment_slots = NONE)
+	SHOULD_BE_PURE(FALSE) // BUBBER EDIT - allows impure child overrides (e.g. ball mittens surgery passthrough, this is upstream bullshit I can't fix and the minimally invasive fix.)
 	return TRUE
 
 /mob/living/bullet_act(obj/projectile/proj, def_zone, piercing_hit = FALSE, blocked = 0)
