@@ -396,8 +396,8 @@
 	desc = "While this is usually done on a specialised automated workbench, you can tinker with the suit manually for a longer while to achieve the same result."
 	result = /obj/effect/spawner/random/voskhod_refit
 	reqs = list(
-		/obj/item/clothing/suit/space/voskhod = 1,
-		/obj/item/clothing/head/helmet/space/voskhod = 1,
+		/obj/item/clothing/suit/space/hev_suit/nri = 1,
+		/obj/item/clothing/head/helmet/space/hev_suit/nri = 1,
 		/obj/item/crafting_conversion_kit/voskhod_refit = 1,
 		/obj/item/storage/backpack/industrial/cin_surplus = 1,
 		/obj/item/mod/core = 1,
@@ -412,8 +412,8 @@
 	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /obj/effect/spawner/random/voskhod_refit
-	name = "converted MODskhod spaner"
-	icon = 'modular_nova/master_files/icons/obj/clothing/modsuit/mod_clothing.dmi'
+	name = "converted MODskhod spawner"
+	icon = 'modular_zubbers/icons/obj/clothing/modsuit/mod_clothing.dmi'
 	icon_state = "voskhod-chestplate-sealed"
 	spawn_all_loot = TRUE
 	spawn_loot_count = 1

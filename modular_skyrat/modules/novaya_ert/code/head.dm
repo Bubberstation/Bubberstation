@@ -32,7 +32,7 @@
 	flash_protect = FLASH_PROTECTION_WELDER
 	visor_flags_inv = HIDEMASK|HIDEEYES|HIDEFACE|HIDEFACIALHAIR
 	visor_flags = STOPSPRESSUREDAMAGE
-	slowdown = 0
+	slowdown = 1
 
 /obj/item/clothing/head/helmet/space/hev_suit/nri/captain
 	name = "\improper VOSKHOD-2 powered combat armor helmet"
