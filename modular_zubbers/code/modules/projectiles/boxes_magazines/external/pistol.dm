@@ -67,7 +67,7 @@
 		update_icon()
 
 /obj/item/ammo_box/speedloader/security
-	name = "Speed Loader (9mm Murphy)"
+	name = "speed loader (9mm Murphy)"
 	desc = "Designed to quickly reload five-chambered 9mm revolvers."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ammo.dmi'
 	icon_state = "9mm"

@@ -275,13 +275,14 @@
 	name = "Speed Loader (9x25mm Murphy) (Lethal)"
 	desc = "A speed loader designed to quickly reload five-chambered 9mm revolvers."
 	id = "m9mm_sec_speedloader"
-	build_type = PROTOLATHE | AWAY_LATHE
+	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 15,
 		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 2,
 	)
 	build_path = /obj/item/ammo_box/speedloader/security
 	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
