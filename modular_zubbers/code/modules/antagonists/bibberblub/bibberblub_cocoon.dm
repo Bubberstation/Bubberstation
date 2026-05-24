@@ -13,9 +13,14 @@
 	return ..()
 
 /obj/structure/bibberblub/cocoon/Destroy()
-	if(spawner)
+	if(!isnull(spawner))
+		spawner.cocoon = null
 		QDEL_NULL(spawner)
 	return ..()
+
+/obj/structure/bibberblub/cocoon/examine(mob/user)
+	. = ..()
+	. += span_bold("It seems to harbor [spawner.uses] creatures inside")
 
 /obj/structure/bibberblub/cocoon/attack_ghost(mob/user)
 	if(spawner)
@@ -33,7 +38,7 @@
 	density = FALSE
 	show_flavor = FALSE
 	you_are_text = "You are a Bibberblub."
-	flavour_text = "Steal food and make a mess! You are an awful little pest that the crew wants dead, so act the part. "
+	flavour_text = "Steal food and make a mess! You are an awful little pest that the crew wants dead, so act the part. Let us feast, Friends! "
 	important_text = "Follow your directives at all costs."
 	faction = list(FACTION_MAINT_CREATURES)
 	role_ban = ROLE_ALIEN
@@ -59,8 +64,11 @@
 	cocoon.spawner = src
 	forceMove(cocoon)
 
+/obj/effect/mob_spawn/ghost_role/bibberblub/check_uses()
+	if(!uses && deletes_on_zero_uses_left)
+		qdel(cocoon)
+
 /obj/effect/mob_spawn/ghost_role/bibberblub/Destroy()
-	qdel(cocoon)
 	cocoon = null
 	return ..()
 
