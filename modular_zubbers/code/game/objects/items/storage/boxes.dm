@@ -33,7 +33,7 @@
 /obj/item/storage/box/papersack/millionaire_bonus
 	name = "bonus sack"
 	desc = "A small bag of goodies awarded to employees."
-	icon_state = "paperbag_NanotrasenStandard_closed"
+	design_choice = "NanotrasenStandard"
 
 /obj/item/storage/box/papersack/millionaire_bonus/PopulateContents()
 	new /obj/item/stack/spacecash/c5000(src)

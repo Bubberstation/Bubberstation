@@ -1,19 +1,19 @@
-/obj/structure/flora/tree/pine/xmas/presents/millionaire //not really a tree but the code is close enough
+/obj/structure/flora/tree/pine/xmas/millionaire //not really a tree but the code is close enough
 	icon = 'modular_zubbers/icons/obj/fluff/bonus.dmi'
 	icon_state = "bonusnt"
 	pixel_x = 0
 	name = "bonus bag pile"
 	desc = "A pile of bonus bags. Try to find one with your name on it!"
-	gift_type = /obj/item/storage/box/papersack/millionaire_bonus
-	unlimited = FALSE
+	var/gift_type = /obj/item/storage/box/papersack/millionaire_bonus
+	var/unlimited = FALSE
 	var/static/list/took_bonus
 
-/obj/structure/flora/tree/pine/xmas/presents/millionaire/Initialize(mapload)
+/obj/structure/flora/tree/pine/xmas/millionaire/Initialize(mapload)
 	. = ..()
 	if(!took_bonus)
 		took_bonus = list()
 
-/obj/structure/flora/tree/pine/xmas/presents/millionaire/attack_hand(mob/living/user, list/modifiers)
+/obj/structure/flora/tree/pine/xmas/millionaire/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(.)
 		return
