@@ -41,11 +41,10 @@
 		// Lycan Specific Things
 		TRAIT_LUPINE,
 		TRAIT_BEAST_FORM,
-		TRAIT_NOGUNS,
 		TRAIT_LYCAN,
 		TRAIT_QUICKER_CARRY, // It'd be on par with nitrile gloves.
 		TRAIT_PIERCEIMMUNE, // Thick skin
-		TRAIT_ILLITERATE, // To avoid using consoles or such.
+		TRAIT_CHUNKYFINGERS,
 		TRAIT_FAST_METABOLISM,
 	)
 
@@ -75,6 +74,51 @@
 /datum/species/lycan/get_species_lore()
 	return list("See Cursekin lore.")
 
+/datum/species/lycan/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_ROBOT,
+			SPECIES_PERK_NAME = "Inorganic rejection",
+			SPECIES_PERK_DESC = "The curse afflicting the cursekin prevents their bodies from being augmented with cybernetic organs \
+			or implants."
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_CLOUD_MOON,
+			SPECIES_PERK_NAME = "Silver weakness",
+			SPECIES_PERK_DESC = "You are burnt by silver, including silver weaponry."
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_GUN,
+			SPECIES_PERK_NAME = "Chunky fingers",
+			SPECIES_PERK_DESC = "While in Lycan form, you cannot use guns without special trigger-guards, nor batons.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_SHIRT,
+			SPECIES_PERK_NAME = "Unclothable",
+			SPECIES_PERK_DESC = "While in Lycan form, you drop all your clothing to the floor.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_MOON,
+			SPECIES_PERK_NAME = "Lycan strength",
+			SPECIES_PERK_DESC = "While in Lycan form, your claws deal significant damage - about circular saw level.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_SHIELD,
+			SPECIES_PERK_NAME = "Lycan resilience",
+			SPECIES_PERK_DESC = "While in Lycan form, you take 50% less brute and 20% less burn.",
+		),
+	)
+
+	return to_add
+
 /datum/species/lycan/on_species_gain(mob/living/carbon/human/gainer, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
 
@@ -88,7 +132,6 @@
 		handle_gaian_physique_loss(loser)
 
 /datum/species/lycan/proc/handle_gaian_physique(mob/living/carbon/human/gainer)
-	damage_modifier += 30 // bonus percent damgae reduction
 	stunmod = 0.5
 	gainer.physiology.stamina_mod *= 0.25
 
@@ -105,12 +148,13 @@
 
 	ADD_TRAIT(gainer, TRAIT_BATON_RESISTANCE, SPECIES_TRAIT)
 	ADD_TRAIT(gainer, TRAIT_HARDLY_WOUNDED, SPECIES_TRAIT)
-	ADD_TRAIT(gainer, TRAIT_IGNORESLOWDOWN, SPECIES_TRAIT)
 	ADD_TRAIT(gainer, TRAIT_FEARLESS, SPECIES_TRAIT)
 	ADD_TRAIT(gainer, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, SPECIES_TRAIT)
 	ADD_TRAIT(gainer, TRAIT_NO_STAGGER, SPECIES_TRAIT)
 	ADD_TRAIT(gainer, TRAIT_NO_THROW_HITPUSH, SPECIES_TRAIT)
+	ADD_TRAIT(gainer, TRAIT_MARTIAL_ARTS_UNUSABLE, SPECIES_TRAIT)
 
+	gainer.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	gainer.AddComponent( \
 		/datum/component/regenerator, \
 		regeneration_delay = 5 SECONDS, \
@@ -124,12 +168,13 @@
 /datum/species/lycan/proc/handle_gaian_physique_loss(mob/living/carbon/human/loser)
 	REMOVE_TRAIT(loser, TRAIT_BATON_RESISTANCE, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_HARDLY_WOUNDED, SPECIES_TRAIT)
-	REMOVE_TRAIT(loser, TRAIT_IGNORESLOWDOWN, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_FEARLESS, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_NO_STAGGER, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_NO_THROW_HITPUSH, SPECIES_TRAIT)
+	REMOVE_TRAIT(loser, TRAIT_MARTIAL_ARTS_UNUSABLE, SPECIES_TRAIT)
 
+	loser.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	qdel(loser.GetComponent(/datum/component/regenerator))
 
 	loser.physiology.stamina_mod *= 4
