@@ -11,6 +11,12 @@
 	},
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape)
+"bI" = (
+/obj/machinery/door/airlock/gold{
+	name = "Private Room"
+	},
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape)
 "bK" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -114,7 +120,9 @@
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/escape)
 "gN" = (
-/obj/machinery/door/airlock/gold,
+/obj/machinery/door/airlock/gold{
+	name = "Emergency Shuttle"
+	},
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape)
 "gQ" = (
@@ -262,7 +270,16 @@
 /turf/open/floor/mineral/diamond,
 /area/shuttle/escape)
 "oC" = (
-/obj/machinery/door/airlock/gold,
+/obj/machinery/door/airlock/gold{
+	name = "Emergency Shuttle"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape)
+"pk" = (
+/obj/machinery/door/airlock/gold{
+	name = "Shuttle Brig"
+	},
 /obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape)
@@ -490,7 +507,9 @@
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape)
 "Cp" = (
-/obj/machinery/door/airlock/gold,
+/obj/machinery/door/airlock/gold{
+	name = "Shuttle Bridge"
+	},
 /obj/effect/mapping_helpers/airlock/access/all/command/general,
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/escape)
@@ -558,6 +577,13 @@
 /obj/machinery/light/directional/north,
 /obj/item/book/bible,
 /turf/open/floor/carpet/royalblack,
+/area/shuttle/escape)
+"Gu" = (
+/obj/machinery/door/airlock/gold{
+	name = "Private Room"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/turf/open/floor/mineral/gold,
 /area/shuttle/escape)
 "HZ" = (
 /obj/structure/platform/gold,
@@ -1005,7 +1031,7 @@ uQ
 mn
 bT
 CU
-oC
+Gu
 Zx
 Zx
 Zx
@@ -1165,7 +1191,7 @@ Zx
 uQ
 uQ
 uQ
-oC
+pk
 uQ
 Tp
 Zx
@@ -1472,7 +1498,7 @@ Zx
 uQ
 Iu
 CU
-gN
+bI
 Zx
 Zx
 uQ
