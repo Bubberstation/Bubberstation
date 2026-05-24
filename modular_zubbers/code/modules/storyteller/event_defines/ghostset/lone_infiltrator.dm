@@ -7,7 +7,7 @@
 	description = "Spawns a lone infiltrator, a non-crew syndicate agent."
 	min_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
 	max_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
-	weight = 10
+	weight = 5
 
 	track = EVENT_TRACK_GHOSTSET
 	tags = list(TAG_COMBAT)
