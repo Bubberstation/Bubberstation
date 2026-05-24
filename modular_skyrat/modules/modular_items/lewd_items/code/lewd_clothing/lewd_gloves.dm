@@ -626,8 +626,7 @@
 	bio = 1
 
 /// Excludes the gloves slot from surgery coverage checks when ball mittens are worn.
-/// This allows surgery on arms/hands without requiring glove removal.
-/mob/living/carbon/human/is_location_accessible(location, exluded_equipment_slots = NONE)
+/mob/living/carbon/is_location_accessible(location, exluded_equipment_slots = NONE)
 	if(istype(gloves, /obj/item/clothing/gloves/ball_mittens))
 		exluded_equipment_slots |= ITEM_SLOT_GLOVES
 	return ..()
