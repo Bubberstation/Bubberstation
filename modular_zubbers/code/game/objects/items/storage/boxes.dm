@@ -29,3 +29,17 @@
 	new /obj/item/clothing/accessory/medal/bubber/syndicate/intelligence(src)
 	new /obj/item/clothing/accessory/medal/bubber/syndicate/diligence(src)
 	new /obj/item/clothing/accessory/medal/bubber/syndicate/communications(src)
+
+/obj/item/storage/box/papersack/millionaire_bonus
+	name = "bonus sack"
+	desc = "A small bag of goodies awarded to employees."
+	icon_state = "paperbag_NanotrasenStandard_closed"
+
+/obj/item/storage/box/papersack/millionaire_bonus/PopulateContents()
+	new /obj/item/stack/spacecash/c5000(src)
+	new /obj/item/coin/adamantine(src)
+	new /obj/item/food/cookie(src)
+	new /obj/item/food/chocolatebar(src)
+	new /obj/item/pen/fourcolor(src)
+	new /obj/item/reagent_containers/cup/glass/flask(src)
+	new /obj/item/soap/nanotrasen(src)

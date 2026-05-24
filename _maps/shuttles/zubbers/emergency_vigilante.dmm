@@ -174,6 +174,8 @@
 	name = "warcrime grenade"
 	},
 /obj/effect/spawner/random/armory/barrier_grenades/six,
+/obj/effect/turf_decal/box/red,
+/obj/machinery/light/small/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape/brig)
 "cG" = (
@@ -219,6 +221,13 @@
 /obj/structure/closet/crate/secure/syndicate/gorlex/weapons,
 /obj/item/ammo_box/c9mm,
 /obj/item/storage/toolbox/guncase/traitor,
+/obj/item/gun/ballistic/shotgun/riot/sol/evil{
+	name = "\improper Ridiculous Shotgun";
+	desc = "A twelve gauge shotgun with an eight shell capacity underneath. This one is painted in a tacticool black as well as looking... abnormal.";
+	recoil = 100;
+	pb_knockback = 10;
+	projectile_damage_multiplier = 0.5
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/shuttle/escape)
 "cU" = (
@@ -259,6 +268,9 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/east,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
 /turf/open/floor/iron/dark/textured,
 /area/shuttle/escape/brig)
 "du" = (
@@ -442,6 +454,10 @@
 	},
 /obj/effect/turf_decal/tile/dark_blue/diagonal_centre,
 /obj/structure/cable,
+/obj/effect/fun_balloon/sentience/emergency_shuttle{
+	group_name = "leftover crew on the Vigilante";
+	effect_range = 8
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "gI" = (
@@ -497,7 +513,6 @@
 /area/shuttle/escape)
 "hn" = (
 /obj/effect/turf_decal/syndicateemblem/top/middle,
-/obj/effect/fun_balloon/sentience/emergency_shuttle,
 /obj/structure/cable,
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
@@ -686,7 +701,10 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/shuttle/escape)
 "kY" = (
-/obj/machinery/power/smes/magical/cybersun,
+/obj/machinery/power/smes/magical/cybersun{
+	output_level = 200000;
+	input_level = 200000
+	},
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/escape)
@@ -733,11 +751,19 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
+"lB" = (
+/obj/machinery/ammo_workbench,
+/obj/effect/turf_decal/delivery/red,
+/obj/item/stack/sheet/iron/fifty,
+/obj/item/disk/ammo_workbench/advanced,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/escape/brig)
 "lD" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /obj/machinery/light/directional/west,
+/obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "lH" = (
@@ -1003,7 +1029,22 @@
 /area/shuttle/escape)
 "pe" = (
 /obj/effect/turf_decal/delivery,
-/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
+/obj/structure/closet/crate/secure/syndicate/self,
+/obj/item/mod/module/baton_holster{
+	pixel_x = -9;
+	pixel_y = -5
+	},
+/obj/item/mod/module/dna_lock{
+	pixel_y = -3;
+	pixel_x = -2
+	},
+/obj/item/mod/module/holster,
+/obj/item/mod/module/jetpack/advanced{
+	pixel_y = 2;
+	pixel_x = 6
+	},
+/obj/item/mod/module/storage/syndicate,
+/obj/item/mmi/posibrain/sphere,
 /turf/open/floor/iron/dark/smooth_large,
 /area/shuttle/escape)
 "ph" = (
@@ -1140,7 +1181,7 @@
 /area/shuttle/escape/brig)
 "rk" = (
 /obj/structure/extinguisher_cabinet/directional/north,
-/obj/structure/chair/comfy/shuttle,
+/obj/machinery/rnd/production/circuit_imprinter/offstation,
 /turf/open/floor/iron/dark/smooth_large,
 /area/shuttle/escape)
 "rp" = (
@@ -1278,7 +1319,7 @@
 /turf/open/floor/iron/dark/small_checker,
 /area/shuttle/escape)
 "ts" = (
-/obj/structure/closet/crate/engineering,
+/obj/machinery/rnd/production/protolathe/interdyne,
 /turf/open/floor/iron/dark/smooth_large,
 /area/shuttle/escape)
 "tK" = (
@@ -1392,6 +1433,7 @@
 	},
 /obj/item/gun/energy/e_gun/advtaser,
 /obj/structure/sign/poster/contraband/syndicate_pistol/directional/north,
+/obj/effect/turf_decal/box/red,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape/brig)
 "uB" = (
@@ -1989,6 +2031,16 @@
 	pixel_y = -5;
 	pixel_x = 3
 	},
+/obj/item/ammo_box/magazine/beandog{
+	pixel_y = 2;
+	pixel_x = -6
+	},
+/obj/item/ammo_box/magazine/beandog{
+	pixel_y = 1;
+	pixel_x = 6
+	},
+/obj/effect/turf_decal/box/red,
+/obj/machinery/light/small/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape/brig)
 "Cj" = (
@@ -2121,7 +2173,6 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "Ek" = (
@@ -2225,6 +2276,7 @@
 	icon_state = "track";
 	name = "antenna"
 	},
+/obj/structure/lattice,
 /turf/template_noop,
 /area/shuttle/escape)
 "Fx" = (
@@ -2309,9 +2361,8 @@
 /area/shuttle/escape)
 "GH" = (
 /obj/effect/turf_decal/siding/dark{
-	dir = 1
+	dir = 9
 	},
-/obj/machinery/light/dim/directional/west,
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape/brig)
 "GK" = (
@@ -2370,7 +2421,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "Hl" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/machinery/power/portagrav,
 /turf/open/floor/plating/reinforced,
 /area/shuttle/escape)
 "Hq" = (
@@ -2694,15 +2745,6 @@
 /obj/machinery/recharger,
 /turf/open/floor/iron/dark/textured,
 /area/shuttle/escape/brig)
-"Md" = (
-/obj/effect/turf_decal/bot,
-/obj/vehicle/sealed/mecha/ripley/mk2{
-	base_icon_state = "deathripley";
-	icon_state = "deathripley";
-	name = "\improper APLU \"Syndihauler\""
-	},
-/turf/open/floor/iron/dark/smooth_large,
-/area/shuttle/escape)
 "Me" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -2736,6 +2778,9 @@
 	},
 /obj/item/storage/box/handcuffs{
 	pixel_y = 5
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/escape/brig)
@@ -2844,6 +2889,14 @@
 	pixel_x = -7
 	},
 /obj/item/reagent_containers/cup/glass/bottle/goldschlager,
+/obj/item/coin/gold/doubloon{
+	pixel_y = 2;
+	pixel_x = -11
+	},
+/obj/item/coin/gold/doubloon{
+	pixel_y = -1;
+	pixel_x = -3
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/shuttle/escape)
 "Ok" = (
@@ -2888,6 +2941,9 @@
 	},
 /obj/structure/bed/dogbed,
 /obj/effect/mapping_helpers/mob_buckler,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
 "OY" = (
@@ -2904,6 +2960,7 @@
 /area/shuttle/escape)
 "Pe" = (
 /obj/effect/turf_decal/siding/wood/corner,
+/obj/machinery/vending/wallmed/directional/south,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "Pf" = (
@@ -3304,8 +3361,14 @@
 /obj/item/storage/box/firingpins/syndicate{
 	pixel_y = -5
 	},
-/obj/item/gun/ballistic/shotgun/bulldog/beanbag,
+/obj/item/gun/ballistic/shotgun/bulldog/beanbag{
+	pixel_x = -3
+	},
 /obj/structure/sign/flag/syndicate/directional/north,
+/obj/item/gun/ballistic/shotgun/bulldog/beanbag{
+	pixel_x = 3
+	},
+/obj/effect/turf_decal/box/red,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape/brig)
 "Vr" = (
@@ -3888,8 +3951,8 @@ iH
 iH
 UI
 oN
-oN
-oN
+vg
+lB
 oN
 PA
 ZW
@@ -3916,7 +3979,7 @@ qj
 jQ
 qj
 wv
-KN
+cU
 YF
 tO
 sv
@@ -4423,7 +4486,7 @@ iH
 NB
 Qf
 ei
-oN
+vg
 lz
 nG
 nG
@@ -4629,7 +4692,7 @@ Pi
 aW
 aG
 vm
-Md
+lj
 kP
 Bo
 jN

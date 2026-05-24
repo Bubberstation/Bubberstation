@@ -98,7 +98,16 @@
 	suffix = "vigilante"
 	name = "SLRSV Vigilante"
 	description = "A long-distance transport straight from the Syndicate. The Syndicate Long-Range Support Vessel Vigilante is equipped with high passenger capacity, stocked support departments, as well as crew amenities. While it may not have the luxuries of some other shuttles, this baby is made to last and will guarantee your safe travel. Note: please do not pick fights with the Shipmaster, he refused to leave when we put the vessel up for sale."
-	admin_notes = "Big boy syndicate ship. Not nearly as much contraband as you'd expect, but there are several syndicate modsuits and softsuits. Comes with some a sentience fun balloon for the couple mobs aboard. Also contains the beanbag bulldog."
+	admin_notes = "Big bucks syndicate ship. Not nearly as much contraband as you'd expect, but there are several syndicate modsuits and softsuits. Comes with some a sentience fun balloon for the couple mobs aboard. Also contains the beanbag bulldog."
 	occupancy_limit = "90"
 	emag_only = TRUE
 	credit_cost = CARGO_CRATE_VALUE * 1000
+
+/datum/map_template/shuttle/emergency/millionaire
+	prefix = "_maps/shuttles/zubbers/"
+	suffix = "millionaire"
+	name = "Millionaire Shuttle"
+	description = "Congration."
+	admin_notes = "You done it."
+	occupancy_limit = "55"
+	credit_cost = 1000000
