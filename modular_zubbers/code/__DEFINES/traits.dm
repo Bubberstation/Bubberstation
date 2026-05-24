@@ -10,3 +10,5 @@
 
 ///You can now speak uwuspeak aslong as you have this trait
 #define TRAIT_UWU_SPEECH "uwu_speech"
+/// Makes the target unable to use martial arts.
+#define TRAIT_MARTIAL_ARTS_UNUSABLE "martial_arts_unusable"
