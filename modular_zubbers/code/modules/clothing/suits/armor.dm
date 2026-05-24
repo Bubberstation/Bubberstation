@@ -252,3 +252,8 @@
 	desc = "A winter coat with an armored vest resting atop it, with some padded with wool on the collar and inside."
 	icon_state = "warden_winterjacket"
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+
+/obj/item/clothing/suit/armor/militia
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION

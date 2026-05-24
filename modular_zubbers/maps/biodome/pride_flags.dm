@@ -77,39 +77,47 @@
 	name = "folded coder pride flag"
 	desc = "You probably shouldn't be seeing this. Yell at the coders about it."
 	icon = 'modular_zubbers/icons/maps/biodome/pride_flags.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	slot_flags = ITEM_SLOT_NECK
 
 /obj/item/sign/flag/pride/gay
 	name = "folded gay pride flag"
 	desc = "The folded flag of gay pride."
 	icon_state = "folded_pride"
 	sign_path = /obj/structure/sign/flag/pride/gay
+	worn_icon_state = "gay"
 
 /obj/item/sign/flag/pride/ace
 	name = "folded asexual pride flag"
 	desc = "The folded flag of asexual pride."
 	icon_state = "folded_pride_ace"
 	sign_path = /obj/structure/sign/flag/pride/ace
+	worn_icon_state = "ace"
 
 /obj/item/sign/flag/pride/bi
 	name = "folded bisexual pride flag"
 	desc = "The folded flag of bisexual pride."
 	icon_state = "folded_pride_bi"
 	sign_path = /obj/structure/sign/flag/pride/bi
+	worn_icon_state = "bi"
 
 /obj/item/sign/flag/pride/lesbian
 	name = "folded lesbian pride flag"
 	desc = "The folded flag of lesbian pride."
 	icon_state = "folded_pride_lesbian"
 	sign_path = /obj/structure/sign/flag/pride/lesbian
+	worn_icon_state = "les"
 
 /obj/item/sign/flag/pride/pan
 	name = "folded pansexual pride flag"
 	desc = "The folded flag of pansexual pride."
 	icon_state = "folded_pride_pan"
 	sign_path = /obj/structure/sign/flag/pride/pan
+	worn_icon_state = "pan"
 
 /obj/item/sign/flag/pride/trans
 	name = "folded trans pride flag"
 	desc = "The folded flag of trans pride."
 	icon_state = "folded_pride_trans"
 	sign_path = /obj/structure/sign/flag/pride/trans
+	worn_icon_state = "trans"

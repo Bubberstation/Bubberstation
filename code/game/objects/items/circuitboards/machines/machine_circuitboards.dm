@@ -36,6 +36,18 @@
 		/datum/stock_part/servo/tier3 = 5,
 		/obj/item/stack/cable_coil = 2)
 
+/obj/item/circuitboard/machine/dna_vault/completion_requirements(obj/structure/frame/install_frame)
+	var/turf/center = get_turf(install_frame)
+	var/blocked = FALSE
+	for(var/turf/potential_turf as anything in CORNER_BLOCK_OFFSET(center, 3, 3, -1, -2))
+		if(potential_turf.density)
+			new /obj/effect/temp_visual/point(potential_turf)
+			blocked = TRUE
+	if(blocked)
+		balloon_alert_to_viewers("no room! (3x3)")
+		return FALSE
+	return TRUE
+
 //Engineering
 
 /obj/item/circuitboard/machine/announcement_system
@@ -664,6 +676,8 @@
 
 /obj/item/circuitboard/machine/vendor/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ITEM_INTERACT_FAILURE
+	if(all_products_free)
+		return
 	var/choice = tgui_input_list(user, "Choose a new brand", "Select an Item", sort_list(valid_vendor_names_paths))
 	if(isnull(choice))
 		return

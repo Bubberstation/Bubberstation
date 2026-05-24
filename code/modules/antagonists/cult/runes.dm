@@ -313,8 +313,6 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 	if(check_holidays(APRIL_FOOLS) && prob(10))
 		convertee.Paralyze(10 SECONDS)
-		if(istype(human_convertee))
-			human_convertee.force_say()
 		convertee.say("You son of a bitch! I'm in.", forced = "That son of a bitch! They're in. (April Fools)")
 
 	else
@@ -823,7 +821,9 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 
 /obj/effect/rune/wall/Destroy()
 	if(barrier)
-		QDEL_NULL(barrier)
+		if(!QDELING(barrier))
+			qdel(barrier)
+		barrier = null
 	return ..()
 
 /obj/effect/rune/wall/invoke(list/invokers)
@@ -1038,7 +1038,6 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 			new_human.AddComponent( \
 				/datum/component/temporary_body, \
 				old_mind = ghost_to_spawn.mind, \
-				old_body = ghost_to_spawn.mind.current, \
 			)
 		new_human.PossessByPlayer(ghost_to_spawn.key)
 		var/datum/antagonist/cult/created_cultist = new_human.mind?.add_antag_datum(/datum/antagonist/cult)

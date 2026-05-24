@@ -224,6 +224,13 @@
 	cost = PAYCHECK_CREW * 8
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/foamforce_implant, /obj/item/ammo_box/foambox/mini)
 
+/datum/supply_pack/goody/defender_revolver
+	name = "'Defender' Revolver Single-Pack"
+	desc = "Contains one 'Defender' revolver. Cheap and prone to the occasional misfire. Fires .38 rounds.'"
+	cost = PAYCHECK_COMMAND * 3
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/ballistic/revolver/defender_revolver)
+
 /datum/supply_pack/goody/miecz
 	name = "Miecz Submachinegun Single-Pack"
 	desc = "Contains one Miecz Submachinegun, one of the newest guns to make it out of the PSC. Due to import fees and general rarity, this one's gonna be expensive. Contains two magazines, as well."
@@ -236,3 +243,24 @@
 	desc = "Contains a single magazine for the Miecz Submachinegun."
 	cost = PAYCHECK_COMMAND * 1.5
 	contains = list(/obj/item/ammo_box/magazine/miecz)
+
+/datum/supply_pack/goody/security_bow
+	name = "Hardlight Bow Single-Pack"
+	desc = "Contains a hardlight bow capable of defeating armor, alongside a quiver with nonlethal arrows. Ask your blacksmith for lethal arrows."
+	cost = PAYCHECK_COMMAND * 5
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/ballistic/bow/security, /obj/item/storage/bag/quiver/lesser/security)
+
+/datum/supply_pack/goody/russianammo
+	name = ".310 Ammo Box Single-Pack"
+	desc = "Contains a single pack of .310 rounds."
+	cost = PAYCHECK_COMMAND * 2.5
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/ammo_box/c310_cargo_box)
+
+/datum/supply_pack/goody/lancamag
+	name = "Lanca Magazine Single-Pack"
+	desc = "Contains a single Lanca rifle magazine"
+	cost = PAYCHECK_COMMAND * 1.5
+	contains = list(/obj/item/ammo_box/magazine/lanca)
+	order_flags = ORDER_CONTRABAND

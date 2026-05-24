@@ -108,9 +108,13 @@
 		return
 	if(!check_if_sub_dom_mutually_preferred(dom))
 		return
+	if(!quirk_holder.client)
+		return
 	if(!(quirk_holder.client.prefs.read_preference(/datum/preference/toggle/well_trained/sub_inspect_dom) && dom.client.prefs.read_preference(/datum/preference/toggle/dominant_aura/sub_inspect_dom)))
 		return
 	if(dom.stat == DEAD)
+		return
+	if(HAS_TRAIT(quirk_holder, TRAIT_QUICKREFLEXES))
 		return
 	examine_list += span_purple("You can't look at <b>[dom]</b> for long before flustering away.")
 
@@ -125,7 +129,7 @@
 		return
 	if(!TIMER_COOLDOWN_FINISHED(quirk_holder, NOTICE_COOLDOWN)) // 15 second Early return
 		return
-	if(!quirk_holder)
+	if(!quirk_holder.client)
 		return
 	if(!quirk_holder.client.prefs.read_preference(/datum/preference/toggle/well_trained/sub_sense_dom))
 		return //otherwise subs that disable this effect will be permanently mood debuffed
@@ -136,7 +140,7 @@
 	var/list/mob/living/doms = humandoms + robodoms
 	var/closest_distance
 	for(var/mob/living/dom in doms)
-		if(dom != quirk_holder && dom.has_quirk(/datum/quirk/dominant_aura)) // Does the detected players have dom aura quirk and is not src player
+		if(dom != quirk_holder && dom.has_quirk(/datum/quirk/dominant_aura) && dom.client) // Does the detected players have dom aura quirk and is not src player
 			if(check_if_sub_dom_mutually_preferred(dom) && dom.client.prefs.read_preference(/datum/preference/toggle/dominant_aura/sub_sense_dom)) // Do we like each others' genders, and does the dom want the aura mechanic
 				if(!closest_distance || get_dist(quirk_holder, dom) <= closest_distance) // If original dom is not closest, set a new one
 					. = dom // set parent to new dom.
