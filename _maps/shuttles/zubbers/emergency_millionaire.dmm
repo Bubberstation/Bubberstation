@@ -123,6 +123,9 @@
 /obj/machinery/door/airlock/gold{
 	name = "Emergency Shuttle"
 	},
+/obj/docking_port/mobile/emergency{
+	name = "Millionaire Escape Shuttle"
+	},
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape)
 "gQ" = (
@@ -174,6 +177,10 @@
 /obj/structure/window/reinforced/plasma/spawner/directional/east,
 /obj/machinery/light/directional/west,
 /turf/open/floor/mineral/gold,
+/area/shuttle/escape)
+"iv" = (
+/obj/effect/station_crash,
+/turf/open/floor/carpet/royalblack,
 /area/shuttle/escape)
 "iA" = (
 /obj/structure/chair/comfy/black{
@@ -784,12 +791,6 @@
 /obj/machinery/computer/emergency_shuttle,
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/escape)
-"So" = (
-/obj/docking_port/mobile/emergency{
-	name = "Millionaire Escape Shuttle"
-	},
-/turf/open/floor/carpet/royalblack,
-/area/shuttle/escape)
 "Tp" = (
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/escape)
@@ -959,7 +960,7 @@ LU
 rR
 Zx
 uQ
-Tp
+iv
 BV
 wI
 Rt
@@ -1115,7 +1116,7 @@ Qx
 US
 Zx
 AC
-So
+Tp
 Zx
 Rt
 Rt
