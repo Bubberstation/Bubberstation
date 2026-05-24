@@ -110,7 +110,7 @@
 
 // Hellfire mode for the small laser
 /datum/laser_weapon_mode/hellfire
-	name = "Incinerate"
+	name = "kill"
 	casing = /obj/item/ammo_casing/energy/cybersun_small_hellfire
 	weapon_icon_state = "kill"
 	charge_sections = 3

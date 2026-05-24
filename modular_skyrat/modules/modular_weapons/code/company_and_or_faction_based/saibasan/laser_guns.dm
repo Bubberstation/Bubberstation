@@ -276,7 +276,7 @@
 		/datum/laser_weapon_mode/shotgun_small,
 		/datum/laser_weapon_mode/trickshot_disabler,
 	)
-	default_selected_mode = "Incinerate"
+	default_selected_mode = "kill"
 	speech_json_file = SHORT_MOD_LASER_SPEECH
 	expanded_examine_text = "The Hoshi carbine is the latest line of man-portable Martian weapons platforms from \
 		Cybersun Industries. Like her older sister weapon, the Hyeseong rifle, CI used funding aid provided by TerraGov \
