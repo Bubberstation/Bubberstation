@@ -107,7 +107,7 @@
 	prefix = "_maps/shuttles/zubbers/"
 	suffix = "millionaire"
 	name = "Millionaire Shuttle"
-	description = "An excessively expensive shuttle made of (almost) solid gold. If you can to afford to buy this, your station will forever be immortalized on the 'list of millions'. Note: List may or may not exist."
+	description = "An excessively expensive shuttle made of (almost) solid gold, silver and diamonds. If you can to afford to buy this, your station will forever be immortalized on the 'list of millions'. Note: List may or may not exist. Note: May also crash into station."
 	admin_notes = "Nice job getting a million. Enjoy the dumb shuttle."
 	occupancy_limit = "55"
 	credit_cost = 1000000

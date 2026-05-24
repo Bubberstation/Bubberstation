@@ -30,6 +30,7 @@
 "bP" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced/plasma/spawner/directional/north,
+/obj/item/gun/energy/e_gun/nuclear,
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape)
 "bT" = (
@@ -231,6 +232,19 @@
 /obj/machinery/light/directional/west,
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape)
+"mk" = (
+/obj/structure/rack,
+/obj/item/grenade/clusterbuster/teargas{
+	pixel_y = 10
+	},
+/obj/item/grenade/clusterbuster/teargas{
+	pixel_y = 3
+	},
+/obj/item/grenade/clusterbuster/teargas{
+	pixel_y = -5
+	},
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape)
 "mn" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -338,6 +352,11 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/royalblack,
+/area/shuttle/escape)
+"vh" = (
+/obj/structure/rack,
+/obj/item/gun/grenadelauncher,
+/turf/open/floor/mineral/gold,
 /area/shuttle/escape)
 "vr" = (
 /obj/structure/showcase/mecha/marauder{
@@ -531,6 +550,7 @@
 /area/shuttle/escape)
 "EC" = (
 /obj/structure/rack,
+/obj/item/mod/control/pre_equipped/magnate,
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape)
 "ES" = (
@@ -546,6 +566,11 @@
 	},
 /obj/structure/window/reinforced/plasma/spawner/directional/east,
 /obj/structure/window/reinforced/plasma/spawner/directional/north,
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape)
+"Ih" = (
+/obj/structure/rack,
+/obj/item/melee/baton/security/stunsword/loaded,
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape)
 "Iu" = (
@@ -621,6 +646,7 @@
 	dir = 8
 	},
 /obj/machinery/light/directional/north,
+/obj/machinery/keycard_auth/wall_mounted/directional/north,
 /turf/open/floor/mineral/diamond,
 /area/shuttle/escape)
 "MQ" = (
@@ -720,11 +746,22 @@
 /obj/machinery/computer/crew,
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/escape)
+"RB" = (
+/obj/structure/rack,
+/obj/item/stock_parts/power_store/battery/infinite,
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape)
 "RK" = (
 /turf/open/floor/mineral/silver,
 /area/shuttle/escape)
 "RP" = (
 /obj/machinery/computer/emergency_shuttle,
+/turf/open/floor/carpet/royalblack,
+/area/shuttle/escape)
+"So" = (
+/obj/docking_port/mobile/emergency{
+	name = "Millionaire Escape Shuttle"
+	},
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/escape)
 "Tp" = (
@@ -813,18 +850,19 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/north,
+/obj/machinery/keycard_auth/wall_mounted/directional/north,
 /turf/open/floor/mineral/diamond,
+/area/shuttle/escape)
+"Yr" = (
+/obj/structure/rack,
+/obj/item/storage/bag/money/vault,
+/turf/open/floor/mineral/gold,
 /area/shuttle/escape)
 "YS" = (
 /obj/item/surgery_tray/full/advanced,
 /obj/structure/table/reinforced/titaniumglass,
 /obj/machinery/vitals_reader/advanced/directional/south,
 /turf/open/floor/mineral/silver,
-/area/shuttle/escape)
-"YV" = (
-/obj/machinery/door/airlock/gold,
-/obj/docking_port/mobile/emergency,
-/turf/open/floor/mineral/gold,
 /area/shuttle/escape)
 "Zx" = (
 /turf/open/floor/mineral/gold,
@@ -856,7 +894,7 @@ uQ
 uQ
 oC
 uQ
-YV
+gN
 uQ
 uQ
 Rt
@@ -1051,7 +1089,7 @@ Qx
 US
 Zx
 AC
-Tp
+So
 Zx
 Rt
 Rt
@@ -1113,9 +1151,9 @@ nQ
 nQ
 bP
 Oa
-EC
+vh
 nm
-EC
+Yr
 VB
 EC
 AC
@@ -1269,11 +1307,11 @@ Vf
 Vf
 bP
 yC
-EC
+mk
 rz
-EC
+RB
 kT
-EC
+Ih
 AC
 CK
 CK
