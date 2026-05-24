@@ -205,7 +205,7 @@
 	name = "Ball Mittens"
 	item_path = /obj/item/clothing/gloves/ball_mittens
 	erp_item = TRUE
-  
+
 /datum/loadout_item/toys/lewd/aeri
 	name = "Interdimensional Terrorist Plushie"
 	item_path = /obj/item/toy/plush/aeri
