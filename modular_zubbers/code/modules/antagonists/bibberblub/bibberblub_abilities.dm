@@ -25,6 +25,30 @@
 
 	return TRUE
 
+/datum/action/cooldown/bibberblub_reproduce
+	name = "Reproduce"
+	desc = "Spin a cocoon using protein, allowing more Bibberblubs to flood into the station"
+	button_icon = 'modular_zubbers/icons/bibberblub/bibberblub.dmi'
+	button_icon_state = "Cocoon"
+	cooldown_time = 2 MINUTES
+	var/mob/living/basic/bibberblub/bibberblub
+	var/protein_cost = 20
+
+/datum/action/cooldown/bibberblub_reproduce/Grant(mob/granted_to)
+	. = ..()
+	bibberblub = granted_to
+	if(isnull(bibberblub))
+		Remove(granted_to)
+
+/datum/action/cooldown/bibberblub_reproduce/Activate(atom/target)
+	. = ..()
+	if(bibberblub.protein_resource < protein_cost)
+		bibberblub.balloon_alert(bibberblub, "need more protein!")
+		return
+	if(do_after(bibberblub, 20 SECONDS, target))
+		new /obj/effect/mob_spawn/ghost_role/bibberblub(get_turf(bibberblub))
+		bibberblub.protein_resource -= protein_cost
+
 
 
 // ==== STRUCTURES ====
@@ -62,6 +86,6 @@
 	name = "Build Floor"
 	desc = "Cover the floor with goop! Needed to build further structures."
 	button_icon_state = "Floor"
-	nutriment_cost = 10
+	nutriment_cost = 5
 	structure_to_build = /obj/structure/bibberblub/slimy_floor
 

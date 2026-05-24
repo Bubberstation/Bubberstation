@@ -31,6 +31,7 @@
 
 	var/datum/action/cooldown/hide/hide_ability
 	var/datum/action/cooldown/bubberblub_structures/slimy_floor/build_slime_floor
+	var/datum/action/cooldown/bibberblub_reproduce/reproduction_ability
 
 	var/nutriment_resource = 0
 	var/protein_resource = 0
@@ -45,8 +46,13 @@
 	hide_ability = new()
 	hide_ability.Grant(src)
 
+	reproduction_ability = new()
+	reproduction_ability.Grant(src)
+
 	build_slime_floor = new()
 	build_slime_floor.Grant(src)
+
+
 
 /mob/living/basic/bibberblub/examine(mob/user)
 	. = ..()
