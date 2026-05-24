@@ -170,9 +170,9 @@
 
 /datum/mod_theme/voskhod
 	name = "refitted voskhod"
-	desc = "A Heliostatic Coalition standard-issue heavy duty suit, designed for fortified positions operation and humanitarian aid."
+	desc = "A PSC standard-issue heavy duty suit, designed for fortified positions operation and humanitarian aid."
 	extended_desc = "A more expensive, yet more versatile replacement of the dated Voskhod powered armor, designed by the Magellanic Economic Corporate Union researchers \
-		in collaboration with and for the needs of the Heliostatic Coalition. An efficient implementation of mixed exoskeletons in between and underneath its armor plating \
+		in collaboration with and for the needs of the PSC. An efficient implementation of mixed exoskeletons in between and underneath its armor plating \
 		allows for an unprecedented level of protection through an overly abundant use of durathread-backed plasteel plating; and the remnant materials of its predecessor allow for \
 		a dubiously efficient dissipation of any stray photon ray or a concentrated laser, were one to get hit by them. The suit's infamous autoparamedical systems \
 		are also fully present - or their chemical synthesizing part, consisting of a thin web of subdermal autoinjectors, reaction cameras and tubes lined through the \

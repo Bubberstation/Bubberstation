@@ -48,3 +48,5 @@
 	name = "\improper VOSKHOD-IN powered combat armor helmet"
 	desc = "A composite tungsten-plasteel helmet with a lead-lined ballistic nylon inner padding, complete with a deployable airtight polycarbonate visor and respirator system. 'НРИ - Оборонная Коллегия' is imprinted on the back."
 	icon_state = "nri_engineer"
+
+

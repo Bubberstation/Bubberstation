@@ -23,15 +23,19 @@
 	actions_types = list(/datum/action/item_action/hev_toggle/nri, /datum/action/item_action/hev_toggle_notifs/nri, /datum/action/item_action/toggle_spacesuit)
 	resistance_flags = FIRE_PROOF|UNACIDABLE|ACID_PROOF|FREEZE_PROOF
 	clothing_flags = STOPSPRESSUREDAMAGE|SNUG_FIT
-	slowdown = 1
-
+	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED)
 
 	activation_song = null //No nice song.
 
-
+	radio_channel = RADIO_CHANNEL_CENTCOM
 
 	armor_unpowered = /datum/armor/hev_suit_nri
 	armor_powered = /datum/armor/hev_suit_nri/powered
+	heal_amount = NRI_HEAL_AMOUNT
+	blood_replenishment = NRI_BLOOD_REPLENISHMENT
+	health_static_cooldown = NRI_COOLDOWN_HEAL
+	rads_static_cooldown = NRI_COOLDOWN_RADS
+	acid_static_cooldown = NRI_COOLDOWN_ACID
 	suit_name = "VOSKHOD"
 	first_use = FALSE //No nice song.
 
