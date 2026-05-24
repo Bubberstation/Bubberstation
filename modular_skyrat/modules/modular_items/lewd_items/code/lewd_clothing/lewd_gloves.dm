@@ -1,5 +1,3 @@
-// BUBBER EDIT ADDITION START - ball mittens rework
-// Component defined here to avoid DME changes.
 
 /datum/component/ball_mittens_fumble
 	dupe_mode = COMPONENT_DUPE_UNIQUE
@@ -63,9 +61,9 @@
 /datum/component/ball_mittens_fumble/proc/get_hand_descriptor(mob/living/wearer)
 	if(!iscarbon(wearer))
 		return "chunky mitts"
-	var/mob/living/carbon/human/H = wearer
-	var/obj/item/clothing/gloves/ball_mittens/G = H.gloves
-	if(istype(G) && G.is_paw_skin)
+	var/mob/living/carbon/human/human_wearer = wearer
+	var/obj/item/clothing/gloves/ball_mittens/mittens = human_wearer.gloves
+	if(istype(mittens) && mittens.is_paw_skin)
 		return "paws"
 	return "chunky mitts"
 
@@ -332,8 +330,8 @@
 	if(!istype(mittens))
 		return
 	if(ishuman(wearer))
-		var/mob/living/carbon/human/H = wearer
-		if(H.handcuffed || H.legcuffed)
+		var/mob/living/carbon/human/human_wearer = wearer
+		if(human_wearer.handcuffed || human_wearer.legcuffed)
 			return // Cuffed: let normal cuff-resist run
 	INVOKE_ASYNC(mittens, TYPE_PROC_REF(/obj/item/clothing/gloves/ball_mittens, doStrip), wearer, wearer)
 
