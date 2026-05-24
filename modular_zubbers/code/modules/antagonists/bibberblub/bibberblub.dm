@@ -37,7 +37,10 @@
 	var/protein_resource = 0
 	var/vitamin_resource = 0
 
+	/// TRUE while the capsaicin debuff loop is running
+	var/capsaicin_active = FALSE
 	var/capsaicin_poisoning = 0
+
 
 /mob/living/basic/bibberblub/Initialize(mapload)
 	. = ..()
@@ -106,6 +109,7 @@
 
 
 /mob/living/basic/bibberblub/proc/take_bite(obj/item/food/our_lunch)
+	playsound(src, 'sound/items/eatfood.ogg', rand(10,50), TRUE)
 	if(!our_lunch.reagents)
 		return
 
@@ -124,11 +128,21 @@
 
 		remaining_bite -= amount_to_consume
 
-	playsound(src, 'sound/items/eatfood.ogg', rand(10,50), TRUE)
+
 	if(!our_lunch.reagents.total_volume)
 		if(!isnull(our_lunch.trash_type))
 			new our_lunch.trash_type(get_turf(our_lunch))
 		qdel(our_lunch)
+		return
+
+	//Conditions for stopping eating early
+	if(QDELETED(our_lunch))
+		return
+
+	if(!Adjacent(our_lunch))
+		return
+
+	if(capsaicin_active)
 		return
 
 	consume_food(our_lunch)
@@ -147,10 +161,46 @@
 
 	// Capsaicin
 	if(ispath(reagent_type, /datum/reagent/consumable/capsaicin))
-		capsaicin_poisoning += amount
+		capsaicin_poisoning += (amount * 10 SECONDS)
+
+		if(!capsaicin_active)
+			INVOKE_ASYNC(src, PROC_REF(handle_capsaicin))
+
 		return
 
 	// Any other nutriment subtype
 	if(ispath(reagent_type, /datum/reagent/consumable/nutriment))
 		nutriment_resource += amount
 
+
+/mob/living/basic/bibberblub/proc/handle_capsaicin()
+	capsaicin_active = TRUE
+	balloon_alert(src, "too spicy!!")
+	// Apply heavy slowdown
+	add_movespeed_modifier(/datum/movespeed_modifier/bibberblub_capsaicin)
+	while(capsaicin_poisoning > 0 && stat != DEAD)
+		// Shake/jitter
+		do_jitter_animation(5)
+		// Occasional coughing
+		if(prob(50))
+			emote("cough")
+		// Tiny bit of visible suffering
+		if(prob(20))
+			visible_message(span_warning("[src] writhes from the spicy food!"))
+
+		if(prob(50))
+			nutriment_resource -= min(nutriment_resource, 1)
+			protein_resource -= min(protein_resource, 1)
+			vitamin_resource -= min(vitamin_resource, 1)
+		sleep(1 SECONDS)
+		capsaicin_poisoning -= 1 SECONDS
+
+	// Cleanup
+	remove_movespeed_modifier(/datum/movespeed_modifier/bibberblub_capsaicin)
+
+	capsaicin_active = FALSE
+
+	balloon_alert(src, "finally recovered")
+
+/datum/movespeed_modifier/bibberblub_capsaicin
+	multiplicative_slowdown = 8
