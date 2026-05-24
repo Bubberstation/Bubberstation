@@ -686,7 +686,7 @@
 	worn_icon = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
 	worn_icon_state = "magpaws_worn"
 	icon_state = "BasePaws"
-	post_init_icon_state = "magpaws" // Used by greyscale_previews to render map preview icons
+	post_init_icon_state = "catgloves" // greyscale_previews preview icon state
 	// Catalog uses icon_preview/icon_state_preview read at type level via ::
 	icon_preview = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
 	icon_state_preview = "catgloves" // Pre-colored reference sprite
