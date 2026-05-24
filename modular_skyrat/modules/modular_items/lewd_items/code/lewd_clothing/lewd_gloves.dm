@@ -437,6 +437,7 @@
 
 /datum/atom_skin/ball_mittens_skin
 	abstract_type = /datum/atom_skin/ball_mittens_skin
+	greyscale_item_path = /obj/item/clothing/gloves/ball_mittens/loadout_paw
 
 /datum/atom_skin/ball_mittens_skin/default
 	preview_name = "Ball Mittens"
