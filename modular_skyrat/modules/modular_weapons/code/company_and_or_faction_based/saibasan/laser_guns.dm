@@ -12,7 +12,7 @@
 /obj/item/gun/energy/modular_laser_rifle
 	name = "\improper Hyeseong modular laser rifle"
 	desc = "A popular energy weapon system that can be reconfigured into many different variants on the fly. \
-		Seen commonly amongst the Marsians who produce the weapon, with many different shapes and sizes to fit \
+		Seen commonly amongst the Martians who produce the weapon, with many different shapes and sizes to fit \
 		the wide variety of modders the planet is home to."
 	base_icon_state = "hyeseong"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/saibasan/guns48x.dmi'
