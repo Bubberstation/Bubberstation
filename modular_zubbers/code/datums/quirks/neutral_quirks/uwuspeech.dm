@@ -4,8 +4,8 @@
 	icon = FA_ICON_RAINBOW
 	value = 0
 	mob_trait = TRAIT_UWU_SPEECH
-	gain_text = "span_notice(You feel a lot more cute and expressive.)"
-	lose_text = "span_notice(You feel your speech returning to normal.)"
+	gain_text = span_notice("You feel a lot more cute and expressive.")
+	lose_text = span_notice("You feel your speech returning to normal.")
 	medical_record_text = "Patient displays a persistent cutesy speech pattern."
 
 /datum/quirk/uwu_speech/add(client/client_source)
