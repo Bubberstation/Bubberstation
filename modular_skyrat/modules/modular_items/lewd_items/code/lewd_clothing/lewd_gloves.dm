@@ -437,11 +437,7 @@
 
 /datum/atom_skin/ball_mittens_skin
 	abstract_type = /datum/atom_skin/ball_mittens_skin
-	// No greyscale_item_path on the abstract type. The cat_paws subtype handles GAGS entirely
-	// through its apply() override and does not want ExportMapPreviewsForType to attempt a
-	// separate skin preview render (it shares the "catgloves" bundle with loadout_paw and there
-	// is no distinct bundle state for ExportMapPreviewsForType to use without crashing).
-
+	greyscale_item_path = /obj/item/clothing/gloves/ball_mittens/loadout_paw
 /datum/atom_skin/ball_mittens_skin/default
 	preview_name = "Ball Mittens"
 	reset_missing = TRUE
@@ -451,6 +447,7 @@
 	new_name = "latex paw mittens"
 	new_desc = "A pair of inflatable latex mittens shaped like rounded paws. Helpless AND humiliating."
 	change_worn_icon_state = FALSE
+	greyscale_item_path = null
 	new_icon = 'icons/map_icons/clothing/_clothing.dmi'
 	new_icon_state = "/obj/item/clothing/gloves/ball_mittens/loadout_paw"
 	// new_worn_icon points to GAGS icons folder only, safe to list here
