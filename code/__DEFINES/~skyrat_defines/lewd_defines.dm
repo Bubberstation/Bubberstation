@@ -84,3 +84,7 @@
 /// Trait source for ball_mittens_fumble component.
 #define MITTENS_FUMBLE_TRAIT "ball_mittens_fumble"
 
+
+/// Fired on a mob in attempt_pickup after mobility checks. Handler can set pickup_mods["delay"] or return COMPONENT_BLOCK_ITEM_PICKUP.
+#define COMSIG_LIVING_ITEM_ATTEMPT_PICKUP "living_item_attempt_pickup"
+#define COMPONENT_BLOCK_ITEM_PICKUP (1<<0)

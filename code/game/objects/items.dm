@@ -573,6 +573,15 @@
 	if(!(user.mobility_flags & MOBILITY_PICKUP))
 		return
 
+	// BUBBER EDIT ADDITION - allow components on the user to inject a pickup delay (e.g. ball mittens fumble)
+	var/list/pickup_mods = list("delay" = 0)
+	if(SEND_SIGNAL(user, COMSIG_LIVING_ITEM_ATTEMPT_PICKUP, src, pickup_mods) & COMPONENT_BLOCK_ITEM_PICKUP)
+		return
+	if(pickup_mods["delay"])
+		if(!do_after(user, pickup_mods["delay"], src, timed_action_flags = IGNORE_HELD_ITEM))
+			return
+	// BUBBER EDIT ADDITION END
+
 	if(!skip_grav)
 		//Heavy gravity makes picking up things very slow.
 		var/grav = user.has_gravity()
