@@ -449,14 +449,11 @@
 	change_worn_icon_state = FALSE
 	// new_icon/new_icon_state are read directly by the radial menu - get_preview_icon is NOT called
 	new_icon = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
-	new_icon_state = "Magpaw"
+	new_icon_state = "magpaws" // JSON bundle name used by greyscale_previews
 	// greyscale_item_path tells greyscale_previews to use loadout_paw's magpaws config for this skin
 	greyscale_item_path = /obj/item/clothing/gloves/ball_mittens/loadout_paw
 	// new_worn_icon points to GAGS icons folder only, safe to list here
 	new_worn_icon = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
-
-/datum/atom_skin/ball_mittens_skin/cat_paws/get_preview_icon_state()
-	return "magpaws" // JSON bundle name for greyscale_previews
 
 /datum/atom_skin/ball_mittens_skin/cat_paws/get_preview_icon(atom/for_atom)
 	// Use the pre-colored Magpaw reference sprite for the radial menu preview.
