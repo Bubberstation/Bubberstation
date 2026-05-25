@@ -132,7 +132,14 @@
 	return TRUE
 
 /obj/machinery/export_gate/screwdriver_act(mob/living/user, obj/item/tool)
-	return default_deconstruction_screwdriver(user, "[initial(icon_state)]_open", initial(icon_state), tool)
+	return default_deconstruction_screwdriver(user, tool)
+
+/obj/machinery/export_gate/update_icon_state()
+	. = ..()
+	if(panel_open)
+		icon_state = "[initial(icon_state)]_open"
+		return
+	icon_state = initial(icon_state)
 
 /obj/machinery/export_gate/proc/clear_scanline()
 	cut_overlays()
