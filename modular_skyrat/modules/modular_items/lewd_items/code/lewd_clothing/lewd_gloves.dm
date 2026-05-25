@@ -455,6 +455,9 @@
 	// new_worn_icon points to GAGS icons folder only, safe to list here
 	new_worn_icon = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
 
+/datum/atom_skin/ball_mittens_skin/cat_paws/get_preview_icon_state()
+	return "magpaws" // JSON bundle name for greyscale_previews
+
 /datum/atom_skin/ball_mittens_skin/cat_paws/get_preview_icon(atom/for_atom)
 	// Use the pre-colored Magpaw reference sprite for the radial menu preview.
 	// This shows all three color layers. Full GAGS rendering happens in-game.
