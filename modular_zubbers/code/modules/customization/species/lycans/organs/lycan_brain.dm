@@ -21,71 +21,22 @@
 		last_slot = target_client.prefs.savefile.get_entry("default_slot")
 
 /obj/item/organ/brain/lycan/proc/enter_beast_form()
-	var/datum/species/human/cursekin/current_wolf = owner.dna.species
-	if(!istype(current_wolf) && HAS_TRAIT_FROM(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT))
-		return
-	var/client/target_client = owner.client
-	if (!isnull(target_client))
-		var/name = owner.real_name
-		var/slot = target_client.prefs.read_preference(/datum/preference/numeric/cursekin_char_slot)
-		var/transfer = TRUE
-		if (isnull(last_slot))
-			last_slot = target_client.prefs.savefile.get_entry("default_slot")
-		target_client.prefs.load_character(slot)
-		if (!ispath(target_client.prefs.read_preference(/datum.preference/choiced/species), current_wolf.lycanthropy_species))
-			to_chat(owner, span_warning("Your selected slot is not a lycan! Defaulting to simply changing your species..."))
-			target_client.prefs.load_character(last_slot)
-			owner.set_species(current_wolf.lycanthropy_species, TRUE, TRUE, FALSE)
-			last_slot = null // allows for easier switching in later procs
-			transfer = FALSE
-
-		if (transfer)
-			target_client.prefs.safe_transfer_prefs_to_with_damage(owner)
-			owner.real_name = name
-			owner.name = name
-			SSquirks.OverrideQuirks(owner, target_client)
-			owner.dna.update_dna_identity()
-
-			target_client.prefs.load_character(last_slot)
-
-	ADD_TRAIT(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT)
-	playsound(owner, 'modular_zubbers/code/modules/customization/species/lycans/transform.ogg', 50)
+	owner.apply_status_effect(/datum/status_effect/beast_form)
 
 /obj/item/organ/brain/lycan/proc/leave_beast_form()
-	var/datum/species/current_wolf = owner.dna.species
-	if(isnull(current_wolf) && !HAS_TRAIT_FROM(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT))
-		return
-	owner.visible_message(span_warning("[owner] shrinks down, their fur receding!"))
-
-	if (last_slot)
-		var/client/target_client = owner.client
-		if (!isnull(target_client))
-			target_client.prefs.load_character(last_slot)
-			target_client.prefs.safe_transfer_prefs_to_with_damage(owner)
-			SSquirks.OverrideQuirks(owner, target_client)
-			owner.dna.update_dna_identity()
-	else
-		owner.set_species(/datum/species/human/cursekin, TRUE, TRUE, FALSE)
-	REMOVE_TRAIT(owner, TRAIT_BEAST_FORM, SPECIES_TRAIT)
-	playsound(owner, 'modular_zubbers/code/modules/customization/species/lycans/transform.ogg', 50)
+	owner.remove_status_effect(/datum/status_effect/beast_form)
 
 /obj/item/organ/brain/lycan/proc/toggle_beast_form(mob/user)
 	set name = "Enter/Leave Lycan Form"
 	set desc = "Succumb to the rage and turn into a lycan."
 	set category = "Lycan"
+
 	if(!user)
 		return
-	if(!HAS_TRAIT(user, TRAIT_BEAST_FORM))
-		if (HAS_TRAIT(user, TRAIT_MANSUS_INHIBITION))
+	if(user.has_status_effect(/datum/status_effect/beast_form))
+		leave_beast_form()
+	else
+    if (HAS_TRAIT(user, TRAIT_MANSUS_INHIBITION))
 			user.balloon_alert("can't transform while inhibited!")
-			return
+      return
 		enter_beast_form()
-	else if(HAS_TRAIT(user, TRAIT_BEAST_FORM))
-		leave_beast_form()
-
-/obj/item/organ/brain/lycan/on_death(seconds_per_tick, times_fired)
-	. = ..()
-	if(!owner)
-		return
-	if(HAS_TRAIT(owner, TRAIT_BEAST_FORM))
-		leave_beast_form()
