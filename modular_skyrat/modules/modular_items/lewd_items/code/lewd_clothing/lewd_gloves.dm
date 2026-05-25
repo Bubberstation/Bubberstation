@@ -449,7 +449,7 @@
 	change_worn_icon_state = FALSE
 	// new_icon/new_icon_state are read directly by the radial menu - get_preview_icon is NOT called
 	new_icon = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
-	new_icon_state = "Magpaw"
+	new_icon_state = "magpaws"
 	// greyscale_item_path tells greyscale_previews to use loadout_paw's magpaws config for this skin
 	greyscale_item_path = /obj/item/clothing/gloves/ball_mittens/loadout_paw
 	// new_worn_icon points to GAGS icons folder only, safe to list here
@@ -685,7 +685,7 @@
 	worn_icon = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
 	worn_icon_state = "magpaws_worn"
 	icon_state = "BasePaws"
-	post_init_icon_state = "Magpaw" // matches icon state name in magpaws.dmi
+	post_init_icon_state = "magpaws" // matches JSON bundle name in magpaws.json
 	// Catalog uses icon_preview/icon_state_preview read at type level via ::
 	icon_preview = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
 	icon_state_preview = "Magpaw" // matches icon state name in magpaws.dmi
