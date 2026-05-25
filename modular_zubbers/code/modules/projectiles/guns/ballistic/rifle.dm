@@ -7,3 +7,21 @@
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/guns_righthand.dmi'
 	inhand_icon_state = "rebarxbowsyndie"
+
+/obj/item/gun/ballistic/rifle/stingballer
+	name = "\improper Stingball Rifle"
+	desc = "A pneumatic rifle designed to rapidly fire stingballs."
+	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
+	icon_state = "stingballer"
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/stingballer
+	need_bolt_lock_to_interact = TRUE
+	semi_auto = TRUE
+	bolt_type = BOLT_TYPE_LOCKING
+	internal_magazine = TRUE
+	w_class = WEIGHT_CLASS_NORMAL
+	weapon_weight = 2
+	mag_display_ammo = TRUE
+
+/obj/item/gun/ballistic/rifle/stingballer/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, 0.1 SECONDS)

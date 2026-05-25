@@ -16,12 +16,14 @@
 
 /obj/item/gun/ballistic/automatic/wt550/burst
 	name = "\improper WT-550-B Autoburstrifle"
-	desc = "A WT-550-based platform typically used by paramilitary troops. Outfitted with a long barrel, heavy frame, angled foregrip and a two-shot burst trigger mechanism. Seems to perform overall better than the average autorifle. Has a threaded barrel for suppressors. Uses 4.6x30mm rounds."
-	icon = 'modular_zubbers/icons/obj/weapons/guns/wt550b.dmi'
+	desc = "A WT-550-based platform typically used by paramilitary troops. Outfitted with a slightly heavier frame and a two-shot burst trigger mechanism, while cutting off the stock. Seems to perform overall better than the average autorifle, but kicks a bit more. Has a threaded barrel for suppressors. Uses 4.6x30mm rounds."
+	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
+	icon_state = "wt550b"
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
 	weapon_weight = 2
 	can_suppress = TRUE
 	spread = 1
+	recoil = 5
 	projectile_damage_multiplier = 1.1
 	burst_delay = 1.5
 	burst_size = 2
@@ -52,7 +54,8 @@
 /obj/item/gun/ballistic/automatic/wt550/sawnoff
 	name = "\improper sawn-off WT-550"
 	desc = "An insanely chopped down WT-550. The barrel, stock and parts of the frame have been sawn down to reduce weight, somehow increasing fire-rate but causing handling to drop to abysmal levels. Don't even think about dual-wielding these. Uses 4.6x30mm rounds."
-	icon = 'modular_zubbers/icons/obj/weapons/guns/wt550sawn.dmi'
+	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
+	icon_state = "wt550s"
 	w_class = WEIGHT_CLASS_NORMAL
 	projectile_damage_multiplier = 0.8
 	projectile_speed_multiplier = 0.8
