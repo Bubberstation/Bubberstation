@@ -118,12 +118,12 @@
 	// Intercept pickup of floor items and items on elevated surfaces (tables, racks, etc).
 	if(isitem(target) && (isturf(target.loc) || (isobj(target.loc) && GLOB.typecache_elevated_structures[target.loc.type])) && !(target in wearer.held_items) && !wearer.get_active_held_item())
 		var/obj/item/item_target = target
-		var/hands_full = TRUE
-		for(var/obj/item/held in wearer.held_items)
-			if(isnull(held))
-				hands_full = FALSE
+		var/has_free_hand = FALSE
+		for(var/i = 1 to length(wearer.held_items))
+			if(isnull(wearer.held_items[i]))
+				has_free_hand = TRUE
 				break
-		if(hands_full)
+		if(!has_free_hand)
 			to_chat(wearer, span_warning("Your [get_hand_descriptor(wearer)] are already occupied. One thing at a time."))
 			return COMSIG_MOB_CANCEL_CLICKON
 		if(item_target.item_flags & ABSTRACT)
@@ -223,12 +223,12 @@
 	if(get_dist(wearer, to_pick_up) > 1)
 		to_chat(wearer, span_warning("[to_pick_up] is out of reach."))
 		return FALSE
-	var/hands_full = TRUE
-	for(var/obj/item/held in wearer.held_items)
-		if(isnull(held))
-			hands_full = FALSE
+	var/has_free_hand = FALSE
+	for(var/i = 1 to length(wearer.held_items))
+		if(isnull(wearer.held_items[i]))
+			has_free_hand = TRUE
 			break
-	if(hands_full)
+	if(!has_free_hand)
 		to_chat(wearer, span_warning("Your [get_hand_descriptor(wearer)] are already occupied."))
 		return FALSE
 	return TRUE
@@ -261,12 +261,12 @@
 		to_chat(wearer, span_warning("You paw at [to_pick_up] futilely. It is far too bulky to manage with these."))
 		return COMPONENT_LIVING_CANT_PUT_IN_HAND
 
-	var/hands_full = TRUE
-	for(var/obj/item/held in wearer.held_items)
-		if(isnull(held))
-			hands_full = FALSE
+	var/has_free_hand = FALSE
+	for(var/i = 1 to length(wearer.held_items))
+		if(isnull(wearer.held_items[i]))
+			has_free_hand = TRUE
 			break
-	if(hands_full)
+	if(!has_free_hand)
 		to_chat(wearer, span_warning("Your [get_hand_descriptor(wearer)] are already occupied. One thing at a time."))
 		return COMPONENT_LIVING_CANT_PUT_IN_HAND
 
