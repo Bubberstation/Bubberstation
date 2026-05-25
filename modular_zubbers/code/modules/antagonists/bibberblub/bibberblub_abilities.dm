@@ -64,6 +64,13 @@
 	var/obj/structure/structure_to_build
 	var/nutriment_cost = 0
 
+	///How far this needs to be from identical structures
+	var/minimum_distance = 0
+	///How many Slimy Floor tiles need to be in the area to allow this to be placed
+	var/minimum_floors = 0
+	///Whether this needs a slimy floor below itself to be placed. If false can only be placed on tiles without slimy floors
+	var/needs_floor = TRUE
+
 
 /datum/action/cooldown/bubberblub_structures/Grant(mob/granted_to)
 	. = ..()
@@ -75,6 +82,9 @@
 
 /datum/action/cooldown/bubberblub_structures/Activate(atom/target)
 	. = ..()
+	if(!validate_placement())
+		StartCooldown()
+		return
 	if(bibberblub.nutriment_resource < nutriment_cost)
 		bibberblub.balloon_alert(bibberblub, "need more nutriment!")
 		return
@@ -82,10 +92,68 @@
 		new structure_to_build(get_turf(bibberblub))
 		bibberblub.nutriment_resource -= nutriment_cost
 
+/datum/action/cooldown/bubberblub_structures/proc/validate_placement()
+	if(!bibberblub)
+		return FALSE
+	var/turf/build_turf = get_turf(bibberblub)
+	if(!build_turf)
+		return FALSE
+
+	//Floor Validation
+	var/has_slimy_floor = FALSE
+	for(var/obj/structure/bibberblub/slimy_floor/floor in build_turf)
+		has_slimy_floor = TRUE
+		break
+	if(needs_floor && !has_slimy_floor)
+		bibberblub.balloon_alert(bibberblub, "need slimy floor!")
+		return FALSE
+	if(!needs_floor && has_slimy_floor)
+		bibberblub.balloon_alert(bibberblub, "already slimy!")
+		return FALSE
+	// Prevent stacking structures on same tile
+	for(var/obj/structure/bibberblub/existing in build_turf)
+		// Ignore slimy floors
+		if(istype(existing, /obj/structure/bibberblub/slimy_floor))
+			continue
+		bibberblub.balloon_alert(bibberblub, "something is already here!")
+		return FALSE
+
+	//Separation Validation
+	if(minimum_distance > 0)
+		for(var/obj/structure/nearby in range(minimum_distance, build_turf))
+			if(!istype(nearby, structure_to_build))
+				continue
+			bibberblub.balloon_alert(bibberblub, "too close to another!")
+			return FALSE
+
+	//Area Validation
+	if(minimum_floors > 0)
+		var/area/current_area = get_area(build_turf)
+		var/floor_count = 0
+		for(var/obj/structure/bibberblub/slimy_floor/floor in current_area)
+			floor_count++
+			if(floor_count >= minimum_floors)
+				break
+		if(floor_count < minimum_floors)
+			bibberblub.balloon_alert(bibberblub, "need more slimy floor!")
+			return FALSE
+	return TRUE
+
 /datum/action/cooldown/bubberblub_structures/slimy_floor
 	name = "Build Floor"
 	desc = "Cover the floor with goop! Needed to build further structures."
 	button_icon_state = "Floor"
 	nutriment_cost = 5
+	needs_floor = FALSE
 	structure_to_build = /obj/structure/bibberblub/slimy_floor
 
+/datum/action/cooldown/bubberblub_structures/compost_hole
+	name = "Build Compost"
+	desc = "Put a hole in the goop to eat trash! This will turn it into nutritionally complete Bibberblub Rations!"
+	button_icon_state = "Compost"
+	nutriment_cost = 20
+	minimum_distance = 5
+	minimum_floors = 3
+	build_time = 10 SECONDS
+	cooldown_time = 30 SECONDS
+	structure_to_build = /obj/structure/bibberblub/compost
