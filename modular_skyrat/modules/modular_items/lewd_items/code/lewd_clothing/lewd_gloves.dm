@@ -686,10 +686,10 @@
 	worn_icon = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
 	worn_icon_state = "magpaws_worn"
 	icon_state = "BasePaws"
-	post_init_icon_state = "catgloves" // greyscale_previews preview icon state
+	post_init_icon_state = "Magpaw" // matches icon state name in magpaws.dmi
 	// Catalog uses icon_preview/icon_state_preview read at type level via ::
 	icon_preview = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
-	icon_state_preview = "catgloves" // Pre-colored reference sprite
+	icon_state_preview = "Magpaw" // matches icon state name in magpaws.dmi
 	is_paw_skin = TRUE
 	inhand_icon_state = "greyscale_gloves" // Use standard greyscale gloves inhand sprite - no magpaws inhand sprite exists
 
