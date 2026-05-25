@@ -437,7 +437,10 @@
 
 /datum/atom_skin/ball_mittens_skin
 	abstract_type = /datum/atom_skin/ball_mittens_skin
-	greyscale_item_path = /obj/item/clothing/gloves/ball_mittens/loadout_paw
+	// No greyscale_item_path on the abstract type. The cat_paws subtype handles GAGS entirely
+	// through its apply() override and does not want ExportMapPreviewsForType to attempt a
+	// separate skin preview render (it shares the "catgloves" bundle with loadout_paw and there
+	// is no distinct bundle state for ExportMapPreviewsForType to use without crashing).
 
 /datum/atom_skin/ball_mittens_skin/default
 	preview_name = "Ball Mittens"
@@ -448,11 +451,8 @@
 	new_name = "latex paw mittens"
 	new_desc = "A pair of inflatable latex mittens shaped like rounded paws. Helpless AND humiliating."
 	change_worn_icon_state = FALSE
-	// Point at the map_icons preview so atom_skin/New() won't null new_icon_state (it only nulls
-	// new_icon_state when it equals post_init_icon_state, and this state name never matches that).
 	new_icon = 'icons/map_icons/clothing/_clothing.dmi'
 	new_icon_state = "/obj/item/clothing/gloves/ball_mittens/loadout_paw"
-	greyscale_item_path = /obj/item/clothing/gloves/ball_mittens/loadout_paw
 	// new_worn_icon points to GAGS icons folder only, safe to list here
 	new_worn_icon = 'modular_skyrat/modules/GAGS/icons/catglove_worn.dmi'
 
@@ -699,6 +699,7 @@
 	for(var/datum/component/reskinable_item/c in GetComponents(/datum/component/reskinable_item))
 		qdel(c)
 	if(SSgreyscale?.initialized)
+		icon_state = "catgloves"
 		update_greyscale()
 
 /obj/item/clothing/gloves/ball_mittens/loadout_paw/equipped(mob/user, slot)
