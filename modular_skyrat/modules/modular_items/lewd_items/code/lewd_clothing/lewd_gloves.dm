@@ -437,7 +437,6 @@
 
 /datum/atom_skin/ball_mittens_skin
 	abstract_type = /datum/atom_skin/ball_mittens_skin
-	greyscale_item_path = /obj/item/clothing/gloves/ball_mittens/loadout_paw
 
 /datum/atom_skin/ball_mittens_skin/default
 	preview_name = "Ball Mittens"
@@ -451,8 +450,8 @@
 	// new_icon/new_icon_state are read directly by the radial menu - get_preview_icon is NOT called
 	new_icon = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
 	new_icon_state = "Magpaw"
-	// greyscale_item_path gives the loadout menu a proper GAGS preview for this skin
-	greyscale_item_path = /obj/item/clothing/gloves/cat
+	// greyscale_item_path tells greyscale_previews to use loadout_paw's magpaws config for this skin
+	greyscale_item_path = /obj/item/clothing/gloves/ball_mittens/loadout_paw
 	// new_worn_icon points to GAGS icons folder only, safe to list here
 	new_worn_icon = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
 
