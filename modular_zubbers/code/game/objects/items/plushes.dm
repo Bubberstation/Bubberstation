@@ -763,3 +763,68 @@
 	var/datum/smite/bsa/bluespace_smite = new()
 	bluespace_smite.effect(user.client, user)
 	return BRUTELOSS
+
+//Sprite from SS14 Main. Sprited by Orsoniks (rivey0 on discord)
+/obj/item/toy/plush/expie
+	name = "Experiment Plushie"
+	icon_state = "expie"
+	slot_flags = ITEM_SLOT_HEAD
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	worn_icon_state = "expie"
+	desc = "A plushie of a canid of sorts. It yearns to be detonated on a landmine."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	attack_verb_simple = list("bark", "growl", "whine")
+	squeak_override = list('modular_zubbers/sound/misc/plushie.ogg' = 1)
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
+	inhand_icon_state = "expie"
+
+/obj/item/toy/plush/expie/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //emissive glow when worn on head.
+	. = ..()
+	if(!isinhands)
+		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha, effect_type = EMISSIVE_BLOOM)
+
+/obj/item/toy/plush/expie/item_interaction(mob/living/feeder, obj/item/reagent_containers/applicator/pill/enom, list/modifiers)
+	if(!istype(enom))
+		return ..()
+	enom.forceMove(src) // pill go into the expie stummy
+	to_chat(feeder, span_notice("You feed the [enom] to [src] and watch as it eats..."))
+	playsound(src, 'modular_zubbers/sound/misc/eatcrunch.ogg', 75, TRUE)
+	addtimer(CALLBACK(src, PROC_REF(eat), feeder, enom), 3 SECONDS)
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/toy/plush/expie/proc/eat(mob/living/feeder, obj/item/reagent_containers/applicator/pill/enom)
+	if(istype(enom, /obj/item/reagent_containers/applicator/pill))
+		SpinAnimation(speed = 0.3 SECONDS, loops = 3)
+	qdel(enom)
+	return
+
+//expie reacts to being splashed
+/obj/item/toy/plush/expie/proc/splash_reagents()
+	SIGNAL_HANDLER
+	playsound(src, 'modular_zubbers/sound/misc/dogshake.ogg', 75)
+	spasm_animation(2 SECONDS)
+	visible_message(span_warning("[src] gets soaked and shakes itself off!"))
+
+/obj/item/toy/plush/expie/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_SPLASHED, PROC_REF(splash_reagents))
+
+/datum/reagent/consumable/milk/expose_obj(obj/exposed_obj, reac_volume, methods=TOUCH, show_message=TRUE) //spill milk on the expie to make it milky
+	. = ..()
+	if(!istype(exposed_obj, /obj/item/toy/plush/expie))
+		return
+
+	var/obj/item/toy/plush/expie/milked = exposed_obj
+	milked.name = /obj/item/toy/plush/expie/milky::name
+	milked.desc = /obj/item/toy/plush/expie/milky::desc
+	milked.worn_icon_state = /obj/item/toy/plush/expie/milky::worn_icon_state
+	milked.icon_state = /obj/item/toy/plush/expie/milky::icon_state
+	milked.inhand_icon_state = /obj/item/toy/plush/expie/milky::inhand_icon_state
+
+/obj/item/toy/plush/expie/milky
+	name = "Milky Plushie"
+	desc = "A plushie of snowy-white, furred canid. Maybe it'll trade something with you?"
+	worn_icon_state = "milky"
+	icon_state = "milky"
+	inhand_icon_state = "milky"
