@@ -87,26 +87,29 @@
 		to_chat(wearer, span_warning("You paw at [item] futilely. It is far too bulky to manage with these."))
 		return COMPONENT_BLOCK_ITEM_PICKUP
 	var/hand_desc = get_hand_descriptor(wearer)
-	to_chat(wearer, span_purple(pick(
+	var/player_msgs = list(
 		"You awkwardly wedge the [item] between your [hand_desc]...",
 		"You clumsily pin the [item] between your [hand_desc]...",
 		"You struggle to secure the [item] in your [hand_desc] before finally succeeding.",
 		"You carefully balance the [item] between your unwieldy [hand_desc]..."
-	)))
+	)
+	to_chat(wearer, span_purple(pick(player_msgs)))
 	var/public_msg
 	if(isgun(item))
-		public_msg = pick(
+		var/gun_msgs = list(
 			"[wearer] takes hold of the [item] in defiance of common sense.",
 			"[wearer] awkwardly presses the [item] between [wearer.p_their()] [hand_desc].",
 			"[wearer] picks up the [item], awkwardly pressing [wearer.p_their()] pads against the trigger guard!"
 		)
+		public_msg = pick(gun_msgs)
 	else
-		public_msg = pick(
+		var/general_msgs = list(
 			"[wearer] awkwardly secures the [item] in [wearer.p_their()] [hand_desc].",
 			"[wearer] carefully grips the [item] with [wearer.p_their()] [hand_desc].",
 			"[wearer] almost drops [item] before managing to press it between [wearer.p_their()] [hand_desc].",
 			"[wearer] carefully balances the [item] between [wearer.p_their()] [hand_desc]."
 		)
+		public_msg = pick(general_msgs)
 	wearer.visible_message(span_warning(public_msg))
 	pickup_mods["delay"] = struggle_delay_min
 
