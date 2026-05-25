@@ -85,6 +85,12 @@
 #define SHEATH_SLIT	"Slit"
 #define SHEATH_MODES list(SHEATH_NONE, SHEATH_NORMAL, SHEATH_SLIT)
 
+#define BUTT_MIN_SIZE 0
+#define BUTT_MAX_SIZE 8
+
+#define BELLY_MIN_SIZE 0
+#define BELLY_MAX_SIZE 10
+
 #define MANDATORY_FEATURE_LIST list(\
 	"mcolor" = "#FFFFBB",\
 	"mcolor2" = "#FFFFBB",\
