@@ -100,8 +100,7 @@
 
 	// Retrieve items from pockets, ID slot, suit storage, and ears with a short delay.
 	// Belt and back are excluded - intercepting their clicks can break container open/drag behavior.
-	// Modifier clicks (shift/alt/ctrl/right) still pass through for pocket items since they
-	// open context menus or examine rather than triggering pickup.
+	// Right/shift/alt/ctrl pass through as they open context menus rather than retrieving the item.
 	if(isitem(target) && ismob(target.loc) && !is_looping && !wearer.get_active_held_item())
 		var/obj/item/slot_item = target
 		var/slot = wearer.get_slot_by_item(slot_item)
@@ -119,7 +118,12 @@
 	// Intercept pickup of floor items and items on elevated surfaces (tables, racks, etc).
 	if(isitem(target) && (isturf(target.loc) || (isobj(target.loc) && GLOB.typecache_elevated_structures[target.loc.type])) && !(target in wearer.held_items) && !wearer.get_active_held_item())
 		var/obj/item/item_target = target
-		if(!wearer.held_items.Find(null))
+		var/hands_full = TRUE
+		for(var/obj/item/held in wearer.held_items)
+			if(isnull(held))
+				hands_full = FALSE
+				break
+		if(hands_full)
 			to_chat(wearer, span_warning("Your [get_hand_descriptor(wearer)] are already occupied. One thing at a time."))
 			return COMSIG_MOB_CANCEL_CLICKON
 		if(item_target.item_flags & ABSTRACT)
@@ -219,7 +223,12 @@
 	if(get_dist(wearer, to_pick_up) > 1)
 		to_chat(wearer, span_warning("[to_pick_up] is out of reach."))
 		return FALSE
-	if(!wearer.held_items.Find(null))
+	var/hands_full = TRUE
+	for(var/obj/item/held in wearer.held_items)
+		if(isnull(held))
+			hands_full = FALSE
+			break
+	if(hands_full)
 		to_chat(wearer, span_warning("Your [get_hand_descriptor(wearer)] are already occupied."))
 		return FALSE
 	return TRUE
@@ -252,7 +261,12 @@
 		to_chat(wearer, span_warning("You paw at [to_pick_up] futilely. It is far too bulky to manage with these."))
 		return COMPONENT_LIVING_CANT_PUT_IN_HAND
 
-	if(!wearer.held_items.Find(null))
+	var/hands_full = TRUE
+	for(var/obj/item/held in wearer.held_items)
+		if(isnull(held))
+			hands_full = FALSE
+			break
+	if(hands_full)
 		to_chat(wearer, span_warning("Your [get_hand_descriptor(wearer)] are already occupied. One thing at a time."))
 		return COMPONENT_LIVING_CANT_PUT_IN_HAND
 
@@ -382,7 +396,7 @@
 	var/hand_desc = get_hand_descriptor(wearer)
 	var/msg
 	if(istype(target, /obj/machinery/vending))
-		msg = "You awkwardly mash your [hand_desc] against [target]'s selection screen..."
+		msg = "You awkwardly mash your [hand_desc] against [target]'s keypad..."
 	else
 		msg = "You awkwardly paw at [target] with your [hand_desc]..."
 	wearer.face_atom(target)
