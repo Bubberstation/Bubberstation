@@ -432,7 +432,7 @@
 
 /mob/living/carbon/is_location_accessible(location, exluded_equipment_slots = NONE)
 	// BUBBER EDIT ADDITION - ball mittens surgery passthrough
-	if(istype(gloves, /obj/item/clothing/gloves/ball_mittens))
+	if(HAS_TRAIT(src, TRAIT_MITTENS_SURGERY_PASSTHROUGH))
 		exluded_equipment_slots |= ITEM_SLOT_GLOVES
 	// BUBBER EDIT ADDITION END
 	switch(location)

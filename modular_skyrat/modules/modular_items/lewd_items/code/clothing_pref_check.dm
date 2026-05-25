@@ -14,7 +14,6 @@ GLOBAL_LIST_INIT(pref_checked_clothes, list(
 	/obj/item/clothing/suit/straight_jacket/latex_straight_jacket,
 	/obj/item/clothing/gloves/ball_mittens,
 	/obj/item/clothing/gloves/ball_mittens/loadout_paw,
-
 	/obj/item/clothing/suit/straight_jacket/shackles,
 	/obj/item/clothing/suit/straight_jacket/shackles/reinforced,
 	/obj/item/clothing/gloves/shibari_hands,
