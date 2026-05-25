@@ -448,34 +448,34 @@
 	new_desc = "A pair of inflatable latex mittens shaped like rounded paws. Helpless AND humiliating."
 	change_worn_icon_state = FALSE
 	// new_icon/new_icon_state are read directly by the radial menu - get_preview_icon is NOT called
-	new_icon = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
-	new_icon_state = "Magpaw"
-	// greyscale_item_path tells greyscale_previews to use loadout_paw's magpaws config for this skin
+	new_icon = 'modular_skyrat/modules/GAGS/icons/magpawss.dmi'
+	new_icon_state = "magpaws"
+	// greyscale_item_path tells greyscale_previews to use loadout_paw's magpawss config for this skin
 	greyscale_item_path = /obj/item/clothing/gloves/ball_mittens/loadout_paw
 	// new_worn_icon points to GAGS icons folder only, safe to list here
-	new_worn_icon = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
+	new_worn_icon = 'modular_skyrat/modules/GAGS/icons/magpawss.dmi'
 
 /datum/atom_skin/ball_mittens_skin/cat_paws/get_preview_icon(atom/for_atom)
-	// Use the pre-colored Magpaw reference sprite for the radial menu preview.
+	// Use the pre-colored magpaws reference sprite for the radial menu preview.
 	// This shows all three color layers. Full GAGS rendering happens in-game.
-	return image(icon = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi', icon_state = "Magpaw")
+	return image(icon = 'modular_skyrat/modules/GAGS/icons/magpawss.dmi', icon_state = "magpaws")
 
 /datum/atom_skin/ball_mittens_skin/cat_paws/apply(atom/apply_to, mob/user)
 	var/obj/item/clothing/gloves/ball_mittens/G = apply_to
 	if(istype(G))
 		// Set GAGS config before parent apply() so it skips the icon reset
-		G.greyscale_config = /datum/greyscale_config/magpaws
-		G.greyscale_config_worn = /datum/greyscale_config/magpaws/worn
+		G.greyscale_config = /datum/greyscale_config/magpawss
+		G.greyscale_config_worn = /datum/greyscale_config/magpawss/worn
 		if(!G.greyscale_colors || G.greyscale_colors == "")
 			G.greyscale_colors = "#d4d4d2#e590b9#15b1bf"
 		G.flags_1 |= IS_PLAYER_COLORABLE_1
 	. = ..()
 	if(istype(G))
 		G.is_paw_skin = TRUE
-		G.worn_icon = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
-		G.icon_state = "magpaws"
-		G.worn_icon_state = "magpaws_worn"
-		G.set_greyscale(G.greyscale_colors, /datum/greyscale_config/magpaws)
+		G.worn_icon = 'modular_skyrat/modules/GAGS/icons/magpawss.dmi'
+		G.icon_state = "magpawss"
+		G.worn_icon_state = "magpawss_worn"
+		G.set_greyscale(G.greyscale_colors, /datum/greyscale_config/magpawss)
 
 /datum/atom_skin/ball_mittens_skin/cat_paws/clear_skin(atom/clear_from)
 	var/obj/item/clothing/gloves/ball_mittens/G = clear_from
@@ -578,12 +578,12 @@
 		return ITEM_INTERACT_BLOCKING
 	if(!user.client)
 		return ITEM_INTERACT_BLOCKING
-	var/list/allowed = list("[/datum/greyscale_config/magpaws]", "[/datum/greyscale_config/magpaws/worn]")
+	var/list/allowed = list("[/datum/greyscale_config/magpawss]", "[/datum/greyscale_config/magpawss/worn]")
 	var/datum/greyscale_modify_menu/spray_paint/menu = new(
 		src, user.client, allowed,
 		CALLBACK(src, PROC_REF(apply_spray_colors), can),
-		"magpaws",
-		/datum/greyscale_config/magpaws,
+		"magpawss",
+		/datum/greyscale_config/magpawss,
 		greyscale_colors,
 		can,
 	)
@@ -678,19 +678,19 @@
 /obj/item/clothing/gloves/ball_mittens/loadout_paw
 	name = "latex paw mittens"
 	desc = "A pair of inflatable latex mittens shaped like rounded paws. Helpless AND humiliating."
-	greyscale_config = /datum/greyscale_config/magpaws
-	greyscale_config_worn = /datum/greyscale_config/magpaws/worn
+	greyscale_config = /datum/greyscale_config/magpawss
+	greyscale_config_worn = /datum/greyscale_config/magpawss/worn
 	greyscale_colors = "#d4d4d2#e590b9#15b1bf"
 	flags_1 = IS_PLAYER_COLORABLE_1
-	worn_icon = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
-	worn_icon_state = "magpaws_worn"
+	worn_icon = 'modular_skyrat/modules/GAGS/icons/magpawss.dmi'
+	worn_icon_state = "magpawss_worn"
 	icon_state = "BasePaws"
-	post_init_icon_state = "magpaws" // matches JSON bundle name in magpaws.json
+	post_init_icon_state = "magpawss" // matches JSON bundle name in magpawss.json
 	// Catalog uses icon_preview/icon_state_preview read at type level via ::
-	icon_preview = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
-	icon_state_preview = "Magpaw" // matches icon state name in magpaws.dmi
+	icon_preview = 'modular_skyrat/modules/GAGS/icons/magpawss.dmi'
+	icon_state_preview = "magpaws" // matches icon state name in magpawss.dmi
 	is_paw_skin = TRUE
-	inhand_icon_state = "greyscale_gloves" // Use standard greyscale gloves inhand sprite - no magpaws inhand sprite exists
+	inhand_icon_state = "greyscale_gloves" // Use standard greyscale gloves inhand sprite - no magpawss inhand sprite exists
 
 /obj/item/clothing/gloves/ball_mittens/loadout_paw/Initialize(mapload)
 	. = ..()
@@ -707,9 +707,9 @@
 	if(slot != ITEM_SLOT_GLOVES)
 		return
 	// Icon states must be set before set_greyscale so the pipeline reads them correctly.
-	icon_state = "magpaws"
-	worn_icon_state = "magpaws_worn"
-	set_greyscale(greyscale_colors, /datum/greyscale_config/magpaws)
+	icon_state = "magpawss"
+	worn_icon_state = "magpawss_worn"
+	set_greyscale(greyscale_colors, /datum/greyscale_config/magpawss)
 
 // ============================================================
 
