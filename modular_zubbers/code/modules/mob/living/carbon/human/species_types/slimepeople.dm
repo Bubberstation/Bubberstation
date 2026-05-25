@@ -668,7 +668,7 @@
 	target.apply_status_effect(/datum/status_effect/shapeshift_transformed, original_name)
 	char_source.safe_transfer_prefs_to_with_damage(target)
 	target.dna.update_dna_identity()
-	SSquirks.OverrideQuirks(target, char_source.parent)
+	SSquirks.OverrideQuirks(target, char_source.parent, unique = FALSE)
 
 	var/output = "[key_name(target)] has been transformed by [key_name(alterer)] using polymorph, at [loc_name(target)]. Original Name: [original_name], New Name: [target.dna.real_name]."
 	message_admins(output)

@@ -43,7 +43,7 @@
 			target_client.prefs.safe_transfer_prefs_to_with_damage(owner)
 			owner.real_name = name
 			owner.name = name
-			SSquirks.OverrideQuirks(owner, target_client)
+			SSquirks.OverrideQuirks(owner, target_client, unique = FALSE)
 			owner.dna.update_dna_identity()
 
 			target_client.prefs.load_character(last_slot)
@@ -62,7 +62,7 @@
 		if (!isnull(target_client))
 			target_client.prefs.load_character(last_slot)
 			target_client.prefs.safe_transfer_prefs_to_with_damage(owner)
-			SSquirks.OverrideQuirks(owner, target_client)
+			SSquirks.OverrideQuirks(owner, target_client, unique = FALSE)
 			owner.dna.update_dna_identity()
 	else
 		owner.set_species(/datum/species/human/cursekin, TRUE, TRUE, FALSE)
