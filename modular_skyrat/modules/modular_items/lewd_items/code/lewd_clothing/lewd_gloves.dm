@@ -27,7 +27,7 @@
 	if(!mittens.spawn_flavor_shown && mittens.loadout_created)
 		mittens.spawn_flavor_shown = TRUE
 		INVOKE_ASYNC(mittens, TYPE_PROC_REF(/obj/item/clothing/gloves/ball_mittens, deferred_spawn_flavor), wearer)
-	ADD_TRAIT(wearer, TRAIT_MITTENS_SURGERY_PASSTHROUGH, MITTENS_FUMBLE_TRAIT)
+	ADD_TRAIT(wearer, TRAIT_GLOVE_SURGERY_PASSTHROUGH, MITTENS_FUMBLE_TRAIT)
 	RegisterSignal(wearer, COMSIG_LIVING_TRY_PUT_IN_HAND, PROC_REF(on_try_pickup))
 	RegisterSignal(wearer, COMSIG_LIVING_PICKED_UP_ITEM, PROC_REF(on_picked_up))
 	RegisterSignal(wearer, COMSIG_MOB_CLICKON, PROC_REF(on_clickon))
@@ -43,7 +43,7 @@
 	if(!isliving(wearer))
 		return
 	wearer.clear_mood_event("paw_mittens")
-	REMOVE_TRAIT(wearer, TRAIT_MITTENS_SURGERY_PASSTHROUGH, MITTENS_FUMBLE_TRAIT)
+	REMOVE_TRAIT(wearer, TRAIT_GLOVE_SURGERY_PASSTHROUGH, MITTENS_FUMBLE_TRAIT)
 	UnregisterSignal(wearer, list(
 		COMSIG_LIVING_TRY_PUT_IN_HAND,
 		COMSIG_LIVING_PICKED_UP_ITEM,

@@ -78,3 +78,9 @@
 		/area/centcom/holding/cafe/ruin/xenonest,\
 		/area/centcom/holding/cafe/beach,\
 		)
+
+/// Applied to a mob wearing gloves that should be passable for hand surgery (e.g. ball mittens).
+#define TRAIT_GLOVE_SURGERY_PASSTHROUGH "glove_surgery_passthrough"
+/// Trait source for ball_mittens_fumble component.
+#define MITTENS_FUMBLE_TRAIT "ball_mittens_fumble"
+
