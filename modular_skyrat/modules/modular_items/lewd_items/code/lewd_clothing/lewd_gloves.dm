@@ -448,18 +448,17 @@
 	new_name = "latex paw mittens"
 	new_desc = "A pair of inflatable latex mittens shaped like rounded paws. Helpless AND humiliating."
 	change_worn_icon_state = FALSE
-	// new_icon/new_icon_state are read directly by the radial menu - get_preview_icon is NOT called
-	new_icon = 'modular_skyrat/modules/GAGS/icons/catglove.dmi'
-	new_icon_state = "catgloves" // JSON bundle name used by greyscale_previews
-	// greyscale_item_path tells greyscale_previews to use loadout_paw's magpaws config for this skin
+	// Point at the map_icons preview so atom_skin/New() won't null new_icon_state (it only nulls
+	// new_icon_state when it equals post_init_icon_state, and this state name never matches that).
+	new_icon = 'icons/map_icons/clothing/_clothing.dmi'
+	new_icon_state = "/obj/item/clothing/gloves/ball_mittens/loadout_paw"
 	greyscale_item_path = /obj/item/clothing/gloves/ball_mittens/loadout_paw
 	// new_worn_icon points to GAGS icons folder only, safe to list here
 	new_worn_icon = 'modular_skyrat/modules/GAGS/icons/catglove_worn.dmi'
 
 /datum/atom_skin/ball_mittens_skin/cat_paws/get_preview_icon(atom/for_atom)
-	// Use the pre-colored Magpaw reference sprite for the radial menu preview.
-	// This shows all three color layers. Full GAGS rendering happens in-game.
-	return image(icon = 'modular_skyrat/modules/GAGS/icons/catglove.dmi', icon_state = "catglove")
+	// Pull the GAGS-rendered map preview: already colored with loadout_paw's default colors.
+	return image(icon = 'icons/map_icons/clothing/_clothing.dmi', icon_state = "/obj/item/clothing/gloves/ball_mittens/loadout_paw")
 
 /datum/atom_skin/ball_mittens_skin/cat_paws/apply(atom/apply_to, mob/user)
 	var/obj/item/clothing/gloves/ball_mittens/G = apply_to
@@ -468,14 +467,14 @@
 		G.greyscale_config = /datum/greyscale_config/catgloves
 		G.greyscale_config_worn = /datum/greyscale_config/catgloves/worn
 		if(!G.greyscale_colors || G.greyscale_colors == "")
-			G.greyscale_colors = "#d4d4d2#e590b9#15b1bf"
+			G.greyscale_colors = "#242329#7B48A6#15B1BF"
 		G.flags_1 |= IS_PLAYER_COLORABLE_1
 	. = ..()
 	if(istype(G))
 		G.is_paw_skin = TRUE
 		G.worn_icon = 'modular_skyrat/modules/GAGS/icons/catglove_worn.dmi'
 		G.icon_state = "catgloves"
-		G.worn_icon_state = "catglove"
+		G.worn_icon_state = "catgloves"
 		G.set_greyscale(G.greyscale_colors, /datum/greyscale_config/catgloves)
 
 /datum/atom_skin/ball_mittens_skin/cat_paws/clear_skin(atom/clear_from)
@@ -511,7 +510,6 @@
 	var/is_paw_skin = FALSE
 	var/spawn_flavor_shown = FALSE
 	var/loadout_created = FALSE // Set TRUE in Initialize when created fresh by provide_type
-
 
 
 
@@ -681,15 +679,15 @@
 	desc = "A pair of inflatable latex mittens shaped like rounded paws. Helpless AND humiliating."
 	greyscale_config = /datum/greyscale_config/catgloves
 	greyscale_config_worn = /datum/greyscale_config/catgloves/worn
-	greyscale_colors = "#d4d4d2#e590b9#15b1bf#ffffff"
+	greyscale_colors = "#242329#7B48A6#15B1BF"
 	flags_1 = IS_PLAYER_COLORABLE_1
 	worn_icon = 'modular_skyrat/modules/GAGS/icons/catglove_worn.dmi'
-	worn_icon_state = "catglove"
+	worn_icon_state = "catgloves"
 	icon_state = "BasePaws"
 	post_init_icon_state = "catgloves"
 	// Catalog uses icon_preview/icon_state_preview read at type level via ::
-	icon_preview = 'modular_skyrat/modules/GAGS/icons/catglove.dmi'
-	icon_state_preview = "catglove"
+	icon_preview = 'icons/map_icons/clothing/_clothing.dmi'
+	icon_state_preview = "/obj/item/clothing/gloves/ball_mittens/loadout_paw"
 	is_paw_skin = TRUE
 	inhand_icon_state = "greyscale_gloves"
 
@@ -709,7 +707,7 @@
 		return
 	// Icon states must be set before set_greyscale so the pipeline reads them correctly.
 	icon_state = "catgloves"
-	worn_icon_state = "catglove"
+	worn_icon_state = "catgloves"
 	set_greyscale(greyscale_colors, /datum/greyscale_config/catgloves)
 
 // ============================================================
@@ -725,4 +723,3 @@
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_gloves.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_gloves.dmi'
-
