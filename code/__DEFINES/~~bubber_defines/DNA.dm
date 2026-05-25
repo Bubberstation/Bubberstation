@@ -89,7 +89,7 @@
 #define BUTT_MAX_SIZE 8
 
 #define BELLY_MIN_SIZE 0
-#define BELLY_MAX_SIZE 10
+#define BELLY_MAX_SIZE 9 // 10 is in the code, but too much.
 
 #define MANDATORY_FEATURE_LIST list(\
 	"mcolor" = "#FFFFBB",\
