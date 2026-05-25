@@ -118,12 +118,12 @@
 	// Intercept pickup of floor items and items on elevated surfaces (tables, racks, etc).
 	if(isitem(target) && (isturf(target.loc) || (isobj(target.loc) && GLOB.typecache_elevated_structures[target.loc.type])) && !(target in wearer.held_items) && !wearer.get_active_held_item())
 		var/obj/item/item_target = target
-		var/has_free_hand = FALSE
+		var/has_item = FALSE
 		for(var/i = 1 to length(wearer.held_items))
-			if(isnull(wearer.held_items[i]))
-				has_free_hand = TRUE
+			if(!isnull(wearer.held_items[i]))
+				has_item = TRUE
 				break
-		if(!has_free_hand)
+		if(has_item)
 			to_chat(wearer, span_warning("Your [get_hand_descriptor(wearer)] are already occupied. One thing at a time."))
 			return COMSIG_MOB_CANCEL_CLICKON
 		if(item_target.item_flags & ABSTRACT)
@@ -223,12 +223,12 @@
 	if(get_dist(wearer, to_pick_up) > 1)
 		to_chat(wearer, span_warning("[to_pick_up] is out of reach."))
 		return FALSE
-	var/has_free_hand = FALSE
+	var/has_item = FALSE
 	for(var/i = 1 to length(wearer.held_items))
-		if(isnull(wearer.held_items[i]))
-			has_free_hand = TRUE
+		if(!isnull(wearer.held_items[i]))
+			has_item = TRUE
 			break
-	if(!has_free_hand)
+	if(has_item)
 		to_chat(wearer, span_warning("Your [get_hand_descriptor(wearer)] are already occupied."))
 		return FALSE
 	return TRUE
@@ -261,16 +261,22 @@
 		to_chat(wearer, span_warning("You paw at [to_pick_up] futilely. It is far too bulky to manage with these."))
 		return COMPONENT_LIVING_CANT_PUT_IN_HAND
 
-	var/has_free_hand = FALSE
+	var/has_item = FALSE
 	for(var/i = 1 to length(wearer.held_items))
-		if(isnull(wearer.held_items[i]))
-			has_free_hand = TRUE
+		if(!isnull(wearer.held_items[i]))
+			has_item = TRUE
 			break
-	if(!has_free_hand)
+	if(has_item)
 		to_chat(wearer, span_warning("Your [get_hand_descriptor(wearer)] are already occupied. One thing at a time."))
 		return COMPONENT_LIVING_CANT_PUT_IN_HAND
 
 	if(ismob(to_pick_up.loc))
+		// Context menu / drag pickup of a pocket item - route through the fumble delay.
+		var/slot = wearer.get_slot_by_item(to_pick_up)
+		if(slot & (ITEM_SLOT_LPOCKET|ITEM_SLOT_RPOCKET|ITEM_SLOT_ID|ITEM_SLOT_SUITSTORE|ITEM_SLOT_EARS|ITEM_SLOT_BELT))
+			if(!is_looping)
+				INVOKE_ASYNC(src, PROC_REF(inventory_retrieve), wearer, to_pick_up)
+			return COMPONENT_LIVING_CANT_PUT_IN_HAND
 		return
 
 	if(isturf(to_pick_up.loc))
