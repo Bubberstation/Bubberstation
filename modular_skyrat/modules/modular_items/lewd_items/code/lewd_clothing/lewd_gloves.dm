@@ -165,7 +165,6 @@
 /datum/component/ball_mittens_fumble/proc/fumble_pickup_loop(mob/living/wearer, obj/item/to_pick_up)
 	is_looping = TRUE
 	var/hand_desc = get_hand_descriptor(wearer)
-	var/item_loc = to_pick_up.loc
 	var/on_floor = is_item_on_floor(to_pick_up)
 	if(isgun(to_pick_up))
 		to_chat(wearer, span_purple("You wedge [to_pick_up] between your [hand_desc]. Are you sure about this..?"))
