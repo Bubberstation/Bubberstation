@@ -22,6 +22,9 @@
 	layer = ABOVE_OPEN_TURF_LAYER
 	plane = FLOOR_PLANE
 
+/obj/structure/bibberblub/slimy_floor/vent_hole
+	icon_state = "Floor_Vent"
+
 /obj/structure/bibberblub/compost
 	name = "Goopy Compost"
 	desc = "A hole in the ground that is capable of turning trash into Bibberblub Rations"

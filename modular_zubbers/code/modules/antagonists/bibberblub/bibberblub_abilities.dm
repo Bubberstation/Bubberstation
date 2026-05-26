@@ -147,6 +147,19 @@
 	needs_floor = FALSE
 	structure_to_build = /obj/structure/bibberblub/slimy_floor
 
+/datum/action/cooldown/bubberblub_structures/slimy_floor/Activate(atom/target)
+	var/turf/placement_turf = get_turf(bibberblub)
+	var/has_vent = FALSE
+	for(var/obj/machinery/atmospherics/components/unary/vent in placement_turf)
+		has_vent = TRUE
+		break
+	if(has_vent)
+		structure_to_build = /obj/structure/bibberblub/slimy_floor/vent_hole
+	else
+		structure_to_build = /obj/structure/bibberblub/slimy_floor
+
+	return ..()
+
 /datum/action/cooldown/bubberblub_structures/compost_hole
 	name = "Build Compost"
 	desc = "Put a hole in the goop to eat trash! This will turn it into nutritionally complete Bibberblub Rations!"
