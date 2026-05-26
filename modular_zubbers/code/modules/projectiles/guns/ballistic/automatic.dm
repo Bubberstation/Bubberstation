@@ -6,7 +6,7 @@
 
 /obj/item/gun/ballistic/automatic/wt550/security
 	name = "\improper WT-551 Autorifle"
-	desc = "A heavier, bulkier automatic variant of the WT-550, and now with 99% less discombobulation! It's back, baby. Uses 4.6x30mm rounds. Recommended to hold with two hands."
+	desc = "A heavier, bulkier automatic variant of the WT-550, and now with 99% less discombobulation! Despite what Nanotrasen might tell you, it's identical in performance to the classic. Uses 4.6x30mm rounds. Recommended to hold with two hands."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/wt551.dmi'
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
 	w_class = WEIGHT_CLASS_BULKY
@@ -16,13 +16,12 @@
 
 /obj/item/gun/ballistic/automatic/wt550/burst
 	name = "\improper WT-550-B Autoburstrifle"
-	desc = "A WT-550-based platform typically used by paramilitary troops. Outfitted with a slightly heavier frame and a two-shot burst trigger mechanism, while cutting off the stock. Seems to perform overall better than the average autorifle, but kicks a bit more. Has a threaded barrel for suppressors. Uses 4.6x30mm rounds."
+	desc = "A WT-550-based platform typically used by paramilitary troops. Outfitted with a slightly lighter frame and a two-shot burst trigger mechanism along with while cutting off the stock. Seems to perform overall better than the average autorifle, but kicks a bit more. Has a threaded barrel for suppressors. Uses 4.6x30mm rounds."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "wt550b"
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
-	weapon_weight = 2
 	can_suppress = TRUE
-	spread = 1
+	spread = 3
 	recoil = 5
 	projectile_damage_multiplier = 1.1
 	burst_delay = 1.5
