@@ -268,7 +268,7 @@
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	SET_BASE_PIXEL(0, 0)
 	w_class = WEIGHT_CLASS_BULKY
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	weapon_mode_options = list(
 		/datum/laser_weapon_mode/hellfire,
 		/datum/laser_weapon_mode/sword,
