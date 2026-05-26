@@ -234,7 +234,7 @@
 
 /datum/armor/mod_theme_voskhod
 	melee = 30
-	bullet = 40
+	bullet = 30
 	laser = 20
 	energy = 30
 	bomb = 30
