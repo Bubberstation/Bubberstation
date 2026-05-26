@@ -50,6 +50,52 @@
 		bibberblub.protein_resource -= protein_cost
 
 
+/datum/action/cooldown/spell/pointed/hamster
+	name = "Hamster"
+	desc = "Store something in your mouth and spit it out later!"
+	button_icon = 'modular_zubbers/icons/bibberblub/bibberblub.dmi'
+	button_icon_state = "Bibberblub"
+	cooldown_time = 5 SECONDS
+	spell_requirements = null
+	antimagic_flags = null
+	cast_range = 2
+	var/obj/item/hamstered_item
+
+/datum/action/cooldown/spell/pointed/hamster/on_activation(mob/on_who)
+	if(!isnull(hamstered_item))
+		hamstered_item.forceMove(get_turf(owner))
+		hamstered_item = null
+		playsound(owner, 'sound/effects/splat.ogg', 25, TRUE)
+		unset_click_ability(on_who, FALSE)
+		StartCooldown()
+		return
+	return ..()
+
+/datum/action/cooldown/spell/pointed/hamster/is_valid_target(atom/cast_on)
+	. = ..()
+	if(istype(cast_on, /obj/item))
+		if(istype(cast_on, /obj/item/food))
+			owner.balloon_alert(owner, "You should enjoy this instead!")
+			return FALSE //Gotta enjoy the food in small bites!
+		return TRUE
+	return FALSE
+
+/datum/action/cooldown/spell/pointed/hamster/cast(atom/cast_on)
+	. = ..()
+	var/obj/item/slurped = cast_on
+	slurped.forceMove(owner)
+	hamstered_item = slurped
+	playsound(owner, 'sound/effects/glug.ogg', 25, TRUE)
+	owner.balloon_alert_to_viewers("Swallowed [slurped.name]!")
+
+/datum/action/cooldown/spell/pointed/hamster/proc/expell_hamstered()
+	if(!isnull(hamstered_item))
+		hamstered_item.forceMove(get_turf(owner))
+		hamstered_item = null
+		playsound(owner, 'sound/effects/splat.ogg', 25, TRUE)
+		return
+
+
 
 // ==== STRUCTURES ====
 /datum/action/cooldown/bubberblub_structures
@@ -170,3 +216,4 @@
 	build_time = 10 SECONDS
 	cooldown_time = 30 SECONDS
 	structure_to_build = /obj/structure/bibberblub/compost
+
