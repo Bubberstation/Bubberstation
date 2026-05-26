@@ -8239,7 +8239,6 @@
 /area/station/maintenance/disposal/incinerator)
 "bYb" = (
 /obj/structure/table/glass,
-/obj/item/stack/medical/gauze,
 /obj/machinery/defibrillator_mount/directional/east,
 /obj/item/storage/medkit/emergency{
 	pixel_y = 4
@@ -16184,6 +16183,7 @@
 	pixel_y = 6
 	},
 /obj/item/stack/medical/mesh,
+/obj/item/stack/medical/wrap/gauze/twelve,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "dXz" = (
@@ -38666,6 +38666,7 @@
 /obj/item/storage/box/rxglasses{
 	pixel_y = 5
 	},
+/obj/item/stack/medical/wrap/gauze/twelve,
 /turf/open/floor/iron/white/textured,
 /area/station/medical/treatment_center)
 "jIy" = (
@@ -44719,7 +44720,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/morgue{
-	name = "Private Study"
+	name = "Private Study";
+	req_access = list("library")
 	},
 /turf/open/floor/iron,
 /area/station/service/library/private)
@@ -62528,7 +62530,8 @@
 "pzu" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/morgue{
-	name = "Private Study"
+	name = "Private Study";
+	req_access = list("library")
 	},
 /turf/open/floor/engine/cult,
 /area/station/service/library/private)
@@ -71261,6 +71264,7 @@
 /obj/structure/table/glass,
 /obj/item/storage/box/rxglasses,
 /obj/effect/turf_decal/tile/blue/fourcorners,
+/obj/item/stack/medical/wrap/gauze/twelve,
 /turf/open/floor/iron/white/textured,
 /area/station/medical/storage)
 "rJy" = (
@@ -73393,12 +73397,15 @@
 	pixel_x = -5
 	},
 /obj/item/stack/medical/ointment{
-	pixel_y = -5;
-	pixel_x = 5
+	pixel_y = 3;
+	pixel_x = 6
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
+/obj/item/stack/medical/wrap/gauze/twelve{
+	pixel_y = -2
+	},
 /turf/open/floor/iron/dark/textured,
 /area/station/medical/medbay/lobby)
 "snp" = (
@@ -73727,9 +73734,6 @@
 /area/station/medical/office)
 "ssx" = (
 /obj/item/stack/medical/bandage,
-/obj/item/stack/medical/gauze/improvised{
-	pixel_y = 12
-	},
 /obj/structure/table,
 /turf/open/floor/pod/light,
 /area/station/maintenance/floor1/port/aft)
@@ -74067,7 +74071,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/freezer,
 /obj/item/stack/medical/suture,
-/obj/item/stack/medical/gauze/twelve,
 /obj/item/stack/medical/bone_gel,
 /turf/open/floor/iron/white,
 /area/station/maintenance/floor3/starboard/aft)
@@ -74842,7 +74845,6 @@
 /obj/structure/table,
 /obj/machinery/vending/wallmed/directional/north,
 /obj/machinery/duct,
-/obj/item/stack/medical/gauze,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "sHq" = (
