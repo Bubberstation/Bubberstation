@@ -701,6 +701,10 @@
 
 //Return a non FALSE value to interrupt attack_hand propagation to subtypes.
 /obj/machinery/interact(mob/user)
+	// BUBBER EDIT ADDITION - allow components on the user to intercept or delay machinery interaction
+	if(SEND_SIGNAL(user, COMSIG_MOB_MACHINERY_INTERACT, src) & COMPONENT_BLOCK_MACHINERY_INTERACT)
+		return FALSE
+	// BUBBER EDIT ADDITION END
 	update_last_used(user)
 	return ..()
 

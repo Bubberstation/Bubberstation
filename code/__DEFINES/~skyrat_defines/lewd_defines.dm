@@ -88,3 +88,7 @@
 /// Fired on a mob in attempt_pickup after mobility checks. Handler can set pickup_mods["delay"] or return COMPONENT_BLOCK_ITEM_PICKUP.
 #define COMSIG_LIVING_ITEM_ATTEMPT_PICKUP "living_item_attempt_pickup"
 #define COMPONENT_BLOCK_ITEM_PICKUP (1<<0)
+
+/// Fired on a mob when they interact with machinery, before interact() runs. Return COMPONENT_BLOCK_MACHINERY_INTERACT to block.
+#define COMSIG_MOB_MACHINERY_INTERACT "mob_machinery_interact"
+#define COMPONENT_BLOCK_MACHINERY_INTERACT (1<<1)

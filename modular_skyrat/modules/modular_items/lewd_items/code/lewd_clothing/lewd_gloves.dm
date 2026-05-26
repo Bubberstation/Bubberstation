@@ -4,7 +4,6 @@
 	var/struggle_delay_min = 0.8 SECONDS
 	var/interact_delay = 1.5 SECONDS
 	var/max_item_size = WEIGHT_CLASS_HUGE
-	var/is_interacting = FALSE
 	var/cuff_resist_multiplier = 3
 	var/gun_spread_penalty = 12
 	var/obj/item/tracked_cuffs = null
@@ -25,6 +24,7 @@
 	ADD_TRAIT(wearer, TRAIT_GLOVE_SURGERY_PASSTHROUGH, MITTENS_FUMBLE_TRAIT)
 	RegisterSignal(wearer, COMSIG_LIVING_ITEM_ATTEMPT_PICKUP, PROC_REF(on_attempt_pickup))
 	RegisterSignal(wearer, COMSIG_LIVING_TRY_PUT_IN_HAND, PROC_REF(on_try_pickup))
+	RegisterSignal(wearer, COMSIG_MOB_MACHINERY_INTERACT, PROC_REF(on_machinery_interact))
 	RegisterSignal(wearer, COMSIG_MOB_CLICKON, PROC_REF(on_clickon))
 	RegisterSignal(wearer, COMSIG_MOB_REMOVING_CUFFS, PROC_REF(on_removing_cuffs))
 	RegisterSignal(wearer, COMSIG_MOB_FIRED_GUN, PROC_REF(on_fired_gun))
@@ -41,6 +41,7 @@
 	UnregisterSignal(wearer, list(
 		COMSIG_LIVING_ITEM_ATTEMPT_PICKUP,
 		COMSIG_LIVING_TRY_PUT_IN_HAND,
+		COMSIG_MOB_MACHINERY_INTERACT,
 		COMSIG_MOB_CLICKON,
 		COMSIG_MOB_REMOVING_CUFFS,
 		COMSIG_MOB_FIRED_GUN,
@@ -132,11 +133,14 @@
 	if(ismob(to_pick_up.loc))
 		return
 
+/// Handles machinery interaction delay via COMSIG_MOB_MACHINERY_INTERACT.
+/datum/component/ball_mittens_fumble/proc/on_machinery_interact(mob/living/wearer, obj/machinery/machine)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(fumble_interact), wearer, machine)
+	return COMPONENT_BLOCK_MACHINERY_INTERACT
+
 /datum/component/ball_mittens_fumble/proc/on_clickon(mob/living/wearer, atom/target, list/modifiers)
 	SIGNAL_HANDLER
-	if(is_interacting)
-		return
-
 	if(wearer.throw_mode)
 		var/obj/item/held = wearer.get_active_held_item()
 		if(!held)
@@ -148,13 +152,10 @@
 			wearer.dropItemToGround(held)
 			wearer.throw_mode_off(THROW_MODE_TOGGLE)
 			return COMSIG_MOB_CANCEL_CLICKON
-
-	if(get_dist(wearer, target) > 1)
-		return
-
 	if(modifiers && (LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, RIGHT_CLICK) || LAZYACCESS(modifiers, CTRL_CLICK)))
 		return
-
+	if(get_dist(wearer, target) > 1)
+		return
 	if(isclothing(target) && isliving(target.loc) && !wearer.get_active_held_item() && !wearer.combat_mode)
 		var/obj/item/clothing/cloth = target
 		var/mob/living/living_loc = target.loc
@@ -166,11 +167,6 @@
 				return COMSIG_MOB_CANCEL_CLICKON
 			INVOKE_ASYNC(src, PROC_REF(clothing_struggle), wearer, target)
 			return COMSIG_MOB_CANCEL_CLICKON
-
-	if(ismachinery(target) && !wearer.combat_mode)
-		is_interacting = TRUE
-		INVOKE_ASYNC(src, PROC_REF(fumble_interact), wearer, target, modifiers)
-		return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/component/ball_mittens_fumble/proc/clothing_struggle(mob/living/wearer, obj/item/clothing/cloth)
 	var/delay = 30 SECONDS
@@ -265,23 +261,20 @@
 		return
 	bonus_spread_values[MAX_BONUS_SPREAD_INDEX] += gun_spread_penalty
 
-/datum/component/ball_mittens_fumble/proc/fumble_interact(mob/living/wearer, atom/target, list/modifiers)
+/datum/component/ball_mittens_fumble/proc/fumble_interact(mob/living/wearer, obj/machinery/machine)
 	var/hand_desc = get_hand_descriptor(wearer)
-	var/msg = istype(target, /obj/machinery/vending) ? \
-		"You awkwardly mash your [hand_desc] against [target]'s keypad..." : \
-		"You awkwardly paw at [target] with your [hand_desc]..."
-	wearer.face_atom(target)
+	var/msg = istype(machine, /obj/machinery/vending) ? \
+		"You awkwardly mash your [hand_desc] against [machine]'s keypad..." : \
+		"You awkwardly paw at [machine] with your [hand_desc]..."
+	wearer.face_atom(machine)
 	to_chat(wearer, span_purple(msg))
-	wearer.visible_message(span_warning("[wearer] awkwardly paws at [target] with [wearer.p_their()] [hand_desc], visibly struggling to use it."))
-	if(!do_after(wearer, interact_delay, target))
-		to_chat(wearer, span_warning("You give up on [target]."))
-		is_interacting = FALSE
+	wearer.visible_message(span_warning("[wearer] awkwardly paws at [machine] with [wearer.p_their()] [hand_desc], visibly struggling to use it."))
+	if(!do_after(wearer, interact_delay, machine))
+		to_chat(wearer, span_warning("You give up on [machine]."))
 		return
-	if(QDELETED(src) || QDELETED(wearer) || QDELETED(target) || get_dist(wearer, target) > 1)
-		is_interacting = FALSE
+	if(QDELETED(src) || QDELETED(wearer) || QDELETED(machine) || get_dist(wearer, machine) > 1)
 		return
-	wearer.ClickOn(target, modifiers)
-	is_interacting = FALSE
+	machine.interact(wearer)
 
 // ============================================================
 
