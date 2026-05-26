@@ -4,7 +4,7 @@
 	if(isnull(table))
 		return data
 	var/mob/living/carbon/patient = table.patient
-	if(isnull(patient))
+	if(!istype(patient))
 		return data
 
 	if(LAZYLEN(patient.get_traumas()))

@@ -18,8 +18,8 @@
 		return
 	var/mob/living/owner = user.mob
 	owner.resist()
-	if (owner.hud_used?.resist_icon)
-		owner.hud_used.resist_icon.icon_state = "[owner.hud_used.resist_icon.base_icon_state]_on"
+	if (owner.hud_used?.screen_objects[HUD_MOB_RESIST])
+		owner.hud_used.screen_objects[HUD_MOB_RESIST].icon_state = "[owner.hud_used.screen_objects[HUD_MOB_RESIST].base_icon_state]_on"
 	return TRUE
 
 /datum/keybinding/living/resist/up(client/user, turf/target)
@@ -27,8 +27,8 @@
 	if(.)
 		return
 	var/mob/living/owner = user.mob
-	if (owner.hud_used?.resist_icon)
-		owner.hud_used.resist_icon.icon_state = owner.hud_used.resist_icon.base_icon_state
+	if (owner.hud_used?.screen_objects[HUD_MOB_RESIST])
+		owner.hud_used.screen_objects[HUD_MOB_RESIST].icon_state = owner.hud_used.screen_objects[HUD_MOB_RESIST].base_icon_state
 
 /datum/keybinding/living/look_up
 	// hotkey_keys = list("L") // ORIGINAL
@@ -154,7 +154,7 @@
 	return TRUE
 
 /datum/keybinding/living/toggle_move_intent_alternative
-	hotkey_keys = list("Unbound")
+	hotkey_keys = list(UNBOUND_KEY)
 	name = "toggle_move_intent_alt"
 	full_name = "press to cycle move intent"
 	description = "Pressing this cycle to the opposite move intent, does not cycle back"
@@ -169,7 +169,7 @@
 	return TRUE
 
 /datum/keybinding/living/toggle_throw_mode
-	hotkey_keys = list("Southwest") // END
+	hotkey_keys = list("R", "Southwest") // END
 	name = "toggle_throw_mode"
 	full_name = "Toggle throw mode"
 	description = "Toggle throwing the current item or not."

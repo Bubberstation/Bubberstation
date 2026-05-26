@@ -680,3 +680,151 @@
 		return
 	plushie_absorb(kisser)
 
+/obj/item/toy/plush/aeri
+	name = "Interdimensional Terrorist Plushie"
+	desc = "A highly controversial silicone 'plushie' modeled after its infamous namesake. Pulled from most storefronts after a spectacular public backlash, it now survives mainly through grey-market resellers. Rumor has it a few limited-run units shipped with a functional handheld railgun."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "aeri"
+	inhand_icon_state = null
+	attack_verb_continuous = list("cuddles", "squeaks", "hugs", "caresses")
+	attack_verb_simple = list("cuddle", "squeak", "hug", "caress")
+	squeak_override = list(
+		'modular_zubbers/sound/lewd/rubber1.ogg' = 1,
+		'modular_zubbers/sound/lewd/rubber2.ogg' = 1,
+		'modular_zubbers/sound/lewd/rubber3.ogg' = 1
+	)
+	var/clothed = TRUE
+
+/obj/item/toy/plush/aeri/Initialize(mapload)
+	. = ..()
+	update_plush_state()
+
+/obj/item/toy/plush/aeri/proc/update_plush_state()
+	if(clothed)
+		name = "Interdimensional Terrorist Plushie"
+		desc = "A highly controversial silicone 'plushie' modeled after its infamous namesake. Pulled from most storefronts after a spectacular public backlash, it now survives mainly through grey-market resellers. Rumor has it a few limited-run units shipped with a functional handheld railgun."
+		icon_state = "aeri"
+		//probably not necessary to put the verb and squeak override once again here but it kinda bugs out if I don't
+		attack_verb_continuous = list("cuddles", "squeaks", "hugs", "caresses")
+		attack_verb_simple = list("cuddle", "squeak", "hug", "caress")
+		squeak_override = list(
+			'modular_zubbers/sound/lewd/rubber1.ogg' = 1,
+			'modular_zubbers/sound/lewd/rubber2.ogg' = 1,
+			'modular_zubbers/sound/lewd/rubber3.ogg' = 1
+		)
+		hitsound = initial(hitsound)
+	else
+		name = "Interdimensional terrorist Doll"
+		desc = "Without the outfit, the 'plushie' label becomes much harder to defend. Beneath the clothing is a glossy, stretchable silicone shell with ribbed orifices and breasts that experts have described as 'Fuckable'."
+		icon_state = "aeri-alt"
+		attack_verb_continuous = list("cuddles", "squeaks", "hugs", "caresses")
+		attack_verb_simple = list("cuddle", "squeak", "hug", "caress")
+		squeak_override = list(
+			'modular_zubbers/sound/lewd/rubber1.ogg' = 1,
+			'modular_zubbers/sound/lewd/rubber2.ogg' = 1,
+			'modular_zubbers/sound/lewd/rubber3.ogg' = 1
+		)
+		hitsound = null
+	inhand_icon_state = null
+	update_appearance()
+	update_inhand_icon()
+
+/obj/item/toy/plush/aeri/examine(mob/user)
+	. = ..()
+	if(clothed)
+		. += span_purple("Alt-click to remove the plushie's clothes.")
+	else
+		. += span_purple("Alt-click to dress the doll back up.")
+
+/obj/item/toy/plush/aeri/click_alt(mob/user)
+	clothed = !clothed
+	if(clothed)
+		to_chat(user, span_notice("You dress [src] back up."))
+	else
+		to_chat(user, span_notice("You remove [src]'s clothes."))
+	playsound(user, 'modular_zubbers/sound/lewd/rubber1.ogg', 50, TRUE)
+	update_plush_state()
+	return TRUE
+
+/obj/item/toy/plush/aeri/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+	if(clothed)
+		return ..()
+	var/obj/item/toy/plush/fleshlight/proxy = new(loc)
+	proxy.name = name
+	proxy.desc = desc
+	proxy.icon = icon
+	proxy.icon_state = icon_state
+	. = proxy.attack(target, user)
+	qdel(proxy)
+
+//If you suicide with this toy it just summons a BSA smite on you
+/obj/item/toy/plush/aeri/suicide_act(mob/living/carbon/human/user)
+	user.visible_message(span_suicide("[user] angers the plushie! Oh god, it's locking a Bluespace Artillery strike onto [user.p_them()]! It looks like [user.p_theyre()] trying to kill [user.p_them()]self!"))
+	var/datum/smite/bsa/bluespace_smite = new()
+	bluespace_smite.effect(user.client, user)
+	return BRUTELOSS
+
+//Sprite from SS14 Main. Sprited by Orsoniks (rivey0 on discord)
+/obj/item/toy/plush/expie
+	name = "Experiment Plushie"
+	icon_state = "expie"
+	slot_flags = ITEM_SLOT_HEAD
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	worn_icon_state = "expie"
+	desc = "A plushie of a canid of sorts. It yearns to be detonated on a landmine."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	attack_verb_simple = list("bark", "growl", "whine")
+	squeak_override = list('modular_zubbers/sound/misc/plushie.ogg' = 1)
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
+	inhand_icon_state = "expie"
+
+/obj/item/toy/plush/expie/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //emissive glow when worn on head.
+	. = ..()
+	if(!isinhands)
+		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha, effect_type = EMISSIVE_BLOOM)
+
+/obj/item/toy/plush/expie/item_interaction(mob/living/feeder, obj/item/reagent_containers/applicator/pill/enom, list/modifiers)
+	if(!istype(enom))
+		return ..()
+	enom.forceMove(src) // pill go into the expie stummy
+	to_chat(feeder, span_notice("You feed the [enom] to [src] and watch as it eats..."))
+	playsound(src, 'modular_zubbers/sound/misc/eatcrunch.ogg', 75, TRUE)
+	addtimer(CALLBACK(src, PROC_REF(eat), feeder, enom), 3 SECONDS)
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/toy/plush/expie/proc/eat(mob/living/feeder, obj/item/reagent_containers/applicator/pill/enom)
+	if(istype(enom, /obj/item/reagent_containers/applicator/pill))
+		SpinAnimation(speed = 0.3 SECONDS, loops = 3)
+	qdel(enom)
+	return
+
+//expie reacts to being splashed
+/obj/item/toy/plush/expie/proc/splash_reagents()
+	SIGNAL_HANDLER
+	playsound(src, 'modular_zubbers/sound/misc/dogshake.ogg', 75)
+	spasm_animation(2 SECONDS)
+	visible_message(span_warning("[src] gets soaked and shakes itself off!"))
+
+/obj/item/toy/plush/expie/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_SPLASHED, PROC_REF(splash_reagents))
+
+/datum/reagent/consumable/milk/expose_obj(obj/exposed_obj, reac_volume, methods=TOUCH, show_message=TRUE) //spill milk on the expie to make it milky
+	. = ..()
+	if(!istype(exposed_obj, /obj/item/toy/plush/expie))
+		return
+
+	var/obj/item/toy/plush/expie/milked = exposed_obj
+	milked.name = /obj/item/toy/plush/expie/milky::name
+	milked.desc = /obj/item/toy/plush/expie/milky::desc
+	milked.worn_icon_state = /obj/item/toy/plush/expie/milky::worn_icon_state
+	milked.icon_state = /obj/item/toy/plush/expie/milky::icon_state
+	milked.inhand_icon_state = /obj/item/toy/plush/expie/milky::inhand_icon_state
+
+/obj/item/toy/plush/expie/milky
+	name = "Milky Plushie"
+	desc = "A plushie of snowy-white, furred canid. Maybe it'll trade something with you?"
+	worn_icon_state = "milky"
+	icon_state = "milky"
+	inhand_icon_state = "milky"

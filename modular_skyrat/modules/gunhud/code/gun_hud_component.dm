@@ -15,10 +15,10 @@
 	SIGNAL_HANDLER
 
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.is_holding(parent))
-			if(H.hud_used)
-				hud = H.hud_used.ammo_counter
+		var/mob/living/carbon/human/human_user = user
+		if(human_user.is_holding(parent))
+			if(human_user)
+				hud = human_user.hud_used?.screen_objects[HUD_MOB_AMMO_COUNTER]
 				turn_on()
 		else
 			turn_off()
@@ -29,7 +29,7 @@
 	RegisterSignals(parent, list(COMSIG_PREQDELETED, COMSIG_ITEM_DROPPED), PROC_REF(turn_off))
 	RegisterSignals(parent, list(COMSIG_UPDATE_AMMO_HUD, COMSIG_GUN_CHAMBER_PROCESSED), PROC_REF(update_hud))
 
-	hud.turn_on()
+	hud?.turn_on()
 	update_hud()
 
 /datum/component/ammo_hud/proc/turn_off()
@@ -57,6 +57,10 @@
 
 /datum/component/ammo_hud/proc/update_hud()
 	SIGNAL_HANDLER
+
+	if (isnull(hud))
+		return
+
 	if(istype(parent, /obj/item/gun/ballistic))
 		var/obj/item/gun/ballistic/pew = parent
 		hud.maptext = null
