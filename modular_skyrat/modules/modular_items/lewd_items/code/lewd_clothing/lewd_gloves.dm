@@ -226,9 +226,20 @@
 /datum/component/ball_mittens_fumble/proc/on_try_strip(mob/living/wearer, atom/target, obj/item/item)
 	SIGNAL_HANDLER
 	if(wearer.get_slot_by_item(item))
-		return
-	to_chat(wearer, span_purple("You paw at their equipment, but can't seem to manage more than harmlessly bumping your [get_hand_descriptor(wearer)] into them."))
+		return // Someone stripping the wearer - allow normally
+	if(!isliving(target) || !isitem(item))
+		return COMPONENT_CANT_STRIP
+	to_chat(wearer, span_purple("You fumble awkwardly at [target]'s gear with your [get_hand_descriptor(wearer)], trying to find a grip..."))
+	INVOKE_ASYNC(src, PROC_REF(delayed_strip), wearer, target, item)
 	return COMPONENT_CANT_STRIP
+
+/datum/component/ball_mittens_fumble/proc/delayed_strip(mob/living/wearer, mob/living/target, obj/item/item)
+	if(!do_after(wearer, item.strip_delay * 2, target, timed_action_flags = IGNORE_HELD_ITEM))
+		to_chat(wearer, span_warning("You give up trying to remove [item] from [target]."))
+		return
+	if(QDELETED(src) || QDELETED(wearer) || QDELETED(target) || QDELETED(item))
+		return
+	item.doStrip(wearer, target)
 
 /datum/component/ball_mittens_fumble/proc/on_removing_cuffs(mob/living/wearer, obj/item/cuffs)
 	SIGNAL_HANDLER
