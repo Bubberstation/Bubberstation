@@ -169,7 +169,7 @@
 			return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/component/ball_mittens_fumble/proc/clothing_struggle(mob/living/wearer, obj/item/clothing/cloth)
-	var/delay = 30 SECONDS
+	var/delay = 12 SECONDS
 	var/hand_desc = get_hand_descriptor(wearer)
 	to_chat(wearer, span_purple("You struggle to remove [cloth]. It's extremely difficult with your [hand_desc]... (This will take around [DisplayTimeText(delay)] and you need to stand still.)"))
 	if(!do_after(wearer, delay, cloth, timed_action_flags = IGNORE_HELD_ITEM))
@@ -230,7 +230,7 @@
 	return COMPONENT_CANT_STRIP
 
 /datum/component/ball_mittens_fumble/proc/delayed_strip(mob/living/wearer, mob/living/target, obj/item/item)
-	if(!do_after(wearer, item.strip_delay * 2, target, timed_action_flags = IGNORE_HELD_ITEM))
+	if(!do_after(wearer, item.strip_delay * 2.5, target, timed_action_flags = IGNORE_HELD_ITEM))
 		to_chat(wearer, span_warning("You give up trying to remove [item] from [target]."))
 		return
 	if(QDELETED(src) || QDELETED(wearer) || QDELETED(target) || QDELETED(item))
