@@ -22,6 +22,7 @@
 	allowed_species = list(/datum/species/synthetic, /datum/species/protean)
 	cooldown = 2 SECONDS
 
+/* TEST FOR AUTOLABELER
 /datum/emote/living/human/rshutdown
 	key = "shutdown"
 	message = "emits a nostalgic tone as they fall silent."
@@ -29,3 +30,4 @@
 	sound = 'modular_zubbers/code/modules/emotes/sound/synth_voice/synth_shutdown.ogg'
 	allowed_species = list(/datum/species/synthetic, /datum/species/protean)
 	cooldown = 2 SECONDS
+*/
