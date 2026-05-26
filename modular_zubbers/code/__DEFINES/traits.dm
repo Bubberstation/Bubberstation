@@ -9,7 +9,3 @@
 #define TRAIT_GAIAN_PHYSIQUE "gaian_physique"
 /// Makes the target unable to use martial arts.
 #define TRAIT_MARTIAL_ARTS_UNUSABLE "martial_arts_unusable"
-
-
-
-
