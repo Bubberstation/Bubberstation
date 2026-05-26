@@ -1,4 +1,6 @@
 /obj/structure/bibberblub
+	name = "Abstract Bibberblub structure"
+	desc = "You shouldn't be seeing this."
 	icon = 'modular_zubbers/icons/bibberblub/bibberblub.dmi'
 	max_integrity = 50
 	anchored = TRUE
