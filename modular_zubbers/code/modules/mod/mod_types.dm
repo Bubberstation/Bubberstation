@@ -45,6 +45,5 @@
 	)
 	default_pins = list(
 		/obj/item/mod/module/flashlight,
-		/obj/item/mod/module/auto_doc,
 	)
 
