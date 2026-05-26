@@ -1,12 +1,3 @@
-/obj/item/storage/belt/holster/cowboy
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
-	name = "cowboy belt"
-	desc = "Yee haw! The holster on the side of the hip is leather stamped with swirling lines, all leading back to a deer's antlers."
-	icon_state = "cowboy_belt"
-	worn_icon_state = "cowboy_belt"
-	inhand_icon_state = "utility"
-
 /obj/item/storage/belt/medbandolier
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
