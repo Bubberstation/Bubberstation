@@ -1,4 +1,4 @@
-#define AUTO_SMITHING_SPEED_PENALTY 6 DECISECONDS
+#define AUTO_SMITHING_SPEED_PENALTY 1 SECONDS
 
 /obj/structure/reagent_anvil
 	name = "smithing anvil"
