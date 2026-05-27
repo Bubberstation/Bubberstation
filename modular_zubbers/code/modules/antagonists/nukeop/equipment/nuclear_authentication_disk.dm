@@ -7,18 +7,7 @@
 		return
 
 	if(last_move < world.time - GRACE_PERIOD)
-		/// How comfy is our disk?
-		var/disk_comfort_level = 0
-
-		//Go through and check for items that make disk comfy
-		for(var/obj/comfort_item in loc)
-			if(istype(comfort_item, /obj/item/bedsheet) || istype(comfort_item, /obj/structure/bed))
-				disk_comfort_level++
-		var/comfy = disk_comfort_level >= 2
-		if (comfy)
-			return
-		else
-			begin_nuclear_assault()
+		begin_nuclear_assault()
 
 /obj/item/disk/nuclear/proc/begin_nuclear_assault()
 	priority_announce(
