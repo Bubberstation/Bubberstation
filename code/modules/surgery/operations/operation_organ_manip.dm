@@ -5,7 +5,7 @@
 	name = "organ manipulation"
 	abstract_type = /datum/surgery_operation/limb/organ_manipulation
 	operation_flags = OPERATION_MORBID | OPERATION_NOTABLE | OPERATION_NO_PATIENT_REQUIRED
-	required_bodytype = (~BODYTYPE_ROBOTIC & ~BODYTYPE_SYNTHETIC & ~BODYTYPE_NANO) // BUBBER EDIT CHANGE - SYNTH/NANO FLAGS  -Original: required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = (~BODYTYPE_ROBOTIC & ~BODYTYPE_SYNTHETIC) // BUBBER EDIT CHANGE - SYNTH FLAGS  -Original: required_bodytype = ~BODYTYPE_ROBOTIC
 	/// Radial slice datums for every organ type we can manipulate
 	VAR_PRIVATE/list/cached_organ_manipulation_options
 
