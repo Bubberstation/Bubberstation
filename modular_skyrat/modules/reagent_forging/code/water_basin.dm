@@ -55,9 +55,9 @@
 
 //heat from the contained reagents need to go into the atmosphere over time
 /obj/structure/reagent_dispensers/reagent_smithing_basin/process(seconds_per_tick)
+	var/datum/gas_mixture/current_air = return_air()
 	if(reagents.total_volume < 1 || reagents.chem_temp == current_air.temperature)
 		return PROCESS_KILL
-	var/datum/gas_mixture/current_air = return_air()
 	var/temp_difference = reagents.chem_temp - current_air.temperature
 	current_air.temperature += temp_difference * seconds_per_tick * SMITHING_BASIN_HEATLOSS_COEFFICIENT
 	reagents.chem_temp -= temp_difference * seconds_per_tick * SMITHING_BASIN_HEATLOSS_COEFFICIENT
