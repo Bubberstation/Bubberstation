@@ -27,7 +27,7 @@
 ///Creates the item using the given list of ingredients -- it's assumed that this is only called after the list is verified to contain all ingredients. Probably shouldn't be parent called due to ingredient deletion.
 /datum/crafting_bench_recipe/proc/create_using_item_list(list/item_list, mob/living/user, construction_location)
 	var/obj/item/returner = new resulting_item(construction_location)
-
+	apply_perfect_and_completion_bonuses(returner)
 	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner, user)
 	put_materials_in_product_from_ingredients(item_list, returner)
 	consume_crafting_ingredients(item_list, returner)
