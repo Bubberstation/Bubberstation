@@ -122,11 +122,15 @@
 /datum/species/lycan/on_species_gain(mob/living/carbon/human/gainer, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
 
+	RegisterSignal(gainer, COMSIG_LIVING_BANED, PROC_REF(on_baned))
+
 	if (HAS_TRAIT(gainer, TRAIT_GAIAN_PHYSIQUE))
 		handle_gaian_physique(gainer)
 
 /datum/species/lycan/on_species_loss(mob/living/carbon/human/loser, datum/species/new_species, pref_load)
 	. = ..()
+
+	UnregisterSignal(loser, COMSIG_LIVING_BANED)
 
 	if (HAS_TRAIT(loser, TRAIT_GAIAN_PHYSIQUE))
 		handle_gaian_physique_loss(loser)
@@ -180,3 +184,10 @@
 	loser.physiology.stamina_mod *= 4
 
 	// already lost the limb shit
+
+/datum/species/lycan/proc/on_baned(mob/living/carbon/human/baned, mob/user)
+	SIGNAL_HANDLER
+
+	baned.visible_message(span_warning("[baned] seems to react negatively to the silver, [baned.p_their()] flesh scorching and burning on contact!"), ignored_mobs = list(baned))
+	to_chat(baned, span_bolddanger("The sister moon casts its light on you, and you feel your flesh scorch!"))
+	INVOKE_ASYNC(baned, TYPE_PROC_REF(/mob, emote), "scream")
