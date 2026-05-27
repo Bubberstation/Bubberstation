@@ -137,7 +137,7 @@
 	open_sound = 'sound/items/handling/holster_open.ogg'
 	open_sound_vary = TRUE
 	max_specific_storage = WEIGHT_CLASS_BULKY
-	var/delay_before_charging = 15 SECONDS
+	var/delay_before_charging = 20 SECONDS
 	var/timer_id
 	var/obj/machinery/recharger/belt_charger/my_charger
 
@@ -177,7 +177,7 @@
 /obj/machinery/recharger/belt_charger
 	name = "belt charger"
 	desc = "the fact that you can see this means there's an error, call a dev!"
-	recharge_coeff = 0.5
+	recharge_coeff = 0.2
 	var/obj/item/storage/belt/hip_holster/charging/my_belt
 
 /obj/machinery/recharger/belt_charger/Destroy()
