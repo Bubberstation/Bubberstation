@@ -217,7 +217,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 /obj/item/storage/belt/crusader	//Belt + sheath combination - still only holds one sword at a time though
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
+	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
 	name = "scabbard-utility belt"
 	desc = "Holds an assortment of equipment for whatever situation an adventurer may encounter, as well as having an attached scabbard to hold a sword or bladed weapon."
@@ -326,7 +326,7 @@
 	new /obj/item/storage/belt/storage_pouch(src)
 
 /obj/item/storage/belt/storage_pouch	//seperate mini-storage inside the belt, leaving room for only one sword. Inspired by a (very poorly implemented) belt on Desert Rose
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
+	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
 	name = "storage pouch"
 	desc = span_notice("Click on this to open your belt's inventory!")
