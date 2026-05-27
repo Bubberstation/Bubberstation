@@ -15,6 +15,13 @@
 	faction = list(FACTION_MAINT_CREATURES)
 	speed = 0.05
 
+	unique_name = TRUE
+
+	//slightly green, because their slime is green. Seemed to fit.
+	lighting_cutoff_red = 20
+	lighting_cutoff_green = 25
+	lighting_cutoff_blue = 20
+
 	speak_emote = list("blorbles")
 	bubble_icon = "slime"
 	initial_language_holder = /datum/language_holder/slime
@@ -126,7 +133,7 @@
 
 /mob/living/basic/bibberblub/proc/consume_food(obj/item/food/our_lunch)
 	to_chat(src, span_red("You nibble on \the [our_lunch]"))
-	if(!do_after(src, 2 SECONDS, our_lunch))
+	if(!do_after(src, 1 SECONDS, our_lunch))
 		return
 	take_bite(our_lunch)
 

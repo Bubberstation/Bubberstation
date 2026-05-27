@@ -58,7 +58,7 @@
 	cooldown_time = 5 SECONDS
 	spell_requirements = null
 	antimagic_flags = null
-	cast_range = 2
+	cast_range = 1
 	var/obj/item/hamstered_item
 
 /datum/action/cooldown/spell/pointed/hamster/on_activation(mob/on_who)
