@@ -7,11 +7,11 @@
 	maxHealth = 5
 	health = 5
 	density = FALSE
-	pass_flags = PASSTABLE|PASSGRILLE|PASSMOB
+	pass_flags = PASSTABLE|PASSGRILLE|PASSMOB|PASSDOORS
 	mob_size = MOB_SIZE_TINY
 	can_be_held = TRUE
 	held_w_class = WEIGHT_CLASS_TINY
-	mob_biotypes = MOB_ORGANIC|MOB_BEAST
+	mob_biotypes = MOB_ORGANIC|MOB_SLIME
 	faction = list(FACTION_MAINT_CREATURES)
 	speed = 0.05
 
