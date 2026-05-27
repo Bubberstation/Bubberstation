@@ -875,7 +875,7 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/reroll_antagonist(datum/round_event_control/event_control, antag_name, datum/antagonist/existing_antag)
 	message_admins(span_yellowteamradio("[key_name_admin(usr)] requested a new antagonist to replace [antag_name]."))
 	log_admin("[key_name_admin(usr)] requested a new antagonist to replace [antag_name].")
-	if (!isnull(existing_antag))
+	if (isnull(event_control) && !isnull(existing_antag))
 		event_control = SSgamemode.antag_rerolls_by_pref[existing_antag.pref_flag]
 	if(isnull(event_control))
 		event_control = pick_weight(SSgamemode.antag_rerolls)
