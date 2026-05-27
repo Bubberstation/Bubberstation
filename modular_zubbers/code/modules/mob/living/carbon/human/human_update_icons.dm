@@ -63,3 +63,14 @@
 		overlays_standing[BODY_LAYER] = standing
 
 	apply_overlay(BODY_LAYER)
+
+// Refresh bodypart overlays (genitals etc.) when suit/uniform changes so visibility updates immediately.
+/mob/living/carbon/human/update_worn_oversuit()
+	..()
+	if(!(living_flags & STOP_OVERLAY_UPDATE_BODY_PARTS))
+		update_body_parts()
+
+/mob/living/carbon/human/update_worn_undersuit()
+	..()
+	if(!(living_flags & STOP_OVERLAY_UPDATE_BODY_PARTS))
+		update_body_parts()
