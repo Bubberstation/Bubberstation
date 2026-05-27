@@ -13,6 +13,8 @@
 	var/time_to_assemble = 2 SECONDS
 	/// What skill is relevant to the creation of this item?
 	var/relevant_skill = /datum/skill/smithing
+	/// How much EXP to give to relevant_skill?
+	var/exp_give = 10
 	/// What skill level is required in that creation?
 	var/relevant_skill_level = 0
 	/// Does the recipe also require a specific trait?
@@ -29,6 +31,7 @@
 	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner, user)
 	put_materials_in_product_from_ingredients(item_list, returner)
 	consume_crafting_ingredients(item_list, returner)
+	give_experience(user)
 	return returner
 
 /datum/crafting_bench_recipe/proc/transfer_reagent_imbues_from_ingredients_to_product(list/ingredients, obj/item/product, mob/living/user)
@@ -135,6 +138,9 @@
 /datum/crafting_bench_recipe/proc/get_ingredient_description(obj/requirement_item)
 	return span_notice("<b>[recipe_requirements[requirement_item]]</b> - [initial(requirement_item.name)]")
 
+/datum/crafting_bench_recipe/proc/give_experience(mob/user)
+	if(!isnull(user?.mind))
+		user.mind.adjust_experience(relevant_skill, exp_give)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// WEAPON COMPLETION /////////////////////////////////////////////////////
@@ -158,6 +164,7 @@
 	put_materials_in_product_from_ingredients(item_list, returner, user)
 
 	consume_crafting_ingredients(item_list, returner)
+	give_experience(user)
 	return returner
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -343,6 +350,7 @@
 	)
 	resulting_item = /obj/item/storage/belt/hip_holster/charging
 	relevant_skill_level = 7
+	exp_give = 20
 	time_to_assemble = 3 SECONDS
 	required_traits = list(TRAIT_KNOW_GUNSMITHING, TRAIT_KNOW_CIRCUIT_SMITHING)
 
@@ -408,6 +416,7 @@
 		/obj/item/grown/bananapeel/bluespace = 1,
 		/obj/item/stack/sheet/bluespace_crystal = 1,
 	)
+	exp_give = 30
 	resulting_item = /obj/item/storage/bag/plants/bluespace
 	time_to_assemble = 3 SECONDS
 	required_traits = list(TRAIT_KNOW_CIRCUIT_SMITHING)

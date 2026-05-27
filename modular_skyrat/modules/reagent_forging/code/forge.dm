@@ -555,7 +555,6 @@
 	else
 		forge_fuel_weak += 5 MINUTES
 	balloon_alert(user, "fueled [src]")
-	user.mind.adjust_experience(/datum/skill/smithing, 5) // You gain small amounts of experience from useful fueling
 
 	if(prob(CHARCOAL_CHANCE) && !is_strong_fuel)
 		to_chat(user, span_notice("[src]'s fuel is packed densely enough to have made some charcoal!"))
@@ -619,7 +618,6 @@
 		weapon_component.set_reagent_imbue(attacking_item.reagents, clear_source_reagents = TRUE)
 
 	balloon_alert_to_viewers("imbued [attacking_item]")
-	user.mind.adjust_experience(/datum/skill/smithing, 60)
 	playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	return TRUE
 
@@ -726,7 +724,6 @@
 			return ITEM_INTERACT_SUCCESS
 
 		forge_temperature += 10
-		user.mind.adjust_experience(/datum/skill/smithing, 5) // Billowing, like fueling, gives you some experience in forging
 
 	balloon_alert(user, "successfully heated [src]")
 	return ITEM_INTERACT_SUCCESS
@@ -824,7 +821,6 @@
 	COOLDOWN_START(find_glass, remaining_heat, glassblowing_amount)
 	find_glass.total_time = glassblowing_amount
 	to_chat(user, span_notice("You finish heating up [blowing_item]."))
-	user.mind.adjust_experience(/datum/skill/smithing, 5)
 	user.mind.adjust_experience(/datum/skill/production, 10)
 	return ITEM_INTERACT_SUCCESS
 

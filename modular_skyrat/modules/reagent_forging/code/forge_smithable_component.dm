@@ -215,7 +215,7 @@
 			do_sparks(1, FALSE, src)
 		if(ANVIL_HAMMER_HIT_PERFECT)
 			perfect_hit(amount = quality_points_to_give, playsound = TRUE)
-			user.mind.adjust_experience(/datum/skill/smithing, 10) //A perfect hit gives good experience
+			user.mind.adjust_experience(/datum/skill/smithing, 5) //A perfect hit gives good experience
 			do_sparks(2, FALSE, parent_item)
 
 	show_balloon_alert(user, hit_quality)

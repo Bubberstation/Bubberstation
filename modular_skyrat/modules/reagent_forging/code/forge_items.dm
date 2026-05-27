@@ -30,7 +30,7 @@
 	var/datum/component/forge_smithable/forge_component = GetComponent(/datum/component/forge_smithable)
 	if(forge_component.is_finished_smithing())
 		to_chat(quencher, span_notice("You cool down [src]."))
-		quencher.mind.adjust_experience(/datum/skill/smithing, 10)
+		quencher.mind.adjust_experience(/datum/skill/smithing, 5)
 	else
 		if(break_on_early_quench)
 			to_chat(quencher, span_warning("The [src] breaks from the thermal shock! Metalworking this type of object requires it to be hammered into completion."))
