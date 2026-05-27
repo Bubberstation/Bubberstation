@@ -16020,10 +16020,18 @@
 /area/station/medical/cryo)
 "bua" = (
 /obj/structure/table/glass,
-/obj/item/clothing/neck/stethoscope,
-/obj/item/clothing/mask/surgical,
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted,
 /obj/machinery/firealarm/directional/south,
+/obj/item/tgui_book/manual/dsm{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/tgui_book/manual/idc{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/clothing/neck/stethoscope,
+/obj/item/clothing/mask/surgical,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay)
 "bub" = (
@@ -29024,11 +29032,8 @@
 /area/station/hallway/primary/central/fore)
 "eKa" = (
 /obj/structure/table/glass,
-/obj/item/circular_saw,
-/obj/item/scalpel{
-	pixel_y = 12
-	},
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted,
+/obj/effect/spawner/surgery_tray/full,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery/theatre)
 "eKj" = (
@@ -32982,15 +32987,12 @@
 /turf/open/floor/plating,
 /area/station/cargo/miningfoundry)
 "hkF" = (
-/obj/item/retractor,
-/obj/item/hemostat,
-/obj/item/cautery,
 /obj/structure/table/glass,
 /obj/machinery/light/directional/east,
-/obj/item/blood_filter,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 4
 	},
+/obj/item/book/manual/wiki/surgery,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery/theatre)
 "hkQ" = (
@@ -39073,13 +39075,11 @@
 /turf/open/floor/iron,
 /area/station/commons/fitness/recreation)
 "lig" = (
-/obj/vehicle/ridden/wheelchair{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 8
 	},
 /obj/machinery/light_switch/directional/west,
+/obj/machinery/iv_drip,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery/theatre)
 "liI" = (
@@ -39135,13 +39135,10 @@
 /area/station/science/lab)
 "lkA" = (
 /obj/structure/table/glass,
-/obj/item/circular_saw,
-/obj/item/scalpel{
-	pixel_y = 12
-	},
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 4
 	},
+/obj/effect/spawner/surgery_tray/full,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery/theatre)
 "lkK" = (
@@ -42072,7 +42069,8 @@
 /obj/structure/lattice,
 /obj/item/toy/plush/lizard_plushie{
 	pixel_x = 12;
-	pixel_y = 7
+	pixel_y = 7;
+	name = "Consumes-The-Citrus"
 	},
 /obj/item/food/grown/citrus/orange{
 	pixel_x = 3;
@@ -46362,9 +46360,6 @@
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
 "pJc" = (
-/obj/vehicle/ridden/wheelchair{
-	dir = 4
-	},
 /obj/machinery/button/door/directional/west{
 	id = "surgerya";
 	name = "Privacy Shutters Control";
@@ -46373,6 +46368,7 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 8
 	},
+/obj/machinery/iv_drip,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery/theatre)
 "pJK" = (
@@ -48803,17 +48799,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall,
 /area/station/maintenance/department/science/central)
-"rch" = (
-/obj/structure/table/glass,
-/obj/item/clothing/gloves/latex,
-/obj/item/surgical_drapes,
-/obj/item/stack/medical/bone_gel,
-/obj/effect/turf_decal/tile/blue/half/contrasted{
-	dir = 4
-	},
-/obj/item/radio/intercom/directional/east,
-/turf/open/floor/iron/white,
-/area/station/medical/surgery/theatre)
 "rdr" = (
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
@@ -50921,8 +50906,13 @@
 /obj/structure/table/glass,
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/machinery/light/directional/west,
-/obj/item/toy/figure/md,
 /obj/machinery/vitals_reader/directional/west,
+/obj/item/book/manual/wiki/medicine{
+	pixel_x = 5
+	},
+/obj/item/toy/figure/md{
+	pixel_x = -7
+	},
 /turf/open/floor/iron,
 /area/station/medical/treatment_center)
 "suh" = (
@@ -53887,10 +53877,6 @@
 /area/station/science/xenobiology)
 "ufk" = (
 /obj/structure/table/glass,
-/obj/item/clothing/gloves/latex,
-/obj/item/surgical_drapes,
-/obj/item/surgicaldrill,
-/obj/item/bonesetter,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 4
 	},
@@ -54485,13 +54471,20 @@
 /turf/closed/wall/r_wall,
 /area/station/engineering/atmos)
 "uwS" = (
-/obj/structure/bed/medical/emergency,
-/obj/machinery/iv_drip,
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 8
 	},
+/obj/structure/rack,
+/obj/item/wheelchair{
+	pixel_y = 6
+	},
+/obj/item/wheelchair{
+	pixel_y = 6
+	},
+/obj/item/emergency_bed,
+/obj/item/emergency_bed,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery/theatre)
 "uwX" = (
@@ -57674,17 +57667,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/service/chapel)
-"wvp" = (
-/obj/item/retractor,
-/obj/item/hemostat,
-/obj/item/cautery,
-/obj/structure/table/glass,
-/obj/machinery/light/directional/east,
-/obj/effect/turf_decal/tile/blue/half/contrasted{
-	dir = 4
-	},
-/turf/open/floor/iron/white,
-/area/station/medical/surgery/theatre)
 "wwj" = (
 /turf/closed/wall/mineral/iron,
 /area/station/service/chapel/funeral)
@@ -59166,7 +59148,9 @@
 "xjQ" = (
 /obj/structure/lattice/catwalk,
 /obj/item/wirecutters,
-/obj/item/toy/plush/lizard_plushie/space,
+/obj/item/toy/plush/lizard_plushie/space{
+	name = "Kills-The-Lights"
+	},
 /turf/open/space/basic,
 /area/station/solars/aisat)
 "xjU" = (
@@ -59792,12 +59776,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/science/central)
 "xBk" = (
-/obj/structure/bed/medical/emergency,
-/obj/machinery/iv_drip,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 8
 	},
 /obj/machinery/computer/security/telescreen/entertainment/directional/west,
+/obj/structure/closet/crate/freezer/surplus_limbs,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery/theatre)
 "xBl" = (
@@ -87658,8 +87641,8 @@ gVy
 ioj
 bub
 lkA
-rch
-wvp
+ufk
+hkF
 fMs
 hkF
 ufk
