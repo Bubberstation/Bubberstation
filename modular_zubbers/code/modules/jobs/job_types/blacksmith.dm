@@ -43,7 +43,7 @@
 	uniform = /obj/item/clothing/under/rank/cargo/tech/skyrat/long
 	suit = /obj/item/clothing/suit/leatherapron
 	backpack_contents = list(
-		/obj/item/crowbar = 1
+		/obj/item/crowbar = 1,
 		/obj/item/forging/hammer = 1,
 		/obj/item/forging/tongs = 1,
 		/obj/item/forging/billow = 1,
