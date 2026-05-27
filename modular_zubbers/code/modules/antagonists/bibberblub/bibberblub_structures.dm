@@ -43,7 +43,7 @@
 	icon = 'modular_zubbers/icons/bibberblub/bibberblub.dmi'
 	icon_state = "Rations"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("wet maintainance" = 5, "a vaguely apple-flavored glob of snot" = 1, "someone's vomit, but slimier" = 1, "salted riverbed" = 3)
+	tastes = list("wet maintainance" = 5, "a vaguely chicken-flavored glob of snot" = 1, "someone's vomit, but slimier" = 1, "salted riverbed" = 3)
 	foodtypes = GROSS
 	w_class = WEIGHT_CLASS_TINY
 
@@ -83,6 +83,7 @@
 	name = "Blubhole"
 	desc = "A wall of tough slime with a hole in it. A hole perfect for letting Bibberblubs slip through"
 	icon_state = "Blubhole"
+	max_integrity = 100
 	density = TRUE
 	opacity = TRUE
 	layer = TABLE_LAYER
@@ -94,3 +95,37 @@
 		return TRUE
 
 	return ..()
+
+/obj/structure/bibberblub/blubgrowth
+	name = "Blubgrowth"
+	desc = "A slimy growth that seems to still be growing. The result probably won't be toxic."
+	icon_state = "Blubgrowth_1"
+	density = FALSE
+	layer = MOB_LAYER
+	plane = GAME_PLANE
+	var/icon_state_common = "Blubgrowth_"
+	var/growth_progress = 1
+
+/obj/item/food/bibberblub_rations/fleshy
+	name = "Fleshy Bibberblub Rations"
+	desc = "A Protein-rich glob of goop. Likely unpalatable to anyone who has tastebuds, which Bibberblubs conveniently lack. Doesn't actually contain any meat."
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 20,)
+
+/obj/structure/bibberblub/blubgrowth/Initialize(mapload)
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(advance_growth)), 1 MINUTES)
+
+/obj/structure/bibberblub/blubgrowth/proc/advance_growth()
+	growth_progress++
+	if(growth_progress > 4)
+		finish_growing()
+		return
+	icon_state = "[icon_state_common][growth_progress]"
+	update_appearance()
+	addtimer(CALLBACK(src, PROC_REF(advance_growth)), 1 MINUTES)
+
+/obj/structure/bibberblub/blubgrowth/proc/finish_growing()
+	new /obj/item/food/bibberblub_rations/fleshy(get_turf(src))
+	playsound(src, 'sound/effects/splat.ogg', 100, TRUE)
+	qdel(src)
+

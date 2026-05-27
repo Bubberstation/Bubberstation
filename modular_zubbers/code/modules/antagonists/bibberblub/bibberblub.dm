@@ -37,6 +37,7 @@
 	var/datum/action/cooldown/bubberblub_structures/slimy_floor/build_slime_floor
 	var/datum/action/cooldown/bubberblub_structures/compost_hole/build_compost
 	var/datum/action/cooldown/bubberblub_structures/blubhole/build_blubhole
+	var/datum/action/cooldown/bubberblub_structures/blubgrowth/build_blubgrowth
 
 	var/nutriment_resource = 0
 	var/protein_resource = 0
@@ -68,6 +69,9 @@
 
 	build_compost = new()
 	build_compost.Grant(src)
+
+	build_blubgrowth = new()
+	build_blubgrowth.Grant(src)
 
 /mob/living/basic/bibberblub/death(gibbed)
 	. = ..()

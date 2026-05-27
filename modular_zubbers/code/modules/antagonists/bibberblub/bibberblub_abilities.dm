@@ -228,3 +228,14 @@
 	cooldown_time = 30 SECONDS
 	structure_to_build = /obj/structure/bibberblub/blubhole
 
+/datum/action/cooldown/bubberblub_structures/blubgrowth
+	name = "Build Blubgrowth"
+	desc = "Start a slimy growth that slowly grows the nutriments invested into Protein! takes about 4 minutes to grow."
+	button_icon_state = "Blubgrowth_3"
+	nutriment_cost = 30
+	minimum_distance = 3
+	minimum_floors = 8
+	build_time = 3 SECONDS
+	cooldown_time = 10 SECONDS
+	structure_to_build = /obj/structure/bibberblub/blubgrowth
+
