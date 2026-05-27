@@ -117,8 +117,7 @@
 
 /obj/item/clothing/suit/hooded/secjuggernaut
 	name = "security juggernaut suit"
-	desc = "An advanced suit of security armor."
-	var/extended_desc = "The Advanced Security Suit offers nigh-perfect protection of the wearer through an advanced layering of kevlar, titanium, and ceramic plates. \
+	desc = "The Advanced Security Suit offers nigh-perfect protection of the wearer through an advanced layering of kevlar, titanium, and ceramic plates. \
 		The construction of the suit unfortunately renders it incredibly heavy and cumbersome, effectively slowing the user to a crawl. \
 		Only through recently developed micro-anti-gravitational generators can the suit actually be worn and moved in. \
 		Comes with a built-in helmet for EVA action."
@@ -138,7 +137,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | IMMUTABLE_SLOW | SNUG_FIT
 	cold_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
-	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT_OFF
+	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
 	heat_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
 	slowdown = 5
@@ -156,8 +155,7 @@
 
 /obj/item/clothing/head/hooded/secjuggernaut
 	name = "security juggernaut helmet"
-	desc = "An advanced security helmet."
-	var/extended_desc = "A helmet built into the Advanced Security Suit. It offers nigh-perfect protection with the drawback of being permanently affixed to an incredibly heavy suit. \
+	desc = "A helmet built into the Advanced Security Suit. It offers nigh-perfect protection with the drawback of being permanently affixed to an incredibly heavy suit. \
 		It is pressure resistant and comes with a built-in seclite for visiblity in dark areas.\
 		While made of the same materials and having the same overall construction, built-in servos and actuators allow it to be easily put on compared to the suit it comes with."
 	icon_state = "security_jugger0"
@@ -166,14 +164,14 @@
 	worn_icon_muzzled = 'modular_zubbers/icons/mob/clothing/head/helmet_muzzled.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
 	armor_type = /datum/armor/secjuggernaut
-	flash_protect = FLASH_PROTECTION_FLASH
+	flash_protect = FLASH_PROTECTION_WELDER
 	strip_delay = 15 SECONDS
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | IMMUTABLE_SLOW | SNUG_FIT | HEADINTERNALS
 	clothing_traits = list(TRAIT_HEAD_INJURY_BLOCKED)
 	cold_protection = HEAD
-	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT_OFF
+	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	heat_protection = HEAD
-	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
+	max_heat_protection_temperature = SPACE_HELM_MAX_TEMP_PROTECT
 	flags_inv = HIDEHAIR|HIDEFACE|HIDESNOUT
 	flags_cover = HEADCOVERSEYES|HEADCOVERSMOUTH|PEPPERPROOF
 	resistance_flags = FIRE_PROOF | ACID_PROOF
