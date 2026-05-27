@@ -16,7 +16,7 @@
 
 /obj/item/gun/ballistic/automatic/wt550/burst
 	name = "\improper WT-550-B Autoburstrifle"
-	desc = "A WT-550-based platform typically used by paramilitary troops. Outfitted with a slightly lighter frame and a two-shot burst trigger mechanism along with while cutting off the stock. Seems to perform overall better than the average autorifle, but kicks a bit more. Has a threaded barrel for suppressors. Uses 4.6x30mm rounds."
+	desc = "Not so much of a rifle, being modified closer to a submachine gun, but still somehow just as bulky. Outfitted with a modified frame and a two-shot burst trigger mechanism along with cutting off the stock. Perform overall better than the average autorifle, but kicks a bit more. Has a threaded barrel for suppressors. Uses 4.6x30mm rounds."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "wt550b"
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
@@ -32,8 +32,8 @@
 	AddComponent(/datum/component/automatic_fire, 0.5 SECONDS)
 
 /obj/item/gun/ballistic/automatic/wt550/dmr
-	name = "\improper WT-550-C DMAR"
-	desc = "A WT-550-based platform typically used by paramilitary support gunners. Outfitted with the longest barrel and custom trigger to enhance performance while reducing fire rate. Equipped with a custom scope and a threaded barrel for suppressors. Uses 4.6x30mm rounds."
+	name = "\improper WT-550-C Autorifle"
+	desc = "A longer range WT-550, assembled using an aftermarket kit and parts. Outfitted with the longest barrel and custom trigger to enhance long range performance. Equipped with a custom scope and a threaded barrel for suppressors. Uses 4.6x30mm rounds."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/wt550dmr.dmi'
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
 	weapon_weight = WEAPON_HEAVY
@@ -52,7 +52,7 @@
 
 /obj/item/gun/ballistic/automatic/wt550/sawnoff
 	name = "\improper sawn-off WT-550"
-	desc = "An insanely chopped down WT-550. The barrel, stock and parts of the frame have been sawn down to reduce weight, somehow increasing fire-rate but causing handling to drop to abysmal levels. Don't even think about dual-wielding these. Uses 4.6x30mm rounds."
+	desc = "A custom chopped down WT-550. Less of a sawn-off and more of a mostly-gone. The barrel, stock and parts of the frame have been stripped down to reduce weight, causing handling to drop to abysmal levels. Don't even think about dual-wielding these. Uses 4.6x30mm rounds."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "wt550s"
 	w_class = WEIGHT_CLASS_NORMAL

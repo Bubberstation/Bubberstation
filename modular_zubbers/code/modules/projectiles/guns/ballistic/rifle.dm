@@ -10,7 +10,7 @@
 
 /obj/item/gun/ballistic/rifle/stingballer
 	name = "\improper Stingball Rifle"
-	desc = "A pneumatic rifle designed to rapidly fire stingballs."
+	desc = "A pneumatic rifle designed to rapidly fire stingballs. Holds up to 50 rounds."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "stingballer"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/stingballer
