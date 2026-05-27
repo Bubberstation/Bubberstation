@@ -215,8 +215,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/m45_mag
-	name = ".460 Ceres Pistol Magazine(Lethal)"
-	desc = "A standard magazine for pistol using .460 Ceres."
+	name = ".45 Pistol Magazine(Lethal)"
+	desc = "A standard magazine for pistol using .45 rounds."
 	id = "m45_mag"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
