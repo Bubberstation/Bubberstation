@@ -79,12 +79,14 @@
 /obj/structure/sign/poster/random/directional/west,
 /obj/structure/rack/gunrack,
 /obj/item/gun/ballistic/automatic/wylom{
-	pixel_y = 5
+	pixel_y = 5;
+	projectile_damage_multiplier = 1.5;
+	projectile_speed_multiplier = 1.5
 	},
 /obj/item/gun/ballistic/automatic/miecz,
 /obj/item/gun/ballistic/automatic/miecz{
-	pixel_y = -7;
-	pixel_x = -13
+	pixel_y = -5;
+	pixel_x = -4
 	},
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_hallway)
@@ -474,6 +476,8 @@
 /obj/effect/spawner/random/contraband/grenades/dangerous,
 /obj/effect/spawner/random/contraband/grenades/dangerous,
 /obj/structure/closet/crate/cardboard,
+/obj/effect/spawner/random/contraband/grenades/dangerous,
+/obj/effect/spawner/random/contraband/grenades/dangerous,
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/snpc_garage)
 "lX" = (
@@ -584,6 +588,9 @@
 /obj/item/grenade/frag,
 /obj/item/grenade/frag,
 /obj/item/grenade/frag,
+/obj/effect/spawner/random/contraband/grenades/lethal,
+/obj/effect/spawner/random/contraband/grenades/lethal,
+/obj/effect/spawner/random/contraband/grenades/cluster,
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_garage)
 "oJ" = (
@@ -737,6 +744,10 @@
 "td" = (
 /obj/item/storage/box/utensils,
 /obj/structure/table/wood,
+/obj/item/ammo_box/magazine/lanca{
+	pixel_y = 10;
+	pixel_x = 8
+	},
 /turf/open/floor/carpet/red,
 /area/virtual_domain/ancient_milsim/snpc_bar)
 "te" = (
@@ -1299,12 +1310,11 @@
 /area/virtual_domain/ancient_milsim/atrium)
 "FO" = (
 /obj/structure/closet/crate/cardboard,
-/obj/item/grenade/mirage,
-/obj/item/grenade/mirage,
-/obj/item/grenade/mirage,
-/obj/item/grenade/mirage,
-/obj/item/grenade/mirage,
-/obj/item/grenade/mirage,
+/obj/item/cardboard_cutout/adaptive,
+/obj/item/cardboard_cutout/adaptive,
+/obj/item/cardboard_cutout/adaptive,
+/obj/item/cardboard_cutout/adaptive,
+/obj/item/storage/crayons,
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_garage)
 "FT" = (
