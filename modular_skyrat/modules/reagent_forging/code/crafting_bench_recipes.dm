@@ -291,6 +291,7 @@
 	)
 	resulting_item = /obj/item/gun/ballistic/revolver/handcrafted_single_action
 	time_to_assemble = 4 SECONDS
+	relevant_skill_level = 7
 	required_traits = list(TRAIT_KNOW_GUNSMITHING)
 
 /datum/crafting_bench_recipe/revolver/consume_crafting_ingredients(list/things_to_use, obj/item/product)
