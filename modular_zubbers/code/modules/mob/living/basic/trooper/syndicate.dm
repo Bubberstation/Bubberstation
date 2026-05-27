@@ -1,7 +1,7 @@
 /mob/living/basic/trooper/syndicate/boggins //unique and powerful operative for a special evac shuttle
 	name = "Shipmaster Boggins"
 	desc = "He's the master of the ship. Stay friendly, and nobody gets hurt."
-	faction = list(FACTION_NEUTRAL) \\simple hack to make him not attack anyone but will cause hostiles (including other troopers) to attack him but it shouldn't be an issue
+	faction = list(FACTION_NEUTRAL) //simple hack to make him not attack anyone but will cause hostiles (including other troopers) to attack him but it shouldn't be an issue
 	health = 250
 	maxHealth = 250
 	gender = MALE
