@@ -347,6 +347,11 @@
 	var/is_paw_skin = FALSE
 	var/spawn_flavor_shown = FALSE
 	var/loadout_created = FALSE
+	var/lights_on = FALSE
+
+/obj/item/clothing/gloves/ball_mittens/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/clothing/gloves/ball_mittens/equipped(mob/user, slot)
 	. = ..()
@@ -424,6 +429,30 @@
 		return paw_spray_interact(user, tool, modifiers)
 	return ..()
 
+/obj/item/clothing/gloves/ball_mittens/update_overlays()
+	. = ..()
+	if(lights_on && is_paw_skin)
+		. += emissive_appearance(icon, icon_state, src, alpha = 100)
+
+/obj/item/clothing/gloves/ball_mittens/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+	. = ..()
+	if(lights_on && is_paw_skin)
+		. += emissive_appearance(standing.icon, standing.icon_state, src, alpha = 100)
+
+/obj/item/clothing/gloves/ball_mittens/examine(mob/user)
+	. = ..()
+	if(is_paw_skin)
+		. += span_notice("The small switch on the cuff is currently <b>[lights_on ? "ON" : "OFF"]</b>. <a href='byond://?src=[REF(src)];toggle_lights=1'>\[Toggle\]</a>")
+
+/obj/item/clothing/gloves/ball_mittens/Topic(href, href_list)
+	. = ..()
+	if(href_list["toggle_lights"])
+		if(!usr || !istype(usr, /mob/living))
+			return
+		lights_on = !lights_on
+		update_appearance()
+		to_chat(usr, span_notice("The pads flicker [lights_on ? "on" : "off"]."))
+
 /obj/item/clothing/gloves/ball_mittens/proc/deferred_spawn_flavor(mob/user)
 	if(user.client)
 		show_spawn_flavor(user)
@@ -486,7 +515,7 @@
 
 /obj/item/clothing/gloves/ball_mittens/loadout_paw
 	name = "latex paw mittens"
-	desc = "A pair of inflatable latex mittens shaped like rounded paws. Helpless AND humiliating."
+	desc = "A pair of inflatable latex mittens shaped like rounded paws. Helpless AND humiliating. There's a small switch on the cuff that makes the pads glow."
 	greyscale_config = /datum/greyscale_config/catgloves
 	greyscale_config_worn = /datum/greyscale_config/catgloves/worn
 	greyscale_colors = "#242329#7B48A6#15B1BF"
