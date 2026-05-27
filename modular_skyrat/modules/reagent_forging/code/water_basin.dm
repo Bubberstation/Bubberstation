@@ -31,6 +31,7 @@
 		anchored = TRUE
 	reagents.flags = reagents.flags | REFILLABLE | DUNKABLE
 	check_fishable()
+	START_PROCESSING(SSdcs, src)
 	update_appearance()
 
 /obj/structure/reagent_dispensers/reagent_smithing_basin/proc/check_fishable()
@@ -52,7 +53,18 @@
 	. += span_notice("You could secure or unsecure it with a wrench.")
 	. += span_notice("You could pry it apart with a crowbar.")
 
+//heat from the contained reagents need to go into the atmosphere over time
+/obj/structure/reagent_dispensers/reagent_smithing_basin/process(seconds_per_tick)
+	if(reagents.total_volume < 1 || reagents.chem_temp == current_air.temperature)
+		return PROCESS_KILL
+	var/datum/gas_mixture/current_air = return_air()
+	var/temp_difference = reagents.chem_temp - current_air.temperature
+	current_air.temperature += temp_difference * seconds_per_tick * SMITHING_BASIN_HEATLOSS_COEFFICIENT
+	reagents.chem_temp -= temp_difference * seconds_per_tick * SMITHING_BASIN_HEATLOSS_COEFFICIENT
+	return
+
 /obj/structure/reagent_dispensers/attackby(obj/item/attacking_item, mob/living/user, params)
+	START_PROCESSING(SSdcs, src)
 	var/datum/component/forge_smithable/smith_component = attacking_item.GetComponent(/datum/component/forge_smithable/)
 	if(!isnull(smith_component))
 		smith_component.try_quench(reagents, src, user)

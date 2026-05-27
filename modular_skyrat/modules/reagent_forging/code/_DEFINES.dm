@@ -28,7 +28,6 @@
 #define MAX_PERFECT_FORCE_BONUS 3
 /// maximum force that can be given to a reagent staff via perfect hits
 #define MAX_PERFECT_STAFF_INTEG_BONUS 20
-
 ///amount of chems that can be stored into the result
 #define MAX_PRE_IMBUE_STORAGE 60
 ///amount of chems that the result reads as
@@ -43,6 +42,7 @@
 #define MAX_QUENCH_HEAT 600
 #define HEAT_GIVEN_FROM_QUENCHING_METAL 300
 #define MIN_VOLUME_TO_QUENCH 300
+#define SMITHING_BASIN_HEATLOSS_COEFFICIENT 0.7
 
 #define FORGE_EFFECT_FORCE "forge_effect_force"
 #define FORGE_EFFECT_ARMORPEN "forge_effect_armorpen"
