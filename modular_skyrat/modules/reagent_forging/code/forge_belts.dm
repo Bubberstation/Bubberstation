@@ -151,8 +151,7 @@
 		/obj/item/gun/energy,
 		/obj/item/melee/baton/security,
 		/obj/item/ammo_box/magazine/recharge,
-		/obj/item/modular_computer,
-		/obj/item/gun/ballistic/automatic/battle_rifle,))
+		/obj/item/modular_computer,))
 
 /datum/storage/charging_holster/can_insert(obj/item/to_insert, mob/user, messages = TRUE, force = STORAGE_NOT_LOCKED)
 	if(istype(to_insert, /obj/item/gun/energy))
@@ -413,7 +412,7 @@
 		return PROCESS_KILL
 
 	var/obj/item/my_item = contents[1]
-	if(my_item == null)
+	if(isnull(my_item))
 		return PROCESS_KILL
 
 	if(my_item.get_integrity() < my_item.max_integrity)
