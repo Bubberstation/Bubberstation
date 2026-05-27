@@ -9,3 +9,5 @@
 #define TRAIT_GAIAN_PHYSIQUE "gaian_physique"
 /// Makes the target unable to use martial arts.
 #define TRAIT_MARTIAL_ARTS_UNUSABLE "martial_arts_unusable"
+/// Makes the users unarmed attacks attack atoms instead of interacting on combat mode.
+#define TRAIT_TREAT_UNARMED_AS_ALIEN "treat_unarmed_as_alien"

@@ -1,3 +1,5 @@
+#define DOAFTER_SOURCE_LYCAN_DOOR_PRY "lycan door pry"
+
 /datum/species/lycan
 	id = SPECIES_LYCAN
 	examine_limb_id = SPECIES_LYCAN
@@ -153,6 +155,7 @@
 	ADD_TRAIT(gainer, TRAIT_NO_STAGGER, SPECIES_TRAIT)
 	ADD_TRAIT(gainer, TRAIT_NO_THROW_HITPUSH, SPECIES_TRAIT)
 	ADD_TRAIT(gainer, TRAIT_MARTIAL_ARTS_UNUSABLE, SPECIES_TRAIT)
+	ADD_TRAIT(gainer, TRAIT_TREAT_UNARMED_AS_ALIEN, SPECIES_TRAIT)
 
 	gainer.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	gainer.AddComponent( \
@@ -164,8 +167,11 @@
 		oxy_per_second = 0.5, \
 		ignore_damage_types = list(), \
 	)
+	gainer.AddElement(/datum/element/door_pryer, pry_time = 10 SECONDS, interaction_key = DOAFTER_SOURCE_LYCAN_DOOR_PRY)
 
 /datum/species/lycan/proc/handle_gaian_physique_loss(mob/living/carbon/human/loser)
+	loser.physiology.stamina_mod *= 4
+
 	REMOVE_TRAIT(loser, TRAIT_BATON_RESISTANCE, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_HARDLY_WOUNDED, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_FEARLESS, SPECIES_TRAIT)
@@ -173,10 +179,31 @@
 	REMOVE_TRAIT(loser, TRAIT_NO_STAGGER, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_NO_THROW_HITPUSH, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_MARTIAL_ARTS_UNUSABLE, SPECIES_TRAIT)
+	REMOVE_TRAIT(loser, TRAIT_TREAT_UNARMED_AS_ALIEN, SPECIES_TRAIT)
 
 	loser.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	qdel(loser.GetComponent(/datum/component/regenerator))
-
-	loser.physiology.stamina_mod *= 4
-
+	loser.RemoveElement(/datum/element/door_pryer, pry_time = 10 SECONDS, interaction_key = DOAFTER_SOURCE_LYCAN_DOOR_PRY)
 	// already lost the limb shit
+
+/mob/living/carbon/human/resolve_unarmed_attack(atom/attack_target, list/modifiers)
+	if (HAS_TRAIT(src, TRAIT_TREAT_UNARMED_AS_ALIEN) && combat_mode)
+		if (isliving(attack_target))
+			return ..()
+		if (!attack_target.uses_integrity)
+			return ..()
+		if (isitem(attack_target))
+			return ..()
+		var/obj/item/bodypart/arm/our_arm = get_active_hand()
+		do_attack_animation(attack_target, ATTACK_EFFECT_CLAW)
+		attack_target.take_damage(
+			our_arm.unarmed_damage_high,
+			BRUTE,
+			MELEE,
+			attack_dir = get_dir(src, attack_target)
+		)
+		changeNext_move(CLICK_CD_MELEE)
+
+	return ..()
+
+#undef DOAFTER_SOURCE_LYCAN_DOOR_PRY
