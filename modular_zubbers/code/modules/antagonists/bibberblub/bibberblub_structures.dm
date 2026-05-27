@@ -78,3 +78,19 @@
 /obj/structure/bibberblub/compost/HasProximity(atom/movable/proximity_check_mob)
 	. = ..()
 	process_trash()
+
+/obj/structure/bibberblub/blubhole
+	name = "Blubhole"
+	desc = "A wall of tough slime with a hole in it. A hole perfect for letting Bibberblubs slip through"
+	icon_state = "Blubhole"
+	density = TRUE
+	opacity = TRUE
+	layer = TABLE_LAYER
+	plane = FLOOR_PLANE
+
+/obj/structure/bibberblub/blubhole/CanAllowThrough(atom/movable/mover, border_dir)
+	// Bibberblubs can freely pass
+	if(istype(mover, /mob/living/basic/bibberblub))
+		return TRUE
+
+	return ..()

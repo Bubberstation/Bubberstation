@@ -27,7 +27,7 @@
 
 /datum/action/cooldown/bibberblub_reproduce
 	name = "Reproduce"
-	desc = "Spin a cocoon using protein, allowing more Bibberblubs to flood into the station"
+	desc = "Spin a cocoon using 20 protein, allowing more Bibberblubs to flood into the station"
 	button_icon = 'modular_zubbers/icons/bibberblub/bibberblub.dmi'
 	button_icon_state = "Cocoon"
 	cooldown_time = 2 MINUTES
@@ -75,7 +75,7 @@
 	. = ..()
 	if(istype(cast_on, /obj/item))
 		if(istype(cast_on, /obj/item/food))
-			owner.balloon_alert(owner, "You should enjoy this instead!")
+			owner.balloon_alert(owner, "You should enjoy this!")
 			return FALSE //Gotta enjoy the food in small bites!
 		return TRUE
 	return FALSE
@@ -216,4 +216,15 @@
 	build_time = 10 SECONDS
 	cooldown_time = 30 SECONDS
 	structure_to_build = /obj/structure/bibberblub/compost
+
+/datum/action/cooldown/bubberblub_structures/blubhole
+	name = "Build Blubhole"
+	desc = "Build a solid wall that only Bibberblubs can pass through to secure your territory"
+	button_icon_state = "Blubhole"
+	nutriment_cost = 20
+	minimum_distance = 0
+	minimum_floors = 0
+	build_time = 5 SECONDS
+	cooldown_time = 30 SECONDS
+	structure_to_build = /obj/structure/bibberblub/blubhole
 

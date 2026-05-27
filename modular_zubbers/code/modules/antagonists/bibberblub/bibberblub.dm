@@ -36,6 +36,7 @@
 	//building abilities
 	var/datum/action/cooldown/bubberblub_structures/slimy_floor/build_slime_floor
 	var/datum/action/cooldown/bubberblub_structures/compost_hole/build_compost
+	var/datum/action/cooldown/bubberblub_structures/blubhole/build_blubhole
 
 	var/nutriment_resource = 0
 	var/protein_resource = 0
@@ -61,6 +62,9 @@
 
 	build_slime_floor = new()
 	build_slime_floor.Grant(src)
+
+	build_blubhole = new()
+	build_blubhole.Grant(src)
 
 	build_compost = new()
 	build_compost.Grant(src)
