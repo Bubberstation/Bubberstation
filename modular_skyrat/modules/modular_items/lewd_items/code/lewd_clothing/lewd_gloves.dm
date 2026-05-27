@@ -442,7 +442,7 @@
 /obj/item/clothing/gloves/ball_mittens/examine(mob/user)
 	. = ..()
 	if(is_paw_skin)
-		. += span_notice("The small switch on the cuff is currently <b>[lights_on ? "ON" : "OFF"]</b>. <a href='byond://?src=[REF(src)];toggle_lights=1'>\[Toggle\]</a>")
+		. += span_notice("There's a paw-friendly switch on the cuff. It's currently <b>[lights_on ? "ON" : "OFF"]</b>. <a href='byond://?src=[REF(src)];toggle_lights=1'>\[Toggle\]</a>")
 
 /obj/item/clothing/gloves/ball_mittens/Topic(href, href_list)
 	. = ..()
@@ -450,8 +450,9 @@
 		if(!usr || !istype(usr, /mob/living))
 			return
 		lights_on = !lights_on
+		playsound(src, 'sound/machines/click.ogg', 30, FALSE)
+		to_chat(usr, span_notice("You turn the accent lighting [lights_on ? "on" : "off"]."))
 		update_appearance()
-		to_chat(usr, span_notice("The pads flicker [lights_on ? "on" : "off"]."))
 
 /obj/item/clothing/gloves/ball_mittens/proc/deferred_spawn_flavor(mob/user)
 	if(user.client)
@@ -515,7 +516,7 @@
 
 /obj/item/clothing/gloves/ball_mittens/loadout_paw
 	name = "latex paw mittens"
-	desc = "A pair of inflatable latex mittens shaped like rounded paws. Helpless AND humiliating. There's a small switch on the cuff that makes the pads glow."
+	desc = "A pair of inflatable latex mittens shaped like rounded paws. Helpless AND humiliating."
 	greyscale_config = /datum/greyscale_config/catgloves
 	greyscale_config_worn = /datum/greyscale_config/catgloves/worn
 	greyscale_colors = "#242329#7B48A6#15B1BF"
