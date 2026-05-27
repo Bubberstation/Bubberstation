@@ -167,7 +167,7 @@
 		oxy_per_second = 0.5, \
 		ignore_damage_types = list(), \
 	)
-	gainer.AddElement(/datum/element/door_pryer, pry_time = 10 SECONDS, interaction_key = DOAFTER_SOURCE_LYCAN_DOOR_PRY)
+	gainer.AddElement(/datum/element/door_pryer, pry_time = 6 SECONDS, interaction_key = DOAFTER_SOURCE_LYCAN_DOOR_PRY)
 
 /datum/species/lycan/proc/handle_gaian_physique_loss(mob/living/carbon/human/loser)
 	loser.physiology.stamina_mod *= 4
@@ -183,7 +183,7 @@
 
 	loser.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	qdel(loser.GetComponent(/datum/component/regenerator))
-	loser.RemoveElement(/datum/element/door_pryer, pry_time = 10 SECONDS, interaction_key = DOAFTER_SOURCE_LYCAN_DOOR_PRY)
+	loser.RemoveElement(/datum/element/door_pryer, pry_time = 6 SECONDS, interaction_key = DOAFTER_SOURCE_LYCAN_DOOR_PRY)
 	// already lost the limb shit
 
 /mob/living/carbon/human/resolve_unarmed_attack(atom/attack_target, list/modifiers)
