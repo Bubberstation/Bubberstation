@@ -13,5 +13,5 @@
 	var/turf/spawn_loc = find_maintenance_spawn(atmos_sensitive = TRUE, require_darkness = TRUE)
 	if(isnull(spawn_loc))
 		return //Admins will have already been notified of the spawning failure at this point
-	new (spawn_loc)
+	new /obj/effect/mob_spawn/ghost_role/bibberblub(spawn_loc)
 	log_game("Bibberblub Cocoon was spawned via an event.")
