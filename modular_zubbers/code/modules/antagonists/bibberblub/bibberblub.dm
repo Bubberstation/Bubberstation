@@ -38,6 +38,7 @@
 
 	var/datum/action/cooldown/hide/hide_ability
 	var/datum/action/cooldown/bibberblub_reproduce/reproduction_ability
+	var/datum/action/cooldown/bibberblub_spit/spit_ability
 	var/datum/action/cooldown/spell/pointed/hamster/hamster_stuff
 
 	//building abilities
@@ -62,8 +63,8 @@
 	hide_ability = new()
 	hide_ability.Grant(src)
 
-	hamster_stuff = new()
-	hamster_stuff.Grant(src)
+	spit_ability = new()
+	spit_ability.Grant(src)
 
 	reproduction_ability = new()
 	reproduction_ability.Grant(src)
@@ -79,6 +80,9 @@
 
 	build_blubgrowth = new()
 	build_blubgrowth.Grant(src)
+
+	hamster_stuff = new()
+	hamster_stuff.Grant(src)
 
 /mob/living/basic/bibberblub/death(gibbed)
 	. = ..()

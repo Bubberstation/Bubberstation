@@ -96,6 +96,30 @@
 		return
 
 
+/datum/action/cooldown/bibberblub_spit
+	name = "Slippery Spit"
+	desc = "Spit a puddle of slippery slime for others to slip on and ruin their clothes! This will require them to shower to clean the stains off. useful for escapes."
+	button_icon = 'icons/obj/service/hydroponics/harvest.dmi'
+	button_icon_state = "banana_peel"
+	cooldown_time = 15 SECONDS
+	var/mob/living/basic/bibberblub/bibberblub
+	var/vitamin_cost = 5 //DEBUG: Should be increased later
+
+/datum/action/cooldown/bibberblub_spit/Grant(mob/granted_to)
+	. = ..()
+	bibberblub = granted_to
+	if(isnull(bibberblub))
+		Remove(granted_to)
+
+/datum/action/cooldown/bibberblub_spit/Activate(atom/target)
+	. = ..()
+	if(bibberblub.vitamin_resource < vitamin_cost)
+		bibberblub.balloon_alert(bibberblub, "need more vitamins!")
+		return
+
+	new /obj/effect/decal/cleanable/bibberblub_spit(get_turf(bibberblub))
+	playsound(owner, 'sound/effects/splat.ogg', 100, TRUE)
+	bibberblub.vitamin_resource -= vitamin_cost
 
 // ==== STRUCTURES ====
 /datum/action/cooldown/bubberblub_structures

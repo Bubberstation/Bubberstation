@@ -129,3 +129,18 @@
 	playsound(src, 'sound/effects/splat.ogg', 100, TRUE)
 	qdel(src)
 
+
+//Technically not structures, but fit here best anyway
+/obj/effect/decal/cleanable/bibberblub_spit
+	name = "Bibberblub spit"
+	desc = "A slimy and slippery mess made by a Bibberblub. Stains like hell."
+	icon = 'icons/effects/blood.dmi'
+	icon_state = "floor1"
+	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
+	beauty = -100
+	clean_type = CLEAN_TYPE_BLOOD
+	color = "#134b0c"
+
+/obj/effect/decal/cleanable/bibberblub_spit/Initialize(mapload, list/datum/disease/diseases)
+	. = ..()
+	var/datum/component/slippery/slippy_comp = AddComponent(/datum/component/slippery, 8 SECONDS, (NO_SLIP_WHEN_WALKING | SLIDE))
