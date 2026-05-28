@@ -75,7 +75,7 @@
 	. = ..()
 	if(istype(cast_on, /obj/item))
 		if(istype(cast_on, /obj/item/food))
-			owner.balloon_alert(owner, "You should enjoy this!")
+			owner.balloon_alert(owner, "you should enjoy this!")
 			return FALSE //Gotta enjoy the food in small bites!
 		return TRUE
 	return FALSE

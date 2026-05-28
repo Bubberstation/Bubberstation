@@ -43,7 +43,7 @@
 	icon = 'modular_zubbers/icons/bibberblub/bibberblub.dmi'
 	icon_state = "Rations"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("wet maintainance" = 5, "a vaguely chicken-flavored glob of snot" = 1, "someone's vomit, but slimier" = 1, "salted riverbed" = 3)
+	tastes = list("wet maintenance" = 5, "a vaguely chicken-flavored glob of snot" = 1, "someone's vomit, but slimier" = 1, "salted riverbed" = 3)
 	foodtypes = GROSS
 	w_class = WEIGHT_CLASS_TINY
 
