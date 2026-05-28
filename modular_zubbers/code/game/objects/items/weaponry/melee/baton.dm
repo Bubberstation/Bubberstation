@@ -43,13 +43,10 @@
 
 /obj/item/melee/baton/security/staff/prime
 	name = "heroic stun staff"
-	desc = "The perfect stun staff. Definitely more effective at incapacitating targets."
+	desc = "An absolutely brutal feat of non-lethal hardware engineering.  Definitely more effective at incapacitating targets."
 	icon_state = "stunstaff"
 	base_icon_state = "stunstaff"
-	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/staves_lefthand.dmi'
-	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/staves_righthand.dmi'
 	inhand_icon_state = "stunstaff"
-	worn_icon = "modular_zubbers/icons/mob/clothing/back.dmi"
 	worn_icon_state = "stunstaff"
 
 	block_chance = 75 //security desword
@@ -66,6 +63,6 @@
 		final_block_chance -= 37.5
 	if(attack_type == PROJECTILE_ATTACK)
 		final_block_chance -= 25 
-	if( attack_type == OVERWHELMING_ATTACK)
-		final_block_chance == 0
+	if(attack_type == OVERWHELMING_ATTACK)
+		final_block_chance = 0
 	return ..()

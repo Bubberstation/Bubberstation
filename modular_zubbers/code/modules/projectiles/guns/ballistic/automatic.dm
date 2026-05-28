@@ -21,10 +21,11 @@
 	icon_state = "wt550b"
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
 	can_suppress = TRUE
+	suppressor_x_offset = 5
 	spread = 3
-	recoil = 5
+	recoil = 0.3
 	projectile_damage_multiplier = 1.1
-	burst_delay = 1.5
+	burst_delay = 2
 	burst_size = 2
 
 /obj/item/gun/ballistic/automatic/wt550/burst/Initialize(mapload)
@@ -33,15 +34,15 @@
 
 /obj/item/gun/ballistic/automatic/wt550/dmr
 	name = "\improper WT-550-C Autorifle"
-	desc = "A longer range WT-550, assembled using an aftermarket kit and parts. Outfitted with the longest barrel and custom trigger to enhance long range performance. Equipped with a custom scope and a threaded barrel for suppressors. Uses 4.6x30mm rounds."
-	icon = 'modular_zubbers/icons/obj/weapons/guns/wt550dmr.dmi'
+	desc = "A longer range WT-550, assembled using an aftermarket kit and parts. Outfitted with the longest barrel and custom trigger to enhance performance at a distance. Equipped with a custom scope and a threaded barrel for suppressors. Uses 4.6x30mm rounds."
+	icon = 'modular_zubbers/icons/obj/weapons/guns/wide_guns.dmi'
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
 	weapon_weight = WEAPON_HEAVY
 	can_suppress = TRUE
 	slot_flags = ITEM_SLOT_BACK
 	projectile_damage_multiplier = 1.5 // 30 damage base + wounding at half the firerate
 	projectile_speed_multiplier = 1.5
-	projectile_wound_bonus = 10
+	projectile_wound_bonus = 5
 	burst_delay = 3
 	burst_size = 1
 
