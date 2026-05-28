@@ -29932,6 +29932,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
+/obj/effect/spawner/random/structure/crate_abandoned,
 /turf/open/floor/iron,
 /area/station/cargo/miningfoundry)
 "flQ" = (
@@ -57667,6 +57668,10 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/service/chapel)
+"wvp" = (
+/obj/effect/landmark/start/blacksmith,
+/turf/open/floor/iron,
+/area/station/cargo/office)
 "wwj" = (
 /turf/closed/wall/mineral/iron,
 /area/station/service/chapel/funeral)
@@ -59767,7 +59772,15 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
-/obj/effect/spawner/random/structure/crate_abandoned,
+/obj/structure/closet/crate/cargo{
+	name = "smithing crate"
+	},
+/obj/item/forging/tongs,
+/obj/item/forging/hammer,
+/obj/item/forging/billow,
+/obj/item/stack/sheet/mineral/wood{
+	pixel_y = 0
+	},
 /turf/open/floor/iron,
 /area/station/cargo/miningfoundry)
 "xBd" = (
@@ -98656,7 +98669,7 @@ asd
 mlV
 dMB
 aRj
-dTT
+wvp
 ixP
 iBi
 nDP
