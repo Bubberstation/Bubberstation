@@ -81,7 +81,8 @@
 		return
 	var/has_item = FALSE
 	for(var/i = 1 to length(wearer.held_items))
-		if(!isnull(wearer.held_items[i]))
+		var/obj/item/held = wearer.held_items[i]
+		if(!isnull(held) && !(held.item_flags & ABSTRACT))
 			has_item = TRUE
 			break
 	if(has_item)
@@ -132,7 +133,8 @@
 		return
 	var/has_item = FALSE
 	for(var/i = 1 to length(wearer.held_items))
-		if(!isnull(wearer.held_items[i]))
+		var/obj/item/held = wearer.held_items[i]
+		if(!isnull(held) && !(held.item_flags & ABSTRACT))
 			has_item = TRUE
 			break
 	if(has_item)
