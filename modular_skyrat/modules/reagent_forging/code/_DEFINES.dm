@@ -6,6 +6,7 @@
 #define DOAFTER_SMITHING_FORGE "smithing_forging_doafter"
 #define DOAFTER_SMITHING_ANVIL "smithing_anvil_doafter"
 #define DOAFTER_SMITHING_WATER_BASIN "smithing_waterbasin_doafter"
+#define DOAFTER_SMITHING_TABLE "smithing_table_doafter"
 
 #define DOAFTER_REVOLVER_HAMMER_COCK "smithing_revolver_hammer_cock_doafter"
 

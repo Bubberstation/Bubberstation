@@ -233,6 +233,8 @@
 	return TRUE
 
 /obj/structure/reagent_crafting_bench/hammer_act(mob/living/user, obj/item/tool)
+	if(DOING_INTERACTION(user, DOAFTER_SMITHING_ANVIL))
+		return
 
 	if(length(contents))
 		return try_weapon_completion(user, tool)
@@ -243,7 +245,7 @@
 	var/skill_modifier = user.mind.get_skill_modifier(selected_recipe.relevant_skill, SKILL_SPEED_MODIFIER)
 
 	playsound(src, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)
-	if(do_after(user, selected_recipe.time_to_assemble * skill_modifier) && !length(contents))
+	if(do_after(user, selected_recipe.time_to_assemble * skill_modifier,target = src, interaction_key = DOAFTER_SMITHING_TABLE) && !length(contents))
 		var/list/things_to_use = can_we_craft_this(selected_recipe.recipe_requirements, TRUE)
 
 		create_thing_from_requirements(things_to_use, selected_recipe, user, selected_recipe.relevant_skill, selected_recipe.relevant_skill_reward)
@@ -252,6 +254,9 @@
 	return ITEM_INTERACT_BLOCKING
 /// Takes the given list of item requirements and checks the surroundings for them, returns TRUE unless return_ingredients_list is set, in which case a list of all the items to use is returned
 /obj/structure/reagent_crafting_bench/proc/try_weapon_completion(mob/living/user, obj/item/tool)
+	if(DOING_INTERACTION(user, DOAFTER_SMITHING_ANVIL))
+		return
+
 	if(!istype(contents[1], /obj/item/forging/complete))
 		balloon_alert(user, "invalid item")
 		return ITEM_INTERACT_BLOCKING
@@ -271,10 +276,14 @@
 		return ITEM_INTERACT_BLOCKING
 
 	playsound(src, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)
-	if(!do_after(user, WEAPON_ASSEMBLY_SPEED))
+	if(!do_after(user, WEAPON_ASSEMBLY_SPEED, target = src, interaction_key = DOAFTER_SMITHING_TABLE))
 		return ITEM_INTERACT_BLOCKING
 
 	var/list/things_to_use = can_we_craft_this(wood_required_for_weapons, TRUE)
+	if(!can_we_craft_this(wood_required_for_weapons))
+		balloon_alert(user, "not enough wood")
+		return ITEM_INTERACT_BLOCKING
+
 	var/obj/thing_just_made = create_thing_from_requirements(things_to_use, user = user, skill_to_grant = /datum/skill/smithing, skill_amount = 30, completing_a_weapon = TRUE)
 
 	if(!thing_just_made)
