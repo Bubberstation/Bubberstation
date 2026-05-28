@@ -1,6 +1,6 @@
 /datum/heretic_knowledge/void_cloak
 	desc = "Allows you to transmute a glass shard, a bedsheet, and any outer clothing item (such as armor or a suit jacket) \
-		to create a Void Cloak. While the hood is down, the cloak functions as a focus and protects you from space. \
+		to create a Void Cloak. While the hood is down, the cloak protects you from space. \
 		While the hood is up, the cloak is disguised as a gear harness. It also provide decent armor and \
 		has pockets which can hold one of your blades, various ritual components (such as organs), and small heretical trinkets."
 
@@ -8,8 +8,6 @@
 	hood_up_affix = ""
 
 /obj/item/clothing/suit/hooded/cultrobes/void/make_invisible(datum/source, obj/item/item, slot)
-	RemoveElement(/datum/element/heretic_focus)
-
 	if(isliving(loc))
 		loc.remove_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTCOLD), REF(src))
 		REMOVE_TRAIT(loc, TRAIT_RESISTLOWPRESSURE, REF(src))
@@ -27,8 +25,6 @@
 	update_slot_icon()
 
 /obj/item/clothing/suit/hooded/cultrobes/void/make_visible(datum/source, obj/item/item, slot)
-	AddElement(/datum/element/heretic_focus)
-
 	if(isliving(loc))
 		loc.add_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTCOLD), REF(src))
 		loc.balloon_alert(loc, "cloak revealed")
