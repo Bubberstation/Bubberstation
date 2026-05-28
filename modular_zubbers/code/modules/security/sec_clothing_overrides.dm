@@ -670,7 +670,6 @@
 		/obj/item/ammo_box/speedloader, // Speedloaders, which includes stripper clips on a technicality.
 		/obj/item/gun/energy/e_gun/mini,
 		/obj/item/gun/energy/disabler,
-		/obj/item/gun/ballistic/revolver,
 		/obj/item/gun/energy/laser/pistol,
 		/obj/item/food/grown/banana,
 		/obj/item/gun/energy/dueling,
@@ -700,7 +699,6 @@
 		/obj/item/ammo_box/speedloader, // Speedloaders, which includes stripper clips on a technicality.
 		/obj/item/gun/energy/e_gun/mini,
 		/obj/item/gun/energy/disabler,
-		/obj/item/gun/ballistic/revolver,
 		/obj/item/gun/energy/laser/pistol,
 		/obj/item/food/grown/banana,
 		/obj/item/gun/energy/dueling,
