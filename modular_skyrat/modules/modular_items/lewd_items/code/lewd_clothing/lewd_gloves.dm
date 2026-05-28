@@ -6,6 +6,7 @@
 	var/max_item_size = WEIGHT_CLASS_HUGE
 	var/cuff_resist_multiplier = 3
 	var/gun_spread_penalty = 12
+	var/is_interacting = FALSE
 	var/obj/item/tracked_cuffs = null
 
 /datum/component/ball_mittens_fumble/Initialize()
@@ -23,6 +24,7 @@
 		INVOKE_ASYNC(mittens, TYPE_PROC_REF(/obj/item/clothing/gloves/ball_mittens, deferred_spawn_flavor), wearer)
 	ADD_TRAIT(wearer, TRAIT_GLOVE_SURGERY_PASSTHROUGH, MITTENS_FUMBLE_TRAIT)
 	RegisterSignal(wearer, COMSIG_LIVING_ITEM_ATTEMPT_PICKUP, PROC_REF(on_attempt_pickup))
+	RegisterSignal(wearer, COMSIG_LIVING_ITEM_PICKUP_FAILED, PROC_REF(on_pickup_failed))
 	RegisterSignal(wearer, COMSIG_LIVING_TRY_PUT_IN_HAND, PROC_REF(on_try_pickup))
 	RegisterSignal(wearer, COMSIG_MOB_MACHINERY_INTERACT, PROC_REF(on_machinery_interact))
 	RegisterSignal(wearer, COMSIG_MOB_CLICKON, PROC_REF(on_clickon))
@@ -40,6 +42,7 @@
 	REMOVE_TRAIT(wearer, TRAIT_GLOVE_SURGERY_PASSTHROUGH, MITTENS_FUMBLE_TRAIT)
 	UnregisterSignal(wearer, list(
 		COMSIG_LIVING_ITEM_ATTEMPT_PICKUP,
+		COMSIG_LIVING_ITEM_PICKUP_FAILED,
 		COMSIG_LIVING_TRY_PUT_IN_HAND,
 		COMSIG_MOB_MACHINERY_INTERACT,
 		COMSIG_MOB_CLICKON,
@@ -85,8 +88,10 @@
 		to_chat(wearer, span_warning("Your [get_hand_descriptor(wearer)] are already occupied. One thing at a time."))
 		return COMPONENT_BLOCK_ITEM_PICKUP
 	if(!isgun(item) && item.w_class >= max_item_size)
-		to_chat(wearer, span_warning("You paw at [item] futilely. It is far too bulky to manage with these."))
-		return COMPONENT_BLOCK_ITEM_PICKUP
+		pickup_mods["delay"] = struggle_delay_min * (item.w_class - max_item_size + 2)
+		pickup_mods["fail_chance"] = min(75, (item.w_class - max_item_size) * 25)
+		to_chat(wearer, span_warning("You wrestle with [item], trying to get it between your [get_hand_descriptor(wearer)]..."))
+		return
 	var/hand_desc = get_hand_descriptor(wearer)
 	var/player_msgs = list(
 		"You awkwardly wedge the [item] between your [hand_desc]...",
@@ -114,14 +119,17 @@
 	wearer.visible_message(span_warning(public_msg))
 	pickup_mods["delay"] = struggle_delay_min
 
+/datum/component/ball_mittens_fumble/proc/on_pickup_failed(mob/living/wearer, obj/item/item)
+	SIGNAL_HANDLER
+	var/hand_desc = get_hand_descriptor(wearer)
+	to_chat(wearer, span_warning("[item] slips out of your [hand_desc]!"))
+	playsound(wearer, 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg', 30, TRUE)
+
 /// Safety net for drag-drop paths that bypass attempt_pickup.
 /datum/component/ball_mittens_fumble/proc/on_try_pickup(mob/living/wearer, obj/item/to_pick_up)
 	SIGNAL_HANDLER
 	if(to_pick_up.item_flags & ABSTRACT)
 		return
-	if(!isgun(to_pick_up) && to_pick_up.w_class >= max_item_size)
-		to_chat(wearer, span_warning("Your [get_hand_descriptor(wearer)] are too clumsy for [to_pick_up]. It is far too bulky to manage with these."))
-		return COMPONENT_LIVING_CANT_PUT_IN_HAND
 	var/has_item = FALSE
 	for(var/i = 1 to length(wearer.held_items))
 		if(!isnull(wearer.held_items[i]))
@@ -136,6 +144,8 @@
 /// Handles machinery interaction delay via COMSIG_MOB_MACHINERY_INTERACT.
 /datum/component/ball_mittens_fumble/proc/on_machinery_interact(mob/living/wearer, obj/machinery/machine)
 	SIGNAL_HANDLER
+	if(is_interacting)
+		return
 	INVOKE_ASYNC(src, PROC_REF(fumble_interact), wearer, machine)
 	return COMPONENT_BLOCK_MACHINERY_INTERACT
 
@@ -262,6 +272,7 @@
 	bonus_spread_values[MAX_BONUS_SPREAD_INDEX] += gun_spread_penalty
 
 /datum/component/ball_mittens_fumble/proc/fumble_interact(mob/living/wearer, obj/machinery/machine)
+	is_interacting = TRUE
 	var/hand_desc = get_hand_descriptor(wearer)
 	var/msg = istype(machine, /obj/machinery/vending) ? \
 		"You awkwardly mash your [hand_desc] against [machine]'s keypad..." : \
@@ -271,10 +282,13 @@
 	wearer.visible_message(span_warning("[wearer] awkwardly paws at [machine] with [wearer.p_their()] [hand_desc], visibly struggling to use it."))
 	if(!do_after(wearer, interact_delay, machine))
 		to_chat(wearer, span_warning("You give up on [machine]."))
+		is_interacting = FALSE
 		return
 	if(QDELETED(src) || QDELETED(wearer) || QDELETED(machine) || get_dist(wearer, machine) > 1)
+		is_interacting = FALSE
 		return
 	machine.interact(wearer)
+	is_interacting = FALSE
 
 // ============================================================
 

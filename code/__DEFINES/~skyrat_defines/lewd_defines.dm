@@ -92,3 +92,6 @@
 /// Fired on a mob when they interact with machinery, before interact() runs. Return COMPONENT_BLOCK_MACHINERY_INTERACT to block.
 #define COMSIG_MOB_MACHINERY_INTERACT "mob_machinery_interact"
 #define COMPONENT_BLOCK_MACHINERY_INTERACT (1<<1)
+
+/// Fired on a mob when attempt_pickup fails due to fail_chance in pickup_mods. (obj/item/item)
+#define COMSIG_LIVING_ITEM_PICKUP_FAILED "living_item_pickup_failed"
