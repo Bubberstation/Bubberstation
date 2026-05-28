@@ -98,12 +98,12 @@
 
 /datum/action/cooldown/bibberblub_spit
 	name = "Slippery Spit"
-	desc = "Spit a puddle of slippery slime for others to slip on and ruin their clothes! This will require them to shower to clean the stains off. useful for escapes."
+	desc = "For 10 Vitamin, Spit a puddle of slippery slime for others to slip on and ruin their clothes! This will require them to shower to clean the stains off. useful for escapes."
 	button_icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	button_icon_state = "banana_peel"
 	cooldown_time = 15 SECONDS
 	var/mob/living/basic/bibberblub/bibberblub
-	var/vitamin_cost = 5 //DEBUG: Should be increased later
+	var/vitamin_cost = 10
 
 /datum/action/cooldown/bibberblub_spit/Grant(mob/granted_to)
 	. = ..()

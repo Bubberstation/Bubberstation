@@ -143,4 +143,4 @@
 
 /obj/effect/decal/cleanable/bibberblub_spit/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
-	var/datum/component/slippery/slippy_comp = AddComponent(/datum/component/slippery, 8 SECONDS, (NO_SLIP_WHEN_WALKING | SLIDE))
+	AddComponent(/datum/component/slippery, 8 SECONDS, (NO_SLIP_WHEN_WALKING | SLIDE))
