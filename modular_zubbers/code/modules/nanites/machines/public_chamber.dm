@@ -183,11 +183,14 @@
 		return
 	open_machine()
 
-/obj/machinery/public_nanite_chamber/attackby(obj/item/I, mob/user, params)
-	if(!occupant && default_deconstruction_screwdriver(user, icon_state, icon_state, I))//sent icon_state is irrelevant...
-		update_appearance()//..since we're updating the icon here, since the scanner can be unpowered when opened/closed
-		return
+/obj/machinery/public_nanite_chamber/screwdriver_act(mob/living/user, obj/item/tool)
+	. = ..()
+	if(occupant)
+		balloon_alert(user, "occupied!")
+		return ITEM_INTERACT_BLOCKING
+	return default_deconstruction_screwdriver(user, tool)
 
+/obj/machinery/public_nanite_chamber/attackby(obj/item/I, mob/user, params)
 	if(default_pry_open(I))
 		return
 
