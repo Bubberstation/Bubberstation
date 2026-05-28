@@ -659,7 +659,7 @@
 	max_slots = 3
 	max_total_storage = 16
 
-/datum/storage/holster/New(atom/parent, max_slots, max_specific_storage, max_total_storage, list/holdables)
+/datum/storage/holster/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound, list/holdables)
 	if(length(holdables))
 		return ..()
 
@@ -690,7 +690,7 @@
 /datum/storage/holster/detective
 	max_slots = 4
 
-/datum/storage/holster/detective/New(atom/parent, max_slots, max_specific_storage, max_total_storage, list/holdables)
+/datum/storage/holster/detective/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound, list/holdables)
 	if(length(holdables))
 		return ..()
 
@@ -717,7 +717,7 @@
 /datum/storage/holster/energy
 	max_specific_storage = WEIGHT_CLASS_NORMAL
 
-/datum/storage/holster/energy/New(atom/parent, max_slots, max_specific_storage, max_total_storage, list/holdables)
+/datum/storage/holster/energy/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound, list/holdables)
 	if(length(holdables))
 		return ..()
 
