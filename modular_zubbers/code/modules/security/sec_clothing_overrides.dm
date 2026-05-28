@@ -2,32 +2,6 @@
 *	Security clothing reskins and such.
 */
 
-/*
-* BACKPACKS
-*/
-/obj/item/storage/backpack/security
-	icon = 'icons/obj/storage/backpack.dmi'
-	worn_icon = 'icons/mob/clothing/back.dmi'
-	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
-	icon_state = "backpack-security"
-	inhand_icon_state = "securitypack"
-
-/obj/item/storage/backpack/satchel/sec
-	icon = 'icons/obj/storage/backpack.dmi'
-	worn_icon = 'icons/mob/clothing/back.dmi'
-	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
-	icon_state = "satchel-security"
-	inhand_icon_state = "satchel-sec"
-
-/obj/item/storage/backpack/duffelbag/sec
-	icon = 'icons/obj/storage/backpack.dmi'
-	worn_icon = 'icons/mob/clothing/back.dmi'
-	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
-	icon_state = "duffel-security"
-	inhand_icon_state = "duffel-sec"
 
 /*
 * BELTS
@@ -637,38 +611,29 @@
 *	BACK
 */
 
-/obj/item/storage/backpack/security/redsec
-	icon = 'icons/obj/storage/backpack.dmi'
-	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
-	icon_state = "backpack-security"
+// /obj/item/storage/backpack/security/Initialize(mapload)
+// 	. = ..()
+// 	if(type != /obj/item/storage/backpack/security)
+// 		return
+// 	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+// 	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+// 		qdel(reskin_component)
 
-/obj/item/storage/backpack/security/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+// /obj/item/storage/backpack/satchel/sec/Initialize(mapload)
+// 	. = ..()
+// 	if(type != /obj/item/storage/backpack/satchel/sec)
+// 		return
+// 	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+// 	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+// 		qdel(reskin_component)
 
-/obj/item/storage/backpack/satchel/sec/redsec
-	icon = 'icons/obj/storage/backpack.dmi'
-	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
-	icon_state = "satchel-security"
-
-/obj/item/storage/backpack/satchel/sec/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
-
-/obj/item/storage/backpack/duffelbag/sec/redsec
-	icon = 'icons/obj/storage/backpack.dmi'
-	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
-	icon_state = "duffel-security"
-
-/obj/item/storage/backpack/duffelbag/sec/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
+// /obj/item/storage/backpack/duffelbag/sec/Initialize(mapload)
+// 	. = ..()
+// 	if(type != /obj/item/storage/backpack/duffelbag/sec)
+// 		return
+// 	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+// 	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+// 		qdel(reskin_component)
 
 /*
 *	BELT + HOLSTERS
@@ -694,7 +659,7 @@
 	max_slots = 3
 	max_total_storage = 16
 
-/datum/storage/holster/New(atom/parent, max_slots, max_specific_storage, max_total_storage, list/holdables)
+/datum/storage/holster/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound, list/holdables)
 	if(length(holdables))
 		return ..()
 
@@ -725,7 +690,7 @@
 /datum/storage/holster/detective
 	max_slots = 4
 
-/datum/storage/holster/detective/New(atom/parent, max_slots, max_specific_storage, max_total_storage, list/holdables)
+/datum/storage/holster/detective/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound, list/holdables)
 	if(length(holdables))
 		return ..()
 
@@ -752,7 +717,7 @@
 /datum/storage/holster/energy
 	max_specific_storage = WEIGHT_CLASS_NORMAL
 
-/datum/storage/holster/energy/New(atom/parent, max_slots, max_specific_storage, max_total_storage, list/holdables)
+/datum/storage/holster/energy/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound, list/holdables)
 	if(length(holdables))
 		return ..()
 
@@ -896,19 +861,24 @@
 *	WINTER COAT
 */
 
-/obj/item/clothing/head/hooded/winterhood/security/redsec
-	desc = "A red, armour-padded winter hood. Definitely not bulletproof, especially not the part where your face goes."
-	icon = 'icons/obj/clothing/head/winterhood.dmi'
-	worn_icon = 'icons/mob/clothing/head/winterhood.dmi'
-	icon_state = "hood_security"
-
+// turning one of the duplicate security winter jackets into a wintercoat
 /obj/item/clothing/suit/hooded/wintercoat/security/redsec
-	name = "security winter jacket"
-	desc = "A red, armour-padded winter coat. It glitters with a mild ablative coating and a robust air of authority.  The zipper tab is a pair of jingly little handcuffs that get annoying after the first ten seconds."
-	icon = 'icons/obj/clothing/suits/wintercoat.dmi'
-	worn_icon = 'icons/mob/clothing/suits/wintercoat.dmi'
-	icon_state = "coatsecurity"
+	name = "security winter coat"
+	desc = "A winter coat with an armored vest resting atop it, perfect for those cold Freyja nights."
+	icon_state = "coatsecurity_winter"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/wintercoat.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/wintercoat.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/wintercoat_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/wintercoat_teshari.dmi'
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/security/redsec
+
+/obj/item/clothing/head/hooded/winterhood/security/redsec
+	name = "security winter hood"
+	desc = "A red, armour-padded winter hood. Definitely not bulletproof, especially not the part where your face goes."
+	icon = 'modular_zubbers/icons/obj/clothing/head/winterhood.dmi'
+	icon_state = "winterhood_security"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/winterhood.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/winterhood_teshari.dmi'
 
 /*
 *	ARMOR

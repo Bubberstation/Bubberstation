@@ -480,7 +480,10 @@
 
 	if(equipped_client)
 		pda.update_pda_prefs(equipped_client)
-
+		//BUBBER EDIT BEGIN
+		var/obj/item/modular_computer/pda/synth/brainpooter = locate() in equipped.get_all_contents()
+		brainpooter.update_user_settings(equipped_client)
+		//BUBBER EDIT END
 /datum/outfit/job/get_chameleon_disguise_info()
 	var/list/types = ..()
 	types -= /obj/item/storage/backpack //otherwise this will override the actual backpacks

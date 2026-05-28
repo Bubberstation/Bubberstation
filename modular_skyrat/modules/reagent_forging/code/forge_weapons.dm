@@ -8,10 +8,6 @@
 	obj_flags = UNIQUE_RENAME
 	skyrat_obj_flags = ANVIL_REPAIR
 
-/obj/item/forging/reagent_weapon/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reagent_weapon)
-
 /obj/item/forging/reagent_weapon/examine(mob/user)
 	. = ..()
 	. += span_notice("Using a hammer on [src] will repair its damage!")
