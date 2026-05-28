@@ -121,3 +121,53 @@
 /datum/greyscale_config/labcoat/worn/digi
 	name = "Labcoat (Worn, Digi)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/labcoat_digi.dmi'
+
+/datum/greyscale_config/winter_coat_worn_digi
+	name = "Winter Coat (Worn, Digi)"
+	icon_file = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_digi.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/winter_coat/winter_coat_worn.json'
+
+/datum/greyscale_config/winter_coat_worn_teshari
+	name = "Winter Coat (Worn, Teshari)"
+	icon_file = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_teshari.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/winter_coat/winter_coat_worn.json'
+
+/datum/greyscale_config/winter_hood/worn/teshari
+	name = "Winter Coat Hood (Worn, Teshari)"
+	icon_file = 'modular_skyrat/master_files/icons/donator/mob/clothing/head_teshari.dmi'
+
+/datum/greyscale_config/winter_coats/worn/digi
+	name = "Winter Coat (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/wintercoat_digi.dmi'
+
+/datum/greyscale_config/winter_coats/worn/teshari
+	name = "Winter Coat (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/wintercoat_teshari.dmi'
+
+/datum/greyscale_config/winter_hoods/worn/teshari
+	name = "Winter Coat Hood (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/winterhood_teshari.dmi'
+
+/datum/greyscale_config/hoodie_pullover/worn/digi
+	name = "Pullover Hoodie (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/wintercoat_digi.dmi'
+
+/datum/greyscale_config/hoodie_pullover/worn/teshari
+	name = "Pullover Hoodie (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/wintercoat_teshari.dmi'
+
+/datum/greyscale_config/hoodie_pullover_hood/worn/teshari
+	name = "Pullover Hood (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/winterhood_teshari.dmi'
+
+/datum/greyscale_config/hoodie_zipup/worn/digi
+	name = "Zipup Hoodie (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/wintercoat_digi.dmi'
+
+/datum/greyscale_config/hoodie_zipup/worn/teshari
+	name = "Zipup Hoodie (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/wintercoat_teshari.dmi'
+
+/datum/greyscale_config/hoodie_zipup_hood/worn/teshari
+	name = "Zipup Hood (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/winterhood_teshari.dmi'
