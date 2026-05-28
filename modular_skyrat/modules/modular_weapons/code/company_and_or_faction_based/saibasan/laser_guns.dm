@@ -44,7 +44,7 @@
 		/datum/laser_weapon_mode/marksman,
 		/datum/laser_weapon_mode/launcher,
 		/datum/laser_weapon_mode/shotgun,
-		/datum/laser_weapon_mode/flare,
+		/datum/laser_weapon_mode/bigflare,
 	)
 	/// Populates with a list of weapon mode names and their respective paths on init
 	var/list/weapon_mode_name_to_path = list()
