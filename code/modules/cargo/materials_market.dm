@@ -36,27 +36,15 @@
 		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/materials_market/screwdriver_act(mob/living/user, obj/item/tool)
-	. = ..()
-	if(default_deconstruction_screwdriver(user, "[base_icon_state]_open", "[base_icon_state]", tool))
-		return ITEM_INTERACT_SUCCESS
+	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/materials_market/crowbar_act(mob/living/user, obj/item/tool)
-	. = ..()
-	if(default_deconstruction_crowbar(tool))
-		return ITEM_INTERACT_SUCCESS
+	return default_deconstruction_crowbar(user, tool)
 
 /obj/machinery/materials_market/item_interaction(mob/living/user, obj/item/stack/exportable, list/modifiers)
-	. = NONE
 	if(!isstack(exportable))
-		return
+		return NONE
 
-	// BUBBER EDIT ADDITION BEGIN - GMM can't sell materials
-	balloon_alert(user, "export not available!")
-	return ITEM_INTERACT_FAILURE
-	// BUBBER EDIT ADDITION END - GMM can't sell materials
-
-	// BUBBER EDIT REMOVAL BEGIN - GMM can't sell materials
-	/*
 	if(!is_operational)
 		balloon_alert(user, "no power!")
 		return ITEM_INTERACT_FAILURE
@@ -83,8 +71,6 @@
 	qdel(exportable)
 	use_energy(active_power_usage)
 	return ITEM_INTERACT_SUCCESS
-	*/
-	// BUBBER EDIT REMOVAL END - GMM can't sell materials
 
 /obj/machinery/materials_market/power_change()
 	. = ..()

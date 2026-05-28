@@ -779,7 +779,7 @@
 
 /obj/item/mod/module/dna_lock/reinforced/on_mod_activation(datum/source, mob/user)
 	. = ..()
-	if(. != MOD_CANCEL_ACTIVATE || !isliving(user))
+	if(. != MOD_CANCEL_ACTIVATE || !isliving(user) || user != mod.wearer)
 		return
 	if(istype(mod, /obj/item/mod/control/pre_equipped/protean)) // BUBBER EDIT START
 		return													// BUBBER EDIT END

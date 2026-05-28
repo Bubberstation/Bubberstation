@@ -271,7 +271,7 @@
 	id_trim = /datum/id_trim/syndicom/skyrat/ds2/brigofficer
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/bulletproof/old
-	back = /obj/item/storage/backpack/security/redsec
+	back = /obj/item/storage/backpack/security
 	head = /obj/item/clothing/head/helmet/swat/ds
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
 	r_pocket = /obj/item/flashlight/seclite
@@ -304,7 +304,7 @@
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/vest/warden/syndicate
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
-	back = /obj/item/storage/backpack/satchel/sec/redsec
+	back = /obj/item/storage/backpack/satchel/sec
 	head = /obj/item/clothing/head/hats/hos/beret/syndicate
 	l_pocket = /obj/item/gun/energy/e_gun/mini
 	r_pocket = /obj/item/flashlight/seclite

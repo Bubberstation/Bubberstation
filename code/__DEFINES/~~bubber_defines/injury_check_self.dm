@@ -1,0 +1,1 @@
+#define COMSIG_CARBON_SELF_CHECK_FOR_INJURIES "check_self_for_injuries"

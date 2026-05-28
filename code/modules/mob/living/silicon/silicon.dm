@@ -44,7 +44,6 @@
 
 	var/law_change_counter = 0
 	var/obj/machinery/camera/silicon/builtInCamera
-	var/updating = FALSE //portable camera camerachunk update
 	///Whether we have been emagged
 	var/emagged = FALSE
 	var/hack_software = FALSE //Will be able to use hacking actions
@@ -56,8 +55,7 @@
 
 /mob/living/silicon/Initialize(mapload)
 	. = ..()
-	if(SStts.tts_enabled)
-		voice = pick(SStts.available_speakers)
+	voice = SStts.random_tts_voice()
 	GLOB.silicon_mobs += src
 	add_faction(FACTION_SILICON)
 	if(ispath(radio))

@@ -488,7 +488,7 @@ const ResearchInfo = () => {
         <Stack.Item grow>
           <KnowledgeTree />
         </Stack.Item>
-        {knowledge_shop?.length && (
+        {!!knowledge_shop?.length && (
           <Stack.Item grow>
             <KnowledgeShop />
           </Stack.Item>
