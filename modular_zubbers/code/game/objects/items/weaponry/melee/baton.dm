@@ -26,7 +26,7 @@
 
 /obj/item/melee/baton/security/staff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == LEAP_ATTACK)
-		final_block_chance -= 25 //It's still worse than a shield and a baton but it's for the cool factor and to not make it that terrible in comparison
+		final_block_chance -= 35 //It's still worse than a shield and a baton but it's for the cool factor and to not make it that terrible in comparison
 	if(attack_type == PROJECTILE_ATTACK || attack_type == OVERWHELMING_ATTACK)
 		final_block_chance = 0 //Don't bring a staff to a gunfight, and also you aren't going to really block a road roller, if one happened to hit you.
 	return ..()
@@ -40,3 +40,32 @@
 		lore = "The Secure Apprehension Device (sometimes referred to as the SAD in the officer training manuals) is \
 		the unholy union of a mace and- hey wait a second this is just two batons strapped to each other inside a hollow casing!" \
 	)
+
+/obj/item/melee/baton/security/staff/prime
+	name = "heroic stun staff"
+	desc = "The perfect stun staff. Definitely more effective at incapacitating targets."
+	icon_state = "stunstaff"
+	base_icon_state = "stunstaff"
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/staves_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/staves_righthand.dmi'
+	inhand_icon_state = "stunstaff"
+	worn_icon = "modular_zubbers/icons/mob/clothing/back.dmi"
+	worn_icon_state = "stunstaff"
+
+	block_chance = 75 //security desword
+	block_sound = 'sound/items/weapons/genhit.ogg'
+	stamina_damage = 40 //less stamina damage but oh lord it stuns twice as fast (funny enough same damage as the desword too)
+	stun_armour_penetration = 35 //same as desword
+	force = 15
+	throwforce = 10
+	knockdown_time = 2.5 SECONDS //half the knockdown
+	cooldown = 1.25 SECONDS //half the cooldown
+
+/obj/item/melee/baton/security/staff/prime/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+	if(attack_type == LEAP_ATTACK)
+		final_block_chance -= 37.5
+	if(attack_type == PROJECTILE_ATTACK)
+		final_block_chance -= 25 
+	if( attack_type == OVERWHELMING_ATTACK)
+		final_block_chance == 0
+	return ..()

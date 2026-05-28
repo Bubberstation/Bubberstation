@@ -120,7 +120,7 @@
 	desc = "The Advanced Security Suit offers nigh-perfect protection of the wearer through an advanced layering of kevlar, titanium, and ceramic plates. \
 		The construction of the suit unfortunately renders it incredibly heavy and cumbersome, effectively slowing the user to a crawl. \
 		Only through recently developed micro-anti-gravitational generators can the suit actually be worn and moved in. \
-		Comes with a built-in helmet for EVA action."
+		Comes with a heavy-duty external storage unit along with a built-in helmet for EVA action."
 	icon_state = "security_jugger"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
@@ -135,18 +135,17 @@
 	equip_delay_self = 12 SECONDS
 	equip_delay_other = 15 SECONDS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+	item_flags = SLOWS_WHILE_IN_HAND
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | IMMUTABLE_SLOW | SNUG_FIT
 	cold_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
 	heat_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
-	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	slowdown = 5
 	drag_slowdown = 5
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, TRAIT_PUSHIMMUNE, TRAIT_NEGATES_GRAVITY, TRAIT_NO_SLIP_WATER, TRAIT_NO_VEHICLE, TRAIT_HUGE_CLOTHES)
 	allowed = list(
-		/obj/item/gun/ballistic/shotgun/automatic/combat,
-		/obj/item/shield
 	)
 
 /obj/item/clothing/suit/hooded/secjuggernaut/Initialize(mapload)
@@ -156,7 +155,7 @@
 /obj/item/clothing/head/hooded/secjuggernaut
 	name = "security juggernaut helmet"
 	desc = "A helmet built into the Advanced Security Suit. It offers nigh-perfect protection with the drawback of being permanently affixed to an incredibly heavy suit. \
-		It is pressure resistant and comes with a built-in seclite for visiblity in dark areas.\
+		It is pressure resistant, flash-protected, and comes with a built-in seclite for visiblity in dark areas.\
 		While made of the same materials and having the same overall construction, built-in servos and actuators allow it to be easily put on compared to the suit it comes with."
 	icon_state = "security_jugger0"
 	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
