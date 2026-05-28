@@ -94,10 +94,10 @@
 /mob/living/basic/bibberblub/examine(mob/user)
 	. = ..()
 	if (user == src)
-		. += "You have the following resources:"
-		. += "[nutriment_resource] Nutriment"
-		. += "[protein_resource] Protein"
-		. += "[vitamin_resource] Vitamin"
+		. += span_green("You have the following resources:")
+		. += span_green("[nutriment_resource] Nutriment")
+		. += span_green("[protein_resource] Protein")
+		. += span_green("[vitamin_resource] Vitamin")
 
 /mob/living/basic/bibberblub/death(gibbed)
 	. = ..()
