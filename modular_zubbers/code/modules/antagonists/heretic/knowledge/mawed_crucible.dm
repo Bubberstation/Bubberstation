@@ -10,7 +10,7 @@
 		SEND_SIGNAL(source_heretic, COMSIG_HERETIC_POTION_CONSUMED, src, user)
 
 /obj/item/eldritch_potion/crucible_soul
-	crucible_tip = "Allows you to walk through walls. After expiring, you are teleported to your original location, and are \
+	crucible_tip = "Allows you to walk through everything except walls. After expiring, you are teleported to your original location, and are \
 	briefly knocked down. A trail of eldritch particles lights the way to your location, so be prepared to move. Lasts 20 seconds."
 
 /datum/status_effect/crucible_soul
