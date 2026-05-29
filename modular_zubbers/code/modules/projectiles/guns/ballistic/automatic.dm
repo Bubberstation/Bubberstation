@@ -50,6 +50,7 @@
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
 	weapon_weight = WEAPON_HEAVY
 	can_suppress = TRUE
+	suppressor_x_offset = 6
 	slot_flags = ITEM_SLOT_BACK
 	projectile_damage_multiplier = 1.5 // 30 damage base + wounding at half the firerate
 	projectile_speed_multiplier = 1.5
@@ -57,7 +58,7 @@
 	burst_delay = 3
 	burst_size = 1
 
-	SET_BASE_PIXEL(-12, 0)
+	SET_BASE_PIXEL(-8, 0)
 
 /obj/item/gun/ballistic/automatic/wt550/dmr/Initialize(mapload)
 	. = ..()
