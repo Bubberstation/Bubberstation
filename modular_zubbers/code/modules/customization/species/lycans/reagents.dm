@@ -43,7 +43,6 @@
 
 	if (islycan(affected_mob))
 		return 3
-		intensity = 3
 	else if (iscursekin(affected_mob))
 		return 1
 
