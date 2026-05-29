@@ -43,10 +43,11 @@
 
 	var/intensity = 0
 	if (islycan(affected_mob))
+		return 3
 		intensity = 3
 	else if (iscursekin(affected_mob))
-		intensity = 1
+		return 1
 
-	return intensity
+	return 0
 
 #undef BASE_BURN_PER_SECOND
