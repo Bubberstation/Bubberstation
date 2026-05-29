@@ -44,7 +44,7 @@
 /obj/item/melee/baton/security/staff/prime
 	name = "heroic stun staff"
 	desc = "An absolutely brutal feat of non-lethal hardware engineering.  Definitely more effective at incapacitating targets."
-	icon_state = "stunstaff"
+	icon_state = "stunstaff" //no custom sprite yet
 	base_icon_state = "stunstaff"
 	inhand_icon_state = "stunstaff"
 	worn_icon_state = "stunstaff"

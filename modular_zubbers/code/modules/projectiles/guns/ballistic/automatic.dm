@@ -16,7 +16,7 @@
 
 /obj/item/gun/ballistic/automatic/wt550/burst
 	name = "\improper WT-550-B Autoburstrifle"
-	desc = "Not so much of a rifle, being modified closer to a submachine gun, but still somehow just as bulky. Outfitted with a modified frame and a two-shot burst trigger mechanism along with cutting off the stock. Perform overall better than the average autorifle, but kicks a bit more. Has a threaded barrel for suppressors. Uses 4.6x30mm rounds."
+	desc = "Not so much of a rifle, being modified closer to a submachine gun, but still somehow just as bulky. Outfitted with a modified frame and barrel and a two-shot burst trigger mechanism. Performs overall better than the average autorifle, but kicks a bit more. Has a threaded barrel for suppressors. Uses 4.6x30mm rounds."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "wt550b"
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
@@ -46,6 +46,8 @@
 	burst_delay = 3
 	burst_size = 1
 
+	SET_BASE_PIXEL(-8, 0)
+
 /obj/item/gun/ballistic/automatic/wt550/dmr/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 0.6 SECONDS)
@@ -67,3 +69,31 @@
 /obj/item/gun/ballistic/automatic/wt550/sawnoff/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 0.15 SECONDS)
+
+/obj/item/gun/ballistic/automatic/battle_rifle_basic
+	name = "\improper NT .38 battle rifle"
+	desc = "A lower-tech alternative version of Nanotrasen's latest prototype longarm, granting a lower tech option to those who don't care for the NT-38. \
+		Technically a pistol-caliber carbine, despite the name and its use as a designated marksman rifle. \
+		Forsaking the advanced electronics and integrated technological advantages allows it to perform infinitely more reliably."
+	icon = 'modular_zubbers/icons/obj/weapons/guns/wide_guns.dmi'
+	icon_state = "battle_rifle"
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/guns_righthand.dmi'
+	inhand_icon_state = "battle_rifle"
+	worn_icon = 'icons/mob/clothing/back.dmi'
+	worn_icon_state = "battle_rifle"
+	slot_flags = ITEM_SLOT_BACK
+
+	weapon_weight = WEAPON_HEAVY
+	accepted_magazine_type = /obj/item/ammo_box/magazine/m38
+	w_class = WEIGHT_CLASS_BULKY
+	force = 15
+	mag_display = TRUE
+	empty_indicator = TRUE
+	fire_delay = 2.2 DECISECONDS
+	burst_size = 1
+	actions_types = list()
+	fire_sound = 'sound/items/weapons/thermalpistol.ogg'
+	suppressor_x_offset = 0
+
+	SET_BASE_PIXEL(-8, 0)
