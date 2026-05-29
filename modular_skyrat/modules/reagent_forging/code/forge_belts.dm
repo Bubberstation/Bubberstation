@@ -26,7 +26,7 @@
 		contents_to_check = contents
 	var/list/noteworthy_contents = list()
 	for(var/obj/item/I in contents_to_check)
-		if(!istype(/obj/item/ammo_box))
+		if(!istype(I, /obj/item/ammo_box))
 			noteworthy_contents += I
 
 	if(length(noteworthy_contents) > 0)
