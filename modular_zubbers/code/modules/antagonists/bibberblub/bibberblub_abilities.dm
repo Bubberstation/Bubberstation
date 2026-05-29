@@ -49,6 +49,9 @@
 		new /obj/effect/mob_spawn/ghost_role/bibberblub(get_turf(bibberblub))
 		bibberblub.protein_resource -= protein_cost
 
+/datum/action/cooldown/bibberblub_reproduce/Destroy()
+	. = ..()
+	bibberblub = null
 
 /datum/action/cooldown/spell/pointed/hamster
 	name = "Hamster"
@@ -111,6 +114,10 @@
 	if(isnull(bibberblub))
 		Remove(granted_to)
 
+/datum/action/cooldown/bibberblub_spit/Destroy()
+	. = ..()
+	bibberblub = null
+
 /datum/action/cooldown/bibberblub_spit/Activate(atom/target)
 	. = ..()
 	if(bibberblub.vitamin_resource < vitamin_cost)
@@ -161,6 +168,10 @@
 	if(do_after(bibberblub, build_time, target))
 		new structure_to_build(get_turf(bibberblub))
 		bibberblub.nutriment_resource -= nutriment_cost
+
+/datum/action/cooldown/bubberblub_structures/Destroy()
+	. = ..()
+	bibberblub = null
 
 /datum/action/cooldown/bubberblub_structures/proc/validate_placement()
 	if(!bibberblub)
