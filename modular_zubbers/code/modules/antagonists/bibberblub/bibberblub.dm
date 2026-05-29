@@ -99,9 +99,6 @@
 		. += span_boldnicegreen("[protein_resource] Protein")
 		. += span_boldnicegreen("[vitamin_resource] Vitamin")
 
-/mob/living/basic/bibberblub/death(gibbed)
-	. = ..()
-
 /mob/living/basic/bibberblub/melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	if(istype(target, /obj/machinery/vending))
 		raid_vendor(target)
