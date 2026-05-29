@@ -377,8 +377,8 @@
 
 /datum/storage/multi_scabbard
 	max_slots = 2
-	do_rustle = FALSE
-	max_specific_storage = WEIGHT_CLASS_BULKY
+	do_rustle = TRUE
+	max_specific_storage = WEIGHT_CLASS_HUGE
 	click_alt_open = FALSE
 
 /datum/storage/multi_scabbard/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
