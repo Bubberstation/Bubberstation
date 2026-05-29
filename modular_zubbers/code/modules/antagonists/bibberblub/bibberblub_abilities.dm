@@ -49,7 +49,7 @@
 		new /obj/effect/mob_spawn/ghost_role/bibberblub(get_turf(bibberblub))
 		bibberblub.protein_resource -= protein_cost
 
-/datum/action/cooldown/bibberblub_reproduce/Destroy()
+/datum/action/cooldown/bibberblub_reproduce/Remove(mob/removed_from)
 	bibberblub = null
 	return ..()
 
@@ -114,7 +114,7 @@
 	if(isnull(bibberblub))
 		Remove(granted_to)
 
-/datum/action/cooldown/bibberblub_spit/Destroy()
+/datum/action/cooldown/bibberblub_spit/Remove(mob/removed_from)
 	bibberblub = null
 	return ..()
 
@@ -169,7 +169,7 @@
 		new structure_to_build(get_turf(bibberblub))
 		bibberblub.nutriment_resource -= nutriment_cost
 
-/datum/action/cooldown/bubberblub_structures/Destroy()
+/datum/action/cooldown/bubberblub_structures/Remove(mob/removed_from)
 	bibberblub = null
 	return ..()
 
