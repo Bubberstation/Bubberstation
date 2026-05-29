@@ -41,7 +41,6 @@
 	if (!ishuman(affected_mob))
 		return 0
 
-	var/intensity = 0
 	if (islycan(affected_mob))
 		return 3
 		intensity = 3
