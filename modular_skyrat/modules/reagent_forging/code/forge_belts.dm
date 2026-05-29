@@ -138,6 +138,9 @@
 	QDEL_NULL(real_storage)
 	. = ..()
 
+/obj/item/storage/belt/hip_holster/charging/update_label(list/contents_to_check = null)
+	. = ..(real_storage.contents)
+
 /obj/item/storage/belt/hip_holster/charging/get_guns_contained_overlays(list/contents_to_check = null)
 	. = ..(real_storage.contents)
 
