@@ -2,7 +2,7 @@
 	name = "\improper WT-550 magazine"
 
 /obj/item/ammo_box/magazine/wt550m9/wtap
-	name = "wt550 Armour-piercing magazine"
+	name = "wt550 armour-piercing magazine"
 
 /obj/item/ammo_box/magazine/wt550m9/wtic
 	name = "wt550 incendiary magazine"

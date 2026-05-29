@@ -4,6 +4,17 @@
 /obj/item/gun/ballistic/automatic/wt550/add_bayonet_point()
 	return
 
+/obj/item/gun/energy/ballistic/automatic/wt550/Initialize(mapload) \\for that SLAP crafting
+	. = ..()]
+	if(type != /obj/item/gun/ballistic/automatic/wt550)
+		return
+	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/advancedegun, /datum/crafting_recipe/tempgun, /datum/crafting_recipe/beam_rifle)
+
+	AddElement(
+		/datum/element/slapcrafting,\
+		slapcraft_recipes = slapcraft_recipe_list,\
+	)
+
 /obj/item/gun/ballistic/automatic/wt550/security
 	name = "\improper WT-551 Autorifle"
 	desc = "A heavier, bulkier automatic variant of the WT-550, and now with 99% less discombobulation! Despite what Nanotrasen might tell you, it's identical in performance to the classic. Uses 4.6x30mm rounds. Recommended to hold with two hands."
