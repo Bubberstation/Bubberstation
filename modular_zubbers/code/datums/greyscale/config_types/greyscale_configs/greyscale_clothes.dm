@@ -8,6 +8,29 @@
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/captain.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/cso.json'
 
+/datum/greyscale_config/security_uniform
+	name = "Security Uniform"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/security_uniform.json'
+
+/datum/greyscale_config/security_uniform/worn
+	name = "Security Uniform (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+
+/datum/greyscale_config/security_uniform/worn/digi
+	name = "Security Uniform (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+
+/datum/greyscale_config/security_cap
+	name = "Security Cap"
+	icon_file = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/head/security_cap.json'
+
+/datum/greyscale_config/security_cap/worn
+	name = "Security Cap (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/head/security_cap_worn.json'
+
 /datum/greyscale_config/gi/worn/digi
 	name = "Gi (Worn, Digi)"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/costume_digi.dmi'
