@@ -4,7 +4,7 @@
 /obj/item/gun/ballistic/automatic/wt550/add_bayonet_point()
 	return
 
-/obj/item/gun/energy/ballistic/automatic/wt550/Initialize(mapload) \\for that SLAP crafting
+/obj/item/gun/energy/ballistic/automatic/wt550/Initialize(mapload)
 	. = ..()]
 	if(type != /obj/item/gun/ballistic/automatic/wt550)
 		return
