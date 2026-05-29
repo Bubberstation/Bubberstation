@@ -4,6 +4,7 @@
 	icon = 'modular_zubbers/icons/bibberblub/bibberblub.dmi'
 	max_integrity = 50
 	anchored = TRUE
+	abstract_type = /obj/structure/bibberblub
 
 /obj/structure/bibberblub/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
