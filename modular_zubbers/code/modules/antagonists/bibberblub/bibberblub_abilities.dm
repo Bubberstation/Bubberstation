@@ -50,8 +50,8 @@
 		bibberblub.protein_resource -= protein_cost
 
 /datum/action/cooldown/bibberblub_reproduce/Destroy()
-	. = ..()
 	bibberblub = null
+	return ..()
 
 /datum/action/cooldown/spell/pointed/hamster
 	name = "Hamster"
@@ -115,8 +115,8 @@
 		Remove(granted_to)
 
 /datum/action/cooldown/bibberblub_spit/Destroy()
-	. = ..()
 	bibberblub = null
+	return ..()
 
 /datum/action/cooldown/bibberblub_spit/Activate(atom/target)
 	. = ..()
@@ -170,8 +170,8 @@
 		bibberblub.nutriment_resource -= nutriment_cost
 
 /datum/action/cooldown/bubberblub_structures/Destroy()
-	. = ..()
 	bibberblub = null
+	return ..()
 
 /datum/action/cooldown/bubberblub_structures/proc/validate_placement()
 	if(!bibberblub)
