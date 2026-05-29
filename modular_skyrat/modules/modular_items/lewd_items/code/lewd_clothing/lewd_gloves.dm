@@ -33,7 +33,6 @@
 	RegisterSignal(wearer, COMSIG_TRY_STRIP, PROC_REF(on_try_strip))
 	RegisterSignal(wearer, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(on_mousedrop_receive))
 	RegisterSignal(wearer, COMSIG_LIVING_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
-	RegisterSignal(wearer, COMSIG_LIVING_RESIST, PROC_REF(on_resist))
 
 /datum/component/ball_mittens_fumble/proc/unregister_wearer(mob/living/wearer)
 	if(!isliving(wearer))
@@ -50,7 +49,6 @@
 		COMSIG_MOB_FIRED_GUN,
 		COMSIG_TRY_STRIP,
 		COMSIG_LIVING_UNARMED_ATTACK,
-		COMSIG_LIVING_RESIST,
 		COMSIG_MOUSEDROPPED_ONTO,
 	))
 
@@ -172,17 +170,6 @@
 	if(QDELETED(src) || QDELETED(wearer) || QDELETED(cloth))
 		return
 	wearer.dropItemToGround(cloth)
-
-/datum/component/ball_mittens_fumble/proc/on_resist(mob/living/wearer)
-	SIGNAL_HANDLER
-	var/obj/item/clothing/gloves/ball_mittens/mittens = parent
-	if(!istype(mittens))
-		return
-	if(ishuman(wearer))
-		var/mob/living/carbon/human/human_wearer = wearer
-		if(human_wearer.handcuffed || human_wearer.legcuffed)
-			return
-	INVOKE_ASYNC(mittens, TYPE_PROC_REF(/obj/item/clothing/gloves/ball_mittens, doStrip), wearer, wearer)
 
 /datum/component/ball_mittens_fumble/proc/on_unarmed_attack(mob/living/wearer, atom/attack_target, proximity_flag, list/modifiers)
 	SIGNAL_HANDLER
