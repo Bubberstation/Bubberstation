@@ -1,44 +1,44 @@
 /datum/crafting_recipe/wt550_burst
 	name = "WT-550-B Autoburstrifle"
-	result = /obj/item/gun/energy/ballistic/automatic/wt550/burst
+	result = /obj/item/gun/ballistic/automatic/wt550/burst
 	reqs = list(
-		/obj/item/gun/energy/ballistic/automatic/wt550 = 1,
+		/obj/item/gun/ballistic/automatic/wt550 = 1,
 		/obj/item/weaponcrafting/gunkit/wt550_burst = 1,
 	)
 	blacklist = list(
-		/obj/item/gun/energy/ballistic/automatic/wt550/burst,
-		/obj/item/gun/energy/ballistic/automatic/wt550/dmr,
-		/obj/item/gun/energy/ballistic/automatic/wt550/sawnoff
+		/obj/item/gun/ballistic/automatic/wt550/burst,
+		/obj/item/gun/ballistic/automatic/wt550/dmr,
+		/obj/item/gun/ballistic/automatic/wt550/sawnoff,
 	)
 	time = 15 SECONDS
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/wt550_long
 	name = "WT-550-C Autorifle"
-	result = /obj/item/gun/energy/ballistic/automatic/wt550/dmr
+	result = /obj/item/gun/ballistic/automatic/wt550/dmr
 	reqs = list(
-		/obj/item/gun/energy/ballistic/automatic/wt550 = 1,
+		/obj/item/gun/ballistic/automatic/wt550 = 1,
 		/obj/item/weaponcrafting/gunkit/wt550_long = 1,
 	)
 	blacklist = list(
-		/obj/item/gun/energy/ballistic/automatic/wt550/burst,
-		/obj/item/gun/energy/ballistic/automatic/wt550/dmr,
-		/obj/item/gun/energy/ballistic/automatic/wt550/sawnoff
+		/obj/item/gun/ballistic/automatic/wt550/burst,
+		/obj/item/gun/ballistic/automatic/wt550/dmr,
+		/obj/item/gun/ballistic/automatic/wt550/sawnoff,
 	)
 	time = 15 SECONDS
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/wt550_sawd
 	name = "Sawn-off WT-550"
-	result = /obj/item/gun/energy/ballistic/automatic/wt550/sawnoff
+	result = /obj/item/gun/ballistic/automatic/wt550/sawnoff
 	reqs = list(
-		/obj/item/gun/energy/ballistic/automatic/wt550 = 1,
+		/obj/item/gun/ballistic/automatic/wt550 = 1,
 		/obj/item/weaponcrafting/gunkit/wt550_sawd = 1,
 	)
 	blacklist = list(
-		/obj/item/gun/energy/ballistic/automatic/wt550/burst,
-		/obj/item/gun/energy/ballistic/automatic/wt550/dmr,
-		/obj/item/gun/energy/ballistic/automatic/wt550/sawnoff
+		/obj/item/gun/ballistic/automatic/wt550/burst,
+		/obj/item/gun/ballistic/automatic/wt550/dmr,
+		/obj/item/gun/ballistic/automatic/wt550/sawnoff,
 	)
 	time = 15 SECONDS
 	category = CAT_WEAPON_RANGED
@@ -50,6 +50,17 @@
 	reqs = list(
 		/obj/item/gun/ballistic/automatic/battle_rifle = 1,
 		/obj/item/weaponcrafting/gunkit/simple_battle_rifle = 1,
+	)
+	time = 20 SECONDS
+	category = CAT_WEAPON_RANGED
+
+/datum/crafting_recipe/laser/lmg
+	name = "Laser Machine Gun"
+	result = /obj/item/gun/energy/laser/lmg
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL)
+	reqs = list(
+		/obj/item/gun/energy/laser = 1,
+		/obj/item/weaponcrafting/gunkit/laserlmg = 1,
 	)
 	time = 20 SECONDS
 	category = CAT_WEAPON_RANGED

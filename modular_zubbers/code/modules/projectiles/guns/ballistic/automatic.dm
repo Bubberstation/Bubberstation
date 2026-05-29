@@ -5,10 +5,10 @@
 	return
 
 /obj/item/gun/energy/ballistic/automatic/wt550/Initialize(mapload)
-	. = ..()]
+	. = ..()
 	if(type != /obj/item/gun/ballistic/automatic/wt550)
 		return
-	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/advancedegun, /datum/crafting_recipe/tempgun, /datum/crafting_recipe/beam_rifle)
+	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/wt550_burst, /datum/crafting_recipe/wt550_long, /datum/crafting_recipe/wt550_sawd)
 
 	AddElement(
 		/datum/element/slapcrafting,\
@@ -57,7 +57,7 @@
 	burst_delay = 3
 	burst_size = 1
 
-	SET_BASE_PIXEL(-8, 0)
+	SET_BASE_PIXEL(-12, 0)
 
 /obj/item/gun/ballistic/automatic/wt550/dmr/Initialize(mapload)
 	. = ..()
@@ -83,7 +83,7 @@
 
 /obj/item/gun/ballistic/automatic/battle_rifle_basic
 	name = "\improper NT .38 battle rifle"
-	desc = "A lower-tech alternative version of Nanotrasen's latest prototype longarm, granting a lower tech option to those who don't care for the NT-38. \
+	desc = "A lower-tech alternative version of Nanotrasen's latest prototype longarm, granting a different option to those who don't care for the NT-38. \
 		Technically a pistol-caliber carbine, despite the name and its use as a designated marksman rifle. \
 		Forsaking the advanced electronics and integrated technological advantages allows it to perform infinitely more reliably."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/wide_guns.dmi'
@@ -101,7 +101,7 @@
 	force = 15
 	mag_display = TRUE
 	empty_indicator = TRUE
-	fire_delay = 2.2 DECISECONDS
+	fire_delay = 2.0 DECISECONDS
 	burst_size = 1
 	actions_types = list()
 	fire_sound = 'sound/items/weapons/thermalpistol.ogg'

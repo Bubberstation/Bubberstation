@@ -25,3 +25,10 @@
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5,
 	)
+
+/obj/item/weaponcrafting/gunkit/laserlmg
+	name = "laser machine gun parts kit (lethal)"
+	desc = "A suitcase containing the neccessary gun parts to convert a regular laser gun into a laser machine gun."
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5,
+	)
