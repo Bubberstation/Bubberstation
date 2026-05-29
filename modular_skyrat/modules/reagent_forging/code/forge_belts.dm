@@ -15,6 +15,25 @@
 	alternate_worn_layer = null
 	storage_type = /datum/storage/holster
 
+/obj/item/storage/belt/hip_holster/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	update_label()
+/obj/item/storage/belt/hip_holster/Exited(atom/movable/gone, direction)
+	. = ..()
+	update_label()
+/obj/item/storage/belt/hip_holster/proc/update_label(list/contents_to_check = null)
+	if(isnull(contents_to_check))
+		contents_to_check = contents
+	var/list/noteworthy_contents = list()
+	for(var/obj/item/I in contents_to_check)
+		if(!istype(ammo_box))
+			noteworthy_contents += I
+
+	if(length(noteworthy_contents) > 0)
+		name = "[src::name] containing [noteworthy_contents.Join("; ")]"
+	else
+		name = src::name
+
 //copy of the holster/equipped proc.
 /obj/item/storage/belt/hip_holster/equipped(mob/user, slot)
 	. = ..()
