@@ -318,7 +318,7 @@
 
 /obj/item/clothing/gloves/ball_mittens
 	name = "ball mittens"
-	desc = "A pair of inflatable latex mittens. Adorable and comfortable, but completely useless for anything requiring fingers. You'll need someone else to get these off."
+	desc = "A pair of inflatable latex mittens. Adorable and comfortable, but completely useless for anything requiring fingers. Getting these off yourself is a serious ordeal — you'll probably want help."
 	icon_state = "ballmittens"
 	inhand_icon_state = "" // Explicitly empty - null can cause BYOND to fall back to the main icon
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_gloves.dmi'
@@ -434,6 +434,9 @@
 	if(href_list["toggle_lights"])
 		if(!usr || !istype(usr, /mob/living))
 			return
+		var/mob/living/carbon/human/toggler = usr
+		if(toggler.gloves != src)
+			return
 		lights_on = !lights_on
 		playsound(src, 'sound/machines/click.ogg', 30, FALSE)
 		to_chat(usr, span_notice("You turn the accent lighting [lights_on ? "on" : "off"]."))
@@ -472,7 +475,7 @@
 		span_notice("You press [item] against [src], attempting to combine them. Halfway through you realize latex is, in fact, already an insulator. You throw away the insulated gloves.")
 	)
 	siemens_coefficient = 0
-	name = is_paw_skin ? "insulated latex paw mittens" : "insulated ball mittens"
+	name = "insulated [name]"
 	desc = "A pair of inflatable latex mittens. Someone has helpfully applied insulated gloves to them, only to realise too late that latex was already an insulator."
 	qdel(item)
 	update_appearance()
