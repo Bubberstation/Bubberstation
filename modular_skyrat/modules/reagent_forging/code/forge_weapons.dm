@@ -248,8 +248,7 @@
 	name = "reagent rapier"
 	desc = "A lightweight rapier. Usually kept as a self-defense weapon; good at parrying attacks but cannot be two-handed for extra power."
 	force = 12
-	armour_penetration = 25
-	block_chance = 35
+	block_chance = 30
 	icon_state = "rapier"
 	inhand_icon_state = "sabre"
 	icon_angle = -45
@@ -273,6 +272,9 @@
 /obj/item/melee/forged_reagent_weapon/rapier/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
+
+/obj/item/melee/forged_reagent_weapon/rapier/apply_reagent_component()
+	AddComponent(/datum/component/reagent_imbued/weapon, list(FORGE_EFFECT_BLOCKCHANCE = 5))
 
 /obj/item/melee/forged_reagent_weapon/staff //doesn't do damage. Useful for healing reagents.
 	name = "reagent staff"
@@ -449,7 +451,7 @@
 
 /obj/item/shield/buckler/reagent_weapon/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_imbued/weapon)
+	AddComponent(/datum/component/reagent_imbued/weapon, oil_effects = list(FORGE_EFFECT_BLOCKCHANCE = 5, FORGE_EFFECT_DURABILITY = 20))
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 	apply_smithing_component()
 
