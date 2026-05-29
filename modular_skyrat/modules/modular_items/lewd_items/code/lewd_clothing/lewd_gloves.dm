@@ -79,15 +79,6 @@
 	SIGNAL_HANDLER
 	if(item.item_flags & ABSTRACT)
 		return
-	var/has_item = FALSE
-	for(var/i = 1 to length(wearer.held_items))
-		var/obj/item/held = wearer.held_items[i]
-		if(!isnull(held) && !(held.item_flags & ABSTRACT))
-			has_item = TRUE
-			break
-	if(has_item)
-		to_chat(wearer, span_warning("Your [get_hand_descriptor(wearer)] are already occupied. One thing at a time."))
-		return COMPONENT_BLOCK_ITEM_PICKUP
 	if(!isgun(item) && item.w_class >= max_item_size)
 		pickup_mods["delay"] = struggle_delay_min * (item.w_class - max_item_size + 2)
 		pickup_mods["fail_chance"] = min(75, (item.w_class - max_item_size) * 25)
@@ -131,15 +122,6 @@
 	SIGNAL_HANDLER
 	if(to_pick_up.item_flags & ABSTRACT)
 		return
-	var/has_item = FALSE
-	for(var/i = 1 to length(wearer.held_items))
-		var/obj/item/held = wearer.held_items[i]
-		if(!isnull(held) && !(held.item_flags & ABSTRACT))
-			has_item = TRUE
-			break
-	if(has_item)
-		to_chat(wearer, span_warning("Your [get_hand_descriptor(wearer)] are already occupied. One thing at a time."))
-		return COMPONENT_LIVING_CANT_PUT_IN_HAND
 	if(ismob(to_pick_up.loc))
 		return
 
