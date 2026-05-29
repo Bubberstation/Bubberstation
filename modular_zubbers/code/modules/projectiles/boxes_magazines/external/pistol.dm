@@ -36,7 +36,7 @@
 
 /obj/item/ammo_box/magazine/recharge/ntusp
 	name = "small disabling power pack"
-	desc = "A small, rechargeable power pack for the NT-USP. Synthesizes up to twelve .22HL bullets that tire targets."
+	desc = "A small, rechargeable power pack for the NT22 HCS 'Enforcer'. Synthesizes up to twelve .22HL bullets that tire targets."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ammo.dmi'
 	base_icon_state = "powerpack_small"
 	icon_state = "powerpack_small-12"
@@ -45,7 +45,7 @@
 
 /obj/item/ammo_box/magazine/recharge/ntusp/laser
 	name = "small lethal power pack"
-	desc = "A small, rechargeable power pack for the NT-USP that has been modified. Synthesizes up to eight .22LS bullets that fire lasers."
+	desc = "A small, rechargeable power pack for the NT22 HCS 'Enforcer' that has been modified. Synthesizes up to eight .22LS bullets that fire lasers."
 	ammo_type = /obj/item/ammo_casing/caseless/c22ls
 	base_icon_state = "powerpack_small-l"
 	icon_state = "powerpack_small-l-8"
@@ -65,3 +65,26 @@
 		for(var/i = 0; i < bullets_to_remove; i++)
 			qdel(get_round())
 		update_icon()
+
+/obj/item/ammo_box/speedloader/security
+	name = "speed loader (9mm Murphy)"
+	desc = "Designed to quickly reload five-chambered 9mm revolvers."
+	icon = 'modular_zubbers/icons/obj/weapons/guns/ammo.dmi'
+	icon_state = "9mm"
+	base_icon_state = "9mm"
+	ammo_type = /obj/item/ammo_casing/security
+	caliber = CALIBER_9MM_SEC
+	max_ammo = 5
+	ammo_band_icon = null
+	ammo_band_color = null
+
+/obj/item/ammo_box/speedloader/security/update_icon_state()
+	. = ..()
+	icon_state = "[base_icon_state]-base"
+
+/obj/item/ammo_box/speedloader/security/update_overlays()
+	. = ..()
+	if(!LAZYLEN(stored_ammo))
+		return
+	for(var/inserted_ammo in 1 to stored_ammo.len)
+		. += "9mm-revolver-[inserted_ammo]"

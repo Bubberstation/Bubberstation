@@ -65,6 +65,12 @@
 /// The trait that determines if someone has the robotic limb reattachment quirk.
 #define TRAIT_ROBOTIC_LIMBATTACHMENT "trait_robotic_limbattachment"
 
+/// Trait that gives your brain traumas more resilance
+#define TRAIT_RESILIENT_TRAUMAS "trait_resilient_traumas"
+
+/// Trait used to block telepathy types (Genetics, Xenomorph, Revenant, Slime. Ideally should be all.)
+#define TRAIT_PSIONIC_DAMPENER "psionic_dampener"
+
 /// Induces a dragging slowdown to the person when applied.
 #define TRAIT_BIG_CLOTHES "trait_big_clothes" // 3 slowdown
 #define TRAIT_BULKY_CLOTHES "trait_bulky_clothes" // 4 slowdown

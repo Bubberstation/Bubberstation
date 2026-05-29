@@ -5,6 +5,7 @@
 
 /area/awaymission/black_mesa
 	name = "Black Mesa Inside"
+	static_lighting = TRUE
 
 /area/awaymission/black_mesa/entrance
 	name = "Black Mesa Entrance"
@@ -265,7 +266,7 @@
 /area/awaymission/black_mesa/outside
 	name = "Black Mesa Outside"
 	static_lighting = FALSE
-	lighting
+	base_lighting_alpha = 255
 
 /area/awaymission/black_mesa/xen
 	name = "Black Mesa Xen"

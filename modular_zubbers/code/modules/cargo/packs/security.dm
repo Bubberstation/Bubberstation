@@ -95,7 +95,6 @@
 /datum/supply_pack/security/armory/laser_carbine
 	cost = CARGO_CRATE_VALUE * 7
 
-/* ugly takyon sprites - readd later VIROWIP
 /datum/supply_pack/security/combine
 	name = "Civil Protection Uniforms"
 	desc = "Extra supplies we got from some weird old guy in a blue suit. Contains six uniforms, \
@@ -111,20 +110,43 @@
 			)
 	crate_name = "benefactor supply crate"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
-*/
 
 /datum/supply_pack/security/ntusp
-	name = "NT-USP Crate"
-	desc = "Three stamina-draining ballistic weapons, along with 3 extra clips. Requires Security access to open."
+	name = "NT22-HCS Crate"
+	desc = "Three NT22-HCS 'Enforcer' pistol cases, each containing a weapon and a power pack."
 	cost = CARGO_CRATE_VALUE * 5.5
 	access = ACCESS_SECURITY
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/ntusp,
-					/obj/item/gun/ballistic/automatic/pistol/ntusp,
-					/obj/item/gun/ballistic/automatic/pistol/ntusp,
-					/obj/item/ammo_box/magazine/recharge/ntusp,
-					/obj/item/ammo_box/magazine/recharge/ntusp,
-					/obj/item/ammo_box/magazine/recharge/ntusp)
-	crate_name = "nt-usp crate"
+	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/ntusp,
+					/obj/item/storage/toolbox/guncase/skyrat/pistol/ntusp,
+					/obj/item/storage/toolbox/guncase/skyrat/pistol/ntusp)
+	crate_name = "nt22-hcs crate"
+
+/datum/supply_pack/security/ntmp5
+	name = "NT22-HCS-MP Crate"
+	desc = "Three NT22-HCS-MP 'Lancer' submachine gun cases, each containing a weapon and a power pack. Each weapon can retract its stock to fit inside backpacks."
+	cost = CARGO_CRATE_VALUE * 6.5
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5,
+					/obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5,
+					/obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5)
+	crate_name = "nt22-hcs-mp crate"
+
+/datum/supply_pack/security/miecz
+	name = "Miecz Submachine Gun Crate"
+	crate_name = "Miecz submachine gun crate"
+	desc = "Contains two Miecz submachine guns and a spare magazine for both."
+	contains = list(/obj/item/gun/ballistic/automatic/miecz = 2,
+	/obj/item/ammo_box/magazine/miecz = 2)
+	cost = CARGO_CRATE_VALUE * 10
+	access = ACCESS_SECURITY
+
+/datum/supply_pack/security/mieczammo
+	name = "Miecz Submachine Gun Ammo Crate"
+	crate_name = "Miecz submachine gun ammo crate"
+	desc = "Contains 4 magazines for the Miecz submachine gun."
+	contains = list(/obj/item/ammo_box/magazine/miecz = 4)
+	cost = CARGO_CRATE_VALUE * 4
+	access = ACCESS_SECURITY
 
 /datum/supply_pack/security/armory/archery_kit
 	name = "Archery Crate"
@@ -185,4 +207,14 @@
 		/obj/item/gun/energy/tacticool,
 		/obj/item/gun/energy/tacticool,
 		/obj/item/gun/energy/tacticool,
+	)
+
+/datum/supply_pack/security/armory/peacekeepers
+	name = "Renoster Shotgun Crate"
+	desc = "Three Renoster pump-action shotguns to restock your armories with."
+	cost = CARGO_CRATE_VALUE * 10
+	contains = list(
+		/obj/item/gun/ballistic/shotgun/riot/sol,
+		/obj/item/gun/ballistic/shotgun/riot/sol,
+		/obj/item/gun/ballistic/shotgun/riot/sol,
 	)

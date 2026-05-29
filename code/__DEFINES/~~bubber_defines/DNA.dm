@@ -85,6 +85,12 @@
 #define SHEATH_SLIT	"Slit"
 #define SHEATH_MODES list(SHEATH_NONE, SHEATH_NORMAL, SHEATH_SLIT)
 
+#define BUTT_MIN_SIZE 0
+#define BUTT_MAX_SIZE 8
+
+#define BELLY_MIN_SIZE 0
+#define BELLY_MAX_SIZE 9 // 10 is in the code, but too much.
+
 #define MANDATORY_FEATURE_LIST list(\
 	"mcolor" = "#FFFFBB",\
 	"mcolor2" = "#FFFFBB",\
@@ -169,3 +175,8 @@
 
 #define MUTATION_SOURCE_SPECIES "species"
 #define MUTATION_SOURCE_QUIRK "quirk"
+
+///INTERNAL ORGANS
+
+///// Brain implants that add functionality to the user, such as a health relay
+#define ORGAN_SLOT_BRAIN_AID "brain_aid"

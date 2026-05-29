@@ -252,13 +252,16 @@
 /datum/paintable_decal_category/plating
 	paintable_decal_type = /datum/paintable_decal/plating
 	category = "Plating Sidings"
+	// BUBBER EDIT BEGIN: decal overrides
+	// Ideally we shouldn't have to modify this but a tg genius hardcoded the colors.
 	possible_colors = list(
-		"Default" = "#949494",
+		"Default" = /obj/effect/turf_decal/siding/wideplating::color,
 		"White" = "#FFFFFF",
-		"Terracotta" = "#b84221",
-		"Dark" = "#36373a",
-		"Light" = "#e2e2e2",
+		"Terracotta" = /obj/effect/turf_decal/siding/wideplating/terracotta::color,
+		"Dark" = /obj/effect/turf_decal/siding/wideplating/dark::color,
+		"Light" = /obj/effect/turf_decal/siding/wideplating/light::color,
 	)
+	// BUBBER EDIT END
 
 /// Global list of all paintable decal categories singletons
 GLOBAL_LIST_INIT(paintable_decals, init_subtypes(/datum/paintable_decal_category))
