@@ -286,7 +286,7 @@
 		to_chat(user, span_warning("[src] is currently occupied!"))
 		return
 
-	if(default_deconstruction_screwdriver(user, icon_state, icon_state, used_item))
+	if(default_deconstruction_screwdriver(user, used_item))
 		update_appearance()
 		return
 
