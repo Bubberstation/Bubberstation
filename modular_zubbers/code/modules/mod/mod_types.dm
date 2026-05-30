@@ -42,8 +42,11 @@
 	applied_modules = list(
 		/obj/item/mod/module/storage,
 		/obj/item/mod/module/flashlight,
+		/obj/item/mod/module/auto_doc,
+		/obj/item/mod/module/status_readout/operational,
 	)
 	default_pins = list(
 		/obj/item/mod/module/flashlight,
+		/obj/item/mod/module/auto_doc,
 	)
 

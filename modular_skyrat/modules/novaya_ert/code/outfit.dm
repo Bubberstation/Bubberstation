@@ -16,7 +16,7 @@
 		/obj/item/advanced_choice_beacon/nri/heavy,
 		/obj/item/beamout_tool,
 		/obj/item/crucifix,
-		/obj/item/reagent_containers/cup/glass/waterbottle/large/cryptobiolin,
+		/obj/item/reagent_containers/cup/glass/waterbottle/large/protozine,
 		/obj/item/ammo_box/magazine/recharge/plasma_battery,
 		/obj/item/gun/ballistic/automatic/pistol/plasma_marksman,
 	)
@@ -48,7 +48,7 @@
 							/obj/item/gun/ballistic/automatic/pistol/plasma_thrower,
 							/obj/item/beamout_tool,
 							/obj/item/crucifix,
-							/obj/item/reagent_containers/cup/glass/waterbottle/large/cryptobiolin)
+							/obj/item/reagent_containers/cup/glass/waterbottle/large/protozine)
 
 	l_hand = /obj/item/gun/ballistic/automatic/lanca
 
@@ -73,7 +73,7 @@
 							/obj/item/storage/box/medicells,
 							/obj/item/beamout_tool,
 							/obj/item/crucifix,
-							/obj/item/reagent_containers/cup/glass/waterbottle/large/cryptobiolin)
+							/obj/item/reagent_containers/cup/glass/waterbottle/large/protozine)
 
 	l_hand = /obj/item/shield/riot/pointman/nri
 	r_hand = /obj/item/gun/ballistic/automatic/miecz
@@ -95,7 +95,7 @@
 							/obj/item/advanced_choice_beacon/nri/engineer,
 							/obj/item/beamout_tool,
 							/obj/item/crucifix,
-							/obj/item/reagent_containers/cup/glass/waterbottle/large/cryptobiolin)
+							/obj/item/reagent_containers/cup/glass/waterbottle/large/protozine)
 
 	l_hand = /obj/item/storage/belt/utility/full/powertools
 	r_hand = /obj/item/gun/ballistic/automatic/miecz
