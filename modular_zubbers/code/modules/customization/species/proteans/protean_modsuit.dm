@@ -176,7 +176,7 @@
 			return
 		protean_in_suit.say("Alert - Random Access Memory Reset. Current memories lost. Any interactions that were ongoing have been forgotten.", forced = TRUE)
 		protean_in_suit.log_message("has had their memory reset.", LOG_ATTACK)
-		message_admins("[protean_in_suit] has had their memories reset with a pen by [user]")
+		message_admins("[ADMIN_LOOKUPFLW(protean_in_suit)] has had their memories reset with a pen by [ADMIN_LOOKUPFLW(user)]")
 		to_chat(protean_in_suit, span_boldwarning("Your memories have been reset. You cannot remember who reset you or any of the events leading up to your reset."))
 		playsound(src, 'sound/machines/synth/synth_yes.ogg', 100)
 		playsound(src, 'sound/machines/click.ogg', 100)
