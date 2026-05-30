@@ -2,6 +2,7 @@
 
 /area/ruin/powered/lizard_gas
 	name = "\improper Lizard Gas Station"
+	requires_power = TRUE // BUBBER EDIT ADDITION
 
 /area/ruin/unpowered/buried_library
 	name = "\improper Buried Library"
