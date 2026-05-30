@@ -170,7 +170,7 @@
 	if(brain?.dead && istype(tool, /obj/item/pen))
 		to_chat(user, span_notice("You begin to reset the protean's random access memory using a pen!"))
 		user.balloon_alert_to_viewers("resetting memory")
-		user.visible_message(span_boldwarning("[user] is reaching a pen into [protean_in_suit] to find the button!"))
+		user.visible_message(span_boldwarning("[user] is reaching a pen into [protean_in_suit] to find the reset button!"))
 		playsound(src, 'sound/machines/synth/synth_no.ogg', 100)
 		if(!do_after(user, 10 SECONDS))
 			return
