@@ -88,3 +88,6 @@
 		return
 	for(var/inserted_ammo in 1 to stored_ammo.len)
 		. += "9mm-revolver-[inserted_ammo]"
+
+/obj/item/ammo_box/magazine/r10mm
+	ammo_type = /obj/item/ammo_casing/c10mm/lesser_reaper
