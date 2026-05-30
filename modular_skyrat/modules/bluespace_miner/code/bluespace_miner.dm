@@ -206,7 +206,7 @@
 	. = TRUE
 	if(..())
 		return
-	if(default_deconstruction_screwdriver(user, icon_state, icon_state, tool))
+	if(default_deconstruction_screwdriver(user, tool))
 		update_appearance()
 		return
 	return FALSE

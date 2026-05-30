@@ -28,11 +28,6 @@
 	circuit = /obj/item/circuitboard/machine/syndiepad
 	var/warmup_reduction = 0
 
-/obj/machinery/piratepad/syndiepad/screwdriver_act(mob/living/user, obj/item/tool)
-	. = ..()
-	if(!.)
-		return default_deconstruction_screwdriver(user, "lpad-idle-open", "lpad-idle-off", tool)
-
 /obj/machinery/piratepad/syndiepad/crowbar_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(!.)
