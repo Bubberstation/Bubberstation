@@ -52,6 +52,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	var/inventory_shown = FALSE
 	/// This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)
 
+	var/atom/movable/screen/ammo_counter //SKYRAT EDIT ADDITION
 	var/atom/movable/screen/text/activation_text/activation // BUBBER EDIT ADDITION
 	var/hotkey_ui_hidden = FALSE
 
