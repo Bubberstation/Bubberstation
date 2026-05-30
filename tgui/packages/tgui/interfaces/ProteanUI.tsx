@@ -112,7 +112,7 @@ export const Protean = () => {
             <Button
               color={transformation ? 'good' : 'default'}
               icon="video-camera"
-              tooltip="Make your current wearer look like you. Ping @dangerkitten for feedback." // TEMPORARY DESCRIPTION ADDED. MARK THIS IN REVIEW BEFORE FULL MERGING
+              tooltip="Make your current wearer temporarily look like you"
               onClick={() => act('protean_transform')}
             />
           </Table.Cell>
