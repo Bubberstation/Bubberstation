@@ -4,7 +4,7 @@
 		/obj/item/stack/sheet/mineral/gold = 25,
 		/obj/item/stack/sheet/mineral/silver = 25,
 		/obj/item/food/donkpocket = 1,
-		/obj/item/weaponcrafting/gunkit/regal_condor, //we replace the 4tc with an uplink item that costs 4tc and is restricted
+		/obj/item/weaponcrafting/gunkit/regal_condor = 1, //we replace the 4tc with an uplink item that costs 4tc and is restricted
 		/obj/item/clothing/head/costume/crown/fancy = 1,
 		/obj/item/storage/toolbox/syndicate = 1,
 		/obj/item/stack/sheet/iron = 10,
