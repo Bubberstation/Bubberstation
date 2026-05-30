@@ -63,7 +63,7 @@
 	range = 6
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = COLOR_PALE_GREEN
-	pass_flags = PASSTABLE | PASSGRILLE // His ass does NOT pass through glass!
+	pass_flags = PASSTABLE // His ass does NOT pass through glass!
 	/// What type of casing should we put inside the bullet to act as shrapnel later
 	var/casing_to_spawn = /obj/item/grenade/c980payload/plasma_grenade
 
@@ -91,7 +91,7 @@
 	exposed_wound_bonus = 55 // Lasers have a wound bonus of 40, this is a bit higher
 	wound_bonus = -50 // However we do not very much against armor
 	range = 2
-	pass_flags = PASSTABLE | PASSGRILLE // His ass does NOT pass through glass!
+	pass_flags = PASSTABLE // His ass does NOT pass through glass!
 	weak_against_armour = TRUE
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = COLOR_PALE_GREEN
