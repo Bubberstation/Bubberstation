@@ -315,7 +315,6 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
       {!!link_allowed && (
         <Table.Cell collapsing>
           <Button
-            disabled={!can_track}
             onClick={() =>
               act('select_person', {
                 name: name,
