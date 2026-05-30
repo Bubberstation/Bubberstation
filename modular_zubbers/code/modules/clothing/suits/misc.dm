@@ -125,3 +125,10 @@
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_digi.dmi'
 	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_teshari.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/wizrobe/santa
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/misc_teshari.dmi'
+
+/obj/item/clothing/suit/space/santa
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suits/wizard_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/misc_teshari.dmi'
