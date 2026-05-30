@@ -78,3 +78,6 @@
 
 /// Prevents a person from using vehicles.
 #define TRAIT_NO_VEHICLE "trait_no_vehicle"
+
+/// Prevents from being buckled to anything
+#define TRAIT_NO_BUCKLE "trait_no_buckle"

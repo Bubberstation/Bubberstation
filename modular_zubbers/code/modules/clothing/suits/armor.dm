@@ -251,7 +251,7 @@
 /obj/item/clothing/suit/hooded/secjuggernaut
 	name = "security juggernaut suit"
 	desc = "The Advanced Security Suit offers nigh-perfect protection of the wearer through an advanced layering of kevlar, titanium, and ceramic plates. \
-		The construction of the suit unfortunately renders it incredibly heavy and cumbersome, effectively slowing the user to a crawl. \
+		The construction of the suit unfortunately renders it incredibly heavy and cumbersome, effectively slowing the user to a crawl and heavily limiting their mobility options. \
 		Only through recently developed micro-anti-gravitational generators can the suit actually be worn and moved in. \
 		Comes with a heavy-duty external storage unit along with a built-in helmet for EVA action."
 	icon_state = "security_jugger"
@@ -277,9 +277,13 @@
 	slowdown = 5
 	drag_slowdown = 5
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, TRAIT_PUSHIMMUNE, TRAIT_NEGATES_GRAVITY, TRAIT_NO_SLIP_WATER, TRAIT_NO_VEHICLE, TRAIT_HUGE_CLOTHES)
+	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, TRAIT_PUSHIMMUNE, TRAIT_NEGATES_GRAVITY, TRAIT_NO_SLIP_WATER, TRAIT_NO_VEHICLE, TRAIT_HUGE_CLOTHES, TRAIT_NO_BUCKLE)
 	allowed = list(
 	)
+
+/obj/item/clothing/suit/hooded/secjuggernaut/examine(mob/user)
+	. = ..()
+	. += span_warning("Buckling to anything while wearing this is impossible, whether it be a chair, cyborg, horse, or golf cart.")
 
 /obj/item/clothing/suit/hooded/secjuggernaut/Initialize(mapload)
 	. = ..()
