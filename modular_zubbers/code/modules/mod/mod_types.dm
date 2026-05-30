@@ -35,3 +35,54 @@
 		/obj/item/mod/module/hat_stabilizer,
 	)
 	return ..()
+
+// ERT MOD Equipment additions
+
+/obj/item/mod/control/pre_equipped/responsory/commander/New()
+	applied_modules += list(
+		/obj/item/mod/module/shove_blocker/locked,
+		/obj/item/mod/module/visor/medhud,
+	)
+	return ..()
+/obj/item/mod/control/pre_equipped/responsory/commander/alert/New()
+	applied_modules += list(
+		/obj/item/mod/module/shove_blocker/locked,
+		/obj/item/mod/module/visor/medhud,
+	)
+	return ..()
+/obj/item/mod/control/pre_equipped/responsory/security/New()
+	applied_modules += list(
+		/obj/item/mod/module/shove_blocker/locked,
+		/obj/item/mod/module/visor/medhud,
+	)
+	return ..()
+/obj/item/mod/control/pre_equipped/responsory/security/alert/New()
+	applied_modules += list(
+		/obj/item/mod/module/shove_blocker/locked,
+		/obj/item/mod/module/visor/medhud,
+	)
+	return ..()
+/obj/item/mod/control/pre_equipped/responsory/engineer/New()
+	applied_modules += list(
+		/obj/item/mod/module/visor/medhud,
+	)
+	return ..()
+/obj/item/mod/control/pre_equipped/responsory/engineer/alert/New()
+	applied_modules += list(
+		/obj/item/mod/module/shove_blocker/locked,
+		/obj/item/mod/module/visor/medhud,
+	)
+	return ..()
+/obj/item/mod/control/pre_equipped/responsory/medic/New()
+	applied_modules += list(
+		/obj/item/mod/module/visor/medhud,
+		/obj/item/mod/module/defibrillator,
+	)
+	return ..()
+/obj/item/mod/control/pre_equipped/responsory/medic/alert/New()
+	applied_modules += list(
+		/obj/item/mod/module/shove_blocker/locked,
+		/obj/item/mod/module/visor/medhud,
+		/obj/item/mod/module/defibrillator,
+	)
+	return ..()
