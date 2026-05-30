@@ -152,7 +152,9 @@
 
 		var/static/list/obj/item/mod/control/banned_modsuits = list(
 				/obj/item/mod/control/pre_equipped/infiltrator,
-				/obj/item/mod/control/pre_equipped/protean,)
+				/obj/item/mod/control/pre_equipped/protean,
+				/datum/design/mod_plating/portable_suit,
+				)
 
 		if(is_type_in_list(tool, banned_modsuits))
 			balloon_alert(user, "incompatable")
