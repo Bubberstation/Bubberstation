@@ -53,7 +53,7 @@
 /datum/supply_pack/imports/depowerarmor
 	name = "Depowered VOSKHOD Armor Set"
 	desc = "We've gotten in some of the PSC's 'finest' sets of armor, these have seen much better days. But hey, we know you guys love this shit!"
-	cost = 2500
+	cost = 3500
 	contains = list(
 		/obj/item/clothing/head/helmet/space/voskhod,
 		/obj/item/clothing/suit/space/voskhod,
