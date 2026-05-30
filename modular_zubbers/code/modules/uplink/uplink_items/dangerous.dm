@@ -19,10 +19,10 @@
 
 /datum/uplink_item/dangerous/regal_condor_kit
 	name = "Unnamed weapon parts kit"
-	desc = "An ominous kit of gun parts in a sleek suitcase, additionally containing several raw telecrystals. The kit was supplied with a note that says \"You'll figure out the rest\"."
+	desc = "An ominous kit of gun parts in a sleek suitcase, additionally containing several raw telecrystals. The kit was supplied with a note that says: \"You'll figure out the rest\"."
 	item = /obj/item/weaponcrafting/gunkit/regal_condor
 	cost = 4
 	cant_discount = TRUE
 	surplus = 0
-	population_minimum = TRAITOR_POPULATION_LOWPOP
+	population_minimum = TRAITOR_POPULATION_LOWPOP + 5
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
