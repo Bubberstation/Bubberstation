@@ -120,14 +120,14 @@
 	)
 	crate_name = "shotgun shell crate"
 	crate_type = /obj/structure/closet/crate/secure/weapon
-
+/* BUBBER EDIT REMOVAL
 /datum/supply_pack/imports/error
 	name = "NULL_ENTRY"
 	desc = "(*!&@#OKAY, OPERATIVE, WE SEE HOW MUCH MONEY YOU'RE FLAUNTING. FINE. HAVE THIS, AND GOOD LUCK PUTTING IT TOGETHER!#@*$"
 	cost = CARGO_CRATE_VALUE * 100
 	order_flags = ORDER_EMAG_ONLY
 	contains = list(/obj/item/book/granter/crafting_recipe/regal_condor)
-
+*/
 /datum/supply_pack/imports/mafia
 	name = "Cosa Nostra Starter Pack"
 	desc = "This crate contains everything you need to set up your own ethnicity-based racketeering operation."
