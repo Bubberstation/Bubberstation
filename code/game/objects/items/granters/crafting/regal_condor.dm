@@ -18,3 +18,9 @@
 /obj/item/book/granter/crafting_recipe/regal_condor/recoil(mob/living/user)
 	to_chat(user, span_warning("The book turns to dust in your hands."))
 	qdel(src)
+
+///// BUBBER EDIT REMOVAL - I'm not making this a modular file because I think this should be something obvious inside this item's file. This EFFECTIVELY removes it, because I can't edit mapgen.
+/obj/item/book/granter/crafting_recipe/regal_condor/Initialize()
+	. = ..()
+	qdel(src)
+// BUBBER EDIT REMOVAL.
