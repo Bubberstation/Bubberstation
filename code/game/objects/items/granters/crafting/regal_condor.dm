@@ -20,7 +20,7 @@
 	qdel(src)
 
 ///// BUBBER EDIT REMOVAL - I'm not making this a modular file because I think this should be something obvious inside this item's file. This EFFECTIVELY removes it, because I can't edit mapgen.
-/obj/item/book/granter/crafting_recipe/regal_condor/Initialize()
+/obj/item/book/granter/crafting_recipe/regal_condor/Initialize(mapload)
 	. = ..()
 	qdel(src)
 // BUBBER EDIT REMOVAL.
