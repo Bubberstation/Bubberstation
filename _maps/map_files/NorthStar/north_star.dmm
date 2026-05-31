@@ -2232,6 +2232,14 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/floor4/fore)
+"aCb" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/firedoor/heavy,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
+/area/station/hallway/floor1/aft)
 "aCd" = (
 /obj/effect/turf_decal/siding/white,
 /obj/effect/turf_decal/trimline/purple/line{
@@ -7483,6 +7491,13 @@
 /obj/effect/turf_decal/trimline/green/warning,
 /turf/open/floor/iron/dark/side,
 /area/station/hallway/floor3/aft)
+"bNY" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/multi_tile/public/glass{
+	name = "Lower Library"
+	},
+/turf/open/floor/iron,
+/area/station/service/library)
 "bOf" = (
 /obj/effect/turf_decal/stripes,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -10809,9 +10824,6 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "library2"
 	},
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	name = "Library"
-	},
 /turf/open/floor/iron,
 /area/station/service/library)
 "cEH" = (
@@ -11715,7 +11727,6 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 8
 	},
-/obj/machinery/firealarm/directional/west,
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/wood/tile,
 /area/station/science/xenobiology/hallway)
@@ -18562,16 +18573,10 @@
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "eCP" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/obj/machinery/door/firedoor/heavy,
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	dir = 4
-	},
-/turf/open/floor/iron/dark,
-/area/station/hallway/floor2/fore)
+/turf/open/floor/plating,
+/area/station/ai/satellite/teleporter)
 "eCQ" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/thinplating_new/dark{
@@ -31848,17 +31853,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plastic,
 /area/station/security/prison/shower)
-"hWI" = (
-/obj/effect/turf_decal/stripes{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "blast_miningdock";
-	name = "Mining Dock Hangar Door"
-	},
-/obj/structure/fans/tiny/forcefield,
-/turf/open/floor/plating,
-/area/station/cargo/miningdock)
 "hWN" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/spawner/random/structure/crate,
@@ -37811,11 +37805,6 @@
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
-"jxd" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/space/basic,
-/area/station/ai/satellite/teleporter)
 "jxf" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/baseturf_helper/reinforced_plating/ceiling,
@@ -45668,7 +45657,7 @@
 	dir = 1
 	},
 /obj/machinery/duct,
-/obj/structure/extinguisher_cabinet/directional/south,
+/obj/machinery/firealarm/directional/south,
 /turf/open/floor/iron/chapel{
 	dir = 8
 	},
@@ -45811,6 +45800,16 @@
 	},
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/floor4/starboard/aft)
+"lsL" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "library2"
+	},
+/obj/machinery/door/airlock/multi_tile/public/glass{
+	name = "Library"
+	},
+/turf/open/floor/iron,
+/area/station/service/library)
 "lsM" = (
 /obj/machinery/airalarm/directional/east,
 /obj/machinery/disposal/bin,
@@ -54208,6 +54207,16 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
+"nsm" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/machinery/shieldgen,
+/turf/open/floor/iron,
+/area/station/cargo/storage)
 "nsn" = (
 /obj/effect/turf_decal/trimline/brown/filled/line,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -59363,12 +59372,6 @@
 	dir = 1
 	},
 /area/station/hallway/secondary/exit/departure_lounge)
-"oHf" = (
-/obj/machinery/exodrone_launcher,
-/obj/item/exodrone,
-/obj/machinery/airalarm/directional/east,
-/turf/open/floor/plating/elevatorshaft,
-/area/station/cargo/drone_bay)
 "oHp" = (
 /obj/effect/turf_decal/trimline/red/filled/corner{
 	dir = 4
@@ -61283,6 +61286,12 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/engine/o2,
 /area/station/engineering/atmos)
+"phu" = (
+/obj/machinery/exodrone_launcher,
+/obj/item/exodrone,
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/plating/elevatorshaft,
+/area/station/cargo/drone_bay)
 "phI" = (
 /obj/effect/turf_decal/stripes{
 	dir = 10
@@ -69755,6 +69764,17 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/pod/light,
 /area/station/maintenance/floor3/starboard/fore)
+"rir" = (
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "blast_miningdock";
+	name = "Mining Dock Hangar Door"
+	},
+/obj/structure/fans/tiny/forcefield,
+/turf/open/floor/plating,
+/area/station/cargo/miningdock)
 "ris" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner{
 	dir = 1
@@ -70536,12 +70556,16 @@
 /turf/open/floor/wood/tile,
 /area/station/command/heads_quarters/captain/private)
 "rtS" = (
-/obj/machinery/door/firedoor,
+/obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/door/firedoor/heavy,
 /obj/machinery/door/airlock/multi_tile/public/glass{
-	name = "Lower Library"
+	dir = 4
 	},
-/turf/open/floor/iron,
-/area/station/service/library)
+/turf/open/floor/iron/dark,
+/area/station/hallway/floor2/fore)
 "rtV" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
@@ -77183,6 +77207,14 @@
 /obj/effect/landmark/start/botanist,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
+"tfl" = (
+/obj/effect/turf_decal/tile/purple/opposingcorners,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/landmark/firealarm_sanity,
+/turf/open/floor/iron/white,
+/area/station/science/xenobiology)
 "tfo" = (
 /obj/effect/turf_decal/trimline/white/line{
 	dir = 8
@@ -77551,14 +77583,6 @@
 	},
 /turf/open/floor/eighties,
 /area/station/commons/fitness/recreation/entertainment)
-"tkU" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/door/firedoor/heavy,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/iron/dark,
-/area/station/hallway/floor1/aft)
 "tkZ" = (
 /obj/structure/cable,
 /obj/machinery/conveyor/inverted{
@@ -78404,6 +78428,17 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/floor2/fore)
+"tuU" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "library2"
+	},
+/obj/machinery/door/airlock/multi_tile/public/glass{
+	name = "Library";
+	dir = 4
+	},
+/turf/open/floor/wood/tile,
+/area/station/service/library/lounge)
 "tuX" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -79932,6 +79967,7 @@
 "tOE" = (
 /obj/machinery/duct,
 /obj/machinery/light/directional/south,
+/obj/structure/extinguisher_cabinet/directional/south,
 /turf/open/floor/iron/chapel,
 /area/station/service/chapel)
 "tOF" = (
@@ -89107,6 +89143,7 @@
 	dir = 8
 	},
 /obj/machinery/light/warm/directional/west,
+/obj/machinery/firealarm/directional/west,
 /turf/open/floor/wood/tile,
 /area/station/science/xenobiology/hallway)
 "wcA" = (
@@ -89318,13 +89355,6 @@
 /obj/effect/turf_decal/arrows,
 /obj/machinery/camera/autoname/directional/east,
 /turf/open/floor/wood/tile,
-/area/station/service/library)
-"wen" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "library2"
-	},
-/turf/open/floor/iron,
 /area/station/service/library)
 "wet" = (
 /obj/structure/disposalpipe/segment{
@@ -94160,17 +94190,6 @@
 /obj/machinery/light/small/directional/west,
 /turf/open/misc/grass,
 /area/station/maintenance/floor1/starboard)
-"xmf" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "library2"
-	},
-/obj/machinery/door/airlock/multi_tile/public/glass{
-	name = "Library";
-	dir = 4
-	},
-/turf/open/floor/wood/tile,
-/area/station/service/library/lounge)
 "xmh" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/green/opposingcorners,
@@ -97144,6 +97163,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/effect/landmark/firealarm_sanity,
 /turf/open/floor/iron/chapel,
 /area/station/service/chapel)
 "xYg" = (
@@ -97480,7 +97500,6 @@
 /turf/open/floor/wood,
 /area/station/service/kitchen/diner)
 "ydi" = (
-/obj/machinery/firealarm/directional/south,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
@@ -97915,16 +97934,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/light,
 /area/station/maintenance/floor4/starboard/fore)
-"yjP" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/machinery/shieldgen,
-/turf/open/floor/iron,
-/area/station/cargo/storage)
 "yjR" = (
 /obj/effect/turf_decal/siding/wideplating_new{
 	dir = 8
@@ -122651,7 +122660,7 @@ owI
 owI
 uYl
 pFb
-oHf
+phu
 hDa
 fyg
 xxQ
@@ -126766,8 +126775,8 @@ hKN
 hKN
 hKN
 hKN
-yjP
-yjP
+nsm
+nsm
 xbV
 xbV
 xbV
@@ -129074,7 +129083,7 @@ owI
 owI
 owI
 aux
-hWI
+rir
 fWE
 uaC
 gHk
@@ -137834,7 +137843,7 @@ iqa
 qSl
 qSl
 rjD
-tkU
+aCb
 qTS
 rjD
 rjD
@@ -182811,7 +182820,7 @@ wwu
 wwu
 fNT
 fqo
-eCP
+rtS
 fNT
 fNT
 fNT
@@ -183839,7 +183848,7 @@ wwu
 wwu
 fNT
 fqo
-eCP
+rtS
 fNT
 fNT
 fNT
@@ -183850,7 +183859,7 @@ fNT
 fNT
 fNT
 bnV
-eCP
+rtS
 fNT
 fNT
 hLz
@@ -205936,7 +205945,7 @@ dEt
 dEt
 amt
 pBW
-xmf
+tuU
 kca
 rCc
 oZz
@@ -259636,7 +259645,7 @@ nAH
 nAH
 maf
 hrL
-nqi
+tfl
 eKB
 nAH
 hUT
@@ -270442,10 +270451,10 @@ kRR
 fpU
 kmt
 oGM
-cEw
+lsL
 qPi
 lBK
-rtS
+bNY
 fBP
 ddg
 wet
@@ -270699,7 +270708,7 @@ fpU
 fpU
 kmt
 oGM
-wen
+cEw
 rdW
 pSd
 mEg
@@ -337273,7 +337282,7 @@ oyh
 oyh
 oyh
 hWr
-jxd
+eCP
 tIl
 fEv
 dMt
