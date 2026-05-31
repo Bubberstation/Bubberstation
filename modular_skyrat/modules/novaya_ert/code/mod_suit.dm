@@ -125,7 +125,11 @@
 
 /obj/item/mod/control/pre_equipped/frontline/surplus
 	theme = /datum/mod_theme/frontline/surplus
-	applied_modules = /obj/item/mod/module/status_readout/operational
+	applied_modules = list(
+		/obj/item/mod/module/storage,
+		/obj/item/mod/module/status_readout/operational,
+		/obj/item/mod/module/flashlight,
+	)
 
 /datum/supply_pack/imports/surplus_nri_modsuit
 	name = "Surplus Combat MODsuit Crate"
