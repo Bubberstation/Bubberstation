@@ -44,14 +44,24 @@
 		/obj/item/mod/module/visor/medhud,
 	)
 	return ..()
-
+/obj/item/mod/control/pre_equipped/responsory/commander/alert/New()
+	applied_modules += list(
+		/obj/item/mod/module/shove_blocker/locked,
+		/obj/item/mod/module/visor/medhud,
+	)
+	return ..()
 /obj/item/mod/control/pre_equipped/responsory/security/New()
 	applied_modules += list(
 		/obj/item/mod/module/shove_blocker/locked,
 		/obj/item/mod/module/visor/medhud,
 	)
 	return ..()
-
+/obj/item/mod/control/pre_equipped/responsory/security/alert/New()
+	applied_modules += list(
+		/obj/item/mod/module/shove_blocker/locked,
+		/obj/item/mod/module/visor/medhud,
+	)
+	return ..()
 /obj/item/mod/control/pre_equipped/responsory/engineer/New()
 	applied_modules += list(
 		/obj/item/mod/module/visor/medhud,
