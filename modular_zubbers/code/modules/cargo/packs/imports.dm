@@ -6,4 +6,4 @@
 	contains = list(
 		/obj/item/gun/energy/modular_laser_rifle/carbine,
 	)
-
+	access_view = ACCESS_WEAPONS
