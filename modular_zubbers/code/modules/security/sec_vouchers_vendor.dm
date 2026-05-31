@@ -19,6 +19,169 @@
 	name = "security utility voucher"
 	icon_state = "security_voucher_utility"
 
+#define HOS_PRIMARY_MARKINGS " This one's markings indicate that it was issued to the Head of Security."
+
+/proc/retarget_hos_primary_objectives(obj/item/weapon_path, objective_name)
+	for(var/datum/objective/steal/steal_objective as anything in GLOB.objectives)
+		if(!istype(steal_objective.targetinfo, /datum/objective_item/steal/hoslaser))
+			continue
+
+		steal_objective.steal_target = weapon_path
+		steal_objective.explanation_text = "Steal [objective_name]."
+
+		for(var/datum/mind/owner as anything in steal_objective.get_owners())
+			if(!owner.current)
+				continue
+			to_chat(owner.current, span_notice("Your objective has been updated: [steal_objective.explanation_text]"))
+			for(var/datum/antagonist/antag as anything in owner.antag_datums)
+				antag.update_static_data(owner.current)
+
+/obj/item/gun/energy/e_gun/hos/hos_primary
+	desc = parent_type::desc + HOS_PRIMARY_MARKINGS
+
+/obj/item/gun/ballistic/shotgun/automatic/combat/compact/hos_primary
+	desc = parent_type::desc + HOS_PRIMARY_MARKINGS
+
+/obj/projectile/bullet/security/smart
+	name = "smart 9x19mm Murphy bullet"
+
+/obj/projectile/bullet/security/smart/prehit_pierce(atom/target)
+	if(isliving(target) && HAS_TRAIT(target, TRAIT_MINDSHIELD))
+		return PROJECTILE_PIERCE_PHASE
+	return ..()
+
+/obj/item/ammo_casing/security/ready_proj(atom/target, mob/living/user, quiet, zone_override = "", atom/fired_from)
+	if(istype(fired_from, /obj/item/gun/ballistic/automatic/pistol/sec_glock/smart))
+		QDEL_NULL(loaded_projectile)
+		loaded_projectile = new /obj/projectile/bullet/security/smart(src)
+	return ..()
+
+/obj/item/gun/ballistic/automatic/pistol/sec_glock/smart
+	name = "\improper Smart Pistol"
+	desc = parent_type::desc + " This model is a new prototype that uses a compact IFF package to guide rounds past mindshield-implanted targets." + HOS_PRIMARY_MARKINGS
+	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/nanotrasen_system_inc/pistol.dmi'
+	icon_state = "firefly"
+	base_icon_state = "firefly"
+	projectile_damage_multiplier = 0.9
+
+/obj/item/gun/ballistic/revolver/c38/the_law
+	name = "\improper The Law"
+	desc = "A custom modified .38 Special revolver, it seems far heavier than standard models." + HOS_PRIMARY_MARKINGS
+	icon = 'modular_zubbers/icons/obj/weapons/hos_revolver.dmi'
+	icon_state = "the_law"
+	base_icon_state = "the_law"
+	projectile_damage_multiplier = 1.1
+
+/obj/item/storage/belt/holster/detective/full/ert/the_law
+	desc = parent_type::desc + HOS_PRIMARY_MARKINGS
+
+/obj/item/storage/belt/holster/detective/full/ert/the_law/PopulateContents()
+	generate_items_inside(list(
+		/obj/item/ammo_box/speedloader/c38 = 3,
+		/obj/item/gun/ballistic/revolver/c38/the_law = 1,
+	), src)
+
+/obj/item/hos_primary_case
+	name = "head of security's service weapon case"
+	desc = "A secure gun case containing one of the Head of Security's service weapons."
+	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/gunsets.dmi'
+	icon_state = "guncase"
+	worn_icon = 'modular_skyrat/modules/modular_weapons/icons/mob/worn/cases.dmi'
+	worn_icon_state = "darkcase"
+	material_flags = NONE
+	w_class = WEIGHT_CLASS_NORMAL
+	/// Prevents double redemption if two interactions race each other.
+	var/redeemed = FALSE
+
+/obj/item/hos_primary_case/click_alt(mob/user)
+	try_redeem(user)
+	return CLICK_ACTION_SUCCESS
+
+/obj/item/hos_primary_case/attack_self(mob/user)
+	try_redeem(user)
+
+/obj/item/hos_primary_case/add_stealing_item_objective()
+	return add_item_to_steal(src, /obj/item/hos_primary_case)
+
+/obj/item/hos_primary_case/proc/try_redeem(mob/user)
+	if(redeemed || QDELETED(src))
+		return
+	if(!isliving(user))
+		return
+	var/mob/living/redeemer = user
+	if(redeemer.incapacitated)
+		return
+
+	var/static/list/primary_options
+	if(!primary_options)
+		var/datum/radial_menu_choice/x01_option = new
+		x01_option.image = image(icon = 'icons/obj/weapons/guns/energy.dmi', icon_state = "hoslaser")
+		x01_option.info = span_boldnotice("The Head of Security's unique three-mode energy gun.")
+
+		var/datum/radial_menu_choice/shotgun_option = new
+		shotgun_option.image = image(icon = 'icons/obj/weapons/guns/ballistic.dmi', icon_state = "cshotgunc")
+		shotgun_option.info = span_boldnotice("A miniaturized combat shotgun.")
+
+		var/datum/radial_menu_choice/smart_pistol_option = new
+		smart_pistol_option.image = image(icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/nanotrasen_system_inc/pistol.dmi', icon_state = "firefly")
+		smart_pistol_option.info = span_boldnotice("A Murphy-pattern pistol that fires past mindshield-implanted targets.")
+
+		var/datum/radial_menu_choice/the_law_option = new
+		the_law_option.image = image(icon = 'modular_zubbers/icons/obj/weapons/hos_revolver.dmi', icon_state = "the_law")
+		the_law_option.info = span_boldnotice("The Law, an modified Detective Special that hits harder than standard models.")
+
+		primary_options = list(
+			"X-01 MultiPhase Energy Gun" = x01_option,
+			"Compact Shotgun" = shotgun_option,
+			"Smart Pistol" = smart_pistol_option,
+			"The Law" = the_law_option,
+		)
+
+	var/selection = show_radial_menu(redeemer, src, primary_options, custom_check = CALLBACK(src, PROC_REF(check_redeem_menu), redeemer), radius = 38, require_near = TRUE, tooltips = TRUE)
+	if(!selection || redeemed || QDELETED(src))
+		return
+
+	var/spawn_path
+	var/objective_path
+	var/objective_name
+	switch(selection)
+		if("X-01 MultiPhase Energy Gun")
+			spawn_path = /obj/item/gun/energy/e_gun/hos/hos_primary
+			objective_name = "the head of security's X-01 MultiPhase Energy Gun"
+		if("Compact Shotgun")
+			spawn_path = /obj/item/gun/ballistic/shotgun/automatic/combat/compact/hos_primary
+			objective_name = "the head of security's compact shotgun"
+		if("Smart Pistol")
+			spawn_path = /obj/item/gun/ballistic/automatic/pistol/sec_glock/smart
+			objective_name = "the head of security's Smart Pistol"
+		if("The Law")
+			spawn_path = /obj/item/storage/belt/holster/detective/full/ert/the_law
+			objective_path = /obj/item/gun/ballistic/revolver/c38/the_law
+			objective_name = "The Law"
+		else
+			return
+
+	objective_path ||= spawn_path
+	redeemed = TRUE
+	var/obj/item/chosen_item = new spawn_path(drop_location())
+	redeemer.put_in_hands(chosen_item)
+	retarget_hos_primary_objectives(objective_path, objective_name)
+	balloon_alert(redeemer, "selected [LOWER_TEXT(selection)]")
+	qdel(src)
+
+/obj/item/hos_primary_case/proc/check_redeem_menu(mob/living/redeemer)
+	if(!istype(redeemer))
+		return FALSE
+	if(redeemer.incapacitated)
+		return FALSE
+	if(QDELETED(src) || redeemed)
+		return FALSE
+	if(!redeemer.Adjacent(src))
+		return FALSE
+	return TRUE
+
+#undef HOS_PRIMARY_MARKINGS
+
 /obj/machinery/vending/security/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/primary, /datum/voucher_set/security/primary)
