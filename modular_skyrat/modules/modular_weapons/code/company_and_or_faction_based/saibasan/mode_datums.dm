@@ -35,7 +35,7 @@
 
 /// Stuff applied to the passed gun when the weapon mode is given to the gun
 /datum/laser_weapon_mode/proc/apply_to_weapon(obj/item/gun/energy/applied_gun)
-	applied_gun.burst_size = 1
+	applied_gun.burst_size = 2
 
 /// Stuff applied to the passed gun when the weapon mode is removed from the gun
 /datum/laser_weapon_mode/proc/remove_from_weapon(obj/item/gun/energy/applied_gun)
@@ -53,7 +53,7 @@
 	var/datum/component/scope/scope_component
 
 /datum/laser_weapon_mode/marksman/apply_to_weapon(obj/item/gun/energy/applied_gun)
-	scope_component = applied_gun.AddComponent(/datum/component/scope, 1.5)
+	scope_component = applied_gun.AddComponent(/datum/component/scope, 2)
 
 /datum/laser_weapon_mode/marksman/remove_from_weapon(obj/item/gun/energy/applied_gun)
 	QDEL_NULL(scope_component)
