@@ -27067,13 +27067,13 @@
 /area/station/command/heads_quarters/captain)
 "gMo" = (
 /obj/structure/rack,
-/obj/item/gun/energy/ionrifle{
-	pixel_y = 4
-	},
 /obj/effect/turf_decal/tile/red/fourcorners,
 /obj/item/gun/energy/temperature/security{
 	pixel_y = -5;
 	pixel_x = 2
+	},
+/obj/item/gun/energy/ionrifle{
+	pixel_y = 4
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/armory)
@@ -30715,7 +30715,6 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/medical/medbay/lobby)
 "hHi" = (
-/obj/machinery/camera/autoname/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/stripes{
 	dir = 1
@@ -45149,6 +45148,7 @@
 /obj/item/assembly/prox_sensor,
 /obj/item/assembly/prox_sensor,
 /obj/item/assembly/prox_sensor,
+/obj/machinery/camera/autoname/directional/west,
 /turf/open/floor/iron/white,
 /area/station/science/ordnance/testlab)
 "liL" = (
@@ -82194,18 +82194,6 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/pod/light,
 /area/station/maintenance/floor1/port)
-"utG" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/ammo_workbench,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/iron/dark,
-/area/station/security/armory)
 "utJ" = (
 /obj/effect/mapping_helpers/airlock/access/any/security/court,
 /obj/machinery/door/firedoor,
@@ -84757,9 +84745,15 @@
 /turf/open/floor/wood,
 /area/station/service/kitchen/diner)
 "uZr" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /obj/machinery/light/red/dim/directional/north,
-/turf/closed/wall/r_wall,
-/area/station/science/ordnance/testlab)
+/turf/open/floor/catwalk_floor,
+/area/station/maintenance/floor4/starboard)
 "uZF" = (
 /turf/closed/wall/r_wall,
 /area/station/maintenance/floor2/starboard/aft)
@@ -92449,13 +92443,8 @@
 "wPG" = (
 /obj/structure/secure_safe/directional/east,
 /obj/effect/turf_decal/tile/red/fourcorners,
-/obj/structure/rack/gunrack,
-/obj/item/gun/energy/modular_laser_rifle/carbine{
-	pixel_x = -3
-	},
-/obj/item/gun/energy/modular_laser_rifle/carbine{
-	pixel_x = 3
-	},
+/obj/machinery/ammo_workbench,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/dark,
 /area/station/security/armory)
 "wPK" = (
@@ -320050,8 +320039,8 @@ ptg
 auO
 xdE
 tcI
+sJm
 uZr
-jNM
 xZu
 nPE
 fkN
@@ -327274,7 +327263,7 @@ fCE
 cLF
 sHY
 cAt
-utG
+cbw
 xOY
 nzV
 xDG
