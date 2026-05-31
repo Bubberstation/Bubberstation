@@ -15,7 +15,7 @@
 //Cat Gloves seemingly by Taomayo of MonkeStation
 
 /obj/item/clothing/gloves/cat
-	desc = "hewwo everynyaan!!"
+	desc = "\"High Tech\" paw shaped gloves perfect for cosplay enthusiasts, streamers and general weirdos. hewwo everynyaan!!"
 	name = "cat gloves"
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
 	icon_state = "/obj/item/clothing/gloves/cat"
@@ -26,6 +26,56 @@
 	greyscale_config = /datum/greyscale_config/catgloves
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
+	resistance_flags = FIRE_PROOF
+	var/lights_on = FALSE
+
+/obj/item/clothing/gloves/cat/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+
+/obj/item/clothing/gloves/cat/update_overlays()
+	. = ..()
+	if(lights_on)
+		. += emissive_appearance(icon, icon_state, src, alpha = 100)
+
+/obj/item/clothing/gloves/cat/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+	. = ..()
+	if(lights_on)
+		. += emissive_appearance(standing.icon, standing.icon_state, src, alpha = 100)
+
+/obj/item/clothing/gloves/cat/examine(mob/user)
+	. = ..()
+	. += span_notice("There's a small switch on the wrist. It's currently <b>[lights_on ? "ON" : "OFF"]</b>. <a href='byond://?src=[REF(src)];toggle_lights=1'>\[Toggle\]</a>")
+
+/obj/item/clothing/gloves/cat/Topic(href, href_list)
+	. = ..()
+	if(href_list["toggle_lights"])
+		if(!usr || !istype(usr, /mob/living/carbon/human))
+			return
+		var/mob/living/carbon/human/toggler = usr
+		if(toggler.gloves != src)
+			return
+		lights_on = !lights_on
+		playsound(src, 'sound/machines/click.ogg', 30, FALSE)
+		to_chat(usr, span_notice("You turn the accent lighting [lights_on ? "on" : "off"]."))
+		update_appearance()
+
+/obj/item/clothing/gloves/cat/attackby(obj/item/item, mob/living/user, params)
+	if(!istype(item, /obj/item/clothing/gloves/color/yellow))
+		return ..()
+	if(siemens_coefficient == 0)
+		to_chat(user, span_warning("[src] are already insulated."))
+		return
+	user.visible_message(
+		span_notice("[user] awkwardly crams [item] inside [src]."),
+		span_notice("You press [item] against [src], after some time you succeed at inserting [item] inside.")
+	)
+	siemens_coefficient = 0
+	name = "insulated [name]"
+	desc = "A pair of cat gloves. Someone has helpfully applied insulated gloves to them, only to realise too late that the material was already an insulator."
+	qdel(item)
+	update_appearance()
+	return TRUE
 
 
 //Metrocop Gloves by ... Dun dun dun, HL13 station.
