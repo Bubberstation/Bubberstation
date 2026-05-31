@@ -262,7 +262,7 @@
 	worn_icon_state = "hoshi_kill"
 	base_icon_state = "hoshi"
 	charge_sections = 3
-	selfcharge = FALSE
+	selfcharge = 1
 	cell_type = /obj/item/stock_parts/power_store/cell/hyeseong_internal_cell
 	ammo_type = list(/obj/item/ammo_casing/energy/cybersun_small_hellfire)
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
