@@ -5,7 +5,7 @@
 	clothing_traits = list(TRAIT_FAST_CUFFING, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, TRAIT_NO_STAGGER, TRAIT_NO_THROW_HITPUSH)
 
 /obj/item/clothing/gloves/kaza_ruk/sec/warden/add_stealing_item_objective()
-	return add_item_to_steal(src, /obj/item/clothing/gloves/kaza_ruk/sec/warden)
+	return add_item_to_steal(src, /obj/item/gun/ballistic/shotgun/automatic/combat/compact)
 
 /obj/structure/closet/secure_closet/hos/populate_contents_immediate()
 	. = ..()

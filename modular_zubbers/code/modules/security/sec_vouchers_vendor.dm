@@ -22,7 +22,10 @@
 #define HOS_PRIMARY_MARKINGS " This one's markings indicate that it was issued to the Head of Security."
 
 /proc/retarget_hos_primary_objectives(obj/item/weapon_path, objective_name)
-	for(var/datum/objective/steal/steal_objective as anything in GLOB.objectives)
+	for(var/datum/objective/objective as anything in GLOB.objectives)
+		if(!istype(objective, /datum/objective/steal))
+			continue
+		var/datum/objective/steal/steal_objective = objective
 		if(!istype(steal_objective.targetinfo, /datum/objective_item/steal/hoslaser))
 			continue
 
@@ -101,7 +104,7 @@
 	try_redeem(user)
 
 /obj/item/hos_primary_case/add_stealing_item_objective()
-	return add_item_to_steal(src, /obj/item/hos_primary_case)
+	return add_item_to_steal(src, /obj/item/gun/energy/e_gun/hos)
 
 /obj/item/hos_primary_case/proc/try_redeem(mob/user)
 	if(redeemed || QDELETED(src))
