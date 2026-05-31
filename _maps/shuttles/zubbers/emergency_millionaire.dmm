@@ -803,9 +803,9 @@
 /area/shuttle/escape)
 "US" = (
 /obj/machinery/door/window/brigdoor/left/directional/south{
-	name = "Security Storage"
+	name = "Security Storage";
+	req_access = list("brig")
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /mob/living/simple_animal/bot/secbot/beepsky/armsky{
 	pixel_y = 3;
 	desc = "Defender of the righteous, saviour of the weak.";
