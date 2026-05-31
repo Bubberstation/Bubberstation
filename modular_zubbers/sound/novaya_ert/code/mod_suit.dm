@@ -61,7 +61,7 @@
 		The technology it uses is very similar to the one of the N-URSEI suites, yet miniaturised and lacking self-synthesis capabilities. \
 		Using a built-in storage of chemical compounds and a miniature chemical mixer, it's capable of injecting its user with a plethora of drugs, \
 		assisting them with their restoration. However, this system heavily relies on some rarely combat-available chemical compounds to prepare its injections, \
-		mainly Protozine, which appear in the user's bloodstream from time to time, and its trivial damage assessment systems are prone to kicking in only when you're moderately wounded."
+		mainly cryptobiolin , which appear in the user's bloodstream from time to time, and its trivial damage assessment systems are prone to kicking in only when you're moderately wounded."
 	icon_state = "adrenaline_boost"
 	module_type = MODULE_TOGGLE
 	incompatible_modules = list(
@@ -87,7 +87,7 @@
 	removable = FALSE
 	use_energy_cost = DEFAULT_CHARGE_DRAIN * 20
 	/// Reagent used as 'fuel'
-	var/reagent_required = /datum/reagent/medicine/omnizine/protozine
+	var/reagent_required = /datum/reagent/cryptobiolin
 	/// How much of a reagent we need to refill a single boost.
 	var/reagent_required_amount = 20
 	/// Maximum amount of reagents this module can hold.
@@ -198,17 +198,17 @@
 		return COMPONENT_NO_AFTERATTACK
 	return NONE
 
-/// With a certain chance, triggers a spontaneous injection of protozine into the user's bloodstream; suit design's rather ancient and prone to mishaps.
+/// With a certain chance, triggers a spontaneous injection of cryptobiolin  into the user's bloodstream; suit design's rather ancient and prone to mishaps.
 /obj/item/mod/module/auto_doc/proc/heal_aftereffects(mob/affected_mob, forced)
 	if(!affected_mob)
 		return
-	var/fault_chance = (reagents.maximum_volume/(reagents.total_volume ? reagents.total_volume : 20))*5 // 5% at max protozine, 20% at low-to-none protozine
+	var/fault_chance = (reagents.maximum_volume/(reagents.total_volume ? reagents.total_volume : 20))*5 // 5% at max cryptobiolin , 20% at low-to-none cryptobiolin
 	if(prob(fault_chance) || forced == TRUE)
 		reagents.trans_to(affected_mob, min(15,reagents.total_volume))
-		balloon_alert(affected_mob, "protozine leak!")
+		balloon_alert(affected_mob, "Reagent canister leak!")
 		affected_mob.playsound_local(mod, 'sound/effects/spray3.ogg', 25, TRUE)
 
-/obj/item/reagent_containers/cup/glass/waterbottle/large/protozine
-	name = "bottle of protozine"
+/obj/item/reagent_containers/cup/glass/waterbottle/large/cryptobiolin
+	name = "bottle of 'Medical Reagents'"
 	desc = "Nothing screams 'Budget cuts' like a plastic bottle of autodoc refills."
-	list_reagents = list(/datum/reagent/medicine/omnizine/protozine = 100)
+	list_reagents = list(/datum/reagent/cryptobiolin  = 100)
