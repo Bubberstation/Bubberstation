@@ -150,7 +150,6 @@ type CrewSensor = {
   brutedam: number;
   area: string | undefined;
   health: number;
-  can_track: BooleanLike;
   ref: string;
 };
 
@@ -250,7 +249,6 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
     burndam,
     brutedam,
     area,
-    can_track,
   } = sensor_data;
 
   return (
