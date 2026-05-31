@@ -482,7 +482,8 @@
 	)
 	siemens_coefficient = 0
 	name = "insulated [name]"
-	desc = "A pair of inflatable latex mittens. Someone has helpfully applied insulated gloves to them, only to realise too late that latex was already an insulator."
+	if(desc == initial(desc))
+		desc = "A pair of inflatable latex mittens. Someone has helpfully applied insulated gloves to them, only to realise too late that latex was already an insulator."
 	qdel(item)
 	update_appearance()
 	return TRUE

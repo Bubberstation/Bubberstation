@@ -33,6 +33,15 @@
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
+/obj/item/clothing/gloves/cat/equipped(mob/user, slot)
+	. = ..()
+	if(slot == ITEM_SLOT_GLOVES)
+		ADD_TRAIT(user, TRAIT_GLOVE_SURGERY_PASSTHROUGH, "cat_gloves")
+
+/obj/item/clothing/gloves/cat/dropped(mob/user)
+	. = ..()
+	REMOVE_TRAIT(user, TRAIT_GLOVE_SURGERY_PASSTHROUGH, "cat_gloves")
+
 /obj/item/clothing/gloves/cat/update_overlays()
 	. = ..()
 	if(lights_on)
@@ -72,10 +81,20 @@
 	)
 	siemens_coefficient = 0
 	name = "insulated [name]"
-	desc = "A pair of cat gloves. Someone has helpfully applied insulated gloves to them, only to realise too late that the material was already an insulator."
+	if(desc == initial(desc))
+		desc = "A pair of cat gloves with a pair of insulated gloves awkwardly crammed inside them. Somehow this works."
 	qdel(item)
 	update_appearance()
 	return TRUE
+
+/obj/item/clothing/gloves/cat/equipped(mob/user, slot)
+	. = ..()
+	if(slot == ITEM_SLOT_GLOVES)
+		ADD_TRAIT(user, TRAIT_GLOVE_SURGERY_PASSTHROUGH, "cat_gloves")
+
+/obj/item/clothing/gloves/cat/dropped(mob/user)
+	. = ..()
+	REMOVE_TRAIT(user, TRAIT_GLOVE_SURGERY_PASSTHROUGH, "cat_gloves")
 
 
 //Metrocop Gloves by ... Dun dun dun, HL13 station.
