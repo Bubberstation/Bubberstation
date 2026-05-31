@@ -44,3 +44,8 @@
 		The smaller caliber in question however consists of custom-made high-power bullets, which makes the whole statement of it using a smaller caliber than a Desert Eagle completely pointless. \
 		This does allow it to fire a very quick 2-round burst. Uses 10mm ammo."
 	projectile_damage_multiplier = 1.0
+	custom_materials = list(
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 30,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 25,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 11.5
+	)
