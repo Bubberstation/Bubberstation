@@ -486,9 +486,9 @@
 		transform.on_transform_limb_icon(src)
 	for(var/body_zone, limb_untyped in transform ? transform.dummy.get_bodyparts_by_zones() : get_bodyparts_by_zones()) // BUBBER EDIT END | ORG: 	for(var/body_zone, limb_untyped in get_bodyparts_by_zones())
 		var/obj/item/bodypart/limb = limb_untyped
-		var/obj/item/bodypart/stump_limb_check = get_bodypart(body_zone, TRUE)
+		var/obj/item/bodypart/stump_limb_check = get_bodypart(body_zone, TRUE) // BUBBER EDIT START
 		if(transform && (isnull(stump_limb_check) || IS_STUMP(stump_limb_check)))
-			limb = stump_limb_check
+			limb = stump_limb_check // BUBBER EDIT END
 		if(isnull(limb) || IS_STUMP(limb))
 			if(icon_render_keys[body_zone])
 				icon_render_keys -= body_zone
