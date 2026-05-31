@@ -205,7 +205,7 @@
 	var/fault_chance = (reagents.maximum_volume/(reagents.total_volume ? reagents.total_volume : 20))*5 // 5% at max cryptobiolin , 20% at low-to-none cryptobiolin
 	if(prob(fault_chance) || forced == TRUE)
 		reagents.trans_to(affected_mob, min(15,reagents.total_volume))
-		balloon_alert(affected_mob, "Reagent canister leak!")
+		balloon_alert(affected_mob, "reagent canister leak!")
 		affected_mob.playsound_local(mod, 'sound/effects/spray3.ogg', 25, TRUE)
 
 /obj/item/reagent_containers/cup/glass/waterbottle/large/cryptobiolin
