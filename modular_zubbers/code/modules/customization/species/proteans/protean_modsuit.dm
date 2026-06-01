@@ -5,7 +5,7 @@
 
 	applied_core = /obj/item/mod/core/protean
 	applied_cell = null // Goes off stomach
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // funny nanite
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | INDESTRUCTIBLE // funny nanite
 	drag_pickup = FALSE
 	/// Whether or not the wearer can undeploy parts.
 	var/modlocked = FALSE
@@ -323,6 +323,15 @@
 			. += span_deadsay("[t_He] [t_has] entered stasis and [t_has] been completely unresponsive to anything for [round(((world.time - protean_in_suit.lastclienttime) / (1 MINUTES)),1)] minutes. [t_He] may snap out of it soon.")
 		if(!protean_in_suit.key)
 			. += span_deadsay("[t_He] [t_is] totally listless. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")
+
+/obj/item/mod/control/pre_equipped/protean/blob_act(obj/structure/blob/B)
+	var/obj/item/mod/core/protean/p_core = core
+	var/mob/living/carbon/human/protean = p_core?.linked_species.owner
+	var/obj/item/organ/brain/protean/brain = protean?.get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(!brain.dead && !isnull(brain))
+		to_chat(protean, span_boldwarning("The [B] crushes you relentlessly until your refactory pops."))
+		protean.take_overall_damage(300)
+	return ..()
 
 /obj/item/mod/control/pre_equipped/protean/proc/ooc_escape(mob/living/carbon/user)
 	SIGNAL_HANDLER
