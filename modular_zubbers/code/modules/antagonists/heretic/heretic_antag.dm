@@ -32,7 +32,7 @@
 		/datum/objective/heretic_wildcard/ai_law = 80,
 		///datum/objective/heretic_wildcard/superway = 50,
 		/datum/objective/heretic_wildcard/steal_money = 80,
-		/datum/objective/heretic_wildcard/potions = 80,
+		///datum/objective/heretic_wildcard/potions = 80,
 	)
 	var/datum/objective/heretic_wildcard/wildcard_obj
 
