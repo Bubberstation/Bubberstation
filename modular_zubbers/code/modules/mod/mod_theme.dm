@@ -170,15 +170,8 @@
 
 /datum/mod_theme/voskhod
 	name = "refitted voskhod"
-	desc = "A PSC standard-issue heavy duty suit, designed for fortified positions operation and humanitarian aid."
-	extended_desc = "A more expensive, yet more versatile replacement of the dated Voskhod powered armor, designed by the Magellanic Economic Corporate Union researchers \
-		in collaboration with and for the needs of the PSC. An efficient implementation of mixed exoskeletons in between and underneath its armor plating \
-		allows for an unprecedented level of protection through an overly abundant use of durathread-backed plasteel plating; and the remnant materials of its predecessor allow for \
-		a dubiously efficient dissipation of any stray photon ray or a concentrated laser, were one to get hit by them. The suit's infamous autoparamedical systems \
-		are also fully present - or their chemical synthesizing part, consisting of a thin web of subdermal autoinjectors, reaction cameras and tubes lined through the \
-		insulation material - leading into its control unit where the relevant synthesis proceeds, mainly out of raw materials of the pharmaceutical industry; \
-		omnizine's older brother, protozine. The sight of a white-and-green juggernaut is the one that instills many fears into numerous pirates; earning it the reputation of a peacekeeper \
-		and a niche amongst the rimworld population."
+	desc = "An upgraded set of aging VOSKHOD armor, brought up to more modern MODular standards."
+	extended_desc = "While Modular Suits are still somewhat of a rare sight within the PSC, many client nations within the CIN itself have needed to refit aging suits of VOSKHOD suits into something much more modern. This package provides said modernized alternative, with MODular suit technology baked in. Often done with a specialized fabircation system, the same effects can be done with somewhat rare aftermarket parts kits, and quite a bit of elbow grease."
 	default_skin = "voskhod"
 	armor_type = /datum/armor/mod_theme_voskhod
 	complexity_max = DEFAULT_MAX_COMPLEXITY //Five of which is occupied by the in-builts, thus it's closer to 10

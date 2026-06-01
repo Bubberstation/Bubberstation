@@ -9,13 +9,11 @@
 	icon_state = "nri_soldier"
 	armor_type = /datum/armor/hev_suit_nri
 	supports_variations_flags = NONE
-	slowdown = 1
 
 /obj/item/clothing/suit/space/voskhod
 	name = "\proper Voskhod-P depowered combat armor"
-	desc = "A hybrid set of space-resistant armor built on a modified mass-produced 'Dawn' space suit, polyurea coated durathread-lined light plasteel plates hinder mobility as little as possible while the onboard life support system aids the user in combat. \
-	The power cell is what makes the armor work without hassle, a sticker in the power supply unit warns anyone reading to responsibly manage battery levels. <br>\
-	These 'paralyzed', marketable variations of the suit come with most of their main features removed: from the infamous wound-tending systems, to the less appreciated death alarms."
+	desc = "A hybrid set of space-resistant armor built on a modified mass-produced Nomex-Aerogel flight suit, polyurea coated durathread-lined light plasteel plates hinder mobility as little as possible.\
+	These 'paralyzed', marketable variations of the suit come with most of their main features removed: from the infamous wound-tending systems, to the less appreciated death alarms. It's more effective, lightweight plates have been removed with just armor-grade steels and ceramics, slowing the suits down signifigantly."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/spacesuit.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/spacesuit.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suits/spacesuit_digi.dmi'
