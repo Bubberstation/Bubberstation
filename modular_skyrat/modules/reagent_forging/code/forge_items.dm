@@ -158,7 +158,7 @@
 	name = "incomplete hammer head"
 	icon_state = "hot_hammerhead"
 	spawn_item = /obj/item/forging/complete/hammer
-	forge_hint_text = "A heavy hammerhead. Can be used like a forging hammer -- and a two-handed stance can bust through doors."
+	desc = "A heavy hammerhead. Can be used like a forging hammer -- and a two-handed stance can bust through doors."
 
 /obj/item/forging/incomplete/pickaxe
 	name = "incomplete pickaxe head"
