@@ -120,16 +120,3 @@
 /obj/item/choice_beacon/blacksmith/generate_display_names()
 	return list("Smithing Equipment Crate" = /obj/structure/closet/crate/large/smithing)
 
-/obj/structure/closet/crate/large/smithing
-	name = "smithing equipment crate"
-	desc = "A hefty wooden crate full of smithing equipment. You'll need a crowbar to get it open."
-
-/obj/structure/closet/crate/large/smithing/PopulateContents()
-	new /obj/structure/reagent_anvil(src)
-	new /obj/structure/reagent_crafting_bench(src)
-	new /obj/structure/reagent_dispensers/reagent_smithing_basin(src)
-	new /obj/structure/reagent_forge(src)
-	new /obj/item/reagent_containers/cup/jerrycan/smithing_oil(src)
-	new /obj/item/reagent_containers/cup/jerrycan/smithing_oil(src)
-	new /obj/item/wallframe/wall_heater(src)
-	new /obj/item/wrench
