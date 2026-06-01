@@ -5,7 +5,7 @@
 //can't be a subtype of item/storage/belt/holster -- that can be suit storaged per \code\__DEFINES\inventory.dm
 //hip holsters SHOULDN'T be able to be suit storaged.
 /obj/item/storage/belt/hip_holster
-	name = "parent dev item"
+	name = "hip holster"
 	desc = "you shouldn't be seeing this."
 	abstract_type = /obj/item/storage/belt/hip_holster
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
