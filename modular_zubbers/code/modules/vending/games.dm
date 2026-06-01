@@ -17,6 +17,8 @@
 				/obj/item/toy/plush/carpplushie = 3,
 				/obj/item/toy/plush/cello_plush = 3,
 				/obj/item/toy/plush/chirp_plush = 3,
+				/obj/item/toy/plush/expie = 3,
+				/obj/item/toy/plush/expie/milky = 3,
 				/obj/item/toy/plush/goatplushie = 3,
 				/obj/item/toy/plush/headcrab = 3,
 				/obj/item/toy/plush/lizard_plushie = 3,

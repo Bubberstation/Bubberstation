@@ -16,8 +16,9 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 		return
 	// BUBBER EDIT ADDITION END
 
-	var/body = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Options for [player.key]</title></head>"
+	var/body = "<html><head><meta name='color-scheme' content='light dark'><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Options for [player.key]</title></head>" // BUBBER EDIT CHANGE - Add meta color-scheme tag
 	body += "<body>Options panel for <b>[player]</b>"
+	body += "<style>.mute-disabled { color: light-dark(blue, lightblue) } .mute-enabled { color: red }</style>" // BUBBER EDIT ADDITION - Dark mode
 	if(player.client)
 		body += " played by <b>[player.client]</b> "
 		body += "\[<A href='byond://?_src_=holder;[HrefToken()];editrights=[(GLOB.admin_datums[player.client.ckey] || GLOB.deadmins[player.client.ckey]) ? "rank" : "add"];key=[player.key]'>[player.client.holder ? player.client.holder.rank_names() : "Player"]</A>\]"
@@ -107,17 +108,18 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 		body += "\ <A href='byond://?_src_=holder;[HrefToken()];sendbacktolobby=[REF(player)]'>Send back to Lobby</A> | "
 		var/muted = player.client.prefs.muted
 		body += "<br><b>Mute: </b> "
-		body += "\[<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> | "
-		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_OOC]'><font color='[(muted & MUTE_OOC)?"red":"blue"]'>OOC</font></a> | "
-		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY)?"red":"blue"]'>PRAY</font></a> | "
-		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP)?"red":"blue"]'>ADMINHELP</font></a> | "
+		// BUBBER EDIT CHANGE BEGIN - remove <font> tag, add class attribute to a tags
+		body += "\[<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_IC]' class='[(muted & MUTE_IC)?"mute-enabled":"mute-disabled"]'>IC</a> | "
+		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_OOC]' class='[(muted & MUTE_OOC)?"mute-enabled":"mute-disabled"]'>OOC</a> | "
+		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_PRAY]' class='[(muted & MUTE_PRAY)?"mute-enabled":"mute-disabled"]'>PRAY</a> | "
+		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_ADMINHELP]' class='[(muted & MUTE_ADMINHELP)?"mute-enabled":"mute-disabled"]'>ADMINHELP</a> | "
 		//Skyrat Addition Begin - LOOC muting again.
-		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a> | "
-		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_LOOC]'><font color='[(muted & MUTE_LOOC)?"red":"blue"]'>LOOC</font></a>\]"
+		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_LOOC]' class='[(muted & MUTE_LOOC)?"mute-enabled":"mute-disabled"]'>LOOC</a> | "
 		//Skyrat Addition End - LOOC muting again.
-		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_INTERNET_REQUEST]'><font color='[(muted & MUTE_INTERNET_REQUEST)?"red":"blue"]'>WEBREQ</font></a> | "
-		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a>\]"
-		body += "(<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL)?"red":"blue"]'>toggle all</font></a>)"
+		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_INTERNET_REQUEST]' class='[(muted & MUTE_INTERNET_REQUEST)?"mute-enabled":"mute-disabled"]'>WEBREQ</a> | "
+		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_DEADCHAT]' class='[(muted & MUTE_DEADCHAT)?"mute-enabled":"mute-disabled"]'>DEADCHAT</a>\]"
+		body += "(<A href='byond://?_src_=holder;[HrefToken()];mute=[player.ckey];mute_type=[MUTE_ALL]' class='[(muted & MUTE_ALL)?"mute-enabled":"mute-disabled"]'>toggle all</a>)"
+		// BUBBER EDIT CHANGE END
 
 	body += "<br><br>"
 	body += "<A href='byond://?_src_=holder;[HrefToken()];jumpto=[REF(player)]'><b>Jump to</b></A> | "

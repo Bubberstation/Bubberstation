@@ -78,7 +78,7 @@ export const changelog_labels = {
     default_text: "fixed a few things",
     keywords: ["fix", "fixes", "bugfix"],
   },
-  "Quality of Life": {
+  "QoL": {
     default_text: "made something easier to use",
     keywords: ["qol"],
   },
