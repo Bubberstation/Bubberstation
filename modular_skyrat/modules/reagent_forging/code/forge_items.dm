@@ -17,6 +17,8 @@
 	///does this item break if it's not finished hammering when it's quenched?
 	//this is mostly for working on stuff that has no effect based on completion amount, preventing cheesing
 	var/break_on_early_quench = FALSE
+	///what shows up when looking at hint text in the forge?
+	var/forge_hint_text
 	//because who doesn't want to have a plasma sword?
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 
@@ -95,6 +97,7 @@
 	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/chain
 	break_on_early_quench = TRUE
+	forge_hint_text = "A length of chain. Used in crafting recipes at your crafting table."
 
 /obj/item/forging/incomplete/plate
 	name = "incomplete plate"
@@ -103,21 +106,25 @@
 	max_perfect_hits = 10
 	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/plate
+	forge_hint_text = "A sturdy plate of material. Used in many crafting recipies at your crafting table, most notably that of armor."
 
 /obj/item/forging/incomplete/sword
 	name = "incomplete sword blade"
 	icon_state = "hot_blade"
 	spawn_item = /obj/item/forging/complete/sword
+	forge_hint_text = "A longsword. Practically requires a two-handed stance for effective use, but is very adept at blocking strikes."
 
 /obj/item/forging/incomplete/katana
 	name = "incomplete katana blade"
 	icon_state = "hot_katanablade"
 	spawn_item = /obj/item/forging/complete/katana
+	forge_hint_text = "A katana blade. Unwieldy if not carried with both hands, but careful metalworking makes it cut through armor more effectively."
 
 /obj/item/forging/incomplete/rapier
 	name = "incomplete rapier blade"
 	icon_state = "hot_rapierblade"
 	spawn_item = /obj/item/forging/complete/rapier
+	forge_hint_text = "A rapier blade. A classical go-to self-defense weapon, it requires only one hand to use."
 
 /obj/item/forging/incomplete/dagger
 	name = "incomplete dagger blade"
@@ -125,11 +132,13 @@
 	completion_quality_points = 12
 	max_perfect_hits = 10
 	spawn_item = /obj/item/forging/complete/dagger
+	forge_hint_text = "A small, sleek dagger. Can be easily hid, and can critially-strike vulnerable opponents."
 
 /obj/item/forging/incomplete/staff
 	name = "incomplete staff head"
 	icon_state = "hot_staffhead"
 	spawn_item = /obj/item/forging/complete/staff
+	forge_hint_text = "A staff that can be imbued with reagents. Not very useful in direct combat."
 
 /obj/item/forging/incomplete/spear
 	name = "incomplete spear head"
@@ -137,6 +146,7 @@
 	max_perfect_hits = 8
 	icon_state = "hot_spearhead"
 	spawn_item = /obj/item/forging/complete/spear
+	forge_hint_text = "A short spearhead. The weapon of commoners, it strikes from further away and can be made extremely quickly compared to other weapons."
 
 /obj/item/forging/incomplete/axe
 	name = "incomplete axe head"
@@ -144,21 +154,25 @@
 	completion_quality_points = 16
 	max_perfect_hits = 14
 	spawn_item = /obj/item/forging/complete/axe
+	forge_hint_text = "A heavy axehead. Hits from this can potentially bypass shields and other forms of protection."
 
 /obj/item/forging/incomplete/hammer
 	name = "incomplete hammer head"
 	icon_state = "hot_hammerhead"
 	spawn_item = /obj/item/forging/complete/hammer
+	forge_hint_text = "A heavy hammerhead. Can be used like a forging hammer -- and a two-handed stance can bust through doors."
 
 /obj/item/forging/incomplete/pickaxe
 	name = "incomplete pickaxe head"
 	icon_state = "hot_pickaxehead"
 	spawn_item = /obj/item/forging/complete/pickaxe
+	forge_hint_text = "A pickaxe. Used for digging."
 
 /obj/item/forging/incomplete/shovel
 	name = "incomplete shovel head"
 	icon_state = "hot_shovelhead"
 	spawn_item = /obj/item/forging/complete/shovel
+	forge_hint_text = "A shovel. Used for digging."
 
 /obj/item/forging/incomplete/arrowhead
 	name = "incomplete arrowhead"

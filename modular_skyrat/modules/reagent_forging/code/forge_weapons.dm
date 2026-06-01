@@ -465,7 +465,7 @@
 
 /obj/item/shield/buckler/reagent_weapon/pavise //similar to the adamantine shield. Huge, slow, lets you soak damage and packs a wallop.
 	name = "reagent plated pavise shield"
-	desc = "An oblong shield used by ancient crossbowmen as cover while reloading. Probably just as useful with an actual gun."
+	desc = "An large wall-like shield. Very heavy, but extremely protective."
 	force = 10
 	icon_state = "pavise"
 	inhand_icon_state = "pavise"

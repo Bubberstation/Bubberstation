@@ -135,7 +135,6 @@
 /obj/item/clothing/shoes/horseshoe/reagent_clothing
 	name = "reagent horseshoes"
 	desc = "A pair of horseshoes made out of chains."
-
 	armor_type = /datum/armor/armor_forging_plate_armor
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 

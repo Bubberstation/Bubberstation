@@ -111,6 +111,8 @@
 		"Revolver Frame" = list(TRAIT_KNOW_GUNSMITHING),
 		"Revolver Cylinder" = list(TRAIT_KNOW_GUNSMITHING),
 	)
+	/// Descriptions of the forging items in hint bubbles for the radial menu
+	var/list/radial_choice_hinttext = list()
 
 /obj/structure/reagent_forge/examine(mob/user)
 	. = ..()
@@ -185,9 +187,14 @@
 		return
 
 	var/obj/resulting_item
+	var/datum/radial_menu_choice/option
 	for(var/forge_option in choice_list)
 		resulting_item = choice_list[forge_option]
-		radial_choice_list[forge_option] = image(icon = initial(resulting_item.icon), icon_state = initial(resulting_item.icon_state))
+		option = new
+		option.image = image(icon = initial(resulting_item.icon), icon_state = initial(resulting_item.icon_state))
+		option.name = initial(resulting_item.name)
+		option.info = initial(resulting_item.desc)
+		radial_choice_list[forge_option] = option
 
 ///Exclusively gives all the radial choices that the user can know how to make.
 /obj/structure/reagent_forge/proc/get_filtered_radial_choices(mob/living/user)
@@ -750,6 +757,9 @@
 	if(search_stack)
 		var/list/my_list = get_filtered_radial_choices(user)
 		var/user_choice = show_radial_menu(user, src, my_list, radius = 38, require_near = TRUE, tooltips = TRUE)
+
+
+
 		if(!user_choice)
 			balloon_alert(user, "nothing chosen")
 			return ITEM_INTERACT_SUCCESS

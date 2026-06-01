@@ -100,7 +100,7 @@
 
 /obj/item/storage/belt/hip_holster/charging
 	name = "charging holster"
-	desc = "A sophisticated plastic holster belt. Bluespace tech allows it to store whatever a standard weapon charger can; <b>it'll charge whatever's kept</b>."
+	desc = "A sophisticated plastic holster belt. Bluespace tech allows it to store almost anything a standard weapon charger can; it can slowly charge that item."
 	icon_state = "charger_belt"
 	inhand_icon_state = "security"
 	worn_icon_state = "security"

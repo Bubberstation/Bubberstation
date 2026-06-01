@@ -69,10 +69,16 @@
 
 /obj/structure/reagent_crafting_bench/proc/populate_radial_choice_list()
 
+	var/datum/radial_menu_choice/option
 	for(var/recipe in allowed_choices)
 		var/datum/crafting_bench_recipe/recipe_to_take_from = new recipe()
 		var/obj/recipe_resulting_item = recipe_to_take_from.resulting_item
-		radial_choice_list[recipe_to_take_from.recipe_name] = image(icon = initial(recipe_resulting_item.icon), icon_state = initial(recipe_resulting_item.icon_state))
+
+		option = new
+		option.image = image(icon = initial(recipe_resulting_item.icon), icon_state = initial(recipe_resulting_item.icon_state))
+		option.name = initial(recipe_resulting_item.name)
+		option.info = initial(recipe_resulting_item.desc)
+		radial_choice_list[recipe_to_take_from.recipe_name] = option
 		recipe_names_to_path[recipe_to_take_from.recipe_name] = recipe
 		choice_list_skill_filter[recipe_to_take_from.recipe_name] = initial(recipe_to_take_from.relevant_skill)
 		choice_list_skill_level_filter[recipe_to_take_from.recipe_name] = initial(recipe_to_take_from.relevant_skill_level)
