@@ -13,8 +13,12 @@
 	desc = "Contains spares of every supply job skillchip."
 
 /obj/item/storage/box/skillchips/supply/PopulateContents()
-	new/obj/item/skillchip/job/blacksmith(src)
-	new/obj/item/skillchip/job/blacksmith(src)
+	new /obj/item/skillchip/job/blacksmith(src)
+	new /obj/item/skillchip/job/blacksmith(src)
+
+/obj/structure/closet/secure_closet/quartermaster/PopulateContents()
+	. = ..()
+	new /obj/item/storage/box/skillchips/supply(src)
 
 /datum/supply_pack/misc/smithing_skillchips
 	name = "Smithing Skillchips Crate"

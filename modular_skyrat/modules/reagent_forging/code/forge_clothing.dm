@@ -1,6 +1,6 @@
 /datum/armor/perfect_forged_armor_bonus
 	melee = 20
-	bullet = 15
+	bullet = 20
 	fire = 25
 	laser = 10
 	wound = 20
@@ -15,6 +15,9 @@
 	fire = 50
 	wound = 10
 	laser = 15
+	bomb = 25
+	acid = 50
+	wound = 50
 
 // Vests
 /obj/item/clothing/suit/armor/forging_plate_armor

@@ -320,10 +320,8 @@
 	for(var/index in quench_effects_incompletion)
 		switch(index)
 			if(FORGE_EFFECT_ARMOR)
-				var/datum/armor/temp_armor = parent_item.get_armor()
-				temp_armor = get_armor_by_type(temp_armor.type)
-				temp_armor = temp_armor.generate_new_with_modifiers(list(ARMOR_ALL = -1))
-				incomplete_maximum_penalty = temp_armor
+				var/datum/armor/temp_armor = get_armor_by_type(parent_item.get_initial_armor_type())
+				incomplete_maximum_penalty = temp_armor.generate_new_with_multipliers(list(ARMOR_ALL = -1))
 			if(FORGE_EFFECT_ARMORPEN)
 				incomplete_maximum_penalty = initial(parent_item.armour_penetration) * -1
 			if(FORGE_EFFECT_BLOCKCHANCE)
@@ -349,6 +347,11 @@
 	COOLDOWN_DECLARE(striking_cooldown)
 	//the time it takes to prepare a perfect strike. should always be > striking_cooldown
 	COOLDOWN_DECLARE(perfect_strike_window)
+
+///urgh tg needs a get_armor_initial proc, working around protected/private vars is really annoying here
+/atom/proc/get_initial_armor_type()
+	RETURN_TYPE(/datum/armor)
+	return initial(armor_type)
 
 #undef ANVIL_HAMMER_HIT_GOOD
 #undef ANVIL_HAMMER_HIT_BAD

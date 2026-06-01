@@ -5,7 +5,7 @@
 //can't be a subtype of item/storage/belt/holster -- that can be suit storaged per \code\__DEFINES\inventory.dm
 //hip holsters SHOULDN'T be able to be suit storaged.
 /obj/item/storage/belt/hip_holster
-	name = "parent dev item"
+	name = "hip holster"
 	desc = "you shouldn't be seeing this."
 	abstract_type = /obj/item/storage/belt/hip_holster
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
@@ -14,6 +14,25 @@
 	worn_icon_state = "holster"
 	alternate_worn_layer = null
 	storage_type = /datum/storage/holster
+
+/obj/item/storage/belt/hip_holster/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	update_label()
+/obj/item/storage/belt/hip_holster/Exited(atom/movable/gone, direction)
+	. = ..()
+	update_label()
+/obj/item/storage/belt/hip_holster/proc/update_label(list/contents_to_check = null)
+	if(isnull(contents_to_check))
+		contents_to_check = contents
+	var/list/noteworthy_contents = list()
+	for(var/obj/item/I in contents_to_check)
+		if(!istype(I, /obj/item/ammo_box))
+			noteworthy_contents += I
+
+	if(length(noteworthy_contents) > 0)
+		name = "[src::name] containing [noteworthy_contents.Join("; ")]"
+	else
+		name = src::name
 
 //copy of the holster/equipped proc.
 /obj/item/storage/belt/hip_holster/equipped(mob/user, slot)
@@ -47,7 +66,6 @@
 	inhand_icon_state = "utility"
 	worn_icon_state = "utility"
 	storage_type = /datum/storage/cowboy_holster
-
 
 /datum/storage/cowboy_holster
 	max_slots = 4
@@ -118,6 +136,9 @@
 	QDEL_NULL(my_charger)
 	QDEL_NULL(real_storage)
 	. = ..()
+
+/obj/item/storage/belt/hip_holster/charging/update_label(list/contents_to_check = null)
+	. = ..(real_storage.contents)
 
 /obj/item/storage/belt/hip_holster/charging/get_guns_contained_overlays(list/contents_to_check = null)
 	. = ..(real_storage.contents)
@@ -242,6 +263,7 @@
 			/obj/item/melee/forged_reagent_weapon/katana,
 			/obj/item/melee/forged_reagent_weapon/bokken,
 			/obj/item/melee/sabre,
+			/obj/item/melee/parsnip_sabre,
 			/obj/item/claymore,
 			/obj/item/melee/cleric_mace,
 			/obj/item/knife,
@@ -377,8 +399,8 @@
 
 /datum/storage/multi_scabbard
 	max_slots = 2
-	do_rustle = FALSE
-	max_specific_storage = WEIGHT_CLASS_BULKY
+	do_rustle = TRUE
+	max_specific_storage = WEIGHT_CLASS_HUGE
 	click_alt_open = FALSE
 
 /datum/storage/multi_scabbard/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
@@ -386,7 +408,14 @@
 	set_holdable(list(
 		/obj/item/melee/forged_reagent_weapon,
 		/obj/item/shield,
-		/obj/item/melee,
+		/obj/item/melee/sabre,
+		/obj/item/melee/parsnip_sabre,
+		/obj/item/claymore,
+		/obj/item/melee/cleric_mace,
+		/obj/item/knife,
+		/obj/item/melee/baton,
+		/obj/item/nullrod,
+		/obj/item/melee/energy/sword/nullrod,
 	))
 
 //////////////////////////////////////////////////////////////////
@@ -427,7 +456,16 @@
 /datum/storage/repairing_scabbard/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
 	. = ..()
 	set_holdable(list(
-		/obj/item/melee,
+		/obj/item/melee/forged_reagent_weapon,
+		/obj/item/shield,
+		/obj/item/melee/sabre,
+		/obj/item/melee/parsnip_sabre,
+		/obj/item/claymore,
+		/obj/item/melee/cleric_mace,
+		/obj/item/knife,
+		/obj/item/melee/baton,
+		/obj/item/nullrod,
+		/obj/item/melee/energy/sword/nullrod,
 	))
 
 /////////////////////////////////////////////////
