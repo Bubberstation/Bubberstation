@@ -168,19 +168,19 @@
 	///Memory Wipe Via Pen
 
 	if(brain?.dead && istype(tool, /obj/item/pen))
-		to_chat(user, span_notice("You begin to reset the protean's random access memory using a pen."))
+		to_chat(user, span_notice("You begin to reset the protean's random access memory using a pen!"))
 		user.balloon_alert_to_viewers("resetting memory")
-		user.visible_message(span_boldwarning("[user] is reaching a pen into [protean_in_suit]!"))
+		user.visible_message(span_boldwarning("[user] is reaching a pen into [protean_in_suit] to find the reset button!"))
 		playsound(src, 'sound/machines/synth/synth_no.ogg', 100)
 		if(!do_after(user, 10 SECONDS))
 			return
 		protean_in_suit.say("Alert - Random Access Memory Reset. Current memories lost. Any interactions that were ongoing have been forgotten.", forced = TRUE)
 		protean_in_suit.log_message("has had their memory reset.", LOG_ATTACK)
+		message_admins("[ADMIN_LOOKUPFLW(protean_in_suit)] has had their memories reset with a pen by [ADMIN_LOOKUPFLW(user)]")
 		to_chat(protean_in_suit, span_boldwarning("Your memories have been reset. You cannot remember who reset you or any of the events leading up to your reset."))
 		playsound(src, 'sound/machines/synth/synth_yes.ogg', 100)
 		playsound(src, 'sound/machines/click.ogg', 100)
-		protean_in_suit.SetSleeping(5 SECONDS)
-
+		protean_in_suit.SetSleeping(1 MINUTES)
 
 /obj/item/mod/control/pre_equipped/protean/ui_status(mob/user, datum/ui_state/state)
 	var/obj/item/mod/core/protean/source = core
