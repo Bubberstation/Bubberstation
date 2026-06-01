@@ -71,6 +71,17 @@
 	cached_features["eyes"] += list("color_l" = owner.eye_color_left, "color_r" = owner.eye_color_right, "blinking" = owner_eyes.blink_animation)
 	owner.set_eye_color(original.eye_color_left, original.eye_color_right)
 	owner_eyes.blink_animation = FALSE
+	/// Quad eyes
+	cached_features["quadeyes"] += HAS_TRAIT_FROM(owner, TRAIT_QUAD_EYES, TRAIT_GENERIC)
+	cached_features["quadoffset"] += owner.quad_eyes_offset
+	cached_features["quadoffwidth"] += owner.quad_eyes_offset_width
+	if(!cached_features["quadeyes"])
+		if(HAS_TRAIT_FROM(original, TRAIT_QUAD_EYES, TRAIT_GENERIC))
+			ADD_TRAIT(owner, TRAIT_QUAD_EYES, TRAIT_TRANSFORMATION)
+	else
+		REMOVE_TRAIT(owner, TRAIT_QUAD_EYES, TRAIT_GENERIC)
+	owner.quad_eyes_offset = original.quad_eyes_offset
+	owner.quad_eyes_offset_width = original.quad_eyes_offset_width
 
 	var/obj/item/bodypart/head/head = original.get_bodypart(BODY_ZONE_HEAD)
 	dummy.set_hairstyle(original.hairstyle, FALSE)
@@ -105,6 +116,12 @@
 	var/obj/item/organ/eyes/owner_eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 	owner.set_eye_color(eye_cache["color_l"], eye_cache["color_r"])
 	owner_eyes.blink_animation = eye_cache["blinking"]
+	if(!cached_features["quadeyes"] && HAS_TRAIT(owner, TRAIT_QUAD_EYES))
+		REMOVE_TRAIT(owner, TRAIT_QUAD_EYES, TRAIT_TRANSFORMATION)
+	if(cached_features["quadeyes"])
+		ADD_TRAIT(owner, TRAIT_QUAD_EYES, TRAIT_GENERIC)
+	owner.quad_eyes_offset = cached_features["quadoffset"]
+	owner.quad_eyes_offset_width = cached_features["quadoffwidth"]
 
 	original = null
 	QDEL_NULL(dummy)
