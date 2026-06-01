@@ -67,7 +67,6 @@
 	worn_icon_state = "utility"
 	storage_type = /datum/storage/cowboy_holster
 
-
 /datum/storage/cowboy_holster
 	max_slots = 4
 	max_total_storage = 6
@@ -264,6 +263,7 @@
 			/obj/item/melee/forged_reagent_weapon/katana,
 			/obj/item/melee/forged_reagent_weapon/bokken,
 			/obj/item/melee/sabre,
+			/obj/item/melee/parsnip_sabre,
 			/obj/item/claymore,
 			/obj/item/melee/cleric_mace,
 			/obj/item/knife,
@@ -408,7 +408,14 @@
 	set_holdable(list(
 		/obj/item/melee/forged_reagent_weapon,
 		/obj/item/shield,
-		/obj/item/melee,
+		/obj/item/melee/sabre,
+		/obj/item/melee/parsnip_sabre,
+		/obj/item/claymore,
+		/obj/item/melee/cleric_mace,
+		/obj/item/knife,
+		/obj/item/melee/baton,
+		/obj/item/nullrod,
+		/obj/item/melee/energy/sword/nullrod,
 	))
 
 //////////////////////////////////////////////////////////////////
@@ -449,7 +456,16 @@
 /datum/storage/repairing_scabbard/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
 	. = ..()
 	set_holdable(list(
-		/obj/item/melee,
+		/obj/item/melee/forged_reagent_weapon,
+		/obj/item/shield,
+		/obj/item/melee/sabre,
+		/obj/item/melee/parsnip_sabre,
+		/obj/item/claymore,
+		/obj/item/melee/cleric_mace,
+		/obj/item/knife,
+		/obj/item/melee/baton,
+		/obj/item/nullrod,
+		/obj/item/melee/energy/sword/nullrod,
 	))
 
 /////////////////////////////////////////////////

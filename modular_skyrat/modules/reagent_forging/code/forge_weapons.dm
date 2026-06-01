@@ -1,5 +1,6 @@
 // Damage is technically 10 by default since that's the max you get from perfect hits when crafting. Find a non-third-of-sth value for the multiplier to get to 18, I'll wait
 /obj/item/melee/forged_reagent_weapon
+	name = "forged reagent weapon"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
 	lefthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_l.dmi'
 	righthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_r.dmi'
