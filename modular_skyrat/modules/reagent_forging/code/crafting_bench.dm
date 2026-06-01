@@ -79,6 +79,7 @@
 		option.name = initial(recipe_resulting_item.name)
 		option.info = initial(recipe_resulting_item.desc)
 		radial_choice_list[recipe_to_take_from.recipe_name] = option
+
 		recipe_names_to_path[recipe_to_take_from.recipe_name] = recipe
 		choice_list_skill_filter[recipe_to_take_from.recipe_name] = initial(recipe_to_take_from.relevant_skill)
 		choice_list_skill_level_filter[recipe_to_take_from.recipe_name] = initial(recipe_to_take_from.relevant_skill_level)
