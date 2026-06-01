@@ -210,6 +210,8 @@
 	SIGNAL_HANDLER
 	if(wearer.get_slot_by_item(item))
 		return // Someone stripping the wearer - allow normally
+	if(target == wearer)
+		return // Someone equipping something onto the wearer - allow normally
 	if(!isliving(target) || !isitem(item))
 		return COMPONENT_CANT_STRIP
 	to_chat(wearer, span_purple("You fumble awkwardly at [target]'s gear with your [get_hand_descriptor(wearer)], trying to find a grip..."))
