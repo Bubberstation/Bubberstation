@@ -327,8 +327,8 @@
 /obj/item/mod/control/pre_equipped/protean/blob_act(obj/structure/blob/B)
 	var/obj/item/mod/core/protean/p_core = core
 	var/mob/living/carbon/human/protean = p_core?.linked_species.owner
-	var/obj/item/organ/brain/protean/brain = protean.get_organ_slot(ORGAN_SLOT_BRAIN)
-	if(!brain.dead)
+	var/obj/item/organ/brain/protean/brain = protean?.get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(!brain.dead && !isnull(brain))
 		to_chat(protean, span_boldwarning("The [B] crushes you relentlessly until your refactory pops."))
 		protean.take_overall_damage(300)
 	return ..()
