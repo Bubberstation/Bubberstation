@@ -25,12 +25,16 @@
 	var/datum/looping_sound/lathe_print/print_sound
 	///made so we dont call addtimer() 40,000 times in on_techweb_update(). only allows addtimer() to be called on the first update
 	var/techweb_updating = FALSE
+	// BUBBER EDIT ADDITION BEGIN - Lizard gas imprinter
+	/// Whether to force the materials container not to connect to the station ore silo
+	var/force_disconnect = FALSE
+	// BUBBER EDIT ADDITION END
 
 /obj/machinery/rnd/production/Initialize(mapload)
 	print_sound = new(src,  FALSE)
 	materials = new (
 		src, \
-		mapload, \
+		force_disconnect ? FALSE : mapload, // BUBBER EDIT CHANGE - Lizard gas imprinter - ORIGINAL: mapload,
 		mat_container_signals = list( \
 			COMSIG_MATCONTAINER_ITEM_CONSUMED = TYPE_PROC_REF(/obj/machinery/rnd/production, local_material_insert)
 		) \

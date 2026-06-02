@@ -212,3 +212,27 @@
 /datum/greyscale_config/hoodie_zipup_hood/worn/teshari
 	name = "Zipup Hood (Worn, Teshari)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/head/winterhood_teshari.dmi'
+
+/datum/greyscale_config/big_hoodie/worn/digi
+	name = "Big Hoodie (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/dopplerhoodie_digi.dmi'
+
+/datum/greyscale_config/big_hoodie/worn/teshari
+	name = "Big Hoodie (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/dopplerhoodie_teshari.dmi'
+
+/datum/greyscale_config/big_hoodie_hood/worn/teshari
+	name = "Big Hoodie Hood (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/dopplerhoodie_teshari.dmi'
+
+/datum/greyscale_config/twee_hoodie/worn/digi
+	name = "Twee Hoodie (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/dopplerhoodie_digi.dmi'
+
+/datum/greyscale_config/twee_hoodie/worn/teshari
+	name = "Twee Hoodie (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/dopplerhoodie_teshari.dmi'
+
+/datum/greyscale_config/twee_hoodie_hood/worn/teshari
+	name = "Twee Hoodie Hood (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/dopplerhoodie_teshari.dmi'

@@ -589,3 +589,7 @@
 	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
 	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 		qdel(reskin_component)
+
+/obj/item/clothing/under/rank/security/peacekeeper/armadyne
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
