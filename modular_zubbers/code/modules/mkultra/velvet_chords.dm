@@ -23,8 +23,8 @@
 		return FALSE
 	owner.say(".x[command]")
 	for(var/mob/living/people in get_hearers_in_view(DEFAULT_VIEW_RANGE, owner))
-		var/datum/status_effect/mkultra/status
-		if(people.has_status_effect(/datum/status_effect/mkultra))
+		var/datum/status_effect/mkultra/status = people.has_status_effect(/datum/status_effect/mkultra)
+		if(!isnull(status))
 			status.listener(owner, command)
 
 

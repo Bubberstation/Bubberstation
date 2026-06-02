@@ -26,7 +26,7 @@
 		var/datum/status_effect/mkultra/status = affected_mob.has_status_effect(/datum/status_effect/mkultra)
 		if(!status)
 			affected_mob.apply_status_effect(/datum/status_effect/mkultra, data["enchanter"])
-		status.progress++
+		status?.progress++
 
 /obj/item/reagent_containers/cup/beaker/mkultra_debug
 	list_reagents = list(/datum/reagent/consumable/coco = 10, /datum/reagent/bluespace = 10, /datum/reagent/toxin/mindbreaker = 10, /datum/reagent/medicine/psicodine = 10, /datum/reagent/drug/happiness = 10)
