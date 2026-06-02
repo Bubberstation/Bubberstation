@@ -248,7 +248,7 @@
 /obj/item/melee/forged_reagent_weapon/rapier
 	name = "reagent rapier"
 	desc = "A lightweight rapier. Usually kept as a self-defense weapon; good at parrying attacks but cannot be two-handed for extra power."
-	force = 12
+	force = 10
 	block_chance = 30
 	icon_state = "rapier"
 	inhand_icon_state = "sabre"
