@@ -23,18 +23,6 @@
 	icon_state = "lustwish-control"
 	theme = /datum/mod_theme/lustwish
 
-/obj/item/mod/control/pre_equipped/safeguard
-	applied_modules = list(
-		/obj/item/mod/module/storage/large_capacity,
-		/obj/item/mod/module/magnetic_harness,
-		/obj/item/mod/module/flashlight,
-		/obj/item/mod/module/jetpack,
-		/obj/item/mod/module/megaphone,
-		/obj/item/mod/module/sec_auto_doc,
-		/obj/item/mod/module/quick_cuff,
-		/obj/item/mod/module/headprotector,
-	)
-
 //Hat Stabilizer Module added as default module to the Blueshield and Safeguard Modsuits
 /obj/item/mod/control/pre_equipped/blueshield/New()
 	applied_modules += list(
