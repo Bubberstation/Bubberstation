@@ -1,4 +1,10 @@
-GLOBAL_LIST_INIT(mkultra_commands, typesof(/datum/mkultra_command))
+GLOBAL_LIST_INIT(mkultra_commands, mkultra_command_int())
+
+/proc/mkultra_command_int()
+	var/list/commands = list()
+	for(var/datum/mkultra_command/command as anything in subtypesof(/datum/mkultra_command))
+		commands += new command
+	return commands
 
 /datum/mkultra_command
 	/// The name of your command

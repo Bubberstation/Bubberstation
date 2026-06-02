@@ -42,7 +42,7 @@
 
 /// Listens for certain regex and triggers its proper command
 /datum/status_effect/mkultra/proc/listener(mob/source, message)
-	for(var/datum/mkultra_command/command as anything in GLOB.mkultra_commands)
+	for(var/datum/mkultra_command/command in GLOB.mkultra_commands)
 		if(findtext(message, command.trigger))
 			command.execute(src, owner, source, message)
 
