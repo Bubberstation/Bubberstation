@@ -212,11 +212,12 @@
 /datum/component/ball_mittens_fumble/proc/on_try_strip(mob/living/wearer, atom/target, obj/item/item)
 	SIGNAL_HANDLER
 	if(wearer.get_slot_by_item(item))
-		return // Someone stripping the wearer - allow normally
-	if(target == wearer)
-		return // Someone equipping something onto the wearer - allow normally
+		return // Item is on the wearer being stripped - allow normally
 	if(!isliving(target) || !isitem(item))
 		return COMPONENT_CANT_STRIP
+	var/mob/living/living_target = target
+	if(!living_target.get_slot_by_item(item))
+		return // Item isn't on the target yet - this is an equip action, allow it
 	to_chat(wearer, span_purple("You fumble awkwardly at [target]'s gear with your [get_hand_descriptor(wearer)], trying to find a grip..."))
 	INVOKE_ASYNC(src, PROC_REF(delayed_strip), wearer, target, item)
 	return COMPONENT_CANT_STRIP
