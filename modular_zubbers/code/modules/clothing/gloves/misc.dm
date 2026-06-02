@@ -59,7 +59,7 @@
 /obj/item/clothing/gloves/cat/Topic(href, href_list)
 	. = ..()
 	if(href_list["toggle_lights"])
-		if(!usr || !istype(usr, /mob/living/carbon/human))
+		if(!usr || !ishuman(usr))
 			return
 		var/mob/living/carbon/human/toggler = usr
 		if(toggler.gloves != src)

@@ -128,11 +128,14 @@
 	SIGNAL_HANDLER
 	if(is_interacting)
 		return
-	// Simple toggle/single-action machines that are trivial to smack with a paw
-	if(istype(machine, /obj/machinery/button) || \
-		istype(machine, /obj/machinery/photobooth) || \
-		istype(machine, /obj/machinery/light_switch) || \
-		istype(machine, /obj/machinery/shower))
+	// Simple toggle/single-action machines trivial to operate with a paw - bypass delay
+	var/static/list/paw_passthrough = typecacheof(list(
+		/obj/machinery/button,
+		/obj/machinery/photobooth,
+		/obj/machinery/light_switch,
+		/obj/machinery/shower,
+	))
+	if(is_type_in_typecache(machine, paw_passthrough))
 		return
 	INVOKE_ASYNC(src, PROC_REF(fumble_interact), wearer, machine)
 	return COMPONENT_BLOCK_MACHINERY_INTERACT
