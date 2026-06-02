@@ -7,7 +7,7 @@
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/staves_righthand.dmi'
 	inhand_icon_state = "stunstaff"
-	worn_icon = "modular_zubbers/icons/mob/clothing/back.dmi"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/back.dmi'
 	worn_icon_state = "stunstaff"
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
@@ -39,7 +39,7 @@
 
 /obj/item/melee/baton/security/staff/prime
 	name = "heroic stun staff"
-	desc = "An absolutely brutal feat of non-lethal engineering.  Definitely more effective at incapacitating targets."
+	desc = "An absolutely brutal feat of non-lethal engineering. Definitely more effective at incapacitating targets."
 	icon_state = "stunstaff" //no custom sprite yet
 	base_icon_state = "stunstaff"
 	inhand_icon_state = "stunstaff"

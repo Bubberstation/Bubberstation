@@ -5,5 +5,5 @@
 	caliber = CALIBER_STINGBALL
 	max_ammo = 50
 
-obj/item/ammo_box/magazine/internal/stingballer/empty
+/obj/item/ammo_box/magazine/internal/stingballer/empty
 	start_empty = TRUE

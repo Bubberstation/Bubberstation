@@ -4,7 +4,7 @@
 /obj/item/gun/ballistic/automatic/wt550/add_bayonet_point()
 	return
 
-/obj/item/gun/energy/ballistic/automatic/wt550/Initialize(mapload)
+/obj/item/gun/ballistic/automatic/wt550/Initialize(mapload)
 	. = ..()
 	if(type != /obj/item/gun/ballistic/automatic/wt550)
 		return
@@ -169,9 +169,9 @@
 	icon_state = "wt550b"
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
 	can_suppress = TRUE
-	suppressor_x_offset = 5
+	suppressor_x_offset = 4
 	spread = 3
-	recoil = 0.3
+	recoil = 0.5
 	projectile_damage_multiplier = 1.1
 	burst_delay = 2
 	burst_size = 2

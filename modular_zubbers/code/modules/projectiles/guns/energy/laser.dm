@@ -1,14 +1,16 @@
 /obj/item/gun/energy/laser/lmg
 	name = "\improper Type 3x3 laser machine gun"
 	desc = "The Type 3x3 Heat Delivery System, developed by Nanotrasen. Identical in performance to it's little brother, but with a much bigger capacity."
-	icon_state = "laser"
-	inhand_icon_state = "laser"
+	icon = 'icons/obj/weapons/guns/wide_guns.dmi'
+	icon_state = "assault_laser"
+	inhand_icon_state = "assault_laser"
+	worn_icon_state = "assault_laser"
 	w_class = WEIGHT_CLASS_HUGE
 	weapon_weight = WEAPON_HEAVY
-	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT)
 	cell_type = /obj/item/stock_parts/power_store/cell/laser_lmg
 	shaded_charge = TRUE
 	light_color = COLOR_SOFT_RED
+	spread = 5
 
 /obj/item/gun/energy/laser/lmg/Initialize(mapload)
 	. = ..()
@@ -17,6 +19,8 @@
 // Mmmm Lore //
 
 /obj/item/gun/energy/laser/lmg/add_deep_lore()
+
+
 	AddElement(/datum/element/examine_lore, \
 		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
 		lore = "The NT Type 3x3 Heat Delivery System (sometimes referred to as the HDS-3x3 or HDS-9 in promotional material) is what happens when \

@@ -45,3 +45,16 @@
 	tool_behaviors = list(TOOL_WELDER, TOOL_WRENCH)
 	time = 15 SECONDS
 	category = CAT_WEAPON_MELEE
+
+/datum/crafting_recipe/stunstaff_prime
+	name = "Heroic Stun Staff"
+	result = /obj/item/melee/baton/security/staff/prime
+	reqs = list(
+		/obj/item/melee/baton/security/staff = 1,
+	)
+	blacklist = list(
+	)
+	tool_behaviors = list()
+	time = 15 SECONDS
+	category = CAT_WEAPON_MELEE
+	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED

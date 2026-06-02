@@ -9,7 +9,7 @@
 	inhand_icon_state = "rebarxbowsyndie"
 
 /obj/item/gun/ballistic/rifle/stingballer
-	name = "\improper Stingball Rifle"
+	name = "\improper S-K Stingball Rifle"
 	desc = "A pneumatic rifle designed to rapidly fire stingballs. Holds up to 50 rounds."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "stingballer"
@@ -22,7 +22,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	weapon_weight = 2
 	mag_display_ammo = TRUE
-	spread = 3
+	spread = 5
 	projectile_damage_multiplier = 0.50
 
 /obj/item/gun/ballistic/rifle/stingballer/Initialize(mapload)
