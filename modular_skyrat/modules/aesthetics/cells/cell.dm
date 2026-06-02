@@ -36,7 +36,19 @@
 /obj/item/stock_parts/power_store/cell/lead
 	charging_icon = "lead_in"
 
-/obj/item/stock_parts/power_store/cell/update_overlays()
+/obj/item/stock_parts/power_store/cell/crystal_cell
+	charging_icon = "crystal_in"
+
+/obj/item/stock_parts/power_store/battery
+	icon = 'modular_skyrat/modules/aesthetics/cells/cell.dmi'
+
+/obj/item/stock_parts/power_store/battery/upgraded
+	icon_state = "upcellbig"
+
+/obj/item/stock_parts/power_store/battery/crap
+	icon_state = "aacellbig"
+
+/obj/item/stock_parts/power_store/update_overlays()
 	. = ..()
 	if(grown_battery)
 		. += mutable_appearance('icons/obj/machines/cell_charger.dmi', "grown_wires")
