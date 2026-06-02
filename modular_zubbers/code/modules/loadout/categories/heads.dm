@@ -80,6 +80,7 @@
 	name = "Recolorable Security Cap"
 	item_path = /obj/item/clothing/head/soft/sec/recolorable
 	restricted_roles = list(ALL_JOBS_SEC)
+	greyscale_component_preview_icon_file = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 
 /datum/loadout_item/head/security_cap/recolorable/set_item_color(datum/preference_middleware/loadout/manager, mob/user)
 	return set_component_style_item_color(manager, user)

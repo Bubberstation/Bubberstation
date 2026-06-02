@@ -13,10 +13,6 @@
 	var/list/core_components = list()
 	/// Optional component definitions, keyed by display name.
 	var/list/accessories = list()
-	/// Component state to color group index.
-	var/list/component_color_ids = list()
-	/// Color group labels, keyed by color group index.
-	var/list/color_labels = list()
 	/// Optional accessory component states enabled by default.
 	var/list/default_accessories = list()
 	/// Suffix checked first for adjusted/casual component states.
@@ -50,8 +46,55 @@
 
 /datum/greyscale_component_style/proc/core_option_exists(list/core_component, option_state)
 	var/list/options = core_component["options"]
-	for(var/option_name in options)
-		if(options[option_name] == option_state)
+	return islist(options?[option_state])
+
+/datum/greyscale_component_style/proc/core_component_for_key(core_key) as /list
+	for(var/list/core_component as anything in core_components)
+		if(core_component["key"] == core_key)
+			return core_component
+	return null
+
+/datum/greyscale_component_style/proc/core_option_data(list/core_component, option_id) as /list
+	var/list/options = core_component?["options"]
+	return options?[option_id]
+
+/datum/greyscale_component_style/proc/core_option_state(list/core_component, option_id)
+	var/list/option_data = core_option_data(core_component, option_id)
+	return option_data?["state"]
+
+/datum/greyscale_component_style/proc/core_group_options(list/core_component, group_id) as /list
+	var/list/groups = core_component?["groups"]
+	var/list/group_options = groups?[group_id]
+	return islist(group_options) ? group_options : null
+
+/datum/greyscale_component_style/proc/core_option_matches(list/core_component, selected_option, target_option, match_mode)
+	if(match_mode == COMPONENT_CORE_ALL)
+		return TRUE
+	if(match_mode == COMPONENT_CORE_EXACT)
+		return selected_option == target_option
+	if(match_mode != COMPONENT_CORE_BRANCH)
+		return FALSE
+
+	var/current_option = selected_option
+	while(current_option)
+		if(current_option == target_option)
+			return TRUE
+		var/list/option_data = core_option_data(core_component, current_option)
+		current_option = option_data?["parent"]
+	return FALSE
+
+/datum/greyscale_component_style/proc/core_rule_targets(list/core_component, rule_value, use_groups = FALSE) as /list
+	if(islist(rule_value))
+		return rule_value
+	if(use_groups)
+		return core_group_options(core_component, rule_value) || list()
+	return list(rule_value)
+
+/datum/greyscale_component_style/proc/core_apply_rule_matches(list/core_component, selected_option, rule_mode, rule_value)
+	var/list/targets = core_rule_targets(core_component, rule_value, rule_mode == COMPONENT_CORE_GROUP)
+	var/match_mode = (rule_mode == COMPONENT_CORE_GROUP) ? COMPONENT_CORE_EXACT : rule_mode
+	for(var/target_option in targets)
+		if(core_option_matches(core_component, selected_option, target_option, match_mode))
 			return TRUE
 	return FALSE
 
@@ -68,11 +111,12 @@
 
 /datum/greyscale_component_style/proc/option_ui_data(list/options, selected_value) as /list
 	var/list/style_options = list()
-	for(var/option_name in options)
+	for(var/option_id in options)
+		var/list/option_data = options[option_id]
 		style_options += list(list(
-			"name" = option_name,
-			"value" = options[option_name],
-			"selected" = (options[option_name] == selected_value),
+			"name" = option_data["name"] || option_id,
+			"value" = option_id,
+			"selected" = (option_id == selected_value),
 		))
 	return style_options
 
@@ -95,13 +139,39 @@
 	if(isnull(accessory_rules))
 		return FALSE
 
-	var/list/allowed_cores = accessory_rules["cores"]
-	if(!length(allowed_cores))
+	var/list/apply_rules = accessory_rules["applies_to"]
+	if(!length(apply_rules))
 		return TRUE
 
-	for(var/core_key in allowed_cores)
-		var/list/allowed_states = allowed_cores[core_key]
-		if(length(allowed_states) && !(selected_cores?[core_key] in allowed_states))
+	for(var/core_key in apply_rules)
+		var/list/core_component = core_component_for_key(core_key)
+		if(!core_component)
+			return FALSE
+
+		var/selected_option = selected_cores?[core_key]
+		if(!selected_option)
+			return FALSE
+
+		var/apply_rule = apply_rules[core_key]
+		if(apply_rule == COMPONENT_CORE_ALL)
+			continue
+
+		var/matched_core = FALSE
+		if(islist(apply_rule))
+			for(var/rule_key in apply_rule)
+				if(rule_key in list(COMPONENT_CORE_EXACT, COMPONENT_CORE_BRANCH, COMPONENT_CORE_GROUP))
+					if(core_apply_rule_matches(core_component, selected_option, rule_key, apply_rule[rule_key]))
+						matched_core = TRUE
+						break
+					continue
+
+				if(core_apply_rule_matches(core_component, selected_option, apply_rule[rule_key] || COMPONENT_CORE_EXACT, rule_key))
+					matched_core = TRUE
+					break
+		else
+			matched_core = core_option_matches(core_component, selected_option, apply_rule, COMPONENT_CORE_EXACT)
+
+		if(!matched_core)
 			return FALSE
 	return TRUE
 
@@ -115,7 +185,7 @@
 /datum/greyscale_component_style/proc/active_components(list/selected_cores, list/selected_accessories) as /list
 	var/list/components = list()
 	for(var/list/core_component as anything in core_components)
-		var/component_state = selected_cores?[core_component["key"]]
+		var/component_state = core_option_state(core_component, selected_cores?[core_component["key"]])
 		if(component_state)
 			components += component_state
 	if(islist(selected_accessories))
@@ -126,7 +196,21 @@
 	return components
 
 /datum/greyscale_component_style/proc/color_id_for_component(component_state)
-	return component_color_ids[component_state]
+	var/list/component_rules = component_rules_for_state(component_state)
+	return component_rules?["color_id"]
+
+/datum/greyscale_component_style/proc/component_rules_for_state(component_state) as /list
+	for(var/list/core_component as anything in core_components)
+		var/list/options = core_component["options"]
+		for(var/option_id in options)
+			var/list/option_data = options[option_id]
+			if(option_data["state"] == component_state)
+				return option_data
+	for(var/accessory_name in accessories)
+		var/list/accessory_rules = accessories[accessory_name]
+		if(accessory_rules["state"] == component_state)
+			return accessory_rules
+	return null
 
 /datum/greyscale_component_style/proc/active_color_ids(list/selected_cores, list/selected_accessories) as /list
 	var/list/active_color_ids = list()
@@ -139,15 +223,132 @@
 
 /datum/greyscale_component_style/proc/active_color_labels(list/selected_cores, list/selected_accessories) as /list
 	var/list/labels = list()
-	var/list/active_color_ids = active_color_ids(selected_cores, selected_accessories)
-	for(var/color_id in active_color_ids)
-		var/color_label = color_labels["[color_id]"]
-		if(!color_label && length(color_labels) >= color_id)
-			color_label = color_labels[color_id]
-		if(!color_label)
+	for(var/component_state in active_components(selected_cores, selected_accessories))
+		var/list/component_rules = component_rules_for_state(component_state)
+		var/color_id = component_rules?["color_id"]
+		var/color_label = component_rules?["color_label"]
+		if(!color_id || !color_label)
 			continue
 		labels["[color_id]"] = color_label
 	return labels
+
+/datum/greyscale_component_style/proc/default_color_list(list/fallback_colors, expected_colors = 0) as /list
+	var/list/colors = islist(fallback_colors) ? fallback_colors.Copy() : list()
+	while(length(colors) < expected_colors)
+		colors += null
+
+	for(var/list/core_component as anything in core_components)
+		var/list/options = core_component["options"]
+		for(var/option_id in options)
+			apply_component_default_color(colors, options[option_id])
+	for(var/accessory_name in accessories)
+		apply_component_default_color(colors, accessories[accessory_name])
+
+	for(var/i in 1 to length(colors))
+		if(!colors[i])
+			colors[i] = rgb(100, 100, 100)
+	return colors
+
+/datum/greyscale_component_style/proc/apply_component_default_color(list/colors, list/component_rules)
+	var/color_id = component_rules?["color_id"]
+	var/default_color = component_rules?["default_color"]
+	if(!color_id || !default_color)
+		return
+	while(length(colors) < color_id)
+		colors += null
+	colors[color_id] = default_color
+
+/datum/greyscale_component_style/proc/greyscale_config_data(list/output_states, list/state_overrides) as /list
+	var/list/layers = greyscale_config_layers(state_overrides)
+	var/list/config_data = list()
+	if(!length(output_states))
+		output_states = list(output_icon_state)
+	for(var/output_state in output_states)
+		if(isnull(output_state))
+			continue
+		config_data[output_state] = layers
+	return config_data
+
+/datum/greyscale_component_style/proc/greyscale_config_layers(list/state_overrides) as /list
+	var/list/layers = list()
+	var/list/seen_states = list()
+	for(var/component_state in greyscale_config_component_states())
+		if(!component_state || seen_states[component_state])
+			continue
+		seen_states[component_state] = TRUE
+
+		var/list/component_rules = component_rules_for_state(component_state)
+		var/layer_state = islist(state_overrides) ? (state_overrides[component_state] || component_state) : component_state
+		var/list/layer_data = list(
+			"type" = "icon_state",
+			"icon_state" = layer_state,
+			"blend_mode" = "overlay",
+		)
+		var/color_id = component_rules?["color_id"]
+		if(color_id)
+			layer_data["color_ids"] = list(color_id)
+		layers += list(layer_data)
+	return layers
+
+/datum/greyscale_component_style/proc/greyscale_config_component_states() as /list
+	var/list/component_states = list()
+	for(var/list/core_component as anything in core_components)
+		var/list/options = core_component["options"]
+		for(var/option_id in options)
+			component_states += options[option_id]["state"]
+	for(var/accessory_name in accessories)
+		component_states += accessories[accessory_name]["state"]
+	return component_states
+
+/datum/greyscale_config
+	/// Optional dynamic component-style definition used to generate this config without a hand-written JSON file.
+	var/greyscale_component_style_type
+	/// Icon states this generated config should expose in its output bundle.
+	var/list/greyscale_component_config_states
+	/// Optional logical component state to real icon state mapping for this config's icon file.
+	var/list/greyscale_component_config_state_overrides
+
+/datum/greyscale_config/proc/InitializeGreyscaleComponentStyleConfig()
+	if(!icon_file)
+		stack_trace("Greyscale component-style config object [DebugName()] is missing an icon file, make sure `icon_file` has been assigned a value.")
+	string_icon_file = "[icon_file]"
+	if(!name)
+		stack_trace("Greyscale component-style config object [DebugName()] is missing a name, make sure `name` has been assigned a value.")
+	if(!greyscale_component_style_type)
+		stack_trace("Greyscale component-style config object [DebugName()] is missing a component style type.")
+
+/datum/greyscale_config/proc/RefreshGreyscaleComponentStyleConfig(loadFromDisk = FALSE)
+	if(loadFromDisk)
+		var/changed = FALSE
+
+		icon_file = file(string_icon_file)
+		var/icon_hash = rustg_hash_file("md5", string_icon_file)
+		if(icon_file_hash != icon_hash)
+			icon_file_hash = icon_hash
+			changed = TRUE
+
+		for(var/datum/greyscale_layer/layer as anything in flat_all_layers)
+			if(layer.DiskRefresh())
+				changed = TRUE
+
+		if(!changed)
+			return FALSE
+
+	var/style_type = greyscale_component_style_type
+	var/datum/greyscale_component_style/component_style = new style_type
+	var/list/raw = component_style.greyscale_config_data(greyscale_component_config_states, greyscale_component_config_state_overrides)
+	raw_json_string = json_encode(raw)
+	qdel(component_style)
+
+	ReadIconStateConfiguration(raw)
+	if(!length(icon_states))
+		CRASH("The component-style greyscale configuration [DebugName()] doesn't have any icon states.")
+
+	icon_cache = list()
+	ReadMetadata()
+
+	SEND_SIGNAL(src, COMSIG_GREYSCALE_CONFIG_REFRESHED)
+	return TRUE
 
 /datum/greyscale_component_style/proc/build_icon(icon_file, list/colors, list/selected_cores, list/selected_accessories, use_digi = FALSE, digi_fallback_icon_file = null, only_dir = null, list/state_overrides = null, use_adjusted = FALSE)
 	var/icon/final_icon = icon('icons/effects/effects.dmi', "nothing")
@@ -213,7 +414,7 @@
 /obj/item
 	/// Optional component-style GAGS definition used for layered, selectable components.
 	var/greyscale_component_style_type
-	/// Selected core component states, keyed by core component id.
+	/// Selected core option ids, keyed by core component id.
 	var/list/greyscale_component_cores
 	/// Selected optional component states.
 	var/list/greyscale_component_accessories
@@ -303,6 +504,12 @@
 /datum/loadout_item/proc/uses_greyscale_component_style()
 	return !!initial(item_path.greyscale_component_style_type)
 
+/datum/loadout_item
+	/// Optional icon file used for component-style color previews instead of the item's worn preview.
+	var/greyscale_component_preview_icon_file
+	/// Optional logical component state to preview icon state mapping.
+	var/list/greyscale_component_preview_state_overrides
+
 /// Opens a component-style GAGS editing menu when the loadout item supports it.
 /datum/loadout_item/proc/set_component_style_item_color(datum/preference_middleware/loadout/manager, mob/user)
 	if(manager.menu)
@@ -329,6 +536,11 @@
 	if(selected_config && length(SSgreyscale.ParseColorString(starting_colors)) != selected_config.expected_colors)
 		starting_colors = initial(item_path.greyscale_colors)
 
+	var/preview_icon_file = greyscale_component_preview_icon_file || initial(item_path.greyscale_component_worn_icon_file) || initial(item_path.greyscale_component_icon_file)
+	var/list/preview_state_overrides = greyscale_component_preview_state_overrides
+	if(!preview_state_overrides && preview_icon_file == initial(item_path.greyscale_component_worn_icon_file))
+		preview_state_overrides = initial(item_path.greyscale_component_worn_state_overrides)
+
 	var/datum/greyscale_modify_menu/component_style/menu = new(
 		manager,
 		user,
@@ -340,9 +552,9 @@
 		component_style_type = initial(item_path.greyscale_component_style_type),
 		selected_cores = selected_cores,
 		selected_accessories = selected_accessories,
-		preview_icon_file = initial(item_path.greyscale_component_worn_icon_file) || initial(item_path.greyscale_component_icon_file),
+		preview_icon_file = preview_icon_file,
 		preview_digi_fallback_icon_file = initial(item_path.greyscale_component_digi_fallback_icon_file),
-		preview_state_overrides = initial(item_path.greyscale_component_worn_icon_file) ? initial(item_path.greyscale_component_worn_state_overrides) : null,
+		preview_state_overrides = preview_state_overrides,
 		default_colors = initial(item_path.greyscale_colors),
 		default_cores = initial(item_path.greyscale_component_cores),
 		default_accessories = null,
@@ -376,7 +588,11 @@
 	if(equipped_item?.greyscale_component_style_type)
 		equipped_item.apply_greyscale_component_style(item_details)
 
-/datum/loadout_item/proc/get_component_style_preview_image()
+/proc/get_component_style_item_preview_image(obj/item/item_path)
+	if(item_path == /obj/item/clothing/head/soft/sec/recolorable)
+		var/icon/preview_icon = icon('icons/obj/clothing/head/hats.dmi', "secsoft")
+		return icon2base64(preview_icon)
+
 	var/component_style_type = initial(item_path.greyscale_component_style_type)
 	if(!component_style_type)
 		return null
@@ -384,18 +600,84 @@
 	var/list/default_cores = component_style.sanitize_core_selection(initial(item_path.greyscale_component_cores))
 	var/list/default_accessories = component_style.default_accessories
 	default_accessories = component_style.sanitize_accessories(default_accessories, default_cores)
-	var/list/default_colors = SSgreyscale.ParseColorString(initial(item_path.greyscale_colors))
+	var/list/default_colors = component_style.default_color_list(SSgreyscale.ParseColorString(initial(item_path.greyscale_colors)))
 	var/preview_icon_file = initial(item_path.greyscale_component_worn_icon_file) || initial(item_path.greyscale_component_icon_file)
-	var/list/preview_state_overrides = initial(item_path.greyscale_component_worn_icon_file) ? initial(item_path.greyscale_component_worn_state_overrides) : null
+	var/list/preview_state_overrides
+	if(preview_icon_file == initial(item_path.greyscale_component_worn_icon_file))
+		preview_state_overrides = initial(item_path.greyscale_component_worn_state_overrides)
 	var/icon/south_preview_icon = component_style.build_icon(preview_icon_file, default_colors, default_cores, default_accessories, only_dir = SOUTH, state_overrides = preview_state_overrides)
 	var/icon/single_frame_preview = icon(south_preview_icon, component_style.output_icon_state, SOUTH, 1)
 	qdel(component_style)
 	return icon2base64(single_frame_preview)
 
+/datum/loadout_item/proc/get_component_style_preview_image()
+	return get_component_style_item_preview_image(item_path)
+
 /datum/loadout_item/proc/add_component_style_preview_to_ui_data(list/formatted_item)
 	if(!uses_greyscale_component_style())
 		return
 	formatted_item["image"] = get_component_style_preview_image()
+
+/obj/machinery/vending/proc/get_component_style_vending_preview_image(obj/item/item_path)
+	return get_component_style_item_preview_image(item_path)
+
+/obj/machinery/vending
+	/// Temporary component-style selections keyed by vending user ref while the normal vend path creates the item.
+	var/list/greyscale_component_style_vend_details
+
+/obj/machinery/vending/proc/open_component_style_vending_menu(datum/data/vending_product/product, list/params, mob/user)
+	var/obj/item/item_path = product.product_path
+	var/list/allowed_configs = list()
+	if(initial(item_path.greyscale_config_worn))
+		allowed_configs += "[initial(item_path.greyscale_config_worn)]"
+	else if(initial(item_path.greyscale_config))
+		allowed_configs += "[initial(item_path.greyscale_config)]"
+
+	var/preview_icon_file = initial(item_path.greyscale_component_worn_icon_file) || initial(item_path.greyscale_component_icon_file)
+	var/list/preview_state_overrides
+	if(preview_icon_file == initial(item_path.greyscale_component_worn_icon_file))
+		preview_state_overrides = initial(item_path.greyscale_component_worn_state_overrides)
+
+	var/datum/greyscale_modify_menu/component_style/menu = new(
+		src,
+		user,
+		allowed_configs,
+		CALLBACK(src, PROC_REF(_vend_component_style), params, user),
+		starting_icon_state = initial(item_path.icon_state),
+		starting_config = initial(item_path.greyscale_config_worn) || initial(item_path.greyscale_config),
+		starting_colors = initial(item_path.greyscale_colors),
+		component_style_type = initial(item_path.greyscale_component_style_type),
+		selected_cores = initial(item_path.greyscale_component_cores),
+		selected_accessories = initial(item_path.greyscale_component_accessories),
+		preview_icon_file = preview_icon_file,
+		preview_digi_fallback_icon_file = initial(item_path.greyscale_component_digi_fallback_icon_file),
+		preview_state_overrides = preview_state_overrides,
+		default_colors = initial(item_path.greyscale_colors),
+		default_cores = initial(item_path.greyscale_component_cores),
+		default_accessories = initial(item_path.greyscale_component_accessories),
+	)
+	menu.ui_interact(user)
+	return TRUE
+
+/obj/machinery/vending/proc/_vend_component_style(list/params, mob/user, datum/greyscale_modify_menu/menu)
+	PRIVATE_PROC(TRUE)
+
+	var/datum/greyscale_modify_menu/component_style/component_menu = menu
+	if(user != menu.user || !istype(component_menu))
+		return
+
+	var/list/component_details = list(
+		INFO_GREYSCALE_COMPONENT_CORES = component_menu.selected_cores.Copy(),
+		INFO_GREYSCALE_COMPONENT_ACCESSORIES = length(component_menu.selected_accessories) ? component_menu.selected_accessories.Copy() : list(/datum/greyscale_component_style::no_accessories_marker),
+	)
+	if(!greyscale_component_style_vend_details)
+		greyscale_component_style_vend_details = list()
+	var/user_ref = REF(user)
+	greyscale_component_style_vend_details[user_ref] = component_details
+	vend(params, user, component_menu.split_colors)
+	greyscale_component_style_vend_details -= user_ref
+	if(!length(greyscale_component_style_vend_details))
+		greyscale_component_style_vend_details = null
 
 /datum/greyscale_modify_menu/component_style
 	var/datum/greyscale_component_style/component_style
@@ -422,7 +704,7 @@
 	src.preview_use_digi = preview_use_digi
 	src.preview_digi_fallback_icon_file = preview_digi_fallback_icon_file
 	src.preview_state_overrides = preview_state_overrides
-	src.default_colors = SSgreyscale.ParseColorString(default_colors || starting_colors)
+	src.default_colors = component_style.default_color_list(SSgreyscale.ParseColorString(default_colors || starting_colors))
 	src.default_cores = component_style.sanitize_core_selection(default_cores)
 	if(isnull(default_accessories))
 		default_accessories = component_style.default_accessories

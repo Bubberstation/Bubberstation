@@ -11,7 +11,14 @@
 /datum/greyscale_config/security_uniform
 	name = "Security Uniform"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
-	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/security_uniform.json'
+	greyscale_component_style_type = /datum/greyscale_component_style/security_uniform
+	greyscale_component_config_states = list("recolorable_security_uniform", "rsecurity")
+
+/datum/greyscale_config/security_uniform/New()
+	InitializeGreyscaleComponentStyleConfig()
+
+/datum/greyscale_config/security_uniform/Refresh(loadFromDisk = FALSE)
+	return RefreshGreyscaleComponentStyleConfig(loadFromDisk)
 
 /datum/greyscale_config/security_uniform/worn
 	name = "Security Uniform (Worn)"
@@ -24,12 +31,23 @@
 /datum/greyscale_config/security_cap
 	name = "Security Cap"
 	icon_file = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
-	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/head/security_cap.json'
+	greyscale_component_style_type = /datum/greyscale_component_style/security_cap
+	greyscale_component_config_states = list("security_cap")
+
+/datum/greyscale_config/security_cap/New()
+	InitializeGreyscaleComponentStyleConfig()
+
+/datum/greyscale_config/security_cap/Refresh(loadFromDisk = FALSE)
+	return RefreshGreyscaleComponentStyleConfig(loadFromDisk)
 
 /datum/greyscale_config/security_cap/worn
 	name = "Security Cap (Worn)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
-	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/head/security_cap_worn.json'
+	greyscale_component_config_state_overrides = list(
+		"security_cap" = "security_capg",
+		"security_cap_accs_front" = "security_capg_accs_backing",
+		"security_cap_accs_logo" = "security_capg_accs_logo",
+	)
 
 /datum/greyscale_config/gi/worn/digi
 	name = "Gi (Worn, Digi)"

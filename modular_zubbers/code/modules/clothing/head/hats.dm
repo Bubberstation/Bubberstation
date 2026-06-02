@@ -50,27 +50,35 @@
 	output_icon_state = "security_cap"
 	fallback_icon_state = "security_cap"
 	default_accessories = list("security_cap_accs_front", "security_cap_accs_logo")
-	color_labels = list(
-		1 = "Main",
-		2 = "Backing",
-		3 = "Logo",
-	)
-	component_color_ids = list(
-		"security_cap" = 1,
-		"security_cap_accs_front" = 2,
-		"security_cap_accs_logo" = 3,
-	)
 	core_components = list(
 		list(
 			"name" = "Cap",
 			"key" = "cap",
-			"default" = "security_cap",
-			"options" = list("Security cap" = "security_cap"),
+			"default" = "security",
+			"options" = list(
+				"security" = list(
+					"name" = "Security cap",
+					"state" = "security_cap",
+					"color_id" = 1,
+					"color_label" = "Main",
+					"default_color" = "#A53429",
+				),
+			),
 		),
 	)
 	accessories = list(
-		"Backing" = list("state" = "security_cap_accs_front"),
-		"Logo" = list("state" = "security_cap_accs_logo"),
+		"Backing" = list(
+			"state" = "security_cap_accs_front",
+			"color_id" = 2,
+			"color_label" = "Backing",
+			"default_color" = "#3F6E9E",
+		),
+		"Logo" = list(
+			"state" = "security_cap_accs_logo",
+			"color_id" = 3,
+			"color_label" = "Logo",
+			"default_color" = "#FFFFFF",
+		),
 	)
 
 /obj/item/clothing/head/soft/sec/recolorable
