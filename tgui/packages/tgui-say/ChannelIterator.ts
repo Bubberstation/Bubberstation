@@ -10,7 +10,7 @@ export class ChannelIterator {
   private index: number = 0;
   private readonly blacklist: Channel[] = ['Admin'];
   private readonly quiet: Channel[] = ['OOC', 'LOOC', 'Admin', 'Pray']; // SKYRAT EDIT CHANGE (Add LOOC)
-  private readonly channels: Channel[] = ['Say', 'Radio', 'Me', 'OOC', 'Admin', 'Pray', 'Whis', 'LOOC']; // BUBBER EDIT CHANGE (Add Whis and LOOC)
+  private readonly channels: Channel[] = ['Say', 'Radio', 'Me', 'Whis', 'LOOC', 'OOC', 'Admin', 'Pray']; // BUBBER EDIT CHANGE (Add Whis and LOOC)
 
 
   public next(): Channel {
