@@ -142,6 +142,14 @@
 /datum/loadout_item/toys/plush/myrthel_plush
 	name = "Extra Hot Moth Plush"
 	item_path = /obj/item/toy/plush/myrthel_plush
+
+/datum/loadout_item/toys/plush/expie
+	name = "Experiment Plushie"
+	item_path = /obj/item/toy/plush/expie
+
+/datum/loadout_item/toys/plush/milky
+	name = "Milky Plushie"
+	item_path = /obj/item/toy/plush/expie/milky
 /*
 *	SEX TOYS AND OTHER STUFF THAT NEEDS PREFS TO USE (otherwise fails to render on the character preview)
 */
