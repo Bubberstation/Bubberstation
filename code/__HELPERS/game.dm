@@ -335,6 +335,8 @@
 	else
 		var/list/randomtips = world.file2list("strings/tips.txt")
 		var/list/memetips = world.file2list("strings/sillytips.txt")
+		var/list/bubbertips = world.file2list("strings/bubbertips.txt") // BUBBER EDIT - OUR TIPS OF THE ROUND
+		randomtips += bubbertips // BUBBER EDIT
 		if(randomtips.len && prob(95))
 			message = pick(randomtips)
 		else if(memetips.len)
