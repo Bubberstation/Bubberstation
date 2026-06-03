@@ -37,12 +37,12 @@
 	compact_bolt_animating = TRUE
 	update_appearance(UPDATE_OVERLAYS)
 	var/icon/bolt_icon = icon(src.icon, "cshotgunc_bolt_animated", SOUTH, 1)
-	var/atom/movable/flick_visual/bolt = flick_overlay_view(mutable_appearance(bolt_icon, "", layer + 0.1), 2)
+	var/atom/movable/flick_visual/bolt = flick_overlay_view(mutable_appearance(bolt_icon, "", layer + 0.1), 1)
 	if(bolt)
-		animate(bolt, icon = icon(src.icon, "cshotgunc_bolt_animated", SOUTH, 2), time = 0.5)
-		for(var/frame in 3 to 4)
-			animate(icon = icon(src.icon, "cshotgunc_bolt_animated", SOUTH, frame), time = 0.5)
-	addtimer(CALLBACK(src, PROC_REF(reset_compact_bolt_animation)), 2)
+		animate(bolt, icon = icon(src.icon, "cshotgunc_bolt_animated", SOUTH, 2), time = 0.2)
+		for(var/frame in 3 to 6)
+			animate(icon = icon(src.icon, "cshotgunc_bolt_animated", SOUTH, frame), time = 0.2)
+	addtimer(CALLBACK(src, PROC_REF(reset_compact_bolt_animation)), 1)
 
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact/proc/reset_compact_bolt_animation()
 	compact_bolt_animating = FALSE

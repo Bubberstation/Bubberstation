@@ -93,11 +93,11 @@
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/smart/proc/recoil_firefly_slide()
 	firefly_slide_animating = TRUE
 	update_appearance(UPDATE_OVERLAYS)
-	var/atom/movable/flick_visual/slide = flick_overlay_view(mutable_appearance(icon, "firefly_bolt", layer + 0.1), 1.5)
+	var/atom/movable/flick_visual/slide = flick_overlay_view(mutable_appearance(icon, "firefly_bolt", layer + 0.1), 0.75)
 	if(slide)
-		animate(slide, pixel_w = -3, time = 0.75)
-		animate(pixel_w = 0, time = 0.75)
-	addtimer(CALLBACK(src, PROC_REF(reset_firefly_slide_recoil)), 1.5)
+		animate(slide, pixel_w = -3, time = 0.375)
+		animate(pixel_w = 0, time = 0.375)
+	addtimer(CALLBACK(src, PROC_REF(reset_firefly_slide_recoil)), 0.75)
 
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/smart/proc/reset_firefly_slide_recoil()
 	firefly_slide_animating = FALSE
