@@ -8,11 +8,11 @@
 	cooldown = 30 SECONDS
 
 /datum/mkultra_command/relax/tick(datum/status_effect/status, mob/owner, mob/source)
-	var/datum/status_effect/mkultra/status
+	var/datum/status_effect/mkultra/ultra = status
 	if(!COOLDOWN_FINISHED(src, ultra_cooldown))
-		status.bonus_progress = 6
+		ultra.bonus_progress = 6
 		return
-	status.bonus_progress = 0
+	ultra.bonus_progress = 0
 
 /datum/mkultra_command/good_boy
 	name = "Praise"
@@ -26,12 +26,12 @@
 
 /datum/mkultra_command/good_boy/execute(datum/status_effect/status, mob/owner, mob/source, message)
 	. = ..()
-	var/datum/status_effect/mkultra/status
+	var/datum/status_effect/mkultra/ultra = status
 	if(!.)
 		return FALSE
-	to_chat(owner, span_userlove("[status.get_gender()] has praised me!!"))
+	to_chat(owner, span_userlove("[ultra.get_gender()] has praised me!!"))
 	owner.emote("shiver")
-	status.progress += 20
+	ultra.progress += 20
 
 /datum/mkultra_command/bad_boy
 	name = "Punish"
@@ -45,7 +45,7 @@
 
 /datum/mkultra_command/bad_boy/execute(datum/status_effect/status, mob/owner, mob/source, message)
 	. = ..()
-	var/datum/status_effect/mkultra/status
+	var/datum/status_effect/mkultra/ultra = status
 	if(!.)
 		return FALSE
-	to_chat(owner, span_red("I've failed [status.get_gender()]... what a bad pet..."))
+	to_chat(owner, span_red("I've failed [ultra.get_gender()]... what a bad pet..."))
