@@ -554,6 +554,7 @@
 	icon_state = "catgloves"
 	worn_icon_state = "catgloves"
 	set_greyscale(greyscale_colors, /datum/greyscale_config/catgloves)
+	update_appearance()
 
 // ============================================================
 
