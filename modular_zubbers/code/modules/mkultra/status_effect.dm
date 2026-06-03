@@ -156,7 +156,7 @@
 		delta_resist *= 1.5
 	if(IS_CULTIST(owner) || IS_CLOCK(owner))
 		delta_resist *= 1.3
-	if(owner.mind.assigned_role in GLOB.antagonists || owner.mind.assigned_role == "Chaplain" || owner.mind.assigned_role == "Chemist")
+	if((owner.mind.assigned_role in GLOB.antagonists) || owner.mind.assigned_role == "Chaplain" || owner.mind.assigned_role == "Chemist")
 		delta_resist *= 1.2
 	if(owner.nutrition < NUTRITION_LEVEL_HUNGRY)
 		delta_resist *= ((NUTRITION_LEVEL_HUNGRY - owner.nutrition) / NUTRITION_LEVEL_HUNGRY) + 1
