@@ -5,12 +5,9 @@
 	return
 
 /datum/component/bayonet_attachable/no_overlay/on_update_overlays(obj/item/source, list/overlays)
-	SIGNAL_HANDLER
 	return
 
 /datum/component/seclite_attachable/compact_shotgun/on_update_overlays(obj/item/source, list/overlays)
-	SIGNAL_HANDLER
-
 	if(!light_overlay || !light_overlay_icon || !light)
 		return
 
