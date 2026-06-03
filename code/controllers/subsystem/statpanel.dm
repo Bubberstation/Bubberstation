@@ -36,7 +36,6 @@ SUBSYSTEM_DEF(statpanels)
 			global_data += "Next Map: [cached.map_name]"
 
 		// BUBBER EDIT ADDITION BEGIN - Extra stat panel info
-		var/real_round_time = world.timeofday - SSticker.real_round_start_time
 		var/active_players = get_active_player_count(alive_check = FALSE, afk_check = TRUE, human_check = FALSE) //This is a list of all active players, including players who are dead
 		var/observing_players = length(GLOB.current_observers_list) //This is a list of all players that started as an observer-- dead and lobby players are not included.
 		var/current_date = "[time2text(world.realtime, "DDD Month DD")], [CURRENT_STATION_YEAR]"
