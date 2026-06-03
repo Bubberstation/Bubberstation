@@ -1,5 +1,3 @@
-var/eyes_opacity = 255
-
 /datum/preference/numeric/eyes_opacity
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
