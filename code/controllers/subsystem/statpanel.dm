@@ -36,6 +36,7 @@ SUBSYSTEM_DEF(statpanels)
 			global_data += "Next Map: [cached.map_name]"
 
 		// BUBBER EDIT ADDITION BEGIN - Extra stat panel info
+		var/real_round_time = world.timeofday - SSticker.real_round_start_time
 		var/active_players = get_active_player_count(alive_check = FALSE, afk_check = TRUE, human_check = FALSE) //This is a list of all active players, including players who are dead
 		var/observing_players = length(GLOB.current_observers_list) //This is a list of all players that started as an observer-- dead and lobby players are not included.
 		var/current_date = "[time2text(world.realtime, "DDD Month DD")], [CURRENT_STATION_YEAR]"
@@ -45,12 +46,11 @@ SUBSYSTEM_DEF(statpanels)
 			"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
 			"Connected: [GLOB.clients.len] | Active: [active_players]/[CONFIG_GET(number/hard_popcap)] | Observing: [observing_players]", // BUBBER EDIT ADDITION - Extra stat panel info
 			"OOC: [GLOB.ooc_allowed ? "Enabled" : "Disabled"]", // BUBBER EDIT ADDITION - Extra stat panel info
-			"Storyteller: [SSgamemode.storyteller ? SSgamemode.storyteller.name : "N/A"]", // BUBBER EDIT ADDITION - Extra stat panel info
 			" ", // BUBBER EDIT ADDITION - Extra stat panel info
-			"Station Time: [round_timestamp(format = "hh:mm")], [current_date]", // BUBBER EDIT CHANGE - Extra stat panel info - ORIGINAL: "Station Time: [round_timestamp()]"
-			"Shift Time/PT: [(SSticker.round_start_time == 0) ? "Pre-Game" : round_timestamp()]",
-			"Server Time/NST: [server_timestamp(format = "YYYY-MM-DD hh:mm:ss")]",
-			" ", //BUBBER EDIT ADDITION - Line break
+			"Storyteller: [SSgamemode.storyteller ? SSgamemode.storyteller.name : "N/A"]", // BUBBER EDIT ADDITION - Extra stat panel info
+			"Station Time: [server_timestamp(format = "YYYY-MM-DD hh:mm:ss")]",
+			"Round Time: [time2text(real_round_time, "hh:mm:ss", 0)]", // BUBBER EDIT CHANGE - Extra stat panel info - ORIGINAL: "Round Time: [ROUND_TIME()]"
+			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss", world.timezone)]",
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)",
 		)
 
