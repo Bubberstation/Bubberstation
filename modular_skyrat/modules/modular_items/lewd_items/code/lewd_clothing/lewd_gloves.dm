@@ -212,10 +212,15 @@
 /datum/component/ball_mittens_fumble/proc/on_try_strip(mob/living/wearer, atom/target, obj/item/item)
 	SIGNAL_HANDLER
 	// COMSIG_TRY_STRIP and COMSIG_BEING_STRIPPED share the same signal string "try_strip".
-	// When item IS on the wearer: signal fired via COMSIG_BEING_STRIPPED on the wearer being acted on - allow.
-	// When item is NOT on the wearer: signal fired via COMSIG_TRY_STRIP on the wearer doing the stripping - delay.
+	// When item IS on the wearer: signal fired via COMSIG_BEING_STRIPPED - someone acting on the wearer - allow.
+	// When item is NOT on the wearer but in target's held_items: equip action onto the wearer - allow.
+	// When item is NOT on the wearer and NOT in target's hands: wearer is stripping from target - delay.
 	if(wearer.get_slot_by_item(item))
 		return
+	if(isliving(target))
+		var/mob/living/living_target = target
+		if(item in living_target.held_items)
+			return // Item in target's hands = equip action, not a strip
 	if(!isliving(target) || !isitem(item))
 		return COMPONENT_CANT_STRIP
 	to_chat(wearer, span_purple("You fumble awkwardly at [target]'s gear with your [get_hand_descriptor(wearer)], trying to find a grip..."))
@@ -496,7 +501,11 @@
 
 /obj/item/clothing/gloves/ball_mittens/doStrip(mob/stripper, mob/owner)
 	if(stripper != owner)
-		return ..()
+		if(!owner.dropItemToGround(src, force = TRUE))
+			return FALSE
+		if(HAS_TRAIT(stripper, TRAIT_STICKY_FINGERS))
+			stripper.put_in_hands(src)
+		return TRUE
 	var/delay = 1 MINUTES
 	to_chat(owner, span_purple("You attempt to remove [src]... (This will take around [DisplayTimeText(delay)] and you need to stand still.)"))
 	to_chat(owner, span_purple("You struggle furiously with [src], but you're not even sure if these can come off."))
