@@ -158,7 +158,7 @@
 	if(isnull(weapon_head))
 		stack_trace("[src] didn't contain a valid reagent smithing weapon head when its recipe was completed!")
 		return
-	var/obj/item/returner = new weapon_head.spawning_item(get_turf(construction_location))
+	var/obj/item/returner = new weapon_head.spawning_item(construction_location)
 	apply_perfect_and_completion_bonuses(item_list, returner)
 	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner, user)
 	put_materials_in_product_from_ingredients(item_list, returner, user)
