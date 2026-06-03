@@ -68,6 +68,11 @@
 	/// do these eyes have pupils (or equivalent) that react to light when penlighted.
 	var/light_reactive = TRUE
 
+	// BUBBER EDIT - ADDITION - START
+	/// This enables alpha values for eyes, adjusted using preferences
+	var/eyes_opacity = 255
+	//BUBBER EDIT - ADDITION - END
+
 /obj/item/organ/eyes/Initialize(mapload)
 	. = ..()
 	if (blink_animation)
