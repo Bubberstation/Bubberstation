@@ -26,18 +26,46 @@ GLOBAL_LIST_INIT(mkultra_commands, subtypesof(/datum/mkultra_command))
 	if(regex)
 		trigger = regex(trigger)
 
-/// What actions this command should do.
+/** This is executed when the status effect is removed. Use this to clear references and other effects.
+ *	* status - MKUltra status effect
+ *  * owner - MKUltra status owner
+ *  * source - MKUltra enchanter
+ */
+
+/datum/mkultra_command/proc/on_destroy(datum/status_effect/status, mob/owner, mob/source)
+	return TRUE
+
+/**
+ * the executed proc when /datum/status_effect/mkultra/proc/listener() is called.
+ * 	* status - MKUltra status effect
+ *  * owner - MKUltra status holder
+ *  * source - MKUltra enchanter
+ *  * message - The message that triggered this proc.
+ */
+
 /datum/mkultra_command/proc/execute(datum/status_effect/status, mob/owner, mob/source, message)
 	var/datum/status_effect/mkultra/status_effect = status
-	if(status_effect.phase > phase)
+	if(phase >= status_effect.phase)
 		return FALSE
 
 	if(cooldown && !COOLDOWN_FINISHED(src, ultra_cooldown))
-		to_chat(source, span_notice("[source] hasn't finished internalizing your last command!"))
+		to_chat(source, span_notice("[owner] hasn't finished internalizing your last command!"))
 		return FALSE
-	else if(cooldown)
-		COOLDOWN_START(src, ultra_cooldown, cooldown)
+	else
+		if(feedback)
+			to_chat(source, span_notice("[owner] [feedback]"))
+		if(cooldown)
+			COOLDOWN_START(src, ultra_cooldown, cooldown)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), source, span_notice("[owner] has finished internalizing your last command!")), cooldown)
 	return TRUE
+
+/**
+ * Processes per tick on the original status effect. Is called during /datum/status_effect/mkultra/tick()
+ * Set processing = TRUE inside execute()
+ * 	* status - MKUltra status effect
+ *  * owner - MKUltra status holder
+ *  * source - MKUltra enchanter
+ */
 
 /datum/mkultra_command/proc/tick(datum/status_effect/status, mob/owner, mob/source)
 	return TRUE

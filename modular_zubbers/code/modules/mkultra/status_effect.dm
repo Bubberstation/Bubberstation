@@ -48,12 +48,16 @@
 	src.enchanter = enchanter
 	src.mindshield_bypass = mindshield
 	src.permanent = permanent
-	if(!istype(enchanter) || isnull(enchanter))
-		return
-	if(!mindshield && TRAIT_MINDSHIELD)
-		return
 
-	for(var/datum/mkultra_command/command in GLOB.mkultra_commands)
+	if(!istype(enchanter, /mob/living) || isnull(enchanter))
+		qdel(src)
+		return FALSE
+
+	if(!mindshield_bypass && HAS_TRAIT(owner, TRAIT_MINDSHIELD))
+		qdel(src)
+		return FALSE
+
+	for(var/datum/mkultra_command/command as anything in GLOB.mkultra_commands)
 		commands += new command
 
 	if(isnull(enchanter.get_organ_slot(ORGAN_SLOT_VOICE)) && iscarbon(enchanter))
@@ -68,6 +72,8 @@
 			to_chat(enchanter, span_notice("You feel your vocal processors drop to a more sultry, seductive tone."))
 
 /datum/status_effect/mkultra/on_remove()
+	for(var/datum/mkultra_command/command in commands)
+		command.on_destroy(src, owner, enchanter)
 	enchanter = null
 
 /datum/status_effect/mkultra/tick(seconds_between_ticks)
@@ -77,7 +83,8 @@
 	var/datum/preference/toggle/erp/hypnosis/hypno
 	if(owner.client?.prefs?.read_preference(hypno) && enchanter.client?.prefs?.read_preference(hypno))
 		lewd = TRUE
-
+	else
+		lewd = FALSE //TODO: Set false
 	/// Sends a tick to any commands that process
 	for(var/datum/mkultra_command/command in commands)
 		if(command.processing)
@@ -170,7 +177,7 @@
 /// Listens for certain regex and triggers its proper command
 /datum/status_effect/mkultra/proc/listener(mob/source, message)
 	for(var/datum/mkultra_command/command in commands)
-		if(findtext(message, command.trigger))
+		if(findtext(message, command.trigger)) // TODO: Lewd check
 			command.execute(src, owner, source, message)
 
 /atom/movable/screen/alert/status_effect/mkultra

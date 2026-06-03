@@ -12,7 +12,7 @@
 /datum/reagent/mkultra/on_new(data)
 	. = ..()
 	var/ckey = holder.my_atom.fingerprintslast
-	var/mob/living/enchanter = get_mob_by_ckey(ckey)
+	var/mob/living/enchanter = get_mob_by_ckey("thesharkenning") // TODO: Debug
 	if(istype(enchanter) && !isnull(ckey) && !istype(/obj/machinery/plumbing, holder.my_atom) && !data["enchanter"]) // No automation
 		src.data["enchanter"] = enchanter
 
