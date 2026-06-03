@@ -31,6 +31,7 @@
 	RegisterSignal(wearer, COMSIG_MOB_REMOVING_CUFFS, PROC_REF(on_removing_cuffs))
 	RegisterSignal(wearer, COMSIG_MOB_FIRED_GUN, PROC_REF(on_fired_gun))
 	RegisterSignal(wearer, COMSIG_TRY_STRIP, PROC_REF(on_try_strip))
+	RegisterSignal(wearer, COMSIG_BEING_STRIPPED, PROC_REF(on_being_stripped))
 	RegisterSignal(wearer, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(on_mousedrop_receive))
 	RegisterSignal(wearer, COMSIG_LIVING_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
 
@@ -48,6 +49,7 @@
 		COMSIG_MOB_REMOVING_CUFFS,
 		COMSIG_MOB_FIRED_GUN,
 		COMSIG_TRY_STRIP,
+		COMSIG_BEING_STRIPPED,
 		COMSIG_LIVING_UNARMED_ATTACK,
 		COMSIG_MOUSEDROPPED_ONTO,
 	))
@@ -211,16 +213,23 @@
 
 /datum/component/ball_mittens_fumble/proc/on_try_strip(mob/living/wearer, atom/target, obj/item/item)
 	SIGNAL_HANDLER
-	if(wearer.get_slot_by_item(item))
-		return // Item is on the wearer being stripped - allow normally
+	// Wearer is trying to strip someone else - apply fumble delay
 	if(!isliving(target) || !isitem(item))
 		return COMPONENT_CANT_STRIP
-	var/mob/living/living_target = target
-	if(!living_target.get_slot_by_item(item))
-		return // Item isn't on the target yet - this is an equip action, allow it
+	if(wearer.get_slot_by_item(item))
+		return // Item is on the wearer themselves - allow normally
 	to_chat(wearer, span_purple("You fumble awkwardly at [target]'s gear with your [get_hand_descriptor(wearer)], trying to find a grip..."))
 	INVOKE_ASYNC(src, PROC_REF(delayed_strip), wearer, target, item)
 	return COMPONENT_CANT_STRIP
+
+/// Fires on the wearer when someone else acts on them via the strip menu.
+/datum/component/ball_mittens_fumble/proc/on_being_stripped(mob/living/wearer, mob/living/user, obj/item/item)
+	SIGNAL_HANDLER
+	if(!isitem(item))
+		return
+	// If item is already on the wearer, this is a strip - allow normally (handled by doStrip/strip_delay)
+	// If item is NOT on the wearer, this is an equip onto them - allow normally
+	return
 
 /datum/component/ball_mittens_fumble/proc/delayed_strip(mob/living/wearer, mob/living/target, obj/item/item)
 	if(!do_after(wearer, item.strip_delay * 2.5, target, timed_action_flags = IGNORE_HELD_ITEM))
