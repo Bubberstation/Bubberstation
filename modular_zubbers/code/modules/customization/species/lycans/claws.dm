@@ -31,6 +31,7 @@
 		return FALSE
 	if (HAS_TRAIT(owner, TRAIT_PACIFISM))
 		to_chat(owner, span_warning("You're scared of hurting someone with your elongated claws!"))
+		return FALSE
 	if (!ishuman(owner))
 		return FALSE
 	var/mob/living/carbon/human/human_owner = owner
