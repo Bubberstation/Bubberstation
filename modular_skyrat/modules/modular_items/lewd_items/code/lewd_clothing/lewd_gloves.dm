@@ -227,9 +227,10 @@
 	SIGNAL_HANDLER
 	if(!isitem(item))
 		return
-	// If item is already on the wearer, this is a strip - allow normally (handled by doStrip/strip_delay)
-	// If item is NOT on the wearer, this is an equip onto them - allow normally
-	return
+	// Item not on wearer - this is an equip action, always allow
+	if(!wearer.get_slot_by_item(item))
+		return
+	// Item is on wearer - this is a strip. Pass through to normal strip flow and doStrip.
 
 /datum/component/ball_mittens_fumble/proc/delayed_strip(mob/living/wearer, mob/living/target, obj/item/item)
 	if(!do_after(wearer, item.strip_delay * 2.5, target, timed_action_flags = IGNORE_HELD_ITEM))
@@ -504,21 +505,18 @@
 	return TRUE
 
 /obj/item/clothing/gloves/ball_mittens/doStrip(mob/stripper, mob/owner)
-	if(stripper == owner)
-		var/delay = 1 MINUTES
-		to_chat(owner, span_purple("You attempt to remove [src]... (This will take around [DisplayTimeText(delay)] and you need to stand still.)"))
-		to_chat(owner, span_purple("You struggle furiously with [src], but you're not even sure if these can come off."))
-		playsound(owner, pick('modular_zubbers/sound/lewd/rubber1.ogg', 'modular_zubbers/sound/lewd/rubber2.ogg', 'modular_zubbers/sound/lewd/rubber3.ogg'), 40, TRUE)
-		if(!do_after(owner, delay, src, timed_action_flags = IGNORE_HELD_ITEM))
-			to_chat(owner, span_purple("You give up trying to escape [src]. Maybe having [src] isn't so bad..."))
-			return FALSE
-		if(QDELETED(src) || !isliving(loc))
-			return FALSE
-	if(!owner.dropItemToGround(src, force = TRUE))
+	if(stripper != owner)
+		return ..()
+	var/delay = 1 MINUTES
+	to_chat(owner, span_purple("You attempt to remove [src]... (This will take around [DisplayTimeText(delay)] and you need to stand still.)"))
+	to_chat(owner, span_purple("You struggle furiously with [src], but you're not even sure if these can come off."))
+	playsound(owner, pick('modular_zubbers/sound/lewd/rubber1.ogg', 'modular_zubbers/sound/lewd/rubber2.ogg', 'modular_zubbers/sound/lewd/rubber3.ogg'), 40, TRUE)
+	if(!do_after(owner, delay, src, timed_action_flags = IGNORE_HELD_ITEM))
+		to_chat(owner, span_purple("You give up trying to escape [src]. Maybe having [src] isn't so bad..."))
 		return FALSE
-	if(HAS_TRAIT(stripper, TRAIT_STICKY_FINGERS))
-		stripper.put_in_hands(src)
-	return TRUE
+	if(QDELETED(src) || !isliving(loc))
+		return FALSE
+	return ..()
 
 // ============================================================
 // Loadout subtype for paw mittens.
