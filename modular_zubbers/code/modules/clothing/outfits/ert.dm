@@ -15,10 +15,11 @@
 	l_hand = /obj/item/gun/energy/modular_laser_rifle
 
 /datum/outfit/centcom/ert/commander
-	l_hand = /obj/item/gun/energy/e_gun/nuclear
+	l_hand = /obj/item/gun/energy/modular_laser_rifle
 
 /datum/outfit/centcom/ert/engineer
-	l_hand = /obj/item/gun/energy/e_gun/nuclear
+	l_hand = /obj/item/gun/energy/modular_laser_rifle/carbine
 
 /datum/outfit/centcom/ert/medic
-	r_hand = /obj/item/gun/energy/e_gun/nuclear
+	r_hand = /obj/item/gun/energy/modular_laser_rifle/carbine
+

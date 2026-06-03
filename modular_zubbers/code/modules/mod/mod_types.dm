@@ -42,6 +42,7 @@
 	applied_modules += list(
 		/obj/item/mod/module/shove_blocker/locked,
 		/obj/item/mod/module/visor/medhud,
+		/obj/item/mod/module/shooting_assistant/ert,
 	)
 	return ..()
 /obj/item/mod/control/pre_equipped/responsory/commander/alert/New()
@@ -52,6 +53,7 @@
 	applied_modules += list(
 		/obj/item/mod/module/shove_blocker/locked,
 		/obj/item/mod/module/visor/medhud,
+		/obj/item/mod/module/shooting_assistant/ert,
 	)
 	return ..()
 /obj/item/mod/control/pre_equipped/responsory/security/alert/New()
@@ -61,6 +63,7 @@
 /obj/item/mod/control/pre_equipped/responsory/engineer/New()
 	applied_modules += list(
 		/obj/item/mod/module/visor/medhud,
+		/obj/item/mod/module/shooting_assistant/ert,
 	)
 	return ..()
 /obj/item/mod/control/pre_equipped/responsory/engineer/alert/New()
@@ -72,6 +75,7 @@
 	applied_modules += list(
 		/obj/item/mod/module/visor/medhud,
 		/obj/item/mod/module/defibrillator,
+		/obj/item/mod/module/shooting_assistant/ert,
 	)
 	return ..()
 /obj/item/mod/control/pre_equipped/responsory/medic/alert/New()

@@ -165,3 +165,8 @@
 #undef LUSTWISH_GAUNTLET_UNSEAL
 #undef LUSTWISH_BOOT_SEAL
 #undef LUSTWISH_BOOT_UNSEAL
+
+/obj/item/mod/module/shooting_assistant/ert
+	name = "ert weapon assist MODule"
+	complexity = 0
+	removable = FALSE
