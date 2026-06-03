@@ -10,10 +10,6 @@
 	steal_objective.find_target()
 	return steal_objective
 
-/datum/uplink_handler/generate_objectives()
-	on_update()
-	return FALSE
-
 /datum/objective_item/steal/hoslaser
 	name = "the head of security's service weapon"
 	targetitem = /obj/item/gun/energy/e_gun/hos

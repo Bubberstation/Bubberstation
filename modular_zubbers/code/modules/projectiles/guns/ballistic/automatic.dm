@@ -4,6 +4,50 @@
 /obj/item/gun/ballistic/automatic/wt550/add_bayonet_point()
 	return
 
+/datum/component/bayonet_attachable/no_overlay/on_update_overlays(obj/item/source, list/overlays)
+	SIGNAL_HANDLER
+	return
+
+/obj/item/gun/ballistic/shotgun/automatic/combat/compact/add_seclight_point()
+	AddComponent(/datum/component/seclite_attachable, \
+		light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', \
+		light_overlay = "flight", \
+		overlay_x = 16, \
+		overlay_y = 9)
+
+/obj/item/gun/ballistic/shotgun/automatic/combat/compact/add_bayonet_point()
+	AddComponent(/datum/component/bayonet_attachable/no_overlay)
+
+/obj/item/gun/ballistic/shotgun/automatic/combat/compact
+	var/compact_bolt_animating = FALSE
+
+/obj/item/gun/ballistic/shotgun/automatic/combat/compact/update_overlays()
+	. = ..()
+	var/datum/component/bayonet_attachable/bayonet_component = GetComponent(/datum/component/bayonet_attachable)
+	var/has_bayonet = bayonet_component?.bayonet ? TRUE : FALSE
+	if(has_bayonet)
+		. += "cshotgunc_bayonet"
+	. += has_bayonet ? "cshotgunc_laser_bayonet" : "cshotgunc_laser"
+
+/obj/item/gun/ballistic/shotgun/automatic/combat/compact/shoot_live_shot(mob/living/user)
+	. = ..()
+	animate_compact_bolt()
+
+/obj/item/gun/ballistic/shotgun/automatic/combat/compact/proc/animate_compact_bolt()
+	compact_bolt_animating = TRUE
+	update_appearance(UPDATE_OVERLAYS)
+	var/icon/bolt_icon = icon(src.icon, "cshotgunc_bolt_animated", SOUTH, 1)
+	var/atom/movable/flick_visual/bolt = flick_overlay_view(mutable_appearance(bolt_icon, "", layer + 0.1), 2)
+	if(bolt)
+		animate(bolt, icon = icon(src.icon, "cshotgunc_bolt_animated", SOUTH, 2), time = 0.5)
+		for(var/frame in 3 to 4)
+			animate(icon = icon(src.icon, "cshotgunc_bolt_animated", SOUTH, frame), time = 0.5)
+	addtimer(CALLBACK(src, PROC_REF(reset_compact_bolt_animation)), 2)
+
+/obj/item/gun/ballistic/shotgun/automatic/combat/compact/proc/reset_compact_bolt_animation()
+	compact_bolt_animating = FALSE
+	update_appearance(UPDATE_OVERLAYS)
+
 /obj/item/gun/ballistic/automatic/wt550/security
 	name = "\improper WT-551 Autorifle"
 	desc = "A heavier, bulkier automatic variant of the WT-550, and now with 99% less discombobulation! It's back, baby. Uses 4.6x30mm rounds. Recommended to hold with two hands."

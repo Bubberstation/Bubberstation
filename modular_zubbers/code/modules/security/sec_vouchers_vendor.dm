@@ -30,7 +30,7 @@
 			continue
 
 		steal_objective.steal_target = weapon_path
-		steal_objective.explanation_text = "Steal [objective_name]."
+		steal_objective.explanation_text = "Steal [objective_name], the head of security's service weapon."
 
 		for(var/datum/mind/owner as anything in steal_objective.get_owners())
 			if(!owner.current)
@@ -66,6 +66,42 @@
 	icon_state = "firefly"
 	base_icon_state = "firefly"
 	projectile_damage_multiplier = 0.9
+	show_bolt_icon = FALSE
+	mag_display = FALSE
+	var/firefly_slide_animating = FALSE
+
+/obj/item/gun/ballistic/automatic/pistol/sec_glock/smart/add_seclight_point()
+	AddComponent(/datum/component/seclite_attachable, \
+		starting_light = new /obj/item/flashlight/seclite(src), \
+		is_light_removable = FALSE)
+
+/obj/item/gun/ballistic/automatic/pistol/sec_glock/smart/update_overlays()
+	. = ..()
+	if(magazine && !internal_magazine)
+		. += "firefly_mag"
+	var/datum/component/seclite_attachable/seclite = GetComponent(/datum/component/seclite_attachable)
+	if(seclite?.light)
+		var/light_state = seclite.light.light_on ? "on" : "off"
+		. += "firefly-light_[light_state]"
+	if(!firefly_slide_animating)
+		. += bolt_locked ? "firefly_bolt_locked" : "firefly_bolt"
+
+/obj/item/gun/ballistic/automatic/pistol/sec_glock/smart/shoot_live_shot(mob/living/user, pointblank = FALSE, atom/pbtarget = null, message = TRUE)
+	. = ..()
+	recoil_firefly_slide()
+
+/obj/item/gun/ballistic/automatic/pistol/sec_glock/smart/proc/recoil_firefly_slide()
+	firefly_slide_animating = TRUE
+	update_appearance(UPDATE_OVERLAYS)
+	var/atom/movable/flick_visual/slide = flick_overlay_view(mutable_appearance(icon, "firefly_bolt", layer + 0.1), 1.5)
+	if(slide)
+		animate(slide, pixel_w = -3, time = 0.75)
+		animate(pixel_w = 0, time = 0.75)
+	addtimer(CALLBACK(src, PROC_REF(reset_firefly_slide_recoil)), 1.5)
+
+/obj/item/gun/ballistic/automatic/pistol/sec_glock/smart/proc/reset_firefly_slide_recoil()
+	firefly_slide_animating = FALSE
+	update_appearance(UPDATE_OVERLAYS)
 
 /obj/item/gun/ballistic/revolver/c38/the_law
 	name = "\improper The Law"
@@ -150,17 +186,17 @@
 	switch(selection)
 		if("X-01 MultiPhase Energy Gun")
 			spawn_path = /obj/item/gun/energy/e_gun/hos/hos_primary
-			objective_name = "the head of security's X-01 MultiPhase Energy Gun"
+			objective_name = "the X-01 MultiPhase Energy Gun"
 		if("Compact Shotgun")
 			spawn_path = /obj/item/gun/ballistic/shotgun/automatic/combat/compact/hos_primary
-			objective_name = "the head of security's compact shotgun"
+			objective_name = "the compact shotgun"
 		if("Smart Pistol")
 			spawn_path = /obj/item/gun/ballistic/automatic/pistol/sec_glock/smart
-			objective_name = "the head of security's Smart Pistol"
+			objective_name = "the Smart Pistol"
 		if("The Law")
 			spawn_path = /obj/item/storage/belt/holster/detective/full/ert/the_law
 			objective_path = /obj/item/gun/ballistic/revolver/c38/the_law
-			objective_name = "The Law"
+			objective_name = "\"The Law\""
 		else
 			return
 
