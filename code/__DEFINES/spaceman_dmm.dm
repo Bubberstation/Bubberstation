@@ -24,14 +24,14 @@
 	 * where a signal or other important handling in the parent proc is being skipped.
 	 * Child procs may set this setting to `0` instead to override the check.
 	 */
-	#define SHOULD_CALL_PARENT(X) set SpacemanDMM_should_call_parent = X
+	#define SHOULD_CALL_PARENT(X) set _call_parent = X
 	/**
 	 * If set, raise a warning for any child procs that override this one,
 	 * regardless of if it calls parent or not.
 	 * This functions in a similar way to the `final` keyword in some languages.
 	 * This cannot be disabled by child overrides.
 	 */
-	#define SHOULD_NOT_OVERRIDE(X) set SpacemanDMM_should_not_override = X
+	#define SHOULD_NOT_OVERRIDE(X) set _not_override = X
 	/**
 	 * If set, raise a warning if the proc or one of the sub-procs it calls
 	 * uses a blocking call, such as `sleep()` or `input()` without using `set waitfor = 0`
