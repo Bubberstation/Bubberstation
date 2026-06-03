@@ -170,7 +170,6 @@
 		oxy_per_second = 0.5, \
 		ignore_damage_types = list(), \
 	)
-	gainer.AddElement(/datum/element/door_pryer, pry_time = 7 SECONDS, interaction_key = DOAFTER_SOURCE_LYCAN_DOOR_PRY)
 
 	var/datum/action/extend_lycan_claws/claws_action = new(src)
 	claws_action.Grant(gainer)
@@ -186,7 +185,6 @@
 
 	loser.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	qdel(loser.GetComponent(/datum/component/regenerator))
-	loser.RemoveElement(/datum/element/door_pryer, pry_time = 7 SECONDS, interaction_key = DOAFTER_SOURCE_LYCAN_DOOR_PRY)
 
 	var/datum/action/extend_lycan_claws/claws_action = locate() in loser.actions
 	if (claws_action)
