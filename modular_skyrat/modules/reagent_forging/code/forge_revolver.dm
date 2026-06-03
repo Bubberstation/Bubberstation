@@ -20,6 +20,7 @@
 	///below stats should match or exceed the murphy's
 	throwforce = 19
 	force = 8
+	material_flags = MATERIAL_EFFECTS | MATERIAL_AFFECT_STATISTICS
 
 	//is the hammer primed (ready to fire) or released (safe)?
 	var/hammer_is_primed = FALSE
