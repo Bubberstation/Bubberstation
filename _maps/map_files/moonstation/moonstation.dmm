@@ -49187,7 +49187,7 @@
 /turf/open/floor/wood/tile,
 /area/station/terminal/lobby)
 "mBK" = (
-/mob/living/basic/bot/secbot/beepsky/armsky/armsky,
+/mob/living/basic/bot/secbot/beepsky/armsky,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 4
 	},
@@ -64971,8 +64971,7 @@
 	},
 /mob/living/basic/bot/secbot/beepsky/jr{
 	name = "Officer Eepy";
-	bot_cover_flags = 6;
-	bot_mode_flags = 1;
+	bot_mode_flags = BOT_COVER_EMAGGED;
 	desc = "You woke them up, and now they're pissed.";
 	baton_type = /obj/item/melee/baton/security/cattleprod
 	},
