@@ -8,12 +8,18 @@
 	SIGNAL_HANDLER
 	return
 
+/datum/component/seclite_attachable/compact_shotgun/on_update_overlays(obj/item/source, list/overlays)
+	SIGNAL_HANDLER
+
+	if(!light_overlay || !light_overlay_icon || !light)
+		return
+
+	overlays += mutable_appearance(light_overlay_icon, "[light_overlay]_[light.light_on ? "on" : "off"]")
+
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact/add_seclight_point()
-	AddComponent(/datum/component/seclite_attachable, \
-		light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', \
-		light_overlay = "flight", \
-		overlay_x = 16, \
-		overlay_y = 9)
+	AddComponent(/datum/component/seclite_attachable/compact_shotgun, \
+		light_overlay_icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/guns48x.dmi', \
+		light_overlay = "cshotgunc_light")
 
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact/add_bayonet_point()
 	AddComponent(/datum/component/bayonet_attachable/no_overlay)
