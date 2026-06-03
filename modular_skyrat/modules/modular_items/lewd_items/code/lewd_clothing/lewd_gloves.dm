@@ -548,10 +548,12 @@
 		update_greyscale()
 
 /obj/item/clothing/gloves/ball_mittens/loadout_paw/equipped(mob/user, slot)
+	. = ..()
+	if(slot != ITEM_SLOT_GLOVES)
+		return
 	icon_state = "catgloves"
 	worn_icon_state = "catgloves"
 	set_greyscale(greyscale_colors, /datum/greyscale_config/catgloves)
-	. = ..()
 
 // ============================================================
 
