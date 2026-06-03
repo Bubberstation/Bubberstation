@@ -1,3 +1,5 @@
+#define DOAFTER_SOURCE_LYCAN_DOOR_PRY "lycan door pry"
+
 /datum/species/lycan
 	id = SPECIES_LYCAN
 	examine_limb_id = SPECIES_LYCAN
@@ -168,6 +170,10 @@
 		oxy_per_second = 0.5, \
 		ignore_damage_types = list(), \
 	)
+	gainer.AddElement(/datum/element/door_pryer, pry_time = 7 SECONDS, interaction_key = DOAFTER_SOURCE_LYCAN_DOOR_PRY)
+
+	var/datum/action/extend_lycan_claws/claws_action = new(src)
+	claws_action.Grant(gainer)
 
 /datum/species/lycan/proc/handle_gaian_physique_loss(mob/living/carbon/human/loser)
 	REMOVE_TRAIT(loser, TRAIT_BATON_RESISTANCE, SPECIES_TRAIT)
@@ -180,6 +186,11 @@
 
 	loser.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	qdel(loser.GetComponent(/datum/component/regenerator))
+	loser.RemoveElement(/datum/element/door_pryer, pry_time = 7 SECONDS, interaction_key = DOAFTER_SOURCE_LYCAN_DOOR_PRY)
+
+	var/datum/action/extend_lycan_claws/claws_action = locate() in loser.actions
+	if (claws_action)
+		qdel(claws_action)
 
 	loser.physiology.stamina_mod *= 4
 
@@ -191,3 +202,5 @@
 	baned.visible_message(span_warning("[baned] seems to react negatively to the silver, [baned.p_their()] flesh scorching and burning on contact!"), ignored_mobs = list(baned))
 	to_chat(baned, span_bolddanger("The sister moon casts its light on you, and you feel your flesh scorch!"))
 	INVOKE_ASYNC(baned, TYPE_PROC_REF(/mob, emote), "scream")
+
+#undef DOAFTER_SOURCE_LYCAN_DOOR_PRY
