@@ -74,13 +74,13 @@
 		if(spell)
 			qdel(spell)
 
-/datum/devil_clause/ability_giver/immortality
+/datum/devil_clause/trait_giver/immortality
 	name = "Immortality"
 	prefix = "Obtain"
-	desc = "So long as the signers vessel remains intact they will be able to resurrect after death."
+	desc = "The signer will be unable to die. This does not, however, stop them from entering critical condition."
 	cost = 27
-	conflicts = list(/datum/devil_clause/ability_giver/revival, /datum/devil_clause/time)
-	ability = /datum/action/cooldown/spell/devil/revival
+	conflicts = list(/datum/devil_clause/time)
+	trait = TRAIT_NODEATH
 
 /datum/devil_clause/resistance
 	name = "Resistance"
@@ -107,25 +107,6 @@
 	desc = "The signer shall be able to walk and act under normally mortal wounds, until the body can no longer physically take it."
 	cost = 8
 	trait = list(TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT)
-
-/datum/devil_clause/ability_giver/revival
-	name = "Revival"
-	prefix = "Obtain"
-	desc = "Makes the signer able to revive themselfes exactly one time."
-	cost = STARTING_CONTRACT_VALUE
-	conflicts = list(/datum/devil_clause/ability_giver/immortality, /datum/devil_clause/time)
-	default_clause = TRUE
-	ability = /datum/action/cooldown/spell/devil/revival
-
-/datum/devil_clause/ability_giver/revival/apply(mob/living/victim, first_apply = TRUE)
-	. = ..()
-
-/datum/devil_clause/ability_giver/invisibility
-	name = "Invisibility"
-	prefix = "Obtain"
-	desc = "Makes the signer able to turn mostly invisible at any time they may desire."
-	cost = 6
-	ability = /datum/action/cooldown/spell/devil/invisibility
 
 /datum/devil_clause/random
 	name = "Chance"
@@ -400,7 +381,7 @@
 	prefix = "Give up your"
 	desc = "The signer will become dust after five minutes."
 	cost = -30
-	conflicts = list(/datum/devil_clause/ability_giver/immortality, /datum/devil_clause/ability_giver/revival)
+	conflicts = list(/datum/devil_clause/trait_giver/immortality)
 
 /datum/devil_clause/time/apply(mob/living/basic/frog/victim, first_apply = TRUE)
 	if(first_apply)

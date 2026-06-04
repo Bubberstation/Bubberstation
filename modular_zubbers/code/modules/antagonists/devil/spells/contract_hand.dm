@@ -7,7 +7,7 @@
 	sound = null
 	school = SCHOOL_MIME // I mean its kind of an emote
 	invocation_type = INVOCATION_NONE
-	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC|SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_CASTABLE_WITHOUT_INVOCATION
 	antimagic_flags = MAGIC_RESISTANCE_HOLY
 	cooldown_time = 5 SECONDS
 	hand_path = /obj/item/melee/touch_attack/devil_handshake

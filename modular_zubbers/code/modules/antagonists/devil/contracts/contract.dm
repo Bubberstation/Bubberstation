@@ -1,7 +1,7 @@
 /obj/item/paper/devil_contract
 	name = "sinister contract"
 	desc = "A scroll that holds a contract with unethical clauses, this can't be legal."
-	icon = 'icons/obj/wizard.dmi'
+	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "scroll"
 	show_written_words = FALSE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
