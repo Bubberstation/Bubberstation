@@ -6,7 +6,7 @@
 	extended_desc = "Never get lost again. Plexagon NavSec indexes every area on the station and points you straight to it, no matter how obscure the name or unfamiliar the layout. Perfect for new crew and anyone transferred to a station they've never set foot on."
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	program_icon = "location-arrow"
-	size = 4
+	size = 2
 
 /datum/computer_file/program/radar/navsec/find_atom()
 	return ..() || (locate(selected) in SSmachines.processing_apcs)
