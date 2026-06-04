@@ -515,7 +515,11 @@
 		return FALSE
 	if(QDELETED(src) || !isliving(loc))
 		return FALSE
-	return ..()
+	if(!owner.dropItemToGround(src, force = TRUE))
+		return FALSE
+	if(HAS_TRAIT(stripper, TRAIT_STICKY_FINGERS))
+		stripper.put_in_hands(src)
+	return TRUE
 
 // ============================================================
 // Loadout subtype for paw mittens.
