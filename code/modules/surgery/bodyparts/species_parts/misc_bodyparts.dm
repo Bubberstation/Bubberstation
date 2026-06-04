@@ -548,6 +548,7 @@
 	show_organs_on_examine = FALSE
 	speech_span = null
 	stump_typepath = null
+	head_flags = HEAD_HAIR|HEAD_FACIAL_HAIR|HEAD_LIPS|HEAD_DEBRAIN //BUBBER EDIT - Dullahan have no visible eyes for a matter of compatibility
 
 /obj/item/bodypart/head/dullahan/Entered(obj/item/organ/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
@@ -561,6 +562,10 @@
 		return
 	gone.organ_flags &= ~ORGAN_FROZEN
 
+/obj/item/bodypart/head/dullahan/Initialize(mapload)
+	. = ..()
+	var/obj/item/organ/eyes/eyes = locate(/obj/item/organ/eyes) in src
+	qdel(eyes)
 
 //GOLEM
 /obj/item/bodypart/head/golem

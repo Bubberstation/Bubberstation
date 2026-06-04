@@ -5,11 +5,12 @@
 	inherent_traits = list(
 		TRAIT_NOBREATH,
 		TRAIT_NOHUNGER,
-		TRAIT_USES_SKINTONES,
+//		TRAIT_USES_SKINTONES, BUBBER EDIT
 		TRAIT_ADVANCEDTOOLUSER, // Normally applied by brain but we don't have one
 		TRAIT_LITERATE,
 		TRAIT_CAN_STRIP,
 		TRAIT_BRAINLESS_CARBON,
+		TRAIT_DULLAHAN_HEAD, // BUBBER EDIT ADDITION
 	)
 	bodypart_overrides = list(
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left,
@@ -46,7 +47,8 @@
 /datum/species/dullahan/on_species_gain(mob/living/carbon/human/human, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	human.lose_hearing_sensitivity(TRAIT_GENERIC)
-	RegisterSignal(human, COMSIG_CARBON_ATTACH_LIMB, PROC_REF(on_gained_part))
+	human.AddElement(/datum/element/dullahan_head) //BUBBER EDIT
+//	RegisterSignal(human, COMSIG_CARBON_ATTACH_LIMB, PROC_REF(on_gained_part))
 	RegisterSignal(human, COMSIG_CARBON_DEFIB_BRAIN_CHECK, PROC_REF(defib_check))
 
 	var/obj/item/bodypart/head/head = human.get_bodypart(BODY_ZONE_HEAD)
@@ -59,27 +61,29 @@
 	my_head = new /obj/item/dullahan_relay(head, human)
 	human.put_in_hands(head)
 
-	// We want to give the head some boring old eyes just so it doesn't look too jank on the head sprite.
-	var/obj/item/organ/eyes/eyes = new /obj/item/organ/eyes(head)
-	eyes.eye_color_left = human.eye_color_left
-	eyes.eye_color_right = human.eye_color_right
-	eyes.bodypart_insert(head)
-	human.update_body()
-	head.update_limb()
-	head.update_icon_dropped()
-	RegisterSignal(head, COMSIG_QDELETING, PROC_REF(on_head_destroyed))
-	RegisterSignal(my_head, COMSIG_MOVABLE_MOVED, PROC_REF(on_relay_move))
-
-/// If we gained a new body part, it had better not be a head
-/datum/species/dullahan/proc/on_gained_part(mob/living/carbon/human/dullahan, obj/item/bodypart/part)
-	SIGNAL_HANDLER
-	if(part.body_zone != BODY_ZONE_HEAD)
-		return
-	if(isnull(dullahan.drop_location()))
-		return // don't gib nullspace
-	my_head = null
-	dullahan.investigate_log("has been gibbed by having an illegal head put on [dullahan.p_their()] shoulders.", INVESTIGATE_DEATHS)
-	dullahan.gib(DROP_ALL_REMAINS) // Yeah so giving them a head on their body is really not a good idea, so their original head will remain but uh, good luck fixing it after that.
+// BUBBER EDIT
+//	// We want to give the head some boring old eyes just so it doesn't look too jank on the head sprite.
+//	var/obj/item/organ/eyes/eyes = new /obj/item/organ/eyes(head)
+//	eyes.eye_color_left = human.eye_color_left
+//	eyes.eye_color_right = human.eye_color_right
+//	eyes.bodypart_insert(head)
+//	human.update_body()
+//	head.update_limb()
+//	head.update_icon_dropped()
+//	RegisterSignal(head, COMSIG_QDELETING, PROC_REF(on_head_destroyed))
+//	RegisterSignal(my_head, COMSIG_MOVABLE_MOVED, PROC_REF(on_relay_move))
+//
+//
+// /// If we gained a new body part, it had better not be a head
+// /datum/species/dullahan/proc/on_gained_part(mob/living/carbon/human/dullahan, obj/item/bodypart/part)
+// 	SIGNAL_HANDLER
+// 	if(part.body_zone != BODY_ZONE_HEAD)
+// 		return
+// 	if(isnull(dullahan.drop_location()))
+// 		return // don't gib nullspace
+// 	my_head = null
+// 	dullahan.investigate_log("has been gibbed by having an illegal head put on [dullahan.p_their()] shoulders.", INVESTIGATE_DEATHS)
+// 	dullahan.gib(DROP_ALL_REMAINS) // Yeah so giving them a head on their body is really not a good idea, so their original head will remain but uh, good luck fixing it after that.
 
 /// If our head is destroyed, so are we
 /datum/species/dullahan/proc/on_head_destroyed()
@@ -113,6 +117,7 @@
 		if(detached_head)
 			qdel(detached_head)
 
+	human.RemoveElement(/datum/element/dullahan_head) //BUBBER EDIT
 	UnregisterSignal(human, COMSIG_CARBON_ATTACH_LIMB)
 	UnregisterSignal(human, COMSIG_CARBON_DEFIB_BRAIN_CHECK)
 	human.regenerate_limb(BODY_ZONE_HEAD, FALSE)
@@ -224,6 +229,7 @@
 	organ_flags = parent_type::organ_flags | ORGAN_UNREMOVABLE
 	decay_factor = 0
 	tint = INFINITY // to switch the vision perspective to the head on species_gain() without issue.
+	eye_icon = null // BUBBER EDIT - no visible eyes
 
 /datum/action/item_action/organ_action/dullahan
 	name = "Toggle Perspective"

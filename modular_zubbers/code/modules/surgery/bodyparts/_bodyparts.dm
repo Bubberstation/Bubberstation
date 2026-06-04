@@ -31,3 +31,14 @@
 	var/state_to_verify = "[limb_id]_[body_zone][is_dimorphic ? "_[limb_gender]" : ""]"
 	if(icon_exists_or_scream(new_icon, state_to_verify))
 		icon_greyscale = new_icon
+
+/obj/item/bodypart/proc/limb_attachable(mob/living/carbon/human/victim)
+	if(HAS_TRAIT(victim, TRAIT_LIMBATTACHMENT) || HAS_TRAIT(src, TRAIT_EASY_ATTACH) || (HAS_TRAIT(victim, TRAIT_ROBOTIC_LIMBATTACHMENT) && bodytype & BODYTYPE_ROBOTIC))
+		if (!HAS_TRAIT(victim, TRAIT_LIMBATTACHMENT) && !HAS_TRAIT(src, TRAIT_EASY_ATTACH) && !(bodytype & BODYTYPE_ROBOTIC) && !(bodytype & BODYTYPE_KINETIC) && !(bodytype & BODYTYPE_PEG))
+			return FALSE
+	return TRUE
+
+/obj/item/bodypart/head/dullahan/limb_attachable(mob/living/carbon/human/victim)
+	if(HAS_TRAIT(victim, TRAIT_DULLAHAN_HEAD))
+		return TRUE
+	. = ..()
