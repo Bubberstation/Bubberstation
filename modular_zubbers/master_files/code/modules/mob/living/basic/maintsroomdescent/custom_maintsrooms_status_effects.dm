@@ -1,7 +1,7 @@
 /turf/open/floor/white/red
 	name = "red floor"
 	desc = "A tile in a pure red color."
-	icon_state = "pure_white"
+	icon_state = "grass"
 	color = "#FF0000"
 	slowdown = 20//>:3
 	tiled_turf = FALSE
