@@ -1,6 +1,7 @@
 /mob/living/basic/blankbody/shaggoth
 	name = "Shaggoth"
 	desc = "It was a terrible, indescribable thing vaster than any subway train—a shapeless congeries of protoplasmic bubbles, faintly self-luminous, and with myriads of temporary eyes forming and un-forming as pustules of greenish light all over the tunnel-filling front that bore down upon us, crushing the frantic penguins and slithering over the glistening floor that it and its kind had swept so evilly free of all litter."
+	icon = 'modular_zubbers/icons/mob/simple/shaggoth.dmi'
 	icon_state = "shaggoth"
 	icon_living = "shaggoth"
 	icon_dead = "shaggoth-dead"
