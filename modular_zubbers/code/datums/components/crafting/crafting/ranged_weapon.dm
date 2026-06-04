@@ -54,13 +54,14 @@
 	time = 20 SECONDS
 	category = CAT_WEAPON_RANGED
 
-/datum/crafting_recipe/laser/lmg
-	name = "Laser Machine Gun"
-	result = /obj/item/gun/energy/laser/lmg
+/datum/crafting_recipe/nuclear_smg
+	name = "Advanced Energy SMG"
+	result = /obj/item/gun/energy/e_gun/nuclear_smg
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL)
 	reqs = list(
-		/obj/item/gun/energy/laser = 1,
-		/obj/item/weaponcrafting/gunkit/laserlmg = 1,
+		/obj/item/gun/energy/e_gun/nuclear = 1,
+		/obj/item/gun/energy/laser/carbine = 1,
+		/obj/item/gun/energy/disabler/smg = 1,
 	)
 	time = 20 SECONDS
 	category = CAT_WEAPON_RANGED

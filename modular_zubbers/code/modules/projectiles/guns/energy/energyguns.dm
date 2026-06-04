@@ -20,3 +20,17 @@
 		light_overlay = "flight", \
 		overlay_x = 15, \
 		overlay_y = 10)
+
+/obj/item/gun/energy/e_gun/nuclear_smg
+	name = "advanced energy smg"
+	desc = "A self-charging dual-mode rapid-fire energy weapon formulated as a disgusting hybrid of a laser carbine, a disabler smg and an advanced energy gun. Comes with two settings: disable and kill."
+	icon = '/modular_zubbers/icons/obj/weapons/guns/energy.dmi'
+	icon_state = "nuclear_smg"
+	ammo_type = list(/obj/item/ammo_casing/energy/disabler/smg, /obj/item/ammo_casing/energy/lasergun/carbine_old)
+	selfcharge = 1
+	charge_delay = 10
+	can_charge = FALSE
+
+/obj/item/gun/energy/e_gun/smg/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, 0.15 SECONDS, allow_akimbo = FALSE)

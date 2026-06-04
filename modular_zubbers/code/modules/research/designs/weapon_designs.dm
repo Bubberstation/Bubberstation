@@ -286,3 +286,98 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/wt550kit_burst
+	name = "WT-550 Burst-Fire Parts Kit"
+	desc = "A kit to modify a WT-550 to shoot burst-fire."
+	id = "wt550_burst"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 3,
+	)
+	build_path = /obj/item/weaponcrafting/gunkit/wt550_burst
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_KITS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	autolathe_exportable = FALSE
+
+/datum/design/wt550kit_long
+	name = "WT-550 Long-Range Parts Kit"
+	desc = "A kit to modify a WT-550 to be more effective at long ranges."
+	id = "wt550_long"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 5,
+	)
+	build_path = /obj/item/weaponcrafting/gunkit/wt550_long
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_KITS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	autolathe_exportable = FALSE
+
+/datum/design/wt550kit_sawd
+	name = "WT-550 Downsizing Kit"
+	desc = "A kit to chop down a WT-550 into something truly disgusting."
+	id = "wt550_sawd"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+	)
+	build_path = /obj/item/weaponcrafting/gunkit/wt550_sawd
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_KITS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/wt550_ammo_compressed
+	name = "WT-550 Magazine (4.6x30mm Compressed) (Lethal)"
+	desc = "A magazine for the WT-550 Autorifle. Contains a high amount of lower power ammunition."
+	id = "wt550_ammo_compressed"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12.5, /datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 2.5)
+	build_path = /obj/item/ammo_box/magazine/wt550m9/compressed
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	autolathe_exportable = FALSE
+
+/datum/design/simple_battle_rifle
+	name = "NT-38 Battle Rifle Simplification Kit)"
+	desc = "A kit to simplify an NT-38 Battle Rifle, making it much less complicated."
+	id = "simple_battle_rifle"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = listlist(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 5,
+	)
+	build_path = /obj/item/weaponcrafting/gunkit/simple_battle_rifle
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_KITS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	autolathe_exportable = FALSE
+
+/datum/design/juggernaut_suit_parts
+	name = "Security Juggernaut Plates"
+	desc = "An expensive set of incredibly dense armor plates."
+	id = "security_juggernaut"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 100,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 50,
+		/datum/material/titanium =SHEET_MATERIAL_AMOUNT * 50,
+	)
+	build_path = /obj/item/weaponcrafting/juggernaut_suit
+	category = list(
+		RND_CATEGORY_EQUIPMENT
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	autolathe_exportable = FALSE

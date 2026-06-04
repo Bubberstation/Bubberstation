@@ -22,7 +22,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	weapon_weight = 2
 	mag_display_ammo = TRUE
-	spread = 5
+	spread = 7.5
 	projectile_damage_multiplier = 0.50
 
 /obj/item/gun/ballistic/rifle/stingballer/Initialize(mapload)

@@ -218,3 +218,12 @@
 		/obj/item/gun/ballistic/shotgun/riot/sol,
 		/obj/item/gun/ballistic/shotgun/riot/sol,
 	)
+
+/datum/supplypack/security/armory/stingballer
+	name = "Stingball Rifle crate"
+	crate_name = "stingball rifle crate"
+	desc = "A single unit of a prototype rifle designed to rapidly shoot stingball pellets. Comes preloaded, but additional ammunition is sold seperately."
+	cost = CARGO_CRATE_VALUE * 22.5
+	contains = list(
+		/obj/item/gun/ballistic/rifle/stingballer,
+	)
