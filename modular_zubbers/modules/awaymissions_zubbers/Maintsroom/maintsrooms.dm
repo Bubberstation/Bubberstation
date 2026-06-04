@@ -8,3 +8,9 @@
 /area/awaymission/caves/maintsroom/deeper
 	name = "deeper"
 	icon_state = "away3"
+
+/area/awaymission/caves/maintsroom/deeper/biome1
+	name = "Valley of madness"
+	icon_state = "away4"
+	mood_bonus = -20
+	mood_message = "I NEED TO GET OUT OF HERE."

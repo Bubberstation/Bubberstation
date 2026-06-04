@@ -102,6 +102,15 @@
 	name = "Gun store flyer"
 	default_raw_text = "Come down to the gun dealership! We sell stuff were not supposed to! We buy energy weapons and sell ballistic weapons!"
 
+/obj/item/paper/fluff/awaymissions/maintsroom/genius
+	name = "Fucking dumbass"
+	default_raw_text = "Is directly told not to go somewhere, goes there anyway"
+
+/obj/item/paper/fluff/awaymissions/maintsroom/illiterate//note to spawned on people who go into the hellish final section that theyre told is hellish and then die and comaplain.
+	name = "Fucking dumbass"
+	default_raw_text = "Is directly told that where they are going is the ball crusher, goes there and gets their balls crushed, complains that their balls are crushed."
+	color = rgb(15, 15, 15)
+
 /obj/item/paper/fluff/awaymissions/maintsroom/xenomorph
 	name = "Xenomorph Warning"
 	default_raw_text = "The fallowing area has xenomorphs in it- do NOT under ANY circumstances break those turrets- otherwise, the xenomorphs inside COULD GET OUT"
