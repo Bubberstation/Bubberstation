@@ -15,6 +15,7 @@
  * Do note contracts the devil makes are "sticky", in a way that most abilities will transfer bodies.
  * If you make a deal with the devil, better expect that blindness to still affect you whilst in a borg body.
  **/
+
 /datum/antagonist/devil
 	name = "\improper Devil"
 	show_in_antagpanel = TRUE

@@ -41,12 +41,16 @@ The following conditions (clauses) will be respected and take effect upon the Si
 	. = ..()
 	var/datum/antagonist/devil/devil = user.mind?.has_antag_datum(/datum/antagonist/devil)
 	if(completed)
-		. += span_warning("Whats done cannot be undone.")
+		. += span_warning("Whats done cannot be undone...")
+		return
+
+	if(istype(user, /datum/job/nanotrasen_consultant) || istype(user, /datum/job/lawyer))
+		. += span_nicegreen("Perhaps the poor fool can still be saved if you show them their original job contract.")
 		return
 
 	if(isnull(signer))
 		if(devil)
-			. += span_notice("You can use the contract in your hand to edit the conditions")
+			. += span_notice("You can use a pen on the contract to edit the conditions")
 			. += span_notice("Ready to give out to an unfortunate fool.")
 		else
 			. += span_notice("You could sign on the dotted line if you use a pen on it...")
@@ -90,7 +94,7 @@ The following conditions (clauses) will be respected and take effect upon the Si
 			add_raw_text("I <i>[signer.name]</i> as a Signer agree to the clauses listed above.")
 			playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 			return ITEM_INTERACT_SUCCESS
-	else if(devil) // Ya like if() checks?
+	else if(devil)
 		if(isnull(signer.mind))
 			to_chat(user, span_notice("Whoever signed this contract looks to already not possess a soul for us to take"))
 			return

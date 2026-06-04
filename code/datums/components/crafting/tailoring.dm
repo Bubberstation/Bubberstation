@@ -576,6 +576,7 @@
 		/obj/item/paper = 1,
 	)
 	category = CAT_CLOTHING
+	blacklist = list(/obj/item/paper/devil_contract) // BUBBER EDIT - ADDITION
 
 /datum/crafting_recipe/biohood_sec
 	name = "security biohood"

@@ -21,3 +21,4 @@
 #define ROLE_CHANGELING_ZOMBIE "Changeling Zombie"
 #define ROLE_WIRE_PRIEST "Wire Priest"
 #define ROLE_DEVIL "Devil"
+#define ROLE_DEVILISHAWAKENING "Devil (Midround)"

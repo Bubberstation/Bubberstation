@@ -66,3 +66,20 @@
 
 /datum/dynamic_ruleset/midround/from_living/obsesed
 	repeatable = FALSE
+
+//////////////////////////////////////////////
+//                                          //
+//             MIDROUND DEVIL               //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/midround/from_living/devil
+	name = "Devilish Awakening"
+	config_tag = "Midround Devil"
+	midround_type = HEAVY_MIDROUND
+	preview_antag_datum = /datum/antagonist/devil
+	pref_flag = ROLE_DEVILISHAWAKENING
+	jobban_flag = ROLE_DEVIL
+	blacklisted_roles = BLOODSUCKER_BLACKLISTED_ROLES // Re-using this.
+	weight = 7 // Knock down to 5 before merge.
+	repeatable = FALSE
