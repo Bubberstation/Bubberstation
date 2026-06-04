@@ -25,7 +25,6 @@
 	ADD_TRAIT(wearer, TRAIT_GLOVE_SURGERY_PASSTHROUGH, MITTENS_FUMBLE_TRAIT)
 	RegisterSignal(wearer, COMSIG_LIVING_ITEM_ATTEMPT_PICKUP, PROC_REF(on_attempt_pickup))
 	RegisterSignal(wearer, COMSIG_LIVING_ITEM_PICKUP_FAILED, PROC_REF(on_pickup_failed))
-	RegisterSignal(wearer, COMSIG_LIVING_TRY_PUT_IN_HAND, PROC_REF(on_try_pickup))
 	RegisterSignal(wearer, COMSIG_MOB_MACHINERY_INTERACT, PROC_REF(on_machinery_interact))
 	RegisterSignal(wearer, COMSIG_MOB_CLICKON, PROC_REF(on_clickon))
 	RegisterSignal(wearer, COMSIG_MOB_REMOVING_CUFFS, PROC_REF(on_removing_cuffs))
@@ -42,7 +41,6 @@
 	UnregisterSignal(wearer, list(
 		COMSIG_LIVING_ITEM_ATTEMPT_PICKUP,
 		COMSIG_LIVING_ITEM_PICKUP_FAILED,
-		COMSIG_LIVING_TRY_PUT_IN_HAND,
 		COMSIG_MOB_MACHINERY_INTERACT,
 		COMSIG_MOB_CLICKON,
 		COMSIG_MOB_REMOVING_CUFFS,
@@ -114,14 +112,6 @@
 	var/hand_desc = get_hand_descriptor(wearer)
 	to_chat(wearer, span_warning("[item] slips out of your [hand_desc]!"))
 	playsound(wearer, 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg', 30, TRUE)
-
-/// Safety net for drag-drop paths that bypass attempt_pickup.
-/datum/component/ball_mittens_fumble/proc/on_try_pickup(mob/living/wearer, obj/item/to_pick_up)
-	SIGNAL_HANDLER
-	if(to_pick_up.item_flags & ABSTRACT)
-		return
-	if(ismob(to_pick_up.loc))
-		return
 
 /// Handles machinery interaction delay via COMSIG_MOB_MACHINERY_INTERACT.
 /datum/component/ball_mittens_fumble/proc/on_machinery_interact(mob/living/wearer, obj/machinery/machine)
@@ -449,7 +439,7 @@
 /obj/item/clothing/gloves/ball_mittens/Topic(href, href_list)
 	. = ..()
 	if(href_list["toggle_lights"])
-		if(!usr || !istype(usr, /mob/living))
+		if(!usr || !ishuman(usr))
 			return
 		var/mob/living/carbon/human/toggler = usr
 		if(toggler.gloves != src)
