@@ -18,14 +18,16 @@
 	remove_on_fullheal = TRUE
 
 /datum/status_effect/deadly_madness/proc/insane(mob/living/source)
-	if(source.mob_mood == SANITY_INSANE)
+	if(source.mob_mood.sanity <= SANITY_CRAZY)
 		source.adjust_brute_loss(1000)
 
 /datum/status_effect/deadly_madness/on_apply()
 	RegisterSignal(owner, COMSIG_CARBON_SANITY_UPDATE, PROC_REF(insane))
+	return ..()
 
 /datum/status_effect/deadly_madness/on_remove()
 	UnregisterSignal(owner, COMSIG_CARBON_SANITY_UPDATE)
+	return ..()
 
 /datum/element/valley_of_madness
 
@@ -51,6 +53,8 @@
 	if(ismecha(entered))
 		var/obj/vehicle/sealed/mecha/victim = entered
 		victim.take_damage(20, armour_penetration = 100)
+		return
+	if(!isliving(entered))
 		return
 	var/mob/living/victim = entered
 	victim.apply_status_effect(/datum/status_effect/deadly_madness)
