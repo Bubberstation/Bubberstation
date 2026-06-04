@@ -536,23 +536,19 @@
 	icon_state_preview = "/obj/item/clothing/gloves/ball_mittens/loadout_paw"
 	is_paw_skin = TRUE
 	inhand_icon_state = "greyscale_gloves"
+	alternate_worn_layer = SHOES_LAYER // Ensures paws render above mech_suit which claims GLOVES_LAYER
 
 /obj/item/clothing/gloves/ball_mittens/loadout_paw/Initialize(mapload)
 	. = ..()
 	loadout_created = TRUE
 	for(var/datum/component/reskinable_item/reskin_comp in GetComponents(/datum/component/reskinable_item))
 		qdel(reskin_comp)
-	if(SSgreyscale?.initialized)
-		icon_state = "catgloves"
-		update_greyscale()
 
 /obj/item/clothing/gloves/ball_mittens/loadout_paw/equipped(mob/user, slot)
 	. = ..()
 	if(slot != ITEM_SLOT_GLOVES)
 		return
-	icon_state = "catgloves"
-	worn_icon_state = "catgloves"
-	set_greyscale(greyscale_colors, /datum/greyscale_config/catgloves)
+	update_greyscale()
 
 // ============================================================
 

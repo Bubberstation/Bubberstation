@@ -420,6 +420,8 @@
 		lefthand_file = SSgreyscale.GetColoredIconByType(greyscale_config_inhand_left, greyscale_colors)
 	if(greyscale_config_inhand_right)
 		righthand_file = SSgreyscale.GetColoredIconByType(greyscale_config_inhand_right, greyscale_colors)
+	// BUBBER EDIT ADDITION - Fire COMSIG_ATOM_UPDATED_ICON after all GAGS icons update so update_icon_updates_onmob can refresh worn overlays
+	SEND_SIGNAL(src, COMSIG_ATOM_UPDATED_ICON)
 
 /obj/item/verb/move_to_top()
 	set name = "Move To Top"
