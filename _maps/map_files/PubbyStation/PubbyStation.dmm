@@ -867,9 +867,12 @@
 /obj/machinery/door/airlock{
 	name = "Dining Room"
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 8
+	},
 /obj/machinery/duct,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/security/prison/mess)
 "aer" = (
@@ -23405,11 +23408,11 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/all/command/general,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/tcoms,
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/any/engineering/tcoms,
+/obj/effect/mapping_helpers/airlock/access/any/command/general,
 /turf/open/floor/iron,
 /area/station/tcommsat/computer)
 "cml" = (
@@ -48367,6 +48370,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/machinery/holopad,
 /turf/open/floor/iron,
 /area/station/engineering/atmos/office)
 "qUG" = (
@@ -53614,6 +53618,11 @@
 	},
 /turf/open/floor/iron/freezer,
 /area/station/medical/virology)
+"udb" = (
+/obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible,
+/obj/machinery/holopad,
+/turf/open/floor/iron,
+/area/station/engineering/atmos)
 "udk" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
@@ -60220,6 +60229,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/science/central)
 "xRU" = (
+/obj/machinery/holopad,
 /turf/open/floor/iron/white,
 /area/station/science/explab)
 "xSs" = (
@@ -96115,7 +96125,7 @@ rzS
 bVI
 bWJ
 bWJ
-bWJ
+udb
 bWJ
 brr
 urG
