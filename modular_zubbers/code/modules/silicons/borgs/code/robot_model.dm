@@ -101,7 +101,7 @@
 		/obj/item/storage/part_replacer/cyborg,
 		/obj/item/healthanalyzer,
 		/obj/item/experi_scanner,
-		/obj/item/stack/medical/gauze,
+		/obj/item/stack/medical/wrap/gauze,
 		/obj/item/borg/apparatus/tank_manipulator,
 	)
 	radio_channels = list(RADIO_CHANNEL_SCIENCE)

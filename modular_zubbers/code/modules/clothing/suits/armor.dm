@@ -153,16 +153,6 @@
 	preview_name = "Red Overwatch"
 	new_icon_state = "overwatch_red"
 
-/obj/item/clothing/suit/armor/vest/secwintercoat
-	name = "security winter coat"
-	desc = "A winter coat with an armored vest resting atop it, perfect for those cold Freyja nights."
-	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
-	icon_state = "sec_wintercoat"
-	inhand_icon_state = "armor"
-	blood_overlay_type = "armor"
-	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
-
 // Virosec armor, sprites by axietheaxolotl
 
 /obj/item/clothing/suit/armor/vest/viro
@@ -252,3 +242,21 @@
 	desc = "A winter coat with an armored vest resting atop it, with some padded with wool on the collar and inside."
 	icon_state = "warden_winterjacket"
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+
+/obj/item/clothing/suit/armor/militia
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/hooded/cultrobes
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/head/hooded/cult_hoodie
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/suit/hooded/cultlain_robe
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/head/hooded/cultlain_hood
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'

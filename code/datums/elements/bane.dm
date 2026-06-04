@@ -15,8 +15,9 @@
 	var/requires_combat_mode
 	/// if we want it to only affect a certain mob biotype
 	var/mob_biotypes
+	var/bane_damage_override // BUBBER EDIT ADDITION
 
-/datum/element/bane/Attach(datum/target, target_type = /mob/living, mob_biotypes = NONE, damage_multiplier=1, added_damage = 0, requires_combat_mode = TRUE)
+/datum/element/bane/Attach(datum/target, target_type = /mob/living, mob_biotypes = NONE, damage_multiplier=1, added_damage = 0, requires_combat_mode = TRUE, bane_damage_override) // BUBBER EDIT ADDITION - added bane_damage_override arg
 	. = ..()
 
 	if(!ispath(target_type, /mob/living) && !ispath(target_type, /datum/species))
@@ -27,6 +28,7 @@
 	src.added_damage = added_damage
 	src.requires_combat_mode = requires_combat_mode
 	src.mob_biotypes = mob_biotypes
+	src.bane_damage_override = bane_damage_override // BUBBER EDIT ADDITION
 	target.AddElementTrait(TRAIT_ON_HIT_EFFECT, REF(src), /datum/element/on_hit_effect)
 	RegisterSignal(target, COMSIG_ON_HIT_EFFECT, PROC_REF(do_bane))
 
@@ -66,7 +68,10 @@
 			return
 	else
 		return
-
+	// BUBBER EDIT ADDITION BEGIN - allows for silver wpns to burn lycans
+	if (bane_damage_override)
+		applied_dam_type = bane_damage_override
+	// BUBBER EDIT ADDITION END
 	var/extra_damage = max(0, (force_boosted * damage_multiplier) + added_damage)
 	baned_target.apply_damage(extra_damage, applied_dam_type, hit_zone)
 	SEND_SIGNAL(baned_target, COMSIG_LIVING_BANED, bane_applier, baned_target) // for extra effects when baned.

@@ -18,7 +18,7 @@
 	if(QDELETED(quirk_holder))
 		return ..()
 	var/datum/action/cooldown/mob_cooldown/aphrodisiacal_bite/action = locate(/datum/action/cooldown/mob_cooldown/aphrodisiacal_bite) in quirk_holder.actions
-	action.Remove()
+	action.Remove(quirk_holder)
 
 	return ..()
 

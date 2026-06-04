@@ -69,7 +69,7 @@
 /obj/machinery/ammo_workbench/Initialize(mapload)
 	materials = new( \
 		src, \
-		SSmaterials.materials_by_category[MAT_CATEGORY_ITEM_MATERIAL], \
+		SSmaterials.get_materials_by_flag(MATERIAL_SILO_STORED), \
 		200000, \
 		MATCONTAINER_EXAMINE, \
 		allowed_items = /obj/item/stack, \
@@ -89,7 +89,7 @@
 		ui.open()
 
 	if(shocked)
-		shock(user, 80)
+		workbench_shock(user, 80)
 
 /obj/machinery/ammo_workbench/proc/update_ammotypes()
 	LAZYCLEARLIST(valid_casings)
@@ -460,6 +460,13 @@
 	if(loaded_magazine)
 		. += "ammobench_loaded"
 
+/obj/machinery/ammo_workbench/update_icon_state()
+	. = ..()
+	if(panel_open)
+		icon_state = "[initial(icon_state)]_t"
+		return
+	icon_state = initial(icon_state)
+
 /obj/machinery/ammo_workbench/Destroy()
 	QDEL_NULL(materials)
 	QDEL_NULL(wires)
@@ -472,7 +479,7 @@
 
 	return ..()
 
-/obj/machinery/ammo_workbench/proc/shock(mob/user, prb)
+/obj/machinery/ammo_workbench/proc/workbench_shock(mob/user, prb)
 	if(machine_stat & (BROKEN|NOPOWER)) // unpowered, no shock
 		return FALSE
 	if(!prob(prb))
@@ -483,9 +490,11 @@
 	else
 		return FALSE
 
+/obj/machinery/ammo_workbench/screwdriver_act(mob/living/user, obj/item/tool)
+	. = ..()
+	return default_deconstruction_screwdriver(user, tool)
+
 /obj/machinery/ammo_workbench/attackby(obj/item/O, mob/user, params)
-	if (default_deconstruction_screwdriver(user, "[initial(icon_state)]_t", initial(icon_state), O))
-		return
 	if(default_deconstruction_crowbar(O))
 		return
 	if(panel_open && is_wire_tool(O))
@@ -637,4 +646,4 @@
 		if(WIRE_DISABLE)
 			A.disabled = !mend
 		if(WIRE_ZAP)
-			A.shock(usr, 50)
+			A.workbench_shock(usr, 50)

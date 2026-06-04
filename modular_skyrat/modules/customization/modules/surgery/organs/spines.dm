@@ -10,6 +10,8 @@
 	return draw_color
 
 /datum/bodypart_overlay/mutant/spines/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
+	if(!..(bodypart_owner))
+		return FALSE
 	var/mob/living/carbon/human/human = bodypart_owner.owner
 	if(!human)
 		return TRUE
@@ -33,6 +35,8 @@
 	return draw_color
 
 /datum/bodypart_overlay/mutant/tail_spines/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
+	if(!..(bodypart_owner))
+		return FALSE
 	var/mob/living/carbon/human/human = bodypart_owner.owner
 	if(!human)
 		return TRUE

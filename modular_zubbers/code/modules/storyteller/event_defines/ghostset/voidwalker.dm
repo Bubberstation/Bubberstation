@@ -14,7 +14,6 @@
 	track = EVENT_TRACK_GHOSTSET
 
 /datum/round_event/ghost_role/void_walker
-	minimum_required = 30
 	fakeable = FALSE
 	role_name = "Void Walker"
 
