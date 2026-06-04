@@ -4,7 +4,7 @@
 	icon_state = "paper_words"
 	throw_range = 3
 	throw_speed = 3
-	item_flags = NOBLUDGEON
+	item_flags = NONE // BUBBER EDIT - CHANGE - PREVIOUS: NOBLUDGEON
 	var/employee_name = ""
 
 /obj/item/paper/employment_contract/Initialize(mapload, new_employee_name)
