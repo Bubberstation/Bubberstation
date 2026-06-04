@@ -95,7 +95,7 @@
 
 /datum/objective/open_ways/New(text)
 	. = ..()
-	target_amount = 3
+	target_amount = 2
 	update_explanation_text()
 
 /datum/objective/open_ways/update_explanation_text()
@@ -135,6 +135,8 @@
 		/datum/way_destination/emp = 15,
 	)
 	var/announce_opening = TRUE
+	var/give_pre_open_announcement = TRUE
+	COOLDOWN_DECLARE(open_warning_antispam)
 
 /obj/effect/unopened_way/Initialize(mapload)
 	. = ..()

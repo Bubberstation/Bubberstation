@@ -2,7 +2,7 @@
 	name = "Knock of the Twin-Finger"
 	desc = "Allows you to open Ways towards the Mansus, breaching the thin veil between dawn and dusk and allowing you a glimpse of Light. \
 	Ways tend to form in high-traffic and high-importance areas, and require a number of items to open. You can use this ritual to open a way (provided the transmutation rune is under the way), \
-	or list all ways and their requirements (if performed without being under a way). Opening a way takes 30 seconds and performs a announcement detailing the way's location once its open!"
+	or list all ways and their requirements (if performed without being under a way). Opening a way takes 30 seconds and performs an announcement detailing the ritual's location halfway through!"
 	research_tree_icon_path = 'icons/effects/eldritch.dmi'
 	research_tree_icon_state = "emark7"
 	is_starting_knowledge = TRUE
@@ -156,7 +156,21 @@
 			continue
 		to_chat(iter_living, span_warning("Reality shimmers around you. Someone in close proxmity is about to unleash a catastrophy...!"))
 	to_chat(user, span_warning("You begin to open the way... you can move around during this, and defend yourself!"))
-	if (!do_after(user, 30 SECONDS, loc, IGNORE_HELD_ITEM|IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(prox_check), user, loc)))
+	if (!do_after(user, 15 SECONDS, loc, IGNORE_HELD_ITEM|IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(prox_check), user, loc)))
+		to_chat(user, span_boldwarning("Failure! The way remain closed."))
+		return FALSE
+
+	to_chat(user, span_warning("Reality begins to crack. Just a bit more..."))
+	if (way.give_pre_open_announcement && COOLDOWN_FINISHED(way, open_warning_antispam))
+		var/area/target_area = get_area(way)
+		priority_announce(
+			"Reality flux values in [target_area.name] exceeding normal parameters. Please investigate with haste.",
+			"CentCom Thaumatergy Monitor",
+			ANNOUNCER_ANOMALIES,
+		)
+		COOLDOWN_START(way, open_warning_antispam, 300 SECONDS)
+
+	if (!do_after(user, 15 SECONDS, loc, IGNORE_HELD_ITEM|IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(prox_check), user, loc)))
 		to_chat(user, span_boldwarning("Failure! The way remain closed."))
 		return FALSE
 
