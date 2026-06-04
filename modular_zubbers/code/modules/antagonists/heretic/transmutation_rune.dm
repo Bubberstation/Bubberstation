@@ -15,4 +15,6 @@
 
 	. += span_notice("This rune can be created by any acolyte at any time with their [EXAMINE_HINT("mansus grasp")], and is how they perform \
 	[EXAMINE_HINT("rituals")], the backbone of their gameplay.")
+	if (IS_HERETIC(user))
+		. += span_notice("[EXAMINE_HINT("Drop items")] on the rune to use them as an ingredient in a ritual.")
 	. += span_notice("Remove with [EXAMINE_HINT("soap")], or an [EXAMINE_HINT("antimagic item")].")
