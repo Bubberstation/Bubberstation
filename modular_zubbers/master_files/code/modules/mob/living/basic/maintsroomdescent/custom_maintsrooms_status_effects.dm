@@ -3,7 +3,7 @@
 	desc = "A tile in a pure red color."
 	icon_state = "pure_white"
 	color = "#FF0000"
-	slowdown = 5
+	slowdown = 20//>:3
 	tiled_turf = FALSE
 
 /turf/open/floor/white/red/Initialize(mapload)
