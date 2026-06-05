@@ -44,7 +44,7 @@
 	if (!spawned_monster && SPT_PROB(MONSTER_SPAWN_CHANCE_PER_SEC, seconds_per_tick))
 		var/mob/living/basic/heretic_summon/typepath = pick_weight(spawnable_mobs)
 		var/mob/living/basic/heretic_summon/new_mob = new typepath(get_turf(src))
-		new_mob.set_faction(FACTION_HERETIC_WILD)
+		new_mob.set_faction(list(FACTION_HERETIC_WILD))
 		new /obj/effect/temp_visual/circle_wave/heretic_monster_spawn(get_turf(src))
 		playsound(get_turf(src),'sound/effects/magic/repulse.ogg', 100, TRUE)
 
