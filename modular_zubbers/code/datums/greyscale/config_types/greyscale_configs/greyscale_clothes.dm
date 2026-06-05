@@ -195,3 +195,43 @@
 /datum/greyscale_config/twee_hoodie_hood/worn/teshari
 	name = "Twee Hoodie Hood (Worn, Teshari)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/dopplerhoodie_teshari.dmi'
+
+/datum/greyscale_config/wellworn_shirt/worn/digi
+	name = "Well-Worn Shirt (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_digi.dmi'
+
+/datum/greyscale_config/wellworn_shirt/worn/teshari
+	name = "Well-Worn Shirt (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/datum/greyscale_config/wellworn_shirt_skub/worn/digi
+	name = "Well-Worn Shirt (Skub)(Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_digi.dmi'
+
+/datum/greyscale_config/wellworn_shirt_skub/worn/teshari
+	name = "Well-Worn Shirt (Skub)(Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/datum/greyscale_config/wellworn_shirt_graphic/worn/digi
+	name = "Well-Worn Shirt (Graphic)(Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_digi.dmi'
+
+/datum/greyscale_config/wellworn_shirt_graphic/worn/teshari
+	name = "Well-Worn Shirt (Graphic)(Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/datum/greyscale_config/wornout_shirt_graphic/worn/digi
+	name = "Worn-Out Shirt (Graphic)(Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_digi.dmi'
+
+/datum/greyscale_config/wornout_shirt_graphic/worn/teshari
+	name = "Worn-Out Shirt (Graphic)(Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/datum/greyscale_config/messyworn_shirt_graphic/worn/digi
+	name = "Messy Shirt (Graphic (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_digi.dmi'
+
+/datum/greyscale_config/messyworn_shirt_graphic/worn/teshari
+	name = "Messy Shirt (Graphic (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
