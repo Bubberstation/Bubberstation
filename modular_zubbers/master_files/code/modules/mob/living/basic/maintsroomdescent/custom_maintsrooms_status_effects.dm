@@ -1,8 +1,8 @@
-/turf/open/floor/white/red
-	name = "red floor"
-	desc = "A tile in a pure red color."
+/turf/open/floor/white/mad_grass
+	name = "perfect grass"
+	desc = "The grass is perfect, it looks amazing and appealing, you should just lay down in it for a while."
 	icon_state = "grass"
-	color = "#FF0000"
+	color = "#FF0000"//doesnt actually appear red in game, does to make differntiating grass and this satan grass easier.
 	slowdown = 20//>:3
 	tiled_turf = FALSE
 

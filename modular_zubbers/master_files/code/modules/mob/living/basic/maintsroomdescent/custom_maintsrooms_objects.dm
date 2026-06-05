@@ -6,6 +6,9 @@
 	name = "Pure white"
 	desc = "You feel as if you are looking out at an impossibly large horizion, in the distance you can see marble white pillars in a formal and organizied pattern and they go up, and up, and up until the point where you have to look almost straight up to see some of the ones closest to you, and looking down the hallway you can see onto further than you thought a mere mortal could."
 
+/turf/closed/mineral/random/high_chance/volcanic/default_atmos
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+
 /obj/machinery/porta_turret/syndicate/shuttle/bar_defense
 	faction = list("neutral","Deathsquad")
 	max_integrity = 1000
