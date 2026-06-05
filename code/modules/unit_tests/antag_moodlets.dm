@@ -11,16 +11,16 @@
 
 /datum/unit_test/antag_moodlets/Run()
 	var/mob/living/carbon/human/bad_man = allocate(/mob/living/carbon/human/consistent)
-	log_world("before heretic") // BUBBER TEMP CHANGE FOR TESTING
 	var/datum/antagonist/antag_heretic = /datum/antagonist/heretic
-	log_world("after heretic") // BUBBER TEMP CHANGE FOR TESTING
 	var/datum/antagonist/antag_traitor = /datum/antagonist/traitor
 	heretic_moodlet = initial(antag_heretic.antag_moodlet)
 	traitor_moodlet = initial(antag_traitor.antag_moodlet)
 	TEST_ASSERT_NOTEQUAL(heretic_moodlet, traitor_moodlet, "Antag moodlets test was ran with two identical moodlets, they should be different types.")
 
+	log_world("before mind stuff") // BUBBER TEMP CHANGE FOR TESTING
 	bad_man.mind_initialize()
 	bad_man.mind.add_antag_datum(antag_heretic)
+	log_world("after mind stuff") // BUBBER TEMP CHANGE FOR TESTING
 
 	var/list/mob_mood_list = bad_man.mob_mood.mood_events
 	var/result = NONE
