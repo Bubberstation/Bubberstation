@@ -29,7 +29,6 @@
 		)
 		objects += list(apc_info)
 
-/// Pre-load NavSec on assistant PDAs so new players can see it immediately.
 /obj/item/modular_computer/pda/assistant/install_default_programs()
 	. = ..()
 	store_file(new /datum/computer_file/program/radar/navsec)
