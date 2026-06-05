@@ -42,8 +42,8 @@
 				continue
 			if(spawn_turf.Enter(vine))
 				final_turf_candidates += spawn_turf
-
 		// BUBBER EDIT ADDITION END - SPACE VINES BLOB SPAWNPOINTS
+
 		if(!length(final_turf_candidates))
 			var/list/floor_candidates = list()
 			for(var/area/station/hallway/area in shuffle(GLOB.areas))
@@ -52,10 +52,9 @@
 						continue
 					floor_candidates += floor
 
-			// Enter() is expensive to call on potentially hundreds to thousands of turfs at once and can even lead to server crashes.
-			// We can pick() a subset instead and get close enough results at a fraction of the cost.
+			// Enter() is expensive on large turf sets; sample a subset instead.
 			var/turfs_to_test = 100
-			var/list/sampled_floor_candidates = pick_n(floor_candidates, min(turfs_to_test, length(floor_candidates))) // results in at most 100 calls of Enter(), a reasonable amount while still feeling random.
+			var/list/sampled_floor_candidates = pick_n(floor_candidates, min(turfs_to_test, length(floor_candidates)))
 
 			for(var/turf/open/floor as anything in sampled_floor_candidates)
 				if(floor.Enter(vine))

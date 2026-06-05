@@ -29,6 +29,9 @@
 	next_pry_attempt = world.time + 30 SECONDS
 	playsound(src, 'sound/machines/airlock/airlock_alien_prying.ogg', 100, TRUE)
 	visible_message(span_warning("The vines force [door] open!"))
+	door.welded = FALSE
+	door.set_bolt(FALSE)
+	door.autoclose = FALSE
 	door.open(BYPASS_DOOR_CHECKS)
 	door.take_damage(AIRLOCK_PRY_DAMAGE, BRUTE, 0, 0)
 	QDEL_NULL(door.electronics)
