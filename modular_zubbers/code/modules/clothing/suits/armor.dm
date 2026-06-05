@@ -263,6 +263,7 @@
 	hoodtype = /obj/item/clothing/head/hooded/secjuggernaut
 	hood_up_affix = ""
 	armor_type = /datum/armor/secjuggernaut
+	w_class = WEIGHT_CLASS_HUGE
 	siemens_coefficient = 0
 	strip_delay = 25 SECONDS
 	equip_delay_self = 12 SECONDS
@@ -314,9 +315,9 @@
 
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	light_system = OVERLAY_LIGHT_DIRECTIONAL
-	light_range = 4
-	light_power = 0.8
-	light_color = "#ffcc99"
+	light_range = 7
+	light_power = 1.0
+	light_color = "#99ccff"
 	light_on = FALSE
 	var/on = FALSE
 
