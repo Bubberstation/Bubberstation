@@ -6,7 +6,7 @@
 	slowdown = 20//>:3
 	tiled_turf = FALSE
 
-/turf/open/floor/white/red/Initialize(mapload)
+/turf/open/floor/white/mad_grass/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/valley_of_madness)
 	color = null
