@@ -8,13 +8,13 @@ GLOBAL_LIST_INIT(mkultra_commands, subtypesof(/datum/mkultra_command))
 	/// Feedback text. "to_chat(enchanter, span_notice("[owner] example text")
 	var/feedback
 	/// Trigger words for this command. trigger_words = regex()
-	var/trigger = "Coder, you should not forgot to set this"
+	var/trigger = "Coder, you should not forgot to set this!"
 	/// Whether this command processes every status effect tick
 	var/processing = FALSE
 	/// Is regex? Will convert to regex on New() if true.
 	var/regex = TRUE
 	/// Required phase
-	var/phase = 1
+	var/phase_requirement = 0
 	/// Is this an ERP command?
 	var/erp_command = FALSE
 	/// Does this command place mkultra on cooldown?
@@ -45,11 +45,11 @@ GLOBAL_LIST_INIT(mkultra_commands, subtypesof(/datum/mkultra_command))
 
 /datum/mkultra_command/proc/execute(datum/status_effect/status, mob/owner, mob/source, message)
 	var/datum/status_effect/mkultra/status_effect = status
-	if(phase >= status_effect.phase)
+	if(status_effect.phase < phase_requirement)
 		return FALSE
 
-	if(cooldown && !COOLDOWN_FINISHED(src, ultra_cooldown))
-		to_chat(source, span_notice("[owner] hasn't finished internalizing your last command!"))
+	if(cooldown && !COOLDOWN_FINISHED(src, ultra_cooldown)) lowertext()
+		to_chat(source, span_notice("[owner] hasn't finished internalizing your [lowertext(name)] command!"))
 		return FALSE
 	else
 		if(feedback)

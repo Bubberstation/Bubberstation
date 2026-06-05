@@ -81,7 +81,7 @@
 		progress = 400
 	/// Checks ERP hypno prefs for both players
 	var/datum/preference/toggle/erp/hypnosis/hypno
-	if(owner.client?.prefs?.read_preference(hypno) && enchanter.client?.prefs?.read_preference(hypno))
+	if(owner.client?.prefs?.read_preference(hypno) && enchanter.client?.prefs?.read_preference(hypno) && !isnull(hypno))
 		lewd = TRUE
 	else
 		lewd = FALSE //TODO: Set false
