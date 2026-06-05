@@ -11,7 +11,9 @@
 
 /datum/unit_test/antag_moodlets/Run()
 	var/mob/living/carbon/human/bad_man = allocate(/mob/living/carbon/human/consistent)
+	log_world("before heretic") // BUBBER TEMP CHANGE FOR TESTING
 	var/datum/antagonist/antag_heretic = /datum/antagonist/heretic
+	log_world("after heretic") // BUBBER TEMP CHANGE FOR TESTING
 	var/datum/antagonist/antag_traitor = /datum/antagonist/traitor
 	heretic_moodlet = initial(antag_heretic.antag_moodlet)
 	traitor_moodlet = initial(antag_traitor.antag_moodlet)
