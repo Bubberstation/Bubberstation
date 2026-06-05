@@ -48,8 +48,8 @@ GLOBAL_LIST_INIT(mkultra_commands, subtypesof(/datum/mkultra_command))
 	if(status_effect.phase < phase_requirement)
 		return FALSE
 
-	if(cooldown && !COOLDOWN_FINISHED(src, ultra_cooldown)) lowertext()
-		to_chat(source, span_notice("[owner] hasn't finished internalizing your [lowertext(name)] command!"))
+	if(cooldown && !COOLDOWN_FINISHED(src, ultra_cooldown))
+		to_chat(source, span_notice("[owner] hasn't finished internalizing your [LOWER_TEXT(name)] command!"))
 		return FALSE
 	else
 		if(feedback)
