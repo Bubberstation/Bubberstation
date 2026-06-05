@@ -1869,7 +1869,7 @@
 /area/awaymission/caves/maintsroom)
 "fB" = (
 /turf/open/misc/grass,
-/area/awaymission/caves/maintsroom/deeper/biome1)
+/area/awaymission/caves/maintsroom/deeper)
 "fC" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/yellow{
@@ -3804,6 +3804,13 @@
 /area/awaymission/caves/maintsroom)
 "lq" = (
 /turf/open/floor/circuit/red,
+/area/awaymission/caves/maintsroom)
+"lr" = (
+/obj/effect/bump_teleporter{
+	id = "spatial_destination_exit";
+	density = 0
+	},
+/turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "ls" = (
 /obj/effect/light_emitter/fake_outdoors,
@@ -5750,6 +5757,10 @@
 "rh" = (
 /obj/item/ectoplasm/construct,
 /turf/open/floor/carpet/lone,
+/area/awaymission/caves/maintsroom)
+"ri" = (
+/obj/item/stack/cable_coil,
+/turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "rj" = (
 /obj/machinery/light/directional/north,
@@ -8472,7 +8483,7 @@
 "zN" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/misc/grass,
-/area/awaymission/caves/maintsroom/deeper/biome1)
+/area/awaymission/caves/maintsroom/deeper)
 "zO" = (
 /obj/machinery/teleport/station,
 /obj/machinery/status_display/evac/directional/east,
@@ -8865,6 +8876,13 @@
 /obj/item/storage/toolbox/syndicate,
 /turf/open/floor/iron/dark,
 /area/awaymission/caves/maintsroom)
+"AU" = (
+/obj/effect/bump_teleporter{
+	id = "clock_teleporter_destination";
+	id_target = "clock_teleporter"
+	},
+/turf/open/floor/bronze/filled,
+/area/space)
 "AV" = (
 /obj/machinery/light/red,
 /obj/effect/decal/cleanable/blood/tracks{
@@ -9836,6 +9854,13 @@
 /obj/effect/spawner/random/trash/mess,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
+"DH" = (
+/obj/effect/bump_teleporter{
+	id = "spatial_anomaly_exit";
+	id_target = "spatial_destination_exit"
+	},
+/turf/open/floor/black,
+/area/space)
 "DI" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/item/kirbyplants/random,
@@ -11153,6 +11178,13 @@
 /obj/effect/mapping_helpers/broken_floor,
 /obj/effect/spawner/random/burgerstation/table,
 /turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
+"Hu" = (
+/obj/effect/bump_teleporter{
+	id = "cult_teleporter";
+	id_target = "cult_teleporter_destination"
+	},
+/turf/open/floor/engine/cult,
 /area/awaymission/caves/maintsroom)
 "Hv" = (
 /obj/structure/flora/bush/generic/style_random,
@@ -13047,7 +13079,7 @@
 	ghost_controllable = 1
 	},
 /turf/open/floor/white,
-/area/awaymission/caves/maintsroom/deeper)
+/area/awaymission/caves/maintsroom)
 "Nh" = (
 /obj/structure/chair/stool/directional/west,
 /obj/effect/mapping_helpers/broken_floor,
@@ -13234,6 +13266,13 @@
 /obj/effect/light_emitter/fake_outdoors,
 /obj/item/paper/fluff/awaymissions/maintsroom/danger_ahead,
 /turf/open/floor/iron/diagonal,
+/area/awaymission/caves/maintsroom)
+"NM" = (
+/obj/effect/bump_teleporter{
+	id = "clock_teleporter";
+	id_target = "clock_teleporter_destination"
+	},
+/turf/open/floor/bronze/filled,
 /area/awaymission/caves/maintsroom)
 "NN" = (
 /obj/effect/spawner/random/structure/closet_maintenance,
@@ -16342,6 +16381,13 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
+"Xz" = (
+/obj/effect/bump_teleporter{
+	id = "cult_teleporter_destination";
+	id_target = "cult_teleporter"
+	},
+/turf/open/floor/engine/cult,
+/area/space)
 "XA" = (
 /obj/effect/mapping_helpers/burnt_floor,
 /obj/effect/decal/cleanable/ash,
@@ -20014,7 +20060,7 @@ uG
 GS
 zm
 GS
-Bh
+NM
 uG
 uG
 uG
@@ -20441,7 +20487,7 @@ Cu
 MX
 Cu
 jf
-Il
+Hu
 uG
 Bn
 vf
@@ -27484,7 +27530,7 @@ ED
 qt
 gJ
 on
-vf
+lr
 Bn
 vf
 La
@@ -32023,7 +32069,7 @@ LS
 jf
 GS
 vf
-vf
+ri
 OL
 GS
 hW
@@ -52340,9 +52386,9 @@ ws
 AK
 AK
 AK
-Wa
-Wa
-Wa
+GS
+GS
+GS
 AK
 AK
 AK
@@ -52560,9 +52606,9 @@ AK
 AK
 AK
 AK
-Wa
+GS
 Ng
-Wa
+GS
 Wa
 AZ
 AK
@@ -52780,9 +52826,9 @@ AK
 AK
 AK
 AK
-Wa
-Wa
-Wa
+GS
+GS
+GS
 AZ
 AK
 AK
@@ -56759,7 +56805,7 @@ Zc
 FD
 QT
 FN
-FN
+Xz
 FN
 FN
 QT
@@ -58318,7 +58364,7 @@ tC
 xT
 in
 RQ
-RQ
+AU
 RQ
 RQ
 RQ
@@ -61324,7 +61370,7 @@ Ic
 Ic
 Ic
 Ic
-wV
+DH
 Ic
 tY
 wV
