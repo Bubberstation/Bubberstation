@@ -8,22 +8,14 @@
 	/// Quality flags (POSITIVE, NEGATIVE, MINOR_NEGATIVE) banned from evolving naturally on this cluster.
 	var/list/banned_qualities = list()
 
-/obj/structure/spacevine/proc/get_pryable_door()
-	var/obj/machinery/door/airlock/candidate_door
-	for(var/dir in GLOB.cardinals)
-		var/turf/stepturf = get_step(src, dir)
-		if(!stepturf)
-			continue
-		if(is_space_or_openspace(stepturf))
-			continue
-		if(stepturf.Enter(src))
-			return null
-		var/obj/machinery/door/airlock/door = locate() in stepturf
-		if(door?.density && !candidate_door)
-			var/datum/gas_mixture/other_side = stepturf.return_air()
-			if(other_side?.return_pressure() >= HAZARD_LOW_PRESSURE)
-				candidate_door = door
-	return candidate_door
+/obj/structure/spacevine/proc/get_pryable_door(turf/target)
+	var/obj/machinery/door/airlock/door = locate() in target
+	if(!door?.density)
+		return null
+	var/datum/gas_mixture/other_side = target.return_air()
+	if(!other_side || other_side.return_pressure() < HAZARD_LOW_PRESSURE)
+		return null
+	return door
 
 /obj/structure/spacevine/proc/pry_door(obj/machinery/door/airlock/door)
 	next_pry_attempt = world.time + 30 SECONDS
@@ -33,5 +25,8 @@
 	door.set_bolt(FALSE)
 	door.autoclose = FALSE
 	door.open(BYPASS_DOOR_CHECKS)
-	door.take_damage(AIRLOCK_PRY_DAMAGE, BRUTE, 0, 0)
-	QDEL_NULL(door.electronics)
+	door.obj_flags |= EMAGGED
+	door.feedback = FALSE
+	door.locked = TRUE
+	door.loseMainPower()
+	door.loseBackupPower()

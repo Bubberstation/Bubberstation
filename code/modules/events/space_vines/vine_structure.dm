@@ -167,7 +167,7 @@
 	if(is_space_or_openspace(stepturf) || !stepturf.Enter(src))
 		// BUBBER EDIT ADDITION START - SPACE VINES DOOR PRYING
 		if(growth_stage >= 2 && world.time >= next_pry_attempt)
-			var/obj/machinery/door/airlock/door = get_pryable_door()
+			var/obj/machinery/door/airlock/door = get_pryable_door(stepturf)
 			if(door)
 				pry_door(door)
 		// BUBBER EDIT ADDITION END - SPACE VINES DOOR PRYING
