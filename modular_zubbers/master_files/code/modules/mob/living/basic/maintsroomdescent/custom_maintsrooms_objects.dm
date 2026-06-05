@@ -6,6 +6,14 @@
 	name = "Pure white"
 	desc = "You feel as if you are looking out at an impossibly large horizion, in the distance you can see marble white pillars in a formal and organizied pattern and they go up, and up, and up until the point where you have to look almost straight up to see some of the ones closest to you, and looking down the hallway you can see onto further than you thought a mere mortal could."
 
+/turf/open/chasm/true/fakeout/plating//please lord forgive me for my sins
+	name = "plating"
+	icon_state = "plating"
+	base_icon_state = "plating"
+	color = "#FF0000"
+	smoothing_flags = NONE
+
+
 /turf/closed/mineral/random/high_chance/volcanic/default_atmos
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 
