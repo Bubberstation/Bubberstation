@@ -122,7 +122,15 @@
 	if(!length(contents))
 		return
 
-	var/image/overlayed_item = image(icon = contents[1].icon, icon_state = contents[1].icon_state)
+	var/obj/item/my_item = contents[1]
+	if(isnull(my_item))
+		return
+
+	var/image/overlayed_item
+	if(isnull(my_item.icon_preview))
+		overlayed_item = image(icon = my_item.icon, icon_state = my_item.icon_state)
+	else
+		overlayed_item = image(icon = my_item.icon_preview, icon_state = my_item.icon_state_preview)
 	add_overlay(overlayed_item)
 
 /obj/structure/reagent_crafting_bench/attack_hand(mob/living/user, list/modifiers)

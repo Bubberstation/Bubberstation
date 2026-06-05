@@ -80,13 +80,17 @@
 
 ///Replaces the imbued_reagent with the given new_reagents.
 /datum/component/reagent_imbued/proc/set_reagent_imbue(datum/reagents/new_reagents, clear_source_reagents = TRUE)
+	//copy in the new reagents to replace the old
 	imbued_reagent.clear_reagents()
 	new_reagents.trans_to(imbued_reagent, amount = new_reagents.total_volume, copy_only = TRUE, no_react = TRUE)
+
 	apply_smithing_oil_bonus()
-	var/new_color = mix_color_from_reagents(new_reagents.reagent_list)
-	if(length(new_color) > 7) //remove the transparency stuff
-		new_color = copytext(new_color, 1, 8) + "FF"
-	parent_item.color = new_color
+	if(imbued_reagent.reagent_list > 0)
+		var/new_color = mix_color_from_reagents(imbued_reagent.reagent_list)
+		if(length(new_color) > 7) //remove the transparency stuff
+			new_color = copytext(new_color, 1, 8) + "FF"
+		parent_item.color = new_color
+
 	if(clear_source_reagents)
 		new_reagents.clear_reagents()
 
