@@ -219,7 +219,7 @@
 		/obj/item/gun/ballistic/shotgun/riot/sol,
 	)
 
-/datum/supplypack/security/armory/stingballer
+/datum/supply_pack/security/armory/stingballer
 	name = "Stingball Rifle crate"
 	crate_name = "stingball rifle crate"
 	desc = "A single unit of a prototype rifle designed to rapidly shoot stingball pellets. Comes preloaded, but additional ammunition is sold seperately."

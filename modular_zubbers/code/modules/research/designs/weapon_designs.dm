@@ -351,12 +351,12 @@
 /datum/design/simple_battle_rifle
 	name = "NT-38 Battle Rifle Simplification Kit)"
 	desc = "A kit to simplify an NT-38 Battle Rifle, making it much less complicated."
-	id = "simple_battle_rifle"
+	id = "battle_rifle_basic"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = listlist(
+	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10,
-		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 2,
 	)
 	build_path = /obj/item/weaponcrafting/gunkit/simple_battle_rifle
 	category = list(
@@ -371,13 +371,13 @@
 	id = "security_juggernaut"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 100,
-		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 50,
-		/datum/material/titanium =SHEET_MATERIAL_AMOUNT * 50,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 40,
+		/datum/material/titanium =SHEET_MATERIAL_AMOUNT * 40,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 40,
 	)
 	build_path = /obj/item/weaponcrafting/juggernaut_suit
 	category = list(
-		RND_CATEGORY_EQUIPMENT
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SECURITY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 	autolathe_exportable = FALSE

@@ -121,7 +121,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER, TOOL_WELDER, TOOL_WRENCH, TOOL_CROWBAR, TOOL_MULTITOOL)
 	reqs = list(
 		/obj/item/weaponcrafting/juggernaut_suit = 1,
-		/obj/item/clothing/shoes/magboots, = 1
+		/obj/item/clothing/shoes/magboots = 1,
 		/obj/item/flashlight/seclite = 2,
 		/obj/item/clothing/suit/armor/swat = 1,
 		/obj/item/clothing/head/helmet/swat = 1,

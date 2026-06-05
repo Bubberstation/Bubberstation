@@ -57,7 +57,7 @@
 /datum/crafting_recipe/nuclear_smg
 	name = "Advanced Energy SMG"
 	result = /obj/item/gun/energy/e_gun/nuclear_smg
-	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL)
+	tool_behaviors = list(TOOL_WIRECUTTERS, TOOL_MULTITOOL)
 	reqs = list(
 		/obj/item/gun/energy/e_gun/nuclear = 1,
 		/obj/item/gun/energy/laser/carbine = 1,

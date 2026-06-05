@@ -28,8 +28,8 @@
 	desc = "A suitcase containing the necessary gun parts to remove the advanced electronics and acceleration technology from a NT-38 battle rifle, reducing performance but maximizing reliability."
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10,
-		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 2,
 	)
 
 /obj/item/weaponcrafting/juggernaut_suit
@@ -39,8 +39,6 @@
 	item_flags = SLOWS_WHILE_IN_HAND
 	slowdown = 3
 	custom_materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 50
-		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 50
-		/datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 50
-
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 40,
+		/datum/material/alloy/plastitanium = SHEET_MATERIAL_AMOUNT * 40,
 	)
