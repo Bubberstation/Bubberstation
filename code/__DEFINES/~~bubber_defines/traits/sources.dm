@@ -10,4 +10,7 @@
 #define TRAIT_SOURCE_TAURLAY "taur-laydown"
 #define TRAIT_SOURCE_TAURCROP "taur-crop"
 
+/// Transformation component
+#define TRAIT_TRANSFORMATION "transformation"
+
 #define DEVIL_TRAIT "devil"
