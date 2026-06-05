@@ -37,20 +37,14 @@
 		var/obj/structure/spacevine/vine = new()
 
 		// BUBBER EDIT ADDITION START - SPACE VINES BLOB SPAWNPOINTS
-		// Prefer blob spawnpoints: pre-placed landmarks in maintenance and
-		// low-visibility areas. Spawning there gives the vines a chance to
-		// establish before crew can cradle-snipe them on arrival.
-		// GLOB.blobstart is small enough that we can check every entry directly.
 		for(var/turf/spawn_turf as anything in GLOB.blobstart)
 			if(isopenspaceturf(spawn_turf))
 				continue
 			if(spawn_turf.Enter(vine))
 				final_turf_candidates += spawn_turf
 
-		// Fall back to the original hallway logic if no blob spawnpoints are
-		// usable (e.g. a map with none placed, or all occupied).
-		if(!length(final_turf_candidates))
 		// BUBBER EDIT ADDITION END - SPACE VINES BLOB SPAWNPOINTS
+		if(!length(final_turf_candidates))
 			var/list/floor_candidates = list()
 			for(var/area/station/hallway/area in shuffle(GLOB.areas))
 				for(var/turf/open/floor in area.get_turfs_from_all_zlevels())
@@ -79,7 +73,13 @@
 	if(mutations_overridden)
 		selected_mutations = override_mutations
 	else
-		selected_mutations = list(pick(valid_subtypesof(/datum/spacevine_mutation)))
+		// BUBBER EDIT ADDITION START - SPACE VINES HAZARD MUTATION FILTER
+		var/list/negative_types = list()
+		for(var/datum/spacevine_mutation/mut as anything in GLOB.vine_mutations_list)
+			if(mut.quality == NEGATIVE)
+				negative_types += mut.type
+		selected_mutations = list(pick(negative_types))
+		// BUBBER EDIT ADDITION END - SPACE VINES HAZARD MUTATION FILTER
 
 	if(isnull(potency))
 		potency = rand(50, 100)
@@ -87,7 +87,11 @@
 	if(isnull(production))
 		production = rand(1, 4)
 
-	new /datum/spacevine_controller(floor, selected_mutations, potency, production, src) //spawn a controller at turf with randomized stats and a single random mutation
+	// BUBBER EDIT ADDITION START - SPACE VINES BANNED QUALITIES
+	var/datum/spacevine_controller/controller = new /datum/spacevine_controller(floor, selected_mutations, potency, production, src)
+	if(!mutations_overridden)
+		controller.banned_qualities = list(POSITIVE)
+	// BUBBER EDIT ADDITION END - SPACE VINES BANNED QUALITIES
 
 /datum/event_admin_setup/set_location/spacevine
 	input_text = "Spawn vines at current location?"

@@ -87,7 +87,14 @@ GLOBAL_LIST_INIT(vine_mutations_list, init_vine_mutation_list())
 		var/parentcolor = parent.atom_colours[FIXED_COLOUR_PRIORITY]
 		vine.add_atom_colour(parentcolor, FIXED_COLOUR_PRIORITY)
 		if(prob(mutativeness))
-			var/datum/spacevine_mutation/random_mutate = pick_weight(GLOB.vine_mutations_list - vine.mutations)
+			// BUBBER EDIT ADDITION START - SPACE VINES BANNED QUALITIES
+			var/list/available_mutations = GLOB.vine_mutations_list - vine.mutations
+			if(length(banned_qualities))
+				for(var/datum/spacevine_mutation/mut as anything in available_mutations)
+					if(mut.quality in banned_qualities)
+						available_mutations -= mut
+			var/datum/spacevine_mutation/random_mutate = pick_weight(available_mutations)
+			// BUBBER EDIT ADDITION END - SPACE VINES BANNED QUALITIES
 			if(!isnull(random_mutate)) //If this vine has every single mutation don't attempt to add a null mutation.
 				var/total_severity = random_mutate.severity
 				for(var/datum/spacevine_mutation/mutation as anything in vine.mutations)
