@@ -1,5 +1,4 @@
 /// APC-based area navigator. Displays all station areas with APCs and points an arrow toward the selected one.
-/// No access restriction; intended as a new-player-friendly alternative to the navigate verb.
 /datum/computer_file/program/radar/navsec
 	filename = "plexagonnavsec"
 	filedesc = "Plexagon NavSec"
