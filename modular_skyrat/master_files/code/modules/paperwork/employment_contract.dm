@@ -63,7 +63,6 @@
 		return
 
 	if(isliving(target) && HAS_TRAIT_FROM(target, TRAIT_NO_SOUL, DEVIL_TRAIT))
+		user.balloon_alert(user, "showed contract!")
 		target.remove_traits(list(TRAIT_DEFIB_BLACKLISTED, TRAIT_BADDNA, TRAIT_NO_SOUL), DEVIL_TRAIT)
-		for(var/datum/antagonist/devil/satan in world)
-			satan.remove_contract(target.mind, target.mind.current)
-			satan.contracted -= target.mind
+		to_chat(target, span_notice("After reading the contract shoved in your face, you remember that Nanotrasen already owns your soul. Voiding the soul clause of the contract you signed with the devil."))
