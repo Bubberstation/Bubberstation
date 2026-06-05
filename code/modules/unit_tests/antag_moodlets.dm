@@ -17,10 +17,8 @@
 	traitor_moodlet = initial(antag_traitor.antag_moodlet)
 	TEST_ASSERT_NOTEQUAL(heretic_moodlet, traitor_moodlet, "Antag moodlets test was ran with two identical moodlets, they should be different types.")
 
-	log_world("before mind stuff") // BUBBER TEMP CHANGE FOR TESTING
 	bad_man.mind_initialize()
 	bad_man.mind.add_antag_datum(antag_heretic)
-	log_world("after mind stuff") // BUBBER TEMP CHANGE FOR TESTING
 
 	var/list/mob_mood_list = bad_man.mob_mood.mood_events
 	var/result = NONE
