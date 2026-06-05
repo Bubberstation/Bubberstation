@@ -73,8 +73,6 @@
 /// Intercepts item pickups via attempt_pickup. Enforces the one-item limit and injects a short pickup delay.
 /datum/component/ball_mittens_fumble/proc/on_attempt_pickup(mob/living/wearer, obj/item/item, list/pickup_mods)
 	SIGNAL_HANDLER
-	if(item.item_flags & ABSTRACT)
-		return
 	if(!isgun(item) && item.w_class >= max_item_size)
 		pickup_mods["delay"] = struggle_delay_min * (item.w_class - max_item_size + 2)
 		pickup_mods["fail_chance"] = min(75, (item.w_class - max_item_size) * 25)
@@ -124,6 +122,12 @@
 		/obj/machinery/photobooth,
 		/obj/machinery/light_switch,
 		/obj/machinery/shower,
+		/obj/machinery/firealarm,
+		/obj/machinery/conveyor,
+		/obj/machinery/conveyor_switch,
+		/obj/machinery/grill,
+		/obj/machinery/oven,
+		/obj/machinery/food_cart,
 	))
 	if(is_type_in_typecache(machine, paw_passthrough))
 		return
