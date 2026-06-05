@@ -60,6 +60,7 @@
 	while((length(ways) + ways_opened) < how_many_can_we_make && location_sanity < 500)
 		var/turf/chosen_location = get_safe_random_important_station_turf_equal_weight()
 		if (isnull(chosen_location))
+			location_sanity++
 			continue // sometimes we get a null bc of unit tests... just ignore it
 
 		var/any_valid = FALSE
