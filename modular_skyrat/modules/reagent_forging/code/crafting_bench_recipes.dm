@@ -118,7 +118,7 @@
 		else if(!isnull(i.GetComponent(/datum/component/forge_smithable)))
 			var/datum/component/forge_smithable/smithing_component = i.GetComponent(/datum/component/forge_smithable)
 			total_perfection += smithing_component.get_perfect_ratio()
-	return total_perfection / total_forge_items
+	return total_perfection
 
 /datum/crafting_bench_recipe/proc/get_total_perfection_ratio(list/things_to_use)
 	if (count_forgeable_items(things_to_use) == 0)
