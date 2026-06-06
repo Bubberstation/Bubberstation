@@ -73,11 +73,13 @@
 		selected_mutations = override_mutations
 	else
 		// BUBBER EDIT ADDITION START - SPACE VINES HAZARD MUTATION FILTER
-		var/list/negative_types = list()
+		var/list/weighted_types = list()
 		for(var/datum/spacevine_mutation/mut as anything in GLOB.vine_mutations_list)
-			if(mut.quality == NEGATIVE)
-				negative_types += mut.type
-		selected_mutations = list(pick(negative_types))
+			var/weight = GLOB.vine_mutations_list[mut]
+			if(mut.quality == POSITIVE)
+				weight = max(1, round(weight * 0.1))
+			weighted_types[mut.type] = weight
+		selected_mutations = list(pick_weight(weighted_types))
 		// BUBBER EDIT ADDITION END - SPACE VINES HAZARD MUTATION FILTER
 
 	if(isnull(potency))

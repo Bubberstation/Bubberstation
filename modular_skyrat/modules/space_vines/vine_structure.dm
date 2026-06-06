@@ -3,6 +3,7 @@
 	var/plantbgone_resist = FALSE
 	/// Next world.time at which this vine may attempt to force open a door
 	var/next_pry_attempt = 0
+	layer = SPACEVINE_LAYER
 
 /datum/spacevine_controller
 	/// Quality flags (POSITIVE, NEGATIVE, MINOR_NEGATIVE) banned from evolving naturally on this cluster.
@@ -21,12 +22,19 @@
 	next_pry_attempt = world.time + 30 SECONDS
 	playsound(src, 'sound/machines/airlock/airlock_alien_prying.ogg', 100, TRUE)
 	visible_message(span_warning("The vines force [door] open!"))
-	door.welded = FALSE
-	door.set_bolt(FALSE)
-	door.autoclose = FALSE
-	door.open(BYPASS_DOOR_CHECKS)
-	door.obj_flags |= EMAGGED
-	door.feedback = FALSE
-	door.locked = TRUE
-	door.loseMainPower()
-	door.loseBackupPower()
+	addtimer(CALLBACK(door, TYPE_PROC_REF(/obj/machinery/door/airlock, finish_vine_pry), master, src), 4 SECONDS)
+
+/obj/machinery/door/airlock/proc/finish_vine_pry(datum/spacevine_controller/vine_master, obj/structure/spacevine/prying_vine)
+	if(QDELETED(src))
+		return
+	welded = FALSE
+	set_bolt(FALSE)
+	autoclose = FALSE
+	open(BYPASS_DOOR_CHECKS)
+	obj_flags |= EMAGGED
+	feedback = FALSE
+	locked = TRUE
+	loseMainPower()
+	loseBackupPower()
+	if(!QDELETED(vine_master) && !QDELETED(prying_vine))
+		vine_master.spawn_spacevine_piece(loc, prying_vine)
