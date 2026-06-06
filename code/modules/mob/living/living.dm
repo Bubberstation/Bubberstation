@@ -1200,8 +1200,9 @@
 		return
 	changeNext_move(CLICK_CD_RESIST)
 
-	if(SEND_SIGNAL(src, COMSIG_LIVING_RESIST, src) & COMPONENT_BLOCK_RESIST)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_RESIST) & COMPONENT_BLOCK_RESIST)
 		return
+
 	//resisting grabs (as if it helps anyone...)
 	if(!HAS_TRAIT(src, TRAIT_RESTRAINED) && pulledby)
 		log_combat(src, pulledby, "resisted grab")
