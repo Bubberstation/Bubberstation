@@ -54,10 +54,9 @@
 	internal_radio = new /obj/item/implant/radio/infected_ipc()
 	internal_radio.implant(current_mob, null, TRUE)
 	internal_camera = new /obj/machinery/camera/silicon(current_mob)
-	network = list()
 	internal_camera.name = owner.name
 	internal_camera.c_tag = owner.name
-	RegisterSignal(current_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	//RegisterSignal(current_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine)) //See line 70 to 75
 
 /datum/antagonist/infected_ipc/remove_innate_effects(mob/living/mob_override)
 	. = ..()
