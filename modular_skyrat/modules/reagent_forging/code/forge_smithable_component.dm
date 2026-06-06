@@ -99,12 +99,12 @@
 /datum/component/forge_smithable/proc/good_hit(amount = 1, playsound = FALSE)
 	quality_points += amount
 	if(playsound)
-		playsound(parent_item, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 1.3, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, volume_preference = /datum/preference/numeric/volume/sound_ambience_volume)
+		playsound(parent_item, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 1.3, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, volume_preference = /datum/preference/numeric/volume/sound_ambience_volume)
 
 /datum/component/forge_smithable/proc/perfect_hit(amount = 1, playsound = FALSE)
 	good_hit(amount, FALSE)
 	if(playsound)
-		playsound(parent_item, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 1.0, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, volume_preference = /datum/preference/numeric/volume/sound_ambience_volume)
+		playsound(parent_item, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 1.0, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, volume_preference = /datum/preference/numeric/volume/sound_ambience_volume)
 	if(current_perfects < max_perfect_hits)
 		current_perfects += amount
 
@@ -114,7 +114,7 @@
 		forging_breakage()
 	else
 		if(playsound)
-			playsound(parent_item, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 2.2, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, volume_preference = /datum/preference/numeric/volume/sound_ambience_volume)
+			playsound(parent_item, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 0.4, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, volume_preference = /datum/preference/numeric/volume/sound_ambience_volume)
 
 /datum/component/forge_smithable/proc/check_for_breakage()
 	if(bad_hits_total > bad_hit_maximum)
