@@ -1,3 +1,17 @@
+/datum/mod_theme/apocryphal
+	slowdown_deployed = 0
+
+/datum/armor/mod_theme_apocryphal
+	melee = 80
+	bullet = 80
+	laser = 80
+	energy = 80
+	bomb = 100
+	bio = 100
+	fire = 100
+	acid = 100
+	wound = 50
+
 /datum/mod_theme/asset_protection
 	name = "Asset Protection"
 	desc = "A weaker version of the Apocryphal Modsuit, chiefly worn by Nanotrasen Asset Protection."
