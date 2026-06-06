@@ -1,12 +1,4 @@
-/turf/open/floor/white/mad_grass
-	name = "perfect grass"
-	desc = "The grass is perfect, it looks amazing and appealing, you should just lay down in it for a while."
-	icon_state = "grass"
-	color = "#FF0000"//doesnt actually appear red in game, does to make differntiating grass and this satan grass easier.
-	slowdown = 20//>:3
-	tiled_turf = FALSE
-
-/turf/open/floor/white/mad_grass/Initialize(mapload)
+/turf/open/indestructible/mad_grass/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/valley_of_madness)
 	color = null
