@@ -235,29 +235,22 @@
 		add_overlay(gold_overlay)
 
 	if(used_tray) // If we have a tray inside, check if the forge is on or not, then give the corresponding tray overlay
-		var/image/tray_overlay = image(icon = icon, icon_state = "forge_tray_[check_fuel(just_checking = TRUE) ? "active" : "inactive"]")
+		var/image/tray_overlay = image(icon = icon, icon_state = "forge_tray_[check_fuel(0) ? "active" : "inactive"]")
 		add_overlay(tray_overlay)
 
 /// Checks if the forge has fuel, if so what type. If it has either type of fuel, returns TRUE, otherwise returns FALSE. just_checking will check if there is fuel without taking actions
-/obj/structure/reagent_forge/proc/check_fuel(just_checking = FALSE)
+/obj/structure/reagent_forge/proc/check_fuel(time_to_reduce_by = 0)
 	if(forge_fuel_strong) // Check for strong fuel (coal) first, as it has more power over weaker fuels
-		if(just_checking)
-			return TRUE
 
-		forge_fuel_strong -= 5 SECONDS
+		forge_fuel_strong -= time_to_reduce_by
 		target_temperature = 100
 		return TRUE
 
 	if(forge_fuel_weak) // If there's no strong fuel, maybe we have weak fuel (wood)
-		if(just_checking)
-			return TRUE
 
-		forge_fuel_weak -= 5 SECONDS
+		forge_fuel_weak -= time_to_reduce_by
 		target_temperature = 50
 		return TRUE
-
-	if(just_checking)
-		return FALSE
 
 	target_temperature = minimum_target_temperature // If the forge has no fuel, then we should lowly return to the minimum lowest temp we can do
 	return FALSE
@@ -271,13 +264,13 @@
 
 
 /// Adjust the temperature to head towards the target temperature, changing icon and creating light if the temperature is rising
-/obj/structure/reagent_forge/proc/check_temp()
+/obj/structure/reagent_forge/proc/check_temp(seconds_per_tick)
 	if(forge_temperature > target_temperature) // Being above the target temperature will cause the forge to cool down
-		forge_temperature -= (FORGE_DEFAULT_TEMPERATURE_CHANGE - temperature_loss_reduction)
+		forge_temperature -= (FORGE_DEFAULT_TEMPERATURE_CHANGE - temperature_loss_reduction) * seconds_per_tick
 		return
 
 	else if((forge_temperature < target_temperature) && (forge_fuel_weak || forge_fuel_strong)) // Being below the target temp, and having fuel, will cause the temp to rise
-		forge_temperature += FORGE_DEFAULT_TEMPERATURE_CHANGE
+		forge_temperature += FORGE_DEFAULT_TEMPERATURE_CHANGE * seconds_per_tick
 		return
 
 
@@ -287,27 +280,28 @@
 	spawn_coal.name = "charcoal"
 
 /obj/structure/reagent_forge/process(seconds_per_tick)
+	/*
 	if(!COOLDOWN_FINISHED(src, forging_cooldown))
 		return
 
-	COOLDOWN_START(src, forging_cooldown, 5 SECONDS)
-	check_fuel()
-	check_temp()
-	try_expel_gas()
+	COOLDOWN_START(src, forging_cooldown, 5 SECONDS) */
+	check_fuel(seconds_per_tick)
+	check_temp(seconds_per_tick)
+	try_expel_gas(seconds_per_tick)
 
-	if(!used_tray && check_fuel(just_checking = TRUE))
+	if(!used_tray && check_fuel())
 		set_smoke_state(SMOKE_STATE_NOT_COOKING) // If there is no tray but we have fuel, use the not cooking smoke state
 		return
 
-	if(!check_fuel(just_checking = TRUE)) // If there's no fuel, remove it all
+	if(!check_fuel()) // If there's no fuel, remove it all
 		set_smoke_state(SMOKE_STATE_NONE)
 		return
 
 	handle_baking_things(seconds_per_tick)
 
-/obj/structure/reagent_forge/proc/try_expel_gas()
-	if(check_fuel(just_checking = TRUE))
-		atmos_spawn_air("[GAS_CO2]=[FORGE_FUMES_VOLUME];[TURF_TEMPERATURE(FORGE_FUMES_HEAT)]")
+/obj/structure/reagent_forge/proc/try_expel_gas(seconds_per_tick)
+	if(check_fuel())
+		atmos_spawn_air("[GAS_CO2]=[FORGE_FUMES_VOLUME * seconds_per_tick];[TURF_TEMPERATURE(FORGE_FUMES_HEAT)]")
 
 /// Sends signals to bake and items on the used tray, setting the smoke state of the forge according to the most cooked item in it
 /obj/structure/reagent_forge/proc/handle_baking_things(seconds_per_tick)
