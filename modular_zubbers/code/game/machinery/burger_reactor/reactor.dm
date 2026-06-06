@@ -619,10 +619,7 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 
 	return TRUE
 
-/obj/machinery/power/rbmk2/proc/shock(mob/living/victim,shock_multiplier=1)
+/obj/machinery/power/rbmk2/shock(mob/living/victim,shock_multiplier=1)
 	if(!powernet)
 		return FALSE
-	if(!electrocute_mob(victim, powernet, src, shock_multiplier, TRUE))
-		return FALSE
-	do_sparks(5, TRUE, src)
-	return TRUE
+	return ..(victim, 100, powernet, shock_multiplier)

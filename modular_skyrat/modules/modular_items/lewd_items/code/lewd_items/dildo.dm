@@ -330,6 +330,8 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 	desc = "You can feel one side inside you, time to share this feeling with someone..."
 
 /datum/action/item_action/take_dildo/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/obj/item/clothing/sextoy/dildo/double_dildo/dildo = target
 	if(istype(dildo))
 		dildo.can_take_in_hand()

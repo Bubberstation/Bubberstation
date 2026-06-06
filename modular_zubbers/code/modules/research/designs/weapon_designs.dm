@@ -9,7 +9,6 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
 /datum/design/kiboko_box_mag
 	name = "Kiboko Grenade Box Magazine"
 	desc = "An extended capacity box magazine for compatible grenade launcher."
@@ -227,13 +226,63 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/ntusp_conversion
-	name = "NT-USP Conversion Kit"
-	desc = "A standard conversion kit for use in converting NT-USP magazines to be more lethal or less lethal."
+	name = "NT-HCS Conversion Kit"
+	desc = "A standard conversion kit for use in converting NT-HCS magazines to be more lethal or less lethal."
 	id = "ntusp_conversion"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/ntusp_conversion_kit
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/ntusp_powerpack
+	name = "NT22-HCS Power Pack"
+	desc = "A small, rechargeable power pack for the NT22-HCS 'Enforcer'. Synthesizes up to twelve .22HL bullets that tire targets."
+	id = "ntusp_powerpack"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 0.75,
+		/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 0.25,
+	)
+	build_path = /obj/item/ammo_box/magazine/recharge/ntusp
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/ntmp5_powerpack
+	name = "NT22-HCS-MP Power Pack"
+	desc = "A rechargeable power pack for the NT22-HCS-MP 'Lancer'. Synthesizes up to twenty .22HL bullets that tire targets."
+	id = "ntmp5_powerpack"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 0.75,
+		/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 0.25,
+	)
+	build_path = /obj/item/ammo_box/magazine/recharge/ntmp5
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/m9mm_sec_speedloader
+	name = "Speed Loader (9x25mm Murphy) (Lethal)"
+	desc = "Designed to quickly reload five-chambered 9mm revolvers."
+	id = "m9mm_sec_speedloader"
+	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 15,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 2,
+	)
+	build_path = /obj/item/ammo_box/speedloader/security
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY

@@ -43,6 +43,8 @@
 
 //Vision switcher
 /datum/action/item_action/toggle_vision/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/obj/item/clothing/head/deprivation_helmet/deprivation_helmet = target
 	var/mob/living/carbon/affected_carbon = usr
 	if(istype(deprivation_helmet))
@@ -53,6 +55,8 @@
 
 //Hearing switcher
 /datum/action/item_action/toggle_hearing/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/obj/item/clothing/head/deprivation_helmet/deprivation_helmet = target
 	var/mob/living/carbon/affected_carbon = usr
 	if(istype(deprivation_helmet))
@@ -63,6 +67,8 @@
 
 //Speech switcher
 /datum/action/item_action/toggle_speech/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/obj/item/clothing/head/deprivation_helmet/deprivation_helmet = target
 	var/mob/living/carbon/affected_carbon = usr
 	if(istype(deprivation_helmet))

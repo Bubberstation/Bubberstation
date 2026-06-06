@@ -62,6 +62,10 @@
 #define ORDER_DANGEROUS (1 << 8)
 /// This is set when something is created by an admin to make sure its contents is also marked as such
 #define ORDER_ADMIN_SPAWNED (1 << 9)
+// BUBBER EDIT START
+/// Only orderable via Interdyne Express consoles
+#define ORDER_INTERDYNE_ONLY (1 << 10)
+// BUBBER EDIT END
 
 ///Discount categories for coupons. This one is for anything that isn't discountable.
 #define SUPPLY_PACK_NOT_DISCOUNTABLE null
@@ -92,3 +96,6 @@
 #define DEPARTMENTAL_ORDER_REWARD_COEFFICIENT 120
 /// Used for the power of the logarithmic value for the free crate delivery reward
 #define DEPARTMENTAL_ORDER_REWARD_EXPONENT 1.5
+
+/// How many global bounties are spawned at minimum when refreshing the list?
+#define CIV_BOUNTY_BASELINE 5

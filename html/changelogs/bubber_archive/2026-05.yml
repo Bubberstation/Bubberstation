@@ -1,0 +1,354 @@
+2026-05-04:
+  BurgerBB:
+  - balance: Reduces the fire delay of the Murphy from 5 to 4
+  - balance: Increases the normal meteor wave warning time from 30 seconds to 210
+      seconds.
+  Danielance:
+  - rscadd: 19 more missing digi legs and/or teshari sprites (list is on PR 5494)
+  - bugfix: improved striped dress sprite
+  IbexGoetia, Niim:
+  - bugfix: .22HL ammunition no longer tries to embed unexistent shrapnel, and no
+      longer materialises casings from nowhere.
+  - spellcheck: Renamed NT-USP to NT22-HCS 'Enforcer'
+  - rscadd: Added the NT22-HCS-MP 'Lancer', a SMG variant of the Enforcer. It's a
+      roundstart weapon for the Blueshield and a purchase option for security. It
+      comes with larger magazines and a collapsible stock. Credits to Niim for the
+      wonderful SMG sprite!
+  - rscadd: Added goodie cases for each variant of the NT22-HCS.
+  KateAnbolho:
+  - rscadd: the sleepy time bundle to uplinks
+  - bugfix: Fixes wireweed killing itself
+  Mewchild:
+  - rscadd: Adds Emotional Support Animal as a Psych Alt Title
+  MrGloopy:
+  - bugfix: Remove broken implant from cargo goodies.
+  - rscadd: Synth charging implant to Markings/Organs so you can choose what arm it
+      goes in.
+  - rscadd: Various arm implanted items to Markings/Organs. These include; A seclite,
+      four colour pen and tape recorder.
+  - rscadd: Chest implant; Internal wound analyser. Analyses your own wounds to get
+      treatment info and make bandaging yourself faster. Does not show any other info.
+      It's a wound analyser.
+  - rscadd: Roundstart STANDARD nutriment implant. It gets you to 35% nutrition at
+      most, does not remove negative "I'm Hungry!" moodlet. You will still need to
+      eat Actual Food. Pay your station chef.
+  - rscadd: Implanted 3 shot Donksoft gun. This is buyable from cargo. Mechanically
+      operates like a rebar crossbow. Small chance (10%) to jam just because its funny.
+  - rscadd: New implants to cargo goodies.
+  - rscadd: Manual shield moth eyes to roundstart. Same as the other ones but moth
+      flavoured. Same weakness to flash as normal moth eyes when shield is not in
+      use. By virtue of them being cybernetic, they will not heal over time, same
+      as any others.
+  - rscadd: Invisible version of the civilian HUD implant for roundstart. No more
+      green eye if you don't want it.
+  - bugfix: Lighter implant only working for right arm. Whoops.
+  explosivekitty:
+  - bugfix: You now die after reaching brain max damage with surplus cybernetic brain
+  - rscadd: Added manually shielded welding eyes to character editor for 2 quirk points
+  lukevale:
+  - rscadd: Inari Kitsune tail
+  - rscadd: Oversized Fluff tail
+  nikothedude:
+  - bugfix: Ghost cafe no longer runtimes on spawn & loadout items now spawn correctly
+      in ghost cafe
+  xPokee:
+  - rscadd: Added back base /tg/ redsec along with red Skyrat clothing items.
+  - rscdel: Removed 'virosec'.
+  - balance: .310 AP ammo is no longer printable from the ammo bench.
+  - bugfix: Fixed the security lockers being blue.
+  - bugfix: Fixed the ID card trims not being the proper color.
+2026-05-11:
+  KateAnbolho:
+  - rscadd: You can make computers on tables again
+  - rscadd: Added a Miecz goodie order, miecz mag goodie, and added an extra miecz
+      to the sec order
+  - rscadd: two extra bullets to the miecz SMG mag
+  - rscadd: Re-adds viroredsec outfits
+  - rscadd: New Old New Old sec sprites from Viro, new sprite by niim.
+  - bugfix: duplicate remnant bluesec default bags that errored out upon wearing have
+      been removed from the multisec vendor.
+  - bugfix: fixes missing CivHUD in a HOP garment bag on complete accident
+  MrGloopy:
+  - rscadd: Crawling/slithering noise to footstep noise selection, for those that
+      lack legs or those feeling Invisible.
+  - balance: Removes mutual exclusivity of "Depressed" and "Hypersensitive" quirks.
+  SapphoQueer:
+  - rscadd: Security suits, Security turtleneck skirts, security turtlenecks, and
+      security battledresses have been added to security vendors and garment bags.
+  Vanilla1040:
+  - image: Makes the veteran alot less straining on the eyes and gives it more texture
+  explosivekitty:
+  - rscadd: You can now repaint non-greyscale items in loadout the same way spraycan
+      does
+  - rscadd: Spray cans can color items in such a way water cant remove the paint,
+      and also remove permanent paint
+  xPokee:
+  - bugfix: The lighting in the Black Mesa gateway works again.
+  - bugfix: Fixed security ID cards being blue -- for real this time.
+2026-05-16:
+  Arturlang:
+  - rscadd: cargo imports moved into it's own category with a brand subcategory system,
+      and orderable without a private account (god why did i do this)
+  - rscadd: persistence only agent ID single pack
+  - rscadd: persistence and tarkon can now buy stuff via ids directly
+  - rscadd: captain access can always unlock departmental orders
+  - bugfix: persistence and persistence cargo consoles sending cargo pods to the station
+      if cargo bay is selected
+  - rscdel: entire cargo company imports system
+  BurgerBB:
+  - map: Fixes some missing Moon Station stuff.
+  - balance: Buffs the security rocket launcher's mob target acquisition.
+  CatoChristopherMrow:
+  - bugfix: fixed infinite recursion bug
+  Danielance:
+  - rscadd: added teshari sprites for buttondown clothes, some jeans and pants, kilt
+      (full list on PR 5555)
+  Jinshee:
+  - rscadd: Added a new quirk Psionic Dampener, affecting telepathy from quirks, genetics,
+      slimes, xenomorphs, revenants and so on.
+  - balance: Telepathy (Quirk) no longer automatically gives the gene.
+  - qol: The telepathic communication power granted by the quirk or the genetic power
+      is only anonymous if the caster has the mutation, not the target.
+  - qol: Telepathy (Quirk) now shows when the user uses the power and on whom, but
+      not the contents of the message.
+  - qol: Telepathy is now multiline.
+  KateAnbolho:
+  - rscadd: Moves revivers back to a noncombat implant
+  - balance: allows additional bluespace, grav, and flux cores to be refined due to
+      increased uses
+  LT3:
+  - map: Void Raptor's maintenance area between pharmacy and chemistry is now protected
+      from radstorms
+  MrGloopy:
+  - rscadd: Added greyscale versions of some clothing to Clothesmate and loadout.
+  - rscadd: Frontier Radio Headset to loadout, along with a wider variant. It cannot
+      accept radio keys but works as a wearable handheld radio. Woe upon thee if you
+      have your loadout replace job items. Goodbye job headset if you do.
+  - rscadd: Ports a small selection of pants and jackets, along with a funky mantle
+      from Nova Sector. Available in loadout.
+  - rscadd: Colonial fabricator clothing to loadout because it's nice.
+  - rscadd: New belts to loadout from Nova, using their webbing sprites. Same capacity
+      as a fanny pack.
+  - rscadd: Blueshield clothing to loadout.
+  - bugfix: Correction's officer clothing in loadout not showing all of it due to
+      broken datums.
+  - rscadd: Moved Internal Wound Analyzer from being a chest implant to a head implant.
+      Expies rejoice. May need to reselect it in character options.
+  - rscadd: Internal wound analyzer to science research.
+  - refactor: Removed Internal Wound Analyzer action button. Simply examine yourself
+      to activate it. Pairs nicely with the self-aware quirk. 15 second cooldown to
+      avoid filling your chat window.
+  - balance: Removed mutual exclusivity of Common Second Language and Bilingual quirks.
+  Robwo:
+  - rscadd: Added new variations to small tiles and pod floors
+  - image: Almost all of the wall and window sprites have been redone
+  - image: The palette of wooden platforms now more closely match wooden floors
+  - image: New bronze table sprites
+  - bugfix: Fixed rock wall sprites being incorrectly (un)colored
+  - bugfix: Decal painter now sprays our override decals.
+  SapphoQueer:
+  - rscadd: The GMM can sell materials once more.
+  Yobrocharlie:
+  - bugfix: Fixed maintsrooms xenomorphs not being able to choose their name/desc
+  john-pawson:
+  - bugfix: fixed toggling icon issues for neck-worn face scarfs an the ranger poncho
+      (And other clothings too)
+  mintyphresh:
+  - rscadd: The Dominant Aura and Well-Trained quirks are now configurable in the
+      quirk menu, filtering by both gender and command.
+  - rscadd: Using the "toggle reflexes" verb now lets subs ignore snaps and clicks,
+      as well as inspect doms without flustering away.
+  nikothedude:
+  - rscadd: Family heirloom users can now use a quirk preference to, instead of getting
+      a random item, mark an item inhand as an heirloom.
+  - rscadd: A 500 credit hardlight bow goodie case for cargo
+  - rscadd: Exploitables, background, and security records are now distinct record
+      fields, instead of being combinced.
+  - rscadd: Dep. guards now have a primary security voucher instead of a taser
+  - rscadd: Hungry quirk is now -2 and customizable
+  xPokee:
+  - rscadd: You can now wear pride flags as a cloak.
+  - balance: The quirk 'Common Second Language' has been blacklisted from Security
+      and Command.
+  - rscadd: Added 'Stowaway' as a station trait with a weight of 3.
+  - rscdel: Removed 'Stowaway' from being a roundstart job by default.
+  - rscadd: 'Added two new sets of horns: Mutant Lizard and Mutant Lizard (Inverted).'
+  - rscadd: 'Added one new tail: Hybrid Coyote (Large).'
+2026-05-17:
+  BurgerBB:
+  - balance: Reworks the random brain trauma storyteller event to give you fun traumas,
+      and makes them curable via basic brain surgery
+  Danielance:
+  - rscadd: added 34 missing digi legs and/or teshari sprites (list is on PR 5597)
+  - rscadd: adds digi legs/teshari sprites to some labcoats that lacked them
+  NanoCats:
+  - sound: Gravity generator startup/shutdown sounds now respect the announcement
+      sounds preference.
+  SapphoQueer:
+  - balance: You can once more place chemistry machines on ducts/manifolds/etc
+  ibexgoetia:
+  - rscadd: The Interdimensional Terrorist Plushie has crashlanded in your nearest
+      Lustwish Vendor! a toy of questionable origins with even more questionable uses.
+  - sound: New lewd rubber/stretch sounds. Currently only used by the new plush.
+  nikothedude:
+  - bugfix: Sec vouchers work on protolathes now
+  - rscadd: Cursekin can select a character slot to transform into rather than just
+      siwtching species.
+2026-05-18:
+  LT3:
+  - bugfix: Fixed missing textures for the dark medical jacket
+  - rscadd: Department/department guard jackets are now consistent and available in
+      garment bags, vending machines, and loadouts
+  Robwo:
+  - map: centcom has reevaluated its ferry design to make docking easier
+  - bugfix: Teshari can no longer blink
+  Shayoki, BitSynergy:
+  - rscadd: "New bartender recipe: Orange Creamsicle \U0001F34A"
+  - rscadd: 'New soda in the soda vendor: Tang-O-Rine. Drink it today!'
+  - image: Added a crushed can sprite for Hemoglobin Iced Tea.
+  nikothedude:
+  - rscadd: The lycanthropy booster, a cursekin-only traitor item that turns your
+      lycan form into a deadly juggernaut.
+  - balance: Silver reagent weapons do 3x damage to lycans.
+  - rscadd: Lycans can now have quirks
+  - rscadd: Lycans are no longer oversized
+  - balance: Boosted lycan form is now resistant to stamina, stuns, and shoves
+  - balance: Cursekin transformation cooldown is now 30 seconds
+  shayoki:
+  - map: Box Station's Medical Sec outpost has been moved lower to give chemistry
+      more area for plumbing.
+  - map: Box Station's Dorm rooms have been given some different, larger beds.
+  - map: Fixed some floor decals on Ouroboros.
+2026-05-20:
+  Danielance:
+  - bugfix: fixed some labcoat subtypes becoming missing textures on digitigrade legs
+  HometownFunky:
+  - balance: Armadyne Combat Gloves are no longer a combat glove subtype
+  Jinshee:
+  - rscadd: Added Broodmother taur body
+  - rscadd: Added Beak (Tiny) snout
+  Lunaf0x:
+  - rscadd: Fentanyl can now be taken via the Junkie Quirk
+  MrGloopy:
+  - rscadd: '''Protector'' revolver. Fires 9mm ''Murphy'' with a 5 shot capacity.'
+  - rscadd: '''Defender'' revolver. The ''Defender'' is a cheaply manufactured knockoff
+      of the ''Protector''. It fires .38 rounds while being very cheap, at a cost
+      of doing 90% damage and a small accuracy penalty.'
+  - rscadd: New revolvers to cargo. The 'Protector' is available in a 3 pack via departmental
+      security order as well. Both are available as single pack goodies.
+  - image: Sprites for the new revolvers by Niim.
+  nikothedude:
+  - bugfix: GunHUD now displays
+  - bugfix: Death consequences now show up in health analyzers again
+  - bugfix: Certain quirks should now properly remove themselves
+2026-05-22:
+  ArrisFairburne:
+  - map: More tweaks to Biodome
+  BingusTheClown:
+  - balance: Increased LoneOp population spawn requirement to 20 from 10
+  BurgerBB:
+  - map: Fixes missing APC in Moonstation Robotics
+  MrGloopy:
+  - balance: Reduces damage of 'Defender' revolver from 90% to 80% because I died
+      to it once
+2026-05-25:
+  Fogspot:
+  - rscadd: Added Northstar
+  - config: Added Northstar to votable maps list
+  IbexGoetia, Niim:
+  - rscadd: Added a speed loader for the Protector revolver. It holds five 9mm bullets,
+      and can be crafted from the security fabricator and the autolathe.
+  Jinshee:
+  - rscadd: 'Added phobia: Mousetraps'
+  - qol: Mousetraps phobia applied to Muridae Traits
+  KateAnbolho:
+  - rscadd: Adds the stetchkin to traitor uplinks
+  - rscadd: Renoster crates are in cargo again
+  - rscadd: Adds two new PSC guns to cargo, the Lanca and Wylom. You gotta modify
+      your console first, though. Also you can buy spare lanca mags.
+  - rscadd: Re-adds the .310 ammo box back to goodies
+  - balance: Tweaks how the .60 Strela ammunition type does damage, removing the quirky
+      extra damage to borgs in favor of a general destruction modifier.
+  nikothedude:
+  - rscdel: Boosted lycans no longer get a bonus 30% damage resistance
+  - rscadd: Cursekin and lycan species pages now have their traits documented
+  - balance: Boosted lycans can not use martial arts
+  - rscadd: A examine blurb explaining what lycans can do
+  - bugfix: A bug where you could get stuck in lycan form if you die
+  - balance: Lycans can now use bows, triggerguarded guns, and consoles.
+  - bugfix: Boosted lycans are now only immune to damage slowdown
+  shayoki, nevimer, orsoniks:
+  - rscadd: Adds an experiment and milky plush. Both are available in the loadout.
+  xPokee:
+  - bugfix: Fixed infinite plastic theoretically being possible via the colony fab.
+  - rscadd: 'Added a new crustacean to ocean fishing in the Fish-Porter 3000: Shrimp!'
+  - qol: The job estimation panel now shows assistants and prisoners.
+2026-05-29:
+  Danielance:
+  - rscadd: added digi legs sprites to all winter coats and related clothing
+  - rscadd: updated/added some winter coat teshari sprites (including hoodies)
+  - rscadd: teshari winter coats can open now, added missing teshari pixels on the
+      grey winter hood
+  - rscadd: slightly recolored the security winter coat and added a hood to it
+  - bugfix: removed duplicate security jacket in the secdrobe
+  - bugfix: fixed incorrect security jacket hood icon (by giving it a new one)
+  HometownFunky:
+  - balance: lycans can wear neck items
+  MrGloopy:
+  - bugfix: Uplink location being set to the Persocom when playing as a synth. It
+      will now fall back to one of the other options.
+  - rscadd: Small persocom update. Automatic ID imprinting and PDA theme application
+      on spawn. Ghost roles will not automatically imprint their ID. Don't imprint
+      it as a Persistence role or Ruggero will punch you.
+  - rscadd: Persocom to cybernetic brain options.
+  - rscadd: Additional EMP effects such as stuttering and jittering to the surplus
+      brain to bring it in line with the cortical brain. EMP effects are tripled compared
+      to the cortical brain. Woe.
+  Muffindrake:
+  - balance: Return liquid levels to pre-mid-2025
+  - refactor: Pass on testicle liquid handling
+  - code_imp: Remove redundant genital size caps
+  NanoCats:
+  - balance: Removed the reduced paycheck modifier for Protean characters
+  - bugfix: Fixed breast (alt) secondary color (nipple/areola) appearing as an unrecognizable
+      dark smear instead of the player's chosen color, most noticeable on humanoid
+      characters using near-skin tones.
+  - bugfix: Protean self-surgery now works correctly after the TG surgery rework broke
+      it
+  - bugfix: Surgeons can now use mechanical tools on Proteans as intended, consistent
+      with Synth behaviour
+  - spellcheck: Fixed "Orginal" typo in NOVA/BUBBER EDIT comments across six surgery
+      operation files
+  - bugfix: Genital sprites now correctly appear and hide immediately when clothing
+      is equipped or removed, without requiring surgery or manual verb use to refresh
+      them.
+  SomeCabbage:
+  - balance: Gave the bitrunning milsim SNPCs a bit more equipment.
+  TealSeer:
+  - bugfix: fixed screwdrivering certain machines not working
+  UvvU:
+  - bugfix: fixed shoulder holster having wrong holdables list
+  nikothedude:
+  - rscadd: All silver weapons bane lycans
+  - rscadd: Silver weapons now burn lycans
+  - balance: Silver weapons now only bane lycans by 2x
+  - bugfix: Dirty and Sharp Claws now properly get removed
+  - balance: Lycans can use the mask slot
+  xPokee:
+  - rscadd: 'Added new genitals: Bellies + Butts'
+  xPokee, Diltyrr:
+  - bugfix: Stone griddles will not spawn invisible based on the direction you're
+      facing anymore.
+2026-05-31:
+  Danielance:
+  - rscadd: added more digitigrade legs and/or teshari sprites (list on PR 5710)
+  TealSeer:
+  - bugfix: fixed icebox lizard gas having infinite power
+  - bugfix: fixed icebox lizard gas circuit imprinter connecting to station ore silo
+  Zeerum:
+  - bugfix: AI is now able to track via the crew monitor again
+  - bugfix: Dept Security grouping on the crew monitor
+  nikothedude:
+  - rscadd: All species can use digi legs
+  - balance: The silver reagent now hurts lycans
+  - bugfix: Item quirks no longer give items on char slot change

@@ -6,13 +6,14 @@ GLOBAL_LIST_INIT(possible_genitals, list(
 	ORGAN_SLOT_TESTICLES,
 	ORGAN_SLOT_BREASTS,
 	ORGAN_SLOT_ANUS,
-	ORGAN_SLOT_PENIS
+	ORGAN_SLOT_PENIS,
+	ORGAN_SLOT_BUTT,
+	ORGAN_SLOT_BELLY
 ))
 
 GLOBAL_LIST_EMPTY(body_markings)
 GLOBAL_LIST_EMPTY_TYPED(body_markings_per_limb, /list)
 GLOBAL_LIST_EMPTY(body_marking_sets)
-
 GLOBAL_LIST_EMPTY(loadout_items)
 GLOBAL_LIST_EMPTY(loadout_category_to_subcategory_to_items)
 

@@ -377,6 +377,18 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(return_escape_shuttle), make_announcement), new_timer SECONDS)
 			else
 				INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(return_escape_shuttle), make_announcement)
+		if("ore_vents")
+			if(!is_funmin)
+				return
+			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Tap Ore Vents"))
+			var/vent_count = 0
+			for(var/obj/structure/ore_vent/vent as anything in SSore_generation.possible_vents)
+				if(vent.tapped || !COOLDOWN_FINISHED(vent, wave_cooldown) || vent.node) // skip if already tapped or currently being tapped
+					continue
+				vent.initiate_wave_win(forced = TRUE)
+				vent_count++
+			message_admins("[key_name_admin(holder)] tapped [vent_count] ore vents")
+			log_admin("[key_name_admin(holder)] tapped [vent_count] ore vents")
 		if("blackout")
 			if(!is_funmin)
 				return
@@ -690,6 +702,18 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 				S.count_down()
 				return
 			return
+
+		if("fix_gravity")
+			if(!is_funmin)
+				return
+			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("fix_gravity"))
+			message_admins("[key_name_admin(holder)] fixed the gravity generator.")
+
+			for(var/obj/machinery/gravity_generator/main/the_generator as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/gravity_generator/main))
+				if(!is_station_level(the_generator.z))
+					continue
+				the_generator.kickstart()
+				CHECK_TICK
 
 	if(holder)
 		log_admin("[key_name(holder)] used secret: [action].")

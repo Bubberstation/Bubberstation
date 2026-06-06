@@ -715,27 +715,7 @@
 
 //BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION
 
-// Medical Jackets
-/obj/item/clothing/suit/toggle/labcoat/skyrat/medical
-	name = "medical department jacket"
-	desc = "This stylish jacket is perfect for those impromptu fashion shows on the scene of an emergency. Now, you can be the brightest beacon of style while administering medical treatment! Because, after all, why save lives if you can't look fabulous while doing it?"
-	icon = 'modular_zubbers/icons/obj/clothing/suits/labcoat.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/labcoat.dmi'
-	icon_state = "labcoat_med_light"
-	body_parts_covered = CHEST|ARMS|GROIN
-	cold_protection = CHEST|ARMS|GROIN
-	toggle_noun = "zipper"
-
-/obj/item/clothing/suit/toggle/labcoat/skyrat/medical/dark
-	name = "medical expedition jacket"
-	icon_state = "labcoat_med_dark"
-
-/obj/item/clothing/suit/toggle/jacket/sec/medical
-	name = "medical praetorian jacket"
-	desc = "This stylish jacket is perfect for those impromptu fashion shows on the scene of an emergency. Now, you can be the brightest beacon of style while administering medical treatment! Because, after all, why save lives if you can't look fabulous while doing it?"
-
 //Lore Jackets
-
 //Galactic Federation SPRITES BY Tonadas of Bubberstation
 /obj/item/clothing/suit/jacket/galfed
 	name = "Galactic Federation jacket"
@@ -756,6 +736,8 @@
 	post_init_icon_state = "big_hoodie"
 	greyscale_config = /datum/greyscale_config/big_hoodie
 	greyscale_config_worn = /datum/greyscale_config/big_hoodie/worn
+	greyscale_config_worn_digi = /datum/greyscale_config/big_hoodie/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/big_hoodie/worn/teshari
 	greyscale_colors = "#5d6161"
 	hoodtype = /obj/item/clothing/head/hooded/big_hoodie_hood
 	flags_1 = IS_PLAYER_COLORABLE_1
@@ -778,6 +760,7 @@
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	greyscale_config = /datum/greyscale_config/big_hoodie_hood
 	greyscale_config_worn = /datum/greyscale_config/big_hoodie_hood/worn
+	greyscale_config_worn_teshari = /datum/greyscale_config/big_hoodie_hood/worn/teshari
 	greyscale_colors = "#5d6161"
 
 /obj/item/clothing/suit/hooded/big_hoodie/set_greyscale(list/colors, new_config, new_worn_config, new_inhand_left, new_inhand_right)
@@ -803,6 +786,8 @@
 	post_init_icon_state = "twee_hoodie"
 	greyscale_config = /datum/greyscale_config/twee_hoodie
 	greyscale_config_worn = /datum/greyscale_config/twee_hoodie/worn
+	greyscale_config_worn_digi = /datum/greyscale_config/twee_hoodie/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/twee_hoodie/worn/teshari
 	greyscale_colors = "#dbc0e0"
 	hoodtype = /obj/item/clothing/head/hooded/twee_hoodie_hood
 	flags_1 = IS_PLAYER_COLORABLE_1
@@ -824,6 +809,7 @@
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	greyscale_config = /datum/greyscale_config/twee_hoodie_hood
 	greyscale_config_worn = /datum/greyscale_config/twee_hoodie_hood/worn
+	greyscale_config_worn_teshari = /datum/greyscale_config/twee_hoodie_hood/worn/teshari
 	greyscale_colors = "#dbc0e0"
 
 /obj/item/clothing/suit/hooded/twee_hoodie/set_greyscale(list/colors, new_config, new_worn_config, new_inhand_left, new_inhand_right)
@@ -1057,3 +1043,57 @@
 
 /obj/item/clothing/suit/toggle/jacket/zubber/bomber/syndicate/fake
 	armor_type = /datum/armor/hooded_wintercoat
+
+/obj/item/clothing/suit/greyscale/sweater
+	name = "big sweater"
+	desc = "A big'ol sweater! Makes for an improvised blanket with how huge this thing is."
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/greyscale/sweater"
+	post_init_icon_state = "sweater"
+	body_parts_covered = CHEST|ARMS
+	greyscale_config = /datum/greyscale_config/sweater_greyscale_1
+	greyscale_config_worn = /datum/greyscale_config/sweater_greyscale_1/worn
+	greyscale_colors = "#2d3a46"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+/obj/item/clothing/suit/greyscale/sweater/bow
+	name = "big sweater with bow"
+	desc = "A big'ol sweater with an equally big ribbon bow! Makes for an improvised blanket with how huge this thing is."
+	icon_state = "/obj/item/clothing/suit/greyscale/sweater/bow"
+	post_init_icon_state = "sweaterbow"
+	greyscale_config = /datum/greyscale_config/sweater_greyscale_2
+	greyscale_config_worn = /datum/greyscale_config/sweater_greyscale_2/worn
+	greyscale_colors = "#2d3a46#ffcc66"
+
+/obj/item/clothing/suit/greyscale/furred_trenchcoat
+	name = "furred trenchcoat"
+	desc = "A warm trenchcoat lined with fur, made for the cold, dark, and desperate winter nights."
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/greyscale/furred_trenchcoat"
+	post_init_icon_state = "coat"
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	greyscale_config = /datum/greyscale_config/fluffywintercoat
+	greyscale_config_worn = /datum/greyscale_config/fluffywintercoat/worn
+	greyscale_colors = "#eaeaea#969696#4d4d4d#ccffff"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+/obj/item/clothing/suit/dagger_mantle
+	name = "'Dagger' designer mantle"
+	desc = "For their Spring 2560 collection, the designer had a lot to say about the allure of objects that \
+		'seem to spring into existence without human intervention.' Made from a single piece of fabric with a seam \
+		and closure in the back, this mantle is almost austere enough to disguise its origin in a Marsian garment \
+		factory."
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/dagger_mantle"
+	post_init_icon_state = "dagger_mantle"
+	greyscale_config = /datum/greyscale_config/dagger_mantle
+	greyscale_config_worn = /datum/greyscale_config/dagger_mantle/worn
+	greyscale_colors = "#d6f7ff"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	gets_cropped_on_taurs = FALSE
+	slot_flags = ITEM_SLOT_OCLOTHING|ITEM_SLOT_NECK

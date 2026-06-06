@@ -17,6 +17,16 @@
 	name = "Crow Feather Cloak"
 	item_path = /obj/item/clothing/neck/binary
 
+/datum/loadout_item/neck/security_cape
+	name = "Security Cape"
+	item_path = /obj/item/clothing/neck/security_cape
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/neck/security_cape/armplate
+	name = "Security Gauntlet"
+	item_path = /obj/item/clothing/neck/security_cape/armplate
+	restricted_roles = list(ALL_JOBS_SEC)
+
 /datum/loadout_item/neck/pauldron
 	name = "Lieutenant Commander's Pauldron"
 	item_path = /obj/item/clothing/neck/pauldron
@@ -67,3 +77,11 @@
 /datum/loadout_item/neck/scarf/shadekin
 	name = "Shadekin Fur Scarf"
 	item_path = /obj/item/clothing/neck/scarf/shadekin
+
+/datum/loadout_item/neck/cloak/colonial_cloak
+	name = "Colonial Cloak"
+	item_path = /obj/item/clothing/neck/cloak/colonial
+
+/datum/loadout_item/suit/dagger_mantle
+	name = "'Dagger' Designer Mantle"
+	item_path = /obj/item/clothing/suit/dagger_mantle

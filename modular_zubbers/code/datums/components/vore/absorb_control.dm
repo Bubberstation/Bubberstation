@@ -8,6 +8,8 @@
 	button_icon_state = "soulcatcher_exit"
 
 /datum/action/innate/absorb_control/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/datum/component/absorb_control/AC = target
 	AC.revert()
 

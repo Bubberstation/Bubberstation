@@ -45,11 +45,6 @@
 	if(!isinhands)
 		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha)
 
-/obj/item/clothing/suit/armor/vest/secjacket/blue // Port from TG Station (DrTuxedo)
-	name = "security jacket"
-	desc = "A blue jacket in blue Peacekeeper colors. It has hi-vis stripes all over it."
-	icon_state = "secjacket_blue"
-
 //Maid SEC
 //Icon by Onule!
 /obj/item/clothing/suit/armor/vest/maid
@@ -114,3 +109,154 @@
 	fire = 100
 	acid = 50
 	wound = 25
+
+//MetroCop armor, by HL13 station.
+/obj/item/clothing/suit/armor/vest/alt/sec/metrocop
+	name = "metrocop armor"
+	desc = "Pick up that can. Uses advanced GigaSlop brand Matrixes to allow alternative variants!"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "civilprotection"
+
+/obj/item/clothing/suit/armor/vest/alt/sec/metrocop/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/metrocop_armor)
+
+/datum/atom_skin/metrocop_armor
+	abstract_type = /datum/atom_skin/metrocop_armor
+
+/datum/atom_skin/metrocop_armor/metro_cop
+	preview_name = "Metro Cop"
+	new_icon_state = "civilprotection"
+
+/datum/atom_skin/metrocop_armor/metro_coat
+	preview_name = "MetroCop Coat"
+	new_icon_state = "cp_trenchcoat"
+
+/datum/atom_skin/metrocop_armor/medic
+	preview_name = "Medic"
+	new_icon_state = "medicalofficer"
+
+/datum/atom_skin/metrocop_armor/red_trim
+	preview_name = "Red Trim"
+	new_icon_state = "dv_vest"
+
+/datum/atom_skin/metrocop_armor/overwatch_white
+	preview_name = "White Overwatch"
+	new_icon_state = "overwatch_white"
+
+/datum/atom_skin/metrocop_armor/overwatch
+	preview_name = "Overwatch"
+	new_icon_state = "overwatch"
+
+/datum/atom_skin/metrocop_armor/overwatch_red
+	preview_name = "Red Overwatch"
+	new_icon_state = "overwatch_red"
+
+// Virosec armor, sprites by axietheaxolotl
+
+/obj/item/clothing/suit/armor/vest/viro
+	name = "armor vest"
+	desc = "A plate carrier meant to protect against all forms of threats."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "sec_platecarrier"
+	inhand_icon_state = "armor"
+	blood_overlay_type = "armor"
+
+/obj/item/clothing/suit/armor/vest/viro/heavy
+	name = "heavy armor vest"
+	desc = "A heavier plate carrier meant to protect against all forms of threats."
+	icon_state = "sec_heavyvest"
+	inhand_icon_state = "armor"
+	blood_overlay_type = "armor"
+
+/obj/item/clothing/suit/armor/vest/viro/leatherjacket
+	name = "security leather jacket"
+	desc = "A leather jacket for security officers, with a badass red collar."
+	icon_state = "sec_leatherjacket"
+
+/obj/item/clothing/suit/armor/vest/viro/softshell
+	name = "Security softshell jacket"
+	desc = "A softshell weather-resistant jacket perfect for those plants with stormy weather."
+	icon_state = "sec_softshell"
+
+/obj/item/clothing/suit/armor/hos/viro
+	name = "armored greatcoat"
+	desc = "A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "hos_greatcoat"
+	inhand_icon_state = "greatcoat"
+	body_parts_covered = CHEST|GROIN|ARMS|LEGS
+	armor_type = /datum/armor/armor_hos
+	cold_protection = CHEST|GROIN|LEGS|ARMS
+	heat_protection = CHEST|GROIN|LEGS|ARMS
+	strip_delay = 8 SECONDS
+
+/datum/armor/armor_hos
+	melee = 30
+	bullet = 30
+	laser = 30
+	energy = 40
+	bomb = 25
+	fire = 70
+	acid = 90
+	wound = 10
+
+/obj/item/clothing/suit/armor/hos/viro/trenchcoat
+	name = "armored trenchcoat"
+	desc = "A trenchcoat enhanced with a special lightweight kevlar. The epitome of tactical plainclothes."
+	icon_state = "hos_overcoat"
+	inhand_icon_state = "hostrench"
+	flags_inv = 0
+	strip_delay = 8 SECONDS
+
+/obj/item/clothing/suit/armor/hos/viro/trenchcoat/winter
+	name = "head of security's winter trenchcoat"
+	desc = "A trenchcoat enhanced with a special lightweight kevlar, padded with wool on the collar and inside. You feel strangely lonely wearing this coat."
+	icon_state = "hos_wintercoat"
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+
+/obj/item/clothing/suit/armor/vest/viro/warden
+	name = "warden's jacket"
+	desc = "A navy-blue armored jacket with blue shoulder designations and '/Warden/' stitched into one of the chest pockets."
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	icon_state = "warden_jacket_v"
+	inhand_icon_state = "armor"
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS|HANDS
+	heat_protection = CHEST|GROIN|ARMS|HANDS
+	strip_delay = 7 SECONDS
+	resistance_flags = FLAMMABLE
+	dog_fashion = null
+
+/obj/item/clothing/suit/armor/vest/viro/warden/alt
+	name = "warden's armored jacket"
+	desc = "A red jacket with silver rank pips and body armor strapped on top."
+	icon_state = "warden_alt"
+
+/obj/item/clothing/suit/armor/vest/viro/warden/wintercoat
+	name = "the warden's winter coat"
+	desc = "A winter coat with an armored vest resting atop it, with some padded with wool on the collar and inside."
+	icon_state = "warden_winterjacket"
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+
+/obj/item/clothing/suit/armor/militia
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/hooded/cultrobes
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/head/hooded/cult_hoodie
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/suit/hooded/cultlain_robe
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/head/hooded/cultlain_hood
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'

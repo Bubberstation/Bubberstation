@@ -230,7 +230,7 @@
 		var/datum/species/ethereal/ethereal = patient.dna.species
 		ethereal.refresh_light_color(patient)
 	open_machine()
-	SSquirks.OverrideQuirks(patient, patient.client)
+	SSquirks.OverrideQuirks(patient, patient.client, spawn_items = FALSE)
 
 /// Ejection and shut down of the machine, used before the preferences have been applied to the player. Damage optional.
 /obj/machinery/self_actualization_device/proc/eject_old_you(damaged_goods = FALSE)
@@ -286,7 +286,7 @@
 		to_chat(user, span_warning("[src] is currently occupied!"))
 		return
 
-	if(default_deconstruction_screwdriver(user, icon_state, icon_state, used_item))
+	if(default_deconstruction_screwdriver(user, used_item))
 		update_appearance()
 		return
 

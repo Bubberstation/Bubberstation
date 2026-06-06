@@ -71,3 +71,86 @@
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
 	// new teshari sprites
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/toggle/rainbowcoat
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_teshari.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/toggle/recruiter_jacket
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_teshari.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/jacket/straight_jacket
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suit_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/suit.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/blutigen_kimono
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_teshari.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/toggle/peacoat
+	greyscale_config_worn_digi = /datum/greyscale_config/peacoat/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/peacoat/worn/teshari
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/space/syndicate/black/red
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/spacesuit_teshari.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/razurathcoat
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_teshari.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/mothcoat
+	greyscale_config_worn_digi = /datum/greyscale_config/mothcoat/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/mothcoat/worn/teshari
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/scraparmour
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_teshari.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/mikujacket
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_teshari.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/armor/hos/elofy
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit_teshari.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/wizrobe/santa
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/misc_teshari.dmi'
+
+/obj/item/clothing/suit/space/santa
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suits/wizard_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/misc_teshari.dmi'
+
+// "well-worn" shirts
+/obj/item/clothing/suit/costume/wellworn_shirt
+	greyscale_config_worn_digi = /datum/greyscale_config/wellworn_shirt/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/wellworn_shirt/worn/teshari
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/costume/wellworn_shirt/skub
+	greyscale_config_worn_digi = /datum/greyscale_config/wellworn_shirt_skub/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/wellworn_shirt_skub/worn/teshari
+
+/obj/item/clothing/suit/costume/wellworn_shirt/graphic
+	greyscale_config_worn_digi = /datum/greyscale_config/wellworn_shirt_graphic/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/wellworn_shirt_graphic/worn/teshari
+
+/obj/item/clothing/suit/costume/wellworn_shirt/wornout/graphic
+	greyscale_config_worn_digi = /datum/greyscale_config/wornout_shirt_graphic/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/wornout_shirt_graphic/worn/teshari
+
+/obj/item/clothing/suit/costume/wellworn_shirt/messy/graphic
+	greyscale_config_worn_digi = /datum/greyscale_config/messyworn_shirt_graphic/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/messyworn_shirt_graphic/worn/teshari
