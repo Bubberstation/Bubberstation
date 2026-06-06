@@ -89,7 +89,7 @@
 		if(FORGE_EFFECT_DURABILITY)
 			var/new_durability_modifier = new_modifier * max_effect
 			var/previous_durability_modifier = old_modifier * max_effect
-			item.max_integrity += new_durability_modifier - previous_durability_modifier
+			item.modify_max_integrity(item.max_integrity + new_durability_modifier - previous_durability_modifier)
 		if(FORGE_EFFECT_FORCE)
 			var/new_force_modifier = new_modifier * max_effect
 			var/previous_force_modifier = old_modifier * max_effect
