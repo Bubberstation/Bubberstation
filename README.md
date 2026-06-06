@@ -44,7 +44,7 @@ As of our recent split from Skyrat, a lot of codedocs/modularization guides need
   - Any signficant balance changes
 - Seeking approval beforehand saves a lot of time and headache if an idea doesn't align with the game's theme and direction
 
-\*\*3. Usage of Code Generation Tools
+**3. Usage of Code Generation Tools**
 
 - Usage of autocompletes, auto documentation generation and other tools are allowed
 - It is fully expected of a person using any of these tools to ensure the output and quality of said tools
