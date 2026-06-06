@@ -154,7 +154,7 @@
 /datum/crafting_bench_recipe/proc/give_experience(mob/user, item_list, obj/item/product)
 	if(!isnull(user?.mind))
 		var/exp_give_mult = get_total_completion_ratio(item_list)
-		user.mind.adjust_experience(relevant_skill, exp_give * exp_give_mult + BONUS_EXP_PER_ITEM_MADE )
+		user.mind.adjust_experience(relevant_skill, exp_give * exp_give_mult)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// WEAPON COMPLETION /////////////////////////////////////////////////////
