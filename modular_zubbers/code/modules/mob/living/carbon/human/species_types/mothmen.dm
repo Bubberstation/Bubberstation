@@ -23,3 +23,7 @@
 		In the few cases where the Mothic fleet has engaged in combat or piracy in the modern day, it has been mainly due to necessity, and casualties have been minimal. \
 		They are known to escort and tug damaged ships to port.",
 	)
+
+/obj/item/organ/tongue/moth/Initialize(mapload) //speech bubble addition
+	. = ..()
+	AddComponent(/datum/component/bubble_icon_override, "moff", BUBBLE_ICON_PRIORITY_ORGAN)

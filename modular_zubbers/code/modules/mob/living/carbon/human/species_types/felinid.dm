@@ -29,3 +29,7 @@
 		\"Nekomimetic\" in order to communicate amongst themselves. Notable Felinid cells have begun to spring up in the past century as a result of severe isolation and \ oppression, generally targetting public infrastructure and cat cafés, which are considered cultural appropriation by radical groups. \
 		Despite many efforts over the years, including reparations, it is unlikely that the rift between Felinids and humanity can ever be truly mended.",
 	)
+
+/obj/item/organ/tongue/cat/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/bubble_icon_override, "cat", BUBBLE_ICON_PRIORITY_ORGAN)

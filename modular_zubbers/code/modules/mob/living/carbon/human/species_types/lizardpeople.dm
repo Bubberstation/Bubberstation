@@ -51,3 +51,7 @@
 	lizard.set_facial_hairstyle("Lizard Tongue Flick")
 	regenerate_organs(lizard, src, visual_only = TRUE)
 	lizard.update_body(TRUE)
+
+/obj/item/organ/tongue/lizard/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/bubble_icon_override, "lizor", BUBBLE_ICON_PRIORITY_ORGAN)
