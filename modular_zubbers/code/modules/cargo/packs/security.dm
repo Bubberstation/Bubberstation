@@ -227,3 +227,22 @@
 	contains = list(
 		/obj/item/gun/ballistic/rifle/stingballer,
 	)
+
+/datum/supply_pack/security/armory/kiboko
+	name = "Kiboko Grenade Launcher Crate"
+	crate_name = "Kiboko grenade launcher crate"
+	desc = "A brand-new loaded Kiboko grenade launcher just for you, in case you somehow lost the issued one."
+	cost = CARGO_CRATE_VALUE * 37.5
+	contains = list(
+		/obj/item/gun/ballistic/automatic/sol_grenade_launcher
+	)
+
+/datum/supply_pack/security/armory/grenadelauncher
+	name = "Pneumatic Grenade Launcher Crate"
+	crate_name = "grenade launcher crate"
+	desc = "A truly diabolical weapon for rapid deployment of any standard grenade. Comes with a complimentary box of flashbangs."
+	cost = CARGO_CRATE_VALUE * 75
+	contains = list(
+		/obj/item/gun/grenadelauncher
+		/obj/item/storage/box/flashbangs
+	)
