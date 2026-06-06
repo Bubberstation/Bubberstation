@@ -14,7 +14,7 @@
 	/// What skill is relevant to the creation of this item?
 	var/relevant_skill = /datum/skill/smithing
 	/// How much EXP to give to relevant_skill?
-	var/exp_give = 10
+	var/exp_give = 5
 	/// What skill level is required in that creation?
 	var/relevant_skill_level = 0
 	/// Does the recipe also require a specific trait?
@@ -83,34 +83,47 @@
 			else
 				qdel(thing)
 
+/datum/crafting_bench_recipe/proc/count_forgeable_items(things_to_use)
+	var/total_forge_items = 0
+	for(var/obj/item/i in things_to_use)
+		if(istype(i, /obj/item/forging/complete))
+			total_forge_items ++
+		else if(!isnull(i.GetComponent(/datum/component/forge_smithable)))
+			total_forge_items ++
+	return total_forge_items
+
+
 /datum/crafting_bench_recipe/proc/get_total_completion_amount(list/things_to_use)
 	var/total_completion = 0
-	var/total_forge_items = 0
 	for(var/obj/item/i in things_to_use)
 		if(istype(i, /obj/item/forging/complete))
 			var/obj/item/forging/complete/complete_forging_item = i
 			total_completion += complete_forging_item.hammer_completion_amount
-			total_forge_items ++
 		else if(!isnull(i.GetComponent(/datum/component/forge_smithable)))
 			var/datum/component/forge_smithable/smithing_component = i.GetComponent(/datum/component/forge_smithable)
 			total_completion += smithing_component.quality_points
-			total_forge_items ++
-	total_completion /= total_forge_items
 	return total_completion
+
+/datum/crafting_bench_recipe/proc/get_total_completion_ratio(list/things_to_use)
+	if (count_forgeable_items(things_to_use) == 0)
+		return 1
+	return get_total_completion_amount(things_to_use) / count_forgeable_items(things_to_use)
 
 /datum/crafting_bench_recipe/proc/get_total_perfection_amount(list/things_to_use)
 	var/total_perfection = 0
-	var/total_forge_items = 0
 	for(var/obj/item/i in things_to_use)
 		if(istype(i, /obj/item/forging/complete))
 			var/obj/item/forging/complete/complete_forging_item = i
 			total_perfection += complete_forging_item.perfect_ratio
-			total_forge_items ++
 		else if(!isnull(i.GetComponent(/datum/component/forge_smithable)))
 			var/datum/component/forge_smithable/smithing_component = i.GetComponent(/datum/component/forge_smithable)
 			total_perfection += smithing_component.get_perfect_ratio()
-			total_forge_items ++
 	return total_perfection / total_forge_items
+
+/datum/crafting_bench_recipe/proc/get_total_perfection_ratio(list/things_to_use)
+	if (count_forgeable_items(things_to_use) == 0)
+		return 1
+	return get_total_perfection_amount(things_to_use) / count_forgeable_items(things_to_use)
 
 /datum/crafting_bench_recipe/proc/find_from_list(list/item_list, type)
 	for(var/obj/item/forging/complete/temp_item in item_list)
@@ -119,11 +132,11 @@
 	return null
 
 /datum/crafting_bench_recipe/proc/apply_perfect_and_completion_bonuses(list/things_to_use, obj/item/product)
-	var/pieces_completion_amount = get_total_completion_amount(things_to_use)
-	var/pieces_perfection_amount = get_total_perfection_amount(things_to_use)
+	var/pieces_completion_ratio = get_total_completion_ratio(things_to_use)
+	var/pieces_perfection_ratio = get_total_perfection_ratio(things_to_use)
 	var/datum/component/forge_smithable/smith_component = product.GetComponent(/datum/component/forge_smithable)
 	if(!isnull(smith_component))
-		smith_component.set_completion_and_perfection_ratios(pieces_completion_amount, pieces_perfection_amount)
+		smith_component.set_completion_and_perfection_ratios(pieces_completion_ratio, pieces_perfection_ratio)
 
 /datum/crafting_bench_recipe/proc/get_recipe_requirements_description()
 	var/list/returner = list()
@@ -138,9 +151,10 @@
 /datum/crafting_bench_recipe/proc/get_ingredient_description(obj/requirement_item)
 	return span_notice("<b>[recipe_requirements[requirement_item]]</b> - [initial(requirement_item.name)]")
 
-/datum/crafting_bench_recipe/proc/give_experience(mob/user)
+/datum/crafting_bench_recipe/proc/give_experience(mob/user, item_list, obj/item/product)
 	if(!isnull(user?.mind))
-		user.mind.adjust_experience(relevant_skill, exp_give)
+		var/exp_give_mult = get_total_completion_ratio(item_list)
+		user.mind.adjust_experience(relevant_skill, exp_give * exp_give_mult + BONUS_EXP_PER_ITEM_MADE )
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// WEAPON COMPLETION /////////////////////////////////////////////////////
@@ -162,9 +176,9 @@
 	apply_perfect_and_completion_bonuses(item_list, returner)
 	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner, user)
 	put_materials_in_product_from_ingredients(item_list, returner, user)
+	give_experience(user, item_list)
 
 	consume_crafting_ingredients(item_list, returner)
-	give_experience(user)
 	return returner
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
