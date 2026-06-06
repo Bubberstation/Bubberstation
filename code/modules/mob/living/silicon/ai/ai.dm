@@ -283,7 +283,7 @@
 	var/connected_ipc_amt = length(connected_ipcs)
 	if(connected_ipc_amt)
 		. += "Connected Synthetics: [connected_ipc_amt]"
-		for(var/mob/living/carbon/human/connected_ipc as anything in connected_ipcs)
+		for(var/mob/living/carbon/human/connected_ipc in connected_ipcs)
 			var/robot_status = (connected_ipc.stat != CONSCIOUS || !connected_ipc.client) ? "OFFLINE" : "Nominal"
 			//Name. Area, and Status! Everything an AI wants to know about it's hacked synthetics!
 			. += "[connected_ipc.name] | S.Integrity: [connected_ipc.health]% | Loc: [get_area_name(connected_ipc, TRUE)] | Status: [robot_status]"

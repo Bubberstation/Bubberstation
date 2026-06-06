@@ -53,7 +53,8 @@
 	//adds radio and camera for comms with ai
 	internal_radio = new /obj/item/implant/radio/infected_ipc()
 	internal_radio.implant(current_mob, null, TRUE)
-	internal_camera = new /obj/machinery/camera(current_mob)
+	internal_camera = new /obj/machinery/camera/silicon(current_mob)
+	network = list()
 	internal_camera.name = owner.name
 	internal_camera.c_tag = owner.name
 	RegisterSignal(current_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
@@ -66,13 +67,13 @@
 	QDEL_NULL(internal_camera)
 	UnregisterSignal(current_mob, COMSIG_MOB_EXAMINATE)
 
-/datum/antagonist/infected_ipc/proc/on_examine(mob/living/carbon/human/source, mob/user, list/examine_text)
+/* /datum/antagonist/infected_ipc/proc/on_examine(mob/living/carbon/human/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
 	if(!istype(source))
 		return
 	if(!(source.obscured_slots & HIDEEYES))
 		examine_text += span_boldwarning("[source.p_Their()] optics are weirdly corrupted")
-
+commented out for now incase we ever wanna re-enable it */
 /datum/antagonist/infected_ipc/proc/set_master(datum/mind/master)
 	//the proc that links the AI and gives objectives. also some fluff hack that isn't in greet() since it has to be in order to make sense.
 	var/datum/objective/serve_ai/master_obj = new()
@@ -127,7 +128,7 @@
 /datum/mood_event/infected_ipc
 	description = "SSmood_system.setmood(100);"
 	mood_change = 100
-	hidden = TRUE
+	hidden = FALSE
 
 //TRAUMA
 /datum/brain_trauma/special/infected_ipc
