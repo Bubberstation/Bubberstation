@@ -108,21 +108,7 @@
 		"Royal Purple" = "royal_purple",
 		"Hazard Orange" = "hazard_orange",
 		"Cosmic Blue" = "cosmic_blue"
-	)
-	// For restricting color combinations of certain suits (currently not enabled)
-	var/static/list/locked_combinations = list(
-		//"Safeguard" = "Alert Amber",
-		//"Advanced" = "Hazard Orange",
-		//"Rescue" = "Standard Blue",
-		//"Research" = "Royal Purple"
-	)
-
-	// For restricting certain skins to specific roles (currently not enabled)
-	var/static/list/role_exceptions = list(
-		//"Safeguard" = JOB_HEAD_OF_SECURITY,
-		//"Advanced" = JOB_CHIEF_ENGINEER,
-		//"Rescue" = JOB_CHIEF_MEDICAL_OFFICER,
-		//"Research" = JOB_RESEARCH_DIRECTOR
+		"Royal Purple" = "royal_purple"
 	)
 
 	if (modsuit_hardlight == NONE)
@@ -401,7 +387,5 @@
 
 /datum/preference/toggle/entombed_deploy_lock/apply_to_human(mob/living/carbon/human/target, value)
 	return
-
-
 
 #undef ENTOMBED_TICK_DAMAGE
