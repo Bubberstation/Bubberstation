@@ -1,7 +1,7 @@
 /obj/vehicle/sealed/mecha/btr
 	desc = "HOLY SHIT IS THAT A FUCKING BTR?."
 	name = "\improper BTR"
-	icon = "modular_skyrat/master_files/icons/obj/vehicles/btr.dmi"
+	icon = 'modular_skyrat/master_files/icons/obj/vehicles/btr.dmi'
 	icon_state = "BTR_clean"
 	base_icon_state = "BTR_cleanr"
 	movedelay = 10
