@@ -196,6 +196,8 @@
 
 /atom/movable/screen/alert/status_effect/mkultra/Click(location, control, params)
 	. = ..()
+	if(isnull(attached_effect))
+		attached_effect = owner.has_status_effect(/datum/status_effect/mkultra)
 	var/datum/status_effect/mkultra/status = attached_effect
 	status.resist()
 

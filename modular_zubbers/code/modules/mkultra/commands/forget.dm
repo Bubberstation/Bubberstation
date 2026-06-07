@@ -30,5 +30,5 @@
 		to_chat(owner, span_warning("A rush of [lewd ? get_gender() : enchanter]'s control washes through your mind as they activate you."))
 		to_chat(enchanter, span_notice("You activate [owner] with three quick snaps of your fingers!"))
 		dormant = FALSE
-		linked_alert.attached_effect = owner.throw_alert(id, alert_type)
+		owner.throw_alert(id, alert_type)
 		UnregisterSignal(enchanter, COMSIG_MOB_EMOTE)
