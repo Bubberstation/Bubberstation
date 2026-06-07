@@ -2,7 +2,7 @@
 	name = "btr wreckage"
 	icon = 'modular_skyrat/master_files/icons/obj/vehicles/btr.dmi'
 	icon_state = "btr-broken"
-	welder_salvage = list(/obj/item/stack/sheet/mineral/adamantine, /obj/item/stack/sheet/mineral/runite, /obj/item/stack/rods/lava, /obj/effect/spawner/random/exotic/antag_gear, /obj/item/v8_engine, /obj/item/mounted_machine_gun_folded, /obj/item/ammo_box/magazine/mmg_box, /obj/item/ammo_casing/mm20x138, /obj/item/gun/ballistic/automatic/ar/modular/m44a/shotgun)
+	welder_salvage = list(/obj/item/stack/sheet/mineral/adamantine, /obj/item/stack/sheet/mineral/runite, /obj/item/stack/rods/lava, /obj/effect/spawner/random/exotic/antag_gear, /obj/item/v8_engine, /obj/item/mounted_machine_gun_folded, /obj/item/ammo_box/magazine/mmg_box, /obj/item/gun/ballistic/automatic/ar/modular/m44a/shotgun)
 
 /obj/vehicle/sealed/mecha/btr
 	desc = "HOLY SHIT IS THAT A FUCKING BTR?."
@@ -85,7 +85,7 @@
 	desc = "A weapon for a heavy vehicle, can be mounted on a mech but, you get the feeling "
 	icon_state = "mecha_uac2"
 	equip_cooldown = 10
-	projectile = /obj/projectile/bullet/mm20x138
+	projectile = /obj/projectile/bullet/p50
 	projectiles = 300
 	projectiles_cache = 300
 	projectiles_cache_max = 1200
@@ -94,7 +94,7 @@
 	randomspread = 1
 	projectile_delay = 2
 	harmful = TRUE
-	ammo_type = /obj/item/ammo_casing/mm20x138
+	ammo_type = /obj/item/ammo_casing/p50
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/tank_cannon
 	name = "\improper Tank cannon"
