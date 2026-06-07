@@ -432,6 +432,16 @@
 	AddComponent(/datum/component/two_handed, force_multiplier = 2.4)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
+/obj/item/melee/forged_reagent_weapon/staff/apply_smithing_component()
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_FORCE = MAX_PERFECT_FORCE_BONUS, FORGE_EFFECT_TOOLSPEED = -0.2), \
+		incompletion_effects = list(FORGE_EFFECT_FORCE, FORGE_EFFECT_ARMORPEN, FORGE_EFFECT_TOOLSPEED))
+
 /obj/item/melee/forged_reagent_weapon/hammer/attack(mob/living/M, mob/living/user, params)
 	. = ..()
 	user.changeNext_move(CLICK_CD_SLOW) //The hammer attacks slower but has more damage, that's it's thing now

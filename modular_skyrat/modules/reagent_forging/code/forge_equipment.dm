@@ -2,7 +2,7 @@
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
 	lefthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_l.dmi'
 	righthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_r.dmi'
-	toolspeed = 1 SECONDS
+	toolspeed = 1
 
 /obj/item/forging/tongs
 	name = "forging tongs"
@@ -13,7 +13,7 @@
 
 /obj/item/forging/tongs/primitive
 	name = "primitive forging tongs"
-	toolspeed = 2 SECONDS
+	toolspeed = 2
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/forging/tongs/attack_self(mob/user, modifiers)
@@ -50,6 +50,6 @@
 
 /obj/item/forging/billow/primitive
 	name = "primitive forging billow"
-	toolspeed = 2 SECONDS
+	toolspeed = 2
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 

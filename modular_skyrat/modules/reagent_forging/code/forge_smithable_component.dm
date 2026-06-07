@@ -2,7 +2,7 @@
 #define ANVIL_HAMMER_HIT_BAD 0
 #define ANVIL_HAMMER_HIT_PERFECT 2
 #define ANVIL_HAMMER_HIT_CANNOT_WORK 3
-#define ANVIL_SMITHING_CHIP_QUALITY_BONUS 1
+#define ANVIL_SMITHING_CHIP_QUALITY_BONUS 0.5
 
 /datum/component/forge_smithable
 	///the item that the component is attached to
@@ -97,7 +97,7 @@
 
 
 /datum/component/forge_smithable/proc/good_hit(amount = 1, playsound = FALSE)
-	quality_points += amount
+	quality_points = clamp(amount + quality_points, 0, completion_quality_points)
 	if(playsound)
 		playsound(parent_item, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 1.3, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, volume_preference = /datum/preference/numeric/volume/sound_ambience_volume)
 
@@ -182,6 +182,29 @@
 
 	return ANVIL_HAMMER_HIT_GOOD
 
+/datum/component/forge_smithable/proc/get_quality_points(mob/living/user, obj/item/tool)
+	var/total_quality_points = 1
+
+	//material properties affect forging; high thermal conductivity and flexibility are a bonus while high density and hardness take away
+	var/datum/material/item_material = parent_item.get_master_material()
+	var/density = item_material.get_property(MATERIAL_DENSITY)
+	var/hardness = item_material.get_property(MATERIAL_HARDNESS)
+	var/flexibility = item_material.get_property(MATERIAL_FLEXIBILITY)
+	var/thermal = item_material.get_property(MATERIAL_THERMAL)
+	total_quality_points *= ((flexibility * 3) + thermal) / (density + hardness)
+
+	//toolspeed doesn't affect the speed at which you strike the anvil, but it DOES affect the quality points gained (and thus how quickly the item is finished completion)
+	total_quality_points /= tool.toolspeed
+
+	//if the user has advanced smithing, then they also get a smithing hit bonus
+	if(HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
+		total_quality_points += ANVIL_SMITHING_CHIP_QUALITY_BONUS
+
+	//finally, all hits have a minimum quality amount
+	total_quality_points = max(MINIMUM_SMITHING_QUALITY_POINTS, total_quality_points)
+
+	return total_quality_points
+
 /datum/component/forge_smithable/proc/reset(reset_perfects = FALSE)
 	quality_points = 0
 	bad_hits_total = 0
@@ -201,7 +224,7 @@
 		user.balloon_alert(user, "metal too cool")
 		return ITEM_INTERACT_SUCCESS
 
-	var/quality_points_to_give = 1 + (HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING) ? ANVIL_SMITHING_CHIP_QUALITY_BONUS : 0)
+	var/quality_points_to_give = get_quality_points(user, tool)
 	var/hit_quality = get_hit_quality(user, tool)
 	switch(hit_quality)
 		if(ANVIL_HAMMER_HIT_CANNOT_WORK)
@@ -335,6 +358,8 @@
 				if(!isnull(reagent_component))
 					stack_trace("[parent_item] has an invalid reagent imbue-enhancing effect, because it has no reagent component!")
 				incomplete_maximum_penalty = initial(reagent_component.inject_amount) * -1
+			if(FORGE_EFFECT_TOOLSPEED)
+				incomplete_maximum_penalty = initial(parent_item.toolspeed) * 2
 			else
 				stack_trace("Tried to modify [parent_item] with an invalid effect [index]!")
 		give_added_modifying_effect_to_item(index, completion_applied_multiplier, incompletion_multiplier, parent_item, incomplete_maximum_penalty)
