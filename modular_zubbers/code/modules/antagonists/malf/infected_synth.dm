@@ -56,7 +56,6 @@
 	internal_camera = new /obj/machinery/camera/silicon(current_mob)
 	internal_camera.name = owner.name
 	internal_camera.c_tag = owner.name
-	//RegisterSignal(current_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine)) //See line 70 to 75
 
 /datum/antagonist/infected_ipc/remove_innate_effects(mob/living/mob_override)
 	. = ..()
@@ -66,13 +65,6 @@
 	QDEL_NULL(internal_camera)
 	UnregisterSignal(current_mob, COMSIG_MOB_EXAMINATE)
 
-/* /datum/antagonist/infected_ipc/proc/on_examine(mob/living/carbon/human/source, mob/user, list/examine_text)
-	SIGNAL_HANDLER
-	if(!istype(source))
-		return
-	if(!(source.obscured_slots & HIDEEYES))
-		examine_text += span_boldwarning("[source.p_Their()] optics are weirdly corrupted")
-commented out for now incase we ever wanna re-enable it */
 /datum/antagonist/infected_ipc/proc/set_master(datum/mind/master)
 	//the proc that links the AI and gives objectives. also some fluff hack that isn't in greet() since it has to be in order to make sense.
 	var/datum/objective/serve_ai/master_obj = new()
@@ -125,9 +117,8 @@ commented out for now incase we ever wanna re-enable it */
 
 //MOOD
 /datum/mood_event/infected_ipc
-	description = "SSmood_system.setmood(100);"
+	description = "Mood control component hacked setmood: Happy" //They are hacked to it makes sense in my opinion that their module that affects mood give off this "error"
 	mood_change = 100
-	hidden = FALSE
 
 //TRAUMA
 /datum/brain_trauma/special/infected_ipc
