@@ -1,3 +1,9 @@
+/obj/structure/mecha_wreckage/btr
+	name = "btr wreckage"
+	icon = 'modular_skyrat/master_files/icons/obj/vehicles/btr.dmi'
+	icon_state = "btr-broken"
+	welder_salvage = list(/obj/item/stack/sheet/mineral/adamantine, /obj/item/stack/sheet/mineral/runite, /obj/item/stack/rods/lava, /obj/effect/spawner/random/exotic/antag_gear, /obj/item/v8_engine, /obj/item/mounted_machine_gun_folded, /obj/item/ammo_box/magazine/mmg_box, /obj/item/ammo_casing/mm20x138)
+
 /obj/vehicle/sealed/mecha/btr
 	desc = "HOLY SHIT IS THAT A FUCKING BTR?."
 	name = "\improper BTR"
@@ -12,7 +18,7 @@
 	exit_delay = 80
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	accesses = list(ACCESS_CENT_SPECOPS)
-	wreckage = /obj/structure/mecha_wreckage/marauder
+	wreckage = /obj/structure/mecha_wreckage/btr
 	mecha_flags = IS_ENCLOSED | HAS_LIGHTS
 	mech_type = EXOSUIT_MODULE_MARAUDER
 	force = 100
