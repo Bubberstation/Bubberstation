@@ -143,12 +143,15 @@
 	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
 	select_name = "Disable"
 	harmful = FALSE
+	fire_sound = 'sound/items/weapons/taser2.ogg'
+	impact_sound = 'sound/items/weapons/sear_disabler.ogg'
 
 /obj/projectile/beam/cybersun_laser/disable_bounce
 	icon_state = "disable_bounce"
 	damage = 0
 	stamina = 20
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
+	impact_sound = 'sound/items/weapons/sear_disabler.ogg'
 	light_color = COLOR_BRIGHT_BLUE
 	ricochet_auto_aim_angle = 30
 	ricochet_auto_aim_range = 5
