@@ -2,7 +2,7 @@
 	name = "btr wreckage"
 	icon = 'modular_skyrat/master_files/icons/obj/vehicles/btr.dmi'
 	icon_state = "btr-broken"
-	welder_salvage = list(/obj/item/stack/sheet/mineral/adamantine, /obj/item/stack/sheet/mineral/runite, /obj/item/stack/rods/lava, /obj/effect/spawner/random/exotic/antag_gear, /obj/item/v8_engine, /obj/item/mounted_machine_gun_folded, /obj/item/ammo_box/magazine/mmg_box, /obj/item/ammo_casing/mm20x138)
+	welder_salvage = list(/obj/item/stack/sheet/mineral/adamantine, /obj/item/stack/sheet/mineral/runite, /obj/item/stack/rods/lava, /obj/effect/spawner/random/exotic/antag_gear, /obj/item/v8_engine, /obj/item/mounted_machine_gun_folded, /obj/item/ammo_box/magazine/mmg_box, /obj/item/ammo_casing/mm20x138, /obj/item/gun/ballistic/automatic/ar/modular/m44a/shotgun)
 
 /obj/vehicle/sealed/mecha/btr
 	desc = "HOLY SHIT IS THAT A FUCKING BTR?."
