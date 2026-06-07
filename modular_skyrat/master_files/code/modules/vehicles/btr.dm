@@ -94,6 +94,6 @@
 	name = "\improper Tank cannon"
 	desc = "A weapon for a tank, the entire tank barrel, firing mechanism and loading mechanism, how you are holding it, is a mystery that will never be solved."
 	icon_state = "mecha_missilerack"
-	projectile = /obj/projectile/bullet/mm40
+	projectile = /obj/projectile/bullet/rocket/srm
 	fire_sound = 'sound/items/weapons/gun/general/cannon.ogg'
-	ammo_type = /obj/item/ammo_casing/mm40
+	ammo_type = MECHA_AMMO_MISSILE_SRM
