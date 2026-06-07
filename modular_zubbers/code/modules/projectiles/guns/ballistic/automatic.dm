@@ -220,7 +220,7 @@
 	AddComponent(/datum/component/automatic_fire, 0.15 SECONDS)
 
 /obj/item/gun/ballistic/automatic/battle_rifle_basic
-	name = "\improper NT .38 battle rifle"
+	name = "\improper .38 battle rifle"
 	desc = "A lower-tech alternative version of Nanotrasen's latest prototype longarm, granting a different option to those who don't care for the NT-38. \
 		Technically a pistol-caliber carbine, despite the name and its use as a designated marksman rifle. \
 		Forsaking the advanced electronics and integrated technological advantages allows it to perform infinitely more reliably."
@@ -239,8 +239,7 @@
 	force = 15
 	mag_display = TRUE
 	empty_indicator = TRUE
-	projectile_damage_multiplier = 1.05
-	fire_delay = 1.5 DECISECONDS
+	fire_delay = 1.75 DECISECONDS
 	burst_size = 1
 	actions_types = list()
 	fire_sound = 'sound/items/weapons/thermalpistol.ogg'
