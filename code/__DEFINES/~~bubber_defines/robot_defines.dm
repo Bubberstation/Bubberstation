@@ -260,5 +260,5 @@
 	SKIN_HAT_OFFSET = list("north" = list(16, 1), "south" = list(16, 1), "east" = list(26, 1), "west" = list(6, 1)), \
 	SKIN_HAT_REST_OFFSET = list("north" = list(16, -11), "south" = list(16, -11), "east" = list(26, -11), "west" = list(6, -11))
 #define XENOBORG_HAT_OFFSET \
-	SKIN_HAT_OFFSET = list("north" = list(17, 10), "south" = list(17, 3), "east" = list(29, 3), "west" = list(3, 3)), \
+	SKIN_HAT_OFFSET = list("north" = list(16, 10), "south" = list(16, 5), "east" = list(32, 7), "west" = list(0, 7)), \
 	SKIN_HAT_REST_OFFSET = list("north" = list(16, 6), "south" = list(16, 6), "east" = list(31, 6), "west" = list(1, 6))
