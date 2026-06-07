@@ -12,5 +12,5 @@
 /area/awaymission/caves/maintsroom/deeper/biome1
 	name = "Valley of madness"
 	icon_state = "away4"
-	mood_bonus = -40
+	mood_bonus = -30
 	mood_message = "I NEED TO GET OUT OF HERE."

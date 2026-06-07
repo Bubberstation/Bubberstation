@@ -50,10 +50,20 @@
 		/obj/item/stack/sheet/mineral/diamond = 5,
 	)
 
-/obj/effect/spawner/random/maintsrooms/spatial_anoms
-	name = "spatial anomaly spawner"
-	desc = "most of the time nothing, sometimes a spatial anomaly."
+/obj/effect/spawner/random/maintsrooms/garbage_or_artifact
+	name = "low chance artifact spawner"
+	desc = "most of the time nothing, sometimes an artifact."
 	loot = list(
-		/obj/item/stack/sheet/mineral/diamond = 5,
+		/obj/item/slimecross/stabilized/blue/gravi = 1,
+		/obj/item/slimecross/stabilized/purple/soul = 1,
+		/obj/item/slimecross/stabilized/yellow/battery = 1,
+		/obj/effect/spawner/random/trash/deluxe_garbage = 97,
 	)
 
+	name = "artifact spawner"
+	desc = "A gauranteed artifact."
+	loot = list(
+		/obj/item/slimecross/stabilized/blue/gravi = 1,
+		/obj/item/slimecross/stabilized/purple/soul = 1,
+		/obj/item/slimecross/stabilized/yellow/battery = 1,
+	)

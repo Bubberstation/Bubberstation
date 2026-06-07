@@ -2,10 +2,12 @@
 /obj/item/slimecross/stabilized/purple/soul
 	name = "Strange comforting rock"
 	desc = "A strange rock that secretes a kind of slime that when smeared on wounds will heal them almost supernaturally, and when placed on your belt will automatically move to said wounds."
-	icon = 'icons/obj/science/slimecrossing.dmi'
-	icon_state = "base"
+	icon = 'modular_skyrat/master_files/icons/obj/startifacts.dmi'
+	icon_state = "soul"
 	colour = COLOR_WHITE
 	effect_desc = "Provides a regeneration effect"
+	w_class = WEIGHT_CLASS_HUGE
+	slot_flags = ITEM_SLOT_BELT
 
 /datum/status_effect/stabilized/purple/soul
 	id = "soul_artifact"
@@ -42,10 +44,12 @@
 /obj/item/slimecross/stabilized/yellow/battery
 	name = "Strange electric rock"
 	desc = "A strange rock that feels charged to the touch."
-	icon = 'icons/obj/science/slimecrossing.dmi'
-	icon_state = "base"
+	icon = 'modular_skyrat/master_files/icons/obj/startifacts.dmi'
+	icon_state = "battery"
 	colour = COLOR_BLUE_GRAY
 	effect_desc = "Charges electronics"
+	w_class = WEIGHT_CLASS_HUGE
+	slot_flags = ITEM_SLOT_BELT
 
 /datum/status_effect/stabilized/yellow/battery
 	id = "battery_artifact"
@@ -73,10 +77,12 @@
 /obj/item/slimecross/stabilized/blue/gravi//extremely strong, no slip from blue but better, speed bonus from light pink but no pacifism and no crit healing, and the movespeed modifier ignore from red.
 	name = "Strange weightless rock"
 	desc = "A strange rock that feels almost completely weightless."
-	icon = 'icons/obj/science/slimecrossing.dmi'
-	icon_state = "base"
+	icon = 'modular_skyrat/master_files/icons/obj/startifacts.dmi'
+	icon_state = "meduza"
 	colour = COLOR_DARK_BROWN
 	effect_desc = "grounds you and helps you maintain your speed"
+	w_class = WEIGHT_CLASS_HUGE
+	slot_flags = ITEM_SLOT_BELT
 
 /datum/status_effect/stabilized/blue/gravi
 	id = "gravi_artifact"
@@ -93,3 +99,5 @@
 	REMOVE_TRAIT(owner, TRAIT_NO_SLIP_ALL, TRAIT_STATUS_EFFECT(id))
 	owner.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/equipment_speedmod)
 	return ..()
+
+//i promise im going to add more in the future

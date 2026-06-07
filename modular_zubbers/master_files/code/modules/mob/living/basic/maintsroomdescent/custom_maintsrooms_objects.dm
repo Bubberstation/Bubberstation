@@ -178,3 +178,18 @@
 /obj/machinery/door/puzzle/keycard/claw_door
 	name = "secure airlock"
 	puzzle_id = "claw_card"
+
+/obj/item/clothing/accessory/armband/gift_of_the_void
+	name = "incrementum"
+	color = "#000000"
+	desc = "A completely normal armband, but its black, you feel safe putting it on"
+
+/obj/item/clothing/accessory/armband/gift_of_the_void/accessory_equipped(obj/item/clothing/under/clothes, mob/living/user)
+	user.add_mood_event("locked in", /datum/mood_event/locked_in)
+
+/obj/item/clothing/accessory/armband/gift_of_the_void/accessory_dropped(obj/item/clothing/under/clothes, mob/living/user)
+	user.clear_mood_event("locked in")
+
+/datum/mood_event/locked_in
+	description = "My mind feels secure. It was worth it."
+	mood_change = 31
