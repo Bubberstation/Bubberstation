@@ -2,7 +2,7 @@
 	desc = "HOLY SHIT IS THAT A FUCKING BTR?."
 	name = "\improper BTR"
 	icon = 'modular_skyrat/master_files/icons/obj/vehicles/btr.dmi'
-	icon_state = "btr
+	icon_state = "btr"
 	base_icon_state = "btr"
 	movedelay = 10
 	max_integrity = 2000
