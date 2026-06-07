@@ -32,9 +32,13 @@
 	. += span_notice("It can be (un)secured by <b>Right Clicking</b> with your bare hand.")
 
 	if(length(contents))
-		. += span_notice("It has [contents[1]] sitting on it.")
-		//if(istype(contents[1],/obj/item/forging/incomplete))
+		var/obj/my_contents = contents[1]
+		. += span_notice("It has [my_contents] sitting on it.")
 		. += span_notice("<b>Left Click</b> with a <b>forging mallet</b> to <b>hammer the metal with precise strikes</b>.")
+		if(USER_CAN_SEE_SMITHING_INFO(user) && !isnull(my_contents?.GetComponent(/datum/component/forge_smithable)))
+			var/datum/component/forge_smithable/my_component = my_contents.GetComponent(/datum/component/forge_smithable)
+			. += span_notice("You'd estimate that it's about [round(my_component.get_completion_ratio() * 100)]% complete.")
+			. += span_notice("The careful smithing makes it look about [round(my_component.get_perfect_ratio() * 100)]% perfected.")
 		if(HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
 			. += span_notice("If you strike precisely enough, you can get a <b>perfect hit!</b>")
 		else

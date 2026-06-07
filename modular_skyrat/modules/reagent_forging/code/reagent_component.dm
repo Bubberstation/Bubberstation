@@ -73,8 +73,10 @@
 					effects_list += "enhance its destructive potential"
 				if(FORGE_EFFECT_REAGENT_INJECT)
 					effects_list += "inflict more of the other containing reagents"
+				if(FORGE_EFFECT_TOOLSPEED)
+					effects_list += "work more efficiently in its intended use"
 
-		examine_list += span_notice("Smithing oil will make it [effects_list.Join("; ")].")
+		examine_list += span_notice("Smithing oil will make it [english_list(effects_list)].")
 	else
 		examine_list += span_notice("Smithing oil has no effect on [parent_item], but may affect things crafted with it.")
 

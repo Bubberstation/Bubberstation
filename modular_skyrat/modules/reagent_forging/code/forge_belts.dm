@@ -30,7 +30,7 @@
 			noteworthy_contents += I
 
 	if(length(noteworthy_contents) > 0)
-		name = "[src::name] containing [noteworthy_contents.Join("; ")]"
+		name = "[src::name] containing [english_list(noteworthy_contents)]"
 	else
 		name = src::name
 
