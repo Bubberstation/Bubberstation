@@ -30,8 +30,8 @@
 	AddComponent(/datum/component/automatic_fire, 0.125 SECONDS)
 
 /obj/item/gun/ballistic/rifle/stingballer/add_bayonet_point()
-	AddComponent(/datum/component/bayonet_attachable, offset_x = 26, offset_y = 12
-	)
+	AddComponent(/datum/component/bayonet_attachable, offset_x = 26, offset_y = 12)
+
 /obj/item/gun/ballistic/rifle/stingballer/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, \
 		light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', \
