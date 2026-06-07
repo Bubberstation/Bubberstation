@@ -243,6 +243,6 @@
 	desc = "A truly diabolical weapon for rapid deployment of any standard grenade. Comes with a complimentary box of flashbangs."
 	cost = CARGO_CRATE_VALUE * 75
 	contains = list(
-		/obj/item/gun/grenadelauncher
-		/obj/item/storage/box/flashbangs
+		/obj/item/gun/grenadelauncher,
+		/obj/item/storage/box/flashbangs,
 	)
