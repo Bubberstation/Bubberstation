@@ -10,6 +10,7 @@
 	alert_type = null
 	tick_interval = 1 SECONDS
 	processing_speed = STATUS_EFFECT_NORMAL_PROCESS
+	alert_type = /atom/movable/screen/alert/status_effect/mkultra
 	/// If this status effect bypasses mindshields
 	var/mindshield_bypass = FALSE
 	/// If this is permanent, innate, and inescapable
@@ -34,6 +35,8 @@
 	var/mob/living/enchanter
 	/// Command datums
 	var/list/commands = list()
+	/// If MKUltra is in a dormant state.
+	var/dormant = FALSE
 
 /** MKUltra
  *  * enchanter - The mob in which MKUltra responds to.
@@ -79,12 +82,15 @@
 /datum/status_effect/mkultra/tick(seconds_between_ticks)
 	if(permanent)
 		progress = 400
-	/// Checks ERP hypno prefs for both players
-	var/datum/preference/toggle/erp/hypnosis/hypno
-	if(owner.client?.prefs?.read_preference(hypno) && enchanter.client?.prefs?.read_preference(hypno) && !isnull(hypno))
-		lewd = TRUE
-	else
-		lewd = FALSE //TODO: Set false
+	/// Checks ERP hypno prefs for both players. Is done every tick to account for players updating their prefs.
+	var/hypno_owner = owner.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis)
+	var/hypno_enchanter = enchanter.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis)
+
+	lewd = hypno_owner && hypno_enchanter ? TRUE : FALSE
+
+	if(dormant)
+		return FALSE
+
 	/// Sends a tick to any commands that process
 	for(var/datum/mkultra_command/command in commands)
 		if(command.processing)
@@ -177,7 +183,9 @@
 /// Listens for certain regex and triggers its proper command
 /datum/status_effect/mkultra/proc/listener(mob/source, message)
 	for(var/datum/mkultra_command/command in commands)
-		if(findtext(message, command.trigger)) // TODO: Lewd check
+		if(findtext(message, command.trigger))
+			//if(command.erp_command && !lewd)
+			//	continue
 			command.execute(src, owner, source, message)
 
 /atom/movable/screen/alert/status_effect/mkultra

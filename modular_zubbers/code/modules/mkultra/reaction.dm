@@ -1,6 +1,6 @@
 /datum/chemical_reaction/mkultra
 	results = list(/datum/reagent/mkultra = 5)
-	required_reagents = list(/datum/reagent/consumable/coco = 1, /datum/reagent/bluespace = 1, /datum/reagent/toxin/mindbreaker = 1, /datum/reagent/medicine/psicodine = 1, /datum/reagent/drug/happiness = 1)
+	required_reagents = list(/datum/reagent/consumable/coco = 1, /datum/reagent/silver = 1, /datum/reagent/toxin/mindbreaker = 1, /datum/reagent/medicine/psicodine = 1, /datum/reagent/drug/happiness = 1)
 	required_temp = 720
 	optimal_temp = 810
 	overheat_temp = 840
@@ -19,7 +19,7 @@
 	. = ..()
 	var/datum/reagent/mkultra/chemical = locate() in holder.reagent_list
 	var/mob/living/user = chemical?.data["enchanter"]
-	if(!user)
+	if(!user && !isnull(chemical))
 		holder.my_atom.visible_message(span_warning("The reaction sputters and fails to react properly!"))
 		chemical.purity = 0
 		return

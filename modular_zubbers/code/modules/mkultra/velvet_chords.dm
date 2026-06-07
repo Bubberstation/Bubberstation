@@ -26,6 +26,3 @@
 		var/datum/status_effect/mkultra/status = people.has_status_effect(/datum/status_effect/mkultra)
 		if(!isnull(status))
 			status.listener(owner, command)
-
-
-
