@@ -239,7 +239,8 @@
 	force = 15
 	mag_display = TRUE
 	empty_indicator = TRUE
-	fire_delay = 2.0 DECISECONDS
+	projectile_damage_multiplier = 1.05
+	fire_delay = 1.5 DECISECONDS
 	burst_size = 1
 	actions_types = list()
 	fire_sound = 'sound/items/weapons/thermalpistol.ogg'
