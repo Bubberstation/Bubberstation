@@ -246,3 +246,10 @@
 	suppressor_x_offset = 0
 
 	SET_BASE_PIXEL(-8, 0)
+
+/obj/item/gun/ballistic/automatic/battle_rifle_basic/add_seclight_point()
+	AddComponent(/datum/component/seclite_attachable, \
+		light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', \
+		light_overlay = "flight", \
+		overlay_x = 26, \
+		overlay_y = 10)

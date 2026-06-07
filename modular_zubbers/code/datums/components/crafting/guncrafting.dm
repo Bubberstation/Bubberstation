@@ -35,6 +35,8 @@
 /obj/item/weaponcrafting/juggernaut_suit
 	name = "advanced security suit armor plates"
 	desc = "A set of incredibly dense armor plates for use in constructing the advanced security suit."
+	icon = 'modular_zubbers/icons/obj/weapons/improvised.dmi'
+	icon_state = "jugg_plates"
 	w_class = WEIGHT_CLASS_HUGE
 	item_flags = SLOWS_WHILE_IN_HAND
 	slowdown = 3
