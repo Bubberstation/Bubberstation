@@ -2,8 +2,8 @@
 	desc = "HOLY SHIT IS THAT A FUCKING BTR?."
 	name = "\improper BTR"
 	icon = 'modular_skyrat/master_files/icons/obj/vehicles/btr.dmi'
-	icon_state = "BTR_clean"
-	base_icon_state = "BTR_cleanr"
+	icon_state = "btr
+	base_icon_state = "btr"
 	movedelay = 10
 	max_integrity = 2000
 	armor_type = /datum/armor/mecha_btr
