@@ -153,4 +153,4 @@ commented out for now incase we ever wanna re-enable it */
 
 //Icon in antag menu
 /datum/antagonist/infected_ipc/get_preview_icon()
-	return finish_preview_icon(uni_icon('modular_zubbers/icons/human_player/infectedipc.dmi', "hsynth"))
+	return finish_preview_icon(uni_icon('modular_zubbers/icons/human_player/infectedsynth.dmi', "hsynth"))
