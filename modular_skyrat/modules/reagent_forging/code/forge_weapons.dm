@@ -6,7 +6,7 @@
 	righthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_r.dmi'
 	worn_icon = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_worn.dmi'
 	integrity_failure = 0.5
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 	obj_flags = UNIQUE_RENAME
 
 	//keeps track of how much force was taken away from incomplete forging
@@ -38,6 +38,12 @@
 	apply_smithing_component()
 	if(/datum/material/silver in custom_materials)
 		AddElement(/datum/element/bane, /datum/species/lycan, damage_multiplier = 3, requires_combat_mode = FALSE)
+
+/obj/item/melee/forged_reagent_weapon/change_material_integrity(datum/material/material, amount, multiplier, removing = FALSE)
+	blacksmithing_change_material_integrity(src, material, amount, multiplier, removing)
+
+/obj/item/melee/forged_reagent_weapon/change_material_strength(datum/material/material, mat_amount, multiplier, remove = FALSE)
+	blacksmithing_change_material_strength(src, material, mat_amount, multiplier, remove)
 
 /obj/item/melee/forged_reagent_weapon/proc/apply_reagent_component()
 	AddComponent(/datum/component/reagent_imbued/weapon, oil_effects = list(FORGE_EFFECT_ARMORPEN = 10))
@@ -455,6 +461,12 @@
 	AddComponent(/datum/component/reagent_imbued/weapon, oil_effects = list(FORGE_EFFECT_BLOCKCHANCE = 5, FORGE_EFFECT_DURABILITY = 20))
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 	apply_smithing_component()
+
+/obj/item/shield/buckler/reagent_weapon/change_material_integrity(datum/material/material, amount, multiplier, removing = FALSE)
+	blacksmithing_change_material_integrity(src, material, amount, multiplier, removing)
+
+/obj/item/shield/buckler/reagent_weapon/change_material_strength(datum/material/material, mat_amount, multiplier, remove = FALSE)
+	blacksmithing_change_material_strength(src, material, mat_amount, multiplier, remove)
 
 /obj/item/shield/buckler/reagent_weapon/proc/apply_smithing_component()
 	AddComponent(/datum/component/forge_smithable, \

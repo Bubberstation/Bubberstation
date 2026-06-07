@@ -104,3 +104,82 @@
 			reagent_component.inject_amount += new_inject_modifier - previous_inject_modifier
 		else
 			stack_trace("Tried to modify [item] with an invalid effect [forge_effect]!")
+
+/proc/blacksmithing_change_material_integrity(obj/item/my_item, datum/material/material, amount, multiplier, removing = FALSE)
+	var/base_modifier = material.get_property(MATERIAL_INTEGRITY)
+	var/integrity_mod = GET_MATERIAL_MODIFIER(base_modifier, multiplier)
+	var/integrity_change = removing ? floor(my_item.max_integrity / integrity_mod) : ceil(my_item.max_integrity * integrity_mod)
+	my_item.modify_max_integrity(integrity_change)
+
+	var/list/armor_mods = material.get_armor_modifiers(multiplier)
+	// Invert if we're removing our material
+	if (removing)
+		for (var/armor_type, value in armor_mods)
+			if (value != 0) // Needs to be restored to initial values in finalize effects, sorry
+				armor_mods[armor_type] = 1 / value
+
+	//with blacksmithing everything has to be addition based
+	var/datum/armor/new_armor = get_armor_by_type(my_item.get_initial_armor_type())
+	new_armor = new_armor.generate_new_with_multipliers(armor_mods)
+	new_armor = new_armor.generate_new_with_multipliers(list(ARMOR_ALL = 0.3)) //reduce effect because existing armor mults can be too much
+	new_armor = new_armor.subtract_other_armor(my_item.get_initial_armor_type())
+	new_armor = my_item.get_armor().add_other_armor(new_armor)
+	my_item.set_armor(new_armor)
+
+/proc/blacksmithing_change_material_strength(obj/item/my_item, datum/material/material, mat_amount, multiplier, remove = FALSE)
+	var/density = material.get_property(MATERIAL_DENSITY)
+	var/hardness = material.get_property(MATERIAL_HARDNESS)
+	var/flexibility = material.get_property(MATERIAL_FLEXIBILITY)
+
+	// Item force calculation depends on its initial (assumed to be main) sharpness
+	// Transforming component doesn't work with materials at all and will need a refactor to change that, so we don't care about it here.
+
+	var/force_mod = 1
+	var/throwforce_mod = 1
+
+	switch (my_item.sharpness)
+		if (NONE)
+			// Blunt items are really hurt by all the flexing
+			force_mod = (1 + (density - 4) * 0.1) / (1 + flexibility * 0.1)
+			throwforce_mod = 1 + (density - 4) * 0.1 - flexibility * 0.1
+
+		if (SHARP_EDGED)
+			// Sharp items don't care about density and need high hardness to get a real bonus, but can tolerate (and benefit from) some flex
+			force_mod = 1 + (hardness - 4) * 0.1
+			throwforce_mod = 1 + (hardness - 4) * 0.1
+
+			// Peaks out at 20% at flexibility of 1, drops off up to -80% at 10
+			if (flexibility < 2)
+				force_mod *= 1 + (1 - abs(1 - flexibility)) * 0.2
+				throwforce_mod += (1 - abs(1 - flexibility)) * 0.2
+			else
+				force_mod *= 1 - (flexibility - 2) * 0.1
+				throwforce_mod -= (flexibility - 2) * 0.1
+
+		if (SHARP_POINTY)
+			// Pointy items care about both density and hardness
+			force_mod = 1 + MATERIAL_PROPERTY_DIVERGENCE(density, 4, 6) * 0.05 + (hardness - 4) * 0.1
+			throwforce_mod = 1 + MATERIAL_PROPERTY_DIVERGENCE(density, 4, 6) * 0.05 * 0.05 + (hardness - 4) * 0.1
+			// But are not affected by flexibility until higher values, although they don't benefit from it either
+			if (flexibility > 4)
+				force_mod *= (1 - (flexibility - 4) * 0.2)
+				throwforce_mod -= (flexibility - 4) * 0.2
+
+	// Just for sanity in case something breaks
+	force_mod = clamp(force_mod, MATERIAL_MIN_FORCE_MULTIPLIER, MATERIAL_MAX_FORCE_MULTIPLIER)
+	throwforce_mod = clamp(throwforce_mod, MATERIAL_MIN_FORCE_MULTIPLIER, MATERIAL_MAX_FORCE_MULTIPLIER)
+
+	// change the forcemod to an added factor instead of a whole multiplier, then reduce the sum effect of the force mod because they currently go too fuggin hard
+	force_mod = round((force_mod - 1) / 3.5, 0.01)
+	throwforce_mod = round((throwforce_mod - 1) / 3.5, 0.01)
+	if (!remove)
+		my_item.force += initial(my_item.force) * GET_MATERIAL_MODIFIER(force_mod, multiplier)
+		my_item.throwforce += initial(my_item.force) * GET_MATERIAL_MODIFIER(throwforce_mod, multiplier)
+	else
+		my_item.force -= initial(my_item.force) * GET_MATERIAL_MODIFIER(force_mod, multiplier)
+		my_item.throwforce -= initial(my_item.force) * GET_MATERIAL_MODIFIER(throwforce_mod, multiplier)
+
+///urgh tg needs a get_armor_initial proc, working around protected/private vars is really annoying here
+/atom/proc/get_initial_armor_type()
+	RETURN_TYPE(/datum/armor)
+	return initial(armor_type)

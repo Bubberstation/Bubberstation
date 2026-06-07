@@ -171,14 +171,14 @@
 		if(reagent_component.imbued_reagent.reagent_list.len >= 1 && !USER_CAN_REAGENT_IMBUE(user))
 			return ANVIL_HAMMER_HIT_CANNOT_WORK
 
+	if(!COOLDOWN_FINISHED(user, striking_cooldown))
+		return ANVIL_HAMMER_HIT_BAD
+
 	if(can_perfect_hit)
 		if(user.mind.get_skill_level(/datum/skill/smithing) >= SKILL_LEVEL_LEGENDARY)
 			return ANVIL_HAMMER_HIT_PERFECT
 		if(!COOLDOWN_FINISHED(user, perfect_strike_window) && COOLDOWN_FINISHED(user, striking_cooldown))
 			return ANVIL_HAMMER_HIT_PERFECT
-
-	if(!COOLDOWN_FINISHED(user, striking_cooldown))
-		return ANVIL_HAMMER_HIT_BAD
 
 	return ANVIL_HAMMER_HIT_GOOD
 
@@ -222,7 +222,7 @@
 
 	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) * average_wait
 	COOLDOWN_START(user, striking_cooldown, skill_modifier)
-	COOLDOWN_START(user, perfect_strike_window, skill_modifier + user.mind.get_skill_level(/datum/skill/smithing) DECISECONDS)
+	COOLDOWN_START(user, perfect_strike_window, skill_modifier + (user.mind.get_skill_level(/datum/skill/smithing) DECISECONDS / 2))
 
 /* Attempts to quench the item using the given reagents. The reagents source must fill certain criteria to be elligible to do this -- and various effects can apply depending on the reagents used and their temp.
  *
@@ -347,11 +347,6 @@
 	COOLDOWN_DECLARE(striking_cooldown)
 	//the time it takes to prepare a perfect strike. should always be > striking_cooldown
 	COOLDOWN_DECLARE(perfect_strike_window)
-
-///urgh tg needs a get_armor_initial proc, working around protected/private vars is really annoying here
-/atom/proc/get_initial_armor_type()
-	RETURN_TYPE(/datum/armor)
-	return initial(armor_type)
 
 #undef ANVIL_HAMMER_HIT_GOOD
 #undef ANVIL_HAMMER_HIT_BAD
