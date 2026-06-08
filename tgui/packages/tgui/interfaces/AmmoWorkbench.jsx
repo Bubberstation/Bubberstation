@@ -51,7 +51,7 @@ export const AmmoWorkbench = (props) => {
           <Stack.Item>
             <Tabs fluid>
               <Tabs.Tab
-                icon="bolt"
+                icon="gun"
                 selected={tab === 1}
                 onClick={() => setTab(1)}
               >
