@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(floxy)
 	runlevels = ALL
 	init_stage = INITSTAGE_EARLY // should initialize relatively early, so admins can start playing music if they want to.
 #ifdef UNIT_TESTS
-	flags = SS_NO_INIT | SS_NO_FIRE
+	ss_flags = SS_NO_INIT | SS_NO_FIRE
 #endif
 	/// Base URL for Floxy.
 	var/base_url
