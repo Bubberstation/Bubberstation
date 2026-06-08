@@ -442,6 +442,16 @@
 		perfection_effects = list(FORGE_EFFECT_FORCE = MAX_PERFECT_FORCE_BONUS, FORGE_EFFECT_TOOLSPEED = -0.2), \
 		incompletion_effects = list(FORGE_EFFECT_FORCE, FORGE_EFFECT_ARMORPEN, FORGE_EFFECT_TOOLSPEED))
 
+/obj/item/melee/forged_reagent_weapon/hammer/change_material_strength(datum/material/material, mat_amount, multiplier, remove = FALSE)
+	. = ..()
+	var/density = material.get_property(MATERIAL_DENSITY)
+	var/hardness = material.get_property(MATERIAL_HARDNESS)
+	var/toolspeed_bonus = (density + hardness - 12) / 12
+	if(!remove)
+		toolspeed -= toolspeed_bonus
+	else
+		toolspeed += toolspeed_bonus
+
 /obj/item/melee/forged_reagent_weapon/hammer/attack(mob/living/M, mob/living/user, params)
 	. = ..()
 	user.changeNext_move(CLICK_CD_SLOW) //The hammer attacks slower but has more damage, that's it's thing now
@@ -602,3 +612,4 @@
 /obj/item/spear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_hand_reach, unwield_reach = 1, wield_reach = 2)
+
