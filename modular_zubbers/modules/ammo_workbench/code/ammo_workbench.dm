@@ -491,7 +491,7 @@
 		var/amount = base_mats[material] * (effective_recycle_percent() / 100)
 		materials.mat_container.insert_amount_mat(amount, material)
 		reclaimed_mats[material] = amount
-	log_silo_use(reclaimed_mats, "recycled", "spent rounds")
+	log_silo_use(reclaimed_mats, "recycled", "munitions")
 
 	// remove this one round (qdel for instances triggers Exited material bookkeeping; path entries just drop)
 	loaded_magazine.stored_ammo -= target_round
