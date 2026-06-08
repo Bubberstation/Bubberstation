@@ -45,6 +45,20 @@
 
 	RegisterSignal(src, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(try_throw_misfire))
 
+/obj/item/gun/ballistic/revolver/handcrafted_single_action/change_material_strength(datum/material/material, mat_amount, multiplier, remove = FALSE)
+	blacksmithing_change_material_strength(src, material, mat_amount, multiplier, remove)
+
+	var/density = material.get_property(MATERIAL_DENSITY)
+	var/hardness = material.get_property(MATERIAL_HARDNESS)
+	var/flexibility = material.get_property(MATERIAL_FLEXIBILITY)
+	var/inaccuracy_modifier = max(0, ((flexibility * 2) - (density + hardness)) * 2 )
+
+	if(!remove)
+		spread += inaccuracy_modifier
+	else
+		spread -= inaccuracy_modifier
+
+
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/update_icon(updates)
 	. = ..()
 	icon_state = "revolver_handle"
