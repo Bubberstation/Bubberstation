@@ -432,7 +432,7 @@
 	AddComponent(/datum/component/two_handed, force_multiplier = 2.4)
 	AddComponent(/datum/component/mindless_killer, mindless_force_override = 0, mindless_multiplier_override = 2)
 
-/obj/item/melee/forged_reagent_weapon/staff/apply_smithing_component()
+/obj/item/melee/forged_reagent_weapon/hammer/apply_smithing_component()
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
