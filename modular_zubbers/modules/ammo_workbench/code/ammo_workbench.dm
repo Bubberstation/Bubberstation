@@ -65,8 +65,8 @@
 	var/datum/remote_materials/materials
 	/// don't touch the silo, just use local storage (for the prefilled mapping variant)
 	var/force_local_materials = FALSE
-	/// whoever started the current print, for the silo log
-	var/alist/printing_user_data
+	/// sanitized ID record of whoever started the current print, for silo accountability logging (accesses stripped to avoid the logger choking).
+	var/alist/print_log_data
 
 /obj/machinery/ammo_workbench/unlocked
 	allowed_harmful = TRUE
@@ -79,8 +79,7 @@
 
 /obj/machinery/ammo_workbench/prefilled/Initialize(mapload)
 	. = ..()
-	// stock common bullet materials: mostly iron, smaller amounts of metals real rounds use.
-	// deliberately no diamond/bluespace/bananium — no reasonable round needs them.
+	// Give it a reasonable stock of materials used for bullets
 	if(materials?.mat_container)
 		materials.mat_container.insert_amount_mat(50 * SHEET_MATERIAL_AMOUNT, /datum/material/iron)
 		materials.mat_container.insert_amount_mat(20 * SHEET_MATERIAL_AMOUNT, /datum/material/glass)
@@ -183,7 +182,9 @@
 		qdel(casing_actual)
 		for(var/material in raw_casing_mats)
 			efficient_casing_mats[material] = raw_casing_mats[material] * creation_efficiency
-		var/rounds_to_fill = max(loaded_magazine.max_ammo - length(loaded_magazine.stored_ammo), 0)
+		// max_ammo can read 0 on a just-inserted empty container before its contents initialize; fall back to the type's spawn capacity.
+		var/true_capacity = loaded_magazine.max_ammo || initial(loaded_magazine.max_ammo)
+		var/rounds_to_fill = max(true_capacity - length(loaded_magazine.stored_ammo), 0)
 		var/mat_string = ""
 
 		for(var/i in 1 to length(efficient_casing_mats))
@@ -227,6 +228,7 @@
 	data["system_busy"] = busy
 
 	data["efficiency"] = creation_efficiency
+	data["silo_connected"] = materials && materials.silo ? TRUE : FALSE
 	data["time"] = time_per_round / 10
 	data["recyclePercent"] = round(effective_recycle_percent())
 	// turbo drops the signal bar by one (efficiency traded for speed).
@@ -272,6 +274,7 @@
 			. = TRUE
 
 		if("RecycleMag")
+			print_log_data = sanitize_id_data(ID_DATA(usr))
 			recycle_magazine()
 			. = TRUE
 
@@ -289,7 +292,7 @@
 
 		if("FillMagazine")
 			var/type_to_pass = text2path(params["selected_type"])
-			printing_user_data = ID_DATA(usr)
+			print_log_data = sanitize_id_data(ID_DATA(usr))
 			fill_magazine_start(type_to_pass)
 			. = TRUE
 
@@ -483,8 +486,12 @@
 		recycle_finish(successfully = FALSE)
 		return
 
+	var/list/reclaimed_mats = list()
 	for(var/material in base_mats)
-		materials.mat_container.insert_amount_mat(base_mats[material] * (effective_recycle_percent() / 100), material)
+		var/amount = base_mats[material] * (effective_recycle_percent() / 100)
+		materials.mat_container.insert_amount_mat(amount, material)
+		reclaimed_mats[material] = amount
+	log_silo_use(reclaimed_mats, "recycled", "spent rounds")
 
 	// remove this one round (qdel for instances triggers Exited material bookkeeping; path entries just drop)
 	loaded_magazine.stored_ammo -= target_round
@@ -604,7 +611,15 @@
 			ammo_fill_finish(FALSE)
 			qdel(new_casing)
 			return
-		materials.use_materials(efficient_materials, action = "printed", name = "[initial(new_casing.name)]", user_data = printing_user_data)
+		// respect a remote silo hold (the vault can pause us), but no nanny-state ID gating; the bench draws and logs, it doesn't police access
+		if(materials.silo && materials.on_hold())
+			error_message = "MATERIAL ACCESS ON HOLD"
+			error_type = "bad"
+			ammo_fill_finish(FALSE)
+			qdel(new_casing)
+			return
+		materials.mat_container.use_materials(efficient_materials)
+		log_silo_use(efficient_materials, "printed", initial(new_casing.name))
 		new_casing.set_custom_materials(efficient_materials)
 		rounds_made_this_run++
 		loaded_magazine.update_appearance()
@@ -849,6 +864,25 @@
 
 /obj/machinery/ammo_workbench/proc/adjust_hacked(state)
 	hacked = state
+
+/// Returns a copy of an ID_DATA record with the access list dropped. The raw access list is a flat list that
+/// the silo log serializer can't walk, so we strip it; we only need the name/account for accountability anyway.
+/obj/machinery/ammo_workbench/proc/sanitize_id_data(alist/user_data)
+	if(!islist(user_data))
+		return user_data
+	var/alist/clean = user_data.Copy()
+	clean["accesses"] = null
+	return clean
+
+/// Logs a material use to the connected silo for accountability (who printed what), without enforcing the silo's
+/// ID/account policy. No-op when not silo-linked.
+/obj/machinery/ammo_workbench/proc/log_silo_use(list/mats, action, name)
+	if(!materials?.silo)
+		return
+	var/list/scaled_mats = list()
+	for(var/mat in mats)
+		scaled_mats[mat] = mats[mat]
+	materials.silo.silo_log(src, action, -1, name, scaled_mats, print_log_data)
 
 /obj/machinery/ammo_workbench/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)

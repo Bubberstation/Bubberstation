@@ -19,7 +19,8 @@ import { MaterialAccessBar } from './Fabrication/MaterialAccessBar';
 export const AmmoWorkbench = (props) => {
   const [tab, setTab] = useSharedState('tab', 1);
   const { data, act } = useBackend();
-  const { materials = [], SHEET_MATERIAL_AMOUNT, hacked } = data;
+  const { materials = [], SHEET_MATERIAL_AMOUNT, hacked, silo_connected } =
+    data;
 
   return (
     <Window
@@ -39,6 +40,22 @@ export const AmmoWorkbench = (props) => {
               <Box as="span" className="AmmoWorkbench__header-title">
                 ARMADYNE AMMUNITIONS WORKBENCH
               </Box>
+              <Tooltip
+                content={
+                  silo_connected
+                    ? 'Linked to the ore silo.'
+                    : 'Not linked to an ore silo; using local storage. Link with a multitool.'
+                }
+              >
+                <Box
+                  as="span"
+                  className="AmmoWorkbench__header-silo"
+                  color={silo_connected ? 'good' : 'bad'}
+                >
+                  <Icon name="wifi" mr={0.5} />
+                  {silo_connected ? 'LINKED' : 'LOCAL'}
+                </Box>
+              </Tooltip>
               <Box
                 as="span"
                 className="AmmoWorkbench__header-status"
@@ -210,7 +227,7 @@ export const AmmunitionsTab = (props) => {
             <Flex height="100%" align="center" justify="center">
               <Flex.Item color="label" italic>
                 <Icon name="inbox" mr={1} />
-                No container inserted &mdash; insert one to begin.
+                No container inserted. Insert one to begin.
               </Flex.Item>
             </Flex>
           ) : (
