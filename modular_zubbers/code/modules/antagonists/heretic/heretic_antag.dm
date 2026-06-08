@@ -1,4 +1,5 @@
 #define OBJECTIVES_TO_WIN 2
+#define MAX_INFLUENCE_DRAIN 8
 
 /datum/antagonist/heretic
 	name = "\improper Acolyte"
@@ -10,7 +11,6 @@
 	passive_gain_timer = 40 MINUTES // passive progression is VERY... SLOW...
 	ui_name = "AntagInfoHereticV2"
 	var/max_combat_capability = 100
-	var/datum/objective/drain_influences/drain_obj
 	/// How many influences have we personally drained?
 	var/drained_num = 0
 	var/met_drained_num = FALSE
@@ -25,13 +25,13 @@
 	var/generate_influences = TRUE
 
 	var/static/list/possible_wildcard_objs = list(
-		/*/datum/objective/heretic_wildcard/sacrifice = 20,
-		/datum/objective/heretic_wildcard/sacrifice_pets = 20,
+		/datum/objective/heretic_wildcard/sacrifice = 80,
+		/*/datum/objective/heretic_wildcard/sacrifice_pets = 20,
 		/datum/objective/heretic_wildcard/sac_heretic = 20,*/
 		/datum/objective/heretic_wildcard/supermatter = 80,
 		/datum/objective/heretic_wildcard/ai_law = 80,
 		///datum/objective/heretic_wildcard/superway = 50,
-		/datum/objective/heretic_wildcard/steal_money = 80,
+		/datum/objective/heretic_wildcard/steal_money = 70,
 		///datum/objective/heretic_wildcard/potions = 80,
 	)
 	var/datum/objective/heretic_wildcard/wildcard_obj
@@ -51,11 +51,6 @@
 /datum/antagonist/heretic/forge_primary_objectives(heretic_research_tree)
 	// total override
 
-	var/datum/objective/drain_influences/drain_obj = new()
-	drain_obj.owner = owner
-	src.drain_obj = drain_obj
-	objectives += drain_obj
-
 	var/datum/objective/open_ways/way_obj = new()
 	way_obj.owner = owner
 	src.way_obj = way_obj
@@ -69,16 +64,13 @@
 
 /datum/antagonist/heretic/proc/adjust_drained(adjustment)
 	drained_num += adjustment
-	if (!drain_obj)
-		return
 	if (!met_drained_num)
 		adjust_knowledge_points(HERETIC_POINTS_PER_INFLUENCE) // TODO - consider if codex should give more. proooobably not. codex needs a new identity...
-	if (drained_num >= drain_obj.target_amount && !met_drained_num)
+	if (drained_num >= MAX_INFLUENCE_DRAIN && !met_drained_num)
 		met_drained_num = TRUE
-		drain_obj.completed = TRUE
 		to_chat(owner, span_hypnophrase("The SEAMS of the WORLD have REVEALED THEMSELVES TO YOU. You have risen HIGH! AND you SEE!!"))
-		to_chat(owner, span_warning("You can no longer obtain knowledge points from influences, as your objective has been completed."))
-		SEND_SOUND(owner, 'sound/effects/magic/knock.ogg')
+		to_chat(owner, span_warning("You can no longer obtain knowledge points from influences."))
+		SEND_SOUND(owner.current, sound('sound/effects/magic/knock.ogg'))
 
 /datum/antagonist/heretic/proc/adjust_ways_opened(adjustment)
 	ways_opened += adjustment
@@ -91,7 +83,7 @@
 		way_obj.completed = TRUE
 		to_chat(owner, span_hypnophrase("Your mind DAZZLES with the LIGHT! You have seen MORE of the MANSUS with your OWN EYES than ANY MORTAL could ever DREAM!!"))
 		to_chat(owner, span_warning("You can no longer obtain knowledge points from ways, as your objective has been completed."))
-		SEND_SOUND(owner, 'sound/effects/magic/knock.ogg')
+		SEND_SOUND(owner.current, sound('sound/effects/magic/knock.ogg'))
 		// its important we only give heretics very limtied progression. while progression is nice, unchecked progression ruins the way nonantags interact with them
 
 /datum/antagonist/heretic/proc/get_allocated_combat_points()
@@ -146,7 +138,7 @@
 				parts += "<b>Objective #[count]</b>: [objective.explanation_text] [span_redtext("Fail.")]"
 			count++
 	parts += span_boldnotice("[OBJECTIVES_TO_WIN] objectives were required to succeed...")
-	if(completed >= OBJECTIVES_TO_WIN)
+	if(completed >= min(OBJECTIVES_TO_WIN, objectives.len))
 		parts += span_greentext("The [LOWER_TEXT(heretic_path.route)] acolyte was successful!")
 	else
 		parts += span_redtext("The [LOWER_TEXT(heretic_path.route)] acolyte has failed.")
@@ -175,3 +167,4 @@
 	generate_influences = FALSE
 
 #undef OBJECTIVES_TO_WIN
+#undef MAX_INFLUENCE_DRAIN

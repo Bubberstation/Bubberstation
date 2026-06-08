@@ -96,7 +96,7 @@
 
 /datum/objective/open_ways/New(text)
 	. = ..()
-	target_amount = 2
+	target_amount = 3
 	update_explanation_text()
 
 /datum/objective/open_ways/update_explanation_text()

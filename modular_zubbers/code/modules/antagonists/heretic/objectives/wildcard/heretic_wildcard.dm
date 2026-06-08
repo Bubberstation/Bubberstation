@@ -41,4 +41,4 @@
 /datum/objective/heretic_wildcard/proc/do_finished_text_and_flavor(datum/antagonist/heretic/our_heretic)
 	to_chat(our_heretic.owner, span_hypnophrase(finish_text))
 	to_chat(our_heretic.owner, span_warning("You can no longer obtain knowledge points from your [name] objective, as it has been completed."))
-	SEND_SOUND(our_heretic.owner, 'sound/effects/magic/knock.ogg')
+	SEND_SOUND(our_heretic.owner.current, sound('sound/effects/magic/knock.ogg'))
