@@ -70,19 +70,15 @@
 		/obj/item/mod/module/orebag,
 		/obj/item/mod/module/drill,
 		/obj/item/mod/module/clamp,
-		/obj/item/mod/module/health_analyzer,
-		/obj/item/mod/module/quick_carry,
 		/obj/item/mod/module/constructor,
 		/obj/item/mod/module/injector,
 		/obj/item/mod/module/organizer,
 		/obj/item/mod/module/criminalcapture/patienttransport,
-		/obj/item/mod/module/thread_ripper,
-		/obj/item/mod/module/surgical_processor,
 		/obj/item/mod/module/quick_cuff,
 		/obj/item/mod/module/ash_accretion,
 	)
 	complexity = 4
-	removable = FALSE
+	removable = TRUE
 	use_energy_cost = DEFAULT_CHARGE_DRAIN * 20
 	/// Reagent used as 'fuel'
 	var/reagent_required = /datum/reagent/cryptobiolin

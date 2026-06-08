@@ -239,3 +239,4 @@
 		to alert anyone nearby that someone has, in fact, died. This specific unit has a clock and operational ID readout."
 	display_time = TRUE
 	death_sound = 'modular_skyrat/modules/novaya_ert/sound/flatline.ogg'
+	removable = TRUE
