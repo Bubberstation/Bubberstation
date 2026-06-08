@@ -7,6 +7,8 @@
 	use_power = IDLE_POWER_USE
 	circuit = /obj/item/circuitboard/machine/ammo_workbench
 	var/busy = FALSE
+	/// TRUE while recycling (vs fabricating); routes Cancel.
+	var/is_recycling = FALSE
 	/// if it's hacked it's gonna be able to print lethals. it'll be mad at you for doing so but it'll print basic lethals.
 	var/hacked = FALSE
 	var/disabled = FALSE
@@ -29,6 +31,8 @@
 	var/list/valid_casings = list()
 	/// the material requirement strings for these casings (for the tooltip)
 	var/list/casing_mat_strings = list()
+	/// parallel to valid_casings: per-round UI tip-dot hex color (or null).
+	var/list/casing_tip_colors = list()
 	/// can it print ammunition flagged as harmful (e.g. most ammo)?
 	var/allowed_harmful = FALSE
 	/// can it print advanced ammunition types (e.g. armor-piercing)? see modular_skyrat\modules\modular_weapons\code\modular_projectiles.dm
@@ -47,6 +51,14 @@
 	var/turbo_time_per_round = 0.225 SECONDS
 	/// multiplier for material cost per round (when turbo is enabled)
 	var/turbo_efficiency = 2.8
+	/// percent of a round's base materials returned on recycle. set by servo tier in RefreshParts().
+	var/recycle_percent = 75
+	/// rounded servo tier (1-4), shown as the UI signal bars.
+	var/part_tier = 1
+	/// magazine-bar label while busy (FABRICATING / RECYCLING / joke).
+	var/activity_label = "FABRICATING"
+	/// rounds made this run; distinguishes mid-run depletion from never having enough.
+	var/rounds_made_this_run = 0
 	/// can this print any round of any caliber given a correct ammo_box? (you varedit this at your own risk, especially if used in a player-facing context.)
 	/// does not force ammo to load in. just makes it able to print wacky ammotypes e.g. lionhunter 7.62, techshells
 	var/adminbus = FALSE
@@ -56,6 +68,23 @@
 	allowed_harmful = TRUE
 	allowed_advanced = TRUE
 
+/// Mapping/testing variant: spawns with tier-3 parts (via its own board) and a modest material stock,
+/// so it's usable out of the box without also placing sheets and a datadisk. For away missions, custom maps, admin setups.
+/obj/machinery/ammo_workbench/prefilled
+	circuit = /obj/item/circuitboard/machine/ammo_workbench/prefilled
+
+/obj/machinery/ammo_workbench/prefilled/Initialize(mapload)
+	. = ..()
+	// stock common bullet materials: mostly iron, smaller amounts of metals real rounds use.
+	// deliberately no diamond/bluespace/bananium — no reasonable round needs them.
+	if(materials)
+		materials.insert_amount_mat(50 * SHEET_MATERIAL_AMOUNT, /datum/material/iron)
+		materials.insert_amount_mat(20 * SHEET_MATERIAL_AMOUNT, /datum/material/glass)
+		materials.insert_amount_mat(20 * SHEET_MATERIAL_AMOUNT, /datum/material/titanium)
+		materials.insert_amount_mat(15 * SHEET_MATERIAL_AMOUNT, /datum/material/plasma)
+		materials.insert_amount_mat(15 * SHEET_MATERIAL_AMOUNT, /datum/material/silver)
+		materials.insert_amount_mat(15 * SHEET_MATERIAL_AMOUNT, /datum/material/gold)
+
 /obj/item/circuitboard/machine/ammo_workbench
 	name = "Ammunition Workbench (Machine Board)"
 	icon_state = "circuit_map"
@@ -64,6 +93,15 @@
 		/datum/stock_part/servo = 2,
 		/datum/stock_part/matter_bin = 2,
 		/datum/stock_part/micro_laser = 2
+	)
+
+/// Tier-3 board for the prefilled mapping/testing variant.
+/obj/item/circuitboard/machine/ammo_workbench/prefilled
+	build_path = /obj/machinery/ammo_workbench/prefilled
+	req_components = list(
+		/datum/stock_part/servo/tier3 = 2,
+		/datum/stock_part/matter_bin/tier3 = 2,
+		/datum/stock_part/micro_laser/tier3 = 2
 	)
 
 /obj/machinery/ammo_workbench/Initialize(mapload)
@@ -81,6 +119,7 @@
 	. += ..()
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("The status display reads: Storing up to <b>[materials.max_amount]</b> material units.<br>Material consumption at <b>[creation_efficiency*100]%</b>.")
+		. += span_notice("Reclaiming <b>[recycle_percent]%</b> of materials when recycling a loaded container.")
 
 /obj/machinery/ammo_workbench/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -91,9 +130,15 @@
 	if(shocked)
 		workbench_shock(user, 80)
 
+/obj/machinery/ammo_workbench/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet_batched/sheetmaterials),
+	)
+
 /obj/machinery/ammo_workbench/proc/update_ammotypes()
 	LAZYCLEARLIST(valid_casings)
 	LAZYCLEARLIST(casing_mat_strings)
+	LAZYCLEARLIST(casing_tip_colors)
 	if(!loaded_magazine)
 		return
 	var/obj/item/ammo_casing/ammo_type = loaded_magazine.ammo_type
@@ -124,19 +169,21 @@
 		qdel(casing_actual)
 		for(var/material in raw_casing_mats)
 			efficient_casing_mats[material] = raw_casing_mats[material] * creation_efficiency
+		var/rounds_to_fill = max(loaded_magazine.max_ammo - length(loaded_magazine.stored_ammo), 0)
 		var/mat_string = ""
 
 		for(var/i in 1 to length(efficient_casing_mats))
 			var/datum/material/our_material = efficient_casing_mats[i]
-			mat_string += "[efficient_casing_mats[our_material]] cm³ [our_material.name]"
-			if(i == length(efficient_casing_mats))
-				mat_string += " per cartridge"
-			else
+			var/per_round = round(efficient_casing_mats[our_material] / SHEET_MATERIAL_AMOUNT, 0.01)
+			var/to_fill = round(per_round * rounds_to_fill, 0.01)
+			mat_string += "[per_round] [our_material.name] ([to_fill] to fill)"
+			if(i != length(efficient_casing_mats))
 				mat_string += ", "
 
 		valid_casings += our_casing // adding the valid typepath
 		valid_casings[our_casing] = initial(our_casing.name)
 		casing_mat_strings += mat_string // adding the casing material cost string
+		casing_tip_colors += initial(our_casing.workbench_tip_color)
 		// we pray to god these indexes stay consistent.
 
 /obj/machinery/ammo_workbench/ui_data(mob/user)
@@ -167,45 +214,37 @@
 
 	data["efficiency"] = creation_efficiency
 	data["time"] = time_per_round / 10
+	data["recyclePercent"] = round(effective_recycle_percent())
+	// turbo drops the signal bar by one (efficiency traded for speed).
+	data["partTier"] = turbo_boost ? max(part_tier - 1, 0) : part_tier
+	data["bar_state"] = activity_label
+	data["recycle_preview"] = get_recycle_preview()
 	data["hacked"] = hacked
 	data["turboBoost"] = turbo_boost
 
-	data["materials"] = list()
-	if (materials)
-		for(var/mat in materials.materials)
-			var/datum/material/M = mat
-			var/amount = materials.materials[M]
-			var/sheet_amount = amount / SHEET_MATERIAL_AMOUNT
-			var/ref = REF(M)
-			data["materials"] += list(list("name" = M.name, "id" = ref, "amount" = sheet_amount))
+	data["materials"] = materials ? materials.ui_data() : list()
+	data["SHEET_MATERIAL_AMOUNT"] = SHEET_MATERIAL_AMOUNT
+	data["materialMaximum"] = materials ? materials.max_amount : 0
 
 	if(error_message)
 		data["error"] = error_message
 		data["error_type"] = error_type
-	else if(busy)
-		data["error"] = "SYSTEM IS BUSY"
-		data["error_type"] = ""
 
-	if(!loaded_magazine)
-		data["error"] = "NO MAGAZINE IS INSERTED"
-		data["error_type"] = ""
-		return data
-	else
-		data["mag_loaded"] = TRUE
+	data["mag_loaded"] = loaded_magazine ? TRUE : FALSE
+	data["mag_name"] = loaded_magazine ? loaded_magazine.name : null
+	data["current_rounds"] = loaded_magazine ? length(loaded_magazine.stored_ammo) : 0
+	data["max_rounds"] = loaded_magazine ? loaded_magazine.max_ammo : 0
 
 	data["available_rounds"] = list()
-
-	for(var/casings_to_relay = 1 to length(valid_casings))
-		var/typepath = valid_casings[casings_to_relay]
-		data["available_rounds"] += list(list(
-			"name" = valid_casings[typepath],
-			"typepath" = typepath,
-			"mats_list" = casing_mat_strings[casings_to_relay]
-		))
-
-	data["mag_name"] = loaded_magazine.name
-	data["current_rounds"] = length(loaded_magazine.stored_ammo)
-	data["max_rounds"] = loaded_magazine.max_ammo
+	if(loaded_magazine)
+		for(var/casings_to_relay = 1 to length(valid_casings))
+			var/typepath = valid_casings[casings_to_relay]
+			data["available_rounds"] += list(list(
+				"name" = valid_casings[typepath],
+				"typepath" = typepath,
+				"mats_list" = casing_mat_strings[casings_to_relay],
+				"tip_color" = casing_tip_colors[casings_to_relay]
+			))
 
 	return data
 
@@ -216,6 +255,22 @@
 	switch(action)
 		if("EjectMag")
 			ejectItem()
+			. = TRUE
+
+		if("RecycleMag")
+			recycle_magazine()
+			. = TRUE
+
+		if("CancelFabrication")
+			if(busy)
+				if(is_recycling)
+					error_message = "RECYCLING CANCELLED"
+					error_type = ""
+					recycle_finish(successfully = FALSE)
+				else
+					error_message = "FABRICATION CANCELLED"
+					error_type = ""
+					ammo_fill_finish(FALSE)
 			. = TRUE
 
 		if("FillMagazine")
@@ -247,6 +302,22 @@
 			materials.retrieve_stack(sheets_to_remove, mat, loc)
 			. = TRUE
 
+		if("remove_mat") // MaterialAccessBar eject: { ref, amount(sheets) }
+			if(!materials)
+				return
+			var/datum/material/mat = locate(params["ref"])
+			if(!mat)
+				return
+			var/units_available = materials.materials[mat]
+			if(!units_available)
+				return
+			var/sheets_available = CEILING(units_available / SHEET_MATERIAL_AMOUNT, 0.1)
+			var/desired = text2num(params["amount"]) || 0
+			var/sheets_to_remove = round(min(desired, 50, sheets_available))
+			if(sheets_to_remove > 0)
+				materials.retrieve_stack(sheets_to_remove, mat, loc)
+			. = TRUE
+
 		if("ReadDisk")
 			loadDisk()
 
@@ -256,20 +327,24 @@
 		if("turboBoost")
 			toggle_turbo_boost()
 
-/// Toggles this ammo bench's turbo setting. If it's on, uses the turbo time-per-round/efficiency; if off, resets to base time-per-round/efficiency. forced_off forces turbo off.
+/// Toggles turbo; forced_off forces it off.
 /obj/machinery/ammo_workbench/proc/toggle_turbo_boost(forced_off = FALSE)
 	if(forced_off)
 		turbo_boost = FALSE
 	else
 		turbo_boost = !turbo_boost
+	apply_speed_state()
+	update_ammotypes()
+	SStgui.update_uis(src)
 
+/// Applies the turbo flag to live time/efficiency from base_* values.
+/obj/machinery/ammo_workbench/proc/apply_speed_state()
 	if(turbo_boost)
 		time_per_round = turbo_time_per_round
 		creation_efficiency = turbo_efficiency
 	else
 		time_per_round = base_time_per_round
 		creation_efficiency = base_efficiency
-	update_ammotypes()
 
 /obj/machinery/ammo_workbench/proc/ejectItem(mob/living/user)
 	if(loaded_magazine)
@@ -287,6 +362,143 @@
 		timer_id = null
 	update_ammotypes()
 	update_appearance()
+
+/// Recycles the loaded mag, reclaiming a servo-tier fraction of each round's base materials (capped 100%).
+
+/// Reclaim percent, reduced under turbo (speed costs efficiency).
+/obj/machinery/ammo_workbench/proc/effective_recycle_percent()
+	return turbo_boost ? recycle_percent * 0.6 : recycle_percent
+
+/// Sheet-yield summary string for recycling the loaded mag, or null.
+/obj/machinery/ammo_workbench/proc/get_recycle_preview()
+	if(!loaded_magazine || !length(loaded_magazine.stored_ammo))
+		return null
+	var/list/reclaimed = list()
+	var/list/comp_cache = list()
+	for(var/atom/entry as anything in loaded_magazine.stored_ammo)
+		var/casing_type = ispath(entry) ? entry : entry.type
+		if(!ispath(casing_type, /obj/item/ammo_casing))
+			continue
+		var/list/base_mats = comp_cache[casing_type]
+		if(isnull(base_mats))
+			var/obj/item/ammo_casing/base_casing = new casing_type
+			base_mats = base_casing.get_material_composition()
+			qdel(base_casing)
+			comp_cache[casing_type] = base_mats || list()
+		for(var/datum/material/mat as anything in base_mats)
+			reclaimed[mat] += base_mats[mat] * (effective_recycle_percent() / 100)
+	if(!length(reclaimed))
+		return null
+	var/list/parts = list()
+	for(var/datum/material/mat as anything in reclaimed)
+		var/sheets = round(reclaimed[mat] / SHEET_MATERIAL_AMOUNT, 0.01)
+		if(sheets > 0)
+			parts += "[sheets] [mat.name]"
+	return length(parts) ? jointext(parts, ", ") : null
+
+/obj/machinery/ammo_workbench/proc/recycle_magazine(mob/living/user)
+	if(machine_stat & (NOPOWER|BROKEN))
+		return
+	if(busy)
+		error_message = "SYSTEM IS BUSY"
+		error_type = ""
+		return
+	if(!loaded_magazine)
+		error_message = "NO CONTAINER INSERTED"
+		error_type = ""
+		return
+	if(!length(loaded_magazine.stored_ammo))
+		error_message = "CONTAINER IS EMPTY"
+		error_type = "bad"
+		return
+
+	// per-round loop: faster than printing, drains visibly.
+	busy = TRUE
+	is_recycling = TRUE
+	activity_label = pick_recycle_status()
+	error_message = "" // ongoing state shows on the magazine bar, not here
+	error_type = ""
+	SStgui.update_uis(src) // disable the controls immediately
+	recycle_round()
+
+/// Recycle status: usually RECYCLING, small chance of a joke.
+/obj/machinery/ammo_workbench/proc/pick_recycle_status()
+	var/static/list/recycle_jokes = list(
+		"UNFABRICATING",
+		"PRINTN'T",
+		"UN-PRINTING",
+	)
+	if(prob(10))
+		return pick(recycle_jokes)
+	return "RECYCLING"
+
+/// Reclaims one round per call, rescheduling until empty.
+/obj/machinery/ammo_workbench/proc/recycle_round()
+	if(machine_stat & (NOPOWER|BROKEN) || !loaded_magazine)
+		recycle_finish()
+		return
+
+	// stored_ammo is a lazy mixed list (typepaths until instantiated)
+	var/atom/target_round
+	for(var/atom/entry as anything in loaded_magazine.stored_ammo)
+		var/entry_type = ispath(entry) ? entry : entry.type
+		if(ispath(entry_type, /obj/item/ammo_casing))
+			target_round = entry
+			break
+
+	if(isnull(target_round)) // nothing left to process
+		recycle_finish(successfully = TRUE)
+		return
+
+	var/casing_type = ispath(target_round) ? target_round : target_round.type
+	// read base composition from a throwaway casing of this type (initial() won't copy material lists)
+	var/obj/item/ammo_casing/base_casing = new casing_type
+	var/list/base_mats = base_casing.get_material_composition()
+	qdel(base_casing)
+
+	// only reclaim if the whole round's worth fits; otherwise stop here with what we've already banked
+	var/round_total = 0
+	for(var/material in base_mats)
+		round_total += base_mats[material] * (effective_recycle_percent() / 100)
+	if(round_total && !materials.has_space(round_total))
+		error_message = "MATERIAL STORAGE FULL"
+		error_type = "bad"
+		recycle_finish(successfully = FALSE)
+		return
+
+	for(var/material in base_mats)
+		materials.insert_amount_mat(base_mats[material] * (effective_recycle_percent() / 100), material)
+
+	// remove this one round (qdel for instances triggers Exited material bookkeeping; path entries just drop)
+	loaded_magazine.stored_ammo -= target_round
+	if(!ispath(target_round))
+		qdel(target_round)
+	loaded_magazine.update_appearance()
+
+	flick("ammobench_process", src)
+	use_energy(3000 JOULES)
+	// the print sound, but backwards: one reverse zerp per round, the inverse of fill_round()'s per-round piston.
+	playsound(loc, 'sound/machines/piston/piston_raise.ogg', 60, TRUE, frequency = -1)
+	SStgui.update_uis(src)
+
+	// recycling is twice as fast as printing at the same part tier, and rides the same turbo/upgrade scaling (turbo makes it faster but wastes material).
+	var/recycle_delay = max(time_per_round * 0.5, 1)
+	timer_id = addtimer(CALLBACK(src, PROC_REF(recycle_round)), recycle_delay, TIMER_STOPPABLE)
+
+/obj/machinery/ammo_workbench/proc/recycle_finish(successfully = TRUE)
+	if(timer_id)
+		deltimer(timer_id) // kill any pending next-round callback, else cancel does nothing
+		timer_id = null
+	busy = FALSE
+	is_recycling = FALSE
+	if(successfully && loaded_magazine)
+		// zero out the mag's own material value so it reads as empty even if a stray entry lingered
+		loaded_magazine.set_custom_materials(list())
+		loaded_magazine.update_appearance()
+		error_message = "MUNITIONS RECYCLED"
+		error_type = "good"
+		playsound(loc, 'sound/machines/ping.ogg', 40, TRUE)
+	SStgui.update_uis(src)
 
 /obj/machinery/ammo_workbench/proc/fill_magazine_start(casing_type)
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -314,12 +526,12 @@
 			return
 
 	if(!loaded_magazine)
-		error_message = "NO MAGAZINE INSERTED"
+		error_message = "NO CONTAINER INSERTED"
 		error_type = ""
 		return
 
 	if(loaded_magazine.stored_ammo.len >= loaded_magazine.max_ammo)
-		error_message = "MAGAZINE IS FULL"
+		error_message = "CONTAINER IS FULL"
 		error_type = "good"
 		return
 
@@ -327,6 +539,10 @@
 		return
 
 	busy = TRUE
+	is_recycling = FALSE
+	activity_label = "FABRICATING"
+	rounds_made_this_run = 0
+	SStgui.update_uis(src) // disable the controls immediately, before the first round fires
 
 	timer_id = addtimer(CALLBACK(src, PROC_REF(fill_round), casing_type), time_per_round, TIMER_STOPPABLE)
 
@@ -350,7 +566,8 @@
 		efficient_materials[material] = required_materials[material] * creation_efficiency
 
 	if(!materials.has_materials(efficient_materials))
-		error_message = "INSUFFICIENT MATERIALS"
+		// ran dry partway through a run = DEPLETED; failed on the very first round = never had enough.
+		error_message = rounds_made_this_run ? "MATERIALS DEPLETED" : "INSUFFICIENT MATERIALS"
 		error_type = "bad"
 		ammo_fill_finish(FALSE)
 		qdel(new_casing)
@@ -365,6 +582,7 @@
 			return
 		materials.use_materials(efficient_materials)
 		new_casing.set_custom_materials(efficient_materials)
+		rounds_made_this_run++
 		loaded_magazine.update_appearance()
 		flick("ammobench_process", src)
 		use_energy(3000 JOULES)
@@ -392,6 +610,7 @@
 		playsound(loc, 'sound/machines/buzz/buzz-sigh.ogg', 40, TRUE)
 	update_appearance()
 	busy = FALSE
+	is_recycling = FALSE
 	if(timer_id)
 		deltimer(timer_id)
 		timer_id = null
@@ -409,6 +628,7 @@
 	disk_error_type = "good"
 	loaded_datadisk.on_bench_install(src)
 	loaded_datadisks += loaded_datadisk.type // upon further reflection this. doesn't cause a hard del. still not a fan since the disks don't do anything by themselves
+	update_ammotypes() // a disk can unlock new printable types; refresh the list now instead of waiting for a mag reinsert
 	return TRUE
 
 /obj/machinery/ammo_workbench/proc/ejectDisk()
@@ -417,6 +637,7 @@
 		loaded_datadisk = null
 		disk_error = ""
 		disk_error_type = ""
+		update_ammotypes() // ejecting can revoke access; keep the printable list in sync
 
 /datum/design/board/ammo_workbench
 	name = "Machine Design (Ammunitions Workbench)"
@@ -431,22 +652,32 @@
 
 /obj/machinery/ammo_workbench/RefreshParts()
 	. = ..()
-	toggle_turbo_boost(forced_off = TRUE) // forces turbo off
 	var/time_efficiency = 1.8 SECONDS
 	for(var/datum/stock_part/micro_laser/new_laser in component_parts)
 		time_efficiency -= new_laser.tier * 2 // there's two lasers
 		// time_eff prog with paired lasers is 1.4 -> 1.0 -> 0.6 -> 0.2 seconds per round
-	time_per_round = clamp(time_efficiency, 1, 20)
-	base_time_per_round = time_per_round
-	turbo_time_per_round = time_efficiency / 8
+	base_time_per_round = clamp(time_efficiency, 1, 20)
+	turbo_time_per_round = max(time_efficiency / 8, 1)
 
 	var/efficiency = 1.4
+	var/total_servo_tier = 0
+	var/servo_count = 0
 	for(var/datum/stock_part/servo/new_servo in component_parts)
 		efficiency -= new_servo.tier * 0.1 // there's two servos
+		total_servo_tier += new_servo.tier
+		servo_count++
+	// material-cost multiplier from servos: 1.2 -> 1 -> 0.8 -> 0.6
+	base_efficiency = max(efficiency, 0.1)
+	turbo_efficiency = base_efficiency * 2
 
-	creation_efficiency = max(0, efficiency) // with paired servos of appropriate tier, progression is 1.2 -> 1 -> 0.8 -> 0.6
-	base_efficiency = creation_efficiency
-	turbo_efficiency = creation_efficiency * 2
+	// reclaim scales with servo tier, mirroring /obj/machinery/recycler. averaged across the bench's pair of servos.
+	// progression with paired servos: t1 62.5% -> t2 75% -> t3 87.5% -> t4 100%
+	var/avg_servo_tier = servo_count ? (total_servo_tier / servo_count) : 1
+	recycle_percent = min(50, 12.5 * avg_servo_tier) + 50
+	part_tier = round(avg_servo_tier) // drives the signal-strength bars in the UI (1-4)
+
+	// re-apply the active turbo state now that base_* are recomputed, so the live numbers reflect upgrades immediately.
+	apply_speed_state()
 
 	var/mat_capacity = 0
 	for(var/datum/stock_part/matter_bin/new_matter_bin in component_parts)
@@ -495,7 +726,7 @@
 	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/ammo_workbench/attackby(obj/item/O, mob/user, params)
-	if(default_deconstruction_crowbar(O))
+	if(default_deconstruction_crowbar(user, O))
 		return
 	if(panel_open && is_wire_tool(O))
 		wires.interact(user)
@@ -594,6 +825,22 @@
 
 /obj/machinery/ammo_workbench/proc/adjust_hacked(state)
 	hacked = state
+
+/obj/machinery/ammo_workbench/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
+		balloon_alert(user, "already overridden!")
+		return FALSE
+	obj_flags |= EMAGGED
+	hacked = TRUE
+	allowed_harmful = TRUE
+	allowed_advanced = TRUE
+	update_ammotypes()
+	balloon_alert(user, "safety protocols overridden")
+	if(user)
+		to_chat(user, span_warning("You short out [src]'s munition safety protocols, unlocking its full catalogue."))
+	playsound(src, 'sound/effects/sparks/sparks4.ogg', 60, TRUE)
+	SStgui.update_uis(src)
+	return TRUE
 
 
 // WIRE DATUM
