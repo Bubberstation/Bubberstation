@@ -1,3 +1,5 @@
+#define DOAFTER_SOURCE_LYCAN_DOOR_PRY "lycan door pry"
+
 /datum/species/lycan
 	id = SPECIES_LYCAN
 	examine_limb_id = SPECIES_LYCAN
@@ -48,7 +50,7 @@
 		TRAIT_FAST_METABOLISM,
 	)
 
-	no_equip_flags = ITEM_SLOT_ICLOTHING | ITEM_SLOT_OCLOTHING | ITEM_SLOT_GLOVES | ITEM_SLOT_FEET | ITEM_SLOT_SUITSTORE | ITEM_SLOT_BACK | ITEM_SLOT_BELT | ITEM_SLOT_EARS | ITEM_SLOT_HEAD | ITEM_SLOT_MASK | ITEM_SLOT_EYES | ITEM_SLOT_BACK | ITEM_SLOT_NECK
+	no_equip_flags = ITEM_SLOT_ICLOTHING | ITEM_SLOT_OCLOTHING | ITEM_SLOT_GLOVES | ITEM_SLOT_FEET | ITEM_SLOT_SUITSTORE | ITEM_SLOT_BACK | ITEM_SLOT_BELT | ITEM_SLOT_EARS | ITEM_SLOT_HEAD | ITEM_SLOT_EYES | ITEM_SLOT_BACK
 	always_customizable = TRUE
 	sort_bottom = TRUE
 
@@ -122,11 +124,15 @@
 /datum/species/lycan/on_species_gain(mob/living/carbon/human/gainer, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
 
+	RegisterSignal(gainer, COMSIG_LIVING_BANED, PROC_REF(on_baned))
+
 	if (HAS_TRAIT(gainer, TRAIT_GAIAN_PHYSIQUE))
 		handle_gaian_physique(gainer)
 
 /datum/species/lycan/on_species_loss(mob/living/carbon/human/loser, datum/species/new_species, pref_load)
 	. = ..()
+
+	UnregisterSignal(loser, COMSIG_LIVING_BANED)
 
 	if (HAS_TRAIT(loser, TRAIT_GAIAN_PHYSIQUE))
 		handle_gaian_physique_loss(loser)
@@ -165,6 +171,9 @@
 		ignore_damage_types = list(), \
 	)
 
+	var/datum/action/extend_lycan_claws/claws_action = new(src)
+	claws_action.Grant(gainer)
+
 /datum/species/lycan/proc/handle_gaian_physique_loss(mob/living/carbon/human/loser)
 	REMOVE_TRAIT(loser, TRAIT_BATON_RESISTANCE, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_HARDLY_WOUNDED, SPECIES_TRAIT)
@@ -177,6 +186,19 @@
 	loser.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	qdel(loser.GetComponent(/datum/component/regenerator))
 
+	var/datum/action/extend_lycan_claws/claws_action = locate() in loser.actions
+	if (claws_action)
+		qdel(claws_action)
+
 	loser.physiology.stamina_mod *= 4
 
 	// already lost the limb shit
+
+/datum/species/lycan/proc/on_baned(mob/living/carbon/human/baned, mob/user)
+	SIGNAL_HANDLER
+
+	baned.visible_message(span_warning("[baned] seems to react negatively to the silver, [baned.p_their()] flesh scorching and burning on contact!"), ignored_mobs = list(baned))
+	to_chat(baned, span_bolddanger("The sister moon casts its light on you, and you feel your flesh scorch!"))
+	INVOKE_ASYNC(baned, TYPE_PROC_REF(/mob, emote), "scream")
+
+#undef DOAFTER_SOURCE_LYCAN_DOOR_PRY

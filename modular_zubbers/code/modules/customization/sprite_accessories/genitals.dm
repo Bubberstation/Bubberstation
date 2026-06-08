@@ -71,3 +71,45 @@
 	name = "Sheathed Pair"
 	icon_state = "sheath"
 	has_skintone_shading = TRUE
+
+// Butt
+/datum/sprite_accessory/genital/butt
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/butt_onmob.dmi'
+	organ_type = /obj/item/organ/genital/butt
+	associated_organ_slot = ORGAN_SLOT_BUTT
+	key = ORGAN_SLOT_BUTT
+	color_src = USE_MATRIXED_COLORS
+	always_color_customizable = TRUE
+	has_skintone_shading = TRUE
+	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
+
+/datum/sprite_accessory/genital/butt/none
+	icon_state = "none"
+	name = SPRITE_ACCESSORY_NONE
+	factual = FALSE
+	color_src = null
+
+/datum/sprite_accessory/genital/butt/pair
+	icon_state = "pair"
+	name = "Pair"
+
+// Belly
+/datum/sprite_accessory/genital/belly
+	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/belly_onmob.dmi'
+	organ_type = /obj/item/organ/genital/belly
+	associated_organ_slot = ORGAN_SLOT_BELLY
+	key = ORGAN_SLOT_BELLY
+	color_src = USE_ONE_COLOR
+	always_color_customizable = TRUE
+	has_skintone_shading = TRUE
+	relevent_layers = list(BODY_FRONT_LAYER, BODY_BEHIND_LAYER)
+
+/datum/sprite_accessory/genital/belly/none
+	icon_state = "none"
+	name = SPRITE_ACCESSORY_NONE
+	factual = FALSE
+	color_src = null
+
+/datum/sprite_accessory/genital/belly/normal
+	icon_state = "pair" //????
+	name = "Belly"

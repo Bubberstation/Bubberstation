@@ -713,3 +713,8 @@
 /obj/item/clothing/under/rank/security/armadyne/tactical
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom_digi.dmi'
 	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
+
+/obj/item/clothing/under/akula_wetsuit
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/akula_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/akula_teshari.dmi' // for the fishari out there
