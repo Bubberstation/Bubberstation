@@ -62,7 +62,9 @@
 	/// can this print any round of any caliber given a correct ammo_box? (you varedit this at your own risk, especially if used in a player-facing context.)
 	/// does not force ammo to load in. just makes it able to print wacky ammotypes e.g. lionhunter 7.62, techshells
 	var/adminbus = FALSE
-	var/datum/material_container/materials
+	var/datum/remote_materials/materials
+	/// if TRUE, this bench uses standalone local material storage and never auto-connects to the ore silo (for self-contained map/test variants).
+	var/force_local_materials = FALSE
 
 /obj/machinery/ammo_workbench/unlocked
 	allowed_harmful = TRUE
@@ -72,18 +74,19 @@
 /// so it's usable out of the box without also placing sheets and a datadisk. For away missions, custom maps, admin setups.
 /obj/machinery/ammo_workbench/prefilled
 	circuit = /obj/item/circuitboard/machine/ammo_workbench/prefilled
+	force_local_materials = TRUE
 
 /obj/machinery/ammo_workbench/prefilled/Initialize(mapload)
 	. = ..()
 	// stock common bullet materials: mostly iron, smaller amounts of metals real rounds use.
 	// deliberately no diamond/bluespace/bananium — no reasonable round needs them.
-	if(materials)
-		materials.insert_amount_mat(50 * SHEET_MATERIAL_AMOUNT, /datum/material/iron)
-		materials.insert_amount_mat(20 * SHEET_MATERIAL_AMOUNT, /datum/material/glass)
-		materials.insert_amount_mat(20 * SHEET_MATERIAL_AMOUNT, /datum/material/titanium)
-		materials.insert_amount_mat(15 * SHEET_MATERIAL_AMOUNT, /datum/material/plasma)
-		materials.insert_amount_mat(15 * SHEET_MATERIAL_AMOUNT, /datum/material/silver)
-		materials.insert_amount_mat(15 * SHEET_MATERIAL_AMOUNT, /datum/material/gold)
+	if(materials?.mat_container)
+		materials.mat_container.insert_amount_mat(50 * SHEET_MATERIAL_AMOUNT, /datum/material/iron)
+		materials.mat_container.insert_amount_mat(20 * SHEET_MATERIAL_AMOUNT, /datum/material/glass)
+		materials.mat_container.insert_amount_mat(20 * SHEET_MATERIAL_AMOUNT, /datum/material/titanium)
+		materials.mat_container.insert_amount_mat(15 * SHEET_MATERIAL_AMOUNT, /datum/material/plasma)
+		materials.mat_container.insert_amount_mat(15 * SHEET_MATERIAL_AMOUNT, /datum/material/silver)
+		materials.mat_container.insert_amount_mat(15 * SHEET_MATERIAL_AMOUNT, /datum/material/gold)
 
 /obj/item/circuitboard/machine/ammo_workbench
 	name = "Ammunition Workbench (Machine Board)"
@@ -105,20 +108,33 @@
 	)
 
 /obj/machinery/ammo_workbench/Initialize(mapload)
-	materials = new( \
-		src, \
-		SSmaterials.get_materials_by_flag(MATERIAL_SILO_STORED), \
-		200000, \
-		MATCONTAINER_EXAMINE, \
-		allowed_items = /obj/item/stack, \
-	)
 	. = ..()
+	materials = new(
+		src,
+		force_local_materials ? FALSE : mapload,
+		mat_container_signals = list(
+			COMSIG_MATCONTAINER_ITEM_CONSUMED = TYPE_PROC_REF(/obj/machinery/ammo_workbench, local_material_insert)
+		)
+	)
+	materials.set_local_size(200000)
+	RegisterSignal(src, COMSIG_SILO_ITEM_CONSUMED, TYPE_PROC_REF(/obj/machinery/ammo_workbench, silo_material_insert))
 	set_wires(new /datum/wires/ammo_workbench(src))
+
+/// Signal handler: materials inserted into local storage.
+/obj/machinery/ammo_workbench/proc/local_material_insert(obj/machinery/machine, container, obj/item/item_inserted, last_inserted_id, list/mats_consumed, amount_inserted)
+	SIGNAL_HANDLER
+	SStgui.update_uis(src)
+
+/// Signal handler: materials inserted via a connected ore silo.
+/obj/machinery/ammo_workbench/proc/silo_material_insert(obj/machinery/machine, container, obj/item/item_inserted, last_inserted_id, list/mats_consumed, amount_inserted)
+	SIGNAL_HANDLER
+	SStgui.update_uis(src)
 
 /obj/machinery/ammo_workbench/examine(mob/user)
 	. += ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Storing up to <b>[materials.max_amount]</b> material units.<br>Material consumption at <b>[creation_efficiency*100]%</b>.")
+		if(materials?.mat_container)
+			. += span_notice("The status display reads: Storing up to <b>[materials.mat_container.max_amount]</b> material units.<br>Material consumption at <b>[creation_efficiency*100]%</b>.")
 		. += span_notice("Reclaiming <b>[recycle_percent]%</b> of materials when recycling a loaded container.")
 
 /obj/machinery/ammo_workbench/ui_interact(mob/user, datum/tgui/ui)
@@ -222,9 +238,9 @@
 	data["hacked"] = hacked
 	data["turboBoost"] = turbo_boost
 
-	data["materials"] = materials ? materials.ui_data() : list()
+	data["materials"] = materials?.mat_container ? materials.mat_container.ui_data() : list()
 	data["SHEET_MATERIAL_AMOUNT"] = SHEET_MATERIAL_AMOUNT
-	data["materialMaximum"] = materials ? materials.max_amount : 0
+	data["materialMaximum"] = materials?.mat_container ? materials.mat_container.max_amount : 0
 
 	if(error_message)
 		data["error"] = error_message
@@ -280,11 +296,11 @@
 
 		if("Release")
 
-			if(!materials)
+			if(!materials?.mat_container)
 				return
 			var/datum/material/mat = locate(params["id"])
 
-			var/amount = materials.materials[mat]
+			var/amount = materials.mat_container.materials[mat]
 			if(!amount)
 				return
 
@@ -299,23 +315,23 @@
 
 			var/sheets_to_remove = round(min(desired,50,stored_amount))
 
-			materials.retrieve_stack(sheets_to_remove, mat, loc)
+			materials.mat_container.retrieve_stack(sheets_to_remove, mat, loc)
 			. = TRUE
 
 		if("remove_mat") // MaterialAccessBar eject: { ref, amount(sheets) }
-			if(!materials)
+			if(!materials?.mat_container)
 				return
 			var/datum/material/mat = locate(params["ref"])
 			if(!mat)
 				return
-			var/units_available = materials.materials[mat]
+			var/units_available = materials.mat_container.materials[mat]
 			if(!units_available)
 				return
 			var/sheets_available = CEILING(units_available / SHEET_MATERIAL_AMOUNT, 0.1)
 			var/desired = text2num(params["amount"]) || 0
 			var/sheets_to_remove = round(min(desired, 50, sheets_available))
 			if(sheets_to_remove > 0)
-				materials.retrieve_stack(sheets_to_remove, mat, loc)
+				materials.mat_container.retrieve_stack(sheets_to_remove, mat, loc)
 			. = TRUE
 
 		if("ReadDisk")
@@ -460,14 +476,19 @@
 	var/round_total = 0
 	for(var/material in base_mats)
 		round_total += base_mats[material] * (effective_recycle_percent() / 100)
-	if(round_total && !materials.has_space(round_total))
+	if(!materials?.mat_container)
+		error_message = "NO MATERIAL STORAGE LINKED"
+		error_type = "bad"
+		recycle_finish(successfully = FALSE)
+		return
+	if(round_total && !materials.mat_container.has_space(round_total))
 		error_message = "MATERIAL STORAGE FULL"
 		error_type = "bad"
 		recycle_finish(successfully = FALSE)
 		return
 
 	for(var/material in base_mats)
-		materials.insert_amount_mat(base_mats[material] * (effective_recycle_percent() / 100), material)
+		materials.mat_container.insert_amount_mat(base_mats[material] * (effective_recycle_percent() / 100), material)
 
 	// remove this one round (qdel for instances triggers Exited material bookkeeping; path entries just drop)
 	loaded_magazine.stored_ammo -= target_round
@@ -565,7 +586,14 @@
 	for(var/material in required_materials)
 		efficient_materials[material] = required_materials[material] * creation_efficiency
 
-	if(!materials.has_materials(efficient_materials))
+	if(!materials?.mat_container)
+		error_message = "NO MATERIAL STORAGE LINKED"
+		error_type = "bad"
+		ammo_fill_finish(FALSE)
+		qdel(new_casing)
+		return
+
+	if(!materials.mat_container.has_materials(efficient_materials))
 		// ran dry partway through a run = DEPLETED; failed on the very first round = never had enough.
 		error_message = rounds_made_this_run ? "MATERIALS DEPLETED" : "INSUFFICIENT MATERIALS"
 		error_type = "bad"
@@ -683,7 +711,7 @@
 	for(var/datum/stock_part/matter_bin/new_matter_bin in component_parts)
 		mat_capacity += new_matter_bin.tier * (40 * SHEET_MATERIAL_AMOUNT)
 
-	materials.max_amount = mat_capacity
+	materials?.set_local_size(mat_capacity)
 	update_ammotypes()
 
 /obj/machinery/ammo_workbench/update_overlays()

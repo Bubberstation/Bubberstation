@@ -33,7 +33,9 @@ export const AmmoWorkbench = (props) => {
           {/* Armadyne identity header (this is an Armadyne bench, not Nanotrasen). */}
           <Stack.Item>
             <Box className="AmmoWorkbench__header">
-              <Icon name="bolt" className="AmmoWorkbench__header-icon" />
+              <Box as="span" className="AmmoWorkbench__header-icon">
+                ⌖
+              </Box>
               <Box as="span" className="AmmoWorkbench__header-title">
                 ARMADYNE AMMUNITIONS WORKBENCH
               </Box>
