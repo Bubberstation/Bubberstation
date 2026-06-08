@@ -107,7 +107,7 @@
 		/obj/item/storage/part_replacer/cyborg,
 		/obj/item/healthanalyzer,
 		/obj/item/experi_scanner,
-		/obj/item/stack/medical/wrap/gauze,
+		/obj/item/stack/medical/gauze,
 		/obj/item/borg/apparatus/tank_manipulator,
 	)
 	radio_channels = list(RADIO_CHANNEL_SCIENCE)
@@ -251,7 +251,6 @@
 		),
 	)
 
-
 /* BUBBER SPRITE ADDITIONS BELOW */
 
 // Clown borgs
@@ -285,6 +284,7 @@
 			SKIN_ICON = CYBORG_ICON_CLOWN_XENOBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE),
 			XENOBORG_HAT_OFFSET
+		),
 	)
 
 // Standard borgs
@@ -677,6 +677,7 @@
 			SKIN_ICON = CYBORG_ICON_SEC_XENOBORG,
 			SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK, TRAIT_R_UNIQUEPANEL, TRAIT_R_WIDE),
 			XENOBORG_HAT_OFFSET
+		),
 	)
 
 // Peacekeeper borgs
@@ -851,6 +852,7 @@
 			XENOBORG_HAT_OFFSET
 		),
 	)
+
 // Cargo borgs
 /obj/item/robot_model/cargo/Initialize(mapload)
 	. = ..()
