@@ -720,7 +720,7 @@
 	balloon_alert_to_viewers("billowing...")
 
 	while(forge_temperature < 91)
-		if(!do_after(user, skill_modifier * forge_item.toolspeed, target = src, interaction_key = DOAFTER_SMITHING_FORGE))
+		if(!do_after(user, skill_modifier * forge_item.toolspeed * 15 DECISECONDS, target = src, interaction_key = DOAFTER_SMITHING_FORGE))
 			balloon_alert_to_viewers("stopped billowing")
 			return ITEM_INTERACT_SUCCESS
 
@@ -752,8 +752,6 @@
 		var/list/my_list = get_filtered_radial_choices(user)
 		var/user_choice = show_radial_menu(user, src, my_list, radius = 38, require_near = TRUE, tooltips = TRUE)
 
-
-
 		if(!user_choice)
 			balloon_alert(user, "nothing chosen")
 			return ITEM_INTERACT_SUCCESS
@@ -768,14 +766,18 @@
 			for(var/material in search_stack.custom_materials)
 				material_list[material] = SHEET_MATERIAL_AMOUNT
 
-		if(!search_stack.use(1))
+		if(!search_stack.amount < 1)
 			balloon_alert(user, "not enough of [search_stack]")
 			return ITEM_INTERACT_SUCCESS
 
 		balloon_alert_to_viewers("heating [search_stack]")
 
-		if(!do_after(user, skill_modifier * tool.toolspeed, target = src))
+		if(!do_after(user, skill_modifier * tool.toolspeed * 2 SECONDS, target = src))
 			balloon_alert_to_viewers("stopped heating [search_stack]")
+			return ITEM_INTERACT_SUCCESS
+
+		if(!search_stack.use(1))
+			balloon_alert(user, "not enough of [search_stack]")
 			return ITEM_INTERACT_SUCCESS
 
 		var/spawn_item = choice_list[user_choice]
