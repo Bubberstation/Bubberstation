@@ -26,15 +26,6 @@
 	crate_name = "lizard goods crate"
 	order_flags = ORDER_CONTRABAND
 
-/datum/supply_pack/imports/hoshi/contraband
-	name = "Hoshi Modular Carbine crate"
-	desc = "This crate includes a smuggled in Hoshi Modular Carbine, one of the newest addition to the Terran's armories."
-	cost = 2500
-	contains = list(
-		/obj/item/gun/energy/modular_laser_rifle/carbine,
-	)
-	order_flags = ORDER_CONTRABAND
-
 /datum/supply_pack/imports/antimatcrate
 	name = "Wylom Anti-Material Rifle Crate"
 	desc = "Do you have a hard target that you need dead? That ion gun not stopping the bad guy with a mech? Buy this to aquire a singular Wylom, with two spare magazines."
