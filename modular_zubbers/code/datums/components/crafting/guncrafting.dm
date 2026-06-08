@@ -32,6 +32,12 @@
 		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 2,
 	)
 
+/obj/item/weaponcrafting/gunkit/regal_condor
+	name = "unnamed weapon parts case (viciously lethal)"
+	desc = "A suitcase containing the necessary gun parts to assemble a very powerful handgun. The case itself has a foreboding aura to it."
+	icon = 'modular_zubbers/icons/obj/weapons/improvised.dmi'
+	icon_state = "syndikitsuitcase"
+
 /obj/item/weaponcrafting/juggernaut_suit
 	name = "advanced security suit armor plates"
 	desc = "A set of incredibly dense armor plates for use in constructing the advanced security suit."
