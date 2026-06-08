@@ -297,27 +297,22 @@
 			. = TRUE
 
 		if("Release")
-
 			if(!materials?.mat_container)
 				return
 			var/datum/material/mat = locate(params["id"])
-
+			if(!mat)
+				return
 			var/amount = materials.mat_container.materials[mat]
 			if(!amount)
 				return
-
 			var/stored_amount = CEILING(amount / SHEET_MATERIAL_AMOUNT, 0.1)
-
-			if(!stored_amount)
-				return
-
 			var/desired = 0
 			if (params["sheets"])
 				desired = text2num(params["sheets"])
-
-			var/sheets_to_remove = round(min(desired,50,stored_amount))
-
-			materials.mat_container.retrieve_stack(sheets_to_remove, mat, loc)
+			var/sheets_to_remove = round(min(desired, 50, stored_amount))
+			if(sheets_to_remove <= 0)
+				return
+			materials.eject_sheets(mat, sheets_to_remove, drop_location(), sanitize_id_data(ID_DATA(usr)))
 			. = TRUE
 
 		if("remove_mat") // MaterialAccessBar eject: { ref, amount(sheets) }
@@ -332,8 +327,10 @@
 			var/sheets_available = CEILING(units_available / SHEET_MATERIAL_AMOUNT, 0.1)
 			var/desired = text2num(params["amount"]) || 0
 			var/sheets_to_remove = round(min(desired, 50, sheets_available))
-			if(sheets_to_remove > 0)
-				materials.mat_container.retrieve_stack(sheets_to_remove, mat, loc)
+			if(sheets_to_remove <= 0)
+				return
+			// withdrawal goes through eject_sheets so a silo hold is respected and the silo log entry is well-formed.
+			materials.eject_sheets(mat, sheets_to_remove, drop_location(), sanitize_id_data(ID_DATA(usr)))
 			. = TRUE
 
 		if("ReadDisk")
@@ -496,6 +493,10 @@
 	// remove this one round (qdel for instances triggers Exited material bookkeeping; path entries just drop)
 	loaded_magazine.stored_ammo -= target_round
 	if(!ispath(target_round))
+		var/obj/item/ammo_casing/spent = target_round
+		// drop the round's custom materials before qdel so the magazine's own Exited material-subtraction
+		// can't drive a stack to a non-positive value and runtime. we zero the mag wholesale in recycle_finish anyway.
+		spent.set_custom_materials(null)
 		qdel(target_round)
 	loaded_magazine.update_appearance()
 
@@ -587,7 +588,9 @@
 	var/list/efficient_materials = list()
 
 	for(var/material in required_materials)
-		efficient_materials[material] = required_materials[material] * creation_efficiency
+		var/amount = required_materials[material] * creation_efficiency
+		if(amount > 0)
+			efficient_materials[material] = amount
 
 	if(!materials?.mat_container)
 		error_message = "NO MATERIAL STORAGE LINKED"

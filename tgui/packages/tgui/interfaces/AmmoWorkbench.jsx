@@ -88,7 +88,7 @@ export const AmmoWorkbench = (props) => {
             {tab === 3 && <DatadiskTab />}
           </Stack.Item>
           {/* status strip + standard fabricator material dock */}
-          <Stack.Item>
+          <Stack.Item shrink={0}>
             <Section>
               <Flex
                 className="AmmoWorkbench__statusline"
