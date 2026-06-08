@@ -7,7 +7,7 @@
 	use_power = IDLE_POWER_USE
 	circuit = /obj/item/circuitboard/machine/ammo_workbench
 	var/busy = FALSE
-	/// TRUE while recycling (vs fabricating); routes Cancel.
+	/// are we recycling right now (as opposed to printing)
 	var/is_recycling = FALSE
 	/// if it's hacked it's gonna be able to print lethals. it'll be mad at you for doing so but it'll print basic lethals.
 	var/hacked = FALSE
@@ -63,15 +63,16 @@
 	/// does not force ammo to load in. just makes it able to print wacky ammotypes e.g. lionhunter 7.62, techshells
 	var/adminbus = FALSE
 	var/datum/remote_materials/materials
-	/// if TRUE, this bench uses standalone local material storage and never auto-connects to the ore silo (for self-contained map/test variants).
+	/// don't touch the silo, just use local storage (for the prefilled mapping variant)
 	var/force_local_materials = FALSE
+	/// whoever started the current print, for the silo log
+	var/alist/printing_user_data
 
 /obj/machinery/ammo_workbench/unlocked
 	allowed_harmful = TRUE
 	allowed_advanced = TRUE
 
-/// Mapping/testing variant: spawns with tier-3 parts (via its own board) and a modest material stock,
-/// so it's usable out of the box without also placing sheets and a datadisk. For away missions, custom maps, admin setups.
+// mapping variant - comes with decent parts and some materials so you can just plop it down on a ruin/away mission without also placing sheets and a disk
 /obj/machinery/ammo_workbench/prefilled
 	circuit = /obj/item/circuitboard/machine/ammo_workbench/prefilled
 	force_local_materials = TRUE
@@ -98,7 +99,6 @@
 		/datum/stock_part/micro_laser = 2
 	)
 
-/// Tier-3 board for the prefilled mapping/testing variant.
 /obj/item/circuitboard/machine/ammo_workbench/prefilled
 	build_path = /obj/machinery/ammo_workbench/prefilled
 	req_components = list(
@@ -120,12 +120,10 @@
 	RegisterSignal(src, COMSIG_SILO_ITEM_CONSUMED, TYPE_PROC_REF(/obj/machinery/ammo_workbench, silo_material_insert))
 	set_wires(new /datum/wires/ammo_workbench(src))
 
-/// Signal handler: materials inserted into local storage.
 /obj/machinery/ammo_workbench/proc/local_material_insert(obj/machinery/machine, container, obj/item/item_inserted, last_inserted_id, list/mats_consumed, amount_inserted)
 	SIGNAL_HANDLER
 	SStgui.update_uis(src)
 
-/// Signal handler: materials inserted via a connected ore silo.
 /obj/machinery/ammo_workbench/proc/silo_material_insert(obj/machinery/machine, container, obj/item/item_inserted, last_inserted_id, list/mats_consumed, amount_inserted)
 	SIGNAL_HANDLER
 	SStgui.update_uis(src)
@@ -291,6 +289,7 @@
 
 		if("FillMagazine")
 			var/type_to_pass = text2path(params["selected_type"])
+			printing_user_data = ID_DATA(usr)
 			fill_magazine_start(type_to_pass)
 			. = TRUE
 
@@ -343,7 +342,6 @@
 		if("turboBoost")
 			toggle_turbo_boost()
 
-/// Toggles turbo; forced_off forces it off.
 /obj/machinery/ammo_workbench/proc/toggle_turbo_boost(forced_off = FALSE)
 	if(forced_off)
 		turbo_boost = FALSE
@@ -353,7 +351,7 @@
 	update_ammotypes()
 	SStgui.update_uis(src)
 
-/// Applies the turbo flag to live time/efficiency from base_* values.
+// keeps time/efficiency in sync with the turbo toggle so they can't drift apart
 /obj/machinery/ammo_workbench/proc/apply_speed_state()
 	if(turbo_boost)
 		time_per_round = turbo_time_per_round
@@ -379,13 +377,12 @@
 	update_ammotypes()
 	update_appearance()
 
-/// Recycles the loaded mag, reclaiming a servo-tier fraction of each round's base materials (capped 100%).
+// dumps the loaded container back into materials, giving back a chunk of each round's base mats based on servo tier
 
-/// Reclaim percent, reduced under turbo (speed costs efficiency).
+// turbo recycling is faster but you get less back
 /obj/machinery/ammo_workbench/proc/effective_recycle_percent()
 	return turbo_boost ? recycle_percent * 0.6 : recycle_percent
 
-/// Sheet-yield summary string for recycling the loaded mag, or null.
 /obj/machinery/ammo_workbench/proc/get_recycle_preview()
 	if(!loaded_magazine || !length(loaded_magazine.stored_ammo))
 		return null
@@ -437,7 +434,6 @@
 	SStgui.update_uis(src) // disable the controls immediately
 	recycle_round()
 
-/// Recycle status: usually RECYCLING, small chance of a joke.
 /obj/machinery/ammo_workbench/proc/pick_recycle_status()
 	var/static/list/recycle_jokes = list(
 		"UNFABRICATING",
@@ -448,7 +444,7 @@
 		return pick(recycle_jokes)
 	return "RECYCLING"
 
-/// Reclaims one round per call, rescheduling until empty.
+// one round at a time until the thing's empty
 /obj/machinery/ammo_workbench/proc/recycle_round()
 	if(machine_stat & (NOPOWER|BROKEN) || !loaded_magazine)
 		recycle_finish()
@@ -608,7 +604,7 @@
 			ammo_fill_finish(FALSE)
 			qdel(new_casing)
 			return
-		materials.use_materials(efficient_materials)
+		materials.use_materials(efficient_materials, action = "printed", name = "[initial(new_casing.name)]", user_data = printing_user_data)
 		new_casing.set_custom_materials(efficient_materials)
 		rounds_made_this_run++
 		loaded_magazine.update_appearance()
