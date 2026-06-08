@@ -49,6 +49,7 @@
 		/obj/item/forging/billow = 1,
 		/obj/item/stack/sheet/mineral/wood = 25,
 		/obj/item/choice_beacon/blacksmith = 1,
+		/obj/item/paper/pamphlet/blacksmith_tutorial = 1,
 	)
 	glasses = /obj/item/clothing/glasses/hud/gun_permit
 	belt = /obj/item/modular_computer/pda/cargo
@@ -109,7 +110,9 @@
 	Other notes:<br>\n\
 	-Reagent imbuing is powerful, but if you don't know what chemical to imbue, smithing oil is a good fallback; it will enhance the expected capabilities of the equipment.<br>\n\
 	-Use your eyes! If you <b>inspect</b> your equipment -- whether it's your crafting stations or handheld tools -- you'll usually be able to discern something useful.<br>\n\
-	-As you create weapons and equipment, your muscle memory will build over time -- which will let you make new equipment. Check your forge and your crafting bench for new items."
+	-As you create weapons and equipment, your muscle memory will build over time -- which will let you make new equipment. Check your forge and your crafting bench for new items.<br>\n\
+	-Be mindful of the material you use; material properties will change the usefulness of what you produce. Experiment, but don't expect a pizza katana to be worth more than a laugh.<br>\n\
+	-You can build a two-handed hammer at your forge. Make it well, and it will work faster than your Nanotrasen-assigned hammer!"
 
 /obj/item/choice_beacon/blacksmith
 	name = "smithing supply beacon"

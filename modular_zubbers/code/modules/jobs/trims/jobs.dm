@@ -11,7 +11,7 @@
 		ACCESS_BLACKSMITH,
 	)
 
-/datum/id_trim/job/blacksmith //Place Holder. You'll probably wanna come by and set these up correctly.
+/datum/id_trim/job/blacksmith
 	assignment = "Blacksmith"
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	trim_state = "trim_blacksmith"
