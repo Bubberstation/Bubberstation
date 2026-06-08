@@ -7,6 +7,7 @@
 	worn_icon_state = "assault_laser"
 	w_class = WEIGHT_CLASS_HUGE
 	weapon_weight = WEAPON_HEAVY
+	slot_flags = ITEM_SLOT_BACK
 	cell_type = /obj/item/stock_parts/power_store/cell/laser_lmg
 	shaded_charge = TRUE
 	light_color = COLOR_SOFT_RED
