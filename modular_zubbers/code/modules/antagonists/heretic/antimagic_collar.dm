@@ -26,7 +26,7 @@
 
 	speech_span = SPAN_ROBOT
 
-	max_integrity = 30
+	max_integrity = 50
 	integrity_failure = 0.5
 
 	clothing_traits = list(TRAIT_MANSUS_INHIBITION)
