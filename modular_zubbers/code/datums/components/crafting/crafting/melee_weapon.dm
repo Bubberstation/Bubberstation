@@ -45,6 +45,7 @@
 	tool_behaviors = list(TOOL_WELDER, TOOL_WRENCH)
 	time = 15 SECONDS
 	category = CAT_WEAPON_MELEE
+	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/stunstaff_prime
 	name = "Heroic Stun Staff"

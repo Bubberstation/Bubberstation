@@ -175,6 +175,11 @@
 	projectile_damage_multiplier = 1.1
 	burst_delay = 2
 	burst_size = 2
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 8.5,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 3
+		)
 
 /obj/item/gun/ballistic/automatic/wt550/burst/Initialize(mapload)
 	. = ..()
@@ -196,6 +201,11 @@
 	projectile_wound_bonus = 5
 	burst_delay = 3
 	burst_size = 1
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 8.5,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 3
+	)
 
 	SET_BASE_PIXEL(-8, 0)
 
@@ -216,6 +226,12 @@
 	spread = 25
 	dual_wield_spread = 50
 	recoil = SAWN_OFF_RECOIL
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6,
+		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	
 /obj/item/gun/ballistic/automatic/wt550/sawnoff/Initialize(mapload)
 	. = ..()
@@ -246,6 +262,12 @@
 	actions_types = list()
 	fire_sound = 'sound/items/weapons/thermalpistol.ogg'
 	suppressor_x_offset = 0
+
+custom_materials = list(
+	/datum/material/iron = SHEET_MATERIAL_AMOUNT * 11,
+	/datum/material/silver = SHEET_MATERIAL_AMOUNT * 5,
+	/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 2,
+	)
 
 	SET_BASE_PIXEL(-8, 0)
 

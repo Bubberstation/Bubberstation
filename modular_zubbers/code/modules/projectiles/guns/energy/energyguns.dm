@@ -35,6 +35,12 @@
 	charge_delay = 15
 	self_charge_amount = STANDARD_ENERGY_GUN_SELF_CHARGE_RATE / 2
 	can_charge = FALSE
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 8,
+		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT
+	)
 
 /obj/item/gun/energy/e_gun/nuclear_smg/Initialize(mapload)
 	. = ..()

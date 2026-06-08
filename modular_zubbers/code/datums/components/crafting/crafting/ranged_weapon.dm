@@ -42,6 +42,7 @@
 	)
 	time = 15 SECONDS
 	category = CAT_WEAPON_RANGED
+	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/simple_battle_rifle
 	name = "NT .38 Battle Rifle"
@@ -53,6 +54,7 @@
 	)
 	time = 20 SECONDS
 	category = CAT_WEAPON_RANGED
+	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/nuclear_smg
 	name = "Advanced Energy SMG"

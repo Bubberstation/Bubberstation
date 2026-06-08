@@ -266,7 +266,7 @@
 	desc = "The Advanced Security Suit offers nigh-perfect protection of the wearer through an advanced layering of kevlar, titanium, and ceramic plates. \
 		The construction of the suit unfortunately renders it incredibly heavy and cumbersome, effectively slowing the user to a crawl and heavily limiting their mobility options. \
 		Only through recently developed micro-anti-gravitational generators can the suit actually be worn and moved in. \
-		Comes with a heavy-duty external storage unit along with a built-in helmet for EVA action."
+		Comes along with a built-in helmet for EVA action."
 	icon_state = "security_jugger"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
@@ -293,6 +293,13 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, TRAIT_PUSHIMMUNE, TRAIT_NEGATES_GRAVITY, TRAIT_NO_SLIP_WATER, TRAIT_NO_VEHICLE, TRAIT_HUGE_CLOTHES, TRAIT_NO_BUCKLE)
 	allowed = list(
+		/obj/item/tank/internals,
+		/obj/item/tank/jetpack,
+	)
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 40.4,
+		/datum/material/alloy/plastitanium = SHEET_MATERIAL_AMOUNT * 40,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 3.4
 	)
 
 /obj/item/clothing/suit/hooded/secjuggernaut/examine(mob/user)
