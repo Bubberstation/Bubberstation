@@ -184,7 +184,7 @@
 	name = "\improper WT-550-C Autorifle"
 	desc = "A longer range WT-550, assembled using an aftermarket kit and parts. Outfitted with the longest barrel and custom trigger to enhance performance at a distance. Equipped with a custom scope and a threaded barrel for suppressors. Uses 4.6x30mm rounds."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/wide_guns.dmi'
-	worn_icon = 'icons/mob/clothing/back.dmi'
+	worn_icon = 'icons/mob/clothing/belt.dmi'
 	worn_icon_state = "gun"
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
 	weapon_weight = WEAPON_HEAVY
