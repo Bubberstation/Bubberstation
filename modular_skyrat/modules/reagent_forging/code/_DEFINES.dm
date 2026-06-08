@@ -10,6 +10,9 @@
 
 #define DOAFTER_REVOLVER_HAMMER_COCK "smithing_revolver_hammer_cock_doafter"
 
+/// smithing hits are advanced by "quality points" depending on various factors. What's the lowest that the quality points given can be?
+#define MINIMUM_SMITHING_QUALITY_POINTS
+
 #define FORGING_WEAPON_REFORGING_MAX_QUALITY 16
 #define FORGING_WEAPON_REFORGING_AVERAGE_WAIT 2 SECONDS
 #define FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS 10
@@ -51,6 +54,7 @@
 #define FORGE_EFFECT_DURABILITY "forge_effect_durability"
 #define FORGE_EFFECT_BLOCKCHANCE "forge_effect_block"
 #define FORGE_EFFECT_REAGENT_INJECT "forge_effect_reagent_inject"
+#define FORGE_EFFECT_TOOLSPEED "forge_effect_toolspeed"
 
 ///helper function - given two ratios, a forge effect, an item, and a maximal value, it gives a new modifier and resets the old modifier to the item
 /proc/give_added_modifying_effect_to_item(forge_effect, old_modifier, new_modifier, obj/item/item, max_effect)
@@ -94,6 +98,10 @@
 			var/new_force_modifier = new_modifier * max_effect
 			var/previous_force_modifier = old_modifier * max_effect
 			item.force += new_force_modifier - previous_force_modifier
+		if(FORGE_EFFECT_TOOLSPEED)
+			var/new_toolspeed_modifier = new_modifier * max_effect
+			var/previous_toolspeed_modifier = old_modifier * max_effect
+			item.toolspeed += new_toolspeed_modifier - previous_toolspeed_modifier
 		if(FORGE_EFFECT_REAGENT_INJECT)
 			var/datum/component/reagent_imbued/reagent_component = item.GetComponent(/datum/component/reagent_imbued/)
 			if(isnull(reagent_component))
