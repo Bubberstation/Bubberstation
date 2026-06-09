@@ -10,6 +10,58 @@
 	/// The last time (in ticks) a message about brain damage was sent. Don't touch.
 	var/last_message_time = 0
 	organ_traits = list(TRAIT_SILICON_EMOTES_ALLOWED)
+	var/mmi_type = /obj/item/mmi/posibrain
+	var/obj/item/mmi/stored_mmi
+
+/obj/item/organ/brain/synth/Initialize(mapload, obj/item/mmi/M)
+	. = ..()
+	if(M && istype(M))
+		stored_mmi = M
+		M.forceMove(src)
+	else
+		stored_mmi = new mmi_type(src)
+
+/obj/item/organ/brain/synth/Destroy()
+	QDEL_NULL(stored_mmi)
+	return ..()
+
+/obj/item/organ/brain/synth/Insert(mob/living/carbon/receiver, special = FALSE, movement_flags)
+	if(special)
+		return ..()
+	if(!stored_mmi)
+		qdel(src)
+		return
+	brainmob = stored_mmi.brainmob
+	return ..()
+
+/obj/item/organ/brain/synth/Remove(mob/living/carbon/organ_owner, special = FALSE, movement_flags)
+	if(special)
+		return ..()
+	if(!stored_mmi)
+		. = ..()
+		qdel(src)
+		return
+
+	stored_mmi.forceMove(get_turf(owner)) // so we can get the turf of the owner
+	..()
+	stored_mmi = null
+	qdel(src)
+
+
+/obj/item/organ/brain/synth/transfer_identity(mob/living/L)
+	..(stored_mmi.brainmob)
+	// brainmob.loc = null
+	// brainmob.forceMove(stored_mmi) //moves the brainmob to the stored mmi
+	// stored_mmi.set_brainmob(brainmob) //sets the mmi's brainmob to the current one
+	// brainmob.container = stored_mmi
+	// stored_mmi.brain = L // for the mmi icon
+	// stored_mmi.name = "[initial(name)] ([L.real_name])"
+	// brainmob.set_stat(CONSCIOUS) //mmis are conscious
+	// brainmob.remove_from_dead_mob_list()
+	// brainmob.add_to_alive_mob_list() //mmis are technically alive I guess?
+	// stored_mmi.update_appearance() //update it because the brain is alive now
+	// brainmob.reset_perspective() //resets perspective to the mmi
+	// brainmob = null //clears the brainmob var so it doesn't get deleted when the holder is destroyed
 
 /obj/item/organ/brain/synth/on_mob_insert(mob/living/carbon/brain_owner, special, movement_flags = NO_ID_TRANSFER)
 	. = ..()
@@ -52,15 +104,17 @@
 
 /obj/item/organ/brain/synth/circuit
 	name = "compact AI circuit"
-	desc = "A compact and extremely complex circuit, perfectly dimensioned to fit in the same slot as a synthetic-compatible positronic brain. It is usually slotted into the chest of synthetic crewmembers."
+	desc = "A compact and extremely complex circuit, It is usually slotted into the chest of synthetic crewmembers."
 	icon = 'modular_skyrat/master_files/icons/obj/alt_silicon_brains.dmi'
 	icon_state = "circuit-occupied"
 	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
+	mmi_type = /obj/item/mmi/posibrain/circuit
 
 /obj/item/organ/brain/synth/mmi
 	name = "compact man-machine interface"
-	desc = "A compact man-machine interface, perfectly dimensioned to fit in the same slot as a synthetic-compatible positronic brain. Unfortunately, the brain seems to be permanently attached to the circuitry, and it seems relatively sensitive to it's environment. It is usually slotted into the chest of synthetic crewmembers."
+	desc = "A compact man-machine interface, It is usually slotted into the chest of synthetic crewmembers."
 	icon = 'modular_skyrat/master_files/icons/obj/surgery.dmi'
 	icon_state = "mmi-ipc"
+	mmi_type = /obj/item/mmi
