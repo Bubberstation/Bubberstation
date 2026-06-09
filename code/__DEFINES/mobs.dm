@@ -905,6 +905,8 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 	"[HAIR_LAYER]" = UPPER_BODY,
 	// Doesn't do much
 	"[EYES_LAYER]" = UPPER_BODY,
+	"[BENEATH_HAIR_LAYER]" = UPPER_BODY,
+	"[OUTER_HAIR_LAYER]" = UPPER_BODY, // BUBBER EDIT - ADDITION
 	// Long belts (sabre sheathe) will get cut off by filter
 	"[BELT_LAYER]" = LOWER_BODY,
 	// Everything below looks fine with or without a filter, so we can skip it and just offset
