@@ -109,6 +109,6 @@
 	item_type = /obj/item/survivalcapsule/cabin
 	cost = PAYCHECK_COMMAND * 2
 
-/datum/supply_pack/company_import/nri_surplus/misc/restorationkit
+/datum/supply_pack/company_import/psc_surplus/misc/restorationkit
 	item_type = /obj/item/crafting_conversion_kit/voskhod_refit
 	cost = CARGO_CRATE_VALUE * 6
