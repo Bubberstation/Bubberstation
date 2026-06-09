@@ -23,6 +23,10 @@
 	var/relevant_skill_reward = 30
 	/// Do the crafting pieces go into the result item, or get qdel'd?
 	var/insert_ingredients_into_product_contents
+	/// What memory to give upon completion
+	var/completion_memory_given = null
+	/// Exp bonus if the player doesn't have a memory of making this
+	var/first_time_completion_exp_bonus = 70
 
 ///Creates the item using the given list of ingredients -- it's assumed that this is only called after the list is verified to contain all ingredients. Probably shouldn't be parent called due to ingredient deletion.
 /datum/crafting_bench_recipe/proc/create_using_item_list(list/item_list, mob/living/user, construction_location)
@@ -151,8 +155,18 @@
 /datum/crafting_bench_recipe/proc/get_ingredient_description(obj/requirement_item)
 	return span_notice("<b>[recipe_requirements[requirement_item]]</b> - [initial(requirement_item.name)]")
 
+/datum/crafting_bench_recipe/proc/get_smithing_memory(obj/item/product)
+	return completion_memory_given
+
 /datum/crafting_bench_recipe/proc/give_experience(mob/user, item_list, obj/item/product)
 	if(!isnull(user?.mind))
+		var/memory_type = get_smithing_memory(product)
+		var/memory_bonus_exp = 0
+		if(!isnull(memory_type))
+			if(isnull(user?.mind?.memories[memory_type]))
+				user.add_mob_memory(memory_type, protagonist = user)
+				memory_bonus_exp = first_time_completion_exp_bonus
+
 		var/exp_give_mult = get_total_completion_ratio(item_list)
 		user.mind.adjust_experience(relevant_skill, exp_give * exp_give_mult)
 
@@ -181,6 +195,13 @@
 	consume_crafting_ingredients(item_list, returner)
 	return returner
 
+/datum/crafting_bench_recipe/weapon_completion_recipe/get_smithing_memory(obj/item/product)
+	//o, the humanity (of code debt that i don't want to bother refactoring)
+	for(var/smithing_subtype in subtypes(/datum/memory/smithing/))
+		if(istype(product, initial(smithing_subtype.smithed_item_type)))
+			return smithing_subtype
+	stack_trace("[product] doesn't have an assigned brain memory type in modular_skyrat/modules/reagent_forging/code/memories.dm !")
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// ARMOR COMPLETION //////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -194,6 +215,8 @@
 	)
 	resulting_item = /obj/item/clothing/head/helmet/forging_plate_helmet
 	time_to_assemble = 1.5 SECONDS
+	completion_memory_given = /datum/memory/smithing/helmet
+
 
 /datum/crafting_bench_recipe/wearable/plate_armor/plate_vest
 	recipe_name = "plate vest"
@@ -204,6 +227,7 @@
 	)
 	resulting_item = /obj/item/clothing/suit/armor/forging_plate_armor
 	time_to_assemble = 3 SECONDS
+	completion_memory_given = /datum/memory/smithing/plate_vest
 
 /datum/crafting_bench_recipe/wearable/plate_armor/plate_gloves
 	recipe_name = "plate gloves"
@@ -214,6 +238,7 @@
 	)
 	resulting_item = /obj/item/clothing/gloves/forging_plate_gloves
 	time_to_assemble = 2 SECONDS
+	completion_memory_given = /datum/memory/smithing/gloves
 
 /datum/crafting_bench_recipe/wearable/plate_armor/plate_boots
 	recipe_name = "plate boots"
@@ -224,6 +249,7 @@
 	)
 	resulting_item = /obj/item/clothing/shoes/forging_plate_boots
 	time_to_assemble = 2 SECONDS
+	completion_memory_given = /datum/memory/smithing/boots
 
 /datum/crafting_bench_recipe/wearable/plate_armor/horse_shoes
 	recipe_name = "horse shoes"
@@ -234,6 +260,7 @@
 	)
 	resulting_item = /obj/item/clothing/shoes/horseshoe/reagent_clothing
 	time_to_assemble = 1.5 SECONDS
+	completion_memory_given = /datum/memory/smithing/horseshoes
 
 /datum/crafting_bench_recipe/wearable/ring
 	recipe_name = "ring"
@@ -243,6 +270,7 @@
 	)
 	resulting_item = /obj/item/clothing/gloves/ring/reagent_clothing
 	time_to_assemble = 4 SECONDS
+	completion_memory_given = /datum/memory/smithing/ring
 
 /datum/crafting_bench_recipe/wearable/collar
 	recipe_name = "collar"
@@ -252,6 +280,7 @@
 	)
 	resulting_item = /obj/item/clothing/neck/collar/reagent_clothing
 	time_to_assemble = 3 SECONDS
+	completion_memory_given = /datum/memory/smithing/collar
 
 /datum/crafting_bench_recipe/wearable/handcuffs
 	recipe_name = "handcuffs"
@@ -274,6 +303,7 @@
 	)
 	resulting_item = /obj/item/shield/buckler/reagent_weapon
 	time_to_assemble = 3 SECONDS
+	completion_memory_given = /datum/memory/smithing/buckler
 
 /datum/crafting_bench_recipe/pavise
 	recipe_name = "pavise"
@@ -283,6 +313,7 @@
 	)
 	resulting_item = /obj/item/shield/buckler/reagent_weapon/pavise
 	time_to_assemble = 6 SECONDS
+	completion_memory_given = /datum/memory/smithing/pavise
 
 /datum/crafting_bench_recipe/bokken
 	recipe_name = "bokken"
@@ -312,6 +343,7 @@
 	)
 	resulting_item = /obj/item/gun/ballistic/revolver/handcrafted_single_action
 	time_to_assemble = 4 SECONDS
+	completion_memory_given = /datum/memory/smithing/revolver
 	relevant_skill_level = 7
 	required_traits = list(TRAIT_KNOW_GUNSMITHING)
 
@@ -351,6 +383,7 @@
 	resulting_item = /obj/item/storage/belt/hip_holster/cowboy
 	relevant_skill_level = 7
 	time_to_assemble = 3 SECONDS
+	completion_memory_given = /datum/memory/smithing/cowboy_holster
 	required_traits = list(TRAIT_KNOW_GUNSMITHING)
 
 /datum/crafting_bench_recipe/charging_holster
@@ -366,6 +399,7 @@
 	relevant_skill_level = 7
 	exp_give = 20
 	time_to_assemble = 3 SECONDS
+	completion_memory_given = /datum/memory/smithing/charging_holster
 	required_traits = list(TRAIT_KNOW_GUNSMITHING, TRAIT_KNOW_CIRCUIT_SMITHING)
 
 /datum/crafting_bench_recipe/charging_holster/get_ingredient_description(requirement_item)
@@ -386,6 +420,7 @@
 	resulting_item = /obj/item/storage/belt/crusader
 	relevant_skill_level = 7
 	time_to_assemble = 3 SECONDS
+	completion_memory_given = /datum/memory/smithing/crusader_belt
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 /datum/crafting_bench_recipe/multi_scabbard
@@ -397,6 +432,7 @@
 	)
 	resulting_item = /obj/item/storage/belt/sheath/multi
 	time_to_assemble = 3 SECONDS
+	completion_memory_given = /datum/memory/smithing/multi_scabbard
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 /datum/crafting_bench_recipe/repairing_scabbard
@@ -409,6 +445,7 @@
 	)
 	resulting_item = /obj/item/storage/belt/sheath/repairing
 	time_to_assemble = 3 SECONDS
+	completion_memory_given = /datum/memory/smithing/repairing_scabbard
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 /datum/crafting_bench_recipe/knifethrower
@@ -420,6 +457,7 @@
 	)
 	resulting_item = /obj/item/storage/belt/knifethrowers_belt
 	time_to_assemble = 3 SECONDS
+	completion_memory_given = /datum/memory/smithing/knifethrower
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
 
 /datum/crafting_bench_recipe/bluespace_plants
@@ -433,6 +471,7 @@
 	exp_give = 30
 	resulting_item = /obj/item/storage/bag/plants/bluespace
 	time_to_assemble = 3 SECONDS
+	completion_memory_given = /datum/memory/smithing/bluespace_plants
 	required_traits = list(TRAIT_KNOW_CIRCUIT_SMITHING)
 
 
