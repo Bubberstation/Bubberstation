@@ -20,8 +20,7 @@
   --tooltip-background: hsl(96, 30%, 8%);
 }
 
-// Clean dark panel with no manufacturer watermark. This is an Armadyne bench, not Nanotrasen,
-// so the default tgui "N" backdrop doesn't belong here.
+// Clean dark panel with no manufacturer watermark. We need this because the default applies Nanotrasen branding (inappropriate here)
 .theme-ammoworkbench .Layout__content {
   background-image: none;
   background-color: hsl(96, 20%, 9%);
@@ -77,7 +76,7 @@
   }
 }
 
-// Animated diagonal barber-pole, applied to the active fabrication/recycle bar.
+// Animated diagonal barber-pole, applied to the active fabrication/recycle bar. It's here because it looks COOL AS HELL
 @keyframes ammoworkbench-barberpole {
   from {
     background-position: 0 0;
