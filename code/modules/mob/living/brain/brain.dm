@@ -19,6 +19,7 @@
 	ADD_TRAIT(src, TRAIT_SILICON_EMOTES_ALLOWED, INNATE_TRAIT)
 
 /mob/living/brain/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
+	//Bubber Edit Start
 	if(isnull(new_turf))
 		var/mob/living/carbon/brain_owner = null
 
@@ -33,7 +34,7 @@
 
 		if(brain_owner)
 			return ..(old_turf, get_turf(brain_owner), same_z_layer, notify_contents)
-
+	//Bubber Edit End
 	return ..()
 
 /mob/living/brain/proc/create_dna()

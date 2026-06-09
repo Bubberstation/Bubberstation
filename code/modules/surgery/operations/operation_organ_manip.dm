@@ -206,7 +206,7 @@
 /datum/surgery_operation/limb/organ_manipulation/proc/on_success_insert_organ(obj/item/bodypart/limb, mob/living/surgeon, obj/item/organ/organ)
 	//Bubber Edit Start, Checks if the type attempted to be inserted is a positronic or not
 	if(istype(organ, /obj/item/mmi/posibrain))
-		organ = new /obj/item/organ/brain/synth(null, organ)
+		organ = new /obj/item/organ/brain/synth(null, organ) //Bubber Edit
 	//Bubber Edit End
 	surgeon.temporarilyRemoveItemFromInventory(organ, TRUE)
 	organ.pre_surgical_insertion(surgeon, limb, limb.body_zone)
