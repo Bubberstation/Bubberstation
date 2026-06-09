@@ -1356,7 +1356,20 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	if(isnull(offset_type))
 		if(islist(raw_applied))
 			for(var/image/applied_appearance in raw_applied)
-				apply_height_filters(applied_appearance)
+				/*
+				BUBBER EDIT - ADDITION - CHANGE
+				ORIGINAL: apply_height_filters(applied_appearance)
+				*/
+				var/sub_offset_type = GLOB.layers_to_offset[num2text(-applied_appearance.layer)]
+				if(isnull(sub_offset_type))
+					if(findtext(applied_appearance.icon_state, "horns_", 3, 9) || findtext(applied_appearance.icon_state, "ears_", 3, 8))
+						sub_offset_type = UPPER_BODY
+				if(sub_offset_type)
+					applied_appearance.pixel_z = initial(applied_appearance.pixel_z)
+					apply_height_offsets(applied_appearance, sub_offset_type)
+				else
+					apply_height_filters(applied_appearance)
+				// BUBBER EDIT - ADDITION - END
 		else if(isimage(raw_applied))
 			apply_height_filters(raw_applied)
 	else
