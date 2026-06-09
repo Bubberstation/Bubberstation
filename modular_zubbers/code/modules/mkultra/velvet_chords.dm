@@ -1,6 +1,6 @@
 /obj/item/organ/vocal_cords/velvet
 	name = "velvet chords"
-	desc = "The voice from these want to make you drift off, sleep, and obey.\nRight click to see all commands"
+	desc = "The voice from these want to make you drift off, sleep, and obey."
 	icon = 'modular_zubbers/icons/obj/vocal_cords.dmi'
 	icon_state = "velvet_chords"
 	actions_types = list(/datum/action/item_action/organ_action/velvet)
@@ -8,6 +8,7 @@
 
 /datum/action/item_action/organ_action/velvet
 	name = "Velvet Chords"
+	desc = "Speak in a sultry tone. Right click to see all commands."
 	var/obj/item/organ/vocal_cords/velvet/chords
 
 /datum/action/item_action/organ_action/velvet/New(Target)
@@ -30,7 +31,9 @@
 		var/datum/status_effect/mkultra/status = people.has_status_effect(/datum/status_effect/mkultra)
 		if(isnull(status))
 			continue
-		if(status.listener(owner, command))
+		if(status.enchanter != owner)
+			continue
+		if(!status.listener(owner, command))
 			return FALSE
 	owner.say(".x[command]")
 

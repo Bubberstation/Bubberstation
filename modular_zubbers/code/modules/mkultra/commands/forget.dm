@@ -1,6 +1,6 @@
 /datum/mkultra_command/forget
 	name = "Forget"
-	description = "disable MKUltra and cause your victim to forget they have it.\n\nEnable with *snap3"
+	description = "disable MKUltra and cause your victim to forget they have it. Enable with *snap3"
 	feedback = "suddenly falls asleep as they forget about your influence."
 	trigger = "forget everything|awake and forget"
 	phase_requirement = 3

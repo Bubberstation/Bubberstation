@@ -11,12 +11,13 @@
 		var/name = command.name
 		var/description = command.description
 		var/trigger = command.trigger
+		var/cooldown = command.cooldown / 600
 		if(isnull(name) || isnull(description) || isnull(trigger))
 			continue
 		if(!owner.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis))
 			continue
 		trigger = replacetext(trigger, "|", ", ")
-		data += list(list("name" = name, "description" = description, "trigger" = trigger, "erp" = command.erp_command))
+		data += list(list("name" = name, "description" = description, "trigger" = trigger, "erp" = command.erp_command, "cooldown" = cooldown))
 	return list("commands" = data)
 
 /datum/action/item_action/organ_action/velvet/ui_status(mob/user, datum/ui_state/state)

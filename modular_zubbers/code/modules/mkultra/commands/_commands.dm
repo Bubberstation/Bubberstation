@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(mkultra_commands, subtypesof(/datum/mkultra_command))
 			to_chat(source, span_notice("[owner] [feedback]"))
 		if(cooldown)
 			COOLDOWN_START(src, ultra_cooldown, cooldown)
-			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), source, span_notice("[owner] has finished internalizing your last command!")), cooldown)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), source, span_notice("[owner] has finished internalizing your [LOWER_TEXT(name)] command!")), cooldown)
 	return TRUE
 
 /**
