@@ -203,6 +203,9 @@
 #define CYBORG_ICON_SCI_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_sci.dmi'
 #define CYBORG_ICON_SERVICE_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_service.dmi'
 #define CYBORG_ICON_SYNDI_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_syndi.dmi'
+#define CYBORG_ICON_CC_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_CC.dmi'
+#define CYBORG_ICON_SEC_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_sec.dmi'
+#define CYBORG_ICON_CLOWN_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_clown.dmi'
 /************************************************************
 				CYBORG HAT OFFSETS GO BELOW
 *************************************************************/
@@ -256,3 +259,6 @@
 #define MYOMER_HAT_OFFSET \
 	SKIN_HAT_OFFSET = list("north" = list(16, 1), "south" = list(16, 1), "east" = list(26, 1), "west" = list(6, 1)), \
 	SKIN_HAT_REST_OFFSET = list("north" = list(16, -11), "south" = list(16, -11), "east" = list(26, -11), "west" = list(6, -11))
+#define XENOBORG_HAT_OFFSET \
+	SKIN_HAT_OFFSET = list("north" = list(16, 10), "south" = list(16, 5), "east" = list(32, 7), "west" = list(0, 7)), \
+	SKIN_HAT_REST_OFFSET = list("north" = list(16, 6), "south" = list(16, 6), "east" = list(31, 6), "west" = list(1, 6))
