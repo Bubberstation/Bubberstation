@@ -145,7 +145,7 @@
 	delta_resist = 4
 
 	/// Distance calculations and zeroing resistance on full enthrallment
-	if(progress == FULLY_ENTHRALLED && get_dist(owner, enchanter) <= 8)
+	if(phase == FULLY_ENTHRALLED && get_dist(owner, enchanter) <= 8)
 		delta_resist *= 0
 		if(prob(30))
 			to_chat(owner, span_warning("You're unable to break [enchanter] grasp on your mind!"))
@@ -184,9 +184,10 @@
 /datum/status_effect/mkultra/proc/listener(mob/source, message)
 	for(var/datum/mkultra_command/command in commands)
 		if(findtext(message, command.trigger))
-			//if(command.erp_command && !lewd)
-			//	continue
-			command.execute(src, owner, source, message)
+			if(command.execute(src, owner, source, message))
+				return TRUE
+			return FALSE
+	return TRUE
 
 /atom/movable/screen/alert/status_effect/mkultra
 	icon = 'modular_zubbers/icons/obj/vocal_cords.dmi'

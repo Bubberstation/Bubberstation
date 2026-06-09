@@ -24,7 +24,7 @@ GLOBAL_LIST_INIT(mkultra_commands, subtypesof(/datum/mkultra_command))
 /datum/mkultra_command/New()
 	. = ..()
 	if(regex)
-		trigger = regex(trigger)
+		trigger = regex(trigger, "i")
 
 /** This is executed when the status effect is removed. Use this to clear references and other effects.
  *	* status - MKUltra status effect
