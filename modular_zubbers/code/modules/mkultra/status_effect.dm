@@ -96,7 +96,6 @@
 		if(command.processing)
 			command.tick(src, owner, enchanter)
 
-	delta_resist = 0
 	switch(progress)
 		if(-INFINITY to 0)
 			if(phase != ENTHRALL_BROKEN)
@@ -134,6 +133,8 @@
 	if(progress <= 400)
 		progress += 1 + bonus_progress
 	progress -= delta_resist
+	delta_resist = 0
+	message_admins(progress)
 	return
 
 /datum/status_effect/mkultra/proc/resist()

@@ -17,7 +17,7 @@
 		if(!owner.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis))
 			continue
 		trigger = replacetext(trigger, "|", ", ")
-		data += list(list("name" = name, "description" = description, "trigger" = trigger, "erp" = command.erp_command, "cooldown" = cooldown))
+		data += list(list("name" = name, "description" = description, "trigger" = trigger, "erp" = command.erp_command, "cooldown" = cooldown, "phase" = command.phase_requirement))
 	return list("commands" = data)
 
 /datum/action/item_action/organ_action/velvet/ui_status(mob/user, datum/ui_state/state)

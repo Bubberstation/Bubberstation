@@ -14,6 +14,7 @@ type Data = {
   trigger: string;
   erp: boolean;
   cooldown?: number;
+  phase: number;
 };
 
 export const MKUltraUI = () => {
@@ -22,7 +23,7 @@ export const MKUltraUI = () => {
   commands.sort((a, b) => (a.erp < b.erp ? -1 : 1));
   return (
     <Window title="MKUltra Commands" width={700} height={375}>
-      <Window.Content scrollable>
+      <Window.Content>
         <Stack fill vertical>
           <Stack.Item grow>
             <Section fill scrollable>
@@ -54,22 +55,31 @@ export const MKUltraUI = () => {
                         fontSize="15px"
                         color="label"
                         align="center"
-                        style={{ width: '30%' }}
+                        style={{ width: '30%', verticalAlign: 'middle' }}
                       >
                         {capitalizeAll(commands.name)}
                       </Table.Cell>
-                      <Table.Cell align="center">
+                      <Table.Cell align="center" fontSize="10px" color="label">
+                        Phase: {commands.phase.toString()}
+                        <br />
                         <Button
+                          iconSize={1.5}
                           color="transparent"
                           icon="info"
                           tooltipPosition="top"
                           tooltip={commands.description}
                         />
                       </Table.Cell>
-                      <Table.Cell textAlign="Center">
+                      <Table.Cell
+                        textAlign="Center"
+                        style={{ verticalAlign: 'middle' }}
+                      >
                         {capitalizeAll(commands.trigger)}
                       </Table.Cell>
-                      <Table.Cell align="center">
+                      <Table.Cell
+                        align="center"
+                        style={{ verticalAlign: 'middle' }}
+                      >
                         {commands.cooldown ? (
                           <Button
                             color="transparent"
@@ -95,7 +105,7 @@ export const MKUltraUI = () => {
                           style={{
                             borderBottom: 'thin solid #333',
                             borderLeft: 'thin solid #333',
-                            borderTop: 'thin solid #00000002',
+                            borderTop: 'thin solid #00000001',
                           }}
                         >
                           <b>

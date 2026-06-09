@@ -22,7 +22,7 @@
 	if(trigger_flags & TRIGGER_SECONDARY_ACTION)
 		ui_interact(clicker)
 		return ..()
-	var/command = input(owner, "Speak in a sultry tone.", "Command")
+	var/command = tgui_input_text(owner, "Speak in a sultry tone.", "Command", max_length = MAX_MESSAGE_LEN)
 	if(!command)
 		return FALSE
 	if(QDELETED(src) || QDELETED(owner))
