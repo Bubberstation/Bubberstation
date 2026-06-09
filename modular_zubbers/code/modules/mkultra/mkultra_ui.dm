@@ -13,6 +13,8 @@
 		var/trigger = command.trigger
 		if(isnull(name) || isnull(description) || isnull(trigger))
 			continue
+		if(!owner.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis))
+			continue
 		trigger = replacetext(trigger, "|", ", ")
 		data += list(list("name" = name, "description" = description, "trigger" = trigger, "erp" = command.erp_command))
 	return list("commands" = data)
