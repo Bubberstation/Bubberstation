@@ -33,6 +33,10 @@
 
 /obj/machinery/door/airlock/update_overlays()
 	. = ..()
+	if(QDELETED(src))
+		return
+	if(isnull(overlays_file))
+		return
 	var/frame_state
 	var/light_state = AIRLOCK_LIGHT_POWERON
 	if(machine_stat & MAINT) // in the process of being emagged
@@ -323,10 +327,6 @@
 /obj/machinery/door/airlock/highsecurity
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/highsec/highsec.dmi'
 	overlays_file = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/highsec/overlays.dmi'
-
-//NUKIE AIRLOCK - Already looks great, this makes it call for no overlay emissives like on upstream... again.
-/obj/machinery/door/airlock/highsecurity/syndicate
-	overlays_file = null
 
 //TITANIUM / SHUTTLE
 /obj/machinery/door/airlock/titanium
