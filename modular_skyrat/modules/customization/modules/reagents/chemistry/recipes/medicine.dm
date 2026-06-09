@@ -16,13 +16,13 @@
 
 /datum/chemical_reaction/medicine/taste_suppressor
 	results = list(/datum/reagent/medicine/taste_suppressor = 3)
-	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/water/salt = 1)
+	required_reagents = list(/datum/reagent/sodium = 1, /datum/reagent/sulfur = 1, /datum/reagent/water = 1)
 	mix_message = "The mixture becomes clear like water."
 
 
 /datum/chemical_reaction/medicine/taste_suppressor/maint
 	results = list(/datum/reagent/medicine/taste_suppressor = 3, /datum/reagent/chlorine = 1) // The chlorine dissociated from the sodium to allow for the synthesis of the taste suppressor
-	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/water/salt = 2)
+	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/water/salt = 1)
 	required_temp = 300
 
 /datum/chemical_reaction/medicine/dermagen

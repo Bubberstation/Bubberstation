@@ -324,6 +324,10 @@
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/highsec/highsec.dmi'
 	overlays_file = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/highsec/overlays.dmi'
 
+//NUKIE AIRLOCK - Already looks great, this makes it call for no overlay emissives like on upstream... again.
+/obj/machinery/door/airlock/highsecurity/syndicate
+	overlays_file = null
+
 //TITANIUM / SHUTTLE
 /obj/machinery/door/airlock/titanium
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/shuttle/shuttle.dmi'
