@@ -130,7 +130,7 @@
 
 /obj/projectile/beam/cybersun_laser/hellfire
 	icon_state = "hellfire"
-	damage = 25
+	damage = 20
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	speed = 1.6
 	wound_bonus = 0
