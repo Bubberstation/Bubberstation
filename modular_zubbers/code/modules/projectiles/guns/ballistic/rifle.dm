@@ -24,6 +24,7 @@
 	mag_display_ammo = TRUE
 	spread = 7.5
 	projectile_damage_multiplier = 0.50
+	projectile_speed_multiplier = 1.25
 
 /obj/item/gun/ballistic/rifle/stingballer/Initialize(mapload)
 	. = ..()

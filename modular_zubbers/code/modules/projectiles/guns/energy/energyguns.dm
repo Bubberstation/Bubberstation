@@ -28,12 +28,14 @@
 			Modifications to the micro reactor have caused allowed a more stable, but less efficient generation of power. Comes with two settings: disable and kill."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/energy.dmi'
 	icon_state = "nuclear_smg"
+	inhand_icon_state = "nucgun"
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler/smg, /obj/item/ammo_casing/energy/lasergun/carbine_old)
 	spread = 2
+	ammo_x_offset = 1
 	projectile_damage_multiplier = 0.80
 	projectile_speed_multiplier = 1.2
 	selfcharge = 1
-	charge_delay = 15
+	charge_delay = 7.5
 	self_charge_amount = STANDARD_ENERGY_GUN_SELF_CHARGE_RATE / 2
 	can_charge = FALSE
 	custom_materials = list(
