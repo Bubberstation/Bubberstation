@@ -11,60 +11,32 @@
 	var/last_message_time = 0
 	organ_traits = list(TRAIT_SILICON_EMOTES_ALLOWED)
 	var/mmi_type = /obj/item/mmi/posibrain
-	var/obj/item/mmi/stored_mmi
+	var/obj/item/mmi/posibrain/stored_mmi
 
-/obj/item/organ/brain/synth/Initialize(mapload, obj/item/mmi/M)
+/obj/item/organ/brain/synth/Initialize(mapload, obj/item/mmi/brain_mmi)
 	. = ..()
-	if(M && istype(M))
-		stored_mmi = M
-		M.forceMove(src)
+	if(istype(brain_mmi))
+		stored_mmi = brain_mmi
+		stored_mmi.forceMove(src)
 	else
-		stored_mmi = new mmi_type(src)
+		stored_mmi = new mmi_type(src, FALSE)
 
 /obj/item/organ/brain/synth/Destroy()
 	QDEL_NULL(stored_mmi)
 	return ..()
 
-/obj/item/organ/brain/synth/Insert(mob/living/carbon/receiver, special = FALSE, movement_flags)
-	if(special)
-		return ..()
-	if(!stored_mmi)
-		qdel(src)
-		return
-	brainmob = stored_mmi.brainmob
-	return ..()
-
 /obj/item/organ/brain/synth/Remove(mob/living/carbon/organ_owner, special = FALSE, movement_flags)
-	if(special)
-		return ..()
-	if(!stored_mmi)
-		. = ..()
-		qdel(src)
-		return
-
-	stored_mmi.forceMove(get_turf(owner)) // so we can get the turf of the owner
-	..()
-	stored_mmi = null
+	var/atom/drop_target = organ_owner ? organ_owner.drop_location() : drop_location()
+	. = ..()
+	if(istype(stored_mmi))
+		stored_mmi.forceMove(drop_target)
+		stored_mmi = null
 	qdel(src)
-
-
-/obj/item/organ/brain/synth/transfer_identity(mob/living/L)
-	..(stored_mmi.brainmob)
-	// brainmob.loc = null
-	// brainmob.forceMove(stored_mmi) //moves the brainmob to the stored mmi
-	// stored_mmi.set_brainmob(brainmob) //sets the mmi's brainmob to the current one
-	// brainmob.container = stored_mmi
-	// stored_mmi.brain = L // for the mmi icon
-	// stored_mmi.name = "[initial(name)] ([L.real_name])"
-	// brainmob.set_stat(CONSCIOUS) //mmis are conscious
-	// brainmob.remove_from_dead_mob_list()
-	// brainmob.add_to_alive_mob_list() //mmis are technically alive I guess?
-	// stored_mmi.update_appearance() //update it because the brain is alive now
-	// brainmob.reset_perspective() //resets perspective to the mmi
-	// brainmob = null //clears the brainmob var so it doesn't get deleted when the holder is destroyed
 
 /obj/item/organ/brain/synth/on_mob_insert(mob/living/carbon/brain_owner, special, movement_flags = NO_ID_TRANSFER)
 	. = ..()
+	if(stored_mmi?.brainmob?.mind && stored_mmi.brainmob.mind.current == stored_mmi.brainmob)
+		stored_mmi.brainmob.mind.transfer_to(brain_owner)
 
 	if(brain_owner.stat != DEAD || !ishuman(brain_owner))
 		return
@@ -72,6 +44,37 @@
 	var/mob/living/carbon/human/user_human = brain_owner
 	if(HAS_TRAIT(user_human, TRAIT_REVIVES_BY_HEALING) && user_human.health > SYNTH_BRAIN_WAKE_THRESHOLD)
 		user_human.revive(FALSE)
+
+/obj/item/organ/brain/synth/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
+	. = ..()
+	cache_brainmob_into_stored_mmi(organ_owner)
+
+/obj/item/organ/brain/synth/proc/cache_brainmob_into_stored_mmi(mob/living/carbon/organ_owner)
+	if(!istype(stored_mmi))
+		return FALSE
+
+	var/mob/living/brain/brainmob_to_store = brainmob
+	if(QDELETED(brainmob_to_store))
+		brainmob_to_store = null
+
+	if(!brainmob_to_store)
+		brainmob_to_store = stored_mmi.brainmob
+
+	if(!brainmob_to_store)
+		brainmob_to_store = new /mob/living/brain(stored_mmi)
+
+	if(organ_owner?.mind?.current == organ_owner)
+		organ_owner.mind.transfer_to(brainmob_to_store)
+
+	stored_mmi.set_brainmob(brainmob_to_store)
+	brainmob_to_store.doMove(stored_mmi)
+	brainmob_to_store.container = stored_mmi
+	brainmob_to_store.set_stat(CONSCIOUS)
+	brainmob_to_store.reset_perspective()
+	if(brainmob == brainmob_to_store)
+		brainmob = null
+	stored_mmi.update_appearance()
+	return TRUE
 
 /obj/item/organ/brain/synth/emp_act(severity) // EMP act against the posi, keep the cap far below the organ health
 	. = ..()
