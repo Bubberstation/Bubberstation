@@ -259,7 +259,7 @@
 ///Toggles Blood Drain. Bypasss -  Ignores the need to perform the blood_check proc.
 /obj/item/organ/cyberimp/brain/nif/proc/toggle_blood_drain(bypass = FALSE)
 	if(!bypass && !blood_check())
-		return
+		return FALSE
 
 	blood_drain = !blood_drain
 
@@ -267,10 +267,11 @@
 		power_usage += (blood_drain_rate * blood_conversion_rate)
 
 		balloon_alert(linked_mob, "blood draining disabled")
-		return
+		return TRUE
 
 	power_usage -= (blood_drain_rate * blood_conversion_rate)
 	balloon_alert(linked_mob, "blood draining enabled")
+	return TRUE
 
 ///Checks if the NIF is able to draw blood as a power source?
 /obj/item/organ/cyberimp/brain/nif/proc/blood_check()

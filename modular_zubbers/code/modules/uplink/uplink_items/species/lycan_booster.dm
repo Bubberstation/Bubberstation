@@ -2,7 +2,7 @@
 	name = "Lycanthropy Booster"
 	desc = "A highly advanced mix of nanomachines and general 'bad vibes' that will significantly boost the combat performance of your \
 	Lycan form, granting significant damage resistance, baton resistance, regeneration, and further sharpening your claws. Additionally grants you expert fitness."
-	cost = 10
+	cost = 15
 	item = /obj/item/lycan_booster
 	restricted_species = list(SPECIES_CURSEKIN)
 	surplus = 0

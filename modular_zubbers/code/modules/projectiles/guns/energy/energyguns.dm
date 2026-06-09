@@ -6,6 +6,7 @@
 	inhand_icon_state = "energykill3"
 	ammo_x_offset = 2
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/sec/tacticool, /obj/item/ammo_casing/energy/disabler/tacticool, /obj/item/ammo_casing/energy/laser/tacticool)
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/ammo_casing/energy/disabler/tacticool
 	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
