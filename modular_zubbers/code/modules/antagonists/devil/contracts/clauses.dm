@@ -240,8 +240,9 @@
 	prefix = "Lose an"
 	desc = "The signer shall have one of their organs taken, with the exception of the brain."
 	cost = -6
+	conflicts = list(/datum/devil_clause/trait_giver/soul)
 
-/datum/devil_clause/weakness/apply(mob/living/carbon/victim, first_apply = TRUE)
+/datum/devil_clause/organ/apply(mob/living/carbon/victim, first_apply = TRUE)
 	if(!istype(victim))
 		return
 	var/list/organs = victim.organs.Copy()
@@ -266,6 +267,8 @@
 
 /datum/devil_clause/trait_giver/soul/apply(mob/living/victim, first_apply = TRUE)
 	. = ..()
+	message_admins("[victim] has lost their soul to a devil contract!")
+	log_game("[victim] has lost their soul to a devil contract!")
 	if(first_apply)
 		var/datum/objective/collect_souls/soul_objective = locate(/datum/objective/collect_souls) in devil.objectives
 		if(soul_objective)
