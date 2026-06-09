@@ -16,7 +16,7 @@
 
 /datum/chemical_reaction/medicine/taste_suppressor
 	results = list(/datum/reagent/medicine/taste_suppressor = 3)
-	required_reagents = list(/datum/reagent/sodium = 1, /datum/reagent/sulfur = 1, /datum/reagent/water = 1)
+	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/water/salt = 1)
 	mix_message = "The mixture becomes clear like water."
 
 
