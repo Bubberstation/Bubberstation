@@ -317,7 +317,6 @@
 		turbo_boost = !turbo_boost
 	apply_speed_state()
 	update_ammotypes()
-	SStgui.update_uis(src)
 
 // keeps time/efficiency in sync with the turbo toggle so they can't drift apart
 /obj/machinery/ammo_workbench/proc/apply_speed_state()
