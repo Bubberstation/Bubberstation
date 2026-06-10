@@ -310,6 +310,7 @@
 
 		if("turboBoost")
 			toggle_turbo_boost()
+			return TRUE
 
 /obj/machinery/ammo_workbench/proc/toggle_turbo_boost(forced_off = FALSE)
 	if(forced_off)
