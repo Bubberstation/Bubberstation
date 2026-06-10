@@ -859,7 +859,6 @@
 	if(user)
 		to_chat(user, span_warning("You short out [src]'s munition safety protocols, unlocking its full catalogue."))
 	playsound(src, 'sound/effects/sparks/sparks4.ogg', 60, TRUE)
-	SStgui.update_uis(src)
 	return TRUE
 
 
