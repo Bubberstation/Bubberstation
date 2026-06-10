@@ -113,14 +113,6 @@
 	materials.set_local_size(200000)
 	set_wires(new /datum/wires/ammo_workbench(src))
 
-/obj/machinery/ammo_workbench/proc/local_material_insert(obj/machinery/machine, container, obj/item/item_inserted, last_inserted_id, list/mats_consumed, amount_inserted)
-	SIGNAL_HANDLER
-	SStgui.update_uis(src)
-
-/obj/machinery/ammo_workbench/proc/silo_material_insert(obj/machinery/machine, container, obj/item/item_inserted, last_inserted_id, list/mats_consumed, amount_inserted)
-	SIGNAL_HANDLER
-	SStgui.update_uis(src)
-
 /obj/machinery/ammo_workbench/examine(mob/user)
 	. += ..()
 	if(in_range(user, src) || isobserver(user))
