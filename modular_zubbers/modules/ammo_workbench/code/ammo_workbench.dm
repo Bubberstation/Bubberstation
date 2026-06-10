@@ -72,8 +72,9 @@
 
 // mapping variant - comes with decent parts and some materials so you can just plop it down on a ruin/away mission without also placing sheets and a disk
 /obj/machinery/ammo_workbench/prefilled
-	circuit = /obj/item/circuitboard/machine/ammo_workbench/prefilled
+	circuit = /obj/item/circuitboard/machine/ammo_workbench
 	force_local_materials = TRUE
+	allowed_harmful = TRUE // basic lethals available without hacking; maps don't need a wire-cut
 
 /obj/machinery/ammo_workbench/prefilled/Initialize(mapload)
 	. = ..()
@@ -86,6 +87,11 @@
 		materials.mat_container.insert_amount_mat(15 * SHEET_MATERIAL_AMOUNT, /datum/material/silver)
 		materials.mat_container.insert_amount_mat(15 * SHEET_MATERIAL_AMOUNT, /datum/material/gold)
 
+/// Prefilled + full catalogue. For ruins/syndicate/antag maps that need a standalone stocked bench with no restrictions.
+/obj/machinery/ammo_workbench/prefilled/unlocked
+	allowed_harmful = TRUE
+	allowed_advanced = TRUE
+
 /obj/item/circuitboard/machine/ammo_workbench
 	name = "Ammunition Workbench (Machine Board)"
 	icon_state = "circuit_map"
@@ -94,14 +100,6 @@
 		/datum/stock_part/servo = 2,
 		/datum/stock_part/matter_bin = 2,
 		/datum/stock_part/micro_laser = 2
-	)
-
-/obj/item/circuitboard/machine/ammo_workbench/prefilled
-	build_path = /obj/machinery/ammo_workbench/prefilled
-	req_components = list(
-		/datum/stock_part/servo/tier3 = 2,
-		/datum/stock_part/matter_bin/tier3 = 2,
-		/datum/stock_part/micro_laser/tier3 = 2
 	)
 
 /obj/machinery/ammo_workbench/Initialize(mapload)
