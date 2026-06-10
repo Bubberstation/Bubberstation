@@ -19,10 +19,10 @@
 		flavor_text_link = span_notice("<a href='byond://?src=[REF(src)];lookup_info=open_examine_panel'>\[Examine closely...\]</a>")
 	return flavor_text_link
 
-/mob/living/carbon/proc/get_chat_examine_headshot(mob/user)
+/atom/proc/get_chat_examine_headshot_top(mob/user)
 	return null
 
-/mob/living/carbon/human/get_chat_examine_headshot(mob/user)
+/mob/living/carbon/human/get_chat_examine_headshot_top(mob/user)
 	if(!user?.client)
 		return null
 	if(!user.client.prefs?.read_preference(/datum/preference/toggle/chat_examine_headshot))
@@ -37,7 +37,7 @@
 	if(face_obscured && !isobserver(user))
 		return null
 
-	return "<div class='chat_headshot_wrap'><span class='chat_headshot_label'>Headshot</span>[chat_headshot(html_encode(headshot))]</div>"
+	return "<div class='chat_headshot_top'>[chat_headshot(html_encode(headshot))]</div>"
 
 
 /mob/living/carbon/alien/get_flavor_text()
