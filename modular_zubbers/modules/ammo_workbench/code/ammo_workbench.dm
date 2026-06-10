@@ -29,8 +29,6 @@
 	// hello future codediver. open to suggestions on how to do the following without it sucking so badly
 	/// what casings we're able to use
 	var/list/valid_casings = list()
-	/// the material requirement strings for these casings (for the tooltip)
-	var/list/casing_mat_strings = list()
 	/// parallel to valid_casings: per-round UI tip-dot hex color (or null).
 	var/list/casing_tip_colors = list()
 	/// can it print ammunition flagged as harmful (e.g. most ammo)?
@@ -150,7 +148,6 @@
 
 /obj/machinery/ammo_workbench/proc/update_ammotypes()
 	LAZYCLEARLIST(valid_casings)
-	LAZYCLEARLIST(casing_mat_strings)
 	LAZYCLEARLIST(casing_tip_colors)
 	if(!loaded_magazine)
 		return
@@ -175,31 +172,33 @@
 				continue // no
 		if(initial(our_casing.projectile_type) == null) // spent casing subtypes >:(
 			continue
-		// i'm very sorry for this, but literally every other thing i tried to get the material composition didn't copy at all
-		var/obj/item/ammo_casing/casing_actual = new our_casing
-		var/list/raw_casing_mats = casing_actual.get_material_composition()
-		var/list/efficient_casing_mats = list()
-		qdel(casing_actual)
-		for(var/material in raw_casing_mats)
-			efficient_casing_mats[material] = raw_casing_mats[material] * creation_efficiency
-		// max_ammo can read 0 on a just-inserted empty container before its contents initialize; fall back to the type's spawn capacity.
-		var/true_capacity = loaded_magazine.max_ammo || initial(loaded_magazine.max_ammo)
-		var/rounds_to_fill = max(true_capacity - length(loaded_magazine.stored_ammo), 0)
-		var/mat_string = ""
-
-		for(var/i in 1 to length(efficient_casing_mats))
-			var/datum/material/our_material = efficient_casing_mats[i]
-			var/per_round = round(efficient_casing_mats[our_material] / SHEET_MATERIAL_AMOUNT, 0.01)
-			var/to_fill = round(per_round * rounds_to_fill, 0.01)
-			mat_string += "[per_round] [our_material.name] ([to_fill] to fill)"
-			if(i != length(efficient_casing_mats))
-				mat_string += ", "
-
 		valid_casings += our_casing // adding the valid typepath
 		valid_casings[our_casing] = initial(our_casing.name)
-		casing_mat_strings += mat_string // adding the casing material cost string
 		casing_tip_colors += initial(our_casing.workbench_tip_color)
 		// we pray to god these indexes stay consistent.
+
+// builds the "0.24 iron (1.68 to fill)" cost string for a casing type. computed live (not cached) since it
+// depends on current efficiency and how full the container is.
+/obj/machinery/ammo_workbench/proc/get_cost_string(casing_type)
+	if(!loaded_magazine)
+		return ""
+	// i'm very sorry for this, but literally every other thing i tried to get the material composition didn't copy at all
+	var/obj/item/ammo_casing/casing_actual = new casing_type
+	var/list/raw_casing_mats = casing_actual.get_material_composition()
+	qdel(casing_actual)
+	if(!length(raw_casing_mats))
+		return ""
+
+	// max_ammo can read 0 on a just-inserted empty container before its contents initialize; fall back to the type's spawn capacity.
+	var/true_capacity = loaded_magazine.max_ammo || initial(loaded_magazine.max_ammo)
+	var/rounds_to_fill = max(true_capacity - length(loaded_magazine.stored_ammo), 0)
+
+	var/list/parts = list()
+	for(var/datum/material/our_material as anything in raw_casing_mats)
+		var/per_round = round(raw_casing_mats[our_material] * creation_efficiency / SHEET_MATERIAL_AMOUNT, 0.01)
+		var/to_fill = round(per_round * rounds_to_fill, 0.01)
+		parts += "[per_round] [our_material.name] ([to_fill] to fill)"
+	return jointext(parts, ", ")
 
 /obj/machinery/ammo_workbench/ui_data(mob/user)
 	// i kinda hate how all of this is done on every tgui process tick
@@ -258,7 +257,7 @@
 			data["available_rounds"] += list(list(
 				"name" = valid_casings[typepath],
 				"typepath" = typepath,
-				"mats_list" = casing_mat_strings[casings_to_relay],
+				"mats_list" = get_cost_string(typepath),
 				"tip_color" = casing_tip_colors[casings_to_relay]
 			))
 
@@ -296,25 +295,6 @@
 			fill_magazine_start(type_to_pass)
 			. = TRUE
 
-		if("Release")
-			if(!materials?.mat_container)
-				return
-			var/datum/material/mat = locate(params["id"])
-			if(!mat)
-				return
-			var/amount = materials.mat_container.materials[mat]
-			if(!amount)
-				return
-			var/stored_amount = CEILING(amount / SHEET_MATERIAL_AMOUNT, 0.1)
-			var/desired = 0
-			if (params["sheets"])
-				desired = text2num(params["sheets"])
-			var/sheets_to_remove = round(min(desired, 50, stored_amount))
-			if(sheets_to_remove <= 0)
-				return
-			materials.eject_sheets(mat, sheets_to_remove, drop_location(), sanitize_id_data(ID_DATA(usr)))
-			. = TRUE
-
 		if("remove_mat") // MaterialAccessBar eject: { ref, amount(sheets) }
 			if(!materials?.mat_container)
 				return
@@ -329,7 +309,6 @@
 			var/sheets_to_remove = round(min(desired, 50, sheets_available))
 			if(sheets_to_remove <= 0)
 				return
-			// withdrawal goes through eject_sheets so a silo hold is respected and the silo log entry is well-formed.
 			materials.eject_sheets(mat, sheets_to_remove, drop_location(), sanitize_id_data(ID_DATA(usr)))
 			. = TRUE
 
@@ -494,9 +473,7 @@
 	loaded_magazine.stored_ammo -= target_round
 	if(!ispath(target_round))
 		var/obj/item/ammo_casing/spent = target_round
-		// drop the round's custom materials before qdel so the magazine's own Exited material-subtraction
-		// can't drive a stack to a non-positive value and runtime. we zero the mag wholesale in recycle_finish anyway.
-		spent.set_custom_materials(null)
+		spent.set_custom_materials(null) // clear before qdel or the mag's Exited subtraction hits zero and runtimes
 		qdel(target_round)
 	loaded_magazine.update_appearance()
 
@@ -506,7 +483,6 @@
 	playsound(loc, 'sound/machines/piston/piston_raise.ogg', 60, TRUE, frequency = -1)
 	SStgui.update_uis(src)
 
-	// recycling is twice as fast as printing at the same part tier, and rides the same turbo/upgrade scaling (turbo makes it faster but wastes material).
 	var/recycle_delay = max(time_per_round * 0.5, 1)
 	timer_id = addtimer(CALLBACK(src, PROC_REF(recycle_round)), recycle_delay, TIMER_STOPPABLE)
 
@@ -608,15 +584,15 @@
 		return
 
 	if(new_casing.type in possible_ammo_types)
-		if(!loaded_magazine.give_round(new_casing))
-			error_message = "AMMUNITION MISMATCH"
+		// respect a remote silo hold before doing anything irreversible
+		if(materials.silo && materials.on_hold())
+			error_message = "MATERIAL ACCESS ON HOLD"
 			error_type = "bad"
 			ammo_fill_finish(FALSE)
 			qdel(new_casing)
 			return
-		// respect a remote silo hold (the vault can pause us), but no nanny-state ID gating; the bench draws and logs, it doesn't police access
-		if(materials.silo && materials.on_hold())
-			error_message = "MATERIAL ACCESS ON HOLD"
+		if(!loaded_magazine.give_round(new_casing))
+			error_message = "AMMUNITION MISMATCH"
 			error_type = "bad"
 			ammo_fill_finish(FALSE)
 			qdel(new_casing)
@@ -663,7 +639,7 @@
 	if(!loaded_datadisk)
 		return FALSE
 	if(loaded_datadisk.type in loaded_datadisks)
-		disk_error = "ERROR: DISK DATA ALREADY IN SYSTEM MEMEORY"
+		disk_error = "ERROR: DISK DATA ALREADY IN SYSTEM MEMORY"
 		return FALSE
 
 	disk_error = "DISK LOADED SUCCESSFULLY"
@@ -801,7 +777,7 @@
 /obj/machinery/ammo_workbench/proc/Insert_Item(obj/item/O, mob/living/user)
 	if(user.combat_mode)
 		return FALSE
-	if(!is_insertion_ready(user))
+	if(!is_insertion_ready(user, O))
 		return FALSE
 	if(istype(O, /obj/item/ammo_box))
 		if(!user.transferItemToLoc(O, src))
@@ -868,8 +844,7 @@
 /obj/machinery/ammo_workbench/proc/adjust_hacked(state)
 	hacked = state
 
-/// Returns a copy of an ID_DATA record with the access list dropped. The raw access list is a flat list that
-/// the silo log serializer can't walk, so we strip it; we only need the name/account for accountability anyway.
+// silo's recursive_jsonify chokes on the flat access list in ID_DATA; strip it and keep the name/account
 /obj/machinery/ammo_workbench/proc/sanitize_id_data(alist/user_data)
 	if(!islist(user_data))
 		return user_data
@@ -877,15 +852,11 @@
 	clean["accesses"] = null
 	return clean
 
-/// Logs a material use to the connected silo for accountability (who printed what), without enforcing the silo's
-/// ID/account policy. No-op when not silo-linked.
+// logs to the silo for accountability without gating on ID. no-op if not silo-linked.
 /obj/machinery/ammo_workbench/proc/log_silo_use(list/mats, action, name)
 	if(!materials?.silo)
 		return
-	var/list/scaled_mats = list()
-	for(var/mat in mats)
-		scaled_mats[mat] = mats[mat]
-	materials.silo.silo_log(src, action, -1, name, scaled_mats, print_log_data)
+	materials.silo.silo_log(src, action, -1, name, mats, print_log_data)
 
 /obj/machinery/ammo_workbench/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
@@ -949,7 +920,7 @@
 	switch(wire)
 		if(WIRE_HACK)
 			A.adjust_hacked(!mend)
-		if(WIRE_HACK)
+		if(WIRE_SHOCK)
 			A.shocked = !mend
 		if(WIRE_DISABLE)
 			A.disabled = !mend

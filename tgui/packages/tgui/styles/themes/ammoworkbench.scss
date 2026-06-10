@@ -1,8 +1,6 @@
 /**
  * Ammunitions Workbench theme.
- * A muted, militarized green, deliberately not the fluorescent hackerman green.
- * Desaturated olive/drab palette with dark panels, plus an animated "barber pole"
- * stripe used by the active fabrication/recycle bar.
+ * Militech ass lookin' thing
  */
 
 .theme-ammoworkbench:root {
@@ -22,14 +20,14 @@
   --tooltip-background: hsl(96, 30%, 8%);
 }
 
-// Clean dark panel with no manufacturer watermark. This is an Armadyne bench, not Nanotrasen,
-// so the default tgui "N" backdrop doesn't belong here.
+// Clean dark panel with no manufacturer watermark. We need this because the default
+// applies Nanotrasen branding (inappropriate here)
 .theme-ammoworkbench .Layout__content {
   background-image: none;
   background-color: hsl(96, 20%, 9%);
 }
 
-// Armadyne identity header strip.
+// Armadyne header strip
 .theme-ammoworkbench {
   .AmmoWorkbench__header {
     display: flex;
@@ -54,19 +52,13 @@
     color: hsl(88, 40%, 62%);
   }
 
-  .AmmoWorkbench__header-silo {
+  .AmmoWorkbench__header-status {
     margin-left: auto;
     font-size: 0.8em;
     letter-spacing: 1px;
   }
 
-  .AmmoWorkbench__header-status {
-    margin-left: 12px;
-    font-size: 0.8em;
-    letter-spacing: 1px;
-  }
-
-  // Terminal-style section titles: uppercase, spaced, "//" prefix.
+  // terminal section headers
   .Section__titleText {
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -79,7 +71,7 @@
   }
 }
 
-// Animated diagonal barber-pole, applied to the active fabrication/recycle bar.
+// barber-pole animation for the active fabrication/recycle bar
 @keyframes ammoworkbench-barberpole {
   from {
     background-position: 0 0;
