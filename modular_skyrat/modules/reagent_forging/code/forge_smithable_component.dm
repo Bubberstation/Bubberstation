@@ -99,12 +99,12 @@
 /datum/component/forge_smithable/proc/good_hit(amount = 1, playsound = FALSE)
 	quality_points = clamp(amount + quality_points, 0, completion_quality_points)
 	if(playsound)
-		playsound(parent_item, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 1.3, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, volume_preference = /datum/preference/numeric/volume/sound_ambience_volume)
+		playsound(parent_item, 'sound/items/weapons/parry.ogg', vol = 42, vary = TRUE, frequency = 1.3, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, volume_preference = /datum/preference/numeric/volume/sound_ambience_volume)
 
 /datum/component/forge_smithable/proc/perfect_hit(amount = 1, playsound = FALSE)
 	good_hit(amount, FALSE)
 	if(playsound)
-		playsound(parent_item, 'sound/items/weapons/parry.ogg', vol = 35, vary = TRUE, frequency = 1.0, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, volume_preference = /datum/preference/numeric/volume/sound_ambience_volume)
+		playsound(parent_item, 'sound/items/weapons/parry.ogg', vol = 42, vary = TRUE, frequency = 1.0, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, volume_preference = /datum/preference/numeric/volume/sound_ambience_volume)
 	if(current_perfects < max_perfect_hits)
 		current_perfects += amount
 
