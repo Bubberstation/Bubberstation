@@ -302,6 +302,7 @@
 
 		if("ReadDisk")
 			loadDisk()
+			return TRUE
 
 		if("EjectDisk")
 			ejectDisk()
