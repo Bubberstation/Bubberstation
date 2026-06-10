@@ -58,6 +58,8 @@
 	else
 		spread -= inaccuracy_modifier
 
+/obj/item/gun/ballistic/revolver/handcrafted_single_action/give_manufacturer_examine()
+	return
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/update_icon(updates)
 	. = ..()
