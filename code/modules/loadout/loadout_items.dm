@@ -70,6 +70,12 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	var/list/blacklisted_roles
 	/// If set, is a list of species which can get the loadout item
 	var/list/restricted_species
+	/// If set, is a list of species which can't get the loadout item
+	var/list/blacklisted_species
+	/// If set, is a list of quirks that can get the loadout item
+	var/list/restricted_quirks
+	/// If set, is a list of quirks that can't get the loadout item
+	var/list/blacklisted_quirks
 	/// Whether the item is restricted to supporters
 	var/donator_only
 	/// Whether the item requires a specific season in order to be available

@@ -29,8 +29,15 @@
 	item_path = /obj/item/storage/fancy/cigarettes/cigpack_mindbreaker
 
 /datum/loadout_item/pocket_items/paintingprinter
-	name = "instant painting printer"
+	name = "Instant Painting Printer"
 	item_path = /obj/item/modular_computer/mini_painting_printer
+
+/datum/loadout_item/pocket_items/protean_ready
+	name = "Protean Wearer-Match Tags"
+	item_path = /obj/item/clothing/accessory/dogtag/protean_ready
+	blacklisted_species = list(SPECIES_SNAIL) //They can't wear proteans
+	blacklisted_roles = list(JOB_PRISONER)
+	blacklisted_quirks = list(/datum/quirk/equipping/entombed)
 
 /*
 *	FLAGS

@@ -172,7 +172,101 @@
 	attachment_slot = NONE
 	above_suit = TRUE
 
+GLOBAL_LIST_EMPTY(protean_ready_wearer_candidate_tags)
+GLOBAL_LIST_EMPTY(protean_ready_protean_candidate_tags)
 
+/obj/item/clothing/accessory/dogtag/protean_ready
+	name = "\improper Protean Match tags"
+	desc = "A set of tags from NT's Protean Match program, which pairs Protean crew with interested wearers."
+	custom_price = PAYCHECK_CREW * 0.5
+	var/assigned_name
+	var/assigned_protean
+	var/in_candidate_pool = FALSE
+	var/obj/item/clothing/accessory/dogtag/protean_ready/paired_tags
+
+
+/obj/item/clothing/accessory/dogtag/protean_ready/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/job/outfit, visuals_only = FALSE)
+	// Do this at the very end of the setup process
+	if(!visuals_only && !isdummy(equipper))
+		RegisterSignal(equipper, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED, PROC_REF(apply_after_setup), override = TRUE)
+	return NONE
+
+/obj/item/clothing/accessory/dogtag/protean_ready/proc/apply_after_setup(mob/living/carbon/human/source, ...)
+	SIGNAL_HANDLER
+	stamp_tag(source)
+	UnregisterSignal(source, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED)
+
+///Assigns a name and species to the tag, and adds it to the pool of possible matches. Intended to be run only once per tag.
+/obj/item/clothing/accessory/dogtag/protean_ready/proc/stamp_tag(mob/living/carbon/human/source)
+	if(!(source.mind.assigned_role.job_flags && JOB_CREW_MEMBER))
+		playsound(src, "sound/machines/buzz/buzz-sigh.ogg", 20, FALSE)
+		balloon_alert(source, "not NT crew")
+		return
+	if()//add checks for Entombed and Snail
+	assigned_name = source.mind.name
+	assigned_protean = isprotean(source)
+	desc += " This set is assigned to [assigned_name], a [assigned_protean ? "Protean" : "wearer"]."
+
+	//Check if there are available Proteans/Wearers for the assignee
+	if(assigned_protean)
+		if(length(GLOB.protean_ready_wearer_candidate_tags))
+			var/obj/item/clothing/accessory/dogtag/protean_ready/matched_wearer_tags = pick(GLOB.protean_ready_wearer_candidate_tags)
+			matched_wearer_tags.handle_match(src) //Makes the wearer's tag ping
+			handle_match(matched_wearer_tags) //Makes our tags ping
+		else
+			GLOB.protean_ready_protean_candidate_tags += src
+			in_candidate_pool = TRUE
+			balloon_alert(source, "joined Protean Match candidate pool")
+	else
+		if(length(GLOB.protean_ready_protean_candidate_tags))
+			var/obj/item/clothing/accessory/dogtag/protean_ready/matched_protean_tags = pick(GLOB.protean_ready_wearer_candidate_tags)
+			matched_protean_tags.handle_match(src) //Makes the protean's tags ping
+			handle_match(matched_protean_tags) //Makes our tags ping
+		else
+			GLOB.protean_ready_wearer_candidate_tags += src
+			in_candidate_pool = TRUE
+			balloon_alert(source, "joined Protean Match candidate pool")
+
+/obj/item/clothing/accessory/dogtag/protean_ready/proc/handle_match(/obj/item/clothing/accessory/dogtag/protean_ready/other_tags)
+	// Consider: Reject option for both people being matched?
+	in_candidate_pool = FALSE
+	assigned_protean ? (GLOB.protean_ready_protean_candidate_tags -= src) : (GLOB.protean_ready_wearer_candidate_tags -= src)
+	playsound(src, "modular_skyrat/modules/emotes/sound/emotes/synth_yes.ogg", 20, FALSE)
+	say("Matched with [other_tags.assigned_protean ? "Protean" : "wearer"]: [other_tags.assigned_name]!")
+
+/obj/item/clothing/accessory/dogtag/protean_ready/attack_self(mob/user)
+	//Tags with no assigned name (i.e. purchased from the robovend) can have one assigned post-roundstart, if the user has a mind
+	if(assigned_name && ishuman(user) && user.mind)
+		balloon_alert(user, "tags claimed")
+		stamp_tag(user)
+	if(in_candidate_pool)
+		var/safety = (tgui_alert(user, "Are you sure you want to leave the Protean Match candidate pool? You can rejoin it anytime by reactivating these tags.", "Leave Protean Match candidate pool?", list("Leave Match Candidate Pool", "Cancel")))
+		if(safety == "Cancel" || !in_range(src, user))
+			return
+		balloon_alert(user, "left Protean Match candidate pool")
+		playsound(src, "modular_skyrat/modules/emotes/sound/emotes/synth_no.ogg", 20, FALSE)
+		to_chat(user, "You press the button on [src], removing yourself from the Protean Match candidate pool.")
+		return
+	playsound(src, "modular_skyrat/modules/emotes/sound/emotes/synth_no.ogg", 20, FALSE)
+	balloon_alert(user, "scan your ID to use!")
+/*
+/obj/item/clothing/accessory/dogtag/protean_ready/add_item_context(obj/item/source, list/context, atom/target, mob/living/user,)
+	. = ..()
+
+	if(!in_range(user, target))
+		return .
+	if(isidcard(target))
+		context[SCREENTIP_CONTEXT_LMB] = "Link to ID"
+		return CONTEXTUAL_SCREENTIP_SET
+	return .
+
+
+	+= " This set wasn't stamped for a Nanotrasen employee, rendering it non-functional."
+	+= " This one is a [assignee_is_protean ? "wearer's" : "Protean's"] set, stamped with the name [assigned_name]."
+
+	+= " Its match display is blank."
+
+*/
 /*
 Greyscaled Medals
 

@@ -44,13 +44,13 @@
 		// BUBBER EDIT ADDITION BEGIN
 		if(item.restricted_roles && equipping && !(equipping.title in item.restricted_roles))
 			if(preference_source.parent)
-				to_chat(preference_source.parent, span_warning("You were unable to get a loadout item([initial(item.item_path.name)]) due to job restrictions!"))
+				to_chat(preference_source.parent, span_warning("You were unable to get a loadout item ([initial(item.item_path.name)]) due to job restrictions!"))
 			loadout_datums -= item
 			continue
 
 		if(item.blacklisted_roles && equipping && (equipping.title in item.blacklisted_roles))
 			if(preference_source.parent)
-				to_chat(preference_source.parent, span_warning("You were unable to get a loadout item([initial(item.item_path.name)]) due to job blacklists!"))
+				to_chat(preference_source.parent, span_warning("You were unable to get a loadout item ([initial(item.item_path.name)]) due to job blacklists!"))
 			loadout_datums -= item
 			continue
 
@@ -59,6 +59,24 @@
 				to_chat(preference_source.parent, span_warning("You were unable to get a loadout item ([initial(item.item_path.name)]) due to species restrictions!"))
 			loadout_datums -= item
 			continue
+
+		if(item.blacklisted_species && (dna.species.id in item.blacklisted_species))
+			if(preference_source.parent)
+				to_chat(preference_source.parent, span_warning("You were unable to get a loadout item ([initial(item.item_path.name)]) due to species blacklists!"))
+			loadout_datums -= item
+			continue
+		/*
+		if(item.restricted_quirks)
+			for(var/datum/quirk/checked_quirk in item.restricted_quirks)
+				if(preference_source?.parent?.has_quirk(checked_quirk) && preference_source.parent)
+					continue
+				loadout_datums -= item
+		*/
+		if(item.blacklisted_quirks)
+			for(var/datum/quirk/checked_quirk in item.blacklisted_quirks)
+				if(preference_source?.parent?.has_quirk(checked_quirk) && preference_source.parent)
+					to_chat(preference_source.parent, span_warning("You were unable to get a loadout item ([initial(item.item_path.name)]) due to blacklisted quirk: [checked_quirk.name]!"))
+				loadout_datums -= item
 
 		if(item.donator_only && !SSplayer_ranks.is_donator(preference_source?.parent))
 			if(preference_source.parent)
