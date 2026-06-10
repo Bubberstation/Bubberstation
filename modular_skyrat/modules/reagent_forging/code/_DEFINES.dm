@@ -187,6 +187,14 @@
 		my_item.force -= initial(my_item.force) * GET_MATERIAL_MODIFIER(force_mod, multiplier)
 		my_item.throwforce -= initial(my_item.force) * GET_MATERIAL_MODIFIER(throwforce_mod, multiplier)
 
+/proc/get_material_quality_points_mult(datum/material/item_material)
+	//material properties affect forging; high thermal conductivity and flexibility are a bonus while high density and hardness take away
+	var/density = item_material.get_property(MATERIAL_DENSITY)
+	var/hardness = item_material.get_property(MATERIAL_HARDNESS)
+	var/flexibility = item_material.get_property(MATERIAL_FLEXIBILITY)
+	var/thermal = item_material.get_property(MATERIAL_THERMAL)
+	return ((flexibility * 3) + thermal) / (density + hardness)
+
 ///urgh tg needs a get_armor_initial proc, working around protected/private vars is really annoying here
 /atom/proc/get_initial_armor_type()
 	RETURN_TYPE(/datum/armor)

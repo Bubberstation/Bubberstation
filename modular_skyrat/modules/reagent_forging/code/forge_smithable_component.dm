@@ -185,13 +185,7 @@
 /datum/component/forge_smithable/proc/get_quality_points(mob/living/user, obj/item/tool)
 	var/total_quality_points = 1
 
-	//material properties affect forging; high thermal conductivity and flexibility are a bonus while high density and hardness take away
-	var/datum/material/item_material = parent_item.get_master_material()
-	var/density = item_material.get_property(MATERIAL_DENSITY)
-	var/hardness = item_material.get_property(MATERIAL_HARDNESS)
-	var/flexibility = item_material.get_property(MATERIAL_FLEXIBILITY)
-	var/thermal = item_material.get_property(MATERIAL_THERMAL)
-	total_quality_points *= ((flexibility * 3) + thermal) / (density + hardness)
+	total_quality_points *= get_material_quality_points_mult(parent_item.get_master_material())
 
 	//toolspeed doesn't affect the speed at which you strike the anvil, but it DOES affect the quality points gained (and thus how quickly the item is finished completion)
 	total_quality_points /= tool.toolspeed

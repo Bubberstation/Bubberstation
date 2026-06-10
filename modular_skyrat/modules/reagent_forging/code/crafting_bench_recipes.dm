@@ -167,7 +167,7 @@
 				user.add_mob_memory(memory_type, protagonist = user)
 				memory_bonus_exp = first_time_completion_exp_bonus
 
-		var/exp_give_mult = get_total_completion_ratio(item_list)
+		var/exp_give_mult = get_total_completion_ratio(item_list) * get_material_quality_points_mult(product.get_master_material())
 		user.mind.adjust_experience(relevant_skill, exp_give * exp_give_mult)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
