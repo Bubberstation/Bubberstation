@@ -27,8 +27,8 @@
 
 /obj/structure/reagent_dispensers/reagent_smithing_basin/Initialize(mapload)
 	. = ..()
-	if(mapload)
-		anchored = TRUE
+	if(!mapload)
+		anchored = FALSE
 	reagents.flags = reagents.flags | REFILLABLE | DUNKABLE
 	check_fishable()
 	START_PROCESSING(SSdcs, src)

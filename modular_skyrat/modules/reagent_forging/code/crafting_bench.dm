@@ -63,8 +63,8 @@
 
 /obj/structure/reagent_crafting_bench/Initialize(mapload)
 	. = ..()
-	if(mapload)
-		anchored = TRUE
+	if(!mapload)
+		anchored = FALSE
 	populate_radial_choice_list()
 
 /obj/structure/reagent_crafting_bench/proc/populate_radial_choice_list()

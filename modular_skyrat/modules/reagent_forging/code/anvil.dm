@@ -6,14 +6,14 @@
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_structures.dmi'
 	icon_state = "anvil_empty"
 
-	anchored = FALSE
+	anchored = TRUE
 	density = TRUE
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
 /obj/structure/reagent_anvil/Initialize(mapload)
 	. = ..()
-	if(mapload)
-		anchored = TRUE
+	if(!mapload)
+		anchored = FALSE
 	AddElement(/datum/element/falling_hazard, damage = 40, wound_bonus = 10, hardhat_safety = FALSE, crushes = TRUE)
 
 /obj/structure/reagent_anvil/update_appearance()

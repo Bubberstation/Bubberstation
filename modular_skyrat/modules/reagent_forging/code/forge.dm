@@ -48,7 +48,7 @@
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_structures.dmi'
 	icon_state = "forge_inactive"
 
-	anchored = FALSE
+	anchored = TRUE
 	density = TRUE
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
@@ -171,8 +171,8 @@
 
 /obj/structure/reagent_forge/Initialize(mapload)
 	. = ..()
-	if(mapload)
-		anchored = TRUE
+	if(!mapload)
+		anchored = FALSE
 	START_PROCESSING(SSobj, src)
 	populate_radial_choice_list()
 	update_appearance()
