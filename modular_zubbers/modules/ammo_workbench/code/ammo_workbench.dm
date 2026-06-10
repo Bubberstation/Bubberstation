@@ -109,12 +109,8 @@
 	materials = new(
 		src,
 		force_local_materials ? FALSE : mapload,
-		mat_container_signals = list(
-			COMSIG_MATCONTAINER_ITEM_CONSUMED = TYPE_PROC_REF(/obj/machinery/ammo_workbench, local_material_insert)
-		)
 	)
 	materials.set_local_size(200000)
-	RegisterSignal(src, COMSIG_SILO_ITEM_CONSUMED, TYPE_PROC_REF(/obj/machinery/ammo_workbench, silo_material_insert))
 	set_wires(new /datum/wires/ammo_workbench(src))
 
 /obj/machinery/ammo_workbench/proc/local_material_insert(obj/machinery/machine, container, obj/item/item_inserted, last_inserted_id, list/mats_consumed, amount_inserted)
