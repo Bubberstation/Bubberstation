@@ -18,7 +18,7 @@
 	//just a little extra damage as a treat
 	projectile_damage_multiplier = 1.2
 	///below stats should match or exceed the murphy's
-	throwforce = 19
+	throwforce = 14
 	force = 8
 	material_flags = MATERIAL_EFFECTS | MATERIAL_AFFECT_STATISTICS
 
