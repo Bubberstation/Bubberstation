@@ -221,7 +221,6 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 	//heretic_research_tree[heretic_path.ascension][HKT_DEPTH] = HKT_DEPTH_ASCENSION // BUBBER EDIT REMOVAL - no ascensions
 	//and we're done
 	// BUBBER EDIT ADDITION BEGIN - Starting upgrades
-	// TODO remove if this doesnt work its ok if its at the top
 	heretic_research_tree[heretic_path.passive_upgrade1][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.1
 	heretic_research_tree[heretic_path.passive_upgrade2][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.2
 	heretic_research_tree[heretic_path.passive_upgrade3][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.3

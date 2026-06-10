@@ -340,12 +340,12 @@
 	generate_heretic_starting_knowledge(heretic_shops[HERETIC_KNOWLEDGE_START])
 	if(!length(path_info))
 		for(var/datum/heretic_knowledge_tree_column/path as anything in subtypesof(/datum/heretic_knowledge_tree_column))
-			// BUBBER EDIT REMOVAL BEGIN - TEMPORARY REMOVAL OF MOST PATHS DURING REBALANCE
+			// BUBBER EDIT REMOVAL BEGIN - disables unbalanced paths - change if you rebalance a path
 			var/static/list/banned_paths = list(
-				/datum/heretic_knowledge_tree_column/blade,
-				/datum/heretic_knowledge_tree_column/moon,
-				/datum/heretic_knowledge_tree_column/ash,
-				/datum/heretic_knowledge_tree_column/rust,
+				/datum/heretic_knowledge_tree_column/blade, // havent taken a look at it
+				/datum/heretic_knowledge_tree_column/moon, // fundumentally weirdly designed. will never be intuitive or very fun to fight imo
+				/datum/heretic_knowledge_tree_column/ash, // havent taken a look at it
+				/datum/heretic_knowledge_tree_column/rust, // bad thing to keep when half the crew gets instanuked by it
 			)
 			if (path in banned_paths)
 				continue

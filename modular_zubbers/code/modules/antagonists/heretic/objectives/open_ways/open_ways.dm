@@ -126,8 +126,6 @@
 		// beneficial
 		/datum/way_destination/atmosphere = 30,
 		/datum/way_destination/flesh_organs = 30,
-		///datum/way_destination/chemical_spill = 30, // TODO - fix liquid SS
-		///datum/way_destination/dimension_shift = 20, // dimension shifts nearby walls and floors into a valuable mineral
 		/datum/way_destination/anomalies = 30,
 		/datum/way_destination/knowledgebooks = 30, // spawns crafting books, maids in the mirror, and flash freezes the nearby area
 		/datum/way_destination/clown_planet = 5, // honk (bananium, clown mobs)

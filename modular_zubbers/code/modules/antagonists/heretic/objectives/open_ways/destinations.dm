@@ -24,49 +24,6 @@
 
 	return turfs
 
-#define REAGENT_AMOUNT 5000
-
-/datum/way_destination/chemical_spill
-	name = "The Sea of Dreams"
-	desc = "When the Bleeding King was cast down by the Gods-From-Steel, it fell to a field of yawning caverns and laid-to-dead. It continued to dream, dream, \
-	its blood filling the caverns and air and eventually forming a kaleidoescopic, wintery sea of whatever you can imagine..."
-	glimpse = "A YAWNING ABYSS OF WAVES AND WATER AND BLOOD AND ALGAE AND DEATH AND LIFE"
-	glimpse_heretic = "The Bleeding King lies before you, eyes devoured by worms. A misty, multi-color sea lies between the way and the dead god, rays of the Light burning through..."
-	spawn_text = "a torrent of liquid ejecting from it!"
-	var/static/list/spawnable_chemicals = list(
-		// desirable
-		/datum/reagent/medicine/omnizine = 300,
-		/datum/reagent/medicine/albuterol = 200,
-		/datum/reagent/medicine/coagulant = 200,
-		/datum/reagent/medicine/oxandrolone = 200,
-		/datum/reagent/toxin/formaldehyde = 200,
-		/datum/reagent/medicine/cordiolis_hepatico = 100,
-		/datum/reagent/medicine/dermagen = 5,
-		/datum/reagent/medicine/c2/penthrite = 200,
-		/datum/reagent/drug/bath_salts = 200,
-		/datum/reagent/drug/kronkaine = 200,
-		/datum/reagent/drug/twitch = 50,
-		/datum/reagent/drug/demoneye = 50,
-		// neutral
-		/datum/reagent/blood = 100,
-		// bad
-		/datum/reagent/lube/superlube = 50,
-		/datum/reagent/lube = 200,
-		/datum/reagent/ants/fire = 200, // OH GOD THE ANTS
-		/datum/reagent/toxin/tetrodotoxin = 20,
-		/datum/reagent/toxin/spore_burning = 5,
-		/datum/reagent/phlogiston = 200,
-		/datum/reagent/toxin/chloralhydrate = 200,
-	)
-
-/datum/way_destination/chemical_spill/open(obj/effect/unopened_way/way, mob/living/opener)
-	var/datum/reagents/tempr = new(10000)
-	tempr.add_reagent(pick_weight(spawnable_chemicals), REAGENT_AMOUNT)
-	var/turf/our_turf = get_turf(way)
-	our_turf.add_liquid_from_reagents(tempr, FALSE)
-
-#undef REAGENT_AMOUNT
-
 #define MOLS_TO_SPAWN 4000
 
 /datum/way_destination/atmosphere
