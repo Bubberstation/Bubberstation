@@ -302,6 +302,9 @@
 						break
 
 	var/flavor_text_link = get_flavor_text()
+	var/chat_headshot_line = get_chat_examine_headshot(user)
+	if(chat_headshot_line)
+		. += chat_headshot_line
 	if(flavor_text_link)
 		. += flavor_text_link
 

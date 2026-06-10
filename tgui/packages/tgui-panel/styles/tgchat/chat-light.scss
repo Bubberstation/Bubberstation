@@ -1078,6 +1078,44 @@ h2.alert {
   flex-grow: 1;
 }
 
+.chat_headshot {
+  position: relative;
+  width: min(100px, 100%);
+  height: min(100px, 100%);
+  max-width: 100px;
+  max-height: 100px;
+  display: inline-block;
+  overflow: visible;
+}
+
+.chat_headshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.35s ease;
+  transform-origin: top left;
+  will-change: transform;
+}
+
+.chat_headshot:hover img {
+  transform: translateX(-12%) scale(2.5);
+  z-index: 100;
+  border-radius: 2px;
+}
+
+.chat_headshot_wrap {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 2px 0;
+}
+
+.chat_headshot_label {
+  color: hsl(220, 35%, 35%);
+  font-size: 0.8em;
+  letter-spacing: 0.02em;
+}
+
 $alert-stripe-colors: (
   'default': hsl(230.5, 100%, 85.1%),
   'green': hsl(120, 100%, 83.9%),
