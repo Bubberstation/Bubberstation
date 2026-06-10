@@ -37,20 +37,26 @@
 	var/list/commands = list()
 	/// If MKUltra is in a dormant state.
 	var/dormant = FALSE
+	/// Any title overrides.
+	var/title
+	/// spam prevention cooldown
+	COOLDOWN_DECLARE(spam)
 
 /** MKUltra
  *  * enchanter - The mob in which MKUltra responds to.
  *  * mindshield - If this status effect bypasses mindshields
  *  * progress_override - What progress it should be initally set as
  * 	* permanent - If this is an innate, full, and inescapable version
+ *  * blacklist = list of commands blacklisted.
  */
 
-/datum/status_effect/mkultra/on_creation(mob/living/new_owner, mob/enchanter, mindshield = FALSE, progrogress_override = 50, permanent = FALSE)
+/datum/status_effect/mkultra/on_creation(mob/living/new_owner, mob/enchanter, mindshield = FALSE, progrogress_override = 50, permanent = FALSE, blacklist, title)
 	. = ..()
 	src.progress = progrogress_override
 	src.enchanter = enchanter
 	src.mindshield_bypass = mindshield
 	src.permanent = permanent
+	src.title = title
 
 	if(!istype(enchanter, /mob/living) || isnull(enchanter))
 		qdel(src)
@@ -61,6 +67,8 @@
 		return FALSE
 
 	for(var/datum/mkultra_command/command as anything in GLOB.mkultra_commands)
+		if(locate(command) in blacklist)
+			continue
 		commands += new command
 
 	if(isnull(enchanter.get_organ_slot(ORGAN_SLOT_VOICE)) && iscarbon(enchanter))
@@ -126,15 +134,15 @@
 		if(301 to INFINITY)
 			if(phase != FULLY_ENTHRALLED)
 				to_chat(owner, span_warning("You finally <b>slip</b>. One mental trip and you're unable to resist [enchanter]."))
-			if(prob(10) && lewd)
+			if(prob(10) && lewd && COOLDOWN_FINISHED(src, spam))
 				to_chat(owner, span_userlove(pick("It feels good to listen to [get_gender()]...", "You can't keep your mind off [enchanter]", "[get_gender()]'s words feel so nice.", "It feels natural when you're around [enchanter].")))
+				COOLDOWN_START(src, spam, 1 MINUTES)
 			phase = FULLY_ENTHRALLED
 
 	if(progress <= 400)
 		progress += 1 + bonus_progress
 	progress -= delta_resist
 	delta_resist = 0
-	message_admins(progress)
 	return
 
 /datum/status_effect/mkultra/proc/resist()
@@ -174,6 +182,8 @@
 		delta_resist *= 0.5
 
 /datum/status_effect/mkultra/proc/get_gender()
+	if(title)
+		return LOWER_TEXT(title)
 	switch(enchanter.gender)
 		if("male")
 			return "master"
@@ -185,6 +195,8 @@
 /datum/status_effect/mkultra/proc/listener(mob/source, message)
 	for(var/datum/mkultra_command/command in commands)
 		if(findtext(message, command.trigger))
+			if(!lewd && command.erp_command)
+				continue
 			if(command.execute(src, owner, source, message))
 				return TRUE
 			return FALSE
@@ -195,12 +207,17 @@
 	icon_state = "velvet_chords"
 	name = "MKUltra"
 	desc = "You are under the mind warping effects of MKUltra!"
+	/// Resist notification cooldown.
+	COOLDOWN_DECLARE(resist)
 
 /atom/movable/screen/alert/status_effect/mkultra/Click(location, control, params)
 	. = ..()
 	if(isnull(attached_effect))
 		attached_effect = owner.has_status_effect(/datum/status_effect/mkultra)
 	var/datum/status_effect/mkultra/status = attached_effect
+	if(COOLDOWN_FINISHED(src, resist))
+		to_chat(status.enchanter, span_warning("[status.owner] is resisting your control!"))
+		COOLDOWN_START(src, resist, 10 SECONDS)
 	status.resist()
 
 #undef ENTHRALL_BROKEN
