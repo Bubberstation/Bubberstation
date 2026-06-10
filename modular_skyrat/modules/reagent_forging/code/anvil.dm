@@ -1,4 +1,4 @@
-#define AUTO_SMITHING_SPEED_PENALTY 1 SECONDS
+#define AUTO_SMITHING_SPEED_PENALTY 8 DECISECONDS
 
 /obj/structure/reagent_anvil
 	name = "smithing anvil"
@@ -143,7 +143,7 @@
 		if(!should_stop_autohammering())
 			balloon_alert_to_viewers("hammering steadily...")
 			while(!should_stop_autohammering())
-				var/wait_between_swings = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER) DECISECONDS
+				var/wait_between_swings = COOLDOWN_TIMELEFT(user, striking_cooldown) DECISECONDS
 				wait_between_swings += AUTO_SMITHING_SPEED_PENALTY
 
 				if(!do_after(user, wait_between_swings, target = src, interaction_key = DOAFTER_SMITHING_ANVIL))
