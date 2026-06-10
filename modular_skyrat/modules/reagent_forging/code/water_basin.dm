@@ -3,7 +3,7 @@
 	desc = "A basin meant to quench heated smithing equipment and cool it."
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_structures.dmi'
 	icon_state = "water_basin"
-	anchored = FALSE
+	anchored = TRUE
 	density = TRUE
 	can_be_tanked = FALSE
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
