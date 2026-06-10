@@ -43,8 +43,7 @@ GLOBAL_LIST_INIT(mkultra_commands, subtypesof(/datum/mkultra_command))
  *  * message - The message that triggered this proc.
  */
 
-/datum/mkultra_command/proc/execute(datum/status_effect/status, mob/owner, mob/source, message)
-	var/datum/status_effect/mkultra/status_effect = status
+/datum/mkultra_command/proc/execute(datum/status_effect/mkultra/status_effect, mob/owner, mob/source, message)
 	if(status_effect.phase < phase_requirement)
 		return FALSE
 

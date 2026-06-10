@@ -6,7 +6,7 @@
 	phase_requirement = 3
 	cooldown = 5 MINUTES
 
-/datum/mkultra_command/mind_control/execute(datum/status_effect/status, mob/owner, mob/source, message)
+/datum/mkultra_command/mind_control/execute(datum/status_effect/mkultra/status, mob/owner, mob/source, message)
 	. = ..()
 	if(!.)
 		return FALSE

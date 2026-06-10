@@ -5,17 +5,16 @@
 	trigger = "relax|obey|serve|love|calm down"
 	cooldown = 30 SECONDS
 
-/datum/mkultra_command/relax/execute(datum/status_effect/status, mob/owner, mob/source, message)
+/datum/mkultra_command/relax/execute(datum/status_effect/mkultra/status, mob/owner, mob/source, message)
 	. = ..()
 	if(!.)
 		return FALSE
 	processing = TRUE
 	return TRUE
 
-/datum/mkultra_command/relax/tick(datum/status_effect/status, mob/owner, mob/source)
-	var/datum/status_effect/mkultra/ultra = status
+/datum/mkultra_command/relax/tick(datum/status_effect/mkultra/status, mob/owner, mob/source)
 	if(!COOLDOWN_FINISHED(src, ultra_cooldown))
-		ultra.bonus_progress = 3
+		status.bonus_progress = 3
 		return
 	processing = FALSE
-	ultra.bonus_progress = 0
+	status.bonus_progress = 0

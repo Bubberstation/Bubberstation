@@ -6,7 +6,7 @@
 	phase_requirement = 2
 	cooldown = 4 MINUTES
 
-/datum/mkultra_command/sleep_command/execute(datum/status_effect/status, mob/owner, mob/source, message)
+/datum/mkultra_command/sleep_command/execute(datum/status_effect/mkultra/status, mob/owner, mob/source, message)
 	. = ..()
 	if(!.)
 		return FALSE

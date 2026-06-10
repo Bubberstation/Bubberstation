@@ -19,7 +19,7 @@
 	RegisterSignal(owner, COMSIG_LIVING_RESIST, PROC_REF(resist_command_block))
 	return TRUE
 
-/datum/mkultra_command/antiresist/tick(datum/status_effect/status, mob/owner, mob/source)
+/datum/mkultra_command/antiresist/tick(datum/status_effect/mkultra/status, mob/owner, mob/source)
 	. = ..()
 	if(!COOLDOWN_FINISHED(src, ultra_cooldown))
 		resist = TRUE

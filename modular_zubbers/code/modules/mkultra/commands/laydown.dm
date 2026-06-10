@@ -7,7 +7,7 @@
 	erp_command = TRUE
 	cooldown = 10 SECONDS
 
-/datum/mkultra_command/laydown/execute(datum/status_effect/status, mob/owner, mob/source, message)
+/datum/mkultra_command/laydown/execute(datum/status_effect/mkultra/status, mob/owner, mob/source, message)
 	. = ..()
 	if(!.)
 		return

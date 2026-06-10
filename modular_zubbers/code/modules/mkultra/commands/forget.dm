@@ -5,16 +5,15 @@
 	trigger = "forget everything|awake and forget"
 	phase_requirement = 3
 
-/datum/mkultra_command/forget/execute(datum/status_effect/status, mob/living/owner, mob/source, message)
+/datum/mkultra_command/forget/execute(datum/status_effect/mkultra/status, mob/living/owner, mob/source, message)
 	. = ..()
-	var/datum/status_effect/mkultra/ultra = status
-	if(!. || ultra.dormant)
+	if(!. || status.dormant)
 		return FALSE
-	ultra.dormant = TRUE
-	owner.clear_alert(ultra.id)
-	to_chat(owner, span_boldwarning("You have no memory of [ultra.enchanter] entralling you as you revert to your previous self."))
+	status.dormant = TRUE
+	owner.clear_alert(status.id)
+	to_chat(owner, span_boldwarning("You have no memory of [status.enchanter] entralling you as you revert to your previous self."))
 	owner.AdjustSleeping(10 SECONDS)
-	ultra.RegisterSignal(ultra.enchanter, COMSIG_MOB_EMOTE, TYPE_PROC_REF(/datum/status_effect/mkultra, snapping))
+	status.RegisterSignal(status.enchanter, COMSIG_MOB_EMOTE, TYPE_PROC_REF(/datum/status_effect/mkultra, snapping))
 	return TRUE
 
 /datum/status_effect/mkultra/proc/snapping(atom/source, datum/emote/emote_args) // For the forget command
