@@ -306,6 +306,7 @@
 
 		if("EjectDisk")
 			ejectDisk()
+			return TRUE
 
 		if("turboBoost")
 			toggle_turbo_boost()
