@@ -114,8 +114,6 @@
 /obj/machinery/ammo_workbench/examine(mob/user)
 	. += ..()
 	if(in_range(user, src) || isobserver(user))
-		if(materials?.mat_container)
-			. += span_notice("The status display reads: Storing up to <b>[materials.mat_container.max_amount]</b> material units.<br>Material consumption at <b>[creation_efficiency*100]%</b>.")
 		. += span_notice("Reclaiming <b>[recycle_percent]%</b> of materials when recycling a loaded container.")
 
 /obj/machinery/ammo_workbench/ui_interact(mob/user, datum/tgui/ui)
