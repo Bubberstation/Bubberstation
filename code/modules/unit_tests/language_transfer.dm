@@ -11,10 +11,10 @@
 	var/list/initial_spoken = holder.spoken_languages.Copy()
 	var/list/initial_understood = holder.understood_languages.Copy()
 
-	TEST_ASSERT(length(initial_spoken) == 1, \
-		"Dummy should only speak one language! Instead, it knew the following: [print_language_list(initial_spoken)]")
-	TEST_ASSERT(length(initial_understood) == 1, \
-		"Dummy should only understand one language! Instead, it knew the following: [print_language_list(initial_understood)]")
+	TEST_ASSERT(length(initial_spoken) == 2, \ // BUBBER EDIT - CHANGE - PREVIOUS: 1
+		"Dummy should only speak two languages! Instead, it knew the following: [print_language_list(initial_spoken)]") // BUBBER EDIT - CHANGE - ONE -> TWO LANGUAGEs
+	TEST_ASSERT(length(initial_understood) == 2, \ // BUBBER EDIT - CHANGE - PREVIOUS: 1
+		"Dummy should only understand two languages! Instead, it knew the following: [print_language_list(initial_understood)]") // BUBBER EDIT - CHANGE - ONE -> TWO LANGUAGEs
 
 	dummy.set_species(/datum/species/lizard)
 
@@ -26,11 +26,11 @@
 
 	dummy.set_species(/datum/species/human)
 
-	TEST_ASSERT(length(initial_spoken & holder.spoken_languages) == 1, \
-		"Dummy did not speak Common after returning to human! Instead, it knew the following: [print_language_list(holder.spoken_languages)]")
+	TEST_ASSERT(length(initial_spoken & holder.spoken_languages) == 2, \ // BUBBER EDIT - CHANGE - PREVIOUS: 1
+		"Dummy did not speak Common and Uncommon after returning to human! Instead, it knew the following: [print_language_list(holder.spoken_languages)]") // BUBBER EDIT - CHANGE - ADDS UNCOMMON
 
-	TEST_ASSERT(length(initial_understood & holder.understood_languages) == 1, \
-		"Dummy did not understand Common after returning to human! Instead, it knew the following: [print_language_list(holder.understood_languages)]")
+	TEST_ASSERT(length(initial_understood & holder.understood_languages) == 2, \ // BUBBER EDIT - CHANGE - PREVIOUS: 1
+		"Dummy did not understand Common and Uncommon after returning to human! Instead, it knew the following: [print_language_list(holder.understood_languages)]") // BUBBER EDIT - CHANGE - ADDS UNCOMMON
 
 /// Tests species changes which are more complex are functional (e.g. from a species which speaks common to one which does not)
 /datum/unit_test/language_species_swap_complex
