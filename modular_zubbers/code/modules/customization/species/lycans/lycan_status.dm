@@ -45,7 +45,7 @@
 			target_client.prefs.safe_transfer_prefs_to_with_damage(human_owner)
 			human_owner.real_name = name
 			human_owner.name = name
-			SSquirks.OverrideQuirks(human_owner, target_client)
+			SSquirks.OverrideQuirks(human_owner, target_client, spawn_items = FALSE)
 			human_owner.dna.update_dna_identity()
 
 			target_client.prefs.load_character(lycan_brain.last_slot)
@@ -73,7 +73,7 @@
 		else
 			target_client.prefs.load_character(lycan_brain.last_slot)
 			target_client.prefs.safe_transfer_prefs_to_with_damage(human_owner)
-			SSquirks.OverrideQuirks(human_owner, target_client)
+			SSquirks.OverrideQuirks(human_owner, target_client, spawn_items = FALSE)
 			human_owner.dna.update_dna_identity()
 	else
 		human_owner.set_species(initial_species, TRUE, TRUE, FALSE)
@@ -122,10 +122,12 @@
 	render_list += span_warning("\n	* Aggressive health regeneration")
 	render_list += span_warning("\n	* Immunity to shoves and resistance to pain/stunning")
 	render_list += span_warning("\n	* The ability to shrug off any amount of pain and keep sprinting")
+	render_list += span_warning("\n	* The ability to smash down airlocks and windows with their claws")
 	render_list += span_boldwarning("\nIf you find yourself facing a Lycan with these traits, take these precautions.")
 	render_list += span_warning("\n	* Avoid physical weaponry and stamina weapons - their regeneration rapidly heals brute and stamina drain")
 	render_list += span_warning("\n	* Use silver weaponry - they deal extra burn damage")
 	render_list += span_warning("\n	* Use aerosolized silver - they cannot use internals and will burn on contact with it")
+	render_list += span_warning("\n	* Pacify the lycan - they cannot smash windows or airlocks while pacified")
 
 	var/output = jointext(render_list, "")
 

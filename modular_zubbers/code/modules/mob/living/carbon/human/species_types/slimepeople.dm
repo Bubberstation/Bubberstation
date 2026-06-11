@@ -457,6 +457,10 @@
 		genital_list += list("Penis Girth", "Penis Length", "Penis Sheath", "Penis Taur Mode")
 	if(alterer.get_organ_slot(ORGAN_SLOT_TESTICLES))
 		genital_list += list("Testicles Size")
+	if(alterer.get_organ_slot(ORGAN_SLOT_BUTT))
+		genital_list += list("Butt Size")
+	if(alterer.get_organ_slot(ORGAN_SLOT_BELLY))
+		genital_list += list("Belly Size")
 	if(!length(genital_list))
 		alterer.balloon_alert(alterer, "no genitals!")
 
@@ -548,6 +552,34 @@
 			if(new_size)
 				alterer.dna.features["balls_size"] = avocados.balls_description_to_size(new_size)
 				avocados.set_size(alterer.dna.features["balls_size"])
+
+		if("Butt Size")
+			var/obj/item/organ/genital/butt/buttocks = alterer.get_organ_slot(ORGAN_SLOT_BUTT)
+			var/new_size = tgui_input_number(
+				alterer,
+				"Choose your character's butt size:",
+				"Character Preference",
+				max_value = BUTT_MAX_SIZE,
+				min_value = BUTT_MIN_SIZE,
+			)
+			if(!new_size)
+				return
+			alterer.dna.features["butt_size"] = new_size
+			buttocks.set_size(alterer.dna.features["butt_size"])
+
+		if("Belly Size")
+			var/obj/item/organ/genital/belly/tummy = alterer.get_organ_slot(ORGAN_SLOT_BELLY)
+			var/new_size = tgui_input_number(
+				alterer,
+				"Choose your character's belly size:",
+				"Character Preference",
+				max_value = BELLY_MAX_SIZE,
+				min_value = BELLY_MIN_SIZE,
+			)
+			if(!new_size)
+				return
+			alterer.dna.features["belly_size"] = new_size
+			tummy.set_size(alterer.dna.features["belly_size"])
 
 /**
  * The beginning for character alteration. Handles all the settings and targetting. Leads into [do_char_alteration].
@@ -668,7 +700,7 @@
 	target.apply_status_effect(/datum/status_effect/shapeshift_transformed, original_name)
 	char_source.safe_transfer_prefs_to_with_damage(target)
 	target.dna.update_dna_identity()
-	SSquirks.OverrideQuirks(target, char_source.parent)
+	SSquirks.OverrideQuirks(target, char_source.parent, spawn_items = FALSE)
 
 	var/output = "[key_name(target)] has been transformed by [key_name(alterer)] using polymorph, at [loc_name(target)]. Original Name: [original_name], New Name: [target.dna.real_name]."
 	message_admins(output)

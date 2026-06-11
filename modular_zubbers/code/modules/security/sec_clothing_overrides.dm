@@ -659,7 +659,7 @@
 	max_slots = 3
 	max_total_storage = 16
 
-/datum/storage/holster/New(atom/parent, max_slots, max_specific_storage, max_total_storage, list/holdables)
+/datum/storage/holster/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound, list/holdables)
 	if(length(holdables))
 		return ..()
 
@@ -667,12 +667,10 @@
 		/obj/item/gun/ballistic/automatic/pistol,
 		/obj/item/ammo_box/magazine, // Just magazine, because the sec-belt can hold these aswell
 		/obj/item/gun/ballistic/revolver,
-		/obj/item/ammo_box/speedloader/c38, // Revolver speedloaders.
-		/obj/item/ammo_box/speedloader/c357,
-		/obj/item/ammo_box/speedloader/strilka310,
+		/obj/item/ammo_box/speedloader, // Speedloaders, which includes stripper clips on a technicality.
 		/obj/item/gun/energy/e_gun/mini,
 		/obj/item/gun/energy/disabler,
-		/obj/item/gun/ballistic/revolver,
+		/obj/item/gun/energy/laser/pistol,
 		/obj/item/food/grown/banana,
 		/obj/item/gun/energy/dueling,
 		/obj/item/gun/energy/laser/thermal,
@@ -690,7 +688,7 @@
 /datum/storage/holster/detective
 	max_slots = 4
 
-/datum/storage/holster/detective/New(atom/parent, max_slots, max_specific_storage, max_total_storage, list/holdables)
+/datum/storage/holster/detective/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound, list/holdables)
 	if(length(holdables))
 		return ..()
 
@@ -698,12 +696,10 @@
 		/obj/item/gun/ballistic/automatic/pistol,
 		/obj/item/ammo_box/magazine, // Just magazine, because the sec-belt can hold these aswell
 		/obj/item/gun/ballistic/revolver,
-		/obj/item/ammo_box/speedloader/c38, // Revolver speedloaders.
-		/obj/item/ammo_box/speedloader/c357,
-		/obj/item/ammo_box/speedloader/strilka310,
+		/obj/item/ammo_box/speedloader, // Speedloaders, which includes stripper clips on a technicality.
 		/obj/item/gun/energy/e_gun/mini,
 		/obj/item/gun/energy/disabler,
-		/obj/item/gun/ballistic/revolver,
+		/obj/item/gun/energy/laser/pistol,
 		/obj/item/food/grown/banana,
 		/obj/item/gun/energy/dueling,
 		/obj/item/gun/energy/laser/thermal,
@@ -717,7 +713,7 @@
 /datum/storage/holster/energy
 	max_specific_storage = WEIGHT_CLASS_NORMAL
 
-/datum/storage/holster/energy/New(atom/parent, max_slots, max_specific_storage, max_total_storage, list/holdables)
+/datum/storage/holster/energy/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound, list/holdables)
 	if(length(holdables))
 		return ..()
 

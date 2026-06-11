@@ -1097,6 +1097,46 @@ em {
   flex-grow: 1;
 }
 
+.chat_headshot {
+  position: relative;
+  width: min(100px, 100%);
+  height: min(100px, 100%);
+  max-width: 100px;
+  max-height: 100px;
+  display: inline-block;
+  overflow: visible;
+}
+
+.chat_headshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.35s ease;
+  transform-origin: top left;
+  will-change: transform;
+}
+
+.chat_headshot:hover img {
+  transform: translateX(-12%) scale(2.5);
+  z-index: 100;
+  border-radius: 2px;
+}
+
+.chat_headshot_top {
+  margin: var(--space-xs) 0;
+}
+
+.chat_headshot_frame {
+  display: inline-flex;
+  padding: var(--space-xs);
+  background: hsl(220, 10%, 10%);
+  border: var(--border-thickness-tiny) solid;
+  border-left: var(--border-thickness-large) solid;
+  border-color: hsla(220, 40%, 75%, 0.25);
+  border-radius: var(--border-radius-medium);
+  overflow: visible;
+}
+
 $alert-stripe-colors: (
   'default': hsl(198.6, 100%, 11.4%),
   'green': hsl(120, 100%, 12%),

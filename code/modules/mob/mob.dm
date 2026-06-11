@@ -620,6 +620,7 @@
 	if(!result_combined)
 		var/list/result = examinify.examine(src)
 		var/atom_title = examinify.examine_title(src, thats = TRUE)
+		var/examine_headshot = examinify.get_chat_examine_headshot(src)
 		examining(examinify, result)
 		var/alist/overrides = alist()
 		SEND_SIGNAL(src, COMSIG_MOB_EXAMINING, examinify, result, overrides)
@@ -627,7 +628,12 @@
 			result = overrides[max(overrides)]
 		if(removes_double_click)
 			result += span_notice("<i>You can <a href=byond://?src=[REF(src)];run_examinate=[REF(examinify)]>examine</a> [examinify] closer...</i>")
-		result_combined = (atom_title ? fieldset_block("[atom_title].", jointext(result, "<br>"), "boxed_message") : boxed_message(jointext(result, "<br>")))
+		if(examine_headshot)
+			result.Insert(1, examine_headshot)
+		if(atom_title)
+			result_combined = fieldset_block("[atom_title].", jointext(result, "<br>"), "boxed_message")
+		else
+			result_combined = boxed_message(jointext(result, "<br>"))
 		result_combined = replacetext(result_combined, "<hr><br>", "<hr>") // BUBBER EDIT ADDITION - bit of a hack here to make sure we don't get linebreaks coming after headers, as well as properly adding the examine_block
 
 	to_chat(src, span_infoplain(result_combined))

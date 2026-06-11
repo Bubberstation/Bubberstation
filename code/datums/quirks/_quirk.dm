@@ -224,6 +224,14 @@
  * * notify_player - If TRUE, adds strings to where_items_spawned list to be output to the player in [/datum/quirk/item_quirk/post_add()]
  */
 /datum/quirk/item_quirk/proc/give_item_to_holder(obj/item/quirk_item, list/valid_slots, flavour_text = null, default_location = "at your feet", notify_player = FALSE)
+	// BUBBER EDIT ADDITION BEGIN - dont give items on quirk reapply
+	if (item_giving_paused && !always_spawn_item)
+		if (ispath(quirk_item))
+			return // nothing needs to be done
+		qdel(quirk_item)
+		return
+	// BUBBER EDIT ADDITION END
+
 	if(ispath(quirk_item))
 		quirk_item = new quirk_item(get_turf(quirk_holder))
 

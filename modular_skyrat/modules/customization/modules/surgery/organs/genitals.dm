@@ -101,6 +101,7 @@
 	color_source = ORGAN_COLOR_OVERRIDE
 	/// The suffix appended to the feature_key for the overlays.
 	var/sprite_suffix
+	var/layer_offset = 0
 
 /datum/bodypart_overlay/mutant/genital/override_color(rgb_value)
 	return draw_color
@@ -108,6 +109,9 @@
 /datum/bodypart_overlay/mutant/genital/get_base_icon_state()
 	return sprite_suffix
 
+/datum/bodypart_overlay/mutant/genital/mutant_bodyparts_layertext(layer)
+	layer += layer_offset
+	. = ..()
 
 /datum/bodypart_overlay/mutant/genital/get_color_layer_names(icon_state_to_lookup)
 	if(length(sprite_datum.color_layer_names))
@@ -133,6 +137,9 @@
 
 	return sprite_datum.color_layer_names
 
+/datum/bodypart_overlay/mutant/genital/bitflag_to_layer(layer)
+	. = ..()
+	. -= layer_offset
 
 /obj/item/organ/genital/penis
 	name = "penis"
@@ -151,7 +158,7 @@
 /datum/bodypart_overlay/mutant/genital/penis
 	feature_key = ORGAN_SLOT_PENIS
 	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
-
+	layer_offset = PENIS_LAYER_OFFSET
 
 /obj/item/organ/genital/penis/get_description_string(datum/sprite_accessory/genital/gas)
 	var/returned_string = ""
@@ -291,7 +298,6 @@
 /datum/bodypart_overlay/mutant/genital/penis/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_PENIS]
 
-
 /obj/item/organ/genital/testicles
 	name = "testicles"
 	desc = "A male reproductive organ."
@@ -309,6 +315,7 @@
 /datum/bodypart_overlay/mutant/genital/testicles
 	feature_key = ORGAN_SLOT_TESTICLES
 	layers = EXTERNAL_ADJACENT | EXTERNAL_BEHIND
+	layer_offset = TESTICLES_LAYER_OFFSET
 
 /obj/item/organ/genital/testicles/update_genital_icon_state()
 	var/measured_size = FLOOR(genital_size,1)
@@ -351,7 +358,6 @@
 /datum/bodypart_overlay/mutant/genital/testicles/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_TESTICLES]
 
-
 /obj/item/organ/genital/testicles/proc/balls_size_to_description(number)
 	if(number < 0)
 		number = 0
@@ -365,7 +371,6 @@
 		if(GLOB.balls_size_translation[key] == cup)
 			return text2num(key)
 	return 0
-
 
 /obj/item/organ/genital/vagina
 	name = "vagina"
@@ -382,6 +387,7 @@
 /datum/bodypart_overlay/mutant/genital/vagina
 	feature_key = ORGAN_SLOT_VAGINA
 	layers = EXTERNAL_FRONT
+	layer_offset = VAGINA_LAYER_OFFSET
 
 /obj/item/organ/genital/vagina/get_description_string(datum/sprite_accessory/genital/gas)
 	var/returned_string = "You see a [LOWER_TEXT(genital_name)] vagina."
@@ -414,7 +420,6 @@
 /datum/bodypart_overlay/mutant/genital/vagina/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_VAGINA]
 
-
 /obj/item/organ/genital/womb
 	name = "womb"
 	desc = "A female reproductive organ."
@@ -437,7 +442,6 @@
 /datum/bodypart_overlay/mutant/genital/womb/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_WOMB]
 
-
 /obj/item/organ/genital/anus
 	name = "anus"
 	desc = "What do you want me to tell you?"
@@ -453,7 +457,8 @@
 
 /datum/bodypart_overlay/mutant/genital/anus
 	feature_key = ORGAN_SLOT_ANUS
-	layers = NONE
+	layers = BODY_FRONT_LAYER
+	layer_offset = ANUS_LAYER_OFFSET
 
 /obj/item/organ/genital/anus/get_description_string(datum/sprite_accessory/genital/gas)
 	var/returned_string = "You see an [LOWER_TEXT(genital_name)]."
@@ -465,7 +470,6 @@
 
 /datum/bodypart_overlay/mutant/genital/anus/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_ANUS]
-
 
 /obj/item/organ/genital/breasts
 	name = "breasts"
@@ -485,6 +489,7 @@
 /datum/bodypart_overlay/mutant/genital/breasts
 	feature_key = ORGAN_SLOT_BREASTS
 	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
+	layer_offset = BREASTS_LAYER_OFFSET
 
 /obj/item/organ/genital/breasts/get_description_string(datum/sprite_accessory/genital/gas)
 	var/returned_string = "You see a [LOWER_TEXT(genital_name)] of breasts."
@@ -561,6 +566,146 @@
 			return text2num(key)
 	return 0
 
+/obj/item/organ/genital/butt
+	name = "butt"
+	desc = "You see a pair of asscheeks."
+	icon = 'modular_skyrat/master_files/icons/obj/genitals/butt.dmi'
+	icon_state = "butt"
+	slot = ORGAN_SLOT_BUTT
+	zone = BODY_ZONE_PRECISE_GROIN
+	bodypart_overlay = /datum/bodypart_overlay/mutant/genital/butt
+	aroused = AROUSAL_CANT
+
+	mutantpart_key = ORGAN_SLOT_BUTT
+	mutantpart_info = list(MUTANT_INDEX_NAME = "Pair", MUTANT_INDEX_COLOR_LIST = list("#FFEEBB"))
+
+/obj/item/organ/genital/butt/get_description_string(datum/sprite_accessory/genital/gas)
+	var/size_name
+	var/butt_style = gas ? LOWER_TEXT(gas.icon_state) : LOWER_TEXT(genital_name)
+	switch(round(genital_size))
+		if(1)
+			size_name = "average"
+		if(2)
+			size_name = "sizable"
+		if(3)
+			size_name = "squeezable"
+		if(4)
+			size_name = "hefty"
+		if(5)
+			size_name = "massive"
+		if(6)
+			size_name = "gigantic"
+		if(7)
+			size_name = "unfathomably large"
+		if(8)
+			size_name = "humongous"
+		else
+			size_name = "nonexistent"
+
+	return "You see a [butt_style] of [size_name] asscheeks."
+
+/obj/item/organ/genital/butt/set_size(size)
+	. = ..()
+	spawn(0) //set_size is called by build_from_dna.. which executes before Insert assigns owner. This gets around that
+		var/obj/item/organ/genital/anus/anus = owner?.get_organ_slot(ORGAN_SLOT_ANUS) //sometimes
+		if(!anus)
+			return
+
+		anus.set_size(size)
+
+/obj/item/organ/genital/butt/get_sprite_size_string()
+	. = "[genital_type]_[floor(genital_size)]"
+	if(uses_skintones)
+		. += "_s"
+
+/obj/item/organ/genital/butt/build_from_dna(datum/dna/DNA, associated_key)
+	uses_skin_color = DNA.features["butt_uses_skincolor"]
+	set_size(DNA.features["butt_size"])
+
+	return ..()
+
+/obj/item/organ/genital/butt/build_from_accessory(datum/sprite_accessory/genital/accessory, datum/dna/DNA)
+	if(DNA.features["butt_uses_skintones"])
+		uses_skintones = accessory.has_skintone_shading
+	return ..()
+
+/datum/bodypart_overlay/mutant/genital/butt
+	feature_key = ORGAN_SLOT_BUTT
+	layers = EXTERNAL_ADJACENT | EXTERNAL_FRONT
+	layer_offset = BUTT_LAYER_OFFSET
+
+/datum/bodypart_overlay/mutant/genital/butt/get_global_feature_list()
+	return SSaccessories.sprite_accessories[ORGAN_SLOT_BUTT]
+
+/obj/item/organ/genital/belly
+	name = "belly"
+	desc = "You see a belly on their midsection."
+	icon = null //apparently theres no organ sprite?
+	icon_state = null
+	drop_when_organ_spilling = FALSE
+	slot = ORGAN_SLOT_BELLY
+	zone = BODY_ZONE_CHEST
+	bodypart_overlay = /datum/bodypart_overlay/mutant/genital/belly
+	genital_location = CHEST
+	aroused = AROUSAL_CANT
+
+	mutantpart_key = ORGAN_SLOT_BELLY
+	mutantpart_info = list(MUTANT_INDEX_NAME = "Belly", MUTANT_INDEX_COLOR_LIST = list("#FFEEBB"))
+
+/obj/item/organ/genital/belly/get_sprite_size_string()
+	. = "[genital_type]_[floor(genital_size)]"
+	if(uses_skintones)
+		. += "_s"
+
+/obj/item/organ/genital/belly/set_size(size)
+	var/old_size = genital_size
+	. = ..()
+	if(size > old_size)
+		to_chat(owner, span_warning("Your guts [pick("swell up to", "gurgle into", "expand into", "plump up into", "grow eagerly into", "fatten up into", "distend into")] a larger midsection."))
+	else
+		to_chat(owner, span_warning("Your guts [pick("shrink down to", "decrease into", "wobble down into", "diminish into", "deflate into", "contracts into")] a smaller midsection."))
+
+/obj/item/organ/genital/belly/build_from_dna(datum/dna/DNA, associated_key)
+	uses_skin_color = DNA.features["belly_uses_skincolor"]
+	set_size(DNA.features["belly_size"])
+
+	return ..()
+
+/obj/item/organ/genital/belly/build_from_accessory(datum/sprite_accessory/genital/accessory, datum/dna/DNA)
+	if(DNA.features["belly_uses_skintones"])
+		uses_skintones = accessory.has_skintone_shading
+	return ..()
+
+/obj/item/organ/genital/belly/get_description_string(datum/sprite_accessory/genital/gas)
+	var/size_name
+	switch(round(genital_size))
+		if(1)
+			size_name = "average"
+		if(2)
+			size_name = "round"
+		if(3)
+			size_name = "squishable"
+		if(4)
+			size_name = "fat"
+		if(5)
+			size_name = "sagging"
+		if(6)
+			size_name = "gigantic"
+		if(7 to INFINITY)
+			size_name = "humongous"
+		else
+			size_name = "nonexistent"
+
+	desc = "You see a [size_name] [round(genital_size) >= 4 ? "belly, it bounces around as [owner] walks" : "belly in [owner?.p_their() ? owner?.p_their() : "their"] midsection"]."
+
+
+/datum/bodypart_overlay/mutant/genital/belly
+	feature_key = ORGAN_SLOT_BELLY
+	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
+	layer_offset = BELLY_LAYER_OFFSET
+
+/datum/bodypart_overlay/mutant/genital/belly/get_global_feature_list()
+	return SSaccessories.sprite_accessories[ORGAN_SLOT_BELLY]
 
 /mob/living/carbon/human/verb/toggle_genitals()
 	set category = "IC"
