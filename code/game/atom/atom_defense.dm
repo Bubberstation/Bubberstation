@@ -32,7 +32,10 @@
 		return
 
 	. = damage_amount
-
+	// BUBBER EDIT ADDITION - HIT NUMBERS
+	var/obj/effect/overlay/damage_marker/damage_marker = new()
+	damage_marker.animate_damage(damage_amount, src, damage_type)
+	// BUBBER EDIT END
 	var/previous_atom_integrity = atom_integrity
 
 	update_integrity(atom_integrity - damage_amount)

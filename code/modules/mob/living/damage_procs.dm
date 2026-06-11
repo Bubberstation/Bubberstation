@@ -98,6 +98,11 @@
 		if(BRAIN)
 			damage_dealt = -1 * adjust_organ_loss(ORGAN_SLOT_BRAIN, damage_amount)
 
+	// BUBBER EDIT ADDITION - HIT NUMBERS
+	var/obj/effect/overlay/damage_marker/damage_marker = new()
+	damage_marker.animate_damage(damage_amount, src, damagetype)
+	// BUBBER EDIT END
+
 	SEND_SIGNAL(src, COMSIG_MOB_AFTER_APPLY_DAMAGE, damage_dealt, damagetype, def_zone, blocked, wound_bonus, exposed_wound_bonus, sharpness, attack_direction, attacking_item, wound_clothing)
 	return damage_dealt
 
