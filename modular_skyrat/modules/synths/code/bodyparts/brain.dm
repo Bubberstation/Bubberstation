@@ -23,7 +23,7 @@
 
 /obj/item/organ/brain/synth/Destroy()
 	QDEL_NULL(stored_mmi)
-	return ..()
+	. = ..()
 
 /obj/item/organ/brain/synth/Remove(mob/living/carbon/organ_owner, special = FALSE, movement_flags)
 	var/atom/drop_target = organ_owner ? organ_owner.drop_location() : drop_location()
