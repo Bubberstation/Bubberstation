@@ -4,7 +4,6 @@
 	// Protagonist - The smith making the item
 	/// What type of surgery it was
 	var/smithed_item_type = null
-	memory_flags = MEMORY_FLAG_NOSTORY
 
 /datum/memory/smithing/New(
 	datum/mind/memorizer_mind,
