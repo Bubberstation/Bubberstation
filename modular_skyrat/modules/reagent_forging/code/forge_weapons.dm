@@ -472,7 +472,7 @@
 	transparent = FALSE
 	max_integrity = 150 //over double that of a wooden one
 	w_class = WEIGHT_CLASS_NORMAL
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_AFFECT_STATISTICS
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_AFFECT_STATISTICS | MATERIAL_COLOR
 	shield_break_sound = 'sound/effects/bang.ogg'
 	shield_break_leftover = /obj/item/forging/complete/plate
 
