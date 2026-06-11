@@ -1126,6 +1126,17 @@ em {
   margin: var(--space-xs) 0;
 }
 
+.chat_headshot_frame {
+  display: inline-flex;
+  padding: var(--space-xs);
+  background: hsl(220, 10%, 10%);
+  border: var(--border-thickness-tiny) solid;
+  border-left: var(--border-thickness-large) solid;
+  border-color: hsla(220, 40%, 75%, 0.25);
+  border-radius: var(--border-radius-medium);
+  overflow: visible;
+}
+
 $alert-stripe-colors: (
   'default': hsl(198.6, 100%, 11.4%),
   'green': hsl(120, 100%, 12%),

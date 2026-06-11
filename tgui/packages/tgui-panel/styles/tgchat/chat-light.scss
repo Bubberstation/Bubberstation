@@ -1107,6 +1107,17 @@ h2.alert {
   margin: 4px 0;
 }
 
+.chat_headshot_frame {
+  display: inline-flex;
+  padding: 4px;
+  background: hsl(220, 100%, 97.5%);
+  border: 1px solid;
+  border-left: 4px solid;
+  border-color: hsla(220, 75%, 25%, 0.5);
+  border-radius: 4px;
+  overflow: visible;
+}
+
 $alert-stripe-colors: (
   'default': hsl(230.5, 100%, 85.1%),
   'green': hsl(120, 100%, 83.9%),

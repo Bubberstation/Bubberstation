@@ -29,6 +29,10 @@
 	if(!user.client.prefs?.read_preference(/datum/preference/toggle/chat_examine_headshot))
 		return null
 
+	var/is_unidentified = is_face_obscured() && !length(get_id_name(""))
+	if(is_unidentified)
+		return null
+
 	var/headshot = dna?.features?["headshot"]
 	if(!length(headshot))
 		return null
@@ -38,7 +42,7 @@
 	if(face_obscured && !isobserver(user))
 		return null
 
-	return "<div class='chat_headshot_top'>[chat_headshot(html_encode(headshot))]</div>"
+	return "<div class='chat_headshot_top chat_headshot_frame'>[chat_headshot(html_encode(headshot))]</div>"
 
 
 /mob/living/carbon/alien/get_flavor_text()
