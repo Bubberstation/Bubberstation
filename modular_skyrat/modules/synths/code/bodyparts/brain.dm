@@ -9,12 +9,16 @@
 	icon_state = "posibrain-ipc"
 	/// The last time (in ticks) a message about brain damage was sent. Don't touch.
 	var/last_message_time = 0
+	var/obj/item/modular_computer/pda/synth/internal_computer
+	actions_types = list(/datum/action/item_action/synth/open_internal_computer)
 	organ_traits = list(TRAIT_SILICON_EMOTES_ALLOWED)
 	var/mmi_type = /obj/item/mmi/posibrain
 	var/obj/item/mmi/posibrain/stored_mmi
 
 /obj/item/organ/brain/synth/Initialize(mapload, obj/item/mmi/brain_mmi)
 	. = ..()
+	internal_computer = new(src)
+	ADD_TRAIT(src, TRAIT_SILICON_EMOTES_ALLOWED, INNATE_TRAIT)
 	if(istype(brain_mmi))
 		stored_mmi = brain_mmi
 		stored_mmi.forceMove(src)
@@ -22,6 +26,7 @@
 		stored_mmi = new mmi_type(src, FALSE)
 
 /obj/item/organ/brain/synth/Destroy()
+	QDEL_NULL(internal_computer)
 	QDEL_NULL(stored_mmi)
 	. = ..()
 
@@ -31,23 +36,41 @@
 	if(istype(stored_mmi))
 		stored_mmi.forceMove(drop_target)
 		stored_mmi = null
-	qdel(src)
+	if(!QDELING(src))
+		qdel(src)
 
 /obj/item/organ/brain/synth/on_mob_insert(mob/living/carbon/brain_owner, special, movement_flags = NO_ID_TRANSFER)
 	. = ..()
 	if(stored_mmi?.brainmob?.mind && stored_mmi.brainmob.mind.current == stored_mmi.brainmob)
 		stored_mmi.brainmob.mind.transfer_to(brain_owner)
 
-	if(brain_owner.stat != DEAD || !ishuman(brain_owner))
-		return
+	if(brain_owner.stat == DEAD && ishuman(brain_owner))
+		var/mob/living/carbon/human/user_human = brain_owner
+		if(HAS_TRAIT(user_human, TRAIT_REVIVES_BY_HEALING) && user_human.health > SYNTH_BRAIN_WAKE_THRESHOLD)
+			user_human.revive(FALSE)
 
-	var/mob/living/carbon/human/user_human = brain_owner
-	if(HAS_TRAIT(user_human, TRAIT_REVIVES_BY_HEALING) && user_human.health > SYNTH_BRAIN_WAKE_THRESHOLD)
-		user_human.revive(FALSE)
+	RegisterSignal(brain_owner, COMSIG_MOB_EQUIPPED_ITEM, PROC_REF(on_equip_signal))
+	RegisterSignal(brain_owner, COMSIG_HUMAN_UNEQUIPPED_ITEM, PROC_REF(on_unequip_signal))
 
 /obj/item/organ/brain/synth/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
 	cache_brainmob_into_stored_mmi(organ_owner)
+
+	UnregisterSignal(organ_owner, COMSIG_MOB_EQUIPPED_ITEM)
+	UnregisterSignal(organ_owner, COMSIG_HUMAN_UNEQUIPPED_ITEM)
+
+/obj/item/organ/brain/synth/proc/on_equip_signal(datum/source, obj/item/item, slot)
+	SIGNAL_HANDLER
+	if(isnull(internal_computer))
+		return
+	if(slot == ITEM_SLOT_ID)
+		internal_computer.handle_id_slot(owner)
+
+/obj/item/organ/brain/synth/proc/on_unequip_signal(datum/source, obj/item/dropped_item, force, new_location)
+	SIGNAL_HANDLER
+	if(isnull(internal_computer))
+		return
+	internal_computer.handle_id_slot(owner)
 
 /obj/item/organ/brain/synth/proc/cache_brainmob_into_stored_mmi(mob/living/carbon/organ_owner)
 	if(!istype(stored_mmi))
