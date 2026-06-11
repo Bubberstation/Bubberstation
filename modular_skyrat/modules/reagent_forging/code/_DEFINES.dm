@@ -120,18 +120,18 @@
 	my_item.modify_max_integrity(integrity_change)
 
 	var/list/armor_mods = material.get_armor_modifiers(multiplier)
-	// Invert if we're removing our material
-	if (removing)
-		for (var/armor_type, value in armor_mods)
-			if (value != 0) // Needs to be restored to initial values in finalize effects, sorry
-				armor_mods[armor_type] = 1 / value
 
 	//with blacksmithing everything has to be addition based
 	var/datum/armor/new_armor = get_armor_by_type(my_item.get_initial_armor_type())
 	new_armor = new_armor.generate_new_with_multipliers(armor_mods)
-	new_armor = new_armor.generate_new_with_multipliers(list(ARMOR_ALL = 0.3)) //reduce effect because existing armor mults can be too much
 	new_armor = new_armor.subtract_other_armor(my_item.get_initial_armor_type())
-	new_armor = my_item.get_armor().add_other_armor(new_armor)
+	new_armor = new_armor.generate_new_with_multipliers(list(ARMOR_ALL = 0.3)) //reduce effect because existing armor mults can be too much
+
+	// Invert if we're removing our material
+	if(!removing)
+		new_armor = my_item.get_armor().add_other_armor(new_armor)
+	else
+		new_armor = my_item.get_armor().subtract_other_armor(new_armor)
 	my_item.set_armor(new_armor)
 
 /proc/blacksmithing_change_material_strength(obj/item/my_item, datum/material/material, mat_amount, multiplier, remove = FALSE)
