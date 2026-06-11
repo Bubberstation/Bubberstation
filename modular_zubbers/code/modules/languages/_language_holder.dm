@@ -28,3 +28,15 @@
 		/datum/language/spinwarder = list(LANGUAGE_ATOM),
 	)
 	selected_language = /datum/language/spinwarder
+
+// Allows all species(?) to work with Common Second Language.
+/datum/language_holder/human_basic/New()
+	. = ..()
+	understood_languages |= list(
+		/datum/language/common = list(LANGUAGE_ATOM),
+		/datum/language/uncommon = list(LANGUAGE_ATOM),
+	)
+	spoken_languages |= list(
+		/datum/language/common = list(LANGUAGE_ATOM),
+		/datum/language/uncommon = list(LANGUAGE_ATOM),
+	)
