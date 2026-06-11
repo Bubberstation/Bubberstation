@@ -51,7 +51,7 @@
 	var/density = material.get_property(MATERIAL_DENSITY)
 	var/hardness = material.get_property(MATERIAL_HARDNESS)
 	var/flexibility = material.get_property(MATERIAL_FLEXIBILITY)
-	var/inaccuracy_modifier = max(0, ((flexibility * 2) - (density + hardness)) * 2 )
+	var/inaccuracy_modifier = max(0, ((flexibility * 2) - (density + hardness)) * 40 )
 
 	if(!remove)
 		spread += inaccuracy_modifier
