@@ -197,7 +197,7 @@
 
 /datum/crafting_bench_recipe/weapon_completion_recipe/get_smithing_memory(obj/item/product)
 	//o, the humanity (of code debt that i don't want to bother refactoring)
-	for(var/smithing_subtype in subtypesof(/datum/memory/smithing))
+	for(var/datum/memory/smithing/smithing_subtype in subtypesof(/datum/memory/smithing))
 		if(istype(product, initial(smithing_subtype.smithed_item_type)))
 			return smithing_subtype
 	stack_trace("[product] doesn't have an assigned brain memory type in modular_skyrat/modules/reagent_forging/code/memories.dm !")
