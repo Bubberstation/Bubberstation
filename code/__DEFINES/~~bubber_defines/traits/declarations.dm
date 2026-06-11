@@ -70,3 +70,6 @@
 
 /// Trait used to block telepathy types (Genetics, Xenomorph, Revenant, Slime. Ideally should be all.)
 #define TRAIT_PSIONIC_DAMPENER "psionic_dampener"
+
+/// Trait used exclusively by Dullahan, which means that they don't need their head to live, and can remove and reattach it with ease.
+#define TRAIT_DULLAHAN_HEAD "dullahan_head"

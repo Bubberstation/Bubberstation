@@ -16,6 +16,13 @@
 	/// The action we add with this quirk in add(), used for easy deletion later
 	var/datum/action/cooldown/spell/added_action
 
+//BUBBER EDIT - Dullahan echolocation
+/datum/quirk/echolocation/is_species_appropriate(datum/species/mob_species)
+	if(ispath(mob_species, /datum/species/dullahan))
+		return FALSE
+	return ..()
+//BUBBER EDIT END
+
 /datum/quirk/echolocation/add(client/client_source)
 	// echolocation component handles blinding us already so we don't need to worry about that
 	var/mob/living/carbon/human/human_holder = quirk_holder
