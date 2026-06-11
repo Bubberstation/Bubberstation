@@ -14,7 +14,7 @@
 	return ..()
 
 /datum/memory/smithing/get_names()
-	return list("The time [protagonist] made a [smithed_item_type].")
+	return list("The time [protagonist_name] made a [smithed_item_type].")
 
 /datum/memory/smithing/get_starts()
 	return list(
