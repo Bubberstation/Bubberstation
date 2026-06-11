@@ -87,6 +87,7 @@ GLOBAL_LIST_INIT(tendrils, list())
 /mob/living/basic/mining/tendril/Destroy()
 	GLOB.tendrils -= src
 	QDEL_NULL(soundloop)
+	QDEL_NULL(tendril_melee) //BUBBER EDIT - honestly a hack fix of unit test not properly deleting this tendril attack
 
 	if(!SSachievements.achievements_enabled || (flags_1 & ADMIN_SPAWNED_1))
 		return ..()
