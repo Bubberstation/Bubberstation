@@ -766,7 +766,7 @@
 			for(var/material in search_stack.custom_materials)
 				material_list[material] = SHEET_MATERIAL_AMOUNT
 
-		if(!search_stack.amount < 1)
+		if(search_stack.amount < 1)
 			balloon_alert(user, "not enough of [search_stack]")
 			return ITEM_INTERACT_SUCCESS
 
