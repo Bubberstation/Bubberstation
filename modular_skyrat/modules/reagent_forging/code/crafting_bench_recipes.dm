@@ -381,7 +381,7 @@
 		/obj/item/stack/sheet/mineral/silver = 1,
 	)
 	resulting_item = /obj/item/storage/belt/hip_holster/cowboy
-	relevant_skill_level = 7
+	relevant_skill_level = 5
 	time_to_assemble = 3 SECONDS
 	completion_memory_given = /datum/memory/smithing/cowboy_holster
 	required_traits = list(TRAIT_KNOW_GUNSMITHING)
@@ -418,7 +418,7 @@
 		/obj/item/stack/sheet/mineral/gold = 1,
 	)
 	resulting_item = /obj/item/storage/belt/crusader
-	relevant_skill_level = 7
+	relevant_skill_level = 4
 	time_to_assemble = 3 SECONDS
 	completion_memory_given = /datum/memory/smithing/crusader_belt
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
@@ -431,6 +431,7 @@
 		/obj/item/stack/sheet/cloth = 6,
 	)
 	resulting_item = /obj/item/storage/belt/sheath/multi
+	relevant_skill_level = 4
 	time_to_assemble = 3 SECONDS
 	completion_memory_given = /datum/memory/smithing/multi_scabbard
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
@@ -444,6 +445,7 @@
 		/obj/item/stack/sheet/bluespace_crystal = 1,
 	)
 	resulting_item = /obj/item/storage/belt/sheath/repairing
+	relevant_skill_level = 5
 	time_to_assemble = 3 SECONDS
 	completion_memory_given = /datum/memory/smithing/repairing_scabbard
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
@@ -456,6 +458,7 @@
 		/obj/item/stack/sheet/cloth = 2,
 	)
 	resulting_item = /obj/item/storage/belt/knifethrowers_belt
+	relevant_skill_level = 4
 	time_to_assemble = 3 SECONDS
 	completion_memory_given = /datum/memory/smithing/knifethrower
 	required_traits = list(TRAIT_KNOW_ADVANCED_SMITHING)
@@ -470,6 +473,7 @@
 	)
 	exp_give = 30
 	resulting_item = /obj/item/storage/bag/plants/bluespace
+	relevant_skill_level = 2
 	time_to_assemble = 3 SECONDS
 	completion_memory_given = /datum/memory/smithing/bluespace_plants
 	required_traits = list(TRAIT_KNOW_CIRCUIT_SMITHING)
