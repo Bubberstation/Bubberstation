@@ -240,13 +240,13 @@
 
 /// Checks if the forge has fuel, if so what type. If it has either type of fuel, returns TRUE, otherwise returns FALSE. just_checking will check if there is fuel without taking actions
 /obj/structure/reagent_forge/proc/check_fuel(time_to_reduce_by = 0)
-	if(forge_fuel_strong) // Check for strong fuel (coal) first, as it has more power over weaker fuels
+	if(forge_fuel_strong > 0) // Check for strong fuel (coal) first, as it has more power over weaker fuels
 
 		forge_fuel_strong -= time_to_reduce_by
 		target_temperature = 100
 		return TRUE
 
-	if(forge_fuel_weak) // If there's no strong fuel, maybe we have weak fuel (wood)
+	if(forge_fuel_weak > 0) // If there's no strong fuel, maybe we have weak fuel (wood)
 
 		forge_fuel_weak -= time_to_reduce_by
 		target_temperature = 50
