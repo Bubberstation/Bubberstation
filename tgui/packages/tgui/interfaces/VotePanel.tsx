@@ -249,12 +249,7 @@ const ChoicesPanel = (props) => {
                   choice.name === user.singleSelection && (
                     <Icon align="right" mr={2} color="green" name="vote-yea" />
                   )}
-                {/* NOVA EDIT REMOVAL //{currentVote.displayStatistics ? `${choice.votes} Votes` : null} */}
-                {
-                  currentVote.displayStatistics || user.isLowerAdmin
-                    ? `${choice.votes} Votes`
-                    : null /* NOVA EDIT ADDITION */
-                }
+                {currentVote.displayStatistics ? `${choice.votes} Votes` : null}
               </LabeledList.Item>
               <LabeledList.Divider />
             </Box>
@@ -291,12 +286,7 @@ const ChoicesPanel = (props) => {
                 user.multiSelection[user.ckey.concat(choice.name)] === 1 ? (
                   <Icon align="right" mr={2} color="blue" name="vote-yea" />
                 ) : null}
-                {/* // NOVA EDIT REMOVAL choice.votes} Votes */}
-                {
-                  user.isLowerAdmin
-                    ? `${choice.votes} Votes`
-                    : '' /* NOVA EDIT ADDITION */
-                }
+                {choice.votes} Votes
               </LabeledList.Item>
               <LabeledList.Divider />
             </Box>
