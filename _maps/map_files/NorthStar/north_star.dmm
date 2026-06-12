@@ -10928,8 +10928,11 @@
 /area/station/command/heads_quarters/hop)
 "cGM" = (
 /obj/structure/cable,
-/obj/machinery/conveyor{
-	dir = 5;
+/obj/machinery/bouldertech/refinery/smelter{
+	dir = 1
+	},
+/obj/machinery/conveyor/inverted{
+	dir = 4;
 	id = "mining"
 	},
 /turf/open/floor/iron/checker,
@@ -29533,6 +29536,10 @@
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/wrench,
+/obj/item/stack/ducts,
+/obj/item/construction/plumbing/mining,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "hte" = (
@@ -51034,6 +51041,16 @@
 	dir = 6
 	},
 /area/station/hallway/floor3/fore)
+"mFi" = (
+/obj/structure/cable,
+/obj/machinery/bouldertech/refinery{
+	dir = 1
+	},
+/obj/machinery/conveyor/inverted{
+	id = "mining"
+	},
+/turf/open/floor/iron/checker,
+/area/station/cargo/miningdock)
 "mFp" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
@@ -76897,11 +76914,9 @@
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/floor3/port)
 "tbt" = (
-/obj/structure/cable,
-/obj/machinery/bouldertech/refinery/smelter,
 /obj/machinery/conveyor/inverted{
-	dir = 10;
-	id = "mining"
+	id = "mining";
+	dir = 4
 	},
 /turf/open/floor/iron/checker,
 /area/station/cargo/miningdock)
@@ -84185,11 +84200,6 @@
 /area/station/hallway/floor3/fore)
 "uSC" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/bouldertech/refinery,
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "mining"
-	},
 /turf/open/floor/iron/checker,
 /area/station/cargo/miningdock)
 "uSL" = (
@@ -89499,10 +89509,6 @@
 /area/station/maintenance/floor1/port)
 "wgu" = (
 /obj/structure/cable,
-/obj/machinery/conveyor{
-	dir = 9;
-	id = "mining"
-	},
 /turf/open/floor/iron/checker,
 /area/station/cargo/miningdock)
 "wgO" = (
@@ -130639,7 +130645,7 @@ quB
 myd
 ehG
 sQH
-vHa
+tbt
 uSC
 vHa
 nVs
@@ -130896,8 +130902,8 @@ quB
 mRt
 dAc
 sBK
-tbt
 tkZ
+mFi
 nKc
 qas
 jwr
