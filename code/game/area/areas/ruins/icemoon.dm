@@ -2,6 +2,7 @@
 
 /area/ruin/powered/lizard_gas
 	name = "\improper Lizard Gas Station"
+	requires_power = TRUE // BUBBER EDIT ADDITION
 
 /area/ruin/unpowered/buried_library
 	name = "\improper Buried Library"
@@ -26,6 +27,10 @@
 /area/ruin/comms_agent
 	name = "\improper Listening Post"
 	sound_environment = SOUND_ENVIRONMENT_CITY
+
+/area/ruin/comms_agent/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/block_area_power_fail)
 
 /area/ruin/comms_agent/maint
 	name = "\improper Listening Post Maintenance"

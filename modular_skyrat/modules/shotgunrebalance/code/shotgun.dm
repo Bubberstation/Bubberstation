@@ -182,10 +182,25 @@
 /obj/projectile/bullet/shotgun_slug/hunter
 	name = "12g hunter slug"
 	damage = 20
+	range = 12
+	/// How much the damage is multiplied by when we hit a mob with the correct biotype
+	var/biotype_damage_multiplier = 5
+	/// What biotype we look for
+	var/biotype_we_look_for = MOB_BEAST
 
-/obj/projectile/bullet/shotgun_slug/hunter/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/bane, mob_biotypes = MOB_BEAST, damage_multiplier = 6)
+/obj/projectile/bullet/shotgun_slug/hunter/on_hit(atom/target, blocked, pierce_hit)
+	if(ismineralturf(target))
+		var/turf/closed/mineral/mineral_turf = target
+		mineral_turf.gets_drilled(firer)
+		if(range > 0)
+			return BULLET_ACT_FORCE_PIERCE
+		return ..()
+	if(!isliving(target) || (damage > initial(damage)))
+		return ..()
+	var/mob/living/target_mob = target
+	if(target_mob.mob_biotypes & biotype_we_look_for || istype(target_mob, /mob/living/simple_animal/hostile/megafauna))
+		damage *= biotype_damage_multiplier
+	return ..()
 
 /obj/item/ammo_casing/shotgun/honkshot
 	name = "confetti shell"

@@ -8,13 +8,6 @@
 	obj_flags = UNIQUE_RENAME
 	skyrat_obj_flags = ANVIL_REPAIR
 
-/obj/item/forging/reagent_weapon/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/reagent_weapon)
-
-	if (/datum/material/silver in custom_materials)
-		AddElement(/datum/element/bane, /datum/species/lycan, damage_multiplier = 3, requires_combat_mode = FALSE)
-
 /obj/item/forging/reagent_weapon/examine(mob/user)
 	. = ..()
 	. += span_notice("Using a hammer on [src] will repair its damage!")
