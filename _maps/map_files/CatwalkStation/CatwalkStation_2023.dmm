@@ -1196,7 +1196,7 @@
 /area/station/security/prison)
 "aqE" = (
 /obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore/upper)
 "aqG" = (
@@ -1604,6 +1604,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/textured,
 /area/station/maintenance/starboard)
+"avz" = (
+/obj/structure/sign/poster/official/there_is_no_gas_giant,
+/turf/closed/wall/r_wall,
+/area/station/engineering/atmos/hfr_room)
 "avH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1787,6 +1791,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/upper)
+"ayM" = (
+/turf/open/space/basic,
+/area)
 "ayR" = (
 /obj/structure/table,
 /obj/item/storage/crayons{
@@ -7165,6 +7172,11 @@
 	},
 /turf/open/openspace,
 /area/station/science/xenobiology)
+"bRj" = (
+/obj/machinery/portable_atmospherics/canister/plasma,
+/obj/effect/turf_decal/box/red,
+/turf/open/floor/engine,
+/area/station/engineering/atmos/hfr_room)
 "bRm" = (
 /obj/machinery/chem_dispenser,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -11018,7 +11030,7 @@
 /turf/open/floor/iron/dark,
 /area/station/commons/vacant_room/office)
 "cQi" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
 /area/station/engineering/atmos/office)
 "cQu" = (
@@ -18350,10 +18362,6 @@
 	},
 /turf/open/floor/plating/elevatorshaft,
 /area/station/security/prison/rec)
-"eTi" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/station/engineering/atmos/hfr_room)
 "eTm" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -20821,6 +20829,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/openspace,
 /area/station/engineering/lobby)
+"fzv" = (
+/obj/structure/sign/poster/contraband/the_big_gas_giant_truth,
+/turf/closed/wall/r_wall,
+/area/station/engineering/atmos/hfr_room)
 "fzE" = (
 /obj/structure/table/glass,
 /obj/item/clothing/mask/gas{
@@ -21935,13 +21947,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
-"fPv" = (
-/obj/machinery/atmospherics/pipe/smart/simple/purple/visible{
-	dir = 1
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/station/engineering/atmos/upper)
 "fPy" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 4
@@ -45077,11 +45082,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/upper)
-"lWS" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/station/maintenance/starboard/fore/upper)
 "lWT" = (
 /obj/machinery/light_switch/directional/east,
 /obj/structure/showcase/cyborg/old{
@@ -46240,10 +46240,10 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "mnf" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/smart/simple/purple/visible{
 	dir = 1
 	},
+/obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
 /area/station/engineering/atmos/upper)
 "mnn" = (
@@ -63890,6 +63890,9 @@
 	dir = 4
 	},
 /obj/machinery/light_switch/directional/north,
+/obj/machinery/door/airlock/research{
+	name = "Ordnance Lab"
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/science/ordnance)
 "qYj" = (
@@ -66235,11 +66238,7 @@
 /turf/open/floor/grass,
 /area/station/science/cytology)
 "rFj" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rdordnance";
-	name = "Ordnance Lab Shutters"
-	},
+/obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
 /area/station/science/ordnance)
 "rFk" = (
@@ -69104,6 +69103,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/station/engineering/storage_shared)
+"stV" = (
+/obj/machinery/power/energy_accumulator/grounding_rod/anchored,
+/turf/open/floor/engine,
+/area/station/engineering/atmos/hfr_room)
 "stW" = (
 /obj/item/radio/intercom/directional/north,
 /obj/machinery/light/directional/east,
@@ -74289,8 +74292,8 @@
 /turf/open/floor/iron,
 /area/station/engineering/storage_shared)
 "tMN" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/dark/visible,
+/obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
 /area/station/engineering/atmos)
 "tMY" = (
@@ -79487,8 +79490,8 @@
 /turf/open/floor/iron/dark,
 /area/station/commons/vacant_room/commissary)
 "vcX" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/smart/simple/green/visible,
+/obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
 /area/station/engineering/atmos)
 "vcY" = (
@@ -82321,6 +82324,9 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/purple/fourcorners,
 /obj/effect/mapping_helpers/airlock/access/any/science/ordnance,
+/obj/machinery/door/airlock/research{
+	name = "Ordnance Lab"
+	},
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
 "vQM" = (
@@ -84978,6 +84984,10 @@
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/engineering/gravity_generator)
+"wyX" = (
+/obj/machinery/atmospherics/components/unary/thermomachine,
+/turf/open/floor/engine,
+/area/station/engineering/atmos/hfr_room)
 "wze" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -86023,7 +86033,7 @@
 /turf/open/floor/carpet,
 /area/station/commons/storage/tools)
 "wNN" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
 /area/station/engineering/atmos)
 "wNO" = (
@@ -106286,7 +106296,7 @@ dcE
 dcE
 dcE
 dcE
-dcE
+ayM
 dcE
 dcE
 dcE
@@ -196479,7 +196489,7 @@ nlm
 nlm
 tSA
 ixj
-lWS
+aqE
 lRD
 tQq
 aqE
@@ -197249,7 +197259,7 @@ nlm
 nlm
 nlm
 xrx
-kbu
+yau
 txF
 jya
 eSI
@@ -197506,7 +197516,7 @@ nlm
 nlm
 nlm
 xrx
-kbu
+yau
 psU
 dyM
 rVb
@@ -197763,7 +197773,7 @@ slL
 dDL
 xtW
 xrx
-kbu
+yau
 orR
 dyM
 edC
@@ -198275,7 +198285,7 @@ nlm
 dDL
 nlm
 nlm
-kbu
+yau
 pcM
 uMG
 jOm
@@ -198532,7 +198542,7 @@ aDw
 aDw
 aDw
 aDw
-kbu
+yau
 aNP
 bLx
 rvv
@@ -198789,7 +198799,7 @@ mDG
 mDG
 mDG
 mDG
-kbu
+yau
 rSP
 uMG
 czx
@@ -200846,7 +200856,7 @@ nKW
 mDG
 mDG
 mDG
-kbu
+yau
 qWr
 jYR
 gPS
@@ -201607,17 +201617,17 @@ bxd
 mIx
 bNX
 bNX
-bNX
+bRj
 dKM
-bNX
-bNX
-bNX
+wyX
+wyX
+wyX
 sey
 bxd
 mDG
 mDG
 mDG
-kbu
+yau
 qWr
 gfi
 lrZ
@@ -201861,7 +201871,7 @@ slL
 nlm
 nlm
 ydS
-bNX
+stV
 bNX
 bNX
 bNX
@@ -201874,7 +201884,7 @@ bxd
 mDG
 mDG
 mDG
-kbu
+yau
 qWr
 gBC
 jcw
@@ -202127,10 +202137,10 @@ rNA
 cZP
 bNX
 hTs
+fzv
+ydS
 bxd
-eTi
-bxd
-eTi
+ydS
 unl
 tDq
 gfi
@@ -203155,10 +203165,10 @@ nyY
 tVS
 bNX
 syi
+avz
+ydS
 bxd
-eTi
-bxd
-eTi
+ydS
 unl
 fGn
 suV
@@ -203416,7 +203426,7 @@ bxd
 mDG
 mDG
 mDG
-kbu
+yau
 gfi
 gfi
 gfi
@@ -203673,7 +203683,7 @@ bxd
 mDG
 mDG
 mDG
-kbu
+yau
 gfi
 gfi
 lrZ
@@ -204194,7 +204204,7 @@ jFr
 jkM
 dsZ
 wXQ
-kbu
+yau
 pqc
 gtC
 gtC
@@ -204444,14 +204454,14 @@ nKW
 mDG
 mDG
 mDG
-kbu
+yau
 gfi
 gfi
 gfi
 iUz
 ucy
 hSg
-kbu
+yau
 rqs
 nlm
 nlm
@@ -204700,7 +204710,7 @@ pGP
 pGP
 pGP
 gjd
-fPv
+mnf
 mnf
 fHb
 wIi
@@ -204957,7 +204967,7 @@ xst
 iqF
 lhP
 swS
-kbu
+yau
 ugA
 voO
 gfi
@@ -204965,7 +204975,7 @@ gfi
 klh
 yfx
 hSg
-kbu
+yau
 rqs
 nlm
 dDL
@@ -205214,7 +205224,7 @@ asM
 tBB
 kCh
 mDG
-kbu
+yau
 mht
 gfi
 llG
@@ -205222,7 +205232,7 @@ xsK
 lWD
 gfi
 kHD
-kbu
+yau
 rqs
 nlm
 dDL
@@ -205471,7 +205481,7 @@ xst
 liE
 lhP
 qSj
-kbu
+yau
 qHW
 kbH
 gfi
@@ -205736,7 +205746,7 @@ rcA
 xGS
 gfi
 gfi
-kbu
+yau
 rqs
 nlm
 dDL
@@ -205986,14 +205996,14 @@ gtC
 gtC
 gtC
 fHO
-kbu
+yau
 bYd
 bYd
 eaU
 oTi
 owk
 owk
-kbu
+yau
 rqs
 nlm
 dDL
@@ -206244,12 +206254,12 @@ dDL
 nlm
 msd
 unl
-kbu
-kbu
+yau
+yau
 unl
 unl
-kbu
-kbu
+yau
+yau
 unl
 roM
 nlm
