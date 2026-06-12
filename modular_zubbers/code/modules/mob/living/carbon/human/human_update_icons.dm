@@ -2,8 +2,6 @@
 	if(HAS_TRAIT(src, TRAIT_INVISIBLE_MAN))
 		return
 
-	var/list/standing = list()
-
 	if(!HAS_TRAIT(src, TRAIT_NO_UNDERWEAR))
 		// underwear
 		if(underwear && !(underwear_visibility & UNDERWEAR_HIDE_UNDIES))
