@@ -357,36 +357,21 @@ const ChoicesPanel = (props) => {
                 // Function to handle vote click
                 const handleVoteClick = () => {
                   if (currentRank > 0) {
-                    // Remove this rank and shift others up
-                    const newRanks: Record<string, number> = {};
-                    Object.entries(userRanks).forEach(
-                      ([name, rank]: [string, number]) => {
-                        if (name === choice.name) {
-                          return; // Skip this one as we're removing it
-                        }
-                        if (rank > currentRank) {
-                          newRanks[name] = rank - 1; // Shift up
-                        } else {
-                          newRanks[name] = rank; // Keep same
-                        }
-                      },
-                    );
-                    // Send all rank updates
-                    Object.entries(newRanks).forEach(
-                      ([name, newRank]: [string, number]) => {
-                        act('voteRanked', {
-                          voteOption: name,
-                          voteRank: newRank,
-                        });
-                      },
-                    );
-                    // Remove this rank
+                    // First zero out the removed choice, then shift others
                     act('voteRanked', {
                       voteOption: choice.name,
                       voteRank: 0,
                     });
+                    Object.entries(userRanks).forEach(([name, rank]: [string, number]) => {
+                      if (name === choice.name) return;
+                      if (rank > currentRank) {
+                        act('voteRanked', {
+                          voteOption: name,
+                          voteRank: rank - 1,
+                        });
+                      }
+                    });
                   } else {
-                    // Add as next rank
                     act('voteRanked', {
                       voteOption: choice.name,
                       voteRank: maxRank + 1,
