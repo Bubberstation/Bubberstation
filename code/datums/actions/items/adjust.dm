@@ -20,11 +20,3 @@
 	..()
 	var/obj/item/item_target = target
 	name = "Adjust [item_target.name]'s Style"
-
-/datum/action/item_action/adjust_visor
-	name = "Adjust Visor"
-
-/datum/action/item_action/adjust_visor/New(Target)
-	..()
-	var/obj/item/item_target = target
-	name = "Adjust [item_target.name] Visor"

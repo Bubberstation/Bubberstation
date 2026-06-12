@@ -292,9 +292,7 @@
 		our_heretic.heretic_shops[HERETIC_KNOWLEDGE_DRAFT],
 	)
 	SEND_SIGNAL(src, COMSIG_HERETIC_SHOP_SETUP)
-	if(our_heretic.give_objectives)
-		our_heretic.forge_primary_objectives()
-		our_heretic.owner.announce_objectives()
+
 
 /datum/heretic_knowledge/limited_amount/starting/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
 	RegisterSignals(user, list(COMSIG_HERETIC_MANSUS_GRASP_ATTACK, COMSIG_LIONHUNTER_ON_HIT), PROC_REF(on_mansus_grasp))
@@ -555,7 +553,7 @@
 	to_chat(user, span_boldnotice("[name] completed!"))
 	to_chat(user, span_hypnophrase(span_big("[pick_list(HERETIC_INFLUENCE_FILE, "drain_message")]")))
 	desc += " (Completed!)"
-	log_heretic_knowledge("[key_name(user)] completed a [name] at [round_timestamp()].")
+	log_heretic_knowledge("[key_name(user)] completed a [name] at [gameTimestamp()].")
 	user.add_mob_memory(/datum/memory/heretic_knowledge_ritual)
 	SEND_SIGNAL(our_heretic, COMSIG_HERETIC_PASSIVE_UPGRADE_FINAL)
 	return TRUE
@@ -586,7 +584,7 @@
 		var/list/cost = our_heretic.researched_knowledge[knowledge][HKT_COST]
 		total_points += cost
 
-	log_heretic_knowledge("[key_name(user)] gained knowledge of their final ritual at [round_timestamp()]. \
+	log_heretic_knowledge("[key_name(user)] gained knowledge of their final ritual at [gameTimestamp()]. \
 		They have [length(our_heretic.researched_knowledge)] knowledge nodes researched, totalling [total_points] points \
 		and have sacrificed [our_heretic.total_sacrifices] people ([our_heretic.high_value_sacrifices] of which were high value)")
 
@@ -636,7 +634,7 @@
 		human_user.physiology.burn_mod *= 0.5
 
 	SSblackbox.record_feedback("tally", "heretic_ascended", 1, heretic_datum.heretic_path.route)
-	log_heretic_knowledge("[key_name(user)] completed their final ritual at [round_timestamp()].")
+	log_heretic_knowledge("[key_name(user)] completed their final ritual at [gameTimestamp()].")
 	notify_ghosts(
 		"[user.real_name] has completed an ascension ritual!",
 		source = user,

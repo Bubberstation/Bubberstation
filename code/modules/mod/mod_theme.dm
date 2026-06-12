@@ -1553,10 +1553,9 @@
 	inbuilt_modules = list(/obj/item/mod/module/anti_magic/wizard)
 	hearing_protection = EAR_PROTECTION_NORMAL
 	allowed_suit_storage = list(
-		/obj/item/gun/magic,
-		/obj/item/highfrequencyblade/wizard,
-		/obj/item/storage/belt/wand_bandolier,
 		/obj/item/teleportation_scroll,
+		/obj/item/highfrequencyblade/wizard,
+		/obj/item/gun/magic,
 	)
 	variants = list(
 		"enchanted" = list(

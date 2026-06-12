@@ -40,18 +40,13 @@
 /datum/component/tug_towards/Destroy(force)
 	tugging_to_targets.Cut()
 
-	if(isliving(parent))
-		var/mob/living/living_parent = parent
-		living_parent.remove_offsets(REF(src))
-
-	else
-		animate(
-			parent,
-			pixel_x = -current_tug_offset_x,
-			pixel_y = -current_tug_offset_y,
-			time = 0.2 SECONDS,
-			flags = ANIMATION_RELATIVE
-		)
+	animate(
+		parent,
+		pixel_x = -current_tug_offset_x,
+		pixel_y = -current_tug_offset_y,
+		time = 0.2 SECONDS,
+		flags = ANIMATION_RELATIVE
+	)
 
 	return ..()
 
@@ -98,9 +93,6 @@
 	SIGNAL_HANDLER
 	PRIVATE_PROC(TRUE)
 
-	if(QDELETED(src))
-		return // another movement call could have deleted us
-
 	var/atom/atom_parent = parent
 	var/mob/mob_parent = parent
 
@@ -131,18 +123,13 @@
 	if (total_tug_x == current_tug_offset_x && total_tug_y == current_tug_offset_y)
 		return
 
-	if(isliving(mob_parent))
-		var/mob/living/living_parent = mob_parent
-		living_parent.add_offsets(REF(src), x_add = total_tug_x, y_add = total_tug_y)
-
-	else
-		animate(
-			atom_parent,
-			pixel_x = -current_tug_offset_x + total_tug_x,
-			pixel_y = -current_tug_offset_y + total_tug_y,
-			time = 0.2 SECONDS,
-			flags = ANIMATION_RELATIVE
-		)
+	animate(
+		atom_parent,
+		pixel_x = -current_tug_offset_x + total_tug_x,
+		pixel_y = -current_tug_offset_y + total_tug_y,
+		time = 0.2 SECONDS,
+		flags = ANIMATION_RELATIVE
+	)
 
 	current_tug_offset_x = total_tug_x
 	current_tug_offset_y = total_tug_y

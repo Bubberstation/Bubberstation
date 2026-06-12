@@ -90,7 +90,14 @@
 		return
 
 	SSatoms.InitializeAtoms(areas + turfs + movables, returns_created_atoms ? created_atoms : null)
-	SSlighting.setup_static_lighting_if_needed(turfs)
+
+	for(var/turf/unlit as anything in turfs)
+		if(unlit.space_lit)
+			continue
+		var/area/loc_area = unlit.loc
+		if(!loc_area.static_lighting)
+			continue
+		unlit.lighting_build_overlay()
 
 	// NOTE, now that Initialize and LateInitialize run correctly, do we really
 	// need these two below?

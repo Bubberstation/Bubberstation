@@ -1203,11 +1203,10 @@
 	if(!screenmob.client)
 		return FALSE
 	var/list/alerts = mymob.alerts
-	if(hud_version != HUD_STYLE_STANDARD)
+	if(!hud_shown)
 		for(var/i in 1 to alerts.len)
 			screenmob.client.screen -= alerts[alerts[i]]
 		return TRUE
-
 	var/user_pref_hud = ui_style2icon(mymob.client?.prefs?.read_preference(/datum/preference/choiced/ui_style))
 	for(var/i in 1 to length(alerts))
 		var/atom/movable/screen/alert/alert = alerts[alerts[i]]

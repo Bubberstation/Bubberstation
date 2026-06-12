@@ -61,7 +61,7 @@
 ///REACTION PROCS
 
 /**
- * Checks if this reaction can occur.
+ * Checks if this reaction can occur. Only is ran if required_other is set to TRUE.
  */
 /datum/chemical_reaction/proc/pre_reaction_other_checks(datum/reagents/holder)
 	return TRUE

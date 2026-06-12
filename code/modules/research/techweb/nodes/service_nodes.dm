@@ -29,7 +29,6 @@
 		"razor",
 		"bucket",
 		"mop",
-		"wet_floor_sign",
 		"pushbroom",
 		"normtrash",
 		"wirebrush",

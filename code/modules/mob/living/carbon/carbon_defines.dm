@@ -133,6 +133,3 @@
 	var/covered_slots = NONE
 
 	var/next_smell = 0 //SKYRAT EDIT ADDITION /// Cooldown for the next smell
-
-	/// Lazylist of all hair masks applied to this mob's hairstyles
-	var/list/hair_masks

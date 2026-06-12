@@ -219,13 +219,10 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 
 /atom/movable/screen/inventory/MouseEntered(location, control, params)
 	. = ..()
-	if (usr == hud?.mymob)
-		add_overlays()
+	add_overlays()
 
 /atom/movable/screen/inventory/MouseExited()
 	..()
-	if (usr != hud?.mymob)
-		return
 	cut_overlay(object_overlay)
 	QDEL_NULL(object_overlay)
 
@@ -399,11 +396,8 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	var/vertical = FALSE
 
 /atom/movable/screen/floor_changer/Click(location,control,params)
-	var/mob/living/user = get_mob()
-	if(usr != user)
-		return
-
 	var/list/modifiers = params2list(params)
+
 	var/mouse_position
 
 	if(vertical)
@@ -412,23 +406,10 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 		mouse_position = text2num(LAZYACCESS(modifiers, ICON_X))
 
 	if(mouse_position > 16)
-		//non-living can't RMB anyway, but just a precaution.
-		if(LAZYACCESS(modifiers, RIGHT_CLICK) && isliving(user))
-			if(user.looking_vertically == UP)
-				user.end_look()
-			else
-				user.look_up()
-			return
-		hud.mymob.up()
+		usr.up()
 		return
 
-	if(LAZYACCESS(modifiers, RIGHT_CLICK) && isliving(user))
-		if(user.looking_vertically == DOWN)
-			user.end_look()
-		else
-			user.look_down()
-		return
-	hud.mymob.down()
+	usr.down()
 	return
 
 /atom/movable/screen/floor_changer/vertical

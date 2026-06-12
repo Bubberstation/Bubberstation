@@ -28,8 +28,9 @@
 	icon_state = accessory.icon_state
 	use_gender = accessory.gender_specific
 	draw_color = accessory.color_src ? set_color : null
+	cache_key = jointext(generate_icon_cache(), "_")
 
-/datum/bodypart_overlay/simple/body_marking/generate_icon_cache(obj/item/bodypart/limb)
+/datum/bodypart_overlay/simple/body_marking/generate_icon_cache()
 	. = ..()
 	. += use_gender
 	. += draw_color

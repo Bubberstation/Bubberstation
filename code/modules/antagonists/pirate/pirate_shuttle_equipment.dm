@@ -173,7 +173,7 @@
 /obj/machinery/piratepad
 	name = "cargo hold pad"
 	icon = 'icons/obj/machines/telepad.dmi'
-	icon_state = "lpad-off"
+	icon_state = "lpad-idle-off"
 	base_icon_state = "lpad"
 	/// Determines what icon is being shown
 	VAR_PRIVATE/is_sending = FALSE
@@ -213,11 +213,11 @@
 /obj/machinery/piratepad/update_icon_state()
 	. = ..()
 	if(panel_open)
-		icon_state = "[base_icon_state]-open"
+		icon_state = "[base_icon_state]-idle-open"
 	else if(is_sending)
-		icon_state = "[base_icon_state]"
+		icon_state = "[base_icon_state]-idle"
 	else
-		icon_state = "[base_icon_state]-off"
+		icon_state = "[base_icon_state]-idle-off"
 
 /obj/machinery/computer/piratepad_control
 	name = "cargo hold control terminal"

@@ -23,6 +23,7 @@
 		usr.hud_used.inventory_shown = TRUE
 		usr.client.screen += targetmob.hud_used.screen_groups[HUD_GROUP_TOGGLEABLE_INVENTORY]
 
+	targetmob.hud_used.hidden_inventory_update(usr)
 	update_appearance()
 
 /atom/movable/screen/human/toggle/update_icon_state()

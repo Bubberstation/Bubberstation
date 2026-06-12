@@ -558,12 +558,12 @@
 		"Security Status" = JUDGE_RECORDCHECK,
 	)
 
-/obj/item/organ/eyes/robotic/tacvisor/generate_body_overlay(obj/item/bodypart/limb)
-	var/mutable_appearance/visor_overlay = mutable_appearance(eye_icon, eye_icon_state, -EYES_LAYER)
+/obj/item/organ/eyes/robotic/tacvisor/generate_body_overlay(mob/living/carbon/human/parent, obj/item/bodypart/limb)
+	var/mutable_appearance/visor_overlay = mutable_appearance(eye_icon, eye_icon_state, -EYES_LAYER, parent || limb)
 	var/list/eye_overlays = list(visor_overlay)
-	var/mob/living/carbon/human/parent = limb.owner
+
 	if (parent && parent.appears_alive() && !HAS_TRAIT(parent, TRAIT_KNOCKEDOUT))
-		var/mutable_appearance/display_overlay = mutable_appearance(eye_icon, "[eye_icon_state]_[LOWER_TEXT(visor_display)]", -EYES_LAYER)
+		var/mutable_appearance/display_overlay = mutable_appearance(eye_icon, "[eye_icon_state]_[LOWER_TEXT(visor_display)]", -EYES_LAYER, parent)
 		eye_overlays += display_overlay
 		if(!(parent.obscured_slots & HIDEEYES))
 			eye_overlays += emissive_appearance(eye_icon, "[eye_icon_state]_[LOWER_TEXT(visor_display)]", parent, -EYES_LAYER)

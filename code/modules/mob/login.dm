@@ -104,7 +104,6 @@
 		stop_sound_channel(CHANNEL_AMBIENCE)
 
 	if(client)
-
 		client.view_size?.resetToDefault() // Resets the client.view in case it was changed.
 
 		for(var/datum/action/A as anything in persistent_client.player_actions)
@@ -121,9 +120,6 @@
 			),
 		)
 		auto_deadmin_on_login()
-
-		//Check if they should have a stat panel, after they deadmined.
-		client.set_stat_panel()
 
 	log_message("Client [key_name(src)] has taken ownership of mob [src]([src.type])", LOG_OWNERSHIP)
 	log_mob_tag("TAG: [tag] NEW OWNER: [key_name(src)]")

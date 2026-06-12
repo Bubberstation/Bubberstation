@@ -41,7 +41,7 @@ export const AuditScreen = () => {
               {purchase.vendor}
             </Table.Cell>
             <Table.Cell p={0.5} className="Accounting__TableCellSides">
-              {purchase.stationtime || '00:00'} PT
+              {purchase.stationtime || '00:00'} ST
             </Table.Cell>
           </Table.Row>
         ))}

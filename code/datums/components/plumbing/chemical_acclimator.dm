@@ -1,6 +1,7 @@
 /datum/component/plumbing/acclimator
 	demand_connects = WEST
 	supply_connects = EAST
+	var/obj/machinery/plumbing/acclimator/myacclimator
 
 /datum/component/plumbing/acclimator/Initialize(ducting_layer)
 	if(!istype(parent, /obj/machinery/plumbing/acclimator))

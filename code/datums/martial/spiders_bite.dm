@@ -1,7 +1,7 @@
 /datum/martial_art/spiders_bite
 	name = "Spider's Bite"
 	id = MARTIALART_SPIDERSBITE
-	help_verb = "Recall Teachings"
+	help_verb = /mob/living/proc/spiders_bite_help
 	grab_damage_modifier = 10
 	grab_escape_chance_modifier = -20
 	/// REF() to the last mob we kicked
@@ -60,12 +60,13 @@
 
 	return IS_LEFT_INDEX(martial_artist.active_hand_index) ? BODY_ZONE_L_LEG : BODY_ZONE_R_LEG
 
-/datum/martial_art/spiders_bite/get_style_help()
-	. = list()
+/mob/living/proc/spiders_bite_help()
+	set name = "Recall Teachings"
+	set desc = "Remember the Spider Bite technique used by the Spider Clan."
+	set category = "Spider's Bite"
 
-	. += span_info("<b><i>You retreat inward and recall the Spider Clan's techniques...</i></b>\n\
+	to_chat(usr, span_info("<b><i>You retreat inward and recall the Spider Clan's techniques...</i></b>\n\
 		&bull; Remember, <b>Many Legged Spider</b>: Unarmed attacks against staggered opponents will always be kicks - granting you greater accuracy and damage.\n\
 		&bull; Remember, <b>Jump and Climb</b>: Right clicking on throw mode will perform a tackle which is far far less likely to fail.\n\
 		&bull; Remember, <b>Flow of Gravity</b>: Kicking opponents will have a chance to knock their weapons to the floor. The chance increases for each sequential kick.\n\
-		&bull; Remember, <b>Wrap in Web</b>: Your grabs will be harder to escape from.")
-	return .
+		&bull; Remember, <b>Wrap in Web</b>: Your grabs will be harder to escape from."))

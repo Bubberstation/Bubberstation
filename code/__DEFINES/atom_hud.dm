@@ -48,6 +48,8 @@
 #define MALF_APC_HUD "22"
 /// Blood volume bar, visible to blood worms
 #define BLOOD_HUD "23"
+/// Big Manipulator interaction point HUDs
+#define BIG_MANIP_HUD "24"
 
 // SKYRAT EDIT ADDITION BEGIN - gun permits and DNR
 /// ammo of guns

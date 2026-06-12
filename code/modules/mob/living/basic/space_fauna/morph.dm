@@ -149,29 +149,29 @@
 /// Handles the logic for attacking anything.
 /mob/living/basic/morph/early_melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
-	if(.)
-		return
+	if(!.)
+		return FALSE
 
 	if(HAS_TRAIT(src, TRAIT_DISGUISED) && (melee_damage_disguised <= 0))
 		balloon_alert(src, "can't attack while disguised!")
-		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
+		return FALSE
 
 	if(isliving(target)) //Eat Corpses to regen health
 		var/mob/living/living_target = target
 		if(living_target.stat != DEAD)
-			return BASIC_MOB_CONTINUE_ATTACK_CHAIN
+			return TRUE
 
 		eat(eatable = living_target, delay = 3 SECONDS, update_health = -50)
-		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
+		return FALSE
 
 	if(!isitem(target)) //Eat items just to be annoying
-		return BASIC_MOB_CONTINUE_ATTACK_CHAIN
+		return TRUE
 
 	var/obj/item/item_target = target
 	if(item_target.anchored)
-		return BASIC_MOB_CONTINUE_ATTACK_CHAIN
+		return TRUE
 	eat(eatable = item_target, delay = 2 SECONDS)
-	return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
+	return FALSE
 
 /// Eat stuff. Delicious. Return TRUE if we ate something, FALSE otherwise.
 /// Required: `eatable` is the thing (item or mob) that we are going to eat.

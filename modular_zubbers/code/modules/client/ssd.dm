@@ -24,7 +24,7 @@
 	var/datum/timedevent/logout_timer
 
 // Handles fresh ghosts. This includes cryo chambers
-/mob/living/ghostize(can_reenter_corpse = TRUE, forced = FALSE)
+/mob/living/ghostize(can_reenter_corpse)
 	. = ..()
 	var/mob/dead/observer/ghost = .
 	if(!istype(ghost))

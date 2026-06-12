@@ -50,9 +50,7 @@
 	seenby -= eye
 
 	var/client/client = eye.GetViewerClient()
-	// Bandaid fix for AI multicamera. Static disappears on other cameras when focused camera is far away.
-	// seenby.len check fixes that, but prevents static removal for those, who exit camera console, when a chunk was observed by 2 or more eye mobs.
-	if(client && eye.use_visibility && (seenby.len == 0 || (isliving(client.mob) && !isAI(client.mob)))) // Bypass for non-AIs, to unsure static removal.
+	if(client && eye.use_visibility && seenby.len == 0)
 		client.images -= active_static_images
 
 /**

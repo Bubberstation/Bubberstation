@@ -2,7 +2,9 @@
 
 ///what clients use to speak. when you type a message into the chat bar in say mode, this is the first thing that goes off serverside.
 /mob/verb/say_verb(message as text)
-	set name = VERB_SAY
+	set name = "Say"
+	set category = "IC"
+	set instant = TRUE
 
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
@@ -15,7 +17,9 @@
 
 ///Whisper verb
 /mob/verb/whisper_verb(message as text)
-	set name = VERB_WHISPER
+	set name = "Whisper"
+	set category = "IC"
+	set instant = TRUE
 
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
@@ -36,7 +40,9 @@
 
 ///The me emote verb
 /mob/verb/me_verb(message as text)
-	set name = VERB_ME
+	set name = "Me"
+	set category = "IC"
+	set desc = "Perform a custom emote. Leave blank to pick between an audible or a visible emote (Defaults to visible)."
 
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
@@ -165,7 +171,12 @@
 	var/displayed_key = key
 	if(client?.holder?.fakekey)
 		displayed_key = null
-	deadchat_broadcast(rendered, source, follow_target = src, speaker_key = displayed_key, original_message = message)
+	deadchat_broadcast(rendered, source, follow_target = src, speaker_key = displayed_key)
+	for(var/mob/mobs_hearing as anything in GLOB.player_list)
+		if(SSticker.current_state != GAME_STATE_FINISHED && (mobs_hearing.see_invisible < invisibility || !isdead(mobs_hearing)))
+			continue
+		if(runechat_prefs_check(mobs_hearing))
+			mobs_hearing.create_chat_message(src, /datum/language/common, message)
 
 ///Check if this message is an emote
 /mob/proc/check_emote(message, forced)

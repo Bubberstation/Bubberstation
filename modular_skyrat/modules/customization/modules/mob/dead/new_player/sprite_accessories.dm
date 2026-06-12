@@ -42,10 +42,6 @@
 	var/color_layer_names
 	/// If this sprite accessory will be inaccessable if ERP config is disabled
 	var/erp_accessory = FALSE
-	// If this sprite accessory should use something other than the feature_key to decide its sprite key
-	// For example, if TG has it different in their icon files (e.g. "_fish_tail_" instead of "_tail_")
-	// This should hopefully prevent the need to copy paste TG icons into tails.dmi
-	var/feature_key_override
 
 /datum/sprite_accessory/blank
 	factual = FALSE

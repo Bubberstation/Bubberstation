@@ -119,10 +119,12 @@
 	return TRUE
 
 /obj/machinery/medipen_refiller/wrench_act(mob/living/user, obj/item/tool)
-	return default_unfasten_wrench(user, tool)
+	default_unfasten_wrench(user, tool)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/medipen_refiller/crowbar_act(mob/living/user, obj/item/tool)
-	return default_deconstruction_crowbar(user, tool)
+	default_deconstruction_crowbar(tool)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/medipen_refiller/screwdriver_act(mob/living/user, obj/item/tool)
 	return default_deconstruction_screwdriver(user, tool)

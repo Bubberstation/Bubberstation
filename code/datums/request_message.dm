@@ -21,7 +21,7 @@
 
 /datum/request_message/New(data)
 	sender_department =  data["sender_department"]
-	received_time = round_timestamp()
+	received_time = station_time_timestamp()
 	content = data["message"]
 	message_verified_by = data["verified"]
 	message_stamped_by = data["stamped"]

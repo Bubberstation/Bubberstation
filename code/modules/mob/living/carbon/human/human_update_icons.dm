@@ -48,37 +48,42 @@ There are several things that need to be remembered:
 /* --------------------------------------- */
 //For legacy support.
 /mob/living/carbon/human/regenerate_icons()
-	. = ..()
-	update_worn_undersuit()
-	update_worn_id()
-	update_worn_glasses()
-	update_worn_gloves()
-	update_worn_ears()
-	update_worn_shoes()
-	update_suit_storage()
-	update_worn_mask()
-	update_worn_head()
-	update_worn_belt()
-	update_worn_back()
-	update_worn_oversuit()
-	update_pockets()
-	update_worn_neck()
-	update_transform()
-	update_mutations_overlay()
-	update_damage_overlays()
-	// These are done via parent call update_body(), keeping them here for clarity
-	// update_hair()
-	// update_eyes()
+
+	if(!..())
+		update_worn_undersuit()
+		update_worn_id()
+		update_worn_glasses()
+		update_worn_gloves()
+		update_worn_ears()
+		update_worn_shoes()
+		update_suit_storage()
+		update_worn_mask()
+		update_worn_head()
+		update_worn_belt()
+		update_worn_back()
+		update_worn_oversuit()
+		update_pockets()
+		update_worn_neck()
+		update_transform()
+		//mutations
+		update_mutations_overlay()
+		//damage overlays
+		update_damage_overlays()
 
 /* --------------------------------------- */
 //vvvvvv UPDATE_INV PROCS vvvvvv
 
 /mob/living/carbon/human/update_worn_undersuit()
 	remove_overlay(UNIFORM_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_ICLOTHING)
+
+	if(client && hud_used)
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_ICLOTHING) + 1]
+		inv.update_icon()
 
 	if(istype(w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/uniform = w_uniform
+		update_hud_uniform(uniform)
+
 		if(HAS_TRAIT(uniform, TRAIT_NO_WORN_ICON) || (obscured_slots & HIDEJUMPSUIT))
 			return
 
@@ -133,10 +138,10 @@ There are several things that need to be remembered:
 			default_layer = UNIFORM_LAYER,
 			default_icon_file = icon_file,
 			isinhands = FALSE,
-			female_uniform = woman ? female_sprite_flags : null, // BUBBER EDIT CHANGE - Digi female gender shaping - ORIGINAL: female_uniform = woman ? uniform.female_sprite_flags : null,
+			female_uniform = woman ? female_sprite_flags : null, // SKYRAT EDIT CHANGE - Digi female gender shaping - ORIGINAL: female_uniform = woman ? uniform.female_sprite_flags : null,
 			override_state = target_overlay,
 			override_file = handled_by_bodyshape ? icon_file : null,
-			mutant_styles = mutant_styles, // BUBBER EDIT ADDITION - Taur-friendly uniforms!
+			mutant_styles = mutant_styles, // SKYRAT EDIT ADDITION - Taur-friendly uniforms!
 		)
 
 		var/obj/item/bodypart/chest/my_chest = get_bodypart(BODY_ZONE_CHEST)
@@ -144,15 +149,20 @@ There are several things that need to be remembered:
 		overlays_standing[UNIFORM_LAYER] = uniform_overlay
 
 	apply_overlay(UNIFORM_LAYER)
+	check_body_shape(BODYSHAPE_DIGITIGRADE, ITEM_SLOT_ICLOTHING)
 
 /mob/living/carbon/human/update_worn_id()
 	remove_overlay(ID_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_ID)
+
+	if(client && hud_used)
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_ID) + 1]
+		inv.update_icon()
 
 	var/mutable_appearance/id_overlay = overlays_standing[ID_LAYER]
 
 	if(wear_id)
 		var/obj/item/worn_item = wear_id
+		update_hud_id(worn_item)
 
 		if(HAS_TRAIT(worn_item, TRAIT_NO_WORN_ICON))
 			return
@@ -173,7 +183,10 @@ There are several things that need to be remembered:
 
 /mob/living/carbon/human/update_worn_gloves()
 	remove_overlay(GLOVES_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_GLOVES)
+
+	if(client && hud_used && hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_GLOVES) + 1])
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_GLOVES) + 1]
+		inv.update_icon()
 
 	//Bloody hands begin
 	if(isnull(gloves))
@@ -195,6 +208,8 @@ There are several things that need to be remembered:
 	// Bloody hands end
 
 	var/obj/item/worn_item = gloves
+	update_hud_gloves(worn_item)
+
 	if(HAS_TRAIT(worn_item, TRAIT_NO_WORN_ICON) || (obscured_slots & HIDEGLOVES))
 		return
 
@@ -238,14 +253,19 @@ There are several things that need to be remembered:
 
 /mob/living/carbon/human/update_worn_glasses()
 	remove_overlay(GLASSES_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_EYES)
 
 	var/obj/item/bodypart/head/my_head = get_bodypart(BODY_ZONE_HEAD)
 	if(isnull(my_head)) //decapitated
 		return
 
+	if(client && hud_used)
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_EYES) + 1]
+		inv.update_icon()
+
 	if(glasses)
 		var/obj/item/worn_item = glasses
+		update_hud_glasses(worn_item)
+
 		if(HAS_TRAIT(worn_item, TRAIT_NO_WORN_ICON) || (obscured_slots & HIDEEYES))
 			return
 
@@ -272,14 +292,19 @@ There are several things that need to be remembered:
 
 /mob/living/carbon/human/update_worn_ears()
 	remove_overlay(EARS_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_EARS)
 
 	var/obj/item/bodypart/head/my_head = get_bodypart(BODY_ZONE_HEAD)
 	if(isnull(my_head)) //decapitated
 		return
 
+	if(client && hud_used)
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_EARS) + 1]
+		inv.update_icon()
+
 	if(ears)
 		var/obj/item/worn_item = ears
+		update_hud_ears(worn_item)
+
 		if(HAS_TRAIT(worn_item, TRAIT_NO_WORN_ICON) || (obscured_slots & HIDEEARS))
 			return
 
@@ -305,10 +330,14 @@ There are several things that need to be remembered:
 
 /mob/living/carbon/human/update_worn_neck()
 	remove_overlay(NECK_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_NECK)
+
+	if(client && hud_used && hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_NECK) + 1])
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_NECK) + 1]
+		inv.update_icon()
 
 	if(wear_neck)
 		var/obj/item/worn_item = wear_neck
+		update_hud_neck(wear_neck)
 
 		if(HAS_TRAIT(worn_item, TRAIT_NO_WORN_ICON) || (obscured_slots & HIDENECK))
 			return
@@ -343,13 +372,17 @@ There are several things that need to be remembered:
 
 /mob/living/carbon/human/update_worn_shoes()
 	remove_overlay(SHOES_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_FEET)
 
 	if(num_legs < 2)
 		return
 
+	if(client && hud_used)
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_FEET) + 1]
+		inv.update_icon()
+
 	if(shoes)
 		var/obj/item/worn_item = shoes
+		update_hud_shoes(worn_item)
 
 		if(HAS_TRAIT(worn_item, TRAIT_NO_WORN_ICON) || (obscured_slots & HIDESHOES))
 			return
@@ -391,13 +424,19 @@ There are several things that need to be remembered:
 		overlays_standing[SHOES_LAYER] = shoes_overlay
 
 	apply_overlay(SHOES_LAYER)
+	check_body_shape(BODYSHAPE_DIGITIGRADE, ITEM_SLOT_FEET)
 
 /mob/living/carbon/human/update_suit_storage()
 	remove_overlay(SUIT_STORE_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_SUITSTORE)
+
+	if(client && hud_used)
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_SUITSTORE) + 1]
+		inv.update_icon()
 
 	if(s_store)
 		var/obj/item/worn_item = s_store
+		update_hud_s_store(worn_item)
+
 		if(HAS_TRAIT(worn_item, TRAIT_NO_WORN_ICON) || (obscured_slots & HIDESUITSTORAGE))
 			return
 
@@ -409,10 +448,14 @@ There are several things that need to be remembered:
 
 /mob/living/carbon/human/update_worn_head()
 	remove_overlay(HEAD_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_HEAD)
+	if(client && hud_used && hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_HEAD) + 1])
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_HEAD) + 1]
+		inv.update_icon()
 
 	if(head)
 		var/obj/item/worn_item = head
+		update_hud_head(worn_item)
+
 		if(HAS_TRAIT(worn_item, TRAIT_NO_WORN_ICON) || (obscured_slots & HIDEHEADGEAR))
 			return
 
@@ -442,13 +485,19 @@ There are several things that need to be remembered:
 		overlays_standing[HEAD_LAYER] = head_overlay
 
 	apply_overlay(HEAD_LAYER)
+	check_body_shape(BODYSHAPE_SNOUTED, ITEM_SLOT_HEAD)
 
 /mob/living/carbon/human/update_worn_belt()
 	remove_overlay(BELT_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_BELT)
+
+	if(client && hud_used)
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_BELT) + 1]
+		inv.update_icon()
 
 	if(belt)
 		var/obj/item/worn_item = belt
+		update_hud_belt(worn_item)
+
 		if(HAS_TRAIT(worn_item, TRAIT_NO_WORN_ICON) || (obscured_slots & HIDEBELT))
 			return
 
@@ -476,10 +525,14 @@ There are several things that need to be remembered:
 
 /mob/living/carbon/human/update_worn_oversuit()
 	remove_overlay(SUIT_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_OCLOTHING)
+
+	if(client && hud_used)
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_OCLOTHING) + 1]
+		inv.update_icon()
 
 	if(wear_suit)
 		var/obj/item/worn_item = wear_suit
+		update_hud_wear_suit(worn_item)
 
 		if(HAS_TRAIT(worn_item, TRAIT_NO_WORN_ICON))
 			return
@@ -518,22 +571,44 @@ There are several things that need to be remembered:
 		overlays_standing[SUIT_LAYER] = suit_overlay
 
 	apply_overlay(SUIT_LAYER)
+	check_body_shape(BODYSHAPE_DIGITIGRADE, ITEM_SLOT_OCLOTHING)
 
 /mob/living/carbon/human/update_pockets()
-	if (hud_used)
-		hud_used.update_inventory_slot(ITEM_SLOT_LPOCKET)
-		hud_used.update_inventory_slot(ITEM_SLOT_RPOCKET)
+	if(client && hud_used)
+		var/atom/movable/screen/inventory/inv
+
+		inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_LPOCKET) + 1]
+		inv.update_icon()
+		inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_RPOCKET) + 1]
+		inv.update_icon()
+
+		if(l_store)
+			l_store.screen_loc = ui_storage1
+			if(hud_used.hud_shown)
+				client.screen += l_store
+			update_observer_view(l_store)
+
+		if(r_store)
+			r_store.screen_loc = ui_storage2
+			if(hud_used.hud_shown)
+				client.screen += r_store
+			update_observer_view(r_store)
 
 /mob/living/carbon/human/update_worn_mask()
 	remove_overlay(FACEMASK_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_MASK)
 
 	var/obj/item/bodypart/head/my_head = get_bodypart(BODY_ZONE_HEAD)
 	if(isnull(my_head)) //Decapitated
 		return
 
+	if(client && hud_used && hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_MASK) + 1])
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_MASK) + 1]
+		inv.update_icon()
+
 	if(wear_mask)
 		var/obj/item/worn_item = wear_mask
+		update_hud_wear_mask(worn_item)
+
 		if(HAS_TRAIT(worn_item, TRAIT_NO_WORN_ICON) || (obscured_slots & HIDEMASK))
 			return
 
@@ -562,14 +637,19 @@ There are several things that need to be remembered:
 		overlays_standing[FACEMASK_LAYER] = mask_overlay
 
 	apply_overlay(FACEMASK_LAYER)
+	check_body_shape(BODYSHAPE_SNOUTED, ITEM_SLOT_MASK)
 
 /mob/living/carbon/human/update_worn_back()
 	remove_overlay(BACK_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_BACK)
+
+	if(client && hud_used && hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_BACK) + 1])
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_BACK) + 1]
+		inv.update_icon()
 
 	if(back)
 		var/obj/item/worn_item = back
 		var/mutable_appearance/back_overlay
+		update_hud_back(worn_item)
 
 		if(HAS_TRAIT(worn_item, TRAIT_NO_WORN_ICON))
 			return
@@ -652,17 +732,16 @@ There are several things that need to be remembered:
 /obj/effect/abstract/held_tk_effect/left
 	is_right = FALSE
 // BUBBER EDIT END
-
 /mob/living/carbon/human/get_held_overlays()
 	var/list/hands = list()
-	// BUBBER EDIT ADDITION START
+	// BUBBER EDIT START
 	if(held_left)
 		held_left.overlays.Cut()
 		held_left.underlays.Cut()
 	if(held_right)
 		held_right.overlays.Cut()
 		held_right.underlays.Cut()
-	// BUBBER EDIT ADDITION END
+	// BUBBER EDIT END
 	for(var/obj/item/worn_item in held_items)
 		var/held_index = get_held_index_of_item(worn_item)
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
@@ -687,12 +766,7 @@ There are several things that need to be remembered:
 		var/icon_file = IS_RIGHT_INDEX(held_index) ? worn_item.righthand_file : worn_item.lefthand_file
 		hand_overlay = worn_item.build_worn_icon(default_layer = HANDS_LAYER, default_icon_file = icon_file, isinhands = TRUE)
 		var/obj/item/bodypart/arm/held_in_hand = hand_bodyparts[held_index]
-		/* // BUBBER EDIT REMOVAL START - Moved down below psionic holding, after an else block
-		held_in_hand?.held_hand_offset?.apply_offset(hand_overlay)
-
-		hands += hand_overlay
-		*/ // BUBBER EDIT REMOVAL END
-		// BUBBER EDIT ADDITION START - Psionic holding
+		// BUBBER EDIT START
 		if(HAS_TRAIT(src, TRAIT_FLOATING_HELD))
 			if(!held_left)
 				held_left = new(src)
@@ -753,7 +827,7 @@ There are several things that need to be remembered:
 		else
 			held_in_hand?.held_hand_offset?.apply_offset(hand_overlay)
 			hands += hand_overlay
-		// BUBBER EDIT ADDITION END
+		// BUBBER EDIT END
 	return hands
 
 /// Modifies a sprite slightly to conform to female body shapes
@@ -871,6 +945,90 @@ There are several things that need to be remembered:
 			out += overlays_standing[i]
 	return out
 
+
+//human HUD updates for items in our inventory
+
+/mob/living/carbon/human/proc/update_hud_uniform(obj/item/worn_item)
+	worn_item.screen_loc = ui_iclothing
+	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown))
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
+/mob/living/carbon/human/proc/update_hud_id(obj/item/worn_item)
+	worn_item.screen_loc = ui_id
+	if((client && hud_used?.hud_shown))
+		client.screen += worn_item
+	update_observer_view(worn_item)
+
+/mob/living/carbon/human/proc/update_hud_gloves(obj/item/worn_item)
+	worn_item.screen_loc = ui_gloves
+	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown))
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
+/mob/living/carbon/human/proc/update_hud_glasses(obj/item/worn_item)
+	worn_item.screen_loc = ui_glasses
+	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown))
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
+/mob/living/carbon/human/proc/update_hud_ears(obj/item/worn_item)
+	worn_item.screen_loc = ui_ears
+	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown))
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
+/mob/living/carbon/human/proc/update_hud_shoes(obj/item/worn_item)
+	worn_item.screen_loc = ui_shoes
+	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown))
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
+/mob/living/carbon/human/proc/update_hud_s_store(obj/item/worn_item)
+	worn_item.screen_loc = ui_sstore1
+	if(client && hud_used?.hud_shown)
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
+/mob/living/carbon/human/proc/update_hud_wear_suit(obj/item/worn_item)
+	worn_item.screen_loc = ui_oclothing
+	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown))
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
+/mob/living/carbon/human/proc/update_hud_belt(obj/item/worn_item)
+	belt.screen_loc = ui_belt
+	if(client && hud_used?.hud_shown)
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
+/mob/living/carbon/human/update_hud_head(obj/item/worn_item)
+	worn_item.screen_loc = ui_head
+	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown))
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
+//update whether our mask item appears on our hud.
+/mob/living/carbon/human/update_hud_wear_mask(obj/item/worn_item)
+	worn_item.screen_loc = ui_mask
+	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown))
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
+//update whether our neck item appears on our hud.
+/mob/living/carbon/human/update_hud_neck(obj/item/worn_item)
+	worn_item.screen_loc = ui_neck
+	if((client && hud_used) && (hud_used.inventory_shown && hud_used.hud_shown))
+		client.screen += worn_item
+	update_observer_view(worn_item,TRUE)
+
+//update whether our back item appears on our hud.
+/mob/living/carbon/human/update_hud_back(obj/item/worn_item)
+	worn_item.screen_loc = ui_back
+	if(client && hud_used?.hud_shown)
+		client.screen += worn_item
+	update_observer_view(worn_item, inventory = TRUE)
+
 /*
 Does everything in relation to building the /mutable_appearance used in the mob's overlays list
 covers:
@@ -942,7 +1100,7 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 			type = female_uniform,
 			greyscale_colors = greyscale_colors,
 		)
-	if(!isinhands && (BODYSHAPE_DIGITIGRADE) && (supports_variations_flags & CLOTHING_DIGITIGRADE_MASK))
+	if(!isinhands && is_digi && (supports_variations_flags & CLOTHING_DIGITIGRADE_MASK))
 		building_icon = wear_digi_version(
 			base_icon = building_icon || icon(file2use, t_state),
 			item = src,
@@ -1023,78 +1181,73 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 		else //No offsets or Unwritten number of hands
 			return list("x" = 0, "y" = 0)//Handle held offsets
 
+/mob/living/carbon/human/proc/update_observer_view(obj/item/worn_item, inventory)
+	if(observers?.len)
+		for(var/M in observers)
+			var/mob/dead/observe = M
+			if(observe.client && observe.client.eye == src)
+				if(observe.hud_used)
+					if(inventory && !observe.hud_used.inventory_shown)
+						continue
+					observe.client.screen += worn_item
+			else
+				observers -= observe
+				if(!observers.len)
+					observers = null
+					break
+
 /mob/living/carbon/human/update_body(is_creating = FALSE)
-	remove_overlay(BODY_LAYER)
-
-	var/list/body_overlays = list()
-	body_overlays += get_underwear_overlays()
-
-	if(length(body_overlays))
-		overlays_standing[BODY_LAYER] = body_overlays
-		apply_overlay(BODY_LAYER)
-
-	// parent call will update the actual bodyparts
+	update_eyes()
+	update_underwear()
 	return ..()
 
-/// Returns a list of all underclothing overlays to be applied to the mob
-/mob/living/carbon/human/proc/get_underwear_overlays() // OVERRIDDEN IN MODULAR_ZUBBERS
-	. = list()
+/mob/living/carbon/human/proc/update_underwear() // OVERRIDDEN IN MODULAR_ZUBBERS
+	remove_overlay(BODY_LAYER)
 	if(HAS_TRAIT(src, TRAIT_HUSK) || HAS_TRAIT(src, TRAIT_INVISIBLE_MAN) || HAS_TRAIT(src, TRAIT_NO_UNDERWEAR))
-		return .
-
+		return
 	// Underwear, Undershirts & Socks
+	var/list/standing = list()
+	var/active_bodyshapes = get_active_bodyshapes()
 	if(underwear)
 		var/datum/sprite_accessory/clothing/underwear/undie_accessory = SSaccessories.underwear_list[underwear]
-		var/mutable_appearance/underwear_overlay = undie_accessory?.make_appearance(underwear_color, physique, bodyshape)
+		var/mutable_appearance/underwear_overlay = undie_accessory?.make_appearance(underwear_color, physique, active_bodyshapes)
 		if(underwear_overlay)
-			. += underwear_overlay
+			standing += underwear_overlay
 
 	if(undershirt)
 		var/datum/sprite_accessory/clothing/undershirt/shirt_accessory = SSaccessories.undershirt_list[undershirt]
-		var/mutable_appearance/shirt_overlay = shirt_accessory?.make_appearance(null, physique, bodyshape)
+		var/mutable_appearance/shirt_overlay = shirt_accessory?.make_appearance(null, physique, active_bodyshapes)
 		if(shirt_overlay)
-			. += shirt_overlay
+			standing += shirt_overlay
 
 	if(socks && num_legs >= 2 && !(bodyshape & BODYSHAPE_DIGITIGRADE))
 		var/datum/sprite_accessory/clothing/socks/sock_accessory = SSaccessories.socks_list[socks]
-		var/mutable_appearance/socks_overlay = sock_accessory?.make_appearance(null, physique, bodyshape)
+		var/mutable_appearance/socks_overlay = sock_accessory?.make_appearance(null, physique, active_bodyshapes)
 		if(socks_overlay)
-			. += socks_overlay
+			standing += socks_overlay
 
-	return .
+	if(standing.len)
+		overlays_standing[BODY_LAYER] = standing
 
-/// Updates eye sprites if relevant
-/mob/living/proc/update_eyes(refresh = TRUE)
-	return
+	apply_overlay(BODY_LAYER)
 
-/mob/living/carbon/human/update_eyes(refresh = TRUE)
+/mob/living/carbon/human/proc/update_eyes()
 	remove_overlay(EYES_LAYER)
-
-	var/obj/item/bodypart/head/noggin = get_bodypart(BODY_ZONE_HEAD)
-	if(isnull(noggin) || noggin.is_husked || noggin.is_invisible)
+	if(HAS_TRAIT(src, TRAIT_HUSK) || HAS_TRAIT(src, TRAIT_INVISIBLE_MAN))
 		return
 
-	if(refresh)
-		var/obj/item/organ/eyes/eyes = locate() in noggin
-		eyes?.refresh(src, call_update = FALSE)
+	// eyes (missing eye sprites get handled by the head itself, but sadly we have to do this stupid shit here, for now)
+	var/obj/item/organ/eyes/eye_organ = get_organ_slot(ORGAN_SLOT_EYES)
+	if (!eye_organ)
+		return
 
-	var/list/eye_overlays = noggin.get_eye_overlays()
-	if(length(eye_overlays))
-		overlays_standing[EYES_LAYER] = eye_overlays
-		apply_overlay(EYES_LAYER)
+	var/obj/item/bodypart/head/noggin = get_bodypart(deprecise_zone(eye_organ.zone)) // Futureproofing for HARS/weird species
+	if(istype(noggin) && !(noggin?.head_flags & HEAD_EYESPRITES))
+		return
 
-/// Updates hair sprites if relevant
-/mob/living/proc/update_hair()
-	return
-
-/mob/living/carbon/human/update_hair()
-	remove_overlay(HAIR_LAYER)
-
-	var/obj/item/bodypart/head/head = get_bodypart(BODY_ZONE_HEAD)
-	var/list/head_overlays = head?.get_hair_overlays()
-	if(length(head_overlays))
-		overlays_standing[HAIR_LAYER] = head_overlays
-		apply_overlay(HAIR_LAYER)
+	eye_organ.refresh(call_update = FALSE)
+	overlays_standing[EYES_LAYER] = eye_organ.generate_body_overlay(src, noggin)
+	apply_overlay(EYES_LAYER)
 
 /// Updates face (as of now, only eye) offsets
 /mob/living/carbon/human/update_face_offset()
@@ -1115,8 +1268,8 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	apply_overlay(EYES_LAYER)
 
 
-/// Makes all aspects of the mob invisibile but the head and its associated sprites
-/mob/living/carbon/human/proc/render_only_head()
+// Only renders the head of the human
+/mob/living/carbon/human/proc/update_body_parts_head_only(update_limb_data)
 	if(!dna?.species)
 		return
 
@@ -1125,13 +1278,69 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	if(!istype(my_head))
 		return
 
-	cut_overlays()
-	my_head.update_limb()
-	add_overlay(my_head.get_limb_icon())
+	my_head.update_limb(is_creating = update_limb_data)
+	//BUBBER EDIT START - We need to account for different heights when using this proc
+	var/my_head_icon = my_head.get_limb_icon(dropped = FALSE, update_on = src)
+
+	if(mob_height != HUMAN_HEIGHT_MEDIUM)
+		var/string_form_index = num2text(HEAD_LAYER)
+		var/offset_type = GLOB.layers_to_offset[string_form_index]
+		if(isnull(offset_type))
+			if(islist(my_head_icon))
+				for(var/image/applied_appearance in my_head_icon)
+					apply_height_filters(applied_appearance)
+			else if(isimage(my_head_icon))
+				apply_height_filters(my_head_icon)
+		else
+			if(islist(my_head_icon))
+				for(var/image/applied_appearance in my_head_icon)
+					apply_height_offsets(applied_appearance, offset_type)
+			else if(isimage(my_head_icon))
+				apply_height_offsets(my_head_icon, offset_type)
+
+	add_overlay(my_head_icon)
+	//add_overlay(my_head.get_limb_icon(dropped = FALSE, update_on = src))
+	//BUBBER EDIT END
 	update_worn_head()
 	update_worn_mask()
-	update_eyes()
-	update_hair()
+
+/**
+ * Used to perform regular updates to the limbs of humans with special bodyshapes
+ *
+ * * check_shapes: The bodyshapes to check for.
+ * Any limbs or organs which share this shape, will be updated.
+ * * ignore_slots: The slots to ignore when updating the limbs.
+ * This is useful for things like digitigrade legs, where we can skip some slots that we're already updating.
+ *
+ * return an integer, the number of limbs updated
+ */
+/mob/living/carbon/human/proc/check_body_shape(check_shapes = BODYSHAPE_DIGITIGRADE|BODYSHAPE_SNOUTED, ignore_slots = NONE)
+	. = 0
+	if(!(bodyshape & check_shapes))
+		// optimization - none of our limbs or organs have the desired shape
+		return .
+
+	for(var/obj/item/bodypart/limb as anything in get_bodyparts())
+		var/checked_bodyshape = limb.bodyshape
+		// accounts for stuff like snouts
+		for(var/obj/item/organ/organ in limb)
+			checked_bodyshape |= organ.external_bodyshapes
+
+		// any limb needs to be updated, so stop here and do it
+		if(checked_bodyshape & check_shapes)
+			. = update_body_parts()
+			break
+
+	if(!.)
+		return
+	// hardcoding this here until bodypart updating is more sane
+	// we need to update clothing items that may have been affected by bodyshape updates
+	if(check_shapes & BODYSHAPE_DIGITIGRADE)
+		for(var/obj/item/thing as anything in get_equipped_items(INCLUDE_PROSTHETICS|INCLUDE_ABSTRACT))
+			if(thing.slot_flags & ignore_slots)
+				continue
+			if(thing.supports_variations_flags & DIGITIGRADE_VARIATIONS)
+				thing.update_slot_icon()
 
 // Hooks into human apply overlay so that we can modify all overlays applied through standing overlays to our height system.
 // Some of our overlays will be passed through a displacement filter to make our mob look taller or shorter.
@@ -1200,14 +1409,11 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	var/static/icon/cut_legs_mask = icon('icons/effects/cut.dmi', "Cut2")
 	var/static/icon/lenghten_torso_mask = icon('icons/effects/cut.dmi', "Cut3")
 	var/static/icon/lenghten_legs_mask = icon('icons/effects/cut.dmi', "Cut4")
-	var/static/icon/lenghten_arms_mask = icon('icons/effects/cut.dmi', "Cut5")
-
 	appearance.remove_filter(list(
 		"Cut_Torso",
 		"Cut_Legs",
 		"Lenghten_Legs",
 		"Lenghten_Torso",
-		"Lenghten_Arms",
 		"Gnome_Cut_Torso",
 		"Gnome_Cut_Legs",
 		"Monkey_Torso",
@@ -1310,14 +1516,9 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 					"params" = displacement_map_filter(lenghten_torso_mask, x = 0, y = 0, size = 1),
 				),
 				list(
-					"name" = "Lenghten_Arms",
-					"priority" = 1,
-					"params" = displacement_map_filter(lenghten_arms_mask, x = 0, y = 0, size = 1),
-				),
-				list(
 					"name" = "Lenghten_Legs",
 					"priority" = 1,
-					"params" = displacement_map_filter(lenghten_legs_mask, x = 0, y = 0, size = 1),
+					"params" = displacement_map_filter(lenghten_legs_mask, x = 0, y = 0, size = 2),
 				),
 			))
 

@@ -564,7 +564,7 @@
 	var/alist/user_data
 
 /datum/ore_silo_log/New(obj/machinery/M, _action, _amount, _noun, list/mats=list(), alist/user_data)
-	timestamp = round_timestamp()
+	timestamp = station_time_timestamp()
 	machine_name = M.name
 	area_name = get_area_name(M, TRUE)
 	action = _action

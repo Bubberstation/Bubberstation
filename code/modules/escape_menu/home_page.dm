@@ -37,14 +37,12 @@
 	)
 
 	page_holder.give_screen_object(
-		new /atom/movable/screen/escape_menu/text/clickable/admin_ticket_notification(
+		new /atom/movable/screen/escape_menu/text/clickable/admin_help(
 			null,
 			/* hud_owner = */ null,
 			/* escape_menu = */ src,
 			/* button_text = */ "Admin Help",
 			/* offset = */ list(-241, 30),
-			/* font_size = */ 24,
-			/* on_click_callback = */ CALLBACK(src, PROC_REF(open_admin_page)),
 		)
 	)
 

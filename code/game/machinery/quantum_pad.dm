@@ -94,10 +94,7 @@
 
 /obj/machinery/quantumpad/update_icon_state()
 	. = ..()
-	if(machine_stat & (BROKEN|NOPOWER) || state_open)
-		icon_state = "[base_icon_state]-idle-open"
-	else
-		icon_state = "[base_icon_state]-idle"
+	icon_state = panel_open ? "[base_icon_state]-idle-open" : "[base_icon_state]-idle"
 
 /obj/machinery/quantumpad/interact(mob/user, obj/machinery/quantumpad/target_pad = linked_pad)
 	if(QDELETED(target_pad))

@@ -36,7 +36,6 @@ GLOBAL_PROTECT(href_token)
 	var/datum/particle_editor/particle_test
 	var/datum/colorblind_tester/color_test
 	var/datum/plane_master_debug/plane_debug
-	var/datum/appearance_debugger/appearance_debug
 	var/obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/library_manager
 	var/datum/pathfind_debug/path_debug
 	var/datum/spawn_menu/spawn_menu
@@ -99,7 +98,6 @@ GLOBAL_PROTECT(href_token)
 	GLOB.admin_datums[target] = src
 	deadmined = FALSE
 	plane_debug = new(src)
-	appearance_debug = new(src)
 	if (GLOB.directory[target])
 		associate(GLOB.directory[target]) //find the client for a ckey if they are connected and associate them with us
 
@@ -111,7 +109,6 @@ GLOBAL_PROTECT(href_token)
 	GLOB.deadmins[target] = src
 	GLOB.admin_datums -= target
 	QDEL_NULL(plane_debug)
-	QDEL_NULL(appearance_debug)
 	QDEL_NULL(path_debug)
 	deadmined = TRUE
 
@@ -122,7 +119,6 @@ GLOBAL_PROTECT(href_token)
 		add_verb(client, /client/proc/readmin)
 		client.disable_combo_hud()
 		client.update_special_keybinds()
-		client.set_stat_panel()
 
 /datum/admins/proc/associate(client/client)
 	if(IsAdminAdvancedProcCall())
@@ -163,7 +159,6 @@ GLOBAL_PROTECT(href_token)
 	owner.init_verbs() //re-initialize the verb list
 	owner.update_special_keybinds()
 	GLOB.admins |= client
-	client.set_stat_panel()
 
 	try_give_profiling()
 

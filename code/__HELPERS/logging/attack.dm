@@ -75,7 +75,8 @@
 	if(user)
 		user.log_message(bomb_message, LOG_ATTACK) //let it go to individual logs as well as the game log
 		bomb_message = "[key_name(user)] at [AREACOORD(user)] [bomb_message]."
-	log_game(bomb_message)
+	else
+		log_game(bomb_message)
 
 	GLOB.bombers += bomb_message
 	var/area/bomb_area = get_area(bomb)

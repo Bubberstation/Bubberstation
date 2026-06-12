@@ -32,10 +32,13 @@ GLOBAL_REAL(logger, /datum/log_holder)
 
 GENERAL_PROTECT_DATUM(/datum/log_holder)
 
-ADMIN_VERB(log_viewer_new, R_ADMIN, "View Round Logs", "View the rounds logs.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(log_viewer_new, R_ADMIN|R_DEBUG, "View Round Logs", "View the rounds logs.", ADMIN_CATEGORY_MAIN)
 	logger.ui_interact(user.mob)
 
 /datum/log_holder/ui_interact(mob/user, datum/tgui/ui)
+	if(!check_rights_for(user.client, R_ADMIN))
+		return
+
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(isnull(ui))
 		ui = new(user, src, "LogViewer")
@@ -43,7 +46,7 @@ ADMIN_VERB(log_viewer_new, R_ADMIN, "View Round Logs", "View the rounds logs.", 
 		ui.open()
 
 /datum/log_holder/ui_state(mob/user)
-	return ADMIN_STATE(R_ADMIN)
+	return ADMIN_STATE(R_ADMIN | R_DEBUG)
 
 /datum/log_holder/ui_static_data(mob/user)
 	var/list/data = list(

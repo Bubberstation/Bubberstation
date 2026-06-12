@@ -121,7 +121,7 @@
 	if (!istype(attacker))
 		return
 	for (var/mob/living/basic/garden_gnome/potential_gnome in oview(src, 7))
-		potential_gnome.ai_controller.set_blackboard_key_assoc_lazylist(BB_BASIC_MOB_RETALIATE_LIST, attacker, world.time)
+		potential_gnome.ai_controller.insert_blackboard_key_lazylist(BB_BASIC_MOB_RETALIATE_LIST, attacker)
 
 /datum/ai_controller/basic_controller/garden_gnome
 	blackboard = list(

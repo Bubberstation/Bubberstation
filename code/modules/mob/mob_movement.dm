@@ -27,7 +27,7 @@
  * in the parent proc with istype checks right?):
  * * having incorporeal_move set (calls Process_Incorpmove() instead)
  * * being grabbed
- * * being buckled (relaymove() is called to the buckled atom instead)
+ * * being buckled  (relaymove() is called to the buckled atom instead)
  * * having your loc be some other mob (relaymove() is called on that mob instead)
  * * Not having MOBILITY_MOVE
  * * Failing Process_Spacemove() call
@@ -551,7 +551,10 @@
 	SEND_SIGNAL(src, COMSIG_MOVE_INTENT_TOGGLED)
 
 ///Moves a mob upwards in z level
-/mob/proc/up()
+/mob/verb/up()
+	set name = "Move Upwards"
+	set category = "IC"
+
 	if(remote_control)
 		return remote_control.relaymove(src, UP)
 
@@ -575,7 +578,10 @@
 		to_chat(src, span_notice("You move upwards."))
 
 ///Moves a mob down a z level
-/mob/proc/down()
+/mob/verb/down()
+	set name = "Move Down"
+	set category = "IC"
+
 	if(remote_control)
 		return remote_control.relaymove(src, DOWN)
 

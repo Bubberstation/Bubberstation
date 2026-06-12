@@ -66,7 +66,6 @@
 	RegisterSignal(human_who_gained_species, COMSIG_CARBON_DEFIB_HEART_CHECK, PROC_REF(defib_check))
 	RegisterSignal(human_who_gained_species, COMSIG_ATOM_ITEM_INTERACTION, PROC_REF(rebuild_check))
 	RegisterSignal(human_who_gained_species, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
-	RegisterSignal(human_who_gained_species, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 	// nutrition = health, so give people a head start
 	human_who_gained_species.set_nutrition(NUTRITION_LEVEL_WELL_FED)
 
@@ -82,16 +81,14 @@
 		COMSIG_CARBON_DEFIB_HEART_CHECK,
 		COMSIG_ATOM_ITEM_INTERACTION,
 		COMSIG_ATOM_EXAMINE,
-		COMSIG_LIVING_LIFE,
 	))
 
 	human_who_lost_species.physiology.stamina_mod /= 0.6
 	human_who_lost_species.physiology.stun_mod /= 0.6
 	human_who_lost_species.physiology.knockdown_mod /= 1.2
 
-/datum/species/golem/proc/on_life(mob/living/carbon/human/source, seconds_per_tick)
-	SIGNAL_HANDLER
-
+/datum/species/golem/spec_life(mob/living/carbon/human/source, seconds_per_tick)
+	. = ..()
 	if(source.nutrition <= 20)
 		// this is "hard crit" for golems
 		source.Unconscious(1.5 SECONDS * seconds_per_tick)

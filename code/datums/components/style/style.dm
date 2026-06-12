@@ -20,6 +20,9 @@
 #define ACTION_GEYSER_MARKED "GEYSER MARKED"
 #define ACTION_VENT_TAPPED "VENT TAPPED"
 
+#define ACTION_MULTIPLIER_PER_VENT_VALUE 0.1
+#define ACTION_MULTIPLIER_MAJOR_KILL 0.1
+
 /datum/component/style
 	/// Amount of style we have.
 	var/style_points = -1
@@ -72,15 +75,13 @@
 	)
 
 
-/datum/component/style/Initialize(multitooled = FALSE, stored_permanent_multiplier = 0)
+/datum/component/style/Initialize(multitooled = FALSE)
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	START_PROCESSING(SSdcs, src)
 	if(multitooled)
 		src.multitooled = multitooled
-	if(stored_permanent_multiplier)
-		src.permanent_multiplier = stored_permanent_multiplier
 
 	ADD_TRAIT(parent, TRAIT_STYLISH, REF(src)) // SKYRAT EDIT ADD - allows style meter chads to do flips
 
@@ -330,10 +331,6 @@
 	else
 		source.balloon_alert(source, "unable to hotswap!")
 
-/// Increase our permanent multiplier based on the modifier.
-/datum/component/style/proc/adjust_permanent_multiplier(modifier)
-	permanent_multiplier += modifier
-
 // Point givers
 /datum/component/style/proc/on_punch(mob/living/carbon/human/punching_person, atom/attacked_atom, proximity)
 	SIGNAL_HANDLER
@@ -378,10 +375,10 @@
 				add_action(ACTION_GIBTONITE_BOOM, 50)
 				return
 
-	if(rock.mineral_type)
+	if(rock.mineralType)
 		if(exp_multiplier)
 			add_action(ACTION_ORE_MINED, 40)
-		rock.mineral_amt = ROUND_UP(rock.mineral_amt * (1 + ((rank * 0.1) - 0.3))) // You start out getting 20% less ore, but it goes up to 20% more at S-tier
+		rock.mineralAmt = ROUND_UP(rock.mineralAmt * (1 + ((rank * 0.1) - 0.3))) // You start out getting 20% less ore, but it goes up to 20% more at S-tier
 
 /datum/component/style/proc/on_resonator_burst(datum/source, mob/creator, mob/living/hit_living)
 	SIGNAL_HANDLER
@@ -425,6 +422,7 @@
 
 	var/vent_value = vent.boulder_size / BOULDER_SIZE_MEDIUM
 	add_action(ACTION_VENT_TAPPED, 250 * vent_value)
+	permanent_multiplier += ACTION_MULTIPLIER_PER_VENT_VALUE * vent_value
 
 // Emote-based multipliers
 /datum/component/style/proc/on_taunt()
@@ -452,6 +450,7 @@
 
 	if(ismegafauna(died))
 		add_action(ACTION_MAJOR_KILL, 350)
+		permanent_multiplier += ACTION_MULTIPLIER_MAJOR_KILL
 
 	else if(died.maxHealth >= 75) //at least legions
 		add_action(ACTION_KILL, 125)
@@ -480,3 +479,6 @@
 #undef ACTION_MARK_DETONATED
 #undef ACTION_GEYSER_MARKED
 #undef ACTION_VENT_TAPPED
+
+#undef ACTION_MULTIPLIER_PER_VENT_VALUE
+#undef ACTION_MULTIPLIER_MAJOR_KILL

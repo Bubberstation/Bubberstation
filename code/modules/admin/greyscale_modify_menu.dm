@@ -348,7 +348,7 @@ This is highly likely to cause massive amounts of lag as every object in the gam
 		return
 	while(initial(current.greyscale_config) == initial(parent.greyscale_config))
 		current = parent
-		parent = current::parent_type
+		parent = type2parent(current)
 	config_owner_type = current
 
 /// Used for spray painting items in the gags_recolorable component

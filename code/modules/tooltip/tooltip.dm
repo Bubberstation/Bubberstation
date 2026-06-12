@@ -19,7 +19,7 @@ Notes:
 
 /datum/tooltip
 	var/client/owner
-	var/control = SKIN_MAINWINDOW_TOOLTIP
+	var/control = "mainwindow.tooltip"
 	var/showing = 0
 	var/queueHide = 0
 	var/init = 0

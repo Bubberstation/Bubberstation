@@ -78,13 +78,6 @@ All ShuttleMove procs go here
 
 	if(rotation)
 		shuttleRotate(rotation, params = ALL) //see shuttle_rotate.dm
-
-	// if we have a lighting object that needs to be updated
-	if(lighting_object?.needs_update)
-		lighting_object.update()
-		lighting_object.needs_update = FALSE
-		SSlighting.objects_queue -= lighting_object
-
 	SEND_SIGNAL(src, COMSIG_TURF_AFTER_SHUTTLE_MOVE, oldT)
 
 	return TRUE
@@ -408,9 +401,6 @@ All ShuttleMove procs go here
 	return ..()
 
 /************************************Misc move procs************************************/
-
-/atom/movable/lighting_object/onShuttleMove()
-	return FALSE
 
 /obj/docking_port/mobile/hypotheticalShuttleMove(rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()

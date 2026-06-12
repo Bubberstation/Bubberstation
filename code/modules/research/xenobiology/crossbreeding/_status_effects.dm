@@ -5,8 +5,7 @@
 
 /datum/status_effect/rainbow_protection
 	id = "rainbow_protection"
-	duration = 10 SECONDS
-	tick_interval = STATUS_EFFECT_NO_TICK
+	duration = 100
 	alert_type = /atom/movable/screen/alert/status_effect/rainbow_protection
 	show_duration = TRUE
 
@@ -14,17 +13,14 @@
 	owner.add_traits(list(TRAIT_GODMODE, TRAIT_PACIFISM), TRAIT_STATUS_EFFECT(id))
 	owner.visible_message(span_warning("[owner] shines with a brilliant rainbow light."),
 		span_notice("You feel protected by an unknown force!"))
-	// okay, now time for the rainbow animation.
-	owner.add_filter("rainbow_protection_[REF(src)]", 2, color_matrix_filter(list(0,0,0, 0,0.75,0, 0,0,1, 0,0.25,0), COLORSPACE_HSL))
-	var/color_filter = owner.get_filter("rainbow_protection_[REF(src)]")
-	animate(color_filter, list("color" = list(0,0,0, 0,0.75,0, 0,0,1, 0.33,0.25,0)), time = 1 SECONDS, loop = -1)
-	animate(list("color" = list(0,0,0, 0,0.75,0, 0,0,1, 0.66,0.25,0)), time = 1 SECONDS)
-	animate(list("color" = list(0,0,0, 0,0.75,0, 0,0,1, 1,0.25,0)), time = 1 SECONDS)
-	animate(list("color" = list(0,0,0, 0,0.75,0, 0,0,1, 0,0.25,0)), time = 0) // IMPORTANT!
-	return TRUE
+	return ..()
+
+/datum/status_effect/rainbow_protection/tick(seconds_between_ticks)
+	owner.add_atom_colour(RANDOM_COLOUR, TEMPORARY_COLOUR_PRIORITY)
+	return ..()
 
 /datum/status_effect/rainbow_protection/on_remove()
-	owner.remove_filter("rainbow_protection_[REF(src)]")
+	owner.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 	owner.remove_traits(list(TRAIT_GODMODE, TRAIT_PACIFISM), TRAIT_STATUS_EFFECT(id))
 	owner.visible_message(span_notice("[owner] stops glowing, the rainbow light fading away."),
 		span_warning("You no longer feel protected..."))
@@ -36,12 +32,12 @@
 
 /datum/status_effect/slimeskin
 	id = "slimeskin"
-	duration = 30 SECONDS
+	duration = 300
 	alert_type = /atom/movable/screen/alert/status_effect/slimeskin
 	show_duration = TRUE
 
 /datum/status_effect/slimeskin/on_apply()
-	owner.add_atom_colour(color_transition_filter("#3070CC", SATURATION_OVERRIDE), TEMPORARY_COLOUR_PRIORITY)
+	owner.add_atom_colour("#3070CC", TEMPORARY_COLOUR_PRIORITY)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.physiology.damage_resistance += 10
@@ -172,7 +168,7 @@
 				owner.ckey = originalmind.key
 	if(clone)
 		clone.unequip_everything()
-		QDEL_NULL(clone)
+		qdel(clone)
 
 /atom/movable/screen/alert/status_effect/clone_decay
 	name = "Clone Decay"
@@ -206,7 +202,7 @@
 
 /datum/status_effect/bloodchill
 	id = "bloodchill"
-	duration = 10 SECONDS
+	duration = 100
 	alert_type = /atom/movable/screen/alert/status_effect/bloodchill
 
 /datum/status_effect/bloodchill/on_apply()
@@ -214,7 +210,7 @@
 	return ..()
 
 /datum/status_effect/bloodchill/tick(seconds_between_ticks)
-	if(SPT_PROB(50, seconds_between_ticks))
+	if(prob(50))
 		owner.adjust_fire_loss(2)
 
 /datum/status_effect/bloodchill/on_remove()
@@ -222,7 +218,7 @@
 
 /datum/status_effect/bonechill
 	id = "bonechill"
-	duration = 8 SECONDS
+	duration = 80
 	alert_type = /atom/movable/screen/alert/status_effect/bonechill
 
 /datum/status_effect/bonechill/on_apply()
@@ -230,14 +226,13 @@
 	return ..()
 
 /datum/status_effect/bonechill/tick(seconds_between_ticks)
-	if(!SPT_PROB(50, seconds_between_ticks))
-		return
-	owner.adjust_fire_loss(1)
-	owner.set_jitter_if_lower(6 SECONDS)
-	owner.adjust_bodytemperature(-10)
-	if(ishuman(owner))
-		var/mob/living/carbon/human/humi = owner
-		humi.adjust_coretemperature(-10)
+	if(prob(50))
+		owner.adjust_fire_loss(1)
+		owner.set_jitter_if_lower(6 SECONDS)
+		owner.adjust_bodytemperature(-10)
+		if(ishuman(owner))
+			var/mob/living/carbon/human/humi = owner
+			humi.adjust_coretemperature(-10)
 
 /datum/status_effect/bonechill/on_remove()
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/bonechill)
@@ -254,7 +249,7 @@
 	alert_type = null
 
 /datum/status_effect/rebreathing/tick(seconds_between_ticks)
-	owner.adjust_oxy_loss(-6 * seconds_between_ticks) //Just a bit more than normal breathing.
+	owner.adjust_oxy_loss(-6, 0) //Just a bit more than normal breathing.
 
 ///////////////////////////////////////////////////////
 //////////////////CONSUMING EXTRACTS///////////////////
@@ -264,8 +259,7 @@
 	id = "firecookie"
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
-	duration = 10 SECONDS
-	tick_interval = STATUS_EFFECT_NO_TICK
+	duration = 100
 
 /datum/status_effect/firecookie/on_apply()
 	ADD_TRAIT(owner, TRAIT_RESISTCOLD, TRAIT_STATUS_EFFECT(id))
@@ -279,7 +273,7 @@
 	id = "watercookie"
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
-	duration = 10 SECONDS
+	duration = 100
 
 /datum/status_effect/watercookie/on_apply()
 	ADD_TRAIT(owner, TRAIT_NO_SLIP_WATER, TRAIT_STATUS_EFFECT(id))
@@ -296,8 +290,7 @@
 	id = "metalcookie"
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
-	duration = 10 SECONDS
-	tick_interval = STATUS_EFFECT_NO_TICK
+	duration = 100
 
 /datum/status_effect/metalcookie/on_apply()
 	if(ishuman(owner))
@@ -314,8 +307,7 @@
 	id = "sparkcookie"
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
-	duration = 30 SECONDS
-	tick_interval = STATUS_EFFECT_NO_TICK
+	duration = 300
 	var/original_coeff
 
 /datum/status_effect/sparkcookie/on_apply()
@@ -334,8 +326,7 @@
 	id = "toxincookie"
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
-	duration = 1 MINUTES
-	tick_interval = STATUS_EFFECT_NO_TICK
+	duration = 600
 
 /datum/status_effect/toxincookie/on_apply()
 	ADD_TRAIT(owner, TRAIT_TOXINLOVER, TRAIT_STATUS_EFFECT(id))
@@ -348,8 +339,7 @@
 	id = "timecookie"
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
-	duration = 1 MINUTES
-	tick_interval = STATUS_EFFECT_NO_TICK
+	duration = 600
 
 /datum/status_effect/timecookie/on_apply()
 	owner.add_actionspeed_modifier(/datum/actionspeed_modifier/timecookie)
@@ -363,7 +353,7 @@
 	id = "lovecookie"
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
-	duration = 30 SECONDS
+	duration = 300
 
 /datum/status_effect/lovecookie/tick(seconds_between_ticks)
 	if(owner.stat != CONSCIOUS)
@@ -384,7 +374,7 @@
 	id = "tarcookie"
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
-	duration = 10 SECONDS
+	duration = 100
 
 /datum/status_effect/tarcookie/tick(seconds_between_ticks)
 	for(var/mob/living/carbon/human/L in range(get_turf(owner),1))
@@ -395,7 +385,7 @@
 	id = "tarfoot"
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
-	duration = 3 SECONDS
+	duration = 30
 
 /datum/status_effect/tarfoot/on_apply()
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/status_effect/tarfoot)
@@ -408,12 +398,12 @@
 	id = "spookcookie"
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
-	duration = 30 SECONDS
+	duration = 300
 
 /datum/status_effect/spookcookie/on_apply()
-	var/image/skeleton_image = image(icon = 'icons/mob/human/human.dmi', icon_state = "skeleton", layer = ABOVE_MOB_LAYER, loc = owner)
-	skeleton_image.override = TRUE
-	owner.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/everyone, "spookyscary", skeleton_image)
+	var/image/I = image(icon = 'icons/mob/human/human.dmi', icon_state = "skeleton", layer = ABOVE_MOB_LAYER, loc = owner)
+	I.override = 1
+	owner.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/everyone, "spookyscary", I)
 	return ..()
 
 /datum/status_effect/spookcookie/on_remove()
@@ -423,7 +413,7 @@
 	id = "peacecookie"
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
-	duration = 10 SECONDS
+	duration = 100
 
 /datum/status_effect/peacecookie/tick(seconds_between_ticks)
 	for(var/mob/living/L in range(get_turf(owner),1))
@@ -433,8 +423,7 @@
 	id = "plur"
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
-	duration = 3 SECONDS
-	tick_interval = STATUS_EFFECT_NO_TICK
+	duration = 30
 
 /datum/status_effect/plur/on_apply()
 	ADD_TRAIT(owner, TRAIT_PACIFISM, TRAIT_STATUS_EFFECT(id))
@@ -447,8 +436,7 @@
 	id = "adamantinecookie"
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
-	duration = 10 SECONDS
-	tick_interval = STATUS_EFFECT_NO_TICK
+	duration = 100
 
 /datum/status_effect/adamantinecookie/on_apply()
 	if(ishuman(owner))
@@ -650,7 +638,7 @@
 
 /datum/status_effect/stabilized/darkpurple/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_RESISTHEATHANDS, TRAIT_STATUS_EFFECT(id))
-	QDEL_NULL(fire)
+	qdel(fire)
 
 /datum/status_effect/stabilized/darkpurple/get_examine_text()
 	return span_notice("[owner.p_Their()] fingertips burn brightly!")
@@ -710,8 +698,7 @@
 
 /datum/status_effect/bluespacestabilization
 	id = "stabilizedbluespacecooldown"
-	duration = 2 MINUTES
-	tick_interval = STATUS_EFFECT_NO_TICK
+	duration = 1200
 	alert_type = null
 
 /datum/status_effect/stabilized/bluespace
@@ -809,8 +796,7 @@
 	colour = SLIME_TYPE_PYRITE
 
 /datum/status_effect/stabilized/pyrite/tick(seconds_between_ticks)
-	var/new_color = rgb(rand(0, 360), 100, 50, space = COLORSPACE_HSL)
-	owner.add_atom_colour(color_transition_filter(new_color, SATURATION_OVERRIDE), TEMPORARY_COLOUR_PRIORITY)
+	owner.add_atom_colour(RANDOM_COLOUR, TEMPORARY_COLOUR_PRIORITY)
 	return ..()
 
 /datum/status_effect/stabilized/pyrite/on_remove()

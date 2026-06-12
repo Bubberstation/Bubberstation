@@ -6,14 +6,6 @@
 	light_range = 1
 	duration = 2 SECONDS
 
-/obj/effect/temp_visual/telegraphing/Initialize(mapload)
-	. = ..()
-	update_appearance(UPDATE_OVERLAYS)
-
-/obj/effect/temp_visual/telegraphing/update_overlays()
-	. = ..()
-	. += emissive_appearance(icon, icon_state, src, alpha = 90)
-
 /obj/effect/temp_visual/telegraphing/vending_machine_tilt
 	duration = 1 SECONDS
 
@@ -23,18 +15,7 @@
 	src.duration = duration
 	return ..()
 
-/obj/effect/temp_visual/telegraphing/circle
+/obj/effect/temp_visual/telegraphing/thunderbolt
 	icon = 'icons/mob/telegraphing/telegraph.dmi'
 	icon_state = "target_circle"
 	duration = 2 SECONDS
-
-/obj/effect/temp_visual/telegraphing/circle/short
-	duration = 1 SECONDS
-
-/obj/effect/temp_visual/telegraphing/line
-	icon = 'icons/mob/telegraphing/telegraph.dmi'
-	icon_state = "line"
-	duration = 1.2 SECONDS
-
-/obj/effect/temp_visual/telegraphing/line/short
-	duration = 0.5 SECONDS

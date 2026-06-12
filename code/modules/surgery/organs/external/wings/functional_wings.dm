@@ -188,7 +188,7 @@
 	feature_key = initial(feature_key)
 	set_appearance_from_name(sprite_datum.name)
 
-/datum/bodypart_overlay/mutant/wings/functional/generate_icon_cache(obj/item/bodypart/limb)
+/datum/bodypart_overlay/mutant/wings/functional/generate_icon_cache()
 	. = ..()
 	. += wings_open ? "open" : "closed"
 

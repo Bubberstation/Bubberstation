@@ -44,10 +44,11 @@
 
 /datum/disease/gastritium/proc/tritium_burp(hot_chance = FALSE)
 	var/datum/gas_mixture/burp = new
-	burp.set_gas(/datum/gas/tritium, MOLES_GAS_VISIBLE)
+	ADD_GAS(/datum/gas/tritium, burp.gases)
+	burp.gases[/datum/gas/tritium][MOLES] = MOLES_GAS_VISIBLE
 	burp.temperature = affected_mob.bodytemperature
 	if(hot_chance && prob(tritium_burp_hot_chance))
-		burp.set_temperature(TRITIUM_MINIMUM_BURN_TEMPERATURE)
+		burp.temperature = TRITIUM_MINIMUM_BURN_TEMPERATURE
 		if(affected_mob.stat == CONSCIOUS)
 			to_chat(affected_mob, span_warning("Your throat feels hot!"))
 	affected_mob.visible_message("burps out green gas.", visible_message_flags = EMOTE_MESSAGE)

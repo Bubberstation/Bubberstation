@@ -22,8 +22,6 @@
 	cells_minimum = 1
 	cells_maximum = 2
 
-	visual = FALSE
-
 	var/failed = FALSE
 	var/operated = FALSE //whether we can still have our damages fixed through surgery
 
@@ -1142,9 +1140,10 @@
 /// H2O electrolysis
 /obj/item/organ/lungs/ethereal/proc/consume_water(mob/living/carbon/breather, datum/gas_mixture/breath, h2o_pp, old_h2o_pp)
 	var/gas_breathed = breath.gases[/datum/gas/water_vapor][MOLES]
-	breath.adjust_gas(/datum/gas/water_vapor, -gas_breathed)
-	var/list/new_gases = list(/datum/gas/oxygen = gas_breathed, /datum/gas/hydrogen = gas_breathed * 2)
-	breath_out.adjust_multiple_gases(new_gases)
+	breath.gases[/datum/gas/water_vapor][MOLES] -= gas_breathed
+	breath_out.assert_gases(/datum/gas/oxygen, /datum/gas/hydrogen)
+	breath_out.gases[/datum/gas/oxygen][MOLES] += gas_breathed
+	breath_out.gases[/datum/gas/hydrogen][MOLES] += gas_breathed * 2
 
 
 /obj/item/organ/lungs/pod

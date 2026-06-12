@@ -12,7 +12,7 @@
 	var/list/phrases = alter_phrases || hurt_phrases
 
 	/// No OOC leaks
-	if(!entry || payload["channel"] == OOC_CHANNEL || payload["channel"] == ME_CHANNEL || payload["channel"] == PRAY_CHANNEL || payload["channel"] == LOOC_CHANNEL) // BUBBER EDIT - CHANGE - ORIGINAL: if(!entry || payload["channel"] == OOC_CHANNEL || payload["channel"] == ME_CHANNEL || payload["channel"] == PRAY_CHANNEL)
+	if(!entry || payload["channel"] == OOC_CHANNEL || payload["channel"] == ME_CHANNEL || payload["channel"] == LOOC_CHANNEL) // BUBBER EDIT - CHANGE - ORIGINAL: if(!entry || payload["channel"] == OOC_CHANNEL || payload["channel"] == ME_CHANNEL)
 		return pick(phrases)
 	/// Random trimming for larger sentences
 	if(length(entry) > 50)
@@ -58,9 +58,6 @@
 			client.mob.whisper_verb(entry)
 			return TRUE
 		// BUBBER EDIT - ADDITION - END
-		if(PRAY_CHANNEL)
-			client.mob.pray(entry)
-			return TRUE
 	return FALSE
 
 /**
@@ -131,7 +128,7 @@
  *  boolean - success or failure
  */
 /datum/tgui_say/proc/handle_entry(type, payload)
-	if(!payload?["channel"] || isnull(payload["entry"]))
+	if(!payload?["channel"] || !payload["entry"])
 		CRASH("[usr] entered in a null payload to the chat window.")
 	if(length(payload["entry"]) > max_length)
 		CRASH("[usr] has entered more characters than allowed into a TGUI-Say")
@@ -140,7 +137,7 @@
 		return TRUE
 	if(type == "force")
 		var/target_channel = payload["channel"]
-		if(target_channel == ME_CHANNEL || target_channel == OOC_CHANNEL || target_channel == PRAY_CHANNEL)
+		if(target_channel == ME_CHANNEL || target_channel == OOC_CHANNEL)
 			target_channel = SAY_CHANNEL // No ooc leaks
 		delegate_speech(alter_entry(payload), target_channel)
 		return TRUE

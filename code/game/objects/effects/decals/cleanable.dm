@@ -82,16 +82,12 @@
 	RETURN_TYPE(/datum/reagents)
 	if (reagents)
 		return reagents
-	return init_reagents(decal_reagent, reagent_amount)
 
-/obj/effect/decal/cleanable/proc/init_reagents(reagent = null, amount = null)
-	RETURN_TYPE(/datum/reagents)
-
-	if (!reagent)
+	if (!decal_reagent)
 		return
 
-	create_reagents(amount)
-	reagents.add_reagent(reagent, amount)
+	create_reagents(reagent_amount)
+	reagents.add_reagent(decal_reagent, reagent_amount)
 	return reagents
 
 /obj/effect/decal/cleanable/item_interaction(mob/living/user, obj/item/tool, list/modifiers)

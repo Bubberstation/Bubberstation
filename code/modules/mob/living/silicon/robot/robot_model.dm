@@ -427,6 +427,7 @@
 		/obj/item/crowbar/cyborg/power, // Skyrat ADDITION - Combines Crowbar and Wirecutters into one
 		/obj/item/multitool/cyborg, //Skyrat ADDITION - Adds multitool for easier access
 		/obj/item/borg/cyborg_omnitool/engineering,
+		///obj/item/borg/cyborg_omnitool/engineering, //Skyrat REMOVAL
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
 		/obj/item/holosign_creator/atmos, // Skyrat Edit - Adds Holofans to engineering borgos
@@ -689,9 +690,6 @@
 
 	if(reagents.has_reagent(amount = 1, chemical_flags = REAGENT_CLEANS))
 		our_turf.wash(CLEAN_SCRUB)
-		var/datum/component/bloodysoles/bot/trackfilth = robot_owner.GetComponent(/datum/component/bloodysoles/bot)
-		if(trackfilth)
-			trackfilth.change_blood_amount(-trackfilth.total_bloodiness)
 
 	reagents.expose(our_turf, TOUCH, min(1, 10 / reagents.total_volume))
 	// We use more water doing this then mopping
@@ -1019,6 +1017,7 @@
 		/obj/item/pipe_dispenser,
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/extinguisher,
+		/obj/item/weldingtool/largetank/cyborg,
 		/obj/item/analyzer,
 		/obj/item/borg/cyborg_omnitool/engineering,
 		/obj/item/borg/cyborg_omnitool/engineering,

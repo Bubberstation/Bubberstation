@@ -111,18 +111,18 @@
 
 /mob/living/basic/bee/early_melee_attack(atom/target, list/modifiers)
 	. = ..()
-	if(.)
-		return
+	if(!.)
+		return FALSE
 
 	if(istype(target, /obj/machinery/hydroponics))
 		var/obj/machinery/hydroponics/hydro = target
 		pollinate(hydro)
-		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
+		return FALSE
 
 	if(istype(target, /obj/structure/beebox))
 		var/obj/structure/beebox/hive = target
 		handle_habitation(hive)
-		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
+		return FALSE
 
 /mob/living/basic/bee/proc/handle_habitation(obj/structure/beebox/hive)
 	if(hive == beehome) //if its our home, we enter or exit it

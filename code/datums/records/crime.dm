@@ -19,7 +19,7 @@
 	src.author = author
 	src.details = details
 	src.name = name
-	src.time = round_timestamp()
+	src.time = station_time_timestamp()
 
 /datum/crime/citation
 	/// Fine for the crime

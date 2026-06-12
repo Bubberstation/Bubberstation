@@ -181,13 +181,7 @@
 		return FALSE
 	if((check_flags & AB_CHECK_CONSCIOUS) && owner.stat != CONSCIOUS)
 		if (feedback)
-			switch(owner.stat)
-				if(SOFT_CRIT)
-					owner.balloon_alert(owner, "downed!")
-				if(DEAD)
-					owner.balloon_alert(owner, "dead!")
-				else
-					owner.balloon_alert(owner, "unconscious!")
+			owner.balloon_alert(owner, "[owner.stat == DEAD ? "dead" : "unconscious"]!")
 		return FALSE
 	if((check_flags & AB_CHECK_HANDS_BLOCKED) && HAS_TRAIT(owner, TRAIT_HANDS_BLOCKED))
 		if (feedback)

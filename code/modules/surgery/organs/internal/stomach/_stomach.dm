@@ -28,8 +28,6 @@
 	cells_minimum = 1
 	cells_maximum = 2
 
-	visual = FALSE
-
 	///The rate that disgust decays
 	var/disgust_metabolism = 1
 

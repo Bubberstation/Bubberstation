@@ -5,7 +5,7 @@
 /datum/martial_art/plasma_fist
 	name = "Plasma Fist"
 	id = MARTIALART_PLASMAFIST
-	help_verb = "Recall Teachings"
+	help_verb = /mob/living/proc/plasma_fist_help
 	var/nobomb = FALSE
 	var/plasma_power = 1 //starts at a 1, 2, 4 explosion.
 	var/plasma_increment = 1 //how much explosion power gets added per kill (1 = 1, 2, 4. 2 = 2, 4, 8 and so on)
@@ -163,17 +163,18 @@
 	add_to_streak("G", defender)
 	return check_streak(attacker, defender) ? MARTIAL_ATTACK_SUCCESS : MARTIAL_ATTACK_INVALID
 
-/datum/martial_art/plasma_fist/get_style_help()
-	. = list()
+/mob/living/proc/plasma_fist_help()
+	set name = "Recall Teachings"
+	set desc = "Remember the martial techniques of the Plasma Fist."
+	set category = "Plasma Fist"
 
-	var/datum/martial_art/plasma_fist/martial = GET_ACTIVE_MARTIAL_ART(holder)
-	. += "<b><i>You clench your fists and have a flashback of knowledge...</i></b>"
-	. += "[span_notice("Tornado Sweep")]: Punch Punch Shove. Repulses opponent and everyone back."
-	. += "[span_notice("Throwback")]: Shove Punch Shove. Throws the opponent and an item at them."
-	. += "[span_notice("The Plasma Fist")]: Punch Shove Shove Shove Punch. Instantly gibs an opponent.[martial.nobomb ? "" : " Each kill with this grows your [span_notice("Apotheosis")] explosion size."]"
+	var/datum/martial_art/plasma_fist/martial = GET_ACTIVE_MARTIAL_ART(src)
+	to_chat(usr, "<b><i>You clench your fists and have a flashback of knowledge...</i></b>")
+	to_chat(usr, "[span_notice("Tornado Sweep")]: Punch Punch Shove. Repulses opponent and everyone back.")
+	to_chat(usr, "[span_notice("Throwback")]: Shove Punch Shove. Throws the opponent and an item at them.")
+	to_chat(usr, "[span_notice("The Plasma Fist")]: Punch Shove Shove Shove Punch. Instantly gibs an opponent.[martial.nobomb ? "" : " Each kill with this grows your [span_notice("Apotheosis")] explosion size."]")
 	if(!martial.nobomb)
-		. += "[span_notice("Apotheosis")]: Use [span_notice("The Plasma Fist")] on yourself. Sends you away in a glorious explosion."
-	return .
+		to_chat(usr, "[span_notice("Apotheosis")]: Use [span_notice("The Plasma Fist")] on yourself. Sends you away in a glorious explosion.")
 
 
 /obj/effect/temp_visual/plasma_soul

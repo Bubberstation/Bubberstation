@@ -320,7 +320,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/weldingtool/hugetank = 1,
 		/obj/item/fishing_rod/telescopic/master = 1,
 		/obj/item/spess_knife = 1,
-		/obj/item/gun/ballistic/automatic/pistol/doohickey = 1,
+		/obj/item/gun/ballistic/automatic/pistol/doorhickey = 1,
 		) = 1,
 
 	list(//equipment
@@ -352,15 +352,11 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 			/obj/item/storage/medkit/emergency = 1,
 			/obj/item/storage/medkit/regular = 1,
 			/obj/item/storage/box/bandages = 1,
-			) = 2,
+			) = 1,
 		list(//medical chems
 			/obj/item/reagent_containers/hypospray/medipen/oxandrolone = 1,
 			/obj/item/reagent_containers/hypospray/medipen/salacid = 1,
 			/obj/item/reagent_containers/syringe/contraband/methamphetamine = 1,
-			) = 2,
-		list(
-			/obj/item/paper/secretrecipe/gorgium = 1,
-			/obj/item/paper/secretrecipe/metalgen = 1,
 			) = 1,
 		) = 1,
 

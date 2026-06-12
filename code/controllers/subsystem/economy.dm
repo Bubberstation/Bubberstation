@@ -221,7 +221,7 @@ SUBSYSTEM_DEF(economy)
 		"account" = "[account.account_holder]",
 		"cost" = price_to_use,
 		"vendor" = "[astype(vendor, /atom)?.name || vendor]",
-		"stationtime" = round_timestamp("hh:mm"),
+		"stationtime" = station_time_timestamp("hh:mm"),
 	))
 
 /**

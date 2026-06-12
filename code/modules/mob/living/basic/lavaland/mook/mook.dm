@@ -97,26 +97,26 @@
 
 /mob/living/basic/mining/mook/early_melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
-	if(.)
-		return
+	if(!.)
+		return FALSE
 	return attack_sequence(target)
 
 /mob/living/basic/mining/mook/proc/attack_sequence(atom/target)
 	if(istype(target, /obj/item/stack/ore) && isnull(held_ore))
 		var/obj/item/ore_target = target
 		ore_target.forceMove(src)
-		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
+		return FALSE
 
 	if(istype(target, /obj/structure/ore_container/material_stand))
 		if(held_ore)
 			held_ore.forceMove(target)
-		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
+		return FALSE
 
 	if(istype(target, /obj/structure/bonfire))
 		var/obj/structure/bonfire/fire_target = target
 		if(!fire_target.burning)
 			fire_target.start_burning()
-		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
+		return FALSE
 
 /mob/living/basic/mining/mook/proc/change_combatant_state(state)
 	attack_state = state
@@ -187,7 +187,7 @@
 	if(istype(intruder, /mob/living/basic/mining/mook))
 		return
 	for(var/mob/living/basic/mining/mook/villager in oview(src, 9))
-		villager.ai_controller?.set_blackboard_key_assoc(BB_BASIC_MOB_RETALIATE_LIST, intruder, world.time)
+		villager.ai_controller?.insert_blackboard_key_lazylist(BB_BASIC_MOB_RETALIATE_LIST, intruder)
 
 
 /mob/living/basic/mining/mook/worker

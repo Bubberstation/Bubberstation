@@ -291,7 +291,6 @@ SUBSYSTEM_DEF(vote)
 	log_admin("[key_name(toggle_initiator)] [text_verb] Dead Vote.")
 	message_admins("[key_name_admin(toggle_initiator)] [text_verb] Dead Vote.")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Dead Vote", text_verb))
-	update_static_data_for_all_viewers()
 
 /datum/controller/subsystem/vote/ui_state()
 	return GLOB.always_state
@@ -319,6 +318,8 @@ SUBSYSTEM_DEF(vote)
 		"singleSelection" = current_vote?.choices_by_ckey[user.client?.ckey],
 		"multiSelection" = current_vote?.choices_by_ckey,
 	)
+
+	data["voting"]= is_lower_admin ? voting : list()
 
 	var/list/all_vote_data = list()
 	for(var/vote_name in possible_votes)
@@ -362,7 +363,6 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/ui_static_data(mob/user)
 	var/list/data = list()
 	data["VoteCD"] = CONFIG_GET(number/vote_delay)
-	data["deadVoteEnabled"] = CONFIG_GET(flag/no_dead_vote)
 	return data
 
 /datum/controller/subsystem/vote/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -381,6 +381,7 @@ SUBSYSTEM_DEF(vote)
 
 			voter.log_message("cancelled a vote.", LOG_ADMIN)
 			message_admins("[key_name_admin(voter)] has cancelled the current vote.")
+			SStgui.close_uis(src)
 			reset()
 			return TRUE
 

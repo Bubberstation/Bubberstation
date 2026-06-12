@@ -41,10 +41,7 @@
 	our_slime = null
 
 /datum/status_effect/slime_leech/tick(seconds_between_ticks)
-	if(QDELETED(our_slime))
-		qdel(src)
-		return
-	if(our_slime.stat != CONSCIOUS || !owner)
+	if(our_slime.stat != CONSCIOUS)
 		our_slime.stop_feeding(silent = TRUE)
 		return
 

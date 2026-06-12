@@ -99,16 +99,16 @@
 
 /mob/living/basic/hivebot/mechanic/early_melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
-	if(.)
-		return
+	if(!.)
+		return FALSE
 
 	if(ismachinery(target))
 		repair_machine(target)
-		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
+		return FALSE
 
 	if(istype(target, /mob/living/basic/hivebot))
 		repair_hivebot(target)
-		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
+		return FALSE
 
 /mob/living/basic/hivebot/mechanic/proc/repair_machine(obj/machinery/fixable)
 	if(fixable.get_integrity() >= fixable.max_integrity)

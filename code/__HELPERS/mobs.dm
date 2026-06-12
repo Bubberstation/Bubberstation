@@ -413,11 +413,9 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 
 	return spawned_mobs
 
-#define SEE_DEADCHAT_ADMIN (1<<0)
-#define SEE_DEADCHAT_NORMAL (1<<1)
 // Displays a message in deadchat, sent by source. source is not linkified, message is, to avoid stuff like character names to be linkified.
 // Automatically gives the class deadsay to the whole message (message + source)
-/proc/deadchat_broadcast(message, source=null, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR, admin_only=FALSE, original_message)
+/proc/deadchat_broadcast(message, source=null, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR, admin_only=FALSE)
 	message = span_deadsay("[source][span_linkify(message)]")
 
 	if(admin_only)
@@ -435,13 +433,13 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 		if(admin_only)
 			if(!M.client?.holder)
 				continue
-		var/override = NONE
+		var/override = FALSE
 		if(M.client?.holder && (chat_toggles & CHAT_DEAD))
-			override = SEE_DEADCHAT_ADMIN
+			override = TRUE
 		if(HAS_TRAIT(M, TRAIT_SIXTHSENSE) && message_type == DEADCHAT_REGULAR)
-			override = SEE_DEADCHAT_NORMAL
+			override = TRUE
 		if(SSticker.current_state == GAME_STATE_FINISHED)
-			override = SEE_DEADCHAT_NORMAL
+			override = TRUE
 		if(isnewplayer(M) && !override)
 			continue
 		if(M.stat != DEAD && !override)
@@ -465,7 +463,6 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 
 		if(isobserver(M))
 			var/rendered_message = message
-			override = SEE_DEADCHAT_NORMAL
 
 			if(follow_target)
 				var/F
@@ -481,12 +478,6 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 			to_chat(M, rendered_message, avoid_highlighting = speaker_key == M.key)
 		else
 			to_chat(M, message, avoid_highlighting = speaker_key == M.key)
-
-		// Ghost runechat
-		if(original_message && ((override & SEE_DEADCHAT_NORMAL) || M.see_invisible >= follow_target.invisibility) && (!SSlag_switch.measures[DISABLE_DEAD_RUNECHAT] || HAS_TRAIT(M, TRAIT_BYPASS_MEASURES)) && M.runechat_prefs_check(M))
-			M.create_chat_message(follow_target, /datum/language/common, original_message, list(SPAN_ITALICS))
-#undef SEE_DEADCHAT_ADMIN
-#undef SEE_DEADCHAT_NORMAL
 
 //Used in chemical_mob_spawn. Generates a random mob based on a given gold_core_spawnable value.
 /proc/create_random_mob(spawn_location, mob_class = HOSTILE_SPAWN)

@@ -58,6 +58,7 @@
 	name = "of <mobtype> slaying (random species, carbon or simple animal)"
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
+	var/list/target_types_by_comp = list()
 
 /datum/fantasy_affix/bane/apply(datum/component/fantasy/comp, newName)
 	. = ..()
@@ -82,8 +83,15 @@
 	// This works even with the species picks since we're only accessing the name
 
 	var/obj/item/master = comp.parent
-	comp.appliedComponents += master.AddComponent(/datum/component/bane, affected_biotypes = picked_mobtype, damage_multiplier = 2)
+	master.AddElement(/datum/element/bane, target_type = picked_mobtype)
+	target_types_by_comp[comp] = picked_mobtype
 	return "[newName] of [initial(picked_mobtype.name)] slaying"
+
+/datum/fantasy_affix/bane/remove(datum/component/fantasy/comp)
+	var/picked_mobtype = target_types_by_comp[comp]
+	var/obj/item/master = comp.parent
+	master.RemoveElement(/datum/element/bane, picked_mobtype)
+	target_types_by_comp -= comp
 
 /datum/fantasy_affix/summoning
 	name = "of <mobtype> summoning (dangerous, can pick all but megafauna tier stuff)"

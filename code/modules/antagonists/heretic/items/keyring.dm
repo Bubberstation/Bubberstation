@@ -95,7 +95,6 @@
 
 ///An ID card capable of shapeshifting to other IDs given by the Key Keepers Burden knowledge
 /obj/item/card/id/advanced/heretic
-	access = list(ACCESS_HERETIC)
 	///List of IDs this card consumed
 	var/list/obj/item/card/id/fused_ids = list()
 	///The first portal in the portal pair, so we can clear it later

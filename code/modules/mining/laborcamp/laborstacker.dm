@@ -29,8 +29,7 @@
 /obj/machinery/mineral/labor_claim_console/proc/register_shuttle_signal()
 	SIGNAL_HANDLER
 	var/obj/docking_port/mobile/laborshuttle = SSshuttle.getShuttle("laborcamp")
-	if(laborshuttle)
-		RegisterSignal(laborshuttle, COMSIG_SHUTTLE_SHOULD_MOVE, PROC_REF(on_laborshuttle_can_move))
+	RegisterSignal(laborshuttle, COMSIG_SHUTTLE_SHOULD_MOVE, PROC_REF(on_laborshuttle_can_move))
 	UnregisterSignal(SSshuttle, COMSIG_SUBSYSTEM_POST_INITIALIZE)
 
 /obj/machinery/mineral/labor_claim_console/Destroy()
@@ -78,11 +77,6 @@
 	data["can_go_home"] = can_go_home
 	return data
 
-/obj/machinery/mineral/labor_claim_console/ui_static_data(mob/user)
-	var/list/data = list()
-	data["shuttle_exists"] = !isnull(SSshuttle.getShuttle("laborcamp"))
-	return data
-
 /obj/machinery/mineral/labor_claim_console/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
@@ -109,12 +103,6 @@
 					COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 
 		if("move_shuttle")
-			if(isnull(SSshuttle.getShuttle("laborcamp")))
-				if(COOLDOWN_FINISHED(src, say_cooldown))
-					say("Shuttle not found.")
-					COOLDOWN_START(src, say_cooldown, 2 SECONDS)
-				return
-
 			var/list/labor_shuttle_mobs = find_labor_shuttle_mobs()
 			if(length(labor_shuttle_mobs) > 1 || labor_shuttle_mobs[1] != user_mob)
 				if(COOLDOWN_FINISHED(src, say_cooldown))
@@ -183,7 +171,6 @@
 /**********************Prisoner Collection Unit**************************/
 
 /obj/machinery/mineral/stacking_machine/laborstacker
-	name = "labor camp collection unit"
 	force_connect = TRUE
 	damage_deflection = 21 //otherwise prisoners will destroy it
 	///Idle points sitting in the machine left to be claimed.

@@ -112,7 +112,8 @@
 	if(equipping.pulledby)
 		equipping.pulledby.stop_pulling()
 
-	hud_used?.update_inventory_slot(slot)
+	equipping.screen_loc = null
+	client?.screen -= equipping
 
 	for(var/mob/dead/observe as anything in observers)
 		observe.client?.screen -= equipping
@@ -171,9 +172,7 @@
 	if(!(slot & item.slot_flags)) // Things below only update if slotted in (ie: not held)
 		return
 	if(item.hair_mask)
-		LAZYADD(hair_masks, item.hair_mask)
-		update_hair()
-		update_body() // this is solely for lizard frills
+		update_body()
 	add_item_coverage(item)
 
 /mob/living/carbon/has_unequipped(obj/item/item)
@@ -183,9 +182,7 @@
 
 	hud_used?.update_locked_slots()
 	if(item.hair_mask)
-		LAZYREMOVE(hair_masks, item.hair_mask)
-		update_hair()
-		update_body() // this is solely for lizard frills
+		update_body()
 	remove_item_coverage(item)
 
 /mob/living/carbon/doUnEquip(obj/item/item_dropping, force, newloc, no_move, invdrop = TRUE, silent = FALSE)
@@ -259,17 +256,8 @@
  * * removed_slots - slots that were removed from obscured_slots
  */
 /mob/living/carbon/proc/item_coverage_changed(added_slots, removed_slots)
-	SEND_SIGNAL(src, COMSIG_CARBON_ITEM_COVERAGE_CHANGED, added_slots, removed_slots)
 	update_clothing(hidden_slots_to_inventory_slots(added_slots|removed_slots))
-	if((added_slots|removed_slots) & HIDESNOUT)
-		synchronize_bodyshapes()
-	if((added_slots|removed_slots) & (HIDEHAIR|HIDEFACIALHAIR))
-		update_hair()
-	if((added_slots|removed_slots) & HIDEEYES)
-		update_eyes()
-	// HIDEJUMPSUIT is for digitigrade legs, HIDEEARS is for lizard frills, HIDEHAIR is for felinid ears and lizard horns, the others should be obvious
-	// future todo; we should collect a list of all bodypart overlays and what conceals/reveals them dynamically, rather than hardcoding this
-	if((added_slots|removed_slots) & (HIDEJUMPSUIT|HIDEEARS|HIDEHAIR|HIDESNOUT|HIDEMUTWINGS|HIDEANTENNAE))
+	if((added_slots|removed_slots) & (HIDEJUMPSUIT|HIDEEARS|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT|HIDEMUTWINGS|HIDEANTENNAE))
 		update_body()
 
 /// Returns the helmet if an air tank compatible helmet is equipped.
@@ -455,8 +443,6 @@
 	var/covered_flags = NONE
 	for(var/obj/item/worn_item in get_equipped_items(INCLUDE_ABSTRACT))
 		if(worn_item.slot_flags & exluded_equipment_slots)
-			continue
-		if(worn_item.flags_cover & ALLOW_SURGERY_THROUGH)
 			continue
 		covered_flags |= worn_item.body_parts_covered
 

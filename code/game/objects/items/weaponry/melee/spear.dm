@@ -459,7 +459,7 @@
 
 /obj/item/spear/dragonator/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/bane, affected_biotypes = MOB_MINING, added_damage = 80) //For killing really big monsters.
+	AddElement(/datum/element/bane, mob_biotypes = MOB_MINING, damage_multiplier = 0, added_damage = 80, requires_combat_mode = FALSE) //For killing really big monsters.
 
 /*
  * Untreated Giantslayer , needs to be thrown into lava

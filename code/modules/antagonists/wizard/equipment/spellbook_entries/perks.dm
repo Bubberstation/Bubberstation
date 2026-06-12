@@ -104,10 +104,9 @@
 
 /datum/spellbook_entry/perks/heart_eater
 	name = "Heart Eater"
-	desc = "Gives you the ability to obtain a sentient being's life force by eating their heart. \
-		Additionally, you can tear a vulnerable being's heart out with your bare hands. \
+	desc = "Gives you ability to obtain a person's life force by eating their heart. \
 		By eating someone's heart you can increase your damage resistance or gain random mutation. \
-		Hearts also provide strong healing."
+		Heart also give strong healing buff."
 	hud_icon = "hearteater"
 
 /datum/spellbook_entry/perks/heart_eater/buy_spell(mob/living/carbon/human/user, obj/item/spellbook/book, log_buy)

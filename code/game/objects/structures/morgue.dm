@@ -463,28 +463,35 @@ GLOBAL_LIST_EMPTY(crematoriums)
 /obj/structure/bodycontainer/crematorium/proc/cremate(mob/user)
 	if(locked)
 		return //don't let you cremate something twice or w/e
-
 	// Make sure we don't delete the actual morgue and its tray
 	var/list/conts = get_all_contents() - src - connected
-	if(!length(conts))
+
+	if(!conts.len)
 		audible_message(span_hear("You hear a hollow crackle."))
 		return
 
-	audible_message(span_hear("You hear a roar as the crematorium activates."))
-	locked = TRUE
-	update_appearance()
+	else
+		audible_message(span_hear("You hear a roar as the crematorium activates."))
 
-	for(var/mob/living/victim in conts)
-		if(victim.incorporeal_move) //can't cook revenants!
-			continue
+		locked = TRUE
+		update_appearance()
 
-		if (victim.stat != DEAD)
-			victim.emote("scream")
+		for(var/mob/living/M in conts)
+			if(M.incorporeal_move) //can't cook revenants!
+				continue
+			if (M.stat != DEAD)
+				M.emote("scream")
+			if(user)
+				log_combat(user, M, "cremated")
+			else
+				M.log_message("was cremated", LOG_ATTACK)
 
-		if(user)
-			log_combat(user, victim, "cremated")
-		else
-			victim.log_message("was cremated", LOG_ATTACK)
+			if(user.stat != DEAD)
+				user.investigate_log("has died from being cremated.", INVESTIGATE_DEATHS)
+			M.death(TRUE)
+			if(!QDELETED(M)) //some animals get automatically deleted on death.
+				M.ghostize()
+				qdel(M)
 
 		for(var/obj/O in conts) //conts defined above, ignores crematorium and tray
 			// SKYRAT EDIT ADDITION
@@ -495,32 +502,15 @@ GLOBAL_LIST_EMPTY(crematoriums)
 				continue
 			qdel(O)
 
-		if(user.stat != DEAD)
-			user.investigate_log("has died from being cremated.", INVESTIGATE_DEATHS)
+		if(!locate(/obj/effect/decal/cleanable/ash) in get_step(src, dir))//prevent pile-up
+			new/obj/effect/decal/cleanable/ash(src)
 
-		victim.death(TRUE)
-		if(!QDELETED(victim)) //some animals get automatically deleted on death.
-			victim.ghostize()
-			qdel(victim)
+		sleep(3 SECONDS)
 
-	for(var/obj/to_destroy in conts) // conts defined above, ignores crematorium and tray
-		// Indestructible atoms should not be destroyed
-		if(istype(to_destroy, /obj/effect/dummy/phased_mob) || (to_destroy.resistance_flags & INDESTRUCTIBLE))
-			continue
-		qdel(to_destroy)
-
-	addtimer(CALLBACK(src, PROC_REF(unlock)), 3 SECONDS)
-
-/obj/structure/bodycontainer/crematorium/proc/unlock()
-	if(QDELETED(src))
-		return
-
-	if(!locate(/obj/effect/decal/cleanable/ash) in get_step(src, dir)) // As to prevent pile-up
-		new /obj/effect/decal/cleanable/ash(src)
-
-	locked = FALSE
-	update_appearance()
-	playsound(src.loc, 'sound/machines/ding.ogg', 50, TRUE) // You horrible people
+		if(!QDELETED(src))
+			locked = FALSE
+			update_appearance()
+			playsound(src.loc, 'sound/machines/ding.ogg', 50, TRUE) //you horrible people
 
 /obj/structure/bodycontainer/crematorium/creamatorium
 	name = "creamatorium"
@@ -594,8 +584,8 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		if(!istype(O, /obj/structure/closet/body_bag))
 			return
 	else
-		var/mob/victim = O
-		if(victim.buckled)
+		var/mob/M = O
+		if(M.buckled)
 			return
 	O.forceMove(src.loc)
 	if (user != O)

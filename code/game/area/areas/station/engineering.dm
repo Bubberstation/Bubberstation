@@ -16,10 +16,6 @@
 	name = "Engineering"
 	icon_state = "engine"
 
-/area/station/engineering/main/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/block_area_power_fail)
-
 /area/station/engineering/hallway
 	name = "Engineering Hallway"
 	icon_state = "engine_hallway"
@@ -73,10 +69,6 @@
 	icon_state = "atmos_engine"
 	area_flags = BLOBS_ALLOWED | CULT_PERMITTED
 
-/area/station/engineering/atmospherics_engine/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/block_area_power_fail)
-
 /area/station/engineering/lobby
 	name = "\improper Engineering Lobby"
 	icon_state = "engi_lobby"
@@ -86,10 +78,6 @@
 	icon_state = "engine_sm"
 	area_flags = BLOBS_ALLOWED | CULT_PERMITTED
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
-
-/area/station/engineering/supermatter/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/block_area_power_fail)
 
 /area/station/engineering/supermatter/waste
 	name = "\improper Supermatter Waste Chamber"

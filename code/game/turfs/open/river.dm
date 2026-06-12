@@ -5,6 +5,7 @@
 #define RANDOM_LOWER_Y 50
 
 /proc/spawn_rivers(target_z, nodes, turf_type, whitelist_area, min_x = RANDOM_LOWER_X, min_y = RANDOM_LOWER_Y, max_x = RANDOM_UPPER_X, max_y = RANDOM_UPPER_Y)
+	var/list/river_nodes = list()
 	var/num_spawned = 0
 	var/width = max_x - min_x
 	var/height = max_y - min_y
@@ -15,19 +16,19 @@
 		var/area/A = get_area(T)
 		if(!istype(A, whitelist_area) || (T.turf_flags & NO_LAVA_GEN))
 			possible_locs -= T
-			continue
-		new /obj/effect/landmark/river_waypoint(T)
-		num_spawned++
+		else
+			river_nodes += new /obj/effect/landmark/river_waypoint(T)
+			num_spawned++
 
 	//make some randomly pathing rivers
-	for(var/obj/effect/landmark/river_waypoint/waypoints as anything in GLOB.river_waypoint_list["[target_z]"])
+	for(var/obj/effect/landmark/river_waypoint/waypoints as anything in river_nodes)
 		if (waypoints.z != target_z || waypoints.connected)
 			continue
 		waypoints.connected = TRUE
 		// Workaround around ChangeTurf that's safe because of when this proc is called
 		var/turf/cur_turf = get_turf(waypoints)
 		cur_turf = new turf_type(cur_turf)
-		var/turf/target_turf = get_turf(pick(GLOB.river_waypoint_list["[target_z]"] - waypoints))
+		var/turf/target_turf = get_turf(pick(river_nodes - waypoints))
 		if(!target_turf)
 			break
 		var/detouring = FALSE
@@ -54,28 +55,20 @@
 				cur_dir = get_dir(cur_turf, target_turf)
 				cur_turf = get_step(cur_turf, cur_dir)
 				continue
+			else
+				// Workaround around ChangeTurf that's safe because of when this proc is called
+				var/turf/river_turf = new turf_type(cur_turf)
+				river_turf.Spread(25, 11, whitelist_area)
 
-			// Workaround around ChangeTurf that's safe because of when this proc is called
-			var/turf/river_turf = new turf_type(cur_turf)
-			river_turf.Spread(25, 11, whitelist_area)
+	for(var/waypoints_spawned in river_nodes)
+		qdel(waypoints_spawned)
 
-	for(var/obj/effect/landmark/river_waypoint/waypoint as anything in GLOB.river_waypoint_list["[target_z]"])
-		qdel(waypoint)
-
-	GLOB.river_waypoint_list -= "[target_z]"
 
 /obj/effect/landmark/river_waypoint
 	name = "river waypoint"
 	var/connected = FALSE
 	invisibility = INVISIBILITY_ABSTRACT
 
-/obj/effect/landmark/river_waypoint/Initialize(mapload)
-	. = ..()
-	LAZYADD(GLOB.river_waypoint_list["[z]"], src)
-
-/obj/effect/landmark/river_waypoint/Destroy()
-	LAZYREMOVE(GLOB.river_waypoint_list["[z]"], src)
-	return ..()
 
 /turf/proc/Spread(probability = 30, prob_loss = 25, whitelisted_area)
 	if(probability <= 0)

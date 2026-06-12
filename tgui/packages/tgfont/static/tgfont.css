@@ -14,20 +14,18 @@
 }
 
 :root {
-    /* biome-ignore-start lint/suspicious/noUselessEscapeInString: The escapes are needed */
-	--tg-air-tank-slash: "\ea01";
-	--tg-air-tank: "\ea02";
-	--tg-bad-touch: "\ea03";
-	--tg-image-minus: "\ea04";
-	--tg-image-plus: "\ea05";
-	--tg-nanotrasen-logo: "\ea06";
-	--tg-non-binary: "\ea07";
-	--tg-prosthetic-full: "\ea08";
-	--tg-prosthetic-leg: "\ea09";
-	--tg-sound-minus: "\ea0a";
-	--tg-sound-plus: "\ea0b";
-	--tg-syndicate-logo: "\ea0c";
-    /* biome-ignore-end lint/suspicious/noUselessEscapeInString: The escapes are needed */
+	--tg-air-tank-slash: "ea01";
+	--tg-air-tank: "ea02";
+	--tg-bad-touch: "ea03";
+	--tg-image-minus: "ea04";
+	--tg-image-plus: "ea05";
+	--tg-nanotrasen-logo: "ea06";
+	--tg-non-binary: "ea07";
+	--tg-prosthetic-full: "ea08";
+	--tg-prosthetic-leg: "ea09";
+	--tg-sound-minus: "ea0a";
+	--tg-sound-plus: "ea0b";
+	--tg-syndicate-logo: "ea0c";
 }
 .tg-air-tank-slash::before {
 	content: var(--tg-air-tank-slash);

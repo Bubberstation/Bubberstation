@@ -63,14 +63,14 @@
 
 /mob/living/basic/orbie/early_melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
-	if(.)
-		return
+	if(!.)
+		return FALSE
 	if(src == target || happy_state || !istype(target))
-		return BASIC_MOB_CONTINUE_ATTACK_CHAIN
+		return TRUE
 
 	toggle_happy_state()
 	addtimer(CALLBACK(src, PROC_REF(toggle_happy_state)), 30 SECONDS)
-	return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
+	return FALSE
 
 /mob/living/basic/orbie/proc/on_lights(datum/source)
 	SIGNAL_HANDLER

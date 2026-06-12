@@ -80,8 +80,6 @@
 		generated_domain.disk_reward_spawned = TRUE
 
 	chosen_forge.start_to_spawn(reward_cache)
-
-	domain_complete = TRUE
 	return TRUE
 
 

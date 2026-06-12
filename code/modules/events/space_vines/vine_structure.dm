@@ -38,7 +38,6 @@
 	AddElement(/datum/element/connect_loc, loc_connections)
 	AddElement(/datum/element/atmos_sensitive, mapload)
 	AddComponent(/datum/component/storm_hating)
-	block_sunlight()
 
 /obj/structure/spacevine/examine(mob/user)
 	. = ..()
@@ -216,9 +215,3 @@
 	. = ..()
 	if(isvineimmune(mover))
 		return TRUE
-
-/obj/structure/spacevine/proc/block_sunlight()
-	AddElement(/datum/element/give_turf_traits, string_list(list(TRAIT_TURF_SUN_BLOCKED)))
-
-/obj/structure/spacevine/proc/unblock_sunlight()
-	RemoveElement(/datum/element/give_turf_traits, string_list(list(TRAIT_TURF_SUN_BLOCKED)))

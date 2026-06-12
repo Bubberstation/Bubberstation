@@ -285,7 +285,6 @@
 	if (length(drop_results))
 		butcher_drops = string_list(drop_results)
 		butcher_drop_cache[type] = butcher_drops
-	update_limb(TRUE)
 	update_icon_dropped()
 	refresh_bleed_rate()
 
@@ -651,7 +650,8 @@
 			bodypart_organ.apply_organ_damage(bodypart_organ.maxHealth * 0.5)
 
 		if(owner)
-			bodypart_organ.Remove(bodypart_organ.owner)
+			if(!bodypart_organ.Remove(bodypart_organ.owner))
+				continue
 		else if(!bodypart_organ.bodypart_remove(src))
 			continue
 
@@ -668,6 +668,10 @@
 		playsound(drop_loc, 'sound/misc/splort.ogg', 50, TRUE, -1)
 
 	update_icon_dropped()
+
+//Return TRUE to get whatever mob this is in to update health.
+/obj/item/bodypart/proc/on_life(seconds_per_tick)
+	SHOULD_CALL_PARENT(TRUE)
 
 /**
  * #receive_damage
@@ -1156,8 +1160,6 @@
 /obj/item/bodypart/proc/update_limb(dropping_limb = FALSE, is_creating = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 
-	SEND_SIGNAL(src, COMSIG_BODYPART_UPDATED, dropping_limb, is_creating)
-
 	if(IS_ORGANIC_LIMB(src))
 		// Try to add a cached blood type data, we must do it in here because for some reason DNA gets initialized AFTER the mob's limbs are created.
 		// Should be fine as this gets called before all the important stuff happens
@@ -1181,7 +1183,7 @@
 	update_draw_color()
 
 	if(!is_creating || !owner)
-		return FALSE
+		return
 
 	// There should technically to be an ishuman(owner) check here, but it is absent because no basetype carbons use bodyparts
 	// No, xenos don't actually use bodyparts. Don't ask.
@@ -1865,22 +1867,6 @@
 		return
 	REMOVE_TRAIT(owner, old_trait, bodypart_trait_source)
 
-/// Add a bodyshape to the bodypart, then synchronize with the owner if necessary
-/obj/item/bodypart/proc/add_bodyshape(new_shape)
-	if(bodyshape & new_shape)
-		return
-
-	bodyshape |= new_shape
-	owner?.synchronize_bodyshapes()
-
-/// Remove a bodyshape from the bodypart, then synchronize with the owner if necessary
-/obj/item/bodypart/proc/remove_bodyshape(old_shape)
-	if(!(bodyshape & old_shape))
-		return
-
-	bodyshape &= ~old_shape
-	owner?.synchronize_bodyshapes()
-
 /// Add one or multiple surgical states to the bodypart
 /obj/item/bodypart/proc/add_surgical_state(new_states)
 	if(!new_states)
@@ -1935,34 +1921,3 @@
 	var/old_state = surgery_state
 	. = ..()
 	update_surgical_state(old_state, surgery_state ^ old_state)
-
-/// Adds biostate to the limb and ensures surgical states are updated accordingly
-/obj/item/bodypart/proc/add_biostate(new_biostate)
-	if(biological_state & new_biostate)
-		return
-
-	var/had_skin = LIMB_HAS_SKIN(src)
-	var/had_bones = LIMB_HAS_BONES(src)
-	var/had_vessels = LIMB_HAS_VESSELS(src)
-
-	biological_state |= new_biostate
-
-	if(!had_skin && LIMB_HAS_SKIN(src))
-		remove_surgical_state(SKINLESS_SURGERY_STATES)
-	if(!had_bones && LIMB_HAS_BONES(src))
-		remove_surgical_state(BONELESS_SURGERY_STATES)
-	if(!had_vessels && LIMB_HAS_VESSELS(src))
-		remove_surgical_state(VESSELLESS_SURGERY_STATES)
-
-/// Removes biostate from the limb and ensures surgical states are updated accordingly
-/obj/item/bodypart/proc/remove_biostate(old_biostate)
-	if(!(biological_state & old_biostate))
-		return
-
-	biological_state &= ~old_biostate
-	if(!LIMB_HAS_SKIN(src))
-		add_surgical_state(SKINLESS_SURGERY_STATES)
-	if(!LIMB_HAS_BONES(src))
-		add_surgical_state(BONELESS_SURGERY_STATES)
-	if(!LIMB_HAS_VESSELS(src))
-		add_surgical_state(VESSELLESS_SURGERY_STATES)

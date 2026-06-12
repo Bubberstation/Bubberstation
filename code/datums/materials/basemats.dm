@@ -20,7 +20,6 @@
 	mat_rust_resistance = RUST_RESISTANCE_BASIC
 	mineral_rarity = MATERIAL_RARITY_COMMON
 	points_per_unit = 1 / SHEET_MATERIAL_AMOUNT
-	points_per_boulder_unit = 1 / SHEET_MATERIAL_AMOUNT
 	minimum_value_override = 0
 	tradable = TRUE
 	tradable_base_quantity = MATERIAL_QUANTITY_COMMON
@@ -58,7 +57,6 @@
 	tradable_base_quantity = MATERIAL_QUANTITY_COMMON
 	mineral_rarity = MATERIAL_RARITY_COMMON
 	points_per_unit = 1 / SHEET_MATERIAL_AMOUNT
-	points_per_boulder_unit = 1 / SHEET_MATERIAL_AMOUNT
 	texture_layer_icon_state = "shine"
 
 /datum/material/glass/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
@@ -101,7 +99,6 @@
 	tradable_base_quantity = MATERIAL_QUANTITY_UNCOMMON
 	mineral_rarity = MATERIAL_RARITY_SEMIPRECIOUS
 	points_per_unit = 16 / SHEET_MATERIAL_AMOUNT
-	points_per_boulder_unit = 3.5 / SHEET_MATERIAL_AMOUNT
 	texture_layer_icon_state = "shine"
 
 /datum/material/silver/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
@@ -133,7 +130,6 @@
 	tradable_base_quantity = MATERIAL_QUANTITY_RARE
 	mineral_rarity = MATERIAL_RARITY_PRECIOUS
 	points_per_unit = 18 / SHEET_MATERIAL_AMOUNT
-	points_per_boulder_unit = 4 / SHEET_MATERIAL_AMOUNT
 	texture_layer_icon_state = "shine"
 
 /datum/material/gold/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
@@ -167,7 +163,6 @@
 	tradable_base_quantity = MATERIAL_QUANTITY_EXOTIC
 	mineral_rarity = MATERIAL_RARITY_RARE
 	points_per_unit = 50 / SHEET_MATERIAL_AMOUNT
-	points_per_boulder_unit = 10 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/diamond/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	. = ..()
@@ -200,7 +195,6 @@
 	tradable_base_quantity = MATERIAL_QUANTITY_RARE
 	mineral_rarity = MATERIAL_RARITY_SEMIPRECIOUS
 	points_per_unit = 30 / SHEET_MATERIAL_AMOUNT
-	points_per_boulder_unit = 3.5 / SHEET_MATERIAL_AMOUNT
 
 /// Adds firestacks on hit (Still needs support to turn into gas on destruction)
 /datum/material/plasma
@@ -225,7 +219,6 @@
 	value_per_unit = 200 / SHEET_MATERIAL_AMOUNT
 	mineral_rarity = MATERIAL_RARITY_PRECIOUS
 	points_per_unit = 15 / SHEET_MATERIAL_AMOUNT
-	points_per_boulder_unit = 2 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/plasma/on_applied(atom/source, mat_amount, multiplier, from_slot)
 	. = ..()
@@ -264,7 +257,6 @@
 	value_per_unit = 300 / SHEET_MATERIAL_AMOUNT
 	mineral_rarity = MATERIAL_RARITY_RARE
 	points_per_unit = 50 / SHEET_MATERIAL_AMOUNT
-	points_per_boulder_unit = 10 / SHEET_MATERIAL_AMOUNT
 	tradable = TRUE
 	tradable_base_quantity = MATERIAL_QUANTITY_EXOTIC
 	texture_layer_icon_state = "shine"
@@ -313,7 +305,6 @@
 	value_per_unit = 1000 / SHEET_MATERIAL_AMOUNT
 	mineral_rarity = MATERIAL_RARITY_UNDISCOVERED
 	points_per_unit = 60 / SHEET_MATERIAL_AMOUNT
-	points_per_boulder_unit = 15 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/bananium/on_applied(atom/source, mat_amount, multiplier, from_slot)
 	. = ..()
@@ -369,7 +360,6 @@
 	sheet_type = /obj/item/stack/sheet/mineral/titanium
 	ore_type = /obj/item/stack/ore/titanium
 	value_per_unit = 125 / SHEET_MATERIAL_AMOUNT
-	points_per_boulder_unit = 3 / SHEET_MATERIAL_AMOUNT
 	tradable = TRUE
 	tradable_base_quantity = MATERIAL_QUANTITY_UNCOMMON
 	mat_rust_resistance = RUST_RESISTANCE_TITANIUM
@@ -400,7 +390,6 @@
 	value_per_unit = 600 / SHEET_MATERIAL_AMOUNT
 	mineral_rarity = MATERIAL_RARITY_UNDISCOVERED
 	points_per_unit = 100 / SHEET_MATERIAL_AMOUNT
-	points_per_boulder_unit = 20 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/runite/on_applied(atom/source, mat_amount, multiplier, from_slot)
 	. = ..()
@@ -440,7 +429,6 @@
 	value_per_unit = 25 / SHEET_MATERIAL_AMOUNT
 	mineral_rarity = MATERIAL_RARITY_UNDISCOVERED // Nobody's found oil on lavaland yet.
 	points_per_unit = 4 / SHEET_MATERIAL_AMOUNT
-	points_per_boulder_unit = 4 / SHEET_MATERIAL_AMOUNT
 
 /// Force decrease and mushy sound effect. (Not yet implemented)
 /datum/material/biomass
@@ -495,7 +483,6 @@
 	value_per_unit = 500 / SHEET_MATERIAL_AMOUNT
 	mineral_rarity = MATERIAL_RARITY_UNDISCOVERED // Doesn't naturally spawn on lavaland.
 	points_per_unit = 100 / SHEET_MATERIAL_AMOUNT
-	points_per_boulder_unit = 20 / SHEET_MATERIAL_AMOUNT // If it ever needs it, we'll give it
 
 /datum/material/adamantine/on_applied(atom/source, mat_amount, multiplier, from_slot)
 	. = ..()
@@ -534,7 +521,6 @@
 	value_per_unit = 1500 / SHEET_MATERIAL_AMOUNT
 	mineral_rarity = MATERIAL_RARITY_UNDISCOVERED // Doesn't naturally spawn on lavaland.
 	points_per_unit = 100 / SHEET_MATERIAL_AMOUNT
-	points_per_boulder_unit = 20 / SHEET_MATERIAL_AMOUNT
 
 /datum/material/mythril/on_applied(atom/source, mat_amount, multiplier, from_slot)
 	. = ..()
@@ -940,19 +926,3 @@
 	// Oops, all chainsawfish!
 	challenge.register_reward_signals(GLOB.preset_fish_sources[/datum/fish_source/portal/syndicate])
 
-/datum/material/rock
-	name = "rock"
-	desc = "Marble maybe?"
-	color = "#919191"
-	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_RIGID
-	mat_properties = list(
-		MATERIAL_DENSITY = 2,
-		MATERIAL_HARDNESS = 4,
-		MATERIAL_FLEXIBILITY = 0,
-		MATERIAL_REFLECTIVITY = 0,
-		MATERIAL_ELECTRICAL = 0,
-		MATERIAL_THERMAL = 1,
-		MATERIAL_CHEMICAL = 0,
-		MATERIAL_BEAUTY = 0.8,
-	)
-	texture_layer_icon_state = "sand"

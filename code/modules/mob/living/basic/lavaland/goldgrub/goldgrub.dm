@@ -13,8 +13,8 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BUG|MOB_MINING
 	friendly_verb_continuous = "harmlessly rolls into"
 	friendly_verb_simple = "harmlessly roll into"
-	maxHealth = 175
-	health = 175
+	maxHealth = 45
+	health = 45
 	melee_damage_lower = 0
 	melee_damage_upper = 0
 	attack_verb_continuous = "barrels into"
@@ -49,26 +49,16 @@
 	else
 		can_lay_eggs = FALSE
 
-	// Rarer ores heal us a bit depending on the rarity
-	var/static/list/food_types = list(
-		/obj/item/stack/ore = 0,
-		/obj/item/stack/ore/gold = 5,
-		/obj/item/stack/ore/uranium = 5,
-		/obj/item/stack/ore/diamond = 15,
-		/obj/item/stack/ore/bluespace_crystal = 20,
-		/obj/item/stack/ore/bananium = 30,
-	)
-
+	var/list/food_types = string_list(list(/obj/item/stack/ore))
 	var/static/list/innate_actions = list(
 		/datum/action/cooldown/mob_cooldown/spit_ore = BB_SPIT_ABILITY,
 		/datum/action/cooldown/mob_cooldown/burrow = BB_BURROW_ABILITY,
 	)
-
 	grant_actions_by_list(innate_actions)
 
 	AddElement(/datum/element/ore_collecting)
 	AddElement(/datum/element/basic_eating, food_types = food_types, add_to_contents = TRUE)
-	AddComponent(/datum/component/proficient_miner, 0.05, TRUE) // Speedy boi
+	AddElement(/datum/element/wall_tearer, allow_reinforced = FALSE)
 	AddComponent(/datum/component/ai_listen_to_weather)
 	AddComponent(\
 		/datum/component/appearance_on_aggro,\
@@ -91,10 +81,10 @@
 	SIGNAL_HANDLER
 
 	if(stat != CONSCIOUS)
-		return NONE
+		return COMPONENT_BULLET_PIERCED
 
-	/// Reflects PKA/PKC shots and plasma cutter beams, unless they have high armor penetration
-	if(prob(hitting_projectile.armour_penetration) || (hitting_projectile.armor_flag != BOMB && hitting_projectile.armor_flag != ENERGY))
+	/// High penetration bullets should still go through. No goldgrub can save you from the colossus' death bolts.
+	if(prob(hitting_projectile.armour_penetration))
 		return NONE
 
 	visible_message(span_danger("[hitting_projectile] is repelled by [source]'s girth!"))
