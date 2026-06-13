@@ -10931,8 +10931,8 @@
 /obj/machinery/bouldertech/refinery/smelter{
 	dir = 4
 	},
-/obj/machinery/conveyor/inverted{
-	dir = 4;
+/obj/machinery/conveyor{
+	dir = 8;
 	id = "mining"
 	},
 /turf/open/floor/iron/checker,
@@ -51046,7 +51046,8 @@
 /obj/machinery/bouldertech/refinery{
 	dir = 1
 	},
-/obj/machinery/conveyor/inverted{
+/obj/machinery/conveyor{
+	dir = 1;
 	id = "mining"
 	},
 /turf/open/floor/iron/checker,
@@ -76914,9 +76915,9 @@
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/floor3/port)
 "tbt" = (
-/obj/machinery/conveyor/inverted{
-	id = "mining";
-	dir = 4
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "mining"
 	},
 /turf/open/floor/iron/checker,
 /area/station/cargo/miningdock)
