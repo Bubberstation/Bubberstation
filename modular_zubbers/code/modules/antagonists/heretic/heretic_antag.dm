@@ -5,7 +5,7 @@
 	name = "\improper Acolyte"
 	roundend_category = "Acolytes"
 	antagpanel_category = "Acolyte"
-	knowledge_points = 14 + 1 // we always have to spend one to unlock a path
+	knowledge_points = 15 + 1 // we always have to spend one to unlock a path
 	unlimited_blades = TRUE
 	passive_level = 0
 	passive_gain_timer = 40 MINUTES // passive progression is VERY... SLOW...
@@ -46,6 +46,10 @@
 
 /datum/antagonist/heretic/forge_primary_objectives(heretic_research_tree)
 	// total override
+	for(var/datum/objective/pick_path/filler in objectives)
+		filler.owner = null
+		objectives -= filler
+		qdel(filler)
 
 	var/datum/objective/open_ways/way_obj = new()
 	way_obj.owner = owner
