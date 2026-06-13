@@ -18770,7 +18770,6 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
-/obj/machinery/bouldertech/refinery/smelter,
 /turf/open/floor/plating,
 /area/station/cargo/miningfoundry)
 "bMW" = (
@@ -39063,6 +39062,20 @@
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/science/explab)
+"lmw" = (
+/obj/machinery/conveyor{
+	id = "CargoBoulder";
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/bouldertech/refinery/smelter{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/station/cargo/miningfoundry)
 "lmA" = (
 /obj/machinery/chem_dispenser,
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
@@ -60912,7 +60925,6 @@
 /turf/open/floor/iron,
 /area/station/security/brig)
 "ylY" = (
-/obj/machinery/bouldertech/refinery,
 /obj/machinery/conveyor{
 	id = "CargoBoulder";
 	dir = 10
@@ -60923,6 +60935,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
+/obj/machinery/bouldertech/refinery,
 /turf/open/floor/plating,
 /area/station/cargo/miningfoundry)
 
@@ -103179,7 +103192,7 @@ aNU
 aEj
 xog
 wZg
-aQp
+lmw
 aTy
 pcy
 aKh
