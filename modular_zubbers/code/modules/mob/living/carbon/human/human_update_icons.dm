@@ -1,4 +1,4 @@
-/mob/living/carbon/human/update_underwear()
+/mob/living/carbon/human/get_underwear_overlays()
 	remove_overlay(BODY_LAYER)
 	if(HAS_TRAIT(src, TRAIT_INVISIBLE_MAN))
 		return

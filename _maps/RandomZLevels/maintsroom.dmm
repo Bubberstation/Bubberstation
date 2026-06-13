@@ -512,6 +512,22 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
+"bM" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/safe/floor,
+/obj/item/melee/forged_reagent_weapon/axe/fake_copper{
+	desc = "Ea-nasir's own copper axe"
+	},
+/obj/item/claymore/weak/weaker,
+/turf/open/floor/engine{
+	slowdown = 2
+	},
+/area/awaymission/caves/maintsroom)
 "bN" = (
 /obj/item/crowbar,
 /obj/effect/turf_decal/stripes/line{
@@ -648,13 +664,6 @@
 /obj/structure/barricade/wooden/crude,
 /obj/effect/spawner/structure/window/reinforced/tinted,
 /turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
-"cq" = (
-/obj/item/sticker/right_arrow,
-/mob/living/simple_animal/bot/secbot{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/awaymission/caves/maintsroom)
 "cr" = (
 /obj/structure/spacevine,
@@ -1298,6 +1307,15 @@
 /mob/living/basic/spider/giant/ambush,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
+"ep" = (
+/obj/structure/lattice/catwalk/mining,
+/obj/item/melee/forged_reagent_weapon/sword,
+/obj/structure/closet/crate/goldcrate{
+	name = "Bait"
+	},
+/obj/item/disk/design_disk/cleric_mace,
+/turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
 "eq" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/effect/decal/cleanable/dirt,
@@ -1417,6 +1435,12 @@
 	},
 /turf/open/floor/grass,
 /area/awaymission/caves/maintsroom)
+"eF" = (
+/mob/living/basic/bot/secbot/beepsky{
+	faction = list("hostile","cult")
+	},
+/turf/open/floor/circuit/red,
+/area/awaymission/caves/maintsroom)
 "eG" = (
 /obj/structure/chair/sofa/bench{
 	dir = 4
@@ -1528,12 +1552,6 @@
 "fa" = (
 /obj/structure/bookcase,
 /turf/open/floor/wood,
-/area/awaymission/caves/maintsroom)
-"fc" = (
-/mob/living/simple_animal/bot/secbot/pingsky{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/circuit/red,
 /area/awaymission/caves/maintsroom)
 "fd" = (
 /obj/item/instrument/recorder,
@@ -2445,6 +2463,12 @@
 /obj/structure/sign/poster/ripped/directional/south,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
+"hP" = (
+/mob/living/basic/bot/secbot/beepsky/jr{
+	faction = list("hostile","cult")
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/awaymission/caves/maintsroom)
 "hQ" = (
 /obj/structure/alien/weeds,
 /obj/structure/closet/crate/large,
@@ -2745,12 +2769,6 @@
 /obj/structure/table,
 /obj/effect/spawner/random/maintenance,
 /turf/open/floor/iron/smooth,
-/area/awaymission/caves/maintsroom)
-"iR" = (
-/mob/living/simple_animal/bot/secbot/beepsky/ofitser{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/awaymission/caves/maintsroom)
 "iS" = (
 /obj/structure/window/fulltile,
@@ -3630,12 +3648,6 @@
 	},
 /obj/item/surgery_tray/full,
 /turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
-"lx" = (
-/mob/living/simple_animal/bot/secbot/beepsky{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/circuit/red,
 /area/awaymission/caves/maintsroom)
 "ly" = (
 /obj/item/flashlight/flare/candle/infinite{
@@ -4663,6 +4675,12 @@
 /obj/effect/gibspawner,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
+"oR" = (
+/mob/living/basic/bot/secbot/grievous{
+	faction = list("hostile","cult")
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/awaymission/caves/maintsroom)
 "oS" = (
 /obj/effect/rune/malformed,
 /turf/open/floor/engine/cult,
@@ -5457,12 +5475,6 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
-"rA" = (
-/mob/living/simple_animal/bot/secbot{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/circuit/red,
-/area/awaymission/caves/maintsroom)
 "rB" = (
 /obj/item/keycard/yellow,
 /obj/effect/light_emitter/fake_outdoors,
@@ -5851,15 +5863,16 @@
 	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
-"sN" = (
-/obj/structure/rack,
-/turf/open/misc/asteroid,
-/area/awaymission/caves/maintsroom)
-"sO" = (
-/mob/living/simple_animal/bot/secbot/grievous{
+"sM" = (
+/obj/item/sticker/right_arrow,
+/mob/living/basic/bot/secbot/beepsky{
 	faction = list("hostile","cult")
 	},
 /turf/open/floor/mineral/plastitanium,
+/area/awaymission/caves/maintsroom)
+"sN" = (
+/obj/structure/rack,
+/turf/open/misc/asteroid,
 /area/awaymission/caves/maintsroom)
 "sP" = (
 /obj/effect/mapping_helpers/airlock/access/any/service/janitor,
@@ -6239,22 +6252,6 @@
 	spawn_scatter_radius = 1
 	},
 /turf/open/floor/plating/rust,
-/area/awaymission/caves/maintsroom)
-"tX" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/safe/floor,
-/obj/item/melee/forged_reagent_weapon/axe/fake_copper{
-	desc = "Ea-nasir's own copper axe"
-	},
-/obj/item/claymore/weak/weaker,
-/turf/open/floor/engine{
-	slowdown = 2
-	},
 /area/awaymission/caves/maintsroom)
 "tY" = (
 /obj/effect/light_emitter/fake_outdoors,
@@ -6997,6 +6994,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
+"wD" = (
+/mob/living/basic/bot/secbot/beepsky{
+	faction = list("hostile","cult")
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/awaymission/caves/maintsroom)
 "wE" = (
 /obj/structure/closet/crate/cardboard/mothic,
 /obj/item/trash/can/food/pine_nuts,
@@ -7063,12 +7066,6 @@
 /obj/structure/extinguisher_cabinet/directional/west,
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
-"wP" = (
-/mob/living/simple_animal/bot/secbot/beepsky/jr{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/awaymission/caves/maintsroom)
 "wQ" = (
 /turf/closed/wall/r_wall,
@@ -7427,6 +7424,12 @@
 /obj/effect/mapping_helpers/broken_floor,
 /mob/living/simple_animal/hostile/cult/mannequin,
 /turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
+"yb" = (
+/mob/living/basic/bot/secbot/grievous/toy{
+	faction = list("hostile","cult")
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/awaymission/caves/maintsroom)
 "yc" = (
 /mob/living/basic/mining/ice_whelp,
@@ -8841,6 +8844,13 @@
 	},
 /turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
+"CQ" = (
+/mob/living/basic/bot/secbot/beepsky/officer{
+	faction = list("hostile","cult")
+	},
+/obj/machinery/light/red/directional/north,
+/turf/open/floor/circuit/red,
+/area/awaymission/caves/maintsroom)
 "CR" = (
 /obj/item/clockwork/weapon/brass_sword,
 /obj/effect/mob_spawn/corpse/human/clock_cultist/armored,
@@ -9723,6 +9733,13 @@
 	},
 /obj/effect/decal/remains/human,
 /turf/open/floor/sepia,
+/area/awaymission/caves/maintsroom)
+"FI" = (
+/mob/living/basic/bot/secbot/ed209{
+	name = "Commander Stun";
+	faction = list("hostile","cult")
+	},
+/turf/open/floor/circuit/red,
 /area/awaymission/caves/maintsroom)
 "FJ" = (
 /obj/item/gun/ballistic/rifle/lionhunter/clockwork,
@@ -11446,8 +11463,8 @@
 /obj/structure/flora/bush/large/style_random,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"Lp" = (
-/mob/living/simple_animal/bot/secbot{
+"Lq" = (
+/mob/living/basic/bot/secbot/beepsky/armsky{
 	faction = list("hostile","cult")
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -12031,6 +12048,12 @@
 /obj/effect/decal/remains/human/smokey/maintenance,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
+"Nj" = (
+/mob/living/basic/bot/secbot/beepsky/ofitser{
+	faction = list("hostile","cult")
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/awaymission/caves/maintsroom)
 "Nk" = (
 /obj/structure/flora/tree/palm,
 /turf/open/floor/holofloor/beach,
@@ -12084,13 +12107,6 @@
 /obj/structure/flora/rock/pile/icy,
 /obj/effect/light_emitter/fake_outdoors,
 /turf/open/misc/asteroid/basalt,
-/area/awaymission/caves/maintsroom)
-"Nv" = (
-/mob/living/simple_animal/bot/secbot/ed209{
-	name = "Commander Stun";
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/circuit/red,
 /area/awaymission/caves/maintsroom)
 "Nw" = (
 /obj/structure/rack/skeletal,
@@ -12267,13 +12283,6 @@
 /obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
-"NW" = (
-/mob/living/simple_animal/bot/secbot/beepsky/officer{
-	faction = list("hostile","cult")
-	},
-/obj/machinery/light/red/directional/north,
-/turf/open/floor/circuit/red,
-/area/awaymission/caves/maintsroom)
 "NX" = (
 /obj/structure/broken_flooring/singular/directional/east,
 /obj/structure/alien/weeds,
@@ -12447,6 +12456,12 @@
 "Oy" = (
 /obj/structure/sign/poster/contraband/soviet_propaganda/directional/north,
 /turf/open/floor/mineral/plastitanium/red,
+/area/awaymission/caves/maintsroom)
+"Oz" = (
+/mob/living/basic/bot/secbot/pingsky{
+	faction = list("hostile","cult")
+	},
+/turf/open/floor/circuit/red,
 /area/awaymission/caves/maintsroom)
 "OA" = (
 /obj/effect/decal/cleanable/dirt,
@@ -12712,12 +12727,6 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"Py" = (
-/mob/living/simple_animal/bot/secbot/beepsky/armsky{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/awaymission/caves/maintsroom)
 "Pz" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -12912,15 +12921,6 @@
 /obj/effect/spawner/random/structure/girder,
 /obj/structure/grille/broken,
 /turf/open/floor/iron/smooth,
-/area/awaymission/caves/maintsroom)
-"Qi" = (
-/obj/structure/lattice/catwalk/mining,
-/obj/item/melee/forged_reagent_weapon/sword,
-/obj/structure/closet/crate/goldcrate{
-	name = "Bait"
-	},
-/obj/item/disk/design_disk/cleric_mace,
-/turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "Qj" = (
 /obj/structure/table/optable/abductor,
@@ -14045,12 +14045,6 @@
 /obj/structure/lattice/catwalk/mining,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"TN" = (
-/mob/living/simple_animal/bot/secbot/grievous/toy{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/awaymission/caves/maintsroom)
 "TO" = (
 /obj/structure/safe/floor,
 /obj/effect/turf_decal/stripes/line{
@@ -14489,12 +14483,6 @@
 /obj/item/circuitboard/machine/coffeemaker,
 /mob/living/basic/mouse/rat,
 /turf/open/floor/plating/rust,
-/area/awaymission/caves/maintsroom)
-"Vf" = (
-/mob/living/simple_animal/bot/secbot/beepsky{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/awaymission/caves/maintsroom)
 "Vg" = (
 /mob/living/basic/construct/wraith/hostile,
@@ -17200,7 +17188,7 @@ ov
 ov
 ov
 TM
-Qi
+ep
 TA
 ov
 ov
@@ -21849,8 +21837,8 @@ GS
 GS
 GS
 GS
-NW
-TN
+CQ
+yb
 lq
 GS
 bO
@@ -22059,12 +22047,12 @@ wQ
 wQ
 uX
 lq
-Vf
+wD
 lq
 aQ
-rA
+eF
 aQ
-rA
+eF
 aQ
 lq
 aQ
@@ -22286,7 +22274,7 @@ aQ
 lq
 aQ
 lq
-Vf
+wD
 lq
 GS
 GS
@@ -22498,16 +22486,16 @@ TM
 wQ
 wQ
 aQ
-Nv
-Lp
+FI
+wD
 lq
-Lp
+wD
 lq
 dc
-lx
+eF
 aQ
 lq
-iR
+Nj
 GS
 iW
 fR
@@ -22720,17 +22708,17 @@ wQ
 wQ
 wQ
 lq
-cq
+sM
 lq
-sO
+oR
 lq
 aQ
 lq
-Lp
+wD
 lq
 GS
-fc
-wP
+Oz
+hP
 lq
 GS
 xX
@@ -22941,7 +22929,7 @@ sl
 wQ
 aQ
 Oq
-Vf
+wD
 lq
 aQ
 lq
@@ -22949,7 +22937,7 @@ aQ
 lq
 aQ
 GS
-Py
+Lq
 lq
 aQ
 GS
@@ -40743,7 +40731,7 @@ PR
 PR
 PR
 PR
-tX
+bM
 MD
 rW
 gW

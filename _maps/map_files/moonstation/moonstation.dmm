@@ -11568,6 +11568,15 @@
 /obj/effect/turf_decal/sand/plating/volcanic,
 /turf/open/floor/plating/lavaland_atmos,
 /area/lavaland/surface/outdoors)
+"cXV" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
+/obj/effect/turf_decal/caution/stand_clear/red,
+/mob/living/basic/bot/secbot/pingsky,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/station/ai/satellite/interior)
 "cXX" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/visible,
@@ -13666,15 +13675,6 @@
 /obj/effect/turf_decal/tile/red/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/customs)
-"dxV" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
-/obj/effect/turf_decal/caution/stand_clear/red,
-/mob/living/simple_animal/bot/secbot/pingsky,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/station/ai/satellite/interior)
 "dyf" = (
 /obj/machinery/door/poddoor/incinerator_ordmix,
 /turf/open/floor/engine/vacuum,
@@ -13861,17 +13861,6 @@
 /obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
-"dAl" = (
-/mob/living/simple_animal/bot/secbot/beepsky{
-	desc = "Powered by the tears and sweat of laborers.";
-	name = "Prison Ofitser"
-	},
-/obj/effect/turf_decal/trimline/red/filled/line,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/turf/open/floor/iron/smooth,
-/area/mine/laborcamp/security)
 "dAx" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible,
 /obj/effect/spawner/structure/window/reinforced/plasma,
@@ -17047,6 +17036,23 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
+"erl" = (
+/obj/item/shuttle_blueprints/crude{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/mob/living/basic/bot/secbot/beepsky/jr{
+	name = "Officer Eepy";
+	bot_mode_flags = 1;
+	desc = "You woke them up, and now they're pissed.";
+	baton_type = /obj/item/melee/baton/security/cattleprod
+	},
+/obj/structure/bed,
+/obj/effect/spawner/random/bedsheet,
+/obj/machinery/light/small/directional/north,
+/obj/effect/spawner/random/entertainment/plushie_delux,
+/turf/open/floor/engine,
+/area/station/maintenance/department/engine/shuttle_construction_bay)
 "erm" = (
 /obj/effect/spawner/random/trash/graffiti,
 /obj/effect/spawner/random/trash/graffiti,
@@ -19153,6 +19159,18 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/engine,
 /area/station/maintenance/disposal)
+"eUu" = (
+/mob/living/basic/bot/secbot/beepsky/officer,
+/obj/effect/turf_decal/plaque{
+	icon_state = "L7"
+	},
+/obj/effect/turf_decal/tile/dark_blue/half/contrasted{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/corner{
+	dir = 1
+	},
+/area/station/hallway/primary/central/fore)
 "eUv" = (
 /obj/effect/spawner/random/burgerstation/loot,
 /turf/open/floor/plating,
@@ -21953,6 +21971,12 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/cargo/office)
+"fDN" = (
+/obj/effect/turf_decal/tile/brown/half/contrasted,
+/obj/structure/cable,
+/obj/structure/reagent_dispensers/reagent_smithing_basin,
+/turf/open/floor/iron/checker,
+/area/station/cargo/blacksmith)
 "fDW" = (
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 1
@@ -46733,13 +46757,6 @@
 	},
 /turf/open/floor/iron/smooth,
 /area/mine/laborcamp/quarters)
-"lRE" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/dark/herringbone,
-/area/station/science/robotics)
 "lRL" = (
 /obj/effect/turf_decal/tile/dark_green/fourcorners,
 /obj/structure/disposalpipe/trunk{
@@ -48672,18 +48689,6 @@
 /obj/effect/mapping_helpers/requests_console/supplies,
 /turf/open/floor/iron,
 /area/station/terminal/lobby)
-"mqk" = (
-/mob/living/simple_animal/bot/secbot/beepsky/officer,
-/obj/effect/turf_decal/plaque{
-	icon_state = "L7"
-	},
-/obj/effect/turf_decal/tile/dark_blue/half/contrasted{
-	dir = 1
-	},
-/turf/open/floor/iron/dark/corner{
-	dir = 1
-	},
-/area/station/hallway/primary/central/fore)
 "mqs" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/tile/purple/half/contrasted,
@@ -49022,12 +49027,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/storage/eva)
-"mvu" = (
-/obj/effect/turf_decal/tile/brown/half/contrasted,
-/obj/structure/cable,
-/obj/structure/reagent_dispensers/reagent_smithing_basin,
-/turf/open/floor/iron/checker,
-/area/station/cargo/blacksmith)
 "mvv" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
@@ -49459,16 +49458,6 @@
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/wood/tile,
 /area/station/terminal/lobby)
-"mBK" = (
-/mob/living/simple_animal/bot/secbot/beepsky/armsky,
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/iron/dark,
-/area/station/security/armory)
 "mBQ" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/effect/spawner/random/decoration/glowstick,
@@ -54505,6 +54494,26 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/hop)
+"nUT" = (
+/obj/effect/turf_decal/tile/purple/anticorner/contrasted,
+/obj/machinery/button/door/directional/east{
+	id = "robotics_science_privacy";
+	name = "Privacy Shutters Control"
+	},
+/obj/structure/table,
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/obj/item/stack/sheet/plasteel{
+	amount = 15
+	},
+/obj/item/storage/belt/utility/full,
+/obj/item/book/manual/wiki/robotics_cyborgs,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/south,
+/turf/open/floor/iron/dark,
+/area/station/science/robotics)
 "nVl" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -54576,13 +54585,6 @@
 /obj/effect/spawner/random/trash/caution_sign,
 /turf/open/floor/plating,
 /area/station/maintenance/department/crew_quarters/dorms)
-"nVY" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/dark/herringbone,
-/area/station/science/robotics)
 "nWc" = (
 /obj/effect/turf_decal/tile/green/half/contrasted{
 	dir = 8
@@ -57431,6 +57433,13 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/corrections_officer)
+"oGc" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark/herringbone,
+/area/station/science/robotics)
 "oGi" = (
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/window/reinforced/spawner/directional/west,
@@ -63957,26 +63966,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
-"qlj" = (
-/obj/effect/turf_decal/tile/purple/anticorner/contrasted,
-/obj/machinery/button/door/directional/east{
-	id = "robotics_science_privacy";
-	name = "Privacy Shutters Control"
-	},
-/obj/structure/table,
-/obj/item/stack/sheet/glass/fifty{
-	pixel_x = -7;
-	pixel_y = 6
-	},
-/obj/item/stack/sheet/plasteel{
-	amount = 15
-	},
-/obj/item/storage/belt/utility/full,
-/obj/item/book/manual/wiki/robotics_cyborgs,
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/south,
-/turf/open/floor/iron/dark,
-/area/station/science/robotics)
 "qlm" = (
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 1
@@ -64621,6 +64610,16 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/station/science/ordnance/freezerchamber)
+"qvo" = (
+/mob/living/basic/bot/secbot/beepsky/armsky,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/iron/dark,
+/area/station/security/armory)
 "qvs" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -65249,24 +65248,6 @@
 	dir = 1
 	},
 /area/station/hallway/primary/aft)
-"qBY" = (
-/obj/item/shuttle_blueprints/crude{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/mob/living/simple_animal/bot/secbot/beepsky/jr{
-	name = "Officer Eepy";
-	bot_cover_flags = 6;
-	bot_mode_flags = 1;
-	desc = "You woke them up, and now they're pissed.";
-	baton_type = /obj/item/melee/baton/security/cattleprod
-	},
-/obj/structure/bed,
-/obj/effect/spawner/random/bedsheet,
-/obj/machinery/light/small/directional/north,
-/obj/effect/spawner/random/entertainment/plushie_delux,
-/turf/open/floor/engine,
-/area/station/maintenance/department/engine/shuttle_construction_bay)
 "qCj" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -66184,6 +66165,13 @@
 /obj/structure/hedge,
 /turf/open/floor/wood/tile,
 /area/station/security/brig/entrance)
+"qOX" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark/herringbone,
+/area/station/science/robotics)
 "qOZ" = (
 /obj/effect/turf_decal/tile/bar/half/contrasted{
 	dir = 4
@@ -81151,6 +81139,17 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/station/maintenance/eva_shed)
+"uJj" = (
+/mob/living/basic/bot/secbot/beepsky/ofitser{
+	desc = "Powered by the tears and sweat of laborers.";
+	name = "Prison Ofitser"
+	},
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/smooth,
+/area/mine/laborcamp/security)
 "uJk" = (
 /turf/closed/wall,
 /area/station/maintenance/starboard)
@@ -172837,7 +172836,7 @@ aXw
 vvU
 hzq
 cbc
-dAl
+uJj
 jVU
 mBl
 pHV
@@ -250589,7 +250588,7 @@ tGu
 vJk
 vJk
 fhd
-mvu
+fDN
 rdH
 qVN
 tOR
@@ -255872,7 +255871,7 @@ egY
 dbk
 bPO
 jMX
-dxV
+cXV
 mQl
 qxO
 cdO
@@ -255914,7 +255913,7 @@ oyv
 qFU
 gjb
 uoh
-mqk
+eUu
 uhF
 xaT
 jfQ
@@ -263457,7 +263456,7 @@ vKL
 fMi
 wjy
 lWc
-qBY
+erl
 peR
 tEj
 chH
@@ -266698,7 +266697,7 @@ qHB
 cVd
 hHz
 koj
-mBK
+qvo
 cjZ
 gAT
 kCz
@@ -270614,7 +270613,7 @@ tCJ
 ksV
 wFm
 wFm
-lRE
+oGc
 hsW
 uLb
 jaA
@@ -270871,7 +270870,7 @@ xRe
 hEw
 mIc
 kyi
-nVY
+qOX
 rNR
 gTr
 jaA
@@ -271900,7 +271899,7 @@ jtx
 xzh
 qzb
 wyt
-qlj
+nUT
 xzG
 jXe
 skM
