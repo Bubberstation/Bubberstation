@@ -162,12 +162,14 @@
 		"Holder A / Dummy A / Dummy B mind should only understand Common, Draconic, and Pirate! \
 		Instead, it knew the following: [print_language_list(holder_A.understood_languages)]")
 
-	TEST_ASSERT_EQUAL(length(holder_B.spoken_languages), 1, \
-		"Holder B / Dummy B / Dummy A mind should only speak 1 language - Common! \
+	// BUBBER EDIT - CHANGE: 1 -> 2
+	TEST_ASSERT_EQUAL(length(holder_B.spoken_languages), 2, \
+		"Holder B / Dummy B / Dummy A mind should only speak 2 languages - Common and Terran Uncommon! \
 		Instead, it knew the following: [print_language_list(holder_B.spoken_languages)]")
 
-	TEST_ASSERT_EQUAL(length(holder_B.understood_languages), 1, \
-		"Holder B / Dummy B / Dummy A mind only understand 1 language - Common! \
+	// BUBBER EDIT - CHANGE: 1 -> 2
+	TEST_ASSERT_EQUAL(length(holder_B.understood_languages), 2, \
+		"Holder B / Dummy B / Dummy A mind only understands 2 language - Common and Terran Uncommon! \
 		Instead, it knew the following: [print_language_list(holder_B.understood_languages)]")
 
 /// Tests that the book of babel, and by extension grant_all_languages, works as intended
