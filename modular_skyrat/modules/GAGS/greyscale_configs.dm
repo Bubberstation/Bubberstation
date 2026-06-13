@@ -1304,7 +1304,11 @@ TREK
 
 /datum/greyscale_config/boots/christmasboots/worn/digi
 	name = "christmas_boots (Worn, Digi)"
-	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/feet_digi.dmi'
+	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+
+/datum/greyscale_config/boots/christmasboots/worn/teshari
+	name = "christmas_boots (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
 
 // Laceups
 
