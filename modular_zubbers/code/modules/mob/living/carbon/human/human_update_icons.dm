@@ -1,4 +1,4 @@
-/mob/living/carbon/human/update_underwear()
+/mob/living/carbon/human/get_underwear_overlays()
 	remove_overlay(BODY_LAYER)
 	if(HAS_TRAIT(src, TRAIT_INVISIBLE_MAN))
 		return
@@ -63,3 +63,14 @@
 		overlays_standing[BODY_LAYER] = standing
 
 	apply_overlay(BODY_LAYER)
+
+// Refresh bodypart overlays (genitals etc.) when suit/uniform changes so visibility updates immediately.
+/mob/living/carbon/human/update_worn_oversuit()
+	..()
+	if(!(living_flags & STOP_OVERLAY_UPDATE_BODY_PARTS))
+		update_body_parts()
+
+/mob/living/carbon/human/update_worn_undersuit()
+	..()
+	if(!(living_flags & STOP_OVERLAY_UPDATE_BODY_PARTS))
+		update_body_parts()

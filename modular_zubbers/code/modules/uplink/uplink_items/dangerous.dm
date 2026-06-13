@@ -9,3 +9,20 @@
 	item = /obj/effect/mob_spawn/ghost_role/borer_egg/traitor
 	cost = 20
 */
+
+/datum/uplink_item/dangerous/stetchkin
+	name = "Stetchkin APS Machine Pistol kit"
+	desc = "A burst-fire weapon dating all the way back to the first Soviet Union, reproduced and found uncommonly among Syndicate agents."
+	item = /obj/item/storage/toolbox/guncase/skyrat/pistol/aps
+	cost = 8
+	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
+
+/datum/uplink_item/dangerous/regal_condor_kit
+	name = "Unnamed weapon parts kit"
+	desc = "An ominous kit of gun parts in a sleek suitcase, additionally containing several specially cut and refined telecrystals. The kit was supplied with a note that says: \"You'll figure out the rest\"."
+	item = /obj/item/weaponcrafting/gunkit/regal_condor
+	cost = 4
+	cant_discount = TRUE
+	surplus = 0
+	population_minimum = TRAITOR_POPULATION_LOWPOP + 5
+	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS

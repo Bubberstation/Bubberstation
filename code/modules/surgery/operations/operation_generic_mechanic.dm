@@ -11,7 +11,7 @@
 		/obj/item = 10, // i think this amounts to a 180% chance of failure (clamped to 99%)
 	)
 	operation_flags = OPERATION_SELF_OPERABLE | OPERATION_MECHANIC | OPERATION_NO_PATIENT_REQUIRED
-	required_bodytype = BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER EDIT CHANGE - NANO FLAGS  -Original: required_bodytype = BODYTYPE_ROBOTIC
 	time = 2.4 SECONDS
 	preop_sound = 'sound/items/tools/screwdriver.ogg'
 	success_sound = 'sound/items/tools/screwdriver2.ogg'
@@ -47,7 +47,7 @@
 	name = "open hatch"
 	desc = "Open the hatch of a mechanical patient to access its internals. \
 		Causes \"skin open\" and \"vessels clamped\" surgical states."
-	required_bodytype = BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER EDIT CHANGE - NANO FLAGS  -Original: required_bodytype = BODYTYPE_ROBOTIC
 	implements = list(
 		IMPLEMENT_HAND = 1,
 		TOOL_CROWBAR = 1,
@@ -83,7 +83,7 @@
 	name = "screw shell"
 	desc = "Screw the shell of a mechanical patient back into place. \
 		Clears most surgical states."
-	required_bodytype = BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER EDIT CHANGE - NANO FLAGS  -Original: required_bodytype = BODYTYPE_ROBOTIC
 	implements = list(
 		TOOL_SCREWDRIVER = 1,
 		TOOL_SCALPEL = 1.33,
@@ -129,7 +129,7 @@
 	name = "prepare electronics"
 	desc = "Prepare the internal electronics of a mechanical patient for surgery. \
 		Causes \"organs cut\" surgical state."
-	required_bodytype = BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER EDIT CHANGE - NANO FLAGS  -Original: required_bodytype = BODYTYPE_ROBOTIC
 	implements = list(
 		TOOL_MULTITOOL = 1,
 		TOOL_HEMOSTAT = 1.33,
@@ -164,7 +164,7 @@
 	name = "unwrench endoskeleton"
 	desc = "Unwrench a mechanical patient's endoskeleton to access its internals. \
 		Clears \"bone sawed\" surgical state."
-	required_bodytype = BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER EDIT CHANGE - NANO FLAGS  -Original: required_bodytype = BODYTYPE_ROBOTIC
 	implements = list(
 		TOOL_WRENCH = 1,
 		TOOL_RETRACTOR = 1.33,
@@ -198,7 +198,7 @@
 	name = "wrench endoskeleton"
 	desc = "Wrench a mechanical patient's endoskeleton back into place. \
 		Clears \"bone sawed\" surgical state."
-	required_bodytype = BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER EDIT CHANGE - NANO FLAGS  -Original: required_bodytype = BODYTYPE_ROBOTIC
 	implements = list(
 		TOOL_WRENCH = 1,
 		TOOL_RETRACTOR = 1.33,

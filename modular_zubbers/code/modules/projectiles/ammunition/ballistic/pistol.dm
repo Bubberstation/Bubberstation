@@ -77,3 +77,6 @@
 	if(istype(magazine, /obj/item/ammo_box/magazine/recharge/ntusp/laser))
 		icon_state = "ntusp-l"
 	..()
+
+/obj/item/ammo_casing/c10mm/reaper
+	projectile_type = /obj/projectile/bullet/c10mm/lesser_reaper

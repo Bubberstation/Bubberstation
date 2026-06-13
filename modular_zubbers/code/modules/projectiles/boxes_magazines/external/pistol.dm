@@ -65,3 +65,35 @@
 		for(var/i = 0; i < bullets_to_remove; i++)
 			qdel(get_round())
 		update_icon()
+
+/obj/item/ammo_box/speedloader/security
+	name = "speed loader (9mm Murphy)"
+	desc = "Designed to quickly reload five-chambered 9mm revolvers."
+	icon = 'modular_zubbers/icons/obj/weapons/guns/ammo.dmi'
+	icon_state = "9mm"
+	base_icon_state = "9mm"
+	ammo_type = /obj/item/ammo_casing/security
+	caliber = CALIBER_9MM_SEC
+	max_ammo = 5
+	ammo_band_icon = null
+	ammo_band_color = null
+
+/obj/item/ammo_box/speedloader/security/update_icon_state()
+	. = ..()
+	icon_state = "[base_icon_state]-base"
+
+/obj/item/ammo_box/speedloader/security/update_overlays()
+	. = ..()
+	if(!LAZYLEN(stored_ammo))
+		return
+	for(var/inserted_ammo in 1 to stored_ammo.len)
+		. += "9mm-revolver-[inserted_ammo]"
+
+/obj/item/ammo_box/magazine/r10mm
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/telecrystal = SHEET_MATERIAL_AMOUNT,
+	)
