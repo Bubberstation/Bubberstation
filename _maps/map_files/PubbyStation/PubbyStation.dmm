@@ -35407,15 +35407,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/service/chapel/office)
-"iTc" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
-	dir = 4
-	},
-/obj/effect/landmark/blobstart,
-/turf/open/floor/plating,
-/area/station/maintenance/department/cargo)
 "iTf" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -42387,6 +42378,7 @@
 	c_tag = "Ordnance Lab";
 	network = list("ss13","rd")
 	},
+/obj/machinery/gizmo/toggle/tucker_tubes,
 /turf/open/floor/iron/dark,
 /area/station/science/explab)
 "nrD" = (
@@ -60591,6 +60583,10 @@
 /obj/structure/chair/stool/bar/directional/east,
 /turf/open/floor/iron,
 /area/station/engineering/main)
+"xZh" = (
+/obj/effect/spawner/random/gizmo,
+/turf/open/floor/engine,
+/area/station/science/explab)
 "xZF" = (
 /obj/structure/closet/secure_closet/warden,
 /obj/structure/reagent_dispensers/wall/peppertank/directional/north,
@@ -103979,7 +103975,7 @@ iSi
 bkD
 wsx
 epA
-epA
+xZh
 lFB
 bRl
 wZJ
@@ -106775,7 +106771,7 @@ yiL
 yiL
 yiL
 yiL
-iTc
+yiL
 yiL
 rXP
 aEj
@@ -109354,7 +109350,7 @@ aEl
 aEj
 aEj
 xjV
-aFi
+aGM
 gLw
 guP
 aEj
