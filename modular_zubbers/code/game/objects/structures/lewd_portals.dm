@@ -179,7 +179,7 @@
 /obj/structure/lewd_portal/proc/head_only()
 	SIGNAL_HANDLER
 	current_mob.cut_overlays()
-	current_mob.update_body_parts_head_only()
+	current_mob.update_body_parts()
 	var/obj/item/clothing/glasses = current_mob.glasses
 	if(glasses)
 		current_mob.update_worn_glasses()
