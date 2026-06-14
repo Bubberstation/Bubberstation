@@ -6,3 +6,12 @@
 	price_max = CARGO_CRATE_VALUE * 5.75
 	stock_max = 3
 	availability_prob = 25
+
+/datum/market_item/misc/autodoc
+	name = "CIN Auto-Doc MODule"
+	desc = "A 'legally' aquired auto-doc MODule, taken from some of the latest CIN equipment. This thing uses Cryptobiolin to heal you, but it's leaky as hell."
+	item = /obj/item/mod/module/auto_doc
+	price_min = CARGO_CRATE_VALUE * 3
+	price_max = CARGO_CRATE_VALUE * 4.5
+	stock_max = 3
+	availability_prob = 20

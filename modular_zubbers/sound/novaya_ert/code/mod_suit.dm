@@ -65,16 +65,6 @@
 	incompatible_modules = list(
 		/obj/item/mod/module/adrenaline_boost,
 		/obj/item/mod/module/auto_doc,
-		/obj/item/mod/module/pepper_shoulders,
-		/obj/item/mod/module/criminalcapture,
-		/obj/item/mod/module/orebag,
-		/obj/item/mod/module/drill,
-		/obj/item/mod/module/clamp,
-		/obj/item/mod/module/constructor,
-		/obj/item/mod/module/injector,
-		/obj/item/mod/module/organizer,
-		/obj/item/mod/module/criminalcapture/patienttransport,
-		/obj/item/mod/module/quick_cuff,
 		/obj/item/mod/module/ash_accretion,
 	)
 	complexity = 4
@@ -87,7 +77,7 @@
 	/// Maximum amount of reagents this module can hold.
 	var/reagent_max_amount = 120
 	/// Flat health threshold above which the module won't heal.
-	var/health_threshold = 65
+	var/health_threshold = 80
 	/// Cooldown betwen each treatment.
 	var/general_cooldown = 25 SECONDS
 
