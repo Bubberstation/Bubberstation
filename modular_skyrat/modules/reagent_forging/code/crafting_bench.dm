@@ -22,6 +22,11 @@
 	var/finishes_forging_weapons = TRUE
 	/// The cooldown from the last hit before we allow another 'good hit' to happen
 	COOLDOWN_DECLARE(hit_cooldown)
+	/// holds stackables
+	var/list/stack_item_container = list()
+	/// holds forge item placed on the table via hand, or placed on it via weapon completion
+	var/obj/item/forged_item_on_surface
+
 	/// What recipes are we allowed to choose from?
 	var/list/allowed_choices = list(
 		/datum/crafting_bench_recipe/wearable/plate_armor/plate_helmet,
@@ -92,14 +97,12 @@
 	. += span_notice("You could secure or unsecure it with a wrench.")
 	. += span_notice("You could pry it apart with a crowbar.")
 
-	if(length(contents))
-		if(istype(contents[1], /obj/item/forging/complete))
-			var/obj/item/forging/complete/contained_forge_item = contents[1]
-
-			. += span_notice("[src] has a <b>[initial(contained_forge_item.name)]</b> sitting on it, awaiting completion. <br>")
-			var/obj/item/completion_item = contained_forge_item.spawning_item
-			. += span_notice("With <b>[WEAPON_COMPLETION_WOOD_AMOUNT]</b> sheets of <b>wood</b> nearby, and some <b>hammering</b>, it could be completed into a <b>[initial(completion_item.name)]</b>.")
-			return // We don't want to show any selected recipes if there's weapon head on the bench
+	if(istype(forged_item_on_surface, /obj/item/forging/complete))
+		var/obj/item/forging/complete/complete_item
+		. += span_notice("[src] has a <b>[initial(complete_item.name)]</b> sitting on it, awaiting completion. <br>")
+		var/obj/item/completion_item = complete_item.spawning_item
+		. += span_notice("With <b>[WEAPON_COMPLETION_WOOD_AMOUNT]</b> sheets of <b>wood</b> nearby, and some <b>hammering</b>, it could be completed into a <b>[initial(completion_item.name)]</b>.")
+		return // We don't want to show any selected recipes if there's weapon head on the bench
 
 	if(!selected_recipe)
 		return
@@ -119,18 +122,14 @@
 	. = ..()
 	cut_overlays()
 
-	if(!length(contents))
-		return
-
-	var/obj/item/my_item = contents[1]
-	if(isnull(my_item))
+	if(isnull(forged_item_on_surface))
 		return
 
 	var/image/overlayed_item
-	if(isnull(my_item.icon_preview))
-		overlayed_item = image(icon = my_item.icon, icon_state = my_item.icon_state)
+	if(isnull(forged_item_on_surface.icon_preview))
+		overlayed_item = image(icon = forged_item_on_surface.icon, icon_state = forged_item_on_surface.icon_state)
 	else
-		overlayed_item = image(icon = my_item.icon_preview, icon_state = my_item.icon_state_preview)
+		overlayed_item = image(icon = forged_item_on_surface.icon_preview, icon_state = forged_item_on_surface.icon_state_preview)
 	add_overlay(overlayed_item)
 
 /obj/structure/reagent_crafting_bench/attack_hand(mob/living/user, list/modifiers)
@@ -141,13 +140,17 @@
 	. = ..()
 	select_recipe(user)
 
+/obj/structure/reagent_crafting_bench/proc/add_completed_forged_item(obj/item/new_item)
+	forged_item_on_surface = new_item
+	forged_item_on_surface.forceMove(src)
+
 /obj/structure/reagent_crafting_bench/proc/select_recipe(mob/living/user)
 	update_appearance()
 
-	if(length(contents))
-		var/obj/item/contained_item = contents[1]
-		user.put_in_hands(contained_item)
-		balloon_alert(user, "[contained_item] retrieved")
+	if(!isnull(forged_item_on_surface))
+		user.put_in_hands(forged_item_on_surface)
+		forged_item_on_surface = null
+		balloon_alert(user, "[forged_item_on_surface] retrieved")
 		update_appearance()
 		return
 
@@ -226,10 +229,11 @@
 		attempt_place(attacking_item, user)
 
 /obj/structure/reagent_crafting_bench/proc/attempt_place(obj/item/attacking_item, mob/user)
-	if(length(contents))
+	if(!isnull(forged_item_on_surface))
 		balloon_alert(user, "already full")
 		return
 
+	forged_item_on_surface = attacking_item
 	attacking_item.forceMove(src)
 	balloon_alert_to_viewers("placed [attacking_item]")
 	update_appearance()
@@ -251,7 +255,7 @@
 	if(DOING_INTERACTION(user, DOAFTER_SMITHING_ANVIL))
 		return
 
-	if(length(contents))
+	if(!isnull(forged_item_on_surface))
 		return try_weapon_completion(user, tool)
 
 	if(check_craftability_general(user, tool) == ITEM_INTERACT_BLOCKING)
@@ -260,7 +264,7 @@
 	var/skill_modifier = user.mind.get_skill_modifier(selected_recipe.relevant_skill, SKILL_SPEED_MODIFIER)
 
 	playsound(src, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)
-	if(do_after(user, selected_recipe.time_to_assemble * skill_modifier,target = src, interaction_key = DOAFTER_SMITHING_TABLE) && !length(contents))
+	if(do_after(user, selected_recipe.time_to_assemble * skill_modifier,target = src, interaction_key = DOAFTER_SMITHING_TABLE) && isnull(forged_item_on_surface))
 		var/list/things_to_use = can_we_craft_this(selected_recipe.recipe_requirements, TRUE)
 
 		create_thing_from_requirements(things_to_use, selected_recipe, user, selected_recipe.relevant_skill, selected_recipe.relevant_skill_reward)
@@ -269,17 +273,16 @@
 	return ITEM_INTERACT_BLOCKING
 /// Takes the given list of item requirements and checks the surroundings for them, returns TRUE unless return_ingredients_list is set, in which case a list of all the items to use is returned
 /obj/structure/reagent_crafting_bench/proc/try_weapon_completion(mob/living/user, obj/item/tool)
-	if(DOING_INTERACTION(user, DOAFTER_SMITHING_ANVIL))
+	if(DOING_INTERACTION(user, DOAFTER_SMITHING_TABLE))
 		return
 
-	if(!istype(contents[1], /obj/item/forging/complete))
+	if(!istype(forged_item_on_surface, /obj/item/forging/complete))
 		balloon_alert(user, "invalid item")
 		return ITEM_INTERACT_BLOCKING
 
-	var/obj/item/forging/complete/weapon_to_finish = contents[1]
-
-	if(!weapon_to_finish.spawning_item)
-		balloon_alert(user, "[weapon_to_finish] cannot be completed")
+	var/obj/item/forging/complete/complete_item = forged_item_on_surface
+	if(!complete_item.spawning_item)
+		balloon_alert(user, "[forged_item_on_surface] cannot be completed")
 		return ITEM_INTERACT_BLOCKING
 
 	var/list/wood_required_for_weapons = list(
@@ -365,7 +368,7 @@
 		message_admins("[src] just tried to complete a recipe without having a recipe, and without it being the completion of a forging weapon!")
 		return FALSE
 
-	if(completing_a_weapon && (!length(contents) || !istype(contents[1], /obj/item/forging/complete)))
+	if(completing_a_weapon && isnull(forged_item_on_surface))
 		message_admins("[src] just tried to complete a forge weapon without there being a weapon head inside it to complete!")
 		return FALSE
 
@@ -379,8 +382,8 @@
 	var/obj/newly_created_thing
 
 	if(completing_a_weapon)
-		things_to_use.Add(contents[1])
-	newly_created_thing = recipe_to_follow.create_using_item_list(things_to_use, user, src)
+		things_to_use.Add(forged_item_on_surface)
+	newly_created_thing = recipe_to_follow.create_using_item_list(things_to_use, user, 	src)
 
 	if(!newly_created_thing)
 		message_admins("[src] just failed to create something while crafting!")

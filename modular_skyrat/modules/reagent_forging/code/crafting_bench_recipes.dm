@@ -27,6 +27,8 @@
 	var/completion_memory_given = null
 	/// Exp bonus if the player doesn't have a memory of making this
 	var/first_time_completion_exp_bonus = 70
+	/// Is this a multiple item product?
+	var/multiple_item_result = FALSE
 
 ///Creates the item using the given list of ingredients -- it's assumed that this is only called after the list is verified to contain all ingredients. Probably shouldn't be parent called due to ingredient deletion.
 /datum/crafting_bench_recipe/proc/create_using_item_list(list/item_list, mob/living/user, construction_location)
@@ -35,6 +37,7 @@
 	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner, user)
 	put_materials_in_product_from_ingredients(item_list, returner)
 	consume_crafting_ingredients(item_list, returner)
+	move_to_world(returner, construction_location)
 	give_experience(user)
 	return returner
 
@@ -170,6 +173,13 @@
 		var/exp_give_mult = get_total_completion_ratio(item_list) * get_material_quality_points_mult(product.get_master_material())
 		user.mind.adjust_experience(relevant_skill, exp_give * exp_give_mult + memory_bonus_exp)
 
+/datum/crafting_bench_recipe/proc/move_to_world(obj/item/product, place_to_move_to)
+	if(istype(place_to_move_to, /obj/structure/reagent_crafting_bench))
+		var/obj/structure/reagent_crafting_bench/my_bench = place_to_move_to
+		my_bench.add_completed_forged_item(product)
+	else
+		product.forceMove(place_to_move_to)
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// WEAPON COMPLETION /////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -191,6 +201,7 @@
 	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner, user)
 	put_materials_in_product_from_ingredients(item_list, returner, user)
 	give_experience(user, item_list)
+	move_to_world(returner, construction_location)
 
 	consume_crafting_ingredients(item_list, returner)
 	return returner
