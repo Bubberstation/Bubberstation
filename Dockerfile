@@ -1,85 +1,53 @@
-# base = ubuntu + full apt update
-FROM ubuntu:xenial AS base
-RUN dpkg --add-architecture i386 \
-    && apt-get update \
-    && apt-get upgrade -y \
-    && apt-get dist-upgrade -y \
-    && apt-get install -y --no-install-recommends \
-        ca-certificates
+FROM archlinux:base-devel
 
-# byond = base + byond installed globally
-FROM base AS byond
-WORKDIR /byond
+ENV RUSTUP_INIT_SKIP_PATH_CHECK=yes
+RUN echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+RUN pacman -Syu --noconfirm \
+    curl \
+    wget \
+    unzip \
+    sudo \
+    python3 \
+    python-pip \
+    git \
+    rustup \
+    nodejs \
+    npm \
+    multilib-devel \
+    lib32-gcc-libs \
+    lib32-zlib \
+    lib32-glibc \
+    lib32-curl \
+    && pacman -Scc --noconfirm \
+    && ldconfig
 
-RUN apt-get install -y --no-install-recommends \
-        libcurl4 \
-        curl \
-        unzip \
-        make \
-        libstdc++6:i386
+RUN rustup default stable && \
+    rustup target add i686-unknown-linux-gnu
 
-COPY dependencies.sh .
+RUN git clone https://github.com/tgstation/rust-g && \
+    cd ./rust-g && \
+    PKG_CONFIG_ALLOW_CROSS=1 && \
+    PKG_CONFIG_PATH=/usr/lib32/pkgconfig && \
+    RUSTFLAGS="-C target-cpu=native" && \
+    CARGO_TARGET_I686_UNKNOWN_LINUX_GNU_LINKER=gcc && \
+    rustup run stable cargo build --release --features all --target i686-unknown-linux-gnu
 
-RUN . ./dependencies.sh \
-    && curl -H "User-Agent: tgstation/1.0 CI Script" "http://www.byond.com/download/build/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip" -o byond.zip \
-    && unzip byond.zip \
-    && cd byond \
-    && sed -i 's|install:|&\n\tmkdir -p $(MAN_DIR)/man6|' Makefile \
-    && make install \
-    && chmod 644 /usr/local/byond/man/man6/* \
-    && apt-get purge -y --auto-remove curl unzip make \
-    && cd .. \
-    && rm -rf byond byond.zip
+RUN pip3 install --break-system-packages yt-dlp
 
-# build = byond + tgstation compiled and deployed to /deploy
-FROM byond AS build
-WORKDIR /tgstation
+RUN wget https://www.byond.com/download/build/516/516.1682_byond_linux.zip && \
+    unzip 516.1682_byond_linux.zip && \
+    cd /byond && make here && make install
 
-RUN apt-get install -y --no-install-recommends \
-        curl
+ENV PATH="${PATH}:/byond/bin"
 
-COPY . .
-
-RUN env TG_BOOTSTRAP_NODE_LINUX=1 tools/build/build.sh \
-    && tools/deploy.sh /deploy
-
-# rust = base + rustc and i686 target
-FROM base AS rust
-RUN apt-get install -y --no-install-recommends \
-        curl && \
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal \
-    && ~/.cargo/bin/rustup target add i686-unknown-linux-gnu
-
-# rust_g = base + rust_g compiled to /rust_g
-FROM rust AS rust_g
-WORKDIR /rust_g
-
-RUN apt-get install -y --no-install-recommends \
-        pkg-config:i386 \
-        libssl-dev:i386 \
-        gcc-multilib \
-        git \
-    && git init \
-    && git remote add origin https://github.com/tgstation/rust-g
-
-COPY dependencies.sh .
-
-RUN . ./dependencies.sh \
-    && git fetch --depth 1 origin "${RUST_G_VERSION}" \
-    && git checkout FETCH_HEAD \
-    && env PKG_CONFIG_ALLOW_CROSS=1 ~/.cargo/bin/cargo build --release --target i686-unknown-linux-gnu
-
-# final = byond + runtime deps + rust_g + build
-FROM byond
-WORKDIR /tgstation
-
-RUN apt-get install -y --no-install-recommends \
-        libssl1.0.0:i386 \
-        zlib1g:i386
-
-COPY --from=build /deploy ./
-COPY --from=rust_g /rust_g/target/i686-unknown-linux-gnu/release/librust_g.so ./librust_g.so
-
-VOLUME [ "/tgstation/config", "/tgstation/data" ]
-ENTRYPOINT [ "DreamDaemon", "tgstation.dmb", "-port", "1337", "-trusted", "-close", "-verbose" ]
-EXPOSE 1337
+RUN echo "/usr/lib32" >> /etc/ld.so.conf.d/lib32-glibc.conf && ldconfig
+RUN cp /rust-g/target/i686-unknown-linux-gnu/release/librust_g.so /byond/bin/librust_g.so
+RUN cp /rust-g/target/i686-unknown-linux-gnu/release/librust_g.so /usr/local/byond/bin/librust_g.so
+#thanks I hate it too
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/byond/bin"
+RUN chmod -R 777 /byond/bin
+RUN ldconfig
+WORKDIR /app
+ARG BUILDARGS=""
+#COPY . .
+EXPOSE 3000

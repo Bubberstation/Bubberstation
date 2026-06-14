@@ -59,6 +59,45 @@
 			"dmb": "${workspaceFolder}/${command:CurrentDMB}",
 			"dreamDaemon": true
 		},
+		// BUBBER DOCKER SECTION START
+		{
+			"type": "node",
+			"runtimeExecutable": "docker",
+			"request": "launch",
+			"runtimeArgs": [
+				"compose",
+				"run",
+				"--rm",
+				"--service-ports",
+				"bubberstation",
+				"/bin/bash",
+				"-c",
+				"/app/tools/build/build.sh && DreamDaemon /app/tgstation.dmb -port 3000 -trusted"
+			],
+			"console": "integratedTerminal",
+			"name": "Launch DreamDaemon (Docker Compose)",
+			"preLaunchTask": "Build (Docker Compose Container)"
+		},
+		{
+			"type": "node",
+			"runtimeExecutable": "docker",
+			"request": "launch",
+			"runtimeArgs": [
+				"compose",
+				"run",
+				"--rm",
+				"--service-ports",
+				"bubberstation",
+				"/bin/bash",
+				"-c",
+				"/app/tools/build/build.sh -LOWMEMORYMODE && DreamDaemon /app/tgstation.dmb -port 3000 -trusted"
+			],
+			"console": "integratedTerminal",
+			"name": "Launch DreamDaemon (Docker Compose) (low memory mode)",
+			"preLaunchTask": "Build (Docker Compose Container)"
+		},
+
+		// END BUBBER DOCKER SECTION
 		{
 			"type": "byond",
 			"request": "launch",

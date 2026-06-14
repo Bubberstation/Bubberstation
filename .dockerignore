@@ -24,3 +24,12 @@ tgstation.dyn.rsc
 *.dll
 Dockerfile
 tools/bootstrap/.cache
+# Ignore version control
+.git
+.gitignore
+# Ignore local build outputs and IDE files
+dist/
+build/
+.idea/
+.vscode/
+*.log
