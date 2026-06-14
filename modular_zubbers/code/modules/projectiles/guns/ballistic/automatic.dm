@@ -212,7 +212,7 @@
 /obj/item/gun/ballistic/automatic/wt550/dmr/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 0.6 SECONDS)
-	AddComponent(/datum/component/scope, range_modifier = 1.5)
+	AddComponent(/datum/component/scope, range_modifier = 2.0)
 
 /obj/item/gun/ballistic/automatic/wt550/sawnoff
 	name = "\improper sawn-off WT-550"
