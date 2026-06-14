@@ -36,8 +36,15 @@
 	. = ..()
 	apply_reagent_component()
 	apply_smithing_component()
-	if(/datum/material/silver in custom_materials)
+
+/* needs updating to the new bane component, todo later by the person who actually knows how to handle such a thing
+/obj/item/melee/forged_reagent_weapon/set_custom_materials(list/materials, multiplier = 1)
+	if(/datum/material/silver in materials)
+		AddComponent(/datum/component/bane, affected_biotypes = MOB_MINING, added_damage = 80) //For killing really big monsters.
 		AddElement(/datum/element/bane, /datum/species/lycan, damage_multiplier = 3, requires_combat_mode = FALSE)
+	else
+		RemoveComponent(/datum/component/bane)
+		*/
 
 /obj/item/melee/forged_reagent_weapon/change_material_integrity(datum/material/material, amount, multiplier, removing = FALSE)
 	blacksmithing_change_material_integrity(src, material, amount, multiplier, removing)
