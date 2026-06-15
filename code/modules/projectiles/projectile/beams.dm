@@ -32,7 +32,7 @@
 	name = "rapid fire laser"
 	icon_state = "carbine_laser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/yellow_laser
-	damage = 20
+	damage = 25 //BUBBER CHANGE, Buff damage from 20 to 25
 
 /obj/projectile/beam/laser/rapid/practice
 	name = "practice rapid fire laser"
