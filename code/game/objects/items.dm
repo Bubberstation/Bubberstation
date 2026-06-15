@@ -420,6 +420,8 @@
 		lefthand_file = SSgreyscale.GetColoredIconByType(greyscale_config_inhand_left, greyscale_colors)
 	if(greyscale_config_inhand_right)
 		righthand_file = SSgreyscale.GetColoredIconByType(greyscale_config_inhand_right, greyscale_colors)
+	// BUBBER EDIT ADDITION - Fire COMSIG_ATOM_UPDATED_ICON after all GAGS icons update so update_icon_updates_onmob can refresh worn overlays
+	SEND_SIGNAL(src, COMSIG_ATOM_UPDATED_ICON)
 
 /obj/item/verb/move_to_top()
 	set name = "Move To Top"
@@ -573,6 +575,18 @@
 
 	if(!(user.mobility_flags & MOBILITY_PICKUP))
 		return
+
+	// BUBBER EDIT ADDITION - allow components on the user to inject a pickup delay or fail chance (e.g. ball mittens fumble)
+	var/list/pickup_mods = list("delay" = 0, "fail_chance" = 0)
+	if(SEND_SIGNAL(user, COMSIG_LIVING_ITEM_ATTEMPT_PICKUP, src, pickup_mods) & COMPONENT_BLOCK_ITEM_PICKUP)
+		return
+	if(pickup_mods["delay"])
+		if(!do_after(user, pickup_mods["delay"], src, timed_action_flags = IGNORE_HELD_ITEM))
+			return
+	if(pickup_mods["fail_chance"] && prob(pickup_mods["fail_chance"]))
+		SEND_SIGNAL(user, COMSIG_LIVING_ITEM_PICKUP_FAILED, src)
+		return
+	// BUBBER EDIT ADDITION END
 
 	if(!skip_grav)
 		//Heavy gravity makes picking up things very slow.
