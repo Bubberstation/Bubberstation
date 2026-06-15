@@ -78,3 +78,20 @@
 		/area/centcom/holding/cafe/ruin/xenonest,\
 		/area/centcom/holding/cafe/beach,\
 		)
+
+/// Applied to a mob wearing gloves that should be passable for hand surgery (e.g. ball mittens).
+#define TRAIT_GLOVE_SURGERY_PASSTHROUGH "glove_surgery_passthrough"
+/// Trait source for ball_mittens_fumble component.
+#define MITTENS_FUMBLE_TRAIT "ball_mittens_fumble"
+
+
+/// Fired on a mob in attempt_pickup after mobility checks. Handler can set pickup_mods["delay"] or return COMPONENT_BLOCK_ITEM_PICKUP.
+#define COMSIG_LIVING_ITEM_ATTEMPT_PICKUP "living_item_attempt_pickup"
+#define COMPONENT_BLOCK_ITEM_PICKUP (1<<0)
+
+/// Fired on a mob when they interact with machinery, before interact() runs. Return COMPONENT_BLOCK_MACHINERY_INTERACT to block.
+#define COMSIG_MOB_MACHINERY_INTERACT "mob_machinery_interact"
+#define COMPONENT_BLOCK_MACHINERY_INTERACT (1<<1)
+
+/// Fired on a mob when attempt_pickup fails due to fail_chance in pickup_mods. (obj/item/item)
+#define COMSIG_LIVING_ITEM_PICKUP_FAILED "living_item_pickup_failed"
