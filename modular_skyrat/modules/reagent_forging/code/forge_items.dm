@@ -4,7 +4,7 @@
 	desc = "you shouldn't be seeing this!"
 
 	///the quality points required for it to be considered usable for crafting
-	var/completion_quality_points = 30
+	var/completion_quality_points = 40
 	///the required time before each strike to prevent spamming
 	var/average_wait = 1 SECONDS
 	///the bad hits required for it to break; exceeding this will break the item
@@ -90,9 +90,8 @@
 /obj/item/forging/incomplete/chain
 	name = "incomplete chain"
 	icon_state = "hot_chain"
-	completion_quality_points = 10
+	completion_quality_points = 20
 	max_perfect_hits = 10
-	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/chain
 	break_on_early_quench = TRUE
 	desc = "A length of chain. Used in crafting recipes at your crafting table."
@@ -100,9 +99,8 @@
 /obj/item/forging/incomplete/plate
 	name = "incomplete plate"
 	icon_state = "hot_plate"
-	completion_quality_points = 10
+	completion_quality_points = 20
 	max_perfect_hits = 10
-	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/plate
 	desc = "A sturdy plate of material. Used in many crafting recipies at your crafting table, most notably that of armor."
 
@@ -127,7 +125,7 @@
 /obj/item/forging/incomplete/dagger
 	name = "incomplete dagger blade"
 	icon_state = "hot_daggerblade"
-	completion_quality_points = 12
+	completion_quality_points = 22
 	max_perfect_hits = 10
 	spawn_item = /obj/item/forging/complete/dagger
 	desc = "A small, sleek dagger. Can be easily hid, and can critially-strike vulnerable opponents."
@@ -140,7 +138,7 @@
 
 /obj/item/forging/incomplete/spear
 	name = "incomplete spear head"
-	completion_quality_points = 8 ///crazy low completion required (spears are historically an easy weapon to make that are used for widespread arming)
+	completion_quality_points = 18 ///crazy low completion required (spears are historically an easy weapon to make that are used for widespread arming)
 	max_perfect_hits = 8
 	icon_state = "hot_spearhead"
 	spawn_item = /obj/item/forging/complete/spear
@@ -149,7 +147,7 @@
 /obj/item/forging/incomplete/axe
 	name = "incomplete axe head"
 	icon_state = "hot_axehead"
-	completion_quality_points = 16
+	completion_quality_points = 22
 	max_perfect_hits = 14
 	spawn_item = /obj/item/forging/complete/axe
 	desc = "A heavy axehead. Hits from this can potentially bypass shields and other forms of protection."
@@ -176,25 +174,22 @@
 	name = "incomplete arrowhead"
 	icon_state = "hot_arrowhead"
 	completion_quality_points = 12
-	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/arrowhead
 	desc = "A number of small arrowheads, used to create arrows."
 
 /obj/item/forging/incomplete/revolver_cylinder
 	name = "incomplete revolver cylinder"
 	icon_state = "hot_revolver_cylinder"
-	completion_quality_points = 40
-	max_perfect_hits = 50
-	average_wait = 0.5 SECONDS
+	completion_quality_points = 60
+	max_perfect_hits = 70
 	spawn_item = /obj/item/forging/complete/revolver_cylinder
 	desc = "The cylinder of a classical single-action revolver."
 
 /obj/item/forging/incomplete/revolver_frame
 	name = "incomplete revolver frame"
 	icon_state = "hot_revolver_frame"
-	completion_quality_points = 40
-	max_perfect_hits = 60
-	average_wait = 0.5 SECONDS
+	completion_quality_points = 90
+	max_perfect_hits = 110
 	spawn_item = /obj/item/forging/complete/revolver_frame
 	desc = "The frame of a classical single-action revolver."
 
@@ -203,7 +198,6 @@
 	icon = 'modular_skyrat/modules/ashwalkers/icons/railroad.dmi'
 	icon_state = "hot_nail"
 	completion_quality_points = 10
-	average_wait = 0.5 SECONDS
 	spawn_item = /obj/item/forging/complete/rail_nail
 	break_on_early_quench = TRUE
 	desc = "A rail nail used to build rail tracks."
