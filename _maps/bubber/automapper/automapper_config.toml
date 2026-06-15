@@ -239,6 +239,14 @@ coordinates = [84, 109, 1]
 trait_name = "Station"
 
 # ICEBOXSTATION MAP EDITS
+# IceBoxStation Aux Tool Storage
+[templates.iceboxstation_aux_toolstorage]
+map_files = ["iceboxstation_aux_toolstorage.dmm"]
+directory = "_maps/bubber/automapper/templates/IceBoxStation/"
+required_map = "IceBoxStation.dmm"
+coordinates = [106, 142, 3]
+trait_name = "Station"
+
 # IceBoxStation Armory
 [templates.iceboxstation_armory]
 map_files = ["iceboxstation_armory.dmm"]
@@ -407,7 +415,7 @@ trait_name = "Station"
 map_files = ["metastation_barber.dmm"]
 directory = "_maps/bubber/automapper/templates/MetaStation/"
 required_map = "MetaStation.dmm"
-coordinates = [101, 116, 1]
+coordinates = [57, 119, 1]
 trait_name = "Station"
 
 # Metastation Book of Kindred
@@ -434,12 +442,12 @@ required_map = "MetaStation.dmm"
 coordinates = [86, 105, 1]
 trait_name = "Station"
 
-# Metastation NTR Office
-[templates.metastation_ntrep_office]
-map_files = ["metastation_ntrep_office.dmm"]
+# Metastation NTC and BS Office
+[templates.metastation_ntc_bs]
+map_files = ["metastation_ntc_bs.dmm"]
 directory = "_maps/bubber/automapper/templates/MetaStation/"
 required_map = "MetaStation.dmm"
-coordinates = [57, 119, 1]
+coordinates = [101, 115, 1]
 trait_name = "Station"
 
 # Metastation Supermatter Chamber
@@ -571,6 +579,14 @@ map_files = ["book_of_kindred_display.dmm"]
 directory = "_maps/bubber/automapper/templates/generic/"
 required_map = "tramstation.dmm"
 coordinates = [49, 103, 2]
+trait_name = "Station"
+
+# Tramstation Blueshield
+[templates.tramstation_blueshield]
+map_files = ["tramstation_blueshield.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [81, 125, 2]
 trait_name = "Station"
 
 # Tramstation Cryo

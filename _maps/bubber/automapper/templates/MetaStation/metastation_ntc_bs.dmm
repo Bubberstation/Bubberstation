@@ -53,6 +53,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/landmark/start/nanotrasen_consultant,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/obj/machinery/holopad,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "et" = (
@@ -67,22 +68,18 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/command)
 "gn" = (
-/obj/structure/closet/secure_closet/tac{
-	req_access = list("captain")
-	},
-/obj/structure/window/reinforced/spawner/directional/west,
-/obj/item/gun_maintenance_supplies,
-/obj/item/clothing/suit/armor/riot,
-/obj/item/clothing/head/helmet/toggleable/riot{
-	pixel_y = 6
-	},
 /obj/effect/turf_decal/delivery/red,
-/obj/item/ammo_box/magazine/wt550m9,
-/obj/item/screwdriver,
 /obj/machinery/door/window/brigdoor/right/directional/east{
 	req_access = list("captain");
 	name = "Blueshield's Armory"
 	},
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/closet/secure_closet/blueshield,
+/obj/item/taperecorder{
+	name = "Captain's Log"
+	},
+/obj/item/dog_bone,
+/obj/item/clothing/gloves/tackler/combat/insulated/blueshield,
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "iA" = (
@@ -92,7 +89,6 @@
 "jh" = (
 /obj/machinery/light/warm/directional/north,
 /obj/machinery/computer/records/medical,
-/obj/structure/reagent_dispensers/wall/peppertank/directional/north,
 /obj/effect/turf_decal/siding/dark,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
@@ -100,7 +96,6 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/dark,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/chair/office,
 /obj/effect/mapping_helpers/turn_off_lights_with_lightswitch,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /turf/open/floor/iron/dark,
@@ -239,13 +234,13 @@
 	dir = 1;
 	name = "couch"
 	},
-/obj/machinery/newscaster/directional/west,
 /obj/machinery/camera/directional/west{
-	c_tag = "NT Consultant's Office";
+	c_tag = "Consultant's Office";
 	name = "command camera";
 	dir = 5
 	},
 /obj/machinery/digital_clock/directional/south,
+/obj/structure/secure_safe/directional/west,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "zv" = (
@@ -303,7 +298,6 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
 	},
-/obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/landmark/start/blueshield,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
@@ -359,6 +353,11 @@
 	},
 /mob/living/basic/pet/dog/dobermann/walter,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/obj/machinery/camera/directional/west{
+	c_tag = "Blueshield's Office";
+	name = "command camera";
+	dir = 6
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "CT" = (
@@ -515,16 +514,21 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "Mf" = (
-/obj/structure/closet/secure_closet/blueshield,
 /obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/window/reinforced/spawner/directional/west,
-/obj/item/clothing/gloves/tackler/combat/insulated/blueshield,
 /obj/effect/turf_decal/delivery/red,
-/obj/item/taperecorder{
-	name = "Captain's Log"
-	},
 /obj/structure/window/reinforced/spawner/directional/east,
-/obj/item/dog_bone,
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/closet/secure_closet/tac{
+	req_access = list("captain")
+	},
+/obj/item/gun_maintenance_supplies,
+/obj/item/clothing/suit/armor/riot,
+/obj/item/clothing/head/helmet/toggleable/riot{
+	pixel_y = 6
+	},
+/obj/item/screwdriver,
+/obj/item/storage/toolbox/ammobox/wt550m9,
+/obj/item/shield/riot,
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "Mh" = (
@@ -599,7 +603,8 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/shutters/preopen{
-	id = "nt_rep_priv"
+	id = "nt_rep_priv";
+	name = "Privacy Shutters"
 	},
 /obj/item/phone{
 	desc = "Supposedly a direct line to Nanotrasen Central Command. It's not even plugged in.";
@@ -687,10 +692,10 @@
 /obj/machinery/computer/crew{
 	dir = 2
 	},
-/obj/machinery/vending/wallmed/directional/north,
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
 	},
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "VL" = (
@@ -703,15 +708,15 @@
 	dir = 4
 	},
 /obj/machinery/camera/directional/west{
-	c_tag = "NT Consultant's Office";
+	c_tag = "Blueshield's Office";
 	name = "command camera";
 	dir = 5
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
-/obj/machinery/firealarm/directional/south,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/obj/machinery/vending/wallmed/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "WA" = (
@@ -765,8 +770,10 @@
 	name = "Asset Protection case records";
 	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
 	},
-/obj/machinery/light_switch/directional/south{
-	pixel_x = 6
+/obj/structure/reagent_dispensers/wall/peppertank/directional/south,
+/obj/item/toy/plush/skyrat/fox/mia{
+	desc = "A small stuffed silver fox with a collar tag that says “DAP” and a tiny bell in its fluffy tail.""A cute, marketable version of one of the DAP's mascots, Vigilant the fox. She has a blue collar with a shield-shaped tag that reads DAP. Holding her makes you feel protected.";
+	name = "Vigilant plushie"
 	},
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)

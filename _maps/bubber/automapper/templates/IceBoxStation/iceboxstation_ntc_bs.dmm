@@ -13,9 +13,6 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 6
 	},
-/obj/structure/sign/plaques/kiddie/perfect_man{
-	pixel_y = -32
-	},
 /turf/open/floor/iron/dark/smooth_corner{
 	dir = 1
 	},
@@ -38,6 +35,7 @@
 	name = "Asset Protection case records";
 	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
 	},
+/obj/item/toy/plush/horse,
 /turf/open/floor/engine,
 /area/station/command/heads_quarters/blueshield)
 "cR" = (
@@ -103,6 +101,7 @@
 /obj/item/modular_computer/laptop/preset/security{
 	pixel_y = 5
 	},
+/obj/item/clothing/gloves/tackler/combat/insulated/blueshield,
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "fy" = (
@@ -122,6 +121,8 @@
 /obj/item/shield/riot,
 /obj/item/screwdriver,
 /obj/item/gun_maintenance_supplies,
+/obj/item/shield/riot,
+/obj/item/storage/toolbox/ammobox/wt550m9,
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "gG" = (
@@ -331,7 +332,7 @@
 	dir = 1
 	},
 /obj/machinery/camera/directional/west{
-	c_tag = "NT Consultant's Office";
+	c_tag = "Consultant's Office";
 	name = "command camera";
 	dir = 1
 	},
@@ -341,7 +342,7 @@
 /area/station/command/heads_quarters/nt_rep)
 "un" = (
 /obj/machinery/camera/directional/west{
-	c_tag = "NT Consultant's Office";
+	c_tag = "Consultant's Office";
 	name = "command camera";
 	dir = 5
 	},
@@ -445,14 +446,6 @@
 "Cj" = (
 /obj/machinery/photocopier/prebuilt,
 /obj/machinery/firealarm/directional/north,
-/obj/item/modular_computer/laptop/preset/security{
-	pixel_y = 5
-	},
-/obj/machinery/camera/directional/west{
-	c_tag = "NT Consultant's Office";
-	name = "command camera";
-	dir = 1
-	},
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/blueshield)
 "CQ" = (
@@ -502,6 +495,9 @@
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/machinery/newscaster/directional/south,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line,
+/obj/machinery/camera/directional/west{
+	c_tag = "Blueshield's Office"
+	},
 /turf/open/floor/iron/dark/smooth_edge,
 /area/station/command/heads_quarters/blueshield)
 "FN" = (
@@ -520,7 +516,7 @@
 	greyscale_colors = "#FF0000#000000"
 	},
 /obj/machinery/camera/directional/west{
-	c_tag = "NT Consultant's Office";
+	c_tag = "Blueshield's Office";
 	name = "command camera";
 	dir = 6
 	},
@@ -546,7 +542,6 @@
 /obj/item/reagent_containers/cup/glass/bottle/hcider,
 /obj/item/storage/fancy/cigarettes/cigars/cohiba,
 /obj/item/storage/box/matches,
-/obj/machinery/firealarm/directional/east,
 /obj/item/folder/documents,
 /obj/item/paperwork{
 	desc = "A densely compiled stack of Internal Affairs records, documenting various investigations, audits and disciplinary proceedings, extensively redacted under CENTCOM authority.";
@@ -731,9 +726,6 @@
 /obj/effect/mapping_helpers/requests_console/supplies,
 /obj/effect/mapping_helpers/requests_console/assistance,
 /obj/effect/mapping_helpers/requests_console/announcement,
-/obj/machinery/modular_computer/preset/command{
-	dir = 5
-	},
 /obj/machinery/light_switch/directional/west,
 /obj/machinery/button/door/directional/west{
 	pixel_x = -35;
@@ -742,6 +734,9 @@
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 1
+	},
+/obj/machinery/modular_computer/preset/command{
+	dir = 5
 	},
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 1

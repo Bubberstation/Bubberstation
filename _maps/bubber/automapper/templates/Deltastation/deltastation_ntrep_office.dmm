@@ -4,7 +4,6 @@
 /obj/item/clothing/accessory/medal/gold/ordom,
 /obj/item/clothing/accessory/medal/silver/bureaucracy,
 /obj/item/hand_labeler,
-/obj/item/storage/backpack/satchel/nanotrasen,
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
 	},
@@ -31,9 +30,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/effect/mapping_helpers/turn_off_lights_with_lightswitch,
-/obj/structure/chair/office/tactical{
-	dir = 1
-	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "g" = (
@@ -41,6 +37,7 @@
 /obj/structure/chalkboard{
 	pixel_y = 32
 	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "h" = (
@@ -86,6 +83,7 @@
 	pixel_x = -5;
 	pixel_y = 5
 	},
+/obj/effect/turf_decal/siding/dark,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "l" = (
@@ -120,6 +118,7 @@
 "p" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/effect/turf_decal/siding/dark,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "q" = (
@@ -147,11 +146,12 @@
 	pixel_x = -5;
 	pixel_y = 10
 	},
+/obj/effect/turf_decal/siding/dark,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "t" = (
 /obj/machinery/button/curtain{
-	pixel_x = 8;
+	pixel_x = -7;
 	pixel_y = 3;
 	id = "nt_rep_priv"
 	},
@@ -208,6 +208,7 @@
 /obj/effect/mapping_helpers/requests_console/supplies,
 /obj/effect/mapping_helpers/requests_console/assistance,
 /obj/effect/mapping_helpers/requests_console/announcement,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "B" = (
@@ -238,6 +239,7 @@
 	pixel_y = 3
 	},
 /obj/item/reagent_containers/cup/glass/mug/nanotrasen,
+/obj/effect/turf_decal/siding/dark,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "I" = (
@@ -283,7 +285,7 @@
 "R" = (
 /obj/machinery/airalarm/directional/south,
 /obj/machinery/camera/directional/south{
-	c_tag = "NT Consultant's Office";
+	c_tag = "Consultant's Office";
 	name = "command camera"
 	},
 /obj/structure/cable,
@@ -329,6 +331,7 @@
 "W" = (
 /obj/structure/sign/poster/official/random/directional/south,
 /obj/machinery/photocopier/prebuilt,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "X" = (
@@ -416,12 +419,12 @@ E
 "}
 (9,1,1) = {"
 E
-E
+t
 E
 E
 T
 d
-t
+E
 "}
 (10,1,1) = {"
 X

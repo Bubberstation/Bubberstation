@@ -9706,6 +9706,11 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/bot,
+/obj/machinery/camera/directional/west{
+	c_tag = "Consultant's Office";
+	name = "command camera";
+	dir = 5
+	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "cTO" = (
@@ -30941,6 +30946,7 @@
 	pixel_y = 3
 	},
 /obj/item/radio/intercom/directional/south,
+/obj/machinery/light/warm/directional/south,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "iVS" = (
@@ -64818,7 +64824,6 @@
 /turf/open/floor/plating,
 /area/station/science/xenobiology)
 "seH" = (
-/obj/machinery/light/warm/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /obj/machinery/camera/directional/west{
 	c_tag = "Bridge - Consultant's Office";
