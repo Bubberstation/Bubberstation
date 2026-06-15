@@ -42,12 +42,8 @@
 	hermit.mind?.teach_crafting_recipe(/datum/crafting_recipe/research_paper)
 	to_chat(hermit, span_notice("You learn the recipe for the <b>research paper</b>, giving you the ability to craft everything from nothing."))
 
-/// Manager and access additions for Lizard Gas
+/// Manager and departmental ID additions
 #define ROLE_LZGAS "Lizard Gas Station Manager"
-
-/datum/id_trim/away/lizardgas
-	assignment = "Lizard Gas Employee"
-	access = list(ACCESS_LZGAS)
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_gasstation/manager
 	name = "Gas Station Manager"

@@ -1,7 +1,7 @@
 //Lizard Gas Station ID
 /datum/id_trim/away/lizardgas
 	assignment = "Lizard Gas Employee"
-	access = list(ACCESS_FACTION_PUBLIC)
+	access = list(ACCESS_FACTION_PUBLIC, ACCESS_LZGAS)
 	big_pointer = TRUE
 
 /turf/open/floor/asphalt/icemoon
