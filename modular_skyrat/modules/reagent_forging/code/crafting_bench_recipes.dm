@@ -381,6 +381,15 @@
 		else
 			qdel(thing)
 	product.update_appearance()
+
+/datum/crafting_bench_recipe/revolver/put_materials_in_product_from_ingredients(list/ingredients, obj/item/product)
+	if(transfers_materials)
+		for(var/obj/requirement_item as anything in ingredients)
+			if(istype(requirement_item, /obj/item/forging/complete/revolver_cylinder))
+				product.set_material_slot(/datum/material_slot/revolver/cylinder, requirement_item.get_master_material())
+			else if(istype(requirement_item, /obj/item/forging/complete/revolver_frame))
+				product.set_material_slot(/datum/material_slot/revolver/frame, requirement_item.get_master_material())
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// BELT COMPLETION ///////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
