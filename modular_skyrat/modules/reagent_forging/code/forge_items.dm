@@ -381,10 +381,10 @@
 	return ..()
 
 /obj/item/arrow_spawner
-	name = "arrow spawner"
+	name = "arrows"
 	desc = "You shouldn't see this."
 	/// the amount of arrows that are spawned from the spawner
-	var/spawning_amount = 8
+	var/spawning_amount = 4
 
 /obj/item/arrow_spawner/Initialize(mapload)
 	. = ..()
