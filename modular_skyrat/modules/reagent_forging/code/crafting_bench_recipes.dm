@@ -1,4 +1,5 @@
 /datum/crafting_bench_recipe
+	abstract_type = /datum/crafting_bench_recipe
 	/// The name of the recipe to show
 	var/recipe_name = "generic debug recipe"
 	/// What appears in the infobox when viewed in the crafting menu

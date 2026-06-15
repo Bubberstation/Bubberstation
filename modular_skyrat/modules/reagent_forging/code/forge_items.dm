@@ -2,6 +2,7 @@
 /obj/item/forging/incomplete
 	name = "incomplete forging item"
 	desc = "you shouldn't be seeing this!"
+	abstract_type = /obj/item/forging/incomplete
 
 	///the quality points required for it to be considered usable for crafting
 	var/completion_quality_points = 40
@@ -212,6 +213,7 @@
 
 //"complete" pre-complete items
 /obj/item/forging/complete
+	abstract_type = /obj/item/forging/complete
 	///the path of the item that will be created
 	var/spawning_item
 	///how many perfect hits did we get, out of the max?
