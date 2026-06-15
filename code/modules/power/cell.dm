@@ -244,8 +244,9 @@
 	name = "crystal power cell"
 	desc = "A very high power cell made from crystallized plasma"
 	icon_state = "crystal_cell"
-	maxcharge = STANDARD_CELL_CHARGE * 50
-	chargerate = 0
+	maxcharge = STANDARD_CELL_CHARGE * 20 // maxcharge 50* to 20*, 50% a bluespace cell max-charge.
+	emp_damage_modifier = STANDARD_CELL_CHARGE * 20 // should hopefully guarentee full depowerment on EMP
+	chargerate = 10 * STANDARD_CELL_RATE // chargerate 0 > 10* standard, gives the cell an actual niche instead of being a worse xenobio overcharged core
 	charge_light_type = null
 	connector_type = "crystal"
 	custom_materials = null
