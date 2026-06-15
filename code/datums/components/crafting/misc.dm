@@ -6,6 +6,14 @@
 	result = /obj/item/paper_bin/bundlenatural
 	category = CAT_MISC
 
+/datum/crafting_recipe/big_lead_acid
+	name = "Lead-acid battery array"
+	time = 10 SECONDS
+	reqs = list(/datum/reagent/lead = 15, /obj/item/stack/cable_coil = 30, /obj/item/stack/rods = 8, /obj/item/stock_parts/power_store/battery/lead = 4)
+	tool_paths = list(/obj/item/wirecutters, /obj/item/wrench, /obj/item/cautery)
+	result = /obj/item/stock_parts/power_store/battery/lead
+	category = CAT_MISC
+
 /datum/crafting_recipe/skeleton_key
 	name = "Skeleton Key"
 	time = 3 SECONDS

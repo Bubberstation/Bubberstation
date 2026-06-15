@@ -94,4 +94,5 @@
 	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	var/initial_percent = rand(20, 50) / 100 // 200kJ to 500kJ
+	AddComponent(/datum/component/two_handed, require_twohands = TRUE, force_unwielded = 12, force_wielded = 12) // BIG, use two hands.
 	charge = initial_percent * maxcharge
