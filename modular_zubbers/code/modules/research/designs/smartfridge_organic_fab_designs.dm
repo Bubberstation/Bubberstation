@@ -107,6 +107,14 @@
 	make_reagent = /datum/reagent/consumable/nutriment/fat/oil/olive
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_SFOF_INGREDIENT)
 
+/datum/design/smartfridge_fabricator_vinegar
+	name = "Synthetic Vinegar"
+	id = "smartfridge_fabricator_vinegar"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 2)
+	make_reagent = /datum/reagent/consumable/vinegar
+	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_SFOF_INGREDIENT)
+
 /datum/design/smartfridge_fabricator_egg
 	name = "Egg"
 	id = "smartfridge_fabricator_egg"
@@ -213,12 +221,28 @@
 	make_reagent = /datum/reagent/consumable/salt
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_SFOF_CONDIMENTS)
 
+/datum/design/smartfridge_honey
+	name = "Synthetic Honey"
+	id = "smartfridge_fabricator_honey"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 3)
+	make_reagent = /datum/reagent/consumable/honey
+	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_SFOF_CONDIMENTS)
+
 /datum/design/smartfridge_fabricator_soysauce
 	name = "Synthetic Soy Sauce"
 	id = "smartfridge_fabricator_soysauce"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 1)
 	make_reagent = /datum/reagent/consumable/soysauce
+	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_SFOF_CONDIMENTS)
+
+/datum/design/smartfridge_fabricator_teriyaki
+	name = "Synthetic Teriyaki Sauce"
+	id = "smartfridge_fabricator_teriyaki"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 4)
+	make_reagent = /datum/reagent/consumable/nutriment/soup/teriyaki
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_SFOF_CONDIMENTS)
 
 /datum/design/smartfridge_fabricator_ketchup
