@@ -37,6 +37,7 @@
 /obj/structure/chair/office{
 	dir = 8
 	},
+/obj/effect/landmark/start/blueshield,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "j" = (
@@ -150,15 +151,14 @@
 	name = "Captain's Log"
 	},
 /obj/item/clothing/gloves/tackler/combat/insulated/blueshield,
-/obj/machinery/door/window/brigdoor/right/directional/east{
-	req_access = list("captain");
-	name = "Blueshield's Armory";
-	dir = 2
-	},
 /obj/structure/sign/plaques/kiddie/perfect_man{
 	pixel_y = 32
 	},
 /obj/machinery/light/small/blacklight/directional/north,
+/obj/machinery/door/window/brigdoor/right/directional/south{
+	req_access = list("captain");
+	name = "Blueshield's Armory"
+	},
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "A" = (
@@ -167,10 +167,10 @@
 	name = "Blueshield's Quarters"
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/access/all/command/captain,
+/obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "B" = (
@@ -209,14 +209,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
-"D" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/dark,
-/area/station/command/bridge)
 "E" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
@@ -229,7 +221,7 @@
 /obj/machinery/computer/crew{
 	dir = 4
 	},
-/obj/machinery/newscaster/directional/west,
+/obj/machinery/firealarm/directional/west,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "I" = (
@@ -277,7 +269,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
@@ -425,7 +416,7 @@ h
 I
 R
 j
-D
+C
 h
 h
 h

@@ -21,6 +21,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood/tile,
 /area/station/service/barber)
 "e" = (
@@ -130,7 +131,7 @@
 "l" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/iron/vaporwave,
 /area/station/service/barber)
 "n" = (
@@ -160,9 +161,7 @@
 	dir = 8
 	},
 /obj/item/kirbyplants/random,
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
+/obj/structure/window/spawner/directional/west,
 /turf/open/floor/iron/white,
 /area/station/service/barber)
 "s" = (
@@ -224,6 +223,7 @@
 	},
 /obj/structure/window/spawner/directional/north,
 /obj/effect/landmark/start/barber,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood/tile,
 /area/station/service/barber)
 "A" = (
@@ -274,9 +274,7 @@
 /obj/effect/mapping_helpers/requests_console/assistance,
 /obj/effect/mapping_helpers/requests_console/supplies,
 /obj/effect/mapping_helpers/requests_console/information,
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
+/obj/structure/window/spawner/directional/north,
 /turf/open/floor/wood/tile,
 /area/station/service/barber)
 "D" = (
@@ -305,9 +303,8 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
 	},
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
+/obj/structure/window/spawner/directional/north,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood/tile,
 /area/station/service/barber)
 "I" = (
@@ -402,6 +399,11 @@
 /obj/structure/cable,
 /turf/open/floor/wood/tile,
 /area/station/service/barber)
+"U" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/iron/vaporwave,
+/area/station/service/barber)
 "V" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock/maintenance,
@@ -419,9 +421,7 @@
 	dir = 8
 	},
 /obj/structure/closet,
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
+/obj/structure/window/spawner/directional/west,
 /turf/open/floor/iron/white,
 /area/station/service/barber)
 "Y" = (
@@ -472,7 +472,7 @@ Y
 D
 Q
 F
-l
+U
 N
 z
 e
