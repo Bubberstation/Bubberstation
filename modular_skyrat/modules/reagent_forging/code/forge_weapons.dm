@@ -412,13 +412,14 @@
 /obj/item/melee/forged_reagent_weapon/hammer
 	name = "reagent hammer"
 	desc = "A heavy, weighted hammer that packs an incredible punch but can prove to be unwieldy. Useful for forging!"
-	force = 7 //strong when wielded, but boring.
+	force = 6 //strong when wielded, but boring.
 	armour_penetration = 10
 	wound_bonus = -5
 	icon_state = "crush_hammer"
 	inhand_icon_state = "crush_hammer"
 	worn_icon_state = "hammer_back"
 	throwforce = 10
+	demolition_mod = 1.5
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF
