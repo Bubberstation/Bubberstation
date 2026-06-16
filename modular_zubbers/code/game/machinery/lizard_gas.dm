@@ -92,3 +92,11 @@
 		RND_CATEGORY_SFOF_LUXURIES,
 		RND_CATEGORY_AKHTER_FOODRICATOR_UTENSILS,
 	)
+
+// Telescreen, because you can't set custom networks without creating linter errors.
+/obj/machinery/computer/security/telescreen/lizgas
+	name = "Lizard Gas CCTV Monitor"
+	desc = "A telescreen that connects to the gas station's camera network."
+	network = list("lizardgas")
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/lizgas, 32)

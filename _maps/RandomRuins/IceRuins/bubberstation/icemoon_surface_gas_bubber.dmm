@@ -807,15 +807,11 @@
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/icemoon/underground/unexplored)
 "lu" = (
-/obj/machinery/computer/security/telescreen/normal/directional/south{
-	network = list("lizardgas");
-	desc = "A telescreen that connects to the gas station's camera network.";
-	name = "lizard gas camera monitor"
-	},
 /obj/structure/closet/crate/bin,
 /obj/effect/turf_decal/siding/dark,
 /obj/effect/turf_decal/trimline/dark_green/filled/line,
 /obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner,
+/obj/machinery/computer/security/telescreen/lizgas/directional/south,
 /turf/open/floor/iron/dark/smooth_edge,
 /area/ruin/thelizardsgas_lavaland)
 "lx" = (
@@ -2144,11 +2140,7 @@
 /turf/open/floor/iron/textured_large,
 /area/ruin/thelizardsgas_lavaland)
 "CC" = (
-/obj/machinery/computer/security/telescreen/normal/directional/south{
-	network = list("lizardgas");
-	desc = "A telescreen that connects to the gas station's camera network.";
-	name = "lizard gas camera monitor"
-	},
+/obj/machinery/computer/security/telescreen/lizgas/directional/south,
 /turf/open/floor/carpet,
 /area/ruin/thelizardsgas_lavaland)
 "CL" = (
