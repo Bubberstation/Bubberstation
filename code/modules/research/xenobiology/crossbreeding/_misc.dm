@@ -75,9 +75,8 @@ Slimecrossing Items
 	icon_state = "yellow-core"
 	rating = 7
 	custom_materials = null
-	maxcharge = 30 * STANDARD_CELL_CHARGE // 30 down from 50, or 300kJ - on-par with hyper-capacity batteries.
-	chargerate = 0.5 * STANDARD_CELL_RATE // chargerate reduced down to 0.5* standard.
-	emp_damage_modifier = 0 // biological cell. retains a gimmick post-nerf that makes it actually useful instead of just a raw improvement over bluespace cells
+	maxcharge = 50 * STANDARD_CELL_CHARGE
+	chargerate = 2.5 * STANDARD_CELL_RATE
 	charge_light_type = null
 	connector_type = "slimecore"
 
