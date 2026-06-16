@@ -68,3 +68,5 @@
 	department_ID = ACCOUNT_LIZ
 	department_name = ACCOUNT_LIZ_NAME
 	icon_state = "srv_budget" // Green just like our lizard.
+
+#undef ROLE_LZGAS
