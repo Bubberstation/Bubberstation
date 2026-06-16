@@ -1,5 +1,5 @@
 /obj/item/organ/tail
-	mutantpart_key = "tail"
+	mutantpart_key = "FEATURE_TAIL"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Smooth", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))
 	var/can_wag = TRUE
 	var/wagging = FALSE

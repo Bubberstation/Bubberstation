@@ -139,7 +139,7 @@ GLOBAL_LIST_EMPTY(clockwork_marauders)
 
 /obj/item/nullrod/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/bane, /mob/living/basic/clockwork_marauder, 1, 15, FALSE)
+	AddComponent(/datum/component/bane, /mob/living/basic/clockwork_marauder, 1, 15, FALSE)
 
 #undef MARAUDER_SHIELD_MAX
 #undef WELDER_REPAIR_AMOUNT

@@ -151,8 +151,8 @@
 	if(COOLDOWN_FINISHED(src, regen_cooldown))
 		COOLDOWN_START(src, regen_cooldown, REGENERATION_DELAY)
 
-/datum/species/mutant/infectious/spec_life(mob/living/carbon/carbon_mob, seconds_per_tick, times_fired)
-	. = ..()
+/datum/species/mutant/infectious/proc/on_life(mob/living/carbon/carbon_mob, seconds_per_tick)
+	SIGNAL_HANDLER
 	//mutants never actually die, they just fall down until they regenerate enough to rise back up.
 	if(COOLDOWN_FINISHED(src, regen_cooldown))
 		var/heal_amt = heal_rate

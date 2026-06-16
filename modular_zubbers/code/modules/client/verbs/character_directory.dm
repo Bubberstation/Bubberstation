@@ -29,7 +29,21 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 	savefile_identifier = PREFERENCE_CHARACTER
 
 /datum/preference/choiced/attraction/init_possible_values()
-	return list("Gay", "Lesbian", "Straight", "Skolio", "Bi", "Pan", "Poly", "Omni", "Ace", "Aro", "Aro/Ace", "Unset", "Check OOC")
+	return list(
+		"Unset",
+		"Check OOC",
+		"Straight",
+		"Lesbian",
+		"Gay",
+		"Bisexual",
+		"Pansexual",
+		"Polysexual",
+		"Asexual",
+		"Aromantic",
+		"Aro/Ace",
+		"Skoliosexual",
+		"Omnisexual",
+	)
 
 /datum/preference/choiced/attraction/create_default_value()
 	return "Unset"
@@ -43,7 +57,20 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 	savefile_identifier = PREFERENCE_CHARACTER
 
 /datum/preference/choiced/display_gender/init_possible_values()
-	return list("Male", "Female", "Null", "Plural", "Nonbinary", "Omni", "Trans", "Transmasc", "Transfem", "Andro", "Gyno", "Fluid", "Unset", "Check OOC")
+	return list(
+		"Unset",
+		"Check OOC",
+		"Male",
+		"Female",
+		"Nonbinary",
+		"Genderfluid",
+		"Trans",
+		"Andromorph",
+		"Gynomorph",
+		"Agender",
+		"Plural",
+		"Omnigender",
+	)
 
 /datum/preference/choiced/display_gender/create_default_value()
 	return "Unset"

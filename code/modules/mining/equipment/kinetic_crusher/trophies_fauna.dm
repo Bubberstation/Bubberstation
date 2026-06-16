@@ -144,7 +144,7 @@
 // Bileworm
 /obj/item/crusher_trophy/bileworm_spewlet
 	name = "bileworm spewlet"
-	icon = 'icons/mob/simple/lavaland/bileworm.dmi'
+	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "bileworm_spewlet"
 	desc = "A baby bileworm. Suitable as a trophy for a kinetic crusher."
 	denied_type = /obj/item/crusher_trophy/bileworm_spewlet
@@ -179,7 +179,7 @@
 
 /obj/item/crusher_trophy/bileworm_spewlet/on_projectile_hit_mineral(turf/closed/mineral, mob/living/user)
 	for(var/turf/closed/mineral/mineral_turf in RANGE_TURFS(1, mineral) - mineral)
-		mineral_turf.gets_drilled(user, 1)
+		mineral_turf.drill_aoe(user, 0.2)
 
 //yes this is a /mob_cooldown subtype being added to an item. I can't recommend you do what I'm doing
 /datum/action/cooldown/mob_cooldown/projectile_attack/dir_shots/spewlet

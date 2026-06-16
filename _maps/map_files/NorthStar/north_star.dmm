@@ -10928,8 +10928,11 @@
 /area/station/command/heads_quarters/hop)
 "cGM" = (
 /obj/structure/cable,
+/obj/machinery/bouldertech/refinery/smelter{
+	dir = 4
+	},
 /obj/machinery/conveyor{
-	dir = 5;
+	dir = 8;
 	id = "mining"
 	},
 /turf/open/floor/iron/checker,
@@ -21057,7 +21060,7 @@
 	codes_txt = "patrol;next_patrol=1-1";
 	location = "1-0"
 	},
-/mob/living/simple_animal/bot/secbot/beepsky/officer{
+/mob/living/basic/bot/secbot/beepsky/officer{
 	name = "Beepsky the First"
 	},
 /turf/open/floor/iron/dark,
@@ -29533,6 +29536,10 @@
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/wrench,
+/obj/item/stack/ducts,
+/obj/item/construction/plumbing/mining,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "hte" = (
@@ -31366,7 +31373,7 @@
 	codes_txt = "patrol;next_patrol=3-8";
 	location = "3-7"
 	},
-/mob/living/simple_animal/bot/secbot/beepsky/officer{
+/mob/living/basic/bot/secbot/beepsky/officer{
 	name = "Beepsky the Third"
 	},
 /turf/open/floor/iron,
@@ -43814,7 +43821,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
-/mob/living/simple_animal/bot/secbot/beepsky/armsky,
+/mob/living/basic/bot/secbot/beepsky/armsky,
 /turf/open/floor/iron/dark,
 /area/station/security/armory)
 "kTI" = (
@@ -51034,6 +51041,17 @@
 	dir = 6
 	},
 /area/station/hallway/floor3/fore)
+"mFi" = (
+/obj/structure/cable,
+/obj/machinery/bouldertech/refinery{
+	dir = 1
+	},
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "mining"
+	},
+/turf/open/floor/iron/checker,
+/area/station/cargo/miningdock)
 "mFp" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
@@ -69558,7 +69576,7 @@
 	codes_txt = "patrol;next_patrol=4-0";
 	location = "4-3"
 	},
-/mob/living/simple_animal/bot/secbot/beepsky,
+/mob/living/basic/bot/secbot/beepsky,
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
@@ -76897,10 +76915,8 @@
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/floor3/port)
 "tbt" = (
-/obj/structure/cable,
-/obj/machinery/bouldertech/refinery/smelter,
-/obj/machinery/conveyor/inverted{
-	dir = 10;
+/obj/machinery/conveyor{
+	dir = 8;
 	id = "mining"
 	},
 /turf/open/floor/iron/checker,
@@ -79603,7 +79619,7 @@
 	codes_txt = "patrol;next_patrol=2-11";
 	location = "2-10"
 	},
-/mob/living/simple_animal/bot/secbot/beepsky/officer{
+/mob/living/basic/bot/secbot/beepsky/officer{
 	name = "Beepsky the Second"
 	},
 /turf/open/floor/iron/dark,
@@ -84185,11 +84201,6 @@
 /area/station/hallway/floor3/fore)
 "uSC" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/bouldertech/refinery,
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "mining"
-	},
 /turf/open/floor/iron/checker,
 /area/station/cargo/miningdock)
 "uSL" = (
@@ -86201,7 +86212,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/mob/living/simple_animal/bot/secbot/pingsky,
+/mob/living/basic/bot/secbot/pingsky,
 /turf/open/floor/circuit,
 /area/station/ai/satellite/interior)
 "vrw" = (
@@ -89499,10 +89510,6 @@
 /area/station/maintenance/floor1/port)
 "wgu" = (
 /obj/structure/cable,
-/obj/machinery/conveyor{
-	dir = 9;
-	id = "mining"
-	},
 /turf/open/floor/iron/checker,
 /area/station/cargo/miningdock)
 "wgO" = (
@@ -130639,7 +130646,7 @@ quB
 myd
 ehG
 sQH
-vHa
+tbt
 uSC
 vHa
 nVs
@@ -130896,8 +130903,8 @@ quB
 mRt
 dAc
 sBK
-tbt
 tkZ
+mFi
 nKc
 qas
 jwr

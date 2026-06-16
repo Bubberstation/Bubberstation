@@ -5,6 +5,8 @@
 	/// Rubbers aren't advanced. Standard ammo (or FMJ if you're particularly pedantic) isn't advanced.
 	/// Think more specialized or weird, niche ammo, like armor-piercing, incendiary, hollowpoint, or God forbid, phasic.
 	var/advanced_print_req = FALSE
+	/// Optional hex color (e.g. "#d85a30") shown as a tip-dot beside this round in the ammo workbench UI. Null shows a neutral dot.
+	var/workbench_tip_color = null
 
 // whatever goblin decided to spread out bullets over like 3 files and god knows however many overrides i wish you a very stubbed toe
 
