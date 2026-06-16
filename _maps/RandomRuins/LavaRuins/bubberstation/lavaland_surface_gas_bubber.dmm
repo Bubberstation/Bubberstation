@@ -473,11 +473,6 @@
 /area/ruin/thelizardsgas_lavaland)
 "gQ" = (
 /obj/structure/rack,
-/obj/structure/window/reinforced/spawner/directional/south{
-	dir = 2;
-	pixel_y = -3
-	},
-/obj/structure/window/reinforced/spawner/directional/west,
 /obj/item/food/canned/tuna{
 	pixel_x = -3;
 	pixel_y = 0
@@ -493,6 +488,10 @@
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 1
 	},
+/obj/structure/window/reinforced/spawner/directional/south{
+	pixel_y = -3
+	},
+/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/iron/smooth_large,
 /area/ruin/thelizardsgas_lavaland)
 "gW" = (
@@ -2397,15 +2396,16 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Gw" = (
-/obj/machinery/computer/security/telescreen/normal/directional/south{
-	network = list("lizardgas");
-	desc = "A telescreen that connects to the gas station's camera network.";
-	name = "lizard gas camera monitor"
-	},
 /obj/structure/closet/crate/bin,
 /obj/effect/turf_decal/siding/dark,
 /obj/effect/turf_decal/trimline/dark_green/filled/line,
 /obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner,
+/obj/machinery/computer/security/telescreen{
+	pixel_y = -32;
+	network = list("lizardgas");
+	desc = "A telescreen that connects to the gas station's camera network.";
+	name = "lizard gas camera monitor"
+	},
 /turf/open/floor/iron/dark/smooth_edge,
 /area/ruin/thelizardsgas_lavaland)
 "GU" = (
@@ -2802,10 +2802,6 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Lb" = (
-/obj/machinery/computer/security/telescreen/entertainment/directional/east{
-	pixel_x = 32;
-	pixel_y = -16
-	},
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 8;
 	color = "#595959"
@@ -2818,6 +2814,10 @@
 /obj/item/radio/entertainment/speakers/physical{
 	pixel_x = 0;
 	pixel_y = 10
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = 32;
+	pixel_y = -16
 	},
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
@@ -3166,12 +3166,12 @@
 	pixel_y = -1;
 	pixel_x = -4
 	},
-/obj/structure/window/reinforced/spawner/directional/west,
 /obj/item/food/sticko{
 	pixel_y = -1;
 	pixel_x = 7
 	},
 /obj/effect/turf_decal/siding/thinplating_new,
+/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/iron/smooth_large,
 /area/ruin/thelizardsgas_lavaland)
 "PW" = (
@@ -3216,7 +3216,8 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Qu" = (
-/obj/machinery/computer/security/telescreen/normal/directional/south{
+/obj/machinery/computer/security/telescreen{
+	pixel_y = -32;
 	network = list("lizardgas");
 	desc = "A telescreen that connects to the gas station's camera network.";
 	name = "lizard gas camera monitor"
