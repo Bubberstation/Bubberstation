@@ -543,6 +543,8 @@
 		. += draw_color
 	if(is_invisible)
 		. += "invisible"
+	if(limb_alpha != 255)
+		. += "alpha_[limb_alpha]" // BUBBER EDIT ADDITION - per-limb alpha
 	for(var/datum/bodypart_overlay/overlay as anything in bodypart_overlays)
 		if(!overlay.can_draw_on_bodypart(src, owner, is_husked))
 			continue
@@ -571,6 +573,8 @@
 	. += body_zone
 	if(is_invisible)
 		. += "invisible"
+	if(limb_alpha != 255)
+		. += "alpha_[limb_alpha]" // BUBBER EDIT ADDITION - per-limb alpha
 	. += "[LAZYLEN(blood_dna_info) ? get_color_from_blood_list(blood_dna_info) : BLOOD_COLOR_RED]"
 	for(var/datum/bodypart_overlay/overlay as anything in bodypart_overlays)
 		if(!overlay.can_draw_on_bodypart(src, owner, TRUE))

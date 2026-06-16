@@ -1216,6 +1216,14 @@
 	if(owner_species && owner_species.specific_alpha != 255)
 		alpha = owner_species.specific_alpha
 
+	// BUBBER EDIT ADDITION START - per-limb alpha. Species alpha is the baseline, the per-limb
+	// preference (stored in dna.features) overrides it for this specific zone if present.
+	limb_alpha = owner_species?.specific_alpha || 255
+	var/limb_alpha_key = "limb_alpha_[body_zone]"
+	if(limb_alpha_key in human_owner.dna.features)
+		limb_alpha = human_owner.dna.features[limb_alpha_key]
+	// BUBBER EDIT ADDITION END
+
 	if(body_zone in owner_species.body_markings)
 		markings = LAZYCOPY(owner_species.body_markings[body_zone])
 		if(aux_zone && (aux_zone in owner_species.body_markings))
@@ -1327,12 +1335,19 @@
 	var/image/limb = image(used_icon, used_state, -BODYPARTS_LAYER, dir = image_dir)
 	var/image/aux = null
 
+	// BUBBER EDIT ADDITION - per-limb alpha. While worn the chosen alpha is used verbatim (0 = invisible),
+	// while dropped it is floored so the limb stays visible and pickup-able on the ground.
+	var/used_alpha = dropped ? max(limb_alpha, LIMB_DROPPED_MIN_ALPHA) : limb_alpha
+	limb.alpha = used_alpha
+	// BUBBER EDIT ADDITION END
+
 	icon_exists_or_scream(limb.icon, limb.icon_state) //Prints a stack trace on the first failure of a given iconstate.
 
 	. += limb
 
 	if(aux_zone) //Hand shit
 		aux = image(limb.icon, "[limb_id]_[aux_zone]", -aux_layer, dir = image_dir)
+		aux.alpha = used_alpha // BUBBER EDIT ADDITION - per-limb alpha
 		. += aux
 
 	if(dropped && dmg_overlay_type)
@@ -1356,10 +1371,12 @@
 		update_draw_color()
 
 	if(draw_color)
-		var/limb_color = alpha != 255 ? "[draw_color][num2hex(alpha, 2)]" : "[draw_color]" // SKYRAT EDIT ADDITION - Alpha values on limbs. We check if the limb is attached and if the owner has an alpha value to append
-		limb.color = limb_color // SKYRAT EDIT CHANGE - ORIGINAL: limb.color = "[draw_color]"
+		// BUBBER EDIT CHANGE - per-limb transparency is now handled via limb.alpha (see above) rather than
+		// baking an alpha channel into the draw color. ORIGINAL SKYRAT: limb.color = "[draw_color][num2hex(alpha, 2)]"
+		limb.color = "[draw_color]"
 		if(aux_zone)
-			aux.color = limb_color // SKYRAT EDIT CHANGE - ORIGINAL: aux.color = "[draw_color]"
+			aux.color = "[draw_color]"
+		// BUBBER EDIT END
 
 	var/atom/location = loc || owner || src
 	if(blocks_emissive != EMISSIVE_BLOCK_NONE)
