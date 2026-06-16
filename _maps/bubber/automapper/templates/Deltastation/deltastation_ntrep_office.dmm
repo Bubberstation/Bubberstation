@@ -26,15 +26,12 @@
 /area/station/command/heads_quarters/nt_rep)
 "f" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/effect/mapping_helpers/turn_off_lights_with_lightswitch,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "g" = (
 /obj/machinery/computer/station_goal,
-/obj/structure/chalkboard{
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
@@ -75,7 +72,6 @@
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/effect/turf_decal/siding/dark,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "l" = (
@@ -91,12 +87,16 @@
 /turf/open/floor/grass,
 /area/station/command/heads_quarters/nt_rep)
 "n" = (
-/obj/machinery/door/airlock/corporate/glass,
 /obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 8
 	},
-/turf/open/floor/carpet/green,
+/obj/machinery/door/airlock/corporate{
+	name = "Consultant's Quarters"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "o" = (
 /obj/structure/disposalpipe/junction/yjunction{
@@ -107,16 +107,20 @@
 "p" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/effect/turf_decal/siding/dark,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "q" = (
 /obj/structure/dresser,
 /obj/machinery/light/small/blacklight/directional/south,
+/obj/item/sign/flag/nanotrasen{
+	pixel_y = 11
+	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "r" = (
 /obj/structure/secure_safe/directional/north,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "s" = (
@@ -130,7 +134,6 @@
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/effect/turf_decal/siding/dark,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "t" = (
@@ -159,6 +162,9 @@
 	dir = 1
 	},
 /obj/machinery/light/small/blacklight/directional/west,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "w" = (
@@ -220,7 +226,6 @@
 	pixel_y = 3
 	},
 /obj/item/reagent_containers/cup/glass/mug/nanotrasen,
-/obj/effect/turf_decal/siding/dark,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "I" = (
@@ -231,11 +236,14 @@
 /obj/structure/filingcabinet/security{
 	pixel_x = 10
 	},
+/obj/structure/sign/clock/directional/north,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "K" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "L" = (
@@ -246,6 +254,11 @@
 "M" = (
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
+"O" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/carpet/green,
+/area/station/command/heads_quarters/nt_rep)
 "Q" = (
 /obj/structure/table/wood,
 /obj/machinery/coffeemaker/impressa{
@@ -253,8 +266,10 @@
 	pixel_y = 6
 	},
 /obj/item/storage/box/coffeepack,
-/obj/structure/sign/clock/directional/north,
 /obj/machinery/light/directional/north,
+/obj/structure/chalkboard{
+	pixel_y = 32
+	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "R" = (
@@ -266,6 +281,9 @@
 /obj/structure/cable,
 /obj/structure/extinguisher_cabinet/directional/west,
 /obj/item/kirbyplants/random,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "S" = (
@@ -283,7 +301,7 @@
 /area/station/command/heads_quarters/nt_rep)
 "U" = (
 /obj/machinery/door/airlock/corporate{
-	name = "NT Consultant's Office"
+	name = "Consultant's Office"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -343,7 +361,7 @@ E
 E
 E
 r
-M
+O
 q
 E
 "}
@@ -375,7 +393,7 @@ S
 w
 "}
 (7,1,1) = {"
-E
+V
 g
 D
 i
@@ -384,7 +402,7 @@ L
 E
 "}
 (8,1,1) = {"
-V
+E
 I
 y
 H

@@ -11848,9 +11848,6 @@
 /area/station/asteroid)
 "ehb" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/siding/dark{
-	dir = 5
-	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "ehm" = (
@@ -14093,7 +14090,6 @@
 /area/space/nearstation)
 "eWl" = (
 /obj/machinery/newscaster/directional/south,
-/obj/structure/cable,
 /obj/structure/filingcabinet{
 	pixel_x = -10
 	},
@@ -14102,7 +14098,6 @@
 	},
 /obj/item/reagent_containers/cup/glass/bottle/whiskey,
 /obj/item/cigarette/cigar/cohiba,
-/obj/item/gun/ballistic/revolver/russian,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "eWo" = (
@@ -18612,7 +18607,6 @@
 /area/station/engineering/atmos/project)
 "gGd" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/obj/effect/turf_decal/siding/dark,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
@@ -22525,6 +22519,9 @@
 /obj/machinery/suit_storage_unit/security,
 /obj/effect/turf_decal/delivery/red,
 /obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/plaque/static_plaque/golden{
+	pixel_x = -32
+	},
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "ibF" = (
@@ -24001,6 +23998,7 @@
 /obj/machinery/status_display/ai/directional/east,
 /obj/machinery/light/directional/east,
 /obj/item/kirbyplants/random,
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "iCZ" = (
@@ -29268,6 +29266,7 @@
 /area/station/medical/surgery/aft)
 "kqG" = (
 /obj/machinery/light/directional/east,
+/obj/machinery/modular_computer/preset/time_clock/directional/east,
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "kqP" = (
@@ -29789,12 +29788,10 @@
 	},
 /obj/item/dog_bone,
 /obj/item/clothing/gloves/tackler/combat/insulated/blueshield,
-/obj/structure/sign/plaques/kiddie/perfect_man{
-	pixel_x = -32
-	},
 /obj/item/modular_computer/laptop/preset/security{
 	pixel_y = 5
 	},
+/obj/structure/sign/flag/nanotrasen/directional/west,
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "kzX" = (
@@ -34067,13 +34064,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/wood/large,
 /area/station/commons/lounge)
-"lUN" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
-/turf/open/floor/carpet/green,
-/area/station/command/heads_quarters/nt_rep)
 "lVb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/effect/turf_decal/tile/red/half/contrasted{
@@ -36557,6 +36547,7 @@
 /area/station/security/checkpoint/escape)
 "mNz" = (
 /obj/effect/landmark/start/nanotrasen_consultant,
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "mNB" = (
@@ -40173,7 +40164,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
 /obj/effect/turf_decal/siding/yellow,
-/turf/open/floor/carpet/green,
+/turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "obD" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -43927,15 +43918,11 @@
 /turf/open/floor/iron/smooth_large,
 /area/station/security/brig)
 "pwf" = (
-/obj/structure/cable,
 /obj/machinery/fax{
 	fax_name = "Nanotrasen Consultant's Office";
 	name = "Nanotrasen Consultant's Fax Machine"
 	},
 /obj/item/radio/intercom/directional/south,
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
 /obj/structure/table/wood/fancy/green,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
@@ -48695,6 +48682,7 @@
 	},
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/machinery/airalarm/directional/south,
+/obj/structure/cable,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "qVS" = (
@@ -48921,9 +48909,6 @@
 	},
 /obj/item/reagent_containers/cup/glass/mug/nanotrasen{
 	pixel_x = 10
-	},
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
 	},
 /obj/item/flashlight/lamp{
 	pixel_y = 11;
@@ -50852,15 +50837,32 @@
 /turf/open/floor/iron,
 /area/station/engineering/gravity_generator)
 "rGd" = (
+/obj/machinery/camera/directional/north{
+	c_tag = "Blueshield's Office - Armory"
+	},
+/obj/machinery/light/small/blacklight/directional/north,
+/obj/structure/safe/abovetilefloor,
+/obj/item/paperwork/captain{
+	pixel_x = -3;
+	pixel_y = 4;
+	name = "Asset Protection case records";
+	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
+	},
+/obj/item/reagent_containers/cup/glass/trophy{
+	desc = "You did good in the worst way possible.";
+	name = "Redshield 1st prize";
+	pixel_y = 9;
+	pixel_x = -2
+	},
+/obj/item/storage/fancy/cigarettes/cigars,
+/obj/item/storage/box/matches,
+/obj/item/reagent_containers/cup/glass/bottle/lizardwine,
+/obj/item/reagent_containers/cup/glass/flask,
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /obj/machinery/light_switch/directional/east,
 /obj/machinery/firealarm/directional/east{
 	pixel_x = 32
 	},
-/obj/machinery/camera/directional/east{
-	c_tag = "Command - Blueshield's Office"
-	},
-/obj/effect/turf_decal/siding/dark,
-/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "rGf" = (
@@ -51667,6 +51669,9 @@
 /obj/item/storage/toolbox/ammobox/wt550m9,
 /obj/item/shield/riot,
 /obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/sign/plaques/kiddie/perfect_man{
+	pixel_x = -32
+	},
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "rRN" = (
@@ -54798,9 +54803,6 @@
 /obj/item/pen/fountain{
 	pixel_x = -5;
 	pixel_y = 5
-	},
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
 	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
@@ -60002,6 +60004,7 @@
 	},
 /area/station/medical/medbay/central)
 "uHV" = (
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "uHZ" = (
@@ -179443,7 +179446,7 @@ jnJ
 dcr
 vMF
 ehb
-lUN
+ehb
 pwf
 ybl
 uOP

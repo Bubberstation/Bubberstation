@@ -3,9 +3,6 @@
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/blueshield)
 "b" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
 /obj/machinery/modular_computer/preset/command{
 	dir = 8
 	},
@@ -30,19 +27,16 @@
 	pixel_y = 3;
 	pixel_x = 7
 	},
+/obj/structure/sign/clock/directional/south,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "h" = (
 /turf/template_noop,
 /area/template_noop)
 "i" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
 /obj/structure/chair/office{
 	dir = 8
 	},
-/obj/machinery/holopad,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "j" = (
@@ -118,8 +112,8 @@
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "u" = (
-/obj/effect/mapping_helpers/turn_off_lights_with_lightswitch,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/effect/landmark/start/blueshield,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "v" = (
@@ -130,9 +124,6 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "w" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
 /obj/structure/table/wood,
 /obj/machinery/requests_console/auto_name/directional/west,
 /obj/effect/mapping_helpers/requests_console/information,
@@ -183,7 +174,31 @@
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "B" = (
-/obj/structure/cable,
+/obj/machinery/camera/directional/north{
+	c_tag = "Blueshield's Office - Armory"
+	},
+/obj/machinery/light/small/blacklight/directional/north,
+/obj/structure/safe/abovetilefloor,
+/obj/item/paperwork/captain{
+	pixel_x = -3;
+	pixel_y = 4;
+	name = "Asset Protection case records";
+	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
+	},
+/obj/item/toy/plush/skyrat/fox/mia{
+	desc = "A small stuffed silver fox with a collar tag that says “DAP” and a tiny bell in its fluffy tail.""A cute, marketable version of one of the DAP's mascots, Vigilant the fox. She has a blue collar with a shield-shaped tag that reads DAP. Holding her makes you feel protected.";
+	name = "Vigilant plushie"
+	},
+/obj/item/reagent_containers/cup/glass/trophy{
+	desc = "You did good in the worst way possible.";
+	name = "Redshield 1st prize";
+	pixel_y = 9;
+	pixel_x = -2
+	},
+/obj/item/storage/fancy/cigarettes/cigars,
+/obj/item/storage/box/matches,
+/obj/item/reagent_containers/cup/glass/bottle/lizardwine,
+/obj/item/reagent_containers/cup/glass/flask,
 /obj/machinery/power/apc/auto_name/directional/east,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
@@ -214,6 +229,7 @@
 /obj/machinery/computer/crew{
 	dir = 4
 	},
+/obj/machinery/newscaster/directional/west,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "I" = (
@@ -247,6 +263,7 @@
 /obj/item/bedsheet/nanotrasen,
 /obj/structure/bed,
 /obj/machinery/light/small/directional/south,
+/obj/structure/secure_safe/directional/south,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "O" = (
