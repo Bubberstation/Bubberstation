@@ -4,7 +4,7 @@
 	icon_state = "crystal_cell"
 	maxcharge = STANDARD_BATTERY_CHARGE * 20
 	chargerate = STANDARD_BATTERY_RATE * 4
-	emp_damage_modifier = STANDARD_CELL_CHARGE * 20 // should hopefully guarentee full depowerment on EMP
+	emp_damage_modifier = STANDARD_BATTERY_CHARGE * 20 // should hopefully guarentee full depowerment on EMP
 	charge_light_type = null
 	connector_type = "crystal"
 	custom_materials = null
