@@ -206,6 +206,24 @@
 #define CYBORG_ICON_CC_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_CC.dmi'
 #define CYBORG_ICON_SEC_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_sec.dmi'
 #define CYBORG_ICON_CLOWN_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_clown.dmi'
+
+// SKIFF ICON DEFINES - Sprites by Giik and BitSynergy
+// #define CYBORG_ICON_TYPE_SKIFF "skiff"
+#define CYBORG_ICON_CARGO_SKIFF 'modular_zubbers/code/modules/silicons/borgs/sprites/skiff/skiff_cargo.dmi'
+#define CYBORG_ICON_CLOWN_SKIFF 'modular_zubbers/code/modules/silicons/borgs/sprites/skiff/skiff_clown.dmi'
+#define CYBORG_ICON_ENG_SKIFF 'modular_zubbers/code/modules/silicons/borgs/sprites/skiff/skiff_eng.dmi'
+#define CYBORG_ICON_JANI_SKIFF 'modular_zubbers/code/modules/silicons/borgs/sprites/skiff/skiff_jani.dmi'
+#define CYBORG_ICON_MED_SKIFF 'modular_zubbers/code/modules/silicons/borgs/sprites/skiff/skiff_med.dmi'
+#define CYBORG_ICON_MINE_SKIFF 'modular_zubbers/code/modules/silicons/borgs/sprites/skiff/skiff_mine.dmi'
+#define CYBORG_ICON_NINJA_SKIFF 'modular_zubbers/code/modules/silicons/borgs/sprites/skiff/skiff_ninja.dmi'
+#define CYBORG_ICON_PK_SKIFF 'modular_zubbers/code/modules/silicons/borgs/sprites/skiff/skiff_pk.dmi'
+#define CYBORG_ICON_SCI_SKIFF 'modular_zubbers/code/modules/silicons/borgs/sprites/skiff/skiff_sci.dmi'
+#define CYBORG_ICON_SEC_SKIFF 'modular_zubbers/code/modules/silicons/borgs/sprites/skiff/skiff_sec.dmi'
+#define CYBORG_ICON_SERV_SKIFF 'modular_zubbers/code/modules/silicons/borgs/sprites/skiff/skiff_serv.dmi'
+#define CYBORG_ICON_GEN_SKIFF 'modular_zubbers/code/modules/silicons/borgs/sprites/skiff/skiff_standard.dmi'
+#define CYBORG_ICON_SYNDIE_SKIFF 'modular_zubbers/code/modules/silicons/borgs/sprites/skiff/skiff_syndie.dmi'
+#define CYBORG_ICON_LUST_SKIFF 'modular_zubbers/code/modules/silicons/borgs/sprites/skiff/skiff_lustwish.dmi'
+
 /************************************************************
 				CYBORG HAT OFFSETS GO BELOW
 *************************************************************/
@@ -262,3 +280,6 @@
 #define XENOBORG_HAT_OFFSET \
 	SKIN_HAT_OFFSET = list("north" = list(16, 10), "south" = list(16, 5), "east" = list(32, 7), "west" = list(0, 7)), \
 	SKIN_HAT_REST_OFFSET = list("north" = list(16, 6), "south" = list(16, 6), "east" = list(31, 6), "west" = list(1, 6))
+#define SKIFF_HAT_OFFSET \
+	SKIN_HAT_OFFSET = list("north" = list(0, -6), "south" = list(0, -5), "east" = list(-1, -5), "west" = list(1, -5)), \
+	SKIN_HAT_REST_OFFSET = list("north" = list(0, -12), "south" = list(0, -18), "east" = list(6, -18), "west" = list(-6, -18))
