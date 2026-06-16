@@ -32,7 +32,7 @@
 /datum/preference/numeric/limb_alpha/is_accessible(datum/preferences/preferences)
 	if(!enabled)
 		return FALSE
-	if(!..(preferences))
+	if(!..())
 		return FALSE
 	if(!preferences.read_preference(/datum/preference/toggle/limb_alpha_per_limb))
 		return FALSE
