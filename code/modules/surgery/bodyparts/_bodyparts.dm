@@ -1216,8 +1216,8 @@
 	if(owner_species && owner_species.specific_alpha != 255)
 		alpha = owner_species.specific_alpha
 
-	// BUBBER EDIT ADDITION START - per-limb alpha. Species alpha is the baseline, the per-limb
-	// preference (stored in dna.features) overrides it for this specific zone if present.
+	// BUBBER EDIT ADDITION START - per-limb alpha.
+	// preference (stored in dna.features) overrides it for this specific zone if present over species alpha
 	limb_alpha = owner_species?.specific_alpha || 255
 	var/limb_alpha_key = "limb_alpha_[body_zone]"
 	if(limb_alpha_key in human_owner.dna.features)
