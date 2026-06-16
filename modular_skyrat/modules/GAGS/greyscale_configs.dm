@@ -1403,6 +1403,18 @@ TREK
 	name = "Catgloves Worn"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/catglove_worn.dmi'
 
+
+/datum/greyscale_config/magpaws
+	name = "Magpaws"
+	icon_file = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/gloves/magpaws.json'
+
+/datum/greyscale_config/magpaws/worn
+	name = "Magpaws Worn"
+	icon_file = 'modular_skyrat/modules/GAGS/icons/magpaws.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/gloves/magpaws_worn.json'
+
+
 // MISC SHOES
 
 /datum/greyscale_config/heels
