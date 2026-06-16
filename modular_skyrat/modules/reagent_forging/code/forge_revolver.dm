@@ -52,11 +52,14 @@
 	var/hardness = material.get_property(MATERIAL_HARDNESS)
 	var/flexibility = material.get_property(MATERIAL_FLEXIBILITY)
 	var/inaccuracy_modifier = max(0, ((flexibility * 2) - (density + hardness)) * 40 )
+	var/damage_modifier = min(0, ((density + hardness) - (flexibility * 2)) / 20)
 
 	if(!remove)
 		spread += inaccuracy_modifier
+		projectile_damage_multiplier += damage_modifier
 	else
 		spread -= inaccuracy_modifier
+		projectile_damage_multiplier -= damage_modifier
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/give_manufacturer_examine()
 	return
