@@ -39,9 +39,9 @@
 	force = 10 // double the force of a normal cell
 	throwforce = 10
 	w_class = WEIGHT_CLASS_NORMAL
-	maxcharge = STANDARD_CELL_CHARGE * 100 // megawatt capacity fixed
-	chargerate = STANDARD_CELL_RATE * 0.2 // charging reduced from 70% reduction to 80%
-	emp_damage_modifier = 5 // slight increase, 4 to 5.
+	maxcharge = STANDARD_CELL_CHARGE * 60 // reduced down from 1mJ, to 600kJ
+	chargerate = STANDARD_CELL_RATE * 0.3 // charge speed reduced by 70%
+	emp_damage_modifier = 4
 	charge_light_type = null
 	connector_type = "leadacid"
 
