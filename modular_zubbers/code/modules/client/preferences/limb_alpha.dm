@@ -19,7 +19,6 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	minimum = 0
 	maximum = 255
-	step = 1
 	can_randomize = FALSE
 	/// The BODY_ZONE_* this slider controls. Also forms the dna.features key.
 	var/limb_zone
