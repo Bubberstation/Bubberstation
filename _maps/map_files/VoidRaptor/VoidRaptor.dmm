@@ -46320,12 +46320,11 @@
 /obj/item/screwdriver,
 /obj/item/shield/riot,
 /obj/structure/sign/flag/galfed/directional/south,
-/obj/machinery/door/window/brigdoor/right/directional/east{
-	req_access = list("captain");
-	name = "Blueshield's Armory";
-	dir = 1
-	},
 /obj/item/storage/toolbox/ammobox/wt550m9,
+/obj/machinery/door/window/brigdoor/left/directional/north{
+	name = "High-Risk Modules";
+	req_access = list("captain")
+	},
 /turf/open/floor/engine,
 /area/station/command/heads_quarters/blueshield)
 "mYH" = (
@@ -55766,10 +55765,9 @@
 "pCy" = (
 /obj/machinery/suit_storage_unit/security,
 /obj/structure/sign/flag/nanotrasen/directional/south,
-/obj/machinery/door/window/brigdoor/right/directional/east{
+/obj/machinery/door/window/brigdoor/left/directional/north{
 	req_access = list("captain");
-	name = "Blueshield's Armory";
-	dir = 1
+	name = "Blueshield's Armory"
 	},
 /turf/open/floor/engine,
 /area/station/command/heads_quarters/blueshield)
