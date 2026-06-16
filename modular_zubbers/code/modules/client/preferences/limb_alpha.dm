@@ -23,8 +23,6 @@
 	can_randomize = FALSE
 	/// The BODY_ZONE_* this slider controls. Also forms the dna.features key.
 	var/limb_zone
-	/// If TRUE, this slider only shows (and only applies) when the per-limb toggle is enabled.
-	var/requires_toggle = FALSE
 	/// If FALSE, the slider is hidden entirely. Kept around so head/chest can be re-enabled later.
 	var/enabled = TRUE
 
@@ -36,14 +34,14 @@
 		return FALSE
 	if(!..(preferences))
 		return FALSE
-	if(requires_toggle && !preferences.read_preference(/datum/preference/toggle/limb_alpha_per_limb))
+	if(!preferences.read_preference(/datum/preference/toggle/limb_alpha_per_limb))
 		return FALSE
 	return TRUE
 
 /datum/preference/numeric/limb_alpha/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	if(!enabled)
 		value = maximum
-	else if(requires_toggle && preferences && !preferences.read_preference(/datum/preference/toggle/limb_alpha_per_limb))
+	else if(preferences && !preferences.read_preference(/datum/preference/toggle/limb_alpha_per_limb))
 		value = maximum
 	target.dna.features["limb_alpha_[limb_zone]"] = value
 	return TRUE
@@ -53,29 +51,23 @@
 /datum/preference/numeric/limb_alpha/head
 	savefile_key = "limb_alpha_head"
 	limb_zone = BODY_ZONE_HEAD
-	enabled = FALSE
 
 /datum/preference/numeric/limb_alpha/chest
 	savefile_key = "limb_alpha_chest"
 	limb_zone = BODY_ZONE_CHEST
-	enabled = FALSE
 
 /datum/preference/numeric/limb_alpha/l_arm
 	savefile_key = "limb_alpha_l_arm"
 	limb_zone = BODY_ZONE_L_ARM
-	requires_toggle = TRUE
 
 /datum/preference/numeric/limb_alpha/r_arm
 	savefile_key = "limb_alpha_r_arm"
 	limb_zone = BODY_ZONE_R_ARM
-	requires_toggle = TRUE
 
 /datum/preference/numeric/limb_alpha/l_leg
 	savefile_key = "limb_alpha_l_leg"
 	limb_zone = BODY_ZONE_L_LEG
-	requires_toggle = TRUE
 
 /datum/preference/numeric/limb_alpha/r_leg
 	savefile_key = "limb_alpha_r_leg"
 	limb_zone = BODY_ZONE_R_LEG
-	requires_toggle = TRUE
