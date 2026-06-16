@@ -52,6 +52,7 @@
 /area/station/command/heads_quarters/blueshield)
 "e" = (
 /obj/effect/turf_decal/siding/dark,
+/obj/effect/landmark/start/blueshield,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "f" = (
@@ -82,6 +83,12 @@
 /obj/structure/sign/clock/directional/north,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
+"i" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/iron,
+/area/station/hallway/primary/port)
 "j" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Blueshield's Quarters"
@@ -202,16 +209,11 @@
 "y" = (
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/blueshield)
-"z" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/iron,
-/area/station/hallway/primary/port)
 "A" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /obj/machinery/holopad,
+/obj/effect/landmark/start/blueshield,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "B" = (
@@ -368,6 +370,7 @@
 	pixel_y = 5
 	},
 /obj/effect/mapping_helpers/turn_off_lights_with_lightswitch,
+/obj/effect/landmark/start/blueshield,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "V" = (
@@ -494,7 +497,7 @@ y
 (7,1,1) = {"
 v
 v
-z
+i
 C
 Y
 A
