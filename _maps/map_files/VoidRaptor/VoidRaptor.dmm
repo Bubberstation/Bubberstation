@@ -8856,7 +8856,7 @@
 /area/station/medical/chemistry)
 "cGZ" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine)
 "cHc" = (
@@ -37822,8 +37822,8 @@
 /turf/open/floor/engine,
 /area/station/tcommsat/computer)
 "kKX" = (
+/obj/structure/barricade/wooden/crude,
 /obj/effect/spawner/structure/window/reinforced,
-/obj/structure/barricade/wooden,
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine/atmos)
 "kLc" = (
@@ -46321,8 +46321,8 @@
 /obj/item/shield/riot,
 /obj/structure/sign/flag/galfed/directional/south,
 /obj/item/storage/toolbox/ammobox/wt550m9,
-/obj/machinery/door/window/brigdoor/left/directional/north{
-	name = "High-Risk Modules";
+/obj/machinery/door/window/brigdoor/right/directional/north{
+	name = "Blueshield's Armory";
 	req_access = list("captain")
 	},
 /turf/open/floor/engine,
@@ -51625,8 +51625,9 @@
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Maintenance Hatch"
 	},
-/obj/effect/spawner/random/structure/barricade,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/barricade/wooden/crude,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/department/engine)
 "owG" = (
@@ -59246,7 +59247,6 @@
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Maintenance Hatch"
 	},
-/obj/effect/spawner/random/structure/barricade,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -59255,6 +59255,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance/departmental,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/department/engine/atmos)
 "qyv" = (
