@@ -772,6 +772,9 @@
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/icemoon/underground/unexplored)
 "kQ" = (
+/obj/machinery/computer/security/telescreen/entertainment/directional/east{
+	pixel_x = 32
+	},
 /obj/effect/turf_decal/siding/thinplating_new{
 	dir = 8;
 	color = "#595959"
@@ -784,10 +787,6 @@
 /obj/item/radio/entertainment/speakers/physical{
 	pixel_x = 0;
 	pixel_y = 10
-	},
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 32;
-	pixel_y = -16
 	},
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
@@ -810,16 +809,15 @@
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/icemoon/underground/unexplored)
 "lu" = (
-/obj/structure/closet/crate/bin,
-/obj/effect/turf_decal/siding/dark,
-/obj/effect/turf_decal/trimline/dark_green/filled/line,
-/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner,
-/obj/machinery/computer/security/telescreen{
-	pixel_y = -32;
+/obj/machinery/computer/security/telescreen/normal/directional/south{
 	network = list("lizardgas");
 	desc = "A telescreen that connects to the gas station's camera network.";
 	name = "lizard gas camera monitor"
 	},
+/obj/structure/closet/crate/bin,
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/trimline/dark_green/filled/line,
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner,
 /turf/open/floor/iron/dark/smooth_edge,
 /area/ruin/thelizardsgas_lavaland)
 "lx" = (
@@ -2148,8 +2146,7 @@
 /turf/open/floor/iron/textured_large,
 /area/ruin/thelizardsgas_lavaland)
 "CC" = (
-/obj/machinery/computer/security/telescreen{
-	pixel_y = -32;
+/obj/machinery/computer/security/telescreen/normal/directional/south{
 	network = list("lizardgas");
 	desc = "A telescreen that connects to the gas station's camera network.";
 	name = "lizard gas camera monitor"
