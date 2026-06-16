@@ -543,8 +543,10 @@
 		. += draw_color
 	if(is_invisible)
 		. += "invisible"
+	// BUBBER EDIT ADDITION START - per-limb alpha
 	if(limb_alpha != 255)
-		. += "alpha_[limb_alpha]" // BUBBER EDIT ADDITION - per-limb alpha
+		. += "alpha_[limb_alpha]"
+	// BUBBER EDIT ADDITION END
 	for(var/datum/bodypart_overlay/overlay as anything in bodypart_overlays)
 		if(!overlay.can_draw_on_bodypart(src, owner, is_husked))
 			continue
