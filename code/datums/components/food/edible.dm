@@ -504,7 +504,9 @@ Behavior that's still missing from this component that original food items had t
 	var/fraction = 0.3
 	fraction = min(bite_consumption / owner.reagents.total_volume, 1)
 	owner.reagents.trans_to(eater, bite_consumption, transferred_by = feeder, methods = INGEST)
-	eater.hud_used?.hunger?.update_hunger_bar()
+	var/atom/movable/screen/hunger/hunger_bar = eater.hud_used?.screen_objects[HUD_MOB_HUNGER]
+	if (istype(hunger_bar))
+		hunger_bar.update_hunger_bar()
 	bitecount++
 
 	checkLiked(fraction, eater)
@@ -568,8 +570,10 @@ Behavior that's still missing from this component that original food items had t
 		qdel(food)
 		return FALSE
 
-	if(SEND_SIGNAL(eater, COMSIG_CARBON_ATTEMPT_EAT, food) & COMSIG_CARBON_BLOCK_EAT)
-		return
+	if(SEND_SIGNAL(eater, COMSIG_CARBON_ATTEMPT_EAT, food) & BLOCK_EAT_ATTEMPT)
+		return FALSE
+	if(SEND_SIGNAL(food, COMSIG_FOOD_ATTEMPT_EAT, eater, feeder) & BLOCK_EAT_ATTEMPT)
+		return FALSE
 	return TRUE
 
 ///Applies food buffs according to the crafting complexity

@@ -1,9 +1,10 @@
 /// What to show on the AI monitor
 /datum/preference/choiced/ai_emote_display
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_SILICON_PREFS // BUBBER EDIT CHANGE - Original: PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "preferred_ai_emote_display"
 	should_generate_icons = TRUE
+	should_update_preview = FALSE
 
 /datum/preference/choiced/ai_emote_display/init_possible_values()
 	if(!length(GLOB.ai_status_display_all_options))

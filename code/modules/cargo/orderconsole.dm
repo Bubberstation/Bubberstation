@@ -34,6 +34,11 @@
 	var/cargo_account = ACCOUNT_CAR
 	///Interface name for the ui_interact call for different subtypes.
 	var/interface_type = "Cargo"
+	// BUBBER EDIT START
+	/// Can this console toggle and use private account payments.
+	var/can_private_purchases = TRUE
+	var/console_flags = NONE
+	// BUBBER EDIT END
 
 /obj/machinery/computer/cargo/request
 	name = "supply request console"
@@ -96,6 +101,9 @@
 	data["can_send"] = can_send
 	data["can_approve_requests"] = can_approve_requests
 	data["requestonly"] = requestonly
+	// BUBBER EDIT START - allow UI to hide private toggle on unsupported consoles
+	data["allow_private_purchases"] = can_private_purchases
+	// BUBBER EDIT END
 	var/message = "Remember to stamp and send back the supply manifests."
 	if(SSshuttle.centcom_message)
 		message = SSshuttle.centcom_message
@@ -165,9 +173,8 @@
 /**
  * returns a list of supply packs for a certain group
  * * group - the group of packs to return
- * * express - if this is an express console
  */
-/obj/machinery/computer/cargo/proc/get_packs_data(group, express = FALSE)
+/obj/machinery/computer/cargo/proc/get_packs_data(group)
 	var/list/packs = list()
 	for(var/pack_id in SSshuttle.supply_packs)
 		var/datum/supply_pack/pack = SSshuttle.supply_packs[pack_id]
@@ -177,14 +184,20 @@
 		if(pack.order_flags & ORDER_INVISIBLE)
 			continue
 
-		// Express console packs check
-		if(express && (pack.order_flags & (ORDER_EMAG_ONLY | ORDER_SPECIAL)))
+		if((pack.order_flags & ORDER_EMAG_ONLY) && !(obj_flags & EMAGGED))
+			continue
+		if((pack.order_flags & ORDER_SPECIAL) && !(pack.order_flags & ORDER_SPECIAL_ENABLED))
 			continue
 
-		if(!express && (((pack.order_flags & ORDER_EMAG_ONLY) && !(obj_flags & EMAGGED)) || ((pack.order_flags & ORDER_SPECIAL) && !(pack.order_flags & ORDER_SPECIAL_ENABLED)) || (pack.order_flags & ORDER_POD_ONLY)))
+		// BUBBER EDIT START - Interdyne-only items check
+		if((pack.order_flags & ORDER_INTERDYNE_ONLY) && !(console_flags & CARGO_CONSOLE_INTERDYNE))
 			continue
+		// BUBBER EDIT END
 
 		if((pack.order_flags & ORDER_CONTRABAND) && !contraband)
+			continue
+
+		if(!is_express && (pack.order_flags & ORDER_POD_ONLY))
 			continue
 
 		var/obj/item/first_item = length(pack.contains) > 0 ? pack.contains[1] : null
@@ -199,6 +212,7 @@
 			"access" = pack.access,
 			"contraband" = (pack.order_flags & ORDER_CONTRABAND),
 			"contains" = pack.get_contents_ui_data(),
+			"subcategory" = pack.subcategory, // BUBBER EDIT
 		))
 
 	return packs
@@ -226,7 +240,7 @@
 	if(amount > CARGO_MAX_ORDER || amount < 1) // Holy shit fuck off
 		CRASH("Invalid amount passed into add_item")
 
-	if(((pack.order_flags & ORDER_EMAG_ONLY) && !(obj_flags & EMAGGED)) || ((pack.order_flags & ORDER_CONTRABAND) && !contraband) || (pack.order_flags & ORDER_POD_ONLY) || ((pack.order_flags & ORDER_SPECIAL) && !(pack.order_flags & ORDER_SPECIAL_ENABLED)))
+	if(((pack.order_flags & ORDER_EMAG_ONLY) && !(obj_flags & EMAGGED)) || ((pack.order_flags & ORDER_CONTRABAND) && !contraband) || (pack.order_flags & ORDER_POD_ONLY) || ((pack.order_flags & ORDER_SPECIAL) && !(pack.order_flags & ORDER_SPECIAL_ENABLED)) || ((pack.order_flags & ORDER_INTERDYNE_ONLY) && !(console_flags & CARGO_CONSOLE_INTERDYNE))) // BUBBER EDIT
 		return
 
 	var/name = "*None Provided*"
@@ -241,9 +255,15 @@
 		rank = "Silicon"
 
 	var/datum/bank_account/account
+
 	if(isliving(user))
 		var/mob/living/living_user = user
 		var/obj/item/card/id/id_card = living_user.get_idcard(TRUE)
+
+		var/bypass = FALSE
+		if(istype(id_card, /obj/item/card/id/advanced/chameleon)) //We'll bypass access restrictions
+			bypass = TRUE
+
 		account = id_card?.registered_account // We can still assign an account for request department purposes.
 		if(self_paid)
 			if(!istype(id_card))
@@ -256,7 +276,7 @@
 				say("Invalid bank account.")
 				return
 			var/list/access = id_card.GetAccess()
-			if(pack.access_view && !(pack.access_view in access))
+			if((pack.access_view && !(pack.access_view in access)) && !bypass)
 				say("[id_card] lacks the requisite access for this purchase.")
 				return
 
@@ -280,7 +300,22 @@
 				if(dept_choice == "Cargo Budget")
 					personal_department = null
 
-	if((pack.order_flags & ORDER_GOODY) && !self_paid)
+
+		if(isliving(user))
+			var/mob/living/living_user = user
+			var/obj/item/card/id/id_card = living_user.get_idcard(TRUE)
+			var/list/access = id_card?.GetAccess()
+			if(!id_card || !living_user || !access)
+				living_user = user
+				id_card = living_user.get_idcard(TRUE)
+			if(pack.access_view && !(pack.access_view in access) && personal_department)
+				// We want to block cargo requests when a player is requesting a restricted pack that they don't have access to.
+				// BUT only when it's requested with non-cargo funds, as cargo had direct oversight over their own purchases with their own budget.
+				// HOWEVER, this shouldn't prevent someone from buying something using their own personal funds.
+				say("ERROR: User lacks the requisite access for this purchase request.")
+				return
+
+	if((pack.order_flags & ORDER_GOODY) && !self_paid && !pack.allow_non_private_purchase) // BUBBER EDIT
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 		say("ERROR: Small crates may only be purchased by private accounts.")
 		return
@@ -374,10 +409,10 @@
 				//create the paper from the SSshuttle.shopping_list
 				if(length(SSshuttle.shopping_list))
 					var/obj/item/paper/requisition/requisition_paper = new(get_turf(src))
-					requisition_paper.name = "requisition form - [station_time_timestamp()]"
+					requisition_paper.name = "requisition form - [server_timestamp(ic_time = TRUE)] (PT: [round_timestamp()])"
 					var/requisition_text = "<h2>[station_name()] Supply Requisition</h2>"
 					requisition_text += "<hr/>"
-					requisition_text += "Time of Order: [station_time_timestamp()]<br/><br/>"
+					requisition_text += "Time of Order: [UNDERLINED_HTML_TEXT("[server_timestamp(ic_time = TRUE)]", "Shift Time: [round_timestamp()]")]<br/><br/>"
 					for(var/datum/supply_order/order as anything in SSshuttle.shopping_list)
 						requisition_text += "<b>[order.pack.name]</b></br>"
 						requisition_text += "- Order ID: [order.id]</br>"
@@ -392,7 +427,7 @@
 						if(reason)
 							requisition_text += "- Reason Given: [reason]</br>"
 						requisition_text += "</br></br>"
-					requisition_paper.add_raw_text(requisition_text)
+					requisition_paper.add_raw_text(requisition_text, advanced_html = TRUE)
 					requisition_paper.color = "#9ef5ff"
 					requisition_paper.update_appearance()
 
@@ -480,6 +515,9 @@
 			SSshuttle.request_list.Cut()
 			. = TRUE
 		if("toggleprivate")
+			// BUBBER EDIT ADDITION - enforce private toggle capability server-side
+			if(!can_private_purchases)
+				return
 			self_paid = !self_paid
 			. = TRUE
 	if(.)

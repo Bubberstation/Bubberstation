@@ -10,7 +10,6 @@
 	throwforce = 15
 	resistance_flags = FIRE_PROOF
 	merge_type = /obj/item/stack/sheet/mineral/stone
-	grind_results = null
 	material_type = /datum/material/stone
 	matter_amount = 0
 	source = null
@@ -18,7 +17,7 @@
 	stairs_type = /obj/structure/stairs/stone
 
 GLOBAL_LIST_INIT(stone_recipes, list ( \
-	new/datum/stack_recipe("stone brick wall", /turf/closed/wall/mineral/stone, 5, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_TRANSFERS_REAGENTS, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("stone brick wall", /turf/closed/wall/mineral/stone, 5, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_TRANSFERS_REAGENT_COMPONENTS, category = CAT_STRUCTURE), \
 	new/datum/stack_recipe("stone brick tile", /obj/item/stack/tile/mineral/stone, 1, 4, 20, category = CAT_TILES),
 	new/datum/stack_recipe("millstone", /obj/structure/millstone, 6, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE),
 	new/datum/stack_recipe("stone cauldron", /obj/machinery/cauldron, 5, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE),
@@ -34,15 +33,14 @@ GLOBAL_LIST_INIT(stone_recipes, list ( \
 /datum/material/stone
 	name = "stone"
 	desc = "It's stone."
-	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
+	mat_flags = MATERIAL_CLASS_RIGID | MATERIAL_BASIC_RECIPES
 	sheet_type = /obj/item/stack/sheet/mineral/stone
-	value_per_unit = 0.005
-	beauty_modifier = 0.01
 	color = "#59595a"
 	greyscale_color = "#59595a"
 	value_per_unit = 0.0025
-	armor_modifiers = list(MELEE = 0.75, BULLET = 0.5, LASER = 1.25, ENERGY = 0.5, BOMB = 0.5, BIO = 0.25, FIRE = 1.5, ACID = 1.5)
-	beauty_modifier = 0.3
+	mat_properties = list(
+		MATERIAL_BEAUTY = 0.3,
+	)
 	turf_sound_override = FOOTSTEP_PLATING
 
 /obj/item/stack/stone
@@ -96,7 +94,7 @@ GLOBAL_LIST_INIT(stone_recipes, list ( \
 	explosive_resistance = 2 // Rock and stone to the bone, or at least a bit longer than walls made of metal sheets!
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_STONE_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
-	canSmoothWith = SMOOTH_GROUP_STONE_WALLS
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_STONE_WALLS + SMOOTH_GROUP_WALLS
 	custom_materials = list(
 		/datum/material/stone = SHEET_MATERIAL_AMOUNT  * 2,
 	)
@@ -123,7 +121,7 @@ GLOBAL_LIST_INIT(stone_recipes, list ( \
 	base_icon_state = "wall"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_STONE_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
-	canSmoothWith = SMOOTH_GROUP_STONE_WALLS
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_STONE_WALLS + SMOOTH_GROUP_WALLS
 	custom_materials = list(
 		/datum/material/stone = SHEET_MATERIAL_AMOUNT  * 2,
 	)
@@ -139,7 +137,7 @@ GLOBAL_LIST_INIT(stone_recipes, list ( \
 	walltype = /turf/closed/wall/mineral/stone
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_STONE_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
-	canSmoothWith = SMOOTH_GROUP_STONE_WALLS
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_STONE_WALLS + SMOOTH_GROUP_WALLS
 
 /turf/closed/mineral/gets_drilled(mob/user, give_exp = FALSE)
 	if(prob(5))

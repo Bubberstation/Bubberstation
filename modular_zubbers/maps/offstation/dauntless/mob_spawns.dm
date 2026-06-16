@@ -262,7 +262,7 @@
 	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/brigofficer
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/bulletproof/old
-	back = /obj/item/storage/backpack/security/redsec
+	back = /obj/item/storage/backpack/security
 	backpack_contents = list(
 		/obj/item/flashlight/seclite = 1,
 		/obj/item/storage/box/survival = 1,
@@ -297,7 +297,7 @@
 	head = /obj/item/clothing/head/soft/black
 
 /datum/outfit/dauntless/syndicate/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 	return ..()
 
 // Dauntless Command
@@ -323,7 +323,7 @@
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/vest/warden/syndicate
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
-	back = /obj/item/storage/backpack/satchel/sec/redsec
+	back = /obj/item/storage/backpack/satchel/sec
 	head = /obj/item/clothing/head/hats/hos/beret/syndicate
 	r_pocket = /obj/item/flashlight/seclite
 	implants = list(
@@ -356,5 +356,5 @@
 	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/stationadmiral
 
 /datum/outfit/dauntless/command/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 	return ..()

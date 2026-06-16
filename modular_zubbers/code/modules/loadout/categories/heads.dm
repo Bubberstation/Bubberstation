@@ -27,11 +27,6 @@
 	item_path = /obj/item/clothing/head/hats/warden/drill
 	restricted_roles = list(JOB_WARDEN)
 
-/datum/loadout_item/head/hats/warden/police/patrol
-	name = "Police Patrol Cap"
-	item_path = /obj/item/clothing/head/hats/warden/police/patrol
-	restricted_roles = list(ALL_JOBS_SEC)
-
 /datum/loadout_item/head/helmet/sec/futuristic
 	name = "Futuristic Security Helmet"
 	item_path = /obj/item/clothing/head/helmet/sec/futuristic
@@ -65,15 +60,16 @@
 	donator_only = TRUE
 	restricted_roles = list(JOB_NT_REP)
 
-/datum/loadout_item/head/security_garrison
-	name = "Security Garrison Cap"
-	item_path = /obj/item/clothing/head/security_garrison
-	restricted_roles = list(ALL_JOBS_SEC)
+/datum/loadout_item/head/hats/blueshield_beret
+	name = "Blueshield's Beret"
+	item_path = /obj/item/clothing/head/beret/blueshield
+	restricted_roles = list(JOB_BLUESHIELD)
 
-/datum/loadout_item/head/security_cap
-	name = "Security Cap"
-	item_path = /obj/item/clothing/head/security_cap
-	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/head/hats/blueshield_beret_navy
+	name = "Navy Blueshield's Beret"
+	item_path = /obj/item/clothing/head/beret/blueshield/navy
+	restricted_roles = list(JOB_BLUESHIELD)
 
 /datum/loadout_item/head/security_cap/soft
 	name = "Security Soft Cap"
@@ -97,22 +93,12 @@
 
 /datum/loadout_item/head/beret/sec/peacekeeper
 	name = "Peacekeeper Beret"
-	item_path = /obj/item/clothing/head/beret/sec/peacekeeper
+	item_path = /obj/item/clothing/head/beret/sec
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/beret/sec/peacekeeper/white
 	name = "Peacekeeper White Beret"
-	item_path = /obj/item/clothing/head/beret/sec/peacekeeper/white
-	restricted_roles = list(ALL_JOBS_SEC)
-
-/datum/loadout_item/head/helmet/sec/terra
-	name = "Sol Police Helmet"
-	item_path = /obj/item/clothing/head/helmet/sec/terra
-	restricted_roles = list(ALL_JOBS_SEC)
-
-/datum/loadout_item/head/hats/warden/police/patrol
-	name = "Warden's Police Cap"
-	item_path = /obj/item/clothing/head/hats/warden/police/patrol
+	item_path = /obj/item/clothing/head/beret/sec/white
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/head/helmet/sec/redsec
@@ -142,7 +128,7 @@
 
 /datum/loadout_item/head/beret/sec/peacekeeper/security_medic
 	name = "Security Medic Beret"
-	item_path = /obj/item/clothing/head/beret/sec/peacekeeper/security_medic
+	item_path = /obj/item/clothing/head/beret/sec/security_medic
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/head/lace_bow
@@ -179,3 +165,10 @@
 	name = "Skull Helmet"
 	item_path = /obj/item/clothing/head/helmet/skull/fake
 
+/datum/loadout_item/head/soft/plasmax_black
+	name = "PlasMAX Envirosuit Helmet"
+	item_path = /obj/item/clothing/head/helmet/space/plasmaman/plasmax_black
+
+/datum/loadout_item/head/colonial
+	name = "Colonial Cap"
+	item_path = /obj/item/clothing/head/hats/colonial

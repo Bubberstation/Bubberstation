@@ -4,9 +4,10 @@
 #define SILICON_NEUTER "It/Its"
 
 /datum/preference/choiced/silicon_gender
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_SILICON_PREFS // BUBBER EDIT CHANGE - Original: PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "silicon_gender"
+	should_update_preview = FALSE
 	var/static/use_character_gender = "Use character gender"
 	///Used to convert the read value of this preference into a gender
 	var/static/list/pronouns_to_genders = list(

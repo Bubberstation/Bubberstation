@@ -17,6 +17,7 @@
 	///The max capacity of modkits the PKA can have installed at once.
 	var/max_mod_capacity = 100
 	var/disablemodification = FALSE // Bubber edit, stops removal and addition of mods.
+	var/disabled_modkits // BUBBER EDIT - ADDITION - Additional var to handle certain modkits being disallwoed on specific PKAs
 
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/add_bayonet_point()
@@ -272,7 +273,7 @@
 	new /obj/effect/temp_visual/explosion/fast(get_turf(target))
 
 	for(var/turf/closed/mineral/mineral_turf in RANGE_TURFS(2, target) - target)
-		mineral_turf.gets_drilled(firer, 0.1)
+		mineral_turf.drill_aoe(firer, 0.1)
 
 	for(var/mob/living/living_mob in range(2, target) - firer - target)
 		if(!ismining(living_mob))
@@ -344,11 +345,14 @@
 
 	if(KA.get_remaining_mod_capacity() >= cost)
 		if(.)
-			if(transfer_to_loc && !user.transferItemToLoc(src, KA))
-				return
-			to_chat(user, span_notice("You install the modkit."))
-			playsound(loc, 'sound/items/tools/screwdriver.ogg', 100, TRUE)
-			KA.modkits |= src
+			if(!is_type_in_list(src, KA.disabled_modkits)) // BUBBER EDIT - ADDITION - If statement to check if this modkit is disabled on this PKA
+				if(transfer_to_loc && !user.transferItemToLoc(src, KA))
+					return
+				to_chat(user, span_notice("You install the modkit."))
+				playsound(loc, 'sound/items/tools/screwdriver.ogg', 100, TRUE)
+				KA.modkits |= src
+			else
+				to_chat(user, span_notice("The modkit cannot be installed on this model of kinetic accelerator.")) // BUBBER EDIT - ADDITION - END
 		else
 			to_chat(user, span_notice("The modkit you're trying to install would conflict with an already installed modkit. Remove existing modkits first."))
 	else
@@ -403,7 +407,6 @@
 
 // Recalculate recharge time after adding or removing cooldown mods.
 /obj/item/borg/upgrade/modkit/cooldown/proc/get_recharge_time(obj/item/gun/energy/recharge/kinetic_accelerator/KA)
-
 	var/new_recharge_time = initial(KA.recharge_time)
 	for(var/obj/item/borg/upgrade/modkit/modkit_upgrade as anything in KA.modkits)
 		if(istype(modkit_upgrade, src))
@@ -411,17 +414,14 @@
 
 	return new_recharge_time
 
-
 /obj/item/borg/upgrade/modkit/cooldown/install(obj/item/gun/energy/recharge/kinetic_accelerator/KA, mob/user)
 	. = ..()
 	if(.)
 		KA.recharge_time = get_recharge_time(KA)
 
-
 /obj/item/borg/upgrade/modkit/cooldown/uninstall(obj/item/gun/energy/recharge/kinetic_accelerator/KA)
 	..()
 	KA.recharge_time = get_recharge_time(KA)
-
 
 /obj/item/borg/upgrade/modkit/cooldown/minebot
 	name = "minebot cooldown decrease"
@@ -434,73 +434,84 @@
 	minebot_upgrade = TRUE
 	minebot_exclusive = TRUE
 
-
-//AoE blasts
-/obj/item/borg/upgrade/modkit/aoe
+// AoE blasts
+// These are a subtype of cooldown so they can affect firing speed
+/obj/item/borg/upgrade/modkit/cooldown/aoe
 	modifier = 0
 	cost = 10
-	denied_type = /obj/item/borg/upgrade/modkit/aoe
+	denied_type = /obj/item/borg/upgrade/modkit/cooldown/aoe
 	maximum_of_type = 1
+	/// Does the AOE mine turfs?
 	var/turf_aoe = FALSE
+	/// Have we taken another kit's AOE?
 	var/stats_stolen = FALSE
+	/// Multiplier for mob damage
+	var/damage_modifier = 0
 
-/obj/item/borg/upgrade/modkit/aoe/install(obj/item/gun/energy/recharge/kinetic_accelerator/KA, mob/user)
+/obj/item/borg/upgrade/modkit/cooldown/aoe/install(obj/item/gun/energy/recharge/kinetic_accelerator/KA, mob/user)
 	. = ..()
-	if(.)
-		for(var/obj/item/borg/upgrade/modkit/aoe/AOE in KA.modkits) //make sure only one of the aoe modules has values if somebody has multiple
-			if(AOE.stats_stolen || AOE == src)
-				continue
-			modifier += AOE.modifier //take its modifiers
-			AOE.modifier = 0
-			turf_aoe += AOE.turf_aoe
-			AOE.turf_aoe = FALSE
-			AOE.stats_stolen = TRUE
+	if(!.)
+		return
+	for(var/obj/item/borg/upgrade/modkit/cooldown/aoe/AOE in KA.modkits) //make sure only one of the aoe modules has values if somebody has multiple
+		if(AOE.stats_stolen || AOE == src)
+			continue
+		modifier += AOE.modifier //take its modifiers
+		damage_modifier += AOE.damage_modifier
+		AOE.modifier = 0
+		AOE.damage_modifier = 0
+		turf_aoe += AOE.turf_aoe
+		AOE.turf_aoe = FALSE
+		AOE.stats_stolen = TRUE
 
-/obj/item/borg/upgrade/modkit/aoe/uninstall(obj/item/gun/energy/recharge/kinetic_accelerator/KA)
+/obj/item/borg/upgrade/modkit/cooldown/aoe/uninstall(obj/item/gun/energy/recharge/kinetic_accelerator/KA)
 	..()
 	modifier = initial(modifier) //get our modifiers back
+	damage_modifier = initial(damage_modifier)
 	turf_aoe = initial(turf_aoe)
 	stats_stolen = FALSE
 
-/obj/item/borg/upgrade/modkit/aoe/modify_projectile(obj/projectile/kinetic/K)
+/obj/item/borg/upgrade/modkit/cooldown/aoe/modify_projectile(obj/projectile/kinetic/K)
 	K.name = "kinetic explosion"
 
-/obj/item/borg/upgrade/modkit/aoe/projectile_strike(obj/projectile/kinetic/kinetic_blast, turf/target_turf, atom/target, obj/item/gun/energy/recharge/kinetic_accelerator/KA)
+/obj/item/borg/upgrade/modkit/cooldown/aoe/projectile_strike(obj/projectile/kinetic/kinetic_blast, turf/target_turf, atom/target, obj/item/gun/energy/recharge/kinetic_accelerator/KA)
 	if(stats_stolen)
 		return
 	new /obj/effect/temp_visual/explosion/fast(target_turf)
 	if(turf_aoe)
-		for(var/T in RANGE_TURFS(2, target_turf) - target_turf)
+		for(var/T in RANGE_TURFS(1, target_turf) - target_turf)
 			if(ismineralturf(T))
 				var/turf/closed/mineral/M = T
 				M.gets_drilled(kinetic_blast.firer, 0.1)
 
-	if(modifier)
-		for(var/mob/living/living_mob in range(2, target) - kinetic_blast.firer - target)
+	if(!damage_modifier)
+		return
 
-			if(!ismining(living_mob))
-				continue
+	for(var/mob/living/living_mob in range(1, target) - kinetic_blast.firer - target)
+		if(!ismining(living_mob))
+			continue
+		var/armor = living_mob.run_armor_check(kinetic_blast.def_zone, kinetic_blast.armor_flag, armour_penetration = kinetic_blast.armour_penetration)
+		living_mob.apply_damage(kinetic_blast.damage * damage_modifier, kinetic_blast.damage_type, kinetic_blast.def_zone, armor)
+		to_chat(living_mob, span_userdanger("You're struck by a [kinetic_blast.name]!"))
 
-			var/armor = living_mob.run_armor_check(kinetic_blast.def_zone, kinetic_blast.armor_flag, armour_penetration = kinetic_blast.armour_penetration)
-			living_mob.apply_damage(kinetic_blast.damage*modifier, kinetic_blast.damage_type, kinetic_blast.def_zone, armor)
-			to_chat(living_mob, span_userdanger("You're struck by a [kinetic_blast.name]!"))
-
-/obj/item/borg/upgrade/modkit/aoe/turfs
+/obj/item/borg/upgrade/modkit/cooldown/aoe/turfs
 	name = "mining explosion"
 	desc = "Causes the kinetic accelerator to destroy rock in an AoE."
 	turf_aoe = TRUE
+	// Negates one CD modifier
+	modifier = -/obj/item/borg/upgrade/modkit/cooldown::modifier
 
-/obj/item/borg/upgrade/modkit/aoe/mobs
+/obj/item/borg/upgrade/modkit/cooldown/aoe/mobs
 	name = "offensive explosion"
 	desc = "Causes the kinetic accelerator to damage mobs in an AoE."
-	modifier = 1
+	damage_modifier = 1
 
-/obj/item/borg/upgrade/modkit/aoe/mobs/andturfs
+/obj/item/borg/upgrade/modkit/cooldown/aoe/mobs/andturfs
 	name = "offensive mining explosion"
 	desc = "Causes the kinetic accelerator to destroy rock and damage mobs in an AoE."
 	turf_aoe = TRUE
+	modifier = -1 // Slightly better than normal turf AOE as its a rare find
 
-//Minebot passthrough
+// Minebot passthrough
 /obj/item/borg/upgrade/modkit/minebot_passthrough
 	name = "minebot passthrough"
 	desc = "Causes kinetic accelerator shots to pass through minebots."
@@ -706,5 +717,5 @@
 /obj/item/borg/upgrade/modkit/tracer/adjustable/proc/choose_bolt_color(mob/user)
 	set waitfor = FALSE
 
-	var/new_color = tgui_color_picker(usr, "", "Choose Color", bolt_color)	// BUBBERSTATION EDIT: TGUI COLOR PICKER
+	var/new_color = tgui_color_picker(user, "", "Choose Color", bolt_color)
 	bolt_color = new_color || bolt_color

@@ -86,7 +86,9 @@
  * Returns the item found, or null if no item was found.
  */
 /mob/living/carbon/proc/get_uplink_location(desired_location = UPLINK_PDA)
-	var/list/all_contents = get_all_contents()
+	//BUBBER EDIT BEGIN - original line is var/list/all_contents = get_all_contents()
+	var/list/all_contents = typecache_filter_list_reverse(get_all_contents(), GLOB.invalid_uplink_location)
+	//BUBBER EDIT END
 	var/obj/item/modular_computer/pda/my_pda = locate() in all_contents
 	var/obj/item/radio/my_radio = locate() in all_contents
 	var/obj/item/pen/my_pen = (locate() in my_pda) || (locate() in all_contents)
@@ -112,18 +114,21 @@
  * * antag_datum: the antag datum of the uplink owner, for storing it in antag memory. optional!
  */
 /datum/mind/proc/give_uplink(silent = FALSE, datum/antagonist/antag_datum)
-	if(isnull(current))
+	if(!isliving(current))
 		return
 	var/mob/living/carbon/human/traitor_mob = current
 	if (!istype(traitor_mob))
-		return
+		var/datum/status_effect/shapechange_mob/shapeshift = current.has_status_effect(/datum/status_effect/shapechange_mob)
+		if (!ishuman(shapeshift?.caster_mob))
+			return
+		traitor_mob = shapeshift.caster_mob
 
 	var/obj/item/uplink_loc
-	var/uplink_spawn_location = traitor_mob.client?.prefs?.read_preference(/datum/preference/choiced/uplink_location)
+	var/uplink_spawn_location = current.client?.prefs?.read_preference(/datum/preference/choiced/uplink_location)
 	var/cant_speak = (HAS_TRAIT(traitor_mob, TRAIT_MUTE) || is_mime_job(assigned_role))
 	if(uplink_spawn_location == UPLINK_RADIO && cant_speak)
 		if(!silent)
-			to_chat(traitor_mob, span_warning("You have been deemed ineligible for a radio uplink. Supplying standard uplink instead."))
+			to_chat(current, span_warning("You have been deemed ineligible for a radio uplink. Supplying standard uplink instead."))
 		uplink_spawn_location = UPLINK_PDA
 
 	if(uplink_spawn_location != UPLINK_IMPLANT)
@@ -135,7 +140,7 @@
 		var/obj/item/implant/uplink/starting/new_implant = new(traitor_mob)
 		new_implant.implant(traitor_mob, null, silent = TRUE)
 		if(!silent)
-			to_chat(traitor_mob, span_boldnotice("Your Syndicate Uplink has been cunningly implanted in you, for a small TC fee. Simply trigger the uplink to access it."))
+			to_chat(current, span_boldnotice("Your Syndicate Uplink has been cunningly implanted in you, for a small TC fee. Simply trigger the uplink to access it."))
 		add_memory(/datum/memory/key/traitor_uplink/implant, uplink_loc = "implant")
 		return new_implant
 
@@ -145,7 +150,7 @@
 	if(!new_uplink)
 		CRASH("Uplink creation failed.")
 	new_uplink.setup_unlock_code()
-	new_uplink.uplink_handler.owner = traitor_mob.mind
+	new_uplink.uplink_handler.owner = src
 	new_uplink.uplink_handler.assigned_role = traitor_mob.mind.assigned_role.title
 	new_uplink.uplink_handler.assigned_species = traitor_mob.dna.species.id
 
@@ -165,7 +170,7 @@
 
 	new_uplink.unlock_text = unlock_text
 	if(!silent)
-		to_chat(traitor_mob, span_boldnotice(unlock_text))
+		to_chat(current, span_boldnotice(unlock_text))
 	if(antag_datum)
 		antag_datum.antag_memory += new_uplink.unlock_note + "<br>"
 	return .
@@ -183,6 +188,7 @@
 		var/datum/antagonist/nukeop/converter = creator.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE)
 		var/datum/antagonist/nukeop/N = new()
 		N.send_to_spawnpoint = FALSE
+		N.give_bonus_tc = FALSE
 		N.nukeop_outfit = null
 		add_antag_datum(N,converter.nuke_team)
 
@@ -190,8 +196,8 @@
 
 	SEND_SIGNAL(current, COMSIG_MOB_ENSLAVED_TO, creator)
 
-	current.faction |= creator.faction
-	creator.faction |= "[REF(current)]"
+	current.add_faction(creator.get_faction())
+	current.add_ally(current)
 
 	current.log_message("has been enslaved to [key_name(creator)].", LOG_GAME)
 	log_admin("[key_name(current)] has been enslaved to [key_name(creator)].")

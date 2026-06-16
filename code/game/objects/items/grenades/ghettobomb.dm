@@ -128,6 +128,8 @@
 		return
 	if(istype(activator, /obj/item/assembly/signaler))
 		return //no signallers, signallers send a signal and i can imagine this having bad sideeffects if some has multiple of the same frequency in their backpack and uses them inhand by accident
+	log_grenade(user)
+	add_fingerprint(user)
 	activator.activate()
 	update_icon(UPDATE_ICON_STATE)
 	user.balloon_alert_to_viewers("arming!")
@@ -160,9 +162,6 @@
 /obj/item/grenade/iedcasing/Destroy()
 	. = ..()
 	activator = null
-
-
-
 
 /obj/item/grenade/iedcasing/spawned
 	power = 2.5 //20u welding fuel
@@ -199,6 +198,7 @@
 	/// Static list of reagent to explosive power
 	var/static/list/fuel_power = list(
 		/datum/reagent/fuel = 0.5,
+		/datum/reagent/toxin/plasma = 0.75,
 		/datum/reagent/gunpowder = 1,
 		/datum/reagent/nitroglycerin = 2,
 		/datum/reagent/tatp = 2.5,

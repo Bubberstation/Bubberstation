@@ -31,7 +31,7 @@
 	is_dimorphic = FALSE
 	should_draw_greyscale = TRUE
 	icon_greyscale = BODYPART_ICON_IPC
-	bodytype = BODYTYPE_ROBOTIC
+	bodytype = BODYTYPE_ROBOTIC | BODYTYPE_SYNTHETIC
 	bodyshape = BODYSHAPE_HUMANOID
 	change_exempt_flags = NONE
 	dmg_overlay_type = "robotic"
@@ -54,7 +54,7 @@
 		BURN = ROBOTIC_BURN_EXAMINE_TEXT,
 	)
 
-	head_flags = HEAD_DEFAULT_FEATURES
+	head_flags = HEAD_DEFAULT_FEATURES & (~HEAD_DEBRAIN)
 	bodypart_flags = BODYPART_UNHUSKABLE
 
 /datum/design/synth_head
@@ -87,7 +87,7 @@
 	is_dimorphic = FALSE
 	icon_greyscale = BODYPART_ICON_IPC
 	should_draw_greyscale = TRUE
-	bodytype = BODYTYPE_ROBOTIC
+	bodytype = BODYTYPE_ROBOTIC | BODYTYPE_SYNTHETIC
 	bodyshape = BODYSHAPE_HUMANOID
 	change_exempt_flags = NONE
 	dmg_overlay_type = "robotic"

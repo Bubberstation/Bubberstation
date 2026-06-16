@@ -13,7 +13,7 @@
 	icon_state = "pillow_pink_round"
 	base_icon_state = "pillow"
 	inhand_icon_state = "pillow_pink_round"
-	var/datum/effect_system/feathers/pillow_feathers
+	var/datum/effect_system/basic/feathers/pillow_feathers
 	var/current_color = "pink"
 	var/current_form = "round"
 	var/color_changed = FALSE
@@ -75,8 +75,7 @@
 	if(!length(pillow_forms))
 		populate_pillow_forms()
 	//part of code for feathers spawn on hit
-	pillow_feathers = new
-	pillow_feathers.set_up(2, 0, src)
+	pillow_feathers = new(src, 2, FALSE)
 	pillow_feathers.attach(src)
 
 /obj/item/fancy_pillow/update_icon_state()
@@ -86,8 +85,7 @@
 
 /obj/item/fancy_pillow/Destroy()
 	if(pillow_feathers)
-		qdel(pillow_feathers)
-		pillow_feathers = null
+		QDEL_NULL(pillow_feathers)
 	return ..()
 
 //feathers effect on hit
@@ -98,7 +96,7 @@
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_decals/lewd_decals.dmi'
 	duration = 14
 
-/datum/effect_system/feathers
+/datum/effect_system/basic/feathers
 	effect_type = /obj/effect/temp_visual/feathers
 
 /obj/item/fancy_pillow/attack(mob/living/carbon/human/affected_mob, mob/living/carbon/human/user)
@@ -249,7 +247,6 @@
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/pillows.dmi'
 	icon_state = "pillowpile_small_pink"
 	base_icon_state = "pillowpile_small"
-	pseudo_z_axis = 4
 	var/current_color = "pink"
 	has_armrest = TRUE
 
@@ -270,6 +267,7 @@
 
 /obj/structure/chair/pillow_small/Initialize(mapload)
 	update_icon()
+	AddElement(/datum/element/elevation, pixel_shift = 4)
 	return ..()
 
 /obj/structure/chair/pillow_small/post_buckle_mob(mob/living/affected_mob)
@@ -360,7 +358,6 @@
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/pillows.dmi'
 	icon_state = "pillowpile_large_pink"
 	base_icon_state = "pillowpile_large"
-	pseudo_z_axis = 4
 	var/current_color = "pink"
 	//Containing pillows that we have here
 	var/pillow1_color = "pink"
@@ -383,6 +380,7 @@
 
 /obj/structure/bed/pillow_large/Initialize(mapload)
 	update_icon()
+	AddElement(/datum/element/elevation, pixel_shift = 4)
 	return ..()
 
 /obj/structure/bed/pillow_large/post_buckle_mob(mob/living/affected_mob)

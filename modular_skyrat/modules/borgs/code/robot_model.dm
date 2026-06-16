@@ -378,7 +378,7 @@
 		/obj/item/stack/tile/iron,
 		/obj/item/stack/cable_coil,
 		/obj/item/restraints/handcuffs/cable/zipties,
-		/obj/item/stack/medical/gauze,
+		/obj/item/stack/medical/wrap/gauze,
 		/obj/item/shockpaddles/cyborg,
 		/obj/item/healthanalyzer/advanced,
 		/obj/item/surgical_drapes,
@@ -467,11 +467,11 @@
 /obj/item/robot_model/ninja/rebuild_modules()
 	. = ..()
 	var/mob/living/silicon/robot/Ninja = loc
-	Ninja.faction  -= "silicon" //ai turrets hostile against assault and medical
+	Ninja.remove_faction("silicon") //ai turrets hostile against assault and medical
 
 /obj/item/robot_model/ninja/remove_module(obj/item/I, delete_after)
 	var/mob/living/silicon/robot/Ninja = loc
-	Ninja.faction += "silicon"
+	Ninja.add_faction("silicon")
 	. = ..()
 
 /obj/item/robot_model/ninja/ninja_medical
@@ -490,7 +490,7 @@
 		/obj/item/card/emag,
 		/obj/item/crowbar/cyborg,
 		/obj/item/extinguisher/mini,
-		/obj/item/stack/medical/gauze,
+		/obj/item/stack/medical/wrap/gauze,
 		/obj/item/gun/medbeam,
 		/obj/item/borg/apparatus/organ_storage,
 		/obj/item/surgical_processor

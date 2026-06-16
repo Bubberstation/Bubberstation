@@ -18,7 +18,7 @@
 	return RANDOM_DISABLED
 
 /datum/preference/toggle/random_hardcore
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_OOC_PREFS // BUBBER EDIT CHANGE - Original: PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	savefile_key = "random_hardcore"
 	savefile_identifier = PREFERENCE_CHARACTER
 	can_randomize = FALSE

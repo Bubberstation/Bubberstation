@@ -6,7 +6,7 @@
 	base_icon_state = "9x19p"
 	ammo_type = /obj/item/ammo_casing/security
 	caliber = CALIBER_9MM_SEC
-	max_ammo = 10
+	max_ammo = 14
 	ammo_band_color = null
 	multiple_sprites = AMMO_BOX_PER_BULLET
 	multiple_sprite_use_base = TRUE
@@ -17,7 +17,7 @@
 	name = "pistol magazine (9mm Murphy Rocket Eject)"
 	desc = parent_type::desc + "With a small charge inside that sparks on ejection, this one has less room for ammo and a lethal velocity to it's ejections."
 	ammo_type = /obj/item/ammo_casing/security
-	max_ammo = 8
+	max_ammo = 10
 	base_icon_state = "9x19pI"
 	murphy_eject_sound = 'sound/items/weapons/gun/general/rocket_launch.ogg'
 
@@ -33,3 +33,67 @@
 			hit_mob.Knockdown(2 SECONDS)
 			hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST)
 		qdel(src)
+
+/obj/item/ammo_box/magazine/recharge/ntusp
+	name = "small disabling power pack"
+	desc = "A small, rechargeable power pack for the NT22 HCS 'Enforcer'. Synthesizes up to twelve .22HL bullets that tire targets."
+	icon = 'modular_zubbers/icons/obj/weapons/guns/ammo.dmi'
+	base_icon_state = "powerpack_small"
+	icon_state = "powerpack_small-12"
+	ammo_type = /obj/item/ammo_casing/caseless/c22hl
+	max_ammo = 12
+
+/obj/item/ammo_box/magazine/recharge/ntusp/laser
+	name = "small lethal power pack"
+	desc = "A small, rechargeable power pack for the NT22 HCS 'Enforcer' that has been modified. Synthesizes up to eight .22LS bullets that fire lasers."
+	ammo_type = /obj/item/ammo_casing/caseless/c22ls
+	base_icon_state = "powerpack_small-l"
+	icon_state = "powerpack_small-l-8"
+	max_ammo = 8
+
+/obj/item/ammo_box/magazine/recharge/ntusp/laser/empty
+	start_empty = TRUE // so you cant field convert mags to full laser ones
+
+/obj/item/ammo_box/magazine/recharge/ntusp/empty
+	start_empty = TRUE
+
+/obj/item/ammo_box/magazine/recharge/ntusp/emp_act(severity) //shooting physical bullets wont stop you dying to an EMP
+	. = ..()
+	if(!(. & EMP_PROTECT_CONTENTS))
+		var/bullet_count = ammo_count()
+		var/bullets_to_remove = round(bullet_count / severity)
+		for(var/i = 0; i < bullets_to_remove; i++)
+			qdel(get_round())
+		update_icon()
+
+/obj/item/ammo_box/speedloader/security
+	name = "speed loader (9mm Murphy)"
+	desc = "Designed to quickly reload five-chambered 9mm revolvers."
+	icon = 'modular_zubbers/icons/obj/weapons/guns/ammo.dmi'
+	icon_state = "9mm"
+	base_icon_state = "9mm"
+	ammo_type = /obj/item/ammo_casing/security
+	caliber = CALIBER_9MM_SEC
+	max_ammo = 5
+	ammo_band_icon = null
+	ammo_band_color = null
+
+/obj/item/ammo_box/speedloader/security/update_icon_state()
+	. = ..()
+	icon_state = "[base_icon_state]-base"
+
+/obj/item/ammo_box/speedloader/security/update_overlays()
+	. = ..()
+	if(!LAZYLEN(stored_ammo))
+		return
+	for(var/inserted_ammo in 1 to stored_ammo.len)
+		. += "9mm-revolver-[inserted_ammo]"
+
+/obj/item/ammo_box/magazine/r10mm
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/telecrystal = SHEET_MATERIAL_AMOUNT,
+	)

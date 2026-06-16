@@ -137,121 +137,9 @@ h1.alert, h2.alert		{color: #000000;}
 .clown					{color: #FF69Bf;	font-size: 3;	font-family: "Comic Sans MS", cursive, sans-serif;	font-weight: bold;}
 .singing				{font-family: "Trebuchet MS", cursive, sans-serif; font-style: italic;}
 .his_grace				{color: #15D512;	font-family: "Courier New", cursive, sans-serif;	font-style: italic;}
-.hypnophrase			{color: #3bb5d3;	font-weight: bold;	animation: hypnocolor 1500ms infinite; animation-direction: alternate;}
-	@keyframes hypnocolor {
-		0%		{color: #0d0d0d;}
-		25%		{color: #410194;}
-		50%		{color: #7f17d8;}
-		75%		{color: #410194;}
-		100%	{color: #3bb5d3;}
-}
-// SKYRAT EDIT ADDITION BEGIN
+.hypnophrase			{color: #3bb5d3;	font-weight: bold;}
 
-.velvet					{color: #660015; 	font-weight: bold; animation: velvet 5000ms infinite;}
-	@keyframes velvet {
-		0% 		{color: #400020; }
-		40% 	{color: #FF0000; }
-		50% 	{color: #FF8888; }
-		60% 	{color: #FF0000; }
-		100% 	{color: #400020; }
-}
-
-.hexnut 				{color: #0099ff;	font-weight: bold;	animation: hexnut 5000ms infinite;	animation-direction: alternate;}
-	@keyframes hexnut {
-		0% 	{color: #0099ff;}
-		35% 	{color: #a64dff;}
-		50% 	{color: #00997a;}
-		60% 	{color: #ffb31a;}
-		100% 	{color: #ff33cc;}
-}
-
-.glossy					{color: #9b6000; font-weight: bold; animation: glossy 5000ms infinite;}
-	@keyframes glossy {
-		0% 		{color: #9b6000}
-		30% 	{color: #c88800}
-		40% 	{color: #bdbd00}
-		50% 	{color: #c88800}
-		100% 	{color: #9b6000}
-}
-
-.doyourjobidiot {
-  color: #c51e1e;
-  text-shadow: 0 0 4px #e22525;
-  font-size: 125%;
-  font-weight: bold;
-  animation: flashingfuckingwarning 250ms infinite;
-}
-
-@keyframes flashingfuckingwarning {
-  0% {
-    color: #c51e1e;
-    text-shadow: 0 0 4px #c51e1e;
-  }
-
-  50% {
-    color: #e22525;
-    text-shadow: 0 0 8px #e22525;
-  }
-
-  100% {
-    color: #c51e1e;
-    text-shadow: 0 0 4px #c51e1e;
-  }
-}
-
-
-.brass {
-	color: #BE8700;
-}
-
-.big_brass {
-	color: #BE8700;
-	font-size: 3;
-	font-weight: bold;
-	font-style: italic;
-}
-
-.clockyellow {
-	color: #DAAA18;
-	font-weight: bold;
-	font-style: italic;
-}
-
-.clockgray {
-	color: #42474D;
-	font-weight: bold;
-	font-style: italic;
-}
-
-.clockred {
-	color: #6E001A;
-	font-weight: bold;
-	font-style: italic;
-}
-
-.brown {
-	color: #3d2009;
-}
-
-.orange {
-	color: #b8761a;
-}
-
-.yellow {
-	color: #c7b72c;
-}
-
-.cyan {
-	color: #0ea1e6;
-}
-// SKYRAT EDIT ADDITION END
-
-.phobia			{color: #dd0000;	font-weight: bold;	animation: phobia 750ms infinite;}
-	@keyframes phobia {
-		0%		{color: #0d0d0d;}
-		50%		{color: #dd0000;}
-		100%	{color: #0d0d0d;}
-}
+.phobia			{color: #dd0000;	font-weight: bold;}
 
 .icon					{height: 1em;	width: auto;}
 
@@ -264,6 +152,9 @@ h1.alert, h2.alert		{color: #000000;}
 .monkey					{color: #975032;}
 .swarmer				{color: #2C75FF;}
 .resonate				{color: #298F85;}
+.policy					{color: #9730db;	font-style: italic;		text-align: center;		font-size: 2;}
 
 .upside_down			{display: inline; -moz-transform: scale(-1, -1); -webkit-transform: scale(-1, -1); -o-transform: scale(-1, -1); -ms-transform: scale(-1, -1); transform: scale(-1, -1);}
+
+.cyan					{color: #bde0dc;}
 </style>"}

@@ -109,7 +109,7 @@
 /obj/machinery/powerator/examine(mob/user)
 	. = ..()
 	if(panel_open)
-		. += span_warning("The maintainence panel is currently open, preventing [src] from working!")
+		. += span_warning("The maintenance panel is currently open, preventing [src] from working!")
 
 	if(!anchored)
 		. += span_warning("The anchors are not bolted to the floor, preventing [src] from working!")

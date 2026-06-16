@@ -25,7 +25,7 @@
 	// Put it in the connected tray because ironically that makes it not pop out when the morgue is opened.
 	morgue.radio = new /obj/item/radio/headset/headset_med(morgue.connected)
 	morgue.radio.set_listening(FALSE)
-	RegisterSignal(morgue, COMSIG_MORGUE_ALARM, .proc/morgue_revivable)
+	RegisterSignal(morgue, COMSIG_MORGUE_ALARM, PROC_REF(morgue_revivable))
 
 /datum/component/morgue_radio/UnregisterFromParent()
 	QDEL_NULL(morgue.radio)

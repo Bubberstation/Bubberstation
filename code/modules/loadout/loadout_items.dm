@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	var/ui_icon_state
 	/// Base typepath to what reskin datum this item can use to reskin into
 	/// Doesn't verify that the item_path actually has these reskins
-	var/reskin_datum
+	var/datum/atom_skin/reskin_datum
 	/// A list of greyscale colors that are used for items that have greyscale support, but don't allow full customization.
 	/// This is an assoc list of /datum/job_department -> colors, or /datum/job -> colors, allowing for preset colors based on player chosen job.
 	/// Jobs are prioritized over departments.
@@ -153,6 +153,45 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 			if(reskin_datum)
 				return set_skin(manager, user, params)
 
+		if("select_color_simple")
+			return item_color_painting(manager, user)
+
+		if("set_color_mode")
+			return item_color_mode(manager, user)
+
+	return TRUE
+
+/datum/loadout_item/proc/item_color_painting(datum/preference_middleware/loadout/manager, mob/user)
+	if(manager.menu)
+		return FALSE
+
+	var/list/loadout = manager.get_current_loadout()
+	if(!loadout?[item_path])
+		return FALSE
+
+	var/chosen_color = tgui_color_picker(user, "Pick new color. Setting color to pitch black will remove the existing color.", "Repaint item", "#000000")
+	if(isnull(chosen_color))
+		return FALSE
+
+	var/hsl = rgb2num(chosen_color, COLORSPACE_HSL)
+	if(hsl[3] == 0)
+		loadout[item_path][INFO_CUSTOM_COLOR] = null
+	else
+		loadout[item_path][INFO_CUSTOM_COLOR] = chosen_color
+
+	manager.save_current_loadout(loadout)
+	return TRUE
+
+/datum/loadout_item/proc/item_color_mode(datum/preference_middleware/loadout/manager, mob/user)
+	var/list/loadout = manager.get_current_loadout()
+	if(!loadout?[item_path])
+		return FALSE
+
+	if(isnull(loadout[item_path][INFO_COLOR_MODE]))
+		loadout[item_path][INFO_COLOR_MODE] = FALSE
+
+	loadout[item_path][INFO_COLOR_MODE] = !loadout[item_path][INFO_COLOR_MODE]
+	manager.save_current_loadout(loadout)
 	return TRUE
 
 /// Opens up the GAGS editing menu.
@@ -305,6 +344,9 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 		equipped_item.set_greyscale(item_color)
 		update_flag |= equipped_item.slot_flags
 
+	if(item_details?[INFO_CUSTOM_COLOR] && !istype(equipper, /mob/living/carbon/human/dummy)) //the dummy check makes it not color the item in the loadout because that causes runtimes, joining into the game colors the item as intended. If you want to fix it, start here
+		equipped_item.add_atom_colour(color_transition_filter(item_details[INFO_CUSTOM_COLOR], item_details[INFO_COLOR_MODE] ? SATURATION_OVERRIDE : SATURATION_MULTIPLY), FIXED_COLOUR_PRIORITY)
+
 	// BUBBER EDIT CHANGE BEGIN - Descriptions
 	if((loadout_flags & LOADOUT_FLAG_ALLOW_NAMING) && !visuals_only)
 		var/renamed = FALSE
@@ -322,10 +364,13 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 
 	if(reskin_datum && item_details?[INFO_RESKIN])
 		var/skin_chosen = item_details[INFO_RESKIN]
+		var/list/atom_skins = get_atom_skins()
 		for(var/datum/atom_skin/skin_path as anything in valid_subtypesof(reskin_datum))
 			if(skin_path::preview_name != skin_chosen)
 				continue
-			var/datum/atom_skin/skin_instance = GLOB.atom_skins[skin_path]
+			if(skin_path::preview_name != skin_chosen)
+				continue
+			var/datum/atom_skin/skin_instance = atom_skins[skin_path]
 			skin_instance.apply(equipped_item)
 			if(istype(equipped_item, /obj/item/clothing/accessory))
 				// Snowflake handing for accessories, because we need to update the thing it's attached to instead
@@ -441,6 +486,20 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 			"button_icon" = FA_ICON_PALETTE,
 			"active_key" = INFO_GREYSCALE,
 		))
+	else
+		UNTYPED_LIST_ADD(button_list, list(
+			"label" = "Repaint",
+			"act_key" = "select_color_simple",
+			"button_icon" = FA_ICON_PALETTE,
+			"active_key" = INFO_CUSTOM_COLOR,
+		))
+		UNTYPED_LIST_ADD(button_list, list(
+			"label" = "Repainting mode",
+			"act_key" = "set_color_mode",
+			"active_key" = INFO_COLOR_MODE,
+			"active_text" = "Override Color",
+			"inactive_text" = "Multiply Color",
+		))
 
 	if(loadout_flags & LOADOUT_FLAG_ALLOW_NAMING)
 		UNTYPED_LIST_ADD(button_list, list(
@@ -467,13 +526,20 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 		return null
 
 	var/list/reskins = list()
+	var/list/atom_skins = get_atom_skins()
+	var/list/reskin_choices
+	if(reskin_datum::allow_all_subtypes_in_loadout)
+		reskin_choices = valid_subtypesof(reskin_datum)
+	else
+		reskin_choices = valid_direct_subtypesof(reskin_datum)
 
-	for(var/datum/atom_skin/skin as anything in valid_subtypesof(reskin_datum))
+	for(var/datum/atom_skin/skin_path as anything in reskin_choices)
+		var/datum/atom_skin/atom_skin = atom_skins[skin_path]
 		UNTYPED_LIST_ADD(reskins, list(
-			"name" = skin::new_name || skin::preview_name,
-			"tooltip" = skin::preview_name,
-			"skin_icon" = skin::new_icon,
-			"skin_icon_state" = skin::new_icon_state,
+			"name" = skin_path::new_name || skin_path::preview_name,
+			"tooltip" = skin_path::preview_name,
+			"skin_icon" = skin_path::new_icon,
+			"skin_icon_state" = atom_skin?.get_preview_icon_state() || skin_path::new_icon
 		))
 
 	return reskins

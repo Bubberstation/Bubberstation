@@ -38,7 +38,7 @@
 	var/obj/item/tank/internal = null
 	/// "External" air tank. Never set this manually. Not required to stay directly equipped on the mob (i.e. could be a machine or MOD suit module).
 	var/obj/item/tank/external = null
-	var/obj/item/clothing/head = null
+	var/obj/item/head = null
 
 	///only used by humans
 	var/obj/item/clothing/gloves = null
@@ -133,3 +133,6 @@
 	var/covered_slots = NONE
 
 	var/next_smell = 0 //SKYRAT EDIT ADDITION /// Cooldown for the next smell
+
+	/// Lazylist of all hair masks applied to this mob's hairstyles
+	var/list/hair_masks

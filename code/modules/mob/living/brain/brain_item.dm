@@ -130,9 +130,8 @@
 	if((!QDELETED(src) || !QDELETED(owner)) && !(movement_flags & NO_ID_TRANSFER))
 		transfer_identity(organ_owner)
 	if(!special)
-		if(!(organ_owner.living_flags & STOP_OVERLAY_UPDATE_BODY_PARTS))
-			organ_owner.update_body_parts()
 		organ_owner.clear_mood_event("brain_damage")
+		organ_owner.med_hud_set_status()
 
 /obj/item/organ/brain/update_icon_state()
 	icon_state = "[initial(icon_state)][smooth_brain ? "-smooth" : ""]"
@@ -242,8 +241,6 @@
 		. += span_notice("It is a bit on the smaller side...")
 	if(brain_size > 1)
 		. += span_notice("It is bigger than average...")
-	if(GetComponent(/datum/component/ghostrole_on_revive))
-		. += span_notice("Its soul might yet come back...")
 
 /// Needed so subtypes can override examine text while still calling parent
 /obj/item/organ/brain/proc/brain_damage_examine()
@@ -252,7 +249,7 @@
 	if(brainmob && (decoy_override || brainmob.client || brainmob.get_ghost()))
 		if(organ_flags & ORGAN_FAILING)
 			return span_info("It seems to still have a bit of energy within it, but it's rather damaged... You may be able to restore it with some <b>mannitol</b>.")
-		else if(damage >= BRAIN_DAMAGE_DEATH*0.5)
+		else if(damage >= maxHealth*0.5)
 			return span_info("You can feel the small spark of life still left in this one, but it's got some bruises. You may be able to restore it with some <b>mannitol</b>.")
 		else
 			return span_info("You can feel the small spark of life still left in this one.")
@@ -339,32 +336,46 @@
 	owner?.mind?.set_current(null) //You aren't allowed to return to brains that don't exist
 	return ..()
 
-/obj/item/organ/brain/on_life(seconds_per_tick, times_fired)
+/obj/item/organ/brain/on_life(seconds_per_tick)
+	. = ..()
+
 	if(HAS_TRAIT(src, TRAIT_BRAIN_DAMAGE_NODEATH))
 		return
-	if(damage >= BRAIN_DAMAGE_DEATH) //rip
+	if(damage >= maxHealth) //rip
 		to_chat(owner, span_userdanger("The last spark of life in your brain fizzles out..."))
 		owner.investigate_log("has been killed by brain damage.", INVESTIGATE_DEATHS)
 		owner.death()
 
+/obj/item/organ/brain/on_bodypart_insert(obj/item/bodypart/limb)
+	. = ..()
+	if(ishuman(limb.owner))
+		limb.owner.update_hair()
+	else
+		limb.update_icon_dropped()
+
 /obj/item/organ/brain/on_bodypart_remove(obj/item/bodypart/limb, movement_flags)
 	. = ..()
-	update_brain_color(animate = FALSE) // once it's out in the world we need to make sure it's the right color
+	if(ishuman(limb.owner))
+		limb.owner.update_hair()
+	else
+		limb.update_icon_dropped()
+	// once it's out in the world we need to make sure it's the right color
+	update_brain_color(animate = FALSE)
 
 /obj/item/organ/brain/apply_organ_damage(damage_amount, maximum = maxHealth, required_organ_flag = NONE)
 	. = ..()
 	var/delta_dam = . //for the sake of clarity
 	if(isnull(bodypart_owner)) // no need to color it if it's in someone's noggin
 		update_brain_color()
-	if(delta_dam > 0 && damage > BRAIN_DAMAGE_MILD)
-		roll_for_brain_trauma(delta_dam)
+	if(delta_dam < 0 && damage > BRAIN_DAMAGE_MILD)
+		roll_for_brain_trauma(-delta_dam) // parent call returns negative numbers if take damage and positive if we heal
 
 /// Rolls a random chance to gain a brain trauma based on damage taken and current damage level
 /obj/item/organ/brain/proc/roll_for_brain_trauma(delta_dam)
 	if(prob(delta_dam * (1 + max(0, (damage - BRAIN_DAMAGE_MILD)/100)))) //Base chance is the hit damage; for every point of damage past the threshold the chance is increased by 1% //learn how to do your bloody math properly goddamnit
 		gain_trauma_type(BRAIN_TRAUMA_MILD, natural_gain = TRUE)
 
-	var/is_boosted = (owner && HAS_TRAIT(owner, TRAIT_SPECIAL_TRAUMA_BOOST))
+	var/is_boosted = (owner && HAS_TRAIT(src, TRAIT_SPECIAL_TRAUMA_BOOST))
 	if(damage < BRAIN_DAMAGE_SEVERE)
 		return
 	if(prob(delta_dam * (1 + max(0, (damage - BRAIN_DAMAGE_SEVERE)/100)))) //Base chance is the hit damage; for every point of damage past the threshold the chance is increased by 1%
@@ -422,7 +433,7 @@
 		brain_message = span_warning("You feel lightheaded.")
 	else if(prev_damage < BRAIN_DAMAGE_SEVERE && damage >= BRAIN_DAMAGE_SEVERE)
 		brain_message = span_warning("You feel less in control of your thoughts.")
-	else if(prev_damage < (BRAIN_DAMAGE_DEATH - 20) && damage >= (BRAIN_DAMAGE_DEATH - 20))
+	else if(prev_damage < (maxHealth - 20) && damage >= (maxHealth - 20))
 		brain_message = span_warning("You can feel your mind flickering on and off...")
 
 	if(.)
@@ -440,7 +451,7 @@
 
 	// If we have some sort of brain type or subtype change and have skillchips, engage the failsafe procedure!
 	if(owner && length(skillchips) && (replacement_brain.type != type))
-		activate_skillchip_failsafe(silent = TRUE)
+		activate_skillchip_failsafe()
 
 	// Check through all our skillchips, remove them from this brain, add them to the replacement brain.
 	for(var/chip in skillchips)
@@ -479,7 +490,7 @@
 		set_organ_damage(0)
 		cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
 	else
-		set_organ_damage(BRAIN_DAMAGE_DEATH)
+		set_organ_damage(maxHealth)
 
 /obj/item/organ/brain/zombie
 	name = "zombie brain"
@@ -506,6 +517,7 @@
 		TRAIT_EXPERT_FISHER, // live off land, fish from river
 		TRAIT_ROUGHRIDER, // ride beast, chase down prey, flee from danger
 		TRAIT_BEAST_EMPATHY, // know the way of beast, calm with food
+		TRAIT_NECROPOLIS_WORSHIP,
 		TRAIT_TACKLING_TAILED_DEFENDER,
 	)
 

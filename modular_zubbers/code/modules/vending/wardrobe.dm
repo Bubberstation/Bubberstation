@@ -16,8 +16,9 @@
 		/obj/item/clothing/suit/toggle/labcoat/medical = 4,
 		/obj/item/clothing/suit/toggle/labcoat/paramedic/doctor_tailcoat = 3,
 		/obj/item/clothing/suit/toggle/labcoat/skyrat/highvis = 4,
-		/obj/item/clothing/suit/toggle/labcoat/skyrat/medical = 3,
-		/obj/item/clothing/suit/toggle/labcoat/skyrat/medical/dark = 3,
+		/obj/item/clothing/suit/toggle/labcoat/technical/medical = 3,
+		/obj/item/clothing/suit/toggle/labcoat/technical/medical/black = 3,
+		/obj/item/clothing/suit/toggle/labcoat/technical/medical/dark = 3,
 		/obj/item/clothing/suit/toggle/labcoat/virologist = 4,
 		/obj/item/clothing/under/rank/civilian/psychologist_bunnysuit = 3,
 		/obj/item/clothing/under/rank/engineering/engineer/skyrat/hazard_chem/emt = 2,
@@ -71,9 +72,9 @@
 	zubbers_products = list(
 		/obj/item/clothing/head/playbunnyears/scientist = 3,
 		/obj/item/clothing/neck/tie/bunnytie/scientist = 3,
-		/obj/item/clothing/suit/toggle/jacket/sci = 3,
 		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science = 3,
 		/obj/item/clothing/suit/toggle/labcoat/science/doctor_tailcoat = 3,
+		/obj/item/clothing/suit/toggle/labcoat/technical/science = 3,
 		/obj/item/clothing/under/rank/rnd/scientist/bunnysuit = 3,
 		/obj/item/clothing/under/rank/rnd/scientist/skyrat/hlscience = 3,
 		/obj/item/clothing/under/rank/rnd/scientist/skyrat/utility = 3,
@@ -113,7 +114,7 @@
 				/obj/item/reagent_containers/cup/bottle/morphine = 2,
 				/obj/item/reagent_containers/spray/dinitrogen_plasmide = 2,
 				/obj/item/reagent_containers/spray/hercuri/chilled = 2,
-				/obj/item/stack/medical/gauze = 4, // for ALL wounds
+				/obj/item/stack/medical/wrap/gauze = 4, // for ALL wounds
 				/obj/item/healthanalyzer/no_medibot = 2, // disallows medibot use so its not wasted immediately on medibots
 				/obj/item/healthanalyzer/simple = 2,
 				/obj/item/storage/pill_bottle/liquid_solder = 1,
@@ -193,6 +194,7 @@
 		/obj/item/clothing/suit/toggle/jacket/supply = 3,
 		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/cargo = 3,
 		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/cargo/smith = 3,
+		/obj/item/clothing/suit/toggle/labcoat/technical/cargo = 3,
 		/obj/item/clothing/under/jumpsuit/caligram_fatigues_tan = 3,
 		/obj/item/clothing/under/rank/cargo/bitrunner/bunnysuit = 3,
 		/obj/item/clothing/under/rank/cargo/cargo_bunnysuit = 3,
@@ -254,6 +256,7 @@
 		/obj/item/clothing/neck/tie/bunnytie/janitor = 3,
 		/obj/item/clothing/shoes/galoshes/heeled = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/janitor = 3,
+		/obj/item/clothing/suit/toggle/labcoat/technical/service = 3,
 		/obj/item/clothing/under/costume/dragon_maid = 3,
 		/obj/item/clothing/under/rank/civilian/janitor/bunnysuit = 3,
 	)
@@ -264,6 +267,7 @@
 		/obj/item/clothing/neck/tie/bunnytie/bartender = 2,
 		/obj/item/clothing/suit/hooded/wintercoat/skyrat/bartender = 2,
 		/obj/item/clothing/suit/jacket/tailcoat/bartender = 2,
+		/obj/item/clothing/suit/toggle/labcoat/technical/service = 3,
 		/obj/item/clothing/under/rank/civilian/bartender_bunnysuit = 2,
 	)
 
@@ -354,9 +358,9 @@
 		/obj/item/clothing/shoes/workboots/heeled = 3,
 		/obj/item/clothing/shoes/workboots/toeless = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/engineer = 3,
-		/obj/item/clothing/suit/toggle/jacket/engi = 3,
-		/obj/item/clothing/suit/toggle/jacket/tcomm = 3,
 		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/engi = 3,
+		/obj/item/clothing/suit/toggle/labcoat/technical/engineer = 3,
+		/obj/item/clothing/suit/toggle/labcoat/technical/engineer/tcomm = 3,
 		/obj/item/clothing/suit/toggle/labcoat/skyrat/highvis = 3,
 		/obj/item/clothing/under/misc/overalls = 3,
 		/obj/item/clothing/under/rank/engineering/engineer_bunnysuit = 3,

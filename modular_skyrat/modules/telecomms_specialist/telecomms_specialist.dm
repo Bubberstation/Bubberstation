@@ -38,7 +38,7 @@
 		/obj/item/reagent_containers/cup = 10,
 		/obj/item/stock_parts/subspace = 8,
 		/obj/item/banhammer = 8,
-		/obj/item/computer_disk/maintenance = 1,
+		/obj/item/disk/computer/maintenance = 1,
 	)
 	rpg_title = "Code Whisperer"
 	job_flags = STATION_JOB_FLAGS
@@ -54,7 +54,7 @@
 
 	id_trim = /datum/id_trim/job/telecomms_specialist
 	uniform = /obj/item/clothing/under/rank/engineering/engineer/skyrat/utility/telecomm
-	suit = /obj/item/clothing/suit/toggle/jacket/tcomm
+	suit = /obj/item/clothing/suit/toggle/labcoat/technical/engineer/tcomm
 	neck = /obj/item/clothing/neck/link_scryer
 	belt = /obj/item/storage/belt/utility/full/engi
 	ears = /obj/item/radio/headset/headset_eng

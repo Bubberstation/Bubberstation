@@ -100,10 +100,11 @@
 	update_mouse_pointer()
 	update_ambience_area(get_area(src))
 
-	if(!can_hear())
+	if(HAS_TRAIT(src, TRAIT_DEAF))
 		stop_sound_channel(CHANNEL_AMBIENCE)
 
 	if(client)
+
 		client.view_size?.resetToDefault() // Resets the client.view in case it was changed.
 
 		for(var/datum/action/A as anything in persistent_client.player_actions)
@@ -121,6 +122,9 @@
 		)
 		auto_deadmin_on_login()
 
+		//Check if they should have a stat panel, after they deadmined.
+		client.set_stat_panel()
+
 	log_message("Client [key_name(src)] has taken ownership of mob [src]([src.type])", LOG_OWNERSHIP)
 	log_mob_tag("TAG: [tag] NEW OWNER: [key_name(src)]")
 	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)
@@ -133,6 +137,9 @@
 	AddElement(/datum/element/weather_listener, /datum/weather/snow_storm, ZTRAIT_SNOWSTORM, GLOB.snowstorm_sounds)
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGGED_IN, src)
+
+	if(SSticker.IsPostgame())
+		client.screen += SSticker.reboot_hud
 
 	return TRUE
 

@@ -160,10 +160,12 @@
 	description = "Advanced technological enhancements integrated into the body, offering improved physical capabilities."
 	prereq_ids = list(TECHWEB_NODE_PASSIVE_IMPLANTS, TECHWEB_NODE_CYBERNETICS)
 	design_ids = list(
+		"ci-reviver", // BUBBER EDIT - MOVED
 		"ci-breather",
 		"ci-nutriment",
+		"ci-nutrimentplus", // BUBBER EDIT - ADDITION
 		"ci-thrusters",
-		"ci-herculean",
+		//"ci-herculean", // BUBBER EDIT - REMOVAL
 		"ci-connector",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
@@ -180,9 +182,11 @@
 	description = "To make sure that you can wake the f*** up, samurai."
 	prereq_ids = list(TECHWEB_NODE_CYBER_IMPLANTS)
 	design_ids = list(
-		"ci-reviver",
+		//"ci-reviver", // BUBBER EDIT - MOVED
 		"ci-antidrop",
 		"ci-antistun",
+		"ci-tacvisor",
+		"ci-herculean", // BUBBER EDIT - ADDITION
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_MEDICAL)
@@ -193,9 +197,10 @@
 	description = "Decades of contraband smuggling by assistants have led to the development of a full toolbox that fits seamlessly into your arm."
 	prereq_ids = list(TECHWEB_NODE_COMBAT_IMPLANTS, TECHWEB_NODE_EXP_TOOLS)
 	design_ids = list(
-		"ci-nutrimentplus",
-		"ci-toolset",
+		//"ci-nutrimentplus", // BUBBER EDIT - REMOVAL
 		"ci-surgery",
+		"ci-surgery-brain",
+		"ci-toolset",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_MEDICAL)

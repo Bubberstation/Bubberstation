@@ -301,7 +301,8 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 /datum/quirk/item_quirk/mouse/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	var/obj/item/organ/tongue/mouse/new_tongue = new(get_turf(human_holder))
-	human_holder.faction |= FACTION_RAT
+	human_holder.add_faction(FACTION_RAT)
+	human_holder.gain_trauma(new /datum/brain_trauma/mild/phobia/mousetraps, TRAUMA_RESILIENCE_ABSOLUTE)
 
 	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
 	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
@@ -318,6 +319,8 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	if(QDELETED(quirk_holder))
 		return
 
+	var/mob/living/carbon/human/human_holder = quirk_holder
+	human_holder.cure_trauma_type(/datum/brain_trauma/mild/phobia/mousetraps, TRAUMA_RESILIENCE_ABSOLUTE)
 	QDEL_NULL(sniff_food)
 
 /datum/action/cooldown/spell/sniff

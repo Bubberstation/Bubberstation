@@ -69,8 +69,8 @@
 		MUTANT_SYNTH_HEAD = list("Default Head", FALSE),
 	)
 
-/datum/species/synthetic/spec_life(mob/living/carbon/human/human)
-	. = ..()
+/datum/species/synthetic/proc/on_life(mob/living/carbon/human/human)
+	SIGNAL_HANDLER
 
 	if(human.stat == SOFT_CRIT || human.stat == HARD_CRIT)
 		human.adjust_fire_loss(1) //Still deal some damage in case a cold environment would be preventing us from the sweet release to robot heaven
@@ -121,7 +121,7 @@
 	if(!screen && screen_mutant_bodypart && screen_mutant_bodypart[MUTANT_INDEX_NAME] && screen_mutant_bodypart[MUTANT_INDEX_NAME] != "None")
 
 		if(eyes)
-			eyes.eye_icon_state = "None"
+			eyes.eye_icon_state = null
 
 		screen = new(human_who_gained_species)
 		screen.Grant(human_who_gained_species)

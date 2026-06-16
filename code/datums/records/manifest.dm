@@ -133,7 +133,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		character_appearance = character_appearance,
 		dna_string = record_dna.unique_enzymes,
 		fingerprint = md5(record_dna.unique_identity),
-		gender = person_gender,
+		gender = person.gender,
 		initial_rank = assignment,
 		name = person.real_name,
 		rank = chosen_assignment, // SKYRAT EDIT - Alt job titles - ORIGINAL: rank = assignment,
@@ -143,7 +143,8 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		locked_dna = record_dna,
 		mind_ref = person.mind,
 		// BUBBER EDIT ADDITION BEGIN - Records
-		exploitable_information = person_client?.prefs.read_preference(/datum/preference/text/security) || "",
+		exploitable_information = person_client?.prefs.read_preference(/datum/preference/text/exploitable) || "",
+		background_information = person_client?.prefs.read_preference(/datum/preference/text/background) || "",
 		// BUBBER EDIT END
 	)
 

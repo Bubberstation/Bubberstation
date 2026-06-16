@@ -10,6 +10,7 @@
  *
  */
 /datum/emote
+	abstract_type = /datum/emote
 	/// What calls the emote.
 	var/key = ""
 	/// This will also call the emote.
@@ -116,7 +117,7 @@
 		TIMER_COOLDOWN_START(user, "general_emote_audio_cooldown", general_emote_audio_cooldown)
 		var/frequency = null
 		if (affected_by_pitch && SStts.tts_enabled && SStts.pitch_enabled)
-			frequency = rand(MIN_EMOTE_PITCH, MAX_EMOTE_PITCH) * (1 + sqrt(abs(user.pitch)) * SIGN(user.pitch) * EMOTE_TTS_PITCH_MULTIPLIER)
+			frequency = rand(MIN_EMOTE_PITCH, MAX_EMOTE_PITCH) * (1 + sqrt(abs(user.pitch)) * sign(user.pitch) * EMOTE_TTS_PITCH_MULTIPLIER)
 		else if(vary)
 			frequency = rand(MIN_EMOTE_PITCH, MAX_EMOTE_PITCH)
 		playsound(source = user,soundin = tmp_sound,vol = 50, vary = FALSE, ignore_walls = sound_wall_ignore, frequency = frequency, volume_preference = /datum/preference/numeric/volume/sound_emote) // BUBBER EDIT CHANGE - Add volume pref - ORIGINAL: playsound(source = user,soundin = tmp_sound,vol = 50, vary = FALSE, ignore_walls = sound_wall_ignore, frequency = frequency)
@@ -134,7 +135,7 @@
 			if(isnull(viewer.client))
 				continue
 			if(!is_important && viewer != user && (!is_visual || !is_audible))
-				if(is_audible && !viewer.can_hear())
+				if(is_audible && HAS_TRAIT(viewer, TRAIT_DEAF))
 					continue
 				if(is_visual && viewer.is_blind())
 					continue

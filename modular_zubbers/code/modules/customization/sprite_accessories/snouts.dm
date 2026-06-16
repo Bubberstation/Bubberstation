@@ -70,3 +70,17 @@
 	name = "Eastern Dragon (Alt)"
 	icon_state = "easterndalt"
 
+/datum/sprite_accessory/snouts/mammal/extra_haydeemedical
+	name = "Haydee"
+	icon_state = "extra_haydeemedical"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+
+/datum/sprite_accessory/snouts/mammal/beaktiny
+	name = "Beak (Tiny)"
+	icon_state = "beaktiny"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+
+/datum/sprite_accessory/snouts/mammal/seikret
+	name = "seikret"
+	icon_state = "seikret"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'

@@ -115,9 +115,9 @@
 	item_path = /obj/item/clothing/gloves/color/black/security
 	restricted_roles = list(ALL_JOBS_SEC)
 
-/datum/loadout_item/gloves/combat/peacekeeper/armadyne
+/datum/loadout_item/gloves/color/black/peacekeeper/armadyne
 	name = "Armadyne Combat Gloves"
-	item_path = /obj/item/clothing/gloves/combat/peacekeeper/armadyne
+	item_path = /obj/item/clothing/gloves/color/black/peacekeeper/armadyne
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/gloves/frontier_colonist
@@ -157,6 +157,14 @@
 	name = "Charcoal Fingerless Gloves"
 	item_path = /obj/item/clothing/gloves/skyy
 
+// Uses a loadout-only dummy type that holds the catgloves GAGS config at type level
+// so the loadout color picker works, then swaps itself for real ball mittens in paw mode on spawn.
+// i know this is probably dumb but I couldn't figure out a better way to do it :(
+/datum/loadout_item/gloves/ball_mittens_paw
+	name = "Latex Paw Mittens"
+	item_path = /obj/item/clothing/gloves/ball_mittens/loadout_paw
+	erp_item = TRUE
+
 /*
 *	RINGS
 */
@@ -183,3 +191,6 @@
 	item_path = /obj/item/clothing/gloves/ring/hypno/bippys
 	ckeywhitelist = list("bippys")
 
+/datum/loadout_item/gloves/latex_gloves
+	name = "Latex Gloves"
+	item_path = /obj/item/clothing/gloves/latex_gloves

@@ -1,10 +1,15 @@
 
 /obj/item/security_voucher
 	name = "security voucher"
-	desc = "A token to redeem a piece of equipment. Use it on a SecTech vendor."
+	desc = "A token to redeem a piece of equipment."
 	icon = 'modular_zubbers/icons/obj/security_voucher.dmi'
 	icon_state = "security_voucher_primary"
 	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/security_voucher/examine(mob/user)
+	. = ..()
+
+	. += span_notice("You can redeem it at a [EXAMINE_HINT("security equipment vendor")] or [EXAMINE_HINT("any lathe")].")
 
 /obj/item/security_voucher/primary
 	name = "security primary voucher"
@@ -19,6 +24,17 @@
 	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/primary, /datum/voucher_set/security/primary)
 	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/utility, /datum/voucher_set/security/utility)
 
+/obj/machinery/rnd/production/techfab/Initialize(mapload)
+	. = ..()
+
+	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/primary, /datum/voucher_set/security/primary)
+	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/utility, /datum/voucher_set/security/utility)
+
+/obj/machinery/rnd/production/protolathe/Initialize(mapload)
+	. = ..()
+
+	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/primary, /datum/voucher_set/security/primary)
+	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/utility, /datum/voucher_set/security/utility)
 
 /datum/voucher_set/security
 	blackbox_key = "security_voucher_redeemed"
@@ -26,8 +42,6 @@
 /datum/voucher_set/security/primary
 
 /datum/voucher_set/security/utility
-
-/datum/voucher_set/security/brig_physician
 
 /datum/voucher_set/security/primary/disabler
 	name = "Disabler"
@@ -66,6 +80,51 @@
 		/obj/item/shield/riot/flash,
 		)
 
+/datum/voucher_set/security/primary/archery
+	name = "Archery Kit"
+	description = "A powerful bow, a training manual, and a quiver with non/less-than-lethal arrows. You will still need to order the fletching book from cargo if you want to make lethal arrows."
+	icon = 'icons/obj/weapons/bows/bows.dmi'
+	icon_state = "hardlightbow"
+	set_items = list(
+		/obj/item/gun/ballistic/bow/security,
+		/obj/item/storage/bag/quiver/lesser/security,
+		/obj/item/book/granter/crafting_recipe/fletching/nonlethal,
+		/obj/item/hatchet,
+	)
+
+/obj/item/storage/bag/quiver/lesser/security
+	name = "security quiver"
+	desc = "A lightweight, low-capacity quiver capable of being folded into pockets, but nothing else."
+	slot_flags = ITEM_SLOT_LPOCKET|ITEM_SLOT_RPOCKET|ITEM_SLOT_BELT
+
+/obj/item/storage/bag/quiver/lesser/security/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/ammo_casing/arrow/blunt = 7,
+		/obj/item/ammo_casing/arrow/taser = 3
+	)
+
+	generate_items_inside(items_inside, src)
+
+/obj/item/book/granter/crafting_recipe/fletching/nonlethal
+	name = "Aim for the knees, not the eyes!"
+	desc = "A manual on how to construct sub-lethal bows & arrows, how best to use them... and how to construct violins?"
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/shortbow,
+		/datum/crafting_recipe/blunted_arrow,
+		/datum/crafting_recipe/taser_arrow,
+		/datum/crafting_recipe/violin,
+	)
+	uses = 1
+
+/datum/voucher_set/security/primary/nt_usp
+	name = "NT22-HCS 'Enforcer' Pistol"
+	description = "A small pistol that uses hardlight technology to synthesize bullets. Due to its low power, it doesn't have much use besides tiring out criminals."
+	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
+	icon_state = "ntusp_full"
+	set_items = list(
+		/obj/item/gun/ballistic/automatic/pistol/ntusp,
+		/obj/item/ammo_box/magazine/recharge/ntusp,
+		)
 
 /datum/voucher_set/security/utility/sec_projector
 	name = "Security Holobarrier Projector"

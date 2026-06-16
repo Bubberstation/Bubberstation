@@ -377,6 +377,7 @@
 
 
 #define COLOR_CARP_PURPLE "#aba2ff"
+#define COLOR_CARP_DARK_PURPLE "#4c486e"
 #define COLOR_CARP_PINK "#da77a8"
 #define COLOR_CARP_GREEN "#70ff25"
 #define COLOR_CARP_GRAPE "#df0afb"
@@ -462,6 +463,8 @@
 #define COLOR_AMMO_INCENDIARY "#f4001f"
 #define COLOR_AMMO_ARMORPIERCE "#d9d9d9"
 #define COLOR_AMMO_HOLLOWPOINT "#ff9900"
+
+#define COLOR_DMI_MASK "#a0a0a000"
 
 GLOBAL_LIST_INIT(cable_colors, list(
 	CABLE_COLOR_BLUE = CABLE_HEX_COLOR_BLUE,

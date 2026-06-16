@@ -13,6 +13,7 @@
 	now_failing = span_warning("You are unable to hear at all!")
 	now_fixed = span_info("Noise slowly begins filling your ears once more.")
 	low_threshold_cleared = span_info("The ringing in your ears has died down.")
+	visual = FALSE
 
 	/// temporary deafness, measured in seconds. While > 0, the person is unable to hear anything.
 	var/temporary_deafness = 0
@@ -26,7 +27,7 @@
 	/// Multiplier for both long term and short term ear damage
 	var/damage_multiplier = 1
 
-/obj/item/organ/ears/on_life(seconds_per_tick, times_fired)
+/obj/item/organ/ears/on_life(seconds_per_tick)
 	// only inform when things got worse, needs to happen before we heal
 	if((damage > low_threshold && prev_damage < low_threshold) || (damage > high_threshold && prev_damage < high_threshold))
 		to_chat(owner, span_warning("The ringing in your ears grows louder, blocking out any external noises for a moment."))
@@ -48,11 +49,16 @@
 	. = ..()
 	if(temporary_deafness)
 		on_deafened()
+	REMOVE_TRAIT(organ_owner, TRAIT_DEAF, NO_EARS)
 
 /obj/item/organ/ears/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
 	if(temporary_deafness)
 		on_undeafened(organ_owner)
+	// Do not apply with special flag, even if it would ultimately be redundant by new ears being hot-swapped in.
+	// This is so we don't trip signal_addtrait when hot-swapping ears, which could cause inappropriate behavior like nuking sound effects.
+	if(!special)
+		ADD_TRAIT(organ_owner, TRAIT_DEAF, NO_EARS)
 
 /obj/item/organ/ears/get_status_appendix(advanced, add_tooltips)
 	if(owner.stat == DEAD || !HAS_TRAIT(owner, TRAIT_DEAF))
@@ -136,7 +142,6 @@
 /obj/item/organ/ears/invincible
 	damage_multiplier = 0
 
-
 /obj/item/organ/ears/cat
 	name = "cat ears"
 	icon = 'icons/obj/clothing/head/costume.dmi'
@@ -161,8 +166,8 @@
 	/// Layer upon which we add the inner ears overlay
 	var/inner_layer = EXTERNAL_FRONT
 
-/datum/bodypart_overlay/mutant/cat_ears/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
-	return !(bodypart_owner.owner?.obscured_slots & HIDEHAIR)
+/datum/bodypart_overlay/mutant/cat_ears/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner, mob/living/carbon/owner, is_husked = FALSE)
+	return ..() && !(bodypart_owner.owner?.obscured_slots & HIDEHAIR)
 
 /datum/bodypart_overlay/mutant/cat_ears/get_image(image_layer, obj/item/bodypart/limb)
 	var/mutable_appearance/base_ears = ..()
@@ -249,10 +254,10 @@
 	return all_images
 
 /datum/bodypart_overlay/mutant/cat_ears/cybernetic/green
-	inner_color = "#0079EA"
+	inner_color = "#00D844"
 
 /datum/bodypart_overlay/mutant/cat_ears/cybernetic/blue
-	inner_color = "#00D844"
+	inner_color = "#0079EA"
 
 /obj/item/organ/ears/ghost
 	name = "ghost ears"
@@ -304,6 +309,13 @@
 	icon_state = "ears-c-u"
 	desc = "Advanced cybernetic ears capable of dampening loud noises to protect their user."
 	bang_protect = EAR_PROTECTION_NORMAL
+	damage_multiplier = 0.5
+
+/obj/item/organ/ears/cybernetic/volume
+	name = "volume-adjusting cybernetic ears"
+	icon_state = "ears-c-u"
+	desc = "Advanced cybernetic ears capable of dampening loud noises to protect their user."
+	bang_protect = 1
 	damage_multiplier = 0.5
 
 // "X-ray ears" that let you hear through walls

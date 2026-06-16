@@ -102,11 +102,119 @@
 	cost = 1116
 	order_flags = ORDER_CONTRABAND
 	contains = list(/obj/item/clothing/head/helmet/metrocophelmet = 6,
-					/obj/item/clothing/suit/armor/vest/alt/sec/metrocop = 6,
-					/obj/item/clothing/under/rank/security/metrocop = 6,
-					/obj/item/clothing/gloves/color/black/security/metrocop = 6,
-					/obj/item/clothing/shoes/jackboots/combine = 6,
-					/obj/item/trash/can = 3,
-				)
+		/obj/item/clothing/suit/armor/vest/alt/sec/metrocop = 6,
+		/obj/item/clothing/under/rank/security/metrocop = 6,
+		/obj/item/clothing/gloves/color/black/security/metrocop = 6,
+		/obj/item/clothing/shoes/jackboots/combine = 6,
+		/obj/item/trash/can = 3,
+			)
 	crate_name = "benefactor supply crate"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
+
+/datum/supply_pack/security/ntusp
+	name = "NT22-HCS Crate"
+	desc = "Three NT22-HCS 'Enforcer' pistol cases, each containing a weapon and a power pack."
+	cost = CARGO_CRATE_VALUE * 5.5
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/ntusp,
+					/obj/item/storage/toolbox/guncase/skyrat/pistol/ntusp,
+					/obj/item/storage/toolbox/guncase/skyrat/pistol/ntusp)
+	crate_name = "nt22-hcs crate"
+
+/datum/supply_pack/security/ntmp5
+	name = "NT22-HCS-MP Crate"
+	desc = "Three NT22-HCS-MP 'Lancer' submachine gun cases, each containing a weapon and a power pack. Each weapon can retract its stock to fit inside backpacks."
+	cost = CARGO_CRATE_VALUE * 6.5
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5,
+					/obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5,
+					/obj/item/storage/toolbox/guncase/skyrat/pistol/ntmp5)
+	crate_name = "nt22-hcs-mp crate"
+
+/datum/supply_pack/security/miecz
+	name = "Miecz Submachine Gun Crate"
+	crate_name = "Miecz submachine gun crate"
+	desc = "Contains two Miecz submachine guns and a spare magazine for both."
+	contains = list(/obj/item/gun/ballistic/automatic/miecz = 2,
+	/obj/item/ammo_box/magazine/miecz = 2)
+	cost = CARGO_CRATE_VALUE * 10
+	access = ACCESS_SECURITY
+
+/datum/supply_pack/security/mieczammo
+	name = "Miecz Submachine Gun Ammo Crate"
+	crate_name = "Miecz submachine gun ammo crate"
+	desc = "Contains 4 magazines for the Miecz submachine gun."
+	contains = list(/obj/item/ammo_box/magazine/miecz = 4)
+	cost = CARGO_CRATE_VALUE * 4
+	access = ACCESS_SECURITY
+
+/datum/supply_pack/security/armory/archery_kit
+	name = "Archery Crate"
+	desc = "Two hardlight bows capable of defeating armor, alongside a mix of lethal and non/less-than-lethal arrows."
+	cost = CARGO_CRATE_VALUE * 6
+	contains = list(
+		/obj/item/gun/ballistic/bow/security,
+		/obj/item/gun/ballistic/bow/security,
+		/obj/item/storage/bag/quiver/lesser/security/armory,
+		/obj/item/storage/bag/quiver/lesser/security/armory,
+	)
+
+/obj/item/storage/bag/quiver/lesser/security/armory
+
+/obj/item/storage/bag/quiver/lesser/security/armory/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/ammo_casing/arrow/blunt = 3,
+		/obj/item/ammo_casing/arrow = 6,
+		/obj/item/ammo_casing/arrow/taser = 1
+	)
+
+	generate_items_inside(items_inside, src)
+
+/datum/supply_pack/security/armory/lethal_arrows
+	name = "Arrow Crate"
+	desc = "Two quivers containing nine normal arrows and one randomly selected specialty arrow."
+	cost = CARGO_CRATE_VALUE * 3
+	contains = list(
+		/obj/item/storage/bag/quiver/lesser/security/lethal,
+		/obj/item/storage/bag/quiver/lesser/security/lethal
+	)
+
+/obj/item/storage/bag/quiver/lesser/security/lethal
+
+/obj/item/storage/bag/quiver/lesser/security/lethal/PopulateContents()
+	var/static/list/static_items = list(
+		/obj/item/ammo_casing/arrow = 9
+	)
+	/// Typepath -> Weight
+	var/static/list/bonus_items = list(
+		/obj/item/ammo_casing/arrow/sticky = 10,
+		/obj/item/ammo_casing/arrow/poison = 10,
+		/obj/item/ammo_casing/arrow/plastic = 6,
+		/obj/item/ammo_casing/arrow/bronze = 1,
+		/obj/item/ammo_casing/arrow/taser = 1,
+	)
+
+	var/list/obj/item/ammo_casing/arrow/to_spawn = static_items.Copy()
+	to_spawn[pick_weight(bonus_items)] = 1
+
+	generate_items_inside(to_spawn, src)
+
+/datum/supply_pack/security/armory/tacticool_laser_crate
+	name = "Tacticool energy gun crate"
+	desc = "Three tacticool energy guns to express your individuality compared to all those other energy gun users!"
+	cost = CARGO_CRATE_VALUE * 8
+	contains = list(
+		/obj/item/gun/energy/tacticool,
+		/obj/item/gun/energy/tacticool,
+		/obj/item/gun/energy/tacticool,
+	)
+
+/datum/supply_pack/security/armory/peacekeepers
+	name = "Renoster Shotgun Crate"
+	desc = "Three Renoster pump-action shotguns to restock your armories with."
+	cost = CARGO_CRATE_VALUE * 10
+	contains = list(
+		/obj/item/gun/ballistic/shotgun/riot/sol,
+		/obj/item/gun/ballistic/shotgun/riot/sol,
+		/obj/item/gun/ballistic/shotgun/riot/sol,
+	)

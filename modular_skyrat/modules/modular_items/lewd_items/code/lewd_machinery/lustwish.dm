@@ -124,6 +124,7 @@
 
 				//hands
 				/obj/item/clothing/gloves/ball_mittens = 8,
+				/obj/item/clothing/gloves/ball_mittens/loadout_paw = 5,
 			),
 		),
 			list(
@@ -186,7 +187,10 @@
 					/obj/item/reagent_containers/applicator/pill/hexacrocin = 10,
 					/obj/item/reagent_containers/applicator/pill/pentacamphor = 5,
 					/obj/item/reagent_containers/cup/bottle/hexacrocin = 4,
-					/obj/item/reagent_containers/cup/bottle/pentacamphor = 2)
+					/obj/item/reagent_containers/cup/bottle/pentacamphor = 2,
+					/obj/item/reagent_containers/cup/bottle/plushmium = 1,
+					/obj/item/clothing/sextoy/fleshlight/bluespace = 1
+				)
 
 	refill_canister = /obj/item/vending_refill/lustwish
 	payment_department = ACCOUNT_SRV

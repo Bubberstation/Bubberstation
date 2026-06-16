@@ -26,7 +26,7 @@
 	mutantears = /obj/item/organ/ears/dullahan
 	mutantstomach = null
 	mutantlungs = null
-	skinned_type = /obj/item/stack/sheet/animalhide/human
+	skinned_type = /obj/item/stack/sheet/animalhide/carbon/human
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
 
 	/// The dullahan relay that's associated with the owner, used to handle many things such as talking and hearing.
@@ -60,7 +60,6 @@
 	eyes.eye_color_left = human.eye_color_left
 	eyes.eye_color_right = human.eye_color_right
 	eyes.bodypart_insert(head)
-	human.update_body()
 	head.update_limb()
 	head.update_icon_dropped()
 	RegisterSignal(head, COMSIG_QDELETING, PROC_REF(on_head_destroyed))
@@ -267,7 +266,6 @@
 	if (!istype(detached_head))
 		return // It's so over
 	detached_head.real_name = headless.real_name
-	detached_head.name = headless.real_name
 	name = headless.real_name
 	detached_head.voice = headless.voice
 	detached_head.pitch = pitch

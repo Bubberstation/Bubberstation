@@ -27,3 +27,8 @@
 	name = "amazing jester outfit"
 	desc = "Update: No dessert based jokes, Central's told us this is a different jester outfit."
 	icon_state = "striped_jester_outfit"
+	// new digi sprites
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/service_digi.dmi'
+	// new teshari sprites
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/service_teshari.dmi'
+

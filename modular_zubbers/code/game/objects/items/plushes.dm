@@ -264,7 +264,6 @@
 	icon_state = "johnghoul"
 	attack_verb_continuous = list("ghouls")
 	attack_verb_simple = list("ghoul")
-	squeak_override = list('modular_zubbers/code/modules/blooper/voice/bloopers/kazooie/ehh.ogg' = 1)
 
 // plushie for BeoTheKobold
 // sprite by Cepha, code by Mitryll
@@ -319,16 +318,6 @@
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "lazy_synth"
 	squeak_override = list('modular_zubbers/sound/misc/squeakle.ogg' = 1)
-
-
-/obj/item/toy/plush/tian_plush
-	name = "bureaucratic goat plush"
-	desc = "A big, soft plush of a goat-carp creature, that clearly hasn't slept in a lot. It has a faint smell of ink and weed."
-	attack_verb_continuous = list("chomps", "nibbles", "gnashes", "bites")
-	attack_verb_simple = list("gnashes")
-	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
-	icon_state = "tian_plush"
-	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/baa.ogg' = 1)
 
 /obj/item/toy/plush/goatplushie
 	name = "strange goat plushie"
@@ -494,3 +483,348 @@
 		icon_state = "myrthel-plush"
 	update_light()
 	return ..()
+
+// Plushie coded and sprited by Mathilde.
+// Props to Seijan-Etroix for helping with the design!
+/obj/item/toy/plush/tian_plush
+	name = "bureaucratic goat plush"
+	desc = "A giant, weighted plushie of a goat-carp bureaucrat, who seems to be very hungry for paper(work). It's nearly impossible to get your arms all the way around her.<br><br><span style=color:#6685F5><i>A tag on the back reads 'Comfort provided under official licence.'</i></span>"
+	attack_verb_continuous = list("stomps", "smothers", "buries", "squishes", "nibbles", "gnashes", "flattens", "pummels", "chomps")
+	attack_verb_simple = list("stomp", "smother", "bury", "squish", "nibble", "gnash", "flatten", "pummel", "chomp")
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "tianplush"
+	gender = FEMALE
+	squeak_override = list('modular_zubbers/sound/misc/meatybaa.ogg'=1)
+	var/shirt = TRUE
+
+	var/bg_color = "#9b2e8c"
+	var/static/list/folder_insertables = typecacheof(list(
+		/obj/item/paper,
+		/obj/item/photo,
+		/obj/item/documents,
+		/obj/item/paperwork,
+	))
+
+/obj/item/toy/plush/tian_plush/interact(mob/user)
+	return
+
+/obj/item/toy/plush/tian_plush/attack_self_secondary(mob/user, modifiers)
+	. = ..()
+	if(.)
+		return
+	add_fingerprint(user)
+	ui_interact(user)
+	return TRUE
+
+/obj/item/toy/plush/tian_plush/attack_hand_secondary(mob/user, list/modifiers)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
+	add_fingerprint(user)
+	ui_interact(user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+//Plot armour
+/obj/item/toy/plush/tian_plush/attackby(obj/item/I, mob/living/user, list/modifiers, list/attack_modifiers)
+	if(I.get_sharpness())
+		to_chat(user, span_notice("[I] just bounces off!"))
+		return
+	return ..()
+
+//The plushie works exactly like a folder
+/obj/item/toy/plush/tian_plush/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(is_type_in_typecache(tool, folder_insertables))
+		if(!user.transferItemToLoc(tool, src, silent = FALSE))
+			return ITEM_INTERACT_BLOCKING
+		balloon_alert(user, "nom!")
+		return ITEM_INTERACT_SUCCESS
+	return NONE
+
+/obj/item/toy/plush/tian_plush/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	if(!is_type_in_typecache(interacting_with, folder_insertables))
+		return NONE
+	var/obj/item/item_to_insert = interacting_with
+	if(item_to_insert.loc == user)
+		if(!user.transferItemToLoc(item_to_insert, src, silent = TRUE))
+			return ITEM_INTERACT_BLOCKING
+	else
+		item_to_insert.do_pickup_animation(src)
+		item_to_insert.forceMove(src)
+	playsound(src, item_to_insert.pickup_sound, PICKUP_SOUND_VOLUME, item_to_insert.sound_vary, ignore_walls = FALSE)
+	balloon_alert(user, "nom!")
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/toy/plush/tian_plush/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Folder")
+		ui.open()
+
+/obj/item/toy/plush/tian_plush/ui_data(mob/user)
+	var/list/data = list()
+	data["bg_color"] = "[bg_color]"
+	data["folder_name"] = "[name]"
+
+	data["contents"] = list()
+	data["contents_ref"] = list()
+	for(var/Content in src)
+		data["contents"] += "[Content]"
+		data["contents_ref"] += "[REF(Content)]"
+
+	return data
+
+/obj/item/toy/plush/tian_plush/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	if(usr.stat != CONSCIOUS || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED))
+		return
+
+	switch(action)
+		if("remove")
+			var/obj/item/Item = locate(params["ref"]) in src
+			if(istype(Item))
+				Item.forceMove(usr.loc)
+				usr.put_in_hands(Item)
+				to_chat(usr, span_notice("You remove [Item] from [src]."))
+				. = TRUE
+		if("examine")
+			var/obj/item/Item = locate(params["ref"]) in src
+			if(istype(Item))
+				usr.examinate(Item)
+				. = TRUE
+//Belly
+/obj/item/toy/plush/tian_plush/click_alt(mob/user)
+	shirt = !shirt
+	if(!shirt)
+		balloon_alert(user, "tummy shown...")
+		icon_state = "tianplush-alt"
+
+	else
+		balloon_alert(user, "tummy tucked away...")
+		icon_state = "tianplush"
+	return ..()
+
+// Plushling, used when plushnium reactions fail
+/obj/item/toy/plush/plushling
+	name = "peculiar plushie"
+	desc = "An adorable stuffed toy- wait, did it just move?"
+	/// Cooldown ticks between absorbs
+	var/absorb_cooldown = 100
+	/// When can it absorb another plushie
+	var/next_absorb = 0
+	var/check_interval = 20
+	var/next_check = 0
+
+/obj/item/toy/plush/plushling/attack_self(mob/user)
+	if(!user)
+		return
+	to_chat(user, span_warning("You try to pet the plushie, but recoil as it bites your hand instead! OW!"))
+	var/mob/living/carbon/human/human_user = user
+	if(!human_user)
+		return
+	human_user.add_mood_event("plush_bite", /datum/mood_event/plush_bite)
+	human_user.apply_damage(5, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+	addtimer(CALLBACK(human_user, TYPE_PROC_REF(/mob/living/carbon/human, dropItemToGround), src, TRUE), 1)
+
+/obj/item/toy/plush/plushling/New()
+	var/initial_state = pick("mothroach", "moffplush_lovers", "johnghoul")
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = initial_state
+	START_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/toy/plush/plushling/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/toy/plush/plushling/process()
+	if(world.time < next_absorb || world.time < next_check)
+		return
+	next_check = world.time + check_interval
+	var/obj/item/toy/plush/target
+	for(var/obj/item/toy/plush/possible_target in loc) //First, it tries to get anything in its same location, be it a tile or a backpack
+		if(possible_target == src || istype(possible_target, /obj/item/toy/plush/plushling))
+			continue
+		target = possible_target
+		break
+	if(!target)
+		if(!isturf(loc))
+			return
+		for(var/obj/item/toy/plush/adjacent_plush in oview(1, src)) //If that doesn't work, it hunts for plushies adjacent to its own tile
+			if(istype(adjacent_plush, /obj/item/toy/plush/plushling)) //These do not hunt their own kind
+				continue
+			src.throw_at(adjacent_plush, 1, 2)
+			visible_message(span_danger("[src] leaps at [adjacent_plush]!"))
+			break
+		return
+	if(istype(target, /obj/item/toy/plush/plushling)) //These do not consume their own.
+		return
+	next_absorb = world.time + absorb_cooldown
+	plushie_absorb(target)
+
+/obj/item/toy/plush/plushling/proc/plushie_absorb(obj/item/toy/plush/victim)
+	if(!victim)
+		return
+	visible_message(span_warning("[src] gruesomely mutilates [victim], leaving nothing more than dust!"))
+	name = victim.name
+	desc = victim.desc + " Wait, did it just move..?"
+	icon_state = victim.icon_state
+	squeak_override = victim.squeak_override
+	new /obj/effect/decal/cleanable/ash(get_turf(victim))
+	qdel(victim)
+
+/obj/item/toy/plush/plushling/love(obj/item/toy/plush/kisser, mob/living/user) //You shouldn't have come here, poor plush.
+	if(!kisser)
+		return
+	plushie_absorb(kisser)
+
+/obj/item/toy/plush/aeri
+	name = "Interdimensional Terrorist Plushie"
+	desc = "A highly controversial silicone 'plushie' modeled after its infamous namesake. Pulled from most storefronts after a spectacular public backlash, it now survives mainly through grey-market resellers. Rumor has it a few limited-run units shipped with a functional handheld railgun."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "aeri"
+	inhand_icon_state = null
+	attack_verb_continuous = list("cuddles", "squeaks", "hugs", "caresses")
+	attack_verb_simple = list("cuddle", "squeak", "hug", "caress")
+	squeak_override = list(
+		'modular_zubbers/sound/lewd/rubber1.ogg' = 1,
+		'modular_zubbers/sound/lewd/rubber2.ogg' = 1,
+		'modular_zubbers/sound/lewd/rubber3.ogg' = 1
+	)
+	var/clothed = TRUE
+
+/obj/item/toy/plush/aeri/Initialize(mapload)
+	. = ..()
+	update_plush_state()
+
+/obj/item/toy/plush/aeri/proc/update_plush_state()
+	if(clothed)
+		name = "Interdimensional Terrorist Plushie"
+		desc = "A highly controversial silicone 'plushie' modeled after its infamous namesake. Pulled from most storefronts after a spectacular public backlash, it now survives mainly through grey-market resellers. Rumor has it a few limited-run units shipped with a functional handheld railgun."
+		icon_state = "aeri"
+		//probably not necessary to put the verb and squeak override once again here but it kinda bugs out if I don't
+		attack_verb_continuous = list("cuddles", "squeaks", "hugs", "caresses")
+		attack_verb_simple = list("cuddle", "squeak", "hug", "caress")
+		squeak_override = list(
+			'modular_zubbers/sound/lewd/rubber1.ogg' = 1,
+			'modular_zubbers/sound/lewd/rubber2.ogg' = 1,
+			'modular_zubbers/sound/lewd/rubber3.ogg' = 1
+		)
+		hitsound = initial(hitsound)
+	else
+		name = "Interdimensional terrorist Doll"
+		desc = "Without the outfit, the 'plushie' label becomes much harder to defend. Beneath the clothing is a glossy, stretchable silicone shell with ribbed orifices and breasts that experts have described as 'Fuckable'."
+		icon_state = "aeri-alt"
+		attack_verb_continuous = list("cuddles", "squeaks", "hugs", "caresses")
+		attack_verb_simple = list("cuddle", "squeak", "hug", "caress")
+		squeak_override = list(
+			'modular_zubbers/sound/lewd/rubber1.ogg' = 1,
+			'modular_zubbers/sound/lewd/rubber2.ogg' = 1,
+			'modular_zubbers/sound/lewd/rubber3.ogg' = 1
+		)
+		hitsound = null
+	inhand_icon_state = null
+	update_appearance()
+	update_inhand_icon()
+
+/obj/item/toy/plush/aeri/examine(mob/user)
+	. = ..()
+	if(clothed)
+		. += span_purple("Alt-click to remove the plushie's clothes.")
+	else
+		. += span_purple("Alt-click to dress the doll back up.")
+
+/obj/item/toy/plush/aeri/click_alt(mob/user)
+	clothed = !clothed
+	if(clothed)
+		to_chat(user, span_notice("You dress [src] back up."))
+	else
+		to_chat(user, span_notice("You remove [src]'s clothes."))
+	playsound(user, 'modular_zubbers/sound/lewd/rubber1.ogg', 50, TRUE)
+	update_plush_state()
+	return TRUE
+
+/obj/item/toy/plush/aeri/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+	if(clothed)
+		return ..()
+	var/obj/item/toy/plush/fleshlight/proxy = new(loc)
+	proxy.name = name
+	proxy.desc = desc
+	proxy.icon = icon
+	proxy.icon_state = icon_state
+	. = proxy.attack(target, user)
+	qdel(proxy)
+
+//If you suicide with this toy it just summons a BSA smite on you
+/obj/item/toy/plush/aeri/suicide_act(mob/living/carbon/human/user)
+	user.visible_message(span_suicide("[user] angers the plushie! Oh god, it's locking a Bluespace Artillery strike onto [user.p_them()]! It looks like [user.p_theyre()] trying to kill [user.p_them()]self!"))
+	var/datum/smite/bsa/bluespace_smite = new()
+	bluespace_smite.effect(user.client, user)
+	return BRUTELOSS
+
+//Sprite from SS14 Main. Sprited by Orsoniks (rivey0 on discord)
+/obj/item/toy/plush/expie
+	name = "Experiment Plushie"
+	icon_state = "expie"
+	slot_flags = ITEM_SLOT_HEAD
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	worn_icon_state = "expie"
+	desc = "A plushie of a canid of sorts. It yearns to be detonated on a landmine."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	attack_verb_simple = list("bark", "growl", "whine")
+	squeak_override = list('modular_zubbers/sound/misc/plushie.ogg' = 1)
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/items/plushes_righthand.dmi'
+	inhand_icon_state = "expie"
+
+/obj/item/toy/plush/expie/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //emissive glow when worn on head.
+	. = ..()
+	if(!isinhands)
+		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha, effect_type = EMISSIVE_BLOOM)
+
+/obj/item/toy/plush/expie/item_interaction(mob/living/feeder, obj/item/reagent_containers/applicator/pill/enom, list/modifiers)
+	if(!istype(enom))
+		return ..()
+	enom.forceMove(src) // pill go into the expie stummy
+	to_chat(feeder, span_notice("You feed the [enom] to [src] and watch as it eats..."))
+	playsound(src, 'modular_zubbers/sound/misc/eatcrunch.ogg', 75, TRUE)
+	addtimer(CALLBACK(src, PROC_REF(eat), feeder, enom), 3 SECONDS)
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/toy/plush/expie/proc/eat(mob/living/feeder, obj/item/reagent_containers/applicator/pill/enom)
+	if(istype(enom, /obj/item/reagent_containers/applicator/pill))
+		SpinAnimation(speed = 0.3 SECONDS, loops = 3)
+	qdel(enom)
+	return
+
+//expie reacts to being splashed
+/obj/item/toy/plush/expie/proc/splash_reagents()
+	SIGNAL_HANDLER
+	playsound(src, 'modular_zubbers/sound/misc/dogshake.ogg', 75)
+	spasm_animation(2 SECONDS)
+	visible_message(span_warning("[src] gets soaked and shakes itself off!"))
+
+/obj/item/toy/plush/expie/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_SPLASHED, PROC_REF(splash_reagents))
+
+/datum/reagent/consumable/milk/expose_obj(obj/exposed_obj, reac_volume, methods=TOUCH, show_message=TRUE) //spill milk on the expie to make it milky
+	. = ..()
+	if(!istype(exposed_obj, /obj/item/toy/plush/expie))
+		return
+
+	var/obj/item/toy/plush/expie/milked = exposed_obj
+	milked.name = /obj/item/toy/plush/expie/milky::name
+	milked.desc = /obj/item/toy/plush/expie/milky::desc
+	milked.worn_icon_state = /obj/item/toy/plush/expie/milky::worn_icon_state
+	milked.icon_state = /obj/item/toy/plush/expie/milky::icon_state
+	milked.inhand_icon_state = /obj/item/toy/plush/expie/milky::inhand_icon_state
+
+/obj/item/toy/plush/expie/milky
+	name = "Milky Plushie"
+	desc = "A plushie of snowy-white, furred canid. Maybe it'll trade something with you?"
+	worn_icon_state = "milky"
+	icon_state = "milky"
+	inhand_icon_state = "milky"

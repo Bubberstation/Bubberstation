@@ -46,7 +46,7 @@
 
 /obj/item/food/pizzabread/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/ingredients_holder, /obj/item/food/pizza, CUSTOM_INGREDIENT_ICON_SCATTER, max_ingredients = 12)
+	AddComponent(/datum/component/ingredients_holder, /obj/item/food/pizza/custom, CUSTOM_INGREDIENT_ICON_SCATTER, max_ingredients = 12)
 
 /obj/item/food/doughslice
 	name = "dough slice"
@@ -95,6 +95,14 @@
 
 /obj/item/food/cakebatter/make_processable()
 	AddElement(/datum/element/processable, TOOL_ROLLINGPIN, /obj/item/food/piedough, 1, 3 SECONDS, table_required = TRUE, screentip_verb = "Flatten", sound_to_play = SFX_ROLLING_PIN_ROLLING)
+
+/obj/item/food/cakebatter/vegan
+	name = "vegan cake batter"
+	desc = "Bake it to get a vegan cake?."
+	foodtypes = GRAIN
+
+/obj/item/food/cakebatter/vegan/make_bakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/food/cake/plain/vegan, rand(70 SECONDS, 90 SECONDS), TRUE, TRUE)
 
 /obj/item/food/piedough
 	name = "pie dough"

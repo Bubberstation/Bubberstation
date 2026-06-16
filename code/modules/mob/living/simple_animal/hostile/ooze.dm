@@ -54,7 +54,7 @@
 	return ..()
 
 ///Handles nutrition gain/loss of mob and also makes it take damage if it's too low on nutrition, only happens for sentient mobs.
-/mob/living/simple_animal/hostile/ooze/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+/mob/living/simple_animal/hostile/ooze/Life(seconds_per_tick = SSMOBS_DT)
 	. = ..()
 
 	if(!.) //dead or deleted
@@ -85,7 +85,9 @@
 ///Does ooze_nutrition + supplied amount and clamps it within 0 and 500
 /mob/living/simple_animal/hostile/ooze/proc/adjust_ooze_nutrition(amount)
 	ooze_nutrition = clamp(ooze_nutrition + amount, 0, 500)
-	updateNutritionDisplay()
+	hud_used?.screen_objects[HUD_OOZE_NUTRITION_DISPLAY]?.maptext = MAPTEXT( \
+		"<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='green'>[round(ooze_nutrition)]</font></div>" \
+	)
 
 ///Tries to transfer the atoms reagents then delete it
 /mob/living/simple_animal/hostile/ooze/proc/eat_atom(atom/eat_target, silent)
@@ -97,12 +99,6 @@
 		return FALSE
 	to_chat(src, span_warning("[eat_target] cannot be eaten!"))
 	return FALSE
-
-///Updates the display that shows the mobs nutrition
-/mob/living/simple_animal/hostile/ooze/proc/updateNutritionDisplay()
-	if(hud_used) //clientless oozes
-		hud_used.alien_plasma_display.maptext = MAPTEXT("<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='green'>[round(ooze_nutrition)]</font></div>")
-
 
 ///* Gelatinious Ooze code below *\\\\
 

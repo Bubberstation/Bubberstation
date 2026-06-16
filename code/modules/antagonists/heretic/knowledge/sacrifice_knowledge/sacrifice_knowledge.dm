@@ -26,7 +26,7 @@
 	/// A weakref to the mind of our heretic.
 	var/datum/mind/heretic_mind
 	/// Lazylist of minds that we won't pick as targets.
-	var/list/datum/mind/target_blacklist
+	var/static/list/datum/mind/target_blacklist
 	/// An assoc list of [ref] to [timers] - a list of all the timers of people in the shadow realm currently
 	var/list/return_timers
 	/// Evil organs we can put in people
@@ -42,7 +42,6 @@
 
 /datum/heretic_knowledge/hunt_and_sacrifice/Destroy(force)
 	heretic_mind = null
-	LAZYCLEARLIST(target_blacklist)
 	return ..()
 
 /datum/heretic_knowledge/hunt_and_sacrifice/on_research(mob/user, datum/antagonist/heretic/our_heretic)
@@ -211,8 +210,8 @@
 
 	if(sacrifice.mind)
 		LAZYADD(target_blacklist, sacrifice.mind)
-	heretic_datum.remove_sacrifice_target(sacrifice)
-
+	for(var/datum/antagonist/heretic/all_heretic in GLOB.antagonists)
+		all_heretic.remove_sacrifice_target(sacrifice)
 
 	var/feedback = "Your patrons accept your offer"
 	var/sac_job_flag = sacrifice.mind?.assigned_role?.job_flags | sacrifice.last_mind?.assigned_role?.job_flags
@@ -267,7 +266,7 @@
 		loot.throw_at(get_step_rand(sacrifice), 2, 4, user, TRUE)
 
 	// The loser is DUSTED.
-	sacrifice.dust(TRUE, TRUE)
+	sacrifice.dust(just_ash = TRUE, drop_items = TRUE)
 
 	// Increase reward counter
 	var/datum/antagonist/heretic/antag = GET_HERETIC(user)

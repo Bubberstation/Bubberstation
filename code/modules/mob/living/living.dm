@@ -12,7 +12,9 @@
 	medhud.add_atom_to_hud(src)
 	var/datum/atom_hud/data/diagnostic/diag_hud = GLOB.huds[DATA_HUD_DIAGNOSTIC]
 	diag_hud.add_atom_to_hud(src)
-	faction += "[REF(src)]"
+	add_ally(src)
+	if(!pull_force)
+		remove_verb(src, /mob/living/verb/pulled)
 	GLOB.mob_living_list += src
 	SSpoints_of_interest.make_point_of_interest(src)
 	update_fov()
@@ -45,7 +47,6 @@
 		imaginary_group -= src
 		QDEL_LIST(imaginary_group)
 	QDEL_LAZYLIST(diseases)
-	QDEL_LIST(surgeries)
 	QDEL_LAZYLIST(quirks)
 	return ..()
 
@@ -540,14 +541,11 @@
 
 //mob verbs are a lot faster than object verbs
 //for more info on why this is not atom/pull, see examinate() in mob.dm
-/mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
+/mob/living/verb/pulled(atom/movable/thing_pulled as mob|obj in oview(1))
 	set name = "Pull"
-	set category = "Object"
 
-	if(istype(AM) && Adjacent(AM))
-		start_pulling(AM)
-	else if(!combat_mode) //Don;'t cancel pulls if misclicking in combat mode.
-		stop_pulling()
+	if(istype(thing_pulled) && Adjacent(thing_pulled))
+		start_pulling(thing_pulled)
 
 /mob/living/stop_pulling()
 	if(ismob(pulling))
@@ -556,13 +554,8 @@
 	update_pull_movespeed()
 	update_pull_hud_icon()
 
-/mob/living/verb/stop_pulling1()
-	set name = "Stop Pulling"
-	set category = "IC"
-	stop_pulling()
-
 //same as above
-/mob/living/pointed(atom/A as mob|obj|turf in view(client.view, src))
+/mob/living/pointed(atom/A)
 	if(INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
 		return FALSE
 
@@ -636,7 +629,7 @@
 
 /mob/living/proc/mob_sleep()
 	set name = "Sleep"
-	set category = "IC"
+	set hidden = TRUE
 
 	if(IsSleeping())
 		to_chat(src, span_warning("You are already sleeping!"))
@@ -669,11 +662,9 @@
 /**
  * Returns the access list for this mob
  */
-/mob/living/proc/get_access() as /list
+/mob/living/get_access()
 	var/list/access_list = list()
-	SEND_SIGNAL(src, COMSIG_MOB_RETRIEVE_SIMPLE_ACCESS, access_list)
-	var/obj/item/card/id/id = get_idcard()
-	access_list += id?.GetAccess()
+	SEND_SIGNAL(src, COMSIG_MOB_RETRIEVE_ACCESS, access_list)
 	return access_list
 
 /mob/living/proc/get_id_in_hand()
@@ -693,9 +684,6 @@
 		return account
 
 /mob/living/proc/toggle_resting()
-	set name = "Rest"
-	set category = "IC"
-
 	set_resting(!resting, FALSE)
 
 
@@ -814,15 +802,17 @@
 
 /mob/living/update_rest_hud_icon()
 	. = ..()
-	if(!.)
+	if(!. || !hud_used)
 		return FALSE
-	if(!hud_used.sleep_icon || HAS_TRAIT(src, TRAIT_SLEEPIMMUNE))
+
+	var/atom/movable/screen/sleep/sleep_icon = hud_used.screen_objects[HUD_MOB_SLEEP]
+	if(!sleep_icon || HAS_TRAIT(src, TRAIT_SLEEPIMMUNE))
 		return TRUE
+
 	if(resting || HAS_TRAIT(src, TRAIT_FLOORED))
-		hud_used.static_inventory |= hud_used.sleep_icon
+		sleep_icon.RemoveInvisibility(INVISIBILITY_SOURCE_SLEEP_HUD_BUTTON)
 	else
-		hud_used.static_inventory -= hud_used.sleep_icon
-	hud_used.show_hud(hud_used.hud_version)
+		sleep_icon.SetInvisibility(INVISIBILITY_ABSTRACT, INVISIBILITY_SOURCE_SLEEP_HUD_BUTTON)
 	return TRUE
 
 //Recursive function to find everything a mob is holding. Really shitty proc tbh.
@@ -886,8 +876,8 @@
 /mob/living/update_health_hud()
 	var/severity = 0
 	var/healthpercent = (health/maxHealth) * 100
-	if(hud_used?.healthdoll) //to really put you in the boots of a simplemob
-		var/atom/movable/screen/healthdoll/living/livingdoll = hud_used.healthdoll
+	var/atom/movable/screen/healthdoll/living/livingdoll = hud_used?.screen_objects[HUD_MOB_HEALTHDOLL]
+	if(istype(livingdoll)) //to really put you in the boots of a simplemob
 		switch(healthpercent)
 			if(100 to INFINITY)
 				severity = 0
@@ -912,6 +902,8 @@
 				mob_mask = icon('icons/hud/screen_gen.dmi', health_doll_icon_state) //swap to something generic if they have no special doll
 			livingdoll.add_filter("mob_shape_mask", 1, alpha_mask_filter(icon = mob_mask))
 			livingdoll.add_filter("inset_drop_shadow", 2, drop_shadow_filter(size = -1))
+		livingdoll.health_overlay.maptext = MAPTEXT("<div align='center' valign='middle' style='position:relative'>[round(healthpercent, 1)]%</div>")
+
 	if(severity > 0)
 		overlay_fullscreen("brute", /atom/movable/screen/fullscreen/brute, severity)
 	else
@@ -1124,6 +1116,10 @@
 
 ///Called by mob Move() when the lying_angle is different than zero, to better visually simulate crawling.
 /mob/living/proc/lying_angle_on_movement(direct)
+	if(buckled && buckled.buckle_lying != NO_BUCKLE_LYING)
+		set_lying_angle(buckled.buckle_lying)
+		return
+
 	if(direct & EAST)
 		set_lying_angle(LYING_ANGLE_EAST)
 	else if(direct & WEST)
@@ -1183,10 +1179,7 @@
 		return FALSE
 	return TRUE
 
-/mob/living/verb/resist()
-	set name = "Resist"
-	set category = "IC"
-
+/mob/living/proc/resist()
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(execute_resist)))
 
 ///proc extender of [/mob/living/verb/resist] meant to make the process queable if the server is overloaded when the verb is called
@@ -1451,10 +1444,6 @@
 			to_chat(src, span_warning("You don't have the hands for this action!"))
 			return FALSE
 
-	if(!(action_bitflags & ALLOW_PAI) && ispAI(src))
-		to_chat(src, span_warning("Your holochasis does not allow you to do this!"))
-		return FALSE
-
 	if(!(action_bitflags & BYPASS_ADJACENCY) && ((action_bitflags & NOT_INSIDE_TARGET) || !recursive_loc_check(src, target)) && !target.IsReachableBy(src))
 		if(HAS_SILICON_ACCESS(src) && !ispAI(src))
 			if(!(action_bitflags & ALLOW_SILICON_REACH)) // silicons can ignore range checks (except pAIs)
@@ -1509,32 +1498,27 @@
 	update_stamina_hud()
 
 /mob/living/update_stamina_hud(shown_stamina_loss)
-	if(!client || !hud_used?.stamina)
+	if(!client || !hud_used)
+		return
+
+	var/atom/movable/screen/stamina/stamina = hud_used.screen_objects[HUD_MOB_STAMINA]
+	if (!stamina)
+		return
+
+	if(stat == DEAD)
+		stamina.icon_state = "stamina_dead"
 		return
 
 	var/stam_crit_threshold = maxHealth - crit_threshold
+	if(shown_stamina_loss == null)
+		shown_stamina_loss = get_stamina_loss()
 
-	if(stat == DEAD)
-		hud_used.stamina.icon_state = "stamina_dead"
+	if(shown_stamina_loss >= stam_crit_threshold)
+		stamina.icon_state = "stamina_crit"
+	else if(shown_stamina_loss > 0 && maxHealth > 0)
+		stamina.icon_state = "stamina_[ceil(shown_stamina_loss / (maxHealth * 0.2))]"
 	else
-
-		if(shown_stamina_loss == null)
-			shown_stamina_loss = get_stamina_loss()
-
-		if(shown_stamina_loss >= stam_crit_threshold)
-			hud_used.stamina.icon_state = "stamina_crit"
-		else if(shown_stamina_loss > maxHealth*0.8)
-			hud_used.stamina.icon_state = "stamina_5"
-		else if(shown_stamina_loss > maxHealth*0.6)
-			hud_used.stamina.icon_state = "stamina_4"
-		else if(shown_stamina_loss > maxHealth*0.4)
-			hud_used.stamina.icon_state = "stamina_3"
-		else if(shown_stamina_loss > maxHealth*0.2)
-			hud_used.stamina.icon_state = "stamina_2"
-		else if(shown_stamina_loss > 0)
-			hud_used.stamina.icon_state = "stamina_1"
-		else
-			hud_used.stamina.icon_state = "stamina_full"
+		stamina.icon_state = "stamina_full"
 
 /mob/living/carbon/alien/update_stamina()
 	return
@@ -1617,7 +1601,7 @@
 				/mob/living/basic/bot/dedbot = 25,
 				/mob/living/basic/bot/cleanbot = 25,
 				/mob/living/basic/bot/firebot = 25,
-				/mob/living/basic/bot/honkbot = 25,
+				/mob/living/basic/bot/secbot/honkbot = 25,
 				/mob/living/basic/bot/hygienebot = 25,
 				/mob/living/basic/bot/vibebot = 25,
 				/mob/living/basic/bot/medbot = 13,
@@ -1669,6 +1653,7 @@
 				/mob/living/basic/bear/russian,
 				/mob/living/basic/blob_minion/blobbernaut,
 				/mob/living/basic/blob_minion/spore,
+				/mob/living/basic/blood_worm/hatchling/polymorph,
 				/mob/living/basic/butterfly,
 				/mob/living/basic/carp,
 				/mob/living/basic/carp/mega,
@@ -1975,6 +1960,26 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	RETURN_TYPE(/mutable_appearance)
 	return null
 
+/// Create a fire overlay using the generic fire sprites
+/mob/living/proc/make_generic_fire_overlay()
+	var/fire_key = "[base_pixel_x]_[base_pixel_y]_fire"
+	if(!GLOB.fire_appearances[fire_key])
+		var/mutable_appearance/fire = mutable_appearance(
+			'icons/mob/effects/onfire.dmi',
+			"generic_fire",
+			ABOVE_ALL_MOB_LAYER,
+			appearance_flags = RESET_COLOR|KEEP_APART,
+		)
+		fire.pixel_x = -1 * base_pixel_x
+		fire.pixel_y = -1 * base_pixel_y
+		GLOB.fire_appearances[fire_key] = fire
+
+	return GLOB.fire_appearances[fire_key]
+
+/// Takes a fire overlay and generates an emissive appearance for it
+/mob/living/proc/make_fire_emissive(mutable_appearance/fire_overlay)
+	return emissive_appearance(fire_overlay.icon, fire_overlay.icon_state, src, fire_overlay.layer)
+
 /**
  * Handles effects happening when mob is on normal fire
  *
@@ -2081,8 +2086,12 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	real_name = name
 
 /mob/living/proc/mob_try_pickup(mob/living/user, instant=FALSE)
-	if(!ishuman(user))
-		return
+	if(!ishuman(user) && (user.mob_size <= mob_size || user.num_hands == 0))
+		if (!user.num_hands)
+			return
+		if (user.mob_size <= mob_size)
+			to_chat(user, span_warning("[src] is too big to pick up!"))
+			return
 	if(!user.get_empty_held_indexes())
 		to_chat(user, span_warning("Your hands are full!"))
 		return FALSE
@@ -2158,6 +2167,13 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 				return FALSE
 			update_transform(var_value/current_size)
 			. = TRUE
+		if(NAMEOF(src, pull_force))
+			if(var_value == 0) //no more pulling
+				remove_verb(src, /mob/living/verb/pulled)
+			else
+				add_verb(src, /mob/living/verb/pulled)
+			. = TRUE
+
 
 	if(!isnull(.))
 		datum_flags |= DF_VAR_EDITED
@@ -2189,7 +2205,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 
 /mob/living/vv_get_dropdown()
 	. = ..()
-	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION("", "--- /living ---")
 	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPEECH_IMPEDIMENT, "Impede Speech (Slurring, stuttering, etc)")
 	VV_DROPDOWN_OPTION(VV_HK_ADD_MOOD, "Add Mood Event")
 	VV_DROPDOWN_OPTION(VV_HK_REMOVE_MOOD, "Remove Mood Event")
@@ -2205,33 +2221,21 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		return
 
 	if(href_list[VV_HK_GIVE_SPEECH_IMPEDIMENT])
-		if(!check_rights(NONE))
-			return
 		admin_give_speech_impediment(usr)
 
 	if(href_list[VV_HK_ADD_MOOD])
-		if(!check_rights(NONE))
-			return
 		admin_add_mood_event(usr)
 
 	if(href_list[VV_HK_REMOVE_MOOD])
-		if(!check_rights(NONE))
-			return
 		admin_remove_mood_event(usr)
 
 	if(href_list[VV_HK_GIVE_HALLUCINATION])
-		if(!check_rights(NONE))
-			return
 		admin_give_hallucination(usr)
 
 	if(href_list[VV_HK_GIVE_DELUSION_HALLUCINATION])
-		if(!check_rights(NONE))
-			return
 		admin_give_delusion(usr)
 
 	if(href_list[VV_HK_GIVE_GUARDIAN_SPIRIT])
-		if(!check_rights(NONE))
-			return
 		admin_give_guardian(usr)
 
 	if(href_list[VV_HK_ADMIN_RENAME])
@@ -2401,8 +2405,13 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /mob/living/proc/end_look()
 	reset_perspective()
 	looking_vertically = NONE
+	if(!looking_holder)
+		return
+	on_looking_z_level_change(looking_holder.loc, get_turf(src))
 	QDEL_NULL(looking_holder)
 
+/mob/living/proc/on_looking_z_level_change(turf/old_loc, turf/new_loc)
+	SEND_SIGNAL(src, COMSIG_LIVING_LOOK_Z_CHANGE, old_loc, new_loc)
 
 /**
  * look_up Changes the perspective of the mob to any openspace turf above the mob
@@ -2425,6 +2434,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	looking_vertically = UP
 	looking_holder = new(above_turf, src, UP)
 	reset_perspective(looking_holder)
+	on_looking_z_level_change(get_turf(src), above_turf)
 
 /mob/living/proc/get_looking_turf(direction)
 	//down needs to check this floor
@@ -2474,7 +2484,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		return
 
 	if(. <= UNCONSCIOUS || new_stat >= UNCONSCIOUS)
-		update_body() // to update eyes
+		update_eyes()
 
 	switch(.) //Previous stat.
 		if(CONSCIOUS)
@@ -2492,7 +2502,9 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		if(HARD_CRIT)
 			if(stat != UNCONSCIOUS)
 				cure_blind(UNCONSCIOUS_TRAIT)
+			REMOVE_TRAIT(src, TRAIT_DEAF, STAT_TRAIT)
 		if(DEAD)
+			REMOVE_TRAIT(src, TRAIT_DEAF, STAT_TRAIT)
 			remove_from_dead_mob_list()
 			add_to_alive_mob_list()
 	switch(stat) //Current stat.
@@ -2520,17 +2532,14 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 			if(. != UNCONSCIOUS)
 				become_blind(UNCONSCIOUS_TRAIT)
 			ADD_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+			ADD_TRAIT(src, TRAIT_DEAF, STAT_TRAIT)
 			log_combat(src, src, "entered hard crit")
 		if(DEAD)
 			REMOVE_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+			ADD_TRAIT(src, TRAIT_DEAF, STAT_TRAIT)
 			remove_from_alive_mob_list()
 			add_to_dead_mob_list()
 			log_combat(src, src, "died")
-	if(!can_hear())
-		stop_sound_channel(CHANNEL_AMBIENCE)
-	refresh_looping_ambience()
-
-
 
 ///Reports the event of the change in value of the buckled variable.
 /mob/living/proc/set_buckled(new_buckled)
@@ -2595,7 +2604,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		return
 	. = num_legs
 	num_legs = new_value
-
+	hud_used?.update_locked_slots()
 
 ///Proc to modify the value of usable_legs and hook behavior associated to this event.
 /mob/living/proc/set_usable_legs(new_value)
@@ -2645,12 +2654,15 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		return
 	. = num_hands
 	num_hands = new_value
-
+	hud_used?.update_locked_slots()
 
 ///Proc to modify the value of usable_hands and hook behavior associated to this event.
 /mob/living/proc/set_usable_hands(new_value)
 	if(usable_hands == new_value)
 		return
+	if(new_value < 0) // Sanity check
+		stack_trace("[src] had set_usable_hands() called on them with a negative value!")
+		new_value = 0
 	. = usable_hands
 	usable_hands = new_value
 
@@ -2833,7 +2845,11 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /mob/living/proc/add_mood_event(category, type, ...)
 	if(QDELETED(mob_mood))
 		return
-	mob_mood.add_mood_event(arglist(args))
+
+	if(ispath(type, /datum/mood_event/conditional))
+		mob_mood.add_conditional_mood_event(arglist(args))
+	else
+		mob_mood.add_mood_event(arglist(args))
 
 /// Clears a mood event from the mob
 /mob/living/proc/clear_mood_event(category)
@@ -2867,7 +2883,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /// Proc called when TARGETED by a lazarus injector
 /mob/living/proc/lazarus_revive(mob/living/reviver, malfunctioning)
 	revive(HEAL_ALL)
-	faction |= FACTION_NEUTRAL
+	add_faction(FACTION_NEUTRAL)
 	if (!malfunctioning)
 		befriend(reviver)
 	var/lazarus_policy = get_policy(ROLE_LAZARUS_GOOD) || "The lazarus injector has brought you back to life! You are now friendly to everyone."
@@ -2886,9 +2902,9 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	if(QDELETED(new_friend))
 		return
 	var/friend_ref = REF(new_friend)
-	if (faction.Find(friend_ref))
+	if (has_ally(friend_ref))
 		return FALSE
-	faction |= friend_ref
+	add_ally(friend_ref)
 	ai_controller?.insert_blackboard_key_lazylist(BB_FRIENDS_LIST, new_friend)
 
 	SEND_SIGNAL(src, COMSIG_LIVING_BEFRIENDED, new_friend)
@@ -2898,9 +2914,9 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 /mob/living/proc/unfriend(mob/living/old_friend)
 	SHOULD_CALL_PARENT(TRUE)
 	var/friend_ref = REF(old_friend)
-	if (!faction.Find(friend_ref))
+	if (!has_ally(friend_ref))
 		return FALSE
-	faction -= friend_ref
+	remove_ally(friend_ref)
 	ai_controller?.remove_thing_from_blackboard_key(BB_FRIENDS_LIST, old_friend)
 
 	SEND_SIGNAL(src, COMSIG_LIVING_UNFRIENDED, old_friend)
@@ -2982,7 +2998,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	if(picked_theme == "Random")
 		picked_theme = null //holopara code handles not having a theme by giving a random one
 	var/picked_name = tgui_input_text(admin, "Name the guardian, leave empty to let player name it.", "Guardian Controller", max_length = MAX_NAME_LEN)
-	var/picked_color = tgui_color_picker(admin, "Set the guardian's color, cancel to let player set it.", "Guardian Controller", "#ffffff") // BUBBERSTATION EDIT: TGUI COLOR PICKER
+	var/picked_color = tgui_color_picker(admin, "Set the guardian's color, cancel to let player set it.", "Guardian Controller", COLOR_WHITE)
 	if(tgui_alert(admin, "Confirm creation.", "Guardian Controller", list("Yes", "No")) != "Yes")
 		return
 	var/mob/living/basic/guardian/summoned_guardian = new picked_type(src, picked_theme)
@@ -2999,10 +3015,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	log_admin("[key_name(admin)] gave a guardian spirit controlled by [guardian_client] to [src].")
 	BLACKBOX_LOG_ADMIN_VERB("Give Guardian Spirit")
 
-/mob/living/verb/lookup()
-	set name = "Look Up"
-	set category = "IC"
-
+/mob/living/proc/lookup()
 	if(looking_vertically)
 		to_chat(src, "You set your head straight again.")
 		end_look()
@@ -3019,10 +3032,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	to_chat(src, "You tilt your head upwards.")
 	look_up()
 
-/mob/living/verb/lookdown()
-	set name = "Look Down"
-	set category = "IC"
-
+/mob/living/proc/lookdown()
 	if(looking_vertically)
 		to_chat(src, "You set your head straight again.")
 		end_look()

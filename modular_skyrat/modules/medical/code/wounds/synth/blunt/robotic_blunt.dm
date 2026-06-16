@@ -135,7 +135,7 @@
 		if(held_item && victim.dropItemToGround(held_item))
 			victim.visible_message(span_danger("[victim] drops [held_item] in shock!"), span_warning("<b>The force on your [limb.plaintext_zone] causes you to drop [held_item]!</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
 
-/datum/wound/blunt/robotic/remove_wound(ignore_limb, replaced)
+/datum/wound/blunt/robotic/remove_wound(ignore_limb, replaced, destroying)
 	. = ..()
 
 	QDEL_NULL(active_trauma)
@@ -192,7 +192,7 @@
 
 	var/effective_damage = (damage - blocked)
 
-	var/obj/item/stack/gauze = limb.current_gauze
+	var/obj/item/stack/medical/wrap/gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
 	if(gauze)
 		effective_damage *= gauze.splint_factor
 
@@ -348,7 +348,7 @@
 
 	var/overall_mult = 1
 
-	var/obj/item/stack/gauze = limb.current_gauze
+	var/obj/item/stack/medical/wrap/gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
 	if (gauze)
 		overall_mult *= gauze.splint_factor
 	if (!victim.has_gravity(get_turf(victim)))

@@ -539,6 +539,7 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 		/obj/item/radio/headset/headset_srv = 2,
 		/obj/item/storage/box/evidence = 2,
 		/obj/item/reagent_containers/cup/fish_feed = 1,
+		/obj/item/storage/box/stamps = 1,
 	)
 	premium = list(
 		/obj/item/mod/control/pre_equipped/portable_suit = 1,
@@ -698,7 +699,7 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 		/obj/item/clothing/under/rank/security/detective/noir = 2,
 		/obj/item/clothing/under/rank/security/detective/noir/skirt = 2,
 		/obj/item/clothing/shoes/laceup = 2,
-		/obj/item/clothing/head/fedora = 2,
+		/obj/item/clothing/head/fedora/det_hat/noir = 1,
 		/obj/item/clothing/suit/toggle/jacket/det_trench/noir = 1,
 		/obj/item/clothing/suit/jacket/det_suit/noir = 1,
 		/obj/item/clothing/neck/tie/disco = 1,

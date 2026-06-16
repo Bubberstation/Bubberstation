@@ -147,7 +147,6 @@
 		new_player.AddComponent( \
 			/datum/component/temporary_body, \
 			old_mind = observer.mind, \
-			old_body = observer.mind.current, \
 		)
 	new_player.equipOutfit(loadout) // Loadout
 	new_player.PossessByPlayer(ckey)
@@ -249,7 +248,7 @@
 	if(!gibbed && !QDELING(player) && !isdead(player))
 		if(!HAS_TRAIT(src, TRAIT_DEATHMATCH_EXPLOSIVE_IMPLANTS))
 			unregister_player_signals(player)
-			player.dust(TRUE, TRUE, TRUE)
+			player.dust(just_ash = TRUE, drop_items = TRUE, force = TRUE)
 	if (players.len <= 1)
 		end_game()
 

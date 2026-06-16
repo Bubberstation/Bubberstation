@@ -1,13 +1,15 @@
 import { sortBy } from 'es-toolkit';
 import { filter, map } from 'es-toolkit/compat';
 import { type ReactNode, useState } from 'react';
-import { type sendAct, useBackend } from 'tgui/backend';
+import { useBackend } from 'tgui/backend';
+import { sendAct } from 'tgui/events/act';
 import {
   Box,
   Button,
   Floating,
   Input,
   LabeledList,
+  NoticeBox,
   Section,
   Stack,
 } from 'tgui-core/components';
@@ -24,7 +26,7 @@ import {
   type FeatureChoicedServerData,
   FeatureValueInput,
 } from '../preferences/features/base';
-import { Gender, GENDERS } from '../preferences/gender';
+import { GENDERS, Gender } from '../preferences/gender';
 import {
   createSetPreference,
   type PreferencesMenuData,
@@ -364,8 +366,8 @@ function MainFeature(props: MainFeatureProps) {
 }
 
 const createSetRandomization =
-  (act: typeof sendAct, preference: string) => (newSetting: RandomSetting) => {
-    act('set_random_preference', {
+  (preference: string) => (newSetting: RandomSetting) => {
+    sendAct('set_random_preference', {
       preference,
       value: newSetting,
     });
@@ -423,7 +425,7 @@ export function PreferenceList(props: PreferenceListProps) {
                   {randomSetting && (
                     <Stack.Item>
                       <RandomizationButton
-                        setValue={createSetRandomization(act, featureId)}
+                        setValue={createSetRandomization(featureId)}
                         value={randomSetting}
                       />
                     </Stack.Item>
@@ -453,13 +455,9 @@ export function getRandomization(
   serverData: ServerData | undefined,
   randomBodyEnabled: boolean,
 ): Record<string, RandomSetting> {
-  if (!serverData) {
-    return {};
-  }
-
   const { data } = useBackend<PreferencesMenuData>();
 
-  if (!randomBodyEnabled) {
+  if (!randomBodyEnabled || !serverData) {
     return {};
   }
 
@@ -482,6 +480,7 @@ type MainPageProps = {
 
 export function MainPage(props: MainPageProps) {
   const { act, data } = useBackend<PreferencesMenuData>();
+
   const [deleteCharacterPopupOpen, setDeleteCharacterPopupOpen] =
     useState(false);
   const [multiNameInputOpen, setMultiNameInputOpen] = useState(false);
@@ -494,6 +493,16 @@ export function MainPage(props: MainPageProps) {
 
   const contextualPreferences =
     data.character_preferences.secondary_features || [];
+
+  // BUBBER EDIT ADDITION BEGIN: more character setup tabs
+  const characterBasicsPreferences =
+    data.character_preferences.character_basics || [];
+
+  const oocPrefPreferences = data.character_preferences.ooc_preferences || [];
+
+  const siliconPreferences =
+    data.character_preferences.silicon_preferences || [];
+  // BUBBER EDIT ADDITION END: more character setup tabs
 
   const mainFeatures = [
     ...Object.entries(data.character_preferences.clothing ?? {}),
@@ -525,14 +534,30 @@ export function MainPage(props: MainPageProps) {
 
   // BUBBER EDIT ADDITION BEGIN: SWAPPABLE PREF MENUS
   enum PrefPage {
+    CharBasics, // Character basics
     Visual, // The visual parts
     Lore, // Lore, Flavor Text, Age, Records
+    OOCPref, // OOC preferences
+    Silicon, // Silicon prefs
   }
 
-  const [currentPrefPage, setCurrentPrefPage] = useState(PrefPage.Visual);
+  const [currentPrefPage, setCurrentPrefPage] = useState(PrefPage.CharBasics);
 
   let prefPageContents;
   switch (currentPrefPage) {
+    case PrefPage.CharBasics:
+      prefPageContents = (
+        <PreferenceList
+          randomizations={getRandomization(
+            characterBasicsPreferences,
+            serverData,
+            randomBodyEnabled,
+          )}
+          preferences={characterBasicsPreferences}
+          maxHeight="auto"
+        />
+      );
+      break;
     case PrefPage.Visual:
       prefPageContents = (
         <PreferenceList
@@ -557,6 +582,38 @@ export function MainPage(props: MainPageProps) {
           preferences={nonContextualPreferences}
           maxHeight="auto"
         />
+      );
+      break;
+    case PrefPage.OOCPref:
+      prefPageContents = (
+        <PreferenceList
+          randomizations={getRandomization(
+            oocPrefPreferences,
+            serverData,
+            randomBodyEnabled,
+          )}
+          preferences={oocPrefPreferences}
+          maxHeight="auto"
+        />
+      );
+      break;
+    case PrefPage.Silicon:
+      prefPageContents = (
+        <>
+          <NoticeBox info>
+            This tab is for preferences that only apply when playing the AI or
+            Cyborg jobs!
+          </NoticeBox>
+          <PreferenceList
+            randomizations={getRandomization(
+              siliconPreferences,
+              serverData,
+              randomBodyEnabled,
+            )}
+            preferences={siliconPreferences}
+            maxHeight="auto"
+          />
+        </>
       );
       break;
     default:
@@ -685,10 +742,7 @@ export function MainPage(props: MainPageProps) {
                       currentValue={clothing}
                       handleSelect={createSetPreference(act, clothingKey)}
                       randomization={randomizationOfMainFeatures[clothingKey]}
-                      setRandomization={createSetRandomization(
-                        act,
-                        clothingKey,
-                      )}
+                      setRandomization={createSetRandomization(clothingKey)}
                     />
                   )}
                 </Stack.Item>
@@ -701,6 +755,15 @@ export function MainPage(props: MainPageProps) {
         <Stack.Item grow basis={0} ml="4px">
           <Stack vertical fill>
             <Stack>
+              <Stack.Item grow={2}>
+                <PageButton
+                  currentPage={currentPrefPage}
+                  page={PrefPage.CharBasics}
+                  setPage={setCurrentPrefPage}
+                >
+                  Character Basics
+                </PageButton>
+              </Stack.Item>
               <Stack.Item grow={2}>
                 <PageButton
                   currentPage={currentPrefPage}
@@ -717,6 +780,24 @@ export function MainPage(props: MainPageProps) {
                   setPage={setCurrentPrefPage}
                 >
                   Character Lore
+                </PageButton>
+              </Stack.Item>
+              <Stack.Item grow={2}>
+                <PageButton
+                  currentPage={currentPrefPage}
+                  page={PrefPage.OOCPref}
+                  setPage={setCurrentPrefPage}
+                >
+                  OOC Preferences
+                </PageButton>
+              </Stack.Item>
+              <Stack.Item grow={2}>
+                <PageButton
+                  currentPage={currentPrefPage}
+                  page={PrefPage.Silicon}
+                  setPage={setCurrentPrefPage}
+                >
+                  Silicon Preferences
                 </PageButton>
               </Stack.Item>
             </Stack>

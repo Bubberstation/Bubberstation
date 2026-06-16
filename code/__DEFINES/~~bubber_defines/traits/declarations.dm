@@ -61,3 +61,12 @@
 
 // For Bloodsuckers/Hemophages that vomit blood
 #define TRAIT_STOMACH_BLOOD_VOMIT "stomach_blood_vomit"
+
+/// The trait that determines if someone has the robotic limb reattachment quirk.
+#define TRAIT_ROBOTIC_LIMBATTACHMENT "trait_robotic_limbattachment"
+
+/// Trait that gives your brain traumas more resilance
+#define TRAIT_RESILIENT_TRAUMAS "trait_resilient_traumas"
+
+/// Trait used to block telepathy types (Genetics, Xenomorph, Revenant, Slime. Ideally should be all.)
+#define TRAIT_PSIONIC_DAMPENER "psionic_dampener"

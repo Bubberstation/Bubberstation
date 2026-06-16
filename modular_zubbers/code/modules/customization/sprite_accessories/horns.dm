@@ -119,3 +119,11 @@
 /datum/sprite_accessory/horns/bubber/antennae/insectoidcrest
 	name = "Sharp Insectoid Crest"
 	icon_state = "sharp_crest"
+
+/datum/sprite_accessory/horns/bubber/deathclaw
+	name = "Mutant Lizard"
+	icon_state = "deathclaw"
+
+/datum/sprite_accessory/horns/bubber/deathclawinverted
+	name = "Mutant Lizard (Inverted)"
+	icon_state = "deathclawinverted"

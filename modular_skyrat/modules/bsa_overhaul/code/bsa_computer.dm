@@ -180,9 +180,7 @@
 	if(notice)
 		return null
 	//Totally nanite construction system not an immersion breaking spawning
-	var/datum/effect_system/fluid_spread/smoke/smoke = new
-	smoke.set_up(4, location = get_turf(centerpiece))
-	smoke.start()
+	do_smoke(4, src, loc, smoke_type = /datum/effect_system/fluid_spread/smoke/bad)
 	var/obj/machinery/bsa/full/cannon = new(get_turf(centerpiece), centerpiece.get_cannon_direction())
 	cannon.control_computer = src
 	if(centerpiece.front_piece)

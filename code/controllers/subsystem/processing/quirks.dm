@@ -8,7 +8,9 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/item_quirk/blindness, /datum/quirk/item_quirk/scarred_eye),
 	list(/datum/quirk/item_quirk/blindness, /datum/quirk/item_quirk/fluoride_stare),
 	list(/datum/quirk/item_quirk/blindness, /datum/quirk/touchy),
-	list(/datum/quirk/jolly, /datum/quirk/depression, /datum/quirk/hypersensitive),
+	//list(/datum/quirk/jolly, /datum/quirk/depression, /datum/quirk/hypersensitive),
+	list(/datum/quirk/jolly, /datum/quirk/depression), // BUBBER EDIT ADD - no mood swings allowed
+	list(/datum/quirk/jolly, /datum/quirk/hypersensitive), // BUBBER EDIT ADD - we don't want players to be happy
 	list(/datum/quirk/no_taste, /datum/quirk/vegetarian, /datum/quirk/deviant_tastes, /datum/quirk/gamer),
 	list(/datum/quirk/pineapple_liker, /datum/quirk/pineapple_hater, /datum/quirk/gamer),
 	list(/datum/quirk/alcohol_tolerance, /datum/quirk/light_drinker),
@@ -20,8 +22,8 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	//list(/datum/quirk/quadruple_amputee, /datum/quirk/frail), // SKYRAT EDIT REMOVAL- Since we have synth wounds now, frail has a large downside for prosthetics and such
 	list(/datum/quirk/social_anxiety, /datum/quirk/mute),
 	list(/datum/quirk/mute, /datum/quirk/softspoken),
-	list(/datum/quirk/poor_aim, /datum/quirk/bighands),
-	list(/datum/quirk/bilingual, /datum/quirk/foreigner, /datum/quirk/csl),
+	//list(/datum/quirk/bilingual, /datum/quirk/foreigner, /datum/quirk/csl),
+	list(/datum/quirk/bilingual, /datum/quirk/foreigner), //BUBBER EDIT ADD
 	//BUBBER EDIT (item_quirk)
 	list(/datum/quirk/spacer_born, /datum/quirk/item_quirk/settler),
 	list(/datum/quirk/photophobia, /datum/quirk/nyctophobia),
@@ -29,10 +31,11 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/item_quirk/settler, /datum/quirk/freerunning),
 	list(/datum/quirk/numb, /datum/quirk/selfaware),
 	list(/datum/quirk/empath, /datum/quirk/evil),
-	//SKYRAT EDIT ADDITION BEGIN
+	list(/datum/quirk/keen_nose, /datum/quirk/item_quirk/anosmia),
+	// BUBBER EDIT - ADDITION - START
 	list(/datum/quirk/equipping/nerve_staple, /datum/quirk/nonviolent),
 	list(/datum/quirk/equipping/nerve_staple, /datum/quirk/item_quirk/nearsighted),
-	list(/datum/quirk/no_guns, /datum/quirk/bighands, /datum/quirk/poor_aim),
+	list(/datum/quirk/no_guns, /datum/quirk/poor_aim),
 	list(/datum/quirk/no_guns, /datum/quirk/nonviolent),
 	list(/datum/quirk/spacer_born, /datum/quirk/oversized),
 	list(/datum/quirk/felinid_aspect, /datum/quirk/item_quirk/canine, /datum/quirk/item_quirk/avian),
@@ -40,8 +43,6 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/light_drinker, /datum/quirk/drunkhealing),
 	list(/datum/quirk/oversized, /datum/quirk/freerunning),
 	list(/datum/quirk/echolocation, /datum/quirk/item_quirk/blindness, /datum/quirk/item_quirk/nearsighted, /datum/quirk/item_quirk/deafness),
-	//SKYRAT EDIT ADDITION END
-	//BUBBER EDIT ADDITION BEGIN
 	list(/datum/quirk/featherweight, /datum/quirk/oversized),
 	list(/datum/quirk/overweight, /datum/quirk/obese),
 	list(/datum/quirk/dominant_aura, /datum/quirk/well_trained),
@@ -49,7 +50,8 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/equipping/entombed, /datum/quirk/badback),
 	list(/datum/quirk/unblinking, /datum/quirk/item_quirk/fluoride_stare),
 	list(/datum/quirk/micro, /datum/quirk/micro/smaller, /datum/quirk/micro/smallest, /datum/quirk/oversized),
-	//BUBBER EDIT ADDITION END
+	list(/datum/quirk/psionic_dampener, /datum/quirk/telepathic),
+	// BUBBER EDIT - ADDITION - END
 ))
 
 GLOBAL_LIST_INIT(quirk_string_blacklist, generate_quirk_string_blacklist())
@@ -68,7 +70,7 @@ GLOBAL_LIST_INIT(quirk_string_blacklist, generate_quirk_string_blacklist())
 // - Quirk datums are stored and hold different effects, as well as being a vector for applying trait string
 PROCESSING_SUBSYSTEM_DEF(quirks)
 	name = "Quirks"
-	flags = SS_BACKGROUND
+	ss_flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME
 	wait = 1 SECONDS
 
@@ -77,8 +79,17 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	var/list/quirk_points = list() //Assoc. list of quirk names and their "point cost"; positive numbers are good traits, and negative ones are bad
 	///An assoc list of quirks that can be obtained as a hardcore character, and their hardcore value.
 	var/list/hardcore_quirks = list()
+	/// Whether or not quirk points are enabled, per server config
+	var/points_enabled
+	/// The number of max positive quirks that we allow, per server config
+	var/max_positive_quirks
+	// The default number of quirk points that you get to spend, per server config
+	var/default_quirk_points
 
 /datum/controller/subsystem/processing/quirks/Initialize()
+	points_enabled = !CONFIG_GET(flag/disable_quirk_points)
+	max_positive_quirks = CONFIG_GET(number/max_positive_quirks)
+	default_quirk_points = CONFIG_GET(number/default_quirk_points)
 	get_quirks()
 	return SS_INIT_SUCCESS
 
@@ -92,15 +103,12 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()
 	// Sort by Positive, Negative, Neutral; and then by name
-	var/list/quirk_list = sort_list(subtypesof(/datum/quirk), GLOBAL_PROC_REF(cmp_quirk_asc))
+	var/list/quirk_list = sort_list(valid_subtypesof(/datum/quirk), GLOBAL_PROC_REF(cmp_quirk_asc))
 
 	for(var/type in quirk_list)
 		var/datum/quirk/quirk_type = type
-
-		if(initial(quirk_type.abstract_parent_type) == type)
-			continue
-
 		// SKYRAT EDIT ADDITION START
+
 		if(initial(quirk_type.erp_quirk) && CONFIG_GET(flag/disable_erp_preferences))
 			continue
 		// Hidden quirks aren't visible to TGUI or the player
@@ -146,7 +154,6 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	///Cached list of possible quirks
 	var/list/possible_quirks = quirks.Copy()
 
-	var/max_positive_quirks = CONFIG_GET(number/max_positive_quirks)
 	if(max_positive_quirks < 0)
 		max_positive_quirks = 6
 
@@ -210,9 +217,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 /datum/controller/subsystem/processing/quirks/proc/filter_invalid_quirks(list/quirks, list/augments) // SKYRAT EDIT - AUGMENTS+
 	var/list/new_quirks = list()
 	var/list/positive_quirks = list()
-	var/points_enabled = !CONFIG_GET(flag/disable_quirk_points)
-	var/max_positive_quirks = CONFIG_GET(number/max_positive_quirks)
-	var/balance = -CONFIG_GET(number/default_quirk_points)
+	var/balance = -default_quirk_points
 
 	var/list/all_quirks = get_quirks()
 

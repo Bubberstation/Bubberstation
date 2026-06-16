@@ -9,6 +9,7 @@
 		/obj/item/radio,
 		/obj/item/melee/sickly_blade/lock,
 		/obj/item/reagent_containers/cup/soda_cans,
+		/obj/item/holotool, // BUBBER EDIT ADDITION
 	))
 
 ///Medical belt
@@ -20,20 +21,23 @@
 	set_holdable(list(
 		/obj/item/bikehorn/rubberducky,
 		/obj/item/blood_filter,
+		/obj/item/blood_scanner,
 		/obj/item/bonesetter,
 		/obj/item/cautery,
 		/obj/item/circular_saw,
 		/obj/item/clothing/glasses,
 		/obj/item/clothing/gloves,
-		/obj/item/clothing/neck/stethoscope,
+		/obj/item/clothing/head/utility/surgerycap,
 		/obj/item/clothing/mask/breath,
 		/obj/item/clothing/mask/muzzle,
 		/obj/item/clothing/mask/surgical,
-		/obj/item/clothing/head/utility/surgerycap,
+		/obj/item/clothing/neck/stethoscope,
 		/obj/item/construction/plumbing,
+		/obj/item/crowbar/power/paramedic,
 		/obj/item/dnainjector,
 		/obj/item/extinguisher/mini,
 		/obj/item/flashlight/pen,
+		/obj/item/flesh_shears,
 		/obj/item/geiger_counter,
 		/obj/item/gun/syringe/syndicate,
 		/obj/item/healthanalyzer,
@@ -42,40 +46,38 @@
 		/obj/item/implant,
 		/obj/item/implantcase,
 		/obj/item/implanter,
+		/obj/item/knife/ritual,
 		/obj/item/lazarus_injector,
 		/obj/item/lighter,
 		/obj/item/pinpointer/crew,
 		/obj/item/plunger,
 		/obj/item/radio,
+		/obj/item/reagent_containers/applicator,
 		/obj/item/reagent_containers/blood,
-		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/cup/beaker,
 		/obj/item/reagent_containers/cup/bottle,
 		/obj/item/reagent_containers/cup/tube,
+		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/medigel,
-		/obj/item/reagent_containers/applicator,
 		/obj/item/reagent_containers/spray,
 		/obj/item/reagent_containers/syringe,
+		/obj/item/reflexhammer,
 		/obj/item/retractor,
 		/obj/item/scalpel,
+		/obj/item/sensor_device,
 		/obj/item/shears,
 		/obj/item/stack/medical,
-		/obj/item/stack/sticky_tape, //surgical tape
+		/obj/item/stack/medical/wrap/sticky_tape, //surgical tape
 		/obj/item/stamp,
-		/obj/item/sensor_device,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/storage/pill_bottle,
 		/obj/item/surgical_drapes, //for true paramedics
 		/obj/item/surgicaldrill,
 		/obj/item/tank/internals/emergency_oxygen,
+		/obj/item/tourniquet,
 		/obj/item/wrench/medical,
-		/obj/item/knife/ritual,
-		/obj/item/flesh_shears,
-		/obj/item/blood_scanner,
-		/obj/item/reflexhammer,
-		/obj/item/crowbar/power/paramedic,
-		/obj/item/clothing/suit/toggle/labcoat/hospitalgown,	//SKYRAT EDIT ADDITION - adds surgery gowns to belts
+		/obj/item/clothing/suit/toggle/labcoat/hospitalgown, //SKYRAT EDIT ADDITION - adds surgery gowns to belts
 		/obj/item/hypospray/mkii, //SKYRAT EDIT ADDITION - HYPOSPRAYS
 		/obj/item/storage/hypospraykit/, //SKYRAT EDIT ADDITION - HYPOSPRAYS
 		/obj/item/reagent_containers/cup/vial, //SKYRAT EDIT ADDITION - HYPOSPRAYS
@@ -96,6 +98,7 @@
 		/obj/item/ammo_box,
 		/obj/item/ammo_casing/shotgun,
 		/obj/item/assembly/flash/handheld,
+		/obj/item/assembly/flash/hypnotic,
 		/obj/item/clothing/glasses,
 		/obj/item/clothing/gloves,
 		/obj/item/flashlight/seclite,
@@ -281,6 +284,7 @@
 		/obj/item/ammo_casing/shotgun,
 		/obj/item/ammo_casing/c357,
 		/obj/item/ammo_casing/junk,
+		/obj/item/ammo_casing/a40mm,
 	))
 
 ///Fanny pack
@@ -320,6 +324,50 @@
 /datum/storage/gladius_belt/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
 	. = ..()
 	set_holdable(/obj/item/claymore/gladius)
+
+///Katana sheath
+/datum/storage/katana_sheath
+	max_slots = 1
+	do_rustle = FALSE
+	max_specific_storage = WEIGHT_CLASS_BULKY
+	click_alt_open = FALSE
+
+/datum/storage/katana_sheath/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
+	. = ..()
+	set_holdable(/obj/item/katana)
+
+///Ninja energy katana sheath
+/datum/storage/ninja_sheath
+	max_slots = 1
+	do_rustle = FALSE
+	max_specific_storage = WEIGHT_CLASS_BULKY
+	click_alt_open = FALSE
+
+/datum/storage/ninja_sheath/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
+	. = ..()
+	set_holdable(/obj/item/energy_katana)
+
+///Chaplain katana sheath
+/datum/storage/hanzo_sheath
+	max_slots = 1
+	do_rustle = FALSE
+	max_specific_storage = WEIGHT_CLASS_BULKY
+	click_alt_open = FALSE
+
+/datum/storage/hanzo_sheath/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
+	. = ..()
+	set_holdable(/obj/item/nullrod/claymore/katana)
+
+///Toy Katana Sheath(Metabreaker)
+/datum/storage/toy_sheath
+	max_slots = 1
+	do_rustle = FALSE
+	max_specific_storage = WEIGHT_CLASS_BULKY
+	click_alt_open = FALSE
+
+/datum/storage/toy_sheath/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
+	. = ..()
+	set_holdable(/obj/item/toy/katana)
 
 ///Plant belt
 /datum/storage/plant_belt

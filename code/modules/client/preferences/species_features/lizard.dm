@@ -95,7 +95,7 @@
 		correct_legs[BODY_ZONE_R_LEG] = /obj/item/bodypart/leg/right/digitigrade
 		correct_legs[BODY_ZONE_L_LEG] = /obj/item/bodypart/leg/left/digitigrade
 
-	for(var/obj/item/bodypart/old_part as anything in target.bodyparts)
+	for(var/obj/item/bodypart/old_part as anything in target.get_bodyparts())
 		if(old_part.change_exempt_flags & BP_BLOCK_CHANGE_SPECIES)
 			continue
 
@@ -103,7 +103,7 @@
 		if(!path)
 			continue
 		var/obj/item/bodypart/new_part = new path()
-		new_part.replace_limb(target, TRUE)
+		new_part.replace_limb(target)
 		new_part.update_limb(is_creating = TRUE)
 		qdel(old_part)
 

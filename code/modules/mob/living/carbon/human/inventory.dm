@@ -18,7 +18,7 @@
 /mob/living/carbon/human/can_equip(obj/item/equip_target, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE, indirect_action = FALSE)
 	if(SEND_SIGNAL(src, COMSIG_HUMAN_EQUIPPING_ITEM, equip_target, slot) == COMPONENT_BLOCK_EQUIP)
 		return FALSE
-	if(HAS_TRAIT(equip_target, TRAIT_NODROP) && (equip_target in held_items))
+	if(HAS_TRAIT_NOT_FROM(equip_target, TRAIT_NODROP, TRAIT_GLUED_ITEM) && (equip_target in held_items))
 		if(!disable_warning)
 			to_chat(src, span_warning("[equip_target] won't budge, it's impossible to put it on!"))
 		return FALSE
@@ -299,18 +299,29 @@
 	var/obj/item/existing_tank = is_external ? external : internal
 	if(tank == existing_tank)
 		return toggle_close_internals(is_external)
+
 	// Use breathing tube regardless of mask.
 	if(can_breathe_tube())
 		return toggle_open_internals(tank, is_external)
+
 	// Use mask in absence of tube.
-	if(isclothing(wear_mask) && ((wear_mask.visor_flags & MASKINTERNALS) || (wear_mask.clothing_flags & MASKINTERNALS)))
-		// Adjust dishevelled breathing mask back onto face unless it is exempt.
-		if ((wear_mask.up) && !(wear_mask.clothing_flags & INTERNALS_ADJUST_EXEMPT))
-			wear_mask.adjust_visor(src)
+	if(can_breathe_mask())
 		return toggle_open_internals(tank, is_external)
+	// We have a valid mask but it's pulled down
+	else if(isclothing(wear_mask))
+		var/obj/item/clothing/mask = wear_mask
+		if (mask.up && (mask.visor_flags & MASKINTERNALS) && !(mask.clothing_flags & INTERNALS_ADJUST_EXEMPT) && mask.adjust_visor(src))
+			return toggle_open_internals(tank, is_external)
+
 	// Use helmet in absence of tube or valid mask.
 	if(can_breathe_helmet())
 		return toggle_open_internals(tank, is_external)
+	// We have a valid helmet but its visor is up
+	else if(isclothing(head))
+		var/obj/item/clothing/helmet = head
+		if (helmet.up && (helmet.visor_flags & HEADINTERNALS) && !(helmet.clothing_flags & INTERNALS_ADJUST_EXEMPT) && helmet.adjust_visor(src))
+			return toggle_open_internals(tank, is_external)
+
 	// Notify user of missing valid breathing apparatus.
 	if (wear_mask)
 		// Invalid mask
@@ -426,6 +437,8 @@
 				new_bodypart = newBodyPart(BODY_ZONE_L_ARM)
 
 			new_bodypart.held_index = i
+			if(i >= 3) // start indexing them as right_arm2 and so on
+				new_bodypart.body_zone = "[new_bodypart.body_zone]_[ceil(i / 2)]"
 			new_bodypart.try_attach_limb(src, TRUE)
 			hand_bodyparts[i] = new_bodypart
 	..() //Don't redraw hands until we have organs for them

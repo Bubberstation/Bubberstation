@@ -695,8 +695,12 @@
 	},
 /obj/item/reagent_containers/syringe/antiviral,
 /obj/item/reagent_containers/dropper,
-/obj/item/reagent_containers/spray/cleaner,
 /obj/structure/cable,
+/obj/item/tgui_book/manual/idc{
+	pixel_y = 9;
+	pixel_x = 3
+	},
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/iron/white/side{
 	dir = 8
 	},
@@ -1703,6 +1707,9 @@
 /area/ruin/syndicate_lava_base/engineering)
 "nA" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/duct,
 /turf/open/floor/iron/white/corner,
 /area/ruin/syndicate_lava_base/medbay)
 "nB" = (
@@ -1759,9 +1766,9 @@
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/bar)
 "nM" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/duct,
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/medbay)
@@ -1891,7 +1898,7 @@
 /area/ruin/syndicate_lava_base/testlab)
 "pa" = (
 /obj/effect/mapping_helpers/no_lava,
-/turf/open/misc/asteroid/basalt/lava_land_surface,
+/turf/open/misc/asteroid/basalt/lava_land_surface/biome_replace,
 /area/lavaland/surface/outdoors)
 "pe" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1925,9 +1932,9 @@
 /area/ruin/syndicate_lava_base/engineering)
 "pp" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/duct,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/ruin/syndicate_lava_base/medbay)
 "pu" = (
@@ -2061,7 +2068,7 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/trunk,
-/turf/open/misc/asteroid/basalt/lava_land_surface,
+/turf/open/misc/asteroid/basalt/lava_land_surface/biome_replace,
 /area/ruin/syndicate_lava_base/virology)
 "rC" = (
 /obj/machinery/door/firedoor,
@@ -2104,7 +2111,7 @@
 /turf/open/floor/engine/co2,
 /area/ruin/syndicate_lava_base/engineering)
 "si" = (
-/turf/open/misc/asteroid/basalt/lava_land_surface,
+/turf/open/misc/asteroid/basalt/lava_land_surface/biome_replace,
 /area/lavaland/surface/outdoors)
 "sl" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2582,13 +2589,6 @@
 /obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/plating,
 /area/ruin/syndicate_lava_base/main)
-"zq" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/duct,
-/turf/open/floor/iron,
-/area/ruin/syndicate_lava_base/medbay)
 "zt" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -4103,6 +4103,7 @@
 "Ue" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/computer/slot_machine/syndicate,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/bar)
 "Um" = (
@@ -4267,7 +4268,7 @@
 	key = "mistake"
 	},
 /obj/effect/mapping_helpers/no_lava,
-/turf/open/misc/asteroid/basalt/lava_land_surface,
+/turf/open/misc/asteroid/basalt/lava_land_surface/biome_replace,
 /area/lavaland/surface/outdoors)
 "Wv" = (
 /obj/effect/decal/cleanable/dirt,
@@ -6089,7 +6090,7 @@ qA
 lJ
 pW
 lI
-zq
+lJ
 nM
 ob
 al
