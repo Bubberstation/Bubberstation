@@ -13,6 +13,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 6
 	},
+/obj/effect/landmark/start/blueshield,
 /turf/open/floor/iron/dark/smooth_corner{
 	dir = 1
 	},
@@ -22,13 +23,8 @@
 /obj/item/storage/fancy/cigarettes/cigars,
 /obj/item/storage/fancy/donut_box,
 /obj/item/storage/medkit/tactical/blueshield,
-/obj/effect/landmark/start/blueshield,
-/obj/effect/landmark/start/blueshield,
-/obj/effect/landmark/start/blueshield,
-/obj/effect/landmark/start/blueshield,
 /obj/item/reagent_containers/cup/glass/bottle/navy_rum,
 /obj/item/holocigarette/masvedishcigar,
-/obj/effect/landmark/start/blueshield,
 /obj/item/paperwork/captain{
 	pixel_x = -3;
 	pixel_y = 4;
@@ -36,7 +32,8 @@
 	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
 	},
 /obj/item/toy/plush/horse,
-/turf/open/floor/engine,
+/obj/effect/landmark/start/blueshield,
+/turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "cR" = (
 /obj/structure/table/wood,
@@ -73,6 +70,7 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central)
 "dW" = (
+/obj/effect/landmark/start/nanotrasen_consultant,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "ex" = (
@@ -87,6 +85,9 @@
 "eM" = (
 /obj/machinery/photocopier/prebuilt,
 /obj/effect/turf_decal/bot,
+/obj/item/toy/plush/goatplushie{
+	pixel_y = 11
+	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "eN" = (
@@ -102,7 +103,7 @@
 	pixel_y = 5
 	},
 /obj/item/clothing/gloves/tackler/combat/insulated/blueshield,
-/turf/open/floor/iron/dark/textured,
+/turf/open/floor/engine,
 /area/station/command/heads_quarters/blueshield)
 "fy" = (
 /turf/open/floor/iron,
@@ -123,17 +124,13 @@
 /obj/item/gun_maintenance_supplies,
 /obj/item/shield/riot,
 /obj/item/storage/toolbox/ammobox/wt550m9,
-/turf/open/floor/iron/dark/textured,
+/turf/open/floor/engine,
 /area/station/command/heads_quarters/blueshield)
 "gG" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/obj/effect/landmark/start/blueshield,
 /obj/structure/chair/comfy/brown{
 	dir = 4
 	},
-/obj/effect/landmark/start/blueshield,
-/obj/effect/landmark/start/blueshield,
-/obj/effect/landmark/start/blueshield,
 /obj/effect/landmark/start/blueshield,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/blueshield)
@@ -164,11 +161,10 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral/opposingcorners,
 /obj/machinery/door/airlock/corporate{
 	name = "Consultant's Quarters"
 	},
-/turf/open/floor/iron/dark,
+/turf/open/floor/carpet/royalblack,
 /area/station/command/heads_quarters/nt_rep)
 "ij" = (
 /obj/structure/sign/calendar/directional/south,
@@ -185,11 +181,7 @@
 	dir = 4
 	},
 /obj/structure/table/wood/fancy/green,
-/obj/item/clipboard{
-	pixel_x = -4;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/cup/glass/mug/nanotrasen,
+/obj/effect/spawner/random/entertainment/cigarette_pack,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "kd" = (
@@ -277,8 +269,8 @@
 /obj/structure/chair/office{
 	dir = 8
 	},
-/obj/effect/landmark/start/nanotrasen_consultant,
 /obj/machinery/holopad,
+/obj/effect/landmark/start/nanotrasen_consultant,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/blueshield)
 "rp" = (
@@ -306,6 +298,7 @@
 /area/station/command/heads_quarters/nt_rep)
 "rt" = (
 /obj/machinery/holopad,
+/obj/effect/landmark/start/nanotrasen_consultant,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "rQ" = (
@@ -313,6 +306,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/machinery/digital_clock/directional/south,
+/obj/effect/landmark/start/blueshield,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/blueshield)
 "sc" = (
@@ -347,10 +341,10 @@
 	dir = 5
 	},
 /obj/effect/landmark/start/blueshield,
-/obj/structure/chair/office/tactical{
+/obj/structure/sign/flag/nanotrasen/directional/south,
+/obj/structure/chair/plastic{
 	dir = 1
 	},
-/obj/structure/sign/flag/nanotrasen/directional/south,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "uw" = (
@@ -426,7 +420,7 @@
 	},
 /obj/structure/sign/poster/official/no_erp/directional/west,
 /obj/machinery/light/small/directional/west,
-/turf/open/floor/carpet/green,
+/turf/open/floor/carpet/royalblack,
 /area/station/command/heads_quarters/nt_rep)
 "zW" = (
 /obj/structure/cable,
@@ -475,7 +469,10 @@
 /obj/machinery/light/small/directional/north,
 /obj/effect/turf_decal/bot,
 /obj/structure/reagent_dispensers/wall/peppertank/directional/north,
-/turf/open/floor/engine,
+/obj/machinery/camera/directional/north{
+	c_tag = "Blueshield's Office - Quarters"
+	},
+/turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "Fk" = (
 /obj/structure/flora/grass/green/style_random,
@@ -498,6 +495,7 @@
 /obj/machinery/camera/directional/west{
 	c_tag = "Blueshield's Office"
 	},
+/obj/effect/landmark/start/blueshield,
 /turf/open/floor/iron/dark/smooth_edge,
 /area/station/command/heads_quarters/blueshield)
 "FN" = (
@@ -515,14 +513,9 @@
 	desc = "The Blueshield's best friend, a little too eager to go after criminals and evil-doers alike. He's grounded forever.";
 	greyscale_colors = "#FF0000#000000"
 	},
-/obj/machinery/camera/directional/west{
-	c_tag = "Blueshield's Office";
-	name = "command camera";
-	dir = 6
-	},
 /obj/machinery/light/small/directional/south,
 /obj/machinery/vending/wallmed/directional/south,
-/turf/open/floor/engine,
+/turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "Gf" = (
 /obj/machinery/vending/boozeomat,
@@ -548,7 +541,7 @@
 	name = "internal affairs records"
 	},
 /obj/effect/landmark/start/nanotrasen_consultant,
-/turf/open/floor/carpet/green,
+/turf/open/floor/carpet/royalblack,
 /area/station/command/heads_quarters/nt_rep)
 "Gz" = (
 /obj/machinery/door/airlock/corporate{
@@ -604,6 +597,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
+/obj/effect/landmark/start/nanotrasen_consultant,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "LE" = (
@@ -618,10 +612,6 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/nanotrasen_consultant,
-/obj/effect/landmark/start/nanotrasen_consultant,
-/obj/effect/landmark/start/nanotrasen_consultant,
-/obj/effect/landmark/start/nanotrasen_consultant,
-/obj/effect/landmark/start/nanotrasen_consultant,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "Nv" = (
@@ -635,7 +625,10 @@
 "NL" = (
 /obj/structure/dresser,
 /obj/structure/secure_safe/directional/north,
-/turf/open/floor/carpet/green,
+/obj/item/sign/flag/nanotrasen{
+	pixel_y = 11
+	},
+/turf/open/floor/carpet/royalblack,
 /area/station/command/heads_quarters/nt_rep)
 "Of" = (
 /obj/structure/filingcabinet/medical{
@@ -656,7 +649,7 @@
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/effect/turf_decal/delivery/red,
 /obj/structure/window/reinforced/spawner/directional/east,
-/turf/open/floor/iron/dark/textured,
+/turf/open/floor/engine,
 /area/station/command/heads_quarters/blueshield)
 "Qi" = (
 /obj/machinery/power/apc/auto_name/directional/west,
@@ -693,11 +686,6 @@
 "Tf" = (
 /obj/structure/cable,
 /obj/structure/fireplace,
-/obj/effect/landmark/start/nanotrasen_consultant,
-/obj/effect/landmark/start/nanotrasen_consultant,
-/obj/effect/landmark/start/nanotrasen_consultant,
-/obj/effect/landmark/start/nanotrasen_consultant,
-/obj/effect/landmark/start/nanotrasen_consultant,
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
@@ -705,6 +693,7 @@
 	color = "#439C1E";
 	dir = 2
 	},
+/obj/effect/landmark/start/nanotrasen_consultant,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "Ts" = (
@@ -717,7 +706,11 @@
 	},
 /obj/effect/turf_decal/siding/dark/corner,
 /obj/structure/table/wood/fancy/green,
-/obj/effect/spawner/random/entertainment/cigarette_pack,
+/obj/item/clipboard{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/glass/mug/nanotrasen,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "VM" = (
@@ -738,6 +731,7 @@
 /obj/machinery/modular_computer/preset/command{
 	dir = 5
 	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 1
 	},
@@ -758,6 +752,9 @@
 /obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "nt_rep_priv"
+	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/nt_rep)
 "Yq" = (
@@ -767,7 +764,8 @@
 /obj/item/hand_labeler,
 /obj/machinery/newscaster/directional/north,
 /obj/item/stack/sheet/mineral/wood/fifty,
-/turf/open/floor/carpet/green,
+/obj/item/clothing/accessory/pocketprotector,
+/turf/open/floor/carpet/royalblack,
 /area/station/command/heads_quarters/nt_rep)
 "ZQ" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,

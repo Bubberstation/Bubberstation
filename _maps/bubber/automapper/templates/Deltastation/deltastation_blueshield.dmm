@@ -34,10 +34,8 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/port)
 "d" = (
-/obj/structure/window/reinforced/spawner/directional/north,
 /obj/effect/turf_decal/delivery/red,
 /obj/structure/window/reinforced/spawner/directional/east,
-/obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/closet/secure_closet/tac{
 	req_access = list("captain")
 	},
@@ -161,6 +159,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
+/obj/effect/landmark/navigate_destination,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/blueshield)
 "q" = (
@@ -257,8 +256,7 @@
 /obj/structure/dresser,
 /obj/machinery/light_switch/directional/east,
 /obj/item/modular_computer/laptop/preset/security{
-	pixel_y = 4;
-	pixel_x = 3
+	pixel_y = 8
 	},
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/carpet/blue,
@@ -312,7 +310,6 @@
 	req_access = list("captain");
 	name = "Blueshield's Armory"
 	},
-/obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/closet/secure_closet/blueshield,
 /obj/item/taperecorder{
 	name = "Captain's Log"
@@ -320,6 +317,7 @@
 /obj/item/dog_bone,
 /obj/item/clothing/gloves/tackler/combat/insulated/blueshield,
 /obj/structure/sign/flag/nanotrasen/directional/west,
+/obj/machinery/light/small/blacklight/directional/west,
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "Q" = (
@@ -327,7 +325,6 @@
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/effect/turf_decal/delivery/red,
 /obj/structure/window/reinforced/spawner/directional/east,
-/obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "R" = (

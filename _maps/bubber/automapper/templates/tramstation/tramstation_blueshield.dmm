@@ -3,15 +3,11 @@
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/blueshield)
 "b" = (
-/obj/structure/cable,
+/obj/structure/table/wood,
+/obj/machinery/recharger{
+	pixel_y = 4
+	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/carpet,
-/area/station/command/heads_quarters/captain)
-"c" = (
-/obj/structure/chair/comfy/brown,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/carpet,
 /area/station/command/heads_quarters/captain)
 "d" = (
@@ -27,25 +23,6 @@
 /obj/machinery/light_switch/directional/west,
 /obj/machinery/power/apc/auto_name/directional/south,
 /turf/open/floor/iron/dark,
-/area/station/command/heads_quarters/blueshield)
-"g" = (
-/obj/structure/closet/secure_closet/blueshield,
-/obj/effect/turf_decal/delivery/red,
-/obj/item/taperecorder{
-	name = "Captain's Log"
-	},
-/obj/item/modular_computer/laptop/preset/security{
-	pixel_y = 5
-	},
-/obj/item/clothing/gloves/tackler/combat/insulated/blueshield,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 8
-	},
-/obj/structure/sign/poster/official/obey/directional/east,
-/obj/effect/turf_decal/siding/thinplating_new/dark{
-	dir = 8
-	},
-/turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
 "h" = (
 /obj/effect/landmark/start/blueshield,
@@ -75,25 +52,45 @@
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "k" = (
-/turf/closed/wall/r_wall,
-/area/station/command/heads_quarters/captain/private)
+/obj/machinery/suit_storage_unit/security,
+/obj/machinery/vending/wallmed/directional/west,
+/obj/effect/turf_decal/delivery/red,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 4
+	},
+/obj/structure/sign/plaques/kiddie/perfect_man{
+	pixel_y = 32
+	},
+/turf/open/floor/iron/dark/small,
+/area/station/command/heads_quarters/blueshield)
 "l" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/captain)
+/turf/template_noop,
+/area/template_noop)
 "m" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "n" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+/obj/structure/closet/secure_closet/blueshield,
+/obj/effect/turf_decal/delivery/red,
+/obj/item/taperecorder{
+	name = "Captain's Log"
+	},
+/obj/item/modular_computer/laptop/preset/security{
+	pixel_y = 5
+	},
+/obj/item/clothing/gloves/tackler/combat/insulated/blueshield,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
-/turf/open/floor/carpet,
-/area/station/command/heads_quarters/captain)
+/obj/structure/sign/poster/official/obey/directional/east,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 8
+	},
+/obj/item/storage/medkit/fire,
+/turf/open/floor/iron/dark/small,
+/area/station/command/heads_quarters/blueshield)
 "p" = (
 /obj/machinery/computer/crew{
 	dir = 8
@@ -104,27 +101,39 @@
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "q" = (
-/obj/machinery/requests_console/directional/east{
-	name = "Captain's Requests Console";
-	department = "Captain's Desk"
-	},
-/obj/effect/mapping_helpers/requests_console/announcement,
-/obj/effect/mapping_helpers/requests_console/assistance,
-/obj/machinery/computer/communications{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/captain)
-"r" = (
 /obj/machinery/keycard_auth/wall_mounted/directional/north{
 	pixel_x = 26
 	},
-/obj/machinery/status_display/ai/directional/north,
 /obj/item/radio/intercom/command/directional/east,
 /obj/structure/bed/dogbed/renault,
 /mob/living/basic/pet/fox/renault,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/captain)
+"r" = (
+/obj/structure/closet/secure_closet/tac{
+	req_access = list("captain")
+	},
+/obj/item/shield/riot,
+/obj/item/gun_maintenance_supplies,
+/obj/item/screwdriver,
+/obj/effect/turf_decal/delivery/red,
+/obj/item/clothing/head/helmet/toggleable/riot{
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/armor/riot,
+/obj/item/storage/toolbox/ammobox/wt550m9,
+/obj/structure/sign/flag/nanotrasen/directional/east,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/obj/structure/plaque/static_plaque/golden{
+	pixel_y = 32
+	},
+/turf/open/floor/iron/dark/small,
+/area/station/command/heads_quarters/blueshield)
 "s" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
@@ -147,33 +156,27 @@
 /obj/structure/cable,
 /turf/open/space/basic,
 /area/station/command/heads_quarters/blueshield)
-"u" = (
-/obj/machinery/suit_storage_unit/security,
-/obj/machinery/vending/wallmed/directional/west,
-/obj/effect/turf_decal/delivery/red,
-/obj/effect/turf_decal/siding/thinplating_new/dark{
-	dir = 4
-	},
-/turf/open/floor/iron/dark/small,
-/area/station/command/heads_quarters/blueshield)
 "v" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "blueshield_priv";
-	name = "Privacy Shutters"
-	},
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
+/obj/structure/curtain/cloth/fancy/mechanical{
+	icon_state = "bounty-open";
+	icon_type = "bounty";
+	id = "bluey_priv";
+	name = "curtain"
+	},
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/blueshield)
 "w" = (
-/obj/effect/turf_decal/siding/thinplating_new/dark{
-	dir = 4
-	},
 /obj/structure/rack/shelf,
 /obj/structure/reagent_dispensers/wall/peppertank/directional/west,
 /obj/item/storage/medkit/fire,
 /obj/item/storage/medkit/tactical/blueshield{
 	pixel_y = 4
+	},
+/obj/effect/turf_decal/delivery/red,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 4
 	},
 /turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
@@ -193,16 +196,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/carpet,
 /area/station/command/heads_quarters/captain)
-"z" = (
-/obj/machinery/door/airlock/command{
-	name = "Captain's Quarters"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/command/captain,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/captain/private)
 "A" = (
 /obj/machinery/status_display/ai/directional/north,
 /obj/machinery/camera/directional/north{
@@ -235,15 +228,26 @@
 /turf/open/floor/iron/dark/diagonal,
 /area/station/command/heads_quarters/blueshield)
 "B" = (
-/obj/structure/window/reinforced/spawner/directional/south,
+/obj/item/radio/intercom/directional/south,
 /obj/structure/table/wood,
-/obj/item/radio/intercom/directional/east,
 /obj/machinery/fax{
-	name = "Captain's Fax Machine";
-	fax_name = "Captain's Office"
+	name = "Blueshield's Fax Machine";
+	fax_name = "Blueshield's Office"
 	},
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/captain)
+/obj/machinery/light_switch/directional/east{
+	pixel_y = 8;
+	pixel_x = 24
+	},
+/obj/machinery/button/curtain{
+	id = "bluey_priv";
+	name = "curtain control";
+	pixel_x = 35;
+	pixel_y = 8;
+	req_access = list("theatre");
+	dir = 4
+	},
+/turf/open/floor/carpet/blue,
+/area/station/command/heads_quarters/blueshield)
 "C" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -251,13 +255,6 @@
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
-"D" = (
-/obj/item/radio/intercom/directional/south,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/carpet,
-/area/station/command/heads_quarters/captain)
 "E" = (
 /obj/machinery/light/warm/directional/north,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -308,34 +305,18 @@
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "K" = (
-/obj/item/radio/intercom/directional/south,
-/obj/structure/table/wood,
-/obj/machinery/fax{
-	name = "Blueshield's Fax Machine";
-	fax_name = "Blueshield's Office"
+/obj/machinery/requests_console/directional/east{
+	name = "Captain's Requests Console";
+	department = "Captain's Desk"
 	},
-/obj/machinery/button/door/directional/east{
-	id = "blueshield_priv";
-	req_access = list("captain");
-	name = "Privacy Shutters Control"
-	},
-/obj/machinery/light_switch/directional/east{
-	pixel_y = -1;
-	pixel_x = 32
-	},
-/turf/open/floor/carpet/blue,
-/area/station/command/heads_quarters/blueshield)
+/turf/template_noop,
+/area/template_noop)
 "L" = (
-/obj/structure/table/wood,
-/obj/item/folder/blue,
-/obj/item/stamp/head/captain,
-/obj/machinery/door/window/right/directional/south{
-	name = "Captain's Desk";
-	req_access = list("captain")
-	},
-/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/wood,
+/obj/structure/cable,
+/obj/effect/landmark/start/blueshield,
+/turf/open/floor/carpet,
 /area/station/command/heads_quarters/captain)
 "M" = (
 /turf/open/floor/carpet,
@@ -377,8 +358,8 @@
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "Q" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /turf/open/floor/carpet,
 /area/station/command/heads_quarters/captain)
@@ -398,22 +379,7 @@
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "T" = (
-/obj/effect/landmark/start/captain,
-/obj/structure/chair/office,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/captain)
-"U" = (
-/turf/closed/wall/r_wall,
-/area/station/command/heads_quarters/captain)
-"V" = (
-/obj/structure/chair/comfy/brown{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/carpet,
 /area/station/command/heads_quarters/captain)
 "W" = (
@@ -447,60 +413,48 @@
 /obj/effect/spawner/random/entertainment/cigar,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
-"Z" = (
-/obj/structure/closet/secure_closet/tac{
-	req_access = list("captain")
-	},
-/obj/item/shield/riot,
-/obj/item/gun_maintenance_supplies,
-/obj/item/screwdriver,
-/obj/effect/turf_decal/delivery/red,
-/obj/item/clothing/head/helmet/toggleable/riot{
-	pixel_y = 6
-	},
-/obj/item/clothing/suit/armor/riot,
-/obj/item/storage/toolbox/ammobox/wt550m9,
-/obj/structure/sign/flag/nanotrasen/directional/east,
-/obj/effect/turf_decal/siding/thinplating_new/dark{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 8
-	},
-/turf/open/floor/iron/dark/small,
-/area/station/command/heads_quarters/blueshield)
 
 (1,1,1) = {"
-z
 l
-T
-L
-c
-y
-V
-U
+l
+l
+l
+l
+b
+l
+l
 "}
 (2,1,1) = {"
-k
-r
-q
-B
-M
-n
-D
-U
+l
+l
+l
+l
+l
+y
+l
+l
 "}
 (3,1,1) = {"
+l
+q
+K
+l
+T
+Q
+l
+l
+"}
+(4,1,1) = {"
 a
 a
 a
 a
 G
-Q
-b
-U
+L
+M
+l
 "}
-(4,1,1) = {"
+(5,1,1) = {"
 a
 F
 i
@@ -510,7 +464,7 @@ t
 a
 a
 "}
-(5,1,1) = {"
+(6,1,1) = {"
 a
 H
 h
@@ -520,7 +474,7 @@ C
 d
 a
 "}
-(6,1,1) = {"
+(7,1,1) = {"
 a
 a
 a
@@ -530,9 +484,9 @@ S
 J
 v
 "}
-(7,1,1) = {"
+(8,1,1) = {"
 a
-u
+k
 w
 a
 E
@@ -540,7 +494,7 @@ Y
 P
 v
 "}
-(8,1,1) = {"
+(9,1,1) = {"
 a
 A
 I
@@ -550,17 +504,17 @@ N
 x
 v
 "}
-(9,1,1) = {"
+(10,1,1) = {"
 a
-Z
-g
+r
+n
 a
 p
 j
-K
+B
 a
 "}
-(10,1,1) = {"
+(11,1,1) = {"
 a
 a
 a
@@ -569,4 +523,14 @@ a
 a
 a
 a
+"}
+(12,1,1) = {"
+l
+l
+l
+l
+l
+l
+l
+l
 "}

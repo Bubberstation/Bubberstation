@@ -4729,6 +4729,9 @@
 "bsU" = (
 /obj/effect/turf_decal/delivery/red,
 /obj/machinery/ammo_workbench,
+/obj/machinery/camera/directional/north{
+	c_tag = "Blueshield's Office - Armory"
+	},
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "btc" = (
@@ -34831,7 +34834,9 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
 	},
-/obj/machinery/camera/directional/south,
+/obj/machinery/camera/directional/south{
+	c_tag = Blueshield'sOffice
+	},
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/blueshield)
 "jXc" = (
@@ -45458,7 +45463,6 @@
 /turf/open/floor/pod,
 /area/station/service/chapel/office)
 "mNY" = (
-/obj/machinery/light/small/directional/west,
 /obj/machinery/light_switch/directional/west,
 /obj/effect/landmark/start/blueshield,
 /obj/effect/turf_decal/siding/dark_blue{
@@ -45468,6 +45472,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/dark_blue/full,
+/obj/machinery/light/small/blacklight/directional/west,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/blueshield)
 "mOa" = (
@@ -46312,19 +46317,16 @@
 /obj/item/clothing/head/helmet/toggleable/riot{
 	pixel_y = 6
 	},
-/obj/item/ammo_box/magazine/wt550m9,
 /obj/item/screwdriver,
 /obj/item/shield/riot,
-/obj/effect/turf_decal/delivery/red,
-/obj/structure/window/reinforced/spawner/directional/west,
-/obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/sign/flag/galfed/directional/south,
 /obj/machinery/door/window/brigdoor/right/directional/east{
 	req_access = list("captain");
 	name = "Blueshield's Armory";
 	dir = 1
 	},
-/turf/open/floor/iron/dark/textured,
+/obj/item/storage/toolbox/ammobox/wt550m9,
+/turf/open/floor/engine,
 /area/station/command/heads_quarters/blueshield)
 "mYH" = (
 /obj/structure/table,
@@ -50515,10 +50517,6 @@
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/item/pen/fountain{
-	pixel_x = -5;
-	pixel_y = 5
-	},
 /obj/machinery/recharger{
 	pixel_x = 7;
 	pixel_y = 6
@@ -51529,6 +51527,7 @@
 	},
 /obj/item/stack/sheet/mineral/wood/fifty,
 /obj/item/lighter/royal,
+/obj/item/clothing/accessory/pocketprotector,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "ovT" = (
@@ -55766,16 +55765,13 @@
 /area/station/commons/fitness/recreation)
 "pCy" = (
 /obj/machinery/suit_storage_unit/security,
-/obj/effect/turf_decal/delivery/red,
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/sign/flag/nanotrasen/directional/south,
 /obj/machinery/door/window/brigdoor/right/directional/east{
 	req_access = list("captain");
 	name = "Blueshield's Armory";
 	dir = 1
 	},
-/turf/open/floor/iron/dark/textured,
+/turf/open/floor/engine,
 /area/station/command/heads_quarters/blueshield)
 "pCA" = (
 /obj/structure/fans/tiny/forcefield{

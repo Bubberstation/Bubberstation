@@ -108,6 +108,14 @@ required_map = "CatwalkStation_2023.dmm"
 coordinates = [128, 168, 1]
 trait_name = "Station"
 
+# Catwalk Blueshield
+[templates.catwalk_blueshield]
+map_files = ["catwalk_blueshield.dmm"]
+directory = "_maps/bubber/automapper/templates/CatwalkStation/"
+required_map = "CatwalkStation_2023.dmm"
+coordinates = [116, 123, 2]
+trait_name = "Station"
+
 # Catwalk Cryo
 [templates.catwalk_cryo]
 map_files = ["catwalk_cryo.dmm"]
@@ -132,6 +140,14 @@ required_map = "CatwalkStation_2023.dmm"
 coordinates = [142, 126, 1]
 trait_name = "Station"
 
+# Catwalk NTR Office Second Floor
+[templates.catwalk_ntrep_2floor]
+map_files = ["catwalk_ntrep_2floor.dmm"]
+directory = "_maps/bubber/automapper/templates/CatwalkStation/"
+required_map = "CatwalkStation_2023.dmm"
+coordinates = [143, 126, 2]
+trait_name = "Station"
+
 # Catwalk Sauna
 [templates.catwalk_sauna]
 map_files = ["catwalk_sauna.dmm"]
@@ -146,6 +162,14 @@ map_files = ["catwalk_supermatter.dmm"]
 directory = "_maps/bubber/automapper/templates/CatwalkStation/"
 required_map = "CatwalkStation_2023.dmm"
 coordinates = [172, 163, 1]
+trait_name = "Station"
+
+# Catwalk Showroom
+[templates.catwalk_showroom]
+map_files = ["catwalk_showroom.dmm"]
+directory = "_maps/bubber/automapper/templates/CatwalkStation/"
+required_map = "CatwalkStation_2023.dmm"
+coordinates = [116, 123, 1]
 trait_name = "Station"
 
 # CENTRAL COMMAND MAP EDITS
@@ -532,12 +556,12 @@ required_map = "NebulaStation.dmm"
 coordinates = [90, 132, 1]
 trait_name = "Station"
 
-# Nebulastation NTR Office
-[templates.nebulastation_ntrep_office]
-map_files = ["nebulastation_ntrep_office.dmm"]
+# Nebulastation NTC and Blueshield Office
+[templates.nebulastation_ntc_bs]
+map_files = ["nebulastation_ntc_bs.dmm"]
 directory = "_maps/bubber/automapper/templates/NebulaStation/"
 required_map = "NebulaStation.dmm"
-coordinates = [110, 116, 2]
+coordinates = [110, 113, 2]
 trait_name = "Station"
 
 # Nebulastation Sauna
@@ -586,7 +610,7 @@ trait_name = "Station"
 map_files = ["tramstation_blueshield.dmm"]
 directory = "_maps/bubber/automapper/templates/tramstation/"
 required_map = "tramstation.dmm"
-coordinates = [81, 125, 2]
+coordinates = [85, 130, 2]
 trait_name = "Station"
 
 # Tramstation Cryo
