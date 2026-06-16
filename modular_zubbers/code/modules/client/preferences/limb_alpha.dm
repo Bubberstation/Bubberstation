@@ -26,7 +26,7 @@
 	var/enabled = TRUE
 
 /datum/preference/numeric/limb_alpha/create_default_value()
-	return maximu
+	return maximum
 
 /datum/preference/numeric/limb_alpha/is_accessible(datum/preferences/preferences)
 	if(!enabled)

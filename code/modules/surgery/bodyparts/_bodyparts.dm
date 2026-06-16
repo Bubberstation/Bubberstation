@@ -1214,7 +1214,7 @@
 	var/datum/species/owner_species = human_owner.dna.species
 
 	if(owner_species && owner_species.specific_alpha != 255)
-		alpha = owner_species.specific_alphap
+		alpha = owner_species.specific_alpha
 
 	// BUBBER EDIT ADDITION START - per-limb alpha.
 	// preference (stored in dna.features) overrides it for this specific zone if present over species alpha
