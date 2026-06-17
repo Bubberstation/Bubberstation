@@ -21,3 +21,15 @@
 		light_overlay = "flight", \
 		overlay_x = 15, \
 		overlay_y = 10)
+
+/obj/item/gun/energy/e_gun/stun/pistol
+	name = "tactical energy pistol"
+	desc = "A military-issue rapid-charging energy pistol. Is able to fire stun rounds and is deadly accurate."
+	icon = 'modular_zubbers/icons/obj/weapons/guns/energy.dmi'
+	icon_state = "energytacpistol"
+	inhand_icon_state = "gun"
+	charge_sections = 3
+	w_class = WEIGHT_CLASS_SMALL
+	cell_type = /obj/item/stock_parts/power_store/cell/laser_pistol
+	spread = 0
+	dual_wield_spread = 2
