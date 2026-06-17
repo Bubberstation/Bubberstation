@@ -30,7 +30,7 @@ GLOBAL_LIST_INIT(tarkon_prize_pool, list(
 	new weapon_to_spawn (src)
 	for(var/i in 1 to 2)
 		new extra_to_spawn (src)
-	new /obj/item/ammo_box/a40mm/flak (src)
+	new /obj/item/ammo_box/a40mm (src)
 
 /obj/item/storage/toolbox/guncase/goldendeagle
 	name = "Golden Desert Eagle case"
