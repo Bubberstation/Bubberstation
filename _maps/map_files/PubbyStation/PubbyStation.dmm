@@ -23435,10 +23435,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
-/obj/item/radio/intercom/directional/west,
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
 	dir = 8
 	},
+/obj/item/radio/intercom/departmental/engineering/directional/west,
 /turf/open/floor/iron,
 /area/station/tcommsat/computer)
 "cmn" = (
@@ -23656,7 +23656,7 @@
 	c_tag = "Telecomms Server Room";
 	network = list("tcomms")
 	},
-/obj/item/radio/intercom/directional/south,
+/obj/item/radio/intercom/departmental/engineering/directional/south,
 /turf/open/floor/iron/dark/telecomms,
 /area/station/tcommsat/server)
 "cnw" = (
@@ -29422,16 +29422,6 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/iron/white,
 /area/station/security/prison/mess)
-"eVT" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/rack,
-/obj/item/construction/plumbing/mining,
-/obj/effect/mapping_helpers/burnt_floor,
-/obj/item/wrench,
-/turf/open/floor/plating,
-/area/station/cargo/miningfoundry)
 "eVW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -42701,11 +42691,6 @@
 /obj/item/stack/rods,
 /turf/open/space/basic,
 /area/space/nearstation)
-"nyk" = (
-/obj/effect/turf_decal/tile/purple/half/contrasted,
-/obj/machinery/wall_healer/directional/south,
-/turf/open/floor/iron/dark,
-/area/station/science/research)
 "nyB" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -43800,12 +43785,6 @@
 /area/station/commons/dorms)
 "omu" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/button/door{
-	id = "commissaryshutters";
-	name = "Commissary Shutters Control";
-	pixel_x = 28;
-	pixel_y = 5
-	},
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 4
 	},
@@ -46622,6 +46601,11 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/iron/dark,
 /area/station/security/prison)
+"pOj" = (
+/obj/effect/turf_decal/tile/purple/half/contrasted,
+/obj/machinery/wall_healer/directional/south,
+/turf/open/floor/iron/dark,
+/area/station/science/research)
 "pOs" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 9
@@ -58661,6 +58645,13 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
+"wPU" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/station/cargo/miningfoundry)
 "wPW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -59062,7 +59053,11 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/effect/mapping_helpers/burnt_floor,
+/obj/item/circuitboard/machine/plumbing_receiver,
+/obj/item/construction/plumbing/mining,
+/obj/item/wrench,
 /turf/open/floor/plating,
 /area/station/cargo/miningfoundry)
 "wZx" = (
@@ -59316,6 +59311,13 @@
 	},
 /turf/open/floor/plating,
 /area/station/hallway/secondary/entry)
+"xfa" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/machinery/wall_healer/directional/west,
+/turf/open/floor/iron,
+/area/station/hallway/primary/aft)
 "xff" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -60504,13 +60506,6 @@
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/grass,
 /area/station/medical/medbay/lobby)
-"xQw" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/machinery/wall_healer/directional/west,
-/turf/open/floor/iron,
-/area/station/hallway/primary/aft)
 "xQB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
@@ -93347,7 +93342,7 @@ ybV
 bRm
 ofp
 hYU
-xQw
+xfa
 phx
 voL
 bRm
@@ -97966,7 +97961,7 @@ qVi
 nbj
 boW
 nfA
-nyk
+pOj
 pNy
 pNy
 pNy
@@ -103332,7 +103327,7 @@ gYW
 rmO
 xog
 lmw
-wZg
+wPU
 aTy
 pcy
 aKh
@@ -103846,7 +103841,7 @@ kbQ
 aEj
 hkA
 ylY
-eVT
+wZg
 bbG
 pcy
 bUX
