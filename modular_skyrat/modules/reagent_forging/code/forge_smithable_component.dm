@@ -146,24 +146,25 @@
 	return current_perfects / max_perfect_hits
 
 /datum/component/forge_smithable/proc/show_balloon_alert(mob/living/user, hit_quality)
-	switch(hit_quality)
-		if(ANVIL_HAMMER_HIT_CANNOT_WORK)
-			parent_item.balloon_alert(user,"can't work!")
-		if(ANVIL_HAMMER_HIT_BAD)
-			parent_item.balloon_alert(user,"bad hit")
-		if(ANVIL_HAMMER_HIT_GOOD)
-			if(is_finished_smithing())
-				if(is_perfected())
+	if(!HAS_TRAIT(user, TRAIT_DEAF))
+		switch(hit_quality)
+			if(ANVIL_HAMMER_HIT_CANNOT_WORK)
+				parent_item.balloon_alert(user,"can't work!")
+			if(ANVIL_HAMMER_HIT_BAD)
+				parent_item.balloon_alert(user,"bad hit")
+			if(ANVIL_HAMMER_HIT_GOOD)
+				if(is_finished_smithing())
+					if(is_perfected())
+						parent_item.balloon_alert(user,"[parent_item] is perfected!")
+					else
+						parent_item.balloon_alert(user,"[parent_item] sounds done")
+				else
+					parent_item.balloon_alert(user, "good hit")
+			if(ANVIL_HAMMER_HIT_PERFECT)
+				if(is_finished_smithing() && is_perfected())
 					parent_item.balloon_alert(user,"[parent_item] is perfected!")
 				else
-					parent_item.balloon_alert(user,"[parent_item] sounds done")
-			else
-				parent_item.balloon_alert(user, "good hit")
-		if(ANVIL_HAMMER_HIT_PERFECT)
-			if(is_finished_smithing() && is_perfected())
-				parent_item.balloon_alert(user,"[parent_item] is perfected!")
-			else
-				parent_item.balloon_alert(user, "perfect hit!")
+					parent_item.balloon_alert(user, "perfect hit!")
 
 /datum/component/forge_smithable/proc/get_hit_quality(mob/living/user, obj/item/forging/hammer/tool)
 	if(parent_item.GetComponent(/datum/component/reagent_imbued))
