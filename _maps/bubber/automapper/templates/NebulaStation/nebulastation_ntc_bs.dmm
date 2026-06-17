@@ -223,11 +223,6 @@
 	pixel_x = 8
 	},
 /obj/machinery/firealarm/directional/south,
-/obj/machinery/camera/directional/west{
-	c_tag = "Consultant's Office";
-	name = "command camera";
-	dir = 5
-	},
 /obj/item/pen/fourcolor{
 	pixel_x = -5;
 	pixel_y = 5
@@ -369,6 +364,9 @@
 	dir = 4;
 	pixel_x = -8
 	},
+/obj/machinery/camera/directional/south{
+	c_tag = "Consultant's Office"
+	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "xE" = (
@@ -428,7 +426,7 @@
 	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
 	},
 /obj/item/toy/plush/skyrat/fox/mia{
-	desc = "A small stuffed silver fox with a collar tag that says “DAP” and a tiny bell in its fluffy tail.""A cute, marketable version of one of the DAP's mascots, Vigilant the fox. She has a blue collar with a shield-shaped tag that reads DAP. Holding her makes you feel protected.";
+	desc = "A cute, marketable version of one of the DAP's mascots, Vigilant the fox. She has a blue collar with a shield-shaped tag that reads DAP. Holding her makes you feel protected.";
 	name = "Vigilant plushie"
 	},
 /obj/item/storage/fancy/donut_box,
@@ -505,12 +503,10 @@
 /area/station/command/heads_quarters/blueshield)
 "It" = (
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
-/obj/machinery/camera/directional/west{
-	c_tag = "Blueshield's Office";
-	name = "command camera";
-	dir = 5
-	},
 /obj/machinery/airalarm/directional/south,
+/obj/machinery/camera/directional/south{
+	c_tag = "Blueshield's Office"
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "IG" = (
