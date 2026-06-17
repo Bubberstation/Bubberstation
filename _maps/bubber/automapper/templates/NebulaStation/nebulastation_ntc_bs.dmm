@@ -185,6 +185,7 @@
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "oc" = (
@@ -389,6 +390,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
+/obj/machinery/firealarm/directional/east,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "CM" = (
@@ -573,9 +575,11 @@
 "NZ" = (
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /obj/machinery/light_switch/directional/north{
-	pixel_x = 7
+	pixel_x = 8;
+	pixel_y = 31
 	},
 /obj/structure/sign/poster/official/nanotrasen_logo/directional/west,
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "Or" = (
