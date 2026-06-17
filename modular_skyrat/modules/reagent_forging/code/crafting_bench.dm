@@ -96,26 +96,26 @@
 	. = ..()
 	. += span_notice("You could secure or unsecure it with a wrench.")
 	. += span_notice("You could pry it apart with a crowbar.")
+	. += span_notice("You could insert a stack of material into the drawers, or <b>right click</b> to retrieve it later.")
 
-	if(istype(forged_item_on_surface, /obj/item/forging/complete))
-		var/obj/item/forging/complete/complete_item
-		. += span_notice("[src] has a <b>[initial(complete_item.name)]</b> sitting on it, awaiting completion. <br>")
-		var/obj/item/completion_item = complete_item.spawning_item
-		. += span_notice("With <b>[WEAPON_COMPLETION_WOOD_AMOUNT]</b> sheets of <b>wood</b> nearby, and some <b>hammering</b>, it could be completed into a <b>[initial(completion_item.name)]</b>.")
-		return // We don't want to show any selected recipes if there's weapon head on the bench
+	if(!isnull(forged_item_on_surface))
+		if(istype(forged_item_on_surface, /obj/item/forging/complete))
+			var/obj/item/forging/complete/complete_item
+			. += span_notice("[src] has a <b>[initial(complete_item.name)]</b> sitting on it, awaiting completion. <br>")
+			var/obj/item/completion_item = complete_item.spawning_item
+			. += span_notice("With <b>[WEAPON_COMPLETION_WOOD_AMOUNT]</b> sheets of <b>wood</b> nearby, and some <b>hammering</b>, it could be completed into a <b>[initial(completion_item.name)]</b>.")
+			return // We don't want to show any selected recipes if there's weapon head on the bench
+	else
+		if(selected_recipe)
+			var/obj/resulting_item = selected_recipe.resulting_item
+			. += span_notice("The selected recipe's resulting item is: <b>[initial(resulting_item.name)]</b> <br>")
+			. += span_notice("Gather the required materials, listed below, <b>near the bench</b>, then start <b>hammering</b> to complete it! <br>")
 
-	if(!selected_recipe)
-		return
+			if(!length(selected_recipe.recipe_requirements))
+				. += span_boldwarning("Somehow, this recipe has no requirements, report this as this shouldn't happen.")
+				return
 
-	var/obj/resulting_item = selected_recipe.resulting_item
-	. += span_notice("The selected recipe's resulting item is: <b>[initial(resulting_item.name)]</b> <br>")
-	. += span_notice("Gather the required materials, listed below, <b>near the bench</b>, then start <b>hammering</b> to complete it! <br>")
-
-	if(!length(selected_recipe.recipe_requirements))
-		. += span_boldwarning("Somehow, this recipe has no requirements, report this as this shouldn't happen.")
-		return
-
-	. += selected_recipe.get_recipe_requirements_description()
+		. += selected_recipe.get_recipe_requirements_description()
 	return .
 
 /obj/structure/reagent_crafting_bench/update_appearance(updates)
@@ -135,6 +135,19 @@
 /obj/structure/reagent_crafting_bench/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	select_recipe(user)
+
+/obj/structure/reagent_crafting_bench/attack_hand_secondary(mob/living/user, list/modifiers)
+	var/temp_list = generate_stack_held_list_radial()
+	var/option = show_radial_menu(user, src, temp_list, radius = 38, require_near = TRUE, tooltips = TRUE)
+
+	if(!isnull(option))
+		var/obj/item/stack/sheet/output_stack = stack_item_container[option]
+		stack_item_container[option] = null
+		if(output_stack.loc == src)
+			output_stack.forceMove(get_turf(src))
+
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
 
 /obj/structure/reagent_crafting_bench/attack_robot(mob/living/user)
 	. = ..()
@@ -204,6 +217,10 @@
 		attempt_place(attacking_item, user)
 		return TRUE
 
+	if(istype(attacking_item, /obj/item/stack/sheet))
+		attempt_stack_storage(attacking_item, user)
+		return TRUE
+
 	return ..()
 
 /obj/structure/reagent_crafting_bench/tong_act(mob/living/user, obj/item/tool)
@@ -214,7 +231,22 @@
 		var/returner = item_interaction(user, obj_tong_search)
 		if(length(tool.contents) < 1)
 			forge_item.icon_state = "tong_empty"
+		balloon_alert(user, "placed [forged_item_on_surface]")
 		return returner
+	else
+		if(!isnull(forged_item_on_surface))
+			forged_item_on_surface.forceMove(forge_item)
+			forge_item.icon_state = "tong_full"
+			balloon_alert(user, "took [forged_item_on_surface]")
+			return ITEM_INTERACT_SUCCESS
+		else
+			var/temp_list = generate_stack_held_list_radial()
+			var/option = show_radial_menu(user, src, temp_list, radius = 38, require_near = TRUE, tooltips = TRUE)
+			if(!isnull(option))
+				var/obj/item/stack/sheet/output_stack = stack_item_container[option]
+				if(!isnull(output_stack) && output_stack.loc == src)
+					output_stack.tong_act(user, tool)
+
 	return NONE
 
 /obj/structure/reagent_crafting_bench/mouse_drop_receive(atom/movable/attacking_item, mob/living/user, params)
@@ -311,6 +343,7 @@
 	balloon_alert_to_viewers("[thing_just_made] created")
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
+
 /obj/structure/reagent_crafting_bench/proc/check_craftability_general(mob/living/user, obj/item/tool)
 	if(!selected_recipe)
 		balloon_alert(user, "no recipe selected")
@@ -395,7 +428,39 @@
 	update_appearance()
 	return newly_created_thing
 
+/obj/structure/reagent_crafting_bench/proc/attempt_stack_storage(obj/item/stack/sheet/my_stack, mob/living/user)
+	var/obj/item/stack/sheet/existing_stack = stack_item_container[my_stack.merge_type]
+	if(isnull(existing_stack))
+		stack_item_container[my_stack.merge_type] = my_stack
+		my_stack.forceMove(src)
+		balloon_alert(user, "stashed [my_stack]")
+	else
+		if(existing_stack.amount >= existing_stack.max_amount)
+			balloon_alert(user, "[my_stack] drawer is full!")
+		else
+			my_stack.merge(stack_item_container[my_stack.merge_type])
+			balloon_alert(user, "stashed [my_stack]")
 
+/obj/structure/reagent_crafting_bench/proc/clear_empty_stacks()
+	var/obj/item/stack/sheet/my_stack
+	for(var/stack_type in stack_item_container)
+		my_stack = stack_item_container[stack_type]
+		if(isnull(my_stack) || my_stack.amount < 1)
+			stack_item_container.Remove(stack_type)
+
+/obj/structure/reagent_crafting_bench/proc/generate_stack_held_list_radial()
+	clear_empty_stacks()
+	var/list/returner = list()
+	var/datum/radial_menu_choice/option
+	var/obj/item/stack/sheet/my_sheet
+	for(var/stack_type in stack_item_container)
+		option = new
+		my_sheet = stack_item_container[stack_type]
+		option.image = image(icon = initial(my_sheet.icon), icon_state = initial(my_sheet.icon_state))
+		option.name = initial(my_sheet.name)
+		option.info = initial(my_sheet.amount)
+		returner[stack_type] = option
+	return returner
 
 /// Gets movable atoms within one tile of range of the crafting bench
 /obj/structure/reagent_crafting_bench/proc/get_environment()

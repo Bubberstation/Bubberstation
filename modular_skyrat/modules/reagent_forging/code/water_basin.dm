@@ -93,7 +93,8 @@
 		return FALSE
 
 	//spill contents, then deconstruct
-	knock_down()
+	if(reagents.total_volume > 0)
+		knock_down()
 	deconstruct(TRUE)
 	return TRUE
 
