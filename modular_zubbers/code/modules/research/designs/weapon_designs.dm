@@ -321,33 +321,6 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 	autolathe_exportable = FALSE
 
-/datum/design/wt550kit_sawd
-	name = "WT-550 Downsizing Kit"
-	desc = "A kit to chop down a WT-550 into something truly disgusting."
-	id = "wt550_sawd"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
-	)
-	build_path = /obj/item/weaponcrafting/gunkit/wt550_sawd
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_KITS
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
-/datum/design/wt550_ammo_compressed
-	name = "WT-550 Magazine (4.6x30mm Compressed) (Lethal)"
-	desc = "A magazine for the WT-550 Autorifle. Contains a high amount of lower power ammunition."
-	id = "wt550_ammo_compressed"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12.5, /datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 2.5)
-	build_path = /obj/item/ammo_box/magazine/wt550m9/compressed
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-	autolathe_exportable = FALSE
-
 /datum/design/simple_battle_rifle
 	name = "NT-38 Battle Rifle Simplification Kit)"
 	desc = "A kit to simplify an NT-38 Battle Rifle, making it much less complicated."

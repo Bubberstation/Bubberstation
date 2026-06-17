@@ -15,7 +15,3 @@
 	name = "4.6x30mm incendiary bullet"
 	damage = 10
 	fire_stacks = 1
-
-/obj/projectile/bullet/c46x30mm/compressed
-	name = "compressed 4.6x30mm bullet"
-	damage = 12

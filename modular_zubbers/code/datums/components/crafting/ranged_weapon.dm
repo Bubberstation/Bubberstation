@@ -50,22 +50,6 @@
 	time = 15 SECONDS
 	category = CAT_WEAPON_RANGED
 
-/datum/crafting_recipe/wt550_sawd
-	name = "Sawn-off WT-550"
-	result = /obj/item/gun/ballistic/automatic/wt550/sawnoff
-	reqs = list(
-		/obj/item/gun/ballistic/automatic/wt550 = 1,
-		/obj/item/weaponcrafting/gunkit/wt550_sawd = 1,
-	)
-	blacklist = list(
-		/obj/item/gun/ballistic/automatic/wt550/burst,
-		/obj/item/gun/ballistic/automatic/wt550/dmr,
-		/obj/item/gun/ballistic/automatic/wt550/sawnoff,
-	)
-	time = 15 SECONDS
-	category = CAT_WEAPON_RANGED
-	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY
-
 /datum/crafting_recipe/simple_battle_rifle
 	name = "NT .38 Battle Rifle"
 	result = /obj/item/gun/ballistic/automatic/battle_rifle_basic

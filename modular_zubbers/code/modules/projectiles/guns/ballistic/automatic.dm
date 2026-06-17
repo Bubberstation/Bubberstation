@@ -214,23 +214,6 @@
 	AddComponent(/datum/component/automatic_fire, 0.6 SECONDS)
 	AddComponent(/datum/component/scope, range_modifier = 2.0)
 
-/obj/item/gun/ballistic/automatic/wt550/sawnoff
-	name = "\improper sawn-off WT-550"
-	desc = "A custom chopped down WT-550. Less of a sawn-off and more of a mostly-gone. The barrel, stock and parts of the frame have been stripped down to reduce weight, causing handling to drop to abysmal levels. Don't even think about dual-wielding these. Uses 4.6x30mm rounds."
-	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
-	icon_state = "wt550s"
-	w_class = WEIGHT_CLASS_NORMAL
-	projectile_damage_multiplier = 0.8
-	projectile_speed_multiplier = 0.8
-	projectile_wound_bonus = -5
-	spread = 25
-	dual_wield_spread = 50
-	recoil = SAWN_OFF_RECOIL
-	
-/obj/item/gun/ballistic/automatic/wt550/sawnoff/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.15 SECONDS)
-
 /obj/item/gun/ballistic/automatic/battle_rifle_basic
 	name = "\improper .38 battle rifle"
 	desc = "A lower-tech alternative version of Nanotrasen's latest prototype longarm, granting a different option to those who don't care for the NT-38. \

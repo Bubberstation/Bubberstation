@@ -16,13 +16,6 @@
 		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 5,
 	)
 
-/obj/item/weaponcrafting/gunkit/wt550_sawd
-	name = "WT-550 lightning operations parts kit"
-	desc = "A suitcase containing the necessary gun parts to construct a- hey wait a second there's just a hacksaw in this kit!"
-	custom_materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
-	)
-
 /obj/item/weaponcrafting/gunkit/simple_battle_rifle
 	name = "NT-38 battle rifle simplification kit"
 	desc = "A suitcase containing the necessary gun parts to remove the advanced electronics and acceleration technology from a NT-38 battle rifle, reducing performance but maximizing reliability."
