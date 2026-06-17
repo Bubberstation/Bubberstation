@@ -295,7 +295,7 @@
 	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, TRAIT_PUSHIMMUNE, TRAIT_NEGATES_GRAVITY, TRAIT_NO_SLIP_WATER, TRAIT_NO_VEHICLE, TRAIT_HUGE_CLOTHES, TRAIT_NO_BUCKLE)
 	allowed = list(
 		/obj/item/tank/internals,
-		/obj/item/tank/jetpack,
+		/obj/item/tank/jetpack/captain,
 	)
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 40.4,
