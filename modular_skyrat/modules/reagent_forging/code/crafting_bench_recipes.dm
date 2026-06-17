@@ -77,7 +77,7 @@
 		if(isstack(thing))
 			var/obj/item/stack/stack_thing
 			stack_thing = thing
-			var/stack_type = stack_thing.type
+			var/stack_type = stack_thing.merge_type
 			var/amount_to_subtract = recipe_requirements[stack_type]
 			if(insert_ingredients_into_product_contents)
 				var/obj/item/stack/temp_stack = stack_thing.split_stack(amount_to_subtract)
