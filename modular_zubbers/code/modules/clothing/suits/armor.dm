@@ -284,6 +284,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	item_flags = SLOWS_WHILE_IN_HAND
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | IMMUTABLE_SLOW | SNUG_FIT
+	bubber_obj_flags = TRUE_IMMUTABLE_SLOW
 	cold_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
 	heat_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
@@ -323,7 +324,8 @@
 	armor_type = /datum/armor/secjuggernaut
 	flash_protect = FLASH_PROTECTION_WELDER
 	strip_delay = 15 SECONDS
-	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | IMMUTABLE_SLOW | SNUG_FIT | HEADINTERNALS
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SNUG_FIT | HEADINTERNALS
+	bubber_obj_flags = TRUE_IMMUTABLE_SLOW
 	clothing_traits = list(TRAIT_HEAD_INJURY_BLOCKED)
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
