@@ -30,7 +30,10 @@
 		new /obj/item/gun/energy/laser/scatter/shotty/warden(src)
 
 /obj/structure/closet/secure_closet/warden/populate_contents_immediate()
-	return ..()
+	. = ..()
+	for(var/obj/item/gun/ballistic/shotgun/automatic/combat/compact/warden_primary in src)
+		if(warden_primary.type == /obj/item/gun/ballistic/shotgun/automatic/combat/compact)
+			qdel(warden_primary)
 
 /obj/structure/closet/secure_closet/hop/populate_contents_immediate()
 	. = ..()
