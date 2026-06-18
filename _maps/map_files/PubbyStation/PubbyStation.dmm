@@ -2702,7 +2702,7 @@
 /obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 1;
 	hide = 1;
-	name = "Air In"
+	name = "Supply to Security"
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
@@ -20520,16 +20520,18 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine)
 "bVu" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/visible,
-/obj/effect/spawner/random/maintenance,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 1;
+	name = "Supply to Virology"
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine)
 "bVv" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 8
-	},
 /obj/effect/mapping_helpers/burnt_floor,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine)
 "bVw" = (
@@ -23208,6 +23210,9 @@
 /area/station/service/library/lounge)
 "clb" = (
 /obj/machinery/door/poddoor/massdriver_chapel,
+/obj/machinery/atmos_shield_gen/active{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/station/service/chapel/funeral)
 "clf" = (
@@ -23307,8 +23312,9 @@
 /turf/open/floor/plating,
 /area/station/tcommsat/computer)
 "clK" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible/layer4,
-/turf/closed/wall,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan,
+/obj/effect/spawner/random/maintenance,
+/turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
 "clL" = (
 /obj/machinery/door/airlock/maintenance_hatch{
@@ -29395,6 +29401,13 @@
 /mob/living/basic/pet/bumbles,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
+"eVu" = (
+/obj/machinery/door/poddoor/massdriver_chapel,
+/obj/machinery/atmos_shield_gen/active{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/station/service/chapel/funeral)
 "eVv" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -30389,8 +30402,13 @@
 /turf/open/floor/iron/white/corner,
 /area/station/hallway/secondary/exit)
 "fBJ" = (
-/obj/structure/fans/tiny,
 /obj/machinery/door/poddoor/massdriver_ordnance,
+/obj/machinery/atmos_shield_gen/active{
+	dir = 4
+	},
+/obj/machinery/atmos_shield_gen/active{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/station/science/ordnance/testlab)
 "fCX" = (
@@ -32044,10 +32062,13 @@
 /area/space/nearstation)
 "gDQ" = (
 /obj/machinery/door/poddoor/massdriver_trash,
-/obj/structure/fans/tiny,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/machinery/atmos_shield_gen/active{
+	dir = 1
+	},
+/obj/machinery/atmos_shield_gen/active,
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "gDX" = (
@@ -34921,7 +34942,8 @@
 /area/station/commons/dorms)
 "izF" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan,
-/obj/effect/spawner/random/maintenance,
+/obj/machinery/meter,
+/obj/item/wrench,
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
 "izP" = (
@@ -37222,11 +37244,9 @@
 /turf/open/floor/iron/freezer,
 /area/station/commons/toilet/restrooms)
 "jYh" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 4;
-	name = "Supply to Virology"
-	},
 /obj/effect/mapping_helpers/broken_floor,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/visible,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine)
 "jYA" = (
@@ -59733,10 +59753,8 @@
 /turf/open/floor/plating,
 /area/station/hallway/secondary/exit/departure_lounge)
 "xsO" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan,
-/obj/machinery/meter,
-/obj/item/wrench,
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible/layer4,
+/turf/closed/wall,
 /area/station/maintenance/department/security/brig)
 "xte" = (
 /obj/structure/disposalpipe/segment{
@@ -72574,7 +72592,7 @@ cwy
 cwF
 ckw
 ckN
-clb
+eVu
 aaa
 aaa
 aaa
@@ -78873,7 +78891,7 @@ ahS
 oXe
 aiu
 ajG
-izF
+clK
 alk
 ajD
 amH
@@ -79131,9 +79149,9 @@ aiv
 aiu
 ajG
 akw
-xsO
+izF
 xTe
-clK
+xsO
 ueU
 apB
 aiu
