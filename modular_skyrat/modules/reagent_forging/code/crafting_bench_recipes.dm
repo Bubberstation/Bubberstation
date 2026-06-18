@@ -201,7 +201,7 @@
 	apply_perfect_and_completion_bonuses(item_list, returner)
 	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner, user)
 	put_materials_in_product_from_ingredients(item_list, returner, user)
-	give_experience(user, item_list)
+	give_experience(user, item_list, returner)
 	move_to_world(returner, construction_location)
 
 	consume_crafting_ingredients(item_list, returner)
@@ -209,9 +209,14 @@
 
 /datum/crafting_bench_recipe/weapon_completion_recipe/get_smithing_memory(obj/item/product)
 	//o, the humanity (of code debt that i don't want to bother refactoring)
-	for(var/datum/memory/smithing/smithing_subtype in subtypesof(/datum/memory/smithing))
-		if(istype(product, initial(smithing_subtype.smithed_item_type)))
+	var/datum/memory/smithing/actual_memory
+	for(var/smithing_subtype in subtypesof(/datum/memory/smithing))
+		actual_memory = new smithing_subtype
+		if(istype(product, initial(actual_memory.smithed_item_type)))
+			qdel(actual_memory)
 			return smithing_subtype
+		else
+			qdel(actual_memory)
 	stack_trace("[product] doesn't have an assigned brain memory type in modular_skyrat/modules/reagent_forging/code/memories.dm !")
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
