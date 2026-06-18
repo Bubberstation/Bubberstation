@@ -1,4 +1,4 @@
-	/obj/item/gun/ballistic/automatic/wt550
+/obj/item/gun/ballistic/automatic/wt550
 	can_suppress = FALSE
 
 /obj/item/gun/ballistic/automatic/wt550/add_bayonet_point()
