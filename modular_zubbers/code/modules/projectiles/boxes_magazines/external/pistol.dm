@@ -89,7 +89,7 @@
 	for(var/inserted_ammo in 1 to stored_ammo.len)
 		. += "9mm-revolver-[inserted_ammo]"
 
-/obj/item/ammo_box/magazine/r10mm
+/obj/item/ammo_box/magazine/r45
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10,
 		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 10,

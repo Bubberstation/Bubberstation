@@ -52,8 +52,8 @@
 	addtimer(CALLBACK(src, PROC_REF(enter_prison), new_owner), 1 SECONDS)
 
 /datum/status_effect/void_prison/on_remove()
-	if(!IS_HERETIC(owner))
-		owner.apply_status_effect(/datum/status_effect/void_chill, 1)
+	//if(!IS_HERETIC(owner)) // BUBBER EDIT REMOVAL
+		//owner.apply_status_effect(/datum/status_effect/void_chill, 1) // BUBBER EDIT REMOVAL
 	if(stasis_overlay)
 		//Free our prisoner
 		owner.remove_traits(list(TRAIT_GODMODE, TRAIT_NO_TRANSFORM, TRAIT_SOFTSPOKEN), TRAIT_STATUS_EFFECT(id))
