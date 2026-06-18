@@ -2476,6 +2476,7 @@
 /area/station/maintenance/department/security/brig)
 "akv" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan,
+/obj/machinery/meter,
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
 "akw" = (
@@ -2831,7 +2832,7 @@
 /turf/open/floor/wood,
 /area/station/service/abandoned_gambling_den)
 "alT" = (
-/obj/machinery/atmospherics/pipe/layer_manifold/general,
+/obj/machinery/atmospherics/pipe/layer_manifold/supply,
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
 "alY" = (
@@ -3070,8 +3071,8 @@
 	codes_txt = "delivery;dir=4";
 	location = "Security"
 	},
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/iron,
 /area/station/security/processing/cremation)
 "amL" = (
 /obj/effect/turf_decal/tile/blue,
@@ -23306,11 +23307,9 @@
 /turf/open/floor/plating,
 /area/station/tcommsat/computer)
 "clK" = (
-/obj/effect/spawner/random/structure/crate,
-/turf/open/floor/plating{
-	luminosity = 2
-	},
-/area/station/maintenance/department/science/xenobiology)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible/layer4,
+/turf/closed/wall,
+/area/station/maintenance/department/security/brig)
 "clL" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Telecommunications Maintenance"
@@ -34921,10 +34920,10 @@
 /turf/open/floor/plating,
 /area/station/commons/dorms)
 "izF" = (
-/turf/open/floor/plating{
-	luminosity = 2
-	},
-/area/station/maintenance/department/science/xenobiology)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan,
+/obj/effect/spawner/random/maintenance,
+/turf/open/floor/plating,
+/area/station/maintenance/department/security/brig)
 "izP" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
@@ -39293,10 +39292,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/service/library/lounge)
-"lqI" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible/layer4,
-/turf/closed/wall,
-/area/station/maintenance/department/security/brig)
 "lrb" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
@@ -41906,11 +41901,6 @@
 /obj/machinery/airalarm/directional/south,
 /turf/open/floor/wood,
 /area/station/service/lawoffice)
-"mYA" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan,
-/obj/machinery/meter,
-/turf/open/floor/plating,
-/area/station/maintenance/department/security/brig)
 "mYW" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 6
@@ -42230,9 +42220,7 @@
 /obj/structure/reagent_dispensers/plumbed{
 	dir = 8
 	},
-/turf/open/floor/plating{
-	luminosity = 2
-	},
+/turf/open/floor/plating,
 /area/station/maintenance/department/science/xenobiology)
 "niY" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -44000,9 +43988,7 @@
 "orc" = (
 /obj/effect/spawner/random/trash/mess,
 /obj/structure/sink/directional/east,
-/turf/open/floor/plating{
-	luminosity = 2
-	},
+/turf/open/floor/plating,
 /area/station/maintenance/department/science/xenobiology)
 "orp" = (
 /obj/machinery/button/flasher{
@@ -56449,9 +56435,7 @@
 "vAS" = (
 /obj/machinery/space_heater,
 /obj/effect/mapping_helpers/burnt_floor,
-/turf/open/floor/plating{
-	luminosity = 2
-	},
+/turf/open/floor/plating,
 /area/station/maintenance/department/science/xenobiology)
 "vAX" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -59749,11 +59733,11 @@
 /turf/open/floor/plating,
 /area/station/hallway/secondary/exit/departure_lounge)
 "xsO" = (
-/obj/machinery/duct,
-/turf/open/floor/plating{
-	luminosity = 2
-	},
-/area/station/maintenance/department/science/xenobiology)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan,
+/obj/machinery/meter,
+/obj/item/wrench,
+/turf/open/floor/plating,
+/area/station/maintenance/department/security/brig)
 "xte" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -60548,12 +60532,6 @@
 /obj/effect/mapping_helpers/burnt_floor,
 /turf/open/floor/iron/dark,
 /area/station/security/processing/cremation)
-"xRb" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan,
-/obj/machinery/meter,
-/obj/item/wrench,
-/turf/open/floor/plating,
-/area/station/maintenance/department/security/brig)
 "xRe" = (
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/bush/grassy/style_random,
@@ -78638,7 +78616,7 @@ szh
 nrb
 aiu
 ajG
-mYA
+akv
 alj
 alT
 skw
@@ -78895,9 +78873,9 @@ ahS
 oXe
 aiu
 ajG
-akv
+izF
 alk
-aod
+ajD
 amH
 ans
 aiu
@@ -79153,9 +79131,9 @@ aiv
 aiu
 ajG
 akw
-xRb
+xsO
 xTe
-lqI
+clK
 ueU
 apB
 aiu
@@ -106729,7 +106707,7 @@ rNB
 bwm
 wTO
 hPU
-xsO
+enu
 rEh
 rNB
 aaa
@@ -107237,9 +107215,9 @@ dMO
 pMV
 rxQ
 enu
-xsO
-xsO
-xsO
+enu
+enu
+enu
 mES
 enu
 enu
@@ -107493,8 +107471,8 @@ rKi
 hTl
 bFC
 bwm
-izF
-izF
+lWy
+lWy
 bwm
 niN
 bwm
@@ -107750,7 +107728,7 @@ rKi
 bwm
 bwm
 bwm
-izF
+lWy
 bwm
 bwm
 bwm
@@ -108007,8 +107985,8 @@ rKi
 qIO
 jXA
 bwm
-izF
-clK
+lWy
+jFw
 bwm
 aht
 bwm
@@ -111331,7 +111309,7 @@ bbP
 hEc
 osv
 jJz
-bbP
+ezn
 aaa
 bnd
 kRK
@@ -111588,7 +111566,7 @@ gBw
 hEc
 wkW
 wPw
-bbP
+ezn
 aaa
 bnd
 qcD
@@ -111845,7 +111823,7 @@ dSx
 ftY
 cMl
 wPw
-bbP
+ezn
 aaa
 bnd
 uPA
@@ -112102,7 +112080,7 @@ gFC
 vcJ
 xdY
 jwq
-bbP
+ezn
 aaa
 bnd
 lGS
