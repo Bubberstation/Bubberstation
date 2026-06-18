@@ -2479,7 +2479,6 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
 "akw" = (
-/obj/machinery/meter,
 /obj/machinery/light/small/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan,
 /turf/open/floor/plating,
@@ -2699,13 +2698,16 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
 "alj" = (
-/obj/item/wrench,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan,
+/obj/machinery/atmospherics/components/binary/pump/on{
+	dir = 1;
+	hide = 1;
+	name = "Air In"
+	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
 "alk" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 8
+	dir = 4
 	},
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/open/floor/plating,
@@ -2829,8 +2831,7 @@
 /turf/open/floor/wood,
 /area/station/service/abandoned_gambling_den)
 "alT" = (
-/obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan,
+/obj/machinery/atmospherics/pipe/layer_manifold/general,
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
 "alY" = (
@@ -3232,7 +3233,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
 "anu" = (
@@ -3448,6 +3448,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
@@ -18069,7 +18072,7 @@
 /turf/open/floor/iron/white,
 /area/station/medical/medbay)
 "bIC" = (
-/obj/machinery/atmospherics/pipe/layer_manifold/supply,
+/obj/machinery/atmospherics/pipe/layer_manifold/supply/visible,
 /turf/closed/wall/r_wall,
 /area/station/maintenance/department/science/lower)
 "bIE" = (
@@ -39290,6 +39293,10 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/service/library/lounge)
+"lqI" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible/layer4,
+/turf/closed/wall,
+/area/station/maintenance/department/security/brig)
 "lrb" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
@@ -41899,6 +41906,11 @@
 /obj/machinery/airalarm/directional/south,
 /turf/open/floor/wood,
 /area/station/service/lawoffice)
+"mYA" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan,
+/obj/machinery/meter,
+/turf/open/floor/plating,
+/area/station/maintenance/department/security/brig)
 "mYW" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 6
@@ -50718,7 +50730,7 @@
 /turf/open/floor/iron,
 /area/station/security/courtroom)
 "skw" = (
-/obj/machinery/atmospherics/pipe/layer_manifold/cyan/visible,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/visible/layer4,
 /turf/closed/wall,
 /area/station/maintenance/department/security/brig)
 "skS" = (
@@ -55267,7 +55279,7 @@
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/freezerchamber)
 "uQI" = (
-/obj/machinery/atmospherics/pipe/layer_manifold/scrubbers,
+/obj/machinery/atmospherics/pipe/layer_manifold/scrubbers/visible,
 /turf/closed/wall/r_wall,
 /area/station/maintenance/department/science/lower)
 "uQR" = (
@@ -60536,6 +60548,12 @@
 /obj/effect/mapping_helpers/burnt_floor,
 /turf/open/floor/iron/dark,
 /area/station/security/processing/cremation)
+"xRb" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan,
+/obj/machinery/meter,
+/obj/item/wrench,
+/turf/open/floor/plating,
+/area/station/maintenance/department/security/brig)
 "xRe" = (
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/bush/grassy/style_random,
@@ -60588,10 +60606,8 @@
 /turf/open/floor/engine,
 /area/station/maintenance/disposal/incinerator)
 "xTe" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/layer_manifold/cyan,
+/obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
 "xTf" = (
@@ -60961,7 +60977,6 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/aft)
 "ygZ" = (
-/obj/machinery/duct,
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/station/maintenance/department/science/lower)
@@ -77857,10 +77872,10 @@ aiu
 ait
 ait
 aiu
-xTe
-xTe
-xTe
-xTe
+tlB
+tlB
+tlB
+tlB
 tlB
 kap
 axg
@@ -78114,7 +78129,7 @@ aiu
 aaa
 aaa
 aiu
-xTe
+tlB
 aiu
 aiu
 aiu
@@ -78371,7 +78386,7 @@ aiu
 aiu
 aiu
 aiu
-xTe
+tlB
 aiu
 byO
 jcm
@@ -78623,11 +78638,11 @@ szh
 nrb
 aiu
 ajG
-akv
+mYA
 alj
 alT
 skw
-ueU
+tlB
 aof
 aiu
 cpf
@@ -78882,7 +78897,7 @@ aiu
 ajG
 akv
 alk
-ajD
+aod
 amH
 ans
 aiu
@@ -79138,9 +79153,9 @@ aiv
 aiu
 ajG
 akw
-aod
-aiH
-aiu
+xRb
+xTe
+lqI
 ueU
 apB
 aiu
