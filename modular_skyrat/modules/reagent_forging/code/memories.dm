@@ -16,16 +16,16 @@
 	return ..()
 
 /datum/memory/smithing/get_names()
-	return list("The time [protagonist_name] made a [initial(smithed_item_type.name)].")
+	return list("The time [protagonist_name] made a [initial(smithed_item_type.item_name)].")
 
 /datum/memory/smithing/get_starts()
 	return list(
-		"[protagonist_name] carefully assembling a [initial(smithed_item_type.name)].",
+		"[protagonist_name] carefully assembling a [initial(smithed_item_type.item_name)].",
 	)
 
 /datum/memory/smithing/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] after finishing [initial(smithed_item_type.name)].",
+		"[protagonist_name] [mood_verb] after finishing [initial(smithed_item_type.item_name)].",
 	)
 
 /datum/memory/smithing/sword
