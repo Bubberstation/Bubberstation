@@ -44,6 +44,7 @@
 
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact/hos_primary
 	desc = parent_type::desc + HOS_PRIMARY_MARKINGS
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/projectile/bullet/security/smart
 	name = "smart 9x19mm Murphy bullet"
@@ -69,6 +70,7 @@
 	show_bolt_icon = FALSE
 	mag_display = FALSE
 	var/firefly_slide_animating = FALSE
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/gun/ballistic/automatic/pistol/sec_glock/smart/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, \
@@ -110,6 +112,7 @@
 	icon_state = "the_law"
 	base_icon_state = "the_law"
 	projectile_damage_multiplier = 1.1
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/storage/belt/holster/detective/full/ert/the_law
 	desc = parent_type::desc + HOS_PRIMARY_MARKINGS
