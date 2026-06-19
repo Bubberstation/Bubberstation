@@ -72,6 +72,8 @@
 	var/art_ref_nsfw = preferences?.read_preference(/datum/preference/toggle/art_ref_nsfw)
 	var/character_ad = ""
 
+	var/attraction = preferences?.read_preference(/datum/preference/choiced/attraction)
+	var/display_gender = preferences?.read_preference(/datum/preference/choiced/display_gender)
 	var/emote_length = preferences?.read_preference(/datum/preference/choiced/emote_length)
 	var/approach = preferences?.read_preference(/datum/preference/choiced/approach_pref)
 	var/furries = preferences?.read_preference(/datum/preference/choiced/directory_character_prefs/furry_pref)
@@ -96,6 +98,8 @@
 			ooc_notes += "ERP Mechanics: [e_prefs_mechanical]\n"
 			ooc_notes += "\n"
 
+		character_ad += "Gender: [display_gender]\n"
+		character_ad += "Sexuality: [attraction]\n"
 		character_ad += "Preferred Emote Length: [emote_length]\n"
 		character_ad += "How to Approach: [approach]\n"
 		character_ad += "Furries: [furries] | Scalies: [scalies] | Other: [others]\n"
