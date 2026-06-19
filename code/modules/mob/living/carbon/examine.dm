@@ -331,9 +331,9 @@
 		if(erp_status_pref && !CONFIG_GET(flag/disable_erp_preferences))
 			. += EXAMINE_SECTION_BREAK
 			. += span_info("ERP Status: [span_revenboldnotice(erp_status_pref)][free_use_pref ? "[span_revenboldnotice(" - Free Use")]" : ""]")
-		var/attraction_pref = client.prefs.read_preference(/datum/preference/choiced/attraction)
-		var/gender_pref = client.prefs.read_preference(/datum/preference/choiced/display_gender)
-		. += span_info("Gender/Sexuality: [span_revenboldnotice(gender_pref)], [span_revenboldnotice(attraction_pref)]")
+		var/line = get_gender_attraction_string(client.prefs.read_preference(/datum/preference/choiced/display_gender), client.prefs.read_preference(/datum/preference/choiced/attraction))
+		if(line)
+			. += span_info(line)
 	// SKYRAT EDIT END
 
 	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE, user, .)

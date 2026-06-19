@@ -99,8 +99,10 @@
 			ooc_notes += "ERP Mechanics: [e_prefs_mechanical]\n"
 			ooc_notes += "\n"
 
-		character_ad += "Gender: [display_gender]\n"
-		character_ad += "Sexuality: [attraction]\n"
+		if(display_gender != "Unset")
+			character_ad += "Gender: [display_gender]\n"
+		if(attraction != "Unset")
+			character_ad += "Sexuality: [attraction]\n"
 		character_ad += "Preferred Emote Length: [emote_length]\n"
 		character_ad += "How to Approach: [approach]\n"
 		character_ad += "Furries: [furries] | Scalies: [scalies] | Other: [others]\n"
