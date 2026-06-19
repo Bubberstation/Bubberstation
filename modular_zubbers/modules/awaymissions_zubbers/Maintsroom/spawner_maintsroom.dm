@@ -57,9 +57,10 @@
 		/obj/item/slimecross/stabilized/blue/gravi = 1,
 		/obj/item/slimecross/stabilized/purple/soul = 1,
 		/obj/item/slimecross/stabilized/yellow/battery = 1,
-		/obj/effect/spawner/random/trash/deluxe_garbage = 97,
+		/obj/effect/blessing/invisible = 97,
 	)
 
+/obj/effect/spawner/random/maintsrooms/artifact
 	name = "artifact spawner"
 	desc = "A gauranteed artifact."
 	loot = list(

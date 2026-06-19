@@ -21,7 +21,7 @@
 	desc = "The grass is perfect, it looks amazing and appealing, you should just lay down in it for a while."
 	icon_state = "grass"
 	color = "#FF0000"//doesnt actually appear red in game, does to make differntiating grass and this satan grass easier.
-	slowdown = 50//This is, an objectively insane and deranged value to set it to, this is so high in order to challenge the player as with a slowdown this high the player will go insane before they reach the end.
+	slowdown = 50//This is, a objectively insane and deranged value to set it to, this is so high in order to challenge the player as with a slowdown this high the player will go insane before they reach the end, if you can figure out a better way to do this, please, be my guest.
 
 /turf/closed/mineral/random/high_chance/volcanic/default_atmos
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
