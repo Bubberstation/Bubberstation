@@ -12,6 +12,7 @@
 	ammo_type = /obj/item/ammo_casing/c46x30mm/compressed
 	ammo_band_color = "#00618E"
 	max_ammo = 40
+	caliber = null
 	multitype = FALSE //we don't want people loading these with normal or ap bullets do we
 
 /obj/item/ammo_box/magazine/wt550m9/compressed/update_icon_state()
