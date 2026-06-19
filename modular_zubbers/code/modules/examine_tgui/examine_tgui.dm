@@ -87,11 +87,12 @@
 	if(preferences)
 		if(preferences.read_preference(/datum/preference/toggle/master_erp_preferences))
 			var/e_prefs = preferences.read_preference(/datum/preference/choiced/erp_status)
+			var/e_prefs_free_use = preferences.read_preference(/datum/preference/toggle/erp_free_use)
 			var/e_prefs_hypno = preferences.read_preference(/datum/preference/choiced/erp_status_hypno)
 			var/e_prefs_v = preferences.read_preference(/datum/preference/choiced/erp_status_v)
 			var/e_prefs_nc = preferences.read_preference(/datum/preference/choiced/erp_status_nc)
 			var/e_prefs_mechanical = preferences.read_preference(/datum/preference/choiced/erp_status_mechanics)
-			ooc_notes += "ERP: [e_prefs]\n"
+			ooc_notes += "ERP: [e_prefs][e_prefs_free_use ? " - Free Use" : ""]\n"
 			ooc_notes += "Hypnosis: [e_prefs_hypno]\n"
 			ooc_notes += "Vore: [e_prefs_v]\n"
 			ooc_notes += "Non-Con: [e_prefs_nc]\n"

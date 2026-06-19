@@ -327,9 +327,10 @@
 
 	if(client)
 		var/erp_status_pref = client.prefs.read_preference(/datum/preference/choiced/erp_status)
+		var/free_use_pref = client.prefs.read_preference(/datum/preference/toggle/erp_free_use)
 		if(erp_status_pref && !CONFIG_GET(flag/disable_erp_preferences))
 			. += EXAMINE_SECTION_BREAK
-			. += span_info("ERP Status: [span_revenboldnotice(erp_status_pref)]")
+			. += span_info("ERP Status: [span_revenboldnotice(erp_status_pref)][free_use_pref ? "[span_revenboldnotice(" - Free Use")]" : ""]")
 		var/attraction_pref = client.prefs.read_preference(/datum/preference/choiced/attraction)
 		var/gender_pref = client.prefs.read_preference(/datum/preference/choiced/display_gender)
 		. += span_info("Gender/Sexuality: [span_revenboldnotice(gender_pref)], [span_revenboldnotice(attraction_pref)]")
