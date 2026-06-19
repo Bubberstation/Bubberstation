@@ -180,6 +180,7 @@
 
 /datum/techweb_node/exotic_ammo/New()
 	design_ids += "wt550_ammo_ap"
+	design_ids += "wt550_ammo_compressed"
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()
@@ -196,6 +197,7 @@
 	design_ids = list(
 		"wt550_burst",
 		"wt550_long",
+		"wt550_sawd",
 		"battle_rifle_basic",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
