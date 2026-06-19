@@ -13672,7 +13672,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
 /obj/effect/turf_decal/caution/stand_clear/red,
-/mob/living/simple_animal/bot/secbot/pingsky,
+/mob/living/basic/bot/secbot/pingsky,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/ai/satellite/interior)
 "dyf" = (
@@ -13862,7 +13862,7 @@
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "dAl" = (
-/mob/living/simple_animal/bot/secbot/beepsky{
+/mob/living/basic/bot/secbot/beepsky/ofitser{
 	desc = "Powered by the tears and sweat of laborers.";
 	name = "Prison Ofitser"
 	},
@@ -48666,7 +48666,7 @@
 /turf/open/floor/iron,
 /area/station/terminal/lobby)
 "mqk" = (
-/mob/living/simple_animal/bot/secbot/beepsky/officer,
+/mob/living/basic/bot/secbot/beepsky/officer,
 /obj/effect/turf_decal/plaque{
 	icon_state = "L7"
 	},
@@ -49447,7 +49447,7 @@
 /turf/open/floor/wood/tile,
 /area/station/terminal/lobby)
 "mBK" = (
-/mob/living/simple_animal/bot/secbot/beepsky/armsky,
+/mob/living/basic/bot/secbot/beepsky/armsky,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 4
 	},
@@ -65241,9 +65241,8 @@
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/mob/living/simple_animal/bot/secbot/beepsky/jr{
+/mob/living/basic/bot/secbot/beepsky/jr{
 	name = "Officer Eepy";
-	bot_cover_flags = 6;
 	bot_mode_flags = 1;
 	desc = "You woke them up, and now they're pissed.";
 	baton_type = /obj/item/melee/baton/security/cattleprod
