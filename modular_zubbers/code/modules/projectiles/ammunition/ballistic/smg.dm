@@ -25,7 +25,7 @@
 	projectile_type = /obj/projectile/bullet/c46x30mm/compressed
 	can_be_printed = TRUE
 	advanced_print_req = TRUE
-	custom_materials = AMMO_MATS_BASIC
+	custom_materials = AMMO_MATS_HOMING
 
 /obj/item/ammo_casing/caseless/c22hl/ntmp5
 	projectile_type = /obj/projectile/bullet/c22hl/ntmp5

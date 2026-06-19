@@ -7,11 +7,13 @@
 /obj/item/ammo_box/magazine/wt550m9/wtic
 	name = "wt550 incendiary magazine"
 
-/obj/item/ammo_box/magazine/wt550m9/compressed
+/obj/item/ammo_box/magazine/wt550m9/compressed //20% higher damage potential than the standard bullets, but DPS is lower
 	name = "compressed wt550 magazine"
 	ammo_type = /obj/item/ammo_casing/c46x30mm/compressed
 	ammo_band_color = "#00618E"
 	max_ammo = 40
+	multitype = FALSE //we don't want people loading these with normal or ap bullets do we
+
 /obj/item/ammo_box/magazine/wt550m9/compressed/update_icon_state()
 	. = ..()
 	icon_state = "[base_icon_state]-[round(ammo_count()/2, 4)]"

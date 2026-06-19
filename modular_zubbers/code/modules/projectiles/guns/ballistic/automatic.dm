@@ -1,5 +1,16 @@
 /obj/item/gun/ballistic/automatic/wt550
 	can_suppress = FALSE
+	can_be_sawn_off = TRUE
+/obj/item/gun/ballistic/automatic/wt550/sawoff(mob/user)
+	. = ..()
+	if(.)
+		desc = "why would you do this"
+		icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
+		w_class = WEIGHT_CLASS_NORMAL
+		spread = 10
+		dual_wield_spread = 20
+		recoil = SAWN_OFF_RECOIL
+		update_appearance()
 
 /obj/item/gun/ballistic/automatic/wt550/add_bayonet_point()
 	return
@@ -8,7 +19,7 @@
 	. = ..()
 	if(type != /obj/item/gun/ballistic/automatic/wt550)
 		return
-	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/wt550_burst, /datum/crafting_recipe/wt550_long, /datum/crafting_recipe/wt550_sawd)
+	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/wt550_burst, /datum/crafting_recipe/wt550_long)
 
 	AddElement(
 		/datum/element/slapcrafting,\
@@ -20,6 +31,7 @@
 	desc = "A heavier, bulkier automatic variant of the WT-550, and now with 99% less discombobulation! Despite what Nanotrasen might tell you, it's identical in performance to the classic. Uses 4.6x30mm rounds. Recommended to hold with two hands."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/wt551.dmi'
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
+	can_be_sawn_off = FALSE
 	w_class = WEIGHT_CLASS_BULKY
 	fire_delay = 3
 	//18 damage per 0.3 seconds = 60 DPS
@@ -169,11 +181,11 @@
 	icon_state = "wt550b"
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
 	can_suppress = TRUE
+	can_be_sawn_off = FALSE
 	suppressor_x_offset = 4
 	spread = 3
-	recoil = 0.5
-	projectile_damage_multiplier = 1.1
-	burst_delay = 2
+	recoil = 0.25
+	burst_delay = 1
 	burst_size = 2
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 8.5,
@@ -183,7 +195,14 @@
 
 /obj/item/gun/ballistic/automatic/wt550/burst/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.5 SECONDS)
+	AddComponent(/datum/component/automatic_fire, 0.4 SECONDS)
+
+/obj/item/gun/ballistic/automatic/wt550/burst/add_seclight_point()
+	AddComponent(/datum/component/seclite_attachable, \
+		light_overlay_icon = 'icons/obj/weapons/guns/flashlights.dmi', \
+		light_overlay = "flight", \
+		overlay_x = 17, \
+		overlay_y = 9)
 
 /obj/item/gun/ballistic/automatic/wt550/dmr
 	name = "\improper WT-550-C Autorifle"
@@ -194,12 +213,13 @@
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
 	weapon_weight = WEAPON_HEAVY
 	can_suppress = TRUE
+	can_be_sawn_off = FALSE
 	suppressor_x_offset = 6
 	slot_flags = ITEM_SLOT_BACK
-	projectile_damage_multiplier = 1.5 // 30 damage base + wounding at half the firerate
-	projectile_speed_multiplier = 1.5
+	projectile_damage_multiplier = 1.75 // 35 damage base + wounding at half the firerate
+	projectile_speed_multiplier = 1.50
 	projectile_wound_bonus = 5
-	burst_delay = 3
+	burst_delay = 6
 	burst_size = 1
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 8.5,
@@ -213,23 +233,6 @@
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 0.6 SECONDS)
 	AddComponent(/datum/component/scope, range_modifier = 2.0)
-
-/obj/item/gun/ballistic/automatic/wt550/sawnoff
-	name = "\improper sawn-off WT-550"
-	desc = "A custom chopped down WT-550. Less of a sawn-off and more of a mostly-gone. The barrel, stock and parts of the frame have been stripped down to reduce weight, causing handling to drop to abysmal levels. Don't even think about dual-wielding these. Uses 4.6x30mm rounds."
-	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
-	icon_state = "wt550s"
-	w_class = WEIGHT_CLASS_NORMAL
-	projectile_damage_multiplier = 0.8
-	projectile_speed_multiplier = 0.8
-	projectile_wound_bonus = -5
-	spread = 25
-	dual_wield_spread = 50
-	recoil = SAWN_OFF_RECOIL
-	
-/obj/item/gun/ballistic/automatic/wt550/sawnoff/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.15 SECONDS)
 
 /obj/item/gun/ballistic/automatic/battle_rifle_basic
 	name = "\improper .38 battle rifle"
