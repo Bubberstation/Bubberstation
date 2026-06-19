@@ -1,6 +1,14 @@
+#define TERRAGOV_AMT "amount"
+#define TERRAGOV_VOTES "votes"
+#define TERRAGOV_DECLARED "declared"
+#define TERRAGOV_FINE_AMOUNT -20000
+
 #define EMERGENCY_RESPONSE_EMAG "AYO THE PIZZA HERE"
 
+GLOBAL_VAR(caller_of_911)
+GLOBAL_VAR(call_911_msg)
 GLOBAL_VAR(pizza_order)
+GLOBAL_VAR_INIT(terragov_tech_charge, -7500)
 GLOBAL_LIST_INIT(pizza_names, list(
 	"Dixon Buttes",
 	"I. C. Weiner",
@@ -154,7 +162,7 @@ GLOBAL_LIST_INIT(emergency_responders, list())
 	/// How many ghosts should we pick from the applicants to become members of the squad?
 	var/amount_to_summon = 4
 	/// What antagonist type should we give to the ghosts?
-	var/type_to_summon = /datum/antagonist/ert/request_911/condom_destroyer
+	var/type_to_summon = /datum/antagonist/ert/pizza/leader/false_call
 	/// What table should be be incrementing amount in in the terragov responders global?
 	var/summoned_type = "swat"
 	/// What name and ID should be on the cell phone given to the squad members?
