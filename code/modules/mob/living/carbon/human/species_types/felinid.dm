@@ -128,17 +128,15 @@
 	human_for_preview.set_hairstyle("Hime Cut", update = TRUE)
 
 
-	/* SKYRAT EDIT - Making the species menu icons work better - ORIGINAL:
+	/* // SKYRAT EDIT REMOVAL START - Making the species menu icons work better - ORIGINAL:
 	var/obj/item/organ/ears/cat/cat_ears = human_for_preview.get_organ_by_type(/obj/item/organ/ears/cat)
 	if (cat_ears)
 		cat_ears.color = human_for_preview.hair_color
-		human_for_preview.update_body()
-	*/
-	human_for_preview.dna.mutant_bodyparts[FEATURE_TAIL_GENERIC] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
-	human_for_preview.dna.mutant_bodyparts[FEATURE_EARS] = list(MUTANT_INDEX_NAME = "Cat", MUTANT_INDEX_COLOR_LIST = list(human_for_preview.hair_color))
+		human_for_preview.update_hair()
+	*/ // SKYRAT EDIT REMOVAL END
+	// SKYRAT EDIT ADDITION START
 	regenerate_organs(human_for_preview, src, visual_only = TRUE)
-	human_for_preview.update_body(TRUE)
-	// BUBBER EDIT CHANGE END
+	// SKYRAT EDIT ADDITION END
 
 /datum/species/human/felinid/get_physical_attributes()
 	return "Felinids are very similar to humans in almost all respects, with their biggest differences being the ability to lick their wounds, \

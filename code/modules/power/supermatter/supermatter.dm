@@ -746,6 +746,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	for(var/powergain_types in additive_power)
 		internal_energy += additive_power[powergain_types]
+	// BUBBER EDIT ADDITION BEGIN - heretic ritual
+	if (cursed)
+		additive_power[SM_POWER_POWERLOSS_CURSED] = -1 * (max(internal_energy * 0.3, 250 JOULES))
+		internal_energy += additive_power[SM_POWER_POWERLOSS_CURSED]
+	// BUBBER EDIT ADDITION END
 	internal_energy = max(internal_energy, 0)
 	if(internal_energy && !activation_logged)
 		stack_trace("Supermatter powered for the first time without being logged. Internal energy factors: [json_encode(internal_energy_factors)]")
