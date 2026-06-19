@@ -175,7 +175,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
-/obj/machinery/photocopier/prebuilt,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "aaY" = (
@@ -7203,6 +7202,14 @@
 /turf/open/floor/iron/dark,
 /area/station/ai/upload/chamber)
 "aCP" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/pdas{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/storage/box/silver_ids,
+/obj/item/storage/box/ids,
+/obj/machinery/firealarm/directional/south,
 /obj/machinery/keycard_auth{
 	pixel_x = -26;
 	pixel_y = 6
@@ -7751,14 +7758,9 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "aEN" = (
-/obj/structure/table/wood,
-/obj/item/storage/box/pdas{
-	pixel_x = 4;
-	pixel_y = 4
+/obj/machinery/computer/accounting{
+	dir = 1
 	},
-/obj/item/storage/box/silver_ids,
-/obj/item/storage/box/ids,
-/obj/machinery/firealarm/directional/south,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "aEO" = (
@@ -23211,7 +23213,7 @@
 "clb" = (
 /obj/machinery/door/poddoor/massdriver_chapel,
 /obj/machinery/atmos_shield_gen/active{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/station/service/chapel/funeral)
@@ -28550,6 +28552,12 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
+"evo" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan,
+/obj/machinery/meter,
+/obj/item/wrench,
+/turf/open/floor/plating,
+/area/station/maintenance/department/security/brig)
 "evB" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
@@ -29401,13 +29409,6 @@
 /mob/living/basic/pet/bumbles,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
-"eVu" = (
-/obj/machinery/door/poddoor/massdriver_chapel,
-/obj/machinery/atmos_shield_gen/active{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/station/service/chapel/funeral)
 "eVv" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -34941,11 +34942,12 @@
 /turf/open/floor/plating,
 /area/station/commons/dorms)
 "izF" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan,
-/obj/machinery/meter,
-/obj/item/wrench,
+/obj/machinery/door/poddoor/massdriver_chapel,
+/obj/machinery/atmos_shield_gen/active{
+	dir = 4
+	},
 /turf/open/floor/plating,
-/area/station/maintenance/department/security/brig)
+/area/station/service/chapel/funeral)
 "izP" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
@@ -59753,8 +59755,9 @@
 /turf/open/floor/plating,
 /area/station/hallway/secondary/exit/departure_lounge)
 "xsO" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible/layer4,
-/turf/closed/wall,
+/obj/machinery/atmospherics/pipe/layer_manifold/cyan,
+/obj/machinery/space_heater,
+/turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
 "xte" = (
 /obj/structure/disposalpipe/segment{
@@ -60602,9 +60605,8 @@
 /turf/open/floor/engine,
 /area/station/maintenance/disposal/incinerator)
 "xTe" = (
-/obj/machinery/atmospherics/pipe/layer_manifold/cyan,
-/obj/machinery/space_heater,
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible/layer4,
+/turf/closed/wall,
 /area/station/maintenance/department/security/brig)
 "xTf" = (
 /obj/machinery/power/apc/auto_name/directional/east,
@@ -72335,7 +72337,7 @@ rNH
 cwF
 ckv
 ckM
-clb
+izF
 aaa
 aaa
 aaa
@@ -72592,7 +72594,7 @@ cwy
 cwF
 ckw
 ckN
-eVu
+clb
 aaa
 aaa
 aaa
@@ -79149,9 +79151,9 @@ aiv
 aiu
 ajG
 akw
-izF
-xTe
+evo
 xsO
+xTe
 ueU
 apB
 aiu
