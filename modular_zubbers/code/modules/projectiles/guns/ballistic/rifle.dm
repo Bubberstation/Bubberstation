@@ -19,7 +19,7 @@
 	semi_auto = TRUE
 	bolt_type = BOLT_TYPE_LOCKING
 	internal_magazine = TRUE
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = 2
 	mag_display_ammo = TRUE
 	spread = 7.5

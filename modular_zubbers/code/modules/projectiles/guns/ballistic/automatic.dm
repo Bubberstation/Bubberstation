@@ -205,8 +205,8 @@
 	can_be_sawn_off = FALSE
 	suppressor_x_offset = 6
 	slot_flags = ITEM_SLOT_BACK
-	projectile_damage_multiplier = 1.75 // 35 damage base + wounding at half the firerate
-	projectile_speed_multiplier = 1.50
+	projectile_damage_multiplier = 1.50 // 30 damage base + wounding at half the firerate
+	projectile_speed_multiplier = 1.25
 	projectile_wound_bonus = 5
 	burst_delay = 6
 	burst_size = 1
