@@ -193,6 +193,7 @@
 		"Yes",
 		"Yes - Dom",
 		"Yes - Switch",
+		"Yes - Sub",
 	)
 
 /datum/preference/choiced/erp_status_nc/create_default_value()
