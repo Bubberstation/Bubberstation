@@ -857,9 +857,10 @@
 /obj/item/fuel_pellet/advanced,
 /turf/open/floor/mineral/titanium/purple,
 /area/awaymission/caves/maintsroom)
-"bfX" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Gamer Lair"
+"cq" = (
+/obj/item/sticker/right_arrow,
+/mob/living/basic/bot/secbot/beepsky{
+	faction = list("hostile","cult")
 	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -1793,10 +1794,9 @@
 	},
 /turf/open/floor/iron/chapel,
 /area/awaymission/caves/maintsroom)
-"ctg" = (
-/obj/machinery/light/floor,
-/obj/structure/chair/sofa/bench{
-	dir = 8
+"fc" = (
+/mob/living/basic/bot/secbot/pingsky{
+	faction = list("hostile","cult")
 	},
 /turf/open/floor/iron/cafeteria,
 /area/awaymission/caves/maintsroom)
@@ -2763,14 +2763,14 @@
 /obj/effect/mapping_helpers/burnt_floor,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"dGi" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow,
-/turf/open/floor/iron/dark/corner{
-	dir = 4
+"iQ" = (
+/obj/structure/table,
+/obj/effect/spawner/random/maintenance,
+/turf/open/floor/iron/smooth,
+/area/awaymission/caves/maintsroom)
+"iR" = (
+/mob/living/basic/bot/secbot/beepsky/ofitser{
+	faction = list("hostile","cult")
 	},
 /area/awaymission/caves/maintsroom)
 "dGn" = (
@@ -3696,10 +3696,11 @@
 /obj/machinery/light/warm/directional/north,
 /turf/open/floor/sepia,
 /area/awaymission/caves/maintsroom)
-"eOT" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/grille,
-/turf/open/floor/iron/smooth,
+"lx" = (
+/mob/living/basic/bot/secbot/beepsky{
+	faction = list("hostile","cult")
+	},
+/turf/open/floor/circuit/red,
 /area/awaymission/caves/maintsroom)
 "ePb" = (
 /obj/machinery/power/floodlight,
@@ -5864,12 +5865,9 @@
 /obj/machinery/light/floor,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
-"hKL" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/door/poddoor,
-/obj/effect/oneway,
-/obj/effect/oneway{
-	dir = 1
+"rA" = (
+/mob/living/basic/bot/secbot/beepsky{
+	faction = list("hostile","cult")
 	},
 /turf/open/floor/iron,
 /area/space)
@@ -6334,8 +6332,11 @@
 /area/space)
 "iru" = (
 /obj/structure/rack,
-/obj/item/gun/ballistic/automatic/sol_rifle{
-	anchored = 1
+/turf/open/misc/asteroid,
+/area/awaymission/caves/maintsroom)
+"sO" = (
+/mob/living/basic/bot/secbot/grievous{
+	faction = list("hostile","cult")
 	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
@@ -7583,9 +7584,9 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"jSN" = (
-/obj/structure/chair/office{
-	dir = 1
+"wP" = (
+/mob/living/basic/bot/secbot/beepsky/jr{
+	faction = list("hostile","cult")
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/very_dim/directional/east,
@@ -12649,8 +12650,8 @@
 /obj/effect/mapping_helpers/burnt_floor,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"rbt" = (
-/mob/living/basic/malf_borg/protect{
+"Lp" = (
+/mob/living/basic/bot/secbot/beepsky{
 	faction = list("hostile","cult")
 	},
 /turf/open/floor/circuit/red/anim,
@@ -13324,7 +13325,24 @@
 /area/awaymission/caves/maintsroom)
 "rTp" = (
 /obj/effect/light_emitter/fake_outdoors,
-/turf/open/misc/beach/sand,
+/turf/open/misc/asteroid/basalt,
+/area/awaymission/caves/maintsroom)
+"Nv" = (
+/mob/living/basic/bot/secbot/ed209{
+	name = "Commander Stun";
+	faction = list("hostile","cult")
+	},
+/turf/open/floor/circuit/red,
+/area/awaymission/caves/maintsroom)
+"Nw" = (
+/obj/structure/rack/skeletal,
+/obj/item/reagent_containers/condiment/milk{
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/condiment/milk{
+	pixel_x = 5
+	},
+/turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "rTC" = (
 /obj/machinery/light/directional/north,
@@ -13421,9 +13439,12 @@
 /obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
-"rZK" = (
-/obj/structure/bookcase/random/reference/wizard,
-/turf/open/floor/plating/heretic_rust,
+"NW" = (
+/mob/living/basic/bot/secbot/beepsky/officer{
+	faction = list("hostile","cult")
+	},
+/obj/machinery/light/red/directional/north,
+/turf/open/floor/circuit/red,
 /area/awaymission/caves/maintsroom)
 "saa" = (
 /obj/machinery/door/airlock/maintenance,
@@ -13997,9 +14018,15 @@
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"sNw" = (
-/obj/machinery/door/airlock{
-	name = "Maintenance"
+"Py" = (
+/mob/living/basic/bot/secbot/beepsky/armsky{
+	faction = list("hostile","cult")
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/awaymission/caves/maintsroom)
+"Pz" = (
+/obj/structure/disposalpipe/segment{
+	dir = 5
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/structure/barricade/wooden/crude,
@@ -15476,11 +15503,21 @@
 /obj/structure/reagent_dispensers/foamtank,
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
-"uDI" = (
-/obj/item/food/badrecipe/moldy,
-/obj/item/tank/internals/plasma/empty{
-	pixel_x = -10;
-	pixel_y = 4
+"TK" = (
+/obj/structure/flora/bush/flowers_yw,
+/turf/open/floor/grass,
+/area/awaymission/caves/maintsroom)
+"TL" = (
+/obj/machinery/mech_bay_recharge_port,
+/turf/open/floor/iron/diagonal,
+/area/awaymission/caves/maintsroom)
+"TM" = (
+/obj/structure/lattice/catwalk/mining,
+/turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
+"TN" = (
+/mob/living/basic/bot/secbot/grievous/toy{
+	faction = list("hostile","cult")
 	},
 /obj/item/tank/internals/plasma/empty{
 	pixel_y = 4
@@ -16048,12 +16085,17 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"vnU" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 8
+"Ve" = (
+/obj/effect/spawner/random/structure/closet_empty/crate,
+/obj/item/vending_refill/dinnerware,
+/obj/item/vending_refill/snack,
+/obj/item/circuitboard/machine/coffeemaker,
+/mob/living/basic/mouse/rat,
+/turf/open/floor/plating/rust,
+/area/awaymission/caves/maintsroom)
+"Vf" = (
+/mob/living/basic/bot/secbot/beepsky{
+	faction = list("hostile","cult")
 	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)

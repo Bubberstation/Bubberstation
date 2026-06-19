@@ -70,6 +70,7 @@
 	new /obj/item/circuitboard/machine/techfab/department/security(src)
 	new /obj/item/storage/photo_album/hos(src)
 	new /obj/item/card/id/departmental_budget/sec(src) //SKYRAT EDIT ADDITION
+	new /obj/item/storage/box/antimagic(src) // BUBBER EDIT ADDITION
 
 /obj/structure/closet/secure_closet/hos/populate_contents_immediate()
 	. = ..()
@@ -209,6 +210,9 @@
 	anchored = TRUE
 	req_one_access = list(ACCESS_BRIG)
 	var/id = null
+
+/obj/structure/closet/secure_closet/brig/holodeck
+	req_one_access = COMMON_ACCESS
 
 /obj/structure/closet/secure_closet/brig/genpop
 	name = "genpop storage locker"
