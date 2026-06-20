@@ -115,6 +115,9 @@
 
 /proc/blacksmithing_change_material_integrity(obj/item/my_item, datum/material/material, amount, multiplier, removing = FALSE)
 	var/base_modifier = material.get_property(MATERIAL_INTEGRITY)
+	if(isnull(base_modifier))
+		return
+
 	var/integrity_mod = GET_MATERIAL_MODIFIER(base_modifier, multiplier)
 	var/integrity_change = removing ? floor(my_item.max_integrity / integrity_mod) : ceil(my_item.max_integrity * integrity_mod)
 	my_item.modify_max_integrity(integrity_change)
@@ -138,6 +141,8 @@
 	var/density = material.get_property(MATERIAL_DENSITY)
 	var/hardness = material.get_property(MATERIAL_HARDNESS)
 	var/flexibility = material.get_property(MATERIAL_FLEXIBILITY)
+	if(isnull(density) || isnull(hardness) || isnull(flexibility))
+		return
 
 	// Item force calculation depends on its initial (assumed to be main) sharpness
 	// Transforming component doesn't work with materials at all and will need a refactor to change that, so we don't care about it here.
@@ -193,7 +198,11 @@
 	var/hardness = item_material.get_property(MATERIAL_HARDNESS)
 	var/flexibility = item_material.get_property(MATERIAL_FLEXIBILITY)
 	var/thermal = item_material.get_property(MATERIAL_THERMAL)
-	return ((flexibility * 3) + thermal) / (density + hardness)
+
+	if(isnull(density) || isnull(hardness) || isnull(flexibility) || isnull(thermal))
+		return 1
+	else
+		return ((flexibility * 3) + thermal) / (density + hardness)
 
 ///urgh tg needs a get_armor_initial proc, working around protected/private vars is really annoying here
 /atom/proc/get_initial_armor_type()
