@@ -437,6 +437,7 @@
 	if(!isnull(GetComponent(/datum/component/forge_smithable/)) || !isnull(GetComponent(/datum/component/reagent_imbued)))
 		forceMove(tool)
 		tool.icon_state = "tong_full"
+		user.balloon_alert(user, "took [src]")
 
 /obj/item/empty_circuit
 	name = "empty circuit"

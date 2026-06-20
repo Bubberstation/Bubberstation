@@ -6,6 +6,9 @@
 
 #define WEAPON_ASSEMBLY_SPEED 3 SECONDS
 
+/// how many chains/smithing plates can be contained?
+#define MAX_FORGING_COMPLETE_ITEMS 50
+
 /obj/structure/reagent_crafting_bench
 	name = "forging workbench"
 	desc = "A crafting bench fitted with tools, securing mechanisms, and a steady surface for blacksmithing."
@@ -24,6 +27,8 @@
 	COOLDOWN_DECLARE(hit_cooldown)
 	/// holds stackables
 	var/list/stack_item_container = list()
+	/// holds misc. forging items
+	var/list/forging_complete_container = list(/obj/item/forging/complete/chain = list(), /obj/item/forging/complete/plate = list())
 	/// holds forge item placed on the table via hand, or placed on it via weapon completion
 	var/obj/item/forged_item_on_surface
 
@@ -140,7 +145,11 @@
 	var/temp_list = generate_stack_held_list_radial()
 	var/option = show_radial_menu(user, src, temp_list, radius = 38, require_near = TRUE, tooltips = TRUE)
 
-	if(!isnull(option))
+	if(!isnull(forging_complete_container[option]))
+		for(var/obj/item/stored_item in forging_complete_container[option])
+			if(stored_item.loc == src)
+				stored_item.forceMove(get_turf(src))
+	else if(!isnull(stack_item_container[option]))
 		var/obj/item/stack/sheet/output_stack = stack_item_container[option]
 		stack_item_container[option] = null
 		if(output_stack.loc == src)
@@ -214,11 +223,17 @@
 
 /obj/structure/reagent_crafting_bench/item_interaction(mob/living/user, obj/item/attacking_item, params)
 	if(istype(attacking_item, /obj/item/forging/complete) && user.combat_mode == FALSE)
-		attempt_place(attacking_item, user)
-		return TRUE
+		var/obj/item/forging/complete/complete_item = attacking_item
+		if(!isnull(complete_item.spawning_item))
+			attempt_place(attacking_item, user)
+			return TRUE
 
 	if(istype(attacking_item, /obj/item/stack/sheet))
 		attempt_stack_storage(attacking_item, user)
+		return TRUE
+
+	if(!isnull(forging_complete_container[attacking_item.type]))
+		attempt_complete_item_storage(attacking_item, user)
 		return TRUE
 
 	return ..()
@@ -242,10 +257,14 @@
 		else
 			var/temp_list = generate_stack_held_list_radial()
 			var/option = show_radial_menu(user, src, temp_list, radius = 38, require_near = TRUE, tooltips = TRUE)
-			if(!isnull(option))
+			if(!isnull(stack_item_container[option]))
 				var/obj/item/stack/sheet/output_stack = stack_item_container[option]
 				if(!isnull(output_stack) && output_stack.loc == src)
 					output_stack.tong_act(user, tool)
+			else if(!isnull(forging_complete_container[option]) && forging_complete_container[option].len > 0)
+				var/obj/item/stack/sheet/output_complete = forging_complete_container[option][1]
+				if(!isnull(output_complete) && output_complete.loc == src)
+					output_complete.tong_act(user, tool)
 
 	return NONE
 
@@ -441,6 +460,14 @@
 			my_stack.merge(stack_item_container[my_stack.merge_type])
 			balloon_alert(user, "stashed [my_stack]")
 
+/obj/structure/reagent_crafting_bench/proc/attempt_complete_item_storage(obj/item/forging/complete/complete_item, mob/living/user)
+	if(forging_complete_container[complete_item.type].len >= MAX_FORGING_COMPLETE_ITEMS)
+		balloon_alert(user, "[initial(complete_item.name)] drawer is full!")
+	else
+		forging_complete_container[complete_item.type] += complete_item
+		complete_item.forceMove(src)
+		balloon_alert(user, "stashed [initial(complete_item.name)]")
+
 /obj/structure/reagent_crafting_bench/proc/clear_empty_stacks()
 	var/obj/item/stack/sheet/my_stack
 	for(var/stack_type in stack_item_container)
@@ -453,6 +480,15 @@
 	var/list/returner = list()
 	var/datum/radial_menu_choice/option
 	var/obj/item/stack/sheet/my_sheet
+	var/obj/item/forging/complete/my_complete
+	for(var/complete_type in forging_complete_container)
+		if(forging_complete_container[complete_type].len > 0)
+			option = new
+			my_complete = forging_complete_container[complete_type][1]
+			option.image = image(icon = initial(my_complete.icon), icon_state = initial(my_complete.icon_state))
+			option.name = initial(my_complete.name)
+			option.info = initial(forging_complete_container[complete_type].len)
+			returner[complete_type] = option
 	for(var/stack_type in stack_item_container)
 		option = new
 		my_sheet = stack_item_container[stack_type]
@@ -478,3 +514,4 @@
 #undef WEAPON_COMPLETION_WOOD_AMOUNT
 #undef BAD_HIT_PENALTY
 #undef WEAPON_ASSEMBLY_SPEED
+#undef MAX_FORGING_COMPLETE_ITEMS
