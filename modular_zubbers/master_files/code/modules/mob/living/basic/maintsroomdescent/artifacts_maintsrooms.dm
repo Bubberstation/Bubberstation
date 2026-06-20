@@ -3,8 +3,7 @@
 	name = "Strange comforting rock"
 	desc = "A strange rock that secretes a kind of slime that when smeared on wounds will heal them almost supernaturally, and when placed on your belt will automatically move to said wounds."
 	icon = 'modular_skyrat/master_files/icons/obj/startifacts.dmi'
-	worn_icon = null
-	worn_icon_state = null
+	worn_icon_state = "utility"
 	icon_state = "soul"
 	colour = COLOR_WHITE
 	effect_desc = "Provides a regeneration effect"
@@ -47,8 +46,7 @@
 	name = "Strange electric rock"
 	desc = "A strange rock that feels charged to the touch."
 	icon = 'modular_skyrat/master_files/icons/obj/startifacts.dmi'
-	worn_icon = null
-	worn_icon_state = null
+	worn_icon_state = "utility"
 	icon_state = "battery"
 	colour = COLOR_BLUE_GRAY
 	effect_desc = "Charges electronics"
@@ -82,8 +80,7 @@
 	name = "Strange weightless rock"
 	desc = "A strange rock that feels almost completely weightless."
 	icon = 'modular_skyrat/master_files/icons/obj/startifacts.dmi'
-	worn_icon = null
-	worn_icon_state = null
+	worn_icon_state = "utility"
 	icon_state = "meduza"
 	colour = COLOR_DARK_BROWN
 	effect_desc = "grounds you and helps you maintain your speed"
