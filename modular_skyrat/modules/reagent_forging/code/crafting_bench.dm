@@ -458,7 +458,7 @@
 		my_sheet = stack_item_container[stack_type]
 		option.image = image(icon = initial(my_sheet.icon), icon_state = initial(my_sheet.icon_state))
 		option.name = initial(my_sheet.name)
-		option.info = initial(my_sheet.amount)
+		option.info = my_sheet.amount
 		returner[stack_type] = option
 	return returner
 
