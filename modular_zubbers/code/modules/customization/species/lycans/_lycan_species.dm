@@ -39,7 +39,6 @@
 		TRAIT_CAN_STRIP,
 		TRAIT_LITERATE,
 		TRAIT_MUTANT_COLORS_2,
-		TRAIT_NO_UNDERWEAR, // They should still be able to toggle genitals if needed.
 		// Lycan Specific Things
 		TRAIT_LUPINE,
 		TRAIT_BEAST_FORM,

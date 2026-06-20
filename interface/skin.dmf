@@ -8,6 +8,7 @@ macro "default"
 		name = "SHIFT+UP"
 		command = ".winset :map.right-click=true"
 
+
 window "mainwindow"
 	elem "mainwindow"
 		type = MAIN
@@ -83,11 +84,9 @@ window "mapwindow"
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
-		background-color = none
 		is-visible = false
 		is-disabled = true
 		saved-params = ""
-		auto-format = false
 	elem "status_bar"
 		type = LABEL
 		pos = 0,470
@@ -128,77 +127,87 @@ window "infobuttons"
 	elem "infobuttons"
 		type = MAIN
 		pos = 291,0
-		size = 676x30
+		size = 640x30
 		anchor1 = 0,0
 		anchor2 = 100,100
 		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
-		outer-size = 692x88
+		outer-size = 656x88
 		outer-pos = 291,0
-		inner-size = 676x30
+		inner-size = 640x30
 		inner-pos = 8,31
-		screen-size = 1920x1040
+		screen-size = 1920x1032
 	elem "options"
 		type = BUTTON
-		pos = 0,5
+		pos = 2,5
 		size = 88x27
 		anchor1 = 0,0
-		anchor2 = 15,100
+		anchor2 = 14,100
 		background-color = none
 		saved-params = "is-checked"
 		text = "Menu"
 		command = "open-escape-menu"
-	elem "hotkeys"
+	elem "character"
 		type = BUTTON
-		pos = 92,5
+		pos = 93,5
 		size = 88x27
-		anchor1 = 15,0
-		anchor2 = 29,100
+		anchor1 = 14,0
+		anchor2 = 28,100
 		background-color = none
 		saved-params = "is-checked"
-		text = "Hotkeys"
-		command = "Hotkeys-Help"
-	elem "emotes"
+		text = "Character"
+		command = "Character-Preferences"
+	elem "settings"
 		type = BUTTON
-		pos = 185,5
+		pos = 184,5
 		size = 88x27
-		anchor1 = 29,0
-		anchor2 = 43,100
+		anchor1 = 28,0
+		anchor2 = 42,100
 		background-color = none
 		saved-params = "is-checked"
-		text = "Emotes"
-		command = "Emote-Panel"
+		text = "Settings"
+		command = "Game-Preferences"
+    elem "relays"
+		type = BUTTON
+		pos = 275,5
+		size = 88x27
+		anchor1 = 42,0
+		anchor2 = 56,100
+		background-color = none
+		saved-params = "is-checked"
+		text = "Relays"
+		command = "go2relay"
+	elem "wiki"
+		type = BUTTON
+		pos = 366,5
+		size = 88x27
+		anchor1 = 56,0
+		anchor2 = 70,100
+		background-color = none
+		saved-params = "is-checked"
+		text = "Wiki"
+		command = "wiki"
 	elem "fullscreen-toggle"
 		type = BUTTON
-		pos = 277,5
+		pos = 457,5
 		size = 88x27
-		anchor1 = 43,0
-		anchor2 = 57,100
+		anchor1 = 70,0
+		anchor2 = 84,100
 		background-color = none
 		saved-params = "is-checked"
 		text = "Fullscreen"
 		command = "fullscreen"
 	elem "reconnect"
 		type = BUTTON
-		pos = 369,5
-		size = 88x27
-		anchor1 = 57,0
-		anchor2 = 71,100
+		pos = 548,5
+		size = 92x27
+		anchor1 = 84,0
+		anchor2 = 100,100
 		background-color = none
 		saved-params = "is-checked"
 		text = "Reconnect"
 		command = ".reconnect"
-	elem "chat"
-		type = BUTTON
-		pos = 560,5
-		size = 112x27
-		anchor1 = 85,0
-		anchor2 = 99,100
-		background-color = none
-		saved-params = "is-checked"
-		text = "Toggle Stat Panel"
-		command = "toggle-stat-panel"
 
 window "infowindow"
 	elem "infowindow"
@@ -212,16 +221,16 @@ window "infowindow"
 	elem "info_split"
 		type = CHILD
 		pos = 0,5
+		size = 640x475
 		anchor1 = 0,0
 		anchor2 = 100,100
-		size = 640x475
-		is-vert = false
-		splitter = 97.5
 		background-color = #ffc41f
-		show-splitter = false
 		saved-params = "splitter"
 		left = "info"
 		right = "input_buttons"
+		is-vert = false
+		splitter = 97.500000
+		show-splitter = false
 
 window "info"
 	elem "info_main"
@@ -238,12 +247,12 @@ window "info"
 		size = 640x475
 		anchor1 = 0,0
 		anchor2 = 100,100
-		saved-params = "splitter"
-		splitter = 40
 		background-color = #202020
+		saved-params = "splitter"
 		left = "statwindow"
 		right = "outputwindow"
 		is-vert = false
+		splitter = 40
 
 window "input_buttons"
 	elem "input_buttons_main"
@@ -279,12 +288,14 @@ window "outputwindow"
 		is-pane = true
 	elem "output_selector_screen"
 		type = CHILD
+		pos = 0,0
 		size = 640x475
 		anchor1 = 0,0
 		anchor2 = 100,100
-		saved-params = "splitter"
 		background-color = #ffc41f
+		saved-params = "splitter"
 		left = "output_selector"
+		is-vert = false
 
 window "output_selector"
 	elem "output_selector"
@@ -314,7 +325,6 @@ window "inputwindow"
 		size = 480x25
 		anchor1 = 0,0
 		anchor2 = 70,100
-		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
 	elem "input"
@@ -326,7 +336,6 @@ window "inputwindow"
 		is-default = true
 		border = line
 		saved-params = "command"
-		can-scroll = true
 
 window "inputbuttons"
 	elem "inputbuttons"

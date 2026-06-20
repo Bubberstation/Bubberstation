@@ -31,6 +31,11 @@
 	var/mob/living/living_target = target
 	if(living_target == user)
 		return ITEM_INTERACT_BLOCKING
+	// BUBBER EDIT ADDITION BEGIN - needs LOS
+	if (!(target in get_hearers_in_LOS(9, user)))
+		target.balloon_alert(user, "needs line of sight!")
+		return ITEM_INTERACT_BLOCKING
+	// BUBBER EDIT ADDITION END
 	if(reagents.total_volume >= reagents.maximum_volume)
 		to_chat(user, span_notice("[src] is full."))
 		return ITEM_INTERACT_BLOCKING
@@ -40,11 +45,22 @@
 		to_chat(living_target, span_warning("You feel a force attempt to steal your blood, but it is repelled!"))
 		return ITEM_INTERACT_BLOCKING
 	var/drawn_amount = min(reagents.maximum_volume - reagents.total_volume, 5)
+	// BUBBER EDIT ADDITION BEGIN - doafter for phylactery
+	to_chat(user, span_warning("You delicately aim the spindle at your target's neck..."))
+	if (!do_after(user, 3 SECONDS, hidden = TRUE))
+		to_chat(user, span_warning("Both you and your target must stay still!"))
+		return ITEM_INTERACT_BLOCKING
+	// BUBBER EDIT ADDITION END
 	if(living_target.transfer_blood_to(src, drawn_amount))
 		to_chat(user, span_notice("You take a blood sample from [living_target]."))
 		to_chat(living_target, span_warning("You feel a tiny prick!"))
 		COOLDOWN_START(src, drain_cooldown, 5 SECONDS)
 		playsound(src, 'sound/effects/chemistry/catalyst.ogg', 20, TRUE, extrarange = SILENCED_SOUND_EXTRARANGE, falloff_exponent = 10)
+		// BUBBER EDIT ADDITION BEGIN - marks blood as gotten by the phylactery
+		var/datum/reagent/blood/blood = reagents.has_reagent(/datum/reagent/blood)
+		if (blood.data["real_name"] == living_target.real_name)
+			blood.data["phlyacterized"] = TRUE
+		// BUBBER EDIT ADDITION END
 	else
 		to_chat(user, span_warning("You are unable to draw any blood from [living_target]!"))
 	return ITEM_INTERACT_SUCCESS
@@ -73,9 +89,9 @@
 
 /obj/item/ether/attack_self(mob/living/user, modifiers)
 	. = ..()
-	user.revive(HEAL_ALL)
-	for(var/obj/item/implant/to_remove in user.implants)
-		to_remove.removed(user)
+	user.revive(HEAL_BODY|HEAL_AFFLICTIONS) // BUBBER EDIT CHANGE - was HEAL_ALL
+	/*for(var/obj/item/implant/to_remove in user.implants)
+		to_remove.removed(user)*/ // BUBBER EDIT REMOVAL
 
 	user.apply_status_effect(/datum/status_effect/eldritch_sleep)
 	user.SetSleeping(60 SECONDS)

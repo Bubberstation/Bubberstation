@@ -58,6 +58,16 @@ export function setClientTheme(name): void | Promise<void> {
     'reconnect.text-color': themeColor.TEXT_IMPORTANT,
     'chat.background-color': themeColor.BUTTON,
     'chat.text-color': themeColor.TEXT,
+    // BUBBER EDIT ADDITION BEGIN - STAT PANEL
+    'character.background-color': themeColor.BUTTON,
+    'character.text-color': themeColor.TEXT,
+    'settings.background-color': themeColor.BUTTON,
+    'settings.text-color': themeColor.TEXT,
+    'relays.background-color': themeColor.BUTTON,
+    'relays.text-color': themeColor.TEXT,
+    'wiki.background-color': themeColor.BUTTON,
+    'wiki.text-color': themeColor.TEXT,
+    // BUBBER EDIT ADDITION END - STAT PANEL
     // Status and verb tabs
     'output.background-color': themeColor.BG_BASE,
     'output.text-color': themeColor.TEXT,
