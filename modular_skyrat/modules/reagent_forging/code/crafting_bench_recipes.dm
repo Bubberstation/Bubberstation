@@ -164,14 +164,15 @@
 
 /datum/crafting_bench_recipe/proc/give_experience(mob/user, item_list, obj/item/product)
 	if(!isnull(user?.mind))
+		var/completion = get_total_completion_ratio(item_list)
 		var/memory_type = get_smithing_memory(product)
 		var/memory_bonus_exp = 0
-		if(!isnull(memory_type))
-			if(isnull(user?.mind?.memories[memory_type]))
+		if(completion >= 1)
+			if(!isnull(memory_type) && isnull(user?.mind?.memories[memory_type]))
 				user.add_mob_memory(memory_type, protagonist = user)
 				memory_bonus_exp = first_time_completion_exp_bonus
 
-		var/exp_give_mult = get_total_completion_ratio(item_list) * get_material_quality_points_mult(product.get_master_material())
+		var/exp_give_mult = completion * get_material_quality_points_mult(product.get_master_material())
 		user.mind.adjust_experience(relevant_skill, exp_give * exp_give_mult + memory_bonus_exp)
 
 /datum/crafting_bench_recipe/proc/move_to_world(obj/item/product, place_to_move_to)
