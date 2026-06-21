@@ -390,11 +390,18 @@
 
 /datum/crafting_bench_recipe/revolver/put_materials_in_product_from_ingredients(list/ingredients, obj/item/product)
 	if(transfers_materials)
+		var/materials_to_transfer = list()
 		for(var/obj/requirement_item as anything in ingredients)
-			if(istype(requirement_item, /obj/item/forging/complete/revolver_cylinder))
-				product.set_material_slot(/datum/material_slot/revolver/cylinder, requirement_item.get_master_material())
-			else if(istype(requirement_item, /obj/item/forging/complete/revolver_frame))
-				product.set_material_slot(/datum/material_slot/revolver/frame, requirement_item.get_master_material())
+			if(istype(requirement_item, /obj/item/forging/complete))
+				if(!requirement_item.custom_materials || !transfers_materials)
+					continue
+				if(istype(requirement_item, /obj/item/forging/complete/revolver_cylinder))
+					product.set_material_slot(/datum/material_slot/revolver/cylinder, requirement_item.get_master_material())
+				else
+					for(var/custom_material in requirement_item.custom_materials)
+						materials_to_transfer[custom_material] += requirement_item.custom_materials[custom_material]
+
+		product.set_custom_materials(materials_to_transfer, multiplier = 1)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// BELT COMPLETION ///////////////////////////////////////////////////////
