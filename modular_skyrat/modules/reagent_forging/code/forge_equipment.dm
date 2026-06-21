@@ -14,7 +14,7 @@
 
 /obj/item/forging/tongs/primitive
 	name = "primitive forging tongs"
-	toolspeed = 2
+	toolspeed = 1.2
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/forging/tongs/attack_self(mob/user, modifiers)
@@ -43,6 +43,10 @@
 	name = "primitive forging hammer"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
 
+/obj/item/forging/hammer/debug
+	name = "debugging fast forging hammer"
+	toolspeed = 0.1
+
 /obj/item/forging/billow
 	name = "forging billow"
 	desc = "A billow specifically crafted for use in forging. Used to stoke the flames and keep the forge lit."
@@ -51,6 +55,6 @@
 
 /obj/item/forging/billow/primitive
 	name = "primitive forging billow"
-	toolspeed = 2
+	toolspeed = 1.2
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 
