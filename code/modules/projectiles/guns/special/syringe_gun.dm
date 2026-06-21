@@ -57,6 +57,8 @@
 	else
 		chambered.newshot()
 	//SKYRAT EDIT SMARTDARTS END
+	chambered.newshot()
+	return ..()
 
 /obj/item/gun/syringe/can_shoot()
 	return syringes.len

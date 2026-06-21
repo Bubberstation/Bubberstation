@@ -27,7 +27,7 @@
  *
  * Arguments:
  * * dna - The `/datum/dna` datum from which we're going to be extracting the data to set the
- * * accessory_name - instead of using the name from mutant_bodyparts[feature_key][MUTANT_INDEX_NAME] you can optionally pass one explicitly
+ * * accessory_name - instead of using the name from mutant_bodyparts[feature_key] you can optionally pass one explicitly
  * * feature_key - same as with accessory_key, you can optionally pass a feature_key explicitly
  * appearance.
  */
@@ -54,12 +54,12 @@
 
 /// Generate a unique key based on our sprites. So that if we've aleady drawn these sprites,
 /// they can be found in the cache and wont have to be drawn again (blessing and curse, but mostly curse)
-/datum/bodypart_overlay/mutant/generate_icon_cache()
+/datum/bodypart_overlay/mutant/generate_icon_cache(obj/item/bodypart/limb)
 	. = list()
 	. += "[get_base_icon_state()]"
 	. += "[get_feature_key_for_overlay()]"
-
-	. += cache_key_extra_information // We can do it like this because it's meant to be a list of strings anyway. BYOND list operations actually being useful for once.
+	if(LAZYLEN(cache_key_extra_information))
+		. += cache_key_extra_information // We can do it like this because it's meant to be a list of strings anyway. BYOND list operations actually being useful for once.
 
 	if(islist(draw_color))
 		for(var/sub_color in draw_color)
@@ -72,8 +72,8 @@
 		. += "[alpha]"
 
 	if(emissive_eligibility_by_color_index)
-		for(var/index in emissive_eligibility_by_color_index)
-			. += "[emissive_eligibility_by_color_index[index]]"
+		for(var/key in emissive_eligibility_by_color_index)
+			. += emissive_eligibility_by_color_index[key]
 
 	return .
 
@@ -83,11 +83,11 @@
  * overriden in the cases where `feature_key` is not what we want to use here.
  */
 /datum/bodypart_overlay/mutant/proc/get_feature_key_for_overlay()
-	return feature_key
+	return sprite_datum?.feature_key_override || feature_key
 
 
 /datum/bodypart_overlay/mutant/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
-	if(!..(bodypart_owner))
+	if(!..())
 		return FALSE
 	var/mob/living/carbon/human/human = bodypart_owner.owner
 	if(!istype(human))
@@ -113,19 +113,19 @@
 	var/mutable_appearance/mod_overlay
 	var/icon/custom_mod_icon = sprite_datum.get_custom_mod_icon(owner)
 
-	cache_key_extra_information = list()
 	last_built_icon_states = list()
+	LAZYCLEARLIST(cache_key_extra_information)
 
 	if(custom_mod_icon)
-		mod_overlay = get_singular_image(image_layer = image_layer, owner = owner, icon_override = custom_mod_icon)
+		mod_overlay = get_singular_image(image_layer = image_layer, owner = owner, icon_override = custom_mod_icon, limb = limb)
 
 	switch(sprite_datum.color_src)
 		if(USE_MATRIXED_COLORS)
-			var/list/color_layer_names = get_color_layer_names(build_icon_state(gender, image_layer))
+			var/list/color_layer_names = get_color_layer_names(build_icon_state_bubber(gender, image_layer))
 
 			for (var/color_index in color_layer_names)
 
-				var/mutable_appearance/color_layer_image = get_singular_image(build_icon_state(gender, image_layer, color_layer_names[color_index]), image_layer, owner)
+				var/mutable_appearance/color_layer_image = get_singular_image(build_icon_state_bubber(gender, image_layer, color_layer_names[color_index]), image_layer, owner, limb = limb)
 				returned_images += color_layer_image
 
 				overlay_indexes_to_color += index
@@ -135,7 +135,7 @@
 					mod_overlay.add_overlay(sprite_datum.get_custom_mod_icon(owner, color_layer_image))
 
 		else
-			var/mutable_appearance/image_to_return = get_singular_image(build_icon_state(gender, image_layer), image_layer, owner)
+			var/mutable_appearance/image_to_return = get_singular_image(build_icon_state_bubber(gender, image_layer), image_layer, owner, limb = limb)
 			returned_images = list(image_to_return)
 			overlay_indexes_to_color += index
 
@@ -143,14 +143,20 @@
 				mod_overlay.add_overlay(sprite_datum.get_custom_mod_icon(owner, image_to_return))
 
 	if(sprite_datum.has_inner)
-		returned_images += get_singular_image(build_icon_state(gender, image_layer, feature_key_suffix = "inner"), image_layer, owner)
+		returned_images += get_singular_image(build_icon_state_bubber(gender, image_layer, feature_key_suffix = "inner"), image_layer, owner, limb = limb)
 
 	// Gets the icon_state of a single or matrix colored accessory and overlays it with a texture
 	if(mod_overlay)
 		returned_images += mod_overlay
-		cache_key_extra_information += "MOD"
+		LAZYADD(cache_key_extra_information, "MOD")
 
 	return returned_images
+
+
+// Cybernetic cat ears - special case - need a unique version for each inner color.
+/datum/bodypart_overlay/mutant/cat_ears/cybernetic/generate_icon_cache(obj/item/bodypart/limb)
+	. = ..()
+	. += inner_color
 
 
 /**
@@ -211,7 +217,7 @@
  * * feature_key_suffix - A string that will be directly appended to the result
  * of `get_feature_key_for_overlay()`. Defaults to `null`.
  */
-/datum/bodypart_overlay/mutant/proc/build_icon_state(gender, image_layer, color_layer = null, feature_key_suffix = null)
+/datum/bodypart_overlay/mutant/proc/build_icon_state_bubber(gender, image_layer, color_layer = null, feature_key_suffix = null)
 	var/list/icon_state_builder = list()
 
 	icon_state_builder += sprite_datum.gender_specific ? gender : "m" //Male is default because sprite accessories are so ancient they predate the concept of not hardcoding gender
@@ -241,13 +247,24 @@
  * `sprite_datum.icon`. Default is `null`, and its value will be used if it's
  * anything else.
  */
-/datum/bodypart_overlay/mutant/proc/get_singular_image(image_icon_state, image_layer, mob/living/carbon/human/owner, icon_override = null)
+/datum/bodypart_overlay/mutant/proc/get_singular_image(image_icon_state, image_layer, mob/living/carbon/human/owner, icon_override = null, obj/item/bodypart/limb)
 	// We get from icon_override if it is filled, and from sprite_datum.icon if not.
 	var/mutable_appearance/appearance = mutable_appearance(icon_override || sprite_datum.get_special_icon(owner), image_icon_state, layer = image_layer)
 
 	if(sprite_datum.center)
 		center_image(appearance, sprite_datum.special_x_dimension ? sprite_datum.get_special_x_dimension(owner) : sprite_datum.dimension_x, sprite_datum.dimension_y)
 
+	return appearance
+
+
+// Special case - fish tail
+/datum/bodypart_overlay/mutant/tail/fish/get_singular_image(image_icon_state, image_layer, mob/living/carbon/human/owner, icon_override = null, obj/item/bodypart/limb)
+	var/mutable_appearance/appearance = ..()
+	// We add all appearances the parent bodypart has to the tail to inherit scales and fancy effects
+	// but most other organs don't want to inherit those so we do it here and not on parent
+	for (var/datum/bodypart_overlay/texture/texture in limb.bodypart_overlays)
+		if(texture.can_draw_on_bodypart(limb, limb.owner, limb.is_husked))
+			texture.modify_bodypart_appearance(appearance)
 	return appearance
 
 
@@ -264,33 +281,13 @@
 	if(!limb || !length(emissive_eligibility_by_color_index))
 		return overlays
 
-	var/index = 1
-	var/list/image/emissives = list()
-
-	for(var/image/overlay in overlays)
+	var/list/image/emissives
+	var/max = min(3, length(overlays)) // only care about the first 3 indexes
+	for(var/index = 1 to max)
 		if(emissive_eligibility_by_color_index[num2text(index)])
-			emissives += emissive_appearance_copy(overlay, limb)
+			LAZYADD(emissives, emissive_appearance_copy(overlays[index], limb))
 
-		index++
-
-	return overlays + emissives
-
-
-/**
- * Builds `emissive_eligibility_by_layer` from the input list of three booleans.
- * Will not do anything if the given argument is `null`.
- */
-/datum/bodypart_overlay/mutant/proc/build_emissive_eligibility(list/emissive_eligibility)
-	if(!emissive_eligibility || !islist(emissive_eligibility))
-		return
-
-	emissive_eligibility_by_color_index = list()
-	var/i = 1
-
-	for(var/eligibility in emissive_eligibility)
-		emissive_eligibility_by_color_index[num2text(i)] = eligibility
-		i++
-
+	return emissives ? (overlays + emissives) : overlays
 
 /**
  * Helper to set the MOD-related info on the overlay, useful for MODsuit overlays.
@@ -310,6 +307,21 @@
 
 	LAZYREMOVE(cache_key_extra_information, "MOD")
 
+
+/**
+ * Builds `emissive_eligibility_by_layer` from the input list of three booleans.
+ * Will not do anything if the given argument is `null`.
+ */
+/datum/bodypart_overlay/mutant/proc/build_emissive_eligibility(list/emissive_eligibility)
+	if(!emissive_eligibility || !islist(emissive_eligibility))
+		return
+
+	emissive_eligibility_by_color_index = list()
+	var/i = 1
+
+	for(var/eligibility in emissive_eligibility)
+		emissive_eligibility_by_color_index[num2text(i)] = eligibility
+		i++
 
 #undef MAX_MATRIXED_COLORS
 #undef ALPHA_OPAQUE

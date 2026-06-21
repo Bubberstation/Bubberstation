@@ -235,3 +235,15 @@
 /datum/greyscale_config/messyworn_shirt_graphic/worn/teshari
 	name = "Messy Shirt (Graphic (Worn, Teshari)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/datum/greyscale_config/jester_shoes/worn/digi
+	name = "Jester Shoes (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+
+/datum/greyscale_config/jester_shoes/worn/teshari
+	name = "Jester Shoes (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/datum/greyscale_config/overalls/worn/teshari
+	name = "Overalls (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/utility_teshari.dmi'

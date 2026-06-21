@@ -1,0 +1,99 @@
+/**
+ * Ammunitions Workbench theme.
+ * Militech ass lookin' thing
+ */
+
+.theme-ammoworkbench:root {
+  // Base
+  --color-base: hsl(96, 18%, 14%);
+  --color-primary: hsl(88, 38%, 42%);
+  --color-secondary: hsl(96, 22%, 20%);
+  --base-gradient-spread: 6;
+
+  // Components
+  --button-background-selected: hsl(88, 40%, 34%);
+  --button-background-caution: hsl(40, 70%, 45%);
+  --button-background-danger: hsl(2, 55%, 42%);
+  --progress-bar-background: hsla(96, 25%, 8%, 0.6);
+  --input-background: hsl(96, 18%, 18%);
+  --input-color: hsl(88, 30%, 70%);
+  --tooltip-background: hsl(96, 30%, 8%);
+}
+
+// Clean dark panel with no manufacturer watermark. We need this because the default applies Nanotrasen branding (inappropriate here)
+.theme-ammoworkbench .Layout__content {
+  background-image: none;
+  background-color: hsl(96, 20%, 9%);
+}
+
+// Armadyne identity header strip.
+.theme-ammoworkbench {
+  .AmmoWorkbench__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background-color: hsl(96, 28%, 11%);
+    border: 1px solid hsl(88, 30%, 26%);
+    border-radius: 2px;
+  }
+
+  .AmmoWorkbench__header-icon {
+    color: hsl(40, 75%, 52%);
+    font-size: 1.7em;
+    line-height: 1;
+    vertical-align: middle;
+  }
+
+  .AmmoWorkbench__header-title {
+    font-size: 0.95em;
+    letter-spacing: 2px;
+    color: hsl(88, 40%, 62%);
+  }
+
+  .AmmoWorkbench__header-silo {
+    margin-left: auto;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+  }
+
+  .AmmoWorkbench__header-status {
+    margin-left: 12px;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+  }
+
+  // Terminal-style section titles: uppercase, spaced, "//" prefix.
+  .Section__titleText {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9em;
+
+    &::before {
+      content: '// ';
+      opacity: 0.7;
+    }
+  }
+}
+
+// Animated diagonal barber-pole, applied to the active fabrication/recycle bar. It's here because it looks COOL AS HELL
+@keyframes ammoworkbench-barberpole {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 28px 0;
+  }
+}
+
+.AmmoWorkbench__barberpole {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    hsl(88, 42%, 40%) 0,
+    hsl(88, 42%, 40%) 10px,
+    hsl(88, 36%, 32%) 10px,
+    hsl(88, 36%, 32%) 20px
+  );
+  background-size: 28px 28px;
+  animation: ammoworkbench-barberpole 0.8s linear infinite;
+}
