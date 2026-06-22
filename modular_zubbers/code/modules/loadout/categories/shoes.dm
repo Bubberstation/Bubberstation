@@ -349,6 +349,10 @@
 	restricted_roles = list(JOB_CLOWN)
 	//ckeywhitelist = list("bloodrite")
 
+/datum/loadout_item/shoes/ba_cheerleader
+	name = "NT Cheerleading Sneakers"
+	item_path = /obj/item/clothing/shoes/sneakers/ba_cheerleader
+
 /datum/loadout_item/shoes/fun/bubber/clown/pink/squeak //Unlike the rest, these make noise. Job locked.
 	name = "Pink Clown Heels"
 	item_path = /obj/item/clothing/shoes/clown_shoes/bubber/clussy

@@ -277,6 +277,9 @@
 	)
 
 	access_lists["[ACCESS_COMMAND]"] = list(
+		/obj/item/clothing/under/rank/centcom/ba_cheerleader = 1,
+		/obj/item/clothing/gloves/ba_cheerleader/command = 1,
+		/obj/item/clothing/shoes/sneakers/ba_cheerleader/command = 1,
 		/obj/item/clothing/head/hats/caphat/naval/fleet_admiral = 5,
 		/obj/item/clothing/suit/armor/vest/bridge = 5,
 		/obj/item/clothing/suit/armor/skyy = 5,
