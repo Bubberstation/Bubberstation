@@ -202,7 +202,12 @@
 	to_chat(baned, span_bolddanger("The sister moon casts its light on you, and you feel your flesh scorch!"))
 	INVOKE_ASYNC(baned, TYPE_PROC_REF(/mob, emote), "scream")
 
-	baned.apply_damage(source.force * FORCE_TO_BURN_RATIO, BURN, attacking_item = source)
+	var/target_zone
+	var/mob/living/living_user = user
+	if (istype(living_user))
+		target_zone = living_user.zone_selected
+
+	baned.apply_damage(source.force * FORCE_TO_BURN_RATIO, BURN, target_zone, attacking_item = source)
 
 #undef DOAFTER_SOURCE_LYCAN_DOOR_PRY
 #undef FORCE_TO_BURN_RATIO
