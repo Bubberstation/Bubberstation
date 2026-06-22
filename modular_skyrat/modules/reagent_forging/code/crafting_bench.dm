@@ -475,6 +475,11 @@
 		if(isnull(my_stack) || my_stack.amount < 1)
 			stack_item_container.Remove(stack_type)
 
+	for(var/complete_item_type in forging_complete_container)
+		for(var/obj/item/my_item in forging_complete_container[complete_type])
+			if(isnull(my_item) || my_item.loc != src)
+				forging_complete_container[complete_type].Remove(my_item)
+
 /obj/structure/reagent_crafting_bench/proc/generate_stack_held_list_radial()
 	clear_empty_stacks()
 	var/list/returner = list()
