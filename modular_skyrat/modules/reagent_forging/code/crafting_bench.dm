@@ -492,7 +492,7 @@
 			my_complete = forging_complete_container[complete_type][1]
 			option.image = image(icon = initial(my_complete.icon), icon_state = initial(my_complete.icon_state))
 			option.name = initial(my_complete.name)
-			option.info = initial(forging_complete_container[complete_type].len)
+			option.info = forging_complete_container[complete_type].len
 			returner[complete_type] = option
 	for(var/stack_type in stack_item_container)
 		option = new
