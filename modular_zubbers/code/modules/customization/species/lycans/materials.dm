@@ -9,7 +9,4 @@
 		)
 
 /proc/is_viable_for_lycan_bane(atom/target)
-	if (!iscarbon(target))
-		return FALSE
-
 	return islycan(target)
