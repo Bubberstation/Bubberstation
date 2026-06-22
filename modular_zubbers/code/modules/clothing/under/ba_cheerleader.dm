@@ -82,6 +82,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
 	icon_state = "ba_cheerleader_under"
 	post_init_icon_state = "ba_cheerleader"
+	inhand_icon_state = "ba_cheerleader"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader.dmi'
 	worn_icon_state = "ba_cheerleader"
 	greyscale_config = /datum/greyscale_config/ba_cheerleader
@@ -107,6 +108,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
 	icon_state = "ba_cheerleader_under"
 	post_init_icon_state = "ba_cheerleader"
+	inhand_icon_state = "ba_cheerleader"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader.dmi'
 	worn_icon_state = "ba_cheerleader"
 	greyscale_config = /datum/greyscale_config/ba_cheerleader
@@ -142,6 +144,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
 	icon_state = "ba_cheerleader_under"
 	post_init_icon_state = "ba_cheerleader"
+	inhand_icon_state = "ba_cheerleader"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader.dmi'
 	worn_icon_state = "ba_cheerleader"
 	greyscale_config = /datum/greyscale_config/ba_cheerleader
@@ -211,7 +214,7 @@
 
 /obj/item/clothing/shoes/sneakers/ba_cheerleader
 	name = "NT cheerleading sneakers"
-	desc = "A pair of sporty sneakers. Good for cheering. Usefulness for running not evaluated by Nanotrasen \
+	desc = "A pair of sporty sneakers. Good for cheering. Usefulness for running not evaluated by NanoTrasen \
 		Corporation; sprint at your own risk."
 	icon = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
 	icon_state = "ba_cheerleader_shoes_icon"
@@ -230,7 +233,7 @@
 
 /obj/item/clothing/shoes/sneakers/ba_cheerleader/command
 	name = "NT command cheerleading sneakers"
-	desc = "A pair of sporty sneakers. Good for cheering. Usefulness for running not evaluated by Nanotrasen \
+	desc = "A pair of sporty sneakers. Good for cheering. Usefulness for running not evaluated by NanoTrasen \
 		Corporation; sprint at your own risk."
 	greyscale_colors = "#FFFFFF#1a3a6b"
 	armor_type = /datum/armor/clothing_shoes/cc_cheerleader
