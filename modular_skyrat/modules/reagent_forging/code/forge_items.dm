@@ -91,8 +91,8 @@
 /obj/item/forging/incomplete/chain
 	name = "incomplete chain"
 	icon_state = "hot_chain"
-	completion_quality_points = 20
-	max_perfect_hits = 10
+	completion_quality_points = 40
+	max_perfect_hits = 15
 	spawn_item = /obj/item/forging/complete/chain
 	break_on_early_quench = TRUE
 	desc = "A length of chain. Used in crafting recipes at your crafting table."
@@ -100,8 +100,8 @@
 /obj/item/forging/incomplete/plate
 	name = "incomplete plate"
 	icon_state = "hot_plate"
-	completion_quality_points = 20
-	max_perfect_hits = 10
+	completion_quality_points = 40
+	max_perfect_hits = 15
 	spawn_item = /obj/item/forging/complete/plate
 	desc = "A sturdy plate of material. Used in many crafting recipies at your crafting table, most notably that of armor."
 

@@ -229,7 +229,7 @@
 	recipe_desc = "Protective headgear. Smithing oil and perfected metalworking will make it even more protective."
 	recipe_requirements = list(
 		/obj/item/stack/sheet/leather = 1,
-		/obj/item/forging/complete/plate = 2,
+		/obj/item/forging/complete/plate = 1,
 	)
 	resulting_item = /obj/item/clothing/head/helmet/forging_plate_helmet
 	time_to_assemble = 1.5 SECONDS
@@ -241,7 +241,7 @@
 	recipe_desc = "Protective chestplating. Smithing oil and perfected metalworking will make it even more protective."
 	recipe_requirements = list(
 		/obj/item/stack/sheet/leather = 1,
-		/obj/item/forging/complete/plate = 3,
+		/obj/item/forging/complete/plate = 1,
 	)
 	resulting_item = /obj/item/clothing/suit/armor/forging_plate_armor
 	time_to_assemble = 3 SECONDS
@@ -263,7 +263,7 @@
 	recipe_desc = "Protective greaves. Smithing oil and perfected metalworking will make it even more protective."
 	recipe_requirements = list(
 		/obj/item/stack/sheet/leather = 1,
-		/obj/item/forging/complete/plate = 2,
+		/obj/item/forging/complete/plate = 1,
 	)
 	resulting_item = /obj/item/clothing/shoes/forging_plate_boots
 	time_to_assemble = 2 SECONDS
@@ -273,8 +273,8 @@
 	recipe_name = "horse shoes"
 	recipe_desc = "Protective... horse shoes? Smithing oil and perfected metalworking will make it even more protective."
 	recipe_requirements = list(
-		/obj/item/forging/complete/chain = 2,
-		/obj/item/forging/complete/plate = 2,
+		/obj/item/forging/complete/chain = 1,
+		/obj/item/stack/sheet/mineral/iron = 2,
 	)
 	resulting_item = /obj/item/clothing/shoes/horseshoe/reagent_clothing
 	time_to_assemble = 1.5 SECONDS
@@ -294,7 +294,7 @@
 	recipe_name = "collar"
 	recipe_desc = "A small collar that imbues the wearer with reagents. Perfected metalworking will make it imbue more reagents at once. Smithing oil increases its durability."
 	recipe_requirements = list(
-		/obj/item/forging/complete/chain = 2,
+		/obj/item/forging/complete/chain = 1,
 	)
 	resulting_item = /obj/item/clothing/neck/collar/reagent_clothing
 	time_to_assemble = 3 SECONDS
@@ -304,7 +304,7 @@
 	recipe_name = "handcuffs"
 	recipe_desc = "A pair of handcuffs; they need to be purged of reagents before they can be used."
 	recipe_requirements = list(
-		/obj/item/forging/complete/chain = 3,
+		/obj/item/forging/complete/chain = 1,
 	)
 	resulting_item = /obj/item/restraints/handcuffs/reagent_clothing
 	time_to_assemble = 5 SECONDS
@@ -317,7 +317,8 @@
 	recipe_name = "buckler"
 	recipe_desc = "A small shield. Perfected metalworking will make it more protective. Smithing oil will enhance its stopping power."
 	recipe_requirements = list(
-		/obj/item/forging/complete/plate = 2,
+		/obj/item/forging/complete/plate = 1,
+		/obj/item/stack/sheet/mineral/wood = 2,
 	)
 	resulting_item = /obj/item/shield/buckler/reagent_weapon
 	time_to_assemble = 3 SECONDS
@@ -327,7 +328,8 @@
 	recipe_name = "pavise"
 	recipe_desc = "A large shield. Perfected metalworking will make it more protective. Smithing oil will enhance its stopping power."
 	recipe_requirements = list(
-		/obj/item/forging/complete/plate = 4,
+		/obj/item/forging/complete/plate = 1,
+		/obj/item/stack/sheet/mineral/wood = 4,
 	)
 	resulting_item = /obj/item/shield/buckler/reagent_weapon/pavise
 	time_to_assemble = 6 SECONDS
