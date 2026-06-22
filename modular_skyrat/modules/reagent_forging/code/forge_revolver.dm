@@ -20,7 +20,7 @@
 	///below stats should match or exceed the murphy's
 	throwforce = 14
 	force = 8
-	material_flags = MATERIAL_EFFECTS | MATERIAL_AFFECT_STATISTICS | MATERIAL_COLOR | MATERIAL_ADD_PREFIX
+	material_flags = MATERIAL_EFFECTS | MATERIAL_AFFECT_STATISTICS | MATERIAL_ADD_PREFIX
 
 	//is the hammer primed (ready to fire) or released (safe)?
 	var/hammer_is_primed = FALSE
@@ -64,18 +64,22 @@
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/give_manufacturer_examine()
 	return
 
+
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/update_icon(updates)
 	. = ..()
-	if(hammer_is_primed)
-		icon_state = "revolver_frame_primed"
-	else
-		icon_state = "revolver_frame"
+	icon_state = "revolver_handle"
 
 /obj/item/gun/ballistic/revolver/handcrafted_single_action/update_overlays()
 	. = ..()
 
 	var/mutable_appearance/temp_mutable
-	temp_mutable = mutable_appearance(icon,"revolver_handle")
+	if(hammer_is_primed)
+		temp_mutable = mutable_appearance(icon, "revolver_frame_primed")
+	else
+		temp_mutable = mutable_appearance(icon, "revolver_frame")
+
+	if(!isnull(frame))
+		temp_mutable.color = frame?.color
 	. += temp_mutable
 
 	temp_mutable = mutable_appearance(icon,"revolver_cylinder_inserted")
