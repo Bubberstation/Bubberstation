@@ -246,7 +246,6 @@
 		var/returner = item_interaction(user, obj_tong_search)
 		if(length(tool.contents) < 1)
 			forge_item.icon_state = "tong_empty"
-		balloon_alert(user, "placed [forged_item_on_surface]")
 		return returner
 	else
 		if(!isnull(forged_item_on_surface))
@@ -261,10 +260,12 @@
 				var/obj/item/stack/sheet/output_stack = stack_item_container[option]
 				if(!isnull(output_stack) && output_stack.loc == src)
 					output_stack.tong_act(user, tool)
+					return ITEM_INTERACT_SUCCESS
 			else if(!isnull(forging_complete_container[option]) && forging_complete_container[option].len > 0)
 				var/obj/item/stack/sheet/output_complete = forging_complete_container[option][1]
 				if(!isnull(output_complete) && output_complete.loc == src)
 					output_complete.tong_act(user, tool)
+					return ITEM_INTERACT_SUCCESS
 
 	return NONE
 
