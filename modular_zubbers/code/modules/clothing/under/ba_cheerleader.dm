@@ -191,6 +191,7 @@
 	name = "NT command cheerleading gloves"
 	desc = "Cheer gloves with a discreet nano-kevlar lining. Comfortable and authoritative."
 	greyscale_colors = "#FFFFFF#1a3a6b"
+	body_parts_covered = HANDS|ARMS
 	siemens_coefficient = 0
 	armor_type = /datum/armor/clothing_gloves/cc_cheerleader
 
@@ -199,6 +200,7 @@
 	desc = "Cheer gloves of unmistakably high-grade nanoweave construction. They feel less like costume accessories \
 		and more like evidence in an appropriations hearing; it would be cheaper to make them out of actual gold."
 	greyscale_colors = "#FFFFFF#2ecc71"
+	body_parts_covered = HANDS|ARMS
 	siemens_coefficient = 0
 	armor_type = /datum/armor/clothing_gloves/centcom_cheerleader
 
@@ -207,6 +209,7 @@
 	desc = "Cheer gloves reinforced across the knuckles with kevlar. Ideal for \"encouraging\" hostile targets \
 		to be unconscious."
 	greyscale_colors = "#1a1a1a#7b241c"
+	body_parts_covered = HANDS|ARMS
 	siemens_coefficient = 0
 	armor_type = /datum/armor/clothing_gloves/syndie_cheerleader
 
@@ -236,12 +239,14 @@
 	desc = "A pair of sporty sneakers. Good for cheering. Usefulness for running not evaluated by Nanotrasen \
 		Corporation; sprint at your own risk."
 	greyscale_colors = "#FFFFFF#1a3a6b"
+	body_parts_covered = FEET|LEGS
 	armor_type = /datum/armor/clothing_shoes/cc_cheerleader
 
 /obj/item/clothing/shoes/sneakers/ba_cheerleader/centcom
 	name = "CentCom cheerleading sneakers"
 	desc = "CentCom cheer sneakers with custom anti-fatigue inserts, rated for zero-gravity routines."
 	greyscale_colors = "#FFFFFF#2ecc71"
+	body_parts_covered = FEET|LEGS
 	armor_type = /datum/armor/clothing_shoes/centcom_cheerleader
 
 /obj/item/clothing/shoes/sneakers/ba_cheerleader/syndicate
@@ -250,5 +255,6 @@
 		even in environments with normally untenable levels of blood, lubricant, and several surfaces \
 		Cybersun Legal advised against listing."
 	greyscale_colors = "#1a1a1a#7b241c"
+	body_parts_covered = FEET|LEGS
 	armor_type = /datum/armor/clothing_shoes/syndie_cheerleader
 	clothing_traits = list(TRAIT_NO_SLIP_WATER)
