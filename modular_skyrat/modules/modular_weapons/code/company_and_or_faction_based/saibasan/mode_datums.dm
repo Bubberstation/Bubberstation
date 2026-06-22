@@ -204,19 +204,3 @@
 
 /datum/laser_weapon_mode/trickshot_disabler/remove_from_weapon(obj/item/gun/energy/applied_gun)
 	return
-
-// Big flare for the rifle, hacky way since I cant sprite for shit
-/datum/laser_weapon_mode/bigflare
-	name = "Flare"
-	casing = /obj/item/ammo_casing/energy/cybersun_small_launcher
-	weapon_icon_state = "disabler"
-	charge_sections = 3
-	shot_delay = 2 SECONDS
-	json_speech_string = "flare"
-	gun_runetext_color = "#77bd5d"
-
-/datum/laser_weapon_mode/flare/apply_to_weapon(obj/item/gun/energy/applied_gun)
-	applied_gun.recoil = 2
-
-/datum/laser_weapon_mode/flare/remove_from_weapon(obj/item/gun/energy/applied_gun)
-	applied_gun.recoil = initial(applied_gun.recoil)
