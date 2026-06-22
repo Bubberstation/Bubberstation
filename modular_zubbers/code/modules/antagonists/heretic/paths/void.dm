@@ -227,6 +227,13 @@
 		Afterwards, they will be returned to the mortal plane. Can be self-cast."
 
 /datum/action/cooldown/spell/pointed/void_prison/is_valid_target(atom/cast_on)
+	if (!ismob(cast_on))
+		return FALSE
+	var/mob/target_mob = cast_on
+	if (target_mob.has_status_effect(/datum/status_effect/crucible_soul))
+		owner.balloon_alert(owner, "cant use while phased out!")
+		return FALSE
+
 	return TRUE // self cast
 
 /datum/status_effect/void_prison
