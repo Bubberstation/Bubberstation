@@ -604,9 +604,9 @@
 	if(DOING_INTERACTION(user, DOAFTER_SMITHING_FORGE))
 		return
 
-	var/datum/component/reagent_imbued/weapon/weapon_component = attacking_item.GetComponent(/datum/component/reagent_imbued/weapon)
+	var/datum/component/reagent_imbued/weapon_component = attacking_item.GetComponent(/datum/component/reagent_imbued)
 	if(!weapon_component)
-		balloon_alert(user, "cannot imbue")
+		balloon_alert(user, "[attacking_item] is unimbueable!")
 		return
 
 	balloon_alert_to_viewers("imbuing...")
