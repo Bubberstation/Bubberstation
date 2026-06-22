@@ -24,9 +24,9 @@
 
 /obj/projectile/beam/cybersun_laser/marksman
 	icon_state = "sniper"
-	damage = 35
+	damage = 40
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/yellow_laser
-	speed = 1
+	speed = 2
 	light_range = 2
 	light_color = COLOR_VERY_SOFT_YELLOW
 	wound_falloff_tile = -0.1
@@ -124,7 +124,7 @@
 
 /obj/item/ammo_casing/energy/cybersun_small_hellfire
 	projectile_type = /obj/projectile/beam/cybersun_laser/hellfire
-	e_cost = LASER_SHOTS(6, STANDARD_CELL_CHARGE)
+	e_cost = LASER_SHOTS(7, STANDARD_CELL_CHARGE)
 	select_name = "Incinerate"
 	fire_sound = 'modular_zubbers/sound/weapons/incinerate.ogg'
 
@@ -132,7 +132,6 @@
 	icon_state = "hellfire"
 	damage = 25
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
-	speed = 1.6
 	wound_bonus = 0
 	light_color = COLOR_SOFT_RED
 
@@ -175,7 +174,7 @@
 /obj/projectile/beam/cybersun_laser/flare
 	name = "plasma flare"
 	icon_state = "flare"
-	damage = 10
+	damage = 40
 	speed = 0.5
 	range = 6
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
@@ -223,7 +222,7 @@
 
 /obj/item/ammo_casing/energy/cybersun_small_shotgun
 	projectile_type = /obj/projectile/beam/cybersun_laser/granata_shrapnel/shotgun_pellet
-	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
+	e_cost = LASER_SHOTS(7, STANDARD_CELL_CHARGE)
 	pellets = 3
 	variance = 20
 	select_name = "Shotgun"

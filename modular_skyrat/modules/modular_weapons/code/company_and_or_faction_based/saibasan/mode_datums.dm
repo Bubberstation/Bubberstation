@@ -114,7 +114,7 @@
 	casing = /obj/item/ammo_casing/energy/cybersun_small_hellfire
 	weapon_icon_state = "kill"
 	charge_sections = 3
-	shot_delay = 0.4 SECONDS
+	shot_delay = 0.5 SECONDS
 	json_speech_string = "incinerate"
 	gun_runetext_color = "#cd4456"
 

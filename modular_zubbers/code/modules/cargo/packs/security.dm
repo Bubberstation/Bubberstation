@@ -217,3 +217,13 @@
 		/obj/item/gun/ballistic/shotgun/riot/sol,
 		/obj/item/gun/ballistic/shotgun/riot/sol,
 	)
+
+/datum/supply_pack/security/armory/hoshis
+	name = "Hoshi Modular Laser Carbine crate"
+	desc = "This crate includes 3 of Terra's newest addition to their armories, produced by... 'Saibasan'. These modular weapons have multiple fire modes that can be switched to, and an onboard AI."
+	cost = CARGO_CRATE_VALUE * 20
+	contains = list(
+		/obj/item/gun/energy/modular_laser_rifle/carbine,
+		/obj/item/gun/energy/modular_laser_rifle/carbine,
+		/obj/item/gun/energy/modular_laser_rifle/carbine,
+	)

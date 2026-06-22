@@ -22,6 +22,7 @@
 	inhand_icon_state = "hyeseong_kill"
 	worn_icon = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/saibasan/guns_worn.dmi'
 	worn_icon_state = "hyeseong_kill"
+	selfcharge = FALSE
 	cell_type = /obj/item/stock_parts/power_store/cell/hyeseong_internal_cell
 	modifystate = FALSE
 	ammo_type = list(/obj/item/ammo_casing/energy/cybersun_big_kill)
@@ -42,9 +43,9 @@
 	var/list/weapon_mode_options = list(
 		/datum/laser_weapon_mode,
 		/datum/laser_weapon_mode/marksman,
+		/datum/laser_weapon_mode/disabler_machinegun,
 		/datum/laser_weapon_mode/launcher,
 		/datum/laser_weapon_mode/shotgun,
-		/datum/laser_weapon_mode/bigflare,
 	)
 	/// Populates with a list of weapon mode names and their respective paths on init
 	var/list/weapon_mode_name_to_path = list()
@@ -261,8 +262,6 @@
 	inhand_icon_state = "hoshi_kill"
 	worn_icon_state = "hoshi_kill"
 	base_icon_state = "hoshi"
-	charge_sections = 3
-	selfcharge = 1
 	cell_type = /obj/item/stock_parts/power_store/cell/hyeseong_internal_cell
 	ammo_type = list(/obj/item/ammo_casing/energy/cybersun_small_hellfire)
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
@@ -280,7 +279,7 @@
 	speech_json_file = SHORT_MOD_LASER_SPEECH
 	expanded_examine_text = "The Hoshi carbine is the latest line of man-portable Martian weapons platforms from \
 		Cybersun Industries. Like her older sister weapon, the Hyeseong rifle, CI used funding aid provided by TerraGov \
-		to develop a portable weapon fueled by a proprietary generator rumored to be fueled by superstable plasma. A \
+		to develop a portable weapon using the same modular weapon system as the Hyeseong, but unforunately lacking the plasma generator. A \
 		lithe and mobile weapon, the Hoshi stars in close-quarters battle, trickshots, and area-of-effect blasts; though \
 		ineffective at ranged combat. Her onboard machine intelligence, at first devised to support the operator and \
 		manage the internal reactor, was originally shipped with a more energetic personality-- since influenced by 'negligence' \
