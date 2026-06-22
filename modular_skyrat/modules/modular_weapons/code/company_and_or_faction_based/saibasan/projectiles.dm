@@ -24,9 +24,9 @@
 
 /obj/projectile/beam/cybersun_laser/marksman
 	icon_state = "sniper"
-	damage = 40
+	damage = 35
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/yellow_laser
-	speed = 2
+	speed = 1
 	light_range = 2
 	light_color = COLOR_VERY_SOFT_YELLOW
 	wound_falloff_tile = -0.1
@@ -63,7 +63,7 @@
 	range = 6
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = COLOR_PALE_GREEN
-	pass_flags = PASSTABLE | PASSGRILLE // His ass does NOT pass through glass!
+	pass_flags = PASSTABLE // His ass does NOT pass through glass!
 	/// What type of casing should we put inside the bullet to act as shrapnel later
 	var/casing_to_spawn = /obj/item/grenade/c980payload/plasma_grenade
 
@@ -91,7 +91,7 @@
 	exposed_wound_bonus = 55 // Lasers have a wound bonus of 40, this is a bit higher
 	wound_bonus = -50 // However we do not very much against armor
 	range = 2
-	pass_flags = PASSTABLE | PASSGRILLE // His ass does NOT pass through glass!
+	pass_flags = PASSTABLE // His ass does NOT pass through glass!
 	weak_against_armour = TRUE
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = COLOR_PALE_GREEN
@@ -124,13 +124,13 @@
 
 /obj/item/ammo_casing/energy/cybersun_small_hellfire
 	projectile_type = /obj/projectile/beam/cybersun_laser/hellfire
-	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
+	e_cost = LASER_SHOTS(6, STANDARD_CELL_CHARGE)
 	select_name = "Incinerate"
 	fire_sound = 'modular_zubbers/sound/weapons/incinerate.ogg'
 
 /obj/projectile/beam/cybersun_laser/hellfire
 	icon_state = "hellfire"
-	damage = 30
+	damage = 25
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	speed = 1.6
 	wound_bonus = 0
@@ -143,12 +143,15 @@
 	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
 	select_name = "Disable"
 	harmful = FALSE
+	fire_sound = 'sound/items/weapons/taser2.ogg'
+	impact_sound = 'sound/items/weapons/sear_disabler.ogg'
 
 /obj/projectile/beam/cybersun_laser/disable_bounce
 	icon_state = "disable_bounce"
 	damage = 0
-	stamina = 30
+	stamina = 20
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
+	impact_sound = 'sound/items/weapons/sear_disabler.ogg'
 	light_color = COLOR_BRIGHT_BLUE
 	ricochet_auto_aim_angle = 30
 	ricochet_auto_aim_range = 5
@@ -172,7 +175,7 @@
 /obj/projectile/beam/cybersun_laser/flare
 	name = "plasma flare"
 	icon_state = "flare"
-	damage = 30
+	damage = 10
 	speed = 0.5
 	range = 6
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser

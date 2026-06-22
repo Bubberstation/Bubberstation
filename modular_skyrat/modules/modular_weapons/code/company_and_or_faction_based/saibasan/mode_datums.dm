@@ -53,7 +53,7 @@
 	var/datum/component/scope/scope_component
 
 /datum/laser_weapon_mode/marksman/apply_to_weapon(obj/item/gun/energy/applied_gun)
-	scope_component = applied_gun.AddComponent(/datum/component/scope, 3)
+	scope_component = applied_gun.AddComponent(/datum/component/scope, 2)
 
 /datum/laser_weapon_mode/marksman/remove_from_weapon(obj/item/gun/energy/applied_gun)
 	QDEL_NULL(scope_component)
@@ -110,7 +110,7 @@
 
 // Hellfire mode for the small laser
 /datum/laser_weapon_mode/hellfire
-	name = "Incinerate"
+	name = "kill"
 	casing = /obj/item/ammo_casing/energy/cybersun_small_hellfire
 	weapon_icon_state = "kill"
 	charge_sections = 3
@@ -131,15 +131,15 @@
 	// And also so the visuals work :3
 	casing = /obj/item/ammo_casing/energy/cybersun_small_blade
 	weapon_icon_state = "blade"
-	charge_sections = 2
+	charge_sections = 3
 	json_speech_string = "blade"
 	gun_runetext_color = "#f8d860"
 
 /datum/laser_weapon_mode/sword/apply_to_weapon(obj/item/gun/energy/modular_laser_rifle/applied_gun)
 	playsound(src, 'sound/items/unsheath.ogg', 25, TRUE)
-	applied_gun.force = 20
+	applied_gun.force = 15
 	applied_gun.sharpness = SHARP_EDGED
-	applied_gun.exposed_wound_bonus = 15
+	applied_gun.exposed_wound_bonus = 10
 	applied_gun.wound_bonus = 5
 	applied_gun.disabled_for_other_reasons = TRUE
 	applied_gun.attack_verb_continuous = list("slashes", "cuts")
@@ -204,3 +204,19 @@
 
 /datum/laser_weapon_mode/trickshot_disabler/remove_from_weapon(obj/item/gun/energy/applied_gun)
 	return
+
+// Big flare for the rifle, hacky way since I cant sprite for shit
+/datum/laser_weapon_mode/bigflare
+	name = "Flare"
+	casing = /obj/item/ammo_casing/energy/cybersun_small_launcher
+	weapon_icon_state = "disabler"
+	charge_sections = 3
+	shot_delay = 2 SECONDS
+	json_speech_string = "flare"
+	gun_runetext_color = "#77bd5d"
+
+/datum/laser_weapon_mode/flare/apply_to_weapon(obj/item/gun/energy/applied_gun)
+	applied_gun.recoil = 2
+
+/datum/laser_weapon_mode/flare/remove_from_weapon(obj/item/gun/energy/applied_gun)
+	applied_gun.recoil = initial(applied_gun.recoil)

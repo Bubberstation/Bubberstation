@@ -12,7 +12,7 @@
 /obj/item/gun/energy/modular_laser_rifle
 	name = "\improper Hyeseong modular laser rifle"
 	desc = "A popular energy weapon system that can be reconfigured into many different variants on the fly. \
-		Seen commonly amongst the Marsians who produce the weapon, with many different shapes and sizes to fit \
+		Seen commonly amongst the Martians who produce the weapon, with many different shapes and sizes to fit \
 		the wide variety of modders the planet is home to."
 	base_icon_state = "hyeseong"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/saibasan/guns48x.dmi'
@@ -42,9 +42,9 @@
 	var/list/weapon_mode_options = list(
 		/datum/laser_weapon_mode,
 		/datum/laser_weapon_mode/marksman,
-		/datum/laser_weapon_mode/disabler_machinegun,
 		/datum/laser_weapon_mode/launcher,
 		/datum/laser_weapon_mode/shotgun,
+		/datum/laser_weapon_mode/bigflare,
 	)
 	/// Populates with a list of weapon mode names and their respective paths on init
 	var/list/weapon_mode_name_to_path = list()
@@ -69,7 +69,7 @@
 	/// Keeps track of our soulcatcher component
 	var/datum/component/carrier/soulcatcher/tracked_soulcatcher
 	/// What is this gun's extended examine, we only have to do this because the carbine is a subtype
-	var/expanded_examine_text = "The Hyeseong rifle is the first line of man-portable Marsian weapons platforms \
+	var/expanded_examine_text = "The Hyeseong rifle is the first line of man-portable Martian weapons platforms \
 		from Cybersun Industries. Like her younger sister weapon, the Hoshi carbine, CI used funding aid provided \
 		by TerraGov to develop a portable weapon fueled by a proprietary generator rumored to be fueled by superstable plasma. \
 		A rugged and hefty weapon, the Hyeseong stars in applications anywhere from medium to long ranges, though struggling \
@@ -262,11 +262,12 @@
 	worn_icon_state = "hoshi_kill"
 	base_icon_state = "hoshi"
 	charge_sections = 3
-	cell_type = /obj/item/stock_parts/power_store/cell
+	selfcharge = 1
+	cell_type = /obj/item/stock_parts/power_store/cell/hyeseong_internal_cell
 	ammo_type = list(/obj/item/ammo_casing/energy/cybersun_small_hellfire)
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	SET_BASE_PIXEL(0, 0)
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
 	weapon_mode_options = list(
 		/datum/laser_weapon_mode/hellfire,
@@ -275,9 +276,9 @@
 		/datum/laser_weapon_mode/shotgun_small,
 		/datum/laser_weapon_mode/trickshot_disabler,
 	)
-	default_selected_mode = "Incinerate"
+	default_selected_mode = "kill"
 	speech_json_file = SHORT_MOD_LASER_SPEECH
-	expanded_examine_text = "The Hoshi carbine is the latest line of man-portable Marsian weapons platforms from \
+	expanded_examine_text = "The Hoshi carbine is the latest line of man-portable Martian weapons platforms from \
 		Cybersun Industries. Like her older sister weapon, the Hyeseong rifle, CI used funding aid provided by TerraGov \
 		to develop a portable weapon fueled by a proprietary generator rumored to be fueled by superstable plasma. A \
 		lithe and mobile weapon, the Hoshi stars in close-quarters battle, trickshots, and area-of-effect blasts; though \

@@ -21,7 +21,6 @@
 				)
 //This makes the Security ammo crate use the cool advanced ammo boxes instead of the old ones
 
-
 /datum/supply_pack/security/secmed_technician
 	name = "Security Medic Kit Crate - Technician"
 	crate_name = "security medic crate"
