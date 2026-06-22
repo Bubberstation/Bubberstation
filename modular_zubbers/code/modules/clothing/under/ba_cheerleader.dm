@@ -214,7 +214,7 @@
 
 /obj/item/clothing/shoes/sneakers/ba_cheerleader
 	name = "NT cheerleading sneakers"
-	desc = "A pair of sporty sneakers. Good for cheering. Usefulness for running not evaluated by NanoTrasen \
+	desc = "A pair of sporty sneakers. Good for cheering. Usefulness for running not evaluated by Nanotrasen \
 		Corporation; sprint at your own risk."
 	icon = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
 	icon_state = "ba_cheerleader_shoes_icon"
@@ -233,7 +233,7 @@
 
 /obj/item/clothing/shoes/sneakers/ba_cheerleader/command
 	name = "NT command cheerleading sneakers"
-	desc = "A pair of sporty sneakers. Good for cheering. Usefulness for running not evaluated by NanoTrasen \
+	desc = "A pair of sporty sneakers. Good for cheering. Usefulness for running not evaluated by Nanotrasen \
 		Corporation; sprint at your own risk."
 	greyscale_colors = "#FFFFFF#1a3a6b"
 	armor_type = /datum/armor/clothing_shoes/cc_cheerleader
