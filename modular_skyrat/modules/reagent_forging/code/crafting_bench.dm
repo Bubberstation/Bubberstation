@@ -303,6 +303,12 @@
 	deconstruct(TRUE)
 	return TRUE
 
+/obj/structure/reagent_crafting_bench/atom_deconstruct(disassembled = TRUE)
+	if(length(contents))
+		for(var/obj/contained in contents)
+			contained.forceMove(get_turf(src))
+	return ..()
+
 /obj/structure/reagent_crafting_bench/hammer_act(mob/living/user, obj/item/tool)
 	if(DOING_INTERACTION(user, DOAFTER_SMITHING_ANVIL))
 		return

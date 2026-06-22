@@ -90,6 +90,9 @@
 
 /obj/structure/reagent_anvil/atom_deconstruct(disassembled = TRUE)
 	new /obj/item/stack/sheet/iron/ten(get_turf(src))
+	if(length(contents))
+		for(var/obj/contained in contents)
+			contained.forceMove(get_turf(src))
 	return ..()
 
 /obj/structure/reagent_anvil/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
