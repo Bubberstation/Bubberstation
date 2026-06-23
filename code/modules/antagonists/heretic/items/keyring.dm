@@ -170,6 +170,7 @@
 	portal_one = new(get_turf(door2), door2, inverted)
 	portal_two = new(get_turf(door1), door1, inverted)
 	portal_one.destination = portal_two
+
 	RegisterSignal(portal_one, COMSIG_QDELETING, PROC_REF(clear_portal_refs))  //we only really need to register one because they already qdel both portals if one is destroyed
 	portal_two.destination = portal_one
 	balloon_alert(user, "[message]")
