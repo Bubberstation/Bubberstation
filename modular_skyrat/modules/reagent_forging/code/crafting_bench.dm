@@ -258,16 +258,19 @@
 		else
 			var/temp_list = generate_stack_held_list_radial()
 			var/option = show_radial_menu(user, src, temp_list, radius = 38, require_near = TRUE, tooltips = TRUE)
-			if(!isnull(stack_item_container[option]))
-				var/obj/item/stack/sheet/output_stack = stack_item_container[option]
-				if(!isnull(output_stack) && output_stack.loc == src)
-					output_stack.tong_act(user, tool)
-					return ITEM_INTERACT_SUCCESS
-			else if(!isnull(forging_complete_container[option]) && length(forging_complete_container[option]) > 0)
-				var/obj/item/stack/sheet/output_complete = forging_complete_container[option][1]
-				if(!isnull(output_complete) && output_complete.loc == src)
-					output_complete.tong_act(user, tool)
-					return ITEM_INTERACT_SUCCESS
+			if(user.get_active_held_item() != tool)
+				if(!isnull(stack_item_container[option]))
+					var/obj/item/stack/sheet/output_stack = stack_item_container[option]
+					if(!isnull(output_stack) && output_stack.loc == src)
+						output_stack.tong_act(user, tool)
+						return ITEM_INTERACT_SUCCESS
+				else if(!isnull(forging_complete_container[option]) && length(forging_complete_container[option]) > 0)
+					var/obj/item/stack/sheet/output_complete = forging_complete_container[option][1]
+					if(!isnull(output_complete) && output_complete.loc == src)
+						output_complete.tong_act(user, tool)
+						return ITEM_INTERACT_SUCCESS
+			else
+				balloon_alert(user, "you let go of [tool]!")
 
 	return NONE
 
