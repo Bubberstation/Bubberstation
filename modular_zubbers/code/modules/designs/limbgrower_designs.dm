@@ -117,6 +117,14 @@
 	build_path = /obj/item/organ/tongue/teshari
 	category = list(SPECIES_TESHARI)
 
+/datum/design/cold_lungs
+	name = "Cold-Adapted Lungs"
+	id = "coldlungs"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
+	build_path = /obj/item/organ/lungs/adaptive/cold
+	category = list(SPECIES_TESHARI)
+
 /datum/design/limb_disk/teshari
 	name = "Teshari Organ Design Disk"
 	desc = "Contains designs for teshari organs for the limbgrower - Ears, tounges, and eyes."
@@ -125,7 +133,7 @@
 
 /obj/item/disk/design_disk/limbs/teshari
 	name = "Teshari Organ Design Disk"
-	limb_designs = list(/datum/design/teshari_eyes, /datum/design/teshari_ears, /datum/design/teshari_tongue)
+	limb_designs = list(/datum/design/teshari_eyes, /datum/design/teshari_ears, /datum/design/teshari_tongue, /datum/design/cold_lungs)
 
 /obj/machinery/limbgrower/Initialize(mapload)
 	categories += list(
