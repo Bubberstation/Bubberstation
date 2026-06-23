@@ -274,7 +274,7 @@
 	recipe_desc = "Protective... horse shoes? Smithing oil and perfected metalworking will make it even more protective."
 	recipe_requirements = list(
 		/obj/item/forging/complete/chain = 1,
-		/obj/item/stack/sheet/mineral/iron = 2,
+		/obj/item/stack/sheet/iron = 2,
 	)
 	resulting_item = /obj/item/clothing/shoes/horseshoe/reagent_clothing
 	time_to_assemble = 1.5 SECONDS
