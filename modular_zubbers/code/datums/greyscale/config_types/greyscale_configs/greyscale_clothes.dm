@@ -243,3 +243,7 @@
 /datum/greyscale_config/jester_shoes/worn/teshari
 	name = "Jester Shoes (Worn, Teshari)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/datum/greyscale_config/overalls/worn/teshari
+	name = "Overalls (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/utility_teshari.dmi'

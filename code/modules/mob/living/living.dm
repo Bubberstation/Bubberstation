@@ -13,6 +13,8 @@
 	var/datum/atom_hud/data/diagnostic/diag_hud = GLOB.huds[DATA_HUD_DIAGNOSTIC]
 	diag_hud.add_atom_to_hud(src)
 	add_ally(src)
+	if(!pull_force)
+		remove_verb(src, /mob/living/verb/pulled)
 	GLOB.mob_living_list += src
 	SSpoints_of_interest.make_point_of_interest(src)
 	update_fov()
@@ -539,14 +541,11 @@
 
 //mob verbs are a lot faster than object verbs
 //for more info on why this is not atom/pull, see examinate() in mob.dm
-/mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
+/mob/living/verb/pulled(atom/movable/thing_pulled as mob|obj in oview(1))
 	set name = "Pull"
-	set category = "IC"
 
-	if(istype(AM) && Adjacent(AM))
-		start_pulling(AM)
-	else if(!combat_mode) //Don;'t cancel pulls if misclicking in combat mode.
-		stop_pulling()
+	if(istype(thing_pulled) && Adjacent(thing_pulled))
+		start_pulling(thing_pulled)
 
 /mob/living/stop_pulling()
 	if(ismob(pulling))
@@ -554,11 +553,6 @@
 	..()
 	update_pull_movespeed()
 	update_pull_hud_icon()
-
-/mob/living/verb/stop_pulling1()
-	set name = "Stop Pulling"
-	set category = "IC"
-	stop_pulling()
 
 //same as above
 /mob/living/pointed(atom/A)
@@ -635,7 +629,7 @@
 
 /mob/living/proc/mob_sleep()
 	set name = "Sleep"
-	set category = "IC"
+	set hidden = TRUE
 
 	if(IsSleeping())
 		to_chat(src, span_warning("You are already sleeping!"))
@@ -690,9 +684,6 @@
 		return account
 
 /mob/living/proc/toggle_resting()
-	set name = "Rest"
-	set category = "IC"
-
 	set_resting(!resting, FALSE)
 
 
@@ -1188,10 +1179,7 @@
 		return FALSE
 	return TRUE
 
-/mob/living/verb/resist()
-	set name = "Resist"
-	set category = "IC"
-
+/mob/living/proc/resist()
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(execute_resist)))
 
 ///proc extender of [/mob/living/verb/resist] meant to make the process queable if the server is overloaded when the verb is called
@@ -1200,7 +1188,9 @@
 		return
 	changeNext_move(CLICK_CD_RESIST)
 
-	SEND_SIGNAL(src, COMSIG_LIVING_RESIST, src)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_RESIST) & COMPONENT_BLOCK_RESIST)
+		return
+
 	//resisting grabs (as if it helps anyone...)
 	if(!HAS_TRAIT(src, TRAIT_RESTRAINED) && pulledby)
 		log_combat(src, pulledby, "resisted grab")
@@ -1528,7 +1518,7 @@
 	if(shown_stamina_loss >= stam_crit_threshold)
 		stamina.icon_state = "stamina_crit"
 	else if(shown_stamina_loss > 0 && maxHealth > 0)
-		stamina.icon_state = "stamina_[6 - ceil(shown_stamina_loss / (maxHealth * 0.2))]"
+		stamina.icon_state = "stamina_[ceil(shown_stamina_loss / (maxHealth * 0.2))]"
 	else
 		stamina.icon_state = "stamina_full"
 
@@ -1613,7 +1603,7 @@
 				/mob/living/basic/bot/dedbot = 25,
 				/mob/living/basic/bot/cleanbot = 25,
 				/mob/living/basic/bot/firebot = 25,
-				/mob/living/basic/bot/honkbot = 25,
+				/mob/living/basic/bot/secbot/honkbot = 25,
 				/mob/living/basic/bot/hygienebot = 25,
 				/mob/living/basic/bot/vibebot = 25,
 				/mob/living/basic/bot/medbot = 13,
@@ -1665,6 +1655,7 @@
 				/mob/living/basic/bear/russian,
 				/mob/living/basic/blob_minion/blobbernaut,
 				/mob/living/basic/blob_minion/spore,
+				/mob/living/basic/blood_worm/hatchling/polymorph,
 				/mob/living/basic/butterfly,
 				/mob/living/basic/carp,
 				/mob/living/basic/carp/mega,
@@ -2178,6 +2169,13 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 				return FALSE
 			update_transform(var_value/current_size)
 			. = TRUE
+		if(NAMEOF(src, pull_force))
+			if(var_value == 0) //no more pulling
+				remove_verb(src, /mob/living/verb/pulled)
+			else
+				add_verb(src, /mob/living/verb/pulled)
+			. = TRUE
+
 
 	if(!isnull(.))
 		datum_flags |= DF_VAR_EDITED
@@ -2488,7 +2486,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 		return
 
 	if(. <= UNCONSCIOUS || new_stat >= UNCONSCIOUS)
-		update_body() // to update eyes
+		update_eyes()
 
 	switch(.) //Previous stat.
 		if(CONSCIOUS)
@@ -3019,10 +3017,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	log_admin("[key_name(admin)] gave a guardian spirit controlled by [guardian_client] to [src].")
 	BLACKBOX_LOG_ADMIN_VERB("Give Guardian Spirit")
 
-/mob/living/verb/lookup()
-	set name = "Look Up"
-	set category = "IC"
-
+/mob/living/proc/lookup()
 	if(looking_vertically)
 		to_chat(src, "You set your head straight again.")
 		end_look()
@@ -3039,10 +3034,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	to_chat(src, "You tilt your head upwards.")
 	look_up()
 
-/mob/living/verb/lookdown()
-	set name = "Look Down"
-	set category = "IC"
-
+/mob/living/proc/lookdown()
 	if(looking_vertically)
 		to_chat(src, "You set your head straight again.")
 		end_look()
