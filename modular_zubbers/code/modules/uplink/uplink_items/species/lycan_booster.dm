@@ -2,7 +2,7 @@
 	name = "Lycanthropy Booster"
 	desc = "A highly advanced mix of nanomachines and general 'bad vibes' that will significantly boost the combat performance of your \
 	Lycan form, granting significant damage resistance, baton resistance, regeneration, and further sharpening your claws. Additionally grants you expert fitness."
-	cost = 10
+	cost = 15
 	item = /obj/item/lycan_booster
 	restricted_species = list(SPECIES_CURSEKIN)
 	surplus = 0
@@ -34,13 +34,16 @@
 		to_chat(human_user, span_warning("You get the feeling your current physiology wouldn't support this booster."))
 		return
 
-	ADD_TRAIT(human_user, TRAIT_GAIAN_PHYSIQUE, SPECIES_TRAIT)
-
-	balloon_alert(human_user, "lycan form boosted")
 	to_chat(human_user, span_bolddanger("As you inject yourself with the serum, you begin to feel more in tune with your lycan curse than ever before. Your claws sharpen, your teeth lengthen..."))
-	to_chat(human_user, span_boldnotice("Your lycan form is now resistant to damage, batons, and immune to damage slowdown. Additionally, your unarmed attacks are far deadlier, and ridiculously strong on grabbed opponents. Consider finding gripper gloves."))
-	human_user.emote("growl")
-
-	human_user.mind?.adjust_experience(/datum/skill/athletics, SKILL_EXP_MASTER, FALSE)
+	human_user.add_gaian_physique()
 
 	qdel(src)
+
+/mob/living/carbon/human/proc/add_gaian_physique()
+	ADD_TRAIT(src, TRAIT_GAIAN_PHYSIQUE, SPECIES_TRAIT)
+
+	balloon_alert(src, "lycan form boosted")
+	to_chat(src, span_boldnotice("Your lycan form is now resistant to damage, batons, and immune to damage slowdown. Additionally, your unarmed attacks are far deadlier, and ridiculously strong on grabbed opponents. Consider finding gripper gloves."))
+	emote("growl")
+
+	mind?.adjust_experience(/datum/skill/athletics, SKILL_EXP_MASTER, FALSE)
