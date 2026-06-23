@@ -340,6 +340,16 @@
 	generate_heretic_starting_knowledge(heretic_shops[HERETIC_KNOWLEDGE_START])
 	if(!length(path_info))
 		for(var/datum/heretic_knowledge_tree_column/path as anything in subtypesof(/datum/heretic_knowledge_tree_column))
+			// BUBBER EDIT REMOVAL BEGIN - disables unbalanced paths - change if you rebalance a path
+			var/static/list/banned_paths = list(
+				/datum/heretic_knowledge_tree_column/blade, // havent taken a look at it
+				/datum/heretic_knowledge_tree_column/moon, // fundumentally weirdly designed. will never be intuitive or very fun to fight imo
+				/datum/heretic_knowledge_tree_column/ash, // havent taken a look at it
+				/datum/heretic_knowledge_tree_column/rust, // bad thing to keep when half the crew gets instanuked by it
+			)
+			if (path in banned_paths)
+				continue
+			// BUBBER EDIT REMOVAL END
 			path = new path()
 			path_info += list(path.get_ui_data(src, HERETIC_KNOWLEDGE_START))
 			qdel(path)
@@ -378,7 +388,7 @@
 	our_mob.add_faction(FACTION_HERETIC)
 	our_mob.apply_status_effect(/datum/status_effect/grouped/heretic_dreams, type)
 
-	if(!issilicon(our_mob))
+	if(!issilicon(our_mob) && generate_influences) // BUBBER EDIT ADDITION - added && generate_influences
 		GLOB.reality_smash_track.add_tracked_mind(owner)
 
 	ADD_TRAIT(our_mob, TRAIT_MANSUS_TOUCHED, REF(src))
@@ -1028,6 +1038,27 @@
 /datum/antagonist/heretic/proc/get_researchable_knowledge()
 	var/list/researchable_knowledge = list()
 	var/list/banned_knowledge = list()
+	// BUBBER EDIT ADDITION - Heretics can buy everything
+	var/list/tree = heretic_shops[HERETIC_KNOWLEDGE_TREE]
+	for (var/knowledge_type in tree)
+		if (ispath(knowledge_type, /datum/heretic_knowledge/passive_upgrade))
+			var/datum/heretic_knowledge/passive_upgrade/passive = knowledge_type
+			if (passive_level != (passive::level - 1))
+				continue
+		if (ispath(knowledge_type, /datum/heretic_knowledge/mansus_mark))
+			var/should_continue = TRUE
+			for (var/datum/heretic_knowledge/typepath as anything in researched_knowledge)
+				if (ispath(typepath, /datum/heretic_knowledge/enable_blades))
+					should_continue = FALSE
+					break
+			if (should_continue)
+				continue
+		researchable_knowledge += tree[knowledge_type][HKT_ID]
+
+	var/list/shop = heretic_shops[HERETIC_KNOWLEDGE_SHOP]
+	for (var/knowledge_type in shop)
+		researchable_knowledge += shop[knowledge_type][HKT_ID]
+	// BUBBER EDIT ADDITION END
 	for(var/knowledge_type in researched_knowledge)
 		var/list/knowledge_info = researched_knowledge[knowledge_type]
 		researchable_knowledge |= knowledge_info[HKT_NEXT]

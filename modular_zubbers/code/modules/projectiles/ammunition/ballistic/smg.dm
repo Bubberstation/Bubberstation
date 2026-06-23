@@ -30,3 +30,6 @@
 
 /obj/projectile/bullet/c22ls/ntmp5
 	damage = 14
+
+/obj/item/ammo_casing/c45/reaper
+	projectile_type = /obj/projectile/bullet/c45/lesser_reaper

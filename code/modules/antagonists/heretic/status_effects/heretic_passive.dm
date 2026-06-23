@@ -358,13 +358,13 @@
 	passive_descriptions = list(
 		"Shock insulation, all knowledges researched from the shop are cheaper",
 		"X-ray vision, you can see through walls and objects.",
-		"Grasp no longer goes on cooldown when used to open a door or locker."
+		"Grasp now has a reduced cooldown when used on a door/locker." // BUBBER EDIT CHANGE - now only reduced CD
 	)
 
 /datum/status_effect/heretic_passive/lock/on_apply()
 	. = ..()
 	ADD_TRAIT(owner, TRAIT_SHOCKIMMUNE, REF(src))
-	RegisterSignal(heretic_datum, COMSIG_HERETIC_SHOP_SETUP, PROC_REF(on_shop_setup)) // Just in case we are applying this after the shop was set up
+	//RegisterSignal(heretic_datum, COMSIG_HERETIC_SHOP_SETUP, PROC_REF(on_shop_setup)) // Just in case we are applying this after the shop was set up // BUBBER EDIT REMOVAL
 
 /datum/status_effect/heretic_passive/lock/heretic_level_upgrade()
 	. = ..()
@@ -432,13 +432,14 @@
 		healing_amount = -15 * seconds_between_ticks
 	if(!amulet_equipped)
 		healing_amount *= 0.5 // Half healing if you dont have the moon amulet
+	healing_amount *= 0.75 // BUBBER EDIT ADDITION - moon heals brain damage slower
 	owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, healing_amount)
 
 	var/obj/item/organ/brain/our_brain = owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!our_brain)
 		return
 	for(var/datum/brain_trauma/trauma as anything in our_brain.traumas)
-		if(istype(trauma, BRAIN_TRAUMA_MILD) || istype(trauma, BRAIN_TRAUMA_SEVERE))
+		if(istype(trauma, BRAIN_TRAUMA_MILD) || istype(trauma, BRAIN_TRAUMA_SEVERE) && SPT_PROB(2, seconds_between_ticks)) // BUBBER EDIT CHANGE - was if(istype(trauma, BRAIN_TRAUMA_MILD) || istype(trauma, BRAIN_TRAUMA_SEVERE))
 			our_brain.cure_trauma_type(trauma.type, trauma.resilience)
 
 /datum/status_effect/heretic_passive/moon/heretic_level_upgrade()

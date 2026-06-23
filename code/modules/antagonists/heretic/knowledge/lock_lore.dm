@@ -110,7 +110,8 @@
 	if(HAS_TRAIT(source, TRAIT_LOCK_GRASP_UPGRADED))
 		var/datum/action/cooldown/spell/touch/mansus_grasp/grasp = locate() in source.actions
 		if(grasp)
-			grasp.next_use_time -= round(grasp.cooldown_time*0.75)
+			grasp.remove_hand()
+			grasp.StartCooldown(grasp.cooldown_time * 0.5) // BUBBER EDIT CHANGE - now actually reduces it instead of just makes it instant
 			grasp.build_all_button_icons()
 		return
 

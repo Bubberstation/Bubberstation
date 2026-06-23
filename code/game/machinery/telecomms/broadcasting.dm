@@ -180,8 +180,8 @@
 			stack_trace("null found in the hearers list returned by the spatial grid. this is bad")
 			continue
 		spans -= blacklisted_spans
-		hearer.Hear(virt, language, message, frequency, data["frequency_name"], data["frequency_color"], spans, message_mods, message_range = INFINITY)
-
+		if (hearer.Hear(virt, language, message, frequency, data["frequency_name"], data["frequency_color"], spans, message_mods, message_range = INFINITY)) // BUBBER EDIT CHANGE - was not in the if()
+			on_heard(hearer) // BUBBER EDIT ADDITION - heretic corruption
 	// This following recording is intended for research and feedback in the use of department radio channels
 	if(length(receive))
 		SSblackbox.LogBroadcast(frequency)
