@@ -482,6 +482,7 @@
 
 /obj/structure/reagent_crafting_bench/proc/clear_empty_stacks()
 	var/obj/item/stack/sheet/my_stack
+	var/list/my_list
 	for(var/stack_type in stack_item_container)
 		my_stack = stack_item_container[stack_type]
 		if(isnull(my_stack) || my_stack.amount < 1)
@@ -490,7 +491,8 @@
 	for(var/complete_item_type in forging_complete_container)
 		for(var/obj/item/my_item in forging_complete_container[complete_item_type])
 			if(isnull(my_item) || my_item.loc != src)
-				forging_complete_container[complete_item_type].Remove(my_item)
+				my_list = forging_complete_container[complete_item_type]
+				my_list.Remove(my_item)
 
 /obj/structure/reagent_crafting_bench/proc/generate_stack_held_list_radial()
 	clear_empty_stacks()
