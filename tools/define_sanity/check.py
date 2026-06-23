@@ -4,11 +4,7 @@ import os
 import re
 import sys
 
-parent_directory = "code/**/*.dm"
-# BUBBER EDIT BEGIN
-parent_directory_skyrat = "modular_skyrat/**/**.dm"
-parent_directory_zubbers = "modular_zubbers/**/**.dm"
-# BUBBER EDIT END
+parent_directory = "*/**/*.dm"
 
 output_file_name = "define_sanity_output.txt"
 how_to_fix_message = "Please #undef the above defines or remake them as global defines in the code/__DEFINES directory."
@@ -40,6 +36,8 @@ excluded_files = [
     "code/_globalvars/*.dm",
     # TGS files come from another repository so lets not worry about them.
     "code/modules/tgs/**/*.dm",
+    # Doesn't come with the repo, but is in CI.
+    "DMCompiler_linux-x64/*.dm",
     # BUBBER EDIT - Modular files
     "modular_zubbers/code/__DEFINES/*.dm"
 ]
