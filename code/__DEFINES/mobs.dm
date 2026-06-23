@@ -872,32 +872,43 @@ GLOBAL_LIST_INIT(human_heights_to_offsets, list(
 	#define BODYPARTS_HIGH_LAYER 17.5
 /// ID card layer
 #define ID_LAYER 18
+// BUBBER EDIT ADDITION BEGIN
+#define BANDAGE_LAYER 19
+#define NIPPLES_LAYER 20
+#define PENIS_LAYER 21
+#define VAGINA_LAYER 22
+#define ANUS_LAYER 23
+// BUBBER EDIT ADDITION END
 /// Jumpsuit clothing layer
-#define UNIFORM_LAYER 19
+#define UNIFORM_LAYER 24
 	/// The layer underneath the uniform
-	#define UNDER_UNIFORM_LAYER 19.1
+	#define UNDER_UNIFORM_LAYER 24.1
+// BUBBER EDIT ADDITION BEGIN
+/// This layer is used for things that shouldn't be over clothes, but should be over mutations
+#define BODY_FRONT_UNDER_CLOTHES 25
+// BUBBER EDIT ADDITION END
 /// Damage indicators (cuts and burns)
-#define DAMAGE_LAYER 20
+#define DAMAGE_LAYER 26
 	/// Mutations that should appear above everything else (e.g. laser eyes)
-	#define FRONT_MUTATIONS_LAYER 20.9
+	#define FRONT_MUTATIONS_LAYER 26.9
 /// Eyes and eyelids
-#define EYES_LAYER 21
+#define EYES_LAYER 27
 /// Underwear, undershirts, socks
-#define BODY_LAYER 22
+#define BODY_LAYER 28
 	/// Mutantrace features (snout, body markings) that must appear above the body parts
-	#define BODY_ADJ_LAYER 22.9
+	#define BODY_ADJ_LAYER 28.9
 /// Layer for most bodyparts, appears above BODYPARTS_LOW_LAYER and below BODYPARTS_HIGH_LAYER
-#define BODYPARTS_LAYER 23
+#define BODYPARTS_LAYER 29
 	/// Layer for bodyparts that should appear behind every other bodypart - Mostly, legs when facing WEST or EAST
-	#define BODYPARTS_LOW_LAYER 23.1
+	#define BODYPARTS_LOW_LAYER 29.1
 	/// Mutantrace features (tail when looking south) that must appear behind the body parts
-	#define BODY_BEHIND_LAYER 23.2
+	#define BODY_BEHIND_LAYER 29.2
 	/// Mutations layer - Tk headglows, cold resistance glow, etc. Very bottom of the mob
-	#define MUTATIONS_LAYER 23.9
+	#define MUTATIONS_LAYER 29.9
 /// Total number of standing overlays.
 /// KEEP THIS UP-TO-DATE OR SHIT WILL BREAK.
 /// (You ONLY need to update this if you add a standing overlay, adding an integer.)
-#define TOTAL_LAYERS 23
+#define TOTAL_LAYERS 29
 
 #define UPPER_BODY "upper body"
 #define LOWER_BODY "lower body"
