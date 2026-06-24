@@ -13,7 +13,7 @@
 	)
 
 /datum/crafting_recipe/deagle_prime_mag
-	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY //for the unit test, this recipe is has custom materials like the original.
+	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY | CRAFT_MUST_BE_LEARNED //for the unit test, this recipe is has custom materials like the original.
 	reqs = list(
 		/obj/item/stack/sheet/iron = 10,
 		/obj/item/stack/sheet/mineral/gold = 10,
