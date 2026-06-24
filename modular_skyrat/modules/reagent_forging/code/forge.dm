@@ -805,7 +805,8 @@
 				hand_protected = (gloves.max_heat_protection_temperature > 360)
 		if(!hand_protected)
 			var/hitzone = user.held_index_to_dir(user.active_hand_index) == "r" ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND
-			user.apply_damage(20, BURN, hitzone)
+			user.apply_damage(35, BURN, hitzone)
+			playsound(src, 'sound/effects/wounds/sizzle1.ogg', 50, TRUE)
 			to_chat(user, span_danger("You burn your hand putting [search_stack] in [src]!"))
 			user.add_mood_event("burnt_thumb", /datum/mood_event/burnt_thumb)
 
