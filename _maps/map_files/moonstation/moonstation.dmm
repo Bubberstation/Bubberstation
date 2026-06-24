@@ -22691,7 +22691,6 @@
 /area/station/science/ordnance/burnchamber)
 "fMW" = (
 /obj/structure/table/reinforced,
-/obj/machinery/fax/auto_name,
 /obj/machinery/button/door/directional/west{
 	id = "ce_officer_shutters";
 	name = "Privacy Shutters Control";
@@ -22703,6 +22702,7 @@
 /obj/effect/mapping_helpers/requests_console/information,
 /obj/effect/mapping_helpers/requests_console/announcement,
 /obj/effect/turf_decal/tile/neutral,
+/obj/machinery/fax/heads/ce,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/ce)
 "fNd" = (
@@ -43364,7 +43364,6 @@
 /area/station/hallway/secondary/service)
 "lbw" = (
 /obj/structure/table/glass,
-/obj/machinery/fax/auto_name,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
@@ -43375,6 +43374,7 @@
 	pixel_y = 34;
 	req_access = list("cmo")
 	},
+/obj/machinery/fax/heads/cmo,
 /turf/open/floor/iron/white,
 /area/station/command/heads_quarters/cmo)
 "lbH" = (
@@ -47788,7 +47788,7 @@
 "met" = (
 /obj/structure/table/wood,
 /obj/structure/cable,
-/obj/machinery/fax/auto_name,
+/obj/machinery/fax/heads/hos,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hos)
 "meB" = (
@@ -47932,13 +47932,13 @@
 	dir = 9
 	},
 /obj/structure/table/wood,
-/obj/machinery/fax/auto_name,
 /obj/machinery/button/door/directional/north{
 	id = "qm_privacy_shutters";
 	name = "Privacy Shutters Control";
 	req_access = list("qm")
 	},
 /obj/machinery/firealarm/directional/west,
+/obj/machinery/fax/heads/qm,
 /turf/open/floor/mineral/gold,
 /area/station/command/heads_quarters/qm)
 "mga" = (
@@ -61707,8 +61707,8 @@
 /area/station/maintenance/department/engine/atmos)
 "pJo" = (
 /obj/structure/table/wood,
-/obj/machinery/fax/auto_name,
 /obj/machinery/keycard_auth/wall_mounted/directional/west,
+/obj/machinery/fax/heads/hop,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/hop)
 "pJr" = (
@@ -92057,8 +92057,8 @@
 /area/station/maintenance/starboard/fore)
 "xDz" = (
 /obj/structure/table/wood,
-/obj/machinery/fax/auto_name,
 /obj/item/radio/intercom/command/directional/west,
+/obj/machinery/fax/heads/captain,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/captain)
 "xDD" = (
