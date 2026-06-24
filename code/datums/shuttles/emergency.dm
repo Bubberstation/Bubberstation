@@ -41,7 +41,6 @@
 			mobile.add_shuttle_event(path)
 
 /datum/map_template/shuttle/emergency/backup
-	prefix = "_maps/shuttles/"
 	suffix = "backup"
 	name = "Backup Shuttle"
 	who_can_purchase = null
