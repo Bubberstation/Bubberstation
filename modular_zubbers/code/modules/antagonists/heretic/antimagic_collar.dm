@@ -165,7 +165,7 @@
 	locked = new_status
 	balloon_alert_to_viewers("[locked ? "locked!" : "unlocked!"]")
 	if (!isnull(key) && !locked)
-		radio.talk_into(src, "irreality collar [set_id] unlocked using a key.", RADIO_CHANNEL_SECURITY, list(speech_span))
+		radio.talk_into(src, "Irreality collar [set_id] unlocked using a key.", RADIO_CHANNEL_SECURITY, list(speech_span))
 	if (user)
 		to_chat(user, span_warning("You [locked ? "lock" : "unlock"] the collar."))
 
