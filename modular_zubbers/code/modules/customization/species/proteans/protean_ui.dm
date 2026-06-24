@@ -49,7 +49,7 @@
 				else
 					playsound(owner, 'sound/machines/click.ogg', 25)
 					species_modsuit.wearer.AddComponent(/datum/component/transformation, source = owner)
-					RegisterSignal(species_modsuit, COMSIG_ITEM_PRE_UNEQUIP, PROC_REF(protean_transform_unequip))
+					RegisterSignal(species_modsuit, COMSIG_ITEM_PRE_UNEQUIP, PROC_REF(protean_transform_unequip), TRUE)
 				COOLDOWN_START(src, transform_cooldown, 1 SECONDS)
 	return TRUE
 
