@@ -32,7 +32,7 @@
 	flash_protect = FLASH_PROTECTION_WELDER
 	visor_flags_inv = HIDEMASK|HIDEEYES|HIDEFACE|HIDEFACIALHAIR
 	visor_flags = STOPSPRESSUREDAMAGE
-	slowdown = 0
+	slowdown = 1
 
 /obj/item/clothing/head/helmet/space/hev_suit/nri/captain
 	name = "\improper VOSKHOD-2 powered combat armor helmet"
@@ -48,3 +48,5 @@
 	name = "\improper VOSKHOD-IN powered combat armor helmet"
 	desc = "A composite tungsten-plasteel helmet with a lead-lined ballistic nylon inner padding, complete with a deployable airtight polycarbonate visor and respirator system. 'НРИ - Оборонная Коллегия' is imprinted on the back."
 	icon_state = "nri_engineer"
+
+

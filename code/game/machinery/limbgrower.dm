@@ -293,6 +293,10 @@
 		path = "/obj/item/bodypart/[part_type]"
 	else
 		path = "/obj/item/bodypart/[part_type]/[species]"
+//BUBBER ADDITION BEGIN - Mutant limb types.
+		if(!text2path(path) && part_type)
+			path = "/obj/item/bodypart/[part_type]/mutant/[species]"
+//BUBBER ADDITION END
 	return text2path(path)
 
 /obj/machinery/limbgrower/RefreshParts()

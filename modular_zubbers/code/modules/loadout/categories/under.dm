@@ -80,6 +80,21 @@
 	item_path = /obj/item/clothing/under/rank/security/officer/redsec
 	restricted_roles = list(ALL_JOBS_SEC)
 
+/datum/loadout_item/uniform/security/officer/recolorable
+	name = "Recolorable Security Uniform"
+	item_path = /obj/item/clothing/under/rank/security/officer/recolorable
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/officer/recolorable/set_item_color(datum/preference_middleware/loadout/manager, mob/user)
+	return set_component_style_item_color(manager, user)
+
+/datum/loadout_item/uniform/security/officer/recolorable/set_slot_greyscale(datum/preference_middleware/loadout/manager, datum/greyscale_modify_menu/open_menu)
+	return set_component_style_slot_greyscale(manager, open_menu)
+
+/datum/loadout_item/uniform/security/officer/recolorable/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/outfit, visuals_only = FALSE)
+	. = ..()
+	apply_component_style_to_equipped_item(equipped_item, item_details)
+
 /datum/loadout_item/uniform/security/peacekeeper/armadyne
 	name = "Armadyne Corporate Uniform"
 	item_path =/obj/item/clothing/under/rank/security/peacekeeper/armadyne
