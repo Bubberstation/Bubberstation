@@ -165,7 +165,7 @@
 	locked = new_status
 	balloon_alert_to_viewers("[locked ? "locked!" : "unlocked!"]")
 	if (!isnull(key) && !locked)
-		radio.talk_into(src, "Antimagic collar [set_id] unlocked using a key.", RADIO_CHANNEL_SECURITY, list(speech_span))
+		radio.talk_into(src, "irreality collar [set_id] unlocked using a key.", RADIO_CHANNEL_SECURITY, list(speech_span))
 	if (user)
 		to_chat(user, span_warning("You [locked ? "lock" : "unlock"] the collar."))
 
@@ -185,8 +185,8 @@
 	..()
 
 /obj/item/key/collar/antimagic
-	name = "antimagic collar key"
-	desc = "The only kind of key that will open an antimagic collar. Hard to come across organically."
+	name = "irreality collar key"
+	desc = "The only kind of key that will open an irreality collar. Hard to come across organically."
 
 /obj/item/key/collar/antimagic/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
 	var/obj/item/clothing/neck/antimagic_collar/collar = target_mob.get_item_by_slot(ITEM_SLOT_NECK)
@@ -199,7 +199,7 @@
 	return TRUE
 
 /obj/item/storage/box/antimagic
-	name = "antimagic collar box"
+	name = "irreality collar box"
 	desc = "Contains a pair of anti-Acolyte collars, as well as a key to unlock them with."
 	icon_state = "secbox"
 	illustration = "heart_black"
@@ -210,9 +210,9 @@
 	new /obj/item/key/collar/antimagic(src)
 
 /datum/supply_pack/security/antimagic_collar
-	name = "Antimagic Collars"
+	name = "irreality collars"
 	desc = "Contains a pair of Anti-Acolyte collars, as well as a key to unlock them with."
 	cost = CARGO_CRATE_VALUE * 5
 	access_view = ACCESS_SECURITY
 	contains = list(/obj/item/storage/box/antimagic = 1)
-	crate_name = "antimagic collar crate"
+	crate_name = "irreality collar crate"
