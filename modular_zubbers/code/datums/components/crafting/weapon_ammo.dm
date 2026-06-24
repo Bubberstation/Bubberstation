@@ -4,6 +4,6 @@
 	reqs = list(
 		/obj/item/grenade/stingbang = 1,
 	)
-	tool_behaviors = list(TOOL_SCREWDRIVER | TOOL_WIRECUTTER)
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	time = 1.0 SECONDS
 	category = CAT_WEAPON_AMMO
