@@ -24,7 +24,11 @@
 	. = ..()
 	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
 
-/obj/item/melee/baton/security/proc/jedi_spin(mob/living/user)
+/obj/item/melee/baton/security/staff/attack(mob/target, mob/living/carbon/human/user)
+	(prob(50))
+		INVOKE_ASYNC(src, PROC_REF(jedi_spin), user)
+
+/obj/item/melee/baton/security/staff/proc/jedi_spin(mob/living/user)
 	dance_rotate(user, CALLBACK(user, TYPE_PROC_REF(/mob, dance_flip)))
 
 /obj/item/melee/baton/security/staff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
