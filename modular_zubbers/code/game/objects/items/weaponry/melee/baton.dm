@@ -25,7 +25,8 @@
 	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
 
 /obj/item/melee/baton/security/staff/attack(mob/target, mob/living/carbon/human/user)
-	(prob(50))
+	..()
+	if(prob(50))
 		INVOKE_ASYNC(src, PROC_REF(jedi_spin), user)
 
 /obj/item/melee/baton/security/staff/proc/jedi_spin(mob/living/user)
