@@ -14,7 +14,6 @@
 	new /obj/item/clothing/under/rank/security/viro/head_of_security/formal(src)
 	new /obj/item/clothing/under/rank/security/viro/head_of_security/formal/skirt(src)
 	new /obj/item/clothing/suit/armor/hos/viro/trenchcoat/winter(src)
-	//new /obj/item/clothing/suit/armor/hos/viro/trenchcoat(src) Missing worn icon, to be fixed!
 	new /obj/item/clothing/suit/armor/hos/viro(src)
 	new /obj/item/clothing/suit/armor/hos/viro/vest(src)
 	new /obj/item/clothing/head/helmet/sec/viro/hos(src)
