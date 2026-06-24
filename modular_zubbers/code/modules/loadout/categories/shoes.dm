@@ -353,6 +353,11 @@
 	name = "NT Cheerleading Sneakers"
 	item_path = /obj/item/clothing/shoes/sneakers/ba_cheerleader
 
+/datum/loadout_item/shoes/ba_cheerleader_command
+	name = "NT Command Cheerleading Sneakers"
+	item_path = /obj/item/clothing/shoes/sneakers/ba_cheerleader/command
+	restricted_roles = list(JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_ENGINEER, JOB_CHIEF_MEDICAL_OFFICER, JOB_QUARTERMASTER, JOB_NT_REP)
+
 /datum/loadout_item/shoes/fun/bubber/clown/pink/squeak //Unlike the rest, these make noise. Job locked.
 	name = "Pink Clown Heels"
 	item_path = /obj/item/clothing/shoes/clown_shoes/bubber/clussy
