@@ -19,19 +19,13 @@
 /datum/component/laser_sight
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 
-	/// Current beam colour as a hex string.
 	var/laser_color = "#CB0000"
-	/// Whether the rainbow easter egg is active.
 	var/rainbow_mode = FALSE
-	/// Current hue (0-359) for the HoxHud-style rainbow cycle.
 	var/rainbow_hue = 0
-	/// Whether the laser is toggled on by the player.
 	var/laser_active = TRUE
 	/// How many degrees of bonus spread to cancel on fire.
 	var/accuracy_bonus = LASER_SIGHT_ACCURACY_STANDARD
-	/// Is this a syndicate-grade unit?
 	var/is_syndicate = FALSE
-	/// Tracks whether the beam was drawing last tick, for sound transition detection.
 	var/beam_was_visible = FALSE
 
 	/// Fullscreen cursor tracker object attached to the holder's client.
@@ -40,7 +34,6 @@
 	var/datum/action/item_action/toggle_laser_sight/laser_action
 	/// Weakref to the mob currently holding this item.
 	var/datum/weakref/holder_ref
-	/// World-side tracer objects from the most recent process tick, for instant cleanup.
 	var/list/obj/effect/projectile/tracer/live_tracers
 
 
