@@ -22,7 +22,6 @@
 	inhand_icon_state = "hyeseong_kill"
 	worn_icon = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/saibasan/guns_worn.dmi'
 	worn_icon_state = "hyeseong_kill"
-	selfcharge = FALSE
 	cell_type = /obj/item/stock_parts/power_store/cell/hyeseong_internal_cell
 	modifystate = FALSE
 	ammo_type = list(/obj/item/ammo_casing/energy/cybersun_big_kill)
@@ -276,6 +275,7 @@
 		/datum/laser_weapon_mode/shotgun_small,
 		/datum/laser_weapon_mode/trickshot_disabler,
 	)
+	selfcharge = FALSE
 	default_selected_mode = "kill"
 	speech_json_file = SHORT_MOD_LASER_SPEECH
 	expanded_examine_text = "The Hoshi carbine is the latest line of man-portable Martian weapons platforms from \
