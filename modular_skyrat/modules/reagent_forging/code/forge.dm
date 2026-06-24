@@ -735,7 +735,6 @@
 /obj/structure/reagent_forge/tong_act(mob/living/user, obj/item/tool)
 	if(DOING_INTERACTION(user, DOAFTER_SMITHING_FORGE))
 		return
-	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER)
 	var/obj/item/tongs_contents = locate(/obj/item/) in tool.contents
 
 	if(forge_temperature < MIN_FORGE_TEMP)
@@ -752,13 +751,14 @@
 	// Here we check the item used on us (tongs) for a stack of some kind to create an object from
 	var/obj/item/stack/search_stack = locate(/obj/item/stack) in tool.contents
 	if(search_stack)
-		reeturn stack_item_to_forgeable(user, search_stack, tool)
+		return stack_item_to_forgeable(user, search_stack, tool)
 
 	return ITEM_INTERACT_SUCCESS
 
-/obj/structure/reagent_forge/stack_item_to_forgeable(mob/living/user, obj/item/stack/search_stack, obj/item/tool = null, burn_hand = FALSE)
+/obj/structure/reagent_forge/proc/stack_item_to_forgeable(mob/living/user, obj/item/stack/search_stack, obj/item/tool = null, burn_hand = FALSE)
 	var/list/my_list = get_filtered_radial_choices(user)
 	var/user_choice = show_radial_menu(user, src, my_list, radius = 38, require_near = TRUE, tooltips = TRUE)
+	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER)
 
 	if(!user_choice)
 		balloon_alert(user, "nothing chosen")
