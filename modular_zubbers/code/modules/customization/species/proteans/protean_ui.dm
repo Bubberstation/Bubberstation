@@ -43,13 +43,14 @@
 				var/component = species_modsuit.wearer?.GetComponent(/datum/component/transformation)
 				if(component)
 					playsound(owner, 'sound/machines/click.ogg', 25)
+					UnregisterSignal(species_modsuit, COMSIG_ITEM_PRE_UNEQUIP)
 					qdel(component)
 				else if(species_modsuit.wearer == owner)
 					to_chat(owner, span_notice("You already look like yourself!"))
 				else
 					playsound(owner, 'sound/machines/click.ogg', 25)
 					species_modsuit.wearer.AddComponent(/datum/component/transformation, source = owner)
-					RegisterSignal(species_modsuit, COMSIG_ITEM_PRE_UNEQUIP, PROC_REF(protean_transform_unequip), TRUE)
+					RegisterSignal(species_modsuit, COMSIG_ITEM_PRE_UNEQUIP, PROC_REF(protean_transform_unequip))
 				COOLDOWN_START(src, transform_cooldown, 1 SECONDS)
 	return TRUE
 
