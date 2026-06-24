@@ -502,6 +502,9 @@
 		handle_metal_cup_melting(attacking_item, user)
 		return TRUE
 
+	if(istype(attacking_item, /obj/item/stack))
+		stack_item_to_forgeable(user, attacking_item, burn_hand = TRUE)
+		return TRUE
 	return ..()
 
 /// Take the given tray and place it inside the forge, updating everything relevant to that
@@ -737,7 +740,7 @@
 
 	if(forge_temperature < MIN_FORGE_TEMP)
 		balloon_alert(user, "forge too cool")
-		return ITEM_INTERACT_SUCCESS
+		return ITEM_INTERACT_BLOCKING
 
 	// Here we check the item used on us (tongs) for an incomplete forge item of some kind to heat
 	var/datum/component/forge_smithable/smithable = tongs_contents?.GetComponent(/datum/component/forge_smithable)
@@ -749,54 +752,83 @@
 	// Here we check the item used on us (tongs) for a stack of some kind to create an object from
 	var/obj/item/stack/search_stack = locate(/obj/item/stack) in tool.contents
 	if(search_stack)
-		var/list/my_list = get_filtered_radial_choices(user)
-		var/user_choice = show_radial_menu(user, src, my_list, radius = 38, require_near = TRUE, tooltips = TRUE)
+		reeturn stack_item_to_forgeable(user, search_stack, tool)
 
-		if(!user_choice)
-			balloon_alert(user, "nothing chosen")
-			return ITEM_INTERACT_SUCCESS
-
-		// Sets up a list of the materials to give to the item later
-		var/list/material_list = list()
-
-		if(search_stack.material_type)
-			material_list[SSmaterials.get_material(search_stack.material_type)] = SHEET_MATERIAL_AMOUNT
-
-		else
-			for(var/material in search_stack.custom_materials)
-				material_list[material] = SHEET_MATERIAL_AMOUNT
-
-		if(search_stack.amount < 1)
-			balloon_alert(user, "not enough of [search_stack]")
-			return ITEM_INTERACT_SUCCESS
-
-		balloon_alert_to_viewers("heating [search_stack]")
-
-		if(!do_after(user, skill_modifier * tool.toolspeed * 2 SECONDS, target = src))
-			balloon_alert_to_viewers("stopped heating [search_stack]")
-			return ITEM_INTERACT_SUCCESS
-
-		if(!search_stack.use(1))
-			balloon_alert(user, "not enough of [search_stack]")
-			return ITEM_INTERACT_SUCCESS
-
-		var/spawn_item = choice_list[user_choice]
-		var/obj/item/forging/incomplete/incomplete_item = new spawn_item(get_turf(src))
-
-		if(material_list)
-			incomplete_item.set_custom_materials(material_list)
-
-		var/datum/component/forge_smithable/smith_component = incomplete_item.GetComponent(/datum/component/forge_smithable)
-		if(!isnull(smith_component))
-			COOLDOWN_START(smith_component, heating_remainder, FORGE_HEATING_DURATION)
-
-		balloon_alert(user, "prepared [search_stack] into [user_choice]")
-		search_stack = locate(/obj/item/stack) in tool.contents
-
-		if(!search_stack)
-			tool.icon_state = "tong_empty"
-		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_SUCCESS
+
+/obj/structure/reagent_forge/stack_item_to_forgeable(mob/living/user, obj/item/stack/search_stack, obj/item/tool = null, burn_hand = FALSE)
+	var/list/my_list = get_filtered_radial_choices(user)
+	var/user_choice = show_radial_menu(user, src, my_list, radius = 38, require_near = TRUE, tooltips = TRUE)
+
+	if(!user_choice)
+		balloon_alert(user, "nothing chosen")
+		return ITEM_INTERACT_BLOCKING
+
+	// Sets up a list of the materials to give to the item later
+	var/list/material_list = list()
+
+	if(search_stack.material_type)
+		material_list[SSmaterials.get_material(search_stack.material_type)] = SHEET_MATERIAL_AMOUNT
+
+	else
+		for(var/material in search_stack.custom_materials)
+			material_list[material] = SHEET_MATERIAL_AMOUNT
+
+	if(search_stack.amount < 1)
+		balloon_alert(user, "not enough of [search_stack]")
+		return ITEM_INTERACT_BLOCKING
+
+	balloon_alert_to_viewers("heating [search_stack]")
+
+	if(!burn_hand)
+		if(!isnull(tool))
+			if(!do_after(user, skill_modifier * tool.toolspeed * 2 SECONDS, target = src))
+				balloon_alert_to_viewers("stopped heating [search_stack]")
+				return ITEM_INTERACT_BLOCKING
+		else
+			stack_trace("[src] had its 'make forgeable item' function called, with burn_hand = false and tool = null! This should never happen!")
+	else
+		to_chat(user, span_warning("Heating the [search_stack] without equipment seems like a bad idea..."))
+		if(!do_after(user, skill_modifier * 5 SECONDS, target = src))
+			balloon_alert_to_viewers("stopped heating [search_stack]")
+			return ITEM_INTERACT_BLOCKING
+
+		var/hand_protected = FALSE
+		var/mob/living/carbon/human/human_user = user
+		if(!istype(human_user) || HAS_TRAIT(human_user, TRAIT_RESISTHEAT) || HAS_TRAIT(human_user, TRAIT_RESISTHEATHANDS))
+			hand_protected = TRUE
+		else if(!istype(human_user.gloves, /obj/item/clothing/gloves))
+			hand_protected = FALSE
+		else
+			var/obj/item/clothing/gloves/gloves = human_user.gloves
+			if(gloves.max_heat_protection_temperature)
+				hand_protected = (gloves.max_heat_protection_temperature > 360)
+		if(!hand_protected)
+			var/hitzone = user.held_index_to_dir(user.active_hand_index) == "r" ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND
+			user.apply_damage(20, BURN, hitzone)
+			to_chat(user, span_danger("You burn your hand putting [search_stack] in [src]!"))
+			user.add_mood_event("burnt_thumb", /datum/mood_event/burnt_thumb)
+
+	if(!search_stack.use(1))
+		balloon_alert(user, "not enough of [search_stack]")
+		return ITEM_INTERACT_BLOCKING
+
+	var/spawn_item = choice_list[user_choice]
+	var/obj/item/forging/incomplete/incomplete_item = new spawn_item(get_turf(src))
+
+	if(material_list)
+		incomplete_item.set_custom_materials(material_list)
+
+	var/datum/component/forge_smithable/smith_component = incomplete_item.GetComponent(/datum/component/forge_smithable)
+	if(!isnull(smith_component))
+		COOLDOWN_START(smith_component, heating_remainder, FORGE_HEATING_DURATION)
+
+	balloon_alert(user, "prepared [search_stack] into [user_choice]")
+	if(!isnull(tool) && length(tool.contents) > 0)
+		tool.icon_state = "tong_empty"
+
+	return ITEM_INTERACT_SUCCESS
+
 
 /obj/structure/reagent_forge/blowrod_act(mob/living/user, obj/item/tool)
 	if(DOING_INTERACTION(user, DOAFTER_SMITHING_FORGE))
