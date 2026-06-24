@@ -6,3 +6,4 @@
 	ammo_type = /obj/item/ammo_casing/stingballer
 	max_ammo = 25
 	ammo_box_multiload = AMMO_BOX_MULTILOAD_ALL
+	custom_materials = null
