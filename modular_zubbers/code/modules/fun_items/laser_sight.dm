@@ -193,10 +193,7 @@
 
 /datum/uplink_item/device_tools/laser_sight_syndie
 	name = "Advanced Tactical Laser Sight"
-	desc = "A black-market Cybersun precision laser sight. The calibrated targeting assembly provides a more significant \
-			accuracy improvement than the commercially available version. Attaches to any item. \
-			Identifiable as contraband by forensics. Can be disassembled to unlock illegal research.\n\n\
-			Multitool to change colour (there may be hidden configuration options). "
+	desc = "A black-market Cybersun precision laser sight, calibrated for a more significant accuracy improvement than the standard unit."
 	item = /obj/item/laser_sight/syndicate
 	cost = 1
 	surplus = 60
