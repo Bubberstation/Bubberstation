@@ -134,7 +134,6 @@
 	var/obj/item/item_parent = parent
 	laser_action = item_parent.add_item_action(/datum/action/item_action/toggle_laser_sight)
 	cursor_tracker = user.overlay_fullscreen("laser_sight", /atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher, 0)
-	cursor_tracker.icon_state = "fullscreen_blocker"
 	cursor_tracker.assign_to_mob(user)
 	RegisterSignal(user, COMSIG_MOB_FIRED_GUN, PROC_REF(on_fired_gun))
 	RegisterSignal(user.client, COMSIG_CLIENT_MOUSEDRAG, PROC_REF(on_mouse_drag))
