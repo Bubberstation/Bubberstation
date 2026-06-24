@@ -24,11 +24,16 @@
 	. = ..()
 	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
 
+/obj/item/melee/baton/security/proc/jedi_spin(mob/living/user)
+	dance_rotate(user, CALLBACK(user, TYPE_PROC_REF(/mob, dance_flip)))
+
 /obj/item/melee/baton/security/staff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == LEAP_ATTACK)
-		final_block_chance -= 35 //It's still worse than a shield and a baton but it's for the cool factor and to not make it that terrible in comparison
-	if(attack_type == PROJECTILE_ATTACK || attack_type == OVERWHELMING_ATTACK)
-		final_block_chance = 0 //Don't bring a staff to a gunfight, and also you aren't going to really block a road roller, if one happened to hit you.
+		final_block_chance -= 30 //It's still worse than a shield and a baton but it's for the cool factor and to not make it that terrible in comparison
+	if(attack_type == PROJECTILE_ATTACK)
+		fina_block_chance -= 40 //Don't rely on this.
+	if(attack_type == OVERWHELMING_ATTACK)
+		final_block_chance = 0 //Don't bring a staff to a road roller roller fight.
 	return ..()
 
 /obj/item/melee/baton/security/staff/loaded
