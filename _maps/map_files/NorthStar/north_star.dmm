@@ -15198,6 +15198,17 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/science/cytology)
+"dLb" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/white/line,
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/iron/dark/telecomms,
+/area/station/tcommsat/server)
 "dLe" = (
 /obj/structure/chair/sofa/bench/left{
 	dir = 4
@@ -17976,11 +17987,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/obj/machinery/airalarm/directional/west,
-/obj/effect/mapping_helpers/airalarm/tlv_no_checks,
-/obj/effect/landmark/atmospheric_sanity/ignore_area,
 /turf/open/floor/iron/smooth_large,
-/area/station/tcommsat/server)
+/area/station/tcommsat/computer)
 "evI" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -33287,12 +33295,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/eva)
-"iqt" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/catwalk_floor/iron_smooth,
-/area/station/tcommsat/server)
 "iqu" = (
 /obj/effect/turf_decal/trimline/green/filled/corner,
 /obj/machinery/light/small/directional/south,
@@ -36849,16 +36851,12 @@
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/floor3/starboard/fore)
 "jkD" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/east{
-	cell_type = /obj/item/stock_parts/power_store/battery/hyper
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
 /obj/machinery/light/small/directional/north,
 /turf/open/floor/iron/smooth_large,
-/area/station/tcommsat/server)
+/area/station/tcommsat/computer)
 "jkH" = (
 /obj/machinery/holopad,
 /turf/open/floor/iron/white,
@@ -44620,6 +44618,18 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/station/service/chapel/office)
+"lcQ" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 8
+	},
+/obj/machinery/airalarm/directional/east,
+/obj/effect/mapping_helpers/airalarm/tlv_no_checks,
+/turf/open/floor/iron/dark/telecomms,
+/area/station/tcommsat/server)
 "lcT" = (
 /obj/structure/railing{
 	dir = 1
@@ -52727,6 +52737,18 @@
 /obj/effect/spawner/random/trash/box,
 /turf/open/floor/pod/light,
 /area/station/maintenance/floor3/starboard/fore)
+"nbd" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/white/line,
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 1
+	},
+/obj/machinery/power/apc/auto_name/directional/north,
+/obj/structure/cable,
+/turf/open/floor/iron/dark/telecomms,
+/area/station/tcommsat/server)
 "nbi" = (
 /obj/effect/turf_decal/trimline/green/warning,
 /obj/effect/spawner/random/structure/table_or_rack,
@@ -135523,9 +135545,9 @@ gwH
 gzT
 mVC
 qyB
-iqt
+ryA
 ibu
-snO
+dLb
 wKg
 wKg
 wKg
@@ -135782,7 +135804,7 @@ sHG
 uxT
 jkD
 qkL
-snO
+dLb
 jRp
 fax
 wKg
@@ -136039,7 +136061,7 @@ kzE
 kzE
 kzE
 kzE
-snO
+nbd
 eKn
 fKU
 wKg
@@ -136297,7 +136319,7 @@ aIV
 aIV
 kzE
 gzO
-ess
+lcQ
 ess
 dsB
 ess
