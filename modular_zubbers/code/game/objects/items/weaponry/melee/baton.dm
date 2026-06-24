@@ -31,7 +31,7 @@
 	if(attack_type == LEAP_ATTACK)
 		final_block_chance -= 30 //It's still worse than a shield and a baton but it's for the cool factor and to not make it that terrible in comparison
 	if(attack_type == PROJECTILE_ATTACK)
-		fina_block_chance -= 40 //Don't rely on this.
+		final_block_chance -= 40 //Don't rely on this.
 	if(attack_type == OVERWHELMING_ATTACK)
 		final_block_chance = 0 //Don't bring a staff to a road roller roller fight.
 	return ..()
