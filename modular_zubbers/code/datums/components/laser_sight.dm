@@ -37,7 +37,7 @@
 	var/list/obj/effect/projectile/tracer/live_tracers
 
 
-/datum/component/laser_sight/Initialize(mapload, start_color, start_is_syndicate)
+/datum/component/laser_sight/Initialize(start_color = "#CB0000", start_is_syndicate = FALSE)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	if(istext(start_color))
@@ -61,8 +61,6 @@
 	RegisterSignal(parent, COMSIG_ATOM_ITEM_INTERACTION, PROC_REF(on_item_interaction))
 	RegisterSignal(parent, COMSIG_MOVABLE_PRE_THROW, PROC_REF(on_pre_throw))
 	RegisterSignal(parent, COMSIG_MOVABLE_PRE_IMPACT, PROC_REF(on_pre_impact))
-	if(isgun(parent))
-		RegisterSignal(parent, COMSIG_GUN_TRY_FIRE, PROC_REF(on_gun_fire))
 
 	// Parent may already be in hand when the component is added (e.g. attaching to a held item).
 	var/obj/item/item_parent = parent
@@ -81,7 +79,6 @@
 		COMSIG_ATOM_ITEM_INTERACTION,
 		COMSIG_MOVABLE_PRE_THROW,
 		COMSIG_MOVABLE_PRE_IMPACT,
-		COMSIG_GUN_TRY_FIRE,
 	))
 
 
@@ -243,8 +240,8 @@
 
 	var/origin_px = 0
 	var/origin_py = 0
-	var/target_px = cursor_tracker.given_x + ICON_SIZE_X / 2
-	var/target_py = cursor_tracker.given_y + ICON_SIZE_Y / 2
+	var/target_px = cursor_tracker.given_x
+	var/target_py = cursor_tracker.given_y
 
 	var/DX = (ICON_SIZE_X * target.x + target_px) - (ICON_SIZE_X * origin.x + origin_px)
 	var/DY = (ICON_SIZE_Y * target.y + target_py) - (ICON_SIZE_Y * origin.y + origin_py)
@@ -295,21 +292,6 @@
 		return
 	bonus_spread_values[MIN_BONUS_SPREAD_INDEX] -= accuracy_bonus
 	bonus_spread_values[MAX_BONUS_SPREAD_INDEX] -= accuracy_bonus
-
-/// When the gun fires with cursor_catcher as the target (because it intercepted the click),
-/// redirect the shot to the actual turf the player clicked on.
-/datum/component/laser_sight/proc/on_gun_fire(obj/item/gun/source, mob/living/user, atom/target, flag, params)
-	SIGNAL_HANDLER
-
-	if(target != cursor_tracker)
-		return NONE
-	var/turf/dest = cursor_tracker?.click_location
-	if(!dest)
-		return NONE
-	cursor_tracker.click_location = null
-	INVOKE_ASYNC(source, TYPE_PROC_REF(/obj/item/gun, fire_gun), dest, user)
-	return COMPONENT_CANCEL_GUN_FIRE
-
 
 
 // ---- Colour picker ----
@@ -459,11 +441,36 @@
 
 /atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher
 	show_when_dead = TRUE
-	var/turf/click_location
 
 /atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher/Click(location, control, params)
-	click_location = location
-	..() // atom/Click → usr.ClickOn(src); on_gun_fire redirects the shot to click_location
+	var/list/modifiers = params2list(params)
+	var/obj/item/held = owner?.get_active_held_item()
+
+	// Ctrl-click: find the best target at the click location so grab/pull works.
+	if(LAZYACCESS(modifiers, CTRL_CLICK))
+		var/atom/target = null
+		for(var/mob/M in location)
+			target = M
+			break
+		if(!target)
+			for(var/obj/O in location)
+				target = O
+				break
+		if(owner)
+			owner.ClickOn(target || location, params)
+		return
+
+	// Right-click or any other modifier: normal click chain handles scope,
+	// shift-examine, alt-click, etc.
+	if(LAZYACCESS(modifiers, RIGHT_CLICK) || LAZYACCESS(modifiers, SHIFT_CLICK) ||
+	   LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, MIDDLE_CLICK) ||
+	   !istype(held, /obj/item/gun))
+		..()
+		return
+
+	// Plain left-click with gun in active hand: fire at the actual click location.
+	if(location)
+		INVOKE_ASYNC(held, TYPE_PROC_REF(/obj/item/gun, fire_gun), location, owner)
 
 /// Only our player's client has this screen object, so no usr check needed.
 /atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher/MouseMove(location, control, params)
