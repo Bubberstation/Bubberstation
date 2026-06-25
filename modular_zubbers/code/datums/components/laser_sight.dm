@@ -462,9 +462,7 @@
 
 	// Right-click or any other modifier: normal click chain handles scope,
 	// shift-examine, alt-click, etc.
-	if(LAZYACCESS(modifiers, RIGHT_CLICK) || LAZYACCESS(modifiers, SHIFT_CLICK) ||
-	   LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, MIDDLE_CLICK) ||
-	   !istype(held, /obj/item/gun))
+	if(LAZYACCESS(modifiers, RIGHT_CLICK) || LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, MIDDLE_CLICK) || !istype(held, /obj/item/gun))
 		..()
 		return
 
