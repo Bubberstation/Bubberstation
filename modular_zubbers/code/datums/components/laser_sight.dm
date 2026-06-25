@@ -61,6 +61,8 @@
 	RegisterSignal(parent, COMSIG_ATOM_ITEM_INTERACTION, PROC_REF(on_item_interaction))
 	RegisterSignal(parent, COMSIG_MOVABLE_PRE_THROW, PROC_REF(on_pre_throw))
 	RegisterSignal(parent, COMSIG_MOVABLE_PRE_IMPACT, PROC_REF(on_pre_impact))
+	if(isgun(parent))
+		RegisterSignal(parent, COMSIG_GUN_TRY_FIRE, PROC_REF(on_gun_fire))
 
 	// Parent may already be in hand when the component is added (e.g. attaching to a held item).
 	var/obj/item/item_parent = parent
@@ -79,6 +81,7 @@
 		COMSIG_ATOM_ITEM_INTERACTION,
 		COMSIG_MOVABLE_PRE_THROW,
 		COMSIG_MOVABLE_PRE_IMPACT,
+		COMSIG_GUN_TRY_FIRE,
 	))
 
 
@@ -112,10 +115,6 @@
 /// Multitool opens the colour picker; screwdriver detaches.
 /datum/component/laser_sight/proc/on_item_interaction(datum/source, mob/living/user, obj/item/tool, list/modifiers)
 	SIGNAL_HANDLER
-
-	if(istype(tool, /obj/item/multitool))
-		INVOKE_ASYNC(src, PROC_REF(change_color), user)
-		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/screwdriver))
 		detach_sight(user)
@@ -242,10 +241,10 @@
 			break
 	target = clipped
 
-	var/origin_px = -(ICON_SIZE_X / 2)
-	var/origin_py = -(ICON_SIZE_Y / 2)
-	var/target_px = cursor_tracker.given_x
-	var/target_py = cursor_tracker.given_y
+	var/origin_px = 0
+	var/origin_py = 0
+	var/target_px = cursor_tracker.given_x + ICON_SIZE_X / 2
+	var/target_py = cursor_tracker.given_y + ICON_SIZE_Y / 2
 
 	var/DX = (ICON_SIZE_X * target.x + target_px) - (ICON_SIZE_X * origin.x + origin_px)
 	var/DY = (ICON_SIZE_Y * target.y + target_py) - (ICON_SIZE_Y * origin.y + origin_py)
@@ -296,6 +295,21 @@
 		return
 	bonus_spread_values[MIN_BONUS_SPREAD_INDEX] -= accuracy_bonus
 	bonus_spread_values[MAX_BONUS_SPREAD_INDEX] -= accuracy_bonus
+
+/// When the gun fires with cursor_catcher as the target (because it intercepted the click),
+/// redirect the shot to the actual turf the player clicked on.
+/datum/component/laser_sight/proc/on_gun_fire(obj/item/gun/source, mob/living/user, atom/target, flag, params)
+	SIGNAL_HANDLER
+
+	if(target != cursor_tracker)
+		return NONE
+	var/turf/dest = cursor_tracker?.click_location
+	if(!dest)
+		return NONE
+	cursor_tracker.click_location = null
+	INVOKE_ASYNC(source, TYPE_PROC_REF(/obj/item/gun, fire_gun), dest, user)
+	return COMPONENT_CANCEL_GUN_FIRE
+
 
 
 // ---- Colour picker ----
@@ -437,6 +451,7 @@
 	name = "laser sight"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/laser_sight_beam.dmi'
 	icon_state = "beam"
+	blend_mode = BLEND_ADD
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 
@@ -444,12 +459,11 @@
 
 /atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher
 	show_when_dead = TRUE
+	var/turf/click_location
 
 /atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher/Click(location, control, params)
-	// Re-route through the client click chain with the actual cursor turf and
-	// all original modifiers, so gun fire, scope, and every other action work normally.
-	if(owner?.client && location)
-		owner.client.Click(location, location, control, params)
+	click_location = location
+	..() // atom/Click → usr.ClickOn(src); on_gun_fire redirects the shot to click_location
 
 /// Only our player's client has this screen object, so no usr check needed.
 /atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher/MouseMove(location, control, params)
