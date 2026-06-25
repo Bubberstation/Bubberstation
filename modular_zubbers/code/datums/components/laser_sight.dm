@@ -180,7 +180,11 @@
 		stop_laser()
 		return
 
-	if(!laser_active || user.get_active_held_item() != parent)
+	var/gun_is_active = (user.get_active_held_item() == parent)
+	// Ghost the cursor tracker when it should not be intercepting mouse events.
+	if(cursor_tracker)
+		cursor_tracker.mouse_opacity = (laser_active && gun_is_active) ? MOUSE_OPACITY_ICON : MOUSE_OPACITY_TRANSPARENT
+	if(!laser_active || !gun_is_active)
 		clear_live_tracers()
 		if(beam_was_visible)
 			beam_was_visible = FALSE
@@ -195,11 +199,10 @@
 	cursor_tracker?.calculate_params()
 	var/turf/origin = get_turf(user)
 	var/turf/target = cursor_tracker?.given_turf
-	if(!origin || !target || origin == target)
+	// Transient condition: beam has no valid target this tick.
+	// Silently drop the beam rather than playing the power-off sound.
+	if(!origin || !target || origin == target || target.z != origin.z)
 		clear_live_tracers()
-		if(beam_was_visible)
-			beam_was_visible = FALSE
-			playsound(user, 'sound/items/night_vision_on.ogg', 30, TRUE, -3, frequency = -1)
 		return
 
 	if(!beam_was_visible)
@@ -239,8 +242,8 @@
 			break
 	target = clipped
 
-	var/origin_px = ICON_SIZE_X / 2
-	var/origin_py = ICON_SIZE_Y / 2
+	var/origin_px = -(ICON_SIZE_X / 2)
+	var/origin_py = -(ICON_SIZE_Y / 2)
 	var/target_px = cursor_tracker.given_x
 	var/target_py = cursor_tracker.given_y
 
@@ -304,9 +307,6 @@
 	var/mode = tgui_alert(user, "Pick a beam colour method.", "Laser Sight", list("Colour Wheel", "Manual Input", "Cancel"))
 	if(isnull(mode) || mode == "Cancel" || QDELETED(src) || QDELETED(parent))
 		return
-	if(!user.can_perform_action(parent, NEED_DEXTERITY | SILENT_ADJACENCY))
-		return
-
 	if(mode == "Colour Wheel")
 		var/picked = tgui_color_picker(user, "Choose beam colour.", "Laser Sight Colour", laser_color)
 		if(isnull(picked) || QDELETED(src) || QDELETED(parent))
@@ -435,9 +435,8 @@
 
 /obj/effect/projectile/tracer/laser_sight_beam
 	name = "laser sight"
-	icon = 'icons/obj/weapons/guns/projectiles_tracer.dmi'
-	icon_state = "pixelbeam_greyscale"
-	blend_mode = BLEND_ADD
+	icon = 'modular_zubbers/icons/obj/weapons/guns/laser_sight_beam.dmi'
+	icon_state = "beam"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 
@@ -447,10 +446,10 @@
 	show_when_dead = TRUE
 
 /atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher/Click(location, control, params)
-	// Swallow clicks — the gun fires through the client's own ClickChain, not atom/Click.
-	// Without this, default_click = TRUE routes the click through atom/Click which targets
-	// this screen object, causing the gun to fire at the overlay instead of the world.
-	return
+	// Re-route through the client click chain with the actual cursor turf and
+	// all original modifiers, so gun fire, scope, and every other action work normally.
+	if(owner?.client && location)
+		owner.client.Click(location, location, control, params)
 
 /// Only our player's client has this screen object, so no usr check needed.
 /atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher/MouseMove(location, control, params)
@@ -483,7 +482,7 @@
 
 
 /// Applies the coloured beam overlay on top of the housing icon.
-/// Called by build_all_button_icons — also called manually when laser_color changes.
+/// Called by build_all_button_icons; also called manually when laser_color changes.
 /datum/action/item_action/toggle_laser_sight/apply_button_overlay(atom/movable/screen/movable/action_button/current_button, force)
 	. = ..()
 	// Cut the previous beam overlay so colour changes replace rather than stack.

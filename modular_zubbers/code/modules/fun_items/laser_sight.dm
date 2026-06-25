@@ -1,8 +1,8 @@
 /*
  * Laser Sight Items
  *
- * obj/item/laser_sight           — standard Cybersun civilian/security unit
- * obj/item/laser_sight/syndicate — syndicate black-market grade, illegal tech
+ * obj/item/laser_sight           - standard Cybersun civilian/security unit
+ * obj/item/laser_sight/syndicate - syndicate black-market grade, illegal tech
  *
  * Apply to any item by clicking it with the laser sight in hand.
  * The parent item gains datum/component/laser_sight.
@@ -58,7 +58,7 @@
 
 
 /// Attempt to attach the sight to another item via non-combat tool interaction.
-/// interact_with_atom fires for items on the floor, in hand, and in containers — unlike afterattack.
+/// interact_with_atom fires for items on the floor, in hand, and in containers, unlike afterattack.
 /obj/item/laser_sight/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!isitem(interacting_with))
 		return NONE
@@ -168,7 +168,7 @@
 
 
 // ===============================================================
-//  Cargo: Security (no access requirement — not dangerous on its own)
+//  Cargo: Security (no access requirement; not dangerous on its own)
 // ===============================================================
 
 /datum/supply_pack/goody/laser_sight_single
