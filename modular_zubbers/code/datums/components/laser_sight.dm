@@ -105,7 +105,7 @@
 	if(rainbow_mode)
 		examine_list += span_notice("\The [parent_item] has a [grade]laser sight attached. Its beam is rapidly changing colors; you can hear music playing faintly from inside it.")
 	else
-		examine_list += span_notice("\The [parent_item] has a [grade]laser sight attached.")
+		examine_list += span_notice("\The [parent_item] has a [grade]laser sight attached. Its beam color is <font color='[laser_color]'>[laser_color]</font>.")
 	examine_list += span_notice("Use a <b>screwdriver</b> to detach it.")
 
 
@@ -240,8 +240,8 @@
 
 	var/origin_px = 0
 	var/origin_py = 0
-	var/target_px = cursor_tracker.given_x
-	var/target_py = cursor_tracker.given_y
+	var/target_px = cursor_tracker.given_x - ICON_SIZE_X / 2
+	var/target_py = cursor_tracker.given_y - ICON_SIZE_Y / 2
 
 	var/DX = (ICON_SIZE_X * target.x + target_px) - (ICON_SIZE_X * origin.x + origin_px)
 	var/DY = (ICON_SIZE_Y * target.y + target_py) - (ICON_SIZE_Y * origin.y + origin_py)
@@ -466,9 +466,11 @@
 		..()
 		return
 
-	// Plain left-click with gun in active hand: fire at the actual click location.
-	if(location)
-		INVOKE_ASYNC(held, TYPE_PROC_REF(/obj/item/gun, fire_gun), location, owner)
+	// Plain left-click with gun in active hand: run the full click chain against the
+	// actual world turf. This fires the gun, respects fire delay, and calls face_atom
+	// so combat-mode cursor tracking works correctly.
+	if(location && owner)
+		owner.ClickOn(location, null)
 
 /// Only our player's client has this screen object, so no usr check needed.
 /atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher/MouseMove(location, control, params)

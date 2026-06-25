@@ -229,3 +229,11 @@
 	design_ids += list("mod_protean_servo", "mod_hat_stabilizer",
 	)
 	. = ..()
+
+
+// SECURITY — laser sight hooks into the Security Equipment node
+/datum/techweb_node/sec_equip/New()
+	. = ..()
+	design_ids += list(
+		"laser_sight",
+	)

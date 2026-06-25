@@ -187,6 +187,26 @@
 	contains = list(/obj/item/laser_sight = 6)
 
 
+
+// ===============================================================
+//  Research design: Security techfab (sec_equip node)
+// ===============================================================
+
+/datum/design/laser_sight
+	name = "Laser Sight"
+	desc = "A Cybersun Industries civilian laser sight module. Improves accuracy when attached to a firearm."
+	id = "laser_sight"
+	build_type = PROTOLATHE
+	materials = list(
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 10,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 5,
+	)
+	build_path = /obj/item/laser_sight
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
 // ===============================================================
 //  Uplink: Syndicate version
 // ===============================================================
