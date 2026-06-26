@@ -106,7 +106,7 @@
 	if(playsound)
 		playsound(parent_item, 'sound/items/weapons/parry.ogg', vol = 45, vary = TRUE, frequency = 1.0, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, volume_preference = /datum/preference/numeric/volume/sound_ambience_volume)
 	if(current_perfects < max_perfect_hits)
-		current_perfects += amount
+		current_perfects = clamp(current_perfects + amount, 0, max_perfect_hits)
 
 /datum/component/forge_smithable/proc/bad_hit(amount = 2, playsound = FALSE)
 	bad_hits_total += amount

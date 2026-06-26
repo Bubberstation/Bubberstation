@@ -249,23 +249,28 @@
 		return returner
 	else
 		if(!isnull(forged_item_on_surface))
-			forged_item_on_surface.forceMove(forge_item)
-			forge_item.icon_state = "tong_full"
-			balloon_alert(user, "took [forged_item_on_surface]")
+			if(forged_item_on_surface.loc != src)
+				forged_item_on_surface.forceMove(forge_item)
+				forge_item.icon_state = "tong_full"
+				balloon_alert(user, "took [forged_item_on_surface]")
+				forged_item_on_surface = null
 			return ITEM_INTERACT_SUCCESS
 		else
 			var/temp_list = generate_stack_held_list_radial()
 			var/option = show_radial_menu(user, src, temp_list, radius = 38, require_near = TRUE, tooltips = TRUE)
-			if(!isnull(stack_item_container[option]))
-				var/obj/item/stack/sheet/output_stack = stack_item_container[option]
-				if(!isnull(output_stack) && output_stack.loc == src)
-					output_stack.tong_act(user, tool)
-					return ITEM_INTERACT_SUCCESS
-			else if(!isnull(forging_complete_container[option]) && forging_complete_container[option].len > 0)
-				var/obj/item/stack/sheet/output_complete = forging_complete_container[option][1]
-				if(!isnull(output_complete) && output_complete.loc == src)
-					output_complete.tong_act(user, tool)
-					return ITEM_INTERACT_SUCCESS
+			if(user.get_active_held_item() != tool)
+				if(!isnull(stack_item_container[option]))
+					var/obj/item/stack/sheet/output_stack = stack_item_container[option]
+					if(!isnull(output_stack) && output_stack.loc == src)
+						output_stack.tong_act(user, tool)
+						return ITEM_INTERACT_SUCCESS
+				else if(!isnull(forging_complete_container[option]) && length(forging_complete_container[option]) > 0)
+					var/obj/item/stack/sheet/output_complete = forging_complete_container[option][1]
+					if(!isnull(output_complete) && output_complete.loc == src)
+						output_complete.tong_act(user, tool)
+						return ITEM_INTERACT_SUCCESS
+			else
+				balloon_alert(user, "you let go of [tool]!")
 
 	return NONE
 
@@ -468,7 +473,7 @@
 			balloon_alert(user, "stashed [my_stack]")
 
 /obj/structure/reagent_crafting_bench/proc/attempt_complete_item_storage(obj/item/forging/complete/complete_item, mob/living/user)
-	if(forging_complete_container[complete_item.type].len >= MAX_FORGING_COMPLETE_ITEMS)
+	if(length(forging_complete_container[complete_item.type]) >= MAX_FORGING_COMPLETE_ITEMS)
 		balloon_alert(user, "[initial(complete_item.name)] drawer is full!")
 	else
 		forging_complete_container[complete_item.type] += complete_item
@@ -477,15 +482,17 @@
 
 /obj/structure/reagent_crafting_bench/proc/clear_empty_stacks()
 	var/obj/item/stack/sheet/my_stack
+	var/list/my_list
 	for(var/stack_type in stack_item_container)
 		my_stack = stack_item_container[stack_type]
 		if(isnull(my_stack) || my_stack.amount < 1)
 			stack_item_container.Remove(stack_type)
 
 	for(var/complete_item_type in forging_complete_container)
-		for(var/obj/item/my_item in forging_complete_container[complete_type])
+		for(var/obj/item/my_item in forging_complete_container[complete_item_type])
 			if(isnull(my_item) || my_item.loc != src)
-				forging_complete_container[complete_type].Remove(my_item)
+				my_list = forging_complete_container[complete_item_type]
+				my_list.Remove(my_item)
 
 /obj/structure/reagent_crafting_bench/proc/generate_stack_held_list_radial()
 	clear_empty_stacks()
@@ -494,12 +501,12 @@
 	var/obj/item/stack/sheet/my_sheet
 	var/obj/item/forging/complete/my_complete
 	for(var/complete_type in forging_complete_container)
-		if(forging_complete_container[complete_type].len > 0)
+		if(length(forging_complete_container[complete_type]) > 0)
 			option = new
 			my_complete = forging_complete_container[complete_type][1]
 			option.image = image(icon = initial(my_complete.icon), icon_state = initial(my_complete.icon_state))
 			option.name = initial(my_complete.name)
-			option.info = forging_complete_container[complete_type].len
+			option.info = length(forging_complete_container[complete_type])
 			returner[complete_type] = option
 	for(var/stack_type in stack_item_container)
 		option = new

@@ -87,11 +87,12 @@
 	new_reagents.trans_to(imbued_reagent, amount = new_reagents.total_volume, copy_only = TRUE, no_react = TRUE)
 
 	apply_smithing_oil_bonus()
-	if(imbued_reagent.reagent_list > 0)
+	parent_item.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+	if(length(imbued_reagent.reagent_list) > 0)
 		var/new_color = mix_color_from_reagents(imbued_reagent.reagent_list)
 		if(length(new_color) > 7) //remove the transparency stuff
 			new_color = copytext(new_color, 1, 8) + "FF"
-		parent_item.color = new_color
+		parent_item.add_atom_colour(color_transition_filter(new_color, SATURATION_OVERRIDE), WASHABLE_COLOUR_PRIORITY)
 
 	if(clear_source_reagents)
 		new_reagents.clear_reagents()
