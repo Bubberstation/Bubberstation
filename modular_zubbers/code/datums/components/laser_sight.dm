@@ -61,8 +61,9 @@
 	RegisterSignal(parent, COMSIG_ATOM_ITEM_INTERACTION, PROC_REF(on_item_interaction))
 	RegisterSignal(parent, COMSIG_MOVABLE_PRE_THROW, PROC_REF(on_pre_throw))
 	RegisterSignal(parent, COMSIG_MOVABLE_PRE_IMPACT, PROC_REF(on_pre_impact))
+	if(isgun(parent))
+		RegisterSignal(parent, COMSIG_GUN_TRY_FIRE, PROC_REF(on_gun_fire))
 
-	// Parent may already be in hand when the component is added (e.g. attaching to a held item).
 	var/obj/item/item_parent = parent
 	var/mob/holder = item_parent.loc
 	if(ismob(holder))
@@ -79,6 +80,7 @@
 		COMSIG_ATOM_ITEM_INTERACTION,
 		COMSIG_MOVABLE_PRE_THROW,
 		COMSIG_MOVABLE_PRE_IMPACT,
+		COMSIG_GUN_TRY_FIRE,
 	))
 
 
@@ -177,7 +179,6 @@
 		return
 
 	var/gun_is_active = (user.get_active_held_item() == parent)
-	// Ghost the cursor tracker when it should not be intercepting mouse events.
 	if(cursor_tracker)
 		cursor_tracker.mouse_opacity = (laser_active && gun_is_active) ? MOUSE_OPACITY_ICON : MOUSE_OPACITY_TRANSPARENT
 	if(!laser_active || !gun_is_active)
@@ -192,11 +193,8 @@
 		laser_color = hue_to_rgb(rainbow_hue)
 		laser_action?.build_all_button_icons(force = TRUE)
 
-	cursor_tracker?.calculate_params()
 	var/turf/origin = get_turf(user)
 	var/turf/target = cursor_tracker?.given_turf
-	// Transient condition: beam has no valid target this tick.
-	// Silently drop the beam rather than playing the power-off sound.
 	if(!origin || !target || origin == target || target.z != origin.z)
 		clear_live_tracers()
 		return
@@ -204,6 +202,22 @@
 	if(!beam_was_visible)
 		beam_was_visible = TRUE
 		playsound(user, 'sound/items/night_vision_on.ogg', 30, TRUE, -3)
+
+	var/mob/living/living_user = user
+	if(living_user?.combat_mode && user.client?.prefs?.read_preference(/datum/preference/toggle/face_cursor_combat_mode))
+		user.face_atom(target)
+
+	var/atom/top = null
+	for(var/mob/M in target)
+		top = M
+		break
+	if(!top)
+		for(var/obj/O in target)
+			if(O.mouse_opacity)
+				top = O
+				break
+	if(cursor_tracker)
+		cursor_tracker.name = top?.name || target.name
 
 	clear_live_tracers()
 	draw_beam(origin, target)
@@ -214,7 +228,6 @@
  * Visible to all players in range as a world object.
  */
 /datum/component/laser_sight/proc/draw_beam(turf/origin, turf/target)
-	// Clip beam at the first dense obstruction between origin and target.
 	var/turf/clipped = target
 	var/list/line = get_line(origin, target)
 	for(var/turf/T as anything in line)
@@ -225,7 +238,7 @@
 			break
 		var/blocked = FALSE
 		for(var/obj/O in T)
-			if(O.density && !istype(O, /obj/item))
+			if(O.density && O.opacity && !istype(O, /obj/item) && !(O.pass_flags_self & (PASSGLASS|PASSWINDOW)))
 				blocked = TRUE
 				break
 		if(!blocked)
@@ -256,7 +269,6 @@
 	var/pixel_length = sqrt(DX ** 2 + DY ** 2)
 	var/scaling = pixel_length / ICON_SIZE_X
 
-	// Midpoint in world-pixel space, then decomposed into tile + sub-tile offset
 	var/mid_world_x = (ICON_SIZE_X * origin.x + origin_px + ICON_SIZE_X * target.x + target_px) * 0.5
 	var/mid_world_y = (ICON_SIZE_Y * origin.y + origin_py + ICON_SIZE_Y * target.y + target_py) * 0.5
 	var/mid_tile_x = round(mid_world_x / ICON_SIZE_X)
@@ -279,6 +291,7 @@
 	beam.pixel_y = mid_py
 	beam.transform = M
 	beam.plane = ABOVE_LIGHTING_PLANE
+	beam.add_overlay(emissive_appearance(beam.icon, beam.icon_state, beam, effect_type = EMISSIVE_NO_BLOOM))
 	QDEL_IN(beam, LASER_SIGHT_TRACER_LIFE)
 	live_tracers += beam
 
@@ -353,6 +366,8 @@
 	dropped.saved_color = saved
 	dropped.saved_rainbow = saved_rainbow
 	dropped.saved_is_syndicate = saved_syndie
+	if(!saved_rainbow)
+		dropped.color = saved
 
 	qdel(src)
 
@@ -362,17 +377,32 @@
 /// Range bonus multiplier for laser-guided non-firearm throws.
 #define LASER_THROW_RANGE_MULT 2
 
+
+/datum/component/laser_sight/proc/on_gun_fire(obj/item/gun/source, mob/living/user, atom/target, flag, params)
+	SIGNAL_HANDLER
+	if(target != cursor_tracker)
+		return NONE
+	var/turf/dest = cursor_tracker?.given_turf
+	if(!dest)
+		return NONE
+	INVOKE_ASYNC(source, TYPE_PROC_REF(/obj/item/gun, fire_gun), dest, user)
+	return COMPONENT_CANCEL_GUN_FIRE
+
 /datum/component/laser_sight/proc/on_pre_throw(atom/movable/source, list/throw_args)
 	SIGNAL_HANDLER
 	if(isgun(parent))
 		return
-	var/atom/throw_target = throw_args[1]
-	// Laser guidance special case: direct deposit into disposal bins, bypassing throw physics entirely.
-	// This avoids the "bounces off rim" message since the throw never resolves normally.
-	if(istype(throw_target, /obj/machinery/disposal))
-		INVOKE_ASYNC(src, PROC_REF(laser_deposit), throw_args[4], throw_target)
-		return COMPONENT_CANCEL_THROW
-	// Non-bin throw: boost range.
+	var/turf/aim = cursor_tracker?.given_turf
+	if(aim)
+		var/obj/machinery/disposal/D = locate(/obj/machinery/disposal) in aim
+		if(D)
+			INVOKE_ASYNC(src, PROC_REF(laser_deposit), throw_args[4], D)
+			return COMPONENT_CANCEL_THROW
+		throw_args[1] = aim
+	else
+		if(istype(throw_args[1], /obj/machinery/disposal))
+			INVOKE_ASYNC(src, PROC_REF(laser_deposit), throw_args[4], throw_args[1])
+			return COMPONENT_CANCEL_THROW
 	throw_args[2] = round(throw_args[2] * LASER_THROW_RANGE_MULT)
 
 
@@ -384,9 +414,7 @@
 	item_parent.forceMove(bin)
 
 
-/// Fires before hitby() runs on the impact target.
-/// If the target is a disposal bin, skip normal impact (suppressing the bounce message)
-/// and directly deposit the item.
+/// On disposal-bin impact: deposits cleanly and suppresses the bounce message.
 /datum/component/laser_sight/proc/on_pre_impact(atom/movable/source, atom/hit_atom, datum/thrownthing/throwingdatum)
 	SIGNAL_HANDLER
 	if(!istype(hit_atom, /obj/machinery/disposal))
@@ -409,6 +437,7 @@
 			return
 	if(over_location)
 		cursor_tracker.given_turf = over_location
+
 
 
 // ---- HoxHud-style hue cycling ----
@@ -441,41 +470,136 @@
 
 /atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher
 	show_when_dead = TRUE
+	interaction_flags_atom = INTERACT_ATOM_MOUSEDROP_IGNORE_CHECKS
+	var/atom/drag_candidate
+	var/atom/last_hover_atom
 
 /atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
-	var/obj/item/held = owner?.get_active_held_item()
+	var/turf/aim = given_turf
 
-	// Ctrl-click: find the best target at the click location so grab/pull works.
 	if(LAZYACCESS(modifiers, CTRL_CLICK))
 		var/atom/target = null
-		for(var/mob/M in location)
+		for(var/mob/M in aim)
+			if(M == owner)
+				continue
 			target = M
 			break
 		if(!target)
-			for(var/obj/O in location)
+			for(var/obj/O in aim)
 				target = O
 				break
 		if(owner)
-			owner.ClickOn(target || location, params)
+			owner.ClickOn(target || aim, params)
 		return
 
-	// Right-click or any other modifier: normal click chain handles scope,
-	// shift-examine, alt-click, etc.
-	if(LAZYACCESS(modifiers, RIGHT_CLICK) || LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, MIDDLE_CLICK) || !istype(held, /obj/item/gun))
+	if(LAZYACCESS(modifiers, MIDDLE_CLICK))
 		..()
 		return
 
-	// Plain left-click with gun in active hand: run the full click chain against the
-	// actual world turf. This fires the gun, respects fire delay, and calls face_atom
-	// so combat-mode cursor tracking works correctly.
-	if(location && owner)
-		owner.ClickOn(location, null)
+	if(LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, ALT_CLICK))
+		var/atom/examine_target = null
+		if(aim)
+			for(var/mob/M in aim)
+				if(M != owner)
+					examine_target = M
+					break
+			if(!examine_target)
+				for(var/obj/item/I in aim)
+					if(I.mouse_opacity)
+						examine_target = I
+						break
+			if(!examine_target)
+				for(var/obj/O in aim)
+					if(O.mouse_opacity && !istype(O, /obj/structure/cable) && !istype(O, /obj/machinery/atmospherics))
+						examine_target = O
+						break
+		if(owner)
+			owner.ClickOn(examine_target || aim, params)
+		return
 
-/// Only our player's client has this screen object, so no usr check needed.
+	var/mob/living/lowner = owner
+	if(lowner?.throw_mode && aim)
+		owner.ClickOn(aim, "catcher=1")
+		return
+	..()
+
+/atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher/MouseDown(location, control, params)
+	. = ..()
+	mouse_params = params
+	calculate_params()
+	var/turf/aim = given_turf
+	if(!aim)
+		return
+	var/atom/found = null
+	for(var/obj/item/I in aim)
+		if(I.mouse_opacity)
+			found = I
+			break
+	if(!found)
+		for(var/obj/O in aim)
+			if(O.mouse_opacity && !istype(O, /obj/structure/cable) && !istype(O, /obj/machinery/atmospherics))
+				found = O
+				break
+	if(!found)
+		for(var/mob/M in aim)
+			if(M != owner)
+				found = M
+				break
+	drag_candidate = found
+
+	var/list/md_mods = params2list(params)
+	if(!LAZYACCESS(md_mods, RIGHT_CLICK) && istype(owner?.get_active_held_item(), /obj/item/gun))
+		var/mob/living/lowner = owner
+		if(!lowner?.throw_mode)
+			owner.ClickOn(src, params)
+
+
+/atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)
+	var/atom/real_source = drag_candidate
+	drag_candidate = null
+	if(!real_source || !over || isturf(real_source))
+		return
+	if(ismob(real_source) && istype(over, /obj/structure/closet))
+		return
+	if(istype(real_source, /obj/item) && (ismob(over) || istype(over, /atom/movable/screen)))
+		var/mob/target_mob = ismob(over) ? over : user
+		target_mob.put_in_hands(real_source)
+		return
+	real_source.mouse_drop_dragged(over, user, src_location, over_location, params)
+	over.mouse_drop_receive(real_source, user, params)
+
+
+/atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher/proc/_find_hover_atom()
+	var/turf/aim = given_turf
+	if(!aim)
+		return null
+	for(var/mob/M in aim)
+		if(M != owner)
+			return M
+	for(var/obj/item/I in aim)
+		if(I.mouse_opacity)
+			return I
+	for(var/obj/O in aim)
+		if(O.mouse_opacity && !istype(O, /obj/structure/cable) && !istype(O, /obj/machinery/atmospherics))
+			return O
+	return aim
+
+
+/atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher/MouseEntered(location, control, params)
+	calculate_params()
+	var/atom/top = _find_hover_atom()
+	SSmouse_entered.hovers[owner.client] = top || src
+	last_hover_atom = top
+
+
 /atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher/MouseMove(location, control, params)
 	mouse_params = params
 	calculate_params()
+	var/atom/top = _find_hover_atom()
+	if(top != last_hover_atom)
+		last_hover_atom = top
+		SSmouse_entered.hovers[owner.client] = top || src
 
 
 // ---- Toggle action ----
@@ -506,7 +630,6 @@
 /// Called by build_all_button_icons; also called manually when laser_color changes.
 /datum/action/item_action/toggle_laser_sight/apply_button_overlay(atom/movable/screen/movable/action_button/current_button, force)
 	. = ..()
-	// Cut the previous beam overlay so colour changes replace rather than stack.
 	if(button_beam_overlay)
 		current_button.cut_overlay(button_beam_overlay)
 		button_beam_overlay = null

@@ -129,6 +129,13 @@
 
 // ---- Syndicate subtype ----
 
+/obj/item/laser_sight/examine(mob/user)
+	. = ..()
+	if(saved_rainbow)
+		. += span_notice("Its beam cycles through all colors.")
+	else
+		. += span_notice("Its beam color is <font color='[saved_color]'>[saved_color]</font>.")
+
 /obj/item/laser_sight/syndicate
 	name = "advanced tactical laser sight"
 	desc = "A Cybersun Industries black-market grade tactical laser sight module, precision-calibrated for improved accuracy. \
