@@ -14,13 +14,28 @@
 	var/completion_force_penalty = 0
 	//keeps track of how much force was given from perfect hammering
 	var/perfect_forging_bonus = 0
-	//how much stamina damage to apply on a rightclick, & if the weapon can do so
-	var/stamina_damage = 0
-	var/can_nonlethal_altfire = FALSE
 
+	//chance to self damage from being clumsy
+	var/clumsy_backfire_chance = 70
+
+	//vars for nonlethal strikes
+	//can this item nonlethal attack?
+	var/can_nonlethal_altfire = FALSE
+	//time between nonlethal attacks
+	var/nonlethal_strike_cooldown = 4 SECONDS
+	COOLDOWN_DECLARE(nonlethal_strike_cooldown_timer)
+	/// The path of the default sound to play when we stun something.
+	var/on_stun_sound = 'sound/effects/woodhit.ogg'
 	//verbs to use when secondary attacking
 	var/list/secondary_attack_verb_continuous = list("shaft-strikes")
 	var/list/secondary_attack_verb_simple = list("shaft-strike")
+
+	//below numbers are multiplied by the weapon's force
+	//how much stamina damage to apply on a rightclick
+	var/stamina_damage_multiplier = 2
+	//how long the victim should be knockdowned
+	var/knockdown_time_multiplier = 0.5 DECISECONDS
+
 
 /obj/item/melee/forged_reagent_weapon/examine(mob/user)
 	. = ..()
@@ -67,16 +82,90 @@
 		incompletion_effects = list(FORGE_EFFECT_FORCE, FORGE_EFFECT_ARMORPEN))
 
 // nonlethal secondary attack
-/obj/item/melee/forged_reagent_weapon/pre_attack_secondary(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
+/obj/item/melee/forged_reagent_weapon/pre_attack(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
-	if(can_nonlethal_altfire && istype(target, /mob/living))
-		// when we continue to attack, deal 0 (brute) damage (just stun)
-		SET_ATTACK_FORCE(attack_modifiers, 0)
-		var/mob/living/livingtarget = target
-		livingtarget.apply_damage(stamina_damage, STAMINA)
-		attack_verb_continuous = secondary_attack_verb_continuous
-		attack_verb_simple = secondary_attack_verb_simple
-	return SECONDARY_ATTACK_CONTINUE_CHAIN
+	if(.)
+		return TRUE
+	if(!ishuman(target))
+		return FALSE // bashing objects
+
+	// clumsy people redirect this attack - yes, this bypasses IWASBATONED and such
+	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
+		user.visible_message(
+			span_danger("[user] accidentally hits [user.p_them()]self over the head with [src]! What a doofus!"),
+			span_userdanger("You accidentally hit yourself over the head with [src]!"),
+			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
+		)
+
+		finalize_baton_attack(user, user, clumsy = TRUE)
+		user.apply_damage(2 * force, BRUTE, BODY_ZONE_HEAD, attacking_item = src)
+		log_combat(user, user, "accidentally stun attacked [user.p_them()]self due to their clumsiness", src)
+		user.do_attack_animation(user)
+		user.changeNext_move(attack_speed)
+		return TRUE // you hit yourself, nerd
+
+	var/right_clicked = LAZYACCESS(modifiers, RIGHT_CLICK)
+	if(can_nonlethal_altfire && right_clicked)
+		if(!COOLDOWN_FINISHED(nonlethal_strike_cooldown_timer))
+			// when we continue to attack, deal 0 (brute) damage (just stun)
+			SET_ATTACK_FORCE(attack_modifiers, 0)
+			var/mob/living/livingtarget = target
+			var/stamina_damage = force * stamina_damage_multiplier
+			var/knockdown_time = force * knockdown_time_multiplier
+
+			livingtarget.apply_damage(stamina_damage, STAMINA)
+			attack_verb_continuous = secondary_attack_verb_continuous
+			attack_verb_simple = secondary_attack_verb_simple
+			LAZYSET(attack_modifiers, STUN_ATTACK, TRUE)
+		else
+			return TRUE //if we cannot nonlethal and the player is attempting, cancel the attack
+	return FALSE
+
+/obj/item/melee/forged_reagent_weapon/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
+	if(QDELETED(target) || !LAZYACCESS(attack_modifiers, STUN_ATTACK))
+		return
+
+	finalize_nonlethal_strike(target, user)
+
+	var/list/desc = get_stun_description(target, user)
+
+	if(desc)
+		target.visible_message(desc["visible"], desc["local"], visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE)
+
+/// Wrapper for calling "stun()" and doing relevant vfx/sfx
+/obj/item/melee/forged_reagent_weapon/proc/finalize_nonlethal_strike(mob/living/target, mob/living/user, clumsy = FALSE)
+	COOLDOWN_START(src, nonlethal_strike_cooldown_timer, nonlethal_strike_cooldown)
+	if(on_stun_sound)
+		playsound(src, on_stun_sound, on_stun_volume, TRUE, -1)
+	if(baton_effect(target, user, null, clumsy) && user)
+		set_batoned(target, user, cooldown)
+		log_combat(user, target, "stunned", src.name)
+
+/obj/item/melee/forged_reagent_weapon/proc/baton_effect(mob/living/target, mob/living/user, stun_override, clumsy)
+	if(iscyborg(target))
+		return
+
+	var/trait_check = HAS_TRAIT(target, TRAIT_BATON_RESISTANCE)
+	if(ishuman(target))
+		var/mob/living/carbon/human/human_target = target
+		if(prob(force_say_chance))
+			human_target.force_say()
+	var/armour_block = target.run_armor_check(BODY_ZONE_CHEST, armour_type_against_stun, null, null, stun_armour_penetration)
+	target.apply_damage(stamina_damage, STAMINA, blocked = armour_block)
+	if(!trait_check)
+		target.Knockdown((isnull(stun_override) ? knockdown_time : stun_override))
+	additional_effects_non_cyborg(target, user)
+	SEND_SIGNAL(target, COMSIG_MOB_BATONED, user, src)
+	return TRUE
+
+/// Used in marking a target as being hit by a baton
+/obj/item/melee/forged_reagent_weapon/proc/set_batoned(mob/living/target, mob/living/user, cooldown)
+	PRIVATE_PROC(TRUE)
+	if(!cooldown)
+		return
+	var/user_ref = REF(user) // avoids harddels.
+	ADD_TRAIT(target, TRAIT_IWASBATONED, user_ref)
+	addtimer(TRAIT_CALLBACK_REMOVE(target, TRAIT_IWASBATONED, user_ref), cooldown)
 
 /obj/item/melee/forged_reagent_weapon/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	attack_verb_continuous = initial(attack_verb_continuous)
@@ -90,7 +179,7 @@
 		context[SCREENTIP_CONTEXT_LMB] = "Attack"
 	else
 		context[SCREENTIP_CONTEXT_LMB] = "Attack"
-		if(can_nonlethal_altfire)
+		if(can_nonlethal_altfire && )
 			context[SCREENTIP_CONTEXT_RMB] = "Non-lethally Attack"
 
 	return CONTEXTUAL_SCREENTIP_SET
