@@ -470,6 +470,7 @@
 
 /atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher
 	show_when_dead = TRUE
+	plane = CLICKCATCHER_PLANE
 	interaction_flags_atom = INTERACT_ATOM_MOUSEDROP_IGNORE_CHECKS
 	var/atom/drag_candidate
 	var/atom/last_hover_atom
@@ -547,12 +548,6 @@
 				found = M
 				break
 	drag_candidate = found
-
-	var/list/md_mods = params2list(params)
-	if(!LAZYACCESS(md_mods, RIGHT_CLICK) && istype(owner?.get_active_held_item(), /obj/item/gun))
-		var/mob/living/lowner = owner
-		if(!lowner?.throw_mode)
-			owner.ClickOn(src, params)
 
 
 /atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)
