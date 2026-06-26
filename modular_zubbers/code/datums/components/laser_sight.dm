@@ -557,12 +557,19 @@
 		return
 	if(ismob(real_source) && istype(over, /obj/structure/closet))
 		return
+	// Drag to self or inventory slot: pick up.
 	if(istype(real_source, /obj/item) && (ismob(over) || istype(over, /atom/movable/screen)))
 		var/mob/target_mob = ismob(over) ? over : user
 		target_mob.put_in_hands(real_source)
 		return
-	real_source.mouse_drop_dragged(over, user, src_location, over_location, params)
-	over.mouse_drop_receive(real_source, user, params)
+	// Drag to world position: move the atom there directly.
+	// base_mouse_drop_handler procs are no-ops for floor repositioning
+	// because src_location is null (cursor_catcher has no world position).
+	var/turf/dest = isturf(over) ? over : get_turf(over)
+	if(!dest)
+		dest = over_location
+	if(dest)
+		real_source.Move(dest)
 
 
 /atom/movable/screen/fullscreen/cursor_catcher/laser_sight_catcher/proc/_find_hover_atom()
