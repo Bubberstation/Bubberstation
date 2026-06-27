@@ -124,6 +124,7 @@
 
 				//hands
 				/obj/item/clothing/gloves/ball_mittens = 8,
+				/obj/item/clothing/gloves/ball_mittens/loadout_paw = 5,
 			),
 		),
 			list(
@@ -173,6 +174,7 @@
 		/obj/item/clothing/neck/size_collar = 8,//It only works in the Interlink anyways
 		/obj/item/toy/plush/cescrewsplush = 1,
 		/obj/item/toy/plush/sinvox = 1,
+		/obj/item/skillchip/mkiiultra = 2,
 		)
 
 	contraband = list(

@@ -194,6 +194,12 @@
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	strip_delay = 8 SECONDS
 
+/obj/item/clothing/suit/armor/hos/viro/vest
+	name = "Head of Security's Plate Carrier"
+	desc = "A plate carrier enhanced with a special alloy for some extra protection and style for those with a commanding presence."
+	icon_state = "hos_platecarrier"
+	inhand_icon_state = "armor"
+
 /datum/armor/armor_hos
 	melee = 30
 	bullet = 30
@@ -247,3 +253,16 @@
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/hooded/cultrobes
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/head/hooded/cult_hoodie
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/suit/hooded/cultlain_robe
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/head/hooded/cultlain_hood
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
