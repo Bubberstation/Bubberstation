@@ -314,7 +314,7 @@
 
 /datum/bodypart_overlay/mutant/genital/testicles
 	feature_key = ORGAN_SLOT_TESTICLES
-	layers = EXTERNAL_ADJACENT | EXTERNAL_BEHIND
+	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
 	layer_offset = TESTICLES_LAYER_OFFSET
 
 /obj/item/organ/genital/testicles/update_genital_icon_state()
