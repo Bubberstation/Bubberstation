@@ -207,7 +207,6 @@
 	else
 		owner.remove_movespeed_modifier(/datum/movespeed_modifier/fish_flopping)
 
-
 ///Tail for fish DNA-infused spacemen. It provides a speed buff while in water. It's also needed for the crawl speed bonus once the threshold is reached.
 /obj/item/organ/tail/fish
 	name = "fish tail"
