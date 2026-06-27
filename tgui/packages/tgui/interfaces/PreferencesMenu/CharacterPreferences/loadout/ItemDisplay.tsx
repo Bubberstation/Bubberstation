@@ -21,6 +21,20 @@ export function ItemIcon(props: Props) {
   const { item, scale = 3 } = props;
   const icon_to_use = item.icon;
   const icon_state_to_use = item.icon_state;
+  //BUBBER EDIT START - dyamic uniforms
+  if (item.image) {
+    return (
+      <img
+        src={`data:image/png;base64,${item.image}`}
+        style={{
+          width: `${32 * scale}px`,
+          height: `${32 * scale}px`,
+          imageRendering: 'pixelated',
+        }}
+      />
+    );
+  }
+  //BUBBER EDIT END - dynamic uniforms
 
   if (!icon_to_use || !icon_state_to_use) {
     return (
@@ -67,6 +81,7 @@ export function ItemDisplay(props: DisplayProps) {
         style={{ textTransform: 'capitalize', zIndex: '1' }}
         tooltip={item.name}
         tooltipPosition={'bottom'}
+        base64={item.image} //BUBBER EDIT ADDITION: Dynamic uniform icons
         dmIcon={item.icon}
         dmIconState={item.icon_state}
         onClick={() =>
