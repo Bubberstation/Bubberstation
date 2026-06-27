@@ -47,7 +47,7 @@
 
 /obj/item/organ/heart/Remove(mob/living/carbon/heartless, special, movement_flags)
 	. = ..()
-	if(!special)
+	if(!special && !QDELETED(src)) // BUBBER EDIT CHANGE - ADD !QDELETED FIX FOR HARD DELS
 		addtimer(CALLBACK(src, PROC_REF(stop_if_unowned)), 12 SECONDS, TIMER_DELETE_ME)
 	beat = BEAT_NONE
 	owner?.stop_sound_channel(CHANNEL_HEARTBEAT)
