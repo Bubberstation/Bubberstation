@@ -37,7 +37,7 @@
 	selfcharge = 1
 	charge_delay = 7.5
 	self_charge_amount = STANDARD_ENERGY_GUN_SELF_CHARGE_RATE / 2
-	can_charge = FALSE
+	can_charge = TRUE
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 8,
 		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 1.5,
