@@ -59,6 +59,7 @@
 	)
 
 /obj/item/organ/tongue/teshari
+	name = "teshari tongue"
 	liked_foodtypes = SEAFOOD | VEGETABLES | NUTS
 	disliked_foodtypes = GROSS | GRAIN
 

@@ -718,3 +718,9 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/akula_digi.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/akula_teshari.dmi' // for the fishari out there
+
+/obj/item/clothing/under/blastwave
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/uniform_teshari.dmi'
+
+/obj/item/clothing/under/colonial/nri_police
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/uniform_teshari.dmi'

@@ -327,9 +327,13 @@
 
 	if(client)
 		var/erp_status_pref = client.prefs.read_preference(/datum/preference/choiced/erp_status)
+		var/free_use_pref = client.prefs.read_preference(/datum/preference/toggle/erp_free_use)
 		if(erp_status_pref && !CONFIG_GET(flag/disable_erp_preferences))
 			. += EXAMINE_SECTION_BREAK
-			. += span_info("ERP Status: [span_revenboldnotice(erp_status_pref)]")
+			. += span_info("ERP Status: [span_revenboldnotice(erp_status_pref)][free_use_pref ? "[span_revenboldnotice(" - Free Use")]" : ""]")
+		var/line = get_gender_attraction_string(client.prefs.read_preference(/datum/preference/choiced/display_gender), client.prefs.read_preference(/datum/preference/choiced/attraction))
+		if(line)
+			. += span_info(line)
 	// SKYRAT EDIT END
 
 	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE, user, .)
