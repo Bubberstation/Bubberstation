@@ -571,6 +571,7 @@
 	desc = "You see a pair of asscheeks."
 	icon = 'modular_skyrat/master_files/icons/obj/genitals/butt.dmi'
 	icon_state = "butt"
+	drop_when_organ_spilling = FALSE
 	slot = ORGAN_SLOT_BUTT
 	zone = BODY_ZONE_PRECISE_GROIN
 	bodypart_overlay = /datum/bodypart_overlay/mutant/genital/butt
