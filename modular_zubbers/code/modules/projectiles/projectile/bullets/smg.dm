@@ -15,3 +15,11 @@
 	name = "4.6x30mm incendiary bullet"
 	damage = 10
 	fire_stacks = 1
+
+/obj/projectile/bullet/c45/lesser_reaper
+	name = ".45 reaper pellet"
+	icon = 'modular_zubbers/icons/obj/weapons/guns/projectiles.dmi'
+	icon_state = "reaper"
+	damage = 50
+	armour_penetration = 30
+	speed = 1.75

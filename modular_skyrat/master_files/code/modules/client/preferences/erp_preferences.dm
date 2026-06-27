@@ -155,7 +155,6 @@
 		"Ask (L)OOC",
 		"No",
 		"Yes",
-		"Free Use",
 	)
 
 /datum/preference/choiced/erp_status/create_default_value()
@@ -180,6 +179,33 @@
 /datum/preference/choiced/erp_status/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
 
+/datum/preference/toggle/erp_free_use
+	category = PREFERENCE_CATEGORY_OOC_PREFS
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "erp_free_use"
+
+/datum/preference/toggle/erp_free_use/is_accessible(datum/preferences/preferences)
+	if (!..(preferences))
+		return FALSE
+
+	if(CONFIG_GET(flag/disable_erp_preferences))
+		return FALSE
+
+	return preferences.read_preference(/datum/preference/toggle/master_erp_preferences)
+
+/datum/preference/toggle/erp_free_use/deserialize(input, datum/preferences/preferences)
+	if(CONFIG_GET(flag/disable_erp_preferences))
+		return FALSE
+	if(!preferences.read_preference(/datum/preference/toggle/master_erp_preferences))
+		return FALSE
+	return ..()
+
+/datum/preference/toggle/erp_free_use/create_default_value()
+	return FALSE
+
+/datum/preference/toggle/erp_free_use/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
 /datum/preference/choiced/erp_status_nc
 	category = PREFERENCE_CATEGORY_OOC_PREFS
 	savefile_identifier = PREFERENCE_CHARACTER
@@ -193,6 +219,7 @@
 		"Yes",
 		"Yes - Dom",
 		"Yes - Switch",
+		"Yes - Sub",
 	)
 
 /datum/preference/choiced/erp_status_nc/create_default_value()

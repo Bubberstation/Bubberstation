@@ -8,6 +8,47 @@
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/captain.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/cso.json'
 
+/datum/greyscale_config/security_uniform
+	name = "Security Uniform"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	greyscale_component_style_type = /datum/greyscale_component_style/security_uniform
+	greyscale_component_config_states = list("recolorable_security_uniform", "rsecurity")
+
+/datum/greyscale_config/security_uniform/New()
+	InitializeGreyscaleComponentStyleConfig()
+
+/datum/greyscale_config/security_uniform/Refresh(loadFromDisk = FALSE)
+	return RefreshGreyscaleComponentStyleConfig(loadFromDisk)
+
+/datum/greyscale_config/security_uniform/worn
+	name = "Security Uniform (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+
+/datum/greyscale_config/security_uniform/worn/digi
+	name = "Security Uniform (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+
+/datum/greyscale_config/security_cap
+	name = "Security Cap"
+	icon_file = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	greyscale_component_style_type = /datum/greyscale_component_style/security_cap
+	greyscale_component_config_states = list("security_cap")
+
+/datum/greyscale_config/security_cap/New()
+	InitializeGreyscaleComponentStyleConfig()
+
+/datum/greyscale_config/security_cap/Refresh(loadFromDisk = FALSE)
+	return RefreshGreyscaleComponentStyleConfig(loadFromDisk)
+
+/datum/greyscale_config/security_cap/worn
+	name = "Security Cap (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	greyscale_component_config_state_overrides = list(
+		"security_cap" = "security_capg",
+		"security_cap_accs_front" = "security_capg_accs_backing",
+		"security_cap_accs_logo" = "security_capg_accs_logo",
+	)
+
 /datum/greyscale_config/gi/worn/digi
 	name = "Gi (Worn, Digi)"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/costume_digi.dmi'
@@ -243,3 +284,7 @@
 /datum/greyscale_config/jester_shoes/worn/teshari
 	name = "Jester Shoes (Worn, Teshari)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/datum/greyscale_config/overalls/worn/teshari
+	name = "Overalls (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/utility_teshari.dmi'

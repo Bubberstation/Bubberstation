@@ -455,3 +455,46 @@
 	name = "'Dagger' Designer Mantle (Worn)"
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/neck/dagger_mantle/dagger_mantle_worn.json'
 ///Greyscale clothing Nova port end
+
+// Aeri's Cheerleader Outfit
+// Sprites by Onule
+
+/datum/greyscale_config/ba_cheerleader
+	name = "BA Cheerleader Outfit"
+	icon_file = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/outfit.json'
+
+/datum/greyscale_config/ba_cheerleader/worn
+	name = "BA Cheerleader Outfit (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/outfit_worn.json'
+
+/datum/greyscale_config/ba_cheerleader/inhand_left
+	name = "BA Cheerleader Outfit (Left Hand)"
+	icon_file = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/inhand_left.json'
+
+/datum/greyscale_config/ba_cheerleader/inhand_right
+	name = "BA Cheerleader Outfit (Right Hand)"
+	icon_file = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/inhand_right.json'
+
+/datum/greyscale_config/ba_cheerleader_gloves
+	name = "BA Cheerleader Gloves"
+	icon_file = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/gloves.json'
+
+/datum/greyscale_config/ba_cheerleader_gloves/worn
+	name = "BA Cheerleader Gloves (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/gloves_worn.json'
+
+/datum/greyscale_config/ba_cheerleader_shoes
+	name = "BA Cheerleader Sneakers"
+	icon_file = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/shoes.json'
+
+/datum/greyscale_config/ba_cheerleader_shoes/worn
+	name = "BA Cheerleader Sneakers (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/shoes_worn.json'
