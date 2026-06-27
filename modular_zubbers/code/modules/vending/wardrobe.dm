@@ -135,7 +135,7 @@
 	premium = list(
 		/obj/item/organ/stomach/protean = 1,
 		/obj/item/organ/heart/protean = 1,
-		/obj/item/clothing/accessory/dogtag/protean_ready = 6,
+		/obj/item/clothing/accessory/dogtags/protean_match = 6,
 	)
 	extra_price = PAYCHECK_COMMAND * 2.0 // This ensures the protean organs are ~200 credits each.
 

@@ -32,12 +32,25 @@
 	name = "Instant Painting Printer"
 	item_path = /obj/item/modular_computer/mini_painting_printer
 
-/datum/loadout_item/pocket_items/protean_ready
-	name = "Protean Wearer-Match Tags"
-	item_path = /obj/item/clothing/accessory/dogtag/protean_ready
+/datum/loadout_item/pocket_items/protean_match
+	name = "Protean Match Tags"
+	item_path = /obj/item/clothing/accessory/dogtags/protean_match
 	blacklisted_species = list(SPECIES_SNAIL) //They can't wear proteans
-	blacklisted_roles = list(JOB_PRISONER)
+	blacklisted_roles = list(JOB_PRISONER) //no, prisoners do not get a spaceproof suit
 	blacklisted_quirks = list(/datum/quirk/equipping/entombed)
+
+/datum/loadout_item/pocket_items/protean_match/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/job/outfit, visuals_only = FALSE)
+	// Do this at the very end of the setup process
+	if(!visuals_only && !isdummy(equipper))
+		RegisterSignal(equipper, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED, PROC_REF(apply_after_setup), override = TRUE)
+	return NONE
+
+/datum/loadout_item/pocket_items/protean_match/proc/apply_after_setup(mob/living/carbon/human/source, ...)
+	SIGNAL_HANDLER
+	var/obj/item/clothing/accessory/dogtags/protean_match/tags = new(source)
+	if(tags.loadout_automatic && tags.check_eligibility(source))
+		tags.stamp_tag(source)
+	UnregisterSignal(source, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED)
 
 /*
 *	FLAGS
