@@ -1,3 +1,5 @@
+#define STUN_ATTACK "stun attack"
+
 // Damage is technically 10 by default since that's the max you get from perfect hits when crafting. Find a non-third-of-sth value for the multiplier to get to 18, I'll wait
 /obj/item/melee/forged_reagent_weapon
 	name = "forged reagent weapon"
@@ -20,7 +22,7 @@
 
 	//vars for nonlethal strikes
 	//can this item nonlethal attack?
-	var/can_nonlethal_altfire = FALSE
+	var/can_nonlethal_altfire = TRUE
 	//time between nonlethal attacks
 	var/nonlethal_strike_cooldown = 4 SECONDS
 	COOLDOWN_DECLARE(nonlethal_strike_cooldown_timer)
@@ -50,6 +52,8 @@
 
 /obj/item/melee/forged_reagent_weapon/Initialize(mapload)
 	. = ..()
+	if (length(secondary_attack_verb_continuous) != length(secondary_attack_verb_simple))
+		stack_trace("[src] doesn't have equal secondary attack verb lengths, please fix!")
 	apply_reagent_component()
 	apply_smithing_component()
 
@@ -97,7 +101,7 @@
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
-		finalize_baton_attack(user, user, clumsy = TRUE)
+		finalize_nonlethal_strike(user, user, clumsy = TRUE)
 		user.apply_damage(2 * force, BRUTE, BODY_ZONE_HEAD, attacking_item = src)
 		log_combat(user, user, "accidentally stun attacked [user.p_them()]self due to their clumsiness", src)
 		user.do_attack_animation(user)
@@ -106,16 +110,11 @@
 
 	var/right_clicked = LAZYACCESS(modifiers, RIGHT_CLICK)
 	if(can_nonlethal_altfire && right_clicked)
-		if(!COOLDOWN_FINISHED(nonlethal_strike_cooldown_timer))
+		if(COOLDOWN_FINISHED(src, nonlethal_strike_cooldown_timer))
 			// when we continue to attack, deal 0 (brute) damage (just stun)
 			SET_ATTACK_FORCE(attack_modifiers, 0)
-			var/mob/living/livingtarget = target
-			var/stamina_damage = force * stamina_damage_multiplier
-			var/knockdown_time = force * knockdown_time_multiplier
-
-			livingtarget.apply_damage(stamina_damage, STAMINA)
-			attack_verb_continuous = secondary_attack_verb_continuous
-			attack_verb_simple = secondary_attack_verb_simple
+			MUTE_ATTACK_HITSOUND(attack_modifiers)
+			HIDE_ATTACK_MESSAGES(attack_modifiers)
 			LAZYSET(attack_modifiers, STUN_ATTACK, TRUE)
 		else
 			return TRUE //if we cannot nonlethal and the player is attempting, cancel the attack
@@ -136,9 +135,9 @@
 /obj/item/melee/forged_reagent_weapon/proc/finalize_nonlethal_strike(mob/living/target, mob/living/user, clumsy = FALSE)
 	COOLDOWN_START(src, nonlethal_strike_cooldown_timer, nonlethal_strike_cooldown)
 	if(on_stun_sound)
-		playsound(src, on_stun_sound, on_stun_volume, TRUE, -1)
+		playsound(src, on_stun_sound, 30, TRUE, -1)
 	if(baton_effect(target, user, null, clumsy) && user)
-		set_batoned(target, user, cooldown)
+		set_batoned(target, user, nonlethal_strike_cooldown)
 		log_combat(user, target, "stunned", src.name)
 
 /obj/item/melee/forged_reagent_weapon/proc/baton_effect(mob/living/target, mob/living/user, stun_override, clumsy)
@@ -148,13 +147,16 @@
 	var/trait_check = HAS_TRAIT(target, TRAIT_BATON_RESISTANCE)
 	if(ishuman(target))
 		var/mob/living/carbon/human/human_target = target
-		if(prob(force_say_chance))
+		if(prob(70))
 			human_target.force_say()
-	var/armour_block = target.run_armor_check(BODY_ZONE_CHEST, armour_type_against_stun, null, null, stun_armour_penetration)
+
+	var/stamina_damage = force * stamina_damage_multiplier
+	var/knockdown_time = force * knockdown_time_multiplier
+	var/armour_block = target.run_armor_check(BODY_ZONE_CHEST, MELEE, null, null, armour_penetration)
+
 	target.apply_damage(stamina_damage, STAMINA, blocked = armour_block)
 	if(!trait_check)
 		target.Knockdown((isnull(stun_override) ? knockdown_time : stun_override))
-	additional_effects_non_cyborg(target, user)
 	SEND_SIGNAL(target, COMSIG_MOB_BATONED, user, src)
 	return TRUE
 
@@ -167,9 +169,13 @@
 	ADD_TRAIT(target, TRAIT_IWASBATONED, user_ref)
 	addtimer(TRAIT_CALLBACK_REMOVE(target, TRAIT_IWASBATONED, user_ref), cooldown)
 
-/obj/item/melee/forged_reagent_weapon/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
-	attack_verb_continuous = initial(attack_verb_continuous)
-	attack_verb_simple = initial(attack_verb_simple)
+/obj/item/melee/forged_reagent_weapon/proc/get_stun_description(mob/living/target, mob/living/user)
+	PROTECTED_PROC(TRUE)
+	. = list()
+	if(length(secondary_attack_verb_continuous) >= 1)
+		var/random = rand(1, length(secondary_attack_verb_continuous))
+		.["visible"] = span_danger("[user] [secondary_attack_verb_continuous[random]] [target] with [src]!")
+		.["local"] = span_userdanger("[user] [secondary_attack_verb_continuous[random]] you with [src]!")
 
 /obj/item/melee/forged_reagent_weapon/add_item_context(datum/source, list/context, atom/target, mob/living/user)
 	if (isturf(target))
@@ -179,7 +185,7 @@
 		context[SCREENTIP_CONTEXT_LMB] = "Attack"
 	else
 		context[SCREENTIP_CONTEXT_LMB] = "Attack"
-		if(can_nonlethal_altfire && )
+		if(can_nonlethal_altfire && ishuman(target))
 			context[SCREENTIP_CONTEXT_RMB] = "Non-lethally Attack"
 
 	return CONTEXTUAL_SCREENTIP_SET
@@ -204,7 +210,8 @@
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	sharpness = SHARP_EDGED
 	max_integrity = 150
-	stamina_damage = 35
+	stamina_damage_multiplier = 1.75
+	knockdown_time_multiplier = 1 DECISECONDS
 	secondary_attack_verb_continuous = list("pommel-strikes")
 	secondary_attack_verb_simple = list("pommel-strike")
 	var/wielded = FALSE
@@ -242,7 +249,8 @@
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	sharpness = SHARP_EDGED
-	stamina_damage = 25
+	stamina_damage_multiplier = 1.5
+	knockdown_time_multiplier = 0.6 DECISECONDS
 	secondary_attack_verb_continuous = list("pommel-strikes")
 	secondary_attack_verb_simple = list("pommel-strike")
 
@@ -268,6 +276,7 @@
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	sharpness = SHARP_EDGED
+	can_nonlethal_altfire = FALSE
 	wound_bonus = 5
 	exposed_wound_bonus = 30
 	var/bonus_damage = 10
@@ -369,7 +378,8 @@
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "pierces", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	sharpness = SHARP_POINTY
-	stamina_damage = 30
+	stamina_damage_multiplier = 1.5
+	knockdown_time_multiplier = 1.4
 	secondary_attack_verb_continuous = list("hilt-strikes")
 	secondary_attack_verb_simple = list("hilt-strike")
 
@@ -432,7 +442,8 @@
 	wound_bonus = -10
 	exposed_wound_bonus = 20
 	sharpness = SHARP_POINTY
-	stamina_damage = 35
+	stamina_damage_multiplier = 2
+	knockdown_time_multiplier = 0.2
 	secondary_attack_verb_continuous = list("shaft-strikes")
 	secondary_attack_verb_simple = list("shaft-strike")
 
@@ -468,7 +479,8 @@
 	attack_verb_continuous = list("slashes", "bashes")
 	attack_verb_simple = list("slash", "bash")
 	sharpness = SHARP_EDGED
-	stamina_damage = 40
+	stamina_damage_multiplier = 3
+	knockdown_time_multiplier = 0.7
 	secondary_attack_verb_continuous = list("blunt-strikes")
 	secondary_attack_verb_simple = list("blunt-strike")
 
@@ -520,7 +532,8 @@
 		/obj/structure/reagent_anvil,
 		/obj/structure/reagent_crafting_bench
 	)
-	stamina_damage = 30
+	stamina_damage_multiplier = 1.8
+	knockdown_time_multiplier = 0.6
 	secondary_attack_verb_continuous = list("shaft-strikes")
 	secondary_attack_verb_simple = list("shaft-strike")
 
@@ -677,6 +690,8 @@
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FLAMMABLE
+	stamina_damage_multiplier = 1.5
+	knockdown_time_multiplier = 0.6 DECISECONDS
 	attack_verb_continuous = list("bonks", "bashes", "whacks", "pokes", "prods")
 	attack_verb_simple = list("bonk", "bash", "whack", "poke", "prod")
 	var/wielded = FALSE
@@ -711,3 +726,4 @@
 	. = ..()
 	AddComponent(/datum/component/two_hand_reach, unwield_reach = 1, wield_reach = 2)
 
+#undef STUN_ATTACK
