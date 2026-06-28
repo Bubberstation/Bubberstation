@@ -178,12 +178,10 @@ GLOBAL_LIST_EMPTY(protean_match_protean_candidate_tags)
 #define NOT_IN_POOL "1"
 #define IN_POOL "2"
 #define MATCHED "3"
-/obj/item/clothing/accessory/dogtags/protean_match // I KNOW I PUT THIS HERE BUT. THIS ISN'T ACTUALLY A SUBTYPE OF DOGTAGS. IT'S A SUBTYPE OF DOGTAG
+/obj/item/clothing/accessory/dogtags/protean_match // I KNOW I PUT THIS HERE BUT. THIS ISN'T ACTUALLY A SUBTYPE OF DOGTAGS. IT'S A SUBTYPE OF DOGTAG. WHY IS IT DIFFERENT
 	name = "\improper Protean Match tag"
 	desc = "A small tag from NT's Protean Match program, which pairs Protean crew with interested wearers."
-	custom_price = PAYCHECK_CREW * 0.4
-	/// When gotten via loadout, will the tags auto-match to their holder?
-	//var/loadout_automatic = TRUE
+	custom_premium_price = PAYCHECK_CREW * 0.4
 	/// Name of the person "wearing" the tags
 	var/assignee_name
 	/// Is the person "wearing" the tags a protean? TRUE if yes
@@ -192,70 +190,7 @@ GLOBAL_LIST_EMPTY(protean_match_protean_candidate_tags)
 	var/match_progress = UNASSIGNED
 	var/obj/item/clothing/accessory/dogtags/protean_match/paired_tags
 
-/obj/item/clothing/accessory/dogtags/protean_match/proc/check_eligibility(mob/living/carbon/human/source)
-	// ID card is how we check that the user is NT crew and not a prisoner.
-	. = TRUE
-	var/ineligibility_reason
-	var/obj/item/card/id/user_id_card
-	var/datum/record/crew/sec_record
-	if(isliving(source))
-		var/mob/living/user = source
-		user_id_card = user.get_idcard(TRUE)
-		sec_record = find_record(user_id_card.get_displayed_name())
-	if(isnull(user_id_card))
-		ineligibility_reason = "no ID found"
-	if(isnull(sec_record))
-		ineligibility_reason = "no security record found"
-	if(sec_record.wanted_status == WANTED_PRISONER)
-		ineligibility_reason = "incarcerated"
-	if(source.has_quirk(/datum/quirk/equipping/entombed))
-		ineligibility_reason = "MOD entombed"
-	if(source.dna.species.id == SPECIES_SNAIL)
-		ineligibility_reason = "snailperson"
-
-	if(!isnull(ineligibility_reason))
-		playsound(src, "sound/machines/buzz/buzz-sigh.ogg", 20, FALSE)
-		balloon_alert(source, "ineligible: [ineligibility_reason]")
-		return FALSE
-
-///Assigns a name and species to the tag, and adds it to the pool of possible matches. Intended to be run only once per tag.
-/obj/item/clothing/accessory/dogtags/protean_match/proc/stamp_tag(mob/living/carbon/human/source)
-	assignee_name = source.mind.name
-	assignee_protean = isprotean(source)
-	name += " - [assignee_name] ([isprotean ? "Protean" : "Wearer"])"
-	search_for_match()
-
-/obj/item/clothing/accessory/dogtags/protean_match/proc/search_for_match()
-//Check if there are available Proteans/Wearers for the assignee
-	if(assignee_protean)
-		if(length(GLOB.protean_match_wearer_candidate_tags))
-			var/obj/item/clothing/accessory/dogtags/protean_match/matched_wearer_tags = pick(GLOB.protean_match_wearer_candidate_tags)
-			matched_wearer_tags.handle_match(src) //Makes the wearer's tag ping
-			handle_match(matched_wearer_tags) //Makes our tags ping
-		else
-			say("You have joined the Protean Match Protean pool! There are [length(GLOB.protean_match_protean_candidate_tags) ? "[length(GLOB.protean_match_protean_candidate_tags)]" : "no" ] other Proteans in the pool.")
-			GLOB.protean_match_protean_candidate_tags += src
-			match_progress = IN_POOL
-			display = "IN PROTEAN POOL"
-	else
-		if(length(GLOB.protean_match_protean_candidate_tags))
-			var/obj/item/clothing/accessory/dogtags/protean_match/matched_protean_tags = pick(GLOB.protean_match_protean_candidate_tags)
-			matched_protean_tags.handle_match(src) //Makes the protean's tags ping
-			handle_match(matched_protean_tags) //Makes our tags ping
-		else
-			say("You have joined the Protean Match Wearer pool! There are [length(GLOB.protean_match_wearer_candidate_tags) ? "[length(GLOB.protean_match_wearer_candidate_tags)]" : "no" ] other Wearers in the pool.")
-			GLOB.protean_match_wearer_candidate_tags += src
-			match_progress = IN_POOL
-			display = ""
-
-
-/obj/item/clothing/accessory/dogtags/protean_match/proc/handle_match(var/obj/item/clothing/accessory/dogtags/protean_match/other_tags)
-	match_progress = MATCHED
-	assignee_protean ? (GLOB.protean_match_protean_candidate_tags -= src) : (GLOB.protean_match_wearer_candidate_tags -= src)
-	playsound(src, "modular_skyrat/modules/emotes/sound/emotes/synth_yes.ogg", 20, FALSE)
-	say("Matched with [(other_tags.assignee_protean == TRUE) ? "Protean" : "Wearer"]: [other_tags.assignee_name]!")
-	paired_tags = other_tags
-
+///This is how a person can assign tags to themself, or switch if they're in the candidate pool
 /obj/item/clothing/accessory/dogtags/protean_match/attack_self(mob/user)
 	//Tags with no assigned name (i.e. purchased from the robovend) can have one assigned post-roundstart
 	switch(match_progress)
@@ -264,12 +199,12 @@ GLOBAL_LIST_EMPTY(protean_match_protean_candidate_tags)
 				stamp_tag(user)
 				// match_progress and sounds are set within stamp_tag & handle_match
 		if(NOT_IN_POOL)
-			var/safety = (tgui_alert(user, "Are you sure you want to join the Protean Match candidate pool? You can leave it anytime by reactivating these tags.", "Join Protean Match candidate pool?", list("Leave Match Candidate Pool", "Cancel")))
+			var/safety = (tgui_alert(user, "Are you sure you want to join the Protean Match candidate pool? You can leave it anytime by reactivating these tags.", "Join Protean Match candidate pool?", list("Join Match Candidate Pool", "Cancel")))
 			if(safety == "Cancel" || !in_range(src, user))
 				return
 			playsound(src, "modular_skyrat/modules/emotes/sound/emotes/synth_yes.ogg", 20, FALSE)
 			to_chat(user, "You press the button on [src], adding yourself to the Protean Match candidate pool.")
-			match_progress = IN_POOL
+
 			search_for_match()
 			return
 		if(IN_POOL)
@@ -279,6 +214,8 @@ GLOBAL_LIST_EMPTY(protean_match_protean_candidate_tags)
 			balloon_alert(user, "left Protean Match candidate pool")
 			playsound(src, "modular_skyrat/modules/emotes/sound/emotes/synth_no.ogg", 20, FALSE)
 			to_chat(user, "You press the button on [src], removing yourself from the Protean Match candidate pool.")
+
+			leave_pool()
 			match_progress = NOT_IN_POOL
 			return
 		if(MATCHED)
@@ -288,17 +225,101 @@ GLOBAL_LIST_EMPTY(protean_match_protean_candidate_tags)
 			balloon_alert(user, "unmatched tags")
 			playsound(src, "modular_skyrat/modules/emotes/sound/emotes/synth_no.ogg", 20, FALSE)
 			to_chat(user, "You press the button on [src], unmatching with [paired_tags?.assignee_name] and exiting the Protean Match candidate pool.")
-			match_progress = NOT_IN_POOL
+
+			unmatch("your input")
+			paired_tags.unmatch("matched user requested unpair")
 			return
 
-/obj/item/clothing/accessory/dogtags/protean_match/proc/recieve_unmatch()
+/obj/item/clothing/accessory/dogtags/protean_match/Destroy()
+	if(match_progress == MATCHED)
+		leave_pool()
+		paired_tags.unmatch("paired tags destroyed")
+	return ..()
+
+///Filters out crew that can't wear Proteans or shouldn't have them.
+/obj/item/clothing/accessory/dogtags/protean_match/proc/check_eligibility(mob/source)
+	// ID card is how we check that the user is NT crew and not a prisoner.
+	. = TRUE
+	var/ineligibility_reason = null
+	var/obj/item/card/id/user_id
+	var/datum/record/crew/sec_record
+	if(isliving(source))
+		var/mob/living/user = source
+		user_id = user.get_idcard(TRUE)
+		sec_record = find_record(user_id.get_displayed_name())
+
+		if(isnull(user_id))
+			ineligibility_reason = "no ID found"
+		else if(isnull(sec_record))
+			ineligibility_reason = "no security record found"
+		else if(sec_record.wanted_status == WANTED_PRISONER || user_id.assignment == JOB_PRISONER)
+			ineligibility_reason = "incarcerated"
+		else if(user.has_quirk(/datum/quirk/equipping/entombed))
+			ineligibility_reason = "MOD entombed"
+		else if(iscarbon(user))
+			var/mob/living/carbon/carbon_user = user
+			if(carbon_user.dna.species.id == SPECIES_SNAIL)
+				ineligibility_reason = "snailperson"
+	else
+		ineligibility_reason = "invalid being"
+
+	if(ineligibility_reason)
+		playsound(src, "sound/machines/buzz/buzz-sigh.ogg", 20, FALSE)
+		balloon_alert(source, "ineligible: [ineligibility_reason]")
+		return FALSE
+
+///Assigns a name and species to the tag, and adds it to the pool of possible matches. Intended to be run only once per tag.
+/obj/item/clothing/accessory/dogtags/protean_match/proc/stamp_tag(mob/living/carbon/human/source)
+	assignee_name = source.mind.name
+	assignee_protean = isprotean(source)
+	name += " - [assignee_name] ([assignee_protean ? "Protean" : "Wearer"])"
+	update_static_data_for_all_viewers()
+	search_for_match()
+
+/// Matches your tags to someone's in the other pool, or puts you in the pool.
+/obj/item/clothing/accessory/dogtags/protean_match/proc/search_for_match()
+//Check if there are available Proteans/Wearers for the assignee
+	if(assignee_protean)
+		if(length(GLOB.protean_match_wearer_candidate_tags))
+			var/obj/item/clothing/accessory/dogtags/protean_match/matched_wearer_tags = pick(GLOB.protean_match_wearer_candidate_tags)
+			matched_wearer_tags.handle_match(src) //Makes the wearer's tag ping
+			handle_match(matched_wearer_tags) //Makes our tags ping
+		else
+			say("No matchable Wearers found. You have joined the Protean candidate pool! There are [length(GLOB.protean_match_protean_candidate_tags) ? "[length(GLOB.protean_match_protean_candidate_tags)]" : "no" ] other Proteans in the pool.")
+			GLOB.protean_match_protean_candidate_tags += src
+			match_progress = IN_POOL
+	else
+		if(length(GLOB.protean_match_protean_candidate_tags))
+			var/obj/item/clothing/accessory/dogtags/protean_match/matched_protean_tags = pick(GLOB.protean_match_protean_candidate_tags)
+			matched_protean_tags.handle_match(src) //Makes the protean's tags ping
+			handle_match(matched_protean_tags) //Makes our tags ping
+		else
+			say("No matchable Proteans found. You have joined the Wearer candidate pool! There are [length(GLOB.protean_match_wearer_candidate_tags) ? "[length(GLOB.protean_match_wearer_candidate_tags)]" : "no" ] other Wearers in the pool.")
+			GLOB.protean_match_wearer_candidate_tags += src
+			match_progress = IN_POOL
+
+
+/obj/item/clothing/accessory/dogtags/protean_match/proc/handle_match(obj/item/clothing/accessory/dogtags/protean_match/other_tags)
+	match_progress = MATCHED
+	leave_pool()
+	playsound(src, "modular_skyrat/modules/emotes/sound/emotes/synth_yes.ogg", 20, FALSE)
+	say("Matched with [(other_tags.assignee_protean == TRUE) ? "Protean" : "Wearer"]: [other_tags.assignee_name]!")
+	paired_tags = other_tags
+
+/obj/item/clothing/accessory/dogtags/protean_match/proc/unmatch(unmatch_reason)
+	match_progress = NOT_IN_POOL
+	say("You have been unmatched and are no longer in the candidate pool. The reason for your unmatch was: [unmatch_reason].")
+	leave_pool()
+
+/obj/item/clothing/accessory/dogtags/protean_match/proc/leave_pool()
+	assignee_protean ? (GLOB.protean_match_protean_candidate_tags -= src) : (GLOB.protean_match_wearer_candidate_tags -= src)
 
 /obj/item/clothing/accessory/dogtags/protean_match/examine(mob/user)
 	. = ..()
 	if(!(in_range(user, src)))
 		return
-	if(assignee_name && assignee_protean)
-		. += " This set is assigned to [assignee_name], a [assignee_protean ? "Protean" : "wearer"]."
+	if(assignee_name)
+		. += "This set is assigned to [assignee_name], a [assignee_protean ? "Protean" : "Wearer"]."
 	switch(match_progress)
 		if(UNASSIGNED)
 			. += "It's not assigned to anyone at the moment. You can claim it by using it in-hand."
