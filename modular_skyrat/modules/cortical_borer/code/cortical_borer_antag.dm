@@ -67,12 +67,13 @@
 	var/list/parts = list()
 	parts += span_header("The [name] were:")
 	parts += printborerlist(members)
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	var/survival = FALSE
 	for(var/mob/living/basic/cortical_borer/check_borer in GLOB.cortical_borers)
 		if(check_borer.stat == DEAD)
 			continue
 		survival = TRUE
-	/* BUBBER EDIT - REMOVE GREENTEXT
+
 	if(survival)
 		parts += span_greentext("Borers were able to survive the shift!")
 	else

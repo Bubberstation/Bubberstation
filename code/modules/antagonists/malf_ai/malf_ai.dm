@@ -195,7 +195,7 @@
 /datum/antagonist/malf_ai/roundend_report()
 	var/list/result = list()
 
-	var/malf_ai_won = TRUE
+	// BUBBER EDIT REMOVE GREEN TEXT - var/malf_ai_won = TRUE
 
 	result += printplayer(owner)
 
@@ -203,15 +203,17 @@
 	if(objectives.len) //If the traitor had no objectives, don't need to process this.
 		var/count = 1
 		for(var/datum/objective/objective in objectives)
+			/*BUBBER EDIT REMOVE GREENTEXT
 			if(!objective.check_completion())
 				malf_ai_won = FALSE
+			BUBBER EDIT END*/
 			objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
 			count++
 
 	result += objectives_text
-
-	var/special_role_text = LOWER_TEXT(name)
 	/* BUBBER EDIT - REMOVE GREENTEXT
+	var/special_role_text = LOWER_TEXT(name)
+
 	if(malf_ai_won)
 		result += span_greentext("The [special_role_text] was successful!")
 	else

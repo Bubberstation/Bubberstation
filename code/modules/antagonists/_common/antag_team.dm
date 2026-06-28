@@ -58,11 +58,11 @@ GLOBAL_LIST_EMPTY(antagonist_teams)
 
 	if(objectives.len)
 		report += span_header("Team had following objectives:")
-		var/win = TRUE
+//BUBBER EDIT var/win = TRUE
 		var/objective_count = 1
 		for(var/datum/objective/objective as anything in objectives)
-			if(!objective.check_completion())
-				win = FALSE
+//BUBBER EDIT	if(!objective.check_completion())
+//BUBBER EDIT	win = FALSE
 			report += "<B>Objective #[objective_count]</B>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
 			objective_count++
 		/* BUBBER EDIT - REMOVE GREENTEXT

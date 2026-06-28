@@ -126,18 +126,21 @@
 	parts += printplayer(owner)
 	parts += "<b>Influences Drained:</b> [drained_num]"
 	parts += "<b>Ways Opened:</b> [ways_opened]"
-	/* - removing greentext, leaving the code here on the off chance greentext comes back (lmao)
-	var/completed = 0
+
+	// var/completed = 0
 	if(length(objectives))
 		var/count = 1
 		for(var/o in objectives)
 			var/datum/objective/objective = o
+			/* removing greentext, leaving code
 			if(objective.check_completion())
 				parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='greentext'>Success!</b></span>"
 				completed++
 			else
-				parts += "<b>Objective #[count]</b>: [objective.explanation_text] [span_redtext("Fail.")]"
+			*/
+			parts += "<b>Objective #[count]</b>: [objective.explanation_text]" // [span_redtext("Fail.")]"
 			count++
+	/*
 	parts += span_boldnotice("[OBJECTIVES_TO_WIN] objectives were required to succeed...")
 	if(completed >= min(OBJECTIVES_TO_WIN, objectives.len))
 		parts += span_greentext("The [LOWER_TEXT(heretic_path.route)] acolyte was successful!")

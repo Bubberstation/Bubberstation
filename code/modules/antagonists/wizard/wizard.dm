@@ -418,18 +418,22 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 		parts += "<br><B>Grand Rituals completed:</B> [ritual.times_completed]<br>"
 
 	var/count = 1
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	var/wizardwin = TRUE
 	for(var/datum/objective/objective in objectives)
 		if(!objective.check_completion())
 			wizardwin = FALSE
 		parts += "<B>Objective #[count]</B>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
 		count++
-	/* BUBBER EDIT - REMOVE GREENTEXT
+
 	if(wizardwin)
 		parts += span_greentext("The wizard was successful!")
 	else
 		parts += span_redtext("The wizard has failed!")
-	BUBBER EDIT END */
+	*/
+	for(var/datum/objective/objective in objectives)
+		parts += "<B>Objective #[count]</B>: [objective.explanation_text]"
+	//BUBBER EDIT END
 	var/list/purchases = list()
 	for(var/list/log as anything in GLOB.wizard_spellbook_purchases_by_key[owner.key])
 		var/datum/spellbook_entry/bought = log[LOG_SPELL_TYPE]

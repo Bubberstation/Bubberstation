@@ -43,18 +43,20 @@
 	report += printplayer(owner)
 
 	//needs to complete only one objective, not all
-
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	var/option_chosen = FALSE
 	var/badass = FALSE
+	BUBBER EDIT END */
 	if(objectives.len)
 		report += printobjectives(objectives)
+	/* BUBBER EDIT - REMOVE GREENTEXT
 		for(var/datum/objective/objective in objectives)
 			if(objective.check_completion())
 				option_chosen = TRUE
 				if(istype(objective, /datum/objective/hijack))
 					badass = TRUE
 				break
-	/* BUBBER EDIT - REMOVE GREENTEXT
+
 	if(objectives.len == 0 || option_chosen)
 		if(badass)
 			report += "<span class='greentext big'>Major [name] Victory</span>"

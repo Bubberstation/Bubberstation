@@ -153,7 +153,7 @@
 		CRASH("antagonist datum without owner")
 
 	report += "<b>[printplayer(owner)]</b>"
-
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	var/objectives_complete = TRUE
 	if(objectives.len)
 		report += printobjectives(objectives)
@@ -161,6 +161,7 @@
 			if(!objective.check_completion())
 				objectives_complete = FALSE
 				break
+	BUBBER EDIT END */
 	if(trauma)
 		if(trauma.total_time_creeping > 0)
 			report += span_greentext("The [name] spent a total of [DisplayTimeText(trauma.total_time_creeping)] being near [trauma.obsession]!")
