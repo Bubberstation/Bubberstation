@@ -270,20 +270,28 @@
 		if(IS_RIGHT_INDEX(get_held_index_of_item(I)))
 			icon_file = I.righthand_file
 
-		hands += I.build_worn_icon(default_layer = HANDS_LAYER, default_icon_file = icon_file, isinhands = TRUE)
+		hands += I.build_worn_icon(default_layer = HANDS_LAYER, default_icon_file = icon_file, isinhands = TRUE, bodyshape = bodyshape)
 	return hands
 
+/mob/living/carbon/proc/get_fire_icon_state(stacks, on_fire)
+	return "[dna?.species.fire_overlay || "human"]_[stacks > MOB_BIG_FIRE_STACK_THRESHOLD ? "big_fire" : "small_fire"]"
+
 /mob/living/carbon/get_fire_overlay(stacks, on_fire)
-	var/fire_icon = "[dna?.species.fire_overlay || "human"]_[stacks > MOB_BIG_FIRE_STACK_THRESHOLD ? "big_fire" : "small_fire"]"
+	var/fire_icon = get_fire_icon_state(stacks, on_fire)
+	var/list/overrides = list()
+	SEND_SIGNAL(src, COMSIG_CARBON_GET_FIRE_OVERLAY, stacks, on_fire, fire_icon, overrides)
+	if (length(overrides))
+		return overrides[1]
 
-	if(!GLOB.fire_appearances[fire_icon])
-		GLOB.fire_appearances[fire_icon] = mutable_appearance(
-			'icons/mob/effects/onfire.dmi',
-			fire_icon,
-			-HIGHEST_LAYER,
-			appearance_flags = RESET_COLOR|KEEP_APART,
-		)
+	if(GLOB.fire_appearances[fire_icon])
+		return GLOB.fire_appearances[fire_icon]
 
+	GLOB.fire_appearances[fire_icon] = mutable_appearance(
+		'icons/mob/effects/onfire.dmi',
+		fire_icon,
+		-HIGHEST_LAYER,
+		appearance_flags = RESET_COLOR|KEEP_APART,
+	)
 	return GLOB.fire_appearances[fire_icon]
 
 /mob/living/carbon/update_damage_overlays()
@@ -342,8 +350,7 @@
 		return
 
 	if(wear_mask && !(obscured_slots & HIDEMASK))
-		overlays_standing[FACEMASK_LAYER] = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = 'icons/mob/clothing/mask.dmi')
-		overlays_standing[FACEMASK_LAYER] = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = 'icons/mob/clothing/mask.dmi')
+		overlays_standing[FACEMASK_LAYER] = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = 'icons/mob/clothing/mask.dmi', bodyshape = bodyshape)
 
 	apply_overlay(FACEMASK_LAYER)
 
@@ -351,8 +358,15 @@
 	remove_overlay(NECK_LAYER)
 	hud_used?.update_inventory_slot(ITEM_SLOT_NECK)
 
-	if(wear_neck && !(obscured_slots & HIDENECK))
-		overlays_standing[NECK_LAYER] = wear_neck.build_worn_icon(default_layer = NECK_LAYER, default_icon_file = 'icons/mob/clothing/neck.dmi')
+	if(client && hud_used?.inv_slots[TOBITSHIFT(ITEM_SLOT_NECK) + 1])
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_NECK) + 1]
+		inv.update_appearance()
+
+	if(wear_neck)
+		if(!(obscured_slots & HIDENECK))
+			overlays_standing[NECK_LAYER] = wear_neck.build_worn_icon(default_layer = NECK_LAYER, default_icon_file = 'icons/mob/clothing/neck.dmi', bodyshape = bodyshape)
+		update_hud_neck(wear_neck)
+
 	apply_overlay(NECK_LAYER)
 */
 //SKYRAT EDIT REMOVAL END
@@ -365,6 +379,7 @@
 
 	if(back)
 		overlays_standing[BACK_LAYER] = back.build_worn_icon(default_layer = BACK_LAYER, default_icon_file = 'icons/mob/clothing/back.dmi', bodyshape = bodyshape)
+		update_hud_back(back)
 
 	apply_overlay(BACK_LAYER)
 */
@@ -391,8 +406,14 @@
 	if(!get_bodypart(BODY_ZONE_HEAD)) //Decapitated
 		return
 
-	if(head && !(obscured_slots & HIDEHEADGEAR))
-		overlays_standing[HEAD_LAYER] = head.build_worn_icon(default_layer = HEAD_LAYER, default_icon_file = 'icons/mob/clothing/head/default.dmi')
+	if(client && hud_used?.inv_slots[TOBITSHIFT(ITEM_SLOT_HEAD) + 1])
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_HEAD) + 1]
+		inv.update_appearance()
+
+	if(head)
+		if(!(obscured_slots & HIDEHEADGEAR))
+			overlays_standing[HEAD_LAYER] = head.build_worn_icon(default_layer = HEAD_LAYER, default_icon_file = 'icons/mob/clothing/head/default.dmi', bodyshape = bodyshape)
+		update_hud_head(head)
 
 	apply_overlay(HEAD_LAYER)
 */
@@ -443,8 +464,6 @@
 	var/head_update = FALSE
 	var/list/new_limbs = list()
 	var/datum/component/transformation/transform = GetComponent(/datum/component/transformation) // BUBBER EDIT START - Transformation component override.
-	if(transform)
-		transform.on_transform_limb_icon(src)
 	for(var/body_zone, limb_untyped in transform ? transform.dummy.get_bodyparts_by_zones() : get_bodyparts_by_zones()) // BUBBER EDIT END | ORG: 	for(var/body_zone, limb_untyped in get_bodyparts_by_zones())
 		var/obj/item/bodypart/limb = limb_untyped
 		var/obj/item/bodypart/stump_limb_check = get_bodypart(body_zone, TRUE) // BUBBER EDIT START
@@ -524,6 +543,10 @@
 		. += draw_color
 	if(is_invisible)
 		. += "invisible"
+	// BUBBER EDIT ADDITION START - per-limb alpha
+	if(limb_alpha != 255)
+		. += "alpha_[limb_alpha]"
+	// BUBBER EDIT ADDITION END
 	for(var/datum/bodypart_overlay/overlay as anything in bodypart_overlays)
 		if(!overlay.can_draw_on_bodypart(src, owner, is_husked))
 			continue
@@ -552,6 +575,8 @@
 	. += body_zone
 	if(is_invisible)
 		. += "invisible"
+	if(limb_alpha != 255)
+		. += "alpha_[limb_alpha]" // BUBBER EDIT ADDITION - per-limb alpha
 	. += "[LAZYLEN(blood_dna_info) ? get_color_from_blood_list(blood_dna_info) : BLOOD_COLOR_RED]"
 	for(var/datum/bodypart_overlay/overlay as anything in bodypart_overlays)
 		if(!overlay.can_draw_on_bodypart(src, owner, TRUE))
