@@ -11,6 +11,10 @@
 	mail_goodies = list (
 		/obj/item/toy/foamblade = 1 // Fake changeling
 	)
+	species_blacklist = list(
+		SPECIES_SLIMESTART,
+		SPECIES_PROTEAN
+	)
 
 /datum/action/innate/alter_form/body_morpher
 	name = "Alter Form"
