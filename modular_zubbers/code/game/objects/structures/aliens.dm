@@ -35,11 +35,11 @@
 
 /obj/structure/alien/weeds/xenohybrid/node
 	name = "xenohybrid glowing weeds"
-	desc = "Blue bioluminescence shines from beneath the surface. It seems weaker than what a full-blooded xenomorph would make."
-	icon = 'icons/obj/smooth_structures/alien/weednode.dmi'
-	icon_state = "weednode-0"
-	base_icon_state = "weednode"
-	light_color = LIGHT_COLOR_BLUE
+	desc = "Purple bioluminescence shines from beneath the surface. It seems weaker than what a full-blooded xenomorph would make."
+	icon = 'modular_zubbers/icons/obj/smooth_structures/alien/weednode_xenohybrid.dmi'
+	icon_state = "weednode_xenohybrid-0"
+	base_icon_state = "weednode_xenohybrid"
+	light_color = LIGHT_COLOR_PURPLE
 	light_power = 0.5
 	///the range of the light for the node
 	var/lon_range = 4
