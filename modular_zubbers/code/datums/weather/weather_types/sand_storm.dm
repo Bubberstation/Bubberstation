@@ -101,9 +101,10 @@
 		glow_overlay.color = weather_color
 		gen_overlay_cache += glow_overlay
 
-		var/mutable_appearance/weather_overlay = mutable_appearance('modular_zubbers/icons/effects/weather_effects.dmi', weather_state, overlay_layer, plane = overlay_plane, offset_const = offset)
-		weather_overlay.color = weather_color
-		gen_overlay_cache += weather_overlay
+		for(var/overlay_plane in overlay_planes)
+			var/mutable_appearance/weather_overlay = mutable_appearance('modular_zubbers/icons/effects/weather_effects.dmi', weather_state, overlay_layer, plane = overlay_plane, alpha = weather_alpha, offset_const = offset)
+			weather_overlay.color = weather_color
+			gen_overlay_cache += weather_overlay
 
 	return gen_overlay_cache
 

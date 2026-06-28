@@ -23,7 +23,7 @@
 
 /obj/item/clothing/accessory/pocketwatch/examine(mob/user)
 	. = ..()
-	. += span_info("The current CST (local) time is: [station_time_timestamp()].")
+	. += span_info("The current CST (local) time is: [round_timestamp()].")
 	. += span_info("The current TCT (galactic) time is: [time2text(world.realtime, "hh:mm:ss")].")
 
 /obj/item/storage/backpack/kanken //Donor item for LT3

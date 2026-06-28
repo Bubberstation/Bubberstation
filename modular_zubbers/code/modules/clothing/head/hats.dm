@@ -46,6 +46,75 @@
 	icon_state = "secsoft_v"
 	armor_type = /datum/armor/cosmetic_sec
 
+/datum/greyscale_component_style/security_cap
+	output_icon_state = "security_cap"
+	fallback_icon_state = "security_cap"
+	default_accessories = list("security_cap_accs_front", "security_cap_accs_logo")
+	core_components = list(
+		list(
+			"name" = "Cap",
+			"key" = "cap",
+			"default" = "security",
+			"options" = list(
+				"security" = list(
+					"name" = "Security cap",
+					"state" = "security_cap",
+					"color_id" = 1,
+					"color_label" = "Main",
+					"default_color" = "#A53429",
+				),
+			),
+		),
+	)
+	accessories = list(
+		"Backing" = list(
+			"state" = "security_cap_accs_front",
+			"color_id" = 2,
+			"color_label" = "Backing",
+			"default_color" = "#3F6E9E",
+		),
+		"Logo" = list(
+			"state" = "security_cap_accs_logo",
+			"color_id" = 3,
+			"color_label" = "Logo",
+			"default_color" = "#FFFFFF",
+		),
+	)
+
+/obj/item/clothing/head/soft/sec/recolorable
+	name = "security cap"
+	desc = "It's a robust baseball hat, this one seems to have been custom ordered."
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "security_cap"
+	post_init_icon_state = "security_cap"
+	soft_type = "security_cap"
+	soft_suffix = ""
+	greyscale_config = /datum/greyscale_config/security_cap
+	greyscale_config_worn = /datum/greyscale_config/security_cap/worn
+	greyscale_colors = "#A53429#3F6E9E#FFFFFF"
+	flags_1 = parent_type::flags_1 | IS_PLAYER_COLORABLE_1
+	greyscale_component_style_type = /datum/greyscale_component_style/security_cap
+	greyscale_component_icon_file = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	greyscale_component_worn_icon_file = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	greyscale_component_worn_state_overrides = list(
+		"security_cap" = "security_capg",
+		"security_cap_accs_front" = "security_capg_accs_backing",
+		"security_cap_accs_logo" = "security_capg_accs_logo",
+	)
+	greyscale_component_accessories = list("security_cap_accs_front", "security_cap_accs_logo")
+
+/obj/item/clothing/head/soft/sec/recolorable/Initialize(mapload)
+	initialize_greyscale_component_style()
+	return ..()
+
+/obj/item/clothing/head/soft/sec/recolorable/update_greyscale()
+	. = ..()
+	update_greyscale_component_icons()
+
+/obj/item/clothing/head/soft/sec/recolorable/flip(mob/user)
+	balloon_alert(user, "can't be flipped!")
+
 /obj/item/clothing/head/sec/viro/beanie
 	name = "security beanie"
 	desc = "A beanie for security purposes"

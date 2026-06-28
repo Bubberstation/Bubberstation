@@ -303,6 +303,10 @@
 	timeout = 3 MINUTES
 	event_flags = MOOD_EVENT_SPIRITUAL
 
+/datum/mood_event/sacrifice_good/add_effects(...)
+	if(owner.mind?.holy_role && GLOB.deity)
+		description = "[GLOB.deity] is pleased with this offering!"
+
 /datum/mood_event/artok
 	description = "It's nice to see people are making art around here."
 	mood_change = 2
@@ -701,3 +705,8 @@
 	description = "What a night! I can't wait to do it all again!"
 	mood_change = 2
 	timeout = 10 MINUTES
+
+/datum/mood_event/gizmo_positive
+	description = "I hear a voice whispering kind words in my ear!"
+	mood_change = 3
+	timeout = 30 SECONDS
