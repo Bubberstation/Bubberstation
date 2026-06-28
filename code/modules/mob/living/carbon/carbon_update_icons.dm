@@ -294,11 +294,11 @@
 		if(!iter_part.dmg_overlay_type)
 			continue
 		if(isnull(damage_overlay) && (iter_part.brutestate || iter_part.burnstate))
-			damage_overlay = mutable_appearance('icons/mob/effects/dam_mob.dmi', "blank", -DAMAGE_LAYER, appearance_flags = KEEP_TOGETHER)
+			damage_overlay = mutable_appearance('modular_zubbers/icons/mob/effects/dam_mob.dmi', "blank", -DAMAGE_LAYER, appearance_flags = KEEP_TOGETHER) //BUBBER EDIT: Extra species damage icons. Original: 'icons/mob/effects/dam_mob.dmi'
 		if(iter_part.brutestate)
-			var/mutable_appearance/blood_damage_overlay = mutable_appearance('icons/mob/effects/dam_mob.dmi', "[iter_part.dmg_overlay_type]_[iter_part.body_zone]_[iter_part.brutestate]0", appearance_flags = RESET_COLOR) //we're adding icon_states of the base image as overlays
+			var/mutable_appearance/blood_damage_overlay = mutable_appearance('modular_zubbers/icons/mob/effects/dam_mob.dmi', "[iter_part.dmg_overlay_type]_[iter_part.body_zone]_[iter_part.brutestate]0", appearance_flags = RESET_COLOR) //we're adding icon_states of the base image as overlays //BUBBER EDIT: Extra species damage icons. Original: 'icons/mob/effects/dam_mob.dmi'
 			blood_damage_overlay.color = get_bloodtype()?.get_damage_color(src)
-			var/mutable_appearance/brute_damage_overlay = mutable_appearance('icons/mob/effects/dam_mob.dmi', "[iter_part.dmg_overlay_type]_[iter_part.body_zone]_[iter_part.brutestate]0_overlay", appearance_flags = RESET_COLOR)
+			var/mutable_appearance/brute_damage_overlay = mutable_appearance('modular_zubbers/icons/mob/effects/dam_mob.dmi', "[iter_part.dmg_overlay_type]_[iter_part.body_zone]_[iter_part.brutestate]0_overlay", appearance_flags = RESET_COLOR) //BUBBER EDIT: Extra species damage icons. Original: 'icons/mob/effects/dam_mob.dmi'
 			blood_damage_overlay.overlays += brute_damage_overlay
 			damage_overlay.add_overlay(blood_damage_overlay)
 		if(iter_part.burnstate)

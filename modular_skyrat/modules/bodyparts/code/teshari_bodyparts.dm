@@ -36,6 +36,7 @@
 	icon_greyscale = BODYPART_ICON_TESHARI
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
+	dmg_overlay_type = "teshari"
 	brute_modifier = TESHARI_BRUTE_MODIFIER
 	burn_modifier = TESHARI_BURN_MODIFIER
 
@@ -77,6 +78,7 @@
 	icon_greyscale = BODYPART_ICON_TESHARI
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
+	dmg_overlay_type = "teshari"
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
 	brute_modifier = TESHARI_BRUTE_MODIFIER
@@ -87,6 +89,7 @@
 	icon_greyscale = BODYPART_ICON_TESHARI
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
+	dmg_overlay_type = "teshari"
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
 	brute_modifier = TESHARI_BRUTE_MODIFIER
@@ -97,6 +100,7 @@
 	icon_greyscale = BODYPART_ICON_TESHARI
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
+	dmg_overlay_type = "teshari"
 	digitigrade_type = /obj/item/bodypart/leg/left/digitigrade/teshari
 	brute_modifier = TESHARI_BRUTE_MODIFIER
 	burn_modifier = TESHARI_BURN_MODIFIER
@@ -105,6 +109,7 @@
 	icon_greyscale = BODYPART_ICON_TESHARI
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	limb_id = SPECIES_TESHARI
+	dmg_overlay_type = "teshari"
 	digitigrade_type = /obj/item/bodypart/leg/right/digitigrade/teshari
 	brute_modifier = TESHARI_BRUTE_MODIFIER
 	burn_modifier = TESHARI_BURN_MODIFIER
@@ -113,6 +118,7 @@
 	icon_greyscale = BODYPART_ICON_TESHARI
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	base_limb_id = SPECIES_TESHARI
+	dmg_overlay_type = "teshari"
 	brute_modifier = TESHARI_BRUTE_MODIFIER
 	burn_modifier = TESHARI_BURN_MODIFIER
 
@@ -120,6 +126,7 @@
 	icon_greyscale = BODYPART_ICON_TESHARI
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
 	base_limb_id = SPECIES_TESHARI
+	dmg_overlay_type = "teshari"
 	brute_modifier = TESHARI_BRUTE_MODIFIER
 	burn_modifier = TESHARI_BURN_MODIFIER
 

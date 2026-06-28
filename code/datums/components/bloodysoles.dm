@@ -281,9 +281,20 @@
 		return COMPONENT_INCOMPATIBLE
 
 	wielder = parent
+	//BUBBER EDIT BEGIN - Species specific blood icons.
+	//if(!bloody_feet)
+		//bloody_feet = mutable_appearance('icons/effects/blood.dmi', "shoeblood", SHOES_LAYER)
 
+	var/icon/blood_icon_file = 'icons/effects/blood.dmi'
+	var/blood_icon_state = "shoeblood"
 	if(!bloody_feet)
-		bloody_feet = mutable_appearance('icons/effects/blood.dmi', "shoeblood", SHOES_LAYER)
+		var/mob/living/carbon/human/species_target = wielder.dna.species.id
+		if(icon_exists('modular_zubbers/icons/effects/blood_species.dmi', "shoeblood_[species_target]"))
+			blood_icon_file = 'modular_zubbers/icons/effects/blood_species.dmi'
+			blood_icon_state = "shoeblood_[species_target]"
+
+		bloody_feet = mutable_appearance(blood_icon_file, blood_icon_state, SHOES_LAYER)
+	//BUBBER EDIT END
 
 	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(on_clean))
 	RegisterSignal(parent, COMSIG_STEP_ON_BLOOD, PROC_REF(on_step_blood))
