@@ -756,6 +756,17 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reagent_forge/proc/stack_item_to_forgeable(mob/living/user, obj/item/stack/search_stack, obj/item/tool = null, burn_hand = FALSE)
+	if(DOING_INTERACTION(user, DOAFTER_SMITHING_FORGE))
+		return
+
+	if(forge_temperature < MIN_FORGE_TEMP)
+		balloon_alert(user, "forge too cool")
+		return ITEM_INTERACT_BLOCKING
+
+	if(values_sum(search_stack.mats_per_unit) < SHEET_MATERIAL_AMOUNT)
+		balloon_alert(user, "not enough material in [search_stack]")
+		return ITEM_INTERACT_BLOCKING
+
 	var/list/my_list = get_filtered_radial_choices(user)
 	var/user_choice = show_radial_menu(user, src, my_list, radius = 38, require_near = TRUE, tooltips = TRUE)
 	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/smithing, SKILL_SPEED_MODIFIER)
@@ -782,14 +793,14 @@
 
 	if(!burn_hand)
 		if(!isnull(tool))
-			if(!do_after(user, skill_modifier * tool.toolspeed * 2 SECONDS, target = src))
+			if(!do_after(user, skill_modifier * tool.toolspeed * 2 SECONDS, target = src, interaction_key = DOAFTER_SMITHING_FORGE))
 				balloon_alert_to_viewers("stopped heating [search_stack]")
 				return ITEM_INTERACT_BLOCKING
 		else
 			stack_trace("[src] had its 'make forgeable item' function called, with burn_hand = false and tool = null! This should never happen!")
 	else
 		to_chat(user, span_warning("Heating the [search_stack] without equipment seems like a bad idea..."))
-		if(!do_after(user, skill_modifier * 5 SECONDS, target = src))
+		if(!do_after(user, skill_modifier * 5 SECONDS, target = src, interaction_key = DOAFTER_SMITHING_FORGE))
 			balloon_alert_to_viewers("stopped heating [search_stack]")
 			return ITEM_INTERACT_BLOCKING
 
