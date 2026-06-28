@@ -138,7 +138,7 @@
 	always_color_customizable = TRUE
 	special_x_dimension = TRUE
 	default_color = DEFAULT_SKIN_OR_PRIMARY
-	relevent_layers = list(BODY_ADJ_LAYER, BODY_BEHIND_LAYER)
+	relevent_layers = list(BODY_FRONT_LAYER, BODY_BEHIND_LAYER)
 	var/has_size = TRUE
 
 /datum/sprite_accessory/genital/testicles/get_special_icon(mob/living/carbon/human/target_mob)

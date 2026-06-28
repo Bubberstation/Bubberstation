@@ -71,7 +71,7 @@
 #define TRAIT_TRICKSTER_TASTE "trickster_taste"
 /// Used by The Blacksmith's Hammer heretic ritual - tracks if their funny hand will emag the next thing they right click with
 #define TRAIT_EMAGGING_HAND "emagging_hand"
-/// Used by the antimagic collar - prevents use of rituals and most spells from Acolytes.
+/// Used by the irreality collar - prevents use of rituals and most spells from Acolytes.
 #define TRAIT_MANSUS_INHIBITION "mansus_inhibition"
 
 /// Trait that gives your brain traumas more resilance
