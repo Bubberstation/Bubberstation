@@ -147,7 +147,15 @@
 	QDEL_NULL(dummy)
 	owner.regenerate_icons()
 
-
+/datum/component/transformation/proc/on_transform_limb_icon(mob/source) // Easy way to properly reflect icon events.
+	var/mob/living/carbon/human/owner = source
+	var/list/old_abstractions = dummy.get_equipped_items()
+	QDEL_LIST(old_abstractions)
+	for(var/obj/item/item in owner.get_equipped_items())
+		if(item.slot_flags & (ITEM_SLOT_ICLOTHING|ITEM_SLOT_OCLOTHING|ITEM_SLOT_HEAD|ITEM_SLOT_BACK))
+			var/obj/item/abstraction = new item.type
+			abstraction.flags_inv = item.flags_inv
+			abstraction.equip_to_best_slot(dummy)
 
 
 
