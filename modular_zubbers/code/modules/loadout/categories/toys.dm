@@ -261,3 +261,11 @@
 /datum/loadout_item/toys/lewd/mkiiultra_skillchip
 	name = "ENT-PET Mk.II ULTRA skillchip"
 	item_path = /obj/item/skillchip/mkiiultra
+
+/datum/loadout_item/toys/lewd/latex_straight_jacket
+	name = "Latex Straight Jacket"
+	item_path = /obj/item/clothing/suit/straight_jacket/latex_straight_jacket
+
+/datum/loadout_item/toys/lewd/kinky_sleepbag
+	name = "Latex Sleeping Bag"
+	item_path = /obj/item/clothing/suit/straight_jacket/kinky_sleepbag
