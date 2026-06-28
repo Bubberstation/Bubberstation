@@ -488,6 +488,7 @@
 	if(attacking_item.GetComponent(/datum/component/forge_smithable))
 		var/datum/component/forge_smithable/mycomponent = attacking_item.GetComponent(/datum/component/forge_smithable)
 		mycomponent.heat_for_smithing(FORGE_HEATING_DURATION)
+		balloon_alert(user, "heated [attacking_item]")
 		return TRUE
 
 	if(istype(attacking_item, /obj/item/ceramic))
