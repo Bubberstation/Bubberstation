@@ -72,7 +72,8 @@
 		RegisterSignal(parent_item, COMSIG_SMITHING_QUENCH, on_quench)
 	if(!isnull(on_passive_cool))
 		RegisterSignal(parent_item, COMSIG_SMITHING_PASSIVE_COOLED, on_passive_cool)//TYPE_PROC_REF(parent_item.type, on_passive_cool))
-	heat_color = color
+	if(length(color) > 0)
+		heat_color = color
 	if(!isnull(perfection_effects))
 		quench_effects_perfection = perfection_effects
 	if(!isnull(incompletion_effects))

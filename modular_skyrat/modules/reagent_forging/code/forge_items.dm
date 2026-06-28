@@ -23,7 +23,7 @@
 
 /obj/item/forging/incomplete/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/forge_smithable, completion_quality_points, TRUE, max_perfect_hits, bad_hit_maximum, average_wait, CALLBACK(src, TYPE_PROC_REF(/obj/item/forging/incomplete, quench_item)), color = null)// TYPE_PROC_REF(/obj/item/forging/incomplete/, quench_item))
+	AddComponent(/datum/component/forge_smithable, completion_quality_points, TRUE, max_perfect_hits, bad_hit_maximum, average_wait, CALLBACK(src, TYPE_PROC_REF(/obj/item/forging/incomplete, quench_item)), color = "")// TYPE_PROC_REF(/obj/item/forging/incomplete/, quench_item))
 
 /obj/item/forging/incomplete/proc/quench_item(datum/reagents/dunk_reagents, dunk_object, mob/living/quencher)
 	SIGNAL_HANDLER
