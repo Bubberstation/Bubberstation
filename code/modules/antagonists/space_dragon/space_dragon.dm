@@ -265,11 +265,12 @@
 			if(!objective.check_completion())
 				objectives_complete = FALSE
 				break
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	if(objectives_complete)
 		parts += "<span class='greentext big'>The [name] was successful!</span>"
 	else
 		parts += "<span class='redtext big'>The [name] has failed!</span>"
-
+	BUBBER EDIT END */
 	if(length(carp))
 		parts += span_header("<br>The [name] was assisted by:")
 		parts += "<ul class='playerlist'>"

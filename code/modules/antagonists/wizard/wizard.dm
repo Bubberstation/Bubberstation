@@ -424,12 +424,12 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 			wizardwin = FALSE
 		parts += "<B>Objective #[count]</B>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
 		count++
-
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	if(wizardwin)
 		parts += span_greentext("The wizard was successful!")
 	else
 		parts += span_redtext("The wizard has failed!")
-
+	BUBBER EDIT END */
 	var/list/purchases = list()
 	for(var/list/log as anything in GLOB.wizard_spellbook_purchases_by_key[owner.key])
 		var/datum/spellbook_entry/bought = log[LOG_SPELL_TYPE]

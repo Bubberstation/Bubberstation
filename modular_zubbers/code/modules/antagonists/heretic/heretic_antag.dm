@@ -126,6 +126,7 @@
 	parts += printplayer(owner)
 	parts += "<b>Influences Drained:</b> [drained_num]"
 	parts += "<b>Ways Opened:</b> [ways_opened]"
+	/* - removing greentext, leaving the code here on the off chance greentext comes back (lmao)
 	var/completed = 0
 	if(length(objectives))
 		var/count = 1
@@ -142,7 +143,7 @@
 		parts += span_greentext("The [LOWER_TEXT(heretic_path.route)] acolyte was successful!")
 	else
 		parts += span_redtext("The [LOWER_TEXT(heretic_path.route)] acolyte has failed.")
-
+	*/
 	parts += "<b>Knowledge Researched:</b> "
 
 	var/list/string_of_knowledge = list()

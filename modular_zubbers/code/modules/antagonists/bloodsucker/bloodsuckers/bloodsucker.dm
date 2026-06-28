@@ -413,12 +413,12 @@
 			else if(IS_REVENGE_GHOUL(all_ghouls.owner.current))
 				ghoul_report += " and was the <b>Revenge Ghoul</b>"
 			report += ghoul_report.Join()
-
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	if(objectives.len == 0 || objectives_complete)
 		report += "<span class='greentext big'>The [name] was successful!</span>"
 	else
 		report += "<span class='redtext big'>The [name] has failed!</span>"
-
+	BUBBER EDIT END */
 	return report.Join("<br>")
 
 /datum/antagonist/bloodsucker/proc/give_starting_powers()

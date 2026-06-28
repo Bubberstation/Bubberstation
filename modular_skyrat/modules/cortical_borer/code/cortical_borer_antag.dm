@@ -72,6 +72,7 @@
 		if(check_borer.stat == DEAD)
 			continue
 		survival = TRUE
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	if(survival)
 		parts += span_greentext("Borers were able to survive the shift!")
 	else
@@ -87,7 +88,7 @@
 	if(GLOB.successful_blood_chem >= GLOB.objective_blood_borer)
 		parts += span_greentext("Borers were able to learn enough chemicals through the blood!")
 	else
-		parts += span_redtext("Borers were unable to learn enough chemicals through the blood!")
+		parts += span_redtext("Borers were unable to learn enough chemicals through the blood!") BUBBER EDIT END */
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
 /datum/round_event_control/cortical_borer

@@ -288,13 +288,13 @@
 		result += contractor_round_end()
 
 	var/special_role_text = LOWER_TEXT(name)
-
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	if(traitor_won)
 		result += span_greentext("The [special_role_text] was successful!")
 	else
 		result += span_redtext("The [special_role_text] has failed!")
 		SEND_SOUND(owner.current, 'sound/ambience/misc/ambifailure.ogg')
-
+	BUBBER EDIT END */
 	return result.Join("<br>")
 
 ///Tells how many contracts have been completed.

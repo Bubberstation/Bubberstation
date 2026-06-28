@@ -211,14 +211,14 @@
 	result += objectives_text
 
 	var/special_role_text = LOWER_TEXT(name)
-
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	if(malf_ai_won)
 		result += span_greentext("The [special_role_text] was successful!")
 	else
 		result += span_redtext("The [special_role_text] has failed!")
 		if(owner.current)
 			SEND_SOUND(owner.current, 'sound/ambience/misc/ambifailure.ogg')
-
+	BUBBER EDIT END	*/
 	return result.Join("<br>")
 
 /datum/antagonist/malf_ai/get_preview_icon()

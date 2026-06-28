@@ -54,7 +54,7 @@
 				if(istype(objective, /datum/objective/hijack))
 					badass = TRUE
 				break
-
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	if(objectives.len == 0 || option_chosen)
 		if(badass)
 			report += "<span class='greentext big'>Major [name] Victory</span>"
@@ -64,5 +64,5 @@
 			report += "<B>[name] has survived as an exile!</B>"
 	else
 		report += "<span class='redtext big'>The [name] has failed!</span>"
-
+	BUBBER EDIT END */
 	return report.Join("<br>")

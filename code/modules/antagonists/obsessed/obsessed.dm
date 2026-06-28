@@ -168,12 +168,12 @@
 			report += span_redtext("The [name] did not go near their obsession the entire round! That's extremely impressive!")
 	else
 		report += span_redtext("The [name] had no trauma attached to their antagonist ways! Either it bugged out or an admin incorrectly gave this good samaritan antag and it broke! You might as well show yourself!!")
-
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	if(objectives.len == 0 || objectives_complete)
 		report += "<span class='greentext big'>The [name] was successful!</span>"
 	else
 		report += "<span class='redtext big'>The [name] has failed!</span>"
-
+	BUBBER EDIT END */
 	return report.Join("<br>")
 
 //////////////////////////////////////////////////
