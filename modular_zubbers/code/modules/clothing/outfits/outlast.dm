@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/leatherapron //Sprite by pacertest on discord
 	name = "leather apron"
-	desc = "An apron made from thick leather. Has a couple pouches for forging equipment."
+	desc = "An apron made from thick leather."
 	icon = 'modular_zubbers/icons/obj/clothing/outlast.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
@@ -22,6 +22,7 @@
 		/obj/item/surgical_drapes,
 		/obj/item/storage/pill_bottle,
 		/obj/item/tank/internals/emergency_oxygen,
+		/obj/item/melee/forged_reagent_weapon
 		/obj/item/forging/hammer,
 		/obj/item/forging/tongs,
 		/obj/item/forging/billow,
