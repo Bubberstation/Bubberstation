@@ -5,6 +5,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
 	icon_state = "leatherapron"
+	body_parts_covered = CHEST|GROIN
 	allowed = list(
 		/obj/item/bonesetter,
 		/obj/item/cautery,
