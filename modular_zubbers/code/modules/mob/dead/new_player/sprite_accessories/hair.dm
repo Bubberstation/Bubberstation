@@ -130,3 +130,13 @@
 	icon = 'modular_zubbers/icons/customization/hair.dmi'
 	name = "Moth Hair Short"
 	icon_state = "hair_moth_short"
+
+/datum/sprite_accessory/hair/messy_rt
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Rogue"
+	icon_state = "messy_rt"
+
+/datum/sprite_accessory/facial_hair/viking
+	icon = 'modular_zubbers/icons/customization/facial_hair.dmi'
+	name = "Beard (Viking)"
+	icon_state = "viking"
