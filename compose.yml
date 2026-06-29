@@ -1,0 +1,13 @@
+services:
+  bubberstation:
+    build: .
+    environment:
+      HOST: 127.0.0.1
+      PORT: 3000
+      RUSTUP_INIT_SKIP_PATH_CHECK: yes
+      DEBIAN_FRONTEND: noninteractive
+    working_dir: /app
+    volumes:
+      - type: bind
+        source: ./
+        target: /app

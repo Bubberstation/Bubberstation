@@ -203,6 +203,16 @@
 			"problemMatcher": ["$tsc", "$eslint-stylish"],
 			"group": "build",
 			"label": "tgui: rebuild tgfont"
+		},
+		{
+			"type": "shell",
+			"command": "docker compose build",
+			"problemMatcher": ["$dreammaker", "$tsc", "$eslint-stylish"],
+			"group": {
+				"kind": "build"
+			},
+			"dependsOn": "dm: reparse",
+			"label": "Build (Docker Compose Container)"
 		}
 	]
 }
