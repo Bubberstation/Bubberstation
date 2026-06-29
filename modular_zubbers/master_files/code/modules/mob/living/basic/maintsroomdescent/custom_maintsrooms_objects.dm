@@ -193,3 +193,17 @@
 /datum/mood_event/locked_in
 	description = "My mind feels secure. It was worth it."
 	mood_change = 31
+
+/obj/effect/spawner/random/environmentally_safe_anomaly/maintsroom
+	name = "safe anomaly spawner without bioscramblers"
+	loot = list(
+		/obj/effect/spawner/random/maintsrooms/garbage_or_artifact = 1,
+		/obj/effect/anomaly/flux = 5,
+		/obj/effect/anomaly/bluespace = 5,
+		/obj/effect/anomaly/hallucination = 5,
+		/obj/effect/anomaly/grav = 5,
+		/obj/effect/anomaly/bioscrambler/docile = 5,
+		/obj/effect/blessing/invisible = 24,
+		/obj/effect/spawner/random/maintsrooms/materials = 25,
+		/obj/effect/spawner/random/maintsrooms = 25,
+	)
