@@ -521,7 +521,7 @@
 	worn_icon_state = "hammer_back"
 	throwforce = 10
 	demolition_mod = 1.5
-	slot_flags = ITEM_SLOT_BACK
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FIRE_PROOF
 	attack_verb_continuous = list("bashes", "whacks")

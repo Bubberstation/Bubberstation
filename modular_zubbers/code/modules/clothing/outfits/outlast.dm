@@ -26,23 +26,6 @@
 		/obj/item/forging/billow,
 	)
 
-/obj/item/clothing/suit/leatherapron/Initialize(mapload)
-	. = ..()
-	create_storage(
-		max_slots = 8,
-		storage_type = /datum/storage/belt,
-		canhold = list(
-			/obj/item/forging/tongs,
-			/obj/item/forging/billow,
-			/obj/item/forging/hammer,
-			/obj/item/glassblowing/blowing_rod,
-			/obj/item/glassblowing/paddle,
-			/obj/item/glassblowing/shears,
-			/obj/item/glassblowing/jacks,
-			/obj/item/glassblowing/metal_cup,
-		),
-	)
-
 /obj/item/clothing/glasses/hud/health/surgerygoggles //Sprite by pacertest on discord
 	name = "surgery goggles"
 	desc = "A pair of goggles worn to protect the eyes from viscera flying off a patient, a wonderful development in medical technology."
