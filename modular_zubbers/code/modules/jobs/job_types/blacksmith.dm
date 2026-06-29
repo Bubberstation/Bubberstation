@@ -71,7 +71,7 @@
 	The <b>billows</b> blow air into your forge to accelerate its heating process.<br>\n\
 	The <b>tongs</b> let you safely insert a sheet of material into your forge, and safely handle hot items.<br>\n\
 	The <b>forging mallet</b> is used alongside an anvil to work an item into shape.<br>\n\
-	If you lack a dedicated department room, almost all of the above can be crafted using basic wood and iron. Use the crafting menu (the hammer icon -- bottom right of your screen) to take a look.<br>\n\
+	If you lack a dedicated department room and cannot summon a package of these items via your summon beacon, almost all of the above can be crafted using basic wood and iron (except the anvil, which requires plastitanium). Use the crafting menu (the hammer icon -- bottom right of your screen) to take a look.<br>\n\
 	<br> \
 	How to heat your forge:<br>\n\
 	-1: Acquire a fuel source. You can use coal or wood for this purpose.<br>\n\
