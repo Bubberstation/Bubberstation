@@ -100,9 +100,9 @@
 	return TRUE
 
 /obj/item/organ/brain/synth/transfer_identity(mob/living/L)
-    if(L.mind && L.mind.current && !decoy_override)
-        to_chat(L, span_userdanger("Memories Corrupted, Positronic rerolling to most stable version, last version backup ERROR minutes ago, last attacker's: Unknown, unable to pinpoint features, please standby."))
-    . = ..()
+	if(L.mind && L.mind.current && !decoy_override)
+		to_chat(L, span_userdanger("Memories Corrupted, Positronic rerolling to most stable version, last version backup ERROR minutes ago, last attacker's: Unknown, unable to pinpoint features, please standby."))
+	. = ..()
 
 
 /obj/item/organ/brain/synth/emp_act(severity) // EMP act against the posi, keep the cap far below the organ health
