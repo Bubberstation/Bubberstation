@@ -720,17 +720,21 @@
 
 // virosec helmets, sprites by axietheaxolotl
 
-/obj/item/clothing/head/helmet/viro
+/obj/item/clothing/head/helmet/sec/viro
 	name = "helmet"
 	desc = "Standard Security gear. Protects the head from impacts."
+	base_icon_state = "security_helmet"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "security_helmet"
 
-/obj/item/clothing/head/helmet/viro/hos
-	name = "helmet"
+/obj/item/clothing/head/helmet/sec/viro/hos
+	name = "head of security's helmet"
 	desc = "Standard Security gear. Protects the head from impacts. This one has a golden stripe."
+	base_icon_state = "hos_helmet"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "hos_helmet"
+	armor_type = /datum/armor/hats_hos
+
 

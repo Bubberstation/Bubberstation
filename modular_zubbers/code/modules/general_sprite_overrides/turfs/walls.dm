@@ -216,12 +216,6 @@
 
 
 // ROCK WALLS
-/turf/closed/mineral/asteroid
-	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/red_wall.dmi', 'icons/turf/mining.dmi')
-
-/turf/closed/mineral/random/stationside/asteroid
-	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/red_wall.dmi', 'icons/turf/mining.dmi')
-
 /turf/closed/indestructible/rock
 	icon = 'modular_zubbers/icons/turf/walls/smoothrocks.dmi'
 	icon_state = "smoothrocks-0"
@@ -238,7 +232,6 @@
 	base_icon_state = "mountain_wall"
 	canSmoothWith = SMOOTH_GROUP_CLOSED_TURFS
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
-
 
 /turf/closed/indestructible/rock/snow/ice
 	icon = 'modular_zubbers/icons/turf/walls/icerock_wall.dmi'
@@ -260,9 +253,6 @@
 	icon = 'modular_zubbers/icons/turf/walls/icedmetal_wall.dmi'
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS
-
-/turf/closed/wall/rock
-	icon = 'modular_zubbers/icons/turf/walls/reinforced_rock.dmi'
 
 
 // FALSE WALLS

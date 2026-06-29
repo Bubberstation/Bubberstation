@@ -1074,12 +1074,12 @@
 
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/void/robes_side_effect(mob/living/user)
 	. = ..()
-	user.adjust_bodytemperature(-INFINITY)
-	ADD_TRAIT(user, TRAIT_HYPOTHERMIC, REF(src))
+	/*user.adjust_bodytemperature(-INFINITY)
+	ADD_TRAIT(user, TRAIT_HYPOTHERMIC, REF(src))*/ // BUBBER EDIT REMOVAL - who decided this was a good idea
 	if(!isliving(user))
 		return
 	var/mob/living/victim = user
-	victim.apply_status_effect(/datum/status_effect/frozenstasis/irresistable)
+	victim.apply_status_effect(/datum/status_effect/frozenstasis) // BUBBER EDIT CHANGE - was /unresistable
 
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/void/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, final_block_chance, damage, attack_type, damage_type)
 	. = ..()
@@ -1114,13 +1114,13 @@
 // Void cloak. Turns invisible with the hood up, lets you hide stuff.
 /obj/item/clothing/head/hooded/cult_hoodie/void
 	name = "void hood"
-	icon = 'icons/obj/clothing/head/helmet.dmi'
-	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	desc = "Black like tar, reflecting no light. Runic symbols line the outside. \
 		With each flash you lose comprehension of what you are seeing."
+	icon = 'icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	icon_state = "void_cloak"
 	flags_inv = NONE
-	flags_cover = NONE
+	flags_cover = ALLOW_SURGERY_THROUGH
 	armor_type = /datum/armor/cult_hoodie_void
 
 /datum/armor/cult_hoodie_void
@@ -1196,7 +1196,7 @@
 		return
 
 	// Let examiners know this works as a focus only if the hood is down
-	. += span_notice("Allows you to cast heretic spells while the hood is down.")
+	//. += span_notice("Allows you to cast heretic spells while the hood is down.") // BUBBER EDIT REMOVAL
 	. += span_notice("Is space worthy as long as the hood is down.")
 
 /obj/item/clothing/suit/hooded/cultrobes/void/on_hood_down(obj/item/clothing/head/hooded/hood)
@@ -1221,6 +1221,7 @@
 /obj/item/clothing/suit/hooded/cultrobes/void/proc/make_invisible()
 	add_traits(list(TRAIT_NO_STRIP, TRAIT_EXAMINE_SKIP), REF(src))
 	RemoveElement(/datum/element/heretic_focus)
+	flags_cover |= ALLOW_SURGERY_THROUGH
 
 	if(isliving(loc))
 		loc.remove_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTCOLD), REF(src))
@@ -1232,6 +1233,7 @@
 /obj/item/clothing/suit/hooded/cultrobes/void/proc/make_visible()
 	remove_traits(list(TRAIT_NO_STRIP, TRAIT_EXAMINE_SKIP), REF(src))
 	AddElement(/datum/element/heretic_focus)
+	flags_cover &= ~ALLOW_SURGERY_THROUGH
 
 	if(isliving(loc))
 		loc.add_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTCOLD), REF(src))
