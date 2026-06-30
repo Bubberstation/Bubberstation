@@ -83,9 +83,10 @@
 	target_areas = list(/area/station/service/salon, /area/station/hallway/secondary/service)
 	desired_atom = /obj/effect/landmark/start/barber
 
-/datum/area_spawn/blueshield_landmark
-	target_areas = list(/area/station/command/heads_quarters/captain, /area/station/command/bridge)
-	desired_atom = /obj/effect/landmark/start/blueshield
+// Removed Blueshield automatic spawns because they're mapped now
+// /datum/area_spawn/blueshield_landmark
+//	target_areas = list(/area/station/command/heads_quarters/captain, /area/station/command/bridge)
+//	desired_atom = /obj/effect/landmark/start/blueshield
 
 /datum/area_spawn/bouncer_landmark
 	desired_atom = /obj/effect/landmark/start/bouncer
