@@ -18701,6 +18701,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/disposal/incinerator)
+"gcF" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/nt_rep)
 "gcL" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/spawner/random/engineering/tracking_beacon,
@@ -32174,6 +32178,8 @@
 "koE" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/photocopier/prebuilt,
+/obj/machinery/power/apc/auto_name/directional/north,
+/obj/structure/cable,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "kpA" = (
@@ -38664,9 +38670,6 @@
 /area/station/security/lockers)
 "moy" = (
 /obj/structure/table/wood,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
-	},
 /obj/item/flashlight/lamp{
 	pixel_x = -7;
 	pixel_y = 7
@@ -51800,12 +51803,14 @@
 /turf/open/floor/iron,
 /area/station/security/brig)
 "qKX" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/holopad,
 /obj/structure/chair/plastic{
 	dir = 0
 	},
 /obj/effect/turf_decal/siding/wood,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "qLb" = (
@@ -61251,9 +61256,6 @@
 /turf/open/floor/iron,
 /area/station/maintenance/disposal/incinerator)
 "tBT" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/bot,
-/obj/machinery/power/apc/auto_name/directional/north,
 /obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
@@ -62322,9 +62324,6 @@
 /obj/item/pen/fountain{
 	pixel_x = -5;
 	pixel_y = 5
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
 	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
@@ -101843,7 +101842,7 @@ aeu
 rWX
 psU
 rlW
-rlW
+gcF
 uQh
 tUr
 dSe
