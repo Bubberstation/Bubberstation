@@ -92,8 +92,8 @@
 		SSdisease.event_diseases += D // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
 
 	D.after_add()
+	D.register_disease_signals()
 	infectee.med_hud_set_status()
-	D.register_disease_signals() // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 
 	var/turf/source_turf = get_turf(infectee)
 	mobs_infected++ // BUBBER EDIT ADDITION - DISEASE OUTBREAK UPDATES
@@ -172,8 +172,8 @@
 	if(SPT_PROB(stage_prob * slowdown * bad_immune, seconds_per_tick))
 		update_stage(min(stage + 1, max_stages))
 
-	// if(!(disease_flags & CHRONIC) && disease_flags & CURABLE && bypasses_immunity != TRUE)
-	if(!(disease_flags & CHRONIC) && disease_flags & CURABLE && bypasses_immunity != TRUE && bypasses_disease_recovery != TRUE) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
+	// if(!(disease_flags & CHRONIC) && disease_flags & CURABLE && bypasses_immunity != TRUE && !HAS_TRAIT(affected_mob, TRAIT_NO_SELF_CURE))
+	if(!(disease_flags & CHRONIC) && disease_flags & CURABLE && bypasses_immunity != TRUE && bypasses_disease_recovery != TRUE && !HAS_TRAIT(affected_mob, TRAIT_NO_SELF_CURE)) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 		switch(severity)
 			if(DISEASE_SEVERITY_POSITIVE)
 				if(slowdown < 1 || (!(HAS_TRAIT(affected_mob, TRAIT_NOHUNGER)) && (affected_mob.satiety < DISEASE_SATIETY_THRESHOLD || affected_mob.nutrition < NUTRITION_LEVEL_STARVING)))
