@@ -44,6 +44,9 @@
 	. += NAMEOF(src, corrupted)
 	return .
 
+/obj/item/stock_parts/power_store/is_injectable()
+	return reagents
+
 /obj/item/stock_parts/power_store/Initialize(mapload, override_maxcharge)
 	. = ..()
 	create_reagents(5, INJECTABLE | DRAINABLE)
