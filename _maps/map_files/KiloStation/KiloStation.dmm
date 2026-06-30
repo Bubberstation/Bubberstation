@@ -4407,8 +4407,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
-/turf/open/floor/iron/dark,
+/turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "bzb" = (
 /obj/structure/grille,
@@ -8468,7 +8467,9 @@
 /turf/open/floor/circuit,
 /area/station/ai/upload/chamber)
 "cTi" = (
-/turf/open/floor/wood,
+/obj/effect/turf_decal/tile/dark_blue/diagonal_centre,
+/obj/effect/landmark/start/blueshield,
+/turf/open/floor/iron/dark/diagonal,
 /area/station/command/heads_quarters/blueshield)
 "cTk" = (
 /obj/machinery/duct,
@@ -9891,13 +9892,15 @@
 /area/station/engineering/atmos)
 "doj" = (
 /obj/machinery/suit_storage_unit/security,
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/machinery/vending/wallmed/directional/south,
-/obj/effect/turf_decal/siding/dark{
-	dir = 8;
-	icon_state = "siding_plain_end"
+/obj/effect/turf_decal/delivery/red,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 4
 	},
-/turf/open/floor/engine,
+/obj/machinery/vending/wallmed/directional/west,
+/obj/structure/sign/plaques/kiddie/perfect_man{
+	pixel_y = -32
+	},
+/turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
 "dok" = (
 /obj/effect/decal/cleanable/dirt,
@@ -10148,9 +10151,10 @@
 /area/station/science/ordnance/storage)
 "drC" = (
 /obj/machinery/airalarm/directional/east,
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
+/obj/machinery/computer/records/security{
+	dir = 8
 	},
+/obj/machinery/light/directional/east,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "drG" = (
@@ -12535,28 +12539,7 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "eiY" = (
-/obj/structure/safe/abovetilefloor,
-/obj/item/reagent_containers/cup/glass/trophy{
-	desc = "You did good in the worst way possible.";
-	name = "Redshield 1st prize";
-	pixel_y = 9;
-	pixel_x = -2
-	},
-/obj/item/storage/medkit/tactical/blueshield,
-/obj/item/reagent_containers/cup/glass/flask{
-	pixel_y = -2;
-	pixel_x = 2
-	},
-/obj/item/toy/figure/captain,
-/obj/item/storage/fancy/cigarettes/cigars,
-/obj/item/storage/box/matches,
-/obj/item/reagent_containers/cup/glass/bottle/lizardwine,
-/obj/item/paperwork/captain{
-	pixel_x = -3;
-	pixel_y = 4;
-	name = "Asset Protection case records";
-	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
-	},
+/obj/effect/turf_decal/siding/dark,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "ejc" = (
@@ -13575,13 +13558,14 @@
 /obj/item/screwdriver,
 /obj/item/storage/toolbox/ammobox/wt550m9,
 /obj/item/shield/riot,
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/reagent_dispensers/wall/peppertank/directional/south,
-/obj/effect/turf_decal/siding/dark{
-	dir = 4;
-	icon_state = "siding_plain_end"
+/obj/effect/turf_decal/delivery/red,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 8
 	},
-/turf/open/floor/engine,
+/obj/structure/plaque/static_plaque/golden{
+	pixel_y = -32
+	},
+/turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
 "eAk" = (
 /obj/machinery/light/small/directional/east,
@@ -25994,10 +25978,12 @@
 /turf/open/floor/iron,
 /area/station/engineering/hallway)
 "ipg" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/chair/office{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/landmark/start/blueshield,
+/obj/effect/mapping_helpers/turn_off_lights_with_lightswitch,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "ipo" = (
@@ -29562,10 +29548,27 @@
 /turf/open/floor/iron/showroomfloor,
 /area/station/security/office)
 "juj" = (
-/obj/machinery/computer/crew{
+/obj/structure/closet/secure_closet/blueshield,
+/obj/item/taperecorder{
+	name = "Captain's Log"
+	},
+/obj/item/clothing/gloves/tackler/combat/insulated/blueshield,
+/obj/item/modular_computer/laptop/preset/security{
+	pixel_y = 5
+	},
+/obj/machinery/light/small/blacklight/directional/south,
+/obj/effect/turf_decal/delivery/red,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 4
 	},
-/turf/open/floor/wood,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating_new/dark/corner{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/wall/peppertank/directional/west,
+/turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
 "juq" = (
 /obj/structure/flora/grass/jungle/a/style_random,
@@ -31505,6 +31508,9 @@
 	pixel_y = 8
 	},
 /obj/machinery/firealarm/directional/east,
+/obj/machinery/computer/crew{
+	dir = 8
+	},
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "kbw" = (
@@ -32170,10 +32176,9 @@
 /turf/open/floor/engine/co2,
 /area/station/engineering/atmos)
 "koE" = (
-/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /obj/effect/turf_decal/bot,
 /obj/machinery/photocopier/prebuilt,
-/turf/open/floor/iron/dark,
+/turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "kpA" = (
 /obj/effect/turf_decal/siding/white{
@@ -40381,12 +40386,16 @@
 /turf/closed/wall/rust,
 /area/station/security/evidence)
 "mRC" = (
-/obj/machinery/modular_computer/preset/command{
-	dir = 4
-	},
 /obj/machinery/camera/directional/west{
 	c_tag = "Blueshield's Office"
 	},
+/obj/effect/turf_decal/siding/dark,
+/obj/structure/table/wood,
+/obj/machinery/fax{
+	name = "Blueshield's Fax Machine";
+	fax_name = "Blueshield's Office"
+	},
+/obj/item/radio/intercom/directional/west,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "mRF" = (
@@ -45826,7 +45835,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/obj/machinery/light/directional/west,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "oNr" = (
@@ -46881,6 +46889,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
+/obj/machinery/light/directional/west,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "peY" = (
@@ -49068,13 +49077,20 @@
 /turf/open/floor/iron/showroomfloor,
 /area/station/science/xenobiology)
 "pNV" = (
-/obj/structure/table/wood/fancy/blue,
-/obj/machinery/fax{
-	name = "Blueshield's Fax Machine";
-	fax_name = "Blueshield's Office"
+/obj/effect/turf_decal/delivery/red,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 8
 	},
-/obj/item/radio/intercom/directional/east,
-/turf/open/floor/wood,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating_new/dark/corner{
+	dir = 1
+	},
+/obj/structure/rack/shelf,
+/obj/item/storage/medkit/fire,
+/obj/item/storage/medkit/tactical/blueshield,
+/turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
 "pNZ" = (
 /obj/machinery/portable_atmospherics/canister/air,
@@ -61239,12 +61255,13 @@
 /turf/open/floor/iron,
 /area/station/maintenance/disposal/incinerator)
 "tBT" = (
-/obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /obj/effect/turf_decal/bot,
-/obj/machinery/vending/cigarette,
-/turf/open/floor/iron/dark,
+/obj/machinery/power/apc/auto_name/directional/north,
+/obj/item/kirbyplants{
+	icon_state = "plant-21"
+	},
+/turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "tCd" = (
 /obj/effect/landmark/event_spawn,
@@ -63846,25 +63863,31 @@
 	},
 /area/station/hallway/primary/fore)
 "uqT" = (
-/obj/structure/closet/secure_closet/blueshield,
-/obj/item/taperecorder{
-	name = "Captain's Log"
+/obj/structure/safe/abovetilefloor,
+/obj/item/reagent_containers/cup/glass/trophy{
+	desc = "You did good in the worst way possible.";
+	name = "Redshield 1st prize";
+	pixel_y = 9;
+	pixel_x = -2
 	},
-/obj/item/clothing/gloves/tackler/combat/insulated/blueshield,
-/obj/item/modular_computer/laptop/preset/security{
-	pixel_y = 5
+/obj/item/reagent_containers/cup/glass/flask{
+	pixel_y = -2;
+	pixel_x = 2
 	},
-/obj/structure/sign/flag/nanotrasen/directional/south,
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
+/obj/item/toy/figure/captain,
+/obj/item/storage/fancy/cigarettes/cigars,
+/obj/item/storage/box/matches,
+/obj/item/reagent_containers/cup/glass/bottle/lizardwine,
+/obj/item/paperwork/captain{
+	pixel_x = -3;
+	pixel_y = 4;
+	name = "Asset Protection case records";
+	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
 	},
-/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/tile/dark_blue/diagonal_centre,
+/obj/machinery/status_display/ai/directional/south,
 /obj/machinery/light/small/blacklight/directional/south,
-/obj/machinery/door/window/brigdoor/right/directional/north{
-	name = "Blueshield's Armory";
-	req_access = list("captain")
-	},
-/turf/open/floor/engine,
+/turf/open/floor/iron/dark/diagonal,
 /area/station/command/heads_quarters/blueshield)
 "uqW" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -65648,6 +65671,10 @@
 /turf/closed/wall/rust,
 /area/station/science/xenobiology)
 "uXZ" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/machinery/computer/records/medical{
+	dir = 8
+	},
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "uYb" = (
