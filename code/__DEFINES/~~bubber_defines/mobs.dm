@@ -48,11 +48,11 @@
 #define BODYPART_ICON_GAS 'modular_skyrat/modules/bodyparts/icons/serpentid_parts_greyscale.dmi'
 
 // Genital Layers
-#define BUTT_LAYER_OFFSET 0.8
-#define ANUS_LAYER_OFFSET  0.7
-#define VAGINA_LAYER_OFFSET 0.6
-#define TESTICLES_LAYER_OFFSET 0.5
-#define GENITAL_LAYER_OFFSET 0.4
-#define PENIS_LAYER_OFFSET 0.3
-#define BELLY_LAYER_OFFSET 0.2
-#define BREASTS_LAYER_OFFSET 0.1
+#define BUTT_LAYER_OFFSET 0.08
+#define ANUS_LAYER_OFFSET  0.07
+#define VAGINA_LAYER_OFFSET 0.06
+#define TESTICLES_LAYER_OFFSET 0.05
+#define GENITAL_LAYER_OFFSET 0.04
+#define PENIS_LAYER_OFFSET 0.03
+#define BELLY_LAYER_OFFSET 0.02
+#define BREASTS_LAYER_OFFSET 0.01
