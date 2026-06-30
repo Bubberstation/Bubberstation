@@ -3,6 +3,8 @@
 	desc = "A larger than average, albeit slightly smoother brain. The hypothalamus seems larger than normal." // I read in a random medical artical that the hypothalamus controls aggression.
 	actions_types = list(/datum/action/cooldown/spell/beast_form)
 	var/last_slot
+	var/to_human_sfx = 'modular_zubbers/code/modules/customization/species/lycans/transform.ogg'
+	var/to_lycan_sfx = 'modular_zubbers/code/modules/customization/species/lycans/transform.ogg'
 
 /obj/item/organ/brain/lycan/on_mob_insert(mob/living/carbon/brain_owner, special, movement_flags)
 	. = ..()
