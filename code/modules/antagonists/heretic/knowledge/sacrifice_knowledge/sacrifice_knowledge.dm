@@ -26,7 +26,7 @@
 	/// A weakref to the mind of our heretic.
 	var/datum/mind/heretic_mind
 	/// Lazylist of minds that we won't pick as targets.
-	var/list/datum/mind/target_blacklist
+	var/static/list/datum/mind/target_blacklist
 	/// An assoc list of [ref] to [timers] - a list of all the timers of people in the shadow realm currently
 	var/list/return_timers
 	/// Evil organs we can put in people
@@ -42,7 +42,6 @@
 
 /datum/heretic_knowledge/hunt_and_sacrifice/Destroy(force)
 	heretic_mind = null
-	LAZYCLEARLIST(target_blacklist)
 	return ..()
 
 /datum/heretic_knowledge/hunt_and_sacrifice/on_research(mob/user, datum/antagonist/heretic/our_heretic)
@@ -73,6 +72,12 @@
 	if(heretic_datum.has_living_heart() != HERETIC_HAS_LIVING_HEART)
 		loc.balloon_alert(user, "ritual failed, no living heart!")
 		return FALSE
+
+	// BUBBER EDIT ADDITION BEGIN - cant sacrifice if youve fulfilled your obj
+	if (heretic_datum.wildcard_obj.completed)
+		loc.balloon_alert(user, "your patrons are already satisfied...")
+		return FALSE
+	// BUBBER EDIT ADDITION END
 
 	// We've got no targets set, let's try to set some.
 	// If we recently failed to acquire targets, we will be unable to acquire any.
@@ -211,15 +216,14 @@
 
 	if(sacrifice.mind)
 		LAZYADD(target_blacklist, sacrifice.mind)
-	heretic_datum.remove_sacrifice_target(sacrifice)
-
+	for(var/datum/antagonist/heretic/all_heretic in GLOB.antagonists)
+		all_heretic.remove_sacrifice_target(sacrifice)
 
 	var/feedback = "Your patrons accept your offer"
 	var/sac_job_flag = sacrifice.mind?.assigned_role?.job_flags | sacrifice.last_mind?.assigned_role?.job_flags
 	var/datum/antagonist/cult/cultist_datum = GET_CULTIST(sacrifice)
 	// Heads give 3 points, cultists give 1 point (and a special reward), normal sacrifices give 2 points.
 	heretic_datum.total_sacrifices++
-	check_sacrifice_total(user, heretic_datum) //BUBBER EDIT
 	if((sac_job_flag & JOB_HEAD_OF_STAFF))
 		heretic_datum.adjust_knowledge_points(3)
 		heretic_datum.high_value_sacrifices++
@@ -252,6 +256,10 @@
 		return
 
 	sacrifice.apply_status_effect(/datum/status_effect/heretic_curse, user)
+	// BUBBER EDIT ADDITION BEGIN - wildcard objs
+	if (istype(heretic_datum.wildcard_obj, /datum/objective/heretic_wildcard/sacrifice))
+		heretic_datum.wildcard_obj.increment_progress(heretic_datum, sacrifice)
+	// BUBBER EDIT END
 
 
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/grant_reward(mob/living/user, mob/living/sacrifice, turf/loc)

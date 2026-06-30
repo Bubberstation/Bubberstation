@@ -33,6 +33,10 @@
 
 /obj/machinery/door/airlock/update_overlays()
 	. = ..()
+	if(QDELETED(src))
+		return
+	if(isnull(overlays_file))
+		return
 	var/frame_state
 	var/light_state = AIRLOCK_LIGHT_POWERON
 	if(machine_stat & MAINT) // in the process of being emagged
