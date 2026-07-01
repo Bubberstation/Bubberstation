@@ -286,7 +286,7 @@
 
 	if(uplink_handler && uplink_handler.contractor_hub)
 		result += contractor_round_end()
-
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	var/special_role_text = LOWER_TEXT(name)
 
 	if(traitor_won)
@@ -294,7 +294,7 @@
 	else
 		result += span_redtext("The [special_role_text] has failed!")
 		SEND_SOUND(owner.current, 'sound/ambience/misc/ambifailure.ogg')
-
+	BUBBER EDIT END */
 	return result.Join("<br>")
 
 ///Tells how many contracts have been completed.

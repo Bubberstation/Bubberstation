@@ -57,12 +57,12 @@
 		report += span_greentext("The [name] consumed a total of [consume_count] bodies!")
 	else
 		report += span_redtext("The [name] did not consume anyone! Shame!!")
-
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	if(isnull(owner.current) || owner.current.stat == DEAD) //demons delete on death but if someone makes like a subtype that doesnt we also check for stat
 		report += "<span class='redtext big'>The [name] was vanquished!</span>"
 	else
 		report += "<span class='greentext big'>The [name] survived!</span>"
-
+	BUBBER EDIT END */
 	return report.Join("<br>")
 
 /datum/antagonist/slaughter/laughter
