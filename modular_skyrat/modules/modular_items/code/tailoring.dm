@@ -13,6 +13,7 @@
 	tool_behaviors = list(TOOL_WIRECUTTER)
 	reqs = list(/obj/item/paper = 5)
 	category = CAT_CLOTHING
+	blacklist = list(/obj/item/paper/devil_contract)
 
 /datum/crafting_recipe/crusader_belt
 	name = "Crusader Belt and Sheath"

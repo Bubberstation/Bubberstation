@@ -2,7 +2,6 @@
 	icon_state = "paper_words"
 	throw_range = 3
 	throw_speed = 3
-	item_flags = NOBLUDGEON
 	///Needed to get the spawned mob's name to display in the paper.
 	var/employee_name = ""
 
@@ -58,3 +57,12 @@
 	if(!employee || !employee.mind)
 		return
 	new /obj/item/paper/work_contract(src, employee.mind.name)
+
+/obj/item/paper/work_contract/attack(mob/living/target, mob/user)
+	if(user == target)
+		return
+
+	if(isliving(target) && HAS_TRAIT_FROM(target, TRAIT_NO_SOUL, DEVIL_TRAIT))
+		user.balloon_alert(user, "showed contract!")
+		target.remove_traits(list(TRAIT_DEFIB_BLACKLISTED, TRAIT_BADDNA, TRAIT_NO_SOUL), DEVIL_TRAIT)
+		to_chat(target, span_notice("After reading the contract shoved in your face, you remember that Nanotrasen already owns your soul. Voiding the soul clause of the contract you signed with the devil."))

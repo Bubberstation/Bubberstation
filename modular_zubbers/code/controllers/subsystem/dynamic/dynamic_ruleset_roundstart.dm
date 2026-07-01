@@ -27,3 +27,21 @@
 /datum/dynamic_ruleset/roundstart/bloodsucker/assign_role(datum/mind/candidate)
 	var/datum/antagonist/bloodsucker/suck_datum = candidate.add_antag_datum(/datum/antagonist/bloodsucker)
 	suck_datum.AdjustUnspentRank(rand(2, 3))
+
+
+//////////////////////////////////////////////
+//                                          //
+//           ROUNDSTART DEVIL               //
+//                                          //
+//////////////////////////////////////////////
+
+
+
+/datum/dynamic_ruleset/roundstart/devil
+	name = "Devils"
+	config_tag = "Roundstart Devil"
+	pref_flag = ROLE_DEVIL
+	preview_antag_datum = /datum/antagonist/devil
+	blacklisted_roles = BLOODSUCKER_BLACKLISTED_ROLES // I'm just going to re-use this.
+	weight = 7 // Reduce to 5 before merge.
+	max_antag_cap = list("denominator" = 24)

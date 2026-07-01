@@ -20,6 +20,7 @@
 	)
 	time = 0.1 SECONDS
 	category = CAT_WEAPON_AMMO
+	blacklist = list(/obj/item/paper/devil_contract) // BUBBER EDIT - ADDITION
 
 /datum/crafting_recipe/rebarsyndie
 	name = "jagged iron rod"

@@ -438,6 +438,7 @@ GLOBAL_LIST_INIT(human_invader_antagonists, list(
 #define ANTAG_GROUP_HUNTERS "Bounty Hunters"
 #define ANTAG_GROUP_PARADOX "Spacetime Aberrations"
 #define ANTAG_GROUP_CREW "Deviant Crew"
+#define ANTAG_GROUP_DEVILS "Infernal Agents" // BUBBER EDIT - ADDITION
 
 
 /// Used to denote an antag datum that either isn't necessarily "evil" (like Valentines)

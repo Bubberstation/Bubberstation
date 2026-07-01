@@ -12,3 +12,5 @@
 
 /// Transformation component
 #define TRAIT_TRANSFORMATION "transformation"
+
+#define DEVIL_TRAIT "devil"

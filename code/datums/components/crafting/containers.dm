@@ -4,6 +4,7 @@
 	time = 1 SECONDS
 	reqs = list(/obj/item/paper = 5)
 	category = CAT_CONTAINERS
+	blacklist = list(/obj/item/paper/devil_contract) // BUBBER EDIT - ADDITION
 
 /datum/crafting_recipe/sillycup
 	name = "Paper Cup"
@@ -11,6 +12,7 @@
 	time = 1 SECONDS
 	reqs = list(/obj/item/paper = 2)
 	category = CAT_CONTAINERS
+	blacklist = list(/obj/item/paper/devil_contract) // BUBBER EDIT - ADDITION
 
 /datum/crafting_recipe/boh
 	name = "Bag of Holding"
