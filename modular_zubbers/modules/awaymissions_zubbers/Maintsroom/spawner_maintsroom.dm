@@ -5,26 +5,12 @@
 		/turf/closed/wall/r_wall = 31,
 		/turf/open/floor/white = 37,
 		/obj/structure/table/reinforced = 23,
-		/obj/effect/spawner/random/environmentally_safe_anomaly/immobile = 4,
+		/obj/effect/spawner/random/maintsrooms/materials = 5.7,
 		/obj/effect/decal/remains/human = 0.5,
 		/obj/effect/decal/remains/robot = 0.4,
 		/obj/effect/decal/remains/xeno = 0.4,
 		/obj/structure/fluff/clockwork/clockgolem_remains = 0.4,
 		/obj/item/raw_anomaly_core/random = 2,
-		/obj/item/stack/sheet/mineral/zaukerite = 0.1,
-		/obj/item/stack/sheet/mineral/runite = 0.1,
-		/obj/item/stack/sheet/mineral/metal_hydrogen = 0.1,
-		/obj/item/stack/sheet/mineral/gold = 0.1,
-		/obj/item/stack/sheet/mineral/diamond = 0.1,
-		/obj/item/stack/sheet/mineral/adamantine = 0.2,
-		/obj/item/stack/sheet/mineral/abductor = 0.1,
-		/obj/item/stack/sheet/hot_ice = 0.2,
-		/obj/item/stack/sheet/hauntium = 0.1,
-		/obj/item/stack/sheet/bronze = 0.2,
-		/obj/item/stack/sheet/runed_metal = 0.2,
-		/obj/item/stack/telecrystal = 0.1,
-		/obj/item/stack/ore/bluespace_crystal = 0.1,
-		/obj/item/hypernoblium_crystal = 0.1,
 	)
 
 /// number count for myself, this is the remaining amount until the sum is 100
@@ -43,3 +29,42 @@
 	loot[/turf/open/floor/white] = (loot[/turf/open/floor/white] + loot[/turf/closed/wall/r_wall])
 	loot -= /turf/closed/wall/r_wall
 	return ..()
+
+/obj/effect/spawner/random/maintsrooms/materials
+	name = "random maintsrooms spawn"
+	desc = "Sub spawner for the maintsroom spawner because there is an upper limit to how many things one spawner can spawn."
+	loot = list(
+		/obj/item/stack/sheet/mineral/adamantine = 10,
+		/obj/item/stack/sheet/hot_ice = 10,
+		/obj/item/stack/sheet/hauntium = 10,
+		/obj/item/stack/sheet/bronze = 10,
+		/obj/item/stack/sheet/runed_metal = 10,
+		/obj/item/stack/telecrystal = 10,
+		/obj/item/stack/ore/bluespace_crystal = 10,
+		/obj/item/hypernoblium_crystal = 5,
+		/obj/item/stack/sheet/mineral/abductor = 5,
+		/obj/item/stack/sheet/mineral/zaukerite = 5,
+		/obj/item/stack/sheet/mineral/runite = 5,
+		/obj/item/stack/sheet/mineral/metal_hydrogen = 5,
+		/obj/item/stack/sheet/mineral/gold = 5,
+		/obj/item/stack/sheet/mineral/diamond = 5,
+	)
+
+/obj/effect/spawner/random/maintsrooms/garbage_or_artifact
+	name = "low chance artifact spawner"
+	desc = "most of the time nothing, sometimes an artifact."
+	loot = list(
+		/obj/item/slimecross/stabilized/blue/gravi = 1,
+		/obj/item/slimecross/stabilized/purple/soul = 1,
+		/obj/item/slimecross/stabilized/yellow/battery = 1,
+		/obj/effect/blessing/invisible = 97,
+	)
+
+/obj/effect/spawner/random/maintsrooms/artifact
+	name = "artifact spawner"
+	desc = "A gauranteed artifact."
+	loot = list(
+		/obj/item/slimecross/stabilized/blue/gravi = 1,
+		/obj/item/slimecross/stabilized/purple/soul = 1,
+		/obj/item/slimecross/stabilized/yellow/battery = 1,
+	)

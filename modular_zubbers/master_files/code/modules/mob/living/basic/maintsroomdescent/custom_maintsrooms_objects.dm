@@ -6,6 +6,26 @@
 	name = "Pure white"
 	desc = "You feel as if you are looking out at an impossibly large horizion, in the distance you can see marble white pillars in a formal and organizied pattern and they go up, and up, and up until the point where you have to look almost straight up to see some of the ones closest to you, and looking down the hallway you can see onto further than you thought a mere mortal could."
 
+/turf/open/chasm/true/fakeout/plating//please lord forgive me for my sins
+	name = "plating"
+	icon_state = "plating"
+	base_icon_state = "plating"
+	color = "#FF0000"
+	smoothing_flags = NONE
+
+/turf/open/floor/engine/slowdown
+	slowdown = 3
+
+/turf/open/indestructible/mad_grass
+	name = "perfect grass"
+	desc = "The grass is perfect, it looks amazing and appealing, you should just lay down in it for a while."
+	icon_state = "grass"
+	color = "#FF0000"//doesnt actually appear red in game, does to make differntiating grass and this satan grass easier.
+	slowdown = 50//This is, a objectively insane and deranged value to set it to, this is so high in order to challenge the player as with a slowdown this high the player will go insane before they reach the end, if you can figure out a better way to do this, please, be my guest.
+
+/turf/closed/mineral/random/high_chance/volcanic/default_atmos
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+
 /obj/machinery/porta_turret/syndicate/shuttle/bar_defense
 	faction = list("neutral","Deathsquad")
 	max_integrity = 1000
@@ -102,6 +122,15 @@
 	name = "Gun store flyer"
 	default_raw_text = "Come down to the gun dealership! We sell stuff were not supposed to! We buy energy weapons and sell ballistic weapons!"
 
+/obj/item/paper/fluff/awaymissions/maintsroom/genius
+	name = "Fucking dumbass"
+	default_raw_text = "Is directly told not to go somewhere, goes there anyway"
+
+/obj/item/paper/fluff/awaymissions/maintsroom/illiterate//note to spawned on people who go into the hellish final section that theyre told is hellish and then die and comaplain.
+	name = "Fucking dumbass"
+	default_raw_text = "Is directly told that where they are going is the ball crusher, goes there and gets their balls crushed, complains that their balls are crushed."
+	color = rgb(15, 15, 15)
+
 /obj/item/paper/fluff/awaymissions/maintsroom/xenomorph
 	name = "Xenomorph Warning"
 	default_raw_text = "The fallowing area has xenomorphs in it- do NOT under ANY circumstances break those turrets- otherwise, the xenomorphs inside COULD GET OUT"
@@ -149,3 +178,32 @@
 /obj/machinery/door/puzzle/keycard/claw_door
 	name = "secure airlock"
 	puzzle_id = "claw_card"
+
+/obj/item/clothing/accessory/armband/gift_of_the_void
+	name = "incrementum"
+	color = "#000000"
+	desc = "A completely normal armband, but its black, you feel safe putting it on"
+
+/obj/item/clothing/accessory/armband/gift_of_the_void/accessory_equipped(obj/item/clothing/under/clothes, mob/living/user)
+	user.add_mood_event("locked in", /datum/mood_event/locked_in)
+
+/obj/item/clothing/accessory/armband/gift_of_the_void/accessory_dropped(obj/item/clothing/under/clothes, mob/living/user)
+	user.clear_mood_event("locked in")
+
+/datum/mood_event/locked_in
+	description = "My mind feels secure. It was worth it."
+	mood_change = 31
+
+/obj/effect/spawner/random/environmentally_safe_anomaly/maintsroom
+	name = "safe anomaly spawner without bioscramblers"
+	loot = list(
+		/obj/effect/spawner/random/maintsrooms/garbage_or_artifact = 1,
+		/obj/effect/anomaly/flux = 5,
+		/obj/effect/anomaly/bluespace = 5,
+		/obj/effect/anomaly/hallucination = 5,
+		/obj/effect/anomaly/grav = 5,
+		/obj/effect/anomaly/bioscrambler/docile = 5,
+		/obj/effect/blessing/invisible = 24,
+		/obj/effect/spawner/random/maintsrooms/materials = 25,
+		/obj/effect/spawner/random/maintsrooms = 25,
+	)
