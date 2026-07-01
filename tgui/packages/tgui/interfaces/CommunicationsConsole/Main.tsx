@@ -228,18 +228,8 @@ export function PageMain(props) {
 
           {/* BUBBER EDIT ADDITION BEGIN - Additional Calls */}
           {!!canMakeAnnouncement && (
-            <Button icon="bullhorn" onClick={() => act('callThePolice')}>
-              Call Terran Government 911: Marshals Response
-            </Button>
-          )}
-          {!!canMakeAnnouncement && (
-            <Button icon="bullhorn" onClick={() => act('callTheCatmos')}>
-              Call Terran Government 811: Atmospherics Response
-            </Button>
-          )}
-          {!!canMakeAnnouncement && (
-            <Button icon="bullhorn" onClick={() => act('callTheParameds')}>
-              Call Terran Government 911: Medical Response
+            <Button icon="bullhorn" onClick={() => act('callCentcomBackup')}>
+              Request Centcom Intervention
             </Button>
           )}
           {!!emagged && (
