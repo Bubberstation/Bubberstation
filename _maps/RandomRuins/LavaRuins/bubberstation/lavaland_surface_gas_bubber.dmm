@@ -67,7 +67,8 @@
 /area/ruin/thelizardsgas_lavaland)
 "bK" = (
 /obj/structure/rack/shelf{
-	pixel_x = 4
+	pixel_x = 4;
+	density = 0
 	},
 /obj/item/storage/fancy/cigarettes/cigpack_robust{
 	pixel_x = -1;
@@ -1965,6 +1966,10 @@
 	pixel_x = 5;
 	pixel_y = 8
 	},
+/obj/item/food/burger/rootguffin{
+	pixel_x = 6;
+	pixel_y = -2
+	},
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -2623,13 +2628,11 @@
 	pixel_x = 0;
 	pixel_y = -1
 	},
+/obj/effect/turf_decal/siding/thinplating_new,
 /obj/item/food/sandwich/cheese{
-	name = "tuna sandwich";
-	desc = "A light snack for a warm day. ...but what if you tuna'd it?";
-	pixel_x = -4;
+	pixel_x = -2;
 	pixel_y = 6
 	},
-/obj/effect/turf_decal/siding/thinplating_new,
 /turf/open/floor/iron/smooth_large,
 /area/ruin/thelizardsgas_lavaland)
 "Jv" = (
@@ -2992,7 +2995,8 @@
 /area/ruin/thelizardsgas_lavaland)
 "Oj" = (
 /obj/structure/rack/shelf{
-	pixel_x = 13
+	pixel_x = 13;
+	density = 0
 	},
 /obj/structure/tank_holder/extinguisher{
 	pixel_x = -8;
@@ -3479,9 +3483,6 @@
 /obj/item/food/nigiri_sushi,
 /obj/item/food/nigiri_sushi,
 /obj/effect/turf_decal/weather/snow,
-/obj/item/food/vendor_tray_meal/sushi{
-	name = "gas station sushi"
-	},
 /obj/structure/marker_beacon/cerulean,
 /turf/open/floor/circuit/red/off,
 /area/ruin/thelizardsgas_lavaland)
