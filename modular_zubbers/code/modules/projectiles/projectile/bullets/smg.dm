@@ -16,6 +16,10 @@
 	damage = 10
 	fire_stacks = 1
 
+/obj/projectile/bullet/c46x30mm/compressed
+	name = "compressed 4.6x30mm bullet"
+	damage = 12
+
 /obj/projectile/bullet/c45/lesser_reaper
 	name = ".45 reaper pellet"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/projectiles.dmi'

@@ -19,6 +19,14 @@
 	advanced_print_req = TRUE
 	custom_materials = AMMO_MATS_TEMP
 
+/obj/item/ammo_casing/c46x30mm/compressed
+	name = "compressed 4.6x30mm bullet casing"
+	desc = "A compressed 4.6x30mm bullet casing."
+	projectile_type = /obj/projectile/bullet/c46x30mm/compressed
+	can_be_printed = TRUE
+	advanced_print_req = TRUE
+	custom_materials = AMMO_MATS_HOMING
+
 /obj/item/ammo_casing/caseless/c22hl/ntmp5
 	projectile_type = /obj/projectile/bullet/c22hl/ntmp5
 

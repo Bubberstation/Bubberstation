@@ -201,7 +201,7 @@
 
 /obj/item/gun/ballistic/automatic/sniper_rifle/modular/syndicate
 	name = "'Caracal' anti-materiel rifle"  //we flop out
-	desc = "A sleek, light bullpup .416 Stabilis sniper rifle with a reciprocating barrel, nicknamed 'Caracal' by Scarborough Arms. Its compact folding parts make it able to fit into a backpack, and its modular barrel can have a suppressor installed within it rather than as a muzzle extension. Its advanced scope accounts for all ballistic inaccuracies of a reciprocating barrel."
+	desc = "A sleek, light bullpup .50 BMG sniper rifle with a reciprocating barrel, nicknamed 'Caracal' by Scarborough Arms. Its compact folding parts make it able to fit into a backpack, and its modular barrel can have a suppressor installed within it rather than as a muzzle extension. Its advanced scope accounts for all ballistic inaccuracies of a reciprocating barrel."
 	icon_state = "sysniper"
 	fire_sound = 'modular_skyrat/modules/aesthetics/guns/sound/sniperrifle.ogg'
 	suppressed_sound = 'modular_skyrat/modules/aesthetics/guns/sound/sniperrifle_s.ogg'
@@ -238,7 +238,7 @@
 
 /obj/item/gun/ballistic/automatic/ar/modular
 	name = "\improper NT ARG-63"
-	desc = "Nanotrasen's prime ballistic option based on the Stoner design, fitted with a light polymer frame and other tactical furniture, and chambered in .277 Aestus - nicknamed 'Boarder' by Special Operations teams."
+	desc = "Nanotrasen's prime ballistic option based on the Stoner design, fitted with a light polymer frame and other tactical furniture, and chambered in .223 - nicknamed 'Boarder' by Special Operations teams."
 	icon = 'modular_skyrat/modules/aesthetics/guns/icons/guns_gubman2.dmi'
 	icon_state = "arg"
 	inhand_icon_state = "arg"
@@ -258,102 +258,56 @@
 	name = "enchanted rifle round"
 	can_be_printed = FALSE // these are Really Really Better Rubbers
 
-// overrides for tgcode's .223 (formerly 5.56), used in the M90-gl - renamed to .277 Aestus
-/obj/item/ammo_casing/a223
-	name = ".277 Aestus casing"
-	desc = "A .277 bullet casing."
-
-/obj/item/ammo_casing/a223/phasic
-	name = ".277 Aestus phasic casing"
-	desc = "A .277 Aestus bullet casing.\
-	<br><br>\
-	<i>PHASIC: Ignores all surfaces except organic matter.</i>"
-	advanced_print_req = TRUE
-	custom_materials = AMMO_MATS_PHASIC
-
 // shotgun ammo overrides moved to modular_skyrat\modules\shotgunrebalance\code\shotgun.dm
 
 // overrides for tgcode .50cal, used in their sniper/anti-materiel rifles
 /obj/item/ammo_casing/p50
-	name = ".416 Stabilis casing"
-	desc = "A .416 bullet casing."
 	advanced_print_req = TRUE // you are NOT printing more ammo for this without effort.
 	// then again the offstations with ammo printers and sniper rifles come with an ammo disk anyway, so
 
 /obj/item/ammo_casing/p50/surplus
-	name = ".416 Stabilis surplus casing"
-	desc = "A .416 bullet casing. Intentionally underloaded, but still quite painful to be shot with.\
+	desc = "A .50 BMG bullet casing. Intentionally underloaded, but still quite painful to be shot with.\
 	<br><br>\
 	<i>SURPLUS/UNDERLOAD: Lacks armor penetration capabilities, contact-stun, or innate dismemberment ability. Still incredibly painful to be hit by.</i>"
 	projectile_type = /obj/projectile/bullet/p50/surplus
 
 /obj/item/ammo_casing/p50/disruptor
-	name = ".416 Stabilis disruptor casing"
-	desc = "A .416 bullet casing. Specializes in sending the target to sleep rather than hell, unless they're synthetic. Then they probably go to hell anyway.\
+	desc = "A .50 BMG bullet casing. Specializes in sending the target to sleep rather than hell, unless they're synthetic. Then they probably go to hell anyway.\
 	<br><br>\
 	<i>DISRUPTOR: Forces humanoid targets to sleep, does heavy damage against cyborgs, EMPs struck targets.</i>"
 
 /obj/item/ammo_casing/p50/incendiary
-	name = ".416 Stabilis precision incendiary casing"
-	desc = "A .416 bullet casing. Made with an agitated-plasma tip, for making people regret being alive.\
+	desc = "A .50 BMG bullet casing. Made with an agitated-plasma tip, for making people regret being alive.\
 	<br><br>\
 	<i>PRECISION INCENDIARY: Lacks innate dismemberment ability and contact-stun, suffers against mechanized armor. Sets people on fire.</i>"
 	projectile_type = /obj/projectile/bullet/p50/incendiary
 
 /obj/item/ammo_casing/p50/penetrator
-	name = ".416 Stabilis penetrator sabot casing"
-	desc = "A .416 bullet casing. Loaded with a hardened sabot and packed with extra propellant. \
+	desc = "A .50 BMG bullet casing. Loaded with a hardened sabot and packed with extra propellant. \
 	Designed to go through basically everything. A label warns of overpressure risk, and to not use the round if \
 	a given weapon cannot handle pressures greater than 85000 PSI.\
 	<br><br>\
 	<i>PENETRATOR: Goes through basically everything. Lacks innate dismemberment ability and contact-stun capabilities.</i>"
 
 /obj/item/ammo_casing/p50/marksman
-	name = ".416 Stabilis marksman hyperkinetic casing"
-	desc = "A .416 bullet casing. Loaded with a hyperkinetic bullet that ignores mundane things like \"travel time\" \
+	desc = "A .50 BMG bullet casing. Loaded with a hyperkinetic bullet that ignores mundane things like \"travel time\" \
 	and a concerning amount of experimental propellant. A label warns of overpressure risk, and to not use the round if \
 	a given weapon cannot handle pressures greater than 95000 PSI.\
 	<br><br>\
 	<i>MARKSMAN: Bullets have <b>no</b> travel time, and can ricochet once. Does slightly less damage, lacks innate dismemberment and contact-stun capabilities.</i>"
 	projectile_type = /obj/projectile/bullet/p50/marksman
 
-// overrides for tgcode 4.6x30mm, used in the WT-550
-/obj/item/ammo_casing/c46x30mm
-	name = "8mm Usurpator bullet casing"
-	desc = "An 8mm bullet casing."
-
-/obj/item/ammo_casing/c46x30mm/ap
-	name = "8mm Usurpator armor-piercing bullet casing"
-	desc = "An 8mm armor-piercing bullet casing.\
-	<br><br>\
-	<i>ARMOR PIERCING: Increased armor piercing capabilities. What did you expect?</i>"
-	custom_materials = AMMO_MATS_AP
-	advanced_print_req = TRUE
-
-/obj/item/ammo_casing/c46x30mm/inc
-	name = "8mm Usurpator incendiary bullet casing"
-	desc = "An 8mm incendiary bullet casing.\
-	<br><br>\
-	<i>INCENDIARY: Leaves a trail of fire when shot, sets targets aflame.</i>"
-	custom_materials = AMMO_MATS_TEMP
-	advanced_print_req = TRUE
-
 // overrides for tgcode .45, used in the M1911 and C20-r
-/obj/item/ammo_casing/c45
-	name = ".460 Ceres bullet casing"
-	desc = "A .460 bullet casing."
 
 /obj/item/ammo_casing/c45/ap
-	name = ".460 Ceres armor-piercing bullet casing"
-	desc = "An armor-piercing .460 bullet casing.\
+	desc = "An armor-piercing .45 bullet casing.\
 	<br><br>\
 	<i>ARMOR PIERCING: Increased armor piercing capabilities. What did you expect?</i>"
 	custom_materials = AMMO_MATS_AP
 	advanced_print_req = TRUE
 
 /obj/item/ammo_casing/c45/inc
-	name = ".460 Ceres incendiary bullet casing"
-	desc = "An incendiary .460 bullet casing.\
+	desc = "An incendiary .45 bullet casing.\
 	<br><br>\
 	<i>INCENDIARY: Leaves a trail of fire when shot, sets targets aflame.</i>"
 	custom_materials = AMMO_MATS_TEMP
@@ -361,8 +315,7 @@
 
 // overrides for .50AE, used in the deagle
 /obj/item/ammo_casing/a50ae
-	name = ".454 Trucidator bullet casing"
-	desc = "A .454 Trucidator bullet casing. Extremely powerful.\
+	desc = "A .50 Action Express casing. Extremely powerful.\
 	<br><br>\
 	<i>HAND CANNON: Fired out of a handgun, deals disproportionately large damage.</i>"
 
@@ -413,12 +366,6 @@
 
 // The ones above are the casings for the ammo, whereas the ones below are the actual projectiles that give you feedback when you're shot
 
-/obj/projectile/bullet/a223
-	name = ".277 Aestus bullet"
-
-/obj/projectile/bullet/a223/phasic
-	name = ".277 phasic bullet"
-
 /obj/projectile/bullet/c9mm
 	name = "9x25mm bullet"
 
@@ -431,81 +378,5 @@
 /obj/projectile/bullet/incendiary/c9mm
 	name = "9x25mm incendiary bullet"
 
-/obj/projectile/bullet/c45
-	name = ".460 bullet"
-
-/obj/projectile/bullet/c45/ap
-	name = ".460 armor-piercing bullet"
-
-/obj/projectile/bullet/incendiary/c45
-	name = ".460 incendiary bullet"
-
-/obj/projectile/bullet/c46x30mm
-	name = "8mm Usurpator bullet"
-
-/obj/projectile/bullet/c46x30mm/ap
-	name = "8mm armor-piercing bullet"
-
-/obj/projectile/bullet/incendiary/c46x30mm
-	name = "8mm incendiary bullet"
-
-/obj/projectile/bullet/p50
-	name = ".416 Stabilis bullet"
-
-/obj/projectile/bullet/p50/disruptor
-	name = ".416 disruptor bullet"
-
-/obj/projectile/bullet/p50/penetrator
-	name = ".416 penetrator bullet"
-
-/obj/projectile/bullet/a50ae
-	name = ".454 Trucidator bullet"
-
-
-// MAGAZINES UPDATED TO MATCH STUFF
-
-/obj/item/ammo_box/magazine/wt550m9
-	name = "\improper WT-550 magazine"
-	desc = "A 20-round toploaded 8mm Usurpator magazine that fits neatly in the WT-550."
-
-/obj/item/ammo_box/magazine/wt550m9/wtap
-	name = "\improper WT-550 AP magazine"
-
-/obj/item/ammo_box/magazine/wt550m9/wtic
-	name = "\improper WT-550 IND magazine"
-
-/obj/item/ammo_box/magazine/smgm45
-	name = ".460 Ceres SMG magazine"
-	desc = "A magazine chambered for .460 meant to fit in submachine guns."
-
-/obj/item/ammo_box/magazine/smgm45/ap
-	name = ".460 Ceres AP SMG magazine"
-
-/obj/item/ammo_box/magazine/smgm45/incen
-	name = ".460 Ceres IND SMG magazine"
-
-/obj/item/ammo_box/magazine/tommygunm45
-	name = "\improper Tommy Gun .460 Ceres drum"
-	desc = "A disc magazine chambered for .460 Ceres."
-
-/obj/item/ammo_box/magazine/m556
-	name = ".277 Aestus toploading magazine"
-	desc = "A toploading magazine chambered for .277 Aestus."
-
-/obj/item/ammo_box/magazine/m556/phasic
-	name = ".277 PHASE toploading magazine"
-
-/obj/item/ammo_box/magazine/sniper_rounds
-	name = "anti-materiel rifle magazine"
-	desc = "A heavy magazine chambered for .416 Stabilis."
-
-/obj/item/ammo_box/magazine/sniper_rounds/soporific
-	desc = "A magazine with soporific .416 Stabilis ammo, designed for happy days and dead quiet nights."
-
-/obj/item/ammo_box/magazine/sniper_rounds/penetrator
-	name = "anti-materiel rifle ++P magazine"
-	desc = "A heavy magazine with over the top, overpressurized, and frankly over the top .416 penetrator ammo."
-
-/obj/item/ammo_box/magazine/m50
-	name = ".454 Trucidator handcannon magazine"
-	desc = "An absurdly THICK magazine possibly meant for a heavy hitting pistol, if you can call it that."
+/obj/item/ammo_box/magazine/sniper_rounds/soporific //this is just a regular 50 bmg mag I have no clue why the fuck this exists but some maps are dependant on it so I'm not getting rid of it
+	desc = "A magazine with .50 BMG ammo, designed for happy days and dead quiet nights."

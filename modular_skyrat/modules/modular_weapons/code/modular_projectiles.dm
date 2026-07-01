@@ -11,27 +11,25 @@
 // whatever goblin decided to spread out bullets over like 3 files and god knows however many overrides i wish you a very stubbed toe
 
 /*
-*	.460 Ceres (renamed tgcode .45)
+*	.45 bullets
 */
 
 /obj/item/ammo_casing/c45/hp
-	name = ".460 Ceres hollow-point bullet casing"
-	desc = "A .460 hollow-point bullet casing. Very lethal against unarmored opponents. Suffers against armor."
+	desc = "A .45 hollow-point bullet casing. Very lethal against unarmored opponents. Suffers against armor."
 	projectile_type = /obj/projectile/bullet/c45/hp
 	advanced_print_req = TRUE
 
 /obj/projectile/bullet/c45/hp
-	name = ".460 Ceres hollow-point bullet"
 	damage = 40
 	weak_against_armour = TRUE
 
 /*
-*	.277 Aestus (renamed tgcode .223, used in the M-90gl)
+*	.223 bullets
 */
 
 /obj/item/ammo_casing/a223/ap
-	name = ".277 Aestus armor-piercing bullet casing"
-	desc = "A .277 armor-piercing bullet casing.\
+	name = ".223 armor-piercing bullet casing"
+	desc = "A .223 armor-piercing bullet casing.\
 	<br><br>\
 	<i>ARMOR PIERCING: Increased armor piercing capabilities. What did you expect?"
 	projectile_type = /obj/projectile/bullet/a223/ap
@@ -39,7 +37,6 @@
 	custom_materials = AMMO_MATS_AP
 
 /obj/projectile/bullet/a223/ap
-	name = ".277 armor-piercing bullet"
 	armour_penetration = 60
 
 /*
