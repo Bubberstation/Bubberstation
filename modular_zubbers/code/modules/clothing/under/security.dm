@@ -20,6 +20,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/maidsec.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/maidsec.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/maidsec_d.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/maidsec_teshari.dmi'
 
 //Metro Cops
 

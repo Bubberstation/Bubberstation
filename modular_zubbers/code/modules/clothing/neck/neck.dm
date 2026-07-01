@@ -700,3 +700,6 @@
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
+
+/obj/item/clothing/neck/maid_neck_cover
+	greyscale_config_worn_teshari = /datum/greyscale_config/bubber_maid_neck_cover/worn/teshari

@@ -17,6 +17,7 @@
 	greyscale_colors = "#39393f#ffffff#ffffff"
 	greyscale_config = /datum/greyscale_config/miniskirt
 	greyscale_config_worn = /datum/greyscale_config/miniskirt_worn
+	greyscale_config_worn_teshari = /datum/greyscale_config/miniskirt_worn/teshari
 	flags_1 = IS_PLAYER_COLORABLE_1
 	alt_covers_chest = TRUE
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY

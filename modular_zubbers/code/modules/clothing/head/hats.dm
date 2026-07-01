@@ -120,3 +120,6 @@
 	desc = "A beanie for security purposes"
 	icon_state = "security_beanie"
 	armor_type = /datum/armor/cosmetic_sec
+
+/obj/item/clothing/head/costume/mailman
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/costume_teshari.dmi'

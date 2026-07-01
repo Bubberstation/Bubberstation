@@ -180,3 +180,6 @@
 /obj/item/clothing/suit/toggle/labcoat/technical/service/guard
 	name = "service praetorian jacket"
 	armor_type = /datum/armor/dept_guard
+
+/obj/item/clothing/suit/toggle/labcoat/paramedic
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/labcoat_teshari.dmi'

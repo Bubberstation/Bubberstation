@@ -154,3 +154,6 @@
 /obj/item/clothing/suit/costume/wellworn_shirt/messy/graphic
 	greyscale_config_worn_digi = /datum/greyscale_config/messyworn_shirt_graphic/worn/digi
 	greyscale_config_worn_teshari = /datum/greyscale_config/messyworn_shirt_graphic/worn/teshari
+
+/obj/item/clothing/suit/space/emergency
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/spacesuit_teshari.dmi'

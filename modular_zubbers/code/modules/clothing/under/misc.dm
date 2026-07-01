@@ -724,3 +724,18 @@
 
 /obj/item/clothing/under/colonial/nri_police
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/uniform_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/orderly
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/medical_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/engineering_guard
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/engineering_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/science_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/bouncer
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/civilian_teshari.dmi'
+
+/obj/item/clothing/under/sweater
+	greyscale_config_worn_teshari = /datum/greyscale_config/cableknit_sweater/worn/teshari

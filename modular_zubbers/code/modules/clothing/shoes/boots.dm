@@ -424,3 +424,6 @@
 /obj/item/clothing/shoes/jackboots/elofy
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/obj/item/clothing/shoes/workboots
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
