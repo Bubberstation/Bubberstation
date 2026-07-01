@@ -11,3 +11,6 @@
 /obj/structure/closet/secure_closet/nanotrasen_consultant/PopulateContents()
 	. = ..()
 	new /obj/item/autosurgeon/paperwork(src)
+
+/obj/machinery/suit_storage_unit/blueshield
+	mod_type = /obj/item/mod/control/pre_equipped/blueshield

@@ -15,6 +15,9 @@
 /obj/effect/landmark/start/blueshield,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/south,
+/obj/machinery/camera/directional/south{
+	c_tag = "Blueshield's Office"
+	},
 /turf/open/floor/iron/dark/smooth_edge,
 /area/station/command/heads_quarters/blueshield)
 "cw" = (
@@ -194,7 +197,6 @@
 	dir = 4
 	},
 /obj/structure/table/wood/fancy/green,
-/obj/effect/spawner/random/entertainment/cigarette_pack,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "kd" = (
@@ -203,6 +205,9 @@
 	},
 /obj/effect/landmark/start/nanotrasen_consultant,
 /obj/machinery/holopad,
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/blueshield)
 "li" = (
@@ -255,7 +260,6 @@
 /obj/item/flashlight/lamp{
 	pixel_y = 9
 	},
-/obj/item/lighter/royal,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "pt" = (
@@ -292,7 +296,8 @@
 /obj/machinery/light_switch/directional/east,
 /obj/machinery/button/door/directional/east{
 	pixel_y = 10;
-	id = "nt_rep_priv"
+	id = "nt_rep_priv";
+	req_access = list("cent_general")
 	},
 /obj/machinery/requests_console/auto_name/directional/north,
 /obj/effect/mapping_helpers/requests_console/assistance,
@@ -304,7 +309,7 @@
 	name = "curtain control";
 	pixel_x = 35;
 	pixel_y = 10;
-	req_access = list("theatre");
+	req_access = list("cent_general");
 	dir = 4
 	},
 /obj/effect/turf_decal/bot,
@@ -350,6 +355,10 @@
 	},
 /obj/machinery/computer/station_goal,
 /obj/effect/turf_decal/bot,
+/obj/item/toy/crayon/white{
+	pixel_x = 10;
+	pixel_y = 24
+	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "un" = (
@@ -375,13 +384,6 @@
 /obj/structure/sign/nanotrasen/directional/west,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
-"vE" = (
-/obj/item/toy/crayon/white{
-	pixel_x = 10;
-	pixel_y = -8
-	},
-/turf/closed/wall/r_wall,
-/area/station/command/heads_quarters/nt_rep)
 "wm" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -436,6 +438,9 @@
 	id_tag = "consultantdoor";
 	name = "Consultant's Office"
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "nt_rep_priv"
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/nt_rep)
 "zc" = (
@@ -469,27 +474,25 @@
 /area/station/command/heads_quarters/nt_rep)
 "Cj" = (
 /obj/structure/safe/abovetilefloor,
-/obj/item/storage/fancy/cigarettes/cigars,
-/obj/item/storage/fancy/donut_box,
-/obj/item/reagent_containers/cup/glass/bottle/navy_rum,
-/obj/item/holocigarette/masvedishcigar,
+/obj/effect/turf_decal/tile/dark_blue/diagonal_centre,
+/obj/machinery/status_display/ai/directional/west,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/camera/directional/west{
+	c_tag = "Blueshield's Armory"
+	},
+/obj/effect/spawner/random/dignitary/blueshield,
+/obj/effect/spawner/random/dignitary/blueshield,
+/obj/effect/spawner/random/dignitary/blueshield,
 /obj/item/paperwork/captain{
 	pixel_x = -3;
 	pixel_y = 4;
 	name = "Asset Protection case records";
 	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
 	},
-/obj/effect/turf_decal/tile/dark_blue/diagonal_centre,
 /obj/item/toy/plush/lizard_plushie/greyscale{
 	name = "Hunts-the-Traitor";
 	desc = "The Blueshield's best friend, a little too eager to go after criminals and evil-doers alike. He's grounded forever.";
 	greyscale_colors = "#FF0000#000000"
-	},
-/obj/machinery/status_display/ai/directional/west,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/landmark/start/blueshield,
-/obj/machinery/camera/directional/west{
-	c_tag = "Blueshield's Armory"
 	},
 /turf/open/floor/iron/dark/diagonal,
 /area/station/command/heads_quarters/blueshield)
@@ -556,7 +559,7 @@
 	dir = 1
 	},
 /obj/structure/sign/flag/terragov/directional/south,
-/obj/machinery/suit_storage_unit/security,
+/obj/machinery/suit_storage_unit/blueshield,
 /turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
 "Gf" = (
@@ -565,23 +568,14 @@
 /area/station/command/heads_quarters/nt_rep)
 "Gv" = (
 /obj/structure/safe/abovetilefloor,
-/obj/item/folder/ancient_paperwork,
-/obj/item/lustwish_discount{
-	name = "Consultant's LustWish elite card"
-	},
-/obj/item/reagent_containers/cup/glass/flask{
-	pixel_y = -2;
-	pixel_x = 2
-	},
-/obj/item/storage/toolbox/guncase/skyrat/pistol/sec_glock,
-/obj/item/reagent_containers/cup/glass/bottle/hcider,
-/obj/item/storage/fancy/cigarettes/cigars/cohiba,
-/obj/item/storage/box/matches,
-/obj/item/folder/documents,
+/obj/effect/spawner/random/dignitary/ntc,
+/obj/effect/spawner/random/dignitary/ntc,
+/obj/effect/spawner/random/dignitary/ntc,
 /obj/item/paperwork{
 	desc = "A densely compiled stack of Internal Affairs records, documenting various investigations, audits and disciplinary proceedings, extensively redacted under CENTCOM authority.";
 	name = "internal affairs records"
 	},
+/obj/item/folder/documents,
 /obj/effect/landmark/start/nanotrasen_consultant,
 /turf/open/floor/carpet/royalblack,
 /area/station/command/heads_quarters/nt_rep)
@@ -595,6 +589,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "blueshield_priv"
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "GF" = (
@@ -722,7 +719,8 @@
 	},
 /obj/structure/sign/poster/official/obey/directional/south,
 /obj/machinery/light/small/blacklight/directional/south,
-/obj/item/storage/medkit/fire,
+/obj/item/storage/medkit/combat_surgeon/stocked,
+/obj/item/storage/medkit/regular,
 /obj/item/storage/medkit/tactical/blueshield,
 /turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
@@ -731,6 +729,12 @@
 /obj/structure/cable,
 /obj/machinery/newscaster/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/blueshield)
 "Qi" = (
@@ -829,6 +833,7 @@
 	},
 /obj/machinery/vending/wallmed/directional/north,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/item/mod/module/pepper_shoulders,
 /turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
 "VM" = (
@@ -840,7 +845,8 @@
 /obj/machinery/button/door/directional/west{
 	pixel_x = 5;
 	pixel_y = 25;
-	id = "blueshield_priv"
+	id = "blueshield_priv";
+	req_access = list("captain")
 	},
 /obj/machinery/light_switch/directional/north{
 	pixel_x = -5;
@@ -850,9 +856,6 @@
 	desc = "A cute, marketable version of one of the DAP's mascots, Vigilant the fox. She has a blue collar with a shield-shaped tag that reads DAP. Holding her makes you feel protected.";
 	name = "Vigilant plushie";
 	pixel_y = 6
-	},
-/obj/machinery/camera/directional/west{
-	c_tag = "Blueshield's Office"
 	},
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 1
@@ -1022,7 +1025,7 @@ Nv
 gu
 kd
 Qh
-vE
+uw
 sP
 rt
 dW

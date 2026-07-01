@@ -9895,7 +9895,6 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
 "doj" = (
-/obj/machinery/suit_storage_unit/security,
 /obj/effect/turf_decal/delivery/red,
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 4
@@ -9904,6 +9903,7 @@
 /obj/structure/sign/plaques/kiddie/perfect_man{
 	pixel_y = -32
 	},
+/obj/machinery/suit_storage_unit/blueshield,
 /turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
 "dok" = (
@@ -29554,20 +29554,11 @@
 	name = "Captain's Log"
 	},
 /obj/item/clothing/gloves/tackler/combat/insulated/blueshield,
-/obj/item/modular_computer/laptop/preset/security{
-	pixel_y = 5
-	},
 /obj/effect/turf_decal/delivery/red,
-/obj/effect/turf_decal/siding/thinplating_new/dark{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/thinplating_new/dark{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating_new/dark/corner{
-	dir = 4
-	},
 /obj/structure/reagent_dispensers/wall/peppertank/directional/west,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 5
+	},
 /turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
 "juq" = (
@@ -49061,18 +49052,13 @@
 /area/station/science/xenobiology)
 "pNV" = (
 /obj/effect/turf_decal/delivery/red,
-/obj/effect/turf_decal/siding/thinplating_new/dark{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/thinplating_new/dark{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating_new/dark/corner{
-	dir = 1
-	},
 /obj/structure/rack/shelf,
-/obj/item/storage/medkit/fire,
+/obj/item/storage/medkit/combat_surgeon/stocked,
+/obj/item/storage/medkit/regular,
 /obj/item/storage/medkit/tactical/blueshield,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 9
+	},
 /turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
 "pNZ" = (
@@ -63846,29 +63832,18 @@
 /area/station/hallway/primary/fore)
 "uqT" = (
 /obj/structure/safe/abovetilefloor,
-/obj/item/reagent_containers/cup/glass/trophy{
-	desc = "You did good in the worst way possible.";
-	name = "Redshield 1st prize";
-	pixel_y = 9;
-	pixel_x = -2
-	},
-/obj/item/reagent_containers/cup/glass/flask{
-	pixel_y = -2;
-	pixel_x = 2
-	},
-/obj/item/toy/figure/captain,
-/obj/item/storage/fancy/cigarettes/cigars,
-/obj/item/storage/box/matches,
-/obj/item/reagent_containers/cup/glass/bottle/lizardwine,
+/obj/effect/turf_decal/tile/dark_blue/diagonal_centre,
+/obj/machinery/status_display/ai/directional/south,
+/obj/machinery/light/small/blacklight/directional/south,
+/obj/effect/spawner/random/dignitary/blueshield,
+/obj/effect/spawner/random/dignitary/blueshield,
+/obj/effect/spawner/random/dignitary/blueshield,
 /obj/item/paperwork/captain{
 	pixel_x = -3;
 	pixel_y = 4;
 	name = "Asset Protection case records";
 	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
 	},
-/obj/effect/turf_decal/tile/dark_blue/diagonal_centre,
-/obj/machinery/status_display/ai/directional/south,
-/obj/machinery/light/small/blacklight/directional/south,
 /turf/open/floor/iron/dark/diagonal,
 /area/station/command/heads_quarters/blueshield)
 "uqW" = (

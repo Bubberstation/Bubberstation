@@ -2939,25 +2939,15 @@
 /area/station/medical/medbay/lobby)
 "aQZ" = (
 /obj/structure/safe/abovetilefloor,
-/obj/item/folder/ancient_paperwork,
-/obj/item/lustwish_discount{
-	name = "Consultant's LustWish elite card"
-	},
-/obj/item/reagent_containers/cup/glass/flask{
-	pixel_y = -2;
-	pixel_x = 2
-	},
-/obj/item/storage/toolbox/guncase/skyrat/pistol/sec_glock,
-/obj/item/storage/fancy/cigarettes/cigars/cohiba,
-/obj/item/storage/box/matches,
-/obj/item/reagent_containers/cup/glass/bottle/applejack,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/spawner/random/dignitary/blueshield,
+/obj/effect/spawner/random/dignitary/blueshield,
+/obj/effect/spawner/random/dignitary/blueshield,
 /obj/item/paperwork{
 	desc = "A densely compiled stack of Internal Affairs records, documenting various investigations, audits and disciplinary proceedings, extensively redacted under CENTCOM authority.";
 	name = "internal affairs records"
 	},
-/obj/item/folder/documents,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "aRc" = (
@@ -4727,11 +4717,18 @@
 /area/station/science/auxlab)
 "bsU" = (
 /obj/effect/turf_decal/delivery/red,
-/obj/machinery/ammo_workbench,
 /obj/machinery/camera/directional/north{
 	c_tag = "Blueshield's Office - Armory"
 	},
-/turf/open/floor/iron/dark/textured,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 10
+	},
+/obj/structure/rack/shelf,
+/obj/item/storage/medkit/brute,
+/obj/item/storage/medkit/fire,
+/obj/item/storage/medkit/regular,
+/obj/item/storage/medkit/tactical/blueshield,
+/turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
 "btc" = (
 /obj/machinery/firealarm/directional/west,
@@ -28341,23 +28338,21 @@
 	dir = 4
 	},
 /obj/structure/safe/abovetilefloor,
-/obj/item/storage/fancy/cigarettes/cigars,
-/obj/item/storage/fancy/donut_box,
-/obj/item/reagent_containers/cup/glass/bottle/navy_rum,
-/obj/item/holocigarette/masvedishcigar,
 /obj/machinery/button/door/directional/north{
 	pixel_y = 27;
 	pixel_x = -1;
 	id = "blueshield_priv"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/spawner/random/dignitary/blueshield,
+/obj/effect/spawner/random/dignitary/blueshield,
+/obj/effect/spawner/random/dignitary/blueshield,
 /obj/item/paperwork/captain{
 	pixel_x = -3;
 	pixel_y = 4;
 	name = "Asset Protection case records";
 	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
 	},
-/obj/item/storage/medkit/tactical/blueshield,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "ilY" = (
@@ -29174,17 +29169,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/station/commons/fitness/recreation)
-"iuB" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/curtain/cloth/fancy/mechanical{
-	icon_state = "bounty-open";
-	icon_type = "bounty";
-	id = "blueshield";
-	name = "curtain"
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/station/command/heads_quarters/blueshield)
 "iuX" = (
 /obj/structure/sign/nanotrasen{
 	pixel_x = 32
@@ -31263,14 +31247,14 @@
 /turf/open/floor/iron/smooth_edge,
 /area/station/engineering/power_room)
 "iZr" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable,
 /obj/structure/curtain/cloth/fancy/mechanical{
 	icon_state = "bounty-open";
 	icon_type = "bounty";
-	id = "blueshield";
+	id = "bluey_priv";
 	name = "curtain"
 	},
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/blueshield)
 "iZs" = (
@@ -34714,17 +34698,18 @@
 /obj/machinery/modular_computer/preset/command{
 	dir = 8
 	},
-/obj/machinery/button/curtain{
-	id = "blueshield";
-	pixel_x = 24;
-	pixel_y = 10
-	},
 /obj/machinery/requests_console/auto_name/directional/north,
 /obj/effect/mapping_helpers/requests_console/information,
 /obj/effect/mapping_helpers/requests_console/supplies,
 /obj/effect/mapping_helpers/requests_console/assistance,
 /obj/effect/mapping_helpers/requests_console/announcement,
 /obj/machinery/light_switch/directional/east,
+/obj/machinery/button/curtain{
+	id = "bluey_priv";
+	pixel_x = 27;
+	pixel_y = 10;
+	req_access = list("captain")
+	},
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "jVx" = (
@@ -46308,11 +46293,12 @@
 /obj/item/shield/riot,
 /obj/structure/sign/flag/galfed/directional/south,
 /obj/item/storage/toolbox/ammobox/wt550m9,
-/obj/machinery/door/window/brigdoor/right/directional/north{
-	name = "Blueshield's Armory";
-	req_access = list("captain")
+/obj/effect/turf_decal/delivery/red,
+/obj/item/mod/module/pepper_shoulders,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 1
 	},
-/turf/open/floor/engine,
+/turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
 "mYH" = (
 /obj/structure/table,
@@ -55753,13 +55739,13 @@
 	},
 /area/station/commons/fitness/recreation)
 "pCy" = (
-/obj/machinery/suit_storage_unit/security,
 /obj/structure/sign/flag/nanotrasen/directional/south,
-/obj/machinery/door/window/brigdoor/left/directional/north{
-	req_access = list("captain");
-	name = "Blueshield's Armory"
+/obj/effect/turf_decal/delivery/red,
+/obj/machinery/suit_storage_unit/blueshield,
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 1
 	},
-/turf/open/floor/engine,
+/turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
 "pCA" = (
 /obj/structure/fans/tiny/forcefield{
@@ -56000,6 +55986,7 @@
 /obj/item/taperecorder{
 	name = "Captain's Log"
 	},
+/obj/item/dog_bone,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "pGl" = (
@@ -117019,7 +117006,7 @@ joM
 cmH
 iZr
 rDO
-iuB
+iZr
 cmH
 wxS
 vpA

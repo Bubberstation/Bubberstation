@@ -4726,9 +4726,10 @@
 	pixel_x = 7
 	},
 /obj/machinery/button/curtain{
-	id = "prisonlibrarycurtain4";
+	id = "bluey_priv";
 	pixel_x = -6;
-	pixel_y = 26
+	pixel_y = 26;
+	req_access = list("captain")
 	},
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
@@ -6090,21 +6091,23 @@
 /area/station/commons/storage/primary)
 "aJa" = (
 /obj/structure/safe/abovetilefloor,
-/obj/item/storage/fancy/cigarettes/cigars,
-/obj/item/storage/medkit/tactical/blueshield,
-/obj/item/reagent_containers/cup/glass/bottle/navy_rum,
-/obj/item/holocigarette/masvedishcigar,
+/obj/machinery/door/window/brigdoor/right/directional/east{
+	req_access = list("captain");
+	name = "Blueshield's Armory"
+	},
+/obj/item/toy/plush/skyrat/fox/mia{
+	desc = "A cute, marketable version of one of the DAP's mascots, Vigilant the fox. She has a blue collar with a shield-shaped tag that reads DAP. Holding her makes you feel protected.";
+	name = "Vigilant plushie"
+	},
 /obj/item/paperwork/captain{
 	pixel_x = -3;
 	pixel_y = 4;
 	name = "Asset Protection case records";
 	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
 	},
-/obj/item/toy/plush/horse,
-/obj/machinery/door/window/brigdoor/right/directional/east{
-	req_access = list("captain");
-	name = "Blueshield's Armory"
-	},
+/obj/effect/spawner/random/dignitary/blueshield,
+/obj/effect/spawner/random/dignitary/blueshield,
+/obj/effect/spawner/random/dignitary/blueshield,
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "aJb" = (
@@ -9167,21 +9170,19 @@
 /area/station/service/janitor)
 "aYi" = (
 /obj/structure/safe/abovetilefloor,
-/obj/item/toy/figure/dsquad,
-/obj/item/storage/toolbox/guncase/skyrat/pistol/sec_glock,
-/obj/item/folder/documents,
-/obj/item/paperwork{
-	desc = "A densely compiled stack of Internal Affairs records, documenting various investigations, audits and disciplinary proceedings, extensively redacted under CENTCOM authority.";
-	name = "internal affairs records"
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
-/obj/item/reagent_containers/cup/glass/bottle/lizardwine,
-/obj/effect/landmark/start/nanotrasen_consultant,
+/obj/effect/spawner/random/dignitary/ntc,
+/obj/effect/spawner/random/dignitary/ntc,
+/obj/effect/spawner/random/dignitary/ntc,
+/obj/item/paperwork{
+	desc = "A densely compiled stack of Internal Affairs records, documenting various investigations, audits and disciplinary proceedings, extensively redacted under CENTCOM authority.";
+	name = "internal affairs records"
+	},
 /turf/open/floor/carpet/royalblack,
 /area/station/command/heads_quarters/nt_rep)
 "aYm" = (
@@ -49492,13 +49493,13 @@
 /area/station/hallway/primary/central)
 "lsM" = (
 /obj/structure/cable,
+/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/curtain/cloth/fancy/mechanical{
 	icon_state = "bounty-open";
 	icon_type = "bounty";
-	id = "prisonlibrarycurtain4";
+	id = "bluey_priv";
 	name = "curtain"
 	},
-/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/blueshield)
 "lsP" = (
@@ -53789,6 +53790,7 @@
 	dir = 4;
 	icon_state = "siding_plain_end"
 	},
+/obj/item/mod/module/pepper_shoulders,
 /turf/open/floor/engine,
 /area/station/command/heads_quarters/blueshield)
 "mXn" = (
@@ -55590,6 +55592,9 @@
 /obj/item/clothing/gloves/tackler/combat/insulated/blueshield,
 /obj/item/dog_bone,
 /obj/structure/reagent_dispensers/wall/peppertank/directional/north,
+/obj/item/storage/medkit/combat_surgeon/stocked,
+/obj/item/storage/medkit/regular,
+/obj/item/storage/medkit/tactical/blueshield,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "nFn" = (
@@ -56014,7 +56019,7 @@
 	pixel_y = -2;
 	name = "\improper chewed up Redsuit action figure"
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "nNy" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -61254,14 +61259,14 @@
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "pNh" = (
-/obj/item/toy/crayon/white{
-	pixel_y = 26;
-	pixel_x = 10
-	},
 /obj/machinery/computer/station_goal,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
+	},
+/obj/item/toy/crayon/white{
+	pixel_x = 10;
+	pixel_y = 24
 	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
@@ -72190,11 +72195,11 @@
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/hos)
 "tRC" = (
-/obj/machinery/suit_storage_unit/security,
 /obj/effect/turf_decal/siding/dark{
 	dir = 8;
 	icon_state = "siding_plain_end"
 	},
+/obj/machinery/suit_storage_unit/blueshield,
 /turf/open/floor/engine,
 /area/station/command/heads_quarters/blueshield)
 "tRF" = (
@@ -78845,6 +78850,17 @@
 "woj" = (
 /turf/open/floor/iron/smooth_large,
 /area/station/engineering/supermatter/room)
+"woo" = (
+/obj/machinery/button/curtain{
+	id = "nt_rep_priv";
+	name = "curtain control";
+	pixel_x = 35;
+	pixel_y = 10;
+	req_access = list("cent_general");
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/station/command/gateway)
 "woq" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
@@ -108369,7 +108385,7 @@ eup
 aph
 xKN
 hfv
-xKN
+woo
 mGP
 xKN
 hfv

@@ -56,7 +56,6 @@
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "k" = (
-/obj/machinery/suit_storage_unit/security,
 /obj/machinery/vending/wallmed/directional/west,
 /obj/effect/turf_decal/delivery/red,
 /obj/effect/turf_decal/siding/thinplating_new/dark{
@@ -65,6 +64,7 @@
 /obj/structure/sign/plaques/kiddie/perfect_man{
 	pixel_y = 32
 	},
+/obj/machinery/suit_storage_unit/blueshield,
 /turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
 "l" = (
@@ -138,6 +138,7 @@
 /obj/structure/plaque/static_plaque/golden{
 	pixel_y = 32
 	},
+/obj/item/mod/module/pepper_shoulders,
 /turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
 "s" = (
@@ -177,9 +178,10 @@
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 4
 	},
-/obj/item/storage/medkit/fire,
-/obj/item/storage/medkit/tactical/blueshield,
 /obj/machinery/light_switch/directional/south,
+/obj/item/storage/medkit/combat_surgeon/stocked,
+/obj/item/storage/medkit/regular,
+/obj/item/storage/medkit/tactical/blueshield,
 /turf/open/floor/iron/dark/small,
 /area/station/command/heads_quarters/blueshield)
 "x" = (
@@ -223,10 +225,9 @@
 	pixel_y = 9;
 	pixel_x = -2
 	},
-/obj/item/storage/fancy/cigarettes/cigars,
-/obj/item/storage/box/matches,
-/obj/item/reagent_containers/cup/glass/bottle/lizardwine,
-/obj/item/reagent_containers/cup/glass/flask,
+/obj/effect/spawner/random/dignitary/blueshield,
+/obj/effect/spawner/random/dignitary/blueshield,
+/obj/effect/spawner/random/dignitary/blueshield,
 /turf/open/floor/iron/dark/diagonal,
 /area/station/command/heads_quarters/blueshield)
 "B" = (
@@ -242,11 +243,9 @@
 	},
 /obj/machinery/button/curtain{
 	id = "bluey_priv";
-	name = "curtain control";
-	pixel_x = 35;
+	pixel_x = 34;
 	pixel_y = 8;
-	req_access = list("theatre");
-	dir = 4
+	req_access = list("captain")
 	},
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)

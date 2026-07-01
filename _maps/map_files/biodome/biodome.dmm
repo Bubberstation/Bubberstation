@@ -2944,16 +2944,15 @@
 /area/station/engineering/atmos/pumproom)
 "bdn" = (
 /obj/structure/safe/abovetilefloor,
-/obj/item/toy/figure/dsquad,
-/obj/item/storage/toolbox/guncase/skyrat/pistol/sec_glock,
-/obj/item/folder/documents,
+/obj/machinery/firealarm/directional/west,
+/obj/effect/spawner/random/dignitary/ntc,
+/obj/effect/spawner/random/dignitary/ntc,
+/obj/effect/spawner/random/dignitary/ntc,
 /obj/item/paperwork{
 	desc = "A densely compiled stack of Internal Affairs records, documenting various investigations, audits and disciplinary proceedings, extensively redacted under CENTCOM authority.";
 	name = "internal affairs records"
 	},
-/obj/item/reagent_containers/cup/glass/bottle/lizardwine,
 /obj/effect/landmark/start/nanotrasen_consultant,
-/obj/machinery/firealarm/directional/west,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "bdN" = (
@@ -25619,10 +25618,14 @@
 	id = "nt_rep_priv";
 	name = "Privacy Shutters Control";
 	pixel_x = 10;
-	pixel_y = -26
+	pixel_y = -26;
+	req_access = list("cent_general")
 	},
 /obj/machinery/photocopier/prebuilt,
 /obj/effect/turf_decal/bot,
+/obj/machinery/camera/directional/south{
+	c_tag = "Command - Consultant's Office"
+	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "jgb" = (
@@ -27064,7 +27067,7 @@
 /obj/item/radio/intercom/directional/east,
 /obj/structure/reagent_dispensers/wall/peppertank/directional/north,
 /obj/machinery/camera/directional/north{
-	c_tag = "Blueshield's Office - Armory"
+	c_tag = "Command - Blueshield's Quarters"
 	},
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
@@ -36540,8 +36543,8 @@
 /turf/open/floor/plating,
 /area/station/security/checkpoint/escape)
 "mNz" = (
-/obj/effect/landmark/start/nanotrasen_consultant,
 /obj/structure/cable,
+/obj/effect/landmark/start/nanotrasen_consultant,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "mNB" = (
@@ -50824,26 +50827,20 @@
 /area/station/engineering/gravity_generator)
 "rGd" = (
 /obj/structure/safe/abovetilefloor,
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/obj/machinery/light_switch/directional/east,
+/obj/machinery/firealarm/directional/east{
+	pixel_x = 32
+	},
+/obj/effect/spawner/random/dignitary/blueshield,
+/obj/effect/spawner/random/dignitary/blueshield,
+/obj/effect/spawner/random/dignitary/blueshield,
+/obj/effect/spawner/random/dignitary/blueshield,
 /obj/item/paperwork/captain{
 	pixel_x = -3;
 	pixel_y = 4;
 	name = "Asset Protection case records";
 	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
-	},
-/obj/item/reagent_containers/cup/glass/trophy{
-	desc = "You did good in the worst way possible.";
-	name = "Redshield 1st prize";
-	pixel_y = 9;
-	pixel_x = -2
-	},
-/obj/item/storage/fancy/cigarettes/cigars,
-/obj/item/storage/box/matches,
-/obj/item/reagent_containers/cup/glass/bottle/lizardwine,
-/obj/item/reagent_containers/cup/glass/flask,
-/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
-/obj/machinery/light_switch/directional/east,
-/obj/machinery/firealarm/directional/east{
-	pixel_x = 32
 	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
@@ -56789,6 +56786,9 @@
 /area/station/security/checkpoint/science)
 "tEj" = (
 /obj/structure/dresser,
+/obj/item/sign/flag/nanotrasen{
+	pixel_y = 11
+	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "tEu" = (
@@ -179690,7 +179690,7 @@ ybl
 ojO
 nMA
 gYN
-uHV
+mNz
 eWl
 ybl
 uOP
@@ -179947,7 +179947,7 @@ ybl
 eQQ
 bdn
 obz
-mNz
+uHV
 jxU
 ybl
 uOP
