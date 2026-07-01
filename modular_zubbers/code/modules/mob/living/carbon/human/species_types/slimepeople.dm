@@ -751,3 +751,7 @@
 /datum/species/jelly/on_bloodsucker_loss(mob/living/carbon/human/target)
 	// regenerate_organs with replace doesn't seem to automatically remove invalid organs unfortunately
 	normalize_organs()
+
+/obj/item/organ/tongue/jelly/Initialize(mapload, mob/living/carbon/organ_owner, list/examine_list) //speech bubble addition
+	. = ..()
+	AddComponent(/datum/component/bubble_icon_override, "slime", BUBBLE_ICON_PRIORITY_ORGAN)

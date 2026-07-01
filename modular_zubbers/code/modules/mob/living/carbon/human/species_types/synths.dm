@@ -33,3 +33,7 @@
 		specialized synthetics with little oversight due to the slow rate of Federal regulation. In the homes of individuals \
 		and in some more progressive workplaces, even Nanotrasen's own, synths are receiving recognition as equals."
 	)
+
+/obj/item/organ/brain/synth/Initialize(mapload) //speech bubble addition
+	. = ..()
+	AddComponent(/datum/component/bubble_icon_override, "machine", BUBBLE_ICON_PRIORITY_ORGAN)

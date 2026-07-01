@@ -36,3 +36,7 @@
 		though the largest by far has recently been discovered on the surface of Indecipheres, \
 		Suggesting a connection between the Podpeople and the living nature of the asteroid. Research is currently ongoing.",
 	)
+
+/obj/item/organ/tongue/pod/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/bubble_icon_override, "plant", BUBBLE_ICON_PRIORITY_ORGAN)
