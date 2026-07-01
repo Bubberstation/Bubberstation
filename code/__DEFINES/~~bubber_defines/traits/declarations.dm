@@ -6,6 +6,7 @@
 #define TRAIT_RESEARCH_CYBORG "research_cyborg"
 #define TRAIT_BILINGUAL "Bilingual"
 #define TRAIT_DIRTY "dirty"
+#define TRAIT_BODY_MORPHER "body_morpher"
 
 /// Cyborgs with unique sprites
 /// 32x32 quadruped skins with resting, sitting, and belly up sprites
@@ -76,7 +77,7 @@
 #define TRAIT_TRICKSTER_TASTE "trickster_taste"
 /// Used by The Blacksmith's Hammer heretic ritual - tracks if their funny hand will emag the next thing they right click with
 #define TRAIT_EMAGGING_HAND "emagging_hand"
-/// Used by the antimagic collar - prevents use of rituals and most spells from Acolytes.
+/// Used by the irreality collar - prevents use of rituals and most spells from Acolytes.
 #define TRAIT_MANSUS_INHIBITION "mansus_inhibition"
 
 /// Trait that gives your brain traumas more resilance
