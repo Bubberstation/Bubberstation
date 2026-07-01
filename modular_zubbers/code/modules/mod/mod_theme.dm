@@ -235,3 +235,8 @@
 	fire = 80
 	acid = 85
 	wound = 20
+
+/obj/item/mod/module/shooting_assistant/ert
+	name = "ert weapon assist MODule"
+	complexity = 0
+	removable = FALSE
