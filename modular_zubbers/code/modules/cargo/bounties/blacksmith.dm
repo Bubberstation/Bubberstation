@@ -1,3 +1,34 @@
+/datum/bounty/item/blacksmith
+	//if not null, bounty items require have required_material in its materials list
+	var/datum/material/required_material = null
+	//if not null, bounty items cannot contain this material
+	var/list/blacklisted_materials = null
+	//if true, redeeming a bounty item does not remove it (instead sets it as non-viable for future bounties)
+
+
+/datum/bounty/item/applies_to(obj/shipped)
+	if(shipped.GetComponent(/datum/component/block_redeemed_item_in_bounty))
+		return FALSE
+	else
+		return ..()
+	if(!is_type_in_typecache(shipped, wanted_types))
+		return FALSE
+	if(shipped.flags_1 & HOLOGRAM_1)
+		return FALSE
+	return shipped_count < required_count
+
+/datum/bounty/item/ship(obj/shipped)
+	if(!applies_to(shipped))
+		return FALSE
+	if(istype(shipped,/obj/item/stack))
+		var/obj/item/stack/shipped_is_a_stack = shipped
+		shipped_count += shipped_is_a_stack.amount
+	else
+		shipped_count += 1
+	return TRUE
+
+/datum/component/block_redeemed_item_in_bounty
+
 /datum/bounty/item/blacksmith/cage
 	name = "Cortical Borer Cage"
 	description = "One of Nanotrasen's partner stations is undergoing a borer infestation and would like to capture some life specimen for research. Ship some off to CentCom right away."
