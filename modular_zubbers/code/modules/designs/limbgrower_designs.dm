@@ -75,9 +75,70 @@
 	name = "Tajaran Organ Design Disk"
 	limb_designs = list(/datum/design/tajaran_eyes, /datum/design/tajaran_tongue, /datum/design/tajaran_ears)
 
+//Teshari organs
+//Pour one out for the birds.
+/datum/design/leftarm/New()
+	category += list(SPECIES_TESHARI)
+	return ..()
+
+/datum/design/rightarm/New()
+	category += list(SPECIES_TESHARI)
+	return ..()
+
+/datum/design/leftleg/New()
+	category += list(SPECIES_TESHARI)
+	return ..()
+
+/datum/design/rightleg/New()
+	category += list(SPECIES_TESHARI)
+	return ..()
+
+/datum/design/teshari_eyes
+	name = "Teshari eyes"
+	id = "tesharieyes"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
+	build_path = /obj/item/organ/eyes/teshari
+	category = list(SPECIES_TESHARI)
+
+/datum/design/teshari_ears
+	name = "Teshari ears"
+	id = "teshariears"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
+	build_path = /obj/item/organ/ears/teshari
+	category = list(SPECIES_TESHARI)
+
+/datum/design/teshari_tongue
+	name = "Teshari tongue"
+	id = "tesharitongue"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
+	build_path = /obj/item/organ/tongue/teshari
+	category = list(SPECIES_TESHARI)
+
+/datum/design/cold_lungs
+	name = "Cold-Adapted Lungs"
+	id = "coldlungs"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
+	build_path = /obj/item/organ/lungs/adaptive/cold
+	category = list(SPECIES_TESHARI)
+
+/datum/design/limb_disk/teshari
+	name = "Teshari Organ Design Disk"
+	desc = "Contains designs for teshari organs for the limbgrower - Ears, tounges, and eyes."
+	id = "limbdesign_teshari"
+	build_path = /obj/item/disk/design_disk/limbs/teshari
+
+/obj/item/disk/design_disk/limbs/teshari
+	name = "Teshari Organ Design Disk"
+	limb_designs = list(/datum/design/teshari_eyes, /datum/design/teshari_ears, /datum/design/teshari_tongue, /datum/design/cold_lungs)
+
 /obj/machinery/limbgrower/Initialize(mapload)
 	categories += list(
 		SPECIES_HEMOPHAGE,
-		SPECIES_TAJARAN
+		SPECIES_TAJARAN,
+		SPECIES_TESHARI
 	)
 	. = ..()

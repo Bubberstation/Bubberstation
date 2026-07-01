@@ -79,6 +79,19 @@
 #define COLONY_FABRICATOR (1<<11)
 // SKYRAT EDIT END
 
+GLOBAL_LIST_INIT(build_types_to_string, list(
+	"[IMPRINTER]" = "Circuit Imprinter",
+	"[PROTOLATHE]" = "Protolathe",
+	"[AUTOLATHE]" = "Autolathe",
+	"[MECHFAB]" = "Exosuit Fabricator",
+	"[BIOGENERATOR]" = "Biogenerator",
+	"[LIMBGROWER]" = "Limb Grower",
+	"[SMELTER]" = "Smelter",
+	"[AWAY_LATHE]" = "Off-Grid Protolathe",
+	"[AWAY_IMPRINTER]" = "Off-Grid Circuit Imprinter",
+	"[COMPONENT_PRINTER]" = "Component Printer",
+))
+
 #define HYPERTORUS_INACTIVE 0 // No or minimal energy
 #define HYPERTORUS_NOMINAL 1 // Normal operation
 #define HYPERTORUS_WARNING 2 // Integrity damaged

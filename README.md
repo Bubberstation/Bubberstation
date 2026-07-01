@@ -44,7 +44,13 @@ As of our recent split from Skyrat, a lot of codedocs/modularization guides need
   - Any signficant balance changes
 - Seeking approval beforehand saves a lot of time and headache if an idea doesn't align with the game's theme and direction
 
-**3. The Licensing is Non-negotiable**
+**3. Usage of Code Generation Tools**
+
+- Usage of autocompletes, auto documentation generation and other tools are allowed
+- It is fully expected of a person using any of these tools to ensure the output and quality of said tools
+- Any code written by tooling is expected to be heavily tested and proven to work
+
+**4. The Licensing is Non-negotiable**
 
 - You are free to take, redistribute, modify, and readapt any code or commit found on this repository.
 - All code files are under **GNU AGPL V3**
@@ -67,6 +73,12 @@ To forward any licensing concerns, please open an issue report or pull request. 
 ### Modularization
 
 New modularized code should be put in the modular_zubbers folder. This is to keep our unique code seperate, easier to maintain, and helps future contributors find things. It is expected that you call into the override functions to reduce the amount of code we overwrite and edit from our upstream source.
+
+### Spriting
+
+For the sake of consistency, we typically ask that sprites be drawn such that it aligns with the look and feel of other sprites. We understand that some items may not be perfect and that's okay, but sprites ideally should do their best to match others for the sake of consistency.
+
+Also consider that when doing clothing sprites, teshari themselves use different sprites (requiring a bit more effort) as well as digitigrades legs. Otherwise, these sprites will either be entirely broken or look heavily off if not done properly.
 
 ### Configuration
 
