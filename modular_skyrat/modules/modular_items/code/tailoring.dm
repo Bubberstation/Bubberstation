@@ -14,15 +14,6 @@
 	reqs = list(/obj/item/paper = 5)
 	category = CAT_CLOTHING
 
-/datum/crafting_recipe/crusader_belt
-	name = "Crusader Belt and Sheath"
-	result = /obj/item/storage/belt/crusader
-	reqs = list(/obj/item/storage/belt/utility = 1, /obj/item/stack/sheet/leather = 3, /obj/item/stack/sheet/cloth = 2, /obj/item/stack/sheet/mineral/gold = 1)
-	tool_behaviors = list(TOOL_WIRECUTTER, TOOL_SCREWDRIVER, TOOL_WELDER)	//To cut the leather and fasten/weld the sheath detailing
-	time = 30
-	category = CAT_CLOTHING
-	delete_contents = FALSE // Otherwise the storage pouch gets deleted when crafted.
-
 /datum/crafting_recipe/crusader_satchel
 	name = "Crusader Satchel"
 	result = /obj/item/storage/backpack/satchel/crusader

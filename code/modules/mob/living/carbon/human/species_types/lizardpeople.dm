@@ -182,6 +182,7 @@ Lizard subspecies: ASHWALKERS
 	inherent_traits = list(
 		TRAIT_MUTANT_COLORS,
 		TRAIT_VIRUSIMMUNE,
+		TRAIT_KNOW_ADVANCED_SMITHING, //BUBBER EDIT
 	)
 	inherent_factions = list(FACTION_ASHWALKER)
 	species_language_holder = /datum/language_holder/lizard/ash
