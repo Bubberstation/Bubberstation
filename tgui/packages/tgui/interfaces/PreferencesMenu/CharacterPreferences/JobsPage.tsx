@@ -12,6 +12,7 @@ import {
   type PreferencesMenuData,
 } from '../types';
 import { useServerPrefs } from '../useServerPrefs';
+import { CharacterProfiles } from '.';
 
 function sortJobs(entries: [string, Job][], head?: string) {
   return sortBy(entries, [
@@ -200,6 +201,7 @@ function JobRow(props: JobRowProps) {
   const alt_title_selected = data.job_alt_titles[name]
     ? data.job_alt_titles[name]
     : name;
+  const selected_char = data.character_profiles;
   // SKYRAT EDIT END
 
   let rightSide: ReactNode;
@@ -279,11 +281,22 @@ function JobRow(props: JobRowProps) {
                   }
                 />
               )
-              // SKYRAT EDIT CHANGE END
             }
+            <Stack.Item width="15%">
+              <CharacterProfiles
+                activeSlot={data.active_slot - 1}
+                onClick={(slot) => {
+                  act('set_preferred_character', {
+                    slot: slot + 1,
+                    job: name,
+                  });
+                }}
+                profiles={data.character_profiles}
+              />
+            </Stack.Item>
           </Stack.Item>
         </Tooltip>
-
+        {/* // SKYRAT EDIT CHANGE END */}
         <Stack.Item grow className="options">
           {rightSide}
         </Stack.Item>
