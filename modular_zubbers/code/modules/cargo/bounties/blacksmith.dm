@@ -1,3 +1,6 @@
+/*
+Todo: Refactor upstream code so that item deletion is decided at the bounty level rather than at the machine running the bounty
+
 /datum/bounty/item/blacksmith
 	//if not null, bounty items require have required_material in its materials list
 	var/datum/material/required_material = null
@@ -11,11 +14,6 @@
 		return FALSE
 	else
 		return ..()
-	if(!is_type_in_typecache(shipped, wanted_types))
-		return FALSE
-	if(shipped.flags_1 & HOLOGRAM_1)
-		return FALSE
-	return shipped_count < required_count
 
 /datum/bounty/item/ship(obj/shipped)
 	if(!applies_to(shipped))
@@ -28,6 +26,8 @@
 	return TRUE
 
 /datum/component/block_redeemed_item_in_bounty
+
+*/
 
 /datum/bounty/item/blacksmith/cage
 	name = "Cortical Borer Cage"
