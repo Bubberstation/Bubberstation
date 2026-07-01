@@ -89,7 +89,7 @@
 	return TRUE
 
 /obj/structure/reagent_anvil/atom_deconstruct(disassembled = TRUE)
-	var/obj/item/my_drop = new /obj/item/stack/sheet/mineral/plastitanium(get_turf(src))
+	var/obj/item/stack/sheet/my_drop = new /obj/item/stack/sheet/mineral/plastitanium(get_turf(src))
 	my_drop.add(9)
 	if(length(contents))
 		for(var/obj/contained in contents)
