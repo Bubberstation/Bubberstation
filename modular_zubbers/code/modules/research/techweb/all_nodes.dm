@@ -77,6 +77,13 @@
 	design_ids += list(
 		"wound_scanner_internal"
 	)
+
+/datum/techweb_node/medbay_equip/New()
+	. = ..()
+	design_ids += list(
+		"defibrillator",
+	)
+
 //ENGINEERING
 /datum/techweb_node/atmos/New()
 	. = ..()
