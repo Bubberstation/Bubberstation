@@ -185,6 +185,7 @@ GLOBAL_LIST_EMPTY_TYPED(protean_match_tag_pool, /obj/item/clothing/accessory/dog
 /obj/item/clothing/accessory/dogtags/protean_match
 	name = "\improper Protean Match tag"
 	desc = "A small tag from NT's Protean Match program, which pairs Protean crew with interested wearers."
+	worn_icon = null // People shouldn't have to abandon 5 pixels of swag and aura to wear this
 	custom_premium_price = PAYCHECK_CREW * 0.4
 	/// Name of the person "wearing" the tag
 	var/assignee_name
