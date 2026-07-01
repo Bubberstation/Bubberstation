@@ -22,7 +22,7 @@
 		/obj/item/surgical_drapes,
 		/obj/item/storage/pill_bottle,
 		/obj/item/tank/internals/emergency_oxygen,
-		/obj/item/melee/forged_reagent_weapon
+		/obj/item/melee/forged_reagent_weapon,
 		/obj/item/forging/hammer,
 		/obj/item/forging/tongs,
 		/obj/item/forging/billow,
