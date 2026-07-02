@@ -113,6 +113,10 @@
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/miniskirt_worn.json'
 
+/datum/greyscale_config/miniskirt_worn/teshari
+	name = "Worn Miniskirt (Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses_teshari.dmi'
+
 // SHORT-SLEEVED CROPPED JACKET
 
 /datum/greyscale_config/crop_jacket

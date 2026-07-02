@@ -642,6 +642,7 @@
 	icon_state = "security_maid"
 	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
 	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
 
@@ -737,4 +738,20 @@
 	icon_state = "hos_helmet"
 	armor_type = /datum/armor/hats_hos
 
+/obj/item/clothing/head/helmet/blueshirt
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
 
+/obj/item/clothing/head/utility/hardhat
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/utility_teshari.dmi'
+
+/obj/item/clothing/head/helmet/space/emergency
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/head/syndicatefake
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/head/helmet/space/syndicate/black/red
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/head/helmet/sec
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'

@@ -1097,3 +1097,15 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	gets_cropped_on_taurs = FALSE
 	slot_flags = ITEM_SLOT_OCLOTHING|ITEM_SLOT_NECK
+
+/obj/item/clothing/suit/toggle/labcoat/technical/cargo
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
+
+/obj/item/clothing/suit/toggle/jacket/corrections_officer
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
+
+/obj/item/clothing/suit/toggle/jacket/det_trench
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/nanotrasen_consultant
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'

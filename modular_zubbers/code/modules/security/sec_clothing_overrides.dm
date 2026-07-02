@@ -231,6 +231,7 @@
 	desc = "A pair of security gloves."
 	icon = 'icons/obj/clothing/gloves.dmi'
 	worn_icon = 'icons/mob/clothing/hands.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/gloves/gloves_teshari.dmi'
 	icon_state = "sec"
 
 /obj/item/clothing/gloves/color/black/security/setup_reskins()
@@ -280,6 +281,7 @@
 	icon_state = "armor_sec"
 
 /obj/item/clothing/suit/armor/hos
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/armor/hos/Initialize(mapload)
@@ -427,6 +429,7 @@
 /obj/item/clothing/under/rank/security/warden
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
 	icon_state = "rwarden"
 
 /obj/item/clothing/under/rank/security/warden/formal
@@ -441,6 +444,7 @@
 /obj/item/clothing/under/rank/security/head_of_security
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
 	icon_state = "rhos"
 
 /obj/item/clothing/under/rank/security/head_of_security/parade
@@ -582,6 +586,7 @@
 	icon_state = "jackboots_sec"
 	icon = 'icons/obj/clothing/shoes.dmi'
 	worn_icon = 'icons/mob/clothing/feet.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
 	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS) // We have other footsteps.
 
 /obj/item/clothing/shoes/jackboots/sec/Initialize(mapload)
@@ -729,6 +734,7 @@
 /obj/item/storage/belt/holster/detective
 	name = "detective's holster"
 	desc = "A holster able to carry handguns and extra ammo, thanks to an additional hand-sewn pouch. WARNING: Badasses only."
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/belts/belts_teshari.dmi'
 
 /datum/storage/holster/detective
 	max_slots = 4
