@@ -442,6 +442,40 @@
 	if(istype(exposed_mob, /mob/living/basic/pet/plush) && reac_volume >= 1)
 		exposed_mob.revive(ADMIN_HEAL_ALL)
 
+//
+/datum/reagent/soma_mindwipe
+	name = "ROOFIE JUICE"
+	description = "bill cosby"
+	color = "#6c0830"
+	var/mindwiped_questionmark = FALSE
+
+/datum/reagent/soma_mindwipe/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
+	. = ..()
+	var/blood_alcohol_content = affected_mob.get_blood_alcohol_content()
+	if(affected_mob.stat == CONSCIOUS & blood_alcohol_content < BAC_STAGE_3_ACTIVE)
+		//make them eepy?
+		affected_mob.adjust_drowsiness_up_to(2 SECONDS * metabolization_ratio, 12 SECONDS)
+		affected_mob.adjust_drugginess_up_to(2 SECONDS * metabolization_ratio, 12 SECONDS)
+		return
+	else
+		if(mindwiped_questionmark == TRUE) //proc it only once to not spam the message
+			affected_mob.adjust_drugginess_up_to(2 SECONDS * metabolization_ratio, 12 SECONDS)
+			return
+		else
+			mindwiped_questionmark = TRUE
+			//display that something happened by forcing emote so that the user knows it procced on the target?
+			affected_mob.visible_message(span_danger("woah... [affected_mob] is forgetting so hard..."))
+			//give the target a message to forget
+			to_chat(affected_mob, span_danger("TODO!!! YOU FORGOR!!!"))
+
+/datum/reagent/soma_mindwipe/on_mob_add(mob/living/carbon/affected_mob)
+	..()
+	mindwiped_questionmark = FALSE
+
+/datum/reagent/soma_mindwipe/on_mob_delete(mob/living/carbon/affected_mob)
+	mindwiped_questionmark = FALSE
+	..()
+
 #undef MUT_MSG_IMMEDIATE
 #undef MUT_MSG_EXTENDED
 #undef MUT_MSG_ABOUT2TURN

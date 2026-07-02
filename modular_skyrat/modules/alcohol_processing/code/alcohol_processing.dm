@@ -42,12 +42,3 @@
 			return span_bolddanger("I'm not feeling so hot...")
 		if(BAC_STAGE_5_WARN to INFINITY)
 			return span_bolddanger("Is there a doctor around? I really don't feel good...")
-
-#undef BAC_STAGE_1_ACTIVE
-#undef BAC_STAGE_2_WARN
-#undef BAC_STAGE_2_ACTIVE
-#undef BAC_STAGE_3_WARN
-#undef BAC_STAGE_3_ACTIVE
-#undef BAC_STAGE_4_WARN
-#undef BAC_STAGE_4_ACTIVE
-#undef BAC_STAGE_5_WARN
