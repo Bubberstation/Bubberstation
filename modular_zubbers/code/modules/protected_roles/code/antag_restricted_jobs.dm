@@ -3,3 +3,6 @@
 
 /datum/job/bridge_assistant
 	antagonist_restricted = TRUE
+
+/datum/job/paramedic
+	antagonist_restricted = TRUE
