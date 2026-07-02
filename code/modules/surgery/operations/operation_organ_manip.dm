@@ -95,9 +95,13 @@
 	return TRUE
 
 /datum/surgery_operation/limb/organ_manipulation/snowflake_check_availability(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, operated_zone)
+	if(istype(tool, /obj/item/mmi)) //Bubber Edit
+		return TRUE
 	return isorgan(tool) ? is_insert_available(limb, tool, operated_zone) : is_remove_available(limb, operated_zone)
 
 /datum/surgery_operation/limb/organ_manipulation/get_radial_options(obj/item/bodypart/limb, obj/item/tool, operating_zone)
+	if(istype(tool, /obj/item/mmi)) //Bubber Edit
+		return get_insert_options(limb, tool, operating_zone)
 	return isorgan(tool) ? get_insert_options(limb, tool, operating_zone) : get_remove_options(limb, operating_zone)
 
 /datum/surgery_operation/limb/organ_manipulation/proc/get_remove_options(obj/item/bodypart/limb, operating_zone)
@@ -200,6 +204,10 @@
 	organ.on_surgical_removal(surgeon, limb, tool)
 
 /datum/surgery_operation/limb/organ_manipulation/proc/on_success_insert_organ(obj/item/bodypart/limb, mob/living/surgeon, obj/item/organ/organ)
+	//Bubber Edit Start, Checks if the type attempted to be inserted is a positronic or not
+	if(istype(organ, /obj/item/mmi/posibrain))
+		organ = new /obj/item/organ/brain/synth(null, organ)
+	//Bubber Edit End
 	surgeon.temporarilyRemoveItemFromInventory(organ, TRUE)
 	organ.pre_surgical_insertion(surgeon, limb, limb.body_zone)
 	if (limb.owner)
@@ -280,6 +288,10 @@
 	)
 	operation_flags = parent_type::operation_flags | OPERATION_SELF_OPERABLE
 	replaced_by = null
+	insert_implements = list(
+		/obj/item/organ = 1,
+		/obj/item/mmi = 1,
+	)
 
 /// Abductor subtype that works through clothes
 /datum/surgery_operation/limb/organ_manipulation/external/abductor
