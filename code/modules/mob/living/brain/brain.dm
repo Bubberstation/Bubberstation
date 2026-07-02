@@ -19,9 +19,22 @@
 	ADD_TRAIT(src, TRAIT_SILICON_EMOTES_ALLOWED, INNATE_TRAIT)
 
 /mob/living/brain/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
-	var/obj/item/organ/brain/brain_loc = loc
-	if(brain_loc && isnull(new_turf) && brain_loc.owner) //we're actively being put inside a new body.
-		return ..(old_turf, get_turf(brain_loc.owner), same_z_layer, notify_contents)
+	//Bubber Edit Start
+	if(isnull(new_turf))
+		var/mob/living/carbon/brain_owner = null
+
+		if(istype(loc, /obj/item/organ/brain))
+			var/obj/item/organ/brain/brain_loc = loc
+			brain_owner = brain_loc.owner
+		else if(istype(loc, /obj/item/mmi))
+			var/obj/item/mmi/mmi_loc = loc
+			if(istype(mmi_loc.loc, /obj/item/organ/brain))
+				var/obj/item/organ/brain/brain_loc = mmi_loc.loc
+				brain_owner = brain_loc.owner
+
+		if(brain_owner)
+			return ..(old_turf, get_turf(brain_owner), same_z_layer, notify_contents)
+	//Bubber Edit End
 	return ..()
 
 /mob/living/brain/proc/create_dna()
