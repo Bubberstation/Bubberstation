@@ -288,8 +288,8 @@
 	equip_delay_self = 12 SECONDS
 	equip_delay_other = 15 SECONDS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	item_flags = SLOWS_WHILE_IN_HAND
-	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | IMMUTABLE_SLOW | SNUG_FIT
+	item_flags = SLOWS_WHILE_IN_HAND | IMMUTABLE_SLOW
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SNUG_FIT
 	bubber_obj_flags = TRUE_IMMUTABLE_SLOW
 	cold_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
