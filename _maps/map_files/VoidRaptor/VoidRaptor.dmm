@@ -2938,16 +2938,9 @@
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/medbay/lobby)
 "aQZ" = (
-/obj/structure/safe/abovetilefloor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/spawner/random/dignitary/blueshield,
-/obj/effect/spawner/random/dignitary/blueshield,
-/obj/effect/spawner/random/dignitary/blueshield,
-/obj/item/paperwork{
-	desc = "A densely compiled stack of Internal Affairs records, documenting various investigations, audits and disciplinary proceedings, extensively redacted under CENTCOM authority.";
-	name = "internal affairs records"
-	},
+/obj/effect/spawner/random/loot/dignitary/consultant,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "aRc" = (
@@ -4724,8 +4717,7 @@
 	dir = 10
 	},
 /obj/structure/rack/shelf,
-/obj/item/storage/medkit/brute,
-/obj/item/storage/medkit/fire,
+/obj/item/storage/medkit/combat_surgeon,
 /obj/item/storage/medkit/regular,
 /obj/item/storage/medkit/tactical/blueshield,
 /turf/open/floor/iron/dark/small,
@@ -27008,14 +27000,13 @@
 "hQV" = (
 /obj/structure/table/wood/fancy/green,
 /obj/machinery/airalarm/directional/north,
-/obj/item/paperwork/captain{
-	pixel_x = 4;
-	pixel_y = 4;
-	name = "station reports"
-	},
 /obj/item/flashlight/lamp/green{
 	pixel_x = -9;
 	pixel_y = 5
+	},
+/obj/item/paperwork/ntc{
+	pixel_x = 2;
+	pixel_y = 3
 	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
@@ -28337,22 +28328,13 @@
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 4
 	},
-/obj/structure/safe/abovetilefloor,
 /obj/machinery/button/door/directional/north{
 	pixel_y = 27;
 	pixel_x = -1;
 	id = "blueshield_priv"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/spawner/random/dignitary/blueshield,
-/obj/effect/spawner/random/dignitary/blueshield,
-/obj/effect/spawner/random/dignitary/blueshield,
-/obj/item/paperwork/captain{
-	pixel_x = -3;
-	pixel_y = 4;
-	name = "Asset Protection case records";
-	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
-	},
+/obj/effect/spawner/random/loot/dignitary/blueshield,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "ilY" = (

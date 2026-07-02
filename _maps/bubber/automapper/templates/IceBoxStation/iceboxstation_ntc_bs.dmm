@@ -473,27 +473,13 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "Cj" = (
-/obj/structure/safe/abovetilefloor,
 /obj/effect/turf_decal/tile/dark_blue/diagonal_centre,
 /obj/machinery/status_display/ai/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/camera/directional/west{
 	c_tag = "Blueshield's Armory"
 	},
-/obj/effect/spawner/random/dignitary/blueshield,
-/obj/effect/spawner/random/dignitary/blueshield,
-/obj/effect/spawner/random/dignitary/blueshield,
-/obj/item/paperwork/captain{
-	pixel_x = -3;
-	pixel_y = 4;
-	name = "Asset Protection case records";
-	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
-	},
-/obj/item/toy/plush/lizard_plushie/greyscale{
-	name = "Hunts-the-Traitor";
-	desc = "The Blueshield's best friend, a little too eager to go after criminals and evil-doers alike. He's grounded forever.";
-	greyscale_colors = "#FF0000#000000"
-	},
+/obj/effect/spawner/random/loot/dignitary/blueshield,
 /turf/open/floor/iron/dark/diagonal,
 /area/station/command/heads_quarters/blueshield)
 "CV" = (
@@ -567,16 +553,8 @@
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/nt_rep)
 "Gv" = (
-/obj/structure/safe/abovetilefloor,
-/obj/effect/spawner/random/dignitary/ntc,
-/obj/effect/spawner/random/dignitary/ntc,
-/obj/effect/spawner/random/dignitary/ntc,
-/obj/item/paperwork{
-	desc = "A densely compiled stack of Internal Affairs records, documenting various investigations, audits and disciplinary proceedings, extensively redacted under CENTCOM authority.";
-	name = "internal affairs records"
-	},
-/obj/item/folder/documents,
 /obj/effect/landmark/start/nanotrasen_consultant,
+/obj/effect/spawner/random/loot/dignitary/consultant,
 /turf/open/floor/carpet/royalblack,
 /area/station/command/heads_quarters/nt_rep)
 "Gz" = (
@@ -852,9 +830,7 @@
 	pixel_x = -5;
 	pixel_y = 25
 	},
-/obj/item/toy/plush/skyrat/fox/mia{
-	desc = "A cute, marketable version of one of the DAP's mascots, Vigilant the fox. She has a blue collar with a shield-shaped tag that reads DAP. Holding her makes you feel protected.";
-	name = "Vigilant plushie";
+/obj/item/toy/plush/skyrat/fox/mia/vigilant{
 	pixel_y = 6
 	},
 /turf/open/floor/iron/dark/smooth_edge{

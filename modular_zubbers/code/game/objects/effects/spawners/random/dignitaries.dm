@@ -1,8 +1,40 @@
-/obj/effect/spawner/random/dignitary
-	desc = "Glory to Nanotrasen!"
+//Some of the fluff that can spawn in there
+/obj/item/paperwork/ntc
+	name = "Internal Affairs records"
+	desc = "A densely compiled stack of Internal Affairs records, documenting various investigations, audits and disciplinary proceedings, extensively redacted under the authority of Central Command."
 
-/obj/effect/spawner/random/dignitary/ntc
-	name = "nanotrasen consultant loot spawner"
+/obj/item/paperwork/blueshield
+	name = "Asset Protection case records"
+	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
+
+/obj/item/reagent_containers/cup/glass/trophy
+	name = "Redshield 1st Prize"
+	desc = "You did good in the worst way possible."
+
+/obj/item/toy/plush/skyrat/fox/mia/vigilant
+	name = "Vigilant the Fox Plushie"
+	desc = "A cute, marketable version of one of the DAP's mascots, Vigilant the Fox. She has a blue collar with a shield-shaped tag that reads DAP. Holding her makes you feel protected."
+
+/obj/effect/spawner/random/loot/dignitary
+	desc = "Glory to Nanotrasen!"
+	var/spawn_additional_loot_chance = 100
+	var/list/additional_loot
+
+/obj/effect/spawner/random/loot/dignitary/Initialize(mapload)
+	. = ..()
+	if(additional_loot?.len && prob(spawn_additional_loot_chance))
+		var/loot_to_spawn = pick_weight_recursive(additional_loot)
+		var/atom/movable/spawned_loot = make_item(loc, loot_to_spawn)
+		spawned_loot.setDir(dir)
+
+/obj/effect/spawner/random/loot/dignitary/consultant
+	name = "nanotrasen consultant safe spawner"
+	loot = null
+	additional_loot = list(
+		/obj/structure/safe/floor = 1
+	)
+
+/obj/effect/spawner/random/loot/dignitary/consultant/Initialize(mapload)
 	loot = list(
 		/obj/item/lighter/royal = 1,
 		/obj/item/coin/antagtoken = 1,
@@ -27,11 +59,26 @@
 		/obj/item/toy/plush/ghoul = 1,
 		/obj/item/toy/figure/dsquad = 1,
 		/obj/item/bong = 1,
-		/obj/item/gun/ballistic/revolver/protector_revolver= 1,
+		/obj/item/gun/ballistic/revolver/protector_revolver = 1,
+	)
+	. = ..()
+
+	var/obj/structure/safe/loot_inside = locate(/obj/structure/safe) in loc
+	if(loot_inside)
+		for(var/i = 1 to 2)
+			var/loot_to_spawn = pick_weight_recursive(loot)
+			make_item(loot_inside, loot_to_spawn)
+
+	make_item(loot_inside, /obj/item/paperwork/ntc)
+
+/obj/effect/spawner/random/loot/dignitary/blueshield
+	name = "blueshield safe spawner"
+	loot = null
+	additional_loot = list(
+		/obj/structure/safe/floor = 1
 	)
 
-/obj/effect/spawner/random/dignitary/blueshield
-	name = "blueshield loot spawner"
+/obj/effect/spawner/random/loot/dignitary/blueshield/Initialize(mapload)
 	loot = list(
 		/obj/item/coin/antagtoken = 1,
 		/obj/item/coin/gold = 1,
@@ -54,4 +101,15 @@
 		/obj/item/toy/figure/dsquad = 1,
 		/obj/item/toy/figure/captain = 1,
 		/obj/item/toy/figure/syndie = 1,
+		/obj/item/toy/plush/skyrat/fox/mia/vigilant = 1,
+		/obj/item/reagent_containers/cup/glass/trophy = 1,
 	)
+	. = ..()
+
+	var/obj/structure/safe/loot_inside = locate(/obj/structure/safe) in loc
+	if(loot_inside)
+		for(var/i = 1 to 2)
+			var/loot_to_spawn = pick_weight_recursive(loot)
+			make_item(loot_inside, loot_to_spawn)
+
+	make_item(loot_inside, /obj/item/paperwork/blueshield)
