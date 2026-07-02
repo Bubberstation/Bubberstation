@@ -276,3 +276,21 @@
 
 /obj/item/clothing/suit/armor/vest/blueshirt/skyrat/customs_agent
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/alt/sec
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/warden
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/warden/alt
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/capcarapace
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/blueshield/jacket
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/hop
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'

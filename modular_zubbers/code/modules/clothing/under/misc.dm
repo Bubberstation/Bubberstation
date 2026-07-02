@@ -739,3 +739,15 @@
 
 /obj/item/clothing/under/sweater
 	greyscale_config_worn_teshari = /datum/greyscale_config/cableknit_sweater/worn/teshari
+
+/obj/item/clothing/under/trek
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/costume_teshari.dmi'
+
+/obj/item/clothing/under/trek/command
+	greyscale_config_worn_teshari = /datum/greyscale_config/trek/worn/teshari
+
+/obj/item/clothing/under/trek/engsec
+	greyscale_config_worn_teshari = /datum/greyscale_config/trek/worn/teshari
+
+/obj/item/clothing/under/trek/medsci
+	greyscale_config_worn_teshari = /datum/greyscale_config/trek/worn/teshari

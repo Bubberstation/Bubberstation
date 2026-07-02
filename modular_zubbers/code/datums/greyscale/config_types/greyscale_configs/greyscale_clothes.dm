@@ -328,3 +328,15 @@
 /datum/greyscale_config/cableknit_sweater/worn/teshari
 	name = "Cableknit Sweater (Worn, Teshari)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses_teshari.dmi'
+
+/datum/greyscale_config/trek/worn/teshari
+	name = "Trek Uniform (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume_teshari.dmi'
+
+/datum/greyscale_config/primitive_catgirl_boots/worn/digi
+	name = "Primitive Winter Boots (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+
+/datum/greyscale_config/primitive_catgirl_boots/worn/teshari
+	name = "Primitive Winter Boots (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'

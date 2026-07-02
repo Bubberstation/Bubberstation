@@ -427,3 +427,7 @@
 
 /obj/item/clothing/shoes/workboots
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/obj/item/clothing/shoes/winterboots/ice_boots/primitive_catgirl_boots
+	greyscale_config_worn_digi = /datum/greyscale_config/primitive_catgirl_boots/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/primitive_catgirl_boots/worn/teshari

@@ -123,3 +123,18 @@
 
 /obj/item/clothing/head/costume/mailman
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/costume_teshari.dmi'
+
+/obj/item/clothing/head/fedora/det_hat
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/obj/item/clothing/head/hats/caphat
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/obj/item/clothing/head/nanotrasen_consultant
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/obj/item/clothing/head/hats/hopcap
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/obj/item/clothing/head/hats/warden/red
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'

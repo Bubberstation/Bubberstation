@@ -703,3 +703,9 @@
 
 /obj/item/clothing/neck/maid_neck_cover
 	greyscale_config_worn_teshari = /datum/greyscale_config/bubber_maid_neck_cover/worn/teshari
+
+/obj/item/clothing/neck/tie/detective
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/neck/neck_teshari.dmi'
+
+/obj/item/clothing/neck/large_scarf
+	greyscale_config_worn_teshari = /datum/greyscale_config/scarf/worn/teshari

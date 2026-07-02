@@ -8,3 +8,6 @@
 		display = span_notice("\"Hi! My blood is [blood_type] despite being [color_string]!\"")
 	else
 		display = span_notice("The dogtag is all scratched up.")
+
+/obj/item/clothing/accessory/medal/gold/
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/accessories_teshari.dmi'
