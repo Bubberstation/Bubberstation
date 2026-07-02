@@ -6,6 +6,7 @@
 	result = /obj/item/paper_bin/bundlenatural
 	category = CAT_MISC
 
+
 /datum/crafting_recipe/skeleton_key
 	name = "Skeleton Key"
 	time = 3 SECONDS
