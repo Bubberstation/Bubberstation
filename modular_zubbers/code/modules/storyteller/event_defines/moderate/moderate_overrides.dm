@@ -35,6 +35,7 @@
 
 /datum/round_event_control/spacevine
 	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_CHAOTIC)
+	min_players = 35
 
 /datum/round_event_control/portal_storm_syndicate
 	tags = list(TAG_COMBAT, TAG_CHAOTIC)
