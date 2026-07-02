@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><base href="../../"><link rel="stylesheet" href="dmdoc.css"><title>/datum/component/transformation - /tg/ Station 13</title></head><body><header><a href="index.html">/tg/ Station 13</a> - <a href="index.html#modules">Modules</a> - <a href="index.html#types">Types</a> — <a href="datum/component/transformation.html#var">Var Details</a></header><main><h1>transformation <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/transformation.html">transformation</a></aside> <a href="https://github.com/Bubberstation/Bubberstation/blob/ffb3aa84f27b92235c4accdb4d75e2c597e251f7/modular_zubbers/code/datums/components/transformation.dm#L16"><img src="git.png" width="16" height="16" title="modular_zubbers/code/datums/components/transformation.dm 16"></a></h1><ul>
+<li>
+<p>OK THIS IS GOING TO SOUND WEIRD, BUT STAY WITH ME. I'VE PUT A LOT OF THOUGHT ON HOW TO DO THIS WITHOUT FUCKING UP HOW THE GAME CREATES OUR FURRY HOMUNCULUS CREATURES.</p>
+</li>
+<li>
+<hr />
+</li>
+<li>
+<p>How literally everything else handles any form of transformation (NIF, Changeling, that one lavaland knife I doubt you know about) will mostly dna.copy_dna() from the old to the new.</p>
+</li>
+<li>
+<p>But the issue is, literally EVERYTHING fucking breaks the second you're using limbs that are entirely incompatible. (Teshari, synths) and the spaceman that pops out becomes a weird ass frankenstein mess.</p>
+</li>
+<li>
+<p>That is, unless you force load one set of prefs to the other mob. (Which is a valid and cool option) But overall, to fix the above issue you HAVE TO change their species.</p>
+</li>
+<li>
+<p>This is more an illusionary effect and me tricking the game. The base mob is mostly unaffected. You will look like a synth and still bleed red. How will this work?</p>
+</li>
+<li>
+<p>/mob/living/carbon/proc/update_body_parts() detects if the mob has this component, then will create the required icon_render_keys based off a separate entity.</p>
+</li>
+<li>
+<p>It can't be the source player directly, cause you chop off their head or they put on a hat, it'll mirror exactly to the component holder which is also undesired jank.</p>
+</li>
+<li>
+<p>The solution? We still do the whole changeling bullshit to a mob that sits in null space, then have the affected player mirror it.</p>
+</li>
+<li>
+<p>If something looks jank, it's because the nullspace dummy we're using for this is not properly mirroring certain icon events. (Hair hiding with hats, gasmasks not clipping with snouts, etc)</p>
+</li>
+<li>
+<p>With that, my dear reader, just need to make sure on_transform_limb_icon() properly modifies our nullspace dummy with said event or you add another cached_feature to temporarily change the player's mob.</p>
+</li>
+<li>
+<p>TDLR: This whole thing is so you can transform people without changing their species, and for it not to look like shit.</p>
+</li>
+</ul><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr><tr><th><a href="datum/component/transformation.html#var/dummy">dummy</a></th><td>Dummy human sitting in null space</td></tr><tr><th><a href="datum/component/transformation.html#var/original">original</a></th><td>Source mob that's transferring.</td></tr></table><h2 id="var">Var Details</h2><h3 id="var/dummy"><aside class="declaration">var </aside>dummy <aside>– /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/consistent</aside> <a href="https://github.com/Bubberstation/Bubberstation/blob/ffb3aa84f27b92235c4accdb4d75e2c597e251f7/modular_zubbers/code/datums/components/transformation.dm#L20"><img src="git.png" width="16" height="16" title="modular_zubbers/code/datums/components/transformation.dm 20"></a></h3><p>Dummy human sitting in null space</p><h3 id="var/original"><aside class="declaration">var </aside>original <aside>– /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a></aside> <a href="https://github.com/Bubberstation/Bubberstation/blob/ffb3aa84f27b92235c4accdb4d75e2c597e251f7/modular_zubbers/code/datums/components/transformation.dm#L18"><img src="git.png" width="16" height="16" title="modular_zubbers/code/datums/components/transformation.dm 18"></a></h3><p>Source mob that's transferring.</p></main><footer>tgstation.dme <a href="https://github.com/Bubberstation/Bubberstation/tree/ffb3aa84f27b92235c4accdb4d75e2c597e251f7">ffb3aa8</a> (master) — <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.11.0</a></footer></body></html>
