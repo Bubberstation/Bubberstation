@@ -31,7 +31,7 @@
 	name = "nanotrasen consultant safe spawner"
 	loot = null
 	additional_loot = list(
-		/obj/structure/safe/floor = 1
+		/obj/structure/safe/abovetilefloor = 1
 	)
 
 /obj/effect/spawner/random/loot/dignitary/consultant/Initialize(mapload)
@@ -75,7 +75,7 @@
 	name = "blueshield safe spawner"
 	loot = null
 	additional_loot = list(
-		/obj/structure/safe/floor = 1
+		/obj/structure/safe/abovetilefloor = 1
 	)
 
 /obj/effect/spawner/random/loot/dignitary/blueshield/Initialize(mapload)
