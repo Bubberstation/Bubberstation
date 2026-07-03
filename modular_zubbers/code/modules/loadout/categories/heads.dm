@@ -76,6 +76,22 @@
 	item_path = /obj/item/clothing/head/soft/sec
 	restricted_roles = list(ALL_JOBS_SEC)
 
+/datum/loadout_item/head/security_cap/recolorable
+	name = "Recolorable Security Cap"
+	item_path = /obj/item/clothing/head/soft/sec/recolorable
+	restricted_roles = list(ALL_JOBS_SEC)
+	greyscale_component_preview_icon_file = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+
+/datum/loadout_item/head/security_cap/recolorable/set_item_color(datum/preference_middleware/loadout/manager, mob/user)
+	return set_component_style_item_color(manager, user)
+
+/datum/loadout_item/head/security_cap/recolorable/set_slot_greyscale(datum/preference_middleware/loadout/manager, datum/greyscale_modify_menu/open_menu)
+	return set_component_style_slot_greyscale(manager, open_menu)
+
+/datum/loadout_item/head/security_cap/recolorable/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/outfit, visuals_only = FALSE)
+	. = ..()
+	apply_component_style_to_equipped_item(equipped_item, item_details)
+
 /datum/loadout_item/head/security_cap/veteran
 	name = "Veteran's Soft Security Cap"
 	item_path = /obj/item/clothing/head/soft/veteran

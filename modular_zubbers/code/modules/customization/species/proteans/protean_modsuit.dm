@@ -5,7 +5,7 @@
 
 	applied_core = /obj/item/mod/core/protean
 	applied_cell = null // Goes off stomach
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // funny nanite
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | INDESTRUCTIBLE // funny nanite
 	drag_pickup = FALSE
 	/// Whether or not the wearer can undeploy parts.
 	var/modlocked = FALSE
@@ -152,7 +152,9 @@
 
 		var/static/list/obj/item/mod/control/banned_modsuits = list(
 				/obj/item/mod/control/pre_equipped/infiltrator,
-				/obj/item/mod/control/pre_equipped/protean,)
+				/obj/item/mod/control/pre_equipped/protean,
+				/obj/item/mod/construction/plating/portable_suit,
+				)
 
 		if(is_type_in_list(tool, banned_modsuits))
 			balloon_alert(user, "incompatable")
@@ -168,19 +170,19 @@
 	///Memory Wipe Via Pen
 
 	if(brain?.dead && istype(tool, /obj/item/pen))
-		to_chat(user, span_notice("You begin to reset the protean's random access memory using a pen."))
+		to_chat(user, span_notice("You begin to reset the protean's random access memory using a pen!"))
 		user.balloon_alert_to_viewers("resetting memory")
-		user.visible_message(span_boldwarning("[user] is reaching a pen into [protean_in_suit]!"))
+		user.visible_message(span_boldwarning("[user] is reaching a pen into [protean_in_suit] to find the reset button!"))
 		playsound(src, 'sound/machines/synth/synth_no.ogg', 100)
 		if(!do_after(user, 10 SECONDS))
 			return
 		protean_in_suit.say("Alert - Random Access Memory Reset. Current memories lost. Any interactions that were ongoing have been forgotten.", forced = TRUE)
 		protean_in_suit.log_message("has had their memory reset.", LOG_ATTACK)
+		message_admins("[ADMIN_LOOKUPFLW(protean_in_suit)] has had their memories reset with a pen by [ADMIN_LOOKUPFLW(user)]")
 		to_chat(protean_in_suit, span_boldwarning("Your memories have been reset. You cannot remember who reset you or any of the events leading up to your reset."))
 		playsound(src, 'sound/machines/synth/synth_yes.ogg', 100)
 		playsound(src, 'sound/machines/click.ogg', 100)
-		protean_in_suit.SetSleeping(5 SECONDS)
-
+		protean_in_suit.SetSleeping(1 MINUTES)
 
 /obj/item/mod/control/pre_equipped/protean/ui_status(mob/user, datum/ui_state/state)
 	var/obj/item/mod/core/protean/source = core
@@ -323,6 +325,15 @@
 			. += span_deadsay("[t_He] [t_has] entered stasis and [t_has] been completely unresponsive to anything for [round(((world.time - protean_in_suit.lastclienttime) / (1 MINUTES)),1)] minutes. [t_He] may snap out of it soon.")
 		if(!protean_in_suit.key)
 			. += span_deadsay("[t_He] [t_is] totally listless. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")
+
+/obj/item/mod/control/pre_equipped/protean/blob_act(obj/structure/blob/B)
+	var/obj/item/mod/core/protean/p_core = core
+	var/mob/living/carbon/human/protean = p_core?.linked_species.owner
+	var/obj/item/organ/brain/protean/brain = protean?.get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(!brain.dead && !isnull(brain))
+		to_chat(protean, span_boldwarning("The [B] crushes you relentlessly until your refactory pops."))
+		protean.take_overall_damage(300)
+	return ..()
 
 /obj/item/mod/control/pre_equipped/protean/proc/ooc_escape(mob/living/carbon/user)
 	SIGNAL_HANDLER

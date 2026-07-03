@@ -267,6 +267,16 @@ a:visited {
   background: yellow;
 }
 
+.Chat__highlight {
+  color: oklch(from var(--highlight-color) min(l, 0.45) c h);
+  background: oklch(from var(--highlight-color) min(l, 0.45) c h / 25%);
+}
+
+.ChatMessage--highlighted {
+  border-left-color: oklch(from var(--highlight-color) min(l, 0.45) c h);
+  background: oklch(from var(--highlight-color) min(l, 0.45) c h / 14%);
+}
+
 h1,
 h2,
 h3,
@@ -576,7 +586,7 @@ h2.alert {
 }
 
 .green {
-  color: hsl(132.9, 100%, 50.6%);
+  color: hsl(132.8, 93.4%, 29.6%);
 }
 
 .grey {
@@ -959,6 +969,11 @@ h2.alert {
   display: inline-block;
 }
 
+.cyan {
+  color: #95afac;
+  text-shadow: 0 0 6px #95afac;
+}
+
 .connectionClosed,
 .fatalError {
   background: red;
@@ -1076,6 +1091,46 @@ h2.alert {
 
 .img_by_text_container .img_text {
   flex-grow: 1;
+}
+
+.chat_headshot {
+  position: relative;
+  width: min(100px, 100%);
+  height: min(100px, 100%);
+  max-width: 100px;
+  max-height: 100px;
+  display: inline-block;
+  overflow: visible;
+}
+
+.chat_headshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.35s ease;
+  transform-origin: top left;
+  will-change: transform;
+}
+
+.chat_headshot:hover img {
+  transform: translateX(-12%) scale(2.5);
+  z-index: 100;
+  border-radius: 2px;
+}
+
+.chat_headshot_top {
+  margin: 4px 0;
+}
+
+.chat_headshot_frame {
+  display: inline-flex;
+  padding: 4px;
+  background: hsl(220, 100%, 97.5%);
+  border: 1px solid;
+  border-left: 4px solid;
+  border-color: hsla(220, 75%, 25%, 0.5);
+  border-radius: 4px;
+  overflow: visible;
 }
 
 $alert-stripe-colors: (

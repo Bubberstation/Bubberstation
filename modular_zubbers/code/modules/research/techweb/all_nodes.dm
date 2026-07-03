@@ -69,6 +69,7 @@
 	design_ids += list(
 		"limbdesign_hemophage",
 		"limbdesign_tajaran",
+		"limbdesign_teshari",
 	)
 
 /datum/techweb_node/cyber/cyber_implants/New()
@@ -76,6 +77,13 @@
 	design_ids += list(
 		"wound_scanner_internal"
 	)
+
+/datum/techweb_node/medbay_equip/New()
+	. = ..()
+	design_ids += list(
+		"defibrillator",
+	)
+
 //ENGINEERING
 /datum/techweb_node/atmos/New()
 	. = ..()

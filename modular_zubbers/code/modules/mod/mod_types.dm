@@ -35,3 +35,18 @@
 		/obj/item/mod/module/hat_stabilizer,
 	)
 	return ..()
+
+/obj/item/mod/control/pre_equipped/voskhod
+	applied_cell = /obj/item/stock_parts/power_store/cell/high
+	theme = /datum/mod_theme/voskhod
+	applied_modules = list(
+		/obj/item/mod/module/storage,
+		/obj/item/mod/module/flashlight,
+		/obj/item/mod/module/auto_doc,
+		/obj/item/mod/module/status_readout/operational,
+	)
+	default_pins = list(
+		/obj/item/mod/module/flashlight,
+		/obj/item/mod/module/auto_doc,
+	)
+

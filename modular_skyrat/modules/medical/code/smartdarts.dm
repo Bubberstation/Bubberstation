@@ -7,6 +7,114 @@
 	icon_state = "dart_0"
 	possible_transfer_amounts = list(1, 2, 5, 10)
 	base_icon_state = "dart"
+	embed_type = /datum/embedding/syringe/smartdart
+	/// List containing chemicals that Smartdarts can inject.
+	var/list/allowed_medicine = list(
+		/datum/reagent/medicine,
+		/datum/reagent/vaccine,
+	)
+	/// Blacklist that contains medicines that SmartDarts are unable to inject.
+	var/list/disallowed_medicine = list(
+		/datum/reagent/inverse,
+		/datum/reagent/medicine/morphine,
+	)
+
+/obj/item/reagent_containers/syringe/smartdart/proc/get_allergies(mob/living/carbon/injectee)
+	var/list/allergy_list = list()
+	for(var/datum/quirk/quirky as anything in injectee.quirks)
+		if(!istype(quirky, /datum/quirk/item_quirk/allergic))
+			continue
+		var/datum/quirk/item_quirk/allergic/allergies_quirk = quirky
+		allergy_list = allergies_quirk.allergies
+	return allergy_list
+
+/obj/item/reagent_containers/syringe/smartdart/proc/get_safe_inject_amount(datum/reagent/meds, mob/living/carbon/injectee, requested_amount)
+	if(!meds)
+		return 0
+	if(!is_type_in_list(meds, allowed_medicine))
+		return 0
+	if(is_type_in_list(meds, disallowed_medicine))
+		return 0
+
+	var/inject_amount = min(meds.volume, requested_amount)
+	if(meds.overdose_threshold <= 0)
+		return inject_amount
+
+	var/overdose_amount = meds.overdose_threshold
+	var/safe_overdose_amount = overdose_amount - 2 // This buffer keeps SmartDarts from pushing someone directly to overdose.
+
+	for(var/datum/reagent/injectee_chemical as anything in injectee.reagents.reagent_list)
+		if(injectee_chemical.type == meds.type)
+			safe_overdose_amount -= injectee_chemical.volume
+
+	return max(0, min(inject_amount, safe_overdose_amount))
+
+/obj/item/reagent_containers/syringe/smartdart/proc/transfer_smartdart_reagent(mob/living/carbon/injectee, datum/reagent/meds, amount, show_message = TRUE)
+	var/list/reagent_added = list()
+	var/transferred = injectee.reagents.add_reagent(
+		meds.type,
+		amount,
+		reagents.copy_data(meds),
+		reagents.chem_temp,
+		meds.purity,
+		meds.ph,
+		no_react = TRUE,
+		reagent_added = reagent_added,
+	)
+	if(!transferred)
+		return 0
+
+	reagents.remove_reagent(meds.type, transferred)
+	injectee.reagents.expose(injectee, INJECT, 1, show_message, reagent_added)
+	injectee.reagents.handle_reactions()
+	return transferred
+
+/obj/item/reagent_containers/syringe/smartdart/proc/transfer_smartdart_reagents(mob/living/carbon/injectee, amount, show_message = TRUE)
+	if(!injectee.reagents || !reagents.total_volume)
+		return FALSE
+
+	var/list/allergy_list = get_allergies(injectee)
+	var/remaining_amount = amount
+	var/prevention_used = FALSE
+	for(var/datum/reagent/meds as anything in reagents.reagent_list.Copy())
+		if(remaining_amount <= 0)
+			break
+		if(is_type_in_list(meds, allergy_list))
+			prevention_used = TRUE
+			continue
+
+		var/inject_amount = get_safe_inject_amount(meds, injectee, remaining_amount)
+		if(inject_amount <= 0)
+			continue
+
+		var/transferred = transfer_smartdart_reagent(injectee, meds, inject_amount, show_message)
+		remaining_amount -= transferred
+
+	return prevention_used
+
+/datum/embedding/syringe/smartdart
+	fall_chance = 2
+	jostle_chance = 0
+	pain_stam_pct = 1
+	pain_mult = 0
+	jostle_pain_mult = 0
+	impact_pain_mult = 0
+	remove_pain_mult = 0
+	transfer_per_second = 1.5
+	var/prevention_announced = FALSE
+
+/datum/embedding/syringe/smartdart/process_effect(seconds_per_tick)
+	var/obj/item/reagent_containers/syringe/smartdart/smartdart = parent
+	if(!istype(smartdart))
+		return
+	if(!IS_ORGANIC_LIMB(owner_limb))
+		return
+
+	var/prevention_used = smartdart.transfer_smartdart_reagents(owner, transfer_per_second * seconds_per_tick, show_message = SPT_PROB(15, seconds_per_tick))
+	if(prevention_used && !prevention_announced)
+		prevention_announced = TRUE
+		owner.visible_message(span_notice("[smartdart] lets out a short beep."), span_notice("You hear a short beep from [smartdart]."))
+		playsound(smartdart, 'sound/machines/ping.ogg', 50, TRUE, -1)
 
 //Code that handles the base interactions involving smartdarts
 /obj/item/reagent_containers/syringe/smartdart/interact_with_atom(atom/target, mob/living/user, list/modifiers)
@@ -86,81 +194,3 @@
 /obj/projectile/bullet/dart/syringe/dart
 	name = "SmartDart"
 	damage = 0
-	//A list used to store to store the allergns of the target, so that it can be compared with later.
-	var/list/allergy_list = list()
-	///Is allergy prevention used?
-	var/prevention_used = FALSE
-	///List containing chemicals that Smartdarts can Inject.
-	var/list/allowed_medicine = list(
-		/datum/reagent/medicine,
-		/datum/reagent/vaccine
-	)
-	///Blacklist that contains medicines that SmartDarts are unable to inject.
-	var/list/disallowed_medicine = list(
-		/datum/reagent/inverse/,
-		/datum/reagent/medicine/morphine,
-	)
-
-/obj/projectile/bullet/dart/syringe/dart/on_hit(atom/target, blocked = 0, pierce_hit)
-	if(!iscarbon(target))
-		..(target, blocked)
-		reagents.flags &= ~(NO_REACT)
-		reagents.handle_reactions()
-		return BULLET_ACT_HIT
-
-	var/mob/living/carbon/injectee = target
-	if(!injectee.can_inject(target_zone = def_zone, injection_flags = inject_flags)) // if the syringe is blocked
-		blocked = 100
-	if(blocked == 100)
-		target.visible_message(span_danger("\The [src] is deflected!"),
-							span_userdanger("You are protected against \the [src]!"))
-		return
-
-	//Checks for allergies, and saves allergies to a list if they are present
-	for(var/datum/quirk/quirky as anything in injectee.quirks)
-		if(!istype(quirky, /datum/quirk/item_quirk/allergic))
-			continue
-		var/datum/quirk/item_quirk/allergic/allergies_quirk = quirky
-		allergy_list = allergies_quirk.allergies
-
-	//Variable that handles storage of chemical temperature
-	var/chemical_temp = reagents.chem_temp
-
-	//The code that handles the actual injections
-	for(var/datum/reagent/meds in reagents.reagent_list)
-		//Variable to store OD threshold (If present)
-		var/overdose_amount
-		//Amount of chemicals to inject, Changes if OD is present
-		var/inject_amount = meds.volume
-
-		if(meds.overdose_threshold > 0)
-			overdose_amount = meds.overdose_threshold
-
-			//This is mostly here for chemicals that have a low enough OD that an entire dart could trigger it
-			if(inject_amount >= overdose_amount)
-				inject_amount = overdose_amount
-
-			for(var/datum/reagent/injectee_chemical in injectee.reagents.reagent_list)
-				if(istype(injectee_chemical, meds))
-					inject_amount = overdose_amount - injectee_chemical.volume
-
-			inject_amount = inject_amount - 2 //This is here to give a bit of a buffer. If this is not here, the overdose prevention will fail to work.
-
-			if(inject_amount <= 0)
-				continue
-
-		if(!is_type_in_list(meds, allowed_medicine))
-			continue
-		if(is_type_in_list(meds, disallowed_medicine))
-			continue
-		if(is_type_in_list(meds, allergy_list))
-			prevention_used = TRUE
-		else
-			injectee.reagents.add_reagent(meds.type, inject_amount, null, chemical_temp, meds.purity)
-
-	injectee.visible_message(span_notice("[src] embeds itself into [injectee]"), span_notice("You feel a small prick as [src] embeds itself into you."))
-	if(prevention_used) //Used to signal that allergens were not injected into the target mob.
-		injectee.visible_message(span_notice("[src] lets out a short beep."), span_notice("You hear a short beep from [src]."))
-		playsound(loc, 'sound/machines/ping.ogg', 50, 1, -1)
-	return BULLET_ACT_HIT
-

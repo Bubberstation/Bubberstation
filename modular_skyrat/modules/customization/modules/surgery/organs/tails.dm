@@ -1,5 +1,5 @@
 /obj/item/organ/tail
-	mutantpart_key = "tail"
+	mutantpart_key = "FEATURE_TAIL"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Smooth", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))
 	var/can_wag = TRUE
 	var/wagging = FALSE
@@ -64,3 +64,46 @@
 	name = "fluffy tail"
 
 /obj/item/organ/tail/fluffy/no_wag
+
+///A tail that replicates the appearance of fish tails from DNA infusion, but without most of the code that makes them so special.
+/obj/item/organ/tail/fake_fish
+	name = /obj/item/organ/tail/fish::name
+	desc = /obj/item/organ/tail/fish::desc
+	icon = /obj/item/organ/tail/fish::icon
+	icon_state = /obj/item/organ/tail/fish::icon_state
+	post_init_icon_state = /obj/item/organ/tail/fish::post_init_icon_state
+	greyscale_config = /obj/item/organ/tail/fish::greyscale_config
+	greyscale_colors = /obj/item/organ/tail/fish::greyscale_colors
+
+	bodypart_overlay = /obj/item/organ/tail/fish::bodypart_overlay
+	wag_flags = /obj/item/organ/tail/fish::wag_flags
+	restyle_flags = /obj/item/organ/tail/fish::restyle_flags
+
+	// Fishlike reagents, you could serve it raw like fish
+	food_reagents = /obj/item/organ/tail/fish::food_reagents
+	// Seafood instead of meat, because it's a fish organ
+	foodtype_flags = /obj/item/organ/tail/fish::foodtype_flags
+	// Also just tastes like fish
+	food_tastes = /obj/item/organ/tail/fish::food_tastes
+	/// The fillet type this fish tail is processable into
+	var/fillet_type = /obj/item/food/fishmeat/fish_tail
+	/// The amount of fillets this gets processed into
+	var/fillet_amount = 3
+
+/obj/item/organ/tail/fake_fish/Initialize(mapload)
+	. = ..()
+	var/time_to_fillet = fillet_amount * 0.5 SECONDS
+	AddElement(/datum/element/processable, TOOL_KNIFE, fillet_type, fillet_amount, time_to_fillet, screentip_verb = "Cut")
+
+/obj/item/organ/tail/fake_fish/on_mob_insert(mob/living/carbon/owner)
+	. = ..()
+	RegisterSignal(owner, COMSIG_LIVING_GIBBER_ACT, PROC_REF(on_gibber_processed))
+
+/obj/item/organ/tail/fake_fish/on_mob_remove(mob/living/carbon/owner)
+	. = ..()
+	UnregisterSignal(owner, COMSIG_LIVING_GIBBER_ACT)
+
+/obj/item/organ/tail/fake_fish/proc/on_gibber_processed(mob/living/carbon/owner, mob/living/user, obj/machinery/gibber, list/results)
+	SIGNAL_HANDLER
+	for(var/iteration in 1 to fillet_amount * 0.5)
+		results += new fillet_type

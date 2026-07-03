@@ -87,8 +87,8 @@
 				target.penis = null
 
 
-	client.mob.hud_used.hidden_inventory_update(client.mob)
-	client.mob.hud_used.persistent_inventory_update(client.mob)
+	client.mob.hud_used.inventory_update(client.mob)
+	client.mob.hud_used.inventory_update(client.mob)
 
 /datum/preference/toggle/erp/sex_toy_sounds
 	savefile_key = "sextoy_sounds_pref"
@@ -179,13 +179,48 @@
 /datum/preference/choiced/erp_status/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
 
+/datum/preference/toggle/erp_free_use
+	category = PREFERENCE_CATEGORY_OOC_PREFS
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "erp_free_use"
+
+/datum/preference/toggle/erp_free_use/is_accessible(datum/preferences/preferences)
+	if (!..(preferences))
+		return FALSE
+
+	if(CONFIG_GET(flag/disable_erp_preferences))
+		return FALSE
+
+	return preferences.read_preference(/datum/preference/toggle/master_erp_preferences)
+
+/datum/preference/toggle/erp_free_use/deserialize(input, datum/preferences/preferences)
+	if(CONFIG_GET(flag/disable_erp_preferences))
+		return FALSE
+	if(!preferences.read_preference(/datum/preference/toggle/master_erp_preferences))
+		return FALSE
+	return ..()
+
+/datum/preference/toggle/erp_free_use/create_default_value()
+	return FALSE
+
+/datum/preference/toggle/erp_free_use/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
 /datum/preference/choiced/erp_status_nc
 	category = PREFERENCE_CATEGORY_OOC_PREFS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "erp_status_pref_nc"
 
 /datum/preference/choiced/erp_status_nc/init_possible_values()
-	return list("Yes - Switch", "Yes - Dom", "Yes - Sub", "Yes", "Ask (L)OOC", "Check OOC Notes", "No")
+	return list(
+		"No",
+		"Ask (L)OOC",
+		"Check OOC Notes",
+		"Yes",
+		"Yes - Dom",
+		"Yes - Switch",
+		"Yes - Sub",
+	)
 
 /datum/preference/choiced/erp_status_nc/create_default_value()
 	return "No"
@@ -215,7 +250,15 @@
 	savefile_key = "erp_status_pref_v"
 
 /datum/preference/choiced/erp_status_v/init_possible_values()
-	return list("Yes - Switch", "Yes - Prey", "Yes - Pred", "Check OOC Notes", "Ask (L)OOC", "No", "Yes")
+	return list(
+		"No",
+		"Ask (L)OOC",
+		"Check OOC Notes",
+		"Yes",
+		"Yes - Pred",
+		"Yes - Prey",
+		"Yes - Switch",
+	)
 
 /datum/preference/choiced/erp_status_v/create_default_value()
 	return "No"
@@ -245,7 +288,12 @@
 	savefile_key = "erp_status_pref_mechanics"
 
 /datum/preference/choiced/erp_status_mechanics/init_possible_values()
-	return list("Roleplay only", "Mechanical only", "Mechanical and Roleplay", "None")
+	return list(
+		"None",
+		"Roleplay only",
+		"Mechanical only",
+		"Mechanical and Roleplay",
+	)
 
 /datum/preference/choiced/erp_status_mechanics/create_default_value()
 	return "None"

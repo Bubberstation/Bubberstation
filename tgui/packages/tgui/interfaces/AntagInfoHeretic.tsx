@@ -52,8 +52,8 @@ type IconParams = {
   dir: number;
   moving: BooleanLike;
 };
-
-type Knowledge = {
+// BUBBER EDIT CHANGE - exported
+export type Knowledge = {
   path: string;
   icon_params: IconParams;
   name: string;
@@ -75,8 +75,8 @@ enum ShopCategory {
   Draft = 'draft',
   Start = 'start',
 }
-
-type KnowledgeTier = {
+// BUBBER EDIT CHANGE - exported
+export type KnowledgeTier = {
   nodes: Knowledge[];
 };
 
@@ -84,8 +84,8 @@ type HereticPassive = {
   name: string;
   description: string[];
 };
-
-type HereticPath = {
+// BUBBER EDIT CHANGE - exported
+export type HereticPath = {
   route: string;
   complexity: string;
   complexity_color: string;
@@ -161,8 +161,8 @@ const IntroductionSection = (props) => {
     </Stack>
   );
 };
-
-const FlavorSection = () => {
+// BUBBER EDIT CHANGE - exported
+export const FlavorSection = () => {
   return (
     <Stack.Item>
       <Stack vertical textAlign="center" fontSize="14px">
@@ -424,8 +424,8 @@ const KnowledgeNode = (props: KnowledgeNodeProps) => {
     </Stack.Item>
   );
 };
-
-const KnowledgeShop = () => {
+// BUBBER EDIT CHANGE - exported
+export const KnowledgeShop = () => {
   const { data } = useBackend<Info>();
   const { knowledge_shop } = data;
 
@@ -470,8 +470,8 @@ const KnowledgeShop = () => {
     ));
   }
 };
-
-const ResearchInfo = () => {
+// BUBBER EDIT CHANGE - exported
+export const ResearchInfo = () => {
   const { data } = useBackend<Info>();
   const { charges, knowledge_shop } = data;
 
@@ -497,8 +497,8 @@ const ResearchInfo = () => {
     </>
   );
 };
-
-const PathInfo = ({ currentPath }: { currentPath?: HereticPath }) => {
+// BUBBER EDIT CHANGE - exported
+export const PathInfo = ({ currentPath }: { currentPath?: HereticPath }) => {
   const { data } = useBackend<Info>();
   const { paths } = data;
 
@@ -534,8 +534,8 @@ const PathInfo = ({ currentPath }: { currentPath?: HereticPath }) => {
     </Stack>
   );
 };
-
-const PathContent = ({
+// BUBBER EDIT CHANGE - exported
+export const PathContent = ({
   path,
   isPathSelected,
 }: {

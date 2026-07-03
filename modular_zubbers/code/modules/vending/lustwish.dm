@@ -44,6 +44,5 @@
 		/obj/item/clothing/head/mikuhair = 3,
 		/obj/item/clothing/gloves/mikugloves = 3,
 		/obj/item/clothing/shoes/sneakers/mikuleggings = 3,
-		/obj/item/skillchip/mkiiultra = 2,
 		/obj/item/toy/plush/aeri = 1,
 	)

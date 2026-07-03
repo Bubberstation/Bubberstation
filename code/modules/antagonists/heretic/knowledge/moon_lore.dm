@@ -119,8 +119,9 @@
 	research_tree_icon_frame = 9
 
 /datum/heretic_knowledge/armor/moon
-	desc = "Allows you to transmute a table (or a suit), a mask and two sheets of glass to create a Resplendant Regalia, this robe will render the user   fully immune to disabling effects and convert all forms of damage into brain damage, while also pacifying the user and render him unable to use ranged weapons (Moon blade will bypass pacifism). \
-			Acts as a focus while hooded."
+	desc = "Allows you to transmute a table (or a suit), a mask and two sheets of glass to create a Resplendant Regalia. \
+			This robe will render the user fully immune to disabling effects and convert all forms of damage into brain damage, while also pacifying the user and rendering them unable to use ranged weapons. \
+			A Moonlight Amulet will be necessary to use blades while wearing it."
 	gain_text = "Trails of light and mirth flowed from every arm of this magnificent attire. \
 				The troupe twirled in irridescent cascades, dazzling onlookers with the truth they sought. \
 				I observed, basking in the light, to find my self."
@@ -163,10 +164,10 @@
 		)
 	target.emote(pick("giggle", "laugh"))
 	target.mob_mood?.adjust_sanity(-10)
-	if(target.stat == CONSCIOUS && target.mob_mood?.sanity >= SANITY_NEUTRAL)
+	if(target.stat == CONSCIOUS && target.mob_mood?.sanity >= SANITY_DISTURBED) // BUBBER EDIT CHANGE - was SANITY_NEUTRAL
 		target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 10)
 		return
-	target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 25)
+	target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 20) // BUBBER EDIT CHANGE - was 25
 
 /datum/heretic_knowledge/spell/moon_ringleader
 	name = "Ringleaders Rise"

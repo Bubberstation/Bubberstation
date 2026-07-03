@@ -736,6 +736,8 @@
 	post_init_icon_state = "big_hoodie"
 	greyscale_config = /datum/greyscale_config/big_hoodie
 	greyscale_config_worn = /datum/greyscale_config/big_hoodie/worn
+	greyscale_config_worn_digi = /datum/greyscale_config/big_hoodie/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/big_hoodie/worn/teshari
 	greyscale_colors = "#5d6161"
 	hoodtype = /obj/item/clothing/head/hooded/big_hoodie_hood
 	flags_1 = IS_PLAYER_COLORABLE_1
@@ -758,6 +760,7 @@
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	greyscale_config = /datum/greyscale_config/big_hoodie_hood
 	greyscale_config_worn = /datum/greyscale_config/big_hoodie_hood/worn
+	greyscale_config_worn_teshari = /datum/greyscale_config/big_hoodie_hood/worn/teshari
 	greyscale_colors = "#5d6161"
 
 /obj/item/clothing/suit/hooded/big_hoodie/set_greyscale(list/colors, new_config, new_worn_config, new_inhand_left, new_inhand_right)
@@ -783,6 +786,8 @@
 	post_init_icon_state = "twee_hoodie"
 	greyscale_config = /datum/greyscale_config/twee_hoodie
 	greyscale_config_worn = /datum/greyscale_config/twee_hoodie/worn
+	greyscale_config_worn_digi = /datum/greyscale_config/twee_hoodie/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/twee_hoodie/worn/teshari
 	greyscale_colors = "#dbc0e0"
 	hoodtype = /obj/item/clothing/head/hooded/twee_hoodie_hood
 	flags_1 = IS_PLAYER_COLORABLE_1
@@ -804,6 +809,7 @@
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	greyscale_config = /datum/greyscale_config/twee_hoodie_hood
 	greyscale_config_worn = /datum/greyscale_config/twee_hoodie_hood/worn
+	greyscale_config_worn_teshari = /datum/greyscale_config/twee_hoodie_hood/worn/teshari
 	greyscale_colors = "#dbc0e0"
 
 /obj/item/clothing/suit/hooded/twee_hoodie/set_greyscale(list/colors, new_config, new_worn_config, new_inhand_left, new_inhand_right)

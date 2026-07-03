@@ -6,12 +6,16 @@
 	antag_datum = /datum/antagonist/spy
 	weight = 8
 	maximum_antags_global = 4
+	
+	min_players = 15
 
 	tags = list(TAG_CREW_ANTAG)
 
 /datum/round_event_control/antagonist/solo/spy/midround
 	name = "Spies (Midround)"
 	roundstart = FALSE
+	
+	min_players = 15
 
 /datum/round_event_control/antagonist/solo/spy/event
 	name = "Event Generated Spy"

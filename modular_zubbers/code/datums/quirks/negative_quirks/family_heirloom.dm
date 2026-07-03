@@ -7,6 +7,7 @@ GLOBAL_LIST_INIT(invalid_heirloom_types, typecacheof(list(
 /datum/quirk/item_quirk/family_heirloom
 	/// The temporary mark action we give to users who have opted out of random items.
 	var/datum/action/mark_family_heirloom/mark_action
+	always_spawn_item = TRUE
 
 /datum/quirk/item_quirk/family_heirloom/remove()
 	. = ..()

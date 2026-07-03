@@ -56,3 +56,5 @@
 #define RUNECHAT_BOLD(str) "+[str]+"
 /// Helper which creates a chat message which may have a tooltip in some contexts, but not others.
 #define conditional_tooltip(normal_text, tooltip_text, condition) ((condition) ? (span_tooltip(tooltip_text, normal_text)) : (normal_text))
+/// Displays a character headshot in chat examine output.
+#define chat_headshot(str) ("<div class='chat_headshot'><img src='" + str + "' alt='Character headshot'/></div>")

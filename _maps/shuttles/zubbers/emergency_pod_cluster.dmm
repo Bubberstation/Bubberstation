@@ -17,6 +17,15 @@
 /obj/machinery/power/shuttle_engine/propulsion/burst,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
+"g" = (
+/obj/machinery/computer/operating,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"i" = (
+/obj/structure/rack,
+/obj/item/storage/medkit/o2,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
 "j" = (
 /obj/structure/chair/comfy/black{
 	dir = 1
@@ -40,6 +49,30 @@
 	},
 /turf/template_noop,
 /area/shuttle/escape)
+"o" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/machines/wallmounts.dmi';
+	icon_state = "pod_off";
+	pixel_x = -32;
+	name = "pod control computer";
+	desc = "A computer used to control an escape pod. Looks like it's linked up with an emergency console to avoid independant launch."
+	},
+/obj/structure/decorative{
+	icon = 'icons/obj/machines/wallmounts.dmi';
+	icon_state = "pod_on";
+	pixel_x = -32;
+	name = "pod control computer";
+	desc = "A computer used to control an escape pod. Looks like it's linked up with an emergency console to avoid independant launch."
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"r" = (
+/obj/item/reagent_containers/hypospray/medipen,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
 "v" = (
 /turf/template_noop,
 /area/template_noop)
@@ -52,9 +85,20 @@
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
+"z" = (
+/obj/structure/table/optable,
+/obj/machinery/vitals_reader/advanced/directional/north,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
 "B" = (
 /obj/effect/spawner/structure/window/reinforced/shuttle,
 /turf/open/floor/plating,
+/area/shuttle/escape)
+"C" = (
+/obj/machinery/light/small/directional/south,
+/obj/item/storage/pod/directional/south,
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "E" = (
 /obj/machinery/door/airlock/titanium{
@@ -62,6 +106,21 @@
 	},
 /obj/structure/fans/tiny,
 /obj/effect/mapping_helpers/airlock/access/all/command/general,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"F" = (
+/obj/machinery/stasis,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"I" = (
+/obj/item/vending_refill/wallmed{
+	pixel_y = 10
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"L" = (
+/obj/item/storage/box/medipens/utility,
+/obj/machinery/vending/wallmed/directional/east,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "M" = (
@@ -76,6 +135,14 @@
 /obj/docking_port/mobile/emergency{
 	name = "A Cluster of Escape Pods"
 	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"P" = (
+/obj/structure/table,
+/obj/item/storage/medkit/brute{
+	pixel_y = 4
+	},
+/obj/item/storage/medkit/fire,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "R" = (
@@ -99,6 +166,12 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
+"S" = (
+/obj/item/stack/rods/two{
+	pixel_y = 10
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
 "T" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/flashlight/flare/candle{
@@ -117,6 +190,22 @@
 	pixel_x = 5
 	},
 /turf/open/floor/plating/airless,
+/area/shuttle/escape)
+"V" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/machinery/light/small/directional/south,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"X" = (
+/obj/machinery/status_display/evac/directional/east,
+/obj/structure/table/reinforced/titaniumglass,
+/obj/effect/spawner/surgery_tray/full,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"Y" = (
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 
 (1,1,1) = {"
@@ -286,7 +375,7 @@ v
 v
 v
 v
-b
+m
 v
 a
 a
@@ -319,7 +408,7 @@ v
 v
 v
 B
-R
+o
 w
 a
 v
@@ -349,8 +438,8 @@ v
 v
 v
 a
-a
-c
+i
+Y
 d
 v
 v
@@ -376,14 +465,14 @@ R
 w
 a
 v
-v
-v
-b
-b
-b
-b
-b
-b
+a
+a
+a
+P
+S
+a
+c
+d
 b
 b
 v
@@ -406,16 +495,16 @@ a
 c
 d
 v
+B
+R
+V
+L
+I
+r
+w
 a
-a
-c
-d
-v
-v
-v
 v
 b
-v
 v
 v
 "}
@@ -436,16 +525,16 @@ v
 b
 v
 v
-B
-R
-w
-a
-v
-v
 a
 a
 c
-d
+a
+g
+Y
+F
+a
+v
+b
 v
 v
 "}
@@ -466,16 +555,16 @@ b
 b
 b
 b
+b
+b
+b
 a
+z
+Y
 a
-c
 d
 v
-v
-B
-R
-w
-a
+b
 v
 v
 "}
@@ -496,16 +585,16 @@ v
 v
 v
 b
-b
-b
-b
 v
 v
-v
+b
+B
+X
+C
 a
-a
-c
-d
+v
+v
+b
 v
 v
 "}
@@ -529,11 +618,11 @@ c
 d
 v
 b
+a
+a
+c
+d
 b
-m
-v
-v
-v
 b
 b
 b
@@ -561,9 +650,9 @@ v
 v
 v
 b
-v
-v
-v
+b
+b
+b
 a
 a
 c
