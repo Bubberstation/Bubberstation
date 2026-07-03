@@ -62,8 +62,6 @@
 		user.balloon_alert(user, "tongs are full already!")
 		return
 	forceMove(tool)
-	tool.icon_state = "tong_full"
-
 
 /obj/item/forging/incomplete/pickup(mob/living/user)
 	var/hand_protected = FALSE
@@ -255,7 +253,6 @@
 		user.balloon_alert(user, "tongs are full already!")
 		return
 	forceMove(tool)
-	tool.icon_state = "tong_full"
 
 /obj/item/forging/complete/chain
 	name = "chain"
@@ -425,7 +422,6 @@
 	if(!isnull(stack_to_move))
 		stack_to_move.forceMove(tool)
 		user.balloon_alert(user, "took one")
-		tool.icon_state = "tong_full"
 	else
 		stack_trace("[src] was grabbed by [tool] and couldn't pull one sheet!")
 
@@ -436,7 +432,6 @@
 		return FALSE
 	if(!isnull(GetComponent(/datum/component/forge_smithable/)) || !isnull(GetComponent(/datum/component/reagent_imbued)))
 		forceMove(tool)
-		tool.icon_state = "tong_full"
 		user.balloon_alert(user, "took [src]")
 
 /obj/item/empty_circuit

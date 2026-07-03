@@ -114,13 +114,10 @@
 	if(obj_anvil_search && !obj_tong_search)
 		obj_anvil_search.forceMove(forge_item)
 		update_appearance()
-		forge_item.icon_state = "tong_full"
 		return ITEM_INTERACT_SUCCESS
 
 	if(!obj_anvil_search && obj_tong_search)
 		var/returner = item_interaction(user, obj_tong_search)
-		if(length(tool.contents) < 1)
-			forge_item.icon_state = "tong_empty"
 		return returner
 	return NONE
 

@@ -837,8 +837,6 @@
 		COOLDOWN_START(smith_component, heating_remainder, FORGE_HEATING_DURATION)
 
 	balloon_alert(user, "prepared [search_stack] into [user_choice]")
-	if(!isnull(tool) && length(tool.contents) > 0)
-		tool.icon_state = "tong_empty"
 
 	return ITEM_INTERACT_SUCCESS
 

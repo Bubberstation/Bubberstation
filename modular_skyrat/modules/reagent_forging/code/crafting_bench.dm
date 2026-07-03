@@ -244,14 +244,11 @@
 	var/obj/obj_tong_search = locate() in forge_item.contents
 	if(obj_tong_search)
 		var/returner = item_interaction(user, obj_tong_search)
-		if(length(tool.contents) < 1)
-			forge_item.icon_state = "tong_empty"
 		return returner
 	else
 		if(!isnull(forged_item_on_surface))
 			if(forged_item_on_surface.loc != src)
 				forged_item_on_surface.forceMove(forge_item)
-				forge_item.icon_state = "tong_full"
 				balloon_alert(user, "took [forged_item_on_surface]")
 				forged_item_on_surface = null
 			return ITEM_INTERACT_SUCCESS
