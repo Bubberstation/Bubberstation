@@ -29,6 +29,10 @@
 	COOLDOWN_DECLARE(nonlethal_strike_cooldown_timer)
 	/// The path of the default sound to play when we stun something.
 	var/on_stun_sound = 'sound/effects/woodhit.ogg'
+	/// Are we currently attempting a nonlethal attack?
+	var/currently_nonlethaling = FALSE
+	/// animation type to show when doing a nonlethal attack
+	var/nonlethal_animation = ATTACK_ANIMATION_PIERCE
 	//verbs to use when secondary attacking
 	var/list/secondary_attack_verb_continuous = list("shaft-strikes")
 	var/list/secondary_attack_verb_simple = list("shaft-strike")
@@ -57,6 +61,7 @@
 		stack_trace("[src] doesn't have equal secondary attack verb lengths, please fix!")
 	apply_reagent_component()
 	apply_smithing_component()
+	RegisterSignal(src, COMSIG_ITEM_ATTACK_ANIMATION, PROC_REF(on_attack_animation))
 
 /* needs updating to the new bane component, todo later by the person who actually knows how to handle such a thing
 /obj/item/melee/forged_reagent_weapon/set_custom_materials(list/materials, multiplier = 1)
@@ -117,11 +122,13 @@
 			MUTE_ATTACK_HITSOUND(attack_modifiers)
 			HIDE_ATTACK_MESSAGES(attack_modifiers)
 			LAZYSET(attack_modifiers, STUN_ATTACK, TRUE)
+			currently_nonlethaling = TRUE
 		else
 			return TRUE //if we cannot nonlethal and the player is attempting, cancel the attack
 	return FALSE
 
 /obj/item/melee/forged_reagent_weapon/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
+	currently_nonlethaling = FALSE
 	if(QDELETED(target) || !LAZYACCESS(attack_modifiers, STUN_ATTACK))
 		return
 
@@ -177,6 +184,15 @@
 		var/random = rand(1, length(secondary_attack_verb_continuous))
 		.["visible"] = span_danger("[user] [secondary_attack_verb_continuous[random]] [target] with [src]!")
 		.["local"] = span_userdanger("[user] [secondary_attack_verb_continuous[random]] you with [src]!")
+
+/obj/item/melee/forged_reagent_weapon/proc/on_attack_animation(obj/item/source, atom/movable/attacker, atom/attacked_atom, animation_type, list/image_override, list/animation_override, list/angle_override)
+	SIGNAL_HANDLER
+	// If we've been forcefully assigned an animation type already, we shouldn't do the custom attack animation logic
+	if(animation_type)
+		return
+	if(currently_nonlethaling)
+		angle_override += 180 + icon_angle
+		animation_override += nonlethal_animation
 
 /obj/item/melee/forged_reagent_weapon/add_item_context(datum/source, list/context, atom/target, mob/living/user)
 	if (isturf(target))
@@ -402,6 +418,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FIRE_PROOF
+	nonlethal_animation = ATTACK_ANIMATION_SLASH
 	attack_verb_continuous = list("reagent casts on", "waves a staff over")
 	attack_verb_simple = list("reagent cast on", "wave a staff over")
 
@@ -442,6 +459,7 @@
 	wound_bonus = -10
 	exposed_wound_bonus = 20
 	sharpness = SHARP_POINTY
+	nonlethal_animation = ATTACK_ANIMATION_SLASH
 	stamina_damage_multiplier = 2
 	knockdown_time_multiplier = 0.2
 	secondary_attack_verb_continuous = list("shaft-strikes")
