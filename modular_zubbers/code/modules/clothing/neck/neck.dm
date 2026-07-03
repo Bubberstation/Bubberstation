@@ -709,3 +709,12 @@
 
 /obj/item/clothing/neck/large_scarf
 	greyscale_config_worn_teshari = /datum/greyscale_config/scarf/worn/teshari
+
+/obj/item/clothing/neck/link_scryer
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/neck/neck_teshari.dmi'
+
+/obj/item/clothing/neck/bowtie
+	greyscale_config_worn_teshari = /datum/greyscale_config/ties/worn/teshari
+
+/obj/item/clothing/neck/tie
+	greyscale_config_worn_teshari = /datum/greyscale_config/ties/worn/teshari

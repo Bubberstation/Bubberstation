@@ -732,7 +732,7 @@
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/engineering_teshari.dmi'
 
 /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat
-	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/science_teshari.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/rnd_teshari.dmi'
 
 /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/bouncer
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/civilian_teshari.dmi'
@@ -751,3 +751,6 @@
 
 /obj/item/clothing/under/trek/medsci
 	greyscale_config_worn_teshari = /datum/greyscale_config/trek/worn/teshari
+
+/obj/item/clothing/under/rank/barber
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/civilian_teshari.dmi'

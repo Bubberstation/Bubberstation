@@ -129,6 +129,7 @@
 	name = "telecomms technical jacket"
 	desc = "A comfortable jacket in engineering yellow with blue telecomms trim."
 	icon_state = "technical_tcomm"
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/labcoat_teshari.dmi'
 
 /obj/item/clothing/suit/toggle/labcoat/technical/medical
 	name = "medical technical jacket"

@@ -340,3 +340,7 @@
 /datum/greyscale_config/primitive_catgirl_boots/worn/teshari
 	name = "Primitive Winter Boots (Worn, Teshari)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/datum/greyscale_config/ties/worn/teshari
+	name = "Ties (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/neck/neck_teshari.dmi'

@@ -20,3 +20,9 @@
 
 /obj/item/clothing/glasses/hud/security
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/eyes_teshari.dmi'
+
+/obj/item/clothing/glasses/hud/diagnostic
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/eyes_teshari.dmi'
+
+/obj/item/clothing/glasses/science
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/eyes_teshari.dmi'

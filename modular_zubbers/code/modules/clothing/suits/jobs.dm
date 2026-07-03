@@ -24,3 +24,9 @@
 
 /obj/item/clothing/suit/utility/fire/firefighter
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/utility_teshari.dmi'
+
+/obj/item/clothing/suit/toggle/lawyer
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
+
+/obj/item/clothing/suit/toggle/chef
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
