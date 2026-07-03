@@ -44,11 +44,22 @@
 		)
 
 		var/atom/printed = record.product_path
+		//BUBBER ADDITION START - Dynamic uniforms
+		var/component_preview_applied = FALSE
+		if(ispath(printed, /obj/item))
+			var/obj/item/printed_item = printed
+			if(initial(printed_item.greyscale_component_style_type))
+				static_record["image"] = get_component_style_vending_preview_image(printed_item)
+				component_preview_applied = TRUE
+		//BUBBER ADDITION END
 		// If it's not GAGS and has no innate colors we have to care about, we use DMIcon
-		if(ispath(printed, /atom) \
+		//BUBBER EDIT START - dynamic uniform
+		if(!component_preview_applied \
+			&& ispath(printed, /atom) \
 			&& (!initial(printed.greyscale_config) || !initial(printed.greyscale_colors)) \
 			&& !initial(printed.color) \
 		)
+		//BUBBER EDIT END
 			static_record["icon"] = initial(printed.icon)
 			static_record["icon_state"] = initial(printed.icon_state)
 
@@ -147,6 +158,12 @@
 			if(!istype(product))
 				return FALSE
 			var/atom/fake_atom = product.product_path
+			//BUBBER ADDITION START - Dynamic uniforms
+			if(ispath(fake_atom, /obj/item))
+				var/obj/item/fake_item = fake_atom
+				if(initial(fake_item.greyscale_component_style_type))
+					return open_component_style_vending_menu(product, params, ui.user)
+			//BUBBER ADDITION END
 			var/config = initial(fake_atom.greyscale_config)
 			if(!config)
 				return FALSE

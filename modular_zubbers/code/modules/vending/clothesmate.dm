@@ -47,6 +47,7 @@
 				/obj/item/clothing/glasses/rosecolored = 5,
 				/obj/item/clothing/glasses/thin = 5,
 				/obj/item/clothing/glasses/welding/steampunk_goggles = 5,
+				/obj/item/clothing/gloves/ba_cheerleader = 5,
 				/obj/item/clothing/gloves/bracer/wraps = 5,
 				/obj/item/clothing/gloves/cat = 5,
 				/obj/item/clothing/gloves/elofy = 5,
@@ -76,6 +77,7 @@
 			"name" = "Under",
 			"icon" = "shirt",
 			"products" = list(
+				/obj/item/clothing/under/costume/ba_cheerleader = 5,
 				/obj/item/clothing/under/caged_dress/skirt = 5,
 				/obj/item/clothing/under/costume/skyrat/kilt/royal = 5,
 				/obj/item/clothing/under/costume/skyrat/kimono/sigmar = 5,
@@ -207,6 +209,7 @@
 			"name" = "Shoes",
 			"icon" = "socks",
 			"products" = list(
+				/obj/item/clothing/shoes/sneakers/ba_cheerleader = 5,
 				/obj/item/clothing/shoes/colorable_laceups = 5,
 				/obj/item/clothing/shoes/colorable_sandals = 5,
 				/obj/item/clothing/shoes/fancy_heels/drag = 5,

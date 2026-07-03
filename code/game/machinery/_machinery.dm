@@ -102,6 +102,7 @@
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	initial_language_holder = /datum/language_holder/speaking_machine
 	armor_type = /datum/armor/obj_machinery
+	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 
 	///see code/__DEFINES/stat.dm
 	var/machine_stat = NONE
@@ -704,6 +705,10 @@
 
 //Return a non FALSE value to interrupt attack_hand propagation to subtypes.
 /obj/machinery/interact(mob/user)
+	// BUBBER EDIT ADDITION - allow components on the user to intercept or delay machinery interaction
+	if(SEND_SIGNAL(user, COMSIG_MOB_MACHINERY_INTERACT, src) & COMPONENT_BLOCK_MACHINERY_INTERACT)
+		return FALSE
+	// BUBBER EDIT ADDITION END
 	update_last_used(user)
 	return ..()
 

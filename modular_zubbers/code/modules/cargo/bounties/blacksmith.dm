@@ -1,3 +1,34 @@
+/*
+Todo: Refactor upstream code so that item deletion is decided at the bounty level rather than at the machine running the bounty
+
+/datum/bounty/item/blacksmith
+	//if not null, bounty items require have required_material in its materials list
+	var/datum/material/required_material = null
+	//if not null, bounty items cannot contain this material
+	var/list/blacklisted_materials = null
+	//if true, redeeming a bounty item does not remove it (instead sets it as non-viable for future bounties)
+
+
+/datum/bounty/item/applies_to(obj/shipped)
+	if(shipped.GetComponent(/datum/component/block_redeemed_item_in_bounty))
+		return FALSE
+	else
+		return ..()
+
+/datum/bounty/item/ship(obj/shipped)
+	if(!applies_to(shipped))
+		return FALSE
+	if(istype(shipped,/obj/item/stack))
+		var/obj/item/stack/shipped_is_a_stack = shipped
+		shipped_count += shipped_is_a_stack.amount
+	else
+		shipped_count += 1
+	return TRUE
+
+/datum/component/block_redeemed_item_in_bounty
+
+*/
+
 /datum/bounty/item/blacksmith/cage
 	name = "Cortical Borer Cage"
 	description = "One of Nanotrasen's partner stations is undergoing a borer infestation and would like to capture some life specimen for research. Ship some off to CentCom right away."
@@ -16,14 +47,14 @@
 	name = "Staff"
 	description = "A respected religious figure is visiting CentCom, but lost their staff on the way there! Send a replacement as soon as possible."
 	reward = CARGO_CRATE_VALUE * 5
-	wanted_types = list(/obj/item/forging/reagent_weapon/staff = TRUE)
+	wanted_types = list(/obj/item/melee/forged_reagent_weapon/staff = TRUE)
 
 /datum/bounty/item/blacksmith/swords
 	name = "Swords"
 	description = "Our interns' mosins have broken down, ship some swords so they have something to fight with."
 	required_count = 3
 	reward = CARGO_CRATE_VALUE * 24
-	wanted_types = list(/obj/item/forging/reagent_weapon/sword = TRUE)
+	wanted_types = list(/obj/item/melee/forged_reagent_weapon/sword = TRUE)
 
 /datum/bounty/item/blacksmith/armor
 	name = "Armor piece"
@@ -40,4 +71,4 @@
 	name = "Katana"
 	description = "One of our Researchers is going to a Space Anime Convention and wants to show off a real katana! Ship one so he stops pestering us."
 	reward = CARGO_CRATE_VALUE * 6
-	wanted_types = list(/obj/item/forging/reagent_weapon/katana = TRUE)
+	wanted_types = list(/obj/item/melee/forged_reagent_weapon/katana = TRUE)

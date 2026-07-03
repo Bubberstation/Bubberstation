@@ -40,6 +40,7 @@
 	sprite_datum = fetch_sprite_datum_from_name(accessory_name ? accessory_name : mutantparts_list[feature_key][MUTANT_INDEX_NAME])
 	modsuit_affected = sprite_datum.use_custom_mod_icon
 	draw_color = mutantparts_list[feature_key][MUTANT_INDEX_COLOR_LIST]
+	build_emissive_eligibility(mutantparts_list[feature_key][MUTANT_INDEX_EMISSIVE_LIST])
 	cache_key = jointext(generate_icon_cache(), "_")
 	return TRUE
 
@@ -71,8 +72,8 @@
 		. += "[alpha]"
 
 	if(emissive_eligibility_by_color_index)
-		for(var/emissive_boolean in emissive_eligibility_by_color_index)
-			. += emissive_boolean
+		for(var/key in emissive_eligibility_by_color_index)
+			. += emissive_eligibility_by_color_index[key]
 
 	return .
 
@@ -85,13 +86,13 @@
 	return sprite_datum?.feature_key_override || feature_key
 
 
-/datum/bodypart_overlay/mutant/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
+/datum/bodypart_overlay/mutant/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner, mob/living/carbon/owner, is_husked)
 	if(!..())
 		return FALSE
-	var/mob/living/carbon/human/human = bodypart_owner.owner
-	if(!istype(human))
+	var/mob/living/carbon/human/human_owner = owner
+	if(!istype(human_owner))
 		return TRUE
-	return !isnull(sprite_datum) && !sprite_datum.is_hidden(human)
+	return !isnull(sprite_datum) && !sprite_datum.is_hidden(human_owner)
 
 
 /// Get the images we need to draw on the person. Called from get_overlay() which is called from _bodyparts.dm.
@@ -283,7 +284,7 @@
 	var/list/image/emissives
 	var/max = min(3, length(overlays)) // only care about the first 3 indexes
 	for(var/index = 1 to max)
-		if(emissive_eligibility_by_color_index[index])
+		if(emissive_eligibility_by_color_index[num2text(index)])
 			LAZYADD(emissives, emissive_appearance_copy(overlays[index], limb))
 
 	return emissives ? (overlays + emissives) : overlays
@@ -306,6 +307,21 @@
 
 	LAZYREMOVE(cache_key_extra_information, "MOD")
 
+
+/**
+ * Builds `emissive_eligibility_by_layer` from the input list of three booleans.
+ * Will not do anything if the given argument is `null`.
+ */
+/datum/bodypart_overlay/mutant/proc/build_emissive_eligibility(list/emissive_eligibility)
+	if(!emissive_eligibility || !islist(emissive_eligibility))
+		return
+
+	emissive_eligibility_by_color_index = list()
+	var/i = 1
+
+	for(var/eligibility in emissive_eligibility)
+		emissive_eligibility_by_color_index[num2text(i)] = eligibility
+		i++
 
 #undef MAX_MATRIXED_COLORS
 #undef ALPHA_OPAQUE

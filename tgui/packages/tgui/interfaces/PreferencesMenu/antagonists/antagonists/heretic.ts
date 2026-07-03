@@ -1,13 +1,13 @@
 import { type Antagonist, Category } from '../base';
-
+// BUBBER EDIT CHANGE - description completely rewritten
 export const HERETIC_MECHANICAL_DESCRIPTION = `
-      Find hidden influences and sacrifice crew members to gain magical
-      powers and ascend as one of several paths.
+      Find hidden influences and ways to gain magical
+      powers and become powerful as one of several paths.
    `;
 
 const Heretic: Antagonist = {
   key: 'heretic',
-  name: 'Heretic',
+  name: 'Acolyte', // BUBBER EDIT CHANGE - renamed to Acolyte
   description: [
     `
       Forgotten, devoured, gutted. Humanity has forgotten the eldritch forces

@@ -5457,12 +5457,6 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
-"rA" = (
-/mob/living/basic/bot/secbot/beepsky{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/circuit/red,
-/area/awaymission/caves/maintsroom)
 "rB" = (
 /obj/item/keycard/yellow,
 /obj/effect/light_emitter/fake_outdoors,
@@ -6239,22 +6233,6 @@
 	spawn_scatter_radius = 1
 	},
 /turf/open/floor/plating/rust,
-/area/awaymission/caves/maintsroom)
-"tX" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/safe/floor,
-/obj/item/forging/reagent_weapon/axe/fake_copper{
-	desc = "Ea-nasir's own copper axe"
-	},
-/obj/item/claymore/weak/weaker,
-/turf/open/floor/engine{
-	slowdown = 2
-	},
 /area/awaymission/caves/maintsroom)
 "tY" = (
 /obj/effect/light_emitter/fake_outdoors,
@@ -9851,6 +9829,22 @@
 /obj/effect/spawner/random/structure/chair_flipped,
 /turf/open/floor/circuit/red/anim,
 /area/awaymission/caves/maintsroom)
+"Gb" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/safe/floor,
+/obj/item/melee/forged_reagent_weapon/axe/fake_copper{
+	desc = "Ea-nasir's own copper axe"
+	},
+/obj/item/claymore/weak/weaker,
+/turf/open/floor/engine{
+	slowdown = 2
+	},
+/area/awaymission/caves/maintsroom)
 "Gc" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -12453,6 +12447,15 @@
 /obj/structure/mecha_wreckage/odysseus,
 /turf/open/floor/circuit/green,
 /area/awaymission/caves/maintsroom)
+"OB" = (
+/obj/structure/lattice/catwalk/mining,
+/obj/item/melee/forged_reagent_weapon/sword,
+/obj/structure/closet/crate/goldcrate{
+	name = "Bait"
+	},
+/obj/item/disk/design_disk/cleric_mace,
+/turf/open/floor/plating,
+/area/awaymission/caves/maintsroom)
 "OC" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -12912,15 +12915,6 @@
 /obj/effect/spawner/random/structure/girder,
 /obj/structure/grille/broken,
 /turf/open/floor/iron/smooth,
-/area/awaymission/caves/maintsroom)
-"Qi" = (
-/obj/structure/lattice/catwalk/mining,
-/obj/item/forging/reagent_weapon/sword,
-/obj/structure/closet/crate/goldcrate{
-	name = "Bait"
-	},
-/obj/item/disk/design_disk/cleric_mace,
-/turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "Qj" = (
 /obj/structure/table/optable/abductor,
@@ -14489,12 +14483,6 @@
 /obj/item/circuitboard/machine/coffeemaker,
 /mob/living/basic/mouse/rat,
 /turf/open/floor/plating/rust,
-/area/awaymission/caves/maintsroom)
-"Vf" = (
-/mob/living/basic/bot/secbot/beepsky{
-	faction = list("hostile","cult")
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/awaymission/caves/maintsroom)
 "Vg" = (
 /mob/living/basic/construct/wraith/hostile,
@@ -17200,7 +17188,7 @@ ov
 ov
 ov
 TM
-Qi
+OB
 TA
 ov
 ov
@@ -22059,12 +22047,12 @@ wQ
 wQ
 uX
 lq
-Vf
+Lp
 lq
 aQ
-rA
+lx
 aQ
-rA
+lx
 aQ
 lq
 aQ
@@ -22286,7 +22274,7 @@ aQ
 lq
 aQ
 lq
-Vf
+Lp
 lq
 GS
 GS
@@ -22941,7 +22929,7 @@ sl
 wQ
 aQ
 Oq
-Vf
+Lp
 lq
 aQ
 lq
@@ -40743,7 +40731,7 @@ PR
 PR
 PR
 PR
-tX
+Gb
 MD
 rW
 gW
