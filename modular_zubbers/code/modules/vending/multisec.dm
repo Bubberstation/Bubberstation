@@ -82,6 +82,7 @@
 					/obj/item/clothing/suit/armor/vest/viro/leatherjacket = 6,
 					/obj/item/clothing/suit/armor/vest/viro/softshell = 6,
 					/obj/item/clothing/head/sec/viro = 6,
+					/obj/item/clothing/head/helmet/sec/viro = 6,
 					/obj/item/clothing/head/sec/viro/beanie = 6,
 
 				),
