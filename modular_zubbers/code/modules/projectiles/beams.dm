@@ -1,6 +1,3 @@
-/obj/projectile/beam/emitter/hitscan/bluelens
-	integrity_heal = 0
-
 /obj/projectile/beam/laser/carbine_old
 	name = "carbine laser"
 	icon_state = "carbine_laser"
