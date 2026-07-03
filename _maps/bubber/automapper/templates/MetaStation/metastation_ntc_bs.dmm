@@ -103,6 +103,7 @@
 /obj/item/storage/medkit/combat_surgeon/stocked,
 /obj/item/storage/medkit/regular,
 /obj/item/storage/medkit/tactical/blueshield,
+/obj/item/dog_bone,
 /turf/open/floor/iron/dark/textured,
 /area/station/command/heads_quarters/blueshield)
 "gr" = (
@@ -508,13 +509,6 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "blueshield_priv"
 	},
-/obj/machinery/button/door/directional/east{
-	pixel_y = -6;
-	id = "nt_rep_priv";
-	name = "Office Shutters Control";
-	req_access = list("captain");
-	pixel_x = -30
-	},
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 1
 	},
@@ -558,6 +552,17 @@
 /obj/effect/mapping_helpers/requests_console/announcement,
 /obj/effect/turf_decal/bot,
 /obj/machinery/requests_console/auto_name/directional/east,
+/obj/machinery/button/door/directional/south{
+	pixel_x = -7;
+	pixel_y = -28;
+	req_access = list("captain");
+	id = "blueshield_priv";
+	name = "Shutters Control"
+	},
+/obj/machinery/light_switch/directional/south{
+	pixel_y = -28;
+	pixel_x = 4
+	},
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "KV" = (
@@ -732,9 +737,6 @@
 /area/station/hallway/secondary/command)
 "UZ" = (
 /obj/machinery/photocopier/prebuilt,
-/obj/machinery/light_switch/directional/north{
-	pixel_x = -7
-	},
 /obj/machinery/digital_clock/directional/north{
 	pixel_y = 37
 	},
