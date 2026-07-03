@@ -126,8 +126,10 @@ Unlike normal organs, we're actually inside a persons limbs at all times
 	dyable = TRUE
 	draw_on_husks = HUSK_OVERLAY_NORMAL
 
+/* BUBBER EDIT REMOVE BEGIN - Customization
 /datum/bodypart_overlay/mutant/horns/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner, mob/living/carbon/owner, is_husked = FALSE)
 	return ..() && !(bodypart_owner.owner?.obscured_slots & HIDEHAIR)
+*/// BUBBER EDIT REMOVE END
 
 ///The frills of a lizard (like weird fin ears)
 /obj/item/organ/frills
