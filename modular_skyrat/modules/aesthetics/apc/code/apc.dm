@@ -29,3 +29,4 @@
 
 /obj/item/sticker/syndicate/apc
 	icon = 'modular_skyrat/modules/aesthetics/apc/icons/apc.dmi'
+	//Why is the state called milf for this sticker? Who did this...
