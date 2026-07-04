@@ -26,7 +26,7 @@
 		// SKYRAT EDIT ADDITON START - Compiling our modular maps too!
 		#include "map_files\Blueshift\Blueshift.dmm"
 		#include "map_files\VoidRaptor\VoidRaptor.dmm"
-		#include "map_files\KiloStation\KiloStation.dmm"
+		#include "map_files\KiloStationBubber\KiloStationBubber.dmm"
 		// SKYRAT EDIT END
 		//#include "map_files\wawastation\wawastation.dmm" BUBBER EDIT - UNUSED
 		// BUBBER EDIT ADDITION START
