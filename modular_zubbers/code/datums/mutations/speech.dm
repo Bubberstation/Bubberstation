@@ -1,6 +1,7 @@
 /datum/mutation/uwu
 	name = "Uwuification"
 	desc = "A mutation that causes the afflicted to speak in an overly cutesy manner."
+	locked = TRUE
 	instability = NEGATIVE_STABILITY_MINI
 	quality = MINOR_NEGATIVE
 	text_gain_indication = span_notice("You feel like nya-ing...")
