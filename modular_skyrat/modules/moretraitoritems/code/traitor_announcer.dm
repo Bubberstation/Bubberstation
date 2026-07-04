@@ -14,51 +14,59 @@
 	///How many uses does it have? -1 for infinite
 	var/uses = 1
 
-/obj/item/device/traitor_announcer/attack_self(mob/living/user, modifiers)
-	. = ..()
-	//can we use this?
-	if(!isliving(user) || (uses == 0))
-		balloon_alert(user, "no uses left!")
-		return
+/proc/try_user_announce(mob/living/user, list/available_sounds = GLOB.announcer_keys)
 	//build our announcement
 	var/origin = reject_bad_text(tgui_input_text(user, "Who is announcing, or where is the announcement coming from?", "Announcement Origin", get_area_name(user), max_length = 28))
 	if(!origin)
-		balloon_alert(user, "bad origin!")
-		return
-	var/audio_key = tgui_input_list(user, "Which announcement audio key should play? ('Intercept' is default)", "Announcement Audio", GLOB.announcer_keys, ANNOUNCER_INTERCEPT)
+		user.balloon_alert(user, "bad origin!")
+		return FALSE
+	var/audio_key = tgui_input_list(user, "Which announcement audio key should play? ('Intercept' is default)", "Announcement Audio", available_sounds, ANNOUNCER_INTERCEPT)
 	if(!audio_key)
-		balloon_alert(user, "bad audio!")
-		return
+		user.balloon_alert(user, "bad audio!")
+		return FALSE
 	var/color = tgui_input_list(user, "Which color should the announcement be?", "Announcement Hue", ANNOUNCEMENT_COLORS, "default")
 	if(!color)
-		balloon_alert(user, "bad color!")
-		return
+		user.balloon_alert(user, "bad color!")
+		return FALSE
 	var/title = reject_bad_text(tgui_input_text(user, "Choose the title of the announcement.", "Announcement Title", max_length = 42))
 	if(!title)
-		balloon_alert(user, "bad title!")
-		return
+		user.balloon_alert(user, "bad title!")
+		return FALSE
 	var/input = reject_bad_text(tgui_input_text(user, "Choose the bodytext of the announcement.", "Announcement Text", max_length = 512, multiline = TRUE))
 	if(!input)
-		balloon_alert(user, "bad text!")
-		return
+		user.balloon_alert(user, "bad text!")
+		return FALSE
 	//treat voice
 	var/list/message_data = user.treat_message(input)
 	//send
 	priority_announce(
-	text = message_data["message"],
-	title = title,
-	sound = audio_key,
-	has_important_message = TRUE,
-	sender_override = origin,
-	color_override = color,
-	encode_text = FALSE,
-	encode_title = FALSE
+		text = message_data["message"],
+		title = title,
+		sound = audio_key,
+		has_important_message = TRUE,
+		sender_override = origin,
+		color_override = color,
+		encode_text = FALSE,
+		encode_title = FALSE
 	)
-	if(uses != INFINITE_CHARGES)
-		uses--
+
 	deadchat_broadcast(" made a fake priority announcement from [span_name("[get_area_name(usr, TRUE)]")].", span_name("[user.real_name]"), user, message_type=DEADCHAT_ANNOUNCEMENT)
 	user.log_talk("\[Message title\]: [title], \[Message\]: [input], \[Audio key\]: [audio_key]", LOG_TELECOMMS, tag = "priority announcement")
-	message_admins("[ADMIN_LOOKUPFLW(user)] has used [src] to make a fake announcement of [input].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] has made a fake announcement of [input].")
+
+	return TRUE
+
+/obj/item/device/traitor_announcer/attack_self(mob/living/user, modifiers)
+	. = ..()
+	//can we use this?
+	if(!isliving(user) || (uses == 0))
+		user.balloon_alert(user, "no uses left!")
+		return
+
+	var/result = try_user_announce(user)
+	if(result)
+		if(uses != INFINITE_CHARGES)
+			uses--
 
 // Adminbus
 /obj/item/device/traitor_announcer/infinite

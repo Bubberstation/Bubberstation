@@ -291,6 +291,7 @@
 		our_heretic.heretic_shops[HERETIC_KNOWLEDGE_SHOP],
 		our_heretic.heretic_shops[HERETIC_KNOWLEDGE_DRAFT],
 	)
+	our_heretic.purge_shop_of_duplicates() // BUBBER EDIT ADDITION - purge duplicate entries
 	SEND_SIGNAL(src, COMSIG_HERETIC_SHOP_SETUP)
 	if(our_heretic.give_objectives)
 		our_heretic.forge_primary_objectives()
@@ -299,9 +300,9 @@
 /datum/heretic_knowledge/limited_amount/starting/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
 	RegisterSignals(user, list(COMSIG_HERETIC_MANSUS_GRASP_ATTACK, COMSIG_LIONHUNTER_ON_HIT), PROC_REF(on_mansus_grasp))
 	RegisterSignal(user, COMSIG_HERETIC_BLADE_ATTACK, PROC_REF(on_eldritch_blade))
-	if(isliving(user))
+	/*if(isliving(user))
 		var/mob/living/living_user = user
-		living_user.apply_status_effect(eldritch_passive)
+		living_user.apply_status_effect(eldritch_passive)*/ // BUBBER EDIT REMOVAL - You have to buy your passives
 
 /datum/heretic_knowledge/limited_amount/starting/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
 	UnregisterSignal(user, list(COMSIG_HERETIC_MANSUS_GRASP_ATTACK, COMSIG_HERETIC_BLADE_ATTACK))
@@ -317,8 +318,8 @@
 /datum/heretic_knowledge/limited_amount/starting/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 	SHOULD_CALL_PARENT(TRUE)
-
-	create_mark(source, target)
+	if (should_create_mark(source, target)) // BUBBER EDIT ADDITION - have to buy the mark
+		create_mark(source, target) // BUBBER EDIT CHANGE - have to buy the mark
 
 /**
  * Signal proc for [COMSIG_HERETIC_BLADE_ATTACK].

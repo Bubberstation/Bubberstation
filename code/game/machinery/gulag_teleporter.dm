@@ -34,6 +34,7 @@ The console is located at computer/gulag_teleporter.dm
 		/obj/item/tank/internals,
 		/obj/item/clothing/mask/breath,
 		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/neck/antimagic_collar, // BUBBER EDIT ADDITION
 	))
 
 /obj/machinery/gulag_teleporter/Initialize(mapload)

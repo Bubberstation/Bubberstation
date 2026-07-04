@@ -194,6 +194,12 @@
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	strip_delay = 8 SECONDS
 
+/obj/item/clothing/suit/armor/hos/viro/vest
+	name = "Head of Security's Plate Carrier"
+	desc = "A plate carrier enhanced with a special alloy for some extra protection and style for those with a commanding presence."
+	icon_state = "hos_platecarrier"
+	inhand_icon_state = "armor"
+
 /datum/armor/armor_hos
 	melee = 30
 	bullet = 30

@@ -92,6 +92,196 @@
 	can_adjust = TRUE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
+/datum/greyscale_component_style/security_uniform
+	output_icon_state = "rsecurity"
+	fallback_icon_state = "security_shirt"
+	default_accessories = list("security_shirt_accs_tie")
+	core_components = list(
+		list(
+			"name" = "Shirt",
+			"key" = "shirt",
+			"default" = "security",
+			"groups" = list(
+				"tie_compatible" = list("security", "viro", "suit"),
+				"arm_trim_compatible" = list("security", "viro", "turtleneck"),
+			),
+			"options" = list(
+				"security" = list(
+					"name" = "Security shirt",
+					"state" = "security_shirt",
+					"color_id" = 1,
+					"color_label" = "Shirt",
+					"default_color" = "#BA3B2E",
+				),
+				"viro" = list(
+					"name" = "Virosec shirt",
+					"state" = "security_shirt_viro",
+					"parent" = "security",
+					"color_id" = 1,
+					"color_label" = "Shirt",
+					"default_color" = "#BA3B2E",
+				),
+				"suit" = list(
+					"name" = "Security suit",
+					"state" = "security_shirt_suit",
+					"parent" = "security",
+					"color_id" = 1,
+					"color_label" = "Shirt",
+					"default_color" = "#BA3B2E",
+				),
+				"turtleneck" = list(
+					"name" = "Security turtleneck",
+					"state" = "security_shirt_turtleneck",
+					"parent" = "security",
+					"color_id" = 1,
+					"color_label" = "Shirt",
+					"default_color" = "#BA3B2E",
+				),
+			),
+		),
+		list(
+			"name" = "Pants",
+			"key" = "pants",
+			"default" = "security",
+			"options" = list(
+				"security" = list(
+					"name" = "Security pants",
+					"state" = "security_pants",
+					"color_id" = 2,
+					"color_label" = "Pants",
+					"default_color" = "#4B4C51",
+				),
+				"skirt" = list(
+					"name" = "Security skirt",
+					"state" = "security_pants_skirt",
+					"parent" = "security",
+					"color_id" = 2,
+					"color_label" = "Pants",
+					"default_color" = "#4B4C51",
+				),
+				"viro" = list(
+					"name" = "Virosec pants",
+					"state" = "security_pants_viro",
+					"parent" = "security",
+					"color_id" = 2,
+					"color_label" = "Pants",
+					"default_color" = "#4B4C51",
+				),
+			),
+		),
+	)
+	accessories = list(
+		"Tie" = list(
+			"state" = "security_shirt_accs_tie",
+			"applies_to" = list("shirt" = list(COMPONENT_CORE_GROUP = "tie_compatible")),
+			"color_id" = 3,
+			"color_label" = "Tie",
+			"default_color" = "#2D2D33",
+		),
+		"Arm trim one" = list(
+			"state" = "security_shirt_accs_arm_trim_one",
+			"applies_to" = list("shirt" = list(COMPONENT_CORE_EXACT = list("security", "viro"))),
+			"color_id" = 4,
+			"color_label" = "Arm trim one",
+			"default_color" = "#39393F",
+		),
+		"Arm trim two" = list(
+			"state" = "security_shirt_accs_arm_trim_two",
+			"applies_to" = list("shirt" = list(COMPONENT_CORE_GROUP = "arm_trim_compatible")),
+			"color_id" = 13,
+			"color_label" = "Arm trim two",
+			"default_color" = "#46464D",
+		),
+		"Arm trim three" = list(
+			"state" = "security_shirt_accs_arm_trim_three",
+			"applies_to" = list("shirt" = list(COMPONENT_CORE_GROUP = "arm_trim_compatible")),
+			"color_id" = 12,
+			"color_label" = "Arm trim three",
+			"default_color" = "#D0D0D0",
+		),
+		"Epaulettes" = list(
+			"state" = "security_shirt_accss_epaulettes",
+			"applies_to" = list("shirt" = list(COMPONENT_CORE_BRANCH = "security")),
+			"color_id" = 11,
+			"color_label" = "Epaulettes",
+			"default_color" = "#39393F",
+		),
+		"Viro shirt trim" = list(
+			"state" = "security_shirt_accs_trim_viro",
+			"applies_to" = list("shirt" = list("viro" = COMPONENT_CORE_EXACT)),
+			"color_id" = 8,
+			"color_label" = "Viro shirt trim",
+			"default_color" = "#46464D",
+		),
+		"Suit inner shirt" = list(
+			"state" = "security_shirt_suit_accs_inner",
+			"applies_to" = list("shirt" = list("suit" = COMPONENT_CORE_EXACT)),
+			"color_id" = 9,
+			"color_label" = "Suit inner shirt",
+			"default_color" = "#EBEBEB",
+		),
+		"Buckle" = list(
+			"state" = "security_pants_accs_buckle",
+			"applies_to" = list("pants" = COMPONENT_CORE_ALL),
+			"color_id" = 10,
+			"color_label" = "Buckle",
+			"default_color" = "#B5BBCF",
+		),
+		"Skirt outer trim" = list(
+			"state" = "security_pants_skirt_accs_outer_trim",
+			"applies_to" = list("pants" = list("skirt" = COMPONENT_CORE_EXACT)),
+			"color_id" = 5,
+			"color_label" = "Skirt outer trim",
+			"default_color" = "#46464D",
+		),
+		"Skirt inner trim" = list(
+			"state" = "security_pants_skirt_accs_inner_trim",
+			"applies_to" = list("pants" = list("skirt" = COMPONENT_CORE_EXACT)),
+			"color_id" = 6,
+			"color_label" = "Skirt inner trim",
+			"default_color" = "#46464D",
+		),
+		"Viro pants trim" = list(
+			"state" = "security_pants_viro_accs_trim",
+			"applies_to" = list("pants" = list("viro" = COMPONENT_CORE_EXACT)),
+			"color_id" = 7,
+			"color_label" = "Viro pants trim",
+			"default_color" = "#7D2A25",
+		),
+	)
+
+/obj/item/clothing/under/rank/security/officer/recolorable
+	name = "security uniform"
+	desc = "A tactical security jumpsuit for officers. This one seems to have a few custom modifications."
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+	icon_state = "/obj/item/clothing/under/rank/security/officer/recolorable"
+	post_init_icon_state = "recolorable_security_uniform"
+	greyscale_config = /datum/greyscale_config/security_uniform
+	greyscale_config_worn = /datum/greyscale_config/security_uniform/worn
+	greyscale_config_worn_digi = /datum/greyscale_config/security_uniform/worn/digi
+	greyscale_colors = "#BA3B2E#4B4C51#2D2D33#39393F#46464D#46464D#7D2A25#46464D#EBEBEB#B5BBCF#39393F#D0D0D0#46464D"
+	flags_1 = parent_type::flags_1 | IS_PLAYER_COLORABLE_1
+	can_adjust = TRUE
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	greyscale_component_style_type = /datum/greyscale_component_style/security_uniform
+	greyscale_component_worn_icon_file = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	greyscale_component_worn_digi_icon_file = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+	greyscale_component_digi_fallback_icon_file = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	greyscale_component_accessories = list("security_shirt_accs_tie")
+
+/obj/item/clothing/under/rank/security/officer/recolorable/Initialize(mapload)
+	initialize_greyscale_component_style()
+	return ..()
+
+/obj/item/clothing/under/rank/security/officer/recolorable/update_greyscale()
+	. = ..()
+	update_greyscale_component_icons()
+	icon = 'icons/obj/clothing/under/security.dmi'
+	icon_state = "rsecurity"
+	inhand_icon_state = "r_suit"
+
 // Virosec, sprites by axietheaxolotl
 
 /obj/item/clothing/under/rank/security/viro/officer/

@@ -114,3 +114,16 @@
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suits/spacesuit_digi.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/spacesuit_teshari.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/hooded/carp_costume
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/costume_digi.dmi'
+
+/obj/item/clothing/suit/hooded/ian_costume
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/costume_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/obj/item/clothing/head/hooded/ian_hood
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/costume_teshari.dmi'
+
+/obj/item/clothing/suit/costume/xenos
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
