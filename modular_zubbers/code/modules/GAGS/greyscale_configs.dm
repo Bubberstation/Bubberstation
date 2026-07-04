@@ -498,3 +498,6 @@
 	name = "BA Cheerleader Sneakers (Worn)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/shoes_worn.json'
+
+/datum/greyscale_config/ba_cheerleader_shoes/worn/digi
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader_digi.dmi'
