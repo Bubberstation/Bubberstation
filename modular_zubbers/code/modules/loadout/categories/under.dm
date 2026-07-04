@@ -145,6 +145,15 @@
 	item_path = /obj/item/clothing/under/rank/security/corrections_officer/sweater/skirt
 	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
 
+/datum/loadout_item/uniform/miscellaneous/ba_cheerleader
+	name = "NT Cheerleading Outfit"
+	item_path = /obj/item/clothing/under/costume/ba_cheerleader
+
+/datum/loadout_item/uniform/command/ba_cheerleader
+	name = "NT Command Cheerleading Uniform"
+	item_path = /obj/item/clothing/under/rank/centcom/ba_cheerleader
+	restricted_roles = list(JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_ENGINEER, JOB_CHIEF_MEDICAL_OFFICER, JOB_QUARTERMASTER, JOB_NT_REP)
+
 /datum/loadout_item/uniform/miscellaneous/tactical_maid //Donor item for skyefree
 	name = "Tactical Maid Costume"
 	item_path = /obj/item/clothing/under/misc/maid/tactical

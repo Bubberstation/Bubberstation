@@ -51,7 +51,7 @@
 			target_client.prefs.load_character(lycan_brain.last_slot)
 
 	ADD_TRAIT(human_owner, TRAIT_BEAST_FORM, SPECIES_TRAIT)
-	playsound(human_owner, 'modular_zubbers/code/modules/customization/species/lycans/transform.ogg', 50)
+	playsound(human_owner, lycan_brain.to_lycan_sfx, 50)
 
 /datum/status_effect/beast_form/on_remove()
 	. = ..()
@@ -79,7 +79,7 @@
 		human_owner.set_species(initial_species, TRUE, TRUE, FALSE)
 
 	REMOVE_TRAIT(human_owner, TRAIT_BEAST_FORM, SPECIES_TRAIT)
-	playsound(human_owner, 'modular_zubbers/code/modules/customization/species/lycans/transform.ogg', 50)
+	playsound(human_owner, lycan_brain.to_human_sfx, 50)
 
 /datum/status_effect/beast_form/tick(seconds_between_ticks)
 	. = ..()

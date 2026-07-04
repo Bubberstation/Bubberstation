@@ -54,6 +54,11 @@
 	UnregisterSignal(user, list(COMSIG_MOB_SAY, SIGNAL_ADDTRAIT(TRAIT_SIGN_LANG), SIGNAL_REMOVETRAIT(TRAIT_SIGN_LANG)))
 	update_voice(user)
 
+/obj/item/clothing/mask/gas/modulator/doStrip(mob/stripper, mob/user)
+	. = ..()
+	UnregisterSignal(user, list(COMSIG_MOB_SAY, SIGNAL_ADDTRAIT(TRAIT_SIGN_LANG), SIGNAL_REMOVETRAIT(TRAIT_SIGN_LANG)))
+	update_voice(user)
+
 /obj/item/clothing/mask/gas/modulator/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	context[SCREENTIP_CONTEXT_ALT_LMB] = "[modulate_voice ? "Disable":"Enable"] voice modulator"

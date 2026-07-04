@@ -34,6 +34,8 @@
 /obj/item/storage/box/tiziran_goods
 	icon = 'icons/obj/storage/box.dmi'
 
+/obj/item/storage/box/ramen_beef
+	icon = 'icons/obj/storage/box.dmi'
 
 /*
 // Medical

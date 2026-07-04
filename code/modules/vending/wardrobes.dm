@@ -749,6 +749,9 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 		/obj/item/clothing/shoes/laceup = 3,
 		/obj/item/clothing/shoes/jackboots = 3,
 		/obj/item/clothing/gloves/combat = 3,
+		/obj/item/clothing/under/rank/centcom/ba_cheerleader/centcom = 3,
+		/obj/item/clothing/gloves/ba_cheerleader/centcom = 3,
+		/obj/item/clothing/shoes/sneakers/ba_cheerleader/centcom = 3,
 	)
 	refill_canister = /obj/item/vending_refill/wardrobe/cent_wardrobe
 
