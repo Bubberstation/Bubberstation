@@ -223,9 +223,11 @@
 	icon_state = "ba_cheerleader_shoes_icon"
 	post_init_icon_state = "ba_cheerleader_shoes"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader_digi.dmi'
 	worn_icon_state = "ba_cheerleader_shoes"
 	greyscale_config = /datum/greyscale_config/ba_cheerleader_shoes
 	greyscale_config_worn = /datum/greyscale_config/ba_cheerleader_shoes/worn
+	greyscale_config_worn_digi = /datum/greyscale_config/ba_cheerleader_shoes/worn/digi
 	greyscale_colors = "#FFFFFF#2980b9"
 	flags_1 = IS_PLAYER_COLORABLE_1
 

@@ -1,7 +1,7 @@
 /obj/machinery/space_heater/wall_mounted
-	name = "mounted heater"
-	desc = "A compact heating and cooling device for small scale applications, made to mount onto walls up and out of the way. \
-		Like other, more free-standing space heaters however, these still require cell power to function."
+	name = "wall mounted A/C unit"
+	desc = "A compact heating and cooling device for large scale applications, made to mount onto walls up and out of the way. \
+		It charges with the nearest APC; the internal cell buffers the power to the heating/cooling mechanism."
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/space_heater.dmi'
 	anchored = TRUE
 	density = FALSE
@@ -14,6 +14,11 @@
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted, 29)
 
+/obj/machinery/space_heater/wall_mounted/with_cell
+	cell = /obj/item/stock_parts/power_store/cell/high
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted/with_cell, 29)
+
 /obj/machinery/space_heater/wall_mounted/Initialize(mapload)
 	. = ..()
 	if(mapload)
@@ -21,11 +26,25 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted, 29)
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
 	RemoveElement(/datum/element/elevation, pixel_shift = 8)
 	RemoveElement(/datum/element/climbable)
+	START_PROCESSING(SSobj, src)
 
 /obj/machinery/space_heater/wall_mounted/RefreshParts()
 	. = ..()
 	heating_energy = STANDARD_CELL_RATE * 0.2
 	efficiency = 30
+
+/obj/machinery/space_heater/wall_mounted/process_atmos(seconds_per_tick)
+	..()
+	//charge the cell -- should be less than the heat energy expended
+	if(!isnull(cell))
+		var/main_draw = STANDARD_CELL_RATE * 0.15 * seconds_per_tick
+		if(!main_draw)
+			return
+		var/charge_given = charge_cell(main_draw, cell, grid_only = TRUE)
+		if(charge_given)
+			use_energy(charge_given * 0.5) //uses extra over head of energy to charge
+	return
+
 
 /obj/machinery/space_heater/wall_mounted/default_deconstruction_crowbar()
 	return
@@ -51,7 +70,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted, 29)
 // Wallmount for creating the heaters
 
 /obj/item/wallframe/wall_heater
-	name = "unmounted wall heater"
+	name = "unmounted A/C unit"
 	desc = "A compact heating and cooling device for small scale applications, made to mount onto walls up and out of the way. \
 		Like other, more free-standing space heaters however, these still require cell power to function."
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/space_heater.dmi'
