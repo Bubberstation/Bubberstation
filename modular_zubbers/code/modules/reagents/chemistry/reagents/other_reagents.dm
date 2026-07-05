@@ -444,8 +444,8 @@
 
 //
 /datum/reagent/soma_mindwipe
-	name = "ROOFIE JUICE"
-	description = "bill cosby"
+	name = "Forgorine"
+	description = "todo"
 	color = "#6c0830"
 	var/mindwiped_questionmark = FALSE
 
@@ -454,7 +454,7 @@
 	var/blood_alcohol_content = affected_mob.get_blood_alcohol_content()
 	if(affected_mob.stat == CONSCIOUS & blood_alcohol_content < BAC_STAGE_3_ACTIVE)
 		//make them eepy?
-		affected_mob.adjust_drowsiness_up_to(2 SECONDS * metabolization_ratio, 12 SECONDS)
+		affected_mob.adjust_drowsiness_up_to(1.5 SECONDS * metabolization_ratio, 12 SECONDS)
 		affected_mob.adjust_drugginess_up_to(2 SECONDS * metabolization_ratio, 12 SECONDS)
 		return
 	else
@@ -464,9 +464,12 @@
 		else
 			mindwiped_questionmark = TRUE
 			//display that something happened by forcing emote so that the user knows it procced on the target?
-			affected_mob.visible_message(span_danger("woah... [affected_mob] is forgetting so hard..."))
+			affected_mob.visible_message(span_danger("[affected_mob]'s eyes glaze over..."))
+			//play a sound
+			SEND_SOUND(affected_mob, sound('sound/effects/magic/smoke.ogg'))
 			//give the target a message to forget
-			to_chat(affected_mob, span_danger("TODO!!! YOU FORGOR!!!"))
+			to_chat(affected_mob, span_reallybig(span_hypnophrase("What just happened... What were you doing?")))
+			to_chat(span_danger("You remember nothing that led to this situation, who or what caused it or how did you feel about it. You can have faint recollections and piece together an explanation that doesn't incriminate anyone."))
 
 /datum/reagent/soma_mindwipe/on_mob_add(mob/living/carbon/affected_mob)
 	..()
