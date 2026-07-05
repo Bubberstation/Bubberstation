@@ -10,6 +10,9 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/station/cargo/blacksmith)
 "j" = (
@@ -22,6 +25,7 @@
 	dir = 8
 	},
 /obj/machinery/airalarm/directional/east,
+/obj/effect/landmark/start/blacksmith,
 /turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
 "m" = (
@@ -37,6 +41,12 @@
 /obj/structure/disposalpipe/trunk,
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/machinery/light_switch/directional/north,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
 "q" = (
@@ -57,6 +67,12 @@
 /area/station/cargo/blacksmith)
 "v" = (
 /obj/structure/reagent_dispensers/reagent_smithing_basin,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
 "w" = (
@@ -69,11 +85,19 @@
 /area/station/cargo/blacksmith)
 "x" = (
 /obj/structure/reagent_anvil,
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
 "y" = (
 /obj/structure/reagent_crafting_bench,
 /obj/machinery/newscaster/directional/east,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
 "B" = (
@@ -97,6 +121,7 @@
 /obj/machinery/door/window/right/directional/south{
 	name = "Blacksmith's Workshop"
 	},
+/obj/structure/desk_bell,
 /turf/open/floor/wood,
 /area/station/cargo/blacksmith)
 "H" = (
@@ -106,6 +131,9 @@
 /turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
 "O" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner,
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/effect/landmark/start/blacksmith,
 /turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
 "Q" = (
@@ -119,6 +147,16 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
+"T" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/station/cargo/blacksmith)
 "U" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood,
@@ -128,6 +166,12 @@
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
 /obj/machinery/light/directional/north,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
 "X" = (
@@ -144,6 +188,8 @@
 /obj/structure/reagent_forge,
 /obj/machinery/space_heater/wall_mounted/with_cell/directional/east,
 /obj/machinery/light/directional/east,
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
 
@@ -159,7 +205,7 @@ r
 V
 B
 O
-U
+T
 m
 a
 "}
