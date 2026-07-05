@@ -2294,6 +2294,13 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/night_club)
+"aBM" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/carpet/blue,
+/area/station/command/heads_quarters/blueshield)
 "aBN" = (
 /turf/closed/wall/r_wall,
 /area/station/security/checkpoint)
@@ -5237,15 +5244,6 @@
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/captain)
-"bom" = (
-/obj/structure/table/wood,
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
-/obj/effect/spawner/random/bureaucracy/briefcase,
-/obj/structure/sign/flag/nanotrasen/directional/west,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/blueshield)
 "bow" = (
 /obj/structure/table/glass/plasmaglass,
 /obj/item/paper/monitorkey,
@@ -6837,6 +6835,15 @@
 "bKR" = (
 /turf/closed/wall,
 /area/station/commons/dorms)
+"bLe" = (
+/obj/structure/table/wood,
+/obj/machinery/recharger{
+	pixel_y = 4
+	},
+/obj/effect/spawner/random/bureaucracy/briefcase,
+/obj/structure/sign/flag/nanotrasen/directional/west,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/blueshield)
 "bLh" = (
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 1
@@ -40674,6 +40681,12 @@
 	},
 /turf/open/floor/iron/dark/herringbone,
 /area/station/science/robotics)
+"kte" = (
+/obj/effect/turf_decal/tile/brown/half/contrasted,
+/obj/structure/cable,
+/obj/structure/reagent_dispensers/reagent_smithing_basin,
+/turf/open/floor/iron/checker,
+/area/station/cargo/blacksmith)
 "ktf" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -74356,13 +74369,6 @@
 /obj/effect/landmark/navigate_destination/autoname,
 /turf/open/floor/iron/dark,
 /area/station/security/courtroom)
-"sYp" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 4
-	},
-/turf/open/floor/carpet/blue,
-/area/station/command/heads_quarters/blueshield)
 "sYD" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Science Lobby"
@@ -83506,21 +83512,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science/cytology)
-"vrd" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/south,
-/obj/structure/closet/secure_closet/blueshield,
-/obj/item/clothing/gloves/tackler/combat/insulated/blueshield,
-/obj/item/sign/flag/nanotrasen,
-/obj/item/modular_computer/laptop/preset/security{
-	pixel_y = 5
-	},
-/obj/item/storage/medkit/combat_surgeon/stocked,
-/obj/item/storage/medkit/regular,
-/obj/item/storage/medkit/tactical/blueshield,
-/obj/item/mod/control/pre_equipped/blueshield,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/blueshield)
 "vrq" = (
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/carpet/red,
@@ -90424,6 +90415,21 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
 /turf/open/floor/plating,
 /area/station/engineering/supermatter/waste)
+"xhX" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/south,
+/obj/structure/closet/secure_closet/blueshield,
+/obj/item/clothing/gloves/tackler/combat/insulated/blueshield,
+/obj/item/sign/flag/nanotrasen,
+/obj/item/modular_computer/laptop/preset/security{
+	pixel_y = 5
+	},
+/obj/item/storage/medkit/combat_surgeon/stocked,
+/obj/item/storage/medkit/regular,
+/obj/item/storage/medkit/tactical/blueshield,
+/obj/item/mod/control/pre_equipped/blueshield,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/blueshield)
 "xig" = (
 /obj/structure/curtain,
 /obj/machinery/shower/directional/north,
@@ -93682,12 +93688,6 @@
 	},
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/maintenance/department/engine/atmos)
-"xYe" = (
-/obj/effect/turf_decal/tile/brown/half/contrasted,
-/obj/structure/cable,
-/obj/structure/reagent_water_basin,
-/turf/open/floor/iron/checker,
-/area/station/cargo/blacksmith)
 "xYh" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light_switch/directional/west,
@@ -247678,8 +247678,8 @@ iFY
 dRG
 dRG
 vvw
-bom
-vrd
+bLe
+xhX
 tUX
 rLI
 yly
@@ -247936,7 +247936,7 @@ eeA
 hnE
 ulZ
 aaH
-sYp
+aBM
 jYF
 jYF
 jYF
@@ -250594,7 +250594,7 @@ tGu
 vJk
 vJk
 fhd
-xYe
+kte
 rdH
 qVN
 tOR
