@@ -67,6 +67,7 @@
 
 	if(!recipient_nif.install_nifsoft(src))
 		qdel(src)
+		return
 
 	parent_nif = WEAKREF(recipient_nif)
 	linked_mob = recipient_nif.linked_mob
