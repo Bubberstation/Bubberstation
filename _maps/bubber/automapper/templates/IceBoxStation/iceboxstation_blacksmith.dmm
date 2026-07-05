@@ -23,12 +23,20 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
+/obj/effect/landmark/start/blacksmith,
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
 "d" = (
 /obj/structure/reagent_forge,
 /obj/machinery/space_heater/wall_mounted/with_cell/directional/east,
 /turf/open/floor/stone,
+/area/station/cargo/blacksmith)
+"e" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/light/directional/north,
+/turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
 "f" = (
 /obj/item/radio/intercom/directional/west,
@@ -78,7 +86,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/airlock/maintenance,
 /obj/effect/mapping_helpers/airlock/access/any/supply/blacksmith,
-/obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/station/cargo/blacksmith)
 "o" = (
@@ -108,6 +115,7 @@
 	id = "blacksmithworkshop";
 	req_access = list("blacksmith")
 	},
+/obj/machinery/light/directional/north,
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
 "s" = (
@@ -142,11 +150,13 @@
 "A" = (
 /obj/structure/closet/crate/wooden,
 /obj/structure/cable,
+/obj/machinery/light/directional/south,
 /turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
 "B" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/reagent_anvil,
+/obj/machinery/light/directional/south,
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
 "C" = (
@@ -214,6 +224,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
+/obj/effect/landmark/start/blacksmith,
 /turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
 "M" = (
@@ -276,6 +287,10 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron,
 /area/station/cargo/blacksmith)
+"Y" = (
+/obj/effect/landmark/start/blacksmith,
+/turf/open/floor/wood/large,
+/area/station/cargo/blacksmith)
 "Z" = (
 /obj/structure/reagent_crafting_bench,
 /turf/open/floor/stone,
@@ -301,10 +316,10 @@ i
 "}
 (3,1,1) = {"
 i
-H
+e
 S
 E
-z
+Y
 t
 i
 "}

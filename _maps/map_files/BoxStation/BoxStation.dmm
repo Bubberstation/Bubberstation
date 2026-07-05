@@ -4930,22 +4930,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/maintenance/starboard/fore)
-"aEo" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown,
-/turf/open/floor/iron/edge{
-	dir = 8
-	},
-/area/station/cargo/miningdock)
 "aEq" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/crate,
@@ -12623,9 +12607,15 @@
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 5
 	},
-/obj/structure/chair/sofa/bench/tram/right{
-	dir = 8
-	},
+/obj/item/storage/box,
+/obj/structure/table,
+/obj/item/storage/box,
+/obj/item/storage/box,
+/obj/item/stack/package_wrap,
+/obj/item/stack/package_wrap,
+/obj/item/stack/package_wrap,
+/obj/item/hand_labeler,
+/obj/item/toner,
 /turf/open/floor/iron,
 /area/station/cargo/office)
 "bnK" = (
@@ -14381,12 +14371,12 @@
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "bwd" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	name = "Workshop Shutters";
-	id = "blacksmithworkshop"
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/window{
+	id = "blacksmithworkshop";
+	name = "Blacksmith's Workshop"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/wood,
 /area/station/cargo/blacksmith)
 "bwe" = (
 /turf/closed/wall,
@@ -21356,7 +21346,13 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
 	},
-/obj/structure/mannequin/wood,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 4
+	},
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
 "ciY" = (
@@ -29264,6 +29260,9 @@
 "dYy" = (
 /obj/item/radio/off,
 /obj/effect/landmark/start/depsec/supply,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/supply)
 "dYJ" = (
@@ -36701,6 +36700,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
+/obj/structure/rack/wooden,
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
 "gQP" = (
@@ -38220,6 +38220,21 @@
 	dir = 1
 	},
 /area/station/medical/medbay/central)
+"hsn" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/iron/edge{
+	dir = 8
+	},
+/area/station/cargo/miningdock)
 "hsC" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 6
@@ -39247,17 +39262,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/station/security/execution/transfer)
-"hOP" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 4
-	},
-/obj/structure/chair/sofa/bench/tram/left{
-	dir = 8
-	},
-/turf/open/floor/iron/edge{
-	dir = 8
-	},
-/area/station/cargo/office)
 "hPj" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
@@ -46430,6 +46434,7 @@
 /obj/structure/reagent_dispensers/reagent_smithing_basin/prefilled,
 /obj/effect/turf_decal/tile/brown/diagonal_centre,
 /obj/structure/window/reinforced/spawner/directional/east,
+/obj/machinery/firealarm/directional/south,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/cargo/blacksmith)
 "ksH" = (
@@ -49930,6 +49935,9 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/customs_agent,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/supply)
 "lCi" = (
@@ -51610,18 +51618,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/security/prison)
-"mgG" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/left/directional/south{
-	name = "Blacksmith's Workshop";
-	req_access = list("blacksmith")
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	name = "Workshop Shutters";
-	id = "blacksmithworkshop"
-	},
-/turf/open/floor/wood,
-/area/station/cargo/blacksmith)
 "mhl" = (
 /obj/machinery/light_switch{
 	pixel_y = -23
@@ -57942,25 +57938,6 @@
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/security/interrogation)
-"oCr" = (
-/obj/structure/table,
-/obj/item/toner,
-/obj/item/hand_labeler,
-/obj/item/stack/package_wrap,
-/obj/item/stack/package_wrap,
-/obj/item/stack/package_wrap,
-/obj/item/storage/box,
-/obj/item/storage/box,
-/obj/item/storage/box,
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating_new{
-	dir = 1
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/iron/textured_large,
-/area/station/cargo/office)
 "oCs" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer5,
@@ -63218,7 +63195,6 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
-/obj/machinery/firealarm/directional/south,
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
 "qCg" = (
@@ -65167,9 +65143,9 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "rnG" = (
-/obj/structure/rack/wooden,
 /obj/effect/turf_decal/tile/brown/diagonal_centre,
 /obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/mannequin/wood,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/cargo/blacksmith)
 "rom" = (
@@ -66913,6 +66889,12 @@
 	name = "Security Office"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/security/general,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 4
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/security/checkpoint/supply)
 "rWy" = (
@@ -72274,6 +72256,14 @@
 	dir = 1
 	},
 /area/station/cargo/storage)
+"tUa" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 4
+	},
+/turf/open/floor/iron/edge{
+	dir = 8
+	},
+/area/station/cargo/office)
 "tUi" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/turf_decal/stripes/line,
@@ -74326,6 +74316,13 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/brown/opposingcorners,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/cargo/miningdock)
 "uJm" = (
@@ -76631,6 +76628,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/effect/landmark/start/blacksmith,
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
 "vzd" = (
@@ -81110,6 +81108,7 @@
 /area/station/cargo/warehouse)
 "xdM" = (
 /obj/structure/cable,
+/obj/effect/landmark/start/blacksmith,
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
 "xei" = (
@@ -81535,6 +81534,9 @@
 /obj/effect/landmark/start/depsec/supply,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
+	dir = 4
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/supply)
@@ -107041,14 +107043,14 @@ snQ
 izw
 bGi
 uJh
-aEo
+wye
 wye
 fwv
 wye
 pgq
 gVq
 wye
-rTf
+hsn
 uyF
 rTf
 wye
@@ -107297,8 +107299,8 @@ bkN
 nEm
 bfm
 bAn
-bwd
 vBM
+qNx
 bwd
 bAn
 jPd
@@ -108067,7 +108069,7 @@ rhY
 gXd
 hRZ
 lMN
-mgG
+bwd
 oQQ
 xdM
 itK
@@ -108318,13 +108320,13 @@ bYf
 pCy
 aZK
 bnJ
-hOP
+qvW
 odJ
 ocG
-qvW
+tUa
 aIH
-oCr
-qNx
+lMN
+bwd
 faa
 vKU
 qBW
