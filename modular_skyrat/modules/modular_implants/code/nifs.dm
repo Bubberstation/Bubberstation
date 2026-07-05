@@ -316,7 +316,12 @@
 
 ///Installs the loaded_nifsoft to the parent NIF.
 /obj/item/organ/cyberimp/brain/nif/proc/install_nifsoft(datum/nifsoft/loaded_nifsoft)
-	if(broken || calibrating) //NIFSofts can't be installed to a broken NIF
+	if(broken)
+		send_message("The target device is not responding.", alert = TRUE)
+		return FALSE
+
+	if(calibrating)
+		send_message("Software can't be installed until calibration is complete!", alert = TRUE)
 		return FALSE
 
 	if(length(loaded_nifsofts) >= max_nifsofts)
