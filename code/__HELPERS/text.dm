@@ -149,7 +149,7 @@
 #define SYMBOLS_DETECTED 2
 #define NUMBERS_DETECTED 3
 #define LETTERS_DETECTED 4
-#define APOSTROPHE_DETECTED 5 // BLUBBER EDIT -- Issue 5898 Allow Accented Letters & Do Not Autocapitalize After Apostrophe
+#define APOSTROPHE_DETECTED 5 // BLUBBER EDIT ADDITION -- Issue 5898 Allow Accented Letters & Do Not Autocapitalize After Apostrophe
 
 /**
  * Filters out undesirable characters from names.
