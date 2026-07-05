@@ -822,6 +822,8 @@
 			to_chat(user, span_danger("You burn your hand putting [search_stack] in [src]!"))
 			user.add_mood_event("burnt_thumb", /datum/mood_event/burnt_thumb)
 
+	search_stack.forceMove(get_turf(src))
+
 	if(!search_stack.use(1))
 		balloon_alert(user, "not enough of [search_stack]")
 		return ITEM_INTERACT_BLOCKING
