@@ -281,10 +281,10 @@
 		return COMPONENT_INCOMPATIBLE
 
 	wielder = parent
-	//BUBBER EDIT BEGIN - Species specific blood icons.
-	//if(!bloody_feet)
-		//bloody_feet = mutable_appearance('icons/effects/blood.dmi', "shoeblood", SHOES_LAYER)
-
+	/*BUBBER EDIT BEGIN - Species specific blood icons.
+	if(!bloody_feet)
+		bloody_feet = mutable_appearance('icons/effects/blood.dmi', "shoeblood", SHOES_LAYER)
+	*/
 	var/icon/blood_icon_file = 'icons/effects/blood.dmi'
 	var/blood_icon_state = "shoeblood"
 	if(!bloody_feet)
