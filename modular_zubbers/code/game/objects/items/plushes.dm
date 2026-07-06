@@ -828,3 +828,74 @@
 	worn_icon_state = "milky"
 	icon_state = "milky"
 	inhand_icon_state = "milky"
+
+/obj/item/toy/plush/fox_protogen
+    name = "Silly Protogen Plushie"
+    desc = "A silly looking fox protogen made to be extremly squishable with folding tails, the inside being fluffier then the outside, seems to pair wonderfully with the Suspicious Protogen Plushie."
+    icon = 'modular_zubbers/icons/obj/plushes.dmi'
+    icon_state = "foxproot"
+    gender = FEMALE
+    squeak_override = list('modular_zubbers/code/modules/emotes/sound/voice/foxgecker.ogg' = 1)
+
+/obj/item/toy/plush/fox_protogen/proc/clash_of_the_plushies(obj/item/toy/plush/suspicious_protogen/P)
+	clash_target = P
+	P.clashing = TRUE
+	say("YOU.")
+	P.say("Ratvar?!")
+	var/obj/item/toy/plush/a_winnar_is
+	var/victory_chance = 10
+	for(var/i in 1 to 10) //We only fight ten times max
+		if(QDELETED(src))
+			P.clashing = FALSE
+			return
+		if(QDELETED(P))
+			clash_target = null
+			return
+		if(!Adjacent(P))
+			visible_message(span_warning("The two plushies lovingly flail against eachother before getting tangled up with eachother, The male's tails seem to be locked around the suspecious protogen'ss."))
+			clash_target = null
+			P.clashing = FALSE
+			return
+		playsound(src, 'modular_zubbers/code/modules/emotes/sound/voice/foxgecker.ogg', 50, TRUE, frequency = 2)
+		sleep(0.24 SECONDS)
+		if(QDELETED(src))
+			P.clashing = FALSE
+			return
+		if(QDELETED(P))
+			clash_target = null
+			return
+		if(prob(victory_chance))
+			a_winnar_is = src
+			break
+		P.SpinAnimation(5, 0)
+		sleep(0.5 SECONDS)
+		if(QDELETED(src))
+			P.clashing = FALSE
+			return
+		if(QDELETED(P))
+			clash_target = null
+			return
+		playsound(P, 'modular_skyrat/modules/emotes/sound/emotes/dwoop.ogg', 50, TRUE, frequency = 2)
+		sleep(0.33 SECONDS)
+		if(QDELETED(src))
+			P.clashing = FALSE
+			return
+		if(QDELETED(P))
+			clash_target = null
+			return
+		if(prob(victory_chance))
+			a_winnar_is = P
+			break
+		SpinAnimation(5, 0)
+		victory_chance += 10
+		sleep(0.5 SECONDS)
+	if(!a_winnar_is)
+		a_winnar_is = pick(src, P)
+	if(a_winnar_is == src)
+		say(pick("DIE.", "ROT.")) //Ratvar
+		P.say(pick("Nooooo...", "Not die. To y-", "Die. Ratv-", "Sas tyen re-")) //Nar'si
+		clash_target = null
+	else
+		say("NO! I will not be banished again...") //Ratvar
+		P.say(pick("Ha.", "Ra'sha fonn dest.", "You fool. To come here.")) //Nar'si
+		P.clashing = FALSE
