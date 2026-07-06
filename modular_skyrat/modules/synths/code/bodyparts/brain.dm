@@ -13,7 +13,7 @@
 	actions_types = list(/datum/action/item_action/synth/open_internal_computer)
 	organ_traits = list(TRAIT_SILICON_EMOTES_ALLOWED)
 	var/mmi_type = /obj/item/mmi/posibrain
-	var/obj/item/mmi/posibrain/stored_mmi
+	var/obj/item/mmi/stored_mmi
 
 /obj/item/organ/brain/synth/Initialize(mapload, obj/item/mmi/brain_mmi)
 	. = ..()
