@@ -207,7 +207,7 @@
 					continue
 				last_char_group = APOSTROPHE_DETECTED
 
-			// '  -  .
+			// -  .
 			if(45,46) //Common name punctuation
 				if(last_char_group == NO_CHARS_DETECTED)
 					if(strict)
