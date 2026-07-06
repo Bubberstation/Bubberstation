@@ -654,8 +654,8 @@ BLIND     // can't see anything
 	if(clothing_flags & LARGE_WORN_ICON)
 		blood_overlay = mutable_appearance('icons/effects/64x64.dmi', "[blood_state]blood_large")
 	else
-		//BUBBER EDIT BEGIN - Species specific blood icons.
-		//blood_overlay = mutable_appearance('icons/effects/blood.dmi', "[blood_state]blood")
+		/*BUBBER EDIT BEGIN - Species specific blood icons.
+		blood_overlay = mutable_appearance('icons/effects/blood.dmi', "[blood_state]blood")*/
 		var/icon/blood_icon_file = 'icons/effects/blood.dmi'
 		var/blood_icon_state = "[blood_state]blood"
 		var/mob/living/wearer = loc
