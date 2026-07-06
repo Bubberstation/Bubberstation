@@ -31,13 +31,24 @@
 	. = ..()
 
 /obj/item/organ/brain/synth/Remove(mob/living/carbon/organ_owner, special = FALSE, movement_flags)
-	var/atom/drop_target = organ_owner ? organ_owner.drop_location() : drop_location()
 	. = ..()
-	if(istype(stored_mmi))
-		stored_mmi.brain = src
-		forceMove(stored_mmi)
-		stored_mmi.forceMove(drop_target)
-		stored_mmi = null
+	if(!istype(stored_mmi) || special)
+		return
+	stored_mmi.brain = src
+	organ_flags |= ORGAN_FROZEN
+	stored_mmi.update_appearance()
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(nest_into_stored_mmi))
+
+/obj/item/organ/brain/synth/proc/nest_into_stored_mmi(datum/source, atom/old_loc, dir, forced)
+	SIGNAL_HANDLER
+	if(loc == stored_mmi)
+		return
+	var/obj/item/mmi/mmi = stored_mmi
+	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+	stored_mmi = null
+	var/atom/destination = loc || mmi.drop_location()
+	mmi.forceMove(destination)
+	forceMove(mmi)
 
 /obj/item/organ/brain/synth/on_mob_insert(mob/living/carbon/brain_owner, special, movement_flags = NO_ID_TRANSFER)
 	. = ..()
