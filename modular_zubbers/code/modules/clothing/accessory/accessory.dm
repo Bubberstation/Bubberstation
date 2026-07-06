@@ -631,3 +631,9 @@ Potential future ideas:
 	name = "\improper GalFed Official neckpin"
 	desc = "A special golden neckpin to show true loyalty to the Federation."
 	greyscale_colors = "#ffff66#0099ff"
+
+/obj/item/clothing/accessory/medal/gold/
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/accessories_teshari.dmi'
+
+/obj/item/clothing/accessory/medal/gold/captain
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/accessories_teshari.dmi'
