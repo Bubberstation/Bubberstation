@@ -149,7 +149,7 @@
 #define SYMBOLS_DETECTED 2
 #define NUMBERS_DETECTED 3
 #define LETTERS_DETECTED 4
-#define APOSTROPHE_DETECTED 5 // BLUBBER EDIT ADDITION -- Issue 5898 Allow Accented Letters & Do Not Autocapitalize After Apostrophe
+#define APOSTROPHE_DETECTED 5 // BLUBBER EDIT ADDITION -- Allow Accented Letters & Do Not Autocapitalize After Apostrophe
 
 /**
  * Filters out undesirable characters from names.
@@ -178,7 +178,7 @@
 	for(var/i = 1, i <= t_len, i += length(char))
 		char = t_in[i]
 		switch(text2ascii(char))
-			// BUBBER EDIT BEGIN -- Issue 5898 Allow Accented Letters & Do Not Autocapitalize After Apostrophe
+			// BUBBER EDIT BEGIN -- Allow Accented Letters & Do Not Autocapitalize After Apostrophe
 			// A  .. Z, Latin-1 Supplement Letters
 			if(65 to 90,192 to 214,216 to 222) //Uppercase Letters
 				number_of_alphanumeric++
@@ -200,7 +200,6 @@
 				number_of_alphanumeric++
 				last_char_group = NUMBERS_DETECTED
 
-			// '
 			if (39) //Apostrophes are common in non-English names to represent glottal stop -- should not force capitalization
 				if(last_char_group == NO_CHARS_DETECTED)
 					if(strict)
