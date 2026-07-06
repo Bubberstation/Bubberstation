@@ -9,11 +9,6 @@
 	/// List of ai door requesters
 	var/static/list/requesters = list()
 
-/obj/machinery/door/airlock/Initialize(mapload)
-	. = ..()
-
-	zubbers_set_secpost_access()
-
 /obj/machinery/door/airlock/post_machine_initialize()
 	. = ..()
 	zubbers_set_secpost_access()
