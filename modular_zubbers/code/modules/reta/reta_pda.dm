@@ -116,7 +116,7 @@ GLOBAL_LIST_EMPTY(reta_supplemental_area_grants)
 	if(origin_dept != target_dept)
 		return null
 
-	return "You cannot declare [lowertext(target_dept)] emergencies for [target_dept]."
+	return "You cannot declare [LOWER_TEXT(target_dept)] emergencies for [target_dept]."
 
 /datum/computer_file/program/reta/proc/reta_pda_caller_info(mob/user)
 	if(!isliving(user))
