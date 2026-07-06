@@ -34,10 +34,10 @@
 	var/atom/drop_target = organ_owner ? organ_owner.drop_location() : drop_location()
 	. = ..()
 	if(istype(stored_mmi))
+		stored_mmi.brain = src
+		forceMove(stored_mmi)
 		stored_mmi.forceMove(drop_target)
 		stored_mmi = null
-	if(!QDELING(src))
-		qdel(src)
 
 /obj/item/organ/brain/synth/on_mob_insert(mob/living/carbon/brain_owner, special, movement_flags = NO_ID_TRANSFER)
 	. = ..()
@@ -145,8 +145,8 @@
 	mmi_type = /obj/item/mmi/posibrain/circuit
 
 /obj/item/organ/brain/synth/mmi
-	name = "compact man-machine interface"
-	desc = "A compact man-machine interface, It is usually slotted into the chest of synthetic crewmembers."
-	icon = 'modular_skyrat/master_files/icons/obj/surgery.dmi'
-	icon_state = "mmi-ipc"
+	name = "augmented brain"
+	desc = "A augmented organic brain"
+	icon = /obj/item/organ/brain::icon
+	icon_state = "brain"
 	mmi_type = /obj/item/mmi
