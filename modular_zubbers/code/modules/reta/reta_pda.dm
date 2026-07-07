@@ -186,11 +186,11 @@ GLOBAL_LIST_EMPTY(reta_supplemental_area_grants)
 		return TRUE
 	if(!id_card?.trim)
 		return FALSE
-	return istype(id_card.trim, /datum/id_trim/job/guard/science_guard) \
-		|| istype(id_card.trim, /datum/id_trim/job/guard/orderly) \
-		|| istype(id_card.trim, /datum/id_trim/job/guard/engineering_guard) \
-		|| istype(id_card.trim, /datum/id_trim/job/guard/customs_agent) \
-		|| istype(id_card.trim, /datum/id_trim/job/guard/bouncer)
+	return istype(id_card.trim, /datum/id_trim/job/science_guard) \
+		|| istype(id_card.trim, /datum/id_trim/job/orderly) \
+		|| istype(id_card.trim, /datum/id_trim/job/engineering_guard) \
+		|| istype(id_card.trim, /datum/id_trim/job/customs_agent) \
+		|| istype(id_card.trim, /datum/id_trim/job/bouncer)
 
 /proc/reta_pda_department_names()
 	var/list/departments = list()
