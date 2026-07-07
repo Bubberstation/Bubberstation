@@ -34,10 +34,6 @@
 	min_val = 0
 	max_val = 2
 
-/// Department guard trims gain low_sec_access when fewer than this many security staff are present. 0 disables this.
-/datum/config_entry/number/guard_low_sec_threshold
-	min_val = 2
-
 /datum/config_entry/flag/sec_start_brig //makes sec start in brig instead of dept sec posts
 
 /datum/config_entry/flag/force_random_names

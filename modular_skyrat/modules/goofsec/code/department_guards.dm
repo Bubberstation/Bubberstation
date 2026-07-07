@@ -172,32 +172,6 @@
 /*
 	SCIENCE GUARD DATUMS
 */
-/proc/department_guard_current_positions(department_bitflag)
-	. = 0
-
-	if(!department_bitflag || !SSjob)
-		return
-
-	for(var/datum/job/counting_job as anything in SSjob.all_occupations)
-		if(!(counting_job.departments_bitflags & department_bitflag))
-			continue
-
-		. += counting_job.current_positions
-
-/datum/id_trim/job/guard
-	var/list/low_sec_access = list()
-	var/department_bitflag = 0
-
-/datum/id_trim/job/guard/refresh_trim_access()
-	. = ..()
-
-	if(!.)
-		return
-
-	var/low_sec_threshold = CONFIG_GET(number/guard_low_sec_threshold)
-	if(low_sec_threshold > 0 && department_guard_current_positions(DEPARTMENT_BITFLAG_SECURITY) < low_sec_threshold)
-		access |= low_sec_access
-
 /datum/job/science_guard
 	title = JOB_SCIENCE_GUARD
 	rpg_title = "Secrets Keeper"
@@ -248,8 +222,7 @@
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/science = 1,
 		/obj/item/security_voucher/primary = 1,
-		/obj/item/holosign_creator/security = 1,
-		/obj/item/access_key/guard/science = 1,
+		/obj/item/holosign_creator/security = 1
 	)
 
 	backpack = /obj/item/storage/backpack/science
@@ -257,36 +230,47 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/science
 	messenger = /obj/item/storage/backpack/messenger/science
 
-	id_trim = /datum/id_trim/job/guard/science_guard
+	id_trim = /datum/id_trim/job/science_guard
 
-/datum/id_trim/job/guard/science_guard
+/datum/id_trim/job/science_guard
 	assignment = "Science Guard"
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	trim_state = "trim_calhoun"
 	department_color = COLOR_SCIENCE_PINK
 	subdepartment_color = COLOR_SCIENCE_PINK
 	sechud_icon_state = SECHUD_SCIENCE_GUARD
-	minimal_access = list(
-		ACCESS_BRIG_ENTRANCE,
-		ACCESS_SCIENCE,
-		ACCESS_MINERAL_STOREROOM,
-		ACCESS_RESEARCH,
-		ACCESS_WEAPONS,
-		ACCESS_MECH_SCIENCE,
-	)
-	low_sec_access = list(
-		ACCESS_SECURITY,
-	)
 	extra_access = list(
 		ACCESS_AUX_BASE,
+		ACCESS_BRIG_ENTRANCE,
 		ACCESS_GENETICS,
+		ACCESS_MECH_SCIENCE,
+		ACCESS_MINERAL_STOREROOM,
 		ACCESS_ORDNANCE,
 		ACCESS_ORDNANCE_STORAGE,
+		ACCESS_RESEARCH,
 		ACCESS_ROBOTICS,
+		ACCESS_SCIENCE,
+		ACCESS_SECURITY,
 		ACCESS_TECH_STORAGE,
+		ACCESS_WEAPONS,
 		ACCESS_XENOBIOLOGY,
 	)
-	department_bitflag = DEPARTMENT_BITFLAG_SCIENCE
+	minimal_access = list(
+		ACCESS_AUX_BASE,
+		ACCESS_BRIG_ENTRANCE,
+		ACCESS_GENETICS,
+		ACCESS_MECH_SCIENCE,
+		ACCESS_MINERAL_STOREROOM,
+		ACCESS_ORDNANCE,
+		ACCESS_ORDNANCE_STORAGE,
+		ACCESS_RESEARCH,
+		ACCESS_ROBOTICS,
+		ACCESS_SCIENCE,
+		ACCESS_SECURITY,
+		ACCESS_TECH_STORAGE,
+		ACCESS_WEAPONS,
+		ACCESS_XENOBIOLOGY,
+	)
 	template_access = list(ACCESS_CAPTAIN, ACCESS_RD, ACCESS_CHANGE_IDS)
 	job = /datum/job/science_guard
 
@@ -344,8 +328,7 @@
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/medical = 1,
 		/obj/item/security_voucher/primary = 1,
-		/obj/item/holosign_creator/security = 1,
-		/obj/item/access_key/guard/medical = 1,
+		/obj/item/holosign_creator/security = 1
 	)
 
 	backpack = /obj/item/storage/backpack/medic
@@ -354,36 +337,47 @@
 	messenger = /obj/item/storage/backpack/messenger/med
 	box = /obj/item/storage/box/survival/medical
 
-	id_trim = /datum/id_trim/job/guard/orderly
+	id_trim = /datum/id_trim/job/orderly
 
-/datum/id_trim/job/guard/orderly
+/datum/id_trim/job/orderly
 	assignment = "Orderly"
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	trim_state = "trim_orderly"
 	department_color = COLOR_MEDICAL_BLUE
 	subdepartment_color = COLOR_MEDICAL_BLUE
 	sechud_icon_state = SECHUD_ORDERLY
-	minimal_access = list(
-		ACCESS_BRIG_ENTRANCE,
-		ACCESS_MEDICAL,
-		ACCESS_WEAPONS,
-		ACCESS_MECH_MEDICAL,
-		ACCESS_MINERAL_STOREROOM,
-	)
-	low_sec_access = list(
-		ACCESS_SECURITY,
-	)
 	extra_access = list(
+		ACCESS_BRIG_ENTRANCE,
+		ACCESS_MECH_MEDICAL,
+		ACCESS_MEDICAL,
+		ACCESS_MINERAL_STOREROOM,
 		ACCESS_MORGUE,
 		ACCESS_PARAMEDIC,
 		ACCESS_PHARMACY,
 		ACCESS_PLUMBING,
+		ACCESS_SECURITY,
 		ACCESS_SURGERY,
 		ACCESS_VIROLOGY,
+		ACCESS_WEAPONS,
 		ACCESS_MORGUE_SECURE,
 		ACCESS_PSYCHOLOGY,
 	)
-	department_bitflag = DEPARTMENT_BITFLAG_MEDICAL
+	minimal_access = list(
+		ACCESS_BRIG_ENTRANCE,
+		ACCESS_MECH_MEDICAL,
+		ACCESS_MEDICAL,
+		ACCESS_MINERAL_STOREROOM,
+		ACCESS_MORGUE,
+		ACCESS_PARAMEDIC,
+		ACCESS_PHARMACY,
+		ACCESS_PLUMBING,
+		ACCESS_SECURITY,
+		ACCESS_SURGERY,
+		ACCESS_VIROLOGY,
+		ACCESS_WEAPONS,
+		ACCESS_MORGUE_SECURE,
+		ACCESS_PSYCHOLOGY,
+	)
 	template_access = list(ACCESS_CAPTAIN, ACCESS_CMO, ACCESS_CHANGE_IDS)
 	job = /datum/job/orderly
 
@@ -440,8 +434,7 @@
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/engineering = 1,
 		/obj/item/security_voucher/primary = 1,
-		/obj/item/holosign_creator/security = 1,
-		/obj/item/access_key/guard/engineering = 1,
+		/obj/item/holosign_creator/security = 1
 	)
 
 	backpack = /obj/item/storage/backpack/industrial
@@ -450,36 +443,47 @@
 	messenger = /obj/item/storage/backpack/messenger/eng
 	box = /obj/item/storage/box/survival/engineer
 
-	id_trim = /datum/id_trim/job/guard/engineering_guard
+	id_trim = /datum/id_trim/job/engineering_guard
 
-/datum/id_trim/job/guard/engineering_guard
+/datum/id_trim/job/engineering_guard
 	assignment = "Engineering Guard"
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	trim_state = "trim_engiguard"
 	department_color = COLOR_ENGINEERING_ORANGE
 	subdepartment_color = COLOR_ENGINEERING_ORANGE
 	sechud_icon_state = SECHUD_ENGINEERING_GUARD
-	minimal_access = list(
-		ACCESS_BRIG_ENTRANCE,
-		ACCESS_ENGINEERING,
-		ACCESS_WEAPONS,
-		ACCESS_ATMOSPHERICS,
-		ACCESS_TECH_STORAGE,
-		ACCESS_MINERAL_STOREROOM,
-		ACCESS_MAINT_TUNNELS,
-		ACCESS_CONSTRUCTION,
-		ACCESS_MECH_ENGINE,
-	)
-	low_sec_access = list(
-		ACCESS_SECURITY,
-	)
 	extra_access = list(
+		ACCESS_ATMOSPHERICS,
 		ACCESS_AUX_BASE,
+		ACCESS_BRIG_ENTRANCE,
+		ACCESS_CONSTRUCTION,
+		ACCESS_ENGINEERING,
 		ACCESS_ENGINE_EQUIP,
 		ACCESS_EXTERNAL_AIRLOCKS,
+		ACCESS_MAINT_TUNNELS,
+		ACCESS_MINERAL_STOREROOM,
+		ACCESS_MECH_ENGINE,
+		ACCESS_SECURITY,
 		ACCESS_TCOMMS,
+		ACCESS_TECH_STORAGE,
+		ACCESS_WEAPONS,
 	)
-	department_bitflag = DEPARTMENT_BITFLAG_ENGINEERING
+	minimal_access = list(
+		ACCESS_ATMOSPHERICS,
+		ACCESS_AUX_BASE,
+		ACCESS_BRIG_ENTRANCE,
+		ACCESS_CONSTRUCTION,
+		ACCESS_ENGINEERING,
+		ACCESS_ENGINE_EQUIP,
+		ACCESS_EXTERNAL_AIRLOCKS,
+		ACCESS_MAINT_TUNNELS,
+		ACCESS_MINERAL_STOREROOM,
+		ACCESS_MECH_ENGINE,
+		ACCESS_SECURITY,
+		ACCESS_TCOMMS,
+		ACCESS_TECH_STORAGE,
+		ACCESS_WEAPONS,
+	)
 	template_access = list(ACCESS_CAPTAIN, ACCESS_CE, ACCESS_CHANGE_IDS)
 	job = /datum/job/engineering_guard
 
@@ -537,8 +541,7 @@
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/cargo = 1,
 		/obj/item/security_voucher/primary = 1,
-		/obj/item/holosign_creator/security = 1,
-		/obj/item/access_key/guard/cargo = 1,
+		/obj/item/holosign_creator/security = 1
 	)
 
 	backpack = /obj/item/storage/backpack
@@ -546,34 +549,42 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag
 	messenger = /obj/item/storage/backpack/messenger
 
-	id_trim = /datum/id_trim/job/guard/customs_agent
+	id_trim = /datum/id_trim/job/customs_agent
 
-/datum/id_trim/job/guard/customs_agent
+/datum/id_trim/job/customs_agent
 	assignment = "Customs Agent"
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	trim_state = "trim_customs"
 	department_color = COLOR_CARGO_BROWN
 	subdepartment_color = COLOR_CARGO_BROWN
 	sechud_icon_state = SECHUD_CUSTOMS_AGENT
-	minimal_access = list(
+	extra_access = list(
 		ACCESS_BRIG_ENTRANCE,
 		ACCESS_CARGO,
-		ACCESS_WEAPONS,
+		ACCESS_MAINT_TUNNELS,
 		ACCESS_MECH_MINING,
 		ACCESS_MINERAL_STOREROOM,
-		ACCESS_SHIPPING,
-		ACCESS_MAINT_TUNNELS,
-	)
-	low_sec_access = list(
-		ACCESS_SECURITY,
-	)
-	extra_access = list(
-		ACCESS_BLACKSMITH,
-		ACCESS_MINING_STATION,
-		ACCESS_BIT_DEN,
 		ACCESS_MINING,
+		ACCESS_MINING_STATION,
+		ACCESS_SECURITY,
+		ACCESS_SHIPPING,
+		ACCESS_BIT_DEN,
+		ACCESS_WEAPONS,
 	)
-	department_bitflag = DEPARTMENT_BITFLAG_CARGO
+	minimal_access = list(
+		ACCESS_BLACKSMITH,
+		ACCESS_BRIG_ENTRANCE,
+		ACCESS_CARGO,
+		ACCESS_MAINT_TUNNELS,
+		ACCESS_MECH_MINING,
+		ACCESS_MINERAL_STOREROOM,
+		ACCESS_MINING,
+		ACCESS_MINING_STATION,
+		ACCESS_SECURITY,
+		ACCESS_SHIPPING,
+		ACCESS_BIT_DEN,
+		ACCESS_WEAPONS,
+	)
 	template_access = list(ACCESS_CAPTAIN, ACCESS_QM, ACCESS_CHANGE_IDS)
 	job = /datum/job/customs_agent
 
@@ -630,8 +641,7 @@
 	backpack_contents = list(
 		/obj/item/melee/baton/security/loaded/departmental/service = 1,
 		/obj/item/security_voucher/primary = 1,
-		/obj/item/holosign_creator/security = 1,
-		/obj/item/access_key/guard/service = 1,
+		/obj/item/holosign_creator/security = 1
 	)
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 
@@ -640,33 +650,41 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag
 	messenger = /obj/item/storage/backpack/messenger
 
-	id_trim = /datum/id_trim/job/guard/bouncer
+	id_trim = /datum/id_trim/job/bouncer
 
-/datum/id_trim/job/guard/bouncer
+/datum/id_trim/job/bouncer
 	assignment = "Bouncer"
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	trim_state = "trim_bouncer"
 	department_color = COLOR_SERVICE_LIME
 	subdepartment_color = COLOR_SERVICE_LIME // Personally speaking I'd have one of these with sec colors but I'm being authentic
 	sechud_icon_state = SECHUD_BOUNCER
-	minimal_access = list(
-		ACCESS_BRIG_ENTRANCE,
-		ACCESS_SERVICE,
-		ACCESS_WEAPONS,
+	extra_access = list(
 		ACCESS_BAR,
+		ACCESS_SERVICE,
+		ACCESS_BRIG_ENTRANCE,
 		ACCESS_HYDROPONICS,
 		ACCESS_KITCHEN,
 		ACCESS_MINERAL_STOREROOM,
-	)
-	low_sec_access = list(
-		ACCESS_SECURITY,
-	)
-	extra_access = list(
 		ACCESS_MORGUE,
+		ACCESS_SECURITY,
 		ACCESS_THEATRE,
+		ACCESS_WEAPONS,
 		ACCESS_JANITOR,
 	)
-	department_bitflag = DEPARTMENT_BITFLAG_SERVICE
+	minimal_access = list(
+		ACCESS_BAR,
+		ACCESS_SERVICE,
+		ACCESS_BRIG_ENTRANCE,
+		ACCESS_HYDROPONICS,
+		ACCESS_KITCHEN,
+		ACCESS_MINERAL_STOREROOM,
+		ACCESS_MORGUE,
+		ACCESS_SECURITY,
+		ACCESS_THEATRE,
+		ACCESS_WEAPONS,
+		ACCESS_JANITOR,
+	)
 	template_access = list(ACCESS_CAPTAIN, ACCESS_HOP, ACCESS_CHANGE_IDS)
 	job = /datum/job/bouncer
 
@@ -772,48 +790,48 @@
 	desc = "Contains an extra baton for Corrections Officers. \
 		Just in case you hated the idea of a normal baton in their hands."
 	cost = CARGO_CRATE_VALUE * 2
-	access_view = ACCESS_BRIG_ENTRANCE
-	access = ACCESS_BRIG_ENTRANCE
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
 	contains = list(/obj/item/melee/baton/security/loaded/departmental/prison)
 
 /datum/supply_pack/service/baton_service
 	name = "Service Baton Crate"
 	desc = "Contains an extra baton for Service Guards."
 	cost = CARGO_CRATE_VALUE * 2
-	access_view = ACCESS_BRIG_ENTRANCE
-	access = ACCESS_BRIG_ENTRANCE
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
 	contains = list(/obj/item/melee/baton/security/loaded/departmental/service)
 
 /datum/supply_pack/medical/baton_medical
 	name = "Medical Baton Crate"
 	desc = "Contains an extra baton for Orderlies."
 	cost = CARGO_CRATE_VALUE * 2
-	access_view = ACCESS_BRIG_ENTRANCE
-	access = ACCESS_BRIG_ENTRANCE
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
 	contains = list(/obj/item/melee/baton/security/loaded/departmental/medical)
 
 /datum/supply_pack/engineering/baton_engineering
 	name = "Engineering Baton Crate"
 	desc = "Contains an extra baton for Engineering Guards."
 	cost = CARGO_CRATE_VALUE * 2
-	access_view = ACCESS_BRIG_ENTRANCE
-	access = ACCESS_BRIG_ENTRANCE
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
 	contains = list(/obj/item/melee/baton/security/loaded/departmental/engineering)
 
 /datum/supply_pack/science/baton_science
 	name = "Science Baton Crate"
 	desc = "Contains an extra baton for Science Guards."
 	cost = CARGO_CRATE_VALUE * 2
-	access_view = ACCESS_BRIG_ENTRANCE
-	access = ACCESS_BRIG_ENTRANCE
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
 	contains = list(/obj/item/melee/baton/security/loaded/departmental/science)
 
 /datum/supply_pack/misc/baton_cargo
 	name = "Cargo Baton Crate"
 	desc = "Contains an extra baton for Customs Agents."
 	cost = CARGO_CRATE_VALUE * 2
-	access_view = ACCESS_BRIG_ENTRANCE
-	access = ACCESS_BRIG_ENTRANCE
+	access_view = ACCESS_SECURITY
+	access = ACCESS_SECURITY
 	contains = list(/obj/item/melee/baton/security/loaded/departmental/cargo)
 /*
 * Garment Bags

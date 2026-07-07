@@ -9,19 +9,6 @@
 	/// List of ai door requesters
 	var/static/list/requesters = list()
 
-/obj/machinery/door/airlock/post_machine_initialize()
-	. = ..()
-	zubbers_set_secpost_access()
-
-/obj/machinery/door/airlock/proc/zubbers_set_secpost_access()
-	var/department_checkpoint_access = zubbers_secpost_department_access()
-	if(!department_checkpoint_access)
-		return FALSE
-
-	req_access = list(ACCESS_BRIG_ENTRANCE, department_checkpoint_access)
-	req_one_access = null
-	return TRUE
-
 /obj/machinery/door/airlock/attack_hand_secondary(mob/living/user, list/modifiers)
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
@@ -52,20 +39,6 @@
 	requesters[user.name] = world.time
 
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-
-/obj/machinery/door/airlock/proc/zubbers_secpost_department_access()
-	var/area/door_area = get_area(src)
-	if(istype(door_area, /area/station/security/checkpoint/science))
-		return ACCESS_SCIENCE
-	if(istype(door_area, /area/station/security/checkpoint/engineering))
-		return ACCESS_ENGINEERING
-	if(istype(door_area, /area/station/security/checkpoint/medical))
-		return ACCESS_MEDICAL
-	if(istype(door_area, /area/station/security/checkpoint/supply))
-		return ACCESS_CARGO
-	if(istype(door_area, /area/station/security/checkpoint/service))
-		return ACCESS_SERVICE
-	return null
 
 #undef LINK_DENY
 #undef LINK_OPEN
