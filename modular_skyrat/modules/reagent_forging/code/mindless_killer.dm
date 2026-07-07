@@ -29,6 +29,8 @@
 		return
 	if(target_mob.mind)
 		return
+	if(modifiers[FORCE_OVERRIDE] == 0)
+		return
 	var/extra_damage = (obj_parent.force + mindless_force) * mindless_multiplier
 	target_mob.apply_damage(extra_damage, forced = TRUE, spread_damage = TRUE)
 	return
