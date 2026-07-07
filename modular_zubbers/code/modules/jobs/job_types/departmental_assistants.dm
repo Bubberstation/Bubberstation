@@ -7,6 +7,7 @@
 	outfit = /datum/outfit/job/assistant/security
 	paycheck_department = ACCOUNT_SEC
 	display_order = JOB_DISPLAY_ORDER_SECURITY_ASSISTANT
+	job_spawn_title = JOB_ASSISTANT
 	department_for_prefs = null
 	departments_list = list(
 		/datum/job_department/security,
@@ -25,6 +26,7 @@
 	outfit = /datum/outfit/job/assistant/engineering
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_ENGINEERING_ASSISTANT
+	job_spawn_title = JOB_ASSISTANT
 	department_for_prefs = null
 	departments_list = list(
 		/datum/job_department/engineering,
@@ -43,6 +45,7 @@
 	outfit = /datum/outfit/job/assistant/science
 	paycheck_department = ACCOUNT_SCI
 	display_order = JOB_DISPLAY_ORDER_SCIENCE_ASSISTANT
+	job_spawn_title = JOB_ASSISTANT
 	department_for_prefs = null
 	departments_list = list(
 		/datum/job_department/science,
@@ -61,6 +64,7 @@
 	outfit = /datum/outfit/job/assistant/medical
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_ASSISTANT
+	job_spawn_title = JOB_ASSISTANT
 	department_for_prefs = null
 	departments_list = list(
 		/datum/job_department/medical,
@@ -79,6 +83,7 @@
 	outfit = /datum/outfit/job/assistant/supply
 	paycheck_department = ACCOUNT_CAR
 	display_order = JOB_DISPLAY_ORDER_SUPPLY_ASSISTANT
+	job_spawn_title = JOB_ASSISTANT
 	department_for_prefs = null
 	departments_list = list(
 		/datum/job_department/cargo,
