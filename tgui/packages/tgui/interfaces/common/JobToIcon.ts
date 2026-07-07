@@ -68,11 +68,20 @@ const BASEICONS = {
   Bouncer: 'shield-heart',
   'Corrections Officer': 'hands-bound',
   'Customs Agent': 'shield-heart',
+  'Cargo Assistant': 'toolbox',
   'Engineering Guard': 'shield-heart',
+  'Engineering Apprentice': 'toolbox',
+  'Engineering Assistant': 'toolbox',
+  'Medical Assistant': 'toolbox',
   'Nanotrasen Consultant': 'clipboard-check',
   Orderly: 'shield-heart',
   'Science Guard': 'shield-heart',
+  'Research Assistant': 'toolbox',
+  'Science Assistant': 'toolbox',
+  'Security Cadet': 'toolbox',
+  'Security Assistant': 'toolbox',
   'Security Medic': 'heart-pulse',
+  'Supply Assistant': 'toolbox',
   Virologist: 'virus',
   // SKYRAT EDIT END
 } as const;
@@ -256,7 +265,7 @@ const ALTTITLES = {
   'Theoretical Physicist': BASEICONS.Scientist,
   'Ordnance Technician': BASEICONS.Scientist,
   Xenoarchaeologist: BASEICONS.Scientist,
-  'Research Assistant': BASEICONS.Scientist,
+  'Research Assistant': BASEICONS.Assistant,
   'Graduate Student': BASEICONS.Scientist,
   // Security Medic - heart-pulse
   'Field Medic': BASEICONS['Security Medic'],
@@ -268,7 +277,7 @@ const ALTTITLES = {
   'Security Specialist': BASEICONS['Security Officer'],
   'Defense Contractor': BASEICONS['Security Officer'],
   Peacekeeper: BASEICONS['Security Officer'],
-  'Security Cadet': BASEICONS['Security Officer'],
+  'Security Cadet': BASEICONS.Assistant,
   // Shaft Miner - digging
   'Union Miner': BASEICONS['Shaft Miner'],
   Excavator: BASEICONS['Shaft Miner'],

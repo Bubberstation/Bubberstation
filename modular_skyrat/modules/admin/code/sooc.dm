@@ -22,6 +22,7 @@ GLOBAL_LIST_EMPTY(ckey_to_sooc_name)
 		JOB_SECURITY_OFFICER=TRUE,
 		JOB_CORRECTIONS_OFFICER=TRUE,
 		JOB_SECURITY_MEDIC=TRUE,
+		JOB_SECURITY_ASSISTANT=TRUE,
 		)
 	if(!holder)
 		var/job = mob?.mind.assigned_role.title

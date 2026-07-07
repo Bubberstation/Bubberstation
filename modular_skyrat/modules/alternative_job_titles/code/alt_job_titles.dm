@@ -462,7 +462,6 @@
 		"Theoretical Physicist",
 		"Xenoarchaeologist",
 		"Xenobiologist",
-		"Research Assistant",
 	)
 
 /datum/job/security_officer
@@ -473,9 +472,7 @@
 		"Security Constable",
 		"Peacekeeper",
 		"Security Operative",
-		"Security Cadet",
 		"Junior Officer",
-		"Security Assistant",
 		"Security Specialist",
 		"Defense Contractor",
 	)
@@ -527,4 +524,28 @@
 		"Deputy Commissioner",
 		"Jailer",
 		"Master-at-Arms",
+	)
+
+/datum/job/assistant/security
+	alt_titles = list(
+		"Security Cadet",
+		"Security Assistant",
+	)
+
+/datum/job/assistant/engineering
+	alt_titles = list(
+		"Engineering Apprentice",
+		"Engineering Assistant",
+	)
+
+/datum/job/assistant/science
+	alt_titles = list(
+		"Research Assistant",
+		"Science Assistant",
+	)
+
+/datum/job/assistant/medical
+	alt_titles = list(
+		"Medical Assistant",
+		"Medical Scribe",
 	)

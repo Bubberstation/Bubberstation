@@ -724,4 +724,7 @@
 	if(!icon_state || icon_state == SECHUD_UNKNOWN)
 		CRASH("[src.type] has no job icon state.")
 
+	var/static/list/modular_hud_icon_states = icon_states('modular_zubbers/icons/mob/huds/hud.dmi')
+	if(icon_state in modular_hud_icon_states)
+		return icon('modular_zubbers/icons/mob/huds/hud.dmi', icon_state)
 	return icon('icons/mob/huds/hud.dmi', icon_state)

@@ -18,8 +18,18 @@
 // Our exclusive jobs
 #define JOB_SECURITY_MEDIC "Security Medic"
 #define JOB_BLACKSMITH "Blacksmith"
+#define JOB_SECURITY_ASSISTANT "Security Cadet"
+#define JOB_ENGINEERING_ASSISTANT "Engineering Apprentice"
+#define JOB_SCIENCE_ASSISTANT "Research Assistant"
+#define JOB_MEDICAL_ASSISTANT "Medical Assistant"
+#define JOB_SUPPLY_ASSISTANT "Cargo Assistant"
 
 #define JOB_DISPLAY_ORDER_BLACKSMITH 48
+#define JOB_DISPLAY_ORDER_SECURITY_ASSISTANT 54
+#define JOB_DISPLAY_ORDER_ENGINEERING_ASSISTANT 55
+#define JOB_DISPLAY_ORDER_SCIENCE_ASSISTANT 56
+#define JOB_DISPLAY_ORDER_MEDICAL_ASSISTANT 57
+#define JOB_DISPLAY_ORDER_SUPPLY_ASSISTANT 58
 
 /// Time after clocking out before you can clock in again
 #define TIMECLOCK_COOLDOWN 5 MINUTES

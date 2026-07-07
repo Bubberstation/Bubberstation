@@ -153,3 +153,76 @@
 	job = /datum/job/coroner
 	honorifics = list("Coroner", "Medical Examiner", "Medical Investigator", "Forensic Pathologist", "Funeral Director", "Mortician", "Undertaker")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
+
+/datum/id_trim/job/assistant/security
+	assignment = JOB_SECURITY_ASSISTANT
+	department_color = COLOR_SECURITY_RED
+	subdepartment_color = COLOR_SECURITY_RED
+	sechud_icon_state = SECHUD_ASSISTANT_SECURITY
+	minimal_access = list(
+		ACCESS_BRIG_ENTRANCE,
+		ACCESS_MAINT_TUNNELS,
+		ACCESS_WEAPONS,
+		)
+	extra_access = list(
+		ACCESS_SECURITY,
+		)
+	job = /datum/job/assistant/security
+
+/datum/id_trim/job/assistant/engineering
+	assignment = JOB_ENGINEERING_ASSISTANT
+	department_color = COLOR_ENGINEERING_ORANGE
+	subdepartment_color = COLOR_ENGINEERING_ORANGE
+	sechud_icon_state = SECHUD_ASSISTANT_ENGINEERING
+	minimal_access = list(
+		ACCESS_MAINT_TUNNELS,
+		ACCESS_CONSTRUCTION,
+		)
+	extra_access = list(
+		ACCESS_ENGINEERING,
+		)
+	job = /datum/job/assistant/engineering
+
+/datum/id_trim/job/assistant/science
+	assignment = JOB_SCIENCE_ASSISTANT
+	department_color = COLOR_SCIENCE_PINK
+	subdepartment_color = COLOR_SCIENCE_PINK
+	sechud_icon_state = SECHUD_ASSISTANT_SCIENCE
+	minimal_access = list(
+		ACCESS_MAINT_TUNNELS,
+		ACCESS_SCIENCE,
+		)
+	extra_access = list(
+		ACCESS_RESEARCH,
+		)
+	job = /datum/job/assistant/science
+
+/datum/id_trim/job/assistant/medical
+	assignment = JOB_MEDICAL_ASSISTANT
+	department_color = COLOR_MEDICAL_BLUE
+	subdepartment_color = COLOR_MEDICAL_BLUE
+	sechud_icon_state = SECHUD_ASSISTANT_MEDICAL
+	minimal_access = list(
+		ACCESS_MAINT_TUNNELS,
+		ACCESS_MEDICAL,
+		)
+	extra_access = list(
+		ACCESS_SURGERY,
+		ACCESS_PARAMEDIC,
+		)
+	job = /datum/job/assistant/medical
+
+/datum/id_trim/job/assistant/supply
+	assignment = JOB_SUPPLY_ASSISTANT
+	department_color = COLOR_CARGO_BROWN
+	subdepartment_color = COLOR_CARGO_BROWN
+	sechud_icon_state = SECHUD_ASSISTANT_SUPPLY
+	minimal_access = list(
+		ACCESS_CARGO,
+		)
+	extra_access = list(
+		ACCESS_SHIPPING,
+		ACCESS_MINERAL_STOREROOM,
+		ACCESS_MINING,
+		)
+	job = /datum/job/assistant/supply
