@@ -56,7 +56,7 @@
 
 		if ("tank")
 			new /obj/item/tank/internals/oxygen(src)
-			new /obj/item/tank/internals/nitrogen //BUBBER ADDITION - nitrogen 4 vox <3
+			new /obj/item/tank/internals/nitrogen(src) //BUBBER ADDITION - nitrogen 4 vox <3
 			new /obj/item/clothing/mask/breath(src)
 
 		if ("both")
