@@ -1,4 +1,5 @@
 #define DOAFTER_SOURCE_LYCAN_DOOR_PRY "lycan door pry"
+#define FORCE_TO_BURN_RATIO 1.5
 
 /datum/species/lycan
 	id = SPECIES_LYCAN
@@ -193,11 +194,19 @@
 
 	// already lost the limb shit
 
-/datum/species/lycan/proc/on_baned(mob/living/carbon/human/baned, mob/user)
+/datum/species/lycan/proc/on_baned(mob/living/carbon/human/baned, obj/source, mob/user)
 	SIGNAL_HANDLER
 
 	baned.visible_message(span_warning("[baned] seems to react negatively to the silver, [baned.p_their()] flesh scorching and burning on contact!"), ignored_mobs = list(baned))
 	to_chat(baned, span_bolddanger("The sister moon casts its light on you, and you feel your flesh scorch!"))
 	INVOKE_ASYNC(baned, TYPE_PROC_REF(/mob, emote), "scream")
 
+	var/target_zone
+	var/mob/living/living_user = user
+	if (istype(living_user))
+		target_zone = living_user.zone_selected
+
+	baned.apply_damage(source.force * FORCE_TO_BURN_RATIO, BURN, target_zone, attacking_item = source)
+
 #undef DOAFTER_SOURCE_LYCAN_DOOR_PRY
+#undef FORCE_TO_BURN_RATIO

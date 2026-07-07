@@ -13,6 +13,21 @@
 	icon_state = "security"
 	worn_icon_state = "security"
 
+/obj/item/storage/belt/security/setup_reskins()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/sec_belt, infinite = FALSE)
+
+/datum/atom_skin/sec_belt
+	abstract_type = /datum/atom_skin/sec_belt
+
+/datum/atom_skin/sec_belt/standard
+	preview_name = "Standard"
+
+/datum/atom_skin/sec_belt/black
+	preview_name = "Black"
+	new_icon = 'modular_zubbers/icons/obj/clothing/belts/belts.dmi'
+	new_worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
+	new_icon_state = "security_black"
+
 ///Enables you to quickdraw weapons from security holsters
 /datum/storage/security/open_storage(datum/source, mob/user)
 	var/atom/resolve_parent = parent
@@ -50,6 +65,21 @@
 /obj/item/clothing/glasses/hud/security/sunglasses
 	icon_state = "sunhudsec"
 	glass_colour_type = /datum/client_colour/glass_colour/red
+
+/obj/item/clothing/glasses/hud/security/sunglasses/setup_reskins()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/sec_hud_sunglasses, infinite = FALSE)
+
+/datum/atom_skin/sec_hud_sunglasses
+	abstract_type = /datum/atom_skin/sec_hud_sunglasses
+
+/datum/atom_skin/sec_hud_sunglasses/standard
+	preview_name = "Standard"
+
+/datum/atom_skin/sec_hud_sunglasses/sunglasses
+	preview_name = "Sunglasses"
+	new_icon = 'icons/obj/clothing/glasses.dmi'
+	new_worn_icon = 'icons/mob/clothing/eyes.dmi'
+	new_icon_state = "sun"
 
 /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch
 	icon_state = "hudpatch"
@@ -201,17 +231,39 @@
 	desc = "A pair of security gloves."
 	icon = 'icons/obj/clothing/gloves.dmi'
 	worn_icon = 'icons/mob/clothing/hands.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/gloves/gloves_teshari.dmi'
 	icon_state = "sec"
+
+/obj/item/clothing/gloves/color/black/security/setup_reskins()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/sec_gloves, infinite = FALSE)
 
 /obj/item/clothing/gloves/tackler/security	//Can't just overwrite tackler, as there's a ton of subtypes that we'd then need to account for. This is easier. MUCH easier.
 	icon = 'icons/obj/clothing/gloves.dmi'
 	worn_icon = 'icons/mob/clothing/hands.dmi'
 	icon_state = "gorilla"
 
+/obj/item/clothing/gloves/tackler/security/setup_reskins()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/sec_gloves, infinite = FALSE)
+
 /obj/item/clothing/gloves/tackler/combat
 	icon = 'icons/obj/clothing/gloves.dmi'
 	worn_icon = 'icons/mob/clothing/hands.dmi'
 	icon_state = "gorilla"
+
+/obj/item/clothing/gloves/tackler/combat/setup_reskins()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/sec_gloves, infinite = FALSE)
+
+/datum/atom_skin/sec_gloves
+	abstract_type = /datum/atom_skin/sec_gloves
+
+/datum/atom_skin/sec_gloves/standard
+	preview_name = "Standard"
+
+/datum/atom_skin/sec_gloves/plain_black
+	preview_name = "Plain Black"
+	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
+	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
+	new_icon_state = "combat"
 
 /obj/item/clothing/gloves/kaza_ruk/sec
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
@@ -229,6 +281,7 @@
 	icon_state = "armor_sec"
 
 /obj/item/clothing/suit/armor/hos
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/armor/hos/Initialize(mapload)
@@ -376,6 +429,7 @@
 /obj/item/clothing/under/rank/security/warden
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
 	icon_state = "rwarden"
 
 /obj/item/clothing/under/rank/security/warden/formal
@@ -390,6 +444,7 @@
 /obj/item/clothing/under/rank/security/head_of_security
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
 	icon_state = "rhos"
 
 /obj/item/clothing/under/rank/security/head_of_security/parade
@@ -531,6 +586,7 @@
 	icon_state = "jackboots_sec"
 	icon = 'icons/obj/clothing/shoes.dmi'
 	worn_icon = 'icons/mob/clothing/feet.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
 	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS) // We have other footsteps.
 
 /obj/item/clothing/shoes/jackboots/sec/Initialize(mapload)
@@ -646,12 +702,6 @@
 	inhand_icon_state = "security"
 	worn_icon_state = "security"
 
-/obj/item/storage/belt/security/redsec/Initialize(mapload)
-	. = ..()
-	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
-	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
-		qdel(reskin_component)
-
 /obj/item/storage/belt/holster
 	desc = "A rather plain but still cool looking holster that can hold a handgun, and some ammo."
 
@@ -684,6 +734,7 @@
 /obj/item/storage/belt/holster/detective
 	name = "detective's holster"
 	desc = "A holster able to carry handguns and extra ammo, thanks to an additional hand-sewn pouch. WARNING: Badasses only."
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/belts/belts_teshari.dmi'
 
 /datum/storage/holster/detective
 	max_slots = 4

@@ -167,10 +167,10 @@
 	if(portal_one || portal_two)
 		clear_portals()
 		message += ", previous cleared"
-
 	portal_one = new(get_turf(door2), door2, inverted)
 	portal_two = new(get_turf(door1), door1, inverted)
 	portal_one.destination = portal_two
+
 	RegisterSignal(portal_one, COMSIG_QDELETING, PROC_REF(clear_portal_refs))  //we only really need to register one because they already qdel both portals if one is destroyed
 	portal_two.destination = portal_one
 	balloon_alert(user, "[message]")
@@ -207,6 +207,12 @@
 	var/reference_resolved = link?.resolve()
 	if(reference_resolved == target)
 		return ITEM_INTERACT_BLOCKING
+
+	// BUBBER EDIT ADDITION BEGIN - cant use it for insta escapes
+	user.balloon_alert_to_viewers("linking...")
+	if (!do_after(user, 5 SECONDS, user, IGNORE_HELD_ITEM))
+		return ITEM_INTERACT_BLOCKING
+	// BUBBER EDIT ADDITION END
 
 	if(reference_resolved)
 		make_portal(user, reference_resolved, target)

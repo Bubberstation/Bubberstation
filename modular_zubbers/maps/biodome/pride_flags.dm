@@ -78,6 +78,7 @@
 	desc = "You probably shouldn't be seeing this. Yell at the coders about it."
 	icon = 'modular_zubbers/icons/maps/biodome/pride_flags.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/neck/neck_teshari.dmi'
 	slot_flags = ITEM_SLOT_NECK
 
 /obj/item/sign/flag/pride/gay

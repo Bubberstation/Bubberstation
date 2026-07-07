@@ -327,3 +327,8 @@ export const erp_status_pref_mechanics: FeatureChoiced = {
   name: 'ERP Mechanical Status',
   component: FeatureDropdownInput,
 };
+
+export const erp_free_use: FeatureToggle = {
+  name: 'ERP Free Use Status',
+  component: CheckboxInput,
+};

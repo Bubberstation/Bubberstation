@@ -1,6 +1,6 @@
 
 /// The number of influences spawned per heretic
-#define NUM_INFLUENCES_PER_HERETIC 5
+#define NUM_INFLUENCES_PER_HERETIC 10 // BUBBER EDIT CHANGE - was 5
 
 /**
  * #Reality smash tracker
@@ -235,12 +235,23 @@
  */
 /obj/effect/heretic_influence/proc/drain_influence(mob/living/user, knowledge_to_gain, drain_speed = HERETIC_RIFT_DEFAULT_DRAIN_SPEED)
 
+	// BUBBER EDIT ADDITION - inhibition/no heart = no draining
+	if (HAS_TRAIT(user, TRAIT_MANSUS_INHIBITION))
+		user.balloon_alert(user, "inhibited! cant drain!")
+		return
+
+	var/datum/antagonist/heretic/our_heretic = GET_HERETIC(user)
+	if (our_heretic.has_living_heart() != HERETIC_HAS_LIVING_HEART)
+		user.balloon_alert(user, "no living heart!")
+		return
+	// BUBBER EDIT ADDITION END
+
 	being_drained = TRUE
 	loc.balloon_alert(user, "draining influence...")
 
 	// Only gives you the dripping eye effect if you have faster drain speed than default
 	var/mutable_appearance/draining_overlay = mutable_appearance('icons/mob/effects/heretic_aura.dmi', "heretic_eye_dripping")
-	if(drain_speed < HERETIC_RIFT_DEFAULT_DRAIN_SPEED)
+	if(drain_speed >= 0) // BUBBER EDIT CAHNGE - was HERETIC_RIFT_DEFAULT_DRAIN_SPEED - now always displays it
 		draining_overlay.pixel_y = 16
 		user.add_overlay(draining_overlay)
 
@@ -255,7 +266,8 @@
 	user.cut_overlay(draining_overlay)
 
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
-	heretic_datum.adjust_knowledge_points(knowledge_to_gain)
+	heretic_datum.adjust_drained(1) // BUBBER EDIT ADDITION
+	//heretic_datum.adjust_knowledge_points(knowledge_to_gain) // BUBBER EDIT REMOVAL
 
 	// Aaand now we delete it
 	after_drain(user)

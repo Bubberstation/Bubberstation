@@ -29,6 +29,7 @@
 					/obj/item/clothing/head/security_kepi = 6,
 					/obj/item/clothing/head/beret/sec/peacekeeper/armadyne = 6,
 					/obj/item/clothing/head/soft/sec = 6,
+					/obj/item/clothing/head/soft/sec/recolorable = 6,
 					/obj/item/clothing/head/security_beanie = 6,
 					/obj/item/clothing/head/costume/ushanka/sec = 10,
 					/obj/item/clothing/head/playbunnyears/security = 6,
@@ -59,6 +60,7 @@
 					/obj/item/clothing/neck/security_cape = 6,
 					/obj/item/clothing/neck/security_cape/armplate = 6,
 					/obj/item/clothing/under/rank/security/officer = 6,
+					/obj/item/clothing/under/rank/security/officer/recolorable = 6,
 					/obj/item/clothing/under/rank/security/peacekeeper/skirt = 6,
 					/obj/item/clothing/under/rank/security/peacekeeper/miniskirt = 6,
 					/obj/item/clothing/under/rank/security/officer/blueshirt = 6,
@@ -80,6 +82,7 @@
 					/obj/item/clothing/suit/armor/vest/viro/leatherjacket = 6,
 					/obj/item/clothing/suit/armor/vest/viro/softshell = 6,
 					/obj/item/clothing/head/sec/viro = 6,
+					/obj/item/clothing/head/helmet/sec/viro = 6,
 					/obj/item/clothing/head/sec/viro/beanie = 6,
 
 				),

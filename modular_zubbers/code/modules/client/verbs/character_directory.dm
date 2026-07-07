@@ -65,6 +65,8 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 		"Nonbinary",
 		"Genderfluid",
 		"Trans",
+		"Transmasc",
+		"Transfem",
 		"Andromorph",
 		"Gynomorph",
 		"Agender",

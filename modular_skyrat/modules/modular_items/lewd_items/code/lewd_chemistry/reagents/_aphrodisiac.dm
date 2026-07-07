@@ -600,7 +600,7 @@
 	if(exposed_mob)
 		exposed_mob.update_body()
 		if(mutations_overlay)
-			exposed_mob.update_mutations_overlay()
+			exposed_mob.update_appearance(UPDATE_OVERLAYS)
 
 #undef TAKE_DAMAGE_THRESHOLD_PENIS
 #undef TAKE_DAMAGE_THRESHOLD_BREASTS
