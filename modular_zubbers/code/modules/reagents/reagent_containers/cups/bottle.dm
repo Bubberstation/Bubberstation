@@ -21,3 +21,9 @@
 	desc = "A small bottle of plushmium."
 	icon = 'icons/obj/medical/chemical.dmi'
 	list_reagents = list(/datum/reagent/plushmium = 30)
+
+/obj/item/reagent_containers/cup/bottle/forgorine
+	name = "forgorine bottle"
+	desc = "A small bottle, loaded with forgorine. Combine with knockout drugs, high dose of alcohol or severe beating."
+	icon = 'icons/obj/medical/chemical.dmi'
+	list_reagents = list(/datum/reagent/forgorine = 50)

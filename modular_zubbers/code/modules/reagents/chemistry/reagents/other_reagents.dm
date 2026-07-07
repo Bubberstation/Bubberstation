@@ -443,16 +443,18 @@
 		exposed_mob.revive(ADMIN_HEAL_ALL)
 
 //
-/datum/reagent/soma_mindwipe
+/datum/reagent/forgorine
 	name = "Forgorine"
-	description = "todo"
-	color = "#6c0830"
+	description = "Colorless and odorless - induces memory loss in already mentally impaired victims."
+	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha)
+	taste_description = "water"
+	metabolization_rate = 0.1
 	var/mindwiped_questionmark = FALSE
 
-/datum/reagent/soma_mindwipe/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
+/datum/reagent/forgorine/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
 	var/blood_alcohol_content = affected_mob.get_blood_alcohol_content()
-	if(affected_mob.stat == CONSCIOUS & blood_alcohol_content < BAC_STAGE_3_ACTIVE)
+	if(affected_mob.stat == CONSCIOUS & blood_alcohol_content < BAC_STAGE_3_ACTIVE) // maybe check for brain damage also?
 		//make them eepy?
 		affected_mob.adjust_drowsiness_up_to(1.5 SECONDS * metabolization_ratio, 12 SECONDS)
 		affected_mob.adjust_drugginess_up_to(2 SECONDS * metabolization_ratio, 12 SECONDS)
@@ -471,11 +473,11 @@
 			to_chat(affected_mob, span_reallybig(span_hypnophrase("What just happened... What were you doing?")))
 			to_chat(span_danger("You remember nothing that led to this situation, who or what caused it or how did you feel about it. You can have faint recollections and piece together an explanation that doesn't incriminate anyone."))
 
-/datum/reagent/soma_mindwipe/on_mob_add(mob/living/carbon/affected_mob)
+/datum/reagent/forgorine/on_mob_add(mob/living/carbon/affected_mob)
 	..()
 	mindwiped_questionmark = FALSE
 
-/datum/reagent/soma_mindwipe/on_mob_delete(mob/living/carbon/affected_mob)
+/datum/reagent/forgorine/on_mob_delete(mob/living/carbon/affected_mob)
 	mindwiped_questionmark = FALSE
 	..()
 
