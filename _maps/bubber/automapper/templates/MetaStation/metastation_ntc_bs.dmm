@@ -61,7 +61,6 @@
 /area/station/command/heads_quarters/nt_rep)
 "dV" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/siding/dark,
 /obj/structure/chair/office,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/landmark/start/nanotrasen_consultant,
@@ -122,13 +121,12 @@
 "jh" = (
 /obj/machinery/light/warm/directional/north,
 /obj/machinery/computer/records/medical,
-/obj/effect/turf_decal/siding/dark,
 /obj/machinery/vending/wallmed/directional/north,
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "lT" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/siding/dark,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/turn_off_lights_with_lightswitch,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
@@ -156,11 +154,11 @@
 /area/station/command/heads_quarters/nt_rep)
 "nt" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/siding/dark,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
 /obj/effect/landmark/start/nanotrasen_consultant,
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "nD" = (
@@ -203,10 +201,10 @@
 /turf/open/floor/plating,
 /area/station/command/gateway)
 "qN" = (
-/obj/effect/turf_decal/siding/dark{
+/obj/effect/spawner/random/loot/dignitary/consultant,
+/obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/obj/effect/spawner/random/loot/dignitary/consultant,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "sc" = (
@@ -252,26 +250,26 @@
 /area/station/hallway/secondary/command)
 "ww" = (
 /obj/structure/table/wood,
-/obj/item/radio/intercom/directional/east,
 /obj/machinery/fax{
 	fax_name = "Nanotrasen Consultant's Office";
 	name = "Nanotrasen Consultant's Fax Machine"
 	},
-/obj/effect/turf_decal/siding/dark{
+/obj/item/radio/intercom/command/directional/east,
+/obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "yU" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/siding/dark/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "zo" = (
@@ -281,7 +279,7 @@
 	name = "couch"
 	},
 /obj/machinery/camera/directional/west{
-	c_tag = "Consultant's Office";
+	c_tag = "Bridge - Consultant's Office";
 	name = "command camera";
 	dir = 5
 	},
@@ -318,7 +316,6 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/command)
 "As" = (
-/obj/effect/turf_decal/siding/dark/corner,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
@@ -342,9 +339,6 @@
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "Bx" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /obj/effect/landmark/start/blueshield,
@@ -391,7 +385,6 @@
 "CC" = (
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
-/obj/effect/turf_decal/siding/dark,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
@@ -406,22 +399,22 @@
 /mob/living/basic/pet/dog/dobermann/walter,
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /obj/machinery/camera/directional/west{
-	c_tag = "Blueshield's Office";
+	c_tag = "Bridge - Blueshield's Office";
 	name = "command camera";
 	dir = 6
 	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "CT" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/dark/corner{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/turn_off_lights_with_lightswitch,
 /obj/effect/landmark/start/nanotrasen_consultant,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "CZ" = (
@@ -445,8 +438,8 @@
 "DC" = (
 /obj/machinery/airalarm/directional/east,
 /obj/machinery/computer/records/security,
-/obj/effect/turf_decal/siding/dark,
 /obj/structure/reagent_dispensers/wall/peppertank/directional/north,
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "DG" = (
@@ -466,8 +459,8 @@
 "Fb" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/west,
-/obj/effect/turf_decal/siding/dark,
 /obj/machinery/photocopier/prebuilt,
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "GR" = (
@@ -715,11 +708,11 @@
 /area/station/hallway/primary/central)
 "Rd" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "Tv" = (
@@ -764,10 +757,10 @@
 /obj/machinery/computer/crew{
 	dir = 2
 	},
-/obj/effect/turf_decal/siding/dark{
+/obj/machinery/firealarm/directional/north,
+/obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
-/obj/machinery/firealarm/directional/north,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "Vy" = (
@@ -785,14 +778,6 @@
 /turf/open/floor/plating,
 /area/station/command/teleporter)
 "VT" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
-/obj/machinery/camera/directional/west{
-	c_tag = "Blueshield's Office";
-	name = "command camera";
-	dir = 5
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
@@ -862,22 +847,22 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/command)
 "ZN" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 1
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
 /obj/effect/landmark/start/nanotrasen_consultant,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "ZP" = (
 /obj/structure/table/wood,
-/obj/item/radio/intercom/directional/east,
 /obj/machinery/fax{
 	name = "Blueshield's Fax Machine";
 	fax_name = "Blueshield's Office"
 	},
+/obj/item/radio/intercom/command/directional/east,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "ZQ" = (

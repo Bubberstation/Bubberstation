@@ -203,7 +203,7 @@
 "A" = (
 /obj/machinery/status_display/ai/directional/north,
 /obj/machinery/camera/directional/north{
-	c_tag = "Blueshield's Office - Armory"
+	c_tag = "Command - Blueshield's Armory"
 	},
 /obj/effect/turf_decal/tile/dark_blue/diagonal_centre,
 /obj/machinery/light/small/blacklight/directional/north,
@@ -212,7 +212,6 @@
 /turf/open/floor/iron/dark/diagonal,
 /area/station/command/heads_quarters/blueshield)
 "B" = (
-/obj/item/radio/intercom/directional/south,
 /obj/structure/table/wood,
 /obj/machinery/fax{
 	name = "Blueshield's Fax Machine";
@@ -228,6 +227,7 @@
 	pixel_y = 8;
 	req_access = list("captain")
 	},
+/obj/item/radio/intercom/command/directional/south,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "C" = (
@@ -243,7 +243,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/airalarm/directional/north,
 /obj/machinery/camera/directional/north{
-	c_tag = "Blueshield's Office"
+	c_tag = "Command - Blueshield's Office"
 	},
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)

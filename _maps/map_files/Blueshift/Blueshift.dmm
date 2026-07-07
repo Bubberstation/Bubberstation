@@ -3574,7 +3574,7 @@
 /obj/structure/curtain/cloth/fancy/mechanical{
 	icon_state = "bounty-open";
 	icon_type = "bounty";
-	id = "prisonlibrarycurtain3";
+	id = "ntrep_priv";
 	name = "curtain"
 	},
 /turf/open/floor/grass,
@@ -36558,7 +36558,7 @@
 /obj/structure/curtain/cloth/fancy/mechanical{
 	icon_state = "bounty-open";
 	icon_type = "bounty";
-	id = "prisonlibrarycurtain4";
+	id = "blueshield_priv";
 	name = "curtain"
 	},
 /turf/open/floor/grass,
@@ -36704,7 +36704,7 @@
 /obj/structure/curtain/cloth/fancy/mechanical{
 	icon_state = "bounty-open";
 	icon_type = "bounty";
-	id = "prisonlibrarycurtain4";
+	id = "blueshield_priv";
 	name = "curtain"
 	},
 /turf/open/floor/grass,
@@ -39818,8 +39818,8 @@
 /area/station/maintenance/port/upper)
 "hEi" = (
 /obj/machinery/griddle,
-/obj/item/radio/intercom/directional/south,
 /obj/machinery/duct,
+/obj/item/radio/intercom/command/directional/south,
 /turf/open/floor/iron/cafeteria,
 /area/station/command/heads_quarters/nt_rep)
 "hEu" = (
@@ -47694,10 +47694,10 @@
 "jfE" = (
 /obj/machinery/disposal/bin,
 /obj/machinery/newscaster/directional/west,
-/obj/structure/noticeboard/directional/north,
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
+/obj/structure/noticeboard/directional/north,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "jfO" = (
@@ -59667,7 +59667,7 @@
 /area/station/maintenance/port/fore)
 "lsn" = (
 /obj/machinery/button/curtain{
-	id = "prisonlibrarycurtain4";
+	id = "blueshield_priv";
 	pixel_x = -6;
 	pixel_y = 22
 	},
@@ -61408,6 +61408,20 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/machinery/button/curtain{
+	id = "ntrep_priv";
+	pixel_x = -6;
+	pixel_y = -37
+	},
+/obj/machinery/button/door/directional/south{
+	id = "Repdoor";
+	name = "Door Lock";
+	normaldoorcontrol = 1;
+	pixel_x = 4;
+	pixel_y = -36;
+	req_access = list("cent_general");
+	specialfunctions = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/nt_rep)
 "lKw" = (
@@ -66695,6 +66709,10 @@
 "mMh" = (
 /obj/machinery/light/directional/west,
 /obj/structure/aquarium/prefilled,
+/obj/item/reagent_containers/cup/fish_feed{
+	pixel_x = 1;
+	pixel_y = 19
+	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "mMi" = (
@@ -71599,7 +71617,7 @@
 /obj/structure/curtain/cloth/fancy/mechanical{
 	icon_state = "bounty-open";
 	icon_type = "bounty";
-	id = "prisonlibrarycurtain3";
+	id = "ntrep_priv";
 	name = "curtain"
 	},
 /turf/open/floor/grass,
@@ -87696,20 +87714,6 @@
 /turf/open/floor/wood,
 /area/station/service/bar/atrium)
 "qJL" = (
-/obj/machinery/button/curtain{
-	id = "prisonlibrarycurtain3";
-	pixel_x = -6;
-	pixel_y = -37
-	},
-/obj/machinery/button/door/directional/south{
-	id = "Repdoor";
-	name = "Door Lock";
-	normaldoorcontrol = 1;
-	pixel_x = 4;
-	pixel_y = -36;
-	req_access = list("cent_general");
-	specialfunctions = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -87719,8 +87723,8 @@
 	name = "Consultant's Fax Machine";
 	pixel_y = 3
 	},
-/obj/item/radio/intercom/directional/south,
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/item/radio/intercom/command/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/nt_rep)
 "qJV" = (
@@ -96182,7 +96186,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
-/obj/item/radio/intercom/directional/west,
+/obj/item/radio/intercom/command/directional/west,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/nt_rep)
 "srR" = (
@@ -108897,7 +108901,7 @@
 /obj/structure/curtain/cloth/fancy/mechanical{
 	icon_state = "bounty-open";
 	icon_type = "bounty";
-	id = "prisonlibrarycurtain4";
+	id = "blueshield_priv";
 	name = "curtain"
 	},
 /turf/open/floor/plating,
@@ -110698,7 +110702,7 @@
 	fax_name = "Blueshield's Office";
 	pixel_y = 6
 	},
-/obj/item/radio/intercom/directional/north,
+/obj/item/radio/intercom/command/directional/north,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "vfQ" = (
@@ -118488,10 +118492,10 @@
 /area/space/nearstation)
 "wAB" = (
 /obj/structure/table/wood/fancy/green,
-/obj/item/modular_computer/laptop/preset/civilian{
-	pixel_y = 7
-	},
 /obj/machinery/computer/security/telescreen/entertainment/directional/north,
+/obj/item/modular_computer/laptop/preset/security{
+	pixel_y = 5
+	},
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/nt_rep)
 "wAC" = (
@@ -122354,7 +122358,7 @@
 /obj/structure/curtain/cloth/fancy/mechanical{
 	icon_state = "bounty-open";
 	icon_type = "bounty";
-	id = "prisonlibrarycurtain3";
+	id = "ntrep_priv";
 	name = "curtain"
 	},
 /turf/open/floor/grass,

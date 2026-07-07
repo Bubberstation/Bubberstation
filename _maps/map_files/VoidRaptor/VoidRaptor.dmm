@@ -30911,8 +30911,8 @@
 	name = "Consultant's Fax Machine";
 	pixel_y = 3
 	},
-/obj/item/radio/intercom/directional/south,
 /obj/machinery/light/warm/directional/south,
+/obj/item/radio/intercom/command/directional/south,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "iVS" = (
@@ -38298,7 +38298,7 @@
 	name = "Bridge Fax Machine";
 	pixel_y = 3
 	},
-/obj/item/radio/intercom/directional/east,
+/obj/item/radio/intercom/command/directional/east,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "kSA" = (
@@ -83191,8 +83191,8 @@
 /area/station/cargo/bitrunning/den)
 "xfl" = (
 /obj/structure/dresser,
-/obj/item/radio/intercom/directional/south,
 /obj/machinery/airalarm/directional/west,
+/obj/item/radio/intercom/command/directional/south,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "xfx" = (
@@ -83294,6 +83294,10 @@
 /area/station/command/bridge)
 "xha" = (
 /obj/structure/fireplace,
+/obj/structure/railing{
+	dir = 1;
+	pixel_y = -7
+	},
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/nt_rep)
 "xhb" = (
