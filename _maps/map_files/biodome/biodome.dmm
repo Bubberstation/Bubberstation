@@ -21645,15 +21645,6 @@
 "hNy" = (
 /turf/closed/mineral/random/stationside/asteroid/porus,
 /area/station/asteroid)
-"hNK" = (
-/obj/machinery/door/poddoor/shutters{
-	dir = 8;
-	id = "cargowarehouse"
-	},
-/obj/machinery/door/firedoor,
-/obj/structure/table/reinforced,
-/turf/open/floor/iron/dark,
-/area/station/cargo/blacksmith)
 "hNL" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light/directional/south,
@@ -21859,7 +21850,6 @@
 /turf/open/floor/iron,
 /area/station/security/prison/garden)
 "hRn" = (
-/obj/item/storage/toolbox/mechanical,
 /obj/structure/rack/wooden,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -24767,6 +24757,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
+/obj/machinery/space_heater/wall_mounted/with_cell/directional/west,
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
 "iQg" = (
@@ -50821,9 +50812,6 @@
 /area/station/engineering/atmos)
 "rGQ" = (
 /obj/structure/table/reinforced,
-/obj/item/forging/billow,
-/obj/item/forging/tongs,
-/obj/item/forging/hammer,
 /turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
 "rGR" = (
@@ -63977,13 +63965,13 @@
 /turf/open/floor/plating,
 /area/station/maintenance/aft)
 "wha" = (
-/obj/structure/reagent_dispensers/reagent_smithing_basin,
-/obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
 /obj/structure/wall_torch/spawns_lit/directional/south,
+/obj/machinery/power/apc/auto_name/directional/east,
+/obj/structure/reagent_dispensers/reagent_smithing_basin/prefilled,
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
 "whg" = (
@@ -67094,7 +67082,6 @@
 	dir = 5
 	},
 /obj/structure/wall_torch/spawns_lit/directional/east,
-/obj/structure/closet/crate/wooden,
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
 "xfJ" = (
@@ -68759,7 +68746,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/structure/closet/crate/wooden,
+/obj/structure/closet/crate/wooden/blacksmith,
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
 "xJc" = (
@@ -178552,8 +178539,8 @@ eae
 eae
 uyB
 uyB
-hNK
-hNK
+eae
+eae
 uyB
 uyB
 slB

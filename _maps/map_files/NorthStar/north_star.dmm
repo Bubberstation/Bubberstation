@@ -6768,8 +6768,15 @@
 /turf/open/floor/plating,
 /area/station/maintenance/floor2/port)
 "bCz" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/power/apc/auto_name/directional/south,
+/obj/structure/cable,
 /obj/machinery/airalarm/directional/east,
-/turf/open/floor/iron,
+/turf/open/floor/iron/dark/corner{
+	dir = 8
+	},
 /area/station/cargo/lobby)
 "bCG" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
@@ -14405,7 +14412,6 @@
 /area/station/command/heads_quarters/hos)
 "dAi" = (
 /obj/machinery/atmospherics/components/binary/pump/on/layer4{
-	dir = 2;
 	name = "Airlock Pump";
 	target_pressure = 300;
 	hide = 1
@@ -37446,11 +37452,10 @@
 /turf/open/floor/iron/checker,
 /area/station/cargo/miningdock)
 "jrk" = (
-/obj/structure/sign/directions/cryo/directional/north{
-	dir = 8
-	},
-/turf/open/floor/iron/dark,
-/area/station/hallway/floor1/fore)
+/obj/machinery/mineral/ore_redemption,
+/obj/machinery/door/firedoor,
+/turf/open/floor/plating,
+/area/station/cargo/lobby)
 "jrl" = (
 /obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance,
 /obj/structure/cable,
@@ -52888,10 +52893,11 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/maintenance/floor2/port)
 "ncc" = (
-/obj/machinery/mineral/ore_redemption,
-/obj/machinery/door/firedoor,
-/turf/open/floor/plating,
-/area/station/cargo/blacksmith)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/iron,
+/area/station/cargo/lobby)
 "nce" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
@@ -62210,16 +62216,10 @@
 /turf/open/floor/iron,
 /area/station/cargo/warehouse)
 "prw" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/machinery/power/apc/auto_name/directional/south,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/dark/corner{
-	dir = 8
-	},
+/turf/open/floor/iron,
 /area/station/cargo/lobby)
 "prD" = (
 /obj/structure/cable,
@@ -72167,7 +72167,6 @@
 "rQs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/binary/pump/on/layer4{
-	dir = 2;
 	name = "Airlock Pump";
 	target_pressure = 300;
 	hide = 1
@@ -81849,7 +81848,6 @@
 /area/station/ai/satellite/foyer)
 "umR" = (
 /obj/machinery/atmospherics/components/binary/pump/on/layer4{
-	dir = 2;
 	name = "Airlock Pump";
 	target_pressure = 300;
 	hide = 1
@@ -119909,8 +119907,8 @@ rze
 rhx
 rhx
 xBe
+xBe
 rze
-jrk
 rpj
 gqU
 uOT
@@ -120165,9 +120163,9 @@ ncX
 xuX
 ami
 hem
+ami
 ubZ
 xBe
-gVw
 rpj
 gqU
 imJ
@@ -120422,9 +120420,9 @@ iir
 pxk
 iir
 fbO
+iir
 vyZ
 rhx
-gVw
 rpj
 gqU
 asF
@@ -120679,9 +120677,9 @@ iir
 mJH
 jmB
 vSg
+ncc
 gmW
 jVS
-rUH
 hVB
 gqU
 kAG
@@ -120935,10 +120933,10 @@ xRU
 iir
 nqJ
 oOc
-bCz
+iir
 prw
+bCz
 rze
-rLs
 rpj
 gqU
 vsv
@@ -121192,10 +121190,10 @@ rze
 xBe
 lvJ
 xBe
-rze
+jrk
 nsp
 rze
-kyR
+rze
 jZA
 gqU
 gjy
@@ -123508,7 +123506,7 @@ glL
 qNv
 sNr
 sUC
-ncc
+fTc
 rpj
 gqU
 imJ
