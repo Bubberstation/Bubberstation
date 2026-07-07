@@ -325,7 +325,7 @@ Security HUDs! Basic mode shows only the job.
 
 	switch(target.wanted_status)
 		if(WANTED_ARREST)
-			set_hud_image_state(WANTED_HUD, "hudwanted")
+			set_hud_image_state(WANTED_HUD, target.wanted_status_set_by_guard ? "hudwanted_guard" : "hudwanted") //BUBBER EDIT: Guard wanted status
 		if(WANTED_PRISONER)
 			set_hud_image_state(WANTED_HUD, "hudincarcerated")
 		if(WANTED_SUSPECT)

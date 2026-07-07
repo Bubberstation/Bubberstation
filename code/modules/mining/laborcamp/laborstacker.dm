@@ -138,7 +138,7 @@
 				else
 					if(!(obj_flags & EMAGGED))
 						var/datum/record/crew/target = find_record(user_mob.real_name)
-						target?.wanted_status = WANTED_PAROLE
+						target?.set_wanted_status(WANTED_PAROLE) //BUBBER EDIT: Guard wanted status
 
 						aas_config_announce(/datum/aas_config_entry/security_labor_stacker, list("PERSON" = user_mob.real_name), src, list(RADIO_CHANNEL_SECURITY))
 					user_mob.log_message("has completed their labor points goal and is now sending the gulag shuttle back to the station.", LOG_GAME)

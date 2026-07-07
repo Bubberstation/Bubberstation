@@ -59,7 +59,7 @@
 				if(3)
 					target.age = rand(5, 85)
 				if(4)
-					target.wanted_status = pick(WANTED_STATUSES())
+					target.set_wanted_status(pick(WANTED_STATUSES())) //BUBBER EDIT: Guard wanted status
 				if(5)
 					target.species = pick(get_selectable_species())
 			continue
@@ -198,8 +198,10 @@
 			if(wanted_status == WANTED_ARREST && !length(target.crimes))
 				return FALSE
 
+			var/old_wanted_status = target.wanted_status //BUBBER ADDITION: Guard wanted status
 			investigate_log("[target.name] has been set from [target.wanted_status] to [wanted_status] by [key_name(usr)].", INVESTIGATE_RECORDS)
-			target.wanted_status = wanted_status
+			target.set_wanted_status(wanted_status, user) //BUBBER EDIT: Guard wanted status
+			announce_guard_wanted_status(target, user, target.get_latest_valid_crime_reason(), old_wanted_status) //BUBBER EDIT: Guard wanted status
 
 			update_matching_security_huds(target.name)
 
@@ -230,7 +232,11 @@
 		target.crimes += new_crime
 		investigate_log("New Crime: <strong>[input_name]</strong> | Added to [target.name] by [key_name(user)]. Their previous status was [target.wanted_status]", INVESTIGATE_RECORDS)
 		SSblackbox.ReportCitation(REF(new_crime), user.ckey, user.real_name, target.name, input_name, input_details)
-		target.wanted_status = WANTED_ARREST
+		//BUBBER ADDITION START: Guard wanted status
+		var/old_wanted_status = target.wanted_status
+		target.set_wanted_status(WANTED_ARREST, user)
+		announce_guard_wanted_status(target, user, target.get_guard_wanted_reason(new_crime), old_wanted_status)
+		//BUBBER ADDITION END
 
 		update_matching_security_huds(target.name)
 
@@ -276,7 +282,7 @@
 	target.citations.Cut()
 	target.crimes.Cut()
 	target.security_note = null
-	target.wanted_status = WANTED_NONE
+	target.set_wanted_status(WANTED_NONE) //BUBBER EDIT: Guard wanted status
 
 	return TRUE
 
@@ -323,7 +329,7 @@
 		break
 
 	if(acquitted)
-		target.wanted_status = WANTED_DISCHARGED
+		target.set_wanted_status(WANTED_DISCHARGED, user) //BUBBER EDIT: Guard wanted status
 		investigate_log("[key_name(user)] has invalidated [target.name]'s last valid crime. Their status is now [WANTED_DISCHARGED].", INVESTIGATE_RECORDS)
 
 		update_matching_security_huds(target.name)
@@ -522,7 +528,7 @@
 		if(sec_record.wanted_status != status_to_set)
 			successful_set++
 			names_of_entries += target["name"]
-		sec_record.wanted_status = status_to_set
+		sec_record.set_wanted_status(status_to_set) //BUBBER EDIT: Guard wanted status
 
 
 	if(successful_set > 0)

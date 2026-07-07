@@ -232,7 +232,7 @@
 	if(!do_after(ninja, 20 SECONDS, src, extra_checks = CALLBACK(src, PROC_REF(can_hack), ninja), hidden = TRUE))
 		return
 	for(var/datum/record/crew/target in GLOB.manifest.general)
-		target.wanted_status = WANTED_ARREST
+		target.set_wanted_status(WANTED_ARREST) //BUBBER EDIT: Guard wanted status
 	update_all_security_huds()
 
 	var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)

@@ -164,7 +164,7 @@ The console is located at computer/gulag_teleporter.dm
 	if(id)
 		prisoner.equip_to_appropriate_slot(id, qdel_on_fail = TRUE)
 	if(target)
-		target.wanted_status = WANTED_PRISONER
+		target.set_wanted_status(WANTED_PRISONER) //BUBBER EDIT: Guard wanted status
 
 	use_energy(active_power_usage)
 

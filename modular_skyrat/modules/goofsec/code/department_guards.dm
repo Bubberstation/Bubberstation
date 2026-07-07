@@ -197,6 +197,7 @@
 	var/low_sec_threshold = CONFIG_GET(number/guard_low_sec_threshold)
 	if(low_sec_threshold > 0 && department_guard_current_positions(DEPARTMENT_BITFLAG_SECURITY) < low_sec_threshold)
 		access |= low_sec_access
+	apply_red_alert_access_to_trim()
 
 /datum/job/science_guard
 	title = JOB_SCIENCE_GUARD
@@ -689,6 +690,9 @@
 		return .
 
 	if(!active)
+		return .
+
+	if(SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_RED)
 		return .
 
 	var/area/current_area = get_area(user)
