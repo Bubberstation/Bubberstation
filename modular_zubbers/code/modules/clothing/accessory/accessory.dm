@@ -193,7 +193,7 @@ GLOBAL_LIST_EMPTY_TYPED(protean_match_tag_pool, /obj/item/clothing/accessory/dog
 	var/assignee_protean
 	/// What step of the matching journey
 	var/match_progress = UNASSIGNED
-	var/obj/item/clothing/accessory/dogtags/protean_match/paired_tag
+	var/datum/weakref/paired_tag_weakref
 
 ///This is how a person can assign a tag to themself, or switch if they're in the candidate pool
 /obj/item/clothing/accessory/dogtags/protean_match/attack_self(mob/user)
@@ -210,6 +210,7 @@ GLOBAL_LIST_EMPTY_TYPED(protean_match_tag_pool, /obj/item/clothing/accessory/dog
 			unassign()
 			return
 		if(MATCHED)
+			var/obj/item/clothing/accessory/dogtags/protean_match/paired_tag = paired_tag_weakref?.resolve()
 			var/safety = (tgui_alert(user, "You are currently matched with [paired_tag?.assignee_name]. Are you sure you want to unclaim your tag? This will unassign both tags.", "Unclaim tag?", list("Unclaim", "Cancel")))
 			if(safety == "Cancel" || !in_range(src, user))
 				return
@@ -224,6 +225,7 @@ GLOBAL_LIST_EMPTY_TYPED(protean_match_tag_pool, /obj/item/clothing/accessory/dog
 /obj/item/clothing/accessory/dogtags/protean_match/Destroy()
 	POOL -= src
 	if(match_progress == MATCHED)
+		var/obj/item/clothing/accessory/dogtags/protean_match/paired_tag = paired_tag_weakref?.resolve()
 		paired_tag.unassign("paired tag destroyed")
 	return ..()
 
@@ -282,16 +284,16 @@ GLOBAL_LIST_EMPTY_TYPED(protean_match_tag_pool, /obj/item/clothing/accessory/dog
 	POOL -= src
 	playsound(src, "modular_skyrat/modules/emotes/sound/emotes/synth_yes.ogg", 20, FALSE)
 	say("Matched with [(other_tag.assignee_protean == TRUE) ? "Protean" : "Wearer"]: [other_tag.assignee_name]!")
-	paired_tag = other_tag
+	paired_tag_weakref = other_tag.create_weakref()
 
-///Used both when unmatching with a person and when leaving the match pool.
+/// Used both when unmatching with a person and when leaving the match pool.
 /obj/item/clothing/accessory/dogtags/protean_match/proc/unassign(unmatch_reason)
 	match_progress = UNASSIGNED
 	POOL -= src
 	assignee_name = initial(assignee_name)
 	assignee_protean = initial(assignee_protean)
 	name = initial(name)
-	paired_tag = null
+	paired_tag_weakref = null
 	update_static_data_for_all_viewers()
 	if(unmatch_reason)
 		say("You have been unmatched. Reason: [unmatch_reason].")
@@ -308,6 +310,7 @@ GLOBAL_LIST_EMPTY_TYPED(protean_match_tag_pool, /obj/item/clothing/accessory/dog
 		if(IN_POOL)
 			. += "It's currently in the candidate pool, alongside [length(POOL) - 1] others. Leave the pool by using it in-hand."
 		if(MATCHED)
+			var/obj/item/clothing/accessory/dogtags/protean_match/paired_tag = paired_tag_weakref?.resolve()
 			. += "It's currently matched with [paired_tag.assignee_name], and can be unmatched by using it in-hand."
 
 #undef POOL
