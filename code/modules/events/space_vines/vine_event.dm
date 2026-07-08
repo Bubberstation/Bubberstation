@@ -10,6 +10,7 @@
 	max_wizard_trigger_potency = 7
 	admin_setup = list(
 		/datum/event_admin_setup/set_location/spacevine,
+		/datum/event_admin_setup/question/spacevine_wild, // BUBBER EDIT ADDITION - SPACE VINES OVERHAUL
 		/datum/event_admin_setup/multiple_choice/spacevine,
 		/datum/event_admin_setup/input_number/spacevine_potency,
 		/datum/event_admin_setup/input_number/spacevine_production,
@@ -23,6 +24,10 @@
 	var/mutations_overridden = FALSE
 	///Admin selected mutations that the kudzu will spawn with, can be set to none to act as mutationless kudzu.
 	var/list/override_mutations = list()
+	// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
+	///Whether this cluster should be weighted against positive mutations, same as a naturally spawned event. Defaults on so any non-prompted spawn path (wizard rune, direct start()) behaves like a wild vine.
+	var/apply_wild_restrictions = TRUE
+	// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
 	///Potency of the spawned kudzu.
 	var/potency
 	///Production value of the spawned kuduz.
@@ -71,13 +76,15 @@
 
 	if(mutations_overridden)
 		selected_mutations = override_mutations
-	else
+	else if(apply_wild_restrictions) // BUBBER EDIT CHANGE - SPACE VINES OVERHAUL
 		// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
 		var/list/weighted_types = list()
 		for(var/datum/spacevine_mutation/mutation as anything in GLOB.vine_mutations_list)
 			weighted_types[mutation.type] = get_spacevine_mutation_weight(mutation, GLOB.vine_mutations_list[mutation], list(POSITIVE))
 		selected_mutations = list(pick_weight(weighted_types))
 		// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
+	else // BUBBER EDIT ADDITION - SPACE VINES OVERHAUL
+		selected_mutations = list(pick(valid_subtypesof(/datum/spacevine_mutation))) // BUBBER EDIT ADDITION - SPACE VINES OVERHAUL, true unweighted pick when admin opts out of wild restrictions
 
 	if(isnull(potency))
 		potency = rand(50, 100)
@@ -87,7 +94,7 @@
 
 	// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
 	var/datum/spacevine_controller/controller = new /datum/spacevine_controller(floor, selected_mutations, potency, production, src)
-	if(!mutations_overridden)
+	if(apply_wild_restrictions)
 		controller.banned_qualities = list(POSITIVE)
 	// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
 
@@ -96,6 +103,14 @@
 
 /datum/event_admin_setup/set_location/spacevine/apply_to_event(datum/round_event/spacevine/event)
 	event.override_turf = chosen_turf
+
+// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
+/datum/event_admin_setup/question/spacevine_wild
+	input_text = "Should these vines behave like a naturally spawned wild event? (Weights against positive mutations, same as a random round event.)"
+
+/datum/event_admin_setup/question/spacevine_wild/apply_to_event(datum/round_event/spacevine/event)
+	event.apply_wild_restrictions = chosen
+// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
 
 /datum/event_admin_setup/multiple_choice/spacevine
 	input_text = "Select starting mutations."
