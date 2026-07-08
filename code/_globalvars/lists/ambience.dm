@@ -196,7 +196,7 @@ GLOBAL_LIST_INIT(gaming_ambience,list(
 	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/gaming.ogg',
 ))
 
-GLOBAL_LIST_INIT(deepermaintsroom_ambience,list(
+GLOBAL_LIST_INIT(waste_ambience,list(
 	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/waste/waste1.ogg',
 	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/waste/waste2.ogg',
 	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/waste/waste3.ogg',
