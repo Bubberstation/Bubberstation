@@ -702,7 +702,7 @@
 /obj/item/toy/plush/aeri/proc/update_plush_state()
 	if(clothed)
 		name = "Interdimensional Terrorist Plushie"
-		desc = "A highly controversial silicone 'plushie' modeled after its infamous namesake. Pulled from most storefronts after a spectacular public backlash, it now survives mainly through grey-market resellers. Rumor has it a few limited-run units shipped with a functional handheld railgun."
+		// Moved "desc" to update_desc() to fix the description not updating when undressed
 		icon_state = "aeri"
 		//probably not necessary to put the verb and squeak override once again here but it kinda bugs out if I don't
 		attack_verb_continuous = list("cuddles", "squeaks", "hugs", "caresses")
@@ -715,7 +715,6 @@
 		hitsound = initial(hitsound)
 	else
 		name = "Interdimensional terrorist Doll"
-		desc = "Without the outfit, the 'plushie' label becomes much harder to defend. Beneath the clothing is a glossy, stretchable silicone shell with ribbed orifices and breasts that experts have described as 'Fuckable'."
 		icon_state = "aeri-alt"
 		attack_verb_continuous = list("cuddles", "squeaks", "hugs", "caresses")
 		attack_verb_simple = list("cuddle", "squeak", "hug", "caress")
@@ -728,6 +727,13 @@
 	inhand_icon_state = null
 	update_appearance()
 	update_inhand_icon()
+	update_desc()
+
+/obj/item/toy/plush/aeri/update_desc()
+	if(clothed)
+		desc = "A highly controversial silicone 'plushie' modeled after its infamous namesake. Pulled from most storefronts after a spectacular public backlash, it now survives mainly through grey-market resellers. Rumor has it a few limited-run units shipped with a functional handheld railgun."
+	else
+		desc = "Without the outfit, the 'plushie' label becomes much harder to defend. Beneath the clothing is a glossy, stretchable silicone shell with ribbed orifices and breasts that experts have described as 'Fuckable'."
 
 /obj/item/toy/plush/aeri/examine(mob/user)
 	. = ..()
@@ -828,3 +834,90 @@
 	worn_icon_state = "milky"
 	icon_state = "milky"
 	inhand_icon_state = "milky"
+
+//Plush for Slicerv
+/obj/item/toy/plush/tangerine
+	name = "citrus teshari plushie"
+	desc = "A fluffy orange teshari, it smells like tangerines."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "tangie" //sprited by BitSynergy
+	attack_verb_simple = list("fluff", "chirp", "peck")
+	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/peep_once.ogg' = 1)
+	gender = MALE
+
+// Updated plush for Noble
+/obj/item/toy/plush/noble	// Updated version of item/toy/plush/nobl
+	name = "Medical skulldog plushie"
+	// desc = "It seems to be a small canine, not necessarily latex like you would suspect for some reason, but extremely squishy."
+	desc = "A small and fluffy skulldog plushie wearing a tiny paramedic coat, he's extremely squishy."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "nobl2"
+	squeak_override = list('modular_zubbers/sound/misc/dog_toy.ogg' = 1)
+	var/clothed = TRUE
+
+/obj/item/toy/plush/noble/Initialize(mapload)
+	. = ..()
+	update_plush_state()
+
+/obj/item/toy/plush/noble/proc/update_plush_state()
+	if(clothed)
+		name = "medical skulldog plushie"
+		// "desc" didn't properly updated the description when used here, moved to update_desc()
+		icon_state = "nobl2"
+		squeak_override = list('modular_zubbers/sound/misc/dog_toy.ogg' = 1)
+		hitsound = initial(hitsound)
+	else
+		name = "fluffy skulldog plushie"
+		icon_state = "nobl2-alt"
+		squeak_override = list('modular_zubbers/sound/misc/dog_toy.ogg' = 1)
+		hitsound = null
+	inhand_icon_state = null
+	update_appearance()
+	update_inhand_icon()
+	update_desc()
+
+/obj/item/toy/plush/noble/examine(mob/user)
+	. = ..()
+	if(clothed)
+		. += span_purple("Alt-click to undress this plushie.")
+	else
+		. += span_purple("Alt-click to dress this plushie back up.")
+
+/obj/item/toy/plush/noble/update_desc() // update_plush_state() doesn't update the description properly but this worked for me
+	if(clothed)
+		desc = "A small and fluffy skulldog plushie wearing a tiny paramedic coat, he's extremely squishy."
+	else
+		desc = "A small and fluffy... Good grief he's naked! A naked and squishy skulldog plushie, you notice it has been modified with a conveniently placed hole underneath."
+
+/obj/item/toy/plush/noble/click_alt(mob/user)
+	clothed = !clothed
+	if(clothed)
+		user.visible_message(span_notice("[user] dresses the [src] back up."), span_notice("You dress the [src] back up."))
+		playsound(user, 'sound/items/zip/zip_up.ogg', 50, TRUE)
+	else
+		user.visible_message(span_notice("[user] undresses the [src], how scandalous!"), span_notice("You undress the [src]. You notice a tight hole under the plushie..."))
+		playsound(user, 'sound/items/zip/zip.ogg', 50, TRUE)
+	update_plush_state()
+	return TRUE
+
+/obj/item/toy/plush/noble/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+	if(clothed)
+		return ..()
+	var/obj/item/clothing/sextoy/fleshlight/proxy = new(loc)
+	proxy.name = name
+	proxy.desc = desc
+	proxy.icon = icon
+	proxy.icon_state = icon_state
+	. = proxy.attack(target, user)
+	playsound(user, 'modular_zubbers/sound/misc/dog_toy.ogg', 50, TRUE)
+	qdel(proxy)
+
+obj/item/toy/plush/blue_synth
+	name = "blue synth plushie"
+	desc = "A grumpy looking synth plushie, his glowing blue eyes express boredom, it has a beautiful glowing fiber optic mane."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "bluesynth"
+	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/twobeep.ogg' = 1)
+
+obj/item/toy/plush/blue_synth/examine(mob/user)
+	span_red("Warning label: DO NOT MICROWAVE.")
