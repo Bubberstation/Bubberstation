@@ -216,8 +216,8 @@ GLOBAL_LIST_INIT(maintsroomlobby_ambience,list(
 GLOBAL_LIST_INIT(maintsroomeighties_ambience,list(
 	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/vapor.ogg',
 ))
-
 //BUBBER EDIT ADDITION END
+
 GLOBAL_LIST_INIT(ambience_assoc,list(
 	AMBIENCE_AWAY = GLOB.away_ambience,
 	AMBIENCE_CREEPY = GLOB.creepy_ambience,

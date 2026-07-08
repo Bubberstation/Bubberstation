@@ -48,7 +48,7 @@
 	sound_environment = SOUND_ENVIRONMENT_NONE
 
 /area/awaymission/caves/maintsroom/gambling
-	name = "gambling den"
+	name = "gambling hall"
 	icon_state = "awaycontent11"
 	ambience_index = AMBIENCE_GAMBLING
 	sound_environment = SOUND_ENVIRONMENT_NONE
