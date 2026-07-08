@@ -94,9 +94,8 @@
 /area/space)
 "afc" = (
 /obj/item/book/granter/action/spell/summon_cheese,
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/wood,
-/area/awaymission/caves/maintsroom)
+/turf/open/indestructible/mad_grass,
+/area/awaymission/caves/maintsroom/deeper/biome1)
 "afl" = (
 /mob/living/basic/goose/vomit,
 /turf/open/floor/wood,
@@ -2205,10 +2204,6 @@
 "cTW" = (
 /turf/closed/wall/mineral/sandstone,
 /area/space)
-"cUd" = (
-/mob/living/basic/mining/cazador,
-/turf/open/floor/white,
-/area/awaymission/caves/maintsroom/deeper)
 "cUH" = (
 /obj/machinery/computer/station_alert{
 	dir = 4
@@ -9567,11 +9562,6 @@
 /obj/effect/light_emitter,
 /turf/open/misc/sandy_dirt,
 /area/space)
-"mBn" = (
-/obj/item/book/granter/action/spell/charge,
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/wood,
-/area/awaymission/caves/maintsroom)
 "mBo" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -11594,6 +11584,9 @@
 /obj/structure/railing{
 	dir = 8
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "pKO" = (
@@ -12000,6 +11993,9 @@
 	},
 /obj/structure/railing{
 	dir = 9
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
@@ -17271,10 +17267,6 @@
 /obj/item/reagent_containers/syringe/epinephrine,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"xbu" = (
-/mob/living/basic/mega_arachnid,
-/turf/open/floor/white,
-/area/awaymission/caves/maintsroom/deeper)
 "xbQ" = (
 /obj/item/stack/medical/wrap/gauze/improvised,
 /obj/item/stack/medical/wrap/gauze/improvised,
@@ -18087,11 +18079,9 @@
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
 "ykH" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/chasm/true/fakeout/plating,
-/area/awaymission/caves/maintsroom)
+/obj/item/book/granter/action/spell/charge,
+/turf/open/indestructible/mad_grass,
+/area/awaymission/caves/maintsroom/deeper/biome1)
 "ylI" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/cup/glass/mug/coco,
@@ -22922,12 +22912,12 @@ dfL
 dfL
 eZq
 dfL
-ykH
-ykH
-ykH
-ykH
-ykH
-ykH
+dfL
+dfL
+dfL
+dfL
+dfL
+dfL
 smE
 eZq
 eZq
@@ -43929,7 +43919,7 @@ uOx
 uOx
 uOx
 uOx
-xbu
+uOx
 uOx
 uOx
 uOx
@@ -44360,7 +44350,7 @@ uOx
 uOx
 uOx
 uOx
-tyU
+uOx
 uOx
 uOx
 uOx
@@ -45937,7 +45927,7 @@ uOx
 uOx
 uOx
 lpL
-lpL
+afc
 lpL
 lpL
 lpL
@@ -46157,7 +46147,7 @@ uOx
 uOx
 uOx
 lpL
-lpL
+ykH
 lpL
 lpL
 lpL
@@ -46583,9 +46573,9 @@ uOx
 uOx
 uOx
 uOx
-hHr
 uOx
-afc
+uOx
+uMy
 uOx
 uOx
 uOx
@@ -46805,7 +46795,7 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 uOx
@@ -47020,7 +47010,7 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 uOx
@@ -47211,7 +47201,7 @@ uOx
 uOx
 uOx
 uOx
-tyU
+uOx
 uOx
 uOx
 uOx
@@ -47465,7 +47455,7 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 uOx
@@ -47677,8 +47667,8 @@ uOx
 uOx
 uOx
 uOx
-hHr
-hHr
+uOx
+uOx
 uOx
 uOx
 uOx
@@ -47895,7 +47885,7 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 uOx
@@ -48125,7 +48115,7 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 uOx
@@ -48344,7 +48334,7 @@ uOx
 uOx
 uOx
 uOx
-itG
+uOx
 uOx
 uOx
 uOx
@@ -48551,7 +48541,7 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 uOx
@@ -48763,7 +48753,6 @@ uOx
 uOx
 uOx
 uOx
-pko
 uOx
 uOx
 uOx
@@ -48786,7 +48775,8 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
+uOx
 uOx
 uOx
 uOx
@@ -48988,7 +48978,7 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 uOx
@@ -49645,7 +49635,6 @@ uOx
 uOx
 uOx
 uOx
-hHr
 uOx
 uOx
 uOx
@@ -49667,7 +49656,8 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
+uOx
 uOx
 uOx
 uOx
@@ -50081,7 +50071,7 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 uOx
@@ -50298,7 +50288,7 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 uOx
@@ -50547,7 +50537,7 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 uOx
@@ -50734,7 +50724,7 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 uOx
@@ -50950,7 +50940,7 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 uOx
@@ -51208,7 +51198,7 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 uOx
@@ -51425,7 +51415,7 @@ uOx
 uOx
 uOx
 uOx
-gKa
+uOx
 uOx
 uOx
 uOx
@@ -51869,7 +51859,7 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 uOx
@@ -52073,7 +52063,7 @@ uOx
 uOx
 uOx
 uOx
-cUd
+uOx
 uOx
 uOx
 uOx
@@ -52529,7 +52519,7 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 uOx
@@ -53189,7 +53179,7 @@ uOx
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 uOx
@@ -53629,11 +53619,11 @@ uOx
 uOx
 uOx
 uOx
-mBn
+uMy
 uOx
 uOx
 uOx
-hHr
+uOx
 uOx
 uOx
 lpL
