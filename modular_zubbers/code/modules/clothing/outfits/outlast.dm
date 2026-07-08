@@ -4,6 +4,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/outlast.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/outlast.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/misc_teshari.dmi'
 	icon_state = "leatherapron"
 	body_parts_covered = CHEST|GROIN
 	allowed = list(
