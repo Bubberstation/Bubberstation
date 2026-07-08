@@ -213,7 +213,7 @@ GLOBAL_LIST_INIT(maintsroomlobby_ambience,list(
 	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/lobby1.ogg',
 ))
 
-GLOBAL_LIST_INIT(maintsroomvapor_ambience,list(
+GLOBAL_LIST_INIT(maintsroomeighties_ambience,list(
 	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/vapor.ogg',
 ))
 
@@ -240,6 +240,6 @@ GLOBAL_LIST_INIT(ambience_assoc,list(
 	AMBIENCE_DEEPERMAINTSROOM = GLOB.deepermaintsroom_ambience,
 	AMBIENCE_GAMBLING = GLOB.gambling_ambience,
 	AMBIENCE_MAINTSROOMLOBBY = GLOB.maintsroomlobby_ambience,
-	AMBIENCE_MAINTSROOMVAPOR = GLOB.maintsroomvapor_ambience,
+	AMBIENCE_MAINTSROOMVAPOR = GLOB.maintsroomeighties_ambience,
 	//BUBBER EDIT ADDITION END
 ))
