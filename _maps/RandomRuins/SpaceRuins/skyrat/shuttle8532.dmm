@@ -273,6 +273,7 @@
 /obj/structure/chair{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532crewquarters)
 "ha" = (
@@ -326,7 +327,6 @@
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532cargohall)
 "id" = (
-/mob/living/basic/trooper/syndicate/ranged/smg/space,
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/iron/cafeteria/airless,
 /area/ruin/space/has_grav/shuttle8532crewquarters)
@@ -402,8 +402,8 @@
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532cargohall)
 "jM" = (
-/obj/machinery/light/dim/directional/south,
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted,
+/obj/machinery/light/broken/directional/south,
 /turf/open/floor/iron/dark/airless,
 /area/ruin/space/has_grav/shuttle8532bridge)
 "jQ" = (
@@ -441,6 +441,7 @@
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/apc/no_charge,
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532cargohall)
 "lc" = (
@@ -454,6 +455,7 @@
 "lt" = (
 /obj/structure/table,
 /obj/machinery/microwave,
+/obj/structure/sign/poster/official/random/directional/west,
 /turf/open/floor/iron/cafeteria/airless,
 /area/ruin/space/has_grav/shuttle8532crewquarters)
 "lv" = (
@@ -506,7 +508,6 @@
 /area/ruin/space/has_grav/shuttle8532cargohall)
 "mQ" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/basic/trooper/syndicate/ranged/shotgun/space,
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532crewquarters)
@@ -671,8 +672,9 @@
 /area/ruin/space/has_grav/shuttle8532bridge)
 "sh" = (
 /obj/structure/rack/shelf,
-/obj/item/disk/design_disk/bepis,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/spawner/random/techstorage/data_disk,
+/obj/effect/spawner/random/techstorage/data_disk,
 /turf/open/floor/iron/dark/airless,
 /area/ruin/space/has_grav/shuttle8532crewquarters)
 "sk" = (
@@ -711,6 +713,8 @@
 /obj/effect/turf_decal/tile/green/half/contrasted{
 	dir = 4
 	},
+/obj/structure/sign/poster/official/random/directional/east,
+/mob/living/basic/trooper/syndicate/melee/space,
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532crewquarters)
 "tG" = (
@@ -869,7 +873,6 @@
 /area/ruin/space/has_grav/shuttle8532bridge)
 "xK" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/light/dim/directional/south,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -896,6 +899,8 @@
 /obj/effect/turf_decal/tile/red/anticorner/contrasted{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/apc/no_charge,
+/mob/living/basic/trooper/syndicate/melee/space,
 /turf/open/floor/iron/dark/airless,
 /area/ruin/space/has_grav/shuttle8532researchbay)
 "yz" = (
@@ -921,12 +926,16 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/spawner/structure/flipped_table{
+	dir = 4
+	},
 /turf/open/floor/iron/dark/airless,
 /area/ruin/space/has_grav/shuttle8532researchbay)
 "zz" = (
 /obj/effect/turf_decal/tile/dark_blue/anticorner/contrasted{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/airless,
 /area/ruin/space/has_grav/shuttle8532bridge)
 "zA" = (
@@ -951,16 +960,16 @@
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532crewquarters)
 "zL" = (
-/turf/open/floor/iron/airless,
-/area/ruin/space/has_grav/shuttle8532cargohall)
+/turf/closed/indestructible/reinforced,
+/area/ruin/space/has_grav/shuttle8532bridge)
 "zM" = (
 /obj/effect/turf_decal/siding/red,
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
 /obj/structure/rack,
-/obj/effect/spawner/random/maintenance,
 /obj/machinery/light/dim/directional/south,
+/obj/item/ammo_box/speedloader/c38,
 /turf/open/floor/iron/dark/airless,
 /area/ruin/space/has_grav/shuttle8532researchbay)
 "zW" = (
@@ -985,6 +994,7 @@
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/crate/secure/syndicate/cybersun,
 /obj/effect/spawner/random/clothing/syndie,
+/obj/item/storage/box/syndie_kit/chameleon,
 /obj/item/wrench/combat{
 	toolspeed = 0.2;
 	name = "advanced combat wrench";
@@ -997,6 +1007,7 @@
 /obj/effect/turf_decal/tile/green/half/contrasted{
 	dir = 1
 	},
+/obj/structure/sign/poster/official/random/directional/north,
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532crewquarters)
 "Az" = (
@@ -1004,6 +1015,7 @@
 /obj/structure/rack/shelf,
 /obj/effect/turf_decal/bot,
 /obj/effect/spawner/random/maintenance,
+/obj/structure/sign/poster/official/random/directional/south,
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532cargohall)
 "AF" = (
@@ -1013,6 +1025,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/apc/no_charge,
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532crewquarters)
 "AP" = (
@@ -1075,8 +1088,8 @@
 /obj/machinery/door/poddoor{
 	id = "abandonedshipbridgeblast"
 	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
+/turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/shuttle8532bridge)
 "BR" = (
 /obj/effect/turf_decal/delivery,
@@ -1260,6 +1273,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/yellow,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/structure/sign/poster/official/random/directional/east,
 /turf/open/floor/iron/dark/airless,
 /area/ruin/space/has_grav/shuttle8532crewquarters)
 "Fd" = (
@@ -1400,6 +1414,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted,
+/obj/effect/mapping_helpers/apc/no_charge,
 /turf/open/floor/iron/dark/airless,
 /area/ruin/space/has_grav/shuttle8532bridge)
 "JN" = (
@@ -1413,6 +1428,7 @@
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/dark_blue/fourcorners,
 /obj/item/pen,
+/obj/structure/marker_beacon/teal,
 /turf/open/floor/iron/dark/airless,
 /area/ruin/space/has_grav/shuttle8532bridge)
 "Kc" = (
@@ -1421,7 +1437,7 @@
 /area/ruin/space/has_grav/shuttle8532engineering)
 "Kh" = (
 /obj/effect/turf_decal/bot,
-/obj/effect/spawner/random/structure/crate_abandoned,
+/obj/structure/closet/crate/secure/loot,
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532cargohall)
 "Km" = (
@@ -1637,13 +1653,9 @@
 	pixel_x = 4
 	},
 /obj/effect/turf_decal/tile/dark_blue/fourcorners,
+/obj/structure/marker_beacon/teal,
 /turf/open/floor/iron/dark/airless,
 /area/ruin/space/has_grav/shuttle8532bridge)
-"Ps" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/marker_beacon/burgundy,
-/turf/template_noop,
-/area/space)
 "PI" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted,
 /turf/open/floor/iron/airless,
@@ -1654,10 +1666,9 @@
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/crate/secure/syndicate/gorlex,
 /obj/item/ammo_box/speedloader/c38,
-/obj/item/gun/ballistic/revolver/c38{
-	pin = /obj/item/firing_pin/explorer
-	},
+/obj/item/gun/ballistic/revolver/c38,
 /obj/effect/spawner/random/clothing/syndie,
+/obj/structure/sign/poster/official/random/directional/north,
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532cargohall)
 "Qi" = (
@@ -1749,6 +1760,13 @@
 "Uv" = (
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/shuttle8532researchbay)
+"UB" = (
+/obj/effect/turf_decal/tile/brown/half/contrasted{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/iron/airless,
+/area/ruin/space/has_grav/shuttle8532cargohall)
 "UN" = (
 /obj/item/kirbyplants/random/dead,
 /obj/effect/turf_decal/tile/green/half/contrasted{
@@ -1757,7 +1775,6 @@
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532crewquarters)
 "Vf" = (
-/mob/living/basic/trooper/syndicate/melee/space/stormtrooper,
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 1
 	},
@@ -1809,6 +1826,12 @@
 /obj/machinery/power/shuttle_engine/propulsion,
 /turf/open/space/basic,
 /area/ruin/space/has_grav/shuttle8532engineering)
+"VU" = (
+/obj/structure/rack/shelf,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/spawner/random/techstorage/data_disk,
+/turf/open/floor/iron/dark/airless,
+/area/ruin/space/has_grav/shuttle8532crewquarters)
 "Wq" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1828,6 +1851,13 @@
 "Wz" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/shuttle8532cargohall)
+"WA" = (
+/obj/effect/turf_decal/tile/green/half/contrasted{
+	dir = 8
+	},
+/mob/living/basic/trooper/syndicate/ranged/smg/space,
+/turf/open/floor/iron/airless,
+/area/ruin/space/has_grav/shuttle8532crewquarters)
 "WH" = (
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
@@ -1850,6 +1880,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/shuttle8532researchbay)
+"WQ" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/secure/loot,
+/turf/open/floor/iron/airless,
+/area/ruin/space/has_grav/shuttle8532cargohall)
 "WX" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating/airless,
@@ -1933,10 +1969,6 @@
 /obj/effect/mapping_helpers/burnt_floor,
 /turf/open/floor/iron/white/airless,
 /area/ruin/space/has_grav/shuttle8532researchbay)
-"Yr" = (
-/obj/structure/lattice,
-/turf/template_noop,
-/area/space)
 "Yy" = (
 /obj/effect/decal/cleanable/glass,
 /obj/item/shard,
@@ -1963,8 +1995,10 @@
 /obj/machinery/turretid{
 	lethal = 1;
 	name = "Outer Turret Control";
-	pixel_x = -33;
-	system_id = "ship_outer_turrets"
+	pixel_x = -28;
+	system_id = "ship_outer_turrets";
+	req_access = null;
+	locked = 0
 	},
 /obj/machinery/airalarm/directional/north,
 /obj/effect/decal/cleanable/dirt,
@@ -1974,6 +2008,7 @@
 	default_raw_text = "I loaded those valuables into the cargo bays like you asked. Quite a good find don't you agree? We'll make some proper cash off of them."
 	},
 /obj/effect/turf_decal/tile/dark_blue/fourcorners,
+/obj/structure/marker_beacon/teal,
 /turf/open/floor/iron/dark/airless,
 /area/ruin/space/has_grav/shuttle8532bridge)
 "Zj" = (
@@ -1985,7 +2020,12 @@
 /obj/effect/turf_decal/siding/red/end{
 	dir = 4
 	},
-/obj/effect/spawner/random/maintenance,
+/obj/item/grenade/firecracker{
+	pixel_y = -8
+	},
+/obj/item/grenade/smokebomb{
+	pixel_y = 6
+	},
 /turf/open/floor/iron/dark/airless,
 /area/ruin/space/has_grav/shuttle8532researchbay)
 "ZL" = (
@@ -1993,7 +2033,7 @@
 	dir = 9;
 	system_id = "ship_outer_turrets"
 	},
-/turf/closed/wall/r_wall,
+/turf/closed/indestructible/reinforced,
 /area/ruin/space/has_grav/shuttle8532bridge)
 "ZN" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2011,7 +2051,7 @@
 	dir = 5;
 	system_id = "ship_outer_turrets"
 	},
-/turf/closed/wall/r_wall,
+/turf/closed/indestructible/reinforced,
 /area/ruin/space/has_grav/shuttle8532bridge)
 "ZU" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2120,8 +2160,8 @@ qb
 qb
 qb
 qb
-Ps
-Yr
+NJ
+OQ
 jQ
 jQ
 jQ
@@ -2163,8 +2203,8 @@ qb
 qb
 qb
 qb
-Yr
-Yr
+OQ
+OQ
 HK
 jQ
 NG
@@ -2205,10 +2245,10 @@ qb
 "}
 (5,1,1) = {"
 qb
-pu
-pu
-pu
-pu
+zL
+zL
+zL
+zL
 jQ
 hD
 Ha
@@ -2249,10 +2289,10 @@ qb
 "}
 (6,1,1) = {"
 ZL
-pu
+zL
 Zi
 mq
-pu
+zL
 jQ
 zY
 Cr
@@ -2292,7 +2332,7 @@ DJ
 qb
 "}
 (7,1,1) = {"
-pu
+zL
 VB
 GM
 cO
@@ -2343,7 +2383,7 @@ Bp
 jM
 pu
 lc
-ne
+WA
 ne
 iG
 NK
@@ -2614,9 +2654,9 @@ au
 jQ
 jQ
 jQ
-Du
+WQ
 dF
-zL
+jH
 OK
 OC
 Az
@@ -2644,7 +2684,7 @@ VD
 qb
 "}
 (15,1,1) = {"
-pu
+zL
 Bu
 xG
 xL
@@ -2689,10 +2729,10 @@ qb
 "}
 (16,1,1) = {"
 ZS
-pu
+zL
 JQ
 vP
-pu
+zL
 jQ
 Nw
 WH
@@ -2703,7 +2743,7 @@ jQ
 Iv
 jQ
 qf
-lD
+UB
 jH
 zX
 PI
@@ -2733,16 +2773,16 @@ qb
 "}
 (17,1,1) = {"
 qb
-pu
-pu
-pu
-pu
+zL
+zL
+zL
+zL
 jQ
 sh
 DP
 XD
 ro
-sh
+VU
 jQ
 jQ
 jQ
@@ -2779,8 +2819,8 @@ qb
 qb
 qb
 qb
-Yr
-Yr
+OQ
+OQ
 zC
 jQ
 EX
@@ -2824,8 +2864,8 @@ qb
 qb
 qb
 qb
-Ps
-Yr
+NJ
+OQ
 jQ
 jQ
 jQ

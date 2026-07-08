@@ -34,6 +34,11 @@
 		/obj/item/storage/belt/holster,
 	)
 
+/obj/item/clothing/suit/apron/chef/colorable_apron/lizardgas
+	name = "Lizard Gas Apron"
+	desc = "A purple apron imprinted with the signature little green lizard of Lizard Gas! This cute outfit is surely reflected by its underpaid drop-out wearer."
+	greyscale_colors = "#ad23af"
+
 /obj/item/clothing/suit/misc/allamerican
 	name = "all-american diner manager's vest"
 	desc = "A soft fabric vest, with a nametag of the employee on it. It says, MANAGER on the back, making you obvious for the Karens who just NEED your attention."

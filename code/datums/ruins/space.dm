@@ -180,7 +180,8 @@
 
 /datum/map_template/ruin/space/spacehotel
 	id = "spacehotel"
-	suffix = "spacehotel_skyrat.dmm"	// SKYRAT EDIT CHANGE - ORIGINAL: suffix = "spacehotel.dmm"
+	prefix = "_maps/RandomRuins/SpaceRuins/bubberstation/" // BUBBER ADDITION
+	suffix = "spacehotel_bubber.dmm"	// BUBBER EDIT CHANGE - ORIGINAL: suffix = "spacehotel.dmm"
 	name = "Space-Ruin The Twin-Nexus Hotel"
 	description = "An interstellar hotel, where the weary spaceman can rest their head and relax, assured that the residential staff will not murder them in their sleep. Probably."
 
@@ -238,7 +239,8 @@
 
 /datum/map_template/ruin/space/listeningstation
 	id = "listeningstation"
-	suffix = "listeningstation.dmm"
+	prefix = "_maps/RandomRuins/SpaceRuins/bubberstation/" //BUBBER ADDITION
+	suffix = "listeningstation_bubber.dmm" //BUBBER EDIT - ORIGINAL: listeningstation.dmm
 	name = "Space-Ruin Syndicate Listening Station"
 	description = "Listening stations form the backbone of the syndicate's information-gathering operations. \
 	Assignment to these stations is dreaded by most agents, as it entails long and lonely shifts listening to nearby stations chatter incessantly about the most meaningless things."
@@ -329,14 +331,14 @@ suffix = "whiteshipruin_box.dmm"*/
 	name = "Space-Ruin Cleric's Den"
 	description = "Once part of a larger monastery, this holy order of long dead clerics practiced far less non-violence than they preached. Appears to have been untouched by looters, however. Odd."
 
-/* BUBBERSTATION REMOVAL ADD
+/* BUBBER REMOVAL START
 /datum/map_template/ruin/space/forgottenship
 	id = "forgottenship"
 	suffix = "forgottenship.dmm"
 	name = "Space-Ruin Syndicate Forgotten Ship"
 	description = "Seemingly abandoned ship went of course right into NT controlled space. It seems that malfunction caused most systems to turn off, except for sleepers."
 
-BUBBERSTATION REMOVAL END */
+BUBBER REMOVAL END */
 
 /datum/map_template/ruin/space/old_syndie_infiltrator
 	id = "old_infiltrator"
@@ -549,7 +551,8 @@ BUBBERSTATION REMOVAL END */
 
 /datum/map_template/ruin/space/film_studio
 	id = "film_studio"
-	suffix = "film_studio.dmm"
+	prefix = "_maps/RandomRuins/SpaceRuins/bubberstation/" // BUBBER ADDITION
+	suffix = "film_studio_bubber.dmm" // BUBBER EDIT - ORIGINAL: film_studio.dmm
 	name = "Space-Ruin Space Sector 13 Local Channel"
 	description = "A local TV station serving areas surrounding Space Sector 13, shows including but not limited to: talk shows, operas, stage plays and more!"
 

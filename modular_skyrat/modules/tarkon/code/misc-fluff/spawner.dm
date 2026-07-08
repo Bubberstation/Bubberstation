@@ -83,7 +83,7 @@
 	return ..()
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/cargo
-	name = "Port Tarkon Supply Crew Member"
+	name = "Port Tarkon Crew Member"
 	prompt_name = "a port salvage tech"
 	outfit = /datum/outfit/tarkon/cargo
 
@@ -103,12 +103,12 @@
 	skillchips = list(/obj/item/skillchip/job/miner)
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/sci
-	name = "Port Tarkon Research Crew Member"
+	name = "Port Tarkon Crew Member"
 	prompt_name = "a port researcher"
 	outfit = /datum/outfit/tarkon/sci
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/service
-	name = "Port Tarkon Service Crew Member"
+	name = "Port Tarkon Crew Member"
 	prompt_name = "a port tarkon chef, and janitor"
 	outfit = /datum/outfit/tarkon/service
 
@@ -141,7 +141,7 @@
 	skillchips = list(/obj/item/skillchip/job/roboticist)
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/med
-	name = "Port Tarkon Medical Crew Member"
+	name = "Port Tarkon Crew Member"
 	prompt_name = "a port trauma medic"
 	outfit = /datum/outfit/tarkon/med
 
@@ -163,7 +163,7 @@
 	skillchips = list(/obj/item/skillchip/entrails_reader)
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/engi
-	name = "Port Tarkon Engineering Crew Member"
+	name = "Port Tarkon Crew Member"
 	prompt_name = "a port maintenance engineer"
 	outfit = /datum/outfit/tarkon/engi
 
@@ -186,7 +186,7 @@
 	skillchips = list(/obj/item/skillchip/job/engineer)
 
 /obj/effect/mob_spawn/ghost_role/human/tarkon/sec
-	name = "Port Tarkon Security Crew Member"
+	name = "Port Tarkon Crew Member"
 	prompt_name = "a port security member"
 	outfit = /datum/outfit/tarkon/sec
 

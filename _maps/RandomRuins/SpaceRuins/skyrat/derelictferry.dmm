@@ -3,99 +3,156 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/obj/machinery/power/shuttle_engine/propulsion{
-	dir = 8
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#ffff81"
 	},
-/turf/closed/wall/mineral/titanium,
+/obj/effect/turf_decal/caution{
+	dir = 4
+	},
+/obj/item/clothing/shoes/sports,
+/turf/open/floor/iron/shuttle/ferry{
+	dir = 8;
+	icon_state = "floor"
+	},
 /area/ruin/space)
 "c" = (
-/turf/closed/wall/mineral/titanium,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4;
+	color = "#ffff81"
+	},
+/obj/effect/turf_decal/caution{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/iron/shuttle/ferry{
+	dir = 8;
+	icon_state = "floor"
+	},
 /area/ruin/space)
 "e" = (
-/obj/effect/spawner/structure/window/reinforced/shuttle,
-/turf/open/floor/plating,
+/obj/machinery/door/airlock/grunge,
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/iron/shuttle/ferry{
+	dir = 8;
+	icon_state = "floor"
+	},
 /area/ruin/space)
 "f" = (
-/obj/structure/chair/comfy/shuttle,
-/turf/open/floor/mineral/titanium/blue/airless,
+/obj/structure/girder,
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/plating/airless,
 /area/ruin/space)
 "g" = (
-/turf/closed/wall/mineral/titanium/interior,
-/area/ruin/space)
-"h" = (
+/obj/machinery/light/no_nightlight/directional/west,
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood,
-/obj/machinery/light/small/directional/west,
-/obj/item/clothing/under/plasmaman/centcom_official,
-/turf/open/floor/mineral/titanium/blue/airless,
+/obj/item/stamp/centcom,
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/iron/shuttle/evac,
+/area/ruin/space)
+"h" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/iron/shuttle/ferry{
+	dir = 8;
+	icon_state = "floor"
+	},
 /area/ruin/space)
 "i" = (
-/obj/effect/decal/cleanable/blood/gibs/core,
-/obj/machinery/computer{
-	desc = "A computer that's had it's internal circuits and wiring fried with a now long-dead device placed inside of it. What happened here?";
-	dir = 8;
-	name = "Broken Computer"
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
 	},
-/turf/open/floor/mineral/titanium/blue/airless,
+/obj/item/clothing/shoes/jackboots,
+/obj/machinery/light/broken/directional/east,
+/turf/open/floor/iron/shuttle/evac,
 /area/ruin/space)
 "j" = (
-/obj/structure/chair/comfy/shuttle,
-/obj/item/clothing/shoes/jackboots,
-/turf/open/floor/mineral/titanium/blue/airless,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/ruin/space)
 "k" = (
-/obj/machinery/door/airlock/titanium,
-/turf/open/floor/plating/airless,
+/obj/machinery/power/shuttle_engine/heater,
+/turf/closed/wall/mineral/titanium/spaceship/nodiagonal,
 /area/ruin/space)
 "l" = (
-/obj/effect/decal/cleanable/blood/gibs/up,
-/turf/open/floor/mineral/titanium/blue/airless,
+/turf/closed/wall/mineral/titanium/spaceship,
 /area/ruin/space)
 "m" = (
-/obj/structure/chair/comfy/shuttle,
-/obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/plating/airless,
+/obj/structure/marker_beacon/burgundy,
+/obj/structure/fluff/metalpole/end{
+	pixel_y = -32
+	},
+/turf/closed/wall/mineral/titanium/spaceship/nodiagonal,
 /area/ruin/space)
 "o" = (
-/obj/item/clothing/under/rank/centcom/intern,
-/turf/open/floor/mineral/titanium/blue/airless,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4;
+	color = "#ffff81"
+	},
+/obj/effect/turf_decal/caution{
+	dir = 8
+	},
+/obj/structure/closet/crate,
+/obj/item/clothing/head/hats/centhat,
+/turf/open/floor/iron/shuttle/ferry{
+	dir = 4;
+	icon_state = "floor"
+	},
 /area/ruin/space)
 "p" = (
-/obj/structure/closet/crate,
-/obj/item/clothing/under/rank/centcom/commander,
-/obj/machinery/light/small/directional/west,
-/turf/open/floor/mineral/titanium/blue/airless,
+/turf/closed/wall/mineral/titanium/spaceship/nodiagonal,
 /area/ruin/space)
 "q" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
+/obj/machinery/power/shuttle_engine/propulsion,
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 2;
+	color = "#ffff81"
 	},
-/obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/plating/airless,
+/turf/open/indestructible/plating,
 /area/ruin/space)
 "s" = (
+/obj/effect/turf_decal/bot,
 /obj/structure/chair/comfy/shuttle{
-	dir = 1
+	dir = 4
 	},
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/item/stamp/centcom,
-/turf/open/floor/mineral/titanium/blue/airless,
+/obj/structure/closet/emcloset/wall/directional/west,
+/obj/item/clothing/under/plasmaman/centcom_official,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/iron/shuttle/evac,
 /area/ruin/space)
 "t" = (
-/obj/effect/decal/cleanable/blood/gibs,
-/obj/item/clothing/shoes/sports,
-/turf/open/floor/mineral/titanium/blue/airless,
+/obj/structure/closet/crate,
+/obj/item/clothing/under/rank/centcom/commander,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/iron/shuttle/evac,
 /area/ruin/space)
 "u" = (
+/obj/machinery/door/airlock/grunge,
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/iron/shuttle/ferry{
+	dir = 4;
+	icon_state = "floor"
+	},
+/area/ruin/space)
+"w" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8;
+	color = "#ffff81"
+	},
+/obj/effect/turf_decal/caution{
+	dir = 4
+	},
 /obj/effect/decal/cleanable/blood/gibs/down,
-/turf/open/floor/mineral/titanium/blue/airless,
+/turf/open/floor/iron/shuttle/ferry{
+	dir = 4;
+	icon_state = "floor"
+	},
 /area/ruin/space)
 "y" = (
 /mob/living/basic/trooper/syndicate/ranged/shotgun/space/stormtrooper/anthro/fox,
+/obj/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
+/area/space/nearstation)
 "z" = (
 /obj/structure/lattice,
 /turf/template_noop,
@@ -104,131 +161,145 @@
 /obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/plating/airless,
 /area/ruin/space)
-"G" = (
+"E" = (
 /obj/item/clothing/glasses/sunglasses,
-/turf/open/floor/mineral/titanium/blue/airless,
+/turf/open/floor/iron/shuttle/ferry{
+	dir = 8;
+	icon_state = "floor"
+	},
+/area/ruin/space)
+"G" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/iron/shuttle/ferry{
+	dir = 4;
+	icon_state = "floor"
+	},
 /area/ruin/space)
 "J" = (
-/obj/structure/lattice,
-/obj/machinery/light/small/empty/directional/north,
-/turf/template_noop,
-/area/space/nearstation)
-"M" = (
-/obj/item/radio/headset/headset_cent/empty,
 /obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/plating/airless,
+/turf/open/floor/iron/shuttle/ferry{
+	dir = 4;
+	icon_state = "floor"
+	},
+/area/ruin/space)
+"M" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 2;
+	color = "#ffff81"
+	},
+/obj/machinery/power/shuttle_engine/propulsion,
+/turf/open/indestructible/plating,
 /area/ruin/space)
 "Q" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/blue/airless,
+/obj/effect/turf_decal/bot,
+/obj/item/gps/spaceruin,
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/iron/shuttle/evac,
+/area/ruin/space)
+"R" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/emcloset/wall/directional/east,
+/obj/item/radio/headset/headset_cent/empty,
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/iron/shuttle/evac,
 /area/ruin/space)
 "U" = (
-/obj/structure/closet/crate,
-/obj/item/clothing/head/hats/centhat,
-/turf/open/floor/mineral/titanium/blue/airless,
+/obj/item/clothing/under/rank/centcom/intern,
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/iron/stairs{
+	color = "#777d88"
+	},
 /area/ruin/space)
 "W" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
+/obj/machinery/door/airlock/grunge,
+/turf/open/floor/iron/shuttle/ferry{
+	dir = 4;
+	icon_state = "floor"
 	},
-/obj/machinery/light/small/broken/directional/south,
-/obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/plating/airless,
 /area/ruin/space)
 "X" = (
 /obj/effect/decal/cleanable/blood/gibs/torso,
 /turf/open/floor/plating/airless,
 /area/ruin/space)
 "Y" = (
-/obj/structure/chair/comfy/shuttle,
-/obj/item/gps/spaceruin,
-/obj/machinery/light/small/directional/north,
-/turf/open/floor/mineral/titanium/blue/airless,
+/obj/machinery/computer{
+	desc = "A computer that's had it's internal circuits and wiring fried with a now long-dead device placed inside of it. What happened here?";
+	dir = 4;
+	name = "Broken Computer";
+	pixel_x = -24;
+	density = 0
+	},
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/plating/airless,
 /area/ruin/space)
 
 (1,1,1) = {"
 a
-b
+a
+j
+f
+j
+j
+W
+e
+j
 k
-b
+q
 a
 "}
 (2,1,1) = {"
+z
+z
+Y
+Q
+f
+s
+w
 b
 g
 l
-g
-b
+k
+M
 "}
 (3,1,1) = {"
-c
+a
+a
+y
+X
+U
+J
+E
+G
 h
 t
 p
-c
+m
 "}
 (4,1,1) = {"
+a
+z
+z
+z
+A
+R
+o
 c
 i
-G
-U
-c
+l
+k
+M
 "}
 (5,1,1) = {"
-e
+a
+a
+a
+z
+f
 j
 u
+e
+j
+k
 q
-e
-"}
-(6,1,1) = {"
-c
-m
-o
-s
-c
-"}
-(7,1,1) = {"
-c
-Y
-M
-W
-c
-"}
-(8,1,1) = {"
-c
-f
-X
-Q
-c
-"}
-(9,1,1) = {"
-e
-f
-A
-A
-z
-"}
-(10,1,1) = {"
-c
-m
-z
-z
-a
-"}
-(11,1,1) = {"
-c
-J
-y
-z
-a
-"}
-(12,1,1) = {"
-a
-z
-a
-a
 a
 "}
