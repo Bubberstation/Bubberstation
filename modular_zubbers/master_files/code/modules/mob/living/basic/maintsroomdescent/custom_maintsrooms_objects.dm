@@ -27,6 +27,7 @@
 	name = "Color shifting tile"
 	desc = "Looking at this is hurting my eyes."
 	icon_state = "light_on-10"
+	slowdown = 2
 
 /turf/closed/mineral/random/high_chance/volcanic/default_atmos
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
