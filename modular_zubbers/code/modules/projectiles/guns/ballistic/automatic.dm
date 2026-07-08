@@ -184,7 +184,7 @@
 
 /obj/item/gun/ballistic/automatic/wt550/burst/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.4 SECONDS)
+	AddComponent(/datum/component/automatic_fire, 0.5 SECONDS)
 
 /obj/item/gun/ballistic/automatic/wt550/burst/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, \
@@ -206,7 +206,7 @@
 	suppressor_x_offset = 6
 	slot_flags = ITEM_SLOT_BACK
 	projectile_damage_multiplier = 1.50 // 30 damage base + wounding at half the firerate
-	projectile_speed_multiplier = 1.25
+	projectile_speed_multiplier = 1.50
 	projectile_wound_bonus = 5
 	burst_delay = 6
 	burst_size = 1
@@ -226,7 +226,7 @@
 /obj/item/gun/ballistic/automatic/battle_rifle_basic
 	name = "\improper .38 battle rifle"
 	desc = "A lower-tech alternative version of Nanotrasen's latest prototype longarm, granting a different option to those who don't care for the NT-38. \
-		Technically a pistol-caliber carbine, despite the name and its use as a designated marksman rifle. \
+		Technically a pistol-caliber carbine, despite the name and its use as a battle rifle. \
 		Forsaking the advanced electronics and integrated technological advantages allows it to perform infinitely more reliably."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/wide_guns.dmi'
 	icon_state = "battle_rifle"
@@ -243,7 +243,7 @@
 	force = 15
 	mag_display = TRUE
 	empty_indicator = TRUE
-	fire_delay = 1.75 DECISECONDS
+	fire_delay = 1.5 DECISECONDS
 	burst_size = 1
 	actions_types = list()
 	fire_sound = 'sound/items/weapons/thermalpistol.ogg'

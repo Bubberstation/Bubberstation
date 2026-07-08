@@ -311,7 +311,7 @@
 
 /obj/item/clothing/suit/hooded/secjuggernaut/examine(mob/user)
 	. = ..()
-	. += span_warning("Buckling to anything while wearing this is impossible, whether it be a chair, cyborg, horse, or golf cart.")
+	. += span_warning("Trying to buckle to anything while wearing this is impossible, whether it be a chair, cyborg, horse, or golf cart.")
 
 /obj/item/clothing/suit/hooded/secjuggernaut/Initialize(mapload)
 	. = ..()

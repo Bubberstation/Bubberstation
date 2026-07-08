@@ -48,14 +48,24 @@
 	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/stunstaff_prime
-	name = "Heroic Stun Staff"
+	name = "Magna-staff"
 	result = /obj/item/melee/baton/security/staff/prime
 	reqs = list(
 		/obj/item/melee/baton/security/staff = 1,
+		/obj/item/stack/sheet/mineral/titanium = 10,
+		/obj/item/stack/sheet/mineral/plasma = 10,
+		/obj/item/stock_parts/capacitor/quadratic = 5,
+		/datum/reagent/consumable/ethanol/quintuple_sec = 30,
 	)
 	blacklist = list(
+		/obj/item/melee/baton/security/staff/prime
 	)
-	tool_behaviors = list()
+	tool_behaviors = list(TOOL_WELDER, TOOL_WRENCH)
+	tool_paths = list(
+	)
+	machinery = list(
+		/obj/machinery/power/apc,
+	)
 	time = 15 SECONDS
 	category = CAT_WEAPON_MELEE
-	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
+	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY | CRAFT_MUST_BE_LEARNED
