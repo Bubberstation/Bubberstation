@@ -173,6 +173,7 @@
 #define AMBIENCE_GAMING "gaming"
 #define AMBIENCE_DEEPERMAINTSROOM "deepermaintsroom"
 #define AMBIENCE_GAMBLING "gambling"
+#define AMBIENCE_MAINTSROOMLOBBY "maintsroomlobby"
 
 #define ANNOUNCER_GRAVGENBLACKOUT "announcer_gravgenblackout"
 #define ANNOUNCER_METEORWARNING "announcer_meteorwarning"

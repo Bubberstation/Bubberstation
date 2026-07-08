@@ -28,3 +28,9 @@
 	icon_state = "awaycontent6"
 	ambience_index = AMBIENCE_GENERIC
 	sound_environment = SOUND_ENVIRONMENT_NONE
+
+/area/awaymission/caves/maintsroom/gaming_spatial
+	name = "Empty nothing"
+	icon_state = "awaycontent7"
+	ambience_index = AMBIENCE_GAMING
+	sound_environment = SOUND_ENVIRONMENT_NONE

@@ -191,6 +191,24 @@ GLOBAL_LIST_INIT(creepy_ambience,list(
 	'sound/effects/hallucinations/wail.ogg',
 ))
 
+//BUBBER EDIT ADDITION BEGIN
+GLOBAL_LIST_INIT(gaming_ambience,list(
+	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/gaming.ogg',
+))
+
+GLOBAL_LIST_INIT(deepermaintsroom_ambience,list(
+	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/waste/waste1.ogg',
+	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/waste/waste2.ogg',
+	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/waste/waste3.ogg',
+	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/waste/waste4.ogg',
+	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/waste/waste5.ogg',
+))
+
+GLOBAL_LIST_INIT(gambling_ambience,list(
+	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/gamblecore.ogg',
+))
+
+//BUBBER EDIT ADDITION END
 GLOBAL_LIST_INIT(ambience_assoc,list(
 	AMBIENCE_AWAY = GLOB.away_ambience,
 	AMBIENCE_CREEPY = GLOB.creepy_ambience,
@@ -207,4 +225,10 @@ GLOBAL_LIST_INIT(ambience_assoc,list(
 	AMBIENCE_RUINS = GLOB.ruins_ambience,
 	AMBIENCE_SPACE = GLOB.space_ambience,
 	AMBIENCE_SPOOKY = GLOB.spooky_ambience,
+	//BUBBER EDIT ADDITION BEGIN
+	AMBIENCE_GAMING = GLOB.gaming_ambience,
+	AMBIENCE_DEEPERMAINTSROOM = GLOB.deepermaintsroom_ambience,
+	AMBIENCE_GAMBLING = GLOB.gambling_ambience,
+	AMBIENCE_MAINTSROOMLOBBY = GLOB.maintsroomlobby_ambience,
+	//BUBBER EDIT ADDITION END
 ))
