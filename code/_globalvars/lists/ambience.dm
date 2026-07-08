@@ -208,6 +208,11 @@ GLOBAL_LIST_INIT(gambling_ambience,list(
 	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/gamblecore.ogg',
 ))
 
+GLOBAL_LIST_INIT(maintsroomlobby_ambience,list(
+	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/lobby.ogg',
+	'modular_skyrat/master_files/sound/ambience/maintsroom_ambience/lobby1.ogg',
+))
+
 //BUBBER EDIT ADDITION END
 GLOBAL_LIST_INIT(ambience_assoc,list(
 	AMBIENCE_AWAY = GLOB.away_ambience,

@@ -30,7 +30,13 @@
 	sound_environment = SOUND_ENVIRONMENT_NONE
 
 /area/awaymission/caves/maintsroom/gaming_spatial
-	name = "Empty nothing"
-	icon_state = "awaycontent7"
+	name = "Gamer den"
+	icon_state = "awaycontent8"
 	ambience_index = AMBIENCE_GAMING
+	sound_environment = SOUND_ENVIRONMENT_NONE
+
+/area/awaymission/caves/maintsroom/lobby_spatial
+	name = "serene lobby"
+	icon_state = "awaycontent9"
+	ambience_index = AMBIENCE_MAINTSROOMLOBBY
 	sound_environment = SOUND_ENVIRONMENT_NONE
