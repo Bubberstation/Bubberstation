@@ -237,7 +237,6 @@ GLOBAL_LIST_INIT(ambience_assoc,list(
 	//BUBBER EDIT ADDITION BEGIN
 	AMBIENCE_GAMING = GLOB.gaming_ambience,
 	AMBIENCE_WASTE = GLOB.waste_ambience,
-	AMBIENCE_DEEPERMAINTSROOM = GLOB.deepermaintsroom_ambience,
 	AMBIENCE_GAMBLING = GLOB.gambling_ambience,
 	AMBIENCE_MAINTSROOMLOBBY = GLOB.maintsroomlobby_ambience,
 	AMBIENCE_MAINTSROOMVAPOR = GLOB.maintsroomeighties_ambience,

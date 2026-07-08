@@ -173,7 +173,6 @@
 #define AMBIENCE_MAINTSROOMVAPOR "maintsroomeighties_ambience"
 #define AMBIENCE_WASTE "waste_ambience"
 #define AMBIENCE_GAMING "gaming_ambience"
-#define AMBIENCE_DEEPERMAINTSROOM "deepermaintsroom_ambience"
 #define AMBIENCE_GAMBLING "gambling_ambience"
 #define AMBIENCE_MAINTSROOMLOBBY "maintsroomlobby_ambience"
 
