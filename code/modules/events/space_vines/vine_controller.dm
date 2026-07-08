@@ -93,8 +93,9 @@ GLOBAL_LIST_INIT(vine_mutations_list, init_vine_mutation_list())
 	if(parent)
 		vine.mutations |= parent.mutations
 		vine.trait_flags |= parent.trait_flags
-		var/parentcolor = parent.atom_colours[FIXED_COLOUR_PRIORITY]
-		vine.add_atom_colour(parentcolor, FIXED_COLOUR_PRIORITY)
+		var/parentcolor = parent.atom_colours[FIXED_COLOUR_PRIORITY] // BUBBER EDIT CHANGE - SPACE VINES OVERHAUL, atom_colours stores list(value, type), not a raw color
+		if(parentcolor) // BUBBER EDIT ADDITION - SPACE VINES OVERHAUL
+			vine.add_atom_colour(parentcolor[ATOM_COLOR_VALUE_INDEX], FIXED_COLOUR_PRIORITY) // BUBBER EDIT CHANGE - SPACE VINES OVERHAUL, unwrap to the raw value or add_atom_colour double-wraps it and the tint silently fails to render
 		if(prob(mutativeness * SPACEVINE_MUTATIVENESS_SCALAR)) // BUBBER EDIT CHANGE - SPACE VINES OVERHAUL, scaled down to offset the water model's wider branching factor
 			// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
 			var/list/available_mutations = GLOB.vine_mutations_list - vine.mutations
