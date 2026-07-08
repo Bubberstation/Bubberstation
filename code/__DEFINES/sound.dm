@@ -170,6 +170,8 @@
 //SKYRAT EDIT END
 
 // BUBBER EDIT ADDITION BEGIN
+#define AMBIENCE_MAINTSROOMVAPOR "maintsroomvapor"
+#define AMBIENCE_WASTE "waste"
 #define AMBIENCE_GAMING "gaming"
 #define AMBIENCE_DEEPERMAINTSROOM "deepermaintsroom"
 #define AMBIENCE_GAMBLING "gambling"

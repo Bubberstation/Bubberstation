@@ -8,7 +8,7 @@
 /area/awaymission/caves/maintsroom/deeper
 	name = "deeper"
 	icon_state = "away3"
-	ambience_index = AMBIENCE_SPOOKY
+	ambience_index = AMBIENCE_WASTE
 	sound_environment = SOUND_ENVIRONMENT_CAVE
 
 /area/awaymission/caves/maintsroom/deeper/biome1
@@ -39,4 +39,16 @@
 	name = "serene lobby"
 	icon_state = "awaycontent9"
 	ambience_index = AMBIENCE_MAINTSROOMLOBBY
+	sound_environment = SOUND_ENVIRONMENT_NONE
+
+/area/awaymission/caves/maintsroom/vapor_spatial
+	name = "vaporwave"
+	icon_state = "awaycontent10"
+	ambience_index = AMBIENCE_MAINTSROOMVAPOR
+	sound_environment = SOUND_ENVIRONMENT_NONE
+
+/area/awaymission/caves/maintsroom/vapor_spatial
+	name = "vaporwave"
+	icon_state = "awaycontent11"
+	ambience_index = AMBIENCE_GAMBLING
 	sound_environment = SOUND_ENVIRONMENT_NONE
