@@ -26,7 +26,7 @@
 
 	speech_span = SPAN_ROBOT
 
-	max_integrity = 50
+	max_integrity = 100
 	integrity_failure = 0.5
 
 	clothing_traits = list(TRAIT_MANSUS_INHIBITION)
@@ -45,7 +45,7 @@
 
 /datum/armor/antimagic_collar
 	acid = 50
-	fire = 70
+	fire = 75
 	bomb = 50
 
 /obj/item/clothing/neck/antimagic_collar/Destroy()

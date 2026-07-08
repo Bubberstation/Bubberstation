@@ -6,12 +6,18 @@
 #define TRAIT_RESEARCH_CYBORG "research_cyborg"
 #define TRAIT_BILINGUAL "Bilingual"
 #define TRAIT_DIRTY "dirty"
+#define TRAIT_BODY_MORPHER "body_morpher"
 
 /// Cyborgs with unique sprites
 /// 32x32 quadruped skins with resting, sitting, and belly up sprites
 #define TRAIT_R_SQUADRUPED "squadruped_borg"
 // For light weight borgs
 #define TRAIT_R_LIGHT_WEIGHT "lightweight_borg"
+
+///Characters that know how to make advanced smithing equipment
+#define TRAIT_KNOW_ADVANCED_SMITHING "know_advanced_smithing"
+#define TRAIT_KNOW_GUNSMITHING "know_gunsmithing"
+#define TRAIT_KNOW_CIRCUIT_SMITHING "know_circuit_smithing"
 
 //For the hemophage quirk that allows hemophages to eat/drink normal food/drink.
 #define TRAIT_MASQUERADE_FOOD "masquerade_food"

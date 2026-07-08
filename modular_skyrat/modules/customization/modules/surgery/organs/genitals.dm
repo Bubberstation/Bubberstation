@@ -523,11 +523,10 @@
 	icon_state = passed_string
 
 /obj/item/organ/genital/breasts/get_sprite_size_string()
-	var/max_size = 5
-	if(genital_type == "pair")
-		max_size = findtext(genital_name, "(Alt)") ? 19 : 16
-	if(genital_type == "quad")
-		max_size = findtext(genital_name, "(Alt)") ? 19 : 5
+	var/max_size = 0
+	var/datum/sprite_accessory/genital/breasts/sprite_accessory = bodypart_overlay.sprite_datum
+	if (istype(sprite_accessory))
+		max_size = sprite_accessory.max_size
 	var/current_size = FLOOR(genital_size, 1)
 	if(current_size < 0)
 		current_size = 0
