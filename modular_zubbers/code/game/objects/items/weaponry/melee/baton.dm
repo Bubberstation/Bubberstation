@@ -49,7 +49,7 @@
 
 /obj/item/melee/baton/security/staff/prime
 	name = "\improper Magna-staff"
-	desc = "An absolutely brutal feat of less-lethal engineering. The unique construction allows it to recharge between shocks incredibly quickly, along with . Definitely more effective at incapacitating targets and posesses exceptional blocking capabilities."
+	desc = "An absolutely brutal feat of less-lethal engineering. The unique construction allows it to recharge between shocks incredibly quickly. Definitely more effective at incapacitating targets and posesses exceptional blocking capabilities."
 	icon_state = "stunstaff_prime"
 	base_icon_state = "stunstaff_prime"
 	inhand_icon_state = "stunstaff_prime"
