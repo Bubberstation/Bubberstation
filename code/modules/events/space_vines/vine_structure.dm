@@ -169,6 +169,9 @@
 		var/turf/candidate = get_step(src, candidate_dir)
 		if(!istype(candidate) || is_space_or_openspace(candidate) || istype(candidate, /turf/closed))
 			continue
+		var/area/candidate_area = get_area(candidate)
+		if(candidate_area?.outdoors && !(trait_flags & SPACEVINE_COLD_RESISTANT))
+			continue
 		var/obj/machinery/door/airlock/candidate_door = locate() in candidate
 		if(candidate_door?.density)
 			var/turf/beyond = get_step(candidate, candidate_dir)

@@ -95,7 +95,7 @@ GLOBAL_LIST_INIT(vine_mutations_list, init_vine_mutation_list())
 		vine.trait_flags |= parent.trait_flags
 		var/parentcolor = parent.atom_colours[FIXED_COLOUR_PRIORITY]
 		vine.add_atom_colour(parentcolor, FIXED_COLOUR_PRIORITY)
-		if(prob(mutativeness))
+		if(prob(mutativeness * SPACEVINE_MUTATIVENESS_SCALAR)) // BUBBER EDIT CHANGE - SPACE VINES OVERHAUL, scaled down to offset the water model's wider branching factor
 			// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
 			var/list/available_mutations = GLOB.vine_mutations_list - vine.mutations
 			if(length(banned_qualities))

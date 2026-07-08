@@ -34,6 +34,8 @@
 #define SPACEVINE_PRY_COOLDOWN (30 SECONDS)
 /// Delay between a vine forcing a door and the door actually opening
 #define SPACEVINE_PRY_DELAY (4 SECONDS)
+/// Scales down mutativeness for new-mutation rolls, to compensate for the water model's wider concurrent branching factor versus vanilla's single-direction crawl. Without this, too many independent branches roll a different mutation too early to ever form a visible patch.
+#define SPACEVINE_MUTATIVENESS_SCALAR 0.5
 // BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
 
 /// Kudzu severity values for traits, based on severity in terms of how severely it impacts the game, the lower the severity, the more likely it is to appear
