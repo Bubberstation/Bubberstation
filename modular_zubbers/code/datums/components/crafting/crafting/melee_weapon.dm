@@ -62,6 +62,7 @@
 	)
 	tool_behaviors = list(TOOL_WELDER, TOOL_WRENCH)
 	tool_paths = list(
+		/obj/item/clothing/accessory/medal/silver/security,
 	)
 	machinery = list(
 		/obj/machinery/power/apc,

@@ -64,7 +64,7 @@
 	throw_stun_chance = 75
 	throw_range = 6
 	cell_hit_cost = STANDARD_CELL_CHARGE * 4 //guzzler. It's overcharged, what do you expect?
-	knockdown_time = 1.0 SECONDS //one fifth the knockdown
+	knockdown_time = 0.5 SECONDS //one tenth the knockdown
 	cooldown = 0 SECONDS //as fast as you can attack (probably)
 
 	light_color = LIGHT_COLOR_FLARE
