@@ -160,22 +160,25 @@
 	if(isnull(master)) //If we've lost our controller, something has gone terribly wrong.
 		return
 
-	// BUBBER EDIT CHANGE START - SPACE VINES WATER MODEL
+	// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
 	var/direction
 	var/turf/stepturf
 	var/list/free_dirs = list()
 	var/list/door_dirs = list()
 	for(var/candidate_dir in GLOB.cardinals)
 		var/turf/candidate = get_step(src, candidate_dir)
-		if(!candidate || !istype(candidate) || is_space_or_openspace(candidate) || istype(candidate, /turf/closed))
+		if(!istype(candidate) || is_space_or_openspace(candidate) || istype(candidate, /turf/closed))
 			continue
 		var/obj/machinery/door/airlock/candidate_door = locate() in candidate
 		if(candidate_door?.density)
-			var/datum/gas_mixture/candidate_air = candidate.return_air()
-			if(candidate_air?.return_pressure() >= HAZARD_LOW_PRESSURE)
+			var/turf/beyond = get_step(candidate, candidate_dir)
+			var/datum/gas_mixture/beyond_air = beyond?.return_air()
+			if(beyond_air?.return_pressure() >= HAZARD_LOW_PRESSURE)
 				door_dirs += candidate_dir
 			continue
 		if(locate(/obj/structure/window) in candidate)
+			continue
+		if(locate(/obj/machinery/power/supermatter_crystal) in candidate)
 			continue
 		var/obj/machinery/door/non_airlock_door = locate() in candidate
 		if(non_airlock_door?.density)
@@ -184,21 +187,20 @@
 			continue
 		free_dirs += candidate_dir
 	if(length(free_dirs))
+		// matches the odds of the vanilla random cardinal pick so production still governs pace
+		if(!prob(length(free_dirs) * SPACEVINE_SPREAD_CHANCE_PER_DIRECTION))
+			return
 		direction = pick(free_dirs)
 		stepturf = get_step(src, direction)
 	else if(length(door_dirs) && growth_stage >= 2 && world.time >= next_pry_attempt)
-		// BUBBER EDIT ADDITION START - SPACE VINES PROBABILISTIC DOOR PRYING
-		var/cluster_idle = (world.time - master.last_spread_time) > 1 MINUTES
-		if(!prob(cluster_idle ? 35 : 8))
+		var/cluster_idle = (world.time - master.last_spread_time) > SPACEVINE_CLUSTER_IDLE_THRESHOLD
+		if(!prob(cluster_idle ? SPACEVINE_DOOR_PRY_CHANCE_SATURATED : SPACEVINE_DOOR_PRY_CHANCE_ACTIVE))
 			return
-		// BUBBER EDIT ADDITION END - SPACE VINES PROBABILISTIC DOOR PRYING
-		direction = pick(door_dirs)
-		stepturf = get_step(src, direction)
-		pry_door(locate(/obj/machinery/door/airlock) in stepturf)
+		pry_door(locate(/obj/machinery/door/airlock) in get_step(src, pick(door_dirs)))
 		return
 	else
 		return
-	// BUBBER EDIT CHANGE END - SPACE VINES WATER MODEL
+	// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
 	if(ischasm(stepturf) && !HAS_TRAIT(stepturf, TRAIT_CHASM_STOPPED))
 		return
 	if(islava(stepturf) && !HAS_TRAIT(stepturf, TRAIT_LAVA_STOPPED))

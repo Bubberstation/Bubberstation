@@ -19,6 +19,23 @@
 /// Temperature below which the kudzu can't spread
 #define VINE_FREEZING_POINT 100
 
+// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
+/// Weight multiplier applied to POSITIVE quality mutations when they're being suppressed for a wild spawn or evolution roll
+#define SPACEVINE_POSITIVE_WEIGHT_MULTIPLIER 0.1
+/// Percent chance per free direction that a vine spreads into it on a given attempt (matches the odds of the vanilla random cardinal pick)
+#define SPACEVINE_SPREAD_CHANCE_PER_DIRECTION 25
+/// Percent chance a vine tile boxed in by a door will pry it, while its cluster is still actively spreading
+#define SPACEVINE_DOOR_PRY_CHANCE_ACTIVE 8
+/// Percent chance a vine tile boxed in by a door will pry it, once its cluster has gone SPACEVINE_CLUSTER_IDLE_THRESHOLD without a new tile
+#define SPACEVINE_DOOR_PRY_CHANCE_SATURATED 35
+/// How long a cluster can go without spreading to a new tile before it's considered saturated for door-prying purposes
+#define SPACEVINE_CLUSTER_IDLE_THRESHOLD (1 MINUTES)
+/// Cooldown between a single vine tile's door pry attempts
+#define SPACEVINE_PRY_COOLDOWN (30 SECONDS)
+/// Delay between a vine forcing a door and the door actually opening
+#define SPACEVINE_PRY_DELAY (4 SECONDS)
+// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
+
 /// Kudzu severity values for traits, based on severity in terms of how severely it impacts the game, the lower the severity, the more likely it is to appear
 #define SEVERITY_TRIVIAL 1
 #define SEVERITY_MINOR 2

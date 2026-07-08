@@ -10,15 +10,19 @@ GLOBAL_LIST_INIT(vine_mutations_list, init_vine_mutation_list())
 
 	return mutation_list
 
+// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
+/// Returns a mutation's pick_weight value, penalized if its quality is in penalized_qualities
+/proc/get_spacevine_mutation_weight(datum/spacevine_mutation/mutation, weight, list/penalized_qualities)
+	if(mutation.quality in penalized_qualities)
+		return max(1, round(weight * SPACEVINE_POSITIVE_WEIGHT_MULTIPLIER))
+	return weight
+// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
+
 /datum/spacevine_controller
 	///Canonical list of all the vines we "own"
 	var/list/obj/structure/spacevine/vines
 	///Queue of vines to process
 	var/list/growth_queue
-	// BUBBER EDIT ADDITION START - SPACE VINES SPREAD TIMESTAMP
-	/// Last world.time at which this cluster successfully spread to a new tile
-	var/last_spread_time = 0
-	// BUBBER EDIT ADDITION END - SPACE VINES SPREAD TIMESTAMP
 	//List of currently processed vines, on this level to prevent runtime tomfoolery
 	var/list/obj/structure/spacevine/queue_end
 	///Spread multiplier, depends on productivity, affects how often kudzu spreads
@@ -79,8 +83,7 @@ GLOBAL_LIST_INIT(vine_mutations_list, init_vine_mutation_list())
 	var/obj/structure/spacevine/vine = new(location)
 	growth_queue += vine
 	vines += vine
-	// BUBBER EDIT ADDITION - SPACE VINES SPREAD TIMESTAMP
-	last_spread_time = world.time
+	last_spread_time = world.time // BUBBER EDIT ADDITION - SPACE VINES OVERHAUL
 	vine.master = src
 	for(var/mutation_type in muts)
 		for(var/datum/spacevine_mutation/mutation in GLOB.vine_mutations_list)
@@ -93,14 +96,13 @@ GLOBAL_LIST_INIT(vine_mutations_list, init_vine_mutation_list())
 		var/parentcolor = parent.atom_colours[FIXED_COLOUR_PRIORITY]
 		vine.add_atom_colour(parentcolor, FIXED_COLOUR_PRIORITY)
 		if(prob(mutativeness))
-			// BUBBER EDIT ADDITION START - SPACE VINES BANNED QUALITIES
+			// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
 			var/list/available_mutations = GLOB.vine_mutations_list - vine.mutations
 			if(length(banned_qualities))
-				for(var/datum/spacevine_mutation/mut as anything in available_mutations)
-					if(mut.quality in banned_qualities)
-						available_mutations[mut] = max(1, round(available_mutations[mut] * 0.1))
+				for(var/datum/spacevine_mutation/mutation as anything in available_mutations)
+					available_mutations[mutation] = get_spacevine_mutation_weight(mutation, available_mutations[mutation], banned_qualities)
 			var/datum/spacevine_mutation/random_mutate = pick_weight(available_mutations)
-			// BUBBER EDIT ADDITION END - SPACE VINES BANNED QUALITIES
+			// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
 			if(!isnull(random_mutate)) //If this vine has every single mutation don't attempt to add a null mutation.
 				var/total_severity = random_mutate.severity
 				for(var/datum/spacevine_mutation/mutation as anything in vine.mutations)
@@ -145,6 +147,11 @@ GLOBAL_LIST_INIT(vine_mutations_list, init_vine_mutation_list())
 	var/spread_max = round(clamp(seconds_per_tick * (spread_base + start_spread_bonus), max(seconds_per_tick * minimum_spread_rate, 1), spread_cap))
 	var/amount_processed = 0
 	for(var/obj/structure/spacevine/vine in growth_queue)
+		// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
+		vine.check_atmos_viability()
+		if(QDELETED(vine))
+			continue
+		// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
 		if(!vine.can_spread)
 			continue
 		growth_queue -= vine

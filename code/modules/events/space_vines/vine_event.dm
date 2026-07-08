@@ -36,13 +36,13 @@
 	else
 		var/obj/structure/spacevine/vine = new()
 
-		// BUBBER EDIT ADDITION START - SPACE VINES BLOB SPAWNPOINTS
+		// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
 		for(var/turf/spawn_turf as anything in GLOB.blobstart)
 			if(isopenspaceturf(spawn_turf))
 				continue
 			if(spawn_turf.Enter(vine))
 				final_turf_candidates += spawn_turf
-		// BUBBER EDIT ADDITION END - SPACE VINES BLOB SPAWNPOINTS
+		// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
 
 		if(!length(final_turf_candidates))
 			var/list/floor_candidates = list()
@@ -72,15 +72,12 @@
 	if(mutations_overridden)
 		selected_mutations = override_mutations
 	else
-		// BUBBER EDIT ADDITION START - SPACE VINES HAZARD MUTATION FILTER
+		// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
 		var/list/weighted_types = list()
-		for(var/datum/spacevine_mutation/mut as anything in GLOB.vine_mutations_list)
-			var/weight = GLOB.vine_mutations_list[mut]
-			if(mut.quality == POSITIVE)
-				weight = max(1, round(weight * 0.1))
-			weighted_types[mut.type] = weight
+		for(var/datum/spacevine_mutation/mutation as anything in GLOB.vine_mutations_list)
+			weighted_types[mutation.type] = get_spacevine_mutation_weight(mutation, GLOB.vine_mutations_list[mutation], list(POSITIVE))
 		selected_mutations = list(pick_weight(weighted_types))
-		// BUBBER EDIT ADDITION END - SPACE VINES HAZARD MUTATION FILTER
+		// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
 
 	if(isnull(potency))
 		potency = rand(50, 100)
@@ -88,11 +85,11 @@
 	if(isnull(production))
 		production = rand(1, 4)
 
-	// BUBBER EDIT ADDITION START - SPACE VINES BANNED QUALITIES
+	// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
 	var/datum/spacevine_controller/controller = new /datum/spacevine_controller(floor, selected_mutations, potency, production, src)
 	if(!mutations_overridden)
 		controller.banned_qualities = list(POSITIVE)
-	// BUBBER EDIT ADDITION END - SPACE VINES BANNED QUALITIES
+	// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
 
 /datum/event_admin_setup/set_location/spacevine
 	input_text = "Spawn vines at current location?"
