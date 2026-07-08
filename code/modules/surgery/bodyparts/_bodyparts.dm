@@ -285,6 +285,7 @@
 	if (length(drop_results))
 		butcher_drops = string_list(drop_results)
 		butcher_drop_cache[type] = butcher_drops
+	update_limb(TRUE)
 	update_icon_dropped()
 	refresh_bleed_rate()
 
@@ -300,7 +301,8 @@
 
 	owner = null
 
-	QDEL_LIST_ASSOC_VAL(applied_items)
+	if(LAZYLEN(applied_items))
+		QDEL_LIST_ASSOC_VAL(applied_items)
 	QDEL_LAZYLIST(scars)
 
 	for(var/atom/movable/movable in contents)
@@ -650,8 +652,7 @@
 			bodypart_organ.apply_organ_damage(bodypart_organ.maxHealth * 0.5)
 
 		if(owner)
-			if(!bodypart_organ.Remove(bodypart_organ.owner))
-				continue
+			bodypart_organ.Remove(bodypart_organ.owner)
 		else if(!bodypart_organ.bodypart_remove(src))
 			continue
 
@@ -668,10 +669,6 @@
 		playsound(drop_loc, 'sound/misc/splort.ogg', 50, TRUE, -1)
 
 	update_icon_dropped()
-
-//Return TRUE to get whatever mob this is in to update health.
-/obj/item/bodypart/proc/on_life(seconds_per_tick)
-	SHOULD_CALL_PARENT(TRUE)
 
 /**
  * #receive_damage
@@ -772,7 +769,7 @@
 			check_wounding(wounding_type, wounding_dmg, wound_bonus, exposed_wound_bonus, attack_direction, damage_source = damage_source, wound_clothing = wound_clothing)
 
 	for(var/datum/wound/iter_wound as anything in wounds)
-		iter_wound.receive_damage(wounding_type, wounding_dmg, wound_bonus, damage_source)
+		iter_wound.receive_damage(wounding_type, wounding_dmg, wound_bonus, attack_direction, damage_source)
 
 	/*
 	// END WOUND HANDLING
@@ -1160,6 +1157,8 @@
 /obj/item/bodypart/proc/update_limb(dropping_limb = FALSE, is_creating = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 
+	SEND_SIGNAL(src, COMSIG_BODYPART_UPDATED, dropping_limb, is_creating)
+
 	if(IS_ORGANIC_LIMB(src))
 		// Try to add a cached blood type data, we must do it in here because for some reason DNA gets initialized AFTER the mob's limbs are created.
 		// Should be fine as this gets called before all the important stuff happens
@@ -1183,7 +1182,7 @@
 	update_draw_color()
 
 	if(!is_creating || !owner)
-		return
+		return FALSE
 
 	// There should technically to be an ishuman(owner) check here, but it is absent because no basetype carbons use bodyparts
 	// No, xenos don't actually use bodyparts. Don't ask.
@@ -1217,6 +1216,14 @@
 
 	if(owner_species && owner_species.specific_alpha != 255)
 		alpha = owner_species.specific_alpha
+
+	// BUBBER EDIT ADDITION START - per-limb alpha.
+	// preference (stored in dna.features) overrides it for this specific zone if present over species alpha
+	limb_alpha = owner_species?.specific_alpha || 255
+	var/limb_alpha_key = "limb_alpha_[body_zone]"
+	if(limb_alpha_key in human_owner.dna.features)
+		limb_alpha = human_owner.dna.features[limb_alpha_key]
+	// BUBBER EDIT ADDITION END
 
 	if(body_zone in owner_species.body_markings)
 		markings = LAZYCOPY(owner_species.body_markings[body_zone])
@@ -1329,12 +1336,19 @@
 	var/image/limb = image(used_icon, used_state, -BODYPARTS_LAYER, dir = image_dir)
 	var/image/aux = null
 
+	// BUBBER EDIT ADDITION - per-limb alpha. While worn the chosen alpha is used verbatim (0 = invisible),
+	// while dropped it is floored so the limb stays visible and pickup-able on the ground.
+	var/used_alpha = dropped ? max(limb_alpha, LIMB_DROPPED_MIN_ALPHA) : limb_alpha
+	limb.alpha = used_alpha
+	// BUBBER EDIT ADDITION END
+
 	icon_exists_or_scream(limb.icon, limb.icon_state) //Prints a stack trace on the first failure of a given iconstate.
 
 	. += limb
 
 	if(aux_zone) //Hand shit
 		aux = image(limb.icon, "[limb_id]_[aux_zone]", -aux_layer, dir = image_dir)
+		aux.alpha = used_alpha // BUBBER EDIT ADDITION - per-limb alpha
 		. += aux
 
 	if(dropped && dmg_overlay_type)
@@ -1358,10 +1372,12 @@
 		update_draw_color()
 
 	if(draw_color)
-		var/limb_color = alpha != 255 ? "[draw_color][num2hex(alpha, 2)]" : "[draw_color]" // SKYRAT EDIT ADDITION - Alpha values on limbs. We check if the limb is attached and if the owner has an alpha value to append
-		limb.color = limb_color // SKYRAT EDIT CHANGE - ORIGINAL: limb.color = "[draw_color]"
+		// BUBBER EDIT CHANGE - per-limb transparency is now handled via limb.alpha (see above) rather than
+		// baking an alpha channel into the draw color. ORIGINAL SKYRAT: limb.color = "[draw_color][num2hex(alpha, 2)]"
+		limb.color = "[draw_color]"
 		if(aux_zone)
-			aux.color = limb_color // SKYRAT EDIT CHANGE - ORIGINAL: aux.color = "[draw_color]"
+			aux.color = "[draw_color]"
+		// BUBBER EDIT END
 
 	var/atom/location = loc || owner || src
 	if(blocks_emissive != EMISSIVE_BLOCK_NONE)
@@ -1867,6 +1883,22 @@
 		return
 	REMOVE_TRAIT(owner, old_trait, bodypart_trait_source)
 
+/// Add a bodyshape to the bodypart, then synchronize with the owner if necessary
+/obj/item/bodypart/proc/add_bodyshape(new_shape)
+	if(bodyshape & new_shape)
+		return
+
+	bodyshape |= new_shape
+	owner?.synchronize_bodyshapes()
+
+/// Remove a bodyshape from the bodypart, then synchronize with the owner if necessary
+/obj/item/bodypart/proc/remove_bodyshape(old_shape)
+	if(!(bodyshape & old_shape))
+		return
+
+	bodyshape &= ~old_shape
+	owner?.synchronize_bodyshapes()
+
 /// Add one or multiple surgical states to the bodypart
 /obj/item/bodypart/proc/add_surgical_state(new_states)
 	if(!new_states)
@@ -1921,3 +1953,34 @@
 	var/old_state = surgery_state
 	. = ..()
 	update_surgical_state(old_state, surgery_state ^ old_state)
+
+/// Adds biostate to the limb and ensures surgical states are updated accordingly
+/obj/item/bodypart/proc/add_biostate(new_biostate)
+	if(biological_state & new_biostate)
+		return
+
+	var/had_skin = LIMB_HAS_SKIN(src)
+	var/had_bones = LIMB_HAS_BONES(src)
+	var/had_vessels = LIMB_HAS_VESSELS(src)
+
+	biological_state |= new_biostate
+
+	if(!had_skin && LIMB_HAS_SKIN(src))
+		remove_surgical_state(SKINLESS_SURGERY_STATES)
+	if(!had_bones && LIMB_HAS_BONES(src))
+		remove_surgical_state(BONELESS_SURGERY_STATES)
+	if(!had_vessels && LIMB_HAS_VESSELS(src))
+		remove_surgical_state(VESSELLESS_SURGERY_STATES)
+
+/// Removes biostate from the limb and ensures surgical states are updated accordingly
+/obj/item/bodypart/proc/remove_biostate(old_biostate)
+	if(!(biological_state & old_biostate))
+		return
+
+	biological_state &= ~old_biostate
+	if(!LIMB_HAS_SKIN(src))
+		add_surgical_state(SKINLESS_SURGERY_STATES)
+	if(!LIMB_HAS_BONES(src))
+		add_surgical_state(BONELESS_SURGERY_STATES)
+	if(!LIMB_HAS_VESSELS(src))
+		add_surgical_state(VESSELLESS_SURGERY_STATES)

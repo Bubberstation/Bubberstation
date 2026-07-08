@@ -37,3 +37,11 @@
 		light_overlay = "flight", \
 		overlay_x = 15, \
 		overlay_y = 13)
+
+/obj/item/gun/ballistic/automatic/pistol/deagle/regal
+	projectile_damage_multiplier = 1.0
+	custom_materials = list(
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 30,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 25,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 11.5
+	)

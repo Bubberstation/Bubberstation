@@ -56,7 +56,7 @@
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_HEAVY
 	max_mod_capacity = 60
-	disabled_modkits = list(/obj/item/borg/upgrade/modkit/aoe) // Should cover all AOE variants
+	disabled_modkits = list(/obj/item/borg/upgrade/modkit/cooldown/aoe/) // Should cover all AOE variants
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/glock
 	name = "proto-kinetic pistol"
@@ -90,7 +90,7 @@
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
 	max_mod_capacity = 75
-	disabled_modkits = list(/obj/item/borg/upgrade/modkit/aoe) // Should cover all AOE variants
+	disabled_modkits = list(/obj/item/borg/upgrade/modkit/cooldown/aoe/) // Should cover all AOE variants
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/shockwave/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	target = get_edge_target_turf(user, user.dir)
@@ -154,7 +154,7 @@
 	fire_sound = 'sound/items/weapons/gun/general/cannon.ogg'
 
 /obj/item/ammo_casing/energy/kinetic/m79
-	projectile_type = /obj/projectile/bullet/mining_bomb //uses the mining bomb projectile from the mining modsuit
+	projectile_type = /obj/projectile/bullet/mining_missile //uses the mining bomb projectile from the mining modsuit
 	select_name = "kinetic"
 	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE * 0.5)
 	fire_sound = 'sound/items/weapons/gun/general/grenade_launch.ogg'

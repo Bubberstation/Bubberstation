@@ -520,6 +520,10 @@
 		return
 	name = "[initial(name)] - [tagname]"
 
+/obj/item/clothing/neck/petcollar/wearable/cyber
+	desc = "You wear the tie, or you wear this. Your choice."
+	icon_state = "petcollar_cyber"
+
 //////////////
 //DOPE BLING//
 //////////////

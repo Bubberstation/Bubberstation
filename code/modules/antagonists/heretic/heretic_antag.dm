@@ -340,12 +340,24 @@
 	generate_heretic_starting_knowledge(heretic_shops[HERETIC_KNOWLEDGE_START])
 	if(!length(path_info))
 		for(var/datum/heretic_knowledge_tree_column/path as anything in subtypesof(/datum/heretic_knowledge_tree_column))
+			// BUBBER EDIT REMOVAL BEGIN - disables unbalanced paths - change if you rebalance a path
+			var/static/list/banned_paths = list(
+				/datum/heretic_knowledge_tree_column/blade, // havent taken a look at it
+				/datum/heretic_knowledge_tree_column/moon, // fundumentally weirdly designed. will never be intuitive or very fun to fight imo
+				/datum/heretic_knowledge_tree_column/ash, // havent taken a look at it
+				/datum/heretic_knowledge_tree_column/rust, // bad thing to keep when half the crew gets instanuked by it
+			)
+			if (path in banned_paths)
+				continue
+			// BUBBER EDIT REMOVAL END
 			path = new path()
 			path_info += list(path.get_ui_data(src, HERETIC_KNOWLEDGE_START))
 			qdel(path)
 
 	if(give_objectives)
-		forge_primary_objectives(heretic_shops[HERETIC_KNOWLEDGE_TREE])
+		var/datum/objective/pick_path/pick_a_path = new()
+		pick_a_path.owner = owner
+		objectives += pick_a_path
 
 	for(var/starting_knowledge in GLOB.heretic_start_knowledge)
 		gain_knowledge(starting_knowledge, HERETIC_KNOWLEDGE_START, update = FALSE)
@@ -374,8 +386,9 @@
 	var/mob/living/our_mob = mob_override || owner.current
 	handle_clown_mutation(our_mob, "Ancient knowledge described to you has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 	our_mob.add_faction(FACTION_HERETIC)
+	our_mob.apply_status_effect(/datum/status_effect/grouped/heretic_dreams, type)
 
-	if(!issilicon(our_mob))
+	if(!issilicon(our_mob) && generate_influences) // BUBBER EDIT ADDITION - added && generate_influences
 		GLOB.reality_smash_track.add_tracked_mind(owner)
 
 	ADD_TRAIT(our_mob, TRAIT_MANSUS_TOUCHED, REF(src))
@@ -397,6 +410,7 @@
 	var/mob/living/our_mob = mob_override || owner.current
 	handle_clown_mutation(our_mob, removing = FALSE)
 	our_mob.remove_faction(FACTION_HERETIC)
+	our_mob.remove_status_effect(/datum/status_effect/grouped/heretic_dreams, type)
 
 	if(owner in GLOB.reality_smash_track.tracked_heretics)
 		GLOB.reality_smash_track.remove_tracked_mind(owner)
@@ -411,10 +425,12 @@
 			COMSIG_LIVING_POST_FULLY_HEAL,
 			COMSIG_LIVING_CULT_SACRIFICED,
 			COMSIG_ATOM_EXAMINE,
+			COMSIG_ATOM_UPDATE_OVERLAYS,
 			SIGNAL_ADDTRAIT(TRAIT_HERETIC_AURA_HIDDEN),
-			SIGNAL_REMOVETRAIT(TRAIT_HERETIC_AURA_HIDDEN)
+			SIGNAL_REMOVETRAIT(TRAIT_HERETIC_AURA_HIDDEN),
 		)
 	)
+	our_mob.update_appearance(UPDATE_OVERLAYS)
 
 /// Removes the ability to blade break, removes cloak of shadows and removes the cap on how many blades you can craft
 /datum/antagonist/heretic/proc/disable_blade_breaking()
@@ -709,8 +725,13 @@
 /**
  * Create our objectives for our heretic.
  */
-/datum/antagonist/heretic/proc/forge_primary_objectives(heretic_research_tree)
-	var/datum/objective/heretic_research/research_objective = new(heretic_research_tree = heretic_research_tree)
+/datum/antagonist/heretic/proc/forge_primary_objectives()
+	for(var/datum/objective/pick_path/filler in objectives)
+		filler.owner = null
+		objectives -= filler
+		qdel(filler)
+
+	var/datum/objective/heretic_research/research_objective = new(heretic_research_tree = heretic_shops)
 	research_objective.owner = owner
 	objectives += research_objective
 
@@ -1017,6 +1038,27 @@
 /datum/antagonist/heretic/proc/get_researchable_knowledge()
 	var/list/researchable_knowledge = list()
 	var/list/banned_knowledge = list()
+	// BUBBER EDIT ADDITION - Heretics can buy everything
+	var/list/tree = heretic_shops[HERETIC_KNOWLEDGE_TREE]
+	for (var/knowledge_type in tree)
+		if (ispath(knowledge_type, /datum/heretic_knowledge/passive_upgrade))
+			var/datum/heretic_knowledge/passive_upgrade/passive = knowledge_type
+			if (passive_level != (passive::level - 1))
+				continue
+		if (ispath(knowledge_type, /datum/heretic_knowledge/mansus_mark))
+			var/should_continue = TRUE
+			for (var/datum/heretic_knowledge/typepath as anything in researched_knowledge)
+				if (ispath(typepath, /datum/heretic_knowledge/enable_blades))
+					should_continue = FALSE
+					break
+			if (should_continue)
+				continue
+		researchable_knowledge += tree[knowledge_type][HKT_ID]
+
+	var/list/shop = heretic_shops[HERETIC_KNOWLEDGE_SHOP]
+	for (var/knowledge_type in shop)
+		researchable_knowledge += shop[knowledge_type][HKT_ID]
+	// BUBBER EDIT ADDITION END
 	for(var/knowledge_type in researched_knowledge)
 		var/list/knowledge_info = researched_knowledge[knowledge_type]
 		researchable_knowledge |= knowledge_info[HKT_NEXT]
@@ -1099,6 +1141,10 @@
 
 	return HERETIC_HAS_LIVING_HEART
 
+/datum/objective/pick_path
+	name = "pick a path"
+	explanation_text = "Pick a path to pursue."
+
 /// Heretic's minor sacrifice objective. "Minor sacrifices" includes anyone.
 /datum/objective/minor_sacrifice
 	name = "minor sacrifice"
@@ -1133,29 +1179,21 @@
 /// Heretic's research objective. "Research" is heretic knowledge nodes (You start with some).
 /datum/objective/heretic_research
 	name = "research"
-	/// The length of a main path. Calculated once in New().
-	var/static/main_path_length = 0
+	target_amount = 1 // You spawn with 1 point
 
-/datum/objective/heretic_research/New(text, heretic_research_tree)
+/datum/objective/heretic_research/New(text, list/heretic_research_tree = list())
 	. = ..()
 
-	if(!main_path_length)
-		// Let's find the length of a main path. We'll use rust because it's the coolest.
-		// (All the main paths are (should be) the same length, so it doesn't matter.)
-		var/rust_paths_found = 0
-		for(var/datum/heretic_knowledge/knowledge as anything in subtypesof(/datum/heretic_knowledge))
-			var/list/knowledge_data = heretic_research_tree[knowledge]
-			if(knowledge_data && knowledge_data[HKT_ROUTE] == PATH_RUST)
-				rust_paths_found++
-
-		main_path_length = rust_paths_found
-
-	// Factor in the length of the main path first.
-	target_amount = main_path_length
-	// Add in the base research we spawn with, otherwise it'd be too easy.
+	// Factor in the length of the main path
+	target_amount += length(heretic_research_tree[HERETIC_KNOWLEDGE_TREE]) || 10
+	// Factor in base research we spawn with (otherwise it'd be too easy)
 	target_amount += length(GLOB.heretic_start_knowledge)
-	// And add in some buffer, to require some sidepathing, especially since heretics get some free side paths.
+	// Factor in free knowledge, no challenge there
+	target_amount += ceil(length(heretic_research_tree[HERETIC_KNOWLEDGE_DRAFT]) / 3) || 4
+
+	// The actual challenge factor is introduced here, adding a random amount of additional knowledge needed
 	target_amount += rand(2, 4)
+
 	update_explanation_text()
 
 /datum/objective/heretic_research/update_explanation_text()

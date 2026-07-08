@@ -23,7 +23,7 @@
 
 /obj/item/clothing/accessory/pocketwatch/examine(mob/user)
 	. = ..()
-	. += span_info("The current CST (local) time is: [station_time_timestamp()].")
+	. += span_info("The current CST (local) time is: [round_timestamp()].")
 	. += span_info("The current TCT (galactic) time is: [time2text(world.realtime, "hh:mm:ss")].")
 
 /obj/item/storage/backpack/kanken //Donor item for LT3
@@ -631,3 +631,9 @@ Potential future ideas:
 	name = "\improper GalFed Official neckpin"
 	desc = "A special golden neckpin to show true loyalty to the Federation."
 	greyscale_colors = "#ffff66#0099ff"
+
+/obj/item/clothing/accessory/medal/gold/
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/accessories_teshari.dmi'
+
+/obj/item/clothing/accessory/medal/gold/captain
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/accessories_teshari.dmi'
