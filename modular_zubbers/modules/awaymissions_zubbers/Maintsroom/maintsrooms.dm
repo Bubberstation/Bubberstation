@@ -47,8 +47,8 @@
 	ambience_index = AMBIENCE_MAINTSROOMVAPOR
 	sound_environment = SOUND_ENVIRONMENT_NONE
 
-/area/awaymission/caves/maintsroom/vapor_spatial
-	name = "vaporwave"
+/area/awaymission/caves/maintsroom/gambling
+	name = "gambling den"
 	icon_state = "awaycontent11"
 	ambience_index = AMBIENCE_GAMBLING
 	sound_environment = SOUND_ENVIRONMENT_NONE
