@@ -213,3 +213,4 @@
 		/obj/effect/spawner/random/maintsrooms/materials = 25,
 		/obj/effect/spawner/random/maintsrooms = 25,
 	)
+	anchor_anomaly = TRUE
