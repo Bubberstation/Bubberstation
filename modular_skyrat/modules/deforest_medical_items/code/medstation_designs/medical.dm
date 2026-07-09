@@ -2,7 +2,7 @@
 	name = "Bruise Packs"
 	id = "organic_bruise_packs"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 5) // 6 per stacks
+	materials = list(/datum/material/biomass = 4) // 6 per stacks
 	build_path = /obj/item/stack/medical/bruise_pack
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -13,7 +13,7 @@
 	name = "Ointment"
 	id = "organic_ointment"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 4) // 8 per stacks
+	materials = list(/datum/material/biomass = 3) // 8 per stacks
 	build_path = /obj/item/stack/medical/ointment
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -24,7 +24,7 @@
 	name = "Suture"
 	id = "organic_suture"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 6) // 10 per stacks
+	materials = list(/datum/material/biomass = 8) // 10 per stacks
 	build_path = /obj/item/stack/medical/suture
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -35,7 +35,7 @@
 	name = "Regenerative Mesh"
 	id = "organic_regenerative_mesh"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 5) // 15 per stacks
+	materials = list(/datum/material/biomass = 6) // 15 per stacks
 	build_path = /obj/item/stack/medical/mesh
 	category = list(
 		RND_CATEGORY_INITIAL,
