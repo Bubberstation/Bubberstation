@@ -24,6 +24,8 @@
 	default_choices = SSgamemode.storyteller_vote_choices()
 
 /datum/vote/storyteller/on_vote_created()
+	if (SSticker.IsRoundInProgress()) // dont jumpscare players in round
+		return
 	for(var/client/client as anything in GLOB.clients)
 		SSvote.ui_interact(client.mob) // force-opens the vote to all active clients. we WANT EVERYONE TO VOTE ON THIS
 
@@ -50,7 +52,6 @@
 /datum/vote/storyteller/finalize_vote(winning_option)
 	SSgamemode.storyteller_vote_result(winning_option)
 	SSgamemode.storyteller_voted = TRUE
-
 
 /*
 ### PERSISTENCE SUBSYSTEM TRACKING BELOW ###
