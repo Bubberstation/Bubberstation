@@ -185,15 +185,16 @@
 /datum/storage/charging_holster/attempt_insert(obj/item/to_insert, mob/user, override = FALSE, force = STORAGE_NOT_LOCKED, messages = TRUE)
 	. = ..()
 	if(.)
+		parent.name += " ([to_insert.name])"
 		parent.update_overlays()
 		timer_id = addtimer(CALLBACK(my_charger, TYPE_PROC_REF(/obj/machinery/recharger/belt_charger, activate_with_item)), delay_before_charging, TIMER_STOPPABLE | TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_DELETE_ME)
 
-/datum/storage/charging_holster/attempt_remove(obj/item/thing, atom/remove_to_loc, silent = FALSE, visual_updates = TRUE)
+/datum/storage/charging_holster/remove_and_refresh(atom/movable/gone)
 	. = ..()
-	if(.)
-		my_charger.charging = null
-		parent.update_overlays()
-		deltimer(timer_id)
+	parent.name = initial(parent.name)
+	my_charger.charging = null
+	parent.update_overlays()
+	deltimer(timer_id)
 
 /obj/machinery/recharger/belt_charger
 	name = "belt charger"
@@ -211,7 +212,7 @@
 
 /obj/machinery/recharger/belt_charger/proc/activate_with_item()
 	if(length(my_belt?.real_storage?.contents) > 0)
-		say("charging...")
+		say("Charging...")
 		charging = my_belt.real_storage.contents[1]
 		playsound(src, 'sound/machines/ping.ogg', 30, TRUE, frequency = 0.8)
 		START_PROCESSING(SSmachines, src)
