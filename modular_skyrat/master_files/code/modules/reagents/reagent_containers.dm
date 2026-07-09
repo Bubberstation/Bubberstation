@@ -1,4 +1,6 @@
 /obj/item/reagent_containers/click_alt(mob/living/user)
+	if(!has_variable_transfer_amount)
+		return NONE
 	if(length(possible_transfer_amounts) <= 2) // If there's only two choices, just swap between them.
 		change_transfer_amount(user, FORWARD)
 		return CLICK_ACTION_SUCCESS

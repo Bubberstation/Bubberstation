@@ -149,6 +149,7 @@
 #define SYMBOLS_DETECTED 2
 #define NUMBERS_DETECTED 3
 #define LETTERS_DETECTED 4
+#define APOSTROPHE_DETECTED 5 // BLUBBER EDIT ADDITION -- Allow Accented Letters & Do Not Autocapitalize After Apostrophe
 
 /**
  * Filters out undesirable characters from names.
@@ -177,14 +178,14 @@
 	for(var/i = 1, i <= t_len, i += length(char))
 		char = t_in[i]
 		switch(text2ascii(char))
-
-			// A  .. Z
-			if(65 to 90) //Uppercase Letters
+			// BUBBER EDIT BEGIN -- Allow Accented Letters & Do Not Autocapitalize After Apostrophe
+			// A  .. Z, Latin-1 Supplement Letters
+			if(65 to 90,192 to 214,216 to 222) //Uppercase Letters
 				number_of_alphanumeric++
 				last_char_group = LETTERS_DETECTED
 
-			// a  .. z
-			if(97 to 122) //Lowercase Letters
+			// a  .. z, Latin-1 Supplement Letters
+			if(97 to 122,223 to 246,248 to 255) //Lowercase Letters
 				if(((last_char_group == NO_CHARS_DETECTED || last_char_group == SPACES_DETECTED) && cap_at_start) || (cap_after_symbols && last_char_group == SYMBOLS_DETECTED)) //start of a word
 					char = uppertext(char)
 				number_of_alphanumeric++
@@ -198,8 +199,16 @@
 					continue
 				number_of_alphanumeric++
 				last_char_group = NUMBERS_DETECTED
-			// '  -  .
-			if(39,45,46) //Common name punctuation
+
+			if (39) //Apostrophes are common in non-English names to represent glottal stop -- should not force capitalization
+				if(last_char_group == NO_CHARS_DETECTED)
+					if(strict)
+						return
+					continue
+				last_char_group = APOSTROPHE_DETECTED
+
+			// -  .
+			if(45,46) //Common name punctuation
 				if(last_char_group == NO_CHARS_DETECTED)
 					if(strict)
 						return
@@ -222,12 +231,13 @@
 					continue
 				last_char_group = SPACES_DETECTED
 
-			if(127 to INFINITY)
+			if(127 to 191,215,247,256 to INFINITY)
 				if(ascii_only)
 					if(strict)
 						return
 					continue
 				last_char_group = SYMBOLS_DETECTED //for now, we'll treat all non-ascii characters like symbols even though most are letters
+			// BUBBER EDIT END
 
 			else
 				continue
