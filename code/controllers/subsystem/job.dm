@@ -603,7 +603,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/equip_rank(mob/living/equipping, datum/job/job, client/player_client)
 	// SKYRAT EDIT ADDITION BEGIN - ALTERNATIVE_JOB_TITLES
 	// The alt job title, if user picked one, or the default
-	var/alt_title = player_client?.prefs.alt_job_titles?[job.title] || job.title
+	var/alt_title = job.format_chosen_alt_title(job.get_chosen_alt_title(player_client))
 	// SKYRAT EDIT ADDITION END
 	equipping.job = job.title
 
@@ -650,8 +650,7 @@ SUBSYSTEM_DEF(job)
 	var/ssc = CONFIG_GET(number/security_scaling_coeff)
 	if(ssc > 0)
 		if(J.spawn_positions > 0)
-			// BUBBER EDIT - Reduced from 10 max sec to 7 max sec due to departmental security being deactivated and replaced.
-			var/officer_positions = min(10, max(J.spawn_positions, round(unassigned.len / ssc))) //Scale between configured minimum and 10 officers
+			var/officer_positions = min(6, max(J.spawn_positions, round(unassigned.len / ssc))) //Scale between configured minimum and 6 security officers
 			job_debug("SOP: Setting open security officer positions to [officer_positions]")
 			J.total_positions = officer_positions
 			J.spawn_positions = officer_positions

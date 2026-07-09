@@ -126,7 +126,7 @@
 /datum/loadout_item/mask/gas/nri_police
 	name = "Colonial Gas Mask"
 	item_path = /obj/item/clothing/mask/gas/nri_police
-	restricted_roles = list(ALL_JOBS_SEC, JOB_CUSTOMS_AGENT)
+	restricted_roles = list(ALL_JOBS_SEC, JOB_SECURITY_OFFICER_SUPPLY)
 
 /datum/loadout_item/mask/gas/frontier_colonist
 	name = "Frontier Gas Mask"

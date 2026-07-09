@@ -1134,6 +1134,10 @@
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
 	/// List of bonus departmental accesses that departmental sec officers get by default.
 	var/department_access = list()
+	/// Extra minimum access added on top of the base Security Officer trim.
+	var/additional_minimal_access = list()
+	/// Extra non-minimal access added on top of the base Security Officer trim.
+	var/additional_extra_access = list()
 	/// List of bonus departmental accesses that departmental security officers can in relation to how many overall security officers there are if the scaling system is set up. These can otherwise be granted via config settings.
 	var/elevated_access = list()
 	/// Typepath for unique patrol bounty available to this type of officer
@@ -1143,13 +1147,19 @@
 	. = ..()
 
 	if(!.)
+		access |= department_access
+		access |= additional_minimal_access
 		return
 
 	access |= department_access
+	access |= additional_minimal_access
 
 	// Config check for if sec has maint access.
 	if(CONFIG_GET(flag/security_has_maint_access))
 		access |= list(ACCESS_MAINT_TUNNELS)
+
+	if(!CONFIG_GET(flag/jobs_have_minimal_access))
+		access |= additional_extra_access
 
 	// Scaling access (POPULATION_SCALED_ACCESS) is a system directly tied into calculations derived via a config entered variable, as well as the amount of players in the shift.
 	// Thus, it makes it possible to judge if departmental security officers should have more access to their department on a lower population shift.

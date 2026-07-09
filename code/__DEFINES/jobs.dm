@@ -69,6 +69,9 @@
 #define JOB_SECURITY_OFFICER_ENGINEERING "Security Officer (Engineering)"
 #define JOB_SECURITY_OFFICER_SCIENCE "Security Officer (Science)"
 #define JOB_SECURITY_OFFICER_SUPPLY "Security Officer (Cargo)"
+#define JOB_SECURITY_OFFICER_SERVICE "Security Officer (Service)"
+#define JOB_SECURITY_SERGEANT_MEDSCI "Security Sergeant (Medical/Science)"
+#define JOB_SECURITY_SERGEANT_ENGISUPPLY "Security Sergeant (Cargo/Engineering)"
 #define JOB_CORRECTIONS_OFFICER "Corrections Officer" // SKYRAT EDIT ADDITION
 //Engineering
 #define JOB_STATION_ENGINEER "Station Engineer"

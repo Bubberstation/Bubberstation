@@ -149,19 +149,19 @@
 /datum/job/corrections_officer
 	akula_outfit = /datum/outfit/akula/security_officer
 
-/datum/job/orderly
+/datum/job/security_officer/orderly
 	akula_outfit = /datum/outfit/akula/security_officer
 
-/datum/job/science_guard
+/datum/job/security_officer/science_guard
 	akula_outfit = /datum/outfit/akula/security_officer
 
-/datum/job/customs_agent
+/datum/job/security_officer/customs_agent
 	akula_outfit = /datum/outfit/akula/security_officer
 
-/datum/job/bouncer
+/datum/job/security_officer/bouncer
 	akula_outfit = /datum/outfit/akula/security_officer
 
-/datum/job/engineering_guard
+/datum/job/security_officer/engineering_guard
 	akula_outfit = /datum/outfit/akula/security_officer
 
 /datum/job/fleetmaster

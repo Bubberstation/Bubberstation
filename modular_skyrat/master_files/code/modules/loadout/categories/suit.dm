@@ -593,62 +593,62 @@
 /datum/loadout_item/suit/cargo_jacket
 	name = "Cargo Technical Jacket"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/technical/cargo
-	restricted_roles = list (JOB_CARGO_TECHNICIAN, JOB_SHAFT_MINER, JOB_CUSTOMS_AGENT, JOB_QUARTERMASTER)
+	restricted_roles = list (JOB_CARGO_TECHNICIAN, JOB_SHAFT_MINER, JOB_SECURITY_OFFICER_SUPPLY, JOB_QUARTERMASTER)
 
 /datum/loadout_item/suit/cargo_guard_jacket
 	name = "Cargo Dept. Guard Jacket"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/technical/cargo/guard
-	restricted_roles = list (JOB_CUSTOMS_AGENT)
+	restricted_roles = list (JOB_SECURITY_OFFICER_SUPPLY)
 
 /datum/loadout_item/suit/engi_jacket
 	name = "Engineering Technical Jacket"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/technical/engineer
-	restricted_roles = list (JOB_STATION_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN, JOB_ENGINEERING_GUARD, JOB_CHIEF_ENGINEER)
+	restricted_roles = list (JOB_STATION_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN, JOB_SECURITY_OFFICER_ENGINEERING, JOB_CHIEF_ENGINEER)
 
 /datum/loadout_item/suit/engi_guard_jacket
 	name = "Engineering Dept. Guard Jacket"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/technical/engineer/guard
-	restricted_roles = list (JOB_ENGINEERING_GUARD)
+	restricted_roles = list (JOB_SECURITY_OFFICER_ENGINEERING)
 
 /datum/loadout_item/suit/med_jacket_light
 	name = "Medical Technical Jacket (Light)"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/technical/medical
-	restricted_roles = list (JOB_MEDICAL_DOCTOR, JOB_SECURITY_MEDIC, JOB_CHEMIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CHIEF_MEDICAL_OFFICER)
+	restricted_roles = list (JOB_MEDICAL_DOCTOR, JOB_SECURITY_MEDIC, JOB_CHEMIST, JOB_PARAMEDIC, JOB_SECURITY_OFFICER_MEDICAL, JOB_CHIEF_MEDICAL_OFFICER)
 
 /datum/loadout_item/suit/med_jacket_black
 	name = "Medical Technical Jacket (Black)"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/technical/medical/black
-	restricted_roles = list (JOB_MEDICAL_DOCTOR, JOB_SECURITY_MEDIC, JOB_CHEMIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CHIEF_MEDICAL_OFFICER)
+	restricted_roles = list (JOB_MEDICAL_DOCTOR, JOB_SECURITY_MEDIC, JOB_CHEMIST, JOB_PARAMEDIC, JOB_SECURITY_OFFICER_MEDICAL, JOB_CHIEF_MEDICAL_OFFICER)
 
 /datum/loadout_item/suit/med_jacket_dark
 	name = "Medical Technical Jacket (Dark)"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/technical/medical/dark
-	restricted_roles = list (JOB_MEDICAL_DOCTOR, JOB_SECURITY_MEDIC, JOB_CHEMIST, JOB_PARAMEDIC, JOB_ORDERLY, JOB_CHIEF_MEDICAL_OFFICER)
+	restricted_roles = list (JOB_MEDICAL_DOCTOR, JOB_SECURITY_MEDIC, JOB_CHEMIST, JOB_PARAMEDIC, JOB_SECURITY_OFFICER_MEDICAL, JOB_CHIEF_MEDICAL_OFFICER)
 
 /datum/loadout_item/suit/med_guard_jacket_light
 	name = "Medical Dept. Guard Jacket (Light)"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/technical/medical/guard
-	restricted_roles = list (JOB_ORDERLY)
+	restricted_roles = list (JOB_SECURITY_OFFICER_MEDICAL)
 
 /datum/loadout_item/suit/med_guard_jacket_black
 	name = "Medical Dept. Guard Jacket (Black)"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/technical/medical/black/guard
-	restricted_roles = list (JOB_ORDERLY)
+	restricted_roles = list (JOB_SECURITY_OFFICER_MEDICAL)
 
 /datum/loadout_item/suit/med_guard_jacket_dark
 	name = "Medical Dept. Guard Jacket (Dark)"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/technical/medical/dark/guard
-	restricted_roles = list (JOB_ORDERLY)
+	restricted_roles = list (JOB_SECURITY_OFFICER_MEDICAL)
 
 /datum/loadout_item/suit/sci_jacket
 	name = "Science Technical Jacket"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/technical/science
-	restricted_roles = list (JOB_SCIENTIST, JOB_GENETICIST, JOB_ROBOTICIST, JOB_SCIENCE_GUARD, JOB_RESEARCH_DIRECTOR)
+	restricted_roles = list (JOB_SCIENTIST, JOB_GENETICIST, JOB_ROBOTICIST, JOB_SECURITY_OFFICER_SCIENCE, JOB_RESEARCH_DIRECTOR)
 
 /datum/loadout_item/suit/sci_guard_jacket
 	name = "Science Dept. Guard Jacket"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/technical/science/guard
-	restricted_roles = list (JOB_SCIENCE_GUARD)
+	restricted_roles = list (JOB_SECURITY_OFFICER_SCIENCE)
 
 /datum/loadout_item/suit/sec_jacket
 	name = "Security Praetorian Jacket"
@@ -658,12 +658,12 @@
 /datum/loadout_item/suit/service_jacket
 	name = "Service Technical Jacket"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/technical/service
-	restricted_roles = list (JOB_JANITOR, JOB_BOTANIST, JOB_COOK, JOB_CHEF, JOB_BARBER, JOB_BARTENDER, JOB_CHAPLAIN, JOB_CURATOR, JOB_LAWYER, JOB_PSYCHOLOGIST, JOB_BOUNCER, JOB_HEAD_OF_PERSONNEL)
+	restricted_roles = list (JOB_JANITOR, JOB_BOTANIST, JOB_COOK, JOB_CHEF, JOB_BARBER, JOB_BARTENDER, JOB_CHAPLAIN, JOB_CURATOR, JOB_LAWYER, JOB_PSYCHOLOGIST, JOB_SECURITY_OFFICER_SERVICE, JOB_HEAD_OF_PERSONNEL)
 
 /datum/loadout_item/suit/service_guard_jacket
 	name = "Service Dept. Guard Jacket"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/technical/service/guard
-	restricted_roles = list (JOB_BOUNCER)
+	restricted_roles = list (JOB_SECURITY_OFFICER_SERVICE)
 
 /datum/loadout_item/suit/tcomm_jacket
 	name = "Telecomms Technical Jacket"

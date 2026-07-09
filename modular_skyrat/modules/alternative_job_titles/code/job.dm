@@ -1,5 +1,28 @@
 // ALTERNATIVE_JOB_TITLES
 
+/datum/job/proc/get_chosen_alt_title(client/player_client)
+	return player_client?.prefs.alt_job_titles?[title] || title
+
+/datum/job/proc/format_chosen_alt_title(chosen_title)
+	return chosen_title
+
+/datum/job/security_officer
+	/// If set, shared security officer alt titles display as "Title (Department)".
+	var/alt_title_department_suffix
+
+/datum/job/security_officer/format_chosen_alt_title(chosen_title)
+	if(isnull(alt_title_department_suffix))
+		return ..()
+
+	if(chosen_title == title)
+		return ..()
+
+	var/datum/job/security_officer/security_officer = SSjob.get_job(JOB_SECURITY_OFFICER)
+	if(chosen_title in security_officer?.alt_titles)
+		return "[chosen_title] ([alt_title_department_suffix])"
+
+	return ..()
+
 /**
  * Shows a list of all current and future polls and buttons to edit or delete them or create a new poll.
  *
@@ -14,7 +37,7 @@
 	if(!ishuman(equipping))
 		return
 
-	var/chosen_title = player_client.prefs.alt_job_titles?[job.title] || job.title
+	var/chosen_title = job.format_chosen_alt_title(job.get_chosen_alt_title(player_client))
 
 	var/obj/item/card/id/card = equipping.wear_id
 	if(istype(card))

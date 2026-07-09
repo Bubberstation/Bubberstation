@@ -298,11 +298,11 @@
 		/datum/job/nanotrasen_consultant = /obj/item/organ/heart/cybernetic/tier3,
 		/datum/job/barber = /obj/item/organ/ears/cybernetic/whisper,
 		/datum/job/corrections_officer = /obj/item/organ/cyberimp/arm/toolkit/flash,
-		/datum/job/orderly = /obj/item/organ/cyberimp/brain/anti_drop,
-		/datum/job/science_guard = /obj/item/organ/cyberimp/arm/toolkit/flash,
-		/datum/job/customs_agent = /obj/item/organ/cyberimp/eyes/hud/security,
-		/datum/job/bouncer = /obj/item/organ/cyberimp/arm/strongarm,
-		/datum/job/engineering_guard = /obj/item/organ/cyberimp/arm/toolkit/flash,
+		/datum/job/security_officer/orderly = /obj/item/organ/cyberimp/brain/anti_drop,
+		/datum/job/security_officer/science_guard = /obj/item/organ/cyberimp/arm/toolkit/flash,
+		/datum/job/security_officer/customs_agent = /obj/item/organ/cyberimp/eyes/hud/security,
+		/datum/job/security_officer/bouncer = /obj/item/organ/cyberimp/arm/strongarm,
+		/datum/job/security_officer/engineering_guard = /obj/item/organ/cyberimp/arm/toolkit/flash,
 		/datum/job/telecomms_specialist = /obj/item/organ/ears/cybernetic/xray,
 		// BUBBER EDIT END
 	)

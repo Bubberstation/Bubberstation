@@ -1025,7 +1025,19 @@
 
 /// Returns the trim sechud icon state.
 /obj/item/card/id/proc/get_trim_sechud_icon_state()
+	if(ispath(trim))
+		var/datum/id_trim/trim_singleton = SSid_access.trim_singletons_by_path[trim]
+		return trim_singleton?.sechud_icon_state || SECHUD_UNKNOWN
+
 	return trim?.sechud_icon_state || SECHUD_UNKNOWN
+
+/// Returns the trim sechud icon file.
+/obj/item/card/id/proc/get_trim_sechud_icon()
+	if(ispath(trim))
+		var/datum/id_trim/trim_singleton = SSid_access.trim_singletons_by_path[trim]
+		return trim_singleton?.sechud_icon || /datum/id_trim::sechud_icon
+
+	return trim?.sechud_icon || /datum/id_trim::sechud_icon
 
 /obj/item/card/id/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(iscash(interacting_with))
@@ -1192,6 +1204,8 @@
 	var/trim_assignment_override
 	/// If this is set, will manually override the trim shown for SecHUDs. Intended for admins to VV edit and chameleon ID cards.
 	var/sechud_icon_state_override = null
+	/// If this is set, will manually override the icon file used for SecHUDs. Intended for admins to VV edit and chameleon ID cards.
+	var/sechud_icon_override = null
 
 	/// A name (eg "Captain") that is "inherent" to this ID card
 	/// If the assigned name matches the inherent name it does not apply the label
@@ -1312,11 +1326,12 @@
 	if(registered_name && registered_name != "Captain")
 		. += mutable_appearance(icon, assigned_icon_state)
 
-	var/trim_icon_file = trim_icon_override ? trim_icon_override : trim?.trim_icon
-	var/trim_icon_state = trim_state_override ? trim_state_override : trim?.trim_state
-	var/trim_department_color = department_color_override ? department_color_override : trim?.department_color
-	var/trim_department_state = department_state_override ? department_state_override : trim?.department_state
-	var/trim_subdepartment_color = subdepartment_color_override ? subdepartment_color_override : trim?.subdepartment_color
+	var/datum/id_trim/trim_singleton = ispath(trim) ? SSid_access.trim_singletons_by_path[trim] : trim
+	var/trim_icon_file = trim_icon_override ? trim_icon_override : trim_singleton?.trim_icon
+	var/trim_icon_state = trim_state_override ? trim_state_override : trim_singleton?.trim_state
+	var/trim_department_color = department_color_override ? department_color_override : trim_singleton?.department_color
+	var/trim_department_state = department_state_override ? department_state_override : trim_singleton?.department_state
+	var/trim_subdepartment_color = subdepartment_color_override ? subdepartment_color_override : trim_singleton?.subdepartment_color
 
 	if(!trim_icon_file || !trim_icon_state || !trim_department_color || !trim_subdepartment_color || !trim_department_state)
 		return
@@ -1346,6 +1361,10 @@
 /// Returns the trim sechud icon state.
 /obj/item/card/id/advanced/get_trim_sechud_icon_state()
 	return sechud_icon_state_override || ..()
+
+/// Returns the trim sechud icon file.
+/obj/item/card/id/advanced/get_trim_sechud_icon()
+	return sechud_icon_override || ..()
 
 /obj/item/card/id/advanced/rainbow
 	name = "rainbow identification card"

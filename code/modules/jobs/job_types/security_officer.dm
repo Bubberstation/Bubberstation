@@ -1,12 +1,13 @@
 /datum/job/security_officer
 	title = JOB_SECURITY_OFFICER
+	job_spawn_title = "Security Officer"
 	description = "Protect company assets, follow the Standard Operating \
 		Procedure, eat donuts."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	faction = FACTION_STATION
 	total_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
 	spawn_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
-	supervisors = "the Head of Security, and the head of your assigned department (if applicable)"
+	supervisors = "the Head of Security"
 	minimal_player_age = 7
 	exp_requirements = 300
 	exp_required_type = EXP_TYPE_CREW
@@ -38,12 +39,6 @@
 		/obj/item/melee/baton/security/boomerang/loaded = 1
 	)
 	rpg_title = "Guard"
-	alternate_titles = list(
-		JOB_SECURITY_OFFICER_MEDICAL,
-		JOB_SECURITY_OFFICER_ENGINEERING,
-		JOB_SECURITY_OFFICER_SUPPLY,
-		JOB_SECURITY_OFFICER_SCIENCE,
-	)
 	job_flags = STATION_JOB_FLAGS | JOB_ANTAG_PROTECTED
 
 
@@ -74,16 +69,10 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 
 /datum/job/security_officer/after_roundstart_spawn(mob/living/spawning, client/player_client)
 	. = ..()
-	if(ishuman(spawning))
-		setup_department(spawning, player_client, move_to = TRUE)
 
 
 /datum/job/security_officer/after_latejoin_spawn(mob/living/spawning)
 	. = ..()
-	if(ishuman(spawning))
-		var/department = setup_department(spawning, spawning.client)
-		if(department)
-			announce_latejoin(spawning, department, GLOB.security_officer_distribution)
 
 
 /// Returns the department this mob was assigned to, if any.
@@ -227,7 +216,7 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	)
 
 /datum/outfit/job/security
-	name = "Security Officer"
+	name = JOB_SECURITY_OFFICER
 	jobtype = /datum/job/security_officer
 
 	id_trim = /datum/id_trim/job/security_officer

@@ -45,7 +45,7 @@
 /datum/loadout_item/neck/imperial_cloak
 	name = "Imperial Police Cloak"
 	item_path = /obj/item/clothing/neck/cloak/colonial/nri_police
-	restricted_roles = list(ALL_JOBS_SEC, JOB_CUSTOMS_AGENT)
+	restricted_roles = list(ALL_JOBS_SEC, JOB_SECURITY_OFFICER_SUPPLY)
 
 /datum/loadout_item/neck/bunnypendant
 	name = "Rabbit Pendant"

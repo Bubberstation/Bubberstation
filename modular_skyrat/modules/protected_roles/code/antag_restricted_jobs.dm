@@ -30,17 +30,17 @@
 /datum/job/corrections_officer
 	antagonist_restricted = TRUE
 
-/datum/job/orderly
+/datum/job/security_officer/orderly
 	antagonist_restricted = TRUE
 
-/datum/job/bouncer
+/datum/job/security_officer/bouncer
 	antagonist_restricted = TRUE
 
-/datum/job/customs_agent
+/datum/job/security_officer/customs_agent
 	antagonist_restricted = TRUE
 
-/datum/job/engineering_guard
+/datum/job/security_officer/engineering_guard
 	antagonist_restricted = TRUE
 
-/datum/job/science_guard
+/datum/job/security_officer/science_guard
 	antagonist_restricted = TRUE

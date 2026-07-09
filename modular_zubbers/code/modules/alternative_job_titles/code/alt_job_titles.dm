@@ -1,6 +1,7 @@
-/datum/job/engineering_guard
-	alt_titles = list(
-		"Engineering Guard",
+/datum/job/security_officer/engineering_guard/New()
+	. = ..()
+	alt_titles |= list(
+		"Engineering Officer",
 		"Atmospheric Security",
 	)
 
@@ -13,13 +14,6 @@
 		"Combat Medic",
 		"Special Operations Medic",
 	)
-
-/datum/job/orderly/New()
-	alt_titles |= list(
-		"Medical Attendant",
-		"Medical Support Technician",
-	)
-	. = ..()
 
 //New titles for Blacksmith
 /datum/job/blacksmith

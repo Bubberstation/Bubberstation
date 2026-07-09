@@ -42,6 +42,16 @@
 			return new /obj/item/modular_computer/pda/detective
 		if(JOB_SECURITY_OFFICER)
 			return new /obj/item/modular_computer/pda/security
+		if(JOB_SECURITY_OFFICER_ENGINEERING)
+			return new /obj/item/modular_computer/pda/security
+		if(JOB_SECURITY_OFFICER_MEDICAL)
+			return new /obj/item/modular_computer/pda/security
+		if(JOB_SECURITY_OFFICER_SCIENCE)
+			return new /obj/item/modular_computer/pda/security
+		if(JOB_SECURITY_OFFICER_SUPPLY)
+			return new /obj/item/modular_computer/pda/security
+		if(JOB_SECURITY_OFFICER_SERVICE)
+			return new /obj/item/modular_computer/pda/security
 		if(JOB_SECURITY_MEDIC)
 			return new /obj/item/modular_computer/pda/security
 		if(JOB_CORRECTIONS_OFFICER)
@@ -51,7 +61,7 @@
 		if(JOB_ATMOSPHERIC_TECHNICIAN)
 			return new /obj/item/modular_computer/pda/atmos
 		if(JOB_ENGINEERING_GUARD)
-			return new /obj/item/modular_computer/pda/engineering
+			return new /obj/item/modular_computer/pda/security
 		if(JOB_TELECOMMS_SPECIALIST)
 			return new /obj/item/modular_computer/pda/telecomms
 		if(JOB_MEDICAL_DOCTOR) //MEDICAL
@@ -63,7 +73,7 @@
 		if(JOB_PARAMEDIC)
 			return new /obj/item/modular_computer/pda/medical/paramedic
 		if(JOB_ORDERLY)
-			return new /obj/item/modular_computer/pda/medical
+			return new /obj/item/modular_computer/pda/security
 		if(JOB_SCIENTIST) // SCI
 			return new /obj/item/modular_computer/pda/science
 		if(JOB_ROBOTICIST)
@@ -71,7 +81,7 @@
 		if(JOB_GENETICIST)
 			return new /obj/item/modular_computer/pda/geneticist
 		if(JOB_SCIENCE_GUARD)
-			return new /obj/item/modular_computer/pda/science
+			return new /obj/item/modular_computer/pda/security
 		if(JOB_CARGO_TECHNICIAN) // CARGO
 			return new /obj/item/modular_computer/pda/cargo
 		if(JOB_SHAFT_MINER)
@@ -79,7 +89,7 @@
 		if(JOB_BITRUNNER)
 			return new /obj/item/modular_computer/pda/bitrunner
 		if(JOB_CUSTOMS_AGENT)
-			return new /obj/item/modular_computer/pda/cargo
+			return new /obj/item/modular_computer/pda/security
 		if(JOB_BARTENDER) // SERVICE
 			return new /obj/item/modular_computer/pda/bar
 		if(JOB_BOTANIST)
@@ -105,6 +115,6 @@
 		if(JOB_BARBER)
 			return new /obj/item/modular_computer/pda
 		if(JOB_BOUNCER)
-			return new /obj/item/modular_computer/pda/bar
+			return new /obj/item/modular_computer/pda/security
 		else
 			return null

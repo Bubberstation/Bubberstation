@@ -161,13 +161,13 @@
 /datum/job/prisoner
 	required_languages = null
 
-/datum/job/orderly
+/datum/job/security_officer/orderly
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
-/datum/job/science_guard
+/datum/job/security_officer/science_guard
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
-/datum/job/customs_agent
+/datum/job/security_officer/customs_agent
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
 /datum/job/mime
@@ -176,7 +176,7 @@
 /datum/job/clown
 	required_languages = null
 
-/datum/job/bouncer
+/datum/job/security_officer/bouncer
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
 /datum/job/barber
@@ -196,7 +196,7 @@
 /datum/job/atmospheric_technician
 	required_languages = null
 
-/datum/job/engineering_guard
+/datum/job/security_officer/engineering_guard
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
 // CARGO
@@ -209,7 +209,7 @@
 /datum/job/blacksmith
 	required_languages = null
 
-/datum/job/customs_agent
+/datum/job/security_officer/customs_agent
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
 // MEDICAL
@@ -229,7 +229,7 @@
 /datum/job/virologist
 	required_languages = null // damara dent-head
 
-/datum/job/orderly
+/datum/job/security_officer/orderly
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
 // SCIENCE
@@ -240,7 +240,7 @@
 /datum/job/roboticist
 	required_languages = null
 
-/datum/job/science_guard
+/datum/job/security_officer/science_guard
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
 /datum/job/proc/has_required_languages(datum/preferences/pref)

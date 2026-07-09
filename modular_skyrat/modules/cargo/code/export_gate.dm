@@ -239,7 +239,7 @@
 	LAZYINITLIST(payment_accounts)
 	var/list/manifest_accounts = list()
 	var/list/CT_accounts = SSeconomy.bank_accounts_by_job[/datum/job/cargo_technician]
-	var/list/CA_accounts = SSeconomy.bank_accounts_by_job[/datum/job/customs_agent]
+	var/list/CA_accounts = SSeconomy.bank_accounts_by_job[/datum/job/security_officer/customs_agent]
 	var/list/QM_accounts = SSeconomy.bank_accounts_by_job[/datum/job/quartermaster]
 	if(isnull(CT_accounts) && isnull(CA_accounts) && isnull(QM_accounts))
 		return

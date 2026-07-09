@@ -452,6 +452,7 @@ SUBSYSTEM_DEF(id_access)
 	id_card.trim_state_override = trim.trim_state
 	id_card.trim_assignment_override = trim.assignment
 	id_card.sechud_icon_state_override = trim.sechud_icon_state
+	id_card.sechud_icon_override = trim.sechud_icon
 	id_card.department_color_override = trim.department_color
 	id_card.department_state_override = trim.department_state
 	id_card.subdepartment_color_override = trim.subdepartment_color
@@ -480,6 +481,7 @@ SUBSYSTEM_DEF(id_access)
 	id_card.trim_state_override = null
 	id_card.trim_assignment_override = null
 	id_card.sechud_icon_state_override = null
+	id_card.sechud_icon_override = null
 	id_card.department_color_override = null
 	id_card.department_state_override = null
 	id_card.subdepartment_color_override = null
