@@ -832,7 +832,7 @@
 /obj/item/toy/plush/fox_protogen
     name = "Silly Protogen Plushie"
     desc = "A silly looking fox protogen made to be extremly squishable with folding tails, the inside being fluffier then the outside, seems to pair wonderfully with the Suspicious Protogen Plushie."
-    icon = 'modular_zubbers/icons/obj/plushes.dmi'
+    icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
     icon_state = "foxproot"
     gender = FEMALE
     squeak_override = list('modular_zubbers/code/modules/emotes/sound/voice/foxgecker.ogg' = 1)
