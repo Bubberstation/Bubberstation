@@ -68,7 +68,7 @@
 	name = "Sealed Aseptic Gauze"
 	id = "organic_aseptic_gauze"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 5) // 6 per stacks
+	materials = list(/datum/material/biomass = 8) // 6 per stacks
 	build_path = /obj/item/stack/medical/wrap/gauze/sterilized
 	category = list(
 		RND_CATEGORY_INITIAL,
