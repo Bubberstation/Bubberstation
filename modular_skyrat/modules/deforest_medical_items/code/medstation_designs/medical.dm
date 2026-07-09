@@ -57,7 +57,7 @@
 	name = "Red Sun Balm"
 	id = "organic_sun_balm"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 7) // 12 per stacks
+	materials = list(/datum/material/biomass = 9) // 12 per stacks
 	build_path = /obj/item/stack/medical/ointment/red_sun
 	category = list(
 		RND_CATEGORY_INITIAL,
