@@ -87,6 +87,14 @@
 
 /datum/round_event_control/antagonist/proc/get_candidates()
 	var/round_started = SSticker.HasRoundStarted()
+	if(istype(SSgamemode.storyteller, /datum/storyteller/gamer))
+		restricted_roles -= list(
+		JOB_HEAD_OF_PERSONNEL,
+		JOB_CHIEF_ENGINEER,
+		JOB_CHIEF_MEDICAL_OFFICER,
+		JOB_RESEARCH_DIRECTOR,
+		JOB_QUARTERMASTER,
+		)
 	var/list/candidates = SSgamemode.get_candidates(antag_flag, pick_roundstart_players = !round_started, restricted_roles = restricted_roles, restricted_species = restricted_species)
 	return candidates
 
