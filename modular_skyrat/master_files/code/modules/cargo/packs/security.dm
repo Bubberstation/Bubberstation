@@ -35,7 +35,7 @@
 
 /datum/supply_pack/security/miniegun
 	name = "Mini E-Gun Bulk Crate"
-	cost = CARGO_CRATE_VALUE * 2
+	cost = CARGO_CRATE_VALUE * 5 // BUBBER EDIT CHANGE - * 5 from * 2
 	desc = "Contains three mini e-guns, cheap and semi-effective, for when you need to arm up on a budget."
 	contains = list(/obj/item/gun/energy/e_gun/mini = 3)
 	crate_name = "Mini E-Gun Bulk Crate"
