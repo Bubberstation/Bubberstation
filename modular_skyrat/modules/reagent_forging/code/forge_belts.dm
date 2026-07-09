@@ -212,7 +212,7 @@
 
 /obj/machinery/recharger/belt_charger/proc/activate_with_item()
 	if(length(my_belt?.real_storage?.contents) > 0)
-		say("charging...")
+		say("Charging...")
 		charging = my_belt.real_storage.contents[1]
 		playsound(src, 'sound/machines/ping.ogg', 30, TRUE, frequency = 0.8)
 		START_PROCESSING(SSmachines, src)
