@@ -90,8 +90,8 @@ GLOBAL_LIST_EMPTY(reta_supplemental_area_grants)
 		if(RETA_PDA_ENGINEERING)
 			if(!reta_pda_id_has_reta_trim(id_card, "Engineering"))
 				return "An engineering ID trim is required to declare an engineering emergency."
-			if(!LAZYLEN(reta_department_fire_alarm_areas(origin_dept)))
-				return "No active fire alarm found in [origin_dept]."
+			if(!LAZYLEN(reta_department_engineering_alarm_areas(origin_dept)))
+				return "No active fire or air alarm found in [origin_dept]."
 			return null
 		if(RETA_PDA_SECURITY)
 			if(!reta_pda_id_has_security_or_guard_trim(id_card))
@@ -223,10 +223,26 @@ GLOBAL_LIST_EMPTY(reta_supplemental_area_grants)
 /proc/reta_department_has_fire_alarm(dept)
 	return LAZYLEN(reta_department_fire_alarm_areas(dept))
 
+/proc/reta_department_has_engineering_alarm(dept)
+	return LAZYLEN(reta_department_engineering_alarm_areas(dept))
+
+/proc/reta_department_engineering_alarm_areas(dept)
+	. = reta_department_fire_alarm_areas(dept)
+	for(var/area/air_alarm_area as anything in reta_department_air_alarm_areas(dept))
+		. |= air_alarm_area
+
 /proc/reta_department_fire_alarm_areas(dept)
 	. = list()
 	for(var/area/area_to_check as anything in GLOB.areas)
 		if(!area_to_check.active_alarms[ALARM_FIRE])
+			continue
+		if(reta_area_matches_department(area_to_check, dept))
+			. += area_to_check
+
+/proc/reta_department_air_alarm_areas(dept)
+	. = list()
+	for(var/area/area_to_check as anything in GLOB.areas)
+		if(!area_to_check.active_alarms[ALARM_ATMOS])
 			continue
 		if(reta_area_matches_department(area_to_check, dept))
 			. += area_to_check
@@ -270,7 +286,7 @@ GLOBAL_LIST_EMPTY(reta_supplemental_area_grants)
 		if("Medical")
 			return reta_department_sensor_critical_areas(origin_dept)
 		if("Engineering")
-			return reta_department_fire_alarm_areas(origin_dept)
+			return reta_department_engineering_alarm_areas(origin_dept)
 	return list()
 
 /proc/reta_grant_emergency_area_access(target_dept, origin_dept, list/emergency_areas, duration_ds)
