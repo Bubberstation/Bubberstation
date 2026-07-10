@@ -93,7 +93,6 @@
 /obj/item/sign/flag/nanotrasen{
 	pixel_y = 11
 	},
-/obj/machinery/firealarm/directional/west,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "m" = (
@@ -174,6 +173,10 @@
 /obj/machinery/light/small/blacklight/directional/east,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
+"w" = (
+/obj/machinery/firealarm/directional/west,
+/turf/closed/wall/r_wall,
+/area/station/command/heads_quarters/nt_rep)
 "x" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
@@ -182,9 +185,6 @@
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "y" = (
-/obj/machinery/button/door/directional/east{
-	id = "nt_rep_priv"
-	},
 /obj/machinery/light_switch/directional/east{
 	pixel_x = 32;
 	pixel_y = -1
@@ -196,6 +196,10 @@
 	},
 /obj/structure/filingcabinet/medical{
 	pixel_x = -10
+	},
+/obj/machinery/button/curtain{
+	id = "nt_rep_priv";
+	pixel_x = 23
 	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
@@ -547,7 +551,7 @@ H
 X
 "}
 (8,1,1) = {"
-a
+w
 l
 n
 E
