@@ -33,7 +33,7 @@
 		vine_master.spawn_spacevine_piece(loc, prying_vine)
 
 /// pull-based atmos check; TURF_EXPOSE never fires on settled or unsimulated tiles.
-/// Returns FALSE if heat should destroy this vine — the caller handles deletion so controller lists aren't mutated mid-iteration.
+/// Returns FALSE if heat should destroy this vine; the caller handles deletion so controller lists aren't mutated mid-iteration.
 /obj/structure/spacevine/proc/check_atmos_viability()
 	var/turf/open/our_turf = loc
 	if(!istype(our_turf))
