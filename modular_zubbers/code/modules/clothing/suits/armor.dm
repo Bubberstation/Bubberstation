@@ -391,12 +391,13 @@
 	melee = 80
 	bullet = 80
 	laser = 70
-	energy = 60
+	energy = 40
 	bomb = 100
 	bio = 100
 	fire = 100
 	acid = 100
-	wound = 30
+	wound = 40
+
 /obj/item/clothing/suit/armor/vest/blueshirt
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
 
