@@ -28587,7 +28587,7 @@
 /area/station/engineering/atmos)
 "iLS" = (
 /obj/machinery/light/small/directional/north,
-/obj/machinery/conveyor{
+/obj/machinery/conveyor/inverted{
 	dir = 6;
 	id = "mining"
 	},
@@ -36616,11 +36616,11 @@
 /turf/open/floor/plating,
 /area/station/service/kitchen/abandoned)
 "lnW" = (
-/obj/machinery/conveyor{
+/obj/structure/sign/poster/contraband/random/directional/north,
+/obj/machinery/conveyor/inverted{
 	dir = 4;
 	id = "mining"
 	},
-/obj/structure/sign/poster/contraband/random/directional/north,
 /turf/open/floor/iron/dark/textured_edge{
 	dir = 1
 	},
@@ -39368,7 +39368,7 @@
 /area/station/maintenance/department/security/greater)
 "mgx" = (
 /obj/machinery/light/small/directional/north,
-/obj/machinery/conveyor{
+/obj/machinery/conveyor/inverted{
 	dir = 5;
 	id = "mining"
 	},
@@ -41342,7 +41342,6 @@
 /area/station/security/execution/education)
 "mLB" = (
 /obj/machinery/conveyor{
-	dir = 1;
 	id = "mining"
 	},
 /turf/open/floor/iron/dark/textured_edge{
@@ -49512,11 +49511,11 @@
 /turf/open/floor/glass/reinforced,
 /area/station/service/chapel)
 "prq" = (
-/obj/machinery/conveyor{
+/obj/machinery/bouldertech/refinery,
+/obj/machinery/conveyor/inverted{
 	dir = 4;
 	id = "mining"
 	},
-/obj/machinery/bouldertech/refinery,
 /turf/open/floor/iron/dark/textured_edge{
 	dir = 1
 	},
@@ -57851,6 +57850,7 @@
 /area/station/hallway/secondary/entry)
 "rVY" = (
 /obj/machinery/conveyor{
+	dir = 1;
 	id = "mining"
 	},
 /turf/open/floor/iron/dark/textured_edge{
@@ -68703,11 +68703,10 @@
 /turf/open/floor/iron/dark,
 /area/station/cargo/office)
 "vjb" = (
+/obj/machinery/brm,
 /obj/machinery/conveyor{
+	dir = 1;
 	id = "mining"
-	},
-/obj/machinery/bouldertech/refinery/smelter{
-	dir = 1
 	},
 /turf/open/floor/iron/dark/textured_edge{
 	dir = 4
@@ -69660,11 +69659,10 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/bridge)
 "vxa" = (
+/obj/machinery/bouldertech/refinery/smelter,
 /obj/machinery/conveyor{
-	dir = 1;
 	id = "mining"
 	},
-/obj/machinery/brm,
 /turf/open/floor/iron/dark/textured_edge{
 	dir = 8
 	},
