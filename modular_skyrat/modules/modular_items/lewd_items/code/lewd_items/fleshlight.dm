@@ -109,6 +109,20 @@
 	user.put_in_hands(plushie)
 	return TRUE
 
+/obj/item/toy/plush/fleshlight/extra_suspicious_protogen
+	name = "\improper Extra suspicious protogen plush"
+	desc = "A suspicious pink looking protogen plushie commonly seen roaming the station almost everywhere, perfect for cuddling when you feel upset at something, or something else..."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "pinkproot"
+	attack_verb_continuous = null
+	attack_verb_simple = null
+	gender = FEMALE
+	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/dwoop.ogg' = 1)
+
+/obj/item/toy/plush/fleshlight/extra_suspicious_protogen/examine(mob/user)
+	. = ..()
+	. += span_purple("This plushie has been modified with a tight lubed hole underneath.")
+
 /obj/item/toy/plush/fleshlight/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
 	. = ..()
 	if(!istype(target))

@@ -239,8 +239,17 @@
 	item_path = /obj/item/toy/plush/aeri
 
 /datum/loadout_item/toys/lewd/noble
-	name = "Medical skulldog plushie"
+	name = "Medical Skulldog Plushie"
 	item_path = /obj/item/toy/plush/noble
+
+/datum/loadout_item/toys/lewd/protective_protogen
+	name = "Protective Protogen Plushie"
+	item_path = /obj/item/toy/plush/protective_protogen
+
+/datum/loadout_item/toys/lewd/extra_suspicious_protogen
+	name = "Extra Suspicious Protogen Plush"
+	item_path = /obj/item/toy/plush/fleshlight/extra_suspicious_protogen
+	ckeywhitelist = list("vanilla1040") // For privacy reasons this item is ckey locked, the non-lewd one is unlocked
 
 /datum/loadout_item/toys/lewd/clicker
 	name = "Clicker"
