@@ -147,10 +147,13 @@ GLOBAL_LIST_INIT(vine_mutations_list, init_vine_mutation_list())
 	/// Actual maximum spread rate for this process tick
 	var/spread_max = round(clamp(seconds_per_tick * (spread_base + start_spread_bonus), max(seconds_per_tick * minimum_spread_rate, 1), spread_cap))
 	var/amount_processed = 0
+	// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
+	var/list/burned_vines
+	// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
 	for(var/obj/structure/spacevine/vine in growth_queue)
 		// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
-		vine.check_atmos_viability()
-		if(QDELETED(vine))
+		if(!vine.check_atmos_viability())
+			LAZYADD(burned_vines, vine)
 			continue
 		// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
 		if(!vine.can_spread)
@@ -175,6 +178,14 @@ GLOBAL_LIST_INIT(vine_mutations_list, init_vine_mutation_list())
 	//So we shift the queue a bit
 	growth_queue += queue_end
 	queue_end = list()
+
+	// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
+	// deferred so VineDestroyed's list surgery and possible controller deletion never happen while iterating growth_queue
+	for(var/obj/structure/spacevine/burned as anything in burned_vines)
+		if(QDELETED(src))
+			burned.master = null // an earlier burned vine was the cluster's last and already produced the seed; don't spawn a second one
+		qdel(burned)
+	// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
 
 /**
  * Used to determine whether the mob is immune to actions by the vine.

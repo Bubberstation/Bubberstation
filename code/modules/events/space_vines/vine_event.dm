@@ -115,6 +115,10 @@
 /datum/event_admin_setup/multiple_choice/spacevine
 	input_text = "Select starting mutations."
 	min_choices = 0
+	// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
+	///Admin chose Random: defer the starting mutation to the event's own roll instead of overriding
+	var/randomize = FALSE
+	// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
 
 /datum/event_admin_setup/multiple_choice/spacevine/prompt_admins()
 	var/customize_mutations = tgui_alert(usr, "Select mutations?", event_control.name, list("Custom", "Random", "Cancel"))
@@ -122,7 +126,7 @@
 		if("Custom")
 			return ..()
 		if("Random")
-			choices = list("[pick(valid_subtypesof(/datum/spacevine_mutation))]")
+			randomize = TRUE // BUBBER EDIT CHANGE - SPACE VINES OVERHAUL, the old path stored a bare string that apply_to_event's typechecked list loop silently skipped, so Random always applied zero mutations
 		else
 			return ADMIN_CANCEL_EVENT
 
@@ -130,6 +134,10 @@
 	return valid_subtypesof(/datum/spacevine_mutation)
 
 /datum/event_admin_setup/multiple_choice/spacevine/apply_to_event(datum/round_event/spacevine/event)
+	// BUBBER EDIT ADDITION START - SPACE VINES OVERHAUL
+	if(randomize)
+		return // leaves mutations_overridden FALSE so start() rolls one mutation, honoring the wild-restrictions toggle
+	// BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
 	var/list/type_choices = list()
 	for(var/list/choice in choices)
 		type_choices += text2path(choice[1])

@@ -32,14 +32,40 @@
 	if(!QDELETED(vine_master) && !QDELETED(prying_vine))
 		vine_master.spawn_spacevine_piece(loc, prying_vine)
 
-// pull-based atmos check; TURF_EXPOSE never fires on settled or unsimulated tiles
+/// pull-based atmos check; TURF_EXPOSE never fires on settled or unsimulated tiles.
+/// Returns FALSE if heat should destroy this vine — the caller handles deletion so controller lists aren't mutated mid-iteration.
 /obj/structure/spacevine/proc/check_atmos_viability()
 	var/turf/open/our_turf = loc
 	if(!istype(our_turf))
-		return
+		return TRUE
 	var/datum/gas_mixture/air = our_turf.return_air()
 	var/current_temp = air ? air.temperature : TCMB
 	if(current_temp > FIRE_MINIMUM_TEMPERATURE_TO_SPREAD && !(trait_flags & SPACEVINE_HEAT_RESISTANT))
-		qdel(src)
-		return
+		return FALSE
 	can_spread = !(current_temp < VINE_FREEZING_POINT && !(trait_flags & SPACEVINE_COLD_RESISTANT))
+	return TRUE
+
+/// Returns TRUE if glass or a full-tile door blocks a vine moving from its own turf into target along move_dir.
+/// Windows and windoors only block from the side they face; airlocks are handled separately by the spread scan.
+/obj/structure/spacevine/proc/vine_passage_blocked(turf/target, move_dir)
+	for(var/obj/structure/window/window in loc)
+		if(window.fulltile || window.dir == move_dir)
+			return TRUE
+	for(var/obj/machinery/door/window/exit_windoor in loc)
+		if(exit_windoor.density && exit_windoor.dir == move_dir)
+			return TRUE
+	for(var/obj/structure/window/window in target)
+		if(window.fulltile || window.dir == REVERSE_DIR(move_dir))
+			return TRUE
+	for(var/obj/machinery/door/blocking_door in target)
+		if(!blocking_door.density)
+			continue
+		if(istype(blocking_door, /obj/machinery/door/airlock))
+			continue
+		if(istype(blocking_door, /obj/machinery/door/window))
+			var/obj/machinery/door/window/entry_windoor = blocking_door
+			if(entry_windoor.dir == REVERSE_DIR(move_dir))
+				return TRUE
+			continue
+		return TRUE // shutters, poddoors, and any other full-tile door
+	return FALSE

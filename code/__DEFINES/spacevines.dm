@@ -36,6 +36,8 @@
 #define SPACEVINE_PRY_DELAY (4 SECONDS)
 /// Scales down mutativeness for new-mutation rolls, to compensate for the water model's wider concurrent branching factor versus vanilla's single-direction crawl. Without this, too many independent branches roll a different mutation too early to ever form a visible patch.
 #define SPACEVINE_MUTATIVENESS_SCALAR 0.5
+/// Additional percentage points added to a mutated tile's spread roll, so a mutated lineage can actually win contested tiles against the much larger population of plain neighbors and grow into a visible patch instead of getting boxed in.
+#define SPACEVINE_MUTATED_GROWTH_BONUS 15
 // BUBBER EDIT ADDITION END - SPACE VINES OVERHAUL
 
 /// Kudzu severity values for traits, based on severity in terms of how severely it impacts the game, the lower the severity, the more likely it is to appear

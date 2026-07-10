@@ -179,19 +179,20 @@
 			if(beyond_air?.return_pressure() >= HAZARD_LOW_PRESSURE)
 				door_dirs += candidate_dir
 			continue
-		if(locate(/obj/structure/window) in candidate)
-			continue
 		if(locate(/obj/machinery/power/supermatter_crystal) in candidate)
 			continue
-		var/obj/machinery/door/non_airlock_door = locate() in candidate
-		if(non_airlock_door?.density)
+		if(vine_passage_blocked(candidate, candidate_dir))
 			continue
 		if(locate(/obj/structure/spacevine) in candidate)
 			continue
 		free_dirs += candidate_dir
 	if(length(free_dirs))
 		// matches the odds of the vanilla random cardinal pick so production still governs pace
-		if(!prob(length(free_dirs) * SPACEVINE_SPREAD_CHANCE_PER_DIRECTION))
+		// mutated tiles get a growth bonus so a mutated lineage can win contested tiles against its plain neighbors
+		var/spread_chance = length(free_dirs) * SPACEVINE_SPREAD_CHANCE_PER_DIRECTION
+		if(length(mutations))
+			spread_chance += SPACEVINE_MUTATED_GROWTH_BONUS
+		if(!prob(spread_chance))
 			return
 		direction = pick(free_dirs)
 		stepturf = get_step(src, direction)
