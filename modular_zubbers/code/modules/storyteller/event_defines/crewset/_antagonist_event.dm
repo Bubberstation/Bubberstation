@@ -87,7 +87,7 @@
 
 /datum/round_event_control/antagonist/proc/get_candidates()
 	var/round_started = SSticker.HasRoundStarted()
-	if(istype(SSgamemode.storyteller, /datum/storyteller/gamer))
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_HEAD_ANTAG))
 		restricted_roles -= list(
 		JOB_HEAD_OF_PERSONNEL,
 		JOB_CHIEF_ENGINEER,

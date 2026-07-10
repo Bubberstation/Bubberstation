@@ -21,3 +21,12 @@
 	. = ..()
 	for(var/mob/living/silicon/ai/ai as anything in GLOB.ai_list)
 		ai.show_laws()
+
+///Another potentially bad idea to fit in this file (I'm full of these)
+/datum/station_trait/head_antags
+	name = "Background check budget cuts"
+	trait_type = STATION_TRAIT_NEGATIVE
+	trait_flags = parent_type::trait_flags
+	weight = 3
+	show_in_report = FALSE
+	trait_to_give = STATION_TRAIT_HEAD_ANTAG
