@@ -56,6 +56,5 @@ GLOBAL_LIST_INIT(erp_items, list(
 	/obj/item/toy/plush/aeri,
 	/obj/item/toy/plush/noble,
 	/obj/item/toy/plush/protective_protogen,
-	/obj/item/toy/plush/fleshlight/extra_suspicious_protogen,
 	/obj/item/vending_refill/lustwish,
 ))

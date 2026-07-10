@@ -228,6 +228,59 @@
 	icon_state = "pinkproot"
 	gender = FEMALE
 	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/dwoop.ogg' = 1)
+	var/lewd = FALSE
+
+/obj/item/toy/plush/suspicious_protogen/Initialize(mapload)
+	. = ..()
+	update_plush_state()
+
+/obj/item/toy/plush/suspicious_protogen/proc/update_plush_state()
+	if(lewd)
+		name = "\improper Extra suspicious protogen plush"
+		icon_state = "pinkproot"
+		hitsound = null
+	else
+		name = "\improper Suspicious protogen plush"
+		icon_state = "pinkproot"
+		hitsound = initial(hitsound)
+	inhand_icon_state = null
+	update_appearance()
+	update_inhand_icon()
+
+/obj/item/toy/plush/suspicious_protogen/examine(mob/user)
+	. = ..()
+	if(lewd)
+		. += span_purple("The zipper in her crotch is opened, exposing the secret fleshlight inside the plushie.")
+
+/obj/item/toy/plush/suspicious_protogen/update_desc()
+	..()
+	if(lewd)
+		desc = "A very suspicious pink looking protogen plushie with a well lubed tight hole underneath, perfect for fun times and stress relieving."
+	else
+		desc = "A suspicious pink looking protogen plushie commonly seen roaming the station almost everywhere, perfect for cuddling when you feel upset at something."
+
+/obj/item/toy/plush/suspicious_protogen/click_ctrl_shift(mob/user)
+	lewd = !lewd
+	if(lewd)
+		user.visible_message(span_notice("[user] unzips [src]"), span_notice("You unzip [src], revealing a secret hole in the plushie."))
+		playsound(user, 'sound/items/zip/zip.ogg', 50, TRUE)
+	else
+		user.visible_message(span_notice("[user] zips [src] back up."), span_notice("You zip [src]. Concealing her secret hole."))
+		playsound(user, 'sound/items/zip/zip_up.ogg', 50, TRUE)
+	update_plush_state()
+	return TRUE
+
+/obj/item/toy/plush/suspicious_protogen/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+	if(!lewd)
+		return ..()
+	var/obj/item/clothing/sextoy/fleshlight/proxy = new(loc)
+	proxy.name = name
+	proxy.desc = desc
+	proxy.icon = icon
+	proxy.icon_state = icon_state
+	. = proxy.attack(target, user)
+	playsound(user, 'modular_skyrat/modules/emotes/sound/emotes/dwoop.ogg', 50, TRUE)
+	qdel(proxy)
 
 // Plush for ZeferwasnttakenFR
 /obj/item/toy/plush/foxy_plush
@@ -935,7 +988,6 @@
 	microwave_source.spark()
 	explosion(src, heavy_impact_range = 1, light_impact_range = 2)
 
-// Protective protogen plushie
 /obj/item/toy/plush/protective_protogen
 	name = "\improper Protective protogen plushie"
 	desc = "A protective pink looking protogen plushie with quite the generous and defensive mindset, \
