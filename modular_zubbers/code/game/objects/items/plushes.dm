@@ -938,8 +938,9 @@
 // Protective protogen plushie
 /obj/item/toy/plush/protective_protogen
 	name = "\improper Protective protogen plushie"
-	desc = "A defensive, and protective pink looking protogen plushie, they have a more stable mindset, however they are always looking to make anyone feel better in the best of ways, \
-	they are supportive even when not around. Perfect for spilling your thoughts and worries to."
+	desc = "A protective pink looking protogen plushie with quite the generous and defensive mindset, \
+		a critter that will most likely always be around to make one feel better and cheer them up. \
+		This is the emotional support you need when the real thing isn't around, perfect for spilling your thoughts and worries into, it's unbearably soft..."
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "dominic_new"
 	gender = MALE
@@ -970,7 +971,7 @@
 	else
 		balloon_alert(user, "attached [tool]")
 		inserted_item = tool
-		playsound(src, 'sound/machines/pda_button/pda_button1.ogg', 50, TRUE)
+		playsound(src, 'modular_zubbers/sound/lewd/rubber3.ogg', 50, TRUE)
 		update_plush_state()
 	return ITEM_INTERACT_SUCCESS
 
@@ -979,7 +980,7 @@
 		balloon_alert(user, "removed [inserted_item]")
 		user.put_in_hands(inserted_item)
 		inserted_item = null
-		playsound(src, 'sound/machines/pda_button/pda_button2.ogg', 50, TRUE)
+		playsound(src, 'modular_zubbers/sound/lewd/rubber2.ogg', 50, TRUE)
 		update_plush_state()
 
 /obj/item/toy/plush/protective_protogen/click_alt(mob/user)
@@ -1008,11 +1009,14 @@
 /obj/item/toy/plush/protective_protogen/update_desc()
 	..()
 	if(!inserted_item)
-		desc = "A defensive, and protective pink looking protogen plushie, they have a more stable mindset, however they are always looking to make anyone feel better in the best of ways, \
-		they are supportive even when not around. Perfect for spilling your thoughts and worries to."
+		desc = "A protective pink looking protogen plushie with quite the generous and defensive mindset, \
+		a critter that will most likely always be around to make one feel better and cheer them up. \
+		This is the emotional support you need when the real thing isn't around, perfect for spilling your thoughts and worries into, it's unbearably soft..."
 	else
-		desc = "A defensive, and protective pink looking protogen plushie, they have a more stable mindset, however they are always looking to make anyone feel better in the best of ways, \
-		they are supportive even when not around. Perfect for spilling your thoughts and worries to, this time they seem to be sporting a knotted dick and a set of balls underneath it, it looks oddly real.."
+		desc = "A protective pink looking protogen plushie with quite the generous and defensive mindset, \
+		a critter that will most likely always be around to make one feel better and cheer them up. \
+		This is the emotional support you need when the real thing isn't around, perfect for spilling your thoughts and worries into, it's unbearably soft.. \
+		The attached dildo seems to have changed into a cyan-colored knotted dick, and a hefty set of nuts. It looks and feels almost too real..."
 
 /obj/item/toy/plush/protective_protogen/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
 	if(!inserted_item)

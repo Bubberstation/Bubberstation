@@ -154,6 +154,11 @@
 /datum/loadout_item/toys/plush/tangerine
 	name = "Citrus Teshari Plushie"
 	item_path = /obj/item/toy/plush/tangerine
+
+/datum/loadout_item/toys/plush/blue_synth
+	name = "Blue Synth Plushie"
+	item_path = /obj/item/toy/plush/blue_synth
+
 /*
 *	SEX TOYS AND OTHER STUFF THAT NEEDS PREFS TO USE (otherwise fails to render on the character preview)
 */
