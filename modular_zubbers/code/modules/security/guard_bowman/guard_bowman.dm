@@ -170,16 +170,14 @@
 	for(var/datum/record/crew/target as anything in GLOB.manifest.general)
 		if(target.rank == "Clown")
 			clowns += target
+	var/datum/record/crew/picked
 	if(length(clowns))
-		if(prob(40))
-			var/datum/record/crew/clown = pick(clowns)
-			return clown.name
-		var/datum/record/crew/crew_member = pick(GLOB.manifest.general)
-		return crew_member.name
+		picked = prob(40) ? pick(clowns) : pick(GLOB.manifest.general)
+		return picked.name
 	if(prob(10))
 		return pick("Bingus the Clown", "the clown, again")
-	var/datum/record/crew/crew_member = pick(GLOB.manifest.general)
-	return crew_member.name
+	picked = pick(GLOB.manifest.general)
+	return picked.name
 
 /obj/item/radio/headset/guard_bowman/proc/scrambled_department()
 	return pick(
