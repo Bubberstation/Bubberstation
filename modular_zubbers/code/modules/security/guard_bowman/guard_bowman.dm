@@ -23,8 +23,8 @@
 /obj/item/radio/headset/guard_bowman
 	name = "guard bowman headset"
 	desc = "A bowman headset issued to department guards. It's designed to relay reports to Security, though you won't hear back any time soon."
-	icon = 'modular_zubbers/code/modules/security/guard_bowman/icons/guard_bowman.dmi'
-	worn_icon = 'modular_zubbers/code/modules/security/guard_bowman/icons/guard_bowman_worn.dmi'
+	icon = 'modular_zubbers/icons/obj/devices/guard_bowman.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/guard_bowman_worn.dmi'
 	icon_state = "guard_bowman"
 	worn_icon_state = "guard_bowman"
 	post_init_icon_state = "guard_bowman"
@@ -362,10 +362,10 @@
 
 /datum/greyscale_config/guard_bowman
 	name = "Guard Bowman Headset"
-	icon_file = 'modular_zubbers/code/modules/security/guard_bowman/icons/guard_bowman.dmi'
+	icon_file = 'modular_zubbers/icons/obj/devices/guard_bowman.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/guard_bowman.json'
 
 /datum/greyscale_config/guard_bowman_worn
 	name = "Guard Bowman Headset (Worn)"
-	icon_file = 'modular_zubbers/code/modules/security/guard_bowman/icons/guard_bowman_worn.dmi'
+	icon_file = 'modular_zubbers/icons/mob/clothing/guard_bowman_worn.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/guard_bowman_worn.json'
