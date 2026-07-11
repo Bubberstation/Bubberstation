@@ -4,10 +4,6 @@
 /datum/vote/proc/return_desc(vote_name)
 	return ""
 
-/// Called after the vote is properly created and sent to the clients.
-/datum/vote/proc/on_vote_created()
-	return
-
 /datum/vote/storyteller
 	name = "Storyteller"
 	default_message = "Vote for the storyteller!"
@@ -17,17 +13,12 @@
 	ranked_winner_threshold = 50
 	display_statistics = FALSE
 	vote_reminder = TRUE
+	force_open_panel_on_reminder = TRUE
 
 /datum/vote/storyteller/New()
 	. = ..()
 	default_choices = list()
 	default_choices = SSgamemode.storyteller_vote_choices()
-
-/datum/vote/storyteller/on_vote_created()
-	if (SSticker.IsRoundInProgress()) // dont jumpscare players in round
-		return
-	for(var/client/client as anything in GLOB.clients)
-		SSvote.ui_interact(client.mob) // force-opens the vote to all active clients. we WANT EVERYONE TO VOTE ON THIS
 
 /datum/vote/storyteller/return_desc(vote_name)
 	return SSgamemode.storyteller_desc(vote_name)

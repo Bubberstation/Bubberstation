@@ -250,7 +250,6 @@ SUBSYSTEM_DEF(vote)
 		generated_actions += voting_action
 		if(current_vote.vote_sound && new_voter.prefs.read_preference(/datum/preference/toggle/sound_announcements))
 			SEND_SOUND(new_voter, sound(current_vote.vote_sound))
-	to_vote.on_vote_created() // BUBBER EDIT ADDITION
 	return TRUE
 
 /**
