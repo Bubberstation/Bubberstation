@@ -35,7 +35,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/unres/delayed,
-/obj/effect/mapping_helpers/airlock/access/any/cent_com/rep_or_captain,
 /obj/effect/landmark/navigate_destination/autoname,
 /obj/machinery/door/airlock/corporate{
 	id_tag = "consultantdoor";
@@ -44,6 +43,7 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "nt_rep_priv"
 	},
+/obj/effect/mapping_helpers/airlock/access/any/cent_com/rep_door,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "dZ" = (
@@ -587,7 +587,7 @@
 	name = "Blueshield's Fax Machine";
 	fax_name = "Blueshield's Office"
 	},
-/obj/item/radio/intercom/directional/east,
+/obj/item/radio/intercom/command/directional/east,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/blueshield)
 "OV" = (
