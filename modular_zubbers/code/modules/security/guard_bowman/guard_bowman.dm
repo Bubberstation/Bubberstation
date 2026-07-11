@@ -29,8 +29,9 @@
 	worn_icon_state = "guard_bowman"
 	post_init_icon_state = "guard_bowman"
 	greyscale_config = /datum/greyscale_config/guard_bowman
-	greyscale_config_worn = /datum/greyscale_config/guard_bowman_worn
-	greyscale_colors = COLOR_GRAY
+	greyscale_config_worn = /datum/greyscale_config/guard_bowman/worn
+	greyscale_colors = COLOR_WHITE + COLOR_GRAY
+	flags_1 = IS_PLAYER_COLORABLE_1
 	//time between reports, tunable
 	var/report_cooldown_time = 1 MINUTES
 	//click played only on a successful sec report, kept separate from radiosound so normal dept chatter is unaffected
@@ -41,6 +42,7 @@
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection)
 	AddElement(/datum/element/gags_recolorable)
+	update_icon(UPDATE_OVERLAYS)
 
 /obj/item/radio/headset/guard_bowman/talk_into(atom/movable/talking_movable, message, channel, list/spans, datum/language/language, list/message_mods)
 	if(channel != RADIO_CHANNEL_SECURITY)
@@ -326,35 +328,35 @@
 	return uppertext(pick(lines))
 
 /obj/item/radio/headset/guard_bowman/science
-	greyscale_colors = COLOR_SCIENCE_PINK
+	greyscale_colors = COLOR_WHITE + COLOR_SCIENCE_PINK
 	keyslot = /obj/item/encryptionkey/headset_sci
 
 /obj/item/radio/headset/guard_bowman/science/get_reporting_department()
 	return "Science"
 
 /obj/item/radio/headset/guard_bowman/medical
-	greyscale_colors = COLOR_MEDICAL_BLUE
+	greyscale_colors = COLOR_WHITE + COLOR_MEDICAL_BLUE
 	keyslot = /obj/item/encryptionkey/headset_med
 
 /obj/item/radio/headset/guard_bowman/medical/get_reporting_department()
 	return "Medical"
 
 /obj/item/radio/headset/guard_bowman/engineering
-	greyscale_colors = COLOR_ENGINEERING_ORANGE
+	greyscale_colors = COLOR_WHITE + COLOR_ENGINEERING_ORANGE
 	keyslot = /obj/item/encryptionkey/headset_eng
 
 /obj/item/radio/headset/guard_bowman/engineering/get_reporting_department()
 	return "Engineering"
 
 /obj/item/radio/headset/guard_bowman/cargo
-	greyscale_colors = COLOR_CARGO_BROWN
+	greyscale_colors = COLOR_WHITE + COLOR_CARGO_BROWN
 	keyslot = /obj/item/encryptionkey/headset_cargo
 
 /obj/item/radio/headset/guard_bowman/cargo/get_reporting_department()
 	return "Cargo"
 
 /obj/item/radio/headset/guard_bowman/service
-	greyscale_colors = COLOR_SERVICE_LIME
+	greyscale_colors = COLOR_WHITE + COLOR_SERVICE_LIME
 	keyslot = /obj/item/encryptionkey/headset_service
 
 /obj/item/radio/headset/guard_bowman/service/get_reporting_department()
@@ -365,7 +367,7 @@
 	icon_file = 'modular_zubbers/icons/obj/devices/guard_bowman.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/guard_bowman.json'
 
-/datum/greyscale_config/guard_bowman_worn
+/datum/greyscale_config/guard_bowman/worn
 	name = "Guard Bowman Headset (Worn)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/guard_bowman_worn.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/guard_bowman_worn.json'
