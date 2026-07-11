@@ -172,11 +172,14 @@
 			clowns += target
 	if(length(clowns))
 		if(prob(40))
-			return pick(clowns).name
-		return pick(GLOB.manifest.general).name
+			var/datum/record/crew/clown = pick(clowns)
+			return clown.name
+		var/datum/record/crew/crew_member = pick(GLOB.manifest.general)
+		return crew_member.name
 	if(prob(10))
 		return pick("Bingus the Clown", "the clown, again")
-	return pick(GLOB.manifest.general).name
+	var/datum/record/crew/crew_member = pick(GLOB.manifest.general)
+	return crew_member.name
 
 /obj/item/radio/headset/guard_bowman/proc/scrambled_department()
 	return pick(
