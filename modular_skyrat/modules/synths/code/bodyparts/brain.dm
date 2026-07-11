@@ -64,7 +64,7 @@
 	if(isnull(internal_computer))
 		return
 	if(slot == ITEM_SLOT_ID)
-		internal_computer.handle_id_slot(owner)
+		internal_computer.handle_id_slot(owner, item)
 
 /obj/item/organ/brain/synth/proc/on_unequip_signal(datum/source, obj/item/dropped_item, force, new_location)
 	SIGNAL_HANDLER
