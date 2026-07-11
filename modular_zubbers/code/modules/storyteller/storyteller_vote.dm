@@ -44,6 +44,7 @@
 	SSgamemode.storyteller_vote_result(winning_option)
 	SSgamemode.storyteller_voted = TRUE
 
+
 /*
 ### PERSISTENCE SUBSYSTEM TRACKING BELOW ###
 Basically, this keeps track of what we voted last time to prevent it being voted on again.
