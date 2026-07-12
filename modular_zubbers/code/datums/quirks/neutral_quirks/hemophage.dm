@@ -73,19 +73,19 @@
 	// This is going to be super messy and I'm 100% sure there's a better way to do this.
 	var/mob/living/carbon/carbon_holder = quirk_holder
 
-	if (!istype(carbon_holder) || isnull(old_heart))
+	if(!istype(carbon_holder) || isnull(old_heart))
 		return
 	var/obj/item/organ/heart/new_heart = new old_heart
 
-	if (!istype(carbon_holder) || isnull(old_liver))
+	if(!istype(carbon_holder) || isnull(old_liver))
 		return
 	var/obj/item/organ/liver/new_liver = new old_liver
 
-	if (!istype(carbon_holder) || isnull(old_stomach))
+	if(!istype(carbon_holder) || isnull(old_stomach))
 		return
 	var/obj/item/organ/stomach/new_stomach = new old_stomach
 
-	if (!istype(carbon_holder) || isnull(old_tongue))
+	if(!istype(carbon_holder) || isnull(old_tongue))
 		return
 	var/obj/item/organ/tongue/new_tongue = new old_tongue
 
@@ -93,3 +93,7 @@
 	new_liver.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 	new_stomach.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 	new_tongue.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+
+// TO-DO:
+// - Add a toggle that grants TRAIT_MASQUERADE_FOOD
+// - Figure out how to convert sol weakness and pseudo-respiration
