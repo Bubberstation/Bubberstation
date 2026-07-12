@@ -275,6 +275,15 @@
 			var/allowed_access = null
 			if(!HAS_TRAIT(human_or_ghost_user, TRAIT_SECURITY_HUD))
 				return
+			// BUBBER EDIT ADDITION START - the clown's parody status field
+			if(ishuman(human_or_ghost_user) && href_list["honkstatus"])
+				var/mob/living/carbon/human/clown_user = human_or_ghost_user
+				var/obj/item/clothing/glasses/hud/security/sunglasses/guard/silly/shades = clown_user.glasses
+				if(!istype(shades))
+					return
+				shades.issue_gag(clown_user, src)
+				return
+			// BUBBER EDIT ADDITION END
 			if(ishuman(human_or_ghost_user))
 				var/mob/living/carbon/human/human_user = human_or_ghost_user
 				if(human_user.stat || human_user == src) //|| !human_user.canmove || human_user.restrained()) Fluff: Sechuds have eye-tracking technology and sets 'arrest' to people that the wearer looks and blinks at.
@@ -302,6 +311,11 @@
 				return
 			if(ishuman(human_or_ghost_user) && href_list["status"])
 				var/mob/living/carbon/human/human_user = human_or_ghost_user
+				// BUBBER EDIT ADDITION START - silly HUDsunglasses never touch real records
+				if(istype(human_user.glasses, /obj/item/clothing/glasses/hud/security/sunglasses/guard/silly))
+					to_chat(human_user, span_warning("ERROR: Invalid access."))
+					return
+				// BUBBER EDIT ADDITION END
 				var/new_status = tgui_input_list(human_user, "Specify a new criminal status for this person.", "Security HUD", WANTED_STATUSES(), target_record.wanted_status)
 				if(!new_status || !target_record || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
 					return
