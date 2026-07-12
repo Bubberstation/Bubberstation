@@ -144,7 +144,7 @@
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command
 	name = "executive HUDsunglasses"
-	desc = "Sunglasses that incorporate a security HUD, along with every other possible HUD, and then two more nobody asked for. The gold mirror lenses cycle through eleven proprietary Nanotrasen sensor suites at the touch of a button and are perfect for letting people know you're the king. They're worth as much as some frontier colonies and twice as fragile, so don't accidentally sit on them. A multitool and a length of cable will perform a factory reset, should the selector ever get stuck."
+	desc = "Sunglasses that incorporate a security HUD, along with every other possible HUD, and then two more nobody asked for. The gold mirror lenses cycle through eleven proprietary Nanotrasen sensor suites at the touch of a button and are perfect for letting people know you're the king. They're worth as much as some frontier colonies and twice as fragile, so don't accidentally sit on them."
 	icon_state = "/obj/item/clothing/glasses/hud/security/sunglasses/guard/command"
 	greyscale_colors = "#585858#d4a23a"
 	glass_colour_type = /datum/client_colour/glass_colour/guard/command
@@ -607,7 +607,6 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 /datum/component/money_sense/customs
 
 /datum/component/money_sense/customs/add_examine(mob/user, atom/target)
-	SIGNAL_HANDLER
 	. = ..()
 	if(!isobj(target))
 		return
