@@ -32,8 +32,8 @@
 	RegisterSignal(parent, COMSIG_MOB_EXAMINATE, PROC_REF(add_examine))
 
 /datum/component/money_sense/Destroy(force, silent)
-	. = ..()
 	UnregisterSignal(parent, COMSIG_MOB_EXAMINATE)
+	return ..()
 
 ///Scans the item the user is looking at and generates the cargo value of it.
 /datum/component/money_sense/proc/add_examine(mob/user, atom/target)
