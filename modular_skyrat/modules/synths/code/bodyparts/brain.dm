@@ -70,6 +70,8 @@
 	SIGNAL_HANDLER
 	if(isnull(internal_computer))
 		return
+	if(!isnull(owner.get_item_by_slot(ITEM_SLOT_ID)))
+		return
 	internal_computer.handle_id_slot(owner)
 
 /obj/item/organ/brain/synth/proc/cache_brainmob_into_stored_mmi(mob/living/carbon/organ_owner)
