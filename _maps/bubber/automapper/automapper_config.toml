@@ -108,6 +108,14 @@ required_map = "CatwalkStation_2023.dmm"
 coordinates = [128, 168, 1]
 trait_name = "Station"
 
+# Catwalk Blueshield
+[templates.catwalk_blueshield]
+map_files = ["catwalk_blueshield.dmm"]
+directory = "_maps/bubber/automapper/templates/CatwalkStation/"
+required_map = "CatwalkStation_2023.dmm"
+coordinates = [116, 123, 2]
+trait_name = "Station"
+
 # Catwalk Cryo
 [templates.catwalk_cryo]
 map_files = ["catwalk_cryo.dmm"]
@@ -132,6 +140,14 @@ required_map = "CatwalkStation_2023.dmm"
 coordinates = [142, 126, 1]
 trait_name = "Station"
 
+# Catwalk NTR Office Second Floor
+[templates.catwalk_ntrep_2floor]
+map_files = ["catwalk_ntrep_2floor.dmm"]
+directory = "_maps/bubber/automapper/templates/CatwalkStation/"
+required_map = "CatwalkStation_2023.dmm"
+coordinates = [143, 126, 2]
+trait_name = "Station"
+
 # Catwalk Sauna
 [templates.catwalk_sauna]
 map_files = ["catwalk_sauna.dmm"]
@@ -146,6 +162,14 @@ map_files = ["catwalk_supermatter.dmm"]
 directory = "_maps/bubber/automapper/templates/CatwalkStation/"
 required_map = "CatwalkStation_2023.dmm"
 coordinates = [172, 163, 1]
+trait_name = "Station"
+
+# Catwalk Showroom
+[templates.catwalk_showroom]
+map_files = ["catwalk_showroom.dmm"]
+directory = "_maps/bubber/automapper/templates/CatwalkStation/"
+required_map = "CatwalkStation_2023.dmm"
+coordinates = [116, 123, 1]
 trait_name = "Station"
 
 # CENTRAL COMMAND MAP EDITS
@@ -190,6 +214,14 @@ required_map = "DeltaStation2.dmm"
 coordinates = [121, 124, 1]
 trait_name = "Station"
 
+# Deltastation Blueshield
+[templates.deltastation_blueshield]
+map_files = ["deltastation_blueshield.dmm"]
+directory = "_maps/bubber/automapper/templates/Deltastation/"
+required_map = "DeltaStation2.dmm"
+coordinates = [112, 122, 1]
+trait_name = "Station"
+
 # Deltastation Book of Kindred
 [templates.deltastation_book_of_kindred]
 map_files = ["book_of_kindred_display.dmm"]
@@ -214,7 +246,7 @@ required_map = "DeltaStation2.dmm"
 coordinates = [157, 77, 1]
 trait_name = "Station"
 
-# Deltastation NTR Office
+# Deltastation NTC Office
 [templates.deltastation_ntrep_office]
 map_files = ["deltastation_ntrep_office.dmm"]
 directory = "_maps/bubber/automapper/templates/Deltastation/"
@@ -231,6 +263,14 @@ coordinates = [84, 109, 1]
 trait_name = "Station"
 
 # ICEBOXSTATION MAP EDITS
+# IceBoxStation Aux Tool Storage
+[templates.iceboxstation_aux_toolstorage]
+map_files = ["iceboxstation_aux_toolstorage.dmm"]
+directory = "_maps/bubber/automapper/templates/IceBoxStation/"
+required_map = "IceBoxStation.dmm"
+coordinates = [106, 142, 3]
+trait_name = "Station"
+
 # IceBoxStation Armory
 [templates.iceboxstation_armory]
 map_files = ["iceboxstation_armory.dmm"]
@@ -303,12 +343,12 @@ required_map = "IceBoxStation.dmm"
 coordinates = [141, 108, 3]
 trait_name = "Station"
 
-# IceBoxStation NTR Office
-[templates.iceboxstation_ntrep_office]
-map_files = ["iceboxstation_ntrep_office.dmm"]
+# IceBoxStation NTC and Blueshield Office
+[templates.iceboxstation_ntc_bs]
+map_files = ["iceboxstation_ntc_bs.dmm"]
 directory = "_maps/bubber/automapper/templates/IceBoxStation/"
 required_map = "IceBoxStation.dmm"
-coordinates = [87, 128, 3]
+coordinates = [84, 128, 3]
 trait_name = "Station"
 
 # IceBoxStation Supermatter Chamber
@@ -399,7 +439,7 @@ trait_name = "Station"
 map_files = ["metastation_barber.dmm"]
 directory = "_maps/bubber/automapper/templates/MetaStation/"
 required_map = "MetaStation.dmm"
-coordinates = [101, 116, 1]
+coordinates = [57, 119, 1]
 trait_name = "Station"
 
 # Metastation Book of Kindred
@@ -426,12 +466,12 @@ required_map = "MetaStation.dmm"
 coordinates = [86, 105, 1]
 trait_name = "Station"
 
-# Metastation NTR Office
-[templates.metastation_ntrep_office]
-map_files = ["metastation_ntrep_office.dmm"]
+# Metastation NTC and BS Office
+[templates.metastation_ntc_bs]
+map_files = ["metastation_ntc_bs.dmm"]
 directory = "_maps/bubber/automapper/templates/MetaStation/"
 required_map = "MetaStation.dmm"
-coordinates = [57, 119, 1]
+coordinates = [101, 115, 1]
 trait_name = "Station"
 
 # Metastation Supermatter Chamber
@@ -516,12 +556,12 @@ required_map = "NebulaStation.dmm"
 coordinates = [90, 132, 1]
 trait_name = "Station"
 
-# Nebulastation NTR Office
-[templates.nebulastation_ntrep_office]
-map_files = ["nebulastation_ntrep_office.dmm"]
+# Nebulastation NTC and Blueshield Office
+[templates.nebulastation_ntc_bs]
+map_files = ["nebulastation_ntc_bs.dmm"]
 directory = "_maps/bubber/automapper/templates/NebulaStation/"
 required_map = "NebulaStation.dmm"
-coordinates = [110, 116, 2]
+coordinates = [110, 113, 2]
 trait_name = "Station"
 
 # Nebulastation Sauna
@@ -563,6 +603,14 @@ map_files = ["book_of_kindred_display.dmm"]
 directory = "_maps/bubber/automapper/templates/generic/"
 required_map = "tramstation.dmm"
 coordinates = [49, 103, 2]
+trait_name = "Station"
+
+# Tramstation Blueshield
+[templates.tramstation_blueshield]
+map_files = ["tramstation_blueshield.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [85, 130, 2]
 trait_name = "Station"
 
 # Tramstation Cryo
