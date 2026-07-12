@@ -1,13 +1,16 @@
 /obj/item/organ/cyberimp/arm/toolkit/power_cord
 	name = "charging implant"
 	desc = "An internal power cord. Useful if you run on elecricity. Not so much otherwise."
-	items_to_create = list(/obj/item/synth_powercord)
+	items_to_create = list(/obj/item/synth_powercord, /obj/item/synth_interfacing_tool)
 	zone = BODY_ZONE_L_ARM
 	slot = ORGAN_SLOT_LEFT_ARM_AUG
 
+//
+// Synth powercord -- plugs into APCs and charges with them
+//
 /obj/item/synth_powercord
 	name = "power cord"
-	desc = "An internal power cord. Useful if you run on electricity. Not so much otherwise."
+	desc = "An extendible power cord that can plug into APCs and batteries for charge. Useful if you run on electricity. Not so much otherwise."
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "wire1"
 	///Object basetypes which the powercord is allowed to connect to.
@@ -126,3 +129,36 @@
 	if(target_apc && !QDELETED(target_apc) && !QDELETED(target_apc.cell) && target_apc.main_status > APC_NO_POWER)
 		target_apc.charging = APC_CHARGING
 		target_apc.update_appearance()
+
+//
+// Synth interfacing tool -- triggers any effects on the brain PDA that would usually require holding a PDA and attacking objects with it
+//
+/obj/item/synth_interfacing_tool
+	name = "synth interfacing tool"
+	desc = "Used for interfacing the user's brain PDA (if one exists) with external media. PDA programs that normally require physically tapping a device or aiming the PDA will instead use this. Try it with the camera or FaxBond apps!"
+	icon = 'icons/obj/clothing/modsuit/mod_modules.dmi'
+	icon_state = "shooting_assistant"
+
+/obj/item/synth_interfacing_tool/proc/get_user_brain_pda(mob/living/user)
+	var/obj/item/organ/brain/synth/synthbrain = user.get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(isnull(synthbrain))
+		return null
+	return synthbrain.internal_computer
+
+/obj/item/synth_interfacing_tool/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	var/obj/item/modular_computer/synthpda = get_user_brain_pda(user)
+	if(isnull(synthpda))
+		return ..()
+	return synthpda.interact_with_atom(interacting_with, user, modifiers)
+
+/obj/item/synth_interfacing_tool/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+	var/obj/item/modular_computer/synthpda = get_user_brain_pda(user)
+	if(isnull(synthpda))
+		return ..()
+	return synthpda.interact_with_atom_secondary(interacting_with, user, modifiers)
+
+/obj/item/synth_interfacing_tool/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	var/obj/item/modular_computer/synthpda = get_user_brain_pda(user)
+	if(!isnull(synthpda))
+		SEND_SIGNAL(synthpda, COMSIG_RANGED_ITEM_INTERACTING_WITH_ATOM_SECONDARY, user, interacting_with, modifiers)
+
