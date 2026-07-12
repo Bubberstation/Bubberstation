@@ -8,6 +8,24 @@
 	hardcore_value = 0
 	mail_goodies = list(/obj/item/reagent_containers/blood/random)
 	quirk_flags = QUIRK_HIDE_FROM_SCAN
+	// Most of these are Halloween species but we still have them once a year.
+	species_blacklist = list(
+		SPECIES_ABDUCTOR_STATION,
+		SPECIES_ZOMBIE,
+		SPECIES_SKELETON,
+		SPECIES_SHADOW,
+		SPECIES_PLASMAMAN,
+		SPECIES_GOLEM,
+		SPECIES_SPIRIT,
+		SPECIES_ANDROID,
+		SPECIES_ABDUCTOR,
+		SPECIES_VAMPIRE,
+	)
+
+	var/old_heart = null
+	var/old_liver = null
+	var/old_stomach = null
+	var/old_tongue = null
 
 /datum/quirk/hemophage/add(client/client_source)
 	quirk_holder.add_traits(list(
@@ -28,6 +46,17 @@
 	var/list/possible_organ_slots = organ_slots.Copy()
 	if(!length(organ_slots)) //what the hell
 		return
+
+	var/obj/item/organ/heart/current_heart = human_holder.get_organ_slot(ORGAN_SLOT_HEART)
+	var/obj/item/organ/liver/current_liver = human_holder.get_organ_slot(ORGAN_SLOT_LIVER)
+	var/obj/item/organ/stomach/current_stomach = human_holder.get_organ_slot(ORGAN_SLOT_STOMACH)
+	var/obj/item/organ/tongue/current_tongue = human_holder.get_organ_slot(ORGAN_SLOT_TONGUE)
+
+	old_heart = current_heart?.type
+	old_liver = current_liver?.type
+	old_stomach = current_stomach?.type
+	old_tongue = current_tongue?.type
+
 	for(var/organ_slot in possible_organ_slots)
 		var/organ_path = possible_organ_slots[organ_slot]
 		var/obj/item/organ/new_organ = new organ_path()
@@ -40,3 +69,27 @@
 		TRAIT_NOBREATH,
 		TRAIT_VIRUSIMMUNE,
 	), QUIRK_TRAIT)
+
+	// This is going to be super messy and I'm 100% sure there's a better way to do this.
+	var/mob/living/carbon/carbon_holder = quirk_holder
+
+	if (!istype(carbon_holder) || isnull(old_heart))
+		return
+	var/obj/item/organ/heart/new_heart = new old_heart
+
+	if (!istype(carbon_holder) || isnull(old_liver))
+		return
+	var/obj/item/organ/liver/new_liver = new old_liver
+
+	if (!istype(carbon_holder) || isnull(old_stomach))
+		return
+	var/obj/item/organ/stomach/new_stomach = new old_stomach
+
+	if (!istype(carbon_holder) || isnull(old_tongue))
+		return
+	var/obj/item/organ/tongue/new_tongue = new old_tongue
+
+	new_heart.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+	new_liver.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+	new_stomach.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+	new_tongue.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
