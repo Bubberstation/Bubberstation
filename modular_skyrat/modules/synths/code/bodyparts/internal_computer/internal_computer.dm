@@ -10,7 +10,7 @@
 
 	long_ranged = TRUE //Synths have good antennae
 
-	max_idle_programs = 3
+	max_idle_programs = 5
 
 	max_capacity = parent_type::max_capacity * 2
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
