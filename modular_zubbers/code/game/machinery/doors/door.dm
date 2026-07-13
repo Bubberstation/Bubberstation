@@ -32,10 +32,12 @@
 		if(AI.deployed_shell)
 			if(!is_station_level(AI.deployed_shell.registered_z))
 				continue
+			SEND_SOUND(AI.deployed_shell, 'sound/machines/synth/synth_no.ogg')
 			to_chat(AI.deployed_shell, "<b><a href='byond://?_src_=usr;track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open the [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK]")
 		if(!is_station_level(AI.registered_z))
 			continue
 		to_chat(AI, "<b><a href='byond://?_src_=usr;track=[html_encode(user.name)]'>[user]</a></b> is requesting you to open the [src] [LINK_DENY][LINK_OPEN][LINK_BOLT][LINK_SHOCK]")
+		SEND_SOUND(AI, 'sound/machines/synth/synth_no.ogg')
 	requesters[user.name] = world.time
 
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN

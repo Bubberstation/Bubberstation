@@ -41,14 +41,6 @@ GLOBAL_LIST_INIT(sm_delam_list, list(
 	if(sm.damage <= sm.warning_point) // Damage is too low, lets not
 		return FALSE
 
-	// BUBBER EDIT ADDITION BEGIN - DELAM_SCRAM
-	if(!sm.station_notified && sm.damage >= sm.danger_point - 29) // 69%. Nice.
-		if(SSjob.is_skeleton_engineering(3)) // Notify early for a skeleton crew
-			notify_delam_suppression(sm)
-		else if(sm.damage >= sm.danger_point)
-			notify_delam_suppression(sm)
-	// BUBBER EDIT ADDITION END
-
 	if (sm.damage >= sm.emergency_point && sm.damage_archived < sm.emergency_point)
 		sm.investigate_log("has entered the emergency point: Pending [sm.delamination_strategy.name].", INVESTIGATE_ENGINE)
 		message_admins("[ADMIN_VERBOSEJMP(sm)] has entered the emergency point: Pending [sm.delamination_strategy.name].")
