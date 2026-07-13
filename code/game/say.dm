@@ -269,6 +269,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	ENCODE_HTML_EMPHASIS(input, "\\+", "b", bold)
 	ENCODE_HTML_EMPHASIS(input, "\\_", "u", underline)
 	ENCODE_HTML_EMPHASIS(input, "\\^", "small", small)
+	ENCODE_HTML_EMPHASIS(input, "\\`", "font color= 'red'", redtext) //MONKESTATION PORT: makes your text red
 	var/static/regex/remove_escape_backlashes = regex("\\\\(\\_|\\+|\\||\\^)", "g") // Removes backslashes used to escape text modification.
 	input = remove_escape_backlashes.Replace_char(input, "$1")
 	return input
