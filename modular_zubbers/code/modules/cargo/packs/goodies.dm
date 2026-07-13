@@ -198,7 +198,7 @@
 	desc = "Contains one tacticool energy gun, for all your operator needs."
 	cost = PAYCHECK_COMMAND * 6
 	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/gun/energy/tacticool)
+	contains = list(/obj/item/gun/energy/e_gun/stun/tacticool)
 
 /datum/supply_pack/goody/seclite_implant
 	name = "Seclite Implant"
