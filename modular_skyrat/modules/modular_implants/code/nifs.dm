@@ -177,10 +177,10 @@
 		return FALSE
 
 	for(var/datum/nifsoft/preinstalled_nifsoft as anything in preinstalled_nifsofts)
-		new preinstalled_nifsoft(src)
+		new preinstalled_nifsoft(src, TRUE, TRUE)
 
 	for(var/stored_nifsoft in persistent_nifsofts)
-		var/datum/nifsoft/new_stored_nifsoft = new stored_nifsoft(src)
+		var/datum/nifsoft/new_stored_nifsoft = new stored_nifsoft(src, TRUE, TRUE)
 		new_stored_nifsoft.keep_installed = TRUE
 
 	return TRUE
@@ -315,8 +315,13 @@
 				stack_trace("persistence was not saved for [linked_mob]!")
 
 ///Installs the loaded_nifsoft to the parent NIF.
-/obj/item/organ/cyberimp/brain/nif/proc/install_nifsoft(datum/nifsoft/loaded_nifsoft)
-	if(broken || calibrating) //NIFSofts can't be installed to a broken NIF
+/obj/item/organ/cyberimp/brain/nif/proc/install_nifsoft(datum/nifsoft/loaded_nifsoft, skip_calibration = FALSE)
+	if(broken)
+		send_message("The target device is not responding.", alert = TRUE)
+		return FALSE
+
+	if(calibrating && !skip_calibration)
+		send_message("The NIF is still calibrating, please wait!", alert = TRUE)
 		return FALSE
 
 	if(length(loaded_nifsofts) >= max_nifsofts)

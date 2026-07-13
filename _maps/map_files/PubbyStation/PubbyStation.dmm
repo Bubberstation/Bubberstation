@@ -17524,9 +17524,22 @@
 /turf/open/floor/iron/dark,
 /area/station/science/research)
 "bDU" = (
-/obj/machinery/suit_storage_unit/security,
-/obj/structure/sign/poster/official/bless_this_spess/directional/south,
-/turf/open/floor/wood,
+/obj/structure/closet/secure_closet/tac{
+	req_access = list("captain")
+	},
+/obj/item/shield/riot,
+/obj/item/gun_maintenance_supplies,
+/obj/item/screwdriver,
+/obj/item/clothing/head/helmet/toggleable/riot{
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/armor/riot,
+/obj/item/storage/toolbox/ammobox/wt550m9,
+/obj/item/mod/module/pepper_shoulders,
+/obj/structure/reagent_dispensers/wall/peppertank/directional/south,
+/obj/structure/sign/poster/official/bless_this_spess/directional/east,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/captain)
 "bDV" = (
 /obj/effect/turf_decal/tile/yellow,
@@ -45663,7 +45676,13 @@
 "pjP" = (
 /obj/machinery/light/directional/south,
 /obj/structure/closet/secure_closet/blueshield,
-/turf/open/floor/wood,
+/obj/machinery/vending/wallmed/directional/south,
+/obj/item/storage/medkit/combat_surgeon/stocked,
+/obj/item/storage/medkit/regular,
+/obj/item/storage/medkit/tactical/blueshield,
+/obj/item/mod/control/pre_equipped/blueshield,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/captain)
 "pjV" = (
 /obj/structure/bodycontainer/morgue{
