@@ -19,3 +19,7 @@
 
 /obj/item/gun/ballistic/rifle/boltaction/donkrifle/empty
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/jezail/empty
+
+/obj/item/gun/ballistic/rifle/lionhunter/empty/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/scope, range_modifier = 1.5)
