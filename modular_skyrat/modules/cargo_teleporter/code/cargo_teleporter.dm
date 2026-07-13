@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	desc = "An item that can deploy a handful of telebeacon markers, allowing them to teleport items to their beacon network afterwards."
 	icon = 'modular_skyrat/modules/cargo_teleporter/icons/cargo_teleporter.dmi'
 	icon_state = "cargo_tele"
-	// no worn_icon_state on purpose, it's just a little scanner gun
+	// no worn_icon_state on purpose, and this is how the worn_icons unit test is told so
 	worn_icon = 'modular_skyrat/modules/cargo_teleporter/icons/cargo_teleporter.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_SUITSTORE
@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	var/turf/target_turf = get_turf(interacting_with)
 	if(isnull(beacon_turf) || isnull(target_turf))
 		return ITEM_INTERACT_BLOCKING
-	if(!length(get_liftable_contents(target_turf)))
+	if(!length(get_liftable_items(target_turf)))
 		balloon_alert(user, "nothing to lift!")
 		return ITEM_INTERACT_BLOCKING
 
@@ -161,15 +161,21 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	return ITEM_INTERACT_SUCCESS
 
 /**
- * Walks the target turf and feeds objects to the beacon one at a time.
+ * Walks the target turf and feeds items to the beacon one at a time.
  *
- * The first object goes instantly. Every object after it costs a short do_after, so the pad is
- * never asked to warp an entire room in a single tick. It keeps working the tile for as long
- * as the operator holds still for it. Returns how many objects actually made the trip.
+ * The first item goes instantly ("lifted" is still 0, so the do_after is skipped). Every item
+ * after it costs a short do_after, so the pad is never asked to warp an entire room in a single
+ * tick, and "lifted" doubles as both the running count and the "have we sent one yet" flag.
+ * It keeps working the tile for as long as the operator holds still for it. Returns how many
+ * items actually made the trip.
  */
 /obj/item/cargo_teleporter/proc/lift_turf(mob/living/user, turf/target_turf, turf/beacon_turf, beam_color)
 	var/lifted = 0
-	for(var/atom/movable/movable_content as anything in get_liftable_contents(target_turf))
+	// snapshotted up front rather than walked live off target_turf. A do_after sleeps, and DM
+	// silently skips entries when a list mutates out from under a for loop that is mid-iteration.
+	// That silent skip is exactly the shape of the bug that could crash the server on a big pile,
+	// so the turf is only ever read once, before anything starts moving.
+	for(var/obj/item/movable_content as anything in get_liftable_items(target_turf))
 		if(lifted && !do_after(user, CARGO_TELEPORTER_LIFT_DELAY, user))
 			break
 		if(QDELETED(src) || !user.is_holding(src))
@@ -189,15 +195,16 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	new /obj/effect/temp_visual/decoy/cargo_teleport/arriving(beacon_turf, lifted_atom, effect_color)
 	playsound(beacon_turf, 'sound/effects/magic/Disable_Tech.ogg', 30, TRUE)
 
-/// Returns the movables on a turf that the teleporter is willing and able to lift, in contents order.
-/obj/item/cargo_teleporter/proc/get_liftable_contents(turf/target_turf)
+/// Snapshots the /obj/items on a turf that the teleporter is willing to lift, in contents order.
+/obj/item/cargo_teleporter/proc/get_liftable_items(turf/target_turf)
 	var/list/liftable = list()
-	for(var/atom/movable/movable_content in target_turf)
-		if(isobserver(movable_content) || iseffect(movable_content))
-			continue
+	// typed for loop, so the only thing yielded here is /obj/item and its subtypes to begin with.
+	// No mob, no effect, no observer overhead in the first place, and nothing left to check for it.
+	for(var/obj/item/movable_content in target_turf)
 		if(movable_content.anchored)
 			continue
-		if(isliving(movable_content) || length(movable_content.get_all_contents_type(/mob/living)))
+		// still worth a check: refuse to warp away a crate or backpack with someone hiding in it
+		if(length(movable_content.get_all_contents_type(/mob/living)))
 			continue
 		liftable += movable_content
 	return liftable
@@ -300,7 +307,7 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 /obj/effect/decal/cleanable/cargo_mark/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
 	var/area/beacon_area = get_area(src)
-	default_name = "[beacon_area.name] ([rand(100000, 999999)])"
+	default_name = "[beacon_area.name] ([rand(1000, 9999)])"
 	name = default_name
 	GLOB.cargo_marks += src
 
