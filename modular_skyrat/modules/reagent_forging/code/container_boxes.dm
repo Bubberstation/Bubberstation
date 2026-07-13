@@ -25,6 +25,8 @@
 	tempstack = new /obj/item/stack/sheet/glass(src)
 	tempstack.add(9)
 	new /obj/item/stack/sheet/iron/ten(src)
+	new /obj/item/stack/sheet/leather/five(src)
+	new /obj/item/stack/sheet/cloth/five(src)
 
 /obj/item/storage/box/blacksmith
 	name = "box of smithing tools"
