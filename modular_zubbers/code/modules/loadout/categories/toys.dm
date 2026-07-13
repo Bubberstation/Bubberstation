@@ -155,7 +155,6 @@
 	name = "Silly Protogen Plushie"
 	item_path = /obj/item/toy/plush/fox_protogen
 
-
 /datum/loadout_item/toys/plush/tangerine
 	name = "Citrus Teshari Plushie"
 	item_path = /obj/item/toy/plush/tangerine
