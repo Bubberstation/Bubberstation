@@ -2,7 +2,7 @@
 	id = SPECIES_PROTEAN
 	examine_limb_id = SPECIES_PROTEAN
 
-	name = "Protean"
+	name = "\improper Protean"
 	sexes = TRUE
 
 	siemens_coeff = 1.5 // Electricty messes you up.
@@ -152,29 +152,65 @@
 
 /datum/species/protean/proc/outfit_handling(datum/species/protean, datum/outfit/outfit, visuals_only) // Very snowflakey code. I'm not making outfits for every job.
 	SIGNAL_HANDLER
-	var/get_a_job = istype(outfit, /datum/outfit/job)
-	var/obj/item/mod/control/suit
-	if(ispath(outfit.back, /obj/item/mod/control))
-		var/control_path = outfit.back
-		suit = new control_path()
-		INVOKE_ASYNC(species_modsuit, TYPE_PROC_REF(/obj/item/mod/control/pre_equipped/protean, assimilate_modsuit), owner, suit, TRUE)
+	if(visuals_only)
+		return
+
+	var/obj/item/mod/control/suit = outfit.back
+	if(ispath(suit))
+		suit = new outfit.back
+		INVOKE_ASYNC(src, PROC_REF(assimilate_modsuit), owner, suit, TRUE)
 		INVOKE_ASYNC(species_modsuit, TYPE_PROC_REF(/obj/item/mod/control, quick_activation))
 
-	var/obj/item/mod/module/storage/storage = locate() in species_modsuit.modules // Give a storage if we don't have one.
+	var/obj/item/mod/module/storage/storage = locate() in species_modsuit.modules
 	if(!storage)
-		storage = new /obj/item/mod/module/storage/large_capacity()
+		storage = new /obj/item/mod/module/storage/large_capacity
 		species_modsuit.install(storage, owner, TRUE)
 
-	if(outfit.backpack_contents)
-		outfit.backpack_contents += /obj/item/stack/sheet/iron/twenty
-		for(var/path in outfit.backpack_contents)
-			if(!get_a_job)
+	LAZYINITLIST(outfit.backpack_contents)
+	outfit.backpack_contents += /obj/item/stack/sheet/iron/twenty
+	for(var/path in outfit.backpack_contents)
+		owner.equip_to_storage(SSwardrobe.provide_type(path, owner), ITEM_SLOT_BACK, TRUE, TRUE)
+	if(outfit.suit_store)
+		owner.equip_to_slot_if_possible(SSwardrobe.provide_type(outfit.suit_store, owner), ITEM_SLOT_SUITSTORE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE)
+
+/datum/species/protean/proc/assimilate_modsuit(mob/living/user, obj/item/mod/control/to_assimilate, forced = FALSE)
+	if(species_modsuit.stored_modsuit)
+		to_chat(user, span_warning("Can't absorb two modsuits!"))
+		if(forced)
+			stack_trace("assimilate_modsuit() tried to assimilate two modsuits. stored_modsuit: [species_modsuit.stored_modsuit], new_modsuit: [to_assimilate]")
+		return
+	if(!user?.transferItemToLoc(to_assimilate, species_modsuit, forced))
+		owner.balloon_alert(user, "stuck!")
+	if(!forced)
+		for(var/obj/item/part as anything in species_modsuit.get_parts())
+			if(part.loc == src)
 				continue
-			var/number = outfit.backpack_contents[path]
-			if(!isnum(number))//Default to 1
-				number = 1
-			for(var/i in 1 to number) // Copy and paste of EQUIP_OUTFIT_ITEM
-				owner.equip_to_storage(SSwardrobe.provide_type(path, owner), ITEM_SLOT_BACK, TRUE, TRUE)
+			species_modsuit.retract(null, part, TRUE)
+
+	species_modsuit.cached_modules = species_modsuit.modules
+	species_modsuit.stored_modsuit = to_assimilate
+	species_modsuit.stored_theme = species_modsuit.theme
+	species_modsuit.ui_theme = species_modsuit.stored_modsuit.ui_theme
+	species_modsuit.theme = species_modsuit.stored_modsuit.theme
+	species_modsuit.skin = species_modsuit.stored_modsuit.skin
+	species_modsuit.name = species_modsuit.stored_modsuit.name
+	species_modsuit.desc = species_modsuit.stored_modsuit.desc
+	species_modsuit.extended_desc = species_modsuit.stored_modsuit.extended_desc
+	for(var/obj/item/mod/module/module in species_modsuit.stored_modsuit.modules)
+		if(istype(module, /obj/item/mod/module/storage))
+			var/obj/item/mod/module/storage/existing_storage = locate() in species_modsuit.modules
+			if(existing_storage)
+				continue
+		if(locate(module.type) in species_modsuit.modules)
+			continue
+		species_modsuit.stored_modsuit.uninstall(module)
+		if(species_modsuit.install(module, owner, TRUE))
+			continue
+	species_modsuit.update_static_data_for_all_viewers()
+
+/datum/species/protean/proc/assimilate_theme()
+
+/datum/species/protean/proc/remove_modsuit_assimilation()
 
 /datum/species/protean/get_default_mutant_bodyparts()
 	return list(

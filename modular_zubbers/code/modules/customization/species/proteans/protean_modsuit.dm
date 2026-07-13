@@ -163,7 +163,7 @@
 		to_chat(user, span_notice("The suit begins to slowly absorb [tool]!"))
 		if(!do_after(user, 4 SECONDS))
 			return ITEM_INTERACT_BLOCKING
-		assimilate_modsuit(user, tool)
+		protean_core.linked_species.assimilate_modsuit(user, tool)
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_SUCCESS
 
@@ -209,45 +209,6 @@
 
 	theme = the_theme
 	the_theme.set_up_parts(src, the_theme.default_skin)
-	update_static_data_for_all_viewers()
-
-/obj/item/mod/control/pre_equipped/protean/proc/assimilate_modsuit(mob/user, modsuit, forced)
-	var/obj/item/mod/control/to_assimilate = modsuit
-	if(stored_modsuit)
-		to_chat(user, span_warning("Can't absorb two modsuits!"))
-		if(forced)
-			stack_trace("assimilate_modsuit: Tried to assimilate modsuit while there's already a stored modsuit. stored_modsuit: [stored_modsuit], new_modsuit: [to_assimilate]")
-		return
-	if(!user?.transferItemToLoc(to_assimilate, src, forced))
-		balloon_alert(user, "stuck!")
-		return
-	if(!forced)
-		for(var/obj/item/part as anything in get_parts())
-			if(part.loc == src)
-				continue
-			retract(null, part, instant = TRUE)
-	stored_modsuit = to_assimilate
-	stored_theme = theme // Store the old theme in cache
-	theme = to_assimilate.theme // Set new theme
-	skin = to_assimilate.skin // Inheret skin
-	theme.set_up_parts(src, skin) // Put everything together
-	name = to_assimilate.name
-	desc = to_assimilate.desc
-	extended_desc = to_assimilate.extended_desc
-	for(var/obj/item/mod/module/module in to_assimilate.modules) // Insert every module
-		if(istype(module, /obj/item/mod/module/storage))
-			var/obj/item/mod/module/storage/existing_storage = locate() in modules
-			if(existing_storage)
-				cached_modules += existing_storage
-				to_chat(user, span_notice("[existing_storage] has been pushed aside!"))
-				uninstall(existing_storage)
-		if(install(module, user, TRUE))
-			continue
-		if(!module.removable) // Just leave it inside the original suit if it doesn't transfer.
-			continue
-		to_assimilate.uninstall(module) // Drop it
-		module.forceMove(get_turf(src))
-		to_chat(user, span_warning("[module] has dropped onto the floor!"))
 	update_static_data_for_all_viewers()
 
 /obj/item/mod/control/pre_equipped/protean/proc/unassimilate_modsuit(mob/living/user, forced = FALSE)
