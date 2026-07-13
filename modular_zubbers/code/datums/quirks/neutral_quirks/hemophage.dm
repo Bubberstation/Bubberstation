@@ -35,7 +35,7 @@
 		TRAIT_VIRUSIMMUNE,
 	), QUIRK_TRAIT)
 
-	if(client_source.prefs.read_preference(/datum/preference/toggle/masquerade))
+	if(client_source?.prefs.read_preference(/datum/preference/toggle/masquerade))
 		ADD_TRAIT(quirk_holder, TRAIT_MASQUERADE_FOOD, QUIRK_TRAIT)
 
 /datum/quirk/hemophage/add_unique(client/client_source)
@@ -73,7 +73,7 @@
 		TRAIT_VIRUSIMMUNE,
 	), QUIRK_TRAIT)
 
-	if(client_source.prefs.read_preference(/datum/preference/toggle/masquerade))
+	if(client_source?.prefs.read_preference(/datum/preference/toggle/masquerade))
 		REMOVE_TRAIT(quirk_holder, TRAIT_MASQUERADE_FOOD, QUIRK_TRAIT)
 
 	// This is going to be super messy and I'm 100% sure there's a better way to do this.
