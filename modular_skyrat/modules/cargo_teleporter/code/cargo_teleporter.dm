@@ -26,8 +26,7 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	desc = "An item that can deploy a handful of telebeacon markers, allowing them to teleport items to their beacon network afterwards."
 	icon = 'modular_skyrat/modules/cargo_teleporter/icons/cargo_teleporter.dmi'
 	icon_state = "cargo_tele"
-	// deliberately no worn_icon_state. It has no worn sprite and does not want one, and pointing
-	// worn_icon at our own file is how the worn_icons unit test is told that on purpose.
+	// no worn_icon_state on purpose, it's just a little scanner gun
 	worn_icon = 'modular_skyrat/modules/cargo_teleporter/icons/cargo_teleporter.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_SUITSTORE
@@ -58,10 +57,9 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	marker_children = null
 	return ..()
 
-/// Pulls every beacon this teleporter owns.
 /obj/item/cargo_teleporter/proc/recall_beacons()
-	// the list is handed off before it is qdel'd. Each beacon pulls itself out of marker_children
-	// as it dies, and mutating a list while QDEL_LIST walks it makes DM skip entries.
+	// each beacon pulls itself out of marker_children as it dies, and mutating a list while
+	// QDEL_LIST walks it makes DM skip entries. Hand the list off first.
 	var/list/obj/effect/decal/cleanable/cargo_mark/recalled = marker_children
 	marker_children = list()
 	QDEL_LIST(recalled)
