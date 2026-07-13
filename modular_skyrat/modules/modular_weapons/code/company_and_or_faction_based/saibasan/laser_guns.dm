@@ -302,6 +302,7 @@
 		manage the internal reactor, was originally shipped with a more energetic personality-- since influenced by 'negligence' \
 		from users in wiping the intelligence's memory before resale or transport."
 
+#undef LONG_MOD_LASER_SPEECH
 #undef SHORT_MOD_LASER_SPEECH
 #undef MOD_LASER_SPEECH_COOLDOWN
 #undef DEFAULT_RUNECHAT_GUN_COLOR
