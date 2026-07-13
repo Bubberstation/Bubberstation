@@ -1,0 +1,143 @@
+2026-07-01:
+  Swan:
+  - bugfix: fixes the storyteller panel schedule button not working. Also improves
+      the logging messages so that the name of the event selected is logged.
+  ibexgoetia:
+  - balance: Defibrillators are now printable once again from the medical techfab.
+  sippykot:
+  - balance: jaws of rescue have the same speed as jaws of life
+2026-07-02:
+  Odairu:
+  - qol: long range gas analyzer is pocketable like short range
+  Robwo:
+  - code_imp: Returned space Z-level count back to 7.
+  Swan:
+  - bugfix: fixes the breast sprite not changing when switching between different
+      types
+  Vanilla1040:
+  - refactor: refactored how the synthetics brains work and behave
+  nikothedude:
+  - code_imp: Lycan transformation sfx is now a variable on the brain
+2026-07-03:
+  ArrisFairburne:
+  - rscadd: 'Way, way too many blacksmith job features & smithing system changes to
+      list. But here''s the highlights:'
+  - balance: Forged blacksmith weapons can now be used nonlethally via striking with
+      pommels, spear shafts, etc. which knocks down victims and stamina damages them
+      like a weaker baton.
+  - qol: Blacksmith tongs now only pull one item at a time, if used on a stackable
+      item.
+  - qol: Blacksmiths can now auto-smith at an anvil by right clicking with a hammer.
+  - qol: Blacksmithing tools now have more tooltips to tutorialize their usage.
+  - qol: Blacksmithing crafting bench can now store item stacks, forging plates, and
+      forging chains. Right-click to view what's in it.
+  - balance: Removed multi-anvil smithing. Individual smithing pieces can now be made
+      faster with the smithing chip and other means to compensate.
+  - rscadd: Blacksmiths can now build a single action revolver if they are fully levelled.
+  - rscadd: Blacksmiths can build a variety of new equipment at the crafting bench
+      -- gun-charging holsters, knife belts, multiple types of scabbards, and even
+      a new expanded-storage botany bag.
+  - rscadd: Replaced the water barrel for smithing with a barrel of smithing oil;
+      smithing oil is now used to grant the bonuses that was previously given by leaving
+      the item unimbued. The new barrel can have its contents changed for reagent
+      imbuing.
+  - rscadd: A new reagent "smithing oil" which gives innate bonuses to any blacksmith
+      equipment imbued using it.
+  - balance: Material types now affect the quality of resulting items and how quickly
+      they can be forged.
+  - balance: The reagent smithing hammer now has increased toolspeed if forged well.
+  - balance: Reagent imbuing's durability penalty has been altered; it reduces durability
+      for each time an imbue effect procs, and then stops functioning for such when
+      below a certain durability percentage.
+  LT3:
+  - map: Added a crate return to Void Raptor cargo
+  - map: QoL improvements to PubbyStation cargo area
+  Odairu:
+  - balance: reverts bluelens to TG base
+  TealSeer:
+  - bugfix: fixed modsuits hiding horns
+  UvvU:
+  - rscadd: Added a HoS service weapon case, allowing them to select their weapon.
+      Revolver sprite by Niim
+  - rscdel: Removed the wardens compact shotgun from their locker
+  - balance: made the wardens martial arts gloves make them unable to be shoved down
+      or staggered
+2026-07-04:
+  BitSynergy, Giik:
+  - rscadd: Ported Skiff cyborgs from Troutstation
+  - image: Added Skiff sprites
+  - image: Added extra resting states for Skiff
+  - image: Added wrecked state for Skiff
+  - image: Added new department sprites for Skiff
+  Danielance:
+  - bugfix: fixed hands not being visible on the cnc discreet armor vest
+  - bugfix: fixed digi legs on cnc maid uniform, correction's officer sweater suit
+  - rscadd: added digi legs to primitive hiking boots
+  - rscadd: many teshari clothing sprites have been added to default job loadouts,
+      and some misc clothing (list in PR 5877). cargo gorka sprites by Robwo.
+  - rscadd: adds missing toggle sprites to some teshari job clothes
+  Robwo:
+  - image: Cells, stock parts, apcs and intercoms have been resprited.
+  SomeCabbage:
+  - rscadd: adds digitigrade sprites for the cheerleading shoes
+  xPokee:
+  - refactor: The uwu quirk is now a negative mutation instead. It can be found in
+      felinids, scan one today!
+  xPokee, Hardly:
+  - bugfix: Fixes hair dye's gradient dyeing not working
+2026-07-05:
+  Danielance:
+  - bugfix: fixed gear harness and suit harness not being invisible on teshari
+2026-07-06:
+  Moldb, Cerberushopeless, Dr.arielpro & Projectkepler-RU:
+  - rscadd: Added 3 new unique biomass based machinery intended for ghost roles only.
+      They are functionally similar to cargo-orderable biogens (Organic Ration Printer,
+      Organic Material Printer, Colonial Supply Core, Wall Med-Station) but are consolidated
+      into much more specific roles, while also adding additional items to their lists.
+  - rscadd: Added an additional spawner to Lizard's Gas, in the form of a manager
+      role.
+  - rscadd: Gave Lizard's Gas their own budget card, which can only be spent through
+      trading with others. Their card is actually capable of withdrawals.
+  - image: New sprites used by the new biogens, taking direct inspiration from pre-existing
+      machines to fit in nicely.
+  - map: Near complete rework of the Lizard Gas station, making it much more roomy
+      and more akin to an European service station.
+  Odairu:
+  - rscadd: watervapor to gas miner list
+2026-07-07:
+  TheRealWoodside:
+  - rscadd: Ability to use the most common accented Latin letters in character names.
+  - rscdel: Auto-capitalization after apostrophe.
+2026-07-08:
+  Vanilla1040:
+  - bugfix: Fixes your brain falling out as a synth when choosing circuit or MMI
+2026-07-09:
+  xPokee, vinylspiders:
+  - bugfix: Fixed some objects (epi-pens) having the ability to be alt-clicked to
+      change reagent amounts, which they shouldn't be able to do.
+2026-07-10:
+  SomeCabbage:
+  - rscadd: Daimyo modsuit has red hardlight now.
+  - rscadd: Daimyo modsuit now uses a bluespace cell by default.
+  - rscadd: Daimyo modsuit now has a pathfinder and elite hat stabilizer along with
+      the modules being reorganized a little.
+  nikothedude:
+  - bugfix: Charging holsters now change their name to reflect the item inside them
+  - spellcheck: Capitalized some stuff the charging holster says
+2026-07-11:
+  LT3:
+  - bugfix: NIFsoft programs no longer consume the disk when installation fails
+  - bugfix: Preinstalled NIFsoft programs should actually preinstall
+  Odairu:
+  - rscdel: Delamination suppression system
+2026-07-12:
+  Odairu:
+  - rscdel: suppression system stuff I missed in the last PR
+  - qol: Sound Cue added for rightclicking on doors to request AI
+  - refactor: removed unused code/files
+  ibexgoetia:
+  - map: The offices of the Blueshield and the NTC have been reworked on most maps.
+  red-creature:
+  - rscadd: Added feminine torso option for Ethereals
+  - rscadd: Added three new ethereal colors (Lavender Purple, Dark Purple, and Burnt
+      Charcoal)

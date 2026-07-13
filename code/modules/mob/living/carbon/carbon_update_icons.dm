@@ -273,17 +273,25 @@
 		hands += I.build_worn_icon(default_layer = HANDS_LAYER, default_icon_file = icon_file, isinhands = TRUE, bodyshape = bodyshape)
 	return hands
 
+/mob/living/carbon/proc/get_fire_icon_state(stacks, on_fire)
+	return "[dna?.species.fire_overlay || "human"]_[stacks > MOB_BIG_FIRE_STACK_THRESHOLD ? "big_fire" : "small_fire"]"
+
 /mob/living/carbon/get_fire_overlay(stacks, on_fire)
-	var/fire_icon = "[dna?.species.fire_overlay || "human"]_[stacks > MOB_BIG_FIRE_STACK_THRESHOLD ? "big_fire" : "small_fire"]"
+	var/fire_icon = get_fire_icon_state(stacks, on_fire)
+	var/list/overrides = list()
+	SEND_SIGNAL(src, COMSIG_CARBON_GET_FIRE_OVERLAY, stacks, on_fire, fire_icon, overrides)
+	if (length(overrides))
+		return overrides[1]
 
-	if(!GLOB.fire_appearances[fire_icon])
-		GLOB.fire_appearances[fire_icon] = mutable_appearance(
-			'icons/mob/effects/onfire.dmi',
-			fire_icon,
-			-HIGHEST_LAYER,
-			appearance_flags = RESET_COLOR|KEEP_APART,
-		)
+	if(GLOB.fire_appearances[fire_icon])
+		return GLOB.fire_appearances[fire_icon]
 
+	GLOB.fire_appearances[fire_icon] = mutable_appearance(
+		'icons/mob/effects/onfire.dmi',
+		fire_icon,
+		-HIGHEST_LAYER,
+		appearance_flags = RESET_COLOR|KEEP_APART,
+	)
 	return GLOB.fire_appearances[fire_icon]
 
 /mob/living/carbon/update_damage_overlays()
@@ -341,14 +349,8 @@
 	if(!get_bodypart(BODY_ZONE_HEAD)) //Decapitated
 		return
 
-	if(client && hud_used?.inv_slots[TOBITSHIFT(ITEM_SLOT_MASK) + 1])
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_MASK) + 1]
-		inv.update_appearance()
-
-	if(wear_mask)
-		if(!(obscured_slots & HIDEMASK))
-			overlays_standing[FACEMASK_LAYER] = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = 'icons/mob/clothing/mask.dmi', bodyshape = bodyshape)
-		update_hud_wear_mask(wear_mask)
+	if(wear_mask && !(obscured_slots & HIDEMASK))
+		overlays_standing[FACEMASK_LAYER] = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = 'icons/mob/clothing/mask.dmi', bodyshape = bodyshape)
 
 	apply_overlay(FACEMASK_LAYER)
 
@@ -462,6 +464,8 @@
 	var/head_update = FALSE
 	var/list/new_limbs = list()
 	var/datum/component/transformation/transform = GetComponent(/datum/component/transformation) // BUBBER EDIT START - Transformation component override.
+	if(transform)
+		transform.on_transform_limb_icon(src)
 	for(var/body_zone, limb_untyped in transform ? transform.dummy.get_bodyparts_by_zones() : get_bodyparts_by_zones()) // BUBBER EDIT END | ORG: 	for(var/body_zone, limb_untyped in get_bodyparts_by_zones())
 		var/obj/item/bodypart/limb = limb_untyped
 		var/obj/item/bodypart/stump_limb_check = get_bodypart(body_zone, TRUE) // BUBBER EDIT START
