@@ -23,3 +23,10 @@
 		return TRUE
 
 	set_light(0)
+
+/datum/hallucination/malf_apc
+	apc_icon = 'modular_skyrat/modules/aesthetics/apc/icons/apc.dmi'
+
+/obj/item/sticker/syndicate/apc
+	icon = 'modular_skyrat/modules/aesthetics/apc/icons/apc.dmi'
+	//Why is the state called milf for this sticker? Who did this...

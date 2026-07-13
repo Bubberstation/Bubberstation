@@ -3,31 +3,28 @@
 /obj/effect/spawner/random/trash/cigbutt,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"aN" = (
+"aJ" = (
 /obj/structure/table/reinforced,
-/obj/item/food/donut/choco{
-	pixel_x = -4;
-	pixel_y = 7
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"aN" = (
+/obj/machinery/door/airlock/external/ruin{
+	id_tag = "lizardgasbolt"
 	},
-/obj/item/food/donut/berry{
-	pixel_x = 5
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "lizard-gas-back"
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/machinery/door/poddoor{
+	id = "lizardshutters"
 	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/iron/smooth_large,
 /area/ruin/thelizardsgas_lavaland)
 "aW" = (
-/obj/structure/table,
-/obj/structure/sign/poster/official/festive/directional/south,
-/obj/item/wrench,
-/obj/item/universal_scanner{
-	pixel_y = 6;
-	pixel_x = 7
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/turf/open/floor/iron/shuttle/exploration/uside{
+	dir = 1
 	},
 /area/ruin/thelizardsgas_lavaland)
 "bp" = (
@@ -35,19 +32,65 @@
 /obj/structure/sign/warning/no_smoking/directional/east,
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/ruin/thelizardsgas_lavaland)
-"bG" = (
-/obj/structure/sink/directional/west,
-/obj/structure/mirror/directional/east,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+"bq" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8;
+	color = "#595959"
 	},
+/obj/structure/table,
+/obj/item/gun/ballistic/shotgun/doublebarrel{
+	pixel_x = 0;
+	pixel_y = 10
+	},
+/obj/item/ammo_box/advanced/s12gauge/hunter{
+	pixel_x = 0;
+	pixel_y = -2
+	},
+/obj/item/ammo_box/advanced/s12gauge/hunter{
+	pixel_x = -6;
+	pixel_y = -3
+	},
+/turf/open/floor/iron/corner,
+/area/ruin/thelizardsgas_lavaland)
+"bG" = (
+/obj/structure/fans/tiny/forcefield{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "lizardshutters_garage";
+	dir = 8
+	},
+/obj/machinery/door/poddoor{
+	id = "lizardshutters_garage_reinforcement"
+	},
+/turf/open/floor/asphalt/lavaland/outdoors,
 /area/ruin/thelizardsgas_lavaland)
 "bK" = (
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/turf/closed/wall/r_wall{
-	baseturfs = /turf/open/floor/plating/lavaland_baseturf
+/obj/structure/rack/shelf{
+	pixel_x = 4;
+	density = 0
 	},
+/obj/item/storage/fancy/cigarettes/cigpack_robust{
+	pixel_x = -1;
+	pixel_y = 7
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_midori{
+	pixel_x = 9;
+	pixel_y = 7
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_greytide{
+	pixel_x = -1;
+	pixel_y = -3
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_mindbreaker{
+	pixel_x = 9;
+	pixel_y = -3
+	},
+/obj/item/lighter{
+	pixel_x = -11;
+	pixel_y = -7
+	},
+/turf/open/floor/iron/textured_large,
 /area/ruin/thelizardsgas_lavaland)
 "bL" = (
 /obj/machinery/air_sensor{
@@ -58,55 +101,112 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "bM" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/button/door/directional/west{
-	specialfunctions = 4;
-	normaldoorcontrol = 1;
-	id = "gasbathroom";
-	name = "Door Bolt Control"
+/obj/structure/cable,
+/obj/effect/spawner/structure/window/reinforced/plasma,
+/obj/machinery/door/poddoor/shutters{
+	id = "lizardshutters";
+	dir = 8
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/thelizardsgas_lavaland)
+"bO" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959";
 	dir = 8
 	},
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
-"bO" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/noticeboard/directional/north,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
 "cf" = (
+/obj/item/reagent_containers/condiment/vegetable_oil{
+	pixel_y = 9;
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/condiment/vegetable_oil{
+	pixel_y = 4;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/condiment/olive_oil{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "lizardshutters_counter";
+	dir = 1
+	},
+/turf/open/floor/iron/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"cg" = (
+/obj/structure/rack,
+/obj/item/paper{
+	pixel_x = 9;
+	pixel_y = -6;
+	default_raw_text = "Great news folks, your station was picked as the lucky team to test out the brand new selection that our R&D boys been working on, you may be able to recognize a brand or two there, but do not worry. I been reassured by our legal team that the modifications we have made are perfectly legal for commercial use, as long as you <B>DO NOT</B> resell those boards. Anyway, try out those bad boys, they were designed to make each station completely self-sufficient and not have to rely on infrequent shipments to remote locations, and completely turns any medical issues experienced inside the gas stations into the sole responsibility of the staff within and not the chain as a whole, <B>innovation!</B><BR><BR>-Supply Manager, Jasper 'Jas' Statham";
+	name = "Circuitboard Shipment"
+	},
+/obj/item/circuitboard/machine/biogenerator/lizard_gas_colonial{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/circuitboard/machine/biogenerator/lizard_gas_medvendor{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/obj/item/circuitboard/machine/biogenerator/lizard_gas_smartfridge{
+	pixel_x = 4;
+	pixel_y = -4
+	},
+/turf/open/floor/plating,
+/area/ruin/thelizardsgas_lavaland)
+"ck" = (
+/obj/item/kirbyplants/organic/plant18{
+	pixel_x = 0;
+	pixel_y = 1
+	},
+/obj/structure/flora/bush/large/style_2{
+	pixel_x = -16;
+	pixel_y = 0
+	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/iron/dark/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"cy" = (
+/obj/structure/fence/door{
+	dir = 4
+	},
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"cB" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/structure/chair/plastic{
+	dir = 8
+	},
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
-"cg" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/wood/parquet,
-/area/ruin/thelizardsgas_lavaland)
-"ck" = (
-/obj/item/stack/sheet/mineral/wood/fifty{
-	pixel_x = 10;
-	pixel_y = 2
+"cG" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8;
+	color = "#595959"
 	},
-/obj/item/flatpacked_machine/organics_ration_printer{
-	pixel_x = -7;
-	pixel_y = 5
+/obj/structure/table,
+/obj/item/crowbar{
+	pixel_x = 1;
+	pixel_y = 4
 	},
-/turf/open/floor/wood/lavaland,
-/area/icemoon/underground/unexplored)
-"cB" = (
-/turf/closed/wall/r_wall{
-	baseturfs = /turf/open/floor/plating/lavaland_baseturf
+/obj/item/screwdriver,
+/obj/item/flashlight{
+	pixel_x = -4;
+	pixel_y = 13
+	},
+/turf/open/floor/iron/edge{
+	dir = 8
 	},
 /area/ruin/thelizardsgas_lavaland)
 "cI" = (
@@ -117,109 +217,217 @@
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/ruin/thelizardsgas_lavaland)
 "cR" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/light/directional/south,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/structure/rack,
+/obj/structure/window/reinforced/spawner/directional/south{
+	pixel_y = -3
 	},
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/item/food/donut/blumpkin{
+	pixel_x = -5;
+	pixel_y = 7
+	},
+/obj/item/food/donut/caramel{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/food/donut/blumpkin{
+	pixel_x = -2;
+	pixel_y = -4
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1
+	},
+/turf/open/floor/iron/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"dq" = (
+/obj/structure/sign/warning/electric_shock/directional/south,
+/obj/machinery/camera/autoname/directional/south{
+	network = list("lizardgas");
+	c_tag = "Exterior - North"
+	},
+/turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/ruin/thelizardsgas_lavaland)
 "dC" = (
 /obj/machinery/duct,
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/ruin/thelizardsgas_lavaland)
 "ef" = (
-/obj/structure/toilet,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/effect/mob_spawn/ghost_role/human/lavaland_gasstation{
+	dir = 2
 	},
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/poster/official/fruit_bowl/directional/east,
+/obj/structure/marker_beacon/cerulean,
+/obj/structure/fluff/empty_sleeper,
+/turf/open/floor/iron/dark/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"eg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/flatpack{
+	board = /obj/item/circuitboard/machine/quantumpad;
+	pixel_x = -7;
+	pixel_y = -3;
+	name = "a conveniently placed quantum pad flatpack"
+	},
+/obj/item/flatpack{
+	board = /obj/item/circuitboard/machine/quantumpad;
+	pixel_x = -7;
+	pixel_y = 8;
+	name = "a conveniently placed quantum pad flatpack"
+	},
+/obj/item/paper{
+	pixel_x = 12;
+	default_raw_text = "Management decided that you guys need to attract more customers in a convenient, efficient, and especially <B>cost-cutting</B> method. Solution? Quantum pads! Honestly, I have no clue what the science behind this stuff is, all I care is that it basically links two places together. So, if you get a customer who you <B>think</B> could <B>potentially</B> bring others along, hand it over to them along with a multitool, make sure it is linked properly. As it turns out that the activity of plasma-operated vehicles on lavaland is much lower than we predicted, so we're hoping trying to expand our trade with spacefaring folks will bring in that extra revenue we want.<BR><BR>-Supply Manager, Jasper 'Jas' Statham";
+	name = "Quantum Pad Shipment";
+	pixel_y = -9
+	},
+/obj/item/multitool{
+	pixel_x = 9;
+	pixel_y = 5
+	},
+/obj/effect/decal/cleanable/wrapping,
+/obj/item/stack/package_wrap{
+	pixel_x = -5;
+	pixel_y = -8
+	},
+/obj/machinery/airalarm/directional/west,
+/turf/open/floor/carpet/purple,
 /area/ruin/thelizardsgas_lavaland)
 "ei" = (
-/obj/structure/chair/sofa/right/maroon{
-	dir = 4
+/obj/structure/railing{
+	dir = 1;
+	color = "#878787"
 	},
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/iron/smooth{
+/obj/machinery/light/small/directional/south,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
 "el" = (
-/obj/effect/spawner/random/structure/billboard/roadsigns,
+/obj/structure/billboard/roadsign/twothousand,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"ey" = (
-/obj/structure/table/reinforced,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable,
-/obj/machinery/griddle/frontier_tabletop,
-/obj/item/food/raw_sausage,
-/obj/item/food/raw_sausage{
-	pixel_y = 4
+"em" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
 	},
-/obj/item/food/raw_sausage{
-	pixel_y = 9
+/obj/effect/turf_decal/trimline/dark_green/filled/line{
+	dir = 8
 	},
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/wall{
+	pixel_x = -32;
+	req_access = list(9512);
+	name = "Manager's Locker"
+	},
+/obj/item/clothing/head/beret/science/rd{
+	desc = "A beret awarded to team members who have lasted a full year or more under the employment of the Lizard Gas brand! A pizza party is sure to be held on their anniversary.";
+	name = "Veteran Lizard Gas Beret"
+	},
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/clothing/mask/breath,
+/obj/item/gun/energy/recharge/kinetic_accelerator/glock,
+/obj/item/megaphone/cargo{
+	name = "manager's megaphone"
+	},
+/obj/item/cargo_teleporter,
+/obj/item/storage/box/nif_ghost_box/ghost_role,
+/obj/item/gps,
+/obj/item/card/id/faction_budget/lizgas,
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 8
 	},
 /area/ruin/thelizardsgas_lavaland)
+"ey" = (
+/obj/effect/turf_decal/siding/wideplating_new/dark{
+	dir = 1
+	},
+/obj/structure/chair/sofa/corp/right{
+	color = "#4cc78e"
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/wood/large,
+/area/ruin/thelizardsgas_lavaland)
 "eB" = (
-/obj/item/mop,
-/obj/structure/mop_bucket/janitorialcart,
+/obj/structure/sink/directional/west,
+/obj/structure/mirror/directional/east,
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 4;
+	color = "#595959"
+	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/turf/open/floor/iron/edge{
+	dir = 4
 	},
 /area/ruin/thelizardsgas_lavaland)
 "fc" = (
-/obj/structure/table/reinforced,
-/obj/machinery/coffeemaker/impressa{
-	pixel_x = 2
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 5;
+	color = "#595959"
 	},
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
+"fQ" = (
+/obj/machinery/door/airlock/external/ruin{
+	id_tag = "lizardgasbolt"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "lizardgas_lavaland_entrance"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/door/poddoor{
+	id = "lizardshutters"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/iron/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
 "ga" = (
-/obj/machinery/computer/security/telescreen/entertainment/directional/north,
-/obj/structure/table,
-/obj/item/crowbar{
-	pixel_x = 1;
-	pixel_y = 4
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
 	},
-/obj/item/paper{
-	pixel_x = 7;
-	name = "Manager Note";
-	default_raw_text = "Good news! That little decrepit hut out front is finally, <B>legally</B> ours! Feel free to snoop around it if you find the time, and remember, time to lean means time to clean!<BR><BR>P.S, go into the backroom and set the nitrogen and oxygen pressure tanks to layer 3 with the multitool, the HVAC tech had no fucking clue what he was doing apparently!<BR><BR>-General Manager, Ra'Tahul Rekinov"
-	},
-/obj/item/multitool{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/obj/item/screwdriver,
-/obj/item/inducer{
-	pixel_y = 8
-	},
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
+/turf/open/floor/tram/plate,
 /area/ruin/thelizardsgas_lavaland)
 "gd" = (
-/obj/structure/cable,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/structure/fluff/big_chain{
+	pixel_y = 30;
+	density = 0
+	},
+/obj/item/v8_engine{
+	pixel_x = 0;
+	pixel_y = 6
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleinvertcorner_side{
+	dir = 8
 	},
 /area/ruin/thelizardsgas_lavaland)
 "gn" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/light/directional/east,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/machinery/door/airlock/grunge{
+	name = "Employees Only"
 	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/lizard_gas,
+/turf/open/floor/iron/textured_large,
 /area/ruin/thelizardsgas_lavaland)
 "gt" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
@@ -229,38 +437,63 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "gy" = (
-/obj/structure/window/reinforced/spawner/directional/south,
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/item/storage/cans/sixbeer,
-/obj/item/storage/cans/sixsoda,
-/obj/structure/closet/crate/freezer,
-/turf/open/floor/iron/freezer{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/structure/table,
+/obj/item/inducer{
+	pixel_y = 8
 	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 9;
+	color = "#595959"
+	},
+/obj/item/multitool{
+	pixel_x = -8;
+	pixel_y = -5
+	},
+/obj/item/paper{
+	pixel_x = 8;
+	name = "Supply Shipment Note";
+	default_raw_text = "Good news, everyone. We have managed to secure a decently sized shipment of resources for you, which you can use along with the rapid construction fabricator you should have in the garage, along with the shipment itself. So, roll up your sleeves, and get to <B>expanding</B> as you see fit. Bring in that extra profit, become employee of the month material!<BR><BR>-Supply Manager, Jasper 'Jas' Statham";
+	pixel_y = -4
+	},
+/turf/open/floor/iron/large,
+/area/ruin/thelizardsgas_lavaland)
+"gH" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Garage"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/lizard_gas,
+/turf/open/floor/iron/textured_large,
 /area/ruin/thelizardsgas_lavaland)
 "gP" = (
-/obj/item/paper{
-	default_raw_text = "Please do not steal materials from this crate, as they are direly useful to the Employees of The Lizard Gas-- whom are currently Cryosleeping and may wake up soon!<BR><BR>-General Manager, Ra'Tahul Rekinov";
-	name = "IMPORTANT NOTE!"
-	},
+/obj/structure/sign/warning/electric_shock/directional/south,
+/obj/machinery/light/small/directional/south,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
+/area/ruin/thelizardsgas_lavaland)
 "gQ" = (
-/obj/machinery/door/airlock/external/ruin{
-	id_tag = "lizardgasbolt"
+/obj/structure/rack,
+/obj/item/food/canned/tuna{
+	pixel_x = -3;
+	pixel_y = 0
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
-	cycle_id = "lizardgas_lavaland_entrance"
+/obj/item/food/canned/tuna{
+	pixel_x = 11;
+	pixel_y = 0
 	},
-/obj/structure/fans/tiny,
-/obj/machinery/duct,
-/obj/machinery/door/poddoor{
-	id = "lizardshutters"
+/obj/item/food/canned/tuna{
+	pixel_x = 4;
+	pixel_y = 7
 	},
-/obj/effect/mapping_helpers/airlock/locked,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1
 	},
+/obj/structure/window/reinforced/spawner/directional/south{
+	pixel_y = -3
+	},
+/obj/structure/window/reinforced/spawner/directional/west,
+/turf/open/floor/iron/smooth_large,
 /area/ruin/thelizardsgas_lavaland)
 "gW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored/plasma_output{
@@ -275,30 +508,39 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "gY" = (
-/obj/machinery/vending/dorms{
-	density = 0;
-	pixel_y = -32
+/obj/effect/spawner/random/trash/food_packaging,
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"hl" = (
+/obj/structure/frame/machine/secured,
+/obj/structure/window/reinforced/tinted/spawner/directional/east{
+	opacity = 1
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
+/turf/open/floor/iron/dark/textured,
 /area/ruin/thelizardsgas_lavaland)
 "hr" = (
 /turf/template_noop,
 /area/template_noop)
 "hC" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/grunge{
-	name = "Break Room"
+/obj/structure/table/reinforced,
+/obj/item/storage/fancy/coffee_condi_display{
+	pixel_x = 4;
+	pixel_y = 10
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/item/serviette/colonial{
+	pixel_x = 7;
+	pixel_y = 0
 	},
+/obj/item/reagent_containers/cup/bottle/syrup_bottle/caramel{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/bottle/syrup_bottle/korta_nectar{
+	pixel_x = -9;
+	pixel_y = 9
+	},
+/obj/structure/sign/warning/no_smoking/directional/north,
+/turf/open/floor/iron/textured_large,
 /area/ruin/thelizardsgas_lavaland)
 "hG" = (
 /obj/structure/bonfire,
@@ -318,94 +560,164 @@
 /obj/machinery/light/dim/directional/south,
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/ruin/thelizardsgas_lavaland)
-"il" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1;
-	filter_types = list(/datum/gas/oxygen)
-	},
-/obj/machinery/duct,
-/turf/open/floor/plating/lavaland_atmos,
+"hY" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
-"iE" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+"il" = (
+/obj/machinery/camera/autoname/directional/east{
+	network = list("lizardgas");
+	c_tag = "Lizard Gas - Manager Office"
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/wood/large,
+/area/ruin/thelizardsgas_lavaland)
+"iq" = (
+/obj/structure/mop_bucket/janitorialcart{
 	dir = 8
 	},
-/obj/machinery/button/door/directional/west{
-	specialfunctions = 4;
-	normaldoorcontrol = 1;
-	id = "corpooffice";
-	name = "Door Bolt Control"
+/obj/item/mop,
+/turf/open/floor/plating,
+/area/ruin/thelizardsgas_lavaland)
+"iE" = (
+/obj/structure/rack,
+/obj/machinery/camera/autoname/directional/south{
+	network = list("lizardgas");
+	c_tag = "Lizard Gas - Utility Room"
 	},
-/turf/open/floor/wood/parquet,
+/obj/item/stack/sheet/mineral/plasma/thirty{
+	pixel_x = -1;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/mineral/plasma/thirty{
+	pixel_x = -4
+	},
+/obj/item/flatpacked_machine/fuel_generator{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/paper{
+	pixel_x = 6;
+	pixel_y = -5;
+	default_raw_text = "Hey there official team member of Lizard Gas! On the shelf you found this letter on is a deployable plasma-generator to keep the lights on around here. Set it up outback, <B>NOT INSIDE</B>, and slap some of the Plasma Shards Nanotrasen has so kindly sold off to us in it and turn it on.. <BR><BR> P.S, A team member perished to Carbon Monoxide inhalation after sticking the deployable generator inside. You'll have to pull double-shifts until we find a replacement. Good luck!<BR><BR>-General Manager, Ra'Tahul Rekinov";
+	name = "Generator Note"
+	},
+/obj/item/stack/cable_coil/thirty{
+	pixel_x = -5;
+	pixel_y = -2
+	},
+/turf/open/floor/plating,
+/area/ruin/thelizardsgas_lavaland)
+"iH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
 /area/ruin/thelizardsgas_lavaland)
 "jc" = (
-/obj/structure/closet/crate/hydroponics,
-/obj/item/paper/guides/jobs/hydroponics,
-/obj/item/seeds/onion,
-/obj/item/seeds/garlic,
-/obj/item/seeds/potato,
-/obj/item/seeds/tomato,
-/obj/item/seeds/carrot,
-/obj/item/seeds/grass,
-/obj/item/seeds/ambrosia,
-/obj/item/seeds/wheat,
-/obj/item/seeds/pumpkin,
-/obj/effect/spawner/random/contraband/prison,
-/obj/item/seeds/tower,
-/obj/item/seeds/tobacco,
-/obj/item/reagent_containers/cup/watering_can,
-/obj/item/cultivator,
-/obj/item/plant_analyzer,
-/obj/item/secateurs,
-/obj/item/shovel/spade,
-/obj/item/seeds/chili,
-/obj/item/seeds/pumpkin,
-/obj/item/seeds/coffee,
-/obj/effect/spawner/random/food_or_drink/seed,
-/obj/effect/spawner/random/food_or_drink/seed,
-/obj/effect/spawner/random/food_or_drink/seed,
-/obj/item/storage/bag/plants/portaseeder,
-/obj/item/reagent_containers/cup/watering_can,
-/obj/item/storage/box/beakers,
-/turf/open/misc/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/mob_spawn/ghost_role/human/lavaland_gasstation/manager{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 4
+	},
+/area/ruin/thelizardsgas_lavaland)
 "jo" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/pink/hidden,
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/ruin/thelizardsgas_lavaland)
 "jG" = (
+/obj/machinery/door/airlock/grunge{
+	id_tag = "corpooffice";
+	name = "Manager's Office"
+	},
 /obj/structure/cable,
-/turf/open/misc/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/lizard_gas,
+/turf/open/floor/iron/dark/textured_large,
+/area/ruin/thelizardsgas_lavaland)
 "jZ" = (
 /obj/effect/turf_decal/arrows{
 	dir = 1
 	},
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/lavaland/surface/outdoors)
+"kb" = (
+/obj/machinery/rnd/production/circuit_imprinter/offstation{
+	name = "Gas Station Imprinter"
+	},
+/obj/machinery/light/small/red/dim/directional/north,
+/turf/open/floor/iron/dark/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"kl" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/decorative{
+	icon_state = "siding_plain";
+	pixel_y = 0;
+	icon = 'icons/turf/decals.dmi';
+	base_icon_state = "elevatorshaft";
+	color = "#36373a";
+	dir = 2;
+	anchored = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "lizardshutters_counter";
+	dir = 1
+	},
+/obj/structure/desk_bell,
+/turf/open/floor/iron/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"kx" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/pink/hidden,
+/obj/machinery/camera/autoname/directional/east{
+	network = list("lizardgas");
+	c_tag = "Exterior - West"
+	},
+/turf/open/floor/asphalt/lavaland/outdoors,
+/area/ruin/thelizardsgas_lavaland)
 "kT" = (
-/obj/effect/spawner/random/trash/hobo_squat,
-/mob/living/basic/regal_rat/controlled{
-	name = "Gas Station Tweaker Rat";
-	health = 110;
-	unsuitable_cold_damage = 0;
-	unique_name = 0;
-	ghost_controllable = 1;
-	damage_coeff = list("brute" = 1, "burn" = 0, "toxin" = 1, "stamina" = 0, "oxygen" = 0);
-	unsuitable_atmos_damage = 0;
-	habitable_atmos = list("min_oxy" = 0, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0);
-	unsuitable_heat_damage = 0;
-	maximum_survivable_temperature = 800
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/holopad,
+/turf/open/floor/wood,
+/area/ruin/thelizardsgas_lavaland)
+"kW" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 6;
+	color = "#595959"
 	},
-/turf/open/misc/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
 "lm" = (
-/obj/structure/mineral_door/wood{
-	name = "Old Storehouse"
+/obj/effect/spawner/structure/window/reinforced/plasma,
+/obj/machinery/door/poddoor/shutters{
+	id = "lizardshutters_corpo";
+	dir = 4
 	},
-/obj/structure/barricade/wooden/crude,
-/turf/open/floor/wood/lavaland,
-/area/icemoon/underground/unexplored)
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/thelizardsgas_lavaland)
 "lz" = (
 /obj/structure/railing{
 	dir = 8
@@ -421,6 +733,23 @@
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
+"lR" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/paperwork{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/obj/item/paper{
+	pixel_x = 12;
+	default_raw_text = "The gosh darn safe is on the fritz again! Do me a favor and count these bills for me, and stuff them in the stafe whe you're done. Thanks a bunch, and have a Lizardrific Day!<BR><BR>-General Manager, Ra'Tahul Rekinov";
+	name = "Manager Note";
+	pixel_y = 0
+	},
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/trimline/dark_green/filled/line,
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner,
+/turf/open/floor/iron/dark/smooth_edge,
+/area/ruin/thelizardsgas_lavaland)
 "mb" = (
 /obj/structure/cable,
 /obj/structure/railing{
@@ -431,33 +760,49 @@
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
-"mq" = (
-/obj/effect/mob_spawn/ghost_role/human/lavaland_gasstation{
-	dir = 4
+"mf" = (
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/item/storage/cans/sixbeer,
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/weather/snow,
+/obj/structure/marker_beacon/cerulean,
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/sign/poster/contraband/jumbo_bar/directional/east,
+/obj/item/storage/cans/sixbeer,
+/obj/item/storage/cans/sixsoda,
+/obj/item/storage/cans/sixsoda,
+/turf/open/floor/circuit/red/off,
+/area/ruin/thelizardsgas_lavaland)
+"mg" = (
+/obj/structure/closet/crate/trashcart,
+/obj/machinery/camera/autoname/directional/west{
+	network = list("lizardgas");
+	dir = 8;
+	c_tag = "Exterior - East"
 	},
 /obj/machinery/light/directional/west,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/ruin/thelizardsgas_lavaland)
+"mq" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/iron/shuttle/exploration/uside{
+	dir = 4
 	},
 /area/ruin/thelizardsgas_lavaland)
 "mw" = (
-/obj/structure/rack,
-/obj/item/food/chips{
-	pixel_x = 7
+/obj/item/trash/popcorn/caramel{
+	pixel_x = -7;
+	pixel_y = 4
 	},
-/obj/item/food/chips{
-	pixel_y = 7;
-	pixel_x = -4
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1;
+	color = "#595959"
 	},
-/obj/item/food/chips/shrimp{
-	pixel_y = 10;
-	pixel_x = 7
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#595959"
 	},
-/obj/item/food/chips/shrimp{
-	pixel_y = -4;
-	pixel_x = -5
-	},
-/obj/machinery/light/directional/north,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -480,38 +825,81 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "mI" = (
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/item/food/cheese/mozzarella{
-	pixel_y = 5;
-	pixel_x = -5
-	},
-/obj/item/food/cheese/mozzarella{
-	pixel_y = -4;
-	pixel_x = 1
-	},
-/obj/item/food/cheese/wheel,
-/obj/item/food/cheese/cheese_curds,
-/obj/item/food/cheese/curd_cheese,
-/obj/structure/closet/crate/freezer,
-/turf/open/floor/iron/freezer{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
+/obj/machinery/light/small/dim/directional/north,
+/turf/open/floor/noslip,
 /area/ruin/thelizardsgas_lavaland)
-"mX" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable,
-/obj/structure/sign/poster/contraband/starkist/directional/north,
+"mJ" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 9;
+	color = "#595959"
+	},
+/obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
+"mM" = (
+/obj/structure/chair/stool/bar/directional/south,
+/turf/open/floor/carpet,
+/area/ruin/thelizardsgas_lavaland)
+"mS" = (
+/obj/machinery/door/airlock/external/ruin{
+	id_tag = "lizardgasbolt"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "lizardgas_lavaland_entrance"
+	},
+/obj/structure/fans/tiny,
+/obj/machinery/duct,
+/obj/machinery/door/poddoor{
+	id = "lizardshutters"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/iron/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"mX" = (
+/obj/effect/mapping_helpers/airlock/access/all/lizard_gas,
+/obj/machinery/door/airlock/grunge{
+	name = "Employees Only"
+	},
+/turf/open/floor/iron/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"nb" = (
+/obj/structure/sign/poster/official/pda_ad/directional/south,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/duct,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/camera/autoname/directional/south{
+	network = list("lizardgas");
+	c_tag = "Lizard Gas - Shop South"
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#595959"
+	},
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"nr" = (
+/obj/structure/frame/machine,
+/obj/item/stack/cable_coil/five,
+/turf/open/floor/iron/dark/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"nt" = (
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/shuttle/exploration/invertcorner_side{
+	dir = 4
+	},
+/area/ruin/thelizardsgas_lavaland)
 "nE" = (
-/obj/structure/cable,
-/obj/effect/spawner/random/trash/deluxe_garbage,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron/smooth{
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1;
+	color = "#595959"
+	},
+/turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
@@ -524,42 +912,181 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "nU" = (
-/obj/structure/fence/door{
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
 	dir = 4
 	},
-/turf/open/misc/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"oY" = (
-/obj/machinery/duct,
-/turf/closed/wall/r_wall{
-	baseturfs = /turf/open/floor/plating/lavaland_baseturf
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959";
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959";
+	dir = 1
+	},
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
-"po" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
+"oi" = (
+/obj/structure/table/wood/fancy/green,
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/item/stack/spacecash/c500{
+	pixel_x = 2;
+	pixel_y = 7;
+	max_amount = 500
 	},
-/turf/open/floor/wood/parquet,
+/obj/item/stack/spacecash/c500{
+	pixel_x = -2;
+	pixel_y = 2;
+	max_amount = 500
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 5
+	},
+/obj/structure/secure_safe/directional/east,
+/obj/effect/turf_decal/trimline/dark_green/filled/line{
+	dir = 5
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"or" = (
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/weather/snow,
+/obj/machinery/light/directional/east,
+/obj/item/food/meat/slab/rawcrab,
+/obj/item/food/meat/slab/rawcrab,
+/obj/item/food/meat/slab/rawcrab,
+/obj/item/food/meat/slab/rawcrab,
+/obj/item/food/meat/slab/rawcrab,
+/obj/item/food/meat/slab/rawcrab,
+/obj/structure/sign/poster/contraband/starkist/directional/east,
+/turf/open/floor/circuit/red/off,
+/area/ruin/thelizardsgas_lavaland)
+"oE" = (
+/obj/machinery/washing_machine{
+	pixel_y = 0
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 5;
+	color = "#595959"
+	},
+/turf/open/floor/iron/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"oJ" = (
+/obj/machinery/shower/directional/south,
+/turf/open/floor/noslip,
+/area/ruin/thelizardsgas_lavaland)
+"oP" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 10
+	},
+/obj/structure/closet/crate/bin{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/obj/machinery/space_heater/wall_mounted/directional/east{
+	cell = /obj/item/stock_parts/power_store/cell/high
+	},
+/turf/open/floor/iron/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"oY" = (
+/obj/machinery/duct,
+/turf/closed/wall/r_wall,
+/area/ruin/thelizardsgas_lavaland)
+"po" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/meter/layer2,
+/obj/structure/cable,
+/turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "pq" = (
 /obj/effect/spawner/random/trash/crushed_can,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "pB" = (
-/obj/machinery/power/smes/full{
-	component_parts = 4;
-	charge = 0
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1;
+	color = "#595959"
 	},
-/obj/structure/cable,
-/turf/open/floor/iron/smooth{
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#595959"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
+/area/ruin/thelizardsgas_lavaland)
+"pG" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal,
+/obj/machinery/light/small/red/dim/directional/north,
+/obj/structure/decorative{
+	icon_state = "wallmount";
+	pixel_y = 0;
+	icon = 'icons/obj/science/circuits.dmi';
+	dir = 8;
+	anchored = 1;
+	name = "wallmount";
+	pixel_x = 32
+	},
+/turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "pQ" = (
 /obj/machinery/light/directional/south,
 /obj/structure/sign/warning/chem_diamond/directional/south,
 /obj/machinery/duct,
 /turf/open/floor/asphalt/lavaland/outdoors,
+/area/ruin/thelizardsgas_lavaland)
+"qS" = (
+/obj/structure/rack/shelf,
+/obj/item/food/cornchips/random{
+	pixel_y = 4;
+	pixel_x = -5
+	},
+/obj/item/food/cornchips/random{
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/obj/item/food/cornchips/random,
+/obj/item/food/cornchips/random{
+	pixel_y = -7;
+	pixel_x = -5
+	},
+/obj/item/food/cornchips/random{
+	pixel_x = 8;
+	pixel_y = -5
+	},
+/obj/item/food/cornchips/random{
+	pixel_y = -7;
+	pixel_x = 3
+	},
+/obj/structure/sign/poster/contraband/robust_softdrinks/directional/south,
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1
+	},
+/obj/structure/sign/poster/contraband/smoke/directional/west,
+/turf/open/floor/iron/smooth_large,
 /area/ruin/thelizardsgas_lavaland)
 "qW" = (
 /obj/structure/railing{
@@ -572,28 +1099,38 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "qX" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/rack,
-/obj/effect/spawner/random/entertainment/cigarette_pack,
-/obj/effect/spawner/random/entertainment/cigarette_pack,
-/obj/effect/spawner/random/entertainment/cigarette_pack,
-/obj/effect/spawner/random/entertainment/lighter,
-/obj/effect/spawner/random/entertainment/lighter,
-/obj/effect/spawner/random/entertainment/lighter,
-/obj/structure/sign/poster/contraband/smoke/directional/west,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/structure/deployable_barricade/guardrail{
+	dir = 8;
+	density = 0
+	},
+/obj/item/reagent_containers/cup/jerrycan/oil{
+	pixel_x = 0;
+	pixel_y = 11
+	},
+/obj/item/fuel_pellet{
+	pixel_x = 3;
+	pixel_y = 0
+	},
+/turf/open/floor/iron/shuttle/exploration/side{
+	dir = 8
 	},
 /area/ruin/thelizardsgas_lavaland)
 "ry" = (
-/obj/effect/spawner/random/structure/crate_abandoned,
-/turf/open/misc/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
+/turf/open/floor/carpet/green,
+/area/ruin/thelizardsgas_lavaland)
 "rD" = (
-/obj/machinery/door/airlock/grunge{
-	name = "Plasma Hook-Up"
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
 	},
-/turf/open/floor/plating/lavaland_atmos,
+/obj/effect/turf_decal/trimline/dark_green/filled/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 4
+	},
 /area/ruin/thelizardsgas_lavaland)
 "rE" = (
 /obj/structure/cable,
@@ -617,60 +1154,137 @@
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/ruin/thelizardsgas_lavaland)
 "rL" = (
-/obj/structure/fence/corner,
+/obj/structure/chair/office/light{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/carpet/green,
+/area/ruin/thelizardsgas_lavaland)
+"rU" = (
+/obj/structure/fence/corner{
+	dir = 2
+	},
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"sb" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/turf/open/floor/iron/shuttle/exploration/side{
+	dir = 4
+	},
+/area/ruin/thelizardsgas_lavaland)
 "se" = (
-/obj/structure/rack/wooden,
-/obj/item/clothing/head/utility/hardhat/orange{
-	pixel_x = -5;
-	pixel_y = 4
+/obj/structure/sign/poster/fluff/lizards_gas_payment/directional/west,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 8
 	},
-/obj/item/flatpacked_machine{
-	pixel_x = 7;
-	pixel_y = 5
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8;
+	color = "#595959"
 	},
-/obj/item/clothing/head/utility/hardhat/orange{
-	pixel_x = -5;
-	pixel_y = 4
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
-/obj/item/circuitboard/machine/biogenerator/food_replicator{
-	pixel_x = -4;
-	pixel_y = -8
-	},
-/turf/open/floor/wood/lavaland,
-/area/icemoon/underground/unexplored)
+/area/ruin/thelizardsgas_lavaland)
+"sf" = (
+/obj/structure/cable,
+/turf/open/floor/carpet,
+/area/ruin/thelizardsgas_lavaland)
 "sk" = (
 /turf/open/floor/engine/plasma{
 	initial_gas_mix = "plasma=30000;TEMP=293.15"
 	},
 /area/ruin/thelizardsgas_lavaland)
 "sw" = (
-/obj/structure/shipping_container/donk_co,
-/turf/open/misc/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"sY" = (
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/window/reinforced/spawner/directional/south,
-/obj/structure/closet/crate/freezer,
-/obj/item/food/vendor_tray_meal/sushi,
-/obj/item/food/vendor_tray_meal/sushi,
-/obj/item/food/vendor_tray_meal/sushi,
-/obj/item/food/vendor_tray_meal/sushi,
-/obj/item/food/vendor_tray_meal/sushi,
-/obj/item/food/nigiri_sushi,
-/obj/item/food/nigiri_sushi,
-/obj/item/food/nigiri_sushi,
-/turf/open/floor/iron/freezer{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/structure/table/wood/shuttle_bar,
+/obj/item/kirbyplants/organic/plant21{
+	pixel_x = 0;
+	pixel_y = 9
 	},
+/obj/structure/curtain/bounty,
+/turf/open/floor/iron/dark/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"sy" = (
+/obj/item/stack/sheet/mineral/gold{
+	amount = 10
+	},
+/obj/item/stack/sheet/mineral/uranium/five{
+	amount = 10
+	},
+/obj/item/stack/sheet/mineral/titanium{
+	amount = 10;
+	pixel_x = -6;
+	pixel_y = -2
+	},
+/obj/item/stack/sheet/plastic{
+	amount = 20;
+	pixel_x = -6;
+	pixel_y = 1
+	},
+/obj/item/stack/sheet/mineral/silver{
+	amount = 15
+	},
+/obj/item/stack/sheet/glass{
+	amount = 25
+	},
+/obj/item/stack/sheet/iron/fifty{
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/obj/structure/closet/crate/secure/cargo{
+	desc = "A secure crate, supposedly containing raw resources.";
+	name = "lizard gas materials shipment"
+	},
+/obj/machinery/light/small/red/dim/directional/north,
+/obj/item/stack/sheet/mineral/wood/fifty{
+	pixel_x = 10;
+	pixel_y = 2
+	},
+/turf/open/floor/iron/dark/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"sS" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/ruin/thelizardsgas_lavaland)
+"sY" = (
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/structure/table/wood/shuttle_bar,
+/obj/item/kirbyplants/organic/plant22{
+	pixel_x = 0;
+	pixel_y = 4
+	},
+/obj/structure/curtain/bounty,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/textured_large,
 /area/ruin/thelizardsgas_lavaland)
 "tk" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron/smooth{
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner,
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#595959"
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1;
+	color = "#595959"
+	},
+/turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
@@ -678,10 +1292,25 @@
 /obj/structure/sign/warning/fire/directional/north,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"tD" = (
+"tu" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/duct,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#595959"
+	},
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"tD" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/edge{
+	dir = 4
 	},
 /area/ruin/thelizardsgas_lavaland)
 "tK" = (
@@ -690,90 +1319,138 @@
 /area/lavaland/surface/outdoors)
 "tM" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+/obj/structure/rack,
+/obj/structure/window/reinforced/spawner/directional/south{
+	pixel_y = -3
+	},
+/obj/item/food/canned/beans{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/item/food/canned/beans{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/item/food/canned/beans{
+	pixel_x = -3;
+	pixel_y = 1
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
 	dir = 1
 	},
-/obj/machinery/duct,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/turf/open/floor/iron/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"ua" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
 	},
+/obj/structure/cable,
+/turf/open/floor/wood/tile,
 /area/ruin/thelizardsgas_lavaland)
 "uf" = (
-/obj/effect/spawner/structure/window/reinforced/plasma,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/duct,
-/obj/machinery/door/poddoor/shutters{
-	id = "lizardshutters"
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8;
+	color = "#595959"
 	},
-/turf/open/floor/iron,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"uh" = (
+/obj/machinery/light/floor,
+/turf/open/floor/iron/dark/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"uj" = (
+/obj/structure/table/reinforced,
+/obj/structure/closet/mini_fridge{
+	pixel_y = 5
+	},
+/obj/effect/spawner/random/food_or_drink/booze,
+/obj/effect/spawner/random/food_or_drink/booze,
+/obj/effect/spawner/random/food_or_drink/refreshing_beverage,
+/obj/effect/spawner/random/food_or_drink/refreshing_beverage,
+/obj/effect/spawner/random/food_or_drink/refreshing_beverage,
+/obj/effect/spawner/random/food_or_drink/booze,
+/obj/machinery/computer/security/telescreen/entertainment/directional/north,
+/obj/machinery/camera/autoname/directional/west{
+	network = list("lizardgas");
+	c_tag = "Lizard Gas - Shop North"
+	},
+/obj/structure/sign/poster/official/festive/directional/west,
+/turf/open/floor/iron/textured_large,
 /area/ruin/thelizardsgas_lavaland)
 "uq" = (
-/obj/machinery/door/window/right/directional/east,
-/obj/machinery/door/window/left/directional/west,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/structure/fence{
+	dir = 4
 	},
-/area/ruin/thelizardsgas_lavaland)
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "uA" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
+/obj/structure/chair/sofa/right/maroon{
+	dir = 4
 	},
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/carpet,
 /area/ruin/thelizardsgas_lavaland)
 "uB" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/light_switch/directional/south,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
 /obj/machinery/duct,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/turf/open/floor/noslip,
+/area/ruin/thelizardsgas_lavaland)
+"uE" = (
+/obj/structure/rack,
+/obj/item/flatpacked_machine/sustenance_machine{
+	pixel_x = -2;
+	pixel_y = 0
 	},
+/obj/item/flatpacked_machine/macrowave{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/flatpacked_machine/frontier_range{
+	pixel_x = 5;
+	pixel_y = 11
+	},
+/turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "uG" = (
-/obj/machinery/airalarm/directional/west,
-/obj/machinery/computer/security/telescreen/entertainment/directional/south,
-/obj/machinery/computer/atmos_control/noreconnect{
-	atmos_chambers = list("lizardgaslava"="Plasma Supply");
-	dir = 4;
-	name = "gas tank monitor";
-	desc = "This computer connects to and controls the sensors and equipment in a nearby pressurised gas reservoir."
+/obj/structure/rack,
+/obj/structure/window/reinforced/spawner/directional/south{
+	pixel_y = -3
 	},
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/item/food/donut/apple{
+	pixel_x = -4;
+	pixel_y = 8
 	},
+/obj/item/food/donut/caramel{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/food/donut/matcha{
+	pixel_x = -3;
+	pixel_y = -2
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1
+	},
+/turf/open/floor/iron/smooth_large,
 /area/ruin/thelizardsgas_lavaland)
 "uH" = (
-/obj/structure/cable,
-/obj/machinery/button/door/directional/east{
-	id = "lizardshutters";
-	pixel_y = 7;
-	name = "Privacy Shutters"
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 6;
+	color = "#595959"
 	},
-/obj/machinery/button/door/directional/east{
-	pixel_y = -3;
-	name = "Entrance Doorbolts";
-	id = "lizardgasbolt";
-	normaldoorcontrol = 1;
-	specialfunctions = 4
-	},
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
-"uM" = (
-/obj/machinery/light/directional/north,
+/obj/machinery/light/directional/south,
 /obj/structure/closet/crate/bin,
 /obj/effect/spawner/random/trash/food_packaging,
 /obj/effect/spawner/random/trash/food_packaging,
 /obj/effect/spawner/random/trash/food_packaging,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
+/turf/open/floor/iron/large,
 /area/ruin/thelizardsgas_lavaland)
+"uM" = (
+/obj/structure/trash_pile,
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "uX" = (
 /obj/machinery/portable_atmospherics/canister{
 	connected_port = 1
@@ -789,6 +1466,49 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "vw" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/iron/edge{
+	dir = 4
+	},
+/area/ruin/thelizardsgas_lavaland)
+"vz" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 4;
+	color = "#595959"
+	},
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"vD" = (
+/obj/structure/frame/machine/secured,
+/obj/structure/window/reinforced/tinted/spawner/directional/west{
+	opacity = 1
+	},
+/turf/open/floor/iron/dark/textured,
+/area/ruin/thelizardsgas_lavaland)
+"vL" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 4;
+	color = "#595959"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/large,
+/area/ruin/thelizardsgas_lavaland)
+"vM" = (
+/obj/structure/deployable_barricade/guardrail{
+	dir = 8;
+	density = 0
+	},
+/turf/open/floor/iron/shuttle/exploration/side{
+	dir = 8
+	},
+/area/ruin/thelizardsgas_lavaland)
+"wf" = (
 /obj/machinery/door/airlock/external/ruin{
 	id_tag = "lizardgasbolt"
 	},
@@ -800,63 +1520,121 @@
 	id = "lizardshutters"
 	},
 /obj/effect/mapping_helpers/airlock/locked,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/iron/smooth_large,
 /area/ruin/thelizardsgas_lavaland)
-"vz" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced/spawner/directional/south,
-/obj/item/stack/spacecash/c10{
-	pixel_y = 9;
-	pixel_x = -2
-	},
-/obj/item/stack/spacecash/c20{
-	pixel_y = 6
-	},
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
-"vD" = (
-/obj/effect/decal/cleanable/dirt/dust,
+"ws" = (
 /obj/structure/cable,
-/obj/item/trash/popcorn/caramel{
-	pixel_x = -7;
-	pixel_y = 11
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/duct,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
 	},
-/area/ruin/thelizardsgas_lavaland)
-"vM" = (
-/obj/machinery/power/apc/auto_name/directional/north{
-	start_charge = 40
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 4
 	},
-/obj/structure/table,
-/obj/effect/mapping_helpers/apc/cell_10k,
-/obj/effect/mapping_helpers/apc/unlocked,
-/obj/structure/cable,
-/obj/item/flashlight{
-	pixel_x = 4;
-	pixel_y = 6
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 1
 	},
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8;
+	color = "#595959"
 	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 4;
+	color = "#595959"
+	},
+/turf/open/floor/iron/large,
 /area/ruin/thelizardsgas_lavaland)
 "wE" = (
-/turf/closed/wall{
-	baseturfs = /turf/open/floor/plating/lavaland_baseturf
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
 	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/tram/plate,
 /area/ruin/thelizardsgas_lavaland)
 "wO" = (
-/obj/effect/spawner/random/trash/food_packaging,
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced/spawner/directional/east{
+	pixel_x = 3
+	},
+/obj/structure/decorative{
+	icon_state = "siding_plain";
+	pixel_y = 0;
+	icon = 'icons/turf/decals.dmi';
+	base_icon_state = "elevatorshaft";
+	color = "#36373a";
+	dir = 2;
+	anchored = 1
+	},
+/obj/item/reagent_containers/condiment/mayonnaise{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/condiment/donksauce{
+	pixel_x = 1;
+	pixel_y = 15
+	},
+/obj/item/reagent_containers/condiment/bbqsauce{
+	pixel_y = 17;
+	pixel_x = 9
+	},
+/obj/item/reagent_containers/condiment/hotsauce{
+	pixel_y = 15;
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/condiment/coldsauce{
+	pixel_x = -9;
+	pixel_y = 5
+	},
+/obj/item/food/bun,
+/obj/item/food/bun,
+/obj/item/food/bun,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "lizardshutters_counter";
+	dir = 1
+	},
+/turf/open/floor/iron/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"wQ" = (
+/obj/structure/frame/machine/secured,
+/obj/structure/window/reinforced/tinted/spawner/directional/east{
+	opacity = 1
+	},
+/obj/structure/window/reinforced/tinted/spawner/directional/west{
+	opacity = 1
+	},
+/turf/open/floor/iron/dark/textured,
+/area/ruin/thelizardsgas_lavaland)
+"wZ" = (
+/turf/open/floor/iron/shuttle/exploration/side,
+/area/ruin/thelizardsgas_lavaland)
+"xo" = (
 /obj/structure/cable,
-/obj/machinery/duct,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/white/line,
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner,
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959"
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8;
+	color = "#595959"
+	},
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959";
+	dir = 4
+	},
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -874,74 +1652,167 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/components/unary/passive_vent/layer4{
-	dir = 1
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1;
+	filter_types = list(/datum/gas/oxygen)
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
 "xM" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"xO" = (
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/table/wood/shuttle_bar,
+/obj/structure/curtain/bounty,
+/obj/item/paper_bin{
+	pixel_x = 0;
+	pixel_y = 12
+	},
+/obj/item/hand_labeler{
+	pixel_x = 0;
+	pixel_y = -2
+	},
+/turf/open/floor/iron/dark/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"xT" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959";
+	dir = 4
+	},
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
 "xV" = (
-/obj/structure/sign/poster/fluff/lizards_gas_payment/directional/west,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner,
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1;
+	color = "#595959"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959"
+	},
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
 "xW" = (
-/obj/effect/mob_spawn/corpse/human/miner/explorer,
-/turf/open/floor/wood/lavaland,
-/area/icemoon/underground/unexplored)
+/obj/structure/frame/machine/secured,
+/turf/open/floor/iron/dark/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"xZ" = (
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 8
+	},
+/obj/machinery/conveyor_switch{
+	pixel_x = -17;
+	pixel_y = -4;
+	name = "lift switch"
+	},
+/turf/open/floor/iron/shuttle/exploration/side,
+/area/ruin/thelizardsgas_lavaland)
 "yb" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner,
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959";
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/iron/corner{
+	dir = 8
 	},
 /area/ruin/thelizardsgas_lavaland)
 "yl" = (
-/turf/closed/wall/mineral/wood,
-/area/icemoon/underground/unexplored)
-"yy" = (
-/obj/structure/sign/poster/contraband/tipper_cream_soda/directional/south,
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/condiment/bbqsauce{
-	pixel_y = 17;
-	pixel_x = 9
+/turf/open/floor/iron/shuttle/exploration/corner{
+	dir = 8
 	},
-/obj/item/reagent_containers/condiment/hotsauce{
-	pixel_y = 15;
-	pixel_x = -8
+/area/ruin/thelizardsgas_lavaland)
+"yx" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
-/obj/item/reagent_containers/condiment/coldsauce{
-	pixel_x = -9;
-	pixel_y = 5
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8
 	},
-/obj/item/reagent_containers/condiment/donksauce{
-	pixel_x = 1;
-	pixel_y = 15
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 1
 	},
-/obj/item/reagent_containers/condiment/mayonnaise{
-	pixel_x = 6;
-	pixel_y = 6
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959";
+	dir = 1
 	},
-/obj/item/food/bun,
-/obj/item/food/bun,
-/obj/item/food/bun,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/duct,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
+/area/ruin/thelizardsgas_lavaland)
+"yy" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1;
+	color = "#595959"
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#595959"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"yO" = (
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/item/reagent_containers/condiment/yoghurt{
+	pixel_x = -3;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/condiment/yoghurt{
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/obj/structure/closet/crate/freezer,
+/obj/item/reagent_containers/condiment/milk,
+/obj/item/reagent_containers/condiment/soymilk,
+/obj/item/reagent_containers/condiment/soymilk,
+/obj/effect/turf_decal/weather/snow,
+/obj/structure/marker_beacon/cerulean,
+/turf/open/floor/circuit/red/off,
 /area/ruin/thelizardsgas_lavaland)
 "yY" = (
 /obj/structure/railing{
@@ -952,15 +1823,37 @@
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/ruin/thelizardsgas_lavaland)
 "zo" = (
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 4;
+	color = "#595959"
+	},
+/obj/machinery/light/directional/east,
+/obj/machinery/space_heater/wall_mounted/directional/east{
+	cell = /obj/item/stock_parts/power_store/cell/high
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/iron/edge{
+	dir = 4
 	},
 /area/ruin/thelizardsgas_lavaland)
 "zz" = (
-/obj/machinery/light/directional/west,
-/turf/open/misc/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/wood/large,
+/area/ruin/thelizardsgas_lavaland)
+"zH" = (
+/obj/structure/chair/sofa/left/maroon{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/thelizardsgas_lavaland)
 "zP" = (
 /obj/structure/railing,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/pink/hidden,
@@ -977,11 +1870,57 @@
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
+"Am" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery/fax{
+	fax_name = "LizardGasStation";
+	name = "Manager's Fax Machine"
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
+/obj/machinery/button/door/directional/east{
+	id = "lizardshutters_corpo";
+	pixel_y = 13;
+	name = "Privacy Shutters";
+	icon_state = "tram";
+	base_icon_state = "tram";
+	pixel_x = 26;
+	req_access = list(9512)
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/line{
+	dir = 6
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner,
+/turf/open/floor/iron/dark/smooth_corner{
+	dir = 1
+	},
+/area/ruin/thelizardsgas_lavaland)
 "Ao" = (
-/obj/structure/cable,
-/obj/machinery/light/directional/north,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959";
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#595959"
+	},
+/turf/open/floor/iron/corner{
+	dir = 4
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Ax" = (
@@ -990,120 +1929,52 @@
 /obj/structure/sign/warning/chem_diamond/directional/north,
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/ruin/thelizardsgas_lavaland)
-"Bf" = (
-/obj/structure/cable,
-/obj/structure/bed/dogbed{
-	name = "Zarpo's bed";
-	desc = "A comfy-looking lizard bed. Looks a lot like a dog bed."
+"AD" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Break Room"
 	},
-/mob/living/basic/lizard{
-	name = "Zarpo";
-	desc = "This little guy is a survivor, that's for sure. It's also the manager of the gas station!"
-	},
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
+/obj/effect/mapping_helpers/airlock/access/all/lizard_gas,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/textured_large,
 /area/ruin/thelizardsgas_lavaland)
-"Bs" = (
-/obj/machinery/light/small/dim/directional/north,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
-"BN" = (
-/obj/machinery/dryer{
-	pixel_x = 26
-	},
-/obj/item/storage/backpack/satchel/flat,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
-"Cd" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/item/food/burger/rootguffin{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/obj/item/food/burger/rootguffin{
-	pixel_x = 4;
-	pixel_y = 10
-	},
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
-"Cf" = (
-/turf/closed/wall/r_wall,
-/area/ruin/thelizardsgas_lavaland)
-"CY" = (
-/obj/structure/rack,
-/obj/item/food/candy,
-/obj/item/food/candy,
-/obj/item/food/candy,
-/obj/item/food/chocolatebar,
-/obj/item/food/chocolatebar{
-	pixel_y = 3
-	},
-/obj/item/food/chocolatebar{
-	pixel_y = 6
-	},
-/obj/structure/sign/poster/contraband/space_cola/directional/north,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
-"Dw" = (
-/obj/machinery/duct,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 4
-	},
-/turf/open/floor/asphalt/lavaland/outdoors,
-/area/ruin/thelizardsgas_lavaland)
-"DE" = (
-/obj/machinery/door/airlock/external/ruin{
-	id_tag = "lizardgasbolt"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
-	cycle_id = "lizard-gas-back"
-	},
-/obj/machinery/door/poddoor{
-	id = "lizardshutters"
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
-"DL" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
-"DN" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/pink/hidden,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
+"AZ" = (
+/obj/effect/turf_decal/siding/dark{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/lavaland_atmos{
+/turf/open/floor/iron/shuttle/exploration/side{
+	dir = 4
+	},
+/area/ruin/thelizardsgas_lavaland)
+"Bf" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 2;
+	color = "#595959";
+	icon_state = "siding_thinplating_end"
+	},
+/obj/structure/table/wood,
+/obj/machinery/camera/autoname/directional/south{
+	network = list("lizardgas");
+	c_tag = "Lizard Gas - Break Room"
+	},
+/obj/item/food/burger/rootguffin{
+	pixel_x = -7;
+	pixel_y = 2
+	},
+/obj/item/food/burger/rootguffin{
+	pixel_x = 5;
+	pixel_y = 8
+	},
+/obj/item/food/burger/rootguffin{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
-"EY" = (
+"Bm" = (
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/item/food/popsicle/creamsicle_berry{
 	pixel_y = 4;
@@ -1135,99 +2006,151 @@
 	pixel_y = -5;
 	pixel_x = 2
 	},
-/turf/open/floor/iron/freezer{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
+/obj/effect/turf_decal/weather/snow,
+/obj/structure/cable,
+/turf/open/floor/circuit/red/off,
 /area/ruin/thelizardsgas_lavaland)
-"Fs" = (
-/turf/open/floor/asphalt/lavaland/outdoors,
+"Bn" = (
+/mob/living/basic/regal_rat/controlled{
+	name = "Gas Station Tweaker Rat";
+	health = 110;
+	unsuitable_cold_damage = 0;
+	unique_name = 0;
+	ghost_controllable = 1;
+	damage_coeff = list("brute" = 1, "burn" = 0, "toxin" = 1, "stamina" = 0, "oxygen" = 0);
+	unsuitable_atmos_damage = 0;
+	habitable_atmos = list("min_oxy" = 0, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0);
+	dir = 4;
+	unsuitable_heat_damage = 0;
+	maximum_survivable_temperature = 800
+	},
+/turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"Fy" = (
-/obj/structure/table/wood/shuttle_bar,
-/obj/machinery/fax{
-	fax_name = "LizardGasStation";
-	name = "Manager's Fax Machine"
+"Bq" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 5;
+	color = "#595959"
 	},
-/turf/open/floor/wood/parquet,
-/area/ruin/thelizardsgas_lavaland)
-"FZ" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
+/obj/structure/reagent_dispensers/water_cooler{
+	density = 0;
+	pixel_x = 8;
+	pixel_y = 17
+	},
+/obj/item/kirbyplants/organic/plant23{
+	pixel_x = -7;
+	pixel_y = 19
+	},
+/obj/machinery/digital_clock/directional/east,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
-"Gw" = (
-/obj/effect/spawner/structure/window/reinforced/plasma,
-/turf/open/floor/plating/lavaland_baseturf,
-/area/ruin/thelizardsgas_lavaland)
-"GV" = (
-/obj/structure/cable,
-/obj/structure/railing,
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating/lavaland_atmos{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
-"Hj" = (
-/obj/item/flatpacked_machine/ore_silo{
-	pixel_x = 7;
-	pixel_y = 8
-	},
-/obj/item/flatpacked_machine/sustenance_machine{
-	pixel_x = 7;
-	pixel_y = -2
-	},
-/obj/item/flatpacked_machine/organics_printer{
-	pixel_x = -9;
-	pixel_y = 6
-	},
-/turf/open/floor/wood/lavaland,
-/area/icemoon/underground/unexplored)
-"Hq" = (
-/obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/obj/machinery/light/small/directional/west,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
-"Is" = (
-/obj/structure/cable,
-/obj/structure/sign/poster/official/fruit_bowl/directional/east,
-/obj/structure/sink/directional/west,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
-"ID" = (
-/obj/structure/chair/greyscale{
+"Bs" = (
+/obj/structure/fence/door/opened,
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"BE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/toilet{
 	dir = 8
 	},
-/obj/machinery/light/directional/east,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/wood/parquet,
-/area/ruin/thelizardsgas_lavaland)
-"IF" = (
-/obj/structure/cable,
-/obj/structure/railing,
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
+/obj/effect/turf_decal/siding/thinplating/light{
+	dir = 6
 	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/lavaland_atmos{
+/turf/open/floor/iron/white/small,
+/area/ruin/thelizardsgas_lavaland)
+"BI" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/machinery/coffeemaker/impressa{
+	pixel_x = 4
+	},
+/obj/structure/sign/chalkboard_menu{
+	pixel_y = 32
+	},
+/turf/open/floor/iron/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"BN" = (
+/obj/effect/spawner/random/trash/garbage,
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"BU" = (
+/obj/machinery/light/directional/south,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/duct,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#595959"
+	},
+/turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
-"IG" = (
+"BV" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 10;
+	color = "#595959"
+	},
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"BY" = (
+/obj/structure/chair/greyscale{
+	dir = 2
+	},
+/obj/machinery/light/directional/east,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/wood/large,
+/area/ruin/thelizardsgas_lavaland)
+"Cd" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1;
+	color = "#595959"
+	},
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"Cf" = (
+/turf/closed/wall/r_wall,
+/area/ruin/thelizardsgas_lavaland)
+"CC" = (
+/obj/machinery/door/airlock/bathroom{
+	id_tag = "gasbathroom";
+	name = "Bathroom"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"CU" = (
+/obj/effect/turf_decal/siding/dark/corner,
+/obj/machinery/button/door/directional/east{
+	pixel_y = 33;
+	name = "Entrance Gate Toggle";
+	id = "lizardshutters_garage";
+	pixel_x = -6;
+	base_icon_state = "tram";
+	icon_state = "tram";
+	light_color = "#6496FA";
+	req_access = list(9512)
+	},
+/obj/machinery/button/door/directional/east{
+	pixel_y = 28;
+	name = "Reinforced Gate Toggle";
+	id = "lizardshutters_garage_reinforcement";
+	pixel_x = 6;
+	req_access = list(9512)
+	},
+/turf/open/floor/iron/shuttle/exploration/corner,
+/area/ruin/thelizardsgas_lavaland)
+"CY" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/closet,
@@ -1235,7 +2158,6 @@
 /obj/item/pickaxe,
 /obj/item/storage/box/coffeepack/robusta,
 /obj/item/storage/box/coffeepack/robusta,
-/obj/item/flatpacked_machine/macrowave,
 /obj/item/gun/energy/recharge/kinetic_accelerator/glock,
 /obj/structure/sign/poster/fluff/lizards_gas_power/directional/north,
 /obj/item/gun/energy/recharge/kinetic_accelerator/glock,
@@ -1261,69 +2183,602 @@
 	},
 /obj/item/clothing/gloves/color/yellow,
 /obj/item/clothing/gloves/color/yellow,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/item/clothing/suit/apron/chef/colorable_apron{
+	greyscale_colors = "#8e1dd6";
+	name = "Lizard Gas Apron";
+	desc = "A purple apron imprinted with the signature little green lizard of Lizard Gas! This cute outfit is surely reflected by its underpaid drop-out wearer."
 	},
-/area/ruin/thelizardsgas_lavaland)
-"Jp" = (
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/item/clothing/suit/apron/chef/colorable_apron{
+	greyscale_colors = "#8e1dd6";
+	name = "Lizard Gas Apron";
+	desc = "A purple apron imprinted with the signature little green lizard of Lizard Gas! This cute outfit is surely reflected by its underpaid drop-out wearer."
 	},
+/obj/item/storage/box/nif_ghost_box/ghost_role,
+/obj/item/storage/box/nif_ghost_box/ghost_role,
+/obj/item/gps,
+/obj/item/gps,
+/turf/open/floor/iron/dark/smooth_large,
 /area/ruin/thelizardsgas_lavaland)
-"Jv" = (
-/obj/structure/cable,
-/obj/structure/sign/poster/contraband/jumbo_bar/directional/east,
+"Dw" = (
+/obj/machinery/duct,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 4
+	},
+/turf/open/floor/asphalt/lavaland/outdoors,
+/area/ruin/thelizardsgas_lavaland)
+"Dz" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#595959"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
+/area/ruin/thelizardsgas_lavaland)
+"DE" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner{
+	dir = 8
+	},
+/obj/machinery/space_heater/wall_mounted/directional/west{
+	cell = /obj/item/stock_parts/power_store/cell/high
+	},
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 8
+	},
+/area/ruin/thelizardsgas_lavaland)
+"DL" = (
+/obj/machinery/camera/autoname/directional/west{
+	network = list("lizardgas");
+	c_tag = "Lizard Gas - Breakroom"
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8;
+	color = "#595959"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/edge{
+	dir = 8
+	},
+/area/ruin/thelizardsgas_lavaland)
+"DN" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/pink/hidden,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer4{
+	dir = 1
+	},
+/turf/open/floor/plating/lavaland_atmos{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"DR" = (
+/obj/structure/rack/shelf{
+	pixel_y = 2
+	},
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/item/food/rootbread_peanut_butter_jelly{
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/obj/item/food/rootbread_peanut_butter_banana{
+	pixel_y = 10;
+	pixel_x = -3
+	},
+/obj/effect/turf_decal/siding/thinplating_new,
+/turf/open/floor/iron/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"Ey" = (
+/obj/structure/table/wood/fancy/green,
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/item/paper_bin/carbon{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/pen/fountain/green{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/folder{
+	pixel_x = 9;
+	pixel_y = 0
+	},
+/obj/item/folder{
+	pixel_x = 9;
+	pixel_y = 2
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"EY" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/machinery/duct,
+/turf/open/floor/noslip,
+/area/ruin/thelizardsgas_lavaland)
+"Fs" = (
+/turf/open/floor/asphalt/lavaland/outdoors,
+/area/lavaland/surface/outdoors)
+"Fy" = (
+/obj/structure/fake_stairs/directional/east{
+	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
+	icon_state = "stairs-old";
+	color = "#999999";
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/ruin/thelizardsgas_lavaland)
+"FA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack/shelf{
+	pixel_y = 2
+	},
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/item/food/canned/tomatoes{
+	pixel_x = 0;
+	pixel_y = 7
+	},
+/obj/item/food/canned/tomatoes{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/item/food/canned/tomatoes{
+	pixel_x = 4;
+	pixel_y = -2
+	},
+/obj/effect/turf_decal/siding/thinplating_new,
+/turf/open/floor/iron/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"FW" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/iron/shuttle/exploration/side{
+	dir = 1
+	},
+/area/ruin/thelizardsgas_lavaland)
+"FZ" = (
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/item/food/cheese/mozzarella{
+	pixel_y = 5;
+	pixel_x = -5
+	},
+/obj/item/food/cheese/mozzarella{
+	pixel_y = -4;
+	pixel_x = 1
+	},
+/obj/item/food/cheese/wheel,
+/obj/item/food/cheese/cheese_curds,
+/obj/item/food/cheese/curd_cheese,
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/weather/snow,
+/obj/structure/marker_beacon/cerulean,
+/obj/structure/sign/poster/contraband/space_cola/directional/east,
+/turf/open/floor/circuit/red/off,
+/area/ruin/thelizardsgas_lavaland)
+"Go" = (
+/obj/effect/spawner/random/structure/crate_abandoned,
+/turf/open/misc/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"Gs" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 10;
+	color = "#595959"
+	},
+/obj/structure/sign/painting/library{
+	pixel_x = -32
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"Gw" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/trimline/dark_green/filled/line,
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner,
+/obj/machinery/computer/security/telescreen/lizgas/directional/south,
+/turf/open/floor/iron/dark/smooth_edge,
+/area/ruin/thelizardsgas_lavaland)
+"GU" = (
+/obj/structure/railing{
+	dir = 1;
+	color = "#878787"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"GV" = (
+/obj/structure/cable,
+/obj/structure/railing,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating/lavaland_atmos{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"Hj" = (
+/obj/effect/spawner/structure/window/reinforced/plasma,
+/obj/structure/cable,
+/obj/machinery/duct,
+/obj/machinery/door/poddoor/shutters{
+	id = "lizardshutters"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/thelizardsgas_lavaland)
+"Hq" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"HR" = (
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#595959"
+	},
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"Id" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced/spawner/directional/south{
+	pixel_y = -3
+	},
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/item/food/donut/choco{
+	pixel_x = -4;
+	pixel_y = 7
+	},
+/obj/item/food/donut/berry{
+	pixel_x = 5
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1
+	},
+/turf/open/floor/iron/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"Ie" = (
+/obj/structure/railing{
+	dir = 1;
+	color = "#878787"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/button/door/directional/south{
+	req_access = list(9512);
+	name = "Front Counter Shutters";
+	id = "lizardshutters_counter"
+	},
+/turf/open/floor/iron/large,
+/area/ruin/thelizardsgas_lavaland)
+"Il" = (
+/turf/open/floor/carpet,
+/area/ruin/thelizardsgas_lavaland)
+"Is" = (
+/obj/machinery/door/window/left/directional/north{
+	req_access = list(9512)
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/line{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner{
+	dir = 8
+	},
+/obj/machinery/button/door/directional/west{
+	specialfunctions = 4;
+	normaldoorcontrol = 1;
+	id = "corpooffice";
+	name = "Door Bolt Control";
+	req_access = list(9512)
+	},
+/turf/open/floor/iron/dark/smooth_corner,
+/area/ruin/thelizardsgas_lavaland)
+"It" = (
+/obj/structure/rack/shelf,
+/obj/item/food/candy,
+/obj/item/food/candy,
+/obj/item/food/candy,
+/obj/item/food/chocolatebar,
+/obj/item/food/chocolatebar{
+	pixel_y = 3
+	},
+/obj/item/food/chocolatebar{
+	pixel_y = 6
+	},
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1
+	},
+/turf/open/floor/iron/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"ID" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/thelizardsgas_lavaland)
+"IF" = (
+/obj/structure/cable,
+/obj/structure/railing,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/lavaland_atmos{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"IG" = (
+/obj/effect/spawner/structure/window/reinforced/plasma,
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters{
+	id = "lizardshutters_breakroom";
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/thelizardsgas_lavaland)
+"IV" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1;
+	color = "#595959"
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#595959"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"Jo" = (
+/obj/effect/turf_decal/siding/wideplating_new/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/chair/sofa/corp/left{
+	color = "#4cc78e"
+	},
+/turf/open/floor/wood,
+/area/ruin/thelizardsgas_lavaland)
+"Jp" = (
+/obj/structure/table,
+/obj/item/flatpacked_machine/ore_silo{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/machinery/camera/autoname/directional/east{
+	network = list("lizardgas");
+	c_tag = "Lizard Gas - Garage"
+	},
+/obj/item/flatpacked_machine{
+	pixel_x = -17;
+	pixel_y = 4
+	},
+/turf/open/floor/iron/shuttle/exploration/corner{
+	dir = 1
+	},
+/area/ruin/thelizardsgas_lavaland)
+"Jr" = (
+/obj/structure/table,
+/obj/item/wirecutters{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/item/clothing/head/utility/hardhat/orange{
+	pixel_x = 3;
+	pixel_y = 7
+	},
+/obj/item/radio/weather_monitor{
+	pixel_x = -14;
+	pixel_y = 10
+	},
+/turf/open/floor/iron/shuttle/exploration/side{
+	dir = 1
+	},
+/area/ruin/thelizardsgas_lavaland)
+"Jt" = (
+/obj/structure/rack/shelf{
+	pixel_x = 0;
+	pixel_y = 2
+	},
+/obj/item/food/sandwich/cheese{
+	pixel_x = 0;
+	pixel_y = -1
+	},
+/obj/effect/turf_decal/siding/thinplating_new,
+/obj/item/food/sandwich/cheese{
+	pixel_x = -2;
+	pixel_y = 6
+	},
+/turf/open/floor/iron/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"Jv" = (
+/obj/structure/cable,
+/obj/machinery/digital_clock/directional/south,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959";
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#595959"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/large,
+/area/ruin/thelizardsgas_lavaland)
+"Jz" = (
+/obj/machinery/computer/atmos_control/noreconnect{
+	atmos_chambers = list("lizardgaslava"="Plasma Supply");
+	dir = 2;
+	name = "gas tank monitor";
+	desc = "This computer connects to and controls the sensors and equipment in a nearby pressurised gas reservoir."
+	},
+/turf/open/floor/iron/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"JF" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/pink/hidden,
+/obj/effect/turf_decal/stripes/end{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/plating/lavaland_atmos{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"JQ" = (
+/obj/machinery/door/airlock/external/ruin{
+	id_tag = "lizardgasbolt"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "lizardgas_lavaland_entrance"
+	},
+/obj/structure/fans/tiny,
+/obj/machinery/door/poddoor{
+	id = "lizardshutters"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/iron/smooth_large,
 /area/ruin/thelizardsgas_lavaland)
 "Kd" = (
 /obj/structure/fence,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"Ku" = (
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1;
+	color = "#595959"
+	},
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
 "Kw" = (
-/obj/structure/closet/crate/wooden,
-/obj/item/stack/sheet/mineral/gold{
-	amount = 10
+/obj/structure/rack/shelf{
+	pixel_y = 2
 	},
-/obj/item/stack/sheet/mineral/uranium/five{
-	amount = 10
-	},
-/obj/item/stack/sheet/mineral/titanium{
-	amount = 10;
-	pixel_x = -6;
-	pixel_y = -2
-	},
-/obj/item/stack/sheet/plastic{
-	amount = 20;
-	pixel_x = -6;
-	pixel_y = 1
-	},
-/obj/item/stack/sheet/mineral/silver{
-	amount = 15
-	},
-/obj/item/stack/sheet/glass{
-	amount = 20
-	},
-/obj/item/stack/sheet/iron/fifty{
-	pixel_x = 6;
-	pixel_y = -1
-	},
-/turf/open/floor/wood/lavaland,
-/area/icemoon/underground/unexplored)
+/obj/item/food/canned/chap,
+/obj/effect/turf_decal/siding/thinplating_new,
+/turf/open/floor/iron/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
 "Kz" = (
-/obj/machinery/rnd/production/circuit_imprinter/offstation{
-	name = "Gas Station Imprinter"
+/obj/machinery/atmospherics/components/binary/valve/layer2,
+/obj/structure/railing{
+	dir = 5;
+	color = "#878787"
 	},
-/turf/open/floor/wood/parquet,
+/obj/effect/turf_decal/tile/dark/half{
+	dir = 1;
+	alpha = 200
+	},
+/obj/structure/sink/kitchen/directional/west,
+/obj/structure/extinguisher_cabinet/directional/west,
+/turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "KC" = (
 /turf/closed/wall,
 /area/ruin/thelizardsgas_lavaland)
-"KI" = (
-/obj/structure/fans/tiny,
-/turf/open/floor/iron/smooth{
+"KE" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"KI" = (
+/obj/structure/filingcabinet,
+/obj/item/gps/spaceruin{
+	gpstag = "Lizard Gas"
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 10
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/line{
+	dir = 10
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner{
+	dir = 8
+	},
+/obj/machinery/button/door/directional/east{
+	id = "lizardshutters";
+	pixel_y = 7;
+	name = "Exterior Shutters";
+	req_access = list(9512);
+	pixel_x = -24
+	},
+/obj/machinery/button/door/directional/east{
+	pixel_y = -3;
+	name = "Entrance Doorbolts";
+	id = "lizardgasbolt";
+	normaldoorcontrol = 1;
+	specialfunctions = 4;
+	req_access = list(9512);
+	pixel_x = -24
+	},
+/turf/open/floor/iron/dark/smooth_corner{
+	dir = 4
 	},
 /area/ruin/thelizardsgas_lavaland)
 "KS" = (
@@ -1333,9 +2788,56 @@
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
+"KV" = (
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark/corner,
+/turf/open/floor/iron/shuttle/exploration/side{
+	dir = 4
+	},
+/area/ruin/thelizardsgas_lavaland)
+"Lb" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8;
+	color = "#595959"
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 4;
+	color = "#595959"
+	},
+/obj/structure/table/wood,
+/obj/item/radio/entertainment/speakers/physical{
+	pixel_x = 0;
+	pixel_y = 10
+	},
+/obj/machinery/computer/security/telescreen/entertainment/directional/east,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
 "Li" = (
-/turf/open/floor/wood/lavaland,
-/area/icemoon/underground/unexplored)
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light_switch/directional/south,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/duct,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#595959"
+	},
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
 "Lw" = (
 /obj/structure/sign/warning/fire/directional/north,
 /obj/machinery/atmospherics/components/unary/outlet_injector/monitored/plasma_input{
@@ -1345,94 +2847,297 @@
 	initial_gas_mix = "plasma=30000;TEMP=293.15"
 	},
 /area/ruin/thelizardsgas_lavaland)
-"LL" = (
-/obj/machinery/door/airlock/bathroom{
-	id_tag = "gasbathroom";
-	name = "Bathroom"
+"LD" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 9;
+	color = "#595959"
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
-"LX" = (
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box{
-	pixel_y = 9
+"LL" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
 	},
-/obj/item/storage/fancy/pickles_jar,
-/obj/structure/closet/crate/freezer,
-/turf/open/floor/iron/freezer{
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/tram/plate,
+/area/ruin/thelizardsgas_lavaland)
+"LU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/shuttle/exploration/side,
+/area/ruin/thelizardsgas_lavaland)
+"LX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8;
+	color = "#595959"
+	},
+/turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Me" = (
-/obj/item/paper{
-	default_raw_text = "Please do not steal materials/machinery from this shed, as they are direly useful to the Employees of The Lizard Gas-- whom are currently Cryosleeping and may wake up soon!<BR><BR>-General Manager, Ra'Tahul Rekinov";
-	name = "IMPORTANT NOTE!"
+/obj/machinery/power/apc/auto_name/directional/west,
+/obj/effect/mapping_helpers/apc/cell_10k,
+/obj/effect/mapping_helpers/apc/unlocked,
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8;
+	color = "#595959"
+	},
+/turf/open/floor/iron/corner{
+	dir = 4
+	},
+/area/ruin/thelizardsgas_lavaland)
+"Ml" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"Mp" = (
+/obj/effect/spawner/random/trash/hobo_squat,
+/obj/effect/mob_spawn/corpse/human/miner/explorer,
+/obj/item/reagent_containers/syringe{
+	pixel_x = 0;
+	pixel_y = 13
 	},
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"Mp" = (
-/obj/machinery/door/airlock/external/ruin{
-	id_tag = "lizardgasbolt"
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/general/hidden,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
-	cycle_id = "lizardgas_lavaland_entrance"
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/obj/machinery/door/poddoor{
-	id = "lizardshutters"
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
 "Mw" = (
-/obj/structure/table/reinforced,
-/obj/structure/closet/mini_fridge{
-	pixel_y = 5
-	},
-/obj/effect/spawner/random/food_or_drink/refreshing_beverage,
-/obj/effect/spawner/random/food_or_drink/refreshing_beverage,
-/obj/effect/spawner/random/food_or_drink/refreshing_beverage,
-/obj/effect/spawner/random/food_or_drink/booze,
-/obj/effect/spawner/random/food_or_drink/booze,
-/obj/effect/spawner/random/food_or_drink/booze,
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/structure/window/reinforced/spawner/directional/west,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
+"MU" = (
+/obj/structure/table/reinforced,
+/obj/machinery/griddle{
+	pixel_x = 2
+	},
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/item/food/raw_sausage{
+	pixel_y = 9;
+	pixel_x = -3
+	},
+/obj/item/food/raw_sausage{
+	pixel_y = 4;
+	pixel_x = 2
+	},
+/obj/item/food/raw_sausage{
+	pixel_x = 6;
+	pixel_y = 0
+	},
+/obj/structure/decorative{
+	icon_state = "siding_plain";
+	pixel_y = 0;
+	icon = 'icons/turf/decals.dmi';
+	base_icon_state = "elevatorshaft";
+	color = "#36373a";
+	dir = 2;
+	anchored = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "lizardshutters_counter";
+	dir = 1
+	},
+/turf/open/floor/iron/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"MZ" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/machinery/deepfryer{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "lizardshutters_counter";
+	dir = 1
+	},
+/turf/open/floor/iron/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"Na" = (
+/obj/item/storage/backpack/satchel/flat,
+/obj/effect/turf_decal/siding/thinplating/light{
+	dir = 5
+	},
+/obj/structure/sink/directional/west,
+/obj/structure/mirror/directional/east,
+/obj/machinery/dryer{
+	pixel_x = -8;
+	pixel_y = 17
+	},
+/turf/open/floor/iron/white/small,
+/area/ruin/thelizardsgas_lavaland)
+"NI" = (
+/obj/machinery/atmospherics/components/tank/air/layer2{
+	name = "Purified Lavaland Air"
+	},
+/turf/open/floor/plating,
+/area/ruin/thelizardsgas_lavaland)
 "Ob" = (
 /obj/machinery/door/window/brigdoor/left/directional/west,
 /turf/open/floor/asphalt/lavaland/outdoors,
+/area/ruin/thelizardsgas_lavaland)
+"Oj" = (
+/obj/structure/rack/shelf{
+	pixel_x = 13;
+	density = 0
+	},
+/obj/structure/tank_holder/extinguisher{
+	pixel_x = -8;
+	pixel_y = 2
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_robust{
+	pixel_x = 8;
+	pixel_y = 7
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_robustgold{
+	pixel_x = 18;
+	pixel_y = 7
+	},
+/obj/item/lighter/greyscale{
+	pixel_x = 7;
+	pixel_y = -7
+	},
+/obj/item/lighter/greyscale{
+	pixel_x = 13;
+	pixel_y = -7
+	},
+/turf/open/floor/iron/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"Ol" = (
+/obj/structure/rack/shelf{
+	pixel_y = 2
+	},
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/item/food/sandwich/blt{
+	pixel_x = 2;
+	pixel_y = -4
+	},
+/obj/item/food/sandwich/blt{
+	pixel_x = -1;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/siding/thinplating_new,
+/turf/open/floor/iron/smooth_large,
 /area/ruin/thelizardsgas_lavaland)
 "Ov" = (
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
-"Pf" = (
-/obj/structure/rack,
-/obj/item/reagent_containers/condiment/vegetable_oil{
-	pixel_y = 5;
-	pixel_x = -1
+"OD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/noticeboard/directional/north,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
 	},
-/obj/item/reagent_containers/condiment/vegetable_oil{
-	pixel_y = 1;
-	pixel_x = 3
+/turf/open/floor/noslip,
+/area/ruin/thelizardsgas_lavaland)
+"OF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/directional/south,
+/obj/structure/rack/shelf,
+/obj/item/food/chips{
+	pixel_y = 7;
+	pixel_x = -4
 	},
-/obj/item/reagent_containers/condiment/olive_oil,
+/obj/item/food/chips{
+	pixel_x = 7
+	},
+/obj/item/food/chips/shrimp{
+	pixel_y = 10;
+	pixel_x = 7
+	},
+/obj/item/food/chips/shrimp{
+	pixel_y = -4;
+	pixel_x = -5
+	},
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1
+	},
+/turf/open/floor/iron/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"OK" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959";
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959";
+	dir = 1
+	},
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
+/area/ruin/thelizardsgas_lavaland)
+"OP" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1;
+	color = "#595959"
+	},
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"OT" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/effect/turf_decal/siding/thinplating/light{
+	dir = 10
+	},
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron/white/small,
+/area/ruin/thelizardsgas_lavaland)
+"Pf" = (
+/obj/machinery/door/airlock/external/ruin{
+	id_tag = "lizardgasbolt"
+	},
+/obj/machinery/door/poddoor{
+	id = "lizardshutters"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "lizard-gas-back"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/structure/fans/tiny,
+/turf/open/floor/iron/smooth_large,
 /area/ruin/thelizardsgas_lavaland)
 "PH" = (
 /obj/structure/sign/warning/fire/directional/south,
@@ -1449,98 +3154,89 @@
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/ruin/thelizardsgas_lavaland)
 "PJ" = (
+/obj/structure/rack/shelf{
+	pixel_y = 2
+	},
+/obj/item/food/sticko/nutty{
+	pixel_y = -1;
+	pixel_x = -4
+	},
+/obj/item/food/sticko{
+	pixel_y = -1;
+	pixel_x = 7
+	},
+/obj/effect/turf_decal/siding/thinplating_new,
 /obj/structure/window/reinforced/spawner/directional/west,
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/item/reagent_containers/condiment/yoghurt{
-	pixel_x = -3;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/condiment/yoghurt{
-	pixel_x = 6;
-	pixel_y = -1
-	},
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/condiment/milk,
-/obj/item/reagent_containers/condiment/soymilk,
-/obj/item/reagent_containers/condiment/soymilk,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/turf/open/floor/iron/freezer{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
+/turf/open/floor/iron/smooth_large,
 /area/ruin/thelizardsgas_lavaland)
 "PW" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/spawner/random/trash/food_packaging,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/blue,
+/turf/open/floor/iron/dark/textured_large,
 /area/ruin/thelizardsgas_lavaland)
 "PY" = (
-/obj/item/paperwork{
-	pixel_x = -2;
-	pixel_y = 3
+/obj/machinery/camera/autoname/directional/north{
+	network = list("lizardgas");
+	c_tag = "Lizard Gas - Plasmatank"
 	},
-/obj/structure/table/wood/shuttle_bar,
-/obj/item/paper_bin/carbon{
-	pixel_x = -6;
-	pixel_y = 15
+/turf/open/floor/engine/plasma{
+	initial_gas_mix = "plasma=30000;TEMP=293.15"
 	},
-/obj/item/pen/fountain/green{
-	pixel_x = -7;
-	pixel_y = 16
-	},
-/obj/item/stack/spacecash/c500{
-	pixel_x = -8;
-	pixel_y = -3;
-	max_amount = 500
-	},
-/obj/item/stack/spacecash/c500{
-	pixel_x = 5;
-	pixel_y = 9;
-	max_amount = 500
-	},
-/obj/item/paper{
-	pixel_x = 7;
-	default_raw_text = "The gosh darn safe is on the fritz again! Do me a favor and count these bills for me, and stuff them in the stafe whe you're done. Thanks a bunch, and have a Lizardrific Day!<BR><BR>-General Manager, Ra'Tahul Rekinov";
-	name = "Manager Note"
-	},
-/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "Qi" = (
-/obj/effect/spawner/structure/window/reinforced/plasma,
-/obj/structure/cable,
-/obj/machinery/door/poddoor/shutters{
-	id = "lizardshutters"
+/obj/structure/table,
+/obj/item/crowbar/red{
+	pixel_x = -2;
+	pixel_y = 12
 	},
-/turf/open/floor/plating,
+/obj/item/wrench{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/turf/open/floor/iron/shuttle/exploration/side{
+	dir = 1
+	},
 /area/ruin/thelizardsgas_lavaland)
-"QP" = (
-/obj/structure/rack,
-/obj/item/food/cornchips/random,
-/obj/item/food/cornchips/random{
-	pixel_x = 8;
-	pixel_y = -5
+"Qk" = (
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 8
 	},
-/obj/item/food/cornchips/random{
-	pixel_y = 4;
-	pixel_x = -5
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8;
+	color = "#595959"
 	},
-/obj/item/food/cornchips/random{
-	pixel_y = -7;
-	pixel_x = -5
+/obj/structure/noticeboard/directional/west,
+/turf/open/floor/iron/edge{
+	dir = 8
 	},
-/obj/item/food/cornchips/random{
-	pixel_y = -7;
-	pixel_x = 3
+/area/ruin/thelizardsgas_lavaland)
+"Qu" = (
+/obj/machinery/computer/security/telescreen/lizgas/directional/south,
+/turf/open/floor/carpet,
+/area/ruin/thelizardsgas_lavaland)
+"QB" = (
+/obj/structure/fans/tiny/forcefield{
+	dir = 8
 	},
-/obj/item/food/cornchips/random{
-	pixel_x = 5;
-	pixel_y = 6
+/obj/machinery/door/poddoor/shutters/window{
+	dir = 8;
+	id = "lizardshutters_garage"
 	},
-/obj/structure/sign/poster/contraband/eat/directional/north,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/machinery/door/poddoor{
+	id = "lizardshutters_garage_reinforcement"
 	},
+/turf/open/floor/asphalt/lavaland/outdoors,
+/area/ruin/thelizardsgas_lavaland)
+"QW" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/structure/closet/emcloset/wall{
+	pixel_y = 32
+	},
+/obj/structure/cable,
+/obj/item/tank/internals/nitrogen/belt/full,
+/obj/item/tank/internals/nitrogen/belt/full,
+/obj/item/tank/internals/nitrogen/belt/full,
+/turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "Ra" = (
 /obj/structure/cable,
@@ -1553,33 +3249,63 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Rb" = (
-/obj/machinery/door/airlock/external/ruin{
-	id_tag = "lizardgasbolt"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
-	cycle_id = "lizardgas_lavaland_entrance"
-	},
-/obj/structure/fans/tiny,
-/obj/machinery/door/poddoor{
-	id = "lizardshutters"
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
-"Ru" = (
-/obj/structure/chair/stool/bar/directional/east,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
-"RO" = (
-/obj/structure/filingcabinet,
-/obj/item/gps/spaceruin{
-	gpstag = "Lizard Gas"
+"Re" = (
+/obj/structure/table/wood/shuttle_bar,
+/obj/structure/curtain/bounty,
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/item/kirbyplants/organic/plant15{
+	pixel_x = 0;
+	pixel_y = 10
 	},
-/turf/open/floor/wood/parquet,
+/obj/item/toy/cards/deck{
+	pixel_x = 8;
+	pixel_y = 0
+	},
+/obj/structure/window/reinforced/spawner/directional/east,
+/turf/open/floor/iron/dark/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"Ru" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/wood/tile,
+/area/ruin/thelizardsgas_lavaland)
+"Rw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/effect/turf_decal/siding/thinplating/light{
+	dir = 9
+	},
+/obj/machinery/button/door/directional/west{
+	specialfunctions = 4;
+	normaldoorcontrol = 1;
+	id = "gasbathroom";
+	name = "Door Bolt Control";
+	pixel_x = 0;
+	pixel_y = 26
+	},
+/turf/open/floor/iron/white/small,
+/area/ruin/thelizardsgas_lavaland)
+"RO" = (
+/obj/machinery/power/smes/full{
+	component_parts = 4
+	},
+/obj/structure/cable,
+/obj/structure/railing{
+	dir = 10;
+	color = "#878787"
+	},
+/obj/structure/marker_beacon/burgundy,
+/turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "RW" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
@@ -1592,6 +3318,19 @@
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
+"Sf" = (
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/iron/shuttle/exploration/uside{
+	dir = 8
+	},
+/area/ruin/thelizardsgas_lavaland)
 "Sh" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/pink/hidden,
 /obj/machinery/duct,
@@ -1602,44 +3341,55 @@
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/ruin/thelizardsgas_lavaland)
 "Sq" = (
-/obj/structure/sign/poster/official/pda_ad/directional/south,
-/obj/structure/table/reinforced,
-/obj/item/food/rootbread_peanut_butter_banana{
-	pixel_y = 12;
-	pixel_x = -3
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
 	},
-/obj/item/food/rootbread_peanut_butter_jelly{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/duct,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/white/textured_large,
 /area/ruin/thelizardsgas_lavaland)
 "Su" = (
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box{
+	pixel_y = 9
 	},
+/obj/item/storage/fancy/pickles_jar,
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/weather/snow,
+/obj/machinery/light/directional/east,
+/obj/structure/sign/poster/contraband/moffuchis_pizza/directional/east,
+/turf/open/floor/circuit/red/off,
 /area/ruin/thelizardsgas_lavaland)
 "Sy" = (
 /obj/structure/cable,
-/turf/closed/wall/r_wall{
-	baseturfs = /turf/open/floor/plating/lavaland_baseturf
+/turf/closed/wall/r_wall,
+/area/ruin/thelizardsgas_lavaland)
+"SR" = (
+/obj/structure/railing{
+	dir = 1;
+	color = "#878787"
+	},
+/obj/structure/fake_stairs/directional/east{
+	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
+	icon_state = "stairs-old";
+	color = "#999999"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/stairs/old{
+	dir = 4
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Ta" = (
-/obj/machinery/light/directional/south,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/duct,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/machinery/vending/dorms,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
 	},
+/turf/open/floor/iron/white/textured_large,
 /area/ruin/thelizardsgas_lavaland)
 "Tc" = (
 /obj/structure/reagent_dispensers/plumbed/storage{
@@ -1654,57 +3404,166 @@
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "Tz" = (
-/obj/structure/rack,
-/obj/item/food/sticko/nutty{
-	pixel_y = 5;
-	pixel_x = -5
-	},
-/obj/item/food/sticko{
-	pixel_y = 2;
-	pixel_x = 6
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
-"Uf" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+/obj/effect/turf_decal/siding/dark/corner{
 	dir = 1
 	},
-/obj/machinery/duct,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/structure/table,
+/obj/item/screwdriver{
+	pixel_y = -2;
+	pixel_x = 1
+	},
+/obj/item/storage/toolbox/emergency{
+	pixel_x = -1;
+	pixel_y = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/shuttle/exploration/side{
+	dir = 1
 	},
 /area/ruin/thelizardsgas_lavaland)
+"TK" = (
+/obj/structure/safe/floor,
+/obj/item/golfcart_kit,
+/obj/item/stock_parts/power_store/cell/lead{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/key/golfcart{
+	pixel_x = -4;
+	pixel_y = -5
+	},
+/obj/item/storage/cans/sixbeer{
+	desc = "Holds six beers. Remember to have fun!"
+	},
+/obj/item/stack/sheet/mineral/diamond,
+/turf/open/floor/carpet/green,
+/area/ruin/thelizardsgas_lavaland)
+"Uf" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced/spawner/directional/south{
+	pixel_y = -3
+	},
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/item/food/canned/peaches{
+	pixel_x = -4;
+	pixel_y = 9
+	},
+/obj/item/food/canned/peaches{
+	pixel_x = 2;
+	pixel_y = 0
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1
+	},
+/turf/open/floor/iron/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"UC" = (
+/obj/effect/mob_spawn/ghost_role/human/lavaland_gasstation{
+	dir = 2
+	},
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/machinery/airalarm/directional/west{
+	req_access = null
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/marker_beacon/cerulean,
+/obj/structure/fluff/empty_sleeper,
+/turf/open/floor/iron/dark/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
 "UK" = (
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/closed/wall/r_wall{
-	baseturfs = /turf/open/floor/plating/lavaland_baseturf
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/closet/crate/freezer,
+/obj/item/food/vendor_tray_meal/sushi,
+/obj/item/food/vendor_tray_meal/sushi,
+/obj/item/food/vendor_tray_meal/sushi,
+/obj/item/food/vendor_tray_meal/sushi,
+/obj/item/food/vendor_tray_meal/sushi,
+/obj/item/food/nigiri_sushi,
+/obj/item/food/nigiri_sushi,
+/obj/item/food/nigiri_sushi,
+/obj/effect/turf_decal/weather/snow,
+/obj/structure/marker_beacon/cerulean,
+/turf/open/floor/circuit/red/off,
+/area/ruin/thelizardsgas_lavaland)
+"UP" = (
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8;
+	color = "#595959"
+	},
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Vd" = (
 /obj/machinery/door/window/brigdoor/left/directional/east,
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/ruin/thelizardsgas_lavaland)
-"Vn" = (
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/closed/wall{
-	baseturfs = /turf/open/floor/plating/lavaland_baseturf
+"Vg" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/door/airlock/grunge{
+	name = "Garage"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/lizard_gas,
+/turf/open/floor/iron/smooth_large,
+/area/ruin/thelizardsgas_lavaland)
+"Vn" = (
+/obj/structure/cable,
+/obj/structure/bookcase/random,
+/turf/open/floor/wood/large,
+/area/ruin/thelizardsgas_lavaland)
+"Vu" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Plasma Hook-Up"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/lizard_gas,
+/turf/open/floor/plating/lavaland_atmos,
+/area/ruin/thelizardsgas_lavaland)
+"Vx" = (
+/obj/machinery/digital_clock/directional/east,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 4;
+	color = "#595959"
+	},
+/turf/open/floor/iron{
+	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	},
+/area/ruin/thelizardsgas_lavaland)
+"VC" = (
+/obj/structure/railing{
+	dir = 1;
+	color = "#878787"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/textured_large,
 /area/ruin/thelizardsgas_lavaland)
 "VT" = (
 /obj/effect/spawner/random/structure/billboard/lizardsgas,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "Wg" = (
-/obj/structure/sign/poster/official/plasma_effects/directional/east,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959";
 	dir = 8
 	},
-/turf/open/floor/iron/smooth{
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 4;
+	color = "#595959"
+	},
+/obj/machinery/space_heater/wall_mounted/directional/east{
+	cell = /obj/item/stock_parts/power_store/cell/high
+	},
+/obj/machinery/light/directional/east,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
@@ -1717,11 +3576,12 @@
 /area/ruin/thelizardsgas_lavaland)
 "WI" = (
 /obj/machinery/door/airlock/grunge{
-	id_tag = "corpoffice";
-	name = "Manager's Office"
+	name = "Utility Closet"
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/turf/open/floor/wood/parquet,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/access/all/lizard_gas,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/iron/textured_large,
 /area/ruin/thelizardsgas_lavaland)
 "WL" = (
 /obj/structure/sink/gasstation{
@@ -1731,93 +3591,137 @@
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/ruin/thelizardsgas_lavaland)
 "WP" = (
-/obj/structure/chair/sofa/left/maroon{
-	dir = 4
+/obj/structure/table,
+/obj/item/weldingtool/largetank{
+	pixel_x = -18;
+	pixel_y = 2
 	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/item/clothing/head/utility/welding{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/iron/shuttle/exploration/side{
+	dir = 1
 	},
 /area/ruin/thelizardsgas_lavaland)
 "WT" = (
-/obj/machinery/airalarm/directional/west{
-	req_access = null
-	},
-/obj/effect/mob_spawn/ghost_role/human/lavaland_gasstation{
-	dir = 4
-	},
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
-"WV" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/pink/hidden,
-/obj/effect/turf_decal/stripes/end{
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/duct,
-/turf/open/floor/plating/lavaland_atmos{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/turf/open/floor/tram/plate,
+/area/ruin/thelizardsgas_lavaland)
+"WV" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/wood,
 /area/ruin/thelizardsgas_lavaland)
 "WZ" = (
-/obj/structure/cable,
-/obj/structure/sign/poster/contraband/robust_softdrinks/directional/east,
+/obj/structure/sign/poster/contraband/tipper_cream_soda/directional/south,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/duct,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#595959"
+	},
 /turf/open/floor/iron{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Xb" = (
-/obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced/plasma,
-/obj/machinery/door/poddoor/shutters{
-	id = "lizardshutters"
+/obj/machinery/smartfridge/food,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "lizardshutters_counter";
+	dir = 1
 	},
-/turf/open/floor/plating/lavaland_baseturf,
+/obj/machinery/door/window/left/directional/south{
+	req_access = list(9512)
+	},
+/turf/open/floor/iron/textured_large,
 /area/ruin/thelizardsgas_lavaland)
 "Xj" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/rack,
-/obj/item/stack/sheet/mineral/plasma/thirty{
-	pixel_x = -1;
-	pixel_y = 3
+/obj/structure/table,
+/obj/effect/turf_decal/siding/wideplating/dark/corner,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 5;
+	color = "#595959"
 	},
-/obj/item/stack/sheet/mineral/plasma/thirty{
-	pixel_x = -4
+/obj/machinery/button/door/directional/east{
+	id = "lizardshutters_breakroom";
+	pixel_y = 0;
+	name = "Privacy Shutters";
+	req_access = list(9512);
+	pixel_x = 24
 	},
-/obj/item/flatpacked_machine/fuel_generator,
-/obj/item/paper{
-	pixel_x = -7;
-	pixel_y = -4;
-	default_raw_text = "Hey there official team member of Lizard Gas! On the shelf you found this letter on is a deployable plasma-generator to keep the lights on around here. Set it up outback, <B>NOT INSIDE</B>, and slap some of the Plasma Shards Nanotrasen has so kindly sold off to us in it and turn it on.. <BR><BR> P.S, A team member perished to Carbon Monoxide inhalation after sticking the deployable generator inside. You'll have to pull double-shifts until we find a replacement. Good luck!<BR><BR>-General Manager, Ra'Tahul Rekinov";
-	name = "Generator Note"
+/obj/structure/towel_bin{
+	pixel_y = 5;
+	pixel_x = 0
 	},
-/obj/item/stack/cable_coil/thirty{
-	pixel_x = 1;
-	pixel_y = 5
-	},
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
+/turf/open/floor/iron/large,
 /area/ruin/thelizardsgas_lavaland)
 "XA" = (
-/obj/structure/secure_safe/directional/east,
-/turf/open/floor/wood/parquet,
+/obj/structure/closet/crate/hydroponics,
+/obj/item/paper/guides/jobs/hydroponics,
+/obj/item/seeds/onion,
+/obj/item/seeds/garlic,
+/obj/item/seeds/potato,
+/obj/item/seeds/tomato,
+/obj/item/seeds/carrot,
+/obj/item/seeds/grass,
+/obj/item/seeds/ambrosia,
+/obj/item/seeds/wheat,
+/obj/item/seeds/pumpkin,
+/obj/item/seeds/tower,
+/obj/item/seeds/tobacco,
+/obj/item/seeds/chili,
+/obj/item/seeds/pumpkin,
+/obj/item/seeds/coffee,
+/obj/item/seeds/cabbage,
+/obj/item/seeds/corn,
+/obj/item/seeds/olive,
+/obj/item/seeds/herbs,
+/obj/item/seeds/chili/bell_pepper,
+/obj/item/seeds/soya,
+/obj/effect/spawner/random/contraband/prison,
+/obj/item/cultivator,
+/obj/item/secateurs,
+/obj/item/shovel/spade,
+/obj/item/plant_analyzer,
+/obj/item/storage/bag/plants/portaseeder,
+/obj/item/storage/box/beakers,
+/obj/item/reagent_containers/cup/watering_can,
+/obj/machinery/light/small/red/directional/south,
+/turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "XD" = (
-/obj/structure/cable,
-/obj/machinery/light/small/directional/west,
-/obj/machinery/atmospherics/pipe/smart/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959";
+	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/edge{
+	dir = 8
+	},
+/area/ruin/thelizardsgas_lavaland)
+"XH" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/tram/plate,
 /area/ruin/thelizardsgas_lavaland)
 "XS" = (
 /obj/structure/sign/warning/fire/directional/north,
@@ -1829,14 +3733,110 @@
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Yl" = (
-/obj/structure/barricade/wooden,
-/turf/open/floor/wood/lavaland,
-/area/icemoon/underground/unexplored)
+/obj/structure/table/wood/fancy/green,
+/obj/machinery/door/window/right/directional/north{
+	req_access = list(9512)
+	},
+/obj/item/stamp/denied{
+	pixel_x = -12;
+	pixel_y = 6
+	},
+/obj/item/stamp/granted{
+	pixel_x = -12;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/cup/maunamug{
+	pixel_x = 14;
+	pixel_y = 2
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/iron/dark/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"Yr" = (
+/obj/structure/table/reinforced,
+/obj/structure/cable,
+/obj/structure/decorative{
+	icon_state = "siding_plain";
+	pixel_y = 0;
+	icon = 'icons/turf/decals.dmi';
+	base_icon_state = "elevatorshaft";
+	color = "#36373a";
+	dir = 2;
+	anchored = 1
+	},
+/obj/machinery/light/directional/west,
+/obj/structure/noticeboard/directional/west{
+	pixel_x = -32;
+	pixel_y = 5
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "lizardshutters_counter";
+	dir = 1
+	},
+/obj/item/stack/spacecash/c20{
+	pixel_y = 3;
+	pixel_x = 3
+	},
+/obj/item/stack/spacecash/c10{
+	pixel_y = 9;
+	pixel_x = 1
+	},
+/obj/item/paper{
+	pixel_x = -5;
+	pixel_y = 7;
+	name = "Lizard's Gas Food Menu";
+	color = "#6D6D6D";
+	default_raw_text = "<table width=100% bgcolor=DarkGreen><tr><th><font color=white size=10><center></center></font></th></tr><tr><th><font color=white size=8><center>Lizard's Gas®</center></font></th></tr><tr><th bgcolor=MediumOrchid><font color=white size=5><center><p>Food Menu</center></font></th></tr><tr><th><font color=white size=4><center></center></font></th></tr></table><hr><br>Welcome to your local Lizard's Gas Service Station! We offer plenty of services here, including food, drink, and medicine.<br>Below is our menu for the food we have available, please let us know what you'd like to buy!<br><br><hr><table width=100% bgcolor=DarkGreen><tr><th><font color=white size=3><i><b>№  Name & Price</b></i></font></th></tr></table><hr><br><b><u>COMBOS</u></b><br>• Engine Kickstarter: Five pastries¹, two snacks, and a drink - all for only 100 credits!<br>• Full Refuel: Main Course², two sides, one snack/pastry, and one drink, all for only 120 credits!<br><br><b><u>Burgers</u></b><br>01. Burger: 40 credits<br>02. Cheese Burger: 50 credits<br>03. Bacon Burger: 50 credits<br>04. Fish Burger: 60 credits<br>05. Chicken Burger: 60 credits<br>06. Crab Burger: 80 credits<br>07. Big Bite Burger: 90 credits<br>08. Big Blue Burger: 300 credits<br>09. Sloppy Moe: 80 credits<br>10. McRib: 70 credits<br>11. McGuffin: 70 credits<br>12. Rootburger: 50 credits<br>13. Chicken Rootwich: 60 credits<br>14. Fish Rootburger: 70 credits<br>15. Root-Guffin: 80 credits<br>16. Sssloppy Moe: 90 credits<br><br><b><u>Hotdogs & Sandwiches</u></b><br>17. Hotdog: 50 credits<br>18. Danish Hotdog: 60 credits<br>19. Sandwich: 60 credits<br>20. Grilled Cheese Sandwich: 50 credits<br>21. Philly Cheesesteak: 60 credits<br>22. BLT: 60 credits<br><br><b><u>Sides</u></b><br>23. Fries: 15 credits<br>24. Cheesy Fries: 20 credits<br>25. Izakaya Fries: 20 credits<br>26. Wild Duck Fries: 25 credits<br>27. Salt N' Chilli Fries: 20 credits<br>28. Poutine: 20 credits<br>29. Onion Rings: 15 credits<br>30. Chicken Nuggets (6): 40 credits<br>31. Fried Chicken: 20 credits<br>32. Nachos: 15 credits<br>33. Cheesy Nachos: 20 credits<br>34. Cuban Nachos: 25 credits<br>35. Garlic Bread: 20 credits<br><br><b><u>Salads</u></b><br>36. Antipasto Salad: 70 credits<br>37. Caesar Salad: 70 credits<br>38. Greek Salad Salad: 70 credits<br>39. Herb Salad: 50 credits<br>40. Kale Salad: 60 credits<br>41. Potato Salad: 60 credits<br>42. Valid Salad: 60 credits<br><br><b><u>Pastries & Dairies</u></b><br>43. Donuts (any): 30 credits<br>44. Jelly Donuts (any): 40 credits<br>45. Cornuto: 30 credits<br>46. Icecream Sandwich: 30 credits<br>47. Yoghurt: 30 credits<br><br><b><u>Others</u></b><br>48. Fish and Chips: 40 credits<br>49. Refried Beans: 50 credits<br>50. Mashed Potatoes: 50 credits<br>51. Sausage with Eggs: 30 credits<br>52. Omelette Du Fromage: 40 credits<br>53. Canned Tomatoes: 20 credits<br>54. Canned Beans: 20 credits<br>55. Canned Peaches: 20 credits<br>56. Canned Tuna: 20 credits<br><br><b><u>Hemophage Specials</u></b><br>57. Boat Noodles: 50 credits<br>58. Dinuguan: 80 credits<br>59. Blood Soup: 60 credits<br><br><b><u>CHAP Specials</u></b><br>60. CHAP: 50 credits<br>61. Chappy Patty: 70 credits<br>62. Chap Hash: 70 credits<br>63. Chapsilog: 70 credits<br><br><b><u>Snacks</u></b><br>64. Candy Bar: 20 credits<br>65. Sticko Biscuit (any): 25 credits<br>66. Chocolate Bar: 25 credits<br>67. Chips (any): 20 credits<br>68. Boritos (any): 20 credits<br><br>We can do takeaway, just ask!<br><br><hr><font color=DarkGrey size=1><i><b>¹Can also be any dairy product.</b></i></font><br><font color=DarkGrey size=1><i><b>²Items from the Burgers, Hotdogs/Sandwiches, Salads, Others, and CHAP Specials - excluding the Big Blue Burger.</b></i></font><br><hr><table width=100% bgcolor=DarkGreen><tr><th><font color=white size=3><center>How to ensure a pleasant visit</center></font></th></tr></table><hr><br>During your visit to Lizard's Gas, it is paramount to maintain a pleasant and civil environment, so please keep in mind the following:<br>• Be kind to the employees of Lizard's Gas! While they might be here to serve you, they are still people, and treat them as such.<br>• If you are still unsure what to order, please leave the line and re-queue once you do figure out your order. The time of the employees and other customers is valuable!<br>• Do not litter the service station,<br>• Not all items will always be available, we apologize!<br>• Please return any utensils after finishing your food.<br>• Don't forget to pay! Lizard's Gas has an active 24/7 surveillance camera system.<br>• Do not attempt to enter the staff only areas.<br>• Do not assault any other customer or employee, verbally or physically.<br><br><hr><table width=100% bgcolor=DarkGreen><tr><th><font color=white size=10><center>Lizard's Gas®</center></font></th></tr></table>";
+	desc = "Strange, what is the menu of Lizard's Gas doing here?"
+	},
+/obj/item/paper{
+	pixel_x = 0;
+	pixel_y = 4;
+	name = "Lizard's Gas Drinks Menu";
+	color = "#4A8ED5";
+	default_raw_text = "<table width=100% bgcolor=DarkGreen><tr><th><font color=white size=10><center></center></font></th></tr><tr><th><font color=white size=8><center>Lizard's Gas®</center></font></th></tr><tr><th bgcolor=MediumOrchid><font color=white size=5><center><p>Drinks Menu</center></font></th></tr><tr><th><font color=white size=4><center></center></font></th></tr></table><hr><br>Welcome to your local Lizard's Gas Service Station! We offer plenty of services here, including food, drink, and medicine.<br>Below is our menu for the drinks¹ we have available, please let us know what you'd like to buy!<br><br><hr><table width=100% bgcolor=DarkGreen><tr><th><font color=white size=3><i><b>№  Name & Price</b></i></font></th></tr></table><hr><br><b><u>Smoothies</u></b><br>01. Berry Blast: 20 credits<br>02. Strawberry Banana: 20 credits<br>03. Vanilla Dream: 20 credits<br>04. Funky Monkey Smoothie: 20 credits<br>05. Gibb Floats: 20 credits<br><br><b><u>Sodas</u></b><br>06. Space Cola: 15 credits<br>07. Dr. Gibb: 15 credits<br>08. Melon Soda: 15 credits<br>09. Pwr Game: 15 credits<br>10. SM Wind: 15 credits<br>11. Sol Dry: 15 credits<br>12. Soda Water: 10 credits<br><br><b><u>Non-carbonated</u></b><br>13. Coffee: 20 credits<br>14. Iced Coffee: 25 credits<br>15. Cafe Latte: 25 credits<br>16. Soy Latte: 25 credits<br>17. Tea: 10 credits<br>18. Iced Tea: 15 credits<br>19. Juices (any): 15 credits<br>20. Water: 5 credits<br><br><b><u>Alcoholic²</u></b><br>21. Space Beer: 30 credits<br>22. Vodka: 80 credits<br>23. Fernet: 120 credits<br><br>We can do takeaway, just ask!<br><br><hr><font color=DarkGrey size=1><i><b>¹All drinks can be upsized to large, at double price (Normal: 50u, Large: 100u).</b></i></font><br><font color=DarkGrey size=1><i><b>²The sale of alcohol requires an ID to be presented, alcohol won't be sold to those below the age of 21.</b></i></font><br><hr><table width=100% bgcolor=DarkGreen><tr><th><font color=white size=3><center>How to ensure a pleasant visit</center></font></th></tr></table><hr><br>During your visit to Lizard's Gas, it is paramount to maintain a pleasant and civil environment, so please keep in mind the following:<br>• Be kind to the employees of Lizard's Gas! While they might be here to serve you, they are still people, and treat them as such.<br>• If you are still unsure what to order, please leave the line and re-queue once you do figure out your order. The time of the employees and other customers is valuable!<br>• Do not litter the service station,<br>• Not all items will always be available, we apologize!<br>• Please return any utensils after finishing your food.<br>• Don't forget to pay! Lizard's Gas has an active 24/7 surveillance camera system.<br>• Do not attempt to enter the staff only areas.<br>• Do not assault any other customer or employee, verbally or physically.<br><br><hr><table width=100% bgcolor=DarkGreen><tr><th><font color=white size=10><center>Lizard's Gas®</center></font></th></tr></table>";
+	desc = "Strange, what is the menu of Lizard's Gas doing here?"
+	},
+/obj/item/paper{
+	pixel_x = 5;
+	pixel_y = 1;
+	name = "Lizard's Gas Medical Menu";
+	color = "#C35D5B";
+	default_raw_text = "<table width=100% bgcolor=DarkGreen><tr><th><font color=white size=10><center></center></font></th></tr><tr><th><font color=white size=8><center>Lizard's Gas®</center></font></th></tr><tr><th bgcolor=MediumOrchid><font color=white size=5><center><p>Medical Menu</center></font></th></tr><tr><th><font color=white size=4><center></center></font></th></tr></table><hr><br>Welcome to your local Lizard's Gas Service Station! We offer plenty of services here, including food, drink, and medicine.<br>Below is our menu for the medical options we have available, please let us know what you'd like to buy!<br><br><hr><table width=100% bgcolor=DarkGreen><tr><th><font color=white size=3><i><b>№  Name & Price</b></i></font></th></tr></table><hr><br><b><u>First Aid</u></b><br>01. Red Sun Balm: 25 credits<br>02. Ointment: 30 credits<br>03. Sealed Aseptic Gauze: 25 credits<br>04. Regenerative Mesh: 75 credits<br>05. Hemostatic Mesh: 50 credits<br>06. Bruise Pack: 50 credits<br>07. First Aid Bandages (Six Pack): 100 credits<br>08. Sutures: 50 credits<br>09. Hemostatic Sutures: 75 credits<br>10. Coagulant-F Packet: 50 credits<br>11. Rapid Coagulant Applicator: 100 credits<br>12. Medical Gauze: 20 credits<br>13. Bone Gel: 40 credits<br>14. Surgical Tape: 40 credits<br>15. Subdermal Splint Applicator: 100 credits<br><br><b><u>Medicines</u></b><br>16. Bruise Patch: 50 credits<br>17. Burn Patch: 50 credits<br>18. Synthflesh Patch: 150 credits<br>19. Amollin Painkiller: 20 credits<br>20. Iron Pill: 15 credits<br>21. Probital Pill: 40 credits<br>22. Epinephrine Pill: 40 credits<br>23. Convermol Pill: 40 credits<br>24. Multiver Pill: 40 credits<br>25. Potassium Iodide Pill: 30 credits<br>26. Insulin Pill: 30 credits<br>27. Psicodine Pill Pill: 50 credits<br>28. Ondansetron Pill: 50 credits<br>29. Sansufentanyl Pill: 50 credits<br>30. Mannitol Pill: 75 credits<br>31. Neurine Pill: 100 credits<br>32. Albuterol Canister: 150 credits<br><br><b><u>Autoinjectors</u></b><br>33. Occuisate Sensory Restoration Injector: 100 credits<br>34. Calopine Emergency Stabilizant Injector: 100 credits<br>35. Halobinin Soberant Injector: 100 credits<br>36. Synthetic Cleaner Autoinjector: 100 credits<br>37. Synthetic Smart-Solder Autoinjector: 100 credits<br><br><b><u>Bloodpacks¹</u></b><br>38. Regular Types: 50 credits<br>39. Universal (O-) Type: 75 credits<br><br><b><u>Synth Meds</u></b><br>40. Robotic Repair Patch: 25 credits<br>41. Robotic Repair Spray: 150 credits<br>42. Premium Robotic Repair Spray: 250 credits<br><br>Purchases above 300 credits come with a free frontier medical kit!<br><br><hr><font color=DarkGrey size=1><i><b>¹If unsure of your own blood type, please purchase O- blood or consult to a medical doctor first. Lizard's Gas® is not legally responsible to how the customer uses bloodpacks and/or medicines.</b></i></font><hr><table width=100% bgcolor=DarkGreen><tr><th><font color=white size=3><center>How to ensure a pleasant visit</center></font></th></tr></table><hr><br>During your visit to Lizard's Gas, it is paramount to maintain a pleasant and civil environment, so please keep in mind the following:<br>• Be kind to the employees of Lizard's Gas! While they might be here to serve you, they are still people, and treat them as such.<br>• If you are still unsure what to order, please leave the line and re-queue once you do figure out your order. The time of the employees and other customers is valuable!<br>• Do not litter the service station,<br>• Not all items will always be available, we apologize!<br>• Please return any utensils after finishing your food.<br>• Don't forget to pay! Lizard's Gas has an active 24/7 surveillance camera system.<br>• Do not attempt to enter the staff only areas.<br>• Do not assault any other customer or employee, verbally or physically.<br><br><hr><table width=100% bgcolor=DarkGreen><tr><th><font color=white size=10><center>Lizard's Gas®</center></font></th></tr></table>";
+	desc = "Strange, what is the menu of Lizard's Gas doing here?"
+	},
+/turf/open/floor/iron/textured_large,
+/area/ruin/thelizardsgas_lavaland)
 "YH" = (
 /obj/structure/sign/warning/fire/directional/north,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/pink/hidden,
 /turf/open/misc/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"YO" = (
+/obj/structure/bed/dogbed{
+	name = "Zarpo's bed";
+	desc = "A comfy-looking lizard bed. Looks a lot like a dog bed."
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 4;
+	color = "#595959"
+	},
+/mob/living/basic/lizard{
+	name = "Zarpo";
+	desc = "This little guy is a survivor, that's for sure. It's also the manager of the gas station!"
+	},
+/obj/effect/mapping_helpers/mob_buckler,
+/turf/open/floor/iron/large,
+/area/ruin/thelizardsgas_lavaland)
 "YX" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -1857,37 +3857,51 @@
 /turf/open/floor/asphalt/lavaland/outdoors,
 /area/ruin/thelizardsgas_lavaland)
 "Zo" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/structure/railing{
+	dir = 1;
+	color = "#878787"
 	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/large,
 /area/ruin/thelizardsgas_lavaland)
 "Zt" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/layer2{
-	dir = 8
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959";
+	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister/oxygen{
-	connected_port = 1
-	},
-/turf/open/floor/iron/smooth{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/turf/open/floor/iron/edge{
+	dir = 4
 	},
 /area/ruin/thelizardsgas_lavaland)
 "ZR" = (
-/obj/structure/cable,
-/obj/structure/sign/poster/contraband/moffuchis_pizza/directional/north,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/white/line,
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 8
 	},
+/obj/effect/turf_decal/siding/wideplating/dark/corner,
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959"
+	},
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	color = "#595959";
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/iron/corner{
+	dir = 1
+	},
+/area/ruin/thelizardsgas_lavaland)
+"ZY" = (
+/obj/structure/cable,
+/turf/open/floor/carpet/green,
 /area/ruin/thelizardsgas_lavaland)
 
 (1,1,1) = {"
-yl
-yl
-yl
-Yl
-Tk
 hr
 hr
 hr
@@ -1900,130 +3914,6 @@ hr
 hr
 hr
 hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-"}
-(2,1,1) = {"
-yl
-Kw
-xW
-yl
-Tk
-Tk
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-"}
-(3,1,1) = {"
-Yl
-ck
-Li
-lm
-Me
-Tk
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-"}
-(4,1,1) = {"
-yl
-se
-Hj
-yl
-Tk
-Tk
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-"}
-(5,1,1) = {"
-yl
-yl
-Yl
-yl
-jc
-gP
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-hr
-"}
-(6,1,1) = {"
-Tk
-Tk
-Tk
-Tk
-Tk
-Tk
 hr
 yY
 lz
@@ -2041,16 +3931,20 @@ hr
 hr
 hr
 hr
-hr
-hr
 "}
-(7,1,1) = {"
+(2,1,1) = {"
+hr
+hr
+hr
 hr
 hr
 hr
 hr
 Tk
 Tk
+Tk
+Tk
+hr
 hr
 cI
 dC
@@ -2068,14 +3962,18 @@ hr
 hr
 hr
 hr
-hr
-hr
 "}
-(8,1,1) = {"
+(3,1,1) = {"
 hr
 hr
-hr
-hr
+Tk
+Fs
+Fs
+Fs
+Tk
+Fs
+Fs
+Fs
 Fs
 jZ
 Fs
@@ -2092,16 +3990,20 @@ jo
 Fs
 jZ
 hr
-hr
-hr
-hr
+Fs
 hr
 hr
 "}
-(9,1,1) = {"
+(4,1,1) = {"
 hr
-hr
-hr
+Fs
+Tk
+Fs
+Fs
+Fs
+Fs
+Fs
+Fs
 Fs
 Fs
 jZ
@@ -2122,14 +4024,18 @@ Fs
 hr
 hr
 hr
-hr
-hr
 "}
-(10,1,1) = {"
+(5,1,1) = {"
 hr
 hr
-hr
-hr
+Fs
+Tk
+Tk
+Fs
+Fs
+Fs
+Fs
+Fs
 Fs
 jZ
 Fs
@@ -2149,15 +4055,19 @@ Fs
 Fs
 hr
 hr
-hr
-hr
 "}
-(11,1,1) = {"
+(6,1,1) = {"
 hr
 hr
-hr
-hr
-at
+Tk
+Tk
+Fs
+Tk
+Fs
+Fs
+Fs
+Fs
+Tk
 VT
 Tk
 jo
@@ -2176,14 +4086,18 @@ Tk
 hr
 hr
 hr
-hr
-hr
 "}
-(12,1,1) = {"
+(7,1,1) = {"
 hr
 hr
 hr
-hr
+Tk
+Tk
+Fs
+Fs
+Fs
+Fs
+at
 Tk
 Tk
 Tk
@@ -2192,7 +4106,7 @@ jo
 jo
 jo
 jo
-jo
+kx
 bp
 jo
 Sh
@@ -2200,356 +4114,623 @@ jo
 tK
 Tk
 Tk
-hr
-hr
-hr
+Tk
 hr
 hr
 "}
-(13,1,1) = {"
+(8,1,1) = {"
 hr
 hr
-hr
-hr
+Tk
+Tk
+Fs
+Fs
+Fs
+Fs
+Fs
 uX
 Tk
+Tk
 at
-cB
-Xb
-Xb
-Xb
-cB
-cB
-cB
-Rb
-gQ
-cB
+Cf
+bM
+bM
+bM
+Cf
+Cf
+Cf
+JQ
+mS
+Cf
 YH
 Tk
 Tk
 Tk
 Tk
 Tk
-hr
-hr
 "}
-(14,1,1) = {"
-cB
-cB
-cB
-cB
-Qi
-Qi
-cB
-cB
-QP
-tD
-Mw
-qX
-uG
-wE
-Bs
-tM
-cB
+(9,1,1) = {"
+hr
+Tk
+Tk
+Cf
+bG
+QB
+bG
+QB
+bG
+Cf
+Cf
+Cf
+bM
+Cf
+yO
+Bm
+UK
+eg
+qS
+KC
+mI
+uB
+Cf
 rE
 my
 my
 mb
 Cf
 tq
-hr
-hr
 "}
-(15,1,1) = {"
-cB
-ga
-mq
-WT
-WP
-ei
+(10,1,1) = {"
+hr
+Tk
+Cf
+Cf
+CU
+sb
+KV
+AZ
+nt
 aW
-wE
-mw
-wO
-Cd
-Ru
-cR
-wE
-bO
-Uf
-cB
+KC
+uj
+sf
+Yr
+LD
+UP
+uf
+BV
+OF
+KC
+OD
+EY
+Cf
 RW
 RW
 RW
 gt
 Ra
 Tk
-hr
-hr
 "}
-(16,1,1) = {"
-cB
-vM
-gd
-Jp
-Jp
-Zo
-zo
-wE
-CY
+(11,1,1) = {"
+Tk
+Tk
+Cf
+xW
+xZ
+XH
+Sf
+LL
+Tz
+SR
+wQ
+Jz
+mM
+kl
+Ku
 KS
-fc
-vz
-uq
-wE
-Mp
-vw
-cB
+Ov
+HR
+It
+KC
+fQ
+wf
+Cf
 XS
 gW
 nJ
 gt
 IF
 Tk
-hr
-hr
 "}
-(17,1,1) = {"
-cB
-IG
-uH
-Bf
-Is
-gn
-DL
-hC
-cf
-cf
-FZ
-Su
-FZ
-xV
-Su
-uB
-cB
+(12,1,1) = {"
+hr
+Tk
+Cf
+kb
+LU
+ga
+uh
+ga
+Jr
+VC
+gH
+ws
+xo
+Vg
+OK
+Mw
+iH
+bO
+LX
+se
+yx
+Li
+Cf
 sk
 bL
 sk
 gt
 IF
 Tk
-hr
-hr
 "}
-(18,1,1) = {"
-cB
-wE
-wE
-wE
-wE
-wE
-tk
-wE
-mX
+(13,1,1) = {"
+hr
+Tk
+Cf
+xW
+wZ
+ga
+Ml
+WT
+FW
+GU
+vD
+Oj
+yy
+Xb
+OP
+KE
+Id
+DR
+Rb
+gQ
 PJ
-EY
-sY
-Ov
-aN
-Tz
-Sq
-cB
-sk
+nb
+Cf
+PY
 sk
 sk
 gt
 GV
 Tk
-hr
-hr
 "}
-(19,1,1) = {"
-cB
+(14,1,1) = {"
+hr
+Tk
+Cf
+sy
+wZ
+WT
+uh
+WT
+Qi
+Zo
+hl
+bK
 pB
-Hq
-DL
-nE
-XD
-DL
-wE
-Ao
+MU
+Cd
+YX
+uG
+Jt
 lM
-YX
-PW
-Ov
-uA
-YX
-Ta
-cB
+tM
+Kw
+BU
+Cf
 Lw
 vj
 vj
 gt
 GV
 Tk
-hr
-hr
 "}
-(20,1,1) = {"
-cB
-Xj
-yb
-zo
-eB
-Zt
-Wg
+(15,1,1) = {"
+hr
+Tk
+Cf
+nr
+wZ
+ga
+mq
 wE
-ZR
-mI
-LX
-gy
+WP
+ei
+KC
+BI
+mw
+wO
+Cd
 Ov
-Pf
-ey
-yy
-cB
+cR
+Ol
+Ov
+Uf
+FA
+WZ
+Cf
 RW
 RW
 RW
 gt
 Ab
 Tk
-hr
-hr
 "}
-(21,1,1) = {"
-cB
-wE
-WI
-Vn
-cB
-cB
-Sy
-cB
-KS
-Jv
-tD
-tD
-KS
-WZ
+(16,1,1) = {"
+Tk
+Tk
+Cf
+Cf
+yl
+vM
+gd
+qX
+Jp
+Ie
+KC
+aJ
+IV
+MZ
+fc
+vz
+vz
+vz
+vz
+xT
 xM
-vD
-uf
-WV
+tu
+Hj
+JF
 xw
 DN
 qW
 Cf
 tq
+"}
+(17,1,1) = {"
 hr
+Tk
+Tk
+Cf
+KC
+IG
+IG
+IG
+KC
+gn
+KC
+hC
+tk
+cf
+FZ
+Su
+or
+mf
+oP
+xV
+Vx
+kW
+oY
+Tk
+Tk
+Tk
+Tk
+Tk
+Tk
+"}
+(18,1,1) = {"
+hr
+Tk
+Cf
+Cf
+UC
+gy
+bq
+cG
+Me
+Jv
+KC
+KC
+mX
+KC
+KC
+KC
+KC
+KC
+KC
+aN
+KC
+CC
+oY
+oY
+oY
+oY
+Cf
+Tk
+Tk
+"}
+(19,1,1) = {"
+hr
+Tk
+Cf
+CY
+PW
+nE
+Rb
+cB
+Hq
+XD
+DL
+Qk
+Ao
+Re
+mJ
+Gs
+zH
+uA
+KC
+mI
+KC
+Rw
+OT
+Sq
+Cf
+Tc
+Vu
+Tk
+hr
+"}
+(20,1,1) = {"
+hr
+dq
+Cf
+Cf
+ef
+Xj
+yb
+zo
+eB
+Zt
+tD
+vw
+ZR
+AD
+nU
+Dz
+Il
+Qu
+KC
+oJ
+KC
+Na
+BE
+Ta
+Cf
+Cf
+Cf
+Tk
+hr
+"}
+(21,1,1) = {"
+hr
+Tk
+sS
+Sy
+Cf
+KC
+WI
+KC
+KC
+oE
+vL
+YO
+uH
+KC
+Bq
+Wg
+Lb
+Bf
+Cf
+Pf
+Cf
+Cf
+Cf
+Cf
+Cf
+Tk
+Tk
+Tk
 hr
 "}
 (22,1,1) = {"
-cB
+hr
+gP
+Cf
+Sy
+QW
 Kz
 po
 iE
-cB
+KC
 sw
 jG
-cB
-cB
-cB
-cB
-DE
-cB
-cB
-UK
-LL
-bK
-il
+sY
+xO
+Cf
+Cf
+Cf
+Cf
+Cf
+Cf
 Tk
-Tk
-Tk
+gY
+mg
+uM
+Za
+uq
 Tk
 Tk
 hr
 hr
 "}
 (23,1,1) = {"
-cB
-Fy
-PY
-cg
-cB
-Tk
-Tk
-Tk
-zz
-Tk
-DE
-KI
-cB
-uM
-bM
-gY
-cB
-oY
-cB
-Tk
-Tk
 hr
+hr
+Cf
+NI
+hY
+Fy
+ID
+cg
+KC
+ey
+Ru
+WV
+zz
+Is
+DE
+em
+KI
+Cf
+Mp
+Tk
+Tk
+BN
+Tk
+BN
+uq
+Tk
 hr
 hr
 hr
 "}
 (24,1,1) = {"
-cB
+hr
+hr
+Cf
+Cf
+pG
 RO
 ID
 XA
-cB
-Tk
-Tk
+KC
+Jo
+ZY
 ry
 kT
-hG
-cB
+Ey
+TK
+ry
 Gw
-cB
-ef
+Cf
+hG
 BN
-bG
-cB
-Tc
-rD
 Tk
-hr
+Tk
+Tk
+Tk
+Bs
 hr
 hr
 hr
 hr
 "}
 (25,1,1) = {"
-cB
-cB
-cB
-cB
-cB
-Kd
-Kd
-nU
-Kd
-Kd
+hr
+hr
+hr
+Cf
+Cf
+Cf
+iq
+uE
+KC
+Vn
+il
+ua
+BY
+Yl
 rL
-Za
-cB
-cB
-cB
-cB
-cB
-cB
-cB
+ry
+lR
+Cf
+Bn
+Tk
+gY
+Tk
+Tk
+Go
+uq
+hr
+hr
+hr
+hr
+"}
+(26,1,1) = {"
+hr
+hr
+hr
+hr
+hr
+Cf
+Cf
+Cf
+Cf
+ck
+Cf
+lm
+Cf
+oi
+jc
+rD
+Am
+Cf
+Kd
+cy
+Kd
+Kd
+Kd
+Kd
+rU
+hr
+hr
+hr
+hr
+"}
+(27,1,1) = {"
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+Cf
+lm
+Cf
+hr
+Cf
+Cf
+lm
+lm
+Cf
+Cf
+Tk
+Tk
+Tk
+Tk
+hr
 hr
 hr
 hr

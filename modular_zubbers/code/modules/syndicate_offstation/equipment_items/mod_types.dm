@@ -24,20 +24,22 @@
 
 /obj/item/mod/control/pre_equipped/daimyo
 	theme = /datum/mod_theme/daimyo
-	applied_cell = /obj/item/stock_parts/power_store/cell/hyper
+	applied_cell = /obj/item/stock_parts/power_store/cell/bluespace
 	starting_frequency = MODLINK_FREQ_SYNDICATE
 	applied_modules = list(
 		/obj/item/mod/module/storage/syndicate,
-		/obj/item/mod/module/dna_lock,
-		/obj/item/mod/module/longfall,
+		/obj/item/mod/module/welding/syndicate,
 		/obj/item/mod/module/shock_absorber,
 		/obj/item/mod/module/emp_shield/advanced,
-		/obj/item/mod/module/magnetic_harness,
 		/obj/item/mod/module/noslip,
+		/obj/item/mod/module/dna_lock,
+		/obj/item/mod/module/longfall,
+		/obj/item/mod/module/magnetic_harness,
 		/obj/item/mod/module/jetpack/advanced,
 		/obj/item/mod/module/shove_blocker,
+		/obj/item/mod/module/pathfinder,
 		/obj/item/mod/module/night,
-		/obj/item/mod/module/welding/syndicate,
+		/obj/item/mod/module/hat_stabilizer/syndicate,
 	)
 	default_pins = list(
 		/obj/item/mod/module/jetpack/advanced,
@@ -58,6 +60,7 @@
 		A tag on the core reads 'This is the most expensive piece of equipment you'll ever handle in your life, \
 		do NOT lose it.' -Ruggero"
 	default_skin = "daimyo"
+	hardlight_theme = CONTRACTOR_RED
 	armor_type = /datum/armor/mod_theme_daimyo
 	resistance_flags = FIRE_PROOF|ACID_PROOF|LAVA_PROOF
 	atom_flags = PREVENT_CONTENTS_EXPLOSION_1
