@@ -16,6 +16,7 @@
 	access_view = ACCESS_WEAPONS
 	crate_type = /obj/structure/closet/crate/secure/plasma
 	crate_name = "relic rifle crate"
+
 /datum/supply_pack/imports/hunter_rifle
 	name = "Relic Hunting Rifle Single-Order"
 	desc = "This crate includes a rifle from Donk's line of reproduction firearms, all chambered in the reproducer's caliber of choice, .310. Produced by Donk for the discerning collector of antiquities. This one seems a little... Off. "
@@ -24,6 +25,7 @@
 	access_view = ACCESS_WEAPONS
 	crate_type = /obj/structure/closet/crate/secure/plasma
 	crate_name = "relic rifle crate"
+
 /datum/supply_pack/imports/prime_rifle
 	name = "Modernized Bolt-Action Rifle Single-Order"
 	desc = "This crate includes a rifle from Donk's line of reproduction firearms, all chambered in the reproducer's caliber of choice, .310. Produced by Donk for the discerning collector of antiquities."
@@ -32,6 +34,7 @@
 	access_view = ACCESS_WEAPONS
 	crate_type = /obj/structure/closet/crate/secure/plasma
 	crate_name = "relic rifle crate"
+
 /datum/supply_pack/imports/bolt_action
 	name = "Bolt-Action Rifle Single-Order"
 	desc = "This crate includes a rifle from Donk's line of reproduction firearms, all chambered in the reproducer's caliber of choice, .310. Produced by Donk for the discerning collector of antiquities."
