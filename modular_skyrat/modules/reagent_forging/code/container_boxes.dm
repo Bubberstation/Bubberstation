@@ -27,11 +27,3 @@
 	new /obj/item/stack/sheet/iron/ten(src)
 	new /obj/item/stack/sheet/leather/five(src)
 	new /obj/item/stack/sheet/cloth/five(src)
-
-/obj/item/storage/box/blacksmith
-	name = "box of smithing tools"
-
-/obj/item/storage/box/blacksmith/PopulateContents()
-	new /obj/item/forging/tongs(src)
-	new /obj/item/forging/hammer(src)
-	new /obj/item/forging/billow(src)
