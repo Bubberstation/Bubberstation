@@ -441,6 +441,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	icon_state = "/obj/item/clothing/glasses/hud/security/sunglasses/guard/blueshield"
 	greyscale_colors = "#585858#3f52a8"
 	glass_colour_type = /datum/client_colour/glass_colour/guard/blueshield
+	clothing_traits = list(TRAIT_SECURITY_HUD, TRAIT_MEDICAL_HUD)
 	actions_types = list(/datum/action/item_action/toggle_wearable_hud, /datum/action/item_action/toggle/blueshield_tds)
 	var/threat_detection = TRUE
 	custom_materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT * 5, /datum/material/diamond = SHEET_MATERIAL_AMOUNT, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.55, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
