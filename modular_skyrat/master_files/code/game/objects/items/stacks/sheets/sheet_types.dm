@@ -135,7 +135,7 @@ GLOBAL_LIST_INIT(skyrat_leather_belt_recipes, list(
 
 GLOBAL_LIST_INIT(skyrat_titanium_recipes, list(
 	new/datum/stack_recipe("spaceship plating", /obj/item/stack/sheet/spaceship, 1, time = 5, category = CAT_MISC),
-	new/datum/stack_recipe("anvil", /obj/structure/reagent_anvil, 2, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_TOOLS),
+	new/datum/stack_recipe("anvil", /obj/structure/reagent_anvil, 10, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_TOOLS),
 ))
 
 /obj/item/stack/sheet/mineral/titanium/get_main_recipes()
