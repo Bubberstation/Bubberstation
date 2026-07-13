@@ -8,7 +8,7 @@
 
 	anchored = TRUE
 	density = TRUE
-	custom_materials = list(/datum/material/alloy/plastitanium = SHEET_MATERIAL_AMOUNT * 4)
+	custom_materials = list(/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/structure/reagent_anvil/Initialize(mapload)
 	. = ..()
@@ -89,8 +89,8 @@
 	return TRUE
 
 /obj/structure/reagent_anvil/atom_deconstruct(disassembled = TRUE)
-	var/obj/item/stack/sheet/my_drop = new /obj/item/stack/sheet/mineral/plastitanium(get_turf(src))
-	my_drop.add(3)
+	var/obj/item/stack/sheet/my_drop = new /obj/item/stack/sheet/mineral/titanium(get_turf(src))
+	my_drop.add(1)
 	if(length(contents))
 		for(var/obj/contained in contents)
 			contained.forceMove(get_turf(src))
