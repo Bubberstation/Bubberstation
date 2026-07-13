@@ -22,3 +22,12 @@
 		/obj/item/stack/telecrystal = 1, //induces a limit on how many magazines you can make
 		/obj/item/food/donkpocket = 1,
 	)
+
+/datum/crafting_recipe/real_hoshi
+	result = /obj/item/gun/energy/modular_laser_rifle/carbine/recharging
+	reqs = list(
+		/obj/item/weaponcrafting/gunkit/nuclear = 1,
+		/obj/item/gun/energy/modular_laser_rifle/carbine = 1,
+	)
+	time = 10 SECONDS
+	category = CAT_WEAPON_RANGED

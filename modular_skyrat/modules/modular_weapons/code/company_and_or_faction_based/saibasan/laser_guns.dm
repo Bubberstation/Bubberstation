@@ -290,7 +290,17 @@
 	. = ..()
 	speak_up("emp", TRUE) // She gets very upset if you emp her
 
-#undef LONG_MOD_LASER_SPEECH
+/obj/item/gun/energy/modular_laser_rifle/carbine/recharging
+	name = "\improper Hoshi Modular Laser Carbine"
+	selfcharge = 1
+	expanded_examine_text = "The Hoshi carbine is the latest line of man-portable Martian weapons platforms from \
+		Cybersun Industries. Like her older sister weapon, the Hyeseong rifle, CI used funding aid provided by TerraGov \
+		to develop a portable weapon using the same modular weapon system as the Hyeseong, but unforunately lacking the plasma generator, but replaced with \
+		parts that make up the 'advanced' in an advanced energy gun. A lithe and mobile weapon, the Hoshi stars in close-quarters battle, trickshots, and area-of-effect blasts; though \
+		ineffective at ranged combat. Her onboard machine intelligence, at first devised to support the operator and \
+		manage the internal reactor, was originally shipped with a more energetic personality-- since influenced by 'negligence' \
+		from users in wiping the intelligence's memory before resale or transport."
+
 #undef SHORT_MOD_LASER_SPEECH
 #undef MOD_LASER_SPEECH_COOLDOWN
 #undef DEFAULT_RUNECHAT_GUN_COLOR
