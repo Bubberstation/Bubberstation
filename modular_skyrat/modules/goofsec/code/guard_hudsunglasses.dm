@@ -94,6 +94,7 @@
 	clothing_traits = list(TRAIT_SECURITY_HUD, TRAIT_MEDICAL_HUD)
 	greyscale_colors = "#585858#1d8fec"
 	glass_colour_type = /datum/client_colour/glass_colour/guard/medical
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.8, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/science
 	name = "scisec HUDsunglasses"
@@ -102,6 +103,7 @@
 	clothing_traits = list(TRAIT_SECURITY_HUD, TRAIT_RESEARCH_SCANNER)
 	greyscale_colors = "#585858#9900ff"
 	glass_colour_type = /datum/client_colour/glass_colour/guard/science
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.85, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 1)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering
 	name = "meson HUDsunglasses"
@@ -110,6 +112,7 @@
 	greyscale_colors = "#585858#1a7a3e"
 	vision_flags = SEE_TURFS
 	glass_colour_type = /datum/client_colour/glass_colour/guard/engineering
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.8, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering/update_extras(mob/living/wearer)
 	vision_flags = display_active ? SEE_TURFS : NONE
@@ -153,6 +156,7 @@
 	var/malfunctioning = FALSE
 	var/abuse_count = 0
 	COOLDOWN_DECLARE(switch_cooldown)
+	custom_materials = list(/datum/material/gold = SHEET_MATERIAL_AMOUNT * 5, /datum/material/diamond = SHEET_MATERIAL_AMOUNT, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.55, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
@@ -439,6 +443,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	glass_colour_type = /datum/client_colour/glass_colour/guard/blueshield
 	actions_types = list(/datum/action/item_action/toggle_wearable_hud, /datum/action/item_action/toggle/blueshield_tds)
 	var/threat_detection = TRUE
+	custom_materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT * 5, /datum/material/diamond = SHEET_MATERIAL_AMOUNT, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.55, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/blueshield/examine(mob/user)
 	. = ..()
@@ -476,6 +481,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	greyscale_colors = "#585858#ff69b4"
 	glass_colour_type = /datum/client_colour/glass_colour/guard/silly
 	COOLDOWN_DECLARE(honk_cooldown)
+	custom_materials = list(/datum/material/bananium = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.55, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/silly/Initialize(mapload)
 	. = ..()
