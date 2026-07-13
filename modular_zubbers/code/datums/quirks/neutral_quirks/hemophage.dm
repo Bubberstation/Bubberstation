@@ -35,6 +35,9 @@
 		TRAIT_VIRUSIMMUNE,
 	), QUIRK_TRAIT)
 
+	if(client_source.prefs.read_preference(/datum/preference/toggle/masquerade))
+		ADD_TRAIT(quirk_holder, TRAIT_MASQUERADE_FOOD, QUIRK_TRAIT)
+
 /datum/quirk/hemophage/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	var/static/list/organ_slots = list(
@@ -70,6 +73,9 @@
 		TRAIT_VIRUSIMMUNE,
 	), QUIRK_TRAIT)
 
+	if(client_source.prefs.read_preference(/datum/preference/toggle/masquerade))
+		REMOVE_TRAIT(quirk_holder, TRAIT_MASQUERADE_FOOD, QUIRK_TRAIT)
+
 	// This is going to be super messy and I'm 100% sure there's a better way to do this.
 	var/mob/living/carbon/carbon_holder = quirk_holder
 
@@ -94,6 +100,25 @@
 	new_stomach.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 	new_tongue.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
+/datum/quirk_constant_data/hemophage
+	associated_typepath = /datum/quirk/hemophage
+	customization_options = list(/datum/preference/toggle/masquerade)
+
+/datum/preference/toggle/masquerade
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_key = "masquerade_toggle"
+	savefile_identifier = PREFERENCE_CHARACTER
+	can_randomize = FALSE
+	default_value = FALSE
+
+/datum/preference/toggle/masquerade/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/toggle/masquerade/is_accessible(datum/preferences/preferences)
+	if (!..(preferences))
+		return FALSE
+
+	return "Hemophagia" in preferences.all_quirks
+
 // TO-DO:
-// - Add a toggle that grants TRAIT_MASQUERADE_FOOD
 // - Figure out how to convert sol weakness and pseudo-respiration
