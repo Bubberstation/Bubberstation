@@ -291,7 +291,6 @@
 	speak_up("emp", TRUE) // She gets very upset if you emp her
 
 /obj/item/gun/energy/modular_laser_rifle/carbine/recharging
-	name = "\improper Hoshi Modular Laser Carbine"
 	selfcharge = 1
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6, /datum/material/uranium = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT, /datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT)
 	expanded_examine_text = "The Hoshi carbine is the latest line of man-portable Martian weapons platforms from \
