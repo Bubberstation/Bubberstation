@@ -504,12 +504,12 @@
 	user.update_sight()
 
 /datum/antagonist/bloodsucker/proc/remove_invalid_quirks(mob/target)
-	var/datum/quirk/bad_quirk = owner.current.get_quirk(/datum/quirk/sol_weakness)
+	var/datum/quirk/bad_quirk = owner.current.get_quirk(/datum/quirk/hemophage)
 	if(!bad_quirk)
 		return
 	// silently remove the quirk if it's not valid
 	bad_quirk.remove_from_current_holder(TRUE)
-	owner.current.remove_quirk(/datum/quirk/sol_weakness)
+	owner.current.remove_quirk(/datum/quirk/hemophage)
 
 /// Name shown on antag list
 /datum/antagonist/bloodsucker/antag_listing_name()
