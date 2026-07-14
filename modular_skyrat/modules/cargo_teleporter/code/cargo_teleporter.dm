@@ -183,14 +183,17 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 /obj/item/cargo_teleporter/proc/flash_teleport(atom/movable/lifted_atom, turf/target_turf, turf/beacon_turf, effect_color)
 	new /obj/effect/temp_visual/decoy/cargo_teleport(target_turf, lifted_atom, effect_color)
 	new /obj/effect/temp_visual/decoy/cargo_teleport/arriving(beacon_turf, lifted_atom, effect_color)
+	playsound(target_turf, 'sound/effects/magic/Disable_Tech.ogg', 30, TRUE)
 	playsound(beacon_turf, 'sound/effects/magic/Disable_Tech.ogg', 30, TRUE)
 
 /// Snapshots the objects on a turf worth lifting. /obj typed, so mobs and turfs never come up.
 /obj/item/cargo_teleporter/proc/get_liftable_items(turf/target_turf)
 	var/list/liftable = list()
-	// /obj, not /obj/item. Crates and lockers are /obj/structure/closet and are the whole point.
 	for(var/obj/movable_content in target_turf)
-		if(movable_content.anchored || iseffect(movable_content))
+		// items and structures only. Crates and lockers are /obj/structure/closet and are the point.
+		if(!istype(movable_content, /obj/item) && !istype(movable_content, /obj/structure))
+			continue
+		if(movable_content.anchored)
 			continue
 		if(length(movable_content.get_all_contents_type(/mob/living))) // no smuggling people
 			continue
