@@ -7,6 +7,10 @@
 	/// The species handles cleanup on this
 	var/datum/species/protean/linked_species
 
+/obj/item/mod/core/protean/Destroy()
+	linked_species = null
+	return ..()
+
 /obj/item/mod/core/protean/charge_source()
 	if(isnull(linked_species))
 		return

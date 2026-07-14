@@ -86,10 +86,12 @@
 	race = /datum/species/protean
 
 /datum/species/protean/Destroy(force)
+	if(!QDELETED(species_modsuit))
+		INVOKE_ASYNC(src, PROC_REF(unassimilate_modsuit), null, TRUE)
 	QDEL_NULL(species_modsuit)
 	QDEL_NULL(protean_action)
 	owner = null
-	. = ..()
+	return ..()
 
 /datum/species/protean/on_species_gain(mob/living/carbon/human/gainer, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
@@ -97,10 +99,12 @@
 	equip_modsuit(gainer)
 	RegisterSignal(src, COMSIG_OUTFIT_EQUIP, PROC_REF(outfit_handling))
 	RegisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(organ_reject))
-	var/obj/item/mod/core/protean/core = species_modsuit.core
-	core?.linked_species = src
 	protean_action = new(src)
 	protean_action.Grant(owner)
+	var/obj/item/mod/core/protean/core = species_modsuit.core
+	if(!core)
+		CRASH("Protean: [gainer] failed to link to a core, and thus, have a functional suit!")
+	core.linked_species = src
 
 /datum/species/protean/proc/organ_reject(mob/living/source, obj/item/organ/inserted)
 	SIGNAL_HANDLER
@@ -122,16 +126,16 @@
 	organ.balloon_alert_to_viewers("rejected!", vision_distance = 1)
 
 /datum/species/protean/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
-	. = ..()
 	if(gainer)
 		UnregisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN)
 	if(species_modsuit.stored_modsuit)
-		species_modsuit.unassimilate_modsuit(owner, TRUE)
-	gainer.dropItemToGround(species_modsuit, TRUE)
+		species_modsuit.stored_modsuit.forceMove(get_turf(gainer))
+		unassimilate_modsuit(null, TRUE)
 	if(species_modsuit)
 		QDEL_NULL(species_modsuit)
 	protean_action.Remove(owner)
 	owner = null
+	return ..()
 
 /datum/species/protean/proc/equip_modsuit(mob/living/carbon/human/gainer)
 	species_modsuit = new()
@@ -187,12 +191,11 @@
 				continue
 			species_modsuit.retract(null, part, TRUE)
 
-	species_modsuit.cached_modules = species_modsuit.modules
+	species_modsuit.cached_modules += species_modsuit.modules
 	species_modsuit.stored_modsuit = to_assimilate
 	species_modsuit.stored_theme = species_modsuit.theme
-	species_modsuit.ui_theme = species_modsuit.stored_modsuit.ui_theme
+	species_modsuit.complexity_max = species_modsuit.stored_modsuit.complexity_max
 	species_modsuit.theme = species_modsuit.stored_modsuit.theme
-	species_modsuit.skin = species_modsuit.stored_modsuit.skin
 	species_modsuit.name = species_modsuit.stored_modsuit.name
 	species_modsuit.desc = species_modsuit.stored_modsuit.desc
 	species_modsuit.extended_desc = species_modsuit.stored_modsuit.extended_desc
@@ -206,11 +209,73 @@
 		species_modsuit.stored_modsuit.uninstall(module)
 		if(species_modsuit.install(module, owner, TRUE))
 			continue
+	species_modsuit.theme.set_up_parts(species_modsuit, species_modsuit.theme.default_skin)
 	species_modsuit.update_static_data_for_all_viewers()
 
-/datum/species/protean/proc/assimilate_theme()
+/datum/species/protean/proc/unassimilate_modsuit(mob/living/user, forced = FALSE)
+	if(!species_modsuit.stored_modsuit)
+		to_chat(user, span_warning("There is no assimilated suit."))
+		return
+	if(species_modsuit.active && !forced)
+		user.balloon_alert(user, "deactivate modsuit")
+		return
+	if(!(user?.has_active_hand()) && !forced)
+		user.balloon_alert(user, "need active hand")
+		return
 
-/datum/species/protean/proc/remove_modsuit_assimilation()
+	for(var/obj/item/part in species_modsuit.get_parts())
+		if(part.loc == src)
+			continue
+		species_modsuit.retract(null, part, instant = TRUE)
+	species_modsuit.complexity_max = initial(species_modsuit.complexity_max)
+
+	// Module handling
+	for(var/obj/item/mod/module in species_modsuit.modules) // Transfer back every module
+		if(locate(module) in species_modsuit.cached_modules)
+			continue
+		species_modsuit.uninstall(module, user)
+		if(!species_modsuit.stored_modsuit.install(module, user, TRUE))
+			to_chat(user, span_notice("[module] has fallen to the floor!"))
+			module.forceMove(get_turf(species_modsuit))
+		species_modsuit.cached_modules -= module
+
+	// Item handling
+	for(var/obj/item/stuff in species_modsuit.atom_storage?.real_location.contents)
+		if(!species_modsuit.stored_modsuit.atom_storage)
+			species_modsuit.atom_storage.remove_all(owner)
+			break
+		species_modsuit.stored_modsuit.atom_storage.attempt_insert(stuff, owner, TRUE, messages = FALSE)
+
+	species_modsuit.theme = species_modsuit.stored_theme
+	species_modsuit.stored_theme = null
+	species_modsuit.theme.set_up_parts(species_modsuit, species_modsuit.theme.default_skin)
+	species_modsuit.name = initial(species_modsuit.name)
+	species_modsuit.desc = initial(species_modsuit.desc)
+	species_modsuit.extended_desc = initial(species_modsuit.extended_desc)
+
+	if(user?.can_put_in_hand(species_modsuit.stored_modsuit, user.active_hand_index))
+		user.put_in_hand(species_modsuit.stored_modsuit, user.active_hand_index)
+
+	species_modsuit.stored_modsuit = null
+	update_static_data_for_all_viewers()
+
+/datum/species/protean/proc/assimilate_theme(mob/user, plating)
+	var/obj/item/mod/construction/plating/plates = plating
+	var/datum/mod_theme/the_theme = GLOB.mod_themes[plates.theme]
+
+	species_modsuit.name = initial(species_modsuit.name)
+	species_modsuit.desc = initial(species_modsuit.desc)
+
+	for(var/obj/item/part in species_modsuit.get_parts())
+		part.name = initial(part.name)
+		part.desc = initial(part.desc)
+		if(part.loc == src)
+			continue
+		species_modsuit.retract(null, part, instant = TRUE)
+
+	species_modsuit.theme = the_theme
+	species_modsuit.theme.set_up_parts(species_modsuit, the_theme.default_skin)
+	update_static_data_for_all_viewers()
 
 /datum/species/protean/get_default_mutant_bodyparts()
 	return list(
