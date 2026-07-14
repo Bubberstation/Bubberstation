@@ -32,10 +32,10 @@
 
 /// We don't charge in a standard way
 /obj/item/mod/core/protean/add_charge(amount)
-	return FALSE
+	return TRUE
 
 /obj/item/mod/core/protean/subtract_charge(amount)
-	return FALSE
+	return TRUE
 
 /obj/item/mod/core/protean/check_charge(amount)
 	var/obj/item/organ/stomach/protean/stomach = charge_source()

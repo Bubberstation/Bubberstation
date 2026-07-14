@@ -2,7 +2,7 @@
 	id = SPECIES_PROTEAN
 	examine_limb_id = SPECIES_PROTEAN
 
-	name = "\improper Protean"
+	name = "protean"
 	sexes = TRUE
 
 	siemens_coeff = 1.5 // Electricty messes you up.
@@ -162,14 +162,11 @@
 	var/obj/item/mod/control/suit = outfit.back
 	if(ispath(suit))
 		suit = new outfit.back
-		INVOKE_ASYNC(src, PROC_REF(assimilate_modsuit), owner, suit, TRUE)
-		INVOKE_ASYNC(species_modsuit, TYPE_PROC_REF(/obj/item/mod/control, quick_activation))
+		ASYNC
+			assimilate_modsuit(owner, suit, TRUE)
+			species_modsuit.quick_activation()
 
 	var/obj/item/mod/module/storage/storage = locate() in species_modsuit.modules
-	if(!storage)
-		storage = new /obj/item/mod/module/storage/large_capacity
-		species_modsuit.install(storage, owner, TRUE)
-
 	LAZYINITLIST(outfit.backpack_contents)
 	outfit.backpack_contents += /obj/item/stack/sheet/iron/twenty
 	for(var/path in outfit.backpack_contents)
@@ -199,6 +196,7 @@
 	species_modsuit.name = species_modsuit.stored_modsuit.name
 	species_modsuit.desc = species_modsuit.stored_modsuit.desc
 	species_modsuit.extended_desc = species_modsuit.stored_modsuit.extended_desc
+	/// module handling
 	for(var/obj/item/mod/module/module in species_modsuit.stored_modsuit.modules)
 		if(istype(module, /obj/item/mod/module/storage))
 			var/obj/item/mod/module/storage/existing_storage = locate() in species_modsuit.modules
