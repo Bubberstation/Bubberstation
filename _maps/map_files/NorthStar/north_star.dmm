@@ -2474,7 +2474,6 @@
 /area/station/commons/fitness)
 "aEP" = (
 /obj/structure/chair/sofa/corp/left,
-/obj/machinery/firealarm/directional/north,
 /turf/open/floor/carpet,
 /area/station/command/heads_quarters/captain)
 "aES" = (
@@ -26567,11 +26566,15 @@
 /area/station/hallway/floor3/aft)
 "gGO" = (
 /obj/machinery/camera/directional/west,
-/obj/structure/extinguisher_cabinet/directional/west,
+/obj/structure/closet/secure_closet/blueshield,
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/obj/structure/closet/secure_closet/blueshield,
+/obj/machinery/vending/wallmed/directional/west,
+/obj/item/mod/control/pre_equipped/blueshield,
+/obj/item/storage/medkit/combat_surgeon/stocked,
+/obj/item/storage/medkit/regular,
+/obj/item/storage/medkit/tactical/blueshield,
 /turf/open/floor/wood/tile,
 /area/station/command/heads_quarters/captain)
 "gGX" = (
@@ -51722,10 +51725,23 @@
 /turf/open/floor/plating,
 /area/station/maintenance/floor1/port)
 "mNI" = (
-/obj/machinery/vending/snack/orange,
+/obj/structure/closet/secure_closet/tac{
+	req_access = list("captain")
+	},
+/obj/item/shield/riot,
+/obj/item/gun_maintenance_supplies,
+/obj/item/screwdriver,
+/obj/item/clothing/head/helmet/toggleable/riot{
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/armor/riot,
+/obj/item/storage/toolbox/ammobox/wt550m9,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/item/mod/module/pepper_shoulders,
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
+/obj/structure/reagent_dispensers/wall/peppertank/directional/west,
 /turf/open/floor/wood/tile,
 /area/station/command/heads_quarters/captain)
 "mNT" = (
@@ -60779,6 +60795,7 @@
 "oYL" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
+/obj/machinery/photocopier/prebuilt,
 /turf/open/floor/carpet,
 /area/station/command/heads_quarters/captain)
 "oYT" = (
@@ -65445,7 +65462,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/obj/machinery/photocopier/prebuilt,
+/obj/machinery/vending/snack/orange,
 /turf/open/floor/wood/tile,
 /area/station/command/heads_quarters/captain)
 "qhE" = (
@@ -74542,6 +74559,7 @@
 "szb" = (
 /obj/structure/chair/sofa/corp/right,
 /obj/machinery/light/directional/north,
+/obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/carpet,
 /area/station/command/heads_quarters/captain)
 "szd" = (
