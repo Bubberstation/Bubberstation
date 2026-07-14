@@ -185,8 +185,6 @@
 		return
 	. = ..()
 
-#undef COFFIN_HEALING_COST
-
 /datum/quirk_constant_data/hemophage
 	associated_typepath = /datum/quirk/hemophage
 	customization_options = list(/datum/preference/toggle/masquerade,
