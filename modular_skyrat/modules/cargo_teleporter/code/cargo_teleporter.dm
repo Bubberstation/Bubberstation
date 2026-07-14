@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	desc = "An item that can deploy a handful of telebeacon markers, allowing them to teleport items to their beacon network afterwards."
 	icon = 'modular_skyrat/modules/cargo_teleporter/icons/cargo_teleporter.dmi'
 	icon_state = "cargo_tele"
-	// no worn_icon_state on purpose, and this is how the worn_icons unit test is told so
+	// no worn_icon_state on purpose. This is how the worn_icons unit test is told so
 	worn_icon = 'modular_skyrat/modules/cargo_teleporter/icons/cargo_teleporter.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_SUITSTORE
@@ -45,21 +45,18 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 
 /obj/item/cargo_teleporter/Initialize(mapload)
 	. = ..()
-	// small enough to clip to a belt without anyone noticing, and it has no worn sprite, so do not
-	// ask the mob to draw one. Otherwise it renders the missing texture checkerboard.
-	ADD_TRAIT(src, TRAIT_NO_WORN_ICON, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_NO_WORN_ICON, INNATE_TRAIT) // it has no worn sprite and does not want one
 	update_appearance(UPDATE_OVERLAYS)
 
 /obj/item/cargo_teleporter/Destroy()
 	deltimer(recharge_timer)
 	QDEL_NULL(lift_beam)
 	recall_beacons()
-	marker_children = null
 	return ..()
 
 /obj/item/cargo_teleporter/proc/recall_beacons()
-	// each beacon pulls itself out of marker_children as it dies, and mutating a list while
-	// QDEL_LIST walks it makes DM skip entries. Hand the list off first.
+	// hand the list off first. Beacons pull themselves out of it as they die, and DM skips entries
+	// when a list mutates under a for loop mid-iteration.
 	var/list/obj/effect/decal/cleanable/cargo_mark/recalled = marker_children
 	marker_children = list()
 	QDEL_LIST(recalled)
@@ -92,7 +89,7 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 
 /obj/item/cargo_teleporter/set_painting_tool_color(chosen_color)
 	. = ..()
-	// only the next beacon is painted. Beacons already in the field keep whatever colour they were staked out with, so one teleporter can mark up engineering, security and the bar in three different colours.
+	// only the next beacon is painted. Ones already staked out keep their colour.
 	beacon_color = chosen_color
 
 /obj/item/cargo_teleporter/item_ctrl_click(mob/user)
@@ -107,7 +104,11 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	if(length(marker_children) >= CARGO_TELEPORTER_MAX_MARKERS)
 		balloon_alert(user, "beacon limit reached!")
 		return
-	var/obj/effect/decal/cleanable/cargo_mark/spawned_marker = new(get_turf(src))
+	var/turf/stake_turf = get_turf(src)
+	if(locate(/obj/effect/decal/cleanable/cargo_mark) in stake_turf)
+		balloon_alert(user, "beacon already here!")
+		return
+	var/obj/effect/decal/cleanable/cargo_mark/spawned_marker = new(stake_turf)
 	spawned_marker.parent_item = src
 	spawned_marker.recolor(beacon_color)
 	marker_children += spawned_marker
@@ -147,8 +148,7 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 		return ITEM_INTERACT_BLOCKING
 
 	lifting = TRUE
-	// beam from the user, not from src. A held item sits in the mob's contents and has no world
-	// coordinates, so beaming from it anchors the line to map corner (0,0).
+	// beam from the user, not src. A held item has no world coordinates, so it anchors to (0,0).
 	lift_beam = user.Beam(target_turf, icon_state = "b_beam", beam_color = choice.beacon_color, maxdistance = 2)
 	var/lifted = lift_turf(user, target_turf, beacon_turf, choice.beacon_color)
 	QDEL_NULL(lift_beam)
@@ -160,27 +160,17 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	begin_recharge()
 	return ITEM_INTERACT_SUCCESS
 
-/**
- * Walks the target turf and feeds items to the beacon one at a time.
- *
- * The first item goes instantly ("lifted" is still 0, so the do_after is skipped). Every item
- * after it costs a short do_after, so the pad is never asked to warp an entire room in a single
- * tick, and "lifted" doubles as both the running count and the "have we sent one yet" flag.
- * It keeps working the tile for as long as the operator holds still for it. Returns how many
- * items actually made the trip.
- */
+/// Feeds items to the beacon one at a time. Returns how many made the trip.
 /obj/item/cargo_teleporter/proc/lift_turf(mob/living/user, turf/target_turf, turf/beacon_turf, beam_color)
+	// the first item is free, every one after costs a do_after, so lifted doubles as the count and
+	// the "sent one yet" flag. The turf is snapshotted before the loop starts sleeping.
 	var/lifted = 0
-	// snapshotted up front rather than walked live off target_turf. A do_after sleeps, and DM
-	// silently skips entries when a list mutates out from under a for loop that is mid-iteration.
-	// That silent skip is exactly the shape of the bug that could crash the server on a big pile,
-	// so the turf is only ever read once, before anything starts moving.
 	for(var/obj/item/movable_content as anything in get_liftable_items(target_turf))
 		if(lifted && !do_after(user, CARGO_TELEPORTER_LIFT_DELAY, user))
 			break
 		if(QDELETED(src) || !user.is_holding(src))
 			break
-		// the world moves while we sleep, so nothing is trusted until the moment it is lifted
+		// the world moves while we sleep, so trust nothing until the moment it lifts
 		if(QDELETED(movable_content) || movable_content.loc != target_turf || movable_content.anchored)
 			continue
 		if(!do_teleport(movable_content, beacon_turf, no_effects = TRUE))
@@ -195,28 +185,24 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	new /obj/effect/temp_visual/decoy/cargo_teleport/arriving(beacon_turf, lifted_atom, effect_color)
 	playsound(beacon_turf, 'sound/effects/magic/Disable_Tech.ogg', 30, TRUE)
 
-/// Snapshots the /obj/items on a turf that the teleporter is willing to lift, in contents order.
+/// Snapshots the items on a turf worth lifting. Typed loop, so mobs and effects never come up.
 /obj/item/cargo_teleporter/proc/get_liftable_items(turf/target_turf)
 	var/list/liftable = list()
-	// typed for loop, so the only thing yielded here is /obj/item and its subtypes to begin with.
-	// No mob, no effect, no observer overhead in the first place, and nothing left to check for it.
 	for(var/obj/item/movable_content in target_turf)
 		if(movable_content.anchored)
 			continue
-		// still worth a check: refuse to warp away a crate or backpack with someone hiding in it
-		if(length(movable_content.get_all_contents_type(/mob/living)))
+		if(length(movable_content.get_all_contents_type(/mob/living))) // no smuggling people
 			continue
 		liftable += movable_content
 	return liftable
 
-/// Starts the recharge cycle and schedules the ready chime.
 /obj/item/cargo_teleporter/proc/begin_recharge()
 	COOLDOWN_START(src, use_cooldown, CARGO_TELEPORTER_COOLDOWN)
 	update_appearance(UPDATE_OVERLAYS)
 	deltimer(recharge_timer)
 	recharge_timer = addtimer(CALLBACK(src, PROC_REF(finish_recharge)), CARGO_TELEPORTER_COOLDOWN, TIMER_STOPPABLE)
 
-/// Chimes and flips the light back to green once the capacitor is full.
+/// Chimes and greens the light once the capacitor is full.
 /obj/item/cargo_teleporter/proc/finish_recharge()
 	recharge_timer = null
 	update_appearance(UPDATE_OVERLAYS)
@@ -251,13 +237,7 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 
-/**
- * The bluespace smear left behind by a lifted object.
- *
- * Clones the object's own appearance, so a crate smears out as a crate. The departing copy is
- * squeezed thin and stretched tall as the pad pulls it into bluespace; the arriving copy does the
- * same in reverse, settling into shape as it pours back out at the beacon.
- */
+/// The bluespace smear left by a lifted object. Clones its appearance, so a crate smears as a crate.
 /obj/effect/temp_visual/decoy/cargo_teleport
 	duration = 0.6 SECONDS
 	/// how far the smear is squeezed on the horizontal as it goes
@@ -271,17 +251,15 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 		add_atom_colour(effect_color, TEMPORARY_COLOUR_PRIORITY)
 	play_smear()
 
-/// The shape the object is wrung into on its way through bluespace.
 /obj/effect/temp_visual/decoy/cargo_teleport/proc/smear_matrix()
 	var/matrix/smear = matrix()
 	smear.Scale(smear_width, smear_height)
 	return smear
 
-/// Wrings the object out and lets it fade. Overridden by the arriving copy, which runs it backwards.
 /obj/effect/temp_visual/decoy/cargo_teleport/proc/play_smear()
 	animate(src, transform = smear_matrix(), alpha = 0, time = duration, easing = SINE_EASING | EASE_IN)
 
-/// The same smear, run backwards, for the object resolving at the far end.
+/// The same smear run backwards, for the object resolving at the far end.
 /obj/effect/temp_visual/decoy/cargo_teleport/arriving/play_smear()
 	transform = smear_matrix()
 	alpha = 0
@@ -294,6 +272,8 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	icon = 'modular_skyrat/modules/cargo_teleporter/icons/cargo_teleporter.dmi'
 	icon_state = "marker"
 	obj_flags = UNIQUE_RENAME | RENAME_NO_DESC
+	// cleanables merge with their own type on a turf by default, which had beacons quietly eating each other
+	mergeable_decal = FALSE
 	///the teleporter that staked out this beacon
 	var/obj/item/cargo_teleporter/parent_item
 	///the colour this beacon was staked out with. Read back by the teleporter to tint the beam and the shimmer.
@@ -316,12 +296,14 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 
 /obj/effect/decal/cleanable/cargo_mark/Destroy()
 	if(parent_item)
-		LAZYREMOVE(parent_item.marker_children, src)
+		// not LAZYREMOVE. It nulls the list once it empties, and length(null) is 0, which silently
+		// uncaps the beacon limit forever.
+		parent_item.marker_children -= src
 		parent_item = null
 	GLOB.cargo_marks -= src
 	return ..()
 
-/// Repaints this beacon, and the light it throws, to match its parent teleporter.
+/// Repaints this beacon and the light it throws.
 /obj/effect/decal/cleanable/cargo_mark/proc/recolor(new_color)
 	beacon_color = new_color
 	add_atom_colour(new_color, FIXED_COLOUR_PRIORITY)
