@@ -48,6 +48,16 @@
 			return
 		add_sun_timer_hud()
 
+/datum/quirk/hemophage/post_add()
+	if(quirk_holder.client?.prefs.read_preference(/datum/preference/toggle/pseudo_respiration))
+		var/mob/living/carbon/human/breather = quirk_holder
+		if(!istype(breather))
+			return
+		REMOVE_TRAIT(breather, TRAIT_NOBREATH, QUIRK_TRAIT)
+		var/obj/item/organ/lungs/lungs_added = new()
+		lungs_added.Insert(breather, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+		breather.dna.species.mutantlungs = lungs_added.type
+
 /datum/quirk/hemophage/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	var/static/list/organ_slots = list(
@@ -81,15 +91,12 @@
 		TRAIT_NOHUNGER,
 		TRAIT_NOBREATH,
 		TRAIT_VIRUSIMMUNE,
+		TRAIT_MASQUERADE_FOOD,
 	), QUIRK_TRAIT)
 
-	if(client_source?.prefs.read_preference(/datum/preference/toggle/masquerade))
-		REMOVE_TRAIT(quirk_holder, TRAIT_MASQUERADE_FOOD, QUIRK_TRAIT)
-
-	if(client_source?.prefs.read_preference(/datum/preference/toggle/sol_weakness))
-		UnregisterSignal(quirk_holder, COMSIG_MOB_HEMO_BLOOD_REGEN_TICK)
-		SSsunlight.remove_sun_sufferer(quirk_holder)
-		UnregisterSignal(SSsunlight, list(COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
+	UnregisterSignal(quirk_holder, COMSIG_MOB_HEMO_BLOOD_REGEN_TICK)
+	SSsunlight.remove_sun_sufferer(quirk_holder)
+	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
 
 	// This is going to be super messy and I'm 100% sure there's a better way to do this.
 	var/mob/living/carbon/carbon_holder = quirk_holder
@@ -184,7 +191,7 @@
 	associated_typepath = /datum/quirk/hemophage
 	customization_options = list(/datum/preference/toggle/masquerade,
 		/datum/preference/toggle/sol_weakness,
-//		/datum/preference/toggle/pseudo_respiration,
+		/datum/preference/toggle/pseudo_respiration,
 	)
 
 /datum/preference/toggle/masquerade
@@ -219,7 +226,20 @@
 
 	return "Hemophagia" in preferences.all_quirks
 
-// TO-DO:
-// - Figure out how to convert sol weakness and pseudo-respiration
+/datum/preference/toggle/pseudo_respiration
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_key = "pseudo_respiration_toggle"
+	savefile_identifier = PREFERENCE_CHARACTER
+	can_randomize = FALSE
+	default_value = FALSE
+
+/datum/preference/toggle/pseudo_respiration/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/toggle/pseudo_respiration/is_accessible(datum/preferences/preferences)
+	if (!..(preferences))
+		return FALSE
+
+	return "Hemophagia" in preferences.all_quirks
 
 #undef COFFIN_HEALING_COST
