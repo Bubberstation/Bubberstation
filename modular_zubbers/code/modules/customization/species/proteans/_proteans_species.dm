@@ -166,7 +166,6 @@
 			assimilate_modsuit(owner, suit, TRUE)
 			species_modsuit.quick_activation()
 
-	var/obj/item/mod/module/storage/storage = locate() in species_modsuit.modules
 	LAZYINITLIST(outfit.backpack_contents)
 	outfit.backpack_contents += /obj/item/stack/sheet/iron/twenty
 	for(var/path in outfit.backpack_contents)
