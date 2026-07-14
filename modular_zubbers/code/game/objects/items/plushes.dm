@@ -19,8 +19,8 @@
 	icon_state = "plushie_mal0"
 
 /obj/item/toy/plush/nobl
-	name = "fluffy skog plushie"
-	desc = "It seems to be a small canine, not necessarily latex like you would suspect for some reason, but extremely squishy."
+	name = "classic fluffy skog plushie"
+	desc = "It seems to be a small canine, not necessarily latex like you would suspect for some reason, but extremely squishy. This one is a limited edition old discontinued plushie model."
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "nobl"
 	squeak_override = list('modular_zubbers/sound/misc/dog_toy.ogg' = 1)
@@ -228,6 +228,59 @@
 	icon_state = "pinkproot"
 	gender = FEMALE
 	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/dwoop.ogg' = 1)
+	var/lewd = FALSE
+
+/obj/item/toy/plush/suspicious_protogen/Initialize(mapload)
+	. = ..()
+	update_plush_state()
+
+/obj/item/toy/plush/suspicious_protogen/proc/update_plush_state()
+	if(lewd)
+		name = "\improper Extra suspicious protogen plush"
+		icon_state = "pinkproot"
+		hitsound = null
+	else
+		name = "\improper Suspicious protogen plush"
+		icon_state = "pinkproot"
+		hitsound = initial(hitsound)
+	inhand_icon_state = null
+	update_appearance()
+	update_inhand_icon()
+
+/obj/item/toy/plush/suspicious_protogen/examine(mob/user)
+	. = ..()
+	if(lewd)
+		. += span_purple("The zipper in her crotch is opened, exposing the secret fleshlight inside the plushie.")
+
+/obj/item/toy/plush/suspicious_protogen/update_desc()
+	..()
+	if(lewd)
+		desc = "A very suspicious pink looking protogen plushie with a well lubed tight hole underneath, perfect for fun times and stress relieving."
+	else
+		desc = "A suspicious pink looking protogen plushie commonly seen roaming the station almost everywhere, perfect for cuddling when you feel upset at something."
+
+/obj/item/toy/plush/suspicious_protogen/click_ctrl_shift(mob/user)
+	lewd = !lewd
+	if(lewd)
+		user.visible_message(span_notice("[user] unzips [src]"), span_notice("You unzip [src], revealing a secret hole in the plushie."))
+		playsound(user, 'sound/items/zip/zip.ogg', 50, TRUE)
+	else
+		user.visible_message(span_notice("[user] zips [src] back up."), span_notice("You zip [src]. Concealing her secret hole."))
+		playsound(user, 'sound/items/zip/zip_up.ogg', 50, TRUE)
+	update_plush_state()
+	return TRUE
+
+/obj/item/toy/plush/suspicious_protogen/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+	if(!lewd)
+		return ..()
+	var/obj/item/clothing/sextoy/fleshlight/proxy = new(loc)
+	proxy.name = name
+	proxy.desc = desc
+	proxy.icon = icon
+	proxy.icon_state = icon_state
+	. = proxy.attack(target, user)
+	playsound(user, 'modular_skyrat/modules/emotes/sound/emotes/dwoop.ogg', 50, TRUE)
+	qdel(proxy)
 
 // Plush for ZeferwasnttakenFR
 /obj/item/toy/plush/foxy_plush
@@ -729,6 +782,13 @@
 	update_appearance()
 	update_inhand_icon()
 
+/obj/item/toy/plush/aeri/update_desc()
+	..()
+	if(clothed)
+		desc = "A highly controversial silicone 'plushie' modeled after its infamous namesake. Pulled from most storefronts after a spectacular public backlash, it now survives mainly through grey-market resellers. Rumor has it a few limited-run units shipped with a functional handheld railgun."
+	else
+		desc = "Without the outfit, the 'plushie' label becomes much harder to defend. Beneath the clothing is a glossy, stretchable silicone shell with ribbed orifices and breasts that experts have described as 'Fuckable'."
+
 /obj/item/toy/plush/aeri/examine(mob/user)
 	. = ..()
 	if(clothed)
@@ -828,3 +888,196 @@
 	worn_icon_state = "milky"
 	icon_state = "milky"
 	inhand_icon_state = "milky"
+
+//Plush for Slicerv
+/obj/item/toy/plush/tangerine
+	name = "\improper Citrus teshari plushie"
+	desc = "A traffic cone, no wait... It's a cute fluffy orange teshari with a cloak, it smells like tangerines."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "tangie" //sprited by BitSynergy
+	attack_verb_simple = list("fluff", "chirp", "peck")
+	squeak_override = list('modular_skyrat/modules/emotes/sound/voice/peep_once.ogg' = 1)
+	gender = MALE
+
+/obj/item/toy/plush/tangerine/interact(mob/user)
+	playsound(user, 'modular_skyrat/modules/emotes/sound/voice/trills.ogg', 50, TRUE)
+
+// Updated plush for Noble
+/obj/item/toy/plush/noble	// Updated version of item/toy/plush/nobl
+	name = "\improper Medical skulldog plushie"
+	desc = "A small and fluffy skulldog plushie wearing a tiny paramedic coat, he's extremely squishy."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "nobl2"
+	squeak_override = list('modular_zubbers/sound/misc/dog_toy.ogg' = 1)
+	var/clothed = TRUE
+
+/obj/item/toy/plush/noble/Initialize(mapload)
+	. = ..()
+	update_plush_state()
+
+/obj/item/toy/plush/noble/proc/update_plush_state()
+	if(clothed)
+		name = "\improper Medical skulldog plushie"
+		icon_state = "nobl2" //sprited by BitSynergy
+		squeak_override = list('modular_zubbers/sound/misc/dog_toy.ogg' = 1)
+		hitsound = initial(hitsound)
+	else
+		name = "\improper Fluffy skulldog plushie"
+		icon_state = "nobl2-alt"
+		squeak_override = list('modular_zubbers/sound/misc/dog_toy.ogg' = 1)
+		hitsound = null
+	inhand_icon_state = null
+	update_appearance()
+	update_inhand_icon()
+
+/obj/item/toy/plush/noble/examine(mob/user)
+	. = ..()
+	if(clothed)
+		. += span_purple("Alt-click to undress this plushie.")
+	else
+		. += span_purple("Alt-click to dress this plushie back up.")
+
+/obj/item/toy/plush/noble/update_desc() // update_plush_state() doesn't update the description properly but this worked for me
+	..()
+	if(clothed)
+		desc = "A small and fluffy skulldog plushie wearing a tiny paramedic coat, he's extremely squishy."
+	else
+		desc = "A small and fluffy... Good grief he's naked! A naked and squishy skulldog plushie, you notice it has been modified with a conveniently placed hole underneath."
+
+/obj/item/toy/plush/noble/click_alt(mob/user)
+	clothed = !clothed
+	if(clothed)
+		user.visible_message(span_notice("[user] dresses the [src] back up."), span_notice("You dress the [src] back up."))
+		playsound(user, 'sound/items/zip/zip_up.ogg', 50, TRUE)
+	else
+		user.visible_message(span_notice("[user] undresses the [src], how scandalous!"), span_notice("You undress the [src]. You notice a tight hole under the plushie..."))
+		playsound(user, 'sound/items/zip/zip.ogg', 50, TRUE)
+	update_plush_state()
+	return TRUE
+
+/obj/item/toy/plush/noble/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+	if(clothed)
+		return ..()
+	var/obj/item/clothing/sextoy/fleshlight/proxy = new(loc)
+	proxy.name = name
+	proxy.desc = desc
+	proxy.icon = icon
+	proxy.icon_state = icon_state
+	. = proxy.attack(target, user)
+	playsound(user, 'modular_zubbers/sound/misc/dog_toy.ogg', 50, TRUE)
+	qdel(proxy)
+
+// Plush for Bit_Synergy
+/obj/item/toy/plush/blue_synth
+	name = "\improper Blue synth plushie"
+	desc = "A grumpy looking experimental synth plushie, his unamused gaze stares blankly into the distance, it has a beautiful fluffy glowing fiber optic mane. \
+	It has been roughly repaired with duct tape and his visor seems to glitch every now and then but he's cuddly as always."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "bluesynth" //sprited by BitSynergy
+	attack_verb_continuous = list("beeps")
+	attack_verb_simple = list("beep")
+	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/twobeep.ogg' = 1)
+	gender = MALE
+
+/obj/item/toy/plush/blue_synth/examine(mob/user)
+	. = ..()
+	. += span_warning("Warning label: DO NOT MICROWAVE")
+
+/obj/item/toy/plush/blue_synth/microwave_act(obj/machinery/microwave/microwave_source, mob/microwaver, randomize_pixel_offset)
+	..()
+	microwave_source.spark()
+	explosion(src, heavy_impact_range = 1, light_impact_range = 2)
+
+/obj/item/toy/plush/protective_protogen
+	name = "\improper Protective protogen plushie"
+	desc = "A protective pink looking protogen plushie with quite the generous and defensive mindset, \
+		a critter that will most likely always be around to make one feel better and cheer them up. \
+		This is the emotional support you need when the real thing isn't around, perfect for spilling your thoughts and worries into, it's unbearably soft..."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "dominic_new"
+	gender = MALE
+	squeak_override = list('modular_skyrat/modules/emotes/sound/emotes/dwoop.ogg' = 1)
+	var/obj/item/inserted_item = null
+	var/static/list/contained_item = list(
+		/obj/item/clothing/sextoy/dildo,
+	)
+
+/obj/item/toy/plush/protective_protogen/Initialize(mapload)
+	. = ..()
+	if(inserted_item)
+		inserted_item = new inserted_item(src)
+
+/obj/item/toy/plush/protective_protogen/Destroy()
+	if(istype(inserted_item))
+		QDEL_NULL(inserted_item)
+	return ..()
+
+/obj/item/toy/plush/protective_protogen/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	. = ..()
+	if(.)
+		return .
+	if(!is_type_in_list(tool, contained_item))
+		return NONE
+	if(!user.transferItemToLoc(tool, src))
+		return ITEM_INTERACT_BLOCKING
+	else
+		balloon_alert(user, "attached [tool]")
+		inserted_item = tool
+		playsound(src, 'modular_zubbers/sound/lewd/rubber3.ogg', 50, TRUE)
+		update_plush_state()
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/toy/plush/protective_protogen/proc/remove_item(mob/user)
+	if(inserted_item)
+		balloon_alert(user, "removed [inserted_item]")
+		user.put_in_hands(inserted_item)
+		inserted_item = null
+		playsound(src, 'modular_zubbers/sound/lewd/rubber2.ogg', 50, TRUE)
+		update_plush_state()
+
+/obj/item/toy/plush/protective_protogen/click_alt(mob/user)
+	remove_item(user)
+	return CLICK_ACTION_SUCCESS
+
+/obj/item/toy/plush/protective_protogen/proc/update_plush_state()
+	if(!inserted_item)
+		name = "\improper Protective protogen plushie"
+		icon_state = "dominic_new"
+		hitsound = initial(hitsound)
+	else
+		icon_state = "dominic_dildo"
+		hitsound = null
+	inhand_icon_state = null
+	update_appearance()
+	update_inhand_icon()
+
+/obj/item/toy/plush/protective_protogen/examine(mob/user)
+	. = ..()
+	if(!inserted_item)
+		. += span_purple("You can attach a dildo to this plushie.")
+	else
+		. += span_purple("Alt-click to remove the dildo.")
+
+/obj/item/toy/plush/protective_protogen/update_desc()
+	..()
+	if(!inserted_item)
+		desc = "A protective pink looking protogen plushie with quite the generous and defensive mindset, \
+		a critter that will most likely always be around to make one feel better and cheer them up. \
+		This is the emotional support you need when the real thing isn't around, perfect for spilling your thoughts and worries into, it's unbearably soft..."
+	else
+		desc = "A protective pink looking protogen plushie with quite the generous and defensive mindset, \
+		a critter that will most likely always be around to make one feel better and cheer them up. \
+		This is the emotional support you need when the real thing isn't around, perfect for spilling your thoughts and worries into, it's unbearably soft.. \
+		The attached dildo seems to have changed into a cyan-colored knotted dick, and a hefty set of nuts. It looks and feels almost too real..."
+
+/obj/item/toy/plush/protective_protogen/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+	if(!inserted_item)
+		return ..()
+	var/obj/item/clothing/sextoy/dildo/proxy = new(loc)
+	proxy.name = name
+	proxy.desc = desc
+	proxy.icon = icon
+	proxy.icon_state = icon_state
+	. = proxy.attack(target, user)
+	playsound(user, 'modular_skyrat/modules/emotes/sound/emotes/dwoop.ogg', 50, TRUE)
+	qdel(proxy)
