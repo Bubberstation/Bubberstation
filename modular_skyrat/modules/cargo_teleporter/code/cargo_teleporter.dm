@@ -195,8 +195,6 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 			continue
 		if(movable_content.anchored)
 			continue
-		if(length(movable_content.get_all_contents_type(/mob/living))) // no smuggling people
-			continue
 		liftable += movable_content
 	return liftable
 
