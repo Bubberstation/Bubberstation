@@ -165,7 +165,7 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	// the first item is free, every one after costs a do_after, so lifted doubles as the count and
 	// the "sent one yet" flag. The turf is snapshotted before the loop starts sleeping.
 	var/lifted = 0
-	for(var/obj/item/movable_content as anything in get_liftable_items(target_turf))
+	for(var/obj/movable_content as anything in get_liftable_items(target_turf))
 		if(lifted && !do_after(user, CARGO_TELEPORTER_LIFT_DELAY, user))
 			break
 		if(QDELETED(src) || !user.is_holding(src))
@@ -185,11 +185,12 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	new /obj/effect/temp_visual/decoy/cargo_teleport/arriving(beacon_turf, lifted_atom, effect_color)
 	playsound(beacon_turf, 'sound/effects/magic/Disable_Tech.ogg', 30, TRUE)
 
-/// Snapshots the items on a turf worth lifting. Typed loop, so mobs and effects never come up.
+/// Snapshots the objects on a turf worth lifting. /obj typed, so mobs and turfs never come up.
 /obj/item/cargo_teleporter/proc/get_liftable_items(turf/target_turf)
 	var/list/liftable = list()
-	for(var/obj/item/movable_content in target_turf)
-		if(movable_content.anchored)
+	// /obj, not /obj/item. Crates and lockers are /obj/structure/closet and are the whole point.
+	for(var/obj/movable_content in target_turf)
+		if(movable_content.anchored || iseffect(movable_content))
 			continue
 		if(length(movable_content.get_all_contents_type(/mob/living))) // no smuggling people
 			continue
