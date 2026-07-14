@@ -314,6 +314,7 @@
 	inserted_item = /obj/item/pen/fountain
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
+		/datum/computer_file/program/faxbond, //BUBBER EDIT - Lawyers too shall have a taste of bureaucracy
 	)
 
 /obj/item/modular_computer/pda/lawyer/Initialize(mapload)
