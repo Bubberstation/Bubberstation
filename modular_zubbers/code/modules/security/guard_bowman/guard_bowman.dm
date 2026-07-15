@@ -84,6 +84,8 @@
 	COOLDOWN_START(src, report_cooldown, report_cooldown_time)
 	if(report_sound)
 		playsound(talking_movable, report_sound, radio_sound_volume, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT)
+	var/security_span = get_radio_span(GLOB.default_radio_channels[RADIO_CHANNEL_SECURITY])
+	to_chat(talking_movable, "<span class='[security_span]'><span class='name'>\[Security\] The Automated Announcement System</span> coldly states, <span class='message robot'>\"Your message has been received.\"</span></span>")
 
 //lets the bogus report through even with a real key installed
 /obj/item/radio/headset/guard_bowman/click_alt(mob/user)
