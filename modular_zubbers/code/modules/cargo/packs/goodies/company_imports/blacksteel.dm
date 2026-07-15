@@ -15,7 +15,7 @@
 
 /datum/supply_pack/company_import/blacksteel/blade/shamshir_sabre
 	item_type = /obj/item/storage/belt/sheath/sabre/cargo
-	cost = PAYCHECK_COMMAND * 6
+	cost = PAYCHECK_COMMAND * 15
 
 /datum/supply_pack/company_import/blacksteel/forging_tools/billows
 	item_type = /obj/item/forging/billow
