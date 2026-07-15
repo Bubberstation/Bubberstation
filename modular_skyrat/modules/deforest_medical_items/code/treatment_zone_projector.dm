@@ -46,4 +46,6 @@
 /obj/item/robot_model/medical/New(loc, ...)
 	. = ..()
 	var/obj/item/holosign_creator/medical/treatment_zone/new_holosign = new(src)
-	basic_modules.Add(new_holosign)
+	var/obj/item/soap/nanotrasen/cyborg/new_soap = new(src)
+	var/obj/item/autopsy_scanner/new_scanner = new(src)
+	basic_modules.Add(new_holosign, new_soap, new_scanner)
