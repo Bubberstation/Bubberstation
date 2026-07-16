@@ -22,6 +22,7 @@
 		SPECIES_ANDROID,
 		SPECIES_ABDUCTOR,
 		SPECIES_VAMPIRE,
+		SPECIES_PROTEAN,
 	)
 	COOLDOWN_DECLARE(sun_burn)
 
@@ -31,12 +32,15 @@
 	var/old_tongue = null
 
 /datum/quirk/hemophage/add(client/client_source)
+	var/mob/living/carbon/human/human_holder = quirk_holder
 	quirk_holder.add_traits(list(
 		TRAIT_DRINKS_BLOOD,
 		TRAIT_NOHUNGER,
 		TRAIT_NOBREATH,
 		TRAIT_VIRUSIMMUNE,
 	), QUIRK_TRAIT)
+
+	human_holder.dna.blood_type = get_blood_type(BLOOD_TYPE_UNIVERSAL)
 
 	if(client_source?.prefs.read_preference(/datum/preference/toggle/masquerade))
 		ADD_TRAIT(quirk_holder, TRAIT_MASQUERADE_FOOD, QUIRK_TRAIT)
@@ -86,6 +90,7 @@
 		new_organ.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
 /datum/quirk/hemophage/remove(client/client_source)
+	var/mob/living/carbon/human/human_holder = quirk_holder
 	quirk_holder.remove_traits(list(
 		TRAIT_DRINKS_BLOOD,
 		TRAIT_NOHUNGER,
@@ -93,6 +98,11 @@
 		TRAIT_VIRUSIMMUNE,
 		TRAIT_MASQUERADE_FOOD,
 	), QUIRK_TRAIT)
+
+	if(human_holder.dna.species.exotic_bloodtype)
+		human_holder.dna.blood_type = get_blood_type(human_holder.dna.species.exotic_bloodtype)
+	else
+		human_holder.dna.blood_type = random_human_blood_type()
 
 	UnregisterSignal(quirk_holder, COMSIG_MOB_HEMO_BLOOD_REGEN_TICK)
 	SSsunlight.remove_sun_sufferer(quirk_holder)
