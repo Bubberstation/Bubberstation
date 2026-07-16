@@ -204,7 +204,7 @@
 	name = "safe anomaly spawner without bioscramblers"
 	loot = list(
 		/obj/effect/spawner/random/maintsrooms/garbage_or_artifact = 13,
-		/obj/effect/spawner/random/environmentally_safe_anomaly/maintsroom/sub_spawner = 25,
+		/obj/effect/spawner/random/environmentally_safe_anomaly/maintsroom = 25,
 		/obj/effect/spawner/random/maintsrooms/materials = 37,
 		/obj/effect/spawner/random/maintsrooms = 25,
 	)
@@ -219,3 +219,4 @@
 		/obj/effect/anomaly/bioscrambler/docile = 5,
 	)
 	anchor_anomaly = TRUE
+	has_core = TRUE
