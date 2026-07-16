@@ -219,4 +219,3 @@
 		/obj/effect/anomaly/bioscrambler/docile = 5,
 	)
 	anchor_anomaly = TRUE
-	has_core = TRUE
