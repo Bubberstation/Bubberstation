@@ -150,3 +150,8 @@
 		recoil = 0
 		spread = 5
 	update_appearance()
+
+/obj/item/gun/ballistic/automatic/wt550
+	desc = "A fully-automatic security firearm chambered in 4.6x30mm, the WT550 was originally recalled over a Syndicate misinformation campaign \
+		attempting to force Nanotrasen to abandon their ballistic firearms programs. Even though it was fake, the 550 is \
+		still sold with a '99% Discombubulation Removal Gaurantee' sticker in the crate."
