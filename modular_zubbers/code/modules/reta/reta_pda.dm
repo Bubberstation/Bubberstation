@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(reta_supplemental_area_grants)
 	extended_desc = "Request Emergency Temporary Access for validated medical, security, and engineering emergencies."
 	download_access = list(ACCESS_MEDICAL, ACCESS_ENGINEERING, ACCESS_SECURITY)
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
-	size = 4
+	size = 2
 	tgui_id = "NtosReta"
 	program_icon = "id-card"
 
