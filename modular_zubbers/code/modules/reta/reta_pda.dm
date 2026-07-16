@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY(reta_supplemental_area_grants)
 	var/dispatch_result = reta_dispatch_emergency_request(origin_dept, reta_pda_target_department(emergency_type), caller_info, computer)
 	switch(dispatch_result)
 		if(RETA_PDA_DISPATCH_DENIED)
-			computer?.say("R.E.T.A is currently disabled, or this emergency request is invalid.")
+			computer?.say("RETA is currently disabled, or this emergency request is invalid.")
 			return TRUE
 		if(RETA_PDA_DISPATCH_COOLDOWN)
 			computer?.say("Emergency calls to [reta_pda_target_department(emergency_type)] are on cooldown.")
