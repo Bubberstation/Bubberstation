@@ -166,7 +166,7 @@ GLOBAL_LIST_EMPTY(reta_supplemental_area_grants)
 	if(reta_pda_id_has_security_or_guard_trim(id_card))
 		var/security_disabled_reason = reta_pda_same_department_disabled_reason(dept, RETA_PDA_SECURITY)
 		if(!security_disabled_reason && SSsecurity_level.get_current_level_as_number() < SEC_LEVEL_AMBER)
-			security_disabled_reason = "You can only remotly declare security emergencies on amber or higher!"
+			security_disabled_reason = "You can only remotely declare security emergencies on amber or higher!"
 		. += list(list(
 			"type" = RETA_PDA_SECURITY,
 			"label" = "Security",
