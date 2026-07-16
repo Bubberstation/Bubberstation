@@ -37,7 +37,7 @@ const RetaContent = () => {
   const { departments = [] } = data;
 
   return (
-    <Section title="R.E.T.A">
+    <Section title="RETA">
       <Stack vertical fill>
         {departments.map((department) => (
           <Stack.Item key={department.name}>
