@@ -209,7 +209,7 @@
 		/obj/effect/spawner/random/maintsrooms = 25,
 	)
 
-/obj/effect/spawner/random/environmentally_safe_anomaly/maintsroom/sub_spawner
+/obj/effect/spawner/random/environmentally_safe_anomaly/maintsroom
 	name = "safe anomaly spawner without bioscramblers"
 	loot = list(
 		/obj/effect/anomaly/flux = 5,
