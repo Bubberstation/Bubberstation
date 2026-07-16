@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(reta_supplemental_area_grants)
 			computer?.say("No eligible [reta_pda_target_department(emergency_type)] responders needed RETA access.")
 			return TRUE
 
-	computer?.say("R.E.T.A [capitalize(emergency_type)] emergency declared for [origin_dept].")
+	computer?.say("RETA [capitalize(emergency_type)] emergency declared for [origin_dept].")
 	playsound(computer, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 	return TRUE
 
