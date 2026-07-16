@@ -100,7 +100,7 @@ GLOBAL_LIST_EMPTY(reta_supplemental_area_grants)
 				return "Security emergencies require amber alert or higher."
 			return null
 
-	return "Invalid R.E.T.A emergency type selected."
+	return "Invalid RETA emergency type selected."
 
 /proc/reta_pda_target_department(emergency_type)
 	switch(emergency_type)
