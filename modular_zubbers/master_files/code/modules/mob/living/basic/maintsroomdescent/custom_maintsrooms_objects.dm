@@ -200,7 +200,7 @@
 	description = "My mind feels secure. It was worth it."
 	mood_change = 31
 
-/obj/effect/spawner/random/environmentally_safe_anomaly/maintsroom
+/obj/effect/spawner/random/maintsrooms/anomalies
 	name = "safe anomaly spawner without bioscramblers"
 	loot = list(
 		/obj/effect/spawner/random/maintsrooms/garbage_or_artifact = 13,
