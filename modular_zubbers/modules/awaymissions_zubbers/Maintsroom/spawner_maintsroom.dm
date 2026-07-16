@@ -57,7 +57,7 @@
 		/obj/item/slimecross/stabilized/blue/gravi = 1,
 		/obj/item/slimecross/stabilized/purple/soul = 1,
 		/obj/item/slimecross/stabilized/yellow/battery = 1,
-		/obj/effect/blessing/invisible = 97,
+		/obj/item/food/mint = 97,
 	)
 
 /obj/effect/spawner/random/maintsrooms/artifact
