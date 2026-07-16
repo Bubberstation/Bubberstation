@@ -1,5 +1,5 @@
 /**
- * R.E.T.A PDA App
+ * RETA PDA App
  *
  * Allows authorized Medical, Engineering, and Security responders to declare validated
  * departmental emergencies through the existing RETA grant/announcement flow.
