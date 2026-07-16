@@ -271,7 +271,7 @@
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 
 	equipped_slot = ITEM_SLOT_FEET
-	var/mutable_appearance/bloody_feet
+	var/mutable_appearance/bloody_feet //BUBBER EDIT - ORIGINAL: var/static/mutable_appearance/bloody_feet
 
 	/// List of DNA on mob's feet, so we can handle it separately from blood on mob's hands
 	var/list/blood_DNA = null
@@ -289,14 +289,17 @@
 
 	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(on_clean))
 	RegisterSignal(parent, COMSIG_STEP_ON_BLOOD, PROC_REF(on_step_blood))
+	// BUBBER ADDITION BEGIN - Species specific blood icons.
 	RegisterSignal(parent, COMSIG_SPECIES_GAIN, PROC_REF(on_species_change))
 	RegisterSignal(parent, COMSIG_SPECIES_LOSS, PROC_REF(on_species_change))
+	// BUBBER ADDITION END
 	RegisterSignals(parent, list(COMSIG_MOB_EQUIPPED_ITEM, COMSIG_MOB_UNEQUIPPED_ITEM), PROC_REF(shoecover))
 
 	if(new_blood)
 		blood_DNA = new_blood
 		update_icon()
 
+// BUBBER ADDITION BEGIN - Species specific blood icons.
 /datum/component/bloodysoles/feet/proc/on_species_change(datum/source)
 	SIGNAL_HANDLER
 	update_icon()
@@ -311,6 +314,7 @@
 			blood_icon_state = "shoeblood_[species_target.dna.species.id]"
 
 	return mutable_appearance(blood_icon_file, blood_icon_state, SHOES_LAYER)
+// BUBBER ADDITION END
 
 /datum/component/bloodysoles/feet/InheritComponent(datum/component/bloodysoles/feet/soles, original, list/new_blood)
 	if (!length(new_blood))
