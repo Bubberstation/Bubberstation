@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(reta_supplemental_area_grants)
 
 /datum/computer_file/program/reta
 	filename = "reta"
-	filedesc = "R.E.T.A"
+	filedesc = "RETA"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	program_open_overlay = "alert-red"
 	extended_desc = "Request Emergency Temporary Access for validated medical, security, and engineering emergencies."
