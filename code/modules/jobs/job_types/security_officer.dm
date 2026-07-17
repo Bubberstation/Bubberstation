@@ -137,7 +137,6 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 		SSid_access.apply_trim_to_card(worn_id, dep_trim)
 
 		// BUBBER EDIT ADDITION BEGIN - ALTERNATE JOB TITLES
-
 		// gets their preferred alt title
 		var/chosen_title = player_client?.prefs?.alt_job_titles?[title] || title
 		var/display_assignment = chosen_title
@@ -153,15 +152,15 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 
 		// Update PDA to match new trim.
 		var/obj/item/modular_computer/pda/pda = spawning.get_item_by_slot(ITEM_SLOT_BELT)
+		// BUBBER EDIT CHANGE BEGIN - ALTERNATE JOB TITLES
 		/*
-			var/assignment = worn_id.get_trim_assignment()
+		var/assignment = worn_id.get_trim_assignment()
 		if(istype(pda) && !isnull(assignment))
 			pda.imprint_id(spawning.real_name, assignment)
 		*/
-		// bubber edit - the above is changed as we assigned display_assignment earlier with their custom title, otherwise assignment is just 'security officer (department)'
+		// we assign display_assignment earlier with their custom title, otherwise assignment is just 'security officer (department)'
 		if(istype(pda))
 			pda.imprint_id(spawning.real_name, display_assignment)
-
 		// BUBBER EDIT CHANGE END - ALTERNATE JOB TITLES
 
 	var/spawn_point = pick(LAZYACCESS(GLOB.department_security_spawns, department))
