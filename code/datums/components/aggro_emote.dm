@@ -22,7 +22,7 @@
 	var/minimum_chance
 
 /datum/component/aggro_emote/Initialize(
-	target_key = BB_BASIC_MOB_CURRENT_TARGET,
+	target_key = BB_CURRENT_TARGET,
 	living_only = FALSE,
 	list/emote_list,
 	list/speak_list, // BUBBER EDIT - ADDITION: FLESHMIND
