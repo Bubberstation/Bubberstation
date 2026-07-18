@@ -343,7 +343,7 @@
 	autolathe_exportable = FALSE
 
 /datum/design/simple_battle_rifle
-	name = "NT-38 Battle Rifle Simplification Kit)"
+	name = "NT-38 Battle Rifle Simplification Kit"
 	desc = "A kit to simplify an NT-38 Battle Rifle, making it much less complicated."
 	id = "battle_rifle_basic"
 	build_type = PROTOLATHE | AWAY_LATHE
