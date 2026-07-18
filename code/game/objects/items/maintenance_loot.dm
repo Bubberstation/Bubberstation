@@ -39,9 +39,9 @@
 	force = 10 // double the force of a normal cell
 	throwforce = 10
 	w_class = WEIGHT_CLASS_NORMAL
-	maxcharge = STANDARD_CELL_CHARGE * 60 // initial charge reduced on init
-	chargerate = STANDARD_CELL_RATE * 0.3 //charging is about 70% less efficient than lithium batteries.
-	emp_damage_modifier = 4 // 15 shots.
+	maxcharge = STANDARD_CELL_CHARGE * 60 // reduced down from 1mJ, to 600kJ
+	chargerate = STANDARD_CELL_RATE * 0.3 // charge speed reduced by 70%
+	emp_damage_modifier = 4
 	charge_light_type = null
 	connector_type = "leadacid"
 
@@ -52,7 +52,7 @@
 /obj/item/stock_parts/power_store/cell/lead/Initialize(mapload)
 	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
-	var/initial_percent = rand(40, 60) / 100 // 250kJ to 350kJ
+	var/initial_percent = rand(20, 50) / 100 // 200kJ to 500kJ
 	charge = initial_percent * maxcharge
 	ADD_TRAIT(src, TRAIT_FISHING_BAIT, INNATE_TRAIT)
 	AddComponent(/datum/component/loads_avatar_gear, \

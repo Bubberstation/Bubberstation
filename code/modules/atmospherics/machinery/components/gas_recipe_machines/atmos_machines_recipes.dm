@@ -127,6 +127,15 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	requirements = list(/datum/gas/plasma = 450)
 	products = list(/obj/item/stack/sheet/mineral/plasma = 1)
 
+/datum/gas_recipe/crystallizer/crystal_megacell
+	id = "crystal_megacell"
+	name = "Crystal Megacell"
+	min_temp = 50
+	max_temp = 90
+	energy_release = -2000000 // slightly less agressive at cooling than a SM is at heating.
+	requirements = list(/datum/gas/plasma = 3200, /datum/gas/helium = 400, /datum/gas/bz = 200) // just 4x gas costs.
+	products = list(/obj/item/stock_parts/power_store/battery/crystal_cell = 1)
+
 /datum/gas_recipe/crystallizer/crystal_cell
 	id = "crystal_cell"
 	name = "Crystal Cell"
