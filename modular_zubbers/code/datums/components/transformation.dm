@@ -83,15 +83,24 @@
 	owner.quad_eyes_offset = original.quad_eyes_offset
 	owner.quad_eyes_offset_width = original.quad_eyes_offset_width
 
-	var/obj/item/bodypart/head/head = original.get_bodypart(BODY_ZONE_HEAD)
-	dummy.set_hairstyle(original.hairstyle, FALSE)
-	dummy.set_haircolor(original.hair_color)
-	dummy.set_facial_hairstyle(original.facial_hairstyle, FALSE)
-	dummy.set_facial_haircolor(original.facial_hair_color)
-	dummy.set_hair_gradient_style(head.gradient_styles[GRADIENT_HAIR_KEY], FALSE)
-	dummy.set_hair_gradient_color(head.gradient_colors[GRADIENT_FACIAL_HAIR_KEY])
-	dummy.set_facial_hair_gradient_style(head.gradient_styles[GRADIENT_FACIAL_HAIR_KEY], FALSE)
-	dummy.set_facial_hair_gradient_color(head.gradient_colors[GRADIENT_FACIAL_HAIR_KEY])
+	cached_features["hair"] += list(
+		"hair_style" = owner.hairstyle,
+		"hair_color" = owner.hair_color,
+		"facial_style" = owner.facial_hairstyle,
+		"facial_color" = owner.facial_hair_color,
+		"hair_gradient_style" = owner.get_hair_gradient_style(GRADIENT_HAIR_KEY),
+		"hair_gradient_color" = owner.get_hair_gradient_color(GRADIENT_HAIR_KEY),
+		"facial_gradient_style" = owner.get_hair_gradient_style(GRADIENT_FACIAL_HAIR_KEY),
+		"facial_gradient_color" = owner.get_hair_gradient_color(GRADIENT_FACIAL_HAIR_KEY))
+
+	owner.set_hairstyle(original.hairstyle, FALSE)
+	owner.set_haircolor(original.hair_color)
+	owner.set_facial_hairstyle(original.facial_hairstyle, FALSE)
+	owner.set_facial_haircolor(original.facial_hair_color)
+	owner.set_hair_gradient_style(original.get_hair_gradient_style(GRADIENT_HAIR_KEY), FALSE)
+	owner.set_hair_gradient_color(original.get_hair_gradient_color(GRADIENT_HAIR_KEY))
+	owner.set_facial_hair_gradient_style(original.get_hair_gradient_style(GRADIENT_FACIAL_HAIR_KEY), FALSE)
+	owner.set_facial_hair_gradient_color(original.get_hair_gradient_color(GRADIENT_FACIAL_HAIR_KEY))
 
 	owner.regenerate_icons()
 
@@ -123,11 +132,21 @@
 	owner.quad_eyes_offset = cached_features["quadoffset"]
 	owner.quad_eyes_offset_width = cached_features["quadoffwidth"]
 
+	// Reset our hair
+	var/list/hair = cached_features["hair"]
+	owner.set_hairstyle(hair["hair_style"], FALSE)
+	owner.set_haircolor(hair["hair_color"])
+	owner.set_facial_hairstyle(hair["facial_style"], FALSE)
+	owner.set_facial_haircolor(hair["facial_color"])
+	owner.set_hair_gradient_style(hair["hair_gradient_style"], FALSE)
+	owner.set_hair_gradient_color(hair["hair_gradient_color"])
+	owner.set_facial_hair_gradient_style(hair["facial_gradient_style"], FALSE)
+	owner.set_facial_hair_gradient_color(hair["facial_gradient_color"])
+
 	original = null
 	QDEL_NULL(dummy)
 	owner.regenerate_icons()
 
-/// TODO: Digigrade legs and bodyshape
 /datum/component/transformation/proc/on_transform_limb_icon(mob/source) // Easy way to properly reflect icon events.
 	var/mob/living/carbon/human/owner = source
 	var/list/old_abstractions = dummy.get_equipped_items()

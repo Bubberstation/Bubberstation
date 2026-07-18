@@ -60,3 +60,9 @@
 	fire = 20
 	acid = 50
 	wound = 4
+
+/obj/item/clothing/head/utility/surgerycap/black
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/utility_teshari.dmi'
+
+/obj/item/clothing/head/utility/chefhat
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/utility_teshari.dmi'

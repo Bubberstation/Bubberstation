@@ -31,6 +31,8 @@
 
 	/// Whether the menu is in the middle of refreshing the preview
 	var/refreshing = TRUE
+	///BUBBER VAR: Optional display labels for color groups, keyed by color index.
+	var/list/color_labels
 
 	/**
 	 * Whether the menu is currently locked down to prevent abuse from players.
@@ -102,12 +104,14 @@
 /datum/greyscale_modify_menu/ui_data(mob/user)
 	var/list/data = list()
 	data["greyscale_config"] = "[config.name]"
+	data["full_color_string"] = split_colors?.Join("") //BUBBER ADDITION
 
 	var/list/color_data = list()
 	data["colors"] = color_data
 	for(var/i in 1 to config.expected_colors)
 		color_data += list(list(
 			"index" = i,
+			"label" = color_labels?["[i]"] || color_labels?[i], //BUBBER ADDITION
 			"value" = split_colors[i]
 		))
 

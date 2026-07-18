@@ -52,6 +52,7 @@
 	desc = "An armored durathread apron. This relatively innocent at first glance outfit is actually the specialized type worn by Nanotrasen's infamous high profile 'Cleaning and Clearing' kill squads. It's a lot more robust than it's janitorial counterpart. There are loops on the back for holding your 'mop'."
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
 	icon_state = "security_maid"
 	allowed = list(
 		/obj/item/access_key,
@@ -194,6 +195,12 @@
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	strip_delay = 8 SECONDS
 
+/obj/item/clothing/suit/armor/hos/viro/vest
+	name = "Head of Security's Plate Carrier"
+	desc = "A plate carrier enhanced with a special alloy for some extra protection and style for those with a commanding presence."
+	icon_state = "hos_platecarrier"
+	inhand_icon_state = "armor"
+
 /datum/armor/armor_hos
 	melee = 30
 	bullet = 30
@@ -260,3 +267,30 @@
 
 /obj/item/clothing/head/hooded/cultlain_hood
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/blueshirt
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/alt
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/blueshirt/skyrat/customs_agent
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/alt/sec
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/warden
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/warden/alt
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/capcarapace
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/blueshield/jacket
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/hop
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'

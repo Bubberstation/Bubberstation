@@ -43,6 +43,7 @@
 				var/component = species_modsuit.wearer?.GetComponent(/datum/component/transformation)
 				if(component)
 					playsound(owner, 'sound/machines/click.ogg', 25)
+					UnregisterSignal(species_modsuit, COMSIG_ITEM_PRE_UNEQUIP)
 					qdel(component)
 				else if(species_modsuit.wearer == owner)
 					to_chat(owner, span_notice("You already look like yourself!"))

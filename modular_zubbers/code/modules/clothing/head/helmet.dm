@@ -642,6 +642,7 @@
 	icon_state = "security_maid"
 	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
 	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
 
@@ -720,17 +721,37 @@
 
 // virosec helmets, sprites by axietheaxolotl
 
-/obj/item/clothing/head/helmet/viro
+/obj/item/clothing/head/helmet/sec/viro
 	name = "helmet"
 	desc = "Standard Security gear. Protects the head from impacts."
+	base_icon_state = "security_helmet"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "security_helmet"
 
-/obj/item/clothing/head/helmet/viro/hos
-	name = "helmet"
+/obj/item/clothing/head/helmet/sec/viro/hos
+	name = "head of security's helmet"
 	desc = "Standard Security gear. Protects the head from impacts. This one has a golden stripe."
+	base_icon_state = "hos_helmet"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "hos_helmet"
+	armor_type = /datum/armor/hats_hos
 
+/obj/item/clothing/head/helmet/blueshirt
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/head/utility/hardhat
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/utility_teshari.dmi'
+
+/obj/item/clothing/head/helmet/space/emergency
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/head/syndicatefake
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/head/helmet/space/syndicate/black/red
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/head/helmet/sec
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'

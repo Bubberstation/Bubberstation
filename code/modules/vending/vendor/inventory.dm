@@ -204,6 +204,11 @@
 
 	if(greyscale_colors)
 		vended_item.set_greyscale(colors=greyscale_colors)
+	//BUBBER ADDITION START - dynamic uniforms
+	var/list/component_style_details = greyscale_component_style_vend_details?[REF(user)]
+	if(component_style_details && vended_item.greyscale_component_style_type)
+		vended_item.apply_greyscale_component_style(component_style_details)
+	//BUBBER ADDITION END
 	if(IsReachableBy(user) && user.put_in_hands(vended_item))
 		to_chat(user, span_notice("You take [item_record.name] out of the slot."))
 		vended_item.do_pickup_animation(user, src)
