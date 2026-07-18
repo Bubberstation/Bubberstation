@@ -2,6 +2,8 @@
 #define SUPERPARTICLE_MAX_RANGE (20)
 //What's the maximum internal power? If its above this value, the field will affect everyone on same Z level
 #define SUPERPARTICLE_MAX_POWER (4500)
+//Past this internal power, the machine will stop working
+#define SUPERPARTICLE_STOP_POWER (5500)
 //Percentage of CO2 required for effects to apply
 #define SUPERPARTICLE_CARBON_GAS_TRESHHOLD (0.2)
 //Percentage of Healium required for effects to apply
@@ -68,16 +70,11 @@
 	circuit = /obj/item/circuitboard/machine/superparticlegen
 	armor_type = /datum/armor/superparticlegen
 	interaction_flags_click = ALLOW_SILICON_REACH
-	//We don't use area power
-	use_power = NO_POWER_USE
+	use_power = IDLE_POWER_USE
 	///The cell we spawn with
 	var/obj/item/stock_parts/power_store/cell/cell = /obj/item/stock_parts/power_store/cell/high
 	///Is the machine on?
 	var/on = FALSE
-	/// do we use power from wire instead
-	var/wire_mode = FALSE
-	/// our buff field
-	var/datum/proximity_monitor/advanced/atmosbuff
 	/// field range
 	var/range = 0
 	/// For list of avalible SMs
@@ -93,6 +90,9 @@
 	fire = 100
 	melee = 10
 	bomb = 40
+
+/obj/machinery/power/superparticlegen/Destroy()
+	. = ..()
 
 /obj/machinery/power/superparticlegen/update_overlays()
 	. = ..()
@@ -173,36 +173,34 @@
 			update_appearance()
 
 
-
-	if(connected_supermatter.get_internal_enerergy() < SUPERPARTICLE_MAX_POWER)
-		for(var/mob/living/carbon/target in range(src, range))
-			target.apply_status_effect(/datum/status_effect/atmosgenbuff)
-			if(carbon)
-				target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
-			if(healium)
-				target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
-		for(var/mob/living/silicon/robot/target in range(src, range))
-			if(carbon)
-				target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
-			if(healium)
-				target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
-	else
-		for(var/mob/living/carbon/target as anything in GLOB.carbon_list)
-			if(target.z == loc.z)
+	if(connected_supermatter.get_internal_enerergy() > SUPERPARTICLE_STOP_POWER)
+		if(connected_supermatter.get_internal_enerergy() < SUPERPARTICLE_MAX_POWER)
+			for(var/mob/living/carbon/target in range(src, range))
 				target.apply_status_effect(/datum/status_effect/atmosgenbuff)
 				if(carbon)
 					target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
 				if(healium)
 					target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
-		for(var/mob/living/silicon/robot/target in GLOB.silicon_mobs)
-			if(target.z == loc.z)
+			for(var/mob/living/silicon/robot/target in range(src, range))
 				if(carbon)
 					target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
 				if(healium)
 					target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
+		else
+			for(var/mob/living/carbon/target as anything in GLOB.carbon_list)
+				if(target.z == loc.z)
+					target.apply_status_effect(/datum/status_effect/atmosgenbuff)
+					if(carbon)
+						target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
+					if(healium)
+						target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
+			for(var/mob/living/silicon/robot/target in GLOB.silicon_mobs)
+				if(target.z == loc.z)
+					if(carbon)
+						target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
+					if(healium)
+						target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
 
-/datum/proximity_monitor/advanced/atmosgenbuff
-	edge_is_a_field = TRUE
 
 /atom/movable/screen/alert/status_effect/atmosgenbuff
 	name = "Superparticle Field"
@@ -280,6 +278,7 @@
 
 #undef SUPERPARTICLE_MAX_RANGE
 #undef SUPERPARTICLE_MAX_POWER
+#undef SUPERPARTICLE_STOP_POWER
 #undef SUPERPARTICLE_CARBON_GAS_TRESHHOLD
 #undef SUPERPARTICLE_HEALIUM_GAS_TRESHHOLD
 #undef SUPERPARTICLE_HEALIUM_HEALING_PER_SECOND
