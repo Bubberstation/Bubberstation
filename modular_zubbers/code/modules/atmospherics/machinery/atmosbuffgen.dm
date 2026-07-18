@@ -1,7 +1,7 @@
 //What's the maximum range of the field?
 #define SUPERPARTICLE_MAX_RANGE (20)
 //What's the maximum internal power? If its above this value, the field will affect everyone on same Z level
-#define SUPERPARTICLE_MAX_POWER (4500)
+#define SUPERPARTICLE_MAX_POWER (1000)
 //Percentage of CO2 required for effects to apply
 #define SUPERPARTICLE_CARBON_GAS_TRESHHOLD (0.2)
 //Percentage of Healium required for effects to apply
@@ -181,23 +181,25 @@
 				target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
 			if(healium)
 				target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
-		for(var/mob/living/silicon/robot/borg in range(src, range))
-			if(carbon)
-				borg.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
-			if(healium)
-				borg.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
-	else
-		for(var/mob/living/carbon/target as anything in GLOB.carbon_list)
-			target.apply_status_effect(/datum/status_effect/atmosgenbuff)
+		for(var/mob/living/silicon/robot/target in range(src, range))
 			if(carbon)
 				target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
 			if(healium)
 				target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
-		for(var/mob/living/silicon/robot/borg in GLOB.silicon_mobs)
-			if(carbon)
-				borg.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
-			if(healium)
-				borg.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
+	else
+		for(var/mob/living/carbon/target as anything in GLOB.carbon_list)
+			if(target.z == loc.z)
+				target.apply_status_effect(/datum/status_effect/atmosgenbuff)
+				if(carbon)
+					target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
+				if(healium)
+					target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
+		for(var/mob/living/silicon/robot/target in GLOB.silicon_mobs)
+			if(target.z == loc.z)
+				if(carbon)
+					target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
+				if(healium)
+					target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
 
 /datum/proximity_monitor/advanced/atmosgenbuff
 	edge_is_a_field = TRUE
