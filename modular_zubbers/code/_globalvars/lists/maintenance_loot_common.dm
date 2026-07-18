@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/storage/belt/fannypack/white = 5,
 		/obj/item/storage/belt/fannypack/yellow = 5,
 		/obj/item/storage/belt/holster = 1,
-		/obj/item/storage/belt/holster/cowboy = 1,
+		/obj/item/storage/belt/hip_holster/cowboy = 1,
 		/obj/item/storage/belt/janitor = 15,
 		/obj/item/storage/belt/janitor/full = 1,
 		/obj/item/storage/belt/mailbelt = 5,

@@ -887,7 +887,7 @@
 		if("Anvil")
 			new /obj/structure/reagent_anvil(src_turf)
 		if("Water Basin")
-			new /obj/structure/reagent_water_basin(src_turf)
+			new /obj/structure/reagent_dispensers/reagent_smithing_basin(src_turf)
 		if("Crafting Bench")
 			new /obj/structure/reagent_crafting_bench(src_turf)
 

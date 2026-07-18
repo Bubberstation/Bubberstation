@@ -44,6 +44,11 @@
 	if(!active_ball)
 		build_all_button_icons(UPDATE_OVERLAYS)
 		return ..()
+	// BUBBER EDIT ADDITION BEGIN - you need LOS to jaunt to your ball
+	if (!(active_ball in view(cast_range, owner)))
+		owner.balloon_alert(owner, "need line of sight on the ball!")
+		return // abort entirely
+	// BUBBER EDIT ADDITION ENDs
 
 	pull_victims()
 	do_teleport(owner, active_ball)

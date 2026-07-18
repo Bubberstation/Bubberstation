@@ -6,6 +6,7 @@
 	inherent_traits = list(
 		TRAIT_MUTANT_COLORS,
 		TRAIT_PLANT_SAFE,
+		TRAIT_KNOW_ADVANCED_SMITHING, //BUBBER EDIT
 	)
 	mutant_organs = list(
 		// /obj/item/organ/pod_hair = "None", // SKYRAT EDIT REMOVAL - Customization

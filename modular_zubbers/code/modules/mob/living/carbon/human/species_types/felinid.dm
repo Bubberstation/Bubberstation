@@ -1,3 +1,6 @@
+/datum/species/human/felinid
+	inert_mutation = /datum/mutation/uwu
+
 /datum/species/human/felinid/get_species_description()
 	return list(
 		"Felinids are one of the many types of bespoke genetic \

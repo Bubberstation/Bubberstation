@@ -86,13 +86,13 @@
 	return sprite_datum?.feature_key_override || feature_key
 
 
-/datum/bodypart_overlay/mutant/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
+/datum/bodypart_overlay/mutant/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner, mob/living/carbon/owner, is_husked)
 	if(!..())
 		return FALSE
-	var/mob/living/carbon/human/human = bodypart_owner.owner
-	if(!istype(human))
+	var/mob/living/carbon/human/human_owner = owner
+	if(!istype(human_owner))
 		return TRUE
-	return !isnull(sprite_datum) && !sprite_datum.is_hidden(human)
+	return !isnull(sprite_datum) && !sprite_datum.is_hidden(human_owner)
 
 
 /// Get the images we need to draw on the person. Called from get_overlay() which is called from _bodyparts.dm.

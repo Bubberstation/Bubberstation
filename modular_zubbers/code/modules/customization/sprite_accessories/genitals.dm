@@ -47,18 +47,19 @@
 /datum/sprite_accessory/genital/breasts/alt
 	icon = 'modular_zubbers/icons/mob/sprite_accesory/genitals/breasts_onmob.dmi'
 	color_src = USE_MATRIXED_COLORS
+	max_size = 19
 
 /datum/sprite_accessory/genital/breasts/alt/pair
 	name = "Pair (Alt)"
-	icon_state = "pair"
+	icon_state = "pair_alt"
 
 /datum/sprite_accessory/genital/breasts/alt/quad
 	name = "Quad (Alt)"
-	icon_state = "quad"
+	icon_state = "quad_alt"
 
 /datum/sprite_accessory/genital/breasts/alt/sextuple
 	name = "Sextuple (Alt)"
-	icon_state = "sextuple"
+	icon_state = "sextuple_alt"
 
 /datum/sprite_accessory/genital/testicles/alt
 	name = "Pair (Alt)"

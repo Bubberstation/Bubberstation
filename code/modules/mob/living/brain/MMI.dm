@@ -16,6 +16,7 @@
 	var/overrides_aicore_laws = FALSE // Whether the laws on the MMI, if any, override possible pre-existing laws loaded on the AI core.
 	/// Whether the brainmob can move. Doesnt usually matter but SPHERICAL POSIBRAINSSS
 	var/immobilize = TRUE
+	var/slot = ORGAN_SLOT_BRAIN //Bubber Addition
 
 /obj/item/mmi/Initialize(mapload)
 	. = ..()
