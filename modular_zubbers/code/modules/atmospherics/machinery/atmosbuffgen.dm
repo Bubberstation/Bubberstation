@@ -1,7 +1,7 @@
 //What's the maximum range of the field?
 #define SUPERPARTICLE_MAX_RANGE (20)
 //What's the maximum internal power? If its above this value, the field will affect everyone on same Z level
-#define SUPERPARTICLE_MAX_POWER (1000)
+#define SUPERPARTICLE_MAX_POWER (4500)
 //Percentage of CO2 required for effects to apply
 #define SUPERPARTICLE_CARBON_GAS_TRESHHOLD (0.2)
 //Percentage of Healium required for effects to apply
@@ -29,9 +29,9 @@
 	(multiple projectors might be required for stations with multiple floors)<BR><BR>\
 	<B>Additional effects:</B><BR>\
 	Projector will offer additional benefits, depending on type of gas present around chosen Supermatter engine<BR>\
-	-Above 20% Carbon Dioxide - it will recharge power cells carried by cyborgs and power cells powering cyborgs (10% of random cell every 10 seconds)<BR><BR>\
+	-Above 20% Carbon Dioxide - it will recharge power cells carried by cyborgs and power cells powering cyborgs (10% of random cell every 10 seconds)<BR>\
 	-Above 20% Healium - the field will slowly fix brute and burn damage to both crew and cyborgs \
-	(0.2 per second if below 30 damage)<BR>\
+	(0.2 per second if below 30 damage)<BR><BR>\
 	Superparticle Projector is a new device in active development, this guide will be updated if any of the above information changes. \
 	If something does not work the way it should, make sure to read it again and look for changes."
 
