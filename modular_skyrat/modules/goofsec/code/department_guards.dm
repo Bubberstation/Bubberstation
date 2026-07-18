@@ -212,7 +212,7 @@
 	jobtype = /datum/job/science_guard
 
 	belt = /obj/item/modular_computer/pda/science
-	ears = /obj/item/radio/headset/headset_sci
+	ears = /obj/item/radio/headset/guard_bowman/science
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat
 	shoes = /obj/item/clothing/shoes/jackboots
 	head =  /obj/item/clothing/head/beret/sec/science
@@ -317,7 +317,7 @@
 	jobtype = /datum/job/orderly
 
 	belt = /obj/item/modular_computer/pda/medical
-	ears = /obj/item/radio/headset/headset_med
+	ears = /obj/item/radio/headset/guard_bowman/medical
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/orderly
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	head = /obj/item/clothing/head/beret/sec/medical
@@ -424,7 +424,7 @@
 	jobtype = /datum/job/engineering_guard
 
 	belt = /obj/item/modular_computer/pda/engineering
-	ears = /obj/item/radio/headset/headset_eng
+	ears = /obj/item/radio/headset/guard_bowman/engineering
 	shoes = /obj/item/clothing/shoes/workboots
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/engineering_guard
 	head =  /obj/item/clothing/head/beret/sec/engineering
@@ -530,7 +530,7 @@
 	jobtype = /datum/job/customs_agent
 
 	belt = /obj/item/modular_computer/pda/cargo
-	ears = /obj/item/radio/headset/headset_cargo
+	ears = /obj/item/radio/headset/guard_bowman/cargo
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/customs_agent
 	head = /obj/item/clothing/head/beret/sec/cargo
@@ -631,7 +631,7 @@
 	jobtype = /datum/job/bouncer
 
 	belt = /obj/item/modular_computer/pda/bar
-	ears = /obj/item/radio/headset/headset_srv
+	ears = /obj/item/radio/headset/guard_bowman/service
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/bouncer
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	head =  /obj/item/clothing/head/beret/sec/service
@@ -843,7 +843,7 @@
 
 /obj/item/storage/bag/garment/science_guard/PopulateContents()
 	generate_items_inside(list(
-		/obj/item/radio/headset/headset_sci = 2,
+		/obj/item/radio/headset/guard_bowman/science = 2,
 		/obj/item/clothing/shoes/sneakers/black = 2,
 		/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat = 2,
 		/obj/item/clothing/head/helmet/blueshirt/skyrat = 2,
@@ -859,7 +859,7 @@
 
 /obj/item/storage/bag/garment/orderly/PopulateContents()
 	generate_items_inside(list(
-		/obj/item/radio/headset/headset_med = 1,
+		/obj/item/radio/headset/guard_bowman/medical = 1,
 		/obj/item/clothing/shoes/sneakers/white = 1,
 		/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/orderly = 1,
 		/obj/item/clothing/head/helmet/blueshirt/skyrat/guard = 1,
@@ -879,7 +879,7 @@
 
 /obj/item/storage/bag/garment/engineering_guard/PopulateContents()
 	generate_items_inside(list(
-		/obj/item/radio/headset/headset_eng = 2,
+		/obj/item/radio/headset/guard_bowman/engineering = 2,
 		/obj/item/clothing/shoes/workboots = 2,
 		/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/engineering_guard = 2,
 		/obj/item/clothing/head/helmet/blueshirt/skyrat/guard = 2,
@@ -895,7 +895,7 @@
 
 /obj/item/storage/bag/garment/customs_agent/PopulateContents()
 	generate_items_inside(list(
-		/obj/item/radio/headset/headset_cargo = 2,
+		/obj/item/radio/headset/guard_bowman/cargo = 2,
 		/obj/item/clothing/shoes/sneakers/black = 2,
 		/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/customs_agent = 2,
 		/obj/item/clothing/head/helmet/blueshirt/skyrat/guard = 2,
