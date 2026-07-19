@@ -146,6 +146,12 @@
 	STOP_PROCESSING(SSmachines, src)
 	update_appearance()
 
+/obj/machinery/power/portagrav/screwdriver_act(mob/living/user, obj/item/tool)
+	return default_deconstruction_screwdriver(user, tool)
+
+/obj/machinery/power/portagrav/crowbar_act(mob/living/user, obj/item/tool)
+	return default_deconstruction_crowbar(user, tool)
+
 /obj/machinery/power/supermatter_crystal/proc/get_internal_enerergy()
 	var/energy = internal_energy
 	return energy
