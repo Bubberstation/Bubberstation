@@ -267,12 +267,12 @@
 			if(cell.charge < cell.maxcharge)
 				batteries += cell
 		if(batteries.len)
-			var/obj/item/stock_parts/power_store/ToCharge = pick(batteries)
-			ToCharge.charge += min(ToCharge.maxcharge - ToCharge.charge, ToCharge.maxcharge/10)
+			var/obj/item/stock_parts/power_store/to_charge = pick(batteries)
+			to_charge.charge += min(to_charge.maxcharge - to_charge.charge, to_charge.maxcharge/10)
 	if(iscyborg(owner))
 		var/mob/living/silicon/robot/borg = owner
-		var/obj/item/stock_parts/power_store/ToCharge = borg.cell
-		ToCharge.charge += min(ToCharge.maxcharge - ToCharge.charge, ToCharge.maxcharge/10)
+		var/obj/item/stock_parts/power_store/to_charge = borg.cell
+		to_charge.charge += min(to_charge.maxcharge - to_charge.charge, to_charge.maxcharge/10)
 	return ..()
 
 /datum/status_effect/atmosgenbuff_healium
