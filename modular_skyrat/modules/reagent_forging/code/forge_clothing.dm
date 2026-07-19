@@ -39,9 +39,10 @@
 	allowed += /obj/item/melee/forged_reagent_weapon
 	AddComponent(/datum/component/reagent_imbued/clothing, \
 		list(FORGE_EFFECT_ARMOR = /datum/armor/smithing_oil_armor_bonus), \
+		integrity = REAGENT_INJECT_ARMOR_FAILURE_PERCENT, \
 		set_slot = ITEM_SLOT_OCLOTHING, \
-		reagent_integrity_loss_factor = 0.05, \
-		reagent_integrity_loss_random = 0.02)
+		reagent_integrity_loss_factor = REAGENT_INTEGRITY_DAMAGE_ARMOR_AMOUNT, \
+		reagent_integrity_loss_random = REAGENT_INTEGRITY_DAMAGE_WEARABLE_RANDOM)
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
@@ -77,9 +78,10 @@
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, \
 		list(FORGE_EFFECT_ARMOR = /datum/armor/smithing_oil_armor_bonus), \
+		integrity = REAGENT_INJECT_ARMOR_FAILURE_PERCENT, \
 		set_slot = ITEM_SLOT_GLOVES, \
-		reagent_integrity_loss_factor = 0.05, \
-		reagent_integrity_loss_random = 0.02)
+		reagent_integrity_loss_factor = REAGENT_INTEGRITY_DAMAGE_ARMOR_AMOUNT, \
+		reagent_integrity_loss_random = REAGENT_INTEGRITY_DAMAGE_WEARABLE_RANDOM)
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
@@ -115,9 +117,10 @@
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, \
 		list(FORGE_EFFECT_ARMOR = /datum/armor/smithing_oil_armor_bonus), \
+		integrity = REAGENT_INJECT_ARMOR_FAILURE_PERCENT, \
 		set_slot = ITEM_SLOT_HEAD, \
-		reagent_integrity_loss_factor = 0.05, \
-		reagent_integrity_loss_random = 0.02)
+		reagent_integrity_loss_factor = REAGENT_INTEGRITY_DAMAGE_ARMOR_AMOUNT, \
+		reagent_integrity_loss_random = REAGENT_INTEGRITY_DAMAGE_WEARABLE_RANDOM)
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
@@ -155,9 +158,10 @@
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, \
 		list(FORGE_EFFECT_ARMOR = /datum/armor/smithing_oil_armor_bonus), \
+		integrity = REAGENT_INJECT_ARMOR_FAILURE_PERCENT, \
 		set_slot = ITEM_SLOT_FEET, \
-		reagent_integrity_loss_factor = 0.05, \
-		reagent_integrity_loss_random = 0.02)
+		reagent_integrity_loss_factor = REAGENT_INTEGRITY_DAMAGE_ARMOR_AMOUNT, \
+		reagent_integrity_loss_random = REAGENT_INTEGRITY_DAMAGE_WEARABLE_RANDOM)
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
@@ -183,9 +187,10 @@
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, \
 		list(FORGE_EFFECT_ARMOR = /datum/armor/smithing_oil_armor_bonus), \
+		integrity = REAGENT_INJECT_CLOTHING_FAILURE_PERCENT, \
 		set_slot = ITEM_SLOT_FEET, \
-		reagent_integrity_loss_factor = 0.01, \
-		reagent_integrity_loss_random = 0.01)
+		reagent_integrity_loss_factor = REAGENT_INTEGRITY_DAMAGE_CLOTHING_AMOUNT, \
+		reagent_integrity_loss_random = REAGENT_INTEGRITY_DAMAGE_WEARABLE_RANDOM)
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
@@ -219,9 +224,10 @@
 	. = ..()
 	AddComponent(/datum/component/reagent_imbued/clothing, \
 		list(FORGE_EFFECT_DURABILITY = 50), \
+		integrity = REAGENT_INJECT_CLOTHING_FAILURE_PERCENT, \
 		set_slot = ITEM_SLOT_GLOVES, \
-		reagent_integrity_loss_factor = 0.01, \
-		reagent_integrity_loss_random = 0.01)
+		reagent_integrity_loss_factor = REAGENT_INTEGRITY_DAMAGE_CLOTHING_AMOUNT, \
+		reagent_integrity_loss_random = REAGENT_INTEGRITY_DAMAGE_WEARABLE_RANDOM)
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
 		TRUE, \
@@ -250,8 +256,8 @@
 	AddComponent(/datum/component/reagent_imbued/clothing, \
 		list(FORGE_EFFECT_DURABILITY = 50), \
 		set_slot = ITEM_SLOT_NECK, \
-		reagent_integrity_loss_factor = 0.05, \
-		reagent_integrity_loss_random = 0.02)
+		reagent_integrity_loss_factor = REAGENT_INTEGRITY_DAMAGE_CLOTHING_AMOUNT, \
+		reagent_integrity_loss_random = REAGENT_INTEGRITY_DAMAGE_WEARABLE_RANDOM)
 
 	AddComponent(/datum/component/forge_smithable, \
 		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \

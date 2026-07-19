@@ -146,7 +146,7 @@
 	//the cooldown between each imbue
 	COOLDOWN_DECLARE(imbue_cooldown)
 
-/datum/component/reagent_imbued/clothing/Initialize(list/oil_effects = list(), integrity = 0.85, set_slot = null)
+/datum/component/reagent_imbued/clothing/Initialize(list/oil_effects = list(), integrity = 0.85, set_slot = null, reagent_integrity_loss_factor = 1, reagent_integrity_loss_random = 0)
 	. = ..()
 	if(. != COMPONENT_INCOMPATIBLE)
 		if(set_slot)
