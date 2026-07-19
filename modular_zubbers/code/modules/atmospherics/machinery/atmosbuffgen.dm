@@ -173,7 +173,7 @@
 			update_appearance()
 
 
-	if(connected_supermatter.get_internal_enerergy() > SUPERPARTICLE_STOP_POWER)
+	if(connected_supermatter.get_internal_enerergy() < SUPERPARTICLE_STOP_POWER)
 		if(connected_supermatter.get_internal_enerergy() < SUPERPARTICLE_MAX_POWER)
 			for(var/mob/living/carbon/target in range(src, range))
 				target.apply_status_effect(/datum/status_effect/atmosgenbuff)
