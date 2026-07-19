@@ -174,8 +174,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/power/supermatter_crystal/proc/get_internal_enerergy()
-	var/energy = internal_energy
-	return energy
+	return internal_energy
 
 /obj/machinery/power/superparticlegen/process(seconds_per_tick)
 	if(!on)
