@@ -240,8 +240,10 @@ GLOBAL_LIST_EMPTY_TYPED(protean_match_tag_pool, /obj/item/clothing/accessory/dog
 		var/mob/living/user = source
 		user_id = user.get_idcard(TRUE)
 		sec_record = find_record(user_id.get_displayed_name())
-
-		if(isnull(user_id))
+		var/turf/station_check = get_turf(user)
+		if(!station_check || is_station_level(station_check.z))
+			ineligibility_reason = "too far from station!"
+		else if(isnull(user_id))
 			ineligibility_reason = "no ID found"
 		else if(isnull(sec_record))
 			ineligibility_reason = "no security record found"
