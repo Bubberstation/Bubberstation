@@ -28,7 +28,7 @@
 	Radius will scale with the internal power of the Supermatter engine that you choose to link this machine to, \
 	reaching 20 tile radius at 4.5GeV of internal power.\
 	Once internal power is above 4.5GeV, the field reach across entire floor of the station \
-	(multiple projectors might be required for stations with multiple floors)<BR><BR>\
+	(multiple projectors might be required for stations with multiple floors), however, projector can't support more then 5.5GeV and will not work past that threshhold.<BR><BR>\
 	<B>Additional effects:</B><BR>\
 	Projector will offer additional benefits, depending on type of gas present around chosen Supermatter engine<BR>\
 	-Above 20% Carbon Dioxide - it will recharge power cells carried by carbons and power cells powering cyborgs (10% of random cell every 10 seconds)<BR>\
@@ -234,7 +234,7 @@
 
 /atom/movable/screen/alert/status_effect/atmosgenbuff
 	name = "Superparticle Field"
-	desc = "Your're in range of a Superparticle Projector"
+	desc = "Your are immune to cold conditions of space"
 	icon = 'modular_zubbers/icons/obj/machines/superparticle_projector.dmi'
 	icon_state = "superparticle_projector"
 
