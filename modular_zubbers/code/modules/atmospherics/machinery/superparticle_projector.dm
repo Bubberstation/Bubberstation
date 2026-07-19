@@ -287,7 +287,7 @@
 	var/need_mob_update = FALSE
 
 	if(owner.get_brute_loss() > 0 & owner.get_brute_loss() < SUPERPARTICLE_HEALIUM_HEALING_DMG_TRESHHOLD)
-		need_mob_update += owner.adjust_brute_loss(- SUPERPARTICLE_HEALIUM_HEALING_PER_SECOND, updating_health = FALSE)
+		need_mob_update += owner.adjust_brute_loss(-SUPERPARTICLE_HEALIUM_HEALING_PER_SECOND, updating_health = FALSE)
 		healed_last_tick = TRUE
 
 	if(owner.get_fire_loss() > 0 & owner.get_fire_loss() < SUPERPARTICLE_HEALIUM_HEALING_DMG_TRESHHOLD)
