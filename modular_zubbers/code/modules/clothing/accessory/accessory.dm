@@ -290,8 +290,8 @@ GLOBAL_LIST_EMPTY_TYPED(protean_match_tag_pool, /obj/item/clothing/accessory/dog
 /obj/item/clothing/accessory/dogtags/protean_match/proc/unassign(unmatch_reason)
 	match_progress = UNASSIGNED
 	POOL -= src
-	assignee_name = initial(assignee_name)
-	assignee_protean = initial(assignee_protean)
+	assignee_name = null
+	assignee_protean = null
 	name = initial(name)
 	paired_tag_weakref = null
 	update_static_data_for_all_viewers()
@@ -303,15 +303,15 @@ GLOBAL_LIST_EMPTY_TYPED(protean_match_tag_pool, /obj/item/clothing/accessory/dog
 	if(!(in_range(user, src)))
 		return
 	if(assignee_name)
-		. += "This set is assigned to [assignee_name], a [assignee_protean ? "Protean" : "Wearer"]."
+		. += span_notice("This set is assigned to [assignee_name], a [assignee_protean ? "Protean" : "Wearer"].")
 	switch(match_progress)
 		if(UNASSIGNED)
-			. += "You can join the program by using it in-hand."
+			. += span_notice("You can join the program by using it in-hand.")
 		if(IN_POOL)
-			. += "It's currently in the candidate pool, alongside [length(POOL) - 1] others. Leave the pool by using it in-hand."
+			. += span_notice("It's currently in the candidate pool, alongside [length(POOL) - 1] others. Leave the pool by using it in-hand.")
 		if(MATCHED)
 			var/obj/item/clothing/accessory/dogtags/protean_match/paired_tag = paired_tag_weakref?.resolve()
-			. += "It's currently matched with [paired_tag.assignee_name], and can be unmatched by using it in-hand."
+			. += span_notice("It's currently matched with [paired_tag.assignee_name], and can be unmatched by using it in-hand.")
 
 #undef POOL
 #undef UNASSIGNED
@@ -776,9 +776,3 @@ Potential future ideas:
 	name = "\improper GalFed Official neckpin"
 	desc = "A special golden neckpin to show true loyalty to the Federation."
 	greyscale_colors = "#ffff66#0099ff"
-
-/obj/item/clothing/accessory/medal/gold/
-	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/accessories_teshari.dmi'
-
-/obj/item/clothing/accessory/medal/gold/captain
-	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/accessories_teshari.dmi'
