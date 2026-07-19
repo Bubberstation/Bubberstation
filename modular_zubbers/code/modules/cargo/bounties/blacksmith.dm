@@ -31,7 +31,7 @@ Todo: Refactor upstream code so that item deletion is decided at the bounty leve
 
 /datum/bounty/item/blacksmith/charging_holster
 	name = "Charging Holster"
-	description = "Our security team doesn't want to deal with finding rechargers. Send us a recharging holster. Only legendary blacksmiths need apply."
+	description = "Our security team doesn't want to deal with finding rechargers. Send us a charging holster. Only legendary blacksmiths need apply."
 	reward = CARGO_CRATE_VALUE * 10
 	required_count = 1
 	wanted_types = list(/obj/item/storage/belt/hip_holster/charging = TRUE)
