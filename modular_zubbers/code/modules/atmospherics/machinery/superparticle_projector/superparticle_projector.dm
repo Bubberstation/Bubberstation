@@ -86,11 +86,6 @@
 	/// Which gasses have met their treshholds in SM?
 	var/superparticle_gas_flags = NONE
 
-	/// Is Carbon Dioxide treshhold reached?
-	var/carbon = FALSE
-	/// Is Healium treshhold reached?
-	var/healium = FALSE
-
 /datum/armor/superparticlegen
 	fire = 100
 	melee = 10
