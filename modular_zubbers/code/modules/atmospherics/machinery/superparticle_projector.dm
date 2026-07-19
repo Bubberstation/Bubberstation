@@ -263,9 +263,9 @@
 /datum/status_effect/atmosgenbuff_carbon/tick(seconds_between_ticks)
 	if(iscarbon(owner))
 		var/list/batteries = list()
-		for(var/obj/item/stock_parts/power_store/C in assoc_to_values(owner.get_all_cells()))
-			if(C.charge < C.maxcharge)
-				batteries += C
+		for(var/obj/item/stock_parts/power_store/cell in assoc_to_values(owner.get_all_cells()))
+			if(cell.charge < cell.maxcharge)
+				batteries += cell
 		if(batteries.len)
 			var/obj/item/stock_parts/power_store/ToCharge = pick(batteries)
 			ToCharge.charge += min(ToCharge.maxcharge - ToCharge.charge, ToCharge.maxcharge/10)
