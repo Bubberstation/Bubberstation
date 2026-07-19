@@ -28,8 +28,8 @@
 	You can inspect the Projector at any time to check how far it can reach. \
 	Radius will scale with the internal power of the Supermatter engine that you choose to link this machine to, \
 	reaching 20 tile radius at 4.5GeV of internal power.\
-	Once internal power is above 4.5GeV, the field reach across entire floor of the station \
-	(multiple projectors might be required for stations with multiple floors), however, projector can't support more then 5.5GeV and will not work past that threshhold.<BR><BR>\
+	Once internal power is above 4.5GeV, the field reach across entire station \
+	(off station projector will require their own engines), however, projector can't support more then 5.5GeV and will not work past that threshhold.<BR><BR>\
 	<B>Additional effects:</B><BR>\
 	Projector will offer additional benefits, depending on type of gas present around chosen Supermatter engine<BR>\
 	-Above 20% Carbon Dioxide - it will recharge power cells carried by carbons and power cells powering cyborgs (10% of random cell every 10 seconds)<BR>\
@@ -212,14 +212,14 @@
 					target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
 		else
 			for(var/mob/living/carbon/target as anything in GLOB.carbon_list)
-				if(target.z == loc.z)
+				if(target.z == loc.z | (is_station_level(loc.z) & is_station_level(target.z)))
 					target.apply_status_effect(/datum/status_effect/atmosgenbuff)
 					if(superparticle_gas_flags & SP_GAS_FLAG_CARBON)
 						target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
 					if(superparticle_gas_flags & SP_GAS_FLAG_HEALIUM)
 						target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
 			for(var/mob/living/silicon/robot/target in GLOB.silicon_mobs)
-				if(target.z == loc.z)
+				if(target.z == loc.z | (is_station_level(loc.z) & is_station_level(target.z)))
 					if(superparticle_gas_flags & SP_GAS_FLAG_CARBON)
 						target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
 					if(superparticle_gas_flags & SP_GAS_FLAG_HEALIUM)
