@@ -91,8 +91,6 @@
 	melee = 10
 	bomb = 40
 
-/obj/machinery/power/superparticlegen/Destroy()
-	. = ..()
 
 /obj/machinery/power/superparticlegen/update_overlays()
 	. = ..()
