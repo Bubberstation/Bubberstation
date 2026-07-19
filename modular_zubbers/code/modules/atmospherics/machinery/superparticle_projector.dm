@@ -127,11 +127,11 @@
 /obj/machinery/power/superparticlegen/proc/toggle_on(mob/user)
 	if(on)
 		turn_off(user)
+		return
+	if(anchored)
+		display_options(user)
 	else
-		if(anchored)
-			display_options(user)
-		else
-			balloon_alert(user, "anchor first")
+		balloon_alert(user, "anchor first")
 
 /obj/machinery/power/superparticlegen/proc/turn_on(mob/user)
 	if(!isnull(user))
