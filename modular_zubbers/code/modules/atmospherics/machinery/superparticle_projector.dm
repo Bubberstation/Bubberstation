@@ -31,7 +31,7 @@
 	(multiple projectors might be required for stations with multiple floors)<BR><BR>\
 	<B>Additional effects:</B><BR>\
 	Projector will offer additional benefits, depending on type of gas present around chosen Supermatter engine<BR>\
-	-Above 20% Carbon Dioxide - it will recharge power cells carried by cyborgs and power cells powering cyborgs (10% of random cell every 10 seconds)<BR>\
+	-Above 20% Carbon Dioxide - it will recharge power cells carried by carbons and power cells powering cyborgs (10% of random cell every 10 seconds)<BR>\
 	-Above 20% Healium - the field will slowly fix brute and burn damage to both crew and cyborgs \
 	(0.2 per second if below 30 damage)<BR><BR>\
 	Superparticle Projector is a new device in active development, this guide will be updated if any of the above information changes. \
