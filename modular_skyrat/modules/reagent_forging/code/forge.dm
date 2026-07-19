@@ -481,7 +481,7 @@
 		smelt_ore(attacking_item, user)
 		return TRUE
 
-	if(attacking_item.GetComponent(/datum/component/reagent_imbued) && attacking_item.reagents.total_volume > 1)
+	if(attacking_item.GetComponent(/datum/component/reagent_imbued) && attacking_item?.reagents?.total_volume > 1)
 		handle_reagent_imbue(attacking_item, user)
 		return TRUE
 
