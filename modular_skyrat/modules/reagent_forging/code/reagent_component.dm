@@ -20,10 +20,12 @@
 	var/last_smithing_oil_ratio_applied = 0
 	///damage mult on parent item when reagent procs
 	var/integrity_loss_per_inject = 1
+	///random 0 to X amount of damage inflicted onto parent item when reagent procs
+	var/integrity_lost_inject_random = 0
 
 /// * set_slot: Used for clothing only, ignore if this isn't the case.
 /// * integrity: what integ % is required to use the reagent imbue?
-/datum/component/reagent_imbued/Initialize(list/oil_effects = list(), integrity = 0.85, set_slot = null)
+/datum/component/reagent_imbued/Initialize(list/oil_effects = list(), integrity = 0.85, set_slot = null, reagent_integrity_loss_factor = 1, reagent_integrity_loss_random = 0)
 	if(!istype(parent, required_type))
 		return COMPONENT_INCOMPATIBLE //they need to be clothing, I already said this
 	parent_item = parent
@@ -32,6 +34,8 @@
 	RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent_item, COMSIG_ATOM_EXAMINE_MORE, PROC_REF(on_examine_more))
 	smithing_oil_effects = oil_effects
+	integrity_loss_per_inject = reagent_integrity_loss_factor
+	integrity_lost_inject_random = reagent_integrity_loss_random
 
 /datum/component/reagent_imbued/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
@@ -121,11 +125,12 @@
 	var/mob/living_target = target
 	var/new_amount_to_inject = min(inject_amount, imbued_reagent.total_volume)
 	imbued_reagent.trans_to(target = living_target, amount = new_amount_to_inject, transferred_by = user, methods = INJECT, copy_only = TRUE)
-	parent_item.take_damage(integrity_loss_per_inject * new_amount_to_inject, sound_effect = FALSE)
+	var/random_integ = integrity_lost_inject_random * (rand(100)/100)
+	parent_item.take_damage((integrity_loss_per_inject + random_integ) * new_amount_to_inject, sound_effect = FALSE)
 
 	if(parent_item.get_integrity_percentage() < integrity_required)
-		balloon_alert(user, "[parent_item] dulls")
-		to_chat(user, span_warning("[parent item] loses the reagent gleam imbued into it."))
+		user.balloon_alert(user, "[parent_item] dulls")
+		to_chat(user, span_warning("[parent_item] loses the reagent gleam imbued into it."))
 	return TRUE
 
 //the component that is attached to clothes that allows them to be imbued
