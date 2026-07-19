@@ -8,10 +8,11 @@
 #define SUPERPARTICLE_CARBON_GAS_TRESHHOLD (0.2)
 //Percentage of Healium required for effects to apply
 #define SUPERPARTICLE_HEALIUM_GAS_TRESHHOLD (0.2)
-//Amount of burn and brute damage healed per second
-#define SUPERPARTICLE_HEALIUM_HEALING_PER_SECOND (0.2)
-//Damage treshhold below which healing effect works
-#define SUPERPARTICLE_HEALIUM_HEALING_DMG_TRESHHOLD (30)
+///Flags for gas treshholds
+// Is Carbon Dioxide treshhold reached?
+#define SP_GAS_FLAG_CARBON (1<<0)
+// Is Healium treshhold reached?
+#define SP_GAS_FLAG_HEALIUM (1<<1)
 
 /obj/item/paper/guides/jobs/atmos/superparticlegen
 	name = "paper- 'Guide to Superparticle Projector'"
@@ -44,7 +45,7 @@
 	contains = list(/obj/item/circuitboard/machine/superparticlegen,
 	/obj/item/paper/guides/jobs/atmos/superparticlegen)
 	crate_name = "Superparticle Projector Circuitboard Crate"
-	crate_type = /obj/structure/closet/crate
+	crate_type = /obj/structure/closet/crate/engineering
 
 /obj/item/circuitboard/machine/superparticlegen
 	name = "Superparticle Projector"
@@ -81,6 +82,10 @@
 	var/list/obj/machinery/power/supermatter_crystal/supermatters = list()
 	/// For chosen SM
 	var/obj/machinery/power/supermatter_crystal/connected_supermatter
+
+	/// Which gasses have met their treshholds in SM?
+	var/superparticle_gas_flags = NONE
+
 	/// Is Carbon Dioxide treshhold reached?
 	var/carbon = FALSE
 	/// Is Healium treshhold reached?
@@ -97,10 +102,10 @@
 	icon_state = panel_open ? "[base_icon_state]-o" : base_icon_state
 	if(on)
 		. += "superparticle_projector_lights"
-		if(healium)
-			. += "superparticle_healium"
-		if(carbon)
+		if(superparticle_gas_flags & SP_GAS_FLAG_CARBON)
 			. += "superparticle_carbon"
+		if(superparticle_gas_flags & SP_GAS_FLAG_HEALIUM)
+			. += "superparticle_healium"
 
 /obj/machinery/power/superparticlegen/examine(mob/user)
 	. = ..()
@@ -108,8 +113,8 @@
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("<b>Right-click</b> to toggle [on ? "off" : "on"].")
 		. += span_notice("Current range of the field: [range] tiles.")
-		. += span_notice("<b>Carbon Dioxide</b> effect is <b>[carbon ? "active" : "not active"]</b>.")
-		. += span_notice("<b>Healium</b> effect is <b>[healium ? "active" : "not active"]</b>.")
+		. += span_notice("<b>Carbon Dioxide</b> effect is <b>[superparticle_gas_flags & SP_GAS_FLAG_CARBON ? "active" : "not active"]</b>.")
+		. += span_notice("<b>Healium</b> effect is <b>[superparticle_gas_flags & SP_GAS_FLAG_HEALIUM ? "active" : "not active"]</b>.")
 
 /obj/machinery/power/superparticlegen/attack_hand_secondary(mob/user, list/modifiers)
 	if(!can_interact(user))
@@ -179,132 +184,58 @@
 /obj/machinery/power/superparticlegen/process(seconds_per_tick)
 	if(!on)
 		return PROCESS_KILL
-	var/range = round((connected_supermatter.get_internal_enerergy()) / SUPERPARTICLE_MAX_POWER * SUPERPARTICLE_MAX_RANGE)
+	range = round((connected_supermatter.internal_energy) / SUPERPARTICLE_MAX_POWER * SUPERPARTICLE_MAX_RANGE)
 
 	if(connected_supermatter.gas_percentage[/datum/gas/carbon_dioxide] > SUPERPARTICLE_CARBON_GAS_TRESHHOLD)
-		if(!carbon)
-			carbon = TRUE
+		if(superparticle_gas_flags ^ SP_GAS_FLAG_CARBON)
+			superparticle_gas_flags |= SP_GAS_FLAG_CARBON
 			update_appearance()
 	else
-		if(carbon)
-			carbon = FALSE
+		if(superparticle_gas_flags & SP_GAS_FLAG_CARBON)
+			superparticle_gas_flags ^= SP_GAS_FLAG_CARBON
 			update_appearance()
 	if(connected_supermatter.gas_percentage[/datum/gas/healium] > SUPERPARTICLE_HEALIUM_GAS_TRESHHOLD)
-		if(!healium)
-			healium = TRUE
+		if(superparticle_gas_flags ^ SP_GAS_FLAG_HEALIUM)
+			superparticle_gas_flags |= SP_GAS_FLAG_HEALIUM
 			update_appearance()
 	else
-		if(healium)
-			healium = FALSE
+		if(superparticle_gas_flags & SP_GAS_FLAG_HEALIUM)
+			superparticle_gas_flags ^= SP_GAS_FLAG_HEALIUM
 			update_appearance()
 
 
-	if(connected_supermatter.get_internal_enerergy() < SUPERPARTICLE_STOP_POWER)
-		if(connected_supermatter.get_internal_enerergy() < SUPERPARTICLE_MAX_POWER)
+	if(connected_supermatter.internal_energy < SUPERPARTICLE_STOP_POWER)
+		if(connected_supermatter.internal_energy < SUPERPARTICLE_MAX_POWER)
 			for(var/mob/living/carbon/target in range(src, range))
 				target.apply_status_effect(/datum/status_effect/atmosgenbuff)
-				if(carbon)
+				if(superparticle_gas_flags & SP_GAS_FLAG_CARBON)
 					target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
-				if(healium)
+				if(superparticle_gas_flags & SP_GAS_FLAG_HEALIUM)
 					target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
 			for(var/mob/living/silicon/robot/target in range(src, range))
-				if(carbon)
+				if(superparticle_gas_flags & SP_GAS_FLAG_CARBON)
 					target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
-				if(healium)
+				if(superparticle_gas_flags & SP_GAS_FLAG_HEALIUM)
 					target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
 		else
 			for(var/mob/living/carbon/target as anything in GLOB.carbon_list)
 				if(target.z == loc.z)
 					target.apply_status_effect(/datum/status_effect/atmosgenbuff)
-					if(carbon)
+					if(superparticle_gas_flags & SP_GAS_FLAG_CARBON)
 						target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
-					if(healium)
+					if(superparticle_gas_flags & SP_GAS_FLAG_HEALIUM)
 						target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
 			for(var/mob/living/silicon/robot/target in GLOB.silicon_mobs)
 				if(target.z == loc.z)
-					if(carbon)
+					if(superparticle_gas_flags & SP_GAS_FLAG_CARBON)
 						target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
-					if(healium)
+					if(superparticle_gas_flags & SP_GAS_FLAG_HEALIUM)
 						target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
-
-
-/atom/movable/screen/alert/status_effect/atmosgenbuff
-	name = "Superparticle Field"
-	desc = "Your are immune to cold conditions of space"
-	icon = 'modular_zubbers/icons/obj/machines/superparticle_projector.dmi'
-	icon_state = "superparticle_projector"
-
-/datum/status_effect/atmosgenbuff
-	id = "atmosgen_buff"
-	duration = 3 SECONDS
-	status_type = STATUS_EFFECT_REFRESH
-	alert_type = /atom/movable/screen/alert/status_effect/atmosgenbuff
-	var/static/list/traits_to_give = list(
-		TRAIT_RESISTCOLD,
-		TRAIT_RESISTLOWPRESSURE,
-		TRAIT_NOBREATH,
-	)
-
-/datum/status_effect/atmosgenbuff/on_apply()
-	. = ..()
-	owner.add_traits(traits_to_give, REF(src))
-
-/datum/status_effect/atmosgenbuff/on_remove()
-	. = ..()
-	owner.remove_traits(traits_to_give, REF(src))
-
-/datum/status_effect/atmosgenbuff_carbon
-	id = "atmosgen_buff_carbon"
-	duration = 3 SECONDS
-	status_type = STATUS_EFFECT_REFRESH
-	tick_interval = 10 SECONDS
-	alert_type = null
-
-/datum/status_effect/atmosgenbuff_carbon/tick(seconds_between_ticks)
-	if(iscarbon(owner))
-		var/list/batteries = list()
-		for(var/obj/item/stock_parts/power_store/cell in assoc_to_values(owner.get_all_cells()))
-			if(cell.charge < cell.maxcharge)
-				batteries += cell
-		if(batteries.len)
-			var/obj/item/stock_parts/power_store/to_charge = pick(batteries)
-			to_charge.charge += min(to_charge.maxcharge - to_charge.charge, to_charge.maxcharge/10)
-	if(iscyborg(owner))
-		var/mob/living/silicon/robot/borg = owner
-		var/obj/item/stock_parts/power_store/to_charge = borg.cell
-		to_charge.charge += min(to_charge.maxcharge - to_charge.charge, to_charge.maxcharge/10)
-	return ..()
-
-/datum/status_effect/atmosgenbuff_healium
-	id = "atmosgen_buff_healium"
-	duration = 3 SECONDS
-	status_type = STATUS_EFFECT_REFRESH
-	alert_type = null
-	var/healed_last_tick = FALSE
-
-/datum/status_effect/atmosgenbuff_healium/tick(seconds_between_ticks)
-	healed_last_tick = FALSE
-	var/need_mob_update = FALSE
-
-	if(owner.get_brute_loss() > 0 & owner.get_brute_loss() < SUPERPARTICLE_HEALIUM_HEALING_DMG_TRESHHOLD)
-		need_mob_update += owner.adjust_brute_loss(-SUPERPARTICLE_HEALIUM_HEALING_PER_SECOND, updating_health = FALSE)
-		healed_last_tick = TRUE
-
-	if(owner.get_fire_loss() > 0 & owner.get_fire_loss() < SUPERPARTICLE_HEALIUM_HEALING_DMG_TRESHHOLD)
-		need_mob_update += owner.adjust_fire_loss(-SUPERPARTICLE_HEALIUM_HEALING_PER_SECOND, updating_health = FALSE)
-		healed_last_tick = TRUE
-
-	if(need_mob_update)
-		owner.updatehealth()
-
-	if(healed_last_tick)
-		new /obj/effect/temp_visual/heal(get_turf(owner), COLOR_RED)
-	return ..()
 
 #undef SUPERPARTICLE_MAX_RANGE
 #undef SUPERPARTICLE_MAX_POWER
 #undef SUPERPARTICLE_STOP_POWER
 #undef SUPERPARTICLE_CARBON_GAS_TRESHHOLD
 #undef SUPERPARTICLE_HEALIUM_GAS_TRESHHOLD
-#undef SUPERPARTICLE_HEALIUM_HEALING_PER_SECOND
-#undef SUPERPARTICLE_HEALIUM_HEALING_DMG_TRESHHOLD
+#undef SP_GAS_FLAG_CARBON
+#undef SP_GAS_FLAG_HEALIUM
