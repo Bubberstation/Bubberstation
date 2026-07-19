@@ -122,6 +122,10 @@
 	var/new_amount_to_inject = min(inject_amount, imbued_reagent.total_volume)
 	imbued_reagent.trans_to(target = living_target, amount = new_amount_to_inject, transferred_by = user, methods = INJECT, copy_only = TRUE)
 	parent_item.take_damage(integrity_loss_per_inject * new_amount_to_inject, sound_effect = FALSE)
+
+	if(parent_item.get_integrity_percentage() < integrity_required)
+		balloon_alert(user, "[parent_item] dulls")
+		to_chat(user, span_warning("[parent item] loses the reagent gleam imbued into it."))
 	return TRUE
 
 //the component that is attached to clothes that allows them to be imbued
