@@ -96,6 +96,7 @@
 
 /obj/machinery/power/superparticlegen/update_overlays()
 	. = ..()
+	icon_state = panel_open ? "[base_icon_state]-o" : base_icon_state
 	if(on)
 		. += "superparticle_projector_lights"
 		if(healium)
@@ -130,7 +131,10 @@
 	if(on)
 		turn_off(user)
 	else
-		display_options(user)
+		if(anchored)
+			display_options(user)
+		else
+			balloon_alert(user, "anchor first")
 
 /obj/machinery/power/superparticlegen/proc/turn_on(mob/user)
 	if(!isnull(user))
@@ -146,11 +150,31 @@
 	STOP_PROCESSING(SSmachines, src)
 	update_appearance()
 
-/obj/machinery/power/portagrav/screwdriver_act(mob/living/user, obj/item/tool)
+/obj/machinery/power/superparticlegen/screwdriver_act(mob/living/user, obj/item/tool)
+	if(on)
+		balloon_alert(user, "turn off!")
+		return ITEM_INTERACT_SUCCESS
+	if(!anchored)
+		balloon_alert(user, "anchor!")
+		return ITEM_INTERACT_SUCCESS
+
 	return default_deconstruction_screwdriver(user, tool)
 
-/obj/machinery/power/portagrav/crowbar_act(mob/living/user, obj/item/tool)
+/obj/machinery/power/superparticlegen/crowbar_act(mob/living/user, obj/item/tool)
 	return default_deconstruction_crowbar(user, tool)
+
+/obj/machinery/power/superparticlegen/wrench_act(mob/living/user, obj/item/tool)
+	. = ..()
+	if(on)
+		balloon_alert(user, "turn off first!")
+		return
+	default_unfasten_wrench(user, tool)
+	if(anchored)
+		connect_to_network()
+	else
+		disconnect_from_network()
+	update_appearance()
+	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/power/supermatter_crystal/proc/get_internal_enerergy()
 	var/energy = internal_energy
