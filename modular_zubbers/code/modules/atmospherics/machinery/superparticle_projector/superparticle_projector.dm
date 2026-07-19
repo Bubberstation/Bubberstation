@@ -120,7 +120,8 @@
 /obj/machinery/power/superparticlegen/proc/display_options(mob/user)
 	supermatters = list()
 	for(var/obj/machinery/power/supermatter_crystal/sm as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/supermatter_crystal))
-		supermatters += sm
+		if((loc.z == sm.z) | (is_station_level(loc.z) & is_station_level(sm.z)))
+			supermatters += sm
 	connected_supermatter = tgui_input_list(user, "Which engine would you like to link to?", "Select an engine!", supermatters)
 	turn_on(user)
 
@@ -172,9 +173,6 @@
 		disconnect_from_network()
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
-
-/obj/machinery/power/supermatter_crystal/proc/get_internal_enerergy()
-	return internal_energy
 
 /obj/machinery/power/superparticlegen/process(seconds_per_tick)
 	if(!on)
