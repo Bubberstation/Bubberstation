@@ -1,7 +1,6 @@
 /obj/machinery/cell_charger/mega
 	name = "megacell charger"
 	desc = "It charges big power cells."
-	icon = 'modular_skyrat/modules/aesthetics/cells/cell.dmi'
 	icon_state = "ccharger_mega"
 	circuit = /obj/item/circuitboard/machine/megacell_charger
 	charge_rate = 0.5 * STANDARD_BATTERY_RATE
@@ -39,6 +38,7 @@
 
 /obj/machinery/cell_charger/mega/RefreshParts()
 	. = ..()
-	charge_rate = 0.5 * STANDARD_BATTERY_RATE
+	var/tier_total
 	for(var/datum/stock_part/capacitor/capacitor in component_parts)
-		charge_rate *= capacitor.tier
+		tier_total += capacitor.tier
+	charge_rate = tier_total * (initial(charge_rate) / 3)
