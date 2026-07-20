@@ -3,9 +3,10 @@
 	desc = "It charges big power cells."
 	icon = 'modular_skyrat/modules/aesthetics/cells/cell.dmi'
 	icon_state = "ccharger_mega"
-	circuit = /obj/item/circuitboard/machine/mega_cell_charger
+	circuit = /obj/item/circuitboard/machine/megacell_charger
+	charge_rate = 0.5 * STANDARD_BATTERY_RATE
 
-/obj/machinery/cell_charger/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+/obj/machinery/cell_charger/mega/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/stock_parts/power_store/battery) || panel_open)
 		return NONE
 
@@ -36,7 +37,7 @@
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
-/obj/machinery/cell_charger/RefreshParts()
+/obj/machinery/cell_charger/mega/RefreshParts()
 	. = ..()
 	charge_rate = 0.5 * STANDARD_BATTERY_RATE
 	for(var/datum/stock_part/capacitor/capacitor in component_parts)
