@@ -1,0 +1,1 @@
+/obj/item/stock_parts/power_store/battery
