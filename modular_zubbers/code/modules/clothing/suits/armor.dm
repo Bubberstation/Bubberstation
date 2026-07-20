@@ -268,6 +268,136 @@
 /obj/item/clothing/head/hooded/cultlain_hood
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
 
+/obj/item/clothing/suit/hooded/secjuggernaut
+	name = "security juggernaut suit"
+	desc = "The Advanced Security Suit offers nigh-perfect protection of the wearer through an advanced layering of kevlar, titanium, and ceramic plates. \
+		The construction of the suit unfortunately renders it incredibly heavy and cumbersome, effectively slowing the user to a crawl and heavily limiting their mobility options. \
+		Only through recently developed micro-anti-gravitational generators can the suit actually be worn and moved in. \
+		Comes along with a built-in helmet for EVA action."
+	icon_state = "security_jugger"
+	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+	inhand_icon_state = "swat_suit"
+	hoodtype = /obj/item/clothing/head/hooded/secjuggernaut
+	hood_up_affix = ""
+	armor_type = /datum/armor/secjuggernaut
+	w_class = WEIGHT_CLASS_HUGE
+	siemens_coefficient = 0
+	strip_delay = 25 SECONDS
+	equip_delay_self = 12 SECONDS
+	equip_delay_other = 15 SECONDS
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	item_flags = SLOWS_WHILE_IN_HAND | IMMUTABLE_SLOW
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SNUG_FIT
+	bubber_obj_flags = TRUE_IMMUTABLE_SLOW
+	cold_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
+	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
+	heat_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	slowdown = 5
+	drag_slowdown = 5
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	clothing_traits = list(TRAIT_BRAWLING_KNOCKDOWN_BLOCKED, TRAIT_PUSHIMMUNE, TRAIT_NEGATES_GRAVITY, TRAIT_NO_SLIP_WATER, TRAIT_NO_VEHICLE, TRAIT_HUGE_CLOTHES, TRAIT_NO_BUCKLE)
+	allowed = list(
+		/obj/item/tank/internals,
+		/obj/item/tank/jetpack/captain,
+	)
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 40.4,
+		/datum/material/alloy/plastitanium = SHEET_MATERIAL_AMOUNT * 40,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 3.4
+	)
+
+/obj/item/clothing/suit/hooded/secjuggernaut/examine(mob/user)
+	. = ..()
+	. += span_warning("Trying to buckle to anything while wearing this is impossible, whether it be a chair, cyborg, horse, or golf cart.")
+
+/obj/item/clothing/suit/hooded/secjuggernaut/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
+
+/obj/item/clothing/head/hooded/secjuggernaut
+	name = "security juggernaut helmet"
+	desc = "A helmet built into the Advanced Security Suit. It offers nigh-perfect protection with the drawback of being permanently affixed to an incredibly heavy suit. \
+		It is pressure resistant, flash-protected, and comes with a built-in seclite for visiblity in dark areas.\
+		While made of the same materials and having the same overall construction, built-in servos and actuators allow it to be easily put on compared to the suit it comes with."
+	icon_state = "security_jugger0"
+	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	worn_icon_muzzled = 'modular_zubbers/icons/mob/clothing/head/helmet_muzzled.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+	armor_type = /datum/armor/secjuggernaut
+	flash_protect = FLASH_PROTECTION_WELDER
+	strip_delay = 15 SECONDS
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SNUG_FIT | HEADINTERNALS
+	bubber_obj_flags = TRUE_IMMUTABLE_SLOW
+	clothing_traits = list(TRAIT_HEAD_INJURY_BLOCKED)
+	cold_protection = HEAD
+	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
+	heat_protection = HEAD
+	max_heat_protection_temperature = SPACE_HELM_MAX_TEMP_PROTECT
+	flags_inv = HIDEHAIR|HIDEFACE|HIDESNOUT|SHOWSPRITEEARS
+	flags_cover = HEADCOVERSEYES|HEADCOVERSMOUTH|PEPPERPROOF
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+
+	actions_types = list(/datum/action/item_action/toggle_helmet_light)
+	light_system = OVERLAY_LIGHT_DIRECTIONAL
+	light_range = 7
+	light_power = 1.0
+	light_color = "#99ccff"
+	light_on = FALSE
+	var/on = FALSE
+
+	var/sound_on = 'sound/items/weapons/magin.ogg'
+	var/sound_off = 'sound/items/weapons/magout.ogg'
+
+/obj/item/clothing/head/hooded/secjuggernaut/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+	AddComponent(/datum/component/wearertargeting/earprotection)
+
+/obj/item/clothing/head/hooded/secjuggernaut/proc/toggle_helmet_light(mob/living/user)
+	on = !on
+	if(on)
+		playsound(src, sound_on, 40, TRUE)
+		turn_on(user)
+	else
+		playsound(src, sound_off, 40, TRUE)
+		turn_off(user)
+	update_appearance()
+
+/obj/item/clothing/head/hooded/secjuggernaut/update_icon_state()
+	icon_state = "security_jugger[on]"
+	return ..()
+
+/obj/item/clothing/head/hooded/secjuggernaut/proc/turn_on(mob/user)
+	set_light_on(TRUE)
+
+/obj/item/clothing/head/hooded/secjuggernaut/proc/turn_off(mob/user)
+	set_light_on(FALSE)
+
+/obj/item/clothing/head/hooded/secjuggernaut/on_saboteur(datum/source, disrupt_duration)
+	. = ..()
+	if(on)
+		toggle_helmet_light()
+		return TRUE
+
+/obj/item/clothing/head/hooded/secjuggernaut/attack_self(mob/living/user)
+	toggle_helmet_light(user)
+
+/datum/armor/secjuggernaut
+	melee = 80
+	bullet = 80
+	laser = 70
+	energy = 40
+	bomb = 100
+	bio = 100
+	fire = 100
+	acid = 100
+	wound = 40
+
 /obj/item/clothing/suit/armor/vest/blueshirt
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
 
