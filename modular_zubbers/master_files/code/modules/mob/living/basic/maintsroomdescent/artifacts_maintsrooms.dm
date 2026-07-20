@@ -42,6 +42,10 @@
 
 	return ..()
 
+/obj/item/slimecross/stabilized/purple/soul/Initialize(mapload)
+	. = ..()
+	name = "strange comforting rock"
+
 /obj/item/slimecross/stabilized/yellow/battery
 	name = "Strange electric rock"
 	desc = "A strange rock that feels charged to the touch."
@@ -61,6 +65,10 @@
 
 /datum/status_effect/stabilized/yellow/battery/get_examine_text()
 	return span_warning("Nearby electronics seem just a little more charged wherever [owner.p_they()] go[owner.p_es()].")
+
+/obj/item/slimecross/stabilized/yellow/battery/Initialize(mapload)
+	. = ..()
+	name = "strange electric rock"
 
 /datum/status_effect/stabilized/yellow/battery/tick(seconds_between_ticks)
 	if(cooldown > 0)
@@ -96,6 +104,10 @@
 	ADD_TRAIT(owner, TRAIT_NO_SLIP_ALL, TRAIT_STATUS_EFFECT(id))
 	owner.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/equipment_speedmod)
 	return. = ..()
+
+/obj/item/slimecross/stabilized/blue/gravi/Initialize(mapload)
+	. = ..()
+	name = "strange weightless rock"
 
 /datum/status_effect/stabilized/blue/gravi/on_remove()
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/lightpink)
