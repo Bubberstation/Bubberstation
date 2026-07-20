@@ -7,10 +7,13 @@
 	armour_penetration = 200 // we don't want this being blocked
 	projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS //evil-ass beams debilitate through walls
 	range = 10
-	speed = 2
+	speed = 1
+	reflectable = FALSE
 
+	hitsound = null
+	hitsound_wall = null
+	impact_effect_type = null
 	log_override = TRUE
-	suppressed =  SUPPRESSED_VERY
 
 	//small debilitations, since this is somewhat rapid-fire and meant to hit repeatedly
 	eyeblur = 0.5 SECONDS
@@ -39,13 +42,13 @@
 	name = "gutbuster raygun beam"
 /obj/projectile/energy/syndie_raygun/stomach/on_hit(mob/living/carbon/target, blocked = 0, pierce_hit)
 	. = ..()
-	need_mob_update = target.adjust_organ_loss(ORGAN_SLOT_STOMACH, 1.8)
+	target.adjust_organ_loss(ORGAN_SLOT_STOMACH, 1.8)
 
 /obj/projectile/energy/syndie_raygun/brain
 	name = "brain drain raygun beam"
 /obj/projectile/energy/syndie_raygun/brain/on_hit(mob/living/carbon/target, blocked = 0, pierce_hit)
 	. = ..()
-	need_mob_update = target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 2)
+	target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 2)
 
 /obj/projectile/energy/syndie_raygun/sensory
 	name = "sensory deprivation raygun beam"
