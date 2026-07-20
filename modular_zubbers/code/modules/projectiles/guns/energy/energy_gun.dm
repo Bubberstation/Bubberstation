@@ -66,9 +66,14 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	suppressed = SUPPRESSED_VERY
 
+	dry_fire_sound = null
+	dry_fire_sound_volume = 0
+	suppressed_sound = 'sound/machines/microwave/microwave-mid1.ogg'
+	can_muzzle_flash = FALSE
+
 	selfcharge = 1
-	charge_delay = 30
-	self_charge_amount = STANDARD_ENERGY_GUN_SELF_CHARGE_RATE * 10
+	charge_delay = 60
+	self_charge_amount = STANDARD_ENERGY_GUN_SELF_CHARGE_RATE * 5
 
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/syndie_raygun/heart,
