@@ -269,7 +269,12 @@
 	//If buckling is forbidden for the target, cancel
 	if(!target.can_buckle_to && !force)
 		return FALSE
-
+	//Bubber Addition
+	//If the target has the TRAIT_NO_BUCKLE, preventing buckling
+	if(HAS_TRAIT(target, TRAIT_NO_BUCKLE))
+		to_chat(target, span_danger("You are unable to do that."))
+		return FALSE
+	//Bubber Addition End
 	return TRUE
 
 /**
