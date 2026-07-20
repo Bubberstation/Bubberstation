@@ -72,7 +72,8 @@
 		/mob/living/simple_animal/hostile/vox/ranged/laser,
 		/mob/living/simple_animal/hostile/vox/ranged/space,
 		/mob/living/simple_animal/hostile/vox/ranged/space/laser,
-
+		/mob/living/simple_animal/hostile/megafauna/claw,//That sign cant stop me because i cant read!
+		/mob/living/simple_animal/hostile/megafauna/claw/phase2,//That sign cant stop me because i cant read!
 		// DO NOT ADD NEW ENTRIES TO THIS LIST
 		// READ THE COMMENT ABOVE
 	)
