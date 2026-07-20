@@ -1556,8 +1556,15 @@
 /mob/proc/update_equipment_speed_mods()
 	var/speedies = 0
 	var/immutable_speedies = 0
+	//Bubber Addition
+	var/true_immute_speedies = 0
+	//Bubber Addition End
 	for(var/obj/item/thing in get_equipped_speed_mod_items())
-		if(thing.item_flags & IMMUTABLE_SLOW)
+		//Bubber Addition
+		if(thing.bubber_obj_flags & TRUE_IMMUTABLE_SLOW)
+			true_immute_speedies += thing.slowdown
+		//Bubber Addition End
+		else if(thing.item_flags & IMMUTABLE_SLOW)
 			immutable_speedies += thing.slowdown
 		else
 			speedies += thing.slowdown
@@ -1565,6 +1572,15 @@
 	//if  we have TRAIT_STURDY_FRAME, we reduce our overall speed penalty UNLESS that penalty would be a negative value, and therefore a speed boost.
 	if(speedies > 0 && HAS_TRAIT(src, TRAIT_STURDY_FRAME))
 		speedies *= 0.2
+	//Bubber Addition
+	if(true_immute_speedies)
+		add_or_update_variable_movespeed_modifier(
+			/datum/movespeed_modifier/equipment_speedmod/true_immutable,
+			multiplicative_slowdown = true_immute_speedies,
+		)
+	else
+		remove_movespeed_modifier(/datum/movespeed_modifier/equipment_speedmod/true_immutable)
+	//Bubber Addition End
 
 	if(immutable_speedies)
 		add_or_update_variable_movespeed_modifier(
