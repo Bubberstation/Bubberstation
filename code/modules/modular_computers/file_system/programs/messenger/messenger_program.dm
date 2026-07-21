@@ -751,12 +751,20 @@
 			reply = "\[Automated Message\]"
 		else
 			reply = "(<a href='byond://?src=[REF(src)];choice=[reply_href];skiprefresh=1;target=[REF(chat)]'>Reply</a>)"
-
+		//BUBBER EDIT BEGIN - forward PDA messages to AIs to their shells
+		var/forwarded_message = FALSE
 		if (isAI(messaged_mob))
 			sender_title = "<a href='byond://?src=[REF(messaged_mob)];track=[html_encode(sender_name)]'>[sender_title]</a>"
 
-		var/inbound_message = "[signal.format_message()]"
+			var/mob/living/silicon/ai/ai_receiver = messaged_mob
+			if(ai_receiver.deployed_shell)
+				messaged_mob = ai_receiver.deployed_shell
+				forwarded_message = TRUE
 
+		var/inbound_message = "[signal.format_message()]"
+		if(forwarded_message)
+			inbound_message += " - Forwarded from the AI Core PDA"
+		//BUBBER EDIT END - forward PDA messages to AIs to their shells
 		var/photo_message = signal.data["photo"] ? " (<a href='byond://?src=[REF(src)];choice=[photo_href];skiprefresh=1;target=[REF(chat)]'>Photo Attached</a>)" : ""
 		// BUBBER EDIT CHANGE BEGIN - SUBTLE MESSAGES
 		if(is_subtle)
