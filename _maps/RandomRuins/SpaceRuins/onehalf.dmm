@@ -737,7 +737,9 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cx" = (
-/obj/item/stack/tile/iron/base,
+/obj/structure/broken_flooring/pile/always_floorplane{
+	dir = 8
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cy" = (
@@ -787,11 +789,13 @@
 "cI" = (
 /obj/structure/safe/floor,
 /obj/item/tank/internals/oxygen/red,
-/obj/item/clothing/head/helmet/space/eva,
-/obj/item/clothing/suit/space/eva,
 /obj/item/reagent_containers/cup/glass/bottle/rum,
 /obj/item/reagent_containers/cup/glass/bottle/rum,
 /obj/item/folder/syndicate/mining,
+/obj/effect/mapping_helpers/broken_floor,
+/obj/item/mod/module/jetpack/advanced,
+/obj/item/mod/control/pre_equipped/frontline/surplus,
+/obj/item/stock_parts/power_store/cell/lead,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cJ" = (
@@ -799,6 +803,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cK" = (
@@ -826,6 +831,8 @@
 "cS" = (
 /obj/structure/chair/office,
 /obj/structure/cable,
+/obj/structure/broken_flooring/corner/directional/north,
+/obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cU" = (
@@ -892,16 +899,35 @@
 /obj/item/stack/cable_coil/cut,
 /turf/template_noop,
 /area/space/nearstation)
-"ms" = (
-/obj/item/stack/tile/iron/base,
-/obj/structure/cable,
+"dG" = (
+/obj/structure/frame/computer,
+/obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/onehalf/bridge)
+"hD" = (
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/onehalf/bridge)
+"ms" = (
+/obj/structure/cable,
+/obj/structure/broken_flooring/corner/directional/east,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/onehalf/bridge)
+"mu" = (
+/mob/living/basic/trooper/pirate/ranged/space,
+/turf/open/floor/iron/white,
+/area/ruin/space/has_grav/onehalf/dorms_med)
 "nu" = (
 /obj/item/crowbar/red,
 /obj/item/multitool,
 /obj/structure/cable,
+/obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/onehalf/bridge)
+"sG" = (
+/obj/structure/broken_flooring/corner/directional/south,
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/iron,
 /area/ruin/space/has_grav/onehalf/bridge)
 "sZ" = (
 /obj/structure/bed{
@@ -912,6 +938,10 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/onehalf/dorms_med)
+"Dq" = (
+/mob/living/basic/trooper/pirate/ranged/space,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/onehalf/bridge)
 "Id" = (
 /obj/structure/disposalpipe/junction{
 	dir = 8
@@ -924,6 +954,17 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/onehalf/bridge)
+"Ll" = (
+/obj/structure/cable,
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/onehalf/bridge)
+"RT" = (
+/obj/structure/lattice,
+/obj/item/stack/cable_coil/cut,
+/mob/living/basic/trooper/pirate/ranged/space,
+/turf/template_noop,
+/area/ruin/space/has_grav/onehalf/hallway)
 "Vh" = (
 /obj/structure/cable,
 /turf/open/floor/iron,
@@ -1088,7 +1129,7 @@ aa
 ab
 ag
 am
-am
+mu
 aL
 aV
 bk
@@ -1185,7 +1226,7 @@ aU
 bW
 ax
 ct
-cK
+RT
 cK
 cK
 aU
@@ -1382,11 +1423,11 @@ bD
 bU
 ce
 cn
-cn
-Vh
+Dq
+Ll
 cI
-cn
-ce
+hD
+dG
 cq
 ad
 aa
@@ -1404,10 +1445,10 @@ bp
 bU
 cf
 Vh
-Vh
+Ll
 cJ
-cn
-cn
+hD
+sG
 cn
 cq
 ad
