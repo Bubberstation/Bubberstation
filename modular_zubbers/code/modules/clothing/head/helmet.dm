@@ -59,6 +59,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "pinwheel"
+	base_icon_state = "pinwheel"
 	inhand_icon_state = null
 	lefthand_file = null
 	righthand_file = null
@@ -80,9 +81,9 @@
 
 /obj/item/clothing/head/helmet/toggleable/pinwheel/gold
 	name = "magnificent pinwheel hat"
-	desc = "The strongest possible pinwheel pinwheel hat. Such is fate that the silliest things in the world are also the most beautiful; others may not see the shine in you, but the magnificent pinwheel hat does. It appreciates you for who you are and what you've done. It feels alive, and makes you feel alive too. You see the totality of existence reflected in the golden shimmer of the pin." //Does literally nothing more than the regular pinwheel hat. Just for emphasis.
+	desc = "The strongest possible pinwheel hat. Such is fate that the silliest things in the world are also the most beautiful; others may not see the shine in you, but the magnificent pinwheel hat does. It appreciates you for who you are and what you've done. It feels alive, and makes you feel alive too. You see the totality of existence reflected in the golden shimmer of the pin." //Does literally nothing more than the regular pinwheel hat. Just for emphasis.
 	icon_state = "pinwheel_gold"
-
+	base_icon_state = "pinwheel_gold"
 
 //Clussy and Jester sprites from Splurt.
 /obj/item/clothing/head/costume/bubber/jester
