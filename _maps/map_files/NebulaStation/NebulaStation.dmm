@@ -7168,6 +7168,12 @@
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/rd)
+"bdi" = (
+/obj/structure/table/reinforced/rglass,
+/obj/item/paperwork/cargo,
+/obj/machinery/fax/heads/qm,
+/turf/open/floor/carpet,
+/area/station/command/heads_quarters/qm)
 "bdk" = (
 /obj/structure/frame/machine,
 /turf/open/floor/plating,
@@ -15121,7 +15127,7 @@
 /obj/item/seeds/potato,
 /obj/item/seeds/apple,
 /obj/item/grown/corncob,
-/obj/item/food/grown/carrot,
+/obj/item/food/grown/carrotlike/carrot,
 /obj/item/food/grown/wheat,
 /obj/item/food/grown/pumpkin{
 	pixel_y = 5
@@ -49569,7 +49575,7 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "hnZ" = (
-/obj/structure/reagent_dispensers/beerkeg,
+/obj/effect/spawner/holiday/bar_keg,
 /obj/item/reagent_containers/cup/glass/bottle/beer{
 	pixel_y = -3;
 	pixel_x = 9
@@ -49726,7 +49732,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/structure/reagent_dispensers/beerkeg,
+/obj/effect/spawner/random/food_or_drink/keg,
 /turf/open/misc/asteroid/airless,
 /area/space/nearstation)
 "hps" = (
@@ -53972,13 +53978,6 @@
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
-"hVv" = (
-/obj/machinery/newscaster/directional/south,
-/obj/effect/turf_decal/bot_white/right,
-/obj/effect/turf_decal/tile/dark_blue/half/contrasted,
-/obj/structure/closet/crate/goldcrate,
-/turf/open/floor/iron/dark,
-/area/station/command/vault)
 "hVw" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -56794,7 +56793,7 @@
 /area/station/maintenance/department/cargo)
 "iqZ" = (
 /obj/item/fish/pufferfish,
-/obj/item/food/grown/carrot{
+/obj/item/food/grown/carrotlike/carrot{
 	pixel_x = 7;
 	preserved_food = 1
 	},
@@ -62630,7 +62629,7 @@
 /turf/open/floor/iron/white/textured_large,
 /area/station/engineering/break_room)
 "jke" = (
-/obj/machinery/computer/upload/borg{
+/obj/machinery/computer/upload/borg/no_lock{
 	dir = 4
 	},
 /obj/structure/window/reinforced/spawner/directional/west,
@@ -63512,6 +63511,16 @@
 	dir = 8
 	},
 /area/station/security/execution/education)
+"jsl" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/table/wood,
+/obj/structure/detectiveboard/directional/north,
+/obj/machinery/fax/heads/hos,
+/turf/open/floor/wood/large,
+/area/station/security/detectives_office)
 "jsm" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
@@ -66238,6 +66247,7 @@
 	pixel_y = 2
 	},
 /obj/item/storage/box/syringes,
+/obj/item/storage/pill_bottle/sepsisillin,
 /turf/open/floor/iron/dark,
 /area/station/medical/virology)
 "jLY" = (
@@ -76802,7 +76812,7 @@
 /area/space/nearstation)
 "lnV" = (
 /obj/item/food/grown/wheat,
-/obj/item/food/grown/watermelon,
+/obj/item/food/grown/melonlike/watermelon,
 /obj/item/food/grown/citrus/orange,
 /obj/item/food/grown/grapes,
 /obj/structure/table/glass,
@@ -90324,10 +90334,7 @@
 	pixel_x = -5;
 	pixel_y = 4
 	},
-/obj/item/radio/intercom/directional/west{
-	name = "Interrogation Intercom";
-	frequency = 1423
-	},
+/obj/item/radio/intercom/interrogation/outside/directional/west,
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp{
 	pixel_x = 11;
@@ -96299,6 +96306,13 @@
 	dir = 8
 	},
 /area/station/medical/surgery/theatre)
+"oma" = (
+/obj/vehicle/sealed/mecha/vim,
+/obj/effect/turf_decal/bot_white,
+/obj/effect/decal/cleanable/confetti,
+/obj/structure/marker_beacon/yellow,
+/turf/open/floor/engine/hull/reinforced,
+/area/space/nearstation)
 "omd" = (
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 1
@@ -97364,6 +97378,11 @@
 	dir = 4
 	},
 /area/station/security/brig/lower)
+"oui" = (
+/obj/structure/table/reinforced/rglass,
+/obj/machinery/fax/heads/captain,
+/turf/open/floor/carpet/royalblue,
+/area/station/command/heads_quarters/captain)
 "ouj" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -108859,6 +108878,12 @@
 	},
 /turf/open/floor/carpet/neon/simple/red/nodots,
 /area/station/commons/fitness/recreation/lasertag)
+"pZS" = (
+/obj/item/disk/computer/engineering,
+/obj/structure/table/reinforced/rglass,
+/obj/machinery/fax/heads/ce,
+/turf/open/floor/carpet/orange,
+/area/station/command/heads_quarters/ce)
 "qab" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment{
@@ -117259,7 +117284,7 @@
 /turf/open/floor/iron/white,
 /area/station/science/lab)
 "rop" = (
-/obj/machinery/computer/upload/ai{
+/obj/machinery/computer/upload/ai/no_lock{
 	dir = 8
 	},
 /obj/structure/window/reinforced/spawner/directional/east,
@@ -126532,6 +126557,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine/hull/reinforced,
 /area/space/nearstation)
+"sIf" = (
+/obj/structure/table/reinforced/rglass,
+/obj/machinery/fax/heads/hop,
+/turf/open/floor/carpet/royalblue,
+/area/station/command/heads_quarters/hop)
 "sIh" = (
 /obj/effect/spawner/random/decoration/showcase,
 /obj/structure/window/reinforced/spawner/directional/west,
@@ -134824,12 +134854,7 @@
 "tQX" = (
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp,
-/obj/item/radio/intercom/directional/north{
-	broadcasting = 1;
-	listening = 0;
-	name = "Interrogation Intercom";
-	frequency = 1423
-	},
+/obj/item/radio/intercom/interrogation/inside/directional/north,
 /obj/machinery/light/cold/dim/directional/north,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -143950,7 +143975,7 @@
 /turf/open/floor/engine/hull/reinforced,
 /area/space/nearstation)
 "vjZ" = (
-/obj/structure/reagent_dispensers/beerkeg,
+/obj/effect/spawner/random/food_or_drink/keg,
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/station/maintenance/port/fore)
@@ -146196,6 +146221,14 @@
 	},
 /turf/open/floor/plastic,
 /area/station/commons/dorms/laundry)
+"vAN" = (
+/obj/structure/table/reinforced/rglass,
+/obj/item/folder/blue,
+/obj/item/clothing/neck/stethoscope,
+/obj/item/clothing/glasses/hud/health,
+/obj/machinery/fax/heads/cmo,
+/turf/open/floor/carpet/blue,
+/area/station/command/heads_quarters/cmo)
 "vAQ" = (
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 4
@@ -151231,6 +151264,13 @@
 /obj/machinery/light/small/red/directional/west,
 /turf/open/floor/plating,
 /area/station/maintenance/port/central)
+"wpA" = (
+/obj/machinery/newscaster/directional/south,
+/obj/effect/turf_decal/bot_white/right,
+/obj/effect/turf_decal/tile/dark_blue/half/contrasted,
+/obj/structure/closet/crate/goldcrate/stocked,
+/turf/open/floor/iron/dark,
+/area/station/command/vault)
 "wpH" = (
 /obj/effect/turf_decal/trimline/brown/filled/warning,
 /obj/effect/turf_decal/siding/dark{
@@ -159504,6 +159544,11 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical)
+"xEq" = (
+/obj/structure/table/reinforced/rglass,
+/obj/machinery/fax/heads/rd,
+/turf/open/floor/carpet/purple,
+/area/station/command/heads_quarters/rd)
 "xED" = (
 /obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
 	dir = 4
@@ -192437,7 +192482,7 @@ gym
 gkr
 fGC
 fGC
-jxe
+vAN
 oYA
 eof
 vGS
@@ -196779,7 +196824,7 @@ gym
 fDY
 nnP
 nnP
-bks
+bdi
 lNi
 oZM
 cjE
@@ -198692,7 +198737,7 @@ lnO
 mkr
 diw
 aHQ
-srq
+pZS
 wqt
 wqt
 ykP
@@ -202719,7 +202764,7 @@ gym
 gym
 dCk
 xFP
-rFb
+xEq
 jNP
 eNJ
 aPZ
@@ -209188,7 +209233,7 @@ gym
 gJT
 sIZ
 sIZ
-fsi
+oui
 wMq
 fdp
 stu
@@ -213283,7 +213328,7 @@ gwv
 gwv
 bNF
 wmK
-hVv
+wpA
 gwv
 gwv
 mqK
@@ -273199,7 +273244,7 @@ dVp
 dVp
 dVp
 fsP
-tjh
+jsl
 puC
 hcI
 jRm
@@ -275227,7 +275272,7 @@ gkg
 kan
 awX
 ukF
-bKH
+oma
 kED
 lrh
 jVn
@@ -276255,7 +276300,7 @@ xKy
 fsc
 oHf
 oHf
-feA
+sIf
 blf
 exz
 aOs

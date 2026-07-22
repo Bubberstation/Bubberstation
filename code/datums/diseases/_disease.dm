@@ -172,7 +172,7 @@
 	if(SPT_PROB(stage_prob * slowdown * bad_immune, seconds_per_tick))
 		update_stage(min(stage + 1, max_stages))
 
-	// if(!(disease_flags & CHRONIC) && disease_flags & CURABLE && bypasses_immunity != TRUE && !HAS_TRAIT(affected_mob, TRAIT_NO_SELF_CURE))
+	// if(!(disease_flags & CHRONIC) && disease_flags & CURABLE && bypasses_immunity != TRUE)
 	if(!(disease_flags & CHRONIC) && disease_flags & CURABLE && bypasses_immunity != TRUE && bypasses_disease_recovery != TRUE && !HAS_TRAIT(affected_mob, TRAIT_NO_SELF_CURE)) // BUBBER EDIT CHANGE - DISEASE OUTBREAK UPDATES
 		switch(severity)
 			if(DISEASE_SEVERITY_POSITIVE)
