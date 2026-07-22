@@ -88,5 +88,12 @@
 		if(CIV_JOB_BITRUN)
 			return pick(subtypesof(/datum/bounty/item/bitrunning))
 
+//	BUBBER EDIT - ADDITION - START
+		if(CIV_JOB_SMITH)
+			return pick(subtypesof(/datum/bounty/item/blacksmith))
+		if(CIV_JOB_PRISONER)
+			return pick(subtypesof(/datum/bounty/item/prisoner))
+// BUBBER EDIT - ADDITION - END
+
 	stack_trace("Failed to get random bounty type for input type [input_bounty_type]")
 	return null
