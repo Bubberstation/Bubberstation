@@ -13,7 +13,7 @@
 	actions_types = list(/datum/action/item_action/synth/open_internal_computer)
 	organ_traits = list(TRAIT_SILICON_EMOTES_ALLOWED)
 	var/mmi_type = /obj/item/mmi/posibrain
-	var/obj/item/mmi/posibrain/stored_mmi
+	var/obj/item/mmi/stored_mmi
 
 /obj/item/organ/brain/synth/Initialize(mapload, obj/item/mmi/brain_mmi)
 	. = ..()
@@ -31,13 +31,24 @@
 	. = ..()
 
 /obj/item/organ/brain/synth/Remove(mob/living/carbon/organ_owner, special = FALSE, movement_flags)
-	var/atom/drop_target = organ_owner ? organ_owner.drop_location() : drop_location()
 	. = ..()
-	if(istype(stored_mmi))
-		stored_mmi.forceMove(drop_target)
-		stored_mmi = null
-	if(!QDELING(src))
-		qdel(src)
+	if(!istype(stored_mmi) || special)
+		return
+	stored_mmi.brain = src
+	organ_flags |= ORGAN_FROZEN
+	stored_mmi.update_appearance()
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(nest_into_stored_mmi))
+
+/obj/item/organ/brain/synth/proc/nest_into_stored_mmi(datum/source, atom/old_loc, dir, forced)
+	SIGNAL_HANDLER
+	if(loc == stored_mmi)
+		return
+	var/obj/item/mmi/mmi = stored_mmi
+	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+	stored_mmi = null
+	var/atom/destination = loc || mmi.drop_location()
+	mmi.forceMove(destination)
+	forceMove(mmi)
 
 /obj/item/organ/brain/synth/on_mob_insert(mob/living/carbon/brain_owner, special, movement_flags = NO_ID_TRANSFER)
 	. = ..()
@@ -145,8 +156,8 @@
 	mmi_type = /obj/item/mmi/posibrain/circuit
 
 /obj/item/organ/brain/synth/mmi
-	name = "compact man-machine interface"
-	desc = "A compact man-machine interface, It is usually slotted into the chest of synthetic crewmembers."
-	icon = 'modular_skyrat/master_files/icons/obj/surgery.dmi'
-	icon_state = "mmi-ipc"
+	name = "augmented brain"
+	desc = "A augmented organic brain"
+	icon = /obj/item/organ/brain::icon
+	icon_state = "brain"
 	mmi_type = /obj/item/mmi
