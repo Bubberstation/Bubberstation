@@ -91,6 +91,14 @@
 
 /datum/quirk/hemophage/remove(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
+
+	UnregisterSignal(quirk_holder, COMSIG_MOB_HEMO_BLOOD_REGEN_TICK)
+	SSsunlight.remove_sun_sufferer(quirk_holder)
+	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
+
+	if(QDELETED(quirk_holder))
+		return
+
 	quirk_holder.remove_traits(list(
 		TRAIT_DRINKS_BLOOD,
 		TRAIT_NOHUNGER,
@@ -103,10 +111,6 @@
 		human_holder.dna.blood_type = get_blood_type(human_holder.dna.species.exotic_bloodtype)
 	else
 		human_holder.dna.blood_type = random_human_blood_type()
-
-	UnregisterSignal(quirk_holder, COMSIG_MOB_HEMO_BLOOD_REGEN_TICK)
-	SSsunlight.remove_sun_sufferer(quirk_holder)
-	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
 
 	// This is going to be super messy and I'm 100% sure there's a better way to do this.
 	var/mob/living/carbon/carbon_holder = quirk_holder
