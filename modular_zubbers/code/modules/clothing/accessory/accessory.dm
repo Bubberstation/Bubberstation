@@ -227,7 +227,7 @@ GLOBAL_LIST_EMPTY_TYPED(all_assigned_protean_match_tags, /obj/item/clothing/acce
 
 /obj/item/clothing/accessory/dogtags/protean_match/Destroy()
 	POOL -= src
-	ASSIGNED_TAGS -=src
+	ASSIGNED_TAGS -= src
 	if(match_progress == MATCHED)
 		var/obj/item/clothing/accessory/dogtags/protean_match/paired_tag = paired_tag_weakref?.resolve()
 		paired_tag.unassign("paired tag destroyed")
@@ -328,6 +328,7 @@ GLOBAL_LIST_EMPTY_TYPED(all_assigned_protean_match_tags, /obj/item/clothing/acce
 			. += span_notice("It's currently matched with [paired_tag.assignee_name], and can be unmatched by using it in-hand.")
 
 #undef POOL
+#undef ASSIGNED_TAGS
 #undef UNASSIGNED
 #undef IN_POOL
 #undef MATCHED
