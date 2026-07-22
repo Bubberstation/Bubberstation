@@ -1109,3 +1109,6 @@
 
 /obj/item/clothing/suit/armor/vest/nanotrasen_consultant
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
+
+/obj/item/clothing/suit/toggle/jacket/trenchcoat
+	greyscale_config_worn_teshari = /datum/greyscale_config/trenchcoat/worn/teshari
