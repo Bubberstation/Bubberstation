@@ -3,7 +3,7 @@
 // ABSTRACT TYPES
 
 /datum/preference/toggle/allow_genitals
-	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "allow_genitals_toggle"
 	default_value = TRUE
