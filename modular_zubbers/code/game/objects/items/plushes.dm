@@ -463,6 +463,27 @@
 	attack_verb_simple = list("businesscard-slap", "financially educate", "threaten to sue", "zap", "bzzt", "buzz")
 	squeak_override = list('sound/effects/sparks/sparks1.ogg' = 98, 'sound/mobs/non-humanoids/hygienebot/cutarteries.ogg' = 1, 'sound/items/dump_it.ogg' = 1)
 
+//Plushie of Daoma, by Dottrina
+/obj/item/toy/plush/daoma
+	name = "pink alien plush"
+	desc = "An otherworldly yet familiar plushie. There is a tag on it with indecipherable writing."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "daoma_plush"
+	gender = FEMALE
+	attack_verb_continuous = list("bullies", "slams", "attacks", "slaps")
+	attack_verb_simple = list("bully", "slam", "attack", "slap")
+
+//Plushie of Sansiri, by Danielone
+/obj/item/toy/plush/sansiri
+	name = "purple bird plush"
+	desc = "A delicate plushie whose softness is second to none. It looks ready to go to hell and back with you."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "sansiri_plush"
+	gender = FEMALE
+	attack_verb_continuous = list("crushes", "cleaves", "smashes", "chops", "pulps", "attacks") // crusher attack verbs
+	attack_verb_simple = list("crush", "cleave", "smash", "chop", "pulp", "attack")
+	squeak_override = list('sound/items/weapons/thudswoosh.ogg'=1) // hug sound
+
 //Plushie for Roxy, of Cellophane
 /obj/item/toy/plush/cello_plush
 	var/shirt = TRUE

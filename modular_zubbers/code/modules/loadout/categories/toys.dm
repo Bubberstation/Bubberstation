@@ -123,6 +123,14 @@
 	name = "Weighty Moostoat Plushie"
 	item_path = /obj/item/toy/plush/sunny_plush
 
+/datum/loadout_item/toys/plush/sansiri
+	name = "Purple Bird Plush"
+	item_path = /obj/item/toy/plush/sansiri
+
+/datum/loadout_item/toys/plush/daoma
+	name = "Pink Alien Plush"
+	item_path = /obj/item/toy/plush/daoma
+
 /datum/loadout_item/toys/plush/amber_shadekin_plush
 	name = "Squishy Shadekin Plush"
 	item_path = /obj/item/toy/plush/amber_shadekin_plush
