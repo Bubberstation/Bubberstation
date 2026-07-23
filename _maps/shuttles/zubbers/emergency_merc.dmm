@@ -362,6 +362,20 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
+"ev" = (
+/obj/structure/chair/comfy/teal{
+	dir = 4
+	},
+/obj/machinery/button/door/directional/west{
+	id = "Dorm1";
+	name = "Dormitory Door Lock";
+	normaldoorcontrol = 1;
+	specialfunctions = 4;
+	pixel_x = -9;
+	pixel_y = -24
+	},
+/turf/open/floor/pod/dark,
+/area/shuttle/escape)
 "ey" = (
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks{
@@ -1979,12 +1993,6 @@
 	},
 /obj/structure/sign/departments/security/directional/west,
 /obj/machinery/light/directional/west,
-/obj/machinery/button/door/directional/west{
-	id = "Dorm1";
-	name = "Dormitory Door Lock";
-	normaldoorcontrol = 1;
-	specialfunctions = 4
-	},
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
 "Ik" = (
@@ -2340,6 +2348,14 @@
 /obj/item/food/burger/spell,
 /obj/item/storage/dice{
 	pixel_x = -11
+	},
+/obj/machinery/button/door/directional/west{
+	id = "Dorm2";
+	name = "Dormitory Door Lock";
+	normaldoorcontrol = 1;
+	specialfunctions = 4;
+	pixel_x = 9;
+	pixel_y = -24
 	},
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
@@ -2788,13 +2804,6 @@
 "WT" = (
 /obj/effect/turf_decal/trimline/red/corner,
 /obj/machinery/light/directional/east,
-/obj/machinery/button/door/directional/west{
-	id = "Dorm2";
-	name = "Dormitory Door Lock";
-	normaldoorcontrol = 1;
-	specialfunctions = 4;
-	pixel_x = 24
-	},
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
 "Xd" = (
@@ -3748,7 +3757,7 @@ kd
 kd
 kc
 Ed
-Bl
+ev
 uV
 cf
 cf
