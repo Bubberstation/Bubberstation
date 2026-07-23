@@ -416,7 +416,7 @@
 		/obj/item/stack/sheet/mineral/gold = 1,
 		/obj/item/stack/sheet/mineral/silver = 1,
 	)
-	resulting_item = /obj/item/storage/belt/hip_holster/cowboy
+	resulting_item = /obj/item/storage/belt/holster/hip_holster/cowboy
 	relevant_skill_level = 5
 	time_to_assemble = 3 SECONDS
 	completion_memory_given = /datum/memory/smithing/cowboy_holster
@@ -431,7 +431,7 @@
 		/obj/item/stack/sheet/bluespace_crystal = 1,
 		/obj/item/circuitboard/machine/recharger = 1,
 	)
-	resulting_item = /obj/item/storage/belt/hip_holster/charging
+	resulting_item = /obj/item/storage/belt/holster/hip_holster/charging
 	relevant_skill_level = 7
 	exp_give = 20
 	time_to_assemble = 3 SECONDS

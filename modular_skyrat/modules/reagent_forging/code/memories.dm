@@ -97,11 +97,11 @@
 	item_name = "collar"
 
 /datum/memory/smithing/cowboy_holster
-	smithed_item_type = /obj/item/storage/belt/hip_holster/cowboy
+	smithed_item_type = /obj/item/storage/belt/holster/hip_holster/cowboy
 	item_name = "holster"
 
 /datum/memory/smithing/charging_holster
-	smithed_item_type = /obj/item/storage/belt/hip_holster/charging
+	smithed_item_type = /obj/item/storage/belt/holster/hip_holster/charging
 	item_name = "charging holster"
 
 /datum/memory/smithing/crusader_belt
