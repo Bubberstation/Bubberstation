@@ -353,6 +353,7 @@
 	icon_state = "jackboots-toeless"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
 
 /obj/item/clothing/shoes/workboots/toeless // Ported from SPLURT
 	name = "toe-less workboots"
@@ -361,6 +362,7 @@
 	icon_state = "workboots-toeless"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
 
 
 /obj/item/clothing/shoes/jackboots/combine
@@ -431,3 +433,9 @@
 /obj/item/clothing/shoes/winterboots/ice_boots/primitive_catgirl_boots
 	greyscale_config_worn_digi = /datum/greyscale_config/primitive_catgirl_boots/worn/digi
 	greyscale_config_worn_teshari = /datum/greyscale_config/primitive_catgirl_boots/worn/teshari
+
+/obj/item/clothing/shoes/wraps/colourable
+	greyscale_config_worn_teshari = /datum/greyscale_config/legwraps/worn/teshari
+
+/obj/item/clothing/shoes/sandal
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
