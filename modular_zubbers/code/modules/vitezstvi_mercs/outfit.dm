@@ -15,8 +15,7 @@
 	trim = /datum/id_trim/nri/vitezstvi
 
 /obj/item/card/id/advanced/centcom/ert/nri/vitezstvi/GetAccess()
-	// Doors and consoles read GetAccess(), not the raw access list, so granting it here
-	// makes contractor access independent of trim application and spawn ordering.
+	// doors read GetAccess(), not the raw list, so this survives trim and spawn ordering
 	return ..() | vitezstvi_contractor_access()
 
 /datum/outfit/vitezstvi_merc
@@ -44,8 +43,7 @@
 	id = /obj/item/card/id/advanced/centcom/ert/nri/vitezstvi
 	id_trim = /datum/id_trim/nri/vitezstvi
 
-/// Everything a contractor ID carries. A literal list rather than a region lookup, so
-/// it cannot come up empty depending on subsystem init order.
+/// Literal rather than a region lookup, which can come up empty depending on init order.
 /proc/vitezstvi_contractor_access()
 	return list(
 		ACCESS_MERC,
@@ -90,9 +88,7 @@
 	iron_liver.Insert(user, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 	user.reagents.add_reagent(/datum/reagent/consumable/ethanol/vodka, 15)
 
-/// Force the contractor's access and name onto whatever ID they are actually wearing.
-/// Called from the outfit and again after the spawner finishes, because preference
-/// application can hand the mob a fresh card after the outfit is done with it.
+/// Forces access and name onto the worn ID. Run more than once, as prefs can swap the card.
 /proc/stamp_contractor_id(mob/living/carbon/human/user)
 	if(!istype(user))
 		return

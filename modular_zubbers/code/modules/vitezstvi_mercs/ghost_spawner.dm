@@ -15,10 +15,7 @@
 	show_flavor = TRUE
 
 /obj/effect/mob_spawn/ghost_role/human/vitezstvi_merc/allow_spawn(mob/user, silent = FALSE)
-	// Claimable only once the shuttle is committed to the station (past the point of
-	// no return). Before that the bunks are inert; the shuttle's deploy poll also
-	// actively offers the role at that same moment, and any bunks left unclaimed stay
-	// clickable for latecomers.
+	// inert until the shuttle commits; the deploy poll offers the role at that same moment
 	if(!EMERGENCY_PAST_POINT_OF_NO_RETURN)
 		if(!silent)
 			to_chat(user, span_warning("The contractor inside is still sleeping off a professional quantity of vodka! They will awaken on approach..."))
@@ -30,16 +27,13 @@
 	var/number = pick(GLOB.phonetic_alphabet_numbers)
 	spawned_human.fully_replace_character_name(spawned_human.real_name, "[callsign] [number]")
 	stamp_contractor_id(spawned_human)
-	// Preference application can replace the worn card after we are done here, so run
-	// the stamp once more on the next tick, once the spawn has fully settled.
+	// prefs can hand the mob a fresh card after this, so stamp again once settled
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(stamp_contractor_id), spawned_human), 1 SECONDS)
 
 /obj/effect/mob_spawn/ghost_role/human/vitezstvi_merc/special(mob/living/carbon/human/spawned_human, mob/mob_possessor, apply_prefs)
 	. = ..()
 	spawned_human.grant_language(/datum/language/spinwarder, source = LANGUAGE_SPAWNER)
 	apply_codename(spawned_human)
-	// The antag datum carries the objectives and prints them numbered, so they are
-	// deliberately not repeated here.
 	spawned_human.mind?.add_antag_datum(/datum/antagonist/ert/vitezstvi)
 
 /obj/effect/mob_spawn/ghost_role/human/vitezstvi_merc/post_transfer_prefs(mob/living/carbon/human/spawned_human)

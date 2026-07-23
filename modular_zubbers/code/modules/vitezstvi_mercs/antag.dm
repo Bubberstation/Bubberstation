@@ -2,8 +2,7 @@
 	name = "Vítězství Arms Contractor"
 	role = "Contractor"
 	outfit = /datum/outfit/vitezstvi_merc
-	// The bunk spawner already equips and names them, so the datum only carries the
-	// objectives and the round-end listing.
+	// the bunk spawner already equips and names them, and re-equipping would undo it
 	equip_ert = FALSE
 	random_names = FALSE
 

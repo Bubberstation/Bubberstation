@@ -1,8 +1,7 @@
 /// Name of the room the drunken shuttle is about to crash into, for the klaxon.
 GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 
-/// Chance that the drunks pick a specifically comedic target instead of just any
-/// real room on the station.
+/// Chance of picking a comedic target instead of any real room.
 #define VITEZSTVI_FUNNY_LANDING_CHANCE 10
 
 /// Rooms it is funniest to arrive through, unannounced, at speed.
@@ -19,8 +18,7 @@ GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 		/area/station/command/heads_quarters/captain,
 	)
 
-/// Anywhere that is an actual room. Hallways and maintenance are excluded because
-/// putting a shuttle through "Central Primary Maintenance" is nobody's punchline.
+/// Any actual room. Hallways and maintenance are excluded for being unfunny.
 /proc/vitezstvi_crash_areas()
 	var/static/list/excluded = list(
 		/area/station/hallway,
@@ -46,8 +44,7 @@ GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 /obj/effect/station_crash/oh_no/shuttle_crash()
 	var/list/candidates = prob(VITEZSTVI_FUNNY_LANDING_CHANCE) ? vitezstvi_funny_areas() : vitezstvi_crash_areas()
 	var/turf/target = length(candidates) ? get_safe_random_station_turf(candidates) : null
-	// A comedic pick can miss on maps that lack that room, so fall back to any real
-	// room before falling back to the vanilla helper (which would allow hallways).
+	// a comedic pick can miss on maps lacking that room, so fall back before the vanilla helper
 	if(!target)
 		target = get_safe_random_station_turf(vitezstvi_crash_areas())
 	if(!target)
@@ -63,8 +60,7 @@ GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 		if(home_port.shuttle_id != "emergency_home")
 			continue
 		home_port.forceMove(target)
-		// The shuttle rotates to match its destination dock, so a random facing means
-		// it comes through the wall from a different angle every time.
+		// shuttle rotates to match its dock, so a random facing varies the angle of entry
 		home_port.setDir(pick(GLOB.cardinals))
 		break
 
