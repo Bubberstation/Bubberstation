@@ -8,9 +8,6 @@
 /area/shuttle/escape)
 "ac" = (
 /obj/effect/turf_decal/tile/red/opposingcorners,
-/obj/structure/window/reinforced/survival_pod/spawner/directional/south{
-	damage_deflection = 21
-	},
 /obj/structure/closet/secure_closet/ert_sec{
 	name = "contractor arms locker";
 	desc = "Vítězství Arms surplus. Crack it open if you need to make some noise on the way out.";
@@ -403,9 +400,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
-/obj/machinery/door/window/survival_pod{
-	dir = 1
-	},
+/obj/machinery/door/window/survival_pod/left/directional/north,
 /obj/effect/turf_decal/trimline/white/warning{
 	dir = 10;
 	color = "#FE7300"
@@ -623,9 +618,7 @@
 "ju" = (
 /obj/machinery/coffeemaker,
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
-/obj/structure/sign/poster/contraband/clown{
-	pixel_y = 35
-	},
+/obj/structure/sign/poster/contraband/clown/directional/north,
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/light/directional/north,
 /turf/open/floor/wood/tile,
@@ -704,9 +697,7 @@
 /turf/open/floor/pod,
 /area/shuttle/escape/brig)
 "jX" = (
-/obj/structure/sign/poster/contraband/clown{
-	pixel_y = 35
-	},
+/obj/structure/sign/poster/contraband/clown/directional/north,
 /obj/effect/spawner/random/entertainment/arcade,
 /turf/open/floor/plastic,
 /area/shuttle/escape/luxury)
@@ -741,10 +732,9 @@
 /turf/open/floor/plastic,
 /area/shuttle/escape/luxury)
 "ku" = (
-/obj/machinery/door/window/survival_pod{
+/obj/machinery/door/window/survival_pod/left/directional/west{
 	req_access = list();
-	req_one_access = list("vitezstvi_merc", "medical");
-	dir = 8
+	req_one_access = list("vitezstvi_merc", "medical")
 	},
 /obj/effect/turf_decal/tile/blue/opposingcorners,
 /turf/open/floor/pod/light,
@@ -1039,9 +1029,7 @@
 /area/shuttle/escape/luxury)
 "re" = (
 /obj/effect/turf_decal/tile/red/opposingcorners,
-/obj/structure/sign/poster/contraband/clown{
-	pixel_y = 35
-	},
+/obj/structure/sign/poster/contraband/clown/directional/north,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west{
 	damage_deflection = 21
 	},
@@ -1308,11 +1296,10 @@
 /turf/open/floor/pod/light,
 /area/shuttle/escape/brig)
 "wf" = (
-/obj/machinery/door/window/survival_pod{
+/obj/machinery/door/window/survival_pod/left/directional/west{
 	name = "Shuttle Armory";
 	req_access = list();
 	req_one_access = list("vitezstvi_merc", "security");
-	dir = 8;
 	safe = 0;
 	damage_deflection = 21
 	},
@@ -1516,10 +1503,7 @@
 /turf/open/floor/iron/kitchen/diagonal,
 /area/shuttle/escape)
 "Aq" = (
-/obj/structure/sign/poster/party_game{
-	pixel_x = 32;
-	pixel_y = 3
-	},
+/obj/structure/sign/poster/party_game/directional/east,
 /turf/open/floor/plastic,
 /area/shuttle/escape/luxury)
 "AA" = (
@@ -2037,9 +2021,7 @@
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
 "IX" = (
-/obj/structure/sign/poster/contraband/donut_corp{
-	pixel_y = 32
-	},
+/obj/structure/sign/poster/contraband/donut_corp/directional/north,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/noslip,
 /area/shuttle/escape)
@@ -2095,9 +2077,7 @@
 /turf/open/floor/pod/dark,
 /area/shuttle/escape/brig)
 "Kg" = (
-/obj/structure/sign/poster/contraband/clown{
-	pixel_y = -30
-	},
+/obj/structure/sign/poster/contraband/clown/directional/south,
 /obj/effect/turf_decal/trimline/white/corner{
 	dir = 4;
 	color = "#FE7300"
@@ -2135,9 +2115,7 @@
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
 "KZ" = (
-/obj/structure/sign/poster/contraband/clown{
-	pixel_y = -29
-	},
+/obj/structure/sign/poster/contraband/clown/directional/south,
 /obj/effect/turf_decal/trimline/yellow/line{
 	dir = 8
 	},
@@ -2431,11 +2409,10 @@
 /turf/open/floor/noslip,
 /area/shuttle/escape)
 "Sm" = (
-/obj/machinery/door/window/survival_pod{
+/obj/machinery/door/window/survival_pod/left/directional/east{
 	name = "Officer Seating";
 	req_access = list();
 	req_one_access = list("vitezstvi_merc", "security");
-	dir = 4;
 	safe = 0
 	},
 /obj/effect/turf_decal/trimline/red/warning{
@@ -2499,16 +2476,15 @@
 /turf/open/floor/light/colour_cycle,
 /area/shuttle/escape)
 "SK" = (
-/obj/machinery/door/window/survival_pod{
+/obj/machinery/door/window/survival_pod/left/directional/south{
 	name = "Holding Cell A";
 	req_access = list();
 	req_one_access = list("vitezstvi_merc", "security")
 	},
-/obj/machinery/door/window/survival_pod{
+/obj/machinery/door/window/survival_pod/left/directional/north{
 	name = "Holding Cell A";
 	req_access = list();
-	req_one_access = list("vitezstvi_merc", "security");
-	dir = 1
+	req_one_access = list("vitezstvi_merc", "security")
 	},
 /obj/effect/turf_decal/tile/neutral/opposingcorners{
 	color = "#FE7300"
@@ -2650,8 +2626,7 @@
 /turf/open/floor/iron/pool,
 /area/shuttle/escape)
 "UX" = (
-/obj/machinery/door/window/survival_pod{
-	dir = 1;
+/obj/machinery/door/window/survival_pod/left/directional/north{
 	name = "Holding Cell B";
 	req_access = list();
 	req_one_access = list("vitezstvi_merc", "security")
@@ -2682,9 +2657,7 @@
 /area/shuttle/escape)
 "Vk" = (
 /obj/structure/table,
-/obj/structure/sign/poster/contraband/moffuchis_pizza{
-	pixel_y = 32
-	},
+/obj/structure/sign/poster/contraband/moffuchis_pizza/directional/north,
 /obj/item/plate,
 /obj/item/plate{
 	pixel_y = 2
@@ -2736,7 +2709,6 @@
 /area/shuttle/escape)
 "VO" = (
 /obj/item/food/cake/birthday/energy{
-	layer = 2.95;
 	pixel_y = 4;
 	pixel_x = -16
 	},
