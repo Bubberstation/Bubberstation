@@ -1,6 +1,6 @@
 /datum/design/wt550_ammo
-	name = "WT-550/WT-551 Magazine (4.6x30mm Regular) (Lethal)"
-	desc = "A magazine for the WT-550/WT-551 Autorifle. Contains lethal regular ammo."
+	name = "WT-550 Magazine (4.6x30mm Regular) (Lethal)"
+	desc = "A magazine for the WT-550 Autorifle. Contains lethal regular ammo."
 	id = "wt550_ammo_normal"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
@@ -11,8 +11,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/wt550_ammo_ap
-	name = "WT-550/WT-551 Magazine (4.6x30mm Armor-Piercing) (Lethal)"
-	desc = "A magazine for the WT-550/WT-551 Autorifle. Contains lethal armor-piercing ammo. Nanotrasen prefers you didn't use these on your pressurized space station."
+	name = "WT-550 Magazine (4.6x30mm Armor-Piercing) (Lethal)"
+	desc = "A magazine for the WT-550 Autorifle. Contains lethal armor-piercing ammo. Nanotrasen prefers you didn't use these on your pressurized space station."
 	id = "wt550_ammo_ap"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
@@ -23,8 +23,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/wt550_ammo_incendiary
-	name = "WT-550/WT-551 Magazine (4.6x30mm Incendiary) (Extremely Lethal)"
-	desc = "A magazine for the WT-550/WT-551 Autorifle. Contains very lethal incendiary ammo. Consult your local laws for warcrime status before use."
+	name = "WT-550 Magazine (4.6x30mm Incendiary) (Extremely Lethal)"
+	desc = "A magazine for the WT-550 Autorifle. Contains very lethal incendiary ammo. Consult your local laws for warcrime status before use."
 	id = "wt550_ammo_incendiary"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 2, /datum/material/silver = SHEET_MATERIAL_AMOUNT , /datum/material/glass = SHEET_MATERIAL_AMOUNT)
