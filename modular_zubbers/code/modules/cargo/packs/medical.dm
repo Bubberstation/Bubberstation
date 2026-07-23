@@ -11,3 +11,13 @@
 	)
 	crate_name = "kinetics crate"
 	crate_type = /obj/structure/closet/crate/medical
+
+/datum/supply_pack/medical/grimoire
+	name = "Healing Grimoire Crate"
+	desc = "Countain a singular volume on basic healing incantation"
+	cost = CARGO_CRATE_VALUE * 6
+	contains = list(
+		/obj/item/gun/magic/healing_grimoire = 1,
+	)
+	crate_name = "grimoire crate"
+	crate_type = /obj/structure/closet/crate/medical
