@@ -30,7 +30,7 @@
 		/obj/item/gun/energy/modular_laser_rifle/carbine = 1,
 	)
 	time = 10 SECONDS
-  
+
 /datum/crafting_recipe/wt550_burst
 	name = "WT-550-B Autoburstrifle"
 	result = /obj/item/gun/ballistic/automatic/wt550/burst
