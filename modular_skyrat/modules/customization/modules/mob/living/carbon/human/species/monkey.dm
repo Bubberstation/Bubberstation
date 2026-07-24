@@ -18,3 +18,12 @@
 
 /datum/species/monkey/set_custom_worn_icon(item_slot, obj/item/item, icon/icon)
 	item.worn_icon_monkey = icon
+
+/datum/species/monkey/unrestricted //special species of monkey that is allowed to equip any item a normal person can
+	no_equip_flags = null
+
+/mob/living/carbon/human/species/monkey/unrestricted
+	race = /datum/species/monkey/unrestricted
+
+/mob/living/carbon/human/species/monkey/unrestricted/angry
+	ai_controller = /datum/ai_controller/monkey/angry
