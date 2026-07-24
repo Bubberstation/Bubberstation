@@ -136,15 +136,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 35)
 	build_path = /obj/item/organ/lungs/adaptive/hot
-	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
-
-/datum/design/tox_lungs
-	name = "Toxin-Adapted Lungs"
-	id = "toxlungs"
-	build_type = LIMBGROWER
-	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 35)
-	build_path = /obj/item/organ/lungs/toxin
-	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
+	category = list(SPECIES_HUMAN)
 
 /datum/design/oxy_lungs
 	name = "Low-Oxygen-Adapted Lungs"
@@ -152,7 +144,15 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 35)
 	build_path = /obj/item/organ/lungs/oxy
-	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
+	category = list(SPECIES_HUMAN)
+
+/datum/design/tox_lungs
+	name = "Toxin-Adapted Lungs"
+	id = "toxlungs"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 35)
+	build_path = /obj/item/organ/lungs/toxin
+	category = list(SPECIES_HUMAN)
 
 /datum/design/hemophage_heart
 	name = "Pulsating Tumor"
@@ -260,3 +260,15 @@
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 600)
 	build_path = /mob/living/carbon/human/empty
 	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
+
+/// Available through TECHWEB_NODE_CYBER_ORGANS_UPGRADED
+/obj/item/disk/design_disk/limbs/adaptive_lungs
+	name = "adaptive lungs organ design disk"
+	limb_designs = list(/datum/design/hot_lungs, /datum/design/oxy_lungs, /datum/design/tox_lungs)
+
+/// Available through TECHWEB_NODE_CYBER_ORGANS_UPGRADED
+/datum/design/limb_disk/adaptive_lungs
+	name = "Adaptive Lungs Organ Design Disk"
+	desc = "Contains designs for genetically modified adaptive lungs for the limbgrower."
+	id = "limbdesign_adaptive_lungs"
+	build_path = /obj/item/disk/design_disk/limbs/adaptive_lungs
