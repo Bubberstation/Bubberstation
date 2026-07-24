@@ -8,3 +8,4 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL ///equipeable in belt slot and in hand, not in pocket
 	actions_types = list(/datum/action/cooldown/spell/pointed/healing_light)
+	action_slots = ITEM_SLOT_BELT
