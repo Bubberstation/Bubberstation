@@ -14,7 +14,7 @@
 
 /datum/supply_pack/medical/grimoire
 	name = "Healing Grimoire Crate"
-	desc = "Countain a singular volume on basic healing incantation"
+	desc = "Contains a singular volume of a basic healing incantation."
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(
 		/obj/item/gun/magic/healing_grimoire = 1,
