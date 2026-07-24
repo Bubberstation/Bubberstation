@@ -11,9 +11,9 @@
 	invocation = "Victus sano!"
 	invocation_type = INVOCATION_SHOUT
 
-	/// Value that multiply healing
+	// Value that multiply healing
 	var/heal_multiplier = 1
-	/// Healing amount the spell will provide per cast
+	// Healing amount the spell will provide per cast
 	var/healing_power = 10
 
 /datum/action/cooldown/spell/pointed/healing_light/cast(mob/living/cast_on)
@@ -28,11 +28,11 @@
 	if(!isliving(spelltarget))
 		return FALSE
 
-/// If you are using the Rod of Asclepius, heal some more.
+// If you are using the Rod of Asclepius, heal some more.
 	if(HAS_TRAIT(owner, TRAIT_HIPPOCRATIC_OATH))
 		heal_multiplier *= 4.5 // 10 base, 45 total with the Rod active in hand
 
-/// If a normal pacifist, heal more.
+// If a normal pacifist, heal more.
 	else if(HAS_TRAIT(owner, TRAIT_PACIFISM))
 		heal_multiplier *= 3 // 10 base, 30 total by being pacifist
 
