@@ -1,17 +1,17 @@
 /obj/projectile/energy/syndie_raygun
 	name = "raygun beam"
 	desc = "fucks you up"
-	damage = 1.0
+	damage = 0.5
 	demolition_mod = 0
 	damage_type = TOX
 	armour_penetration = 200 // we don't want this being blocked
-	projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS //evil-ass beams debilitate through walls
+	projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS //evil-ass beams debilitate through walls and also everything else
 	range = 10
 	speed = 1
 	reflectable = FALSE
 
-	hitsound = null
-	hitsound_wall = null
+	hitsound = 'modular_zubbers/sound/weapons/impact_silent.ogg'
+	hitsound_wall = 'modular_zubbers/sound/weapons/impact_silent.ogg'
 	impact_effect_type = null
 	log_override = TRUE
 
@@ -65,8 +65,8 @@
 	color = rgb(211,145,255)
 /obj/projectile/energy/syndie_raygun/sensory/on_hit(mob/living/carbon/target, blocked = 0, pierce_hit)
 	. = ..()
-	target.adjust_organ_loss(ORGAN_SLOT_EYES, 0.80)
-	target.adjust_organ_loss(ORGAN_SLOT_EARS, 0.40)
+	target.adjust_organ_loss(ORGAN_SLOT_EYES, 0.75)
+	target.adjust_organ_loss(ORGAN_SLOT_EARS, 1.50)
 
 /obj/projectile/energy/syndie_raygun/appendix
 	name = "appendix exploder raygun beam"

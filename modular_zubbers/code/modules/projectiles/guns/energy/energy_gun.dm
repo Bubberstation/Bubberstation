@@ -58,9 +58,11 @@
 
 /obj/item/gun/energy/syndie_raygun
 	name = "ray gun"
-	desc = "A dubious-looking energy emitter. Specifically targets the selected organ, causing rapid decay and internal damage. \
-		Side effects include dizziness, slurred speech, stuttered speech, minor toxic buildup, and the aforementioned organ damage. \
-		Neatly fits into a pocket, but is overall kinda bulky."
+	desc = "A dubious-looking energy emitter with a small dial on the side. Neatly fits into a pocket, but is overall kinda bulky."
+	special_desc_requirement = EXAMINE_CHECK_SYNDICATE
+	special_desc = "It's a small, pocket-sized energy-wave emitter typically issued to MI13 field agents, or so they claim. A barely noticeable label states: \
+		\"Specifically targets the selected organ, causing rapid decay and internal damage. \
+		Side effects of exposure include dizziness, slurred speech, stuttered speech, minor toxic buildup, and the aforementioned organ damage.\""
 	weapon_weight = WEAPON_MEDIUM
 	slot_flags = ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_NORMAL
@@ -88,5 +90,5 @@
 
 /obj/item/gun/energy/syndie_raygun/Initialize(mapload)
 	. = ..()
-	name = pick("ray gun", "death ray", "syndicate death ray", "debilitation ray", "ray of sickness", "organ-fucker X7")
+	name = pick("ray gun", "death ray", "syndicate death ray", "debilitation ray", "ray of sickness", "organ-fucker X7", "LFDI stealth emitter")
 	AddComponent(/datum/component/automatic_fire, 0.2 SECONDS, allow_akimbo = FALSE)
