@@ -39,7 +39,7 @@
 	put_materials_in_product_from_ingredients(item_list, returner)
 	consume_crafting_ingredients(item_list, returner)
 	move_to_world(returner, construction_location)
-	give_experience(user)
+	give_experience(user, item_list, returner)
 	return returner
 
 /datum/crafting_bench_recipe/proc/transfer_reagent_imbues_from_ingredients_to_product(list/ingredients, obj/item/product, mob/living/user)
