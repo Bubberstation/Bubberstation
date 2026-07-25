@@ -1,8 +1,7 @@
 /datum/antagonist/brother
 	name = "\improper Brother"
 	antagpanel_category = "Brother"
-	job_rank = ROLE_BROTHER
-	var/special_role = ROLE_BROTHER
+	pref_flag = ROLE_BROTHER
 	antag_hud_name = "brother"
 	hijack_speed = 0.5
 	ui_name = "AntagInfoBrother"
@@ -12,6 +11,7 @@
 	stinger_sound = 'sound/music/antag/traitor/tatoralert.ogg'
 	VAR_PRIVATE
 		datum/team/brother_team/team
+
 /datum/antagonist/brother/create_team(datum/team/brother_team/new_team)
 	if(!new_team)
 		return
@@ -24,12 +24,10 @@
 
 /datum/antagonist/brother/on_gain()
 	objectives += team.objectives
-	owner.special_role = special_role
 	finalize_brother()
 	return ..()
 
 /datum/antagonist/brother/on_removal()
-	owner.special_role = null
 	return ..()
 
 /datum/antagonist/brother/antag_panel_data()
@@ -85,7 +83,7 @@
 
 /datum/antagonist/brother/greet()
 	var/brother_text = get_brother_names()
-	to_chat(owner.current, span_alertsyndie("You are the [owner.special_role] of [brother_text]."))
+	to_chat(owner.current, span_alertsyndie("You are the Blood Brother of [brother_text]."))
 	to_chat(owner.current, "The Syndicate only accepts those that have proven themselves. Prove yourself and prove your [team.member_name]s by completing your objectives together!")
 	owner.announce_objectives()
 	give_meeting_area()
@@ -96,23 +94,23 @@
 /datum/antagonist/brother/admin_add(datum/mind/new_owner,mob/admin)
 	//show list of possible brothers
 	var/list/candidates = list()
-	for(var/mob/living/L in GLOB.alive_mob_list)
-		if(!L.mind || L.mind == new_owner || !can_be_owned(L.mind))
+	for(var/mob/living/potential_brother in GLOB.alive_mob_list)
+		if(!potential_brother.mind || potential_brother.mind == new_owner || !can_be_owned(potential_brother.mind))
 			continue
-		candidates[L.mind.name] = L.mind
+		candidates[potential_brother.mind.name] = potential_brother.mind
 
 	sortTim(candidates, GLOBAL_PROC_REF(cmp_text_asc))
 	var/choice = tgui_input_list(admin, "Choose the blood brother.", "Brother", candidates)
 	if(!choice)
 		return
 	var/datum/mind/bro = candidates[choice]
-	var/datum/team/brother_team/T = new
-	T.add_member(new_owner)
-	T.add_member(bro)
-	T.pick_meeting_area()
-	T.forge_brother_objectives()
-	new_owner.add_antag_datum(/datum/antagonist/brother,T)
-	bro.add_antag_datum(/datum/antagonist/brother, T)
+	var/datum/team/brother_team/team = new
+	team.add_member(new_owner)
+	team.add_member(bro)
+	team.pick_meeting_area()
+	team.forge_brother_objectives()
+	new_owner.add_antag_datum(/datum/antagonist/brother, team)
+	bro.add_antag_datum(/datum/antagonist/brother, team)
 	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] and [key_name_admin(bro)] into blood brothers.")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] and [key_name(bro)] into blood brothers.")
 
