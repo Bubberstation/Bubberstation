@@ -40,7 +40,8 @@
 		/obj/item/melee/baton/security/cattleprod/telecrystalprod,
 		/obj/item/melee/baton/security/cattleprod/teleprod,
 		/obj/item/melee/baton/security/boomerang,
-		/obj/item/melee/baton/security/stunsword
+		/obj/item/melee/baton/security/stunsword,
+		/obj/item/melee/baton/security/loaded/departmental
 	)
 	tool_behaviors = list(TOOL_WELDER, TOOL_WRENCH)
 	time = 15 SECONDS
