@@ -77,6 +77,7 @@
 		/obj/item/weldingtool/largetank/cyborg,
 		/obj/item/wirecutters/cyborg,
 		/obj/item/wrench/cyborg,
+		/obj/item/melee/baton/loaded/departmental, // BUBBER EDIT
 	))
 
 /datum/crafting_recipe/New()
