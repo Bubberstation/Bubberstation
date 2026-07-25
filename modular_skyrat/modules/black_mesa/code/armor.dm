@@ -6,25 +6,29 @@
 	icon = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecucloth.dmi'
 	worn_icon = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecumob.dmi'
 	worn_icon_digi = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecumob_digi.dmi'
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Basic" = list(
-			RESKIN_ICON_STATE = "ceramic_vest",
-			RESKIN_WORN_ICON_STATE = "ceramic_vest"
-		),
-		"Corpsman" = list(
-			RESKIN_ICON_STATE = "ceramic_vest_medic",
-			RESKIN_WORN_ICON_STATE = "ceramic_vest_medic"
-		),
-		"Basic Black" = list(
-			RESKIN_ICON_STATE = "ceramic_vest_black",
-			RESKIN_WORN_ICON_STATE = "ceramic_vest_black"
-		),
-		"Corpsman Black" = list(
-			RESKIN_ICON_STATE = "ceramic_vest_medic_black",
-			RESKIN_WORN_ICON_STATE = "ceramic_vest_medic_black"
-		),
-	)
+
+/obj/item/clothing/suit/armor/vest/hecu/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hecu_vest)
+
+/datum/atom_skin/hecu_vest
+	abstract_type = /datum/atom_skin/hecu_vest
+
+/datum/atom_skin/hecu_vest/basic
+	preview_name = "Basic"
+	new_icon_state = "ceramic_vest"
+
+/datum/atom_skin/hecu_vest/corpsman
+	preview_name = "Corpsman"
+	new_icon_state = "ceramic_vest_medic"
+
+/datum/atom_skin/hecu_vest/basic_black
+	preview_name = "Basic Black"
+	new_icon_state = "ceramic_vest_black"
+
+/datum/atom_skin/hecu_vest/corpsman_black
+	preview_name = "Corpsman Black"
+	new_icon_state = "ceramic_vest_medic_black"
 
 /datum/armor/vest_hecu
 	melee = 40
@@ -44,25 +48,29 @@
 	icon = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecucloth.dmi'
 	worn_icon = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecumob.dmi'
 	worn_icon_digi = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecumob_muzzled.dmi'
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Basic" = list(
-			RESKIN_ICON_STATE = "ceramic_helmet",
-			RESKIN_WORN_ICON_STATE = "ceramic_helmet"
-		),
-		"Corpsman" = list(
-			RESKIN_ICON_STATE = "ceramic_helmet_medic",
-			RESKIN_WORN_ICON_STATE = "ceramic_helmet_medic"
-		),
-		"Basic Black" = list(
-			RESKIN_ICON_STATE = "ceramic_helmet_black",
-			RESKIN_WORN_ICON_STATE = "ceramic_helmet_black"
-		),
-		"Corpsman Black" = list(
-			RESKIN_ICON_STATE = "ceramic_helmet_medic_black",
-			RESKIN_WORN_ICON_STATE = "ceramic_helmet_medic_black"
-		),
-	)
+
+/obj/item/clothing/head/helmet/hecu/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hecu_helmet)
+
+/datum/atom_skin/hecu_helmet
+	abstract_type = /datum/atom_skin/hecu_helmet
+
+/datum/atom_skin/hecu_helmet/basic
+	preview_name = "Basic"
+	new_icon_state = "ceramic_helmet"
+
+/datum/atom_skin/hecu_helmet/corpsman
+	preview_name = "Corpsman"
+	new_icon_state = "ceramic_helmet_medic"
+
+/datum/atom_skin/hecu_helmet/basic_black
+	preview_name = "Basic Black"
+	new_icon_state = "ceramic_helmet_black"
+
+/datum/atom_skin/hecu_helmet/corpsman_black
+	preview_name = "Corpsman Black"
+	new_icon_state = "ceramic_helmet_medic_black"
 
 /datum/armor/helmet_hecu
 	melee = 30

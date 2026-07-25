@@ -1,5 +1,5 @@
 ///Calculate the angle between two movables and the west|east coordinate
-/proc/get_angle(atom/movable/start, atom/movable/end)//For beams.
+/proc/get_angle(atom/movable/start, atom/movable/end)
 	if(!start || !end)
 		return 0
 	var/dy =(ICON_SIZE_Y * end.y + end.pixel_y) - (ICON_SIZE_Y * start.y + start.pixel_y)
@@ -56,8 +56,8 @@
 	var/abs_x_distance = abs(x_distance)//Absolute value of x distance
 	var/abs_y_distance = abs(y_distance)
 
-	var/x_distance_sign = SIGN(x_distance) //Sign of x distance (+ or -)
-	var/y_distance_sign = SIGN(y_distance)
+	var/x_distance_sign = sign(x_distance) //Sign of x distance (+ or -)
+	var/y_distance_sign = sign(y_distance)
 
 	var/x = abs_x_distance >> 1 //Counters for steps taken, setting to distance/2
 	var/y = abs_y_distance >> 1 //Bit-shifting makes me l33t.  It also makes get_line() unnecessarily fast.
@@ -228,7 +228,7 @@
 /// Takes a value, and a threshold it has to at least match
 /// returns the correctly signed value max'd to the threshold
 /proc/at_least(new_value, threshold)
-	var/sign = SIGN(new_value)
+	var/sign = sign(new_value)
 	// SIGN will return 0 if the value is 0, so we just go to the positive threshold
 	if(!sign)
 		return threshold
@@ -238,10 +238,14 @@
 		return min(new_value, threshold * -1)
 
 /// Takes two values x and y, and returns 1/((1/x) + y)
-/// Useful for providing an additive modifier to a value that is used as a divisor, such as `/obj/projectile/var/speed`
+/// Useful for providing an additive modifier to a value that is used as a divisor
 /proc/reciprocal_add(x, y)
 	return 1/((1/x)+y)
 
-/// 180s an angle
-/proc/reverse_angle(angle)
-	return (angle + 180) % 360
+/// Returns a text string containing N prefixed with a series of zeros with length equal to max_zeros minus log(10, N), rounded down.
+/proc/prefix_zeros_to_number(number, max_zeros)
+	var/zeros = ""
+	var/how_many_zeros = max_zeros - round(log(10, number))
+	for(var/zero in 1 to how_many_zeros)
+		zeros += "0"
+	return "[zeros][number]"

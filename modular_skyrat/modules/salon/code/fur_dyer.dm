@@ -21,7 +21,7 @@
 	else
 		mode = COLOR_MODE_SPECIFIC
 
-	balloon_alert(user, "Set to [mode]!")
+	balloon_alert(user, "set to [mode]!")
 
 /obj/item/fur_dyer/attack(mob/living/M, mob/living/user, params)
 	if(!ishuman(M))
@@ -64,11 +64,11 @@
 	if(do_after(user, 20 SECONDS, target_human))
 		switch(selected_mutant_color)
 			if("One")
-				target_human.dna.features["mcolor"] = selected_color
+				target_human.dna.features[FEATURE_MUTANT_COLOR] = selected_color
 			if("Two")
-				target_human.dna.features["mcolor1"] = selected_color
+				target_human.dna.features[FEATURE_MUTANT_COLOR_TWO] = selected_color
 			if("Three")
-				target_human.dna.features["mcolor2"] = selected_color
+				target_human.dna.features[FEATURE_MUTANT_COLOR_THREE] = selected_color
 
 		target_human.regenerate_icons()
 		item_use_power(power_use_amount, user)
@@ -130,3 +130,5 @@
 
 		playsound(src.loc, 'sound/effects/spray2.ogg', 50, TRUE)
 
+#undef COLOR_MODE_SPECIFIC
+#undef COLOR_MODE_GENERAL

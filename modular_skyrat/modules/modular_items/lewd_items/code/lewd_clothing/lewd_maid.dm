@@ -80,7 +80,7 @@
 	icon_state = icon_state = "[initial(base_icon_state)]_[current_color]"
 	inhand_icon_state = "[initial(base_icon_state)]_[current_color]"
 
-/obj/item/clothing/under/costume/lewdmaid/attach_accessory(obj/item/attack_item)
+/obj/item/clothing/under/costume/lewdmaid/attach_accessory(obj/item/attack_item, mob/living/user, attach_message = TRUE)
 	. = ..()
 	var/obj/item/clothing/accessory/prime_accessory = attached_accessories[1]
 	var/accessory_color = prime_accessory.icon_state

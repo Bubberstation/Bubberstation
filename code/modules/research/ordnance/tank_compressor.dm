@@ -14,19 +14,18 @@
 	var/active = FALSE
 	var/transfer_rate = TANK_COMPRESSOR_MAX_TRANSFER_RATE
 	var/datum/gas_mixture/leaked_gas_buffer
-	var/list/compressor_record
+	var/list/compressor_record = list()
 	var/last_recorded_pressure = 0
 	var/record_number = 1
 	var/obj/item/tank/inserted_tank
 	/// Reference to a disk we are going to print to.
-	var/obj/item/computer_disk/inserted_disk
+	var/obj/item/disk/computer/inserted_disk
 
 	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
 
 /obj/machinery/atmospherics/components/binary/tank_compressor/Initialize(mapload)
 	. = ..()
 	leaked_gas_buffer = new(200)
-	compressor_record = list()
 
 	RegisterSignal(src, COMSIG_ATOM_INTERNAL_EXPLOSION, PROC_REF(explosion_handle))
 
@@ -43,33 +42,35 @@
 	var/list/gas_data = list()
 	var/timestamp
 
-/obj/machinery/atmospherics/components/binary/tank_compressor/attackby(obj/item/item, mob/living/user)
-	if (panel_open)
-		return ..()
+/obj/machinery/atmospherics/components/binary/tank_compressor/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if (user.combat_mode || panel_open)
+		return NONE
 
-	if(istype(item, /obj/item/tank))
-		var/obj/item/tank/tank_item = item
-		if(inserted_tank)
-			if(!eject_tank(user))
-				balloon_alert(user, "it's stuck inside!")
-				return ..()
-		if(!user.transferItemToLoc(tank_item, src))
-			balloon_alert(user, "it's stuck to your hand!")
-			return ..()
-		inserted_tank = tank_item
-		last_recorded_pressure = 0
-		RegisterSignal(inserted_tank, COMSIG_QDELETING, PROC_REF(tank_destruction))
-		update_appearance()
-		return
-	if(istype(item, /obj/item/computer_disk))
-		var/obj/item/computer_disk/attacking_disk = item
+	if(istype(tool, /obj/item/disk/computer))
 		eject_disk(user)
-		if(user.transferItemToLoc(attacking_disk, src))
-			inserted_disk = attacking_disk
-		else
+		if(!user.transferItemToLoc(tool, src))
 			balloon_alert(user, "it's stuck to your hand!")
-		return
-	return ..()
+			return ITEM_INTERACT_BLOCKING
+		inserted_disk = tool
+		return ITEM_INTERACT_SUCCESS
+
+	if(!istype(tool, /obj/item/tank))
+		return NONE
+
+	if(inserted_tank)
+		if(!eject_tank(user))
+			balloon_alert(user, "it's stuck inside!")
+			return ITEM_INTERACT_BLOCKING
+
+	if(!user.transferItemToLoc(tool, src))
+		balloon_alert(user, "it's stuck to your hand!")
+		return ITEM_INTERACT_BLOCKING
+
+	inserted_tank = tool
+	last_recorded_pressure = 0
+	RegisterSignal(inserted_tank, COMSIG_QDELETING, PROC_REF(tank_destruction))
+	update_appearance()
+	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/atmospherics/components/binary/tank_compressor/wrench_act(mob/living/user, obj/item/tool)
 	if(active || inserted_tank)
@@ -87,19 +88,17 @@
 
 /obj/machinery/atmospherics/components/binary/tank_compressor/screwdriver_act(mob/living/user, obj/item/tool)
 	if(active || inserted_tank)
-		return FALSE
-	if(!default_deconstruction_screwdriver(user, "[base_icon_state]-open", "[base_icon_state]-open", tool))
-		return FALSE
+		return NONE
+
+	. = default_deconstruction_screwdriver(user, tool)
 	change_nodes_connection(panel_open)
-	update_appearance()
-	return TRUE
+	return .
 
 /obj/machinery/atmospherics/components/binary/tank_compressor/crowbar_act(mob/living/user, obj/item/tool)
 	if(active || inserted_tank)
-		return FALSE
-	if(!default_deconstruction_crowbar(tool))
-		return FALSE
-	return TRUE
+		return NONE
+
+	return default_deconstruction_crowbar(user, tool)
 
 /// Glorified volume pump.
 /obj/machinery/atmospherics/components/binary/tank_compressor/process_atmos()
@@ -170,7 +169,7 @@
 	var/datum/data/compressor_record/new_record = new()
 	new_record.name = "Log Recording #[record_number]"
 	new_record.experiment_source = inserted_tank.name
-	new_record.timestamp = station_time_timestamp()
+	new_record.timestamp = "[server_timestamp(ic_time = TRUE)] (PT: [round_timestamp()])"
 	for(var/gas_path in leaked_gas_buffer.gases)
 		new_record.gas_data[gas_path] = leaked_gas_buffer.gases[gas_path][MOLES]
 
@@ -221,10 +220,10 @@
 /obj/machinery/atmospherics/components/binary/tank_compressor/proc/eject_disk(mob/user)
 	if(!inserted_disk)
 		return FALSE
-	if(user)
-		user.put_in_hands(inserted_disk)
-	else
+	if(!user || !Adjacent(user))
 		inserted_disk.forceMove(drop_location())
+	else
+		user.put_in_hands(inserted_disk)
 	playsound(src, 'sound/machines/card_slide.ogg', 50)
 	return TRUE
 
@@ -247,7 +246,7 @@
 	inserted_tank = null
 	inserted_disk = null
 	leaked_gas_buffer = null
-	QDEL_NULL(compressor_record) //We only want the list nuked, not the contents.
+	compressor_record.Cut() // We only want to clear the list itself, not delete its contents.
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/tank_compressor/update_icon_state()

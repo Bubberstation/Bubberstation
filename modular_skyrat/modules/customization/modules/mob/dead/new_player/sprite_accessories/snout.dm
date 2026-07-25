@@ -1,24 +1,21 @@
 /datum/sprite_accessory/snouts
 	key = "snout"
-	generic = "Snout"
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/lizard_snouts.dmi'
 	flags_for_organ = SPRITE_ACCESSORY_USE_MUZZLED_SPRITE
-	organ_type = /obj/item/organ/external/snout
+	organ_type = /obj/item/organ/snout
 	recommended_species = list(SPECIES_MAMMAL, SPECIES_LIZARD, SPECIES_UNATHI, SPECIES_LIZARD_ASH, SPECIES_LIZARD_SILVER)
 	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
-	genetic = TRUE
 
 /datum/sprite_accessory/snouts/is_hidden(mob/living/carbon/human/human)
-	if((human.wear_mask?.flags_inv & HIDESNOUT) || (human.head?.flags_inv & HIDESNOUT))
+	if(human.covered_slots & HIDESNOUT)
 		return TRUE
 
 	return FALSE
 
-/obj/item/organ/external/snout
+/obj/item/organ/snout
 	mutantpart_key = "snout"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "None", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"))
 	external_bodyshapes = NONE // We don't actually want this to have  by default, since some of them don't apply that.
-	preference = "feature_snout"
 
 /datum/bodypart_overlay/mutant/snout
 	color_source = ORGAN_COLOR_OVERRIDE
@@ -26,11 +23,16 @@
 /datum/bodypart_overlay/mutant/snout/override_color(rgb_value)
 	return draw_color
 
-/datum/bodypart_overlay/mutant/snout/can_draw_on_bodypart(mob/living/carbon/human/human)
+/datum/bodypart_overlay/mutant/snout/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
+	if(!..(bodypart_owner))
+		return FALSE
+	var/mob/living/carbon/human/human = bodypart_owner.owner
+	if(!human)
+		return TRUE
 	return !sprite_datum.is_hidden(human)
 
 
-/obj/item/organ/external/snout/mob_insert(mob/living/carbon/receiver, special, movement_flags)
+/obj/item/organ/snout/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	if(sprite_accessory_flags & SPRITE_ACCESSORY_USE_MUZZLED_SPRITE)
 		external_bodyshapes |= BODYSHAPE_SNOUTED
 	if(sprite_accessory_flags & SPRITE_ACCESSORY_USE_ALT_FACEWEAR_LAYER)
@@ -38,14 +40,14 @@
 
 	return ..()
 
-/obj/item/organ/external/snout/top
+/obj/item/organ/snout/top
 	bodypart_overlay = /datum/bodypart_overlay/mutant/snout/top
 
 /datum/bodypart_overlay/mutant/snout/top
 	layers = EXTERNAL_FRONT
 
 
-/obj/item/organ/external/snout/top_adj
+/obj/item/organ/snout/top_adj
 	bodypart_overlay = /datum/bodypart_overlay/mutant/snout/top_adj
 
 /datum/bodypart_overlay/mutant/snout/top_adj
@@ -117,7 +119,7 @@
 	icon_state = "bug"
 	flags_for_organ = NONE
 	color_src = USE_MATRIXED_COLORS
-	organ_type = /obj/item/organ/external/snout/top_adj
+	organ_type = /obj/item/organ/snout/top_adj
 
 /datum/sprite_accessory/snouts/mammal/bug_no_eyes
 	name = "Bug (No eyes)"
@@ -193,6 +195,10 @@
 	name = "Otie Smile"
 	icon_state = "otiesmile"
 
+/datum/sprite_accessory/snouts/mammal/otter
+	name = "Otter"
+	icon_state = "otter"
+
 /*/datum/sprite_accessory/snouts/mammal/round
 	name = "Mammal Round"
 	icon_state = "round"
@@ -251,7 +257,7 @@
 
 /datum/sprite_accessory/snouts/mammal/top
 	flags_for_organ = SPRITE_ACCESSORY_USE_MUZZLED_SPRITE | SPRITE_ACCESSORY_USE_ALT_FACEWEAR_LAYER
-	organ_type = /obj/item/organ/external/snout/top
+	organ_type = /obj/item/organ/snout/top
 	relevent_layers = list(BODY_FRONT_LAYER)
 
 /datum/sprite_accessory/snouts/mammal/top/fbird
@@ -267,7 +273,7 @@
 	icon_state = "fbug"
 	flags_for_organ = NONE
 	color_src = USE_MATRIXED_COLORS
-	organ_type = /obj/item/organ/external/snout/top_adj
+	organ_type = /obj/item/organ/snout/top_adj
 	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
 
 /datum/sprite_accessory/snouts/mammal/top/felephant
@@ -458,8 +464,21 @@
 	name = "Acrador 4 (Normal)"
 	icon_state = "acrador_4"
 
+//you know it just matters if the display name is different. I CBA risking breaking save slots.
 /datum/sprite_accessory/snouts/renamon
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/snouts.dmi'
 	color_src = USE_MATRIXED_COLORS
-	name = "Renamon"
+	name = "Cyvian"
 	icon_state = "renamon"
+
+/datum/sprite_accessory/snouts/exsharp
+	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/snouts.dmi'
+	color_src = USE_MATRIXED_COLORS
+	name = "Extra Sharp"
+	icon_state = "exsharp"
+
+/datum/sprite_accessory/snouts/mammal/masked_wing
+	name = "Masked Wing"
+	icon_state = "masked" // By @Sweettoothart
+	color_src = USE_ONE_COLOR
+	organ_type = /obj/item/organ/snout/top_adj

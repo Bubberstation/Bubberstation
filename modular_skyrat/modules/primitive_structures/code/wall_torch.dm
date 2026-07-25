@@ -18,7 +18,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch, 28)
 	. = ..()
 	if(spawns_lit)
 		light_it_up()
-	find_and_hang_on_wall()
+	if(mapload)
+		find_and_mount_on_atom()
 
 /obj/structure/wall_torch/attackby(obj/item/used_item, mob/living/user, params)
 	if(used_item.get_temperature())
@@ -49,3 +50,23 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch, 28)
 	spawns_lit = TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/wall_torch/spawns_lit, 28)
+
+/datum/crafting_recipe/wall_torch
+	name = "Wall Torch"
+	result = /obj/item/wallframe/torch
+	reqs = list(
+		/obj/item/stack/sheet/mineral/wood = 2,
+		/obj/item/stack/sheet/iron = 1,
+		/obj/item/stack/sheet/cloth = 1,
+	)
+	time = 5 SECONDS
+	category = CAT_STRUCTURE
+
+/obj/item/wallframe/torch
+	name = "wall mounted torch"
+	desc = "A simple torch ready to be mounted to the wall, for lighting and such. Apply to wall to use."
+	icon = 'modular_skyrat/modules/primitive_structures/icons/lighting.dmi'
+	icon_state = "walltorch"
+	result_path = /obj/structure/wall_torch
+	pixel_shift = 28
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 2, /datum/material/iron = SHEET_MATERIAL_AMOUNT)

@@ -242,3 +242,6 @@
 		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 3,
 	)
 	build_path = /obj/item/weaponcell/medical/utility/relocation
+
+#undef RND_SUBCATEGORY_WEAPONS_MEDICALAMMO
+#undef RND_MEDICALAMMO_UTILITY

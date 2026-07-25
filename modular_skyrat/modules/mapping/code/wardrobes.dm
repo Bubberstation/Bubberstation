@@ -36,8 +36,11 @@
 		/obj/item/clothing/gloves/combat = 3,
 		/obj/item/clothing/under/syndicate/skyrat/maid = 5,
 		/obj/item/clothing/gloves/combat/maid = 5,
-		/obj/item/clothing/head/costume/maidheadband/syndicate = 5,
+		/obj/item/clothing/head/costume/maid_headband/syndicate = 5,
 		/obj/item/storage/box/nif_ghost_box/ghost_role = 10,
+		/obj/item/clothing/under/syndicate/ba_cheerleader = 5,
+		/obj/item/clothing/gloves/ba_cheerleader/syndicate = 5,
+		/obj/item/clothing/shoes/sneakers/ba_cheerleader/syndicate = 5,
 	)
 
 	refill_canister = /obj/item/vending_refill/wardrobe/syndie_wardrobe

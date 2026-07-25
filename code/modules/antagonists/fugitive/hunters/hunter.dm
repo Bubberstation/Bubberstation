@@ -6,10 +6,9 @@
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
 	antagpanel_category = ANTAG_GROUP_HUNTERS
-	prevent_roundtype_conversion = FALSE
 	antag_hud_name = "fugitive_hunter"
 	suicide_cry = "FOR GLORY!!"
-	count_against_dynamic_roll_chance = FALSE
+	antag_flags = ANTAG_SKIP_GLOBAL_LIST
 	var/datum/team/fugitive_hunters/hunter_team
 	var/backstory = "error"
 
@@ -26,7 +25,7 @@
 /datum/antagonist/fugitive_hunter/greet()
 	switch(backstory)
 		if(HUNTER_PACK_COPS)
-			to_chat(owner, span_boldannounce("Justice has arrived. I am a member of the Spacepol!"))
+			to_chat(owner, span_bolddanger("Justice has arrived. I am a member of the Spacepol!"))
 			to_chat(owner, "<B>The criminals should be on the station, we have special huds implanted to recognize them.</B>")
 			to_chat(owner, "<B>As we have lost pretty much all power over these damned lawless megacorporations, it's a mystery if their security will cooperate with us.</B>")
 		if(HUNTER_PACK_RUSSIAN)
@@ -47,7 +46,7 @@
 			to_chat(owner, span_danger("Your mission is simple. Infiltrate the facility and extract the target, dead or alive."))
 			to_chat(owner, span_danger("This is a stealth infiltration mission in hostile enemy territory. Be wary, and avoid being caught if possible."))
 
-	to_chat(owner, span_boldannounce("You are not an antagonist in that you may kill whomever you please, but you can do anything to ensure the capture of the fugitives, even if that means going through the station."))
+	to_chat(owner, span_bolddanger("You are not an antagonist in that you may kill whomever you please, but you can do anything to ensure the capture of the fugitives, even if that means going through the station."))
 	owner.announce_objectives()
 
 /datum/antagonist/fugitive_hunter/create_team(datum/team/fugitive_hunters/new_team)
@@ -71,6 +70,18 @@
 
 /datum/antagonist/fugitive_hunter/apply_innate_effects(mob/living/mob_override)
 	add_team_hud(mob_override || owner.current)
+	if(backstory == HUNTER_PACK_RUSSIAN)
+		var/mob/living/owner_mob = mob_override || owner.current
+		//bubber edit; spinwarder removed
+		owner_mob.grant_language(/datum/language/spinwarder, source = LANGUAGE_BOUNTYHUNTER)
+		owner_mob.set_active_language(/datum/language/spinwarder)
+		//edit end
+
+/datum/antagonist/fugitive_hunter/remove_innate_effects(mob/living/mob_override)
+	var/mob/living/owner_mob = mob_override || owner.current
+	// BUBBER EDIT CHANGE BEGIN: spinwarder removed
+	owner_mob.remove_language(/datum/language/spinwarder, source = LANGUAGE_BOUNTYHUNTER)
+	// BUBBER EDIT CHANGE END
 
 /datum/team/fugitive_hunters
 	var/backstory = "error"

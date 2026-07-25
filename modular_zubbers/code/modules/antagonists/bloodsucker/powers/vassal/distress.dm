@@ -20,5 +20,5 @@
 	to_chat(ghouldatum.master.owner, "<span class='userdanger'>[owner], your loyal Ghoul, is desperately calling for aid at [target_area]!</span>")
 
 	var/mob/living/user = owner
-	user.adjustBruteLoss(10)
+	user.adjust_brute_loss(10)
 	return TRUE

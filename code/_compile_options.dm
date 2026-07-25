@@ -8,6 +8,11 @@
 #define USE_CUSTOM_ERROR_HANDLER
 #endif
 
+#if defined(OPENDREAM) && !defined(SPACEMAN_DMM) && !defined(CIBUILDING)
+// The code is being compiled for OpenDream, and not just for the CI linting.
+#define OPENDREAM_REAL
+#endif
+
 #ifdef TESTING
 #define DATUMVAR_DEBUGGING_MODE
 
@@ -26,6 +31,10 @@
 ///Used for doing dry runs of the reference finder, to test for feature completeness
 ///Slightly slower, higher in memory. Just not optimal
 //#define REFERENCE_TRACKING_DEBUG
+
+///Skips over a bunch of types that are "unlikely" to have any hanging refs,
+///MASSIVELY speeding up finding references. Relatively speaking. The reftracker is still not very fast.
+//#define FAST_REFERENCE_TRACKING
 
 ///Run a lookup on things hard deleting by default.
 //#define GC_FAILURE_HARD_LOOKUP
@@ -64,6 +73,8 @@
 #define GC_FAILURE_HARD_LOOKUP
 // Log references in their own file
 #define REFERENCE_TRACKING_LOG_APART
+// use fast reftracking
+#define FAST_REFERENCE_TRACKING
 #endif // REFERENCE_DOING_IT_LIVE
 
 /// Sets up the reftracker to be used locally, to hunt for hard deletions
@@ -81,12 +92,16 @@
 #endif // REFERENCE_TRACKING_STANDARD
 
 // If this is uncommented, we do a single run though of the game setup and tear down process with unit tests in between
-// #define UNIT_TESTS
+//#define UNIT_TESTS
 
 // If this is uncommented, will attempt to load and initialize prof.dll/libprof.so by default.
 // Even if it's not defined, you can pass "tracy" via -params in order to try to load it.
-// We do not ship byond-tracy. Build it yourself here: https://github.com/mafemergency/byond-tracy/
+// We do not ship byond-tracy. Build it yourself here: https://github.com/mafemergency/byond-tracy,
+// or the fork which writes profiling data to a file: https://github.com/ParadiseSS13/byond-tracy
 // #define USE_BYOND_TRACY
+
+// If uncommented, will display info about byond-tracy's status in the MC tab.
+// #define MC_TAB_TRACY_INFO
 
 // If defined, we will compile with FULL timer debug info, rather then a limited scope
 // Be warned, this increases timer creation cost by 5x
@@ -99,8 +114,27 @@
 /// Prefer the autowiki build target instead.
 // #define AUTOWIKI
 
+/// If defined, we boot up, run world.run_performance_tests() and then shut down the server
+// #define PERFORMANCE_TESTS
+
 /// If this is uncommented, will profile mapload atom initializations
 // #define PROFILE_MAPLOAD_INIT_ATOM
+
+/// If uncommented, Dreamluau will be fully disabled.
+// #define DISABLE_DREAMLUAU
+
+// OpenDream currently doesn't support byondapi, so automatically disable it on OD,
+// unless CIBUILDING is defined - we still want to lint dreamluau-related code.
+// Get rid of this whenever it does have support.
+#ifdef OPENDREAM_REAL
+#define DISABLE_DREAMLUAU
+#endif
+
+// Since 0.2.0, dreamluau depends on breaking changes made to byondapi in 1674.
+// Get rid of this when BYOND_MINOR is >= 1674 AND we don't have any alternate tests on <1674.
+#if DM_BUILD < 1674
+#define DISABLE_DREAMLUAU
+#endif
 
 /// If this is uncommented, force our verb processing into just the 2% of a tick
 /// We normally reserve for it
@@ -122,7 +156,11 @@
 								// 2 for preloading absolutely everything;
 
 #ifdef LOWMEMORYMODE
+#ifndef ABSOLUTE_MINIMUM
 #define FORCE_MAP "runtimestation"
+#else
+#define FORCE_MAP "runtimestation_minimal"
+#endif
 #define FORCE_MAP_DIRECTORY "_maps"
 #endif
 
@@ -177,3 +215,8 @@
 #ifdef MAP_TEST
 #warn Compiling in MAP_TEST mode. Certain game mechanics will be disabled.
 #endif
+
+/// Disable to use builtin DM-based generation.
+/// IconForge is 250x times faster but requires storing the icons in tmp/ and may result in higher asset transport.
+/// Note that the builtin GAGS editor still uses the 'legacy' generation to allow for debugging.
+#define USE_RUSTG_ICONFORGE_GAGS

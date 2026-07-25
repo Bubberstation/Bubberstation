@@ -17,7 +17,7 @@
 	map_generator = /datum/map_generator/ocean_generator
 
 /area/ocean/trench
-	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
+	area_flags_mapping = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED
 	name = "The Trench"
 
 /area/ocean/trench/generated
@@ -25,8 +25,7 @@
 	map_generator = /datum/map_generator/cave_generator/trench
 
 /area/ruin/ocean
-	has_gravity = TRUE
-	area_flags = UNIQUE_AREA
+	default_gravity = STANDARD_GRAVITY
 
 /area/ruin/ocean/listening_outpost
 	name = "Listening Station"

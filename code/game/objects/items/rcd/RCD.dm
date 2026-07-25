@@ -16,6 +16,7 @@
 	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
 	has_ammobar = TRUE
 	actions_types = list(/datum/action/item_action/rcd_scan)
+	action_slots = ALL
 	drop_sound = 'sound/items/handling/tools/rcd_drop.ogg'
 	pickup_sound = 'sound/items/handling/tools/rcd_pickup.ogg'
 	sound_vary = TRUE
@@ -67,13 +68,30 @@
 	design_category = GLOB.rcd_designs[root_category][1]
 	var/list/design = GLOB.rcd_designs[root_category][design_category][1]
 
-	rcd_design_path = design["[RCD_DESIGN_PATH]"]
+	rcd_design_path = design[RCD_DESIGN_PATH]
 	design_title = initial(rcd_design_path.name)
-	mode = design["[RCD_DESIGN_MODE]"]
+	mode = design[RCD_DESIGN_MODE]
 	construction_mode = mode
 
 	GLOB.rcd_list += src
 	AddElement(/datum/element/openspace_item_click_handler)
+
+/obj/item/construction/rcd/examine(mob/user)
+	. = ..()
+	if(construction_upgrades)
+		. += "It has the following upgrades installed:"
+		if(construction_upgrades & RCD_UPGRADE_FRAMES)
+			. += /obj/item/rcd_upgrade/frames::name
+		if(construction_upgrades & RCD_UPGRADE_SIMPLE_CIRCUITS)
+			. += /obj/item/rcd_upgrade/simple_circuits::name
+		if(construction_upgrades & RCD_UPGRADE_SILO_LINK)
+			. += /obj/item/rcd_upgrade/silo_link::name
+		if(construction_upgrades & RCD_UPGRADE_FURNISHING)
+			. += /obj/item/rcd_upgrade/furnishing::name
+		if(construction_upgrades & RCD_UPGRADE_ANTI_INTERRUPT)
+			. += /obj/item/rcd_upgrade/anti_interrupt::name
+		if(construction_upgrades & RCD_UPGRADE_NO_FREQUENT_USE_COOLDOWN)
+			. += /obj/item/rcd_upgrade/cooling::name
 
 /obj/item/construction/rcd/Destroy()
 	QDEL_NULL(airlock_electronics)
@@ -97,15 +115,13 @@
 
 	mode = RCD_TURF
 	user.visible_message(span_suicide("[user] sets the RCD to 'Wall' and points it down [user.p_their()] throat! It looks like [user.p_theyre()] trying to commit suicide!"))
-	if(checkResource(16, user)) // It takes 16 resources to construct a wall
+	if(useResource(16, user)) // It takes 16 resources to construct a wall
 		var/success = T.rcd_act(user, src, list("[RCD_DESIGN_MODE]" = RCD_TURF, "[RCD_DESIGN_PATH]" = /turf/open/floor/plating/rcd))
 		T = get_turf(user)
 		// If the RCD placed a floor instead of a wall, having a wall without plating under it is cursed
 		// There isn't an easy programmatical way to check if rcd_act will place a floor or a wall, so just repeat using it for free
 		if(success && isopenturf(T))
 			T.rcd_act(user, src, list("[RCD_DESIGN_MODE]" = RCD_TURF, "[RCD_DESIGN_PATH]" = /turf/open/floor/plating/rcd))
-		useResource(16, user)
-		activate()
 		playsound(get_turf(user), SFX_TOOL_SWITCH, 20, TRUE)
 		user.gib(DROP_ALL_REMAINS)
 		return MANUAL_SUICIDE
@@ -122,8 +138,8 @@
  * * [mob][user]- the user
  */
 /obj/item/construction/rcd/proc/can_place(atom/target, list/rcd_results, mob/user)
-	var/rcd_mode = rcd_results["[RCD_DESIGN_MODE]"]
-	var/atom/movable/rcd_structure = rcd_results["[RCD_DESIGN_PATH]"]
+	var/rcd_mode = rcd_results[RCD_DESIGN_MODE]
+	var/atom/movable/rcd_structure = rcd_results[RCD_DESIGN_PATH]
 	/**
 	 *For anything that does not go an a wall we have to make sure that turf is clear for us to put the structure on it
 	 *If we are just trying to destroy something then this check is not necessary
@@ -147,17 +163,26 @@
 
 			//check if we can build our window on the grill
 			if(target_turf.is_blocked_turf(exclude_mobs = !is_full_tile, source_atom = null, ignore_atoms = structures_to_ignore, type_list = TRUE))
-				playsound(get_turf(user), SFX_TOOL_SWITCH, 20, TRUE)
-				balloon_alert(user, "something is blocking the turf")
+				playsound(user, SFX_TOOL_SWITCH, 20, TRUE)
+				balloon_alert(user, "tile is blocked!")
 				return FALSE
 
 		/**
 		 * if we are trying to create plating on turf which is not a proper floor then don't check for objects on top of the turf just allow that turf to be converted into plating. e.g. create plating beneath a player or underneath a machine frame/any dense object
 		 * if we are trying to finish a wall girder then let it finish then make sure no one/nothing is stuck in the girder
 		 */
-		else if(rcd_mode == RCD_TURF && rcd_structure == /turf/open/floor/plating/rcd  && (!istype(target_turf, /turf/open/floor) || istype(target, /obj/structure/girder)))
+		else if(rcd_mode == RCD_TURF && rcd_structure == /turf/open/floor/plating/rcd)
 			//if a player builds a wallgirder on top of himself manually with iron sheets he can't finish the wall if he is still on the girder. Exclude the girder itself when checking for other dense objects on the turf
-			if(istype(target, /obj/structure/girder) && target_turf.is_blocked_turf(exclude_mobs = FALSE, source_atom = null, ignore_atoms = list(target)))
+			var/list/ignore_types = list()
+			if(isturf(target))
+				if(isfloorturf(target))
+					ignore_types += /obj/structure/girder
+				else
+					ignore_types = null
+			else if(istype(target, /obj/structure/girder))
+				ignore_types += /obj/structure/girder
+
+			if(ignore_types && target_turf.is_blocked_turf(exclude_mobs = FALSE, source_atom = null, ignore_atoms = ignore_types, type_list = TRUE))
 				playsound(get_turf(user), SFX_TOOL_SWITCH, 20, TRUE)
 				balloon_alert(user, "something is on the girder!")
 				return FALSE
@@ -199,6 +224,17 @@
 
 	return TRUE
 
+/obj/item/construction/rcd/build_delay(mob/user, delay, atom/target)
+	//unaffected by ui changes
+	if(mode == RCD_DECONSTRUCT)
+		if(delay <= 0)
+			return TRUE
+
+		return do_after(user, delay, target)
+
+	//checks for ui changes
+	return ..()
+
 /**
  * actual proc to create the structure
  *
@@ -207,6 +243,11 @@
  * * [mob][user]- the user building this structure
  */
 /obj/item/construction/rcd/proc/rcd_create(atom/target, mob/user)
+	if(isopenturf(target))
+		var/turf/open/open = target
+		if(!open.CanBuildHere())
+			return NONE
+
 	var/list/rcd_results = target.rcd_vals(user, src) // does this atom allow for rcd actions?
 	if(!rcd_results) // nope
 		return NONE
@@ -216,12 +257,12 @@
 		balloon_alert(user, "too durable!")
 		return ITEM_INTERACT_BLOCKING
 
-	rcd_results["[RCD_DESIGN_MODE]"] = mode
-	rcd_results["[RCD_DESIGN_PATH]"] = rcd_design_path
+	rcd_results[RCD_DESIGN_MODE] = mode
+	rcd_results[RCD_DESIGN_PATH] = rcd_design_path
 
 	var/delay = rcd_results["delay"] * delay_mod
 	if (
-		!(upgrade & RCD_UPGRADE_NO_FREQUENT_USE_COOLDOWN) \
+		!(construction_upgrades & RCD_UPGRADE_NO_FREQUENT_USE_COOLDOWN) \
 			&& !rcd_results[RCD_RESULT_BYPASS_FREQUENT_USE_COOLDOWN] \
 			&& current_active_effects > 0
 	)
@@ -231,10 +272,10 @@
 
 	var/target_name = target.name //Store this information before it gets mutated by the rcd.
 	var/target_path = target.type
-	var/atom/design_path = rcd_results["[RCD_DESIGN_PATH]"]
+	var/atom/design_path = rcd_results[RCD_DESIGN_PATH]
 	var/location = AREACOORD(target)
 	if(_rcd_create_effect(target, user, delay, rcd_results))
-		log_tool("[key_name(user)] used [src] to [rcd_results["[RCD_DESIGN_MODE]"] != RCD_DECONSTRUCT ? "construct [initial(design_path.name)]([design_path])" : "deconstruct [target_name]([target_path])"] at [location]")
+		log_tool("[key_name(user)] used [src] to [rcd_results[RCD_DESIGN_MODE] != RCD_DECONSTRUCT ? "construct [initial(design_path.name)]([design_path])" : "deconstruct [target_name]([target_path])"] at [location]")
 
 	current_active_effects -= 1
 	return ITEM_INTERACT_SUCCESS
@@ -249,10 +290,12 @@
  * * rcd_results- list of params which contains the cost & build mode to create the structure
  */
 /obj/item/construction/rcd/proc/_rcd_create_effect(atom/target, mob/user, delay, list/rcd_results)
-	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(target), delay, rcd_results["[RCD_DESIGN_MODE]"], upgrade)
+	PRIVATE_PROC(TRUE)
+
+	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(target), delay, rcd_results[RCD_DESIGN_MODE], construction_upgrades)
 
 	//resource & structure placement sanity checks before & after delay along with beam effects
-	if(!checkResource(rcd_results["cost"], user) || !can_place(target, rcd_results, user))
+	if(!useResource(rcd_results["cost"], user, TRUE) || !can_place(target, rcd_results, user))
 		qdel(rcd_effect)
 		return FALSE
 	var/beam
@@ -266,24 +309,21 @@
 		return FALSE
 	if (QDELETED(rcd_effect))
 		return FALSE
-	if(!checkResource(rcd_results["cost"], user) || !can_place(target, rcd_results, user))
+	if(!useResource(rcd_results["cost"], user, TRUE) || !can_place(target, rcd_results, user))
 		qdel(rcd_effect)
 		return FALSE
 
-	if(!useResource(rcd_results["cost"], user))
-		qdel(rcd_effect)
-		return FALSE
-	activate()
 	if(!target.rcd_act(user, src, rcd_results))
 		qdel(rcd_effect)
 		return FALSE
+	useResource(rcd_results["cost"], user)
 	playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
 	rcd_effect.end_animation()
 	return TRUE
 
 /obj/item/construction/rcd/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet/rcd),
+		get_asset_datum(/datum/asset/spritesheet_batched/rcd),
 	)
 
 /obj/item/construction/rcd/ui_host(mob/user)
@@ -308,15 +348,15 @@
 	data["selected_root"] = root_category
 
 	data["categories"] = list()
-	for(var/sub_category as anything in GLOB.rcd_designs[root_category])
+	for(var/sub_category in GLOB.rcd_designs[root_category])
 		var/list/target_category =  GLOB.rcd_designs[root_category][sub_category]
 		if(!length(target_category))
 			continue
 
 		//skip category if upgrades were not installed for these
-		if(sub_category == "Machines" && !(upgrade & RCD_UPGRADE_FRAMES))
+		if(sub_category == "Machines" && !(construction_upgrades & RCD_UPGRADE_FRAMES))
 			continue
-		if(sub_category == "Furniture" && !(upgrade & RCD_UPGRADE_FURNISHING))
+		if(sub_category == "Furniture" && !(construction_upgrades & RCD_UPGRADE_FURNISHING))
 			continue
 
 		var/list/designs = list() //initialize all designs under this category
@@ -370,10 +410,10 @@
 			 * You can ignore an complete category if the design disk upgrade for that category isn't installed.
 			 */
 			//You can't select designs from the Machines category if you don't have the frames upgrade installed.
-			if(category == "Machines" && !(upgrade & RCD_UPGRADE_FRAMES))
+			if(category == "Machines" && !(construction_upgrades & RCD_UPGRADE_FRAMES))
 				return TRUE
 			//You can't select designs from the Furniture category if you don't have the furnishing upgrade installed.
-			if(category == "Furniture" && !(upgrade & RCD_UPGRADE_FURNISHING))
+			if(category == "Furniture" && !(construction_upgrades & RCD_UPGRADE_FURNISHING))
 				return TRUE
 
 			//use UI params to set variables
@@ -381,9 +421,9 @@
 			if(design == null) //not a valid design
 				return TRUE
 			design_category = category_name
-			mode = design["[RCD_DESIGN_MODE]"]
+			mode = design[RCD_DESIGN_MODE]
 			construction_mode = mode
-			rcd_design_path = design["[RCD_DESIGN_PATH]"]
+			rcd_design_path = design[RCD_DESIGN_PATH]
 			design_title = initial(rcd_design_path.name)
 			blueprint_changed = TRUE
 
@@ -450,31 +490,20 @@
 	max_matter = borgy.cell.maxcharge
 	return borgy.cell.charge
 
-/obj/item/construction/rcd/borg/useResource(amount, mob/user)
-	if(!iscyborg(user))
-		return 0
+/obj/item/construction/rcd/borg/useResource(amount, mob/user, dry_run)
 	var/mob/living/silicon/robot/borgy = user
+	if(!iscyborg(borgy))
+		return FALSE
 	if(!borgy.cell)
-		if(user)
-			balloon_alert(user, "no cell found!")
-		return 0
-	. = borgy.cell.use(amount * energyfactor) //borgs get 1.3x the use of their RCDs
-	if(!. && user)
+		balloon_alert(user, "no cell found!")
+		return FALSE
+	if(borgy.cell.charge < (amount * energyfactor))
 		balloon_alert(user, "insufficient charge!")
-	return .
-
-/obj/item/construction/rcd/borg/checkResource(amount, mob/user)
-	if(!iscyborg(user))
-		return 0
-	var/mob/living/silicon/robot/borgy = user
-	if(!borgy.cell)
-		if(user)
-			balloon_alert(user, "no cell found!")
-		return 0
-	. = borgy.cell.charge >= (amount * energyfactor)
-	if(!. && user)
-		balloon_alert(user, "insufficient charge!")
-	return .
+		return FALSE
+	if(!dry_run)
+		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
+		return borgy.cell.use(amount * energyfactor)
+	return TRUE
 
 /obj/item/construction/rcd/borg/syndicate
 	name = "syndicate RCD"
@@ -488,20 +517,15 @@
 	matter = 160
 
 /obj/item/construction/rcd/loaded/upgraded
-	upgrade = RCD_ALL_UPGRADES
+	construction_upgrades = RCD_ALL_UPGRADES
 
 /obj/item/construction/rcd/ce
 	name = "professional RCD"
 	desc = "A higher-end model of the rapid construction device, prefitted with improved cooling and disruption prevention. Provided to the chief engineer."
-	upgrade = RCD_UPGRADE_ANTI_INTERRUPT | RCD_UPGRADE_NO_FREQUENT_USE_COOLDOWN
+	icon_state = "cercd"
+	inhand_icon_state = "cercd"
+	construction_upgrades = RCD_UPGRADE_ANTI_INTERRUPT | RCD_UPGRADE_NO_FREQUENT_USE_COOLDOWN
 	matter = 160
-	color = list(
-		0.3, 0.3, 0.7, 0.0,
-		1.0, 1.0, 0.2, 0.0,
-		-0.2, 0.0, 1.0, 0.0,
-		0.0, 0.0, 0.0, 1.0,
-		0.0, 0.0, 0.0, 0.0,
-	)
 
 /obj/item/construction/rcd/combat
 	name = "industrial RCD"
@@ -510,13 +534,13 @@
 	max_matter = 500
 	matter = 500
 	canRturf = TRUE
-	upgrade = RCD_ALL_UPGRADES
+	construction_upgrades = RCD_ALL_UPGRADES
 
 /obj/item/construction/rcd/combat/admin
 	name = "admin RCD"
 	max_matter = INFINITY
 	matter = INFINITY
-	upgrade = RCD_ALL_UPGRADES & ~RCD_UPGRADE_SILO_LINK
+	construction_upgrades = RCD_ALL_UPGRADES & ~RCD_UPGRADE_SILO_LINK
 	delay_mod = 0.1
 
 // Ranged RCD
@@ -531,7 +555,7 @@
 	icon_state = "arcd"
 	inhand_icon_state = "oldrcd"
 	has_ammobar = FALSE
-	upgrade = RCD_ALL_UPGRADES & ~RCD_UPGRADE_SILO_LINK
+	construction_upgrades = RCD_ALL_UPGRADES & ~RCD_UPGRADE_SILO_LINK
 
 ///How much charge is used up for each matter unit.
 #define MASS_TO_ENERGY (0.016 * STANDARD_CELL_CHARGE)
@@ -552,6 +576,18 @@
 		return owner.ui_status(user)
 	return UI_CLOSE
 
+/obj/item/construction/rcd/exosuit/build_delay(mob/user, delay, atom/target)
+	if(delay <= 0)
+		return TRUE
+
+	var/obj/item/mecha_parts/mecha_equipment/rcd/module = loc
+
+	//deconstruction can't be cancelled by ui changes
+	if(mode != RCD_DECONSTRUCT)
+		blueprint_changed = FALSE
+
+	return module.do_after_mecha(target, user, delay)
+
 /obj/item/construction/rcd/exosuit/get_matter(mob/user)
 	if(silo_link)
 		return ..()
@@ -560,27 +596,36 @@
 	var/obj/vehicle/sealed/mecha/gundam = owner
 	return round(gundam.get_charge() / MASS_TO_ENERGY)
 
-/obj/item/construction/rcd/exosuit/useResource(amount, mob/user)
+/obj/item/construction/rcd/exosuit/useResource(amount, mob/user, dry_run)
 	if(silo_link)
 		return ..()
 	if(!ismecha(owner))
-		return 0
-	var/obj/vehicle/sealed/mecha/gundam = owner
-	if(!gundam.use_energy(amount * MASS_TO_ENERGY))
-		gundam.balloon_alert(user, "insufficient charge!")
 		return FALSE
-	return TRUE
-
-/obj/item/construction/rcd/exosuit/checkResource(amount, mob/user)
-	if(silo_link)
-		return ..()
-	if(!ismecha(owner))
-		return 0
 	var/obj/vehicle/sealed/mecha/gundam = owner
 	if(!gundam.has_charge(amount * MASS_TO_ENERGY))
 		gundam.balloon_alert(user, "insufficient charge!")
 		return FALSE
+	if(!dry_run)
+		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
+		return gundam.use_energy(amount * MASS_TO_ENERGY)
 	return TRUE
+
+/obj/item/construction/rcd/exosuit/detonate_pulse()
+	var/obj/item/mecha_parts/mecha_equipment/rcd/ourshell = loc
+	if(!istype(ourshell))
+		return
+	ourshell.audible_message(span_danger("<b>[ourshell] begins to vibrate and buzz loudly!</b>"), \
+	span_danger("<b>[ourshell] begins vibrating violently!</b>"))
+	// 5 seconds to get rid of it
+	addtimer(CALLBACK(src, PROC_REF(detonate_pulse_explode)), 5 SECONDS)
+
+/obj/item/construction/rcd/exosuit/detonate_pulse_explode()
+	var/obj/item/mecha_parts/mecha_equipment/rcd/ourshell = loc
+	explosion(ourshell, light_impact_range = 3, flame_range = 1, flash_range = 1)
+	if(owner)
+		ourshell.detach()
+	qdel(ourshell)
+
 
 #undef MASS_TO_ENERGY
 

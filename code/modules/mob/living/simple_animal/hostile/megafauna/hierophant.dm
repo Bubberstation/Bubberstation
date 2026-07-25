@@ -53,13 +53,14 @@ Difficulty: Hard
 	armour_penetration = 50
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	mob_biotypes = MOB_SPECIAL|MOB_MINING
 	speed = 10
 	move_to_delay = 10
 	ranged = TRUE
 	ranged_cooldown_time = 4 SECONDS
 	aggro_vision_range = 21 //so it can see to one side of the arena to the other
 	loot = list(/obj/item/hierophant_club)
-	crusher_loot = list(/obj/item/hierophant_club, /obj/item/crusher_trophy/vortex_talisman)
+	crusher_loot = /obj/item/crusher_trophy/vortex_talisman
 	wander = FALSE
 	gps_name = "Zealous Signal"
 	achievement_type = /datum/award/achievement/boss/hierophant_kill
@@ -101,7 +102,7 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/hierophant/Initialize(mapload)
 	. = ..()
 	spawned_beacon_ref = WEAKREF(new /obj/effect/hierophant(loc))
-	AddComponent(/datum/component/boss_music, 'sound/music/boss/hiero_boss.ogg', 145 SECONDS)
+	AddComponent(/datum/component/boss_music, 'sound/music/boss/hiero_boss.ogg', COMSIG_HOSTILE_FOUND_TARGET) // change to COMSIG_AI_BLACKBOARD_KEY_SET(BB_BASIC_MOB_CURRENT_TARGET) in basic conversion
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/Destroy()
 	QDEL_NULL(spawned_beacon_ref)
@@ -330,7 +331,7 @@ Difficulty: Hard
 	for(var/d in GLOB.cardinals)
 		INVOKE_ASYNC(src, PROC_REF(arena_squares), T, d)
 	for(var/t in RANGE_TURFS(11, T))
-		if(t && get_dist(t, T) == 11)
+		if(t && get_dist(t, T) == 11 && !istype(t, /turf/closed/indestructible/riveted/hierophant))
 			new /obj/effect/temp_visual/hierophant/wall(t, src)
 			new /obj/effect/temp_visual/hierophant/blast/damaging(t, src, FALSE)
 	if(get_dist(src, T) >= 11) //hey you're out of range I need to get closer to you!
@@ -365,14 +366,14 @@ Difficulty: Hard
 	for(var/t in RANGE_TURFS(1, source))
 		var/obj/effect/temp_visual/hierophant/blast/damaging/B = new(t, src, FALSE)
 		B.damage = 30
-	animate(src, alpha = 0, time = 2, easing = EASE_OUT) //fade out
+	animate(src, alpha = 0, time = 2, easing = SINE_EASING|EASE_OUT) //fade out
 	SLEEP_CHECK_DEATH(1, src)
 	visible_message(span_hierophant_warning("[src] fades out!"))
 	ADD_TRAIT(src, TRAIT_UNDENSE, VANISHING_TRAIT)
 	SLEEP_CHECK_DEATH(2, src)
 	forceMove(T)
 	SLEEP_CHECK_DEATH(1, src)
-	animate(src, alpha = 255, time = 2, easing = EASE_IN) //fade IN
+	animate(src, alpha = 255, time = 2, easing = SINE_EASING|EASE_IN) //fade IN
 	SLEEP_CHECK_DEATH(1, src)
 	REMOVE_TRAIT(src, TRAIT_UNDENSE, VANISHING_TRAIT)
 	visible_message(span_hierophant_warning("[src] fades in!"))
@@ -436,17 +437,14 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/hierophant/death()
 	if(health > 0 || stat == DEAD)
 		return
-	else
-		set_stat(DEAD)
-		blinking = TRUE //we do a fancy animation, release a huge burst(), and leave our staff.
-		visible_message(span_hierophant("\"Mrmxmexmrk wipj-hiwxvygx wiuyirgi...\""))
-		visible_message(span_hierophant_warning("[src] shrinks, releasing a massive burst of energy!"))
-		var/list/stored_nearby = list()
-		for(var/mob/living/L in view(7,src))
-			stored_nearby += L // store the people to grant the achievements to once we die
-		hierophant_burst(null, get_turf(src), 10)
-		set_stat(CONSCIOUS) // deathgasp won't run if dead, stupid
-		..(force_grant = stored_nearby)
+
+	set_stat(DEAD)
+	blinking = TRUE //we do a fancy animation, release a huge burst(), and leave our staff.
+	visible_message(span_hierophant("\"Mrmxmexmrk wipj-hiwxvygx wiuyirgi...\""))
+	visible_message(span_hierophant_warning("[src] shrinks, releasing a massive burst of energy!"))
+	hierophant_burst(null, get_turf(src), 10)
+	set_stat(CONSCIOUS) // deathgasp won't run if dead, stupid
+	..()
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/celebrate_kill(mob/living/L)
 	visible_message(span_hierophant_warning("\"[pick(kill_phrases)]\""))
@@ -454,7 +452,7 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/CanAttack(atom/the_target)
 	. = ..()
-	if(istype(the_target, /mob/living/basic/legion_brood)) //ignore temporary targets in favor of more permanent targets
+	if(istype(the_target, /mob/living/basic/mining/legion_brood)) //ignore temporary targets in favor of more permanent targets
 		return FALSE
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/GiveTarget(new_target)
@@ -573,8 +571,8 @@ Difficulty: Hard
 	if(mover == caster.pulledby)
 		return
 	if(isprojectile(mover))
-		var/obj/projectile/P = mover
-		if(P.firer == caster)
+		var/obj/projectile/proj = mover
+		if(proj.firer == caster)
 			return
 	if(mover != caster)
 		return FALSE
@@ -732,7 +730,7 @@ Difficulty: Hard
 					else
 						H.Goto(get_turf(caster), H.move_to_delay, 3)
 		if(monster_damage_boost && (ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)))
-			L.adjustBruteLoss(damage)
+			L.adjust_brute_loss(damage)
 		if(caster)
 			log_combat(caster, L, "struck with a [name]")
 	for(var/obj/vehicle/sealed/mecha/M in T.contents - hit_things) //also damage mechs.
@@ -767,7 +765,7 @@ Difficulty: Hard
 	layer = LOW_OBJ_LAYER
 	anchored = TRUE
 
-/obj/effect/hierophant/attackby(obj/item/attacking_item, mob/user, params)
+/obj/effect/hierophant/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(attacking_item, /obj/item/hierophant_club))
 		var/obj/item/hierophant_club/club = attacking_item
 		if(club.beacon == src)

@@ -26,6 +26,8 @@
 #define INVESTIGATE_RECORDS "records"
 #define INVESTIGATE_RESEARCH "research"
 #define INVESTIGATE_WIRES "wires"
+#define INVESTIGATE_NANITES "nanites" // BUBBER EDIT ADDITION
+
 
 // Logging types for log_message()
 #define LOG_ATTACK (1 << 0)
@@ -95,6 +97,7 @@
 #define LOG_CATEGORY_CONFIG "config"
 #define LOG_CATEGORY_DYNAMIC "dynamic"
 #define LOG_CATEGORY_ECONOMY "economy"
+#define LOG_CATEGORY_FISHING "fishing"
 #define LOG_CATEGORY_FILTER "filter"
 #define LOG_CATEGORY_MANIFEST "manifest"
 #define LOG_CATEGORY_MECHA "mecha"
@@ -114,6 +117,7 @@
 #define LOG_CATEGORY_TRANSPORT "transport"
 #define LOG_CATEGORY_VIRUS "virus"
 #define LOG_CATEGORY_CAVE_GENERATION "cave-generation"
+#define LOG_CATEGORY_IMAGE "image"
 
 // Admin categories
 #define LOG_CATEGORY_ADMIN "admin"
@@ -140,7 +144,9 @@
 // Game categories
 #define LOG_CATEGORY_GAME "game"
 #define LOG_CATEGORY_GAME_ACCESS "game-access"
+#define LOG_CATEGORY_GAME_BLOOD_WORM "game-blood-worm"
 #define LOG_CATEGORY_GAME_EMOTE "game-emote"
+#define LOG_CATEGORY_GAME_MINIMAP_DRAWING "game-minimap-drawing"
 #define LOG_CATEGORY_GAME_INTERNET_REQUEST "game-internet-request"
 #define LOG_CATEGORY_GAME_OOC "game-ooc"
 #define LOG_CATEGORY_GAME_PRAYER "game-prayer"
@@ -150,6 +156,7 @@
 #define LOG_CATEGORY_GAME_TRAITOR "game-traitor"
 #define LOG_CATEGORY_GAME_VOTE "game-vote"
 #define LOG_CATEGORY_GAME_WHISPER "game-whisper"
+#define LOG_CATEGORY_GAME_GHOST_POLLS "game-ghost-polls"
 
 // HREF categories
 #define LOG_CATEGORY_HREF "href"

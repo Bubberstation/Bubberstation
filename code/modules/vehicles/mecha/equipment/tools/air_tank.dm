@@ -31,9 +31,8 @@
 	internal_tank.air_contents.volume = volume
 	internal_tank.maximum_pressure = maximum_pressure
 	if(start_full)
-		internal_tank.air_contents.temperature = T20C
-		internal_tank.air_contents.add_gases(/datum/gas/oxygen)
-		internal_tank.air_contents.gases[/datum/gas/oxygen][MOLES] = maximum_pressure * volume / (R_IDEAL_GAS_EQUATION * internal_tank.air_contents.temperature)
+		internal_tank.air_contents.set_temperature(T20C)
+		internal_tank.air_contents.set_gas(/datum/gas/oxygen, maximum_pressure * volume / (R_IDEAL_GAS_EQUATION * internal_tank.air_contents.temperature))
 
 /obj/item/mecha_parts/mecha_equipment/air_tank/Destroy()
 	if(chassis)
@@ -79,11 +78,10 @@
 	var/datum/gas_mixture/tank_air = internal_tank.return_air()
 	var/datum/gas_mixture/cabin_air = chassis.cabin_air
 	var/release_pressure = internal_tank.release_pressure
-	var/cabin_pressure = cabin_air.return_pressure()
-	if(cabin_pressure < release_pressure)
+	if(cabin_air.return_pressure() < release_pressure)
 		tank_air.release_gas_to(cabin_air, release_pressure)
-	if(cabin_pressure)
-		cabin_air.pump_gas_to(external_air, PUMP_MAX_PRESSURE, GAS_CO2)
+	if(cabin_air.has_gas(/datum/gas/carbon_dioxide))
+		cabin_air.pump_gas_to(external_air, PUMP_MAX_PRESSURE, /datum/gas/carbon_dioxide)
 
 /obj/item/mecha_parts/mecha_equipment/air_tank/proc/process_pump(seconds_per_tick)
 	if(!tank_pump_active)

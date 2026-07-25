@@ -1,4 +1,4 @@
-/obj/item/organ/external/synth_screen
+/obj/item/organ/synth_screen
 	name = "synth screen"
 	desc = "Surely that's just a bunch of LEDs and not a retro-projected screen, right? Right...?"
 	icon_state = "tonguerobot"
@@ -8,8 +8,7 @@
 
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EXTERNAL_SYNTH_SCREEN
-
-	preference = "feature_ipc_screen"
+	organ_flags = ORGAN_EXTERNAL
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/synth_screen
 	use_mob_sprite_as_obj_sprite = TRUE
@@ -21,6 +20,3 @@
 
 /datum/bodypart_overlay/mutant/synth_screen/override_color(rgb_value)
 	return draw_color
-
-/datum/bodypart_overlay/mutant/synth_screen/get_global_feature_list()
-	return SSaccessories.sprite_accessories[MUTANT_SYNTH_SCREEN]

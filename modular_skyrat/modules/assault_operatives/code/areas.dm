@@ -39,7 +39,7 @@
 	name = "GoldenEye Satellite"
 	icon_state = "syndie-ship"
 	requires_power = FALSE
-	has_gravity = STANDARD_GRAVITY
+	default_gravity = STANDARD_GRAVITY
 	area_flags = VALID_TERRITORY | UNIQUE_AREA | NOTELEPORT
 	ambientsounds = AMBIENCE_GENERIC
 
@@ -50,7 +50,7 @@
 /obj/machinery/door/poddoor/shutters
 	smoothing_groups = SMOOTH_GROUP_SHUTTERS
 
-/turf/closed/wall/r_wall/syndicate/cruiser
+/turf/closed/wall/r_wall/plastitanium/syndicate/cruiser
 	canSmoothWith = SMOOTH_GROUP_SHUTTERS + SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_SYNDICATE_WALLS
 
 /obj/effect/landmark/start/assaultop

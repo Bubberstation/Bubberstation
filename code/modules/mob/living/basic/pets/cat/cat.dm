@@ -12,8 +12,8 @@
 	unsuitable_atmos_damage = 0.5
 	butcher_results = list(
 		/obj/item/food/meat/slab = 1,
-		/obj/item/organ/internal/ears/cat = 1,
-		/obj/item/organ/external/tail/cat = 1,
+		/obj/item/organ/ears/cat = 1,
+		/obj/item/organ/tail/cat = 1,
 		/obj/item/stack/sheet/animalhide/cat = 1
 	)
 	response_help_continuous = "pets"
@@ -49,7 +49,7 @@
 	var/static/list/pet_commands = list(
 		/datum/pet_command/idle,
 		/datum/pet_command/free,
-		/datum/pet_command/follow,
+		/datum/pet_command/follow/start_active,
 		/datum/pet_command/perform_trick_sequence,
 	)
 
@@ -59,8 +59,11 @@
 	var/mutable_appearance/held_item_overlay
 	///icon state of our cult icon
 	var/cult_icon_state = "cat_cult"
+	///callback for after a kitten is born
+	var/datum/callback/post_birth_callback
 
 /datum/emote/cat
+	abstract_type = /datum/emote/cat
 	mob_type_allowed_typecache = /mob/living/basic/pet/cat
 	mob_type_blacklist_typecache = list()
 
@@ -90,7 +93,7 @@
 	AddElement(/datum/element/footstep, footstep_type = FOOTSTEP_MOB_CLAW)
 	add_cell_sample()
 	add_verb(src, /mob/living/proc/toggle_resting)
-	add_traits(list(TRAIT_CATLIKE_GRACE, TRAIT_VENTCRAWLER_ALWAYS, TRAIT_WOUND_LICKER), INNATE_TRAIT)
+	add_traits(list(TRAIT_CATLIKE_GRACE, TRAIT_VENTCRAWLER_ALWAYS, TRAIT_WOUND_LICKER, TRAIT_COLORBLIND), INNATE_TRAIT)
 	ai_controller.set_blackboard_key(BB_HUNTABLE_PREY, typecacheof(huntable_items))
 	if(can_breed)
 		add_breeding_component()
@@ -100,21 +103,21 @@
 
 /mob/living/basic/pet/cat/early_melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
-	if(!.)
-		return FALSE
+	if(.)
+		return
 
 	if(istype(target, /obj/machinery/oven/range) && can_interact_with_stove)
 		target.attack_hand(src)
-		return FALSE
+		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
 
 	if(!can_hold_item)
-		return TRUE
+		return BASIC_MOB_CONTINUE_ATTACK_CHAIN
 
 	if(!is_type_in_list(target, huntable_items) || held_food)
-		return TRUE
+		return BASIC_MOB_CONTINUE_ATTACK_CHAIN
 	var/atom/movable/movable_target = target
 	movable_target.forceMove(src)
-	return FALSE
+	return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
 
 /mob/living/basic/pet/cat/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -153,10 +156,15 @@
 	icon_state = "[icon_living]"
 
 /mob/living/basic/pet/cat/proc/add_breeding_component()
+	var/static/list/partner_types = typecacheof(list(/mob/living/basic/pet/cat))
+	var/static/list/baby_types = list(
+		/mob/living/basic/pet/cat/kitten = 1,
+	)
 	AddComponent(\
 		/datum/component/breed,\
 		can_breed_with = typecacheof(list(/mob/living/basic/pet/cat)),\
-		baby_path = /mob/living/basic/pet/cat/kitten,\
+		baby_paths = baby_types,\
+		post_birth = post_birth_callback,\
 	)
 
 /mob/living/basic/pet/cat/space
@@ -181,11 +189,13 @@
 	can_interact_with_stove = TRUE
 	butcher_results = list(
 		/obj/item/food/meat/slab = 2,
-		/obj/item/organ/internal/ears/cat = 1,
-		/obj/item/organ/external/tail/cat = 1,
+		/obj/item/organ/ears/cat = 1,
+		/obj/item/organ/tail/cat = 1,
 		/obj/item/food/breadslice/plain = 1
 	)
 	collar_icon_state = null
+	//just ensuring the mats contained by the cat when spawned are the same of when crafted
+	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT * 3)
 
 /mob/living/basic/pet/cat/breadcat/add_cell_sample()
 	return

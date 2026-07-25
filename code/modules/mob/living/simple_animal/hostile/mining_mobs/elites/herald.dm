@@ -32,6 +32,7 @@
 	health = 1000
 	melee_damage_lower = 20
 	melee_damage_upper = 20
+	mob_biotypes = MOB_ORGANIC|MOB_MINING
 	attack_verb_continuous = "preaches to"
 	attack_verb_simple = "preach to"
 	attack_sound = 'sound/effects/magic/clockwork/ratvar_attack.ogg'
@@ -135,7 +136,7 @@
 		H = new /obj/projectile/herald(startloc)
 	else
 		H = new /obj/projectile/herald/teleshot(startloc)
-	H.preparePixelProjectile(marker, startloc)
+	H.aim_projectile(marker, startloc)
 	H.firer = src
 	if(target)
 		H.original = target
@@ -195,7 +196,7 @@
 	var/mob/living/simple_animal/hostile/asteroid/elite/herald/mirror/new_mirror = new /mob/living/simple_animal/hostile/asteroid/elite/herald/mirror(loc)
 	my_mirror = new_mirror
 	my_mirror.my_master = src
-	my_mirror.faction = faction.Copy()
+	SET_FACTION_AND_ALLIES_FROM(my_mirror, src)
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/mirror
 	name = "herald's mirror"
@@ -228,7 +229,7 @@
 	icon_state= "chronobolt"
 	damage = 20
 	armour_penetration = 60
-	speed = 2
+	speed = 0.5
 	damage_type = BRUTE
 	pass_flags = PASSTABLE
 
@@ -276,7 +277,7 @@
 	var/turf/startloc = get_turf(owner)
 	var/obj/projectile/herald/H = null
 	H = new /obj/projectile/herald(startloc)
-	H.preparePixelProjectile(marker, startloc)
+	H.aim_projectile(marker, startloc)
 	H.firer = owner
 	H.fire(set_angle)
 

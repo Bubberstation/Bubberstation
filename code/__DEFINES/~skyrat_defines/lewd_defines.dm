@@ -29,4 +29,69 @@
 #define BREAST_SIZE_N "N"
 #define BREAST_SIZE_O "O"
 #define BREAST_SIZE_P "P"
+#define BREAST_SIZE_Q "Q"
+#define BREAST_SIZE_R "R"
+#define BREAST_SIZE_S "S"
 #define BREAST_SIZE_BEYOND_MEASUREMENT "beyond measurement"
+
+//ERP Size Areas
+#define SIZE_WHITELISTED_AREAS list(\
+		/area/centcom/interlink/dorm_rooms,\
+		/area/misc/hilbertshotel,\
+		/area/station/commons/dorms,\
+		/area/misc/condo,\
+		/area/centcom/holding,\
+		/area/centcom/holding/cafe,\
+		/area/centcom/holding/cafe/vox,\
+		/area/centcom/holding/cafe/dorms,\
+		/area/centcom/holding/cafe/park,\
+		/area/centcom/holding/cafe/station,\
+		/area/centcom/holding/cafe/station/service/kitchen,\
+		/area/centcom/holding/cafe/station/service/kitchen/coldroom,\
+		/area/centcom/holding/cafe/station/commons/lounge,\
+		/area/centcom/holding/cafe/station/service/hydroponics,\
+		/area/centcom/holding/cafe/station/commons/fitness,\
+		/area/centcom/holding/cafe/station/commons/fitness/locker_room,\
+		/area/centcom/holding/cafe/station/commons/fitness/recreation/sauna,\
+		/area/centcom/holding/cafe/station/commons/toilet/shower,\
+		/area/centcom/holding/cafe/station/commons/toilet,\
+		/area/centcom/holding/cafe/station/service,\
+		/area/centcom/holding/cafe/station/service/janitor,\
+		/area/centcom/holding/cafe/station/service/lawoffice,\
+		/area/centcom/holding/cafe/station/service/barber,\
+		/area/centcom/holding/cafe/station/commons/kiosk,\
+		/area/centcom/holding/cafe/station/medical,\
+		/area/centcom/holding/cafe/station/medical/psychology,\
+		/area/centcom/holding/cafe/station/science/robotics/augments,\
+		/area/centcom/holding/cafe/station/command,\
+		/area/centcom/holding/cafe/station/command/cap,\
+		/area/centcom/holding/cafe/station/command/meeting_room,\
+		/area/centcom/holding/cafe/station/command/cap/private,\
+		/area/centcom/holding/cafe/station/command/teleporter,\
+		/area/centcom/holding/cafe/station/maint,\
+		/area/centcom/holding/cafe/station/security,\
+		/area/centcom/holding/cafe/station/service/library,\
+		/area/centcom/holding/cafe/station/engineering,\
+		/area/centcom/holding/cafe/ruin/icemoon,\
+		/area/centcom/holding/cafe/ruin/caves,\
+		/area/centcom/holding/cafe/ruin/ash_walkers,\
+		/area/centcom/holding/cafe/ruin/xenonest,\
+		/area/centcom/holding/cafe/beach,\
+		)
+
+/// Applied to a mob wearing gloves that should be passable for hand surgery (e.g. ball mittens).
+#define TRAIT_GLOVE_SURGERY_PASSTHROUGH "glove_surgery_passthrough"
+/// Trait source for ball_mittens_fumble component.
+#define MITTENS_FUMBLE_TRAIT "ball_mittens_fumble"
+
+
+/// Fired on a mob in attempt_pickup after mobility checks. Handler can set pickup_mods["delay"] or return COMPONENT_BLOCK_ITEM_PICKUP.
+#define COMSIG_LIVING_ITEM_ATTEMPT_PICKUP "living_item_attempt_pickup"
+#define COMPONENT_BLOCK_ITEM_PICKUP (1<<0)
+
+/// Fired on a mob when they interact with machinery, before interact() runs. Return COMPONENT_BLOCK_MACHINERY_INTERACT to block.
+#define COMSIG_MOB_MACHINERY_INTERACT "mob_machinery_interact"
+#define COMPONENT_BLOCK_MACHINERY_INTERACT (1<<1)
+
+/// Fired on a mob when attempt_pickup fails due to fail_chance in pickup_mods. (obj/item/item)
+#define COMSIG_LIVING_ITEM_PICKUP_FAILED "living_item_pickup_failed"

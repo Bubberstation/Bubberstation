@@ -32,8 +32,8 @@
 		var/image/ore_icon = image(icon = initial(ore_item.icon), icon_state = initial(ore_item.icon_state), layer = LOW_ITEM_LAYER)
 		var/list/pixel_positions = list_of_materials[ore_entry]
 		ore_icon.transform = ore_icon.transform.Scale(0.4, 0.4)
-		ore_icon.pixel_x = pixel_positions["pixel_x"]
-		ore_icon.pixel_y = pixel_positions["pixel_y"]
+		ore_icon.pixel_w = pixel_positions["pixel_x"]
+		ore_icon.pixel_z = pixel_positions["pixel_y"]
 		. += ore_icon
 
 /obj/structure/ore_container/food_trough/gutlunch_trough
@@ -43,3 +43,4 @@
 	icon_state = "gutlunch_trough"
 	x_offsets = list(-5, 8)
 	y_offsets = list(-2, -7)
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5) // BUBBER EDIT ADDITION - Needed for crafting material parity

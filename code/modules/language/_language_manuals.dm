@@ -16,7 +16,7 @@
 		to_chat(user, span_boldwarning("You start skimming through [src], but you already know [initial(language.name)]."))
 		return
 
-	to_chat(user, span_boldannounce("You start skimming through [src], and [flavour_text]."))
+	to_chat(user, span_bolddanger("You start skimming through [src], and [flavour_text]."))
 
 	user.grant_language(language)
 	user.remove_blocked_language(language, source=LANGUAGE_ALL)
@@ -45,10 +45,9 @@
 /obj/item/language_manual/proc/use_charge(mob/user)
 	charges--
 	if(!charges)
-		var/turf/T = get_turf(src)
-		T.visible_message(span_warning("The cover and contents of [src] start shifting and changing! It slips out of your hands!"))
-
-		new /obj/item/book/manual/random(T)
+		user.visible_message(span_notice("The cover of [user]'s book start shifting and changing! It falls out of [user.p_their()] hands!"),
+							span_warning("The cover and contents of [src] start shifting and changing! It slips out of your hands!"))
+		new /obj/item/book/manual/random(get_turf(src))
 		qdel(src)
 
 /obj/item/language_manual/codespeak_manual

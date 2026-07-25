@@ -14,10 +14,10 @@
 
 	if(ishuman(user))
 		//feet
-		if(!(human_user.bodyshape & BODYSHAPE_DIGITIGRADE) && !(human_user.dna.species.mutant_bodyparts["taur"]))
+		if(!(human_user.bodyshape & BODYSHAPE_DIGITIGRADE) && !(human_user.dna.species.mutant_bodyparts[FEATURE_TAUR]))
 			user.allowed_turfs += "footprint"
 
-		if((human_user.bodyshape & BODYSHAPE_DIGITIGRADE) || human_user.dna.species.mutant_bodyparts["taur"])
+		if((human_user.bodyshape & BODYSHAPE_DIGITIGRADE) || human_user.dna.species.mutant_bodyparts[FEATURE_TAUR])
 			user.allowed_turfs += list("pawprint", "hoofprint", "clawprint")
 
 		//species & taurs
@@ -45,19 +45,21 @@
 			user.allowed_turfs += "vines"
 
 		if(issynthetic(user))
-			if(human_user.dna.species.mutant_bodyparts["taur"])
+			if(human_user.dna.species.mutant_bodyparts[FEATURE_TAUR])
 				user.allowed_turfs += "holobed" //taurs get the holobed instead
 			else
 				user.allowed_turfs += "holoseat"
 
+			user.allowed_turfs += "borgmat"
+
 		//wings
-		if((istype(user.get_organ_slot(ORGAN_SLOT_WINGS), /obj/item/organ/external/wings/moth)) || HAS_TRAIT(user, TRAIT_SPARKLE_ASPECT))
+		if((istype(user.get_organ_slot(ORGAN_SLOT_WINGS), /obj/item/organ/wings/moth)) || HAS_TRAIT(user, TRAIT_SPARKLE_ASPECT))
 			user.allowed_turfs += "dust" //moth's dust ✨
 
 		//body parts
-		if(istype(user.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL), /obj/item/organ/external/tail))
-			var/name = human_user.dna.species.mutant_bodyparts["tail"][MUTANT_INDEX_NAME]
-			var/datum/sprite_accessory/tails/tail = SSaccessories.sprite_accessories["tail"][name]
+		if(istype(user.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL), /obj/item/organ/tail))
+			var/name = human_user.dna.species.mutant_bodyparts[FEATURE_TAIL_GENERIC][MUTANT_INDEX_NAME]
+			var/datum/sprite_accessory/tails/tail = SSaccessories.sprite_accessories[FEATURE_TAIL_GENERIC][name]
 			if(tail.fluffy)
 				user.allowed_turfs += "tails"
 
@@ -68,7 +70,7 @@
 		//clothing
 		var/obj/item/shoes = user.get_item_by_slot(ITEM_SLOT_FEET)
 		if(istype(shoes, /obj/item/clothing/shoes))
-			if(!human_user.dna.species.mutant_bodyparts["taur"])
+			if(!human_user.dna.species.mutant_bodyparts[FEATURE_TAUR])
 				user.allowed_turfs += "shoeprint"
 
 	if(issilicon(user))
@@ -79,9 +81,9 @@
 	for(var/choice in user.allowed_turfs)
 
 		var/datum/radial_menu_choice/option = new
-		option.image = image(icon = 'modular_skyrat/master_files/icons/effects/turf_effects_icons.dmi', icon_state = initial(choice))
+		option.image = image(icon = 'modular_skyrat/master_files/icons/effects/turf_effects_icons.dmi', icon_state = choice)
 
-		display_turf[initial(choice)] = option
+		display_turf[choice] = option
 
 	sort_list(display_turf)
 	var/chosen_turf = show_radial_menu(user, user, display_turf, custom_check = CALLBACK(src, PROC_REF(check_menu), user))
@@ -106,9 +108,9 @@
 		var/list/colorable = list("dust", "slime", "vines", "footprint", "pawprint", "hoofprint", "clawprint")
 		if(current_turf in colorable) //These turfs are simply colored after their owner's primary
 			if(ishumanbasic(user) || ishumanoid(user))
-				user.owned_turf.color = human_user.dna.features["skin_color"]
+				user.owned_turf.color = human_user.dna.features[FEATURE_SKIN_COLOR]
 			else
-				user.owned_turf.color = human_user.dna.features["mcolor"]
+				user.owned_turf.color = human_user.dna.features[FEATURE_MUTANT_COLOR]
 
 
 		var/list/body_part = list("tails")

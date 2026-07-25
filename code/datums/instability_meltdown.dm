@@ -1,11 +1,11 @@
 /// A possible genetic meltdown that occurs when someone exceeds 100 genetic instability
 /datum/instability_meltdown
+	/// Used to ensure that abstract subtypes do not get picked
+	abstract_type = /datum/instability_meltdown
 	/// How likely a meltdown is to be picked
 	var/meltdown_weight = 1
 	/// If this meltdown is considered "fatal" or not
 	var/fatal = FALSE
-	/// Used to ensure that abstract subtypes do not get picked
-	var/abstract_type = /datum/instability_meltdown
 
 /// Code that runs when this meltdown is picked
 /datum/instability_meltdown/proc/meltdown(mob/living/carbon/human/victim)
@@ -72,8 +72,9 @@
 
 /datum/instability_meltdown/organ_vomit/meltdown(mob/living/carbon/human/victim)
 	var/list/elligible_organs = list()
-	for(var/obj/item/organ/internal/internal_organ in victim.organs) //make sure we dont get an implant or cavity item
-		elligible_organs += internal_organ
+	for(var/obj/item/organ/organ as anything in victim.organs) //make sure we dont get an implant or cavity item
+		if(!(organ.organ_flags & ORGAN_EXTERNAL))
+			elligible_organs += organ
 	victim.vomit(VOMIT_CATEGORY_DEFAULT, lost_nutrition = 10)
 	if(!elligible_organs.len)
 		return

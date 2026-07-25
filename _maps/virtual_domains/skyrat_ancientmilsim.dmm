@@ -22,9 +22,9 @@
 /area/virtual_domain/ancient_milsim/loot_camp)
 "aR" = (
 /obj/structure/closet/crate/secure,
-/obj/item/keycard/blue,
 /obj/machinery/light/small/dim/directional/north,
 /obj/item/construction/rld/mini,
+/obj/item/rcd_ammo,
 /turf/open/floor/iron/dark,
 /area/virtual_domain/ancient_milsim/carrier)
 "ba" = (
@@ -72,20 +72,22 @@
 /obj/item/pen/fourcolor,
 /turf/open/floor/iron/smooth,
 /area/virtual_domain/ancient_milsim/atrium)
-"cp" = (
-/obj/structure/decorative/shelf/soda_milk{
-	density = 1
-	},
-/turf/open/floor/plating,
-/area/virtual_domain/ancient_milsim/maintenance)
 "cx" = (
 /turf/closed/wall/r_wall,
 /area/virtual_domain/ancient_milsim/snpc_cave)
 "cF" = (
 /obj/structure/sign/poster/random/directional/west,
 /obj/structure/rack/gunrack,
-/obj/item/gun/ballistic/automatic/wylom,
+/obj/item/gun/ballistic/automatic/wylom{
+	pixel_y = 5;
+	projectile_damage_multiplier = 1.5;
+	projectile_speed_multiplier = 1.5
+	},
 /obj/item/gun/ballistic/automatic/miecz,
+/obj/item/gun/ballistic/automatic/miecz{
+	pixel_y = -5;
+	pixel_x = -4
+	},
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_hallway)
 "cV" = (
@@ -99,6 +101,23 @@
 /obj/machinery/light/small/dim/directional/south,
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/snpc_cave)
+"dm" = (
+/obj/effect/landmark/bitrunning/curiosity_spawn,
+/turf/open/floor/grass/fairy,
+/area/virtual_domain/protected_space/ancient_milsim)
+"ds" = (
+/obj/item/stack/sheet/mineral/sandbags/fifty,
+/turf/open/misc/grass/planet/ancient_milsim,
+/area/virtual_domain/ancient_milsim/loot_camp)
+"dw" = (
+/obj/effect/spawner/structure/flipped_table,
+/obj/structure/barricade/sandbags,
+/turf/open/floor/iron/smooth,
+/area/virtual_domain/ancient_milsim/atrium)
+"dB" = (
+/obj/effect/landmark/bitrunning/curiosity_spawn,
+/turf/open/misc/dirt/planet,
+/area/virtual_domain/ancient_milsim/snpc_ground)
 "dC" = (
 /turf/open/floor/iron/smooth,
 /area/virtual_domain/ancient_milsim/hallway)
@@ -121,14 +140,6 @@
 	},
 /turf/open/misc/grass/planet/ancient_milsim,
 /area/virtual_domain/ancient_milsim/snpc_ground)
-"eh" = (
-/obj/structure/flippedtable{
-	dir = 8
-	},
-/obj/structure/flippedtable,
-/obj/structure/barricade/sandbags,
-/turf/open/floor/iron/smooth,
-/area/virtual_domain/ancient_milsim/atrium)
 "ek" = (
 /obj/item/grenade/smokebomb,
 /turf/open/floor/iron/smooth_large,
@@ -142,7 +153,6 @@
 /turf/open/floor/carpet/red,
 /area/virtual_domain/ancient_milsim/snpc_bar)
 "eC" = (
-/obj/effect/landmark/bitrunning/mob_segment,
 /obj/structure/chair/stool/directional/south,
 /turf/open/floor/iron/dark,
 /area/virtual_domain/ancient_milsim/loot_camp)
@@ -179,6 +189,10 @@
 	},
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_garage)
+"fy" = (
+/mob/living/basic/crab/jon,
+/turf/open/floor/grass/fairy,
+/area/virtual_domain/protected_space/ancient_milsim)
 "fJ" = (
 /obj/effect/baseturf_helper/virtual_domain/ancient_milsim,
 /turf/closed/indestructible/reinforced,
@@ -190,18 +204,46 @@
 "go" = (
 /turf/closed/wall/r_wall,
 /area/virtual_domain/ancient_milsim/janitor)
+"gB" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/ammobox/strilka310/surplus{
+	pixel_y = 10;
+	pixel_x = -3
+	},
+/obj/item/storage/toolbox/ammobox/strilka310/surplus,
+/turf/open/floor/iron,
+/area/virtual_domain/ancient_milsim/snpc_cafe)
 "gE" = (
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_garage)
 "gL" = (
 /obj/structure/table,
-/obj/item/grenade/chem_grenade/clf3,
+/obj/item/grenade/iedcasing/spawned,
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/janitor)
 "gP" = (
 /obj/item/storage/medkit/civil_defense/stocked,
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/maintenance)
+"hi" = (
+/obj/item/target_designator,
+/obj/structure/closet/crate,
+/obj/item/storage/toolbox/emergency/turret/mag_fed/spider/twin_fang/pre_filled{
+	pixel_x = -5
+	},
+/obj/item/storage/toolbox/emergency/turret/mag_fed/spider/twin_fang/pre_filled,
+/obj/item/storage/toolbox/emergency/turret/mag_fed/spider/twin_fang/pre_filled{
+	pixel_x = 6
+	},
+/obj/item/ammo_box/magazine/wt550m9,
+/obj/item/ammo_box/magazine/wt550m9{
+	pixel_y = -2
+	},
+/obj/item/ammo_box/magazine/wt550m9{
+	pixel_y = -4
+	},
+/turf/open/floor/iron,
+/area/virtual_domain/ancient_milsim/snpc_garage)
 "hj" = (
 /obj/structure/flora/bush/flowers_br/style_random,
 /turf/open/misc/grass/planet/ancient_milsim,
@@ -262,7 +304,7 @@
 /area/virtual_domain/ancient_milsim/hallway)
 "iw" = (
 /obj/item/paper,
-/turf/open/floor/iron/smooth,
+/turf/open/floor/iron/smooth_large,
 /area/virtual_domain/ancient_milsim/atrium)
 "iz" = (
 /obj/structure/table,
@@ -299,6 +341,33 @@
 "jn" = (
 /turf/closed/wall/r_wall,
 /area/virtual_domain/ancient_milsim/loot_camp)
+"jE" = (
+/obj/machinery/ammo_workbench/unlocked,
+/turf/open/floor/iron/dark,
+/area/virtual_domain/ancient_milsim/loot_camp)
+"jJ" = (
+/obj/structure/closet/crate/cardboard,
+/obj/item/gun/ballistic/automatic/miecz,
+/obj/item/ammo_box/magazine/miecz{
+	pixel_y = -3;
+	pixel_x = 4
+	},
+/obj/item/ammo_box/magazine/miecz,
+/turf/open/floor/plating,
+/area/virtual_domain/ancient_milsim/snpc_garage)
+"jR" = (
+/obj/structure/rack/shelf,
+/obj/item/ammo_box/advanced/s12gauge/incendiary{
+	pixel_x = -4;
+	pixel_y = -9
+	},
+/obj/item/ammo_box/advanced/s12gauge/flechette{
+	pixel_x = -4;
+	pixel_y = 9
+	},
+/obj/item/ammo_box/advanced/s12gauge/buckshot,
+/turf/open/floor/iron,
+/area/virtual_domain/ancient_milsim/snpc_hallway)
 "jS" = (
 /obj/structure/chair/sofa/corp/left{
 	dir = 4
@@ -306,9 +375,8 @@
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_hallway)
 "jV" = (
-/obj/effect/landmark/bitrunning/mob_segment,
-/turf/open/floor/plating,
-/area/virtual_domain/ancient_milsim/janitor)
+/turf/closed/indestructible/rock,
+/area/virtual_domain/ancient_milsim/entrance)
 "ka" = (
 /obj/machinery/door/airlock/public,
 /turf/open/floor/iron,
@@ -318,12 +386,20 @@
 /turf/open/misc/dirt/planet,
 /area/virtual_domain/ancient_milsim/loot_camp)
 "kh" = (
-/obj/effect/landmark/bitrunning/mob_segment,
-/turf/open/floor/iron/smooth_half,
-/area/virtual_domain/ancient_milsim/atrium)
+/obj/item/ammo_box/c35sol,
+/turf/open/floor/iron/white,
+/area/virtual_domain/ancient_milsim/medbay)
 "ki" = (
 /turf/open/floor/iron/dark,
 /area/virtual_domain/ancient_milsim/loot_camp)
+"kj" = (
+/obj/item/storage/box/nri_flares,
+/turf/open/floor/plating,
+/area/virtual_domain/ancient_milsim/snpc_garage)
+"kp" = (
+/obj/effect/landmark/bitrunning/curiosity_spawn,
+/turf/open/floor/iron/smooth_large,
+/area/virtual_domain/ancient_milsim/snpc_reward)
 "kv" = (
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/iron,
@@ -352,10 +428,6 @@
 "kX" = (
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/snpc_cave)
-"lc" = (
-/obj/item/storage/toolbox/mechanical,
-/turf/open/floor/iron,
-/area/virtual_domain/ancient_milsim/snpc_garage)
 "lf" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/plating,
@@ -398,6 +470,16 @@
 /obj/effect/landmark/bitrunning/mob_segment,
 /turf/open/misc/grass/planet/ancient_milsim,
 /area/virtual_domain/ancient_milsim/loot_camp)
+"lK" = (
+/obj/effect/spawner/random/contraband/grenades/dangerous,
+/obj/effect/spawner/random/contraband/grenades/dangerous,
+/obj/effect/spawner/random/contraband/grenades/dangerous,
+/obj/effect/spawner/random/contraband/grenades/dangerous,
+/obj/structure/closet/crate/cardboard,
+/obj/effect/spawner/random/contraband/grenades/dangerous,
+/obj/effect/spawner/random/contraband/grenades/dangerous,
+/turf/open/floor/plating,
+/area/virtual_domain/ancient_milsim/snpc_garage)
 "lX" = (
 /obj/structure/table/optable,
 /obj/item/surgical_processor,
@@ -455,16 +537,19 @@
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_cafe)
 "nQ" = (
-/obj/machinery/light/floor,
+/obj/item/grenade/mirage,
 /obj/effect/landmark/bitrunning/mob_segment,
-/turf/open/floor/iron/dark,
-/area/virtual_domain/ancient_milsim/loot_camp)
+/turf/open/floor/plating,
+/area/virtual_domain/ancient_milsim/maintenance)
 "nZ" = (
 /obj/structure/closet/crate/secure/weapon,
 /obj/item/ammo_box/magazine/c35sol_pistol/stendo,
 /obj/item/ammo_box/magazine/c35sol_pistol/stendo,
 /obj/item/ammo_box/magazine/c35sol_pistol/stendo,
-/obj/item/storage/toolbox/ammobox/full/mosin,
+/obj/item/ammo_box/magazine/lanca,
+/obj/item/minespawner/ancient_milsim,
+/obj/item/minespawner/ancient_milsim,
+/obj/item/minespawner/ancient_milsim,
 /turf/open/floor/iron/dark,
 /area/virtual_domain/ancient_milsim/loot_camp)
 "ob" = (
@@ -493,6 +578,19 @@
 /area/virtual_domain/ancient_milsim/atrium)
 "oz" = (
 /obj/machinery/light/directional/east,
+/obj/structure/closet/crate/cardboard,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/effect/spawner/random/contraband/grenades/lethal,
+/obj/effect/spawner/random/contraband/grenades/lethal,
+/obj/effect/spawner/random/contraband/grenades/cluster,
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_garage)
 "oJ" = (
@@ -504,7 +602,7 @@
 	dir = 1;
 	name = "vehicle console";
 	icon_screen = "shuttle";
-	icon = 'modular_skyrat/modules/advanced_shuttles/icons/computer.dmi';
+	icon = 'modular_nova/modules/advanced_shuttles/icons/computer.dmi';
 	icon_state = "intercom";
 	desc = "An armored vehicle control computer. Doesn't work anymore... who would've thought.";
 	density = 0;
@@ -517,7 +615,7 @@
 /turf/open/misc/grass/planet/ancient_milsim,
 /area/virtual_domain/ancient_milsim/snpc_ground)
 "pN" = (
-/obj/machinery/iv_drip/health_station/directional/south,
+/obj/machinery/health_station/directional/south,
 /turf/open/floor/iron/white,
 /area/virtual_domain/ancient_milsim/medbay)
 "pY" = (
@@ -555,14 +653,27 @@
 /obj/structure/flora/bush/ferny/style_random,
 /turf/open/misc/grass/planet/ancient_milsim,
 /area/virtual_domain/ancient_milsim/loot_camp)
+"qD" = (
+/obj/effect/spawner/structure/flipped_table,
+/obj/item/storage/backpack/duffelbag/deforest_medkit/stocked,
+/turf/open/floor/iron,
+/area/virtual_domain/ancient_milsim/snpc_cafe)
 "qV" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/iron/white,
 /area/virtual_domain/ancient_milsim/medbay)
+"qZ" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/grass/fairy,
+/area/virtual_domain/protected_space/ancient_milsim)
 "rb" = (
 /obj/effect/spawner/random/trash/janitor_supplies,
 /turf/open/misc/dirt/planet,
 /area/virtual_domain/ancient_milsim/loot_camp)
+"re" = (
+/obj/item/instrument/guitar,
+/turf/open/floor/carpet/red,
+/area/virtual_domain/ancient_milsim/snpc_bar)
 "rl" = (
 /obj/structure/table,
 /obj/machinery/light/cold/directional/south,
@@ -580,11 +691,21 @@
 	},
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/snpc_hallway)
+"rK" = (
+/obj/effect/spawner/structure/flipped_table,
+/obj/structure/closet/crate/freezer/blood,
+/turf/open/floor/iron,
+/area/virtual_domain/ancient_milsim/snpc_cafe)
 "rO" = (
 /obj/structure/rack/shelf,
 /obj/item/gun/ballistic/revolver/shotgun_revolver,
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_hallway)
+"rP" = (
+/obj/structure/extinguisher_cabinet/directional/east,
+/obj/item/stock_parts/matter_bin/super,
+/turf/open/floor/plating,
+/area/virtual_domain/ancient_milsim/maintenance)
 "rT" = (
 /obj/effect/spawner/structure/window/reinforced/no_firelock,
 /turf/open/floor/plating,
@@ -614,15 +735,18 @@
 "sX" = (
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_cafe)
+"sY" = (
+/obj/machinery/door/poddoor/ancient_milsim{
+	id = "engagement_control"
+	},
+/turf/open/floor/grass/fairy,
+/area/virtual_domain/protected_space/ancient_milsim)
 "td" = (
 /obj/item/storage/box/utensils,
 /obj/structure/table/wood,
-/obj/item/ammo_box/c310_cargo_box/piercing{
-	pixel_x = 6;
-	pixel_y = 9
-	},
-/obj/item/ammo_box/c27_54cesarzowa/rubber{
-	pixel_x = 12
+/obj/item/ammo_box/magazine/lanca{
+	pixel_y = 10;
+	pixel_x = 8
 	},
 /turf/open/floor/carpet/red,
 /area/virtual_domain/ancient_milsim/snpc_bar)
@@ -630,7 +754,6 @@
 /obj/structure/chair{
 	dir = 1
 	},
-/obj/structure/sign/flag/nri/directional/east,
 /turf/open/floor/carpet/red,
 /area/virtual_domain/ancient_milsim/snpc_bar)
 "tg" = (
@@ -638,7 +761,7 @@
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_hallway)
 "th" = (
-/obj/machinery/recycler/deathtrap{
+/obj/machinery/recycler{
 	dir = 8
 	},
 /obj/machinery/conveyor/auto{
@@ -648,7 +771,7 @@
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/janitor)
 "tA" = (
-/obj/item/surgery_tray/full/deployed,
+/obj/effect/spawner/surgery_tray/full/deployed,
 /turf/open/floor/iron/white,
 /area/virtual_domain/ancient_milsim/medbay)
 "tH" = (
@@ -681,7 +804,6 @@
 /area/virtual_domain/ancient_milsim/loot_camp)
 "uy" = (
 /obj/structure/sign/departments/science/alt/directional/north,
-/obj/structure/sign/flag/nri/directional/north,
 /turf/open/misc/grass/planet/ancient_milsim,
 /area/virtual_domain/ancient_milsim/entrance)
 "uz" = (
@@ -731,7 +853,7 @@
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
-/obj/machinery/iv_drip/health_station/directional/west,
+/obj/machinery/health_station/directional/west,
 /turf/open/floor/iron/dark,
 /area/virtual_domain/ancient_milsim/carrier)
 "vr" = (
@@ -742,28 +864,25 @@
 /obj/machinery/light/small/dim/directional/west,
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/snpc_cave)
-"vu" = (
-/obj/item/storage/backpack/duffelbag/syndie/c4,
-/turf/open/floor/iron,
-/area/virtual_domain/ancient_milsim/snpc_garage)
-"vz" = (
-/obj/structure/flippedtable{
-	dir = 4
-	},
-/obj/structure/flippedtable,
-/obj/structure/barricade/sandbags,
-/turf/open/floor/iron/smooth,
-/area/virtual_domain/ancient_milsim/atrium)
 "vA" = (
 /obj/structure/closet/crate/trashcart/filled,
-/obj/item/flamethrower/full/tank,
 /obj/item/storage/medkit/civil_defense/stocked,
+/obj/item/tank/internals/plasma/full,
+/obj/item/flamethrower/full/tank,
 /turf/open/misc/grass/planet/ancient_milsim,
 /area/virtual_domain/ancient_milsim/loot_camp)
 "vL" = (
 /obj/structure/fence,
 /turf/open/misc/grass/planet/ancient_milsim,
 /area/virtual_domain/ancient_milsim/loot_camp)
+"vQ" = (
+/obj/effect/landmark/bitrunning/curiosity_spawn,
+/turf/open/floor/iron/dark,
+/area/virtual_domain/ancient_milsim/loot_camp)
+"vU" = (
+/obj/structure/falsewall/reinforced,
+/turf/open/floor/grass/fairy,
+/area/virtual_domain/ancient_milsim/janitor)
 "wh" = (
 /obj/structure/table,
 /obj/item/grenade/chem_grenade/cleaner,
@@ -781,15 +900,20 @@
 	pixel_x = 4
 	},
 /obj/item/ammo_box/magazine/miecz{
-	pixel_x = -5;
-	pixel_y = -9
+	pixel_y = -7;
+	pixel_x = -7
 	},
 /obj/item/ammo_box/magazine/miecz{
-	pixel_y = -9
+	pixel_y = -7;
+	pixel_x = -2
 	},
 /obj/item/ammo_box/magazine/miecz{
-	pixel_x = 5;
-	pixel_y = -9
+	pixel_y = -7;
+	pixel_x = 3
+	},
+/obj/item/ammo_box/magazine/miecz{
+	pixel_y = -7;
+	pixel_x = 8
 	},
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_hallway)
@@ -808,11 +932,7 @@
 /area/virtual_domain/ancient_milsim/atrium)
 "wy" = (
 /obj/structure/table/wood,
-/obj/item/ammo_box/magazine/lanca,
-/obj/item/gun/ballistic/automatic/lanca{
-	pixel_y = 6;
-	pixel_x = 7
-	},
+/obj/item/gun/ballistic/automatic/lanca,
 /turf/open/floor/carpet/red,
 /area/virtual_domain/ancient_milsim/snpc_bar)
 "wz" = (
@@ -830,6 +950,8 @@
 "xa" = (
 /obj/structure/closet/crate/freezer/blood,
 /obj/item/storage/medkit/civil_defense/stocked,
+/obj/item/storage/medkit/frontier/stocked,
+/obj/item/storage/backpack/duffelbag/deforest_medkit/stocked,
 /obj/item/storage/medkit/frontier/stocked,
 /turf/open/floor/iron/white,
 /area/virtual_domain/ancient_milsim/medbay)
@@ -856,7 +978,8 @@
 /area/virtual_domain/ancient_milsim/maintenance)
 "yl" = (
 /obj/structure/decorative/shelf/alcohol_assortment{
-	density = 1
+	density = 1;
+	anchored = 1
 	},
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/maintenance)
@@ -868,6 +991,13 @@
 /obj/item/chair,
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_cafe)
+"yv" = (
+/obj/structure/decorative/shelf/soda_milk{
+	density = 1;
+	anchored = 1
+	},
+/turf/open/floor/plating,
+/area/virtual_domain/ancient_milsim/maintenance)
 "yI" = (
 /obj/structure/fence/cut/large{
 	dir = 4;
@@ -922,6 +1052,8 @@
 /obj/structure/closet/crate/trashcart/filled,
 /obj/item/ammo_box/c35sol,
 /obj/item/ammo_box/c35sol,
+/obj/item/ammo_box/c35sol,
+/obj/item/stock_parts/servo/pico,
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/janitor)
 "AE" = (
@@ -966,6 +1098,10 @@
 /obj/effect/spawner/random/trash/hobo_squat,
 /turf/open/misc/dirt/planet,
 /area/virtual_domain/ancient_milsim/loot_camp)
+"Cc" = (
+/obj/item/chair,
+/turf/open/floor/plating,
+/area/virtual_domain/ancient_milsim/snpc_garage)
 "Cd" = (
 /turf/open/misc/grass/planet/ancient_milsim,
 /area/virtual_domain/ancient_milsim/snpc_ground)
@@ -979,10 +1115,15 @@
 /obj/item/storage/medkit/frontier/stocked,
 /turf/open/floor/iron/white,
 /area/virtual_domain/ancient_milsim/medbay)
+"Cj" = (
+/obj/item/storage/barricade,
+/turf/open/floor/iron/dark,
+/area/virtual_domain/ancient_milsim/loot_camp)
 "Cr" = (
 /obj/structure/chair/office/light{
 	dir = 4
 	},
+/obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6/directional/west,
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/janitor)
 "Cs" = (
@@ -992,13 +1133,8 @@
 /turf/open/misc/grass/planet/ancient_milsim,
 /area/virtual_domain/ancient_milsim/snpc_ground)
 "CC" = (
-/turf/open/floor/iron/smooth,
-/area/virtual_domain/ancient_milsim/atrium)
-"CH" = (
-/obj/structure/flippedtable,
-/obj/structure/closet/crate/freezer/blood,
-/turf/open/floor/iron,
-/area/virtual_domain/ancient_milsim/snpc_cafe)
+/turf/closed/wall/r_wall,
+/area/virtual_domain)
 "CJ" = (
 /obj/structure/chair/sofa/corp/right{
 	dir = 8
@@ -1007,35 +1143,22 @@
 	dir = 1
 	},
 /area/virtual_domain/ancient_milsim/atrium)
-"CR" = (
-/obj/structure/rack/shelf,
-/obj/item/ammo_box/advanced/s12gauge/incendiary{
-	pixel_x = -4;
-	pixel_y = -9
-	},
-/obj/item/ammo_box/advanced/s12gauge/flechette{
-	pixel_x = -4;
-	pixel_y = 9
-	},
-/obj/item/ammo_box/advanced/s12gauge{
-	pixel_x = 6
-	},
-/turf/open/floor/iron,
-/area/virtual_domain/ancient_milsim/snpc_hallway)
+"CP" = (
+/obj/structure/table,
+/obj/item/binoculars,
+/turf/open/floor/plating,
+/area/virtual_domain/ancient_milsim/snpc_garage)
 "CT" = (
 /obj/structure/table,
-/obj/machinery/iv_drip/health_station/directional/north,
+/obj/machinery/health_station/directional/north,
 /turf/open/floor/iron/dark,
 /area/virtual_domain/ancient_milsim/loot_camp)
-"CV" = (
-/obj/structure/flippedtable,
-/obj/structure/barricade/sandbags,
-/turf/open/floor/iron/smooth,
-/area/virtual_domain/ancient_milsim/atrium)
 "Dd" = (
 /obj/structure/closet/crate/trashcart/filled,
 /obj/item/ammo_box/c35sol,
 /obj/item/ammo_box/c35sol,
+/obj/item/ammo_box/c35sol,
+/obj/item/stock_parts/servo/pico,
 /turf/open/misc/grass/planet/ancient_milsim,
 /area/virtual_domain/ancient_milsim/loot_camp)
 "De" = (
@@ -1043,6 +1166,14 @@
 /obj/structure/sign/poster/random/directional/west,
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_hallway)
+"Dj" = (
+/obj/effect/spawner/structure/flipped_table{
+	dir = 8
+	},
+/obj/effect/spawner/structure/flipped_table,
+/obj/structure/barricade/sandbags,
+/turf/open/floor/iron/smooth,
+/area/virtual_domain/ancient_milsim/atrium)
 "Dk" = (
 /obj/machinery/biogenerator/food_replicator{
 	biomass = 1500
@@ -1070,12 +1201,6 @@
 /obj/machinery/light/small/dim/directional/south,
 /turf/open/floor/iron/smooth_large,
 /area/virtual_domain/ancient_milsim/snpc_reward)
-"DN" = (
-/obj/structure/table,
-/obj/item/stack/medical/mesh/bloody,
-/obj/item/stack/medical/mesh/bloody,
-/turf/open/floor/iron/white,
-/area/virtual_domain/ancient_milsim/medbay)
 "DO" = (
 /turf/open/floor/iron/smooth_corner,
 /area/virtual_domain/ancient_milsim/atrium)
@@ -1101,9 +1226,9 @@
 /turf/open/floor/iron/dark/side,
 /area/virtual_domain/ancient_milsim/carrier)
 "Ei" = (
-/obj/effect/landmark/bitrunning/mob_segment,
-/turf/open/floor/iron/smooth_corner,
-/area/virtual_domain/ancient_milsim/atrium)
+/obj/item/stock_parts/micro_laser/ultra,
+/turf/open/misc/grass/planet/ancient_milsim,
+/area/virtual_domain/ancient_milsim/loot_camp)
 "Ek" = (
 /obj/structure/chair/sofa/corp/left{
 	dir = 4
@@ -1117,11 +1242,9 @@
 /turf/open/floor/iron/smooth,
 /area/virtual_domain/ancient_milsim/atrium)
 "Ey" = (
-/obj/structure/closet/crate/freezer/blood,
-/obj/item/storage/backpack/duffelbag/deforest_medkit/stocked,
-/obj/item/storage/medkit/frontier/stocked,
-/turf/open/floor/iron/white,
-/area/virtual_domain/ancient_milsim/medbay)
+/obj/effect/landmark/bitrunning/mob_segment,
+/turf/open/floor/iron/smooth_large,
+/area/virtual_domain/ancient_milsim/atrium)
 "EB" = (
 /obj/machinery/door/airlock/survival_pod/glass,
 /obj/effect/mapping_helpers/airlock/locked,
@@ -1137,12 +1260,20 @@
 /obj/item/food/cake/birthday,
 /turf/open/floor/iron/smooth_large,
 /area/virtual_domain/ancient_milsim/snpc_reward)
+"EM" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/effect/mob_spawn/ghost_role/human/ancient_milsim,
+/turf/open/floor/plating,
+/area/virtual_domain/ancient_milsim/snpc_garage)
 "EW" = (
 /obj/structure/reagent_dispensers/fueltank/large,
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/maintenance)
 "Fb" = (
 /obj/structure/reagent_dispensers/fueltank/large,
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/misc/dirt/planet,
 /area/virtual_domain/ancient_milsim/loot_camp)
 "Fc" = (
@@ -1170,11 +1301,20 @@
 /obj/effect/mob_spawn/ghost_role/human/ancient_milsim,
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_cafe)
+"Fr" = (
+/obj/item/storage/backpack/duffelbag/syndie/c4,
+/turf/open/floor/plating,
+/area/virtual_domain/ancient_milsim/snpc_garage)
 "Fv" = (
 /turf/open/floor/iron/smooth_half,
 /area/virtual_domain/ancient_milsim/atrium)
-"FN" = (
-/obj/item/binoculars,
+"FO" = (
+/obj/structure/closet/crate/cardboard,
+/obj/item/cardboard_cutout/adaptive,
+/obj/item/cardboard_cutout/adaptive,
+/obj/item/cardboard_cutout/adaptive,
+/obj/item/cardboard_cutout/adaptive,
+/obj/item/storage/crayons,
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_garage)
 "FT" = (
@@ -1183,6 +1323,13 @@
 	},
 /turf/open/floor/iron/dark,
 /area/virtual_domain/ancient_milsim/carrier)
+"FU" = (
+/obj/vehicle/ridden/atv{
+	anchored = 1;
+	desc = "An all-terrain vehicle built for traversing rough terrain with ease. One of the few old-Earth technologies that are still relevant on most planet-bound outposts. Looks like the keys have been lost though..."
+	},
+/turf/open/floor/plating,
+/area/virtual_domain/ancient_milsim/snpc_garage)
 "FX" = (
 /obj/effect/gibspawner/human,
 /turf/open/misc/dirt/planet,
@@ -1194,10 +1341,18 @@
 /obj/structure/barricade/sandbags,
 /turf/open/floor/iron/smooth_half,
 /area/virtual_domain/ancient_milsim/atrium)
+"Gm" = (
+/obj/effect/landmark/bitrunning/mob_segment,
+/turf/open/floor/iron/dark,
+/area/virtual_domain/ancient_milsim/loot_camp)
 "Go" = (
 /obj/effect/spawner/random/vending/snackvend,
 /turf/open/floor/iron/smooth_half,
 /area/virtual_domain/ancient_milsim/atrium)
+"Gp" = (
+/obj/item/knife/combat,
+/turf/open/floor/iron,
+/area/virtual_domain/ancient_milsim/snpc_garage)
 "GJ" = (
 /obj/structure/railing{
 	dir = 8
@@ -1215,6 +1370,14 @@
 	},
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/janitor)
+"Hd" = (
+/turf/open/floor/grass/fairy,
+/area/virtual_domain/protected_space/ancient_milsim)
+"Hk" = (
+/obj/item/storage/toolbox/syndicate,
+/obj/item/wrench,
+/turf/open/floor/iron,
+/area/virtual_domain/ancient_milsim/snpc_garage)
 "Hn" = (
 /obj/machinery/camera/directional/north{
 	status = 0
@@ -1226,7 +1389,8 @@
 /turf/open/misc/grass/planet/ancient_milsim,
 /area/virtual_domain/ancient_milsim/snpc_ground)
 "HG" = (
-/obj/machinery/iv_drip,
+/obj/machinery/sleeper/self_control,
+/obj/machinery/light/cold/directional/north,
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/iron/white,
 /area/virtual_domain/ancient_milsim/medbay)
@@ -1238,6 +1402,12 @@
 "HT" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
+/area/virtual_domain/ancient_milsim/atrium)
+"Ia" = (
+/obj/effect/spawner/random/contraband/grenades/dangerous,
+/turf/open/floor/iron/smooth_corner{
+	dir = 1
+	},
 /area/virtual_domain/ancient_milsim/atrium)
 "Ib" = (
 /obj/structure/toilet,
@@ -1283,6 +1453,14 @@
 	dir = 1
 	},
 /area/virtual_domain/ancient_milsim/atrium)
+"Jk" = (
+/obj/effect/spawner/random/contraband/grenades/dangerous,
+/turf/open/floor/iron/smooth_half,
+/area/virtual_domain/ancient_milsim/atrium)
+"Jl" = (
+/obj/effect/landmark/bitrunning/curiosity_spawn,
+/turf/open/misc/dirt/planet,
+/area/virtual_domain/ancient_milsim/loot_camp)
 "Jn" = (
 /obj/structure/barricade/sandbags,
 /turf/open/floor/iron/smooth,
@@ -1291,6 +1469,10 @@
 /obj/effect/baseturf_helper/virtual_domain/ancient_milsim,
 /turf/closed/wall/r_wall,
 /area/virtual_domain/ancient_milsim/snpc_toilet)
+"Js" = (
+/obj/effect/baseturf_helper/virtual_domain/ancient_milsim,
+/turf/closed/indestructible/rock,
+/area/virtual_domain/protected_space/ancient_milsim)
 "JG" = (
 /turf/open/water/jungle,
 /area/virtual_domain/ancient_milsim/snpc_ground)
@@ -1305,6 +1487,10 @@
 	},
 /turf/template_noop,
 /area/virtual_domain/safehouse)
+"JZ" = (
+/obj/effect/spawner/random/contraband/grenades/dangerous,
+/turf/open/floor/iron/smooth_large,
+/area/virtual_domain/ancient_milsim/atrium)
 "Kf" = (
 /obj/effect/spawner/random/trash/bin,
 /turf/open/floor/iron/smooth,
@@ -1353,10 +1539,10 @@
 /obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_cafe)
-"Mi" = (
-/obj/item/storage/toolbox/ammobox/full/mosin,
-/turf/open/floor/plating,
-/area/virtual_domain/ancient_milsim/maintenance)
+"Ma" = (
+/obj/effect/spawner/random/vending/snackvend,
+/turf/open/floor/iron/smooth,
+/area/virtual_domain/ancient_milsim/hallway)
 "Mo" = (
 /obj/machinery/light/floor,
 /obj/structure/table,
@@ -1372,6 +1558,7 @@
 /area/virtual_domain/ancient_milsim/carrier)
 "My" = (
 /obj/structure/table,
+/obj/item/storage/barricade,
 /turf/open/floor/iron/dark,
 /area/virtual_domain/ancient_milsim/loot_camp)
 "Mz" = (
@@ -1383,6 +1570,7 @@
 /area/virtual_domain/ancient_milsim/snpc_cave)
 "MQ" = (
 /obj/item/keycard/yellow,
+/obj/effect/landmark/bitrunning/mob_segment,
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/janitor)
 "MU" = (
@@ -1391,11 +1579,11 @@
 /area/virtual_domain/ancient_milsim/snpc_cafe)
 "MW" = (
 /obj/structure/table/wood,
-/obj/item/ammo_box/magazine/lanca,
 /obj/item/ammo_box/magazine/lanca{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_y = 6;
+	pixel_x = -3
 	},
+/obj/item/ammo_box/magazine/lanca,
 /turf/open/floor/carpet/red,
 /area/virtual_domain/ancient_milsim/snpc_bar)
 "MY" = (
@@ -1413,7 +1601,7 @@
 /area/virtual_domain/ancient_milsim/snpc_garage)
 "NA" = (
 /obj/structure/sign/poster/random/directional/west,
-/obj/item/storage/toolbox/maint_kit,
+/obj/item/gun_maintenance_supplies,
 /obj/structure/table/wood,
 /turf/open/floor/carpet/red,
 /area/virtual_domain/ancient_milsim/snpc_bar)
@@ -1421,6 +1609,10 @@
 /obj/effect/baseturf_helper/virtual_domain/ancient_milsim,
 /turf/open/misc/grass/planet/ancient_milsim,
 /area/virtual_domain/ancient_milsim/loot_camp)
+"NY" = (
+/obj/structure/table,
+/turf/open/floor/iron/white,
+/area/virtual_domain/ancient_milsim/medbay)
 "On" = (
 /obj/structure/table,
 /obj/item/reagent_containers/cup/glass/trophy/gold_cup,
@@ -1435,14 +1627,21 @@
 /turf/closed/wall/r_wall,
 /area/virtual_domain/ancient_milsim/snpc_bar)
 "OA" = (
-/obj/machinery/sleeper/self_control,
-/obj/machinery/light/cold/directional/north,
+/obj/machinery/iv_drip,
 /turf/open/floor/iron/white,
 /area/virtual_domain/ancient_milsim/medbay)
 "OG" = (
 /obj/machinery/light/small/dim/directional/south,
 /turf/open/floor/iron/smooth_large,
 /area/virtual_domain/ancient_milsim/snpc_exit)
+"OI" = (
+/obj/effect/spawner/structure/flipped_table{
+	dir = 4
+	},
+/obj/effect/spawner/structure/flipped_table,
+/obj/structure/barricade/sandbags,
+/turf/open/floor/iron/smooth,
+/area/virtual_domain/ancient_milsim/atrium)
 "OS" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/carpet/red,
@@ -1464,7 +1663,7 @@
 	},
 /area/virtual_domain/ancient_milsim/atrium)
 "Pi" = (
-/obj/machinery/photocopier,
+/obj/machinery/photocopier/prebuilt,
 /turf/open/floor/iron/smooth_corner{
 	dir = 8
 	},
@@ -1473,6 +1672,9 @@
 /obj/structure/filingcabinet/chestdrawer/wheeled,
 /turf/open/floor/iron/dark,
 /area/virtual_domain/ancient_milsim/loot_camp)
+"Pt" = (
+/turf/closed/indestructible/rock,
+/area/virtual_domain/protected_space/ancient_milsim)
 "Pw" = (
 /obj/effect/spawner/random/vending/snackvend,
 /obj/machinery/light/directional/west,
@@ -1483,11 +1685,6 @@
 /obj/machinery/door/puzzle/keycard/yellow_required,
 /turf/open/floor/iron/smooth_large,
 /area/virtual_domain/ancient_milsim/snpc_exit)
-"PJ" = (
-/obj/structure/flippedtable,
-/obj/item/storage/backpack/duffelbag/deforest_medkit/stocked,
-/turf/open/floor/iron,
-/area/virtual_domain/ancient_milsim/snpc_cafe)
 "PM" = (
 /obj/effect/spawner/random/trash/bin,
 /obj/machinery/light/directional/south,
@@ -1497,6 +1694,12 @@
 /obj/effect/baseturf_helper/virtual_domain/ancient_milsim,
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/snpc_cave)
+"PS" = (
+/obj/machinery/door/poddoor/ancient_milsim{
+	id = "engagement_control"
+	},
+/turf/closed/indestructible/rock,
+/area/virtual_domain/protected_space/ancient_milsim)
 "PT" = (
 /obj/machinery/power/shuttle_engine/huge,
 /turf/open/misc/dirt/planet,
@@ -1523,6 +1726,11 @@
 	},
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_cafe)
+"Qr" = (
+/turf/open/floor/iron/smooth_half{
+	dir = 1
+	},
+/area/virtual_domain/ancient_milsim/atrium)
 "QF" = (
 /obj/item/ammo_box/magazine/lanca,
 /turf/open/floor/plating,
@@ -1533,6 +1741,7 @@
 "Rk" = (
 /obj/structure/table,
 /obj/item/storage/medkit/combat_surgeon/stocked,
+/obj/machinery/health_station/directional/east,
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_cafe)
 "Rl" = (
@@ -1568,6 +1777,10 @@
 /obj/item/ammo_box/magazine/c35sol_pistol/stendo,
 /obj/item/ammo_box/magazine/c35sol_pistol/stendo,
 /obj/item/ammo_box/magazine/c35sol_pistol/stendo,
+/obj/item/stock_parts/matter_bin/super,
+/obj/item/minespawner/ancient_milsim,
+/obj/item/minespawner/ancient_milsim,
+/obj/item/minespawner/ancient_milsim,
 /turf/open/floor/iron/dark,
 /area/virtual_domain/ancient_milsim/loot_camp)
 "RC" = (
@@ -1656,9 +1869,15 @@
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/maintenance)
 "TQ" = (
-/obj/structure/extinguisher_cabinet/directional/east,
-/turf/open/floor/plating,
-/area/virtual_domain/ancient_milsim/maintenance)
+/obj/item/stack/sheet/iron/fifty,
+/turf/open/misc/grass/planet/ancient_milsim,
+/area/virtual_domain/ancient_milsim/loot_camp)
+"TT" = (
+/obj/structure/chair/sofa/corp/right{
+	dir = 8
+	},
+/turf/open/floor/iron/smooth,
+/area/virtual_domain/ancient_milsim/hallway)
 "TY" = (
 /obj/structure/railing{
 	dir = 10
@@ -1677,6 +1896,7 @@
 "Ux" = (
 /obj/structure/closet/crate/trashcart/filled,
 /obj/item/ammo_box/magazine/lanca,
+/obj/item/ammo_box/c35sol,
 /obj/item/ammo_box/c35sol,
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/janitor)
@@ -1709,7 +1929,7 @@
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_cafe)
 "Vr" = (
-/obj/item/ammo_box/magazine/lanca,
+/obj/item/ammo_box/magazine/wylom,
 /turf/open/misc/grass/planet/ancient_milsim,
 /area/virtual_domain/ancient_milsim/loot_camp)
 "VA" = (
@@ -1718,11 +1938,12 @@
 	},
 /area/virtual_domain/ancient_milsim/atrium)
 "VC" = (
-/obj/structure/table,
-/obj/item/stack/medical/suture/bloody,
-/obj/item/stack/medical/suture/bloody,
-/turf/open/floor/iron/white,
-/area/virtual_domain/ancient_milsim/medbay)
+/obj/machinery/dryer{
+	pixel_y = -26
+	},
+/obj/item/keycard/blue,
+/turf/open/floor/iron,
+/area/virtual_domain/ancient_milsim/snpc_toilet)
 "VO" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/iron/smooth_corner{
@@ -1784,6 +2005,11 @@
 /obj/effect/spawner/random/vending/colavend,
 /turf/open/floor/iron/smooth_half,
 /area/virtual_domain/ancient_milsim/atrium)
+"XT" = (
+/obj/structure/table,
+/obj/item/gun/ballistic/rifle/boltaction/surplus,
+/turf/open/floor/iron,
+/area/virtual_domain/ancient_milsim/snpc_cafe)
 "XU" = (
 /obj/structure/extinguisher_cabinet/directional/east,
 /turf/open/floor/iron/smooth,
@@ -1803,15 +2029,24 @@
 /obj/structure/sign/poster/random/directional/south,
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_cafe)
+"Yl" = (
+/mob/living/basic/mining/mook/worker/bard,
+/turf/open/floor/grass/fairy,
+/area/virtual_domain/protected_space/ancient_milsim)
 "Yx" = (
 /obj/structure/sign/departments/science/directional/north,
-/obj/structure/sign/flag/nri/directional/north,
 /obj/effect/baseturf_helper/virtual_domain/ancient_milsim,
 /turf/open/misc/grass/planet/ancient_milsim,
 /area/virtual_domain/ancient_milsim/entrance)
 "YE" = (
 /turf/open/floor/plating,
 /area/virtual_domain/ancient_milsim/snpc_cafe)
+"YF" = (
+/obj/structure/chair/sofa/corp/left{
+	dir = 8
+	},
+/turf/open/floor/iron/smooth,
+/area/virtual_domain/ancient_milsim/hallway)
 "YY" = (
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_hallway)
@@ -1829,10 +2064,6 @@
 /obj/effect/landmark/bitrunning/mob_segment,
 /turf/open/misc/dirt/planet,
 /area/virtual_domain/ancient_milsim/loot_camp)
-"ZQ" = (
-/obj/structure/sign/flag/nri/directional/east,
-/turf/open/floor/carpet/red,
-/area/virtual_domain/ancient_milsim/snpc_bar)
 "ZY" = (
 /obj/structure/reagent_dispensers/fueltank/large,
 /turf/open/floor/iron,
@@ -1965,7 +2196,7 @@ qn
 JG
 qn
 JG
-qn
+dB
 xS
 DT
 Cd
@@ -2102,7 +2333,7 @@ Cd
 Cd
 eF
 kv
-gE
+Gp
 gE
 gE
 gE
@@ -2220,12 +2451,12 @@ aG
 Gd
 Gd
 Gd
+EM
 Gd
 Gd
+lK
 Gd
-Gd
-Gd
-Gd
+FU
 gE
 uE
 eF
@@ -2278,10 +2509,10 @@ aG
 Gd
 Gd
 Gd
+CP
+Cc
 Gd
-Gd
-Gd
-Gd
+jJ
 Gd
 Gd
 gE
@@ -2341,7 +2572,7 @@ Gd
 Gd
 Gd
 Gd
-Gd
+FU
 gE
 Gd
 Gd
@@ -2408,7 +2639,7 @@ kX
 MN
 Eg
 On
-sG
+kp
 DL
 Eg
 er
@@ -2450,12 +2681,12 @@ qn
 qn
 aG
 Gd
+kj
 Gd
 Gd
 Gd
 Gd
-Gd
-Gd
+Fr
 Gd
 Gd
 gE
@@ -2510,7 +2741,7 @@ aG
 Gd
 Gd
 Gd
-Gd
+kj
 Gd
 Gd
 Gd
@@ -2568,9 +2799,9 @@ eF
 nH
 uM
 uM
-FN
-vu
-lc
+gE
+gE
+gE
 gE
 gE
 gE
@@ -2626,11 +2857,11 @@ eF
 Ue
 Nl
 oz
+FO
 gE
 gE
-gE
-gE
-gE
+Hk
+hi
 gE
 gE
 gE
@@ -2813,7 +3044,7 @@ lz
 sX
 DW
 sX
-jc
+gB
 sX
 hJ
 bw
@@ -2855,7 +3086,7 @@ Hq
 Sv
 Sv
 Fn
-CR
+jR
 YY
 tg
 YY
@@ -2873,7 +3104,7 @@ yt
 yt
 UD
 sX
-jc
+XT
 Wh
 IS
 MN
@@ -2975,7 +3206,7 @@ Ib
 Wq
 AH
 AH
-iI
+VC
 oJ
 TE
 TE
@@ -3039,7 +3270,7 @@ AN
 TE
 Bd
 td
-TE
+re
 yV
 Ox
 XK
@@ -3161,7 +3392,7 @@ Ox
 Dk
 sX
 rx
-PJ
+qD
 nM
 jc
 Yd
@@ -3213,13 +3444,13 @@ RG
 te
 TE
 TE
-ZQ
+TE
 mu
 Ox
 Qn
 Rk
 lX
-CH
+rK
 MU
 hH
 iW
@@ -3318,20 +3549,20 @@ hy
 eQ
 hy
 hy
-er
-er
-er
-er
-er
-er
-er
-er
-er
-er
-er
-er
-er
-er
+PS
+PS
+PS
+PS
+PS
+PS
+PS
+PS
+PS
+PS
+PS
+PS
+PS
+PS
 cx
 kX
 kX
@@ -3375,21 +3606,21 @@ hy
 eQ
 eQ
 eQ
-er
-er
-Uz
-Uz
-Uz
-Uz
-Uz
-Uz
-Uz
-Uz
-Uz
-Uz
-Uz
-Uz
-er
+PS
+PS
+sY
+sY
+sY
+sY
+sY
+sY
+sY
+sY
+sY
+sY
+sY
+sY
+PS
 cx
 ED
 kX
@@ -3431,23 +3662,23 @@ yh
 oj
 oj
 yh
-er
-er
-er
-Uz
-Uz
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-Uz
-er
+Pt
+Pt
+Pt
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+dm
+Hd
+Hd
+Hd
+sY
+PS
 cx
 kX
 kX
@@ -3489,23 +3720,23 @@ yh
 oj
 oj
 yh
-er
-Uz
-Uz
-Uz
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-Uz
-er
+Pt
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+fy
+Hd
+Hd
+Hd
+Hd
+sY
+PS
 ls
 kX
 XZ
@@ -3529,9 +3760,9 @@ qC
 Vl
 Vl
 QP
+ZA
 QP
 QP
-QP
 Vl
 Vl
 Vl
@@ -3547,23 +3778,23 @@ yh
 oj
 oj
 yh
-er
-Uz
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-Uz
-er
+Pt
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Yl
+qZ
+Hd
+Hd
+sY
+PS
 uz
 uz
 PE
@@ -3587,8 +3818,8 @@ Vl
 hj
 Vl
 QP
-ZA
 QP
+ZA
 QP
 Vl
 Vl
@@ -3605,23 +3836,23 @@ yh
 oj
 oj
 yh
-er
-Uz
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-Uz
-er
+Pt
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+sY
+PS
 uz
 AW
 AW
@@ -3663,23 +3894,23 @@ yh
 oj
 oj
 yh
-er
-Uz
-Uz
-Uz
-Uz
-Uz
-Uz
-Uz
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-Uz
-er
+Pt
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+sY
+PS
 uz
 Do
 OG
@@ -3721,23 +3952,23 @@ yh
 oj
 oj
 yh
-er
-er
-er
-er
-er
-er
-er
-Uz
-nu
-nu
-nu
-nu
-nu
-nu
-nu
-Uz
-er
+Js
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+sY
+PS
 uz
 AW
 AW
@@ -3766,9 +3997,9 @@ QP
 Vl
 wz
 Vl
+lG
 Vl
 Vl
-Vl
 yh
 yh
 TP
@@ -3782,20 +4013,20 @@ yh
 go
 go
 go
+vU
 go
 go
-go
-er
-Uz
-nu
-nu
-nu
-nu
-nu
-nu
-Uz
-Uz
-er
+Pt
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+sY
+PS
 Sl
 uz
 sa
@@ -3822,19 +4053,19 @@ jn
 Wv
 QP
 Vl
-lG
+Vl
 Vl
 Vl
 Vl
 Vl
 TP
-TQ
+oj
 oj
 fk
 gP
+Rv
 oj
 oj
-Mi
 oj
 fk
 go
@@ -3843,17 +4074,17 @@ eR
 Cr
 wh
 go
-er
-Uz
-Uz
-Uz
-Uz
-Uz
-Uz
-Uz
-Uz
-er
-er
+Pt
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+PS
+PS
 nA
 nA
 nA
@@ -3886,13 +4117,13 @@ bB
 bB
 Vl
 qB
-yh
-yh
-yh
-yh
-yh
-yh
-yl
+rP
+oj
+oj
+Rv
+oj
+oj
+oj
 Is
 Xh
 go
@@ -3901,16 +4132,16 @@ aO
 MQ
 gL
 go
-er
-er
-er
-er
-er
-er
-Uz
-Uz
-er
-er
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Hd
+Hd
+Pt
+PS
 nA
 nA
 nA
@@ -3943,16 +4174,16 @@ RA
 nZ
 bB
 Vl
-iq
-qV
-Cg
-Lr
-Lr
-Ey
 yh
-EW
+yh
+yh
+yh
+yh
+yh
+yh
+yl
 oj
-Rv
+oj
 go
 th
 GS
@@ -3964,10 +4195,10 @@ Ku
 Ku
 Ku
 Ku
-er
-er
-er
-er
+Pt
+Pt
+Pt
+Pt
 hZ
 hZ
 hZ
@@ -3986,7 +4217,7 @@ Uz
 "}
 (38,1,1) = {"
 Uz
-Vl
+ds
 Vl
 Vl
 TG
@@ -4002,14 +4233,14 @@ bm
 bB
 Vl
 iq
-zE
+qV
+Cg
 Lr
-iz
 RC
 xa
 yh
-uY
-QF
+EW
+oj
 WY
 go
 hO
@@ -4024,8 +4255,8 @@ KN
 Ku
 Ku
 Ku
-er
-hZ
+Ku
+jV
 hZ
 hZ
 hZ
@@ -4060,25 +4291,26 @@ ki
 bB
 Vl
 iq
-OA
-Lr
-VC
-DN
+zE
+kh
+iz
+NY
 rl
 yh
 uY
-QF
-Is
+oj
+nQ
 go
 AC
-jV
+aO
 aO
 go
 GR
-wx
+Ia
 ek
 Iz
 hp
+Qr
 IH
 Ku
 Ku
@@ -4087,7 +4319,6 @@ hZ
 hZ
 hZ
 hZ
-kS
 lE
 lE
 lE
@@ -4124,7 +4355,7 @@ Lr
 Lr
 Bg
 yh
-cp
+Rq
 Is
 QF
 go
@@ -4132,16 +4363,16 @@ Ux
 cV
 aO
 lf
-Fv
+Jk
 ek
-CC
-CC
+JZ
+Iz
+Iz
 Iz
 hp
 ly
 Ku
 uy
-hZ
 hZ
 hZ
 hZ
@@ -4160,11 +4391,11 @@ Uz
 "}
 (41,1,1) = {"
 Uz
-Vl
+TQ
 bB
 bB
-ki
-ki
+Cj
+vQ
 ki
 Ww
 Ww
@@ -4174,7 +4405,7 @@ Vl
 QP
 QP
 Vl
-lG
+Vl
 iq
 tA
 Lr
@@ -4182,8 +4413,8 @@ Lr
 Lr
 pN
 yh
-Rq
-Rv
+yv
+oj
 fk
 aE
 go
@@ -4194,7 +4425,8 @@ al
 Iz
 Kf
 Jn
-eh
+Dj
+Iz
 Iz
 Gl
 HT
@@ -4202,8 +4434,7 @@ hZ
 hZ
 hZ
 hZ
-hZ
-hZ
+kS
 lE
 lE
 lE
@@ -4220,7 +4451,7 @@ Uz
 Uz
 bB
 bB
-Pj
+jE
 ki
 ss
 ki
@@ -4236,7 +4467,7 @@ Vl
 iq
 KA
 Lr
-Lr
+OA
 Lr
 Lr
 yh
@@ -4252,11 +4483,11 @@ Go
 LI
 co
 vd
-CV
+dw
+Iz
 Iz
 Fv
 iO
-hZ
 hZ
 hZ
 hZ
@@ -4281,12 +4512,12 @@ Pj
 ki
 eC
 SG
-ki
+Gm
 ki
 Rn
 QP
 QP
-QP
+ZA
 QP
 QP
 QP
@@ -4310,11 +4541,11 @@ XS
 Iz
 ie
 El
-CV
+dw
+Iz
 Iz
 Gl
 Iz
-hZ
 hZ
 hZ
 hZ
@@ -4343,8 +4574,8 @@ ki
 ki
 Rn
 QP
-QP
 ZA
+QP
 QP
 QP
 QP
@@ -4365,14 +4596,14 @@ dC
 dC
 Ir
 ot
-Iz
+Ey
 iU
 Jn
-vz
+OI
+Iz
 Iz
 Gl
 HT
-hZ
 hZ
 hZ
 hZ
@@ -4411,21 +4642,22 @@ va
 dC
 dC
 dC
-dC
-dC
-dC
-dC
 dH
+dC
+dC
+dC
+dC
 ir
 dC
 dC
 dC
 dC
 dC
-kh
+Fv
 Iz
-CC
+Ey
 iw
+Iz
 Iz
 DO
 qs
@@ -4435,7 +4667,6 @@ hZ
 hZ
 hZ
 hZ
-kS
 ws
 lE
 lE
@@ -4450,7 +4681,7 @@ Uz
 "}
 (46,1,1) = {"
 Uz
-Vl
+Ei
 bB
 bB
 ki
@@ -4475,21 +4706,21 @@ Fc
 XU
 dC
 ir
-dC
-dC
-dC
+Ma
+TT
+YF
 kT
 dd
 Pi
 VA
 Iz
 Iz
-Ei
+DO
+Qr
 wx
 Ku
 Ku
 Ku
-hZ
 hZ
 hZ
 hZ
@@ -4546,8 +4777,8 @@ VO
 Ku
 Ku
 Ku
-er
-hZ
+CC
+jV
 hZ
 hZ
 hZ
@@ -4625,17 +4856,17 @@ Uz
 (49,1,1) = {"
 Uz
 Vl
-Vr
-Vl
 Vl
 Vl
 lG
 Vl
 Vl
 Vl
+Vl
+Vl
 bB
 ue
-nQ
+bm
 ki
 yd
 QP
@@ -4682,9 +4913,9 @@ Uz
 "}
 (50,1,1) = {"
 Uz
-Vl
+Vr
 wz
-Vl
+lG
 Vl
 Vl
 wz
@@ -4700,10 +4931,10 @@ Vl
 qA
 Vl
 QP
-ZA
+QP
 wQ
-QP
-QP
+ZA
+Jl
 aP
 er
 Uz
@@ -4750,7 +4981,7 @@ Vl
 Vl
 Vl
 Vl
-Vl
+Ei
 Vl
 Vl
 Vl

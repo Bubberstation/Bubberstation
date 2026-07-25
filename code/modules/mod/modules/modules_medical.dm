@@ -28,10 +28,10 @@
 	. = ..()
 	.["health"] = mod.wearer?.health || 0
 	.["health_max"] = mod.wearer?.getMaxHealth() || 0
-	.["loss_brute"] = mod.wearer?.getBruteLoss() || 0
-	.["loss_fire"] = mod.wearer?.getFireLoss() || 0
-	.["loss_tox"] = mod.wearer?.getToxLoss() || 0
-	.["loss_oxy"] = mod.wearer?.getOxyLoss() || 0
+	.["loss_brute"] = mod.wearer?.get_brute_loss() || 0
+	.["loss_fire"] = mod.wearer?.get_fire_loss() || 0
+	.["loss_tox"] = mod.wearer?.get_tox_loss() || 0
+	.["loss_oxy"] = mod.wearer?.get_oxy_loss() || 0
 
 	return .
 
@@ -75,15 +75,15 @@
 	required_slots = list(ITEM_SLOT_GLOVES)
 	var/quick_carry_trait = TRAIT_QUICK_CARRY
 
-/obj/item/mod/module/quick_carry/on_suit_activation()
+/obj/item/mod/module/quick_carry/on_part_activation()
 	. = ..()
-	ADD_TRAIT(mod.wearer, TRAIT_FASTMED, MOD_TRAIT)
-	ADD_TRAIT(mod.wearer, quick_carry_trait, MOD_TRAIT)
+	ADD_TRAIT(mod.wearer, TRAIT_FASTMED, REF(src))
+	ADD_TRAIT(mod.wearer, quick_carry_trait, REF(src))
 
-/obj/item/mod/module/quick_carry/on_suit_deactivation(deleting = FALSE)
+/obj/item/mod/module/quick_carry/on_part_deactivation(deleting = FALSE)
 	. = ..()
-	REMOVE_TRAIT(mod.wearer, TRAIT_FASTMED, MOD_TRAIT)
-	REMOVE_TRAIT(mod.wearer, quick_carry_trait, MOD_TRAIT)
+	REMOVE_TRAIT(mod.wearer, TRAIT_FASTMED, REF(src))
+	REMOVE_TRAIT(mod.wearer, quick_carry_trait, REF(src))
 
 /obj/item/mod/module/quick_carry/advanced
 	name = "MOD advanced quick carry module"
@@ -165,7 +165,7 @@
 		return
 	var/atom/movable/fired_organ = pop(organ_list)
 	var/obj/projectile/organ/projectile = new /obj/projectile/organ(mod.wearer.loc, fired_organ)
-	projectile.preparePixelProjectile(target, mod.wearer)
+	projectile.aim_projectile(target, mod.wearer)
 	projectile.firer = mod.wearer
 	playsound(src, 'sound/vehicles/mecha/hydraulic.ogg', 25, TRUE)
 	INVOKE_ASYNC(projectile, TYPE_PROC_REF(/obj/projectile, fire))
@@ -191,40 +191,26 @@
 	organ = null
 	return ..()
 
+/obj/projectile/organ/Exited(atom/movable/gone, direction)
+	. = ..()
+	if(gone == organ)
+		organ = null
+
 /obj/projectile/organ/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(!isliving(target))
+	if(!isliving(target) || (organ.organ_flags & ORGAN_UNUSABLE))
 		organ.forceMove(drop_location())
-		organ = null
 		return
-	var/mob/living/carbon/human/organ_receiver = target
-	var/succeed = FALSE
-	if(organ_receiver.surgeries.len)
-		for(var/datum/surgery/procedure as anything in organ_receiver.surgeries)
-			if(procedure.location != organ.zone)
-				continue
-			if(!istype(procedure, /datum/surgery/organ_manipulation))
-				continue
-			var/datum/surgery_step/surgery_step = procedure.get_surgery_step()
-			if(!istype(surgery_step, /datum/surgery_step/manipulate_organs))
-				continue
-			succeed = TRUE
-			break
-
-	if(!succeed)
+	var/mob/living/organ_receiver = target
+	// bodyparts actually *do* hit a specific bodypart, but random variance would make this projectile unusable
+	// so we just fake it, and assume the organ always hits the place it needs to go
+	var/obj/item/bodypart/fake_hit_part = organ_receiver.get_bodypart(length(organ.valid_zones) ? pick(organ.valid_zones) : deprecise_zone(organ.zone))
+	if(!LIMB_HAS_SURGERY_STATE(fake_hit_part, SURGERY_SKIN_OPEN|SURGERY_ORGANS_CUT|SURGERY_BONE_SAWED))
 		organ.forceMove(drop_location())
-		organ = null
 		return
 
-	var/list/organs_to_boot_out = organ_receiver.get_organ_slot(organ.slot)
-	for(var/obj/item/organ/organ_evacced as anything in organs_to_boot_out)
-		if(organ_evacced.organ_flags & ORGAN_UNREMOVABLE)
-			continue
-		organ_evacced.Remove(target, special = TRUE)
-		organ_evacced.forceMove(get_turf(target))
-
+	// handles swapping any existing organ out for us
 	organ.Insert(target)
-	organ = null
 
 ///Patrient Transport - Generates hardlight bags you can put people in.
 /obj/item/mod/module/criminalcapture/patienttransport
@@ -370,7 +356,7 @@
 		playsound(src, 'sound/items/zip/zip.ogg', 25, TRUE)
 		balloon_alert(mod.wearer, "clothing mended")
 
-/obj/item/mod/module/thread_ripper/on_suit_deactivation(deleting = FALSE)
+/obj/item/mod/module/thread_ripper/on_part_deactivation(deleting = FALSE)
 	if(!length(ripped_clothing))
 		return
 	for(var/obj/item/clothing as anything in ripped_clothing)
@@ -405,26 +391,27 @@
 
 /obj/item/surgical_processor/mod/preloaded
 	loaded_surgeries = list(
-		/datum/surgery/advanced/pacify,
-		/datum/surgery/healing/combo/upgraded/femto,
-		/datum/surgery/advanced/brainwashing,
-		/datum/surgery/advanced/brainwashing/mechanic,
-		/datum/surgery/advanced/bioware/nerve_splicing,
-		/datum/surgery/advanced/bioware/nerve_splicing/mechanic,
-		/datum/surgery/advanced/bioware/nerve_grounding,
-		/datum/surgery/advanced/bioware/nerve_grounding/mechanic,
-		/datum/surgery/advanced/bioware/vein_threading,
-		/datum/surgery/advanced/bioware/vein_threading/mechanic,
-		/datum/surgery/advanced/bioware/muscled_veins,
-		/datum/surgery/advanced/bioware/muscled_veins/mechanic,
-		/datum/surgery/advanced/bioware/ligament_hook,
-		/datum/surgery/advanced/bioware/ligament_hook/mechanic,
-		/datum/surgery/advanced/bioware/ligament_reinforcement,
-		/datum/surgery/advanced/bioware/ligament_reinforcement/mechanic,
-		/datum/surgery/advanced/bioware/cortex_imprint,
-		/datum/surgery/advanced/bioware/cortex_imprint/mechanic,
-		/datum/surgery/advanced/bioware/cortex_folding,
-		/datum/surgery/advanced/bioware/cortex_folding/mechanic,
+		/datum/surgery_operation/basic/tend_wounds/combo/upgraded/master,
+		/datum/surgery_operation/limb/bioware/cortex_folding,
+		/datum/surgery_operation/limb/bioware/cortex_folding/mechanic,
+		/datum/surgery_operation/limb/bioware/cortex_imprint,
+		/datum/surgery_operation/limb/bioware/cortex_imprint/mechanic,
+		/datum/surgery_operation/limb/bioware/ligament_hook,
+		/datum/surgery_operation/limb/bioware/ligament_hook/mechanic,
+		/datum/surgery_operation/limb/bioware/ligament_reinforcement,
+		/datum/surgery_operation/limb/bioware/ligament_reinforcement/mechanic,
+		/datum/surgery_operation/limb/bioware/muscled_veins,
+		/datum/surgery_operation/limb/bioware/muscled_veins/mechanic,
+		/datum/surgery_operation/limb/bioware/nerve_grounding,
+		/datum/surgery_operation/limb/bioware/nerve_grounding/mechanic,
+		/datum/surgery_operation/limb/bioware/nerve_splicing,
+		/datum/surgery_operation/limb/bioware/nerve_splicing/mechanic,
+		/datum/surgery_operation/limb/bioware/vein_threading,
+		/datum/surgery_operation/limb/bioware/vein_threading/mechanic,
+		/datum/surgery_operation/organ/brainwash,
+		/datum/surgery_operation/organ/brainwash/mechanic,
+		/datum/surgery_operation/organ/pacify,
+		/datum/surgery_operation/organ/pacify/mechanic,
 	)
 
 /obj/item/mod/module/surgical_processor/emergency
@@ -434,14 +421,6 @@
 
 /obj/item/surgical_processor/mod/emergency
 	loaded_surgeries = list(
-		/datum/surgery/healing/combo/upgraded/femto,
-		/datum/surgery/blood_filter,
-		/datum/surgery/brain_surgery,
-		/datum/surgery/coronary_bypass,
-		/datum/surgery/ear_surgery,
-		/datum/surgery/eye_surgery,
-		/datum/surgery/hepatectomy,
-		/datum/surgery/revival,
-		/datum/surgery/stomach_pump,
-		/datum/surgery/advanced/wing_reconstruction,
+		/datum/surgery_operation/basic/tend_wounds/combo/upgraded/master,
+		/datum/surgery_operation/organ/fix_wings,
 	)

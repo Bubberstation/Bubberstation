@@ -11,7 +11,7 @@ GLOBAL_LIST_EMPTY(goldeneye_pinpointers)
 
 SUBSYSTEM_DEF(goldeneye)
 	name = "GoldenEye"
-	flags = SS_NO_FIRE | SS_NO_INIT
+	ss_flags = SS_NO_FIRE | SS_NO_INIT
 	/// A tracked list of all our keys.
 	var/list/goldeneye_keys = list()
 	/// A list of minds that have been extracted and thus cannot be extracted again.
@@ -187,7 +187,7 @@ SUBSYSTEM_DEF(goldeneye)
 
 /datum/status_effect/goldeneye_pinpointer
 	id = "goldeneye_pinpointer"
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	tick_interval = PINPOINTER_PING_TIME
 	alert_type = /atom/movable/screen/alert/status_effect/goldeneye_pinpointer
 	/// The range until you're considered 'close'

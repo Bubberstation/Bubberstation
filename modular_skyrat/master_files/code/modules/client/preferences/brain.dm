@@ -1,5 +1,5 @@
 /datum/preference/choiced/brain_type
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_SILICON_PREFS
 	savefile_key = "brain_type"
 	savefile_identifier = PREFERENCE_CHARACTER
 	priority = PREFERENCE_PRIORITY_NAMES // Apply after species, cause that's super important.
@@ -14,8 +14,8 @@
 	if(!issynthetic(target))
 		return
 
-	var/obj/item/organ/internal/brain/new_brain = target.prefs_get_brain_to_use(value)
-	var/obj/item/organ/internal/brain/old_brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/brain/new_brain = target.prefs_get_brain_to_use(value)
+	var/obj/item/organ/brain/old_brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
 
 	if(!new_brain || new_brain == old_brain.type)
 		return
@@ -25,6 +25,7 @@
 	new_brain = new new_brain()
 
 	new_brain.modular_persistence = old_brain.modular_persistence
+	new_brain.modular_persistence?.owner = new_brain
 	old_brain.modular_persistence = null
 
 	new_brain.Insert(target, movement_flags = DELETE_IF_REPLACED)

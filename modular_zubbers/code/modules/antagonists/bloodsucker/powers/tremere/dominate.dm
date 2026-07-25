@@ -135,7 +135,7 @@
 		pay_cost(TEMP_GHOULIZE_COST - bloodcost)
 		log_combat(owner, target, "tremere revived", addition="Revived their ghoul using dominate")
 		return FALSE
-	if(!bloodsuckerdatum_power.make_ghoul(target) )
+	if(!bloodsuckerdatum_power.make_ghoul(target))
 		owner.balloon_alert(owner, "not a valid target for ghouling!.")
 		return
 
@@ -214,3 +214,4 @@
 
 #undef TEMP_GHOULIZE_COST
 #undef DOMINATE_XRAY_LEVEL
+#undef DOMINATE_NON_MUTE_GHOULIZE_LEVEL

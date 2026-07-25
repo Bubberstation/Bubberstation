@@ -1,10 +1,8 @@
 /datum/sprite_accessory/head_accessory
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/head_accessory.dmi'
 	key = "head_acc"
-	generic = "Head Accessory"
 	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
-	genetic = TRUE
-	organ_type = /obj/item/organ/external/head_accessory
+	organ_type = /obj/item/organ/head_accessory
 
 /datum/sprite_accessory/head_accessory/none
 	name = SPRITE_ACCESSORY_NONE
@@ -13,7 +11,7 @@
 	factual = FALSE
 
 /datum/sprite_accessory/head_accessory/is_hidden(mob/living/carbon/human/H)
-	if(H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)))
+	if(H.covered_slots & HIDEHAIR)
 		return TRUE
 	return FALSE
 

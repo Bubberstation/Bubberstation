@@ -43,8 +43,6 @@
 #define COMSIG_GLOB_RANDOM_EVENT "!random_event"
 	/// Do not allow this random event to continue.
 	#define CANCEL_RANDOM_EVENT (1<<0)
-/// a person somewhere has thrown something : (mob/living/carbon/carbon_thrower, target)
-#define COMSIG_GLOB_CARBON_THROW_THING	"!throw_thing"
 /// a trapdoor remote has sent out a signal to link with a trapdoor
 #define COMSIG_GLOB_TRAPDOOR_LINK "!trapdoor_link"
 	///successfully linked to a trapdoor!
@@ -90,6 +88,14 @@
 /// global signal when a global nullrod type is picked
 #define COMSIG_GLOB_NULLROD_PICKED "!nullrod_picked"
 
+/// global signal when someone prays via prayer verb.
+#define COMSIG_GLOB_SEND_PRAYER "!send_prayer"
+	#define ARG_PRAYING_MOB 1
+	#define ARG_PRAYER_MSG 2
+	#define ARG_PRAYER_TYPE 3
+	#define ARG_PRAYER_SYMBOL 4
+	#define ARG_PRAYED_DEITIES 5
+
 /// Global signal when light debugging is canceled
 #define COMSIG_LIGHT_DEBUG_DISABLED "!light_debug_disabled"
 
@@ -106,3 +112,12 @@
 
 /// Global signal sent when a mob is spawned from a ghost in a dynamic ruleset (mob/spawned_mob)
 #define COMSIG_RULESET_BODY_GENERATED_FROM_GHOSTS "!ruleset_body_generated_from_ghosts"
+
+/// Global signal whenever a camera network broadcast is started/stopped/updated: (camera_net, is_show_active, announcement)
+#define COMSIG_GLOB_NETWORK_BROADCAST_UPDATED "!network_broadcast_updated"
+
+///Global signal sent when the player list grows. Called by [mob/add_to_player_list] (mob/player)
+#define COMSIG_GLOB_PLAYER_LOGIN "!player_login"
+
+///Global signal sent when the player list shrinks. Called by [mob/remove_from_player_list] (mob/player)
+#define COMSIG_GLOB_PLAYER_LOGOUT "!player_logout"

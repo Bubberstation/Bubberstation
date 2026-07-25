@@ -68,16 +68,16 @@
 /datum/action/item_action/hev_toggle/nri
 	name = "Toggle VOSKHOD Suit"
 	button_icon = 'modular_skyrat/modules/novaya_ert/icons/toggles.dmi'
+	button_icon_state = "system_off"
+	background_icon = 'modular_skyrat/modules/novaya_ert/icons/toggles.dmi'
 	background_icon_state = "bg_nri"
-	button_icon = 'modular_skyrat/modules/novaya_ert/icons/toggles.dmi'
-	button_icon_state = "toggle"
 
 /datum/action/item_action/hev_toggle_notifs/nri
 	name = "Toggle VOSKHOD Suit Notifications"
 	button_icon = 'modular_skyrat/modules/novaya_ert/icons/toggles.dmi'
+	button_icon_state = "sound_VOICE_AND_TEXT"
+	background_icon = 'modular_skyrat/modules/novaya_ert/icons/toggles.dmi'
 	background_icon_state = "bg_nri"
-	button_icon = 'modular_skyrat/modules/novaya_ert/icons/toggles.dmi'
-	button_icon_state = "sound"
 
 /obj/item/clothing/suit/space/hev_suit/nri/captain
 	name = "\improper VOSKHOD-2 powered combat armor"
@@ -93,3 +93,13 @@
 	name = "\improper VOSKHOD-IN powered combat armor"
 	desc = "A hybrid set of space-resistant armor built on a modified Nanotrasen heavy-duty engineering undersuit, polyurea coated lead-lined light plasteel plates hinder mobility as little as possible and offer additional radiation protection while the onboard life support system aids the user in combat. The power cell is what makes the armor work without hassle, a sticker in the power supply unit warns anyone reading to responsibly manage battery levels."
 	icon_state = "nri_engineer"
+
+#undef NRI_POWERUSE_HIT
+#undef NRI_POWERUSE_HEAL
+
+#undef NRI_COOLDOWN_HEAL
+#undef NRI_COOLDOWN_RADS
+#undef NRI_COOLDOWN_ACID
+
+#undef NRI_HEAL_AMOUNT
+#undef NRI_BLOOD_REPLENISHMENT

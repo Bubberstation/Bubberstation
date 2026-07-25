@@ -12,7 +12,7 @@
 	name = "legendary researcher's cloak"
 	desc = "This legendary cloak is awarded only to those who have created a large stir within the scientific community with their contributions. \
 	Those who wear this cloak create the scientific foundations, and have the ability to discern the truth of the universe even from the most mundane things."
-	icon = 'modular_skyrat/modules/simple_research/cloaks.dmi'
-	worn_icon = 'modular_skyrat/modules/simple_research/neck.dmi'
+	icon = 'modular_skyrat/modules/simple_research/icons/cloaks.dmi'
+	worn_icon = 'modular_skyrat/modules/simple_research/icons/neck.dmi'
 	icon_state = "researchcloak"
 	associated_skill_path = /datum/skill/research

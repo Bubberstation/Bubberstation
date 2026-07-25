@@ -1,48 +1,50 @@
 /obj/item/clothing/under/misc/diver //Donor item for patriot210
 	name = "black divers uniform"
 	desc = "An old exploration uniform used by a now-defunct mining coalition, even after all this time, it still fits."
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	icon_state = "diver"
 	worn_icon_state = "diver"
 	icon = 'modular_zubbers/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/uniform_teshari.dmi'
 	body_parts_covered = CHEST|LEGS|GROIN
 
 //ALL BUNNY STUFF BY DimWhat OF MONKEESTATION
 
 /obj/item/clothing/under/costume/playbunny
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
+	body_parts_covered = CHEST|GROIN|LEGS
+	alt_covers_chest = TRUE
+
+/obj/item/clothing/under/costume/playbunny/greyscale
 	name = "bunny suit"
 	desc = "The staple of any bunny themed waiters and the like. It has a little cottonball tail too."
-	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/costume_digi.dmi'
-	icon_state = "playbunny"
+	icon = 'icons/map_icons/clothing/under/costume.dmi'
+	icon_state = "/obj/item/clothing/under/costume/playbunny/greyscale"
+	post_init_icon_state = "playbunny"
 	greyscale_colors = "#39393f#39393f#ffffff#87502e"
 	greyscale_config = /datum/greyscale_config/bunnysuit
 	greyscale_config_worn = /datum/greyscale_config/bunnysuit_worn
 	flags_1 = IS_PLAYER_COLORABLE_1
-	body_parts_covered = CHEST|GROIN|LEGS
-	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/syndicate/syndibunny //heh
 	name = "blood-red bunny suit"
 	desc = "The staple of any bunny themed syndicate assassins. Are those carbon nanotube stockings?"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
-	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/costume_digi.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	icon_state = "syndibunny"
 	body_parts_covered = CHEST|GROIN|LEGS
 
 /obj/item/clothing/under/syndicate/syndibunny/fake
-	armor_type = /datum/armor/clothing_under/none
+	armor_type = /datum/armor/clothing_under
 
 /obj/item/clothing/under/costume/playbunny/magician
 	name = "magician's bunny suit"
 	desc = "The staple of any bunny themed stage magician."
 	icon_state = "playbunny_wiz"
-	greyscale_config = null
-	greyscale_config_worn = null
-	greyscale_colors = null
 
 /obj/item/clothing/under/costume/playbunny/magician/Initialize(mapload)
 	. = ..()
@@ -61,41 +63,33 @@
 	name = "centcom bunnysuit"
 	desc = "A modified Centcom version of a bunny outfit, using Lunarian technology to condense countless amounts of rabbits into a material that is extremely comfortable and light to wear."
 	icon_state = "playbunny_centcom"
-	greyscale_config = null
-	greyscale_config_worn = null
-	greyscale_colors = null
 
 /obj/item/clothing/under/costume/playbunny/british
 	name = "british bunny suit"
 	desc = "The staple of any bunny themed monarchists. It has a little cottonball tail too."
 	icon_state = "playbunny_brit"
-	greyscale_config = null
-	greyscale_config_worn = null
-	greyscale_colors = null
 
 /obj/item/clothing/under/costume/playbunny/communist
 	name = "really red bunny suit"
 	desc = "The staple of any bunny themed communists. It has a little cottonball tail too."
 	icon_state = "playbunny_communist"
-	greyscale_config = null
-	greyscale_config_worn = null
-	greyscale_colors = null
 
 /obj/item/clothing/under/costume/playbunny/usa
 	name = "striped bunny suit"
 	desc = "A bunny outfit stitched together from several American flags. It has a little cottonball tail too."
 	icon_state = "playbunny_usa"
-	greyscale_config = null
-	greyscale_config_worn = null
-	greyscale_colors = null
 
 /obj/item/clothing/under/costume/playbunny/custom_playbunny
 	name = "tailormade bunny suit"
+	icon = 'icons/map_icons/clothing/under/costume.dmi'
+	icon_state = "/obj/item/clothing/under/costume/playbunny/custom_playbunny"
+	post_init_icon_state = "playbunny"
 	greyscale_colors = "#373768#c9c9c9#ababcd#880088"
 	greyscale_config = /datum/greyscale_config/custom_bunnysuit
 	greyscale_config_worn = /datum/greyscale_config/custom_bunnysuit_worn
 	greyscale_config_worn_digi = /datum/greyscale_config/custom_bunnysuit_worn/digi
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	flags_1 = IS_PLAYER_COLORABLE_1
 
 //CAPTAIN
 
@@ -105,7 +99,8 @@
 	icon_state = "bunnysuit_captain"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -117,7 +112,7 @@
 	icon_state = "bunnysuit_qm"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -127,7 +122,7 @@
 	icon_state = "bunnysuit_cargo"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -137,7 +132,7 @@
 	icon_state = "bunnysuit_miner"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -147,7 +142,7 @@
 	icon_state = "bunnysuit_mail"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -157,7 +152,7 @@
 	icon_state = "bunnysuit_bitrunner"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -169,7 +164,8 @@
 	icon_state = "bunnysuit_engi"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -179,7 +175,8 @@
 	icon_state = "bunnysuit_atmos"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -189,7 +186,8 @@
 	icon_state = "bunnysuit_ce"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -200,7 +198,8 @@
 	name = "medical bunnysuit"
 	icon_state = "bunnysuit_doctor"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -209,7 +208,7 @@
 	name = "paramedic's bunnysuit"
 	icon_state = "bunnysuit_paramedic"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -218,7 +217,8 @@
 	name = "chemist's bunnysuit"
 	icon_state = "bunnysuit_chem"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -227,7 +227,8 @@
 	name = "pathologist's bunnysuit"
 	icon_state = "bunnysuit_viro"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -236,7 +237,7 @@
 	name = "coroner's bunnysuit"
 	icon_state = "bunnysuit_coroner"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -245,7 +246,8 @@
 	name = "chief medical officer's bunnysuit"
 	icon_state = "bunnysuit_cmo"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -256,7 +258,7 @@
 	name = "scientist's bunnysuit"
 	icon_state = "bunnysuit_sci"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -265,16 +267,16 @@
 	name = "roboticist's bunnysuit"
 	icon_state = "bunnysuit_roboticist"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/rnd/geneticist/bunnysuit
-	desc = "The staple of any bunny themed geneticists. Doesn’t go great with an abominable green muscled physique, but then again, what does?"
+	desc = "The staple of any bunny themed geneticists. Doesn't go great with an abominable green muscled physique, but then again, what does?"
 	name = "geneticist's bunnysuit"
 	icon_state = "bunnysuit_genetics"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -283,7 +285,7 @@
 	name = "research director's bunnysuit"
 	icon_state = "bunnysuit_rd"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
@@ -295,7 +297,8 @@
 	name = "security bunnysuit"
 	icon_state = "bunnysuit_sec"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -305,7 +308,8 @@
 	name = "security assistant's bunnysuit"
 	icon_state = "bunnysuit_sec_assistant"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -316,7 +320,8 @@
 	name = "warden's bunnysuit"
 	icon_state = "bunnysuit_warden"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -326,7 +331,7 @@
 	name = "brig physician's bunnysuit"
 	icon_state = "bunnysuit_brig_phys"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -336,7 +341,8 @@
 	name = "detective's bunnysuit"
 	icon_state = "bunnysuit_det"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -346,7 +352,8 @@
 	name = "noir detective's bunnysuit"
 	icon_state = "bunnysuit_det_noir"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -356,7 +363,8 @@
 	name = "prisoner's bunnysuit"
 	icon_state = "bunnysuit_prisoner"
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -366,7 +374,8 @@
 	name = "Head of Security's bunnysuit"
 	icon_state = "bunnysuit_hos"
 	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -378,7 +387,7 @@
 	icon_state = "bunnysuit_hop"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -388,7 +397,7 @@
 	icon_state = "bunnysuit_janitor"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -398,7 +407,7 @@
 	icon_state = "bunnysuit_bar"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 	custom_price = PAYCHECK_CREW
@@ -409,7 +418,7 @@
 	icon_state = "bunnysuit_chef"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -419,7 +428,7 @@
 	icon_state = "bunnysuit_botany"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -429,7 +438,7 @@
 	icon_state = "bunnysuit_clown"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -439,7 +448,7 @@
 	icon_state = "bunnysuit_mime"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -450,7 +459,7 @@
 	icon_state = "bunnysuit_chaplain"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -460,7 +469,7 @@
 	icon_state = "bunnysuit_curator_red"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -470,7 +479,7 @@
 	icon_state = "bunnysuit_curator_green"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -480,7 +489,7 @@
 	icon_state = "bunnysuit_curator_teal"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -491,7 +500,8 @@
 	icon_state = "bunnysuit_law_black"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -502,7 +512,8 @@
 	icon_state = "bunnysuit_law_blue"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -512,7 +523,8 @@
 	icon_state = "bunnysuit_law_red"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -522,7 +534,8 @@
 	icon_state = "bunnysuit_law_good"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/bunnysuits_digi.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
@@ -532,11 +545,27 @@
 	icon_state = "bunnysuit_psychologist"
 	inhand_icon_state = null
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/bunnysuits.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS
 	alt_covers_chest = TRUE
 
 //BUNNY STUFF END, SPRITES BY DimWhat OF MONKE STATION
+
+/obj/item/clothing/under/rank/civilian/microstar_suit
+	name = "\improper MicroStar SCI-MED suit"
+	desc = "A non-spaceproof partial pressure suit manufactured by MicroStar Inc; designed for maximum comfort, safety, and enhancement of productivity. Its proprietary helmet seems to be missing."
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	icon = 'modular_zubbers/icons/obj/clothing/under/scimed_suit.dmi'
+	icon_state = "scimed_suit"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/scimed_suit.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/scimed_suit_digi.dmi'
+	inhand_icon_state = "w_suit"
+	can_adjust = FALSE
+	equip_sound = 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg'
+	/*
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/clothing/scimed_suit_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/clothing/scimed_suit_righthand.dmi'
+	*/
 
 /obj/item/clothing/under/costume/loincloth
 	name = "loincloth"
@@ -563,6 +592,7 @@
 	desc = "A purple shirt with a nametag, and some ill-fitting jeans. The bare minimum required by company standards."
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/costume_digi.dmi'
 	icon_state = "lizardgas"
 	body_parts_covered = CHEST|GROIN|LEGS
 	has_sensor = NO_SENSORS //you're not NT employed, so they don't care about you
@@ -572,9 +602,11 @@
 	desc = "A salmon colored short-sleeved dress shirt with a white nametag, bearing the name of the employee. Along with some snazzy dark grey slacks, a formal attire for a classy joint."
 	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/costume_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/costume_teshari.dmi'
 	icon_state = "allamerican"
 	body_parts_covered = CHEST|GROIN|LEGS
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/allamerican/manager
@@ -582,3 +614,143 @@
 	desc = "A salmon colored long-sleeved dress shirt with a white nametag, bearing the name of the employee. Along with some snazzy dark grey slacks held up by a belt with a gold buckle, a formal attire for a classy joint."
 	icon_state = "allamerican_manager"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+
+/obj/item/clothing/under/red_and_white_collared_outfit
+	desc = "An outfit that screams 'I've never killed anyone!', which is probably true."
+	name = "red and white collared outfit"
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/uniforms.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/uniform.dmi'
+	icon_state = "whiteandred_kiryulmfao"
+	worn_icon_state = "whiteandred_kiryulmfao"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/costume/hlciv
+	name = "blue citizen uniform"
+	desc = "Sometimes, I dream about cheese."
+	icon = 'modular_zubbers/icons/obj/clothing/under/costume.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/costume.dmi'
+	icon_state = "citizenblue"
+
+//MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.
+
+/obj/item/clothing/under/rank/civilian/bubber/snake
+	name = "big boss' stealth suit"
+	desc = "We may all be headed straight to hell. But what better place for us than this?"
+	icon = 'modular_zubbers/icons/obj/clothing/under/syndicate.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
+	icon_state = "snake"
+
+/obj/item/clothing/under/rank/civilian/bubber/camo
+	name = "camouflage uniform"
+	desc = "Well my wife left me, so now I make stolen valor videos at the mall."
+	icon = 'icons/map_icons/clothing/under/_under.dmi'
+	icon_state = "/obj/item/clothing/under/rank/civilian/bubber/camo"
+	post_init_icon_state = "solfed_camo"
+	worn_icon_state = "solfed_camo"
+	worn_icon_digi = "solfed_camo"
+	greyscale_config = /datum/greyscale_config/camo
+	greyscale_config_worn = /datum/greyscale_config/camo/worn
+	greyscale_config_worn_digi = /datum/greyscale_config/camo/worn/digi
+	greyscale_colors = "#4d4d4d#333333#292929"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	can_adjust = FALSE
+
+/obj/item/clothing/under/syndicate/tacticool/black
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_teshari.dmi'
+
+/obj/item/clothing/under/rank/civilian/clown/britches
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_teshari.dmi'
+
+/obj/item/clothing/under/rank/blueshield/netra
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_teshari.dmi'
+
+/obj/item/clothing/under/rank/lace
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	// awkwardly shoving this in with the skyrat donator item sprites until someone tells me no. send help
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_teshari.dmi'
+
+/obj/item/clothing/under/suit/fancy
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	greyscale_config_worn_digi = /datum/greyscale_config/fancy_suit/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/fancy_suit/worn/teshari
+
+/obj/item/clothing/under/texas
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
+
+/obj/item/clothing/under/doug_dimmadome
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
+
+/obj/item/clothing/under/custom/blutigen_undergarment
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_teshari.dmi'
+
+/obj/item/clothing/under/occult
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_teshari.dmi'
+
+/obj/item/clothing/under/recruiter_uniform
+	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/armadyne
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
+
+/obj/item/clothing/under/rank/security/armadyne/tactical
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
+
+/obj/item/clothing/under/akula_wetsuit
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/akula_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/akula_teshari.dmi' // for the fishari out there
+
+/obj/item/clothing/under/blastwave
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/uniform_teshari.dmi'
+
+/obj/item/clothing/under/colonial/nri_police
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/uniform_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/orderly
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/medical_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/engineering_guard
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/engineering_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/rnd_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/bouncer
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/civilian_teshari.dmi'
+
+/obj/item/clothing/under/sweater
+	greyscale_config_worn_teshari = /datum/greyscale_config/cableknit_sweater/worn/teshari
+
+/obj/item/clothing/under/trek
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/costume_teshari.dmi'
+
+/obj/item/clothing/under/trek/command
+	greyscale_config_worn_teshari = /datum/greyscale_config/trek/worn/teshari
+
+/obj/item/clothing/under/trek/engsec
+	greyscale_config_worn_teshari = /datum/greyscale_config/trek/worn/teshari
+
+/obj/item/clothing/under/trek/medsci
+	greyscale_config_worn_teshari = /datum/greyscale_config/trek/worn/teshari
+
+/obj/item/clothing/under/rank/barber
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/civilian_teshari.dmi'

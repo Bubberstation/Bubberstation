@@ -99,7 +99,6 @@
 /datum/reagent/drug/opium
 	name = "opium"
 	description = "A extract from opium poppies. Puts the user in a slightly euphoric state."
-	reagent_state = LIQUID
 	color = "#ffe669"
 	overdose_threshold = 30
 	ph = 8
@@ -110,15 +109,15 @@
 	var/high_message = pick("You feel euphoric.", "You feel on top of the world.")
 	if(SPT_PROB(2.5, seconds_per_tick))
 		to_chat(M, span_notice("[high_message]"))
-	M.add_mood_event("smacked out", /datum/mood_event/narcotic_heavy, 1, name)
-	M.adjustBruteLoss(-0.1 * REM * seconds_per_tick, 0) //can be used as a (shitty) painkiller
-	M.adjustFireLoss(-0.1 * REM * seconds_per_tick, 0)
+	M.add_mood_event("smacked out", /datum/mood_event/narcotic_heavy, name)
+	M.adjust_brute_loss(-0.1 * REM * seconds_per_tick, 0) //can be used as a (shitty) painkiller
+	M.adjust_fire_loss(-0.1 * REM * seconds_per_tick, 0)
 	M.overlay_fullscreen("heroin_euphoria", /atom/movable/screen/fullscreen/color_vision/heroin_color)
 	return ..()
 
 /datum/reagent/drug/opium/overdose_process(mob/living/M, seconds_per_tick, times_fired)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.5 * REM * seconds_per_tick)
-	M.adjustToxLoss(1 * REM * seconds_per_tick, 0)
+	M.adjust_organ_loss(ORGAN_SLOT_BRAIN, 0.5 * REM * seconds_per_tick)
+	M.adjust_tox_loss(1 * REM * seconds_per_tick, 0)
 	M.adjust_drowsiness(1 SECONDS * REM * normalise_creation_purity() * seconds_per_tick)
 	return TRUE
 
@@ -134,7 +133,6 @@
 /datum/reagent/drug/opium/heroin
 	name = "heroin"
 	description = "She's like heroin to me, she's like heroin to me! She cannot... miss a vein!"
-	reagent_state = LIQUID
 	color = "#ffe669"
 	overdose_threshold = 20
 	ph = 6
@@ -146,14 +144,13 @@
 	var/high_message = pick("You feel like nothing can stop you.", "You feel like God.")
 	if(SPT_PROB(2.5, seconds_per_tick))
 		to_chat(M, span_notice("[high_message]"))
-	M.adjustBruteLoss(-0.4 * REM * seconds_per_tick, 0) //more powerful as a painkiller, possibly actually useful to medical now
-	M.adjustFireLoss(-0.4 * REM * seconds_per_tick, 0)
+	M.adjust_brute_loss(-0.4 * REM * seconds_per_tick, 0) //more powerful as a painkiller, possibly actually useful to medical now
+	M.adjust_fire_loss(-0.4 * REM * seconds_per_tick, 0)
 	..()
 
 /datum/reagent/drug/opium/blacktar
 	name = "black tar heroin"
 	description = "An impure, freebase form of heroin. Probably not a good idea to take this..."
-	reagent_state = LIQUID
 	color = "#242423"
 	overdose_threshold = 10 //more easy to overdose on
 	ph = 8
@@ -166,7 +163,7 @@
 		to_chat(M, span_notice("[high_message]"))
 
 	M.set_drugginess(20 SECONDS * REM * seconds_per_tick)
-	M.adjustToxLoss(0.5 * REM * seconds_per_tick, 0) //toxin damage
+	M.adjust_tox_loss(0.5 * REM * seconds_per_tick, 0) //toxin damage
 	return ..()
 
 /datum/reagent/drug/opium/blacktar/liquid //prevents self-duplication by going one step down when mixed

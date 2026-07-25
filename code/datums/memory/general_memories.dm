@@ -95,7 +95,7 @@
 
 /datum/memory/high_five/get_starts()
 	return list(
-		"[protagonist_name] and [deuteragonist_name] having a a legendary [high_five_type]",
+		"[protagonist_name] and [deuteragonist_name] having a legendary [high_five_type]",
 		"[protagonist_name] giving [deuteragonist_name] a [high_five_type]",
 		"[protagonist_name] and [deuteragonist_name] giving each other a [high_five_type]",
 	)
@@ -562,6 +562,25 @@
 	return list(
 		"[protagonist_name] [mood_verb] as they are faced with the situation.",
 		"[protagonist_name] [mood_verb] as they stare down [antagonist_name]'s barrel.",
+	)
+
+
+/datum/memory/won_jackpot
+	story_value = STORY_VALUE_AMAZING
+
+/datum/memory/won_jackpot/get_names()
+	return list("[protagonist_name] winning it big.")
+
+/datum/memory/won_jackpot/get_starts()
+	return list(
+		"[protagonist_name] hits [deuteragonist_name]'s lever, with money symbols in their eyes.",
+		"[deuteragonist_name] plays a jingle as [protagonist_name] pulls the lever.",
+	)
+
+/datum/memory/won_jackpot/get_moods()
+	return list(
+		"[protagonist_name] [mood_verb] as they collect the money from the [deuteragonist_name].",
+		"[protagonist_name] [mood_verb] as [deuteragonist_name] starts spitting out money with a blare.",
 	)
 
 /// Saw someone get gibbed.

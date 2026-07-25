@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(all_huds)
 GLOBAL_LIST_EMPTY(huds_by_category)
 
 //GLOBAL HUD LIST
-GLOBAL_LIST_INIT(huds, list(
+GLOBAL_ALIST_INIT(huds, alist(
 	DATA_HUD_SECURITY_BASIC = new /datum/atom_hud/data/human/security/basic(),
 	DATA_HUD_SECURITY_ADVANCED = new /datum/atom_hud/data/human/security/advanced(),
 	DATA_HUD_MEDICAL_BASIC = new /datum/atom_hud/data/human/medical/basic(),
@@ -15,20 +15,31 @@ GLOBAL_LIST_INIT(huds, list(
 	DATA_HUD_DIAGNOSTIC = new /datum/atom_hud/data/diagnostic(),
 	DATA_HUD_BOT_PATH = new /datum/atom_hud/data/bot_path(),
 	DATA_HUD_ABDUCTOR = new /datum/atom_hud/abductor(),
-	DATA_HUD_SENTIENT_DISEASE = new /datum/atom_hud/sentient_disease(),
 	DATA_HUD_AI_DETECT = new /datum/atom_hud/ai_detector(),
 	DATA_HUD_FAN = new /datum/atom_hud/data/human/fan_hud(),
 	DATA_HUD_MALF_APC = new /datum/atom_hud/data/malf_apc(),
-	DATA_HUD_PERMIT = new/datum/atom_hud/data/human/permit(), // SKYRAT EDIT ADDITION
+	DATA_HUD_BLOOD = new /datum/atom_hud/data/human/blood(),
+	DATA_HUD_PERMIT = new /datum/atom_hud/data/human/permit(), // SKYRAT EDIT ADDITION
 ))
 
+/// Assoc list of traits to the huds they give.
 GLOBAL_LIST_INIT(trait_to_hud, list(
-	TRAIT_SECURITY_HUD = DATA_HUD_SECURITY_ADVANCED,
-	TRAIT_MEDICAL_HUD = DATA_HUD_MEDICAL_ADVANCED,
-	TRAIT_DIAGNOSTIC_HUD = DATA_HUD_DIAGNOSTIC,
+	TRAIT_ABDUCTOR_HUD = DATA_HUD_ABDUCTOR,
 	TRAIT_BOT_PATH_HUD = DATA_HUD_BOT_PATH,
+	TRAIT_CLOWN_ENJOYER = DATA_HUD_FAN,
+	TRAIT_DIAGNOSTIC_HUD = DATA_HUD_DIAGNOSTIC,
+	TRAIT_MEDICAL_HUD = DATA_HUD_MEDICAL_ADVANCED,
+	TRAIT_MEDICAL_HUD_SENSOR_ONLY = DATA_HUD_MEDICAL_BASIC,
+	TRAIT_MIME_FAN = DATA_HUD_FAN,
+	TRAIT_SECURITY_HUD = DATA_HUD_SECURITY_ADVANCED,
+	TRAIT_SECURITY_HUD_ID_ONLY = DATA_HUD_SECURITY_BASIC,
+	TRAIT_BLOOD_HUD = DATA_HUD_BLOOD,
 	TRAIT_PERMIT_HUD = DATA_HUD_PERMIT, // SKYRAT EDIT ADDITION
-	TRAIT_BASIC_SECURITY_HUD = DATA_HUD_SECURITY_BASIC // BUBBER EDIT ADDITION
+))
+
+/// Assoc list of traits that block other traits' huds to list of hud (traits) that they block
+GLOBAL_LIST_INIT(trait_blockers_to_hud, list(
+	TRAIT_BLOCK_SECHUD = list(TRAIT_SECURITY_HUD, TRAIT_SECURITY_HUD_ID_ONLY),
 ))
 
 /datum/atom_hud
@@ -50,7 +61,7 @@ GLOBAL_LIST_INIT(trait_to_hud, list(
 	var/list/mob/hud_users_all_z_levels = list()
 
 	///these will be the indexes for the atom's hud_list
-	var/list/hud_icons = list()
+	var/list/hud_icons
 
 	///mobs associated with the next time this hud can be added to them
 	var/list/next_time_allowed = list()
@@ -68,6 +79,8 @@ GLOBAL_LIST_INIT(trait_to_hud, list(
 	for(var/z_level in 1 to world.maxz)
 		hud_atoms += list(list())
 		hud_users += list(list())
+	if(LAZYLEN(hud_icons))
+		hud_icons = string_list(hud_icons)
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_NEW_Z, PROC_REF(add_z_level_huds))
 
@@ -152,6 +165,7 @@ GLOBAL_LIST_INIT(trait_to_hud, list(
 
 		RegisterSignal(new_viewer, COMSIG_QDELETING, PROC_REF(unregister_atom), override = TRUE) //both hud users and hud atoms use these signals
 		RegisterSignal(new_viewer, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_atom_or_user_z_level_changed), override = TRUE)
+		RegisterSignal(new_viewer, COMSIG_LIVING_LOOK_Z_CHANGE, PROC_REF(on_look_z_level_changed), override = TRUE)
 
 		var/turf/their_turf = get_turf(new_viewer)
 		if(!their_turf)
@@ -183,6 +197,7 @@ GLOBAL_LIST_INIT(trait_to_hud, list(
 		if(!hud_atoms_all_z_levels[former_viewer])//make sure we aren't unregistering changes on a mob that's also a hud atom for this hud
 			UnregisterSignal(former_viewer, COMSIG_MOVABLE_Z_CHANGED)
 			UnregisterSignal(former_viewer, COMSIG_QDELETING)
+			UnregisterSignal(former_viewer, COMSIG_LIVING_LOOK_Z_CHANGE)
 
 		hud_users_all_z_levels -= former_viewer
 
@@ -311,6 +326,24 @@ GLOBAL_LIST_INIT(trait_to_hud, list(
 			hud_atoms[new_turf.z] |= moved_atom
 
 			add_atom_to_all_mob_huds(get_hud_users_for_z_level(new_turf.z), moved_atom)
+
+/// The same operations of on_atom_or_user_z_level_changed(), but without changing the mover's hud.
+/// (change the huds the user sees on other people, not the hud other people see on the user)
+/// Used for mobs that see through a separate eye mob, and looking up/down.
+/datum/atom_hud/proc/on_look_z_level_changed(atom/movable/user, turf/old_turf, turf/new_turf)
+	SIGNAL_HANDLER
+	// handle removing hud images from the old z-level
+	if (old_turf && hud_users_all_z_levels[user]) // old_turf can be null if we tried to look through the ceiling or through the floor
+		hud_users[old_turf.z] -= user
+
+		remove_all_atoms_from_single_hud(user, get_hud_atoms_for_z_level(old_turf.z))
+
+	// handle adding hud images from the new z-level
+	if (hud_users_all_z_levels[user])
+		hud_users[new_turf.z][user] = TRUE
+
+		add_all_atoms_to_single_mob_hud(user, get_hud_atoms_for_z_level(new_turf.z))
+
 
 /// add just hud_atom's hud images (that are part of this atom_hud) to requesting_mob's client.images list
 /datum/atom_hud/proc/add_atom_to_single_mob_hud(mob/requesting_mob, atom/hud_atom) //unsafe, no sanity apart from client

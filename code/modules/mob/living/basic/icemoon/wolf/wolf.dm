@@ -5,7 +5,6 @@
 	icon_state = "whitewolf"
 	icon_living = "whitewolf"
 	icon_dead = "whitewolf_dead"
-	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	mouse_opacity = MOUSE_OPACITY_ICON
 	speak_emote = list("howls")
 	friendly_verb_continuous = "howls at"
@@ -43,11 +42,12 @@
 	//commands to give when tamed
 	var/static/list/pet_commands = list(
 		/datum/pet_command/idle,
+		/datum/pet_command/move,
 		/datum/pet_command/free,
 		/datum/pet_command/good_boy/wolf,
 		/datum/pet_command/follow/wolf,
-		/datum/pet_command/point_targeting/attack,
-		/datum/pet_command/point_targeting/fetch,
+		/datum/pet_command/attack,
+		/datum/pet_command/fetch,
 		/datum/pet_command/play_dead,
 		/datum/pet_command/protect_owner,
 	)
@@ -59,22 +59,22 @@
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_CLAW)
 	AddElement(/datum/element/ai_flee_while_injured)
 	AddElement(/datum/element/ai_retaliate)
-	AddComponent(/datum/component/basic_mob_ability_telegraph)
-	AddComponent(/datum/component/basic_mob_attack_telegraph, telegraph_duration = 0.6 SECONDS)
 
 	if(can_tame)
 		make_tameable()
 
 /mob/living/basic/mining/wolf/proc/make_tameable()
-	AddComponent(/datum/component/tameable, food_types = list(/obj/item/food/meat/slab), tame_chance = 15, bonus_tame_chance = 5)
+	var/static/list/food_types = list(/obj/item/food/meat/slab)
+	AddComponent(/datum/component/tameable, food_types = food_types, tame_chance = 15, bonus_tame_chance = 5)
 
 /mob/living/basic/mining/wolf/tamed(mob/living/tamer, atom/food)
+	. = ..()
 	new /obj/effect/temp_visual/heart(src.loc)
 	// ride wolf, life good
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/wolf)
 	AddComponent(/datum/component/obeys_commands, pet_commands)
 	// this is purely a convenience thing once tamed so you can drag them away from shit
-	ai_controller.ai_traits = STOP_MOVING_WHEN_PULLED
+	ai_controller.ai_traits |= STOP_MOVING_WHEN_PULLED
 	// makes tamed wolves run away far less
 	ai_controller.set_blackboard_key(BB_BASIC_MOB_FLEE_DISTANCE, 7)
 
@@ -82,5 +82,7 @@
 //this should also produce interesting behavior where tamed wolves defend other tamed wolves.
 /mob/living/basic/mining/wolf/befriend(mob/living/new_friend)
 	. = ..()
-	faction = new_friend.faction.Copy()
+	if(isnull(.))
+		return
+	SET_FACTION_AND_ALLIES_FROM(src, new_friend)
 	visible_message(span_notice("[src] lowers [src.p_their()] snout at [new_friend]'s offering and begins to wag [src.p_their()] tail."))

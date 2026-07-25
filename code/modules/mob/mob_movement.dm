@@ -1,5 +1,5 @@
 /**
- * If your mob is concious, drop the item in the active hand
+ * If your mob is conscious, drop the item in the active hand
  *
  * This is a hidden verb, likely for binding with winset for hotkeys
  */
@@ -27,7 +27,7 @@
  * in the parent proc with istype checks right?):
  * * having incorporeal_move set (calls Process_Incorpmove() instead)
  * * being grabbed
- * * being buckled  (relaymove() is called to the buckled atom instead)
+ * * being buckled (relaymove() is called to the buckled atom instead)
  * * having your loc be some other mob (relaymove() is called on that mob instead)
  * * Not having MOBILITY_MOVE
  * * Failing Process_Spacemove() call
@@ -93,7 +93,6 @@
 		return loc_atom.relaymove(mob, direct)
 
 	if(!mob.Process_Spacemove(direct))
-		SEND_SIGNAL(mob, COMSIG_MOB_CLIENT_MOVE_NOGRAV, args)
 		return FALSE
 
 	if(SEND_SIGNAL(mob, COMSIG_MOB_CLIENT_PRE_MOVE, args) & COMSIG_MOB_CLIENT_BLOCK_PRE_MOVE)
@@ -101,8 +100,10 @@
 
 	//We are now going to move
 	var/add_delay = mob.cached_multiplicative_slowdown
-	var/new_glide_size = DELAY_TO_GLIDE_SIZE(add_delay * ( (NSCOMPONENT(direct) && EWCOMPONENT(direct)) ? sqrt(2) : 1 ) )
-	mob.set_glide_size(new_glide_size) // set it now in case of pulled objects
+	var/glide_delay = add_delay
+	if(NSCOMPONENT(direct) && EWCOMPONENT(direct))
+		glide_delay = FLOOR(glide_delay * sqrt(2), world.tick_lag)
+	mob.set_glide_size(DELAY_TO_GLIDE_SIZE(glide_delay)) // set it now in case of pulled objects
 	//If the move was recent, count using old_move_delay
 	//We want fractional behavior and all
 	if(old_move_delay + world.tick_lag > world.time)
@@ -120,7 +121,7 @@
 	. = ..()
 
 	if((direct & (direct - 1)) && mob.loc == new_loc) //moved diagonally successfully
-		add_delay *= sqrt(2)
+		add_delay = FLOOR(add_delay * sqrt(2), world.tick_lag)
 
 	var/after_glide = 0
 	if(visual_delay)
@@ -293,11 +294,16 @@
 		to_chat(src, span_info("You push off of [backup] to propel yourself."))
 	return TRUE
 
+/// We handle lattices via backups
+/mob/handle_spacemove_grabbing()
+	return
+
 /**
  * Finds a target near a mob that is viable for pushing off when moving.
  * Takes the intended movement direction as input, alongside if the context is checking if we're allowed to continue drifting
+ * If include_floors is TRUE, includes floors *with gravity*
  */
-/mob/get_spacemove_backup(moving_direction, continuous_move)
+/mob/get_spacemove_backup(moving_direction, continuous_move, include_floors = FALSE)
 	var/atom/secondary_backup
 	var/list/priority_dirs = (moving_direction in GLOB.cardinals) ? GLOB.cardinals : GLOB.diagonals
 	for(var/atom/pushover as anything in range(1, get_turf(src)))
@@ -305,13 +311,15 @@
 			continue
 		if(isarea(pushover))
 			continue
+		var/is_priority = pushover.loc == loc || (get_dir(src, pushover) in priority_dirs)
 		if(isturf(pushover))
 			var/turf/turf = pushover
 			if(isspaceturf(turf))
 				continue
 			if(!turf.density && !mob_negates_gravity())
-				continue
-			if (get_dir(src, pushover) in priority_dirs)
+				if (!include_floors || !turf.has_gravity())
+					continue
+			if (is_priority)
 				return pushover
 			secondary_backup = pushover
 			continue
@@ -325,27 +333,27 @@
 				continue
 
 		var/pass_allowed = rebound.CanPass(src, get_dir(rebound, src))
-		if(!rebound.density && pass_allowed)
+		if(!rebound.density && pass_allowed && !istype(rebound, /obj/structure/lattice))
 			continue
 		//Sometime this tick, this pushed off something. Doesn't count as a valid pushoff target
 		if(rebound.last_pushoff == world.time)
 			continue
 		if(continuous_move && !pass_allowed)
-			var/datum/move_loop/move/rebound_engine = GLOB.move_manager.processing_on(rebound, SSnewtonian_movement)
+			var/datum/move_loop/smooth_move/rebound_engine = GLOB.move_manager.processing_on(rebound, SSnewtonian_movement)
 			// If you're moving toward it and you're both going the same direction, stop
-			if(moving_direction == get_dir(src, pushover) && rebound_engine && moving_direction == rebound_engine.direction)
+			if(moving_direction == get_dir(src, pushover) && rebound_engine && moving_direction == angle2dir(rebound_engine.angle))
 				continue
 		else if(!pass_allowed)
 			if(moving_direction == get_dir(src, pushover)) // Can't push "off" of something that you're walking into
 				continue
 		if(rebound.anchored)
-			if (get_dir(src, rebound) in priority_dirs)
+			if (is_priority)
 				return rebound
 			secondary_backup = rebound
 			continue
 		if(pulling == rebound)
 			continue
-		if (get_dir(src, rebound) in priority_dirs)
+		if (is_priority)
 			return rebound
 		secondary_backup = rebound
 	return secondary_backup
@@ -366,12 +374,17 @@
  * slipped_on - optional, what'd we slip on? if not set, we assume they just fell over
  * lube - bitflag of "lube flags", see [mobs.dm] for more information
  * paralyze - time (in deciseconds) the slip leaves them paralyzed / unable to move
+ * daze - time (in deciseconds) the slip leaves them vulnerable to shove stuns
  * force_drop = the slip forces them to drop held items
  */
-/mob/proc/slip(knockdown_amount, obj/slipped_on, lube_flags, paralyze, force_drop = FALSE)
-	add_mob_memory(/datum/memory/was_slipped, antagonist = slipped_on)
+/mob/proc/slip(knockdown_amount, obj/slipped_on, lube_flags, paralyze, daze, force_drop = FALSE)
+	SEND_SIGNAL(src, COMSIG_MOB_SLIPPED, knockdown_amount, slipped_on, lube_flags, paralyze, daze, force_drop)
 
-	SEND_SIGNAL(src, COMSIG_MOB_SLIPPED, knockdown_amount, slipped_on, lube_flags, paralyze, force_drop)
+/mob/living/slip(knockdown_amount, obj/slipped_on, lube_flags, paralyze, daze, force_drop = FALSE)
+	add_mob_memory(/datum/memory/was_slipped, antagonist = slipped_on)
+	add_mood_event("slipped", /datum/mood_event/slipped)
+	add_personality_mood_to_viewers(src, "slip_observed", list(/datum/personality/whimsical = /datum/mood_event/whimsical_slip), range = 5)
+	return ..()
 
 //bodypart selection verbs - Cyberboss
 //8: repeated presses toggles through head - eyes - mouth
@@ -381,7 +394,7 @@
 
 ///Validate the client's mob has a valid zone selected
 /client/proc/check_has_body_select()
-	return mob && mob.hud_used && mob.hud_used.zone_select && istype(mob.hud_used.zone_select, /atom/movable/screen/zone_sel)
+	return istype(mob?.hud_used?.screen_objects[HUD_MOB_ZONE_SELECTOR], /atom/movable/screen/zone_sel)
 
 /**
  * Hidden verbs to set desired body target zone
@@ -406,7 +419,7 @@
 		else
 			next_in_line = BODY_ZONE_HEAD
 
-	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_select
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.screen_objects[HUD_MOB_ZONE_SELECTOR]
 	selector.set_selected_zone(next_in_line, mob)
 
 ///Hidden verb to target the head, unbound by default.
@@ -417,7 +430,7 @@
 	if(!check_has_body_select())
 		return
 
-	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_select
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.screen_objects[HUD_MOB_ZONE_SELECTOR]
 	selector.set_selected_zone(BODY_ZONE_HEAD, mob)
 
 ///Hidden verb to target the eyes, bound to 7
@@ -428,7 +441,7 @@
 	if(!check_has_body_select())
 		return
 
-	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_select
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.screen_objects[HUD_MOB_ZONE_SELECTOR]
 	selector.set_selected_zone(BODY_ZONE_PRECISE_EYES, mob)
 
 ///Hidden verb to target the mouth, bound to 9
@@ -439,7 +452,7 @@
 	if(!check_has_body_select())
 		return
 
-	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_select
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.screen_objects[HUD_MOB_ZONE_SELECTOR]
 	selector.set_selected_zone(BODY_ZONE_PRECISE_MOUTH, mob)
 
 ///Hidden verb to target the right arm, bound to 4
@@ -450,7 +463,7 @@
 	if(!check_has_body_select())
 		return
 
-	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_select
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.screen_objects[HUD_MOB_ZONE_SELECTOR]
 	selector.set_selected_zone(BODY_ZONE_R_ARM, mob)
 
 ///Hidden verb to target the chest, bound to 5
@@ -461,7 +474,7 @@
 	if(!check_has_body_select())
 		return
 
-	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_select
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.screen_objects[HUD_MOB_ZONE_SELECTOR]
 	selector.set_selected_zone(BODY_ZONE_CHEST, mob)
 
 ///Hidden verb to target the left arm, bound to 6
@@ -472,7 +485,7 @@
 	if(!check_has_body_select())
 		return
 
-	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_select
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.screen_objects[HUD_MOB_ZONE_SELECTOR]
 	selector.set_selected_zone(BODY_ZONE_L_ARM, mob)
 
 ///Hidden verb to target the right leg, bound to 1
@@ -483,7 +496,7 @@
 	if(!check_has_body_select())
 		return
 
-	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_select
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.screen_objects[HUD_MOB_ZONE_SELECTOR]
 	selector.set_selected_zone(BODY_ZONE_R_LEG, mob)
 
 ///Hidden verb to target the groin, bound to 2
@@ -494,7 +507,7 @@
 	if(!check_has_body_select())
 		return
 
-	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_select
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.screen_objects[HUD_MOB_ZONE_SELECTOR]
 	selector.set_selected_zone(BODY_ZONE_PRECISE_GROIN, mob)
 
 ///Hidden verb to target the left leg, bound to 3
@@ -505,7 +518,7 @@
 	if(!check_has_body_select())
 		return
 
-	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_select
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.screen_objects[HUD_MOB_ZONE_SELECTOR]
 	selector.set_selected_zone(BODY_ZONE_L_LEG, mob)
 
 ///Verb to toggle the walk or run status
@@ -532,18 +545,13 @@
 			return FALSE
 		//SKYRAT EDIT ADDITION END
 		move_intent = MOVE_INTENT_RUN
-	if(hud_used?.static_inventory)
-		for(var/atom/movable/screen/mov_intent/selector in hud_used.static_inventory)
-			selector.update_appearance()
-	update_move_intent_slowdown()
 
+	hud_used?.screen_objects[HUD_MOB_MOVE_INTENT]?.update_appearance()
+	update_move_intent_slowdown()
 	SEND_SIGNAL(src, COMSIG_MOVE_INTENT_TOGGLED)
 
 ///Moves a mob upwards in z level
-/mob/verb/up()
-	set name = "Move Upwards"
-	set category = "IC"
-
+/mob/proc/up()
 	if(remote_control)
 		return remote_control.relaymove(src, UP)
 
@@ -567,10 +575,7 @@
 		to_chat(src, span_notice("You move upwards."))
 
 ///Moves a mob down a z level
-/mob/verb/down()
-	set name = "Move Down"
-	set category = "IC"
-
+/mob/proc/down()
 	if(remote_control)
 		return remote_control.relaymove(src, DOWN)
 
@@ -599,3 +604,8 @@
 	if(new_turf && (istype(new_turf, /turf/cordon/secret) || is_secret_level(new_turf.z)) && !client?.holder)
 		return
 	return ..()
+
+/mob/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
+	. = ..()
+	if(client?.sound_tokens.len)
+		SSsound_tokens.clients_needing_update[client] = TRUE

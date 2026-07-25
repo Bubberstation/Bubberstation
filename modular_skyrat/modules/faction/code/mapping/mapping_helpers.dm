@@ -160,7 +160,7 @@
 		if(1) //Random traitor items
 			new /obj/item/storage/box/syndie_kit/chameleon(src)
 			new /obj/item/storage/backpack/duffelbag/syndie/c4(src)
-			new /obj/item/computer_disk/syndicate/camera_app(src)
+			new /obj/item/disk/computer/syndicate/camera_app(src)
 			new /obj/item/gun/chem(src)
 			new /obj/item/card/emag(src)
 			new /obj/item/card/emag/doorjack(src)
@@ -200,11 +200,11 @@
 			new /obj/item/mod/control/pre_equipped/elite(src)
 		if(5) //Implants
 			new /obj/item/storage/box/cyber_implants(src)
-			new /obj/item/organ/internal/cyberimp/arm/combat(src)
-			new /obj/item/organ/internal/cyberimp/arm/surgery(src)
-			new /obj/item/organ/internal/cyberimp/arm/baton(src)
-			new /obj/item/organ/internal/cyberimp/arm/toolset(src)
-			new /obj/item/organ/internal/cyberimp/arm/gun/taser(src)
+			new /obj/item/organ/cyberimp/arm/toolkit/combat(src)
+			new /obj/item/organ/cyberimp/arm/toolkit/surgery(src)
+			new /obj/item/organ/cyberimp/arm/toolkit/baton(src)
+			new /obj/item/organ/cyberimp/arm/toolkit/toolset(src)
+			new /obj/item/organ/cyberimp/arm/toolkit/gun/taser(src)
 
 /obj/structure/closet/crate/secure/tradership_cargo_very_valuable
 	req_access = ACCESS_FACTION_COMMAND

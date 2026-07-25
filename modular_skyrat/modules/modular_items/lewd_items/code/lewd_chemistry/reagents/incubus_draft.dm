@@ -103,13 +103,13 @@
 * exposed_mob - the mob being affected by the reagent
 * genital - the genital that is causing the messages
 */
-/datum/reagent/drug/aphrodisiac/incubus_draft/growth_to_chat(mob/living/carbon/human/exposed_mob, obj/item/organ/external/genital/mob_genital, suppress_chat = FALSE)
+/datum/reagent/drug/aphrodisiac/incubus_draft/growth_to_chat(mob/living/carbon/human/exposed_mob, obj/item/organ/genital/mob_genital, suppress_chat = FALSE)
 	if(!mob_genital)
 		return
 
-	if(istype(mob_genital, /obj/item/organ/external/genital/penis))
+	if(istype(mob_genital, /obj/item/organ/genital/penis))
 		penis_growth_to_chat(exposed_mob, mob_genital)
-	else if(istype(mob_genital, /obj/item/organ/external/genital/testicles))
+	else if(istype(mob_genital, /obj/item/organ/genital/testicles))
 		testicles_growth_to_chat(exposed_mob, mob_genital, suppress_chat)
 
 /**
@@ -119,7 +119,7 @@
 * mob_penis - the penis that is causing the message
 * NOTE: this function doesn't get called often enough to warrant suppressing chat, hence the var's omission
 */
-/datum/reagent/drug/aphrodisiac/incubus_draft/proc/penis_growth_to_chat(mob/living/carbon/human/exposed_mob, obj/item/organ/external/genital/penis/mob_penis)
+/datum/reagent/drug/aphrodisiac/incubus_draft/proc/penis_growth_to_chat(mob/living/carbon/human/exposed_mob, obj/item/organ/genital/penis/mob_penis)
 
 	if(!mob_penis)
 		return
@@ -149,7 +149,7 @@
 * exposed_mob - the mob being affected by the reagent
 * mob_testicles - the testicles that are causing the message
 */
-/datum/reagent/drug/aphrodisiac/incubus_draft/proc/testicles_growth_to_chat(mob/living/carbon/human/exposed_mob, obj/item/organ/external/genital/testicles/mob_testicles, suppress_chat = FALSE)
+/datum/reagent/drug/aphrodisiac/incubus_draft/proc/testicles_growth_to_chat(mob/living/carbon/human/exposed_mob, obj/item/organ/genital/testicles/mob_testicles, suppress_chat = FALSE)
 
 	// So we don't spam chat
 	if(suppress_chat)
@@ -167,7 +167,7 @@
 // Notify the user that they're overdosing. Doesn't affect their mood.
 /datum/reagent/drug/aphrodisiac/incubus_draft/overdose_start(mob/living/carbon/human/exposed_mob)
 	to_chat(exposed_mob, span_userdanger("You feel like you took too much [name]!"))
-	exposed_mob.add_mood_event("[type]_overdose", /datum/mood_event/minor_overdose, 1, name)
+	exposed_mob.add_mood_event("[type]_overdose", /datum/mood_event/minor_overdose, name)
 
 /datum/chemical_reaction/incubus_draft
 	results = list(/datum/reagent/drug/aphrodisiac/incubus_draft = 8)

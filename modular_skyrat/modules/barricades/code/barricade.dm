@@ -227,11 +227,13 @@
 
 /obj/structure/deployable_barricade/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 	if(anchored)
 		to_chat(usr, span_warning("It is secured to the floor, you can't turn it!"))
-		return FALSE
-
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	setDir(turn(dir, 270))
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 
 /*----------------------*/
@@ -245,6 +247,7 @@
 	barricade_type = "snow"
 	max_integrity = 75
 	stack_type = /obj/item/stack/sheet/mineral/snow
+	custom_materials = list(/datum/material/snow = SHEET_MATERIAL_AMOUNT * 2)
 	stack_amount = 2
 	destroyed_stack_amount = 0
 	can_wire = FALSE
@@ -260,6 +263,7 @@
 	max_integrity = 150
 	armor_type = /datum/armor/deployable_barricade_guardrail
 	stack_type = /obj/item/stack/rods
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
 	destroyed_stack_amount = 2
 	barricade_type = "railing"
 	pass_flags_self = PASSSTRUCTURE
@@ -291,6 +295,7 @@
 	max_integrity = 100
 	layer = OBJ_LAYER
 	stack_type = /obj/item/stack/sheet/mineral/wood
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 	stack_amount = 2
 	destroyed_stack_amount = 1
 	can_change_dmg_state = FALSE
@@ -341,6 +346,7 @@
 	max_integrity = 200
 	armor_type = /datum/armor/deployable_barricade_metal
 	stack_type = /obj/item/stack/sheet/iron
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
 	stack_amount = 2
 	destroyed_stack_amount = 1
 	barricade_type = "metal"
@@ -664,6 +670,7 @@
 	icon_state = "plasteel_closed_0"
 	max_integrity = 500
 	stack_type = /obj/item/stack/sheet/plasteel
+	custom_materials = list(/datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 2)
 	barricade_type = "plasteel"
 	density = FALSE
 	closed = TRUE
@@ -672,7 +679,7 @@
 	///Either we react with other cades next to us ie when opening or so
 	var/linked = FALSE
 	///Open/close delay, for customisation. And because I was asked to - won't customise anything myself.
-	var/toggle_delay = 2 SECONDS
+	var/toggle_delay = 0 SECONDS
 
 /obj/structure/deployable_barricade/metal/plasteel/crowbar_act(mob/living/user, obj/item/I)
 	switch(build_state)
@@ -706,6 +713,7 @@
 
 	if(do_after(user, toggle_delay, src))
 		toggle_open(null, user)
+
 
 /obj/structure/deployable_barricade/metal/plasteel/proc/toggle_open(state, mob/living/user)
 	if(state == closed)

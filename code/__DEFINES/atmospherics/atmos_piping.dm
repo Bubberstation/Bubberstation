@@ -38,6 +38,9 @@
 #define TRINARY 3
 #define QUATERNARY 4
 
+// The volume per direction of atmos pipes.
+#define UNARY_PIPE_VOLUME 35
+
 //TANKS
 /// The volume of the standard handheld gas tanks on the station.
 #define TANK_STANDARD_VOLUME 70
@@ -65,9 +68,12 @@
 #define TANK_MERGE_OVERPRESSURE "tank_overpressure"
 // Indices for the reaction_results returned by explosion_information()
 /// Reactions that have happened in the tank.
-#define TANK_RESULTS_REACTION 1
+#define TANK_RESULTS_REACTION "results_reaction"
 /// Additional information of the tank.
-#define TANK_RESULTS_MISC 2
+#define TANK_RESULTS_MISC "results_misc"
+
+/// Color used by omni-color pipes
+#define ATMOS_COLOR_OMNI COLOR_VERY_LIGHT_GRAY
 
 //MULTIPIPES
 //IF YOU EVER CHANGE THESE CHANGE SPRITES TO MATCH.

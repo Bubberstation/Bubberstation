@@ -8,7 +8,6 @@
 	button_icon_state = "intercom"
 	cooldown_time = 5 SECONDS
 	shared_cooldown = MOB_SHARED_COOLDOWN_BOT_ANNOUNCMENT
-	melee_cooldown_time = 0 SECONDS
 	/// List of strings to sound effects corresponding to automated messages we can play
 	var/list/automated_announcements
 	/// Maximum amount of buttons this can have
@@ -52,7 +51,7 @@
 /datum/action/cooldown/bot_announcement/ui_data(mob/user)
 	var/list/data = list()
 
-	var/mob/living/simple_animal/bot/bot_owner = owner
+	var/mob/living/basic/bot/bot_owner = owner
 	if(istype(bot_owner))
 		var/list/channels = list()
 		for(var/channel in bot_owner.internal_radio.channels)
@@ -123,7 +122,7 @@
 	var/datum/action/cooldown/bot_announcement_shortcut/shortcut = new(src)
 
 	shortcut.prefix = copytext(line, 1, 4)
-	var/color = GLOB.radiocolors["[channel]"]
+	var/color = GLOB.reserved_radio_colors["[channel]"]
 	if(color)
 		shortcut.prefix_color = color
 	shortcut.name = line
@@ -150,7 +149,7 @@
 
 /// Speak the provided line on the provided radio channel
 /datum/action/cooldown/bot_announcement/proc/announce(line, channel)
-	var/mob/living/simple_animal/bot/bot_owner = owner
+	var/mob/living/basic/bot/bot_owner = owner
 	if (!(bot_owner.bot_mode_flags & BOT_MODE_ON))
 		return
 
@@ -173,7 +172,6 @@
 /datum/action/cooldown/bot_announcement_shortcut
 	desc = "Play a prerecorded message for the benefit of those around you."
 	shared_cooldown = MOB_SHARED_COOLDOWN_BOT_ANNOUNCMENT
-	melee_cooldown_time = 0 SECONDS
 	background_icon_state = "bg_tech_blue"
 	overlay_icon_state = "bg_tech_blue_border"
 	button_icon = 'icons/obj/machines/wallmounts.dmi'

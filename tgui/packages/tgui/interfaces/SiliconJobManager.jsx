@@ -1,5 +1,6 @@
+import { Button, NoticeBox, Section, Table } from 'tgui-core/components';
+
 import { useBackend } from '../backend';
-import { Box, Button, Dimmer, NoticeBox, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
 
 export const SiliconJobManager = (props) => {

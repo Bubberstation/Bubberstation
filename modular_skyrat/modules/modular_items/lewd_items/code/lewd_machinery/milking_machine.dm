@@ -1,3 +1,5 @@
+// This whole device is kind of cursed and working by it's own logic
+
 #define MILKING_PUMP_MODE_OFF "off"
 #define MILKING_PUMP_MODE_LOW "low"
 #define MILKING_PUMP_MODE_MEDIUM "medium"
@@ -41,17 +43,17 @@
 */
 
 	/// What organ is fluid being extracted from?
-	var/obj/item/organ/external/genital/current_selected_organ = null
+	var/obj/item/organ/genital/current_selected_organ = null
 	/// What beaker is liquid being outputted to?
 	var/obj/item/reagent_containers/cup/beaker = null
 	/// What human mob is currently buckled to the machine?
 	var/mob/living/carbon/human/current_mob = null
 	/// What is the current breast organ of the buckled mob?
-	var/obj/item/organ/external/genital/breasts/current_breasts = null
+	var/obj/item/organ/genital/breasts/current_breasts = null
 	/// What is the current testicles organ of the buckled mob?
-	var/obj/item/organ/external/genital/testicles/current_testicles = null
+	var/obj/item/organ/genital/testicles/current_testicles = null
 	/// What is the current vagina organ of the buckled mob?
-	var/obj/item/organ/external/genital/vagina/current_vagina = null
+	var/obj/item/organ/genital/vagina/current_vagina = null
 
 	/// What color is the machine currently set to?
 	var/machine_color = "pink"
@@ -245,7 +247,6 @@
 
 	update_mob_action_buttons() //some of our action buttons might be unusable when we're handcuffed.
 	update_worn_handcuffs()
-	update_hud_handcuffed()
 
 /obj/item/restraints/handcuffs/milker
 	name = "chair cuffs"
@@ -353,7 +354,7 @@
 		update_all_visuals()
 		return FALSE
 
-	if((istype(current_selected_organ, /obj/item/organ/external/genital/testicles) && (semen_vessel.reagents.total_volume == MILKING_PUMP_MAX_CAPACITY)) || (istype(current_selected_organ, /obj/item/organ/external/genital/vagina) && (girlcum_vessel.reagents.total_volume == MILKING_PUMP_MAX_CAPACITY)) || (istype(current_selected_organ, /obj/item/organ/external/genital/breasts) && (milk_vessel.reagents.total_volume == MILKING_PUMP_MAX_CAPACITY)))
+	if((istype(current_selected_organ, /obj/item/organ/genital/testicles) && (semen_vessel.reagents.total_volume == MILKING_PUMP_MAX_CAPACITY)) || (istype(current_selected_organ, /obj/item/organ/genital/vagina) && (girlcum_vessel.reagents.total_volume == MILKING_PUMP_MAX_CAPACITY)) || (istype(current_selected_organ, /obj/item/organ/genital/breasts) && (milk_vessel.reagents.total_volume == MILKING_PUMP_MAX_CAPACITY)))
 		current_mode = MILKING_PUMP_MODE_OFF
 		pump_state = MILKING_PUMP_STATE_OFF
 		update_all_visuals()
@@ -384,17 +385,17 @@
 	var/obj/item/reagent_containers/target_container
 
 	switch(current_selected_organ.type)
-		if(/obj/item/organ/external/genital/breasts)
+		if(/obj/item/organ/genital/breasts)
 			target_container = milk_vessel
-		if(/obj/item/organ/external/genital/vagina)
+		if(/obj/item/organ/genital/vagina)
 			target_container = girlcum_vessel
-		if(/obj/item/organ/external/genital/testicles)
+		if(/obj/item/organ/genital/testicles)
 			target_container = semen_vessel
 
-	if(!target_container || current_selected_organ.internal_fluid_count <= 0)
+	if(!target_container || current_selected_organ.reagents.total_volume <= 0)
 		return FALSE
 
-	current_selected_organ.transfer_internal_fluid(target_container.reagents, fluid_retrieve_amount[current_mode] * fluid_multiplier * seconds_per_tick)
+	current_selected_organ.reagents.trans_to(target_container, fluid_retrieve_amount[current_mode] * fluid_multiplier * seconds_per_tick)
 	return TRUE
 
 // Handling the process of the impact of the machine on the organs of the mob
@@ -447,7 +448,7 @@
 		var/current_selected_organ_size = current_selected_organ.genital_size
 		cut_overlay(organ_overlay)
 
-		if(istype(current_selected_organ, /obj/item/organ/external/genital/breasts))
+		if(istype(current_selected_organ, /obj/item/organ/genital/breasts))
 			switch(current_selected_organ.genital_type)
 				if("pair")
 					current_selected_organ_type = "double_breast"
@@ -471,14 +472,14 @@
 					else
 						current_selected_organ_size = "5"
 
-		if(istype(current_selected_organ, /obj/item/organ/external/genital/testicles))
+		if(istype(current_selected_organ, /obj/item/organ/genital/testicles))
 			current_selected_organ_type = ORGAN_SLOT_PENIS
 
-		if(istype(current_selected_organ, /obj/item/organ/external/genital/vagina))
+		if(istype(current_selected_organ, /obj/item/organ/genital/vagina))
 			current_selected_organ_type = ORGAN_SLOT_VAGINA
 
 		organ_overlay_new_icon_state = "[current_selected_organ_type]_pump_[pump_state]"
-		if(istype(current_selected_organ, /obj/item/organ/external/genital/breasts))
+		if(istype(current_selected_organ, /obj/item/organ/genital/breasts))
 			organ_overlay_new_icon_state += "_[current_selected_organ_size]"
 
 		if(current_mode == MILKING_PUMP_MODE_OFF)

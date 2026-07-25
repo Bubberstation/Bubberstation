@@ -77,6 +77,8 @@
 	var/minor_disabilities_desc
 	/// Physical status of this person in medical records.
 	var/physical_status
+	/// If declared dead, this is set as the cause of death, wiped once declared alive again.
+	var/cause_of_death
 	/// Mental status of this person in medical records.
 	var/mental_status
 	/// Positive and neutral quirk strings
@@ -157,7 +159,7 @@
 	character_appearance,
 	dna_string = "Unknown",
 	fingerprint = "?????",
-	gender = "Other",
+	gender = "neuter",
 	initial_rank = "Unassigned",
 	name = "Unknown",
 	rank = "Unassigned",
@@ -250,7 +252,7 @@
 		var/mutable_appearance/appearance = character_appearance
 		appearance.setDir(orientation)
 		if(add_height_chart)
-			appearance.underlays += mutable_appearance('icons/obj/machines/photobooth.dmi', "height_chart", alpha = 125, appearance_flags = RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM)
+			appearance.underlays += mutable_appearance('icons/obj/machines/photobooth.dmi', "height_chart", alpha = 125, appearance_flags = RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM|KEEP_APART)
 		picture_image = getFlatIcon(appearance)
 	else
 		picture_image = character_appearance

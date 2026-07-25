@@ -12,6 +12,7 @@
 	plane = AREA_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_LIGHTING
+	tacmap_color = null
 
 	/// List of all turfs currently inside this area as nested lists indexed by zlevel.
 	/// Acts as a filtered version of area.contents For faster lookup
@@ -24,7 +25,10 @@
 	/// This uses the same nested list format as turfs_by_zlevel
 	var/list/list/turf/turfs_to_uncontain_by_zlevel = list()
 
-	var/area_flags = VALID_TERRITORY | BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED
+	/// General flag for area properties
+	var/area_flags = VALID_TERRITORY | BLOBS_ALLOWED | CULT_PERMITTED
+	/// Flag for mapping related area properties (such as cavegen)
+	var/area_flags_mapping = UNIQUE_AREA
 
 	///Do we have an active fire alarm?
 	var/fire = FALSE
@@ -58,6 +62,8 @@
 
 	/// For space, the asteroid, lavaland, etc. Used with blueprints or with weather to determine if we are adding a new area (vs editing a station room)
 	var/outdoors = FALSE
+	/// Whether or not this area unifies all of its motion sensors.
+	var/motion_monitored = FALSE
 
 	/// Size of the area in open turfs, only calculated for indoors areas.
 	var/areasize = 0
@@ -80,8 +86,8 @@
 	var/power_light = TRUE
 	var/power_environ = TRUE
 	var/power_apc_charge = TRUE
-
-	var/has_gravity = FALSE
+	/// The default gravity for the area
+	var/default_gravity = ZERO_GRAVITY
 
 	var/parallax_movedir = 0
 
@@ -95,15 +101,15 @@
 	///The volume of the ambient buzz
 	var/ambient_buzz_vol = 35
 	///Used to decide what the minimum time between ambience is
-	var/min_ambience_cooldown = 30 SECONDS
+	var/min_ambience_cooldown = 4 SECONDS
 	///Used to decide what the maximum time between ambience is
-	var/max_ambience_cooldown = 60 SECONDS
+	var/max_ambience_cooldown = 10 SECONDS
 
 	flags_1 = CAN_BE_DIRTY_1
 
 	var/list/cameras
 
-	///Typepath to limit the areas (subtypes included) that atoms in this area can smooth with. Used for shuttles.
+	/// Typepath to limit the areas (subtypes included) that atoms in this area can smooth with. Used for shuttles.
 	var/area/area_limited_icon_smoothing
 
 	/// The energy usage of the area in the last machines SS tick.
@@ -112,8 +118,13 @@
 	/// Wire assignment for airlocks in this area
 	var/airlock_wires = /datum/wires/airlock
 
-	///This datum, if set, allows terrain generation behavior to be ran on Initialize()
+	/// Should we actually be running our mapgen if one is set?
+	/// FALSE here with a set map_generator allows the area to probe from shared generators without actually generating its' turfs
+	var/use_mapgen = TRUE
+	/// Datum that would be used in terrain generation behavior
 	var/datum/map_generator/map_generator
+	/// Should the map_generator be shared with all other willing areas on our z_level?
+	var/share_map_generator = TRUE
 
 	///Used to decide what kind of reverb the area makes sound have
 	var/sound_environment = SOUND_ENVIRONMENT_NONE
@@ -123,6 +134,12 @@
 
 	/// List of all air scrubbers in the area
 	var/list/obj/machinery/atmospherics/components/unary/vent_scrubber/air_scrubbers = list()
+
+	/// Are shuttles allowed to dock in this area
+	var/allow_shuttle_docking = FALSE
+
+	/// If TRUE, then this area will be skipped entirely by minimap rendering.
+	var/skip_minimap_rendering = FALSE
 
 /**
  * A list of teleport locations
@@ -160,7 +177,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/New()
 	// This interacts with the map loader, so it needs to be set immediately
 	// rather than waiting for atoms to initialize.
-	if (area_flags & UNIQUE_AREA)
+	if (area_flags_mapping & UNIQUE_AREA)
 		GLOB.areas_by_type[type] = src
 	GLOB.areas += src
 	energy_usage = new /list(AREA_USAGE_LEN) // Some atoms would like to use power in Initialize()
@@ -207,30 +224,61 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/LateInitialize()
 	power_change() // all machines set to current power level, also updates icon
 	update_beauty()
+	if(motion_monitored)
+		AddComponent(/datum/component/monitored_area)
 
 /// Generate turfs, including cool cave wall gen
 /area/proc/RunTerrainGeneration()
-	if(map_generator)
-		map_generator = new map_generator()
-		var/list/turfs = list()
-		for(var/turf/T in contents)
-			turfs += T
-		map_generator.generate_terrain(turfs, src)
+	if (!use_mapgen || !map_generator)
+		return
+	map_generator = get_generator()
+	var/list/turfs = list()
+	for(var/turf/T in contents)
+		turfs += T
+	map_generator.generate_terrain(turfs, src)
 
 /// Populate the previously generated terrain with mobs and objects
 /area/proc/RunTerrainPopulation()
-	if(map_generator)
-		var/list/turfs = list()
-		for(var/turf/T in contents)
-			turfs += T
-		map_generator.populate_terrain(turfs, src)
+	if (!use_mapgen || !map_generator)
+		return
+	map_generator = get_generator()
+	var/list/turfs = list()
+	for(var/turf/T in contents)
+		turfs += T
+	map_generator.populate_terrain(turfs, src)
 
 /area/proc/test_gen()
-	if(map_generator)
-		var/list/turfs = list()
-		for(var/turf/T in contents)
-			turfs += T
-		map_generator.generate_terrain(turfs, src)
+	if (!use_mapgen || !map_generator)
+		return
+	map_generator = get_generator()
+	var/list/turfs = list()
+	for(var/turf/T in contents)
+		turfs += T
+	map_generator.generate_terrain(turfs, src)
+
+/// Gets own, or shared, map generator
+/area/proc/get_generator()
+	RETURN_TYPE(/datum/map_generator)
+	if (!map_generator)
+		return
+
+	if (istype(map_generator))
+		return map_generator
+
+	if (!share_map_generator)
+		map_generator = new map_generator()
+		return map_generator
+
+	var/list/z_generators = GLOB.map_generators_by_z["[z]"]
+	if (z_generators && z_generators[map_generator])
+		map_generator = z_generators[map_generator]
+
+	if (!istype(map_generator))
+		var/new_generator = new map_generator()
+		LAZYSET(GLOB.map_generators_by_z["[z]"], map_generator, new_generator)
+		map_generator = new_generator
+
+	return map_generator
 
 /// Returns the highest zlevel that this area contains turfs for
 /area/proc/get_highest_zlevel()
@@ -355,6 +403,8 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	//just for sanity sake cause why not
 	if(!isnull(GLOB.areas))
 		GLOB.areas -= src
+	if(!isnull(GLOB.custom_areas))
+		GLOB.custom_areas -= src
 	//machinery cleanup
 	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(alarm_manager)
@@ -608,8 +658,8 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/drop_location()
 	CRASH("Bad op: area/drop_location() called")
 
-/// A hook so areas can modify the incoming args (of what??)
-/area/proc/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
+/// A hook so areas can modify the incoming args of ChangeTurf
+/area/proc/place_on_top_react(list/new_baseturfs, turf/added_layer, flags)
 	return flags
 
 

@@ -17,7 +17,9 @@
 	var/mob/living/carbon/human/affected_mob = owner
 
 	owner.reagents.add_reagent(/datum/reagent/drug/aphrodisiac/dopamine, 0.5)
-	owner.adjustStaminaLoss(STAMINA_REMOVAL_AMOUNT_EXTERNAL)
+	owner.adjust_stamina_loss(STAMINA_REMOVAL_AMOUNT_EXTERNAL)
+	var/datum/component/to_del = affected_mob.GetComponent(/datum/component/change_arousal_on_life)
+	qdel(to_del)
 	affected_mob.adjust_arousal(AROUSAL_REMOVAL_AMOUNT)
 	affected_mob.adjust_pleasure(AROUSAL_REMOVAL_AMOUNT)
 
@@ -36,7 +38,9 @@
 	var/mob/living/carbon/human/affected_mob = owner
 
 	owner.reagents.add_reagent(/datum/reagent/drug/aphrodisiac/dopamine, 0.3)
-	owner.adjustStaminaLoss(STAMINA_REMOVAL_AMOUNT_SELF)
+	owner.adjust_stamina_loss(STAMINA_REMOVAL_AMOUNT_SELF)
+	var/datum/component/to_del = affected_mob.GetComponent(/datum/component/change_arousal_on_life)
+	qdel(to_del) //apparently deprecated effect, still adding this line just to be safe
 	affected_mob.adjust_arousal(AROUSAL_REMOVAL_AMOUNT)
 	affected_mob.adjust_pleasure(AROUSAL_REMOVAL_AMOUNT)
 
@@ -48,10 +52,10 @@
 	alert_type = null
 
 /datum/status_effect/climax_cooldown/tick(seconds_between_ticks)
-	var/obj/item/organ/external/genital/vagina/vagina = owner.get_organ_slot(ORGAN_SLOT_VAGINA)
-	var/obj/item/organ/external/genital/testicles/balls = owner.get_organ_slot(ORGAN_SLOT_TESTICLES)
-	var/obj/item/organ/external/genital/testicles/penis = owner.get_organ_slot(ORGAN_SLOT_PENIS)
-	var/obj/item/organ/external/genital/testicles/anus = owner.get_organ_slot(ORGAN_SLOT_ANUS)
+	var/obj/item/organ/genital/vagina/vagina = owner.get_organ_slot(ORGAN_SLOT_VAGINA)
+	var/obj/item/organ/genital/testicles/balls = owner.get_organ_slot(ORGAN_SLOT_TESTICLES)
+	var/obj/item/organ/genital/testicles/penis = owner.get_organ_slot(ORGAN_SLOT_PENIS)
+	var/obj/item/organ/genital/testicles/anus = owner.get_organ_slot(ORGAN_SLOT_ANUS)
 
 	if(penis)
 		penis.aroused = AROUSAL_NONE
@@ -61,3 +65,7 @@
 		balls.aroused = AROUSAL_NONE
 	if(anus)
 		anus.aroused = AROUSAL_NONE
+
+#undef AROUSAL_REMOVAL_AMOUNT
+#undef STAMINA_REMOVAL_AMOUNT_EXTERNAL
+#undef STAMINA_REMOVAL_AMOUNT_SELF

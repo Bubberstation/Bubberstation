@@ -2,31 +2,34 @@
 	return list("Humans are found just about everywhere in the Known Galaxy thanks to their adaptive biology. \
 			Humans tend to make good spacers, and many have taken the role of nomads travelling the Known Galaxy.",
 
-			"Humans differ from most other mammalian species for the fact that they have exposed skin, \
-			which has allowed them to withstand climates with higher temperatures.",
-	) // Bubber edit
+			"They are a mammalian species, evolved from primates, known for being adaptive and capable spacefarers. \
+			They predominantly consume cooked and fried foods heavy in calories and fats. They struggle to stomach raw and gory meat.",
+	)
 
 /datum/species/human/get_species_lore()
 	return list(
-		"Humans originate from Earth in the Sol system. They evolved from Primates and founded the Terran Government,\
-		the NRI, and many other minor organizations. After a turbulent history, the Terran Government was absorbed into the Galactic Federation,\
-		and humanity went along with it.",
+		"It is rare to find a sun that has not shone on the face of Humanity. Humans are often drawn up against other species for comparison, and for very good reason. \
+		Human culture initially seems oxymoronic-- highlighting the individual in service of collective gain, which has led them to every known corner of the universe. \
+		It is exactly this apparent paradox that has led humans to make their mark on the stars. No two humans are the same, evading simple definition. \
+		Humans are known for having an impressive way of defying their environment and upbringing.",
 
-		"While most humans reside within GalFed in the current age, a large portion has migrated to every corner of the Known Galaxy,\
-		save for nations outwardly hostile to them, and even then some make do as nomads, bandits, and pirates.\
-		The human stereotype of adaptability holds true even in space.",
+		"Humans are a social, complicated species that have spread across the galaxy in a blisteringly short timespan, owing to their exploratory nature. \
+		Humans originate from Terra within the Sol star system, largely hailing from the United Terran Systems or Pan-Slavic Commonwealth. \
+		In the modern day, humans take a prominent role in galactic politics. The capitalist doctrine of Humanity has bled into every major nation, \
+		with the Federation effectively becoming a corporatocracy. Megacorporations heavily influence both domestic and foreign affairs.",
 
-		"Humans entered space around when many other species did, fully-entering into the space age in the mid 2040s.\
-		TerraGov erupted with massive growth, sprawling many star systems and colonizing hundreds of planets.\
-		Around the 2080s TerraGov encountered the Alliance, the predecessors to GalFed, and engaged in a long-standing rivalry with them until 2140.\
-		During this period, Sol found itself in 9 wars with the Alliance, winning 5 and losing 4. The last of these wars were a crushing defeat, \
-		and left TerraGov under the influence of the Alliance.",
+		"The Galactic Federation has its beginnings in the Osaka Accords of 2209, treaties of commerce and border control \
+		between the United Terran Systems and neighboring Tajaran and Vulpkanin empires. Further treaties would be signed that would deepen \
+		the relationship and trade between the Terran Systems and their neighbors, but the geriatric apparatus of the former United Nations and \
+		the rate of communications and space travel at the time would make developments extremely slow, and small incidents more impactful on relations. \
+		After many years of looking inward, as a result of the Coalition War and border conflicts with the PSC, \
+		in 2462 the United Terran Systems would ratify the Heartworlds Treaty, forming the Galactic Federation as we know it today, \
+		and paving the way for a modern, Federal army that could better stand up to outside incursion.",
 
-		"Around this time, the NRI had made its roots in a collection of far-colonies, establishing the second, \
-		and eventually the largest Human-led nation in the Known Galaxy. When TerraGov was absorbed into the Galactic Federation during its founding, \
-		the NRI exploded in population and started a rivalry with GalFed that spanned longer than Sol and the Alliance’s rivalry by a long shot.",
-
-		"In the current day and age, the NRI is still the largest Human primary nation, though even they have taken on a massive population of non-humans.\
-		What remains of Sol is the Terran Government, otherwise known as TerraGov, and it is a bustling state of commerce and military advancement. \
-		Human thriftiness is often considered the reason for GalFed’s economic explosion and current dominance over markets across the entirety of the Known Galaxy.",
+		"The Pan-Slavic Commonwealth traces its roots to the earliest days of space pioneering, when the United Nations still existed as a political identity. \
+		During initial colonization efforts, many nations felt excluded by the space programs dominated by larger, often Western and Asian nations. \
+		There is little information on how exactly the Commonwealth came to be, though it was preceded by the smaller Third Soviet Union, which would later become \
+		The NRI, or Novaya Russiya Imperiya, through a bloody revolution, and finally, the Pan-Slavic Commonwealth, which continues to stand as a legacy \
+		of inequality during Earth's early colonization efforts and its alliance is still a cause for concern to the Federation at large. The standard of living \
+		in the Pan-Slavic Commonwealth's border regions is particularly poor, making piracy common in states bordering the PSC, even by the Colonial Police.",
 	)

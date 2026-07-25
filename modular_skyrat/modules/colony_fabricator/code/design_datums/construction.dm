@@ -16,7 +16,7 @@
 		"prefab_cat_floor_tile",
 		"colony_fab_plastic_wall_panel",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = INFINITE) // God save you
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = INFINITY) // God save you
 	hidden = TRUE
 	show_on_wiki = FALSE
 	starting_node = TRUE
@@ -114,7 +114,7 @@
 		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
 	)
-	build_path = /obj/item/stack/sheet/plastic_wall_panel/ten
+	build_path = /obj/item/stack/sheet/plastic_wall_panel
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_CONSTRUCTION + FABRICATOR_SUBCATEGORY_STRUCTURES,

@@ -263,20 +263,14 @@
 #define POLL_IGNORE_GHOUL "ghoul"
 
 // Why waste memory on a dynamic global list if we can just bake it in on compile time?
-#define BLOODSUCKER_PROTECTED_ROLES list( \
+#define BLOODSUCKER_BLACKLISTED_ROLES list( \
 	JOB_CAPTAIN, \
 	JOB_HEAD_OF_PERSONNEL, \
 	JOB_HEAD_OF_SECURITY, \
 	JOB_WARDEN, \
 	JOB_SECURITY_OFFICER, \
 	JOB_DETECTIVE, \
-) \
-
-#define BLOODSUCKER_RESTRICTED_ROLES list( \
-	JOB_AI, \
-	JOB_CYBORG, \
-	JOB_CURATOR, \
-) \
+)
 
 #define BLOODSUCKER_RESTRICTED_SPECIES list( \
 	/datum/species/synthetic, \
@@ -290,4 +284,4 @@
 	/datum/species/zombie, \
 	/datum/species/mutant, \
 	/datum/species/dullahan \
-) \
+)

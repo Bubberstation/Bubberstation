@@ -15,7 +15,7 @@
 		/obj/item/food/cheese/wedge = 1
 	)
 	result = /obj/item/food/sandwich
-	category = CAT_SANDWICH
+	dish_category = DISH_SANDWICH
 
 /datum/crafting_recipe/food/cheese_sandwich
 	name = "Cheese sandwich"
@@ -24,7 +24,7 @@
 		/obj/item/food/cheese/wedge = 2
 	)
 	result = /obj/item/food/sandwich/cheese
-	category = CAT_SANDWICH
+	dish_category = DISH_SANDWICH
 
 /datum/crafting_recipe/food/slimesandwich
 	name = "Jelly sandwich"
@@ -32,8 +32,9 @@
 		/datum/reagent/toxin/slimejelly = 5,
 		/obj/item/food/breadslice/plain = 2,
 	)
+	added_foodtypes = TOXIC
 	result = /obj/item/food/sandwich/jelly/slime
-	category = CAT_SANDWICH
+	dish_category = DISH_SANDWICH
 
 /datum/crafting_recipe/food/cherrysandwich
 	name = "Jelly sandwich"
@@ -41,8 +42,9 @@
 		/datum/reagent/consumable/cherryjelly = 5,
 		/obj/item/food/breadslice/plain = 2,
 	)
+	added_foodtypes = FRUIT|SUGAR
 	result = /obj/item/food/sandwich/jelly/cherry
-	category = CAT_SANDWICH
+	dish_category = DISH_SANDWICH
 
 /datum/crafting_recipe/food/notasandwich
 	name = "Not a sandwich"
@@ -50,8 +52,9 @@
 		/obj/item/food/breadslice/plain = 2,
 		/obj/item/clothing/mask/fakemoustache = 1
 	)
+	added_foodtypes = GROSS
 	result = /obj/item/food/sandwich/notasandwich
-	category = CAT_SANDWICH
+	dish_category = DISH_SANDWICH
 
 /datum/crafting_recipe/food/hotdog
 	name = "Hot dog"
@@ -61,7 +64,8 @@
 		/obj/item/food/sausage = 1
 	)
 	result = /obj/item/food/hotdog
-	category = CAT_SANDWICH
+	removed_foodtypes = BREAKFAST
+	dish_category = DISH_SANDWICH
 
 /datum/crafting_recipe/food/danish_hotdog
 	name = "Danish hot dog"
@@ -73,7 +77,8 @@
 		/obj/item/food/grown/onion = 1,
 	)
 	result = /obj/item/food/danish_hotdog
-	category = CAT_SANDWICH
+	removed_foodtypes = BREAKFAST
+	dish_category = DISH_SANDWICH
 
 /datum/crafting_recipe/food/blt
 	name = "BLT"
@@ -84,7 +89,7 @@
 		/obj/item/food/grown/tomato = 1
 	)
 	result = /obj/item/food/sandwich/blt
-	category = CAT_SANDWICH
+	dish_category = DISH_SANDWICH
 
 /datum/crafting_recipe/food/peanut_butter_jelly_sandwich
 	name = "Peanut butter and jelly sandwich"
@@ -94,7 +99,8 @@
 		/datum/reagent/consumable/cherryjelly = 5
 	)
 	result = /obj/item/food/sandwich/peanut_butter_jelly
-	category = CAT_SANDWICH
+	added_foodtypes = FRUIT|NUTS
+	dish_category = DISH_SANDWICH
 
 /datum/crafting_recipe/food/peanut_butter_banana_sandwich
 	name = "Peanut butter and banana sandwich"
@@ -104,7 +110,8 @@
 		/obj/item/food/grown/banana = 1
 	)
 	result = /obj/item/food/sandwich/peanut_butter_banana
-	category = CAT_SANDWICH
+	added_foodtypes = NUTS
+	dish_category = DISH_SANDWICH
 
 /datum/crafting_recipe/food/philly_cheesesteak
 	name = "Philly Cheesesteak"
@@ -115,7 +122,7 @@
 		/obj/item/food/grown/onion = 1,
 	)
 	result = /obj/item/food/sandwich/philly_cheesesteak
-	category = CAT_SANDWICH
+	dish_category = DISH_SANDWICH
 
 /datum/crafting_recipe/food/death_sandwich
 	name = "Death Sandwich"
@@ -126,7 +133,7 @@
 		/obj/item/food/grown/tomato = 1,
 	)
 	result = /obj/item/food/sandwich/death
-	category = CAT_SANDWICH
+	dish_category = DISH_SANDWICH
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/food/toast_sandwich
@@ -136,4 +143,5 @@
 		/obj/item/food/butteredtoast = 1,
 	)
 	result = /obj/item/food/sandwich/toast_sandwich
-	category = CAT_SANDWICH
+	removed_foodtypes = BREAKFAST
+	dish_category = DISH_SANDWICH

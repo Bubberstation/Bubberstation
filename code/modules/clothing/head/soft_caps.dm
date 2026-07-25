@@ -21,7 +21,6 @@
 	..()
 
 /obj/item/clothing/head/soft/verb/flipcap()
-	set category = "Object"
 	set name = "Flip cap"
 
 	flip(usr)
@@ -83,15 +82,6 @@
 	soft_type = "grey"
 	dog_fashion = null
 
-/* A grey baseball cap that grants TRAIT_JOLLY when it's on your head.
- * Used for testing that gaining and losing the JOLLY trait behaves properly.
- * Also a perfectly valid weird admin reward.
- */
-/obj/item/clothing/head/soft/grey/jolly
-	name = "jolly grey cap"
-	desc = "It's a baseball hat in a sublime grey colour. Why, wearing this alone would boost a person's spirits!"
-	clothing_traits = list(TRAIT_JOLLY)
-
 /obj/item/clothing/head/soft/orange
 	name = "orange cap"
 	desc = "It's a baseball hat in a tasteless orange colour."
@@ -134,7 +124,7 @@
 	icon_state = "secsoft"
 	soft_type = "sec"
 	armor_type = /datum/armor/cosmetic_sec
-	strip_delay = 60
+	strip_delay = 6 SECONDS
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/veteran
@@ -143,7 +133,7 @@
 	icon_state = "veteransoft"
 	soft_type = "veteran"
 	armor_type = /datum/armor/cosmetic_sec
-	strip_delay = 60
+	strip_delay = 6 SECONDS
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/paramedic
@@ -175,7 +165,7 @@
 	. = ..()
 	AddComponent(/datum/component/speechmod, replacements = strings("crustacean_replacement.json", "crustacean")) //you asked for this.
 	AddElement(/datum/element/skill_reward, /datum/skill/fishing)
-	AddComponent(/datum/component/adjust_fishing_difficulty, -4)
+	AddElement(/datum/element/adjust_fishing_difficulty, -5)
 
 #define PROPHAT_MOOD "prophat"
 

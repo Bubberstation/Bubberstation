@@ -35,8 +35,6 @@
 	. = ..()
 	shield = new /obj/durand_shield(loc, src, plane, layer, dir)
 	RegisterSignal(src, COMSIG_MECHA_ACTION_TRIGGER, PROC_REF(relay))
-	RegisterSignal(src, COMSIG_PROJECTILE_PREHIT, PROC_REF(prehit))
-
 
 /obj/vehicle/sealed/mecha/durand/Destroy()
 	if(shield)
@@ -72,7 +70,7 @@
 	if(defense_mode)
 		var/datum/action/action = LAZYACCESSASSOC(occupant_actions, M, /datum/action/vehicle/sealed/mecha/mech_defense_mode)
 		if(action)
-			INVOKE_ASYNC(action, TYPE_PROC_REF(/datum/action, Trigger), FALSE)
+			INVOKE_ASYNC(action, TYPE_PROC_REF(/datum/action, Trigger), null, NONE, FALSE)
 	return ..()
 
 ///Relays the signal from the action button to the shield, and creates a new shield if the old one is MIA.
@@ -84,10 +82,10 @@
 	shield.setDir(dir)
 
 //Redirects projectiles to the shield if defense_check decides they should be blocked and returns true.
-/obj/vehicle/sealed/mecha/durand/proc/prehit(obj/projectile/source, list/signal_args)
-	SIGNAL_HANDLER
-	if(defense_check(source.loc) && shield)
-		signal_args[2] = shield
+/obj/vehicle/sealed/mecha/durand/projectile_hit(obj/projectile/hitting_projectile, def_zone, piercing_hit, blocked)
+	if(defense_check(hitting_projectile.loc) && shield)
+		return shield.projectile_hit(hitting_projectile, def_zone, piercing_hit, blocked)
+	return ..()
 
 /**Checks if defense mode is enabled, and if the attacker is standing in an area covered by the shield.
 Expects a turf. Returns true if the attack should be blocked, false if not.*/
@@ -124,10 +122,10 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 	else
 		. = ..()
 
-/obj/vehicle/sealed/mecha/durand/attackby(obj/item/W as obj, mob/user as mob, params)
+/obj/vehicle/sealed/mecha/durand/attackby(obj/item/W as obj, mob/user as mob, list/modifiers, list/attack_modifiers)
 	if(defense_check(user.loc))
 		log_message("Attack absorbed by defense field. Attacker - [user], with [W]", LOG_MECHA, color="orange")
-		shield.attackby(W, user, params)
+		shield.attackby(W, user, modifiers)
 	else
 		. = ..()
 
@@ -142,8 +140,11 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 	name = "Toggle an energy shield that blocks all attacks from the faced direction at a heavy power cost."
 	button_icon_state = "mech_defense_mode_off"
 
-/datum/action/vehicle/sealed/mecha/mech_defense_mode/Trigger(trigger_flags, forced_state = FALSE)
-	if(!owner || !chassis || !(owner in chassis.occupants))
+/datum/action/vehicle/sealed/mecha/mech_defense_mode/Trigger(mob/clicker, trigger_flags, forced_state = FALSE)
+	. = ..()
+	if(!.)
+		return
+	if(!chassis || !(owner in chassis.occupants))
 		return
 	SEND_SIGNAL(chassis, COMSIG_MECHA_ACTION_TRIGGER, owner, args) //Signal sent to the mech, to be handed to the shield. See durand.dm for more details
 
@@ -274,7 +275,7 @@ own integrity back to max. Shield is automatically dropped if we run out of powe
 	flick("shield_impact", src)
 	if(!.)
 		return
-	if(!chassis.use_energy(. * (STANDARD_CELL_CHARGE / 15)))
+	if(!chassis.use_energy(. * (STANDARD_CELL_CHARGE / 150)))
 		chassis.cell?.charge = 0
 		for(var/O in chassis.occupants)
 			var/mob/living/occupant = O

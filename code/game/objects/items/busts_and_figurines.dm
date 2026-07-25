@@ -109,7 +109,7 @@
 // Bully the guy for fucking up.
 /obj/item/statuebust/hippocratic/proc/fuck_it_up(mob/living/carbon/user)
 	to_chat(user, span_warning("You forget what comes next like a dumbass. The Hippocrates bust looks down on you, disappointed."))
-	user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2)
+	user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 2)
 	COOLDOWN_RESET(src, oath_cd)
 
 /obj/item/maneki_neko
@@ -128,8 +128,8 @@
 /obj/item/maneki_neko/Initialize(mapload)
 	. = ..()
 	//Not compatible with greyscale configs because it's animated.
-	color = pick_weight(list(COLOR_WHITE = 3, COLOR_GOLD = 2, COLOR_DARK = 1))
-	var/mutable_appearance/neko_overlay = mutable_appearance(icon, "maneki-neko-overlay", appearance_flags = RESET_COLOR)
+	add_atom_colour(pick_weight(list(COLOR_WHITE = 3, COLOR_GOLD = 2, COLOR_DARK = 1)), FIXED_COLOUR_PRIORITY)
+	var/mutable_appearance/neko_overlay = mutable_appearance(icon, "maneki-neko-overlay", appearance_flags = RESET_COLOR|KEEP_APART)
 	add_overlay(neko_overlay)
 	AddElement(/datum/element/art, GOOD_ART)
 	AddElement(/datum/element/beauty, 800)

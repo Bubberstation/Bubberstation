@@ -1,6 +1,7 @@
+import { Box, Button, Knob, Section } from 'tgui-core/components';
+
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { Box, Button, Knob, Section } from '../components';
 import { Window } from '../layouts';
 
 export const Minesweeper = (props, context) => {
@@ -32,7 +33,7 @@ export const MinesweeperContent = (props, context) => {
   } = data;
   return (
     <Section
-      title={'Minesweeper' + (emagged ? ' EXTREME EDITION' : '')}
+      title={`Minesweeper ${emagged ? ' EXTREME EDITION' : ''}`}
       color={emagged ? 'bad' : 'primary'}
       textAlign="center"
     >
@@ -52,9 +53,9 @@ export const MinesweeperContent = (props, context) => {
       <Box>
         {game_status !== 3 ? (
           board_data.map((xdata, xind) => (
-            <Box inline key={'outer' + xind}>
+            <Box inline key={`outer${xind}`}>
               {xdata.map((imagec, yind) => (
-                <Box key={xind + ',' + yind}>
+                <Box key={`${xind},${yind}`}>
                   {imagec ? (
                     <Box
                       lineHeight={0}

@@ -25,7 +25,7 @@
 	move_resist = 0
 	name = "pAI"
 	pass_flags = PASSTABLE | PASSMOB
-	pull_force = 0
+	pull_force = MOVE_FORCE_NONE
 	radio = /obj/item/radio/headset/silicon/pai
 	worn_slot_flags = ITEM_SLOT_HEAD
 
@@ -59,12 +59,8 @@
 	var/master_name
 	/// DNA string for owner verification
 	var/master_dna
-	/// Toggles whether the Medical  HUD is active or not
-	var/medHUD = FALSE
 	/// Used as currency to purchase different abilities
 	var/ram = 100
-	/// Toggles whether the Security HUD is active or not
-	var/secHUD = FALSE
 	/// The current leash to the owner
 	var/datum/component/leash/leash
 
@@ -123,20 +119,6 @@
 		"puppy" = TRUE,
 		"spider" = TRUE,
 	)
-	/// List of all available card overlays.
-	var/static/list/possible_overlays = list(
-		"null",
-		"angry",
-		"cat",
-		"extremely-happy",
-		"face",
-		"happy",
-		"laugh",
-		"off",
-		"sad",
-		"sunglasses",
-		"what"
-	)
 
 /mob/living/silicon/pai/add_sensors() //pAIs have to buy their HUDs
 	return
@@ -150,6 +132,9 @@
 
 // See software.dm for Topic()
 /mob/living/silicon/pai/can_perform_action(atom/target, action_bitflags)
+	if(!(action_bitflags & ALLOW_PAI))
+		to_chat(src, span_warning("Your holochasis does not allow you to do this!"))
+		return FALSE
 	action_bitflags |= ALLOW_RESTING // Resting is just an aesthetic feature for them
 	action_bitflags &= ~ALLOW_SILICON_REACH // They don't get long reach like the rest of silicons
 	return ..(target, action_bitflags)
@@ -188,7 +173,7 @@
 	//SKYRAT EDIT ADDITION END
 
 /mob/living/silicon/pai/get_status_tab_items()
-	. += ..()
+	. = ..()
 	if(!stat)
 		. += "Emitter Integrity: [holochassis_health * (100 / HOLOCHASSIS_MAX_HEALTH)]."
 	else
@@ -220,6 +205,7 @@
 
 /mob/living/silicon/pai/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/holographic_nature)
 	if(istype(loc, /obj/item/modular_computer))
 		give_messenger_ability()
 	START_PROCESSING(SSfastprocess, src)
@@ -233,15 +219,23 @@
 		pai_card.set_personality(src)
 	card = pai_card
 	forceMove(pai_card)
-	// BUBBER EDIT REMOVAL: PAI Freedom: ORIGINAL: leash = AddComponent(/datum/component/leash, pai_card, HOLOFORM_DEFAULT_RANGE, force_teleport_out_effect = /obj/effect/temp_visual/guardian/phase/out)
+	toggle_leash()
 	addtimer(VARSET_WEAK_CALLBACK(src, holochassis_ready, TRUE), HOLOCHASSIS_INIT_TIME)
 	if(!holoform)
 		add_traits(list(TRAIT_IMMOBILIZED, TRAIT_HANDS_BLOCKED), PAI_FOLDED)
 	update_appearance(UPDATE_DESC)
-
 	RegisterSignal(src, COMSIG_LIVING_CULT_SACRIFICED, PROC_REF(on_cult_sacrificed))
 	RegisterSignals(src, list(COMSIG_LIVING_ADJUST_BRUTE_DAMAGE, COMSIG_LIVING_ADJUST_BURN_DAMAGE), PROC_REF(on_shell_damaged))
 	RegisterSignal(src, COMSIG_LIVING_ADJUST_STAMINA_DAMAGE, PROC_REF(on_shell_weakened))
+	RegisterSignal(src, COMSIG_MOB_TRIED_ACCESS, PROC_REF(on_tried_access))
+
+/mob/living/silicon/pai/proc/toggle_leash()
+	if(isnull(card))
+		return
+	if(leash)
+		QDEL_NULL(leash)
+	else
+		leash = AddComponent(/datum/component/leash, card, HOLOFORM_DEFAULT_RANGE, force_teleport_out_effect = /obj/effect/temp_visual/guardian/phase/out)
 
 /mob/living/silicon/pai/create_modularInterface()
 	if(!modularInterface)
@@ -269,12 +263,12 @@
 /mob/living/silicon/pai/updatehealth()
 	if(HAS_TRAIT(src, TRAIT_GODMODE))
 		return
-	set_health(maxHealth - getBruteLoss() - getFireLoss())
+	set_health(maxHealth - get_brute_loss() - get_fire_loss())
 	update_stat()
 	SEND_SIGNAL(src, COMSIG_LIVING_HEALTH_UPDATE)
 
 /mob/living/silicon/pai/update_desc(updates)
-	desc = "A pAI mobile hard-light holographics emitter. This one appears in the form of a [chassis]." // BUBBER EDIT: PAI Freedom: ORIGINAL: desc = "A hard-light holographic avatar representing a pAI. This one appears in the form of a [chassis]."
+	desc = "A hard-light holographic avatar representing a pAI. This one appears in the form of a [chassis]."
 	return ..()
 
 /mob/living/silicon/pai/update_icon_state()
@@ -327,12 +321,8 @@
  * 	or FALSE if the pAI is not being carried.
  */
 /mob/living/silicon/pai/proc/get_holder()
-	var/mob/living/carbon/holder
-	if(!holoform && iscarbon(card.loc))
-		holder = card.loc
-	if(holoform && ispickedupmob(loc) && iscarbon(loc.loc))
-		holder = loc.loc
-	if(!holder || !iscarbon(holder))
+	var/mob/holder = recursive_loc_check(card, /mob/living/carbon)
+	if(isnull(holder))
 		return FALSE
 	return holder
 
@@ -355,9 +345,7 @@
 	master_dna = "Untraceable Signature"
 	// Sets supplemental directive to this
 	add_supplied_law(0, "Do not interfere with the operations of the Syndicate.")
-	QDEL_NULL(leash) // Freedom!!!
 	to_chat(src, span_danger("ALERT: Foreign software detected."))
-	to_chat(src, span_danger("WARN: Holochasis range restrictions disabled."))
 	return TRUE
 
 /mob/living/silicon/pai/on_saboteur(datum/source, disrupt_duration)
@@ -401,7 +389,7 @@
 	master_ref = WEAKREF(master)
 	master_name = master.real_name
 	master_dna = master.dna.unique_enzymes
-	to_chat(src, span_boldannounce("You have been bound to a new master: [user.real_name]!"))
+	to_chat(src, span_bolddanger("You have been bound to a new master: [user.real_name]!"))
 	holochassis_ready = TRUE
 	return TRUE
 
@@ -485,9 +473,6 @@
 
 /// Updates the distance we can be from our pai card
 /mob/living/silicon/pai/proc/increment_range(increment_amount)
-	if(!leash) // BUBBER EDIT: PAI Freedom: ORIGINAL: if(emagged)
-		return
-
 	var/new_distance = leash.distance + increment_amount
 	if (new_distance < HOLOFORM_MIN_RANGE || new_distance > HOLOFORM_MAX_RANGE)
 		return
@@ -503,3 +488,11 @@
 /mob/living/silicon/pai/proc/remove_messenger_ability()
 	if(messenger_ability)
 		messenger_ability.Remove(src)
+
+/mob/living/silicon/pai/get_access()
+	return list()
+
+///Called when a pAI tries opening something that requires access.
+/mob/living/silicon/pai/proc/on_tried_access(datum/source, obj/door_attempt, list/player_access)
+	SIGNAL_HANDLER
+	return ACCESS_DISALLOWED

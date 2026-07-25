@@ -15,7 +15,8 @@
 	growthstages = 2
 	icon_grow = "grass-grow"
 	icon_dead = "grass-dead"
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/safe_instability)
+	graft_gene = /datum/plant_gene/trait/safe_instability
 	mutatelist = list(/obj/item/seeds/grass/carpet, /obj/item/seeds/grass/fairy)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.02, /datum/reagent/hydrogen = 0.05)
 
@@ -40,6 +41,9 @@
 	new stacktype(user.drop_location(), grassAmt)
 	qdel(src)
 
+/obj/item/food/grown/grass/make_dryable()
+	AddElement(/datum/element/dryable, /obj/item/stack/tile/hay)
+
 //Fairygrass
 /obj/item/seeds/grass/fairy
 	name = "fairygrass seed pack"
@@ -50,7 +54,7 @@
 	product = /obj/item/food/grown/grass/fairy
 	icon_grow = "fairygrass-grow"
 	icon_dead = "fairygrass-dead"
-	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/glow/blue)
+	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/glow/blue, /datum/plant_gene/trait/safe_instability)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.02, /datum/reagent/hydrogen = 0.05, /datum/reagent/drug/space_drugs = 0.15)
 	graft_gene = /datum/plant_gene/trait/glow/blue
 	mutatelist = null
@@ -58,7 +62,7 @@
 /obj/item/food/grown/grass/fairy
 	seed = /obj/item/seeds/grass/fairy
 	name = "fairygrass"
-	desc = "Blue, glowing, and smells fainly of mushrooms."
+	desc = "Blue, glowing, and smells faintly of mushrooms."
 	icon_state = "fairygrassclump"
 	bite_consumption_mod = 1
 	stacktype = /obj/item/stack/tile/fairygrass

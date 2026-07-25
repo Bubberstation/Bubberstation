@@ -61,7 +61,7 @@
 	return span_notice("[owner.p_Theyre()] glowing a soft white.")
 
 /datum/status_effect/realignment/on_apply()
-	owner.add_traits(realignment_traits, id)
+	owner.add_traits(realignment_traits, TRAIT_STATUS_EFFECT(id))
 	owner.add_filter(id, 2, list("type" = "outline", "color" = "#d6e3e7", "size" = 2))
 	var/filter = owner.get_filter(id)
 	animate(filter, alpha = 127, time = 1 SECONDS, loop = -1)
@@ -69,11 +69,11 @@
 	return TRUE
 
 /datum/status_effect/realignment/on_remove()
-	owner.remove_traits(realignment_traits, id)
+	owner.remove_traits(realignment_traits, TRAIT_STATUS_EFFECT(id))
 	owner.remove_filter(id)
 
 /datum/status_effect/realignment/tick(seconds_between_ticks)
-	owner.adjustStaminaLoss(-10)
+	owner.adjust_stamina_loss(-10)
 	owner.AdjustAllImmobility(-1 SECONDS)
 
 /atom/movable/screen/alert/status_effect/realignment

@@ -1,9 +1,11 @@
-#define PURPLE_LIGHT "#9F79F2"
-#define PURPLE_DARK "#6141A6"
-#define ORANGE_LIGHT "#F27F1B"
-#define ORANGE_DARK "#F24F13"
-#define GREY_LIGHT "#FFFFFF"
-#define GREY_DARK "#292929"
+#define COLOR_PURPLE_LIGHT "#9F79F2"
+#define COLOR_PURPLE_DARK "#6141A6"
+#define COLOR_ORANGE_LIGHT "#F27F1B"
+#define COLOR_ORANGE_DARK "#F24F13"
+#define COLOR_GREY_LIGHT "#FFFFFF"
+#define COLOR_GREY_DARK "#292929"
+
+#define COLOR_PRIDE_WHITE "#FFFFFF"
 
 /datum/holiday/proc/queue_storyteller_celebration(datum/round_event/event, datum/round_event_control/control)
 	if(isnull(event) || isnull(control))
@@ -29,7 +31,7 @@
 
 /datum/holiday/halloween
 	name = HALLOWEEN
-	begin_day = 17
+	begin_day = 1 // A whole spooktacular month!
 	holiday_colors = list()
 
 /datum/holiday/halloween/New()
@@ -38,50 +40,50 @@
 	switch(palette)
 		if(1, 2)
 			holiday_colors += list(
-				PURPLE_LIGHT,
-				PURPLE_DARK,
-				GREY_DARK,
-				ORANGE_DARK,
-				ORANGE_LIGHT,
-				GREY_LIGHT,
+				COLOR_PURPLE_LIGHT,
+				COLOR_PURPLE_DARK,
+				COLOR_GREY_DARK,
+				COLOR_ORANGE_DARK,
+				COLOR_ORANGE_LIGHT,
+				COLOR_GREY_LIGHT,
 			)
 		if(3)
 			holiday_colors += list(
-				PURPLE_LIGHT,
-				ORANGE_LIGHT,
-				GREY_LIGHT,
+				COLOR_PURPLE_LIGHT,
+				COLOR_ORANGE_LIGHT,
+				COLOR_GREY_LIGHT,
 			)
 		if(4)
 			holiday_colors += list(
-				PURPLE_DARK,
-				ORANGE_DARK,
-				GREY_DARK,
+				COLOR_PURPLE_DARK,
+				COLOR_ORANGE_DARK,
+				COLOR_GREY_DARK,
 			)
 		if(5)
 			holiday_colors += list(
-				pick(GREY_LIGHT, GREY_DARK),
-				pick(PURPLE_LIGHT, PURPLE_DARK),
-				pick(ORANGE_LIGHT, ORANGE_DARK),
+				pick(COLOR_GREY_LIGHT, COLOR_GREY_DARK),
+				pick(COLOR_PURPLE_LIGHT, COLOR_PURPLE_DARK),
+				pick(COLOR_ORANGE_LIGHT, COLOR_ORANGE_DARK),
 			)
 		if(6)
 			holiday_colors += list(
-				pick(GREY_LIGHT, GREY_DARK),
-				pick(PURPLE_LIGHT, PURPLE_DARK),
+				pick(COLOR_GREY_LIGHT, COLOR_GREY_DARK),
+				pick(COLOR_PURPLE_LIGHT, COLOR_PURPLE_DARK),
 			)
 		if(7)
 			holiday_colors += list(
-				pick(GREY_LIGHT, GREY_DARK),
-				pick(ORANGE_LIGHT, ORANGE_DARK),
+				pick(COLOR_GREY_LIGHT, COLOR_GREY_DARK),
+				pick(COLOR_ORANGE_LIGHT, COLOR_ORANGE_DARK),
 			)
 		if(8)
 			holiday_colors += list(
-				pick(PURPLE_LIGHT, PURPLE_DARK),
-				pick(ORANGE_LIGHT, ORANGE_DARK),
+				pick(COLOR_PURPLE_LIGHT, COLOR_PURPLE_DARK),
+				pick(COLOR_ORANGE_LIGHT, COLOR_ORANGE_DARK),
 			)
 		if(9)
-			holiday_colors += list(PURPLE_LIGHT, ORANGE_LIGHT)
+			holiday_colors += list(COLOR_PURPLE_LIGHT, COLOR_ORANGE_LIGHT)
 		if(10)
-			holiday_colors += list(PURPLE_DARK, ORANGE_DARK)
+			holiday_colors += list(COLOR_PURPLE_DARK, COLOR_ORANGE_DARK)
 		if(11)
 			holiday_colors = list(
 				COLOR_PRIDE_PURPLE,
@@ -92,13 +94,13 @@
 				COLOR_PRIDE_RED,
 			)
 		if(12)
-			holiday_colors += PURPLE_LIGHT
+			holiday_colors += COLOR_PURPLE_LIGHT
 		if(13)
-			holiday_colors += ORANGE_LIGHT
+			holiday_colors += COLOR_ORANGE_LIGHT
 		if(14)
-			holiday_colors += PURPLE_DARK
+			holiday_colors += COLOR_PURPLE_DARK
 		if(15)
-			holiday_colors += ORANGE_DARK
+			holiday_colors += COLOR_ORANGE_DARK
 
 /datum/holiday/halloween/celebrate()
 	. = ..()
@@ -107,7 +109,7 @@
 /datum/holiday/xmas
 	name = CHRISTMAS
 	begin_day = 18
-	mail_holiday = FALSE
+	no_mail_holiday = FALSE
 	holiday_colors = list()
 
 /datum/holiday/xmas/New()
@@ -123,17 +125,17 @@
 			holiday_colors += list(
 				COLOR_CHRISTMAS_GREEN,
 				COLOR_CHRISTMAS_RED,
-				GREY_LIGHT,
+				COLOR_GREY_LIGHT,
 			)
 		if(7, 8)
 			holiday_colors += list(
 				COLOR_CHRISTMAS_GREEN,
-				GREY_LIGHT,
+				COLOR_GREY_LIGHT,
 			)
 		if(9, 10)
 			holiday_colors += list(
 				COLOR_CHRISTMAS_RED,
-				GREY_LIGHT,
+				COLOR_GREY_LIGHT,
 			)
 		if(11)
 			holiday_colors += list(
@@ -145,9 +147,14 @@
 				COLOR_PRIDE_RED,
 			)
 
-#undef PURPLE_LIGHT
-#undef PURPLE_DARK
-#undef ORANGE_LIGHT
-#undef ORANGE_DARK
-#undef GREY_LIGHT
-#undef GREY_DARK
+/datum/holiday/pride_week
+	begin_day = 1
+
+#undef COLOR_PURPLE_LIGHT
+#undef COLOR_PURPLE_DARK
+#undef COLOR_ORANGE_LIGHT
+#undef COLOR_ORANGE_DARK
+#undef COLOR_GREY_LIGHT
+#undef COLOR_GREY_DARK
+
+#undef COLOR_PRIDE_WHITE

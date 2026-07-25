@@ -2,10 +2,12 @@
 	id = "tower_of_babel"
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/tower_of_babel
-	var/trait_source = STATUS_EFFECT_TRAIT
+	var/trait_source
 
 /datum/status_effect/tower_of_babel/on_creation(mob/living/new_owner, duration = 15 SECONDS)
 	src.duration = duration
+	if(isnull(trait_source))
+		trait_source = TRAIT_STATUS_EFFECT(id)
 	return ..()
 
 /datum/status_effect/tower_of_babel/on_apply()
@@ -32,7 +34,7 @@
 // Used by wizard magic and tower of babel event
 /datum/status_effect/tower_of_babel/magical
 	id = "tower_of_babel_magic" // do we need a new id?
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	trait_source = TRAUMA_TRAIT
 
 /datum/status_effect/tower_of_babel/magical/on_apply()
@@ -54,4 +56,5 @@
 /atom/movable/screen/alert/status_effect/tower_of_babel
 	name = "Tower of babel"
 	desc = "You seem to be babbling in a strange language..."
-	icon_state = "mind_control"
+	use_user_hud_icon = USER_HUD_STYLE_INHERIT
+	overlay_state = "mind_control"

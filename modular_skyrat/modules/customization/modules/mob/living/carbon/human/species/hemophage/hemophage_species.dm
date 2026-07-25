@@ -10,21 +10,20 @@
 		TRAIT_CAN_STRIP,
 		TRAIT_NOHUNGER,
 		TRAIT_NOBREATH,
-		TRAIT_OXYIMMUNE,
 		TRAIT_VIRUSIMMUNE,
 		TRAIT_LITERATE,
 		TRAIT_DRINKS_BLOOD,
 	)
 	inherent_biotypes = MOB_HUMANOID | MOB_ORGANIC
 	exotic_bloodtype = "U"
-	mutantheart = /obj/item/organ/internal/heart/hemophage
-	mutantliver = /obj/item/organ/internal/liver/hemophage
-	mutantstomach = /obj/item/organ/internal/stomach/hemophage
-	mutanttongue = /obj/item/organ/internal/tongue/hemophage
+	mutantheart = /obj/item/organ/heart/hemophage
+	mutantliver = /obj/item/organ/liver/hemophage
+	mutantstomach = /obj/item/organ/stomach/hemophage
+	mutanttongue = /obj/item/organ/tongue/hemophage
 	mutantlungs = null
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	examine_limb_id = SPECIES_HUMAN
-	skinned_type = /obj/item/stack/sheet/animalhide/human
+	skinned_type = /obj/item/stack/sheet/animalhide/carbon/human
 
 /datum/species/hemophage/allows_food_preferences()
 	return FALSE
@@ -40,7 +39,7 @@
 
 	return ..()
 
-/datum/species/hemophage/on_species_gain(mob/living/carbon/human/new_hemophage, datum/species/old_species, pref_load)
+/datum/species/hemophage/on_species_gain(mob/living/carbon/human/new_hemophage, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	to_chat(new_hemophage, HEMOPHAGE_SPAWN_TEXT)
 	new_hemophage.update_body()
@@ -104,12 +103,12 @@
 
 
 /datum/species/hemophage/prepare_human_for_preview(mob/living/carbon/human/human)
-	human.skin_tone = "albino"
+	human.dna.features["mcolor"] = "#fff4e6"
+	human.set_eye_color(COLOR_RED)
 	human.hair_color = "#1d1d1d"
-	human.hairstyle = "Pompadour (Big)"
+	human.hairstyle = "Royal Curls"
 	regenerate_organs(human, src, visual_only = TRUE)
 	human.update_body(TRUE)
-
 
 /datum/species/hemophage/create_pref_unique_perks()
 	var/list/to_add = list()
@@ -177,3 +176,6 @@
 
 
 #undef HEMOPHAGE_SPAWN_TEXT
+
+/mob/living/carbon/human/species/hemophage //Why was this never added?
+	race = /datum/species/hemophage

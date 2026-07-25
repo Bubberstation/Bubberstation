@@ -38,6 +38,7 @@
 						/obj/item/restraints/handcuffs/lewd,
 						/obj/item/reagent_containers/cup/lewd_filter,
 						/obj/item/assembly/signaler, //because it's used for several toys
+						/obj/item/clicker,
 
 						//clothing
 						/obj/item/clothing/mask/ballgag,
@@ -75,16 +76,17 @@
 						/obj/item/clothing/shoes/latex_socks,
 						/obj/item/clothing/shoes/latex_heels,
 						/obj/item/clothing/shoes/latex_heels/domina_heels,
+						/obj/item/clothing/shoes/latex_heels/ballet_heels,
 
 						//belt
 						/obj/item/clothing/strapon,
 
 						//chems
-						/obj/item/reagent_containers/pill/crocin,
-						/obj/item/reagent_containers/pill/camphor,
+						/obj/item/reagent_containers/applicator/pill/crocin,
+						/obj/item/reagent_containers/applicator/pill/camphor,
 						/obj/item/reagent_containers/cup/bottle/succubus_milk,
 						/obj/item/reagent_containers/cup/bottle/incubus_draft,
-						/obj/item/reagent_containers/pill/hexacrocin,
-						/obj/item/reagent_containers/pill/pentacamphor,
+						/obj/item/reagent_containers/applicator/pill/hexacrocin,
+						/obj/item/reagent_containers/applicator/pill/pentacamphor,
 						/obj/item/reagent_containers/cup/bottle/hexacrocin,
 						/obj/item/reagent_containers/cup/bottle/pentacamphor))

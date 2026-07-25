@@ -12,8 +12,8 @@ LINEN BINS
 	righthand_file = 'icons/mob/inhands/items/bedsheet_righthand.dmi'
 	icon_state = "sheetwhite"
 	inhand_icon_state = "sheetwhite"
-	drop_sound = 'sound/items/handling/cloth_drop.ogg'
-	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
+	drop_sound = SFX_CLOTH_DROP
+	pickup_sound = SFX_CLOTH_PICKUP
 	slot_flags = ITEM_SLOT_NECK
 	layer = BELOW_MOB_LAYER
 	throwforce = 0
@@ -37,7 +37,7 @@ LINEN BINS
 
 /obj/item/bedsheet/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/surgery_initiator)
+	AddElement(/datum/element/surgery_aid, "bedsheet")
 	AddElement(/datum/element/bed_tuckable, mapload, 0, 0, 0)
 	if(bedsheet_type == BEDSHEET_DOUBLE)
 		stack_amount *= 2
@@ -65,10 +65,9 @@ LINEN BINS
 	var/mob/living/to_cover = interacting_with
 	if(to_cover.body_position != LYING_DOWN)
 		return ITEM_INTERACT_BLOCKING
-	if(!user.dropItemToGround(src))
+	if(!user.transfer_item_to_turf(src, get_turf(to_cover)))
 		return ITEM_INTERACT_BLOCKING
 
-	forceMove(get_turf(to_cover))
 	balloon_alert(user, "covered")
 	coverup(to_cover)
 	add_fingerprint(user)
@@ -93,11 +92,11 @@ LINEN BINS
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/bedsheet/attack_self(mob/living/user)
-	if(!user.CanReach(src)) //No telekinetic grabbing.
+	if(!IsReachableBy(user)) //No telekinetic grabbing.
 		return
 	if(user.body_position != LYING_DOWN)
 		return
-	if(!user.dropItemToGround(src))
+	if(!user.transfer_item_to_turf(src, get_turf(src)))
 		return
 
 	coverup(user)
@@ -582,6 +581,7 @@ LINEN BINS
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
 	anchored_tabletop_offset = 6
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
 	/// The number of bedsheets in the bin
 	var/amount = 10
 	/// A list of actual sheets within the bin

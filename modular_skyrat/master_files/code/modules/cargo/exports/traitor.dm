@@ -1,3 +1,6 @@
+/datum/export/traitor
+	abstract_type = /datum/export/traitor
+
 /datum/export/traitor/edagger
 	cost = CARGO_CRATE_VALUE * 5
 	unit_name = "low value contraband"

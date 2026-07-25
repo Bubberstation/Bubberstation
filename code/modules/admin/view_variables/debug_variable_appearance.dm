@@ -23,7 +23,7 @@
 		display_value = "[display_value]:[icon_state]"
 
 	var/display_ref = get_vv_link_ref()
-	return "<a href='?_src_=vars;[HrefToken()];Vars=[display_ref]'>[display_name] (<span class='value'>[display_value]</span>) [display_ref]</a>"
+	return "<a href='byond://?_src_=vars;[HrefToken()];Vars=[display_ref]'>[display_name] (<span class='value'>[display_value]</span>) [display_ref]</a>"
 
 /// Returns the ref string to use when displaying this image in the vv menu of something else
 /image/proc/get_vv_link_ref()
@@ -34,22 +34,10 @@
 /mutable_appearance/appearance_mirror
 	// So people can see where it came from
 	var/appearance_ref
-	// vis flags can't be displayed by mutable appearances cause it don't make sense as overlays, but appearances do carry them
-	// can't use the name either for byond reasons
-	var/_vis_flags
-
-#if (MIN_COMPILER_VERSION > 515 || MIN_COMPILER_BUILD > 1643)
-#warn vis_flags should now be supported by mutable appearances so we can safely remove the weird copying in this code
-#endif
-// all alone at the end of the universe
-GLOBAL_DATUM_INIT(pluto, /atom/movable, new /atom/movable(null))
 
 // arg is actually an appearance, typed as mutable_appearance as closest mirror
 /mutable_appearance/appearance_mirror/New(mutable_appearance/appearance_father)
 	. = ..() // /mutable_appearance/New() copies over all the appearance vars MAs care about by default
-	// We copy over our appearance onto an atom. This is done so we can read vars carried by but not accessible on appearances
-	GLOB.pluto.appearance = appearance_father
-	_vis_flags = GLOB.pluto.vis_flags
 	appearance_ref = REF(appearance_father)
 
 // This means if the appearance loses refs before a click it's gone, but that's consistent to other datums so it's fine
@@ -66,27 +54,6 @@ GLOBAL_DATUM_INIT(pluto, /atom/movable, new /atom/movable(null))
 		return FALSE
 	if(var_name == NAMEOF(src, realized_underlays))
 		return FALSE
-
-#if (MIN_COMPILER_VERSION >= 515 && MIN_COMPILER_BUILD >= 1643)
-#warn X/Y/Z and contents are now fully unviewable on our supported versions, remove the below check
-#endif
-
-// lummy removed these from the the MA/image type
-#if (DM_VERSION <= 515 && DM_BUILD < 1643)
-	// Filtering out the stuff I know we don't care about
-	if(var_name == NAMEOF(src, x))
-		return FALSE
-	if(var_name == NAMEOF(src, y))
-		return FALSE
-	if(var_name == NAMEOF(src, z))
-		return FALSE
-	#ifndef SPACEMAN_DMM // Spaceman doesn't believe in contents on appearances, sorry lads
-	if(var_name == NAMEOF(src, contents))
-		return FALSE
-	#endif
-	if(var_name == NAMEOF(src, loc))
-		return FALSE
-#endif
 	// Could make an argument for this but I think they will just confuse people, so yeeet
 	if(var_name == NAMEOF(src, vis_contents))
 		return FALSE
@@ -97,16 +64,21 @@ GLOBAL_DATUM_INIT(pluto, /atom/movable, new /atom/movable(null))
 	var/value = vars[var_name]
 	return "<li style='backgroundColor:white'>(READ ONLY) [var_name] = [_debug_variable_value(var_name, value, 0, src, sanitize = TRUE, display_flags = NONE)]</li>"
 
+/mutable_appearance/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION(VV_HK_DEBUG_APPEARANCE, "Debug Appearance")
+
 /mutable_appearance/appearance_mirror/vv_get_dropdown()
 	SHOULD_CALL_PARENT(FALSE)
 
 	. = list()
-	VV_DROPDOWN_OPTION("", "---")
+	VV_DROPDOWN_OPTION("", "--- /appearance_mirror ---")
 	VV_DROPDOWN_OPTION(VV_HK_CALLPROC, "Call Proc")
 	VV_DROPDOWN_OPTION(VV_HK_MARK, "Mark Object")
 	VV_DROPDOWN_OPTION(VV_HK_TAG, "Tag Datum")
 	VV_DROPDOWN_OPTION(VV_HK_DELETE, "Delete")
 	VV_DROPDOWN_OPTION(VV_HK_EXPOSE, "Show VV To Player")
+	VV_DROPDOWN_OPTION(VV_HK_DEBUG_APPEARANCE, "Debug Appearance")
 
 /proc/get_vv_appearance(mutable_appearance/appearance) // actually appearance yadeeyada
 	return new /mutable_appearance/appearance_mirror(appearance)

@@ -31,26 +31,30 @@
 
 //debug printing macros (for development and testing)
 /// Used for debug messages to the world
-#define debug_world(msg) if (GLOB.Debug2) to_chat(world, \
+#define debug_world(msg) if (GLOB.debugging_enabled) to_chat(world, \
 	type = MESSAGE_TYPE_DEBUG, \
 	text = "DEBUG: [msg]")
 /// Used for debug messages to the player
-#define debug_usr(msg) if (GLOB.Debug2 && usr) to_chat(usr, \
+#define debug_usr(msg) if (GLOB.debugging_enabled && usr) to_chat(usr, \
 	type = MESSAGE_TYPE_DEBUG, \
 	text = "DEBUG: [msg]")
 /// Used for debug messages to the admins
-#define debug_admins(msg) if (GLOB.Debug2) to_chat(GLOB.admins, \
+#define debug_admins(msg) if (GLOB.debugging_enabled) to_chat(GLOB.admins, \
 	type = MESSAGE_TYPE_DEBUG, \
 	text = "DEBUG: [msg]")
 /// Used for debug messages to the server
-#define debug_world_log(msg) if (GLOB.Debug2) log_world("DEBUG: [msg]")
+#define debug_world_log(msg) if (GLOB.debugging_enabled) log_world("DEBUG: [msg]")
 /// Adds a generic box around whatever message you're sending in chat. Really makes things stand out.
-#define examine_block(str) ("<div class='examine_block'>" + str + "</div>")
-/// Makes a fieldset with a name in the middle top part. Can apply additional classes
-#define fieldset_block(title, content, classes) ("<fieldset class='" + classes + "'><legend align='center' style='max-width: 95%; text-align: center;'><div style='margin: 0em 0.2em -0.4em 0.2em;' >" + title + "</div></legend>" + content + "</fieldset>")
+#define boxed_message(str) ("<div class='boxed_message'>" + str + "</div>")
+/// Adds a box around whatever message you're sending in chat. Can apply color and/or additional classes. Available colors: red, green, blue, purple. Use it like red_box
+#define custom_boxed_message(classes, str) ("<div class='boxed_message " + classes + "'>" + str + "</div>")
+/// Makes a fieldset with a neaty styled name. Can apply additional classes.
+#define fieldset_block(title, content, classes) ("<fieldset class='fieldset " + classes + "'><legend class='fieldset_legend'>" + title + "</legend>" + content + "</fieldset>")
 /// Makes a horizontal line with text in the middle
 #define separator_hr(str) ("<div class='separator'>" + str + "</div>")
 /// Emboldens runechat messages
 #define RUNECHAT_BOLD(str) "+[str]+"
 /// Helper which creates a chat message which may have a tooltip in some contexts, but not others.
 #define conditional_tooltip(normal_text, tooltip_text, condition) ((condition) ? (span_tooltip(tooltip_text, normal_text)) : (normal_text))
+/// Displays a character headshot in chat examine output.
+#define chat_headshot(str) ("<div class='chat_headshot'><img src='" + str + "' alt='Character headshot'/></div>")

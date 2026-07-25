@@ -10,7 +10,7 @@
 		BB_WASH_FRUSTRATION = 0,
 	)
 	planning_subtrees = list(
-		/datum/ai_planning_subtree/manage_unreachable_list,
+		/datum/ai_planning_subtree/escape_captivity/pacifist,
 		/datum/ai_planning_subtree/respond_to_summon,
 		/datum/ai_planning_subtree/handle_trash_talk,
 		/datum/ai_planning_subtree/wash_people,
@@ -66,7 +66,7 @@
 /datum/ai_behavior/find_valid_wash_targets
 	action_cooldown = 5 SECONDS
 
-/datum/ai_behavior/find_valid_wash_targets/perform(seconds_per_tick, datum/ai_controller/controller, target_key, our_access_flags)
+/datum/ai_behavior/find_valid_wash_targets/perform(seconds_per_tick, datum/ai_controller/basic_controller/bot/controller, target_key, our_access_flags)
 	. = ..()
 	var/list/ignore_list = controller.blackboard[BB_TEMPORARY_IGNORE_LIST]
 	var/atom/found_target
@@ -81,12 +81,19 @@
 		if(LAZYACCESS(ignore_list, wash_potential))
 			continue
 
+
+		// BUBBER EDIT ADDITION BEGIN - Dirty quirk
+		if (HAS_TRAIT(wash_potential, TRAIT_DIRTY))
+			found_target = wash_potential
+			break
+		// BUGGER EDIT ADDITION END
+
 		if(our_access_flags & BOT_COVER_EMAGGED)
-			controller.set_blackboard_key_assoc_lazylist(BB_TEMPORARY_IGNORE_LIST, wash_potential, TRUE)
+			controller.add_to_blacklist(wash_potential)
 			found_target = wash_potential
 			break
 
-		for(var/atom/clothing in wash_potential.get_equipped_items())
+		for(var/atom/clothing in wash_potential.get_equipped_items(INCLUDE_HELD|INCLUDE_PROSTHETICS))
 			if(GET_ATOM_BLOOD_DNA_LENGTH(clothing))
 				found_target = wash_potential
 				break

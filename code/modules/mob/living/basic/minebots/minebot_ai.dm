@@ -32,7 +32,6 @@
 		/datum/ai_planning_subtree/minebot_mining,
 		/datum/ai_planning_subtree/locate_dead_humans,
 	)
-	ai_traits = PAUSE_DURING_DO_AFTER
 
 /datum/ai_planning_subtree/launch_missiles
 
@@ -48,7 +47,7 @@
 
 /datum/ai_behavior/find_and_set/clear_bombing_zone
 
-/datum/ai_behavior/find_and_set/clear_bombing_zone/search_tactic(datum/ai_controller/controller, locate_path, search_range)
+/datum/ai_behavior/find_and_set/clear_bombing_zone/search_tactic(datum/ai_controller/controller, locate_path, search_range = SEARCH_TACTIC_DEFAULT_RANGE)
 	for(var/obj/effect/temp_visual/minebot_target/target in oview(search_range, controller.pawn))
 		if(isclosedturf(get_turf(target)))
 			continue
@@ -63,7 +62,7 @@
 
 /datum/ai_behavior/find_and_set/miner_to_befriend
 
-/datum/ai_behavior/find_and_set/miner_to_befriend/search_tactic(datum/ai_controller/controller, locate_path, search_range)
+/datum/ai_behavior/find_and_set/miner_to_befriend/search_tactic(datum/ai_controller/controller, locate_path, search_range = SEARCH_TACTIC_DEFAULT_RANGE)
 	for(var/mob/living/carbon/human/target in oview(search_range, controller.pawn))
 		if(HAS_TRAIT(target, TRAIT_ROCK_STONER))
 			return target
@@ -75,7 +74,7 @@
 		controller.queue_behavior(/datum/ai_behavior/find_and_set, BB_DRONE_DEFEND, /mob/living/basic/node_drone)
 		return
 	var/mob/living/living_pawn = controller.pawn
-	if(!living_pawn.faction.Find(REF(target)))
+	if(!living_pawn.has_ally(target))
 		controller.queue_behavior(/datum/ai_behavior/befriend_target, BB_DRONE_DEFEND)
 		return
 	if(target.health < (target.maxHealth * 0.75) && controller.blackboard[BB_MINEBOT_REPAIR_DRONE])
@@ -113,7 +112,7 @@
 		return SUBTREE_RETURN_FINISH_PLANNING
 	controller.queue_behavior(/datum/ai_behavior/find_and_set/unconscious_human, BB_NEARBY_DEAD_MINER, /mob/living/carbon/human)
 
-/datum/ai_behavior/find_and_set/unconscious_human/search_tactic(datum/ai_controller/controller, locate_path, search_range)
+/datum/ai_behavior/find_and_set/unconscious_human/search_tactic(datum/ai_controller/controller, locate_path, search_range = SEARCH_TACTIC_DEFAULT_RANGE)
 	for(var/mob/living/carbon/human/target in oview(search_range, controller.pawn))
 		if(target.stat >= UNCONSCIOUS && target.mind)
 			return target
@@ -281,13 +280,15 @@
 /datum/pet_command/automate_mining
 	command_name = "Automate mining"
 	command_desc = "Make your minebot automatically mine!"
-	radial_icon = 'icons/obj/mining.dmi'
-	radial_icon_state = "pickaxe"
+	radial_icon_state = "mine"
 	speech_commands = list("mine")
 	callout_type = /datum/callout_option/mine
 
-/datum/pet_command/automate_mining/valid_callout_target(mob/living/caller, datum/callout_option/callout, atom/target)
+/datum/pet_command/automate_mining/valid_callout_target(mob/living/speaker, datum/callout_option/callout, atom/target)
 	return ismineralturf(target)
+
+/datum/pet_command/automate_mining/retrieve_command_text(atom/living_pet, atom/target)
+	return "signals [living_pet] to start mining!"
 
 /datum/pet_command/automate_mining/execute_action(datum/ai_controller/controller)
 	controller.set_blackboard_key(BB_AUTOMATED_MINING, TRUE)
@@ -315,6 +316,9 @@
 	radial_icon_state = "mech_lights_off"
 	ability_key = BB_MINEBOT_LIGHT_ABILITY
 
+/datum/pet_command/minebot_ability/light/retrieve_command_text(atom/living_pet, atom/target)
+	return "signals [living_pet] to toggle its lights!"
+
 /datum/pet_command/minebot_ability/dump
 	command_name = "Dump ore"
 	command_desc = "Make your minebot dump all its ore!"
@@ -322,10 +326,13 @@
 	radial_icon_state = "mech_eject"
 	ability_key = BB_MINEBOT_DUMP_ABILITY
 
-/datum/pet_command/point_targeting/attack/minebot
+/datum/pet_command/minebot_ability/dump/retrieve_command_text(atom/living_pet, atom/target)
+	return "signals [living_pet] to dump its ore!"
+
+/datum/pet_command/attack/minebot
 	attack_behaviour = /datum/ai_behavior/basic_ranged_attack/minebot
 
-/datum/pet_command/point_targeting/attack/minebot/execute_action(datum/ai_controller/controller)
+/datum/pet_command/attack/minebot/execute_action(datum/ai_controller/controller)
 	controller.set_blackboard_key(BB_AUTOMATED_MINING, FALSE)
 	var/mob/living/living_pawn = controller.pawn
 	if(!living_pawn.combat_mode)
@@ -342,9 +349,10 @@
 
 /datum/pet_command/protect_owner/minebot/set_command_target(mob/living/parent, atom/target)
 	if(!parent.ai_controller.blackboard[BB_MINEBOT_AUTO_DEFEND])
-		return
+		return FALSE
 	if(!parent.ai_controller.blackboard_key_exists(BB_BASIC_MOB_CURRENT_TARGET) && !QDELETED(target)) //we are already dealing with something,
 		parent.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, target)
+	return TRUE
 
 /datum/pet_command/protect_owner/minebot/execute_action(datum/ai_controller/controller)
 	if(controller.blackboard[BB_MINEBOT_AUTO_DEFEND])

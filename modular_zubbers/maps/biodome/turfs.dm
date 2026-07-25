@@ -3,19 +3,27 @@
 	color = COLOR_ORANGE_BROWN
 
 /turf/open/water/jungle/biodome
-	name="Biodome Lake"
+	name="biodome lake"
+	fishing_datum = /datum/fish_source/ocean/beach
+	planetary_atmos = FALSE
 
-/turf/open/water/jungle/biodome/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/lazy_fishing_spot, /datum/fish_source/ocean/beach)
+/turf/open/water/beach/biodome
+	name="biodome waters"
+	planetary_atmos = FALSE
+
+/turf/open/misc/beach/sand/biodome
+	name="biodome beach"
+	planetary_atmos = FALSE
 
 /turf/open/misc/ashplanet/wateryrock/biodome
-	name="Biodome Lake Rocks"
+	name="biodome lake Rocks"
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	planetary_atmos = FALSE
 
 /turf/open/lava/plasma/biodome
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	baseturfs = /turf/open/lava/plasma/biodome
+	planetary_atmos = FALSE
 
 /turf/open/floor/fake_iron_sand
 	desc = "Wait a minute. This martian soil is just painted on!"
@@ -42,7 +50,7 @@
 	slowdown = 0
 
 /turf/open/floor/wood/stairs
-	icon = 'modular_zubbers/maps/biodome/floor.dmi'
+	icon = 'modular_zubbers/icons/maps/biodome/floor.dmi'
 	icon_state = "woodstairs_up"
 
 /turf/open/floor/wood/stairs/down

@@ -68,14 +68,14 @@
 	else if (SA.color_src == USE_ONE_COLOR)
 		shown_colors = 1
 	if((allow_advanced_colors || SA.always_color_customizable) && shown_colors)
-		dat += "<a href='?src=[REF(src)];key=[key];preference=reset_color;task=change_bodypart'>R</a>"
-	dat += "<a href='?src=[REF(src)];key=[key];preference=change_name;task=change_bodypart'>[acc_name]</a>"
+		dat += "<a href='byond://?src=[REF(src)];key=[key];preference=reset_color;task=change_bodypart'>R</a>"
+	dat += "<a href='byond://?src=[REF(src)];key=[key];preference=change_name;task=change_bodypart'>[acc_name]</a>"
 	if(allow_advanced_colors || SA.always_color_customizable)
 		if(shown_colors)
 			dat += "<BR>"
 			var/list/colorlist = mutant_bodyparts[key][MUTANT_INDEX_COLOR_LIST]
 			for(var/i in 1 to shown_colors)
-				dat += " <a href='?src=[REF(src)];key=[key];color_index=[i];preference=change_color;task=change_bodypart'><span class='color_holder_box' style='background-color:["#[colorlist[i]]"]'></span></a>"
+				dat += " <a href='byond://?src=[REF(src)];key=[key];color_index=[i];preference=change_color;task=change_bodypart'><span class='color_holder_box' style='background-color:["#[colorlist[i]]"]'></span></a>"
 	return dat
 
 /datum/preferences/proc/reset_colors()
@@ -176,5 +176,17 @@
 
 // Updates the mob's chat color in the global cache
 /datum/preferences/safe_transfer_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE, visuals_only = FALSE)
+	// clear organs that might not be replaced
+	for (var/obj/item/organ/iter_organ as anything in character.organs)
+		var/feature_key = iter_organ.bodypart_overlay?.feature_key
+		if (isnull(feature_key))
+			continue
+		if(character.dna.mutant_bodyparts[feature_key] && character.dna.mutant_bodyparts[feature_key][MUTANT_INDEX_NAME] != SPRITE_ACCESSORY_NONE)
+			qdel(iter_organ)
+
+	character.dna.mutant_bodyparts.Cut()
+
 	. = ..()
 	GLOB.chat_colors_by_mob_name[character.name] = list(character.chat_color, character.chat_color_darkened) // by now the mob has had its prefs applied to it
+
+#undef MAX_MUTANT_ROWS

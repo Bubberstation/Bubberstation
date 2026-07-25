@@ -7,10 +7,9 @@
 #define ROBOTIC_HEAVY_BURN_MSG "smoldering"
 
 /*
- The damage modifiers here are modified to stay in line with teshari
- Although I'm not sure if it's redundant, better safe than sorry.
- 
- Addendum: the limbs lack "limb_id = SPECIES_TESHARI". if this becomes a problem, just put those in xoxo -aKhro
+ * The damage modifiers here are modified to stay in line with teshari
+ * Although I'm not sure if it's redundant, better safe than sorry.
+ * Addendum: the limbs lack "limb_id = SPECIES_TESHARI". if this becomes a problem, just put those in xoxo -aKhro
  */
 
 #define TESHARI_PUNCH_LOW 2
@@ -56,7 +55,6 @@
 
 	brute_modifier = 1
 	burn_modifier = 0.9
-	speed_modifier = -0.1
 
 /obj/item/bodypart/leg/right/robot/teshari
 	name = "cybernetic right raptoral hindlimb"
@@ -70,7 +68,6 @@
 
 	brute_modifier = 1
 	burn_modifier = 0.9
-	speed_modifier = -0.1
 
 /obj/item/bodypart/chest/robot/teshari
 	name = "cybernetic raptoral torso"
@@ -98,6 +95,102 @@
 	burn_modifier = 0.9
 
 	head_flags = HEAD_EYESPRITES
+
+
+
+//Teshari greyscale
+
+/obj/item/bodypart/arm/left/robot/teshari_greyscale
+	name = "cybernetic left raptoral forelimb"
+	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
+	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	should_draw_greyscale = TRUE
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW
+	unarmed_damage_high = TESHARI_PUNCH_HIGH
+
+	brute_modifier = 1
+	burn_modifier = 0.9
+
+/obj/item/bodypart/arm/right/robot/teshari_greyscale
+	name = "cybernetic right raptoral forelimb"
+	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
+	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	should_draw_greyscale = TRUE
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW
+	unarmed_damage_high = TESHARI_PUNCH_HIGH
+
+	brute_modifier = 1
+	burn_modifier = 0.9
+
+/obj/item/bodypart/leg/left/robot/teshari_greyscale
+	name = "cybernetic left raptoral hindlimb"
+	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
+	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	should_draw_greyscale = TRUE
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW
+	unarmed_damage_high = TESHARI_PUNCH_HIGH
+
+	brute_modifier = 1
+	burn_modifier = 0.9
+
+/obj/item/bodypart/leg/right/robot/teshari_greyscale
+	name = "cybernetic right raptoral hindlimb"
+	desc = "A skeletal limb wrapped in pseudomuscles and membranous feathers, with a low-conductivity case."
+	icon_static =  'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	should_draw_greyscale = TRUE
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW
+	unarmed_damage_high = TESHARI_PUNCH_HIGH
+
+	brute_modifier = 1
+	burn_modifier = 0.9
+
+/obj/item/bodypart/chest/robot/teshari_greyscale
+	name = "cybernetic raptoral torso"
+	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell, covered in a layer of membranous feathers."
+	icon_static =  'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	should_draw_greyscale = TRUE
+
+	brute_modifier = 1
+	burn_modifier = 0.9
+
+	robotic_emp_paralyze_damage_percent_threshold = 0.5
+
+/obj/item/bodypart/head/robot/teshari_greyscale
+	name = "cybernetic raptoral head"
+	desc = "A standard reinforced braincase, with spine-plugged neural socket and sensor gimbals. A layer of membranous feathers covers the stark metal."
+	icon_static = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	icon_greyscale = 'modular_skyrat/modules/bodyparts/icons/teshari_robotic_greyscale.dmi'
+	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	should_draw_greyscale = TRUE
+
+	unarmed_damage_low = TESHARI_PUNCH_LOW
+	unarmed_damage_high = TESHARI_PUNCH_HIGH
+
+	brute_modifier = 1
+	burn_modifier = 0.9
+
+	head_flags = HEAD_EYESPRITES
+
 
 // teshari_ surplus
 
@@ -150,7 +243,6 @@
 
 	brute_modifier = 1.25
 	burn_modifier = 1.2
-	speed_modifier = -0.1
 
 	max_damage = LIMB_MAX_HP_PROSTHESIS
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_PROSTHESIS
@@ -169,7 +261,6 @@
 
 	brute_modifier = 1.25
 	burn_modifier = 1.2
-	speed_modifier = -0.1
 
 	max_damage = LIMB_MAX_HP_PROSTHESIS
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_PROSTHESIS
@@ -226,7 +317,6 @@
 
 	brute_modifier = 1.25
 	burn_modifier = 1.2
-	speed_modifier = -0.1
 
 	max_damage = LIMB_MAX_HP_PROSTHESIS
 
@@ -246,7 +336,6 @@
 
 	brute_modifier = 1.25
 	burn_modifier = 1.2
-	speed_modifier = -0.1
 
 	max_damage = LIMB_MAX_HP_PROSTHESIS
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_PROSTHESIS
@@ -303,7 +392,6 @@
 
 	brute_modifier = 0.8
 	burn_modifier = 1
-	speed_modifier = -0.1
 
 	max_damage = LIMB_MAX_HP_ADVANCED
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
@@ -322,7 +410,6 @@
 
 	brute_modifier = 0.8
 	burn_modifier = 1
-	speed_modifier = -0.1
 
 	max_damage = LIMB_MAX_HP_ADVANCED
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
@@ -377,7 +464,6 @@
 
 	brute_modifier = 1
 	burn_modifier = 0.9
-	speed_modifier = -0.1
 
 	max_damage = LIMB_MAX_HP_ADVANCED
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
@@ -396,7 +482,6 @@
 
 	brute_modifier = 1
 	burn_modifier = 0.9
-	speed_modifier = -0.1
 
 	max_damage = LIMB_MAX_HP_ADVANCED
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED

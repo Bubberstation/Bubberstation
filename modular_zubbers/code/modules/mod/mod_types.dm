@@ -16,3 +16,37 @@
 	default_pins = list(
 		/obj/item/mod/module/jetpack,
 	)
+
+/obj/item/mod/control/pre_equipped/lustwish
+	worn_icon = 'modular_zubbers/icons/mob/clothing/modsuit/mod_lustwish.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/modsuit/mod_lustwish.dmi'
+	icon_state = "lustwish-control"
+	theme = /datum/mod_theme/lustwish
+
+//Hat Stabilizer Module added as default module to the Blueshield and Safeguard Modsuits
+/obj/item/mod/control/pre_equipped/blueshield/New()
+	applied_modules += list(
+		/obj/item/mod/module/hat_stabilizer,
+	)
+	return ..()
+
+/obj/item/mod/control/pre_equipped/safeguard/New()
+	applied_modules += list(
+		/obj/item/mod/module/hat_stabilizer,
+	)
+	return ..()
+
+/obj/item/mod/control/pre_equipped/voskhod
+	applied_cell = /obj/item/stock_parts/power_store/cell/high
+	theme = /datum/mod_theme/voskhod
+	applied_modules = list(
+		/obj/item/mod/module/storage,
+		/obj/item/mod/module/flashlight,
+		/obj/item/mod/module/auto_doc,
+		/obj/item/mod/module/status_readout/operational,
+	)
+	default_pins = list(
+		/obj/item/mod/module/flashlight,
+		/obj/item/mod/module/auto_doc,
+	)
+

@@ -1,7 +1,8 @@
 /datum/disease/transformation
+	abstract_type = /datum/disease/transformation
 	name = "Transformation"
 	max_stages = 5
-	spread_text = "Acute"
+	spread_text = "None"
 	spread_flags = DISEASE_SPREAD_SPECIAL
 	cure_text = "A coder's love (theoretical)."
 	agent = "Shenanigans"
@@ -31,7 +32,7 @@
 	return D
 
 
-/datum/disease/transformation/stage_act(seconds_per_tick, times_fired)
+/datum/disease/transformation/stage_act(seconds_per_tick)
 	. = ..()
 	if(!.)
 		return
@@ -74,7 +75,7 @@
 			if(affected_mob.mind)
 				affected_mob.mind.transfer_to(new_mob)
 			else
-				new_mob.key = affected_mob.key
+				new_mob.PossessByPlayer(affected_mob.ckey)
 		if(transformed_antag_datum)
 			new_mob.mind.add_antag_datum(transformed_antag_datum)
 		new_mob.name = affected_mob.real_name
@@ -89,18 +90,17 @@
 		to_chat(affected_mob, span_userdanger("Your mob has been taken over by a ghost! Appeal your job ban if you want to avoid this in the future!"))
 		message_admins("[key_name_admin(chosen_one)] has taken control of ([key_name_admin(affected_mob)]) to replace a jobbanned player.")
 		affected_mob.ghostize(FALSE)
-		affected_mob.key = chosen_one.key
+		affected_mob.PossessByPlayer(chosen_one.ckey)
 	else
 		to_chat(new_mob, span_userdanger("Your mob has been claimed by death! Appeal your job ban if you want to avoid this in the future!"))
 		new_mob.investigate_log("has been killed because there was no one to replace them as a job-banned player.", INVESTIGATE_DEATHS)
 		new_mob.death()
 		if (!QDELETED(new_mob))
 			new_mob.ghostize(can_reenter_corpse = FALSE)
-			new_mob.key = null
 
 /datum/disease/transformation/jungle_flu
 	name = "Jungle Flu"
-	cure_text = "Death."
+	cure_text = "Death"
 	cures = list(/datum/reagent/medicine/adminordrazine)
 	spread_text = "Unknown"
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
@@ -130,7 +130,7 @@
 /datum/disease/transformation/jungle_flu/do_disease_transformation(mob/living/carbon/affected_mob)
 	affected_mob.monkeyize()
 
-/datum/disease/transformation/jungle_flu/stage_act(seconds_per_tick, times_fired)
+/datum/disease/transformation/jungle_flu/stage_act(seconds_per_tick)
 	. = ..()
 	if(!.)
 		return
@@ -149,7 +149,7 @@
 
 /datum/disease/transformation/robot
 	name = "Robotic Transformation"
-	cure_text = "An injection of copper."
+	cure_text = /datum/reagent/copper::name
 	cures = list(/datum/reagent/copper)
 	cure_chance = 2.5
 	agent = "R2D2 Nanomachines"
@@ -169,7 +169,7 @@
 	infectable_biotypes = MOB_ORGANIC|MOB_UNDEAD|MOB_ROBOTIC
 	bantype = JOB_CYBORG
 
-/datum/disease/transformation/robot/stage_act(seconds_per_tick, times_fired)
+/datum/disease/transformation/robot/stage_act(seconds_per_tick)
 	. = ..()
 	if(!.)
 		return
@@ -189,7 +189,7 @@
 /datum/disease/transformation/xeno
 
 	name = "Xenomorph Transformation"
-	cure_text = "Spaceacillin & Glycerol"
+	cure_text = /datum/reagent/medicine/spaceacillin::name + " & " + /datum/reagent/glycerol::name
 	cures = list(/datum/reagent/medicine/spaceacillin, /datum/reagent/glycerol)
 	cure_chance = 2.5
 	agent = "Rip-LEY Alien Microbes"
@@ -213,7 +213,7 @@
 	bantype = ROLE_ALIEN
 
 
-/datum/disease/transformation/xeno/stage_act(seconds_per_tick, times_fired)
+/datum/disease/transformation/xeno/stage_act(seconds_per_tick)
 	. = ..()
 	if(!.)
 		return
@@ -230,7 +230,7 @@
 
 /datum/disease/transformation/slime
 	name = "Advanced Mutation Transformation"
-	cure_text = "Frost oil"
+	cure_text = /datum/reagent/consumable/frostoil::name
 	cures = list(/datum/reagent/consumable/frostoil)
 	cure_chance = 55
 	agent = "Advanced Mutation Toxin"
@@ -245,7 +245,7 @@
 	new_form = /mob/living/basic/slime
 
 
-/datum/disease/transformation/slime/stage_act(seconds_per_tick, times_fired)
+/datum/disease/transformation/slime/stage_act(seconds_per_tick)
 	. = ..()
 	if(!.)
 		return
@@ -285,7 +285,7 @@
 	new_form = /mob/living/basic/pet/dog/corgi
 
 
-/datum/disease/transformation/corgi/stage_act(seconds_per_tick, times_fired)
+/datum/disease/transformation/corgi/stage_act(seconds_per_tick)
 	. = ..()
 	if(!.)
 		return
@@ -318,7 +318,7 @@
 
 /datum/disease/transformation/gondola
 	name = "Gondola Transformation"
-	cure_text = "Condensed Capsaicin, ingested or injected." //getting pepper sprayed doesn't help
+	cure_text = /datum/reagent/consumable/condensedcapsaicin::name + " (not applied via vapor)"
 	cures = list(/datum/reagent/consumable/condensedcapsaicin) //beats the hippie crap right out of your system
 	cure_chance = 55
 	stage_prob = 2.5
@@ -338,7 +338,7 @@
 	new_form = /mob/living/basic/pet/gondola
 
 
-/datum/disease/transformation/gondola/stage_act(seconds_per_tick, times_fired)
+/datum/disease/transformation/gondola/stage_act(seconds_per_tick)
 	. = ..()
 	if(!.)
 		return

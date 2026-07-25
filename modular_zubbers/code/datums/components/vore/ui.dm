@@ -469,8 +469,8 @@
 				to_chat(living_parent, span_warning("You cannot eject absorbed prey."))
 				return
 			#ifdef VORE_EJECT_DELAY
-			to_chat(living_parent, span_notice("You start to work [prey] out of your [lowertext(prey_loc.name)]..."))
-			to_chat(prey, span_notice("[living_parent] starts to work you out of their [lowertext(prey_loc.name)]..."))
+			to_chat(living_parent, span_notice("You start to work [prey] out of your [LOWER_TEXT(prey_loc.name)]..."))
+			to_chat(prey, span_notice("[living_parent] starts to work you out of their [LOWER_TEXT(prey_loc.name)]..."))
 			if(!do_after(living_parent, VORE_EJECT_DELAY, interaction_key = "vore_eject"))
 				return
 			#endif

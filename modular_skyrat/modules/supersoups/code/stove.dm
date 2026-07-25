@@ -10,4 +10,4 @@
 // alt-right click toggles whether soups will get cleaned
 /obj/item/reagent_containers/cup/soup_pot/click_alt_secondary(mob/user)
 	emulsify_reagents = !emulsify_reagents
-	balloon_alert(user, "Soup cleaning [emulsify_reagents ? "enabled" : "disabled"]!")
+	balloon_alert(user, "soup cleaning [emulsify_reagents ? "enabled" : "disabled"]!")

@@ -30,12 +30,13 @@
 	simple_treat_text = "<b>Replacing</b> of broken wiring, or <b>repairing</b> via a wirecutter. <b>Bandaging</b> binds the wiring and reduces intensity buildup, \
 	as does <b>firmly grasping</b> the limb - both the victim and someone else can do this. <b>Roboticists/Engineers</b> get a bonus to treatment, as do <b>diagnostic HUDs</b>."
 	homemade_treat_text = "<b>Sutures</b> can repair the wiring at reduced efficiency, as can <b>retractors</b>. In a pinch, <b>high temperatures</b> can repair the wiring!"
+	treat_text_short = "Replace wiring or apply wirecutters."
 
 	wound_flags = (ACCEPTS_GAUZE|CAN_BE_GRASPED|SPLINT_OVERLAY)
 
 	treatable_tools = list(TOOL_WIRECUTTER, TOOL_RETRACTOR)
 	treatable_by = list(/obj/item/stack/medical/suture)
-	treatable_by_grabbed = list(/obj/item/stack/cable_coil)
+	var/treatable_by_grabbed = list(/obj/item/stack/cable_coil)
 
 	default_scar_file = METAL_SCAR_FILE
 
@@ -105,7 +106,7 @@
 /datum/wound_pregen_data/electrical_damage
 	abstract = TRUE
 	required_limb_biostate = (BIO_WIRED)
-	required_wounding_types = list(WOUND_SLASH)
+	required_wounding_type = WOUND_SLASH
 	wound_series = WOUND_SERIES_WIRE_SLASH_ELECTRICAL_DAMAGE
 
 /datum/wound_pregen_data/electrical_damage/generate_scar_priorities()
@@ -210,7 +211,8 @@
 	if (HAS_TRAIT(victim, TRAIT_SHOCKIMMUNE)) // it'd be a bit cheesy to just become immune to this, so it only makes it a lot lot better
 		base_mult *= shock_immunity_self_damage_reduction
 
-	var/splint_mult = (limb.current_gauze ? limb.current_gauze.splint_factor : 1)
+	var/obj/item/stack/medical/wrap/current_gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
+	var/splint_mult = (current_gauze ? current_gauze.splint_factor : 1)
 	base_mult *= splint_mult
 
 	return overall_effect_mult * base_mult
@@ -259,7 +261,7 @@
 /datum/wound/electrical_damage/modify_desc_before_span(desc, mob/user)
 	. = ..()
 
-	if (limb.current_gauze)
+	if (LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE))
 		return
 
 	var/intensity_mult = get_intensity_mult()
@@ -554,6 +556,7 @@
 	occur_text = "sends some electrical fiber in the direction of the blow, beginning to profusely spark"
 	examine_desc = "has multiple severed wires visible to the outside"
 	treat_text = "Containment of damaged wiring via gauze, then application of fresh wiring/sutures, or resetting of displaced wiring via wirecutter/retractor."
+	treat_text_short = "Apply gauze and replace wiring."
 
 	sound_effect = 'modular_skyrat/modules/medical/sound/robotic_slash_T2.ogg'
 
@@ -598,6 +601,7 @@
 	examine_desc = "has lots of mauled wires sticking out"
 	treat_text = "Immediate securing via gauze, followed by emergency cable replacement and securing via wirecutters or retractor. \
 		If the fault has become uncontrollable, extreme heat therapy is recommended."
+	treat_text_short = "Apply gauze, replace wires, and use wirecutters or a retractor."
 
 	severity = WOUND_SEVERITY_CRITICAL
 	wound_flags = (ACCEPTS_GAUZE|MANGLES_EXTERIOR|CAN_BE_GRASPED|SPLINT_OVERLAY)

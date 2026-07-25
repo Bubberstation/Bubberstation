@@ -21,9 +21,9 @@
 #define SHOWER_MODE_COUNT 3
 
 GLOBAL_LIST_INIT(shower_mode_descriptions, list(
-	"[SHOWER_MODE_UNTIL_EMPTY]" = "run until empty",
-	"[SHOWER_MODE_TIMED]" = "run for 15 seconds or until empty",
-	"[SHOWER_MODE_FOREVER]" = "keep running forever and auto turn back on",
+	"[SHOWER_MODE_UNTIL_EMPTY]" = "run forever from internal tank", // BUBBER EDIT CHANGE - Original: "run until empty"
+	"[SHOWER_MODE_TIMED]" = "run using auto-detect sensor", // BUBBER EDIT CHANGE - Original: "run for 15 seconds or until empty"
+	"[SHOWER_MODE_FOREVER]" = "run forever from external source", // BUBBER EDIT CHANGE - Original: "keep running forever and auto turn back on"
 ))
 
 /obj/machinery/shower
@@ -87,7 +87,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	if(src.has_water_reclaimer)
 		reagents.add_reagent(reagent_id, reagent_capacity)
 	soundloop = new(src, FALSE)
-	AddComponent(/datum/component/plumbing/simple_demand, extend_pipe_to_edge = TRUE)
+	AddComponent(/datum/component/plumbing/simple_demand/extended)
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
@@ -96,10 +96,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 
 /obj/machinery/shower/examine(mob/user)
 	. = ..()
-	. += span_notice("It looks like the thermostat has an adjustment screw.")
+	. += span_notice("It looks like the thermostat has a pair of buttons and a manual adjustment screw.") // BUBBER EDIT CHANGE - Original: "It looks like the thermostat has an adjustment screw."
 	if(has_water_reclaimer)
 		. += span_notice("A water recycler is installed. It looks like you could pry it out.")
-	. += span_notice("The auto shut-off is programmed to [GLOB.shower_mode_descriptions["[mode]"]].")
+	. += span_info("The current shower mode is [span_bold(GLOB.shower_mode_descriptions["[mode]"])].") // BUBBER EDIT CHANGE - Showers have infinite water - Original: "The auto shut-off is programmed to [GLOB.shower_mode_descriptions["[mode]"]]."
 	. += span_notice("[reagents.total_volume]/[reagents.maximum_volume] liquids remaining.")
 
 /obj/machinery/shower/Destroy()
@@ -121,14 +121,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 
 	return TRUE
 
-
-//SKYRAT EDIT ADDITION
-/obj/machinery/shower/plunger_act(obj/item/plunger/P, mob/living/user, reinforced)
-	if(do_after(user, 3 SECONDS, src))
-		reagents.remove_all(reagents.total_volume)
-		balloon_alert(user, "reservoir emptied")
-//SKYRAT EDIT END
-
 /obj/machinery/shower/analyzer_act(mob/living/user, obj/item/tool)
 	. = ..()
 
@@ -136,7 +128,17 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	to_chat(user, span_notice("The water temperature seems to be [current_temperature]."))
 	return TRUE
 
-/obj/machinery/shower/attackby(obj/item/tool, mob/user, params)
+/obj/machinery/shower/plunger_act(obj/item/plunger/attacking_plunger, mob/living/user, reinforced)
+	user.balloon_alert_to_viewers("furiously plunging...", "plunging shower...")
+	if(!do_after(user, 3 SECONDS, target = src))
+		return TRUE
+	user.balloon_alert_to_viewers("finished plunging")
+	reagents.expose(get_turf(src), TOUCH) //splash on the floor
+	reagents.clear_reagents()
+	begin_processing()
+	return TRUE
+
+/obj/machinery/shower/attackby(obj/item/tool, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(tool, /obj/item/stock_parts/water_recycler))
 		if(has_water_reclaimer)
 			to_chat(user, span_warning("There is already has a water recycler installed."))
@@ -201,7 +203,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	. = ..()
 	if(!actually_on)
 		return
-	var/mutable_appearance/water_falling = mutable_appearance('icons/obj/watercloset.dmi', "water", ABOVE_MOB_LAYER)
+	var/mutable_appearance/water_falling = mutable_appearance('icons/obj/watercloset.dmi', "water", ABOVE_MOB_LAYER, appearance_flags = KEEP_APART)
 	water_falling.color = mix_color_from_reagents(reagents.reagent_list)
 	switch(dir)
 		if(NORTH)
@@ -241,40 +243,40 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	if(mist && !(actually_on && current_temperature != SHOWER_FREEZING))
 		qdel(mist)
 
-
 /obj/machinery/shower/proc/on_entered(datum/source, atom/movable/enterer)
 	SIGNAL_HANDLER
 
 	if(actually_on && reagents.total_volume)
-		wash_atom(enterer)
+		expose_to_reagents(enterer)
 
 /obj/machinery/shower/proc/on_exited(datum/source, atom/movable/exiter)
 	SIGNAL_HANDLER
 
-	if(!isliving(exiter))
+	if(!iscarbon(exiter))
 		return
 
 	var/obj/machinery/shower/locate_new_shower = locate() in get_turf(exiter)
 	if(locate_new_shower && isturf(exiter.loc))
 		return
 	var/mob/living/take_his_status_effect = exiter
-	take_his_status_effect.remove_status_effect(/datum/status_effect/shower_regen)
+	take_his_status_effect.remove_status_effect(/datum/status_effect/washing_regen)
 
-/obj/machinery/shower/proc/wash_atom(atom/target)
-	target.wash(CLEAN_RAD | CLEAN_WASH)
+/obj/machinery/shower/proc/expose_to_reagents(atom/target)
+	var/purity_volume = reagents.total_volume*0.70 	// need 70% of total reagents
+	var/datum/reagent/blood/bloody_shower = reagents.has_reagent(/datum/reagent/blood, amount=purity_volume)
+	var/datum/reagent/water/clean_shower = reagents.has_reagent(/datum/reagent/water, amount=purity_volume)
+	// we only care about blood and h20 for mood/status effect
+	var/datum/reagent/shower_reagent = bloody_shower || clean_shower || null
+
 	reagents.expose(target, (TOUCH), SHOWER_EXPOSURE_MULTIPLIER * SHOWER_SPRAY_VOLUME / max(reagents.total_volume, SHOWER_SPRAY_VOLUME))
 	if(!isliving(target))
 		return
 	var/mob/living/living_target = target
 	check_heat(living_target)
-	living_target.apply_status_effect(/datum/status_effect/shower_regen)
-	/* BUBBER EDIT TODO - Felinids hate water
-	if(!HAS_TRAIT(target, TRAIT_WATER_HATER) || HAS_TRAIT(target, TRAIT_WATER_ADAPTATION))
-		living_target.add_mood_event("shower", /datum/mood_event/nice_shower)
-	else
-		living_target.add_mood_event("shower", /datum/mood_event/shower_hater)
-	*/// BUBBER EDIT TODO END
-	living_target.add_mood_event("shower", /datum/mood_event/nice_shower) // BUBBER EDIT TODO
+
+	if(iscarbon(living_target))
+		living_target.apply_status_effect(/datum/status_effect/washing_regen, shower_reagent)
+		living_target.add_mood_event("shower", /datum/mood_event/shower, shower_reagent)
 
 /**
  * Toggle whether shower is actually on and outputting water.
@@ -305,14 +307,20 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 		if(isopenturf(loc))
 			var/turf/open/tile = loc
 			tile.MakeSlippery(TURF_WET_WATER, min_wet_time = 5 SECONDS, wet_time_to_add = 1 SECONDS)
-
+		for(var/mob/living/carbon/showerer in loc)
+			showerer.remove_status_effect(/datum/status_effect/washing_regen)
 	return TRUE
 
 /obj/machinery/shower/process(seconds_per_tick)
 	// the TIMED mode cutoff feature. User has to manually reactivate.
 	if(intended_on && mode == SHOWER_MODE_TIMED && COOLDOWN_FINISHED(src, timed_cooldown))
 		// the TIMED mode cutoff feature. User has to manually reactivate.
-		intended_on = FALSE
+		// BUBBER EDIT CHANGE BEGIN - Showers have infinite water
+		// Original:
+		// intended_on = FALSE
+		if(!shower_occupied())
+			intended_on = FALSE
+		// BUBBER EDIT CHANGE END - Showers have infinite water
 
 	// Out of water.
 	if(actually_on && reagents.total_volume < SHOWER_SPRAY_VOLUME)
@@ -333,32 +341,51 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 
 		// FOREVER mode stays processing so it can cycle back on.
 		return mode == SHOWER_MODE_FOREVER ? 0 : PROCESS_KILL
+	// Assemble cleaning flags
+	var/purity_volume = reagents.total_volume*0.70 	// need 70% of total reagents
+	var/datum/reagent/water/clean_shower = reagents.has_reagent(/datum/reagent/water, amount=purity_volume)
+
+	// radiation my beloved
+	var/rad_purity_volume = reagents.total_volume*0.20 // need 20% of total reagents
+	var/radium_volume = reagents.get_reagent_amount(/datum/reagent/uranium/radium)
+	var/uranium_volume = reagents.get_reagent_amount(/datum/reagent/uranium)
+	var/polonium_volume = reagents.get_reagent_amount(/datum/reagent/toxin/polonium) * 3 // highly radioactive
+	var/total_radiation_volume = (radium_volume + uranium_volume + polonium_volume)
+	var/radioactive_shower = total_radiation_volume >= rad_purity_volume
+
+	var/wash_flags = NONE
+	if(clean_shower)
+		wash_flags |= CLEAN_WASH
+	if(!radioactive_shower)
+		// note it is possible to have a clean_shower that is radioactive (+70% water mixed with +20% radiation)
+		wash_flags |= CLEAN_RAD
 
 	// Wash up.
-	wash_atom(loc)
+	loc.wash(wash_flags, TRUE)
+	expose_to_reagents(loc)
 	for(var/atom/movable/movable_content as anything in loc)
-		if(!ismopable(movable_content)) // Mopables will be cleaned anyways by the turf wash above
-			wash_atom(movable_content) // Reagent exposure is handled in wash_atom
-
-	reagents.remove_all(SHOWER_SPRAY_VOLUME)
+		expose_to_reagents(movable_content) // Wash the items on the turf (=expose them to the shower reagent)
+	// BUBBER EDIT CHANGE BEGIN - Showers have infinite water
+	// Original:
+	// reagents.remove_all(SHOWER_SPRAY_VOLUME)
+	if(!has_water_reclaimer)
+		reagents.remove_all(SHOWER_SPRAY_VOLUME)
+	// BUBBER EDIT CHANGE END - Showers have infinite water
 
 /obj/machinery/shower/on_deconstruction(disassembled = TRUE)
 	new /obj/item/stack/sheet/iron(drop_location(), 2)
 	if(has_water_reclaimer)
 		new /obj/item/stock_parts/water_recycler(drop_location())
 
-/obj/machinery/shower/proc/check_heat(mob/living/L)
-	var/mob/living/carbon/C = L
+/obj/machinery/shower/proc/check_heat(mob/living/living)
 
 	if(current_temperature == SHOWER_FREEZING)
-		if(iscarbon(L))
-			C.adjust_bodytemperature(-80, 80)
-		to_chat(L, span_warning("[src] is freezing!"))
+		living.adjust_bodytemperature(-80, 80)
+		to_chat(living, span_warning("[src] is freezing!"))
 	else if(current_temperature == SHOWER_BOILING)
-		if(iscarbon(L))
-			C.adjust_bodytemperature(35, 0, 500)
-		L.adjustFireLoss(5)
-		to_chat(L, span_danger("[src] is searing!"))
+		living.adjust_bodytemperature(35, 0, 500)
+		living.adjust_fire_loss(5)
+		to_chat(living, span_danger("[src] is searing!"))
 
 
 /obj/structure/showerframe
@@ -367,12 +394,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	icon_state = "shower_frame"
 	desc = "A shower frame, that needs a water recycler to finish construction."
 	anchored = FALSE
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/structure/showerframe/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/simple_rotation)
+	AddElement(/datum/element/simple_rotation)
 
-/obj/structure/showerframe/attackby(obj/item/tool, mob/living/user, params)
+/obj/structure/showerframe/attackby(obj/item/tool, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(istype(tool, /obj/item/stock_parts/water_recycler))
 		qdel(tool)
 		var/obj/machinery/shower/shower = new(loc, REVERSE_DIR(dir), TRUE)
@@ -389,13 +417,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	qdel(src)
 
 	return TRUE
-
-/obj/structure/sinkframe/wrench_act_secondary(mob/living/user, obj/item/tool)
-	. = ..()
-	tool.play_tool_sound(src)
-	deconstruct()
-	return TRUE
-
 
 /obj/effect/mist
 	name = "mist"

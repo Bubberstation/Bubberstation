@@ -1,0 +1,58 @@
+#define BLOOD_VOLUME_OVERSIZED 1120
+
+#define PULL_OVERSIZED_SLOWDOWN 2
+#define PULL_BIG_CLOTHES_SLOWDOWN 3
+#define PULL_BULKY_CLOTHES_SLOWDOWN 4
+#define PULL_HUGE_CLOTHES_SLOWDOWN 5
+
+#define HUMAN_MAXHEALTH MAX_LIVING_HEALTH
+
+#define UNDERWEAR_HIDE_SOCKS (1<<0)
+#define UNDERWEAR_HIDE_SHIRT (1<<1)
+#define UNDERWEAR_HIDE_UNDIES (1<<2)
+#define UNDERWEAR_HIDE_BRA (1<<3)
+
+///Defines for icons used for modular bodyparts, created to make it easier to relocate the module or files if necessary.
+#define BODYPART_ICON_HUMAN 'modular_skyrat/modules/bodyparts/icons/human_parts_greyscale.dmi'
+#define BODYPART_ICON_MAMMAL 'modular_skyrat/modules/bodyparts/icons/mammal_parts_greyscale.dmi'
+#define BODYPART_ICON_AKULA 'modular_skyrat/modules/bodyparts/icons/akula_parts_greyscale.dmi'
+#define BODYPART_ICON_AQUATIC 'modular_skyrat/modules/bodyparts/icons/aquatic_parts_greyscale.dmi'
+#define BODYPART_ICON_GHOUL 'modular_skyrat/modules/bodyparts/icons/ghoul_bodyparts.dmi'
+#define BODYPART_ICON_INSECT 'modular_skyrat/modules/bodyparts/icons/insect_parts_greyscale.dmi'
+#define BODYPART_ICON_LIZARD 'modular_skyrat/modules/bodyparts/icons/lizard_parts_greyscale.dmi'
+#define BODYPART_ICON_MOTH 'modular_skyrat/modules/bodyparts/icons/moth_parts_greyscale.dmi'
+#define BODYPART_ICON_ROUNDSTARTSLIME 'modular_skyrat/modules/bodyparts/icons/slime_parts_greyscale.dmi'
+#define BODYPART_ICON_SKRELL 'modular_skyrat/modules/bodyparts/icons/skrell_parts_greyscale.dmi'
+#define BODYPART_ICON_TAUR 'modular_skyrat/modules/bodyparts/icons/taur_invisible_legs.dmi'
+#define BODYPART_ICON_TESHARI 'modular_skyrat/modules/bodyparts/icons/teshari_parts_greyscale.dmi'
+#define BODYPART_ICON_VOX 'modular_skyrat/modules/bodyparts/icons/vox_parts_greyscale.dmi'
+#define BODYPART_ICON_XENO 'modular_skyrat/modules/bodyparts/icons/xeno_parts_greyscale.dmi'
+#define BODYPART_ICON_SYNTHMAMMAL 'modular_skyrat/modules/bodyparts/icons/synthmammal_parts_greyscale.dmi'
+#define BODYPART_ICON_IPC 'modular_skyrat/modules/bodyparts/icons/ipc_parts.dmi'
+#define BODYPART_ICON_SYNTHLIZARD 'modular_skyrat/modules/bodyparts/icons/synthliz_parts_greyscale.dmi'
+#define BODYPART_ICON_LYCAN 'modular_zubbers/icons/mob/species/lycan/lycan_bodyparts.dmi'
+
+#define BUTT_SPRITE_PODPERSON "podperson"
+#define BUTT_SPRITE_VOX "vox"
+#define BUTT_SPRITE_VULP "vulp"
+
+#define BLOOD_TYPE_COPPER "CU"
+#define BLOOD_TYPE_NANITE_SLURRY "NS"
+
+#define AI_HOLOGRAM_MOTHROACH "Mothroach"
+#define	AI_HOLOGRAM_STOAT "Stoat"
+#define	AI_HOLOGRAM_BEE "Bee"
+#define	AI_HOLOGRAM_REDPANDA "Red Panda"
+#define	AI_HOLOGRAM_FENNEC "Fennec"
+
+#define BODYPART_ICON_GAS 'modular_skyrat/modules/bodyparts/icons/serpentid_parts_greyscale.dmi'
+
+// Genital Layers
+#define BUTT_LAYER_OFFSET 0.08
+#define ANUS_LAYER_OFFSET  0.07
+#define VAGINA_LAYER_OFFSET 0.06
+#define TESTICLES_LAYER_OFFSET 0.05
+#define GENITAL_LAYER_OFFSET 0.04
+#define PENIS_LAYER_OFFSET 0.03
+#define BELLY_LAYER_OFFSET 0.02
+#define BREASTS_LAYER_OFFSET 0.01

@@ -1,7 +1,5 @@
 // THIS IS A SKYRAT UI FILE
 import { Fragment } from 'react';
-
-import { useBackend, useLocalState } from '../backend';
 import {
   Box,
   Button,
@@ -12,8 +10,9 @@ import {
   Section,
   Stack,
   Table,
-} from '../components';
-import { TableRow } from '../components/Table';
+} from 'tgui-core/components';
+
+import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
 
 const brassColor = '#DFC69C';
@@ -221,7 +220,7 @@ const ClockworkSpellList = (props) => {
       {scriptures.map((script) =>
         script.type === selectedTab ? (
           <Fragment key={script}>
-            <TableRow>
+            <Table.Row>
               <Table.Cell bold>{script.name}</Table.Cell>
               <Table.Cell collapsing textAlign="right">
                 <Button
@@ -229,8 +228,8 @@ const ClockworkSpellList = (props) => {
                   color={script.purchased ? 'default' : 'average'}
                   content={
                     script.purchased
-                      ? 'Invoke ' + convertPower(script.cost)
-                      : script.cog_cost + ' Cogs'
+                      ? `Invoke ${convertPower(script.cost)}`
+                      : `${script.cog_cost} Cogs`
                   }
                   tooltip={
                     script.research_required
@@ -245,8 +244,8 @@ const ClockworkSpellList = (props) => {
                   }
                 />
               </Table.Cell>
-            </TableRow>
-            <TableRow>
+            </Table.Row>
+            <Table.Row>
               <Table.Cell>{script.desc}</Table.Cell>
               <Table.Cell collapsing textAlign="right">
                 <Button
@@ -260,7 +259,7 @@ const ClockworkSpellList = (props) => {
                   }
                 />
               </Table.Cell>
-            </TableRow>
+            </Table.Row>
             <Table.Cell>
               <Divider />
             </Table.Cell>
@@ -327,7 +326,7 @@ const ClockworkOverviewStat = (props) => {
               bad: [-Infinity, maxAmount / 4],
             }}
           >
-            {overrideText ? overrideText : amount + ' ' + unit}
+            {overrideText ? overrideText : `${amount} ${unit}`}
           </ProgressBar>
         </Stack.Item>
       </Stack>

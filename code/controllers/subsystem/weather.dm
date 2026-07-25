@@ -1,60 +1,134 @@
 /// Used for all kinds of weather, ex. lavaland ash storms.
 SUBSYSTEM_DEF(weather)
 	name = "Weather"
-	flags = SS_BACKGROUND
+	ss_flags = SS_BACKGROUND
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+	)
 	wait = 10
 	runlevels = RUNLEVEL_GAME
 	var/list/processing = list()
+	/// Z levels on which weather can occur -> weather that can occur -> probability of said weather occuring
 	var/list/eligible_zlevels = list()
-	var/list/next_hit_by_zlevel = list() //Used by barometers to know when the next storm is coming
+	/// Used by barometers to know when the next storm is coming
+	var/list/next_hit_by_zlevel = list()
+	/// Alist of all particle holders per Z-stack offset for particle weather to be shown to clients
+	var/alist/particle_holders = alist()
+	/// List of all RENDER_PLANE_PARTICLE_WEATHER and RENDER_PLANE_EMISSIVE_PARTICLE_WEATHER planes
+	var/list/particle_planemasters = list()
 
-/datum/controller/subsystem/weather/fire()
+/datum/controller/subsystem/weather/fire(resumed = FALSE)
 	// process active weather
-	for(var/V in processing)
-		var/datum/weather/our_event = V
-		if(our_event.aesthetic || our_event.stage != MAIN_STAGE)
+	for(var/datum/weather/weather_event as anything in processing)
+		if(!length(weather_event.subsystem_tasks))
 			continue
-		for(var/mob/act_on as anything in GLOB.mob_living_list)
-			if(our_event.can_weather_act(act_on))
-				our_event.weather_act(act_on)
+
+		if(istype(weather_event, /datum/weather/particle))
+			var/datum/weather/particle/particle_event = weather_event
+			particle_event.process_particles()
+
+		if(weather_event.stage != MAIN_STAGE)
+			continue
+
+		if(weather_event.subsystem_tasks[weather_event.task_index] == SSWEATHER_MOBS)
+			if(!resumed)
+				weather_event.current_mobs = GLOB.mob_living_list.Copy()
+			var/list/current_mobs_cache = weather_event.current_mobs // cache for performance
+			while(current_mobs_cache.len)
+				var/mob/living/target = current_mobs_cache[current_mobs_cache.len]
+				current_mobs_cache.len--
+				if(QDELETED(target))
+					continue
+				if(weather_event.can_weather_act_mob(target))
+					weather_event.weather_act_mob(target)
+				if(MC_TICK_CHECK)
+					return
+			resumed = FALSE
+			weather_event.task_index = WRAP_UP(weather_event.task_index, weather_event.subsystem_tasks.len)
+
+		if(weather_event.subsystem_tasks[weather_event.task_index] == SSWEATHER_TURFS)
+			if(!resumed)
+				weather_event.turf_iteration = ROUND_PROB(weather_event.weather_turfs_per_tick)
+			while(weather_event.turf_iteration)
+				weather_event.turf_iteration--
+				var/turf/selected_turf = weather_event.pick_turf()
+				if(selected_turf && weather_event.can_weather_act_turf(selected_turf))
+					weather_event.weather_act_turf(selected_turf)
+				if(MC_TICK_CHECK)
+					return
+			resumed = FALSE
+			weather_event.task_index = WRAP_UP(weather_event.task_index, weather_event.subsystem_tasks.len)
+
+		if(weather_event.subsystem_tasks[weather_event.task_index] == SSWEATHER_THUNDER)
+			if(!resumed)
+				weather_event.thunder_iteration = ROUND_PROB(weather_event.thunder_turfs_per_tick)
+			while(weather_event.thunder_iteration)
+				weather_event.thunder_iteration--
+				var/turf/selected_turf = weather_event.pick_turf()
+				if(selected_turf && weather_event.can_weather_act_turf(selected_turf))
+					weather_event.thunder_act_turf(selected_turf)
+				if(MC_TICK_CHECK)
+					return
+			resumed = FALSE
+			weather_event.task_index = WRAP_UP(weather_event.task_index, weather_event.subsystem_tasks.len)
 
 	// start random weather on relevant levels
 	for(var/z in eligible_zlevels)
 		var/possible_weather = eligible_zlevels[z]
-		var/datum/weather/our_event = pick_weight(possible_weather)
-		run_weather(our_event, list(text2num(z)))
+		var/datum/weather/weather_event = pick_weight(possible_weather)
+		run_weather(weather_event, list(text2num(z)))
 		eligible_zlevels -= z
-		var/randTime = rand(3000, 6000)
-		next_hit_by_zlevel["[z]"] = addtimer(CALLBACK(src, PROC_REF(make_eligible), z, possible_weather), randTime + initial(our_event.weather_duration_upper), TIMER_UNIQUE|TIMER_STOPPABLE) //Around 5-10 minutes between weathers
+		var/randTime = rand(5 MINUTES, 10 MINUTES)
+		next_hit_by_zlevel["[z]"] = addtimer(CALLBACK(src, PROC_REF(make_eligible), z, possible_weather), randTime + initial(weather_event.weather_duration_upper), TIMER_UNIQUE|TIMER_STOPPABLE)
 
 /datum/controller/subsystem/weather/Initialize()
-	for(var/V in subtypesof(/datum/weather))
-		var/datum/weather/W = V
-		var/probability = initial(W.probability)
-		var/target_trait = initial(W.target_trait)
+	for(var/datum/weather/weather as anything in valid_subtypesof(/datum/weather))
+		var/probability = initial(weather.probability)
+		var/target_trait = initial(weather.target_trait)
 
 		// any weather with a probability set may occur at random
 		if (probability)
 			for(var/z in SSmapping.levels_by_trait(target_trait))
 				LAZYINITLIST(eligible_zlevels["[z]"])
-				eligible_zlevels["[z]"][W] = probability
+				eligible_zlevels["[z]"][weather] = probability
 	return SS_INIT_SUCCESS
+
+/datum/controller/subsystem/weather/proc/add_weather_objects(list/new_holders, z_level)
+	for (var/offset in 1 to length(new_holders))
+		var/list/holder_list = new_holders[offset]
+		if (isnull(particle_holders[offset]))
+			particle_holders[offset] = list()
+		particle_holders[offset] += holder_list
+
+		// We add it to vis_contents of planemasters rather than client screen as planemasters already
+		// manage their own visibility based on owner's z level
+		for (var/atom/movable/screen/plane_master/plane_master as anything in particle_planemasters)
+			for (var/obj/effect/abstract/weather_holder/holder as anything in holder_list)
+				if (holder.plane == plane_master.plane)
+					plane_master.vis_contents |= holder
+
+/datum/controller/subsystem/weather/proc/remove_weather_objects(list/old_holders)
+	for (var/offset in 1 to length(old_holders))
+		var/list/holder_list = old_holders[offset]
+		particle_holders[offset] -= holder_list
+
+		for (var/atom/movable/screen/plane_master/plane_master as anything in particle_planemasters)
+			plane_master.vis_contents -= holder_list
 
 /datum/controller/subsystem/weather/proc/update_z_level(datum/space_level/level)
 	var/z = level.z_value
-	for(var/datum/weather/weather as anything in subtypesof(/datum/weather))
+	for(var/datum/weather/weather as anything in valid_subtypesof(/datum/weather))
 		var/probability = initial(weather.probability)
 		var/target_trait = initial(weather.target_trait)
 		if(probability && level.traits[target_trait])
 			LAZYINITLIST(eligible_zlevels["[z]"])
 			eligible_zlevels["[z]"][weather] = probability
 
-/datum/controller/subsystem/weather/proc/run_weather(datum/weather/weather_datum_type, z_levels)
+/datum/controller/subsystem/weather/proc/run_weather(datum/weather/weather_datum_type, z_levels, list/weather_data)
 	if (istext(weather_datum_type))
-		for (var/V in subtypesof(/datum/weather))
-			var/datum/weather/W = V
-			if (initial(W.name) == weather_datum_type)
-				weather_datum_type = V
+		for (var/datum/weather/weather as anything in valid_subtypesof(/datum/weather))
+			if (initial(weather.name) == weather_datum_type)
+				weather_datum_type = weather
 				break
 	if (!ispath(weather_datum_type, /datum/weather))
 		CRASH("run_weather called with invalid weather_datum_type: [weather_datum_type || "null"]")
@@ -66,8 +140,9 @@ SUBSYSTEM_DEF(weather)
 	else if (!islist(z_levels))
 		CRASH("run_weather called with invalid z_levels: [z_levels || "null"]")
 
-	var/datum/weather/W = new weather_datum_type(z_levels)
-	W.telegraph()
+	var/datum/weather/weather = new weather_datum_type(z_levels, weather_data)
+	weather.telegraph(weather_data)
+	return weather
 
 /datum/controller/subsystem/weather/proc/make_eligible(z, possible_weather)
 	eligible_zlevels[z] = possible_weather
@@ -77,7 +152,7 @@ SUBSYSTEM_DEF(weather)
 	var/datum/weather/A
 	for(var/V in processing)
 		var/datum/weather/W = V
-		if((z in W.impacted_z_levels) && W.area_type == active_area.type)
+		if((z in W.impacted_z_levels) &&  istype(active_area, W.area_type)) // BUBBER EDIT: This proc was broken, fixed to now use istype.
 			A = W
 			break
 	return A
@@ -85,11 +160,3 @@ SUBSYSTEM_DEF(weather)
 ///Returns an active storm by its type
 /datum/controller/subsystem/weather/proc/get_weather_by_type(type)
 	return locate(type) in processing
-
-ADMIN_VERB(stop_weather, R_DEBUG|R_ADMIN, "Stop All Active Weather", "Stop all currently active weather.", ADMIN_CATEGORY_DEBUG)
-	log_admin("[key_name(user)] stopped all currently active weather.")
-	message_admins("[key_name_admin(user)] stopped all currently active weather.")
-	for(var/datum/weather/current_weather as anything in SSweather.processing)
-		if(current_weather in SSweather.processing)
-			current_weather.end()
-	BLACKBOX_LOG_ADMIN_VERB("Stop All Active Weather")

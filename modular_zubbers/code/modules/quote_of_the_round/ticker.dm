@@ -15,10 +15,11 @@
 /datum/controller/subsystem/ticker/declare_completion(force_ending)
 
 	if(quote_of_the_round_text)
-		send2chat(
-			new /datum/tgs_message_content(generate_quote_of_the_round()),
-			CONFIG_GET(string/channel_announce_new_game)
-		)
+		for(var/channel_tag in CONFIG_GET(str_list/channel_announce_new_game))
+			send2chat(
+				new /datum/tgs_message_content(generate_quote_of_the_round()),
+				channel_tag
+			)
 		to_chat(world, span_notice("A quote of the round was found, and should have been sent to discord."))
 		log_runtime("A quote of the round was found, and should have been sent to discord.")
 
@@ -33,6 +34,6 @@
 	. = ..()
 
 /datum/controller/subsystem/ticker/proc/generate_quote_of_the_round()
-	return "A shift on [SSmapping.current_map.map_name] has ended.\n\
+	return "The shift has ended. Get ready, a new round on **[SSmap_vote.next_map_config.map_name]** starts soon! <@&[CONFIG_GET(string/game_alert_role_id)]>\n\
 	[pick(strings("quote_of_the_round.json", "workers"))] [pick(strings("quote_of_the_round.json", "action"))] [pick(strings("quote_of_the_round.json", "message"))] that occured during said shift:\n\
 	> *[quote_of_the_round_text]*\n \\- *[quote_of_the_round_attribution]*"

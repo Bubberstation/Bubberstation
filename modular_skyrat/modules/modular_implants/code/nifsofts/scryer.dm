@@ -16,7 +16,7 @@
 
 /datum/nifsoft/scryer/New()
 	. = ..()
-	var/obj/item/organ/internal/cyberimp/brain/nif/parent_resolved = parent_nif.resolve()
+	var/obj/item/organ/cyberimp/brain/nif/parent_resolved = parent_nif.resolve()
 	if(!istype(parent_resolved))
 		stack_trace("[src] ([REF(src)]) tried to create a linked scryer but it had no parent_nif!")
 	if(!linked_scryer)
@@ -101,10 +101,13 @@
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/clothing/neck/link_scryer/loaded/nifsoft/attack_hand_secondary(mob/user, list/modifiers)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 	var/new_label = reject_bad_text(tgui_input_text(user, "Change the visible name", "Set Name", label, MAX_NAME_LEN))
 	if(!new_label)
 		balloon_alert(user, "invalid name!")
-		return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	label = new_label
 	balloon_alert(user, "name set!")
 	update_name()

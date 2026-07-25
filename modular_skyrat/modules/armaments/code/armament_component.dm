@@ -38,7 +38,7 @@
 		inserted_card = null
 	return ..()
 
-/datum/component/armament/proc/on_attackby(atom/target, obj/item, mob/user)
+/datum/component/armament/proc/on_attackby(datum/source, obj/item, mob/user, list/modifiers)
 	SIGNAL_HANDLER
 
 	if(!user || !item)
@@ -85,9 +85,9 @@
 		data["card_name"] = inserted_card.name
 
 	data["armaments_list"] = list()
-	for(var/armament_category as anything in SSarmaments.entries)
+	for(var/armament_category in SSarmaments.entries)
 		var/list/armament_subcategories = list()
-		for(var/subcategory as anything in SSarmaments.entries[armament_category][CATEGORY_ENTRY])
+		for(var/subcategory in SSarmaments.entries[armament_category][CATEGORY_ENTRY])
 			var/list/subcategory_items = list()
 			for(var/datum/armament_entry/armament_entry as anything in SSarmaments.entries[armament_category][CATEGORY_ENTRY][subcategory])
 				if(products && !(armament_entry.type in products))
@@ -241,7 +241,7 @@
 	//if they're strange and have a hacky ID card as an animal
 	else if(isanimal(user))
 		var/mob/living/simple_animal/animal = user
-		if(check_access_obj(animal.access_card))
+		if(check_access_obj(animal.get_idcard()))
 			return TRUE
 
 /datum/component/armament/proc/check_access_obj(obj/item/id)

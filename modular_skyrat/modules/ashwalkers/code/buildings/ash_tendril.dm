@@ -3,14 +3,14 @@
 
 //this is for revitalizing/preserving regen cores
 /obj/structure/lavaland/ash_walker/attackby(obj/item/attacking_item, mob/living/user, params)
-	if(!istype(attacking_item, /obj/item/organ/internal/monster_core/regenerative_core))
+	if(!istype(attacking_item, /obj/item/organ/monster_core/regenerative_core))
 		return ..()
 
 	if(!user.mind.has_antag_datum(/datum/antagonist/ashwalker))
 		balloon_alert(user, "must be an ashwalker!")
 		return
 
-	var/obj/item/organ/internal/monster_core/regenerative_core/regen_core = attacking_item
+	var/obj/item/organ/monster_core/regenerative_core/regen_core = attacking_item
 
 	if(!regen_core.preserve())
 		balloon_alert(user, "organ decayed!")
@@ -54,7 +54,7 @@
 	if(allow_transform < REQUIRED_OBSERVERS)
 		balloon_alert_to_viewers("[src] rejects the request, not enough viewers!")
 		playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
-		human_user.adjustBruteLoss(10)
+		human_user.adjust_brute_loss(10)
 		return
 
 	else
@@ -64,7 +64,7 @@
 		if(choice != "Yes")
 			balloon_alert_to_viewers("[src] feels rejected and punishes [human_user]!")
 			playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
-			human_user.adjustBruteLoss(50)
+			human_user.adjust_brute_loss(50)
 			return
 
 		balloon_alert_to_viewers("[src] rejoices and transforms [human_user]!")

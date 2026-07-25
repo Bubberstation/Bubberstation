@@ -1,8 +1,48 @@
 // Wiki books that are linked to the configured wiki link.
 
+/// The size of the window that the wiki books open in.
+#define BOOK_WINDOW_BROWSE_SIZE "970x710"
+/// This macro will resolve to code that will open up the associated wiki page in the window.
+#define WIKI_PAGE_IFRAME(title, wikiurl, link_identifier) {"
+<html>
+	<head>
+		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+		<title>[html_encode(title)]</title>
+		<style>
+			body {
+				margin: 0;
+			}
+			p {
+				margin: 8px;
+			}
+			iframe {
+				border: 0;
+				margin-left: -177px;
+				margin-top: -80px;
+				width: calc(100% + 177px);
+				height: calc(100% + 80px);
+				display: none;
+			}
+			body.loaded p {
+				display: none;
+			}
+			body.loaded iframe {
+				display: inline;
+			}
+		</style>
+	</head>
+	<body>
+		<p>You start skimming through the manual...</p>
+		<iframe src="[wikiurl]/[link_identifier]?useskin=vector" onload="document.body.classList.add('loaded')"></iframe>
+	</body>
+</html>
+"}
+
 // A book that links to the wiki
 /obj/item/book/manual/wiki
-	starting_content = "Nanotrasen presently does not have any resources on this topic. If you would like to know more, contact your local Central Command representative." // safety
+	starting_content = "Nanotrasen presently does not have any resources on this topic. \
+		If you would like to know more, contact your local Central Command representative." // safety
+	abstract_type = /obj/item/book/manual/wiki
 	/// The ending URL of the page that we link to.
 	var/page_link = ""
 
@@ -12,9 +52,12 @@
 		user.balloon_alert(user, "this book is empty!")
 		return
 	credit_book_to_reader(user)
-	if(tgui_alert(user, "This book's page will open in your browser. Are you sure?", "Open The Wiki", list("Yes", "No")) != "Yes")
-		return
-	usr << link("[wiki_url]/[page_link]")
+	if(user.client.byond_version < 516) //Remove this once 516 is stable
+		if(tgui_alert(user, "This book's page will open in your browser. Are you sure?", "Open The Wiki", list("Yes", "No")) != "Yes")
+			return
+		DIRECT_OUTPUT(user, link("[wiki_url]/[page_link]"))
+	else
+		DIRECT_OUTPUT(user, browse(WIKI_PAGE_IFRAME(name, wiki_url, page_link), "window=manual;size=[BOOK_WINDOW_BROWSE_SIZE]")) // if you change this GUARANTEE that it works.
 
 /obj/item/book/manual/wiki/chemistry
 	name = "Chemistry Textbook"
@@ -159,23 +202,26 @@
 	var/mob/living/carbon/human/H = user
 	user.visible_message(span_suicide("[user] starts dancing to the Rhumba Beat! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(loc, 'sound/effects/spray.ogg', 10, TRUE, -3)
-	if (!QDELETED(H))
-		H.emote("spin")
-		sleep(2 SECONDS)
-		for(var/obj/item/W in H)
-			H.dropItemToGround(W)
-			if(prob(50))
-				step(W, pick(GLOB.alldirs))
-		ADD_TRAIT(H, TRAIT_DISFIGURED, TRAIT_GENERIC)
-		for(var/obj/item/bodypart/part as anything in H.bodyparts)
-			part.adjustBleedStacks(5)
-		H.gib_animation()
-		sleep(0.3 SECONDS)
-		H.adjustBruteLoss(1000) //to make the body super-bloody
-		// if we use gib() then the body gets deleted
-		H.spawn_gibs()
-		H.spill_organs(DROP_ALL_REMAINS)
-		H.spread_bodyparts(DROP_BRAIN)
+	if(QDELETED(H))
+		return
+	H.emote("spin")
+	sleep(2 SECONDS)
+	for(var/obj/item/W in H)
+		H.dropItemToGround(W)
+		if(prob(50))
+			step(W, pick(GLOB.alldirs))
+	var/obj/item/bodypart/head = H.get_bodypart(BODY_ZONE_HEAD)
+	if(head)
+		ADD_TRAIT(head, TRAIT_DISFIGURED, TRAIT_GENERIC)
+	for(var/obj/item/bodypart/part as anything in H.get_bodyparts())
+		part.adjustBleedStacks(5)
+	H.gib_animation()
+	sleep(0.3 SECONDS)
+	H.adjust_brute_loss(1000) //to make the body super-bloody
+	// if we use gib() then the body gets deleted
+	H.spawn_gibs()
+	H.spill_organs(DROP_ALL_REMAINS)
+	H.spread_bodyparts(DROP_BRAIN)
 	return BRUTELOSS
 
 /obj/item/book/manual/wiki/plumbing
@@ -198,3 +244,6 @@
 	starting_author = "Nanotrasen Edu-tainment Division"
 	starting_title = "Tactical Game Cards - Player's Handbook"
 	page_link = "Tactical_Game_Cards"
+
+#undef BOOK_WINDOW_BROWSE_SIZE
+#undef WIKI_PAGE_IFRAME

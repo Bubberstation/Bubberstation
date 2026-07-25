@@ -4,7 +4,6 @@
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "paperplane"
 	base_icon_state = "paperplane"
-	custom_fire_overlay = "paperplane_onfire"
 	throw_range = 7
 	throw_speed = 1
 	throwforce = 0
@@ -47,6 +46,7 @@
 	if(istype(internal_paper, /obj/item/paper/carbon_copy))
 		icon_state = "[base_icon_state]_carbon"
 	update_appearance(UPDATE_ICON)
+	AddElement(/datum/element/burn_on_item_ignition)
 
 /obj/item/paperplane/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -59,8 +59,13 @@
 	internal_paper = null
 	return ..()
 
+/obj/item/paperplane/custom_fire_overlay()
+	if (!custom_fire_overlay)
+		custom_fire_overlay = mutable_appearance('icons/obj/service/bureaucracy.dmi', "paperplane_onfire", appearance_flags = RESET_COLOR|KEEP_APART)
+	return custom_fire_overlay
+
 /obj/item/paperplane/suicide_act(mob/living/user)
-	var/obj/item/organ/internal/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	user.Stun(20 SECONDS)
 	user.visible_message(span_suicide("[user] jams [src] in [user.p_their()] nose. It looks like [user.p_theyre()] trying to commit suicide!"))
 	user.adjust_eye_blur(12 SECONDS)
@@ -86,9 +91,7 @@
 
 	user.put_in_hands(released_paper)
 
-/obj/item/paperplane/attackby(obj/item/attacking_item, mob/user, params)
-	if(burn_paper_product_attackby_check(attacking_item, user))
-		return
+/obj/item/paperplane/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	if(IS_WRITING_UTENSIL(attacking_item))
 		to_chat(user, span_warning("You should unfold [src] before changing it!"))
 		return
@@ -109,7 +112,7 @@
 	if(. || !ishuman(hit_atom)) //if the plane is caught or it hits a nonhuman
 		return
 	var/mob/living/carbon/human/hit_human = hit_atom
-	var/obj/item/organ/internal/eyes/eyes = hit_human.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = hit_human.get_organ_slot(ORGAN_SLOT_EYES)
 	if(!prob(hit_probability))
 		return
 	if(hit_human.is_eyes_covered())
@@ -120,5 +123,5 @@
 	hit_human.Paralyze(4 SECONDS)
 	hit_human.emote("scream")
 
-/obj/item/paperplane/throw_at(atom/target, range, speed, mob/thrower, spin=FALSE, diagonals_first = FALSE, datum/callback/callback, gentle, quickstart = TRUE)
+/obj/item/paperplane/throw_at(atom/target, range, speed, mob/thrower, spin=FALSE, diagonals_first = FALSE, datum/callback/callback, gentle, quickstart = TRUE, throw_type_path = /datum/thrownthing)
 	return ..(target, range, speed, thrower, FALSE, diagonals_first, callback, quickstart = quickstart)

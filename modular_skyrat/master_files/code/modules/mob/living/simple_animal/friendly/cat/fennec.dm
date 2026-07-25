@@ -57,5 +57,5 @@
 	AddComponent(\
 		/datum/component/breed,\
 		can_breed_with = typecacheof(list(/mob/living/basic/pet/cat/fennec)),\
-		baby_path = /mob/living/basic/pet/cat/fennec,\
+		baby_paths = list(/mob/living/basic/pet/cat/fennec),\
 	)

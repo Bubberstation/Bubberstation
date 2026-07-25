@@ -1,5 +1,5 @@
 import { Icon, Section, Table, Tooltip } from 'tgui-core/components';
-import { classes } from '../../common/react';
+import { classes } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -26,7 +26,7 @@ export const CrewManifest = (props) => {
       <Window.Content scrollable>
         {Object.entries(manifest).map(([dept, crew]) => (
           <Section
-            className={'CrewManifest--' + dept}
+            className={`CrewManifest--${dept}`}
             key={dept}
             title={
               dept +

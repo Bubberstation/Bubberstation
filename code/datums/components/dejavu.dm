@@ -48,9 +48,9 @@
 
 	if(isliving(parent))
 		var/mob/living/L = parent
-		tox_loss = L.getToxLoss()
-		oxy_loss = L.getOxyLoss()
-		stamina_loss = L.getStaminaLoss()
+		tox_loss = L.get_tox_loss()
+		oxy_loss = L.get_oxy_loss()
+		stamina_loss = L.get_stamina_loss()
 		brain_loss = L.get_organ_loss(ORGAN_SLOT_BRAIN)
 		rewind_type = PROC_REF(rewind_living)
 
@@ -81,8 +81,7 @@
 
 	//comes after healing so new limbs comically drop to the floor
 	if(starting_turf)
-		var/area/destination_area = starting_turf.loc
-		if(destination_area.area_flags & NOTELEPORT)
+		if(!check_teleport_valid(parent, starting_turf))
 			to_chat(parent, span_warning("For some reason, your head aches and fills with mental fog when you try to think of where you were... It feels like you're now going against some dull, unstoppable universal force."))
 		else
 			var/atom/movable/master = parent
@@ -100,10 +99,10 @@
 		parent.AddComponent(type, 1, rewind_interval, TRUE)
 
 	var/mob/living/master = parent
-	master.setToxLoss(tox_loss)
-	master.setOxyLoss(oxy_loss)
-	master.setStaminaLoss(stamina_loss)
-	master.setOrganLoss(ORGAN_SLOT_BRAIN, brain_loss)
+	master.set_tox_loss(tox_loss)
+	master.set_oxy_loss(oxy_loss)
+	master.set_stamina_loss(stamina_loss)
+	master.set_organ_loss(ORGAN_SLOT_BRAIN, brain_loss)
 	rewind()
 
 /datum/component/dejavu/proc/rewind_carbon()
@@ -138,12 +137,12 @@
 	no_rewinds_message = "\"Rewind complete. You have arrived at: 10 seconds ago.\""
 
 /datum/component/dejavu/timeline/rewind()
-	playsound(get_turf(parent), 'sound/items/modsuit/rewinder.ogg')
-	. = ..()
+	playsound(get_turf(parent), 'sound/items/modsuit/rewinder.ogg', 50, TRUE)
+	return ..()
 
 /datum/component/dejavu/wizard
 	rewind_message = "Your temporal ward activated, pulling you through spacetime!"
 
 /datum/component/dejavu/wizard/rewind()
-	playsound(get_turf(parent), 'sound/items/modsuit/rewinder.ogg')
-	. = ..()
+	playsound(get_turf(parent), 'sound/items/modsuit/rewinder.ogg', 50, TRUE)
+	return ..()

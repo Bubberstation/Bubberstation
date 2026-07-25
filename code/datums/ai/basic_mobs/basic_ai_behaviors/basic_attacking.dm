@@ -1,8 +1,13 @@
+/// Amount of time to wait before executing attack if not specified
+#define DEFAULT_ATTACK_DELAY (0.4 SECONDS)
+
 /datum/ai_behavior/basic_melee_attack
 	action_cooldown = 0.2 SECONDS // We gotta check unfortunately often because we're in a race condition with nextmove
-	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_REQUIRE_REACH | AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION
+	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_MOVE_AND_PERFORM | AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION
 	///do we finish this action after hitting once?
 	var/terminate_after_action = FALSE
+	///do we have any alternate movement behavior?
+	var/movement_behavior
 
 /datum/ai_behavior/basic_melee_attack/setup(datum/ai_controller/controller, target_key, targeting_strategy_key, hiding_location_key)
 	. = ..()
@@ -13,23 +18,26 @@
 	if(QDELETED(target))
 		return FALSE
 
-	set_movement_target(controller, target)
+	set_movement_target(controller, target, movement_behavior)
 
 /datum/ai_behavior/basic_melee_attack/perform(seconds_per_tick, datum/ai_controller/controller, target_key, targeting_strategy_key, hiding_location_key)
+	var/atom/target = controller.blackboard[target_key]
+	if (isnull(target))
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+
+	if (!can_attack(controller, target))
+		return AI_BEHAVIOR_INSTANT
+
 	if (isliving(controller.pawn))
 		var/mob/living/pawn = controller.pawn
 		if (world.time < pawn.next_move)
 			return AI_BEHAVIOR_INSTANT
 
-	var/mob/living/basic/basic_mob = controller.pawn
-	//targeting strategy will kill the action if not real anymore
-	var/atom/target = controller.blackboard[target_key]
 	var/datum/targeting_strategy/targeting_strategy = GET_TARGETING_STRATEGY(controller.blackboard[targeting_strategy_key])
-
-	if(!targeting_strategy.can_attack(basic_mob, target))
+	if(!targeting_strategy.can_attack(controller.pawn, target))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
-	var/hiding_target = targeting_strategy.find_hidden_mobs(basic_mob, target) //If this is valid, theyre hidden in something!
+	var/hiding_target = targeting_strategy.find_hidden_mobs(controller.pawn, target) //If this is valid, theyre hidden in something!
 
 	controller.set_blackboard_key(hiding_location_key, hiding_target)
 
@@ -39,8 +47,28 @@
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 	return AI_BEHAVIOR_DELAY
 
+/datum/ai_behavior/basic_melee_attack/proc/can_attack(datum/ai_controller/controller, atom/target)
+	if (!target.IsReachableBy(controller.pawn))
+		controller.clear_blackboard_key(BB_BASIC_MOB_MELEE_COOLDOWN_TIMER)
+		return FALSE
+
+	var/can_attack_time = controller.blackboard[BB_BASIC_MOB_MELEE_COOLDOWN_TIMER]
+	if (isnull(can_attack_time))
+		var/blackboard_delay = controller.blackboard[BB_BASIC_MOB_MELEE_DELAY]
+		var/attack_delay = isnull(blackboard_delay) ? DEFAULT_ATTACK_DELAY : blackboard_delay
+		controller.set_blackboard_key(BB_BASIC_MOB_MELEE_COOLDOWN_TIMER, world.time + attack_delay)
+		return FALSE
+
+	if (can_attack_time > world.time)
+		return FALSE
+
+	return TRUE
+
 /datum/ai_behavior/basic_melee_attack/finish_action(datum/ai_controller/controller, succeeded, target_key, targeting_strategy_key, hiding_location_key)
 	. = ..()
+	controller.clear_blackboard_key(BB_BASIC_MOB_MELEE_COOLDOWN_TIMER)
+	if(movement_behavior)
+		controller.change_ai_movement_type(initial(controller.ai_movement))
 	if(!succeeded)
 		controller.clear_blackboard_key(target_key)
 
@@ -58,7 +86,7 @@
 	/// range we will try chasing the target before giving up
 	var/chase_range = 9
 	///do we care about avoiding friendly fire?
-	var/avoid_friendly_fire =  FALSE
+	var/avoid_friendly_fire = FALSE
 
 /datum/ai_behavior/basic_ranged_attack/setup(datum/ai_controller/controller, target_key, targeting_strategy_key, hiding_location_key)
 	. = ..()
@@ -145,3 +173,5 @@
 
 /datum/ai_behavior/basic_ranged_attack/avoid_friendly_fire
 	avoid_friendly_fire = TRUE
+
+#undef DEFAULT_ATTACK_DELAY

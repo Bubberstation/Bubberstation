@@ -4,10 +4,14 @@
 #define BB_CURRENT_MIN_MOVE_DISTANCE "min_move_distance"
 ///time until we should next eat, set by the generic hunger subtree
 #define BB_NEXT_HUNGRY "BB_NEXT_HUNGRY"
+///When looking for food, ignore drinks
+#define BB_IGNORE_DRINKS "bb_ignore_drinks"
 ///what we're going to eat next
 #define BB_FOOD_TARGET "bb_food_target"
 ///How close a mob must be for us to select it as a target, if that is less than how far we can maintain it as a target
 #define BB_AGGRO_RANGE "BB_aggro_range"
+///If defined, mobs will use this distance instead of default aggro range to locate new targets
+#define BB_AGGRO_GRAB_RANGE "BB_aggro_grab_range"
 ///are we hungry? determined by the udder component
 #define BB_CHECK_HUNGRY "BB_check_hungry"
 ///are we ready to breed?
@@ -18,6 +22,14 @@
 #define BB_BASIC_HAPPINESS "BB_basic_happiness"
 ///can this mob heal?
 #define BB_BASIC_MOB_HEALER "BB_basic_mob_healer"
+
+//stealing
+///chance we steal something
+#define BB_STEAL_CHANCE "steal_chance"
+///chance we develop a guilty concious and leave our stolen item behind
+#define BB_GUILTY_CONSCIOUS_CHANCE "guilty_concious_rate"
+///the item we will steal
+#define BB_ITEM_TO_STEAL "item_to_steal"
 
 ///the owner we will try to play with
 #define BB_OWNER_TARGET "BB_owner_target"
@@ -49,17 +61,32 @@
 #define BB_BANE_BATMAN "BB_bane_batman"
 //yep that's it
 
-///Hunting BB keys
+/// Are we a panicking goose?
+#define BB_GOOSE_PANICKED "BB_goose_panicked"
+/// Are we a panicking goose?
+#define BB_GOOSE_VOMIT_CHANCE "BB_goose_vomit_chance"
+
+//Hunting BB keys
+///key that holds our current hunting target
 #define BB_CURRENT_HUNTING_TARGET "BB_current_hunting_target"
+///key that holds our less priority hunting target
 #define BB_LOW_PRIORITY_HUNTING_TARGET "BB_low_priority_hunting_target"
-#define BB_HUNTING_COOLDOWN "BB_HUNTING_COOLDOWN"
+///key that holds the cooldown for our hunting subtree
+#define BB_HUNTING_COOLDOWN(type) "BB_HUNTING_COOLDOWN_[type]"
 
 ///Basic Mob Keys
+
+/// How long to wait before attacking a target in range
+#define BB_BASIC_MOB_MELEE_DELAY "BB_basic_melee_delay"
+/// Key used to store the time we can actually attack
+#define BB_BASIC_MOB_MELEE_COOLDOWN_TIMER "BB_basic_melee_cooldown_timer"
 
 ///Targeting subtrees
 #define BB_BASIC_MOB_CURRENT_TARGET "BB_basic_current_target"
 #define BB_BASIC_MOB_CURRENT_TARGET_HIDING_LOCATION "BB_basic_current_target_hiding_location"
 #define BB_TARGETING_STRATEGY "targeting_strategy"
+#define BB_TARGET_PRIORITY_STRATEGY "target_priority_strategy"
+#define BB_HUNT_TARGETING_STRATEGY "hunt_targeting_strategy"
 ///some behaviors that check current_target also set this on deep crit mobs
 #define BB_BASIC_MOB_EXECUTION_TARGET "BB_basic_execution_target"
 ///Blackboard key for a whitelist typecache of "things we can target while trying to move"
@@ -70,6 +97,14 @@
 #define BB_TARGET_WOUNDED_ONLY "BB_target_wounded_only"
 /// What typepath the holding object targeting strategy should look for
 #define BB_TARGET_HELD_ITEM "BB_target_held_item"
+/// How likely is this mob to move when idle per tick?
+#define BB_BASIC_MOB_IDLE_WALK_CHANCE "BB_basic_idle_walk_chance"
+#define BB_BASIC_MOB_TARGET_REFRESH_COOLDOWN "BB_basic_mob_target_refresh_cooldown"
+
+/// Minimum range to keep target within
+#define BB_RANGED_SKIRMISH_MIN_DISTANCE "BB_ranged_skirmish_min_distance"
+/// Maximum range to keep target within
+#define BB_RANGED_SKIRMISH_MAX_DISTANCE "BB_ranged_skirmish_max_distance"
 
 /// Blackboard key storing how long your targeting strategy has held a particular target
 #define BB_BASIC_MOB_HAS_TARGET_TIME "BB_basic_mob_has_target_time"
@@ -109,7 +144,7 @@
 /// How often can we get spooked by a target?
 #define BB_STATIONARY_COOLDOWN "BB_stationary_cooldown"
 
-///List of mobs who have damaged us
+/// Assoc list of mobs who have damaged us -> Moment at which they damaged us
 #define BB_BASIC_MOB_RETALIATE_LIST "BB_basic_mob_shitlist"
 
 /// Chance to randomly acquire a new target
@@ -138,12 +173,13 @@
 /// Blackboard key for a held item
 #define BB_SIMPLE_CARRY_ITEM "BB_SIMPLE_CARRY_ITEM"
 
+///key holding a range to look for stuff in
+#define BB_SEARCH_RANGE "BB_search_range"
+
 ///Mob the MOD is trying to attach to
 #define BB_MOD_TARGET "BB_mod_target"
-///The implant the AI was created from
-#define BB_MOD_IMPLANT "BB_mod_implant"
-///Range for a MOD AI controller.
-#define MOD_AI_RANGE 200
+///The module the AI was created from
+#define BB_MOD_MODULE "BB_mod_module"
 
 ///Only target mobs with these traits
 #define BB_TARGET_ONLY_WITH_TRAITS "BB_target_only_with_traits"
@@ -165,6 +201,8 @@
 #define BB_BASIC_MOB_REINFORCEMENT_TARGET "BB_basic_mob_reinforcement_target"
 /// The next time at which this mob can call for reinforcements
 #define BB_BASIC_MOB_REINFORCEMENTS_COOLDOWN "BB_basic_mob_reinforcements_cooldown"
+/// Soft-reinforcements requests which will cause the mob to prioritize the attacker
+#define BB_MINING_MOB_REINFORCEMENTS_REQUESTS "BB_mining_mob_reinforcements_requests"
 
 /// the direction we started when executing stare at things
 #define BB_STARTING_DIRECTION "BB_startdir"
@@ -172,12 +210,41 @@
 ///Text we display when we befriend someone
 #define BB_FRIENDLY_MESSAGE "friendly_message"
 
+//fishing!
+
 ///our fishing target
-#define BB_FISHING_TARGET "fishing_target"
+#define BB_FISHING_TARGET "BB_fishing_target"
+
+///key holding the list of things we are able to fish from
+#define BB_FISHABLE_LIST "BB_fishable_list"
+
+///key holding our cooldown between fishing attempts
+#define BB_FISHING_COOLDOWN "BB_fishing_cooldown"
+
+///key that holds the next time we will start fishing
+#define BB_FISHING_TIMER "BB_fishing_timer"
+
+///are we ONLY allowed to fish when we're hungry?
+#define BB_ONLY_FISH_WHILE_HUNGRY "BB_only_fish_while_hungry"
+
+///drillable ice we can make holes in
+#define BB_DRILLABLE_ICE "BB_drillable_ice"
+
+
+//emotions we displays depending on our happiness
+///emotions we display when happy
+#define BB_HAPPY_EMOTIONS "happy_emotions"
+///emotions we display when neutral
+#define BB_MODERATE_EMOTIONS "moderate_emotions"
+///emotions we display when depressed
+#define BB_SAD_EMOTIONS "sad_emotions"
 
 // Keys used by one and only one behavior
 // Used to hold state without making bigass lists
 /// For /datum/ai_behavior/find_potential_targets, what if any field are we using currently
 #define BB_FIND_TARGETS_FIELD(type) "bb_find_targets_field_[type]"
 
-
+///Currently enraged
+#define BB_BASIC_MOB_ENRAGE "BB_enraged"
+///Previous melee cooldown
+#define BB_BASIC_MOB_PREVIOUS_MELEE_COOLDOWN "BB_previous_melee_cooldown"

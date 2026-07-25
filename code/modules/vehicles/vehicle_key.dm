@@ -26,6 +26,7 @@
 /obj/item/key/janitor
 	desc = "A keyring with a small steel key, and a pink fob reading \"Pussy Wagon\"."
 	icon_state = "keyjanitor"
+	icon_angle = 90
 	force = 2
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 9
@@ -33,11 +34,11 @@
 	attack_verb_continuous = list("stubs", "pokes")
 	attack_verb_simple = list("stub", "poke")
 	sharpness = SHARP_EDGED
-	embed_type = /datum/embed_data/janicart_key
+	embed_type = /datum/embedding/janicart_key
 	wound_bonus = -1
-	bare_wound_bonus = 2
+	exposed_wound_bonus = 2
 
-/datum/embed_data/janicart_key
+/datum/embedding/janicart_key
 	pain_mult = 1
 	embed_chance = 30
 	fall_chance = 70
@@ -76,7 +77,7 @@
 		user.visible_message(span_suicide("[user] forgot [user.p_they()] isn't actually a janicart! That's a paddlin'!"))
 		if(user.mind?.get_skill_level(/datum/skill/cleaning) >= SKILL_LEVEL_LEGENDARY) //Janny janny janny janny janny
 			playsound(src, 'sound/effects/adminhelp.ogg', 50, TRUE, -1)
-		user.adjustOxyLoss(200)
+		user.adjust_oxy_loss(200)
 		user.death(FALSE)
 
 /obj/item/key/lasso
@@ -92,3 +93,4 @@
 	attack_verb_simple = list("flog", "whip", "lash", "discipline")
 	hitsound = 'sound/items/weapons/whip.ogg'
 	slot_flags = ITEM_SLOT_BELT
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)

@@ -13,6 +13,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/max_punches = 6
 	var/punches = 0
+	req_access = list(ACCESS_COMMAND) // Without this, assistants can punch the card that comes from the machine after they've turned in their roundstart card by using their own PDA.
 	COOLDOWN_DECLARE(gbp_punch_cooldown)
 
 /obj/item/gbp_punchcard/starting
@@ -26,7 +27,7 @@
 	var/is_valid_item = istype(attacking_item, /obj/item/gbp_puncher)
 	if(!is_valid_item && istype(attacking_item, /obj/item/modular_computer/pda))
 		var/obj/item/modular_computer/pda/pda = attacking_item
-		is_valid_item = check_access(pda.computer_id_slot)
+		is_valid_item = check_access(pda.stored_id)
 		if (!is_valid_item)
 			balloon_alert(user, "no access!")
 
@@ -66,10 +67,18 @@
 	default_unfasten_wrench(user, tool)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/machinery/gbp_redemption/attackby(obj/item/attacking_item, mob/user, params)
-	if(default_deconstruction_screwdriver(user, "gbp_machine_open", "gbp_machine", attacking_item))
+/obj/machinery/gbp_redemption/update_icon_state()
+	. = ..()
+	if(panel_open)
+		icon_state = "[initial(icon_state)]_open"
 		return
+	icon_state = initial(icon_state)
 
+/obj/machinery/gbp_redemption/screwdriver_act(mob/living/user, obj/item/tool)
+	. = ..()
+	return default_deconstruction_screwdriver(user, tool)
+
+/obj/machinery/gbp_redemption/attackby(obj/item/attacking_item, mob/user, params)
 	if(default_pry_open(attacking_item, close_after_pry = TRUE))
 		return
 
@@ -145,3 +154,5 @@
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_CARGO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
+
+#undef GBP_PUNCH_REWARD

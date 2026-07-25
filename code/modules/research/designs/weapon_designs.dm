@@ -3,7 +3,7 @@
 /////////////////////////////////////////
 
 /datum/design/c38/sec
-	id = "sec_38"
+	id = "c38_sec"
 	build_type = PROTOLATHE | AWAY_LATHE
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -16,8 +16,12 @@
 	desc = "Designed to quickly reload revolvers. TRAC bullets embed a tracking implant within the target's body. The implant's signal is incompatible with teleporters."
 	id = "c38_trac"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/silver =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/gold =HALF_SHEET_MATERIAL_AMOUNT)
-	build_path = /obj/item/ammo_box/c38/trac
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/ammo_box/speedloader/c38/trac
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
@@ -28,8 +32,11 @@
 	desc = "Designed to quickly reload revolvers. Hot Shot bullets contain an incendiary payload."
 	id = "c38_hotshot"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 2.5)
-	build_path = /obj/item/ammo_box/c38/hotshot
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+	)
+	build_path = /obj/item/ammo_box/speedloader/c38/hotshot
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
@@ -40,8 +47,11 @@
 	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
 	id = "c38_iceblox"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 2.5)
-	build_path = /obj/item/ammo_box/c38/iceblox
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+	)
+	build_path = /obj/item/ammo_box/speedloader/c38/iceblox
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
@@ -52,8 +62,172 @@
 	desc = "Designed to quickly reload revolvers. Rubber bullets are bouncy and less-than-lethal."
 	id = "c38_rubber"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
-	build_path = /obj/item/ammo_box/c38/match/bouncy
+	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 3)
+	build_path = /obj/item/ammo_box/speedloader/c38/match/bouncy
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/c38_true
+	name = "Speedloader (.38 True Strike) (Lethal)"
+	desc = "Designed to quickly reload revolvers. Bullets bounce towards new targets with surprising accuracy and can strike through armored target"
+	id = "c38_true_strike"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+	)
+	build_path = /obj/item/ammo_box/speedloader/c38/true
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/c38_flare
+	name = "Speedloader (.38 Flare) (VERY Lethal)"
+	desc = "Designed to quickly reload revolvers. Flare casings launch a concentrated particle beam towards a target, lighting them up for everyone to see."
+	id = "c38_flare"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/ammo_box/speedloader/c38/flare
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/c38_mag
+	name = "Magazine (.38) (Lethal)"
+	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Less powerful by design, guns chambered in .38 caliber rounds are still quite popular for use by police forces, \
+		private security firms and organizations unable to access energy-based nonlethal weaponry. The lower (relative) penetrative power is useful for preventing potential hull damage \
+		aboard space stations and shuttles."
+	id = "c38_mag"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 4,
+	)
+	build_path = /obj/item/ammo_box/magazine/m38
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/c38_trac_mag
+	name = "Magazine (.38 TRAC) (Less Lethal)"
+	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. TRAC bullets embed a tracking implant within the target's body. The implant's signal is incompatible with teleporters."
+	id = "c38_trac_mag"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 4,
+	)
+	build_path = /obj/item/ammo_box/magazine/m38/trac
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/c38_hotshot_mag
+	name = "Magazine (.38 Hot Shot) (Very Lethal)"
+	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Hot Shot bullets contain an incendiary payload."
+	id = "c38_hotshot_mag"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 4,
+	)
+	build_path = /obj/item/ammo_box/magazine/m38/hotshot
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/c38_iceblox_mag
+	name = "Magazine (.38 Iceblox) (Lethal/Very Lethal (Lizardpeople))"
+	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Iceblox bullets contain a cryogenic payload."
+	id = "c38_iceblox_mag"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 4,
+	)
+	build_path = /obj/item/ammo_box/magazine/m38/iceblox
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/c38_rubber_mag
+	name = "Magazine (.38 Rubber) (Less Lethal)"
+	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Rubber bullets are bouncy and less-than-lethal."
+	id = "c38_rubber_mag"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 4,
+	)
+	build_path = /obj/item/ammo_box/magazine/m38/match/bouncy
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/c38_true_mag
+	name = "Magazine (.38 True Strike) (Lethal)"
+	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Bullets bounce towards new targets with surprising accuracy and can strike through armored target"
+	id = "c38_true_strike_mag"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 4,
+		/datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+	)
+	build_path = /obj/item/ammo_box/magazine/m38/true
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/c38_flare_mag
+	name = "Magazine (.38 Flare) (VERY Lethal)"
+	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Flare casings launch a concentrated particle beam towards a target, lighting them up for everyone to see."
+	id = "c38_flare_mag"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 4,
+		/datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+
+	)
+	build_path = /obj/item/ammo_box/magazine/m38/flare
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/c38_flare_mag
+	name = "Magazine (.38 Flare) (VERY Lethal)"
+	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Flare casings launch a concentrated particle beam towards a target, lighting them up for everyone to see."
+	id = "c38_flare_mag"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 4,
+		/datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+
+	)
+	build_path = /obj/item/ammo_box/magazine/m38/flare
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
@@ -71,7 +245,7 @@
 
 /datum/design/beanbag_slug/sec
 	id = "sec_beanbag_slug"
-	desc = "Beangbag slug shotgun shells. Fires a single slug (a beanbag). Less-than-lethal."
+	desc = "Beanbag slug shotgun shells. Fires a single slug (a beanbag). Less-than-lethal."
 	build_type = PROTOLATHE | AWAY_LATHE
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -101,6 +275,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 	autolathe_exportable = FALSE
 
+/* BUBBER EDIT REMOVAL BEGIN
 /datum/design/mag_autorifle
 	name = "WT-550 Autorifle Magazine (4.6x30mm) (Lethal)"
 	desc = "A 20 round magazine for the out of date WT-550 Autorifle."
@@ -128,6 +303,7 @@
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/silver = SMALL_MATERIAL_AMOUNT * 6, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtic
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+*/// BUBBER EDIT REMOVAL END
 
 /datum/design/pin_testing
 	name = "Test-Range Firing Pin"
@@ -353,18 +529,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
-/datum/design/stunshell
-	name = "Stun Shell"
-	desc = "A stunning shell for a shotgun."
-	id = "stunshell"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2)
-	build_path = /obj/item/ammo_casing/shotgun/stunslug
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
 /datum/design/lasershell
 	name = "Scatter Laser Shotgun Shell (Lethal)"
 	desc = "A high-tech shotgun shell which houses an internal capacitor and laser focusing crystal inside of a shell casing. \
@@ -372,8 +536,21 @@
 		in grotesque burns."
 	id = "lasershell"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 2)
 	build_path = /obj/item/ammo_casing/shotgun/scatterlaser
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/flechette
+	name = "Flechette Shotgun Shell (Lethal)"
+	desc = "A shotgun casing filled with small metal darts. Pokes many tiny holes into meat and kevlar alike. Useful for turning someone's insides \
+		into outsides."
+	id = "flechetteshell"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
+	build_path = /obj/item/ammo_casing/shotgun/flechette
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
@@ -385,12 +562,60 @@
 		Does nothing on its own."
 	id = "techshotshell"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2)
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
 	build_path = /obj/item/ammo_casing/shotgun/techshell
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/flechette
+	name = "Flechette Shotgun Shell (Lethal)"
+	desc = "A shotgun casing filled with small metal darts. Pokes many tiny holes into meat and kevlar alike. Useful for turning someone's insides \
+		into outsides."
+	id = "flechetteshell"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
+	build_path = /obj/item/ammo_casing/shotgun/flechette
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/donkflechette
+	name = "Donk Co. 'Donk Spike' Flechette Shotgun Shell (Lethal)"
+	desc = "A shotgun casing filled with small plastic darts. That's right, plastic. Do you really think plastic is that scary? Sure, it would hurt to be \
+		shot by this, but is it really going to do that much damage? You decide, pal, I'm not your mother. I'm just a computer."
+	id = "donkshell"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 2)
+	build_path = /obj/item/ammo_casing/shotgun/flechette/donk
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/tear_gas_40mm
+	name = "40mm Tear Gas Grenade Shell (Less Lethal)"
+	desc = "Looking to stop a riot or put down those damn space hippies in their beat up space caravan? We've got the grenade for you!"
+	id = "tear_gas_shell"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/plasma = SMALL_MATERIAL_AMOUNT * 2)
+	build_path = /obj/item/ammo_casing/a40mm/tear_gas
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+
+/datum/design/rubber_40mm
+	name = "40mm Rubber Shell (Less Lethal)"
+	desc = "Launch a rubber puck straight into an assistant's head at high velocities today!"
+	id = "rubber_puck_shell"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 2)
+	build_path = /obj/item/ammo_casing/a40mm/rubber
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
 
 /datum/design/suppressor
 	name = "Suppressor"
@@ -434,8 +659,17 @@
 	desc = "A mace fit for a cleric. Useful for bypassing plate armor, but too bulky for much else."
 	id = "cleric_mace"
 	build_type = AUTOLATHE
-	materials = list(MAT_CATEGORY_ITEM_MATERIAL = SHEET_MATERIAL_AMOUNT * 4.5, MAT_CATEGORY_ITEM_MATERIAL_COMPLEMENTARY = SHEET_MATERIAL_AMOUNT * 1.5)
+	materials = list(/datum/material_slot/weapon_head = SHEET_MATERIAL_AMOUNT * 4.5, /datum/material_slot/handle = SHEET_MATERIAL_AMOUNT * 1.5)
 	build_path = /obj/item/melee/cleric_mace
+	category = list(RND_CATEGORY_IMPORTED)
+
+/datum/design/liberator_gun
+	name = "The Liberator"
+	desc = "A dirt cheap 3D printed gun. Only holds one bullet, and is infamous for sometimes exploding on it's user."
+	id = "liberator_gun"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 2, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 15)
+	build_path = /obj/item/gun/ballistic/automatic/pistol/doohickey
 	category = list(RND_CATEGORY_IMPORTED)
 
 /datum/design/stun_boomerang

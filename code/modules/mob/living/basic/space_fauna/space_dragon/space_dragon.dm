@@ -18,6 +18,7 @@
 	health_doll_icon = "spacedragon"
 	faction = list(FACTION_CARP)
 	mob_biotypes = MOB_SPECIAL
+	status_flags = CANPUSH
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 	gender = NEUTER
 	maxHealth = 400
@@ -46,10 +47,15 @@
 	death_sound = 'sound/mobs/non-humanoids/space_dragon/space_dragon_roar.ogg'
 	death_message = "screeches in agony as it collapses to the floor, its life extinguished."
 	butcher_results = list(/obj/item/stack/ore/diamond = 5, /obj/item/stack/sheet/sinew = 5, /obj/item/stack/sheet/bone = 30)
+	initial_language_holder = /datum/language_holder/carp/dragon
 	can_buckle_to = FALSE
 	lighting_cutoff_red = 12
 	lighting_cutoff_green = 15
 	lighting_cutoff_blue = 34
+	max_stamina = 200
+	stamina_crit_threshold = BASIC_MOB_NO_STAMCRIT
+	stamina_recovery = 5
+	max_stamina_slowdown = 12
 
 	/// The colour of the space dragon
 	var/chosen_colour
@@ -134,7 +140,7 @@
 
 /// Select scale colour with the colour picker
 /mob/living/basic/space_dragon/proc/select_colour()
-	chosen_colour = tgui_color_picker(src, "What colour would you like to be?" , "Colour Selection", COLOR_WHITE) // BUBBERSTATION EDIT: TGUI COLOR PICKER
+	chosen_colour = tgui_color_picker(src, "What colour would you like to be?" ,"Colour Selection", COLOR_WHITE)
 	if(!chosen_colour) // Redo proc until we get a color
 		to_chat(src, span_warning("Not a valid colour, please try again."))
 		select_colour()
@@ -169,8 +175,7 @@
 	else if (HAS_TRAIT(src, TRAIT_WING_BUFFET))
 		overlay_state = "overlay_gust"
 
-	var/mutable_appearance/overlay = mutable_appearance(icon, "[icon_living]_[overlay_state]")
-	overlay.appearance_flags = RESET_COLOR
+	var/mutable_appearance/overlay = mutable_appearance(icon, "[icon_living]_[overlay_state]", appearance_flags = RESET_COLOR|KEEP_APART)
 	. += overlay
 
 /mob/living/basic/space_dragon/melee_attack(obj/vehicle/sealed/mecha/target, list/modifiers, ignore_cooldown)
@@ -298,7 +303,7 @@
 	if (severity != EXPLODE_DEVASTATE)
 		return
 	var/damage_coefficient = rand(devastation_damage_min_percentage, devastation_damage_max_percentage)
-	adjustBruteLoss(initial(maxHealth)*damage_coefficient)
+	adjust_brute_loss(initial(maxHealth)*damage_coefficient)
 	return COMPONENT_CANCEL_EX_ACT // we handled it
 
 /// Subtype used by the midround/event

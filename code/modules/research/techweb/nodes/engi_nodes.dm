@@ -59,7 +59,7 @@
 		"hyper_cell",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
-	required_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier2_any)
+	discount_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier2_any = TECHWEB_TIER_3_POINTS)
 	announce_channels = list(RADIO_CHANNEL_ENGINEERING)
 
 
@@ -129,16 +129,16 @@
 		"firelock_board",
 		"trapdoor_electronics",
 		"blast",
+		"ignition",
 		"big_manipulator",
-		"tile_sprayer",
 		"airlock_painter",
 		"decal_painter",
 		"rwd",
 		"cable_coil",
 		"welding_helmet",
 		"welding_tool",
+		"mini_welding_tool",
 		"tscanner",
-		"analyzer",
 		"multitool",
 		"wrench",
 		"crowbar",
@@ -178,9 +178,28 @@
 		"inducerengi",
 		"welding_goggles",
 		"tray_goggles",
+		"geigercounter",
+		"diode_disk_stamina"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(RADIO_CHANNEL_ENGINEERING)
+
+/datum/techweb_node/shuttle_engineering
+	id = TECHWEB_NODE_SHUTTLE_ENG
+	display_name = "Shuttle Engineering"
+	description = "Materials and equipment for constructing shuttles"
+	prereq_ids = list(TECHWEB_NODE_ENERGY_MANIPULATION, TECHWEB_NODE_APPLIED_BLUESPACE)
+	design_ids = list(
+		"borg_upgrade_engineering_shuttle_blueprints",
+		"propulsion_engine",
+		"shuttle_blueprints",
+		"shuttle_control",
+		"shuttle_docker",
+		"shuttlerods",
+		"shuttle_remote",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
+	announce_channels = list(RADIO_CHANNEL_ENGINEERING, RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_SUPPLY)
 
 /datum/techweb_node/holographics
 	id = TECHWEB_NODE_HOLOGRAPHICS
@@ -188,6 +207,7 @@
 	description = "Use of holographic technology for signage and barriers."
 	prereq_ids = list(TECHWEB_NODE_ENERGY_MANIPULATION)
 	design_ids = list(
+		"atmosshieldgen",
 		"forcefield_projector",
 		"holosign",
 		"holosignsec",
@@ -198,13 +218,16 @@
 		"holobarrier_jani",
 		"holobarrier_med",
 		"holopad",
-		"vendatray",
 		"holodisk",
+		"modular_shield_gate",
 		"modular_shield_generator",
 		"modular_shield_node",
+		"modular_shield_cable",
 		"modular_shield_relay",
 		"modular_shield_charger",
 		"modular_shield_well",
+		"modular_shield_console",
+		"diode_disk_magnetic",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 

@@ -1,5 +1,3 @@
-#define NEST_FACTION "nest spawned"
-
 /obj/structure/mob_spawner
 	name = "nest"
 	desc = "A nasty looking pile of sticks and debris."
@@ -15,7 +13,7 @@
 	faction = list(NEST_FACTION)
 	var/spawn_delay = 0
 	/// What mob to spawn
-	var/list/monster_types = list(/mob/living/simple_animal/hostile/blackmesa/xen/headcrab)
+	var/list/monster_types = list(/mob/living/basic/blackmesa/xen/headcrab)
 	/// How many mobs can we spawn?
 	var/max_mobs = 3
 	var/spawned_mobs = 0
@@ -75,7 +73,7 @@
 		spawn_delay = world.time + spawn_cooldown
 		spawn_mob()
 
-/obj/structure/mob_spawner/proc/proximity_trigger(datum/source, atom/movable/AM)
+/obj/structure/mob_spawner/proc/proximity_trigger(datum/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs) // Bubber edit ORG: /obj/structure/mob_spawner/proc/proximity_trigger(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
 	if(spawned_mobs >= max_mobs)
 		return
@@ -83,12 +81,12 @@
 		return
 	spawn_delay = world.time + spawn_cooldown
 
-	if(!isliving(AM))
+	if(!isliving(arrived))
 		return
 
-	var/mob/living/entered_mob = AM
+	var/mob/living/entered_mob = arrived
 
-	if((NEST_FACTION in entered_mob.faction))
+	if((entered_mob.has_faction(NEST_FACTION)))
 		return
 
 	spawn_mob()
@@ -104,7 +102,7 @@
 	var/mob/living/spawned_mob = new chosen_mob_type(loc)
 
 	spawned_mob.flags_1 |= (flags_1 & ADMIN_SPAWNED_1)
-	spawned_mob.faction = faction
+	spawned_mob.set_faction(faction)
 	spawned_mob.ghost_controllable = ghost_controllable
 
 	RegisterSignal(spawned_mob, COMSIG_LIVING_DEATH, PROC_REF(mob_death))
@@ -118,7 +116,7 @@
 
 /obj/structure/mob_spawner/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
-	do_jiggle()
+	do_jiggle_sr()
 	if(!retaliated)
 		visible_message(span_danger("[src] grubbles angrily!"))
 		var/chosen_mob_type = pick(monster_types)
@@ -231,7 +229,7 @@
 			for(var/i in 1 to number)
 				new path (loc)
 	playsound(src, 'sound/effects/blob/blobattack.ogg', 100)
-	new /mob/living/simple_animal/hostile/vatbeast(loc)
+	new /mob/living/basic/vatbeast(loc)
 	return ..()
 
 

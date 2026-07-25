@@ -4,7 +4,7 @@
 	icon = 'modular_zubbers/icons/obj/items_and_weapons.dmi'
 	icon_state = "papal_staff"
 	inhand_icon_state = "papal_staff"
-	belt_icon_state = "baguette"
+	inside_belt_icon_state = "baguette"
 	worn_icon_state = "baguette"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
@@ -88,7 +88,7 @@ means that you'll be forced to move carefully while it's on. Fits in pockets, an
 		on_clear_callback = CALLBACK(src, PROC_REF(on_cult_rune_removed)), \
 		effects_we_clear = list(/obj/effect/rune, /obj/effect/heretic_rune, /obj/effect/cosmic_rune), \
 	)
-	AddElement(/datum/element/bane, target_type = /mob/living/basic/revenant, damage_multiplier = 0, added_damage = 25, requires_combat_mode = FALSE)
+	AddComponent(/datum/component/bane, affected_biotypes = MOB_SPIRIT, added_damage = 30)
 
 /obj/item/dualsaber/chaplain/proc/on_cult_rune_removed(obj/effect/target, mob/living/user)
 	if(!istype(target, /obj/effect/rune))

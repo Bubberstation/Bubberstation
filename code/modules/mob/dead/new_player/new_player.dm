@@ -8,7 +8,9 @@
 	//hud_type = /datum/hud/new_player SKYRAT EDIT REMOVAL
 	hud_possible = list()
 
-	var/ready = FALSE
+	/// String Values tied to Defines that state whether the new_player is ready to play or not.
+	/// Do try your best to compare this value directly against the defines for certainty but helper procs do exist in bulkier situations.
+	var/ready = PLAYER_NOT_READY
 	/// Referenced when you want to delete the new_player later on in the code.
 	var/spawning = FALSE
 	/// For instant transfer once the round is set up
@@ -23,7 +25,7 @@
 /mob/dead/new_player/Initialize(mapload)
 	if(client && SSticker.state == GAME_STATE_STARTUP)
 		var/atom/movable/screen/splash/fade_out = new(null, null, client, TRUE)
-		fade_out.Fade(TRUE)
+		fade_out.fade(TRUE)
 
 	if(length(GLOB.newplayer_start))
 		forceMove(pick(GLOB.newplayer_start))
@@ -64,6 +66,12 @@
 		var/datum/poll_question/poll = locate(href_list["votepollref"]) in GLOB.polls
 		vote_on_poll_handler(poll, href_list)
 
+/// Quickly gets a boolean of whether the new_player is ready to play or not in places where we would like the boolean logic.
+/// The assertion is that readiness must be an opted in TRUE, while all other states (e.g. not ready, broken, etc) are FALSE.
+/// We organize it this way to ensure the system is extensible for other possible ready states.
+/mob/dead/new_player/proc/is_ready_to_play()
+	return ready == PLAYER_READY_TO_PLAY
+
 //When you cop out of the round (NB: this HAS A SLEEP FOR PLAYER INPUT IN IT)
 /mob/dead/new_player/proc/make_me_an_observer()
 	if(QDELETED(src) || !src.client)
@@ -92,14 +100,16 @@
 	else
 		to_chat(src, span_notice("Teleporting failed. Ahelp an admin please"))
 		stack_trace("There's no freaking observer landmark available on this map or you're making observers before the map is initialised")
-	observer.key = key
+
+	observer.PossessByPlayer(key)
 	observer.client = client
 	observer.set_ghost_appearance()
 	if(observer.client && observer.client.prefs)
 		observer.real_name = observer.client.prefs.read_preference(/datum/preference/name/real_name)
 		observer.name = observer.real_name
 		observer.client.init_verbs()
-		observer.client.player_details.time_of_death = world.time
+		observer.persistent_client.time_of_death = world.time
+
 	observer.update_appearance()
 	observer.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 	deadchat_broadcast(" has observed.", "<b>[observer.real_name]</b>", follow_target = observer, turf_target = get_turf(observer), message_type = DEADCHAT_DEATHRATTLE)
@@ -136,6 +146,8 @@
 		//BUBBER EDIT END: Silicon flavor text
 		if(JOB_UNAVAILABLE_AUGMENT)
 			return "[jobtitle] is restricted due to your selected body augments."
+		if(JOB_UNAVAILABLE_NOHANDS)
+			return "[jobtitle] requires at least one hand."
 		//SKYRAT EDIT END
 		if(JOB_UNAVAILABLE_ANTAG_INCOMPAT)
 			return "[jobtitle] is not compatible with some antagonist role assigned to you."
@@ -178,7 +190,7 @@
 /mob/dead/new_player/proc/AttemptLateSpawn(rank)
 	// Check that they're picking someone new for new character respawning
 	if(CONFIG_GET(flag/allow_respawn) == RESPAWN_FLAG_NEW_CHARACTER)
-		if("[client.prefs.default_slot]" in client.player_details.joined_as_slots)
+		if("[client.prefs.default_slot]" in persistent_client.joined_as_slots)
 			tgui_alert(usr, "You already have played this character in this round!")
 			return FALSE
 
@@ -205,6 +217,8 @@
 		tgui_alert(usr, "There was an unexpected error putting you into your requested job. If you cannot join with any job, you should contact an admin.")
 		return FALSE
 
+	var/latejoin_period = CEILING(STATION_TIME_PASSED() / (5 MINUTES), 5)
+	SSblackbox.record_feedback("tally", "latejoin_time", 1, latejoin_period)
 	hide_title_screen()// SKYRAT EDIT ADDITION
 	mind.late_joiner = TRUE
 	var/atom/destination = mind.assigned_role.get_latejoin_spawn_point()
@@ -264,22 +278,19 @@
 
 	GLOB.joined_player_list += character.ckey
 
-	if(CONFIG_GET(flag/allow_latejoin_antagonists) && humanc) //Borgs aren't allowed to be antags. Will need to be tweaked if we get true latejoin ais.
-		if(SSshuttle.emergency)
-			switch(SSshuttle.emergency.mode)
-				if(SHUTTLE_RECALL, SHUTTLE_IDLE)
-					SSdynamic.make_antag_chance(humanc)
-				if(SHUTTLE_CALL)
-					if(SSshuttle.emergency.timeLeft(1) > initial(SSshuttle.emergency_call_time)*0.5)
-						SSdynamic.make_antag_chance(humanc)
+	if(CONFIG_GET(flag/allow_latejoin_antagonists) && !EMERGENCY_PAST_POINT_OF_NO_RETURN && humanc) //Borgs aren't allowed to be antags. Will need to be tweaked if we get true latejoin ais.
+		SSdynamic.on_latejoin(humanc)
 
-	if((job.job_flags & JOB_ASSIGN_QUIRKS) && humanc && CONFIG_GET(flag/roundstart_traits))
-		SSquirks.AssignQuirks(humanc, humanc.client)
+	if(humanc)
+		if(job.job_flags & JOB_ASSIGN_QUIRKS)
+			if(CONFIG_GET(flag/roundstart_traits))
+				SSquirks.AssignQuirks(humanc, humanc.client)
+		else // clear any personalities the prefs added since our job clearly does not want them
+			humanc.clear_personalities()
 
 	if(humanc) // Quirks may change manifest datapoints, so inject only after assigning quirks
-		GLOB.manifest.inject(humanc, humanc.client) // SKYRAT EDIT - Added humanc.client - ALTERNATIVE_JOB_TITLES
-
-
+		GLOB.manifest.inject(humanc, null, humanc.client) // SKYRAT EDIT - Added humanc.client - ALTERNATIVE_JOB_TITLES
+		SEND_SIGNAL(humanc, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED)
 	var/area/station/arrivals = GLOB.areas_by_type[/area/station/hallway/secondary/entry]
 	if(humanc && arrivals && !arrivals.power_environ) //arrivals depowered
 		humanc.put_in_hands(new /obj/item/crowbar/large/emergency(get_turf(humanc))) //if hands full then just drops on the floor
@@ -300,10 +311,8 @@
 
 	mind.active = FALSE //we wish to transfer the key manually
 	var/mob/living/spawning_mob = mind.assigned_role.get_spawn_mob(client, destination)
-	if(QDELETED(src) || !client)
+	if(QDELETED(src) || !HAS_CONNECTED_PLAYER(src))
 		return // Disconnected while checking for the appearance ban.
-
-
 
 	if(!isAI(spawning_mob)) // Unfortunately there's still snowflake AI code out there.
 		// transfer_to sets mind to null
@@ -312,7 +321,7 @@
 		preserved_mind.transfer_to(spawning_mob) //won't transfer key since the mind is not active
 		preserved_mind.set_original_character(spawning_mob)
 
-	LAZYADD(client.player_details.joined_as_slots, "[client.prefs.default_slot]")
+	LAZYADD(persistent_client.joined_as_slots, "[client.prefs.default_slot]")
 	client.init_verbs()
 	. = spawning_mob
 	new_character = .
@@ -322,7 +331,7 @@
 	. = new_character
 	if(!.)
 		return
-	new_character.key = key //Manually transfer the key to log them in,
+	new_character.PossessByPlayer(key) //Manually transfer the key to log them in,
 	new_character.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 	var/area/joined_area = get_area(new_character.loc)
 	if(joined_area)
@@ -334,10 +343,6 @@
 /mob/dead/new_player/proc/ViewManifest()
 	if(!client)
 		return
-	if(world.time < client.crew_manifest_delay)
-		return
-	client.crew_manifest_delay = world.time + (1 SECONDS)
-
 	GLOB.manifest.ui_interact(src)
 
 /mob/dead/new_player/Move()
@@ -348,23 +353,24 @@
 // Prevents "antag rolling" by setting antag prefs on, all jobs to never, and "return to lobby if preferences not available"
 // Doing so would previously allow you to roll for antag, then send you back to lobby if you didn't get an antag role
 // This also does some admin notification and logging as well, as well as some extra logic to make sure things don't go wrong
-/mob/dead/new_player/proc/check_preferences()
+/mob/dead/new_player/proc/check_job_preferences(warn = TRUE)
 	if(!client)
 		return FALSE //Not sure how this would get run without the mob having a client, but let's just be safe.
 	if(client.prefs.read_preference(/datum/preference/choiced/jobless_role) != RETURNTOLOBBY)
 		return TRUE
 	// If they have antags enabled, they're potentially doing this on purpose instead of by accident. Notify admins if so.
-	var/has_antags = FALSE
-	if(client.prefs.be_special.len > 0)
-		has_antags = TRUE
+	var/has_antags = length(client.prefs.be_special) > 0
 	if(client.prefs.job_preferences.len == 0)
-		if(!ineligible_for_roles)
-			to_chat(src, span_danger("You have no jobs enabled, along with return to lobby if job is unavailable. This makes you ineligible for any round start role, please update your job preferences."))
-		ineligible_for_roles = TRUE
+		if(warn)
+			to_chat(src, span_danger("You have no jobs enabled, along with return to lobby if job is unavailable. \
+				This makes you ineligible for any round start role, please update your job preferences."))
 		ready = PLAYER_NOT_READY
 		if(has_antags)
-			log_admin("[src.ckey] has no jobs enabled, return to lobby if job is unavailable enabled and [client.prefs.be_special.len] antag preferences enabled. The player has been forcefully returned to the lobby.")
-			message_admins("[src.ckey] has no jobs enabled, return to lobby if job is unavailable enabled and [client.prefs.be_special.len] antag preferences enabled. This is an old antag rolling technique. The player has been asked to update their job preferences and has been forcefully returned to the lobby.")
+			log_admin("[src.ckey] has no jobs enabled, return to lobby if job is unavailable enabled and [client.prefs.be_special.len] \
+				antag preferences enabled. The player has been forcefully returned to the lobby.")
+			message_admins("[src.ckey] has no jobs enabled, return to lobby if job is unavailable enabled and [client.prefs.be_special.len] \
+				antag preferences enabled. This is an old antag rolling technique. The player has been asked to update their job preferences \
+				and has been forcefully returned to the lobby.")
 		return FALSE //This is the only case someone should actually be completely blocked from antag rolling as well
 	return TRUE
 
@@ -376,13 +382,11 @@
  */
 /mob/dead/new_player/proc/register_for_interview()
 	// First we detain them by removing all the verbs they have on client
-	for (var/v in client.verbs)
-		var/procpath/verb_path = v
+	for (var/procpath/verb_path as anything in client.verbs)
 		remove_verb(client, verb_path)
 
 	// Then remove those on their mob as well
-	for (var/v in verbs)
-		var/procpath/verb_path = v
+	for (var/procpath/verb_path as anything in verbs)
 		remove_verb(src, verb_path)
 
 	// Then we create the interview form and show it to the client
@@ -409,5 +413,12 @@
 	create_mob_hud()
 	to_chat(new_player, span_info("Lobby Menu HUD reset. You may reset the HUD again in <b>[DisplayTimeText(RESET_HUD_INTERVAL)]</b>."))
 	hud_used.show_hud(hud_used.hud_version)
+
+///Auto deadmins an admin when they click to toggle the ready button or join game button in the menu
+/mob/dead/new_player/proc/auto_deadmin_on_ready_or_latejoin()
+	if(!client?.holder) //If they aren't an admin we dont care
+		return TRUE
+	if(CONFIG_GET(flag/auto_deadmin_on_ready_or_latejoin) || (client.prefs.read_preference(/datum/preference/toggle/auto_deadmin_on_ready_or_latejoin)) || (client.prefs?.toggles & DEADMIN_ALWAYS))
+		return client.holder.auto_deadmin()
 
 #undef RESET_HUD_INTERVAL

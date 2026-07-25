@@ -5,7 +5,7 @@
 /datum/action/innate/construction
 	button_icon = 'icons/mob/actions/actions_construction.dmi'
 	///Console's eye mob
-	var/mob/camera/ai_eye/remote/base_construction/remote_eye
+	var/mob/eye/camera/remote/base_construction/remote_eye
 	///Console itself
 	var/obj/machinery/computer/camera_advanced/base_construction/base_console
 	///Is this used to build only on the station z level?
@@ -32,10 +32,10 @@
 	if (!area_constraint)
 		return TRUE
 	if(!istype(build_area, area_constraint))
-		to_chat(owner, span_warning("You can only build within [area_constraint]!"))
+		to_chat(owner, span_warning("You can only build within [area_constraint::name]!"))
 		return FALSE
 	if(only_station_z && !is_station_level(build_target.z))
-		to_chat(owner, span_warning("[area_constraint] has launched and can no longer be modified."))
+		to_chat(owner, span_warning("[area_constraint::name] has launched and can no longer be modified."))
 		return FALSE
 	return TRUE
 

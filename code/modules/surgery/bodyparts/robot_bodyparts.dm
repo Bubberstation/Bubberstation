@@ -1,7 +1,7 @@
 
 #define ROBOTIC_LIGHT_BRUTE_MSG "marred"
 #define ROBOTIC_MEDIUM_BRUTE_MSG "dented"
-#define ROBOTIC_HEAVY_BRUTE_MSG "falling apart"
+#define ROBOTIC_HEAVY_BRUTE_MSG "like its falling apart"
 
 #define ROBOTIC_LIGHT_BURN_MSG "scorched"
 #define ROBOTIC_MEDIUM_BURN_MSG "charred"
@@ -44,6 +44,7 @@
 	damage_examines = list(BRUTE = ROBOTIC_BRUTE_EXAMINE_TEXT, BURN = ROBOTIC_BURN_EXAMINE_TEXT)
 	disabling_threshold_percentage = 1
 	bodypart_flags = BODYPART_UNHUSKABLE
+	butcher_replacement = null
 
 /obj/item/bodypart/arm/right/robot
 	name = "cyborg right arm"
@@ -79,6 +80,7 @@
 
 	damage_examines = list(BRUTE = ROBOTIC_BRUTE_EXAMINE_TEXT, BURN = ROBOTIC_BURN_EXAMINE_TEXT)
 	bodypart_flags = BODYPART_UNHUSKABLE
+	butcher_replacement = null
 
 /obj/item/bodypart/leg/left/robot
 	name = "cyborg left leg"
@@ -114,6 +116,7 @@
 
 	damage_examines = list(BRUTE = ROBOTIC_BRUTE_EXAMINE_TEXT, BURN = ROBOTIC_BURN_EXAMINE_TEXT)
 	bodypart_flags = BODYPART_UNHUSKABLE
+	butcher_replacement = null
 
 /obj/item/bodypart/leg/left/robot/emp_effect(severity, protection)
 	. = ..()
@@ -163,6 +166,7 @@
 
 	damage_examines = list(BRUTE = ROBOTIC_BRUTE_EXAMINE_TEXT, BURN = ROBOTIC_BURN_EXAMINE_TEXT)
 	bodypart_flags = BODYPART_UNHUSKABLE
+	butcher_replacement = null
 
 /obj/item/bodypart/leg/right/robot/emp_effect(severity, protection)
 	. = ..()
@@ -209,10 +213,11 @@
 
 	damage_examines = list(BRUTE = ROBOTIC_BRUTE_EXAMINE_TEXT, BURN = ROBOTIC_BURN_EXAMINE_TEXT)
 	bodypart_flags = BODYPART_UNHUSKABLE
+	butcher_replacement = null
 
 	robotic_emp_paralyze_damage_percent_threshold = 0.6
 
-	wing_types = list(/obj/item/organ/external/wings/functional/robotic)
+	wing_types = list(/obj/item/organ/wings/functional/robotic)
 
 	var/wired = FALSE
 	var/obj/item/stock_parts/power_store/cell = null
@@ -272,7 +277,7 @@
 	SIGNAL_HANDLER
 
 	var/all_robotic = TRUE
-	for(var/obj/item/bodypart/part in owner.bodyparts)
+	for(var/obj/item/bodypart/part as anything in owner.get_bodyparts())
 		all_robotic = all_robotic && IS_ROBOTIC_LIMB(part)
 
 	if(all_robotic)
@@ -294,28 +299,29 @@
 			TRAIT_RESISTHIGHPRESSURE,
 			), AUGMENTATION_TRAIT)
 
-/obj/item/bodypart/chest/robot/attackby(obj/item/weapon, mob/user, params)
-	if(istype(weapon, /obj/item/stock_parts/power_store/cell))
+/obj/item/bodypart/chest/robot/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(istype(tool, /obj/item/stock_parts/power_store/cell))
 		if(cell)
-			to_chat(user, span_warning("You have already inserted a cell!"))
-			return
-		else
-			if(!user.transferItemToLoc(weapon, src))
-				return
-			cell = weapon
-			to_chat(user, span_notice("You insert the cell."))
-	else if(istype(weapon, /obj/item/stack/cable_coil))
+			to_chat(user, span_warning("A cell is already present in [src]!"))
+			return ITEM_INTERACT_BLOCKING
+		if(!user.transferItemToLoc(tool, src))
+			return ITEM_INTERACT_BLOCKING
+		cell = tool
+		to_chat(user, span_notice("You insert [cell] into [src]."))
+		return ITEM_INTERACT_SUCCESS
+
+	if(istype(tool, /obj/item/stack/cable_coil))
 		if(wired)
-			to_chat(user, span_warning("You have already inserted wire!"))
-			return
-		var/obj/item/stack/cable_coil/coil = weapon
-		if (coil.use(1))
-			wired = TRUE
-			to_chat(user, span_notice("You insert the wire."))
-		else
+			to_chat(user, span_warning("[src] is already wired up!"))
+			return ITEM_INTERACT_BLOCKING
+		var/obj/item/stack/cable_coil/coil = tool
+		if (!coil.use(1))
 			to_chat(user, span_warning("You need one length of coil to wire it!"))
-	else
-		return ..()
+			return ITEM_INTERACT_BLOCKING
+		wired = TRUE
+		to_chat(user, span_notice("You wire the cell inside of [src]."))
+		return ITEM_INTERACT_SUCCESS
+	return NONE
 
 /obj/item/bodypart/chest/robot/wirecutter_act(mob/living/user, obj/item/cutter)
 	. = ..()
@@ -391,6 +397,7 @@
 
 	head_flags = HEAD_EYESPRITES
 	bodypart_flags = BODYPART_UNHUSKABLE
+	butcher_replacement = null
 
 	var/obj/item/assembly/flash/handheld/flash1 = null
 	var/obj/item/assembly/flash/handheld/flash2 = null
@@ -408,10 +415,7 @@
 	if (severity == EMP_HEAVY)
 		glitch_duration *= 2
 
-	owner.add_client_colour(/datum/client_colour/malfunction)
-
-	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob/living/carbon/human, remove_client_colour), /datum/client_colour/malfunction), glitch_duration)
-	return
+	QDEL_IN(owner.add_client_colour(/datum/client_colour/malfunction, HEAD_TRAIT), glitch_duration)
 
 #undef EMP_GLITCH
 
@@ -441,25 +445,28 @@
 			. += "It has two eye sockets occupied by flashes."
 		. += span_notice("You can remove the seated flash[single_flash ? "":"es"] with a <b>crowbar</b>.")
 
-/obj/item/bodypart/head/robot/attackby(obj/item/weapon, mob/user, params)
-	if(istype(weapon, /obj/item/assembly/flash/handheld))
-		var/obj/item/assembly/flash/handheld/flash = weapon
-		if(flash1 && flash2)
-			to_chat(user, span_warning("You have already inserted the eyes!"))
-			return
-		else if(flash.burnt_out)
-			to_chat(user, span_warning("You can't use a broken flash!"))
-			return
-		else
-			if(!user.transferItemToLoc(flash, src))
-				return
-			if(flash1)
-				flash2 = flash
-			else
-				flash1 = flash
-			to_chat(user, span_notice("You insert the flash into the eye socket."))
-			return
-	return ..()
+/obj/item/bodypart/head/robot/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(!istype(tool, /obj/item/assembly/flash/handheld))
+		return NONE
+
+	var/obj/item/assembly/flash/handheld/flash = tool
+	if(flash1 && flash2)
+		to_chat(user, span_warning("[src] already has both flash-eyes present!"))
+		return ITEM_INTERACT_BLOCKING
+
+	if(flash.burnt_out)
+		to_chat(user, span_warning("You can't use a broken flash!"))
+		return ITEM_INTERACT_BLOCKING
+
+	if(!user.transferItemToLoc(flash, src))
+		return ITEM_INTERACT_BLOCKING
+
+	if(flash1)
+		flash2 = flash
+	else
+		flash1 = flash
+	to_chat(user, span_notice("You insert the flash into the eye socket."))
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/bodypart/head/robot/crowbar_act(mob/living/user, obj/item/prytool)
 	..()
@@ -554,6 +561,7 @@
 	unarmed_effectiveness = 20
 	max_damage = LIMB_MAX_HP_ADVANCED
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
+	is_emissive = TRUE
 
 /obj/item/bodypart/arm/right/robot/advanced
 	name = "advanced robotic right arm"
@@ -565,6 +573,7 @@
 	unarmed_effectiveness = 20
 	max_damage = LIMB_MAX_HP_ADVANCED
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
+	is_emissive = TRUE
 
 /obj/item/bodypart/leg/left/robot/advanced
 	name = "advanced robotic left leg"
@@ -576,9 +585,10 @@
 	unarmed_effectiveness = 20
 	max_damage = LIMB_MAX_HP_ADVANCED
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
+	is_emissive = TRUE
 
 /obj/item/bodypart/leg/right/robot/advanced
-	name = "heavy robotic right leg"
+	name = "advanced robotic right leg"
 	desc = "An advanced cybernetic leg, capable of greater feats of strength and durability."
 	icon_static = 'icons/mob/augmentation/advanced_augments.dmi'
 	icon = 'icons/mob/augmentation/advanced_augments.dmi'
@@ -587,6 +597,7 @@
 	unarmed_effectiveness = 20
 	max_damage = LIMB_MAX_HP_ADVANCED
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
+	is_emissive = TRUE
 
 #undef ROBOTIC_LIGHT_BRUTE_MSG
 #undef ROBOTIC_MEDIUM_BRUTE_MSG

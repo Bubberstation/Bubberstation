@@ -25,7 +25,6 @@
 	description = "A drug originally developed by and for plutonians to assist them during raids. \
 		Does not see wide use due to the whole reality-disassociation and heart disease thing afterwards. \
 		Can be intentionally overdosed to increase the drug's effects"
-	reagent_state = LIQUID
 	color = "#c22a44"
 	taste_description = "television static"
 	metabolization_rate = 0.65 * REAGENTS_METABOLISM
@@ -88,7 +87,7 @@
 			span_danger("[our_guy] suddenly slows from their inhuman speeds, coming back with a wicked nosebleed!"),
 			span_danger("You suddenly slow back to normal, a stream of blood gushing from your nose!")
 		)
-		our_guy.adjustStaminaLoss(constant_dose_time)
+		our_guy.adjust_stamina_loss(constant_dose_time)
 	else // Much longer than that however, and you're not gonna have a good day
 		our_guy.visible_message(
 			span_danger("[our_guy] suddenly snaps back from their inhumans speeds, coughing up a spray of blood!"),
@@ -96,8 +95,8 @@
 		)
 		our_guy.spray_blood(our_guy.dir, 2) // The before mentioned coughing up blood
 		our_guy.emote("cough")
-		our_guy.adjustStaminaLoss(constant_dose_time)
-		our_guy.adjustOrganLoss(ORGAN_SLOT_HEART, 0.3 * constant_dose_time) // Basically you might die
+		our_guy.adjust_stamina_loss(constant_dose_time)
+		our_guy.adjust_organ_loss(ORGAN_SLOT_HEART, 0.3 * constant_dose_time) // Basically you might die
 
 	if(!our_guy.hud_used)
 		return
@@ -135,7 +134,7 @@
 
 	constant_dose_time += seconds_per_tick
 
-	our_guy.adjustOrganLoss(ORGAN_SLOT_HEART, 0.1 * REM * seconds_per_tick)
+	our_guy.adjust_organ_loss(ORGAN_SLOT_HEART, 0.1 * REM * seconds_per_tick)
 
 	if(locate(/datum/reagent/drug/kronkaine) in our_guy.reagents.reagent_list) // Kronkaine, another heart-straining drug, could cause problems if mixed with this
 		our_guy.ForceContractDisease(new /datum/disease/adrenal_crisis(), FALSE, TRUE)
@@ -163,8 +162,8 @@
 	. = ..()
 	our_guy.set_jitter_if_lower(10 SECONDS * REM * seconds_per_tick)
 
-	our_guy.adjustOrganLoss(ORGAN_SLOT_HEART, 1 * REM * seconds_per_tick, required_organ_flag = affected_organ_flags)
-	our_guy.adjustToxLoss(1 * REM * seconds_per_tick, updating_health = FALSE, forced = TRUE, required_biotype = affected_biotype)
+	our_guy.adjust_organ_loss(ORGAN_SLOT_HEART, 1 * REM * seconds_per_tick, required_organ_flag = affected_organ_flags)
+	our_guy.adjust_tox_loss(1 * REM * seconds_per_tick, updating_health = FALSE, forced = TRUE, required_biotype = affected_biotype)
 
 	if(SPT_PROB(5, seconds_per_tick))
 		to_chat(our_guy, span_danger("You cough up a splatter of blood!"))
@@ -206,6 +205,8 @@
 // Movespeed modifier used by twitch when someone has it in their system
 /datum/movespeed_modifier/reagent/twitch
 	multiplicative_slowdown = -0.4
+
+#undef CONSTANT_DOSE_SAFE_LIMIT
 
 #undef TWITCH_SCREEN_FILTER
 #undef TWITCH_SCREEN_BLUR

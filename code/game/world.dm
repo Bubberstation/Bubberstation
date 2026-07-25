@@ -7,7 +7,6 @@
 #define NO_INIT_PARAMETER "no-init"
 
 GLOBAL_VAR(restart_counter)
-GLOBAL_VAR(tracy_log)
 
 /**
  * WORLD INITIALIZATION
@@ -30,7 +29,7 @@ GLOBAL_VAR(tracy_log)
  *   - config.Load()
  *   - world.InitTgs() =>
  *     - TgsNew() *may sleep
- *     - GLOB.rev_data.load_tgs_info()
+ *     - GLOB.rev_data.load_tgs_info() *may sleep
  *   - world.ConfigLoaded() =>
  *     - SSdbcore.InitializeRound()
  *     - world.SetupLogs()
@@ -66,15 +65,24 @@ GLOBAL_VAR(tracy_log)
 /world/proc/Genesis(tracy_initialized = FALSE)
 	RETURN_TYPE(/datum/controller/master)
 
-#ifdef USE_BYOND_TRACY
-#warn USE_BYOND_TRACY is enabled
 	if(!tracy_initialized)
+		Tracy = new
+#ifdef USE_BYOND_TRACY
+		if(Tracy.enable("USE_BYOND_TRACY defined"))
+			Genesis(tracy_initialized = TRUE)
+			return
 #else
-	if(!tracy_initialized && (USE_TRACY_PARAMETER in params))
+		var/tracy_enable_reason
+		if(USE_TRACY_PARAMETER in params)
+			tracy_enable_reason = "world.params"
+		if(fexists(TRACY_ENABLE_PATH))
+			tracy_enable_reason ||= "enabled for round"
+			SEND_TEXT(world.log, "[TRACY_ENABLE_PATH] exists, initializing byond-tracy!")
+			fdel(TRACY_ENABLE_PATH)
+		if(!isnull(tracy_enable_reason) && Tracy.enable(tracy_enable_reason))
+			Genesis(tracy_initialized = TRUE)
+			return
 #endif
-		GLOB.tracy_log = init_byond_tracy()
-		Genesis(tracy_initialized = TRUE)
-		return
 
 	Profile(PROFILE_RESTART)
 	Profile(PROFILE_RESTART, type = "sendmaps")
@@ -83,7 +91,7 @@ GLOBAL_VAR(tracy_log)
 	_initialize_log_files("data/logs/config_error.[GUID()].log")
 
 	// Init the debugger first so we can debug Master
-	init_debugger()
+	Debugger = new
 
 	// Create the logger
 	logger = new
@@ -118,12 +126,7 @@ GLOBAL_VAR(tracy_log)
  * All atoms in both compiled and uncompiled maps are initialized()
  */
 /world/New()
-	log_world("World loaded at [time_stamp()]!")
-
-	// From a really fucking old commit (91d7150)
-	// I wanted to move it but I think this needs to be after /world/New is called but before any sleeps?
-	// - Dominion/Cyberboss
-	GLOB.timezoneOffset = world.timezone * 36000
+	log_world("World loaded at [server_timestamp()]!")
 
 	// First possible sleep()
 	InitTgs()
@@ -155,11 +158,12 @@ GLOBAL_VAR(tracy_log)
 
 	SetupLogs()
 
-	load_admins()
+	load_admins(initial = TRUE)
 
 	load_poll_data()
 
-	LoadVerbs(/datum/verbs/menu)
+	// Initialize RETA system - code/modules/reta/reta_system.dm
+	reta_init_config()
 
 	if(fexists(RESTART_COUNTER_PATH))
 		GLOB.restart_counter = text2num(trim(file2text(RESTART_COUNTER_PATH)))
@@ -175,6 +179,10 @@ GLOBAL_VAR(tracy_log)
 	setup_autowiki()
 	#endif
 
+	#ifdef PERFORMANCE_TESTS
+	queue_performance_tests()
+	#endif
+
 /world/proc/HandleTestRun()
 	//trigger things to run the whole process
 	Master.sleep_offline_after_initializations = FALSE
@@ -187,6 +195,25 @@ GLOBAL_VAR(tracy_log)
 	cb = VARSET_CALLBACK(SSticker, force_ending, ADMIN_FORCE_END_ROUND)
 #endif
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), cb, 10 SECONDS))
+
+/world/proc/queue_performance_tests()
+	//trigger things to run the whole process
+	Master.sleep_offline_after_initializations = FALSE
+	SSticker.start_immediately = TRUE
+	var/datum/callback/cb = CALLBACK(src, PROC_REF(run_performance_tests))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), cb, 10 SECONDS))
+
+/// Stub proc intended to be filled with code that does some test, profiles it, and logs that test.
+/// Intended to be used with line by line macros, but you should live your truth
+/world/proc/run_performance_tests()
+	// In case we do somethin that could otherwise end the round
+	SSticker.delay_end = TRUE
+	// Your code goes here
+
+	// Logging goes here
+	// (sample line by line) stat_tracking_export_to_csv_later("file_name.csv", GLOB.cost_list, GLOB.count_list)
+	SSticker.delay_end = FALSE
+	shutdown()
 
 /// Returns a list of data about the world state, don't clutter
 /world/proc/get_world_state_for_logging()
@@ -201,10 +228,10 @@ GLOBAL_VAR(tracy_log)
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
 	if(!override_dir)
 		var/realtime = world.realtime
-		var/texttime = time2text(realtime, "YYYY/MM/DD")
+		var/texttime = time2text(realtime, "YYYY/MM/DD", TIMEZONE_UTC)
 		GLOB.log_directory = "data/logs/[texttime]/round-"
 		GLOB.public_log_directory = "data/public/logs/[texttime]/round-" // BUBBER EDIT ADDITION
-		GLOB.picture_logging_prefix = "L_[time2text(realtime, "YYYYMMDD")]_"
+		GLOB.picture_logging_prefix = "L_[time2text(realtime, "YYYYMMDD", TIMEZONE_UTC)]_"
 		GLOB.picture_log_directory = "data/picture_logs/[texttime]/round-"
 		if(GLOB.round_id)
 			GLOB.log_directory += "[GLOB.round_id]"
@@ -212,7 +239,7 @@ GLOBAL_VAR(tracy_log)
 			GLOB.picture_logging_prefix += "R_[GLOB.round_id]_"
 			GLOB.picture_log_directory += "[GLOB.round_id]"
 		else
-			var/timestamp = replacetext(time_stamp(), ":", ".")
+			var/timestamp = replacetext(server_timestamp(), ":", ".")
 			GLOB.log_directory += "[timestamp]"
 			GLOB.public_log_directory += "[timestamp]" // BUBBER EDIT ADDITION
 			GLOB.picture_log_directory += "[timestamp]"
@@ -225,13 +252,12 @@ GLOBAL_VAR(tracy_log)
 	GLOB.master_public_log_file = "[GLOB.public_log_directory]/round_log.txt" // BUBBER EDIT ADDITON
 	logger.init_logging()
 
-	if(GLOB.tracy_log)
-		rustg_file_write("[GLOB.tracy_log]", "[GLOB.log_directory]/tracy.loc")
+	if(Tracy.trace_path)
+		rustg_file_write("[Tracy.trace_path]", "[GLOB.log_directory]/tracy.loc")
 
 	if(!fexists(GLOB.master_public_log_file)) // BUBBER EDIT ADDITION
 		rustg_file_write("Starting up round ID [GLOB.round_id].\n --------------------------\n", GLOB.master_public_log_file) // BUBBER EDIT ADDITION
-
-	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
+	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM", TIMEZONE_UTC) + ".yml")
 	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
 
 	if(GLOB.round_id)
@@ -248,6 +274,12 @@ GLOBAL_VAR(tracy_log)
 	if (TgsAvailable()) // why
 		world.log = file("[GLOB.log_directory]/dd.log") //not all runtimes trigger world/Error, so this is the only way to ensure we can see all of them.
 #endif
+
+/// The world.time we last ran maptick, used for stupid reasons
+GLOBAL_VAR_INIT(last_maptick_time, 0)
+/world/Tick()
+	// We need a hook for if maptick has happen yet
+	GLOB.last_maptick_time = world.time
 
 /world/Topic(T, addr, master, key)
 	TGS_TOPIC //redirect to server tools if necessary
@@ -305,6 +337,26 @@ GLOBAL_VAR(tracy_log)
 	sleep(0) //yes, 0, this'll let Reboot finish and prevent byond memes
 	qdel(src) //shut it down
 
+/// Returns TRUE if the world should do a TGS hard reboot.
+/world/proc/check_hard_reboot()
+	if(!TgsAvailable())
+		return FALSE
+	// byond-tracy can't clean up itself, and thus we should always hard reboot if its enabled, to avoid an infinitely growing trace.
+	if(Tracy?.enabled)
+		return TRUE
+	var/ruhr = CONFIG_GET(number/rounds_until_hard_restart)
+	switch(ruhr)
+		if(-1)
+			return FALSE
+		if(0)
+			return TRUE
+		else
+			if(GLOB.restart_counter >= ruhr)
+				return TRUE
+			else
+				text2file("[++GLOB.restart_counter]", RESTART_COUNTER_PATH)
+				return FALSE
+
 /world/Reboot(reason = 0, fast_track = FALSE)
 	if (reason || fast_track) //special reboot, do none of the normal stuff
 		if (usr)
@@ -319,46 +371,28 @@ GLOBAL_VAR(tracy_log)
 	FinishTestRun()
 	return
 	#else
-	if(TgsAvailable())
-		var/do_hard_reboot
-		// check the hard reboot counter
-		var/ruhr = CONFIG_GET(number/rounds_until_hard_restart)
-		switch(ruhr)
-			if(-1)
-				do_hard_reboot = FALSE
-			if(0)
-				do_hard_reboot = TRUE
-			else
-				if(GLOB.restart_counter >= ruhr)
-					do_hard_reboot = TRUE
-				else
-					text2file("[++GLOB.restart_counter]", RESTART_COUNTER_PATH)
-					do_hard_reboot = FALSE
+	if(check_hard_reboot())
+		log_world("World hard rebooted at [server_timestamp()]")
+		shutdown_logging() // See comment below.
+		QDEL_NULL(Tracy)
+		QDEL_NULL(Debugger)
+		TgsEndProcess()
+		return ..()
 
-		if(do_hard_reboot)
-			log_world("World hard rebooted at [time_stamp()]")
-			shutdown_logging() // See comment below.
-			auxcleanup()
-			TgsEndProcess()
-			return ..()
-
-	log_world("World rebooted at [time_stamp()]")
+	log_world("World rebooted at [server_timestamp()]")
 
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
-	auxcleanup()
+	QDEL_NULL(Tracy)
+	QDEL_NULL(Debugger)
 
 	TgsReboot() // TGS can decide to kill us right here, so it's important to do it last
 
 	..()
 	#endif
 
-/world/proc/auxcleanup()
-	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
-	if (debug_server)
-		call_ext(debug_server, "auxtools_shutdown")()
-
 /world/Del()
-	auxcleanup()
+	QDEL_NULL(Tracy)
+	QDEL_NULL(Debugger)
 	. = ..()
 
 /* SKYRAT EDIT REMOVAL - OVERRIDEN
@@ -402,7 +436,7 @@ GLOBAL_VAR(tracy_log)
 		else if(SSticker.current_state == GAME_STATE_SETTING_UP)
 			new_status += "<br>Starting: <b>Now</b>"
 		else if(SSticker.IsRoundInProgress())
-			new_status += "<br>Time: <b>[time2text(STATION_TIME_PASSED(), "hh:mm", 0)]</b>"
+			new_status += "<br>Time: <b>[round_timestamp("hh:mm")]</b>"
 			if(SSshuttle?.emergency && SSshuttle?.emergency?.mode != (SHUTTLE_IDLE || SHUTTLE_ENDGAME))
 				new_status += " | Shuttle: <b>[SSshuttle.emergency.getModeStr()] [SSshuttle.emergency.getTimerStr()]</b>"
 		else if(SSticker.current_state == GAME_STATE_FINISHED)
@@ -440,8 +474,9 @@ GLOBAL_VAR(tracy_log)
 	LISTASSERTLEN(global_area.turfs_by_zlevel, map_load_z_cutoff, list())
 	for (var/zlevel in 1 to map_load_z_cutoff)
 		var/list/to_add = block(
-			locate(old_max + 1, 1, zlevel),
-			locate(maxx, maxy, zlevel))
+			old_max + 1, 1, zlevel,
+			maxx, maxy, zlevel
+		)
 
 		global_area.turfs_by_zlevel[zlevel] += to_add
 
@@ -456,8 +491,9 @@ GLOBAL_VAR(tracy_log)
 	LISTASSERTLEN(global_area.turfs_by_zlevel, map_load_z_cutoff, list())
 	for (var/zlevel in 1 to map_load_z_cutoff)
 		var/list/to_add = block(
-			locate(1, old_maxy + 1, 1),
-			locate(maxx, maxy, map_load_z_cutoff))
+			1, old_maxy + 1, zlevel,
+			maxx, maxy, zlevel
+		)
 		global_area.turfs_by_zlevel[zlevel] += to_add
 
 /world/proc/incrementMaxZ()
@@ -487,30 +523,9 @@ GLOBAL_VAR(tracy_log)
 
 /world/proc/on_tickrate_change()
 	SStimer?.reset_buckets()
+#ifndef DISABLE_DREAMLUAU
 	DREAMLUAU_SET_EXECUTION_LIMIT_MILLIS(tick_lag * 100)
-
-/world/proc/init_byond_tracy()
-	var/library
-
-	switch (system_type)
-		if (MS_WINDOWS)
-			library = "prof.dll"
-		if (UNIX)
-			library = "libprof.so"
-		else
-			CRASH("Unsupported platform: [system_type]")
-
-	var/init_result = call_ext(library, "init")("block")
-	if(length(init_result) != 0 && init_result[1] == ".") // if first character is ., then it returned the output filename
-		return init_result
-	else if(init_result != "0")
-		CRASH("Error initializing byond-tracy: [init_result]")
-
-/world/proc/init_debugger()
-	var/dll = GetConfig("env", "AUXTOOLS_DEBUG_DLL")
-	if (dll)
-		call_ext(dll, "auxtools_init")()
-		enable_debugging()
+#endif
 
 /world/Profile(command, type, format)
 	if((command & PROFILE_STOP) || !global.config?.loaded || !CONFIG_GET(flag/forbid_all_profiling))

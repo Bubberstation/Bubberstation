@@ -33,6 +33,8 @@
 				R.TryConnectToAI()
 	*/ // SKYRAT EDIT REMOVAL END
 	var/mob/living/silicon/ai/ai_spawn = spawned
+	if(player_client)
+		ai_spawn.set_gender(player_client)
 	ai_spawn.log_current_laws()
 	// SKYRAT EDIT ADDITION START
 	for(var/mob/living/silicon/robot/sync_target in GLOB.silicon_mobs)
@@ -108,3 +110,9 @@
 
 /datum/job/ai/get_radio_information()
 	return "<b>Prefix your message with :b to speak with cyborgs and other AIs.</b>"
+
+/datum/job/ai/on_respawn(mob/new_character)
+	new_character.AIize()
+
+/datum/job/ai/get_lobby_icon()
+	return icon('icons/mob/huds/hud.dmi', "hudai")

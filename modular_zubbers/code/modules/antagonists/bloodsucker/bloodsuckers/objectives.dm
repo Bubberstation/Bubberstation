@@ -175,7 +175,7 @@
 /datum/objective/steal_n_of_type/hearts
 	martyr_compatible = TRUE
 	name = "heartthief"
-	wanted_items = (/obj/item/organ/internal/heart)
+	wanted_items = (/obj/item/organ/heart)
 
 // GENERATE!
 /datum/objective/steal_n_of_type/hearts/New()
@@ -184,9 +184,9 @@
 	update_explanation_text()
 	..()
 
-/datum/objective/steal_n_of_type/hearts/check_if_valid_item(obj/item/organ/internal/heart/current_item)
+/datum/objective/steal_n_of_type/hearts/check_if_valid_item(obj/item/organ/heart/current_item)
 	. = ..()
-	if(current_item.type == /obj/item/organ/internal/heart/monkey || IS_ROBOTIC_ORGAN(current_item))
+	if(current_item.type == /obj/item/organ/heart/monkey || IS_ROBOTIC_ORGAN(current_item))
 		return FALSE
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -358,7 +358,7 @@
 /datum/objective/bloodsucker/ghoulhim/update_explanation_text()
 	. = ..()
 	if(target?.current)
-		explanation_text = "Ensure [target.name], the [!target_department_type ? target.assigned_role.title : target.special_role], is Ghoulifyd via the Persuasion Rack."
+		explanation_text = "Ensure [target.name], the [!target_department_type ? target.assigned_role.title : english_list(target.get_special_roles())], is Ghoulifyd via the Persuasion Rack."
 	else
 		explanation_text = "Free Objective"
 

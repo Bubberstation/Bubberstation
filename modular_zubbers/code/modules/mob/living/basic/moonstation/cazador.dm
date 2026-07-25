@@ -49,7 +49,7 @@
 	move_resist = MOVE_FORCE_WEAK
 	pull_force = MOVE_FORCE_WEAK
 
-	ai_controller = /datum/ai_controller/basic_controller/simple_hostile
+	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile
 
 	butcher_results = list(/obj/item/reagent_containers/cup/tube/cazador_venom = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/bugmeat = 2)

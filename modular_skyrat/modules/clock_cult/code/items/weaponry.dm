@@ -56,12 +56,12 @@
 	name = "brass spear"
 	desc = "A razor-sharp spear made of brass. It thrums with barely-contained energy."
 	icon_state = "ratvarian_spear"
-	embed_type = /datum/embed_data/spear/brass
+	embed_type = /datum/embedding/spear/brass
 	throwforce = 36
 	force = 25
 	armour_penetration = 24
 
-/datum/embed_data/spear/brass
+/datum/embedding/spear/brass
 	impact_pain_mult = parent_type::impact_pain_mult + 8
 	remove_pain_mult = parent_type::remove_pain_mult + 8
 
@@ -287,22 +287,26 @@
 	stamina = 45
 
 
-/obj/item/ammo_box/strilka310/lionhunter/clock
+/obj/item/ammo_box/speedloader/strilka310/lionhunter/clock
 	name = "stripper clip (.310 brass)"
 	desc = "A stripper clip that's just as brass as the rounds it holds."
 	icon = 'modular_skyrat/modules/clock_cult/icons/weapons/ammo.dmi'
 	icon_state = "762_brass"
 	ammo_type = /obj/item/ammo_casing/strilka310/lionhunter/clock
-	unique_reskin = NONE
 	max_ammo = 3
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
+/obj/item/ammo_box/speedloader/strilka310/lionhunter/clock/Initialize(mapload)
+	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
 
 /obj/item/storage/pouch/ammo/clock
 
 /obj/item/storage/pouch/ammo/clock/PopulateContents()
 	var/static/items_inside = list(
-		/obj/item/ammo_box/strilka310/lionhunter/clock = 3
+		/obj/item/ammo_box/speedloader/strilka310/lionhunter/clock = 3
 	)
 
 	generate_items_inside(items_inside, src)

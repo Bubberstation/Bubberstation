@@ -37,7 +37,7 @@
 	///Are we active?
 	var/excited = FALSE
 	///Our gas mix
-	var/datum/gas_mixture/turf/air
+	var/datum/gas_mixture/air
 
 	///If there is an active hotspot on us store a reference to it here
 	var/obj/effect/hotspot/active_hotspot
@@ -50,6 +50,8 @@
 	///gas IDs of current active gas overlays
 	var/list/atmos_overlay_types
 	var/significant_share_ticker = 0
+	///the cooldown on playing a fire starting sound each time a tile is ignited
+	COOLDOWN_DECLARE(fire_puff_cooldown)
 	#ifdef TRACK_MAX_SHARE
 	var/max_share = 0
 	#endif
@@ -383,8 +385,11 @@
 	var/atom/movable/moving_atom
 	for(var/thing in src)
 		moving_atom = thing
-		if (!moving_atom.anchored && !moving_atom.pulledby && moving_atom.last_high_pressure_movement_air_cycle < SSair.times_fired)
-			moving_atom.experience_pressure_difference(pressure_difference, pressure_direction)
+		if (moving_atom.last_high_pressure_movement_air_cycle < SSair.times_fired)
+			if (!moving_atom.anchored && !moving_atom.pulledby)
+				moving_atom.experience_pressure_difference(pressure_difference, pressure_direction)
+			else
+				SEND_SIGNAL(moving_atom, COMSIG_MOVABLE_RESISTED_SPACEWIND, pressure_difference, pressure_direction)
 
 /atom/movable
 	///How much delta pressure is needed for us to move
@@ -645,9 +650,8 @@ Then we space some of our heat, and think about if we should stop conducting.
 
 /turf/open/finish_superconduction()
 	//Conduct with air on my tile if I have it
-	if(!blocks_air)
+	if(..((blocks_air ? temperature : air.temperature)) != FALSE && !blocks_air)
 		temperature = air.temperature_share(null, thermal_conductivity, temperature, heat_capacity)
-	..((blocks_air ? temperature : air.temperature))
 
 ///Should we attempt to superconduct?
 /turf/proc/consider_superconductivity(starting)
@@ -692,6 +696,7 @@ Then we space some of our heat, and think about if we should stop conducting.
 	var/heat = conduction_coefficient * CALCULATE_CONDUCTION_ENERGY(delta_temperature, heat_capacity, sharer.heat_capacity)
 	temperature += heat / heat_capacity //The higher your own heat cap the less heat you get from this arrangement
 	sharer.temperature -= heat / sharer.heat_capacity
+
 
 #undef LAST_SHARE_CHECK
 #undef PLANET_SHARE_CHECK

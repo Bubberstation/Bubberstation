@@ -21,7 +21,7 @@
 	. = ..()
 	var/text_path = tgui_input_text(user, "Enter object path:", "Spawn tool", "none", 256, FALSE)
 	if(!text_path)
-		user.balloon_alert(user, "Enter path!")
+		user.balloon_alert(user, "enter path!")
 		return FALSE
 	selected_object = text2path(text_path)
 	if(!ispath(selected_object))
@@ -29,20 +29,20 @@
 	for(var/black_list_item in black_list)
 		if(ispath(selected_object, black_list_item))
 			selected_object = null
-			user.balloon_alert(user, "Spawn blocked!")
+			user.balloon_alert(user, "spawn blocked!")
 			return FALSE
-	user.balloon_alert(user, "Selected!")
+	user.balloon_alert(user, "selected!")
 	to_chat(user, span_notice("Current spawn type [selected_object]."))
 
 /datum/phystool_mode/spawn_mode/main_act(atom/target, mob/user)
 	. = ..()
 
 	if(!selected_object)
-		user.balloon_alert(user, "Select type first!")
+		user.balloon_alert(user, "select type first!")
 		return FALSE
 
 	if(!COOLDOWN_FINISHED(src, spawn_cooldown))
-		user.balloon_alert(user, "Wait!")
+		user.balloon_alert(user, "wait!")
 		return FALSE
 	var/target_cooldown
 	if(ispath(selected_object, /mob/living/simple_animal/hostile/megafauna))

@@ -56,7 +56,7 @@
 /mob/living/basic/heretic_summon/armsy/has_gravity(turf/gravity_turf)
 	return TRUE
 
-/mob/living/basic/heretic_summon/armsy/can_be_pulled()
+/mob/living/basic/heretic_summon/armsy/can_be_pulled(user, force)
 	return FALSE // The component does this but not on the head. We don't want the head to be pulled either.
 
 /mob/living/basic/heretic_summon/armsy/proc/build_tail(worm_length)
@@ -111,8 +111,8 @@
 		back.on_arm_eaten()
 		return
 
-	adjustBruteLoss(-maxHealth * 0.5, FALSE)
-	adjustFireLoss(-maxHealth * 0.5, FALSE)
+	adjust_brute_loss(-maxHealth * 0.5, FALSE)
+	adjust_fire_loss(-maxHealth * 0.5, FALSE)
 
 	if(health < maxHealth * 0.8)
 		return

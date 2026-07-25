@@ -1,5 +1,5 @@
 import { Button, LabeledList, Section } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -11,6 +11,7 @@ type Data = {
   drawables: Drawable[];
   is_capped: BooleanLike;
   selected_stencil: string;
+  is_literate_user: BooleanLike;
   text_buffer: string;
 };
 
@@ -27,7 +28,10 @@ export const Crayon = (props) => {
     drawables = [],
     is_capped,
     selected_stencil,
+    is_literate_user,
     text_buffer,
+    washable_coloring_mode,
+    remove_coloring,
   } = data;
   const capOrChanges = has_cap || can_change_colour;
 
@@ -50,6 +54,17 @@ export const Crayon = (props) => {
                 <Button
                   content="Custom color"
                   onClick={() => act('custom_color')}
+                />
+              </LabeledList.Item>
+              <LabeledList.Item>
+                <Button
+                  content={washable_coloring_mode ? 'Washable paint' : 'Permanent paint'}
+                  onClick={() => act('change_color_mode')}
+                />
+                <Button
+                  content={remove_coloring ? 'Remove paint mode' : 'Paint mode'}
+                  selected={remove_coloring}
+                  onClick={() => act('toggle_remove_coloring')}
                 />
               </LabeledList.Item>
             </LabeledList>
@@ -78,14 +93,16 @@ export const Crayon = (props) => {
             })}
           </LabeledList>
         </Section>
-        <Section title="Text">
-          <LabeledList>
-            <LabeledList.Item label="Current Buffer">
-              {text_buffer}
-            </LabeledList.Item>
-          </LabeledList>
-          <Button content="New Text" onClick={() => act('enter_text')} />
-        </Section>
+        {!!is_literate_user && (
+          <Section title="Text">
+            <LabeledList>
+              <LabeledList.Item label="Current Buffer">
+                {text_buffer}
+              </LabeledList.Item>
+            </LabeledList>
+            <Button content="New Text" onClick={() => act('enter_text')} />
+          </Section>
+        )}
       </Window.Content>
     </Window>
   );

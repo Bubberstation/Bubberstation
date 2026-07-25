@@ -3,6 +3,7 @@
 	desc = "Yell at coderbus."
 	icon = 'icons/mob/rideables/vehicles.dmi'
 	icon_state = "error"
+	abstract_type = /obj/vehicle
 	max_integrity = 300
 	armor_type = /datum/armor/obj_vehicle
 	layer = VEHICLE_LAYER
@@ -23,9 +24,9 @@
 	  * [/datum/component/riding/var/keytype] variable because only a few specific checks are handled here with this var, and the majority of it is on the riding component
 	  * Eventually the remaining checks should be moved to the component and this var removed.
 	  */
-	var/key_type
+	var/obj/item/key_type
 	///The inserted key, needed on some vehicles to start the engine
-	var/obj/item/key/inserted_key
+	var/obj/item/inserted_key
 	/// Whether the vehicle is currently able to move
 	var/canmove = TRUE
 	var/list/autogrant_actions_passenger //plain list of typepaths
@@ -34,6 +35,8 @@
 	///This vehicle will follow us when we move (like atrailer duh)
 	var/obj/vehicle/trailer
 	var/are_legs_exposed = FALSE
+	var/enter_sound
+	var/exit_sound
 
 /datum/armor/obj_vehicle
 	melee = 30
@@ -60,6 +63,8 @@
 /obj/vehicle/Exited(atom/movable/gone, direction)
 	if(gone == inserted_key)
 		inserted_key = null
+	if(exit_sound)
+		playsound(src, exit_sound, 70, TRUE, MEDIUM_RANGE_SOUND_EXTRARANGE)
 	return ..()
 
 /obj/vehicle/examine(mob/user)
@@ -114,10 +119,11 @@
 /obj/vehicle/proc/is_occupant(mob/M)
 	return !isnull(LAZYACCESS(occupants, M))
 
-/obj/vehicle/proc/add_occupant(mob/M, control_flags)
+/obj/vehicle/proc/add_occupant(mob/M, control_flags, forced)
 	if(!istype(M) || is_occupant(M))
 		return FALSE
-
+	if(enter_sound && !forced)
+		playsound(src, enter_sound, 70, TRUE, MEDIUM_RANGE_SOUND_EXTRARANGE)
 	LAZYSET(occupants, M, NONE)
 	add_control_flags(M, control_flags)
 	after_add_occupant(M)

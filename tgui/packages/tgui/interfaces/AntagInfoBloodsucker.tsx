@@ -1,11 +1,11 @@
-import { BooleanLike } from 'common/react';
 import { useState } from 'react';
+import { Box, Button, Image, Section, Stack, Tabs } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { Box, Button, Image, Section, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
-import { Objective } from './common/Objectives';
+import type { Objective } from './common/Objectives';
 import { PowerDetails } from './PowerInfo';
 
 export type ClanProps = {

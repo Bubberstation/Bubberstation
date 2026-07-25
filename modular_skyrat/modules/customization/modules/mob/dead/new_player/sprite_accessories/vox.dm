@@ -91,6 +91,18 @@
 	name = "Vox Ruffhawk"
 	icon_state = "vox_ruffhawk"
 
+/datum/sprite_accessory/hair/vox/flowing
+	name = "Vox Flowing"
+	icon_state = "vox_flowing"
+
+/datum/sprite_accessory/hair/vox/braid
+	name = "Vox Braids"
+	icon_state = "vox_braid"
+
+/datum/sprite_accessory/hair/vox/wisebraid
+	name = "Vox Wise Braids"
+	icon_state = "vox_wise_braid"
+
 //The facial hairstyles
 /datum/sprite_accessory/facial_hair/vox
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/vox_facial_hair.dmi'
@@ -122,7 +134,7 @@
 	name = "Vox Tail"
 	icon_state = "vox"
 	recommended_species = list(SPECIES_VOX)
-	organ_type = /obj/item/organ/external/tail/lizard
+	organ_type = /obj/item/organ/tail/lizard
 	spine_key = SPINE_KEY_VOX
 
 //The tail markings

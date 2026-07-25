@@ -1,5 +1,6 @@
 /obj/item/mecha_parts/mecha_equipment/weapon
 	name = "mecha weapon"
+	abstract_type = /obj/item/mecha_parts/mecha_equipment/weapon
 	range = MECHA_RANGED
 	equipment_slot = MECHA_WEAPON
 	destroy_sound = 'sound/vehicles/mecha/weapdestr.ogg'
@@ -68,13 +69,14 @@
 		var/obj/projectile/projectile_obj = new projectile(get_turf(src))
 		projectile_obj.log_override = TRUE //we log being fired ourselves a little further down.
 		projectile_obj.firer = chassis
-		projectile_obj.preparePixelProjectile(target, source, modifiers, spread)
+		projectile_obj.fired_from = src // mech = firer, equipment = fired from
+		projectile_obj.aim_projectile(target, source, modifiers, spread)
 		if(isliving(source) && source.client) //dont want it to happen from syndie mecha npc mobs, they do direct fire anyways
 			var/mob/living/shooter = source
 			projectile_obj.hit_prone_targets = shooter.combat_mode
 		projectile_obj.fire()
 		if(!projectile_obj.suppressed && firing_effect_type)
-			new firing_effect_type(get_turf(src), chassis.dir)
+			new firing_effect_type(chassis || get_turf(src), chassis.dir)
 		playsound(chassis, fire_sound, 50, TRUE)
 
 		log_combat(source, target, "fired [projectile_obj] at", src, "from [chassis] at [get_area_name(src, TRUE)]")
@@ -95,7 +97,7 @@
 	name = "\improper CH-PS \"Immolator\" laser"
 	desc = "A weapon for combat exosuits. Shoots basic lasers."
 	icon_state = "mecha_laser"
-	energy_drain = 30
+	energy_drain = 3 KILO JOULES
 	projectile = /obj/projectile/beam/laser
 	fire_sound = 'sound/items/weapons/laser.ogg'
 	harmful = TRUE
@@ -105,7 +107,7 @@
 	name = "\improper CH-DS \"Peacemaker\" disabler"
 	desc = "A weapon for combat exosuits. Shoots a bunch of weak disabler beams."
 	icon_state = "mecha_disabler"
-	energy_drain = 100
+	energy_drain = 10 KILO JOULES
 	projectile = /obj/projectile/beam/disabler/weak
 	variance = 25
 	projectiles_per_shot = 5
@@ -117,7 +119,7 @@
 	name = "\improper CH-LC \"Solaris\" laser cannon"
 	desc = "A weapon for combat exosuits. Shoots heavy lasers."
 	icon_state = "mecha_laser"
-	energy_drain = 60
+	energy_drain = 6 KILO JOULES
 	projectile = /obj/projectile/beam/laser/heavylaser
 	fire_sound = 'sound/items/weapons/lasercannonfire.ogg'
 
@@ -126,7 +128,7 @@
 	name = "\improper MKIV ion heavy cannon"
 	desc = "A weapon for combat exosuits. Shoots technology-disabling ion beams. Don't catch yourself in the blast!"
 	icon_state = "mecha_ion"
-	energy_drain = 120
+	energy_drain = 1.2 KILO JOULES
 	projectile = /obj/projectile/ion
 	fire_sound = 'sound/items/weapons/laser.ogg'
 
@@ -135,7 +137,7 @@
 	name = "\improper MKI Tesla Cannon"
 	desc = "A weapon for combat exosuits. Fires bolts of electricity similar to the experimental tesla engine."
 	icon_state = "mecha_ion"
-	energy_drain = 500
+	energy_drain = 5 KILO JOULES
 	projectile = /obj/projectile/energy/tesla/cannon
 	fire_sound = 'sound/effects/magic/lightningbolt.ogg'
 	harmful = TRUE
@@ -145,7 +147,7 @@
 	name = "eZ-13 MK2 heavy pulse rifle"
 	desc = "A weapon for combat exosuits. Shoots powerful destructive blasts capable of demolishing obstacles."
 	icon_state = "mecha_pulse"
-	energy_drain = 120
+	energy_drain = 1.2 KILO JOULES
 	projectile = /obj/projectile/beam/pulse/heavy
 	fire_sound = 'sound/items/weapons/marauder.ogg'
 	harmful = TRUE
@@ -158,20 +160,79 @@
 	inhand_icon_state = "plasmacutter"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
-	energy_drain = 30
+	energy_drain = 0.3 KILO JOULES
 	projectile = /obj/projectile/plasma/adv/mech
 	fire_sound = 'sound/items/weapons/plasma_cutter.ogg'
 	harmful = TRUE
 	mech_flags = EXOSUIT_MODULE_COMBAT | EXOSUIT_MODULE_WORKING
 
+///Exosuit thermal guns
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal
+	equip_cooldown = 20
+	name = "\improper Prototype -I 'Thermal Cannon'"
+	desc = "A special prototype of a heavy thermal weapon designed for use on exosuits. This one is debug-chambered."
+	icon_state = "mecha_laser"
+	energy_drain = 5 KILO JOULES
+	projectile = /obj/item/ammo_casing/energy/nanite
+	fire_sound = 'sound/items/weapons/thermalpistol.ogg'
+	harmful = TRUE
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo
+	name = "\improper Prototype I 'Cryo Thermal Cannon'"
+	desc = "A special prototype of a heavy thermal weapon designed for use on exosuits. This one is cryo-chambered."
+	icon_state = "mecha_cryogun"
+	projectile = /obj/projectile/energy/cryo
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno
+	name = "\improper Prototype II 'Pyro Thermal Cannon'"
+	desc = "A special prototype of a heavy thermal weapon designed for use on exosuits. This one is molten-chambered."
+	icon_state = "mecha_pyrogun"
+	projectile = /obj/projectile/energy/inferno
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo/try_attach_part(mob/user, obj/vehicle/sealed/mecha/themech, attach_right)
+	var/has_molten = FALSE
+	for (var/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/thegun in themech.flat_equipment)
+		if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo))
+			to_chat(user, span_warning("[themech] already has [thegun] installed!"))
+			return ITEM_INTERACT_BLOCKING
+		if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno))
+			has_molten = TRUE
+	if (has_molten)
+		for (var/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/thegun in themech.flat_equipment)
+			if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno))
+				thegun.equip_cooldown = 8
+		equip_cooldown = 8
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno/try_attach_part(mob/user, obj/vehicle/sealed/mecha/themech, attach_right)
+	var/has_cryo = FALSE
+	for (var/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/thegun in themech.flat_equipment)
+		if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno))
+			to_chat(user, span_warning("[themech] already has [thegun] installed!"))
+			return ITEM_INTERACT_BLOCKING
+		if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo))
+			has_cryo = TRUE
+	if (has_cryo)
+		for (var/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/thegun in themech.flat_equipment)
+			if (istype(thegun, /obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo))
+				thegun.equip_cooldown = 8
+		equip_cooldown = 8
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/detach(atom/moveto)
+	for (var/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/thermal_gun in chassis.flat_equipment)
+		thermal_gun.equip_cooldown = 20
+	. = ..()
+
 //Exosuit-mounted kinetic accelerator
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/mecha_kineticgun
-	equip_cooldown = 10
 	name = "Exosuit Proto-kinetic Accelerator"
 	desc = "An exosuit-mounted mining tool that does increased damage in low pressure. Drawing from an onboard power source allows it to project further than the handheld version."
 	icon_state = "mecha_kineticgun"
-	energy_drain = 30
+	energy_drain = 0.3 KILO JOULES
 	projectile = /obj/projectile/kinetic/mech
+	equip_cooldown = 1.6 SECONDS
 	fire_sound = 'sound/items/weapons/kinetic_accel.ogg'
 	harmful = TRUE
 	mech_flags = EXOSUIT_MODULE_COMBAT | EXOSUIT_MODULE_WORKING
@@ -180,7 +241,7 @@
 	name = "\improper PBT \"Pacifier\" mounted taser"
 	desc = "A weapon for combat exosuits. Shoots non-lethal stunning electrodes."
 	icon_state = "mecha_taser"
-	energy_drain = 20
+	energy_drain = 2 KILO JOULES
 	equip_cooldown = 8
 	projectile = /obj/projectile/energy/electrode
 	fire_sound = 'sound/items/weapons/taser.ogg'
@@ -191,8 +252,9 @@
 	name = "\improper HoNkER BlAsT 5000"
 	desc = "Equipment for clown exosuits. Spreads fun and joy to everyone around. Honk!"
 	icon_state = "mecha_honker"
-	energy_drain = 200
+	energy_drain = 2 KILO JOULES
 	equip_cooldown = 150
+	projectiles_per_shot = 0
 	range = MECHA_MELEE|MECHA_RANGED
 	kickback = FALSE
 	mech_flags = EXOSUIT_MODULE_HONK
@@ -203,7 +265,7 @@
 	playsound(chassis, 'sound/items/airhorn/airhorn.ogg', 100, TRUE)
 	to_chat(source, "[icon2html(src, source)]<font color='red' size='5'>HONK</font>")
 	for(var/mob/living/carbon/M in ohearers(6, chassis))
-		if(!M.can_hear())
+		if(HAS_TRAIT(M, TRAIT_DEAF))
 			continue
 		var/turf/turf_check = get_turf(M)
 		if(isspaceturf(turf_check) && !turf_check.Adjacent(src)) //in space nobody can hear you honk.
@@ -211,9 +273,7 @@
 		to_chat(M, "<font color='red' size='7'>HONK</font>")
 		M.SetSleeping(0)
 		M.adjust_stutter(40 SECONDS)
-		var/obj/item/organ/internal/ears/ears = M.get_organ_slot(ORGAN_SLOT_EARS)
-		if(ears)
-			ears.adjustEarDamage(0, 30)
+		M.sound_damage(deafen = 30 SECONDS)
 		M.Paralyze(60)
 		if(prob(30))
 			M.Stun(200)
@@ -379,7 +439,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
 		return
-	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), equip_cooldown)
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), get_equip_cooldown(target))
 	chassis.use_energy(energy_drain)
 	var/newtonian_target = dir2angle(REVERSE_DIR(chassis.dir))
 	var/obj/O = new projectile(chassis.loc)
@@ -598,7 +658,7 @@
 
 		playsound(chassis, clampsound, 50, FALSE, -6)
 		mobtarget.visible_message(span_notice("[chassis] lifts [mobtarget] into its internal holding cell."),span_userdanger("[chassis] grips you with [src] and prepares to load you into [secmech.cargo_hold]!"))
-		if(!do_after_cooldown(mobtarget, source))
+		if(!do_after_cooldown(mobtarget, source, flags = MECH_DO_AFTER_DIR_CHANGE_FLAG|MECH_DO_AFTER_ADJACENCY_FLAG))
 			return
 		mobtarget.forceMove(secmech.cargo_hold)
 		log_message("Loaded [mobtarget]. Cargo compartment capacity: [secmech.cargo_hold.cargo_capacity - secmech.cargo_hold.contents.len]", LOG_MECHA)
@@ -607,7 +667,6 @@
 		if(autocuff && iscarbon(target))
 			var/mob/living/carbon/carbontarget = target
 			carbontarget.set_handcuffed(new cuff_type(carbontarget))
-			carbontarget.update_handcuffed()
 		return
 
 	if(istype(target, /obj/machinery/door))

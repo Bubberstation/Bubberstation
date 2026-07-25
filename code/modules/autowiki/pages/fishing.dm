@@ -44,13 +44,13 @@
 		if(fish::breeding_timeout != def_breeding)
 			extra_info += "It takes <b>[DisplayTimeText(fish::breeding_timeout)]</b> to reproduce instead of [def_breeding_text]"
 		if(length(extra_info))
-			description += "<br>[extra_info.Join(extra_info,"<br>")]"
+			description += "<br>[extra_info.Join("<br>")]"
 
 		var/list/output_list = list(
 			"name" = full_capitalize(escape_value(fish::name)),
 			"icon" = filename,
 			"description" = description,
-			"size_weight" = "[fish::average_size]cm / [fish::average_weight]g",
+			"size_weight" = "[fish::average_size] cm / [fish::average_weight] kiloclam",
 			"fluid" = escape_value(fish::required_fluid_type),
 			"temperature" = "Doesn't matter",
 			"stable_population" = fish::stable_population,
@@ -118,7 +118,6 @@
 			"name" = escape_value(trait.name),
 			"description" = escape_value(trait.catalog_description),
 			"inheritability" = trait.inheritability,
-			"inheritability_diff" = trait.diff_traits_inheritability,
 
 		))
 

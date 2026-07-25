@@ -7,13 +7,11 @@
 */
 /datum/sprite_accessory/wings
 	icon = 'icons/mob/human/species/wings.dmi'
-	generic = "Wings"
 	key = "wings"
 	color_src = USE_ONE_COLOR
 	recommended_species = list(SPECIES_HUMAN, SPECIES_SYNTH, SPECIES_FELINE, SPECIES_LIZARD, SPECIES_MAMMAL)
-	organ_type = /obj/item/organ/external/wings
+	organ_type = /obj/item/organ/wings
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER, BODY_ADJ_LAYER)
-	genetic = TRUE
 
 /datum/sprite_accessory/wings/is_hidden(mob/living/carbon/human/wearer)
 	if(!wearer.w_uniform && !wearer.wear_suit)
@@ -26,7 +24,7 @@
 		if(istype(wearer.wear_suit, /obj/item/clothing/suit/mod))
 			return FALSE
 	// Hide accessory if flagged to do so, taking species exceptions in account
-		else if((wearer.wear_suit.flags_inv & HIDEJUMPSUIT) \
+		else if((wearer.covered_slots & HIDEJUMPSUIT) \
 				&& (!wearer.wear_suit.species_exception \
 				|| !is_type_in_list(wearer.dna.species, wearer.wear_suit.species_exception)) \
 			)
@@ -34,7 +32,10 @@
 
 	return FALSE
 
-/datum/bodypart_overlay/mutant/wings/can_draw_on_bodypart(mob/living/carbon/human/wearer, ignore_suit = FALSE)
+/datum/bodypart_overlay/mutant/wings/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner, ignore_suit = FALSE)
+	var/mob/living/carbon/human/wearer = bodypart_owner.owner
+	if(!wearer)
+		return TRUE
 	if(!wearer.w_uniform && !wearer.wear_suit)
 		return ..()
 
@@ -48,7 +49,7 @@
 			return TRUE
 
 		// Hide accessory if flagged to do so, taking species exceptions in account
-		else if((wearer.wear_suit.flags_inv & HIDEJUMPSUIT) \
+		else if((wearer.covered_slots & HIDEJUMPSUIT) \
 				&& (!wearer.wear_suit.species_exception \
 				|| !is_type_in_list(src, wearer.wear_suit.species_exception)) \
 			)
@@ -82,6 +83,7 @@
 	key = "wings_functional"
 
 /datum/sprite_accessory/wings/robotic
+	recommended_species = list(SPECIES_PROTEAN, SPECIES_SYNTH)
 	locked = FALSE
 
 /datum/sprite_accessory/wings/skeleton
@@ -108,7 +110,7 @@
 		if(istype(wearer.wear_suit, /obj/item/clothing/suit/mod))
 			return FALSE
 	// Hide accessory if flagged to do so, taking species exceptions in account
-		else if((wearer.wear_suit.flags_inv & HIDEJUMPSUIT) \
+		else if((wearer.covered_slots & HIDEJUMPSUIT) \
 				&& (!wearer.wear_suit.species_exception \
 				|| !is_type_in_list(wearer.dna.species, wearer.wear_suit.species_exception)) \
 			)
@@ -156,7 +158,6 @@
 /datum/sprite_accessory/wings/mammal/dragon/synth
 	name = "Dragon (Synthetic)"
 	icon_state = "dragonsynth"
-	genetic = FALSE
 
 /datum/sprite_accessory/wings/mammal/dragon/mechanical
 	name = "Dragon (Mechanical)"
@@ -202,6 +203,10 @@
 	icon_state = "harpybat"
 	color_src = USE_MATRIXED_COLORS
 
+/datum/sprite_accessory/wings/mammal/harpy/bat/fluffless
+	name = "Harpy (Bat - Fluffless)"
+	icon_state = "harpybat_fluffless"
+
 /datum/sprite_accessory/wings/mammal/top/harpy/alt
 	name = "Harpy (Top - Alt)"
 	icon_state = "harpyalt_top"
@@ -214,6 +219,10 @@
 	name = "Harpy (Top - Bat)"
 	icon_state = "harpybat_top"
 	color_src = USE_MATRIXED_COLORS
+
+/datum/sprite_accessory/wings/mammal/top/harpy/bat/fluffless
+	name = "Harpy (Top - Bat - Fluffless)"
+	icon_state = "harpybat_fluffless_top"
 
 /datum/sprite_accessory/wings/mammal/pterodactyl
 	name = "Pterodactyl"
@@ -292,7 +301,7 @@
 	icon_state = "low_jewel_top"
 
 /datum/sprite_accessory/wings/low_wings/renamon
-	name = "Renamon"
+	name = "Cyvian"
 	icon_state = "renamon"
 	color_src = USE_MATRIXED_COLORS
 // Ryva was here :3
@@ -304,7 +313,7 @@
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/moth_wings.dmi' // Needs new icon to suit new naming convention
 	default_color = "#FFFFFF"
 	recommended_species = list(SPECIES_MOTH, SPECIES_MAMMAL, SPECIES_INSECT) // Mammals too, I guess. They wont get flight though, see the wing organs for that logic
-	organ_type = /obj/item/organ/external/wings/moth
+	organ_type = /obj/item/organ/wings/moth
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
 
 /datum/sprite_accessory/wings/moth/none

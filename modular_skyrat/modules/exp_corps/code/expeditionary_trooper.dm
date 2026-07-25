@@ -1,5 +1,6 @@
 /obj/item/modular_computer/pda/expeditionary_corps
 	greyscale_colors = "#891417#000099"
+	icon_state = "/obj/item/modular_computer/pda/expeditionary_corps"
 	name = "surplus military PDA"
 
 /obj/item/storage/box/expeditionary_survival

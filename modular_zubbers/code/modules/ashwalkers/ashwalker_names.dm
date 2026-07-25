@@ -8,7 +8,7 @@
 		var/object_name = initial(object.name)
 		if(!object_name || !regex_inclusion.Find(object_name))
 			continue
-		.[capitalize(lowertext(object_name))] = TRUE
+		.[capitalize(LOWER_TEXT(object_name))] = TRUE
 
 	return .
 
@@ -91,8 +91,3 @@ ADMIN_VERB(generate_ashwalker_names, R_DEBUG, "Generate Ashwalker Names", "Gener
 
 /obj/effect/mob_spawn/ghost_role/human/pirate/silverscale/generate_pirate_name(spawn_gender)
 	return generate_ashwalker_name(TRUE)
-
-/generate_random_name_species_based(gender, unique, datum/species/species_type, include_all = FALSE)
-	if(istype(species_type, /datum/species/lizard))
-		return generate_ashwalker_name()
-	. = ..()

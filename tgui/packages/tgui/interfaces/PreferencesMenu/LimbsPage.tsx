@@ -1,5 +1,4 @@
 // THIS IS A SKYRAT UI FILE
-import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -7,9 +6,11 @@ import {
   Dropdown,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
 import { CharacterPreview } from '../common/CharacterPreview';
-import { PreferencesMenuData } from './data';
+import type { PreferencesMenuData } from './types';
 
 export const RotateCharacterButtons = (props) => {
   const { act } = useBackend<PreferencesMenuData>();
@@ -46,6 +47,7 @@ export const Markings = (props) => {
                 width="100%"
                 options={props.limb.markings.marking_choices}
                 selected={marking.name}
+                buttons
                 onSelected={(shit) =>
                   act('change_marking', {
                     limb_slot: props.limb.slot,
@@ -128,7 +130,7 @@ export const LimbPage = (props) => {
 export const AugmentationPage = (props) => {
   const { act } = useBackend<PreferencesMenuData>();
   const { data } = useBackend<PreferencesMenuData>();
-  let balance = -data.quirks_balance;
+  const balance = -data.quirks_balance;
   if (props.limb.can_augment) {
     return (
       <div style={{ marginBottom: '1.5em' }}>
@@ -186,11 +188,11 @@ export const AugmentationPage = (props) => {
 export const OrganPage = (props) => {
   const { act } = useBackend<PreferencesMenuData>();
   const { data } = useBackend<PreferencesMenuData>();
-  let balance = -data.quirks_balance;
+  const balance = -data.quirks_balance;
   return (
     <Stack.Item>
       <Stack fill>
-        <Stack.Item>{props.organ.name + ': '}</Stack.Item>
+        <Stack.Item>{`${props.organ.name}: `}</Stack.Item>
         <Stack.Item grow>
           <Dropdown
             width="100%"
@@ -217,7 +219,7 @@ export const LimbsPage = (props) => {
   const { data } = useBackend<PreferencesMenuData>();
   const { act } = useBackend<PreferencesMenuData>();
   const markings = data.marking_presets ? data.marking_presets : [];
-  let balance = -data.quirks_balance;
+  const balance = -data.quirks_balance;
   return (
     <Stack minHeight="100%">
       <Stack.Item minWidth="33%" minHeight="100%">

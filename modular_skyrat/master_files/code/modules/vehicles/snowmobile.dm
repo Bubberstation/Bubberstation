@@ -28,7 +28,7 @@
 // This should eventually be fixed upstream by adding make_ridable to the base ATV definition
 // or, ideally, to /obj/vehicle/ridden so that it's not duplicated all over the codebase
 // for wheelchairs, scooters, and snowmobiles alike.
-/obj/vehicle/ridden/atv/snowmobile/snowcurity/Initialize()
+/obj/vehicle/ridden/atv/snowmobile/snowcurity/Initialize(mapload)
 	. = ..()
 	// We shouldn't have the ridable component added while still in Initialize,
 	// so this is hopefully safe to do.

@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(pai)
 	name = "pAI"
-	flags = SS_NO_INIT|SS_NO_FIRE
+	ss_flags = SS_NO_INIT|SS_NO_FIRE
 
 	/// List of pAI candidates, including those not submitted.
 	var/list/candidates = list()
@@ -69,6 +69,13 @@ SUBSYSTEM_DEF(pai)
 		if("load")
 			candidate.savefile_load(user)
 			ui.send_full_update()
+			return TRUE
+		if("withdraw")
+			if(!candidate.ready)
+				to_chat(user, span_warning("You need to submit an application before you can withdraw one."))
+				return FALSE
+			candidate.ready = FALSE
+			to_chat(user, span_notice("Your pAI candidacy has been withdrawn."))
 			return TRUE
 	return FALSE
 

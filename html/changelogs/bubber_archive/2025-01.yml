@@ -1,0 +1,297 @@
+2025-01-01:
+  Arturlang:
+  - balance: Roundstart slimepeople no longer get 50% burn damage type resist on limbs
+  DimWhat (original sprites), ArrisFairburne (edited sprites):
+  - rscadd: Added an alternate recolorable bunnysuit to the "suits" loadout screen.
+  TealSeer:
+  - map: Moonstation's bar jukebox is no longer access locked.
+  Virryi:
+  - image: Modified the NRI Flag icons.
+  - code_imp: Renamed a bunch of NRI-related items.
+  aKromatopzia:
+  - image: smolraptors can curl up when resting; and miner lost its purple collar.
+  shellspeed1:
+  - bugfix: Anomalous power systems have had their anomalous properties corrected.
+  - bugfix: Unfucked some minor disposals issues on the Icemoon version of persistence
+  - bugfix: Potted plants now spawn on persistence like they should have previously.
+  - bugfix: Scrubbers in persistence medical now work
+  - qol: Redid persistence bitrunning so more than one prisoner can bitrun
+  - qol: Moved exotic internals from persistence engineering to persistence medical,
+      also added two plasmaman suits. (shit happens on icebox sometimes.)
+  - qol: reworked persistence medical operating room to drain n2o if alarm is configured
+      (druggy docs hate me everywhere)
+  - qol: put persistence stethoscope outside medical in hall so more people notice
+      it (previously in med)
+  - qol: Persistence engineering APC is now wired outside so you can run wires willy
+      nilly through the bay.
+2025-01-02:
+  rintherat:
+  - bugfix: fixes the cafeborg shakers
+2025-01-04:
+  ReturnToZender:
+  - qol: Flowers no longer donator-only in the loadout
+2025-01-06:
+  Cepha:
+  - rscadd: Cleavage marking
+  - rscadd: Synth joints marking
+  zeroisthebiggay:
+  - rscadd: fringe hair gradient
+  - image: fringe hair gradient
+2025-01-07:
+  LT3:
+  - map: Flipped some backwards elevator doors on Biodome
+  rintherat:
+  - rscadd: Added prescription toolbox for making new prescription glasses, it can
+      be bought from cargo
+2025-01-08:
+  Kajortoq:
+  - rscadd: Added kepis to security outfitters
+  LT3:
+  - map: Biodome SM waste pipe is properly connected to the vent
+  - map: Biodome SM cabling is properly connected to the emitters
+  Odairu:
+  - balance: Heretics announce themselves when they are 1 off ascending
+  StrangeWeirdKitten:
+  - rscdel: Removes broken light flickering.
+  - rscadd: Quality Improvements to the Moonstation Sauna
+  TealSeer:
+  - map: fixes Biodome disposals issues.
+  zeroisthebiggay:
+  - rscadd: cyclops sclera marking
+  - image: cyclops sclera marking
+2025-01-09:
+  EvenInDeathIStillServe:
+  - rscadd: Adds horseshoes to loadout
+  LT3:
+  - map: Added missing cables outside Biodome grav gen
+  shellspeed1:
+  - bugfix: You can now escape the disposals belt on persistence.
+  - bugfix: The Persistence Library APC now has power
+  - bugfix: removed extra button left over from removing medical.
+2025-01-10:
+  BurgerBB:
+  - bugfix: Fixes the RBMK creating too many radiation calls.
+  - balance: The strength of the radiation received is also now based on the radius
+      of the radiation. Higher radius radiation spikes equals stronger radiation penetrations.
+      Caps the range of the RBMK's radiation from 20 to 10.
+  StrangeWeirdKitten:
+  - balance: Slightly adjusts Moonstation's AI core to be more defendable for the
+      AI.
+  TealSeer:
+  - bugfix: fixed Bubber-exclusive job icons not showing in observe menu.
+  nevimer:
+  - admin: Faxes now get sent to the database.
+2025-01-11:
+  Impish_Delights:
+  - bugfix: Fixed all Security, HoP, CE, and Atmos Tech bunny tailcoats for digigrade
+      leg users.
+  - image: Fixed missing left-facing sprite for the black lawyer bunnysuit.
+  SingingSpock:
+  - bugfix: The Spare ID safe code should now go to the person designated in our SOP
+  StrangeWeirdKitten:
+  - rscadd: Uncaps subtler range. Now anyone can subtler anyone else in view.
+  itsmeow (original), RimiNosha, Phoenix404 (port):
+  - rscadd: Added TGUI-based color palette and replaced all usages of BYOND color
+      palettes with it (TGUI input preferences are still respected).
+2025-01-12:
+  Impish_Delights:
+  - rscadd: High-Functioning Zombies can now choose their eye color!
+  LT3:
+  - balance: Removed Skyrat surgery speed bonus
+  - balance: Removed Skyrat negative mood events for surgery
+  - balance: Removed operating tables automatically applying numbing
+  - balance: Added surgery speed bonus for operating computers
+  - balance: Added surgery speed bonus for anaesthetic/painkillers
+  - balance: Added surgery speed bonus for sterilizine/cryostylane treatment
+  - balance: Adjusted surgery speed penalty for stasis beds
+  - balance: Removed speed penalty for tending wounds on dead bodies, replaced with
+      penalty for husked body
+  - balance: Increased tend wounds healed damage per cycle
+  - balance: Increased functional duration of sterilizine
+  - balance: N2O is now eligible for the analgesia surgery bonus
+  - balance: Surgery and treatment room scrubbers filter N2O by default
+  - qol: Bubble notification for surgery speed and damage healed
+  - qol: Medical HUD, health analyzer, and operating computer provide tend wounds
+      results
+  - qol: Text log indicates what surgery bonuses are active, and which are available
+  - rscadd: added lidocaine and sterilizine to surgery trays, NanoMed, and NanoDrug
+  - image: anesthetic machine is now breath machine, usable with all gas types
+  - qol: Miasma doesn't trigger air alarms until it's reached dangerous levels
+  - bugfix: hot/cold/tox/pressure adapted lungs are now consistently better than standard
+      lungs in their respective area
+  - bugfix: fixed sometimes passing out due to CO2 with hot/cold adapted lungs
+  - sound: Subtle now has a sound notification alongside subtler
+  - qol: Subtle/subtler now has a TG chat filter
+  - rscdel: Pun Pun's suit sensors are off by default
+  StrangeWeirdKitten:
+  - bugfix: Lewd interactions broadcasting down the entire hall
+  - bugfix: Subtler will now filter out clientless mobs
+  Zenitheevee:
+  - rscadd: Added tarkon sprited backpacks
+  - image: New sprites for tarkon backpacks and casual uniform
+  - qol: Plasmemes and Vox get to live on tarkon without doing the closet dash
+  - qol: tarkon get their preferenced backpack types
+  aKromatopzia:
+  - code_imp: '"Brain augment" and "Brain implant" selection in prefs'
+  - rscadd: Added new brain type for humans. It's chrome, choom
+  - rscadd: One new brain implant for civilian use, the empathic sensor.
+  - balance: androids get a brain damage cap var (999); can't be EMP'd while already
+      dead; alert texts when they're EMP'd
+  - image: new sprite for vox brain
+  - code_imp: vox (primalis) brain now a child of android brains
+  sippykot:
+  - rscadd: 911 responder budget increased; they now have PDAs, holoprojectors, an
+      inducer, and... the marshal and SWAT teams no longer go in literally bare-handed
+      (the government finally paid for their gloves).
+2025-01-13:
+  Cephalopod222:
+  - rscadd: Congratulations Homosexuals, Pride Scarves are now available to all crew!
+  LT3:
+  - qol: Subtle and subtler messages are brighter when using dark mode
+  MosleyTheMalO:
+  - bugfix: Makes condoms work
+  - bugfix: fixes some lewd checks using the sex toy preference instead of the preference
+      they should
+  - bugfix: fixes all erp toggles resetting arousal.
+  - bugfix: makes toggling off sex toys actually remove the sex toys from your inventory.
+  StrangeWeirdKitten, Bangle:
+  - rscadd: Adds another ambiance track to Icebox called Freezer, by Bangle.
+2025-01-14:
+  Arturlang:
+  - rscdel: no more wizard armor in wizdrobe, sorry,
+  - rscdel: Profound fishers without ckeys can no longer fish out juvenile lobsters,
+      this is to prevent lobster armies
+  KazooBard:
+  - qol: Heretic Synths also start with a living heart
+  MosleyTheMalO:
+  - bugfix: makes the softcap config disableable again
+  Tonadas:
+  - rscadd: Added new Galactic Federation Jacket
+  - rscadd: Added Galactic Federation Jacket to character creator.
+2025-01-17:
+  MajManatee and OrbisAnima:
+  - rscadd: Most (tm) suit slot items can be alt clicked and worn around the neck!
+  - balance: Fixes snowflake armor with two items that were stacking for protection
+  zeroisthebiggay:
+  - bugfix: you can't get Free Real Centcom Skirtlenecks from the loadout any more
+2025-01-18:
+  Arturlang:
+  - rscdel: removes combat and deluxe hypo from medlathe
+  - rscadd: adds combat hypo to deforest company imports
+  CupOfMoths:
+  - rscadd: Added pretty new hairstyle
+  - rscadd: Added QoL alt of hairstyle
+  - bugfix: Fixed a misaligned hair sprite
+  ReturnToZender:
+  - balance: The Clown is admin only, now.
+  - balance: The threshold for the Default has been increased by 600 seconds, or 10
+      minutes, to try to mellow that storyteller out a little bit.
+  Tonadas:
+  - rscadd: Added new Galactic Federation Cap to game, loadout selector, and Clothesmate.
+  - rscadd: Added Galactic Federation Jacket to clothesmate
+  Vanilla1040:
+  - image: added new Engi, Med, Cargo, Service, Science and Peacekeeper borg varients/alts
+2025-01-19:
+  nikothedude:
+  - bugfix: Death degradation now has info for health analyzers
+2025-01-20:
+  IgiariValkyr:
+  - qol: Persistence is now in a persistent location on Lavaland, Moon, and Icebox.
+  KazooBard:
+  - qol: All Mansus Worshippers can use the Relentless Heartbeat (Reroll targets)
+      ritual earlier by two steps, so that they gain access alongside the ritual of
+      knowledge.
+  - qol: The mansus no longer demands harebells for the Relentless Heartbeat, however
+      a heart is used in it's place.
+  - bugfix: The Grail was very adamant on keeping people making love in their chambers
+      out of the heretic's target list when it is made or rerolled.
+  MajManatee:
+  - bugfix: Tarkon mods no longer need masks
+  SingingSpock:
+  - bugfix: The ticking of clocks can no longer be heard through walls, filling the
+      bridge with an incessant ticking noise like the Telltale heart's thumping.
+  nikothedude:
+  - bugfix: Death degradation no longer instantly downs you
+2025-01-21:
+  Arturlang:
+  - balance: Flesh ghouls now have 100 HP, while heretic mute ghouls have normal human
+      HP, ie, 135, from 25 and 50
+  BurgerBB:
+  - rscdel: Updates Dracula Flow Brain Damage to be less weird.
+  LT3:
+  - map: Kilostation abandoned warehouse now starts unpowered
+  Odairu:
+  - bugfix: company import bars were invisible in stacks
+  - bugfix: pirates spawn again
+  - bugfix: lone infil adds the chosen player to the spawned_mobs list
+  Rathen Ivanov:
+  - rscadd: You can now purchase your very own CE Screws Plushie from the LustWish
+      Vendor.
+  ReturnToZender:
+  - balance: Raised the minimum number of players for a heretic to spawn.
+  - balance: Reduces the weight of Bloodsuckers by 3, to make it notably different
+      from traitors
+2025-01-22:
+  Odairu:
+  - bugfix: Lings/vampires will no longer revive as soulless bodies with DNR
+  - bugfix: Borers can no longer revive hosts with DNR
+  ReturnToZender:
+  - rscadd: Updated descriptions to individual storytellers to compare them to each
+      other.
+2025-01-23:
+  MajManatee:
+  - image: basic mob xenos now look fly as hell, like our real xenos.
+  Majkl-J:
+  - bugfix: Cobwebs no longer scream from appearing in space as long as they're nearstationed
+  Vanilla1040:
+  - bugfix: fixed older code and moved to zubber
+  - image: Added New Mining Borg Varient
+  nikothedude:
+  - bugfix: Record links now only appear if there are records to view
+2025-01-24:
+  Cephalopod222:
+  - bugfix: Fixed Security Battledress sprite
+  - rscadd: Added Red Security Battledress and Head of Security Battledress
+  aKromatopzia:
+  - bugfix: Shadekins with the fluffy ears had the fluff trimmed, allowing them to
+      hear the hive mind again
+2025-01-25:
+  Vanilla1040:
+  - image: Adds Digi Sprites for infiltrator and Interdyne MOD
+  - bugfix: Also fixed the missing lights/eyes on the miner borg i made, whoops.
+  nikothedude:
+  - bugfix: Silver slimes can no longer produce fucking contagious changeling zombie
+      virus
+2025-01-26:
+  ArrisFairburne:
+  - rscadd: Added a new hairstyle based off of goliath tentacles
+  Cephalopod222:
+  - rscadd: Short (Bob) Hair
+  - rscadd: Long Smoothy Hair
+  - bugfix: Tweaked Ponytails (Berly) to work with snouts
+  - bugfix: Tweaks Synthetic Joints to display properly
+2025-01-28:
+  Odairu:
+  - balance: lone op moved from major -> moderate
+  - bugfix: lone op weight ticks up properly
+2025-01-29:
+  TealSeer:
+  - bugfix: synths once again start with a charging arm implant
+2025-01-31:
+  Majkl-J:
+  - balance: Shrink and Expand modules are now unlocked immediately
+  - bugfix: The artistic module is now in the correct tab
+  - spellcheck: fixed lowercase on the dominatrix module
+  Mitryll:
+  - balance: Made entombed not insulated, lowered its defences and is unable to be
+      taken with Bad Back.
+  UvvU:
+  - bugfix: fixes darksabre
+  Zenitheevee ,MajManatee:
+  - rscadd: deployable magazine fed turrets
+  - rscadd: target designators for mag fed turrets
+  - rscadd: Tarkon faction
+  - rscadd: Added turret assemblies to new turrets when found.
+  - rscadd: Added a research node locked behind tarkon tech to print tarkon turrets.
+  - image: added icons for mag fed turrets
+  - image: added icons for target designators

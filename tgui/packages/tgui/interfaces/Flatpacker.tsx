@@ -1,7 +1,3 @@
-import { BooleanLike } from 'common/react';
-import { toTitleCase } from 'common/string';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -12,12 +8,15 @@ import {
   Section,
   Stack,
   Table,
-} from '../components';
-import { TableCell } from '../components/Table';
+} from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
+import { toTitleCase } from 'tgui-core/string';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { MaterialAccessBar } from './Fabrication/MaterialAccessBar';
 import { MaterialIcon } from './Fabrication/MaterialIcon';
-import { Material } from './Fabrication/Types';
+import type { Material } from './Fabrication/Types';
 
 type Data = {
   SHEET_MATERIAL_AMOUNT: number;
@@ -30,7 +29,6 @@ type Design = {
   name: string;
   icon: string;
   requiredMaterials: Material[];
-  canPrint: BooleanLike;
   disableReason?: string;
 };
 
@@ -146,7 +144,7 @@ const BoardPreview = (props: BoardPreviewProps) => {
             icon="cog"
             fontSize={1.2}
             textAlign="center"
-            disabled={!design || !design.canPrint}
+            disabled={!design || design.disableReason !== ''}
             tooltip={design.disableReason}
             tooltipPosition="bottom"
             onClick={() => onPrint()}
@@ -181,14 +179,14 @@ const CostPreview = (props: CostPreviewProps) => {
                   />
                 </div>
               </Table.Cell>
-              <TableCell verticalAlign="middle">
+              <Table.Cell verticalAlign="middle">
                 <div style={{ width: '200px' }}>
                   {toTitleCase(material.name)}
                 </div>
-              </TableCell>
+              </Table.Cell>
               <Table.Cell verticalAlign="middle">
                 <div style={{ width: '200px' }}>
-                  {(material.amount / SHEET_MATERIAL_AMOUNT).toFixed(2)}
+                  x{(material.amount / SHEET_MATERIAL_AMOUNT).toFixed(2)}
                 </div>
               </Table.Cell>
             </Table.Row>

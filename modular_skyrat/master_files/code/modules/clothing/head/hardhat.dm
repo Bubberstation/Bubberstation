@@ -6,7 +6,7 @@
 /obj/item/clothing/head/utility/hardhat/welding/adjust_visor(mob/living/user)
 	. = ..()
 	var/mob/living/carbon/carbon_user = user
-	if(carbon_user.dna.species.mutant_bodyparts["snout"])
+	if(carbon_user.dna.species.mutant_bodyparts[FEATURE_SNOUT])
 		visor_sprite_path = 'modular_skyrat/master_files/icons/mob/clothing/head_muzzled.dmi'
 	else
 		visor_sprite_path = 'icons/mob/clothing/head/utility.dmi'

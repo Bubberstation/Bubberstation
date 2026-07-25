@@ -11,7 +11,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 //The advertisement that you show to people looking through the directory
 /datum/preference/text/character_ad
 	savefile_key = "character_ad"
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_OOC_PREFS
 	savefile_identifier = PREFERENCE_CHARACTER
 	maximum_value_length = MAX_FLAVOR_LEN
 
@@ -25,11 +25,25 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 
 /datum/preference/choiced/attraction
 	savefile_key = "attraction"
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_OOC_PREFS
 	savefile_identifier = PREFERENCE_CHARACTER
 
 /datum/preference/choiced/attraction/init_possible_values()
-	return list("Gay", "Lesbian", "Straight", "Skolio", "Bi", "Pan", "Poly", "Omni", "Ace", "Aro", "Aro/Ace", "Unset", "Check OOC")
+	return list(
+		"Unset",
+		"Check OOC",
+		"Straight",
+		"Lesbian",
+		"Gay",
+		"Bisexual",
+		"Pansexual",
+		"Polysexual",
+		"Asexual",
+		"Aromantic",
+		"Aro/Ace",
+		"Skoliosexual",
+		"Omnisexual",
+	)
 
 /datum/preference/choiced/attraction/create_default_value()
 	return "Unset"
@@ -39,11 +53,26 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 
 /datum/preference/choiced/display_gender
 	savefile_key = "display_gender"
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_OOC_PREFS
 	savefile_identifier = PREFERENCE_CHARACTER
 
 /datum/preference/choiced/display_gender/init_possible_values()
-	return list("Male", "Female", "Null", "Plural", "Nonbinary", "Omni", "Trans", "Transmasc", "Transfem", "Andro", "Gyno", "Fluid", "Unset", "Check OOC")
+	return list(
+		"Unset",
+		"Check OOC",
+		"Male",
+		"Female",
+		"Nonbinary",
+		"Genderfluid",
+		"Trans",
+		"Transmasc",
+		"Transfem",
+		"Andromorph",
+		"Gynomorph",
+		"Agender",
+		"Plural",
+		"Omnigender",
+	)
 
 /datum/preference/choiced/display_gender/create_default_value()
 	return "Unset"
@@ -84,6 +113,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 /// Saves us on copypaste code
 /datum/preference/choiced/directory_character_prefs
 	savefile_key = "char_directory_char_prefs" // This is so unit checks don't scream
+	abstract_type = /datum/preference/choiced/directory_character_prefs
 
 /datum/preference/choiced/directory_character_prefs/init_possible_values()
 	return list("Yes", "No", "No ERP", "Check OOC", "Unset", "Maybe")
@@ -203,7 +233,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 		if(ishuman(mob))
 			var/mob/living/carbon/human/human = mob
 			//If someone is obscured without flavor text visible, we don't want them on the Directory.
-			if((human.wear_mask && (human.wear_mask.flags_inv & HIDEFACE) && READ_PREFS(human, toggle/obscurity_examine)) || (human.head && (human.head.flags_inv & HIDEFACE) && READ_PREFS(human, toggle/obscurity_examine)) || (HAS_TRAIT(human, TRAIT_UNKNOWN)))
+			if(((human.covered_slots & HIDEFACE) && READ_PREFS(human, toggle/obscurity_examine)) || (HAS_TRAIT(human, TRAIT_UNKNOWN_APPEARANCE)))
 				continue
 			//Display custom species, otherwise show base species instead
 			species = (READ_PREFS(human, text/custom_species))
@@ -254,7 +284,6 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 			"vore" = vore,
 			"hypno" = hypno,
 			"noncon" = noncon,
-			"exploitable" = exploitable,
 			"character_ad" = character_ad,
 			"flavor_text" = flavor_text,
 			"nsfw_flavor_text" = nsfw_flavor_text,
@@ -306,3 +335,5 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 				panel = typed_target.tgui
 				panel.holder = typed_target
 			panel.ui_interact(user)
+
+#undef READ_PREFS

@@ -1,4 +1,3 @@
-/// Helper define that can only be used in /obj/item/circuit_component/input_received()
 #define COMPONENT_TRIGGERED_BY(trigger, port) (trigger.value && trigger == port)
 
 /// Define to be placed at any proc that is triggered by a port.
@@ -30,6 +29,8 @@
 #define PORT_TYPE_TABLE "table"
 /// Options datatype. Derivative of string.
 #define PORT_TYPE_OPTION "option"
+/// Boolean datatype. Derivative of number.
+#define PORT_TYPE_BOOLEAN "boolean"
 
 // Composite datatypes
 #define PORT_COMPOSITE_TYPE_LIST "list"
@@ -123,9 +124,11 @@
 #define CIRCUIT_FLAG_REFUSE_MODULE (1<<5)
 /// This circuit component cannot be inserted into the same circuit multiple times. Only use this for major headaches.
 #define CIRCUIT_NO_DUPLICATES (1<<6)
+/// This circuit component is currently disabled via configs
+#define CIRCUIT_FLAG_DISABLED (1<<7)
 // SKYRAT EDIT ADDITION BEGIN - This is required since we have two reagent components, and the BCI only allows one active
 /// This circuit component is a reagent container type. Check for existing reagent containers before adding.
-#define CIRCUIT_REAGENT_CONTAINER_TYPE (1<<7) // This value should not conflict with any of the previous flags
+#define CIRCUIT_REAGENT_CONTAINER_TYPE (1<<16) // This value should not conflict with any of the previous flags
 // SKYRAT EDIT ADDITION END
 
 // Datatype flags

@@ -1,5 +1,4 @@
 // THIS IS A SKYRAT UI FILE
-import { useBackend } from '../backend';
 import {
   BlockQuote,
   Box,
@@ -10,7 +9,9 @@ import {
   LabeledList,
   ProgressBar,
   Section,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 export const Soulcatcher = (props) => {
@@ -138,7 +139,7 @@ export const Soulcatcher = (props) => {
               >
                 {room.overlay_name ? room.overlay_name : 'Change Overlay'}
               </Button>
-              {room.overlay_name ? (
+              {room.overlay_name && (
                 <>
                   <Button
                     icon="eye"
@@ -149,7 +150,7 @@ export const Soulcatcher = (props) => {
                   >
                     Preview Room
                   </Button>
-                  {room.overlay_recolorable ? (
+                  {room.overlay_recolorable && (
                     <Button
                       icon="eye-dropper"
                       tooltip="changes the color of the current room overlay"
@@ -161,12 +162,8 @@ export const Soulcatcher = (props) => {
                     >
                       Modify Color
                     </Button>
-                  ) : (
-                    <> </>
                   )}
                 </>
-              ) : (
-                <> </>
               )}
 
               <Button
@@ -189,7 +186,7 @@ export const Soulcatcher = (props) => {
                 {room.currently_targeted ? 'Targeted' : 'Untargeted'}
               </Button>
             </Box>
-            {room.souls ? (
+            {room.souls && (
               <>
                 <br />
                 <Box textAlign="center" fontSize="15px" opacity={0.8}>
@@ -203,9 +200,7 @@ export const Soulcatcher = (props) => {
                         title={mob.name}
                         buttons={
                           <>
-                            {mob.scan_needed ? (
-                              <> </>
-                            ) : (
+                            {!mob.scan_needed && (
                               <>
                                 <Button
                                   color="green"
@@ -357,7 +352,7 @@ export const Soulcatcher = (props) => {
                               {mob.able_to_emote ? 'Enabled' : 'Disabled'}
                             </Button>
                           </LabeledList.Item>
-                          {communicate_as_parent ? (
+                          {communicate_as_parent && (
                             <>
                               <LabeledList.Item label="External Speech">
                                 <Button
@@ -406,8 +401,6 @@ export const Soulcatcher = (props) => {
                                 </Button>
                               </LabeledList.Item>
                             </>
-                          ) : (
-                            <> </>
                           )}
                           <LabeledList.Item label="Rename">
                             <Button
@@ -445,12 +438,10 @@ export const Soulcatcher = (props) => {
                   ))}
                 </Flex>
               </>
-            ) : (
-              <> </>
             )}
           </Section>
         ))}
-        {max_mobs ? (
+        {max_mobs && (
           <Section>
             <ProgressBar
               textAlign="left"
@@ -462,8 +453,6 @@ export const Soulcatcher = (props) => {
               Remaining mob capacity: {max_mobs - current_mob_count}
             </ProgressBar>
           </Section>
-        ) : (
-          <> </>
         )}
         <Button
           fluid
@@ -497,7 +486,7 @@ export const Soulcatcher = (props) => {
         >
           Verb messages are {require_approval ? '' : 'not'} sent to this carrier
         </Button>
-        {removable ? (
+        {removable && (
           <Button
             require_approval
             fluid
@@ -507,8 +496,6 @@ export const Soulcatcher = (props) => {
           >
             Remove soulcatcher from parent object
           </Button>
-        ) : (
-          <> </>
         )}
       </Window.Content>
     </Window>

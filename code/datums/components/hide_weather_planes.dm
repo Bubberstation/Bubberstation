@@ -18,7 +18,7 @@
 
 	var/list/starting_signals = list()
 	var/list/ending_signals = list()
-	for(var/datum/weather/weather_type as anything in typesof(/datum/weather))
+	for(var/datum/weather/weather_type as anything in valid_subtypesof(/datum/weather))
 		starting_signals += COMSIG_WEATHER_TELEGRAPH(weather_type)
 		ending_signals += COMSIG_WEATHER_END(weather_type)
 
@@ -55,7 +55,7 @@
 	else
 		care_about.hide_plane(our_lad)
 
-/datum/component/hide_weather_planes/proc/new_hud_attached(datum/source, datum/hud/new_hud)
+/datum/component/hide_weather_planes/proc/new_hud_attached(datum/source, datum/hud/old_hud, datum/hud/new_hud)
 	SIGNAL_HANDLER
 	attach_hud(new_hud)
 
@@ -77,23 +77,23 @@
 	var/datum/plane_master_group/home = parent
 	var/mob/our_lad = home.our_hud?.mymob
 	var/our_offset = GET_TURF_PLANE_OFFSET(our_lad)
-	for(var/atom/movable/screen/plane_master/weather_concious as anything in plane_masters)
+	for(var/atom/movable/screen/plane_master/weather_conscious as anything in plane_masters)
 		//If the plane is hidden, unhide it
-		if(weather_concious.force_hidden)
-			weather_concious.unhide_plane(our_lad)
+		if(weather_conscious.force_hidden)
+			weather_conscious.unhide_plane(our_lad)
 
 		//Now we update the alpha of the plane based on our offset. Weather above us (lower offset) are transparent, weather at or below us (higher offset) are opaque.
-		if(weather_concious.offset >= our_offset)
-			weather_concious.enable_alpha()
+		if(weather_conscious.offset >= our_offset)
+			weather_conscious.enable_alpha()
 		else
-			weather_concious.disable_alpha()
+			weather_conscious.disable_alpha()
 
 ///Hides the planes from the mob when no weather is occuring
 /datum/component/hide_weather_planes/proc/hide_planes()
 	var/datum/plane_master_group/home = parent
 	var/mob/our_lad = home.our_hud?.mymob
-	for(var/atom/movable/screen/plane_master/weather_concious as anything in plane_masters)
-		weather_concious.hide_plane(our_lad)
+	for(var/atom/movable/screen/plane_master/weather_conscious as anything in plane_masters)
+		weather_conscious.hide_plane(our_lad)
 
 /datum/component/hide_weather_planes/proc/z_changed(datum/source, new_z)
 	SIGNAL_HANDLER

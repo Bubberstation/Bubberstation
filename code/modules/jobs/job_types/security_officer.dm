@@ -3,10 +3,9 @@
 	description = "Protect company assets, follow the Standard Operating \
 		Procedure, eat donuts."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	department_head = list(JOB_HEAD_OF_SECURITY)
 	faction = FACTION_STATION
-	total_positions = 8 //Handled in /datum/controller/occupations/proc/setup_officer_positions() //SKYRAT EDIT: SET TO 8, WAS 5
-	spawn_positions = 8 //Handled in /datum/controller/occupations/proc/setup_officer_positions() //SKYRAT EDIT: SEE ABOVE
+	total_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
+	spawn_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
 	supervisors = "the Head of Security, and the head of your assigned department (if applicable)"
 	minimal_player_age = 7
 	exp_requirements = 300
@@ -20,6 +19,7 @@
 	paycheck = PAYCHECK_CREW
 	paycheck_department = ACCOUNT_SEC
 
+	desensitized_base = DESENSITIZED_THRESHOLD
 	liver_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
@@ -28,7 +28,7 @@
 		/datum/job_department/security,
 		)
 
-	family_heirlooms = list(/obj/item/book/manual/wiki/security_space_law, /obj/item/clothing/head/beret/sec/peacekeeper) //SKYRAT EDIT ADD - /peacekeeper
+	family_heirlooms = list(/obj/item/book/manual/wiki/security_space_law, /obj/item/clothing/head/beret/sec)
 
 	mail_goodies = list(
 		/obj/item/food/donut/caramel = 10,
@@ -44,7 +44,7 @@
 		JOB_SECURITY_OFFICER_SUPPLY,
 		JOB_SECURITY_OFFICER_SCIENCE,
 	)
-	job_flags = STATION_JOB_FLAGS
+	job_flags = STATION_JOB_FLAGS | JOB_ANTAG_PROTECTED
 
 
 GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY))
@@ -57,31 +57,37 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
  */
 GLOBAL_LIST_EMPTY(security_officer_distribution)
 
+/datum/job/security_officer/after_spawn(mob/living/spawned, client/player_client)
+	. = ..()
+	if(!ishuman(spawned) || !prob(PIG_COP_PROBABILITY))
+		return
+	var/mob/living/carbon/human/piggy = spawned
+	for (var/obj/item/bodypart/ham as anything in piggy.get_bodyparts())
+		// These are string lists
+		ham.butcher_drops = ham.butcher_drops.Copy()
+		for (var/meat_type in ham.butcher_drops)
+			if (!ispath(meat_type, /obj/item/food/meat/slab))
+				continue
+			ham.butcher_drops[/obj/item/food/meat/slab/pig] = ham.butcher_drops[meat_type]
+			ham.butcher_drops -= meat_type
+		ham.butcher_drops = string_list(ham.butcher_drops)
 
 /datum/job/security_officer/after_roundstart_spawn(mob/living/spawning, client/player_client)
 	. = ..()
-	//SKYRAT EDIT REMOVAL
-	/*
 	if(ishuman(spawning))
-		setup_department(spawning, player_client)
-	*/
-	//SKYRAT EDIT END
+		setup_department(spawning, player_client, move_to = TRUE)
 
 
 /datum/job/security_officer/after_latejoin_spawn(mob/living/spawning)
 	. = ..()
-	//SKYRAT EDIT REMOVAL
-	/*
 	if(ishuman(spawning))
 		var/department = setup_department(spawning, spawning.client)
 		if(department)
 			announce_latejoin(spawning, department, GLOB.security_officer_distribution)
-	*/
-	//SKYRAT EDIT END
 
 
 /// Returns the department this mob was assigned to, if any.
-/datum/job/security_officer/proc/setup_department(mob/living/carbon/human/spawning, client/player_client)
+/datum/job/security_officer/proc/setup_department(mob/living/carbon/human/spawning, client/player_client, move_to = FALSE)
 	var/department = player_client?.prefs?.read_preference(/datum/preference/choiced/security_department)
 	if (!isnull(department))
 		department = get_my_department(spawning, department)
@@ -91,7 +97,7 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 
 	var/ears = null
 	var/accessory = null
-	var/list/dep_trim = null
+	var/datum/id_trim/dep_trim = null
 	var/destination = null
 
 	switch(department)
@@ -129,25 +135,45 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	if(dep_trim)
 		var/obj/item/card/id/worn_id = spawning.get_idcard(hand_first = FALSE)
 		SSid_access.apply_trim_to_card(worn_id, dep_trim)
-		spawning.sec_hud_set_ID()
+
+		// BUBBER EDIT ADDITION BEGIN - ALTERNATE JOB TITLES
+		// gets their preferred alt title
+		var/chosen_title = player_client?.prefs?.alt_job_titles?[title] || title
+		var/display_assignment = chosen_title
+
+		// and adds the department
+		if(department)
+			display_assignment = "[chosen_title] ([department])"
+
+		worn_id.assignment = display_assignment
+		worn_id.update_label()
+
+		spawning.update_ID_card()
 
 		// Update PDA to match new trim.
 		var/obj/item/modular_computer/pda/pda = spawning.get_item_by_slot(ITEM_SLOT_BELT)
+		// BUBBER EDIT CHANGE BEGIN - ALTERNATE JOB TITLES
+		/*
 		var/assignment = worn_id.get_trim_assignment()
 		if(istype(pda) && !isnull(assignment))
 			pda.imprint_id(spawning.real_name, assignment)
+		*/
+		// we assign display_assignment earlier with their custom title, otherwise assignment is just 'security officer (department)'
+		if(istype(pda))
+			pda.imprint_id(spawning.real_name, display_assignment)
+		// BUBBER EDIT CHANGE END - ALTERNATE JOB TITLES
 
 	var/spawn_point = pick(LAZYACCESS(GLOB.department_security_spawns, department))
 
-	if(!CONFIG_GET(flag/sec_start_brig) && (destination || spawn_point))
+	if(!CONFIG_GET(flag/sec_start_brig) && move_to && (destination || spawn_point))
 		if(spawn_point)
-			spawning.Move(get_turf(spawn_point))
+			spawning.forceMove(get_turf(spawn_point))
 		else
 			var/list/possible_turfs = get_area_turfs(destination)
 			while (length(possible_turfs))
 				var/random_index = rand(1, length(possible_turfs))
 				var/turf/target = possible_turfs[random_index]
-				if (spawning.Move(target))
+				if (isopenturf(target) && spawning.forceMove(target))
 					break
 				possible_turfs.Cut(random_index, random_index + 1)
 
@@ -165,11 +191,14 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	department,
 	distribution,
 )
-	var/obj/machinery/announcement_system/announcement_system = pick(GLOB.announcement_systems)
+	var/obj/machinery/announcement_system/announcement_system = get_announcement_system(/datum/aas_config_entry/announce_officer, null, list(RADIO_CHANNEL_SECURITY))
 	if (isnull(announcement_system))
 		return
 
-	announcement_system.announce_officer(officer, department)
+	announcement_system.announce(/datum/aas_config_entry/announce_officer, list(
+		"OFFICER" = officer.real_name,
+		"DEPARTMENT" = department,
+	), list(RADIO_CHANNEL_SECURITY))
 
 	var/list/targets = list()
 
@@ -190,10 +219,14 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	if (!targets.len)
 		return
 
+	// I thought it would be great, if AAS also modifies PDA messages. Especially because it's AASs message.
 	var/datum/signal/subspace/messaging/tablet_message/signal = new(announcement_system, list(
 		"fakename" = "Security Department Update",
 		"fakejob" = "Automated Announcement System",
-		"message" = "Officer [officer.real_name] has been assigned to your department, [department].",
+		"message" = announcement_system.compile_config_message(/datum/aas_config_entry/announce_officer, list(
+			"OFFICER" = officer.real_name,
+			"DEPARTMENT" = department,
+		)),
 		"targets" = targets,
 		"automated" = TRUE,
 	))
@@ -223,15 +256,12 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	suit_store = /obj/item/gun/energy/disabler
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
-		/obj/item/choice_beacon/security_pistol = 1, //SKYRAT ADDITION
-		/obj/item/flashlight/seclite = 1, // BUBBER EDIT ADDITION
 		)
 	belt = /obj/item/modular_computer/pda/security
 	ears = /obj/item/radio/headset/headset_sec/alt
 	gloves = /obj/item/clothing/gloves/color/black/security
-	head = /obj/item/clothing/head/security_garrison //SKYRAT EDIT CHANGE - Original: /obj/item/clothing/head/helmet/sec
+	head = /obj/item/clothing/head/helmet/sec
 	shoes = /obj/item/clothing/shoes/jackboots/sec
-	glasses = /obj/item/clothing/glasses/hud/security //SKYRAT EDIT - ADDITION
 	l_pocket = /obj/item/restraints/handcuffs
 	r_pocket = /obj/item/assembly/flash/handheld
 
@@ -262,8 +292,6 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 /obj/item/radio/headset/headset_sec/alt/department/Initialize(mapload)
 	. = ..()
 	set_wires(new/datum/wires/radio(src))
-	secure_radio_connections = list()
-	recalculateChannels()
 
 /obj/item/radio/headset/headset_sec/alt/department/engi
 	keyslot = /obj/item/encryptionkey/headset_sec

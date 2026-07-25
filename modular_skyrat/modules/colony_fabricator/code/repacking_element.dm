@@ -42,6 +42,7 @@
 		return
 
 	INVOKE_ASYNC(src, PROC_REF(repack), source, user)
+	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /// Removes the element target and spawns a new one of whatever item_to_pack_into is
 /datum/element/repackable/proc/repack(atom/source, mob/user)

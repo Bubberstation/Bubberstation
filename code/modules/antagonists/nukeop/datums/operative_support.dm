@@ -14,6 +14,9 @@
 	..()
 	for(var/datum/mind/teammate_mind in nuke_team.members)
 		var/mob/living/our_teammate = teammate_mind.current
+		if(!istype(our_teammate)) // If an agent is purchased after the death of an agent -- when they no longer have a body, we skip that mind because they're invalid.
+			continue
+
 		our_teammate.AddComponent( \
 			/datum/component/simple_bodycam, \
 			camera_name = "operative bodycam", \
@@ -29,7 +32,7 @@
 	owner.current.grant_language(/datum/language/codespeak)
 
 /datum/antagonist/nukeop/support/get_spawnpoint()
-	return pick(GLOB.nukeop_overwatch_start)
+	return pick(GLOB.nukeop_base_overwatch_start)
 
 /datum/antagonist/nukeop/support/forge_objectives()
 	var/datum/objective/overwatch/objective = new

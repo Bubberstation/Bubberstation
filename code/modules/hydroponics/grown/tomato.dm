@@ -22,10 +22,14 @@
 	desc = "I say to-mah-to, you say tom-mae-to."
 	icon_state = "tomato"
 	splat_type = /obj/effect/decal/cleanable/food/tomato_smudge
-	foodtypes = FRUIT
-	grind_results = list(/datum/reagent/consumable/ketchup = 0)
-	juice_typepath = /datum/reagent/consumable/tomatojuice
+	foodtypes = VEGETABLES
 	distill_reagent = /datum/reagent/consumable/enzyme
+
+/obj/item/food/grown/tomato/grind_results()
+	return list(/datum/reagent/consumable/ketchup = 0)
+
+/obj/item/food/grown/tomato/juice_typepath()
+	return /datum/reagent/consumable/tomatojuice
 
 // Blood Tomato
 /obj/item/seeds/tomato/blood
@@ -46,9 +50,11 @@
 	icon_state = "bloodtomato"
 	bite_consumption_mod = 3
 	splat_type = /obj/effect/gibspawner/generic
-	foodtypes = FRUIT | GORE
-	grind_results = list(/datum/reagent/consumable/ketchup = 0, /datum/reagent/blood = 0)
+	foodtypes = VEGETABLES | GORE
 	distill_reagent = /datum/reagent/consumable/ethanol/bloody_mary
+
+/obj/item/food/grown/tomato/blood/grind_results()
+	return list(/datum/reagent/consumable/ketchup = 0, /datum/reagent/blood = 0)
 
 // Blue Tomato
 /obj/item/seeds/tomato/blue
@@ -72,7 +78,7 @@
 	desc = "I say blue-mah-to, you say blue-mae-to."
 	icon_state = "bluetomato"
 	bite_consumption_mod = 2
-	splat_type = /obj/effect/decal/cleanable/oil
+	splat_type = /obj/effect/decal/cleanable/blood/oil
 	distill_reagent = /datum/reagent/consumable/laughter
 
 // Bluespace Tomato

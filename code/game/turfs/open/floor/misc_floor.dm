@@ -4,9 +4,10 @@
 /turf/open/floor/circuit
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "bcircuit"
-	var/icon_normal = "bcircuit"
+	base_icon_state = "bcircuit"
 	light_color = LIGHT_COLOR_BABY_BLUE
 	floor_tile = /obj/item/stack/tile/circuit
+	rust_resistance = RUST_RESISTANCE_REINFORCED
 	/// If we want to ignore our area's power status and just be always off
 	/// Mostly for mappers doing asthetic things, or cases where the floor should be broken
 	var/always_off = FALSE
@@ -40,7 +41,7 @@
 	set_light(2, 1.5)
 
 /turf/open/floor/circuit/update_icon_state()
-	icon_state = on ? (LAZYLEN(SSmapping.nuke_threats) ? "rcircuitanim" : icon_normal) : "[icon_normal]off"
+	icon_state = on ? (LAZYLEN(SSmapping.nuke_threats) ? "rcircuitanim" : initial(icon_state)) : "[base_icon_state]off"
 	return ..()
 
 /turf/open/floor/circuit/on_change_area(area/old_area, area/new_area)
@@ -74,6 +75,9 @@
 	icon_state = "bcircuitoff"
 	always_off = TRUE
 
+/turf/open/floor/circuit/no_light
+	always_off = TRUE
+
 /turf/open/floor/circuit/airless
 	initial_gas_mix = AIRLESS_ATMOS
 
@@ -88,7 +92,7 @@
 
 /turf/open/floor/circuit/green
 	icon_state = "gcircuit"
-	icon_normal = "gcircuit"
+	base_icon_state = "gcircuit"
 	light_color = LIGHT_COLOR_VIVID_GREEN
 	floor_tile = /obj/item/stack/tile/circuit/green
 
@@ -98,7 +102,6 @@
 
 /turf/open/floor/circuit/green/anim
 	icon_state = "gcircuitanim"
-	icon_normal = "gcircuitanim"
 	floor_tile = /obj/item/stack/tile/circuit/green/anim
 
 /turf/open/floor/circuit/green/airless
@@ -112,7 +115,7 @@
 
 /turf/open/floor/circuit/red
 	icon_state = "rcircuit"
-	icon_normal = "rcircuit"
+	base_icon_state = "rcircuit"
 	light_color = LIGHT_COLOR_INTENSE_RED
 	floor_tile = /obj/item/stack/tile/circuit/red
 
@@ -120,9 +123,11 @@
 	icon_state = "rcircuitoff"
 	always_off = TRUE
 
+/turf/open/floor/circuit/red/no_power
+	always_off = TRUE
+
 /turf/open/floor/circuit/red/anim
 	icon_state = "rcircuitanim"
-	icon_normal = "rcircuitanim"
 	floor_tile = /obj/item/stack/tile/circuit/red/anim
 
 /turf/open/floor/circuit/red/airless
@@ -161,7 +166,7 @@
 
 /turf/open/floor/noslip/tram/Initialize(mapload)
 	. = ..()
-	var/current_holiday_color = request_station_colors(src, PATTERN_VERTICAL_STRIPE) || request_holiday_colors(src, PATTERN_VERTICAL_STRIPE)
+	var/current_holiday_color = request_decoration_colors(src, PATTERN_VERTICAL_STRIPE)
 	if(current_holiday_color)
 		color = current_holiday_color
 	else
@@ -217,6 +222,10 @@
 	name = "black floor"
 	icon_state = "black"
 
+/turf/open/floor/greenscreen
+	name = "greenscreen"
+	icon_state = "green"
+
 /turf/open/floor/plastic
 	name = "plastic floor"
 	desc = "Cheap, lightweight flooring. Melts easily."
@@ -234,6 +243,7 @@
 	desc = "This one takes you back."
 	icon_state = "eighties"
 	floor_tile = /obj/item/stack/tile/eighties
+	rust_resistance = RUST_RESISTANCE_BASIC
 
 /turf/open/floor/eighties/broken_states()
 	return list("eighties_damaged")
@@ -257,6 +267,9 @@
 	AddElement(/datum/element/rust)
 	color = null
 
+/turf/open/floor/plating/rust/airless
+	initial_gas_mix = AIRLESS_ATMOS
+
 /turf/open/floor/plating/heretic_rust
 	color = COLOR_GREEN_GRAY
 
@@ -275,6 +288,20 @@
 	AddElement(/datum/element/rust)
 
 /turf/open/floor/stone
+	name = "stone brick floor"
+	desc = "Odd, really, how it looks exactly like the iron walls yet is stone instead of iron. Now, if that's really more of a complaint about\
+		the ironness of walls or the stoneness of the floors, that's really up to you. But have you really ever seen iron that dull? I mean, it\
+		makes sense for the station to have dull metal walls but we're talking how a rudimentary iron wall would be. Medieval ages didn't even\
+		use iron walls, iron walls are actually not even something that exists because iron is an expensive and not-so-great thing to build walls\
+		out of. It only makes sense in the context of space because you're trying to keep a freezing vacuum out. Is anyone following me on this? \
+		The idea of a \"rudimentary\" iron wall makes no sense at all! Is anything i'm even saying here true? Someone's gotta fact check this!"
+	icon_state = "stone_floor"
+
+/turf/open/floor/stone/lavaland
+	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
+
+/turf/open/floor/stone/icemoon
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	name = "stone brick floor"
 	desc = "Odd, really, how it looks exactly like the iron walls yet is stone instead of iron. Now, if that's really more of a complaint about\
 		the ironness of walls or the stoneness of the floors, that's really up to you. But have you really ever seen iron that dull? I mean, it\
@@ -326,7 +353,7 @@
 
 /turf/open/floor/material/meat/Initialize(mapload)
 	. = ..()
-	set_custom_materials(list(GET_MATERIAL_REF(/datum/material/meat) = SHEET_MATERIAL_AMOUNT))
+	set_custom_materials(list(SSmaterials.get_material(/datum/material/meat) = SHEET_MATERIAL_AMOUNT))
 
 /turf/open/floor/material/meat/airless
 	initial_gas_mix = AIRLESS_ATMOS
@@ -345,6 +372,12 @@
 	desc = "Melted down oil can, in some cases, be used to pave road surfaces."
 	icon_state = "asphalt"
 
+/turf/open/floor/asphalt/outdoors
+	planetary_atmos = TRUE
+
 /turf/open/floor/asphalt/lavaland
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	baseturfs = /turf/open/misc/asteroid/basalt
+
+/turf/open/floor/asphalt/lavaland/outdoors
+	planetary_atmos = TRUE

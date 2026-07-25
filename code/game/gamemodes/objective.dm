@@ -190,16 +190,16 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 
 /datum/objective/proc/give_special_equipment(special_equipment)
 	var/datum/mind/receiver = pick(get_owners())
-	if(receiver?.current)
-		if(ishuman(receiver.current))
-			var/mob/living/carbon/human/receiver_current = receiver.current
-			var/list/slots = list("backpack" = ITEM_SLOT_BACKPACK)
-			for(var/obj/equipment_path as anything in special_equipment)
-				var/obj/equipment_object = new equipment_path
-				if(!receiver_current.equip_in_one_of_slots(equipment_object, slots, indirect_action = TRUE))
-					LAZYINITLIST(receiver.failed_special_equipment)
-					receiver.failed_special_equipment += equipment_path
-					receiver.try_give_equipment_fallback()
+	if(!ishuman(receiver?.current))
+		return
+	var/mob/living/carbon/human/receiver_current = receiver.current
+	for(var/obj/equipment_path as anything in special_equipment)
+		var/obj/equipment_object = new equipment_path
+		if(receiver_current.equip_to_storage(equipment_object, ITEM_SLOT_BACK, indirect_action = TRUE))
+			continue
+		LAZYINITLIST(receiver.failed_special_equipment)
+		receiver.failed_special_equipment += equipment_path
+		receiver.try_give_equipment_fallback()
 
 /datum/action/special_equipment_fallback
 	name = "Request Objective-specific Equipment"
@@ -207,7 +207,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 	button_icon = 'icons/obj/devices/tracker.dmi'
 	button_icon_state = "beacon"
 
-/datum/action/special_equipment_fallback/Trigger(trigger_flags)
+/datum/action/special_equipment_fallback/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -241,7 +241,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/assassinate/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role] ONCE." //SKYRAT EDIT CHANGE
+		explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role.title : english_list(target.get_special_roles())] ONCE." // BUBBER EDIT ADDITION - Add ONCE
 	else
 		explanation_text = "Free objective."
 
@@ -291,7 +291,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/mutiny/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Assassinate or exile [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role]."
+		explanation_text = "Assassinate or exile [target.name], the [!target_role_type ? target.assigned_role.title : english_list(target.get_special_roles())]."
 	else
 		explanation_text = "Free objective."
 
@@ -313,7 +313,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 
 /datum/objective/maroon/update_explanation_text()
 	if(target?.current)
-		explanation_text = "Prevent [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role], from escaping alive."
+		explanation_text = "Prevent [target.name], the [!target_role_type ? target.assigned_role.title : english_list(target.get_special_roles())], from escaping alive."
 	else
 		explanation_text = "Free objective."
 
@@ -344,7 +344,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/debrain/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Steal the brain of [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role]."
+		explanation_text = "Steal the brain of [target.name], the [!target_role_type ? target.assigned_role.title : english_list(target.get_special_roles())]."
 	else
 		explanation_text = "Free objective."
 
@@ -359,7 +359,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 	var/human_check = TRUE
 
 /datum/objective/protect/check_completion()
-	var/obj/item/organ/internal/brain/brain_target
+	var/obj/item/organ/brain/brain_target
 	if(isnull(target))
 		return FALSE
 	if(human_check)
@@ -370,7 +370,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/protect/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Protect [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role]."
+		explanation_text = "Protect [target.name], the [!target_role_type ? target.assigned_role.title : english_list(target.get_special_roles())]."
 	else
 		explanation_text = "Free objective."
 
@@ -395,7 +395,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/jailbreak/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Ensure that [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role] escapes alive and out of custody."
+		explanation_text = "Ensure that [target.name], the [!target_role_type ? target.assigned_role.title : english_list(target.get_special_roles())] escapes alive and out of custody."
 	else
 		explanation_text = "Free objective."
 
@@ -411,7 +411,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 /datum/objective/jailbreak/detain/update_explanation_text()
 	..()
 	if(target?.current)
-		explanation_text = "Ensure that [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role] is delivered to Nanotrasen alive and in custody."
+		explanation_text = "Ensure that [target.name], the [!target_role_type ? target.assigned_role.title : english_list(target.get_special_roles())] is delivered to Nanotrasen alive and in custody."
 	else
 		explanation_text = "Free objective."
 
@@ -660,7 +660,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 	if(item)
 		targetinfo = item
 		steal_target = targetinfo.targetitem
-		explanation_text = "Steal [targetinfo.name]"
+		explanation_text = "Steal [targetinfo.name]."
 		give_special_equipment(targetinfo.special_equipment)
 		return steal_target
 	else

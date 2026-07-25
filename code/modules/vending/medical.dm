@@ -6,12 +6,12 @@
 	panel_type = "panel11"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	products = list(
-		/obj/item/stack/medical/gauze = 8,
+		/obj/item/stack/medical/wrap/gauze = 8,
 		/obj/item/reagent_containers/syringe = 12,
 		/obj/item/reagent_containers/dropper = 3,
 		/obj/item/healthanalyzer = 4,
 		/obj/item/wrench/medical = 1,
-		/obj/item/stack/sticky_tape/surgical = 3,
+		/obj/item/stack/medical/wrap/sticky_tape/surgical = 3,
 		/obj/item/healthanalyzer/simple = 4,
 		/obj/item/stack/medical/ointment = 2,
 		/obj/item/stack/medical/suture = 2,
@@ -20,6 +20,8 @@
 		/obj/item/cane/white = 2,
 		/obj/item/clothing/glasses/eyepatch/medical = 2,
 		/obj/item/storage/box/bandages = 2,
+		/obj/item/storage/box/triage_cards = 4,
+		/obj/item/pinpointer/crew = 2,
 	)
 	contraband = list(
 		/obj/item/storage/box/gum/happiness = 3,
@@ -29,9 +31,9 @@
 		/obj/item/reagent_containers/hypospray/medipen = 3,
 		/obj/item/storage/belt/medical = 3,
 		/obj/item/sensor_device = 2,
-		/obj/item/pinpointer/crew = 2,
 		/obj/item/storage/medkit/advanced = 2,
 		/obj/item/shears = 1,
+		/obj/item/tourniquet = 6,
 		/obj/item/storage/organbox = 1,
 		/obj/item/storage/medkit/surgery = 1, // BUBBER EDIT ADDITION
 	)
@@ -48,15 +50,16 @@
 /obj/machinery/vending/medical/syndicate
 	name = "\improper SyndiMed Plus"
 	initial_language_holder = /datum/language_holder/syndicate
+	allow_custom = FALSE
 
 /obj/machinery/vending/medical/infested_frigate
 	products = list(
-		/obj/item/stack/medical/gauze = 0,
+		/obj/item/stack/medical/wrap/gauze = 0,
 		/obj/item/reagent_containers/syringe = 7,
 		/obj/item/reagent_containers/dropper = 3,
 		/obj/item/healthanalyzer = 0,
 		/obj/item/wrench/medical = 0,
-		/obj/item/stack/sticky_tape/surgical = 0,
+		/obj/item/stack/medical/wrap/sticky_tape/surgical = 0,
 		/obj/item/healthanalyzer/simple = 0,
 		/obj/item/stack/medical/ointment = 0,
 		/obj/item/stack/medical/suture = 1,
@@ -65,6 +68,8 @@
 		/obj/item/cane/white = 2,
 		/obj/item/clothing/glasses/eyepatch/medical = 2,
 	)
+	allow_custom = FALSE
+
 //Created out of a necessity to get these dumb chems out of the medical tools vendor.
 /obj/machinery/vending/drugs
 	name = "\improper NanoDrug Plus"
@@ -74,10 +79,10 @@
 	panel_type = "panel11"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	products = list(
-		/obj/item/reagent_containers/pill/patch/libital = 5,
-		/obj/item/reagent_containers/pill/patch/aiuri = 5,
+		/obj/item/reagent_containers/applicator/patch/libital = 5,
+		/obj/item/reagent_containers/applicator/patch/aiuri = 5,
 		/obj/item/reagent_containers/syringe/convermol = 2,
-		/obj/item/reagent_containers/pill/insulin = 5,
+		/obj/item/reagent_containers/applicator/pill/insulin = 5,
 		/obj/item/reagent_containers/cup/bottle/multiver = 2,
 		/obj/item/reagent_containers/cup/bottle/syriniver = 2,
 		/obj/item/reagent_containers/cup/bottle/calomel = 2,
@@ -89,22 +94,24 @@
 		/obj/item/reagent_containers/syringe/antiviral = 6,
 		/obj/item/reagent_containers/medigel/libital = 2,
 		/obj/item/reagent_containers/medigel/aiuri = 2,
-		/obj/item/reagent_containers/medigel/sterilizine = 6, // BUBBER EDIT CHANGE
+		/obj/item/reagent_containers/medigel/sterilizine = 6, // BUBBER EDIT CHANGE - ORIGINAL: 3
 	)
 	contraband = list(
-		/obj/item/reagent_containers/pill/tox = 3,
-		/obj/item/reagent_containers/pill/morphine = 4,
-		/obj/item/reagent_containers/pill/multiver = 6,
+		/obj/item/reagent_containers/applicator/pill/tox = 3,
+		/obj/item/reagent_containers/applicator/pill/morphine = 4,
+		/obj/item/reagent_containers/applicator/pill/multiver = 6,
 	)
 	premium = list(
 		/obj/item/reagent_containers/medigel/synthflesh = 2,
 		/obj/item/storage/pill_bottle/psicodine = 2,
 		/obj/item/storage/pill_bottle/sansufentanyl = 1,
+		/obj/item/inhaler/albuterol = 2,
 	)
 	default_price = 50
 	extra_price = 100
 	payment_department = ACCOUNT_MED
 	refill_canister = /obj/item/vending_refill/drugs
+	allow_custom = TRUE
 
 /obj/item/vending_refill/drugs
 	machine_name = "NanoDrug Plus"

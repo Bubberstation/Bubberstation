@@ -1,0 +1,250 @@
+2024-03-01:
+  LT3:
+  - bugfix: Fixed ineligible airlocks from receiving engineering override when activated
+      from the communications console
+  - bugfix: Various airlock/firelock overlay fixes
+  nikothedude:
+  - rscadd: Robos now have a pamphlet in their bag that tells them tips and tricks
+      on how treat synth wounds
+2024-03-02:
+  Erol509:
+  - rscadd: Added the icewalker areas to the radstorm protected areas.
+  Majkl-J:
+  - bugfix: Secmeds no longer limit a few items to themselves only
+  Sylphet:
+  - rscadd: adds lunchboxes that hold food and drinks to the loadout
+  - image: added lunchbox sprites
+2024-03-03:
+  BurgerBB:
+  - balance: After 3 Lichdom resurrections, announcements will be made about your
+      general phylactery location (the area) when you die. Phylactery binding now
+      requires the object to be at least bulky in size, and it cannot be fireproof,
+      lava proof, or indestructible.
+  - bugfix: Fixes some Moon Station bugs, such as the funny engineering bridge access
+      bug and a lack of cigarette/coffee vendors.
+  - rscdel: Limits Powersinks + Crab-17 purchases to once each per traitor per round.
+  - rscdel: Removes Xeno Organs from Roundstart Xenomorph Hybrids. They no longer
+      have plasma vessels, resin spinners, or hive nodes.
+  ReturnToZender (code):
+  - rscadd: F-list headshots are now accepted
+  Swiftfeather:
+  - admin: Will no longer receive supermatter ate a pipe spam in the log.
+2024-03-04:
+  BurgerBB:
+  - rscadd: Adds Ashwalkers to Moonstation
+2024-03-07:
+  Arturlang:
+  - rscadd: Decapacitated bloodsuckers can now talk!
+  - rscadd: The stat bar will show you the threshold for exiting frenzy now too when
+      you are frenzying.
+  - rscadd: Bloodsucker abilities now will show their level when you hover over them.
+      Trust me, this was really neccessary.
+  - rscadd: Tremere now also get informed of how much blood they need to pay for level
+      ups.
+  - rscadd: At level 3, haste will now remove stuns and do a non-stunning dash
+  - rscadd: Bloodsucker blood display now always updates when a bloodsucker's blood
+      level is changed
+  - rscadd: Bloodsuckers can now examine hearts to see if they are valid for the heart
+      thief objective
+  - rscadd: Bloodsucker vassals now clean up any traits gained from their tenure as
+      a vampire's minion.
+  - rscadd: Favorite vassals now properly clean up their effects once the antag datum
+      is lost.
+  - rscadd: Bloodsucker synths will be able to heal their prosthetic limbs, but normal
+      bloodsuckers still cannot.
+  - rscadd: When you exiit torpor as a bloodsucker, you will completely heal any toxin
+      and oxygen damage, as you should already be immune to it. This is a safety feature.
+  - rscadd: Entering a coffin will normalize your temperature and extinguish you if
+      you're on fire, if you are a bloodsucker.
+  - bugfix: bloodsucker vampire bats will no longer /list you when attacking
+  - bugfix: Hopefully fixes some torpor loops related to frenzy
+  - bugfix: Hopefully fixes bloodsuckers cryoing not removing vassal datums
+  - bugfix: Bloodsuckers can no longer use veil of many faces while unconcious
+  - bugfix: lizard bloodsuckers will no longer suffer from heat for a long time
+  - bugfix: The ventrue objective now properly succeeds if you have sired a vampire
+  - bugfix: Livers are no longer required for bloodsuckers to live, as it caused them
+      toxin damage which overrode the trait that made them immune to toxins.
+  - bugfix: Entering torpor now accounts for all damage types, even when you should
+      be immune to them. This is to ensure you enter torpor to heal those damage types
+      in the case of odd behaviour.
+  - balance: coffins should now set your temperature to normal and extinguish you.
+  - balance: bloodsucker level up cost is now 15% of max blood, down from 20%
+  - balance: Caps humantiy loss at 50 humanity/500 blood to frenzy, and makes it remove
+      your masquerade ability.
+  - balance: Bloodsucker bats now have human runspeed
+  - balance: Blood cost for vassalizing was almost completely removed, now only taking
+      tiny amounts of blood to do so.
+  - balance: Fortitude now gives you burn resistance, just 20% less than brute resistance
+  - balance: Can no longer gut bloodsuckers
+  - balance: Bloodsuckers loosing their heart will make the vampire unable to use
+      their abilities or even regenerateor revive via torpor, you can however regain
+      your heart if you sleep in a coffin with a heart.
+  - balance: Stakes now have different properties, the normal stake is fast to stick
+      in someone, but can fall out on it's own, the burnt one takes longer to be put
+      in, but doesn't fall out, the silver stake is the slowest to be stuffed in someone's
+      heart, and is the only stake to be able to cause a Final Death to a sleeping
+      or dead bloodsucker
+  - rscdel: Dullahans can't be bloodsuckers since... their head isn't attached
+  - admin: Bloodsuckers and vassals can now be banned like other antags.
+  BurgerBB:
+  - bugfix: Fixes traitor announcer double-sanitizing.
+  - bugfix: Fixes missing telecomms wire in Moonstation
+  LT3:
+  - image: Added Moonstation specific tram sprites
+  - bugfix: Fixed Moonstation references to Tramstation's tram
+  ReturnToZender:
+  - rscdel: Donors' graceful trenchcoat
+  - rscadd: NTC offices have had their carpet changed out to something less over-the-top.
+      The windows have been expanded as well.
+  nevimer:
+  - balance: contractor and ninja modsuits have DNA locked microbombs
+2024-03-08:
+  EspeciallyStrange:
+  - bugfix: IDMA donor clothing being improperly offsetted and not correctly
+2024-03-10:
+  pixelkitty286:
+  - rscadd: +Peacekeeper cat borg sprites, Spider clan cat borg sprites, Engineer
+      cat borg refreshed sprites
+  - bugfix: Cat cyborg panels not working
+  - image: +Peacekeeper cat borg sprites, Spider clan cat borg sprites, Engineer cat
+      borg refreshed sprites
+  - code_imp: -Duplicate code
+2024-03-11:
+  Majkl-J:
+  - bugfix: Dauntless frames are no longer broken
+2024-03-12:
+  Arturlang:
+  - bugfix: Ventrue sired bloodsuckers will no longer have a copy of their abilities
+  - rscadd: Bloodsuckers that start out with no heart will be able to regain one,
+      but it now properly checks if they have one or not, and disables their abiltiies
+      accordingly, go into a coffin with a heart if you want to gain one.
+  BurgerBB:
+  - bugfix: Fixes an atmos oversight with the Voxbox on Moonstation that can lead
+      to superheated distro.
+  IgiariValkyr:
+  - rscadd: New Traitor Item (10TC) - Portable Listening Advanced Post
+  Kegdo:
+  - rscadd: 'more markings: Chestplate, hip, elbow, shoulder, glove, sleeve, sock,
+      longsock, vertical stripe, fangs, lips, facemask, facedisc.'
+  Majkl-J:
+  - bugfix: False walls appear again
+  Tupina:
+  - balance: Energy weapons can now fire roughly 1.3x more lasers per charge across
+      the board.
+  iskawhiskers:
+  - image: added monster2_head, monster3_head, weight2_chest_m, weight2_chest_f
+2024-03-13:
+  Boviro:
+  - rscadd: Added butler as assistant title
+  ReturnToZender (Writing), LT3, Waterpig (Code assistance):
+  - bugfix: If you have no custom species set, it will now show your default description.
+2024-03-14:
+  VrazzleDazzle:
+  - rscadd: Scrying Lens Disks are now available in the loadout.
+2024-03-15:
+  ReturnToZender (quirk code), TeshariEnjoer (original PR):
+  - rscadd: New positive trait, featherweight. Allows you to be picked up instead
+      of fireman's carried. This dipshit yours?
+  Yanziko:
+  - balance: pet owner is free
+2024-03-16:
+  BurgerBB:
+  - bugfix: Fixes various Moon Station issues.
+  StrangeWeirdKitten:
+  - rscdel: Removes the Dauntless cameras
+  projectkepler-ru:
+  - rscadd: Marketable IDMA Plushie, selectable as ironmoon tajaran plushie
+2024-03-17:
+  BurgerBB:
+  - rscadd: Assigns a bunch of code levels for ERT that didn't have it or I thought
+      should have a different one. The changes itself can be seen in the file.
+  - bugfix: The default code for any ERT is now "Green" so it will no longer show
+      a missing word when calling ERT.
+  xXPawnStarrXx:
+  - qol: made DeForest medipens refillable.
+2024-03-20:
+  xXPawnStarrXx:
+  - rscadd: Blood filtering now restores toxins.
+2024-03-21:
+  Arturlang:
+  - rscadd: Adds the hemophage-only quirk, Sol weakness
+  - code_imp: Refactors the sol subsystem so that itself decides if it should run
+      or not based on if anyone is using it.
+  - code_imp: Refactors bloodsucker UI elements so that they can function fine outside
+      a bloodsucker antag datum
+  - code_imp: bloodsucker_blood_volume, humanity_lost, bloodsucker_level and bloodsucker_level_unspent
+      are now private variables due to them being used for UI updates, if you need
+      to change them, use the procs that are written in the autodoc
+  - code_imp: Quirk species whitelists no longer use bitflags, but use the species
+      ID's. Easily allowing you to add new whitelists without having to mess around
+      with making a new bitfield
+  nikothedude:
+  - rscadd: Roboticists now spawn with synthetic medkits to make their jobs a bit
+      easier
+  - rscadd: New cargo packs for synthetic medkits
+  - balance: Roboticists now spawn with diag huds, welding helmets, and black gloves
+  - balance: Synthetic burn kits now have extra bottles
+2024-03-22:
+  StrangeWeirdKitten:
+  - rscdel: Removes Dauntless self destruct and dense rock surrounding the base
+  - balance: Dauntless exterior turrets shoot fauna, not people
+2024-03-23:
+  Iamgoofball:
+  - rscadd: Re-enables the Galactic Materials Market as it's been fixed upstream.
+2024-03-25:
+  LT3:
+  - code_imp: Parts of firelock code updated to parity with TG
+  StrangeWeirdKitten:
+  - config: Removes Akula Lore protection (Allows edit to species)
+2024-03-26:
+  Jinshee:
+  - rscadd: Added rattlesnake tail
+2024-03-27:
+  Arturlang:
+  - rscadd: Lunge can now take out any organ out of a dead corpse, based on where
+      you are aiming in the targeting doll, it will still prioritize a heart if aimed
+      at chest
+  - bugfix: bloodsucker sol quirk removal is now silent
+  - bugfix: You can no longer unwrench lair coffins
+  - bugfix: gohome will no longer render you stuck in a coffin if it cannot close
+  - bugfix: Malkavians should now spout nonsense less often if you've not lost humantiy
+      yet
+  - bugfix: 'Lunge can now actually stun people if you lunge at them from behind.
+
+      fix; You can no longer spam drink from blood bags.'
+  - code_imp: clan_life now has seconds_per_tick and times_fired
+  YakumoChen:
+  - balance: Xeno Hybrids take normal heat damage, again.
+  nikothedude:
+  - rscadd: You can now set your characters height
+2024-03-28:
+  Erol509:
+  - bugfix: Bloodsucker braincheck was missing a null check causing runetimes, its
+      been fixed.
+  Odairu:
+  - config: changes law 2 wording
+2024-03-29:
+  BurgerBB:
+  - bugfix: Fixes a few moonstation bugs.
+  Majkl-J:
+  - bugfix: Minesweeper now properly gives moodlets
+  - bugfix: teshvali no longer have you wear human sprites
+  ReturnToZender (code):
+  - rscadd: Kiboko 25mm to Armory tab
+  - rscadd: Mini E-Gun to goodies and armory
+  - balance: Reduces the cost of the d'Elite rifle as it is more of a side-grade now
+  VrazzleDazzle:
+  - rscdel: Death bolts no longer dust you on death.
+  destrucktoid:
+  - balance: Ventrue cannot benefit from bloodbags if their blood exceeds BLOOD_VOLUME_NORMAL
+  - refactor: Changed reac_volume to use AddBloodVolume() for consistency reasons
+2024-03-30:
+  Majkl-J:
+  - balance: Bodyless ghosts and ghostroles can no longer transfervote
+  - refactor: Added support for vote mob conditions
+  StrangeWeirdKitten:
+  - bugfix: Humanoid and Hemophage sprites no longer have base skin tone issues. Added
+      human greyscale sprites.
+2024-03-31:
+  LT3:
+  - qol: Catbox and Imgbox are now supported hosting services for headshots

@@ -81,7 +81,7 @@ GLOBAL_LIST_INIT(pet_options, list(
 
 	for(var/color in possible_colors)
 		demo_carrier.set_greyscale(possible_colors[color])
-		list_to_return[color] = icon2base64(getFlatIcon(demo_carrier))
+		list_to_return[color] = icon2base64(getFlatIcon(demo_carrier, no_anim = TRUE))
 	qdel(demo_carrier)
 	return list_to_return
 
@@ -163,6 +163,9 @@ GLOBAL_LIST_INIT(pet_options, list(
 
 			var/list/trick_moves = params["selected_trick_moves"]
 			if(length(trick_moves))
+				for (var/trick_move in trick_moves)
+					if (!length(GLOB.emote_list[LOWER_TEXT(trick_move)]))
+						trick_moves -= trick_move
 				pet_trick_moves = trick_moves
 
 			var/selected_color = params["selected_carrier"]

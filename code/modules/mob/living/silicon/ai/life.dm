@@ -1,4 +1,4 @@
-/mob/living/silicon/ai/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+/mob/living/silicon/ai/Life(seconds_per_tick = SSMOBS_DT)
 	if (stat == DEAD)
 		return
 	//Being dead doesn't mean your temperature never changes
@@ -13,9 +13,9 @@
 		view_core()
 
 	// Handle power damage (oxy)
-	if (battery <= 0)
+	if (battery <= 0 && lacks_power())
 		to_chat(src, span_warning("Your backup battery's output drops below usable levels. It takes only a moment longer for your systems to fail, corrupted and unusable."))
-		adjustOxyLoss(200)
+		adjust_oxy_loss(200)
 
 	if(aiRestorePowerRoutine)
 		// Lost power
@@ -40,7 +40,7 @@
 /mob/living/silicon/ai/proc/lacks_power()
 	var/turf/T = get_turf(src)
 	var/area/A = get_area(src)
-	switch(requires_power)
+	switch(power_requirement)
 		if(NONE)
 			return FALSE
 		if(POWER_REQ_ALL)
@@ -51,7 +51,7 @@
 		return
 
 	var/old_health = health
-	set_health(maxHealth - getOxyLoss() - getToxLoss() - getBruteLoss() - getFireLoss())
+	set_health(maxHealth - get_oxy_loss() - get_tox_loss() - get_brute_loss() - get_fire_loss())
 
 	var/old_stat = stat
 	update_stat()
@@ -135,7 +135,7 @@
 				sleep(5 SECONDS)
 				to_chat(src, span_notice("Receiving control information from APC."))
 				sleep(0.2 SECONDS)
-				to_chat(src, "<A HREF=?src=[REF(src)];emergencyAPC=[TRUE]>APC ready for connection.</A>")
+				to_chat(src, "<A href=byond://?src=[REF(src)];emergencyAPC=[TRUE]>APC ready for connection.</A>")
 				apc_override = theAPC
 				apc_override.ui_interact(src)
 				setAiRestorePowerRoutine(POWER_RESTORATION_APC_FOUND)

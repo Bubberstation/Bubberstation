@@ -6,9 +6,8 @@
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/machines.dmi'
 	icon_state = "colony_lathe"
 	base_icon_state = "colony_lathe"
-	production_animation = null
 	circuit = null
-	production_animation = "colony_lathe_n"
+	production_animation = "colony_lathe_working"
 	light_color = LIGHT_COLOR_BRIGHT_YELLOW
 	light_power = 5
 	allowed_buildtypes = COLONY_FABRICATOR
@@ -47,14 +46,12 @@
 	if (. && action == "build")
 		soundloop.start()
 		set_light(l_range = 1.5)
-		icon_state = "colony_lathe_working"
 		update_appearance()
 
 /obj/machinery/rnd/production/colony_lathe/finalize_build()
 	. = ..()
 	soundloop.stop()
 	set_light(l_range = 0)
-	icon_state = base_icon_state
 	update_appearance()
 	flick("colony_lathe_finish_print", src)
 

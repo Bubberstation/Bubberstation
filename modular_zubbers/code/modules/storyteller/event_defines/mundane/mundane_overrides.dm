@@ -1,6 +1,6 @@
 /datum/round_event_control/aurora_caelus
 	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_COMMUNAL, TAG_POSITIVE, TAG_SPACE)
+	tags = list(TAG_COMMUNAL, TAG_NEUTRAL, TAG_SPACE)
 
 /datum/round_event_control/brain_trauma
 	track = EVENT_TRACK_MUNDANE
@@ -68,6 +68,7 @@
 	tags = list(TAG_DESTRUCTIVE, TAG_SPOOKY)
 
 /datum/round_event_control/gravity_generator_blackout
+	weight = 9
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_COMMUNAL, TAG_SPACE)
 

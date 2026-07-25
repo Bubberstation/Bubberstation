@@ -26,11 +26,8 @@
 		var/datum/micro_organism/MO = i
 		. += MO.get_details()
 
-/obj/item/petri_dish/pre_attack(atom/A, mob/living/user, params)
+/obj/item/petri_dish/wash(clean_types)
 	. = ..()
-	if(!sample || !istype(A, /obj/structure/sink))
-		return FALSE
-	to_chat(user, span_notice("You wash the sample out of [src]."))
 	sample = null
 	update_appearance()
 
@@ -39,8 +36,7 @@
 	if(!sample)
 		return
 	var/reagentcolor = sample.sample_color
-	var/mutable_appearance/base_overlay = mutable_appearance(icon, "petri_dish_overlay")
-	base_overlay.appearance_flags = RESET_COLOR
+	var/mutable_appearance/base_overlay = mutable_appearance(icon, "petri_dish_overlay", appearance_flags = RESET_COLOR|KEEP_APART)
 	base_overlay.color = reagentcolor
 	. += base_overlay
 	var/mutable_appearance/overlay2 = mutable_appearance(icon, "petri_dish_overlay2")

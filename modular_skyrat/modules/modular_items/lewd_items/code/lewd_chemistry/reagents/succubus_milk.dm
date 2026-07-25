@@ -113,7 +113,7 @@
 * suppress_chat - whether or not to display a message in chat
 * NOTE: this function doesn't get called often enough to warrant suppressing chat, hence the var's omission
 */
-/datum/reagent/drug/aphrodisiac/succubus_milk/growth_to_chat(mob/living/carbon/human/exposed_mob, obj/item/organ/external/genital/breasts/mob_breasts = exposed_mob?.get_organ_slot(ORGAN_SLOT_BREASTS))
+/datum/reagent/drug/aphrodisiac/succubus_milk/growth_to_chat(mob/living/carbon/human/exposed_mob, obj/item/organ/genital/breasts/mob_breasts = exposed_mob?.get_organ_slot(ORGAN_SLOT_BREASTS))
 
 	if(!mob_breasts)
 		return
@@ -154,7 +154,7 @@
 // Notify the user that they're overdosing. Doesn't affect their mood.
 /datum/reagent/drug/aphrodisiac/succubus_milk/overdose_start(mob/living/carbon/human/exposed_mob)
 	to_chat(exposed_mob, span_userdanger("You feel like you took too much [name]!"))
-	exposed_mob.add_mood_event("[type]_overdose", /datum/mood_event/minor_overdose, 1, name)
+	exposed_mob.add_mood_event("[type]_overdose", /datum/mood_event/minor_overdose, name)
 
 /datum/chemical_reaction/succubus_milk
 	results = list(/datum/reagent/drug/aphrodisiac/succubus_milk = 8)

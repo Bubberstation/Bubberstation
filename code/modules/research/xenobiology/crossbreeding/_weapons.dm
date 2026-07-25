@@ -27,7 +27,7 @@ Slimecrossing Weapons
 	throwforce = 15
 	damtype = BRUTE
 
-/obj/item/knife/rainbowknife/afterattack(atom/target, mob/user, params)
+/obj/item/knife/rainbowknife/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	if(isliving(target))
 		damtype = pick(BRUTE, BURN, TOX, OXY)
 	switch(damtype)
@@ -87,6 +87,7 @@ Slimecrossing Weapons
 	icon = 'icons/obj/science/slimecrossing.dmi'
 	icon_state = "bloodgun"
 	inhand_icon_state = "bloodgun"
+	icon_angle = 180
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	item_flags = ABSTRACT | DROPDEL
@@ -109,9 +110,13 @@ Slimecrossing Weapons
 		return FALSE
 	charge_timer = 0
 	var/mob/living/M = loc
-	if(istype(M) && M.blood_volume >= 20)
+	if(istype(M) && !CAN_HAVE_BLOOD(M) && M.stat == CONSCIOUS)
 		charges++
-		M.blood_volume -= 20
+		M.apply_damage(5, BRUTE)
+	else
+		if(istype(M) && M.get_blood_volume() >= 20)
+			charges++
+			M.adjust_blood_volume(-20)
 	if(charges == 1)
 		recharge_newshot()
 	return TRUE

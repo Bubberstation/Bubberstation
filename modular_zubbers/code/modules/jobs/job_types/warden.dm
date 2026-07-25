@@ -4,3 +4,4 @@
 	// Feel free to remove this if you ever decide so
 	// ~Waterpig
 	exp_required_type_department = EXP_TYPE_SECURITY
+	rpg_title = "Beefeater"

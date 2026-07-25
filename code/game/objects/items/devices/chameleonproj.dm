@@ -77,9 +77,7 @@
 	saved_appearance = temp.appearance
 
 /obj/item/chameleon/proc/check_sprite(atom/target)
-	if(target.icon_state in icon_states(target.icon))
-		return TRUE
-	return FALSE
+	return icon_exists(target.icon, target.icon_state)
 
 /obj/item/chameleon/proc/toggle(mob/user)
 	if(!can_use || !saved_appearance)
@@ -103,10 +101,7 @@
 	if(active_dummy)
 		for(var/mob/M in active_dummy)
 			to_chat(M, span_danger("Your chameleon projector deactivates."))
-		var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start()
+		do_sparks(5, FALSE, src, src)
 		eject_all()
 		if(delete_dummy)
 			qdel(active_dummy)

@@ -18,7 +18,7 @@ multiple modular subtrees with behaviors
 	var/list/blackboard = list()
 
 	///Bitfield of traits for this AI to handle extra behavior
-	var/ai_traits = NONE
+	var/ai_traits = DEFAULT_AI_FLAGS
 	///Current actions planned to be performed by the AI in the upcoming plan
 	var/list/planned_behaviors = list()
 	///Current actions being performed by the AI.
@@ -70,6 +70,7 @@ multiple modular subtrees with behaviors
 	/// are we currently on failed planning timeout?
 	var/on_failed_planning_timeout = FALSE
 
+
 /datum/ai_controller/New(atom/new_pawn)
 	change_ai_movement_type(ai_movement)
 	init_subtrees()
@@ -82,6 +83,12 @@ multiple modular subtrees with behaviors
 
 /datum/ai_controller/Destroy(force)
 	UnpossessPawn(FALSE)
+	if(ai_status)
+		GLOB.ai_controllers_by_status[ai_status] -= src
+		for(var/datum/controller/subsystem/ai_controllers/controller_subsystem in Master.subsystems)
+			if(controller_subsystem.planning_status == ai_status)
+				controller_subsystem.currentrun -= src
+				break
 	our_cells = null
 	set_movement_target(type, null)
 	if(ai_movement.moving_controllers[src])
@@ -150,6 +157,8 @@ multiple modular subtrees with behaviors
 	RegisterSignal(pawn, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_changed))
 	RegisterSignal(pawn, COMSIG_MOB_LOGIN, PROC_REF(on_sentience_gained))
 	RegisterSignal(pawn, COMSIG_QDELETING, PROC_REF(on_pawn_qdeleted))
+	RegisterSignal(pawn, COMSIG_EVLOGGING_ENABLED, PROC_REF(on_pawn_evlogging_enabled))
+	RegisterSignal(pawn, COMSIG_EVLOGGING_DISABLED, PROC_REF(on_pawn_evlogging_disabled))
 	update_able_to_run()
 	setup_able_to_run()
 
@@ -201,7 +210,7 @@ multiple modular subtrees with behaviors
 	if(!can_idle || isnull(our_cells))
 		return FALSE
 	for(var/datum/spatial_grid_cell/grid as anything in our_cells.member_cells)
-		if(length(grid.client_contents))
+		if(locate(/mob/living) in grid.client_contents)
 			return FALSE
 	return TRUE
 
@@ -223,8 +232,11 @@ multiple modular subtrees with behaviors
 	if(should_idle())
 		set_ai_status(AI_STATUS_IDLE)
 
-/datum/ai_controller/proc/on_client_enter(datum/source, atom/target)
+/datum/ai_controller/proc/on_client_enter(datum/source, list/target_list)
 	SIGNAL_HANDLER
+
+	if (!(locate(/mob/living) in target_list))
+		return
 
 	if(ai_status == AI_STATUS_IDLE)
 		set_ai_status(AI_STATUS_ON)
@@ -244,6 +256,8 @@ multiple modular subtrees with behaviors
  * Returns AI_STATUS_ON otherwise.
  */
 /datum/ai_controller/proc/get_expected_ai_status()
+	if (isnull(get_turf(pawn)))
+		return AI_STATUS_OFF
 
 	if (!ismob(pawn))
 		return AI_STATUS_ON
@@ -267,11 +281,6 @@ multiple modular subtrees with behaviors
 	if(should_idle())
 		return AI_STATUS_IDLE
 	return AI_STATUS_ON
-
-/datum/ai_controller/proc/get_current_turf()
-	var/mob/living/mob_pawn = pawn
-	var/turf/pawn_turf = get_turf(mob_pawn)
-	to_chat(world, "[pawn_turf]")
 
 ///Called when the AI controller pawn changes z levels, we check if there's any clients on the new one and wake up the AI if there is.
 /datum/ai_controller/proc/on_changed_z_level(atom/source, turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
@@ -297,16 +306,15 @@ multiple modular subtrees with behaviors
 	if(isnull(pawn))
 		return // instantiated without an applicable pawn, fine
 
+	SEND_SIGNAL(src, COMSIG_AI_CONTROLLER_UNPOSSESSED_PAWN)
 	set_ai_status(AI_STATUS_OFF)
-	UnregisterSignal(pawn, list(COMSIG_MOVABLE_Z_CHANGED, COMSIG_MOB_LOGIN, COMSIG_MOB_LOGOUT, COMSIG_MOB_STATCHANGE, COMSIG_QDELETING))
+	UnregisterSignal(pawn, list(COMSIG_MOVABLE_Z_CHANGED, COMSIG_MOB_LOGIN, COMSIG_MOB_LOGOUT, COMSIG_MOB_STATCHANGE, COMSIG_QDELETING, COMSIG_EVLOGGING_ENABLED))
 	clear_able_to_run()
 	if(ai_movement.moving_controllers[src])
 		ai_movement.stop_moving_towards(src)
 	var/turf/pawn_turf = get_turf(pawn)
 	if(pawn_turf)
 		GLOB.ai_controllers_by_zlevel[pawn_turf.z] -= src
-	if(ai_status)
-		GLOB.ai_controllers_by_status[ai_status] -= src
 	remove_from_unplanned_controllers()
 	pawn.ai_controller = null
 	pawn = null
@@ -322,18 +330,21 @@ multiple modular subtrees with behaviors
 
 /datum/ai_controller/proc/update_able_to_run()
 	SIGNAL_HANDLER
-	able_to_run = get_able_to_run()
-	if(!able_to_run)
+	var/run_flags = get_able_to_run()
+	if(run_flags & AI_UNABLE_TO_RUN)
+		able_to_run = FALSE
 		GLOB.move_manager.stop_looping(pawn) //stop moving
-	set_ai_status(get_expected_ai_status())
+	else
+		able_to_run = TRUE
+	set_ai_status(get_expected_ai_status(), run_flags)
 
 ///Returns TRUE if the ai controller can actually run at the moment, FALSE otherwise
 /datum/ai_controller/proc/get_able_to_run()
 	if(HAS_TRAIT(pawn, TRAIT_AI_PAUSED))
-		return FALSE
+		return AI_UNABLE_TO_RUN
 	if(world.time < paused_until)
-		return FALSE
-	return TRUE
+		return AI_UNABLE_TO_RUN
+	return NONE
 
 ///Can this pawn interact with objects?
 /datum/ai_controller/proc/ai_can_interact()
@@ -382,7 +393,7 @@ multiple modular subtrees with behaviors
 			return
 		///Stops pawns from performing such actions that should require the target to be adjacent.
 		var/atom/movable/moving_pawn = pawn
-		var/can_reach = !(current_behavior.behavior_flags & AI_BEHAVIOR_REQUIRE_REACH) || moving_pawn.CanReach(current_movement_target)
+		var/can_reach = !(current_behavior.behavior_flags & AI_BEHAVIOR_REQUIRE_REACH) || current_movement_target.IsReachableBy(moving_pawn)
 		if(can_reach && current_behavior.required_distance >= get_dist(moving_pawn, current_movement_target)) ///Are we close enough to engage?
 			if(ai_movement.moving_controllers[src] == current_movement_target) //We are close enough, if we're moving stop.
 				ai_movement.stop_moving_towards(src)
@@ -418,20 +429,34 @@ multiple modular subtrees with behaviors
 			arguments += stored_arguments
 		forgotten_behavior.finish_action(arglist(arguments))
 
+	if(IS_EVLOGGING)
+		var/list/event_text = list()
+		event_text += "New plan starting!"
+
+		for(var/datum/ai_behavior/behavior in planned_behaviors)
+			event_text += "Queued behavior [behavior.type]"
+
+		EVLOG_TEXT(src, EVLOG_CATEGORY_AI_DECISIONMAKING, jointext(event_text, "\n"))
+
 ///This proc handles changing ai status, and starts/stops processing if required.
-/datum/ai_controller/proc/set_ai_status(new_ai_status)
+/datum/ai_controller/proc/set_ai_status(new_ai_status, additional_flags = NONE)
 	if(ai_status == new_ai_status)
 		return FALSE //no change
 
 	//remove old status, if we've got one
 	if(ai_status)
 		GLOB.ai_controllers_by_status[ai_status] -= src
+		for(var/datum/controller/subsystem/ai_controllers/controller_subsystem in Master.subsystems)
+			if(controller_subsystem.planning_status == ai_status)
+				controller_subsystem.currentrun -= src
+				break
 	remove_from_unplanned_controllers()
 	stop_previous_processing()
 	ai_status = new_ai_status
 	GLOB.ai_controllers_by_status[new_ai_status] += src
 	if(ai_status == AI_STATUS_OFF)
-		CancelActions()
+		if(!(additional_flags & AI_PREVENT_CANCEL_ACTIONS))
+			CancelActions()
 		return
 	if(!length(current_behaviors))
 		add_to_unplanned_controllers()
@@ -466,6 +491,9 @@ multiple modular subtrees with behaviors
 	if(isnull(ai_status) || ai_status == AI_STATUS_OFF)
 		return
 	GLOB.unplanned_controllers[ai_status] -= src
+	for(var/datum/controller/subsystem/unplanned_controllers/potential_holder as anything in GLOB.unplanned_controller_subsystems)
+		if(potential_holder.target_status == ai_status)
+			potential_holder.current_run -= src
 
 /datum/ai_controller/proc/modify_cooldown(datum/ai_behavior/behavior, new_cooldown)
 	behavior_cooldowns[behavior] = new_cooldown
@@ -546,6 +574,7 @@ multiple modular subtrees with behaviors
 		return
 	for(var/datum/ai_behavior/current_behavior as anything in current_behaviors)
 		fail_behavior(current_behavior)
+	EVLOG_TEXT(src, EVLOG_CATEGORY_AI_DECISIONMAKING, "Actions were cancelled!")
 
 /datum/ai_controller/proc/fail_behavior(datum/ai_behavior/current_behavior)
 	var/list/arguments = list(src, FALSE)
@@ -631,7 +660,12 @@ multiple modular subtrees with behaviors
 	}; \
 	else if(isdatum(tracked_datum)) { \
 		var/datum/_tracked_datum = tracked_datum; \
-		if(!HAS_TRAIT_FROM(_tracked_datum, TRAIT_AI_TRACKING, "[REF(src)]_[key]")) { \
+		if(QDELETED(_tracked_datum)) { \
+			stack_trace("Tried to track a qdeleted datum ([_tracked_datum]) in ai datum blackboard (key: [key])! \
+				Please ensure that we are not doing this by adding handling where necessary."); \
+			return; \
+		}; \
+		else if(!HAS_TRAIT_FROM(_tracked_datum, TRAIT_AI_TRACKING, "[REF(src)]_[key]")) { \
 			RegisterSignal(_tracked_datum, COMSIG_QDELETING, PROC_REF(sig_remove_from_blackboard), override = TRUE); \
 			ADD_TRAIT(_tracked_datum, TRAIT_AI_TRACKING, "[REF(src)]_[key]"); \
 		}; \
@@ -852,6 +886,8 @@ multiple modular subtrees with behaviors
  */
 /datum/ai_controller/proc/remove_thing_from_blackboard_key(key, thing)
 	var/associated_value = blackboard[key]
+	if(isnull(associated_value))
+		return
 	if(thing == associated_value)
 		stack_trace("remove_thing_from_blackboard_key was called un-necessarily in a situation where clear_blackboard_key would suffice. ")
 		clear_blackboard_key(key)
@@ -898,7 +934,6 @@ multiple modular subtrees with behaviors
 	while(index <= length(remove_queue))
 		var/list/next_to_clear = remove_queue[index]
 		for(var/inner_value in next_to_clear)
-			var/associated_value = next_to_clear[inner_value]
 			// We are a lists of lists, add the next value to the queue so we can handle references in there
 			// (But we only need to bother checking the list if it's not empty.)
 			if(islist(inner_value) && length(inner_value))
@@ -908,6 +943,13 @@ multiple modular subtrees with behaviors
 			else if(inner_value == source)
 				next_to_clear -= inner_value
 
+			//if this is the case stop here. This means the list isn't associative (because an assoc list couldnt have a key for a number!)
+			if(isnum(inner_value))
+				continue
+
+			var/associated_value = next_to_clear[inner_value]
+			if(!associated_value) //This wasn't an associated list! we lied! its all been a trick. Try again next time.
+				continue
 			// We are an assoc lists of lists, the list at the next value so we can handle references in there
 			// (But again, we only need to bother checking the list if it's not empty.)
 			if(islist(associated_value) && length(associated_value))
@@ -919,6 +961,55 @@ multiple modular subtrees with behaviors
 				SEND_SIGNAL(pawn, COMSIG_AI_BLACKBOARD_KEY_CLEARED(inner_value))
 
 		index += 1
+
+/// When the pawn gets DF_EVLOGGING, propagate it to this controller too.
+/datum/ai_controller/proc/on_pawn_evlogging_enabled(datum/source)
+	SIGNAL_HANDLER
+	enable_evlogging(pawn)
+
+/// When the pawn gets DF_EVLOGGING disabled, propagate it to this controller too.
+/datum/ai_controller/proc/on_pawn_evlogging_disabled(datum/source)
+	SIGNAL_HANDLER
+	disable_evlogging(pawn)
+
+///Register for an event being added so we can update track info
+/datum/ai_controller/enable_evlogging()
+	. = ..()
+	RegisterSignal(src, COMSIG_EVLOG_EVENT_ADDED, PROC_REF(on_evlog_event_added))
+
+///Unregister the evlog event added event, as we're no longer updating track info
+/datum/ai_controller/disable_evlogging()
+	. = ..()
+	UnregisterSignal(src, COMSIG_EVLOG_EVENT_ADDED)
+
+/// Called whenever an event is logged for this controller. Attaches a snapshot of current behaviors and blackboard state to the event via track_info.
+/datum/ai_controller/proc/on_evlog_event_added(datum/source, datum/event_logger_track/track, list/event_data)
+	SIGNAL_HANDLER
+	var/list/track_info = list()
+
+	var/list/current_behavior_info = list()
+	for(var/datum/ai_behavior/behavior in planned_behaviors)
+		if(behavior in current_behaviors) //Not really ideal; we should find a better way to do this.
+			current_behavior_info += "ACTIVE: [span_bold("[behavior.type]")]"
+		else
+			current_behavior_info += "[behavior.type]"
+	EVLOG_TRACK_INFO_ENTRY(track_info, "Behaviors", "Current Behavior", jointext(current_behavior_info, "\n"))
+
+	for(var/blackboard_key_name, blackboard_value in blackboard)
+		var/value_string
+		if(isatom(blackboard_value))
+			value_string = "[blackboard_value]"
+		else if(islist(blackboard_value))
+			var/list/blackboard_list = blackboard_value
+			value_string = length(blackboard_list) ? jointext(blackboard_list, "\n") : "Empty List"
+		else if(isnull(blackboard_value))
+			value_string = "null"
+		else // I think I covered all cases?
+			value_string = "[blackboard_value]"
+		EVLOG_TRACK_INFO_ENTRY(track_info, "Blackboard", blackboard_key_name, value_string)
+
+	event_data["track_info"] = track_info
+
 
 #undef TRACK_AI_DATUM_TARGET
 #undef CLEAR_AI_DATUM_TARGET

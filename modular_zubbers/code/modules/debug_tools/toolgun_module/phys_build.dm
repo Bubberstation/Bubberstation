@@ -14,17 +14,17 @@
 	)
 	var/choised_mode = show_radial_menu(user, user, choise, require_near = TRUE)
 	if(!choised_mode)
-		user.balloon_alert(user, "Select one!")
+		user.balloon_alert(user, "select one!")
 		return FALSE
 	var/list/pick = list()
 	if(choised_mode == "Wall mode")
-		pick = init_paths(/turf/closed/wall)
+		pick = init_subtypes_w_path_keys(/turf/closed/wall)
 	if(choised_mode == "Turf mode")
-		pick = init_paths(/turf/open)
+		pick = init_subtypes_w_path_keys(/turf/open)
 		for(var/turf/open/space/T in pick)
 			pick -= T
 	if(choised_mode == "Structure mode")
-		pick = init_paths(/obj/machinery/door)
+		pick = init_subtypes_w_path_keys(/obj/machinery/door)
 	selected_atom = tgui_input_list(user, "Selected object:", "Toolgun work", pick)
 	return TRUE
 
@@ -43,14 +43,14 @@
 	. = ..()
 
 	if(!selected_atom)
-		user.balloon_alert(user, "Select atom first!")
+		user.balloon_alert(user, "select atom first!")
 		return FALSE
 	if(!isopenturf(target))
-		user.balloon_alert(user, "Blocked!")
+		user.balloon_alert(user, "blocked!")
 		return FALSE
 	var/turf/T = target
 	if(T.is_blocked_turf())
-		user.balloon_alert(user, "Blocked!")
+		user.balloon_alert(user, "blocked!")
 		return FALSE
 	if(!isturf(selected_atom))
 		T.place_on_top(selected_atom)

@@ -88,7 +88,7 @@
 /datum/proximity_monitor/advanced/projectile_dampener/peaceborg/clockwork/cleanup_edge_turf(turf/target)
 	edge_turfs -= target
 
-
+/* BUBBER UPSTREAM TODO - Work this back in when it compiles
 /datum/proximity_monitor/advanced/projectile_dampener/peaceborg/clockwork/capture_projectile(obj/projectile/fired_projectile, track_projectile = TRUE)
 	if(fired_projectile in tracked)
 		return
@@ -104,12 +104,14 @@
 
 	if(track_projectile)
 		tracked += fired_projectile
-
+*/
 
 /obj/item/borg/projectile_dampen/clockcult
 	name = "internal clockcult projectile dampener"
-	projectile_damage_coefficient = 0.75 // Only -25% damage instead of -50%
+	projectile_effects_datum = /datum/dampener_projectile_effects/peacekeeper
 
+/datum/dampener_projectile_effects/peacekeeper
+	projectile_damage_multiplier = 0.75
 
 /obj/item/borg/projectile_dampen/clockcult/process_recharge()
 	energy = maxenergy

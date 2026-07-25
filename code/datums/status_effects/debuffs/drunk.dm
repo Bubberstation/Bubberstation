@@ -1,9 +1,3 @@
-// SKYRAT EDIT CHANGE BEGIN - ALCOHOL_PROCESSING
-// Defines for the ballmer peak.
-#define BALLMER_PEAK_LOW_END 25.8 // Original 12.9
-#define BALLMER_PEAK_HIGH_END 27.6 // Original 13.8
-#define BALLMER_PEAK_WINDOWS_ME 37 // Original 26
-
 /// The threshld which determine if someone is tipsy vs drunk
 #define TIPSY_THRESHOLD 23.4 // Original 6
 // SKYRAT EDIT CHANGE END - ALCOHOL_PROCESSING
@@ -17,8 +11,11 @@
 	tick_interval = 2 SECONDS
 	status_type = STATUS_EFFECT_REPLACE
 	remove_on_fullheal = TRUE
+	alert_type = null
 	/// The level of drunkness we are currently at.
 	var/drunk_value = 0
+	/// If TRUE, drunk_value will be capped at 51, preventing serious damage
+	var/iron_liver = FALSE
 
 /datum/status_effect/inebriated/on_creation(mob/living/new_owner, drunk_value = 0)
 	. = ..()
@@ -32,9 +29,7 @@
 	// Having your face covered conceals your drunkness
 	if(iscarbon(owner))
 		var/mob/living/carbon/carbon_owner = owner
-		if(carbon_owner.wear_mask?.flags_inv & HIDEFACE)
-			return null
-		if(carbon_owner.head?.flags_inv & HIDEFACE)
+		if(carbon_owner.obscured_slots & HIDEFACE)
 			return null
 
 	// .01s are used in case the drunk value ends up to be a small decimal.
@@ -58,7 +53,8 @@
 /datum/status_effect/inebriated/proc/set_drunk_value(set_to)
 	if(!isnum(set_to))
 		CRASH("[type] - invalid value passed to set_drunk_value. (Got: [set_to])")
-
+	if(iron_liver)
+		set_to = min(51, set_to)
 	drunk_value = set_to
 	if(drunk_value <= 0)
 		qdel(src)
@@ -107,7 +103,9 @@
 /datum/status_effect/inebriated/drunk/on_apply()
 	. = ..()
 	owner.sound_environment_override = SOUND_ENVIRONMENT_PSYCHOTIC
-	owner.add_mood_event(id, /datum/mood_event/drunk)
+	owner.add_mood_event(id, /datum/mood_event/drunk, drunk_value)
+	owner.clear_mood_event("[id]_after")
+	RegisterSignal(owner, COMSIG_MOB_FIRED_GUN, PROC_REF(drunk_gun_fired))
 
 /datum/status_effect/inebriated/drunk/on_remove()
 	clear_effects()
@@ -121,25 +119,45 @@
 /// Clears any side effects we set due to being drunk.
 /datum/status_effect/inebriated/drunk/proc/clear_effects()
 	owner.clear_mood_event(id)
+	if(!QDELING(owner) && HAS_PERSONALITY(owner, /datum/personality/bibulous))
+		owner.add_mood_event("[id]_after", /datum/mood_event/drunk_after)
 
 	if(owner.sound_environment_override == SOUND_ENVIRONMENT_PSYCHOTIC)
 		owner.sound_environment_override = SOUND_ENVIRONMENT_NONE
+
+	UnregisterSignal(owner, COMSIG_MOB_FIRED_GUN)
+	REMOVE_TRAIT(owner, TRAIT_FEARLESS, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/inebriated/drunk/proc/drunk_gun_fired(datum/source, obj/item/gun/gun, atom/firing_at, params, zone, bonus_spread_values)
+	SIGNAL_HANDLER
+
+	// excusing the bartender, because shotgun
+	if(HAS_TRAIT(owner, TRAIT_DRUNKEN_BRAWLER))
+		return
+	// what makes me a good demoman?
+	if(istype(gun, /obj/item/gun/grenadelauncher) || istype(gun, /obj/item/gun/ballistic/revolver/grenadelauncher))
+		return
+	bonus_spread_values[MAX_BONUS_SPREAD_INDEX] += (drunk_value * 0.5)
 
 /datum/status_effect/inebriated/drunk/set_drunk_value(set_to)
 	. = ..()
 	if(QDELETED(src))
 		return
-
 	// Return to "tipsyness" when we're below 6.
 	if(drunk_value < TIPSY_THRESHOLD)
 		owner.apply_status_effect(/datum/status_effect/inebriated/tipsy, drunk_value)
+		return
+
+	var/datum/mood_event/drunk/moodlet = owner.mob_mood.mood_events[id]
+	if(istype(moodlet))
+		moodlet.update_change(drunk_value)
 
 /datum/status_effect/inebriated/drunk/on_tick_effects()
 	// Handle the Ballmer Peak.
-	// If our owner is a scientist (has the trait "TRAIT_BALLMER_SCIENTIST"), there's a 5% chance
+	// If our owner is a scientist (has the trait "TRAIT_SCIENTIST_LIVER"), there's a 5% chance
 	// that they'll say one of the special "ballmer message" lines, depending their drunk-ness level.
-	var/obj/item/organ/internal/liver/liver_organ = owner.get_organ_slot(ORGAN_SLOT_LIVER)
-	if(liver_organ && HAS_TRAIT(liver_organ, TRAIT_BALLMER_SCIENTIST) && prob(5))
+	var/obj/item/organ/liver/liver_organ = owner.get_organ_slot(ORGAN_SLOT_LIVER)
+	if(liver_organ && HAS_TRAIT(liver_organ, TRAIT_SCIENTIST_LIVER) && prob(5) && HAS_PERSONALITY(owner, /datum/personality/whimsical))
 		if(drunk_value >= BALLMER_PEAK_LOW_END && drunk_value <= BALLMER_PEAK_HIGH_END)
 			owner.say(pick_list_replacements(VISTA_FILE, "ballmer_good_msg"), forced = "ballmer")
 
@@ -171,6 +189,9 @@
 			if(iscarbon(owner))
 				var/mob/living/carbon/carbon_owner = owner
 				carbon_owner.vomit(VOMIT_CATEGORY_DEFAULT) // Vomiting clears toxloss - consider this a blessing
+		ADD_TRAIT(owner, TRAIT_FEARLESS, TRAIT_STATUS_EFFECT(id))
+	else
+		REMOVE_TRAIT(owner, TRAIT_FEARLESS, TRAIT_STATUS_EFFECT(id))
 
 	// Over 71, we will constantly have blurry eyes
 	if(drunk_value >= 71)
@@ -204,21 +225,21 @@
 	// SKYRAT EDIT CHANGE END - ALCOHOL_PROCESSING
 
 	// Over 81, we will gain constant toxloss
-	if(drunk_value >= 83.4)
-		owner.adjustToxLoss(1)
+	if(drunk_value >= 81)
+		owner.adjust_tox_loss(1)
 		if(owner.stat == CONSCIOUS && prob(5))
 			to_chat(owner, span_warning("Maybe you should lie down for a bit..."))
 
 	// Over 91, we gain even more toxloss, brain damage, and have a chance of dropping into a long sleep
 	if(drunk_value >= 91)
-		owner.adjustToxLoss(1)
-		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.4)
+		owner.adjust_tox_loss(1)
+		owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, 0.4)
 		if(owner.stat == CONSCIOUS)
 			attempt_to_blackout()
 
 	// And finally, over 100 - let's be honest, you shouldn't be alive by now.
-	if(drunk_value >= 103.4)
-		owner.adjustToxLoss(2)
+	if(drunk_value >= 101)
+		owner.adjust_tox_loss(2)
 
 /datum/status_effect/inebriated/drunk/proc/attempt_to_blackout()
 	/* SKYRAT EDIT REMOVAL - Blackout drunk begone
@@ -242,10 +263,7 @@
 	name = "Drunk"
 	desc = "All that alcohol you've been drinking is impairing your speech, \
 		motor skills, and mental cognition. Make sure to act like it."
-	icon_state = "drunk"
-
-#undef BALLMER_PEAK_LOW_END
-#undef BALLMER_PEAK_HIGH_END
-#undef BALLMER_PEAK_WINDOWS_ME
+	use_user_hud_icon = USER_HUD_STYLE_INHERIT
+	overlay_state = "drunk"
 
 #undef TIPSY_THRESHOLD

@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(opposing_force)
 	name = "Opposing Force"
-	flags = SS_NO_FIRE
+	ss_flags = SS_NO_FIRE
 
 	/// A precompiled list of all equipment datums, processed on init
 	var/list/equipment_list = list()
@@ -66,7 +66,7 @@ SUBSYSTEM_DEF(opposing_force)
 	if(!(opposing_force in submitted_applications))
 		return "ERROR"
 	var/position = 1
-	for(var/opfor as anything in submitted_applications)
+	for(var/opfor in submitted_applications)
 		if(opposing_force == opfor)
 			break
 		position++
@@ -195,9 +195,3 @@ SUBSYSTEM_DEF(opposing_force)
 		returned_html += " - [opposing_force.build_html_panel_entry()]"
 
 	return returned_html.Join("<br>")
-
-/// Gives a mind the opfor action button, which calls the opfor verb when pressed
-/datum/controller/subsystem/opposing_force/proc/give_opfor_button(mob/living/carbon/human/player)
-	var/datum/action/opfor/info_button
-	info_button = new(src)
-	info_button.Grant(player)

@@ -37,6 +37,7 @@
 	speed = 1
 	move_to_delay = 3
 	mouse_opacity = MOUSE_OPACITY_ICON
+	mob_biotypes = MOB_ORGANIC|MOB_UNDEAD|MOB_MINING
 	death_sound = 'sound/effects/magic/curse.ogg'
 	death_message = "'s arms reach out before it falls apart onto the floor, lifeless."
 	loot_drop = /obj/item/crusher_trophy/legionnaire_spine
@@ -67,7 +68,7 @@
 /datum/action/innate/elite_attack/bonfire_teleport
 	name = "Bonfire Teleport"
 	button_icon_state = "bonfire_teleport"
-	chosen_message = span_boldwarning("You will leave a bonfire.  Second use will let you swap positions with it indefintiely.  Using this move on the same tile as your active bonfire removes it.")
+	chosen_message = span_boldwarning("You will leave a bonfire.  Second use will let you swap positions with it indefinitely.  Using this move on the same tile as your active bonfire removes it.")
 	chosen_attack_num = BONFIRE_TELEPORT
 
 /datum/action/innate/elite_attack/spew_smoke
@@ -155,13 +156,13 @@
 		to_chat(trample_target, span_userdanger("[src] tramples you and kicks you away!"))
 		trample_target.safe_throw_at(throwtarget, 10, 1, src)
 		trample_target.Paralyze(20)
-		trample_target.adjustBruteLoss(melee_damage_upper)
+		trample_target.adjust_brute_loss(melee_damage_upper)
 	addtimer(CALLBACK(src, PROC_REF(legionnaire_charge_2), move_dir, (times_ran + 1)), 0.7)
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/head_detach(target)
 	ranged_cooldown = world.time + 1 SECONDS
 	if(myhead != null)
-		myhead.adjustBruteLoss(600)
+		myhead.adjust_brute_loss(600)
 		return
 	if(has_head)
 		has_head = FALSE
@@ -171,7 +172,7 @@
 		visible_message(span_boldwarning("[src]'s head flies off!"))
 		var/mob/living/simple_animal/hostile/asteroid/elite/legionnairehead/newhead = new /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead(loc)
 		newhead.GiveTarget(target)
-		newhead.faction = faction.Copy()
+		SET_FACTION_AND_ALLIES_FROM(newhead, src)
 		myhead = newhead
 		myhead.body = src
 		if(health < maxHealth * 0.25)
@@ -230,9 +231,7 @@
 		visible_message(span_boldwarning("[src] spews smoke from the tip of their spine!"))
 	else
 		visible_message(span_boldwarning("[src] spews smoke from its maw!"))
-	var/datum/effect_system/fluid_spread/smoke/smoke = new
-	smoke.set_up(2, holder = src, location = smoke_location)
-	smoke.start()
+	do_smoke(2, src, smoke_location)
 
 //The legionnaire's head.  Basically the same as any legion head, but we have to tell our creator when we die so they can generate another head.
 /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead
@@ -256,7 +255,7 @@
 	move_to_delay = 2
 	del_on_death = 1
 	death_message = "crumbles away!"
-	faction = list()
+	faction = null
 	ranged = FALSE
 	var/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/body = null
 
@@ -309,42 +308,6 @@
 /obj/effect/temp_visual/dragon_swoop/legionnaire/Initialize(mapload)
 	. = ..()
 	transform *= 0.33
-
-// Legionnaire's loot: Legionnaire Spine
-
-/obj/item/crusher_trophy/legionnaire_spine
-	name = "legionnaire spine"
-	desc = "The spine of a legionnaire. With some creativity, you could use it as a crusher trophy. Alternatively, shaking it might do something as well."
-	icon = 'icons/obj/mining_zones/elite_trophies.dmi'
-	icon_state = "legionnaire_spine"
-	denied_type = /obj/item/crusher_trophy/legionnaire_spine
-	bonus_value = 20
-	/// Time at which the item becomes usable again
-	var/next_use_time
-
-/obj/item/crusher_trophy/legionnaire_spine/effect_desc()
-	return "mark detonation to have a <b>[bonus_value]%</b> chance to summon a loyal legion skull"
-
-/obj/item/crusher_trophy/legionnaire_spine/on_mark_detonation(mob/living/target, mob/living/user)
-	if(!prob(bonus_value) || target.stat == DEAD)
-		return
-	var/mob/living/basic/legion_brood/minion = new (user.loc)
-	minion.assign_creator(user)
-	minion.ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET] = target
-
-/obj/item/crusher_trophy/legionnaire_spine/attack_self(mob/user)
-	if(!isliving(user))
-		return
-	var/mob/living/LivingUser = user
-	if(next_use_time > world.time)
-		LivingUser.visible_message(span_warning("[LivingUser] shakes the [src], but nothing happens..."))
-		to_chat(LivingUser, "<b>You need to wait longer to use this again.</b>")
-		return
-	LivingUser.visible_message(span_boldwarning("[LivingUser] shakes the [src] and summons a legion skull!"))
-
-	var/mob/living/basic/legion_brood/minion = new (LivingUser.loc)
-	minion.assign_creator(LivingUser)
-	next_use_time = world.time + 4 SECONDS
 
 #undef LEGIONNAIRE_CHARGE
 #undef HEAD_DETACH

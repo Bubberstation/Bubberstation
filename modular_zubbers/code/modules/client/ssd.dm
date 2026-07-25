@@ -4,7 +4,7 @@
 		alpha = GHOST_ALPHA
 
 	if(!(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH))))
-		if(get_organ_by_type(/obj/item/organ/internal/brain))
+		if(get_organ_by_type(/obj/item/organ/brain))
 			if(!key)
 				alpha = GHOST_ALPHA
 
@@ -24,7 +24,7 @@
 	var/datum/timedevent/logout_timer
 
 // Handles fresh ghosts. This includes cryo chambers
-/mob/living/ghostize(can_reenter_corpse)
+/mob/living/ghostize(can_reenter_corpse = TRUE, forced = FALSE)
 	. = ..()
 	var/mob/dead/observer/ghost = .
 	if(!istype(ghost))

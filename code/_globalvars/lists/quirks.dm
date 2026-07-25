@@ -27,8 +27,8 @@ GLOBAL_LIST_INIT(part_choice_transhuman, list(
 	"Right Arm" = /obj/item/bodypart/arm/right/robot,
 	"Left Leg" = /obj/item/bodypart/leg/left/robot,
 	"Right Leg" = /obj/item/bodypart/leg/right/robot,
-	"Robotic Voice Box" = /obj/item/organ/internal/tongue/robot,
-	"Flashlights for Eyes" = /obj/item/organ/internal/eyes/robotic/flashlight,
+	"Robotic Voice Box" = /obj/item/organ/tongue/robot,
+	"Flashlights for Eyes" = /obj/item/organ/eyes/robotic/flashlight,
 ))
 
 ///Hemiplegic Quirk
@@ -44,6 +44,7 @@ GLOBAL_LIST_INIT(possible_junkie_addictions, setup_junkie_addictions(list(
 	/datum/reagent/medicine/morphine,
 	/datum/reagent/drug/happiness,
 	/datum/reagent/drug/methamphetamine,
+	/datum/reagent/toxin/fentanyl, // Bubber EDIT: Adds Fentanyl
 )))
 
 ///Options for the Smoker quirk to choose from
@@ -84,7 +85,9 @@ GLOBAL_LIST_INIT(possible_alcoholic_addictions, list(
 	"Uncle Git's Special Reserve" = list("bottlepath" = /obj/item/reagent_containers/cup/glass/bottle/whiskey, "reagent" = /datum/reagent/consumable/ethanol/whiskey),
 	"Breezy Shoals Coconut Rum" = list("bottlepath" = /obj/item/reagent_containers/cup/glass/bottle/coconut_rum, "reagent" = /datum/reagent/consumable/ethanol/coconut_rum),
 	"Moonlabor Yūyake" = list("bottlepath" = /obj/item/reagent_containers/cup/glass/bottle/yuyake, "reagent" = /datum/reagent/consumable/ethanol/yuyake),
-	"Shu-Kouba Straight Shochu" = list("bottlepath" = /obj/item/reagent_containers/cup/glass/bottle/shochu, "reagent" = /datum/reagent/consumable/ethanol/shochu)
+	"Shu-Kouba Straight Shochu" = list("bottlepath" = /obj/item/reagent_containers/cup/glass/bottle/shochu, "reagent" = /datum/reagent/consumable/ethanol/shochu),
+	"Camillo Aperitivo Rosso" = list("bottlepath" = /obj/item/reagent_containers/cup/glass/bottle/aperitivo, "reagent" = /datum/reagent/consumable/ethanol/aperitivo),
+	"Dalmazia Originale Maraschino Liqueur" = list("bottlepath" = /obj/item/reagent_containers/cup/glass/bottle/maraschino, "reagent" = /datum/reagent/consumable/ethanol/maraschino)
 ))
 
 ///Options for Prosthetic Organ
@@ -120,7 +123,7 @@ GLOBAL_LIST_INIT(quirk_chipped_choice, list(
 	"GENUINE ID Appraisal Now!" = /obj/item/skillchip/appraiser,
 	"Le S48R4G3" = /obj/item/skillchip/sabrage,
 	"Integrated Intuitive Thinking and Judging" = /obj/item/skillchip/intj,
-	"F0RC3 4DD1CT10N" = /obj/item/skillchip/drunken_brawler,
 	"\"Space Station 13: The Musical\"" = /obj/item/skillchip/musical,
-	"Mast-Angl-Er skillchip" = /obj/item/skillchip/master_angler,
+	"Mast-Angl-Er" = /obj/item/skillchip/master_angler,
+	"Kommand" = /obj/item/skillchip/big_pointer,
 ))

@@ -7,10 +7,9 @@
 	shoes = /obj/item/clothing/shoes/cult/alt
 	r_hand = /obj/item/melee/blood_magic/stun
 
-/datum/outfit/cultist/post_equip(mob/living/carbon/human/equipped, visualsOnly)
-	equipped.eye_color_left = BLOODCULT_EYE
-	equipped.eye_color_right = BLOODCULT_EYE
-	equipped.update_body()
+/datum/outfit/cultist/post_equip(mob/living/carbon/human/equipped, visuals_only)
+	equipped.set_eye_color(BLOODCULT_EYE)
+	equipped.update_eyes()
 
 ///Returns whether the given mob is convertable to the blood cult
 /proc/is_convertable_to_cult(mob/living/target, datum/team/cult/specific_cult)

@@ -12,7 +12,7 @@
 
 //SMARTGUN EQIPPED SECURITY MOD
 /obj/item/mod/control/pre_equipped/responsory/security/alert
-	additional_module = /obj/item/mod/module/smartgun/marines
+	additional_modules = /obj/item/mod/module/smartgun/marines
 
 /datum/outfit/centcom/ert/medic/alert
 	r_hand = /obj/item/gun/energy/modular_laser_rifle

@@ -2,11 +2,11 @@
 	wound_path_to_generate = /datum/wound/cranial_fissure
 	required_limb_biostate = BIO_BONE
 
-	required_wounding_types = list(WOUND_ALL)
+	required_wounding_type = WOUND_ALL
 
 	wound_series = WOUND_SERIES_CRANIAL_FISSURE
 
-	threshold_minimum = 150
+	threshold_minimum = 110
 	weight = 10
 
 	viable_zones = list(BODY_ZONE_HEAD)
@@ -39,6 +39,10 @@
 
 	severity = WOUND_SEVERITY_CRITICAL
 	sound_effect = 'sound/effects/dismember.ogg'
+	surgery_states = SURGERY_SKIN_OPEN | SURGERY_BONE_SAWED // Literally a cracked open skull, no vessels as it... doesn't bleed?
+
+	/// If TRUE we have been prepped for surgery (to repair)
+	VAR_FINAL/prepped = FALSE
 
 #define CRANIAL_FISSURE_FILTER_DISPLACEMENT "cranial_fissure_displacement"
 
@@ -50,14 +54,12 @@
 
 	RegisterSignal(victim, COMSIG_MOB_SLIPPED, PROC_REF(on_owner_slipped))
 
-/datum/wound/cranial_fissure/remove_wound(ignore_limb, replaced)
+/datum/wound/cranial_fissure/remove_wound(ignore_limb, replaced, destroying)
 	REMOVE_TRAIT(limb, TRAIT_IMMUNE_TO_CRANIAL_FISSURE, type)
-	REMOVE_TRAIT(victim, TRAIT_HAS_CRANIAL_FISSURE, type)
-
-	victim.remove_filter(CRANIAL_FISSURE_FILTER_DISPLACEMENT)
-
-	UnregisterSignal(victim, COMSIG_MOB_SLIPPED)
-
+	if (!isnull(victim))
+		REMOVE_TRAIT(victim, TRAIT_HAS_CRANIAL_FISSURE, type)
+		victim.remove_filter(CRANIAL_FISSURE_FILTER_DISPLACEMENT)
+		UnregisterSignal(victim, COMSIG_MOB_SLIPPED)
 	return ..()
 
 /datum/wound/cranial_fissure/proc/on_owner_slipped(mob/source)
@@ -66,7 +68,7 @@
 	if (source.stat == DEAD)
 		return
 
-	var/obj/item/organ/internal/brain/brain = source.get_organ_by_type(/obj/item/organ/internal/brain)
+	var/obj/item/organ/brain/brain = source.get_organ_by_type(/obj/item/organ/brain)
 	if (isnull(brain))
 		return
 
@@ -85,13 +87,13 @@
 	if (user.usable_hands <= 0 || user.combat_mode)
 		return FALSE
 
-	if(!isnull(user.hud_used?.zone_select) && (user.zone_selected != BODY_ZONE_HEAD && user.zone_selected != BODY_ZONE_PRECISE_EYES))
+	if(!isnull(user.hud_used?.screen_objects[HUD_MOB_ZONE_SELECTOR]) && (user.zone_selected != BODY_ZONE_HEAD && user.zone_selected != BODY_ZONE_PRECISE_EYES))
 		return FALSE
 
 	if (victim.body_position != LYING_DOWN)
 		return FALSE
 
-	var/obj/item/organ/internal/eyes/eyes = victim.get_organ_by_type(/obj/item/organ/internal/eyes)
+	var/obj/item/organ/eyes/eyes = victim.get_organ_by_type(/obj/item/organ/eyes)
 	if (isnull(eyes))
 		victim.balloon_alert(user, "no eyes to take!")
 		return TRUE
@@ -131,9 +133,9 @@
 
 	return TRUE
 
-/datum/wound/cranial_fissure/proc/still_has_eyes(obj/item/organ/internal/eyes/eyes)
+/datum/wound/cranial_fissure/proc/still_has_eyes(obj/item/organ/eyes/eyes)
 	PRIVATE_PROC(TRUE)
 
-	return victim?.get_organ_by_type(/obj/item/organ/internal/eyes) == eyes
+	return victim?.get_organ_by_type(/obj/item/organ/eyes) == eyes
 
 #undef CRANIAL_FISSURE_FILTER_DISPLACEMENT

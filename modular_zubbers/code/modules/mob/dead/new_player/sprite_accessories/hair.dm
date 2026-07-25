@@ -63,13 +63,13 @@
 	icon_state = "hair_tails_berly"
 
 /datum/sprite_accessory/hair/edgerunner
-    icon = 'modular_zubbers/icons/customization/hair_big.dmi'
-    name = "Edgerunner"
-    icon_state = "edgerunner"
+	icon = 'modular_zubbers/icons/customization/hair_big.dmi'
+	name = "Edgerunner"
+	icon_state = "edgerunner"
 
 //-->fixed dreadlocks, added alt version for anthros, added new style <3
 /datum/sprite_accessory/hair/dreadlocks
-    icon = 'modular_zubbers/icons/customization/hair.dmi'
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
 
 /datum/sprite_accessory/hair/dreadlocks_alt
 	icon = 'modular_zubbers/icons/customization/hair.dmi'
@@ -90,3 +90,53 @@
 	icon = 'modular_zubbers/icons/customization/hair.dmi'
 	name = "Long Smoothy"
 	icon_state = "hair_long_smoothy"
+
+/datum/sprite_accessory/hair/slime_tendrils_bangs //modified by JadeCat from Skyrat's Slime Tendrils hair
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Slime Tendrils - Bangs"
+	icon_state = "hair_slimetendrils_bangs"
+
+/datum/sprite_accessory/hair/fluffball
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Fluffball"
+	icon_state = "hair_fluffball"
+//Moth compatible hairs by Cepha!
+/datum/sprite_accessory/hair/moth_ponytail_1
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Moth Ponytail 1"
+	icon_state = "hair_moth_ponytail_1"
+
+/datum/sprite_accessory/hair/moth_ponytail_2
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Moth Ponytail 2"
+	icon_state = "hair_moth_ponytail_2"
+
+/datum/sprite_accessory/hair/moth_spiky
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Moth Hair Spiky"
+	icon_state = "hair_moth_spiky"
+
+/datum/sprite_accessory/hair/moth_messy
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Moth Hair Messy"
+	icon_state = "hair_moth_messy"
+
+/datum/sprite_accessory/hair/moth_tuft
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Moth Hair Tuft"
+	icon_state = "hair_moth_tuft"
+
+/datum/sprite_accessory/hair/moth_short
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Moth Hair Short"
+	icon_state = "hair_moth_short"
+
+/datum/sprite_accessory/hair/messy_rt
+	icon = 'modular_zubbers/icons/customization/hair.dmi'
+	name = "Rogue"
+	icon_state = "messy_rt"
+
+/datum/sprite_accessory/facial_hair/viking
+	icon = 'modular_zubbers/icons/customization/facial_hair.dmi'
+	name = "Beard (Viking)"
+	icon_state = "viking"

@@ -12,10 +12,9 @@
 			. = TRUE
 
 /obj/machinery/computer/aifixer/proc/run_antivirus()
-	while(occupier && restoring)
+	while(occupier)
 		sleep(2 SECONDS)
 		if(prob(25))
-			occupier.adjustOxyLoss(rand(-5, 15), FALSE)
 			to_chat(occupier, pick(
 				"Doctor Moffson TAKES THE TRASH OUT WITH YOU!",
 				"Doctor Moffson FLUTTERS THE BUGS AROUND YOU!",
@@ -61,10 +60,9 @@
 
 /datum/computer_file/program/ai_restorer/proc/run_antivirus()
 	var/mob/living/silicon/ai/bad_ai = stored_card.AI
-	while(bad_ai && restoring)
+	while(bad_ai)
 		sleep(2 SECONDS)
 		if(prob(25))
-			bad_ai.adjustOxyLoss(rand(-5, 15), FALSE)
 			to_chat(bad_ai, pick(
 				"Doctor Moffson TAKES THE TRASH OUT WITH YOU!",
 				"Doctor Moffson FLUTTERS THE BUGS AROUND YOU!",

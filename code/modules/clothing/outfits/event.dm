@@ -5,7 +5,7 @@
 	suit = /obj/item/clothing/suit/space/santa
 	back = /obj/item/storage/backpack/santabag
 	backpack_contents = list(
-		/obj/item/gift/anything = 5,
+		/obj/item/gift/mostly_anything = 5, // BUBBER EDIT - Previous: /obj/item/gift/anything
 	)
 	gloves = /obj/item/clothing/gloves/color/red
 	head = /obj/item/clothing/head/helmet/space/santahat/beardless
@@ -14,12 +14,11 @@
 
 	box = /obj/item/storage/box/survival/engineer
 
-/datum/outfit/santa/post_equip(mob/living/carbon/human/user, visualsOnly = FALSE)
-	if(visualsOnly)
+/datum/outfit/santa/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
+	if(visuals_only)
 		return
 	user.fully_replace_character_name(user.real_name, "Santa Claus")
 	user.mind.set_assigned_role(SSjob.get_job_type(/datum/job/santa))
-	user.mind.special_role = ROLE_SANTA
 
 	user.hairstyle = "Long Hair 3"
 	user.facial_hairstyle = "Beard (Full)"

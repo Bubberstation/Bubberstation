@@ -23,7 +23,7 @@
 	/// If the UI has the pH meter shown
 	var/show_ph = TRUE
 	/// The overlay used to display the beaker on the machine
-	var/mutable_appearance/beaker_overlay
+	VAR_PRIVATE/mutable_appearance/beaker_overlay
 	/// Icon to display when the machine is powered
 	var/working_state = "dispenser_working"
 	/// Icon to display when the machine is not powered
@@ -34,28 +34,33 @@
 	var/obj/item/reagent_containers/beaker = null
 	/// Dispensable_reagents is copypasted in plumbing synthesizers. Please update accordingly. (I didn't make it global because that would limit custom chem dispensers)
 	var/list/dispensable_reagents = list()
-	/// These become available once the manipulator has been upgraded to tier 2 (nano) // SKYRAT EDIT CHANGE - ORIGINAL: /// These become available once the manipulator has been upgraded to tier 4 (femto)
+	/// These become available once the manipulator has been upgraded to tier 2 (nano) // BUBBER EDIT CHANGE - ORIGINAL: /// These become available once the manipulator has been upgraded to tier 4 (femto)
 	var/list/upgrade_reagents = list()
-	// SKYRAT EDIT ADDITION BEGIN
+	// BUBBER EDIT ADDITION BEGIN - Multi-tiered dispenser upgrades
 	/// These become available once the manipulator has been upgraded to tier 3 (pico)
 	var/list/upgrade2_reagents = list()
 	/// These become available once the manipulator has been upgraded to tier 4 (femto)
 	var/list/upgrade3_reagents = list()
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END - Multi-tiered dispenser upgrades
 	/// These become available once the machine has been emaged
 	var/list/emagged_reagents = list()
 	/// Starting purity of the created reagents
 	var/base_reagent_purity = 1
 	/// Records the reagents dispensed by the user if this list is not null
-	var/list/recording_recipe
+	VAR_PRIVATE/list/recording_recipe
 	/// Saves all the recipes recorded by the machine
-	var/list/saved_recipes = list()
-	// SKYRAT EDIT ADDITION BEGIN
+	VAR_PRIVATE/list/saved_recipes = list()
+
+	/// Filters out all reactions that don't have any of these tags from the reaction list
+	var/shown_reaction_tags = DAMAGE_HEALING_REACTION_TAGS | MEDICATION_REACTION_TAGS | CHEMIST_REACTION_TAGS
+	/// Filters out all reactions that have any one of these tags from the reaction list
+	var/hidden_reaction_tags = REACTION_TAG_ACTIVE | REACTION_TAG_FOOD | REACTION_TAG_DRINK
+	// BUBBER EDIT ADDITION BEGIN
 	/// Used for custom transfer amounts
 	var/list/transferAmounts = list()
 	/// The custom transfer amount
 	var/customTransferAmount
-	// SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END
 
 	/// The default list of dispensable_reagents
 	var/static/list/default_dispensable_reagents = list(
@@ -83,12 +88,11 @@
 		/datum/reagent/sulfur,
 		/datum/reagent/toxin/acid,
 		/datum/reagent/water,
-		/datum/reagent/fuel,
+		/datum/reagent/fuel
 	)
-
-	//SKYRAT EDIT CHANGE BEGIN - ORIGINAL
-	/*
 	/// The default list of reagents upgrade_reagents
+	// BUBBER EDIT REMOVAL BEGIN - Multi-tier dispenser upgrades - See modular_zubbers/code/modules/reagents/chemistry/machinery/chem_dispenser.dm
+	/*
 	var/static/list/default_upgrade_reagents = list(
 		/datum/reagent/acetone,
 		/datum/reagent/ammonia,
@@ -106,32 +110,7 @@
 		/datum/reagent/toxin
 	)
 	*/
-	var/static/list/default_upgrade_reagents = list(
-		/datum/reagent/fuel/oil,
-		/datum/reagent/ammonia,
-		/datum/reagent/ash
-	)
-
-	var/static/list/default_upgrade2_reagents = list(
-		/datum/reagent/acetone,
-		/datum/reagent/phenol,
-		/datum/reagent/diethylamine
-	)
-
-	var/static/list/default_upgrade3_reagents = list(
-		/datum/reagent/medicine/mine_salve,
-		/datum/reagent/toxin
-	)
-
-	var/static/list/default_emagged_reagents = list(
-		/datum/reagent/drug/space_drugs,
-		/datum/reagent/toxin/plasma,
-		/datum/reagent/consumable/frostoil,
-		/datum/reagent/toxin/carpotoxin,
-		/datum/reagent/toxin/histamine,
-		/datum/reagent/medicine/morphine
-	)
-	//SKYRAT EDIT CHANGE END
+	// BUBBER EDIT REMOVAL END
 
 /obj/machinery/chem_dispenser/Initialize(mapload)
 	if(dispensable_reagents != null && !dispensable_reagents.len)
@@ -143,16 +122,18 @@
 		upgrade_reagents = default_upgrade_reagents
 	if(upgrade_reagents)
 		upgrade_reagents = sort_list(upgrade_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
-	//SKYRAT EDIT ADDITION BEGIN
+
+	// BUBBER EDIT ADDITION BEGIN - Multi-tiered dispenser upgrades
 	if(upgrade2_reagents != null && !upgrade2_reagents.len)
 		upgrade2_reagents = default_upgrade2_reagents
 	if(upgrade2_reagents)
 		upgrade2_reagents = sort_list(upgrade2_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
+
 	if(upgrade3_reagents != null && !upgrade3_reagents.len)
 		upgrade3_reagents = default_upgrade3_reagents
 	if(upgrade3_reagents)
 		upgrade3_reagents = sort_list(upgrade3_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
-	//SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END - Multi-tiered dispenser upgrades
 
 	if(emagged_reagents != null && !emagged_reagents.len)
 		emagged_reagents = default_emagged_reagents
@@ -195,8 +176,8 @@
 
 /obj/machinery/chem_dispenser/proc/display_beaker()
 	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
-	b_o.pixel_y = -4
-	b_o.pixel_x = -7
+	b_o.pixel_w = -7
+	b_o.pixel_z = -4
 	return b_o
 
 /obj/machinery/chem_dispenser/proc/work_animation()
@@ -267,6 +248,8 @@
 	.["displayedUnits"] = cell.charge ? (cell.charge / power_cost) : 0
 	.["displayedMaxUnits"] = cell.maxcharge / power_cost
 	.["showpH"] = isnull(recording_recipe) ? show_ph : FALSE //virtual beakers have no ph to compute & display
+	var/obj/item/held_item = user.get_active_held_item()
+	.["hasBeakerInHand"] = held_item?.is_chem_container() || FALSE
 
 	var/list/chemicals = list()
 	var/is_hallucinating = FALSE
@@ -278,19 +261,20 @@
 		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
 		if(temp)
 			var/chemname = temp.name
+			var/chemcolor = temp.color
 			if(is_hallucinating && prob(5))
 				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
-			chemicals += list(list("title" = chemname, "id" = temp.name, "pH" = temp.ph, "pHCol" = convert_ph_to_readable_color(temp.ph)))
+				chemcolor = random_colour()
+			chemicals += list(list("title" = chemname, "id" = temp.name, "pH" = temp.ph, "color" = chemcolor, "pHCol" = convert_ph_to_readable_color(temp.ph)))
 	.["chemicals"] = chemicals
 	.["recipes"] = saved_recipes
 
 	.["recordingRecipe"] = recording_recipe
 	.["recipeReagents"] = list()
 	if(beaker?.reagents.ui_reaction_id)
-		var/datum/chemical_reaction/reaction = get_chemical_reaction(beaker.reagents.ui_reaction_id)
-		for(var/_reagent in reaction.required_reagents)
-			var/datum/reagent/reagent = find_reagent_object_from_type(_reagent)
-			.["recipeReagents"] += reagent.name
+		var/datum/chemical_reaction/reaction = GLOB.chemical_reactions_list[beaker.reagents.ui_reaction_id]
+		for(var/datum/reagent/reagent as anything in reaction.required_reagents)
+			.["recipeReagents"] += reagent::name
 
 	var/list/beaker_data = null
 	if(!QDELETED(beaker))
@@ -305,6 +289,18 @@
 				beakerContents += list(list("name" = reagent.name, "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING))) // list in a list because Byond merges the first list...
 		beaker_data["contents"] = beakerContents
 	.["beaker"] = beaker_data
+
+/obj/machinery/chem_dispenser/ui_static_data(mob/user)
+	var/list/data = list()
+
+	data["reaction_list"] = get_reaction_list()
+	data["all_bitflags"] = list()
+	for(var/readable_flag, real_flag in REACTION_TAG_READABLE)
+		if((real_flag & hidden_reaction_tags) || !(real_flag & shown_reaction_tags))
+			continue
+		data["all_bitflags"][readable_flag] = real_flag
+
+	return data
 
 /obj/machinery/chem_dispenser/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -328,7 +324,6 @@
 			if(!recording_recipe)
 				var/reagent = GLOB.name2reagent[reagent_name]
 				if(beaker && dispensable_reagents.Find(reagent))
-
 					var/datum/reagents/holder = beaker.reagents
 					var/to_dispense = max(0, min(amount, holder.maximum_volume - holder.total_volume))
 					if(!to_dispense)
@@ -337,6 +332,7 @@
 					if(!cell.use(to_dispense * power_cost))
 						say("Not enough energy to complete operation!")
 						return
+					beaker.add_hiddenprint(ui.user)
 					holder.add_reagent(reagent, to_dispense, reagtemp = dispensed_temperature, added_purity = base_reagent_purity)
 
 					work_animation()
@@ -357,6 +353,13 @@
 			replace_beaker(ui.user)
 			return TRUE
 
+		if("insert")
+			var/obj/item/reagent_containers/container = ui.user.get_active_held_item()
+			if(container?.can_insert_container(ui.user, src))
+				replace_beaker(ui.user, container)
+
+			return TRUE
+
 		if("dispense_recipe")
 			if(!is_operational || QDELETED(cell))
 				return
@@ -372,7 +375,6 @@
 				if(!recording_recipe)
 					if(!beaker)
 						return
-
 					var/datum/reagents/holder = beaker.reagents
 					var/to_dispense = max(0, min(dispense_amount, holder.maximum_volume - holder.total_volume))
 					if(!to_dispense)
@@ -380,6 +382,7 @@
 					if(!cell.use(to_dispense * power_cost))
 						say("Not enough energy to complete operation!")
 						return
+					beaker.add_hiddenprint(ui.user)
 					holder.add_reagent(reagent, to_dispense, reagtemp = dispensed_temperature, added_purity = base_reagent_purity)
 					work_animation()
 				else
@@ -399,7 +402,7 @@
 		if("save_recording")
 			if(!is_operational)
 				return
-			var/name = tgui_input_text(ui.user, "What do you want to name this recipe?", "Recipe Name", max_length = MAX_NAME_LEN)
+			var/name = tgui_input_text(ui.user, "What do you want to name this recipe?", "Recipe Name", max_length = MAX_NAME_LEN, encode = FALSE)
 			if(!ui.user.can_perform_action(src, ALLOW_SILICON_REACH))
 				return
 			if(saved_recipes[name] && tgui_alert(ui.user, "\"[name]\" already exists, do you want to overwrite it?",, list("Yes", "No")) == "No")
@@ -420,7 +423,7 @@
 			if(is_operational)
 				recording_recipe = null
 				return TRUE
-		//SKYRAT EDIT ADDITION BEGIN - CHEMISTRY QOL
+		// BUBBER EDIT ADDITION BEGIN - CHEMISTRY QOL
 		if("custom_amount")
 			if(!beaker)
 				to_chat(usr, span_warning("Insert a container first!"))
@@ -430,7 +433,7 @@
 			customTransferAmount = clamp(input(usr, "Please enter your desired transfer amount.", "Transfer amount", 0) as num|null, 0, beaker.volume)
 			transferAmounts += customTransferAmount
 			return TRUE
-		//SKYRAT EDIT ADDITION END
+		// BUBBER EDIT ADDITION END
 
 		if("reaction_lookup")
 			if(beaker)
@@ -451,31 +454,25 @@
 	return ITEM_INTERACT_BLOCKING
 
 /obj/machinery/chem_dispenser/screwdriver_act(mob/living/user, obj/item/tool)
-	if(default_deconstruction_screwdriver(user, icon_state, icon_state, tool))
-		update_appearance()
-		return ITEM_INTERACT_SUCCESS
-	return ITEM_INTERACT_BLOCKING
+	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/chem_dispenser/crowbar_act(mob/living/user, obj/item/tool)
-	if(default_deconstruction_crowbar(tool))
-		return ITEM_INTERACT_SUCCESS
-	return ITEM_INTERACT_BLOCKING
+	return default_deconstruction_crowbar(user, tool)
 
 /obj/machinery/chem_dispenser/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	if(is_reagent_container(tool) && !(tool.item_flags & ABSTRACT) && tool.is_open_container())
-		//SKYRAT EDIT ADDITION START - CHEMISTRY QOL
-		var/obj/item/reagent_containers/container = tool
-		if(customTransferAmount)
-			transferAmounts -= customTransferAmount
-		transferAmounts = container.possible_transfer_amounts
-		//SKYRAT EDIT ADDITION END
-		if(!user.transferItemToLoc(tool, src))
-			return ITEM_INTERACT_BLOCKING
-		replace_beaker(user, tool)
-		ui_interact(user)
-		return ITEM_INTERACT_SUCCESS
+	if(!tool.can_insert_container(user, src))
+		return NONE
+	// BUBBER EDIT ADDITION BEGIN - CHEMISTRY QOL
+	var/obj/item/reagent_containers/container = tool
+	if(customTransferAmount)
+		transferAmounts -= customTransferAmount
+	transferAmounts = container.possible_transfer_amounts
+	// BUBBER EDIT ADDITION END
+	if(!replace_beaker(user, tool))
+		return ITEM_INTERACT_BLOCKING
 
-	return NONE
+	ui_interact(user)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/chem_dispenser/get_cell()
 	return cell
@@ -514,13 +511,13 @@
 		recharge_amount *= capacitor.tier
 		parts_rating += capacitor.tier
 	for(var/datum/stock_part/servo/servo in component_parts)
-		/* SKYRAT EDIT - ORIGINAL
+		/* BUBBER EDIT CHANGE BEGIN - Multi-tiered dispenser upgrades
+		Original:
 		if (servo.tier > 3)
 			dispensable_reagents |= upgrade_reagents
 		else
 			dispensable_reagents -= upgrade_reagents
 		*/
-		//SKYRAT EDIT START
 		if (servo.tier > 1)
 			dispensable_reagents |= upgrade_reagents
 		else
@@ -535,19 +532,29 @@
 			dispensable_reagents |= upgrade3_reagents
 		else
 			dispensable_reagents -= upgrade3_reagents
-		//SKYRAT EDIT END
+		// BUBBER EDIT CHANGE END - Multi-tiered dispenser upgrades
 		parts_rating += servo.tier
 	power_cost = max(new_power_cost, 0.1 KILO WATTS)
 
+/**
+ * Insert, remove, replace the existig beaker. Returns TRUE on success.
+ * Arguments:
+ *
+ * * mob/living/user - the player trying to replace the beaker
+ * * obj/item/reagent_containers/new_beaker - the beaker we are trying to insert, swap with existing or remove if null
+ */
 /obj/machinery/chem_dispenser/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
-	if(!user)
-		return FALSE
-	if(beaker)
+	if(!QDELETED(beaker))
 		try_put_in_hand(beaker, user)
-		beaker = null
-	if(new_beaker)
+	if(!QDELETED(new_beaker))
+		if(!user.transferItemToLoc(new_beaker, src))
+			update_appearance(UPDATE_OVERLAYS)
+			return FALSE
+
 		beaker = new_beaker
-	update_appearance()
+
+	update_appearance(UPDATE_OVERLAYS)
+
 	return TRUE
 
 /obj/machinery/chem_dispenser/on_deconstruction(disassembled)
@@ -572,6 +579,61 @@
 /obj/machinery/chem_dispenser/attack_ai_secondary(mob/user, list/modifiers)
 	return attack_hand_secondary(user, modifiers)
 
+/obj/machinery/chem_dispenser/proc/get_reaction_list()
+	var/static/list/reaction_list
+	if(reaction_list?[type])
+		return reaction_list[type]
+
+	reaction_list ||= list()
+	reaction_list[type] = list()
+
+	var/list/new_reaction_list = list()
+	for(var/result, reactions in GLOB.chemical_reactions_list_product_index - dispensable_reagents)
+		var/datum/reagent/result_datum = GLOB.chemical_reagents_list[result]
+		for(var/datum/chemical_reaction/reaction as anything in reactions)
+			if(!(reaction.reaction_tags & shown_reaction_tags))
+				continue
+			if(reaction.reaction_tags & hidden_reaction_tags)
+				continue
+			if(reaction.required_container)
+				continue
+
+			var/index = result_datum.name
+			var/list/new_info = get_reaction_info(reaction)
+			new_info["description"] = result_datum.description
+			new_info["color"] = result_datum.color
+
+			var/num_alts = 0
+			while(new_reaction_list[index])
+				num_alts++
+				index = "[result_datum.name] (Alt[num_alts == 1 ? "" : " #[num_alts]"])"
+
+			new_reaction_list[index] = new_info
+
+	reaction_list[type] = new_reaction_list
+	return reaction_list[type]
+
+/obj/machinery/chem_dispenser/proc/get_reaction_info(datum/chemical_reaction/reaction)
+	var/list/info = list()
+	info["id"] = reaction.type
+	info["lower_temperature"] = reaction.required_temp
+	info["upper_temperature"] = reaction.optimal_temp
+	info["lower_ph"] = reaction.optimal_ph_min
+	info["upper_ph"] = reaction.optimal_ph_max
+	info["bitflags"] = reaction.reaction_tags
+	info["required_reagents"] = reagent_list_to_info(reaction.required_reagents)
+	info["required_catalysts"] = reagent_list_to_info(reaction.required_catalysts)
+	return info
+
+/obj/machinery/chem_dispenser/proc/reagent_list_to_info(list/reagent_list)
+	var/list/info = list()
+	for(var/datum/reagent/reagent_typepath as anything in reagent_list)
+		info += list(list(
+			"name" = reagent_typepath::name,
+			"amount" = reagent_list[reagent_typepath],
+			"typepath" = reagent_typepath,
+		))
+	return info
 
 /obj/machinery/chem_dispenser/drinks
 	name = "soda dispenser"
@@ -588,6 +650,8 @@
 	nopower_state = null
 	pass_flags = PASSTABLE
 	show_ph = FALSE
+	shown_reaction_tags = KITCHEN_REACTION_TAGS
+	hidden_reaction_tags = REACTION_TAG_ACTIVE
 	/// The default list of reagents dispensable by the soda dispenser
 	var/static/list/drinks_dispensable_reagents = list(
 		/datum/reagent/consumable/coffee,
@@ -616,24 +680,7 @@
 		/datum/reagent/consumable/tonic,
 		/datum/reagent/water,
 	)
-	//SKYRAT EDIT ADDITION BEGIN
-	var/static/list/drink_upgrade_reagents = list(
-		/datum/reagent/consumable/applejuice,
-		/datum/reagent/consumable/pumpkinjuice,
-		/datum/reagent/consumable/vanilla
-	)
-	var/static/list/drink_upgrade2_reagents = list(
-		/datum/reagent/consumable/banana,
-		/datum/reagent/consumable/berryjuice,
-		/datum/reagent/consumable/blumpkinjuice
-	)
-	var/static/list/drink_upgrade3_reagents = list(
-		/datum/reagent/consumable/watermelonjuice,
-		/datum/reagent/consumable/peachjuice,
-		/datum/reagent/consumable/sol_dry
-	)
-	//SKYRAT EDIT ADDITION END
-	upgrade_reagents = null
+	// upgrade_reagents = null // BUBBER EDIT REMOVAL - Multi-tiered dispenser upgrades
 	/// The default list of emagged reagents dispensable by the soda dispenser
 	var/static/list/drink_emagged_reagents = list(
 		/datum/reagent/consumable/ethanol/thirteenloko,
@@ -648,7 +695,7 @@
 		dispensable_reagents = drinks_dispensable_reagents
 	if(emagged_reagents != null && !emagged_reagents.len)
 		emagged_reagents = drink_emagged_reagents
-	//SKYRAT EDIT ADDITION BEGIN
+	// BUBBER EDIT ADDITION BEGIN - Multi-tiered dispenser upgrades
 	if(upgrade_reagents != null && !upgrade_reagents.len)
 		upgrade_reagents = drink_upgrade_reagents
 	if(upgrade_reagents)
@@ -661,9 +708,9 @@
 		upgrade3_reagents = drink_upgrade3_reagents
 	if(upgrade3_reagents)
 		upgrade3_reagents = sort_list(upgrade3_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
-	//SKYRAT EDIT ADDITION END
+	// BUBBER EDIT ADDITION END - Multi-tiered dispenser upgrades
 	. = ..()
-	AddComponent(/datum/component/simple_rotation)
+	AddElement(/datum/element/simple_rotation)
 
 /obj/machinery/chem_dispenser/drinks/setDir()
 	var/old = dir
@@ -675,17 +722,17 @@
 	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
 	switch(dir)
 		if(NORTH)
-			b_o.pixel_y = 7
-			b_o.pixel_x = rand(-9, 9)
+			b_o.pixel_w = rand(-9, 9)
+			b_o.pixel_z = 7
 		if(EAST)
-			b_o.pixel_x = 4
-			b_o.pixel_y = rand(-5, 7)
+			b_o.pixel_w = 4
+			b_o.pixel_z = rand(-5, 7)
 		if(WEST)
-			b_o.pixel_x = -5
-			b_o.pixel_y = rand(-5, 7)
+			b_o.pixel_w = -5
+			b_o.pixel_z = rand(-5, 7)
 		else//SOUTH
-			b_o.pixel_y = -7
-			b_o.pixel_x = rand(-9, 9)
+			b_o.pixel_w = rand(-9, 9)
+			b_o.pixel_z = -7
 	return b_o
 
 /obj/machinery/chem_dispenser/drinks/fullupgrade //fully ugpraded stock parts, emagged
@@ -725,7 +772,7 @@
 		/datum/reagent/consumable/ethanol/rice_beer,
 		/datum/reagent/consumable/ethanol/rum,
 		/datum/reagent/consumable/ethanol/sake,
-		/datum/reagent/consumable/ethanol/synthanol, // SKYRAT EDIT
+		/datum/reagent/consumable/ethanol/synthanol, // BUBBER EDIT ADDITION
 		/datum/reagent/consumable/ethanol/tequila,
 		/datum/reagent/consumable/ethanol/triple_sec,
 		/datum/reagent/consumable/ethanol/vermouth,
@@ -735,8 +782,8 @@
 		/datum/reagent/consumable/ethanol/yuyake,
 	)
 	upgrade_reagents = null
-	upgrade2_reagents = null //SKYRAT EDIT
-	upgrade3_reagents = null //SKYRAT EDIT
+	upgrade2_reagents = null // BUBBER EDIT ADDITION - Multi-tiered dispenser upgrades
+	upgrade3_reagents = null // BUBBER EDIT ADDITION - Multi-tiered dispenser upgrades
 	/// The default list of emagged reagents dispensable by the beer dispenser
 	var/static/list/beer_emagged_reagents = list(
 		/datum/reagent/consumable/ethanol,
@@ -778,6 +825,8 @@
 	name = "botanical chemical dispenser"
 	desc = "Creates and dispenses chemicals useful for botany."
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/mutagensaltpeter
+	shown_reaction_tags = BOTANIST_REACTION_TAGS
+	hidden_reaction_tags = REACTION_TAG_ACTIVE
 
 	/// The default list of dispensable reagents available in the mutagensaltpeter chem dispenser
 	var/static/list/mutagensaltpeter_dispensable_reagents = list(
@@ -862,7 +911,7 @@
 		/datum/reagent/toxin/plasma,
 		/datum/reagent/uranium,
 		/datum/reagent/consumable/liquidelectricity/enriched,
-		/datum/reagent/medicine/c2/synthflesh
+		/datum/reagent/medicine/c2/synthflesh,
 	)
 
 /obj/machinery/chem_dispenser/abductor/Initialize(mapload)

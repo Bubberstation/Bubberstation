@@ -21,21 +21,23 @@
 	src.climb_stun = climb_stun
 
 	RegisterSignal(target, COMSIG_ATOM_ATTACK_HAND, PROC_REF(attack_hand))
-	RegisterSignal(target, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(target, COMSIG_ATOM_EXAMINE_TAGS, PROC_REF(get_examine_tags))
 	RegisterSignal(target, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(mousedrop_receive))
 	ADD_TRAIT(target, TRAIT_CLIMBABLE, ELEMENT_TRAIT(type))
 
 /datum/element/climbable/Detach(datum/target)
-	UnregisterSignal(target, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_ATOM_EXAMINE, COMSIG_MOUSEDROPPED_ONTO, COMSIG_ATOM_BUMPED))
+	UnregisterSignal(target, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_ATOM_EXAMINE_TAGS, COMSIG_MOUSEDROPPED_ONTO, COMSIG_ATOM_BUMPED))
 	REMOVE_TRAIT(target, TRAIT_CLIMBABLE, ELEMENT_TRAIT(type))
 	return ..()
 
-/datum/element/climbable/proc/on_examine(atom/source, mob/user, list/examine_texts)
+///Someone inspected our embeddable item
+/datum/element/climbable/proc/get_examine_tags(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_texts += span_notice("[source] looks climbable.")
+
+	examine_list["climbable"] = "It looks like it can be climbed on."
 
 /datum/element/climbable/proc/can_climb(atom/source, mob/user)
-	if (!user.CanReach(source))
+	if (!source.IsReachableBy(user))
 		return FALSE
 	var/dir_step = get_dir(user, source.loc)
 	//To jump over a railing you have to be standing next to it, not far behind it.
@@ -62,8 +64,19 @@
 	climbed_thing.add_fingerprint(user)
 	user.visible_message(span_warning("[user] starts climbing onto [climbed_thing]."), \
 								span_notice("You start climbing onto [climbed_thing]..."))
+	// Time in deciseoncds it takes to complete the climb do_after()
 	var/adjusted_climb_time = climb_time
+	// Time in deciseonds that the mob is stunned after climbing successfully.
 	var/adjusted_climb_stun = climb_stun
+	// Our climbers fitness level, which removes some climb time and speeds up our climbing do_after, assuming they worked out
+	var/fitness_level = user.mind?.get_skill_level(/datum/skill/athletics) - 1
+	adjusted_climb_time = clamp(adjusted_climb_time - fitness_level, 1, climb_time) //Here we adjust the number of deciseconds we shave off per level of fitness, with a minimum of 1 decisecond and a maximum of climb_time (just in case)
+
+	var/obj/item/organ/cyberimp/chest/spine/potential_spine = user.get_organ_slot(ORGAN_SLOT_SPINE)
+	if(istype(potential_spine))
+		adjusted_climb_time *= potential_spine.athletics_boost_multiplier
+		adjusted_climb_stun *= potential_spine.athletics_boost_multiplier
+
 	if(HAS_TRAIT(user, TRAIT_HANDS_BLOCKED)) //climbing takes twice as long without help from the hands.
 		adjusted_climb_time *= 2
 	if(isalien(user))
@@ -86,8 +99,9 @@
 				user.Stun(adjusted_climb_stun)
 			var/atom/movable/buckle_target = climbed_thing
 			if(istype(buckle_target))
-				if(buckle_target.is_buckle_possible(user))
+				if(buckle_target.is_buckle_possible(user) && !(istype(buckle_target, /obj/structure/table) && HAS_TRAIT(user, TRAIT_OVERSIZED))) // BUBBER EDIT CHANGE - Skip buckling if this is an Oversized player on a table (they should use Alt+drag to sit) - Original: if(buckle_target.is_buckle_possible(user))
 					buckle_target.buckle_mob(user)
+			user.mind?.adjust_experience(/datum/skill/athletics, round(ATHLETICS_SKILL_MISC_EXP/(fitness_level || 1), 1)) //Get a bit fitter with every climb. But it has diminishing returns at a certain point.
 		else
 			to_chat(user, span_warning("You fail to climb onto [climbed_thing]."))
 	LAZYREMOVEASSOC(current_climbers, climbed_thing, user)
@@ -123,6 +137,16 @@
 	if(!HAS_TRAIT(dropped_atom, TRAIT_FENCE_CLIMBER) && !HAS_TRAIT(dropped_atom, TRAIT_CAN_HOLD_ITEMS)) // If you can hold items you can probably climb a fence
 		return
 	var/mob/living/living_target = dropped_atom
+
+	// BUBBER EDIT ADDITION BEGIN - OVERSIZED QUIRK
+	// Check if this is an Oversized player trying to sit on a table with Alt held
+	var/list/modifiers = params2list(params)
+	if(istype(climbed_thing, /obj/structure/table) && HAS_TRAIT(living_target, TRAIT_OVERSIZED) && LAZYACCESS(modifiers, ALT_CLICK))
+		if(living_target.mobility_flags & MOBILITY_MOVE)
+			INVOKE_ASYNC(src, PROC_REF(sit_on_table), climbed_thing, living_target)
+		return COMPONENT_CANCEL_MOUSEDROPPED_ONTO
+	// BUBBER EDIT ADDITION END - OVERSIZED QUIRK
+
 	if(living_target.mobility_flags & MOBILITY_MOVE)
 		INVOKE_ASYNC(src, PROC_REF(climb_structure), climbed_thing, living_target, params)
 	return COMPONENT_CANCEL_MOUSEDROPPED_ONTO

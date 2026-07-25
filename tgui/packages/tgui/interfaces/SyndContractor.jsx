@@ -1,11 +1,8 @@
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
   Flex,
-  Grid,
   Icon,
   LabeledList,
   Modal,
@@ -14,9 +11,11 @@ import {
   Stack,
   Table,
   Tabs,
-} from '../components';
-import { FakeTerminal } from '../components/FakeTerminal';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
+import { FakeTerminal } from './common/FakeTerminal';
 
 const CONTRACT_STATUS_INACTIVE = 1;
 const CONTRACT_STATUS_ACTIVE = 2;
@@ -50,7 +49,7 @@ export const SyndContractorContent = (props) => {
     'Awaiting response...',
     'Awaiting response...',
     'Response received, ack 4851234...',
-    'CONFIRM ACC ' + Math.round(Math.random() * 20000),
+    `CONFIRM ACC ${Math.round(Math.random() * 20000)}`,
     'Setting up private accounts...',
     'CONTRACTOR ACCOUNT CREATED',
     'Searching for available contracts...',
@@ -254,11 +253,11 @@ const ContractsTab = (props) => {
             data.ongoing_contract &&
             contract.status !== CONTRACT_STATUS_ACTIVE
           ) {
-            return;
+            return CONTRACT_STATUS_INACTIVE;
           }
           const active = contract.status > CONTRACT_STATUS_INACTIVE;
           if (contract.status >= CONTRACT_STATUS_COMPLETE) {
-            return;
+            return CONTRACT_STATUS_COMPLETE;
           }
           return (
             <Section
@@ -279,7 +278,7 @@ const ContractsTab = (props) => {
                     disabled={contract.extraction_enroute}
                     color={active && 'bad'}
                     onClick={() =>
-                      act('PRG_contract' + (active ? '_abort' : '-accept'), {
+                      act(`PRG_contract${active ? '_abort' : '-accept'}`, {
                         contract_id: contract.id,
                       })
                     }
@@ -287,15 +286,13 @@ const ContractsTab = (props) => {
                 </>
               }
             >
-              <Grid>
-                <Grid.Column>{contract.message}</Grid.Column>
-                <Grid.Column size={0.5}>
-                  <Box bold mb={1}>
-                    Dropoff Location:
-                  </Box>
-                  <Box>{contract.dropoff}</Box>
-                </Grid.Column>
-              </Grid>
+              <NoticeBox>
+                <box>{contract.message}</box>
+                <Box bold mb={1}>
+                  Dropoff Location:
+                </Box>
+                <Box>{contract.dropoff}</Box>
+              </NoticeBox>
             </Section>
           );
         })}
@@ -317,12 +314,12 @@ const HubTab = (props) => {
   return (
     <Section>
       {contractor_hub_items.map((item) => {
-        const repInfo = item.cost ? item.cost + ' Rep' : 'FREE';
+        const repInfo = item.cost ? `${item.cost} Rep` : 'FREE';
         const limited = item.limited !== -1;
         return (
           <Section
             key={item.name}
-            title={item.name + ' - ' + repInfo}
+            title={`${item.name} - ${repInfo}`}
             level={2}
             buttons={
               <>

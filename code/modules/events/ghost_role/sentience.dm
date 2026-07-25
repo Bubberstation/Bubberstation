@@ -6,6 +6,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	/mob/living/basic/crab,
 	/mob/living/basic/cow,
 	/mob/living/basic/goat,
+	/mob/living/basic/goose/vomit,
 	/mob/living/basic/lizard,
 	/mob/living/basic/mouse/brown/tom,
 	/mob/living/basic/parrot,
@@ -16,8 +17,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	/mob/living/basic/sloth,
 	/mob/living/basic/snake,
 	/mob/living/basic/spider/giant/sgt_araneus,
-	/mob/living/simple_animal/bot/secbot/beepsky,
-	/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+	/mob/living/basic/bot/secbot/beepsky,
 	/mob/living/basic/bear/snow/misha,
 	/mob/living/basic/mining/lobstrosity/juvenile,
 )))
@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	priority_announce(sentience_report,"[command_name()] Medium-Priority Update")
 
 /datum/round_event/ghost_role/sentience/spawn_role()
-	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates(check_jobban = ROLE_SENTIENCE, role = ROLE_SENTIENCE, alert_pic = /obj/item/slimepotion/slime/sentience, role_name_text = role_name)
+	var/list/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates(check_jobban = ROLE_SENTIENCE, role = ROLE_SENTIENCE, alert_pic = /obj/item/slimepotion/sentience, role_name_text = role_name)
 	if(!length(candidates))
 		return NOT_ENOUGH_PLAYERS
 
@@ -87,7 +87,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 
 		spawned_animals++
 
-		selected.key = picked_candidate.key
+		selected.PossessByPlayer(picked_candidate.key)
 
 		selected.grant_all_languages(UNDERSTOOD_LANGUAGE, grant_omnitongue = FALSE, source = LANGUAGE_ATOM)
 

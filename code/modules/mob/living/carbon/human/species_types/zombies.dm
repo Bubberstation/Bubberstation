@@ -4,9 +4,10 @@
 	id = SPECIES_ZOMBIE
 	sexes = TRUE //BUBBER EDIT - WHY THE HELL WAS THIS SET TO FALSE???
 	meat = /obj/item/food/meat/slab/human/mutant/zombie
-	mutanttongue = /obj/item/organ/internal/tongue/zombie
+	mutanttongue = /obj/item/organ/tongue/zombie
 	inherent_traits = list(
 		// SHARED WITH ALL ZOMBIES
+		TRAIT_BLOODY_MESS,
 		TRAIT_EASILY_WOUNDED,
 		TRAIT_EASYDISMEMBER,
 		TRAIT_FAKEDEATH,
@@ -32,7 +33,7 @@
 	mutantliver = null
 	mutantlungs = null
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | ERT_SPAWN
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | ERT_SPAWN
 	bodytemp_normal = T0C // They have no natural body heat, the environment regulates body temp
 	bodytemp_heat_damage_limit = FIRE_MINIMUM_TEMPERATURE_TO_EXIST // Take damage at fire temp
 	bodytemp_cold_damage_limit = MINIMUM_TEMPERATURE_TO_MOVE // take damage below minimum movement temp
@@ -46,17 +47,8 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/zombie
 	)
 
-	/// Spooky growls we sometimes play while alive
-	var/static/list/spooks = list(
-		'sound/effects/hallucinations/growl1.ogg',
-		'sound/effects/hallucinations/growl2.ogg',
-		'sound/effects/hallucinations/growl3.ogg',
-		'sound/effects/hallucinations/veryfar_noise.ogg',
-		'sound/effects/hallucinations/wail.ogg',
-	)
-
 /// Zombies do not stabilize body temperature they are the walking dead and are cold blooded
-/datum/species/zombie/body_temperature_core(mob/living/carbon/human/humi, seconds_per_tick, times_fired)
+/datum/species/zombie/body_temperature_core(mob/living/carbon/human/humi, seconds_per_tick)
 	return
 
 /datum/species/zombie/check_roundstart_eligible()
@@ -65,7 +57,7 @@
 	return ..()
 
 /datum/species/zombie/get_physical_attributes()
-	return "Zombies are undead, and thus completely immune to any enviromental hazard, or any physical threat besides blunt force trauma and burns. \
+	return "Zombies are undead, and thus completely immune to any environmental hazard, or any physical threat besides blunt force trauma and burns. \
 		Their limbs are easy to pop off their joints, but they can somehow just slot them back in."
 
 /datum/species/zombie/get_species_description()
@@ -95,13 +87,14 @@
 	id = SPECIES_ZOMBIE_INFECTIOUS
 	examine_limb_id = SPECIES_ZOMBIE
 	damage_modifier = 20 // 120 damage to KO a zombie, which kills it
-	mutanteyes = /obj/item/organ/internal/eyes/zombie
-	mutantbrain = /obj/item/organ/internal/brain/zombie
-	mutanttongue = /obj/item/organ/internal/tongue/zombie
+	mutanteyes = /obj/item/organ/eyes/zombie
+	mutantbrain = /obj/item/organ/brain/zombie
+	mutanttongue = /obj/item/organ/tongue/zombie
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
 
 	inherent_traits = list(
 		// SHARED WITH ALL ZOMBIES
+		TRAIT_BLOODY_MESS,
 		TRAIT_EASILY_WOUNDED,
 		TRAIT_EASYDISMEMBER,
 		TRAIT_FAKEDEATH,
@@ -120,6 +113,7 @@
 		// INFECTIOUS UNIQUE
 		TRAIT_STABLEHEART, // Replacement for noblood. Infectious zombies can bleed but don't need their heart.
 		TRAIT_STABLELIVER, // Not necessary but for consistency with above
+		TRAIT_APATHETIC, // They don't have the brains for mood.
 	)
 
 	// Infectious zombies have slow legs
@@ -132,36 +126,45 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/zombie/infectious,
 	)
 
-/datum/species/zombie/infectious/on_species_gain(mob/living/carbon/human/new_zombie, datum/species/old_species)
+	var/regen_time = 6 SECONDS
+	var/regen_amount = 0.5
+	var/zombie_hand = /obj/item/mutant_hand/zombie
+
+/datum/species/zombie/infectious/on_species_gain(mob/living/carbon/human/new_zombie, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
 	new_zombie.set_combat_mode(TRUE)
+	// Needs to be added after combat mode is set
+	ADD_TRAIT(new_zombie, TRAIT_COMBAT_MODE_LOCK, SPECIES_TRAIT)
+	new_zombie.physiology.stamina_mod *= 0.33 //Zombie stam resist
 
 	// Deal with the source of this zombie corruption
 	// Infection organ needs to be handled separately from mutant_organs
 	// because it persists through species transitions
-	var/obj/item/organ/internal/zombie_infection/infection = new_zombie.get_organ_slot(ORGAN_SLOT_ZOMBIE)
+	var/obj/item/organ/zombie_infection/infection = new_zombie.get_organ_slot(ORGAN_SLOT_ZOMBIE)
 	if(isnull(infection))
 		infection = new()
 		infection.Insert(new_zombie)
 
 	new_zombie.AddComponent( \
 		/datum/component/mutant_hands, \
-		mutant_hand_path = /obj/item/mutant_hand/zombie, \
+		mutant_hand_path = zombie_hand, \
 	)
 	new_zombie.AddComponent( \
 		/datum/component/regenerator, \
-		regeneration_delay = 6 SECONDS, \
-		brute_per_second = 0.5, \
-		burn_per_second = 0.5, \
-		tox_per_second = 0.5, \
-		oxy_per_second = 0.25, \
+		regeneration_delay = regen_time, \
+		brute_per_second = regen_amount, \
+		burn_per_second = regen_amount, \
+		tox_per_second = regen_amount, \
+		oxy_per_second = regen_amount * 0.5, \
 		heals_wounds = TRUE, \
 	)
 
 /datum/species/zombie/infectious/on_species_loss(mob/living/carbon/human/was_zombie, datum/species/new_species, pref_load)
 	. = ..()
+	REMOVE_TRAIT(was_zombie, TRAIT_COMBAT_MODE_LOCK, SPECIES_TRAIT)
 	qdel(was_zombie.GetComponent(/datum/component/mutant_hands))
 	qdel(was_zombie.GetComponent(/datum/component/regenerator))
+	was_zombie.physiology.stamina_mod /= 0.33
 
 /datum/species/zombie/infectious/check_roundstart_eligible()
 	return FALSE
@@ -169,12 +172,24 @@
 /datum/species/zombie/infectious/spec_stun(mob/living/carbon/human/H,amount)
 	return min(2 SECONDS, amount)
 
-/datum/species/zombie/infectious/spec_life(mob/living/carbon/carbon_mob, seconds_per_tick, times_fired)
-	. = ..()
-	carbon_mob.set_combat_mode(TRUE) // THE SUFFERING MUST FLOW
+// Weaker subtype - less healing, weaker attacks, etc
+/datum/species/zombie/infectious/mindless
+	name = "Mindless Infectious Zombie"
+	id = SPECIES_ZOMBIE_INFECTIOUS_MINDLESS
+	regen_time = 10 SECONDS
+	regen_amount = 0.2
+	zombie_hand = /obj/item/mutant_hand/zombie/weak
 
-	if(!HAS_TRAIT(carbon_mob, TRAIT_CRITICAL_CONDITION) && SPT_PROB(2, seconds_per_tick))
-		playsound(carbon_mob, pick(spooks), 50, TRUE, 10)
+/datum/species/zombie/infectious/mindless/on_species_gain(mob/living/carbon/human/new_zombie, datum/species/old_species, pref_load, regenerate_icons)
+	. = ..()
+	new_zombie.add_movespeed_modifier(/datum/movespeed_modifier/mindless_zombie)
+
+/datum/species/zombie/infectious/mindless/on_species_loss(mob/living/carbon/human/was_zombie, datum/species/new_species, pref_load)
+	. = ..()
+	was_zombie.remove_movespeed_modifier(/datum/movespeed_modifier/mindless_zombie)
+
+/datum/movespeed_modifier/mindless_zombie
+	multiplicative_slowdown = 0.75
 
 // Your skin falls off
 /datum/species/human/krokodil_addict

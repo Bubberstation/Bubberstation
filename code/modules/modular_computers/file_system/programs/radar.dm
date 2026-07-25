@@ -269,6 +269,8 @@
 		return .
 	if(!istype(humanoid))
 		return RADAR_NOT_TRACKABLE
+	if (humanoid in GLOB.nanite_sensors_list) // BUBBER ADDITION - NANITES
+		return TRUE
 	if(!istype(humanoid.w_uniform, /obj/item/clothing/under))
 		return RADAR_NOT_TRACKABLE
 	var/obj/item/clothing/under/uniform = humanoid.w_uniform

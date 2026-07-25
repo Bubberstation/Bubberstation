@@ -147,7 +147,11 @@
 		/mob/living/proc/emote_purr,
 		/mob/living/proc/emote_moo,
 		/mob/living/proc/emote_honk1,
-		/mob/living/proc/emote_mggaow
+		/mob/living/proc/emote_mggaow,
+		/mob/living/proc/emote_slowclap,
+		/mob/living/proc/emote_teshchirp,
+		/mob/living/proc/emote_teshsqueak,
+		/mob/living/proc/emote_teshtrill,
 	)
 	all_emotes += skyrat_living_emotes
 
@@ -184,7 +188,6 @@
 		/mob/living/proc/emote_ping,
 		/mob/living/proc/emote_sad,
 		/mob/living/proc/emote_warn,
-		/mob/living/proc/emote_slowclap
 	)
 	all_emotes += synth_emotes
 	var/static/list/allowed_species_synth = list(
@@ -235,7 +238,7 @@
 			if(!HAS_TRAIT(current_mob, TRAIT_SILICON_EMOTES_ALLOWED))
 				available_emotes += synth_emotes
 			// Checking if can wag tail
-			var/obj/item/organ/external/tail/tail = current_mob.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
+			var/obj/item/organ/tail/tail = current_mob.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
 			if(!(tail?.wag_flags & WAG_ABLE))
 				available_emotes -= /mob/living/carbon/human/proc/emote_wag
 			// Checking if has wings
@@ -723,6 +726,11 @@
 	set category = "Emotes+"
 	usr.emote("clap1", intentional = TRUE)
 
+/mob/living/proc/emote_slowclap()
+	set name = "> Slow Clap"
+	set category = "Emotes"
+	usr.emote("slowclap", intentional = TRUE)
+
 /mob/living/proc/emote_headtilt()
 	set name = "~ Head Hilt"
 	set category = "Emotes+"
@@ -867,6 +875,46 @@
 	set category = "Emotes+"
 	usr.emote("honk1", intentional = TRUE)
 
+/mob/living/proc/emote_neigh()
+	set name = "> Neigh"
+	set category = "Emotes+"
+	usr.emote("neigh", intentional = TRUE)
+
+/mob/living/proc/emote_neigh2()
+	set name = "> Neigh2"
+	set category = "Emotes+"
+	usr.emote("neigh2", intentional = TRUE)
+
+/mob/living/proc/emote_snort()
+	set name = "> Snort"
+	set category = "Emotes+"
+	usr.emote("snort", intentional = TRUE)
+
+/mob/living/proc/emote_bray()
+	set name = "> Bray"
+	set category = "Emotes+"
+	usr.emote("bray", intentional = TRUE)
+
+/mob/living/proc/emote_bellow()
+	set name = "> Bellow"
+	set category = "Emotes+"
+	usr.emote("bellow", intentional = TRUE)
+
+/mob/living/proc/emote_teshchirp()
+	set name = "> Tesh Chirp"
+	set category = "Emotes+"
+	usr.emote("teshchirp", intentional = TRUE)
+
+/mob/living/proc/emote_teshsqueak()
+	set name = "> Tesh Squeak"
+	set category = "Emotes+"
+	usr.emote("teshsqueak", intentional = TRUE)
+
+/mob/living/proc/emote_teshtrill()
+	set name = "> Tesh Trill"
+	set category = "Emotes+"
+	usr.emote("teshtrill", intentional = TRUE)
+
 // code\modules\mob\living\brain\emote.dm
 
 /mob/living/brain/proc/emote_alarm()
@@ -977,11 +1025,6 @@
 	set name = "< Warn >"
 	set category = "Emotes"
 	usr.emote("warn", intentional = TRUE)
-
-/mob/living/proc/emote_slowclap()
-	set name = "< Slow Clap >"
-	set category = "Emotes"
-	usr.emote("slowclap", intentional = TRUE)
 
 // modular_skyrat\modules\emotes\code\additionalemotes\overlay_emote.dm
 /mob/living/proc/emote_sweatdrop()

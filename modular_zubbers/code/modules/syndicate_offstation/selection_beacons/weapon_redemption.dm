@@ -5,7 +5,7 @@
 	name = "Standard Syndicate sidearm beacon"
 	desc = "A single use beacon to deliver a weapon kit of your choice. Please use this or store it in your safe."
 	company_source = "Gorlex Marauders"
-	company_message = span_bold("Supply Pod incoming please stand by")
+	company_message = span_bold("Supply pod incoming, please stand by.")
 
 /obj/item/choice_beacon/syndicateoffstation/generate_display_names()
 	var/static/list/selectable_gun_types = list(
@@ -41,7 +41,6 @@
 	var/static/list/selectable_gun_types = list(
 		"M90-GL" = /obj/item/storage/toolbox/guncase/m90gl,
 		"Bulldog" = /obj/item/storage/toolbox/guncase/bulldog,
-		"Stolen Revolver" = /obj/item/storage/toolbox/guncase/skyrat/hos_revolver,
 		"Energy Sword" = /obj/item/melee/energy/sword/saber,
 	)
 

@@ -13,12 +13,12 @@
 		return
 
 	//check for genetics telepathy
-	if(check.dna.check_mutation(/datum/mutation/human/telepathy))
+	if(check.dna.check_mutation(/datum/mutation/telepathy))
 		return TRUE
 
 	//check for shadekin organs
-	var/obj/item/organ/internal/ears/shadekin/ears = check.get_organ_slot(ORGAN_SLOT_EARS)
-	var/obj/item/organ/internal/tongue/shadekin/tongue = check.get_organ_slot(ORGAN_SLOT_TONGUE)
+	var/obj/item/organ/ears/shadekin/ears = check.get_organ_slot(ORGAN_SLOT_EARS)
+	var/obj/item/organ/tongue/shadekin/tongue = check.get_organ_slot(ORGAN_SLOT_TONGUE)
 
 	if(istype(ears) || istype(tongue))
 		return TRUE

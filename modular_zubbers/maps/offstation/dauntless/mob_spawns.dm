@@ -2,7 +2,6 @@
 	title = ROLE_DAUNTLESS
 	policy_index = ROLE_DAUNTLESS
 	akula_outfit = /datum/outfit/akula
-	antagonist_restricted = TRUE
 
 // Dauntless Ghost Spawners (Lava)
 
@@ -198,7 +197,7 @@
 	name = "Dauntless Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
-	ears = /obj/item/radio/headset/interdyne
+	ears = /obj/item/radio/headset/syndicateciv/staff
 	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
@@ -262,7 +261,7 @@
 	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/brigofficer
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/bulletproof/old
-	back = /obj/item/storage/backpack/security/redsec
+	back = /obj/item/storage/backpack/security
 	backpack_contents = list(
 		/obj/item/flashlight/seclite = 1,
 		/obj/item/storage/box/survival = 1,
@@ -271,7 +270,7 @@
 	head = /obj/item/clothing/head/helmet/swat/ds
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
 	mask = /obj/item/clothing/mask/gas/syndicate
-	ears = /obj/item/radio/headset/interdyne
+	ears = /obj/item/radio/headset/syndicateciv/staff
 
 /datum/outfit/dauntless/syndicate/miningoff
 	name = "Dauntless Mining Officer"
@@ -280,6 +279,7 @@
 	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/miner
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/bulletproof/old
+	suit_store = /obj/item/gun/ballistic/automatic/pistol
 	back = /obj/item/storage/backpack/satchel/explorer
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
@@ -287,16 +287,16 @@
 		/obj/item/knife/combat/survival = 1,
 		/obj/item/t_scanner/adv_mining_scanner/lesser = 1,
 		/obj/item/gun/energy/recharge/kinetic_accelerator = 1,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol = 1,
+		/obj/item/ammo_box/magazine/m9mm
 		)
 	mask = /obj/item/clothing/mask/gas/syndicate
-	ears = /obj/item/radio/headset/interdyne
+	ears = /obj/item/radio/headset/syndicateciv/staff
 	l_pocket = /obj/item/card/mining_point_card
 	r_pocket = /obj/item/mining_voucher
 	head = /obj/item/clothing/head/soft/black
 
 /datum/outfit/dauntless/syndicate/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 	return ..()
 
 // Dauntless Command
@@ -305,7 +305,7 @@
 	name = "Dauntless Command Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
-	ears = /obj/item/radio/headset/interdyne/command
+	ears = /obj/item/radio/headset/syndicateciv/command
 	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
@@ -322,12 +322,12 @@
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/vest/warden/syndicate
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
-	back = /obj/item/storage/backpack/satchel/sec/redsec
+	back = /obj/item/storage/backpack/satchel/sec
 	head = /obj/item/clothing/head/hats/hos/beret/syndicate
 	r_pocket = /obj/item/flashlight/seclite
 	implants = list(
 		/obj/item/implant/weapons_auth,
-		/obj/item/implant/krav_maga
+		/obj/item/implant/kaza_ruk
 		)
 
 /datum/outfit/dauntless/command/corporateliaison
@@ -343,11 +343,17 @@
 	uniform = /obj/item/clothing/under/rank/captain/skyrat/utility/syndicate
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
 	back = /obj/item/storage/backpack/satchel
+	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
+		/obj/item/crowbar = 1,
+		/obj/item/choice_beacon/syndicateoffstation/morale = 1,
+		/obj/item/storage/lockbox/medal/bubber/synd = 1,
+		)
 	belt = /obj/item/gun/ballistic/automatic/pistol/aps
 	head = /obj/item/clothing/head/hats/hos/cap/syndicate
 	id = /obj/item/card/id/advanced/gold/generic
 	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/stationadmiral
 
 /datum/outfit/dauntless/command/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 	return ..()

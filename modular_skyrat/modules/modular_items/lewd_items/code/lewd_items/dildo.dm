@@ -112,7 +112,7 @@
 	var/list/possible_emotes = list("moan")
 	switch(user.zone_selected) //to let code know what part of body we gonna fuck
 		if(BODY_ZONE_PRECISE_GROIN)
-			var/obj/item/organ/external/genital/vagina = target.get_organ_slot(ORGAN_SLOT_VAGINA)
+			var/obj/item/organ/genital/vagina = target.get_organ_slot(ORGAN_SLOT_VAGINA)
 			if(!vagina?.is_exposed())
 				to_chat(user, span_danger("Looks like [target]'s groin is covered!"))
 				return FALSE
@@ -159,7 +159,7 @@
 			possible_emotes = list("gasp", "moan")
 
 		else
-			var/obj/item/organ/external/genital/anus = target.get_organ_slot(ORGAN_SLOT_ANUS)
+			var/obj/item/organ/genital/anus = target.get_organ_slot(ORGAN_SLOT_ANUS)
 			if(!anus?.is_exposed())
 				to_chat(user, span_danger("Looks like [target]'s anus is covered!"))
 				return FALSE
@@ -305,6 +305,9 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
+/obj/item/clothing/sextoy/dildo/double_dildo/item_action_slot_check(slot, mob/user, datum/action/action)
+	return is_inside_lewd_slot(user)
+
 /obj/item/clothing/sextoy/dildo/double_dildo/populate_dildo_designs()
 	return
 
@@ -327,6 +330,8 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 	desc = "You can feel one side inside you, time to share this feeling with someone..."
 
 /datum/action/item_action/take_dildo/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/obj/item/clothing/sextoy/dildo/double_dildo/dildo = target
 	if(istype(dildo))
 		dildo.can_take_in_hand()
@@ -346,11 +351,11 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 	. = ..()
 	if(!istype(user))
 		return
-	var/obj/item/organ/external/genital/vagina/vagina = user.get_organ_slot(ORGAN_SLOT_VAGINA)
-	var/obj/item/organ/external/genital/womb/womb = user.get_organ_slot(ORGAN_SLOT_WOMB)
-	var/obj/item/organ/external/genital/penis/penis = user.get_organ_slot(ORGAN_SLOT_PENIS)
-	var/obj/item/organ/external/genital/testicles/testicles = user.get_organ_slot(ORGAN_SLOT_TESTICLES)
-	var/obj/item/organ/external/genital/anus/anus = user.get_organ_slot(ORGAN_SLOT_ANUS)
+	var/obj/item/organ/genital/vagina/vagina = user.get_organ_slot(ORGAN_SLOT_VAGINA)
+	var/obj/item/organ/genital/womb/womb = user.get_organ_slot(ORGAN_SLOT_WOMB)
+	var/obj/item/organ/genital/penis/penis = user.get_organ_slot(ORGAN_SLOT_PENIS)
+	var/obj/item/organ/genital/testicles/testicles = user.get_organ_slot(ORGAN_SLOT_TESTICLES)
+	var/obj/item/organ/genital/anus/anus = user.get_organ_slot(ORGAN_SLOT_ANUS)
 
 	if(src == user.vagina)
 		vagina?.visibility_preference = GENITAL_NEVER_SHOW
@@ -379,11 +384,11 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 	if(other_end)
 		QDEL_NULL(other_end)
 
-	var/obj/item/organ/external/genital/vagina/vagina = user.get_organ_slot(ORGAN_SLOT_VAGINA)
-	var/obj/item/organ/external/genital/womb/womb = user.get_organ_slot(ORGAN_SLOT_WOMB)
-	var/obj/item/organ/external/genital/penis/penis = user.get_organ_slot(ORGAN_SLOT_PENIS)
-	var/obj/item/organ/external/genital/testicles/testicles = user.get_organ_slot(ORGAN_SLOT_TESTICLES)
-	var/obj/item/organ/external/genital/anus/anus = user.get_organ_slot(ORGAN_SLOT_ANUS)
+	var/obj/item/organ/genital/vagina/vagina = user.get_organ_slot(ORGAN_SLOT_VAGINA)
+	var/obj/item/organ/genital/womb/womb = user.get_organ_slot(ORGAN_SLOT_WOMB)
+	var/obj/item/organ/genital/penis/penis = user.get_organ_slot(ORGAN_SLOT_PENIS)
+	var/obj/item/organ/genital/testicles/testicles = user.get_organ_slot(ORGAN_SLOT_TESTICLES)
+	var/obj/item/organ/genital/anus/anus = user.get_organ_slot(ORGAN_SLOT_ANUS)
 
 	if(!(src == user.vagina))
 		anus?.visibility_preference = GENITAL_HIDDEN_BY_CLOTHES

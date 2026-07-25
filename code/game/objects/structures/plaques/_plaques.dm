@@ -2,7 +2,7 @@
 	icon = 'icons/obj/signs.dmi'
 	icon_state = "blankplaque"
 	name = "blank plaque"
-	desc = "A blank plaque, use a fancy pen to engrave it. It can be detatched from the wall with a wrench."
+	desc = "A blank plaque, use a fancy pen to engrave it. It can be detached from the wall with a wrench."
 	anchored = TRUE
 	opacity = FALSE
 	density = FALSE
@@ -20,6 +20,8 @@
 
 /obj/structure/plaque/Initialize(mapload)
 	. = ..()
+	if(mapload)
+		find_and_mount_on_atom()
 	register_context()
 
 /obj/structure/plaque/add_context(atom/source, list/context, obj/item/held_item, mob/user)
@@ -80,7 +82,7 @@
 	atom_integrity = max_integrity
 	return TRUE
 
-/obj/structure/plaque/attackby(obj/item/I, mob/user, params)
+/obj/structure/plaque/attackby(obj/item/I, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(I, /obj/item/pen/fountain))
 		if(engraved)
 			to_chat(user, span_warning("This plaque has already been engraved."))
@@ -153,7 +155,7 @@
 	return TRUE
 
 
-/obj/item/plaque/attackby(obj/item/I, mob/user, params) //Same as part of the above, except for the item in hand instead of the structure.
+/obj/item/plaque/attackby(obj/item/I, mob/user, list/modifiers, list/attack_modifiers) //Same as part of the above, except for the item in hand instead of the structure.
 	if(istype(I, /obj/item/pen/fountain))
 		if(engraved)
 			to_chat(user, span_warning("This plaque has already been engraved."))

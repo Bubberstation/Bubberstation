@@ -52,9 +52,10 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 	flags_inv = HIDEFACIALHAIR | HIDEFACE | HIDESNOUT
 	w_class = WEIGHT_CLASS_SMALL
 	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
+	visor_vars_to_toggle = VISOR_TINT
 	visor_flags_inv = HIDEFACIALHAIR | HIDEFACE | HIDESNOUT
-	flags_cover = MASKCOVERSMOUTH
-	visor_flags_cover = MASKCOVERSMOUTH
+	flags_cover = MASKCOVERSMOUTH | PEPPERPROOF
+	visor_flags_cover = MASKCOVERSMOUTH | PEPPERPROOF
 	tint = 0
 	fishing_modifier = 0
 	unique_death = 'sound/items/sec_hailer/sec_death.ogg'
@@ -123,13 +124,7 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 		aggressiveness = AGGR_BROKEN
 		return
 
-/obj/item/clothing/mask/gas/sechailer/ui_action_click(mob/user, action)
-	if(istype(action, /datum/action/item_action/halt))
-		halt()
-	else
-		adjust_visor(user)
-
-/obj/item/clothing/mask/gas/sechailer/attack_self()
+/obj/item/clothing/mask/gas/sechailer/ui_action_click(mob/user, actiontype)
 	halt()
 
 /obj/item/clothing/mask/gas/sechailer/emag_act(mob/user, obj/item/card/emag/emag_card)
@@ -140,7 +135,6 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 	return FALSE
 
 /obj/item/clothing/mask/gas/sechailer/verb/halt()
-	set category = "Object"
 	set name = "HALT"
 	set src in usr
 	if(!isliving(usr) || !can_use(usr) || !COOLDOWN_FINISHED(src, hailer_cooldown))
@@ -203,6 +197,7 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 	custom_price = PAYCHECK_COMMAND * 1.5
 	w_class = WEIGHT_CLASS_SMALL
 	actions_types = list(/datum/action/item_action/halt)
+	action_slots = ALL
 	COOLDOWN_DECLARE(whistle_cooldown)
 
 /obj/item/clothing/mask/whistle/ui_action_click(mob/user, action)

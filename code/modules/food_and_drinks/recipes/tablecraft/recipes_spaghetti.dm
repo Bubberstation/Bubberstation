@@ -10,7 +10,8 @@
 		/obj/item/food/grown/tomato = 2
 	)
 	result = /obj/item/food/spaghetti/pastatomato
-	category = CAT_SPAGHETTI
+	dish_category = DISH_NOODLES
+	cuisine_category = CUISINE_ITALIAN
 
 /datum/crafting_recipe/food/copypasta
 	name = "Copypasta"
@@ -18,7 +19,8 @@
 		/obj/item/food/spaghetti/pastatomato = 2
 	)
 	result = /obj/item/food/spaghetti/copypasta
-	category = CAT_SPAGHETTI
+	dish_category = DISH_NOODLES
+	cuisine_category = CUISINE_ITALIAN
 
 /datum/crafting_recipe/food/spaghettimeatball
 	name = "Spaghetti meatball"
@@ -27,7 +29,8 @@
 		/obj/item/food/meatball = 2
 	)
 	result = /obj/item/food/spaghetti/meatballspaghetti
-	category = CAT_SPAGHETTI
+	dish_category = DISH_NOODLES
+	cuisine_category = CUISINE_ITALIAN
 
 /datum/crafting_recipe/food/spesslaw
 	name = "Spesslaw"
@@ -36,7 +39,8 @@
 		/obj/item/food/meatball = 4
 	)
 	result = /obj/item/food/spaghetti/spesslaw
-	category = CAT_SPAGHETTI
+	dish_category = DISH_NOODLES
+	cuisine_category = CUISINE_ITALIAN
 
 /datum/crafting_recipe/food/beefnoodle
 	name = "Beef noodle"
@@ -47,7 +51,8 @@
 		/obj/item/food/grown/cabbage = 1,
 	)
 	result = /obj/item/food/spaghetti/beefnoodle
-	category = CAT_SPAGHETTI
+	dish_category = DISH_NOODLES
+	cuisine_category = CUISINE_ITALIAN
 
 /datum/crafting_recipe/food/chowmein
 	name = "Chowmein"
@@ -58,7 +63,8 @@
 		/obj/item/food/grown/carrot = 1
 	)
 	result = /obj/item/food/spaghetti/chowmein
-	category = CAT_SPAGHETTI
+	dish_category = DISH_NOODLES
+	// cuisine_category = CUISINE_CHINESE
 
 /datum/crafting_recipe/food/butternoodles
 	name = "Butter Noodles"
@@ -67,7 +73,8 @@
 		/obj/item/food/butterslice = 1
 	)
 	result = /obj/item/food/spaghetti/butternoodles
-	category = CAT_SPAGHETTI
+	dish_category = DISH_NOODLES
+	cuisine_category = CUISINE_ITALIAN
 
 /datum/crafting_recipe/food/mac_n_cheese
 	name = "Mac n' cheese"
@@ -79,7 +86,7 @@
 		/datum/reagent/consumable/blackpepper = 2
 	)
 	result = /obj/item/food/spaghetti/mac_n_cheese
-	category = CAT_SPAGHETTI
+	dish_category = DISH_NOODLES
 
 /datum/crafting_recipe/food/shoyu_tonkotsu_ramen
 	name = "Shoyu Tonkotsu ramen"
@@ -92,7 +99,9 @@
 		/obj/item/food/grown/onion = 1,
 	)
 	result = /obj/item/food/spaghetti/shoyu_tonkotsu_ramen
-	category = CAT_SPAGHETTI
+	removed_foodtypes = BREAKFAST
+	dish_category = DISH_NOODLES
+	cuisine_category = CUISINE_JAPANESE
 
 /datum/crafting_recipe/food/kitakata_ramen
 	name = "Kitakata ramen"
@@ -105,7 +114,8 @@
 		/obj/item/food/grown/garlic = 1,
 	)
 	result = /obj/item/food/spaghetti/kitakata_ramen
-	category = CAT_SPAGHETTI
+	dish_category = DISH_NOODLES
+	cuisine_category = CUISINE_JAPANESE
 
 /datum/crafting_recipe/food/kitsune_udon
 	name = "Kitsune udon"
@@ -118,7 +128,8 @@
 		/datum/reagent/consumable/sugar = 5,
 	)
 	result = /obj/item/food/spaghetti/kitsune_udon
-	category = CAT_SPAGHETTI
+	dish_category = DISH_NOODLES
+	cuisine_category = CUISINE_JAPANESE
 
 /datum/crafting_recipe/food/nikujaga
 	name = "Nikujaga"
@@ -131,7 +142,8 @@
 		/obj/item/food/grown/peas = 1,
 	)
 	result = /obj/item/food/spaghetti/nikujaga
-	category = CAT_SPAGHETTI
+	dish_category = DISH_NOODLES
+	cuisine_category = CUISINE_JAPANESE
 
 /datum/crafting_recipe/food/pho
 	name = "Pho"
@@ -143,7 +155,8 @@
 		/obj/item/food/grown/cabbage = 1,
 	)
 	result = /obj/item/food/spaghetti/pho
-	category = CAT_SPAGHETTI
+	dish_category = DISH_NOODLES
+	// cuisine_category = CUISINE_VIETNAMESE
 
 /datum/crafting_recipe/food/pad_thai
 	name = "Pad thai"
@@ -156,7 +169,8 @@
 		/obj/item/food/grown/citrus/lime = 1,
 	)
 	result = /obj/item/food/spaghetti/pad_thai
-	category = CAT_SPAGHETTI
+	dish_category = DISH_NOODLES
+	// cuisine_category = CUISINE_THAI
 
 /datum/crafting_recipe/food/carbonara
 	name = "Spaghetti Carbonara"
@@ -168,4 +182,6 @@
 		/datum/reagent/consumable/blackpepper = 2,
 	)
 	result = /obj/item/food/spaghetti/carbonara
-	category = CAT_SPAGHETTI
+	removed_foodtypes = BREAKFAST|RAW
+	dish_category = DISH_NOODLES
+	cuisine_category = CUISINE_ITALIAN

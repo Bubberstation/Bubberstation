@@ -1,8 +1,6 @@
 ///Global list containing any and all soulcatchers
 GLOBAL_LIST_EMPTY(soulcatchers)
 
-#define SOULCATCHER_DEFAULT_COLOR "#75D5E1"
-#define SOULCATCHER_WARNING_MESSAGE "You have entered a soulcatcher, do not share any information you have received while a ghost. If you have died within the round, you do not know your identity until your body has been scanned, standard blackout policy also applies."
 
 /**
  * Carrier Component
@@ -327,7 +325,7 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 	if(!message_to_send) //Why say nothing?
 		return FALSE
 
-	var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/chat)
+	var/datum/asset/spritesheet_batched/sheet = get_asset_datum(/datum/asset/spritesheet_batched/chat)
 	var/master_resolved = master_carrier.resolve()
 	if(!master_resolved)
 		master_carrier = null
@@ -405,3 +403,4 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 		remove_mob(occupant)
 
 	return ..()
+

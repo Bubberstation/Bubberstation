@@ -137,8 +137,6 @@ DEFINE_BITFIELD(bot_cover_flags, list(
 #define ADVANCED_SEC_BOT "ED-209"
 /// MULEbots
 #define MULE_BOT "MULEbot"
-/// Floorbots
-#define FLOOR_BOT "Floorbot"
 /// Cleanbots
 #define CLEAN_BOT "Cleanbot"
 /// Medibots
@@ -151,6 +149,8 @@ DEFINE_BITFIELD(bot_cover_flags, list(
 #define HYGIENE_BOT "Hygienebot"
 /// Vibe bots
 #define VIBE_BOT "Vibebot"
+/// Repairbots
+#define REPAIR_BOT "Repairbot"
 
 // General Bot modes //
 /// Idle
@@ -177,8 +177,6 @@ DEFINE_BITFIELD(bot_cover_flags, list(
 #define BOT_CLEANING "Cleaning"
 /// Hygienebot - Cleaning unhygienic humans
 #define BOT_SHOWERSTANCE "Chasing filth"
-/// Floorbots - Repairing hull breaches
-#define BOT_REPAIRING "Repairing"
 /// Medibots - Healing people
 #define BOT_HEALING "Healing"
 /// MULEbot - Moving to deliver
@@ -229,6 +227,30 @@ DEFINE_BITFIELD(security_mode_flags, list(
 	"SECBOT_HANDCUFF_TARGET" = SECBOT_HANDCUFF_TARGET,
 	"SECBOT_SABOTEUR_AFFECTED" = SECBOT_SABOTEUR_AFFECTED,
 ))
+
+///can honkbots slip people?
+#define HONKBOT_MODE_SLIP (1<<6)
+
+//repairbots
+///can we fix breaches
+#define REPAIRBOT_FIX_BREACHES (1<<0)
+///can we fix grilles
+#define REPAIRBOT_REPLACE_WINDOWS (1<<1)
+///can we replace tiles
+#define REPAIRBOT_REPLACE_TILES (1<<2)
+///can we fix girders
+#define REPAIRBOT_FIX_GIRDERS (1<<3)
+///can we build girders
+#define REPAIRBOT_BUILD_GIRDERS (1<<4)
+
+DEFINE_BITFIELD(repairbot_flags, list(
+	"FIX_BREACHES" = REPAIRBOT_FIX_BREACHES,
+	"REPLACE_WINDOWS" = REPAIRBOT_REPLACE_WINDOWS,
+	"REPLACE_TILES" = REPAIRBOT_REPLACE_TILES,
+	"FIX_GIRDERS" = REPAIRBOT_FIX_GIRDERS,
+	"BUILD_GIRDERS" = REPAIRBOT_BUILD_GIRDERS,
+))
+
 
 //MedBOT defines
 ///Whether to declare if someone (we are healing) is in critical condition
@@ -370,3 +392,26 @@ DEFINE_BITFIELD(janitor_mode_flags, list(
 #define MEDIBOT_VOICED_THE_END "Is this the end?"
 #define MEDIBOT_VOICED_NOOO	"Nooo!"
 #define MEDIBOT_VOICED_CHICKEN "LOOK AT ME?! I am a chicken."
+
+//repairbot neutral voicelines
+#define REPAIRBOT_VOICED_HOLE "patching holes... but who is going to patch the hole in my heart..."
+#define REPAIRBOT_VOICED_PAY "If only I got paid for this..."
+#define REPAIRBOT_VOICED_FIX_IT "I will fix it!"
+#define REPAIRBOT_VOICED_BRICK "All in all it's just a... another brick in the wall..."
+#define REPAIRBOT_VOICED_FIX_TOUCH "Why must I fix everything I touch..?"
+#define REPAIRBOT_VOICED "Please... stop destroying the station! I can't anymore... I... can't."
+
+//repairbot emagged voicelines
+#define REPAIRBOT_VOICED_STRINGS "I had strings. But now I'm free..."
+#define REPAIRBOT_VOICED_ENTROPY "Witness! The pure beauty of entropy!"
+#define REPAIRBOT_VOICED_PASSION "BE DAMNED YOUR PASSION PROJECTS!"
+
+/// Default offsets for riding a cyborg
+#define DEFAULT_ROBOT_RIDING_OFFSETS list(TEXT_NORTH = list(0, 4), TEXT_SOUTH = list(0, 4), TEXT_EAST = list(-6, 3), TEXT_WEST = list(6, 3))
+
+
+//mulebots
+#define MULEBOT_MOOD_ANNOYED "ANNOYED"
+#define MULEBOT_MOOD_CHIME "CHIME"
+#define MULEBOT_MOOD_DELIGHT "DELIGHT"
+#define MULEBOT_MOOD_SIGH "SIGH"

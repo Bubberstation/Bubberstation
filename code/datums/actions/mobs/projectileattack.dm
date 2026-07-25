@@ -5,7 +5,7 @@
 	desc = "Fires a set of projectiles at a selected target."
 	cooldown_time = 1.5 SECONDS
 	/// The type of the projectile to be fired
-	var/projectile_type
+	var/obj/projectile/projectile_type
 	/// The sound played when a projectile is fired
 	var/projectile_sound
 	/// If the projectile should home in on its target
@@ -49,7 +49,7 @@
 	if(!isnum(speed_multiplier))
 		speed_multiplier = projectile_speed_multiplier
 	our_projectile.speed *= speed_multiplier
-	our_projectile.preparePixelProjectile(endloc, startloc, null, projectile_spread)
+	our_projectile.aim_projectile(endloc, startloc, null, projectile_spread)
 	our_projectile.firer = firer
 	if(target)
 		our_projectile.original = target
@@ -58,7 +58,7 @@
 		our_projectile.set_homing_target(target)
 	if(isnum(set_angle))
 		our_projectile.fire(set_angle)
-		return
+		return our_projectile
 	our_projectile.fire()
 	return our_projectile
 
@@ -78,7 +78,7 @@
 /datum/action/cooldown/mob_cooldown/projectile_attack/rapid_fire/attack_sequence(mob/living/firer, atom/target)
 	for(var/i in 1 to shot_count)
 		shoot_projectile(firer, target, null, firer, rand(-default_projectile_spread, default_projectile_spread), null)
-		SLEEP_CHECK_DEATH(shot_delay, src)
+		SLEEP_CHECK_DEATH(shot_delay, firer)
 
 /datum/action/cooldown/mob_cooldown/projectile_attack/rapid_fire/direct
 	shot_count = 40
@@ -224,7 +224,7 @@
 	cooldown_time = 10 SECONDS
 	projectile_type = /obj/projectile/colossus/wendigo_shockwave
 	shot_angles = list(-20, -10, 0, 10, 20)
-	projectile_speed_multiplier = 4
+	projectile_speed_multiplier = 0.25
 
 
 /datum/action/cooldown/mob_cooldown/projectile_attack/shotgun_blast/colossus
@@ -331,9 +331,9 @@
 	var/mob/living/simple_animal/hostile/megafauna/colossus/colossus
 	if(istype(firer, /mob/living/simple_animal/hostile/megafauna/colossus))
 		colossus = firer
-		colossus.say("Perish.", spans = list("colossus", "yell"))
+		colossus.say("Perish.", spans = list(SPAN_COLOSSUS, SPAN_YELL))
 
-	SLEEP_CHECK_DEATH(0.5 SECONDS, firer) //gives dumbasses in melee range a slim chance to retreat
+	SLEEP_CHECK_DEATH(1.5 SECONDS, firer) //gives dumbasses in melee range a slim chance to retreat
 	var/finale_counter = 10
 	for(var/i in 1 to 20)
 		if(finale_counter > 4 && colossus)
@@ -378,7 +378,7 @@
 	if(enraged)
 		projectile_speed_multiplier = 1
 	else
-		projectile_speed_multiplier = 1.5
+		projectile_speed_multiplier = 0.66
 	var/shots_per = 24
 	for(var/shoot_times in 1 to 8)
 		var/offset = shoot_times % 2
@@ -399,7 +399,7 @@
 
 /datum/action/cooldown/mob_cooldown/projectile_attack/wave/attack_sequence(mob/living/firer, atom/target)
 	wendigo_scream(firer)
-	var/shots_per = 7
+	var/shots_per = 6
 	var/difference = 360 / shots_per
 	var/wave_direction = pick(-1, 1)
 	switch(wave_direction)
@@ -407,9 +407,9 @@
 			projectile_type = /obj/projectile/colossus/wendigo_shockwave/wave/alternate
 		if(1)
 			projectile_type = /obj/projectile/colossus/wendigo_shockwave/wave
-	for(var/shoot_times in 1 to 32)
+	for(var/shoot_times in 1 to 12)
 		for(var/shot in 1 to shots_per)
 			var/angle = shot * difference + shoot_times * 5 * wave_direction * -1
 			shoot_projectile(firer, target, angle, firer, null, null)
-		SLEEP_CHECK_DEATH(2, firer)
+		SLEEP_CHECK_DEATH(0.6 SECONDS, firer)
 	SLEEP_CHECK_DEATH(3 SECONDS, firer)

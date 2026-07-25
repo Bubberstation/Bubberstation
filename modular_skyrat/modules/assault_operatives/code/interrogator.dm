@@ -218,3 +218,7 @@
 	//Pick a turf to spawn at if we can
 	if(length(possible_turfs))
 		return pick(possible_turfs)
+
+#undef STAGE_PROCESS_TIME_LOWER
+#undef STAGE_PROCESS_TIME_UPPER
+#undef ALERT_CREW_TIME

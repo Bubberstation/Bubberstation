@@ -77,6 +77,13 @@
 		to_chat(user, span_warning("It'd be weird if there were multiple of you in that cave, wouldn't it?"))
 	return FALSE
 
+/obj/effect/mob_spawn/ghost_role/human/primitive_catgirl/special(mob/living/spawned_mob, mob/mob_possessor, apply_prefs)
+	. = ..()
+
+	if (ishuman(spawned_mob))
+		var/mob/living/carbon/human/human_spawned = spawned_mob
+		human_spawned.mind?.teach_crafting_recipe(/datum/crafting_recipe/bronze_arrow)
+
 // This stuff is put on equip because it turns out /special sometimes just don't get called because skyrat
 /obj/effect/mob_spawn/ghost_role/human/primitive_catgirl/equip(mob/living/carbon/human/spawned_human)
 	. = ..()
@@ -111,12 +118,11 @@
 
 /datum/antagonist/primitive_catgirl
 	name = "\improper Icewalker"
-	job_rank = ROLE_LAVALAND // If you're ashwalker banned you should also not be playing this, other way around as well
+	pref_flag = ROLE_LAVALAND // If you're ashwalker banned you should also not be playing this, other way around as well
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
-	prevent_roundtype_conversion = FALSE
 	antagpanel_category = "Icemoon Dwellers"
-	count_against_dynamic_roll_chance = FALSE
+	antag_flags = ANTAG_FAKE|ANTAG_SKIP_GLOBAL_LIST
 	show_in_roundend = FALSE
 
 	/// Tracks the antag datum's 'team' for showing in the ghost orbit menu

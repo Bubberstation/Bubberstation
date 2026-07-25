@@ -9,11 +9,11 @@
 /datum/techweb/interdyne/New()
 	. = ..()
 	research_node_id("oldstation_surgery", TRUE, TRUE, FALSE)
-	research_node_id("interdyne_tech", TRUE, TRUE, FALSE)
+	research_node_id(TECHWEB_NODE_INTERDYNE, TRUE, TRUE, FALSE)
 
 //techweb nodes
 /datum/techweb_node/interdyne
-	id = "interdyne_tech"
+	id = TECHWEB_NODE_INTERDYNE
 	display_name = "Syndicate Technology"
 	description = "Tools used by the Syndicate."
 	required_items_to_unlock = list(
@@ -30,8 +30,24 @@
 		"powerator_syndicate",
 		"exofab_syndicate",
 		"syndicate_firing_pin",
-		"syndicate_headset"
+		"syndicate_headset",
+		"cybersun_encryption"
+
 	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
+	hidden = TRUE
+
+/datum/techweb_node/encryption
+	id = TECHWEB_NODE_INTERDYNE_ENCRYPTION
+	display_name = "Advanced Syndicate Encryption"
+	description = "Provides emergency use Interdyne encryption keys in case operational comms are compromised."
+	required_items_to_unlock = list(
+		/obj/item/encryptionkey/headset_syndicate/interdyne
+	)
+	design_ids = list(
+		"interdyne_encryption",
+	)
+	prereq_ids = list(TECHWEB_NODE_INTERDYNE)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	hidden = TRUE
 
@@ -40,7 +56,7 @@
 //Circuit boards
 /datum/design/syndicate_express_console
 	name = "Syndicate Express Cargo Console"
-	desc = "The circuit board for a computer used to purchase goods."
+	desc = "The circuit board for a computer used to purchase goods on a black market."
 	id = "cargoconsole_syndicate"
 	build_type = AWAY_IMPRINTER
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)
@@ -52,7 +68,7 @@
 
 /datum/design/syndicate_bounty_pad
 	name = "Syndicate Bounty Pad"
-	desc = "The circuit board for a machine used to sell goods."
+	desc = "The circuit board for a machine used to sell goods on a black market."
 	id = "bountypad_syndicate"
 	build_type = AWAY_IMPRINTER
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)
@@ -63,8 +79,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/syndicate_bounty_pad_console
-	name = "Syndicate Express Cargo Console"
-	desc = "The circuit board for the  used to sell goods to the various companies in the Syndicate."
+	name = "Syndicate Bounty Pad Console"
+	desc = "The circuit board for the computer used to control a bounty pad to sell goods on a black market."
 	id = "bountyconsole_syndicate"
 	build_type = AWAY_IMPRINTER
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)
@@ -87,7 +103,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/syndicate_exofab
-	name = "Syndicate_Exofab"
+	name = "Syndicate Exofab"
 	desc = "The circuit board for a standard issue exofab produced by Interdyne."
 	id = "exofab_syndicate"
 	build_type = AWAY_IMPRINTER
@@ -111,15 +127,39 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
-/datum/design/interdyne_headset
-	name = "Interdyne Headset"
+/datum/design/syndicateciv_headset
+	name = "Syndicate Headset"
 	desc = "Standard issue headset for syndicate civillians."
 	id = "syndicate_headset"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1)
-	build_path = /obj/item/radio/headset/interdyne
+	build_path = /obj/item/radio/headset/syndicateciv
 	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_FIRING_PINS
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_TELECOMMS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/interdyne_key
+	name = "Interdyne Encryption Key"
+	desc = "Standard issue headset for syndicate civillians."
+	id = "interdyne_encryption"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1)
+	build_path = /obj/item/encryptionkey/headset_syndicate/interdyne
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_TELECOMMS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/cybersun_key
+	name = "Cybersun Encryption Key"
+	desc = "Standard issue headset for syndicate civillians."
+	id = "cybersun_encryption"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1)
+	build_path = /obj/item/encryptionkey/headset_syndicate/cybersun
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_TELECOMMS
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 

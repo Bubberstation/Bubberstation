@@ -5,7 +5,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	faction = list(ROLE_DEATHSQUAD)
-	loot = list(/obj/effect/mob_spawn/corpse/human/nanotrasensoldier)
+	corpse = /obj/effect/mob_spawn/corpse/human/nanotrasensoldier
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/nanotrasensoldier
 
 /mob/living/basic/trooper/nanotrasen/assess_threat(judgement_criteria, lasercolor, datum/callback/weaponcheck)
@@ -56,7 +56,7 @@
 	ranged_cooldown = 3 SECONDS
 	projectilesound = 'sound/items/weapons/gun/smg/shot.ogg'
 	r_hand = /obj/item/gun/ballistic/automatic/ar
-	loot = list(/obj/effect/mob_spawn/corpse/human/nanotrasenassaultsoldier)
+	corpse = /obj/effect/mob_spawn/corpse/human/nanotrasenassaultsoldier
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/nanotrasenassaultsoldier
 
 /mob/living/basic/trooper/nanotrasen/ranged/elite
@@ -71,7 +71,7 @@
 	projectilesound = 'sound/items/weapons/laser.ogg'
 	ranged_cooldown = 5 SECONDS
 	faction = list(ROLE_DEATHSQUAD)
-	loot = list(/obj/effect/gibspawner/human)
+	corpse = /obj/effect/gibspawner/human
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/nanotrasenelitesoldier
 	r_hand = /obj/item/gun/energy/pulse/carbine/lethal
 
@@ -98,4 +98,4 @@
 	if (!istype(attacker))
 		return
 	for (var/mob/living/basic/trooper/nanotrasen/potential_trooper in oview(src, 7))
-		potential_trooper.ai_controller.insert_blackboard_key_lazylist(BB_BASIC_MOB_RETALIATE_LIST, attacker)
+		potential_trooper.ai_controller.set_blackboard_key_assoc_lazylist(BB_BASIC_MOB_RETALIATE_LIST, attacker, world.time)

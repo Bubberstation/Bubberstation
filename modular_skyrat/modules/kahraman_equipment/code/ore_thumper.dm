@@ -113,7 +113,6 @@
 			balloon_alert_to_viewers("not enough power!")
 			cut_that_out()
 
-
 /// Checks the turf we are on to make sure we are outdoors and on a misc turf
 /obj/machinery/power/colony_ore_thumper/proc/see_if_we_can_work(turf/our_turf)
 	var/area/our_current_area = get_area(src)
@@ -122,7 +121,6 @@
 	if(!istype(get_turf(src), /turf/open/misc))
 		return FALSE
 	return TRUE
-
 
 /obj/machinery/power/colony_ore_thumper/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -202,7 +200,7 @@
 	var/nearby_ore = 0
 	var/is_there_a_thumper_too = FALSE
 	for(var/turf/nearby_turf in orange(ore_spawn_range, src))
-		for(var/ore as anything in nearby_turf.contents)
+		for(var/ore in nearby_turf.contents)
 			if(istype(ore, /obj/item/stack/ore))
 				nearby_ore += 1
 				continue
@@ -272,3 +270,5 @@
 
 /obj/item/flatpacked_machine/ore_thumper/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
+
+#undef SLAM_JAM_DELAY

@@ -16,6 +16,8 @@
 	var/datum/lazy_template/virtual_domain/generated_domain
 	/// If the current domain was a random selection
 	var/domain_randomized = FALSE
+	/// Whether the domain is finished, so the bitrunners can leave despite glitches
+	var/domain_complete = FALSE
 	/// Prevents multiple user actions. Handled by loading domains and cooldowns
 	var/is_ready = TRUE
 	/// Chance multipled by threat to spawn a glitch
@@ -28,8 +30,8 @@
 	var/list/datum/weakref/spawned_threat_refs = list()
 	/// Scales loot with extra players
 	var/multiplayer_bonus = 1.1
-	///The radio the console can speak into
-	var/obj/item/radio/radio
+	/// Extra bonus for every player that nohits the run
+	var/nohit_bonus = 0.8
 	/// The amount of points in the system, used to purchase maps
 	var/points = 0
 	/// Keeps track of the number of times someone has built a hololadder
@@ -45,37 +47,52 @@
 	/// Maximum rate at which a glitch can spawn
 	var/threat_prob_max = 15
 	/// The turfs we can place a hololadder on.
-	var/turf/exit_turfs = list()
+	var/list/turf/exit_turfs = list()
 	/// Determines if we broadcast to entertainment monitors or not
 	var/broadcasting = FALSE
 	/// Cooldown between being able to toggle broadcasting
 	COOLDOWN_DECLARE(broadcast_toggle_cd)
+	/// Cooldown for how often you're allowed to harass deadchat for PVP domains
+	COOLDOWN_DECLARE(polling_cooldown)
+
+/obj/machinery/quantum_server/Initialize(mapload)
+	. = ..()
+	register_context()
 
 /obj/machinery/quantum_server/post_machine_initialize()
 	. = ..()
-
-	radio = new(src)
-	radio.keyslot = new /obj/item/encryptionkey/headset_cargo()
-	radio.set_listening(FALSE)
-	radio.recalculateChannels()
 
 	RegisterSignals(src, list(COMSIG_MACHINERY_BROKEN, COMSIG_MACHINERY_POWER_LOST), PROC_REF(on_broken))
 	RegisterSignal(src, COMSIG_QDELETING, PROC_REF(on_delete))
 
 /obj/machinery/quantum_server/Destroy(force)
-	. = ..()
-
 	mutation_candidate_refs.Cut()
 	avatar_connection_refs.Cut()
 	spawned_threat_refs.Cut()
-	QDEL_NULL(exit_turfs)
+	exit_turfs.Cut()
 	QDEL_NULL(generated_domain)
-	QDEL_NULL(radio)
+	return ..()
+
+/obj/machinery/quantum_server/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = NONE
+	if(isnull(held_item))
+		return
+
+	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] Panel"
+		return CONTEXTUAL_SCREENTIP_SET
+	else if(held_item.tool_behaviour == TOOL_CROWBAR && panel_open)
+		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/quantum_server/examine(mob/user)
 	. = ..()
 
 	. += span_infoplain("Can be resource intensive to run. Ensure adequate power supply.")
+
+	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "close" : "open"].")
+	if(panel_open)
+		. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
 
 	var/upgraded = FALSE
 	if(capacitor_coefficient < 1)
@@ -96,6 +113,7 @@
 	if(isobserver(user) && (obj_flags & EMAGGED))
 		. += span_notice("Ominous warning lights are blinking red. This server has been tampered with.")
 
+
 /obj/machinery/quantum_server/emag_act(mob/user, obj/item/card/emag/emag_card)
 	. = ..()
 
@@ -110,6 +128,7 @@
 	balloon_alert(user, "system jailbroken...")
 	playsound(src, 'sound/effects/sparks/sparks1.ogg', 35, vary = TRUE)
 
+
 /obj/machinery/quantum_server/update_appearance(updates)
 	if(isnull(generated_domain) || !is_operational)
 		set_light(l_on = FALSE)
@@ -118,47 +137,44 @@
 	set_light(l_range = 2, l_power = 1.5, l_color = is_ready ? LIGHT_COLOR_BABY_BLUE : LIGHT_COLOR_FIRE, l_on = TRUE)
 	return ..()
 
+
 /obj/machinery/quantum_server/update_icon_state()
 	if(isnull(generated_domain) || !is_operational)
 		icon_state = base_icon_state
+		return ..()
+	if(panel_open)
+		icon_state = "[base_icon_state]_panel"
 		return ..()
 
 	icon_state = "[base_icon_state]_[is_ready ? "on" : "off"]"
 	return ..()
 
-/obj/machinery/quantum_server/attackby(obj/item/weapon, mob/user, params)
-	. = ..()
 
-	if(!istype(weapon, /obj/item/bitrunning_debug))
-		return
+/obj/machinery/quantum_server/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(!istype(tool, /obj/item/bitrunning_debug))
+		return NONE
 
+	balloon_alert(user, "*hacker voice* i'm in")
 	obj_flags |= EMAGGED
 	glitch_chance = 0.5
 	capacitor_coefficient = 0.1
 	points = 100
+	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/quantum_server/crowbar_act(mob/living/user, obj/item/crowbar)
-	. = ..()
-
 	if(!is_ready)
 		balloon_alert(user, "it's scalding hot!")
-		return TRUE
+		return ITEM_INTERACT_FAILURE
 	if(length(avatar_connection_refs))
 		balloon_alert(user, "all clients must disconnect!")
-		return TRUE
-	if(default_deconstruction_crowbar(crowbar))
-		return TRUE
-	return FALSE
+		return ITEM_INTERACT_FAILURE
+	return default_deconstruction_crowbar(user, crowbar)
 
 /obj/machinery/quantum_server/screwdriver_act(mob/living/user, obj/item/screwdriver)
-	. = ..()
-
 	if(!is_ready)
 		balloon_alert(user, "it's scalding hot!")
-		return TRUE
-	if(default_deconstruction_screwdriver(user, "[base_icon_state]_panel", icon_state, screwdriver))
-		return TRUE
-	return FALSE
+		return ITEM_INTERACT_FAILURE
+	return default_deconstruction_screwdriver(user, screwdriver)
 
 /obj/machinery/quantum_server/RefreshParts()
 	var/capacitor_rating = 1.15
@@ -178,3 +194,10 @@
 	servo_bonus = servo_rating
 
 	return ..()
+
+/datum/aas_config_entry/bitrunning_QS_ready_announcement
+	name = "Cargo Alert: Bitrunning QS Ready"
+	general_tooltip = "Announces when the quantum server is ready to be used. No variables provided"
+	announcement_lines_map = list(
+		"Message" = "Quantum Server report: Thermal systems within operational parameters. Proceeding to domain configuration."
+	)

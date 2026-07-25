@@ -103,7 +103,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	icon = FA_ICON_GRIN_TEARS
 
 /datum/quirk/item_quirk/joker/add_unique(client/client_source)
-	give_item_to_holder(/obj/item/paper/joker, list(LOCATION_BACKPACK = ITEM_SLOT_BACKPACK, LOCATION_HANDS = ITEM_SLOT_HANDS))
+	give_item_to_holder(/obj/item/paper/joker, list(LOCATION_BACKPACK, LOCATION_HANDS))
 
 /datum/quirk/item_quirk/joker/process()
 	if(pcooldown > world.time)
@@ -238,7 +238,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /datum/quirk/felinid_aspect/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/obj/item/organ/internal/tongue/cat/new_tongue = new(get_turf(human_holder))
+	var/obj/item/organ/tongue/cat/new_tongue = new(get_turf(human_holder))
 
 	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
 	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
@@ -253,7 +253,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /datum/quirk/item_quirk/canine/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/obj/item/organ/internal/tongue/dog/new_tongue = new(get_turf(human_holder))
+	var/obj/item/organ/tongue/dog/new_tongue = new(get_turf(human_holder))
 
 	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
 	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
@@ -268,10 +268,112 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /datum/quirk/item_quirk/avian/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/obj/item/organ/internal/tongue/avian/new_tongue = new(get_turf(human_holder))
+	var/obj/item/organ/tongue/avian/new_tongue = new(get_turf(human_holder))
 
 	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
 	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+
+/datum/quirk/item_quirk/bovine
+	name = "Bovine Traits"
+	desc = "Moo. You seem to act like a bovine for whatever reason. This will replace most other tongue-based speech quirks."
+	mob_trait = TRAIT_BOVINE
+	icon = FA_ICON_COW
+	value = 0
+	medical_record_text = "Patient exhibits bovine-adjacent mannerisms."
+
+/datum/quirk/item_quirk/bovine/add_unique(client/client_source)
+	var/mob/living/carbon/human/human_holder = quirk_holder
+	var/obj/item/organ/tongue/bovine/new_tongue = new(get_turf(human_holder))
+
+	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
+	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+
+///Start of Mouse Traits
+/datum/quirk/item_quirk/mouse
+	name = "Muridae Traits"
+	desc = "You always thought those jokes were cheesy. This will replace most other tongue-based speech quirks."
+	mob_trait = TRAIT_MURIDAE
+	icon = FA_ICON_CHEESE
+	value = 0
+	medical_record_text = "Patient has an insatiable love for dairy and terrible puns."
+	var/datum/action/cooldown/spell/sniff/sniff_food
+
+/datum/quirk/item_quirk/mouse/add_unique(client/client_source)
+	var/mob/living/carbon/human/human_holder = quirk_holder
+	var/obj/item/organ/tongue/mouse/new_tongue = new(get_turf(human_holder))
+	human_holder.add_faction(FACTION_RAT)
+	human_holder.gain_trauma(new /datum/brain_trauma/mild/phobia/mousetraps, TRAUMA_RESILIENCE_ABSOLUTE)
+
+	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
+	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+
+/datum/quirk/item_quirk/mouse/add(client/client_source)
+	. = ..()
+
+	sniff_food = new()
+	sniff_food.Grant(quirk_holder)
+
+/datum/quirk/item_quirk/mouse/remove()
+	. = ..()
+
+	if(QDELETED(quirk_holder))
+		return
+
+	var/mob/living/carbon/human/human_holder = quirk_holder
+	human_holder.cure_trauma_type(/datum/brain_trauma/mild/phobia/mousetraps, TRAUMA_RESILIENCE_ABSOLUTE)
+	QDEL_NULL(sniff_food)
+
+/datum/action/cooldown/spell/sniff
+	name = "Sniff Food"
+	desc = "Anyone can cook!"
+	button_icon_state = "food_french"
+	button_icon = 'icons/hud/screen_alert.dmi'
+	cooldown_time = 10 SECONDS
+	spell_requirements = NONE
+	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED
+
+/datum/action/cooldown/spell/sniff/cast(mob/living/caster)
+	. = ..()
+	try_sniff_item(caster)
+
+// tries to check if the obj is valid to sniff
+/datum/action/cooldown/spell/sniff/proc/can_sniff(obj/item/food/potential_food, mob/living/caster)
+	if(potential_food.food_flags & ABSTRACT)
+		return FALSE
+	return TRUE
+
+// tries to sniff item in hand
+/datum/action/cooldown/spell/sniff/proc/try_sniff_item(mob/living/caster)
+	var/obj/item/food/potential_food = caster.get_active_held_item()
+	if(!istype(potential_food))
+		if(caster.get_inactive_held_item())
+			to_chat(caster, span_warning("You must be holding food!"))
+		else
+			to_chat(caster, span_warning("You aren't holding anything that can be used as an ingredient!"))
+		return FALSE
+	if(!can_sniff(potential_food, caster))
+		return FALSE
+	caster.balloon_alert_to_viewers("sniffing...")
+	to_chat(caster, span_notice("You start judging [potential_food] for its culinary potential..."))
+	if(!do_after(caster, 5 SECONDS, potential_food))
+		to_chat(caster, span_notice("You didn't get a good enough whiff of [potential_food]."))
+		return FALSE
+	check_recipes(potential_food)
+	return TRUE
+
+// checks recipes related to held item
+/datum/action/cooldown/spell/sniff/proc/check_recipes(obj/item/food/potential_food)
+	var/list/type_recipe_list = list()
+	var/food_type = potential_food.type
+	for(var/datum/crafting_recipe/recipe as anything in GLOB.cooking_recipes)
+		if(food_type in recipe.reqs)
+			type_recipe_list += recipe.result
+	if(length(type_recipe_list) == 0)
+		to_chat(owner, span_notice("Nothing more can be made from this."))
+		return FALSE
+	var/datum/crafting_recipe/chosen = pick(type_recipe_list)
+	to_chat(owner, span_notice("[potential_food] could probably be used to make [chosen::name]"))
+///End of Mouse Traits
 
 /datum/quirk/sensitivesnout
 	name = "Sensitive Snout"
@@ -302,8 +404,10 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 /datum/movespeed_modifier/overweight
 	multiplicative_slowdown = 0.5 //Around that of a dufflebag, enough to be impactful but not debilitating.
 
-/datum/mood_event/fat/New(mob/parent_mob, ...)
+/datum/mood_event/fat/can_effect_mob(datum/mood/home, mob/living/target, ...)
 	. = ..()
-	if(HAS_TRAIT_FROM(parent_mob, TRAIT_FAT, QUIRK_TRAIT))
+
+	if(HAS_TRAIT_FROM(target, TRAIT_FAT, QUIRK_TRAIT))
 		mood_change = 0 // They are probably used to it, no reason to be viscerally upset about it.
 		description = "<b>I'm fat.</b>"
+	return TRUE

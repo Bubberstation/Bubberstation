@@ -29,7 +29,7 @@
 	if(istype(receiving, /obj/item/stack/ore) || receiving.resistance_flags & INDESTRUCTIBLE || !isitem(receiving) || surplus() < crush_cost  || receive_dir != REVERSE_DIR(dir))
 		return MANUFACTURING_FAIL
 	if(length(contents - circuit) >= capacity && may_merge_in_contents_and_do_so(receiving))
-		return MANUFACTURING_FAIL_FULL
+		return MANUFACTURING_FAIL
 	receiving.Move(src, get_dir(receiving, src))
 	START_PROCESSING(SSmanufacturing, src)
 	return MANUFACTURING_SUCCESS
@@ -77,7 +77,7 @@
 					return
 	else if(isliving(victim))
 		var/mob/living/poor_sap = victim
-		poor_sap.adjustBruteLoss(95, TRUE)
+		poor_sap.adjust_brute_loss(95, TRUE)
 		if(!send_resource(poor_sap, dir))
 			withholding = poor_sap
 			return

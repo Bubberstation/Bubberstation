@@ -10,51 +10,22 @@
 
 /obj/item/robot_model/proc/update_tallborg()
 	var/mob/living/silicon/robot/cyborg = robot || loc
-	if (!istype(robot))
+	if(!istype(robot))
 		return
-	if (model_features && (TRAIT_R_TALL in model_features))
+	if(model_features && (TRAIT_R_TALL in model_features))
 		cyborg.maptext_height = 48 //Runechat blabla
 		switch(cyborg_base_icon)
 			if("mekamine")
 				cyborg.AddComponent(/datum/component/robot_smoke)
-			else
-
+		return
+	if(model_features && (TRAIT_R_BIG in model_features))
+		cyborg.maptext_height = 64
+		return
 	else
 		cyborg.maptext_height = initial(cyborg.maptext_height)
 		if(cyborg.GetComponent(/datum/component/robot_smoke))
 			qdel(cyborg.GetComponent(/datum/component/robot_smoke))
 			QDEL_NULL(cyborg.particles)	// Removing left over particles
-
-
-// TODO: MOVE HAT OFFSET DEFINES TO BUBBER MODULAR ROBOT_DEFINES!
-
-#define TALL_HAT_OFFSET \
-	SKIN_HAT_OFFSET = list("north" = list(0, 15), "south" = list(0, 15), "east" = list(2, 15), "west" = list(-2, 15)), \
-	SKIN_HAT_REST_OFFSET = list("north" = list(0, 1), "south" = list(0, 1), "east" = list(2, 1), "west" = list(-2, 1))
-#define ZOOMBA_HAT_OFFSET \
-	SKIN_HAT_OFFSET = list("north" = list(0, -13), "south" = list(0, -13), "east" = list(0, -13), "west" = list(0, -13))
-#define DROID_HAT_OFFSET \
-	SKIN_HAT_OFFSET = list("north" = list(0, 4), "south" = list(0, 4), "east" = list(0, 4), "west" = list(0, 4))
-
-#define BORGI_HAT_OFFSET \
-	SKIN_HAT_OFFSET = list("north" = list(16, -7), "south" = list(16, -7), "east" = list(24, -7), "west" = list(8, -7))
-#define PUP_HAT_OFFSET \
-	SKIN_HAT_OFFSET = list("north" = list(16, 3), "south" = list(16, 3), "east" = list(29, 3), "west" = list(3, 3))
-#define BLADE_HAT_OFFSET \
-	SKIN_HAT_OFFSET = list("north" = list(16, -2), "south" = list(16, -2), "east" = list(31, -2), "west" = list(1, -2))
-#define VALE_HAT_OFFSET \
-	SKIN_HAT_OFFSET = list("north" = list(16, 3), "south" = list(16, 3), "east" = list(28, 4), "west" = list(4, 4)), \
-	SKIN_HAT_REST_OFFSET = list("north" = list(16, -3), "south" = list(16, -3), "east" = list(28, -6), "west" = list(4, -6))
-#define DRAKE_HAT_OFFSET \
-	SKIN_HAT_OFFSET = list("north" = list(16, 0), "south" = list(16, 0), "east" = list(36, 0), "west" = list(-4, 0)), \
-	SKIN_HAT_REST_OFFSET = list("north" = list(16, -6), "south" = list(16, -7), "east" = list(36, -6), "west" = list(-4, -6))
-#define HOUND_HAT_OFFSET \
-	SKIN_HAT_OFFSET = list("north" = list(16, 2), "south" = list(16, 2), "east" = list(28, 2), "west" = list(4, 2)), \
-	SKIN_HAT_REST_OFFSET = list("north" = list(16, -5), "south" = list(16, -5), "east" = list(31, -6), "west" = list(1, -6))
-#define OTIE_HAT_OFFSET \
-	SKIN_HAT_OFFSET = list("north" = list(16, 4), "south" = list(16, 4), "east" = list(30, 4), "west" = list(2, 4))
-#define ALINA_HAT_OFFSET \
-	SKIN_HAT_OFFSET = list("north" = list(16, -2), "south" = list(16, -2), "east" = list(26, -2), "west" = list(6, -2))
 
 //STANDARD
 /obj/item/robot_model/standard
@@ -393,14 +364,13 @@
 	name = "Syndicate"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/borg/sight/thermal,
 		/obj/item/extinguisher,
 		/obj/item/weldingtool/electric,
 		/obj/item/borg/cyborg_omnitool/engineering,
 		/obj/item/crowbar/cyborg/power,
 		/obj/item/screwdriver/cyborg/power,
 		/obj/item/construction/rcd/borg/syndicate,
-		/obj/item/lightreplacer/cyborg,
+		/obj/item/lightreplacer,
 		/obj/item/stack/sheet/iron,
 		/obj/item/stack/sheet/glass,
 		/obj/item/borg/apparatus/sheet_manipulator,
@@ -408,7 +378,7 @@
 		/obj/item/stack/tile/iron,
 		/obj/item/stack/cable_coil,
 		/obj/item/restraints/handcuffs/cable/zipties,
-		/obj/item/stack/medical/gauze,
+		/obj/item/stack/medical/wrap/gauze,
 		/obj/item/shockpaddles/cyborg,
 		/obj/item/healthanalyzer/advanced,
 		/obj/item/surgical_drapes,
@@ -497,11 +467,11 @@
 /obj/item/robot_model/ninja/rebuild_modules()
 	. = ..()
 	var/mob/living/silicon/robot/Ninja = loc
-	Ninja.faction  -= "silicon" //ai turrets hostile against assault and medical
+	Ninja.remove_faction("silicon") //ai turrets hostile against assault and medical
 
 /obj/item/robot_model/ninja/remove_module(obj/item/I, delete_after)
 	var/mob/living/silicon/robot/Ninja = loc
-	Ninja.faction += "silicon"
+	Ninja.add_faction("silicon")
 	. = ..()
 
 /obj/item/robot_model/ninja/ninja_medical
@@ -520,7 +490,7 @@
 		/obj/item/card/emag,
 		/obj/item/crowbar/cyborg,
 		/obj/item/extinguisher/mini,
-		/obj/item/stack/medical/gauze,
+		/obj/item/stack/medical/wrap/gauze,
 		/obj/item/gun/medbeam,
 		/obj/item/borg/apparatus/organ_storage,
 		/obj/item/surgical_processor
@@ -534,7 +504,6 @@
 	name = "Spider Clan Saboteur"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/borg/sight/thermal,
 		/obj/item/katana/ninja_blade,
 		/obj/item/construction/rcd/borg/syndicate,
 		/obj/item/pipe_dispenser,
@@ -581,15 +550,3 @@
 /obj/item/robot_model/ninja_saboteur/do_transform_animation()
 	. = ..()
 	to_chat(loc, span_userdanger("While you have picked the saboteur model, that doesn't mean you are allowed to sabotage the station by delaminating the supermatter or opening all the doors to the armory, you should still ahelp to ask the permission to do that and the reason for it."))
-
-#undef TALL_HAT_OFFSET
-#undef ZOOMBA_HAT_OFFSET
-#undef DROID_HAT_OFFSET
-#undef BORGI_HAT_OFFSET
-#undef PUP_HAT_OFFSET
-#undef BLADE_HAT_OFFSET
-#undef VALE_HAT_OFFSET
-#undef DRAKE_HAT_OFFSET
-#undef HOUND_HAT_OFFSET
-#undef OTIE_HAT_OFFSET
-#undef ALINA_HAT_OFFSET

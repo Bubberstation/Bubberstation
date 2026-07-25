@@ -67,5 +67,7 @@ GLOBAL_VAR_INIT(looc_allowed, TRUE)
 /// Split the threat budget between roundstart and midrounds
 /datum/config_entry/flag/split_threat_budget
 
-// How much time arrivals shuttle should stay at station after its engines recharged before returning to interlink. In deciseconds. 150 - 15 seconds. 0 - disables autoreturn
+// How much time arrivals shuttle should stay at station after its engines recharged before returning to interlink, in deciseconds. 0 - disables autoreturn
 /datum/config_entry/number/arrivals_wait
+	default = 150
+	min_val = 0

@@ -10,6 +10,7 @@
  *
  */
 /datum/emote
+	abstract_type = /datum/emote
 	/// What calls the emote.
 	var/key = ""
 	/// This will also call the emote.
@@ -52,18 +53,26 @@
 	var/sound
 	/// Does this emote vary in pitch?
 	var/vary = FALSE
+	/// If this emote's sound is affected by TTS pitch
+	var/affected_by_pitch = TRUE
 	/// Can only code call this event instead of the player.
 	var/only_forced_audio = FALSE
 	/// The cooldown between the uses of the emote.
 	var/cooldown = 0.8 SECONDS
 	/// Does this message have a message that can be modified by the user?
 	var/can_message_change = FALSE
-	/// How long is the shared emote cooldown triggered by this emote?
-	var/general_emote_audio_cooldown = 2 SECONDS
-	/// How long is the specific emote cooldown triggered by this emote?
-	var/specific_emote_audio_cooldown = 5 SECONDS
+	/// How long is the shared emote cooldown triggered by this emote when used intentionally?
+	var/manual_general_emote_audio_cooldown = 2 SECONDS
+	/// How long is the specific emote cooldown triggered by this emote when used intentionally?
+	var/manual_specific_emote_audio_cooldown = 5 SECONDS
+	/// How long is the shared emote cooldown triggered by this emote when forced?
+	var/forced_general_emote_audio_cooldown = 2 SECONDS
+	/// How long is the specific emote cooldown triggered by this emote when forced?
+	var/forced_specific_emote_audio_cooldown = 2 SECONDS
 	/// Does this emote's sound ignore walls?
 	var/sound_wall_ignore = FALSE
+	///Does this emote use sound tokens? this means it also ignores walls.
+	var/use_sound_tokens = FALSE
 
 /datum/emote/New()
 	switch(mob_type_allowed_typecache)
@@ -92,33 +101,59 @@
  */
 /datum/emote/proc/run_emote(mob/user, params, type_override, intentional = FALSE)
 	var/msg = select_message_type(user, message, intentional)
-	if(params && message_param)
-		msg = select_param(user, params)
+	if(params)
+		if(message_param)
+			msg = select_param(user, params)
+		else
+			msg = params
 
 	msg = replace_pronoun(user, msg)
 	if(!msg)
 		return
 
-	user.log_message(msg, LOG_EMOTE)
+	/// Use the type override if it exists
+	var/running_emote_type = type_override || emote_type
+
+	if(user.client)
+		user.log_message(msg, LOG_EMOTE)
 
 	var/tmp_sound = get_sound(user)
-	if(tmp_sound && should_play_sound(user, intentional) && TIMER_COOLDOWN_FINISHED(user, "general_emote_audio_cooldown") && TIMER_COOLDOWN_FINISHED(user, type))
-		TIMER_COOLDOWN_START(user, type, specific_emote_audio_cooldown)
-		TIMER_COOLDOWN_START(user, "general_emote_audio_cooldown", general_emote_audio_cooldown)
-		playsound(source = user,soundin = tmp_sound,vol = 50, vary = vary, ignore_walls = sound_wall_ignore)
+	if(tmp_sound && should_play_sound(user, intentional))
+		if(intentional)
+			if(!TIMER_COOLDOWN_FINISHED(user, MANUAL_GENERAL_EMOTE_AUDIO_COOLDOWN) || !TIMER_COOLDOWN_FINISHED(user, MANUAL_SPECIFIC_EMOTE_AUDIO_COOLDOWN(type)) || !TIMER_COOLDOWN_FINISHED(user, FORCED_GENERAL_EMOTE_AUDIO_COOLDOWN) || !TIMER_COOLDOWN_FINISHED(user, FORCED_SPECIFIC_EMOTE_AUDIO_COOLDOWN(type)))
+				return FALSE
+		else
+			if(!TIMER_COOLDOWN_FINISHED(user, FORCED_GENERAL_EMOTE_AUDIO_COOLDOWN) || !TIMER_COOLDOWN_FINISHED(user, FORCED_SPECIFIC_EMOTE_AUDIO_COOLDOWN(type)))
+				return FALSE
+		TIMER_COOLDOWN_START(user, MANUAL_SPECIFIC_EMOTE_AUDIO_COOLDOWN(type), manual_specific_emote_audio_cooldown)
+		TIMER_COOLDOWN_START(user, MANUAL_GENERAL_EMOTE_AUDIO_COOLDOWN, manual_general_emote_audio_cooldown)
+		TIMER_COOLDOWN_START(user, FORCED_SPECIFIC_EMOTE_AUDIO_COOLDOWN(type), forced_specific_emote_audio_cooldown)
+		TIMER_COOLDOWN_START(user, FORCED_GENERAL_EMOTE_AUDIO_COOLDOWN, forced_general_emote_audio_cooldown)
 
-	var/is_important = emote_type & EMOTE_IMPORTANT
-	var/is_visual = emote_type & EMOTE_VISIBLE
-	var/is_audible = emote_type & EMOTE_AUDIBLE
+		var/frequency = null
+		if (affected_by_pitch && SStts.tts_enabled && SStts.pitch_enabled)
+			frequency = rand(MIN_EMOTE_PITCH, MAX_EMOTE_PITCH) * (1 + sqrt(abs(user.pitch)) * sign(user.pitch) * EMOTE_TTS_PITCH_MULTIPLIER)
+		else if(vary)
+			frequency = rand(MIN_EMOTE_PITCH, MAX_EMOTE_PITCH)
+		if(use_sound_tokens && sound_wall_ignore)
+			playsoundtoken(source = user, soundin = tmp_sound, range = SOUND_RANGE, volume = 50)
+		else
+			playsound(source = user,soundin = tmp_sound,vol = 50, vary = FALSE, ignore_walls = sound_wall_ignore, frequency = frequency, volume_preference = /datum/preference/numeric/volume/sound_emote) // BUBBER EDIT CHANGE - Add volume pref - ORIGINAL: playsound(source = user,soundin = tmp_sound,vol = 50, vary = FALSE, ignore_walls = sound_wall_ignore, frequency = frequency)
+
+
+	var/is_important = running_emote_type & EMOTE_IMPORTANT
+	var/is_visual = running_emote_type & EMOTE_VISIBLE
+	var/is_audible = running_emote_type & EMOTE_AUDIBLE
+	var/additional_message_flags = get_message_flags(intentional)
 	var/space = should_have_space_before_emote(html_decode(msg)[1]) ? " " : "" // SKYRAT EDIT ADDITION
 
 	// Emote doesn't get printed to chat, runechat only
-	if(emote_type & EMOTE_RUNECHAT)
+	if(running_emote_type & EMOTE_RUNECHAT)
 		for(var/mob/viewer as anything in viewers(user))
 			if(isnull(viewer.client))
 				continue
 			if(!is_important && viewer != user && (!is_visual || !is_audible))
-				if(is_audible && !viewer.can_hear())
+				if(is_audible && HAS_TRAIT(viewer, TRAIT_DEAF))
 					continue
 				if(is_visual && viewer.is_blind())
 					continue
@@ -166,7 +201,7 @@
 			message = msg,
 			deaf_message = span_emote("You see how <b>[user]</b> [msg]"),
 			self_message = msg,
-			audible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE,
+			audible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE|additional_message_flags,
 			separation = space, // SKYRAT EDIT ADDITION
 			pref_to_check = pref_to_check // SKYRAT EDIT ADDITION - Pref checked emotes
 		)
@@ -175,7 +210,7 @@
 		user.audible_message(
 			message = msg,
 			self_message = msg,
-			audible_message_flags = EMOTE_MESSAGE,
+			audible_message_flags = EMOTE_MESSAGE|additional_message_flags,
 			separation = space, // SKYRAT EDIT ADDITION
 			pref_to_check = pref_to_check // SKYRAT EDIT ADDITION - Pref checked emotes
 		)
@@ -184,7 +219,7 @@
 		user.visible_message(
 			message = msg,
 			self_message = msg,
-			visible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE,
+			visible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE|additional_message_flags,
 			separation = space, // SKYRAT EDIT ADDITION
 			pref_to_check = pref_to_check // SKYRAT EDIT ADDITION - Pref checked emotes
 		)
@@ -280,6 +315,18 @@
  */
 /datum/emote/proc/get_sound(mob/living/user)
 	return sound //by default just return this var.
+
+/**
+ * To get the flags visible/audible messages for ran by the emote.
+ *
+ * Arguments:
+ * * intentional - Bool that says whether the emote was forced (FALSE) or not (TRUE).
+ *
+ * Returns the additional message flags we should be using, if any.
+ */
+/datum/emote/proc/get_message_flags(intentional)
+	// If we did it, we most often already know what's in it, so we try to avoid highlight clutter.
+	return intentional ? BLOCK_SELF_HIGHLIGHT_MESSAGE : NONE
 
 /**
  * To replace pronouns in the inputed string with the user's proper pronouns.
@@ -429,18 +476,21 @@
 *
 * Returns TRUE if it was able to run the emote, FALSE otherwise.
 */
-/atom/proc/manual_emote(text)
-	if(!text)
+/atom/proc/manual_emote(text, log_emote = TRUE)
+	if (!text)
 		CRASH("Someone passed nothing to manual_emote(), fix it")
 
-	log_message(text, LOG_EMOTE)
+	if (log_emote)
+		log_message(text, LOG_EMOTE)
 	visible_message(text, visible_message_flags = EMOTE_MESSAGE)
 	return TRUE
 
-/mob/manual_emote(text)
+/mob/manual_emote(text, log_emote = null)
 	if (stat != CONSCIOUS)
 		return FALSE
-	. = ..()
+	if (isnull(log_emote))
+		log_emote = !isnull(client)
+	. = ..(text, log_emote)
 	if (!.)
 		return FALSE
 	if (!client)

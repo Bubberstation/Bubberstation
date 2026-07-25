@@ -49,16 +49,15 @@
 	// Check for cooldown to avoid paper spamming
 	if(COOLDOWN_FINISHED(src, printer_cooldown))
 		// If there's not too much paper already, let's go
-		if(!toppaper_ref || length(contents) < MAX_PAPER_INTEGRATED_CLIPBOARD)
+		if(length(contents) < MAX_PAPER_INTEGRATED_CLIPBOARD)
 			cyborg_user.cell.use(paper_charge_cost)
 			COOLDOWN_START(src, printer_cooldown, printer_cooldown_time)
 			var/obj/item/paper/new_paper = new /obj/item/paper
 			new_paper.forceMove(src)
-			if(toppaper_ref)
-				var/obj/item/paper/toppaper = toppaper_ref?.resolve()
-				UnregisterSignal(toppaper, COMSIG_ATOM_UPDATED_ICON)
+			if(top_paper)
+				UnregisterSignal(top_paper, COMSIG_ATOM_UPDATED_ICON)
 			RegisterSignal(new_paper, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_top_paper_change))
-			toppaper_ref = WEAKREF(new_paper)
+			top_paper = new_paper
 			update_appearance()
 			to_chat(user, span_notice("[src]'s integrated printer whirs to life, spitting out a fresh piece of paper and clipping it into place."))
 			return CLICK_ACTION_SUCCESS
@@ -580,7 +579,7 @@
 	return TRUE
 
 /obj/item/borg_shapeshifter/attack_self(mob/living/silicon/robot/user)
-	if (user && user.cell && user.cell.charge >  activationCost)
+	if (user && use_power(user, activationCost))
 		if (isturf(user.loc))
 			toggle(user)
 		else
@@ -666,7 +665,7 @@
 			f = user.filters[start+i]
 			animate(f, offset=f:offset, time=0, loop=3, flags=ANIMATION_PARALLEL)
 			animate(offset=f:offset-1, time=rand()*20+10)
-		if (do_after(user, 5 SECONDS, target=user) && user.cell.use(activationCost))
+		if (do_after(user, 5 SECONDS, target=user) && use_power(user, activationCost))
 			playsound(src, 'sound/effects/bamf.ogg', 100, TRUE, -6)
 			to_chat(user, span_notice("You are now disguised."))
 			activate(user)
@@ -687,7 +686,7 @@
 		var/list/details = disguise_model.borg_skins[skin]
 		var/image/reskin = image(icon = details[SKIN_ICON] || 'icons/mob/silicon/robots.dmi', icon_state = details[SKIN_ICON_STATE])
 		if (!isnull(details[SKIN_FEATURES]))
-			if (TRAIT_R_WIDE in details[SKIN_FEATURES])
+			if ((TRAIT_R_WIDE in details[SKIN_FEATURES]) || (TRAIT_R_BIG in details[SKIN_FEATURES]))
 				reskin.pixel_x -= 16
 		reskin_icons[skin] = reskin
 	var/borg_skin = show_radial_menu(cyborg, cyborg, reskin_icons, custom_check = CALLBACK(src, PROC_REF(check_menu), cyborg), radius = 38, require_near = TRUE)
@@ -703,10 +702,17 @@
 	return TRUE
 
 /obj/item/borg_shapeshifter/process()
-	if (user && !user.cell?.use(activationUpkeep))
+	if (user && !use_power(user, activationUpkeep))
 		disrupt(user)
 	else
 		return PROCESS_KILL
+
+/obj/item/borg_shapeshifter/proc/use_power(mob/living/silicon/robot/user, amount)
+	if(!istype(user))
+		return 0
+	if(!amount)
+		return 1
+	return user.cell?.use(amount)
 
 /obj/item/borg_shapeshifter/proc/activate(mob/living/silicon/robot/user)
 	src.user = user
@@ -729,12 +735,13 @@
 	user.model.update_tallborg()
 	user.model.update_quadruped()
 	user.model.update_robot_rest()
+	user.model.update_footsteps()
 
 	if(listeningTo == user)
 		return
 	if(listeningTo)
 		UnregisterSignal(listeningTo, signalCache)
-	RegisterSignal(user, signalCache, PROC_REF(disrupt))
+	RegisterSignals(user, signalCache, PROC_REF(disrupt))
 	listeningTo = user
 
 /obj/item/borg_shapeshifter/proc/deactivate(mob/living/silicon/robot/user)
@@ -755,6 +762,7 @@
 	user.model.update_tallborg()
 	user.model.update_quadruped()
 	user.model.update_robot_rest()
+	user.model.update_footsteps()
 
 /obj/item/borg_shapeshifter/proc/disrupt(mob/living/silicon/robot/user)
 	SIGNAL_HANDLER
@@ -879,6 +887,10 @@
 		if("Anvil")
 			new /obj/structure/reagent_anvil(src_turf)
 		if("Water Basin")
-			new /obj/structure/reagent_water_basin(src_turf)
+			new /obj/structure/reagent_dispensers/reagent_smithing_basin(src_turf)
 		if("Crafting Bench")
 			new /obj/structure/reagent_crafting_bench(src_turf)
+
+#undef CYBORG_FONT
+#undef MAX_PAPER_INTEGRATED_CLIPBOARD
+#undef BASE_NINJA_REAGENTS

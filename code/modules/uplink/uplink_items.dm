@@ -9,7 +9,7 @@
 			per_category[possible_sale.category] = list()
 		per_category[possible_sale.category] += possible_sale
 
-	for (var/i in 1 to num)
+	for (var/i in 1 to min(length(per_category), num))
 		var/datum/uplink_category/item_category = pick(per_category)
 		var/datum/uplink_item/taken_item = pick(per_category[item_category])
 		per_category -= item_category
@@ -29,7 +29,17 @@
 			"Use only as directed.",
 			"16% sales tax will be charged for orders originating within Space Nebraska.",
 		)
-		uplink_item.limited_stock = limited_stock
+
+		//We want to limit the purchase amount of some items without adjusting the pricing.
+		if (uplink_item.limited_discount_stock > 0) {
+			uplink_item.limited_stock = uplink_item.limited_discount_stock
+		}
+
+		//if stock limited is passed into the function, we'll override everything
+		if (limited_stock > 0) {
+			uplink_item.limited_stock = limited_stock
+		}
+
 		if(uplink_item.cost >= 20) //Tough love for nuke ops
 			discount *= 0.5
 		uplink_item.stock_key = WEAKREF(uplink_item)
@@ -68,11 +78,13 @@
 	/// Whether this can be discounted or not
 	var/cant_discount = FALSE
 	/// If discounted, is true. Used to send a signal to update reimbursement.
-	var/discounted = FALSE
+	VAR_FINAL/discounted = FALSE
 	/// If this value is changed on two items they will share stock, defaults to not sharing stock with any other item
 	var/stock_key = UPLINK_SHARED_STOCK_UNIQUE
 	/// How many items of this stock can be purchased.
 	var/limited_stock = -1 //Setting this above zero limits how many times this item can be bought by the same traitor in a round, -1 is unlimited
+	/// How many items of this stock can be purchased from the discount tab.
+	var/limited_discount_stock = -1
 	/// A bitfield to represent what uplinks can purchase this item.
 	/// See [`code/__DEFINES/uplink.dm`].
 	var/purchasable_from = ALL
@@ -82,6 +94,8 @@
 	var/list/restricted_species = list()
 	/// The minimum amount of progression needed for this item to be added to uplinks.
 	var/progression_minimum = 0
+	/// The minimum number of joined players (so not observers) needed for this item to be added to uplinks.
+	var/population_minimum = 0
 	/// Whether this purchase is visible in the purchase log.
 	var/purchase_log_vis = TRUE // Visible in the purchase log?
 	/// Whether this purchase is restricted or not (VR/Events related)
@@ -95,6 +109,9 @@
 	/// Uses the purchase log, so items purchased that are not visible in the purchase log will not count towards this.
 	/// However, they won't be purchasable afterwards.
 	var/lock_other_purchases = FALSE
+	/// A lazylist of typepaths to uplink items relevant to this this item
+	/// EX: a pistol would list its magazines or modifications here
+	var/list/relevant_child_items
 
 /datum/uplink_item/New()
 	. = ..()
@@ -194,7 +211,8 @@
 		return
 
 	QDEL_NULL(gun_reward.pin)
-	gun_reward.pin = new /obj/item/firing_pin(gun_reward)
+	var/obj/item/firing_pin/pin = new
+	pin.gun_insert(new_gun = gun_reward, starting = TRUE)
 
 ///For special overrides if an item can be bought or not.
 /datum/uplink_item/proc/can_be_bought(datum/uplink_handler/source)
@@ -217,9 +235,13 @@
 	category = /datum/uplink_category/discounts
 	purchasable_from = parent_type::purchasable_from & ~UPLINK_SPY // Probably not necessary but just in case
 
+/datum/uplink_category/objective_special
+	name = "Objective-Specific Equipment"
+	weight = -3
+
 // Special equipment (Dynamically fills in uplink component)
 /datum/uplink_item/special_equipment
-	category = "Objective-Specific Equipment"
+	category = /datum/uplink_category/objective_special
 	name = "Objective-Specific Equipment"
 	desc = "Equipment necessary for accomplishing specific objectives. If you are seeing this, something has gone wrong."
 	limited_stock = 1

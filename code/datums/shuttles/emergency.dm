@@ -3,6 +3,7 @@
 /datum/map_template/shuttle/emergency // SKYRAT EDIT OVERRIDE - OVERRIDDEN IN ADVANCED_SHUTTLES - shuttles.dm
 	port_id = "emergency"
 	name = "Base Shuttle Template (Emergency)"
+	prefix = "_maps/shuttles/emergency/"
 	///assoc list of shuttle events to add to this shuttle on spawn (typepath = weight)
 	var/list/events
 	///pick all events instead of random
@@ -40,7 +41,6 @@
 			mobile.add_shuttle_event(path)
 
 /datum/map_template/shuttle/emergency/backup
-	prefix = "_maps/shuttles/"
 	suffix = "backup"
 	name = "Backup Shuttle"
 	who_can_purchase = null
@@ -48,17 +48,20 @@
 /datum/map_template/shuttle/emergency/construction
 	suffix = "construction"
 	name = "Build your own shuttle kit"
-	description = "For the enterprising shuttle engineer! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials. Unlocks the ability to buy shuttle engine crates from cargo, which allow you to speed up shuttle transit time."
+	description = "For the enterprising shuttle engineer! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials."
 	admin_notes = "No brig, no medical facilities."
 	credit_cost = CARGO_CRATE_VALUE * 5
 	who_can_purchase = list(ACCESS_CAPTAIN, ACCESS_CE)
 	occupancy_limit = "Flexible"
 
-/datum/map_template/shuttle/emergency/construction/post_load()
-	. = ..()
-	//enable buying engines from cargo
-	var/datum/supply_pack/P = SSshuttle.supply_packs[/datum/supply_pack/engineering/shuttle_engine]
-	P.special_enabled = TRUE
+/datum/map_template/shuttle/emergency/constructionbig
+	suffix = "constructionbig"
+	name = "Build your own CRUISER kit"
+	description = "This is the big brother of the construction kit, with more space for your shuttle-building ideas! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials."
+	admin_notes = "No brig, no medical facilities."
+	credit_cost = CARGO_CRATE_VALUE * 30
+	who_can_purchase = list(ACCESS_CAPTAIN, ACCESS_CE)
+	occupancy_limit = "Flexible and more"
 
 /datum/map_template/shuttle/emergency/asteroid
 	suffix = "asteroid"
@@ -267,6 +270,14 @@
 	description = "We pulled this one out of Mothball just for you!"
 	occupancy_limit = "40"
 
+
+/datum/map_template/shuttle/emergency/emergency_catwalk
+	suffix = "catwalk"
+	name = "Catwalk Station Emergency Shuttle"
+	credit_cost = CARGO_CRATE_VALUE * 5
+	description = "A standard sized shuttle, featuring a medbay and brig, along with an elevated bridge."
+	occupancy_limit = "40"
+
 /datum/map_template/shuttle/emergency/wawa
 	suffix = "wawa"
 	name = "Wawa Stand-in Emergency Shuttle"
@@ -279,13 +290,16 @@
 	name = "Standby Evacuation Vessel \"Scrapheap Challenge\""
 	credit_cost = CARGO_CRATE_VALUE * -18
 	description = "Comrade! We see you are having trouble with money, yes? If you have money issue, very little money, we are looking for good shuttle, emergency shuttle. You take best in sector shuttle, we take yours, you get money, da? Please do not lean on window, fragile like fina china. -Ivan"
-	admin_notes = "An abomination with no functional medbay, sections missing, and some very fragile windows. Surprisingly airtight. When bought, gives a good influx of money, but can only be bought if the budget is literally 0 credits."
+	admin_notes = "A randomly assembled, modular abomination. May have no functional medbay, sections missing, and some very fragile windows. Surprisingly airtight. When bought, gives a good influx of money, but can only be bought if the budget is literally 0 credits."
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
 	occupancy_limit = "30"
 	prerequisites = "This shuttle is only offered for purchase when the station is low on funds."
 
 /datum/map_template/shuttle/emergency/scrapheap/prerequisites_met()
 	return SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_SCRAPHEAP]
+
+/obj/modular_map_root/scrapheapchallenge
+	config_file = "strings/modular_maps/emergency_scrapheap.toml"
 
 /datum/map_template/shuttle/emergency/narnar
 	suffix = "narnar"

@@ -8,6 +8,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/hook
 	icon_state = "hook"
 	inhand_icon_state = "hook"
+	icon_angle = 45
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	fire_sound = 'sound/items/weapons/batonextend.ogg'
@@ -17,6 +18,7 @@
 	sharpness = SHARP_POINTY
 	force = 18
 	antimagic_flags = NONE
+	can_muzzle_flash = FALSE
 
 /obj/item/gun/magic/hook/shoot_with_empty_chamber(mob/living/user)
 	balloon_alert(user, "not ready yet!")
@@ -39,6 +41,9 @@
 	playsound(get_turf(src), 'sound/items/weapons/bladeslice.ogg', 70)
 	removable.dismember(silent = FALSE)
 	return BRUTELOSS
+
+/obj/item/gun/magic/hook/on_mail_unwrap(mob/user, obj/item/mail/traitor/letter)
+	return NONE
 
 /obj/item/ammo_casing/magic/hook
 	name = "hook"

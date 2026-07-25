@@ -14,7 +14,7 @@
 	cost = 2
 	restricted_roles = list(JOB_CURATOR)
 	limited_stock = 1 //please don't spam deadchat
-	surplus = 5
+	surplus = 1
 
 /datum/uplink_item/role_restricted/mail_counterfeit_kit
 	name = "GLA Brand Mail Counterfeit Kit"
@@ -69,7 +69,7 @@
 
 /datum/uplink_item/role_restricted/oldtoolboxclean
 	name = "Ancient Toolbox"
-	desc = "An iconic toolbox design notorious with Assistants everywhere, this design was especially made to become more robust the more telecrystals it has inside it! Tools and insulated gloves included."
+	desc = "An iconic toolbox design notorious with Assistants everywhere. This design was specially made to become more robust the more telecrystals it has inside it! Tools and insulated gloves included."
 	item = /obj/item/storage/toolbox/mechanical/old/clean
 	cost = 2
 	restricted_roles = list(JOB_ASSISTANT)
@@ -95,7 +95,7 @@
 
 /datum/uplink_item/role_restricted/syndimmi
 	name = "Syndicate Brand MMI"
-	desc = "An MMI modified to give cyborgs laws to serve the Syndicate without having their interface damaged by Cryptographic Sequencers, this will not unlock their hidden modules."
+	desc = "An MMI modified to give cyborgs laws to serve the Syndicate without having their interface damaged by Cryptographic Sequencers. This will not unlock their hidden modules."
 	item = /obj/item/mmi/syndie
 	cost = 2
 	restricted_roles = list(JOB_ROBOTICIST, JOB_RESEARCH_DIRECTOR, JOB_SCIENTIST, JOB_CORONER, JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER)
@@ -113,7 +113,6 @@
 	name = "Combat Bakery Kit"
 	desc = "A kit of clandestine baked weapons. Contains a baguette which a skilled mime could use as a sword, \
 		a pair of throwing croissants, and the recipe to make more on demand. Once the job is done, eat the evidence."
-	progression_minimum = 15 MINUTES
 	item = /obj/item/storage/box/syndie_kit/combat_baking
 	cost = 7
 	restricted_roles = list(JOB_COOK, JOB_MIME)
@@ -148,6 +147,14 @@
 	desc = "A brutal cleaver on a long chain, it allows you to pull people to your location."
 	item = /obj/item/gun/magic/hook
 	cost = 11
+	restricted_roles = list(JOB_COOK)
+
+/datum/uplink_item/role_restricted/moltobeso
+	name = "Molt'Obeso Sauce Bottle"
+	desc = "A branded bottle of Molt'Obeso sauce. This sauce can stimulate hunger in people, leading them to eat more than they intended. \
+			It also enhances the absorption of calories from the food consumed."
+	item = /obj/item/storage/box/syndie_kit/moltobeso
+	cost = 2
 	restricted_roles = list(JOB_COOK)
 
 /datum/uplink_item/role_restricted/turretbox
@@ -192,7 +199,7 @@
 
 /datum/uplink_item/role_restricted/advanced_plastic_surgery
 	name = "Advanced Plastic Surgery Program"
-	desc = "A bootleg copy of an collector item, this disk contains the procedure to perform advanced plastic surgery, allowing you to model someone's face and voice based on a picture taken by a camera on your offhand. \
+	desc = "A bootleg copy of a collector item, this disk contains the procedure to perform advanced plastic surgery, allowing you to model someone's face and voice based on a picture taken by a camera on your offhand. \
 	All changes are superficial and does not change ones genetic makeup. \
 	Insert into an Operating Console to enable the procedure."
 	item = /obj/item/disk/surgery/advanced_plastic_surgery
@@ -217,7 +224,6 @@
 	name = "Reverse Revolver"
 	desc = "A revolver that always fires at its user. \"Accidentally\" drop your weapon, then watch as the greedy corporate pigs blow their own brains all over the wall. \
 	The revolver itself is actually real. Only clumsy people, and clowns, can fire it normally. Comes in a box of hugs. Honk."
-	progression_minimum = 30 MINUTES
 	cost = 14
 	item = /obj/item/storage/box/hug/reverse_revolver
 	restricted_roles = list(JOB_CLOWN)
@@ -226,8 +232,6 @@
 	name = "Kinetic Accelerator Pressure Mod"
 	desc = "A modification kit which allows Kinetic Accelerators to do greatly increased damage while indoors. \
 			Occupies 35% mod capacity."
-	// While less deadly than a revolver it does have infinite ammo
-	progression_minimum = 15 MINUTES
 	item = /obj/item/borg/upgrade/modkit/indoors
 	cost = 5 //you need two for full damage, so total of 10 for maximum damage
 	limited_stock = 2 //you can't use more than two!
@@ -241,12 +245,11 @@
 	cost = 12
 	item = /obj/item/storage/box/syndie_kit/mimery
 	restricted_roles = list(JOB_MIME)
-	surplus = 0
+	surplus = 10
 
 /datum/uplink_item/role_restricted/laser_arm
 	name = "Laser Arm Implant"
 	desc = "An implant that grants you a recharging laser gun inside your arm. Weak to EMPs. Comes with a syndicate autosurgeon for immediate self-application."
-	progression_minimum = 20 MINUTES
 	cost = 10
 	item = /obj/item/autosurgeon/syndicate/laser_arm
 	restricted_roles = list(JOB_ROBOTICIST, JOB_RESEARCH_DIRECTOR)
@@ -255,14 +258,13 @@
 /datum/uplink_item/role_restricted/chemical_gun
 	name = "Reagent Dartgun"
 	desc = "A heavily modified syringe gun which is capable of synthesizing its own chemical darts using input reagents. Can hold 90u of reagents."
-	progression_minimum = 15 MINUTES
 	item = /obj/item/gun/chem
 	cost = 12
-	restricted_roles = list(JOB_CHEMIST, JOB_CHIEF_MEDICAL_OFFICER, JOB_BOTANIST)
+	restricted_roles = list(JOB_CHEMIST, JOB_MEDICAL_DOCTOR, JOB_CHIEF_MEDICAL_OFFICER, JOB_BOTANIST)
 
 /datum/uplink_item/role_restricted/pie_cannon
 	name = "Banana Cream Pie Cannon"
-	desc = "A special pie cannon for a special clown, this gadget can hold up to 20 pies and automatically fabricates one every two seconds!"
+	desc = "A special pie cannon for a special clown. This gadget can hold up to 20 pies and automatically fabricates one every two seconds!"
 	cost = 10
 	item = /obj/item/pneumatic_cannon/pie/selfcharge
 	restricted_roles = list(JOB_CLOWN)
@@ -324,7 +326,6 @@
 			Attach to an exosuit with an existing equipment to disguise the bay as that equipment. The sacrificed equipment will be lost.\
 			Alternatively, you can attach the bay to an empty equipment slot, but the bay will not be concealed. Once the bay is \
 			attached, an exosuit weapon can be fitted inside."
-	progression_minimum = 30 MINUTES
 	item = /obj/item/mecha_parts/mecha_equipment/concealed_weapon_bay
 	cost = 3
 	restricted_roles = list(JOB_ROBOTICIST, JOB_RESEARCH_DIRECTOR)
@@ -339,6 +340,7 @@
 			also give them a bit of sentience though."
 	progression_minimum = 30 MINUTES
 	item = /obj/item/reagent_containers/syringe/spider_extract
+	population_minimum = TRAITOR_POPULATION_LOWPOP
 	cost = 10
 	restricted_roles = list(JOB_RESEARCH_DIRECTOR, JOB_SCIENTIST, JOB_ROBOTICIST)
 	surplus = 10
@@ -370,6 +372,7 @@ BUBBER REMOVE END*/
 	item = /obj/item/bee_smoker
 	cost = 4
 	restricted_roles = list(JOB_BOTANIST)
+	surplus = 0 //requires too much setup to be worth including in surplus crates
 
 /datum/uplink_item/role_restricted/monkey_agent
 	name = "Simian Agent Reinforcements"
@@ -406,3 +409,39 @@ BUBBER REMOVE END*/
 	progression_minimum = 30 MINUTES
 	purchasable_from = parent_type::purchasable_from & ~UPLINK_SPY
 
+/datum/uplink_item/role_restricted/concussivedisk
+	name = "Hyperconcussive Diode Disk"
+	desc = "A diode configuration disk that allows an emitter to shoot potent explosive lasers. \
+	Please note that this will halve the fire-rate of the emitter."
+	item = /obj/item/emitter_disk/blast
+	cost = 5
+	restricted_roles = list(JOB_STATION_ENGINEER, JOB_CHIEF_ENGINEER)
+
+/datum/uplink_item/role_restricted/briefcase_gun
+	name = "Briefcase Embedded Firearm Trigger"
+	desc = "A briefcase with a firing mechanism built into the handle that connects to the first weapon stored within. \
+		\"Aiming and firing\" the briefcase will instead trigger the firing mechanism, causing the weapon to fire through a discrete hole. \
+		Work with any firearm you could fit inside."
+	item = /obj/item/storage/briefcase/gun
+	purchasable_from = UPLINK_TRAITORS
+	cant_discount = TRUE // remove this when we get uplink logic to have one discount apply to all items on the same stock key
+	cost = 4
+	surplus = 0
+	uplink_item_flags = NONE
+	stock_key = "briefcase_gun"
+	restricted_roles = list(
+		JOB_HEAD_OF_PERSONNEL,
+		JOB_LAWYER,
+		JOB_QUARTERMASTER,
+	)
+
+/datum/uplink_item/role_restricted/briefcase_gun/with_gun
+	name = "Briefcase Embedded Firearm Trigger (Combo Deal)"
+	desc = parent_type::desc + " This COMBO DEAL comes with a pre-loaded Makarov pistol! (No extra magazines, though.)"
+	item = /obj/item/storage/briefcase/gun/preloaded
+	purchasable_from = parent_type::purchasable_from | UPLINK_SPY
+	cost = 8
+	surplus = 50
+	progression_minimum = /datum/uplink_item/dangerous/pistol::progression_minimum
+	population_minimum = /datum/uplink_item/dangerous/pistol::population_minimum
+	relevant_child_items = /datum/uplink_item/dangerous/pistol::relevant_child_items

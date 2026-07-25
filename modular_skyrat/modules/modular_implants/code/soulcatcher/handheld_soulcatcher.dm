@@ -115,7 +115,7 @@
 	if(!istype(target_mob))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-	var/obj/item/organ/internal/brain/target_brain = target_mob.get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/brain/target_brain = target_mob.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!istype(target_brain))
 		to_chat(user, span_warning("[target_mob] lacks a brain!"))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN

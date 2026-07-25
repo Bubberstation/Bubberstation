@@ -221,7 +221,7 @@
 
 /// checks if we're a brainmob inside a brain & the brain is inside a head
 /datum/antagonist/bloodsucker/proc/is_head(mob/living/poor_fucker)
-	if(!istype(poor_fucker?.loc, /obj/item/organ/internal/brain))
+	if(!istype(poor_fucker?.loc, /obj/item/organ/brain))
 		return
 	var/obj/brain = poor_fucker.loc
 	if(!istype(brain?.loc, /obj/item/bodypart/head))
@@ -229,13 +229,13 @@
 	return brain.loc
 
 // helper procs for damage checking, just in case a synth becomes one, let's them heal thesmelves
-/datum/antagonist/bloodsucker/proc/getBruteLoss()
+/datum/antagonist/bloodsucker/proc/get_brute_loss()
 	var/mob/living/carbon/human/humie = owner.current
-	return issynthetic(humie) ? humie.getBruteLoss() : humie.getBruteLoss_nonProsthetic()
+	return issynthetic(humie) ? humie.get_brute_loss() : humie.get_brute_loss_nonProsthetic()
 
-/datum/antagonist/bloodsucker/proc/getFireLoss()
+/datum/antagonist/bloodsucker/proc/get_fire_loss()
 	var/mob/living/carbon/human/humie = owner.current
-	return issynthetic(humie) ? humie.getFireLoss() : humie.getFireLoss_nonProsthetic()
+	return issynthetic(humie) ? humie.get_fire_loss() : humie.get_fire_loss_nonProsthetic()
 
 /datum/antagonist/bloodsucker/proc/admin_set_blood(mob/admin)
 	var/blood = tgui_input_number(admin, "What blood level to set [owner.current]'s to?", "Blood is life.", floor(bloodsucker_blood_volume), max_blood_volume, 0)
@@ -277,9 +277,9 @@
 	power.on_power_upgrade()
 
 /datum/antagonist/bloodsucker/proc/regain_heart(mob/living/carbon/target, obj/structure/closet/crate/coffin/coffin)
-	var/obj/item/organ/heart = locate(/obj/item/organ/internal/heart) in coffin.contents
+	var/obj/item/organ/heart = locate(/obj/item/organ/heart) in coffin.contents
 	if(heart && !target.get_organ_slot(ORGAN_SLOT_HEART) && heart.Insert(target))
-		to_chat(span_warning("You have regained your heart!"))
+		to_chat(target, span_warning("You have regained your heart!"))
 
 /datum/antagonist/bloodsucker/proc/allow_head_to_talk(mob/speaker, message, ignore_spam, forced)
 	SIGNAL_HANDLER

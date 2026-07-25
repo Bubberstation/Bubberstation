@@ -25,8 +25,9 @@
 		return
 	for(var/V in GLOB.player_list)
 		var/mob/M = V
-		if((M.client.prefs.read_preference(/datum/preference/toggle/sound_midi)) && is_station_level(M.z))
-			M.playsound_local(M, 'sound/ambience/aurora_caelus/aurora_caelus.ogg', 20, FALSE, pressure_affected = FALSE)
+		var/pref_volume = M.client.prefs.read_preference(/datum/preference/numeric/volume/sound_midi)
+		if(pref_volume > 0 && is_station_level(M.z))
+			M.playsound_local(M, 'sound/ambience/aurora_caelus/aurora_caelus.ogg', 20 * (pref_volume/100), FALSE, pressure_affected = FALSE)
 	fade_space(fade_in = TRUE)
 	fade_kitchen(fade_in = TRUE)
 
@@ -44,7 +45,7 @@
 			message_admins("Aurora Caelus event caused an oven to ignite at [ADMIN_VERBOSEJMP(ruined_roast)].")
 			log_game("Aurora Caelus event caused an oven to ignite at [loc_name(ruined_roast)].")
 			announce_to_ghosts(roast_ruiner)
-			for(var/mob/living/carbon/human/seymour in viewers(roast_ruiner, 7))
+			for(var/mob/living/carbon/human/seymour in viewers(7, roast_ruiner))
 				if (seymour in human_blacklist)
 					continue
 				human_blacklist += seymour

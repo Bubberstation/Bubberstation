@@ -4,7 +4,7 @@
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_items/lewd_items.dmi'
 	equip_sound = 'modular_skyrat/modules/modular_items/lewd_items/sounds/bang1.ogg'
 	drop_sound = 'modular_skyrat/modules/modular_items/lewd_items/sounds/bang2.ogg'
-	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
+	pickup_sound =  SFX_CLOTH_PICKUP
 	/// This is used to decide what lewd slot a toy should be able to be inserted into.
 	/// The currently accepted defines are all prefixes with LEWD_SLOT_, and there is one for each lewd organ.
 	/// See code/__DEFINES/~skyrat_defines/inventory.dm for the full list.
@@ -30,7 +30,7 @@
 
 	// Give out actions our item has to people who equip it.
 	for(var/datum/action/action as anything in actions)
-		give_item_action(action, user)
+		give_item_action(action, user, slot)
 
 /obj/item/clothing/sextoy/dropped(mob/user)
 	..()

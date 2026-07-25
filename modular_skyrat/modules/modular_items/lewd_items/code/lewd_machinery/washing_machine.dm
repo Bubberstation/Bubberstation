@@ -30,8 +30,8 @@
 		if (covered)
 			continue
 
-		var/obj/item/organ/external/genital/vagina/found_vagina = buckled_human.get_organ_slot(ORGAN_SLOT_VAGINA)
-		var/obj/item/organ/external/genital/vagina/found_penis = buckled_human.get_organ_slot(ORGAN_SLOT_PENIS)
+		var/obj/item/organ/genital/vagina/found_vagina = buckled_human.get_organ_slot(ORGAN_SLOT_VAGINA)
+		var/obj/item/organ/genital/vagina/found_penis = buckled_human.get_organ_slot(ORGAN_SLOT_PENIS)
 
 		var/arousal_mult = seconds_per_tick
 		var/message_chance = 40

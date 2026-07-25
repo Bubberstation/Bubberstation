@@ -31,6 +31,8 @@
 
 	/// Whether the menu is in the middle of refreshing the preview
 	var/refreshing = TRUE
+	///BUBBER VAR: Optional display labels for color groups, keyed by color index.
+	var/list/color_labels
 
 	/**
 	 * Whether the menu is currently locked down to prevent abuse from players.
@@ -102,12 +104,14 @@
 /datum/greyscale_modify_menu/ui_data(mob/user)
 	var/list/data = list()
 	data["greyscale_config"] = "[config.name]"
+	data["full_color_string"] = split_colors?.Join("") //BUBBER ADDITION
 
 	var/list/color_data = list()
 	data["colors"] = color_data
 	for(var/i in 1 to config.expected_colors)
 		color_data += list(list(
 			"index" = i,
+			"label" = color_labels?["[i]"] || color_labels?[i], //BUBBER ADDITION
 			"value" = split_colors[i]
 		))
 
@@ -166,13 +170,12 @@
 
 		if("pick_color")
 			var/group = params["color_index"]
-			//BUBBERSTATION EDIT START: TGUI COLOR PICKER
 			var/new_color = tgui_color_picker(
 				usr,
 				"Choose color for greyscale color group [group]:",
 				"Greyscale Modification Menu",
 				split_colors[group]
-			) //BUBBERSTATION EDIT END: TGUI COLOR PICKER
+			)
 			if(new_color)
 				split_colors[group] = new_color
 				queue_refresh()
@@ -242,14 +245,24 @@ This is highly likely to cause massive amounts of lag as every object in the gam
 			config.EnableAutoRefresh(config_owner_type)
 
 /datum/greyscale_modify_menu/proc/ReadColorsFromString(colorString)
-	var/list/new_split_colors = list()
+	//length validation
 	var/list/colors = splittext(colorString, "#")
-	for(var/index in 2 to min(length(colors), config.expected_colors + 1))
+	if(length(colors) <= 1) //doesn't even begin with a # so isn't even a color
+		return FALSE
+	colors.Cut(1, 2) //removes the white space as a consequence of the string beginning with a #
+	if(colors.len != config.expected_colors) //not the expected length
+		return FALSE
+
+	//value validation
+	var/list/new_split_colors = list()
+	for(var/index in 1 to config.expected_colors)
 		var/color = "#[colors[index]]"
 		if(!findtext(color, GLOB.is_color) && (!unlocked || !findtext(color, GLOB.is_alpha_color)))
 			return FALSE
 		new_split_colors += color
 	split_colors = new_split_colors
+
+	//all good
 	return TRUE
 
 /datum/greyscale_modify_menu/proc/randomize_color(color_index)
@@ -339,7 +352,7 @@ This is highly likely to cause massive amounts of lag as every object in the gam
 		return
 	while(initial(current.greyscale_config) == initial(parent.greyscale_config))
 		current = parent
-		parent = type2parent(current)
+		parent = current::parent_type
 	config_owner_type = current
 
 /// Used for spray painting items in the gags_recolorable component

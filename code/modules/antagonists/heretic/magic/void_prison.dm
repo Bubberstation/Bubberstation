@@ -15,7 +15,7 @@
 
 	sound = null
 	school = SCHOOL_FORBIDDEN
-	invocation = "V''D PR'S'N!"
+	invocation = "V'D PR'S'N!"
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = NONE
 
@@ -52,11 +52,11 @@
 	addtimer(CALLBACK(src, PROC_REF(enter_prison), new_owner), 1 SECONDS)
 
 /datum/status_effect/void_prison/on_remove()
-	if(!IS_HERETIC(owner))
-		owner.apply_status_effect(/datum/status_effect/void_chill, 3)
+	//if(!IS_HERETIC(owner)) // BUBBER EDIT REMOVAL
+		//owner.apply_status_effect(/datum/status_effect/void_chill, 1) // BUBBER EDIT REMOVAL
 	if(stasis_overlay)
 		//Free our prisoner
-		owner.remove_traits(list(TRAIT_GODMODE, TRAIT_NO_TRANSFORM, TRAIT_SOFTSPOKEN), REF(src))
+		owner.remove_traits(list(TRAIT_GODMODE, TRAIT_NO_TRANSFORM, TRAIT_SOFTSPOKEN), TRAIT_STATUS_EFFECT(id))
 		owner.forceMove(get_turf(stasis_overlay))
 		stasis_overlay.forceMove(owner)
 		owner.vis_contents += stasis_overlay
@@ -71,7 +71,7 @@
 /datum/status_effect/void_prison/proc/enter_prison(mob/living/prisoner)
 	stasis_overlay.forceMove(prisoner.loc)
 	prisoner.forceMove(stasis_overlay)
-	prisoner.add_traits(list(TRAIT_GODMODE, TRAIT_NO_TRANSFORM, TRAIT_SOFTSPOKEN), REF(src))
+	prisoner.add_traits(list(TRAIT_GODMODE, TRAIT_NO_TRANSFORM, TRAIT_SOFTSPOKEN), TRAIT_STATUS_EFFECT(id))
 
 ///Makes sure to clear the ref in case the voidball ever suddenly disappears
 /datum/status_effect/void_prison/proc/clear_overlay()
@@ -97,5 +97,7 @@
 /atom/movable/screen/alert/status_effect/void_prison
 	name = "Void Prison"
 	desc = "A Yawning void encases your mortal coil." //Go straight to jail, do not pass GO, do not collect 200$
-	icon = 'icons/mob/actions/actions_ecult.dmi'
-	icon_state = "voidball_effect"
+	use_user_hud_icon = USER_HUD_STYLE_INHERIT
+	icon_state = "heretic_template"
+	overlay_icon = 'icons/mob/actions/actions_ecult.dmi'
+	overlay_state = "voidball_effect"

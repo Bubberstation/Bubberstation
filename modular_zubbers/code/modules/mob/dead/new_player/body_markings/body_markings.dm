@@ -157,3 +157,149 @@
 	default_color = "#ffffff"
 	affected_bodyparts = CHEST
 	gendered = FALSE
+
+/datum/body_marking/bubber/thirdeye //we love 1 pixel
+	icon_state = "thirdeye"
+	name = "Third Eye"
+	default_color = "#FFFFFF"
+	affected_bodyparts = HEAD
+	gendered = FALSE
+
+/datum/body_marking/bubber/splotches //Sprites by Avimour
+	name = "Splotches"
+	icon_state = "splotches"
+	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
+
+/datum/body_marking/bubber/splotcheswap
+	name = "Splotches Swapped"
+	icon_state = "splotcheswap"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/chitin //End of sprites by Avimour
+	name = "Chitin"
+	icon_state = "chitin"
+	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
+
+/datum/body_marking/bubber/dome //Sprites by thgvr
+	icon_state = "dome"
+	name = "Dome"
+	default_color = "#FFFFFF"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/topscars_1
+	icon_state = "topscars_1"
+	name = "Top Scar Variant 1"
+	affected_bodyparts = CHEST
+	default_color = "#FFFFFF"
+	gendered = FALSE
+
+/datum/body_marking/bubber/topscars_2
+	icon_state = "topscars_2"
+	name = "Top Scar Variant 2"
+	affected_bodyparts = CHEST
+	default_color = "#FFFFFF"
+	gendered = FALSE
+
+/datum/body_marking/bubber/talleyes
+	icon_state = "talleyes"
+	name = "Tall Eyes"
+	default_color = "#FFFFFF"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/wideeyes
+	icon_state = "wideeyes"
+	name = "Wide Eyes"
+	default_color = "#FFFFFF"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/angledeyes
+	icon_state = "angledeyes"
+	name = "Angled Eyes"
+	default_color = "#FFFFFF"
+	affected_bodyparts = HEAD
+
+/datum/body_marking/bubber/protogenlegs // Sprites by CandleJaxx on NovaSector
+	name = "Protogen Leg - Digitigrade"
+	icon_state = "protogen"
+	affected_bodyparts = LEG_RIGHT | LEG_LEFT
+
+/datum/body_marking/bubber/protogenarms
+	name = "Protogen Arm"
+	icon_state = "protogen"
+	affected_bodyparts = ARM_RIGHT | ARM_LEFT
+
+/datum/body_marking/bubber/protogenchest
+	name = "Protogen Chest"
+	icon_state = "protogen"
+	affected_bodyparts = CHEST
+
+/datum/body_marking/bubber/protogencrotch // Sprite by xPokee
+	name = "Protogen Crotch Plate"
+	icon_state = "protogen_c"
+	affected_bodyparts = CHEST
+
+/datum/body_marking/bubber/skintone
+	name = "Human Skintone"
+	icon_state = "skintone"
+	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
+
+/datum/body_marking/bubber/cryptid  /// Sprite by Maggotbait of Splurt
+	name = "Cryptid Ribs"
+	icon_state = "cryptid"
+	default_color = DEFAULT_SECONDARY
+	affected_bodyparts = CHEST
+
+/datum/body_marking/bubber/cryptidfluff /// Sprite by Maggotbait of Splurt
+	name = "Cryptid Fur"
+	icon_state = "cryptid_marking"
+	default_color = DEFAULT_SECONDARY
+	affected_bodyparts = CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT
+
+/datum/body_marking/bubber/chitinarmor
+	name = "Chitin Forearm Armor"
+	icon_state = "chitinarmor"
+	affected_bodyparts = HAND_RIGHT | HAND_LEFT
+
+/datum/body_marking/bubber/shoulderpads
+	name = "Chitin Shoulderpad"
+	icon_state = "shoulderpad"
+	affected_bodyparts = ARM_RIGHT | ARM_LEFT
+
+/datum/body_marking/bubber/chemlight
+	name = "Chemlight"
+	icon_state = "chemlight"
+	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
+
+/datum/body_marking/bubber/chembright
+	name = "Chembright"
+	icon_state = "chem_light"
+	affected_bodyparts = ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
+
+/datum/body_marking/bubber/bellytrim
+	name = "Belly trim"
+	icon_state = "chembelly_trim"
+	affected_bodyparts = CHEST
+
+/// Eastern Dragon
+/datum/body_marking_set/easternd
+	name = "Eastern Dragon"
+	body_marking_list = list("Eastern Dragon", "Eastern Dragon 2")
+
+/datum/body_marking/bubber/easternd
+	name = "Eastern Dragon"
+	icon_state = "easternd"
+	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
+
+/datum/body_marking/bubber/easternd2
+	name = "Eastern Dragon 2"
+	icon_state = "easternd2"
+	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT
+
+/datum/body_marking_set/zombie
+	name = "Zombie"
+	body_marking_list = list("Zombie")
+
+/datum/body_marking/bubber/zombie
+	name = "Zombie"
+	icon_state = "zombie"
+	affected_bodyparts = HEAD | CHEST | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_RIGHT | LEG_LEFT

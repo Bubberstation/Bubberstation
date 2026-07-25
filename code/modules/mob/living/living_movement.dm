@@ -23,7 +23,7 @@
 	var/area/old_area = old_turf.loc
 	var/area/new_area = new_turf.loc
 	// If the area gravity has changed, then it's possible that our state has changed, so update
-	if(old_area.has_gravity != new_area.has_gravity)
+	if(old_area.default_gravity != new_area.default_gravity)
 		refresh_gravity()
 
 /mob/living/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
@@ -46,7 +46,7 @@
 		return
 
 	update_gravity(gravity_state)
-
+	SEND_SIGNAL(src, COMSIG_LIVING_GRAVITY_CHANGED, gravity_state, old_grav_state)
 	if(gravity_state > STANDARD_GRAVITY)
 		gravity_animate()
 	else if(old_grav_state > STANDARD_GRAVITY)
@@ -73,7 +73,12 @@
 	return ..()
 
 /mob/living/proc/update_move_intent_slowdown()
-	add_movespeed_modifier((move_intent == MOVE_INTENT_WALK)? /datum/movespeed_modifier/config_walk_run/walk : /datum/movespeed_modifier/config_walk_run/run)
+	add_movespeed_modifier(get_move_intent_slowdown())
+
+/mob/living/proc/get_move_intent_slowdown()
+	if(move_intent == MOVE_INTENT_WALK)
+		return /datum/movespeed_modifier/config_walk_run/walk
+	return /datum/movespeed_modifier/config_walk_run/run
 
 /mob/living/proc/update_turf_movespeed(turf/open/turf)
 	if(isopenturf(turf) && !HAS_TRAIT(turf, TRAIT_TURF_IGNORE_SLOWDOWN))
@@ -95,6 +100,19 @@
 				add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/bulky_drag, multiplicative_slowdown = PULL_OVERSIZED_SLOWDOWN)
 				return
 			//SKYRAT EDIT END
+
+			//BUBBER EDIT
+			//Handles extra slowdown if the person has certain clothing traits. If someone can do this more modularily, be my guest.
+			if(HAS_TRAIT(L, TRAIT_BIG_CLOTHES))
+				add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/bulky_drag, multiplicative_slowdown = PULL_BIG_CLOTHES_SLOWDOWN)
+				return
+			if(HAS_TRAIT(L, TRAIT_BULKY_CLOTHES))
+				add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/bulky_drag, multiplicative_slowdown = PULL_BULKY_CLOTHES_SLOWDOWN)
+				return
+			if(HAS_TRAIT(L, TRAIT_HUGE_CLOTHES))
+				add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/bulky_drag, multiplicative_slowdown = PULL_HUGE_CLOTHES_SLOWDOWN)
+				return
+			//BUBBER EDIT END
 			if(!slowed_by_drag || L.body_position == STANDING_UP || L.buckled || grab_state >= GRAB_AGGRESSIVE)
 				remove_movespeed_modifier(/datum/movespeed_modifier/bulky_drag)
 				return

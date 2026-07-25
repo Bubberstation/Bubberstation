@@ -7,4 +7,4 @@
 	max_matter = 220
 	matter = 220
 	delay_mod = 1.3
-	upgrade = RCD_UPGRADE_FRAMES | RCD_UPGRADE_SIMPLE_CIRCUITS
+	construction_upgrades = RCD_UPGRADE_FRAMES | RCD_UPGRADE_SIMPLE_CIRCUITS

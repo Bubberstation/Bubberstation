@@ -28,6 +28,7 @@
 		"Colonist",
 		"Contractor",
 		"Civilian",
+		"Duchess",
 		"Duke",
 		"Diplomat",
 		"Entertainer",
@@ -54,6 +55,7 @@
 		"Firefighter",
 		"Life Support Technician",
 		"HVAC Engineer",
+		"Habitability Technician",
 	)
 
 /datum/job/barber
@@ -93,7 +95,9 @@
 		"Blueshield",
 		"Command Bodyguard",
 		"Executive Protection Agent",
+		"Command Security Specialist",
 		"Command Protection Officer",
+		"Henchman",
 	)
 
 /datum/job/botanist
@@ -134,6 +138,7 @@
 		"Site Manager",
 		"Station Commander",
 		"Facility Director",
+		"Chief Executive Officer",
 	)
 
 /datum/job/cargo_technician
@@ -152,6 +157,7 @@
 		"Postwoman",
 		"Receiving Clerk",
 		"Union Associate",
+		"Crate Pusher",
 	)
 
 /datum/job/chaplain
@@ -192,6 +198,7 @@
 		"Head Crystallomancer",
 		"Engineering Foreman",
 		"Head of Engineering",
+		"Chief Technical Officer",
 	)
 
 /datum/job/chief_medical_officer
@@ -209,6 +216,7 @@
 		"Comedian",
 		"Jester",
 		"Joker",
+		"Prankster",
 	)
 
 /datum/job/cook
@@ -263,6 +271,7 @@
 		"Cyborg",
 		"Android",
 		"Robot",
+		"Synthetic",
 	)
 
 /datum/job/detective
@@ -272,6 +281,8 @@
 		"Forensic Technician",
 		"Private Investigator",
 		"CID Officer",
+		"Criminal Investigator",
+		"Gumshoe",
 	)
 
 /datum/job/doctor
@@ -289,17 +300,14 @@
 		"Junior Pathologist",
 	)
 
-/datum/job/engineering_guard //see orderly
-	alt_titles = list(
-		"Engineering Guard",
-	)
-
 /datum/job/geneticist
 	alt_titles = list(
 		"Geneticist",
 		"Genemancer",
 		"Gene Tailor",
 		"Mutation Researcher",
+		"Genetics Researcher",
+		"Genetic Engineer",
 	)
 
 /datum/job/head_of_personnel
@@ -318,7 +326,9 @@
 		"Chief Constable",
 		"Chief of Security",
 		"Security Commander",
+		"Chief Security Officer",
 		"Sheriff",
+		"Security Commissioner",
 	)
 
 /datum/job/janitor
@@ -329,7 +339,6 @@
 		"Custodian",
 		"Groundskeeper",
 		"Maid",
-		"Maintenance Technician",
 		"Sanitation Technician",
 	)
 
@@ -359,14 +368,13 @@
 		"Nanotrasen Advisor",
 		"Nanotrasen Diplomat",
 		"Nanotrasen Representative",
-		"Nanotrasen Liason",
-		"Central Command Consultant",
-		"Central Command Advisor",
-		"Central Command Diplomat",
-		"Central Command Representative",
-		"Central Command Liason",
-		"Corporate Liason",
-		"Corporate Consultant",
+		"Nanotrasen Liaison",
+		"Command Consultant",
+		"Command Advisor",
+		"Corporate Diplomat",
+		"Corporate Representative",
+		"Corporate Liaison",
+		"Corporate Interest Officer",
 	)
 
 /datum/job/orderly
@@ -398,6 +406,9 @@
 		"Counsellor",
 		"Psychiatrist",
 		"Therapist",
+		"Shrink",
+		"Anger Management",
+		"Emotional Support Animal",
 	)
 
 /datum/job/quartermaster
@@ -491,6 +502,7 @@
 		"EVA Technician",
 		"Mechanic",
 		"Apprentice Engineer",
+		"Repairs Technician",
 	)
 
 /datum/job/telecomms_specialist

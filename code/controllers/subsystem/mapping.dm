@@ -1,6 +1,10 @@
 SUBSYSTEM_DEF(mapping)
 	name = "Mapping"
-	init_order = INIT_ORDER_MAPPING
+	dependencies = list(
+		/datum/controller/subsystem/job,
+		/datum/controller/subsystem/processing/station,
+		/datum/controller/subsystem/processing/reagents,
+	)
 	runlevels = ALL
 
 	var/list/nuke_tiles = list()
@@ -12,6 +16,9 @@ SUBSYSTEM_DEF(mapping)
 	var/list/map_templates = list()
 
 	var/list/ruins_templates = list()
+
+	///Assoc list of all ruins spawned, key center of ruin spawn -> value ruin instance
+	var/list/active_ruins = alist()
 
 	///List of ruins, separated by their theme
 	var/list/themed_ruins = list()
@@ -128,10 +135,19 @@ SUBSYSTEM_DEF(mapping)
 	while (space_levels_so_far < current_map.space_ruin_levels)
 		add_new_zlevel("Ruin Area [space_levels_so_far+1]", ZTRAITS_SPACE)
 		++space_levels_so_far
+
 	// Create empty space levels
 	while (space_levels_so_far < current_map.space_empty_levels + current_map.space_ruin_levels)
 		empty_space = add_new_zlevel("Empty Area [space_levels_so_far+1]", list(ZTRAIT_LINKAGE = CROSSLINKED))
 		++space_levels_so_far
+
+	if(current_map.wilderness_levels)
+		var/list/FailedZs = list()
+
+		LoadGroup(FailedZs, "Wilderness Area", current_map.wilderness_directory, current_map.wilderness_maps_to_spawn, default_traits = current_map.wilderness_z_traits, height_autosetup = FALSE)
+
+		if(LAZYLEN(FailedZs))
+			CRASH("Ice wilds failed to load!")
 
 	// Pick a random away mission.
 	if(CONFIG_GET(flag/roundstart_away))
@@ -143,8 +159,8 @@ SUBSYSTEM_DEF(mapping)
 	loading_ruins = TRUE
 	setup_ruins()
 	loading_ruins = FALSE
-
 #endif
+
 	// Run map generation after ruin generation to prevent issues
 	run_map_terrain_generation()
 	// Generate our rivers, we do this here so the map doesn't load on top of them
@@ -233,7 +249,6 @@ SUBSYSTEM_DEF(mapping)
 	gravity_by_z_level[z_level_number] = max_gravity
 	return max_gravity
 
-
 /**
  * ##setup_ruins
  *
@@ -243,23 +258,23 @@ SUBSYSTEM_DEF(mapping)
 	// Generate mining ruins
 	var/list/lava_ruins = levels_by_trait(ZTRAIT_LAVA_RUINS)
 	if (lava_ruins.len)
-		seedRuins(lava_ruins, CONFIG_GET(number/lavaland_budget), list(/area/lavaland/surface/outdoors/unexplored), themed_ruins[ZTRAIT_LAVA_RUINS], clear_below = TRUE, mineral_budget = 15, mineral_budget_update = OREGEN_PRESET_LAVALAND)
+		seedRuins(lava_ruins, CONFIG_GET(number/lavaland_budget), list(/area/lavaland/surface/outdoors/unexplored), themed_ruins[ZTRAIT_LAVA_RUINS], clear_below = TRUE, mineral_budget = 15, mineral_budget_update = OREGEN_PRESET_LAVALAND, ruins_type = ZTRAIT_LAVA_RUINS)
 
 	var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
 	if (ice_ruins.len)
 		// needs to be whitelisted for underground too so place_below ruins work
-		seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), list(/area/icemoon/surface/outdoors/unexplored, /area/icemoon/underground/unexplored), themed_ruins[ZTRAIT_ICE_RUINS], clear_below = TRUE, mineral_budget = 4, mineral_budget_update = OREGEN_PRESET_TRIPLE_Z)
+		seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), list(/area/icemoon/surface/outdoors/unexplored, /area/icemoon/underground/unexplored), themed_ruins[ZTRAIT_ICE_RUINS], clear_below = TRUE, mineral_budget = 4, mineral_budget_update = OREGEN_PRESET_TRIPLE_Z, ruins_type = ZTRAIT_ICE_RUINS)
 
 	var/list/ice_ruins_underground = levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND)
 	if (ice_ruins_underground.len)
-		seedRuins(ice_ruins_underground, CONFIG_GET(number/icemoon_budget), list(/area/icemoon/underground/unexplored), themed_ruins[ZTRAIT_ICE_RUINS_UNDERGROUND], clear_below = TRUE, mineral_budget = 21)
+		seedRuins(ice_ruins_underground, CONFIG_GET(number/icemoon_budget), list(/area/icemoon/underground/unexplored), themed_ruins[ZTRAIT_ICE_RUINS_UNDERGROUND], clear_below = TRUE, mineral_budget = 21, ruins_type = ZTRAIT_ICE_RUINS_UNDERGROUND)
 
 	// Generate deep space ruins
 	var/list/space_ruins = levels_by_trait(ZTRAIT_SPACE_RUINS)
 	if (space_ruins.len)
 		// Create a proportional budget by multiplying the amount of space ruin levels in the current map over the default amount
 		var/proportional_budget = round(CONFIG_GET(number/space_budget) * (space_ruins.len / DEFAULT_SPACE_RUIN_LEVELS))
-		seedRuins(space_ruins, proportional_budget, list(/area/space), themed_ruins[ZTRAIT_SPACE_RUINS], mineral_budget = 0)
+		seedRuins(space_ruins, proportional_budget, list(/area/space), themed_ruins[ZTRAIT_SPACE_RUINS], mineral_budget = 0, ruins_type = ZTRAIT_SPACE_RUINS)
 
 /// Sets up rivers, and things that behave like rivers. So lava/plasma rivers, and chasms
 /// It is important that this happens AFTER generating mineral walls and such, since we rely on them for river logic
@@ -267,12 +282,11 @@ SUBSYSTEM_DEF(mapping)
 	// Generate mining ruins
 	var/list/lava_ruins = levels_by_trait(ZTRAIT_LAVA_RUINS)
 	for (var/lava_z in lava_ruins)
-		spawn_rivers(lava_z, 4, /turf/open/lava/smooth/lava_land_surface, /area/lavaland/surface/outdoors/unexplored)
+		spawn_rivers(lava_z, 3, /turf/open/lava/smooth/lava_land_surface, /area/lavaland/surface/outdoors/unexplored) // +1 from the mapped in waypoint
 
 	var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
 	for (var/ice_z in ice_ruins)
-		var/river_type = HAS_TRAIT(SSstation, STATION_TRAIT_FORESTED) ? /turf/open/lava/plasma/ice_moon : /turf/open/openspace/icemoon
-		spawn_rivers(ice_z, 4, river_type, /area/icemoon/surface/outdoors/unexplored/rivers)
+		spawn_rivers(ice_z, 6, /turf/open/lava/plasma/ice_moon, /area/icemoon/surface/outdoors/unexplored/rivers)
 
 	var/list/ice_ruins_underground = levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND)
 	for (var/ice_z in ice_ruins_underground)
@@ -340,7 +354,7 @@ Used by the AI doomsday and the self-destruct nuke.
 
 
 /datum/controller/subsystem/mapping/Recover()
-	flags |= SS_NO_INIT
+	ss_flags |= SS_NO_INIT
 	initialized = SSmapping.initialized
 	map_templates = SSmapping.map_templates
 	ruins_templates = SSmapping.ruins_templates
@@ -363,8 +377,8 @@ Used by the AI doomsday and the self-destruct nuke.
 	multiz_levels = SSmapping.multiz_levels
 	loaded_lazy_templates = SSmapping.loaded_lazy_templates
 
-#define INIT_ANNOUNCE(X) to_chat(world, span_boldannounce("[X]")); log_world(X)
-/datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE)
+#define INIT_ANNOUNCE(X) to_chat(world, span_boldannounce("[X]"), MESSAGE_TYPE_DEBUG); log_world(X)
+/datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE, height_autosetup = TRUE)
 	. = list()
 	var/start_time = REALTIMEOFDAY
 
@@ -394,7 +408,7 @@ Used by the AI doomsday and the self-destruct nuke.
 		while (total_z > traits.len)  // fall back to defaults on extra levels
 			traits += list(default_traits.Copy())
 
-	if(total_z > 1) // it's a multi z map
+	if(total_z > 1 && height_autosetup) // it's a multi z map, and we haven't opted out of trait autosetup
 		for(var/z in 1 to total_z)
 			if(z == 1) // bottom z-level
 				traits[z]["Up"] = TRUE
@@ -440,8 +454,8 @@ Used by the AI doomsday and the self-destruct nuke.
 
 	// load the station
 	station_start = world.maxz + 1
-	add_startup_message("Loading [current_map.map_name]...") // SKYRAT EDIT CHANGE
-	LoadGroup(FailedZs, "Station", current_map.map_path, current_map.map_file, current_map.traits, ZTRAITS_STATION)
+	INIT_ANNOUNCE("Loading [current_map.map_name]...")
+	LoadGroup(FailedZs, "Station", current_map.map_path, current_map.map_file, current_map.traits, ZTRAITS_STATION, height_autosetup = current_map.height_autosetup)
 
 	if(SSdbcore.Connect())
 		var/datum/db_query/query_round_map_name = SSdbcore.NewQuery({"
@@ -452,9 +466,9 @@ Used by the AI doomsday and the self-destruct nuke.
 
 #ifndef LOWMEMORYMODE
 
-	if(current_map.minetype == "lavaland")
+	if(current_map.minetype == MINETYPE_LAVALAND)
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
-	else if (!isnull(current_map.minetype) && current_map.minetype != "none")
+	else if (!isnull(current_map.minetype) && current_map.minetype != MINETYPE_NONE && current_map.minetype != MINETYPE_ICE)
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[current_map.minetype]' was set! This is being ignored! Update the maploader code!")
 #endif
 
@@ -483,7 +497,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 /// Generates the global station area list, filling it with typepaths of unique areas found on the station Z.
 /datum/controller/subsystem/mapping/proc/generate_station_area_list()
 	for(var/area/station/station_area in GLOB.areas)
-		if (!(station_area.area_flags & UNIQUE_AREA))
+		if (!(station_area.area_flags_mapping & UNIQUE_AREA))
 			continue
 		if (is_station_level(station_area.z))
 			GLOB.the_station_areas += station_area.type
@@ -515,7 +529,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 /datum/controller/subsystem/mapping/proc/preloadRuinTemplates()
 	// Still supporting bans by filename
 	var/list/banned = generateMapList("spaceruinblacklist.txt")
-	if(current_map.minetype == "lavaland")
+	if(current_map.minetype == MINETYPE_LAVALAND)
 		banned += generateMapList("lavaruinblacklist.txt")
 	else if(current_map.blacklist_file)
 		banned += generateMapList(current_map.blacklist_file)
@@ -589,13 +603,13 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 			if(!mapfile)
 				return
 			away_name = "[mapfile] custom"
-			to_chat(user,span_notice("Loading [away_name]..."))
+			to_chat(user, span_notice("Loading [away_name]..."), MESSAGE_TYPE_DEBUG)
 			var/datum/map_template/template = new(mapfile, "Away Mission")
 			away_level = template.load_new_z(secret)
 		else
 			if(answer in GLOB.potentialRandomZlevels)
 				away_name = answer
-				to_chat(user,span_notice("Loading [away_name]..."))
+				to_chat(user, span_notice("Loading [away_name]..."), MESSAGE_TYPE_DEBUG)
 				var/datum/map_template/template = new(away_name, "Away Mission")
 				away_level = template.load_new_z(secret)
 			else
@@ -653,10 +667,11 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	if(!level_trait(z,ZTRAIT_RESERVED))
 		clearing_reserved_turfs = FALSE
 		CRASH("Invalid z level prepared for reservations.")
-	var/turf/A = get_turf(locate(SHUTTLE_TRANSIT_BORDER,SHUTTLE_TRANSIT_BORDER,z))
-	var/turf/B = get_turf(locate(world.maxx - SHUTTLE_TRANSIT_BORDER,world.maxy - SHUTTLE_TRANSIT_BORDER,z))
-	var/block = block(A, B)
-	for(var/turf/T as anything in block)
+	var/list/reserved_block = block(
+		SHUTTLE_TRANSIT_BORDER, SHUTTLE_TRANSIT_BORDER, z,
+		world.maxx - SHUTTLE_TRANSIT_BORDER, world.maxy - SHUTTLE_TRANSIT_BORDER, z
+	)
+	for(var/turf/T as anything in reserved_block)
 		// No need to empty() these, because they just got created and are already /turf/open/space/basic.
 		T.turf_flags = UNUSED_RESERVATION_TURF
 		T.blocks_air = TRUE
@@ -666,7 +681,7 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	if(SSatoms.initialized)
 		SSatoms.InitializeAtoms(Z_TURFS(z))
 
-	unused_turfs["[z]"] = block
+	unused_turfs["[z]"] = reserved_block
 	reservation_ready["[z]"] = TRUE
 	clearing_reserved_turfs = FALSE
 
@@ -740,11 +755,6 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	if(contain_turfs)
 		build_area_turfs(z_value, filled_with_space)
 
-	// And finally, misc global generation
-
-	// We'll have to update this if offsets change, because we load lowest z to highest z
-	generate_lighting_appearance_by_z(z_value)
-
 /datum/controller/subsystem/mapping/proc/build_area_turfs(z_level, space_guaranteed)
 	// If we know this is filled with default tiles, we can use the default area
 	// Faster
@@ -780,11 +790,6 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	for(var/datum/space_level/level_to_update in levels_checked)
 		z_level_to_lowest_plane_offset[level_to_update.z_value] = plane_offset
 		z_level_to_stack[level_to_update.z_value] = z_stack
-
-	// This can be affected by offsets, so we need to update it
-	// PAIN
-	for(var/i in 1 to length(z_list))
-		generate_lighting_appearance_by_z(i)
 
 	var/old_max = max_plane_offset
 	max_plane_offset = max(max_plane_offset, plane_offset)
@@ -871,11 +876,6 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 		CRASH("Attempted to lazy load a template key that does not exist: '[template_key]'")
 	return target.lazy_load()
 
-/proc/generate_lighting_appearance_by_z(z_level)
-	if(length(GLOB.default_lighting_underlays_by_z) < z_level)
-		GLOB.default_lighting_underlays_by_z.len = z_level
-	GLOB.default_lighting_underlays_by_z[z_level] = mutable_appearance(LIGHTING_ICON, "transparent", z_level * 0.01, null, LIGHTING_PLANE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM, offset_const = GET_Z_PLANE_OFFSET(z_level))
-
 /// Returns true if the map we're playing on is on a planet
 /datum/controller/subsystem/mapping/proc/is_planetary()
 	return current_map.planetary
@@ -907,7 +907,7 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	else
 		start_time = REALTIMEOFDAY
 		var/beginning_message = "Loading all away missions..."
-		to_chat(world, span_boldannounce(beginning_message))
+		to_chat(world, span_boldannounce(beginning_message), MESSAGE_TYPE_DEBUG)
 		log_world(beginning_message)
 		log_mapping(beginning_message)
 
@@ -925,7 +925,7 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	if(!isnull(start_time))
 		var/tracked_time = (REALTIMEOFDAY - start_time) / 10
 		var/finished_message = "Loaded [number_of_away_missions] away missions in [tracked_time] second[tracked_time == 1 ? "" : "s"]!"
-		to_chat(world, span_boldannounce(finished_message))
+		to_chat(world, span_boldannounce(finished_message), MESSAGE_TYPE_DEBUG)
 		log_world(finished_message)
 		log_mapping(finished_message)
 
@@ -953,3 +953,14 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	var/number_of_remaining_levels = length(checkable_levels)
 	if(number_of_remaining_levels > 0)
 		CRASH("The following [number_of_remaining_levels] away mission(s) were not loaded: [checkable_levels.Join("\n")]")
+
+///Returns the map name, with an openlink action tied to it (if one exists) for the map.
+/datum/map_config/proc/return_map_name(webmap_included)
+	var/text
+	if(feedback_link)
+		text = "<a href='byond://?action=openLink&link=[url_encode(feedback_link)]'>[map_name]</a>"
+	else
+		text = map_name
+	if(webmap_included && !isnull(SSmapping.current_map.mapping_url))
+		text += " | <a href='byond://?action=openWebMap'>(Show Map)</a>"
+	return text

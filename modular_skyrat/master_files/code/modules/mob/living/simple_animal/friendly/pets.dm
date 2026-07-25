@@ -12,8 +12,8 @@
 	unsuitable_atmos_damage = 0.5
 	butcher_results = list(
 		/obj/item/food/meat/slab = 1,
-		/obj/item/organ/internal/ears/cat = 1,
-		/obj/item/organ/external/tail/cat = 1,
+		/obj/item/organ/ears/cat = 1,
+		/obj/item/organ/tail/cat = 1,
 		/obj/item/clothing/mask/gas/clown_hat = 1,
 
 	)
@@ -48,8 +48,9 @@
 		"honk!",
 		"mrow!",
 		"henk!",
-	emote_see = list("plays tricks.", "slips.", "honks a tiny horn.")
 	)
+	emote_see = list("plays tricks.", "slips.", "honks a tiny horn.")
+
 
 /mob/living/basic/pet/cat/mime
 	name = "mime cat"
@@ -66,8 +67,8 @@
 	unsuitable_atmos_damage = 0.5
 	butcher_results = list(
 		/obj/item/food/meat/slab = 1,
-		/obj/item/organ/internal/ears/cat = 1,
-		/obj/item/organ/external/tail/cat = 1,
+		/obj/item/organ/ears/cat = 1,
+		/obj/item/organ/tail/cat = 1,
 		/obj/item/clothing/mask/gas/mime = 1,
 	)
 
@@ -81,8 +82,9 @@
 	speak = list(
 		"...",
 		"....",
-	emote_see = list("cowers in fear.", "surrenders.", "plays dead.","looks as though there is a tiny cat shaped wall in front of them.")
 	)
+	emote_see = list("cowers in fear.", "surrenders.", "plays dead.","looks as though there is a tiny cat shaped wall in front of them.")
+
 
 /mob/living/basic/pet/cat/tiger
 	name = "tiger cat"
@@ -99,8 +101,8 @@
 	unsuitable_atmos_damage = 0.5
 	butcher_results = list(
 		/obj/item/food/meat/slab = 1,
-		/obj/item/organ/internal/ears/cat = 1,
-		/obj/item/organ/external/tail/cat = 1,
+		/obj/item/organ/ears/cat = 1,
+		/obj/item/organ/tail/cat = 1,
 		/obj/item/clothing/head/pelt/tiger = 1,
 	)
 

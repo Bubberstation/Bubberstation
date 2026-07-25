@@ -84,6 +84,7 @@
 		switch(unclaim_response)
 			if("Yes")
 				unbolt(user)
+	return CLICK_ACTION_SUCCESS
 /*
 /obj/structure/bloodsucker/bloodaltar
 	name = "bloody altar"
@@ -123,6 +124,11 @@
 	hunter_desc = "This is the ghoul rack, which monsters use to brainwash crewmembers into their loyal slaves.\n\
 		They usually ensure that victims are handcuffed, to prevent them from running away.\n\
 		Their rituals take time, allowing us to disrupt it."
+	custom_materials = list(
+		/datum/material/wood = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.3,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 3,
+	)
 
 	/// Resets on each new character to be added to the chair. Some effects should lower it...
 	var/convert_progress = 3
@@ -186,6 +192,7 @@
 			unbuckle_mob(buckled_carbons)
 		else
 			user_unbuckle_mob(buckled_carbons, user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /**
  * Attempts to buckle target into the ghoulrack
@@ -330,8 +337,8 @@
 		return
 	// Convert to Ghoul!
 	bloodsuckerdatum.AdjustBloodVolume(-TORTURE_CONVERSION_COST)
+	remove_loyalties(target)
 	if(bloodsuckerdatum.make_ghoul(target))
-		remove_loyalties(target)
 		SEND_SIGNAL(bloodsuckerdatum, COMSIG_BLOODSUCKER_MADE_GHOUL, user, target)
 
 /obj/structure/bloodsucker/ghoulrack/proc/do_torture(mob/living/user, mob/living/carbon/target, mult = 1)
@@ -377,7 +384,7 @@
 	target.apply_damages(brute = torture_dmg_brute, burn = torture_dmg_burn, def_zone = selected_bodypart.body_zone)
 	return TRUE
 
-/// Offer them the oppertunity to join now.
+/// Offer them the opportunity to join now.
 /obj/structure/bloodsucker/ghoulrack/proc/do_disloyalty(mob/living/user, mob/living/target)
 	if(disloyalty_offered)
 		return FALSE
@@ -398,8 +405,13 @@
 	switch(alert_response)
 		if("Accept")
 			disloyalty_confirm = TRUE
+			target.visible_message(
+				span_notice("[target] gives in to [user]'s offer of servitude!"),
+				span_userdanger("You give in to [user]'s offer of servitude!"))
 		else
-			target.balloon_alert_to_viewers("stares defiantly", "refused ghouling!")
+			target.visible_message(
+				span_danger("[target] stares defiantly at [user], refusing to give in!"),
+				span_danger("You stare defiantly at [user], refusing to give in!"))
 	disloyalty_offered = FALSE
 	return TRUE
 
@@ -444,6 +456,7 @@
 		You can turn it on and off by clicking on it while you are next to it.\n\
 		If your Master is part of the Ventrue Clan, they utilize this to upgrade their Favorite Ghoul."
 	hunter_desc = "This is a blue Candelabrum, which causes insanity to those near it while active."
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3.5)
 	var/lit = FALSE
 
 /obj/structure/bloodsucker/candelabrum/Destroy()
@@ -470,11 +483,25 @@
 	. = ..()
 	if(!.)
 		return
-	if(anchored && (IS_GHOUL(user) || IS_BLOODSUCKER(user)))
+	if(IS_GHOUL(user) || IS_BLOODSUCKER(user))
 		toggle()
 	return ..()
 
+/obj/structure/bloodsucker/candelabrum/Click(location, control, params)
+	. = ..()
+	var/mob/user = usr
+	var/list/modifiers = params2list(params)
+	if(!LAZYACCESS(modifiers, RIGHT_CLICK) || !IS_BLOODSUCKER(user) || !istype(user))
+		return
+	if(user.stat >= UNCONSCIOUS)
+		return
+	user.balloon_alert_to_viewers("motions their hand at [src]")
+	toggle(user)
+
 /obj/structure/bloodsucker/candelabrum/proc/toggle(mob/user)
+	if(!anchored)
+		to_chat(user, span_danger("You can't turn this on while it is not secured!"))
+		return
 	lit = !lit
 	if(lit)
 		desc = initial(desc)
@@ -485,6 +512,7 @@
 		set_light(0)
 		STOP_PROCESSING(SSobj, src)
 	update_icon()
+
 
 /obj/structure/bloodsucker/candelabrum/process()
 	if(!lit)
@@ -511,11 +539,12 @@
 	ghoul_desc = "This is a blood throne, it allows your Master to telepathically speak to you and others like you."
 	hunter_desc = "This is a chair that hurts those that try to buckle themselves onto it, though the Undead have no problem latching on.\n\
 		While buckled, Monsters can use this to telepathically communicate with eachother."
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/wood = SHEET_MATERIAL_AMOUNT)
 	var/mutable_appearance/armrest
 
 // Add rotating and armrest
-/obj/structure/bloodsucker/bloodthrone/Initialize()
-	AddComponent(/datum/component/simple_rotation)
+/obj/structure/bloodsucker/bloodthrone/Initialize(mapload)
+	AddElement(/datum/element/simple_rotation)
 	armrest = GetArmrest()
 	armrest.layer = ABOVE_MOB_LAYER
 	return ..()

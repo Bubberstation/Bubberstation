@@ -1,4 +1,3 @@
-import { useBackend } from '../backend';
 import {
   Button,
   Image,
@@ -7,7 +6,9 @@ import {
   Section,
   Stack,
   TextArea,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
@@ -32,7 +33,7 @@ export const LTSRBT = (props) => {
               width="80%"
               value={name}
               placeholder="Insert a name"
-              onChange={(e, value) =>
+              onBlur={(value) =>
                 act('change_name', {
                   value: value,
                 })
@@ -68,10 +69,11 @@ export const LTSRBT = (props) => {
           <Stack.Divider />
           <Stack.Item grow>
             <TextArea
-              height="90%"
+              height="100%"
+              fluid
               value={desc}
               placeholder="Insert a description (or don't)"
-              onChange={(e, value) =>
+              onBlur={(value) =>
                 act('change_desc', {
                   value: value,
                 })

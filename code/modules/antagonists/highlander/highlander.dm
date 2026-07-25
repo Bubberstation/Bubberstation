@@ -5,15 +5,16 @@
 	show_name_in_check_antagonists = TRUE
 	can_elimination_hijack = ELIMINATION_ENABLED
 	suicide_cry = "FOR SCOTLAND!!" // If they manage to lose their no-drop stuff somehow
-	count_against_dynamic_roll_chance = FALSE
+	antag_flags = ANTAG_FAKE|ANTAG_SKIP_GLOBAL_LIST
+	desensitized_modifier = DESENSITIZED_THRESHOLD * 0.2
 	/// Traits we apply/remove to our target on-demand.
 	var/static/list/applicable_traits = list(
 		TRAIT_NOBREATH,
 		TRAIT_NODISMEMBER,
 		TRAIT_NOFIRE,
 		TRAIT_NOGUNS,
-		TRAIT_TOSS_GUN_HARD,
 		TRAIT_SHOCKIMMUNE,
+		TRAIT_TOSS_GUN_HARD,
 	)
 
 /datum/antagonist/highlander/apply_innate_effects(mob/living/mob_override)
@@ -38,12 +39,11 @@
 
 /datum/antagonist/highlander/on_gain()
 	forge_objectives()
-	owner.special_role = "highlander"
 	give_equipment()
 	. = ..()
 
 /datum/antagonist/highlander/greet()
-	to_chat(owner, span_boldannounce("Your [sword.name] cries out for blood. Claim the lives of others, and your own will be restored!\n\
+	to_chat(owner, span_bolddanger("Your [sword.name] cries out for blood. Claim the lives of others, and your own will be restored!\n\
 	Activate it in your hand, and it will lead to the nearest target. Attack the nuclear authentication disk with it, and you will store it."))
 
 	owner.announce_objectives()
@@ -88,7 +88,7 @@
 	name = "\improper highlander"
 
 /datum/antagonist/highlander/robot/greet()
-	to_chat(owner, span_boldannounce("Your integrated claymore cries out for blood. Claim the lives of others, and your own will be restored!\n\
+	to_chat(owner, span_bolddanger("Your integrated claymore cries out for blood. Claim the lives of others, and your own will be restored!\n\
 	Activate it in your hand, and it will lead to the nearest target. Attack the nuclear authentication disk with it, and you will store it."))
 
 /datum/antagonist/highlander/robot/give_equipment()

@@ -2,6 +2,7 @@
 	name = "manufacturing storage unit"
 	desc = "Its basically a box. Receives resources (if anchored). Needs a machine to take stuff out of without dumping everything out."
 	icon_state = "box"
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 	/// how much can we hold
 	var/max_stuff = 16
 
@@ -15,7 +16,7 @@
 	if(iscloset(receiving) && length(receiving.contents))
 		return MANUFACTURING_FAIL
 	if(length(contents - circuit) >= max_stuff && !may_merge_in_contents_and_do_so(receiving))
-		return MANUFACTURING_FAIL_FULL
+		return MANUFACTURING_FAIL
 	receiving.Move(src,receive_dir)
 	return MANUFACTURING_SUCCESS
 

@@ -33,13 +33,13 @@
 		. += new /mutable_appearance(charge_overlay)
 		. += new /mutable_appearance(cell_overlay)
 
-/obj/machinery/cell_charger_multi/attack_hand_secondary(mob/user, list/modifiers)
+/obj/machinery/cell_charger_multi/click_alt(mob/user)
 	if(!can_interact(user) || !charging_batteries.len)
 		return
-	to_chat(user, span_notice("You press the quick release as all the cells pop out!"))
+	to_chat(user, span_notice("You activate the quick release as all the cells pop out!"))
 	for(var/i in charging_batteries)
 		removecell()
-	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/cell_charger_multi/examine(mob/user)
 	. = ..()
@@ -51,7 +51,14 @@
 			. += "There's [charging] cell in the charger, current charge: [round(charging.percent(), 1)]%."
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("The status display reads: Charging power: <b>[display_power(charge_rate, convert = FALSE)]</b> per cell.")
-	. += span_notice("Right click it to remove all the cells at once!")
+	. += span_notice("Alt click it to remove all the cells at once!")
+
+/obj/machinery/cell_charger_multi/screwdriver_act(mob/living/user, obj/item/tool)
+	. = ..()
+	if(length(charging_batteries))
+		to_chat(user, span_warning("[src] must have no cells inside!"))
+		return ITEM_INTERACT_BLOCKING
+	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/cell_charger_multi/attackby(obj/item/tool, mob/user, params)
 	if(istype(tool, /obj/item/stock_parts/power_store/cell) && !panel_open)
@@ -82,8 +89,6 @@
 			user.visible_message(span_notice("[user] inserts a cell into [src]."), span_notice("You insert a cell into [src]."))
 			update_appearance()
 	else
-		if(!charging_batteries.len && default_deconstruction_screwdriver(user, icon_state, icon_state, tool))
-			return
 		if(default_deconstruction_crowbar(tool))
 			return
 		if(!charging_batteries.len && default_unfasten_wrench(user, tool))
@@ -171,6 +176,8 @@
 		for(var/obj/item/stock_parts/power_store/cell/battery in charging_batteries)
 			buttons["[battery.name] ([round(battery.percent(), 1)]%)"] = battery
 		var/cell_name = tgui_input_list(user, "Please choose what cell you'd like to remove.", "Remove a cell", buttons)
+		if(!in_range(loc, user))
+			return FALSE
 		charging = buttons[cell_name]
 	else
 		charging = charging_batteries[1]

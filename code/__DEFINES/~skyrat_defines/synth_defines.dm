@@ -36,3 +36,11 @@
 #define RND_SUBCATEGORY_MECHFAB_ANDROID "/Android"
 #define RND_SUBCATEGORY_MECHFAB_ANDROID_CHASSIS "/Android Chassis"
 #define RND_SUBCATEGORY_MECHFAB_ANDROID_ORGANS "/Android Organs"
+
+/// Surgery defines
+
+/// Helper to figure out if an organ is synthetic
+#define IS_SYNTHETIC_ORGAN(organ) (organ.organ_flags & ORGAN_SYNTHETIC_FROM_SPECIES)
+
+/// Helper to figure out if a limb is synthetic
+#define IS_SYNTHETIC_LIMB(limb) (limb.bodytype & BODYTYPE_SYNTHETIC)

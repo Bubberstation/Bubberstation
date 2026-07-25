@@ -2,9 +2,6 @@
 *	Trimmed and modified copy of ".../machinery/computer/crew.dm"
 *	for the sake of modularity. (Blueshield Monitor Console soon?)
 */
-
-#define SENSORS_UPDATE_PERIOD (10 SECONDS)
-
 GLOBAL_DATUM_INIT(blueshield_crewmonitor, /datum/crewmonitor/blueshield, new)
 
 //list of all Command/CC jobs
@@ -35,6 +32,7 @@ GLOBAL_DATUM_INIT(blueshield_crewmonitor, /datum/crewmonitor/blueshield, new)
 		JOB_ERT_DEATHSQUAD = 227,
 		JOB_NT_REP = 230,
 		JOB_BLUESHIELD = 231,
+		JOB_BRIDGE_ASSISTANT = 232,
 	)
 
 /datum/crewmonitor/blueshield/ui_interact(mob/user, datum/tgui/ui)
@@ -108,10 +106,10 @@ GLOBAL_DATUM_INIT(blueshield_crewmonitor, /datum/crewmonitor/blueshield, new)
 
 			if (sensor_mode >= SENSOR_VITALS)
 				entry += list(
-					"oxydam" = round(tracked_living_mob.getOxyLoss(), 1),
-					"toxdam" = round(tracked_living_mob.getToxLoss(), 1),
-					"burndam" = round(tracked_living_mob.getFireLoss(), 1),
-					"brutedam" = round(tracked_living_mob.getBruteLoss(), 1),
+					"oxydam" = round(tracked_living_mob.get_oxy_loss(), 1),
+					"toxdam" = round(tracked_living_mob.get_tox_loss(), 1),
+					"burndam" = round(tracked_living_mob.get_fire_loss(), 1),
+					"brutedam" = round(tracked_living_mob.get_brute_loss(), 1),
 					"health" = round(tracked_living_mob.health, 1),
 				)
 
@@ -129,5 +127,3 @@ GLOBAL_DATUM_INIT(blueshield_crewmonitor, /datum/crewmonitor/blueshield, new)
 	last_update["[z]"] = world.time
 
 	return results
-
-#undef SENSORS_UPDATE_PERIOD

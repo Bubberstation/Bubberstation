@@ -7,7 +7,7 @@
 	occur_text = "caves in on itself, damaged solder and shrapnel flying out in a miniature explosion"
 	examine_desc = "has caved in, with internal components visible through gaps in the metal"
 	severity = WOUND_SEVERITY_CRITICAL
-
+	treat_text = "Use a rapid construction device."
 	disabling = TRUE
 
 	simple_treat_text = "If on the <b>chest</b>, <b>walk</b>, <b>grasp it</b>, <b>splint</b>, <b>rest</b> or <b>buckle yourself</b> to something to reduce movement effects. \
@@ -105,7 +105,7 @@
 		return FALSE
 
 	if(user.grab_state < GRAB_AGGRESSIVE)
-		to_chat(user, span_warning("You must have [victim] in an aggressive grab to manipulate [victim.p_their()] [lowertext(name)]!"))
+		to_chat(user, span_warning("You must have [victim] in an aggressive grab to manipulate [victim.p_their()] [LOWER_TEXT(name)]!"))
 		return TRUE
 
 	user.visible_message(span_danger("[user] begins softly pressing against [victim]'s collapsed [limb.plaintext_zone]..."), \

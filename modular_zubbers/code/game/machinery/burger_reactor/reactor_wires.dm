@@ -1,6 +1,7 @@
 #define WIRE_VENT_DIRECTION "Vent Direction"
 #define WIRE_VENT_POWER "Vent Power"
 #define WIRE_TAMPER "Tamper"
+#define WIRE_FACTORY_RESET "Factory Reset"
 
 /datum/wires/rbmk2
 	holder_type = /obj/machinery/power/rbmk2
@@ -8,7 +9,6 @@
 
 /datum/wires/rbmk2/New(atom/holder)
 	wires = list(
-		WIRE_OVERCLOCK,
 		WIRE_ACTIVATE,
 		WIRE_THROW,
 		WIRE_VENT_POWER,
@@ -16,7 +16,7 @@
 		WIRE_SAFETY,
 		WIRE_LIMIT,
 		WIRE_POWER,
-		WIRE_TAMPER
+		WIRE_TAMPER,
 	)
 	. = ..()
 
@@ -36,19 +36,24 @@
 	. += "The occupancy light is [M.stored_rod ? "purple" : "off"]."
 	. += "The processing light is [M.active ? "green" : "off"]."
 	. += "The safety light is [M.safety ? "blue" : "flashing red"]."
-	if(M.vent_reverse_direction)
+
+	if(M.auto_vent_upgrade && M.auto_vent)
+		. += "The vent light is [M.venting ? "yellow" : "flashing red"]."
+	else if(M.vent_reverse_direction)
 		. += "The vent light is [M.venting ? "flashing orange and white" : "flashing red"]."
 	else
 		. += "The vent light is [M.venting ? "green" : "flashing red"]."
-	. += "The overclock light is [M.overclocked ? "blinking blue" : "off"]."
-	. += "The cooling limiter display reads [M.cooling_limiter]%"
+
+	. += "The cooling limiter display reads [M.cooling_limiter < M.cooling_limiter_max ? "[M.cooling_limiter]%" : "AUTO"]"
 	. += "The anti-tamper light is [M.tampered ? "flashing red" : "green"]."
 
 /datum/wires/rbmk2/on_pulse(wire)
 	var/obj/machinery/power/rbmk2/M = holder
 	switch(wire)
-		if(WIRE_OVERCLOCK)
-			M.overclocked = !M.overclocked
+		if(WIRE_FACTORY_RESET)
+			M.auto_vent_upgrade = FALSE
+			M.safeties_upgrade = FALSE
+			M.overclocked_upgrade = FALSE
 		if(WIRE_ACTIVATE)
 			M.toggle_active(usr)
 		if(WIRE_THROW)
@@ -72,9 +77,6 @@
 /datum/wires/rbmk2/on_cut(wire, mend, source)
 	var/obj/machinery/power/rbmk2/M = holder
 	switch(wire)
-		if(WIRE_OVERCLOCK)
-			if(mend)
-				M.overclocked = FALSE
 		if(WIRE_ACTIVATE)
 			M.toggle_active(usr,mend)
 		if(WIRE_THROW)
@@ -127,3 +129,4 @@
 #undef WIRE_VENT_DIRECTION
 #undef WIRE_VENT_POWER
 #undef WIRE_TAMPER
+#undef WIRE_FACTORY_RESET

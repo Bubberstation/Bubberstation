@@ -34,8 +34,15 @@
 	var/category = "Misc"
 	/// The list of experiments required to research the node
 	var/list/required_experiments = list()
-	/// If completed, these experiments give a specific point amount discount to the node.area
+	/// If completed, these experiments give a specific point amount discount to the node.
 	var/list/discount_experiments = list()
+	/// Boost quantities from non-experiment sources (i.e., toxins papers).
+	/// Indexed by point type to boost amount (with only one boost per point type).
+	var/list/discount_boosts = list()
+	/// Boolean indicating whether or not this node is boosted by non-experiments.
+	/// This will need to be changed to a list of point types boosted if boosts
+	/// should ever need to vary by point type.
+	var/discount_boosted = FALSE
 	/// When this node is completed, allows these experiments to be performed.
 	var/list/experiments_to_unlock = list()
 	/// Whether or not this node should show on the wiki
@@ -92,11 +99,10 @@
 			if(host.completed_experiments[experiment_type]) //do we have this discount_experiment unlocked?
 				actual_costs[cost_type] -= discount_experiments[experiment_type]
 
-	if(host.boosted_nodes[id]) // Boosts should be subservient to experiments. Discount from boosts are capped when costs fall below 250.
-		var/list/boostlist = host.boosted_nodes[id]
-		for(var/booster in boostlist)
+	if(discount_boosts && discount_boosted) // Boosts should be subservient to experiments.
+		for(var/booster in discount_boosts)
 			if(actual_costs[booster])
-				actual_costs[booster] = max(actual_costs[booster] - boostlist[booster], 0)
+				actual_costs[booster] = max(actual_costs[booster] - discount_boosts[booster], 0)
 
 	return actual_costs
 
@@ -125,15 +131,5 @@
 			return
 		if(board.obj_flags & EMAGGED)
 			channels_to_use = list(RADIO_CHANNEL_COMMON)
-	if(!length(channels_to_use) || starting_node)
-		return
-	var/obj/machinery/announcement_system/system
-	var/list/available_machines = list()
-	for(var/obj/machinery/announcement_system/announce as anything in GLOB.announcement_systems)
-		if(announce.announce_research_node)
-			available_machines += announce
-			break
-	if(!length(available_machines))
-		return
-	system = pick(available_machines)
-	system.announce(AUTO_ANNOUNCE_NODE, display_name, channels = channels_to_use)
+	if(length(channels_to_use) && !starting_node)
+		aas_config_announce(/datum/aas_config_entry/researched_node, list("NODE" = display_name), null, channels_to_use)

@@ -118,7 +118,7 @@
 		evolver.balloon_alert(evolver, "too many of our evolution already")
 		return FALSE
 
-	var/obj/item/organ/internal/alien/hivenode/node = evolver.get_organ_by_type(/obj/item/organ/internal/alien/hivenode)
+	var/obj/item/organ/alien/hivenode/node = evolver.get_organ_by_type(/obj/item/organ/alien/hivenode)
 	if(!node)
 		to_chat(evolver, span_bolddanger("We can't sense our node's connection to the hive... We can't evolve!"))
 		return FALSE
@@ -176,7 +176,7 @@
 	apply_overlay(HANDS_LAYER)
 
 /mob/living/carbon/proc/get_max_plasma()
-	var/obj/item/organ/internal/alien/plasmavessel/vessel = get_organ_by_type(/obj/item/organ/internal/alien/plasmavessel)
+	var/obj/item/organ/alien/plasmavessel/vessel = get_organ_by_type(/obj/item/organ/alien/plasmavessel)
 	if(!vessel)
 		return -1
 	return vessel.max_plasma
@@ -194,7 +194,8 @@
 
 /mob/living/carbon/alien/adult/skyrat/findQueen() //Yes we really do need to do this whole thing to let the queen finder work
 	if(hud_used)
-		hud_used.alien_queen_finder.cut_overlays()
+		var/atom/movable/screen/alien/queen_finder = hud_used.screen_objects[HUD_ALIEN_QUEEN_FINDER]
+		queen_finder?.cut_overlays()
 		var/mob/queen = get_alien_type(/mob/living/carbon/alien/adult/skyrat/queen)
 		if(!queen)
 			return
@@ -213,4 +214,4 @@
 			if(21 to INFINITY)
 				finder_icon = "finder_far"
 		var/image/finder_eye = image('icons/hud/screen_alien.dmi', finder_icon, dir = Qdir)
-		hud_used.alien_queen_finder.add_overlay(finder_eye)
+		queen_finder?.add_overlay(finder_eye)

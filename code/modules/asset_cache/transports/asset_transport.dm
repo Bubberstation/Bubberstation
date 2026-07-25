@@ -1,5 +1,3 @@
-/// When sending mutiple assets, how many before we give the client a quaint little sending resources message
-#define ASSET_CACHE_TELL_CLIENT_AMOUNT 8
 
 /// Base browse_rsc asset transport
 /datum/asset_transport
@@ -59,6 +57,10 @@
 	SSassets.cache[asset_name] = ACI
 	return ACI
 
+/// Immediately removes an asset from the asset cache.
+/datum/asset_transport/proc/unregister_asset(asset_name)
+	SSassets.cache[asset_name] = null
+	SSassets.cache.Remove(null)
 
 /// Returns a url for a given asset.
 /// asset_name - Name of the asset.
@@ -118,7 +120,7 @@
 		if (!keep_local_name)
 			new_asset_name = "asset.[ACI.hash][ACI.ext]"
 		if (client.sent_assets[new_asset_name] == asset_hash)
-			if (GLOB.Debug2)
+			if (GLOB.debugging_enabled)
 				log_asset("DEBUG: Skipping send of `[asset_name]` (as `[new_asset_name]`) for `[client]` because it already exists in the client's sent_assets list")
 			continue
 		unreceived[asset_name] = ACI
@@ -147,7 +149,7 @@
 
 
 /// Precache files without clogging up the browse() queue, used for passively sending files on connection start.
-/datum/asset_transport/proc/send_assets_slow(client/client, list/files, filerate = 6)
+/datum/asset_transport/proc/send_assets_slow(client/client, list/files, filerate = SLOW_ASSET_SEND_RATE)
 	var/startingfilerate = filerate
 	for (var/file in files)
 		if (!client)
@@ -155,7 +157,7 @@
 		if (send_assets(client, file))
 			if (!(--filerate))
 				filerate = startingfilerate
-				client.browse_queue_flush()
+//				client.browse_queue_flush() // BUBBER EDIT
 			stoplag(0) //queuing calls like this too quickly can cause issues in some client versions
 
 /// Check the config is valid to load this transport

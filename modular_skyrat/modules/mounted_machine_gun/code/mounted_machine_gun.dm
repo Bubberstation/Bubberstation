@@ -177,28 +177,31 @@
 
 /obj/machinery/mounted_machine_gun/attack_hand_secondary(mob/living/user, list/modifiers)
 	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 	if(!istype(user))
 		return
 	if(!can_interact(user))
 		return
 	if(!cover_open)
 		balloon_alert(user, "cover closed!")
-		return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!ammo_box)
-		return
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	remove_ammo_box(user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/mounted_machine_gun/attackby(obj/item/weapon, mob/user, params)
 	. = ..()
 	if(!istype(weapon, ammo_box_type))
 		return
 	if(ammo_box)
-		balloon_alert("already loaded!")
+		balloon_alert(user, "already loaded!")
 		return
 	ammo_box = weapon
 	weapon.forceMove(src)
 	playsound(src, 'modular_skyrat/modules/mounted_machine_gun/sound/insert_ammobox.ogg', 100)
-	balloon_alert("ammo box inserted!")
+	balloon_alert(user, "ammo box inserted!")
 
 /obj/machinery/mounted_machine_gun/proc/remove_ammo_box(mob/living/user)
 	ammo_box.forceMove(drop_location())
@@ -466,3 +469,7 @@
 /obj/item/mounted_machine_gun_folded/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/deployable, deploy_time, type_to_deploy)
+
+#undef BARREL_HEAT_THRESHOLD_LOW
+#undef BARREL_HEAT_THRESHOLD_HIGH
+#undef REPAIR_WELDER_COST

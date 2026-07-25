@@ -1,7 +1,8 @@
 /obj/item/modular_computer/pda
 	name = "pda"
-	icon = 'icons/obj/devices/modular_pda.dmi'
-	icon_state = "pda"
+	icon = 'icons/map_icons/items/pda.dmi'
+	icon_state = "/obj/item/modular_computer/pda"
+	post_init_icon_state = "pda"
 	worn_icon_state = "nothing"
 	base_icon_state = "tablet"
 	greyscale_config = /datum/greyscale_config/tablet
@@ -10,6 +11,8 @@
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	inhand_icon_state = "electronic"
+
+	overlays_icon = 'icons/obj/devices/modular_pda.dmi'
 
 	steel_sheet_cost = 2
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass=SMALL_MATERIAL_AMOUNT, /datum/material/plastic=SMALL_MATERIAL_AMOUNT)
@@ -27,6 +30,10 @@
 	looping_sound = FALSE
 
 	shell_capacity = SHELL_CAPACITY_SMALL
+	action_slots = ALL
+	sound_vary = TRUE
+	pickup_sound = SFX_GENERIC_DEVICE_PICKUP
+	drop_sound = SFX_GENERIC_DEVICE_DROP
 
 	///The item currently inserted into the PDA, starts with a pen.
 	var/obj/item/inserted_item = /obj/item/pen
@@ -38,10 +45,11 @@
 		/datum/computer_file/program/messenger,
 		/datum/computer_file/program/nt_pay,
 		/datum/computer_file/program/notepad,
-		// SKYRAT EDIT ADDITION START
+		/datum/computer_file/program/crew_manifest,
+		// BUBBER EDIT ADDITION START
 		/datum/computer_file/program/maintenance/camera, // Adds camera to all base tablets
-		// SKRAT EDIT ADDITION END
-		/datum/computer_file/program/crew_manifest
+		/datum/computer_file/program/crew_self_serve, // Crew Self Serve
+		// BUBBER EDIT ADDITION END
 	)
 	///List of items that can be stored in a PDA
 	var/static/list/contained_item = list(
@@ -69,22 +77,18 @@
 		apps_to_download += default_programs + pda_programs
 	apps_to_download += starting_programs
 
-	for(var/programs as anything in apps_to_download)
+	for(var/programs in apps_to_download)
 		var/datum/computer_file/program/program_type = new programs
 		store_file(program_type)
 
 /obj/item/modular_computer/pda/update_overlays()
 	. = ..()
-	if(computer_id_slot)
-		. += mutable_appearance(initial(icon), "id_overlay")
+	if(stored_id)
+		. += mutable_appearance(overlays_icon, "id_overlay")
 	if(light_on)
-		. += mutable_appearance(initial(icon), "light_overlay")
+		. += mutable_appearance(overlays_icon, "light_overlay")
 	if(inserted_pai)
-		. += mutable_appearance(initial(icon), "pai_inserted")
-
-/obj/item/modular_computer/pda/attack_ai(mob/user)
-	to_chat(user, span_notice("It doesn't feel right to snoop around like that..."))
-	return // we don't want ais or cyborgs using a private role tablet
+		. += mutable_appearance(overlays_icon, "pai_inserted")
 
 /obj/item/modular_computer/pda/interact(mob/user)
 	. = ..()
@@ -104,7 +108,7 @@
 
 	return ..()
 
-/obj/item/modular_computer/pda/pre_attack(atom/target, mob/living/user, params)
+/obj/item/modular_computer/pda/pre_attack(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(!inserted_disk || !ismachinery(target))
 		return ..()
 
@@ -112,9 +116,9 @@
 	if(!target_machine.panel_open && !istype(target, /obj/machinery/computer))
 		return ..()
 
-	if(!istype(inserted_disk, /obj/item/computer_disk/virus/clown))
+	if(!istype(inserted_disk, /obj/item/disk/computer/virus/clown))
 		return ..()
-	var/obj/item/computer_disk/virus/clown/installed_cartridge = inserted_disk
+	var/obj/item/disk/computer/virus/clown/installed_cartridge = inserted_disk
 	if(!installed_cartridge.charges)
 		to_chat(user, span_notice("Out of virus charges."))
 		return ..()
@@ -208,7 +212,7 @@
 	if(from_message_menu)
 		log_bomber(null, null, target, "'s tablet exploded as [target.p_they()] tried to open their tablet message menu because of a recent tablet bomb.")
 	else
-		log_bomber(bomber, "successfully tablet-bombed", target, "as [target.p_they()] tried to reply to a rigged tablet message [bomber && !is_special_character(bomber) ? "(SENT BY NON-ANTAG)" : ""]")
+		log_bomber(bomber, "successfully tablet-bombed", target, "as [target.p_they()] tried to reply to a rigged tablet message [bomber?.is_antag() ? "" : "(SENT BY NON-ANTAG)"]")
 
 	if (ismob(loc))
 		var/mob/loc_mob = loc
@@ -225,7 +229,7 @@
 
 	if(current_turf)
 		current_turf.hotspot_expose(700,125)
-		if(istype(inserted_disk, /obj/item/computer_disk/virus/detomatix))
+		if(istype(inserted_disk, /obj/item/disk/computer/virus/detomatix))
 			explosion(src, devastation_range = -1, heavy_impact_range = 1, light_impact_range = 3, flash_range = 4)
 		else
 			explosion(src, devastation_range = -1, heavy_impact_range = -1, light_impact_range = 2, flash_range = 3)
@@ -247,6 +251,14 @@
 	if(new_ringtone && (new_ringtone != MESSENGER_RINGTONE_DEFAULT))
 		update_ringtone(new_ringtone)
 
+	var/datum/computer_file/program/themeify/theme_app = locate() in stored_files
+	if(theme_app)
+		var/list/unlocked_themes = owner_client.get_award_status(/datum/award/score/progress/pda_themes)
+		for(var/theme_id in unlocked_themes)
+			var/theme_name = GLOB.pda_id_to_name[theme_id]
+			if(theme_name)
+				LAZYOR(theme_app.imported_themes, theme_name)
+
 	var/new_theme = owner_client.prefs.read_preference(/datum/preference/choiced/pda_theme)
 	if(new_theme)
 		device_theme = GLOB.pda_name_to_theme[new_theme]
@@ -267,6 +279,7 @@
  */
 /obj/item/modular_computer/pda/nukeops
 	name = "nuclear pda"
+	icon_state = "/obj/item/modular_computer/pda/nukeops"
 	device_theme = PDA_THEME_SYNDICATE
 	comp_light_luminosity = 6.3 //matching a flashlight
 	light_color = COLOR_RED
@@ -286,8 +299,9 @@
 
 /obj/item/modular_computer/pda/syndicate_contract_uplink
 	name = "contractor tablet"
-	device_theme = PDA_THEME_SYNDICATE
+	icon_state = "/obj/item/modular_computer/pda/syndicate_contract_uplink"
 	icon_state_menu = "contractor-assign"
+	device_theme = PDA_THEME_SYNDICATE
 	comp_light_luminosity = 6.3
 	has_pda_programs = FALSE
 	greyscale_config = /datum/greyscale_config/tablet/stripe_double
@@ -305,7 +319,9 @@
  */
 /obj/item/modular_computer/pda/silicon
 	name = "modular interface"
+	icon = 'icons/obj/devices/modular_pda.dmi'
 	icon_state = "tablet-silicon"
+	post_init_icon_state = null
 	base_icon_state = "tablet-silicon"
 	greyscale_config = null
 	greyscale_colors = null
@@ -353,6 +369,7 @@
 
 /obj/item/modular_computer/pda/silicon/Destroy()
 	silicon_owner = null
+	robotact = null
 	return ..()
 
 ///Silicons don't have the tools (or hands) to make circuits setups with their own PDAs.

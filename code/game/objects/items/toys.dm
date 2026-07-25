@@ -16,7 +16,7 @@
  * Toy big red button
  * Beach ball
  * Toy xeno
- *      Kitty toys!
+ * Kitty toys!
  * Snowballs
  * Clockwork Watches
  * Toy Daggers
@@ -25,13 +25,24 @@
  * Fake heretic codex
  * Fake Pierced Reality
  * Intento
+ * Extendo hand
+ * Ban hammer
  */
 /obj/item/toy
+	abstract_type = /obj/item/toy
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
 	force = 0
 	worn_icon_state = "nothing"
+
+	/// Can this toy be placed on the floor?
+	var/floor_placeable = FALSE
+
+/obj/item/toy/Initialize(mapload)
+	. = ..()
+	if(floor_placeable)
+		AddElement(/datum/element/floor_placeable)
 
 /*
  * Balloons
@@ -67,7 +78,7 @@
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
 
-/obj/item/toy/waterballoon/attackby(obj/item/I, mob/user, params)
+/obj/item/toy/waterballoon/attackby(obj/item/I, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(I, /obj/item/reagent_containers/cup))
 		if(I.reagents)
 			if(I.reagents.total_volume <= 0)
@@ -156,7 +167,7 @@
 	)
 
 
-/obj/item/toy/balloon/long/attackby(obj/item/attacking_item, mob/living/user, params)
+/obj/item/toy/balloon/long/attackby(obj/item/attacking_item, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(!istype(attacking_item, /obj/item/toy/balloon/long) || !HAS_TRAIT(user, TRAIT_BALLOON_SUTRA))
 		return ..()
 
@@ -179,7 +190,7 @@
 	qdel(src)
 	return TRUE
 
-/obj/item/toy/balloon/attackby(obj/item/I, mob/user, params)
+/obj/item/toy/balloon/attackby(obj/item/I, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(I, /obj/item/ammo_casing/foam_dart) && ismonkey(user))
 		pop_balloon(monkey_pop = TRUE)
 	else
@@ -192,11 +203,11 @@
 	else
 		return ..()
 
-/obj/item/toy/balloon/bullet_act(obj/projectile/P)
-	if((istype(P,/obj/projectile/bullet/p50) || istype(P,/obj/projectile/bullet/foam_dart)) && ismonkey(P.firer))
+/obj/item/toy/balloon/bullet_act(obj/projectile/proj)
+	if((istype(proj, /obj/projectile/bullet/p50) || istype(proj,/obj/projectile/bullet/foam_dart)) && ismonkey(proj.firer))
 		pop_balloon(monkey_pop = TRUE)
-	else
-		return ..()
+		return BULLET_ACT_HIT
+	return ..()
 
 /obj/item/toy/balloon/proc/pop_balloon(monkey_pop = FALSE)
 	playsound(src, 'sound/effects/cartoon_sfx/cartoon_pop.ogg', 50, vary = TRUE)
@@ -288,10 +299,12 @@
 	inhand_icon_state = "balloon"
 	lefthand_file = 'icons/mob/inhands/items/balloons_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/balloons_righthand.dmi'
+	abstract_type = /obj/item/toy/balloon_animal
 	throwforce = 0
 	throw_speed = 2
 	throw_range = 5
 	force = 0
+	floor_placeable = TRUE
 
 /obj/item/toy/balloon_animal/guy
 	name = "balloon guy"
@@ -325,7 +338,7 @@
 
 /obj/item/toy/balloon_animal/ai
 	name = "balloon ai core"
-	desc = "A somewhat unrealistic balloon effigy of the station's AI core. Actual AI propably wouldn't smile like this."
+	desc = "A somewhat unrealistic balloon effigy of the station's AI core. Actual AI probably wouldn't smile like this."
 	icon_state = "balloon_ai"
 
 /obj/item/toy/balloon_animal/dog
@@ -355,7 +368,7 @@
 
 /obj/item/toy/balloon_animal/moth
 	name = "balloon moth"
-	desc = "A balloon effigy of a common member of moth flotillas. Very few of them ever decide to settle on the clown planet, but those who do have the best 'piece-of-cloth-dissapearing' acts."
+	desc = "A balloon effigy of a common member of moth flotillas. Very few of them ever decide to settle on the clown planet, but those who do have the best 'piece-of-cloth-disappearing' acts."
 	icon_state = "balloon_moth"
 
 /obj/item/toy/balloon_animal/ethereal
@@ -448,7 +461,7 @@
 		return
 	if(!user.is_holding(src)) // Half digestion? Start choking to death
 		user.visible_message(span_suicide("[user] panics and starts choking [user.p_them()]self to death!"))
-		user.adjustOxyLoss(200)
+		user.adjust_oxy_loss(200)
 		user.death(FALSE) // unfortunately you have to handle the suiciding yourself with a manual suicide
 		user.ghostize(FALSE) // get the fuck out of our body
 		return
@@ -456,13 +469,13 @@
 	if(CH.cavity_item) // if he's (un)bright enough to have a round and full belly...
 		user.visible_message(span_danger("[user] regurgitates [src]!")) // I swear i dont have a fetish
 		user.vomit(VOMIT_CATEGORY_BLOOD, lost_nutrition = 100, distance = 0)
-		user.adjustOxyLoss(120)
+		user.adjust_oxy_loss(120)
 		user.dropItemToGround(src) // incase the crit state doesn't drop the singulo to the floor
 		user.set_suicide(FALSE)
 		return
 	user.transferItemToLoc(src, user, TRUE)
 	CH.cavity_item = src // The mother came inside and found Andy, dead with a HUGE belly full of toys
-	user.adjustOxyLoss(200) // You know how most small toys in the EU have that 3+ onion head icon and a warning that says "Unsuitable for children under 3 years of age due to small parts - choking hazard"? This is why.
+	user.adjust_oxy_loss(200) // You know how most small toys in the EU have that 3+ onion head icon and a warning that says "Unsuitable for children under 3 years of age due to small parts - choking hazard"? This is why.
 	user.death(FALSE)
 	user.ghostize(FALSE)
 
@@ -474,7 +487,7 @@
 	desc = "<i>\"Surviving the encounter with the \
 		horrible thing, I realized immediately what I \
 		had to do: sell marketable toys of it. \
-		\"</i><br>- Chief Engineer Miles O'Brien"
+		\"</i><br>- Chief Engineer Tenshin Nakamura"
 	icon = 'icons/obj/machines/engine/singularity.dmi'
 	icon_state = "dark_matter_s1"
 
@@ -502,7 +515,7 @@
 	. = ..()
 	. += "There [bullets == 1 ? "is" : "are"] [bullets] cap\s left."
 
-/obj/item/toy/gun/attackby(obj/item/toy/ammo/gun/A, mob/user, params)
+/obj/item/toy/gun/attackby(obj/item/toy/ammo/gun/A, mob/user, list/modifiers, list/attack_modifiers)
 
 	if(istype(A, /obj/item/toy/ammo/gun))
 		if (src.bullets >= 7)
@@ -540,9 +553,12 @@
 		span_hear("You hear a gunshot!"))
 	return ITEM_INTERACT_SUCCESS
 
+/obj/item/toy/ammo
+	abstract_type = /obj/item/toy/ammo
+
 /obj/item/toy/ammo/gun
 	name = "capgun ammo"
-	desc = "Make sure to recyle the box in an autolathe when it gets empty."
+	desc = "Make sure to recycle the box in an autolathe when it gets empty."
 	icon = 'icons/obj/weapons/guns/ammo.dmi'
 	icon_state = "357OLD-7"
 	w_class = WEIGHT_CLASS_TINY
@@ -565,12 +581,14 @@
 	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up."
 	icon_state = "e_sword"
 	inhand_icon_state = "e_sword"
+	icon_angle = -45
 	icon = 'icons/obj/weapons/transforming_energy.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb_continuous = list("attacks", "strikes", "hits")
 	attack_verb_simple = list("attack", "strike", "hit")
+	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 4, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 1.1, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.1)
 	/// Whether our sword has been multitooled to rainbow
 	var/hacked = FALSE
 	/// The color of our fake energy sword
@@ -652,7 +670,7 @@
 
 
 // Copied from /obj/item/melee/energy/sword/attackby
-/obj/item/toy/sword/attackby(obj/item/weapon, mob/living/user, params)
+/obj/item/toy/sword/attackby(obj/item/weapon, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(istype(weapon, /obj/item/toy/sword))
 		var/obj/item/toy/sword/attatched_sword = weapon
 		if(HAS_TRAIT(weapon, TRAIT_NODROP))
@@ -682,6 +700,7 @@
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "foamblade"
 	inhand_icon_state = "arm_blade"
+	icon_angle = -180
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
 	attack_verb_continuous = list("pricks", "absorbs", "gores")
@@ -694,7 +713,7 @@
 	desc = "A replica toolbox that rumbles when you turn the key."
 	icon = 'icons/obj/storage/toolbox.dmi'
 	icon_state = "green"
-	inhand_icon_state = "artistic_toolbox"
+	inhand_icon_state = "toolbox_green"
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/toolbox_righthand.dmi'
 	hitsound = 'sound/items/weapons/smash.ogg'
@@ -772,7 +791,7 @@
 
 /obj/item/dualsaber/toy/impale(mob/living/user)//Stops Toy Dualsabers from injuring clowns
 	to_chat(user, span_warning("You twirl around a bit before losing your balance and impaling yourself on [src]."))
-	user.adjustStaminaLoss(25)
+	user.adjust_stamina_loss(25)
 
 /obj/item/toy/katana
 	name = "replica katana"
@@ -780,17 +799,24 @@
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "katana"
 	inhand_icon_state = "katana"
-	worn_icon_state = "katana"
+	icon_angle = -45
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	obj_flags = CONDUCTS_ELECTRICITY
-	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	force = 5
 	throwforce = 5
-	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices")
-	attack_verb_simple = list("attack", "slash", "stab", "slice")
+	w_class = WEIGHT_CLASS_BULKY
+	attack_verb_continuous = list("attacks", "slashes", "slices")
+	attack_verb_simple = list("attack", "slash", "slice")
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
+	var/list/alt_continuous = list("stabs", "pierces", "impales")
+	var/list/alt_simple = list("stab", "pierce", "impale")
+
+/obj/item/toy/katana/Initialize(mapload)
+	. = ..()
+	alt_continuous = string_list(alt_continuous)
+	alt_simple = string_list(alt_simple)
+	AddComponent(/datum/component/alternative_sharpness, SHARP_POINTY, alt_continuous, alt_simple)
 
 /*
  * Snap pops
@@ -803,10 +829,8 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/ash_type = /obj/effect/decal/cleanable/ash
 
-/obj/item/toy/snappop/proc/pop_burst(n=3, c=1)
-	var/datum/effect_system/spark_spread/s = new()
-	s.set_up(n, c, src)
-	s.start()
+/obj/item/toy/snappop/proc/pop_burst(n = 3, c = TRUE)
+	do_sparks(n, c, src)
 	new ash_type(loc)
 	visible_message(span_warning("[src] explodes!"),
 		span_hear("You hear a snap!"))
@@ -857,6 +881,7 @@
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "owlprize"
 	w_class = WEIGHT_CLASS_SMALL
+	floor_placeable = TRUE
 	var/cooldown = FALSE
 	var/messages = list("I'm super generic!", "Mathematics class is of variable difficulty!")
 	var/span = "danger"
@@ -956,6 +981,7 @@
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "nuketoyidle"
 	w_class = WEIGHT_CLASS_SMALL
+	floor_placeable = TRUE
 	var/cooldown = 0
 
 /obj/item/toy/nuke/attack_self(mob/user)
@@ -1000,6 +1026,7 @@
 	icon_state = "minimeteor"
 	inhand_icon_state = "minimeteor"
 	w_class = WEIGHT_CLASS_SMALL
+	floor_placeable = TRUE
 
 /obj/item/toy/minimeteor/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if (obj_flags & EMAGGED)
@@ -1026,6 +1053,7 @@
 	icon = 'icons/obj/devices/assemblies.dmi'
 	icon_state = "bigred"
 	w_class = WEIGHT_CLASS_SMALL
+	floor_placeable = TRUE
 	var/cooldown = 0
 
 /obj/item/toy/redbutton/attack_self(mob/user)
@@ -1052,6 +1080,7 @@
 	icon_state = "snowball"
 	throwforce = 20 //the same damage as a disabler shot
 	damtype = STAMINA //maybe someday we can add stuffing rocks (or perhaps ore?) into snowballs to make them deal brute damage
+	custom_materials = list(/datum/material/snow = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/toy/snowball/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	user.throw_item(interacting_with)
@@ -1110,7 +1139,9 @@
 
 /obj/item/toy/clockwork_watch/examine(mob/user)
 	. = ..()
-	. += span_info("Station Time: [station_time_timestamp()]")
+	. += span_info("Station Time: [server_timestamp(ic_time = TRUE, twelve_hour_clock = user.client?.prefs.read_preference(/datum/preference/toggle/twelve_hour))]")
+	if(user.is_literate())
+		. += span_info("That means it is currently [round_timestamp()] into the shift.")
 
 /*
  * Toy Dagger
@@ -1121,6 +1152,7 @@
 	icon = 'icons/obj/weapons/khopesh.dmi'
 	icon_state = "render"
 	inhand_icon_state = "cultdagger"
+	icon_angle = -45
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
@@ -1134,6 +1166,7 @@
 	name = "xenomorph action figure"
 	desc = "MEGA presents the new Xenos Isolated action figure! Comes complete with realistic sounds! Pull back string to use."
 	w_class = WEIGHT_CLASS_SMALL
+	floor_placeable = TRUE
 	var/cooldown = 0
 
 /obj/item/toy/toy_xeno/attack_self(mob/user)
@@ -1158,8 +1191,8 @@
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "toy_mouse"
 	w_class = WEIGHT_CLASS_SMALL
-	var/cooldown = 0
 	resistance_flags = FLAMMABLE
+	floor_placeable = TRUE
 
 
 /*
@@ -1169,10 +1202,11 @@
 	name = "\improper Non-Specific Action Figure action figure"
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "nuketoy"
+	w_class = WEIGHT_CLASS_SMALL
+	floor_placeable = TRUE
 	var/cooldown = 0
 	var/toysay = "What the fuck did you do?"
 	var/toysound = 'sound/machines/click.ogg'
-	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/toy/figure/Initialize(mapload)
 	. = ..()
@@ -1405,6 +1439,7 @@
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "puppet"
 	inhand_icon_state = "puppet"
+	floor_placeable = TRUE
 	var/doll_name = "Dummy"
 
 //Add changing looks when i feel suicidal about making 20 inhands for these.
@@ -1420,7 +1455,7 @@
 	. = ..()
 	AddElement(/datum/element/toy_talk)
 
-/obj/item/toy/dummy/GetVoice()
+/obj/item/toy/dummy/get_voice(add_id_name)
 	return doll_name
 
 /obj/item/toy/seashell
@@ -1428,6 +1463,7 @@
 	desc = "May you always have a shell in your pocket and sand in your shoes. Whatever that's supposed to mean."
 	icon = 'icons/obj/fluff/beach.dmi'
 	icon_state = "shell1"
+	floor_placeable = TRUE
 	var/static/list/possible_colors = list("" = 2, COLOR_PURPLE_GRAY = 1, COLOR_OLIVE = 1, COLOR_PALE_BLUE_GRAY = 1, COLOR_RED_GRAY = 1)
 
 /obj/item/toy/seashell/Initialize(mapload)
@@ -1472,7 +1508,7 @@
  */
 /obj/item/toy/eldritch_book
 	name = "Codex Cicatrix"
-	desc = "A toy book that closely resembles the Codex Cicatrix. Covered in fake polyester human flesh and has a huge goggly eye attached to the cover. The runes are gibberish and cannot be used to summon demons... Hopefully?"
+	desc = "A toy book that closely resembles the Codex Cicatrix. Covered in fake polyester human flesh and has a huge googly eye attached to the cover. The runes are gibberish and cannot be used to summon demons... Hopefully?"
 	icon = 'icons/obj/antags/eldritch.dmi'
 	base_icon_state = "book"
 	icon_state = "book"
@@ -1521,14 +1557,6 @@
 	icon_state = "pierced_illusion"
 	item_flags = NO_PIXEL_RANDOM_DROP
 
-/obj/item/storage/box/heretic_box
-	name = "box of pierced realities"
-	desc = "A box containing toys resembling pierced realities."
-
-/obj/item/storage/box/heretic_box/PopulateContents()
-	for(var/i in 1 to rand(1,4))
-		new /obj/item/toy/reality_pierce(src)
-
 /obj/item/toy/foamfinger
 	name = "foam finger"
 	desc = "root for the home team! wait, does this station even have a sports team?"
@@ -1546,18 +1574,18 @@
 	COOLDOWN_START(src, foamfinger_cooldown, 5 SECONDS)
 	user.manual_emote("waves around the foam finger.")
 	var/direction = prob(50) ? -1 : 1
-	if(NSCOMPONENT(user.dir)) //So signs are waved horizontally relative to what way the player waving it is facing.
-		animate(user, pixel_x = user.pixel_x + (1 * direction), time = 1, easing = SINE_EASING)
-		animate(pixel_x = user.pixel_x - (2 * direction), time = 1, easing = SINE_EASING)
-		animate(pixel_x = user.pixel_x + (2 * direction), time = 1, easing = SINE_EASING)
-		animate(pixel_x = user.pixel_x - (2 * direction), time = 1, easing = SINE_EASING)
-		animate(pixel_x = user.pixel_x + (1 * direction), time = 1, easing = SINE_EASING)
+	if(NSCOMPONENT(user.dir))
+		animate(user, pixel_w = (1 * direction), time = 0.1 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE|ANIMATION_PARALLEL)
+		animate(pixel_w = (-2 * direction), time = 0.1 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE)
+		animate(pixel_w = (2 * direction), time = 0.1 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE)
+		animate(pixel_w = (-2 * direction), time = 0.1 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE)
+		animate(pixel_w = (1 * direction), time = 0.1 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE)
 	else
-		animate(user, pixel_y = user.pixel_y + (1 * direction), time = 1, easing = SINE_EASING)
-		animate(pixel_y = user.pixel_y - (2 * direction), time = 1, easing = SINE_EASING)
-		animate(pixel_y = user.pixel_y + (2 * direction), time = 1, easing = SINE_EASING)
-		animate(pixel_y = user.pixel_y - (2 * direction), time = 1, easing = SINE_EASING)
-		animate(pixel_y = user.pixel_y + (1 * direction), time = 1, easing = SINE_EASING)
+		animate(user, pixel_z = (1 * direction), time = 0.1 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE|ANIMATION_PARALLEL)
+		animate(pixel_z = (-2 * direction), time = 0.1 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE)
+		animate(pixel_z = (2 * direction), time = 0.1 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE)
+		animate(pixel_z = (-2 * direction), time = 0.1 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE)
+		animate(pixel_z = (1 * direction), time = 0.1 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE)
 	user.changeNext_move(CLICK_CD_MELEE)
 
 ///All people who have used an Intento this round along with their high scores.
@@ -1586,7 +1614,7 @@ GLOBAL_LIST_EMPTY(intento_players)
 
 /obj/item/toy/intento
 	name = "\improper Intento"
-	desc = "Fundamentally useless for all intentsive purposes."
+	desc = "Fundamentally useless for all intents and purposes."
 	icon = 'icons/obj/toys/intents.dmi'
 	icon_state = "blank"
 	custom_price = PAYCHECK_COMMAND * 1.25
@@ -1818,3 +1846,70 @@ GLOBAL_LIST_EMPTY(intento_players)
 	attack_verb_simple = list("smack", "club", "wack", "vendor")
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
+
+/obj/item/extendohand
+	name = "extendo-hand"
+	desc = "Futuristic tech has allowed these classic spring-boxing toys to essentially act as a fully functional hand-operated hand prosthetic."
+	icon = 'icons/obj/toys/toy.dmi'
+	icon_state = "extendohand"
+	inhand_icon_state = "extendohand"
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
+	force = 0
+	throwforce = 5
+	reach = 2
+	var/min_reach = 2
+
+/obj/item/extendohand/acme
+	name = "\improper ACME Extendo-Hand"
+	desc = "A novelty extendo-hand produced by the ACME corporation. Originally designed to knock out roadrunners."
+
+/obj/item/extendohand/attack(atom/M, mob/living/carbon/human/user, list/modifiers, list/attack_modifiers)
+	var/dist = get_dist(M, user)
+	if(dist < min_reach)
+		to_chat(user, span_warning("[M] is too close to use [src] on."))
+		return
+	M.attack_hand(user, modifiers)
+
+/obj/item/banhammer
+	desc = "A banhammer."
+	name = "banhammer"
+	icon = 'icons/obj/weapons/hammer.dmi'
+	icon_state = "toyhammer"
+	icon_angle = -45
+	slot_flags = ITEM_SLOT_BELT
+	throwforce = 0
+	force = 1
+	w_class = WEIGHT_CLASS_TINY
+	throw_speed = 3
+	throw_range = 7
+	attack_verb_continuous = list("bans")
+	attack_verb_simple = list("ban")
+	max_integrity = 200
+	armor_type = /datum/armor/item_banhammer
+	resistance_flags = FIRE_PROOF
+
+/datum/armor/item_banhammer
+	fire = 100
+	acid = 70
+
+/obj/item/banhammer/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/kneejerk)
+
+/obj/item/banhammer/suicide_act(mob/living/user)
+	user.visible_message(span_suicide("[user] is hitting [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to ban [user.p_them()]self from life."))
+	return (BRUTELOSS|FIRELOSS|TOXLOSS|OXYLOSS)
+/*
+oranges says: This is a meme relating to the english translation of the ss13 russian wiki page on lurkmore.
+mrdoombringer sez: and remember kids, if you try and PR a fix for this item's grammar, you are admitting that you are, indeed, a newfriend.
+for further reading, please see: https://github.com/tgstation/tgstation/pull/30173 and https://translate.google.com/translate?sl=auto&tl=en&js=y&prev=_t&hl=en&ie=UTF-8&u=%2F%2Flurkmore.to%2FSS13&edit-text=&act=url
+*/
+/obj/item/banhammer/attack(mob/M, mob/living/user)
+	if(user.zone_selected == BODY_ZONE_HEAD)
+		M.visible_message(span_danger("[user] are stroking the head of [M] with a bangammer."), span_userdanger("[user] are stroking your head with a bangammer."), span_hear("You hear a bangammer stroking a head.")) // see above comment
+	else
+		M.visible_message(span_danger("[M] has been banned FOR NO REISIN by [user]!"), span_userdanger("You have been banned FOR NO REISIN by [user]!"), span_hear("You hear a banhammer banning someone."))
+	playsound(loc, 'sound/effects/adminhelp.ogg', 15) //keep it at 15% volume so people don't jump out of their skin too much
+	if(user.combat_mode)
+		return ..(M, user)

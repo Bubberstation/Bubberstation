@@ -93,6 +93,7 @@
 	filtered.temperature = filtering.temperature
 	for(var/gas in filtering.gases & scrubbing)
 		filtered.add_gas(gas)
+
 		filtered.gases[gas][MOLES] = filtering.gases[gas][MOLES] // Shuffle the "bad" gasses to the filtered mixture.
 		filtering.gases[gas][MOLES] = 0
 	filtering.garbage_collect() // Now that the gasses are set to 0, clean up the mixture.
@@ -153,7 +154,7 @@
 			internal_tank.suppress_reactions = !internal_tank.suppress_reactions
 			SSair.start_processing_machine(internal_tank)
 			message_admins("[ADMIN_LOOKUPFLW(usr)] turned [internal_tank.suppress_reactions ? "on" : "off"] the [internal_tank] reaction suppression.")
-			usr.investigate_log("turned [internal_tank.suppress_reactions ? "on" : "off"] the [internal_tank] reaction suppression.")
+			usr.investigate_log("turned [internal_tank.suppress_reactions ? "on" : "off"] the [internal_tank] reaction suppression.", INVESTIGATE_ATMOS)
 			. = TRUE
 	update_appearance()
 

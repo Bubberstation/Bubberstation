@@ -1,4 +1,5 @@
 // Tool types, if you add new ones please add them to /obj/item/debug/omnitool in code/game/objects/items/debug_items.dm
+// and to GLOB.all_tool_behaviours in code/_globalvars/lists/engineering.dm
 #define TOOL_CROWBAR "crowbar"
 #define TOOL_MULTITOOL "multitool"
 #define TOOL_SCREWDRIVER "screwdriver"
@@ -8,7 +9,6 @@
 #define TOOL_ANALYZER "analyzer"
 #define TOOL_MINING "mining"
 #define TOOL_SHOVEL "shovel"
-#define TOOL_DRAPES "surgicaldrapes"
 #define TOOL_RETRACTOR "retractor"
 #define TOOL_HEMOSTAT "hemostat"
 #define TOOL_CAUTERY "cautery"
@@ -21,6 +21,14 @@
 #define TOOL_ROLLINGPIN "rolling pin"
 /// Can be used to scrape rust off an any atom; which will result in the Rust Component being qdel'd
 #define TOOL_RUSTSCRAPER "rustscraper"
+
+// Used by the tool_blocker element, to block the primary or secondary tool action (or both)
+/// e.g. crowbar_act()
+#define TOOL_ACT_PRIMARY (1<<0)
+/// e.g. crowbar_act_secondary()
+#define TOOL_ACT_SECONDARY (1<<1)
+/// e.g. both crowbar_act() and crowbar_act_secondary()
+#define TOOL_ACT_ALL TOOL_ACT_PRIMARY | TOOL_ACT_SECONDARY
 
 // If delay between the start and the end of tool operation is less than MIN_TOOL_SOUND_DELAY,
 // tool sound is only played when op is started. If not, it's played twice.
@@ -52,3 +60,13 @@
  * This is only used explicitly because some interactions may not want to ever be skipped.
  */
 #define SHOULD_SKIP_INTERACTION(target, item, user) (HAS_TRAIT(target, TRAIT_COMBAT_MODE_SKIP_INTERACTION) && user.combat_mode)
+
+// Used by the decal painter to get information about the decal being painted
+/// Icon state to paint
+#define DECAL_INFO_ICON_STATE "icon_state"
+/// Color to paint the decal with
+#define DECAL_INFO_COLOR "color"
+/// Dir of the decal sprite
+#define DECAL_INFO_DIR "dir"
+/// Alpha of the decal
+#define DECAL_INFO_ALPHA "alpha"

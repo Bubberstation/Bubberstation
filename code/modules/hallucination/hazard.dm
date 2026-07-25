@@ -2,11 +2,15 @@
 /datum/hallucination/hazard
 	abstract_hallucination_parent = /datum/hallucination/hazard
 	random_hallucination_weight = 5
+	hallucination_tier = HALLUCINATION_TIER_UNCOMMON
 
 	/// The type of effect we create
 	var/hazard_type = /obj/effect/client_image_holder/hallucination/danger
 
 /datum/hallucination/hazard/start()
+	if(hallucinator.stat >= UNCONSCIOUS)
+		return FALSE
+
 	var/list/possible_points = list()
 	for(var/turf/open/floor/floor_in_view in view(hallucinator))
 		possible_points += floor_in_view
@@ -62,7 +66,7 @@
 	return ..()
 
 /obj/effect/client_image_holder/hallucination/danger/lava/on_hallucinator_entered(mob/living/afflicted)
-	afflicted.adjustStaminaLoss(20)
+	afflicted.adjust_stamina_loss(20)
 	afflicted.cause_hallucination(/datum/hallucination/fire, "fake lava hallucination")
 
 /obj/effect/client_image_holder/hallucination/danger/chasm

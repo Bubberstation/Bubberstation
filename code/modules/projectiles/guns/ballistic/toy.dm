@@ -14,9 +14,11 @@
 	item_flags = NONE
 	gun_flags = TOY_FIREARM_OVERLAY | NOT_A_REAL_GUN
 	casing_ejector = FALSE
+	can_muzzle_flash = FALSE
 
 /obj/item/gun/ballistic/automatic/toy/riot
 	spawn_magazine_type = /obj/item/ammo_box/magazine/toy/smg/riot
+
 /obj/item/gun/ballistic/automatic/pistol/toy
 	name = "foam force pistol"
 	desc = "A small, easily concealable toy handgun. Ages 8 and up."
@@ -30,6 +32,9 @@
 /obj/item/gun/ballistic/automatic/pistol/riot/Initialize(mapload)
 	magazine = new /obj/item/ammo_box/magazine/toy/pistol/riot(src)
 	return ..()
+
+/obj/item/gun/ballistic/automatic/pistol/toy/riot/clandestine
+	projectile_damage_multiplier = 1.4
 
 /obj/item/gun/ballistic/shotgun/toy
 	name = "foam force shotgun"
@@ -45,6 +50,7 @@
 	weapon_weight = WEAPON_LIGHT
 	pb_knockback = 0
 	gun_flags = TOY_FIREARM_OVERLAY | NOT_A_REAL_GUN
+	can_muzzle_flash = FALSE
 
 /obj/item/gun/ballistic/shotgun/toy/handle_chamber(empty_chamber = TRUE, from_firing = TRUE, chamber_next_round = TRUE)
 	. = ..()
@@ -71,6 +77,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
 	gun_flags = NONE
+	can_muzzle_flash = FALSE
 
 /obj/item/gun/ballistic/shotgun/toy/crossbow/riot
 	spawn_magazine_type =  /obj/item/ammo_box/magazine/internal/shot/toy/crossbow/riot
@@ -85,6 +92,7 @@
 	casing_ejector = FALSE
 	clumsy_check = FALSE
 	gun_flags = TOY_FIREARM_OVERLAY | NOT_A_REAL_GUN
+	can_muzzle_flash = FALSE
 
 /obj/item/gun/ballistic/automatic/c20r/toy/unrestricted //Use this for actual toys
 	pin = /obj/item/firing_pin
@@ -104,6 +112,7 @@
 	casing_ejector = FALSE
 	clumsy_check = FALSE
 	gun_flags = TOY_FIREARM_OVERLAY | NOT_A_REAL_GUN
+	can_muzzle_flash = FALSE
 
 /obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted //Use this for actual toys
 	pin = /obj/item/firing_pin

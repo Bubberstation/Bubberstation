@@ -13,6 +13,12 @@
 /datum/quirk/item_quirk/family_heirloom/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	var/obj/item/heirloom_type
+	// BUBBER EDIT ADDITION BEGIN - lets users manually designate heirlooms
+	if (!client_source?.prefs?.read_preference(/datum/preference/toggle/random_heirloom))
+		mark_action = new /datum/action/mark_family_heirloom(src)
+		mark_action.Grant(human_holder)
+		return
+	// BUBBER EDIT ADDITION END
 
 	// The quirk holder's species - we have a 50% chance, if we have a species with a set heirloom, to choose a species heirloom.
 	var/datum/species/holder_species = human_holder.dna?.species
@@ -34,15 +40,18 @@
 	give_item_to_holder(
 		new_heirloom,
 		list(
-			LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
-			LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
-			LOCATION_BACKPACK = ITEM_SLOT_BACKPACK,
-			LOCATION_HANDS = ITEM_SLOT_HANDS,
+			LOCATION_LPOCKET,
+			LOCATION_RPOCKET,
+			LOCATION_BACKPACK,
+			LOCATION_HANDS,
 		),
 		flavour_text = "This is a precious family heirloom, passed down from generation to generation. Keep it safe!",
+		notify_player = TRUE,
 	)
 
 /datum/quirk/item_quirk/family_heirloom/post_add()
+	if (mark_action) // BUBBER EDIT ADDITION
+		return // BUBBER EDIT ADDITION
 	var/list/names = splittext(quirk_holder.real_name, " ")
 	var/family_name = names[names.len]
 
@@ -51,16 +60,14 @@
 		to_chat(quirk_holder, span_boldnotice("A wave of existential dread runs over you as you realize your precious family heirloom is missing. Perhaps the Gods will show mercy on your cursed soul?"))
 		return
 	family_heirloom.AddComponent(/datum/component/heirloom, quirk_holder.mind, family_name)
+	quirk_holder.add_mob_memory(/datum/memory/key/quirk_heirloom, protagonist = quirk_holder, heirloom_name = initial(family_heirloom.name))
 
 	return ..()
 
 /datum/quirk/item_quirk/family_heirloom/process()
-	if(quirk_holder.stat == DEAD)
-		return
-
 	var/obj/family_heirloom = heirloom?.resolve()
 
-	if(family_heirloom && (family_heirloom in quirk_holder.get_all_contents()))
+	if(family_heirloom && quirk_holder.contains(family_heirloom))
 		quirk_holder.clear_mood_event("family_heirloom_missing")
 		quirk_holder.add_mood_event("family_heirloom", /datum/mood_event/family_heirloom)
 	else

@@ -11,7 +11,7 @@
 	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_PHASED|AB_CHECK_OPEN_TURF
 
-	invocation = "GIN'YU CAPAN"
+	invocation = "GIN'YU CAPAN."
 	invocation_type = INVOCATION_WHISPER
 
 	active_msg = "You prepare to swap minds with a target..."
@@ -111,7 +111,7 @@
 		|| mind_to_swap.has_antag_datum(/datum/antagonist/cult) \
 		|| mind_to_swap.has_antag_datum(/datum/antagonist/changeling) \
 		|| mind_to_swap.has_antag_datum(/datum/antagonist/rev) \
-		|| mind_to_swap.key?[1] == "@" \
+		|| IS_FAKE_KEY(mind_to_swap.key) \
 	)
 		to_chat(caster, span_warning("[to_swap.p_Their()] mind is resisting your spell!"))
 		return FALSE
@@ -128,7 +128,7 @@
 
 	// Just in case the swappee's key wasn't grabbed by transfer_to...
 	if(to_swap_key)
-		caster.key = to_swap_key
+		caster.PossessByPlayer(to_swap_key)
 
 	// MIND TRANSFER END
 

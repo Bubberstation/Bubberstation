@@ -3,7 +3,7 @@
 	var/atom/objholder = null
 
 /datum/buildmode_mode/advanced/show_help(client/builder)
-	to_chat(builder, span_purple(examine_block(
+	to_chat(builder, span_purple(boxed_message(
 		"[span_bold("Set object type")] -> Right Mouse Button on buildmode button\n\
 		[span_bold("Copy object type")] -> Left Mouse Button + Alt on turf/obj\n\
 		[span_bold("Place objects")] -> Left Mouse Button on turf/obj\n\
@@ -58,12 +58,4 @@
 	else if(right_click)
 		if(isobj(object))
 			log_admin("Build Mode: [key_name(c)] deleted [object] at [AREACOORD(object)]")
-			// SKYRAT EDIT -- BS delete sparks. Original was just qdel(object)
-			var/turf/T = get_turf(object)
 			qdel(object)
-			if(T && c.prefs.read_preference(/datum/preference/toggle/admin/delete_sparks))
-				playsound(T, 'sound/effects/magic/repulse.ogg', 100, 1)
-				var/datum/effect_system/spark_spread/quantum/sparks = new
-				sparks.set_up(10, 1, T)
-				sparks.attach(T)
-				sparks.start()

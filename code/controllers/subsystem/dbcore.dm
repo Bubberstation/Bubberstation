@@ -1,10 +1,10 @@
 #define SHUTDOWN_QUERY_TIMELIMIT (1 MINUTES)
 SUBSYSTEM_DEF(dbcore)
 	name = "Database"
-	flags = SS_TICKER
+	ss_flags = SS_TICKER
+	init_stage = INITSTAGE_FIRST
 	wait = 10 // Not seconds because we're running on SS_TICKER
 	runlevels = RUNLEVEL_LOBBY|RUNLEVELS_DEFAULT
-	init_order = INIT_ORDER_DBCORE
 	priority = FIRE_PRIORITY_DATABASE
 
 	var/schema_mismatch = 0
@@ -49,6 +49,8 @@ SUBSYSTEM_DEF(dbcore)
 	var/db_daemon_started = FALSE
 
 /datum/controller/subsystem/dbcore/Initialize()
+	Connect()
+
 	//We send warnings to the admins during subsystem init, as the clients will be New'd and messages
 	//will queue properly with goonchat
 	switch(schema_mismatch)
@@ -86,7 +88,7 @@ SUBSYSTEM_DEF(dbcore)
 			log_config("ERROR: POOLING_MAX_SQL_CONNECTIONS ([max_sql_connections]) is set lower than POOLING_MIN_SQL_CONNECTIONS ([min_sql_connections]). Please check your config or the code defaults for sanity")
 
 /datum/controller/subsystem/dbcore/stat_entry(msg)
-	msg = "P:[length(all_queries)]|Active:[length(queries_active)]|Standby:[length(queries_standby)]"
+	msg = "\n  P:[length(all_queries)]|Active:[length(queries_active)]|Standby:[length(queries_standby)]"
 	return ..()
 
 /// Resets the tracking numbers on the subsystem. Used by SStime_track.
@@ -180,11 +182,12 @@ SUBSYSTEM_DEF(dbcore)
 
 /datum/controller/subsystem/dbcore/Shutdown()
 	shutting_down = TRUE
-	var/msg = "Clearing DB queries standby:[length(queries_standby)] active: [length(queries_active)] all: [length(all_queries)]"
-	to_chat(world, span_boldannounce(msg))
-	log_world(msg)
+	var/initial_msg = "Clearing DB Queries. (Standby: [length(queries_standby)]; Active: [length(queries_active)]; All: [length(all_queries)])"
+	to_chat(world, span_boldannounce(initial_msg))
+	log_world(initial_msg)
+	var/start_time = REALTIMEOFDAY
 	//This is as close as we can get to the true round end before Disconnect() without changing where it's called, defeating the reason this is a subsystem
-	var/endtime = REALTIMEOFDAY + SHUTDOWN_QUERY_TIMELIMIT
+	var/end_time = start_time + SHUTDOWN_QUERY_TIMELIMIT
 	if(SSdbcore.Connect())
 		//Take over control of all active queries
 		var/queries_to_check = queries_active.Copy()
@@ -198,7 +201,7 @@ SUBSYSTEM_DEF(dbcore)
 
 		//wait for them all to finish
 		for(var/datum/db_query/query in queries_to_check)
-			UNTIL(query.process() || REALTIMEOFDAY > endtime)
+			UNTIL(query.process() || REALTIMEOFDAY > end_time)
 
 		// SKYRAT EDIT START - SQL-based logging
 		for(var/table in queued_log_entries_by_table)
@@ -214,9 +217,9 @@ SUBSYSTEM_DEF(dbcore)
 		query_round_shutdown.Execute(FALSE)
 		qdel(query_round_shutdown)
 
-	msg = "Done clearing DB queries standby:[length(queries_standby)] active: [length(queries_active)] all: [length(all_queries)]"
-	to_chat(world, span_boldannounce(msg))
-	log_world(msg)
+	var/completed_message = "Done clearing DB queries in [DisplayTimeText(REALTIMEOFDAY - start_time)] (Standby: [length(queries_standby)]; Active: [length(queries_active)]; All: [length(all_queries)])]"
+	to_chat(world, span_boldannounce(completed_message))
+	log_world(completed_message)
 	if(IsConnected())
 		Disconnect()
 	stop_db_daemon()
@@ -337,6 +340,8 @@ SUBSYSTEM_DEF(dbcore)
 	GLOB.round_id = "[query_round_initialize.last_insert_id]"
 	qdel(query_round_initialize)
 
+	log_world("Round ID: [GLOB.round_id]")
+
 /datum/controller/subsystem/dbcore/proc/SetRoundStart()
 	if(!Connect())
 		return
@@ -389,12 +394,30 @@ SUBSYSTEM_DEF(dbcore)
 		return FALSE
 	return new /datum/db_query(connection, sql_query, arguments)
 
+/**
+ * Creates and executes a query without waiting for or tracking the results.
+ * Query is executed asynchronously (without blocking) and deleted afterwards - any results or errors are discarded.
+ *
+ * Arguments:
+ * * sql_query - The SQL query string to execute
+ * * arguments - List of arguments to pass to the query for parameter binding
+ * * allow_during_shutdown - If TRUE, allows query to be created during subsystem shutdown. Generally, only cleanup queries should set this.
+ */
+/datum/controller/subsystem/dbcore/proc/FireAndForget(sql_query, arguments, allow_during_shutdown = FALSE)
+	var/datum/db_query/query = NewQuery(sql_query, arguments, allow_during_shutdown)
+	if(!query)
+		return
+	ASYNC
+		query.Execute()
+		qdel(query)
+
 /** QuerySelect
 	Run a list of query datums in parallel, blocking until they all complete.
 	* queries - List of queries or single query datum to run.
 	* warn - Controls rather warn_execute() or Execute() is called.
 	* qdel - If you don't care about the result or checking for errors, you can have the queries be deleted afterwards.
-		This can be combined with invoke_async as a way of running queries async without having to care about waiting for them to finish so they can be deleted.
+		This can be combined with invoke_async as a way of running queries async without having to care about waiting for them to finish so they can be deleted,
+		however you should probably just use FireAndForget instead if it's just a single query.
 */
 /datum/controller/subsystem/dbcore/proc/QuerySelect(list/queries, warn = FALSE, qdel = FALSE)
 	if (!islist(queries))
@@ -419,8 +442,6 @@ SUBSYSTEM_DEF(dbcore)
 		query.sync()
 		if (qdel)
 			qdel(query)
-
-
 
 /*
 Takes a list of rows (each row being an associated list of column => value) and inserts them via a single mass query.
@@ -663,7 +684,7 @@ Ignore_errors instructes mysql to continue inserting rows if some of them have e
 
 
 /datum/db_query/proc/slow_query_check()
-	message_admins("HEY! A database query timed out. Did the server just hang? <a href='?_src_=holder;[HrefToken()];slowquery=yes'>\[YES\]</a>|<a href='?_src_=holder;[HrefToken()];slowquery=no'>\[NO\]</a>")
+	message_admins("HEY! A database query timed out. Did the server just hang? <a href='byond://?_src_=holder;[HrefToken()];slowquery=yes'>\[YES\]</a>|<a href='byond://?_src_=holder;[HrefToken()];slowquery=no'>\[NO\]</a>")
 
 /datum/db_query/proc/NextRow(async = TRUE)
 	Activity("NextRow")

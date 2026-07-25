@@ -1,6 +1,7 @@
 /// Sends a fake bubblegum charging through a nearby wall to our target.
 /datum/hallucination/oh_yeah
 	random_hallucination_weight = 1
+	hallucination_tier = HALLUCINATION_TIER_RARE
 	/// An image overlayed to the wall bubblegum comes out of, to look destroyed.
 	var/image/fake_broken_wall
 	/// An image put where bubblegum is expected to land, to mimic his charge "rune" icon.
@@ -48,7 +49,7 @@
 		hallucinator.playsound_local(wall_source, 'sound/effects/meteorimpact.ogg', 150, TRUE)
 
 	if(haunt_them)
-		to_chat(hallucinator, pick(hallucination_lines))
+		to_chat(hallucinator, span_colossus(pick(hallucination_lines)))
 
 	var/obj/effect/client_image_holder/hallucination/bubblegum/fake_bubbles = new(wall_source, hallucinator, src)
 	addtimer(CALLBACK(src, PROC_REF(charge_loop), fake_bubbles, target_landing_turf), 1 SECONDS)
@@ -81,7 +82,7 @@
 
 	if(fake_bubbles.Adjacent(hallucinator))
 		hallucinator.Paralyze(8 SECONDS)
-		hallucinator.adjustStaminaLoss(40)
+		hallucinator.adjust_stamina_loss(40)
 		step_away(hallucinator, fake_bubbles)
 		shake_camera(hallucinator, 4, 3)
 		hallucinator.visible_message(

@@ -2,7 +2,6 @@
 	title = JOB_CURATOR
 	description = "Read and write books and hand them to people, stock \
 		bookshelves, report on station news."
-	department_head = list(JOB_HEAD_OF_PERSONNEL)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -56,8 +55,8 @@
 
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
 
-/datum/outfit/job/curator/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	if(visualsOnly)
+/datum/outfit/job/curator/pre_equip(mob/living/carbon/human/H, visuals_only = FALSE)
+	if(visuals_only)
 		return ..()
 
 	/// There can be only one cameraman on this station, and no, not that kind
@@ -68,10 +67,10 @@
 	return ..()
 
 
-/datum/outfit/job/curator/post_equip(mob/living/carbon/human/translator, visualsOnly = FALSE)
+/datum/outfit/job/curator/post_equip(mob/living/carbon/human/translator, visuals_only = FALSE)
 	..()
 
-	if(visualsOnly)
+	if(visuals_only)
 		return
 
 	translator.grant_all_languages(source = LANGUAGE_CURATOR)

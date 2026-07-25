@@ -1,8 +1,8 @@
 // THIS IS A SKYRAT UI FILE
-import { classes } from 'common/react';
+import { Button, Icon, Section, Table, Tooltip } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { Button, Icon, Section, Table, Tooltip } from '../components';
 import { Window } from '../layouts';
 
 const commandJobs = [
@@ -11,6 +11,8 @@ const commandJobs = [
   'Chief Engineer',
   'Research Director',
   'Chief Medical Officer',
+  'Quartermaster',
+  'Nanotrasen Consultant',
 ];
 
 export const RecordManifest = (props) => {
@@ -23,7 +25,7 @@ export const RecordManifest = (props) => {
     <Window title="All crew with information" width={450} height={500}>
       <Window.Content scrollable>
         {Object.entries(manifest).map(([dept, crew]) => (
-          <Section className={'CrewManifest--' + dept} key={dept} title={dept}>
+          <Section className={`CrewManifest--${dept}`} key={dept} title={dept}>
             <Table>
               {Object.entries(crew).map(([crewIndex, crewMember]) => (
                 <Table.Row key={crewIndex}>
@@ -36,14 +38,6 @@ export const RecordManifest = (props) => {
                       onClick={() =>
                         act('show_exploitables', {
                           exploitable_id: crewMember.name,
-                        })
-                      }
-                    />
-                    <Button
-                      content="Show background"
-                      onClick={() =>
-                        act('show_background', {
-                          background_id: crewMember.name,
                         })
                       }
                     />

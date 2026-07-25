@@ -1,0 +1,217 @@
+2024-10-01:
+  Arturlang:
+  - balance: brawn costs 10 blood instead of 8, and has a cooldown of 12 seconds,
+      instead of 9
+  - balance: fortitude now has a cooldown of 20 seconds, from 8, also you will not
+      be able to heal any brute or burn damage while it is active, the scaling of
+      the damage resist is also halved, no longer is maximum resistance of 0.3 for
+      brute, 0.5 for burn achieved at level 4, now it is reached at level 8, changing
+      by 0.05 per ability level
+  - balance: haste costs 9 blood instead of 6, and has a cooldown of 15 seconds from
+      12
+  - balance: The candelabrum is no longer as tough
+  - bugfix: candelabrum now turns off when unsecured
+  - balance: Bloodsucker no longer level from sol when they reach level 4
+  - balance: Ventrue now can only use blood drunk from sentients to level up vassals
+      if they wish to level themselves up.
+  - refactor: Refactors how ventrue vassalizing is handled, no longer copying most
+      of level up code for it.
+  - balance: Silver stakes no longer gib/dust sleepy bloodsuckers, instead they remove
+      hearts, which leaves bloodsuckers power-less
+  Odairu:
+  - bugfix: TK no longer teleports to stripper pole
+  ReturnToZender:
+  - rscadd: You can now control what your name is, when you spawn as an ERT.
+  pixelkitty286:
+  - rscadd: cut down omitool a small upgrade for the scanner
+  - qol: made research borgs actually able to revive and work on synths
+  - balance: research cyborg grippers
+  - bugfix: research cyborgs not being able to repair synths. research cyborgs being
+      able to pick up the nuke disk (oops lol).
+  shellspeed1:
+  - rscadd: Thanks to the effort of syndicate engineers, you can now reproduce the
+      interdyne cargo equipment as well as firing pins and headsets complete with
+      comms key! Don't let it get stolen by NT!
+  theselfish:
+  - rscdel: Removed storage from (nearly) all the Bunny Suits
+2024-10-03:
+  KazooBard:
+  - rscadd: Added the card reader to the autolathe's designs
+  shayoki:
+  - rscadd: Added a basic megacell in Boxstation's EVA Storage room inside the inducer
+      storage.
+  - rscadd: Added two secure lockers in Boxstation's Brig evidence room.
+  - rscdel: Removed Borg Burger in Boxstation's robotics.
+  - bugfix: Realigned the airlock and windows for Boxstation's Blueshield office to
+      match the Vacant Office nearby it.
+  - bugfix: Fixed an open wall connecting to Boxstation's Garden and maints.
+  - spellcheck: fixed a crate's name in Boxstation's test firing range.
+2024-10-04:
+  Arturlang:
+  - bugfix: Malkavians will now actually get a notification and a objective once a
+      bloodsucker breaks the masquarade
+  ReturnToZender:
+  - rscdel: The Lungbuster now no longer calls forth hell's sirens.
+  nevimer:
+  - refactor: Vetted system is now using SQL and improved.
+2024-10-06:
+  LT3:
+  - code_imp: Radiation storm warning only sent to players who are in an area without
+      radiation protection
+  - balance: Occupied dorms are protected from radiation storms and scrubbers
+2024-10-07:
+  thegrb93:
+  - bugfix: Fix runtimes and bugs with using lewd toys on cyborgs
+2024-10-08:
+  Mitryll:
+  - balance: Set Heretic sacrifice target amount to 5-6.
+  nevimer:
+  - rscadd: Centralsmith Donor Item
+2024-10-09:
+  Aroliacue:
+  - balance: Increased Shadekin bodypart burn damage received from 10% to 20%
+  - spellcheck: Fixed some desc typos in shadekin.dm
+  - bugfix: Removed doubleup eyes organ in shadekin.dm
+  Odairu:
+  - qol: AIs can open doors without looking
+2024-10-10:
+  Adrian16199:
+  - rscadd: HFZ can have digitigrade legs now.
+  LT3:
+  - qol: Gravity generator failures/power restores are now less announcement and sound
+      spammy
+  LT3, vinylspiders, LordVoidron:
+  - rscadd: Private (subtle) PDA messaging by adding "#" to start of message
+  - qol: Added button to NTOS messenger TGUI to toggle private messaging
+  - admin: Public logging for non-subtle PDA messages
+  Mitryll:
+  - rscadd: Added *squeal emote
+  - rscadd: Added *tailthump emote
+  - sound: Added sounds for *squeal and *tailthump
+  Swiftfeather:
+  - balance: Reduced wound chance multiplication when injured.
+  theselfish:
+  - spellcheck: Various Bloodsucker things have been renamed after the Inconnu paid
+      a visit.
+2024-10-11:
+  IgiariValkyr:
+  - rscadd: Lizard Gas can actually be staffed now!
+2024-10-12:
+  Boviro:
+  - rscadd: Re-adds gun safeties
+  - rscadd: Guns with enabled safeties will disable their safeties if you attempt
+      to fire with it on.
+  LT3:
+  - code_imp: Bubber medsecHUD replaced with TG version
+  - rscadd: Medic labcoat/vest added to Orderly garment bag
+  - balance: Morgue surgery tray now comes with an autopsy scanner
+  Odairu:
+  - rscadd: adds silicon manager pda app
+  sippykot:
+  - rscadd: you can buy the surgical medkit in cargo now
+2024-10-15:
+  Bangle:
+  - spellcheck: Added some alt titles
+2024-10-17:
+  Arturlang:
+  - balance: Drinking from ghouls/vassals as a bloodsucker is no longer is 1/4th less
+      effective than drinking from non ghouls/vassals
+  TealSeer:
+  - rscdel: Remove air alarm in Space from BoxStation.
+2024-10-18:
+  Arturlang:
+  - bugfix: Bloodsuckers now get blood thickening points
+2024-10-21:
+  ChromeFoxxity:
+  - rscadd: Added the Vortex-Class Luxury Evacuation Shuttle.
+  LT3:
+  - balance: Balanced company imports DeForest Medical section
+  Shadow-Quill:
+  - bugfix: Headpats show a feedback message again.
+  StrangeWeirdKitten:
+  - rscdel: Removes blueshift entirely from the code.
+  - rscdel: Removes Limastation
+  nikothedude:
+  - balance: Synth premium medkits no longer have a premium spray, instead having
+      a plasmide spray.
+  - balance: Plasmide now metabolizes slower
+  thegrb93:
+  - image: Vox helmet sprites now using improved vox helmet sprites
+  xPokee:
+  - bugfix: fixed the Big ears being removed, presumably by accident
+  xXPawnStarrXx:
+  - qol: added two extra tools to the surgical toolset; Bloodfilter and bonesetter.
+  - bugfix: added combitool to deforest's cargo orders, I forgot to before.
+2024-10-22:
+  StrangeWeirdKitten:
+  - rscadd: Radiation Storms will now irradiate the station again if you don't set
+      the shields up.
+  TealSeer:
+  - bugfix: fixed department head arrival radio messages missing their job title
+2024-10-23:
+  Iamgoofball:
+  - rscadd: Adds 20 more slots for free players and up to 100 slots for BYOND members
+2024-10-25:
+  LT3:
+  - rscadd: Halloween candy meteors
+  - bugfix: Halloween, Easter, and Valentines Day events correctly trigger at roundstart
+  - image: More Halloween holiday tile patterns
+  - sound: Reduced length of meteor alert warning sound
+  - balance: Adjusted warning time for meteor waves depending on intensity
+  - qol: Received subtle PDA messages are labelled subtle in the text log
+  ReturnToZender:
+  - balance: Changeling shrieks now have a 10 second cooldown.
+  nikothedude:
+  - balance: Synth blunt T3 now requires a T1 burn wound to mold
+  - balance: Synth blunt T3 heating step now gives a T1 burn wound
+  - balance: Synth blunt T3 heating now takes 3 secs
+  - balance: Synth electrical damage is now much more treatable with wires
+  - bugfix: Nagas no longer play human footsteps
+2024-10-26:
+  '@Majkl-J, @Wolf-751':
+  - bugfix: Brings back the red berserker suit digi sprites, originally by Erol509
+  - image: Adds digi sprites to marked one's berserker suit (By Wolf-751)
+  CydiaButt13:
+  - rscadd: '*yip'
+  - rscadd: '*yipyip'
+  LT3:
+  - image: Fixed icon state for upgraded power cell
+  - bugfix: APCs again trigger lighting channel before equipment channel
+  Shadow-Quill:
+  - bugfix: Dauntless vendors no longer require money to use, as before.
+  - bugfix: SSD timer now visible once more.
+  YakumoChen:
+  - rscdel: Nanotrasen has removed the Galactic Minerals Market from their Moonstation
+      branch due to repeated market crashing by crew.
+  xPokee:
+  - rscadd: added a GAGSified miniskirt to the loadout menu
+2024-10-27:
+  Flvffi:
+  - rscadd: 1 Haydee borg skin for the Research role
+  sneksnek:
+  - balance: Reverted the normal, large, and x-large beakers back to their original
+      capacities of 50u, 100u, and 120u respectively.
+2024-10-28:
+  LT3:
+  - bugfix: Fixed meow and purr emotes playing the pet line instead of the emote line
+  - qol: You can now see the tallies used to calculate map votes
+  Shadow-Quill:
+  - bugfix: Other ghost roles now have free vendors.
+  - rscadd: Subtler Anti-Ghost's text box name is now "Subtler Anti-Ghost", to give
+      it better distinction with the Subtle box.
+2024-10-30:
+  Arturlang:
+  - bugfix: Hemophages are now set alight at 397.6 blood again
+  LT3:
+  - bugfix: Crew monitor computer no longer alerts when unpowered
+  Majkl-J:
+  - rscadd: New annoying cat plush for Kurzaen, available in loadouts
+  sippykot:
+  - rscdel: beakers are 60u/120u again
+  - balance: changes cryo beaker to 60u from 50u
+  - rscdel: XL beaker is 150u again
+2024-10-31:
+  LT3:
+  - bugfix: Windoors animate properly
+  xPokee:
+  - bugfix: fixed cryogenic consoles being destroyable

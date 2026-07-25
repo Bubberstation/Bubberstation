@@ -7,6 +7,7 @@
 	ai_movement = /datum/ai_movement/basic_avoidance
 	idle_behavior = /datum/idle_behavior/idle_random_walk
 	planning_subtrees = list(
+		/datum/ai_planning_subtree/escape_captivity,
 		/datum/ai_planning_subtree/simple_find_target,
 		/datum/ai_planning_subtree/targeted_mob_ability/glare,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree,
@@ -34,7 +35,7 @@
 	var/eye_damage_threshold = owner.ai_controller.blackboard[BB_EYE_DAMAGE_THRESHOLD]
 	if(!eye_damage_threshold)
 		return TRUE
-	var/obj/item/organ/internal/eyes/eyes = human_target.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = human_target.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes.damage > eye_damage_threshold) //we dont attack people with bad vision
 		return FALSE
 

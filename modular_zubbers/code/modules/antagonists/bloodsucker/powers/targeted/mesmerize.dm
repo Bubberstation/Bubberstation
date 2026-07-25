@@ -148,7 +148,7 @@
 		StartCooldown(cooldown_time * 0.5)
 		return
 	// Can't quite time it here, but oh well
-	to_chat(mesmerized_target, "[src]'s eyes look into yours, and [span_hypnophrase("you feel your mind slipping away")]...")
+	to_chat(mesmerized_target, "[user]'s eyes look into yours, and [span_hypnophrase("you feel your mind slipping away")]...")
 	/*if(IS_MONSTERHUNTER(mesmerized_target))
 		to_chat(mesmerized_target, span_notice("You feel your eyes burn for a while, but it passes."))
 		return*/

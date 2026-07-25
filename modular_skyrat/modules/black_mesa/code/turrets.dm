@@ -1,4 +1,6 @@
-/obj/machinery/porta_turret/black_mesa
+//commented out for now until black mesa gateway is worked on again.
+
+/* /obj/machinery/porta_turret/black_mesa
 	use_power = IDLE_POWER_USE
 	req_access = list(ACCESS_CENT_GENERAL)
 	faction = list(FACTION_XEN, FACTION_BLACKMESA, FACTION_HECU, FACTION_BLACKOPS)
@@ -40,7 +42,7 @@
 	..()
 
 /obj/machinery/porta_turret/syndicate/pod/toolbox/mesa
-	stun_projectile = /obj/projectile/bullet/c9mm/rubber
+	stun_projectile = /obj/projectile/bullet/c9mm
 	lethal_projectile = /obj/projectile/bullet/c9mm/ap
 	max_integrity = 150
 	req_access = list(ACCESS_AWAY_SEC)
@@ -51,3 +53,4 @@
 
 /obj/machinery/porta_turret/black_mesa/friendly
 	faction = list(FACTION_STATION)
+ */

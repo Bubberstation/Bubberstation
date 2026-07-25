@@ -16,7 +16,7 @@
 
 	///Our shuttle's control console
 	var/obj/machinery/computer/shuttle/arrivals/console
-	///How much time are we waiting before returning to interlink. Sets itself automatically from config file
+	///How much time are we waiting before returning to interlink. Sets itself automatically from config file. 0 = no auto return
 	var/wait_time
 	///State variable. True when our shuttle is waiting before autoreturn
 	var/waiting = FALSE // would've been better to use shuttle's mode variable, but check() resets it to SHUTTLE_IDLE so it's more sane way to make this fully modular
@@ -133,6 +133,16 @@
 	prefix = "_maps/shuttles/skyrat/"
 	port_id = "whiteship"
 	suffix = "blueshift"
+
+/datum/map_template/shuttle/cargo/skyrat/ouroboros
+	suffix = "ouroboros"
+
+/datum/map_template/shuttle/whiteship/ouroboros
+	name = "JN Chasse-Galerie"
+	description = "A small Jim Nortons shuttle meant to be a mobile cafe. No hostiles onboard, but multiple corpses of Jim Nortons employees."
+	prefix = "_maps/shuttles/skyrat/"
+	port_id = "whiteship"
+	suffix = "ouroboros"
 
 /datum/map_template/shuttle/arrivals_skyrat
 	name = "NTV Relay (Arrivals)"

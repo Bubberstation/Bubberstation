@@ -24,12 +24,11 @@
 /datum/movespeed_modifier/resonance
 	multiplicative_slowdown = 0.75
 
-/datum/movespeed_modifier/damage_slowdown
-	blacklisted_movetypes = FLOATING|FLYING
+/datum/movespeed_modifier/basic_stamina_slowdown
 	variable = TRUE
 
-/datum/movespeed_modifier/damage_slowdown_flying
-	movetypes = FLYING
+/datum/movespeed_modifier/damage_slowdown
+	blacklisted_movetypes = FLOATING
 	variable = TRUE
 
 /// Movespeed modifier applied by worn equipment.
@@ -163,8 +162,8 @@
 /datum/movespeed_modifier/grown_killer_tomato
 	variable = TRUE
 
-/datum/movespeed_modifier/goliath_mount
-	multiplicative_slowdown = -26
+/datum/movespeed_modifier/goldgrub_mount
+	multiplicative_slowdown = -4.5
 
 /datum/movespeed_modifier/settler
 	multiplicative_slowdown = 0.2
@@ -175,3 +174,16 @@
 
 /datum/movespeed_modifier/magic_ties
 	multiplicative_slowdown = 0.5
+
+///Speed bonus given by the fish tail organ when inside water.
+/datum/movespeed_modifier/fish_on_water
+	blacklisted_movetypes = MOVETYPES_NOT_TOUCHING_GROUND
+	multiplicative_slowdown = - /turf/open/water::slowdown
+
+///Slowdown for swimming on deep water tiles
+/datum/movespeed_modifier/swimming_deep
+	blacklisted_movetypes = MOVETYPES_NOT_TOUCHING_GROUND
+	multiplicative_slowdown = 7
+
+/datum/movespeed_modifier/tail_dragger
+	multiplicative_slowdown = 4

@@ -34,6 +34,8 @@
 	var/delta_t
 	///How pure our step is
 	var/delta_ph
+	///Min reaction rate possible below which rounding errors occur
+	VAR_PRIVATE/min_rate
 	///Modifiers from catalysts, do not use negative numbers.
 	///I should write a better handiler for modifying these
 	///Speed mod
@@ -60,17 +62,10 @@
 	if(!check_inital_conditions()) //If we're outside of the scope of the reaction vars
 		to_delete = TRUE
 		return
-	if(!length(reaction.results)) //Come back to and revise the affected reactions in the next PR, this is a placeholder fix.
-		holder.instant_react(reaction) //Even if this check fails, there's a backup - look inside of calculate_yield()
-		to_delete = TRUE
-		return
 	LAZYADD(holder.reaction_list, src)
 	SSblackbox.record_feedback("tally", "chemical_reaction", 1, "[reaction.type] attempts")
 
-
 /datum/equilibrium/Destroy()
-	if(reacted_vol < target_vol) //We did NOT finish from reagents - so we can restart this reaction given property changes in the beaker. (i.e. if it stops due to low temp, this will allow it to fast restart when heated up again)
-		LAZYADD(holder.failed_but_capable_reactions, reaction) //Consider replacing check with calculate_yield()
 	LAZYREMOVE(holder.reaction_list, src)
 	holder = null
 	reaction = null
@@ -114,6 +109,8 @@
 			product_ratio += reaction.results[product]
 	else
 		product_ratio = 1
+	min_rate = product_ratio * (CHEMICAL_VOLUME_ROUNDING / 2)
+
 	return TRUE
 
 /**
@@ -321,10 +318,13 @@
 	purity *= purity_modifier
 
 	//Now we calculate how much to add - this is normalised to the rate up limiter
-	var/delta_chem_factor = reaction.rate_up_lim * delta_t * seconds_per_tick//add/remove factor
+	var/delta_chem_factor = reaction.rate_up_lim * delta_t * seconds_per_tick
 	//keep limited
 	if(delta_chem_factor > step_target_vol)
 		delta_chem_factor = step_target_vol
+	//ensure its above minimum rate below which rounding errors occur
+	else if(delta_chem_factor < min_rate)
+		delta_chem_factor = min_rate
 	//Normalise to multiproducts
 	delta_chem_factor = round(delta_chem_factor / product_ratio, CHEMICAL_VOLUME_ROUNDING)
 	if(delta_chem_factor <= 0)
@@ -367,10 +367,9 @@
 		total_step_added += step_add
 
 	#ifdef REAGENTS_TESTING //Kept in so that people who want to write fermireactions can contact me with this log so I can help them
-	if(GLOB.Debug2) //I want my spans for my sanity
-		message_admins(span_green("Reaction step active for:[reaction.type]"))
-		message_admins(span_notice("|Reaction conditions| Temp: [holder.chem_temp], pH: [holder.ph], reactions: [length(holder.reaction_list)], awaiting reactions: [length(holder.failed_but_capable_reactions)], no. reagents:[length(holder.reagent_list)], no. prev reagents: [length(holder.previous_reagent_list)]"))
-		message_admins(span_warning("Reaction vars: PreReacted:[reacted_vol] of [step_target_vol] of total [target_vol]. delta_t [delta_t], multiplier [multiplier], delta_chem_factor [delta_chem_factor] Pfactor [product_ratio], purity of [purity] from a delta_ph of [delta_ph]. DeltaTime: [seconds_per_tick]"))
+	debug_admins(span_green("Reaction step active for:[reaction.type]"))
+	debug_admins(span_notice("|Reaction conditions| Temp: [holder.chem_temp], pH: [holder.ph], reactions: [length(holder.reaction_list)], no. reagents:[length(holder.reagent_list)]"))
+	debug_admins(span_warning("Reaction vars: PreReacted:[reacted_vol] of [step_target_vol] of total [target_vol]. delta_t [delta_t], multiplier [multiplier], delta_chem_factor [delta_chem_factor] Pfactor [product_ratio], purity of [purity] from a delta_ph of [delta_ph]. DeltaTime: [seconds_per_tick]"))
 	#endif
 
 	//Apply thermal output of reaction to beaker

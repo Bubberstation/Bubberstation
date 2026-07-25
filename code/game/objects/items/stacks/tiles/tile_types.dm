@@ -26,8 +26,8 @@
 	var/list/tile_reskin_types
 	/// Cached associative lazy list to hold the radial options for tile dirs. See tile_reskinning.dm for more information.
 	var/list/tile_rotate_dirs
-	/// Allows us to replace the plating we are attacking if our baseturfs are the same.
-	var/replace_plating = FALSE
+	/// tile_rotate_dirs but before it gets converted to text
+	var/list/tile_rotate_dirs_number
 
 /obj/item/stack/tile/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
 	. = ..()
@@ -37,6 +37,7 @@
 	if(tile_reskin_types)
 		tile_reskin_types = tile_reskin_list(tile_reskin_types)
 	if(tile_rotate_dirs)
+		tile_rotate_dirs_number = tile_rotate_dirs.Copy()
 		var/list/values = list()
 		for(var/set_dir in tile_rotate_dirs)
 			values += dir2text(set_dir)
@@ -49,7 +50,7 @@
 		. += span_notice("Use while in your hand to change what type of [src] you want.")
 	if(throwforce && !is_cyborg) //do not want to divide by zero or show the message to borgs who can't throw
 		var/damage_value
-		switch(CEILING(MAX_LIVING_HEALTH / throwforce, 1)) //throws to crit a human
+		switch(ceil(MAX_LIVING_HEALTH / throwforce)) //throws to crit a human
 			if(1 to 3)
 				damage_value = "superb"
 			if(4 to 6)
@@ -78,25 +79,9 @@
 	if(!istype(target_plating))
 		return
 
-	if(!replace_plating)
-		if(!use(1))
-			return
-		target_plating = target_plating.place_on_top(placed_turf_path, flags = CHANGETURF_INHERIT_AIR)
-		target_plating.setDir(turf_dir)
-		playsound(target_plating, 'sound/items/weapons/genhit.ogg', 50, TRUE)
-		return target_plating // Most executions should end here.
-
-	// If we and the target tile share the same initial baseturf and they consent, replace em.
-	if(!target_plating.allow_replacement || initial(target_plating.baseturfs) != initial(placed_turf_path.baseturfs))
-		to_chat(user, span_notice("You cannot place this tile here directly!"))
-		return
-	to_chat(user, span_notice("You begin replacing the floor with the tile..."))
-	if(!istype(target_plating))
-		return
 	if(!use(1))
 		return
-
-	target_plating = target_plating.ChangeTurf(placed_turf_path, target_plating.baseturfs, CHANGETURF_INHERIT_AIR)
+	target_plating = target_plating.place_on_top(placed_turf_path, flags = CHANGETURF_INHERIT_AIR)
 	target_plating.setDir(turf_dir)
 	playsound(target_plating, 'sound/items/weapons/genhit.ogg', 50, TRUE)
 	return target_plating
@@ -114,6 +99,17 @@
 	turf_type = /turf/open/floor/grass
 	resistance_flags = FLAMMABLE
 	merge_type = /obj/item/stack/tile/grass
+
+//Hay
+/obj/item/stack/tile/hay
+	name = "hay tile"
+	singular_name = "hay floor tile"
+	desc = "Man, I'm so hungry I could eat a-"
+	icon_state = "tile_hay"
+	inhand_icon_state = "tile-hay"
+	turf_type = /turf/open/floor/hay
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/hay
 
 //Fairygrass
 /obj/item/stack/tile/fairygrass
@@ -141,6 +137,7 @@
 		/obj/item/stack/tile/wood/tile,
 		/obj/item/stack/tile/wood/parquet,
 	)
+	mats_per_unit = list(/datum/material/wood = HALF_SHEET_MATERIAL_AMOUNT / 2)
 
 /obj/item/stack/tile/wood/parquet
 	name = "parquet wood floor tile"
@@ -179,6 +176,7 @@
 		/obj/item/stack/tile/bamboo/tatami/purple,
 		/obj/item/stack/tile/bamboo/tatami/black,
 	)
+	mats_per_unit = list(/datum/material/bamboo = HALF_SHEET_MATERIAL_AMOUNT / 2)
 
 /obj/item/stack/tile/bamboo/tatami
 	name = "Tatami with green rim"
@@ -211,6 +209,7 @@
 	inhand_icon_state = "tile-basalt"
 	turf_type = /turf/open/floor/fakebasalt
 	merge_type = /obj/item/stack/tile/basalt
+	mats_per_unit = list(/datum/material/sand = SHEET_MATERIAL_AMOUNT * 2)
 
 //Carpets
 /obj/item/stack/tile/carpet
@@ -221,7 +220,7 @@
 	inhand_icon_state = "tile-carpet"
 	turf_type = /turf/open/floor/carpet
 	resistance_flags = FLAMMABLE
-	tableVariant = /obj/structure/table/wood/fancy
+	table_type = /obj/structure/table/wood/fancy
 	merge_type = /obj/item/stack/tile/carpet
 	tile_reskin_types = list(
 		/obj/item/stack/tile/carpet,
@@ -251,7 +250,7 @@
 	icon_state = "tile-carpet-black"
 	inhand_icon_state = "tile-carpet-black"
 	turf_type = /turf/open/floor/carpet/black
-	tableVariant = /obj/structure/table/wood/fancy/black
+	table_type = /obj/structure/table/wood/fancy/black
 	merge_type = /obj/item/stack/tile/carpet/black
 	tile_reskin_types = null
 
@@ -260,7 +259,7 @@
 	icon_state = "tile-carpet-blue"
 	inhand_icon_state = "tile-carpet-blue"
 	turf_type = /turf/open/floor/carpet/blue
-	tableVariant = /obj/structure/table/wood/fancy/blue
+	table_type = /obj/structure/table/wood/fancy/blue
 	merge_type = /obj/item/stack/tile/carpet/blue
 	tile_reskin_types = null
 
@@ -269,7 +268,7 @@
 	icon_state = "tile-carpet-cyan"
 	inhand_icon_state = "tile-carpet-cyan"
 	turf_type = /turf/open/floor/carpet/cyan
-	tableVariant = /obj/structure/table/wood/fancy/cyan
+	table_type = /obj/structure/table/wood/fancy/cyan
 	merge_type = /obj/item/stack/tile/carpet/cyan
 	tile_reskin_types = null
 
@@ -278,7 +277,7 @@
 	icon_state = "tile-carpet-green"
 	inhand_icon_state = "tile-carpet-green"
 	turf_type = /turf/open/floor/carpet/green
-	tableVariant = /obj/structure/table/wood/fancy/green
+	table_type = /obj/structure/table/wood/fancy/green
 	merge_type = /obj/item/stack/tile/carpet/green
 	tile_reskin_types = null
 
@@ -287,7 +286,7 @@
 	icon_state = "tile-carpet-orange"
 	inhand_icon_state = "tile-carpet-orange"
 	turf_type = /turf/open/floor/carpet/orange
-	tableVariant = /obj/structure/table/wood/fancy/orange
+	table_type = /obj/structure/table/wood/fancy/orange
 	merge_type = /obj/item/stack/tile/carpet/orange
 	tile_reskin_types = null
 
@@ -296,7 +295,7 @@
 	icon_state = "tile-carpet-purple"
 	inhand_icon_state = "tile-carpet-purple"
 	turf_type = /turf/open/floor/carpet/purple
-	tableVariant = /obj/structure/table/wood/fancy/purple
+	table_type = /obj/structure/table/wood/fancy/purple
 	merge_type = /obj/item/stack/tile/carpet/purple
 	tile_reskin_types = null
 
@@ -305,7 +304,7 @@
 	icon_state = "tile-carpet-red"
 	inhand_icon_state = "tile-carpet-red"
 	turf_type = /turf/open/floor/carpet/red
-	tableVariant = /obj/structure/table/wood/fancy/red
+	table_type = /obj/structure/table/wood/fancy/red
 	merge_type = /obj/item/stack/tile/carpet/red
 	tile_reskin_types = null
 
@@ -314,7 +313,7 @@
 	icon_state = "tile-carpet-royalblack"
 	inhand_icon_state = "tile-carpet-royalblack"
 	turf_type = /turf/open/floor/carpet/royalblack
-	tableVariant = /obj/structure/table/wood/fancy/royalblack
+	table_type = /obj/structure/table/wood/fancy/royalblack
 	merge_type = /obj/item/stack/tile/carpet/royalblack
 	tile_reskin_types = null
 
@@ -323,7 +322,7 @@
 	icon_state = "tile-carpet-royalblue"
 	inhand_icon_state = "tile-carpet-royalblue"
 	turf_type = /turf/open/floor/carpet/royalblue
-	tableVariant = /obj/structure/table/wood/fancy/royalblue
+	table_type = /obj/structure/table/wood/fancy/royalblue
 	merge_type = /obj/item/stack/tile/carpet/royalblue
 	tile_reskin_types = null
 
@@ -352,6 +351,9 @@
 	tile_reskin_types = null
 
 /obj/item/stack/tile/carpet/fifty
+	amount = 50
+
+/obj/item/stack/tile/iron/fifty
 	amount = 50
 
 /obj/item/stack/tile/carpet/black/fifty
@@ -1059,7 +1061,7 @@
 
 /obj/item/stack/tile/tram/plate
 	name = "linear induction tram tiles"
-	singular_name = "linear induction tram tile tile"
+	singular_name = "linear induction tram tile"
 	desc = "A tile with an aluminium plate for tram propulsion."
 	icon_state = "darkiron_plate"
 	inhand_icon_state = "tile-neon"
@@ -1080,6 +1082,7 @@
 		/obj/item/stack/tile/circuit/green,
 		/obj/item/stack/tile/circuit/red,
 	)
+	mats_per_unit = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.05, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.05)
 
 /obj/item/stack/tile/circuit/green
 	name = "green circuit tile"
@@ -1118,8 +1121,26 @@
 	merge_type = /obj/item/stack/tile/pod
 	tile_reskin_types = list(
 		/obj/item/stack/tile/pod,
+		// BUBBER EDIT BEGIN
+		/obj/item/stack/tile/pod/edge,
+		/obj/item/stack/tile/pod/half,
+		/obj/item/stack/tile/pod/corner,
+		/obj/item/stack/tile/pod/large,
+		// BUBBER EDIT END
 		/obj/item/stack/tile/pod/light,
+		// BUBBER EDIT BEGIN
+		/obj/item/stack/tile/pod/light/edge,
+		/obj/item/stack/tile/pod/light/half,
+		/obj/item/stack/tile/pod/light/corner,
+		/obj/item/stack/tile/pod/light/large,
+		// BUBBER EDIT END
 		/obj/item/stack/tile/pod/dark,
+		// BUBBER EDIT BEGIN
+		/obj/item/stack/tile/pod/dark/edge,
+		/obj/item/stack/tile/pod/dark/half,
+		/obj/item/stack/tile/pod/dark/corner,
+		/obj/item/stack/tile/pod/dark/large,
+		// BUBBER EDIT END
 		)
 
 /obj/item/stack/tile/pod/light
@@ -1143,7 +1164,7 @@
 	singular_name = "plastic floor tile"
 	desc = "A tile of cheap, flimsy plastic flooring."
 	icon_state = "tile_plastic"
-	mats_per_unit = list(/datum/material/plastic=SMALL_MATERIAL_AMOUNT*5)
+	mats_per_unit = list(/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT / 2)
 	turf_type = /turf/open/floor/plastic
 	merge_type = /obj/item/stack/tile/plastic
 
@@ -1154,14 +1175,17 @@
 	//throwforce = 10 //ORIGINAL
 	throwforce = 6 //SKYRAT EDIT CHANGE
 	icon_state = "material_tile"
+	inhand_icon_state = "tile"
 	turf_type = /turf/open/floor/material
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 	merge_type = /obj/item/stack/tile/material
 
 /obj/item/stack/tile/material/place_tile(turf/open/target_plating, mob/user)
+	// Save refernce to the materials for the case when we place last tile in the stack
+	var/list/saved_mats_per_unit = mats_per_unit
 	. = ..()
 	var/turf/open/floor/material/floor = .
-	floor?.set_custom_materials(mats_per_unit)
+	floor?.set_custom_materials(saved_mats_per_unit)
 
 /obj/item/stack/tile/eighties
 	name = "retro tile"
@@ -1192,13 +1216,13 @@
 	desc = "A clangy tile made of high-quality bronze. Clockwork construction techniques allow the clanging to be minimized."
 	icon_state = "tile_brass"
 	turf_type = /turf/open/floor/bronze
-	mats_per_unit = list(/datum/material/bronze=SMALL_MATERIAL_AMOUNT*5)
+	mats_per_unit = list(/datum/material/bronze = HALF_SHEET_MATERIAL_AMOUNT / 2)
 	merge_type = /obj/item/stack/tile/bronze
 	tile_reskin_types = list(
 		/obj/item/stack/tile/bronze,
 		/obj/item/stack/tile/bronze/flat,
 		/obj/item/stack/tile/bronze/filled,
-		)
+	)
 
 /obj/item/stack/tile/bronze/flat
 	name = "flat bronze tile"
@@ -1258,7 +1282,7 @@
 	desc = "Flooring that shows its contents underneath. Engineers love it!"
 	icon_state = "maint_catwalk"
 	inhand_icon_state = "tile-catwalk"
-	mats_per_unit = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 1.2)
 	turf_type = /turf/open/floor/catwalk_floor
 	merge_type = /obj/item/stack/tile/catwalk_tile //Just to be cleaner, these all stack with each other
 	tile_reskin_types = list(
@@ -1267,7 +1291,10 @@
 		/obj/item/stack/tile/catwalk_tile/iron_white,
 		/obj/item/stack/tile/catwalk_tile/iron_dark,
 		/obj/item/stack/tile/catwalk_tile/titanium,
-		/obj/item/stack/tile/catwalk_tile/iron_smooth //this is the original greenish one
+		/obj/item/stack/tile/catwalk_tile/iron_smooth, //this is the original greenish one
+		// BUBBER EDIT BEGIN
+		/obj/item/stack/tile/catwalk_tile/wood_smooth // You can already convert to Titanium, why not make wood?
+		// BUBBER EDIT END
 	)
 
 /obj/item/stack/tile/catwalk_tile/sixty
@@ -1313,7 +1340,6 @@
 	inhand_icon_state = "tile-glass"
 	merge_type = /obj/item/stack/tile/glass
 	mats_per_unit = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT * 0.25) // 4 tiles per sheet
-	replace_plating = TRUE
 
 /obj/item/stack/tile/glass/sixty
 	amount = 60
@@ -1326,8 +1352,7 @@
 	inhand_icon_state = "tile-rglass"
 	turf_type = /turf/open/floor/glass/reinforced
 	merge_type = /obj/item/stack/tile/rglass
-	mats_per_unit = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 0.125, /datum/material/glass=SHEET_MATERIAL_AMOUNT * 0.25) // 4 tiles per sheet
-	replace_plating = TRUE
+	mats_per_unit = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.125, /datum/material/glass=SHEET_MATERIAL_AMOUNT * 0.25) // 4 tiles per sheet
 
 /obj/item/stack/tile/rglass/sixty
 	amount = 60

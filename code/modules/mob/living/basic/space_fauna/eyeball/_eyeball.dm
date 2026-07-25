@@ -58,7 +58,8 @@
 	grant_actions_by_list(innate_actions)
 
 	AddElement(/datum/element/simple_flying)
-	AddComponent(/datum/component/tameable, food_types = list(/obj/item/food/grown/carrot), tame_chance = 100)
+	var/list/food_types = string_list(list(/obj/item/food/grown/carrot))
+	AddComponent(/datum/component/tameable, food_types = food_types, tame_chance = 100)
 	ADD_TRAIT(src, TRAIT_SPACEWALK, INNATE_TRAIT)
 	on_hit_overlay = mutable_appearance(icon, "[icon_state]_crying")
 
@@ -71,12 +72,12 @@
 		return
 
 	if(istype(attack_target, /obj/item/food/grown/carrot))
-		adjustBruteLoss(-5)
+		adjust_brute_loss(-5)
 		to_chat(src, span_warning("You eat [attack_target]! It restores some health!"))
 		qdel(attack_target)
 		return TRUE
 
-/mob/living/basic/eyeball/attackby(obj/item/weapon, mob/living/carbon/human/user, list/modifiers)
+/mob/living/basic/eyeball/attackby(obj/item/weapon, mob/living/carbon/human/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	if(!weapon.force && !user.combat_mode)
 		return
@@ -95,18 +96,18 @@
 
 /mob/living/basic/eyeball/early_melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
-	if(!.)
-		return FALSE
+	if(.)
+		return
 	if(!ishuman(target))
-		return TRUE
+		return BASIC_MOB_CONTINUE_ATTACK_CHAIN
 	var/mob/living/carbon/human_target = target
-	var/obj/item/organ/internal/eyes/eyes = human_target.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = human_target.get_organ_slot(ORGAN_SLOT_EYES)
 	if(isnull(eyes) || eyes.damage < 10)
-		return TRUE
+		return BASIC_MOB_CONTINUE_ATTACK_CHAIN
 	heal_eye_damage(human_target, eyes)
-	return FALSE
+	return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
 
-/mob/living/basic/eyeball/proc/heal_eye_damage(mob/living/target, obj/item/organ/internal/eyes/eyes)
+/mob/living/basic/eyeball/proc/heal_eye_damage(mob/living/target, obj/item/organ/eyes/eyes)
 	if(!COOLDOWN_FINISHED(src, eye_healing))
 		return
 	to_chat(target, span_warning("[src] seems to be healing your [eyes.zone]!"))
@@ -116,6 +117,7 @@
 	COOLDOWN_START(src, eye_healing, 15 SECONDS)
 
 /mob/living/basic/eyeball/tamed(mob/living/tamer, atom/food)
+	. = ..()
 	spin(spintime = 2 SECONDS, speed = 1)
 	//become passive to the humens
-	faction |= tamer.faction
+	APPLY_FACTION_AND_ALLIES_FROM(src, tamer)

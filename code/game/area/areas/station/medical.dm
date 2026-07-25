@@ -4,8 +4,7 @@
 	ambience_index = AMBIENCE_MEDICAL
 	airlock_wires = /datum/wires/airlock/medbay
 	sound_environment = SOUND_AREA_STANDARD_STATION
-	min_ambience_cooldown = 90 SECONDS
-	max_ambience_cooldown = 180 SECONDS
+	tacmap_color = TACMAP_AREA_MEDICAL
 
 /area/station/medical/abandoned
 	name = "\improper Abandoned Medbay"
@@ -14,6 +13,7 @@
 		'sound/ambience/misc/signal.ogg',
 		)
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
+	tacmap_color = TACMAP_AREA_MAINTENANCE
 
 /area/station/medical/medbay/central
 	name = "Medbay Central"

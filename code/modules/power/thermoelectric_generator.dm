@@ -36,7 +36,7 @@ Skyrat removal START, moved to modular file
 
 /obj/machinery/power/thermoelectric_generator/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/simple_rotation)
+	AddElement(/datum/element/simple_rotation)
 	find_circulators()
 	connect_to_network()
 	SSair.start_processing_machine(src)
@@ -92,8 +92,7 @@ Skyrat removal START, moved to modular file
 	return TRUE
 
 /obj/machinery/power/thermoelectric_generator/crowbar_act(mob/living/user, obj/item/tool)
-	default_deconstruction_crowbar(tool)
-	return TRUE
+	return default_deconstruction_crowbar(user, tool)
 
 /obj/machinery/power/thermoelectric_generator/process()
 	//Setting this number higher just makes the change in power output slower, it doesnt actualy reduce power output cause **math**

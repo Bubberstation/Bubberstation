@@ -1,5 +1,6 @@
+import { Collapsible, Section, Table } from 'tgui-core/components';
+
 import { useBackend } from '../backend';
-import { Collapsible, Section, Table } from '../components';
 import { Window } from '../layouts';
 
 type Data = {

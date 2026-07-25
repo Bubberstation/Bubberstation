@@ -26,8 +26,8 @@
 	DL_progress = 0
 	return ..()
 
-/datum/computer_file/program/borg_monitor/tap(atom/A, mob/living/user, params)
-	var/mob/living/silicon/robot/borgo = A
+/datum/computer_file/program/borg_monitor/tap(atom/tapped_atom, mob/living/user, list/modifiers)
+	var/mob/living/silicon/robot/borgo = tapped_atom
 	if(!istype(borgo) || !borgo.modularInterface)
 		return FALSE
 	DL_source = borgo
@@ -39,6 +39,7 @@
 		username = "user [stored_card.registered_name]"
 	to_chat(borgo, span_userdanger("Request received from [username] for the system log file. Upload in progress."))//Damning evidence may be contained, so warn the borg
 	borgo.logevent("File request by [username]: /var/logs/syslog")
+	borgo.balloon_alert(user, "downloading logs")
 	return TRUE
 
 /datum/computer_file/program/borg_monitor/process_tick(seconds_per_tick)
@@ -161,7 +162,9 @@
 		if(computer.obj_flags & EMAGGED)
 			return "STDERR:UNDF"
 		return FALSE
-	return ID.registered_name
+	. = "[ID.registered_name]"
+	if(ID.assignment)
+		. = "[.], [ID.assignment]"
 
 /datum/computer_file/program/borg_monitor/syndicate
 	filename = "roboverlord"
@@ -171,7 +174,7 @@
 	program_open_overlay = "generic"
 	extended_desc = "This program allows for remote monitoring of mission-assigned cyborgs."
 	program_flags = PROGRAM_ON_SYNDINET_STORE
-	download_access = list()
+	download_access = null
 	circuit_comp_type = /obj/item/circuit_component/mod_program/borg_monitor/syndie
 
 /datum/computer_file/program/borg_monitor/syndicate/evaluate_borg(mob/living/silicon/robot/R)

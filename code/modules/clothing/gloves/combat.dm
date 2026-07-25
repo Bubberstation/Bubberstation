@@ -4,7 +4,7 @@
 	icon_state = "black"
 	greyscale_colors = "#2f2e31"
 	siemens_coefficient = 0
-	strip_delay = 80
+	strip_delay = 8 SECONDS
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	heat_protection = HANDS
@@ -27,7 +27,7 @@
 
 /obj/item/clothing/gloves/combat/wizard/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -3) //something something wizard casting
+	AddElement(/datum/element/adjust_fishing_difficulty, -5) //something something wizard casting
 
 /obj/item/clothing/gloves/combat/floortile
 	name = "floortile camouflage gloves"
@@ -35,6 +35,6 @@
 	icon_state = "ftc_gloves"
 	inhand_icon_state = "greyscale_gloves"
 
-/obj/item/clothing/gloves/combat/floortiletile/Initialize(mapload)
+/obj/item/clothing/gloves/combat/floortile/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -3) //tacticool
+	AddElement(/datum/element/adjust_fishing_difficulty, -5) //tacticool

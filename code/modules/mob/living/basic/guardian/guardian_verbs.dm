@@ -43,15 +43,6 @@
 		to_chat(src, span_notice("You deactivate your light."))
 		set_light_on(FALSE)
 
-
-/// Prints what type of guardian we are and what we can do.
-/mob/living/basic/guardian/verb/check_type()
-	set name = "Check Guardian Type"
-	set category = "Guardian"
-	set desc = "Check what type you are."
-	to_chat(src, playstyle_string)
-
-
 /// Speak with our boss at a distance
 /mob/living/basic/guardian/proc/communicate()
 	if (isnull(summoner))
@@ -180,7 +171,7 @@
 	to_chat(owner, span_boldholoparasite("The personality of <font color=\"[chosen_guardian.guardian_colour]\">[chosen_guardian.theme.name]</font> has been successfully reset."))
 	message_admins("[key_name_admin(chosen_one)] has taken control of ([ADMIN_LOOKUPFLW(chosen_guardian)])")
 	chosen_guardian.ghostize(FALSE)
-	chosen_guardian.key = chosen_one.key
+	chosen_guardian.PossessByPlayer(chosen_one.key)
 	COOLDOWN_START(chosen_guardian, resetting_cooldown, 5 MINUTES)
 	chosen_guardian.guardian_rename() //give it a new color and name, to show it's a new person
 	chosen_guardian.guardian_recolour()

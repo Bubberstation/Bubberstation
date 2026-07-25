@@ -6,6 +6,8 @@
 		ADD_TRAIT(spawned_human, TRAIT_NOBREATH, ROUNDSTART_TRAIT)
 		ADD_TRAIT(spawned_human, TRAIT_RESISTCOLD, ROUNDSTART_TRAIT)
 
+	spawned_human.mind?.teach_crafting_recipe(/datum/crafting_recipe/bronze_arrow)
+
 /obj/effect/mob_spawn/ghost_role/human/pirate/silverscale/special(mob/living/carbon/human/spawned_human)
 	. = ..()
 	spawned_human.grant_language(/datum/language/common, source = LANGUAGE_SPAWNER)
@@ -29,12 +31,13 @@
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 	loadout_enabled = TRUE
+	allow_custom_character = ALL
 
 /datum/outfit/black_market
 	name = "Black Market Trader"
 	uniform = /obj/item/clothing/under/rank/cargo/tech
 	shoes = /obj/item/clothing/shoes/laceup
-	id = /obj/item/card/id/away/blackmarket
+	id = /obj/item/card/id/advanced/chameleon/black/blackmarket
 
 /datum/outfit/black_market/post_equip(mob/living/carbon/human/shady, visualsOnly)
 	handlebank(shady)
@@ -138,17 +141,17 @@
 	mob_type = /mob/living/carbon/human/species/lizard/ashwalker;
 	outfit = /datum/outfit/consumed_ashwalker
 
-/obj/effect/mob_spawn/ghost_role/human/oldsec
+/obj/effect/mob_spawn/ghost_role/human/oldstation/sec
 	loadout_enabled = TRUE
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 
-/obj/effect/mob_spawn/ghost_role/human/oldsci
+/obj/effect/mob_spawn/ghost_role/human/oldstation/sci
 	loadout_enabled = TRUE
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 
-/obj/effect/mob_spawn/ghost_role/human/oldeng
+/obj/effect/mob_spawn/ghost_role/human/oldstation/eng
 	loadout_enabled = TRUE
 	quirks_enabled = TRUE
 	random_appearance = FALSE
@@ -188,7 +191,7 @@
 	name = "DS-2 Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
-	ears = /obj/item/radio/headset/interdyne
+	ears = /obj/item/radio/headset/syndicateciv/staff
 	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
@@ -209,7 +212,6 @@
 		/obj/item/knife/combat/survival = 1,
 		/obj/item/t_scanner/adv_mining_scanner/lesser = 1,
 		/obj/item/gun/energy/recharge/kinetic_accelerator = 1,
-		/obj/item/storage/toolbox/guncase/skyrat/pistol = 1,
 		)
 	id_trim = /datum/id_trim/syndicom/skyrat/ds2/miner
 	l_pocket = /obj/item/card/mining_point_card
@@ -269,15 +271,15 @@
 	id_trim = /datum/id_trim/syndicom/skyrat/ds2/brigofficer
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/bulletproof/old
-	back = /obj/item/storage/backpack/security/redsec
+	back = /obj/item/storage/backpack/security
 	head = /obj/item/clothing/head/helmet/swat/ds
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
 	r_pocket = /obj/item/flashlight/seclite
 	mask = /obj/item/clothing/mask/gas/syndicate
-	ears = /obj/item/radio/headset/interdyne
+	ears = /obj/item/radio/headset/syndicateciv/staff
 
 /datum/outfit/ds2/syndicate/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 	return ..()
 
 //DS-2 Command
@@ -285,7 +287,7 @@
 	name = "DS-2 Command Operative"
 	uniform = /obj/item/clothing/under/syndicate/skyrat/tactical
 	shoes = /obj/item/clothing/shoes/combat
-	ears = /obj/item/radio/headset/interdyne/command
+	ears = /obj/item/radio/headset/syndicateciv/command
 	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
@@ -302,13 +304,13 @@
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/vest/warden/syndicate
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
-	back = /obj/item/storage/backpack/satchel/sec/redsec
+	back = /obj/item/storage/backpack/satchel/sec
 	head = /obj/item/clothing/head/hats/hos/beret/syndicate
 	l_pocket = /obj/item/gun/energy/e_gun/mini
 	r_pocket = /obj/item/flashlight/seclite
 	implants = list(
 		/obj/item/implant/weapons_auth,
-		/obj/item/implant/krav_maga
+		/obj/item/implant/kaza_ruk
 		)
 
 /datum/outfit/ds2/syndicate_command/corporateliaison
@@ -325,13 +327,16 @@
 	uniform = /obj/item/clothing/under/rank/captain/skyrat/utility/syndicate
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
 	back = /obj/item/storage/backpack/satchel
-	belt = /obj/item/storage/belt/sabre
+	backpack_contents = list(
+		/obj/item/storage/lockbox/medal/bubber/synd = 1,
+		)
+	belt = /obj/item/storage/belt/sheath/sabre
 	head = /obj/item/clothing/head/hats/hos/cap/syndicate
 	id = /obj/item/card/id/advanced/gold/generic
 	id_trim = /datum/id_trim/syndicom/skyrat/ds2/stationadmiral
 
 /datum/outfit/ds2/syndicate_command/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 	return ..()
 
 /datum/outfit/hotelstaff
@@ -514,7 +519,7 @@
 	desc = "A perfectly generic identification card. Looks like it could use some flavor. This one looks like it belonged to someone important."
 	wildcard_slots = WILDCARD_LIMIT_SILVER
 
-/obj/item/card/id/away/blackmarket
+/obj/item/card/id/advanced/chameleon/black/blackmarket
 	name = "scuffed ID card"
 	desc = "A faded, scuffed, plastic ID card. You can make out the rank \"Deck Crewman\"."
 	trim = /datum/id_trim/away/blackmarket
@@ -556,9 +561,17 @@
 
 //CRYO CONSOLES
 /obj/machinery/computer/cryopod/interdyne
-	radio = /obj/item/radio/headset/interdyne
+	radio = /obj/item/radio/headset/syndicateciv/staff
 	announcement_channel = RADIO_CHANNEL_INTERDYNE
 	req_one_access = list("syndicate_leader")
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod/interdyne, 32)
+
+//CRYO CONSOLES
+/obj/machinery/computer/cryopod/cybersun
+	radio = /obj/item/radio/headset/syndicateciv/staff
+	announcement_channel = RADIO_CHANNEL_CYBERSUN
+	req_one_access = list("syndicate_leader")
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod/cybersun, 32)
 

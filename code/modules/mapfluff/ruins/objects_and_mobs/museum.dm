@@ -77,16 +77,16 @@
 	name = /obj/machinery/atmospherics/components/unary/vent_scrubber::name
 	desc = /obj/machinery/atmospherics/components/unary/vent_scrubber::desc
 	icon = /obj/machinery/atmospherics/components/unary/vent_scrubber::icon
-	layer = /obj/machinery/atmospherics/components/unary/vent_scrubber::layer
-	plane = /obj/machinery/atmospherics/components/unary/vent_scrubber::plane
+	layer = ABOVE_OPEN_TURF_LAYER
+	plane = FLOOR_PLANE
 	icon_state = "scrub_on"
 
 /obj/structure/fluff/fake_vent
 	name = /obj/machinery/atmospherics/components/unary/vent_pump::name
 	desc = /obj/machinery/atmospherics/components/unary/vent_pump::desc
 	icon = /obj/machinery/atmospherics/components/unary/vent_pump::icon
-	layer = /obj/machinery/atmospherics/components/unary/vent_pump::layer
-	plane = /obj/machinery/atmospherics/components/unary/vent_pump::plane
+	layer = ABOVE_OPEN_TURF_LAYER
+	plane = FLOOR_PLANE
 	icon_state = "vent_out"
 
 /turf/open/mirage
@@ -105,7 +105,7 @@
 /turf/open/mirage/Initialize(mapload)
 	. = ..()
 	if(isnull(range))
-		range = world.view
+		range = (maxviewdist() - 1) / 2
 	var/used_z = target_turf_z || z //if target z is not defined, use ours
 	var/turf/target = locate(offset ? target_turf_x + x : target_turf_x, offset ? target_turf_y + y : target_turf_y, used_z)
 	AddElement(/datum/element/mirage_border, target, dir, range)
@@ -161,11 +161,10 @@
 /obj/machinery/vending/hotdog/museum
 	all_products_free = TRUE
 
-/obj/machinery/vending/hotdog/museum/screwdriver_act(mob/living/user, obj/item/attack_item)
-	return NONE
-
-/obj/machinery/vending/hotdog/museum/crowbar_act(mob/living/user, obj/item/attack_item)
-	return NONE
+/obj/machinery/vending/hotdog/museum/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/tool_blocker, TOOL_SCREWDRIVER, TOOL_ACT_PRIMARY)
+	AddElement(/datum/element/tool_blocker, TOOL_CROWBAR, TOOL_ACT_PRIMARY)
 
 #define CAFE_KEYCARD_TOILETS "museum_cafe_key_toilets"
 

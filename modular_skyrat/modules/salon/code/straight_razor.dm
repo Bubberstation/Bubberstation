@@ -11,7 +11,7 @@
 	sharpness = SHARP_EDGED
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	wound_bonus = 10
-	bare_wound_bonus = 15
+	exposed_wound_bonus = 15
 	tool_behaviour = TOOL_KNIFE
 	// How long do we take to shave someone's facial hair?
 	var/shaving_time = 10 SECONDS
@@ -36,8 +36,9 @@
 			if(!(noggin.head_flags & HEAD_FACIAL_HAIR))
 				to_chat(user, span_warning("There is no facial hair to shave!"))
 				return
-			if(!get_location_accessible(target_human, location))
-				to_chat(user, span_warning("The mask is in the way!"))
+			var/covering = target_human.is_mouth_covered()
+			if(covering)
+				to_chat(user, span_warning("[covering] is in the way!"))
 				return
 			if(target_human.facial_hairstyle == "Shaved")
 				to_chat(user, span_warning("Already clean-shaven!"))

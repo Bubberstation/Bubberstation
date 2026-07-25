@@ -4,7 +4,7 @@
 /datum/looping_sound
 	/// (list or soundfile) Since this can be either a list or a single soundfile you can have random sounds. May contain further lists but must contain a soundfile at the end. In a list, path must have also be assigned a value or it will be assigned 0 and not play.
 	var/mid_sounds
-	/// The length of time to wait between playing mid_sounds.
+	/// The length of time to wait between playing mid_sounds. WARNING: Continuously looping sounds like the microwave, grav gen and fan sounds don't work very well with this, just don't set this if you are doing a continuous loop of machinery.
 	var/mid_length
 	/// Amount of time to add/take away from the mid length, randomly
 	var/mid_length_vary = 0
@@ -63,8 +63,22 @@
 	var/direct
 	/// Sound channel to play on, random if not provided
 	var/sound_channel
+	///If we want to reserve a random channel when we start playing sounds. Good for when there could be several sources of the same looping sound heard by the same
+	var/reserve_random_channel = FALSE
+	//If we reserve a random sound channel, store the channel number here so we can clean it up later.
+	var/reserved_channel
+	///Whether this looping sound uses sound tokens. This should only be true for sounds that need to update as the source or listeners move. (Generally long or important sounds like grav-gen)
+	var/use_sound_tokens = FALSE
+	///The sound token instance for this looping sound.
+	var/datum/sound_token/sound_token_instance
 
-/datum/looping_sound/New(_parent, start_immediately = FALSE, _direct = FALSE, _skip_starting_sounds = FALSE)
+/datum/looping_sound/New(
+	_parent,
+	start_immediately = FALSE,
+	_direct = FALSE,
+	_skip_starting_sounds = FALSE,
+	sound_channel,
+)
 	if(!mid_sounds)
 		WARNING("A looping sound datum was created without sounds to play.")
 		return
@@ -72,6 +86,8 @@
 	set_parent(_parent)
 	direct = _direct
 	skip_starting_sounds = _skip_starting_sounds
+	if(sound_channel)
+		src.sound_channel = sound_channel
 
 	if(start_immediately)
 		start()
@@ -91,7 +107,12 @@
 		set_parent(on_behalf_of)
 	if(timer_id)
 		return
+
+	if(!use_sound_tokens && !sound_channel && reserve_random_channel)
+		sound_channel = SSsounds.reserve_sound_channel()
+		reserved_channel = sound_channel
 	on_start()
+
 
 /**
  * The proc to call to stop the sound loop.
@@ -109,6 +130,11 @@
 	deltimer(timer_id, SSsound_loops)
 	timer_id = null
 	loop_started = FALSE
+
+	if(reserved_channel)
+		sound_channel = null
+		SSsounds.free_sound_channel(reserved_channel)
+
 
 /// The proc that handles starting the actual core sound loop.
 /datum/looping_sound/proc/start_sound_loop()
@@ -149,10 +175,18 @@
  * * volume_override - The volume we want to play the sound at, overriding the `volume` variable.
  */
 /datum/looping_sound/proc/play(soundfile, volume_override)
+
+	if(use_sound_tokens)
+		if(sound_token_instance)
+			sound_token_instance.set_volume(volume_override || volume, FALSE) // Don't update, we'll do that after
+			sound_token_instance.update_sound(soundfile, TRUE)
+		else
+			sound_token_instance = new /datum/sound_token(parent, soundfile, SOUND_RANGE + extra_range, volume_override || volume, falloff_exponent, falloff_distance)
+		return
 	var/sound/sound_to_play = sound(soundfile)
+	sound_to_play.channel = sound_channel || SSsounds.random_available_channel()
+	sound_to_play.volume = volume_override || volume //Use volume as fallback if theres no override
 	if(direct)
-		sound_to_play.channel = sound_channel || SSsounds.random_available_channel()
-		sound_to_play.volume = volume_override || volume //Use volume as fallback if theres no override
 		SEND_SOUND(parent, sound_to_play)
 	else
 		playsound(
@@ -162,10 +196,12 @@
 			vary,
 			extra_range,
 			falloff_exponent = falloff_exponent,
+			channel = sound_to_play.channel,
 			pressure_affected = pressure_affected,
 			ignore_walls = ignore_walls,
 			falloff_distance = falloff_distance,
-			use_reverb = use_reverb
+			use_reverb = use_reverb,
+			channel = sound_channel || SSsounds.random_available_channel()
 		)
 
 /// Returns the sound we should now be playing.
@@ -174,7 +210,7 @@
 	if(!each_once)
 		. = play_from
 		while(!isfile(.) && !isnull(.))
-			. = pick_weight(.)
+			. = pick_weight_recursive(.)
 		return .
 
 	if(in_order)
@@ -192,7 +228,7 @@
 		// Tree is a list of lists containign files
 		// If an entry in the tree goes to 0 length, we cut it from the list
 		tree += list(.)
-		. = pick_weight(.)
+		. = pick_weight_recursive(.)
 
 	if(!isfile(.))
 		return
@@ -217,10 +253,14 @@
 	if(start_sound && !skip_starting_sounds)
 		play(start_sound, start_volume)
 		start_wait = start_length
-	timer_id = addtimer(CALLBACK(src, PROC_REF(start_sound_loop)), start_wait, TIMER_CLIENT_TIME | TIMER_DELETE_ME | TIMER_STOPPABLE, SSsound_loops)
+	if(start_wait)
+		timer_id = addtimer(CALLBACK(src, PROC_REF(start_sound_loop)), start_wait, TIMER_CLIENT_TIME | TIMER_DELETE_ME | TIMER_STOPPABLE, SSsound_loops)
+	else
+		start_sound_loop()
 
 /// Stops sound playing on current channel, if specified
 /datum/looping_sound/proc/stop_current()
+	QDEL_NULL(sound_token_instance)
 	if(!sound_channel || !ismob(parent))
 		return
 	var/mob/mob_parent = parent

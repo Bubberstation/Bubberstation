@@ -4,7 +4,7 @@
 	desc = "It's a nondescript pouch made with dark fabric. It has a clip, for fitting in pockets."
 	icon = 'modular_skyrat/modules/modular_items/icons/storage.dmi'
 	icon_state = "survival"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FLAMMABLE
 	slot_flags = ITEM_SLOT_POCKETS
 
@@ -18,18 +18,7 @@
 	desc = "A pouch for your ammo that goes in your pocket."
 	icon = 'modular_skyrat/modules/modular_items/icons/storage.dmi'
 	icon_state = "ammopouch"
-	w_class = WEIGHT_CLASS_BULKY
 	custom_price = PAYCHECK_CREW * 4
-	// this is just to have post_reskin called later
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Ammo Pouch" = list(
-			RESKIN_ICON_STATE = "ammopouch"
-		),
-		"Casing Pouch" = list(
-			RESKIN_ICON_STATE = "casingpouch"
-		),
-	)
 
 /obj/item/storage/pouch/ammo/Initialize(mapload)
 	. = ..()
@@ -37,9 +26,23 @@
 	atom_storage.max_total_storage = 12
 	atom_storage.max_slots = 3
 	atom_storage.numerical_stacking = FALSE
-	atom_storage.can_hold = typecacheof(list(/obj/item/ammo_box/magazine, /obj/item/ammo_casing, /obj/item/stock_parts/power_store/cell/microfusion))
+	atom_storage.can_hold = typecacheof(list(/obj/item/ammo_box/magazine, /obj/item/ammo_casing))
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/ammo_pouch)
+	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
 
-/obj/item/storage/pouch/ammo/post_reskin(mob/our_mob)
+/datum/atom_skin/ammo_pouch
+	abstract_type = /datum/atom_skin/ammo_pouch
+
+/datum/atom_skin/ammo_pouch/ammo
+	preview_name = "Ammo Pouch"
+	new_icon_state = "ammopouch"
+
+/datum/atom_skin/ammo_pouch/casing
+	preview_name = "Casing Pouch"
+	new_icon_state = "casingpouch"
+
+/obj/item/storage/pouch/ammo/proc/on_reskin()
+	SIGNAL_HANDLER
 	if(icon_state == "casingpouch")
 		name = "casing pouch"
 		desc = "A pouch for your ammo that goes in your pocket, carefully segmented for holding shell casings and nothing else."
@@ -54,7 +57,6 @@
 	desc = "A pouch for sheets and RCD ammunition that manages to hang where you would normally put things in your pocket."
 	icon = 'modular_skyrat/modules/modular_items/icons/storage.dmi'
 	icon_state = "materialpouch"
-	w_class = WEIGHT_CLASS_BULKY
 	custom_price = PAYCHECK_CREW * 4
 
 /obj/item/storage/pouch/material/Initialize(mapload)
@@ -74,25 +76,28 @@
 	/// The list of things that medical pouches can hold. Stolen from what medkits can hold, but modified for things you would probably want at pocket-access.
 	var/static/list/med_pouch_holdables = list(
 		/obj/item/healthanalyzer,
+		/obj/item/hypospray/mkii,
 		/obj/item/dnainjector,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/cup/beaker,
 		/obj/item/reagent_containers/cup/bottle,
 		/obj/item/reagent_containers/cup/tube,
-		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/cup/vial,
+		/obj/item/reagent_containers/applicator/pill,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/reagent_containers/medigel,
 		/obj/item/reagent_containers/spray,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/storage/pill_bottle,
 		/obj/item/storage/box/bandages,
+		/obj/item/stack/cable_coil,
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
 		/obj/item/bonesetter,
 		/obj/item/cautery,
 		/obj/item/hemostat,
 		/obj/item/reagent_containers/blood,
-		/obj/item/stack/sticky_tape,
+		/obj/item/stack/medical/wrap/sticky_tape,
 	)
 
 /obj/item/storage/pouch/medical/Initialize(mapload)
@@ -105,7 +110,7 @@
 /obj/item/storage/pouch/medical/loaded/Initialize(mapload)
 	. = ..()
 	var/static/items_inside = list(
-		/obj/item/stack/medical/gauze/twelve = 1,
+		/obj/item/stack/medical/wrap/gauze/twelve = 1,
 		/obj/item/stack/medical/suture = 2,
 		/obj/item/stack/medical/mesh = 2,
 		/obj/item/reagent_containers/hypospray/medipen = 1,
@@ -141,7 +146,7 @@
 		/obj/item/stack/medical/suture = 1,
 		/obj/item/stack/medical/mesh = 1,
 		/obj/item/storage/box/bandages = 1,
-		/obj/item/stack/medical/gauze/twelve = 1,
+		/obj/item/stack/medical/wrap/gauze/twelve = 1,
 		/obj/item/reagent_containers/hypospray/medipen/ekit = 1,
 	)
 	generate_items_inside(items_inside, src)
@@ -152,7 +157,7 @@
 	var/static/items_inside = list(
 		/obj/item/cautery = 1,
 		/obj/item/bonesetter = 1,
-		/obj/item/stack/medical/gauze/twelve = 1,
+		/obj/item/stack/medical/wrap/gauze/twelve = 1,
 		/obj/item/reagent_containers/hypospray/medipen/ekit = 2,
 	)
 	generate_items_inside(items_inside, src)

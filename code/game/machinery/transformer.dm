@@ -19,8 +19,6 @@
 	var/cooldown = FALSE
 	/// How long until the next mob can be processed
 	var/cooldown_timer
-	/// The created cyborg's cell chage
-	var/robot_cell_charge = STANDARD_CELL_CHARGE * 5
 	/// The visual countdown effect
 	var/obj/effect/countdown/transformer/countdown
 	/// Who the master AI is that created this factory
@@ -94,14 +92,14 @@
 
 	playsound(src.loc, 'sound/items/tools/welder.ogg', 50, TRUE)
 	victim.emote("scream") // It is painful
-	victim.adjustBruteLoss(max(0, 80 - victim.getBruteLoss())) // Hurt the human, don't try to kill them though.
+	victim.adjust_brute_loss(max(0, 80 - victim.get_brute_loss())) // Hurt the human, don't try to kill them though.
 
 	// Sleep for a couple of ticks to allow the human to see the pain
 	sleep(0.5 SECONDS)
 
 	use_energy(active_power_usage) // Use a lot of power.
 	var/mob/living/silicon/robot/new_borg = victim.Robotize()
-	new_borg.cell = new /obj/item/stock_parts/power_store/cell/upgraded/plus(new_borg, robot_cell_charge)
+	new_borg.cell = new /obj/item/stock_parts/power_store/cell/super(new_borg)
 
 	// So he can't jump out the gate right away.
 	new_borg.SetLockdown()

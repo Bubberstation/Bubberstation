@@ -15,6 +15,7 @@
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	obj_flags = CONDUCTS_ELECTRICITY
+
 	///Host of this model
 	var/mob/living/silicon/robot/robot
 	///Icon of the module selection screen
@@ -46,27 +47,34 @@
 	///Whether the borg can stuff itself into disposals
 	var/canDispose = FALSE
 	///The pixel offset of the hat. List of "north" "south" "east" "west" x, y offsets
-	var/hat_offset = list("north" = list(0, -3), "south" = list(0, -3), "east" = list(4, -3), "west" = list(-4, -3))
-	///The x offsets of a person riding the borg
-	var/list/ride_offset_x = list("north" = 0, "south" = 0, "east" = -6, "west" = 6)
-	///The y offsets of a person riding the borg
-	var/list/ride_offset_y = list("north" = 4, "south" = 4, "east" = 3, "west" = 3)
+	var/list/hat_offset = list("north" = list(0, -3), "south" = list(0, -3), "east" = list(4, -3), "west" = list(-4, -3))
+	///The offsets of a person riding the borg of this model.
+	/// Format like list("north" = list(x, y, layer), ...)
+	/// Leave null to use defaults
+	var/list/ride_offsets
 	///List of skins the borg can be reskinned to, optional
 	var/list/borg_skins
 
 /obj/item/robot_model/Initialize(mapload)
 	. = ..()
+	robot = loc
+	if(!istype(robot))
+		stack_trace("Robot model ([src]) initialized outside of a robot at [AREACOORD(robot)]! \
+			This should never happen, make sure this item is not map-placed.")
+		return INITIALIZE_HINT_QDEL
+	create_storage(storage_type = /datum/storage/cyborg_internal_storage)
+	//src is what we store items visible to borgs, we'll store things in the bot itself otherwise.
 	for(var/path in basic_modules)
-		var/obj/item/new_module = new path(src)
+		var/obj/item/new_module = new path(robot)
 		basic_modules += new_module
 		basic_modules -= path
 	for(var/path in emag_modules)
-		var/obj/item/new_module = new path(src)
+		var/obj/item/new_module = new path(robot)
 		emag_modules += new_module
 		emag_modules -= path
 
 	if(check_holidays(ICE_CREAM_DAY) && !(locate(/obj/item/borg/lollipop) in basic_modules))
-		basic_modules += new /obj/item/borg/lollipop/ice_cream(src)
+		basic_modules += new /obj/item/borg/lollipop/ice_cream(robot)
 
 /obj/item/robot_model/Destroy()
 	basic_modules.Cut()
@@ -101,22 +109,21 @@
 	if(added_module.loc != src)
 		added_module.forceMove(src)
 	modules += added_module
-	ADD_TRAIT(added_module, TRAIT_NODROP, CYBORG_ITEM_TRAIT)
 	added_module.mouse_opacity = MOUSE_OPACITY_OPAQUE
+	added_module.item_flags |= ABSTRACT
 	if(nonstandard)
 		added_modules += added_module
 	if(requires_rebuild)
 		rebuild_modules()
 	return added_module
 
-/obj/item/robot_model/proc/remove_module(obj/item/removed_module, delete_after)
+/obj/item/robot_model/proc/remove_module(obj/item/removed_module)
 	basic_modules -= removed_module
 	modules -= removed_module
 	emag_modules -= removed_module
 	added_modules -= removed_module
 	rebuild_modules()
-	if(delete_after)
-		qdel(removed_module)
+	qdel(removed_module)
 
 /obj/item/robot_model/proc/rebuild_modules() //builds the usable module list from the modules we have
 	var/mob/living/silicon/robot/cyborg = loc
@@ -124,7 +131,9 @@
 		return
 	var/list/held_modules = cyborg.held_items.Copy()
 	var/active_module = cyborg.module_active
-	cyborg.drop_all_held_items()
+	//move everything out of the model's inventory
+	for(var/obj/item/module as anything in modules)
+		module.forceMove(robot)
 	modules = list()
 	for(var/obj/item/module as anything in basic_modules)
 		add_module(module, FALSE, FALSE)
@@ -134,12 +143,10 @@
 	for(var/obj/item/module as anything in added_modules)
 		add_module(module, FALSE, FALSE)
 	for(var/obj/item/module as anything in held_modules & modules)
-		cyborg.equip_module_to_slot(module, held_modules.Find(module))
+		cyborg.put_in_hand(module, held_modules.Find(module))
 	if(active_module)
 		cyborg.select_module(held_modules.Find(active_module))
-	if(cyborg.hud_used)
-		cyborg.hud_used.update_robot_modules_display()
-
+	atom_storage.refresh_views()
 
 ///Restocks things that don't take mats, generally at a power cost. Returns True if anything was restocked/replaced, and False otherwise.
 /obj/item/robot_model/proc/respawn_consumable(mob/living/silicon/robot/cyborg, coeff = 1)
@@ -195,7 +202,7 @@
 	if(!istype(charger))
 		return
 
-	var/datum/component/material_container/mat_container = charger.materials.mat_container
+	var/datum/material_container/mat_container = charger.materials.mat_container
 	if(!mat_container || charger.materials.on_hold())
 		charger.sendmats = FALSE
 		return
@@ -211,7 +218,7 @@
 		if(!to_stock) //Nothing for us in the silo
 			continue
 
-		storage_datum.energy += charger.materials.use_materials(list(GET_MATERIAL_REF(storage_datum.mat_type) = to_stock), action = "resupplied", name = "units")
+		storage_datum.energy += charger.materials.use_materials(list(SSmaterials.get_material(storage_datum.mat_type) = to_stock), action = "restocked", name = "units", user_data = ID_DATA(robot))
 		charger.balloon_alert(robot, "+ [to_stock]u [initial(storage_datum.mat_type.name)]")
 		playsound(charger, 'sound/items/weapons/gun/general/mag_bullet_insert.ogg', 50, vary = FALSE)
 		return
@@ -231,10 +238,9 @@
 		module.emp_act(severity)
 	..()
 
-/obj/item/robot_model/proc/transform_to(new_config_type, forced = FALSE)
+/obj/item/robot_model/proc/transform_to(new_config_type, forced = FALSE, transform = TRUE)
 	var/mob/living/silicon/robot/cyborg = loc
 	var/obj/item/robot_model/new_model = new new_config_type(cyborg)
-	new_model.robot = cyborg
 	if(!new_model.be_transformed_to(src, forced))
 		qdel(new_model)
 		return
@@ -259,8 +265,8 @@
 	new_model.update_robot_rest()
 	new_model.update_footsteps()
 	//BUBBER EDIT ADDTION END
-
-	INVOKE_ASYNC(new_model, PROC_REF(do_transform_animation))
+	if(transform)
+		INVOKE_ASYNC(new_model, PROC_REF(do_transform_animation))
 	qdel(src)
 	return new_model
 
@@ -276,7 +282,7 @@
 			reskin_icons[skin] = image(icon = details[SKIN_ICON] || 'icons/mob/silicon/robots.dmi', icon_state = details[SKIN_ICON_STATE])
 			//SKYRAT EDIT ADDITION BEGIN - ALTBORGS
 			if (!isnull(details[SKIN_FEATURES]))
-				if (TRAIT_R_WIDE in details[SKIN_FEATURES])
+				if((TRAIT_R_WIDE in details[SKIN_FEATURES]) || (TRAIT_R_BIG in details[SKIN_FEATURES]))
 					var/image/reskin = reskin_icons[skin]
 					reskin.pixel_x -= 16
 			//SKYRAT EDIT END
@@ -285,7 +291,7 @@
 			return FALSE
 		var/list/details = borg_skins[borg_skin]
 		//SKYRAT EDIT START
-		if(cyborg.hasExpanded && (((TRAIT_R_WIDE in details[SKIN_FEATURES]) && (TRAIT_R_WIDE in model_features)) || ((TRAIT_R_TALL in details[SKIN_FEATURES]) && (TRAIT_R_TALL in model_features))))
+		if(cyborg.hasExpanded && (((TRAIT_R_WIDE in details[SKIN_FEATURES]) && (TRAIT_R_WIDE in model_features)) || ((TRAIT_R_TALL in details[SKIN_FEATURES]) && (TRAIT_R_TALL in model_features)) || ((TRAIT_R_BIG in details[SKIN_FEATURES]) && (TRAIT_R_BIG in model_features))))
 			to_chat(cyborg, span_warning("You can't make yourself into a larger frame when you've already used an expander!"))
 			return FALSE
 		//SKYRAT EDIT END
@@ -297,7 +303,7 @@
 		if(!isnull(details[SKIN_PIXEL_X]))
 			cyborg.base_pixel_x = details[SKIN_PIXEL_X]
 		if(!isnull(details[SKIN_PIXEL_Y]))
-			cyborg.base_pixel_y = details[SKIN_PIXEL_Y]
+			cyborg.base_pixel_z = details[SKIN_PIXEL_Y]
 		if(!isnull(details[SKIN_LIGHT_KEY]))
 			special_light_key = details[SKIN_LIGHT_KEY]
 		if(!isnull(details[SKIN_HAT_OFFSET]))
@@ -309,6 +315,7 @@
 			model_features += details[SKIN_FEATURES]
 		if (!isnull(details[SKIN_HAT_REST_OFFSET]))
 			rest_hat_offset = details[SKIN_HAT_REST_OFFSET]
+		SSblackbox.record_feedback("tally", "cyborg_skins", 1, borg_skin)
 		//SKYRAT EDIT END
 	for(var/i in old_model.added_modules)
 		added_modules += i
@@ -352,8 +359,6 @@
 	cyborg.updatehealth()
 	cyborg.update_icons()
 	cyborg.notify_ai(AI_NOTIFICATION_NEW_MODEL)
-	if(cyborg.hud_used)
-		cyborg.hud_used.update_robot_modules_display()
 	SSblackbox.record_feedback("tally", "cyborg_modules", 1, cyborg.model)
 
 /**
@@ -414,7 +419,6 @@
 	name = "Engineering"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/borg/sight/meson,
 		/obj/item/construction/rcd/borg,
 		/obj/item/pipe_dispenser,
 		/obj/item/extinguisher,
@@ -423,7 +427,6 @@
 		/obj/item/crowbar/cyborg/power, // Skyrat ADDITION - Combines Crowbar and Wirecutters into one
 		/obj/item/multitool/cyborg, //Skyrat ADDITION - Adds multitool for easier access
 		/obj/item/borg/cyborg_omnitool/engineering,
-		///obj/item/borg/cyborg_omnitool/engineering, //Skyrat REMOVAL
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
 		/obj/item/holosign_creator/atmos, // Skyrat Edit - Adds Holofans to engineering borgos
@@ -434,9 +437,10 @@
 		/obj/item/stack/sheet/glass,
 		/obj/item/borg/apparatus/sheet_manipulator,
 		/obj/item/stack/rods/cyborg,
-		/obj/item/lightreplacer/cyborg, // Skyrat Edit - Surprised Engie borgs don't get these
-		/obj/item/stack/tile/iron/base/cyborg,
+		/obj/item/lightreplacer, // Skyrat Edit - Surprised Engie borgs don't get these
+		/obj/item/construction/rtd/borg,
 		/obj/item/stack/cable_coil,
+		/obj/item/airlock_painter/decal/cyborg,
 	)
 	radio_channels = list(RADIO_CHANNEL_ENGINEERING)
 	emag_modules = list(
@@ -446,25 +450,56 @@
 	model_select_icon = "engineer"
 	model_traits = list(TRAIT_NEGATES_GRAVITY)
 	hat_offset = list("north" = list(0, -4), "south" = list(0, -4), "east" = list(4, -4), "west" = list(-4, -4))
+	///Weakref to the night vision action
+	var/datum/weakref/night_vision_ref
+
+/datum/action/cooldown/borg_meson
+	name = "Toggle Meson Vision"
+	button_icon = 'icons/mob/actions/actions_mecha.dmi'
+	button_icon_state = "meson"
+
+/datum/action/cooldown/borg_meson/Activate()
+	var/mob/living/silicon/robot/borg = owner
+	if(borg.sight & SEE_TURFS)
+		borg.sight_mode = BORGDEFAULT
+	else
+		borg.sight_mode = BORGMESON
+	borg.update_sight()
+
+/obj/item/robot_model/engineering/be_transformed_to(obj/item/robot_model/old_model, forced = FALSE)
+	. = ..()
+	if(!.)
+		return
+
+	//Grant night vision action
+	var/datum/action/cooldown/borg_meson/night_vision = new(loc)
+	night_vision.Grant(loc)
+	night_vision_ref = WEAKREF(night_vision)
+
+/obj/item/robot_model/engineering/Destroy()
+	QDEL_NULL(night_vision_ref)
+	return ..()
 
 /obj/item/robot_model/janitor
 	name = "Janitor"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
+		/obj/item/borg/cleaner_box,
 		/obj/item/screwdriver/cyborg,
 		/obj/item/crowbar/cyborg,
-		/obj/item/stack/tile/iron/base/cyborg,
+		/obj/item/stack/tile/iron/base/cyborg, // haha jani will have old tiles >:D
 		/obj/item/soap/nanotrasen/cyborg,
-		/obj/item/storage/bag/trash/cyborg,
+		/obj/item/storage/bag/trash,
 		/obj/item/melee/flyswatter,
 		/obj/item/extinguisher/mini,
-		/obj/item/mop/cyborg,
+		/obj/item/mop,
 		/obj/item/reagent_containers/cup/bucket,
 		/obj/item/paint/paint_remover,
-		/obj/item/lightreplacer/cyborg,
+		/obj/item/lightreplacer,
 		/obj/item/holosign_creator,
 		/obj/item/reagent_containers/spray/cyborg_drying,
 		/obj/item/wirebrush,
+		/obj/item/pushbroom, // Bubber Addition
 	)
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
 	emag_modules = list(
@@ -523,7 +558,7 @@
 		return FALSE
 	return ..()
 
-/datum/action/toggle_buffer/Trigger(trigger_flags)
+/datum/action/toggle_buffer/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)
 		return
@@ -548,17 +583,17 @@
 		// Start the sound. it'll just last the 4 seconds it takes for us to rev up
 		wash_audio.start()
 		// We're just gonna shake the borg a bit. Not a ton, but just enough that it feels like the audio makes sense
-		var/base_x = robot_owner.base_pixel_x
-		var/base_y = robot_owner.base_pixel_y
-		animate(robot_owner, pixel_x = base_x, pixel_y = base_y, time = 1, loop = -1)
+		var/base_w = robot_owner.base_pixel_w
+		var/base_z = robot_owner.base_pixel_z
+		animate(robot_owner, pixel_w = base_w, pixel_z = base_z, time = 0.1 SECONDS, loop = -1)
 		for(var/i in 1 to 17) //Startup rumble
-			var/x_offset = base_x + rand(-1, 1)
-			var/y_offset = base_y + rand(-1, 1)
-			animate(pixel_x = x_offset, pixel_y = y_offset, time = 1)
+			var/w_offset = base_w + rand(-1, 1)
+			var/z_offset = base_z + rand(-1, 1)
+			animate(pixel_w = w_offset, pixel_z = z_offset, time = 0.1 SECONDS)
 
 		if(!do_after(robot_owner, 4 SECONDS, interaction_key = "auto_wash_toggle", extra_checks = allow_buffer_activate))
 			wash_audio.stop() // Coward
-			animate(robot_owner, pixel_x = base_x, pixel_y = base_y, time = 1)
+			animate(robot_owner, pixel_w = base_w, pixel_z = base_z, time = 0.1 SECONDS)
 			return FALSE
 	else
 		if(!COOLDOWN_FINISHED(src, toggle_cooldown))
@@ -583,16 +618,16 @@
 	robot_owner.add_movespeed_modifier(/datum/movespeed_modifier/auto_wash)
 	RegisterSignal(robot_owner, COMSIG_MOVABLE_MOVED, PROC_REF(clean))
 	//This is basically just about adding a shake to the borg, effect should look ilke an engine's running
-	var/base_x = robot_owner.base_pixel_x
-	var/base_y = robot_owner.base_pixel_y
-	robot_owner.pixel_x = base_x + rand(-7, 7)
-	robot_owner.pixel_y = base_y + rand(-7, 7)
+	var/base_w = robot_owner.base_pixel_w
+	var/base_z = robot_owner.base_pixel_z
+	robot_owner.pixel_w = base_w + rand(-7, 7)
+	robot_owner.pixel_z = base_z + rand(-7, 7)
 	//Larger shake with more changes to start out, feels like "Revving"
-	animate(robot_owner, pixel_x = base_x, pixel_y = base_y, time = 1, loop = -1)
+	animate(robot_owner, pixel_w = base_w, pixel_z = base_z, time = 0.1 SECONDS, loop = -1)
 	for(var/i in 1 to 100)
-		var/x_offset = base_x + rand(-2, 2)
-		var/y_offset = base_y + rand(-2, 2)
-		animate(pixel_x = x_offset, pixel_y = y_offset, time = 1)
+		var/w_offset = base_w + rand(-2, 2)
+		var/z_offset = base_z + rand(-2, 2)
+		animate(pixel_w = w_offset, pixel_z = z_offset, time = 0.1 SECONDS)
 	if(!wash_audio.is_active())
 		wash_audio.start()
 	clean()
@@ -608,15 +643,15 @@
 	// Diable the cleaning, we're revving down
 	UnregisterSignal(robot_owner, COMSIG_MOVABLE_MOVED)
 	// Do the rumble animation till we're all finished
-	var/base_x = robot_owner.base_pixel_x
-	var/base_y = robot_owner.base_pixel_y
-	animate(robot_owner, pixel_x = base_x, pixel_y = base_y, time = 1)
+	var/base_w = robot_owner.base_pixel_w
+	var/base_z = robot_owner.base_pixel_z
+	animate(robot_owner, pixel_w = base_w, pixel_z = base_z, time = 0.1 SECONDS)
 	for(var/i in 1 to finished_by - 0.1 SECONDS) //We rumble until we're finished making noise
-		var/x_offset = base_x + rand(-1, 1)
-		var/y_offset = base_y + rand(-1, 1)
-		animate(pixel_x = x_offset, pixel_y = y_offset, time = 1)
+		var/w_offset = base_w + rand(-1, 1)
+		var/z_offset = base_z + rand(-1, 1)
+		animate(pixel_w = w_offset, pixel_z = z_offset, time = 0.1 SECONDS)
 	// Reset our animations
-	animate(pixel_x = base_x, pixel_y = base_y, time = 2)
+	animate(pixel_w = base_w, pixel_z = base_z, time = 0.2 SECONDS)
 	addtimer(CALLBACK(wash_audio, TYPE_PROC_REF(/datum/looping_sound, stop)), time_left)
 	addtimer(CALLBACK(src, PROC_REF(turn_off_wash)), finished_by)
 
@@ -658,6 +693,9 @@
 
 	if(reagents.has_reagent(amount = 1, chemical_flags = REAGENT_CLEANS))
 		our_turf.wash(CLEAN_SCRUB)
+		var/datum/component/bloodysoles/bot/trackfilth = robot_owner.GetComponent(/datum/component/bloodysoles/bot)
+		if(trackfilth)
+			trackfilth.change_blood_amount(-trackfilth.total_bloodiness)
 
 	reagents.expose(our_turf, TOUCH, min(1, 10 / reagents.total_volume))
 	// We use more water doing this then mopping
@@ -730,10 +768,12 @@
 		/obj/item/extinguisher/mini,
 		/obj/item/emergency_bed/silicon,
 		/obj/item/borg/cyborghug/medical,
-		/obj/item/stack/medical/gauze,
+		/obj/item/stack/medical/wrap/gauze,
 		/obj/item/stack/medical/bone_gel,
 		/obj/item/borg/apparatus/organ_storage,
 		/obj/item/borg/lollipop,
+		/obj/item/storage/bag/chemistry,
+
 	)
 	radio_channels = list(RADIO_CHANNEL_MEDICAL)
 	emag_modules = list(
@@ -751,9 +791,8 @@
 	name = "Miner"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/borg/sight/meson,
 		/obj/item/storage/bag/ore/cyborg,
-		/obj/item/pickaxe/drill/cyborg,
+		/obj/item/pickaxe/drill,
 		/obj/item/shovel,
 		/obj/item/kinetic_crusher, //SKYRAT EDIT
 		/obj/item/crowbar/cyborg,
@@ -764,6 +803,7 @@
 		/obj/item/gps/cyborg,
 		/obj/item/stack/marker_beacon,
 		/obj/item/t_scanner/adv_mining_scanner/cyborg,
+		/obj/item/shield_module,
 	)
 	radio_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_SUPPLY)
 	emag_modules = list(
@@ -777,6 +817,19 @@
 		"Spider Miner" = list(SKIN_ICON_STATE = "spidermin", SKIN_HAT_OFFSET = list("north" = list(0, -2), "south" = list(0, -2), "east" = list(-2, -2), "west" = list(2, -2))),
 		"Lavaland Miner" = list(SKIN_ICON_STATE = "miner"),
 	)
+	var/datum/weakref/night_vision_ref
+
+/obj/item/robot_model/miner/be_transformed_to(obj/item/robot_model/old_model, forced = FALSE)
+	var/datum/action/cooldown/borg_meson/night_vision = new(loc)
+	. = ..()
+	if(!.)
+		return
+	night_vision.Grant(loc)
+	night_vision_ref = WEAKREF(night_vision)
+
+/obj/item/robot_model/miner/Destroy()
+	QDEL_NULL(night_vision_ref)
+	return ..()
 
 /obj/item/robot_model/peacekeeper
 	name = "Peacekeeper"
@@ -879,7 +932,7 @@
 		//obj/item/stack/pipe_cleaner_coil/cyborg,
 		//obj/item/chisel,
 		*/
-		/obj/item/reagent_containers/cup/rag,
+		/obj/item/rag,
 		//obj/item/storage/bag/money, //This is never used and there's already too much bloat
 		// SKYRAT EDIT END
 	)
@@ -897,6 +950,7 @@
 		"Kent" = list(SKIN_ICON_STATE = "kent", SKIN_LIGHT_KEY = "medical", SKIN_HAT_OFFSET = list("north" = list(0, 3), "south" = list(0, 3), "east" = list(-1, 3), "west" = list(1, 3))),
 		"Tophat" = list(SKIN_ICON_STATE = "tophat", SKIN_LIGHT_KEY = NONE, SKIN_HAT_OFFSET = INFINITY),
 		"Waitress" = list(SKIN_ICON_STATE = "service_f"),
+		"Gardener" = list(SKIN_ICON_STATE = "gardener", SKIN_HAT_OFFSET = INFINITY),
 	)
 
 /obj/item/robot_model/service/respawn_consumable(mob/living/silicon/robot/cyborg, coeff = 1)
@@ -912,7 +966,7 @@
 	name = "Syndicate Assault"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/melee/energy/sword/cyborg,
+		/obj/item/melee/energy/sword/saber/cyborg,
 		/obj/item/gun/energy/printer,
 		/obj/item/gun/ballistic/revolver/grenadelauncher/cyborg,
 		/obj/item/card/emag,
@@ -928,12 +982,15 @@
 /obj/item/robot_model/syndicate/rebuild_modules()
 	..()
 	var/mob/living/silicon/robot/cyborg = loc
-	cyborg.faction -= FACTION_SILICON //ai turrets
+	cyborg.remove_faction(FACTION_SILICON) //ai turrets
+	add_minimap_blip(cyborg, MINIMAP_NUKEOP_BORG_BLIP, "combatborg")
+	var/datum/action/minimap/nuclear/tacmap_action = new
+	tacmap_action.Grant(cyborg)
 
-/obj/item/robot_model/syndicate/remove_module(obj/item/removed_module, delete_after)
+/obj/item/robot_model/syndicate/remove_module(obj/item/removed_module)
 	..()
 	var/mob/living/silicon/robot/cyborg = loc
-	cyborg.faction |= FACTION_SILICON //ai is your bff now!
+	cyborg.add_faction(FACTION_SILICON) //ai is your bff now!
 
 /obj/item/robot_model/syndicate_medical
 	name = "Syndicate Medical"
@@ -945,26 +1002,33 @@
 		/obj/item/borg/cyborg_omnitool/medical,
 		/obj/item/borg/cyborg_omnitool/medical,
 		/obj/item/blood_filter,
-		/obj/item/melee/energy/sword/cyborg/saw,
+		/obj/item/melee/energy/sword/saber/cyborg/saw,
 		/obj/item/emergency_bed/silicon,
 		/obj/item/crowbar/cyborg,
 		/obj/item/extinguisher/mini,
 		/obj/item/pinpointer/syndicate_cyborg,
-		/obj/item/stack/medical/gauze,
+		/obj/item/stack/medical/wrap/gauze,
 		/obj/item/stack/medical/bone_gel,
 		/obj/item/gun/medbeam,
 		/obj/item/borg/apparatus/organ_storage,
+		/obj/item/storage/bag/chemistry,
 	)
 	cyborg_base_icon = "synd_medical"
 	model_select_icon = "malf"
 	model_traits = list(TRAIT_PUSHIMMUNE)
 	hat_offset = list("north" = list(0, 3), "south" = list(0, 3), "east" = list(-1, 3), "west" = list(1, 3))
 
+/obj/item/robot_model/syndicate_medical/rebuild_modules()
+	..()
+	var/mob/living/silicon/robot/cyborg = loc
+	add_minimap_blip(cyborg, MINIMAP_NUKEOP_BORG_BLIP, "mediborg")
+	var/datum/action/minimap/nuclear/tacmap_action = new
+	tacmap_action.Grant(cyborg)
+
 /obj/item/robot_model/saboteur
 	name = "Syndicate Saboteur"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/borg/sight/thermal,
 		/obj/item/construction/rcd/borg/syndicate,
 		/obj/item/pipe_dispenser,
 		/obj/item/restraints/handcuffs/cable/zipties,
@@ -977,7 +1041,8 @@
 		/obj/item/stack/sheet/glass,
 		/obj/item/borg/apparatus/sheet_manipulator,
 		/obj/item/stack/rods/cyborg,
-		/obj/item/stack/tile/iron/base/cyborg,
+		/obj/item/construction/rtd/borg,
+		/obj/item/airlock_painter/decal/cyborg,
 		/obj/item/dest_tagger/borg,
 		/obj/item/stack/cable_coil,
 		/obj/item/pinpointer/syndicate_cyborg,
@@ -989,6 +1054,39 @@
 	model_traits = list(TRAIT_PUSHIMMUNE, TRAIT_NEGATES_GRAVITY)
 	hat_offset = list("north" = list(0, -4), "south" = list(0, -4), "east" = list(4, -4), "west" = list(-4, -4))
 	canDispose = TRUE
+	var/datum/weakref/thermal_vision_ref
+
+/obj/item/robot_model/saboteur/rebuild_modules()
+	..()
+	var/mob/living/silicon/robot/cyborg = loc
+	add_minimap_blip(cyborg, MINIMAP_NUKEOP_BORG_BLIP, "engiborg")
+	var/datum/action/minimap/nuclear/tacmap_action = new
+	tacmap_action.Grant(cyborg)
+
+/datum/action/cooldown/borg_thermal
+	name = "Toggle Thermal Night Vision"
+	button_icon = 'icons/mob/actions/actions_mecha.dmi'
+	button_icon_state = "thermal"
+
+/datum/action/cooldown/borg_thermal/Activate()
+	var/mob/living/silicon/robot/borg = owner
+	if(borg.sight & SEE_MOBS)
+		borg.sight_mode = BORGDEFAULT
+	else
+		borg.sight_mode = BORGTHERM
+	borg.update_sight()
+
+/obj/item/robot_model/saboteur/be_transformed_to(obj/item/robot_model/old_model, forced = FALSE)
+	var/datum/action/cooldown/borg_thermal/thermal_vision = new(loc)
+	. = ..()
+	if(!.)
+		return
+	thermal_vision.Grant(loc)
+	thermal_vision_ref = WEAKREF(thermal_vision)
+
+/obj/item/robot_model/saboteur/Destroy()
+	QDEL_NULL(thermal_vision_ref)
+	return ..()
 
 /obj/item/robot_model/syndicate/kiltborg
 	name = "Highlander"
@@ -1014,8 +1112,8 @@
 
 /obj/item/robot_model/syndicate/kiltborg/do_transform_delay() //AUTO-EQUIPPING THESE TOOLS ANY EARLIER CAUSES RUNTIMES OH YEAH
 	. = ..()
-	robot.equip_module_to_slot(locate(/obj/item/claymore/highlander/robot) in basic_modules, 1)
-	robot.equip_module_to_slot(locate(/obj/item/pinpointer/nuke) in basic_modules, 2)
+	robot.equip_to_slot(locate(/obj/item/claymore/highlander/robot) in basic_modules, 1)
+	robot.equip_to_slot(locate(/obj/item/pinpointer/nuke) in basic_modules, 2)
 	robot.place_on_head(new /obj/item/clothing/head/beret/highlander(robot)) //THE ONLY PART MORE IMPORTANT THAN THE SWORD IS THE HAT
 	ADD_TRAIT(robot.hat, TRAIT_NODROP, HIGHLANDER_TRAIT)
 

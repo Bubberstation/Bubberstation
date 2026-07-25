@@ -46,6 +46,7 @@
 	desc = "Extracts and bags seeds from produce."
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "sextractor"
+	base_icon_state = "sextractor"
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/seed_extractor
 	/// Associated list of seeds, they are all weak refs.  We check the len to see how many refs we have for each
@@ -88,44 +89,41 @@
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("The status display reads: Extracting <b>[seed_multiplier] to [seed_multiplier * 4]</b> seed(s) per piece of produce.<br>Machine can store up to <b>[max_seeds]</b> seeds.")
 
+/obj/machinery/seed_extractor/update_icon_state()
+	. = ..()
+	icon_state = panel_open ? "[base_icon_state]_open" : base_icon_state
+
 /obj/machinery/seed_extractor/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
 	default_unfasten_wrench(user, tool)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/machinery/seed_extractor/attackby(obj/item/attacking_item, mob/living/user, params)
-	if(!isliving(user) || user.combat_mode)
-		return ..()
+/obj/machinery/seed_extractor/screwdriver_act(mob/living/user, obj/item/tool)
+	return default_deconstruction_screwdriver(user, tool)
 
-	if(default_deconstruction_screwdriver(user, "sextractor_open", "sextractor", attacking_item))
-		return TRUE
+/obj/machinery/seed_extractor/crowbar_act(mob/living/user, obj/item/tool)
+	return default_pry_open(user, tool, close_after_pry = TRUE, deconstruct_on_fail = TRUE)
 
-	if(default_pry_open(attacking_item, close_after_pry = TRUE))
-		return TRUE
-
-	if(default_deconstruction_crowbar(attacking_item))
-		return TRUE
-
-	if(istype(attacking_item, /obj/item/storage/bag/plants))
+/obj/machinery/seed_extractor/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(istype(tool, /obj/item/storage/bag/plants))
 		var/loaded = 0
-		for(var/obj/item/seeds/to_store in attacking_item.contents)
+		for(var/obj/item/seeds/to_store in tool.contents)
 			if(contents.len >= max_seeds)
 				to_chat(user, span_warning("[src] is full."))
 				break
-			if(!add_seed(to_store, attacking_item))
+			if(!add_seed(to_store, tool))
 				continue
 			loaded += 1
 
 		if(loaded)
-			to_chat(user, span_notice("You put as many seeds from [attacking_item] into [src] as you can."))
-		else
-			to_chat(user, span_warning("There are no seeds in [attacking_item]."))
+			to_chat(user, span_notice("You put as many seeds from [tool] into [src] as you can."))
+			return ITEM_INTERACT_SUCCESS
+		to_chat(user, span_warning("There are no seeds in [tool]."))
+		return ITEM_INTERACT_BLOCKING
 
-		return TRUE
-
-	var/list/generated_seeds = seedify(attacking_item, -1, src, user)
+	var/list/generated_seeds = seedify(tool, -1, src, user)
 	if(!isnull(generated_seeds))
-		if(LAZYACCESS(params2list(params), RIGHT_CLICK))
+		if(LAZYACCESS(modifiers, RIGHT_CLICK))
 			//find all seeds lying on the turf and add them to the machine
 			for(var/obj/item/seeds/seed as anything in generated_seeds)
 				//machine is full
@@ -135,24 +133,25 @@
 				//add seed to machine. second argument is null which means just force move into the machine
 				add_seed(seed)
 		to_chat(user, span_notice("You extract some seeds."))
-		return TRUE
+		return ITEM_INTERACT_SUCCESS
 
-	else if(istype(attacking_item, /obj/item/seeds))
+	if(istype(tool, /obj/item/seeds))
 		if(contents.len >= max_seeds)
 			to_chat(user, span_warning("[src] is full."))
+			return ITEM_INTERACT_BLOCKING
 
-		else if(add_seed(attacking_item, user))
-			to_chat(user, span_notice("You add [attacking_item] to [src]."))
+		if(add_seed(tool, user))
+			to_chat(user, span_notice("You add [tool] to [src]."))
+			return ITEM_INTERACT_SUCCESS
 
-		else
-			to_chat(user, span_warning("You can't seem to add [attacking_item] to [src]."))
-		return TRUE
+		to_chat(user, span_warning("You can't seem to add [tool] to [src]."))
+		return ITEM_INTERACT_BLOCKING
 
-	else if(!attacking_item.tool_behaviour) // Using the wrong tool shouldn't assume you want to turn it into seeds.
-		to_chat(user, span_warning("You can't extract any seeds from [attacking_item]!"))
-		return TRUE
+	if(!tool.tool_behaviour || !user.combat_mode) // Using the wrong tool shouldn't assume you want to turn it into seeds.
+		to_chat(user, span_warning("You can't extract any seeds from [tool]!"))
+		return ITEM_INTERACT_BLOCKING
 
-	return ..()
+	return NONE
 
 /**
  * Generate seed string
@@ -174,7 +173,7 @@
  * needed to go to the ui handler
  *
  * to_add - what seed are we adding?
- * taking_from - where are we taking the seed from? A mob, a bag, etc? If null its means its just laying on the turf so force move it in
+ * taking_from - where are we taking the seed from? A mob, a bag, etc? If null its means it's just laying on the turf so force move it in
  **/
 /obj/machinery/seed_extractor/proc/add_seed(obj/item/seeds/to_add, atom/taking_from)
 	var/seed_id = generate_seed_hash(to_add)
@@ -203,7 +202,10 @@
 				"name" = reagent.name,
 				"rate" = reagent.rate
 			))
-		seed_data["volume_mod"] = (locate(/datum/plant_gene/trait/maxchem) in to_add.genes) ? 2 : 1
+		var/datum/plant_gene/trait/maxchem/volume_trait = locate(/datum/plant_gene/trait/maxchem) in to_add.genes
+		var/datum/plant_gene/trait/modified_volume/volume_unit_trait = locate(/datum/plant_gene/trait/modified_volume) in to_add.genes
+		seed_data["volume_mod"] = volume_trait ? volume_trait.rate : 1
+		seed_data["volume_units"] = volume_unit_trait ? volume_unit_trait.new_capcity : PLANT_REAGENT_VOLUME
 		seed_data["mutatelist"] = list()
 		for(var/obj/item/seeds/mutant as anything in to_add.mutatelist)
 			seed_data["mutatelist"] += initial(mutant.plantname)
@@ -211,10 +213,10 @@
 			var/obj/item/food/grown/product = new to_add.product
 			var/datum/reagent/product_distill_reagent = product.distill_reagent
 			seed_data["distill_reagent"] = initial(product_distill_reagent.name)
-			var/datum/reagent/product_juice_typepath = product.juice_typepath
+			var/datum/reagent/product_juice_typepath = product.juice_typepath()
 			seed_data["juice_name"] = initial(product_juice_typepath.name)
 			seed_data["grind_results"] = list()
-			for(var/datum/reagent/reagent as anything in product.grind_results)
+			for(var/datum/reagent/reagent as anything in product.grind_results())
 				seed_data["grind_results"] += initial(reagent.name)
 			qdel(product)
 
@@ -265,11 +267,10 @@
 	var/list/data = list()
 	data["cycle_seconds"] = HYDROTRAY_CYCLE_DELAY / 10
 	data["trait_db"] = list()
-	for(var/trait_path in subtypesof(/datum/plant_gene/trait))
-		var/datum/plant_gene/trait/trait = new trait_path
+	for(var/datum/plant_gene/trait as anything in GLOB.plant_traits)
 		var/trait_data = list(list(
 			"path" = trait.type,
-			"name" = trait.name,
+			"name" = trait.get_name(),
 			"icon" = trait.icon,
 			"description" = trait.description
 		))
@@ -309,5 +310,5 @@
 
 /obj/machinery/seed_extractor/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet/seeds)
+		get_asset_datum(/datum/asset/spritesheet_batched/seeds)
 	)

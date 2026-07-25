@@ -1,4 +1,4 @@
-/obj/item/organ/external/wings/moth
+/obj/item/organ/wings/moth
 	name = "moth wings"
 	desc = "A pair of fuzzy moth wings."
 	flight_for_species = list(SPECIES_MOTH)
@@ -7,7 +7,7 @@
 	///Our associated terrorize spell, for antagonist nightmares
 	var/datum/action/cooldown/spell/moth_and_dash/our_dash
 
-/obj/item/organ/external/wings/moth/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
+/obj/item/organ/wings/moth/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
 
 	if(ismoth(organ_owner))
@@ -17,7 +17,7 @@
 		our_dash = new(organ_owner)
 		our_dash.Grant(organ_owner)
 
-/obj/item/organ/external/wings/moth/on_mob_remove(mob/living/carbon/organ_owner)
+/obj/item/organ/wings/moth/on_mob_remove(mob/living/carbon/organ_owner)
 	. = ..()
 	QDEL_NULL(our_climb)
 	QDEL_NULL(our_dash)
@@ -37,6 +37,8 @@
 	COOLDOWN_DECLARE(dash_cooldown)
 
 /datum/action/cooldown/spell/moth_and_dash/Trigger(trigger_flags, action, atom/target)
+	if(!..())
+		return FALSE
 	if (!isliving(owner))
 		return
 
@@ -63,7 +65,7 @@
 		COOLDOWN_START(src, dash_cooldown, 6 SECONDS)
 		var/mob/living/dash_user = owner
 		if(istype(dash_user))
-			dash_user.adjustStaminaLoss(40) //Given the risk of flying into things and crashing quite violently, you get four of these. Every one slows you down anyway.
+			dash_user.adjust_stamina_loss(40) //Given the risk of flying into things and crashing quite violently, you get four of these. Every one slows you down anyway.
 	else
 		to_chat(owner, span_warning("Something prevents you from dashing forward!"))
 

@@ -31,7 +31,6 @@
 	thermic_constant = 10
 	required_reagents = null
 	mob_react = FALSE
-	required_other = TRUE
 	required_container_accepts_subtypes = TRUE
 	required_container = /obj/item/reagent_containers/cup/soup_pot
 	mix_message = "You smell something good coming from the steaming pot of soup."
@@ -67,7 +66,7 @@
 	//number of ingredients who's requested amounts has been satisfied
 	var/completed_ingredients = 0
 	for(var/obj/item/ingredient as anything in pot.added_ingredients)
-		var/ingredient_type = ingredient.type
+		var/datum/ingredient_type = ingredient.type
 		do
 		{
 			var/ingredient_count = reqs_copy[ingredient_type]
@@ -92,7 +91,7 @@
 
 			//means we have to look for subtypes
 			else if(isnull(ingredient_count))
-				ingredient_type = type2parent(ingredient_type)
+				ingredient_type = ingredient_type::parent_type
 
 			//means we have no more remaining ingredients so bail, can happen if multiple ingredients of the same type/subtype are in the pot
 			else
@@ -130,7 +129,7 @@
 			created.pixel_y += 8
 		// Re-add required reagents that were not used in this step
 		if(created_volume > ingredient_max_multiplier)
-			for(var/reagent_path as anything in required_reagents)
+			for(var/reagent_path in required_reagents)
 				holder.add_reagent(reagent_path,(required_reagents[reagent_path])*(created_volume-ingredient_max_multiplier))
 
 
@@ -205,10 +204,7 @@
 		if(holder.total_volume >= holder.maximum_volume * 0.95)
 			below_pot.visible_message(span_warning("[pot] starts to boil over!"))
 			// Create a spread of dirty foam
-			var/datum/effect_system/fluid_spread/foam/dirty/soup_mess = new()
-			soup_mess.reagent_scale = 0.1 // (Just a little)
-			soup_mess.set_up(range = 1, holder = pot, location = below_pot, carry = holder, stop_reactions = TRUE)
-			soup_mess.start()
+			do_foam(1, pot, below_pot, carry = holder, foam_type = /datum/effect_system/fluid_spread/foam/dirty, stop_reactions = TRUE, reagent_scale = 0.1)
 			// Loses a bit from the foam
 			for(var/datum/reagent/reagent as anything in holder.reagent_list)
 				reagent.volume *= 0.5
@@ -661,7 +657,7 @@
 	required_reagents = list(/datum/reagent/water = 50)
 	required_ingredients = list(
 		/obj/item/food/grown/tomato = 2,
-		/obj/item/organ/internal/eyes = 1,
+		/obj/item/organ/eyes = 1,
 	)
 	results = list(
 		/datum/reagent/consumable/nutriment/soup/eyeball = 20,
@@ -760,12 +756,14 @@
 	// Pretty much just a normal chemical reaction.
 	// This also creates nutrients out of thin air.
 
-	required_other = FALSE
 	required_reagents = list(
 		/datum/reagent/water = 40,
 		/datum/reagent/toxin/slimejelly = 20,
 	)
 	required_ingredients = null
+
+/datum/chemical_reaction/food/soup/slimesoup/alt/pre_reaction_other_checks(datum/reagents/holder)
+	return TRUE
 
 // Clown Tear soup
 /datum/reagent/consumable/nutriment/soup/clown_tears
@@ -1126,7 +1124,7 @@
 // Special soup for Ethereals to consume to gain nutrition (energy) from.
 /datum/reagent/consumable/nutriment/soup/electrons
 	name = "Electron Soup"
-	description = "A gastronomic curiosity of ethereal origin. It is famed for the minature weather system formed over a properly prepared soup."
+	description = "A gastronomic curiosity of ethereal origin. It is famed for the miniature weather system formed over a properly prepared soup."
 	data = list("mushroom" = 1, "electrons" = 4)
 	glass_price = FOOD_PRICE_EXOTIC
 	color = "#E60040"
@@ -1746,7 +1744,6 @@
 	drink_type = GRAIN
 
 /datum/chemical_reaction/food/soup/cornmeal_porridge
-	required_other = FALSE
 	required_reagents = list(
 		/datum/reagent/consumable/cornmeal = 20,
 		/datum/reagent/water = 20,
@@ -1754,6 +1751,9 @@
 	results = list(
 		/datum/reagent/consumable/nutriment/soup/cornmeal_porridge = 20,
 	)
+
+/datum/chemical_reaction/food/soup/cornmeal_porridge/pre_reaction_other_checks(datum/reagents/holder)
+	return TRUE
 
 // Cheese Porridge (Soup-ish)
 /datum/reagent/consumable/nutriment/soup/cheese_porridge
@@ -1865,6 +1865,17 @@
 	resulting_food_path = /obj/item/food/spaghetti/boilednoodles
 	ingredient_reagent_multiplier = 0
 
+// Space Ramen
+/datum/chemical_reaction/food/soup/beef_ramen
+	required_reagents = list(
+		/datum/reagent/consumable/beef_flavour = 5
+	)
+	required_ingredients = list(
+		/obj/item/food/spaghetti/ramen_dry = 1
+	)
+	resulting_food_path = /obj/item/food/spaghetti/ramen_beef
+	ingredient_reagent_multiplier = 0
+
 // Dashi Broth
 /datum/reagent/consumable/nutriment/soup/dashi
 	name = "Dashi"
@@ -1966,7 +1977,7 @@
 // Gyuramen
 /datum/reagent/consumable/nutriment/soup/gyuramen
 	name = "Gyuramen Miy Käzu"
-	description = "A rich beef and onion ramen with cheese- blending several cultural influences seemlessly into one tasty dish."
+	description = "A rich beef and onion ramen with cheese, blending several cultural influences seemlessly into one tasty dish."
 	data = list("beef broth" = 1, "onion" = 1, "cheese" = 1)
 	color = "#442621"
 
@@ -2094,7 +2105,7 @@
 // Hong Kong Borscht
 /datum/reagent/consumable/nutriment/soup/hong_kong_borscht
 	name = "Hong Kong Borscht"
-	description = "Also known as luo song tang or Russian soup, this dish bears little to no resemblance to Eastern European borscht- indeed, it's a tomato-based soup with no beets in sight."
+	description = "Also known as luo song tang or Russian soup, this dish bears little to no resemblance to Eastern European borscht; indeed, it's a tomato-based soup with no beets in sight."
 	data = list("tomato" = 1, "meat" = 1, "cabbage" = 1)
 	color = "#CA4810"
 

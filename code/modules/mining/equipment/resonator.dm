@@ -11,6 +11,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 15
 	throwforce = 10
+	slot_flags = ITEM_SLOT_BELT
 
 	/// the mode of the resonator; has three modes: auto (1), manual (2), and matrix (3)
 	var/mode = RESONATOR_MODE_AUTO
@@ -42,7 +43,7 @@
 		new /obj/effect/temp_visual/resonance(target_turf, user, src, mode, adding_failure)
 		user.changeNext_move(CLICK_CD_MELEE)
 
-/obj/item/resonator/pre_attack(atom/target, mob/user, params)
+/obj/item/resonator/pre_attack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	if(check_allowed_items(target, not_inside = TRUE))
 		create_resonance(target, user)
 	return ..()
@@ -130,8 +131,9 @@
 			SEND_SIGNAL(creator, COMSIG_LIVING_RESONATOR_BURST, creator, attacked_living)
 		to_chat(attacked_living, span_userdanger("[src] ruptured with you in it!"))
 		attacked_living.apply_damage(resonance_damage, BRUTE)
-		attacked_living.add_movespeed_modifier(/datum/movespeed_modifier/resonance)
-		addtimer(CALLBACK(attacked_living, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/resonance), 10 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		if(!QDELETED(attacked_living))
+			attacked_living.add_movespeed_modifier(/datum/movespeed_modifier/resonance)
+			addtimer(CALLBACK(attacked_living, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/resonance), 10 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	for(var/obj/effect/temp_visual/resonance/field in orange(1, src))
 		if(field.rupturing)
 			continue

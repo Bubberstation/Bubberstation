@@ -21,14 +21,14 @@
 	. = ..()
 	alternate_worn_layer = initial(alternate_worn_layer)
 	if(istype(user) && user.ears && (flags_inv & HIDEEARS))
-		RegisterSignal(user, COMSIG_CARBON_UNEQUIP_HAT, PROC_REF(update_on_removed))
+		RegisterSignal(user, COMSIG_MOB_UNEQUIPPED_ITEM, PROC_REF(update_on_removed))
 
 /// After the hat has actually been removed from the mob, we can update what needs to be updated here
-/obj/item/clothing/head/proc/update_on_removed(mob/living/carbon/user, obj/item/hat)
+/obj/item/clothing/head/proc/update_on_removed(mob/living/carbon/human/user, obj/item/hat, slot)
 	SIGNAL_HANDLER
 	if(istype(user) && user.ears)
 		user.update_worn_ears()
-	UnregisterSignal(user, COMSIG_CARBON_UNEQUIP_HAT)
+	UnregisterSignal(user, COMSIG_MOB_UNEQUIPPED_ITEM)
 
 /obj/item/clothing/head/bio_hood
 	worn_icon_muzzled = 'modular_skyrat/master_files/icons/mob/clothing/head/bio_muzzled.dmi'
@@ -54,12 +54,12 @@
 //TODO - this needs a better method, can we do this as a SQUISH thing like digitigrade?
 /obj/item/clothing/head/helmet/space/changeling
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
-	supports_variations_flags = CLOTHING_NO_VARIATION
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/head/helmet/space/freedom
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
-	supports_variations_flags = CLOTHING_NO_VARIATION
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/head/helmet/space/santahat
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
-	supports_variations_flags = CLOTHING_NO_VARIATION
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON

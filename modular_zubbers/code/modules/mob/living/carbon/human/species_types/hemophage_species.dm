@@ -8,6 +8,7 @@
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/mhuman,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/mhuman,
 	)
+	language_prefs_whitelist = list(/datum/language/monkey)
 
 // MUTANT COLOR OVERRIDE
 
@@ -22,7 +23,7 @@
 	to_chat(target, span_warning("Your hemophage features have been removed, your nature as a bloodsucker abates the hemophage virus."))
 	// Without this any new organs would get corrupted again.
 	target.RemoveElement(/datum/element/tumor_corruption)
-	for(var/obj/item/organ/internal/organ in target.organs)
+	for(var/obj/item/organ/organ in target.organs)
 		organ.RemoveElement(/datum/element/tumor_corruption)
 	humanize_organs(target)
 

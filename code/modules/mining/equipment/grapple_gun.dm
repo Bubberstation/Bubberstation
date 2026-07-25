@@ -10,7 +10,7 @@
 	inhand_icon_state = "gun"
 	item_flags = NOBLUDGEON
 	///overlay when the hook is retracted
-	var/static/mutable_appearance/hook_overlay = new(icon = 'icons/obj/mining.dmi', icon_state = "grapple_gun_hooked")
+	var/static/mutable_appearance/hook_overlay = mutable_appearance(icon = 'icons/obj/mining.dmi', icon_state = "grapple_gun_hooked")
 	///is the hook retracted
 	var/hooked = TRUE
 	///addtimer id for launching the user
@@ -61,7 +61,7 @@
 		attacked_atom = singular_turf
 		break
 
-	if(user.CanReach(attacked_atom))
+	if(attacked_atom.IsReachableBy(user))
 		return ITEM_INTERACT_BLOCKING
 
 	var/atom/bullet = fire_projectile(/obj/projectile/grapple_hook, attacked_atom, 'sound/items/weapons/zipline_fire.ogg')
@@ -84,7 +84,7 @@
 /obj/item/grapple_gun/proc/on_grapple_hit(datum/source, atom/movable/firer, atom/target, Angle)
 	SIGNAL_HANDLER
 
-	UnregisterSignal(source, list(COMSIG_PROJECTILE_ON_HIT, COMSIG_PREQDELETED))
+	UnregisterSignal(source, list(COMSIG_PROJECTILE_SELF_ON_HIT, COMSIG_PREQDELETED))
 	QDEL_NULL(zipline)
 	var/mob/living/user = zipliner?.resolve()
 	if(isnull(user) || isnull(target))
@@ -179,7 +179,7 @@
 	icon_state = "grapple_hook"
 	damage = 0
 	range = 9
-	speed = 0.1
+	speed = 10
 	can_hit_turfs = TRUE
 	hitsound = 'sound/items/weapons/zipline_hit.ogg'
 

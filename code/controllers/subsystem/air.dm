@@ -1,9 +1,12 @@
 SUBSYSTEM_DEF(air)
 	name = "Atmospherics"
-	init_order = INIT_ORDER_AIR
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+		/datum/controller/subsystem/atoms,
+	)
 	priority = FIRE_PRIORITY_AIR
 	wait = 0.5 SECONDS
-	flags = SS_BACKGROUND
+	ss_flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
 	var/cached_cost = 0
@@ -60,7 +63,7 @@ SUBSYSTEM_DEF(air)
 
 
 /datum/controller/subsystem/air/stat_entry(msg)
-	msg += "C:{"
+	msg += "\n  Cost:{"
 	msg += "AT:[round(cost_turfs,1)]|"
 	msg += "HS:[round(cost_hotspots,1)]|"
 	msg += "EG:[round(cost_groups,1)]|"
@@ -72,7 +75,7 @@ SUBSYSTEM_DEF(air)
 	msg += "RB:[round(cost_rebuilds,1)]|"
 	msg += "AJ:[round(cost_adjacent,1)]|"
 	msg += "} "
-	msg += "AT:[active_turfs.len]|"
+	msg += "\n  Count:{AT:[active_turfs.len]|"
 	msg += "HS:[hotspots.len]|"
 	msg += "EG:[excited_groups.len]|"
 	msg += "HP:[high_pressure_delta.len]|"
@@ -84,6 +87,7 @@ SUBSYSTEM_DEF(air)
 	msg += "EP:[expansion_queue.len]|"
 	msg += "AJ:[adjacent_rebuild.len]|"
 	msg += "AT/MS:[round((cost ? active_turfs.len/cost : 0),0.1)]"
+	msg += "}"
 	return ..()
 
 
@@ -222,6 +226,7 @@ SUBSYSTEM_DEF(air)
 		cost_atoms = MC_AVERAGE(cost_atoms, TICK_DELTA_TO_MS(cached_cost))
 		resumed = FALSE
 
+
 	currentpart = SSAIR_PIPENETS
 	SStgui.update_uis(SSair) //Lightning fast debugging motherfucker
 
@@ -320,7 +325,7 @@ SUBSYSTEM_DEF(air)
 		currentrun.len--
 		if(!M)
 			atmos_machinery -= M
-		if(M.process_atmos() == PROCESS_KILL)
+		if(M.process_atmos(wait * 0.1) == PROCESS_KILL)
 			stop_processing_machine(M)
 		if(MC_TICK_CHECK)
 			return
@@ -385,9 +390,11 @@ SUBSYSTEM_DEF(air)
 	while(currentrun.len)
 		var/datum/excited_group/EG = currentrun[currentrun.len]
 		currentrun.len--
+		var/volatile_reaction = EG.turf_reactions & VOLATILE_REACTION
 		EG.breakdown_cooldown++
-		EG.dismantle_cooldown++
-		if(EG.breakdown_cooldown >= EXCITED_GROUP_BREAKDOWN_CYCLES)
+		if(!volatile_reaction)
+			EG.dismantle_cooldown++
+		if(EG.breakdown_cooldown >= EXCITED_GROUP_BREAKDOWN_CYCLES && !volatile_reaction)
 			EG.self_breakdown(poke_turfs = TRUE)
 		else if(EG.dismantle_cooldown >= EXCITED_GROUP_DISMANTLE_CYCLES && !(EG.turf_reactions & (REACTING | STOP_REACTIONS)))
 			EG.dismantle()
@@ -551,10 +558,10 @@ SUBSYSTEM_DEF(air)
 	// Taking advantage of current cycle being set to negative before this run to do A->B B->A prevention
 	for(var/turf/open/potential_diff as anything in difference_check)
 		// I can't use 0 here, so we're gonna do this instead. If it ever breaks I'll eat my shoe
-		potential_diff.current_cycle = -INFINITE
+		potential_diff.current_cycle = -INFINITY
 		for(var/turf/open/enemy_tile as anything in potential_diff.atmos_adjacent_turfs)
 			// If it's already been processed, then it's already talked to us
-			if(enemy_tile.current_cycle == -INFINITE)
+			if(enemy_tile.current_cycle == -INFINITY)
 				continue
 			// .air instead of .return_air() because we can guarantee that the proc won't do anything
 			if(potential_diff.air.compare(enemy_tile.air, MOLES))
@@ -839,7 +846,7 @@ GLOBAL_LIST_EMPTY(colored_images)
 		currentrun -= machine
 
 /datum/controller/subsystem/air/ui_state(mob/user)
-	return GLOB.debug_state
+	return ADMIN_STATE(R_DEBUG)
 
 /datum/controller/subsystem/air/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

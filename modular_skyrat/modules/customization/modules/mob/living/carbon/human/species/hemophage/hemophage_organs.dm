@@ -7,23 +7,45 @@
 #define ORGAN_CORRUPTION_INSTANT 0
 
 
-/obj/item/organ/internal/liver/hemophage
+/obj/item/organ/liver/hemophage
 	name = "liver" // Name change is handled by /datum/component/organ_corruption/corrupt_organ()
 	desc = GENERIC_CORRUPTED_ORGAN_DESC
 	icon = 'modular_skyrat/modules/organs/icons/hemophage_organs.dmi'
 	organ_flags = ORGAN_EDIBLE | ORGAN_TUMOR_CORRUPTED
 
 
-/obj/item/organ/internal/liver/hemophage/Initialize(mapload)
+/obj/item/organ/liver/hemophage/Initialize(mapload)
 	. = ..()
 
 	AddComponent(/datum/component/organ_corruption/liver, time_to_corrupt = ORGAN_CORRUPTION_INSTANT)
 
-/obj/item/organ/internal/liver/hemophage/handle_chemical(mob/living/carbon/affected_mob, datum/reagent/chem, seconds_per_tick, times_fired)
+/obj/item/organ/liver/hemophage/Insert(mob/living/carbon/receiver, special, movement_flags)
+	. = ..()
+	RegisterSignal(receiver, COMSIG_MOB_FEED_DRINK, PROC_REF(on_blood_drunk))
+
+/obj/item/organ/liver/hemophage/Remove(mob/living/carbon/organ_owner, special, movement_flags)
+	. = ..()
+	UnregisterSignal(organ_owner, COMSIG_MOB_FEED_DRINK)
+
+/obj/item/organ/liver/hemophage/proc/on_blood_drunk(mob/living/carbon/drinker, mob/living/carbon/victim, blood_eatable, already_drunk)
+	SIGNAL_HANDLER
+	var/maximum_gained = BLOOD_VOLUME_MAXIMUM
+	if(ismonkey(victim) || istype(victim, /mob/living/carbon/human/species/monkey))
+		drinker.adjust_disgust(blood_eatable, DISGUST_LEVEL_DISGUSTED)
+		maximum_gained = BLOOD_VOLUME_NORMAL
+
+	else if(ishuman(victim) && victim.mind)
+		drinker.apply_status_effect(/datum/status_effect/blood_thirst_satiated)
+		drinker.disgust *= 0.3 //also clears a little bit of disgust too
+
+	drinker.blood_volume = min(drinker.blood_volume + blood_eatable, maximum_gained)
+	return FEED_CANCEL_BLOOD_TRANSFER
+
+/obj/item/organ/liver/hemophage/handle_chemical(mob/living/carbon/affected_mob, datum/reagent/chem, seconds_per_tick, times_fired)
 	. = ..()
 
-	// parent returned COMSIG_MOB_STOP_REAGENT_CHECK or we are failing
-	if((. & COMSIG_MOB_STOP_REAGENT_CHECK) || (organ_flags & ORGAN_FAILING))
+	// parent returned COMSIG_MOB_STOP_REAGENT_TICK or we are failing
+	if((. & COMSIG_MOB_STOP_REAGENT_TICK) || (organ_flags & ORGAN_FAILING))
 		return
 
 	// hemophages drink blood so blood must be pretty good for them
@@ -63,25 +85,25 @@
 	// Sanitizes and heals, but with a limit
 	if(flesh_healing <= 0.1)
 		flesh_healing += 0.02
-	infestation_rate = max(infestation_rate - 0.005, 0)
+	infection_rate = max(infection_rate - 0.005, 0)
 	return TRUE
 
 
-/obj/item/organ/internal/stomach/hemophage
+/obj/item/organ/stomach/hemophage
 	name = "stomach" // Name change is handled by /datum/component/organ_corruption/corrupt_organ()
 	desc = GENERIC_CORRUPTED_ORGAN_DESC
 	icon = 'modular_skyrat/modules/organs/icons/hemophage_organs.dmi'
 	organ_flags = ORGAN_EDIBLE | ORGAN_TUMOR_CORRUPTED
 
 
-/obj/item/organ/internal/stomach/hemophage/Initialize(mapload)
+/obj/item/organ/stomach/hemophage/Initialize(mapload)
 	. = ..()
 
 	AddComponent(/datum/component/organ_corruption/stomach, time_to_corrupt = ORGAN_CORRUPTION_INSTANT)
 
 
 // I didn't feel like moving this behavior onto the component, it was just too annoying to do.
-/obj/item/organ/internal/stomach/hemophage/on_life(seconds_per_tick, times_fired)
+/obj/item/organ/stomach/hemophage/on_life(seconds_per_tick, times_fired)
 	var/datum/reagent/blood/blood = reagents.has_reagent(/datum/reagent/blood)
 	if(blood)
 		blood.metabolization_rate = BLOOD_METABOLIZATION_RATE
@@ -93,7 +115,7 @@
 	return ..()
 
 
-/obj/item/organ/internal/tongue/hemophage
+/obj/item/organ/tongue/hemophage
 	name = "tongue" // Name change is handled by /datum/component/organ_corruption/corrupt_organ()
 	desc = GENERIC_CORRUPTED_ORGAN_DESC
 	icon = 'modular_skyrat/modules/organs/icons/hemophage_organs.dmi'
@@ -102,7 +124,7 @@
 	disliked_foodtypes = NONE
 
 
-/obj/item/organ/internal/tongue/hemophage/Initialize(mapload)
+/obj/item/organ/tongue/hemophage/Initialize(mapload)
 	. = ..()
 
 	AddComponent(/datum/component/organ_corruption/tongue, time_to_corrupt = ORGAN_CORRUPTION_INSTANT)

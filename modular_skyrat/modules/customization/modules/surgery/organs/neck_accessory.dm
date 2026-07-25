@@ -1,4 +1,4 @@
-/obj/item/organ/external/neck_accessory
+/obj/item/organ/neck_accessory
 	name = "neck accessory"
 	desc = "It goes on the neck."
 	icon_state = "random_fly_1"
@@ -9,8 +9,6 @@
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_EXTERNAL_NECK_ACCESSORY
 	organ_flags = ORGAN_UNREMOVABLE
-
-	preference = "feature_neck_accessory"
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/neck_accessory
 
@@ -23,4 +21,4 @@
 	return draw_color
 
 /datum/bodypart_overlay/mutant/neck_accessory/get_global_feature_list()
-	return SSaccessories.sprite_accessories["neck_accessory"]
+	return SSaccessories.sprite_accessories["neck_acc"]

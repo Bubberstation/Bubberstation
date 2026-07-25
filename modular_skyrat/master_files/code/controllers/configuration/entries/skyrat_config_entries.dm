@@ -34,6 +34,12 @@
 // To turn off SSDecay nests based on a config. If SSDecay is disabled, this won't matter.
 /datum/config_entry/flag/ssdecay_disable_nests
 
+// Intensity of dirt generation for SSDecay (1-4) or set to 5 for random
+/datum/config_entry/number/ssdecay_intensity
+	default = 5
+	max_val = 5
+	min_val = 1
+
 // Turn on/off guncargo permit-locked firing pins
 /datum/config_entry/flag/permit_pins
 

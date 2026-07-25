@@ -36,7 +36,7 @@
 	return ..()
 
 /datum/preference/toggle/allow_emissives
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "allow_emissives_toggle" // no 'e' so it goes right after allow_mismatched_parts, not before
 	default_value = FALSE
@@ -45,26 +45,26 @@
 	return TRUE // we dont actually want this to do anything
 
 /datum/preference/tri_color/mutant_colors
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "mutant_colors_color"
 	check_mode = TRICOLOR_NO_CHECK
 
 /datum/preference/tri_color/mutant_colors/apply_to_human(mob/living/carbon/human/target, value)
-	target.dna.features["mcolor"] = sanitize_hexcolor(value[1])
-	target.dna.features["mcolor2"] = sanitize_hexcolor(value[2])
-	target.dna.features["mcolor3"] = sanitize_hexcolor(value[3])
+	target.dna.features[FEATURE_MUTANT_COLOR] = sanitize_hexcolor(value[1])
+	target.dna.features[FEATURE_MUTANT_COLOR_TWO] = sanitize_hexcolor(value[2])
+	target.dna.features[FEATURE_MUTANT_COLOR_THREE] = sanitize_hexcolor(value[3])
 
 /datum/preference/toggle/eye_emissives
 	savefile_key = "eye_emissives"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	relevant_head_flag = HEAD_EYECOLOR
 
 /datum/preference/toggle/eye_emissives/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	value = value && preferences && is_allowed(preferences)
 
-	var/obj/item/organ/internal/eyes/eyes_organ = target.get_organ_by_type(/obj/item/organ/internal/eyes)
+	var/obj/item/organ/eyes/eyes_organ = target.get_organ_by_type(/obj/item/organ/eyes)
 	target.emissive_eyes = value
 	if (istype(eyes_organ))
 		eyes_organ.is_emissive = value
@@ -100,7 +100,7 @@
 	savefile_key = "feature_body_markings"
 	relevant_mutant_bodypart = "body_markings"
 	type_to_check = /datum/preference/toggle/mutant_toggle/body_markings
-	default_accessory_type = /datum/sprite_accessory/lizard_markings
+	default_accessory_type = /datum/sprite_accessory/lizard_markings/none
 
 /datum/preference/choiced/mutant_choice/body_markings/is_accessible(datum/preferences/preferences)
 	. = ..() // Got to do this because of linters.
@@ -140,24 +140,26 @@
 /// Tails
 
 /datum/preference/toggle/mutant_toggle/tail
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_key = "tail_toggle"
 	relevant_mutant_bodypart = "tail"
 
 /datum/preference/choiced/mutant_choice/tail
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_key = "feature_tail"
 	relevant_mutant_bodypart = "tail"
 	type_to_check = /datum/preference/toggle/mutant_toggle/tail
 	default_accessory_type = /datum/sprite_accessory/tails/none
 
 /datum/preference/tri_color/tail
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "tail_color"
 	relevant_mutant_bodypart = "tail"
 	type_to_check = /datum/preference/toggle/mutant_toggle/tail
 
 /datum/preference/tri_bool/tail
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "tail_emissive"
 	relevant_mutant_bodypart = "tail"
@@ -166,10 +168,12 @@
 /// Snouts
 
 /datum/preference/toggle/mutant_toggle/snout
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_key = "snout_toggle"
 	relevant_mutant_bodypart = "snout"
 
 /datum/preference/choiced/mutant_choice/snout
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_key = "feature_snout"
 	relevant_mutant_bodypart = "snout"
 	type_to_check = /datum/preference/toggle/mutant_toggle/snout
@@ -190,14 +194,14 @@
 	target.synchronize_bodyshapes()
 
 /datum/preference/tri_color/snout
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "snout_color"
 	relevant_mutant_bodypart = "snout"
 	type_to_check = /datum/preference/toggle/mutant_toggle/snout
 
 /datum/preference/tri_bool/snout
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "snout_emissive"
 	relevant_mutant_bodypart = "snout"
@@ -206,24 +210,26 @@
 /// Horns
 
 /datum/preference/toggle/mutant_toggle/horns
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_key = "horns_toggle"
 	relevant_mutant_bodypart = "horns"
 
 /datum/preference/choiced/mutant_choice/horns
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_key = "feature_horns"
 	relevant_mutant_bodypart = "horns"
 	type_to_check = /datum/preference/toggle/mutant_toggle/horns
-	default_accessory_type = /datum/sprite_accessory/horns
+	default_accessory_type = /datum/sprite_accessory/horns/none
 
 /datum/preference/tri_color/horns
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "horns_color"
 	relevant_mutant_bodypart = "horns"
 	type_to_check = /datum/preference/toggle/mutant_toggle/horns
 
 /datum/preference/tri_bool/horns
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "horns_emissive"
 	relevant_mutant_bodypart = "horns"
@@ -232,24 +238,26 @@
 /// Ears
 
 /datum/preference/toggle/mutant_toggle/ears
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_key = "ears_toggle"
 	relevant_mutant_bodypart = "ears"
 
 /datum/preference/choiced/mutant_choice/ears
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_key = "feature_ears"
 	relevant_mutant_bodypart = "ears"
 	type_to_check = /datum/preference/toggle/mutant_toggle/ears
 	default_accessory_type = /datum/sprite_accessory/ears/none
 
 /datum/preference/tri_color/ears
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ears_color"
 	relevant_mutant_bodypart = "ears"
 	type_to_check = /datum/preference/toggle/mutant_toggle/ears
 
 /datum/preference/tri_bool/ears
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ears_emissive"
 	relevant_mutant_bodypart = "ears"
@@ -291,7 +299,7 @@
 	savefile_key = "feature_frills"
 	relevant_mutant_bodypart = "frills"
 	type_to_check = /datum/preference/toggle/mutant_toggle/frills
-	default_accessory_type = /datum/sprite_accessory/frills
+	default_accessory_type = /datum/sprite_accessory/frills/none
 
 /datum/preference/tri_color/frills
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
@@ -317,7 +325,7 @@
 	savefile_key = "feature_spines"
 	relevant_mutant_bodypart = "spines"
 	type_to_check = /datum/preference/toggle/mutant_toggle/spines
-	default_accessory_type = /datum/sprite_accessory/spines
+	default_accessory_type = /datum/sprite_accessory/spines/none
 
 /datum/preference/tri_color/spines
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
@@ -399,7 +407,7 @@
 	savefile_key = "feature_moth_markings"
 	relevant_mutant_bodypart = "moth_markings"
 	type_to_check = /datum/preference/toggle/mutant_toggle/moth_markings
-	default_accessory_type = /datum/sprite_accessory/moth_markings
+	default_accessory_type = /datum/sprite_accessory/moth_markings/none
 
 /datum/preference/choiced/mutant_choice/moth_markings/is_accessible(datum/preferences/preferences)
 	. = ..() // Got to do this because of linters.
@@ -477,6 +485,15 @@
 
 /datum/preference/choiced/mutant_choice/ipc_screen/is_part_enabled(datum/preferences/preferences)
 	return TRUE
+
+/datum/preference/choiced/mutant_choice/ipc_screen/is_accessible(datum/preferences/preferences)
+	var/datum/species/species = preferences.read_preference(/datum/preference/choiced/species)
+	species = new species
+
+	if(savefile_key in species.get_features())
+		return ..()
+	else
+		return FALSE
 
 /datum/preference/choiced/mutant_choice/ipc_screen/generate_icon_state(datum/sprite_accessory/sprite_accessory, original_icon_state)
 	return "m_ipc_screen_[original_icon_state]_FRONT_UNDER"
@@ -557,6 +574,15 @@
 /datum/preference/choiced/mutant_choice/synth_chassis/is_part_enabled(datum/preferences/preferences)
 	return TRUE
 
+/datum/preference/choiced/mutant_choice/synth_chassis/is_accessible(datum/preferences/preferences)
+	var/datum/species/species = preferences.read_preference(/datum/preference/choiced/species)
+	species = new species
+
+	if(savefile_key in species.get_features())
+		return ..()
+	else
+		return FALSE
+
 /datum/preference/choiced/mutant_choice/synth_chassis/compile_constant_data()
 	var/list/data = ..()
 
@@ -590,6 +616,15 @@
 
 /datum/preference/choiced/mutant_choice/synth_head/is_part_enabled(datum/preferences/preferences)
 	return TRUE
+
+/datum/preference/choiced/mutant_choice/synth_head/is_accessible(datum/preferences/preferences)
+	var/datum/species/species = preferences.read_preference(/datum/preference/choiced/species)
+	species = new species
+
+	if(savefile_key in species.get_features())
+		return ..()
+	else
+		return FALSE
 
 /datum/preference/choiced/mutant_choice/synth_head/compile_constant_data()
 	var/list/data = ..()
@@ -828,33 +863,35 @@
 	should_generate_icons = TRUE
 	generate_icons = TRUE
 
-/datum/preference/choiced/mutant_choice/pod_hair/init_possible_values()
-	var/list/values = list()
+/datum/preference/choiced/mutant_choice/pod_hair/icon_for(value)
+	var/datum/sprite_accessory/pod_hair/pod_hair = SSaccessories.sprite_accessories[relevant_mutant_bodypart][value]
+	if(!pod_hair.icon_state || LOWER_TEXT(pod_hair.icon_state) == "none")
+		return uni_icon('icons/mob/landmarks.dmi', "x")
 
-	var/icon/pod_head = icon('icons/mob/human/bodyparts_greyscale.dmi', "pod_head_m")
-	pod_head.Blend(COLOR_GREEN, ICON_MULTIPLY)
+	var/datum/universal_icon/pod_head = uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "pod_head_m")
+	pod_head.blend_color(COLOR_GREEN, ICON_MULTIPLY)
 
-	for (var/pod_name in SSaccessories.pod_hair_list)
-		var/datum/sprite_accessory/pod_hair/pod_hair = SSaccessories.pod_hair_list[pod_name]
-		if(pod_hair.locked)
-			continue
-
-		var/icon/icon_with_hair = new(pod_head)
-		var/icon/icon_adj = icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_ADJ")
-		var/icon/icon_front = icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_FRONT_OVER")
-		icon_front.Blend(COLOR_MAGENTA, ICON_MULTIPLY)
-		icon_adj.Blend(COLOR_VIBRANT_LIME, ICON_MULTIPLY)
-		icon_adj.Blend(icon_front, ICON_OVERLAY)
-		icon_with_hair.Blend(icon_adj, ICON_OVERLAY)
-		icon_with_hair.Scale(64, 64)
-		icon_with_hair.Crop(15, 64, 15 + 31, 64 - 31)
-
-		values[pod_hair.name] = icon_with_hair
-
-	return values
+	var/datum/universal_icon/icon_adj = uni_icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_FRONT_OVER_HAIR")
+	var/datum/universal_icon/icon_front = uni_icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_FRONT_OVER")
+	icon_front.blend_color(COLOR_MAGENTA, ICON_MULTIPLY)
+	icon_adj.blend_color(COLOR_VIBRANT_LIME, ICON_MULTIPLY)
+	icon_adj.blend_icon(icon_front, ICON_OVERLAY)
+	pod_head.blend_icon(icon_adj, ICON_OVERLAY)
+	pod_head.scale(64, 64)
+	pod_head.crop(15, 64 - 31, 15 + 31, 64)
+	return pod_head
 
 /datum/preference/choiced/mutant_choice/pod_hair/is_part_enabled(datum/preferences/preferences)
 	return TRUE
+
+/datum/preference/choiced/mutant_choice/pod_hair/is_accessible(datum/preferences/preferences)
+	var/datum/species/species = preferences.read_preference(/datum/preference/choiced/species)
+	species = new species
+
+	if(savefile_key in species.get_features())
+		return ..()
+	else
+		return FALSE
 
 /datum/preference/choiced/mutant_choice/pod_hair/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	var/species_path = preferences?.read_preference(/datum/preference/choiced/species)

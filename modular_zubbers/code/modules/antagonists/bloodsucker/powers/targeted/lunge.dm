@@ -157,7 +157,7 @@
 			span_warning("[user] tears into [target]'s [bodypart]!"),
 			span_warning("You tear into [target]'s [bodypart]!"))
 		playsound(target, 'sound/effects/wounds/crackandbleed.ogg', 100, TRUE, 5)
-		var/obj/item/organ/internal/myheart_now
+		var/obj/item/organ/myheart_now
 		if(bodypart.body_zone == BODY_ZONE_CHEST)
 			myheart_now = target.get_organ_slot(ORGAN_SLOT_HEART)
 		if(!myheart_now)

@@ -28,7 +28,7 @@
 	name = "customizable vape cart"
 	desc = "Fill with whatever hazardous concoction of chemicals you desire!"
 	list_reagents = list()
-	reagent_flags = OPENCONTAINER
+	initial_reagent_flags = OPENCONTAINER
 	var/labelled = FALSE
 
 /obj/item/reagent_containers/vapecart/empty/attack_self(mob/user)

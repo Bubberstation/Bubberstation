@@ -153,7 +153,7 @@
 /obj/item/radio/headset/headset_frontier_colonist
 	name = "frontier radio headset"
 	desc = "A bulky headset that should hopefully survive exposure to the elements better than station headsets might. \
-		Has a built-in antenna allowing the headset to work independently of a communications network."
+		Has a built-in antenna allowing the headset to work independently of a communications network. Unable to use encryption keys."
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
 	icon_state = "radio"
 	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
@@ -163,6 +163,11 @@
 	alternate_worn_layer = FACEMASK_LAYER + 0.5
 	subspace_transmission = FALSE
 	radiosound = 'modular_skyrat/modules/kahraman_equipment/sound/morse_signal.wav'
+	radio_sound_volume = 20
+	freqlock = RADIO_FREQENCY_LOCKED
+
+/obj/item/radio/headset/headset_frontier_colonist/wide
+	worn_icon_state = "radio_wide"
 
 /obj/item/radio/headset/headset_frontier_colonist/Initialize(mapload)
 	. = ..()
@@ -212,3 +217,35 @@
 /obj/item/clothing/mask/gas/atmos/frontier_colonist/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
+
+//// Loadout variant
+// suit
+/obj/item/clothing/suit/jacket/frontier_colonist/loadout
+	armor_type = /datum/armor/none
+
+/obj/item/clothing/suit/jacket/frontier_colonist/loadout/Initialize(mapload)
+	. = ..()
+	allowed = list()
+
+/obj/item/clothing/suit/jacket/frontier_colonist/short/loadout
+	armor_type = /datum/armor/none
+
+/obj/item/clothing/suit/jacket/frontier_colonist/short/loadout/Initialize(mapload)
+	. = ..()
+	allowed = list()
+
+// Gloves
+/obj/item/clothing/gloves/frontier_colonist/loadout
+	siemens_coefficient = 0.50
+
+// boots
+/obj/item/clothing/shoes/jackboots/frontier_colonist/loadout
+	name = "frontier jackboots"
+	armor_type = /datum/armor/shoes_jackboots
+
+// mask
+/obj/item/clothing/mask/gas/atmos/frontier_colonist/loadout
+	armor_type = /datum/armor/mask_gas
+	resistance_flags = NONE
+	max_filters = 1
+

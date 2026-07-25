@@ -1,7 +1,7 @@
 /// Cleans up any invalid languages. Typically happens on language renames and codedels.
 /datum/preferences/proc/sanitize_languages()
 	var/languages_edited = FALSE
-	for(var/lang_path as anything in languages)
+	for(var/lang_path in languages)
 		if(!lang_path)
 			languages.Remove(lang_path)
 			languages_edited = TRUE

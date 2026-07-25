@@ -42,3 +42,72 @@
 	admin_notes = "A shuttle that has it's own protolathes, as well as severely upgraded tools, and gear. A very luxurious evacuation shuttle, with no drawbacks. Two Authentication Devices, spare Head of Staff MOD's, gives NTC a Corporate MOD, gives Blueshield a Asset Protection MOD, atmospherics, shocked grilles, Gives everyone what they need while leaving a burning heap of a station, or just getting off from a nice calm shift."
 	credit_cost = CARGO_CRATE_VALUE * 625
 	occupancy_limit = "65"
+
+/datum/map_template/shuttle/emergency/gorilla2
+	prefix = "_maps/shuttles/zubbers/"
+	suffix = "gorilla2"
+	name = "Gorilla Cargo Freighter Mark 2"
+	description = "Due to (un)popular demand that may (or may not) exist, along with a small fee, this freighter has been recommissioned to be your escape shuttle. A rustic, barely excuseable shuttle transporting important cargo. Not for crew who are about to go ape. Note: Please do not provoke the cargo."
+	admin_notes = "Trashy shuttle covered in rust. Random maints loot spawns in the cargo bay. The gorillas have the 'hostile' faction and are shut in the back half of the bay, but given enough time with a crew member in sight, they'll break down the plasma windows."
+	credit_cost = CARGO_CRATE_VALUE * 5
+	occupancy_limit = "25 + 15"
+	emag_only = TRUE
+
+/datum/map_template/shuttle/emergency/foxferry
+	prefix = "_maps/shuttles/zubbers/"
+	suffix = "foxferry"
+	name = "Jumbo Fox-Class Evacuation Ferry"
+	description = "A super-sized version of the much, much, smaller Fox-class ferry pod, this comfortable and unarmed Syndicate transport features ample seating and some syndicate supplies, along with brand merchandise and logo placement. Contains a small atmospherics system within the engine room and electrified grilles. The Syndicate is not responsible for any injuries or incidents that may occur after purchasing this shuttle."
+	admin_notes = "Reasonably sized, round, and somewhat expensive shuttle. Has a small amount of traitor and syndicate branded items in the public area and a few contraband items locked away in lockers and crates. Beware the energy axe."
+	credit_cost = CARGO_CRATE_VALUE * 250
+	occupancy_limit = "50"
+	emag_only = TRUE
+
+/datum/map_template/shuttle/emergency/pod_cluster
+	prefix = "_maps/shuttles/zubbers/"
+	suffix = "pod_cluster"
+	name = "A Cluster of Escape Pods"
+	description = "We couldn't get a proper shuttle for you, so instead we took a bunch of the escape pods that everyone seems to like and strapped them together with lattice. It ain't pretty, but hey, at least it was cheap."
+	admin_notes = "No air between pods. Command pod is slightly longer to fit the console. Funny idea courtesy of a friend."
+	credit_cost = CARGO_CRATE_VALUE * 1.5
+	occupancy_limit = "36"
+	emag_only = TRUE
+
+/datum/map_template/shuttle/emergency/stockade
+	prefix = "_maps/shuttles/zubbers/"
+	suffix = "stockade"
+	name = "Breacher-Class Stockade Shuttle"
+	description = "This older Nanotrasen Breacher-class Stockade Shuttle makes up for it's lack of shields and advanced technologies with absolute heft and durability. Sporting an incredibly up-armored hull, laser defence turrets and an asteroid plow, there's not much that's going to get through this beast of a ship."
+	admin_notes = "Big and chonky, where every door is a secure door. Features turrets used on the Raven shuttle. Not terribly special otherwise."
+	credit_cost = CARGO_CRATE_VALUE * 100
+	occupancy_limit = "80"
+
+/datum/map_template/shuttle/emergency/imfedupbutgold
+	prefix = "_maps/shuttles/zubbers/"
+	suffix = "imfedupbutgold"
+	name = "How's your sex life (Turbo Gold Premium Supporter's Edition)"
+	description = "You can love someone deep inside your heart, and there is nothing wrong with it. If a lot of people love each other, the world would be a better place to live. Now with more gold."
+	admin_notes = "People will hate you if you buy this."
+	occupancy_limit = "5"
+	emag_only = TRUE
+	credit_cost = CARGO_CRATE_VALUE * 1250
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
+
+/datum/map_template/shuttle/emergency/vigilante
+	prefix = "_maps/shuttles/zubbers/"
+	suffix = "vigilante"
+	name = "SLRSV Vigilante"
+	description = "A long-distance transport straight from the Syndicate. The Syndicate Long-Range Support Vessel Vigilante is equipped with high passenger capacity, stocked support departments, as well as crew amenities. While it may not have the luxuries of some other shuttles, this baby is made to last and will guarantee your safe travel. Note: please do not pick fights with the Shipmaster, he refused to leave when we put the vessel up for sale."
+	admin_notes = "Big bucks syndicate ship. Not nearly as much contraband as you'd expect, but there are several syndicate modsuits and softsuits. Comes with some a sentience fun balloon for the couple mobs aboard. Also contains the beanbag bulldog."
+	occupancy_limit = "90"
+	emag_only = TRUE
+	credit_cost = CARGO_CRATE_VALUE * 1000
+
+/datum/map_template/shuttle/emergency/millionaire
+	prefix = "_maps/shuttles/zubbers/"
+	suffix = "millionaire"
+	name = "Millionaire Shuttle"
+	description = "An excessively expensive shuttle made of (almost) solid gold, silver and diamonds. If you can to afford to buy this, your station will forever be immortalized on the 'list of millions'. Note: List may or may not exist. Note: May also crash into station."
+	admin_notes = "Nice job getting a million. Enjoy the dumb shuttle."
+	occupancy_limit = "55"
+	credit_cost = 1000000

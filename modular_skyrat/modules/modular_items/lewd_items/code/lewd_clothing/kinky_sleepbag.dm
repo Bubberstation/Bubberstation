@@ -7,7 +7,8 @@
 	worn_icon_taur_snake = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_suit/sleepbag_special.dmi'
 	worn_icon_taur_paw = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_suit/sleepbag_special.dmi'
 	worn_icon_taur_hoof = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_suit/sleepbag_special.dmi'
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION|STYLE_TAUR_ALL
+	gets_cropped_on_taurs = FALSE
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	icon_state = "sleepbag_pink_deflated_folded"
 	base_icon_state = "sleepbag"
 	w_class = WEIGHT_CLASS_SMALL
@@ -66,7 +67,7 @@
 
 		if(TRUE)
 			if(bag_state == "deflated")
-				fold()
+				fold(user)
 				to_chat(user, span_notice("The sleeping bag now is [bag_fold? "folded." : "unfolded."]"))
 				update_icon()
 				update_icon_state()
@@ -130,7 +131,7 @@
 	else
 		to_chat(affected_human, span_notice("You need to unfold the bag before inflating it!"))
 
-/obj/item/clothing/suit/straight_jacket/kinky_sleepbag/proc/fold(mob/user, src)
+/obj/item/clothing/suit/straight_jacket/kinky_sleepbag/proc/fold(mob/user)
 	bag_fold = !bag_fold
 	conditional_pref_sound(user, 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg', 40, TRUE)
 	if(bag_fold == TRUE)

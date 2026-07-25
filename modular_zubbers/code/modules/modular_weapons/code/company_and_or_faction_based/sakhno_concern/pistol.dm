@@ -6,7 +6,7 @@
 	desc = "A very compact twin-barreled pistol, chambered in .310 strilka. \
 		Despite using a rifle cartridge, the short barrels leave a lot to \
 		be desired for ballistic performance and suffer from immense dropoff."
-	icon = 'modular_zubbers/code/modules/modular_weapons/icons/sakhno_concern_guns32x.dmi'
+	icon = 'modular_zubbers/icons/obj/guns/sakhno_concern_guns32x.dmi'
 	icon_state = "derringer"
 	w_class = WEIGHT_CLASS_SMALL
 	weapon_weight = WEAPON_LIGHT
@@ -23,7 +23,7 @@
 	casing_ejector = FALSE
 	bolt_type = BOLT_TYPE_NO_BOLT
 
-/obj/item/gun/ballistic/derringer/process_fire() //It's a derringer, damage drops off rather quickly so it's not used as a cheap pocket rifle.
+/obj/item/gun/ballistic/derringer/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0) //It's a derringer, damage drops off rather quickly so it's not used as a cheap pocket rifle.
 	if(chambered.loaded_projectile)
 		var/projectileDamage = chambered.loaded_projectile.damage
 		var/projectileStamina = chambered.loaded_projectile.stamina
@@ -51,7 +51,7 @@
 /obj/item/gun/ballistic/derringer/attackby(obj/item/A, mob/user, params) // Forced delay on loading derringer, only checks for valid ammo types/boxes though.
 	if (is_type_in_list(A, list(/obj/item/ammo_casing/strilka310,
 								/obj/item/ammo_box/c310_cargo_box,
-								/obj/item/ammo_box/strilka310)))
+								/obj/item/ammo_box/speedloader/strilka310)))
 		if(!do_after(user, LOADING_TIME, src, IGNORE_USER_LOC_CHANGE)) // We are allowed to move while reloading.
 			to_chat(user, span_danger("You fail to chamber a round into [src]!"))
 			return TRUE

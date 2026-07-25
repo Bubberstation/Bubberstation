@@ -51,6 +51,7 @@
 	material_drop = /obj/item/stack/sheet/iron
 	material_drop_amount = 2
 	armor_type = /datum/armor/blackcoffin
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5, /datum/material/iron = SHEET_MATERIAL_AMOUNT)
 
 /datum/armor/blackcoffin
 	melee = 50
@@ -74,6 +75,7 @@
 	material_drop = /obj/item/stack/sheet/iron
 	material_drop_amount = 2
 	armor_type = /datum/armor/securecoffin
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5.5, /datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 5)
 
 /datum/armor/securecoffin
 	melee = 35
@@ -97,6 +99,11 @@
 	material_drop = /obj/item/food/meat/slab/human
 	material_drop_amount = 3
 	armor_type = /datum/armor/meatcoffin
+	custom_materials = list(
+		/datum/material/meat = SHEET_MATERIAL_AMOUNT * 20,
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 1.5,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 1.5,
+	)
 
 /datum/armor/meatcoffin
 	melee = 70
@@ -120,6 +127,7 @@
 	material_drop = /obj/item/stack/sheet/iron
 	material_drop_amount = 5
 	armor_type = /datum/armor/metalcoffin
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7)
 
 /datum/armor/metalcoffin
 	melee = 40
@@ -138,6 +146,8 @@
 	if(bloodsuckerdatum.claim_coffin(src, current_area))
 		resident = claimant
 		anchored = TRUE
+		if(!(interaction_flags_click & ALLOW_RESTING))
+			interaction_flags_click = interaction_flags_click | ALLOW_RESTING
 		START_PROCESSING(SSprocessing, src)
 		return TRUE
 	return FALSE
@@ -191,6 +201,8 @@
 			to_chat(resident, span_cult_italic("You sense that the link with your coffin and your sacred haven has been broken! You will need to seek another."))
 	// Remove resident. Because this object isnt removed from the game immediately (GC?) we need to give them a way to see they don't have a home anymore.
 	resident = null
+	if(interaction_flags_click & ALLOW_RESTING)
+		interaction_flags_click = interaction_flags_click & ~ALLOW_RESTING
 
 /// You cannot lock in/out a coffin's owner. SORRY.
 /obj/structure/closet/crate/coffin/can_open(mob/living/user)
@@ -202,7 +214,7 @@
 			update_icon()
 		locked = FALSE
 		return TRUE
-	playsound(get_turf(src), 'sound/machines/door/door_locked.ogg', 20, 1)
+	playsound(get_turf(src), 'modular_zubbers/sound/machines/coffin_locked.ogg', 20, 1)
 	to_chat(user, span_notice("[src] appears to be locked tight from the inside."))
 
 /obj/structure/closet/crate/coffin/close(mob/living/user)
@@ -304,7 +316,7 @@
 	. = ..()
 	if(user in src)
 		LockMe(user, !locked)
-		return
+		return CLICK_ACTION_SUCCESS
 
 	if(user == resident && user.Adjacent(src))
 		balloon_alert(user, "unclaim coffin?")
@@ -315,6 +327,7 @@
 		switch(unclaim_response)
 			if("Yes")
 				unclaim_coffin(TRUE)
+	return CLICK_ACTION_SUCCESS
 
 /obj/structure/closet/crate/proc/LockMe(mob/user, inLocked = TRUE)
 	if(user == resident)

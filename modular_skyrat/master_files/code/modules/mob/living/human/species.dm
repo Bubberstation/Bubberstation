@@ -12,6 +12,7 @@
 		return cached_features
 
 	var/list/features = list()
+	var/list/mut_organs = get_organs()
 
 	for (var/preference_type in GLOB.preference_entries)
 		var/datum/preference/preference = GLOB.preference_entries[preference_type]
@@ -20,13 +21,9 @@
 			(preference.relevant_mutant_bodypart in GLOB.default_mutant_bodyparts[name]) \
 			|| (preference.relevant_inherent_trait in inherent_traits) \
 			|| (preference.relevant_head_flag && check_head_flags(preference.relevant_head_flag)) \
+			|| (preference.relevant_organ in mut_organs) \
 		)
 			features += preference.savefile_key
-
-	for (var/obj/item/organ/organ_type as anything in mutant_organs)
-		var/preference = initial(organ_type.preference)
-		if (!isnull(preference))
-			features += preference
 
 	GLOB.features_by_species[type] = features
 

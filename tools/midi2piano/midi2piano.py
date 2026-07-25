@@ -2,14 +2,14 @@
 This module allows user to convert MIDI melodies to SS13 sheet music ready
 for copy-and-paste
 """
+import argparse
+import sys
 from functools import reduce
 import MidiDependencies as mi
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import messagebox
-import pyperclip as pclip
 root = tk.Tk()
-root.attributes('-topmost', 1)
 root.withdraw()
 
 LINE_LENGTH_LIM = 50
@@ -114,8 +114,21 @@ def obtain_midi_file():
     file = filedialog.askopenfilename(title='MIDI file selection',filetypes=[['*.mid', 'MID files']])
     if not file:
         return None
-    file = open(file, mode='rb').read()
-    return file
+    return obtain_midi_file_from_path(file)
+
+
+def obtain_midi_file_from_path(path):
+    """Reads a MIDI file from a filesystem path and returns its bytes."""
+    try:
+        with open(path, mode='rb') as handle:
+            return handle.read()
+    except OSError as exc:
+        # If we're in GUI mode, show a dialog; otherwise, fall back to stderr.
+        try:
+            messagebox.showerror("Midi2Piano Error", f"Failed to read file: {path}\n{exc}")
+        except Exception:
+            print(f"Failed to read file: {path}: {exc}", file=sys.stderr)
+        return None
 
 def midi2score_without_ticks(midi_file):
     """
@@ -258,7 +271,10 @@ def explode_sheet_music(sheet_music):
     Splits unformatted sheet music into formated lines of LINE_LEN_LIM
     and such and returns a list of such lines
     """
-    split_music = sheet_music.split(',')
+    if not sheet_music:
+        return []
+
+    split_music = [note for note in sheet_music.split(',') if note]
     split_music = list(map(lambda note: note+',', split_music))
     split_list = []
     counter = 0
@@ -266,7 +282,7 @@ def explode_sheet_music(sheet_music):
     for note in split_music:
         if line_counter > LINES_LIMIT-1:
             break
-        if counter+len(note) > LINE_LENGTH_LIM-2:
+        if counter and counter+len(note) > LINE_LENGTH_LIM-2:
             split_list[-1] = split_list[-1].rstrip(',')
             split_list[-1] += END_OF_LINE_CHAR
             counter = 0
@@ -288,13 +304,8 @@ def finalize_sheet_music(split_music, most_frequent_dur):
     return sheet_music[:min(len(sheet_music), OVERALL_IMPORT_LIM)]
 # END OF CONVERSION FUNCTIONS
 
-def main_cycle():
-    """
-    Activate the script
-    """
-    midi_file = obtain_midi_file()
-    if not midi_file:
-        return # Cancel
+
+def convert_midi_bytes_to_sheet_music(midi_file):
     score = midi2score_without_ticks(midi_file)
     score = filter_events_from_score(score)
     score = filter_start_time_and_note_num(score)
@@ -307,9 +318,36 @@ def main_cycle():
     score = reduce_score_to_chords(score)
     sheet_music = obtain_sheet_music(score, most_frequent_dur)
     split_music = explode_sheet_music(sheet_music)
-    sheet_music = finalize_sheet_music(split_music, most_frequent_dur)
+    return finalize_sheet_music(split_music, most_frequent_dur)
 
-    pclip.copy(sheet_music)
-    messagebox.showinfo("Midi2Piano Information", "Your sheet music has been copied to your clipboard.")
+def main_cycle():
+    """
+    Activate the script
+    """
+    while True:
+        midi_file = obtain_midi_file()
+        if not midi_file:
+            return # Cancel
+        sheet_music = convert_midi_bytes_to_sheet_music(midi_file)
+        root.clipboard_append(sheet_music)
 
-main_cycle()
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="Convert a MIDI file into SS13 sheet music")
+    parser.add_argument('midi_file', nargs='?', help='Path to a .mid file (if omitted, uses a file picker)')
+    args = parser.parse_args(argv)
+
+    if args.midi_file:
+        midi_file = obtain_midi_file_from_path(args.midi_file)
+        if not midi_file:
+            return True
+        sheet_music = convert_midi_bytes_to_sheet_music(midi_file)
+        sys.stdout.write(sheet_music)
+        return False
+
+    main_cycle()
+    return False
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

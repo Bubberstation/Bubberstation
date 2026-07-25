@@ -3,9 +3,13 @@
 
 /datum/status_effect/food/speech/italian
 	alert_type = /atom/movable/screen/alert/status_effect/italian_speech
+	on_remove_on_mob_delete = TRUE
+	/// Ref to the component so we can clear it
+	var/datum/component/speechmod
 
 /datum/status_effect/food/speech/italian/on_apply()
-	AddComponent( \
+	. = ..()
+	speechmod = AddComponent( \
 		/datum/component/speechmod, \
 		replacements = strings("italian_replacement.json", "italian"), \
 		end_string = list(
@@ -16,18 +20,26 @@
 			), \
 		end_string_chance = 3 \
 		)
-	return ..()
+
+/datum/status_effect/food/speech/italian/on_remove()
+	. = ..()
+	QDEL_NULL(speechmod)
 
 /atom/movable/screen/alert/status_effect/italian_speech
 	name = "Linguini Embrace"
 	desc = "You feel a sudden urge to gesticulate wildly."
-	icon_state = "food_italian"
+	use_user_hud_icon = USER_HUD_STYLE_INHERIT
+	overlay_state = "food_italian"
 
 /datum/status_effect/food/speech/french
 	alert_type = /atom/movable/screen/alert/status_effect/french_speech
+	on_remove_on_mob_delete = TRUE
+	/// Ref to the component so we can clear it
+	var/datum/component/speechmod
 
 /datum/status_effect/food/speech/french/on_apply()
-	AddComponent( \
+	. = ..()
+	speechmod = owner.AddComponent( \
 		/datum/component/speechmod, \
 		replacements = strings("french_replacement.json", "french"), \
 		end_string = list(
@@ -37,9 +49,13 @@
 			), \
 		end_string_chance = 3, \
 		)
-	return ..()
+
+/datum/status_effect/food/speech/french/on_remove()
+	. = ..()
+	QDEL_NULL(speechmod)
 
 /atom/movable/screen/alert/status_effect/french_speech
 	name = "Café Chic"
 	desc = "Suddenly, everything seems worthy of a passionate debate."
-	icon_state = "food_french"
+	use_user_hud_icon = USER_HUD_STYLE_INHERIT
+	overlay_state = "food_french"

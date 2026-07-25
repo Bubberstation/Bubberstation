@@ -13,8 +13,12 @@
 	health = 100
 	bubble_icon = "robot"
 	designation = "Default" //used for displaying the prefix & getting the current model of cyborg
-	has_limbs = TRUE
 	hud_type = /datum/hud/robot
+	unique_name = TRUE
+	mouse_drop_zone = TRUE
+	held_items = list(null, null, null) //we use held_items for the module holding, because that makes sense to do!
+	default_hand_amount = 3
+	examine_thats = "This is"
 
 	///Represents the cyborg's model (engineering, medical, etc.)
 	var/obj/item/robot_model/model = null
@@ -64,34 +68,14 @@
 	// Overlay for borg hat
 	var/mutable_appearance/hat_overlay
 
-
-	// Hud
-	var/atom/movable/screen/inv1 = null
-	var/atom/movable/screen/inv2 = null
-	var/atom/movable/screen/inv3 = null
-	var/atom/movable/screen/hands = null
-
-	///Used to determine whether they have the module menu shown or not
-	var/shown_robot_modules = FALSE
-	var/atom/movable/screen/robot_modules_background
-
-	///Lamp button reference
-	var/atom/movable/screen/robot/lamp/lampButton
-
-	///The reference to the built-in tablet that borgs carry.
-	var/atom/movable/screen/robot/modpc/interfaceButton
-
 	var/sight_mode = 0
 	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_BATT_HUD, DIAG_TRACK_HUD)
 
-
 	// Modules (tool slots)
 	var/obj/item/module_active = null
-	held_items = list(null, null, null) //we use held_items for the module holding, because that makes sense to do!
 
 	///For checking which modules are disabled or not.
 	var/disabled_modules
-
 
 	// Status
 	var/mob/living/silicon/ai/connected_ai = null
@@ -110,15 +94,13 @@
 	var/ai_lockdown = FALSE
 	///Timer that allows the borg to self-unlock after a set amount of time
 	var/lockdown_timer = null
-	///Random serial number generated for each cyborg upon its initialization
-	var/ident = 0
 	var/locked = TRUE
 	req_one_access = list(ACCESS_ROBOTICS)
 
 	///Whether the robot has no charge left.
 	var/low_power_mode = FALSE
 	///So they can initialize sparks whenever/N
-	var/datum/effect_system/spark_spread/spark_system
+	var/datum/effect_system/basic/spark_spread/spark_system
 	///Smoke particle type for brute damage
 	var/smoke_particles
 	///Spark particle type for burn damage
@@ -142,8 +124,6 @@
 	var/obj/item/hat
 	var/hat_offset = list("north" = list(0, -3), "south" = list(0, -3), "east" = list(4, -3), "west" = list(-4, -3))
 
-	///What types of mobs are allowed to ride/buckle to this mob
-	var/static/list/can_ride_typecache = typecacheof(/mob/living/carbon/human)
 	can_buckle = TRUE
 	buckle_lying = FALSE
 

@@ -1,3 +1,4 @@
+#ifndef DISABLE_DREAMLUAU
 #define MAX_LOG_REPEAT_LOOKBACK 5
 
 GLOBAL_DATUM(lua_usr, /mob)
@@ -114,7 +115,7 @@ GLOBAL_PROTECT(lua_state_stack)
 	if(timer_enabled)
 		var/result = call_function("__Timer_timer_process", seconds_per_tick)
 		log_result(result, verbose = FALSE)
-		for(var/function as anything in functions_to_execute)
+		for(var/function in functions_to_execute)
 			result = call_function(list("__Timer_callbacks", function))
 			log_result(result, verbose = FALSE)
 		functions_to_execute.Cut()
@@ -232,3 +233,4 @@ GLOBAL_PROTECT(lua_state_stack)
 			SStgui.update_uis(editor)
 
 #undef MAX_LOG_REPEAT_LOOKBACK
+#endif

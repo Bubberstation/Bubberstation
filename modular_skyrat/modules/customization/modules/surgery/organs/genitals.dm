@@ -1,6 +1,6 @@
-/obj/item/organ/external/genital
+/obj/item/organ/genital
 	color = "#fcccb3"
-	organ_flags = ORGAN_ORGANIC | ORGAN_UNREMOVABLE
+	organ_flags = ORGAN_ORGANIC | ORGAN_UNREMOVABLE | ORGAN_EXTERNAL
 	///Size value of the genital, needs to be translated to proper lengths/diameters/cups
 	var/genital_size = 1
 	///Sprite name of the genital, it's what shows up on character creation
@@ -21,11 +21,11 @@
 	var/genital_location = GROIN
 
 //This translates the float size into a sprite string
-/obj/item/organ/external/genital/proc/get_sprite_size_string()
+/obj/item/organ/genital/proc/get_sprite_size_string()
 	return 0
 
 //This translates the float size into a sprite string
-/obj/item/organ/external/genital/proc/update_sprite_suffix()
+/obj/item/organ/genital/proc/update_sprite_suffix()
 	sprite_suffix = "[get_sprite_size_string()]"
 
 	var/datum/bodypart_overlay/mutant/genital/our_overlay = bodypart_overlay
@@ -33,33 +33,33 @@
 	our_overlay.sprite_suffix = sprite_suffix
 
 
-/obj/item/organ/external/genital/proc/get_description_string(datum/sprite_accessory/genital/gas)
+/obj/item/organ/genital/proc/get_description_string(datum/sprite_accessory/genital/gas)
 	return "You see genitals"
 
-/obj/item/organ/external/genital/proc/update_genital_icon_state()
+/obj/item/organ/genital/proc/update_genital_icon_state()
 	return
 
-/obj/item/organ/external/genital/proc/set_size(size)
+/obj/item/organ/genital/proc/set_size(size)
 	genital_size = size
 	update_sprite_suffix()
 
-/obj/item/organ/external/genital/Initialize(mapload)
+/obj/item/organ/genital/Initialize(mapload)
 	. = ..()
 	update_sprite_suffix()
 	if(CONFIG_GET(flag/disable_lewd_items))
 		return INITIALIZE_HINT_QDEL
 
 //Removes ERP organs depending on config
-/obj/item/organ/external/genital/Insert(mob/living/carbon/M, special, movement_flags)
+/obj/item/organ/genital/Insert(mob/living/carbon/M, special, movement_flags)
 	if(CONFIG_GET(flag/disable_erp_preferences))
 		return
 	. = ..()
 
-/obj/item/organ/external/genital/Remove(mob/living/carbon/M, special = FALSE, moving)
+/obj/item/organ/genital/Remove(mob/living/carbon/M, special = FALSE, moving)
 	. = ..()
 	update_genital_icon_state()
 
-/obj/item/organ/external/genital/build_from_dna(datum/dna/DNA, associated_key)
+/obj/item/organ/genital/build_from_dna(datum/dna/DNA, associated_key)
 	. = ..()
 	var/datum/sprite_accessory/genital/accessory = SSaccessories.sprite_accessories[associated_key][DNA.mutant_bodyparts[associated_key][MUTANT_INDEX_NAME]]
 	genital_name = accessory.name
@@ -72,10 +72,10 @@
 	our_overlay.color_source = uses_skin_color ? ORGAN_COLOR_INHERIT : ORGAN_COLOR_OVERRIDE
 
 /// for specific build_from_dna behavior that also checks the genital accessory.
-/obj/item/organ/external/genital/proc/build_from_accessory(datum/sprite_accessory/genital/accessory, datum/dna/DNA)
+/obj/item/organ/genital/proc/build_from_accessory(datum/sprite_accessory/genital/accessory, datum/dna/DNA)
 	return
 
-/obj/item/organ/external/genital/proc/is_exposed()
+/obj/item/organ/genital/proc/is_exposed()
 	if(!owner)
 		return TRUE
 
@@ -101,6 +101,7 @@
 	color_source = ORGAN_COLOR_OVERRIDE
 	/// The suffix appended to the feature_key for the overlays.
 	var/sprite_suffix
+	var/layer_offset = 0
 
 /datum/bodypart_overlay/mutant/genital/override_color(rgb_value)
 	return draw_color
@@ -108,6 +109,9 @@
 /datum/bodypart_overlay/mutant/genital/get_base_icon_state()
 	return sprite_suffix
 
+/datum/bodypart_overlay/mutant/genital/mutant_bodyparts_layertext(layer)
+	layer += layer_offset
+	. = ..()
 
 /datum/bodypart_overlay/mutant/genital/get_color_layer_names(icon_state_to_lookup)
 	if(length(sprite_datum.color_layer_names))
@@ -133,8 +137,11 @@
 
 	return sprite_datum.color_layer_names
 
+/datum/bodypart_overlay/mutant/genital/bitflag_to_layer(layer)
+	. = ..()
+	. -= layer_offset
 
-/obj/item/organ/external/genital/penis
+/obj/item/organ/genital/penis
 	name = "penis"
 	desc = "A male reproductive organ."
 	icon_state = "penis"
@@ -151,85 +158,137 @@
 /datum/bodypart_overlay/mutant/genital/penis
 	feature_key = ORGAN_SLOT_PENIS
 	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
+	layer_offset = PENIS_LAYER_OFFSET
 
-
-/obj/item/organ/external/genital/penis/get_description_string(datum/sprite_accessory/genital/gas)
+/obj/item/organ/genital/penis/get_description_string(datum/sprite_accessory/genital/gas)
 	var/returned_string = ""
-	var/pname = lowertext(genital_name) == "nondescript" ? "" : lowertext(genital_name) + " "
+	var/pname = LOWER_TEXT(genital_name) == "nondescript" ? "" : LOWER_TEXT(genital_name) + " "
 	if(sheath != SHEATH_NONE && aroused != AROUSAL_FULL) //Hidden in sheath
 		switch(sheath)
 			if(SHEATH_NORMAL)
 				returned_string = "You see a sheath."
 			if(SHEATH_SLIT)
 				returned_string = "You see a slit." ///Typo fix.
-		if(aroused == AROUSAL_PARTIAL)
-			returned_string += " There's a [pname]penis poking out of it."
+		if(aroused != AROUSAL_PARTIAL)
+			return returned_string
+		returned_string += " There's a [pname]penis poking out of it. "
 	else
-		returned_string = "You see a [pname]penis. You estimate it's [genital_size] inches long, and [girth] inches in circumference."
-		switch(aroused)
-			if(AROUSAL_NONE)
-				returned_string += " It seems flaccid."
-			if(AROUSAL_PARTIAL)
-				returned_string += " It's partically erect."
-			if(AROUSAL_FULL)
-				returned_string += " It's fully erect."
+		returned_string += "You see a [pname]penis. "
+
+	var/reported_girth = CEILING( girth / 3.1415, 0.25) //Circum to Diameter
+	var/reported_length = genital_size
+	if(aroused != AROUSAL_FULL) //Only when not full mast.
+		var/temperature_difference = owner.bodytemperature - owner.get_body_temp_normal()
+		if(temperature_difference <= 2) //2 kelvin difference (colder)
+			// https://www.desmos.com/calculator/ivauzad62s
+			//I love penis math
+			reported_length *= max(0.5, 1 - (-temperature_difference/50)**4)
+	reported_length = CEILING(reported_length,0.25)
+	returned_string += "You estimate it's about [reported_length] inches long, and about [reported_girth] inches in diameter."
+
+	switch(aroused)
+		if(AROUSAL_NONE)
+			returned_string += " It seems flaccid."
+		if(AROUSAL_PARTIAL)
+			returned_string += " It's partically erect."
+		if(AROUSAL_FULL)
+			returned_string += " It's fully erect."
+
 	return returned_string
 
-/obj/item/organ/external/genital/penis/update_genital_icon_state()
+/obj/item/organ/genital/penis/update_genital_icon_state()
 	var/size_affix
 	var/measured_size = FLOOR(genital_size,1)
-	if(measured_size < 1)
-		measured_size = 1
-	switch(measured_size)
-		if(1 to 8)
-			size_affix = "1"
-		if(9 to 15)
-			size_affix = "2"
-		if(16 to 24)
-			size_affix = "3"
-		else
-			size_affix = "4"
+	if(findtext(genital_name, "(Alt)"))
+		if(measured_size < 1)
+			measured_size = 1
+		switch(measured_size)
+			if(1 to 10)
+				size_affix = "1"
+			if(11 to 20)
+				size_affix = "2"
+			if(21 to 30)
+				size_affix = "3"
+			if(31 to 40)
+				size_affix = "4"
+			if(41 to 50)
+				size_affix = "5"
+			if(51 to 61)
+				size_affix = "6"
+			else
+				size_affix = "7"
+	else
+		if(measured_size < 1)
+			measured_size = 1
+		switch(measured_size)
+			if(1 to 8)
+				size_affix = "1"
+			if(9 to 15)
+				size_affix = "2"
+			if(16 to 24)
+				size_affix = "3"
+			else
+				size_affix = "4"
 	var/passed_string = "penis_[genital_type]_[size_affix]"
 	if(uses_skintones)
 		passed_string += "_s"
 	icon_state = passed_string
 
-/obj/item/organ/external/genital/penis/get_sprite_size_string()
+/obj/item/organ/genital/penis/get_sprite_size_string()
 	if(aroused != AROUSAL_FULL && sheath != SHEATH_NONE) //Sheath time!
 		var/poking_out = 0
 		if(aroused == AROUSAL_PARTIAL)
 			poking_out = 1
-		return "[lowertext(sheath)]_[poking_out]"
+		return "[LOWER_TEXT(sheath)]_[poking_out]"
 
 	var/size_affix
 	var/measured_size = FLOOR(genital_size,1)
 	var/is_erect = 0
 	if(aroused == AROUSAL_FULL)
 		is_erect = 1
-	if(measured_size < 1)
-		measured_size = 1
-	switch(measured_size)
-		if(1 to 8)
-			size_affix = "1"
-		if(9 to 15)
-			size_affix = "2"
-		if(16 to 24)
-			size_affix = "3"
-		else
-			size_affix = "4"
+	if(findtext(genital_name, "(Alt)"))
+		if(measured_size < 1)
+			measured_size = 1
+		switch(measured_size)
+			if(1 to 10)
+				size_affix = "1"
+			if(11 to 20)
+				size_affix = "2"
+			if(21 to 30)
+				size_affix = "3"
+			if(31 to 40)
+				size_affix = "4"
+			if(41 to 50)
+				size_affix = "5"
+			if(51 to 61)
+				size_affix = "6"
+			else
+				size_affix = "7"
+	else
+		if(measured_size < 1)
+			measured_size = 1
+		switch(measured_size)
+			if(1 to 8)
+				size_affix = "1"
+			if(9 to 15)
+				size_affix = "2"
+			if(16 to 24)
+				size_affix = "3"
+			else
+				size_affix = "4"
 	var/passed_string = "[genital_type]_[size_affix]_[is_erect]"
 	if(uses_skintones)
 		passed_string += "_s"
 	return passed_string
 
-/obj/item/organ/external/genital/penis/build_from_dna(datum/dna/DNA, associated_key)
+/obj/item/organ/genital/penis/build_from_dna(datum/dna/DNA, associated_key)
 	girth = DNA.features["penis_girth"]
 	uses_skin_color = DNA.features["penis_uses_skincolor"]
 	set_size(DNA.features["penis_size"])
 
 	return ..()
 
-/obj/item/organ/external/genital/penis/build_from_accessory(datum/sprite_accessory/genital/accessory, datum/dna/DNA)
+/obj/item/organ/genital/penis/build_from_accessory(datum/sprite_accessory/genital/accessory, datum/dna/DNA)
 	var/datum/sprite_accessory/genital/penis/snake = accessory
 	if(snake.can_have_sheath)
 		sheath = DNA.features["penis_sheath"]
@@ -239,8 +298,7 @@
 /datum/bodypart_overlay/mutant/genital/penis/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_PENIS]
 
-
-/obj/item/organ/external/genital/testicles
+/obj/item/organ/genital/testicles
 	name = "testicles"
 	desc = "A male reproductive organ."
 	icon_state = "testicles"
@@ -256,34 +314,42 @@
 
 /datum/bodypart_overlay/mutant/genital/testicles
 	feature_key = ORGAN_SLOT_TESTICLES
-	layers = EXTERNAL_ADJACENT | EXTERNAL_BEHIND
+	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
+	layer_offset = TESTICLES_LAYER_OFFSET
 
-/obj/item/organ/external/genital/testicles/update_genital_icon_state()
-	var/measured_size = clamp(genital_size, 1, TESTICLES_MAX_SIZE)
+/obj/item/organ/genital/testicles/update_genital_icon_state()
+	var/measured_size = FLOOR(genital_size,1)
+	var/max_size = TESTICLES_MAX_SIZE
+	if(genital_name != "Pair (Alt)" && genital_name != "Sheathed Pair")
+		max_size -= 2
+	measured_size = clamp(measured_size, 1, max_size)
 	var/passed_string = "testicles_[genital_type]_[measured_size]"
 	if(uses_skintones)
 		passed_string += "_s"
 	icon_state = passed_string
 
-/obj/item/organ/external/genital/testicles/get_description_string(datum/sprite_accessory/genital/gas)
+/obj/item/organ/genital/testicles/get_description_string(datum/sprite_accessory/genital/gas)
 	if(genital_name == "Internal") //Checks if Testicles are of Internal Variety
 		visibility_preference = GENITAL_SKIP_VISIBILITY //Removes visibility if yes.
 	else
-		return "You see a pair of testicles, they look [lowertext(balls_size_to_description(genital_size))]."
+		return "You see a pair of testicles, they look [LOWER_TEXT(balls_size_to_description(genital_size))]."
 
-/obj/item/organ/external/genital/testicles/build_from_dna(datum/dna/DNA, associated_key)
+/obj/item/organ/genital/testicles/build_from_dna(datum/dna/DNA, associated_key)
 	uses_skin_color = DNA.features["testicles_uses_skincolor"]
 	set_size(DNA.features["balls_size"])
 
 	return ..()
 
-/obj/item/organ/external/genital/testicles/build_from_accessory(datum/sprite_accessory/genital/accessory, datum/dna/DNA)
+/obj/item/organ/genital/testicles/build_from_accessory(datum/sprite_accessory/genital/accessory, datum/dna/DNA)
 	if(DNA.features["testicles_uses_skintones"])
 		uses_skintones = accessory.has_skintone_shading
 
-/obj/item/organ/external/genital/testicles/get_sprite_size_string()
+/obj/item/organ/genital/testicles/get_sprite_size_string()
 	var/measured_size = FLOOR(genital_size,1)
-	measured_size = clamp(measured_size, 0, TESTICLES_MAX_SIZE)
+	var/max_size = TESTICLES_MAX_SIZE
+	if(genital_name != "Pair (Alt)" && genital_name != "Sheathed Pair")
+		max_size -= 2
+	measured_size = clamp(measured_size, 0, max_size)
 	var/passed_string = "[genital_type]_[measured_size]"
 	if(uses_skintones)
 		passed_string += "_s"
@@ -292,8 +358,7 @@
 /datum/bodypart_overlay/mutant/genital/testicles/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_TESTICLES]
 
-
-/obj/item/organ/external/genital/testicles/proc/balls_size_to_description(number)
+/obj/item/organ/genital/testicles/proc/balls_size_to_description(number)
 	if(number < 0)
 		number = 0
 	var/returned = GLOB.balls_size_translation["[number]"]
@@ -301,14 +366,13 @@
 		returned = BREAST_SIZE_BEYOND_MEASUREMENT
 	return returned
 
-/obj/item/organ/external/genital/testicles/proc/balls_description_to_size(cup)
+/obj/item/organ/genital/testicles/proc/balls_description_to_size(cup)
 	for(var/key in GLOB.balls_size_translation)
 		if(GLOB.balls_size_translation[key] == cup)
 			return text2num(key)
 	return 0
 
-
-/obj/item/organ/external/genital/vagina
+/obj/item/organ/genital/vagina
 	name = "vagina"
 	icon = 'modular_skyrat/master_files/icons/obj/genitals/vagina.dmi'
 	icon_state = "vagina"
@@ -323,10 +387,11 @@
 /datum/bodypart_overlay/mutant/genital/vagina
 	feature_key = ORGAN_SLOT_VAGINA
 	layers = EXTERNAL_FRONT
+	layer_offset = VAGINA_LAYER_OFFSET
 
-/obj/item/organ/external/genital/vagina/get_description_string(datum/sprite_accessory/genital/gas)
-	var/returned_string = "You see a [lowertext(genital_name)] vagina."
-	if(lowertext(genital_name) == "cloaca")
+/obj/item/organ/genital/vagina/get_description_string(datum/sprite_accessory/genital/gas)
+	var/returned_string = "You see a [LOWER_TEXT(genital_name)] vagina."
+	if(LOWER_TEXT(genital_name) == "cloaca")
 		returned_string = "You see a cloaca." //i deserve a pipebomb for this
 	switch(aroused)
 		if(AROUSAL_NONE)
@@ -337,26 +402,25 @@
 			returned_string += " It's bright and dripping with arousal."
 	return returned_string
 
-/obj/item/organ/external/genital/vagina/get_sprite_size_string()
+/obj/item/organ/genital/vagina/get_sprite_size_string()
 	var/is_dripping = 0
 	if(aroused == AROUSAL_FULL)
 		is_dripping = 1
 	return "[genital_type]_[is_dripping]"
 
-/obj/item/organ/external/genital/vagina/build_from_dna(datum/dna/DNA, associated_key)
+/obj/item/organ/genital/vagina/build_from_dna(datum/dna/DNA, associated_key)
 	uses_skin_color = DNA.features["vagina_uses_skincolor"]
 
 	return ..() // will update the sprite suffix
 
-/obj/item/organ/external/genital/vagina/build_from_accessory(datum/sprite_accessory/genital/accessory, datum/dna/DNA)
+/obj/item/organ/genital/vagina/build_from_accessory(datum/sprite_accessory/genital/accessory, datum/dna/DNA)
 	if(DNA.features["vagina_uses_skintones"])
 		uses_skintones = accessory.has_skintone_shading
 
 /datum/bodypart_overlay/mutant/genital/vagina/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_VAGINA]
 
-
-/obj/item/organ/external/genital/womb
+/obj/item/organ/genital/womb
 	name = "womb"
 	desc = "A female reproductive organ."
 	icon = 'modular_skyrat/master_files/icons/obj/genitals/vagina.dmi'
@@ -378,8 +442,7 @@
 /datum/bodypart_overlay/mutant/genital/womb/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_WOMB]
 
-
-/obj/item/organ/external/genital/anus
+/obj/item/organ/genital/anus
 	name = "anus"
 	desc = "What do you want me to tell you?"
 	icon = 'modular_skyrat/master_files/icons/obj/genitals/anus.dmi'
@@ -394,10 +457,11 @@
 
 /datum/bodypart_overlay/mutant/genital/anus
 	feature_key = ORGAN_SLOT_ANUS
-	layers = NONE
+	layers = BODY_FRONT_LAYER
+	layer_offset = ANUS_LAYER_OFFSET
 
-/obj/item/organ/external/genital/anus/get_description_string(datum/sprite_accessory/genital/gas)
-	var/returned_string = "You see an [lowertext(genital_name)]."
+/obj/item/organ/genital/anus/get_description_string(datum/sprite_accessory/genital/gas)
+	var/returned_string = "You see an [LOWER_TEXT(genital_name)]."
 	if(aroused == AROUSAL_PARTIAL)
 		returned_string += " It looks tight."
 	if(aroused == AROUSAL_FULL)
@@ -407,8 +471,7 @@
 /datum/bodypart_overlay/mutant/genital/anus/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_ANUS]
 
-
-/obj/item/organ/external/genital/breasts
+/obj/item/organ/genital/breasts
 	name = "breasts"
 	desc = "Female milk producing organs."
 	icon_state = "breasts"
@@ -426,9 +489,10 @@
 /datum/bodypart_overlay/mutant/genital/breasts
 	feature_key = ORGAN_SLOT_BREASTS
 	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
+	layer_offset = BREASTS_LAYER_OFFSET
 
-/obj/item/organ/external/genital/breasts/get_description_string(datum/sprite_accessory/genital/gas)
-	var/returned_string = "You see a [lowertext(genital_name)] of breasts."
+/obj/item/organ/genital/breasts/get_description_string(datum/sprite_accessory/genital/gas)
+	var/returned_string = "You see a [LOWER_TEXT(genital_name)] of breasts."
 	var/size_description
 	var/translation = breasts_size_to_cup(genital_size)
 	switch(translation)
@@ -446,7 +510,7 @@
 			returned_string += " Their nipples look hard and perky."
 	return returned_string
 
-/obj/item/organ/external/genital/breasts/update_genital_icon_state()
+/obj/item/organ/genital/breasts/update_genital_icon_state()
 	var/max_size = 5
 	var/current_size = FLOOR(genital_size, 1)
 	if(current_size < 0)
@@ -458,10 +522,11 @@
 		passed_string += "_s"
 	icon_state = passed_string
 
-/obj/item/organ/external/genital/breasts/get_sprite_size_string()
-	var/max_size = 5
-	if(genital_type == "pair")
-		max_size = 16
+/obj/item/organ/genital/breasts/get_sprite_size_string()
+	var/max_size = 0
+	var/datum/sprite_accessory/genital/breasts/sprite_accessory = bodypart_overlay.sprite_datum
+	if (istype(sprite_accessory))
+		max_size = sprite_accessory.max_size
 	var/current_size = FLOOR(genital_size, 1)
 	if(current_size < 0)
 		current_size = 0
@@ -472,21 +537,21 @@
 		passed_string += "_s"
 	return passed_string
 
-/obj/item/organ/external/genital/breasts/build_from_dna(datum/dna/DNA, associated_key)
+/obj/item/organ/genital/breasts/build_from_dna(datum/dna/DNA, associated_key)
 	lactates = DNA.features["breasts_lactation"]
 	uses_skin_color = DNA.features["breasts_uses_skincolor"]
 	set_size(DNA.features["breasts_size"])
 
 	return ..()
 
-/obj/item/organ/external/genital/breasts/build_from_accessory(datum/sprite_accessory/genital/accessory, datum/dna/DNA)
+/obj/item/organ/genital/breasts/build_from_accessory(datum/sprite_accessory/genital/accessory, datum/dna/DNA)
 	if(DNA.features["breasts_uses_skintones"])
 		uses_skintones = accessory.has_skintone_shading
 
 /datum/bodypart_overlay/mutant/genital/breasts/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_BREASTS]
 
-/obj/item/organ/external/genital/breasts/proc/breasts_size_to_cup(number)
+/obj/item/organ/genital/breasts/proc/breasts_size_to_cup(number)
 	if(number < 0)
 		number = 0
 	var/returned = GLOB.breast_size_translation["[number]"]
@@ -494,12 +559,153 @@
 		returned = BREAST_SIZE_BEYOND_MEASUREMENT
 	return returned
 
-/obj/item/organ/external/genital/breasts/proc/breasts_cup_to_size(cup)
+/obj/item/organ/genital/breasts/proc/breasts_cup_to_size(cup)
 	for(var/key in GLOB.breast_size_translation)
 		if(GLOB.breast_size_translation[key] == cup)
 			return text2num(key)
 	return 0
 
+/obj/item/organ/genital/butt
+	name = "butt"
+	desc = "You see a pair of asscheeks."
+	icon = 'modular_skyrat/master_files/icons/obj/genitals/butt.dmi'
+	icon_state = "butt"
+	drop_when_organ_spilling = FALSE
+	slot = ORGAN_SLOT_BUTT
+	zone = BODY_ZONE_PRECISE_GROIN
+	bodypart_overlay = /datum/bodypart_overlay/mutant/genital/butt
+	aroused = AROUSAL_CANT
+
+	mutantpart_key = ORGAN_SLOT_BUTT
+	mutantpart_info = list(MUTANT_INDEX_NAME = "Pair", MUTANT_INDEX_COLOR_LIST = list("#FFEEBB"))
+
+/obj/item/organ/genital/butt/get_description_string(datum/sprite_accessory/genital/gas)
+	var/size_name
+	var/butt_style = gas ? LOWER_TEXT(gas.icon_state) : LOWER_TEXT(genital_name)
+	switch(round(genital_size))
+		if(1)
+			size_name = "average"
+		if(2)
+			size_name = "sizable"
+		if(3)
+			size_name = "squeezable"
+		if(4)
+			size_name = "hefty"
+		if(5)
+			size_name = "massive"
+		if(6)
+			size_name = "gigantic"
+		if(7)
+			size_name = "unfathomably large"
+		if(8)
+			size_name = "humongous"
+		else
+			size_name = "nonexistent"
+
+	return "You see a [butt_style] of [size_name] asscheeks."
+
+/obj/item/organ/genital/butt/set_size(size)
+	. = ..()
+	spawn(0) //set_size is called by build_from_dna.. which executes before Insert assigns owner. This gets around that
+		var/obj/item/organ/genital/anus/anus = owner?.get_organ_slot(ORGAN_SLOT_ANUS) //sometimes
+		if(!anus)
+			return
+
+		anus.set_size(size)
+
+/obj/item/organ/genital/butt/get_sprite_size_string()
+	. = "[genital_type]_[floor(genital_size)]"
+	if(uses_skintones)
+		. += "_s"
+
+/obj/item/organ/genital/butt/build_from_dna(datum/dna/DNA, associated_key)
+	uses_skin_color = DNA.features["butt_uses_skincolor"]
+	set_size(DNA.features["butt_size"])
+
+	return ..()
+
+/obj/item/organ/genital/butt/build_from_accessory(datum/sprite_accessory/genital/accessory, datum/dna/DNA)
+	if(DNA.features["butt_uses_skintones"])
+		uses_skintones = accessory.has_skintone_shading
+	return ..()
+
+/datum/bodypart_overlay/mutant/genital/butt
+	feature_key = ORGAN_SLOT_BUTT
+	layers = EXTERNAL_ADJACENT | EXTERNAL_FRONT
+	layer_offset = BUTT_LAYER_OFFSET
+
+/datum/bodypart_overlay/mutant/genital/butt/get_global_feature_list()
+	return SSaccessories.sprite_accessories[ORGAN_SLOT_BUTT]
+
+/obj/item/organ/genital/belly
+	name = "belly"
+	desc = "You see a belly on their midsection."
+	icon = null //apparently theres no organ sprite?
+	icon_state = null
+	drop_when_organ_spilling = FALSE
+	slot = ORGAN_SLOT_BELLY
+	zone = BODY_ZONE_CHEST
+	bodypart_overlay = /datum/bodypart_overlay/mutant/genital/belly
+	genital_location = CHEST
+	aroused = AROUSAL_CANT
+
+	mutantpart_key = ORGAN_SLOT_BELLY
+	mutantpart_info = list(MUTANT_INDEX_NAME = "Belly", MUTANT_INDEX_COLOR_LIST = list("#FFEEBB"))
+
+/obj/item/organ/genital/belly/get_sprite_size_string()
+	. = "[genital_type]_[floor(genital_size)]"
+	if(uses_skintones)
+		. += "_s"
+
+/obj/item/organ/genital/belly/set_size(size)
+	var/old_size = genital_size
+	. = ..()
+	if(size > old_size)
+		to_chat(owner, span_warning("Your guts [pick("swell up to", "gurgle into", "expand into", "plump up into", "grow eagerly into", "fatten up into", "distend into")] a larger midsection."))
+	else
+		to_chat(owner, span_warning("Your guts [pick("shrink down to", "decrease into", "wobble down into", "diminish into", "deflate into", "contracts into")] a smaller midsection."))
+
+/obj/item/organ/genital/belly/build_from_dna(datum/dna/DNA, associated_key)
+	uses_skin_color = DNA.features["belly_uses_skincolor"]
+	set_size(DNA.features["belly_size"])
+
+	return ..()
+
+/obj/item/organ/genital/belly/build_from_accessory(datum/sprite_accessory/genital/accessory, datum/dna/DNA)
+	if(DNA.features["belly_uses_skintones"])
+		uses_skintones = accessory.has_skintone_shading
+	return ..()
+
+/obj/item/organ/genital/belly/get_description_string(datum/sprite_accessory/genital/gas)
+	var/size_name
+	switch(round(genital_size))
+		if(1)
+			size_name = "average"
+		if(2)
+			size_name = "round"
+		if(3)
+			size_name = "squishable"
+		if(4)
+			size_name = "fat"
+		if(5)
+			size_name = "sagging"
+		if(6)
+			size_name = "gigantic"
+		if(7 to INFINITY)
+			size_name = "humongous"
+		else
+			size_name = "nonexistent"
+
+	desc = "You see a [size_name] [round(genital_size) >= 4 ? "belly, it bounces around as [owner] walks" : "belly in [owner?.p_their() ? owner?.p_their() : "their"] midsection"]."
+
+
+/datum/bodypart_overlay/mutant/genital/belly
+	feature_key = ORGAN_SLOT_BELLY
+	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
+	layer_offset = BELLY_LAYER_OFFSET
+
+/datum/bodypart_overlay/mutant/genital/belly/get_global_feature_list()
+	return SSaccessories.sprite_accessories[ORGAN_SLOT_BELLY]
 
 /mob/living/carbon/human/verb/toggle_genitals()
 	set category = "IC"
@@ -510,16 +716,16 @@
 		to_chat(usr, span_warning("You can't toggle genitals visibility right now..."))
 		return
 
-	var/list/genital_list = list()
-	for(var/obj/item/organ/external/genital/genital in organs)
+	var/list/genital_list = list("all")
+	for(var/obj/item/organ/genital/genital in organs)
 		if(!genital.visibility_preference == GENITAL_SKIP_VISIBILITY)
 			genital_list += genital
-	if(!genital_list.len) //There is nothing to expose
+	if(genital_list.len == 1) //There is nothing to expose
 		return
 	//Full list of exposable genitals created
-	var/obj/item/organ/external/genital/picked_organ
+	var/obj/item/organ/genital/picked_organ
 	picked_organ = input(src, "Choose which genitalia to expose/hide", "Expose/Hide genitals") as null|anything in genital_list
-	if(picked_organ && (picked_organ in organs))
+	if(picked_organ && ((picked_organ in organs) || picked_organ == "all"))
 		var/list/gen_vis_trans = list("Never show" = GENITAL_NEVER_SHOW,
 												"Hidden by clothes" = GENITAL_HIDDEN_BY_CLOTHES,
 												"Always show" = GENITAL_ALWAYS_SHOW
@@ -528,6 +734,13 @@
 		if(picked_visibility && picked_organ && (picked_organ in organs))
 			picked_organ.visibility_preference = gen_vis_trans[picked_visibility]
 			update_body()
+			SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_GENITALS)
+		if(picked_visibility && picked_organ == "all")
+			for(var/obj/item/organ/genital/genital in organs)
+				if(!genital.visibility_preference == GENITAL_SKIP_VISIBILITY)
+					genital.visibility_preference = gen_vis_trans[picked_visibility]
+			update_body()
+			SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_GENITALS)
 	return
 
 //Removing ERP IC verb depending on config
@@ -546,24 +759,12 @@
 		to_chat(usr, span_warning("You can't toggle arousal right now..."))
 		return
 
-	var/list/genital_list = list()
-	for(var/obj/item/organ/external/genital/genital in organs)
-		if(!genital.aroused == AROUSAL_CANT)
-			genital_list += genital
-	if(!genital_list.len) //There is nothing to expose
-		return
-	//Full list of exposable genitals created
-	var/obj/item/organ/external/genital/picked_organ
-	picked_organ = input(src, "Choose which genitalia to change arousal", "Expose/Hide genitals") as null|anything in genital_list
-	if(picked_organ && (picked_organ in organs))
-		var/list/gen_arous_trans = list(
-			"Not aroused" = AROUSAL_NONE,
-			"Partly aroused" = AROUSAL_PARTIAL,
-			"Very aroused" = AROUSAL_FULL,
-		)
-		var/picked_arousal = input(src, "Choose arousal", "Toggle Arousal") as null|anything in gen_arous_trans
-		if(picked_arousal && picked_organ && (picked_organ in organs))
-			picked_organ.aroused = gen_arous_trans[picked_arousal]
-			picked_organ.update_sprite_suffix()
-			update_body()
+	var/arousal_target = tgui_input_number(src, "[AROUSAL_NONE]= No arousal, <[AROUSAL_LOW] Low/partial Arousal, [AROUSAL_LOW] - [AROUSAL_HIGH] Medium/full Arousal, >[AROUSAL_HIGH] Strong/full Arousal", "Set Arousal Amount", arousal, AROUSAL_LIMIT, AROUSAL_MINIMUM, 0)
+	if (!isnull(arousal_target))
+		var/datum/component/change_arousal_on_life/to_del = GetComponent(/datum/component/change_arousal_on_life/)
+		if (!isnull(to_del))
+			qdel(to_del)
+		AddComponent(/datum/component/change_arousal_on_life)
+		arousal_goal = arousal_target
+		SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_AROUSAL)
 	return

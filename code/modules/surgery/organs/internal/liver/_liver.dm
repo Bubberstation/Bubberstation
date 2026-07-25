@@ -2,7 +2,7 @@
 #define LIVER_DEFAULT_TOX_RESISTANCE 1 //lower values lower how harmful toxins are to the liver
 #define LIVER_FAILURE_STAGE_SECONDS 60 //amount of seconds before liver failure reaches a new stage
 
-/obj/item/organ/internal/liver
+/obj/item/organ/liver
 	name = "liver"
 	desc = "Pairing suggestion: chianti and fava beans."
 	icon_state = "liver"
@@ -15,8 +15,13 @@
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY // smack in the middle of decay times
 
-	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/iron = 5)
-	grind_results = list(/datum/reagent/consumable/nutriment/peptides = 5)
+	food_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue = 5, /datum/reagent/iron = 5)
+
+	cell_line = CELL_LINE_ORGAN_LIVER
+	cells_minimum = 1
+	cells_maximum = 2
+
+	visual = FALSE
 
 	/// Affects how much damage the liver takes from alcohol
 	var/alcohol_tolerance = ALCOHOL_RATE
@@ -27,12 +32,15 @@
 	var/filterToxins = TRUE //whether to filter toxins
 	var/operated = FALSE //whether the liver's been repaired with surgery and can be fixed again or not
 
-/obj/item/organ/internal/liver/Initialize(mapload)
+/obj/item/organ/liver/Initialize(mapload)
 	. = ..()
 	// If the liver handles foods like a clown, it honks like a bike horn
 	// Don't think about it too much.
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_COMEDY_METABOLISM), PROC_REF(on_add_comedy_metabolism))
 	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_COMEDY_METABOLISM), PROC_REF(on_remove_comedy_metabolism))
+
+/obj/item/organ/liver/grind_results()
+	return list(/datum/reagent/consumable/nutriment/peptides = 5)
 
 /* Signal handler for the liver gaining the TRAIT_COMEDY_METABOLISM trait
  *
@@ -43,7 +51,7 @@
  * The removal of the component, if this liver loses that trait, is handled
  * by the component itself.
  */
-/obj/item/organ/internal/liver/proc/on_add_comedy_metabolism()
+/obj/item/organ/liver/proc/on_add_comedy_metabolism()
 	SIGNAL_HANDLER
 
 	// Are clown "bike" horns made from the livers of ex-clowns?
@@ -54,32 +62,31 @@
  *
  * Basically just removes squeak component
  */
-/obj/item/organ/internal/liver/proc/on_remove_comedy_metabolism()
+/obj/item/organ/liver/proc/on_remove_comedy_metabolism()
 	SIGNAL_HANDLER
 
 	qdel(GetComponent(/datum/component/squeak))
 
-/// Registers COMSIG_SPECIES_HANDLE_CHEMICAL from owner
-/obj/item/organ/internal/liver/on_mob_insert(mob/living/carbon/organ_owner, special)
+/obj/item/organ/liver/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
-	RegisterSignal(organ_owner, COMSIG_SPECIES_HANDLE_CHEMICAL, PROC_REF(handle_chemical))
+	RegisterSignal(organ_owner, COMSIG_MOB_REAGENT_TICK, PROC_REF(handle_chemical))
+	RegisterSignal(organ_owner, COMSIG_ATOM_EXAMINE, PROC_REF(on_owner_examine))
 
-/// Unregisters COMSIG_SPECIES_HANDLE_CHEMICAL from owner
-/obj/item/organ/internal/liver/on_mob_remove(mob/living/carbon/organ_owner, special)
+/obj/item/organ/liver/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
-	UnregisterSignal(organ_owner, COMSIG_SPECIES_HANDLE_CHEMICAL)
+	UnregisterSignal(organ_owner, list(COMSIG_MOB_REAGENT_TICK, COMSIG_ATOM_EXAMINE))
 
 /**
  * This proc can be overriden by liver subtypes so they can handle certain chemicals in special ways.
  * Return null to continue running the normal on_mob_life() for that reagent.
- * Return COMSIG_MOB_STOP_REAGENT_CHECK to not run the normal metabolism effects.
+ * Return COMSIG_MOB_STOP_REAGENT_TICK to not run the normal metabolism effects.
  *
- * NOTE: If you return COMSIG_MOB_STOP_REAGENT_CHECK, that reagent will not be removed like normal! You must handle it manually.
+ * NOTE: If you return COMSIG_MOB_STOP_REAGENT_TICK, that reagent will not be removed like normal! You must handle it manually.
  **/
-/obj/item/organ/internal/liver/proc/handle_chemical(mob/living/carbon/organ_owner, datum/reagent/chem, seconds_per_tick, times_fired)
+/obj/item/organ/liver/proc/handle_chemical(mob/living/carbon/organ_owner, datum/reagent/chem, seconds_per_tick)
 	SIGNAL_HANDLER
 
-/obj/item/organ/internal/liver/examine(mob/user)
+/obj/item/organ/liver/examine(mob/user)
 	. = ..()
 
 	if(HAS_MIND_TRAIT(user, TRAIT_ENTRAILS_READER) || isobserver(user))
@@ -87,13 +94,15 @@
 			. += span_info("Fatty deposits and sprinkle residue, imply that this is the liver of someone in <em>security</em>.")
 		if(HAS_TRAIT(src, TRAIT_CULINARY_METABOLISM))
 			. += span_info("The high iron content and slight smell of garlic, implies that this is the liver of a <em>cook</em>.")
+		if (HAS_TRAIT(src, TRAIT_BARTENDER_METABOLISM))
+			. += span_info("The decidedly well-used look from periods of prolonged exposure to a wide variety of alcohols, implies that this is the liver of a <em>bartender</em>.")
 		if(HAS_TRAIT(src, TRAIT_COMEDY_METABOLISM))
 			. += span_info("A smell of bananas, a slippery sheen and [span_clown("honking")] when depressed, implies that this is the liver of a <em>clown</em>.")
 		if(HAS_TRAIT(src, TRAIT_MEDICAL_METABOLISM))
 			. += span_info("Marks of stress and a faint whiff of medicinal alcohol, imply that this is the liver of a <em>medical worker</em>.")
 		if(HAS_TRAIT(src, TRAIT_ENGINEER_METABOLISM))
 			. += span_info("Signs of radiation exposure and space adaption, implies that this is the liver of an <em>engineer</em>.")
-		if(HAS_TRAIT(src, TRAIT_BALLMER_SCIENTIST))
+		if(HAS_TRAIT(src, TRAIT_SCIENTIST_LIVER))
 			. += span_info("Strange glowing residues, sprinklings of congealed solid plasma, and what seem to be tumors indicate this is the radiated liver of a <em>scientist</em>.")
 		if(HAS_TRAIT(src, TRAIT_MAINTENANCE_METABOLISM))
 			. += span_info("A half-digested rat's tail (somehow), disgusting sludge, and the faint smell of Grey Bull imply this is what remains of an <em>assistant</em>'s liver.")
@@ -108,7 +117,7 @@
 		else if(HAS_TRAIT(src, TRAIT_PRETENDER_ROYAL_METABOLISM))
 			. += span_info("A diet of imitation caviar, and signs of insomnia, implies that this is the liver of <em>someone who wants to be a head of staff</em>.")
 
-/obj/item/organ/internal/liver/before_organ_replacement(obj/item/organ/replacement)
+/obj/item/organ/liver/before_organ_replacement(obj/item/organ/replacement)
 	. = ..()
 	if(!istype(replacement, type))
 		return
@@ -123,22 +132,22 @@
 			continue
 		ADD_TRAIT(replacement, readded_trait, JOB_TRAIT)
 
-/obj/item/organ/internal/liver/on_life(seconds_per_tick, times_fired)
+/obj/item/organ/liver/on_life(seconds_per_tick)
 	. = ..()
 	//If your liver is failing, then we use the liverless version of metabolize
 	if((organ_flags & ORGAN_FAILING) || HAS_TRAIT(owner, TRAIT_LIVERLESS_METABOLISM))
 		owner.reagents.end_metabolization(keep_liverless = TRUE)
-		owner.reagents.metabolize(owner, seconds_per_tick, times_fired, can_overdose = TRUE, liverless = TRUE)
+		owner.reagents.metabolize(owner, seconds_per_tick, can_overdose = TRUE, liverless = TRUE)
 		return
 
-	owner.reagents?.metabolize(owner, seconds_per_tick, times_fired, can_overdose = TRUE)
+	owner.reagents?.metabolize(owner, seconds_per_tick, can_overdose = TRUE)
 
-/obj/item/organ/internal/liver/handle_failing_organs(seconds_per_tick)
+/obj/item/organ/liver/handle_failing_organs(seconds_per_tick)
 	if(HAS_TRAIT(owner, TRAIT_STABLELIVER) || HAS_TRAIT(owner, TRAIT_LIVERLESS_METABOLISM))
 		return
 	return ..()
 
-/obj/item/organ/internal/liver/organ_failure(seconds_per_tick)
+/obj/item/organ/liver/organ_failure(seconds_per_tick)
 	switch(failure_time/LIVER_FAILURE_STAGE_SECONDS)
 		if(1)
 			to_chat(owner, span_userdanger("You feel stabbing pain in your abdomen!"))
@@ -162,17 +171,17 @@
 	switch(failure_time)
 		//After 60 seconds we begin to feel the effects
 		if(1 * LIVER_FAILURE_STAGE_SECONDS to 2 * LIVER_FAILURE_STAGE_SECONDS - 1)
-			owner.adjustToxLoss(0.2 * seconds_per_tick,forced = TRUE)
+			owner.adjust_tox_loss(0.2 * seconds_per_tick,forced = TRUE)
 			owner.adjust_disgust(0.1 * seconds_per_tick)
 
 		if(2 * LIVER_FAILURE_STAGE_SECONDS to 3 * LIVER_FAILURE_STAGE_SECONDS - 1)
-			owner.adjustToxLoss(0.4 * seconds_per_tick,forced = TRUE)
+			owner.adjust_tox_loss(0.4 * seconds_per_tick,forced = TRUE)
 			owner.adjust_drowsiness(0.5 SECONDS * seconds_per_tick)
 			owner.adjust_disgust(0.3 * seconds_per_tick)
 
 		if(3 * LIVER_FAILURE_STAGE_SECONDS to 4 * LIVER_FAILURE_STAGE_SECONDS - 1)
-			owner.adjustToxLoss(0.6 * seconds_per_tick,forced = TRUE)
-			owner.adjustOrganLoss(pick(ORGAN_SLOT_HEART,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_EYES,ORGAN_SLOT_EARS),0.2 * seconds_per_tick)
+			owner.adjust_tox_loss(0.6 * seconds_per_tick,forced = TRUE)
+			owner.adjust_organ_loss(pick(ORGAN_SLOT_HEART,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_EYES,ORGAN_SLOT_EARS),0.2 * seconds_per_tick)
 			owner.adjust_drowsiness(1 SECONDS * seconds_per_tick)
 			owner.adjust_disgust(0.6 * seconds_per_tick)
 
@@ -180,15 +189,15 @@
 				owner.emote("drool")
 
 		if(4 * LIVER_FAILURE_STAGE_SECONDS to INFINITY)
-			owner.adjustToxLoss(0.8 * seconds_per_tick,forced = TRUE)
-			owner.adjustOrganLoss(pick(ORGAN_SLOT_HEART,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_EYES,ORGAN_SLOT_EARS),0.5 * seconds_per_tick)
+			owner.adjust_tox_loss(0.8 * seconds_per_tick,forced = TRUE)
+			owner.adjust_organ_loss(pick(ORGAN_SLOT_HEART,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_EYES,ORGAN_SLOT_EARS),0.5 * seconds_per_tick)
 			owner.adjust_drowsiness(1.6 SECONDS * seconds_per_tick)
 			owner.adjust_disgust(1.2 * seconds_per_tick)
 
 			if(SPT_PROB(3, seconds_per_tick))
 				owner.emote("drool")
 
-/obj/item/organ/internal/liver/on_owner_examine(datum/source, mob/user, list/examine_list)
+/obj/item/organ/liver/proc/on_owner_examine(datum/source, mob/user, list/examine_list)
 	if(!ishuman(owner) || !(organ_flags & ORGAN_FAILING))
 		return
 
@@ -203,18 +212,32 @@
 		if(4 * LIVER_FAILURE_STAGE_SECONDS to INFINITY)
 			examine_list += span_danger("[owner]'s eyes are completely yellow and swelling with pus. [owner.p_They()] [owner.p_do()]n't look like [owner.p_they()] will be alive for much longer.")
 
-/obj/item/organ/internal/liver/get_availability(datum/species/owner_species, mob/living/owner_mob)
+/obj/item/organ/liver/get_availability(datum/species/owner_species, mob/living/owner_mob)
 	return owner_species.mutantliver
 
+/obj/item/organ/liver/feel_for_damage(self_aware)
+	if(damage < low_threshold)
+		return
+	if(damage < high_threshold)
+		return span_warning("Your [self_aware ? "liver" : "lower abdomen"] feels sore.")
+	return span_boldwarning("Your [self_aware ? "liver" : "lower abdomen"] feels like it's on fire!")
+
 // alien livers can ignore up to 15u of toxins, but they take x3 liver damage
-/obj/item/organ/internal/liver/alien
+/obj/item/organ/liver/alien
 	name = "alien liver" // doesnt matter for actual aliens because they dont take toxin damage
 	desc = "A liver that used to belong to a killer alien, who knows what it used to eat."
 	icon_state = "liver-x" // Same sprite as fly-person liver.
 	liver_resistance = 0.333 * LIVER_DEFAULT_TOX_RESISTANCE // -66%
 	toxTolerance = 15 // complete toxin immunity like xenos have would be too powerful
 
-/obj/item/organ/internal/liver/cybernetic
+/obj/item/organ/liver/ghost
+	name = "ghost liver"
+	desc = "Processes the last alcohol they drank in their time alive."
+	icon_state = "liver-ghost"
+	movement_type = PHASING
+	organ_flags = parent_type::organ_flags | ORGAN_GHOST
+
+/obj/item/organ/liver/cybernetic
 	name = "basic cybernetic liver"
 	desc = "A very basic device designed to mimic the functions of a human liver. Handles toxins slightly worse than an organic liver."
 	failing_desc = "seems to be broken."
@@ -225,17 +248,17 @@
 	liver_resistance = 0.9 * LIVER_DEFAULT_TOX_RESISTANCE // -10%
 	var/emp_vulnerability = 80 //Chance of permanent effects if emp-ed.
 
-/obj/item/organ/internal/liver/cybernetic/emp_act(severity)
+/obj/item/organ/liver/cybernetic/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
 	if(!COOLDOWN_FINISHED(src, severe_cooldown)) //So we cant just spam emp to kill people.
-		owner.adjustToxLoss(10)
+		owner.adjust_tox_loss(10)
 		COOLDOWN_START(src, severe_cooldown, 10 SECONDS)
 	if(prob(emp_vulnerability/severity)) //Chance of permanent effects
 		organ_flags |= ORGAN_EMP //Starts organ faliure - gonna need replacing soon.
 
-/obj/item/organ/internal/liver/cybernetic/tier2
+/obj/item/organ/liver/cybernetic/tier2
 	name = "cybernetic liver"
 	desc = "An electronic device designed to mimic the functions of a human liver. Handles toxins slightly better than an organic liver."
 	icon_state = "liver-c-u"
@@ -244,7 +267,7 @@
 	liver_resistance = 1.2 * LIVER_DEFAULT_TOX_RESISTANCE // +20%
 	emp_vulnerability = 40
 
-/obj/item/organ/internal/liver/cybernetic/tier3
+/obj/item/organ/liver/cybernetic/tier3
 	name = "upgraded cybernetic liver"
 	desc = "An upgraded version of the cybernetic liver, designed to improve further upon organic livers. It is resistant to alcohol poisoning and is very robust at filtering toxins."
 	icon_state = "liver-c-u2"
@@ -254,7 +277,7 @@
 	liver_resistance = 1.5 * LIVER_DEFAULT_TOX_RESISTANCE // +50%
 	emp_vulnerability = 20
 
-/obj/item/organ/internal/liver/cybernetic/surplus
+/obj/item/organ/liver/cybernetic/surplus
 	name = "surplus prosthetic liver"
 	desc = "A very cheap prosthetic liver, mass produced for low-functioning alcoholics... It looks more like a water filter than \
 		an actual liver. \
@@ -268,9 +291,105 @@
 	emp_vulnerability = 100
 
 //surplus organs are so awful that they explode when removed, unless failing
-/obj/item/organ/internal/liver/cybernetic/surplus/Initialize(mapload)
+/obj/item/organ/liver/cybernetic/surplus/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/dangerous_surgical_removal)
+	AddElement(/datum/element/dangerous_organ_removal, /*surgical = */ TRUE)
+
+/obj/item/organ/liver/pod
+	name = "pod peroxisome"
+	desc = "A small plant-like organ found in podpeople responsible for filtering toxins while aiding in photosynthesis."
+	foodtype_flags = PODPERSON_ORGAN_FOODTYPES
+	color = COLOR_LIME
+
+/obj/item/organ/liver/pod/handle_chemical(mob/living/carbon/organ_owner, datum/reagent/chem, seconds_per_tick)
+	. = ..()
+	if((. & COMSIG_MOB_STOP_REAGENT_TICK) || (organ_flags & ORGAN_FAILING))
+		return
+	if(!(organ_owner.mob_biotypes & MOB_PLANT))
+		return
+	if(chem.type == /datum/reagent/toxin/plantbgone)
+		organ_owner.adjust_tox_loss(1.5 * seconds_per_tick)
+
+/obj/item/organ/liver/snail
+	name = "snail liver"
+	desc = "A slimy liver, constantly secreting impressive volumes of lube. Usually cooked with olive oil and cilantro, and traditionally eaten under a white flag."
+	icon_state = "liver-bone" // Its greyscale, so works perfectly for coloring
+	color = "#96DB00"
+	/// Speed modifier for snails who have this organ. Positive numbers make them move slower, negative numbers make them move faster.
+	var/snail_speed_mod = 6
+
+/obj/item/organ/liver/snail/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
+	. = ..()
+	organ_owner.AddElement(/datum/element/lube_walking, require_resting = TRUE)
+	organ_owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/snail, multiplicative_slowdown = snail_speed_mod)
+
+/obj/item/organ/liver/snail/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
+	. = ..()
+	organ_owner.remove_movespeed_modifier(/datum/movespeed_modifier/snail)
+	organ_owner.RemoveElement(/datum/element/lube_walking, require_resting = TRUE)
+
+/obj/item/organ/liver/snail/handle_chemical(mob/living/carbon/organ_owner, datum/reagent/chem, seconds_per_tick)
+	. = ..()
+	if((. & COMSIG_MOB_STOP_REAGENT_TICK) || (organ_flags & ORGAN_FAILING))
+		return
+	if(istype(chem, /datum/reagent/consumable/salt))
+		playsound(organ_owner, SFX_SEAR, 30, TRUE)
+		organ_owner.adjust_fire_loss(1 * seconds_per_tick)
+		organ_owner.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM * seconds_per_tick)
+		return COMSIG_MOB_STOP_REAGENT_TICK
+
+/obj/item/organ/liver/evolved
+	name = "evolved liver"
+	desc = "A more robust liver, better at everything."
+
+	icon_state = "evolved-liver"
+
+	alcohol_tolerance = ALCOHOL_RATE * 0.5
+	maxHealth = 1.2 * STANDARD_ORGAN_THRESHOLD
+	toxTolerance = 6 //can shrug off up to 6u of toxins
+	liver_resistance = 1.5 * LIVER_DEFAULT_TOX_RESISTANCE
+
+/obj/item/organ/liver/bloody
+	name = "leaky liver"
+	desc = "An extra spongy liver, only slightly better than a normal liver, but with an increased ability to replenish blood."
+
+	icon_state = "leaky-liver"
+
+	maxHealth = 1.1 * STANDARD_ORGAN_THRESHOLD
+	alcohol_tolerance = ALCOHOL_RATE * 0.8
+	toxTolerance = LIVER_DEFAULT_TOX_TOLERANCE + 1
+	liver_resistance = 1.1 * LIVER_DEFAULT_TOX_RESISTANCE
+
+/obj/item/organ/liver/bloody/on_life(seconds_per_tick)
+	. = ..()
+
+	owner.adjust_blood_volume(4 * seconds_per_tick, maximum = BLOOD_VOLUME_NORMAL)
+
+/// Convert all non-alcoholic drinks into alcohol
+/obj/item/organ/liver/distillery
+	name = "alcoholics delight"
+	desc = "The perfect liver, distilling non-alcoholic reagents into alcohol whenever possible."
+
+	icon_state = "liver-distillery"
+
+	organ_traits = list(TRAIT_ALCOHOL_TOLERANCE)
+
+	alcohol_tolerance = ALCOHOL_RATE * 0.1
+
+	/// Volume that is converted per second
+	var/ethanol_conversion = 0.2
+	/// What to convert stuff into
+	var/convert_into = /datum/reagent/consumable/ethanol
+
+/obj/item/organ/liver/distillery/on_life(seconds_per_tick)
+	. = ..()
+
+	for(var/datum/reagent/reagent as anything in owner.reagents.reagent_list)
+		// Already alcohol
+		if(istype(reagent, convert_into))
+			continue
+
+		owner.reagents.convert_reagent(reagent.type, convert_into, ethanol_conversion)
 
 #undef LIVER_DEFAULT_TOX_TOLERANCE
 //#undef LIVER_DEFAULT_TOX_RESISTANCE // SKYRAT EDIT REMOVAL - Needed in modular

@@ -8,3 +8,5 @@
 	name = "Basic Injector"
 	desc = "Provides basic medical assistance."
 	default_reagent_types = BASE_CENTCOM_REAGENTS
+
+#undef BASE_CENTCOM_REAGENTS

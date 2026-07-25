@@ -7,3 +7,9 @@
 #define TRAIT_PERMIT_HUD "permit_hud"
 //for if we are army crawling or not
 #define TRAIT_PRONE "prone"
+
+/// If we are ignoring clothing cropping or not
+#define TRAIT_TAUR_IGNORING_CROPPING "taur_ignoring_cropping"
+
+/// Trait gained from bioware surgeries
+#define SUBSYSTEM_UPGRADE_TRAIT "subsystem_upgrade"

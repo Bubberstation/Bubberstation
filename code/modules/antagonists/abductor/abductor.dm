@@ -2,7 +2,7 @@
 	name = "\improper Abductor"
 	roundend_category = "abductors"
 	antagpanel_category = ANTAG_GROUP_ABDUCTORS
-	job_rank = ROLE_ABDUCTOR
+	pref_flag = ROLE_ABDUCTOR
 	antag_hud_name = "abductor"
 	show_in_antagpanel = FALSE //should only show subtypes
 	show_to_ghosts = TRUE
@@ -23,14 +23,14 @@
 	scientist.set_species(/datum/species/abductor)
 	agent.set_species(/datum/species/abductor)
 
-	var/icon/scientist_icon = render_preview_outfit(/datum/outfit/abductor/scientist, scientist)
-	scientist_icon.Shift(WEST, 8)
+	var/datum/universal_icon/scientist_icon = render_preview_outfit(/datum/outfit/abductor/scientist, scientist)
+	scientist_icon.shift(WEST, 8)
 
-	var/icon/agent_icon = render_preview_outfit(/datum/outfit/abductor/agent, agent)
-	agent_icon.Shift(EAST, 8)
+	var/datum/universal_icon/agent_icon = render_preview_outfit(/datum/outfit/abductor/agent, agent)
+	agent_icon.shift(EAST, 8)
 
-	var/icon/final_icon = scientist_icon
-	final_icon.Blend(agent_icon, ICON_OVERLAY)
+	var/datum/universal_icon/final_icon = scientist_icon
+	final_icon.blend_icon(agent_icon, ICON_OVERLAY)
 
 	qdel(scientist)
 	qdel(agent)
@@ -71,16 +71,14 @@
 
 /datum/antagonist/abductor/on_gain()
 	owner.set_assigned_role(SSjob.get_job_type(role_job))
-	owner.special_role = ROLE_ABDUCTOR
 	objectives += team.objectives
 	finalize_abductor()
 	// We don't want abductors to be converted by other antagonists
-	owner.add_traits(list(TRAIT_ABDUCTOR_TRAINING, TRAIT_UNCONVERTABLE), ABDUCTOR_ANTAGONIST)
+	owner.add_traits(list(TRAIT_ABDUCTOR_TRAINING, TRAIT_ABDUCTOR_HUD, TRAIT_UNCONVERTABLE), ABDUCTOR_ANTAGONIST)
 	return ..()
 
 /datum/antagonist/abductor/on_removal()
-	owner.special_role = null
-	owner.remove_traits(list(TRAIT_ABDUCTOR_TRAINING, TRAIT_UNCONVERTABLE), ABDUCTOR_ANTAGONIST)
+	owner.remove_traits(list(TRAIT_ABDUCTOR_TRAINING, TRAIT_ABDUCTOR_HUD, TRAIT_UNCONVERTABLE), ABDUCTOR_ANTAGONIST)
 	return ..()
 
 /datum/antagonist/abductor/greet()
@@ -93,11 +91,19 @@
 	//Equip
 	var/mob/living/carbon/human/new_abductor = owner.current
 	new_abductor.set_species(/datum/species/abductor)
-	var/obj/item/organ/internal/tongue/abductor/abductor_tongue = new_abductor.get_organ_slot(ORGAN_SLOT_TONGUE)
+	var/obj/item/organ/tongue/abductor/abductor_tongue = new_abductor.get_organ_slot(ORGAN_SLOT_TONGUE)
 	abductor_tongue.mothership = "[team.name]"
 
 	new_abductor.real_name = "[team.name] [sub_role]"
 	new_abductor.equipOutfit(outfit)
+
+	// If we have a team skincolor, apply it here. Applied by admins or 2% chance of natural occurance
+	if(!isnull(team.team_skincolor))
+		for(var/obj/item/bodypart/part as anything in new_abductor.get_bodyparts())
+			part.should_draw_greyscale = TRUE
+			part.add_color_override(team.team_skincolor, LIMB_COLOR_AYYLMAO)
+
+		new_abductor.update_body_parts(update_limb_data = TRUE)
 
 	// We require that the template be loaded here, so call it in a blocking manner, if its already done loading, this won't block
 	SSmapping.lazy_load_template(LAZY_TEMPLATE_KEY_ABDUCTOR_SHIPS)
@@ -108,20 +114,62 @@
 			break
 
 /datum/antagonist/abductor/scientist/on_gain()
-	owner.add_traits(list(TRAIT_ABDUCTOR_SCIENTIST_TRAINING, TRAIT_SURGEON), ABDUCTOR_ANTAGONIST)
+	owner.add_traits(list(TRAIT_ABDUCTOR_SCIENTIST_TRAINING), ABDUCTOR_ANTAGONIST)
 	return ..()
 
 /datum/antagonist/abductor/scientist/on_removal()
-	owner.remove_traits(list(TRAIT_ABDUCTOR_SCIENTIST_TRAINING, TRAIT_SURGEON), ABDUCTOR_ANTAGONIST)
+	owner.remove_traits(list(TRAIT_ABDUCTOR_SCIENTIST_TRAINING), ABDUCTOR_ANTAGONIST)
 	return ..()
+
+/datum/antagonist/abductor/scientist/apply_innate_effects(mob/living/mob_override)
+	var/mob/living/glorp = mob_override || owner.current
+	RegisterSignal(glorp, COMSIG_LIVING_OPERATING_ON, PROC_REF(add_surgery))
+
+/datum/antagonist/abductor/scientist/remove_innate_effects(mob/living/mob_override)
+	var/mob/living/glorp = mob_override || owner.current
+	UnregisterSignal(glorp, COMSIG_LIVING_OPERATING_ON)
+
+/datum/antagonist/abductor/scientist/proc/add_surgery(datum/source, atom/movable/operating_on, list/possible_operations)
+	SIGNAL_HANDLER
+
+	var/static/list/ayy_operations
+	if(!length(ayy_operations))
+		ayy_operations = list()
+		ayy_operations += /datum/surgery_operation/basic/tend_wounds/combo/upgraded/master
+		ayy_operations += /datum/surgery_operation/basic/viral_bonding
+		ayy_operations += /datum/surgery_operation/limb/add_plastic // unlocks advanced plastic surgery
+		ayy_operations += /datum/surgery_operation/limb/bionecrosis
+		ayy_operations += /datum/surgery_operation/limb/clamp_bleeders/abductor
+		ayy_operations += /datum/surgery_operation/limb/close_skin/abductor
+		ayy_operations += /datum/surgery_operation/limb/incise_organs/abductor
+		ayy_operations += /datum/surgery_operation/limb/incise_skin/abductor
+		ayy_operations += /datum/surgery_operation/limb/organ_manipulation/external/abductor
+		ayy_operations += /datum/surgery_operation/limb/organ_manipulation/internal/abductor
+		ayy_operations += /datum/surgery_operation/limb/retract_skin/abductor
+		ayy_operations += /datum/surgery_operation/limb/unclamp_bleeders/abductor
+		ayy_operations += /datum/surgery_operation/organ/fix_wings // i guess
+		ayy_operations += typesof(/datum/surgery_operation/limb/bioware)
+		ayy_operations += typesof(/datum/surgery_operation/organ/brainwash)
+		ayy_operations += typesof(/datum/surgery_operation/organ/lobotomy)
+		ayy_operations += typesof(/datum/surgery_operation/organ/pacify)
+
+	possible_operations |= ayy_operations
 
 /datum/antagonist/abductor/admin_add(datum/mind/new_owner,mob/admin)
 	var/list/current_teams = list()
 	for(var/datum/team/abductor_team/T in GLOB.antagonist_teams)
 		current_teams[T.name] = T
-	var/choice = input(admin,"Add to which team ?") as null|anything in (current_teams + "new team")
+	var/choice = tgui_input_list(admin,"Add to which team ?", "Abductor Teams", current_teams + "new team")
 	if (choice == "new team")
 		team = new
+		if(tgui_alert(admin, "Use a Custom Skin Color?", "Alien Spraypainter", list("Yes", "No")) == "Yes")
+			// Keep in mind the darker colors don't look all that great, but it's easier to just reference an existing color list than make a new one
+			var/colorchoice = tgui_input_list(admin, "Select Which Color?", "Alien Spraypainter", GLOB.color_list_ethereal + "Custom Color")
+			if(colorchoice == "Custom Color")
+				colorchoice = tgui_color_picker(admin, "Pick new color", "Alien Spraypainter", COLOR_WHITE)
+			else
+				colorchoice = GLOB.color_list_ethereal[colorchoice]
+			team.team_skincolor = colorchoice
 	else if(choice in current_teams)
 		team = current_teams[choice]
 	else
@@ -152,12 +200,17 @@
 	var/static/team_count = 1
 	///List of all brainwashed victims' minds
 	var/list/datum/mind/abductees = list()
+	/// If we will recolor these aliens, this value gets changed. Has a really small chance to occur naturally, but admins can change this to anything they want.
+	var/team_skincolor = null
 
 /datum/team/abductor_team/New()
 	..()
 	team_number = team_count++
 	name = "Mothership [pick(GLOB.greek_letters)]" //TODO Ensure unique and actual alieny names
 	add_objective(new /datum/objective/experiment)
+	// Some aliens can be green as a treat
+	if(prob(check_holidays(APRIL_FOOLS) ? 50 : 2) && isnull(team_skincolor))
+		team_skincolor = COLOR_EMERALD
 
 /datum/team/abductor_team/roundend_report()
 	var/list/result = list()

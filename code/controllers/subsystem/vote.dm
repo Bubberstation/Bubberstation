@@ -4,8 +4,7 @@
 SUBSYSTEM_DEF(vote)
 	name = "Vote"
 	wait = 1 SECONDS
-	flags = SS_KEEP_TIMING
-	init_order = INIT_ORDER_VOTE
+	ss_flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 
 	/// A list of all generated action buttons
@@ -119,7 +118,7 @@ SUBSYSTEM_DEF(vote)
 	)
 	log_vote("vote finalized", vote_log_data)
 	if(to_display)
-		to_chat(world, examine_block(vote_font("[to_display]"))) // BUBBER EDIT CHANGE -  span_infoplain changed to examine_block
+		to_chat(world, span_infoplain(vote_font("[to_display]")))
 
 	// Finally, doing any effects on vote completion
 	current_vote.finalize_vote(final_winner)
@@ -169,12 +168,12 @@ SUBSYSTEM_DEF(vote)
 	else
 		voted += voter.ckey
 
-	if(current_vote.choices_by_ckey[voter.ckey + their_vote] == 1)
-		current_vote.choices_by_ckey[voter.ckey + their_vote] = 0
+	if(current_vote.choices_by_ckey["[voter.ckey]_[their_vote]"] == 1) // BUBBER EDIT CHANGE - Original: [voter.ckey + their_vote]
+		current_vote.choices_by_ckey["[voter.ckey]_[their_vote]"] = 0 // BUBBER EDIT CHANGE - Original: [voter.ckey + their_vote]
 		current_vote.choices[their_vote]--
 
 	else
-		current_vote.choices_by_ckey[voter.ckey + their_vote] = 1
+		current_vote.choices_by_ckey["[voter.ckey]_[their_vote]"] = 1 // BUBBER EDIT CHANGE - Original: [voter.ckey + their_vote]
 		current_vote.choices[their_vote]++
 
 	return TRUE
@@ -237,9 +236,9 @@ SUBSYSTEM_DEF(vote)
 	var/to_display = current_vote.initiate_vote(vote_initiator_name, duration)
 
 	log_vote(to_display)
-	to_chat(world, examine_block(vote_font("[span_bold(to_display)]\n\
+	to_chat(world, custom_boxed_message("purple_box center", span_infoplain(vote_font("[span_bold(to_display)]<br>\
 		Type <b>vote</b> or click <a href='byond://winset?command=vote'>here</a> to place your votes.\n\
-		You have [DisplayTimeText(duration)] to vote.")))  // BUBBER EDIT CHANGE - span_infoplain changed to examine_block
+		You have [DisplayTimeText(duration)] to vote."))))
 
 	// And now that it's going, give everyone a voter action
 	for(var/client/new_voter as anything in GLOB.clients)
@@ -247,10 +246,9 @@ SUBSYSTEM_DEF(vote)
 		voting_action.name = "Vote: [current_vote.override_question || current_vote.name]"
 		voting_action.Grant(new_voter.mob)
 
-		new_voter.player_details.player_actions += voting_action
+		new_voter.persistent_client.player_actions += voting_action
 		generated_actions += voting_action
-
-		if(current_vote.vote_sound && (new_voter.prefs.read_preference(/datum/preference/toggle/sound_announcements)))
+		if(current_vote.vote_sound && new_voter.prefs.read_preference(/datum/preference/toggle/sound_announcements))
 			SEND_SOUND(new_voter, sound(current_vote.vote_sound))
 
 	return TRUE
@@ -293,6 +291,7 @@ SUBSYSTEM_DEF(vote)
 	log_admin("[key_name(toggle_initiator)] [text_verb] Dead Vote.")
 	message_admins("[key_name_admin(toggle_initiator)] [text_verb] Dead Vote.")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Dead Vote", text_verb))
+	update_static_data_for_all_viewers()
 
 /datum/controller/subsystem/vote/ui_state()
 	return GLOB.always_state
@@ -320,8 +319,6 @@ SUBSYSTEM_DEF(vote)
 		"singleSelection" = current_vote?.choices_by_ckey[user.client?.ckey],
 		"multiSelection" = current_vote?.choices_by_ckey,
 	)
-
-	data["voting"]= is_lower_admin ? voting : list()
 
 	var/list/all_vote_data = list()
 	for(var/vote_name in possible_votes)
@@ -365,6 +362,7 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/ui_static_data(mob/user)
 	var/list/data = list()
 	data["VoteCD"] = CONFIG_GET(number/vote_delay)
+	data["deadVoteEnabled"] = CONFIG_GET(flag/no_dead_vote)
 	return data
 
 /datum/controller/subsystem/vote/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -383,7 +381,6 @@ SUBSYSTEM_DEF(vote)
 
 			voter.log_message("cancelled a vote.", LOG_ADMIN)
 			message_admins("[key_name_admin(voter)] has cancelled the current vote.")
-			SStgui.close_uis(src)
 			reset()
 			return TRUE
 
@@ -470,7 +467,7 @@ SUBSYSTEM_DEF(vote)
 /datum/action/vote/IsAvailable(feedback = FALSE)
 	return TRUE // Democracy is always available to the free people
 
-/datum/action/vote/Trigger(trigger_flags)
+/datum/action/vote/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)
 		return
@@ -480,12 +477,12 @@ SUBSYSTEM_DEF(vote)
 
 // We also need to remove our action from the player actions when we're cleaning up.
 /datum/action/vote/Remove(mob/removed_from)
-	if(removed_from.client)
-		removed_from.client?.player_details.player_actions -= src
+	if(removed_from.persistent_client)
+		removed_from.persistent_client.player_actions -= src
 
 	else if(removed_from.ckey)
-		var/datum/player_details/associated_details = GLOB.player_details[removed_from.ckey]
-		associated_details?.player_actions -= src
+		var/datum/persistent_client/persistent_client = GLOB.persistent_clients_by_ckey[removed_from.ckey]
+		persistent_client?.player_actions -= src
 
 	return ..()
 

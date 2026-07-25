@@ -14,9 +14,14 @@
 		They will have to hide in a coffin or a closet during the day, or risk burning to a crisp."
 	value = -4
 	hardcore_value = 6
-	species_whitelist = list(SPECIES_HEMOPHAGE)
 	quirk_flags = QUIRK_HIDE_FROM_SCAN | QUIRK_HUMAN_ONLY
+	species_whitelist = list(SPECIES_HEMOPHAGE)
 	COOLDOWN_DECLARE(sun_burn)
+
+/datum/quirk/sol_weakness/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source, unique = TRUE, announce = TRUE)
+	if(IS_BLOODSUCKER(new_holder))
+		return FALSE
+	return ..()
 
 /datum/quirk/sol_weakness/add()
 	RegisterSignal(quirk_holder, COMSIG_MOB_HEMO_BLOOD_REGEN_TICK, PROC_REF(on_blood_healing))
@@ -29,12 +34,6 @@
 	UnregisterSignal(quirk_holder, COMSIG_MOB_HEMO_BLOOD_REGEN_TICK)
 	SSsunlight.remove_sun_sufferer(quirk_holder)
 	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
-
-/datum/quirk/sol_weakness/can_add(mob/target)
-	. = ..()
-	if(!.)
-		return
-	return !IS_BLOODSUCKER(target)
 
 /datum/quirk/sol_weakness/proc/on_blood_healing(mob/owner, seconds_between_ticks, datum/status_effect/blood_regen_active/effect)
 	if(effect && in_coffin())
@@ -63,7 +62,7 @@
 			sun_burn_message(span_warning("The sun is up, but you safely rest in your [quirk_holder.loc.name]."))
 		else
 			quirk_holder.add_mood_event("vampsleep", /datum/mood_event/daylight_bad_sleep)
-			quirk_holder.adjustFireLoss(1)
+			quirk_holder.adjust_fire_loss(1)
 			sun_burn_message(span_warning("[quirk_holder.loc] is not a coffin, but it keeps you safe enough."))
 
 /datum/quirk/sol_weakness/proc/sun_burn()
@@ -71,10 +70,10 @@
 	if(quirk_holder.blood_volume > BLOOD_VOLUME_NORMAL * 0.71) // 397.6
 		quirk_holder.blood_volume -= 5
 		sun_burn_message(span_warning("The sun burns your skin, but your blood protects you from the worst of it..."))
-		quirk_holder.adjustFireLoss(1)
+		quirk_holder.adjust_fire_loss(1)
 		return
 	sun_burn_message(span_userdanger("THE SUN, IT BURNS!"))
-	quirk_holder.adjustFireLoss(2)
+	quirk_holder.adjust_fire_loss(2)
 	quirk_holder.adjust_fire_stacks(1)
 	quirk_holder.ignite_mob()
 
