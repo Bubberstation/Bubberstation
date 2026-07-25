@@ -49,7 +49,13 @@
 		/obj/item/claymore/weak,
 		/obj/item/claymore/weak/ceremonial,
 		/obj/item/claymore/highlander/robot,
-		/obj/item/melee/baton/security/loaded/departmental // BUBBER EDIT
+		/obj/item/melee/baton/security/loaded/departmental, // BUBBER EDIT START
+		/obj/item/melee/baton/security/loaded/departmental/service,
+		/obj/item/melee/baton/security/loaded/departmental/cargo,
+		/obj/item/melee/baton/security/loaded/departmental/engineering,
+		/obj/item/melee/baton/security/loaded/departmental/prison,
+		/obj/item/melee/baton/security/loaded/departmental/science,
+		/obj/item/melee/baton/security/loaded/departmental/medical, // BUBBER EDIT END
 	)
 	tool_behaviors = list(TOOL_WELDER)
 	time = 10 SECONDS
@@ -62,7 +68,16 @@
 		/obj/item/katana = 1,
 		/obj/item/melee/baton/security = 1,
 	)
-	blacklist = list(/obj/item/melee/baton/security/loaded/departmental) // BUBBER EDIT
+	// BUBBER EDIT START
+	blacklist = list(
+		/obj/item/melee/baton/security/loaded/departmental,
+		/obj/item/melee/baton/security/loaded/departmental/service,
+		/obj/item/melee/baton/security/loaded/departmental/cargo,
+		/obj/item/melee/baton/security/loaded/departmental/engineering,
+		/obj/item/melee/baton/security/loaded/departmental/prison,
+		/obj/item/melee/baton/security/loaded/departmental/science,
+		/obj/item/melee/baton/security/loaded/departmental/medical,
+	) // BUBBER EDIT END
 	tool_behaviors = list(TOOL_WELDER)
 	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 	time = 10 SECONDS

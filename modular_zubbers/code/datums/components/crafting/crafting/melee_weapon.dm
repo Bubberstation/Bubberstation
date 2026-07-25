@@ -41,7 +41,13 @@
 		/obj/item/melee/baton/security/cattleprod/teleprod,
 		/obj/item/melee/baton/security/boomerang,
 		/obj/item/melee/baton/security/stunsword,
-		/obj/item/melee/baton/security/loaded/departmental
+		/obj/item/melee/baton/security/loaded/departmental,
+		/obj/item/melee/baton/security/loaded/departmental/service,
+		/obj/item/melee/baton/security/loaded/departmental/cargo,
+		/obj/item/melee/baton/security/loaded/departmental/engineering,
+		/obj/item/melee/baton/security/loaded/departmental/prison,
+		/obj/item/melee/baton/security/loaded/departmental/science,
+		/obj/item/melee/baton/security/loaded/departmental/medical,
 	)
 	tool_behaviors = list(TOOL_WELDER, TOOL_WRENCH)
 	time = 15 SECONDS
