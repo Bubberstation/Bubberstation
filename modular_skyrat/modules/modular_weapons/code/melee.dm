@@ -22,7 +22,64 @@
 	armour_penetration = 25
 	force = 15
 
+// NTC sabre
+
+/obj/item/storage/belt/sheath/sabre/ntc_commander
+	name = "consultant commander's sabre sheath"
+	desc = "A beautiful sheath made of real leather, an ancient symbol of power and authority, granted to the station's Corporate consultant. This one is green, fashioned after the sheaths granted to the commanders."
+	icon = 'modular_zubbers/icons/obj/weapons/melee.dmi'
+	icon_state = "cc-sheath"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
+	worn_icon_state = "cc-sheath"
+	stored_blade = /obj/item/melee/sabre/ntc
+
+/obj/item/storage/belt/sheath/sabre/ntc_admiral
+	name = "consultant admiral's sabre sheath"
+	desc = "A beautiful sheath made of real leather, an ancient symbol of power and authority, granted to the station's Corporate consultant. This one is black, fashioned after the sheaths granted to the admirals."
+	icon = 'modular_zubbers/icons/obj/weapons/melee.dmi'
+	icon_state = "admiral-sheath"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
+	worn_icon_state = "admiral-sheath"
+	stored_blade = /obj/item/melee/sabre/ntc
+
+/obj/item/melee/sabre/ntc
+	name = "\improper consultant's sabre"
+	desc = "A well crafted and elegant weapon, oozing with Corporate identity and authority. This one appears to be somewhat used, yet well maintained, having been left less effective than the counterpart that one would find in a Captain's hands. This one is engraved with the symbol of Nanotrasen on the hilt."
+	block_chance = 30
+	armour_penetration = 25
+	force = 20
+
+// Centcom sabre. This one is unimplemented, it only exists for fun. It's a Centcom Commander sword, so it's effectively admin-only, hence why it's so powerful.
+
+/obj/item/storage/belt/sheath/sabre/cargo
+	name = "\improper commander sabre's leather sheath"
+	desc = "A beautiful sheath made of green leather, bearing Nanotrasen's symbol. It is said that only the highest ranking officers of Central Command are bestowed this weapon."
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
+	stored_blade = /obj/item/melee/sabre/centcom
+
+
+/obj/item/melee/sabre/centcom
+	name = "\improper commander's sabre"
+	desc = "A beautiful masterwork of a sword, granted only to the highest ranking officers of Central Command. Its blade is sharp and lightweight, and the hilt is engraved with the symbol of Nanotrasen. It is a symbol of authority and power, and it is said that those who wield it are to be respected and feared."
+	block_chance = 75
+	armour_penetration = 75
+	force = 30
 
 // This is here so that people can't buy the Sabres and craft them into powercrepes
 /datum/crafting_recipe/food/powercrepe
-	blacklist = list(/obj/item/melee/sabre/cargo)
+	blacklist = list(
+		/obj/item/melee/sabre/cargo,
+		/obj/item/melee/sabre/ntc,
+		/obj/item/melee/sabre/centcom,
+	)
+
+// Removing Assistant's bane from the cargo and ntc sabres
+/obj/item/melee/sabre/cargo/Initialize(mapload)
+	. = ..()
+	var/list/bane_components = GetComponents(/datum/component/bane)
+	QDEL_LIST(bane_components)
+
+/obj/item/melee/sabre/ntc/Initialize(mapload)
+	. = ..()
+	var/list/bane_components = GetComponents(/datum/component/bane)
+	QDEL_LIST(bane_components)

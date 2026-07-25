@@ -286,3 +286,16 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/c32_speedloader
+	name = "Speed Loader (.32) (Lethal)"
+	desc = "Designed to quickly reload six-chambered .32 revolvers."
+	id = "c32_speedloader"
+	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*3)
+	build_path = /obj/item/ammo_box/speedloader/c38/c32
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY

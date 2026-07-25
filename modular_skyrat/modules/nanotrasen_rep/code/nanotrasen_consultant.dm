@@ -48,11 +48,11 @@
 	gloves = /obj/item/clothing/gloves/combat
 	uniform =  /obj/item/clothing/under/rank/nanotrasen_consultant
 	suit = /obj/item/clothing/suit/armor/vest/nanotrasen_consultant
-	suit_store = /obj/item/gun/energy/e_gun
 	shoes = /obj/item/clothing/shoes/jackboots
 	head = /obj/item/clothing/head/nanotrasen_consultant
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic = 1,
+		/obj/item/consultant/weapon_case = 1,
 		)
 
 	skillchips = list(/obj/item/skillchip/disk_verifier)
