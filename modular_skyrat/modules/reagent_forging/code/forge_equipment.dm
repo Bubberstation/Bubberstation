@@ -15,6 +15,7 @@
 /obj/item/forging/tongs/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	update_appearance()
+	
 /obj/item/forging/tongs/Exited(atom/movable/gone, direction)
 	. = ..()
 	update_appearance()
@@ -25,8 +26,6 @@
 		icon_state = "tong_full"
 	else
 		icon_state = initial(icon_state)
-
-
 /obj/item/forging/tongs/primitive
 	name = "primitive forging tongs"
 	toolspeed = 1.2
