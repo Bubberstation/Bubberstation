@@ -122,6 +122,10 @@ SUBSYSTEM_DEF(ambience)
 		return
 
 	var/area/my_area = get_area(src)
+	// BUBBER EDIT ADDITION - a mob sitting in nullspace (a brainmob inside an organ being deleted) has no area to buzz in
+	if(isnull(my_area))
+		return
+	// BUBBER EDIT ADDITION END
 	var/sound_to_use = my_area.ambient_buzz
 	var/volume_modifier = client.prefs.read_preference(/datum/preference/numeric/volume/sound_ship_ambience_volume)
 

@@ -1,3 +1,8 @@
+/// Stored instead of a damage value when the organ was absent because the species simply doesn't have one.
+#define ORGAN_ABSENCE_SPECIES_NORMAL -1
+/// Stored instead of a damage value when the organ should have been there and wasn't.
+#define ORGAN_ABSENCE_INJURY -2
+
 /// This component tracks the original damage values of a mob when it is attached.
 /datum/component/damage_tracker
 	/// How much brute damage did the mob have on them?
@@ -95,13 +100,13 @@
 				wound_list[limb.type] = list()
 			wound_list[limb.type] |= limb_wound.type
 
-	heart_damage = human_parent.check_organ_damage(/obj/item/organ/heart)
-	liver_damage = human_parent.check_organ_damage(/obj/item/organ/liver)
-	lung_damage = human_parent.check_organ_damage(/obj/item/organ/lungs)
-	stomach_damage = human_parent.check_organ_damage(/obj/item/organ/stomach)
-	brain_damage = human_parent.check_organ_damage(/obj/item/organ/brain)
-	eye_damage = human_parent.check_organ_damage(/obj/item/organ/eyes)
-	ear_damage = human_parent.check_organ_damage(/obj/item/organ/ears)
+	heart_damage = human_parent.check_organ_damage(/obj/item/organ/heart, ORGAN_SLOT_HEART)
+	liver_damage = human_parent.check_organ_damage(/obj/item/organ/liver, ORGAN_SLOT_LIVER)
+	lung_damage = human_parent.check_organ_damage(/obj/item/organ/lungs, ORGAN_SLOT_LUNGS)
+	stomach_damage = human_parent.check_organ_damage(/obj/item/organ/stomach, ORGAN_SLOT_STOMACH)
+	brain_damage = human_parent.check_organ_damage(/obj/item/organ/brain, ORGAN_SLOT_BRAIN)
+	eye_damage = human_parent.check_organ_damage(/obj/item/organ/eyes, ORGAN_SLOT_EYES)
+	ear_damage = human_parent.check_organ_damage(/obj/item/organ/ears, ORGAN_SLOT_EARS)
 
 	return TRUE
 
@@ -111,13 +116,13 @@
 	if(!. || !istype(human_parent))
 		return FALSE
 
-	human_parent.set_organ_loss(ORGAN_SLOT_HEART, heart_damage)
-	human_parent.set_organ_loss(ORGAN_SLOT_LIVER, liver_damage)
-	human_parent.set_organ_loss(ORGAN_SLOT_LUNGS, lung_damage)
-	human_parent.set_organ_loss(ORGAN_SLOT_STOMACH, stomach_damage)
-	human_parent.set_organ_loss(ORGAN_SLOT_EYES, eye_damage)
-	human_parent.set_organ_loss(ORGAN_SLOT_EARS, ear_damage)
-	human_parent.set_organ_loss(ORGAN_SLOT_BRAIN, brain_damage)
+	human_parent.restore_tracked_organ_damage(ORGAN_SLOT_HEART, heart_damage)
+	human_parent.restore_tracked_organ_damage(ORGAN_SLOT_LIVER, liver_damage)
+	human_parent.restore_tracked_organ_damage(ORGAN_SLOT_LUNGS, lung_damage)
+	human_parent.restore_tracked_organ_damage(ORGAN_SLOT_STOMACH, stomach_damage)
+	human_parent.restore_tracked_organ_damage(ORGAN_SLOT_EYES, eye_damage)
+	human_parent.restore_tracked_organ_damage(ORGAN_SLOT_EARS, ear_damage)
+	human_parent.restore_tracked_organ_damage(ORGAN_SLOT_BRAIN, brain_damage)
 
 	var/obj/item/organ/brain/human_brain = human_parent.get_organ_by_type(/obj/item/organ/brain)
 	if(!human_brain)
@@ -146,10 +151,32 @@
 
 	return ..()
 
-/// Returns the damage of the `organ_to_check`, if the organ isn't there, the proc returns `100`.
-/mob/living/carbon/human/proc/check_organ_damage(obj/item/organ/organ_to_check)
+/// Returns the damage of the `organ_to_check`, or a sentinel describing why the organ isn't there.
+/mob/living/carbon/human/proc/check_organ_damage(obj/item/organ/organ_to_check, organ_slot)
 	var/obj/item/organ/organ_to_track = get_organ_by_type(organ_to_check)
-	if(!organ_to_track)
-		return 100 //If the organ is missing, return max damage. we have this here so that if the SAD replaces an organ, it's broken.
+	if(organ_to_track)
+		return organ_to_track.damage
 
-	return organ_to_track.damage
+	// a species that never grows this organ isn't hurt, it's just built that way, so there's no injury to carry across
+	if(organ_slot && isnull(dna?.species?.get_mutant_organ_type_for_slot(organ_slot)))
+		return ORGAN_ABSENCE_SPECIES_NORMAL
+
+	return ORGAN_ABSENCE_INJURY
+
+/// Puts a tracked damage value back onto an organ, translating the absence sentinels from [check_organ_damage].
+/mob/living/carbon/human/proc/restore_tracked_organ_damage(organ_slot, stored_damage)
+	if(stored_damage == ORGAN_ABSENCE_SPECIES_NORMAL)
+		return
+
+	var/obj/item/organ/organ_to_damage = get_organ_slot(organ_slot)
+	if(!organ_to_damage)
+		return
+
+	// the organ was genuinely gone, so the replacement arrives wrecked rather than free, but stops short of outright failing
+	if(stored_damage == ORGAN_ABSENCE_INJURY)
+		stored_damage = max(organ_to_damage.maxHealth - 1, 0)
+
+	set_organ_loss(organ_slot, stored_damage)
+
+#undef ORGAN_ABSENCE_INJURY
+#undef ORGAN_ABSENCE_SPECIES_NORMAL

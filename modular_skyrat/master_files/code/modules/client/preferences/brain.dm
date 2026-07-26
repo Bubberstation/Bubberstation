@@ -17,7 +17,7 @@
 	var/obj/item/organ/brain/new_brain = target.prefs_get_brain_to_use(value)
 	var/obj/item/organ/brain/old_brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
 
-	if(!new_brain || new_brain == old_brain.type)
+	if(!new_brain || !old_brain || new_brain == old_brain.type)
 		return
 
 	var/datum/mind/keep_me_safe = target.mind
@@ -28,7 +28,12 @@
 	new_brain.modular_persistence?.owner = new_brain
 	old_brain.modular_persistence = null
 
-	new_brain.Insert(target, movement_flags = DELETE_IF_REPLACED)
+	// pull the old brain ourselves with NO_ID_TRANSFER instead of letting DELETE_IF_REPLACED do it. otherwise the brain
+	// hands the occupant off to its brainmob on the way out and we immediately delete the brainmob underneath them
+	old_brain.Remove(target, special = TRUE, movement_flags = NO_ID_TRANSFER)
+	qdel(old_brain)
+
+	new_brain.Insert(target)
 
 	// Prefs can be applied to mindless mobs, let's not try to move the non-existent mind back in!
 	if(!keep_me_safe)
