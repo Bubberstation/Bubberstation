@@ -25,8 +25,6 @@
 		icon_state = "tong_full"
 	else
 		icon_state = initial(icon_state)
-
-
 /obj/item/forging/tongs/primitive
 	name = "primitive forging tongs"
 	toolspeed = 1.2
