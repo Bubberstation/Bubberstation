@@ -453,7 +453,7 @@
 		/obj/item/stack/sheet/cloth = 2,
 		/obj/item/stack/sheet/mineral/gold = 1,
 	)
-	resulting_item = /obj/item/storage/belt/crusader
+	resulting_item =  /obj/item/storage/belt/sheath/hip_only/crusader
 	relevant_skill_level = 4
 	time_to_assemble = 3 SECONDS
 	completion_memory_given = /datum/memory/smithing/crusader_belt
@@ -466,7 +466,7 @@
 		/obj/item/stack/sheet/leather = 6,
 		/obj/item/stack/sheet/cloth = 6,
 	)
-	resulting_item = /obj/item/storage/belt/sheath/multi
+	resulting_item = /obj/item/storage/belt/sheath/hip_only/multi
 	relevant_skill_level = 4
 	time_to_assemble = 3 SECONDS
 	completion_memory_given = /datum/memory/smithing/multi_scabbard
@@ -480,7 +480,7 @@
 		/obj/item/stack/sheet/mineral/silver = 1,
 		/obj/item/stack/sheet/bluespace_crystal = 1,
 	)
-	resulting_item = /obj/item/storage/belt/sheath/repairing
+	resulting_item = /obj/item/storage/belt/sheath/hip_only/repairing
 	relevant_skill_level = 5
 	time_to_assemble = 3 SECONDS
 	completion_memory_given = /datum/memory/smithing/repairing_scabbard
@@ -493,7 +493,7 @@
 		/obj/item/stack/sheet/leather = 3,
 		/obj/item/stack/sheet/cloth = 2,
 	)
-	resulting_item = /obj/item/storage/belt/knifethrowers_belt
+	resulting_item = /obj/item/storage/belt/sheath/hip_only/knifethrowers_belt
 	relevant_skill_level = 4
 	time_to_assemble = 3 SECONDS
 	completion_memory_given = /datum/memory/smithing/knifethrower

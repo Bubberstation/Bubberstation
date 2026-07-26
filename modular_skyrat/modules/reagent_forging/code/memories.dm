@@ -105,19 +105,19 @@
 	item_name = "charging holster"
 
 /datum/memory/smithing/crusader_belt
-	smithed_item_type = /obj/item/storage/belt/crusader
+	smithed_item_type =  /obj/item/storage/belt/sheath/hip_only/crusader
 	item_name = "utility-scabbard belt"
 
 /datum/memory/smithing/multi_scabbard
-	smithed_item_type = /obj/item/storage/belt/sheath/multi
+	smithed_item_type = /obj/item/storage/belt/sheath/hip_only/multi
 	item_name = "multi-scabbard belt"
 
 /datum/memory/smithing/repairing_scabbard
-	smithed_item_type = /obj/item/storage/belt/sheath/repairing
+	smithed_item_type = /obj/item/storage/belt/sheath/hip_only/repairing
 	item_name = "repairing scabbard"
 
 /datum/memory/smithing/knifethrower
-	smithed_item_type = /obj/item/storage/belt/knifethrowers_belt
+	smithed_item_type = /obj/item/storage/belt/sheath/hip_only/knifethrowers_belt
 	item_name = "knifethrower's belt"
 
 /datum/memory/smithing/bluespace_plants
