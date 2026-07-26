@@ -167,7 +167,7 @@
 	icon = 'modular_zubbers/icons/fleshmind/wireweed_wall.dmi'
 	icon_state = "wireweed_wall-0"
 	base_icon_state = "wireweed_wall"
-	color = "#CED7DF" //Slight contrast so it doesn't blend in with the floors.
+	color = "#90a1b1" //Slight contrast so it doesn't blend in with the floors.
 	density = TRUE
 	opacity = TRUE
 	smoothing_flags = SMOOTH_BITMASK
@@ -194,7 +194,7 @@
 	icon = 'modular_zubbers/icons/fleshmind/wireweed_wall.dmi'
 	icon_state = "wireweed_wall-0"
 	base_icon_state = "wireweed_wall"
-	color = "#85A1B8"
+	color = "#627f97"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_WIREWEED_WALLS + SMOOTH_GROUP_WALLS
 	canSmoothWith = SMOOTH_GROUP_WIREWEED_WALLS + SMOOTH_GROUP_WALLS

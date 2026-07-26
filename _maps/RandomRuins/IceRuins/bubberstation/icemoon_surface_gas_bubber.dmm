@@ -13,6 +13,7 @@
 	pixel_x = 5;
 	pixel_y = 11
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "aV" = (
@@ -257,7 +258,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "dC" = (
@@ -331,6 +332,10 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/end,
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -371,7 +376,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "fC" = (
 /obj/structure/sign/warning/fire/directional/north,
@@ -429,7 +434,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "fP" = (
@@ -551,7 +556,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "gP" = (
 /obj/effect/turf_decal/weather/snow,
@@ -667,7 +672,7 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "je" = (
@@ -686,7 +691,7 @@
 "jk" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "jp" = (
@@ -701,7 +706,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -752,6 +760,9 @@
 	name = "Plasma Hook-Up"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/lizard_gas,
+/obj/effect/turf_decal/weather/snow/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/weather/snow,
 /turf/open/floor/plating/lavaland_atmos,
 /area/ruin/thelizardsgas_lavaland)
 "kr" = (
@@ -854,6 +865,8 @@
 /obj/effect/turf_decal/stripes/end{
 	dir = 8
 	},
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -864,7 +877,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "mh" = (
@@ -894,12 +907,13 @@
 	pixel_x = -5;
 	pixel_y = -2
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "mi" = (
 /obj/structure/cable,
 /obj/structure/bookcase/random,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "ms" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
@@ -933,7 +947,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "mG" = (
@@ -973,6 +987,7 @@
 /area/ruin/thelizardsgas_lavaland)
 "mQ" = (
 /obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "mR" = (
@@ -1006,9 +1021,12 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/components/unary/passive_vent/layer4{
 	dir = 1
+	},
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
 	},
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
@@ -1165,7 +1183,8 @@
 /obj/effect/turf_decal/stripes/end{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1246,6 +1265,7 @@
 "qI" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "qT" = (
@@ -1258,12 +1278,10 @@
 	color = "#595959"
 	},
 /obj/machinery/light/directional/east,
-/obj/machinery/space_heater/wall_mounted/directional/east{
-	cell = /obj/item/stock_parts/power_store/cell/high
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
+/obj/machinery/space_heater/wall_mounted/with_cell/directional/east,
 /turf/open/floor/iron/edge{
 	dir = 4
 	},
@@ -1360,7 +1378,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "sL" = (
@@ -1385,6 +1403,7 @@
 	name = "wallmount";
 	pixel_x = 32
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "sW" = (
@@ -1443,7 +1462,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "uc" = (
@@ -1490,7 +1509,7 @@
 	dir = 8
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "uq" = (
@@ -1500,7 +1519,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "ur" = (
@@ -1532,7 +1551,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "vf" = (
@@ -1540,7 +1559,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cable,
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "vw" = (
@@ -1548,7 +1567,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "vN" = (
 /obj/structure/sign/warning/fire/directional/south,
@@ -1583,7 +1602,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "wy" = (
@@ -1592,6 +1611,10 @@
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/end,
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1615,6 +1638,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/meter/layer2,
 /obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "xh" = (
@@ -1628,7 +1652,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "xB" = (
 /obj/effect/turf_decal/siding/thinplating_new{
@@ -1690,13 +1714,6 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/underground/unexplored)
-"xU" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
 "xW" = (
 /obj/structure/closet/crate/secure/loot,
 /turf/open/misc/asteroid/snow/icemoon,
@@ -1767,7 +1784,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1852,7 +1870,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "zD" = (
@@ -1978,7 +1996,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "AB" = (
@@ -1995,7 +2013,7 @@
 "AD" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "AH" = (
@@ -2004,7 +2022,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "AM" = (
@@ -2068,7 +2086,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Bv" = (
@@ -2081,17 +2099,6 @@
 	c_tag = "Exterior - North"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/ruin/thelizardsgas_lavaland)
-"BG" = (
-/obj/structure/cable,
-/obj/structure/railing,
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating/lavaland_atmos{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
 /area/ruin/thelizardsgas_lavaland)
 "BH" = (
 /obj/effect/spawner/random/trash/crushed_can,
@@ -2206,7 +2213,7 @@
 "DS" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/holopad,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "DU" = (
 /obj/effect/turf_decal/weather/snow/corner{
@@ -2325,6 +2332,10 @@
 	},
 /obj/effect/turf_decal/stripes/end{
 	dir = 1
+	},
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
 	},
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
@@ -2484,7 +2495,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "He" = (
@@ -2575,7 +2586,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Ib" = (
@@ -2593,6 +2604,7 @@
 /obj/item/tank/internals/nitrogen/belt/full,
 /obj/item/tank/internals/nitrogen/belt/full,
 /obj/item/tank/internals/nitrogen/belt/full,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/emcloset/wall/directional/north,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
@@ -2660,7 +2672,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Js" = (
@@ -2792,7 +2804,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Kn" = (
@@ -2838,7 +2850,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "La" = (
 /obj/structure/safe/floor,
@@ -2921,7 +2933,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Mn" = (
@@ -2935,7 +2947,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/cable,
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "MA" = (
@@ -2945,7 +2957,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "ME" = (
@@ -3132,7 +3144,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "NE" = (
@@ -3164,6 +3176,7 @@
 	pixel_x = 4;
 	pixel_y = -4
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "NL" = (
@@ -3213,9 +3226,12 @@
 /obj/effect/turf_decal/stripes/end{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -3376,7 +3392,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "RN" = (
@@ -3410,7 +3426,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Sl" = (
@@ -3420,6 +3436,7 @@
 	name = "plasma storage tank";
 	tank_volume = 2500
 	},
+/obj/effect/turf_decal/weather/snow,
 /turf/open/floor/plating/lavaland_atmos,
 /area/ruin/thelizardsgas_lavaland)
 "Sm" = (
@@ -3593,7 +3610,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Un" = (
@@ -3603,7 +3620,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Ur" = (
@@ -3699,7 +3716,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Vd" = (
@@ -3711,7 +3728,7 @@
 	dir = 6
 	},
 /obj/structure/cable,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "Vh" = (
 /obj/structure/sign/warning/fire/directional/north,
@@ -3727,7 +3744,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Vq" = (
@@ -3853,7 +3870,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "Xh" = (
@@ -3902,7 +3919,7 @@
 	color = "#595959"
 	},
 /turf/open/floor/iron{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
 /area/ruin/thelizardsgas_lavaland)
 "XZ" = (
@@ -3981,12 +3998,15 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1;
 	filter_types = list(/datum/gas/oxygen)
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -4023,6 +4043,7 @@
 /obj/item/storage/box/beakers,
 /obj/item/reagent_containers/cup/watering_can,
 /obj/machinery/light/small/red/directional/south,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "Zg" = (
@@ -4081,6 +4102,7 @@
 	dir = 8
 	},
 /obj/item/mop,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "ZQ" = (
@@ -4496,7 +4518,7 @@ fN
 jk
 pR
 Fs
-xU
+Mn
 Ql
 pg
 Bt
@@ -4505,7 +4527,7 @@ ZV
 of
 of
 AV
-BG
+yq
 Bv
 "}
 (14,1,1) = {"
@@ -4536,7 +4558,7 @@ fC
 ce
 ce
 AV
-BG
+yq
 Bv
 "}
 (15,1,1) = {"

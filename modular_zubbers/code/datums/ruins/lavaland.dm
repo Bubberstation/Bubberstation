@@ -16,3 +16,11 @@
 	suffix = "lavaland_surface_reststop.dmm"
 	cost = 5
 	allow_duplicates = FALSE
+
+/datum/map_template/ruin/lavaland/bubberstation/lava_xenoarch_boon
+	name = "Lava-Ruin Xenoarchaeology Pod"
+	id = "lava_xenoarch_boon"
+	description = "A small pod with xenoarcheology supplies and a few useless relics to encourage research."
+	suffix = "lavaland_surface_xenoarch_boon.dmm"
+	cost = 5
+	allow_duplicates = FALSE

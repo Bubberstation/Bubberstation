@@ -578,7 +578,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "iq" = (
 /obj/structure/mop_bucket/janitorialcart{
@@ -698,7 +698,7 @@
 "kT" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/holopad,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "kW" = (
 /obj/effect/turf_decal/siding/thinplating_new{
@@ -771,6 +771,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/end,
+/obj/effect/turf_decal/sand/volcanic,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -834,7 +835,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/sand/volcanic,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1115,6 +1116,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/end,
+/obj/effect/turf_decal/sand/volcanic,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1162,6 +1164,7 @@
 /obj/effect/turf_decal/stripes/end{
 	dir = 1
 	},
+/obj/effect/turf_decal/sand/volcanic,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1273,6 +1276,7 @@
 "sS" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/sand/volcanic,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "sY" = (
@@ -1369,7 +1373,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "uf" = (
 /obj/effect/turf_decal/siding/thinplating_new{
@@ -1671,12 +1675,12 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1;
 	filter_types = list(/datum/gas/oxygen)
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/sand/volcanic,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1866,12 +1870,10 @@
 	color = "#595959"
 	},
 /obj/machinery/light/directional/east,
-/obj/machinery/space_heater/wall_mounted/directional/east{
-	cell = /obj/item/stock_parts/power_store/cell/high
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
+/obj/machinery/space_heater/wall_mounted/with_cell/directional/east,
 /turf/open/floor/iron/edge{
 	dir = 4
 	},
@@ -1880,7 +1882,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "zH" = (
 /obj/structure/chair/sofa/left/maroon{
@@ -1899,7 +1901,7 @@
 /obj/effect/turf_decal/stripes/end{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/sand/volcanic,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -2141,7 +2143,7 @@
 	dir = 6
 	},
 /obj/structure/cable,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "Cd" = (
 /obj/structure/cable,
@@ -2272,10 +2274,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/components/unary/passive_vent/layer4{
 	dir = 1
 	},
+/obj/effect/turf_decal/sand/volcanic,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -2431,17 +2433,6 @@
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
 /area/ruin/thelizardsgas_lavaland)
-"GV" = (
-/obj/structure/cable,
-/obj/structure/railing,
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating/lavaland_atmos{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
 "Hj" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /obj/structure/cable,
@@ -2564,7 +2555,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/sand/volcanic,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -2700,9 +2691,9 @@
 /obj/effect/turf_decal/stripes/end{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/effect/turf_decal/sand/volcanic,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -3267,6 +3258,7 @@
 /obj/effect/turf_decal/stripes/end{
 	dir = 8
 	},
+/obj/effect/turf_decal/sand/volcanic,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -3300,7 +3292,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "Rw" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -3540,13 +3532,14 @@
 "Vn" = (
 /obj/structure/cable,
 /obj/structure/bookcase/random,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "Vu" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Plasma Hook-Up"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/lizard_gas,
+/obj/effect/turf_decal/sand/volcanic,
 /turf/open/floor/plating/lavaland_atmos,
 /area/ruin/thelizardsgas_lavaland)
 "Vx" = (
@@ -3645,7 +3638,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "WZ" = (
 /obj/structure/sign/poster/contraband/tipper_cream_soda/directional/south,
@@ -4324,7 +4317,7 @@ PY
 sk
 sk
 gt
-GV
+IF
 Tk
 "}
 (14,1,1) = {"
@@ -4355,7 +4348,7 @@ Lw
 vj
 vj
 gt
-GV
+IF
 Tk
 "}
 (15,1,1) = {"
