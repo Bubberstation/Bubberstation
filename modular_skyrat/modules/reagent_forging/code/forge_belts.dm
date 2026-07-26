@@ -238,6 +238,7 @@
 ////////////////////////////////////////////////////////////////////////////
 /obj/item/storage/belt/sheath/hip_only
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
+	name = "scabbard-utility belt"
 
 /obj/item/storage/belt/sheath/hip_only/mob_can_equip(mob/living/M, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE, indirect_action = FALSE)
 	if(slot == ITEM_SLOT_SUITSTORE)
