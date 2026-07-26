@@ -667,8 +667,7 @@ There are several things that need to be remembered:
 			// hand slots worked before the inventory slot rewrite. That rewrite draws the held item through
 			// the hand slot's vis_contents, so this drew a second copy of everything you hold. Sprites at
 			// pixel_x 0 stacked exactly and hid it; anything wider than a tile carries a negative
-			// base_pixel_x to centre itself, so the copies separated and the doubling became visible.
-			// The observer push below is kept, since ghosts have no hand slot of their own to draw into.
+			// base_pixel_x to centre itself, so the copies separated and there was an ugly duplicate sprite visible.
 			// ORIGINAL: client.screen += worn_item
 			// BUBBER EDIT REMOVAL END
 			if(observers?.len)
