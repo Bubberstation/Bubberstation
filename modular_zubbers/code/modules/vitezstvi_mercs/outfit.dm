@@ -21,7 +21,7 @@
 /datum/outfit/vitezstvi_merc
 	name = "Vítězství Arms SRT Contractor"
 	head = /obj/item/clothing/head/helmet/space/beret/vitezstvi
-	glasses = /obj/item/clothing/glasses/hud/medsechud/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/medsechud
 	ears = /obj/item/radio/headset/vitezstvi
 	mask = null
 	neck = null
