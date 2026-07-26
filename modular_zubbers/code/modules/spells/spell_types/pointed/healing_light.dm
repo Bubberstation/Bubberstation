@@ -30,11 +30,11 @@
 
 // If you are using the Rod of Asclepius, heal some more.
 	if(HAS_TRAIT(owner, TRAIT_HIPPOCRATIC_OATH))
-		heal_multiplier *= 4.5 // 10 base, 45 total with the Rod active in hand
+		heal_multiplier *= 3 // 10 base, 30 total with the Rod active in hand
 
 // If a normal pacifist, heal more.
 	else if(HAS_TRAIT(owner, TRAIT_PACIFISM))
-		heal_multiplier *= 3 // 10 base, 30 total by being pacifist
+		heal_multiplier *= 2.5 // 10 base, 25 total by being pacifist
 
 	if(do_after(owner, 1.5 SECONDS, TRUE, IGNORE_TARGET_LOC_CHANGE, target = cast_on))
 		var/need_mob_update = FALSE
