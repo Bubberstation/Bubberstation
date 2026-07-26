@@ -15,6 +15,7 @@
 /obj/item/forging/tongs/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	update_appearance()
+	
 /obj/item/forging/tongs/Exited(atom/movable/gone, direction)
 	. = ..()
 	update_appearance()
