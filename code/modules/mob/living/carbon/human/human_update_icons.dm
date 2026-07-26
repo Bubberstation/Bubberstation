@@ -663,7 +663,14 @@ There are several things that need to be remembered:
 		var/held_index = get_held_index_of_item(worn_item)
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			worn_item.screen_loc = ui_hand_position(held_index)
-			client.screen += worn_item
+			// BUBBER EDIT REMOVAL BEGIN - pushing the held item onto our own client's screen here is how
+			// hand slots worked before the inventory slot rewrite. That rewrite draws the held item through
+			// the hand slot's vis_contents, so this drew a second copy of everything you hold. Sprites at
+			// pixel_x 0 stacked exactly and hid it; anything wider than a tile carries a negative
+			// base_pixel_x to centre itself, so the copies separated and the doubling became visible.
+			// The observer push below is kept, since ghosts have no hand slot of their own to draw into.
+			// ORIGINAL: client.screen += worn_item
+			// BUBBER EDIT REMOVAL END
 			if(observers?.len)
 				for(var/M in observers)
 					var/mob/dead/observe = M
