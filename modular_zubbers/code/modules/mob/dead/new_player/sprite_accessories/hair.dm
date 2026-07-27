@@ -143,11 +143,6 @@
 	name = "Slime Tails"
 	icon_state = "hair_slime_tails"
 
-/datum/sprite_accessory/hair/singedblownback
-	icon = 'modular_zubbers/icons/customization/hair.dmi'
-	name = "Singed Blown Back"
-	icon_state = "hair_singed_blown_back"
-
 /datum/sprite_accessory/hair/singedpigtails
 	icon = 'modular_zubbers/icons/customization/hair.dmi'
 	name = "Singed Pigtails"
