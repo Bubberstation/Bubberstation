@@ -41,6 +41,20 @@ GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "vodkabottle"
 
+/// Any floor will do. We are crashing a shuttle, not parking it.
+/proc/vitezstvi_crash_turf(list/areas_to_pick_from)
+	if(!length(areas_to_pick_from))
+		return null
+	for(var/attempt in 1 to 5)
+		var/list/turf_list = get_area_turfs(pick(areas_to_pick_from))
+		while(length(turf_list))
+			var/index = rand(1, length(turf_list))
+			var/turf/candidate = turf_list[index]
+			if(!candidate.density && !isgroundlessturf(candidate))
+				return candidate
+			turf_list.Cut(index, index + 1)
+	return null
+
 /// Aims the drunks at a turf. Used by the opening roll and by admins.
 /proc/vitezstvi_place_crash_target(turf/target)
 	if(!target)
@@ -73,10 +87,10 @@ GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 
 /obj/effect/station_crash/oh_no/shuttle_crash()
 	var/list/candidates = prob(VITEZSTVI_FUNNY_LANDING_CHANCE) ? vitezstvi_funny_areas() : vitezstvi_crash_areas()
-	var/turf/target = length(candidates) ? get_safe_random_station_turf(candidates) : null
+	var/turf/target = vitezstvi_crash_turf(candidates)
 	// comedic picks can miss on some maps, so fall back
 	if(!target)
-		target = get_safe_random_station_turf(vitezstvi_crash_areas())
+		target = vitezstvi_crash_turf(vitezstvi_crash_areas())
 	if(!target)
 		target = get_safe_random_station_turf()
 	if(!vitezstvi_place_crash_target(target))

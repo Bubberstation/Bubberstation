@@ -206,9 +206,9 @@
 	if(isnull(choice) || choice == VITEZSTVI_LEAVE_IT)
 		return
 	var/area/destination = options[choice]
-	var/turf/target = get_safe_random_station_turf(list(destination.type))
+	var/turf/target = vitezstvi_crash_turf(list(destination.type))
 	if(!target || !vitezstvi_place_crash_target(target))
-		to_chat(user, span_warning("Could not find a safe landing turf in [choice]."))
+		to_chat(user, span_warning("Nowhere to put a shuttle in [choice]."))
 		return
 	vitezstvi_announce_target(rerouted = TRUE)
 	message_admins("[key_name_admin(user)] rerouted the VARS-7 Provodnik to [choice].")
