@@ -205,6 +205,7 @@
 		var/list/entry = list()
 		entry["name"] = character.real_name || character.name
 		entry["job"] = character.mind.assigned_role?.title
+		entry["afk"] = !!C.is_afk()
 
 		if(C.prefs?.read_preference(/datum/preference/toggle/chat_examine_headshot))
 			var/headshot_type = issilicon(character) ? /datum/preference/text/headshot/silicon : /datum/preference/text/headshot
