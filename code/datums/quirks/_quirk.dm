@@ -242,6 +242,17 @@
 	if(where == LOCATION_BACKPACK)
 		open_backpack = TRUE
 
+	// If the given item contains living occupants (pet carriers, mob holders, etc.),
+	// ensure they are befriended to the human receiving the item. This mirrors the
+	// behavior in quirks that explicitly call pet.befriend(...) before giving the carrier.
+	if (istype(quirk_item, /obj/item/pet_carrier))
+		for (var/occ in quirk_item.occupants)
+			if (istype(occ, /mob/living))
+				occ.befriend(human_holder)
+	else if (istype(quirk_item, /obj/item/mob_holder))
+		if (quirk_item.held_mob && istype(quirk_item.held_mob, /mob/living))
+			quirk_item.held_mob.befriend(human_holder)
+
 	if(notify_player)
 		LAZYADD(where_items_spawned, span_boldnotice("You have \a [quirk_item] [where]. [flavour_text]"))
 

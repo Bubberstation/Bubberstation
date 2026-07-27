@@ -50,6 +50,13 @@
 	icon_state = "mothroach"
 	starting_pet = /mob/living/basic/mothroach/mr_fluff
 
+/obj/item/mob_holder/pet/donator/centralsmith/Initialize(mapload, mob/living/held_mob, worn_state, head_icon, lh_icon, rh_icon, worn_slot_flags = NONE)
+	. = ..()
+	if(held_mob)
+		var/mob/living/owner = GLOB.directory[ckey("centralsmith")]
+		if(owner)
+			held_mob.befriend(owner)
+
 //FIND A BETTER SPOT FOR THIS
 /datum/preference/choiced/pet_gender
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
