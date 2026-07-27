@@ -85,9 +85,23 @@
 	var/choices = vote.choices
 	latest_vote_length = length(choices)
 
+	//Theme color list
+	var/list/theme_colors = list(
+		"Glass" = COLOR_THEME_GLASS,
+		"Midnight" = COLOR_THEME_MIDNIGHT,
+		"Retro" = COLOR_THEME_RETRO,
+		"Plasmafire" = COLOR_THEME_PLASMAFIRE,
+		"Slimecore" = COLOR_THEME_SLIMECORE,
+		"Operative" = COLOR_THEME_OPERATIVE,
+		"Trasen-Knox" = COLOR_THEME_TRASENKNOX,
+		"Dectective" = COLOR_THEME_DETECTIVE,
+		"Clockwork" = COLOR_THEME_CLOCKWORK,
+	)
+
+	var/color_preference = theme_colors[user_preference] ? theme_colors[user_preference] : "cyan"
 	var/text = "[vote.override_question ? vote.override_question : vote.name]"
 	text = "[text]\n[latest_vote_count == VOTE_COUNT_METHOD_SINGLE ? "Single" : "Multiple"] choice"
-	maptext = MAPTEXT("<div align='center' valign='top' style='position:relative;'><font color='cyan'>[text]</font></div>")
+	maptext = MAPTEXT("<div align='center' valign='top' style='position:relative;'><font color=[color_preference]>[text]</font></div>")
 	maptext_y = -4
 
 	// Find out if we need to use wide buttons or not. If any choice is longer than 16 characters, we use wide buttons.
@@ -105,7 +119,7 @@
 
 	for(var/index in 1 to latest_vote_length)
 		var/choice = choices[index]
-		var/atom/movable/screen/mapvote_button/button = new(src, hud, choice)
+		var/atom/movable/screen/mapvote_button/button = new(src, hud, choice, color_preference)
 		if(vote.has_desc)
 			button.desc = vote.return_desc(choice)
 
@@ -204,13 +218,13 @@
 	maptext_x = 6
 	var/choice
 
-/atom/movable/screen/mapvote_button/Initialize(mapload, datum/hud/hud_owner, wanted_choice = null)
+/atom/movable/screen/mapvote_button/Initialize(mapload, datum/hud/hud_owner, wanted_choice = null, color_preference = "cyan")
 	. = ..()
 	if(isnull(wanted_choice))
 		return
-
 	choice = wanted_choice
-	maptext = MAPTEXT("<div align='center' valign='middle' style='position:relative;'><font color='cyan'>[choice]</font></div>")
+
+	maptext = MAPTEXT("<div align='center' valign='middle' style='position:relative;'><font color='[color_preference]'>[choice]</font></div>")
 
 /atom/movable/screen/mapvote_button/Click(location, control, params)
 	SEND_SIGNAL(src, COMSIG_VOTE_CHOICE_SELECTED, usr, src, choice)
