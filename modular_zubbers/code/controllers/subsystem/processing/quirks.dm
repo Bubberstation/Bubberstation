@@ -4,8 +4,8 @@
 	var/cleanup = TRUE
 
 /// Remove any quirks that the client's prefs do not have, and apply any new ones
-/datum/controller/subsystem/processing/quirks/proc/OverrideQuirks(mob/living/user, client/applied_client, spawn_items = TRUE)
-	var/list/required_quirks = applied_client.prefs.all_quirks
+/datum/controller/subsystem/processing/quirks/proc/OverrideQuirks(mob/living/user, client/applied_client, list/quirk_blacklist, spawn_items = TRUE)
+	var/list/required_quirks = applied_client.prefs.all_quirks - quirk_blacklist
 	var/list/present_quirks = list()
 	for(var/datum/quirk/quirk in user.quirks)
 		present_quirks[quirk.name] = TRUE

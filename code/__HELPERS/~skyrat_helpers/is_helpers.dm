@@ -20,7 +20,7 @@
 #define isprimitivedemihuman(A) (is_species(A, /datum/species/human/felinid/primitive))
 #define isshadekin(A) (is_species(A, /datum/species/shadekin))
 #define isprotean(A) (is_species(A, /datum/species/protean))
-#define iscursekin(A) (is_species(A, /datum/species/human/cursekin))
+#define iscursekin(A) (A.get_quirk(/datum/quirk/cursekin))
 #define islycan(A) (is_species(A, /datum/species/lycan))
 #define isgas(A) (is_species(A, /datum/species/gas))
 //Antags

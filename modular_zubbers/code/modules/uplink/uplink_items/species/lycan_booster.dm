@@ -1,15 +1,17 @@
-/datum/uplink_item/species_restricted/lycan_booster
+/datum/uplink_item/lycan_booster
 	name = "Lycanthropy Booster"
-	desc = "A highly advanced mix of nanomachines and general 'bad vibes' that will significantly boost the combat performance of your \
-	Lycan form, granting significant damage resistance, baton resistance, regeneration, and further sharpening your claws. Additionally grants you expert fitness."
+	desc = "A highly advanced mix of nanomachines and general 'bad vibes' that will significantly boost the combat performance of a Cursekin's \
+	Lycan form, granting significant damage resistance, baton resistance, regeneration, and further sharpening your claws. Additionally grants you expert fitness. \
+	ONLY USABLE ON CURSEKIN."
 	cost = 15
 	item = /obj/item/lycan_booster
-	restricted_species = list(SPECIES_CURSEKIN)
 	surplus = 0
+	category = /datum/uplink_category/dangerous
+	refundable = TRUE
 
 /obj/item/lycan_booster
 	name = "lycanthropy booster"
-	desc = "A highly advanced mix of nanomachines and general 'bad vibes' that will significantly boost the combat performance of your \
+	desc = "A highly advanced mix of nanomachines and general 'bad vibes' that will significantly boost the combat performance of a Cursekin's \
 	Lycan form, granting significant damage resistance, baton resistance, regeneration, and further sharpening your claws, along other improvements. \
 	Additionally grants you expert fitness."
 	icon = 'icons/obj/medical/syringe.dmi'
@@ -30,7 +32,7 @@
 
 	var/mob/living/carbon/human/human_user = user
 
-	if (!istype(human_user.dna?.species, /datum/species/human/cursekin))
+	if (!iscursekin(human_user))
 		to_chat(human_user, span_warning("You get the feeling your current physiology wouldn't support this booster."))
 		return
 
