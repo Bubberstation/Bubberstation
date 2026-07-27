@@ -1,9 +1,3 @@
-/datum/heretic_knowledge/void_cloak
-	desc = "Allows you to transmute a glass shard, a bedsheet, and any outer clothing item (such as armor or a suit jacket) \
-		to create a Void Cloak. While the hood is down, the cloak protects you from space. \
-		While the hood is up, the cloak is disguised as a gear harness. It also provide decent armor and \
-		has pockets which can hold one of your blades, various ritual components (such as organs), and small heretical trinkets."
-
 /obj/item/clothing/suit/hooded/cultrobes/void
 	hood_up_affix = ""
 

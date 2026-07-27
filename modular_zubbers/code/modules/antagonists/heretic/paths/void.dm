@@ -2,6 +2,11 @@
 // possinly also make it just not do damage bc sleep is kinda strong
 // damage resistance on the wakeup attack?
 
+/datum/heretic_knowledge/spell/void_phase
+	transmute_text = "Transmute an ingot of silver and any neck-cloak."
+	required_atoms = list(/obj/item/stack/sheet/mineral/silver = 1, /obj/item/clothing/neck/cloak = 1)
+	recharge_amount = 1
+
 /datum/action/cooldown/spell/pointed/void_phase
 	desc = "Lets you blink to your pointed destination, causes 3x3 aoe damage bubble \
 		around your pointed destination and your current location. \
@@ -60,8 +65,15 @@
 	one place for too long or people will start to realize. Attacking or being attacked will break the cloak."
 	gain_text = "The Aristocrat walks as gentle as a mouse, leaving nary a wave in the inky expanse of the void. Soon, then, I close my eyes - \
 	and there they are, the gravity of their pull inescapable."
+	transmute_text = "Sacrifice a shard of plasma glass."
+	required_atoms = list(/obj/item/shard/plasma)
 	action_to_add = /datum/action/cooldown/spell/void_stealth
 	cost = 2
+	max_charges = 2
+	recharge_amount = 1
+	path_recharge_amount = 0.5
+	focus_recharge_amount = 0.5
+	holywater_drain_amount = 0.33
 
 /datum/action/cooldown/spell/void_stealth
 	name = "Cloak of the dark"
@@ -102,7 +114,6 @@
 
 /datum/action/cooldown/spell/void_stealth/proc/cloak_mob(mob/living/cast_on)
 	active_cloak = cast_on.apply_status_effect(/datum/status_effect/void_stealth)
-	RegisterSignal(cast_on, SIGNAL_REMOVETRAIT(TRAIT_ALLOW_HERETIC_CASTING), PROC_REF(on_focus_lost))
 	to_chat(cast_on, span_notice("The void surrounds you, and you find yourself invisible to the mortal world."))
 
 /datum/action/cooldown/spell/void_stealth/proc/uncloak_mob(mob/living/cast_on, show_message = TRUE)
@@ -111,23 +122,11 @@
 		qdel(active_cloak)
 	active_cloak = null
 
-	UnregisterSignal(cast_on, SIGNAL_REMOVETRAIT(TRAIT_ALLOW_HERETIC_CASTING))
 	if(show_message)
 		cast_on.visible_message(
 			span_warning("[cast_on] appears from nothing!"),
 			span_notice("The void wrapping your form unravels, revealing you to the mortal world once more."),
 		)
-
-/// Signal proc for [SIGNAL_REMOVETRAIT] via [TRAIT_ALLOW_HERETIC_CASTING], losing our focus midcast will throw us out.
-/datum/action/cooldown/spell/void_stealth/proc/on_focus_lost(mob/living/source)
-	SIGNAL_HANDLER
-
-	uncloak_mob(source, show_message = FALSE)
-	source.visible_message(
-		span_warning("[source] suddenly appears from nothing!"),
-		span_userdanger("As you lose your focus, the void around your form unravels!"),
-	)
-	StartCooldown(remove_time)
 
 /// Shadow cloak effect. Sets the owner's alpha very low while also chilling the area around them
 /// If hit at all, the cloak is cancelled and put on cooldown
@@ -217,14 +216,10 @@
 
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
-/datum/heretic_knowledge/spell/void_prison
-	desc = "Grants you Void Prison, a spell that places your victim into a ball. In this state, \
-	the target is undamageable and slowly heals. Can be self-cast."
-
-/datum/action/cooldown/spell/pointed/void_prison
-	desc = "Sends a target into the void for 10 seconds. \
-		They will be unable to perform any actions for the duration, and will be untouchable and slowly heal. \
-		Afterwards, they will be returned to the mortal plane. Can be self-cast."
+/datum/heretic_knowledge/void_prison
+	desc = "Transmute a set of handcuffs, a stun baton, and a closet in sub-zero temperatures to gain a Void Prison.<br>\
+		A Void Prison is an orb that, when used, traps all nearby unmarked heathens into a stasis ball for 10 seconds. \
+		While in the ball, they are unable to speak, act, or be harmed. The Void Prison slowly heals them. The Void Prison is consumed after one use."
 
 /datum/action/cooldown/spell/pointed/void_prison/is_valid_target(atom/cast_on)
 	if (!ismob(cast_on))
@@ -248,6 +243,12 @@
 	owner.adjust_oxy_loss(healing_per_second * seconds_between_ticks)
 
 	// TODO heal wounds
+
+/obj/item/void_prison/examine(mob/user)
+	. = ..()
+
+	if (IS_HERETIC_OR_MONSTER(user))
+		. += span_notice("Using this while in-hand will trap nearby heathens in a prison wherein they cannot be harmed, cannot move, cannot act, and slowly heal.")
 
 /atom/movable/screen/alert/status_effect/void_chill
 	desc = "There's something freezing you from within and without. You've never felt cold this oppressive before... and yet theres something soothing about it. \
@@ -386,13 +387,13 @@
 	chemical_flags = NONE
 	process_flags = REAGENT_ORGANIC|REAGENT_SYNTHETIC // yes synths. u get healing 2
 
-/datum/heretic_knowledge/spell/void_conduit
-	desc = "Grants you Void Conduit, a spell which summons a pulsing gate to the Void itself. Every pulse freezes the air, while afflicting heathens with void chill and drowsiness. Heretics instead receive low pressure resistance."
-
-/datum/action/cooldown/spell/conjure/void_conduit
-	desc = "Opens a gate to the Void; it releases an intermittent pulse that afflicts Heathens with void chill and drowsiness, while freezing the air around it. \
-		Heathens that fall asleep under the effects of the conduit enter a deep eldritch sleep that heals them, but incapacitates them for a while. \
-		Affected Heretics instead receive low pressure resistance."
+/datum/heretic_knowledge/void_conduit
+	// the rework is sound, but void conduit is a AOE CC ability now, not a windowbreaker
+	desc = "Empowers your blade, allowing you to rip a hole through space itself.<br>\
+		Attacking a tile with one of your void blades will create conduit to the void, \
+		chilling nearby heathens and putting them to sleep, as well as cooling the air to a dangerous degree."
+	notice = "The blade is consumed in the process, and starts a cooldown."
+	COOLDOWN_DECLARE(conduit_cd)
 
 /obj/structure/void_conduit
 	var/cooling_per_pulse = 5

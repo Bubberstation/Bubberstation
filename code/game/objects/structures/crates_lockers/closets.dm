@@ -43,7 +43,6 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 	var/opened = FALSE
 	var/welded = FALSE
 	var/locked = FALSE
-	var/large = TRUE
 	var/wall_mounted = 0 //never solid (You can always pass over it)
 	var/breakout_time = 1200
 	var/message_cooldown
@@ -833,7 +832,7 @@ GLOBAL_LIST_EMPTY(roundstart_station_closets)
 		qdel(weapon)
 		card_reader_installed = TRUE
 
-		balloon_alert(user, "card reader installed")
+		balloon_alert(user, "card reader installed") // NIKO NOTE - messy merge here. should be smthn below, but we're missing a refactor.
 
 	else if(weapon.tool_behaviour == TOOL_CROWBAR && can_pryout_card_reader(user))
 		user.visible_message(span_notice("[user] begins to pry the card reader out from [src]."),\

@@ -1,6 +1,7 @@
 /datum/heretic_knowledge/emag_hand
 	name = "The Blacksmith's Hammer"
-	desc = "Sacrifice a set of wirecutters and a diamond to enhance your mansus grasp with the ability to cause malfunctiong (emagging) on right click for one use."
+	desc = "Enhance your mansus grasp with the ability to cause malfunctiong (emagging) on right click for one use."
+	transmute_text = "Sacrifice a pair of wirecutters and a diamond."
 	gain_text = "The Blacksmith is the creator, but also the destroyer, the corruptor. Nothing knows machines and their intricacies as he does."
 	required_atoms = list(
 		/obj/item/wirecutters = 1,
