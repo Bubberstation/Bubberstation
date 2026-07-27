@@ -1,6 +1,7 @@
-/mob/living
-	/// Normalized is a check for instances where more than one accessory of jewelry is worn. For all intensive purposes, only the first worn accessory stores the user's size.
-	var/normalized = FALSE
+/* /mob/living/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/status_indicator)
+ */
 
 /// Toggle admin frozen
 /mob/living/proc/toggle_admin_freeze(client/admin)

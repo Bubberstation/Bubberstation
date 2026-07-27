@@ -26,6 +26,3 @@
 
 /obj/item/clothing/glasses/science
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/eyes_teshari.dmi'
-
-/obj/item/clothing/glasses/meson/engine
-	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/eyes_teshari.dmi'

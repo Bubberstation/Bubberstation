@@ -11,6 +11,3 @@
 
 /obj/item/clothing/neck/cloak/colourable/shroud
 	greyscale_config_worn_teshari = /datum/greyscale_config/cloak/shroud/worn/teshari
-
-/obj/item/clothing/neck/cowboylea
-	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/neck/neck_teshari.dmi'

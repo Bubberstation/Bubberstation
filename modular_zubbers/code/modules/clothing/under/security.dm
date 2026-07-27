@@ -613,6 +613,3 @@
 
 /obj/item/clothing/under/rank/prisoner
 	greyscale_config_worn_teshari = /datum/greyscale_config/jumpsuit/prison/worn/teshari
-
-/obj/item/clothing/under/rank/security/peacekeeper/miniskirt
-	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'

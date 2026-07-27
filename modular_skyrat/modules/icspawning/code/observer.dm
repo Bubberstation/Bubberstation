@@ -4,7 +4,7 @@
 	quickicspawn(target, src)
 
 /mob/dead/observer/proc/quickicspawn(mob/target, mob/user)
-	if(!isobserver(target) || !check_rights(R_SPAWN, FALSE))
+	if(!isobserver(target) || !check_rights(R_SPAWN))
 		return
 
 	/// Whether to spawn in with sparks or in a pod
