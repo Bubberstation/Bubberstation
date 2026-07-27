@@ -73,6 +73,14 @@
 	name = "Jester Suit (Worn, Teshari)"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
 
+/datum/greyscale_config/jester_suit_alt/worn/digi
+	name = "Jester Suit (Alt, Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/civilian_digi.dmi'
+
+/datum/greyscale_config/jester_suit_alt/worn/teshari
+	name = "Jester Suit (Alt, Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/civilian_teshari.dmi'
+
 // shirts pants shorts teshari
 /datum/greyscale_config/buttondown_slacks/worn/teshari
 	name = "Buttondown with Slacks (Worn, Teshari)"
@@ -344,3 +352,39 @@
 /datum/greyscale_config/ties/worn/teshari
 	name = "Ties (Worn, Teshari)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/neck/neck_teshari.dmi'
+
+/datum/greyscale_config/jacket_lawyer/worn/teshari
+	name = "Formal Suit Jacket (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
+
+/datum/greyscale_config/large_bow/worn/teshari
+	name = "Large Bow (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/datum/greyscale_config/back_bow/worn/teshari
+	name = "Back Bow (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/datum/greyscale_config/sweet_bow/worn/teshari
+	name = "Sweet Bow (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/datum/greyscale_config/small_bow/worn/teshari
+	name = "Small Bow (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/datum/greyscale_config/legwraps/worn/teshari
+	name = "Leg Wraps (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/datum/greyscale_config/jester_hat_alt/worn/teshari
+	name = "Jester Hat (Alt, Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/costume_teshari.dmi'
+
+/datum/greyscale_config/trenchcoat/worn/teshari
+	name = "Trenchcoat (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
+
+/datum/greyscale_config/guard_bowman/worn/teshari
+	name = "Guard Bowman Headset (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/ears_teshari.dmi'
