@@ -193,7 +193,7 @@
 		to_chat(user, span_warning("The shuttle is too close to alter its trajectory!"))
 		return
 	var/list/options = list()
-	for(var/area_path as anything in GLOB.the_station_areas)
+	for(var/area_path in GLOB.the_station_areas)
 		var/area/candidate = GLOB.areas_by_type[area_path]
 		if(candidate)
 			options[candidate.name] = candidate

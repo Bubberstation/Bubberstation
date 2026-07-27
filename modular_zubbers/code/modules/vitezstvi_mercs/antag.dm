@@ -16,6 +16,8 @@
 		var/datum/objective/contract = new()
 		contract.owner = owner
 		contract.explanation_text = order
+		// vague standing orders, so they pass unless an admin says otherwise
+		contract.completed = TRUE
 		objectives += contract
 
 /datum/antagonist/ert/vitezstvi/greet()
