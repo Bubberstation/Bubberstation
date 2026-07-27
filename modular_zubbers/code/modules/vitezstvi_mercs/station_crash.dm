@@ -1,4 +1,4 @@
-/// Name of the room the drunken shuttle is about to crash into, for the klaxon.
+/// Room the drunks are arriving through, for the klaxon.
 GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 
 /// Chance of picking a comedic target instead of any real room.
@@ -41,20 +41,11 @@ GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "vodkabottle"
 
-/obj/effect/station_crash/oh_no/shuttle_crash()
-	var/list/candidates = prob(VITEZSTVI_FUNNY_LANDING_CHANCE) ? vitezstvi_funny_areas() : vitezstvi_crash_areas()
-	var/turf/target = length(candidates) ? get_safe_random_station_turf(candidates) : null
-	// a comedic pick can miss on maps lacking that room, so fall back before the vanilla helper
+/// Aims the drunks at a turf. Used by the opening roll and by admins.
+/proc/vitezstvi_place_crash_target(turf/target)
 	if(!target)
-		target = get_safe_random_station_turf(vitezstvi_crash_areas())
-	if(!target)
-		target = get_safe_random_station_turf()
-	if(!target)
-		return ..()
-
+		return FALSE
 	var/area/crash_area = get_area(target)
-	GLOB.vitezstvi_crash_area_name = crash_area?.name || "an unknown compartment"
-
 	for(var/station_port in SSshuttle.stationary_docking_ports)
 		var/obj/docking_port/stationary/home_port = station_port
 		if(home_port.shuttle_id != "emergency_home")
@@ -62,6 +53,33 @@ GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 		home_port.forceMove(target)
 		// shuttle rotates to match its dock, so a random facing varies the angle of entry
 		home_port.setDir(pick(GLOB.cardinals))
-		break
+		GLOB.vitezstvi_crash_area_name = crash_area?.name || "an unknown compartment"
+		return TRUE
+	return FALSE
+
+/// Ghosts get a seat, admins get a veto.
+/proc/vitezstvi_announce_target(rerouted = FALSE)
+	var/site = GLOB.vitezstvi_crash_area_name || "somewhere important"
+	var/obj/docking_port/mobile/emergency/vitezstvi/port = locate() in SSshuttle.mobile_docking_ports
+	notify_ghosts(
+		"The VARS-7 Provodnik is [rerouted ? "now" : ""] inbound to [site].",
+		source = port,
+		header = "Incoming Shuttle",
+	)
+	if(!port)
+		message_admins("VARS-7 Provodnik is inbound to [site].")
+		return
+	message_admins("VARS-7 Provodnik is inbound to [site]. (<a href='byond://?src=[REF(port)];vitezstvi_retarget=1'>CHANGE LANDING ZONE</a>)")
+
+/obj/effect/station_crash/oh_no/shuttle_crash()
+	var/list/candidates = prob(VITEZSTVI_FUNNY_LANDING_CHANCE) ? vitezstvi_funny_areas() : vitezstvi_crash_areas()
+	var/turf/target = length(candidates) ? get_safe_random_station_turf(candidates) : null
+	// comedic picks can miss on some maps, so fall back
+	if(!target)
+		target = get_safe_random_station_turf(vitezstvi_crash_areas())
+	if(!target)
+		target = get_safe_random_station_turf()
+	if(!vitezstvi_place_crash_target(target))
+		return ..()
 
 #undef VITEZSTVI_FUNNY_LANDING_CHANCE

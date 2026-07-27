@@ -72,7 +72,6 @@
 /area/shuttle/escape/luxury)
 "aj" = (
 /obj/item/reagent_containers/cup/glass/bottle/vodka,
-/obj/item/reagent_containers/cup/glass/bottle/vodka,
 /obj/effect/turf_decal/tile/brown/opposingcorners,
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
@@ -121,9 +120,7 @@
 /turf/open/floor/wood/tile,
 /area/shuttle/escape)
 "aG" = (
-/obj/machinery/door/airlock/hatch{
-	safe = 0
-	},
+/obj/machinery/door/airlock/hatch,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
@@ -137,9 +134,7 @@
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
 "aY" = (
-/obj/machinery/door/airlock/hatch{
-	safe = 0
-	},
+/obj/machinery/door/airlock/hatch,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
@@ -190,7 +185,6 @@
 /area/shuttle/escape)
 "bT" = (
 /obj/machinery/door/airlock/mining{
-	safe = 0;
 	name = "Cargo Bay"
 	},
 /obj/effect/turf_decal/trimline/brown/filled/warning{
@@ -230,7 +224,6 @@
 /obj/machinery/door/airlock/security/glass{
 	req_access = list();
 	req_one_access = list("vitezstvi_merc", "security", "command");
-	safe = 0;
 	name = "Escape Shuttle Brig";
 	normalspeed = 0
 	},
@@ -255,9 +248,10 @@
 /obj/item/toy/plush/lizard_plushie/green{
 	name = "Hides-On-Shuttle"
 	},
-/obj/item/reagent_containers/cup/glass/bottle/vodka{
-	pixel_y = -2;
-	pixel_x = 6
+/obj/item/gps{
+	desc = "A battered locator beacon, left in the care of a stuffed lizard who has been assured this is an important job.";
+	gpstag = "VARS-7";
+	name = "Finds-The-Shuttle"
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
@@ -324,7 +318,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock{
-	safe = 0;
 	id_tag = "Dorm2";
 	name = "Cabin 2"
 	},
@@ -344,6 +337,7 @@
 	},
 /obj/item/storage/belt/utility/full/powertools,
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery/light/directional/south,
 /turf/open/floor/iron/showroomfloor,
 /area/shuttle/escape)
 "ek" = (
@@ -361,20 +355,6 @@
 	desc = "A 'Titan' brand Plastitanium window, there is a small image of a cat etched into the bottom right corner"
 	},
 /turf/open/floor/plating,
-/area/shuttle/escape)
-"ev" = (
-/obj/structure/chair/comfy/teal{
-	dir = 4
-	},
-/obj/machinery/button/door/directional/west{
-	id = "Dorm1";
-	name = "Dormitory Door Lock";
-	normaldoorcontrol = 1;
-	specialfunctions = 4;
-	pixel_x = -9;
-	pixel_y = -24
-	},
-/turf/open/floor/pod/dark,
 /area/shuttle/escape)
 "ey" = (
 /obj/structure/table/wood,
@@ -418,9 +398,6 @@
 /obj/effect/turf_decal/trimline/white/warning{
 	dir = 10;
 	color = "#FE7300"
-	},
-/obj/item/reagent_containers/cup/glass/bottle/vodka{
-	pixel_x = -12
 	},
 /turf/open/floor/pod/dark,
 /area/shuttle/escape/brig)
@@ -520,7 +497,6 @@
 /area/shuttle/escape)
 "gQ" = (
 /obj/machinery/door/airlock/medical/glass{
-	safe = 0;
 	name = "Escape Shuttle Infirmary"
 	},
 /turf/open/floor/iron/dark/smooth_large,
@@ -558,7 +534,6 @@
 "iG" = (
 /obj/effect/turf_decal/tile/brown/opposingcorners,
 /obj/structure/closet/crate/secure/syndicate/gorlex,
-/obj/item/reagent_containers/cup/glass/bottle/vodka,
 /obj/item/reagent_containers/cup/glass/bottle/vodka,
 /obj/item/storage/medkit/emergency,
 /obj/item/ammo_box/speedloader/c357,
@@ -623,9 +598,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
-/obj/machinery/door/airlock/hatch{
-	safe = 0
-	},
+/obj/machinery/door/airlock/hatch,
 /obj/structure/fans/tiny,
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
@@ -813,9 +786,7 @@
 /turf/open/floor/noslip,
 /area/shuttle/escape)
 "lA" = (
-/obj/machinery/door/airlock/hatch{
-	safe = 0
-	},
+/obj/machinery/door/airlock/hatch,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
@@ -871,7 +842,6 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock{
-	safe = 0;
 	id_tag = "Dorm1";
 	name = "Cabin 1"
 	},
@@ -947,9 +917,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
-/obj/machinery/door/airlock/hatch{
-	safe = 0
-	},
+/obj/machinery/door/airlock/hatch,
 /obj/structure/fans/tiny,
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
@@ -1027,9 +995,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
-/obj/machinery/door/airlock/hatch{
-	safe = 0
-	},
+/obj/machinery/door/airlock/hatch,
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
 "qH" = (
@@ -1172,7 +1138,6 @@
 /obj/structure/window/reinforced/survival_pod/spawner/directional/south{
 	damage_deflection = 21
 	},
-/obj/item/reagent_containers/cup/glass/bottle/vodka,
 /turf/open/floor/pod/dark,
 /area/shuttle/escape/brig)
 "tS" = (
@@ -1212,7 +1177,8 @@
 	dir = 4
 	},
 /obj/structure/closet/crate/secure/syndicate/gorlex/weapons/bustedlock{
-	pixel_y = 0
+	pixel_y = 0;
+	desc = "A beaten up and likely stolen weapon crate with Gorlex Marauders branding. Its lock looks broken."
 	},
 /obj/item/gun/ballistic/automatic/miecz,
 /obj/item/ammo_box/magazine/miecz,
@@ -1313,8 +1279,7 @@
 /obj/machinery/door/window/survival_pod/left/directional/west{
 	name = "Shuttle Armory";
 	req_access = list();
-	req_one_access = list("vitezstvi_merc", "security");
-	safe = 0;
+	req_one_access = list("vitezstvi_merc", "security", "command");
 	damage_deflection = 21
 	},
 /obj/effect/turf_decal/trimline/red/warning,
@@ -1422,9 +1387,7 @@
 /turf/open/floor/iron/showroomfloor,
 /area/shuttle/escape)
 "yc" = (
-/obj/machinery/door/airlock/hatch{
-	safe = 0
-	},
+/obj/machinery/door/airlock/hatch,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
@@ -1568,6 +1531,7 @@
 	},
 /obj/effect/turf_decal/tile/purple/anticorner/contrasted,
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery/light/directional/south,
 /turf/open/floor/iron/showroomfloor,
 /area/shuttle/escape)
 "Bv" = (
@@ -1610,7 +1574,6 @@
 /area/shuttle/escape)
 "Cy" = (
 /obj/machinery/door/airlock/command{
-	safe = 0;
 	name = "Honk-E-Clown's Mafia Free Playland and Casino"
 	},
 /obj/structure/fans/tiny,
@@ -1644,9 +1607,7 @@
 /obj/docking_port/mobile/emergency/vitezstvi{
 	name = "VARS-7 'Provodnik'"
 	},
-/obj/machinery/door/airlock/hatch{
-	safe = 0
-	},
+/obj/machinery/door/airlock/hatch,
 /obj/structure/fans/tiny,
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
@@ -1719,9 +1680,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
-/obj/machinery/door/airlock/hatch{
-	safe = 0
-	},
+/obj/machinery/door/airlock/hatch,
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
 "El" = (
@@ -1795,10 +1754,6 @@
 /obj/item/clothing/mask/surgical,
 /obj/item/clothing/suit/apron/surgical,
 /obj/item/holosign_creator/medical/treatment_zone,
-/obj/item/reagent_containers/cup/glass/bottle/vodka{
-	pixel_x = 11;
-	pixel_y = -1
-	},
 /obj/item/defibrillator/loaded,
 /turf/open/floor/pod/light,
 /area/shuttle/escape)
@@ -1838,7 +1793,6 @@
 /obj/machinery/door/airlock/security/glass{
 	req_access = list();
 	req_one_access = list("vitezstvi_merc", "security", "command");
-	safe = 0;
 	name = "Escape Shuttle Brig";
 	normalspeed = 0
 	},
@@ -1858,15 +1812,13 @@
 "Fx" = (
 /obj/machinery/door/airlock/vault{
 	req_access = list();
-	req_one_access = list("vitezstvi_merc", "security");
-	safe = 0
+	req_one_access = list("vitezstvi_merc", "security")
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "FJ" = (
 /obj/effect/spawner/liquids_spawner/shoulders,
-/obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/iron/pool,
 /area/shuttle/escape)
 "FR" = (
@@ -1883,7 +1835,6 @@
 /obj/machinery/door/airlock/command/glass{
 	req_access = list();
 	req_one_access = list("vitezstvi_merc", "command");
-	safe = 0;
 	name = "Cockpit";
 	id_tag = "escape_cockpit_blast";
 	normalspeed = 0
@@ -1957,7 +1908,17 @@
 /area/shuttle/escape/brig)
 "HF" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/gun/grenadelauncher,
+/obj/item/gun/grenadelauncher{
+	pixel_y = 9
+	},
+/obj/item/grenade/chem_grenade/glitter/pink,
+/obj/item/grenade/chem_grenade/glitter/blue{
+	pixel_y = 0;
+	pixel_x = 7
+	},
+/obj/item/grenade/chem_grenade/glitter{
+	pixel_x = -5
+	},
 /turf/open/floor/eighties,
 /area/shuttle/escape/luxury)
 "HT" = (
@@ -1993,6 +1954,12 @@
 	},
 /obj/structure/sign/departments/security/directional/west,
 /obj/machinery/light/directional/west,
+/obj/machinery/button/door/directional/west{
+	id = "Dorm1";
+	name = "Dormitory Door Lock";
+	normaldoorcontrol = 1;
+	specialfunctions = 4
+	},
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
 "Ik" = (
@@ -2160,7 +2127,6 @@
 /obj/machinery/door/airlock/security/glass{
 	req_access = list();
 	req_one_access = list("vitezstvi_merc", "security", "command");
-	safe = 0;
 	name = "Escape Shuttle Brig";
 	normalspeed = 0
 	},
@@ -2325,7 +2291,6 @@
 /obj/machinery/door/airlock{
 	req_access = list();
 	req_one_access = list("vitezstvi_merc", "kitchen");
-	safe = 0;
 	name = "Kitchen Access"
 	},
 /obj/effect/turf_decal/tile/brown/diagonal_edge,
@@ -2348,14 +2313,6 @@
 /obj/item/food/burger/spell,
 /obj/item/storage/dice{
 	pixel_x = -11
-	},
-/obj/machinery/button/door/directional/west{
-	id = "Dorm2";
-	name = "Dormitory Door Lock";
-	normaldoorcontrol = 1;
-	specialfunctions = 4;
-	pixel_x = 9;
-	pixel_y = -24
 	},
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
@@ -2428,8 +2385,7 @@
 /obj/machinery/door/window/survival_pod/left/directional/east{
 	name = "Officer Seating";
 	req_access = list();
-	req_one_access = list("vitezstvi_merc", "security");
-	safe = 0
+	req_one_access = list("vitezstvi_merc", "security")
 	},
 /obj/effect/turf_decal/trimline/red/warning{
 	dir = 1
@@ -2471,9 +2427,9 @@
 	},
 /obj/item/food/pie/applepie{
 	pixel_y = 7;
-	pixel_x = 9
+	pixel_x = 9;
+	desc = "Plain or Toasted? Apple Pie and Coffee"
 	},
-/obj/item/reagent_containers/cup/soda_cans/dr_gibb,
 /obj/machinery/button/door{
 	id = "shuttlewindow";
 	name = "General Admission emergency shutters";
@@ -2482,6 +2438,7 @@
 	req_one_access = list("vitezstvi_merc", "command");
 	pixel_x = 7
 	},
+/obj/item/reagent_containers/cup/glass/coffee,
 /turf/open/floor/iron/showroomfloor,
 /area/shuttle/escape)
 "St" = (
@@ -2526,9 +2483,6 @@
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/machinery/light/directional/south,
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/reagent_containers/cup/glass/bottle/vodka{
-	pixel_x = -7
-	},
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
 "Th" = (
@@ -2804,6 +2758,13 @@
 "WT" = (
 /obj/effect/turf_decal/trimline/red/corner,
 /obj/machinery/light/directional/east,
+/obj/machinery/button/door/directional/west{
+	id = "Dorm2";
+	name = "Dormitory Door Lock";
+	normaldoorcontrol = 1;
+	specialfunctions = 4;
+	pixel_x = 24
+	},
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
 "Xd" = (
@@ -2875,10 +2836,6 @@
 	desc = "For when everything's going wrong and you just need a friend.";
 	name = "Calms-The-Panic"
 	},
-/obj/item/reagent_containers/cup/glass/bottle/vodka{
-	pixel_x = 10
-	},
-/obj/item/reagent_containers/cup/glass/bottle/vodka,
 /obj/item/reagent_containers/cup/glass/bottle/vodka{
 	pixel_x = 5
 	},
@@ -3727,7 +3684,7 @@ Vv
 Vv
 Vv
 up
-af
+cf
 cz
 Wo
 bJ
@@ -3757,7 +3714,7 @@ kd
 kd
 kc
 Ed
-ev
+Bl
 uV
 cf
 cf

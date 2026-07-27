@@ -15,3 +15,9 @@
 		/obj/item/mod/module/magboot/advanced,
 		/obj/item/mod/module/medbeam,
 	)
+
+/obj/item/mod/control/pre_equipped/frontline/ert/vitezstvi/Initialize(mapload)
+	. = ..()
+	// no hat stabilizer, so berets sit under the helmet instead of falling off
+	for(var/obj/item/part as anything in get_parts())
+		qdel(part.GetComponent(/datum/component/hat_stabilizer))

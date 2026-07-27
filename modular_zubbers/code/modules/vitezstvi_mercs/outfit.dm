@@ -36,7 +36,7 @@
 		/obj/item/storage/box/nri_survival_pack = 1,
 		/obj/item/storage/medkit/emergency = 1,
 		/obj/item/ammo_box/speedloader/c357 = 2,
-		/obj/item/reagent_containers/cup/glass/bottle/vodka = 2,
+		/obj/item/reagent_containers/cup/glass/flask/vitezstvi = 1,
 	)
 	l_pocket = /obj/item/ammo_box/speedloader/c357
 	r_pocket = /obj/item/ammo_box/speedloader/c357
@@ -109,3 +109,9 @@
 	new /obj/item/grenade/frag(src)
 	new /obj/item/ammo_box/speedloader/c357(src)
 	new /obj/item/ammo_box/speedloader/c357(src)
+
+/obj/item/reagent_containers/cup/glass/flask/vitezstvi
+	name = "contractor's flask"
+	desc = "Standard issue, including the Vodka."
+	icon_state = "flask"
+	list_reagents = list(/datum/reagent/consumable/ethanol/vodka = 60)
