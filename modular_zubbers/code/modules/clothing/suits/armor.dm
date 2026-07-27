@@ -52,6 +52,7 @@
 	desc = "An armored durathread apron. This relatively innocent at first glance outfit is actually the specialized type worn by Nanotrasen's infamous high profile 'Cleaning and Clearing' kill squads. It's a lot more robust than it's janitorial counterpart. There are loops on the back for holding your 'mop'."
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
 	icon_state = "security_maid"
 	allowed = list(
 		/obj/item/access_key,
@@ -266,3 +267,30 @@
 
 /obj/item/clothing/head/hooded/cultlain_hood
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/blueshirt
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/alt
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/blueshirt/skyrat/customs_agent
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/alt/sec
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/warden
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/warden/alt
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/capcarapace
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/blueshield/jacket
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/vest/hop
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'

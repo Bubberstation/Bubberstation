@@ -20,6 +20,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/maidsec.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/maidsec.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/maidsec_d.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/maidsec_teshari.dmi'
 
 //Metro Cops
 
@@ -593,3 +594,22 @@
 /obj/item/clothing/under/rank/security/peacekeeper/armadyne
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom_digi.dmi'
 	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
+
+/obj/item/clothing/under/rank/security/officer
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/officer/skirt
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/corrections_officer/sweater
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/rank/security/detective
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/detective/skirt
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
+
+/obj/item/clothing/under/rank/prisoner
+	greyscale_config_worn_teshari = /datum/greyscale_config/jumpsuit/prison/worn/teshari

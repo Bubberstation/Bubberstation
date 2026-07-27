@@ -99,3 +99,6 @@
 		return
 
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
+
+/obj/item/clothing/mask/gas/sechailer
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/mask/mask_teshari.dmi'

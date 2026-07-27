@@ -75,3 +75,11 @@
 
 /obj/item/clothing/under/pants/skyrat/jeans_ripped
 	greyscale_config_worn_teshari = /datum/greyscale_config/jeans_ripped/worn/teshari
+
+// GAGS version of old maid outfit
+/obj/item/clothing/under/maid_costume
+	greyscale_config_worn_teshari = /datum/greyscale_config/bubber_maid_costume/worn/teshari
+
+// new maid outfit
+/obj/item/clothing/under/costume/maid
+	greyscale_config_worn_teshari = /datum/greyscale_config/maid/worn/teshari
