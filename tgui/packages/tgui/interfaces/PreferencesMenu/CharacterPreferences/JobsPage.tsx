@@ -180,7 +180,7 @@ function PriorityButtons(props: PriorityButtonsProps) {
           />
         </>
       )}
-    </Box> // SKYRAT EDIT - Originally a stack
+    </Stack>
   );
 }
 
@@ -227,12 +227,6 @@ function JobRow(props: JobRowProps) {
   const experienceNeeded = job_required_experience?.[name];
   const daysLeft = job_days_left ? job_days_left[name] : 0;
 
-  // SKYRAT EDIT ADDITION
-  const alt_title_selected = data.job_alt_titles[name]
-    ? data.job_alt_titles[name]
-    : name;
-  // SKYRAT EDIT END
-
   let rightSide: ReactNode;
 
   if (experienceNeeded) {
@@ -255,18 +249,6 @@ function JobRow(props: JobRowProps) {
       </Stack>
     );
   } else if (data.job_bans && data.job_bans.indexOf(name) !== -1) {
-    rightSide = (
-      <Stack pr={1}>
-        <Stack.Item grow textAlign="right" height="stretch">
-          <b>Banned</b>
-        </Stack.Item>
-      </Stack>
-    );
-    // SKYRAT EDIT START
-  } else if (
-    data.species_restricted_jobs &&
-    data.species_restricted_jobs.indexOf(name) !== -1
-  ) {
     rightSide = (
       <Stack pr={1}>
         <Stack.Item grow textAlign="right" height="stretch">
@@ -396,7 +378,7 @@ function Department(props: DepartmentProps) {
       <Stack fill vertical g={0}>
         {jobsForDepartment.map(([name, job], index) => {
           return (
-            <JobRow /* SKYRAT EDIT START - Fixing alt titles */
+            <JobRow
               className={classes([
                 'PreferencesMenu__Jobs__departments',
                 className,

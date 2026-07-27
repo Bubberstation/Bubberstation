@@ -97,7 +97,6 @@ There are several things that need to be remembered:
 		var/icon_file
 		var/woman
 		var/female_sprite_flags = uniform.female_sprite_flags
-		var/digi // SKYRAT EDIT ADDITION - Digi female gender shaping
 		var/mutant_styles = NONE // SKYRAT EDIT ADDITON - mutant styles to pass down to build_worn_icon.
 		//BEGIN SPECIES HANDLING
 		if(digi && (uniform.supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION))
@@ -293,13 +292,9 @@ There are several things that need to be remembered:
 				mutant_override = TRUE
 		// SKYRAT EDIT END
 
-		var/mutable_appearance/ears_overlay = ears.build_worn_icon(default_layer = EARS_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null, bodyshape = bodyshape) // SKYRAT EDIT CHANGE
-
-		// SKYRAT EDIT ADDITION
-		if(!mutant_override)
+		var/mutable_appearance/ears_overlay = ears.build_worn_icon(default_layer = EARS_LAYER, default_icon_file = icon_file, bodyshape = bodyshape, override_file = mutant_override ? icon_file : null) // BUBBER EDIT CHANGE - ORIGINAL: var/mutable_appearance/ears_overlay = ears.build_worn_icon(default_layer = NECK_LAYER, default_icon_file = icon_file, bodyshape = bodyshape)
 		apply_height(ears_overlay, UPPER_BODY)
-			my_head.worn_ears_offset?.apply_offset(ears_overlay)
-		// SKYRAT EDIT END
+		if(!mutant_override) my_head.worn_ears_offset?.apply_offset(ears_overlay) // BUBBER EDIT CHANGE - ORIGINAL: my_head.worn_ears_offset?.apply_offset(ears_overlay)
 		overlays_standing[EARS_LAYER] = ears_overlay
 	apply_overlay(EARS_LAYER)
 
@@ -539,27 +534,22 @@ There are several things that need to be remembered:
 
 		var/icon_file = 'icons/mob/clothing/mask.dmi'
 
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION START
 		var/mutant_override = FALSE
 		if(bodyshape & BODYSHAPE_CUSTOM)
-			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_FACEMASK, wear_mask, src)
+			var/species_icon_file = dna.species.generate_custom_worn_icon(LOADOUT_ITEM_MASK, wear_mask, src)
 			if(species_icon_file)
 				icon_file = species_icon_file
 				mutant_override = TRUE
-		if((icon_file == 'icons/mob/clothing/mask.dmi') && (bodyshape & BODYSHAPE_SNOUTED) && (worn_item.supports_variations_flags & CLOTHING_SNOUTED_VARIATION))
+		if(!mutant_override && (bodyshape & BODYSHAPE_SNOUTED) && (worn_item.supports_variations_flags & CLOTHING_SNOUTED_VARIATION))
 			var/snout_icon_file = worn_item.worn_icon_muzzled || SNOUTED_MASK_FILE
 			if(snout_icon_file && icon_exists(snout_icon_file, RESOLVE_ICON_STATE(worn_item)))
 				icon_file = snout_icon_file
 				mutant_override = TRUE
-		// SKYRAT EDIT END
-
-		var/mutable_appearance/mask_overlay = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null, bodyshape = bodyshape) // SKYRAT EDIT CHANGE
-
-		// SKYRAT EDIT ADDITION
-		if(!mutant_override)
+		// BUBBER EDIT ADDITION END
+		var/mutable_appearance/mask_overlay = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = icon_file, bodyshape = bodyshape)
 		apply_height(mask_overlay, UPPER_BODY)
-			my_head.worn_mask_offset?.apply_offset(mask_overlay)
-		// SKYRAT EDIT END
+		if(!mutant_override) my_head.worn_mask_offset?.apply_offset(mask_overlay) // BUBBER EDIT CHANGE - ORIGINAL: my_head.worn_mask_offset?.apply_offset(mask_overlay)
 		overlays_standing[FACEMASK_LAYER] = mask_overlay
 
 	apply_overlay(FACEMASK_LAYER)
@@ -574,26 +564,18 @@ There are several things that need to be remembered:
 
 		var/icon_file = 'icons/mob/clothing/back.dmi'
 
-		// SKYRAT EDIT ADDITION
+		// BUBBER EDIT ADDITION START
 		var/mutant_override = FALSE
 		if(bodyshape & BODYSHAPE_CUSTOM)
-			var/species_icon_file = dna.species.generate_custom_worn_icon(OFFSET_BACK, back, src)
+			var/species_icon_file = dna.species.generate_custom_worn_icon(LOADOUT_ITEM_MISC, back, src)
 			if(species_icon_file)
 				icon_file = species_icon_file
 				mutant_override = TRUE
-		// SKYRAT EDIT END
-
-		back_overlay = back.build_worn_icon(default_layer = BACK_LAYER, default_icon_file = icon_file, override_file = mutant_override ? icon_file : null, bodyshape = bodyshape) // SKYRAT EDIT CHANGE
-
-		if(!back_overlay)
-			return
-		var/mutable_appearance/back_overlay = back.build_worn_icon(default_layer = BACK_LAYER, default_icon_file = icon_file, bodyshape = bodyshape)
+		// BUBBER EDIT ADDITION END
+		var/mutable_appearance/back_overlay = back.build_worn_icon(default_layer = BACK_LAYER, default_icon_file = icon_file, bodyshape = bodyshape, override_file = mutant_override ? icon_file : null) // NOVA EDIT CHANGE - ORIGINAL: back_overlay = back.build_worn_icon(default_layer = BACK_LAYER, default_icon_file = icon_file, bodyshape = bodyshape)
 		apply_height(back_overlay, ENTIRE_BODY)
 		var/obj/item/bodypart/chest/my_chest = get_bodypart(BODY_ZONE_CHEST)
-		// SKYRAT EDIT ADDITION
-		if(!mutant_override)
-			my_chest?.worn_back_offset?.apply_offset(back_overlay)
-		// SKYRAT EDIT END
+		if(!mutant_override) my_chest?.worn_back_offset?.apply_offset(back_overlay) // BUBBER EDIT CHANGE - ORIGINAL: my_chest?.worn_back_offset?.apply_offset(back_overlay)
 		overlays_standing[BACK_LAYER] = back_overlay
 	apply_overlay(BACK_LAYER)
 // BUBBER EDIT START
@@ -1140,50 +1122,6 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	update_eyes()
 	update_hair()
 
-// Hooks into human apply overlay so that we can modify all overlays applied through standing overlays to our height system.
-// Some of our overlays will be passed through a displacement filter to make our mob look taller or shorter.
-// Some overlays can't be displaced as they're too close to the edge of the sprite or cross the middle point in a weird way.
-// So instead we have to pass them through an offset, which is close enough to look good.
-/mob/living/carbon/human/apply_overlay(cache_index)
-	if(mob_height == HUMAN_HEIGHT_MEDIUM)
-		return ..()
-
-	var/raw_applied = overlays_standing[cache_index]
-	var/string_form_index = num2text(cache_index)
-	var/offset_type = GLOB.layers_to_offset[string_form_index]
-	if(isnull(offset_type))
-		if(islist(raw_applied))
-			for(var/image/applied_appearance in raw_applied)
-				/*
-				BUBBER EDIT - ADDITION - CHANGE
-				ORIGINAL: apply_height_filters(applied_appearance)
-				*/
-				var/sub_offset_type = GLOB.layers_to_offset[num2text(-applied_appearance.layer)]
-				if(isnull(sub_offset_type))
-					if(findtext(applied_appearance.icon_state, "horns_", 3, 9) || findtext(applied_appearance.icon_state, "ears_", 3, 8))
-						sub_offset_type = UPPER_BODY
-				if(sub_offset_type)
-					applied_appearance.pixel_z = initial(applied_appearance.pixel_z)
-					apply_height_offsets(applied_appearance, sub_offset_type)
-				else
-					apply_height_filters(applied_appearance)
-				// BUBBER EDIT - ADDITION - END
-		else if(isimage(raw_applied))
-			apply_height_filters(raw_applied)
-	else
-		if(islist(raw_applied))
-			for(var/image/applied_appearance in raw_applied)
-				apply_height_offsets(applied_appearance, offset_type)
-		else if(isimage(raw_applied))
-			apply_height_offsets(raw_applied, offset_type)
-
-	return ..()
-
-/**
- * Used in some circumstances where appearances can get cut off from the mob sprite from being too tall
- *
- * upper_torso is to specify whether the appearance is locate in the upper half of the mob rather than the lower half,
- * higher up things (hats for example) need to be offset more due to the location of the filter displacement
 /**
  * Applies an offset or a filter to an appearance accordance to the height of our mob
  *

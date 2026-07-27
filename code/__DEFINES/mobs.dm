@@ -940,12 +940,6 @@ GLOBAL_ALIST_INIT(human_heights_to_offsets, alist(
 #define EXTERNAL_FRONT "FRONT"
 #define EXTERNAL_ADJACENT "ADJ"
 #define EXTERNAL_BEHIND "BEHIND"
-// BUBBER EDIT ADDITION - START
-#define EXTERNAL_FRONT_UNDER_CLOTHES "FRONT_UNDER_CLOTHES"
-#define EXTERNAL_FRONT_OVER "FRONT_OVER"
-#define EXTERNAL_FRONT_ABOVE_HAIR "FRONT_ABOVE_HAIR"
-// BUBBER EDIT ADDITION - END
-
 // Bitflags for external organs restylability
 #define EXTERNAL_RESTYLE_ALL ALL
 /// This organ allows restyle through plant restyling (like secateurs)
