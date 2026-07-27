@@ -4,7 +4,6 @@
 	prompt_name = "Vítězství Arms contractor"
 	icon = 'icons/obj/mining_zones/spawners.dmi'
 	icon_state = "cryostasis_sleeper"
-	mob_species = /datum/species/human
 	faction = list(FACTION_NEUTRAL, FACTION_VITEZSTVI)
 	you_are_text = "You are a Vítězství Arms contractor."
 	flavour_text = "You and your comrades have been running guns in this sector for years right under GalFed's nose. A friend of yours in the station's Cargo Department called in a favor, said favor was simple; \"GET US THE FUCK OUT OF HERE.\" The VARS-7 'Provodnik' has answered. You and the rest of its contractors are here to secure the vessel, collect every surviving crew member you can reach, and leave before whatever is happening to the station gets you too. The landing will be rough on account of the fact that your blood contains enough vodka to kill a Terran."
