@@ -10,7 +10,7 @@
 	name = "Red Sun Balm"
 	id = "dfbbr_sun_balm"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 50)
+	materials = list(/datum/material/biomass = 18)
 	build_path = /obj/item/stack/medical/ointment/red_sun
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -18,7 +18,7 @@
 	name = "Ointment"
 	id = "dfbbr_ointment"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 25)
+	materials = list(/datum/material/biomass = 6)
 	build_path = /obj/item/stack/medical/ointment
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -26,7 +26,7 @@
 	name = "Sealed Aseptic Gauze"
 	id = "dfbbr_aseptic_gauze"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 50)
+	materials = list(/datum/material/biomass = 16)
 	build_path = /obj/item/stack/medical/wrap/gauze/sterilized
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -34,7 +34,7 @@
 	name = "Regenerative Mesh"
 	id = "dfbbr_mesh"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 150)
+	materials = list(/datum/material/biomass = 12)
 	build_path = /obj/item/stack/medical/mesh
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -42,7 +42,7 @@
 	name = "Hemostatic Mesh"
 	id = "dfbbr_slavic_mesh"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 150)
+	materials = list(/datum/material/biomass = 10)
 	build_path = /obj/item/stack/medical/mesh/bloody
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -52,7 +52,7 @@
 	name = "Bruise Packs"
 	id = "dfbbr_bruise_packs"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 25)
+	materials = list(/datum/material/biomass = 8)
 	build_path = /obj/item/stack/medical/bruise_pack
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -60,7 +60,7 @@
 	name = "First Aid Bandage"
 	id = "dfbbr_bandaid"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 100)
+	materials = list(/datum/material/biomass = 50)
 	build_path = /obj/item/stack/medical/bandage
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -68,7 +68,7 @@
 	name = "Sutures"
 	id = "dfbbr_suture"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 150)
+	materials = list(/datum/material/biomass = 16)
 	build_path = /obj/item/stack/medical/suture
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -76,7 +76,7 @@
 	name = "Hemostatic Sutures"
 	id = "dfbbr_slavic_suture"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 150)
+	materials = list(/datum/material/biomass = 30)
 	build_path = /obj/item/stack/medical/suture/bloody
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -86,7 +86,7 @@
 	name = "Coagulant-F Packet"
 	id = "dfbbr_coagulant_pack"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 50)
+	materials = list(/datum/material/biomass = 10)
 	build_path = /obj/item/stack/medical/suture/coagulant
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -94,7 +94,7 @@
 	name = "Rapid Coagulant Applicator"
 	id = "dfbbr_coagulant_rapid"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 100)
+	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/stack/medical/wound_recovery/rapid_coagulant
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -104,7 +104,7 @@
 	name = "Robotic Repair Patch"
 	id = "dfbbr_repair_patch"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 100)
+	materials = list(/datum/material/biomass = 50)
 	build_path = /obj/item/reagent_containers/applicator/pill/robotic_patch/synth_repair
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -112,7 +112,7 @@
 	name = "Robotic Repair Spray"
 	id = "dfbbr_repair_foam"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 100)
+	materials = list(/datum/material/biomass = 80)
 	build_path = /obj/item/stack/medical/wound_recovery/robofoam
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -120,7 +120,7 @@
 	name = "Premium Robotic Repair Spray"
 	id = "dfbbr_repair_foam_premium"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 200)
+	materials = list(/datum/material/biomass = 160)
 	build_path = /obj/item/stack/medical/wound_recovery/robofoam_super
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -130,7 +130,7 @@
 	name = "Medical Gauze"
 	id = "dfbbr_slavic_gauze"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 100)
+	materials = list(/datum/material/biomass = 16)
 	build_path = /obj/item/stack/medical/wrap/gauze
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -138,7 +138,7 @@
 	name = "Bone Gel"
 	id = "dfbbr_bone_gel"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 100)
+	materials = list(/datum/material/biomass = 50)
 	build_path = /obj/item/stack/medical/bone_gel
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -146,7 +146,7 @@
 	name = "Surgical Tape"
 	id = "dfbbr_surgical_tape"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 100)
+	materials = list(/datum/material/biomass = 50)
 	build_path = /obj/item/stack/medical/wrap/sticky_tape/surgical
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
@@ -154,7 +154,7 @@
 	name = "Subdermal Splint Applicator"
 	id = "dfbbr_splint_applicator"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 300)
+	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/stack/medical/wound_recovery
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
