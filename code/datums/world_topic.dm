@@ -199,7 +199,7 @@
 	. = list()
 	for(var/client/C as anything in GLOB.clients)
 		var/mob/character = C.mob
-		if(!istype(character) || !character.mind) // skip lobby/character-setup connections, nothing to report yet
+		if(!istype(character) || isnewplayer(character) || !character.mind) // skip lobby/character-setup connections, nothing to report yet
 			continue
 
 		var/list/entry = list()
