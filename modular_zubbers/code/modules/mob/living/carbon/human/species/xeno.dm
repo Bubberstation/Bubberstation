@@ -8,6 +8,10 @@
 		TRAIT_MUTANT_COLORS,
 		TRAIT_NIGHT_VISION
 	)
+	mutant_organs = list(
+		/obj/item/organ/alien/plasmavessel/roundstart,
+		/obj/item/organ/alien/resinspinner/roundstart,
+		)
 	species_language_holder = /datum/language_holder/xeno_hybrid
 
 /datum/species/xeno/get_species_description()
@@ -52,7 +56,7 @@
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "eye",
 		SPECIES_PERK_NAME = "Darkvision",
-		SPECIES_PERK_DESC = "Xenomorph Hybrids inherit the ability to see in the dark from pure Xenomorphs, albiet to a less powerful degree."
+		SPECIES_PERK_DESC = "Xenomorph Hybrids inherit the ability to see in the dark from pure Xenomorphs, albeit to a less powerful degree."
 	))
 
 	to_add += list(list(
@@ -63,3 +67,16 @@
 	))
 
 	return to_add
+
+/datum/action/cooldown/alien/make_structure/resin/roundstart
+	/// A list of all structures we can make-- Unlike a normal xeno resin spinner, these can't make walls or membranes (windows)
+	structures = list(
+		"xenohybrid resin nest" = /obj/structure/bed/nest/xenohybrid,
+	)
+
+/datum/action/cooldown/alien/make_structure/plant_weeds/roundstart
+	name = "Plant Weeds"
+	desc = "Plants some alien weeds."
+	button_icon_state = "alien_plant"
+	plasma_cost = 25
+	made_structure_type = /obj/structure/alien/weeds/xenohybrid/node // Nodes from this action have a lower range and grow much slower.

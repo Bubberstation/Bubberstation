@@ -309,7 +309,7 @@ Doesn't work on other aliens/AI.*/
 	button_icon_state = "alien_resin"
 	plasma_cost = 55
 	/// A list of all structures we can make.
-	var/static/list/structures = list(
+	var/list/structures = list( //BUBBER EDIT: Makes the list not static
 		"resin wall" = /obj/structure/alien/resin/wall,
 		"resin membrane" = /obj/structure/alien/resin/membrane,
 		"resin nest" = /obj/structure/bed/nest,

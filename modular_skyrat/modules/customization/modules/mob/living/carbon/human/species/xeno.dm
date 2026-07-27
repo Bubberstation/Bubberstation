@@ -83,7 +83,7 @@
 	xeno.update_body(TRUE)
 
 ///Xenomorph organs modified to suit roundstart styling
-#define BUILD_DURATION 0.5 SECONDS
+#define BUILD_DURATION 5 SECONDS //BUBBER EDIT: 0.5 SECONDS --> 5 SECONDS
 
 //Plasma vessel
 /obj/item/organ/alien/plasmavessel/roundstart
