@@ -165,7 +165,12 @@
 	switch(smite_rng_seed % 9)
 		if(0)
 			//Bad luck.
-			target.AddComponent(/datum/component/omen/smite, incidents_left = 7) //7 (years) bad luck
+			target.AddComponent( \
+				/datum/component/omen, \
+				incidents_left = 7, \
+				on_death = CALLBACK(src, PROC_REF(on_death)), \
+				bless_fixable = incidents != INFINITY, \
+			)
 			to_chat(target, span_warning("You get a bad feeling about this..."))
 		if(1)
 			//Drain bamage.

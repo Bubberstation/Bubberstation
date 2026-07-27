@@ -99,7 +99,6 @@
 	rack_sound = 'modular_skyrat/modules/moretraitoritems/sound/slide.ogg'
 	fire_sound_volume = 100
 	bolt_wording = "fuckin' slide"
-	reload_time = 0 //FAST AS FUCK BOIS!
 	var/unrestricted = FALSE
 
 /obj/item/gun/ballistic/automatic/pistol/robohand/unrestricted

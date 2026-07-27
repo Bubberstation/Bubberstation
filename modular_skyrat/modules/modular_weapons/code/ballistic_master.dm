@@ -3,8 +3,6 @@
 	var/alt_icons = FALSE
 	/// What the icon state is for the on-back guns
 	var/alt_icon_state
-	/// How long it takes to reload a magazine.
-	var/reload_time = 2 SECONDS
 	/// if this gun has a penalty for reloading with an ammo_box type
 	var/box_reload_penalty = TRUE
 	/// reload penalty inflicted by using an ammo box instead of an individual cartridge, if not outright exchanging the magazine
