@@ -1180,11 +1180,6 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	return ..()
 
 /**
- * Used in some circumstances where appearances can get cut off from the mob sprite from being too tall
- *
- * upper_torso is to specify whether the appearance is locate in the upper half of the mob rather than the lower half,
- * higher up things (hats for example) need to be offset more due to the location of the filter displacement
-/**
  * Applies an offset or a filter to an appearance accordance to the height of our mob
  *
  * * appearance - The appearance to apply the height changes to
