@@ -5,9 +5,7 @@
 /obj/item/tank/internals/nitrogen
 	name = "nitrogen tank"
 	desc = "A small tank of nitrogen, for crew who don't breathe the standard air mix."
-	icon = 'modular_skyrat/master_files/icons/obj/tank.dmi'
-	icon_state = "nitrogen"
-	tank_holder_icon_state = "holder_nitrogen"
+	icon_state = "oxygen_fr"
 	force = 10
 	distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
 	distribute_pressure = 4 // see vox.dm for their intake values balance changes
@@ -21,12 +19,12 @@
 	air_contents.gases[/datum/gas/nitrogen][MOLES] = (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 
 /obj/item/tank/internals/nitrogen/belt
+	icon = 'modular_skyrat/master_files/icons/obj/tank.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/species/vox/belt.dmi'
 	lefthand_file = 'modular_skyrat/master_files/icons/mob/inhands/equipment/tanks_lefthand.dmi'
 	righthand_file = 'modular_skyrat/master_files/icons/mob/inhands/equipment/tanks_righthand.dmi'
-	icon_state = "nitrogen_emergency_ext"
+	icon_state = "nitrogen_extended"
 	inhand_icon_state = "nitrogen"
-	tank_holder_icon_state = "holder_nitrogen_emergency_ext"
 	slot_flags = ITEM_SLOT_BELT
 	force = 5
 	volume = 12
@@ -39,8 +37,7 @@
 /obj/item/tank/internals/nitrogen/belt/emergency
 	name = "emergency nitrogen tank"
 	desc = "Used for emergencies. Contains very little nitrogen, so try to conserve it until you actually need it."
-	icon_state = "nitrogen_emergency"
-	tank_holder_icon_state = "holder_nitrogen_emergency"
+	icon_state = "nitrogen"
 	worn_icon_state = "nitrogen_extended"
 	volume = 3
 

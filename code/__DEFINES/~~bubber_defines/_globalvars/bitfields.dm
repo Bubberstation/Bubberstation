@@ -1,3 +1,0 @@
-DEFINE_BITFIELD(bubber_obj_flags, list(
-	"TRUE_IMMUTABLE_SLOW" = TRUE_IMMUTABLE_SLOW,
-))

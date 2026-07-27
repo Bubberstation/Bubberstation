@@ -273,7 +273,6 @@
 				for(var/i in 1 to number)
 					user.equip_to_storage(SSwardrobe.provide_type(path, user), ITEM_SLOT_BELT, indirect_action = TRUE, del_on_fail = TRUE)
 
-	SEND_SIGNAL(user.dna.species, COMSIG_OUTFIT_EQUIP, src, visuals_only) // BUBBER EDIT: Proteans. See /datum/species/protean/proc/outfit_handling
 	post_equip(user, visuals_only)
 
 	if(!visuals_only)
@@ -304,6 +303,7 @@
 				if(activate_msg)
 					CRASH("Failed to activate [user]'s [skillchip_instance], on job [src]. Failure message: [activate_msg]")
 
+	SEND_SIGNAL(user.dna.species, COMSIG_OUTFIT_EQUIP, src, visuals_only) // BUBBER EDIT: Proteans. See /datum/species/protean/proc/outfit_handling
 	user.update_body()
 	return TRUE
 

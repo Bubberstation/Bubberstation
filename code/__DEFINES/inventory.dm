@@ -257,8 +257,7 @@ GLOBAL_LIST_INIT(any_suit_storage, typecacheof(list(
 	/obj/item/gun/energy/laser/bluetag,
 	/obj/item/gun/energy/laser/redtag,
 	/obj/item/storage/belt/holster,
-	/obj/item/storage/belt/sheath,
-	/obj/item/cargo_teleporter, // BUBBER EDIT ADDITION - cargo teleporter
+	/obj/item/storage/belt/sheath
 )))
 
 //Allowed equipment lists for security vests.

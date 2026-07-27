@@ -626,37 +626,36 @@
 	return ..()
 
 /obj/item/mod/control/proc/install(obj/item/mod/module/new_module, mob/user, silent = FALSE) // Bubber Edit: Silent = FALSE
-	. = FALSE // BUBBER EDIT
 	for(var/obj/item/mod/module/old_module as anything in modules)
 		if(is_type_in_list(new_module, old_module.incompatible_modules) || is_type_in_list(old_module, new_module.incompatible_modules))
 			if(user && !silent) // Bubber Edit: Silent arg
 				balloon_alert(user, "incompatible with [old_module]!")
 				playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
-			return
+			return FALSE //Bubber Edit: Return False
 	var/complexity_with_module = complexity
 	complexity_with_module += new_module.complexity
 	if(complexity_with_module > complexity_max)
-		if(user && !silent)
+		if(user && !silent) // Bubber Edit: Silent arg
 			balloon_alert(user, "above complexity max!")
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
-		return
+		return FALSE //Bubber Edit: Return False
 	if(!new_module.has_required_parts(mod_parts))
 		if(user && !silent) // Bubber Edit: Silent arg
 			balloon_alert(user, "lacking required parts!")
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
-		return
+		return FALSE //Bubber Edit:
 	if(!new_module.can_install(src))
 		if(user && !silent) // Bubber Edit: Silent arg
 			balloon_alert(user, "can't install!")
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
-		return
+		return FALSE // Bubber edit: Return False
 	if(SEND_SIGNAL(src, COMSIG_MOD_TRY_INSTALL_MODULE, new_module, user) & MOD_ABORT_INSTALL)
 		return
 	if(SEND_SIGNAL(new_module, COMSIG_MODULE_TRY_INSTALL, src, user) & MOD_ABORT_INSTALL)
 		return
-	return finish_install(new_module, user, silent) // BUBBER EDIT: Adds a return and silent arg.
+	finish_install(new_module, user)
 
-/obj/item/mod/control/proc/finish_install(obj/item/mod/module/new_module, mob/user, silent = FALSE) // Bubber edit: Silent = FALSE
+/obj/item/mod/control/proc/finish_install(obj/item/mod/module/new_module, mob/user)
 	new_module.forceMove(src)
 	modules += new_module
 	complexity += new_module.complexity
@@ -667,7 +666,7 @@
 	if(active && new_module.has_required_parts(mod_parts, need_active = TRUE))
 		new_module.on_part_activation()
 		new_module.part_activated = TRUE
-	if(user && !silent) // Bubber Edit: Silent Arg
+	if(user) // Bubber Edit: Silent Arg
 		balloon_alert(user, "[new_module] added")
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 	return TRUE // Bubber Edit: Return True

@@ -81,5 +81,4 @@
 		/datum/computer_file/program/crew_manifest,
 		/datum/computer_file/program/robocontrol,
 		/datum/computer_file/program/radar/lifeline,
-		/datum/computer_file/program/faxbond,
 	)

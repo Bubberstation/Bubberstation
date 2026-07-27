@@ -7,10 +7,6 @@
 	/// The species handles cleanup on this
 	var/datum/species/protean/linked_species
 
-/obj/item/mod/core/protean/Destroy()
-	linked_species = null
-	return ..()
-
 /obj/item/mod/core/protean/charge_source()
 	if(isnull(linked_species))
 		return
@@ -32,10 +28,10 @@
 
 /// We don't charge in a standard way
 /obj/item/mod/core/protean/add_charge(amount)
-	return TRUE
+	return FALSE
 
 /obj/item/mod/core/protean/subtract_charge(amount)
-	return TRUE
+	return FALSE
 
 /obj/item/mod/core/protean/check_charge(amount)
 	var/obj/item/organ/stomach/protean/stomach = charge_source()
