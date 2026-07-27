@@ -337,13 +337,13 @@
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/storage/belt/sheath/hip_only/crusader/update_icon(updates)
+	. = ..()
 	if(contents.len == 2)	//Checks for a sword/rod in the sheath slot, changes the sprite accordingly
 		icon_state = "crusader_belt_sheathed"
 		worn_icon_state = "crusader_belt_sheathed"
 	else
 		icon_state = "crusader_belt"
 		worn_icon_state = "crusader_belt"
-	. = ..()
 
 /obj/item/storage/belt/sheath/hip_only/crusader/examine(mob/user)
 	. = ..()
