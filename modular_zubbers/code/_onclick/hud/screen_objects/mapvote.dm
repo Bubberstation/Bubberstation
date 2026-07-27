@@ -1,11 +1,12 @@
 //HUD Voting System. Ported from Monkestation 2.0 (#10369)
 
 /atom/movable/screen/mapvote_hud
-	name = "map vote"
+	name = "vote"
 	icon = 'modular_zubbers/icons/hud/screen_vote.dmi'
-	icon_state = "Glass_top"
+	icon_state = "Glass_header"
 	maptext_width = 96
-	maptext_height = 160
+	maptext_height = 32
+	maptext_y = 5
 	screen_loc = UI_VOTEHUD
 	plane = SPLASHSCREEN_PLANE
 	invisibility = INVISIBILITY_ABSTRACT
@@ -18,16 +19,14 @@
 
 /atom/movable/screen/mapvote_hud/Initialize(mapload, datum/hud/hud_owner, datum/preferences/preferences)
 	. = ..()
-/* I am not making good looking hud's for every type of a hud, framework's here though
+
 	if(preferences)
 		user_preference = preferences.read_preference(/datum/preference/choiced/ui_style)
-		if(icon_exists(icon, "[user_preference]_top"))
-			icon_state = "[user_preference]_top"
+		if(icon_exists(icon, "[user_preference]_header"))
+			icon_state = "[user_preference]_header"
 		else
 			user_preference = initial(user_preference)
-*/
 
-	// position this to the left if you're in the lobby, else it overlaps with the server buttons
 	if(isnewplayer(hud_owner?.mymob))
 		screen_loc = UI_VOTEHUD_LEFT
 
@@ -39,22 +38,22 @@
 	hide()
 	return ..()
 
-/atom/movable/screen/mapvote_hud/update_overlays()
+/atom/movable/screen/mapvote_hud/update_overlays(total_bg_tiles = latest_vote_length)
 	cut_overlays()
 	. = ..()
-	var/valid_maptext_dimensions = ICON_SIZE_Y * length(latest_vote_length)
-	maptext_height = valid_maptext_dimensions
-	maptext_y = -valid_maptext_dimensions
+
 	var/obj/effect/abstract/overlay_holder = new()
 	overlay_holder.icon = icon
 	overlay_holder.layer = layer
 	overlay_holder.plane = plane
-	for(var/index in 1 to latest_vote_length)
+
+	for(var/index in 1 to total_bg_tiles)
 		overlay_holder.pixel_y = index * -ICON_SIZE_Y
 		overlay_holder.icon_state = "[user_preference]_middle"
-		if(index == latest_vote_length)
+		if(index == total_bg_tiles)
 			overlay_holder.icon_state = "[user_preference]_bottom"
 		add_overlay(overlay_holder)
+
 	QDEL_NULL(overlay_holder)
 
 /atom/movable/screen/mapvote_hud/proc/fade_in(time = 0.3 SECONDS)
@@ -88,26 +87,63 @@
 
 	var/text = "[vote.override_question ? vote.override_question : vote.name]"
 	text = "[text]\n[latest_vote_count == VOTE_COUNT_METHOD_SINGLE ? "Single" : "Multiple"] choice"
-
 	maptext = MAPTEXT("<div align='center' valign='top' style='position:relative;'><font color='cyan'>[text]</font></div>")
-	update_overlays(latest_vote_length)
+	maptext_y = -4
+
+	// Find out if we need to use wide buttons or not. If any choice is longer than 16 characters, we use wide buttons.
+	var/use_wide_buttons = FALSE
+	for(var/choice in choices)
+		if(length(choice) >= 16)
+			use_wide_buttons = TRUE
+			break
+
+	// The spacing between buttons. If we're using wide buttons, we use the game's world.icon_size. Otherwise, we use a smaller value. 16(small) is half of 32 (wide), so it is safe.
+	// Adjust '16' to whatever pixel height looks best for your small buttons
+	var/spacing_y = use_wide_buttons ? ICON_SIZE_Y : 16
+	// Current Y starts at -32 so that the first wide button is placed at -64 and then we subtract -32 again for every button after that.
+	var/current_y = -32
+
 	for(var/index in 1 to latest_vote_length)
 		var/choice = choices[index]
 		var/atom/movable/screen/mapvote_button/button = new(src, hud, choice)
 		if(vote.has_desc)
 			button.desc = vote.return_desc(choice)
-		button.pixel_y = index * -ICON_SIZE_Y
+
+		if(use_wide_buttons)
+			button.icon_state = "[user_preference]_wide"
+		else
+			button.icon_state = "[user_preference]_button"
+			button.maptext_y = 7
+
+		button.pixel_x = 0 // keep buttons aligned to the center.
+		button.pixel_y = current_y
+		current_y -= spacing_y
+
 		RegisterSignal(button, COMSIG_VOTE_CHOICE_SELECTED, PROC_REF(handle_vote_click))
 		buttons += button
-		button.icon_state = "[user_preference]_button"
 		vis_contents += button
 
+	// bandage fix for the close button not being aligned to the bottom of the HUD when the number of buttons is not a multiple of 32.
+	// honestly, if smaller 16px _bottom icons are used, this wouldn't be an issue, but that would have to check if wide buttons are used or not, and then check if the number of buttons is a multiple of 32, and then adjust the close button's position accordingly. This is a simpler solution.
+	var/remainder = abs(current_y) % ICON_SIZE_Y
+	if(remainder)
+		current_y -= (ICON_SIZE_Y - remainder)
+
+	// the exit button. It should be placed below the entire HUD.
 	var/atom/movable/screen/mapvote_button/exit/button = new(src, hud)
-	button.pixel_y = (latest_vote_length + 1) * -ICON_SIZE_Y
+	button.pixel_y = current_y
 	RegisterSignal(button, COMSIG_VOTE_CHOICE_SELECTED, PROC_REF(handle_vote_click))
 	buttons += button
 	button.icon_state = "[user_preference]_exit"
 	vis_contents += button
+
+	// Calculate how many HUD icons we need to cover the entire HUD with the buttons in mind.
+	// We divide by 32 (ICON_SIZE_Y) and round up to find out how many extra HUD icons we need.
+	var/total_depth = abs(current_y) - ICON_SIZE_Y
+	total_depth = max(total_depth, 0) // make sure total_depth is not negative.
+	var/bg_tiles_needed = round((total_depth + (ICON_SIZE_Y - 1)) / ICON_SIZE_Y)
+
+	update_overlays(bg_tiles_needed)
 
 /atom/movable/screen/mapvote_hud/proc/hide()
 	SIGNAL_HANDLER
@@ -134,27 +170,32 @@
 		hide()
 		return
 
-	button.color = COLOR_VERY_PALE_LIME_GREEN
 	if(latest_vote_count == VOTE_COUNT_METHOD_SINGLE)
 		if(last_choice && last_choice != button)
 			last_choice.color = null
+		if(button.color)
+			button.color = null
+			last_choice = null
+		else
+			button.color = COLOR_VERY_PALE_LIME_GREEN
+			last_choice = button
 
 		SSvote.submit_single_vote(user, choice)
-
 		if(user.client?.prefs?.read_preference(/datum/preference/toggle/mapvote_autoclose))
 			hide()
 			return
 	else
-		if(SSvote.current_vote.choices_by_ckey[user.ckey + choice] == 1)
+		if(button.color)
 			button.color = null
+		else
+			button.color = COLOR_VERY_PALE_LIME_GREEN
 
 		SSvote.submit_multi_vote(user, choice)
-
-	last_choice = button
+		last_choice = button
 
 /atom/movable/screen/mapvote_button
-	name = "voting button"
-	icon = 'modular_zubbers/icons/hud/screen_vote.dmi'
+	name = "map voting button"
+	icon = 'modular_zubbers/icons/hud/screen_vote_buttons.dmi'
 	icon_state = "Glass_button"
 	plane = SPLASHSCREEN_PLANE
 	mouse_over_pointer = MOUSE_HAND_POINTER
@@ -183,8 +224,8 @@
 	closeToolTip(usr)
 
 /atom/movable/screen/mapvote_button/exit
-	name = "voting button"
-	icon = 'modular_zubbers/icons/hud/screen_vote.dmi'
+	name = "close vote"
+	icon = 'modular_zubbers/icons/hud/screen_vote_buttons.dmi'
 	icon_state = "Glass_exit"
 	plane = SPLASHSCREEN_PLANE
 	mouse_over_pointer = MOUSE_HAND_POINTER
