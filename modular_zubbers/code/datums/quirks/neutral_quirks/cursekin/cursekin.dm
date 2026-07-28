@@ -5,7 +5,7 @@
 	lose_text = span_notice("The light of Luna fades...")
 	medical_record_text = "Patient possesses a curse of striking similarity to the legendary Lycanthropy."
 	value = 0
-	icon = FA_ICON_MOON
+	icon = FA_ICON_PAW
 	quirk_flags = QUIRK_HUMAN_ONLY
 	mob_trait = TRAIT_LYCAN
 	species_blacklist = list(/datum/species/protean, /datum/species/synthetic, /datum/species/lycan)
