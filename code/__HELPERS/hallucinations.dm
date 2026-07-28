@@ -125,6 +125,12 @@ GLOBAL_LIST_EMPTY(all_ongoing_hallucinations)
 /// Global weighted list of all hallucinations that can show up randomly.
 GLOBAL_LIST_INIT_TYPED(random_hallucination_weighted_list, /list, generate_hallucination_weighted_list())
 
+/// Multiplier applied to every hallucination weight when the weighted list is built.
+/// pick_weight() only behaves with integer weights - a pool that adds up to a fractional
+/// total can roll higher than the total and return null - but some hallucinations want to be
+/// rarer than a weight of 1 allows, so scale everything up instead of rounding them away.
+#define HALLUCINATION_WEIGHT_SCALING 10
+
 /// Generates the global weighted list of random hallucinations.
 /proc/generate_hallucination_weighted_list()
 	var/list/weighted_list = list()
@@ -136,24 +142,29 @@ GLOBAL_LIST_INIT_TYPED(random_hallucination_weighted_list, /list, generate_hallu
 		if(weight <= 0)
 			continue
 
-		LAZYSET(weighted_list["[initial(hallucination_type.hallucination_tier)]"], hallucination_type, weight)
+		// Anything that wanted a weight at all keeps at least 1, so tiny weights don't round away to unpickable.
+		var/scaled_weight = max(round(weight * HALLUCINATION_WEIGHT_SCALING), 1)
+		LAZYSET(weighted_list["[initial(hallucination_type.hallucination_tier)]"], hallucination_type, scaled_weight)
 
 	return weighted_list
+
+#undef HALLUCINATION_WEIGHT_SCALING
 
 /// Select a random hallucination from the hallucination pool
 ///
 /// * tier - the tier of hallucination to select from
 /// * strict - if true, only select from the passed tier. If false, select from the passed tier and all tiers below it.
 /proc/get_random_hallucination(tier = HALLUCINATION_TIER_COMMON, strict = FALSE)
-	if(!GLOB.random_hallucination_weighted_list[tier])
-		CRASH("get_random_hallucination - No hallucinations in tier \[[tier]\].")
+	var/list/pool = list()
+	var/lowest_tier = strict ? tier : HALLUCINATION_TIER_COMMON
+	for(var/checked_tier = tier, checked_tier >= lowest_tier, checked_tier--)
+		// A tier with nothing in it has no key at all, so read it out before touching it.
+		var/list/tier_pool = GLOB.random_hallucination_weighted_list["[checked_tier]"]
+		for(var/hallucination_type in tier_pool)
+			pool[hallucination_type] = tier_pool[hallucination_type]
 
-	var/list/pool = GLOB.random_hallucination_weighted_list["[tier]"].Copy()
-	if(!strict)
-		tier -= 1
-		while(tier >= HALLUCINATION_TIER_COMMON)
-			pool += GLOB.random_hallucination_weighted_list["[tier]"]
-			tier -= 1
+	if(!length(pool))
+		CRASH("get_random_hallucination - No hallucinations in tier \[[tier]\].")
 
 	return pick_weight(pool)
 
