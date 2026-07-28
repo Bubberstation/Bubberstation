@@ -228,13 +228,13 @@ GLOBAL_LIST_EMPTY_TYPED(all_assigned_protean_match_tags, /obj/item/clothing/acce
 			return
 
 /obj/item/clothing/accessory/dogtags/protean_match/click_alt(mob/user)
-	if(!length(POOL) && !(assignee_protean != POOL[1].assignee_protean))
+	if(length(POOL) ? (assignee_protean == POOL[1].assignee_protean) : TRUE)
 		playsound(src, "sound/machines/buzz/buzz-sigh.ogg", 20, FALSE)
-		balloon_alert(source, "no other valid matches in pool")
+		balloon_alert(user, "no other valid matches in pool")
 		return
 	if(match_progress == MATCHED)
 		var/obj/item/clothing/accessory/dogtags/protean_match/paired_tag = paired_tag_weakref?.resolve()
-		var/safety = (tgui_alert(user, "You are currently matched with [paired_tag?.assignee_name]. Are you sure you want to attempt to match with someone else in the pool? This will unassign the other user's tag.", "Unclaim tag?", list("Unclaim", "Cancel")))
+		var/safety = (tgui_alert(user, "You are currently matched with [paired_tag?.assignee_name]. Are you sure you want to attempt to match with someone else in the pool? This will unassign the other user's tag.", "Re-match tag?", list("Re-match", "Cancel")))
 		if(safety == "Cancel" || !in_range(src, user))
 			return
 		unassign()
