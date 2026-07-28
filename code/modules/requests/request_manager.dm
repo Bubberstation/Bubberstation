@@ -254,7 +254,12 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 				to_chat(usr, "Request is not a valid URL.", confidential = TRUE)
 				return TRUE
 
-			web_sound(usr, request.message)
+			// BUBBER EDIT - ADDITION - START - FLOXY
+			if(params["legacy"] || !CONFIG_GET(string/floxy_url))
+				web_sound_legacy(usr, request.message)
+			else
+				web_sound(usr, request.message)
+			// BUBBER EDIT - ADDITION - END
 			return TRUE
 
 /datum/request_manager/ui_data(mob/user)
@@ -274,6 +279,13 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 			))
 	data["fax_autoprinting"] = GLOB.fax_autoprinting
 	return data
+
+// BUBBER EDIT - ADDITION - START - FLOXY
+/datum/request_manager/ui_static_data(mob/user)
+	return list(
+		"floxy_available" = !!CONFIG_GET(string/floxy_url)
+	)
+// BUBBER EDIT - ADDITION - END
 
 #undef REQUEST_PRAYER
 #undef REQUEST_CENTCOM

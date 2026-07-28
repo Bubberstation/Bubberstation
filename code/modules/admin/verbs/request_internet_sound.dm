@@ -10,6 +10,12 @@
 	if(!request_url)
 		return
 
+	// BUBBER EDIT - ADDITION - START - FLOXY
+	if(findtext(request_url, "spotify.com") || findtext(request_url, "music.apple.com") || findtext(request_url, "deezer.com") || findtext(request_url, "tidal.com"))
+		to_chat(usr, span_warning("This URL is unsupported. Try a YouTube, Bandcamp, or Soundcloud URL."), confidential = TRUE)
+		return
+	// BUBBER EDIT - ADDITION - END
+
 	var/regex/allowed_regex = regex(replacetext(CONFIG_GET(string/request_internet_allowed), ",", "|"), "i")
 	if(!allowed_regex.Find(request_url))
 		to_chat(usr, span_danger("Invalid URL. Please use a URL from one of the following sites: [replacetext(CONFIG_GET(string/request_internet_allowed), "\\", " ")]"), confidential = TRUE)
