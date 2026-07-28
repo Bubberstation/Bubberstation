@@ -664,10 +664,7 @@ There are several things that need to be remembered:
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			worn_item.screen_loc = ui_hand_position(held_index)
 			// BUBBER EDIT REMOVAL BEGIN - pushing the held item onto our own client's screen here is how
-			// hand slots worked before the inventory slot rewrite. That rewrite draws the held item through
-			// the hand slot's vis_contents, so this drew a second copy of everything you hold. Sprites at
-			// pixel_x 0 stacked exactly and hid it; anything wider than a tile carries a negative
-			// base_pixel_x to centre itself, so the copies separated and there was an ugly duplicate sprite visible.
+			// hand slots worked before the inventory slot rewrite. This alternate behavior is needed to stop duplicate item sprites appearing inhand.
 			// ORIGINAL: client.screen += worn_item
 			// BUBBER EDIT REMOVAL END
 			if(observers?.len)
