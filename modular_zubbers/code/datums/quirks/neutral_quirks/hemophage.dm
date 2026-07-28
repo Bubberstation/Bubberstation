@@ -118,18 +118,10 @@
 
 	if(!istype(carbon_holder) || isnull(old_heart))
 		return
+
 	var/obj/item/organ/heart/new_heart = new old_heart
-
-	if(!istype(carbon_holder) || isnull(old_liver))
-		return
 	var/obj/item/organ/liver/new_liver = new old_liver
-
-	if(!istype(carbon_holder) || isnull(old_stomach))
-		return
 	var/obj/item/organ/stomach/new_stomach = new old_stomach
-
-	if(!istype(carbon_holder) || isnull(old_tongue))
-		return
 	var/obj/item/organ/tongue/new_tongue = new old_tongue
 
 	new_heart.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
