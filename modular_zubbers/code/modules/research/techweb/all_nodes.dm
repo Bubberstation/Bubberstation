@@ -170,6 +170,8 @@
 		"minesweeper",
 	)
 
+// Security Tech
+
 /datum/techweb_node/riot_supression/New()
 	design_ids += "s12g_rubber"
 	design_ids += "s12g_bslug"
@@ -186,12 +188,38 @@
 
 /datum/techweb_node/exotic_ammo/New()
 	design_ids += "wt550_ammo_ap"
+	design_ids += "wt550_ammo_compressed"
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()
 	design_ids += "wt550_ammo_incendiary"
+	design_ids += "s12g_db"
 	design_ids += "mod_mind_transfer"
 	. = ..()
+
+/datum/techweb_node/bullet_weapons //This is for advanced bullet weapon designs and upgrades
+	id = TECHWEB_NODE_BULLET_WEAPONS
+	display_name = "Advanced Ballistic Weaponry"
+	description = "As if shooting a bullet could get any more complicated."
+	prereq_ids = list(TECHWEB_NODE_EXOTIC_AMMO)
+	design_ids = list(
+		"wt550_burst",
+		"wt550_long",
+		"battle_rifle_basic",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SECURITY)
+
+/datum/techweb_node/advanced_armor //This is for advanced armor and shields
+	id = TECHWEB_NODE_ADVANCED_ARMOR
+	display_name = "Advanced Security Protection"
+	description = "If we can't hurt them, we can outlast them."
+	prereq_ids = list(TECHWEB_NODE_RIOT_SUPRESSION, TECHWEB_NODE_GAS_COMPRESSION)
+	design_ids = list(
+		"security_juggernaut"
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SECURITY)
 
 // Modsuit tech
 /datum/techweb_node/mod_equip/New()
