@@ -41,9 +41,7 @@
 			target_client.prefs.safe_transfer_prefs_to_with_damage(human_owner)
 			human_owner.real_name = name
 			human_owner.name = name
-			human_owner.quirks -= cursekin_quirk
-			SSquirks.OverrideQuirks(human_owner, target_client, spawn_items = FALSE)
-			human_owner.quirks += cursekin_quirk
+			SSquirks.OverrideQuirks(human_owner, target_client, ignored_quirks = list("Cursekin"), spawn_items = FALSE)
 			human_owner.dna.update_dna_identity()
 
 			target_client.prefs.load_character(cursekin_quirk.last_slot)
@@ -71,9 +69,7 @@
 		else
 			target_client.prefs.load_character(cursekin_quirk.last_slot)
 			target_client.prefs.safe_transfer_prefs_to_with_damage(human_owner)
-			human_owner.quirks -= cursekin_quirk
-			SSquirks.OverrideQuirks(human_owner, target_client, quirk_blacklist = list("Cursekin"), spawn_items = FALSE)
-			human_owner.quirks += cursekin_quirk
+			SSquirks.OverrideQuirks(human_owner, target_client, ignored_quirks = list("Cursekin"), spawn_items = FALSE)
 			human_owner.dna.update_dna_identity()
 	else
 		human_owner.set_species(initial_species, TRUE, TRUE, FALSE)

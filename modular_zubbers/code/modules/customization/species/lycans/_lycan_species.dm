@@ -103,7 +103,7 @@
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_SHIRT,
 			SPECIES_PERK_NAME = "Unclothable",
-			SPECIES_PERK_DESC = "While in Lycan form, you drop all your clothing to the floor.",
+			SPECIES_PERK_DESC = "While in Lycan form, you drop nearly all your clothing to the floor.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
