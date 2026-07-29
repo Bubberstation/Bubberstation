@@ -53,10 +53,7 @@
 
 /datum/quirk/hemophage/post_add()
 	if(quirk_holder.client?.prefs.read_preference(/datum/preference/toggle/pseudo_respiration))
-		var/mob/living/carbon/human/breather = quirk_holder
 		REMOVE_TRAIT(quirk_holder, TRAIT_NOBREATH, QUIRK_TRAIT)
-		var/obj/item/organ/lungs/new_lungs = new breather.dna.species.mutantlungs()
-		new_lungs.Insert(breather, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
 /datum/quirk/hemophage/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
