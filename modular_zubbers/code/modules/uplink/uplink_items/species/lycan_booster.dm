@@ -32,7 +32,7 @@
 
 	var/mob/living/carbon/human/human_user = user
 
-	if (human_user.get_quirk(/datum/quirk/cursekin))
+	if (!human_user.get_quirk(/datum/quirk/cursekin))
 		to_chat(human_user, span_warning("You get the feeling your current physiology wouldn't support this booster."))
 		return
 
