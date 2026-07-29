@@ -19,8 +19,8 @@
 	mob_biotypes = MOB_ORGANIC | MOB_PLANT
 	maxHealth = 100
 	health = 100
-	pixel_y = -14
-	base_pixel_y = -14
+	pixel_z = -14
+	base_pixel_z = -14
 	pixel_x = -14
 	base_pixel_x = -14
 	response_harm_continuous = "strikes"
@@ -52,7 +52,7 @@
 	var/list/seedling_commands = list(
 		/datum/pet_command/idle,
 		/datum/pet_command/free,
-		/datum/pet_command/follow,
+		/datum/pet_command/follow/start_active,
 	)
 
 /mob/living/basic/seedling/Initialize(mapload)
@@ -85,19 +85,19 @@
 
 /mob/living/basic/seedling/early_melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
-	if(!.)
-		return FALSE
+	if(.)
+		return
 
 	if(istype(target, /obj/machinery/hydroponics))
 		treat_hydro_tray(target)
-		return FALSE
+		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
 
 	if(isnull(held_can))
-		return TRUE
+		return BASIC_MOB_CONTINUE_ATTACK_CHAIN
 
 	if(istype(target, /obj/structure/sink) || istype(target, /obj/structure/reagent_dispensers))
 		held_can.melee_attack_chain(src, target)
-		return FALSE
+		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
 
 
 ///seedlings can water trays, remove weeds, or remove dead plants
@@ -138,7 +138,7 @@
 	combatant_state = state
 	update_appearance()
 
-/mob/living/basic/seedling/attackby(obj/item/can, mob/living/carbon/human/user, list/modifiers)
+/mob/living/basic/seedling/attackby(obj/item/can, mob/living/carbon/human/user, list/modifiers, list/attack_modifiers)
 	if(istype(can, /obj/item/reagent_containers/cup/watering_can) && isnull(held_can))
 		can.forceMove(src)
 		return
@@ -213,7 +213,7 @@
 	seedling_commands = list(
 		/datum/pet_command/idle,
 		/datum/pet_command/free,
-		/datum/pet_command/follow,
+		/datum/pet_command/follow/start_active,
 		/datum/pet_command/attack,
 		/datum/pet_command/use_ability/solarbeam,
 		/datum/pet_command/use_ability/rapidseeds,
@@ -336,7 +336,7 @@
 		var/mob/living/living_target = target_atom
 		living_target.adjust_fire_stacks(0.2)
 		living_target.ignite_mob()
-		living_target.adjustFireLoss(30)
+		living_target.adjust_fire_loss(30)
 
 	playsound(target_turf, 'sound/effects/magic/lightningbolt.ogg', 50, TRUE)
 	if(!is_seedling)

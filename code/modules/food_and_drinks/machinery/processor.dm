@@ -1,6 +1,6 @@
 #define PROCESSOR_SELECT_RECIPE(movable_input) LAZYACCESS(processor_inputs[type], movable_input.type)
 
-/obj/machinery/processor //SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
+/obj/machinery/processor
 	name = "food processor"
 	desc = "An industrial grinder used to process meat and other foods. Keep hands clear of intake area while operating."
 	icon = 'icons/obj/machines/kitchen.dmi'
@@ -72,7 +72,7 @@
 			var/atom/processed_food = new recipe.output(drop_location())
 			if(processed_food.reagents && what.reagents)
 				processed_food.reagents.clear_reagents()
-				what.reagents.copy_to(processed_food, what.reagents.total_volume, multiplier = 1 / cached_multiplier)
+				what.reagents.trans_to(processed_food, what.reagents.total_volume, multiplier = 1 / cached_multiplier, copy_only = TRUE)
 			if(cached_mats)
 				processed_food.set_custom_materials(cached_mats, 1 / cached_multiplier)
 
@@ -84,47 +84,65 @@
 	LAZYREMOVE(processor_contents, what)
 
 /obj/machinery/processor/wrench_act(mob/living/user, obj/item/tool)
-	. = ..()
+	if(processing)
+		to_chat(user, span_warning("[src] is in the process of processing!"))
+		return ITEM_INTERACT_BLOCKING
+
 	default_unfasten_wrench(user, tool)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/machinery/processor/attackby(obj/item/attacking_item, mob/living/user, params)
+/obj/machinery/processor/screwdriver_act(mob/living/user, obj/item/tool)
 	if(processing)
 		to_chat(user, span_warning("[src] is in the process of processing!"))
-		return TRUE
-	if(default_deconstruction_screwdriver(user, base_icon_state + "_open", base_icon_state, attacking_item) || default_pry_open(attacking_item, close_after_pry = TRUE) || default_deconstruction_crowbar(attacking_item))
-		return
+		return ITEM_INTERACT_BLOCKING
 
-	if(istype(attacking_item, /obj/item/storage/bag/tray))
-		var/obj/item/storage/attacking_storage = attacking_item
+	return default_deconstruction_screwdriver(user, tool)
+
+/obj/machinery/processor/crowbar_act(mob/living/user, obj/item/tool)
+	if(processing)
+		to_chat(user, span_warning("[src] is in the process of processing!"))
+		return ITEM_INTERACT_BLOCKING
+
+	return default_pry_open(user, tool, close_after_pry = TRUE, deconstruct_on_fail = TRUE)
+
+/obj/machinery/processor/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(user.combat_mode)
+		return ITEM_INTERACT_SKIP_TO_ATTACK
+
+	if(processing)
+		to_chat(user, span_warning("[src] is in the process of processing!"))
+		return ITEM_INTERACT_BLOCKING
+
+	if(istype(tool, /obj/item/storage/bag/tray))
+		var/obj/item/storage/attacking_storage = tool
 		var/loaded = 0
 		for(var/obj/content_item in attacking_storage.contents)
 			if(!IS_EDIBLE(content_item))
 				continue
 			var/datum/food_processor_process/recipe = PROCESSOR_SELECT_RECIPE(content_item)
-			if(recipe)
-				if(attacking_storage.atom_storage.attempt_remove(content_item, src))
-					LAZYADD(processor_contents, content_item)
-					loaded++
-
+			if(recipe && attacking_storage.atom_storage.attempt_remove(content_item, src))
+				LAZYADD(processor_contents, content_item)
+				loaded++
 		if(loaded)
 			to_chat(user, span_notice("You insert [loaded] items into [src]."))
-		return
+			return ITEM_INTERACT_SUCCESS
+		return ITEM_INTERACT_BLOCKING
 
-	var/datum/food_processor_process/recipe = PROCESSOR_SELECT_RECIPE(attacking_item)
-	if(recipe)
+	var/datum/food_processor_process/recipe = PROCESSOR_SELECT_RECIPE(tool)
+	if(recipe && user.transferItemToLoc(tool, src))
 		user.visible_message(
-			span_notice("[user] put [attacking_item] into [src]."),
-			span_notice("You put [attacking_item] into [src]."),
+			span_notice("[user] put [tool] into [src]."),
+			span_notice("You put [tool] into [src]."),
 		)
-		user.transferItemToLoc(attacking_item, src, TRUE)
-		LAZYADD(processor_contents, attacking_item)
-		return TRUE
-	else if(!user.combat_mode)
-		to_chat(user, span_warning("That probably won't blend!"))
-		return TRUE
-	else
-		return ..()
+		LAZYADD(processor_contents, tool)
+		return ITEM_INTERACT_SUCCESS
+
+	to_chat(user, span_warning("That probably won't blend!"))
+	return ITEM_INTERACT_BLOCKING
+
+/obj/machinery/processor/update_icon_state()
+	. = ..()
+	icon_state = panel_open ? "[base_icon_state]_open" : base_icon_state
 
 /obj/machinery/processor/interact(mob/user)
 	if(processing)
@@ -176,7 +194,6 @@
 	visible_message(span_notice("\The [src] finishes processing."))
 
 /obj/machinery/processor/verb/eject()
-	set category = "Object"
 	set name = "Eject Contents"
 	set src in oview(1)
 	if(usr.stat != CONSCIOUS || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED))
@@ -201,11 +218,13 @@
 	desc = "An industrial grinder with a sticker saying appropriated for science department. Keep hands clear of intake area while operating."
 	circuit = /obj/item/circuitboard/machine/processor/slime
 
+/obj/machinery/processor/slime/fullupgrade //fully ugpraded stock parts
+	desc = "An industrial grinder with a sticker saying appropiated for bioterrorism department. keep hands clear of intake while operating."
+	circuit = /obj/item/circuitboard/machine/processor/slime/fullupgrade
+
 /obj/machinery/processor/slime/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/usb_port, list(
-		/obj/item/circuit_component/slime_processor,
-	))
+	AddComponent(/datum/component/usb_port, typecacheof(list(/obj/item/circuit_component/slime_processor), only_root_path = TRUE))
 
 /obj/machinery/processor/slime/adjust_item_drop_location(atom/movable/atom_to_drop)
 	var/static/list/slimecores = subtypesof(/obj/item/slime_extract)
@@ -224,22 +243,26 @@
 /obj/machinery/processor/slime/process()
 	if(processing)
 		return
-	var/mob/living/basic/slime/picked_slime
+	var/list/mob/living/basic/slime/picked_slimes
+	/// We pick up a number of slimes equal to the rating of the matter bin
+	var/slimes_picked = 0
 	for(var/mob/living/basic/slime/slime in range(1,src))
-		if(!CanReach(slime)) //don't take slimes behind glass panes or somesuch; also makes it ignore slimes inside the processor
+		if(!slime.IsReachableBy(src)) //don't take slimes behind glass panes or somesuch; also makes it ignore slimes inside the processor
 			continue
 		if(slime.stat)
-			picked_slime = slime
+			var/datum/food_processor_process/recipe = PROCESSOR_SELECT_RECIPE(slime)
+			if(!recipe)
+				continue
+			LAZYADD(picked_slimes, slime)
+			slimes_picked += 1
+		if(slimes_picked >= rating_amount)
 			break
-	if(!picked_slime)
+	if(!LAZYLEN(picked_slimes))
 		return
-	var/datum/food_processor_process/recipe = PROCESSOR_SELECT_RECIPE(picked_slime)
-	if (!recipe)
-		return
-
-	visible_message(span_notice("[picked_slime] is sucked into [src]."))
-	LAZYADD(processor_contents, picked_slime)
-	picked_slime.forceMove(src)
+	visible_message(span_notice("[jointext(picked_slimes, ", ")] [LAZYLEN(picked_slimes) > 1 ? "are" : "is"] sucked into [src]."))
+	for(var/mob/living/basic/slime/slime_to_add in picked_slimes)
+		LAZYADD(processor_contents, slime_to_add)
+		slime_to_add.forceMove(src)
 
 /obj/machinery/processor/slime/process_food(datum/food_processor_process/recipe, atom/movable/what)
 	var/mob/living/basic/slime/processed_slime = what

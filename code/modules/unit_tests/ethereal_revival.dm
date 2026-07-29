@@ -42,7 +42,7 @@
 	TEST_ASSERT(length(current_traumas) == 1, "Ethereal failed to gain trauma when reviving.")
 
 	kill_and_revive(victim, respawn_heart)
-	TEST_ASSERT(length(victim.get_traumas()) == 2, "Ethereal failed to gain additional trauma on second revival.")
+	//TEST_ASSERT(length(victim.get_traumas()) == 2, "Ethereal failed to gain additional trauma on second revival.") //Bubber Edit - commenting out for now, to allow ethereals to gain a magical trauma instead of permanent one
 
 	instant_crystallise(victim, respawn_heart)
 	victim.heal_and_revive()

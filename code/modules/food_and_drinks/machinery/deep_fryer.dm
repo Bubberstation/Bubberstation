@@ -1,8 +1,3 @@
-/// The deep fryer pings after this long, letting people know it's "perfect"
-#define DEEPFRYER_COOKTIME 50
-/// The deep fryer pings after this long, reminding people that there's a very burnt object inside
-#define DEEPFRYER_BURNTIME 120
-
 /// Global typecache of things which should never be fried.
 GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	/obj/item/bodybag/bluespace,
@@ -16,11 +11,12 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	/obj/item/slimecrossbeaker/autoinjector, //same as medipen
 )))
 
-/obj/machinery/deepfryer//SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
+/obj/machinery/deepfryer
 	name = "deep fryer"
 	desc = "Deep fried <i>everything</i>."
 	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "fryer_off"
+	base_icon_state = "fryer"
 	density = TRUE
 	pass_flags_self = PASSMACHINE | LETPASSTHROW
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.05
@@ -102,48 +98,48 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	default_unfasten_wrench(user, tool)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/machinery/deepfryer/attackby(obj/item/weapon, mob/user, params)
-	// Dissolving pills into the frier
-	if(istype(weapon, /obj/item/reagent_containers/applicator/pill))
+/obj/machinery/deepfryer/screwdriver_act(mob/living/user, obj/item/tool)
+	return default_deconstruction_screwdriver(user, tool)
+
+/obj/machinery/deepfryer/update_icon_state()
+	. = ..()
+	icon_state = "[base_icon_state]_[frying ? "on" : panel_open ? "open" : "off"]"
+
+/obj/machinery/deepfryer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(istype(tool, /obj/item/reagent_containers/applicator/pill))
 		if(!reagents.total_volume)
-			to_chat(user, span_warning("There's nothing to dissolve [weapon] in!"))
-			return
-		user.visible_message(span_notice("[user] drops [weapon] into [src]."), span_notice("You dissolve [weapon] in [src]."))
-		weapon.reagents.trans_to(src, weapon.reagents.total_volume, transferred_by = user)
-		qdel(weapon)
-		return
-	// Make sure we have cooking oil
+			to_chat(user, span_warning("There's nothing to dissolve [tool] in!"))
+			return ITEM_INTERACT_BLOCKING
+		user.visible_message(span_notice("[user] drops [tool] into [src]."), span_notice("You dissolve [tool] in [src]."))
+		tool.reagents.trans_to(src, tool.reagents.total_volume, transferred_by = user)
+		qdel(tool)
+		return ITEM_INTERACT_SUCCESS
+
+	if(user.combat_mode)
+		return ITEM_INTERACT_SKIP_TO_ATTACK // allow a thwack
+
+	if(tool.is_drainable())
+		return NONE // pour it in
+
 	if(!reagents.has_reagent(/datum/reagent/consumable/nutriment/fat, check_subtypes = TRUE))
 		to_chat(user, span_warning("[src] has no fat or oil to fry with!"))
-		return
-	// Don't deep fry indestructible things, for sanity reasons
-	if(weapon.resistance_flags & INDESTRUCTIBLE)
-		to_chat(user, span_warning("You don't feel it would be wise to fry [weapon]..."))
-		return
-	// No fractal frying
-	if(HAS_TRAIT(weapon, TRAIT_FOOD_FRIED))
-		to_chat(user, span_userdanger("Your cooking skills are not up to the legendary Doublefry technique."))
-		return
-	// Handle opening up the fryer with tools
-	if(default_deconstruction_screwdriver(user, "fryer_off", "fryer_off", weapon)) //where's the open maint panel icon?!
-		return
-	else
-		// So we skip the attack animation
-		if(weapon.is_drainable())
-			return
-		// Check for stuff we certainly shouldn't fry
-		else if(is_type_in_typecache(weapon, deepfry_blacklisted_items) \
-			|| is_type_in_typecache(weapon, GLOB.oilfry_blacklisted_items) \
-			|| weapon.atom_storage \
-			|| HAS_TRAIT(weapon, TRAIT_NODROP) \
-			|| (weapon.item_flags & (ABSTRACT|DROPDEL|HAND_ITEM)))
-			return ..()
-		// Do the frying.
-		else if(!frying && user.transferItemToLoc(weapon, src))
-			start_fry(weapon, user)
-			return
+		return ITEM_INTERACT_BLOCKING
 
-	return ..()
+	if(tool.resistance_flags & INDESTRUCTIBLE)
+		to_chat(user, span_warning("You don't feel it would be wise to fry [tool]..."))
+		return ITEM_INTERACT_BLOCKING
+
+	var/deepfry_blacklisted = is_type_in_typecache(tool, deepfry_blacklisted_items) || is_type_in_typecache(tool, GLOB.oilfry_blacklisted_items)
+	var/is_storage = !!tool.atom_storage
+	var/illegal_item = HAS_TRAIT(tool, TRAIT_NODROP) || (tool.item_flags & (ABSTRACT|DROPDEL|HAND_ITEM))
+	if(deepfry_blacklisted || is_storage || illegal_item)
+		return NONE
+
+	if(!frying && user.transferItemToLoc(tool, src))
+		start_fry(tool, user)
+		return ITEM_INTERACT_SUCCESS
+
+	return NONE
 
 /obj/machinery/deepfryer/process(seconds_per_tick)
 	..()
@@ -158,17 +154,17 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	grease_level += prob(grease_increase_chance) * grease_Increase_amount
 
 	cook_time += fry_speed * seconds_per_tick SECONDS
-	if(cook_time >= DEEPFRYER_COOKTIME && !frying_fried)
+	if(cook_time >= FRYING_TIME_PERFECT && !frying_fried)
 		frying_fried = TRUE //frying... frying... fried
 		playsound(src.loc, 'sound/machines/ding.ogg', 50, TRUE)
 		audible_message(span_notice("[src] dings!"))
-	else if (cook_time >= DEEPFRYER_BURNTIME && !frying_burnt)
+	else if (cook_time >= FRYING_TIME_WARNING && !frying_burnt)
 		frying_burnt = TRUE
-		var/list/asomnia_hadders = list()
+		var/list/anosmia_havers = list()
 		for(var/mob/smeller in get_hearers_in_view(DEFAULT_MESSAGE_RANGE, src))
 			if(HAS_TRAIT(smeller, TRAIT_ANOSMIA))
-				asomnia_hadders += smeller
-		visible_message(span_warning("[src] emits an acrid smell!"), ignored_mobs = asomnia_hadders)
+				anosmia_havers += smeller
+		visible_message(span_warning("[src] emits an acrid smell!"), ignored_mobs = anosmia_havers)
 
 	use_energy(active_power_usage)
 
@@ -186,9 +182,8 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	frying_burnt = FALSE
 	fry_loop.stop()
 	cook_time = 0
+	update_appearance()
 	flick("fryer_stop", src)
-	icon_state = "fryer_off"
-	update_appearance(UPDATE_OVERLAYS)
 
 /obj/machinery/deepfryer/proc/start_fry(obj/item/frying_item, mob/user)
 	to_chat(user, span_notice("You put [frying_item] into [src]."))
@@ -204,11 +199,11 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	if(isnull(frying.reagents))
 		frying.create_reagents(50, INJECTABLE)
 	if(user.mind)
-		ADD_TRAIT(frying, TRAIT_FOOD_CHEF_MADE, REF(user.mind))
+		ADD_TRAIT(frying, TRAIT_HANDMADE, REF(user.mind))
 	SEND_SIGNAL(frying, COMSIG_ITEM_ENTERED_FRYER)
 
+	update_appearance()
 	flick("fryer_start", src)
-	icon_state = "fryer_on"
 	fry_loop.start()
 
 /obj/machinery/deepfryer/proc/blow_up()
@@ -255,8 +250,10 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	return ..()
 
 /obj/machinery/deepfryer/proc/on_cleaned(obj/source_component, obj/source)
+	SIGNAL_HANDLER
+
+	. = NONE
+
 	grease_level = 0
 	update_appearance(UPDATE_OVERLAYS)
-
-#undef DEEPFRYER_COOKTIME
-#undef DEEPFRYER_BURNTIME
+	. |= COMPONENT_CLEANED|COMPONENT_CLEANED_GAIN_XP

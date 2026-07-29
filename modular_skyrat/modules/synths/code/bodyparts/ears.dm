@@ -7,7 +7,7 @@
 	slot = ORGAN_SLOT_EARS
 	gender = PLURAL
 	maxHealth = 1 * STANDARD_ORGAN_THRESHOLD
-	organ_flags = ORGAN_ROBOTIC
+	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 	overrides_sprite_datum_organ_type = TRUE
 	bodypart_overlay = /datum/bodypart_overlay/mutant/ears
 
@@ -17,17 +17,16 @@
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
 
-	if(!COOLDOWN_FINISHED(src, severe_cooldown)) //So we cant just spam emp to kill people.
+	if(COOLDOWN_FINISHED(src, severe_cooldown)) //So we cant just spam emp to kill people.
 		COOLDOWN_START(src, severe_cooldown, 10 SECONDS)
+		switch(severity)
+			if(EMP_HEAVY)
+				owner.sound_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, SYNTH_DEAF_STACKS * 2)
+				to_chat(owner, span_warning("Alert: Null feedback from auditory sensors detected, seek maintenance immediately. Error Code: AS-105"))
 
-	switch(severity)
-		if(EMP_HEAVY)
-			adjustEarDamage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, SYNTH_DEAF_STACKS)
-			to_chat(owner, span_warning("Alert: Null feedback from auditory sensors detected, seek maintenance immediately. Error Code: AS-105"))
-
-		if(EMP_LIGHT)
-			adjustEarDamage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, SYNTH_DEAF_STACKS)
-			to_chat(owner, span_warning("Alert: Anomalous feedback from auditory sensors detected. Error Code: AS-50"))
+			if(EMP_LIGHT)
+				owner.sound_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, SYNTH_DEAF_STACKS * 2)
+				to_chat(owner, span_warning("Alert: Anomalous feedback from auditory sensors detected. Error Code: AS-50"))
 
 /datum/design/synth_ears
 	name = "Auditory Sensors"

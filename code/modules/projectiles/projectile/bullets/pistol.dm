@@ -15,6 +15,14 @@
 	jostle_pain_mult = 6
 	rip_time = 1 SECONDS
 
+//Bubberstation addition
+/obj/projectile/bullet/c9mm/security
+	name = "9mm Security bullet"
+	damage = 20
+	embed_type = /datum/embedding/bullet/c9mm
+	weak_against_armour = TRUE
+//bubber edit end
+
 /obj/projectile/bullet/c9mm/ap
 	name = "9mm armor-piercing bullet"
 	damage = 27
@@ -52,26 +60,6 @@
 	name = "10mm incendiary bullet"
 	damage = 20
 	fire_stacks = 3
-
-/obj/projectile/bullet/c10mm/reaper
-	name = "10mm reaper pellet"
-	icon_state = null
-	damage = 50
-	armour_penetration = 40
-	tracer_type = /obj/effect/projectile/tracer/sniper
-	impact_type = /obj/effect/projectile/impact/sniper
-	muzzle_type = /obj/effect/projectile/muzzle/sniper
-	hitscan = TRUE
-	impact_effect_type = null
-	hitscan_light_intensity = 3
-	hitscan_light_range = 0.75
-	hitscan_light_color_override = LIGHT_COLOR_DIM_YELLOW
-	muzzle_flash_intensity = 5
-	muzzle_flash_range = 1
-	muzzle_flash_color_override = LIGHT_COLOR_DIM_YELLOW
-	impact_light_intensity = 5
-	impact_light_range = 1
-	impact_light_color_override = LIGHT_COLOR_DIM_YELLOW
 
 // .160 Smart
 

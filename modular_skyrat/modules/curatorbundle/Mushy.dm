@@ -1,9 +1,10 @@
 /obj/item/clothing/head/mush_helmet
 	name = "mush cap"
 	desc = "A mushroom cap, this one also doubles as an umbrella!"
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/costume.dmi'
+	icon = 'icons/map_icons/clothing/head/_head.dmi'
+	icon_state = "/obj/item/clothing/head/mush_helmet"
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/costume.dmi'
-	icon_state = "mush_cap"
+	post_init_icon_state = "mush_cap"
 	worn_icon_state = "mush_cap"
 	greyscale_config = /datum/greyscale_config/mushcap
 	greyscale_config_worn = /datum/greyscale_config/mushcap/worn
@@ -22,22 +23,22 @@
 	slowdown = 1
 	clothing_flags = THICKMATERIAL
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Male Mush" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
-			RESKIN_ICON_STATE = "mush_male",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
-			RESKIN_WORN_ICON_STATE = "mush_male"
-		),
-		"Female Mush" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi',
-			RESKIN_ICON_STATE = "mush_female",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi',
-			RESKIN_WORN_ICON_STATE = "mush_female"
-		)
-	)
 
+/obj/item/clothing/suit/mush/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/mush_suit)
+
+/datum/atom_skin/mush_suit
+	abstract_type = /datum/atom_skin/mush_suit
+	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
+
+/datum/atom_skin/mush_suit/male
+	preview_name = "Male Mush"
+	new_icon_state = "mush_male"
+
+/datum/atom_skin/mush_suit/female
+	preview_name = "Female Mush"
+	new_icon_state = "mush_female"
 
 /obj/item/storage/box/hero/mushperson
 	name = "Mushy The Mushperson - 2305"

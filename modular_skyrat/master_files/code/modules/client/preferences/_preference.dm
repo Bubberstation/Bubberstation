@@ -122,6 +122,8 @@
 	var/list/crop_area
 	/// A color to apply to the icon if it's greyscale, and `generate_icons` is enabled.
 	var/greyscale_color
+	/// what sprite accessory list to get options from, by default uses relevant_mutant_bodypart if null
+	var/sprite_accessory_category
 
 /datum/preference/choiced/mutant_choice/is_accessible(datum/preferences/preferences)
 	var/passed_initial_check = ..(preferences)
@@ -162,7 +164,7 @@
 	return icon_to_process
 
 /datum/preference/choiced/mutant_choice/init_possible_values()
-		return assoc_to_keys_features(SSaccessories.sprite_accessories[relevant_mutant_bodypart])
+		return assoc_to_keys_features(SSaccessories.sprite_accessories[sprite_accessory_category ? sprite_accessory_category : relevant_mutant_bodypart])
 
 /datum/preference/choiced/mutant_choice/create_default_value()
 	return initial(default_accessory_type.name)
@@ -208,9 +210,6 @@
 
 	if(!bodypart_is_visible)
 		value = create_default_value()
-
-	if(value == "None")
-		return bodypart_is_visible
 
 	if(!target.dna.mutant_bodyparts[relevant_mutant_bodypart])
 		target.dna.mutant_bodyparts[relevant_mutant_bodypart] = list(MUTANT_INDEX_NAME = value, MUTANT_INDEX_COLOR_LIST = list("#FFFFFF", "#FFFFFF", "#FFFFFF"), MUTANT_INDEX_EMISSIVE_LIST = list(FALSE, FALSE, FALSE))

@@ -2,7 +2,7 @@
 	name = "Head of Security AI"
 	trait_type = STATION_TRAIT_NEGATIVE
 	trait_flags = parent_type::trait_flags | STATION_TRAIT_REQUIRES_AI
-	weight = 3
+	weight = 0
 	show_in_report = TRUE
 	report_message = "For experimental purposes, this station AI has been put in charge of the security department, Security Cyborgs are enabled for the duration of the shift. \
 	Do not meddle with the silicon laws unless absolutely necessary, the AI is to be treated as a member of command, and your head of Security"

@@ -25,16 +25,16 @@
 	update_appearance()
 
 /obj/item/clothing/under/akula_wetsuit/Destroy()
-	. = ..()
 	var/mob/user = loc
 	if(!istype(user))
-		return
+		return ..()
 
 	if(tail_overlay)
 		user.cut_overlay(tail_overlay)
 		tail_overlay = null
 
 	qdel(GetComponent(/datum/component/wetsuit))
+	. = ..()
 
 /obj/item/clothing/under/akula_wetsuit/equipped(mob/user, slot)
 	. = ..()
@@ -62,10 +62,10 @@
 
 /// If the wearer has a compatible tail for the `tail_overlay` variable, render it
 /obj/item/clothing/under/akula_wetsuit/proc/add_tail_overlay(mob/living/carbon/human/user)
-	if(!user.dna.species.mutant_bodyparts["tail"])
+	if(!user.dna.species.mutant_bodyparts[FEATURE_TAIL_GENERIC])
 		return
 
-	var/tail = user.dna.species.mutant_bodyparts["tail"][MUTANT_INDEX_NAME]
+	var/tail = user.dna.species.mutant_bodyparts[FEATURE_TAIL_GENERIC][MUTANT_INDEX_NAME]
 	switch(tail)
 		if("Akula")
 			tail_overlay = mutable_appearance(TAIL_OVERLAY_DMI, "overlay_akula", -(TAIL_OVERLAY_LAYER))
@@ -183,15 +183,15 @@
 	update_appearance()
 
 /obj/item/clothing/head/helmet/space/akula_wetsuit/Destroy()
-	. = ..()
 	var/mob/user = loc
 	if(attached_hat)
 		attached_hat.forceMove(drop_location())
 
 	if(!istype(user))
-		return
+		return ..()
 
 	qdel(GetComponent(/datum/component/wetsuit))
+	. = ..()
 
 // Wearing hats inside the wetworks helmet
 /obj/item/clothing/head/helmet/space/akula_wetsuit/examine()
@@ -231,7 +231,9 @@
 
 
 /obj/item/clothing/head/helmet/space/akula_wetsuit/attack_hand_secondary(mob/user)
-	..()
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
 	if(!attached_hat)
 		return
 

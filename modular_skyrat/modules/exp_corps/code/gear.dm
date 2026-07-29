@@ -8,7 +8,7 @@
 /obj/item/storage/medkit/expeditionary/PopulateContents()
 	if(empty)
 		return
-	new /obj/item/stack/medical/gauze(src)
+	new /obj/item/stack/medical/wrap/gauze(src)
 	new /obj/item/defibrillator/compact/loaded(src)
 	new /obj/item/reagent_containers/hypospray/combat(src)
 	new /obj/item/stack/medical/mesh/advanced(src)
@@ -19,7 +19,7 @@
 /obj/item/circular_saw/field_medic
 	name = "bone saw"
 	desc = "Did that sting? SAW-ry!"
-	force = 20
+	force = 15
 	icon_state = "bonesaw"
 	icon = 'modular_skyrat/modules/exp_corps/icons/bonesaw.dmi'
 	lefthand_file = 'modular_skyrat/modules/exp_corps/icons/bonesaw_l.dmi'
@@ -50,6 +50,11 @@
 	max_integrity = 200
 	shield_break_sound = 'sound/effects/glass/glassbr3.ogg'
 	shield_break_leftover = /obj/item/pointman_broken
+	custom_materials = list(
+		/datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
+	)
 	var/repairable_by = /obj/item/stack/sheet/plasteel //what to repair the shield with
 
 /obj/item/shield/riot/pointman/attackby(obj/item/W, mob/user, params)
@@ -94,10 +99,12 @@
 
 /obj/item/storage/pouch/ammo/marksman
 	name = "marksman's knife pouch"
-	unique_reskin = NONE
 
 /obj/item/storage/pouch/ammo/marksman/Initialize(mapload)
 	. = ..()
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
 	create_storage(storage_type = /datum/storage/marksman)
 
 /datum/storage/marksman

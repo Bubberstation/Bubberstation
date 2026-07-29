@@ -1,7 +1,7 @@
 /obj/item/organ/frills
-	preference = "feature_frills"
 	mutantpart_key = "frills"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Divinity", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))
+	organ_flags = ORGAN_EXTERNAL
 
 /datum/bodypart_overlay/mutant/frills
 	color_source = ORGAN_COLOR_OVERRIDE
@@ -10,10 +10,9 @@
 	return draw_color
 
 /datum/bodypart_overlay/mutant/frills/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
+	if(!..(bodypart_owner))
+		return FALSE
 	var/mob/living/carbon/human/human = bodypart_owner.owner
 	if(!human)
 		return TRUE
 	return !sprite_datum.is_hidden(human)
-
-/datum/bodypart_overlay/mutant/frills/get_global_feature_list()
-	return SSaccessories.sprite_accessories["frills"]

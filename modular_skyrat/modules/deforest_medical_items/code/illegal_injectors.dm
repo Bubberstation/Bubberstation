@@ -31,7 +31,7 @@
 /obj/item/reagent_containers/hypospray/medipen/deforest/aranepaine
 	name = "aranepaine combat stimulant injector"
 	desc = "A Deforest branded autoinjector, loaded with a cocktail of drugs to make any who take it nearly \
-		immune to exhaustion while its in their system."
+		immune to exhaustion while it's in their system."
 	base_icon_state = "aranepaine"
 	icon_state = "aranepaine"
 	list_reagents = list(

@@ -12,7 +12,7 @@
 	var/art_ref = ""
 
 /datum/preference/text/flavor_text_nsfw
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "flavor_text_nsfw"
 	maximum_value_length = MAX_FLAVOR_LEN
@@ -24,8 +24,36 @@
 /datum/preference/text/flavor_text_nsfw/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	target.dna.features["flavor_text_nsfw"] = value
 
+/datum/preference/text/low_arousal
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "low_arousal_text"
+	maximum_value_length = 100
+
+/datum/preference/text/low_arousal/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	target.dna.features["low_arousal"] = value
+
+/datum/preference/text/medium_arousal
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "medium_arousal_text"
+	maximum_value_length = 100
+
+/datum/preference/text/medium_arousal/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	target.dna.features["medium_arousal"] = value
+
+/datum/preference/text/high_arousal
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "high_arousal_text"
+	maximum_value_length = 100
+
+/datum/preference/text/high_arousal/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	target.dna.features["high_arousal"] = value
+
 //This is just a silicon variant of the NSFW flavor text.
 /datum/preference/text/flavor_text_nsfw/silicon
+	category = PREFERENCE_CATEGORY_SILICON_PREFS
 	savefile_key = "silicon_flavor_text_nsfw"
 
 /datum/preference/text/flavor_text_nsfw/silicon/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
@@ -64,6 +92,7 @@
 
 //This is literally just the same as the original headshot pref but for silicons :)
 /datum/preference/text/headshot/silicon
+	category = PREFERENCE_CATEGORY_SILICON_PREFS
 	savefile_key = "headshot_silicon"
 
 /datum/preference/text/headshot/silicon/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
@@ -104,7 +133,7 @@
 	usr?.client?.prefs.art_ref = value
 
 /datum/preference/toggle/art_ref_nsfw
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "art_ref_nsfw"
 	default_value = FALSE
@@ -116,6 +145,7 @@
 //OOC notes for Silicons. Overwrites regular OOC notes when you are playing a Silicon character.
 //TODO: Make this your regular OOC notes if you don't have Silicon ones. Every time I've tried, for some reason regular OOC notes haven't shown.
 /datum/preference/text/ooc_notes/silicon
+	category = PREFERENCE_CATEGORY_SILICON_PREFS
 	savefile_key = "ooc_notes_silicon"
 
 /datum/preference/text/ooc_notes/silicon/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
@@ -123,12 +153,14 @@
 
 //Custom species and lore for silicons, also known as "Custom Model." This allows silicons to define a custom species rather than receiving, by default "A cyborg unit." BORING.
 /datum/preference/text/custom_species/silicon
+	category = PREFERENCE_CATEGORY_SILICON_PREFS
 	savefile_key = "custom_species_silicon"
 
 /datum/preference/text/custom_species/silicon/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
 
 /datum/preference/text/custom_species_lore/silicon
+	category = PREFERENCE_CATEGORY_SILICON_PREFS
 	savefile_key = "custom_species_lore_silicon"
 
 /datum/preference/text/custom_species_lore/silicon/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)

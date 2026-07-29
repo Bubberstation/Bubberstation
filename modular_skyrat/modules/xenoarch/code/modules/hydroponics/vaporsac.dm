@@ -24,5 +24,7 @@
 	filling_color = "#FF4500"
 	bite_consumption_mod = 0.5
 	foodtypes = FRUIT
-	juice_typepath = /datum/reagent/nitrous_oxide
 	tastes = list("sleep" = 1)
+
+/obj/item/food/grown/vaporsac/juice_typepath()
+	return /datum/reagent/nitrous_oxide

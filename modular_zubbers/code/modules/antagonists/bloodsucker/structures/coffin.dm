@@ -51,6 +51,7 @@
 	material_drop = /obj/item/stack/sheet/iron
 	material_drop_amount = 2
 	armor_type = /datum/armor/blackcoffin
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5, /datum/material/iron = SHEET_MATERIAL_AMOUNT)
 
 /datum/armor/blackcoffin
 	melee = 50
@@ -74,6 +75,7 @@
 	material_drop = /obj/item/stack/sheet/iron
 	material_drop_amount = 2
 	armor_type = /datum/armor/securecoffin
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5.5, /datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 5)
 
 /datum/armor/securecoffin
 	melee = 35
@@ -97,6 +99,11 @@
 	material_drop = /obj/item/food/meat/slab/human
 	material_drop_amount = 3
 	armor_type = /datum/armor/meatcoffin
+	custom_materials = list(
+		/datum/material/meat = SHEET_MATERIAL_AMOUNT * 20,
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 1.5,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 1.5,
+	)
 
 /datum/armor/meatcoffin
 	melee = 70
@@ -120,6 +127,7 @@
 	material_drop = /obj/item/stack/sheet/iron
 	material_drop_amount = 5
 	armor_type = /datum/armor/metalcoffin
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7)
 
 /datum/armor/metalcoffin
 	melee = 40
@@ -138,6 +146,8 @@
 	if(bloodsuckerdatum.claim_coffin(src, current_area))
 		resident = claimant
 		anchored = TRUE
+		if(!(interaction_flags_click & ALLOW_RESTING))
+			interaction_flags_click = interaction_flags_click | ALLOW_RESTING
 		START_PROCESSING(SSprocessing, src)
 		return TRUE
 	return FALSE
@@ -191,6 +201,8 @@
 			to_chat(resident, span_cult_italic("You sense that the link with your coffin and your sacred haven has been broken! You will need to seek another."))
 	// Remove resident. Because this object isnt removed from the game immediately (GC?) we need to give them a way to see they don't have a home anymore.
 	resident = null
+	if(interaction_flags_click & ALLOW_RESTING)
+		interaction_flags_click = interaction_flags_click & ~ALLOW_RESTING
 
 /// You cannot lock in/out a coffin's owner. SORRY.
 /obj/structure/closet/crate/coffin/can_open(mob/living/user)
@@ -207,7 +219,7 @@
 
 /obj/structure/closet/crate/coffin/close(mob/living/user)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
-	if(bloodsuckerdatum && user.mob_size > max_mob_size)
+	if(bloodsuckerdatum && user.has_quirk(/datum/quirk/oversized))
 		if(!HAS_TRAIT_FROM_ONLY(src, TRAIT_COFFIN_ENLARGED, "bloodsucker_coffin"))
 			if(prompt_coffin_claim(bloodsuckerdatum))
 				enlarge(user)
@@ -241,10 +253,9 @@
 // some fatass bloodsucker is trying to fit in a too-small coffin, how about we make some room?
 /obj/structure/closet/crate/proc/enlarge(mob/living/user)
 	ADD_TRAIT(src, TRAIT_COFFIN_ENLARGED, "bloodsucker_coffin")
-	max_mob_size = user.mob_size
 	to_chat(user, span_warning("The coffin creaks and squeaks as you try to squeeze into it. It's a tight fit but you manage it make it fit you."))
 	playsound(src, 'modular_skyrat/modules/aesthetics/airlock/sound/creaking.ogg')
-	animate(src, 1 SECONDS, FALSE, BOUNCE_EASING, transform = transform.Scale(user.mob_size * COFFIN_ENLARGE_MULT))
+	animate(src, 1 SECONDS, FALSE, BOUNCE_EASING, transform = transform.Scale(1.5))
 
 /obj/structure/closet/crate/proc/un_enlarge(mob/living/user)
 	if(!HAS_TRAIT_FROM_ONLY(src, TRAIT_COFFIN_ENLARGED, "bloodsucker_coffin"))
@@ -304,7 +315,7 @@
 	. = ..()
 	if(user in src)
 		LockMe(user, !locked)
-		return
+		return CLICK_ACTION_SUCCESS
 
 	if(user == resident && user.Adjacent(src))
 		balloon_alert(user, "unclaim coffin?")
@@ -315,6 +326,7 @@
 		switch(unclaim_response)
 			if("Yes")
 				unclaim_coffin(TRUE)
+	return CLICK_ACTION_SUCCESS
 
 /obj/structure/closet/crate/proc/LockMe(mob/user, inLocked = TRUE)
 	if(user == resident)

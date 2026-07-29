@@ -28,8 +28,6 @@
 
 	ai_controller = /datum/ai_controller/basic_controller/mouse
 
-	/// Whether this rat is friendly to players
-	var/tame = FALSE
 	/// What color our mouse is. Brown, gray and white - leave blank for random.
 	var/body_color
 	/// Does this mouse contribute to the ratcap?
@@ -40,11 +38,12 @@
 	var/static/list/pet_commands = list(
 		/datum/pet_command/idle,
 		/datum/pet_command/free,
-		/datum/pet_command/follow,
+		/datum/pet_command/follow/start_active,
 		/datum/pet_command/perform_trick_sequence,
 	)
 
 /datum/emote/mouse
+	abstract_type = /datum/emote/mouse
 	mob_type_allowed_typecache = /mob/living/basic/mouse
 	mob_type_blacklist_typecache = list()
 
@@ -62,7 +61,8 @@
 		SSmobs.cheeserats |= src
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
-	src.tame = tame
+	if(tame)
+		ADD_TRAIT(src, TRAIT_TAMED, INNATE_TRAIT)
 	if(!isnull(new_body_color))
 		body_color = new_body_color
 	if(isnull(body_color))
@@ -80,11 +80,13 @@
 	AddComponent(/datum/component/swarming, 16, 16) //max_x, max_y
 
 /mob/living/basic/mouse/proc/make_tameable()
-	if (tame)
-		faction |= FACTION_NEUTRAL
+	if (HAS_TRAIT(src, TRAIT_TAMED))
+		add_faction(FACTION_NEUTRAL)
 	else
 		var/static/list/food_types = list(/obj/item/food/cheese)
 		AddComponent(/datum/component/tameable, food_types = food_types, tame_chance = 100)
+
+	AddElement(/datum/element/regal_rat_minion, converted_path = /mob/living/basic/mouse/rat, pet_commands = GLOB.regal_rat_minion_commands)
 
 /mob/living/basic/mouse/Destroy()
 	SSmobs.cheeserats -= src
@@ -140,9 +142,19 @@
 	if(!gibbed)
 		var/make_a_corpse = TRUE
 		var/place_to_make_corpse = loc
-		if(istype(loc, /obj/item/clothing/head/mob_holder))//If our mouse is dying in place holder we want to put the dead mouse where the place holder was
-			var/obj/item/clothing/head/mob_holder/found_holder = loc
+		var/must_equip = FALSE
+		var/equip_slot
+		var/mob/holding_mob
+		var/obj/item/mob_holder/found_holder
+		if(istype(loc, /obj/item/mob_holder))//If our mouse is dying in place holder we want to put the dead mouse where the place holder was
+			found_holder = loc
 			place_to_make_corpse = found_holder.loc
+			if(istype(found_holder.loc,/mob/living/carbon))
+				holding_mob = found_holder.loc
+				place_to_make_corpse = get_turf(holding_mob)
+				equip_slot = holding_mob.get_slot_by_item(found_holder)
+				if(equip_slot == ITEM_SLOT_HANDS || equip_slot == ITEM_SLOT_RPOCKET || equip_slot == ITEM_SLOT_LPOCKET)
+					must_equip = TRUE
 			if(istype(found_holder.loc, /obj/machinery/microwave))//Microwaves gib things that die when cooked, so we don't need to make a dead body too
 				make_a_corpse = FALSE
 		if(make_a_corpse)
@@ -151,6 +163,11 @@
 			if(HAS_TRAIT(src, TRAIT_BEING_SHOCKED))
 				mouse.desc = "They're toast."
 				mouse.add_atom_colour("#3A3A3A", FIXED_COLOUR_PRIORITY)
+			found_holder?.release(FALSE)
+			if(must_equip)
+				if(equip_slot == ITEM_SLOT_HANDS)
+					holding_mob.dropItemToGround(found_holder)
+				holding_mob.equip_to_slot(mouse,equip_slot)
 	qdel(src)
 
 /mob/living/basic/mouse/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)
@@ -178,9 +195,9 @@
 
 /// Called when a mouse is hand-fed some cheese, it will stop being afraid of humans
 /mob/living/basic/mouse/tamed(mob/living/tamer, obj/item/food/cheese/cheese)
+	. = ..()
 	new /obj/effect/temp_visual/heart(loc)
-	faction |= FACTION_NEUTRAL
-	tame = TRUE
+	add_faction(FACTION_NEUTRAL)
 	try_consume_cheese(cheese)
 	ai_controller.CancelActions() // Interrupt any current fleeing
 
@@ -230,7 +247,7 @@
 
 /// Creates a new mouse based on this mouse's subtype.
 /mob/living/basic/mouse/proc/create_a_new_rat()
-	new /mob/living/basic/mouse(loc, /* tame = */ tame)
+	new /mob/living/basic/mouse(loc, HAS_TRAIT(src, TRAIT_TAMED))
 
 /// Biting into a cable will cause a mouse to get shocked and die if applicable. Or do nothing if they're lucky.
 /mob/living/basic/mouse/proc/try_bite_cable(obj/structure/cable/cable)
@@ -284,7 +301,7 @@
 	contributes_to_ratcap = FALSE
 
 /mob/living/basic/mouse/brown/tom/make_tameable()
-	tame = TRUE
+	ADD_TRAIT(src, TRAIT_TAMED, INNATE_TRAIT)
 	return ..()
 
 /mob/living/basic/mouse/brown/tom/Initialize(mapload)
@@ -294,13 +311,13 @@
 	AddElement(/datum/element/pet_bonus, "squeak")
 
 /mob/living/basic/mouse/brown/tom/create_a_new_rat()
-	new /mob/living/basic/mouse/brown(loc, /* tame = */ tame) // dominant gene
+	new /mob/living/basic/mouse/brown(loc, HAS_TRAIT(src, TRAIT_TAMED)) // dominant gene
 
 /mob/living/basic/mouse/rat
 	name = "rat"
 	desc = "They're a nasty, ugly, evil, disease-ridden rodent with anger issues."
 
-	gold_core_spawnable = NO_SPAWN
+	gold_core_spawnable = HOSTILE_SPAWN
 	melee_damage_lower = 3
 	melee_damage_upper = 5
 	obj_damage = 5
@@ -325,7 +342,6 @@
 	eatverbs = list("devour")
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	foodtypes = GORE | MEAT | RAW
-	grind_results = list(/datum/reagent/blood = 20, /datum/reagent/consumable/liquidgibs = 5)
 	decomp_req_handle = TRUE
 	ant_attracting = FALSE
 	decomp_type = /obj/item/food/deadmouse/moldy
@@ -336,6 +352,9 @@
 	. = ..()
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_MOUSE, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 10)
 	RegisterSignal(src, COMSIG_ATOM_ON_LAZARUS_INJECTOR, PROC_REF(use_lazarus))
+
+/obj/item/food/deadmouse/grind_results()
+	return list(/datum/reagent/blood = 20, /datum/reagent/consumable/liquidgibs = 5)
 
 /// Copy properties from an imminently dead mouse
 /obj/item/food/deadmouse/proc/copy_corpse(mob/living/basic/mouse/dead_critter)
@@ -362,7 +381,7 @@
 	qdel(src)
 	return LAZARUS_INJECTOR_USED
 
-/obj/item/food/deadmouse/attackby(obj/item/attacking_item, mob/user, params)
+/obj/item/food/deadmouse/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	var/mob/living/living_user = user
 	if(istype(living_user) && attacking_item.get_sharpness() && living_user.combat_mode)
 		if(!isturf(loc))
@@ -398,8 +417,10 @@
 	icon_state = "mouse_gray_dead"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/mold = 10)
 	foodtypes = GORE | MEAT | RAW | GROSS
-	grind_results = list(/datum/reagent/blood = 20, /datum/reagent/consumable/liquidgibs = 5, /datum/reagent/consumable/mold = 10)
 	preserved_food = TRUE
+
+/obj/item/food/deadmouse/moldy/grind_results()
+	return list(/datum/reagent/blood = 20, /datum/reagent/consumable/liquidgibs = 5, /datum/reagent/consumable/mold = 10)
 
 /// The mouse AI controller
 /datum/ai_controller/basic_controller/mouse
@@ -407,21 +428,27 @@
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic, // Use this to find people to run away from
 		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
 		BB_BASIC_MOB_FLEE_DISTANCE = 3,
+		BB_SONG_LINES = MOUSE_SONG,
 	)
 
-	ai_traits = STOP_MOVING_WHEN_PULLED
+	ai_traits = PASSIVE_AI_FLAGS
 	ai_movement = /datum/ai_movement/basic_avoidance
 	idle_behavior = /datum/idle_behavior/idle_random_walk
 	planning_subtrees = list(
+		// Try to speak, because it's cute
+		/datum/ai_planning_subtree/random_speech/mouse,
+		// Follow the boss's orders
 		/datum/ai_planning_subtree/pet_planning,
-		// Top priority is to look for and execute hunts for cheese even if someone is looking at us
+		// Look for and execute hunts for cheese even if someone is looking at us
 		/datum/ai_planning_subtree/find_and_hunt_target/look_for_cheese,
+		// Next priority is to try and appreoach a keyboard
+		/datum/ai_planning_subtree/approach_synthesizer,
+		// And play it if we are near it
+		/datum/ai_planning_subtree/generic_play_instrument/end_planning,
 		// Next priority is see if anyone is looking at us
 		/datum/ai_planning_subtree/simple_find_nearest_target_to_flee,
 		// Skedaddle
 		/datum/ai_planning_subtree/flee_target/mouse,
-		// Try to speak, because it's cute
-		/datum/ai_planning_subtree/random_speech/mouse,
 		// Otherwise, look for and execute hunts for cabling
 		/datum/ai_planning_subtree/find_and_hunt_target/look_for_cables,
 	)
@@ -450,10 +477,11 @@
 		)
 	)
 
-	ai_traits = STOP_MOVING_WHEN_PULLED
+	ai_traits = DEFAULT_AI_FLAGS | STOP_MOVING_WHEN_PULLED
 	ai_movement = /datum/ai_movement/basic_avoidance
 	idle_behavior = /datum/idle_behavior/idle_random_walk
 	planning_subtrees = list(
+		/datum/ai_planning_subtree/escape_captivity,
 		/datum/ai_planning_subtree/pet_planning,
 		/datum/ai_planning_subtree/simple_find_target,
 		/datum/ai_planning_subtree/attack_obstacle_in_path,

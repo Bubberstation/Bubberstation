@@ -24,7 +24,7 @@ Skyrat removal START, moved to modular file
 
 /obj/machinery/atmospherics/components/binary/circulator/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/simple_rotation)
+	AddElement(/datum/element/simple_rotation)
 
 //default cold circ for mappers
 /obj/machinery/atmospherics/components/binary/circulator/cold
@@ -61,7 +61,7 @@ Skyrat removal START, moved to modular file
 	return removed
 
 /obj/machinery/atmospherics/components/binary/circulator/process_atmos()
-	update_appearance()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/binary/circulator/update_overlays()
 	. = ..()
@@ -157,7 +157,7 @@ Skyrat removal START, moved to modular file
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/crowbar_act(mob/user, obj/item/I)
-	if(default_deconstruction_crowbar(I))
+	if(default_deconstruction_crowbar(user, I))
 		return TRUE
 	return ..()
 
@@ -170,7 +170,7 @@ Skyrat removal START, moved to modular file
 		generator.cold_circ = null
 	else
 		generator.hot_circ = null
-	generator.update_appearance()
+	generator.update_appearance(UPDATE_ICON)
 	generator = null
 
 /obj/machinery/atmospherics/components/binary/circulator/set_piping_layer(new_layer)

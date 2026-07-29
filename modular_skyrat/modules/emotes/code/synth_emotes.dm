@@ -7,7 +7,7 @@
 	message = "chirps happily!"
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/emotes/dwoop.ogg'
-	allowed_species = list(/datum/species/synthetic)
+	allowed_species = list(/datum/species/synthetic, /datum/species/protean)
 	cooldown = 2 SECONDS
 
 /datum/emote/silicon/yes
@@ -36,3 +36,15 @@
 	message = "plays a laughtrack."
 	emote_type = EMOTE_AUDIBLE
 	sound = 'sound/items/sitcom_laugh/SitcomLaugh2.ogg'
+
+/datum/emote/silicon/wink
+	key = "wink"
+	key_third_person = "winks"
+	message = "winks."
+	sound = 'sound/mobs/humanoids/human/wink/wink.ogg'
+
+/datum/emote/silicon/blink
+	key = "blink"
+	key_third_person = "blinks"
+	message = "blinks."
+	sound = 'sound/mobs/humanoids/human/blink/blink.ogg'

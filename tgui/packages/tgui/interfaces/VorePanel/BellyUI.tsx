@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import { useBackend, useSharedState } from 'tgui/backend';
 import {
   Box,
   Button,
   ColorBox,
   Dropdown,
+  FitText,
   Flex,
   Icon,
   Input,
@@ -14,7 +16,6 @@ import {
   Stack,
   TextArea,
 } from 'tgui-core/components';
-import { FitText } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 
 import { AppearanceDisplay, BellyFullscreenIcon } from './AppearanceDisplay';
@@ -84,7 +85,7 @@ export const BelliesList = (props) => {
                 >
                   Add Belly{' '}
                   {data.bellies.length >= data.max_bellies &&
-                    '(Max: ' + data.max_bellies + ')'}
+                    `(Max: ${data.max_bellies})`}
                 </Button>
               </Stack.Item>
             </Stack>
@@ -123,7 +124,7 @@ export const BellyUI = (props: {
   // Little niceity, this makes it so that it whatever tab the user was last
   // looking at opens automatically when they switch back to this belly
   const [selectedTab, setSelectedTab] = useSharedState(
-    'bellyTab-' + belly.name,
+    `bellyTab-${belly.name}`,
     0,
   );
   const [editing, setEditing] = useState(false);
@@ -137,7 +138,7 @@ export const BellyUI = (props: {
         editing ? (
           <Input
             value={belly.name}
-            onChange={(e, value) =>
+            onChange={(value) =>
               act('edit_belly', { ref: belly.ref, var: 'name', value })
             }
           />
@@ -255,7 +256,7 @@ export const BellyUI = (props: {
                 value={belly.desc}
                 height={10}
                 className={'VorePanel__AdvancedTextArea'}
-                onChange={(e, value) =>
+                onChange={(value) =>
                   act('edit_belly', { ref: belly.ref, var: 'desc', value })
                 }
               />
@@ -371,7 +372,7 @@ export const BellyUI = (props: {
                 minValue={0}
                 maxValue={100}
                 step={1}
-                format={(v) => v + '%'}
+                format={(v) => `${v}%`}
                 onChange={(value) =>
                   act('edit_belly', {
                     ref: belly.ref,
@@ -381,7 +382,7 @@ export const BellyUI = (props: {
                 }
               />
             ) : (
-              belly.escape_chance + '%'
+              `${belly.escape_chance}%`
             )}
           </LabeledList.Item>
           <LabeledList.Item label="Time To Escape">
@@ -391,7 +392,7 @@ export const BellyUI = (props: {
                 minValue={data.min_escape_time / 10}
                 maxValue={data.max_escape_time / 10}
                 step={1}
-                format={(v) => v + ' seconds'}
+                format={(v) => `${v} seconds`}
                 onChange={(value) =>
                   act('edit_belly', {
                     ref: belly.ref,
@@ -401,7 +402,7 @@ export const BellyUI = (props: {
                 }
               />
             ) : (
-              belly.escape_time / 10 + ' seconds'
+              `${belly.escape_time / 10} seconds`
             )}
           </LabeledList.Item>
           <LabeledList.Item label="Can Taste">
@@ -429,7 +430,7 @@ export const BellyUI = (props: {
             {editing ? (
               <Input
                 value={belly.insert_verb}
-                onChange={(e, value) =>
+                onChange={(value) =>
                   act('edit_belly', {
                     ref: belly.ref,
                     var: 'insert_verb',
@@ -446,7 +447,7 @@ export const BellyUI = (props: {
             {editing ? (
               <Input
                 value={belly.release_verb}
-                onChange={(e, value) =>
+                onChange={(value) =>
                   act('edit_belly', {
                     ref: belly.ref,
                     var: 'release_verb',
@@ -702,7 +703,7 @@ const BellyMessageSection = (props: {
               value={v}
               fluid
               maxLength={data.max_vore_message_length}
-              onChange={(e, val) => {
+              onChange={(val) => {
                 setBellyValues(
                   bellyValues.map((oldVal, index) => {
                     if (index === i) {
@@ -741,7 +742,7 @@ const BellyMessageSection = (props: {
         }
         fluid
         maxLength={data.max_vore_message_length}
-        onEnter={(e, val) => {
+        onEnter={(val) => {
           setBellyValues([...bellyValues, val]);
           setHasChanges(true);
         }}

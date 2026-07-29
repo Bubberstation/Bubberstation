@@ -114,11 +114,10 @@
 	new_mob.PossessByPlayer(ghost.key)
 
 	if(ghost_mind)
-		new_mob.AddComponent(/datum/component/temporary_body, ghost_mind, ghost_mind.current, TRUE)
+		new_mob.AddComponent(/datum/component/temporary_body, ghost_mind, return_on_death = TRUE)
 
 	var/datum/mind/antag_mind = new_mob.mind
 	antag_mind.add_antag_datum(chosen_role)
-	antag_mind.special_role = ROLE_GLITCH
 	antag_mind.set_assigned_role(SSjob.get_job_type(/datum/job/bitrunning_glitch))
 
 	playsound(new_mob, 'sound/effects/magic/ethereal_exit.ogg', 50, vary = TRUE)
@@ -132,7 +131,7 @@
 /obj/machinery/quantum_server/proc/station_spawn(mob/living/antag, obj/machinery/byteforge/chosen_forge)
 	antag.balloon_alert(antag, "scanning...")
 	chosen_forge.setup_particles(angry = TRUE)
-	var/obj/machinery/announcement_system/aas = get_announcement_system(source = src)
+	var/obj/machinery/announcement_system/aas = get_announcement_system(null, src, list(RADIO_CHANNEL_SUPPLY))
 	if (aas)
 		aas.broadcast("QUANTUM SERVER ALERT: Security breach detected. Unauthorized entry sequence in progress...", list(RADIO_CHANNEL_SUPPLY))
 	SEND_SIGNAL(src, COMSIG_BITRUNNER_STATION_SPAWN)
@@ -142,6 +141,22 @@
 		if (aas)
 			aas.broadcast("QUANTUM SERVER ALERT: Fabrication protocols have crashed unexpectedly. Please evacuate the area.", list(RADIO_CHANNEL_SUPPLY))
 		timeout = 10 SECONDS
+
+	var/bitrunners_alive = 0
+	var/island_brawl_exception = istype(generated_domain, /datum/lazy_template/virtual_domain/island_brawl)
+	for(var/datum/weakref/bitrunner_ref in avatar_connection_refs)
+		var/mob/living/bitrunner = astype(bitrunner_ref.resolve(), /datum/component/avatar_connection)?.parent
+		if(!bitrunner)
+			continue
+		if((bitrunner.stat > CONSCIOUS) || !bitrunner.client)
+			continue
+		if(island_brawl_exception)
+			timeout *= max(5 - generated_domain.main_crate_points, 1)
+			continue
+		bitrunners_alive++
+		timeout *= 5
+	if(bitrunners_alive)
+		to_chat(antag, span_warning("[bitrunners_alive] criminals still remain here, pilfering your domain. It will be more difficult to leave until they are handled."))
 
 	if(!do_after(antag, timeout) || QDELETED(chosen_forge) || QDELETED(antag) || QDELETED(src) || !is_ready || !is_operational)
 		chosen_forge.setup_particles()

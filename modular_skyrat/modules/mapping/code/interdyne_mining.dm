@@ -17,14 +17,14 @@
 	)
 
 // This is honestly quite terrible but, replaces voucher spawned mining drones with the interdyne subtype at this console
-
-/obj/machinery/computer/order_console/mining/interdyne/redeem_voucher(obj/item/mining_voucher/voucher, mob/redeemer)
-	. = ..()
-	for(var/mob/living/basic/mining_drone/drone in drop_location())
-		// There could already be an interdyne drone there
-		if(!istype(drone, /mob/living/basic/mining_drone/interdyne))
-			qdel(drone)
-			new /mob/living/basic/mining_drone/interdyne(drop_location())
+// TODO: Figure out how to do this, since voucher redeeming is now handled by an element
+// /obj/machinery/computer/order_console/mining/interdyne/redeem_voucher(obj/item/mining_voucher/voucher, mob/redeemer)
+// 	. = ..()
+// 	for(var/mob/living/basic/mining_drone/drone in drop_location())
+// 		// There could already be an interdyne drone there
+// 		if(!istype(drone, /mob/living/basic/mining_drone/interdyne))
+// 			qdel(drone)
+// 			new /mob/living/basic/mining_drone/interdyne(drop_location())
 
 // Interdyne minebot
 

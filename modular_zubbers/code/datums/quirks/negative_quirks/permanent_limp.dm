@@ -1,7 +1,7 @@
-/datum/quirk/permanent_limp
+/datum/quirk/permanent_limp //As it turns out, upstream now has a limping quirk. (/datum/quirk/item_quirk/limper). Feel free to nuke this quirk to reduce redundancy.
 	name = "Permanent Limp"
 	desc = "One of your legs has a permanent limp."
-	icon = FA_ICON_PERSON_CANE
+	icon = FA_ICON_PERSON_WALKING_WITH_CANE
 	value = -3
 	gain_text = "You start to walk with a limp"
 	lose_text = "Your limp is cured"

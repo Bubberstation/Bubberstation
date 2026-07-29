@@ -3,6 +3,8 @@
 #define BB_BILEWORM_SPEW_BILE "BB_bileworm_spew_bile"
 #define BB_BILEWORM_RESURFACE "BB_bileworm_resurface"
 #define BB_BILEWORM_DEVOUR "BB_bileworm_devour"
+#define BB_BILEWORM_SCARED "BB_bileworm_scared"
+#define BB_BILEWORM_FLEE_DISTANCE "BB_bileworm_flee_distance"
 
 // Meteor Heart AI keys
 /// Key where we keep the spike trail ability
@@ -50,6 +52,11 @@
 /// Key where goliath stores a hole it wants to get into
 #define BB_GOLIATH_HOLE_TARGET "BB_goliath_hole"
 
+// Tendril AI keys
+#define BB_TENDRIL_LASH "tendril_lash"
+#define BB_TENDRIL_CHASER "tendril_chaser"
+#define BB_TENDRIL_SPIKES "tendril_spikes"
+
 // bee keys
 ///the bee hive we live inside
 #define BB_CURRENT_HOME "BB_current_home"
@@ -95,8 +102,6 @@
 #define BB_WHELP_STRAIGHTLINE_FIRE "BB_whelp_straightline_fire"
 ///whelp's secondary enraged ability
 #define BB_WHELP_WIDESPREAD_FIRE "BB_whelp_widespread_fire"
-///how enraged the whelp is
-#define BB_WHELP_ENRAGED "BB_whelp_enraged"
 ///the target rock we will attempt to create a sculpture out of
 #define BB_TARGET_ROCK "BB_target_rock"
 ///the cannibal target we shall consume
@@ -328,3 +333,21 @@
 #define BB_TURTLE_FLORA_TARGET "turtle_flora_target"
 
 #define BB_GUNMIMIC_GUN_EMPTY "BB_GUNMIMIC_GUN_EMPTY"
+
+//snails
+///snails retreat ability
+#define BB_SNAIL_RETREAT_ABILITY "snail_retreat_ability"
+
+//blood drunk miner keys
+///key for dash ability
+#define BB_BDM_DASH_ABILITY "BB_bdm_dash_ability"
+/// key for kinetic accelerator ability
+#define BB_BDM_KINETIC_ACCELERATOR_ABILITY "BB_bdm_kinetic_accelerator_ability"
+/// key for dash attack ability
+#define BB_BDM_DASH_ATTACK_ABILITY "BB_bdm_dash_attack_ability"
+/// key for transform weapon ability
+#define BB_BDM_TRANSFORM_WEAPON_ABILITY "BB_bdm_transform_weapon_ability"
+/// Shared cooldown group for blood drunk miner ranged abilities
+#define BB_BDM_RANGED_ATTACK_COOLDOWN "BB_bdm_ranged_attack_cooldown"
+/// Cooldown duration for blood drunk miner ranged abilities
+#define BB_BDM_RANGED_ATTACK_COOLDOWN_DURATION "BB_bdm_ranged_attack_cooldown_duration"

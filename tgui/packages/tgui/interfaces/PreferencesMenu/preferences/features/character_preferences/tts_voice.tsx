@@ -2,11 +2,11 @@ import { useBackend } from 'tgui/backend';
 import { Button, Stack } from 'tgui-core/components';
 
 import {
-  FeatureChoiced,
-  FeatureChoicedServerData,
-  FeatureNumeric,
+  type FeatureChoiced,
+  type FeatureChoicedServerData,
+  type FeatureNumeric,
   FeatureSliderInput,
-  FeatureValueProps,
+  type FeatureValueProps,
 } from '../base';
 import { FeatureDropdownInput } from '../dropdowns';
 
@@ -40,6 +40,16 @@ function FeatureTTSDropdownInput(
           height="100%"
         />
       </Stack.Item>
+      <Stack.Item>
+        <Button
+          onClick={() => {
+            act('play_blips');
+          }}
+          icon="leaf"
+          width="100%"
+          height="100%"
+        />
+      </Stack.Item>
     </Stack>
   );
 }
@@ -51,5 +61,15 @@ export const tts_voice: FeatureChoiced = {
 
 export const tts_voice_pitch: FeatureNumeric = {
   name: 'Voice Pitch Adjustment',
+  component: FeatureSliderInput,
+};
+
+export const tts_blip_base: FeatureChoiced = {
+  name: 'Voice Blip Base',
+  component: FeatureDropdownInput,
+};
+
+export const tts_blip_number: FeatureNumeric = {
+  name: 'Voice Blip Variant',
   component: FeatureSliderInput,
 };

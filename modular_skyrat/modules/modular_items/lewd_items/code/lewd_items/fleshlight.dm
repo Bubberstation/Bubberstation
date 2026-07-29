@@ -89,3 +89,78 @@
 						'modular_skyrat/modules/modular_items/lewd_items/sounds/bang4.ogg',
 						'modular_skyrat/modules/modular_items/lewd_items/sounds/bang5.ogg',
 						'modular_skyrat/modules/modular_items/lewd_items/sounds/bang6.ogg'), 70, 1, -1)
+
+/obj/item/toy/plush/fleshlight/screws
+	name = "Chief Screws Plush"
+	desc = "An adorable blue Lizard plushie wearing a Chief Engineer's Uniform... her upturned skirt revealing a tight, pre-lubed pussy."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "cescrewsplush"
+	base_icon_state = "cescrewsplush"
+
+/obj/item/toy/plush/fleshlight/screws/examine(mob/user)
+	. = ..()
+	. += span_notice("Alt-click to cover her up.")
+
+/obj/item/toy/plush/fleshlight/screws/click_alt(mob/user)
+	user.visible_message(span_notice("[user] turns [src], hiding the hole underneath."), span_notice("You turn [src], covering her up with her little skirt."))
+	playsound(user, 'sound/effects/blob/blobattack.ogg', 50, TRUE)
+	var/obj/item/toy/plush/cescrewsplush/plushie = new(null)
+	qdel(src)
+	user.put_in_hands(plushie)
+	return TRUE
+
+/obj/item/toy/plush/fleshlight/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+	. = ..()
+	if(!istype(target))
+		return
+	if(target.stat == DEAD)
+		return
+
+	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
+		to_chat(user, span_danger("[target] doesn't want you to do that!"))
+		return
+
+	var/obj/item/organ/genital/penis = target.get_organ_slot(ORGAN_SLOT_PENIS)
+	if(!penis?.is_exposed())
+		to_chat(user, span_danger("Looks like [target]'s groin is covered!"))
+		return
+
+	var/message = (user == target) ? pick("moans in ecstasy as [target.p_they()] fuck the [src]",
+			"slowly moves [src] up and down on [target]'s penis, causing [target.p_them()] to bend in pleasure",
+			"shivers in pleasure as [target.p_they()] move [src] on their penis") \
+		: pick("uses [src] on [target]'s penis",
+			"fucks [target] with [src]",
+			"masturbates [target] with [src], causing [target.p_them()] to moan in ecstasy")
+
+	if(prob(70))
+		target.try_lewd_autoemote(pick("twitch_s", "moan", "blush"))
+	target.adjust_arousal(6)
+	target.adjust_pleasure(9)
+	user.visible_message(span_purple("[user] [message]!"))
+	conditional_pref_sound(loc, pick('modular_skyrat/modules/modular_items/lewd_items/sounds/bang1.ogg',
+						'modular_skyrat/modules/modular_items/lewd_items/sounds/bang2.ogg',
+						'modular_skyrat/modules/modular_items/lewd_items/sounds/bang3.ogg',
+						'modular_skyrat/modules/modular_items/lewd_items/sounds/bang4.ogg',
+						'modular_skyrat/modules/modular_items/lewd_items/sounds/bang5.ogg',
+						'modular_skyrat/modules/modular_items/lewd_items/sounds/bang6.ogg'), 70, 1, -1)
+
+
+/obj/item/clothing/sextoy/fleshlight/bluespace
+	name = "bluespace fleshlight"
+	color_changed = TRUE
+	current_color = "teal"
+	desc = "Internal design based on the captain's mother."
+	custom_premium_price = PAYCHECK_COMMAND * 10
+
+/obj/item/clothing/sextoy/fleshlight/bluespace/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/effect_remover, \
+		tip_text = "Capture rod", \
+		on_clear_callback = CALLBACK(src, PROC_REF(rod_johnson)), \
+		effects_we_clear = list(/obj/effect/immovablerod)\
+	)
+
+/obj/item/clothing/sextoy/fleshlight/bluespace/proc/rod_johnson(obj/effect/immovablerod/target, mob/living/user)
+	user.throw_at(get_step(user,target.dir),12,4)
+	playsound(target, 'sound/effects/cartoon_sfx/cartoon_pop.ogg', 75, TRUE)
+	target.audible_message(span_danger("You hear a POP!"))

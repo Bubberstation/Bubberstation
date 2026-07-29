@@ -19,15 +19,16 @@
 	target_trait = ZTRAIT_STATION
 
 	overlay_layer = ABOVE_OPEN_TURF_LAYER //Covers floors only
-	overlay_plane = FLOOR_PLANE
+	overlay_planes = list(FLOOR_PLANE)
 	immunity_type = TRAIT_LAVA_IMMUNE
 	/// We don't draw on walls, so this ends up lookin weird
 	/// Can't really use like, the emissive system here because I am not about to make
 	/// all walls block emissive
 	use_glow = FALSE
+	weather_flags = (WEATHER_MOBS | WEATHER_INDOORS)
 
 
-/datum/weather/floor_is_lava/can_weather_act(mob/living/mob_to_check)
+/datum/weather/floor_is_lava/can_weather_act_mob(mob/living/mob_to_check)
 	if(!mob_to_check.client) //Only sentient people are going along with it!
 		return FALSE
 	. = ..()
@@ -42,5 +43,6 @@
 	if(mob_to_check.movement_type & MOVETYPES_NOT_TOUCHING_GROUND)
 		return FALSE
 
-/datum/weather/floor_is_lava/weather_act(mob/living/victim)
-	victim.adjustFireLoss(3)
+/datum/weather/floor_is_lava/weather_act_mob(mob/living/victim)
+	victim.adjust_fire_loss(3)
+	return ..()

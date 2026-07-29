@@ -19,7 +19,7 @@
 	worn_head_offset = new(
 		attached_part = src,
 		feature_key = OFFSET_HEAD,
-		offset_x = list("north" = 1, "south" = 1, "east" = 1, "west" = 1),
+		offset_x = list("north" = 0, "south" = 0, "east" = 1, "west" = -1),
 	)
 	worn_mask_offset = new(
 		attached_part = src,
@@ -105,7 +105,8 @@
 
 		. = newMeat // Return MEAT
 
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /obj/item/bodypart/arm/left/mutant/ghoul/drop_limb(special, dismembered, move_to_floor = TRUE)
 	..() // Create Meat, Remove Limb
@@ -116,7 +117,8 @@
 
 		. = newMeat // Return MEAT
 
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /obj/item/bodypart/leg/right/mutant/ghoul/drop_limb(special, dismembered, move_to_floor = TRUE)
 	..() // Create Meat, Remove Limb
@@ -127,7 +129,8 @@
 
 		. = newMeat // Return MEAT
 
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /obj/item/bodypart/leg/left/mutant/ghoul/drop_limb(special, dismembered, move_to_floor = TRUE)
 	..() // Create Meat, Remove Limb
@@ -138,7 +141,8 @@
 
 		. = newMeat // Return MEAT
 
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 #undef GHOUL_BRUTE_MODIFIER
 #undef GHOUL_BURN_MODIFIER

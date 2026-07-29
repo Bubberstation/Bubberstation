@@ -32,7 +32,7 @@
 	description = "A scientist needs vermin to test on, use the cytology equipment to grow some of these simple critters!"
 	total_requirement = 3
 	max_requirement_per_type = 2
-	possible_types = list(/mob/living/basic/cockroach, /mob/living/basic/mouse)
+	possible_types = list(/mob/living/basic/cockroach, /mob/living/basic/mouse, /mob/living/basic/snail)
 
 /datum/experiment/scanning/random/cytology/medium
 	name = "Advanced Cytology Scanning Experiment"
@@ -348,7 +348,7 @@
 	. = ..()
 	if (!.)
 		return
-	if(!check.dna.mutations.len)
+	if(!LAZYLEN(check.dna.mutations))
 		return FALSE
 	return TRUE
 
@@ -452,7 +452,7 @@
 		return
 	if (isandroid(check))
 		return TRUE
-	if (length(check.organs) < 6 || length(check.bodyparts) < 6)
+	if (length(check.organs) < 6 || length(check.get_missing_limbs()) > 1)
 		return FALSE
 
 	var/static/list/augmented_organ_slots = list(
@@ -468,8 +468,8 @@
 			continue
 		if (!IS_ROBOTIC_ORGAN(organ))
 			return FALSE
-	for (var/obj/item/bodypart/bodypart as anything in check.bodyparts)
-		if (bodypart.bodytype != BODYTYPE_ROBOTIC)
+	for (var/obj/item/bodypart/bodypart as anything in check.get_bodyparts())
+		if (!IS_ROBOTIC_LIMB(bodypart))
 			return FALSE
 	return TRUE
 

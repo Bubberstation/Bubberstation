@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import {
   Box,
   Button,
+  Input,
   LabeledList,
   NoticeBox,
   RestrictedInput,
@@ -21,7 +23,7 @@ import {
 } from './constants';
 import { getMedicalRecord, getQuirkStrings } from './helpers';
 import { NoteKeeper } from './NoteKeeper';
-import { MedicalRecordData } from './types';
+import type { MedicalRecordData } from './types';
 
 /** Views a selected record. */
 export const MedicalRecordView = (props) => {
@@ -44,6 +46,7 @@ export const MedicalRecordView = (props) => {
     major_disabilities,
     minor_disabilities,
     physical_status,
+    cause_of_death,
     mental_status,
     name,
     quirk_notes,
@@ -58,6 +61,8 @@ export const MedicalRecordView = (props) => {
   const minor_disabilities_array = getQuirkStrings(minor_disabilities);
   const major_disabilities_array = getQuirkStrings(major_disabilities);
   const quirk_notes_array = getQuirkStrings(quirk_notes);
+
+  const [isValid, setIsValid] = useState(true);
 
   return (
     <Stack fill vertical>
@@ -75,12 +80,13 @@ export const MedicalRecordView = (props) => {
         <Section
           buttons={
             <Button.Confirm
-              content="Delete"
               icon="trash"
               disabled={!station_z}
               onClick={() => act('expunge_record', { crew_ref: crew_ref })}
               tooltip="Expunge record data."
-            />
+            >
+              Delete
+            </Button.Confirm>
           }
           fill
           scrollable
@@ -100,13 +106,15 @@ export const MedicalRecordView = (props) => {
               <RestrictedInput
                 minValue={min_age}
                 maxValue={max_age}
-                onEnter={(event, value) =>
+                onEnter={(value) =>
+                  isValid &&
                   act('edit_field', {
                     field: 'age',
                     ref: crew_ref,
                     value: value,
                   })
                 }
+                onValidationChange={setIsValid}
                 value={age}
               />
             </LabeledList.Item>
@@ -115,7 +123,7 @@ export const MedicalRecordView = (props) => {
               <RestrictedInput
                 minValue={min_age}
                 maxValue={max_chrono_age}
-                onEnter={(event, value) =>
+                onEnter={(value) =>
                   act('edit_field', {
                     field: 'chrono_age',
                     ref: crew_ref,
@@ -185,6 +193,23 @@ export const MedicalRecordView = (props) => {
                 {physical_status}
               </Box>
             </LabeledList.Item>
+            {physical_status === 'Deceased' && (
+              <LabeledList.Item label="Cause of Death">
+                <Box>
+                  <Input
+                    fluid
+                    placeholder="Input Cause of Death..."
+                    value={cause_of_death}
+                    onChange={(value) =>
+                      act('set_cause_of_death', {
+                        crew_ref: crew_ref,
+                        cause: value,
+                      })
+                    }
+                  />
+                </Box>
+              </LabeledList.Item>
+            )}
             <LabeledList.Item
               buttons={mental_statuses.map((button, index) => {
                 const isSelected = button === mental_status;

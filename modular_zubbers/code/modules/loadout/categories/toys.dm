@@ -1,57 +1,69 @@
-/datum/loadout_item/toys/moffplush_lovers
+//Title Capitalization for names please!!!
+
+/datum/loadout_category/toys
+	category_name = "Toys"
+	category_ui_icon = FA_ICON_GOLF_BALL
+	type_to_generate = /datum/loadout_item/toys
+	tab_order = /datum/loadout_category/head::tab_order + 13
+
+/datum/loadout_item/toys/plush
+	group = "Plushies"
+	abstract_type = /datum/loadout_item/toys/plush
+
+/datum/loadout_item/toys/plush/moffplush_lovers
 	name = "Lovers Moth Plushie"
 	item_path = /obj/item/toy/plush/moth/lovers
 	donator_only = TRUE //Donor item for Basicguy20
 
-/datum/loadout_item/toys/chirp_plush
+/datum/loadout_item/toys/plush/chirp_plush
 	name = "Chirpy Synth Plushie"
 	item_path = /obj/item/toy/plush/chirp_plush
 	donator_only = TRUE //Donor item for potatomedic.
 
-/datum/loadout_item/toys/bigdeer_plush
+/datum/loadout_item/toys/plush/bigdeer_plush
 	name = "Big Deer Plushie"
 	item_path = /obj/item/toy/plush/bigdeer //Donor item for Gavla
 
-/datum/loadout_item/toys/bubbledragon
+/datum/loadout_item/toys/plush/bubbledragon
 	name = "Bubbledragon Plushie"
 	item_path = /obj/item/toy/plush/bubbledragon
 	donator_only = TRUE
 
-/datum/loadout_item/toys/especiallystrange
+/datum/loadout_item/toys/plush/especiallystrange
 	name = "Ironmoon Tajaran Plushie"
 	item_path = /obj/item/toy/plush/especiallystrange
 
-/datum/loadout_item/toys/headcrab
+/datum/loadout_item/toys/plush/headcrab
 	name = "Headcrab Plushie"
 	item_path = /obj/item/toy/plush/headcrab
 	donator_only = TRUE
 
-/datum/loadout_item/toys/Bellybird
+/datum/loadout_item/toys/plush/Bellybird
 	name = "Belly Bird Plushie"
 	item_path = /obj/item/toy/plush/bellybird
 	donator_only = TRUE
 
-/datum/loadout_item/toys/tiredtesh
+/datum/loadout_item/toys/plush/tiredtesh
 	name = "Tired Teshari Plushie"
 	item_path = /obj/item/toy/plush/tiredtesh
 
-/datum/loadout_item/toys/xenoplush
+/datum/loadout_item/toys/plush/xenoplush
 	name = "Xenomorph Plushie"
 	item_path = /obj/item/toy/plush/xenoplush
 
-/datum/loadout_item/toys/xenomaidplush
+/datum/loadout_item/toys/plush/xenomaidplush
 	name = "Xenomorph Maid Plushie"
 	item_path = /obj/item/toy/plush/xenoplush/xenomaidplush
 
-/datum/loadout_item/toys/tunafish
+/datum/loadout_item/toys/plush/tunafish
 	name = "Tuna Fish Plush"
 	item_path = /obj/item/toy/plush/tunafish
 
-/datum/loadout_item/toys/purplecat
+/datum/loadout_item/toys/plush/purplecat
 	name = "Purple Cat Plush"
 	item_path = /obj/item/toy/plush/purplecat
 
-/datum/loadout_item/toys/secoff
+/datum/loadout_item/toys/plush/secoff
 	name = "GalFed Secoff Plush"
 	item_path = /obj/item/toy/plush/secoff
 
@@ -59,42 +71,218 @@
 	name = "Xeno Action Figure"
 	item_path = /obj/item/toy/toy_xeno
 
-/datum/loadout_item/toys/internshiba
+/datum/loadout_item/toys/plush/internshiba
 	name = "Intern Shiba Plush"
 	item_path = /obj/item/toy/plush/internshiba
 
-/datum/loadout_item/toys/cat_annoying
+/datum/loadout_item/toys/plush/cat_annoying
 	name = "Annoying Cat Plush"
 	item_path = /obj/item/toy/plush/cat_annoying
 
-/datum/loadout_item/toys/suspicious_protogen
+/datum/loadout_item/toys/plush/suspicious_protogen
 	name = "Suspicious Protogen Plush"
 	item_path = /obj/item/toy/plush/suspicious_protogen
 
-/datum/loadout_item/toys/foxy_plush
+/datum/loadout_item/toys/plush/foxy_plush
 	name = "Colorful Fox Plush"
 	item_path = /obj/item/toy/plush/foxy_plush
 
-/datum/loadout_item/toys/bottomsynf
+/datum/loadout_item/toys/plush/bottomsynf
 	name = "CentCom Synth Fox Plush"
 	item_path = /obj/item/toy/plush/bottomsynf
 
-/datum/loadout_item/toys/squeaky_toy
+/datum/loadout_item/toys/plush/squeaky_toy
 	name = "Squeaky Rat Plushie"
 	item_path = /obj/item/toy/plush/squeaky_toy
 
-/datum/loadout_item/toys/androiddog
+/datum/loadout_item/toys/plush/androiddog
 	name = "Android Dog Plushie"
 	item_path = /obj/item/toy/plush/androiddog
 
-/datum/loadout_item/toys/ghoul
+/datum/loadout_item/toys/plush/ghoul
 	name = "Intern Ghoul Plushie"
 	item_path = /obj/item/toy/plush/ghoul
 
-/datum/loadout_item/toys/mold_kobold
+/datum/loadout_item/toys/plush/goat
+	name = "Strange Goat Plushie"
+	item_path = /obj/item/toy/plush/goatplushie
+
+/datum/loadout_item/toys/plush/mold_kobold
 	name = "Hemophage Awareness Kobold"
 	item_path = /obj/item/toy/plush/mold_kobold
 
-/datum/loadout_item/toys/mothroach_plush
+/datum/loadout_item/toys/plush/mothroach_plush
 	name = "Mothroach Plush"
 	item_path = /obj/item/toy/plush/mothroach_plush
+
+/datum/loadout_item/toys/plush/lazy_synth
+	name = "Lazy Synth Plush"
+	item_path = /obj/item/toy/plush/lazy_synth
+
+/datum/loadout_item/toys/plush/sunny_plush
+	name = "Weighty Moostoat Plushie"
+	item_path = /obj/item/toy/plush/sunny_plush
+
+/datum/loadout_item/toys/plush/amber_shadekin_plush
+	name = "Squishy Shadekin Plush"
+	item_path = /obj/item/toy/plush/amber_shadekin_plush
+
+/datum/loadout_item/toys/plush/tian_plush
+	name = "Bureaucratic Goat Plush"
+	item_path = /obj/item/toy/plush/tian_plush
+
+/datum/loadout_item/toys/plush/ethereal
+	name = "Ethereal Plush"
+	item_path = /obj/item/toy/plush/ethereal
+
+/datum/loadout_item/toys/plush/cello_plush
+	name = "Concerningly Large Merseed Plush"
+	item_path = /obj/item/toy/plush/cello_plush
+
+/datum/loadout_item/toys/plush/myrthel_plush
+	name = "Extra Hot Moth Plush"
+	item_path = /obj/item/toy/plush/myrthel_plush
+
+/datum/loadout_item/toys/plush/expie
+	name = "Experiment Plushie"
+	item_path = /obj/item/toy/plush/expie
+
+/datum/loadout_item/toys/plush/milky
+	name = "Milky Plushie"
+	item_path = /obj/item/toy/plush/expie/milky
+
+/datum/loadout_item/toys/plush/tangerine
+	name = "Citrus Teshari Plushie"
+	item_path = /obj/item/toy/plush/tangerine
+
+/datum/loadout_item/toys/plush/blue_synth
+	name = "Blue Synth Plushie"
+	item_path = /obj/item/toy/plush/blue_synth
+
+/*
+*	SEX TOYS AND OTHER STUFF THAT NEEDS PREFS TO USE (otherwise fails to render on the character preview)
+*/
+/datum/loadout_item/toys/lewd
+	group = "Lewd Toys"
+	abstract_type = /datum/loadout_item/toys/lewd
+
+/datum/loadout_item/toys/lewd/corset
+	name = "Corset"
+	item_path = /obj/item/clothing/suit/corset
+
+/datum/loadout_item/toys/lewd/hypno
+	name = "Hypnotic Goggles"
+	item_path = /obj/item/clothing/glasses/hypno
+
+/datum/loadout_item/toys/lewd/deprivation_helmet
+	name = "Deprivation Helmet"
+	item_path = /obj/item/clothing/head/deprivation_helmet
+
+/datum/loadout_item/toys/lewd/bdsm_mask
+	name = "Latex Gas Mask"
+	item_path = /obj/item/clothing/mask/gas/bdsm_mask
+
+/datum/loadout_item/toys/lewd/hypno_visor
+	name = "MOD Hypnotic Visor Module"
+	item_path = /obj/item/mod/module/hypno_visor
+
+/datum/loadout_item/toys/lewd/erp_leash
+	name = "Leash"
+	item_path = /obj/item/clothing/erp_leash
+
+/datum/loadout_item/toys/lewd/shibari_rope
+	name = "Shibari Ropes"
+	item_path = /obj/item/stack/shibari_rope
+
+/datum/loadout_item/toys/lewd/dildo
+	name = "Dildo"
+	item_path = /obj/item/clothing/sextoy/dildo
+
+/datum/loadout_item/toys/lewd/double_dildo
+	name = "Double Dildo"
+	item_path = /obj/item/clothing/sextoy/dildo/double_dildo
+
+/datum/loadout_item/toys/lewd/recolorable_dildo
+	name = "Custom Dildo"
+	item_path = /obj/item/clothing/sextoy/dildo/custom_dildo
+
+/datum/loadout_item/toys/lewd/strapon
+	name = "Strapon"
+	item_path = /obj/item/clothing/strapon
+
+/datum/loadout_item/toys/lewd/vibrator
+	name = "Vibrator"
+	item_path = /obj/item/clothing/sextoy/vibrator
+
+/datum/loadout_item/toys/lewd/magic_wand
+	name = "Magic Wand"
+	item_path = /obj/item/clothing/sextoy/magic_wand
+
+/datum/loadout_item/toys/lewd/fleshlight
+	name = "Fleshlight"
+	item_path = /obj/item/clothing/sextoy/fleshlight
+
+/datum/loadout_item/toys/lewd/buttplug
+	name = "Buttplug"
+	item_path = /obj/item/clothing/sextoy/buttplug
+
+/datum/loadout_item/toys/lewd/leatherwhip
+	name = "Leather Whip"
+	item_path = /obj/item/clothing/mask/leatherwhip
+
+/datum/loadout_item/toys/lewd/venom_milker
+	name = "Venom Siphon"
+	item_path = /obj/item/reagent_containers/venom_milker
+
+/datum/loadout_item/toys/lewd/ball_mittens
+	name = "Ball Mittens"
+	item_path = /obj/item/clothing/gloves/ball_mittens
+	erp_item = TRUE
+
+/datum/loadout_item/toys/lewd/aeri
+	name = "Interdimensional Terrorist Plushie"
+	item_path = /obj/item/toy/plush/aeri
+
+/datum/loadout_item/toys/lewd/noble
+	name = "Medical Skulldog Plushie"
+	item_path = /obj/item/toy/plush/noble
+
+/datum/loadout_item/toys/lewd/protective_protogen
+	name = "Protective Protogen Plushie"
+	item_path = /obj/item/toy/plush/protective_protogen
+
+/datum/loadout_item/toys/lewd/clicker
+	name = "Clicker"
+	item_path = /obj/item/clicker
+
+/datum/loadout_item/toys/lewd/size_collar
+	name = "Size Collar"
+	item_path = /obj/item/clothing/neck/size_collar
+
+/datum/loadout_item/toys/lewd/spanking_pad
+	name = "Spanking Pad"
+	item_path = /obj/item/spanking_pad
+
+/datum/loadout_item/toys/lewd/ball_gag
+	name = "Ball Gag"
+	item_path = /obj/item/clothing/mask/ballgag
+
+/datum/loadout_item/toys/lewd/ring_gag
+	name = "Ring Gag"
+	item_path = /obj/item/clothing/mask/muzzle/ring
+
+/datum/loadout_item/toys/lewd/choking_gag
+	name = "Phallic Ball Gag (Dangerous)"
+	item_path = /obj/item/clothing/mask/ballgag/choking
+
+/datum/loadout_item/toys/lewd/mkiiultra_skillchip
+	name = "ENT-PET Mk.II ULTRA skillchip"
+	item_path = /obj/item/skillchip/mkiiultra
+
+/datum/loadout_item/toys/lewd/latex_straight_jacket
+	name = "Latex Straight Jacket"
+	item_path = /obj/item/clothing/suit/straight_jacket/latex_straight_jacket
+
+/datum/loadout_item/toys/lewd/kinky_sleepbag
+	name = "Latex Sleeping Bag"
+	item_path = /obj/item/clothing/suit/straight_jacket/kinky_sleepbag

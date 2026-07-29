@@ -43,7 +43,10 @@
 				/obj/item/bdsm_candle = 4,
 				/obj/item/spanking_pad = 4,
 				/obj/item/tickle_feather = 8,
-				/obj/item/borg/upgrade/dominatrixmodule = 5,
+				/obj/item/borg/upgrade/dominatrixmodule = 6,
+				/obj/item/borg/upgrade/obediencemodule = 6,
+				/obj/item/borg/upgrade/expand = 6,
+				/obj/item/borg/upgrade/shrink = 6,
 				/obj/item/reagent_containers/venom_milker = 5,
 			),
 		),
@@ -65,8 +68,11 @@
 				/obj/item/clothing/shoes/jackboots/knee = 3,
 
 				/obj/item/clothing/under/misc/latex_catsuit = 8,
+				/obj/item/clothing/suit/corset = 4,
+				/obj/item/clothing/under/misc/latex_halfcatsuit = 8,
 				/obj/item/clothing/gloves/latex_gloves = 8,
 				/obj/item/clothing/shoes/latex_heels = 4,
+				/obj/item/clothing/shoes/latex_heels/ballet_heels = 4,
 				/obj/item/clothing/shoes/latex_socks = 8,
 
 				/obj/item/storage/belt/erpbelt = 5,//Leather Belt, holds a lot of tools.
@@ -118,6 +124,7 @@
 
 				//hands
 				/obj/item/clothing/gloves/ball_mittens = 8,
+				/obj/item/clothing/gloves/ball_mittens/loadout_paw = 5,
 			),
 		),
 			list(
@@ -139,6 +146,15 @@
 			),
 		),
 		list(
+			"name" = "MOD Suit",
+			"icon" = FA_ICON_USER_ASTRONAUT,
+			"products" = list(
+				/obj/item/mod/construction/plating/lustwish = 5,
+				/obj/item/mod/module/hypno_visor = 5,
+				/obj/item/mod/module/remote_control = 5,
+			)
+		),
+		list(
 			"name" = "Structures",
 			"icon" = FA_ICON_HAMMER,
 			"products" = list(
@@ -148,6 +164,7 @@
 				/obj/item/storage/box/shibari_stand = 4,
 				/obj/item/storage/box/strippole_kit = 4,
 				/obj/item/storage/box/xstand_kit = 4,
+				/obj/item/wallframe/lewd_portal = 8,
 			),
 		),
 	)
@@ -157,6 +174,7 @@
 		/obj/item/clothing/neck/size_collar = 8,//It only works in the Interlink anyways
 		/obj/item/toy/plush/cescrewsplush = 1,
 		/obj/item/toy/plush/sinvox = 1,
+		/obj/item/skillchip/mkiiultra = 2,
 		)
 
 	contraband = list(
@@ -170,12 +188,16 @@
 					/obj/item/reagent_containers/applicator/pill/hexacrocin = 10,
 					/obj/item/reagent_containers/applicator/pill/pentacamphor = 5,
 					/obj/item/reagent_containers/cup/bottle/hexacrocin = 4,
-					/obj/item/reagent_containers/cup/bottle/pentacamphor = 2)
+					/obj/item/reagent_containers/cup/bottle/pentacamphor = 2,
+					/obj/item/reagent_containers/cup/bottle/plushmium = 1,
+					/obj/item/clothing/sextoy/fleshlight/bluespace = 1
+				)
 
 	refill_canister = /obj/item/vending_refill/lustwish
 	payment_department = ACCOUNT_SRV
 	default_price = PAYCHECK_CREW * 0.6
 	extra_price = PAYCHECK_COMMAND * 2.5
+	allow_custom = TRUE
 
 //Changes the settings on the vendor, if the user uses the discount card.
 /obj/machinery/vending/dorms/attackby(obj/item/used_item, mob/living/user, params)

@@ -15,7 +15,7 @@
 				/obj/item/stack/medical/ointment/red_sun = 4,
 				/obj/item/stack/medical/ointment = 4,
 				/obj/item/stack/medical/bruise_pack = 4,
-				/obj/item/stack/medical/gauze/sterilized = 4,
+				/obj/item/stack/medical/wrap/gauze/sterilized = 4,
 				/obj/item/stack/medical/suture/coagulant = 4,
 				/obj/item/stack/medical/suture = 4,
 				/obj/item/stack/medical/suture/bloody = 2,
@@ -66,6 +66,7 @@
 	extra_price = PAYCHECK_COMMAND * 4
 	payment_department = NO_FREEBIES
 	onstation_override = 1 // No freebies if this spawns on the interlink
+	allow_custom = TRUE
 
 /obj/item/vending_refill/medical_deforest
 	machine_name = "DeForest Med-Vend"

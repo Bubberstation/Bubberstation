@@ -8,7 +8,8 @@
 			JOB_QUARTERMASTER = 6,
 			JOB_NT_REP = 7,
 			JOB_HEAD_OF_SECURITY = 8,
-			JOB_BLUESHIELD = 9
+			JOB_BLUESHIELD = 9,
+			JOB_BRIDGE_ASSISTANT = 10
 		)
 
 /datum/controller/subsystem/job/proc/get_pda_type_by_job(job_name)
@@ -41,7 +42,7 @@
 			return new /obj/item/modular_computer/pda/detective
 		if(JOB_SECURITY_OFFICER)
 			return new /obj/item/modular_computer/pda/security
-		if(JOB_SECURITY_OFFICER_MEDICAL)
+		if(JOB_SECURITY_MEDIC)
 			return new /obj/item/modular_computer/pda/security
 		if(JOB_CORRECTIONS_OFFICER)
 			return new /obj/item/modular_computer/pda/security
@@ -53,6 +54,16 @@
 			return new /obj/item/modular_computer/pda/engineering
 		if(JOB_TELECOMMS_SPECIALIST)
 			return new /obj/item/modular_computer/pda/telecomms
+		if(JOB_MEDICAL_DOCTOR) //MEDICAL
+			return new /obj/item/modular_computer/pda/medical
+		if(JOB_CORONER)
+			return new /obj/item/modular_computer/pda/coroner
+		if(JOB_CHEMIST)
+			return new /obj/item/modular_computer/pda/chemist
+		if(JOB_PARAMEDIC)
+			return new /obj/item/modular_computer/pda/medical/paramedic
+		if(JOB_ORDERLY)
+			return new /obj/item/modular_computer/pda/medical
 		if(JOB_SCIENTIST) // SCI
 			return new /obj/item/modular_computer/pda/science
 		if(JOB_ROBOTICIST)
@@ -97,4 +108,3 @@
 			return new /obj/item/modular_computer/pda/bar
 		else
 			return null
-

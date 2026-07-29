@@ -1,6 +1,7 @@
 /obj/machinery/computer/nanite_chamber_control
 	name = "nanite chamber control console"
 	desc = "Controls a connected nanite chamber. Can inoculate nanites, load programs, and analyze existing nanite swarms."
+	icon = 'modular_zubbers/icons/obj/machines/computer.dmi'
 	icon_screen = "nanite_chamber_control"
 	circuit = /obj/item/circuitboard/computer/nanite_chamber_control
 	var/obj/machinery/nanite_chamber/chamber
@@ -58,6 +59,12 @@
 
 	return data
 
+/obj/machinery/computer/nanite_chamber_control/ui_static_data(mob/user)
+	. = ..()
+
+	.["min_cloud_id"] = NANITE_MIN_CLOUD_ID
+	.["max_cloud_id"] = NANITE_MAX_CLOUD_ID
+
 /obj/machinery/computer/nanite_chamber_control/ui_act(action, params)
 	. = ..()
 	if(.)
@@ -77,7 +84,7 @@
 		if("set_cloud")
 			var/cloud_id = text2num(params["value"])
 			if(!isnull(cloud_id))
-				chamber.set_cloud(clamp(round(cloud_id, 1),0,100))
+				chamber.set_cloud(clamp(round(cloud_id, 1),NANITE_MIN_CLOUD_ID,NANITE_MAX_CLOUD_ID))
 				playsound(src, "terminal_type", 25, FALSE)
 				chamber.occupant.investigate_log("'s nanites' cloud id was set to [cloud_id] by [key_name(usr)] via [src] at [AREACOORD(src)].", INVESTIGATE_NANITES)
 			. = TRUE
@@ -102,7 +109,7 @@
 		UnregisterSignal(chamber, COMSIG_PREQDELETED)
 	chamber = new_chamber
 	if(chamber)
-		RegisterSignal(chamber, COMSIG_PREQDELETED, .proc/react_to_chamber_del)
+		RegisterSignal(chamber, COMSIG_PREQDELETED, PROC_REF(react_to_chamber_del))
 
 /obj/machinery/computer/nanite_chamber_control/proc/react_to_chamber_del(datum/source)
 	SIGNAL_HANDLER

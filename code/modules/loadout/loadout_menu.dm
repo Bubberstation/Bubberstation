@@ -14,9 +14,6 @@
 	QDEL_NULL(menu)
 	return ..()
 
-/datum/preference_middleware/loadout/on_new_character(mob/user)
-	preferences.character_preview_view?.update_body()
-
 /datum/preference_middleware/loadout/proc/action_select_item(list/params, mob/user)
 	PRIVATE_PROC(TRUE)
 	var/path_to_use = text2path(params["path"])
@@ -27,7 +24,7 @@
 
 	if(params["deselect"])
 		deselect_item(interacted_item)
-	else
+	else if(!interacted_item.is_disabled())
 		select_item(interacted_item)
 	return TRUE
 
@@ -80,7 +77,7 @@
 		to_chat(preferences.parent, span_warning("You cannot select this item!"))
 		return
 
-	if(selected_item.donator_only && !GLOB.donator_list[preferences?.parent?.ckey])
+	if(selected_item.donator_only && !SSplayer_ranks.is_donator(preferences.parent))
 		to_chat(preferences.parent, span_warning("This item is for donators only."))
 		return
 	// SKYRAT EDIT END
@@ -113,11 +110,7 @@
 /datum/preference_middleware/loadout/get_ui_static_data(mob/user)
 	var/list/data = list()
 	data["loadout_preview_view"] = preferences.character_preview_view.assigned_map
-	// SKYRAT EDIT START - EXPANDED LOADOUT
-	data["ckey"] = user.ckey
-	if(SSplayer_ranks.is_donator(user.client))
-		data["is_donator"] = TRUE
-	// SKYRAT EDIT END
+	data["ckey"] = user.ckey // BUBBER EDIT ADDITION: Filter ckey-locked items
 	return data
 
 /datum/preference_middleware/loadout/get_constant_data()

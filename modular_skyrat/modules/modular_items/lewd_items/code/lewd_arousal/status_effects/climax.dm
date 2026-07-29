@@ -17,7 +17,9 @@
 	var/mob/living/carbon/human/affected_mob = owner
 
 	owner.reagents.add_reagent(/datum/reagent/drug/aphrodisiac/dopamine, 0.5)
-	owner.adjustStaminaLoss(STAMINA_REMOVAL_AMOUNT_EXTERNAL)
+	owner.adjust_stamina_loss(STAMINA_REMOVAL_AMOUNT_EXTERNAL)
+	var/datum/component/to_del = affected_mob.GetComponent(/datum/component/change_arousal_on_life)
+	qdel(to_del)
 	affected_mob.adjust_arousal(AROUSAL_REMOVAL_AMOUNT)
 	affected_mob.adjust_pleasure(AROUSAL_REMOVAL_AMOUNT)
 
@@ -36,7 +38,9 @@
 	var/mob/living/carbon/human/affected_mob = owner
 
 	owner.reagents.add_reagent(/datum/reagent/drug/aphrodisiac/dopamine, 0.3)
-	owner.adjustStaminaLoss(STAMINA_REMOVAL_AMOUNT_SELF)
+	owner.adjust_stamina_loss(STAMINA_REMOVAL_AMOUNT_SELF)
+	var/datum/component/to_del = affected_mob.GetComponent(/datum/component/change_arousal_on_life)
+	qdel(to_del) //apparently deprecated effect, still adding this line just to be safe
 	affected_mob.adjust_arousal(AROUSAL_REMOVAL_AMOUNT)
 	affected_mob.adjust_pleasure(AROUSAL_REMOVAL_AMOUNT)
 

@@ -6,8 +6,14 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon = 'modular_skyrat/modules/clock_cult/icons/tools.dmi'
 	icon_state = "cutters_brass"
+	flags_1 = null
 	random_color = FALSE
 	toolspeed = BRASS_TOOLSPEED_MOD
+	greyscale_config = null
+	greyscale_config_belt = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
+	greyscale_colors = null
 
 /obj/item/screwdriver/brass
 	name = "brass screwdriver"
@@ -15,10 +21,14 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon = 'modular_skyrat/modules/clock_cult/icons/tools.dmi'
 	icon_state = "screwdriver_brass"
+	post_init_icon_state = null
 	toolspeed = BRASS_TOOLSPEED_MOD
 	random_color = FALSE
+	greyscale_config = null
+	greyscale_config_belt = null
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
+	greyscale_colors = null
 
 /obj/item/weldingtool/experimental/brass
 	name = "brass welding tool"

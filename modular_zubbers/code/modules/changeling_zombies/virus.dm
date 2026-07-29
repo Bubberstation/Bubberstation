@@ -56,7 +56,7 @@
 	var/damage_to_deal = (A.stage * power) - 2
 	if(damage_to_deal <= 0)
 		return
-	A.affected_mob.adjustToxLoss(damage_to_deal)
+	A.affected_mob.adjust_tox_loss(damage_to_deal)
 
 /datum/symptom/changelingzombie/Start(datum/disease/advance/A)
 	. = ..()

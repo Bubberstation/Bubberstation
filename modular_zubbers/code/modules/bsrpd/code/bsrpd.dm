@@ -64,7 +64,7 @@
 		user.Beam(interacting_with, icon_state = "rped_upgrade", time = 1 SECONDS)
 		in_use = TRUE // So people can't just spam click and get more uses
 		addtimer(VARSET_CALLBACK(src, in_use, FALSE),  1 SECONDS, TIMER_UNIQUE)
-		if(pre_attack(interacting_with, user))
+		if(interact_with_atom(interacting_with, user, modifiers))
 			current_capacity -= ranged_use_cost
 			return ITEM_INTERACT_SUCCESS
 

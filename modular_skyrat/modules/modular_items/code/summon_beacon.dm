@@ -139,6 +139,7 @@
 	allowed_areas = list(
 		/area/station/engineering/atmos,
 		/area/station/engineering/atmospherics_engine,
+		/area/ruin/space/has_grav/port_tarkon/atmos,
 	)
 
 	selectable_atoms = list(
@@ -147,6 +148,7 @@
 		/obj/machinery/atmospherics/miner/nitrogen,
 		/obj/machinery/atmospherics/miner/oxygen,
 		/obj/machinery/atmospherics/miner/plasma,
+		/obj/machinery/atmospherics/miner/water_vapor,
 	)
 
 	area_string = "atmospherics"

@@ -52,8 +52,7 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/reagent_containers/cup/glass/drinkingglass = 1,
 
 		/obj/item/airlock_painter = 1,
-		/obj/item/airlock_painter/decal = 1,
-		/obj/item/airlock_painter/decal/tile = 1,
+		/obj/item/airlock_painter/decal = 2,
 		/obj/item/clothing/mask/breath = 1,
 		/obj/item/rack_parts = 1,
 		/obj/item/shard = 1,
@@ -113,7 +112,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/stack/sheet/iron/twenty = 1,
 		/obj/item/stack/sheet/mineral/plasma = 1,
 		/obj/item/stock_parts/power_store/cell = 1,
-
+		/obj/effect/spawner/random/engineering/vending_restock = 1,
 		//assemblies
 		/obj/item/assembly/health = 1,
 		/obj/item/assembly/igniter = 1,
@@ -131,7 +130,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/lead_pipe = 1,
 		/obj/item/reagent_containers/cup/beaker = 1,
 		/obj/item/reagent_containers/cup/bottle/random_buffer = 2,
-		/obj/item/reagent_containers/cup/rag = 1,
+		/obj/item/rag = 1,
 		/obj/item/reagent_containers/hypospray/medipen/pumpup = 2,
 		/obj/item/reagent_containers/syringe = 1,
 		/obj/item/stock_parts/power_store/cell/lead = 1,
@@ -150,7 +149,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/grenade/smokebomb = 1,
 		/obj/item/radio/off = 1,
 		/obj/item/stack/spacecash/c10 = 1,
-		/obj/item/stack/sticky_tape = 1,
+		/obj/item/stack/medical/wrap/sticky_tape = 1,
 		/obj/item/tank/internals/emergency_oxygen = 1,
 		/obj/item/paper/paperslip/fishing_tip = 1,
 
@@ -204,7 +203,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/beacon = 1,
 		/obj/item/paper/fluff/stations/soap = 1, //recipes count as crafting.
 		/obj/item/plaque = 1,
-		/obj/item/seeds/kronkus = 1,
+		/obj/item/seeds/kronkus = 3,
 		/obj/item/seeds/odious_puffball = 1,
 		/obj/item/stack/sheet/mineral/wood/fifty = 1,
 		/obj/item/stock_parts/power_store/cell/high = 1,
@@ -216,32 +215,39 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 
 	list(//medical and chemicals
 		list(//basic healing items
-			/obj/item/stack/medical/gauze = 1,
+			/obj/item/stack/medical/wrap/gauze = 1,
 			/obj/item/stack/medical/mesh = 1,
 			/obj/item/stack/medical/suture = 1,
 			/obj/item/stack/medical/bandage = 1,
-			) = 1,
+			) = 4,
 		list(//medical chems
 			/obj/item/reagent_containers/cup/bottle/multiver = 1,
 			/obj/item/reagent_containers/hypospray/medipen = 1,
 			/obj/item/reagent_containers/syringe/convermol = 1,
-			) = 1,
+			) = 4,
 		list(//drinks
 			/obj/item/reagent_containers/cup/glass/bottle/vodka = 1,
 			/obj/item/reagent_containers/cup/glass/drinkingglass/filled/nuka_cola = 1,
 			/obj/item/reagent_containers/cup/soda_cans/grey_bull = 1,
-			) = 1,
+			) = 4,
 		list(//sprayers
 			/obj/item/reagent_containers/spray = 1,
 			/obj/item/watertank = 1,
 			/obj/item/watertank/janitor = 1,
-			) = 1,
+			) = 4,
+		list(//other chems
+			/obj/item/reagent_containers/cup/jerrycan/oil = 2, //Not the most exciting reagent, but a staple. And you get a cool can for your pyrotechnics.
+			/obj/item/reagent_containers/cup/jerrycan/space_cleaner = 2, //If you can't find the janitor, the medbay might also appreciate some readymade cleaner.
+			/obj/item/reagent_containers/cup/jerrycan/sus = 1, //what assitant wouldn't like a vibrant jug o' phlog?
+			/obj/item/reagent_containers/cup/jerrycan/diethylamine = 1, //Im sure the botanist would appreciate it, but it is also really cool for maintenance science projects.
+			) = 2,
 		) = 8,
 
 	list(//food
 		/obj/item/food/canned/peaches/maint = 1,
 		/obj/item/storage/box/donkpockets = 1,
 		/obj/item/storage/box/gum/happiness = 1,
+		/obj/item/storage/box/ramen_beef = 1,
 		list(//Donk Varieties
 			/obj/item/storage/box/donkpockets/donkpocketberry = 1,
 			/obj/item/storage/box/donkpockets/donkpockethonk = 1,
@@ -262,14 +268,14 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		) = 8,
 
 	list(//computer disks
-		/obj/item/computer_disk/maintenance/scanner = 1,
-		///obj/item/computer_disk/maintenance/camera = 1, //SKYRAT EDIT REMOVAL - Available To Crew Now
-		/obj/item/computer_disk/maintenance/modsuit_control = 1,
-		/obj/item/computer_disk/maintenance/spectre_meter = 1,
-		/obj/item/computer_disk/maintenance/arcade = 1,
+		/obj/item/disk/computer/maintenance/scanner = 1,
+		/obj/item/disk/computer/maintenance/camera = 1,
+		/obj/item/disk/computer/maintenance/modsuit_control = 1,
+		/obj/item/disk/computer/maintenance/spectre_meter = 1,
+		/obj/item/disk/computer/maintenance/arcade = 1,
 		/obj/item/disk/design_disk/liberator = 1,
-		/obj/item/computer_disk/maintenance/theme = 3,
-	) = 3, //SKYRAT EDIT CHANGE - Original : 4
+		/obj/item/disk/computer/maintenance/theme = 3,
+	) = 4,
 
 	list(//modsuits
 		/obj/effect/spawner/random/mod/maint = 3,
@@ -315,7 +321,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/weldingtool/hugetank = 1,
 		/obj/item/fishing_rod/telescopic/master = 1,
 		/obj/item/spess_knife = 1,
-		/obj/item/gun/ballistic/automatic/pistol/doorhickey = 1,
+		/obj/item/gun/ballistic/automatic/pistol/doohickey = 1,
 		) = 1,
 
 	list(//equipment
@@ -347,11 +353,15 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 			/obj/item/storage/medkit/emergency = 1,
 			/obj/item/storage/medkit/regular = 1,
 			/obj/item/storage/box/bandages = 1,
-			) = 1,
+			) = 2,
 		list(//medical chems
 			/obj/item/reagent_containers/hypospray/medipen/oxandrolone = 1,
 			/obj/item/reagent_containers/hypospray/medipen/salacid = 1,
 			/obj/item/reagent_containers/syringe/contraband/methamphetamine = 1,
+			) = 2,
+		list(
+			/obj/item/paper/secretrecipe/gorgium = 1,
+			/obj/item/paper/secretrecipe/metalgen = 1,
 			) = 1,
 		) = 1,
 
@@ -359,6 +369,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items
 		/obj/item/book/granter/crafting_recipe/dusting/pipegun_prime = 1,
 		/obj/item/book/granter/crafting_recipe/trash_cannon = 1,
 		/obj/item/book/granter/crafting_recipe/dusting/laser_musket_prime = 1,
+		/obj/item/book/granter/crafting_recipe/dusting/detached_ratvarian_repeater = 1,
 		/obj/item/book/granter/sign_language = 1,
 		/obj/item/disk/nuclear/fake = 1,
 		/obj/item/disk/surgery/advanced_plastic_surgery = 1,
@@ -406,6 +417,9 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	GLOB.rarity_loot = maint_rarity_weight,
 	GLOB.oddity_loot = maint_oddity_weight,
 	))
+
+//Loot pool that is copied from maint loot but doesn't get changed due to holidays
+GLOBAL_LIST_INIT(dumpster_loot, GLOB.maintenance_loot.Copy())
 
 GLOBAL_LIST_INIT(ratking_trash, list(//Garbage: used by the regal rat mob when spawning garbage.
 			/obj/item/cigbutt,

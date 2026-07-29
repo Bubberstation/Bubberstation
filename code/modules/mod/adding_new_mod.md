@@ -199,6 +199,7 @@ As it's a medical module, we'll put it [here](modules/modules_medical.dm). Let's
 ```
 
 As we want this effect to be on demand, we probably want this to be an usable module. There are four types of modules:
+
 - Passive: These have a passive effect.
 - Togglable: You can turn these on and off.
 - Usable: You can use these for a one time effect.
@@ -234,7 +235,7 @@ After this, we want to put our special code, a basic effect of healing all mobs 
 	for(var/mob/living/carbon/carbon_mob in range(5, src))
 		if(carbon_mob == mod.wearer)
 			continue
-		carbon_mob.adjustOrganLoss(ORGAN_SLOT_BRAIN, -brain_damage_healed)
+		carbon_mob.adjust_organ_loss(ORGAN_SLOT_BRAIN, -brain_damage_healed)
 		mod.wearer.Beam(carbon_mob, icon_state = "plasmabeam", time = 1.5 SECONDS)
 	playsound(src, 'sound/effects/magic.ogg', 100, TRUE)
 	drain_power(use_energy_cost)
@@ -312,4 +313,5 @@ Now we want to add it to the psychological theme, which is very simple, finishin
 ```
 
 ## Ending
+
 This finishes this hopefully easy to follow along tutorial. You should now know how to make a basic theme, a skin for it, and a module.

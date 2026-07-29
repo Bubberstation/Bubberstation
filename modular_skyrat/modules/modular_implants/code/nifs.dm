@@ -177,10 +177,10 @@
 		return FALSE
 
 	for(var/datum/nifsoft/preinstalled_nifsoft as anything in preinstalled_nifsofts)
-		new preinstalled_nifsoft(src)
+		new preinstalled_nifsoft(src, TRUE, TRUE)
 
 	for(var/stored_nifsoft in persistent_nifsofts)
-		var/datum/nifsoft/new_stored_nifsoft = new stored_nifsoft(src)
+		var/datum/nifsoft/new_stored_nifsoft = new stored_nifsoft(src, TRUE, TRUE)
 		new_stored_nifsoft.keep_installed = TRUE
 
 	return TRUE
@@ -259,7 +259,7 @@
 ///Toggles Blood Drain. Bypasss -  Ignores the need to perform the blood_check proc.
 /obj/item/organ/cyberimp/brain/nif/proc/toggle_blood_drain(bypass = FALSE)
 	if(!bypass && !blood_check())
-		return
+		return FALSE
 
 	blood_drain = !blood_drain
 
@@ -267,10 +267,11 @@
 		power_usage += (blood_drain_rate * blood_conversion_rate)
 
 		balloon_alert(linked_mob, "blood draining disabled")
-		return
+		return TRUE
 
 	power_usage -= (blood_drain_rate * blood_conversion_rate)
 	balloon_alert(linked_mob, "blood draining enabled")
+	return TRUE
 
 ///Checks if the NIF is able to draw blood as a power source?
 /obj/item/organ/cyberimp/brain/nif/proc/blood_check()
@@ -301,7 +302,7 @@
 					linked_mob.adjust_disgust(25)
 				if(2)
 					to_chat(linked_mob, span_warning("You feel a wave of fatigue roll over you!"))
-					linked_mob.adjustStaminaLoss(50)
+					linked_mob.adjust_stamina_loss(50)
 
 		if(NIF_CALIBRATION_STAGE_FINISHED to INFINITY)
 			send_message("The calibration process is complete.")
@@ -314,8 +315,13 @@
 				stack_trace("persistence was not saved for [linked_mob]!")
 
 ///Installs the loaded_nifsoft to the parent NIF.
-/obj/item/organ/cyberimp/brain/nif/proc/install_nifsoft(datum/nifsoft/loaded_nifsoft)
-	if(broken || calibrating) //NIFSofts can't be installed to a broken NIF
+/obj/item/organ/cyberimp/brain/nif/proc/install_nifsoft(datum/nifsoft/loaded_nifsoft, skip_calibration = FALSE)
+	if(broken)
+		send_message("The target device is not responding.", alert = TRUE)
+		return FALSE
+
+	if(calibrating && !skip_calibration)
+		send_message("The NIF is still calibrating, please wait!", alert = TRUE)
 		return FALSE
 
 	if(length(loaded_nifsofts) >= max_nifsofts)

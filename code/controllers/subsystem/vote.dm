@@ -4,8 +4,7 @@
 SUBSYSTEM_DEF(vote)
 	name = "Vote"
 	wait = 1 SECONDS
-	flags = SS_KEEP_TIMING
-	init_order = INIT_ORDER_VOTE
+	ss_flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 
 	/// A list of all generated action buttons
@@ -169,12 +168,12 @@ SUBSYSTEM_DEF(vote)
 	else
 		voted += voter.ckey
 
-	if(current_vote.choices_by_ckey[voter.ckey + their_vote] == 1)
-		current_vote.choices_by_ckey[voter.ckey + their_vote] = 0
+	if(current_vote.choices_by_ckey["[voter.ckey]_[their_vote]"] == 1) // BUBBER EDIT CHANGE - Original: [voter.ckey + their_vote]
+		current_vote.choices_by_ckey["[voter.ckey]_[their_vote]"] = 0 // BUBBER EDIT CHANGE - Original: [voter.ckey + their_vote]
 		current_vote.choices[their_vote]--
 
 	else
-		current_vote.choices_by_ckey[voter.ckey + their_vote] = 1
+		current_vote.choices_by_ckey["[voter.ckey]_[their_vote]"] = 1 // BUBBER EDIT CHANGE - Original: [voter.ckey + their_vote]
 		current_vote.choices[their_vote]++
 
 	return TRUE
@@ -292,6 +291,7 @@ SUBSYSTEM_DEF(vote)
 	log_admin("[key_name(toggle_initiator)] [text_verb] Dead Vote.")
 	message_admins("[key_name_admin(toggle_initiator)] [text_verb] Dead Vote.")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Dead Vote", text_verb))
+	update_static_data_for_all_viewers()
 
 /datum/controller/subsystem/vote/ui_state()
 	return GLOB.always_state
@@ -319,8 +319,6 @@ SUBSYSTEM_DEF(vote)
 		"singleSelection" = current_vote?.choices_by_ckey[user.client?.ckey],
 		"multiSelection" = current_vote?.choices_by_ckey,
 	)
-
-	data["voting"]= is_lower_admin ? voting : list()
 
 	var/list/all_vote_data = list()
 	for(var/vote_name in possible_votes)
@@ -364,6 +362,7 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/ui_static_data(mob/user)
 	var/list/data = list()
 	data["VoteCD"] = CONFIG_GET(number/vote_delay)
+	data["deadVoteEnabled"] = CONFIG_GET(flag/no_dead_vote)
 	return data
 
 /datum/controller/subsystem/vote/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -382,7 +381,6 @@ SUBSYSTEM_DEF(vote)
 
 			voter.log_message("cancelled a vote.", LOG_ADMIN)
 			message_admins("[key_name_admin(voter)] has cancelled the current vote.")
-			SStgui.close_uis(src)
 			reset()
 			return TRUE
 
@@ -469,7 +467,7 @@ SUBSYSTEM_DEF(vote)
 /datum/action/vote/IsAvailable(feedback = FALSE)
 	return TRUE // Democracy is always available to the free people
 
-/datum/action/vote/Trigger(trigger_flags)
+/datum/action/vote/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)
 		return

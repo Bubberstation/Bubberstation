@@ -11,8 +11,7 @@
 	ui_icon = "paintbrush"
 	action_to_grant = /datum/action/innate/alter_form/nif
 
-
-/// The NIF version of alter form. This lacks the ability to change body color.
+/// The NIF version of alter form.
 /datum/action/innate/alter_form/nif
 	name = "Polymorph"
 	slime_restricted =  FALSE
@@ -27,19 +26,24 @@
 		alterer,
 		alterer,
 		list(
+			"Body Colours" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "slime_rainbow"),
 			"DNA" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "dna"),
 			"Hair" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "scissors"),
 			"Markings" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "rainbow_spraycan"),
+			"Character" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "alter_form")
 		),
 		tooltips = TRUE,
 	)
 	if(!selected_alteration)
 		return
 	switch(selected_alteration)
+		if("Body Colours")
+			alter_colours(alterer)
 		if("DNA")
 			alter_dna(alterer)
 		if("Hair")
 			alter_hair(alterer)
 		if("Markings")
 			alter_markings(alterer)
-
+		if("Character")
+			begin_character_alteration(alterer)

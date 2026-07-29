@@ -3,7 +3,6 @@
 #define MASOCHISM_PAIN_OFFSET 0.5
 #define NEVERBONER_PLEASURE_OFFSET 50
 
-#define BLUEBALL_AROUSAL_MODIFIER 0.08
 #define TOO_MUCH_PAIN_MODIFIER 0.1
 #define ITS_PRETTY_HOT_IN_HERE_MODIFIER 0.1
 
@@ -24,10 +23,6 @@
 	var/temp_arousal = BASE_AROUSAL_ADJUSTMENT
 	var/temp_pleasure = BASE_PAIN_AND_PLEASURE_ADJUSTMENT
 	var/temp_pain = BASE_PAIN_AND_PLEASURE_ADJUSTMENT
-
-	var/obj/item/organ/genital/testicles/balls = affected_mob.get_organ_slot(ORGAN_SLOT_TESTICLES)
-	if(balls && balls.internal_fluid_full())
-		temp_arousal += BLUEBALL_AROUSAL_MODIFIER
 
 	if(HAS_TRAIT(affected_mob, TRAIT_MASOCHISM))
 		temp_pain -= MASOCHISM_PAIN_OFFSET
@@ -55,7 +50,6 @@
 #undef MASOCHISM_PAIN_OFFSET
 #undef NEVERBONER_PLEASURE_OFFSET
 
-#undef BLUEBALL_AROUSAL_MODIFIER
 #undef TOO_MUCH_PAIN_MODIFIER
 #undef ITS_PRETTY_HOT_IN_HERE_MODIFIER
 

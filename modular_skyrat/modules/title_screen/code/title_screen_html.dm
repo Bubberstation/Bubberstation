@@ -128,19 +128,15 @@ GLOBAL_LIST_EMPTY(startup_messages)
 		dat += "</div>"
 		dat += {"
 		<script language="JavaScript">
-			var ready_int = 0;
+			const PLAYER_READY_TO_PLAY = "[PLAYER_READY_TO_PLAY]"
+			const PLAYER_NOT_READY = "[PLAYER_NOT_READY]"
 			var ready_mark = document.getElementById("ready");
-			var ready_marks = \[ "<span class='unchecked'>☒</span> READY", "<span class='checked'>☑</span> READY" \];
 			function toggle_ready(setReady) {
-				if(setReady) {
-					ready_int = setReady;
-					ready_mark.innerHTML = ready_marks\[ready_int\];
+				if(setReady === PLAYER_READY_TO_PLAY) {
+					ready_mark.innerHTML = "<span class='checked'>☑</span> READY"
 				}
 				else {
-					ready_int++;
-					if (ready_int === ready_marks.length)
-						ready_int = 0;
-					ready_mark.innerHTML = ready_marks\[ready_int\];
+					ready_mark.innerHTML = "<span class='unchecked'>☒</span> READY"
 				}
 			}
 			var antag_int = 0;
@@ -170,13 +166,12 @@ GLOBAL_LIST_EMPTY(startup_messages)
 		"}
 
 	// Tell the server this page loaded.
-	dat += {"
-		<script>
-			var ready_request = new XMLHttpRequest();
-			ready_request.open("GET", "?src=[text_ref(src)];title_is_ready=1", true);
-			ready_request.send();
-		</script>
-	"}
+	if(!title_screen_is_ready)
+		dat += {"
+			<script>
+				location.href = "byond://?src=[text_ref(src)];title_is_ready=1";
+			</script>
+		"}
 
 	dat += "</body></html>"
 

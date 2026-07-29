@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Flex, Section } from 'tgui-core/components';
 
-import * as types from './types';
+import type * as types from './types';
 
 export const Preferences = (props) => {
   const { data } = useBackend<types.Data>();

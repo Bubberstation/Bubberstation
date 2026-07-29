@@ -27,7 +27,7 @@
 	ears = /obj/item/radio/headset/syndicateciv/staff
 
 /datum/outfit/lavaland_syndicate/post_equip(mob/living/carbon/human/syndicate, visualsOnly = FALSE)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 
 	var/obj/item/card/id/id_card = syndicate.wear_id
 	if(istype(id_card))

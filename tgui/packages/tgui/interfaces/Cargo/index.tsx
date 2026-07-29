@@ -9,13 +9,10 @@ import { CargoCatalog } from './CargoCatalog';
 import { CargoHelp } from './CargoHelp';
 import { CargoRequests } from './CargoRequests';
 import { CargoStatus } from './CargoStatus';
-import { CargoData } from './types';
+import type { CargoData } from './types';
 
 enum TAB {
   Catalog = 'catalog',
-  /* SKYRAT EDIT BELOW - ADDS company imports */
-  Imports = 'company_import_window',
-  /* SKYRAT EDIT END */
   Requests = 'active requests',
   Cart = 'cart',
   Help = 'help',
@@ -74,15 +71,6 @@ export function CargoContent(props) {
             >
               Catalog
             </Tabs.Tab>
-            {/* BUBBER EDIT START - Company imports */}
-            <Tabs.Tab
-              icon="clipboard-list"
-              selected={tab === TAB.Imports}
-              onClick={() => act(TAB.Imports)}
-            >
-              Company Imports
-            </Tabs.Tab>
-            {/* BUBBER EDIT END */}
             <Tabs.Tab
               icon="envelope"
               textColor={
@@ -115,7 +103,7 @@ export function CargoContent(props) {
           </Tabs>
         </Section>
       </Stack.Item>
-      <Stack.Item grow m={0}>
+      <Stack.Item grow mt={-1}>
         {tab === TAB.Catalog && <CargoCatalog />}
         {tab === TAB.Requests && <CargoRequests />}
         {tab === TAB.Cart && <CargoCart />}

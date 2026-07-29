@@ -115,7 +115,7 @@
 			span_danger("You bash [src] with [I]!"), null, COMBAT_MESSAGE_RANGE)
 		playsound(src, "sound/items/tools/drill_use.ogg", 80, TRUE, -1)
 		var/obj/machinery/porta_turret/syndicate/pod/toolbox/nri/turret = new(get_turf(loc))
-		turret.faction = list(FACTION_NEUTRAL, FACTION_ERT)
+		turret.add_faction(FACTION_NEUTRAL, FACTION_ERT)
 		qdel(src)
 
 	..()
@@ -124,7 +124,7 @@
 	icon = 'modular_skyrat/modules/novaya_ert/icons/turret_deployable.dmi'
 	icon_state = "living"
 	base_icon_state = "living"
-	stun_projectile = /obj/projectile/bullet/c27_54cesarzowa/rubber
+	stun_projectile = /obj/projectile/bullet/c27_54cesarzowa
 	lethal_projectile = /obj/projectile/bullet/c27_54cesarzowa
 	max_integrity = 150
 	req_access = list(ACCESS_CENT_GENERAL)

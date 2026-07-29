@@ -1,10 +1,10 @@
 import { BlockQuote, Button, Section, Stack } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
-import { Objective, ObjectivePrintout } from './common/Objectives';
+import { Rules } from './AntagInfoRules'; // BUBBER EDIT ADDITION
+import { type Objective, ObjectivePrintout } from './common/Objectives';
 
 const allystyle = {
   fontWeight: 'bold',
@@ -93,7 +93,7 @@ const EmployerSection = (props) => {
               <BlockQuote>{allies}</BlockQuote>
             </Stack.Item>
             <Stack.Divider />
-            <Stack.Item>
+            <Stack.Item mb={1}>
               <span style={goalstyle}>
                 Employer thoughts:
                 <br />
@@ -126,7 +126,7 @@ const UplinkSection = (props) => {
               )}
             </Stack.Item>
             <Stack.Divider />
-            <Stack.Item mt="1%">
+            <Stack.Item align="center">
               <BlockQuote>{uplink_unlock_info}</BlockQuote>
             </Stack.Item>
           </>

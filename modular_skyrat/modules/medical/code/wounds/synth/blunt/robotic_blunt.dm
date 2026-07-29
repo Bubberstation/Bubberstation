@@ -97,7 +97,7 @@
 	abstract = TRUE
 	required_limb_biostate = BIO_METAL
 	wound_series = WOUND_SERIES_METAL_BLUNT_BASIC
-	required_wounding_types = list(WOUND_BLUNT)
+	required_wounding_type = WOUND_BLUNT
 
 /datum/wound_pregen_data/blunt_metal/generate_scar_priorities()
 	return list("[BIO_METAL]")
@@ -135,7 +135,7 @@
 		if(held_item && victim.dropItemToGround(held_item))
 			victim.visible_message(span_danger("[victim] drops [held_item] in shock!"), span_warning("<b>The force on your [limb.plaintext_zone] causes you to drop [held_item]!</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
 
-/datum/wound/blunt/robotic/remove_wound(ignore_limb, replaced)
+/datum/wound/blunt/robotic/remove_wound(ignore_limb, replaced, destroying)
 	. = ..()
 
 	QDEL_NULL(active_trauma)
@@ -182,7 +182,7 @@
 #define PERCUSSIVE_MAINTENANCE_ATTACKER_NOT_VICTIM_CHANCE_MULT 2.5
 
 /// Signal handler proc to when our victim has damage applied via apply_damage(), which is a external attack.
-/datum/wound/blunt/robotic/proc/victim_attacked(datum/source, damage, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction, attacking_item)
+/datum/wound/blunt/robotic/proc/victim_attacked(datum/source, damage, damagetype, def_zone, blocked, wound_bonus, exposed_wound_bonus, sharpness, attack_direction, attacking_item)
 	SIGNAL_HANDLER
 
 	if (def_zone != limb.body_zone) // use this proc since receive damage can also be called for like, chems and shit
@@ -192,7 +192,7 @@
 
 	var/effective_damage = (damage - blocked)
 
-	var/obj/item/stack/gauze = limb.current_gauze
+	var/obj/item/stack/medical/wrap/gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
 	if(gauze)
 		effective_damage *= gauze.splint_factor
 
@@ -348,7 +348,7 @@
 
 	var/overall_mult = 1
 
-	var/obj/item/stack/gauze = limb.current_gauze
+	var/obj/item/stack/medical/wrap/gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
 	if (gauze)
 		overall_mult *= gauze.splint_factor
 	if (!victim.has_gravity(get_turf(victim)))

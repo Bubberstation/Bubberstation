@@ -9,3 +9,7 @@
 //This is needed for Tarkon to have their own cargo express console/powerator
 #define ACCOUNT_TAR "TAR"
 #define ACCOUNT_TAR_NAME "Tarkon Budget"
+
+//This is for Lizard Gas so they have a uniform account for storing profits, giving out paychecks, and purchases.
+#define ACCOUNT_LIZ "LIZ"
+#define ACCOUNT_LIZ_NAME "Lizard Gas Station Budget"

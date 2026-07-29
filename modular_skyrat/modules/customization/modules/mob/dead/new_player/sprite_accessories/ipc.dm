@@ -6,13 +6,13 @@
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/ipc_screens.dmi'
 	color_src = null
 	key = MUTANT_SYNTH_SCREEN
-	generic = "Screen"
 	relevent_layers = list(BODY_FRONT_UNDER_CLOTHES)
 	organ_type = /obj/item/organ/synth_screen
 
 /datum/sprite_accessory/screen/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = null
+	factual = FALSE
 
 /datum/sprite_accessory/screen/blank
 	name = "Blank"
@@ -148,29 +148,17 @@
 	default_color = DEFAULT_SECONDARY
 	recommended_species = list(SPECIES_SYNTH)
 	key = MUTANT_SYNTH_ANTENNA
-	generic = "Antenna"
 	relevent_layers = list(BODY_ADJ_LAYER)
-	genetic = FALSE
 	organ_type = /obj/item/organ/synth_antenna
 
 /datum/sprite_accessory/antenna/is_hidden(mob/living/carbon/human/wearer)
-	if(!wearer.head)
-		return FALSE
-	if(key in wearer.try_hide_mutant_parts)
-		return TRUE
-//	Exception for MODs
-	if(istype(wearer.head, /obj/item/clothing/head/mod))
-		return FALSE
-//	Hide accessory if flagged to do so
-	if((wearer.head?.flags_inv & HIDEHAIR || wearer.wear_mask?.flags_inv & HIDEHAIR) \
-		// This line basically checks if we FORCE accessory-ears to show, for items with earholes like Balaclavas and Luchador masks
-		&& ((wearer.head && !(wearer.head.flags_inv & SHOWSPRITEEARS)) || (wearer.wear_mask && !(wearer.wear_mask?.flags_inv & SHOWSPRITEEARS))))
-		return TRUE
+	return is_deely_bobber_hidden(wearer, HIDEHAIR, SHOWSPRITEEARS)
 
 /datum/sprite_accessory/antenna/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "None"
 	recommended_species = null
+	factual = FALSE
 
 /datum/sprite_accessory/antenna/antennae
 	name = "Angled Antennae"
@@ -203,7 +191,6 @@
 	color_src = null
 	factual = FALSE
 	key = MUTANT_SYNTH_CHASSIS
-	generic = "Chassis Type"
 
 /datum/sprite_accessory/synth_chassis/default
 	name = "Default Chassis"
@@ -295,7 +282,6 @@
 	color_src = null
 	factual = FALSE
 	key = MUTANT_SYNTH_HEAD
-	generic = "Head Type"
 
 /datum/sprite_accessory/synth_head/default
 	name = "Default Head"

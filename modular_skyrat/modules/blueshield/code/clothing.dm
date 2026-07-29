@@ -65,11 +65,13 @@
 /obj/item/clothing/head/beret/blueshield
 	name = "blueshield's beret"
 	desc = "A blue beret made of durathread with a genuine golden badge, denoting its owner as a Blueshield Lieuteneant. It seems to be padded with nano-kevlar, making it tougher than standard reinforced berets."
+	icon = 'icons/map_icons/clothing/head/beret.dmi'
+	icon_state = "/obj/item/clothing/head/beret/blueshield"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
 	greyscale_colors = "#3A4E7D#DEB63D"
 	//alternate_worn_icon_digi = 'modular_skyrat/icons/mob/head_muzzled.dmi'
-	icon_state = "beret_badge_police"
+	post_init_icon_state = "beret_badge_police"
 	armor_type = /datum/armor/head_helmet/blueshield
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 
@@ -80,6 +82,7 @@
 /obj/item/clothing/head/beret/blueshield/navy
 	name = "navy blueshield's beret"
 	desc = "A navy-blue beret made of durathread with a silver badge, denoting its owner as a Blueshield Lieuteneant. It seems to be padded with nano-kevlar, making it tougher than standard reinforced berets."
+	icon_state = "/obj/item/clothing/head/beret/blueshield/navy"
 	greyscale_colors = "#3C485A#BBBBBB"
 
 /obj/item/storage/backpack/blueshield
@@ -121,27 +124,25 @@
 	icon_state = "blueshieldarmor"
 	body_parts_covered = CHEST
 	armor_type = /datum/armor/suit_armor/blueshield
-	uses_advanced_reskins = TRUE
-	unique_reskin = list(
-		"Slim" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
-			RESKIN_ICON_STATE = "blueshieldarmor",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
-			RESKIN_WORN_ICON_STATE = "blueshieldarmor",
-		),
-		"Marine" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
-			RESKIN_ICON_STATE = "bs_marine",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
-			RESKIN_WORN_ICON_STATE = "bs_marine",
-		),
-		"Bulky" = list(
-			RESKIN_ICON = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi',
-			RESKIN_ICON_STATE = "vest_black",
-			RESKIN_WORN_ICON = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi',
-			RESKIN_WORN_ICON_STATE = "vest_black",
-		),
-	)
+
+/obj/item/clothing/suit/armor/vest/blueshield/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/blueshield_armor)
+
+/datum/atom_skin/blueshield_armor
+	abstract_type = /datum/atom_skin/blueshield_armor
+
+/datum/atom_skin/blueshield_armor/slim
+	preview_name = "Slim"
+	new_icon_state = "blueshieldarmor"
+
+/datum/atom_skin/blueshield_armor/marine
+	preview_name = "Marine"
+	new_icon_state = "bs_marine"
+
+/datum/atom_skin/blueshield_armor/bulky
+	preview_name = "Bulky"
+	new_icon_state = "vest_black"
 
 /datum/armor/suit_armor/blueshield
 	bomb = 30
@@ -153,11 +154,13 @@
 	desc = "An expensive kevlar-lined jacket with a golden badge on the chest and \"NT\" emblazoned on the back. It weighs surprisingly little, despite how heavy it looks."
 	icon_state = "blueshield"
 	body_parts_covered = CHEST|ARMS
-	unique_reskin = null
 
 /obj/item/clothing/suit/armor/vest/blueshield/jacket/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/toggle_icon)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
 
 /obj/item/clothing/suit/hooded/wintercoat/skyrat/blueshield
 	name = "blueshield's winter coat"

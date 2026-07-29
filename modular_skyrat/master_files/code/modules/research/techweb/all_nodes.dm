@@ -89,6 +89,8 @@
 /datum/techweb_node/office_equip/New()
 	design_ids += list(
 		"gbp_machine",
+		"plastic_hair_tie",
+		"umbrella",
 	)
 	return ..()
 
@@ -96,14 +98,6 @@
 	design_ids += list(
 		"affection_module",
 		"borg_upgrade_artistic",
-	)
-	return ..()
-
-/datum/techweb_node/cafeteria_equip/New()
-	design_ids += list(
-		"bowl",
-		"drinking_glass",
-		"shot_glass",
 	)
 	return ..()
 
@@ -160,6 +154,7 @@
 		"meson_hud_projector",
 		"science_hud_projector",
 		"permit_glasses",
+		"civ_hud",
 		"nifsoft_money_sense",
 		"nifsoft_hud_kit",
 		"nifsoft_hud_science",
@@ -168,6 +163,12 @@
 		"nifsoft_hud_security",
 		"nifsoft_hud_diagnostic",
 		"nifsoft_hud_cargo",
+	)
+
+	design_ids -= list(
+		"ci-medhud",
+		"ci-diaghud",
+		"ci-sechud",
 	)
 	return ..()
 
@@ -232,6 +233,7 @@
 		"brute3medicell",
 		"burn3medicell",
 		"oxy3medicell",
+		"surgical_processor",
 		"toxin3medicell",
 	)
 	return ..()
@@ -247,6 +249,16 @@
 /datum/techweb_node/exp_tools/New()
 	design_ids += list(
 		"multi_cell_charger",
+		"megacell_charger",
+	)
+
+	design_ids -= list(
+		"rcd_loaded",
+		"rcd_ammo",
+		"rtd_loaded",
+		"weldingmask",
+		"magboots",
+		"flatpacker",
 	)
 	return ..()
 
@@ -276,14 +288,13 @@
 		"borg_upgrade_clamp",
 		"borg_upgrade_cargo_tele",
 		"borg_upgrade_forging",
-		"borg_upgrade_brush",
+//		"borg_upgrade_brush", BUBBERS EDIT, ROUNDSTART MODULE
 	)
 	return ..()
 
 /datum/techweb_node/borg_engi/New()
 	design_ids += list(
-		"advanced_materials",
-		"borg_upgrade_welding",
+		"advanced_materials"
 	)
 	return ..()
 
@@ -293,17 +304,5 @@
 	)
 	design_ids -= list(
 		"borg_upgrade_pinpointer",
-	)
-	return ..()
-
-/datum/techweb_node/borg_service/New()
-	design_ids += list(
-		"borg_upgrade_botany"
-	)
-	return ..()
-
-/datum/techweb_node/borg_mining/New()
-	design_ids += list(
-		"borg_upgrade_welding",
 	)
 	return ..()

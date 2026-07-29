@@ -126,7 +126,7 @@ GLOBAL_LIST_INIT(plastic_wall_panel_recipes, list(
 	icon_state = "colony_grey"
 	base_icon_state = "colony_grey"
 	floor_tile = /obj/item/stack/tile/iron/colony
-	tiled_dirt = FALSE
+	tiled_turf = FALSE
 
 /turf/open/floor/iron/colony/texture
 	icon_state = "colony_grey_texture"

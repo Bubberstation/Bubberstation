@@ -24,11 +24,11 @@
 		action_text = "",\
 		complete_text = "",\
 		required_modifier = RIGHT_CLICK,\
+		extra_checks = CALLBACK(src, PROC_REF(is_deployed)),\
 		after_healed = CALLBACK(src, PROC_REF(after_healed)),\
 	)
 
-	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	medsensor.show_to(src)
+	ADD_TRAIT(src, TRAIT_MEDICAL_HUD, INNATE_TRAIT)
 
 	var/datum/action/cooldown/mob_cooldown/guardian_bluespace_beacon/teleport = new(src)
 	teleport.Grant(src)
@@ -112,6 +112,8 @@
 
 /// Validate whether we can teleport this object
 /datum/action/cooldown/mob_cooldown/guardian_bluespace_beacon/proc/can_teleport(mob/living/source, atom/movable/target)
+	if(!istype(target)) // Turfs
+		return FALSE
 	if (isnull(beacon))
 		source.balloon_alert(source, "no beacon!")
 		return FALSE
@@ -126,7 +128,7 @@
 	if (target.anchored)
 		target.balloon_alert(source, "it won't budge!")
 		return FALSE
-	if(beacon.z != target.z)
+	if((beacon.z != target.z) && !(target.z in SSmapping.get_connected_levels(beacon.z)))
 		target.balloon_alert(source, "too far from beacon!")
 		return FALSE
 	return TRUE

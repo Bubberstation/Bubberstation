@@ -1,4 +1,4 @@
-import { CheckboxInput, FeatureToggle } from '../../base';
+import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const subtler_sound: FeatureToggle = {
   name: 'Toggle Subtle/r Sound',

@@ -5,7 +5,7 @@
 	Might cause unexpected spaggetification"
 
 /obj/projectile/beam/event_horizon
-	damage = HUMAN_HEALTH_MODIFIER * 100
+	damage = HUMAN_MAXHEALTH
 	damage_type = BRUTE
 	armor_flag = ENERGY
 	range = 150

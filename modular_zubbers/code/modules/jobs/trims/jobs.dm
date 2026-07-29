@@ -11,12 +11,14 @@
 		ACCESS_BLACKSMITH,
 	)
 
-/datum/id_trim/job/blacksmith //Place Holder. You'll probably wanna come by and set these up correctly.
+/datum/id_trim/job/blacksmith
 	assignment = "Blacksmith"
-	trim_state = "trim_cargotechnician"
+	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
+	trim_state = "trim_blacksmith"
+
 	department_color = COLOR_CARGO_BROWN
 	subdepartment_color = COLOR_CARGO_BROWN
-	sechud_icon_state = SECHUD_CARGO_TECHNICIAN
+	sechud_icon_state = SECHUD_BLACKSMITH
 	minimal_access = list(
 		ACCESS_BLACKSMITH,
 		ACCESS_CARGO,
@@ -24,6 +26,7 @@
 		ACCESS_MECH_MINING,
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_SHIPPING,
+		ACCESS_WEAPONS,
 		)
 	extra_access = list(
 		ACCESS_MINING,
@@ -40,8 +43,8 @@
 	assignment = "Security Medic"
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	trim_state = "trim_securitymedic"
-	department_color = COLOR_ASSEMBLY_BLACK
-	subdepartment_color = COLOR_ASSEMBLY_BLACK
+	department_color = COLOR_SECURITY_RED
+	subdepartment_color = COLOR_SECURITY_RED
 	sechud_icon_state = SECHUD_SYNDICATE_INTERDYNE
 	extra_access = list(ACCESS_DETECTIVE)
 	minimal_access = list(
@@ -68,17 +71,3 @@
 	// Config check for if sec has maint access.
 	if(CONFIG_GET(flag/security_has_maint_access))
 		access |= list(ACCESS_MAINT_TUNNELS)
-
-/datum/id_trim/job/blueshield
-	minimal_wildcard_access = list()
-	template_access = list(ACCESS_CAPTAIN) //Blueshield can no longer change to any other ID trim
-
-/datum/id_trim/job/blueshield/New()
-	.=..()
-	minimal_access |= list(ACCESS_CAPTAIN)
-//BUBBER ADDITION: adds ACCESS_CAPTAIN to the Blueshield's minimal_access.
-//Lowering the Blueshield's ID from CENTCOM to silver necessitates moving this access.
-
-/datum/id_trim/job/nanotrasen_consultant
-	minimal_wildcard_access = list()
-	template_access = list(ACCESS_CAPTAIN) //NTRep can no longer change to any other ID trim

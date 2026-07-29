@@ -105,8 +105,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		middleware += new middleware_type(src)
 
 	if(IS_CLIENT_OR_MOCK(parent))
-		load_and_save = !is_guest_key(parent.key)
-		load_path(parent.ckey)
+		if(is_guest_key(parent.key))
+			if(parent.is_localhost())
+				path = DEV_PREFS_PATH // guest + locallost = dev instance, load dev preferences if possible
+			else
+				load_and_save = FALSE // guest + not localhost = guest on live, don't save anything
+		else
+			load_path(parent.ckey) // not guest = load their actual savefile
 		if(load_and_save && !fexists(path))
 			try_savefile_type_migration()
 
@@ -142,6 +147,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// There used to be code here that readded the preview view if you "rejoined"
 	// I'm making the assumption that ui close will be called whenever a user logs out, or loses a window
 	// If this isn't the case, kill me and restore the code, thanks
+
+	// We need IconForge and the assets to be ready before allowing the menu to open
+	if(SSearly_assets.initialized != INITIALIZATION_INNEW_REGULAR)
+		return
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -241,6 +250,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if ("remove_current_slot")
 			remove_current_slot()
 			return TRUE
+		if ("duplicate_current_slot") //BUBBER ADDITION START - Character duplication
+			save_character()
+			if(sanitize_languages())
+				save_character()
+			var/list/character_list = create_character_profiles()
+			var/list/slot_choices = list()
+			for(var/i = 1, i <= character_list.len, i++)
+				slot_choices += "Slot [i]: [character_list[i]]"
+			var/target_slot = tgui_input_list(ui.user, "Pick a slot to copy to.", "Duplicate Character", slot_choices, null)
+			if(!isnull(target_slot))
+				duplicate_current_slot(slot_choices.Find(target_slot))
+				tainted_character_profiles = TRUE
+			else
+				tgui_alert(ui.user, "Cancelled Duplication", "Duplicate Character")
+			return TRUE //BUBBER ADDITION END - Character duplication
 		if ("rotate")
 			/* SKYRAT EDIT - Bi-directional prefs menu rotation - ORIGINAL:
 			character_preview_view.dir = turn(character_preview_view.dir, -90)
@@ -270,8 +294,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				tainted_character_profiles = TRUE
 			//SKYRAT EDIT
 			update_body_parts(requested_preference)
-			for (var/datum/preference_middleware/preference_middleware as anything in middleware)
-				if (preference_middleware.post_set_preference(usr, requested_preference_key, value))
+			for(var/datum/preference_middleware/preference_middleware as anything in middleware)
+				if(preference_middleware.post_set_preference(ui.user, requested_preference_key, value))
 					return TRUE
 			//SKYRAT EDIT END
 			return TRUE
@@ -288,13 +312,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/default_value = read_preference(requested_preference.type)
 
 			// Yielding
-			// BUBBERSTATION EDIT START: TGUI COLOR PICKER
 			var/new_color = tgui_color_picker(
 				usr,
 				"Select new color",
 				null,
 				default_value || COLOR_WHITE,
-			) // BUBBERSTATION EDIT END: TGUI COLOR PICKER
+			)
 
 			if (!new_color)
 				return FALSE
@@ -384,7 +407,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return TRUE
 
 /datum/preferences/proc/create_character_preview_view(mob/user)
-	character_preview_view = new(null, src)
+	character_preview_view = new(null, null, src)
 	character_preview_view.generate_view("character_preview_[REF(character_preview_view)]")
 	character_preview_view.update_body()
 
@@ -443,7 +466,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/last_canvas_state
 	// BUBBER EDIT END
 
-/atom/movable/screen/map_view/char_preview/Initialize(mapload, datum/preferences/preferences)
+/atom/movable/screen/map_view/char_preview/Initialize(mapload, datum/hud/hud_owner, datum/preferences/preferences)
 	. = ..()
 	src.preferences = preferences
 
@@ -475,7 +498,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/canvas_state = preferences.read_preference(/datum/preference/choiced/background_state)
 
 	// Being a taur, or over 1.1 scales it up
-	if (body.dna.mutant_bodyparts["taur"] && body.dna.mutant_bodyparts["taur"]["name"] != "None")
+	if (body.dna.mutant_bodyparts[FEATURE_TAUR] && body.dna.mutant_bodyparts[FEATURE_TAUR][MUTANT_INDEX_NAME] != "None")
 		canvas_size = 1
 	else if (!isnull(body.dna.features["body_size"]) && body.dna.features["body_size"] > 1.1)
 		canvas_size = 1
@@ -553,7 +576,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	return TRUE
 
 /datum/preferences/proc/GetQuirkBalance()
-	var/bal = 0
+	var/bal = SSquirks.default_quirk_points
 	for(var/V in all_quirks)
 		var/datum/quirk/T = SSquirks.quirks[V]
 		bal -= initial(T.value)
@@ -571,10 +594,24 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			.++
 
 /datum/preferences/proc/validate_quirks()
-	if(CONFIG_GET(flag/disable_quirk_points))
-		return
-	if(GetQuirkBalance() < 0)
+	var/datum/species/species_type = read_preference(/datum/preference/choiced/species)
+	var/list/quirks_removed
+	for(var/quirk_name in all_quirks)
+		var/quirk_path = SSquirks.quirks[quirk_name]
+		var/datum/quirk/quirk_prototype = SSquirks.quirk_prototypes[quirk_path]
+		if(!quirk_prototype.is_species_appropriate(species_type))
+			all_quirks -= quirk_name
+			LAZYADD(quirks_removed, quirk_name)
+	var/list/feedback
+	if(LAZYLEN(quirks_removed))
+		LAZYADD(feedback, "The following quirks are incompatible with your species:")
+		LAZYADD(feedback, quirks_removed)
+	if(SSquirks.points_enabled && GetQuirkBalance() < 0)
+		LAZYADD(feedback, "Your quirks have been reset.")
 		all_quirks = list()
+	if(LAZYLEN(feedback))
+		to_chat(parent, boxed_message(span_greentext(feedback.Join("\n"))))
+
 
 /**
  * Safely read a given preference datum from a given client.
@@ -630,12 +667,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	apply_character_randomization_prefs(is_antag)
 	apply_prefs_to(character, icon_updates, visuals_only = visuals_only) // BUBBER EDIT - Customization - ORIGINAL: apply_prefs_to(character, icon_updates)
 
+/**
+ * Applies the given preferences to a human mob.
+ *
+ * Arguments:
+ * * character - The human mob to apply the preferences to
+ * * icon_updates - Whether to update the mob's icons after applying preferences.
+ * Is often skipped to save processing when an update will happen later anyway.
+ * * do_not_apply - A list of preference types to skip when applying preferences.
+ */
 /// Applies the given preferences to a human mob.
-/datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, visuals_only = FALSE)  // SKYRAT EDIT - Customization - ORIGINAL: /datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE)
+/datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, list/do_not_apply, visuals_only = FALSE)  // SKYRAT EDIT - Customization - ORIGINAL: /datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE)
 	character.dna.features = MANDATORY_FEATURE_LIST //SKYRAT EDIT CHANGE - We need to instansiate the list with the basic features.
 
 	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
 		if (preference.savefile_identifier != PREFERENCE_CHARACTER)
+			continue
+		if (preference.type in do_not_apply)
 			continue
 
 		preference.apply_to_human(character, read_preference(preference.type), src) // SKYRAT EDIT - src

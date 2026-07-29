@@ -15,7 +15,7 @@
 
 /mob/dead/observer/verb/join_soulcatcher()
 	set name = "Enter Soulcatcher"
-	set category = "Ghost"
+	set category = "IC"
 
 	var/list/joinable_soulcatchers = list()
 	var/list/rooms_to_join = list()

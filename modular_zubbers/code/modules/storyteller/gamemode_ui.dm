@@ -21,6 +21,7 @@
 /datum/controller/subsystem/gamemode/proc/get_ui_pop_data()
 	var/list/pop_data = list(
 		"active" = get_correct_popcount(),
+		"crew" = active_crew,
 		"head" = head_crew,
 		"sec" = sec_crew,
 		"eng" = eng_crew,
@@ -65,7 +66,7 @@
 	var/list/static_data = list()
 	// Events are static because we don't need to update them as often, only on storyteller ticks
 	static_data["events"] = list()
-	for(var/event_category as anything in event_pools)
+	for(var/event_category in event_pools)
 		var/list/event_list = event_pools[event_category]
 		static_data["events"][event_category] = list("name" = event_category, "events" = list())
 		for(var/datum/round_event_control/event as anything in event_list)
@@ -141,17 +142,22 @@
 					sch_event.try_fire()
 		if("panel_action")
 			var/datum/round_event_control/event = get_event_by_track_and_type(params["track"], params["type"])
+			var/track = params["track"]
 			if(isnull(event))
 				return
 			switch(params["action"])
 				if("fire")
-					message_admins("[key_name_admin(usr)] has fired event [src.name].")
-					log_admin_private("[key_name(usr)] has fired event [src.name].")
+					message_admins("[key_name_admin(usr)] has fired event [event.name].")
+					log_admin_private("[key_name(usr)] has fired event [event.name].")
 					SSgamemode.TriggerEvent(event)
 				if("force_next")
-					message_admins("[key_name_admin(usr)] has forced scheduled event [src.name].")
-					log_admin_private("[key_name(usr)] has forced scheduled event [src.name].")
+					message_admins("[key_name_admin(usr)] has forced next event on track [track] to be [event.name].")
+					log_admin_private("[key_name(usr)] has forced next event on track [track] to be [event.name].")
 					SSgamemode.force_event(event)
+				if ("schedule")
+					message_admins("[key_name_admin(usr)] has scheduled event [event.name].")
+					log_admin_private("[key_name(usr)] has scheduled event [event.name].")
+					SSgamemode.schedule_event(event, (rand(3, 4) MINUTES), 0)
 		if("panel_update")
 			if(storyteller)
 				storyteller.calculate_weights_all()

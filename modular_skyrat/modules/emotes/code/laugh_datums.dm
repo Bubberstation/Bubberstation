@@ -67,3 +67,8 @@ GLOBAL_LIST_EMPTY(laugh_types)
 	name = "Vox Laugh"
 	male_laughsounds = list('modular_zubbers/sound/mobs/humanoids/vox/vox_laugh.ogg')
 	female_laughsounds = null
+
+/datum/laugh_type/serpentid
+	name = "Ascent Laugh"
+	male_laughsounds = list('modular_skyrat/modules/emotes/sound/emotes/serpentidlaugh.ogg')
+	female_laughsounds = null

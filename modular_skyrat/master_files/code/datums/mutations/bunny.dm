@@ -1,4 +1,4 @@
-/datum/mutation/human/strong_legs
+/datum/mutation/strong_legs
 	name = "Strong Legs"
 	desc = "Strengtens the calves of the subject, allowing them to leap across gaps."
 	quality = POSITIVE
@@ -8,7 +8,7 @@
 	power_path = /datum/action/cooldown/mob_cooldown/leap
 	instability = 25
 
-/datum/mutation/human/strong_legs/modify()
+/datum/mutation/strong_legs/setup()
 	. = ..()
 	var/datum/action/cooldown/mob_cooldown/leap/ability = .
 	if(!istype(ability)) // null or invalid
@@ -79,7 +79,7 @@
 			on_grille_bump(source, poorgrille, do_move = FALSE)
 		source.forceMove(new_turf)
 	else
-		source.adjustStaminaLoss(20, forced = TRUE)
+		source.adjust_stamina_loss(20, forced = TRUE)
 		source.Paralyze(0.5 SECONDS, ignore_canstun = FALSE)
 		source.apply_damage(damage = 5, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD)
 		var/harsh_crash = FALSE
@@ -100,4 +100,4 @@
 /obj/item/dnainjector/strong_legs
 	name = "\improper DNA injector (Strong Legs)"
 	desc = "Makes you leap like a bunny."
-	add_mutations = list(/datum/mutation/human/strong_legs)
+	add_mutations = list(/datum/mutation/strong_legs)

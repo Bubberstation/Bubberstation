@@ -50,7 +50,8 @@
 ///Bloodbag of Bloodsucker blood (used by Ghouls only)
 /obj/item/reagent_containers/blood/o_minus/bloodsucker
 	name = "blood pack"
-	unique_blood = /datum/reagent/blood/bloodsucker
+	blood_type = null
+	list_reagents = list(/datum/reagent/blood/bloodsucker = 200)
 
 /obj/item/reagent_containers/blood/o_minus/bloodsucker/examine(mob/user)
 	. = ..()
@@ -210,6 +211,7 @@
 	armour_penetration = 10
 	embed_data = /datum/embedding/stake/hardened
 	staketime = 12 SECONDS
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/stake/hardened/examine_more(mob/user)
 	. = ..()
@@ -227,7 +229,7 @@
 	siemens_coefficient = 1
 	force = 9
 	armour_penetration = 25
-	custom_materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = SHEET_MATERIAL_AMOUNT)
 	embed_data = /datum/embedding/stake/silver
 	staketime = 15 SECONDS
 
@@ -271,9 +273,9 @@
 	. = ..()
 	SSpoints_of_interest.make_point_of_interest(src)
 
-/obj/item/book/kindred/try_carve(obj/item/carving_item, mob/living/user, params)
+/obj/item/book/kindred/carving_act(mob/living/user, obj/item/tool)
 	to_chat(user, span_notice("You feel the gentle whispers of a Librarian telling you not to cut [starting_title]."))
-	return FALSE
+	return ITEM_INTERACT_BLOCKING
 
 ///Attacking someone with the book.
 /obj/item/book/kindred/afterattack(mob/living/target, mob/living/user, flag, params)

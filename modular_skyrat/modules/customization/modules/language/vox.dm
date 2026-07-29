@@ -1,5 +1,5 @@
 /datum/language/vox
-	name = "Vox Standard"
+	name = "Vox Pidgin"
 	desc = "A form of hybrid encoded language employed by the biomechanical Vox species, characterized by sounding extremely annoying and irritating to those who don't recognize it. It usually requires an implant to be spoken in its entirety."
 	key = "V"
 	flags = TONGUELESS_SPEECH

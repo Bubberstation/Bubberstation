@@ -9,8 +9,10 @@
 
 SUBSYSTEM_DEF(player_ranks)
 	name = "Player Ranks"
-	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_PLAYER_RANKS
+	ss_flags = SS_NO_FIRE
+	dependencies = list(
+		/datum/controller/subsystem/dbcore
+	)
 	// The following controllers handle most of the legacy system's functions,
 	// and provide a layer of abstraction for this subsystem to have cleaner
 	// logic.
@@ -27,16 +29,15 @@ SUBSYSTEM_DEF(player_ranks)
 
 	load_donators()
 	load_mentors()
-	load_vetted_ckeys()
+	vetted_controller = new()
 	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/player_ranks/Destroy()
-	. = ..()
-
 	QDEL_NULL(donator_controller)
 	QDEL_NULL(mentor_controller)
 	QDEL_NULL(vetted_controller)
+	. = ..()
 
 /**
  * Returns whether or not the user is qualified as a donator.
@@ -107,7 +108,7 @@ SUBSYSTEM_DEF(player_ranks)
  * `donator_status` and `max_save_slots` once donators are loaded.
  */
 /datum/controller/subsystem/player_ranks/proc/update_all_prefs_donator_status()
-	for(var/ckey as anything in GLOB.preferences_datums)
+	for(var/ckey in GLOB.preferences_datums)
 		update_prefs_donator_status(GLOB.preferences_datums[ckey])
 
 
@@ -118,7 +119,7 @@ SUBSYSTEM_DEF(player_ranks)
  * * prefs - The preferences datum to check the donator_status eligibility.
  */
 /datum/controller/subsystem/player_ranks/proc/update_prefs_donator_status(datum/preferences/prefs)
-	if(!prefs)
+	if(!prefs || !prefs.parent)
 		return
 
 	prefs.unlock_content = !!prefs.parent.IsByondMember()
@@ -224,7 +225,7 @@ SUBSYSTEM_DEF(player_ranks)
 	if(!admin_holder)
 		return FALSE
 
-	if(!admin_holder.check_for_rights(R_PERMISSIONS))
+	if(!admin_holder.check_for_rights(R_ADMIN))
 		if(is_admin_client)
 			to_chat(admin, span_warning("You do not possess the permissions to do this."))
 
@@ -313,7 +314,7 @@ SUBSYSTEM_DEF(player_ranks)
 	if(!admin_holder)
 		return FALSE
 
-	if(!admin_holder.check_for_rights(R_PERMISSIONS))
+	if(!admin_holder.check_for_rights(R_ADMIN))
 		if(is_admin_client)
 			to_chat(admin, span_warning("You do not possess the permissions to do this."))
 
@@ -376,7 +377,7 @@ SUBSYSTEM_DEF(player_ranks)
 	if(IsAdminAdvancedProcCall())
 		return
 
-	if(!check_rights_for(admin, R_PERMISSIONS | R_DEBUG | R_SERVER))
+	if(!check_rights_for(admin, R_ADMIN | R_DEBUG | R_SERVER))
 		to_chat(admin, span_warning("You do not possess the permissions to do this."))
 		return
 

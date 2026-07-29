@@ -29,8 +29,8 @@
 /datum/armament_entry/assault_operatives/secondary/martial
 	subcategory = OPS_SUBCATEGORY_MARTIAL_SIDE
 
-/datum/armament_entry/assault_operatives/secondary/martial/krav_gloves
-	item_type = /obj/item/clothing/gloves/krav_maga/combatglovesplus
+/datum/armament_entry/assault_operatives/secondary/martial/kaza_gloves
+	item_type = /obj/item/clothing/gloves/kaza_ruk/combatglovesplus
 
 /datum/armament_entry/assault_operatives/secondary/martial/cqc
 	item_type = /obj/item/book/granter/martial/cqc

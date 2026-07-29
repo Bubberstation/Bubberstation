@@ -22,6 +22,8 @@
 /// Standard size (ie: normal runechat) - Size options: 6pt 12pt 18pt.
 #define MAPTEXT_GRAND9K(text) {"<span style='font-family: \"Grand9K Pixel\"; font-size: 6pt; -dm-text-outline: 1px black'>[##text]</span>"}
 
+#define MAPTEXT_SELAWIK(text) {"<span style='font-family: \"Selawik\"; font-size: 14pt'>[##text]</span>"} // BUBBER EDIT ADDITION
+
 /// Small size. (ie: context subtooltips, spell delays) - Size options: 12pt 24pt.
 #define MAPTEXT_TINY_UNICODE(text) {"<span style='font-family: \"TinyUnicode\"; font-size: 12pt; line-height: 0.75; -dm-text-outline: 1px black'>[##text]</span>"}
 
@@ -84,8 +86,6 @@
 #define ARCADE_FILE "arcade.json"
 /// File location for boomer meme catchphrases
 #define BOOMER_FILE "boomer.json"
-/// File location for locations on the station
-#define LOCATIONS_FILE "locations.json"
 /// File location for wanted posters messages
 #define WANTED_FILE "wanted_message.json"
 /// File location for really dumb suggestions memes

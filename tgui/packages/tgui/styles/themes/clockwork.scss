@@ -1,71 +1,21 @@
-@use 'sass:color';
-@use 'sass:meta';
+/**
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
+ */
 
-@use '../colors.scss' with (
-  $good: hsl(51, 59%, 55%),
-  $primary: hsl(44, 65%, 42%),
-  $average: hsl(44, 69%, 32%),
-  $bad: hsl(31, 74%, 21%)
-);
-@use '../base.scss' with (
-  $color-bg: hsl(31, 74%, 21%),
-  $color-bg-start: hsl(44, 65%, 42%),
-  $color-bg-end: hsl(31, 74%, 21%),
-  $color-bg-grad-spread: 6%,
-  $border-radius: 2px
-);
-
-.theme-clockwork {
-  // Atomic classes
-  @include meta.load-css('../atomic/color.scss');
+.theme-clockwork:root {
+  // Base
+  --color-base: hsl(31, 74%, 21%);
+  --color-primary: hsl(44, 65%, 42%);
+  --color-secondary: hsl(31, 74%, 21%);
+  --base-gradient-spread: 6;
 
   // Components
-  @include meta.load-css(
-    '~tgui-core/styles/components/Button',
-    $with: (
-      'color-default': colors.$primary,
-      'color-disabled': hsl(46, 26%, 32%),
-      'color-selected': hsl(51, 59%, 55%),
-      'color-caution': hsl(34, 100%, 63%),
-      'color-danger': hsl(60, 100%, 50%)
-    )
-  );
-  @include meta.load-css('~tgui-core/styles/components/Input');
-  @include meta.load-css(
-    '~tgui-core/styles/components/Tooltip',
-    $with: ('background-color': #2d1400)
-  );
-  @include meta.load-css(
-    '~tgui-core/styles/components/Section',
-    $with: ('separator-color': #d6ca85)
-  );
-  @include meta.load-css(
-    '~tgui-core/styles/components/Divider',
-    $with: ('color': #d6ca85)
-  );
-  @include meta.load-css(
-    '~tgui-core/styles/components/ProgressBar',
-    $with: ('background-color': rgba(0, 0, 0, 0.5))
-  );
-
-  //Layouts
-  @include meta.load-css('../layouts/Layout.scss');
-  @include meta.load-css('../layouts/Window.scss');
-  @include meta.load-css(
-    '../layouts/TitleBar.scss',
-    $with: (
-      'background-color': hsl(31, 74%, 21%),
-      'shadow-color': rgba(0, 0, 0, 0.1),
-      'text-color': hsl(51, 59%, 55%)
-    )
-  );
-
-  .Input {
-    color: hsl(44, 65%, 42%);
-    background-color: hsl(51, 59%, 55%);
-  }
-
-  .Layout__content {
-    background-image: none;
-  }
+  --button-background-selected: hsl(51, 59%, 55%);
+  --button-background-caution: hsl(34, 100%, 63%);
+  --button-background-danger: hsl(60, 100%, 50%);
+  --progress-bar-background: hsla(0, 0%, 0%, 0.5);
+  --input-background: hsl(51, 59%, 55%);
+  --input-color: hsl(44, 65%, 42%);
+  --tooltip-background: hsl(27, 100%, 9%);
 }

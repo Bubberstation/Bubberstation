@@ -22,11 +22,6 @@
 	desc = "A 10mm incendiary bullet casing."
 	projectile_type = /obj/projectile/bullet/incendiary/c10mm
 
-/obj/item/ammo_casing/c10mm/reaper
-	name = "10mm reaper bullet casing"
-	desc = "A 10mm reaper bullet casing."
-	projectile_type = /obj/projectile/bullet/c10mm/reaper
-
 // 9mm (Makarov, Stechkin APS)
 
 /obj/item/ammo_casing/c9mm
@@ -35,7 +30,14 @@
 	caliber = CALIBER_9MM
 	projectile_type = /obj/projectile/bullet/c9mm
 	newtonian_force = 0.75
-
+//BUBBERSTAION ADDITION
+/obj/item/ammo_casing/c9mm/security
+	name = "9mm bullet Security casing"
+	desc = "A 9mm bullet Security casing."
+	caliber = CALIBER_9MM
+	projectile_type = /obj/projectile/bullet/c9mm/security
+	newtonian_force = 0.75
+// BUBBBER EDIT END
 /obj/item/ammo_casing/c9mm/ap
 	name = "9mm armor-piercing bullet casing"
 	desc = "A 9mm armor-piercing bullet casing."

@@ -46,9 +46,12 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 
 /obj/item/organ/borer_body/on_mob_insert(mob/living/carbon/carbon_target, special, movement_flags)
 	. = ..()
+	carbon_target.apply_status_effect(/datum/status_effect/grouped/screwy_hud/fake_healthy, type)
+	if (isnull(borer))
+		return
+	
 	for(var/datum/borer_focus/body_focus as anything in borer.body_focuses)
 		body_focus.on_add()
-	carbon_target.apply_status_effect(/datum/status_effect/grouped/screwy_hud/fake_healthy, type)
 
 //on removal, force the borer out
 /obj/item/organ/borer_body/on_mob_remove(mob/living/carbon/carbon_target, special, movement_flags)
@@ -283,8 +286,8 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 		return
 
 	//there needs to be a negative to having a borer
-	if(prob(5 * host_harm_multiplier * ((upgrade_flags & BORER_STEALTH_MODE) ? 0.1 : 1)) && human_host.getToxLoss() <= (80 * host_harm_multiplier))
-		human_host.adjustToxLoss(5 * host_harm_multiplier, TRUE, TRUE)
+	if(prob(5 * host_harm_multiplier * ((upgrade_flags & BORER_STEALTH_MODE) ? 0.1 : 1)) && human_host.get_tox_loss() <= (80 * host_harm_multiplier))
+		human_host.adjust_tox_loss(5 * host_harm_multiplier, TRUE, TRUE)
 
 	human_host.apply_status_effect(/datum/status_effect/grouped/screwy_hud/fake_healthy, type)
 

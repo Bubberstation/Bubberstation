@@ -21,6 +21,9 @@
 	treatable_tools = list(TOOL_ALIEN_BONESET)
 
 /datum/wound/blunt/bone/severe/treat(obj/item/I, mob/user)
+	if(!(TOOL_ALIEN_BONESET in I.get_all_tool_behaviours()))
+		return ..()
+
 	var/scanned = HAS_TRAIT(src, TRAIT_WOUND_SCANNED)
 	var/self_penalty_mult = user == victim ? 1.5 : 1
 	var/scanned_mult = scanned ? 0.5 : 1
@@ -50,6 +53,9 @@
 	treatable_tools = list(TOOL_ALIEN_BONESET)
 
 /datum/wound/blunt/bone/critical/treat(obj/item/I, mob/user)
+	if(!(TOOL_ALIEN_BONESET in I.get_all_tool_behaviours()))
+		return ..()
+
 	var/scanned = HAS_TRAIT(src, TRAIT_WOUND_SCANNED)
 	var/self_penalty_mult = user == victim ? 1.5 : 1
 	var/scanned_mult = scanned ? 0.5 : 1
@@ -117,6 +123,12 @@
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	toolspeed = 0.7
+
+/obj/item/blood_filter/advanced/attack_self_secondary(mob/user)
+	ui_interact(user)
+
+/obj/item/blood_filter/advanced/BorgCtrlClick(mob/user)
+	ui_interact(user)
 
 /obj/item/blood_filter/advanced/get_all_tool_behaviours()
 	return list(TOOL_BLOODFILTER, TOOL_BONESET)

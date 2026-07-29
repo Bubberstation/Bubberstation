@@ -34,6 +34,6 @@
 	. = ..()
 
 /datum/controller/subsystem/ticker/proc/generate_quote_of_the_round()
-	return "A shift on [SSmapping.current_map.map_name] has ended.\n\
+	return "The shift has ended. Get ready, a new round on **[SSmap_vote.next_map_config.map_name]** starts soon! <@&[CONFIG_GET(string/game_alert_role_id)]>\n\
 	[pick(strings("quote_of_the_round.json", "workers"))] [pick(strings("quote_of_the_round.json", "action"))] [pick(strings("quote_of_the_round.json", "message"))] that occured during said shift:\n\
 	> *[quote_of_the_round_text]*\n \\- *[quote_of_the_round_attribution]*"

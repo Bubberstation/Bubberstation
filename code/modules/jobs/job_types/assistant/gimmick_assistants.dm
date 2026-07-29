@@ -168,6 +168,7 @@
 	head = /obj/item/clothing/head/utility/hardhat
 	uniform = /obj/item/clothing/under/color/yellow
 	l_pocket = /obj/item/modular_computer/pda/assistant
+	pda_slot = ITEM_SLOT_LPOCKET
 
 	outfit_weight = 6
 
@@ -210,3 +211,11 @@
 	backpack_contents = list(/obj/item/storage/crayons)
 
 	outfit_weight = 3
+
+/datum/outfit/job/assistant/gimmick/bear
+	name = "Gimmick Assistant - Bear"
+	head = /obj/item/clothing/head/costume/bearpelt
+	suit = /obj/item/clothing/suit/costume/bear_suit
+	shoes = /obj/item/clothing/shoes/sneakers/black
+	uniform = /obj/item/clothing/under/color/black
+	outfit_weight = 6

@@ -1,12 +1,14 @@
 /obj/structure/chair/shibari_stand
 	name = "shibari stand"
 	desc = "A stand for buckling people with ropes."
-	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/shibari_stand.dmi'
-	icon_state = "shibari_stand"
+	icon = 'icons/map_icons/objects.dmi'
+	icon_state = "/obj/structure/chair/shibari_stand"
+	post_init_icon_state = "shibari_stand"
 	max_integrity = 75
 	layer = 4
 	item_chair = null
 	buildstacktype = null
+	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 	///Overlays for ropes
 	var/static/mutable_appearance/shibari_rope_overlay
 	var/static/mutable_appearance/shibari_rope_overlay_behind
@@ -115,7 +117,7 @@
 			ropee.set_greyscale(rope.greyscale_colors)
 			rope.use(1)
 			add_overlay(shibari_shadow_overlay)
-			add_rope_overlays(ropee.greyscale_colors, hooman?.dna?.species?.mutant_bodyparts["taur"])
+			add_rope_overlays(ropee.greyscale_colors, hooman?.dna?.species?.mutant_bodyparts[FEATURE_TAUR])
 			buckled.visible_message(span_warning("[user] tied [buckled] to \the [src]!"),\
 				span_userdanger("[user] tied you to \the [src]!"),\
 				span_hear("You hear ropes being completely tightened."))

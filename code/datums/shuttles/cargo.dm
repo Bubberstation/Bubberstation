@@ -1,7 +1,12 @@
 /datum/map_template/shuttle/cargo
 	port_id = "cargo"
+	prefix = "_maps/shuttles/cargo/"
 	name = "Base Shuttle Template (Cargo)"
 	who_can_purchase = null
+
+/datum/map_template/shuttle/cargo/mini
+	suffix ="mini"
+	name = "supply shuttle (Mini)"
 
 /datum/map_template/shuttle/cargo/kilo
 	suffix = "kilo"
@@ -31,6 +36,9 @@
 	suffix = "northstar"
 	name = "cargo ferry (North Star)"
 
+/datum/map_template/shuttle/cargo/catwalk
+	suffix = "catwalk"
+	name = "cargo ferry (Catwalk)"
 /datum/map_template/shuttle/cargo/nebula
 	suffix = "nebula"
 	name = "supply shuttle (Nebula)"

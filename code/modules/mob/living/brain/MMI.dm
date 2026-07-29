@@ -16,6 +16,7 @@
 	var/overrides_aicore_laws = FALSE // Whether the laws on the MMI, if any, override possible pre-existing laws loaded on the AI core.
 	/// Whether the brainmob can move. Doesnt usually matter but SPHERICAL POSIBRAINSSS
 	var/immobilize = TRUE
+	var/slot = ORGAN_SLOT_BRAIN //Bubber Addition
 
 /obj/item/mmi/Initialize(mapload)
 	. = ..()
@@ -49,7 +50,7 @@
 	if(brain)
 		. += "mmi_dead"
 
-/obj/item/mmi/attackby(obj/item/O, mob/user, params)
+/obj/item/mmi/attackby(obj/item/O, mob/user, list/modifiers, list/attack_modifiers)
 	user.changeNext_move(CLICK_CD_MELEE)
 	if(istype(O, /obj/item/organ/brain)) //Time to stick a brain in it --NEO
 		var/obj/item/organ/brain/newbrain = O

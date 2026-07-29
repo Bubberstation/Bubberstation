@@ -1,3 +1,5 @@
+//Title Capitalization for names please!!!
+
 /*
 *	BOOZE
 */
@@ -5,58 +7,6 @@
 /datum/loadout_item/pocket_items/wine //Beer is already available, so why not wine? Stay classy while drinking on the job.
 	name = "Wine Bottle"
 	item_path = /obj/item/reagent_containers/cup/glass/bottle/wine
-
-/*
-*	PERFUME
-*/
-
-/datum/loadout_item/pocket_items/fragrance_ash
-	name = "Ash Perfume"
-	item_path = /obj/item/perfume/ash
-
-/datum/loadout_item/pocket_items/fragrance_bergamot
-	name = "Bergamot Perfume"
-	item_path = /obj/item/perfume/bergamot
-
-/datum/loadout_item/pocket_items/fragrance_cardamom
-	name = "Cardamom Perfume"
-	item_path = /obj/item/perfume/cardamom
-
-/datum/loadout_item/pocket_items/fragrance_chocolate
-	name = "Chocolate Perfume"
-	item_path = /obj/item/perfume/chocolate
-
-/datum/loadout_item/pocket_items/fragrance_cinnamon
-	name = "Cinnamon Perfume"
-	item_path = /obj/item/perfume/cinnamon
-
-/datum/loadout_item/pocket_items/fragrance_citrus
-	name = "Citrus Perfume"
-	item_path = /obj/item/perfume/citrus
-
-/datum/loadout_item/pocket_items/fragrance_clove
-	name = "Clove Perfume"
-	item_path = /obj/item/perfume/clove
-
-/datum/loadout_item/pocket_items/fragrance_grass
-	name = "Grass Perfume"
-	item_path = /obj/item/perfume/grass
-
-/datum/loadout_item/pocket_items/fragrance_iron
-	name = "Iron Perfume"
-	item_path = /obj/item/perfume/iron
-
-/datum/loadout_item/pocket_items/fragrance_oil
-	name = "Oil Perfume"
-	item_path = /obj/item/perfume/oil
-
-/datum/loadout_item/pocket_items/fragrance_peach
-	name = "Peach Perfume"
-	item_path = /obj/item/perfume/peach
-
-/datum/loadout_item/pocket_items/fragrance_petrichor
-	name = "Petrichor Perfume"
-	item_path = /obj/item/perfume/petrichor
 
 /*
 *	OTHER
@@ -70,10 +20,17 @@
 	name = "Pocket Watch"
 	item_path = /obj/item/clothing/accessory/pocketwatch
 
+/datum/loadout_item/pocket_items/table_clock
+	name = "Table Clock"
+	item_path = /obj/item/table_clock
 
 /datum/loadout_item/pocket_items/cigarettesleary
 	name = "Mindbreaker Cigs"
 	item_path = /obj/item/storage/fancy/cigarettes/cigpack_mindbreaker
+
+/datum/loadout_item/pocket_items/paintingprinter
+	name = "instant painting printer"
+	item_path = /obj/item/modular_computer/mini_painting_printer
 
 /*
 *	FLAGS
@@ -104,7 +61,7 @@
 	item_path = /obj/item/sign/flag/pride/trans
 
 /datum/loadout_item/pocket_items/flag_galfed //sprites by Crumpaloo
-	name = "Folded Galactic Federation Flag"
+	name = "Galactic Federation Flag"
 	item_path = /obj/item/sign/flag/galfed
 
 /*
@@ -176,3 +133,9 @@
 /datum/loadout_item/pocket_items/lunchbox_amongus
 	name = "Suspicious Red Lunchbox"
 	item_path = /obj/item/storage/lunchbox/amongus
+
+/// Lustwish stuff
+
+/datum/loadout_item/pocket_items/lustwish_theme
+	name = "Lustwish MOD Plating"
+	item_path = /obj/item/mod/construction/plating/lustwish

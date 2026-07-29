@@ -313,6 +313,9 @@
 		host_mob.investigate_log("'s [name] nanite program was deleted by [source] with code [code].", INVESTIGATE_NANITES)
 		qdel(src)
 
+/datum/nanite_program/proc/send_user_message(message)
+	to_chat(host_mob, "<i>You hear a strange, robotic voice in your head...</i> \"[span_robot("[message]")]\"")
+
 ///A nanite program containing a behaviour protocol. Only one protocol of each class can be active at once.
 /datum/nanite_program/protocol
 	name = "Nanite Protocol"

@@ -8,7 +8,7 @@
 	ears = /obj/item/radio/headset/syndicate/alt
 	l_pocket = /obj/item/pinpointer/nuke/syndicate
 	r_pocket = /obj/item/bikehorn
-	id = /obj/item/card/id/advanced/chameleon
+	id = /obj/item/card/id/advanced/chameleon/elite
 	backpack_contents = list(
 		/obj/item/gun/ballistic/automatic/pistol/toy/riot/clandestine = 1, //The clown op equivalent to the Ansem
 		/obj/item/pen/edagger = 1,
@@ -18,7 +18,7 @@
 		/obj/item/mod/skin_applier/honkerative = 1,
 	)
 	box = /obj/item/storage/box/survival/syndie
-	implants = list(/obj/item/implant/sad_trombone)
+	implants = list(/obj/item/implant/sad_trombone, /obj/item/implant/tacmap/nuclear)
 
 	uplink_type = /obj/item/uplink/clownop
 
@@ -33,3 +33,4 @@
 	command_radio = TRUE
 
 	id_trim = /datum/id_trim/chameleon/operative/clown_leader
+	implants = list(/obj/item/implant/sad_trombone, /obj/item/implant/tacmap/nuclear/leader)

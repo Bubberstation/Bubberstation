@@ -75,6 +75,10 @@
 	if(!persistence.nif_path)
 		return
 
+	// if nif_path exists but isn't a valid path it probably needs to be migrated post-organ refactor
+	if(!text2path(persistence.nif_path))
+		persistence.nif_path = replacetext(persistence.nif_path, "/obj/item/organ/internal", "/obj/item/organ")
+
 	var/obj/item/organ/cyberimp/brain/nif/new_nif = new persistence.nif_path
 
 	new_nif.durability = persistence.nif_durability
@@ -83,7 +87,7 @@
 	new_nif.rewards_points = persistence.stored_rewards_points
 
 	var/list/persistent_nifsoft_paths = list()
-	for(var/text as anything in splittext(persistence.persistent_nifsofts, "&"))
+	for(var/text in splittext(persistence.persistent_nifsofts, "&"))
 		var/datum/nifsoft/nifsoft_to_add = text2path(text)
 		if(!ispath(nifsoft_to_add, /datum/nifsoft) || !initial(nifsoft_to_add.able_to_keep))
 			continue

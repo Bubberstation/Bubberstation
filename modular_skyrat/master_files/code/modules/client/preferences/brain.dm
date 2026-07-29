@@ -1,5 +1,5 @@
 /datum/preference/choiced/brain_type
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_SILICON_PREFS
 	savefile_key = "brain_type"
 	savefile_identifier = PREFERENCE_CHARACTER
 	priority = PREFERENCE_PRIORITY_NAMES // Apply after species, cause that's super important.
@@ -25,6 +25,7 @@
 	new_brain = new new_brain()
 
 	new_brain.modular_persistence = old_brain.modular_persistence
+	new_brain.modular_persistence?.owner = new_brain
 	old_brain.modular_persistence = null
 
 	new_brain.Insert(target, movement_flags = DELETE_IF_REPLACED)

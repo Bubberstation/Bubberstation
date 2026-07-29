@@ -12,6 +12,8 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	payday_modifier = 1.0
 	examine_limb_id = SPECIES_HUMAN
+	language_prefs_whitelist = list(/datum/language/monkey)
+	sort_bottom = TRUE //BUBBER EDIT ADDITION: We want to sort this to the bottom because it's a custom species template.
 
 /datum/species/humanoid/get_default_mutant_bodyparts()
 	return list(
@@ -33,10 +35,10 @@
 /datum/species/humanoid/prepare_human_for_preview(mob/living/carbon/human/human)
 	var/main_color = "#722011"
 	var/secondary_color = "#161616"
-	human.dna.features["mcolor"] = main_color
-	human.dna.features["mcolor2"] = main_color
-	human.dna.features["mcolor3"] = main_color
-	human.dna.mutant_bodyparts["horns"] = list(MUTANT_INDEX_NAME = "Curled", MUTANT_INDEX_COLOR_LIST = list(secondary_color, secondary_color, secondary_color))
+	human.dna.features[FEATURE_MUTANT_COLOR] = main_color
+	human.dna.features[FEATURE_MUTANT_COLOR_TWO] = main_color
+	human.dna.features[FEATURE_MUTANT_COLOR_THREE] = main_color
+	human.dna.mutant_bodyparts[FEATURE_HORNS] = list(MUTANT_INDEX_NAME = "Curled", MUTANT_INDEX_COLOR_LIST = list(secondary_color, secondary_color, secondary_color))
 	human.hairstyle = "Cornrows"
 	human.hair_color = "#2b2b2b"
 	regenerate_organs(human, src, visual_only = TRUE)

@@ -2,8 +2,8 @@ import { Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
-import { Objective, ObjectivePrintout } from './common/Objectives';
+import { Rules } from './AntagInfoRules'; // BUBBER EDIT ADDITION
+import { type Objective, ObjectivePrintout } from './common/Objectives';
 
 type Info = {
   antag_name: string;

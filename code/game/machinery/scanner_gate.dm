@@ -6,12 +6,14 @@
 #define SCANGATE_SPECIES "Species"
 #define SCANGATE_NUTRITION "Nutrition"
 #define SCANGATE_GENDER "Gender" // BUBBER EDIT ADDITION
+#define SCANGATE_NANITES "Nanites" // BUBBER EDIT ADDITION
 
 /obj/machinery/scanner_gate
 	name = "scanner gate"
 	desc = "A gate able to perform mid-depth scans on any organisms who pass under it."
 	icon = 'icons/obj/machines/scangate.dmi'
 	icon_state = "scangate"
+	base_icon_state = "scangate"
 	layer = ABOVE_MOB_LAYER
 	circuit = /obj/item/circuitboard/machine/scanner_gate
 	COOLDOWN_DECLARE(next_beep)
@@ -36,6 +38,7 @@
 	///Does the scanner ignore light_pass and light_fail for sending signals?
 	var/ignore_signals = FALSE
 	var/detect_gender = "male" //SKYRAT EDIT ADDITION - MORE SCANNER GATE OPTIONS
+	var/nanite_cloud = 1 // BUBBER EDIT ADDITION - NANITES
 	///Modifier to the chance of scanner being false positive/negative
 	var/minus_false_beep = 0
 	///Base false positive/negative chance
@@ -62,6 +65,8 @@
 		SCANGATE_WANTED,
 		SCANGATE_SPECIES,
 		SCANGATE_NUTRITION,
+		SCANGATE_GENDER, // BUBBER EDIT ADDITION
+		SCANGATE_NANITES, // BUBBER EDIT ADDITION
 	)
 	/// All disease severity thresholds available to the scanner
 	var/static/list/all_disease_thresholds = list(
@@ -89,6 +94,7 @@
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
+	AddElement(/datum/element/simple_rotation, ROTATION_IGNORE_ANCHORED|ROTATION_REQUIRE_WRENCH|ROTATION_NEEDS_UNBLOCKED)
 	register_context()
 
 /obj/machinery/scanner_gate/Destroy(force)
@@ -99,6 +105,10 @@
 	. = ..()
 	for(var/datum/stock_part/scanning_module/scanning_module in component_parts)
 		minus_false_beep = scanning_module.tier //The better are scanninning modules - the lower is chance of False Positives
+
+/obj/machinery/scanner_gate/setDir(newdir)
+	. = ..()
+	scanline?.setDir(newdir)
 
 /obj/machinery/scanner_gate/examine(mob/user)
 	. = ..()
@@ -142,27 +152,39 @@
 		return
 	set_scanline("passive")
 
-/obj/machinery/scanner_gate/attackby(obj/item/attacking_item, mob/user, params)
-	var/obj/item/card/id/card = attacking_item.GetID()
-	if(card)
-		if(locked)
-			if(allowed(user))
-				locked = FALSE
-				req_access = list()
-				to_chat(user, span_notice("You unlock [src]."))
-		else if(!(obj_flags & EMAGGED))
-			to_chat(user, span_notice("You lock [src] with [attacking_item]."))
-			var/list/access = attacking_item.GetAccess()
-			req_access = access
-			locked = TRUE
-		else
-			to_chat(user, span_warning("You try to lock [src] with [attacking_item], but nothing happens."))
-	else
-		if(!locked && default_deconstruction_screwdriver(user, "[initial(icon_state)]_open", initial(icon_state), attacking_item))
-			return
-		if(panel_open && is_wire_tool(attacking_item))
-			wires.interact(user)
-	return ..()
+/obj/machinery/scanner_gate/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(panel_open && is_wire_tool(tool))
+		wires.interact(user)
+		return ITEM_INTERACT_SUCCESS
+
+	var/obj/item/card/id/card = tool.GetID()
+	if(isnull(card))
+		return NONE
+
+	if(locked)
+		if(!allowed(user))
+			return ITEM_INTERACT_BLOCKING
+
+		locked = FALSE
+		req_access = list()
+		balloon_alert(user, "unlocked")
+		return ITEM_INTERACT_SUCCESS
+
+	if(obj_flags & EMAGGED)
+		balloon_alert(user, "nothing happens!")
+		return ITEM_INTERACT_BLOCKING
+
+	balloon_alert(user, "locked")
+	req_access = tool.GetAccess() // returns a copy so this is chill
+	locked = TRUE
+	return ITEM_INTERACT_SUCCESS
+
+/obj/machinery/scanner_gate/screwdriver_act(mob/living/user, obj/item/tool)
+	return locked ? NONE : default_deconstruction_screwdriver(user, tool)
+
+/obj/machinery/scanner_gate/update_icon_state()
+	. = ..()
+	icon_state = panel_open ? "[base_icon_state]_open" : base_icon_state
 
 /obj/machinery/scanner_gate/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
@@ -252,6 +274,14 @@
 					if(scanned_human.gender == detect_gender)
 						beep = TRUE
 		//SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
+		// BUBBER EDIT ADDITION BEGIN - NANITES
+		if(SCANGATE_NANITES)
+			detected_thing = "Nanite cloud #[nanite_cloud]"
+			if(isliving(thing))
+				var/detected_cloud_id = SEND_SIGNAL(thing, COMSIG_NANITE_GET_CLOUD)
+				if(detected_cloud_id == nanite_cloud)
+					beep = TRUE
+		// BUBBER EDIT ADDITION END - NANITES
 
 	if(reverse)
 		beep = !beep
@@ -308,6 +338,10 @@
 			"specie_name" = capitalize(format_text(specie.name)),
 			"specie_id" = species_id,
 		))
+	// BUBBER EDIT ADDITION BEGIN - NANITES
+	.["min_cloud_id"] = NANITE_MIN_CLOUD_ID
+	.["max_cloud_id"] = NANITE_MAX_CLOUD_ID
+	// BUBBER EDIT ADDITION END - NANITES
 
 /obj/machinery/scanner_gate/ui_data()
 	var/list/data = list()
@@ -318,6 +352,7 @@
 	data["target_species_id"] = detect_species_id
 	data["target_nutrition"] = detect_nutrition
 	data["target_gender"] = detect_gender //SKYRAT EDIT - MORE SCANNER GATE OPTIONS
+	data["nanite_cloud"] = nanite_cloud // BUBBER EDIT ADDITION - NANITES
 	data["target_zombie"] = (detect_species_id == SPECIES_ZOMBIE)
 	return data
 
@@ -377,6 +412,14 @@
 						detect_gender = "female"
 			. = TRUE
 		//SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
+		// BUBBER EDIT ADDITION BEGIN - NANITES
+		if("set_nanite_cloud")
+			var/new_cloud_id = params["new_cloud"]
+			if(!isnum(new_cloud_id))
+				return
+			nanite_cloud = clamp(new_cloud_id, NANITE_MIN_CLOUD_ID+1, NANITE_MAX_CLOUD_ID)
+			. = TRUE
+		// BUBBER EDIT ADDITION END - NANITES
 
 /obj/machinery/scanner_gate/preset_guns
 	locked = TRUE
@@ -391,3 +434,4 @@
 #undef SCANGATE_SPECIES
 #undef SCANGATE_NUTRITION
 #undef SCANGATE_GENDER //BUBBER EDIT
+#undef SCANGATE_NANITES //BUBBER EDIT

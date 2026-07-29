@@ -27,7 +27,7 @@
 	. = ..()
 	UnregisterSignal(owner, COMSIG_LIVING_HEALTHSCAN)
 
-/datum/status_effect/genetic_damage/refresh(mob/living/owner, total_damage)
+/datum/status_effect/genetic_damage/refresh(effect, total_damage)
 	. = ..()
 	src.total_damage += total_damage
 
@@ -39,7 +39,7 @@
 		return
 
 	if(total_damage >= minimum_before_tox_damage)
-		owner.adjustToxLoss(toxin_damage_per_second * seconds_between_ticks)
+		owner.adjust_tox_loss(toxin_damage_per_second * seconds_between_ticks)
 
 	total_damage -= remove_per_second * seconds_between_ticks
 	if(total_damage <= 0)
@@ -58,8 +58,9 @@
 		message = "Minor genetic damage detected."
 
 	if(message)
-		render_list += conditional_tooltip("<span class='alert ml-1'>[message]</span>", "Irreparable under normal circumstances - will decay over time.", tochat)
-		render_list += "<br>"
+		render_list += "<span class='alert ml-1'>"
+		render_list += conditional_tooltip("[message]", "Irreparable under normal circumstances - will decay over time.", tochat)
+		render_list += "</span><br>"
 
 #undef GORILLA_MUTATION_CHANCE_PER_SECOND
 #undef GORILLA_MUTATION_MINIMUM_DAMAGE

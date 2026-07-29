@@ -1,24 +1,23 @@
-import { sortBy } from 'common/collections';
-import { PropsWithChildren, ReactNode } from 'react';
+import { sortBy } from 'es-toolkit';
+import type { PropsWithChildren, ReactNode } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Dropdown, Stack, Tooltip } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
 import {
   createSetPreference,
-  Job,
+  type Job,
   JoblessRole,
   JobPriority,
-  PreferencesMenuData,
+  type PreferencesMenuData,
 } from '../types';
 import { useServerPrefs } from '../useServerPrefs';
 
 function sortJobs(entries: [string, Job][], head?: string) {
-  return sortBy(
-    entries,
+  return sortBy(entries, [
     ([key, _]) => (key === head ? -1 : 1),
     ([key, _]) => key,
-  );
+  ]);
 }
 
 const PRIORITY_BUTTON_SIZE = '18px';
@@ -194,8 +193,7 @@ function JobRow(props: JobRowProps) {
 
   const createSetPriority = createCreateSetPriorityFromName(name);
 
-  const experienceNeeded =
-    data.job_required_experience && data.job_required_experience[name];
+  const experienceNeeded = data.job_required_experience?.[name];
   const daysLeft = data.job_days_left ? data.job_days_left[name] : 0;
 
   // SKYRAT EDIT ADDITION
@@ -323,7 +321,7 @@ function Department(props: DepartmentProps) {
 
   return (
     <Box>
-      <Stack vertical fill>
+      <Stack fill vertical g={0}>
         {jobsForDepartment.map(([name, job]) => {
           return (
             <JobRow /* SKYRAT EDIT START - Fixing alt titles */
@@ -342,15 +340,6 @@ function Department(props: DepartmentProps) {
       {children}
     </Box>
   );
-}
-
-// *Please* find a better way to do this, this is RIDICULOUS.
-// All I want is for a gap to pretend to be an empty space.
-// But in order for everything to align, I also need to add the 0.2em padding.
-// But also, we can't be aligned with names that break into multiple lines!
-function Gap(props: { amount: number }) {
-  // 0.2em comes from the padding-bottom in the department listing
-  return <Box height={`calc(${props.amount}px + 0.2em)`} />;
 }
 
 function JoblessRoleDropdown(props) {
@@ -374,7 +363,7 @@ function JoblessRoleDropdown(props) {
 
   const selection = options?.find(
     (option) => option.value === selected,
-  )!.displayText;
+  )?.displayText;
 
   return (
     <Box position="absolute" right={0} width="30%">
@@ -388,116 +377,166 @@ function JoblessRoleDropdown(props) {
   );
 }
 
+// export function JobsPage() {
+//   return (
+//     <>
+//       <JoblessRoleDropdown />
+//       <Stack vertical fill>
+//         <Gap amount={22} />
+
+//         <Stack.Item mt={15}>
+//           {/* BUBBER EDIT CHANGE */}
+//           {/*
+//           <Stack fill g={1} className="PreferencesMenu__Jobs">
+//             <Stack.Item mr={1}>
+//               <Gap amount={36} />
+
+//               <PriorityHeaders />
+
+//               <Department department="Engineering">
+//                 <Gap amount={6} />
+//               </Department>
+
+//               <Department department="Science">
+//                 <Gap amount={6} />
+//               </Department>
+
+//               <Department department="Silicon">
+//                 <Gap amount={12} />
+//               </Department>
+
+//               <Department department="Assistant" />
+//             </Stack.Item>
+
+//             <Stack.Item mr={1}>
+//               <PriorityHeaders />
+
+//               <Department department="Captain">
+//                 <Gap amount={6} />
+//               </Department>
+
+//               <Department department="Service">
+//                 <Gap amount={6} />
+//               </Department>
+
+//               <Department department="Cargo" />
+//             </Stack.Item>
+
+//             <Stack.Item>
+//               <Stack vertical>
+//                 <PriorityHeaders />
+//                 <Department department="Engineering" />
+//                 <Department department="Science" />
+//                 <Department department="Silicon" />
+//                 <Department department="Assistant" />
+//               </Stack>
+//             </Stack.Item>
+//             <Stack.Item mt={-5.9}>
+//               <Stack vertical>
+//                 <PriorityHeaders />
+//                 <Department department="Captain" />
+//                 <Department department="Service" />
+//                 <Department department="Cargo" />
+//               </Stack>
+//             </Stack.Item>
+//             <Stack.Item>
+//               <Stack vertical>
+//                 <PriorityHeaders />
+//                 <Department department="Security" />
+//                 <Department department="Medical" />
+//               </Stack>
+//             </Stack.Item>
+//           </Stack>
+//           */}
+//           <Stack fill className="PreferencesMenu__Jobs">
+//             <Stack.Item mr={1}>
+//               <Gap amount={45} />
+
+//               <PriorityHeaders />
+
+//               <Department department="Engineering">
+//                 <Gap amount={11} />
+//               </Department>
+
+//               <Department department="Security">
+//                 <Gap amount={11} />
+//               </Department>
+
+//               <Department department="Silicon">
+//                 <Gap amount={11} />
+//               </Department>
+
+//               <Department department="Assistant" />
+//             </Stack.Item>
+
+//             <Stack.Item mr={1}>
+//               <Gap amount={45} />
+//               <PriorityHeaders />
+
+//               <Department department="Captain">
+//                 <Gap amount={6} />
+//               </Department>
+
+//               <Department department="Service">
+//                 <Gap amount={6} />
+//               </Department>
+//             </Stack.Item>
+
+//             <Stack.Item>
+//               <Gap amount={45} />
+
+//               <PriorityHeaders />
+
+//               <Department department="Science">
+//                 <Gap amount={6} />
+//               </Department>
+
+//               <Department department="Medical">
+//                 <Gap amount={6} />
+//               </Department>
+
+//               <Department department="Cargo" />
+//             </Stack.Item>
+//           </Stack>
+//           {/* BUBBER EDIT CHANGE END */}
+//         </Stack.Item>
+//       </Stack>
+//     </>
+//   );
+// }
+
 export function JobsPage() {
   return (
     <>
       <JoblessRoleDropdown />
-
       <Stack vertical fill>
-        <Gap amount={22} />
-
-        <Stack.Item>
-          {/* BUBBER EDIT CHANGE */}
-          {/*
-          <Stack fill className="PreferencesMenu__Jobs">
-            <Stack.Item mr={1}>
-              <Gap amount={36} />
-
-              <PriorityHeaders />
-
-              <Department department="Engineering">
-                <Gap amount={6} />
-              </Department>
-
-              <Department department="Science">
-                <Gap amount={6} />
-              </Department>
-
-              <Department department="Silicon">
-                <Gap amount={12} />
-              </Department>
-
-              <Department department="Assistant" />
-            </Stack.Item>
-
-            <Stack.Item mr={1}>
-              <PriorityHeaders />
-
-              <Department department="Captain">
-                <Gap amount={6} />
-              </Department>
-
-              <Department department="Service">
-                <Gap amount={6} />
-              </Department>
-
-              <Department department="Cargo" />
-            </Stack.Item>
-
+        <Stack.Item mt={15}>
+          <Stack fill g={1} className="PreferencesMenu__Jobs">
             <Stack.Item>
-              <Gap amount={36} />
-
-              <PriorityHeaders />
-
-              <Department department="Security">
-                <Gap amount={6} />
-              </Department>
-
-              <Department department="Medical" />
+              <Stack vertical>
+                <PriorityHeaders />
+                <Department department="Engineering" />
+                <Department department="Science" />
+                <Department department="Silicon" />
+                <Department department="Assistant" />
+              </Stack>
+            </Stack.Item>
+            <Stack.Item mt={-5.9}>
+              <Stack vertical>
+                <PriorityHeaders />
+                <Department department="Captain" />
+                <Department department="Service" />
+                <Department department="Cargo" />
+              </Stack>
+            </Stack.Item>
+            <Stack.Item>
+              <Stack vertical>
+                <PriorityHeaders />
+                <Department department="Security" />
+                <Department department="Medical" />
+              </Stack>
             </Stack.Item>
           </Stack>
-          */}
-          <Stack fill className="PreferencesMenu__Jobs">
-            <Stack.Item mr={1}>
-              <Gap amount={45} />
-
-              <PriorityHeaders />
-
-              <Department department="Engineering">
-                <Gap amount={11} />
-              </Department>
-
-              <Department department="Security">
-                <Gap amount={11} />
-              </Department>
-
-              <Department department="Silicon">
-                <Gap amount={11} />
-              </Department>
-
-              <Department department="Assistant" />
-            </Stack.Item>
-
-            <Stack.Item mr={1}>
-              <Gap amount={45} />
-              <PriorityHeaders />
-
-              <Department department="Captain">
-                <Gap amount={6} />
-              </Department>
-
-              <Department department="Service">
-                <Gap amount={6} />
-              </Department>
-            </Stack.Item>
-
-            <Stack.Item>
-              <Gap amount={45} />
-
-              <PriorityHeaders />
-
-              <Department department="Science">
-                <Gap amount={6} />
-              </Department>
-
-              <Department department="Medical">
-                <Gap amount={6} />
-              </Department>
-
-              <Department department="Cargo" />
-            </Stack.Item>
-          </Stack>
-          {/* BUBBER EDIT CHANGE END */}
         </Stack.Item>
       </Stack>
     </>

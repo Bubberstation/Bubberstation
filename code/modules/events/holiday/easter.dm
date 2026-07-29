@@ -46,23 +46,7 @@
 //Easter Baskets
 /obj/item/storage/basket/easter
 	name = "Easter Basket"
-
-/obj/item/storage/basket/easter/Initialize(mapload)
-	. = ..()
-	atom_storage.set_holdable(list(/obj/item/food/egg, /obj/item/food/chocolateegg, /obj/item/food/boiledegg, /obj/item/surprise_egg))
-
-/obj/item/storage/basket/easter/proc/countEggs()
-	cut_overlays()
-	add_overlay("basket-grass")
-	add_overlay("basket-egg[min(contents.len, 5)]")
-
-/obj/item/storage/basket/easter/Exited(atom/movable/gone, direction)
-	. = ..()
-	countEggs()
-
-/obj/item/storage/basket/easter/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	. = ..()
-	countEggs()
+	storage_type = /datum/storage/basket/easter
 
 //Bunny Suit
 /obj/item/clothing/head/costume/bunnyhead
@@ -159,7 +143,8 @@
 	)
 	result = /obj/item/food/hotcrossbun
 	added_foodtypes = SUGAR | BREAKFAST
-	category = CAT_BREAD
+	dish_category = DISH_BREAD
+	meal_category = MEAL_SNACK
 
 /datum/crafting_recipe/food/briochecake
 	name = "Brioche cake"
@@ -168,7 +153,8 @@
 		/datum/reagent/consumable/sugar = 2
 	)
 	result = /obj/item/food/cake/brioche
-	category = CAT_MISCFOOD
+	dish_category = DISH_PASTRY
+	meal_category = MEAL_DESSERT
 
 /obj/item/food/scotchegg
 	name = "scotch egg"
@@ -176,9 +162,10 @@
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "scotchegg"
 	bite_consumption = 3
+	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	crafting_complexity = FOOD_COMPLEXITY_2
-	foodtypes = MEAT
+	foodtypes = MEAT|EGG
 
 /datum/crafting_recipe/food/scotchegg
 	name = "Scotch egg"
@@ -190,7 +177,8 @@
 	)
 	result = /obj/item/food/scotchegg
 	removed_foodtypes = BREAKFAST
-	category = CAT_EGG
+	dish_category = DISH_MEAT
+	meal_category = MEAL_APPETIZER
 
 /datum/crafting_recipe/food/mammi
 	name = "Mammi"
@@ -201,7 +189,8 @@
 	)
 	result = /obj/item/food/bowled/mammi
 	added_foodtypes = DAIRY
-	category = CAT_MISCFOOD
+	dish_category = DISH_CANDY
+	meal_category = MEAL_DESSERT
 
 /obj/item/food/chocolatebunny
 	name = "chocolate bunny"
@@ -218,4 +207,5 @@
 		/obj/item/food/chocolatebar = 1
 	)
 	result = /obj/item/food/chocolatebunny
-	category = CAT_MISCFOOD
+	dish_category = DISH_CANDY
+	meal_category = MEAL_DESSERT

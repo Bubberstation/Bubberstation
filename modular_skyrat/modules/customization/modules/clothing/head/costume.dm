@@ -22,7 +22,9 @@
 /obj/item/clothing/head/costume/skyrat/flowerpin
 	name = "flower pin"
 	desc = "A small, colourable flower pin"
-	icon_state = "flowerpin"
+	icon = 'icons/map_icons/clothing/head/_head.dmi'
+	icon_state = "/obj/item/clothing/head/costume/skyrat/flowerpin"
+	post_init_icon_state = "flowerpin"
 	greyscale_config = /datum/greyscale_config/flowerpin
 	greyscale_config_worn = /datum/greyscale_config/flowerpin/worn
 	greyscale_colors = "#FF0000"
@@ -36,16 +38,9 @@
 
 //Ushankas
 //These have to be subtypes of TG's ushanka to inherit the toggleability
-/obj/item/clothing/head/costume/ushanka/sec
-	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/costume.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/costume.dmi'
-	name = "security ushanka"
-	desc = "A warm and comfortable ushanka, dyed with 'all natural flavors' according to the tag."
-	icon_state = "ushankablue"
-	inhand_icon_state = "rus_ushanka"
-	upsprite = "ushankablueup"
-	downsprite = "ushankablue"
-	armor_type = /datum/armor/head_helmet
+/obj/item/clothing/head/costume/ushanka/sec/blue
+	icon_state = "/obj/item/clothing/head/costume/ushanka/sec/blue"
+	greyscale_colors = "#C7B08B#3F6E9E"
 
 //Pelts
 //Not made into a subtype of /costume but stored in the same file
@@ -103,8 +98,10 @@
 /obj/item/clothing/head/maid_headband
 	name = "maid headband"
 	desc = "Just like from one of those Chinese cartoons!"
-	icon_state = "maid_headband"
-	greyscale_config = /datum/greyscale_config/maid_headband
-	greyscale_config_worn = /datum/greyscale_config/maid_headband/worn
+	icon = 'icons/map_icons/clothing/head/_head.dmi'
+	icon_state = "/obj/item/clothing/head/maid_headband"
+	post_init_icon_state = "maid_headband"
+	greyscale_config = /datum/greyscale_config/bubber_maid_headband
+	greyscale_config_worn = /datum/greyscale_config/bubber_maid_headband/worn
 	greyscale_colors = "#edf9ff"
 	flags_1 = IS_PLAYER_COLORABLE_1

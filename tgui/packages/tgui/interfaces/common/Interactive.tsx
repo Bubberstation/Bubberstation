@@ -14,7 +14,8 @@
  * THIS IS A BUBBER FILE
  */
 
-import React, { Component, createRef, ReactNode, RefObject } from 'react';
+import type React from 'react';
+import { Component, createRef, type ReactNode, type RefObject } from 'react';
 import { clamp } from 'tgui-core/math';
 
 export interface Interaction {
@@ -24,7 +25,7 @@ export interface Interaction {
 
 // Finds the proper window object to fix iframe embedding issues
 const getParentWindow = (node?: HTMLDivElement | null): Window => {
-  return (node && node.ownerDocument.defaultView) || window;
+  return node?.ownerDocument.defaultView || window;
 };
 
 // Returns a relative position of the pointer inside the node's bounding box
@@ -52,7 +53,7 @@ export interface InteractiveProps {
 }
 
 export class Interactive extends Component<InteractiveProps> {
-  containerRef: RefObject<HTMLDivElement>;
+  containerRef: RefObject<HTMLDivElement | null>;
 
   constructor(props: InteractiveProps) {
     super(props);

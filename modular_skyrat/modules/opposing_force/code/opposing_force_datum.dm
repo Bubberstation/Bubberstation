@@ -184,22 +184,6 @@
 
 	data["equipment_issued"] = equipment_issued
 
-	data["equipment_list"] = list()
-	for(var/equipment_category in SSopposing_force.equipment_list)
-		var/category_items = list()
-		for(var/datum/opposing_force_equipment/opfor_equipment as anything in SSopposing_force.equipment_list[equipment_category])
-			category_items += list(list(
-				"ref" = REF(opfor_equipment),
-				"name" = opfor_equipment.name,
-				"description" = opfor_equipment.description,
-				"equipment_category" = opfor_equipment.category,
-				"admin_note" = opfor_equipment.admin_note,
-			))
-		data["equipment_list"] += list(list(
-			"category" = equipment_category,
-			"items" = category_items,
-		))
-
 	data["selected_equipment"] = list()
 	for(var/datum/opposing_force_selected_equipment/equipment as anything in selected_equipment)
 		var/list/equipment_data = list(
@@ -217,6 +201,25 @@
 		data["selected_equipment"] += list(equipment_data)
 
 	return data
+
+/datum/opposing_force/ui_static_data(mob/user)
+	. = ..()
+	.["equipment_list"] = list()
+
+	for(var/equipment_category in SSopposing_force.equipment_list)
+		var/category_items = list()
+		for(var/datum/opposing_force_equipment/opfor_equipment as anything in SSopposing_force.equipment_list[equipment_category])
+			category_items += list(list(
+				"ref" = REF(opfor_equipment),
+				"name" = opfor_equipment.name,
+				"description" = opfor_equipment.description,
+				"equipment_category" = opfor_equipment.category,
+				"admin_note" = opfor_equipment.admin_note,
+			))
+		.["equipment_list"] += list(list(
+			"category" = equipment_category,
+			"items" = category_items,
+		))
 
 /datum/opposing_force/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -543,7 +546,7 @@
 	to_chat(mind_reference.current, custom_boxed_message("red_box", span_redtext("Your OPFOR application has been denied by [denier ? get_admin_ckey(denier) : "the OPFOR subsystem"]!")))
 	send_system_message(get_admin_ckey(denier) + " has denied the application with the following reason: [reason]")
 	send_admins_opfor_message("[span_red("DENIED")]: [ADMIN_LOOKUPFLW(denier)] has denied [ckey]'s application([reason ? reason : "No reason specified"])")
-	ticket_counter_add_handled(denier.key, 1)
+	ticket_counter_add_handled(denier.ckey, 1)
 
 /datum/opposing_force/proc/approve(mob/approver)
 	if(status == OPFOR_STATUS_APPROVED)
@@ -562,7 +565,7 @@
 	to_chat(mind_reference.current, custom_boxed_message("green_box", span_greentext("Your OPFOR application has been [objective_denied ? span_bold("partially approved (please view your OPFOR for details)") : span_bold("fully approved")] by [approver ? get_admin_ckey(approver) : "the OPFOR subsystem"]!")))
 	send_system_message("[approver ? get_admin_ckey(approver) : "The OPFOR subsystem"] has approved the application")
 	send_admins_opfor_message("[span_green("APPROVED")]: [ADMIN_LOOKUPFLW(approver)] has approved [ckey]'s application")
-	ticket_counter_add_handled(approver.key, 1)
+	ticket_counter_add_handled(approver.ckey, 1)
 
 /datum/opposing_force/proc/close_application(mob/user)
 	if(status == OPFOR_STATUS_NOT_SUBMITTED)
@@ -811,7 +814,7 @@
 	send_system_message("Weak against armor: [initial(processed_item.weak_against_armour) ? "Yes" : "No"]")
 	send_system_message("Damage type: [initial(processed_item.damtype)]")
 	send_system_message("Wound bonus: [initial(processed_item.wound_bonus)]")
-	send_system_message("Bare wound bonus: [initial(processed_item.bare_wound_bonus)]")
+	send_system_message("Bare wound bonus: [initial(processed_item.exposed_wound_bonus)]")
 	send_system_message("Force: [initial(processed_item.force)]")
 
 /datum/opposing_force/proc/unlock_equipment(mob/user)
@@ -964,7 +967,7 @@
 		)
 
 	for(var/datum/opposing_force_selected_equipment/iterating_equipment as anything in selected_equipment)
-		exported_data["selected_equipment"]["[objectives.Find(iterating_equipment)]"] = list(
+		exported_data["selected_equipment"]["[selected_equipment.Find(iterating_equipment)]"] = list(
 			"equipment_name" = iterating_equipment.opposing_force_equipment.name,
 			"equipment_parent_category" = iterating_equipment.opposing_force_equipment.category,
 			"equipment_parent_type" = iterating_equipment.opposing_force_equipment.type,
@@ -985,22 +988,6 @@
 		add_log(exporter.ckey, "Attempted to export JSON data but ftp(file()) runtimed.")
 
 	fdel(to_write_file)
-
-
-/datum/action/opfor
-	name = "Open Opposing Force Panel"
-	button_icon_state = "round_end"
-
-/datum/action/opfor/Trigger(trigger_flags)
-	. = ..()
-	if(!.)
-		return
-	owner.opposing_force()
-
-/datum/action/opfor/IsAvailable(feedback = FALSE)
-	if(!target)
-		return FALSE
-	return ..()
 
 /obj/effect/statclick/opfor_specific
 	var/datum/opposing_force/opfor

@@ -24,6 +24,10 @@ GLOBAL_LIST_INIT(modular_persistence_ignored_vars, list(
 	/// The modular persistence data for a character.
 	var/datum/modular_persistence/modular_persistence
 
+/obj/item/organ/brain/Destroy()
+	QDEL_NULL(modular_persistence)
+	. = ..()
+
 /// Saves the contents of the modular persistence datum for the player's client to their file.
 /datum/controller/subsystem/persistence/proc/save_modular_persistence()
 	for(var/mob/living/carbon/human/player in GLOB.human_list)

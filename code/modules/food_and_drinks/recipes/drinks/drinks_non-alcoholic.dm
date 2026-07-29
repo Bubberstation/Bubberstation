@@ -105,12 +105,10 @@
 /datum/chemical_reaction/drink/coffee
 	results = list(/datum/reagent/consumable/coffee = 5)
 	required_reagents = list(/datum/reagent/toxin/coffeepowder = 1, /datum/reagent/water = 5)
-	pollutant_type = /datum/pollutant/food/coffee //SKYRAT EDIT ADDITION - Pollution
 
 /datum/chemical_reaction/drink/tea
 	results = list(/datum/reagent/consumable/tea = 5)
 	required_reagents = list(/datum/reagent/toxin/teapowder = 1, /datum/reagent/water = 5)
-	pollutant_type = /datum/pollutant/food/tea //SKYRAT EDIT ADDITION
 
 /datum/chemical_reaction/drink/cream_soda
 	results = list(/datum/reagent/consumable/cream_soda = 4)
@@ -179,3 +177,7 @@
 /datum/chemical_reaction/drink/t_letter
 	results = list(/datum/reagent/consumable/t_letter = 2)
 	required_reagents = list(/datum/reagent/consumable/nothing = 1, /datum/reagent/consumable/tea = 1)
+
+/datum/chemical_reaction/drink/bitters_soda
+	results = list(/datum/reagent/consumable/ethanol/bitters_soda = 15)
+	required_reagents = list(/datum/reagent/consumable/sodawater = 10, /datum/reagent/consumable/ice = 5, /datum/reagent/consumable/ethanol/bitters = 1)

@@ -1,5 +1,6 @@
 // Add 'walkies' as valid input
 /datum/pet_command/follow/dog
+	activate_on_befriend = TRUE
 	speech_commands = list("heel", "follow", "walkies")
 
 // Add 'good dog' as valid input
@@ -34,6 +35,8 @@
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	melee_attack_cooldown = 0.8 SECONDS
+	melee_damage_lower = 5
+	melee_damage_upper = 10
 	/// Instructions you can give to dogs
 	var/static/list/pet_commands = list(
 		/datum/pet_command/idle,
@@ -52,6 +55,7 @@
 	var/cult_icon_state
 
 /datum/emote/dog
+	abstract_type = /datum/emote/dog
 	mob_type_allowed_typecache = /mob/living/basic/pet/dog
 	mob_type_blacklist_typecache = list()
 
@@ -66,6 +70,7 @@
 	AddElement(/datum/element/cultist_pet, pet_cult_icon_state = cult_icon_state)
 	AddElement(/datum/element/wears_collar, collar_icon_state = collar_icon_state)
 	ADD_TRAIT(src, TRAIT_WOUND_LICKER, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_COLORBLIND, INNATE_TRAIT)
 	AddElement(/datum/element/pet_bonus, "woof")
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_CLAW)
 	AddElement(/datum/element/unfriend_attacker, untamed_reaction = "%SOURCE% fixes %TARGET% with a look of betrayal.")
@@ -88,6 +93,7 @@
 
 ///Proc to run on a successful taming attempt
 /mob/living/basic/pet/dog/tamed(mob/living/tamer, atom/food)
+	. = ..()
 	visible_message(span_notice("[src] licks at [tamer] in a friendly manner!"))
 
 /// A dog bone fully heals a dog, and befriends it if it's not your friend.
@@ -103,7 +109,7 @@
 	attack_verb_continuous = list("attacks", "bashes", "batters", "bludgeons", "whacks")
 	attack_verb_simple = list("attack", "bash", "batter", "bludgeon", "whack")
 
-/obj/item/dog_bone/pre_attack(atom/target, mob/living/user, params)
+/obj/item/dog_bone/pre_attack(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	if (!isdog(target) || user.combat_mode)
 		return ..()
 	var/mob/living/basic/pet/dog/dog_target = target

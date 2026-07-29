@@ -1,10 +1,8 @@
 /datum/sprite_accessory/tails
 	key = "tail"
-	generic = "Tail"
 	organ_type = /obj/item/organ/tail
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/tails.dmi'
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
-	genetic = TRUE
 	/// Can we use this tail for the fluffy tail turf emote?
 	var/fluffy = FALSE
 
@@ -24,7 +22,7 @@
 		if(istype(wearer.wear_suit, /obj/item/clothing/suit/mod))
 			return FALSE
 		// Hide accessory if flagged to do so
-		else if(wearer.wear_suit.flags_inv & HIDETAIL)
+		else if(wearer.covered_slots & HIDETAIL)
 			return TRUE
 
 /datum/sprite_accessory/tails/none
@@ -33,6 +31,21 @@
 	recommended_species = list(SPECIES_SYNTH, SPECIES_MAMMAL, SPECIES_HUMAN, SPECIES_HUMANOID, SPECIES_GHOUL)
 	color_src = null
 	factual = FALSE
+
+//Overriding base /tg/ tails so the icon_states are appropriate under the new system.
+/datum/sprite_accessory/tails/felinid/cat
+	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/tails.dmi'
+	icon_state = "cat"
+	color_src = USE_ONE_COLOR
+
+/datum/sprite_accessory/tails/fish
+	organ_type = /obj/item/organ/tail/fake_fish //copypasta of dna infusion fish tails but without the quirks (beside butchering)
+
+/datum/sprite_accessory/tails/xeno/default
+	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/xeno_tail.dmi'
+
+/datum/sprite_accessory/tails/xeno/queen
+	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/xeno_queen_tail.dmi'
 
 /datum/sprite_accessory/tails/lizard
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/tails.dmi'
@@ -176,7 +189,7 @@
 	icon_state = "fox3"
 
 /datum/sprite_accessory/tails/mammal/wagging/guilmon
-	name = "Guilmon"
+	name = "Toraxen"
 	icon_state = "guilmon"
 
 /datum/sprite_accessory/tails/mammal/wagging/hawk
@@ -256,6 +269,10 @@
 /datum/sprite_accessory/tails/mammal/wagging/otie
 	name = "Otusian"
 	icon_state = "otie"
+
+/datum/sprite_accessory/tails/mammal/wagging/otter
+	name = "Otter"
+	icon_state = "otter"
 
 /datum/sprite_accessory/tails/mammal/wagging/plug
 	name = "Plug"

@@ -1,9 +1,11 @@
 SUBSYSTEM_DEF(icon_smooth)
 	name = "Icon Smoothing"
-	init_order = INIT_ORDER_ICON_SMOOTHING
+	dependencies = list(
+		/datum/controller/subsystem/atoms,
+	)
 	wait = 1
 	priority = FIRE_PRIORITY_SMOOTHING
-	flags = SS_TICKER
+	ss_flags = SS_TICKER
 
 	///Blueprints assemble an image of what pipes/manifolds/wires look like on initialization, and thus should be taken after everything's been smoothed
 	var/list/blueprint_queue = list()

@@ -32,10 +32,10 @@
 			"health" = creature.health,
 			"name" = creature.name,
 			"pilot" = pilot,
-			"brute" = creature.getBruteLoss(),
-			"burn" = creature.getFireLoss(),
-			"tox" = creature.getToxLoss(),
-			"oxy" = creature.getOxyLoss(),
+			"brute" = creature.get_brute_loss(),
+			"burn" = creature.get_fire_loss(),
+			"tox" = creature.get_tox_loss(),
+			"oxy" = creature.get_oxy_loss(),
 		))
 
 	return hosted_avatars
@@ -103,7 +103,7 @@
 	for(var/datum/lazy_template/virtual_domain/available as anything in subtypesof(/datum/lazy_template/virtual_domain))
 		var/init_cost = initial(available.cost)
 
-		if(!initial(available.test_only) && \
+		if(!(initial(available.domain_flags) & DOMAIN_TEST_ONLY) && \
 			init_cost <= points && \
 			init_cost > BITRUNNER_COST_NONE && \
 			init_cost < BITRUNNER_COST_EXTREME \
@@ -142,9 +142,7 @@
 /// Do some magic teleport sparks
 /obj/machinery/quantum_server/proc/spark_at_location(obj/cache)
 	playsound(cache, 'sound/effects/magic/blink.ogg', 50, vary = TRUE)
-	var/datum/effect_system/spark_spread/quantum/sparks = new()
-	sparks.set_up(5, location = get_turf(cache))
-	sparks.start()
+	do_sparks(5, FALSE, get_turf(cache), spark_type = /datum/effect_system/basic/spark_spread/quantum)
 
 
 /// Starts building a new avatar for the player.
@@ -157,7 +155,7 @@
 	// BUBBER EDIT BEGIN - PREFS!
 	var/datum/preferences/pref
 	var/load_loadout = FALSE
-	var/obj/item/bitrunning_disk/prefs/prefdisk = locate() in neo.get_contents()
+	var/obj/item/disk/bitrunning/prefs/prefdisk = locate() in neo.get_contents()
 	if(prefdisk)
 		load_loadout = prefdisk.include_loadout
 		pref = prefdisk.loaded_preference

@@ -11,7 +11,7 @@ body {
   padding: 0;
   margin: 0;
   height: 100%;
-  color: hsl(0, 0%, 0%);
+  color: var(--color-black);
 }
 
 body {
@@ -45,23 +45,23 @@ img.icon {
 }
 
 a {
-  color: hsl(240, 100%, 50%);
+  color: hsl(from var(--color-hyperlink) h s calc(l - 40));
+
+  &:hover {
+    color: hsl(from var(--color-hyperlink) h s calc(l - 20));
+  }
 }
 
-a.visited {
-  color: hsl(300, 100%, 50%);
-}
-
+a.visited,
 a:visited {
-  color: hsl(300, 100%, 50%);
-}
+  color: hsl(from var(--color-hyperlink-visited) h s calc(l - 40));
 
-a.popt {
-  text-decoration: none;
+  &:hover {
+    color: hsl(from var(--color-hyperlink-visited) h s calc(l - 20));
+  }
 }
 
 /* POPUPS */
-
 .popup {
   position: fixed;
   top: 50%;
@@ -267,6 +267,16 @@ a.popt {
   background: yellow;
 }
 
+.Chat__highlight {
+  color: oklch(from var(--highlight-color) min(l, 0.45) c h);
+  background: oklch(from var(--highlight-color) min(l, 0.45) c h / 25%);
+}
+
+.ChatMessage--highlighted {
+  border-left-color: oklch(from var(--highlight-color) min(l, 0.45) c h);
+  background: oklch(from var(--highlight-color) min(l, 0.45) c h / 14%);
+}
+
 h1,
 h2,
 h3,
@@ -279,7 +289,7 @@ h6 {
 
 h1.alert,
 h2.alert {
-  color: hsl(0, 0%, 0%);
+  color: var(--color-black);
 }
 
 em {
@@ -329,7 +339,7 @@ em {
 
 .binarysay {
   color: hsl(114, 86.5%, 40.8%);
-  background-color: hsl(0, 0%, 0%);
+  background-color: var(--color-black);
   display: block;
 }
 
@@ -374,6 +384,10 @@ em {
   color: hsl(88.6, 58.9%, 42%);
 }
 
+.enteradio {
+  color: hsl(176.1, 20%, 45.1%);
+}
+
 .syndradio {
   color: hsl(358.7, 26.7%, 33.7%);
 }
@@ -388,10 +402,6 @@ em {
 
 .aiprivradio {
   color: hsl(300, 100%, 50%);
-}
-
-.enteradio {
-  color: hsl(176.1, 20%, 45.1%);
 }
 
 .redteamradio {
@@ -424,7 +434,7 @@ em {
 
 h1.alert,
 h2.alert {
-  color: hsl(0, 0%, 0%);
+  color: var(--color-black);
 }
 
 .userdanger {
@@ -486,12 +496,12 @@ h2.alert {
 }
 
 .minoralert {
-  color: hsl(0, 0%, 0%);
+  color: var(--color-black);
   font-size: 125%;
 }
 
 .priorityannounce {
-  color: hsl(0, 0%, 0%);
+  color: var(--color-black);
   font-weight: bold;
   font-size: 225%;
 }
@@ -576,7 +586,7 @@ h2.alert {
 }
 
 .green {
-  color: hsl(132.9, 100%, 50.6%);
+  color: hsl(132.8, 93.4%, 29.6%);
 }
 
 .grey {
@@ -598,6 +608,11 @@ h2.alert {
 .boldnicegreen {
   color: hsl(132.6, 78.7%, 36.9%);
   font-weight: bold;
+}
+
+.tinynicegreen {
+  color: hsl(132.6, 78.7%, 36.9%);
+  font-size: 85%;
 }
 
 .cult {
@@ -908,6 +923,13 @@ h2.alert {
   font-size: 125%;
 }
 
+.policy {
+  text-align: center;
+  font-size: 125%;
+  color: hsl(276, 70%, 52%);
+  font-style: italic;
+}
+
 .abductor {
   color: hsl(300, 100%, 25.1%);
   font-style: italic;
@@ -925,7 +947,9 @@ h2.alert {
 }
 
 .drone {
-  color: hsl(60, 0.8%, 51.4%);
+  color: hsl(60 100% 50%);
+  background-color: hsl(287 62% 36%);
+  font-style: italic;
 }
 
 .monkey {
@@ -941,12 +965,13 @@ h2.alert {
 }
 
 .upside_down {
-  display: inline;
-  -moz-transform: scale(-1, -1);
-  -webkit-transform: scale(-1, -1);
-  -o-transform: scale(-1, -1);
-  -ms-transform: scale(-1, -1);
-  transform: scale(-1, -1);
+  transform: rotate(180deg);
+  display: inline-block;
+}
+
+.cyan {
+  color: #95afac;
+  text-shadow: 0 0 6px #95afac;
 }
 
 .connectionClosed,
@@ -1066,6 +1091,46 @@ h2.alert {
 
 .img_by_text_container .img_text {
   flex-grow: 1;
+}
+
+.chat_headshot {
+  position: relative;
+  width: min(100px, 100%);
+  height: min(100px, 100%);
+  max-width: 100px;
+  max-height: 100px;
+  display: inline-block;
+  overflow: visible;
+}
+
+.chat_headshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.35s ease;
+  transform-origin: top left;
+  will-change: transform;
+}
+
+.chat_headshot:hover img {
+  transform: translateX(-12%) scale(2.5);
+  z-index: 100;
+  border-radius: 2px;
+}
+
+.chat_headshot_top {
+  margin: 4px 0;
+}
+
+.chat_headshot_frame {
+  display: inline-flex;
+  padding: 4px;
+  background: hsl(220, 100%, 97.5%);
+  border: 1px solid;
+  border-left: 4px solid;
+  border-color: hsla(220, 75%, 25%, 0.5);
+  border-radius: 4px;
+  overflow: visible;
 }
 
 $alert-stripe-colors: (
@@ -1345,6 +1410,10 @@ $border-width-px: $border-width * 1px;
 
 .vote {
   color: #b30083;
+}
+
+.vote_notice {
+  color: #0ea1e6;
 }
 
 .velvet {

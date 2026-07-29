@@ -90,6 +90,10 @@
 		for(var/turf/open/turf_to_incinerate in circle_range(src, obliteration_range_fire))
 			turf_to_incinerate.hotspot_expose(5500)
 			new /obj/effect/hotspot(turf_to_incinerate)
+			turf_to_incinerate.Melt()
+		for(var/mob/living/mob_to_husk in circle_range(src, obliteration_range_fire))
+			mob_to_husk.apply_damage(300, BURN)
+			mob_to_husk.throw_at(pick(orange(15)), spin = TRUE, diagonals_first = FALSE, force = MOVE_FORCE_STRONG, gentle = FALSE, quickstart = TRUE)
 
 	if(obliteration_range_flatten)
 		for(var/atom/atom_to_obliterate in circle_range(src, obliteration_range_flatten))
@@ -109,7 +113,8 @@
 
 			if(isliving(atom_to_obliterate))
 				var/mob/living/mob_to_obliterate = atom_to_obliterate
-				mob_to_obliterate.apply_damage(200, BURN)
+				mob_to_obliterate.apply_damage(300, BURN)
+				mob_to_obliterate.add_traits(TRAIT_HUSK, BURN)
 				continue
 
 	COOLDOWN_START(src, oblirerate_cooldown, obliteration_cooldown)

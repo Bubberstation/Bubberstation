@@ -32,6 +32,7 @@
 	habitable_atmos = null
 	minimum_survivable_temperature = TCMB
 	ai_controller = /datum/ai_controller/basic_controller/hivebot
+	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)
 	///does this type do range attacks?
 	var/ranged_attacker = FALSE
 	/// How often can we shoot?
@@ -40,8 +41,7 @@
 
 /mob/living/basic/hivebot/Initialize(mapload)
 	. = ..()
-	var/static/list/death_loot = list(/obj/effect/decal/cleanable/robot_debris)
-	AddElement(/datum/element/death_drops, death_loot)
+	AddElement(/datum/element/death_drops, /obj/effect/decal/cleanable/blood/gibs/robot_debris)
 	AddComponent(/datum/component/appearance_on_aggro, overlay_icon = icon, overlay_state = "[initial(icon_state)]_attack")
 	if(!ranged_attacker)
 		return
@@ -99,16 +99,16 @@
 
 /mob/living/basic/hivebot/mechanic/early_melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
-	if(!.)
-		return FALSE
+	if(.)
+		return
 
 	if(ismachinery(target))
 		repair_machine(target)
-		return FALSE
+		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
 
 	if(istype(target, /mob/living/basic/hivebot))
 		repair_hivebot(target)
-		return FALSE
+		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
 
 /mob/living/basic/hivebot/mechanic/proc/repair_machine(obj/machinery/fixable)
 	if(fixable.get_integrity() >= fixable.max_integrity)

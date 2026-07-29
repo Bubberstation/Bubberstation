@@ -268,6 +268,17 @@
 	name = "P-T AI Antechamber"
 	icon_state = "ai_interior"
 
+/area/ruin/space/has_grav/port_tarkon/asteroid // so thumpers can work
+	name = "Asteroid Space"
+	icon = 'icons/area/areas_ruins.dmi'
+	icon_state = "ruins"
+	outdoors = TRUE
+
+/area/ruin/space/has_grav/port_tarkon/vault
+	name = "P-T Vault"
+	icon_state = "vault"
+	area_flags = NOTELEPORT
+
 // Cargodise Lost Freighter
 
 /area/ruin/space/has_grav/cargodise_freighter/primaryhall
@@ -314,6 +325,6 @@
 /area/ruin/solars/hotel/solars
 	name = "\improper Hotel Solar Array"
 	requires_power = FALSE
-	area_flags = UNIQUE_AREA
+	area_flags = NONE
 	sound_environment = SOUND_AREA_SPACE
 	base_lighting_alpha = 255

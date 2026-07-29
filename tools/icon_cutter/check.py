@@ -75,11 +75,11 @@ fail_count = 0
 output_hash = {}
 files = []
 if platform.system() == "Windows":
-    files = glob.glob(f"{path_to_us}\..\\..\\icons\\**\*.toml", recursive = True)
-    files += glob.glob(f"{path_to_us}\..\\..\\modular_zubbers\\icons\\**\*.toml", recursive = True) # BUBBER EDIT ADDITION: Modular icon cutter
+    files = glob.glob(f"{path_to_us}\\..\\..\\icons\\**\\*.toml", recursive = True)
+    files += glob.glob(f"{path_to_us}\\..\\..\\modular_zubbers\\icons\\**\\*.toml", recursive = True) # BUBBER EDIT ADDITION: Modular icon cutter
 else:
     files = glob.glob(f"{path_to_us}/../../icons/**/*.toml", recursive = True)
-    files += glob.glob(f"{path_to_us}\../../modular_zubbers/icons/**\*.toml", recursive = True) # BUBBER EDIT ADDITION: Modular icon cutter
+    files += glob.glob(f"{path_to_us}/../../modular_zubbers/icons/**/*.toml", recursive = True) # BUBBER EDIT ADDITION: Modular icon cutter
 for cutter_template in files:
     resource_name = re.sub(chop_extension, r"\1", cutter_template, count = 1)
     if not os.path.isfile(resource_name):
@@ -95,11 +95,16 @@ for cutter_template in files:
 
     output_hash[output_name] = get_file_hash(output_name)
 
+# Sanity check
+if len(output_hash) == 0:
+    print(f"::error output_hash dict was empty. Something has gone wrong")
+    sys.exit(1)
+
 # Execute cutter
 if platform.system() == "Windows":
-    subprocess.run(f"{path_to_us}\..\\build\\build.bat --force-recut --ci icon-cutter")
+    subprocess.run(f"{path_to_us}\\..\\build\\build.bat --force-recut --ci icon-cutter")
 else:
-    subprocess.run(f"{path_to_us}/../build/build --force-recut --ci icon-cutter", shell = True)
+    subprocess.run(f"{path_to_us}/../build/build.sh --force-recut --ci icon-cutter", shell = True)
 
 for output_name in output_hash:
     old_hash, old_metadata, old_icon_hash = output_hash[output_name]

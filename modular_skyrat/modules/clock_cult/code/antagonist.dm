@@ -6,7 +6,7 @@
 	name = "\improper Clock Cultist"
 	antagpanel_category = "Clock Cultist"
 	preview_outfit = /datum/outfit/clock/preview
-	job_rank = ROLE_CLOCK_CULTIST
+	pref_flag = ROLE_CLOCK_CULTIST
 	antag_moodlet = /datum/mood_event/cult
 	show_to_ghosts = TRUE
 	suicide_cry = ",r For Ratvar!!!"
@@ -32,7 +32,7 @@
 /datum/antagonist/clock_cultist/apply_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/current = owner.current
-	current.faction |= FACTION_CLOCK
+	current.add_faction(FACTION_CLOCK)
 	current.grant_language(/datum/language/ratvar, source = LANGUAGE_CULTIST)
 	communicate.Grant(current)
 	recall.Grant(current)
@@ -42,7 +42,7 @@
 /datum/antagonist/clock_cultist/remove_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/current = owner.current
-	current.faction -= FACTION_CLOCK
+	current.remove_faction(FACTION_CLOCK)
 	current.remove_language(/datum/language/ratvar, TRUE, TRUE, LANGUAGE_CULTIST)
 	communicate.Remove(current)
 	recall.Remove(current)

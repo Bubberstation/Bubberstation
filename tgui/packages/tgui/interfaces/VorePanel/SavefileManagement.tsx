@@ -13,7 +13,7 @@ import {
   Table,
 } from 'tgui-core/components';
 
-import * as types from './types';
+import type * as types from './types';
 
 export const Savefile = (props: {
   setTab: React.Dispatch<React.SetStateAction<number>>;
@@ -42,7 +42,7 @@ export const Savefile = (props: {
               <Input
                 width={21}
                 value={data.current_slot}
-                onChange={(e, name) => act('set_slot_name', { name })}
+                onChange={(name) => act('set_slot_name', { name })}
               />
             ) : (
               data.current_slot

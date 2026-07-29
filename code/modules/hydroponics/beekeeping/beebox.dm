@@ -30,6 +30,7 @@
 	icon_state = "beebox"
 	anchored = TRUE
 	density = TRUE
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 40)
 	var/mob/living/basic/bee/queen/queen_bee = null
 	var/list/bees = list() //bees owned by the box, not those inside it
 	var/list/honeycombs = list()
@@ -62,7 +63,7 @@
 	icon_state = "beebox"
 	var/datum/reagent/custom_reagent = null
 	if(random_reagent)
-		custom_reagent = pick(subtypesof(/datum/reagent))
+		custom_reagent = get_random_reagent_id()
 		custom_reagent = GLOB.chemical_reagents_list[custom_reagent]
 
 	queen_bee = new(src)
@@ -145,7 +146,7 @@
 	default_unfasten_wrench(user, tool)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/structure/beebox/attackby(obj/item/item, mob/user, params)
+/obj/structure/beebox/attackby(obj/item/item, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(item, /obj/item/honey_frame))
 		var/obj/item/honey_frame/frame = item
 		if(honey_frames.len < BEEBOX_MAX_FRAMES)

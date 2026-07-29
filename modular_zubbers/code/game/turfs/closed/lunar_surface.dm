@@ -56,7 +56,7 @@
 	baseturfs = /turf/open/misc/moonstation_rock
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS
-	proximity_based = FALSE
+	exposure_based = FALSE
 
 /turf/closed/mineral/random/lunar/mineral_chances()
 	return list(
@@ -76,7 +76,7 @@
 	baseturfs = /turf/open/misc/moonstation_rock
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS
-	proximity_based = FALSE
+	exposure_based = FALSE
 
 /turf/closed/mineral/random/labormineral/lunar/mineral_chances()
 	return list(
@@ -93,7 +93,7 @@
 	baseturfs = /turf/open/misc/moonstation_rock
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS
-	proximity_based = FALSE
+	exposure_based = FALSE
 
 /turf/closed/mineral/random/high_chance/lunar/mineral_chances()
 	return list(
@@ -116,7 +116,7 @@
 	baseturfs = /turf/open/misc/moonstation_rock
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS
-	proximity_based = FALSE
+	exposure_based = FALSE
 
 /turf/closed/mineral/random/low_chance/lunar/mineral_chances()
 	return list(

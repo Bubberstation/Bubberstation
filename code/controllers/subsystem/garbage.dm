@@ -25,10 +25,9 @@ SUBSYSTEM_DEF(garbage)
 	name = "Garbage"
 	priority = FIRE_PRIORITY_GARBAGE
 	wait = 2 SECONDS
-	flags = SS_POST_FIRE_TIMING|SS_BACKGROUND|SS_NO_INIT
+	ss_flags = SS_POST_FIRE_TIMING|SS_BACKGROUND|SS_NO_INIT
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
-	init_order = INIT_ORDER_GARBAGE
-	init_stage = INITSTAGE_EARLY
+	init_stage = INITSTAGE_FIRST
 
 	var/list/collection_timeout = list(GC_FILTER_QUEUE, GC_CHECK_QUEUE, GC_DEL_QUEUE) // deciseconds to wait before moving something up in the queue to the next level
 
@@ -64,19 +63,19 @@ SUBSYSTEM_DEF(garbage)
 	var/list/counts = list()
 	for (var/list/L in queues)
 		counts += length(L)
-	msg += "Q:[counts.Join(",")]|D:[delslasttick]|G:[gcedlasttick]|"
+	msg += "\n  Queue:[counts.Join(",")]|Dels:[delslasttick]|GCs:[gcedlasttick]|"
 	msg += "GR:"
 	if (!(delslasttick+gcedlasttick))
 		msg += "n/a|"
 	else
 		msg += "[round((gcedlasttick/(delslasttick+gcedlasttick))*100, 0.01)]%|"
 
-	msg += "TD:[totaldels]|TG:[totalgcs]|"
+	msg += "\n  TD:[totaldels]|TG:[totalgcs]|"
 	if (!(totaldels+totalgcs))
 		msg += "n/a|"
 	else
 		msg += "TGR:[round((totalgcs/(totaldels+totalgcs))*100, 0.01)]%"
-	msg += " P:[pass_counts.Join(",")]"
+	msg += "\n  P:[pass_counts.Join(",")]"
 	msg += "|F:[fail_counts.Join(",")]"
 	return ..()
 
@@ -375,7 +374,7 @@ SUBSYSTEM_DEF(garbage)
 	var/start_time = world.time
 	var/start_tick = world.tick_usage
 	SEND_SIGNAL(to_delete, COMSIG_QDELETING, force) // Let the (remaining) components know about the result of Destroy
-	var/hint = to_delete.Destroy(force) // Let our friend know they're about to get fucked up.
+	var/hint = UNLINT(to_delete.Destroy(force)) // Let our friend know they're about to get fucked up.
 
 	if(world.time != start_time)
 		trash.slept_destroy++

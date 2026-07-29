@@ -43,7 +43,7 @@
 
 /obj/item/clothing/mask/gas/soviet
 	name = "soviet gas mask"
-	desc = "A white gas mask with a green filter, there's a small sticker attached saying it's not got Asbestos anymore."
+	desc = "A white gas mask with a green filter, there's a small sticker verifying it's Asbestos free! An even smaller sticker has been torn off. Nothing to worry about."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/mask.dmi'
 	icon_state = "gp5_mask"
@@ -51,7 +51,9 @@
 /obj/item/clothing/mask/gas/clown_colourable
 	name = "colourable clown mask"
 	desc = "The face of pure evil, now multicoloured."
-	icon_state = "gags_mask"
+	icon = 'icons/map_icons/clothing/mask.dmi'
+	icon_state = "/obj/item/clothing/mask/gas/clown_colourable"
+	post_init_icon_state = "gags_mask"
 	clothing_flags = MASKINTERNALS
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
@@ -74,9 +76,10 @@
 /obj/item/clothing/mask/gas/respirator
 	name = "half mask respirator"
 	desc = "A half mask respirator that's really just a standard gas mask with the glass taken off."
-	icon = 'modular_skyrat/modules/GAGS/icons/masks.dmi'
+	icon = 'icons/map_icons/clothing/mask.dmi'
+	icon_state = "/obj/item/clothing/mask/gas/respirator"
 	worn_icon = 'modular_skyrat/modules/GAGS/icons/masks.dmi'
-	icon_state = "respirator"
+	post_init_icon_state = "respirator"
 	inhand_icon_state = "sechailer"
 	w_class = WEIGHT_CLASS_SMALL
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
@@ -180,11 +183,11 @@
 
 	if(src && choice && !user.incapacitated && in_range(user,src))
 		var/mob/living/carbon/human/human_user = user
-		if(human_user.dna.species.mutant_bodyparts["snout"])
+		if(human_user.dna.species.mutant_bodyparts[FEATURE_SNOUT])
 			icon = 'modular_skyrat/master_files/icons/obj/clothing/masks.dmi'
 			worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/mask_muzzled.dmi'
 			var/list/avian_snouts = list("Beak", "Big Beak", "Corvid Beak")
-			if(human_user.dna.species.mutant_bodyparts["snout"][MUTANT_INDEX_NAME] in avian_snouts)
+			if(human_user.dna.species.mutant_bodyparts[FEATURE_SNOUT][MUTANT_INDEX_NAME] in avian_snouts)
 				icon_state = "[options[choice]]_b"
 		else
 			icon = 'modular_skyrat/master_files/icons/mob/clothing/species/vox/mask.dmi'

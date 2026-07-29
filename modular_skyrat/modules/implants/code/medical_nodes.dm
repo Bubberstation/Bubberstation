@@ -6,14 +6,18 @@
 		"ci-medhud",
 		"ci-sechud",
 		"ci-diaghud",
+		"ci-civhud",
 		"ci-botany",
 		"ci-janitor",
 		"ci-lighter",
 		"ci-razor",
 	)
-	// thrusters in combat_implants
+	return ..()
+
+/datum/techweb_node/cyber/cyber_organs_upgraded/New()
 	design_ids -= list(
-		"ci-thrusters",
+		"ci-gloweyes",
+		"ci-welding",
 	)
 	return ..()
 
@@ -21,7 +25,6 @@
 	design_ids += list(
 		"ci-mantis",
 		"ci-flash",
-		"ci-thrusters",
 		"ci-antisleep",
 	)
 	return ..()

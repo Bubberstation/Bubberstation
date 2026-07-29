@@ -12,7 +12,7 @@ import {
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { TechwebWarning } from './Nanites/NoTechwebWarning';
-import { NaniteProgram, Techweb } from './Nanites/types';
+import type { NaniteProgram, Techweb } from './Nanites/types';
 
 interface NaniteInfoBoxProps {
   has_disk: boolean;
@@ -22,9 +22,11 @@ interface NaniteInfoBoxProps {
   backup_id: number;
   new_backup_id: number;
   techweb: Techweb;
+  min_cloud_id: number;
+  max_cloud_id: number;
 }
 
-export const NaniteDiskBox = (props, context) => {
+export const NaniteDiskBox = () => {
   const { data } = useBackend<NaniteInfoBoxProps>();
   const { has_disk, has_program, disk } = data;
   if (!has_disk) {
@@ -179,7 +181,7 @@ export const NaniteCloudBackupList = () => {
         })
       }
     >
-      {'Backup #' + backup.cloud_id}
+      {`Backup #${backup.cloud_id}`}
     </Button>
   ));
 };
@@ -195,14 +197,14 @@ interface NaniteCloudBackupDetailsProps {
 export const NaniteCloudBackupDetails = () => {
   const { act, data } = useBackend<NaniteCloudBackupDetailsProps>();
   const { current_view, disk, has_program, cloud_backup } = data;
-  const can_rule = (disk && disk.can_rule) || false;
+  const can_rule = disk?.can_rule || false;
   if (!cloud_backup) {
     return <NoticeBox>ERROR: Backup not found</NoticeBox>;
   }
   const cloud_programs = data.cloud_programs || [];
   return (
     <Section
-      title={'Backup #' + current_view}
+      title={`Backup #${current_view}`}
       buttons={
         !!has_program && (
           <Button
@@ -300,7 +302,14 @@ export const NaniteCloudBackupDetails = () => {
 
 export const NaniteCloudControl = () => {
   const { act, data } = useBackend<NaniteInfoBoxProps>();
-  const { has_disk, current_view, new_backup_id, techweb } = data;
+  const {
+    has_disk,
+    current_view,
+    new_backup_id,
+    techweb,
+    min_cloud_id,
+    max_cloud_id,
+  } = data;
   return (
     <Window width={375} height={700}>
       <Window.Content scrollable>
@@ -338,8 +347,8 @@ export const NaniteCloudControl = () => {
                 {'New Backup: '}
                 <NumberInput
                   value={new_backup_id}
-                  minValue={1}
-                  maxValue={100}
+                  minValue={min_cloud_id + 1}
+                  maxValue={max_cloud_id}
                   stepPixelSize={4}
                   step={1}
                   width="39px"

@@ -1,8 +1,8 @@
 /// The list of the available special player ranks
 #define SKYRAT_PLAYER_RANKS list("Donator", "Mentor")
 
-ADMIN_VERB(manage_player_ranks, R_PERMISSIONS, "Manage Player Ranks", "Manage who has the special player ranks while the server is running.", ADMIN_CATEGORY_MAIN)
-	if(!check_rights(R_PERMISSIONS))
+ADMIN_VERB(manage_player_ranks, R_ADMIN, "Manage Player Ranks", "Manage who has the special player ranks while the server is running.", ADMIN_CATEGORY_MAIN)
+	if(!check_rights(R_ADMIN))
 		return
 
 	usr.client?.holder.manage_player_ranks()
@@ -12,7 +12,7 @@ ADMIN_VERB(manage_player_ranks, R_PERMISSIONS, "Manage Player Ranks", "Manage wh
 	if(IsAdminAdvancedProcCall())
 		return
 
-	if(!check_rights(R_PERMISSIONS))
+	if(!check_rights(R_ADMIN))
 		return
 
 	var/choice = tgui_alert(usr, "Which rank would you like to manage?", "Manage Player Ranks", SKYRAT_PLAYER_RANKS)
@@ -82,14 +82,14 @@ ADMIN_VERB(manage_player_ranks, R_PERMISSIONS, "Manage Player Ranks", "Manage wh
 
 
 
-ADMIN_VERB(migrate_player_ranks, R_PERMISSIONS|R_DEBUG|R_SERVER, "Migrate Player Ranks", "Individually migrate the various player ranks from their legacy system to the SQL-based one.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(migrate_player_ranks, R_ADMIN|R_DEBUG|R_SERVER, "Migrate Player Ranks", "Individually migrate the various player ranks from their legacy system to the SQL-based one.", ADMIN_CATEGORY_DEBUG)
 	user.mob.client?.holder.migrate_player_ranks()
 
 /datum/admins/proc/migrate_player_ranks()
 	if(IsAdminAdvancedProcCall())
 		return
 
-	if(!check_rights(R_PERMISSIONS | R_DEBUG | R_SERVER))
+	if(!check_rights(R_ADMIN | R_DEBUG | R_SERVER))
 		return
 
 	if(!CONFIG_GET(flag/sql_enabled))

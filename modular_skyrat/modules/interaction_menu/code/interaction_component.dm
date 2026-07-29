@@ -6,6 +6,8 @@
 	var/list/datum/interaction/interactions
 	var/interact_last = 0
 	var/interact_next = 0
+	///Holds a reference to a relayed body if one exists
+	var/obj/body_relay = null
 
 /datum/component/interactable/Initialize(...)
 	if(QDELETED(parent))
@@ -53,7 +55,8 @@
 	if(interaction.lewd && !target.client?.prefs?.read_preference(/datum/preference/toggle/erp))
 		return FALSE
 	if(!interaction.distance_allowed && !target.Adjacent(self))
-		return FALSE
+		if(!body_relay || !target.Adjacent(body_relay))
+			return FALSE
 	if(interaction.category == INTERACTION_CAT_HIDE)
 		return FALSE
 	if(self == target && interaction.usage == INTERACTION_OTHER)
@@ -64,7 +67,7 @@
 /datum/component/interactable/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "InteractionMenu")
+		ui = new(user, src, "InteractionPanel")
 		ui.open()
 
 /datum/component/interactable/ui_status(mob/user, datum/ui_state/state)
@@ -72,6 +75,11 @@
 		return UI_CLOSE
 
 	return UI_INTERACTIVE // This UI is always interactive as we handle distance flags via can_interact
+
+/datum/component/interactable/ui_static_data(mob/user)
+	var/list/data = list()
+	data["arousalLimit"] = AROUSAL_LIMIT
+	return data
 
 /datum/component/interactable/ui_data(mob/user)
 	var/list/data = list()
@@ -98,8 +106,39 @@
 	data["ref_user"] = REF(user)
 	data["ref_self"] = REF(self)
 	data["self"] = self.name
+	if(body_relay)
+		if(!can_see(user, self))
+			data["self"] = body_relay.name
 	data["block_interact"] = interact_next >= world.time
 	data["interactions"] = categories
+	data["erp_interaction"] = self.client?.prefs?.read_preference(/datum/preference/toggle/erp)
+
+	var/mob/living/carbon/human/human_user = user
+
+	data["isTargetSelf"] = (user == self)
+
+	// user (the one who opened the ui)
+	var/user_pleasure = 0
+	var/user_arousal = 0
+	var/user_pain = 0
+
+	if(user)
+		user_pleasure = human_user.pleasure
+		user_arousal = human_user.arousal
+		user_pain = human_user.pain
+
+		data["pleasure"] = user_pleasure
+		data["arousal"] = user_arousal
+		data["pain"] = user_pain
+		data["yourName"] = human_user.real_name
+
+
+	// self - the one who the interaction component belongs to, aka who it's opened on (confusing var name yep)
+	if(user != self)
+		data["theirPleasure"] = self.pleasure
+		data["theirArousal"] = self.arousal
+		data["theirPain"] = self.pain
+		data["theirName"] = self.real_name
 
 	var/list/parts = list()
 
@@ -147,7 +186,10 @@
 			var/mob/living/carbon/human/user = locate(params["userref"])
 			if(!can_interact(GLOB.interaction_instances[interaction_id], user))
 				return FALSE
-			GLOB.interaction_instances[interaction_id].act(user, locate(params["selfref"]))
+			if(body_relay && !can_see(user, self))
+				GLOB.interaction_instances[interaction_id].act(user, locate(params["selfref"]), body_relay)
+			else
+				GLOB.interaction_instances[interaction_id].act(user, locate(params["selfref"]))
 			var/datum/component/interactable/interaction_component = user.GetComponent(/datum/component/interactable)
 			interaction_component.interact_last = world.time
 			interact_next = interaction_component.interact_last + INTERACTION_COOLDOWN

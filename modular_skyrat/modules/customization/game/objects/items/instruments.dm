@@ -10,4 +10,4 @@
 	attack_verb_simple = list("flutter", "flap", "squeak")
 	w_class = WEIGHT_CLASS_TINY
 	force = 0
-	hitsound = 'modular_skyrat/modules/emotes/sound/emotes/mothsqueak.ogg'
+	hitsound = 'modular_zubbers/sound/emotes/mothsqueak.ogg'

@@ -58,6 +58,10 @@
 		JOB_SECURITY_MEDIC = 203,
 		JOB_DETECTIVE = 204,
 		JOB_SECURITY_OFFICER = 205,
+		JOB_SECURITY_OFFICER_MEDICAL = 206,
+		JOB_SECURITY_OFFICER_ENGINEERING = 207,
+		JOB_SECURITY_OFFICER_SCIENCE = 208,
+		JOB_SECURITY_OFFICER_SUPPLY = 209,
 
 		//Medical
 		JOB_ORDERLY = 301,
@@ -113,9 +117,3 @@
 		JOB_TERRAGOV_LIASON = 903
 
 	)
-
-/datum/crewmonitor/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if (!ui)
-		ui = new(user, src, "CrewConsoleBubbers")
-		ui.open()

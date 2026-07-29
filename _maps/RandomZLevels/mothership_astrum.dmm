@@ -87,7 +87,7 @@
 /obj/structure/window/spawner/directional/north,
 /obj/structure/window/spawner/directional/east,
 /obj/structure/window/spawner/directional/west,
-/obj/item/organ/cyberimp/arm/medibeam,
+/obj/item/organ/cyberimp/arm/toolkit/medibeam,
 /turf/open/floor/plating/abductor2,
 /area/awaymission/mothership_astrum/halls)
 "bl" = (
@@ -349,7 +349,7 @@
 /area/awaymission/mothership_astrum/halls)
 "fO" = (
 /obj/structure/alien/weeds/creature,
-/obj/item/ammo_box/c38,
+/obj/item/ammo_box/speedloader/c38,
 /turf/open/floor/plating/abductor2,
 /area/awaymission/mothership_astrum/deck4)
 "fP" = (
@@ -864,7 +864,7 @@
 /area/awaymission/mothership_astrum/deck3)
 "oA" = (
 /obj/structure/table/abductor,
-/obj/item/organ/cyberimp/arm/janitor,
+/obj/item/organ/cyberimp/arm/toolkit/janitor,
 /turf/open/floor/plating/abductor,
 /area/awaymission/mothership_astrum/halls)
 "oF" = (
@@ -1651,7 +1651,7 @@
 /obj/structure/window/spawner/directional/east,
 /obj/structure/window/spawner/directional/west,
 /obj/structure/table/abductor,
-/obj/item/organ/cyberimp/arm/hacker,
+/obj/item/organ/cyberimp/arm/toolkit/hacker,
 /turf/open/floor/mineral/abductor,
 /area/awaymission/mothership_astrum/halls)
 "BE" = (
@@ -1717,7 +1717,7 @@
 /turf/open/floor/plating/abductor2,
 /area/awaymission/mothership_astrum/halls)
 "Cm" = (
-/obj/effect/decal/cleanable/xenoblood/xgibs/body,
+/obj/effect/decal/cleanable/blood/gibs/xeno/body,
 /turf/open/floor/mineral/abductor,
 /area/awaymission/mothership_astrum/halls)
 "Cn" = (
@@ -1726,7 +1726,7 @@
 /area/awaymission/mothership_astrum/halls)
 "Cs" = (
 /obj/structure/table/abductor,
-/obj/item/ammo_box/c38,
+/obj/item/ammo_box/speedloader/c38,
 /turf/open/floor/mineral/abductor,
 /area/awaymission/mothership_astrum/halls)
 "Cv" = (
@@ -1959,7 +1959,7 @@
 /obj/structure/window/spawner/directional/south,
 /obj/structure/window/spawner/directional/east,
 /obj/structure/window/spawner/directional/west,
-/obj/item/ammo_box/c38,
+/obj/item/ammo_box/speedloader/c38,
 /turf/open/floor/plating/abductor2,
 /area/awaymission/mothership_astrum/halls)
 "Fo" = (
@@ -2188,7 +2188,7 @@
 /area/awaymission/mothership_astrum/deck1)
 "Hk" = (
 /obj/structure/closet/abductor,
-/obj/item/ammo_box/c38,
+/obj/item/ammo_box/speedloader/c38,
 /turf/open/floor/mineral/abductor,
 /area/awaymission/mothership_astrum/halls)
 "Hn" = (
@@ -2544,7 +2544,7 @@
 "Me" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/wiki/barman_recipes,
-/obj/item/reagent_containers/cup/rag,
+/obj/item/rag,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -2554,7 +2554,7 @@
 /turf/open/floor/iron,
 /area/awaymission/mothership_astrum/deck2)
 "Mi" = (
-/obj/effect/decal/cleanable/xenoblood/xgibs/larva,
+/obj/effect/decal/cleanable/blood/gibs/xeno/larva,
 /turf/open/floor/plating/abductor2,
 /area/awaymission/mothership_astrum/halls)
 "Mp" = (
@@ -2573,9 +2573,9 @@
 "Mw" = (
 /obj/machinery/porta_turret/syndicate/pod{
 	faction = list("Abductor");
-	lethal_projectile = /obj/projectile/bullet/a357;
+	lethal_projectile = /obj/projectile/bullet/c357;
 	max_integrity = 120;
-	stun_projectile = /obj/projectile/bullet/a357
+	stun_projectile = /obj/projectile/bullet/c357
 	},
 /turf/open/floor/plating/abductor,
 /area/awaymission/mothership_astrum/halls)
@@ -2635,11 +2635,11 @@
 /turf/open/floor/iron,
 /area/awaymission/mothership_astrum/deck2)
 "Na" = (
-/obj/machinery/light/directional/east,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
+/obj/machinery/light/floor,
 /turf/open/floor/iron,
 /area/awaymission/mothership_astrum/deck2)
 "Nd" = (
@@ -2671,12 +2671,12 @@
 /obj/structure/window/spawner/directional/north,
 /obj/structure/window/spawner/directional/east,
 /obj/structure/window/spawner/directional/west,
-/obj/item/computer_disk/syndicate/camera_app,
+/obj/item/disk/computer/syndicate/camera_app,
 /turf/open/floor/plating/abductor2,
 /area/awaymission/mothership_astrum/halls)
 "Ns" = (
 /obj/structure/table/abductor,
-/obj/item/organ/cyberimp/arm/armblade,
+/obj/item/organ/cyberimp/arm/toolkit/armblade,
 /turf/open/floor/mineral/abductor,
 /area/awaymission/mothership_astrum/halls)
 "Nw" = (
@@ -2741,7 +2741,7 @@
 /area/awaymission/mothership_astrum/halls)
 "Oa" = (
 /obj/structure/table/abductor,
-/obj/item/organ/cyberimp/arm/toolset,
+/obj/item/organ/cyberimp/arm/toolkit/toolset,
 /turf/open/floor/mineral/abductor,
 /area/awaymission/mothership_astrum/halls)
 "Om" = (
@@ -2890,9 +2890,9 @@
 "PH" = (
 /obj/machinery/porta_turret/syndicate/pod{
 	faction = list("Abductor");
-	lethal_projectile = /obj/projectile/bullet/a357;
+	lethal_projectile = /obj/projectile/bullet/c357;
 	max_integrity = 120;
-	stun_projectile = /obj/projectile/bullet/a357
+	stun_projectile = /obj/projectile/bullet/c357
 	},
 /turf/open/floor/plating/abductor2,
 /area/awaymission/mothership_astrum/halls)
@@ -3185,16 +3185,13 @@
 /obj/effect/spawner/random/exotic/technology,
 /turf/open/floor/mineral/abductor,
 /area/awaymission/mothership_astrum/halls)
-"SV" = (
-/turf/closed/indestructible/alien,
-/area/space)
 "SX" = (
 /obj/structure/table/abductor,
 /obj/structure/window/spawner/directional/north,
 /obj/structure/window/spawner/directional/east,
 /obj/structure/window/spawner/directional/west,
-/obj/item/ammo_box/c38,
-/obj/item/ammo_box/c38,
+/obj/item/ammo_box/speedloader/c38,
+/obj/item/ammo_box/speedloader/c38,
 /turf/open/floor/mineral/abductor,
 /area/awaymission/mothership_astrum/halls)
 "SY" = (
@@ -3249,7 +3246,7 @@
 /area/awaymission/mothership_astrum/halls)
 "TJ" = (
 /obj/structure/table/abductor,
-/obj/item/ammo_box/c38,
+/obj/item/ammo_box/speedloader/c38,
 /turf/open/floor/plating/abductor2,
 /area/awaymission/mothership_astrum/halls)
 "TX" = (
@@ -3365,8 +3362,8 @@
 /obj/structure/window/spawner/directional/south,
 /obj/structure/window/spawner/directional/east,
 /obj/structure/window/spawner/directional/west,
-/obj/item/ammo_box/c38,
-/obj/item/ammo_box/c38,
+/obj/item/ammo_box/speedloader/c38,
+/obj/item/ammo_box/speedloader/c38,
 /turf/open/floor/mineral/abductor,
 /area/awaymission/mothership_astrum/halls)
 "Va" = (
@@ -3485,15 +3482,15 @@
 "WB" = (
 /obj/structure/table/abductor,
 /obj/structure/window/spawner/directional/north,
-/obj/item/ammo_box/c38,
+/obj/item/ammo_box/speedloader/c38,
 /turf/open/floor/mineral/abductor,
 /area/awaymission/mothership_astrum/halls)
 "WC" = (
 /obj/machinery/porta_turret/syndicate/pod{
 	faction = list("boss");
-	lethal_projectile = /obj/projectile/bullet/a357;
+	lethal_projectile = /obj/projectile/bullet/c357;
 	max_integrity = 150;
-	stun_projectile = /obj/projectile/bullet/a357
+	stun_projectile = /obj/projectile/bullet/c357
 	},
 /turf/open/floor/mineral/abductor,
 /area/awaymission/mothership_astrum/halls)
@@ -3507,7 +3504,7 @@
 /turf/open/floor/wood,
 /area/awaymission/mothership_astrum/deck5)
 "WN" = (
-/obj/item/ammo_box/c38,
+/obj/item/ammo_box/speedloader/c38,
 /turf/open/floor/wood,
 /area/awaymission/mothership_astrum/deck1)
 "WT" = (
@@ -3525,9 +3522,9 @@
 "Xa" = (
 /obj/machinery/porta_turret/syndicate/pod{
 	faction = list("Abductor");
-	lethal_projectile = /obj/projectile/bullet/a357;
+	lethal_projectile = /obj/projectile/bullet/c357;
 	max_integrity = 120;
-	stun_projectile = /obj/projectile/bullet/a357
+	stun_projectile = /obj/projectile/bullet/c357
 	},
 /turf/open/floor/mineral/abductor,
 /area/awaymission/mothership_astrum/halls)
@@ -3650,7 +3647,7 @@
 /turf/open/floor/mineral/abductor,
 /area/awaymission/mothership_astrum/halls)
 "YI" = (
-/obj/item/ammo_box/c38,
+/obj/item/ammo_box/speedloader/c38,
 /turf/open/misc/ironsand,
 /area/awaymission/mothership_astrum/deck1)
 "YL" = (
@@ -22375,8 +22372,8 @@ ES
 ES
 Jx
 KL
-Na
 MR
+Na
 MR
 MR
 Qr
@@ -27031,7 +27028,7 @@ Tu
 Tu
 Tu
 ee
-SV
+ee
 ee
 ee
 bV

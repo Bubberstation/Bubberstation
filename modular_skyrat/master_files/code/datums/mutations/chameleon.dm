@@ -1,5 +1,5 @@
 // toggleable chameleon skin
-/datum/mutation/human/chameleon
+/datum/mutation/chameleon
 	power_path = /datum/action/cooldown/spell/chameleon_skin_activate
 
 /datum/action/cooldown/spell/chameleon_skin_activate

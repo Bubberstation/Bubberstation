@@ -39,6 +39,8 @@
 		/obj/item/mod/module/storage/large_capacity
 	)
 
+// CUSTOM BEHAVIOR
+
 /obj/item/mod/control/pre_equipped/entombed/canStrip(mob/who)
 	return TRUE //you can always try, and it'll hit doStrip below
 
@@ -55,7 +57,7 @@
 	who.balloon_alert(who, "can't strip a fused MODsuit!")
 	return ..()
 
-/obj/item/mod/control/pre_equipped/entombed/retract(mob/user, obj/item/part)
+/obj/item/mod/control/pre_equipped/entombed/retract(mob/user, obj/item/part, instant = FALSE)
 	if (ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		var/datum/quirk/equipping/entombed/tomb_quirk = human_user.get_quirk(/datum/quirk/equipping/entombed)
@@ -82,3 +84,8 @@
 /obj/item/mod/control/pre_equipped/entombed/Initialize(mapload, new_theme, new_skin, new_core)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, QUIRK_TRAIT)
+
+/obj/item/mod/control/pre_equipped/entombed/dropped(mob/user)
+	. = ..()
+	// we do this so that in the rare event that someone gets gibbed/destroyed, their suit can be retrieved easily w/o requiring admin intervention
+	REMOVE_TRAIT(src, TRAIT_NODROP, QUIRK_TRAIT)

@@ -14,14 +14,14 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/reagent_containers/dropper = 25,
 		/obj/item/reagent_containers/syringe/crude = 50,
 		/obj/item/stack/medical/aloe/fresh = 25,
-		/obj/item/stack/medical/gauze/improvised = 25,
+		/obj/item/stack/medical/wrap/gauze/improvised = 25,
 		/obj/item/thermometer = 10,
 		/obj/item/thermometer/pen = 10
 	) = 75,
 	list(
 		/obj/item/book/bible = 100,
 		/obj/item/book/bible/booze = 50,
-		/obj/item/infuser_book = 5
+		/obj/item/tgui_book/manual/infuser = 5
 	) = 25,
 	list(
 		/obj/item/ammo_casing/spent = 25,
@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/reagent_containers/cup/glass/colocup = 75,
 		/obj/item/reagent_containers/cup/glass/sillycup = 25,
 		/obj/item/reagent_containers/cup/glass/waterbottle/empty = 25,
-		/obj/item/reagent_containers/cup/rag = 25,
+		/obj/item/rag = 25,
 		/obj/item/restraints/handcuffs/cable/zipties/used = 10,
 		/obj/item/rollingpaper = 25,
 		/obj/item/shard = 100,

@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(gamemode)
 	name = "Storyteller"
 	init_order = INIT_ORDER_GAMEMODE
 	runlevels = RUNLEVEL_GAME
-	flags = SS_BACKGROUND | SS_KEEP_TIMING
+	ss_flags = SS_BACKGROUND | SS_KEEP_TIMING
 	wait = 2 SECONDS
 
 	/// List of our event tracks for fast access during for loops.
@@ -124,10 +124,18 @@ SUBSYSTEM_DEF(gamemode)
 	/// Ready players for roundstart events.
 	var/ready_players = 0
 	var/active_players = 0
+	var/active_crew = 0
 	var/head_crew = 0
 	var/eng_crew = 0
 	var/sec_crew = 0
 	var/med_crew = 0
+
+	//Security Based Antag Cap
+	var/sec_antag_cap = 0
+	/// A list of event controls to re-roll antagonists
+	var/list/antag_rerolls
+	/// A assoc list of event controls by pref flag, used for accurately rerolling antags. (flag -> /datum/round_control_event)
+	var/list/antag_rerolls_by_pref
 
 	/// Whether we looked up pop info in this process tick
 	var/pop_data_cached = FALSE
@@ -135,6 +143,7 @@ SUBSYSTEM_DEF(gamemode)
 	var/wizardmode = FALSE
 
 	var/storyteller_voted = FALSE
+	var/datum/vote/storyteller/vote_datum
 
 /datum/controller/subsystem/gamemode/Initialize(time, zlevel)
 	. = ..()
@@ -174,8 +183,17 @@ SUBSYSTEM_DEF(gamemode)
 			if(!holiday_categorized)
 				uncategorized += event
 			continue
-		else
-			event_pools[event.track] += event //Add it to the categorized event pools
+
+		var/list/event_tags = event.tags
+		if(LAZYLEN(event_tags))
+			if(LAZYFIND(event_tags, TAG_ANTAG_REROLL))
+				LAZYADDASSOC(antag_rerolls, event, event.weight)
+				if (istype(event, /datum/round_event_control/antagonist))
+					var/datum/round_event_control/antagonist/antag_event = event
+					LAZYADDASSOC(antag_rerolls_by_pref, antag_event.antag_flag, antag_event)
+				continue
+
+		event_pools[event.track] += event //Add it to the categorized event pools
 
 	return SS_INIT_SUCCESS
 
@@ -187,24 +205,30 @@ SUBSYSTEM_DEF(gamemode)
 	if(EMERGENCY_AT_LEAST_DOCKED)
 		//Don't run any events if the shuttle is docked with the station (or in transit towards central command.
 		return
-	if( (SSshuttle.emergency_no_recall && !SSshuttle.admin_emergency_no_recall) && EMERGENCY_IDLE_OR_RECALLED)
+	if((SSshuttle.emergency_no_recall && !SSshuttle.admin_emergency_no_recall) && EMERGENCY_IDLE_OR_RECALLED)
 		//Don't run any events if the shuttle is in transit in a non-admin no-recall state.
 		return
 
-	///Handle scheduled events
-	for(var/datum/scheduled_event/sch_event in scheduled_events)
-		if(world.time >= sch_event.start_time)
-			sch_event.try_fire()
-		else if(!sch_event.alerted_admins && world.time >= sch_event.start_time - 1 MINUTES)
-			///Alert admins 1 minute before running and allow them to cancel or refund the event, once again.
-			sch_event.alerted_admins = TRUE
-			message_admins("Scheduled Event: [sch_event.event] will run in [(sch_event.start_time - world.time) / 10] seconds. (<a href='byond://?src=[REF(sch_event)];action=cancel'>CANCEL</a>) (<a href='byond://?src=[REF(sch_event)];action=refund'>REFUND</a>)")
+	if(next_storyteller_process <= world.time && storyteller)
 
-	if(!storyteller_halted && next_storyteller_process <= world.time && storyteller)
+		next_storyteller_process = world.time + STORYTELLER_WAIT_TIME
+
 		// We update crew information here to adjust population scalling and event thresholds for the storyteller.
 		update_crew_infos()
-		next_storyteller_process = world.time + STORYTELLER_WAIT_TIME
-		storyteller.process(STORYTELLER_WAIT_TIME * 0.1)
+
+		//Process storyteller
+		if(!storyteller_halted)
+			storyteller.process(STORYTELLER_WAIT_TIME * 0.1)
+
+		///Handle scheduled events
+		for(var/datum/scheduled_event/sch_event in scheduled_events)
+			if(world.time >= sch_event.start_time)
+				sch_event.try_fire()
+			else if(!sch_event.alerted_admins && world.time >= sch_event.start_time - 1 MINUTES)
+				///Alert admins 1 minute before running and allow them to cancel or refund the event, once again.
+				sch_event.alerted_admins = TRUE
+				message_admins("Scheduled Event: [sch_event.event] will run in [(sch_event.start_time - world.time) / 10] seconds. (<a href='byond://?src=[REF(sch_event)];action=cancel'>CANCEL</a>) (<a href='byond://?src=[REF(sch_event)];action=refund'>REFUND</a>)")
+
 	// Reset the cache value to false
 	pop_data_cached = FALSE
 
@@ -234,7 +258,7 @@ SUBSYSTEM_DEF(gamemode)
 		return 0
 	if(!storyteller.antag_divisor)
 		return 0
-	return round(max(min(get_correct_popcount() / storyteller.antag_divisor + sec_crew ,sec_crew * 1.5),ANTAG_CAP_FLAT))
+	return round(max(min(get_correct_popcount() / storyteller.antag_divisor + sec_antag_cap ,sec_antag_cap * 1.5),ANTAG_CAP_FLAT))
 
 /// Whether events can inject more antagonists into the round
 /datum/controller/subsystem/gamemode/proc/can_inject_antags()
@@ -247,10 +271,9 @@ SUBSYSTEM_DEF(gamemode)
 	special_role_flag,
 	pick_observers,
 	pick_roundstart_players,
-	required_time,
-	inherit_required_time = TRUE,
 	no_antags = TRUE,
 	list/restricted_roles,
+	list/restricted_species,
 	)
 
 
@@ -258,7 +281,7 @@ SUBSYSTEM_DEF(gamemode)
 	var/list/candidate_candidates = list() //lol
 	if(pick_roundstart_players)
 		for(var/mob/dead/new_player/player in GLOB.new_player_list)
-			if(player.ready == PLAYER_READY_TO_PLAY && player.mind && player.check_preferences())
+			if(player.ready == PLAYER_READY_TO_PLAY && player.mind && player.check_job_preferences())
 				candidate_candidates += player
 	else if(pick_observers)
 		for(var/mob/player as anything in GLOB.dead_mob_list)
@@ -275,25 +298,22 @@ SUBSYSTEM_DEF(gamemode)
 	for(var/mob/candidate as anything in candidate_candidates)
 		if(QDELETED(candidate) || !candidate.key || !candidate.client || !candidate.mind)
 			continue
-		if(no_antags && candidate.mind.special_role)
+		if(no_antags && LAZYLEN(candidate.mind.special_roles))
 			continue
 		if(restricted_roles && (candidate.mind.assigned_role.title in restricted_roles))
 			continue
+		var/mob/living/carbon/carbon = candidate
+		if(istype(carbon)) // species restrictions
+			if(restricted_species && (carbon.dna.species.id in restricted_species))
+				continue
 		if(special_role_flag)
 			if(!(candidate.client.prefs) || !(special_role_flag in candidate.client.prefs.be_special))
 				continue
-
-			var/time_to_check
-			if(required_time)
-				time_to_check = required_time
-			else if (inherit_required_time)
-				time_to_check = GLOB.special_roles[special_role_flag]
-
-			if(time_to_check && candidate.client.get_remaining_days(time_to_check) > 0)
+			if(candidate.client.get_days_to_play_antag(special_role_flag) > 0)
+				continue
+			if(is_banned_from(candidate.ckey, list(special_role_flag, ROLE_SYNDICATE)))
 				continue
 
-		if(special_role_flag && is_banned_from(candidate.ckey, list(special_role_flag, ROLE_SYNDICATE)))
-			continue
 		if(is_banned_from(candidate.client.ckey, BAN_ANTAGONIST))
 			continue
 		if(!candidate.client?.prefs?.read_preference(/datum/preference/toggle/be_antag))
@@ -389,7 +409,7 @@ SUBSYSTEM_DEF(gamemode)
 			continue
 		ASYNC
 			event.try_start()
-//		INVOKE_ASYNC(event, /datum/round_event.proc/try_start)
+//		INVOKE_ASYNC(event, TYPE_PROC_REF(/datum/round_event, try_start))
 
 /// Schedules an event to run later.
 /datum/controller/subsystem/gamemode/proc/schedule_event(datum/round_event_control/passed_event, passed_time, passed_cost, passed_ignore, passed_announce)
@@ -402,32 +422,54 @@ SUBSYSTEM_DEF(gamemode)
 	scheduled_events += scheduled
 
 /datum/controller/subsystem/gamemode/proc/update_crew_infos()
+
 	// Very similar logic to `get_active_player_count()`
+
+	active_crew = 0
 	active_players = 0
 	head_crew = 0
 	eng_crew = 0
 	med_crew = 0
 	sec_crew = 0
-	for(var/mob/player_mob as anything in GLOB.player_list)
-		if(!player_mob.client)
+	sec_antag_cap = 0
+
+	for(var/mob/player_mob as anything in GLOB.alive_player_list)
+
+		if(!player_mob || !player_mob.mind || !player_mob.client)
 			continue
-		if(player_mob.stat) //If they're alive
+
+		if(player_mob.client.is_afk()) //If afk. Don't include.
 			continue
-		if(player_mob.client.is_afk()) //If afk
-			continue
-		if(!ishuman(player_mob))
-			continue
+
 		active_players++
-		if(player_mob.mind?.assigned_role)
-			var/datum/job/player_role = player_mob.mind.assigned_role
-			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND)
-				head_crew++
-			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_ENGINEERING)
-				eng_crew++
-			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_MEDICAL)
-				med_crew++
-			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
-				sec_crew++
+
+		if(!player_mob.mind.assigned_role)
+			continue
+
+		var/datum/job/player_role = player_mob.mind.assigned_role
+
+		//Check if they're actually a crew job (and not something like an off-station ghost role).
+		if(!(player_role.job_flags & JOB_CREW_MEMBER))
+			continue
+
+		//Check if they're actually on station and not """engaged""" in """roleplay""".like a good crew member.
+		//This basically checks if they're on a station z-level and they're not in dorms.
+		if(engaged_role_play_check(player_mob, station = TRUE, dorms = TRUE))
+			continue
+
+		active_crew++
+
+		//Now check each crewmember's job flags.
+		if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND)
+			head_crew++
+		if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_ENGINEERING)
+			eng_crew++
+		if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_MEDICAL)
+			med_crew++
+		if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
+			sec_crew++
+			sec_antag_cap += player_role.sec_antag_cap
+
 	pop_data_cached = TRUE
 
 /datum/controller/subsystem/gamemode/proc/TriggerEvent(datum/round_event_control/event)
@@ -521,7 +563,7 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/post_setup(report) //Gamemodes can override the intercept report. Passing TRUE as the argument will force a report.
 	if(!report)
 		report = !CONFIG_GET(flag/no_intercept_report)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(display_roundstart_logout_report)), 15 MINUTES)
 
 	if(SSdbcore.Connect())
 		var/list/to_set = list()
@@ -579,7 +621,7 @@ SUBSYSTEM_DEF(gamemode)
 
 		if(L.ckey && L.client)
 			var/failed = FALSE
-			if(L.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2)) //Connected, but inactive (alt+tabbed or something)
+			if(L.client.inactivity >= (15 MINUTES)) //Connected, but inactive (alt+tabbed or something)
 				msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
 				failed = TRUE //AFK client
 			if(!failed && L.stat)
@@ -702,7 +744,7 @@ SUBSYSTEM_DEF(gamemode)
 		vote_message += "[storyboy.desc]"
 		vote_message += ""
 	var/finalized_message = "[vote_message.Join("\n")]"
-	to_chat(world, custom_boxed_message("purple_box", vote_font("[span_bold("Storyteller Vote")]\n<hr>[finalized_message]")))
+	to_chat(world, vote_font(fieldset_block("Storyteller Vote", "[finalized_message]", "boxed_message purple_box")))
 	return choices
 
 /datum/controller/subsystem/gamemode/proc/storyteller_vote_result(winner_name)
@@ -723,9 +765,26 @@ SUBSYSTEM_DEF(gamemode)
 	var/datum/storyteller/storyteller_pick
 	if(!voted_storyteller)
 		storyteller_pick = pick(storytellers)
-		log_dynamic("Roundstart picked storyteller [storyteller.name] randomly due to no vote result.")
+		log_dynamic("Roundstart picked storyteller [storyteller_pick.name] randomly due to no vote result.")
 		voted_storyteller = storyteller_pick
+
 	set_storyteller(voted_storyteller)
+	if(vote_datum)
+		var/list/vote_results = vote_datum.elimination_results
+		var/serialized_vote_results = "[vote_results.Join("\n")]"
+		var/list/vote_result_message = list("Method: Ranked Vote\n\nElimination order:\n[serialized_vote_results]")
+		to_chat(world, custom_boxed_message("purple_box", vote_font("[vote_result_message.Join("\n")]")))
+	to_chat(world, vote_font(fieldset_block("Storyteller: [storyteller.name]", "[storyteller.welcome_text]", "boxed_message purple_box")))
+
+	if(vote_datum)
+		QDEL_NULL(vote_datum)
+
+	// Notify discord about the round's selected storyteller
+	for(var/channel_tag in CONFIG_GET(str_list/channel_announce_new_game))
+		send2chat(
+			new /datum/tgs_message_content("The storyteller selected for this round is [storyteller.name]!"),
+			channel_tag,
+		)
 
 /**
  * set_storyteller
@@ -747,8 +806,6 @@ SUBSYSTEM_DEF(gamemode)
 	point_thresholds[EVENT_TRACK_CREWSET] = track_data.threshold_crewset * CONFIG_GET(number/crewset_point_threshold)
 	point_thresholds[EVENT_TRACK_GHOSTSET] = track_data.threshold_ghostset * CONFIG_GET(number/ghostset_point_threshold)
 
-	to_chat(world, span_notice("<b>Storyteller is [storyteller.name]!</b>"))
-	to_chat(world, span_notice("[storyteller.welcome_text]"))
 	log_admin_private("Storyteller switched to [storyteller.name]. [forced ? "Forced by admin ckey [force_ckey]" : ""]")
 
 /**
@@ -802,5 +859,37 @@ SUBSYSTEM_DEF(gamemode)
 	for(var/datum/round_event_control/event as anything in track_events)
 		if(event.type == text2path(type))
 			return event
+
+/datum/controller/subsystem/gamemode/proc/inject_event(datum/round_event_control/event_control)
+	if(!istype(event_control, /datum/round_event_control))
+		stack_trace("Storyteller was requested to inject event type [event_control ? event_control : "NULL"], but it's invalid!")
+		return
+
+	var/datum/round_event_control/event = locate(event_control) in SSevents.control
+	if(!event)
+		stack_trace("Storyteller was requested to inject event type [event_control] but could not locate it in SSevents.")
+		return
+
+	event.run_event(admin_forced = TRUE)
+
+/datum/controller/subsystem/gamemode/proc/reroll_antagonist(datum/round_event_control/event_control, antag_name, datum/antagonist/existing_antag)
+	message_admins(span_yellowteamradio("[key_name_admin(usr)] requested a new antagonist to replace [antag_name]."))
+	log_admin("[key_name_admin(usr)] requested a new antagonist to replace [antag_name].")
+	if (isnull(event_control) && !isnull(existing_antag))
+		event_control = SSgamemode.antag_rerolls_by_pref[existing_antag.pref_flag]
+	if(isnull(event_control))
+		event_control = pick_weight(SSgamemode.antag_rerolls)
+	SSgamemode.inject_event(event_control = event_control)
+
+ADMIN_VERB(create_antagonist, R_FUN, "Create Antagonist", "Inject a little more action into the round.", ADMIN_CATEGORY_EVENTS)
+	var/list/available_antags = list()
+	for(var/datum/round_event_control/event_control as anything in SSgamemode.antag_rerolls)
+		LAZYADD(available_antags, event_control)
+
+	var/datum/round_event_control/selected_event = tgui_input_list(user, "Choose a crew antagonist type to spawn.", "Create Antagonist", available_antags)
+	if(isnull(selected_event))
+		return
+
+	SSgamemode.reroll_antagonist(event_control = selected_event, antag_name = "nobody")
 
 #undef INIT_ORDER_GAMEMODE

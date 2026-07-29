@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	var/list/return_list = zebra_typecacheof(list(
 		/datum/data/vending_product = FISH_ICON_COIN,
 		/mob/living/basic/axolotl = FISH_ICON_CRITTER,
-		/mob/living/basic/frog = FISH_ICON_CRITTER,
+		/obj/effect/spawner/random/frog = FISH_ICON_CRITTER,
 		/mob/living/basic/carp = FISH_ICON_DEF,
 		/mob/living/basic/mining = FISH_ICON_HOSTILE,
 		/mob/living/basic/skeleton = FISH_ICON_BONE,
@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	/// If a key from fish_table is present here, that fish is availible in limited quantity and is reduced by one on successful fishing
 	var/list/fish_counts = list()
 	/// Any limited quantity stuff in this list will be readded to the counts after a while
-	var/list/fish_count_regen
+	var/list/fish_count_regen = list()
 	/// A list of stuff that's currently waiting to be readded to fish_counts
 	var/list/currently_on_regen
 	/// Text shown as baloon alert when you roll a dud in the table
@@ -136,6 +136,9 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 			stack_trace("path [path] found in the 'fish_counts' list but not in the 'fish_table'")
 	if(wait_time_range && length(wait_time_range) != 2)
 		stack_trace("wait_time_range for [type] is set but has length different than two")
+	for(var/path in fish_counts) //we give anything unique an auto 30 min regen, that way if the round is extended you still get content.
+		if (!(path in fish_count_regen))
+			fish_count_regen[path] = 30 MINUTES
 
 /datum/fish_source/Destroy()
 	if(explosive_fishing_score)
@@ -157,15 +160,22 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 /datum/fish_source/proc/on_start_fishing(obj/item/fishing_rod/rod, mob/fisherman, atom/parent)
 	return
 
-///Comsig proc from the fishing minigame for 'calculate_difficulty'
-/datum/fish_source/proc/calculate_difficulty_minigame(datum/fishing_challenge/challenge, reward_path, obj/item/fishing_rod/rod, mob/fisherman, list/difficulty_holder)
-	SIGNAL_HANDLER
+/**
+ * Calculates the difficulty of the minigame:
+ *
+ * This includes the source's fishing difficulty, that of the fish, the rod,
+ * favorite and disliked baits, fish traits and the fisherman skill.
+ *
+ * This is the version to call while we are in the fishing minigame phase.
+ */
+/datum/fish_source/proc/calculate_difficulty_minigame(datum/fishing_challenge/challenge, reward_path, obj/item/fishing_rod/rod, mob/fisherman)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	difficulty_holder[1] += calculate_difficulty(reward_path, rod, fisherman)
+	. = 0 // begin with a fresh calculation each time
+	. += calculate_difficulty(reward_path, rod, fisherman)
 
 	// Difficulty modifier added by the fisher's skill level
 	if(!(challenge.special_effects & FISHING_MINIGAME_RULE_NO_EXP))
-		difficulty_holder[1] += fisherman.mind?.get_skill_modifier(/datum/skill/fishing, SKILL_VALUE_MODIFIER)
+		. += fisherman.mind?.get_skill_modifier(/datum/skill/fishing, SKILL_VALUE_MODIFIER)
 
 	if(challenge.special_effects & FISHING_MINIGAME_RULE_KILL)
 		challenge.RegisterSignal(src, COMSIG_FISH_SOURCE_REWARD_DISPENSED, TYPE_PROC_REF(/datum/fishing_challenge, hurt_fish))
@@ -272,10 +282,12 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	if(!success)
 		return
 	var/atom/movable/reward = dispense_reward(challenge.reward_path, user, challenge.location, challenge.used_rod)
-	if(reward)
-		user.add_mob_memory(/datum/memory/caught_fish, protagonist = user, deuteragonist = reward.name)
 	SEND_SIGNAL(challenge.used_rod, COMSIG_FISHING_ROD_CAUGHT_FISH, reward, user)
 	challenge.used_rod.on_reward_caught(reward, user)
+	if(!reward)
+		return
+	user.add_mob_memory(/datum/memory/caught_fish, protagonist = user, deuteragonist = reward.name)
+	REMOVE_TRAIT(reward, TRAIT_FISH_JUST_SPAWNED, TRAIT_GENERIC)
 
 /// Gives out the reward if possible
 /datum/fish_source/proc/dispense_reward(reward_path, mob/fisherman, atom/fishing_spot, obj/item/fishing_rod/rod)
@@ -289,9 +301,13 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 		fisherman.balloon_alert(fisherman, "caught something!")
 		return
 	fisherman.balloon_alert(fisherman, "caught [reward]!")
+
+	var/list/fishing_data
 	if (isfish(reward))
 		ADD_TRAIT(reward, TRAIT_NO_FISHING_ACHIEVEMENT, TRAIT_GENERIC)
-
+		var/obj/item/fish/caught_fish = reward
+		fishing_data = list(caught_fish.size, caught_fish.weight, caught_fish.custom_materials)
+	log_fish("[fisherman] has caught a [reward] at [fishing_spot] using [rod].", fishing_data)
 	return reward
 
 ///Simplified version of dispense_reward that doesn't need a fisherman.
@@ -340,6 +356,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	var/atom/movable/reward = new reward_path(spawn_location)
 	if(isfish(reward))
 		var/obj/item/fish/caught_fish = reward
+		ADD_TRAIT(caught_fish, TRAIT_FISH_JUST_SPAWNED, TRAIT_GENERIC)
 		caught_fish.randomize_size_and_weight()
 	return reward
 
@@ -375,6 +392,9 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 
 	if(HAS_TRAIT(rod, TRAIT_ROD_REMOVE_FISHING_DUD))
 		final_table -= FISHING_DUD
+
+	if(!fisherman.client)
+		final_table -= /obj/effect/spawner/message_in_a_bottle // avoids npc's to get messages in a bottle. Fish for them!
 
 	for(var/result in final_table)
 		final_table[result] *= rod.hook.get_hook_bonus_multiplicative(result)
@@ -492,7 +512,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 			var/percent_rod_weight = rod_weights[reward] / total_rod_weight
 			var/obj/item/fish/prototype = reward
 			var/init_name = initial(prototype.name)
-			var/ratio = percent_weight/percent_rod_weight
+			var/ratio = percent_rod_weight ? percent_weight/percent_rod_weight : INFINITY
 			if(ratio < 0.9)
 				init_name = span_bold(init_name)
 				if(ratio < 0.3)
@@ -610,7 +630,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 		table_copy -= FISHING_DUD
 		var/exponent = weight_leveling_exponents[trait]
 		var/multiplier = weight_result_multiplier[trait]
-		for(var/fish as anything in table_copy)
+		for(var/fish in table_copy)
 			if(!ispath(fish, /obj/item/fish))
 				continue
 			table_copy[fish] = round(table_copy[fish] * multiplier, 1)

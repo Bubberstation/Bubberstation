@@ -33,6 +33,7 @@
 	// what percentage of blood you need to spend to level up, divided by 100
 	var/level_cost = BLOODSUCKER_LEVELUP_PERCENTAGE
 
+// TODO add handling for body transfers
 /datum/bloodsucker_clan/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
 	src.bloodsuckerdatum = owner_datum
@@ -275,6 +276,9 @@
 		return FALSE
 	if(!ghouldatum.owner.can_make_special(creator = bloodsuckerdatum.owner))
 		to_chat(master, span_notice("This Ghoul is unable to gain a Special rank due to innate features."))
+		return FALSE
+	if(isprotean(servant))
+		to_chat(master, span_notice("You are unable to make this species your favorite Ghoul."))
 		return FALSE
 	if(bloodsuckerdatum.GetBloodVolume() < SPECIAL_GHOUL_COST)
 		to_chat(master, span_notice("You need at least 150 blood to make a Ghoul a Favorite Ghoul."))

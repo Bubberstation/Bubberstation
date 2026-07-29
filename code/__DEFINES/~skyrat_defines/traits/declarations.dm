@@ -13,7 +13,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NO_HUSK "no_husk"
 #define TRAIT_NORUNNING "norunning" // You walk!
 #define TRAIT_EXCITABLE "wagwag" //Will wag when patted!
-#define TRAIT_OXYIMMUNE	"oxyimmune" // Immune to oxygen damage, ideally give this to all non-breathing species or bad stuff will happen
 #define TRAIT_AFFECTION_AVERSION "affection_aversion" // No more dogborg licking. "Dogborg bad" is no longer a personality
 #define TRAIT_PERSONALSPACE "personalspace" // Block/counter-attack ass-slaps
 #define TRAIT_QUICKREFLEXES "quickreflexes" // Counters hugs and headpats
@@ -72,6 +71,12 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 // avian traits
 #define TRAIT_AVIAN "avian_aspect"
+
+// bovine traits
+#define TRAIT_BOVINE "bovine_aspect"
+
+// mouse traits
+#define TRAIT_MURIDAE "mouse_aspect"
 
 // chameleon mutation
 #define TRAIT_CHAMELEON_SKIN "chameleon_skin"
@@ -138,6 +143,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_R_WIDE "wide_borg"
 /// 32x64 skins
 #define TRAIT_R_TALL "tall_borg"
+// 64x64 skins (Only affects dragons currently)
+#define TRAIT_R_BIG "big_borg"
 /// Any model small enough to reject the shrinker upgrade.
 #define TRAIT_R_SMALL "small_chassis"
 /// Any model that has a custom front panel

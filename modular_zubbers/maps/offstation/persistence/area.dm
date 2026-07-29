@@ -6,6 +6,7 @@
 	icon_state = "syndie-ship"
 	outdoors = FALSE
 	ignore_weather_sfx = TRUE
+	flags_1 = parent_type::flags_1 & ~(CAN_BE_DIRTY_1) // Stops SSDecay from affecting the Persistance
 
 // Cargo
 
@@ -122,7 +123,7 @@
 	name = "Persistence Quarter Master Quarters"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/liason
-	name = "Persistence Corporate Liason Quarters"
+	name = "Persistence Corporate Liaison Quarters"
 
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/assistant
 	name = "Persistence Assistant"
@@ -186,7 +187,7 @@
 	name = "Persistence Office"
 
 /area/ruin/space/has_grav/bubbers/persistance/command/liason
-	name = "Corporate Liason Office"
+	name = "Corporate Liaison Office"
 
 /area/ruin/space/has_grav/bubbers/persistance/command/vault
 	name = "High Security Vault"
@@ -230,3 +231,20 @@
 /datum/weather/rad_storm/New()
 	. = ..()
 	protected_areas += /area/ruin/space/has_grav/bubbers/persistance
+
+//roof areas
+/area/ruin/space/has_grav/bubbers/persistance/roof
+	name= "Persistence Roof"
+	outdoors = TRUE
+	sound_environment = SOUND_AREA_ICEMOON
+	ignore_weather_sfx = FALSE
+
+/area/ruin/space/has_grav/bubbers/persistance/shieldgen
+	name= "Persistence Shield Generator"
+	outdoors = TRUE
+	sound_environment = SOUND_AREA_ICEMOON
+	ignore_weather_sfx = FALSE
+
+/area/ruin/space/has_grav/bubbers/persistance/controltower
+	name= "Persistence Shuttle Controller"
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED

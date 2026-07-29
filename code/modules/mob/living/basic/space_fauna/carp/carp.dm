@@ -22,6 +22,7 @@
 	mob_biotypes = MOB_ORGANIC | MOB_BEAST | MOB_AQUATIC
 	health = 25
 	maxHealth = 25
+	max_stamina = 120
 	pressure_resistance = 200
 	combat_mode = TRUE
 	obj_damage = 50
@@ -60,7 +61,7 @@
 		/datum/pet_command/idle,
 		/datum/pet_command/free,
 		/datum/pet_command/follow,
-		/datum/pet_command/attack
+		/datum/pet_command/attack,
 	)
 	/// Carp want to eat raw meat
 	var/static/list/desired_food = list(/obj/item/food/meat/slab, /obj/item/food/meat/rawcutlet)
@@ -83,6 +84,7 @@
 	))
 
 /datum/emote/carp
+	abstract_type = /datum/emote/carp
 	mob_type_allowed_typecache = /mob/living/basic/carp
 	mob_type_blacklist_typecache = list()
 
@@ -140,6 +142,7 @@
 
 /// Called when another mob has forged a bond of friendship with this one, passed the taming mob as 'tamer'
 /mob/living/basic/carp/tamed(mob/living/tamer, atom/food, feedback = TRUE)
+	. = ..()
 	AddElement(/datum/element/ridable, ridable_data)
 	AddComponent(/datum/component/obeys_commands, tamed_commands)
 	if (!feedback)
@@ -178,13 +181,17 @@
  * Holographic carp from the holodeck
  */
 /mob/living/basic/carp/holographic
-	icon_state = "holocarp"
+	icon_state = "base_friend"
 	icon_living = "holocarp"
 	gold_core_spawnable = NO_SPAWN
 	greyscale_config = NONE
 	basic_mob_flags = DEL_ON_DEATH
 	cell_line = NONE
 	regenerate_colour = "#ffffff"
+
+/mob/living/basic/carp/holographic/Initialize(mapload, mob/tamer)
+	. = ..()
+	AddComponent(/datum/component/holographic_nature)
 
 /// Holocarp don't eat food
 /mob/living/basic/carp/holographic/setup_eating()
@@ -216,10 +223,10 @@
 	faction = list(FACTION_NEUTRAL)
 	maxHealth = 200
 	health = 200
+	icon_state = "magicarp"
 	icon_dead = "magicarp_dead"
 	icon_gib = "magicarp_gib"
 	icon_living = "magicarp"
-	icon_state = "magicarp"
 	greyscale_config = NONE
 
 /// Boosted chance for Cayenne to be silver
@@ -245,6 +252,8 @@
 	var/datum/callback/got_disk = CALLBACK(src, PROC_REF(got_disk))
 	var/datum/callback/display_disk = CALLBACK(src, PROC_REF(display_disk))
 	AddComponent(/datum/component/nuclear_bomb_operator, got_disk, display_disk)
+	var/obj/item/implant/implanter = SSwardrobe.provide_type(/obj/item/implant/tacmap/nuclear/cayenne, src)
+	implanter.implant(src, null, TRUE)
 
 /mob/living/basic/carp/pet/cayenne/apply_colour()
 	if (prob(RARE_CAYENNE_CHANCE))
@@ -290,7 +299,6 @@
 /mob/living/basic/carp/passive
 	name = "false carp"
 	desc = "A close relative of the space carp which is entirely toothless and feeds by stealing its cousin's leftovers."
-
 	icon_state = "base_friend"
 	icon_living = "base_friend"
 	icon_dead = "base_friend_dead"
@@ -314,4 +322,4 @@
 /// If someone slaps one of the school, scatter
 /mob/living/basic/carp/passive/proc/on_attacked(mob/living/attacker)
 	for(var/mob/living/basic/carp/passive/schoolmate in oview(src, 9))
-		schoolmate.ai_controller?.insert_blackboard_key_lazylist(BB_BASIC_MOB_RETALIATE_LIST, attacker)
+		schoolmate.ai_controller?.set_blackboard_key_assoc_lazylist(BB_BASIC_MOB_RETALIATE_LIST, attacker, world.time)

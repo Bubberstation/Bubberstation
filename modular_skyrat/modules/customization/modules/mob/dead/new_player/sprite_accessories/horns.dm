@@ -1,34 +1,17 @@
 /datum/sprite_accessory/horns
 	key = "horns"
-	generic = "Horns"
 	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER, BODY_ADJ_LAYER)
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/horns.dmi'
 	default_color = "#555555"
-	genetic = TRUE
 	organ_type = /obj/item/organ/horns
 
 /datum/sprite_accessory/horns/is_hidden(mob/living/carbon/human/wearer)
-	if(!wearer.head && !wearer.wear_mask)
-		return FALSE
-
-	// Can hide if wearing hat
-	if(key in wearer.try_hide_mutant_parts)
-		return TRUE
-
-	// Exception for MODs
-	if(istype(wearer.head, /obj/item/clothing/head/mod))
-		return FALSE
-
-	// Hide accessory if flagged to do so
-	if((wearer.head?.flags_inv & HIDEHAIR || wearer.wear_mask?.flags_inv & HIDEHAIR) \
-		&& !(wearer.wear_mask && wearer.wear_mask.flags_inv & SHOWSPRITEEARS))
-		return TRUE
-
-	return FALSE
+	return is_deely_bobber_hidden(wearer, HIDEHAIR, SHOWSPRITEEARS)
 
 /datum/sprite_accessory/horns/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
+	factual = FALSE
 
 /datum/sprite_accessory/horns/angler
 	default_color = DEFAULT_SECONDARY
@@ -38,7 +21,7 @@
 	icon_state = "ram"
 
 /datum/sprite_accessory/horns/guilmon
-	name = "Guilmon"
+	name = "Toraxen"
 	icon_state = "guilmon"
 
 /datum/sprite_accessory/horns/drake

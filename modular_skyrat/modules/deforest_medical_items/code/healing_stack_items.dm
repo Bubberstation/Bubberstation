@@ -3,7 +3,7 @@
 
 /obj/item/stack/medical/wound_recovery
 	name = "subdermal splint applicator"
-	desc = "A roll flexible material dotted with millions of micro-scale injectors on one side. \
+	desc = "A roll of flexible material dotted with millions of micro-scale injectors on one side. \
 		On application to a body part with a damaged bone structure, nanomachines stored within those \
 		injectors will surround the wound and form a subdermal, self healing splint. While convenient \
 		for keeping appearances and rapid healing, the nanomachines tend to leave their host particularly \
@@ -32,33 +32,48 @@
 	/// The sound we play upon successfully treating the wound
 	var/treatment_sound = 'sound/items/duct_tape/duct_tape_rip.ogg'
 
+// Ported from Nova: \/
+////// Searches for a wound that this item is capable of treating
+/obj/item/stack/medical/wound_recovery/proc/find_suitable_wound(obj/item/bodypart/limb)
+	for(var/datum/wound/wound as anything in limb.wounds)
+		if((wound.wound_flags & ACCEPTS_GAUZE) && is_type_in_list(wound, applicable_wounds))
+			return wound
+
+/obj/item/stack/medical/add_item_context(obj/item/source, list/context, atom/target, mob/living/user)
+	if(!iscarbon(target))
+		return NONE
+	context[SCREENTIP_CONTEXT_LMB] = "Heal"
+	return CONTEXTUAL_SCREENTIP_SET
+
+/obj/item/stack/medical/wound_recovery/try_heal_checks(mob/living/patient, mob/living/user, healed_zone, silent = FALSE)
+	var/obj/item/bodypart/limb = patient.get_bodypart(healed_zone)
+	if(isnull(limb))
+		if(!silent)
+			patient.balloon_alert(user, "no [parse_zone(healed_zone)]!")
+		return FALSE
+	if(!LAZYLEN(limb.wounds))
+		if(!silent)
+			patient.balloon_alert(user, "no wounds!") // good problem to have imo
+		return FALSE
+	if(patient.has_status_effect(/datum/status_effect/vulnerable_to_damage))
+		if(!silent)
+			patient.balloon_alert(user, "still recovering from last use!")
+		return FALSE
+	if(!find_suitable_wound(limb))
+		if(!silent)
+			patient.balloon_alert(user, "can't heal those!")
+		return FALSE
+	return TRUE
+
 // This is only relevant for the types of wounds defined, we can't work if there are none
 /obj/item/stack/medical/wound_recovery/try_heal(mob/living/patient, mob/user, silent = FALSE, looping = FALSE, auto_change_zone = TRUE, continuous = FALSE)
-
-	if(patient.has_status_effect(/datum/status_effect/vulnerable_to_damage))
-		patient.balloon_alert(user, "still recovering from last use!")
-		return
 
 	var/treatment_delay = (user == patient ? self_delay : other_delay)
 
 	var/obj/item/bodypart/limb = patient.get_bodypart(check_zone(user.zone_selected))
-	if(!limb)
-		patient.balloon_alert(user, "missing limb!")
-		return
-	if(!LAZYLEN(limb.wounds))
-		patient.balloon_alert(user, "no wounds!")
-		return
 
-	var/splintable_wound = FALSE
-	var/datum/wound/woundies
-	for(var/found_wound in limb.wounds)
-		woundies = found_wound
-		if((woundies.wound_flags & ACCEPTS_GAUZE) && is_type_in_list(woundies, applicable_wounds))
-			splintable_wound = TRUE
-			break
-	if(!splintable_wound)
-		patient.balloon_alert(user, "can't heal those!")
-		return
+	var/datum/wound/woundies = find_suitable_wound(limb)
+// Ported from Nova: ^
 
 	if(HAS_TRAIT(woundies, TRAIT_WOUND_SCANNED))
 		treatment_delay *= 0.5
@@ -80,7 +95,7 @@
 		to_chat(patient, span_userdanger("Your [limb.plaintext_zone] burns like hell as the wounds on it are rapidly healed, fuck!"))
 		patient.add_mood_event("severe_surgery", /datum/mood_event/rapid_wound_healing)
 	limb.receive_damage(brute = INSTANT_WOUND_HEAL_LIMB_DAMAGE, wound_bonus = CANT_WOUND)
-	patient.adjustStaminaLoss(INSTANT_WOUND_HEAL_STAMINA_DAMAGE)
+	patient.adjust_stamina_loss(INSTANT_WOUND_HEAL_STAMINA_DAMAGE)
 	patient.apply_status_effect(/datum/status_effect/vulnerable_to_damage)
 	use(1)
 
@@ -130,16 +145,18 @@
 	heal_brute = 5
 	flesh_regeneration = 5
 	sanitization = 3
-	grind_results = list(/datum/reagent/medicine/oxandrolone = 3)
 	merge_type = /obj/item/stack/medical/ointment/red_sun
 	custom_price = PAYCHECK_LOWER * 1.5
+
+/obj/item/stack/medical/ointment/red_sun/grind_results()
+	return list(/datum/reagent/medicine/oxandrolone = 3)
 
 /obj/item/stack/medical/ointment/red_sun/post_heal_effects(amount_healed, mob/living/carbon/healed_mob, mob/user)
 	. = ..()
 	healed_mob.reagents.add_reagent(/datum/reagent/medicine/lidocaine, 2)
 
 // Gauze that are especially good at treating burns, but are terrible splints
-/obj/item/stack/medical/gauze/sterilized
+/obj/item/stack/medical/wrap/gauze/sterilized
 	name = "sealed aseptic gauze"
 	singular_name = "sealed aseptic gauze"
 	desc = "A small roll of elastic material specially treated to be entirely sterile, and sealed in plastic just to be sure. \
@@ -153,10 +170,10 @@
 	amount = 6
 	splint_factor = 1.2
 	burn_cleanliness_bonus = 0.1
-	merge_type = /obj/item/stack/medical/gauze/sterilized
+	merge_type = /obj/item/stack/medical/wrap/gauze/sterilized
 	custom_price = PAYCHECK_LOWER * 1.5
 
-/obj/item/stack/medical/gauze/sterilized/post_heal_effects(amount_healed, mob/living/carbon/healed_mob, mob/user)
+/obj/item/stack/medical/wrap/gauze/sterilized/post_heal_effects(amount_healed, mob/living/carbon/healed_mob, mob/user)
 	. = ..()
 	healed_mob.reagents.add_reagent(/datum/reagent/space_cleaner/sterilizine, 5)
 	healed_mob.reagents.expose(healed_mob, TOUCH, 1)
