@@ -63,6 +63,12 @@
 	special_desc = "It's a small, pocket-sized energy-wave emitter typically issued to MI13 field agents, or so they claim. A barely noticeable label states: \
 		\"Specifically targets the selected organ, causing rapid decay and internal damage. \
 		Side effects of exposure include dizziness, slurred speech, stuttered speech, minor toxic buildup, and the aforementioned organ damage.\""
+	icon = 'modular_zubbers/icons/obj/weapons/guns/energy.dmi'
+	icon_state = "raygun"
+	ammo_x_offset = 1
+	charge_sections = 4
+	modifystate = TRUE
+
 	weapon_weight = WEAPON_MEDIUM
 	slot_flags = ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_NORMAL

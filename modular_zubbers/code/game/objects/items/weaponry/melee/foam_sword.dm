@@ -6,7 +6,7 @@
 	inhand_icon_state = "foam_baton"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/weapons/melee_righthand.dmi'
-	force = 20
+	force = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	damtype = STAMINA
 
@@ -15,4 +15,4 @@
 	desc = "What are you standing around staring at this for? Get to whacking!"
 	icon_state = "foam_sword"
 	inhand_icon_state = "foam_sword"
-	force = 5
+	force = 20

@@ -91,8 +91,8 @@
 	if(organ_selected == 5)
 		target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 3)
 	if(organ_selected == 6)
-		target.adjust_organ_loss(ORGAN_SLOT_EYES, 1.2)
-		target.adjust_organ_loss(ORGAN_SLOT_EARS, 0.6)
+		target.adjust_organ_loss(ORGAN_SLOT_EYES, 1.5)
+		target.adjust_organ_loss(ORGAN_SLOT_EARS, 2.5)
 	if(organ_selected == 7)
 		target.adjust_organ_loss(ORGAN_SLOT_APPENDIX, 3)
 
