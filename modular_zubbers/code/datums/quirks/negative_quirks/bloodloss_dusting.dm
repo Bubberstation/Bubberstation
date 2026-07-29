@@ -2,7 +2,7 @@
 	name = "Dusting Sickness"
 	desc = "If you run out of blood to the point where a normal person would die, you turn to dust."
 	value = -8
-	species_blacklist = list(SPECIES_PROTEAN, SPECIES_ABDUCTOR_STATION, SPECIES_PLASMAMAN)
+	species_blacklist = list(SPECIES_ABDUCTOR_STATION, SPECIES_PLASMAMAN)
 	gain_text = span_danger("You start to worry even more about running out of blood.")
 	lose_text = span_notice("You feel like running out of blood isn't /quite/ as scary.")
 	medical_record_text = "Patient's body has an extreme reaction to bloodloss to the point of crumbling to dust. Keeping blood levels steady is recommended."
