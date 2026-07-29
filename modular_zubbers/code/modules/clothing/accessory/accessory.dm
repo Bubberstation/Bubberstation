@@ -303,10 +303,11 @@ GLOBAL_LIST_EMPTY_TYPED(all_assigned_protean_match_tags, /obj/item/clothing/acce
 			var/obj/item/clothing/accessory/dogtags/protean_match/matched_wearer_tag = pick(POOL)
 			matched_wearer_tag.handle_match(src) //Makes the match's tag ping
 			handle_match(matched_wearer_tag) //Makes our tag ping
-	else
-		POOL += src
-		match_progress = IN_POOL
-		say("No match found, added to candidate pool! There are [(length(POOL) - 1) ? "[length(POOL) - 1]" : "no" ] other [assignee_protean ? "Proteans" : "Wearers"] in the pool.")
+			return
+	// This should only run if the code block above fails
+	POOL += src
+	match_progress = IN_POOL
+	say("No match found, added to candidate pool! There are [(length(POOL) - 1) ? "[length(POOL) - 1]" : "no" ] other [assignee_protean ? "Proteans" : "Wearers"] in the pool.")
 
 ///Handles the logistics of matching tags. Done by both sets of tags.
 /obj/item/clothing/accessory/dogtags/protean_match/proc/handle_match(obj/item/clothing/accessory/dogtags/protean_match/other_tag)
