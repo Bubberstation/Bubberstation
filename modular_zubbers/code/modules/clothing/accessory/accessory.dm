@@ -274,7 +274,7 @@ GLOBAL_LIST_EMPTY_TYPED(all_assigned_protean_match_tags, /obj/item/clothing/acce
 				break
 		if(isnull(user_id))
 			ineligibility_reason = "no ID found"
-		else if(!station_check || is_station_level(station_check.z))
+		else if(!station_check || !is_station_level(station_check.z))
 			ineligibility_reason = "not on station Z-level"
 		else if(user.has_quirk(/datum/quirk/equipping/entombed))
 			ineligibility_reason = "MOD entombed"
