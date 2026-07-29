@@ -234,6 +234,9 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	signal.send_to_receivers()
 
 /datum/job/security_officer/proc/get_my_department(mob/character, preferred_department)
+	// BUBBER EDIT BEGIN - Replaces distribution systen with just giving out the preferred department.
+	// Original:
+	/*
 	var/department = GLOB.security_officer_distribution[REF(character)]
 
 	// This passes when they are a round start security officer.
@@ -245,6 +248,9 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 		shuffle(GLOB.available_depts),
 		GLOB.security_officer_distribution,
 	)
+	*/
+	return preferred_department
+	// BUBBER EDIT END
 
 /datum/outfit/job/security
 	name = "Security Officer"
