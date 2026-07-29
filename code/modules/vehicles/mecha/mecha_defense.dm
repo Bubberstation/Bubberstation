@@ -126,7 +126,7 @@
 		armour_penetration = hitting_projectile.armour_penetration,
 	), def_zone)
 
-	if((!(mecha_flags & IS_ENCLOSED) || (hitting_projectile.projectile_flags & MECH_HIT_PASSENGER))
+	if((!(mecha_flags & IS_ENCLOSED) || (hitting_projectile.projectile_flags & MECH_HIT_PASSENGER)) \
 		&& LAZYLEN(occupants) \
 		&& !(mecha_flags & SILICON_PILOT) \
 		&& (def_zone == BODY_ZONE_HEAD || def_zone == BODY_ZONE_CHEST))
