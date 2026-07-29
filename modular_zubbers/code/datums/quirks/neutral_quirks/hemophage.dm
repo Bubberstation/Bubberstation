@@ -27,6 +27,8 @@
 	)
 	COOLDOWN_DECLARE(sun_burn)
 
+	var/datum/blood_type/old_blood_type = null
+
 /datum/quirk/hemophage/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	quirk_holder.add_traits(list(
@@ -36,6 +38,7 @@
 		TRAIT_VIRUSIMMUNE,
 	), QUIRK_TRAIT)
 
+	old_blood_type = human_holder.dna.blood_type.get_type()
 	human_holder.dna.blood_type = get_blood_type(BLOOD_TYPE_UNIVERSAL)
 
 	if(client_source?.prefs.read_preference(/datum/preference/toggle/masquerade))
@@ -51,9 +54,7 @@
 /datum/quirk/hemophage/post_add()
 	if(quirk_holder.client?.prefs.read_preference(/datum/preference/toggle/pseudo_respiration))
 		var/mob/living/carbon/human/breather = quirk_holder
-		if(!istype(breather))
-			return
-		REMOVE_TRAIT(breather, TRAIT_NOBREATH, QUIRK_TRAIT)
+		REMOVE_TRAIT(quirk_holder, TRAIT_NOBREATH, QUIRK_TRAIT)
 		var/obj/item/organ/lungs/new_lungs = new breather.dna.species.mutantlungs()
 		new_lungs.Insert(breather, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
@@ -92,10 +93,7 @@
 		TRAIT_MASQUERADE_FOOD,
 	), QUIRK_TRAIT)
 
-	if(human_holder.dna.species.exotic_bloodtype)
-		human_holder.dna.blood_type = get_blood_type(human_holder.dna.species.exotic_bloodtype)
-	else
-		human_holder.dna.blood_type = random_human_blood_type()
+	human_holder.dna.blood_type = get_blood_type(old_blood_type)
 
 	var/obj/item/organ/heart/new_heart = new human_holder.dna.species.mutantheart()
 	new_heart.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
@@ -189,12 +187,6 @@
 /datum/preference/toggle/masquerade/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
 
-/datum/preference/toggle/masquerade/is_accessible(datum/preferences/preferences)
-	if (!..(preferences))
-		return FALSE
-
-	return "Hemophagia" in preferences.all_quirks
-
 /datum/preference/toggle/sol_weakness
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_key = "sol_weakness_toggle"
@@ -205,12 +197,6 @@
 /datum/preference/toggle/sol_weakness/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
 
-/datum/preference/toggle/sol_weakness/is_accessible(datum/preferences/preferences)
-	if (!..(preferences))
-		return FALSE
-
-	return "Hemophagia" in preferences.all_quirks
-
 /datum/preference/toggle/pseudo_respiration
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_key = "pseudo_respiration_toggle"
@@ -220,11 +206,5 @@
 
 /datum/preference/toggle/pseudo_respiration/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
-
-/datum/preference/toggle/pseudo_respiration/is_accessible(datum/preferences/preferences)
-	if (!..(preferences))
-		return FALSE
-
-	return "Hemophagia" in preferences.all_quirks
 
 #undef COFFIN_HEALING_COST
