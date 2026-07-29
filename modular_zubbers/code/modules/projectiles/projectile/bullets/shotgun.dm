@@ -21,7 +21,7 @@
 	max_pierces = 4
 	phasing_ignore_direct_target = TRUE
 	dismemberment = 0 //goes through clean.
-	bare_wound_bonus = 0
+	exposed_wound_bonus = 0
 
 /obj/projectile/bullet/pellet/shotgun_anarchy
 	name = "anarchy pellet"
