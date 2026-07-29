@@ -6,6 +6,8 @@
 	pellets = 3
 	variance = 30
 	projectile_type = /obj/projectile/bullet/shotgun_slug/shotgun_thundershot
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4.5,
+	/datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/ammo_casing/shotgun/uraniumpenetrator
 	name = "depleted uranium slug"
@@ -14,6 +16,8 @@
 	icon = 'modular_zubbers/icons/obj/ammo.dmi'
 	icon_state = "dushell"
 	projectile_type = /obj/projectile/bullet/shotgun_slug/shotgun_uraniumslug
+	custom_materials = list(/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 3,
+	/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.4)
 
 /obj/item/ammo_casing/shotgun/cryoshot
 	name = "cryoshot shell"
@@ -34,6 +38,9 @@
 	projectile_type = /obj/projectile/bullet/shotgun/slug/rip
 	pellets = 2
 	variance = 3 // the tight spread
+	custom_materials = list(/datum/material/alloy/plastitanium = SHEET_MATERIAL_AMOUNT * 5,
+	/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4.1,
+	/datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.2)
 
 /obj/item/ammo_casing/shotgun/anarchy
 	name = "anarchy shell"
@@ -43,3 +50,6 @@
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_anarchy
 	pellets = 10 // AWOOGA!!
 	variance = 50
+	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5,
+	/datum/material/silver = SHEET_MATERIAL_AMOUNT * 5,
+	/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4)
