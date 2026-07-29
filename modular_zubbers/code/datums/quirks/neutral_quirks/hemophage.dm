@@ -27,11 +27,6 @@
 	)
 	COOLDOWN_DECLARE(sun_burn)
 
-	var/old_heart = null
-	var/old_liver = null
-	var/old_stomach = null
-	var/old_tongue = null
-
 /datum/quirk/hemophage/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	quirk_holder.add_traits(list(
@@ -59,9 +54,8 @@
 		if(!istype(breather))
 			return
 		REMOVE_TRAIT(breather, TRAIT_NOBREATH, QUIRK_TRAIT)
-		var/obj/item/organ/lungs/lungs_added = new()
-		lungs_added.Insert(breather, special = TRUE, movement_flags = DELETE_IF_REPLACED)
-		breather.dna.species.mutantlungs = lungs_added.type
+		var/obj/item/organ/lungs/new_lungs = new breather.dna.species.mutantlungs()
+		new_lungs.Insert(breather, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
 /datum/quirk/hemophage/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
@@ -74,16 +68,6 @@
 	var/list/possible_organ_slots = organ_slots.Copy()
 	if(!length(organ_slots)) //what the hell
 		return
-
-	var/obj/item/organ/heart/current_heart = human_holder.get_organ_slot(ORGAN_SLOT_HEART)
-	var/obj/item/organ/liver/current_liver = human_holder.get_organ_slot(ORGAN_SLOT_LIVER)
-	var/obj/item/organ/stomach/current_stomach = human_holder.get_organ_slot(ORGAN_SLOT_STOMACH)
-	var/obj/item/organ/tongue/current_tongue = human_holder.get_organ_slot(ORGAN_SLOT_TONGUE)
-
-	old_heart = current_heart?.type
-	old_liver = current_liver?.type
-	old_stomach = current_stomach?.type
-	old_tongue = current_tongue?.type
 
 	for(var/organ_slot in possible_organ_slots)
 		var/organ_path = possible_organ_slots[organ_slot]
@@ -113,29 +97,17 @@
 	else
 		human_holder.dna.blood_type = random_human_blood_type()
 
-	// This is going to be super messy and I'm 100% sure there's a better way to do this.
-	var/mob/living/carbon/carbon_holder = quirk_holder
+	var/obj/item/organ/heart/new_heart = new human_holder.dna.species.mutantheart()
+	new_heart.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
-	if(!istype(carbon_holder) || isnull(old_heart))
-		return
-	var/obj/item/organ/heart/new_heart = new old_heart
+	var/obj/item/organ/liver/new_liver = new human_holder.dna.species.mutantliver()
+	new_liver.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
-	if(isnull(old_liver))
-		return
-	var/obj/item/organ/liver/new_liver = new old_liver
+	var/obj/item/organ/stomach/new_stomach = new human_holder.dna.species.mutantstomach()
+	new_stomach.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
-	if(isnull(old_stomach))
-		return
-	var/obj/item/organ/stomach/new_stomach = new old_stomach
-
-	if(isnull(old_tongue))
-		return
-	var/obj/item/organ/tongue/new_tongue = new old_tongue
-
-	new_heart.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
-	new_liver.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
-	new_stomach.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
-	new_tongue.Insert(carbon_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
+	var/obj/item/organ/tongue/new_tongue = new human_holder.dna.species.mutanttongue()
+	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
 /datum/quirk/hemophage/proc/on_blood_healing(mob/owner, seconds_between_ticks, datum/status_effect/blood_regen_active/effect)
 	if(effect && in_coffin())
