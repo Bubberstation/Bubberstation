@@ -120,15 +120,15 @@
 		return
 	var/obj/item/organ/heart/new_heart = new old_heart
 
-	if(!istype(carbon_holder) || isnull(old_liver))
+	if(isnull(old_liver))
 		return
 	var/obj/item/organ/liver/new_liver = new old_liver
 
-	if(!istype(carbon_holder) || isnull(old_stomach))
+	if(isnull(old_stomach))
 		return
 	var/obj/item/organ/stomach/new_stomach = new old_stomach
 
-	if(!istype(carbon_holder) || isnull(old_tongue))
+	if(isnull(old_tongue))
 		return
 	var/obj/item/organ/tongue/new_tongue = new old_tongue
 
