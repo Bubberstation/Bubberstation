@@ -1,7 +1,7 @@
 /datum/quirk/holographic_nature
 	name = "Holographic Nature"
 	desc = "You are a being of hardlight, still physical, but you look marginally cooler"
-	icon = FA_ICON_PEOPLE_ROBBERY
+	icon = FA_ICON_ALIGN_CENTER
 	medical_record_text = "Patient seems to be barely corporeal"
 	gain_text = span_notice("You can see the floor through your body")
 	lose_text = span_notice("When did you get a body?")
