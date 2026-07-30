@@ -13,6 +13,7 @@
 	ranked_winner_threshold = 50
 	display_statistics = FALSE
 	vote_reminder = TRUE
+	force_open_panel_on_reminder = TRUE
 
 /datum/vote/storyteller/New()
 	. = ..()

@@ -1,4 +1,4 @@
-#define OVERSIZED_SPEED_SLOWDOWN 0.5
+#define OVERSIZED_SPEED_SLOWDOWN 0.25
 #define OVERSIZED_HUNGER_MOD 1.5
 
 // Before making any changes to oversized, please see the module's readme.md file
@@ -21,7 +21,6 @@
 	human_holder.dna.features["body_size"] = 2
 	human_holder.maptext_height = 32 * human_holder.dna.features["body_size"] //Adjust runechat height
 	human_holder.dna.update_body_size()
-	human_holder.mob_size = MOB_SIZE_LARGE
 	human_holder.maxHealth = HUMAN_MAXHEALTH * OVERSIZED_HEALTH_BUFF
 	human_holder.health += ((HUMAN_MAXHEALTH * OVERSIZED_HEALTH_BUFF) - HUMAN_MAXHEALTH)
 
