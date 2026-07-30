@@ -38,7 +38,7 @@
 		return
 
 	ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
-	to_chat(user, span_userdanger("[src] clamps tightly to your face as you feel your soul draining away!"))
+	to_chat(user, span_userdanger("[src] clamps tightly to your face as you feel your soul draining away! Melt it off with acid or fire!")) // BUBBER EDIT ADDITION - "Melt it off with acid or fire!"
 
 /obj/item/clothing/mask/madness_mask/dropped(mob/M)
 	local_user = null

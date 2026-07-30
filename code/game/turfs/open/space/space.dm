@@ -48,6 +48,7 @@ GLOBAL_LIST_EMPTY(starlight)
 	name = "\proper space"
 	overfloor_placed = FALSE
 	underfloor_accessibility = UNDERFLOOR_INTERACTABLE
+	turf_flags = NO_RUST
 	rust_resistance = RUST_RESISTANCE_ABSOLUTE
 
 	temperature = TCMB
@@ -70,6 +71,7 @@ GLOBAL_LIST_EMPTY(starlight)
 	vis_flags = VIS_INHERIT_ID //when this be added to vis_contents of something it be associated with something on clicking, important for visualisation of turf in openspace and interraction with openspace that show you turf.
 
 	force_no_gravity = TRUE
+	skip_minimap_rendering = TRUE
 
 /turf/open/space/basic
 	icon_state = MAP_SWITCH("space", "space_basic_map")
@@ -219,8 +221,8 @@ GLOBAL_LIST_EMPTY(starlight)
 
 /turf/open/space/openspace/Initialize(mapload) // handle plane and layer here so that they don't cover other obs/turfs in Dream Maker
 	. = ..()
-	if(PERFORM_ALL_TESTS(focus_only/openspace_clear) && !GET_TURF_BELOW(src))
-		stack_trace("[src] was inited as openspace with nothing below it at ([x], [y], [z])")
+	if(PERFORM_ALL_TESTS(maptest_log_mapping) && !GET_TURF_BELOW(src))
+		log_mapping("[src] was inited as openspace with nothing below it at ([x], [y], [z])")
 	icon_state = "pure_white"
 	// We make the assumption that the space plane will never be blacklisted, as an optimization
 	if(SSmapping.max_plane_offset)

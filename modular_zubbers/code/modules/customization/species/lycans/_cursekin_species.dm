@@ -26,17 +26,23 @@
 	to_add += list(
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = "robot",
+			SPECIES_PERK_ICON = FA_ICON_ROBOT,
 			SPECIES_PERK_NAME = "Inorganic rejection",
 			SPECIES_PERK_DESC = "The curse afflicting the cursekin prevents their bodies from being augmented with cybernetic organs \
 			or implants."
 		),
 		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = FA_ICON_CLOUD_MOON,
+			SPECIES_PERK_NAME = "Silver weakness",
+			SPECIES_PERK_DESC = "You are burnt by silver, especially the reagent. This is vastly amplified while you are in your Lycan form."
+		),
+		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "moon",
+			SPECIES_PERK_ICON = FA_ICON_MOON,
 			SPECIES_PERK_NAME = "Lycan transformation",
 			SPECIES_PERK_DESC = "Due to the curse, cursekin are capable of transforming into lycans, taking on all of the perks and \
-			drawbacks of that form.",
+			drawbacks of that form. See the Lycan species page for more.",
 		),
 	)
 

@@ -75,6 +75,9 @@
 	icon_state = "bcircuitoff"
 	always_off = TRUE
 
+/turf/open/floor/circuit/no_light
+	always_off = TRUE
+
 /turf/open/floor/circuit/airless
 	initial_gas_mix = AIRLESS_ATMOS
 
@@ -120,6 +123,9 @@
 	icon_state = "rcircuitoff"
 	always_off = TRUE
 
+/turf/open/floor/circuit/red/no_power
+	always_off = TRUE
+
 /turf/open/floor/circuit/red/anim
 	icon_state = "rcircuitanim"
 	floor_tile = /obj/item/stack/tile/circuit/red/anim
@@ -160,7 +166,7 @@
 
 /turf/open/floor/noslip/tram/Initialize(mapload)
 	. = ..()
-	var/current_holiday_color = request_station_colors(src, PATTERN_VERTICAL_STRIPE) || request_holiday_colors(src, PATTERN_VERTICAL_STRIPE)
+	var/current_holiday_color = request_decoration_colors(src, PATTERN_VERTICAL_STRIPE)
 	if(current_holiday_color)
 		color = current_holiday_color
 	else
@@ -347,7 +353,7 @@
 
 /turf/open/floor/material/meat/Initialize(mapload)
 	. = ..()
-	set_custom_materials(list(GET_MATERIAL_REF(/datum/material/meat) = SHEET_MATERIAL_AMOUNT))
+	set_custom_materials(list(SSmaterials.get_material(/datum/material/meat) = SHEET_MATERIAL_AMOUNT))
 
 /turf/open/floor/material/meat/airless
 	initial_gas_mix = AIRLESS_ATMOS

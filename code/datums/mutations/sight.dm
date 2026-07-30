@@ -65,8 +65,8 @@
 	if(!istype(to_modify)) // null or invalid
 		return
 
-	to_modify.eye_damage = 10 * GET_MUTATION_SYNCHRONIZER(src)
-	to_modify.thermal_duration = 10 SECONDS * GET_MUTATION_POWER(src)
+	to_modify.eye_damage = /datum/action/cooldown/spell/thermal_vision::eye_damage * GET_MUTATION_SYNCHRONIZER(src) * GET_MUTATION_POWER(src)
+	to_modify.thermal_duration = /datum/action/cooldown/spell/thermal_vision::thermal_duration * GET_MUTATION_POWER(src)
 
 /datum/action/cooldown/spell/thermal_vision
 	name = "Activate Thermal Vision"
@@ -74,13 +74,13 @@
 	button_icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "augmented_eyesight"
 
-	cooldown_time = 25 SECONDS
+	cooldown_time = 60 SECONDS
 	spell_requirements = NONE
 
 	/// How much eye damage is given on cast
-	var/eye_damage = 10
+	var/eye_damage = 7.5
 	/// The duration of the thermal vision
-	var/thermal_duration = 10 SECONDS
+	var/thermal_duration = 30 SECONDS
 
 /datum/action/cooldown/spell/thermal_vision/Remove(mob/living/remove_from)
 	REMOVE_TRAIT(remove_from, TRAIT_THERMAL_VISION, GENETIC_MUTATION)
@@ -141,11 +141,7 @@
 	text_gain_indication = span_notice("You feel pressure building up behind your eyes.")
 	layer_used = FRONT_MUTATIONS_LAYER
 	limb_req = BODY_ZONE_HEAD
-
-/datum/mutation/laser_eyes/New(datum/mutation/copymut)
-	..()
-	if(!(type in visual_indicators))
-		visual_indicators[type] = list(mutable_appearance('icons/mob/effects/genetics.dmi', "lasereyes", -FRONT_MUTATIONS_LAYER))
+	mutation_icon_state = "lasereyes"
 
 /datum/mutation/laser_eyes/on_acquiring(mob/living/carbon/human/H)
 	. = ..()
@@ -158,9 +154,6 @@
 	if(.)
 		return
 	UnregisterSignal(H, COMSIG_MOB_ATTACK_RANGED)
-
-/datum/mutation/laser_eyes/get_visual_indicator()
-	return visual_indicators[type][1]
 
 ///Triggers on COMSIG_MOB_ATTACK_RANGED. Does the projectile shooting.
 /datum/mutation/laser_eyes/proc/on_ranged_attack(mob/living/carbon/human/source, atom/target, modifiers)
@@ -202,4 +195,3 @@
 	if(..())
 		return
 	REMOVE_TRAIT(owner, TRAIT_ILLITERATE, GENETIC_MUTATION)
-

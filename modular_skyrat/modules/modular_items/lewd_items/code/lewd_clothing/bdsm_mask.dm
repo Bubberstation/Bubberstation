@@ -187,6 +187,8 @@
 
 // Trigger thing for manual breath
 /datum/action/item_action/toggle_breathcontrol/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/obj/item/clothing/mask/gas/bdsm_mask/mask = target
 	if(istype(mask))
 		mask.check(owner)
@@ -196,6 +198,8 @@
 	desc = "Toggles whether or not the wearer is able to speak."
 
 /datum/action/item_action/toggle_gag/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/obj/item/clothing/mask/gas/bdsm_mask/mask = target
 	if(istype(mask))
 		mask.check_gag(owner)

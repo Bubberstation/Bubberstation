@@ -46,7 +46,7 @@
 	///What's the projectile sound?
 	var/projectile_sound = 'sound/items/weapons/emitter.ogg'
 	///Sparks emitted with every shot
-	var/datum/effect_system/spark_spread/sparks
+	var/datum/effect_system/basic/spark_spread/sparks
 	///Stores the type of gun we are using inside the emitter
 	var/obj/item/gun/energy/gun
 	///List of all the properties of the inserted gun
@@ -74,11 +74,11 @@
 			set_anchored(TRUE)
 		connect_to_network()
 
-	sparks = new
+	sparks = new(src, 5, TRUE)
 	sparks.attach(src)
-	sparks.set_up(5, TRUE, src)
-	AddComponent(/datum/component/simple_rotation)
+	AddElement(/datum/element/simple_rotation)
 	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
+	AddComponent(/datum/component/usb_port, typecacheof(list(/obj/item/circuit_component/emitter), only_root_path = TRUE))
 
 /obj/machinery/power/emitter/welded/Initialize(mapload)
 	welded = TRUE
@@ -158,6 +158,7 @@
 	var/mutable_appearance/overlay = mutable_appearance(icon, "emitter_overlay")
 	overlay.color = laser_color
 	. += overlay
+	. += emissive_appearance(icon, "emitter_overlay", src, alpha = src.alpha)
 
 /obj/machinery/power/emitter/update_icon_state()
 	if(panel_open)
@@ -190,6 +191,7 @@
 	log_game("[src] turned [active ? "ON" : "OFF"] by [key_name(user)] in [AREACOORD(src)]")
 	investigate_log("turned [active ? "ON" : "OFF"] by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_ENGINE)
 	update_appearance()
+	SEND_SIGNAL(src, COMSIG_EMITTER_MACHINE_SET_ON, active ? TRUE : FALSE)
 
 /obj/machinery/power/emitter/attack_animal(mob/living/simple_animal/user, list/modifiers)
 	if(ismegafauna(user) && anchored)
@@ -268,6 +270,7 @@
 		else
 			fire_delay = rand(minimum_fire_delay,maximum_fire_delay) * fire_rate_mod
 			shot_number = 0
+	SEND_SIGNAL(src, COMSIG_EMITTER_MACHINE_ON_FIRE)
 	return projectile
 
 /obj/machinery/power/emitter/can_be_unfasten_wrench(mob/user, silent)
@@ -329,14 +332,10 @@
 		return remove_gun(user)
 	if(panel_open && diskie)
 		return remove_disk(user)
-	default_deconstruction_crowbar(item)
-	return TRUE
+	return default_deconstruction_crowbar(user, item)
 
 /obj/machinery/power/emitter/screwdriver_act(mob/living/user, obj/item/item)
-	if(..())
-		return TRUE
-	default_deconstruction_screwdriver(user, "[base_icon_state]_open", base_icon_state, item)
-	return TRUE
+	return default_deconstruction_screwdriver(user, item)
 
 /// Attempt to toggle the controls lock of the emitter
 /obj/machinery/power/emitter/proc/togglelock(mob/user)
@@ -630,7 +629,7 @@
 /obj/item/emitter_disk
 	name = "\improper Diode Disk: Debugger"
 	desc = "This disk can be used on an emitter with an open panel to reset its projectile. Unless this was handed to you by an admin, you should report this on github."
-	icon = 'icons/obj/devices/circuitry_n_data.dmi'
+	icon = 'icons/obj/devices/floppy_disks.dmi'
 	icon_state = "datadisk6"
 	var/laser_color = COLOR_VIBRANT_LIME
 	var/stored_proj = /obj/projectile/beam/emitter/hitscan

@@ -7,6 +7,7 @@
 				/obj/item/clothing/neck/human_petcollar/locked/ringbell = 8,
 				/obj/item/clothing/neck/inferno_collar = 8,
 				/obj/item/clothing/neck/flower_collar = 8,
+				/obj/item/clothing/mask/bridle = 8,
 			)
 		),
 
@@ -43,5 +44,7 @@
 		/obj/item/clothing/head/mikuhair = 3,
 		/obj/item/clothing/gloves/mikugloves = 3,
 		/obj/item/clothing/shoes/sneakers/mikuleggings = 3,
-		/obj/item/skillchip/mkiiultra = 2,
+		/obj/item/toy/plush/aeri = 1,
+		/obj/item/toy/plush/noble = 1,
+		/obj/item/toy/plush/protective_protogen = 1,
 	)

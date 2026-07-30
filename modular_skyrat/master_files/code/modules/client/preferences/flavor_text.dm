@@ -1,5 +1,5 @@
 /datum/preference/text/flavor_text
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "flavor_text"
 	maximum_value_length = MAX_FLAVOR_LEN
@@ -8,7 +8,7 @@
 	target.dna.features["flavor_text"] = value
 
 /datum/preference/text/silicon_flavor_text
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_SILICON_PREFS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "silicon_flavor_text"
 	maximum_value_length = MAX_FLAVOR_LEN
@@ -18,7 +18,7 @@
 	return FALSE // To prevent the not-implemented runtime
 
 /datum/preference/text/ooc_notes
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	category = PREFERENCE_CATEGORY_OOC_PREFS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ooc_notes"
 	maximum_value_length = MAX_FLAVOR_LEN
@@ -114,4 +114,25 @@
 	return "EDUCATION \n\ \n\ EMPLOYMENT HISTORY \n\ Employed since: \n\ CRIMINAL HISTORY \n\ \n\ Loyalty Rating: \n\ Pressure Points: points used to control crewmember \n\ \n\ CASEWORKER NOTES:"
 
 /datum/preference/text/security/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/text/exploitable
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "exploitable_info"
+	maximum_value_length = MAX_FLAVOR_LEN
+
+/datum/preference/text/exploitable/create_default_value()
+	return EXPLOITABLE_DEFAULT_TEXT
+
+/datum/preference/text/exploitable/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return FALSE
+
+/datum/preference/text/background
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "background_info"
+	maximum_value_length = MAX_FLAVOR_LEN
+
+/datum/preference/text/background/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE

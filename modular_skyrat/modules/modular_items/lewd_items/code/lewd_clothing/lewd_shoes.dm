@@ -1,5 +1,6 @@
 //heels item
 /obj/item/clothing/shoes/latex_heels
+	parent_type = /obj/item/clothing/shoes/jackboots //Inherits from the Jackboots
 	name = "latex heels"
 	desc = "Lace up before use. It's pretty difficult to walk in these."
 	icon_state = "latexheels"

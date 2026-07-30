@@ -39,6 +39,12 @@
 	desc = "A modsuit module which provides long range suit sensor broadcasting. Useful in a modsuit as it will cover kheiral cuffs!"
 	cost_per_order = 450
 
+/datum/orderable_item/mining/offstation_deathrattle
+	purchase_path = /obj/item/storage/box/offstation_deathrattle
+	name = "Off-Station Deathrattle Kit"
+	desc = "Going on an adventure far from the comforts of your station? Unsure you'll make it back in one piece? Kahraman Industries and Nanotrasen present the Off-Station Deathrattle implant! This little chip connected to your vitals will send an automatic distress signal in case of your early demise. It will only work outside of Station areas. Warranty is void if death results from falling into pits or diving into lava or plasma lakes."
+	cost_per_order = 675
+
 
 /// PODS
 /obj/item/survivalcapsule/plap
@@ -70,14 +76,6 @@
 	name = "chemical refinement pod"
 	desc = "A bluespace capsule that deploys a functional chemistry refining area, useful for harvesting those helpful geysers."
 	template_id = "shelter_echo"
-
-/datum/armament_entry/company_import/deforest/equipment/medpod
-	item_type = /obj/item/survivalcapsule/medical
-	cost = PAYCHECK_COMMAND * 40
-
-/datum/armament_entry/company_import/deforest/equipment/chempod
-	item_type = /obj/item/survivalcapsule/chemistry
-	cost = PAYCHECK_COMMAND * 20
 
 /datum/supply_pack/medical/medpod
 	name = "Medical Trauma Pod"
@@ -261,38 +259,6 @@
 	. = ..()
 	blacklisted_turfs -= typesof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile)
-
-/datum/armament_entry/company_import/nri_surplus/misc/botanypod
-	item_type = /obj/item/survivalcapsule/botany
-	cost = PAYCHECK_COMMAND * 4
-
-/datum/armament_entry/company_import/nri_surplus/misc/botanytrayspod
-	item_type = /obj/item/survivalcapsule/trays
-	cost = PAYCHECK_COMMAND * 2
-
-/datum/armament_entry/company_import/nri_surplus/misc/kitchenpod
-	item_type = /obj/item/survivalcapsule/kitchen
-	cost = PAYCHECK_COMMAND * 4
-
-/datum/armament_entry/company_import/nri_surplus/misc/o2pod
-	item_type = /obj/item/survivalcapsule/o2
-	cost = PAYCHECK_COMMAND * 4
-
-/datum/armament_entry/company_import/nri_surplus/misc/fanpod
-	item_type = /obj/item/survivalcapsule/fan
-	cost = PAYCHECK_COMMAND * 1
-
-/datum/armament_entry/company_import/nri_surplus/misc/threebythree
-	item_type = /obj/item/survivalcapsule/threebythree
-	cost = PAYCHECK_COMMAND * 1
-
-/datum/armament_entry/company_import/nri_surplus/misc/sixbysix
-	item_type = /obj/item/survivalcapsule/sixbysix
-	cost = PAYCHECK_COMMAND * 2
-
-/datum/armament_entry/company_import/nri_surplus/misc/cabin
-	item_type = /obj/item/survivalcapsule/cabin
-	cost = PAYCHECK_COMMAND * 2
 
 
 /************************* MED-SCI Pods***************************/

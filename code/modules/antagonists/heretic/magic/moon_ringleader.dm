@@ -21,7 +21,7 @@
 
 /datum/action/cooldown/spell/aoe/moon_ringleader/cast(mob/living/caster)
 	new moon_effect(get_turf(caster))
-	caster.faction |= "ringleader([REF(caster)])"
+	caster.add_ally("ringleader([REF(caster)])")
 	return ..()
 
 /datum/action/cooldown/spell/aoe/moon_ringleader/get_things_to_cast_on(atom/center, radius_override)
@@ -46,7 +46,6 @@
 	shove_clone.full_setup(
 		caster,
 		target_mob = victim,
-		faction = caster.faction,
 		life = 30 SECONDS,
 		hp = caster.health,
 		damage = 1,
@@ -80,7 +79,7 @@
 		// We channel the amulet before the "spell effects" so that people don't get converted after 1 clone goes off
 		our_passive?.amulet?.channel_amulet(living_owner, mob)
 
-		mob.AdjustStun(1 SECONDS)
+		//mob.AdjustStun(1 SECONDS) // BUBBER EDIT REMOVAL
 		mob.AdjustKnockdown(1 SECONDS)
 		mob.adjust_organ_loss(ORGAN_SLOT_BRAIN, 50, 150)
 		mob.mob_mood?.adjust_sanity(-50)

@@ -1,35 +1,66 @@
-/datum/bounty/item/blacksmith/cage
-	name = "Cortical Borer Cage"
-	description = "One of Nanotrasen's partner stations is undergoing a borer infestation and would like to capture some life specimen for research. Ship some off to CentCom right away."
-	reward = CARGO_CRATE_VALUE * 14
-	required_count = 2
-	wanted_types = list(/obj/item/cortical_cage = TRUE)
+/*
+Todo: Refactor upstream code so that item deletion is decided at the bounty level rather than at the machine running the bounty
+
+/datum/bounty/item/blacksmith
+	//if not null, bounty items require have required_material in its materials list
+	var/datum/material/required_material = null
+	//if not null, bounty items cannot contain this material
+	var/list/blacklisted_materials = null
+	//if true, redeeming a bounty item does not remove it (instead sets it as non-viable for future bounties)
+
+
+/datum/bounty/item/applies_to(obj/shipped)
+	if(shipped.GetComponent(/datum/component/block_redeemed_item_in_bounty))
+		return FALSE
+	else
+		return ..()
+
+/datum/bounty/item/ship(obj/shipped)
+	if(!applies_to(shipped))
+		return FALSE
+	if(istype(shipped,/obj/item/stack))
+		var/obj/item/stack/shipped_is_a_stack = shipped
+		shipped_count += shipped_is_a_stack.amount
+	else
+		shipped_count += 1
+	return TRUE
+
+/datum/component/block_redeemed_item_in_bounty
+
+*/
+
+/datum/bounty/item/blacksmith/rail_track
+	name = "Railroad Tracks"
+	description = "The tram broke down again. Make us some railroad tracks to help us get around."
+	reward = CARGO_CRATE_VALUE * 9.75
+	required_count = 20
+	wanted_types = list(/obj/item/stack/rail_track = TRUE)
 
 /datum/bounty/item/blacksmith/cuffs
 	name = "Handcuffs"
 	description = "One of our wardens lost all the handcuffs again. Help restore order and ship some off for a reward."
-	reward = CARGO_CRATE_VALUE * 8
+	reward = CARGO_CRATE_VALUE * 15
 	required_count = 3
 	wanted_types = list(/obj/item/restraints/handcuffs = TRUE) //This includes reagent cuffs
 
 /datum/bounty/item/blacksmith/staff
 	name = "Staff"
 	description = "A respected religious figure is visiting CentCom, but lost their staff on the way there! Send a replacement as soon as possible."
-	reward = CARGO_CRATE_VALUE * 5
-	wanted_types = list(/obj/item/forging/reagent_weapon/staff = TRUE)
+	reward = CARGO_CRATE_VALUE * 5.25
+	wanted_types = list(/obj/item/melee/forged_reagent_weapon/staff = TRUE)
 
 /datum/bounty/item/blacksmith/swords
 	name = "Swords"
 	description = "Our interns' mosins have broken down, ship some swords so they have something to fight with."
 	required_count = 3
-	reward = CARGO_CRATE_VALUE * 24
-	wanted_types = list(/obj/item/forging/reagent_weapon/sword = TRUE)
+	reward = CARGO_CRATE_VALUE * 17
+	wanted_types = list(/obj/item/melee/forged_reagent_weapon/sword = TRUE)
 
 /datum/bounty/item/blacksmith/armor
 	name = "Armor piece"
 	description = "Our security commander wants a new piece of plate armor to decorate his office. Send them some immeadiately"
 	required_count = 2
-	reward = CARGO_CRATE_VALUE * 20
+	reward = CARGO_CRATE_VALUE * 13
 	wanted_types = list(/obj/item/clothing/shoes/forging_plate_boots = TRUE,
 						/obj/item/clothing/head/helmet/forging_plate_helmet = TRUE,
 						/obj/item/clothing/gloves/forging_plate_gloves = TRUE,
@@ -39,5 +70,5 @@
 /datum/bounty/item/blacksmith/katana
 	name = "Katana"
 	description = "One of our Researchers is going to a Space Anime Convention and wants to show off a real katana! Ship one so he stops pestering us."
-	reward = CARGO_CRATE_VALUE * 6
-	wanted_types = list(/obj/item/forging/reagent_weapon/katana = TRUE)
+	reward = CARGO_CRATE_VALUE * 5.5
+	wanted_types = list(/obj/item/melee/forged_reagent_weapon/katana = TRUE)

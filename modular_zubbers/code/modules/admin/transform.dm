@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(pp_transformables, list(
 			),
 		list(
 			name = "Blood-Drunk Miner",
-			key = /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner
+			key = /mob/living/basic/boss/blood_drunk_miner
 			),
 		list(
 			name = "Gladiator",

@@ -73,17 +73,23 @@
 	var/light_power = 1
 	///Hexadecimal RGB string representing the colour of the light. White by default.
 	var/light_color = COLOR_WHITE
+	///Boolean variable for toggleable lights. Has no effect without the proper light_system, light_range and light_power values.
+	var/light_on = TRUE
+	///Bitflags to determine lighting-related atom properties.
+	var/light_flags = NONE
+
+	// OVERLAY_LIGHT only values
+	/// An optional render_source to apply to this atom's light overlay
+	var/light_render_source = ""
+
+	// COMPLEX_LIGHT only values
 	/// Angle of light to show in light_dir
 	/// 360 is a circle, 90 is a cone, etc.
 	var/light_angle = 360
 	/// What angle to project light in
 	var/light_dir = NORTH
-	///Boolean variable for toggleable lights. Has no effect without the proper light_system, light_range and light_power values.
-	var/light_on = TRUE
 	/// How many tiles "up" this light is. 1 is typical, should only really change this if it's a floor light
 	var/light_height = LIGHTING_HEIGHT
-	///Bitflags to determine lighting-related atom properties.
-	var/light_flags = NONE
 	///Our light source. Don't fuck with this directly unless you have a good reason!
 	var/tmp/datum/light_source/light
 	///Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
@@ -141,6 +147,9 @@
 	/// Generally for niche objects, atoms blacklisted can spawn if enabled by spawner.
 	var/spawn_blacklisted = FALSE
 
+	/// What color this shows up as on the tactical map
+	var/tacmap_color = TACMAP_SOLID
+
 /**
  * Top level of the destroy chain for most atoms
  *
@@ -185,15 +194,6 @@
 
 	if(smoothing_flags & SMOOTH_QUEUED)
 		SSicon_smooth.remove_from_queues(src)
-
-#ifndef DISABLE_DREAMLUAU
-	// These lists cease existing when src does, so we need to clear any lua refs to them that exist.
-	if(!(datum_flags & DF_STATIC_OBJECT))
-		DREAMLUAU_CLEAR_REF_USERDATA(contents)
-		DREAMLUAU_CLEAR_REF_USERDATA(filters)
-		DREAMLUAU_CLEAR_REF_USERDATA(overlays)
-		DREAMLUAU_CLEAR_REF_USERDATA(underlays)
-#endif
 
 	return ..()
 
@@ -345,9 +345,16 @@
  */
 /atom/proc/on_craft_completion(list/components, datum/crafting_recipe/current_recipe, atom/crafter)
 	SHOULD_CALL_PARENT(TRUE)
+
+	if(isliving(crafter))
+		var/mob/living/person = crafter
+		if(person.mind)
+			ADD_TRAIT(src, TRAIT_HANDMADE, REF(person.mind))
+
 	SEND_SIGNAL(src, COMSIG_ATOM_ON_CRAFT, components, current_recipe)
-	var/list/remaining_parts = current_recipe?.parts?.Copy()
-	var/list/parts_by_type = remaining_parts?.Copy()
+
+	var/list/remaining_parts = LAZYLISTDUPLICATE(current_recipe?.parts)
+	var/list/parts_by_type = LAZYLISTDUPLICATE(remaining_parts)
 	for(var/parttype in parts_by_type) //necessary for our is_type_in_list() call with the zebra arg set to true
 		parts_by_type[parttype] = parttype
 	for(var/atom/movable/movable as anything in components) // machinery or structure objects in the list are guaranteed to be used up. We only check items.
@@ -410,6 +417,10 @@
 /atom/proc/is_drainable()
 	return reagents && (reagents.flags & DRAINABLE)
 
+/// Can we dunk stuff into this container?
+/atom/proc/is_dunkable()
+	return reagents && (reagents.flags & DUNKABLE)
+
 /** Handles exposing this atom to a list of reagents.
  *
  * Sends COMSIG_ATOM_EXPOSE_REAGENTS
@@ -435,6 +446,10 @@
 
 ///Is this atom within 1 tile of another atom
 /atom/proc/HasProximity(atom/movable/proximity_check_mob as mob|obj)
+	return
+
+/// has a previously nearby atom moved away
+/atom/proc/OnProximityExit(atom/movable/proximity_check_mob as mob|obj)
 	return
 
 /// Sets the wire datum of an atom
@@ -690,7 +705,7 @@
 
 	SEND_SIGNAL(src, COMSIG_ATOM_CREATEDBY_PROCESSING, original_atom, chosen_option)
 	if(user.mind)
-		ADD_TRAIT(src, TRAIT_FOOD_CHEF_MADE, REF(user.mind))
+		ADD_TRAIT(src, TRAIT_HANDMADE, REF(user.mind))
 
 ///Connect this atom to a shuttle
 /atom/proc/connect_to_shuttle(mapload, obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
@@ -782,7 +797,7 @@
  *
  * Override this if you want an atom to be usable as a supplypod.
  */
-/atom/proc/setOpened()
+/atom/proc/set_opened()
 	return
 
 /**
@@ -790,11 +805,13 @@
  *
  * Override this if you want an atom to be usable as a supplypod.
  */
-/atom/proc/setClosed()
+/atom/proc/set_closed()
 	return
 
 ///Called after the atom is 'tamed' for type-specific operations, Usually called by the tameable component but also other things.
 /atom/proc/tamed(mob/living/tamer, obj/item/food)
+	SHOULD_CALL_PARENT(TRUE)
+	ADD_TRAIT(src, TRAIT_TAMED, INNATE_TRAIT)
 	return
 
 /**
@@ -982,3 +999,7 @@
 	if(pass_info.pass_flags & pass_flags_self)
 		return TRUE
 	. = !density
+
+/// Logic for adding reskin components goes here. Override for atom-specific reskin setups.
+/atom/proc/setup_reskins()
+	return

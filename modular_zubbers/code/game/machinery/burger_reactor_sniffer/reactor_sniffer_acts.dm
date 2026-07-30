@@ -1,9 +1,5 @@
 /obj/machinery/rbmk2_sniffer/screwdriver_act(mob/living/user, obj/item/attack_item)
-
-	if(default_deconstruction_screwdriver(user, icon_state, icon_state, attack_item))
-		return ITEM_INTERACT_SUCCESS
-
-	return ITEM_INTERACT_FAILURE
+	return default_deconstruction_screwdriver(user, attack_item)
 
 /obj/machinery/rbmk2_sniffer/crowbar_act(mob/living/user, obj/item/attack_item)
 

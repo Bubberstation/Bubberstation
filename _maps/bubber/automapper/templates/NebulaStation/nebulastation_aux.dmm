@@ -1,23 +1,15 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "bc" = (
-/obj/machinery/door/airlock/external/glass{
-	name = "Engineering External Access"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
-/turf/open/floor/plating,
-/area/station/commons/dock/aux)
-"bx" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/railing{
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/obj/structure/marker_beacon/yellow,
-/obj/structure/railing,
-/turf/open/space/basic,
-/area/space/nearstation)
+/turf/template_noop,
+/area/template_noop)
+"bx" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/station/engineering/main)
 "by" = (
 /obj/structure/cable,
 /obj/effect/mapping_helpers/broken_floor,
@@ -66,14 +58,7 @@
 	},
 /area/station/maintenance/aft/lesser)
 "hT" = (
-/obj/machinery/door/airlock/external/glass{
-	name = "Engineering External Access"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
-/turf/open/floor/plating,
+/turf/closed/wall/r_wall,
 /area/station/commons/dock/aux)
 "ic" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark,
@@ -178,6 +163,15 @@
 /obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron/dark/textured,
 /area/station/commons/dock/aux)
+"nT" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/iron/dark/small,
+/area/station/engineering/main)
 "nY" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -621,10 +615,8 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/commons/dock/aux)
 "Lo" = (
-/obj/machinery/light/floor,
-/obj/effect/turf_decal/box,
-/turf/open/floor/plating,
-/area/station/commons/dock/aux)
+/turf/closed/wall/r_wall,
+/area/station/engineering/main)
 "Lr" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark/corner{
 	dir = 4
@@ -1036,9 +1028,9 @@ uD
 ic
 na
 Hm
-wX
 hT
-wX
+hT
+hT
 Wp
 Wp
 EO
@@ -1053,9 +1045,9 @@ qW
 As
 yM
 Hm
-wX
-Lo
-wX
+hT
+xq
+xq
 xq
 xq
 xq
@@ -1069,13 +1061,13 @@ Ch
 uD
 Gq
 XZ
-wX
-wX
-bc
-wX
+hT
+hT
 xq
-Yn
-Yn
+xq
+xq
+xq
+xq
 Yn
 "}
 (19,1,1) = {"
@@ -1087,12 +1079,12 @@ kk
 lw
 oL
 qC
-nY
-bx
-nY
 xq
-Yn
-Yn
+xq
+xq
+xq
+xq
+xq
 Yn
 "}
 (20,1,1) = {"
@@ -1104,12 +1096,12 @@ vn
 kx
 QB
 qC
-Yn
-Yn
-Yn
-Yn
-Yn
-Yn
+xq
+xq
+xq
+xq
+xq
+xq
 Yn
 "}
 (21,1,1) = {"
@@ -1121,12 +1113,12 @@ PI
 Pv
 qK
 qC
-Yn
-Yn
-Yn
-Yn
-Yn
-Yn
+xq
+xq
+xq
+xq
+xq
+xq
 Yn
 "}
 (22,1,1) = {"
@@ -1138,12 +1130,12 @@ RA
 ud
 pN
 Yd
-Yn
-bx
-Yn
-Yn
-Yn
-Yn
+xq
+xq
+xq
+xq
+xq
+xq
 Yn
 "}
 (23,1,1) = {"
@@ -1155,8 +1147,25 @@ ho
 Lr
 Dx
 Ah
+bx
+bx
+Lo
+xq
+xq
+xq
+xq
+"}
+(24,1,1) = {"
 Yn
 Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+nT
+bc
 Yn
 Yn
 Yn
@@ -1554,4 +1563,21 @@ Yn
 Yn
 Yn
 Yn
+"}
+(24,1,2) = {"
+xq
+xq
+xq
+xq
+xq
+xq
+xq
+xq
+xq
+xq
+xq
+xq
+xq
+xq
+xq
 "}

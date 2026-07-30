@@ -9,14 +9,14 @@
  *
  */
 /datum/heretic_knowledge
+	/// The abstract parent type of the knowledge, used in determine mutual exclusivity in some cases
+	abstract_type = /datum/heretic_knowledge
 	/// Name of the knowledge, shown to the heretic.
 	var/name = "Basic knowledge"
 	/// Description of the knowledge, shown to the heretic. Describes what it unlocks / does.
 	var/desc = "Basic knowledge of forbidden arts."
 	/// What's shown to the heretic when the knowledge is acquired
 	var/gain_text
-	/// The abstract parent type of the knowledge, used in determine mutual exclusivity in some cases
-	var/datum/heretic_knowledge/abstract_parent_type = /datum/heretic_knowledge
 	/// Assoc list of [typepaths we need] to [amount needed].
 	/// If set, this knowledge allows the heretic to do a ritual on a transmutation rune with the components set.
 	/// If one of the items in the list is a list, it's treated as 'any of these items will work'
@@ -191,7 +191,7 @@
  * A knowledge subtype that grants the heretic a certain spell.
  */
 /datum/heretic_knowledge/spell
-	abstract_parent_type = /datum/heretic_knowledge/spell
+	abstract_type = /datum/heretic_knowledge/spell
 	/// Spell path we add to the heretic. Type-path.
 	var/datum/action/action_to_add
 	/// The spell we actually created.
@@ -220,7 +220,7 @@
  * created at once.
  */
 /datum/heretic_knowledge/limited_amount
-	abstract_parent_type = /datum/heretic_knowledge/limited_amount
+	abstract_type = /datum/heretic_knowledge/limited_amount
 	/// The limit to how many items we can create at once.
 	var/limit = 1
 	/// A list of weakrefs to all items we've created.
@@ -262,7 +262,7 @@
  * and their ascension depends on whichever they chose.
  */
 /datum/heretic_knowledge/limited_amount/starting
-	abstract_parent_type = /datum/heretic_knowledge/limited_amount/starting
+	abstract_type = /datum/heretic_knowledge/limited_amount/starting
 	limit = 2
 	cost = 1
 	priority = MAX_KNOWLEDGE_PRIORITY - 5
@@ -291,15 +291,18 @@
 		our_heretic.heretic_shops[HERETIC_KNOWLEDGE_SHOP],
 		our_heretic.heretic_shops[HERETIC_KNOWLEDGE_DRAFT],
 	)
+	our_heretic.purge_shop_of_duplicates() // BUBBER EDIT ADDITION - purge duplicate entries
 	SEND_SIGNAL(src, COMSIG_HERETIC_SHOP_SETUP)
-
+	if(our_heretic.give_objectives)
+		our_heretic.forge_primary_objectives()
+		our_heretic.owner.announce_objectives()
 
 /datum/heretic_knowledge/limited_amount/starting/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
 	RegisterSignals(user, list(COMSIG_HERETIC_MANSUS_GRASP_ATTACK, COMSIG_LIONHUNTER_ON_HIT), PROC_REF(on_mansus_grasp))
 	RegisterSignal(user, COMSIG_HERETIC_BLADE_ATTACK, PROC_REF(on_eldritch_blade))
-	if(isliving(user))
+	/*if(isliving(user))
 		var/mob/living/living_user = user
-		living_user.apply_status_effect(eldritch_passive)
+		living_user.apply_status_effect(eldritch_passive)*/ // BUBBER EDIT REMOVAL - You have to buy your passives
 
 /datum/heretic_knowledge/limited_amount/starting/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
 	UnregisterSignal(user, list(COMSIG_HERETIC_MANSUS_GRASP_ATTACK, COMSIG_HERETIC_BLADE_ATTACK))
@@ -315,8 +318,8 @@
 /datum/heretic_knowledge/limited_amount/starting/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 	SHOULD_CALL_PARENT(TRUE)
-
-	create_mark(source, target)
+	if (should_create_mark(source, target)) // BUBBER EDIT ADDITION - have to buy the mark
+		create_mark(source, target) // BUBBER EDIT CHANGE - have to buy the mark
 
 /**
  * Signal proc for [COMSIG_HERETIC_BLADE_ATTACK].
@@ -362,7 +365,7 @@
  * A heretic can only learn one /blade_upgrade type knowledge.
  */
 /datum/heretic_knowledge/blade_upgrade
-	abstract_parent_type = /datum/heretic_knowledge/blade_upgrade
+	abstract_type = /datum/heretic_knowledge/blade_upgrade
 	cost = 1
 
 /datum/heretic_knowledge/blade_upgrade/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
@@ -411,7 +414,7 @@
  * A knowledge subtype lets the heretic summon a monster with the ritual.
  */
 /datum/heretic_knowledge/summon
-	abstract_parent_type = /datum/heretic_knowledge/summon
+	abstract_type = /datum/heretic_knowledge/summon
 	/// Typepath of a mob to summon when we finish the recipe.
 	var/mob/living/mob_to_summon
 
@@ -476,7 +479,7 @@
 	name = "Ritual of Knowledge"
 	desc = "A randomly generated transmutation ritual that rewards knowledge points and can only be completed once."
 	gain_text = "Everything can be a key to unlocking the secrets behind the Gates. I must be wary and wise."
-	abstract_parent_type = /datum/heretic_knowledge/knowledge_ritual
+	abstract_type = /datum/heretic_knowledge/knowledge_ritual
 	cost = 1
 	priority = MAX_KNOWLEDGE_PRIORITY - 10 // A pretty important midgame ritual.
 	research_tree_icon_path = 'icons/obj/antags/eldritch.dmi'
@@ -553,7 +556,7 @@
 	to_chat(user, span_boldnotice("[name] completed!"))
 	to_chat(user, span_hypnophrase(span_big("[pick_list(HERETIC_INFLUENCE_FILE, "drain_message")]")))
 	desc += " (Completed!)"
-	log_heretic_knowledge("[key_name(user)] completed a [name] at [gameTimestamp()].")
+	log_heretic_knowledge("[key_name(user)] completed a [name] at [round_timestamp()].")
 	user.add_mob_memory(/datum/memory/heretic_knowledge_ritual)
 	SEND_SIGNAL(our_heretic, COMSIG_HERETIC_PASSIVE_UPGRADE_FINAL)
 	return TRUE
@@ -564,7 +567,7 @@
  * The special final tier of knowledges that unlocks ASCENSION.
  */
 /datum/heretic_knowledge/ultimate
-	abstract_parent_type = /datum/heretic_knowledge/ultimate
+	abstract_type = /datum/heretic_knowledge/ultimate
 	cost = 2
 	priority = MAX_KNOWLEDGE_PRIORITY + 1 // Yes, the final ritual should be ABOVE the max priority.
 	required_atoms = list(/mob/living/carbon/human = 3)
@@ -584,7 +587,7 @@
 		var/list/cost = our_heretic.researched_knowledge[knowledge][HKT_COST]
 		total_points += cost
 
-	log_heretic_knowledge("[key_name(user)] gained knowledge of their final ritual at [gameTimestamp()]. \
+	log_heretic_knowledge("[key_name(user)] gained knowledge of their final ritual at [round_timestamp()]. \
 		They have [length(our_heretic.researched_knowledge)] knowledge nodes researched, totalling [total_points] points \
 		and have sacrificed [our_heretic.total_sacrifices] people ([our_heretic.high_value_sacrifices] of which were high value)")
 
@@ -634,7 +637,7 @@
 		human_user.physiology.burn_mod *= 0.5
 
 	SSblackbox.record_feedback("tally", "heretic_ascended", 1, heretic_datum.heretic_path.route)
-	log_heretic_knowledge("[key_name(user)] completed their final ritual at [gameTimestamp()].")
+	log_heretic_knowledge("[key_name(user)] completed their final ritual at [round_timestamp()].")
 	notify_ghosts(
 		"[user.real_name] has completed an ascension ritual!",
 		source = user,
@@ -653,8 +656,8 @@
 
 	if(!isnull(ascension_achievement))
 		user.client?.give_award(ascension_achievement, user)
-	heretic_datum.rust_strength = 4 // Ascended heretics can rust whatever they want (below RUST_RESISTANCE_ABSOLUTE)
-	ADD_TRAIT(user, TRAIT_DESENSITIZED, type)
+	heretic_datum.rust_strength = RUST_RESISTANCE_ORGANIC // Ascended heretics can rust whatever they want (below RUST_RESISTANCE_ABSOLUTE)
+	user.apply_status_effect(/datum/status_effect/desensitized, type, DESENSITIZED_THRESHOLD * 0.4)
 	return TRUE
 
 /datum/heretic_knowledge/ultimate/cleanup_atoms(list/selected_atoms)

@@ -11,6 +11,8 @@
 	possible_transfer_amounts = list(5, 10, 15, 25, 50)
 	volume = 50
 	fill_icon_thresholds = list(0, 1, 20, 40, 60, 80, 100)
+	can_lid = TRUE
+	assembly_pixel_y = 4
 
 /obj/item/reagent_containers/cup/bottle/Initialize(mapload)
 	. = ..()
@@ -32,6 +34,11 @@
 	name = "cyanide bottle"
 	desc = "A small bottle of cyanide. Bitter almonds?"
 	list_reagents = list(/datum/reagent/toxin/cyanide = 30)
+
+/obj/item/reagent_containers/cup/bottle/anacea
+	name = "anacea bottle"
+	desc = "A small bottle of anacea."
+	list_reagents = list(/datum/reagent/toxin/anacea = 30)
 
 /obj/item/reagent_containers/cup/bottle/spewium
 	name = "spewium bottle"
@@ -215,6 +222,11 @@
 	name = "histamine bottle"
 	desc = "A small bottle. Contains Histamine."
 	list_reagents = list(/datum/reagent/toxin/histamine = 30)
+
+/obj/item/reagent_containers/cup/bottle/carnivorous_blood
+	name = "carnivorous blood bottle"
+	desc = "A small bottle. Contains carnivorous blood."
+	list_reagents = list(/datum/reagent/toxin/carnivorousblood = 30)
 
 /obj/item/reagent_containers/cup/bottle/diphenhydramine
 	name = "antihistamine bottle"
@@ -505,6 +517,7 @@
 	fill_icon_thresholds = list(0, 20, 40, 60, 80, 100)
 	possible_transfer_amounts = list(5, 10)
 	amount_per_transfer_from_this = 5
+	can_lid = FALSE
 
 /obj/item/reagent_containers/cup/bottle/syrup_bottle/Initialize(mapload)
 	. = ..()

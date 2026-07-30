@@ -46,8 +46,7 @@
 
 /obj/effect/spawner/random/armory/smg
 	loot = list(
-		/obj/item/gun/ballistic/automatic/wt550/security
-	)
+		/obj/item/gun/ballistic/automatic/wt550)
 	spawn_loot_count = 2
 
 
@@ -60,7 +59,7 @@
 	spawn_all_loot = TRUE
 /obj/effect/spawner/random/armory/shotgun
 	loot = list(
-		/obj/item/gun/ballistic/shotgun/riot
+		/obj/item/gun/ballistic/shotgun/riot,
 	)
 	spawn_loot_count = 3
 

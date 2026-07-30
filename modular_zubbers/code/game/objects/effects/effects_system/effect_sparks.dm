@@ -1,9 +1,6 @@
 /// A version of sparks for cosmetic purposes that doesn't set things on fire.
-/proc/do_harmless_sparks(number, cardinal_only, datum/source)
-	var/datum/effect_system/spark_spread/quantum/harmless/sparks = new
-	sparks.set_up(number, cardinal_only, source)
-	sparks.autocleanup = TRUE
-	sparks.start()
+/proc/do_harmless_sparks(number, atom/holder = null, cardinal_only, datum/source)
+	do_sparks(5, 1, get_turf(holder))
 
 /obj/effect/particle_effect/sparks/quantum
 	light_color = LIGHT_COLOR_DARK_BLUE
@@ -17,5 +14,5 @@
 /obj/effect/particle_effect/sparks/quantum/harmless/sparks_touched(datum/source, atom/singed)
 	return
 
-/datum/effect_system/spark_spread/quantum/harmless
+/datum/effect_system/basic/spark_spread/quantum/harmless
 	effect_type = /obj/effect/particle_effect/sparks/quantum/harmless

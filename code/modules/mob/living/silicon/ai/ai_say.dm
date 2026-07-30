@@ -30,14 +30,17 @@
 		return FALSE
 	. = ..()
 	if(.)
+		do_tts_message(message, language, message_mods, list(), list())
 		return .
 	if(message_mods[MODE_HEADSET])
 		if(radio)
 			radio.talk_into(src, message, , spans, language, message_mods)
+			do_tts_message(message, language, message_mods, list(), list())
 		return NOPASS
 	else if(message_mods[RADIO_EXTENSION] in GLOB.default_radio_channels)
 		if(radio)
 			radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+			do_tts_message(message, language, message_mods, list(), list())
 			return NOPASS
 	return FALSE
 
@@ -171,7 +174,7 @@
 			// Play voice for all mobs in the z level
 			for(var/mob/player_mob as anything in GLOB.player_list)
 				var/pref_volume = safe_read_pref(player_mob.client, /datum/preference/numeric/volume/sound_ai_vox)
-				if(!player_mob.can_hear() || !pref_volume)
+				if(HAS_TRAIT(player_mob, TRAIT_DEAF) || !pref_volume)
 					continue
 
 				var/turf/player_turf = get_turf(player_mob)

@@ -22,12 +22,6 @@
 	// Snowflake for Ethereals
 	human.updatehealth()
 	human.updateappearance(mutcolor_update = TRUE)
-	// BUBBER EDIT ADDITION BEGIN - Bloopers
-	human.set_blooper(pick(GLOB.blooper_list))
-	human.blooper_pitch = BLOOPER_PITCH_RAND(human.gender)
-	human.blooper_pitch_range = BLOOPER_VARIANCE_RAND
-	human.blooper_speed = rand(BLOOPER_DEFAULT_MINSPEED, BLOOPER_DEFAULT_MAXSPEED)
-	// BUBBER EDIT ADDITION END - Bloopers
 
 /**
  * Randomizes a human, but produces someone who looks exceedingly average (by most standards).
@@ -40,6 +34,7 @@
 	human.physique = human.gender
 	human.real_name = human.generate_random_mob_name()
 	human.name = human.get_visible_name()
+	human.voice = SStts.random_tts_voice(human.gender)
 	human.set_eye_color(random_eye_color())
 	human.skin_tone = pick(GLOB.skin_tones)
 	// No underwear generation handled here

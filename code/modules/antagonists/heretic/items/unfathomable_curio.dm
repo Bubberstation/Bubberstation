@@ -77,5 +77,6 @@
 	user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 10, 160)
 	user.adjust_temp_blindness(5 SECONDS)
 	. += span_notice("It. It looked. IT WRAPS ITSELF AROUND ME.")
+	. += span_notice("Projects a small shield around the Acolyte it is worn by, in addition to being good storage.") // BUBBER EDIT ADDITION
 
 

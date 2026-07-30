@@ -23,7 +23,7 @@
 	priority = PREFERENCE_PRIORITY_BODYPARTS
 	savefile_key = "eye_color"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS // BUBBER EDIT CHANGE - Original: PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	relevant_head_flag = HEAD_EYECOLOR
 
 /datum/preference/color/eye_color/apply_to_human(mob/living/carbon/human/target, value)

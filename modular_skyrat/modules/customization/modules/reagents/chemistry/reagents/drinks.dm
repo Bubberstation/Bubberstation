@@ -75,7 +75,7 @@
 
 /obj/item/reagent_containers/cup/soda_cans/skyrat/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
-	if(. || spillable || !reagents.total_volume) // if it was caught, already opened, or has nothing in it
+	if(. || !reagents.total_volume) // if it was caught, already opened, or has nothing in it
 		return
 
 	fizziness += SODA_FIZZINESS_THROWN

@@ -107,6 +107,9 @@
 	var/list/curse_list = list()
 	for(var/datum/heretic_knowledge/curse/curses as anything in subtypesof(/datum/heretic_knowledge/curse))
 		curse_list[curses.name] = curses
+	// BUBBER EDIT ADDITION BEGIN - blacklist certain ones
+	curse_list -= "Curse of Transmutation" // can just kill ppl with certain species :(
+	// BUBBER EDIT ADDITION END
 	var/selected_curse = tgui_input_list(user, "Cast any curse", "Select a curse!", curse_list, timeout = 0)
 	if(!selected_curse)
 		return NONE

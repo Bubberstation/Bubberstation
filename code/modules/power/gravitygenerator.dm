@@ -335,7 +335,8 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	soundloop.start()
 	var/old_gravity = gravity_in_level()
 	complete_state_update()
-	gravity_field = new(src, 2, TRUE, 6)
+	if (isnull(gravity_field))	// because if it isn't null, we have just overwritten it
+		gravity_field = new(src, 2, TRUE, 6)
 
 	if (!old_gravity)
 		if(SSticker.current_state == GAME_STATE_PLAYING)
@@ -424,12 +425,13 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	*/
 		if(mobs.client)
 			shake_camera(M = mobs, duration = 3.2 SECONDS, strength = 0.5)
-			mobs.playsound_local(
-				turf_source = mob_turf,
-				soundin = alert_sound,
-				vol = 90,
-				vary = FALSE,
-			)
+			if(mobs.client.prefs?.read_preference(/datum/preference/toggle/sound_announcements))
+				mobs.playsound_local(
+					turf_source = mob_turf,
+					soundin = alert_sound,
+					vol = 90,
+					vary = FALSE,
+				)
 	/* Shut up Skyrat priority announcer
 	//SKYRAT EDIT ADDITON BEGIN
 	if(!SSmapping.level_has_any_trait(z, ZTRAIT_STATION)) // SHUT THE FUCK UP ABANDONED STATIONS, I DON'T CARE
@@ -500,6 +502,14 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 /obj/machinery/gravity_generator/main/shuttleRotate(rotation, params)
 	params = NONE
 	return ..()
+
+/// Admin proc that causes gravity to fully restart, via the secrets panel's fix gravity.
+/obj/machinery/gravity_generator/main/proc/kickstart()
+	charge_count = 100
+	breaker = TRUE
+	set_power()
+	enable()
+	investigate_log("was turned re-enabled by admin event.", INVESTIGATE_GRAVITY)
 
 // Misc
 

@@ -121,6 +121,13 @@
 					continue
 			else if(!istype(nearby_atom, req_type))
 				continue
+			// BUBBER EDIT ADDITION BEGIN - no robotic organs
+			if (istype(nearby_atom, /obj/item/organ))
+				var/obj/item/organ/organ = nearby_atom
+				if (organ.organ_flags & ORGAN_ROBOTIC)
+					to_chat(user, span_warning("Cannot transmute robotic organs!"))
+					continue
+			// BUBBER EDIT ADDITION END
 			// if list has items, check if the strict type is banned.
 			if(length(banned_atom_types))
 				if(nearby_atom.type in banned_atom_types)
@@ -133,7 +140,7 @@
 				var/obj/item/stack/picked_stack = nearby_atom
 				if(!stack_reqs[req_type])
 					stack_reqs[req_type] = requirements_list[req_type]
-				requirements_list[req_type] -= min(picked_stack.amount || requirements_list[req_type])
+				requirements_list[req_type] -= min(picked_stack.amount, requirements_list[req_type])
 
 			// Otherwise, just add the mark down the item as fulfilled x1
 			else
@@ -177,7 +184,7 @@
 			for(var/stack_path in stack_reqs)
 				if(!istype(nearby_stack, stack_path) && (!islist(stack_path) || !is_type_in_list(nearby_stack, stack_path)))
 					continue
-				var/amount_to_give = min(nearby_stack.amount || stack_reqs[stack_path])
+				var/amount_to_give = min(nearby_stack.amount, stack_reqs[stack_path])
 				var/obj/item/stack/our_stack = locate(nearby_stack.merge_type) in selected_atoms
 				if(!our_stack)
 					our_stack = nearby_stack.split_stack(amount = amount_to_give)
@@ -213,6 +220,10 @@
 		if(QDELETED(to_appear))
 			continue
 		to_appear.RemoveInvisibility(type)
+		// Stacks are split off into nullspace and need to be brought back
+		if (isstack(to_appear) && isnull(to_appear.loc))
+			var/obj/item/stack/as_stack = to_appear
+			as_stack.forceMove(loc)
 
 	// And finally, give some user feedback
 	// No feedback is given on failure here -

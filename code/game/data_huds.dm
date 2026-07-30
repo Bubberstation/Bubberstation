@@ -62,11 +62,14 @@
 	. = ..()
 	if(!new_viewer || hud_users_all_z_levels.len != 1)
 		return
-	for(var/mob/eye/camera/ai/eye as anything in GLOB.camera_eyes)
+	for(var/mob/eye/camera/ai/eye in GLOB.camera_eyes)
 		eye.update_ai_detect_hud()
 
 /datum/atom_hud/data/malf_apc
 	hud_icons = list(MALF_APC_HUD)
+
+/datum/atom_hud/data/human/blood
+	hud_icons = list(BLOOD_HUD)
 
 /* MED/SEC/DIAG HUD HOOKS */
 
@@ -151,6 +154,21 @@ Medical HUD! Basic mode needs suit sensors on.
 		else
 			return "health-100"
 
+/// A helper for getting the appropriate icon state for the blood hud.
+/proc/round_blood_for_hud(mob/living/bloodbag)
+	var/blood_level = (bloodbag.get_blood_volume(apply_modifiers = TRUE) / BLOOD_VOLUME_NORMAL) * 100
+	switch(blood_level)
+		if(87.5 to INFINITY)
+			return "hudblood100"
+		if(62.5 to 87.5)
+			return "hudblood75"
+		if(37.5 to 62.5)
+			return "hudblood50"
+		if(12.5 to 37.5)
+			return "hudblood25"
+		if(-INFINITY to 12.5)
+			return "hudblood0"
+
 //HOOKS
 
 //called when a living mob changes health
@@ -172,8 +190,8 @@ Medical HUD! Basic mode needs suit sensors on.
 		set_hud_image_state(STATUS_HUD, "hudxeno")
 		return FALSE
 
-	if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
-		if(HAS_TRAIT(src, TRAIT_MIND_TEMPORARILY_GONE) || can_defib_client())
+	if(!appears_alive())
+		if(can_defib_client())
 			set_hud_image_state(STATUS_HUD, "huddefib")
 		else if(HAS_TRAIT(src, TRAIT_GHOSTROLE_ON_REVIVE))
 			set_hud_image_state(STATUS_HUD, "hudghost")
@@ -446,46 +464,6 @@ Diagnostic HUDs!
 	else
 		set_hud_image_state(DIAG_CAMERA_HUD, "hudcamera")
 
-/*~~~~~~~~~
-	Bots!
-~~~~~~~~~~*/
-/mob/living/simple_animal/bot/proc/diag_hud_set_bothealth()
-	set_hud_image_state(DIAG_HUD, "huddiag[RoundDiagBar(health/maxHealth)]")
-
-/mob/living/simple_animal/bot/proc/diag_hud_set_botstat() //On (With wireless on or off), Off, EMP'ed
-	if(bot_mode_flags & BOT_MODE_ON)
-		set_hud_image_state(DIAG_STAT_HUD, "hudstat")
-	else if(stat) //Generally EMP causes this
-		set_hud_image_state(DIAG_STAT_HUD, "hudoffline")
-	else //Bot is off
-		set_hud_image_state(DIAG_STAT_HUD, "huddead2")
-
-/mob/living/simple_animal/bot/proc/diag_hud_set_botmode() //Shows a bot's current operation
-	if(client) //If the bot is player controlled, it will not be following mode logic!
-		set_hud_image_state(DIAG_BOT_HUD, "hudsentient")
-		return
-
-	switch(mode)
-		if(BOT_SUMMON, BOT_RESPONDING) //Responding to PDA or AI summons
-			set_hud_image_state(DIAG_BOT_HUD, "hudcalled")
-		if(BOT_CLEANING, BOT_HEALING) //Cleanbot cleaning, repairbot fixing, or Medibot Healing
-			set_hud_image_state(DIAG_BOT_HUD, "hudworking")
-		if(BOT_PATROL, BOT_START_PATROL) //Patrol mode
-			set_hud_image_state(DIAG_BOT_HUD, "hudpatrol")
-		if(BOT_PREP_ARREST, BOT_ARREST, BOT_HUNT) //STOP RIGHT THERE, CRIMINAL SCUM!
-			set_hud_image_state(DIAG_BOT_HUD, "hudalert")
-		if(BOT_MOVING, BOT_DELIVER, BOT_GO_HOME, BOT_NAV) //Moving to target for normal bots, moving to deliver or go home for MULES.
-			set_hud_image_state(DIAG_BOT_HUD, "hudmove")
-		else
-			set_hud_image_state(DIAG_BOT_HUD, "")
-
-/mob/living/simple_animal/bot/mulebot/proc/diag_hud_set_mulebotcell()
-	if(QDELETED(cell) || (cell.maxcharge == 0))
-		set_hud_image_state(DIAG_BATT_HUD, "hudnobatt")
-	else
-		var/chargelvl = (cell.charge/cell.maxcharge)
-		set_hud_image_state(DIAG_BATT_HUD, "hudbatt[RoundDiagBar(chargelvl)]")
-
 /*~~~~~~~~~~~~
 	Airlocks!
 ~~~~~~~~~~~~~*/
@@ -504,6 +482,14 @@ Diagnostic HUDs!
 	holder.loc = get_turf(src)
 	SET_PLANE(holder,ABOVE_LIGHTING_PLANE,src)
 	set_hud_image_active(MALF_APC_HUD)
+
+/*~~~~~~~~~~~~
+	BLOOD FOR THE BLOOD GOD!!!
+~~~~~~~~~~~~~*/
+
+/mob/living/proc/blood_hud_set_status()
+	if (CAN_HAVE_BLOOD(src))
+		set_hud_image_state(BLOOD_HUD, round_blood_for_hud(src))
 
 #define CACHED_WIDTH_INDEX "width"
 #define CACHED_HEIGHT_INDEX "height"

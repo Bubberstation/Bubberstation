@@ -5,7 +5,7 @@
 	button_icon_state = "lycan_form"
 
 #ifndef TESTING
-	cooldown_time = 3 MINUTES
+	cooldown_time = 30 SECONDS
 #else
 	cooldown_time = 1 SECONDS // I don't wanna wait
 #endif

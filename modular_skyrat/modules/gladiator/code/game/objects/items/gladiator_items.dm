@@ -170,7 +170,7 @@
 
 /obj/item/claymore/dragonslayer/attack(mob/living/target, mob/living/carbon/human/user)
 	var/is_nemesis_faction = FALSE
-	for(var/found_faction in target.faction)
+	for(var/found_faction in target.get_faction())
 		if(found_faction in nemesis_factions)
 			is_nemesis_faction = TRUE
 			force += faction_bonus_force

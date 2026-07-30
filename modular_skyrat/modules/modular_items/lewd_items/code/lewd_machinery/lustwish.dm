@@ -124,6 +124,7 @@
 
 				//hands
 				/obj/item/clothing/gloves/ball_mittens = 8,
+				/obj/item/clothing/gloves/ball_mittens/loadout_paw = 5,
 			),
 		),
 			list(
@@ -173,6 +174,7 @@
 		/obj/item/clothing/neck/size_collar = 8,//It only works in the Interlink anyways
 		/obj/item/toy/plush/cescrewsplush = 1,
 		/obj/item/toy/plush/sinvox = 1,
+		/obj/item/skillchip/mkiiultra = 2,
 		)
 
 	contraband = list(
@@ -187,7 +189,9 @@
 					/obj/item/reagent_containers/applicator/pill/pentacamphor = 5,
 					/obj/item/reagent_containers/cup/bottle/hexacrocin = 4,
 					/obj/item/reagent_containers/cup/bottle/pentacamphor = 2,
-					/obj/item/reagent_containers/cup/bottle/plushmium = 1)
+					/obj/item/reagent_containers/cup/bottle/plushmium = 1,
+					/obj/item/clothing/sextoy/fleshlight/bluespace = 1
+				)
 
 	refill_canister = /obj/item/vending_refill/lustwish
 	payment_department = ACCOUNT_SRV

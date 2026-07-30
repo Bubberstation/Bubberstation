@@ -438,7 +438,8 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	var/obj/item/dest_tagger/mounted_tagger
 	///a weighted list of all the possible animals we can have
 	var/static/list/weighted_animal_list = list(
-		/mob/living/basic/stoat = 1,
+		/mob/living/basic/stoat = 5,
+		/mob/living/basic/stoat/kit = 1,
 	)
 	/// do we contain an animal?
 	var/contained_animal
@@ -629,7 +630,7 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	var/turf/final_turf = length(open_turfs) ? pick(open_turfs) : drop_location()
 	var/mob/living/startled_animal = new contained_animal(drop_location())
 	startled_animal.Move(final_turf)
-	visible_message(span_notice("A startled [startled_animal] jumps out of [src]"))
+	visible_message(span_notice("A startled [startled_animal] jumps out of [src]."))
 	contained_animal = null
 
 /// Initiates flushing

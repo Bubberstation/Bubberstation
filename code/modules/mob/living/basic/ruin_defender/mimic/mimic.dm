@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	maxHealth = 250
 	health = 250
 	gender = NEUTER
-	mob_biotypes = NONE
+	mob_biotypes = MOB_MINERAL
 	pass_flags = PASSFLAPS
 	melee_damage_lower = 8
 	melee_damage_upper = 12
@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 /mob/living/basic/mimic/crate/early_melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	if(target == src)
 		toggle_open()
-		return FALSE
+		return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
 	return ..()
 
 /mob/living/basic/mimic/crate/CanAllowThrough(atom/movable/mover, border_dir)
@@ -283,7 +283,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	copied_ref = null
 	return ..()
 
-/mob/living/basic/mimic/copy/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+/mob/living/basic/mimic/copy/Life(seconds_per_tick = SSMOBS_DT)
 	. = ..()
 	if(!.) //dead or deleted
 		return
@@ -411,10 +411,13 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	return TRUE
 
 /mob/living/basic/mimic/copy/ranged/CopyObject(obj/item/gun/original, mob/living/creator, destroy_original = 0)
-	if(..())
-		obj_damage = 0
-		melee_damage_upper = original.force
-		melee_damage_lower = original.force - max(0, (original.force / 2))
+	. = ..()
+	if(!.)
+		return
+	obj_damage = 0
+	melee_damage_upper = original.force
+	melee_damage_lower = original.force - max(0, (original.force / 2))
+	RegisterSignal(original, COMSIG_GUN_REPLENISHED_CHARGE, PROC_REF(on_regained_charge))
 
 /mob/living/basic/mimic/copy/ranged/CopyObjectVisuals(obj/original)
 	name = original.name
@@ -423,5 +426,10 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 
 /mob/living/basic/mimic/copy/ranged/can_use_guns(obj/item/gun)
 	return TRUE
+
+/// If our gun ran out of ammo but then regenerated it then we should go back to shooting
+/mob/living/basic/mimic/copy/ranged/proc/on_regained_charge()
+	SIGNAL_HANDLER
+	ai_controller?.set_blackboard_key(BB_GUNMIMIC_GUN_EMPTY, FALSE)
 
 #undef CANT_INSERT_FULL

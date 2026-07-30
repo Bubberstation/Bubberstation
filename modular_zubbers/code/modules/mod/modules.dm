@@ -2,7 +2,6 @@
 	name = "MOD Neural Transference module"
 	desc = "Swaps the MOD wearer's and Assistant AI's neural pathways."
 	removable = FALSE
-	required_slots = list(ITEM_SLOT_FEET, ITEM_SLOT_GLOVES, ITEM_SLOT_OCLOTHING, ITEM_SLOT_HEAD)
 	module_type = MODULE_ACTIVE
 	//Who's in control of the wearer's body
 	var/ai_control = FALSE

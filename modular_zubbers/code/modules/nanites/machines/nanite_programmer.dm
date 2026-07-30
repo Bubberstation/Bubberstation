@@ -21,6 +21,13 @@
 	. += "nanite_programmer_on"
 	. += emissive_appearance(icon, "nanite_programmer_on", src, alpha = src.alpha)
 
+/obj/machinery/nanite_programmer/update_icon_state()
+	. = ..()
+	if(panel_open)
+		icon_state = "[initial(icon_state)]_t"
+		return
+	icon_state = initial(icon_state)
+
 /obj/machinery/nanite_programmer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
 	if(!istype(tool, /obj/item/disk/nanite_program))
@@ -36,11 +43,8 @@
 	program = new_disk.program
 	return ITEM_INTERACT_SUCCESS
 
-/obj/machinery/nanite_programmer/screwdriver_act(mob/living/user, obj/item/I)
-	if(..())
-		return TRUE
-
-	return default_deconstruction_screwdriver(user, "nanite_programmer_t", "nanite_programmer", I)
+/obj/machinery/nanite_programmer/screwdriver_act(mob/living/user, obj/item/tool)
+	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/nanite_programmer/crowbar_act(mob/living/user, obj/item/I)
 	if(..())

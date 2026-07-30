@@ -26,8 +26,8 @@
 	brain_jack = null
 
 /datum/antagonist/wire_priest/get_preview_icon()
-	var/icon/icon = icon('modular_zubbers/icons/fleshmind/fleshmind_machines.dmi', "core")
-	icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+	var/datum/universal_icon/icon = uni_icon('modular_zubbers/icons/fleshmind/fleshmind_machines.dmi', "core")
+	icon.scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
 	return icon
 
 // DYNAMIC (If we ever use it)

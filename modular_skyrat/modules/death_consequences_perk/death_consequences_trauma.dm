@@ -142,6 +142,7 @@
 	. = ..()
 
 	RegisterSignal(owner, COMSIG_LIVING_POST_FULLY_HEAL, PROC_REF(victim_ahealed))
+	RegisterSignal(owner, COMSIG_LIVING_HEALTHSCAN, PROC_REF(append_analyzer_info))
 
 	update_variables()
 	START_PROCESSING(SSprocessing, src)
@@ -154,6 +155,7 @@
 		REMOVE_TRAIT(owner, TRAIT_DNR, TRAUMA_TRAIT)
 
 	UnregisterSignal(owner, COMSIG_LIVING_POST_FULLY_HEAL)
+	UnregisterSignal(owner, COMSIG_LIVING_HEALTHSCAN)
 
 	return ..()
 
@@ -406,7 +408,7 @@
 
 /// Returns a short-ish string containing an href to [get_specific_data].
 /datum/brain_trauma/severe/death_consequences/proc/get_health_analyzer_link_text(mob/user)
-	var/message = span_bolddanger("\nSubject suffers from death degradation disorder.")
+	var/message = span_bolddanger("Subject suffers from death degradation disorder.")
 	if (final_death_delivered)
 		message += span_purple("<i>\nNeural patterns are equivalent to the consciousness zero-point. Subject has likely succumbed.</i>")
 		return message
@@ -420,6 +422,8 @@
 		if (isnull(time_til_scan_expires[user]))
 			RegisterSignal(user, COMSIG_QDELETING, PROC_REF(scanning_user_qdeleting))
 		time_til_scan_expires[user] = (world.time + time_to_view_extra_data_after_scan)
+
+	message += "\n"
 
 	return message
 
@@ -437,6 +441,11 @@
 			to_chat(usr, boxed_message(get_specific_data()), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
 		else
 			to_chat(usr, span_warning("Your scan has expired! Try scanning again!"))
+
+/datum/brain_trauma/severe/death_consequences/proc/append_analyzer_info(datum/signal_source, list/scan_results, advanced, mob/user, mode)
+	SIGNAL_HANDLER
+
+	scan_results += get_health_analyzer_link_text(user)
 
 /// Returns a large string intended to show specifics of how this degradation work.
 /datum/brain_trauma/severe/death_consequences/proc/get_specific_data()
@@ -461,8 +470,8 @@
 		message += span_danger("\nRezadone of purity at or above <i>[DEATH_CONSEQUENCES_REZADONE_MINIMUM_PURITY]</i>% will reduce degradation by [span_blue("[rezadone_degradation_decrease]")] per second when metabolized.")
 	if (eigenstasium_degradation_decrease)
 		message += span_danger("\nEigenstasium will reduce degradation by [span_blue("[eigenstasium_degradation_decrease]")] per second when present.")
-
-	message += span_danger("\nAll degradation reduction can be [span_blue("expedited")] by [span_blue("resting, sleeping, or being buckled to something comfortable")].")
+	if (base_degradation_reduction_per_second_while_alive > 0 || rezadone_degradation_decrease > 0 && eigenstasium_degradation_decrease > 0)
+		message += span_danger("\nAll degradation reduction can be [span_blue("expedited")] by [span_blue("resting, sleeping, or being buckled to something comfortable")].")
 
 	if (permakill_if_at_max_degradation)
 		message += span_revenwarning("\n\n<b><i>SUBJECT WILL BE PERMANENTLY KILLED IF DEGRADATION REACHES MAXIMUM!</i></b>")
@@ -504,7 +513,7 @@
 		return // sanity
 
 	var/ckey = LOWER_TEXT(owner.mind?.key)
-	if (isnull(ckey) || ckey != source.ckey)
+	if (isnull(ckey))
 		return // sanity
 
 	var/datum/preferences/victim_prefs = source.prefs
@@ -517,6 +526,9 @@
 	base_degradation_reduction_per_second_while_alive = victim_prefs.read_preference(/datum/preference/numeric/death_consequences/living_degradation_recovery_per_second)
 	base_degradation_per_second_while_dead = victim_prefs.read_preference(/datum/preference/numeric/death_consequences/dead_degradation_per_second)
 	base_degradation_on_death = victim_prefs.read_preference(/datum/preference/numeric/death_consequences/degradation_on_death)
+
+	stasis_passive_degradation_multiplier = victim_prefs.read_preference(/datum/preference/numeric/death_consequences/stasis_dead_degradation_mult)
+	formaldehyde_death_degradation_mult = victim_prefs.read_preference(/datum/preference/numeric/death_consequences/formeldahyde_dead_degradation_mult)
 
 	var/min_crit_threshold_percent = victim_prefs.read_preference(/datum/preference/numeric/death_consequences/crit_threshold_reduction_min_percent_of_max)
 	crit_threshold_min_degradation = (max_degradation * (min_crit_threshold_percent / 100))

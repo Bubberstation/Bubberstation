@@ -19,7 +19,7 @@
 	paycheck = PAYCHECK_CREW
 	paycheck_department = ACCOUNT_SEC
 
-	mind_traits = list(SECURITY_MIND_TRAITS)
+	desensitized_base = DESENSITIZED_THRESHOLD
 	liver_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
@@ -56,6 +56,21 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
  * mob gets deleted. This is also safe, as mobs are guaranteed to have a unique ref, as per /mob/GenerateTag().
  */
 GLOBAL_LIST_EMPTY(security_officer_distribution)
+
+/datum/job/security_officer/after_spawn(mob/living/spawned, client/player_client)
+	. = ..()
+	if(!ishuman(spawned) || !prob(PIG_COP_PROBABILITY))
+		return
+	var/mob/living/carbon/human/piggy = spawned
+	for (var/obj/item/bodypart/ham as anything in piggy.get_bodyparts())
+		// These are string lists
+		ham.butcher_drops = ham.butcher_drops.Copy()
+		for (var/meat_type in ham.butcher_drops)
+			if (!ispath(meat_type, /obj/item/food/meat/slab))
+				continue
+			ham.butcher_drops[/obj/item/food/meat/slab/pig] = ham.butcher_drops[meat_type]
+			ham.butcher_drops -= meat_type
+		ham.butcher_drops = string_list(ham.butcher_drops)
 
 /datum/job/security_officer/after_roundstart_spawn(mob/living/spawning, client/player_client)
 	. = ..()
@@ -120,13 +135,33 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	if(dep_trim)
 		var/obj/item/card/id/worn_id = spawning.get_idcard(hand_first = FALSE)
 		SSid_access.apply_trim_to_card(worn_id, dep_trim)
+
+		// BUBBER EDIT ADDITION BEGIN - ALTERNATE JOB TITLES
+		// gets their preferred alt title
+		var/chosen_title = player_client?.prefs?.alt_job_titles?[title] || title
+		var/display_assignment = chosen_title
+
+		// and adds the department
+		if(department)
+			display_assignment = "[chosen_title] ([department])"
+
+		worn_id.assignment = display_assignment
+		worn_id.update_label()
+
 		spawning.update_ID_card()
 
 		// Update PDA to match new trim.
 		var/obj/item/modular_computer/pda/pda = spawning.get_item_by_slot(ITEM_SLOT_BELT)
+		// BUBBER EDIT CHANGE BEGIN - ALTERNATE JOB TITLES
+		/*
 		var/assignment = worn_id.get_trim_assignment()
 		if(istype(pda) && !isnull(assignment))
 			pda.imprint_id(spawning.real_name, assignment)
+		*/
+		// we assign display_assignment earlier with their custom title, otherwise assignment is just 'security officer (department)'
+		if(istype(pda))
+			pda.imprint_id(spawning.real_name, display_assignment)
+		// BUBBER EDIT CHANGE END - ALTERNATE JOB TITLES
 
 	var/spawn_point = pick(LAZYACCESS(GLOB.department_security_spawns, department))
 
@@ -138,7 +173,7 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 			while (length(possible_turfs))
 				var/random_index = rand(1, length(possible_turfs))
 				var/turf/target = possible_turfs[random_index]
-				if (spawning.forceMove(target))
+				if (isopenturf(target) && spawning.forceMove(target))
 					break
 				possible_turfs.Cut(random_index, random_index + 1)
 
@@ -227,7 +262,6 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	gloves = /obj/item/clothing/gloves/color/black/security
 	head = /obj/item/clothing/head/helmet/sec
 	shoes = /obj/item/clothing/shoes/jackboots/sec
-	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	l_pocket = /obj/item/restraints/handcuffs
 	r_pocket = /obj/item/assembly/flash/handheld
 
@@ -258,8 +292,6 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 /obj/item/radio/headset/headset_sec/alt/department/Initialize(mapload)
 	. = ..()
 	set_wires(new/datum/wires/radio(src))
-	secure_radio_connections = list()
-	recalculateChannels()
 
 /obj/item/radio/headset/headset_sec/alt/department/engi
 	keyslot = /obj/item/encryptionkey/headset_sec

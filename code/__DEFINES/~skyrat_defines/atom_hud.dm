@@ -10,6 +10,8 @@
 //SR Nanotrasen
 #define SECHUD_BLUESHIELD "hudblueshield"
 #define SECHUD_NT_CONSULTANT "hudnanotrasenconsultant"
+//blacksmith
+#define SECHUD_BLACKSMITH "hudblacksmith"
 //SR DS2
 #define SECHUD_DS2_DOCTOR "hud_ds2doctor"
 #define SECHUD_DS2_RESEARCHER "hud_ds2researcher"

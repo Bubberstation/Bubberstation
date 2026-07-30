@@ -125,7 +125,7 @@
 	if(istype(moving_atom, /mob/living/basic/fleshmind/tyrant)) // Don't heal this thing
 		return
 	var/mob/living/entered_mob = moving_atom
-	if(!faction_check(entered_mob.faction, faction_types))
+	if(!faction_check_atom(entered_mob, faction_types))
 		return
 	if(prob(WIREWEED_HEAL_CHANCE))
 		entered_mob.heal_overall_damage(WIREWEED_HEAL_AMOUNT, WIREWEED_HEAL_AMOUNT)

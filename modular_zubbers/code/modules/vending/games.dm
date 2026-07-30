@@ -17,6 +17,8 @@
 				/obj/item/toy/plush/carpplushie = 3,
 				/obj/item/toy/plush/cello_plush = 3,
 				/obj/item/toy/plush/chirp_plush = 3,
+				/obj/item/toy/plush/expie = 3,
+				/obj/item/toy/plush/expie/milky = 3,
 				/obj/item/toy/plush/goatplushie = 3,
 				/obj/item/toy/plush/headcrab = 3,
 				/obj/item/toy/plush/lizard_plushie = 3,
@@ -99,6 +101,9 @@
 				/obj/item/toy/plush/tunafish = 3,
 				/obj/item/toy/plush/xenoplush = 3,
 				/obj/item/toy/plush/xenoplush/xenomaidplush = 3,
+				/obj/item/toy/plush/suspicious_protogen = 3,
+				/obj/item/toy/plush/tangerine = 3,
+				/obj/item/toy/plush/blue_synth = 3,
 			),
 		),
 		list(

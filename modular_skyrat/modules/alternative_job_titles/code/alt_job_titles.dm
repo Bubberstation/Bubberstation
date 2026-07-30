@@ -407,6 +407,8 @@
 		"Psychiatrist",
 		"Therapist",
 		"Shrink",
+		"Anger Management",
+		"Emotional Support Animal",
 	)
 
 /datum/job/quartermaster

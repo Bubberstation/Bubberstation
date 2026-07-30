@@ -7,7 +7,7 @@
 	righthand_file = 'modular_zubbers/icons/mob/inhands/lace_righthand.dmi'
 	icon_state = "lilacdress"
 	inhand_icon_state = "lilacdress"
-	supports_variations_flags = CLOTHING_NO_VARIATION
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	can_adjust = FALSE
 
 /obj/item/clothing/shoes/heels/drag/lace

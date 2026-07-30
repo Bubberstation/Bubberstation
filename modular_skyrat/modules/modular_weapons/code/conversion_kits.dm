@@ -36,7 +36,7 @@
 
 /datum/crafting_recipe/mosin_pro/New()
 	. = ..()
-	blacklist |= subtypesof(/obj/item/gun/ballistic/rifle/boltaction) - list(/obj/item/gun/ballistic/rifle/boltaction/surplus)
+	LAZYOR(blacklist, subtypesof(/obj/item/gun/ballistic/rifle/boltaction) - list(/obj/item/gun/ballistic/rifle/boltaction/surplus))
 
 /datum/crafting_recipe/mosin_pro/check_requirements(mob/user, list/collected_requirements)
 	var/obj/item/gun/ballistic/rifle/boltaction/the_piece = collected_requirements[/obj/item/gun/ballistic/rifle/boltaction][1]
@@ -45,3 +45,10 @@
 	if(LAZYLEN(the_piece.magazine.stored_ammo))
 		return FALSE
 	return ..()
+
+/obj/item/crafting_conversion_kit/voskhod_refit
+	name = "\improper Voskhod depowered armor MOD refit kit"
+	desc = "A metallic case of various tubes, sensors and spare materials required to reuse Voskhod's components in the making of a next-generation MODed version."
+	force = 10
+	icon = 'modular_zubbers/icons/misc/refitkit.dmi'
+	icon_state = "refit_kit"

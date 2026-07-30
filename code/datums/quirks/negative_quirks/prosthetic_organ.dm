@@ -72,3 +72,4 @@
 	if(old_organ)
 		old_organ.Insert(quirk_holder, special = TRUE)
 	old_organ = null
+

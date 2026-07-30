@@ -258,7 +258,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	QDEL_NULL(radio)
 	QDEL_NULL(countdown)
 	if(is_main_engine && GLOB.main_supermatter_engine == src)
-		SSpersistence.delam_counter_penalty() // SKYRAT EDIT ADDITION BEGIN - DELAM SCRAM
 		GLOB.main_supermatter_engine = null
 	QDEL_NULL(soundloop)
 	return ..()
@@ -343,16 +342,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	damage_factors = calculate_damage()
 	if(damage == 0) // Clear any in game forced delams if on full health.
 		set_delam(SM_DELAM_PRIO_IN_GAME, SM_DELAM_STRATEGY_PURGE)
-		station_notified = FALSE // BUBBER EDIT ADDITION - DELAM_SCRAM
 	else if(!final_countdown)
 		set_delam(SM_DELAM_PRIO_NONE, SM_DELAM_STRATEGY_PURGE) // This one cant clear any forced delams.
 	delamination_strategy.delam_progress(src)
-	// BUBBER EDIT ADDITION BEGIN - DELAM_SCRAM
-	if(damage > SUPERMATTER_SUPPRESSION_THRESHOLD && is_main_engine && !suppression_fired && world.time - SSticker.round_start_time < SCRAM_TIME_RESTRICTION)
-		investigate_log("Integrity at time of suppression signal was [100 - damage]", INVESTIGATE_ENGINE)
-		SEND_GLOBAL_SIGNAL(COMSIG_MAIN_SM_DELAMINATING, SCRAM_AUTO_FIRE)
-		suppression_fired = TRUE
-	// BUBBER EDIT ADDITION END
 	if(damage > explosion_point && !final_countdown)
 		count_down()
 
@@ -746,6 +738,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	for(var/powergain_types in additive_power)
 		internal_energy += additive_power[powergain_types]
+	// BUBBER EDIT ADDITION BEGIN - heretic ritual
+	if (cursed)
+		additive_power[SM_POWER_POWERLOSS_CURSED] = -1 * (max(internal_energy * 0.3, 250 JOULES))
+		internal_energy += additive_power[SM_POWER_POWERLOSS_CURSED]
+	// BUBBER EDIT ADDITION END
 	internal_energy = max(internal_energy, 0)
 	if(internal_energy && !activation_logged)
 		stack_trace("Supermatter powered for the first time without being logged. Internal energy factors: [json_encode(internal_energy_factors)]")

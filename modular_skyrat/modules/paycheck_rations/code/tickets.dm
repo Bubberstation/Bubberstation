@@ -212,8 +212,8 @@
 			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/wine_voltaic
 			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/wine_voltaic
 		if("Hemoglobin Iced Tea")
-			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/blood_tea
-			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/blood_tea
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/bubber/blood_tea
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/bubber/blood_tea
 		if("Soda and Lemonade")
 			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/soda_water_moth
 			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/lemonade

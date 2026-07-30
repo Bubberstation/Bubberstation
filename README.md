@@ -30,7 +30,27 @@ As of our recent split from Skyrat, a lot of codedocs/modularization guides need
 - The Bubberstation main repository is maintained by and contributed to by volunteers and hobbiests. You are not entitled to our time and energy. We reserve the right to permanently remove anyone who does not show both our contributor's and maintainer's common decency.
 - Bubberstation does not operate a strict "goodboy" points system or have defined goals, and anyone is welcome to contribute to this project. That being said, the maintainers of this project are free to curate comments as seen fit to uphold a respectful environment.
 
-**2. The Licensing is Non-negotiable**
+**2. Seek maintainer approval for major code changes**
+
+- Do not expect every change to be added to the game or approved by others
+- Changes should not be done for the sake of making changes, and should instead seek to improve the game for more than just one's self
+- Changes should try to feel cohesive with the rest of the game
+- Seek maintainer approval if you would like to modify any of the following:
+  - Adding/Removing/Modifying a Map for regular map rotations
+  - Adding/Removing/Modifying a role or antagonist
+  - Adding/Removing/Modifying a species
+  - Reworking of a commonly used mechanic
+  - Working on a bounty item
+  - Any signficant balance changes
+- Seeking approval beforehand saves a lot of time and headache if an idea doesn't align with the game's theme and direction
+
+**3. Usage of Code Generation Tools**
+
+- Usage of autocompletes, auto documentation generation and other tools are allowed
+- It is fully expected of a person using any of these tools to ensure the output and quality of said tools
+- Any code written by tooling is expected to be heavily tested and proven to work
+
+**4. The Licensing is Non-negotiable**
 
 - You are free to take, redistribute, modify, and readapt any code or commit found on this repository.
 - All code files are under **GNU AGPL V3**
@@ -50,9 +70,35 @@ To forward any licensing concerns, please open an issue report or pull request. 
 
 ## Modularization and codedocs note
 
+### Modularization
+
+New modularized code should be put in the modular_zubbers folder. This is to keep our unique code seperate, easier to maintain, and helps future contributors find things. It is expected that you call into the override functions to reduce the amount of code we overwrite and edit from our upstream source.
+
+### Spriting
+
+For the sake of consistency, we typically ask that sprites be drawn such that it aligns with the look and feel of other sprites. We understand that some items may not be perfect and that's okay, but sprites ideally should do their best to match others for the sake of consistency.
+
+Also consider that when doing clothing sprites, teshari themselves use different sprites (requiring a bit more effort) as well as digitigrades legs. Otherwise, these sprites will either be entirely broken or look heavily off if not done properly.
+
+### Configuration
+
+Most of our [config files](https://github.com/Bubberstation/config/tree/master) are open source, and therefore can be edited (though you should have good reason to do so)
+
 ## Important note - TEST YOUR PULL REQUESTS
 
 You are responsible for the testing of your content. You should not mark a pull request ready for review until you have actually tested it. If you require a separate client for testing, you can use a guest account by logging out of BYOND and connecting to your test server.
+
+Testing your changes is super critical for multiple reasons.
+
+1. It makes sure your features/changes actually work.
+2. It helps reduce the chance that something else has broken
+3. Provides a first peek at the changes before its actually in the game
+
+This is why we require notes on testing, and in most instances, videos or screenshots to help support that.
+
+Test notes can be a step-by-step set of instructions. But for visual content, we require either screenshots of how something renders, a video of the content being interacted with/used, or a video with sound to show audio changes.
+
+Ideally, test notes are you providing people with confidence that your change works and has not interfered with other bits of code.
 
 ## DOWNLOADING
 
@@ -80,6 +126,20 @@ Find `BUILD.bat` here in the root folder of tgstation, and double click it to in
 For getting started (dev env, compilation) see the HackMD document [here](https://hackmd.io/@tgstation/HJ8OdjNBc#tgstation-Development-Guide).
 
 For overall design documentation see [HackMD](https://hackmd.io/@tgstation).
+
+## Code Reviews
+
+We do not expect everyone to be an amazing coder or get something to work on the first try. PR's that are not in draft and are marked ready for review are open for comment and feedback.
+
+PR's should not attempt to fix or modify multiple unrelated concepts at the same time. If you are unsure, ask a maintainer if your PR should be split up.
+
+With each PR, please include a relevant, clear and descriptive title that within one line describes what the PR is about.
+
+Please also fill out the auto-generated fields with relevant information such as why something is good for the game. ("Because" is not a valid reason)
+
+Include test notes and other testing related details as mentioned previously.
+
+Also for any player facing changes, please include a changelog with any relevant changelog types and items that were modified in the PR.
 
 ## LICENSE
 

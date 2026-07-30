@@ -134,56 +134,67 @@
 
 	log_game("[key_name(src)] made a vocal announcement with the following message: [message].")
 	log_talk(message, LOG_SAY, tag="VOX Announcement")
-	say(";[message]", forced = "VOX Announcement")
+
+	var/list/players = list()
+	var/turf/ai_turf = get_turf(src)
+	for(var/mob/player_mob as anything in GLOB.player_list)
+		var/turf/player_turf = get_turf(player_mob)
+		if(is_valid_z_level(ai_turf, player_turf))
+			players += player_mob
+	minor_announce(capitalize(message), "[name] announces", players = players, should_play_sound = CALLBACK(GLOBAL_PROC_REF(does_target_have_vox_off)))
 
 	for(var/word in words)
-		play_vox_word(word, src.z, null, vox_type)
+		play_vox_word(word, ai_turf, null, vox_type)
 
 
-/proc/play_vox_word(word, z_level, mob/only_listener, vox_type)
+/proc/play_vox_word(word, ai_turf, mob/only_listener, vox_type)
 
 	word = LOWER_TEXT(word)
 	var/sound_file
-	var/volume = 100
+	var/vox_volume_mod = 1
 	switch(vox_type)
 		if(VOX_HL)
 			if(GLOB.vox_sounds_hl[word])
 				sound_file = GLOB.vox_sounds_hl[word]
-				volume = 75
+				vox_volume_mod = 0.75
 		if(VOX_MIL)
 			if(GLOB.vox_sounds_mil[word])
 				sound_file = GLOB.vox_sounds_mil[word]
-				volume = 50 // My poor ears...
+				vox_volume_mod = 0.50 // My poor ears...
 		if(VOX_BMS)
 			if(GLOB.vox_sounds_bms[word])
 				sound_file = GLOB.vox_sounds_bms[word]
 		else
 			if(GLOB.vox_sounds[word])
 				sound_file = GLOB.vox_sounds[word]
-	// If the vox stuff are disabled, or we failed getting the word from the list, just early return.
-	if(!sound_file)
-		return FALSE
-	var/sound/voice = sound(sound_file, wait = 1, channel = CHANNEL_VOX, volume = volume)
-	voice.status = SOUND_STREAM
 
-	// If there is no single listener, broadcast to everyone in the same z level
+// If there is no single listener, broadcast to everyone in the same z level
 	if(!only_listener)
 		// Play voice for all mobs in the z level
 		for(var/mob/player_mob in GLOB.player_list)
-			if(!player_mob.can_hear() || !(safe_read_pref(player_mob.client, /datum/preference/toggle/sound_announcements)))
+			var/pref_volume = safe_read_pref(player_mob.client, /datum/preference/numeric/volume/sound_ai_vox)
+			pref_volume *= vox_volume_mod
+			if(HAS_TRAIT(player_mob, TRAIT_DEAF) || !pref_volume)
 				continue
 
 			var/turf/player_turf = get_turf(player_mob)
-			if(player_turf.z != z_level)
+			if(!is_valid_z_level(ai_turf, player_turf))
 				continue
 
+			var/sound/voice = sound(sound_file, wait = 1, channel = CHANNEL_VOX, volume = pref_volume)
+			voice.status = SOUND_STREAM
 			SEND_SOUND(player_mob, voice)
 
 	else
+		var/pref_volume = safe_read_pref(only_listener.client, /datum/preference/numeric/volume/sound_ai_vox)
+		var/sound/voice = sound(sound_file, wait = 1, channel = CHANNEL_VOX, volume = pref_volume)
+		voice.status = SOUND_STREAM
 		SEND_SOUND(only_listener, voice)
 
 	return TRUE
 
+/proc/does_target_have_vox_off(mob/target)
+	return !safe_read_pref(target.client, /datum/preference/numeric/volume/sound_ai_vox)
 
 /mob/living/silicon/ai/verb/switch_vox()
 	set name = "Switch Vox Voice"

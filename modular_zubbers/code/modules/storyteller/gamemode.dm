@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(gamemode)
 	name = "Storyteller"
 	init_order = INIT_ORDER_GAMEMODE
 	runlevels = RUNLEVEL_GAME
-	flags = SS_BACKGROUND | SS_KEEP_TIMING
+	ss_flags = SS_BACKGROUND | SS_KEEP_TIMING
 	wait = 2 SECONDS
 
 	/// List of our event tracks for fast access during for loops.
@@ -134,6 +134,8 @@ SUBSYSTEM_DEF(gamemode)
 	var/sec_antag_cap = 0
 	/// A list of event controls to re-roll antagonists
 	var/list/antag_rerolls
+	/// A assoc list of event controls by pref flag, used for accurately rerolling antags. (flag -> /datum/round_control_event)
+	var/list/antag_rerolls_by_pref
 
 	/// Whether we looked up pop info in this process tick
 	var/pop_data_cached = FALSE
@@ -185,7 +187,10 @@ SUBSYSTEM_DEF(gamemode)
 		var/list/event_tags = event.tags
 		if(LAZYLEN(event_tags))
 			if(LAZYFIND(event_tags, TAG_ANTAG_REROLL))
-				LAZYADDASSOC(antag_rerolls, event.type, event.weight)
+				LAZYADDASSOC(antag_rerolls, event, event.weight)
+				if (istype(event, /datum/round_event_control/antagonist))
+					var/datum/round_event_control/antagonist/antag_event = event
+					LAZYADDASSOC(antag_rerolls_by_pref, antag_event.antag_flag, antag_event)
 				continue
 
 		event_pools[event.track] += event //Add it to the categorized event pools
@@ -200,7 +205,7 @@ SUBSYSTEM_DEF(gamemode)
 	if(EMERGENCY_AT_LEAST_DOCKED)
 		//Don't run any events if the shuttle is docked with the station (or in transit towards central command.
 		return
-	if( (SSshuttle.emergency_no_recall && !SSshuttle.admin_emergency_no_recall) && EMERGENCY_IDLE_OR_RECALLED)
+	if((SSshuttle.emergency_no_recall && !SSshuttle.admin_emergency_no_recall) && EMERGENCY_IDLE_OR_RECALLED)
 		//Don't run any events if the shuttle is in transit in a non-admin no-recall state.
 		return
 
@@ -867,9 +872,11 @@ SUBSYSTEM_DEF(gamemode)
 
 	event.run_event(admin_forced = TRUE)
 
-/datum/controller/subsystem/gamemode/proc/reroll_antagonist(datum/round_event_control/event_control, antag_name)
+/datum/controller/subsystem/gamemode/proc/reroll_antagonist(datum/round_event_control/event_control, antag_name, datum/antagonist/existing_antag)
 	message_admins(span_yellowteamradio("[key_name_admin(usr)] requested a new antagonist to replace [antag_name]."))
 	log_admin("[key_name_admin(usr)] requested a new antagonist to replace [antag_name].")
+	if (isnull(event_control) && !isnull(existing_antag))
+		event_control = SSgamemode.antag_rerolls_by_pref[existing_antag.pref_flag]
 	if(isnull(event_control))
 		event_control = pick_weight(SSgamemode.antag_rerolls)
 	SSgamemode.inject_event(event_control = event_control)
@@ -877,8 +884,7 @@ SUBSYSTEM_DEF(gamemode)
 ADMIN_VERB(create_antagonist, R_FUN, "Create Antagonist", "Inject a little more action into the round.", ADMIN_CATEGORY_EVENTS)
 	var/list/available_antags = list()
 	for(var/datum/round_event_control/event_control as anything in SSgamemode.antag_rerolls)
-		var/datum/round_event_control/event = locate(event_control) in SSevents.control
-		LAZYADD(available_antags, event)
+		LAZYADD(available_antags, event_control)
 
 	var/datum/round_event_control/selected_event = tgui_input_list(user, "Choose a crew antagonist type to spawn.", "Create Antagonist", available_antags)
 	if(isnull(selected_event))

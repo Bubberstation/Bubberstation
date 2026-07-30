@@ -106,9 +106,14 @@
 /obj/item/modular_computer/pda/nanotrasen_consultant
 	name = "nanotrasen consultant's PDA"
 	icon_state = "/obj/item/modular_computer/pda/nanotrasen_consultant"
-	inserted_disk = /obj/item/computer_disk/command/captain
+	inserted_disk = /obj/item/disk/computer/command/captain
 	inserted_item = /obj/item/pen/fountain/green
 	greyscale_colors = "#017941#0060b8"
+	starting_programs = list(
+		/datum/computer_file/program/records/security,
+		/datum/computer_file/program/crew_manifest,
+		/datum/computer_file/program/faxbond,
+	)
 
 /obj/item/storage/bag/garment/nanotrasen_consultant
 	name = "nanotrasen consultant's garment bag"
@@ -148,10 +153,11 @@
 /obj/structure/closet/secure_closet/nanotrasen_consultant/PopulateContents()
 	..()
 	new /obj/item/storage/backpack/satchel/leather(src)
+	new /obj/item/storage/backpack/satchel/nanotrasen(src)
 	new /obj/item/clothing/neck/petcollar(src)
 	new /obj/item/pet_carrier(src)
 	new /obj/item/clothing/suit/armor/vest(src)
-	new /obj/item/computer_disk/command/captain(src)
+	new /obj/item/disk/computer/command/captain(src)
 	new /obj/item/radio/headset/heads/nanotrasen_consultant/alt(src)
 	new /obj/item/radio/headset/heads/nanotrasen_consultant(src)
 	new /obj/item/storage/photo_album/personal(src)

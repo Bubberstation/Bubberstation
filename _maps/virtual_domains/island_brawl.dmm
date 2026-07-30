@@ -990,16 +990,6 @@
 	},
 /turf/open/water/beach,
 /area/virtual_domain/fullbright)
-"lU" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Temporary Holding Cell"
-	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
-/turf/open/floor/iron/dark/textured_large,
-/area/virtual_domain)
 "lW" = (
 /turf/open/floor/iron/dark/diagonal,
 /area/virtual_domain)
@@ -1964,6 +1954,16 @@
 	},
 /turf/open/floor/wood,
 /area/virtual_domain)
+"zc" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Temporary Holding Cell"
+	},
+/obj/effect/mapping_helpers/airlock/unres/delayed{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
+/turf/open/floor/iron/dark/textured_large,
+/area/virtual_domain)
 "ze" = (
 /obj/effect/turf_decal/tile/dark_red/full,
 /turf/open/floor/iron/smooth_large,
@@ -2145,6 +2145,27 @@
 /obj/effect/mob_spawn/ghost_role/human/virtual_domain/islander,
 /turf/open/floor/plastic,
 /area/virtual_domain)
+"AV" = (
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger{
+	pixel_y = 13;
+	pixel_x = 21
+	},
+/obj/item/clothing/glasses/hud/health{
+	pixel_y = 1;
+	pixel_x = 18
+	},
+/obj/item/stack/medical/wrap/gauze{
+	pixel_x = -15;
+	pixel_y = 10
+	},
+/obj/item/storage/belt/medical{
+	pixel_y = 3;
+	pixel_x = -3
+	},
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron/white/textured_large,
+/area/virtual_domain)
 "AX" = (
 /obj/vehicle/ridden/atv{
 	dir = 4
@@ -2221,16 +2242,6 @@
 	},
 /turf/open/misc/beach/sand,
 /area/virtual_domain/fullbright)
-"BV" = (
-/obj/structure/sign/directions/dorms/directional/north{
-	pixel_y = 35
-	},
-/obj/structure/sign/directions/medical/directional/north{
-	pixel_y = 29
-	},
-/obj/machinery/computer/slot_machine,
-/turf/open/floor/wood/large,
-/area/virtual_domain)
 "BW" = (
 /obj/structure/dresser,
 /obj/structure/sign/clock/directional/east,
@@ -2254,6 +2265,16 @@
 "CH" = (
 /obj/machinery/light/directional/north,
 /turf/open/floor/wood,
+/area/virtual_domain)
+"CN" = (
+/obj/structure/sign/directions/dorms/directional/north{
+	pixel_y = 35
+	},
+/obj/structure/sign/directions/medical/directional/north{
+	pixel_y = 29
+	},
+/obj/effect/spawner/random/entertainment/slot_machine,
+/turf/open/floor/wood/large,
 /area/virtual_domain)
 "CP" = (
 /obj/structure/table/reinforced,
@@ -3077,27 +3098,6 @@
 	pixel_x = 8
 	},
 /turf/open/floor/wood/large,
-/area/virtual_domain)
-"Mx" = (
-/obj/structure/table/reinforced,
-/obj/machinery/cell_charger{
-	pixel_y = 13;
-	pixel_x = 21
-	},
-/obj/item/clothing/glasses/hud/health{
-	pixel_y = 1;
-	pixel_x = 18
-	},
-/obj/item/stack/medical/gauze{
-	pixel_x = -15;
-	pixel_y = 10
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 3;
-	pixel_x = -3
-	},
-/obj/machinery/light/directional/north,
-/turf/open/floor/iron/white/textured_large,
 /area/virtual_domain)
 "MA" = (
 /obj/effect/turf_decal/siding/dark_red/corner{
@@ -6352,7 +6352,7 @@ Bq
 Bq
 Bq
 Bq
-BV
+CN
 Mb
 Mb
 ho
@@ -6832,7 +6832,7 @@ Ld
 lW
 Rk
 Bq
-Mx
+AV
 gP
 gP
 up
@@ -7153,7 +7153,7 @@ cO
 cO
 cO
 eK
-lU
+zc
 yG
 yG
 Bq

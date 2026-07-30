@@ -203,6 +203,8 @@
 	button_icon_state = "change_to_human"
 
 /datum/action/innate/turn_to_human/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/mob/living/simple_animal/hostile/true_changeling/horrorform = owner
 	if(!horrorform.stored_changeling)
 		horrorform.balloon_alert(horrorform, "our only form!")
@@ -234,6 +236,8 @@
 	button_icon_state = "devour"
 
 /datum/action/innate/devour/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/mob/living/simple_animal/hostile/true_changeling/horrorform = owner
 
 	if(horrorform.devouring)

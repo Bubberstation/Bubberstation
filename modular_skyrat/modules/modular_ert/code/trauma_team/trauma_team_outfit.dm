@@ -82,7 +82,7 @@
 	desc = "I hope you've got insurance, because the Trauma Team's premiums are HIGH."
 
 /obj/item/storage/medkit/tactical/ntrauma/PopulateContents()
-	new /obj/item/stack/medical/gauze(src)
+	new /obj/item/stack/medical/wrap/gauze(src)
 	new /obj/item/defibrillator/compact/combat/loaded/nanotrasen(src)
 	new /obj/item/reagent_containers/applicator/patch/libital(src)
 	new /obj/item/reagent_containers/applicator/patch/libital(src)

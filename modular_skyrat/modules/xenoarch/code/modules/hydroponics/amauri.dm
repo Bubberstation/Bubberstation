@@ -24,5 +24,7 @@
 	filling_color = "#FF4500"
 	bite_consumption_mod = 0.5
 	foodtypes = FRUIT
-	juice_typepath = /datum/reagent/toxin
 	tastes = list("poison" = 1)
+
+/obj/item/food/grown/amauri/juice_typepath()
+	return /datum/reagent/toxin

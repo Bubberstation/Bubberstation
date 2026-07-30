@@ -67,10 +67,18 @@
 	default_unfasten_wrench(user, tool)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/machinery/gbp_redemption/attackby(obj/item/attacking_item, mob/user, params)
-	if(default_deconstruction_screwdriver(user, "gbp_machine_open", "gbp_machine", attacking_item))
+/obj/machinery/gbp_redemption/update_icon_state()
+	. = ..()
+	if(panel_open)
+		icon_state = "[initial(icon_state)]_open"
 		return
+	icon_state = initial(icon_state)
 
+/obj/machinery/gbp_redemption/screwdriver_act(mob/living/user, obj/item/tool)
+	. = ..()
+	return default_deconstruction_screwdriver(user, tool)
+
+/obj/machinery/gbp_redemption/attackby(obj/item/attacking_item, mob/user, params)
 	if(default_pry_open(attacking_item, close_after_pry = TRUE))
 		return
 

@@ -24,3 +24,10 @@
 	to_chat(user, span_notice("Changing Eye Color: Pressing 'Cancel' or closing out the window will return the eye's current color."))
 	eye_color_left = tgui_color_picker(user, "Pick a new color", "Left Eye Color", eye_color_left)
 	eye_color_right = tgui_color_picker(user, "Pick a new color", "Right Eye Color", eye_color_right)
+
+/obj/item/organ/eyes/moth
+	eye_icon_state = "motheyes_white"
+/obj/item/organ/eyes/robotic/moth
+	eye_icon_state = "motheyes_white"
+/obj/item/organ/eyes/robotic/glow/moth
+	eye_icon_state = "motheyes_white"

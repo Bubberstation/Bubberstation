@@ -59,12 +59,14 @@
 	)
 
 /obj/item/organ/tongue/teshari
+	name = "teshari tongue"
 	liked_foodtypes = SEAFOOD | VEGETABLES | NUTS
 	disliked_foodtypes = GROSS | GRAIN
 
 /obj/item/organ/eyes/teshari
 	name = "teshari eyes"
 	eye_icon = 'modular_skyrat/modules/organs/icons/teshari_eyes.dmi'
+	blink_animation = FALSE
 
 /datum/species/teshari/prepare_human_for_preview(mob/living/carbon/human/tesh)
 	var/base_color = "#c0965f"

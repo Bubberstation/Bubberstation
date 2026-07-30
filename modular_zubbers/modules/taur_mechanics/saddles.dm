@@ -1,7 +1,7 @@
 /obj/item/riding_saddle
 	name = "generic riding saddle"
 	desc = "someone spawned a basetype!"
-	slot_flags = ITEM_SLOT_BACK // no storage
+	slot_flags = ITEM_SLOT_BELT
 
 	icon = 'modular_zubbers/icons/mob/taur/saddles.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/taur/saddles.dmi'
@@ -29,14 +29,44 @@
 
 /obj/item/riding_saddle/leather/peacekeeper
 	name = "peacekeeper saddle"
-
 	icon_state = "saddle_sec_item"
 	worn_icon_state = "saddle_sec"
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/riding_saddle/leather/peacekeeper/Initialize(mapload)
 	. = ..()
+	desc += " This one is painted in peacekeeper livery, and equipped with a mounting slot for cuffs and \
+	a baton. Unfortunately this makes it a tad bulkier."
+	create_storage(storage_type = /datum/storage/sec_saddle)
 
-	desc += " This one is painted in peacekeeper livery."
+/obj/item/riding_saddle/leather/peacekeeper/update_icon(updates)
+	. = ..()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/wearer = loc
+		if(wearer.belt == src)
+			wearer.update_worn_belt()
+
+/obj/item/riding_saddle/leather/peacekeeper/worn_overlays(mutable_appearance/standing, isinhands, icon_file, mutant_styles)
+	. = ..()
+	if(isnull(atom_storage) || isinhands)
+		return
+	// This is extremely snowflake, if you decide to make saddlebelts(TM)
+	// more common, consider using a method similar to /obj/item/storage/belt/update_overlays()
+	//
+	if(locate(/obj/item/restraints/handcuffs) in contents)
+		. += mutable_appearance('modular_zubbers/icons/mob/taur/saddles.dmi', "cuffs_over")
+	if(locate(/obj/item/melee/baton/security) in contents)
+		. += mutable_appearance('modular_zubbers/icons/mob/taur/saddles.dmi', "baton_over")
+
+/datum/storage/sec_saddle
+	max_slots = 2
+
+/datum/storage/sec_saddle/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
+	. = ..()
+	set_holdable(list(
+		/obj/item/restraints/handcuffs,
+		/obj/item/melee/baton/security
+	))
 
 /obj/item/storage/backpack/saddlebags
 	name = "saddlebags"

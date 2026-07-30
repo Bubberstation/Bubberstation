@@ -36,7 +36,7 @@
 	return ..()
 
 /datum/preference/toggle/allow_emissives
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "allow_emissives_toggle" // no 'e' so it goes right after allow_mismatched_parts, not before
 	default_value = FALSE
@@ -45,7 +45,7 @@
 	return TRUE // we dont actually want this to do anything
 
 /datum/preference/tri_color/mutant_colors
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "mutant_colors_color"
 	check_mode = TRICOLOR_NO_CHECK
@@ -58,7 +58,7 @@
 /datum/preference/toggle/eye_emissives
 	savefile_key = "eye_emissives"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	relevant_head_flag = HEAD_EYECOLOR
 
 /datum/preference/toggle/eye_emissives/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
@@ -140,24 +140,26 @@
 /// Tails
 
 /datum/preference/toggle/mutant_toggle/tail
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_key = "tail_toggle"
 	relevant_mutant_bodypart = "tail"
 
 /datum/preference/choiced/mutant_choice/tail
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_key = "feature_tail"
 	relevant_mutant_bodypart = "tail"
 	type_to_check = /datum/preference/toggle/mutant_toggle/tail
 	default_accessory_type = /datum/sprite_accessory/tails/none
 
 /datum/preference/tri_color/tail
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "tail_color"
 	relevant_mutant_bodypart = "tail"
 	type_to_check = /datum/preference/toggle/mutant_toggle/tail
 
 /datum/preference/tri_bool/tail
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "tail_emissive"
 	relevant_mutant_bodypart = "tail"
@@ -166,10 +168,12 @@
 /// Snouts
 
 /datum/preference/toggle/mutant_toggle/snout
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_key = "snout_toggle"
 	relevant_mutant_bodypart = "snout"
 
 /datum/preference/choiced/mutant_choice/snout
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_key = "feature_snout"
 	relevant_mutant_bodypart = "snout"
 	type_to_check = /datum/preference/toggle/mutant_toggle/snout
@@ -190,14 +194,14 @@
 	target.synchronize_bodyshapes()
 
 /datum/preference/tri_color/snout
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "snout_color"
 	relevant_mutant_bodypart = "snout"
 	type_to_check = /datum/preference/toggle/mutant_toggle/snout
 
 /datum/preference/tri_bool/snout
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "snout_emissive"
 	relevant_mutant_bodypart = "snout"
@@ -206,24 +210,26 @@
 /// Horns
 
 /datum/preference/toggle/mutant_toggle/horns
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_key = "horns_toggle"
 	relevant_mutant_bodypart = "horns"
 
 /datum/preference/choiced/mutant_choice/horns
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_key = "feature_horns"
 	relevant_mutant_bodypart = "horns"
 	type_to_check = /datum/preference/toggle/mutant_toggle/horns
 	default_accessory_type = /datum/sprite_accessory/horns/none
 
 /datum/preference/tri_color/horns
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "horns_color"
 	relevant_mutant_bodypart = "horns"
 	type_to_check = /datum/preference/toggle/mutant_toggle/horns
 
 /datum/preference/tri_bool/horns
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "horns_emissive"
 	relevant_mutant_bodypart = "horns"
@@ -232,24 +238,26 @@
 /// Ears
 
 /datum/preference/toggle/mutant_toggle/ears
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_key = "ears_toggle"
 	relevant_mutant_bodypart = "ears"
 
 /datum/preference/choiced/mutant_choice/ears
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_key = "feature_ears"
 	relevant_mutant_bodypart = "ears"
 	type_to_check = /datum/preference/toggle/mutant_toggle/ears
 	default_accessory_type = /datum/sprite_accessory/ears/none
 
 /datum/preference/tri_color/ears
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ears_color"
 	relevant_mutant_bodypart = "ears"
 	type_to_check = /datum/preference/toggle/mutant_toggle/ears
 
 /datum/preference/tri_bool/ears
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "ears_emissive"
 	relevant_mutant_bodypart = "ears"

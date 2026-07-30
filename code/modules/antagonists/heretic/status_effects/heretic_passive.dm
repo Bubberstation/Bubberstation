@@ -307,7 +307,7 @@
 	if(!iscarbon(owner))
 		return
 	var/mob/living/carbon/carbon_eater = owner
-	for(var/obj/item/bodypart/wounded_limb as anything in carbon_eater.bodyparts)
+	for(var/obj/item/bodypart/wounded_limb as anything in carbon_eater.get_bodyparts())
 		for(var/datum/wound/to_cure as anything in wounded_limb.wounds)
 			to_cure.remove_wound()
 			break
@@ -358,13 +358,13 @@
 	passive_descriptions = list(
 		"Shock insulation, all knowledges researched from the shop are cheaper",
 		"X-ray vision, you can see through walls and objects.",
-		"Grasp no longer goes on cooldown when used to open a door or locker."
+		"Grasp now has a reduced cooldown when used on a door/locker." // BUBBER EDIT CHANGE - now only reduced CD
 	)
 
 /datum/status_effect/heretic_passive/lock/on_apply()
 	. = ..()
 	ADD_TRAIT(owner, TRAIT_SHOCKIMMUNE, REF(src))
-	RegisterSignal(heretic_datum, COMSIG_HERETIC_SHOP_SETUP, PROC_REF(on_shop_setup)) // Just in case we are applying this after the shop was set up
+	//RegisterSignal(heretic_datum, COMSIG_HERETIC_SHOP_SETUP, PROC_REF(on_shop_setup)) // Just in case we are applying this after the shop was set up // BUBBER EDIT REMOVAL
 
 /datum/status_effect/heretic_passive/lock/heretic_level_upgrade()
 	. = ..()
@@ -432,13 +432,14 @@
 		healing_amount = -15 * seconds_between_ticks
 	if(!amulet_equipped)
 		healing_amount *= 0.5 // Half healing if you dont have the moon amulet
+	healing_amount *= 0.75 // BUBBER EDIT ADDITION - moon heals brain damage slower
 	owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, healing_amount)
 
 	var/obj/item/organ/brain/our_brain = owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!our_brain)
 		return
 	for(var/datum/brain_trauma/trauma as anything in our_brain.traumas)
-		if(istype(trauma, BRAIN_TRAUMA_MILD) || istype(trauma, BRAIN_TRAUMA_SEVERE))
+		if(istype(trauma, BRAIN_TRAUMA_MILD) || istype(trauma, BRAIN_TRAUMA_SEVERE) && SPT_PROB(2, seconds_between_ticks)) // BUBBER EDIT CHANGE - was if(istype(trauma, BRAIN_TRAUMA_MILD) || istype(trauma, BRAIN_TRAUMA_SEVERE))
 			our_brain.cure_trauma_type(trauma.type, trauma.resilience)
 
 /datum/status_effect/heretic_passive/moon/heretic_level_upgrade()
@@ -500,8 +501,7 @@
 /datum/status_effect/heretic_passive/rust/proc/on_move(mob/source, atom/old_loc, dir, forced, list/old_locs)
 	SIGNAL_HANDLER
 
-	var/turf/mover_turf = get_turf(source)
-	if(HAS_TRAIT(mover_turf, TRAIT_RUSTY))
+	if(source.is_touching_rust())
 		ADD_TRAIT(source, TRAIT_BATON_RESISTANCE, REF(src))
 	else
 		REMOVE_TRAIT(source, TRAIT_BATON_RESISTANCE, REF(src))
@@ -512,11 +512,10 @@
  * Gradually heals the heretic ([source]) on rust,
  * including baton knockdown and stamina damage.
  */
-/datum/status_effect/heretic_passive/rust/proc/on_life(mob/living/source, seconds_per_tick, times_fired)
+/datum/status_effect/heretic_passive/rust/proc/on_life(mob/living/source, seconds_per_tick)
 	SIGNAL_HANDLER
 
-	var/turf/our_turf = get_turf(source)
-	if(!HAS_TRAIT(our_turf, TRAIT_RUSTY))
+	if(!source.is_touching_rust())
 		return
 
 	// Heals all damage + Stamina
@@ -537,14 +536,15 @@
 	// Heals blood loss
 	source.adjust_blood_volume(2.5 * delta_time, maximum = BLOOD_VOLUME_NORMAL)
 	for(var/datum/reagent/reagent as anything in source.reagents.reagent_list)
-		source.reagents.remove_reagent(reagent.type, 2 * reagent.purge_multiplier * REM * seconds_per_tick)
+		reagent.volume -= 1 * reagent.purge_multiplier * seconds_per_tick
+	source.reagents.update_total()
 
 	if(!iscarbon(source))
 		return
 	var/mob/living/carbon/carbon_owner = source
 	if(passive_level < HERETIC_LEVEL_UPGRADE)
 		return
-	for(var/obj/item/bodypart/wounded_limb as anything in carbon_owner.bodyparts)
+	for(var/obj/item/bodypart/wounded_limb as anything in carbon_owner.get_bodyparts())
 		for(var/datum/wound/to_cure as anything in wounded_limb.wounds)
 			to_cure.remove_wound()
 	for(var/obj/item/organ/internal as anything in carbon_owner.organs)

@@ -316,7 +316,7 @@
 /// Send a message to everyone on the Z level with directions to the lectern
 /obj/structure/destructible/clockwork/gear_base/technologists_lectern/proc/send_message(initial_message = "You hear the echoing of cogs ", volume = 70)
 	for(var/mob/living/living_mob as anything in GLOB.mob_living_list)
-		if((living_mob.z != z) || IS_CLOCK(living_mob) || !living_mob.can_hear())
+		if((living_mob.z != z) || IS_CLOCK(living_mob) || !HAS_TRAIT(living_mob, TRAIT_DEAF))
 			continue
 
 
@@ -418,9 +418,7 @@
 				var/turf/tile = get_step(src, direction)
 				new /mob/living/basic/clockwork_marauder(tile)
 
-				var/datum/effect_system/fluid_spread/smoke/smoke_cloud = new
-				smoke_cloud.set_up(4, holder = src, location = src)
-				smoke_cloud.start()
+				do_smoke(4, holder = src, location = src)
 
 		if(21 to 30) // Fuck up the power
 			priority_announce("A fatal power outage has occurred. Please ensure that all on-board devices are connected to an appropriate power generator.")

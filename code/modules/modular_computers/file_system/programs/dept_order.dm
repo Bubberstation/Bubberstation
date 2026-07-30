@@ -48,8 +48,10 @@ GLOBAL_VAR(department_cd_override)
 /datum/computer_file/program/department_order/proc/set_linked_department(datum/job_department/department)
 	linked_department = department
 	var/datum/job_department/linked_department_real = SSjob.get_department_type(linked_department)
+	if (isnull(linked_department_real))
+		return
 	// Heads of staff can download
-	download_access |= linked_department_real.head_of_staff_access
+	LAZYOR(download_access, linked_department_real.head_of_staff_access)
 	// Heads of staff + anyone in the dept can run it
 	use_access |= linked_department_real.head_of_staff_access
 	use_access |= linked_department_real.department_access
@@ -109,7 +111,7 @@ GLOBAL_VAR(department_cd_override)
 		return FALSE
 	if((to_check.order_flags & ORDER_SPECIAL) && !(to_check.order_flags & ORDER_SPECIAL_ENABLED))
 		return FALSE
-	if(to_check.order_flags & (ORDER_INVISIBLE | ORDER_POD_ONLY | ORDER_GOODY | ORDER_NOT_DEPARTMENTAL))
+	if(to_check.order_flags & (ORDER_INVISIBLE | ORDER_POD_ONLY | ORDER_GOODY | ORDER_NOT_DEPARTMENTAL | ORDER_INTERDYNE_ONLY)) // BUBBER EDIT
 		return FALSE
 	return TRUE
 
@@ -164,7 +166,7 @@ GLOBAL_VAR(department_cd_override)
 	if(action == "override_order")
 		if(isnull(department_order) || !(department_order in SSshuttle.shopping_list))
 			return TRUE
-		if(length(download_access & id_card_access) <= 0)
+		if(LAZYLEN(download_access & id_card_access) <= 0)
 			computer.physical.balloon_alert(orderer, "requires head of staff access!")
 			playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 			return TRUE

@@ -242,6 +242,8 @@
 	return ..()
 
 /obj/effect/mob_spawn/ghost_role/human/ash_walker/allow_spawn(mob/user, silent = FALSE)
+	if(isnull(team))
+		return FALSE
 	if(!(user.ckey in team.players_spawned))//one per person unless you get a bonus spawn
 		return TRUE
 	if(!silent)
@@ -338,12 +340,8 @@
 	implants = list(/obj/item/implant/weapons_auth)
 	id_trim = /datum/id_trim/syndicom/skyrat/interdyne //SKYRAT EDIT
 
-// SKYRAT EDIT REMOVAL BEGIN -- mapping
-/*
-/datum/outfit/lavaland_syndicate/post_equip(mob/living/carbon/human/syndicate, visualsOnly = FALSE)
-	syndicate.faction |= ROLE_SYNDICATE
-*/
-// SKYRAT EDIT REMOVAL END
+/datum/outfit/lavaland_syndicate/post_equip(mob/living/carbon/human/syndicate, visuals_only = FALSE)
+	syndicate.add_faction(ROLE_SYNDICATE)
 
 /datum/outfit/lavaland_syndicate/comms
 	name = "Lavaland Syndicate Comms Agent"

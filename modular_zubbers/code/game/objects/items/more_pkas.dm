@@ -55,7 +55,8 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_HEAVY
-	max_mod_capacity = 75
+	max_mod_capacity = 60
+	disabled_modkits = list(/obj/item/borg/upgrade/modkit/cooldown/aoe/) // Should cover all AOE variants
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/glock
 	name = "proto-kinetic pistol"
@@ -89,6 +90,7 @@
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
 	max_mod_capacity = 75
+	disabled_modkits = list(/obj/item/borg/upgrade/modkit/cooldown/aoe/) // Should cover all AOE variants
 
 /obj/item/gun/energy/recharge/kinetic_accelerator/shockwave/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	target = get_edge_target_turf(user, user.dir)
@@ -152,7 +154,7 @@
 	fire_sound = 'sound/items/weapons/gun/general/cannon.ogg'
 
 /obj/item/ammo_casing/energy/kinetic/m79
-	projectile_type = /obj/projectile/bullet/mining_bomb //uses the mining bomb projectile from the mining modsuit
+	projectile_type = /obj/projectile/bullet/mining_missile //uses the mining bomb projectile from the mining modsuit
 	select_name = "kinetic"
 	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE * 0.5)
 	fire_sound = 'sound/items/weapons/gun/general/grenade_launch.ogg'
@@ -161,7 +163,7 @@
 /obj/projectile/kinetic/railgun
 	name = "hyper kinetic force"
 	icon_state = null
-	damage = 100
+	damage = 100 // Slightly less than a crusher marked hit (110 methinks), but ranged and really fast moving, big movement slowdown and bulky.
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 6
@@ -172,7 +174,7 @@
 /obj/projectile/kinetic/repeater
 	name = "rapid kinetic force"
 	icon_state = null
-	damage = 20
+	damage = 20 // Half damage, burst fire and a bit more range.
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 4
@@ -181,16 +183,20 @@
 /obj/projectile/kinetic/shotgun
 	name = "split kinetic force"
 	icon_state = null
-	damage = 20
+	damage = 20 // 3 projectiles, 60 base damage. Theoretically more if all shots hit.
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 3
 	log_override = TRUE
 
+/obj/item/borg/upgrade/modkit/indoors/modify_projectile(obj/projectile/kinetic/shotgun/K)
+	..()
+	K.pressure_decrease = min(K.pressure_decrease, 0.5)
+
 /obj/projectile/kinetic/glock
 	name = "light kinetic force"
 	icon_state = null
-	damage = 10
+	damage = 10 // Low dmg, high modularity. Can be made great, especially when dual wielded.
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 3
@@ -199,7 +205,7 @@
 /obj/projectile/kinetic/shockwave
 	name = "concussive kinetic force"
 	icon_state = null
-	damage = 40
+	damage = 40 // 8 projectiles in a 360 around you. Good for CC and rock clearing.
 	damage_type = BRUTE
 	armor_flag = BOMB
 	range = 1

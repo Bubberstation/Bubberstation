@@ -13,7 +13,7 @@
 
 	projectile_type = /obj/projectile/bullet/strilka310/ap
 	custom_materials = AMMO_MATS_AP
-	advanced_print_req = TRUE
+	can_be_printed = FALSE
 
 /obj/projectile/bullet/strilka310/ap
 	name = ".310 armor-piercing bullet"

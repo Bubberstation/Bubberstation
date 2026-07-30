@@ -275,6 +275,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 	autolathe_exportable = FALSE
 
+/* BUBBER EDIT REMOVAL BEGIN
 /datum/design/mag_autorifle
 	name = "WT-550 Autorifle Magazine (4.6x30mm) (Lethal)"
 	desc = "A 20 round magazine for the out of date WT-550 Autorifle."
@@ -302,6 +303,7 @@
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/silver = SMALL_MATERIAL_AMOUNT * 6, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtic
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+*/// BUBBER EDIT REMOVAL END
 
 /datum/design/pin_testing
 	name = "Test-Range Firing Pin"
@@ -593,6 +595,28 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
+/datum/design/tear_gas_40mm
+	name = "40mm Tear Gas Grenade Shell (Less Lethal)"
+	desc = "Looking to stop a riot or put down those damn space hippies in their beat up space caravan? We've got the grenade for you!"
+	id = "tear_gas_shell"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/plasma = SMALL_MATERIAL_AMOUNT * 2)
+	build_path = /obj/item/ammo_casing/a40mm/tear_gas
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+
+/datum/design/rubber_40mm
+	name = "40mm Rubber Shell (Less Lethal)"
+	desc = "Launch a rubber puck straight into an assistant's head at high velocities today!"
+	id = "rubber_puck_shell"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 2)
+	build_path = /obj/item/ammo_casing/a40mm/rubber
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+
 /datum/design/suppressor
 	name = "Suppressor"
 	desc = "A reverse-engineered suppressor that fits on most small arms with threaded barrels."
@@ -635,7 +659,7 @@
 	desc = "A mace fit for a cleric. Useful for bypassing plate armor, but too bulky for much else."
 	id = "cleric_mace"
 	build_type = AUTOLATHE
-	materials = list(MAT_CATEGORY_ITEM_MATERIAL = SHEET_MATERIAL_AMOUNT * 4.5, MAT_CATEGORY_ITEM_MATERIAL_COMPLEMENTARY = SHEET_MATERIAL_AMOUNT * 1.5)
+	materials = list(/datum/material_slot/weapon_head = SHEET_MATERIAL_AMOUNT * 4.5, /datum/material_slot/handle = SHEET_MATERIAL_AMOUNT * 1.5)
 	build_path = /obj/item/melee/cleric_mace
 	category = list(RND_CATEGORY_IMPORTED)
 
@@ -645,7 +669,7 @@
 	id = "liberator_gun"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 2, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 15)
-	build_path = /obj/item/gun/ballistic/automatic/pistol/doorhickey
+	build_path = /obj/item/gun/ballistic/automatic/pistol/doohickey
 	category = list(RND_CATEGORY_IMPORTED)
 
 /datum/design/stun_boomerang

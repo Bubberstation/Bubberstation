@@ -5,11 +5,14 @@
 	light_power = 1.4
 	brightness_on = 1.7
 	var/canalarm = FALSE
+	var/alarm_timer
 	COOLDOWN_DECLARE(alarm_cooldown)
 
 /obj/machinery/computer/crew/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
 	alarm()
+	if(isnull(alarm_timer))
+		alarm_timer = addtimer(CALLBACK(src, PROC_REF(alarm)), SENSORS_UPDATE_PERIOD)
 
 /obj/machinery/computer/crew/proc/alarm()
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -22,12 +25,16 @@
 		var/turf/pos = get_turf(mob)
 
 		if(!istype(mob))
+			GLOB.suit_sensors_list -= mob
 			continue
 
 		if(pos.z != z && (!is_station_level(pos.z) || !is_station_level(z)) && !HAS_TRAIT(mob, TRAIT_MULTIZ_SUIT_SENSORS))
 			continue
 
 		var/obj/item/clothing/under/uniform = mob.w_uniform
+		if(!istype(uniform) || uniform.has_sensor <= NO_SENSORS || !uniform.sensor_mode)
+			GLOB.suit_sensors_list -= mob
+			continue
 		if(uniform.sensor_mode == SENSOR_COORDS && (uniform.has_sensor != BROKEN_SENSORS) && (HAS_TRAIT(mob, TRAIT_CRITICAL_CONDITION) || mob.stat == DEAD))
 			if(mob.get_dnr()) // DNR won't beep anymore
 				continue
@@ -46,7 +53,7 @@
 		icon_keyboard = "med_key"
 		update_appearance()
 		set_light(l_range = initial(brightness_on), l_power = initial(light_power), l_color = initial(light_color), l_on = TRUE)
-	addtimer(CALLBACK(src, PROC_REF(alarm)), SENSORS_UPDATE_PERIOD)
+	alarm_timer = addtimer(CALLBACK(src, PROC_REF(alarm)), SENSORS_UPDATE_PERIOD)
 
 	return canalarm
 

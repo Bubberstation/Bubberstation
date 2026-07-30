@@ -1,4 +1,5 @@
 /datum/symptom/heal
+	abstract_type = /datum/symptom/heal
 	name = "Basic Healing (does nothing)" //warning for adminspawn viruses
 	desc = "You should not be seeing this."
 	stealth = 0
@@ -601,9 +602,39 @@
 	needs_update += carbon_host.adjust_tox_loss(-2 * heal_amt, updating_health = FALSE)
 	var/brute_burn_heal = carbon_host.heal_overall_damage(heal_amt, heal_amt, required_bodytype = healable_bodytypes, updating_health = FALSE)
 	needs_update += brute_burn_heal
+	if(needs_update)
+		carbon_host.updatehealth()
 	if(brute_burn_heal && prob(4))
 		to_chat(carbon_host, span_notice("Your skin glows faintly, and you feel your wounds mending themselves."))
 	return TRUE
 
 /datum/symptom/heal/radiation/can_generate_randomly()
 	return ..() && !HAS_TRAIT(SSstation, STATION_TRAIT_RADIOACTIVE_NEBULA) // Because people can never really suffer enough
+
+/datum/symptom/heal/aggressive_healing
+	name = "Aggressive Healing"
+	desc = "The virus heals damaged tissues in a way that appears threatening to the immune system."
+	severity = 1
+	stealth = -4
+	resistance = 3
+	stage_speed = 3
+	transmittable = 2
+	level = 4
+	base_message_chance = 0
+	symptom_delay_min = 1
+	symptom_delay_max = 1
+	symptom_cure = null
+	power = 2
+
+	threshold_descs = list(
+		"Severity > 1" = "For each point of severity above 1, the healing provided by the virus increases.",
+	)
+	///Increases the healing effect (if active) of the virus by this amount for each severity level above 1
+	var/severity_heal_bonus = 0.25
+
+/datum/symptom/heal/aggressive_healing/CanHeal(datum/disease/advance/our_disease)
+	return power + our_disease.totalSeverity() * severity_heal_bonus
+
+/datum/symptom/heal/aggressive_healing/Heal(mob/living/carbon/carbon_host, datum/disease/advance/our_disease, actual_power)
+	carbon_host.heal_overall_damage(actual_power, actual_power, required_bodytype = healable_bodytypes)
+	return TRUE

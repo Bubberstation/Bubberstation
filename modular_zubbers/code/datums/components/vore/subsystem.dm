@@ -2,7 +2,7 @@
 PROCESSING_SUBSYSTEM_DEF(vore)
 	name = "Vore Belly Ticker"
 	wait = 2 SECONDS
-	flags = SS_KEEP_TIMING
+	ss_flags = SS_KEEP_TIMING
 	#ifdef VORE_TESTING_ALL_MOBS_ARE_VORE_MOBS
 	init_order = INIT_ORDER_ATOMS + 1
 	#endif

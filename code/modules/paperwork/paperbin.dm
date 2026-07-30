@@ -13,10 +13,10 @@
 	throw_speed = 3
 	throw_range = 7
 	pressure_resistance = 8
+	var/obj/item/paper/papertype = /obj/item/paper
 	custom_materials = list(/datum/material/paper = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/iron = SHEET_MATERIAL_AMOUNT) // BUBBER EDIT ADDITION - Needed for crafting material parity
-	var/papertype = /obj/item/paper
 	var/total_paper = 30
-	var/list/paper_stack = list()
+	var/list/obj/item/paper/paper_stack = list()
 	var/obj/item/pen/bin_pen
 	///Overlay of the pen on top of the bin.
 	var/mutable_appearance/pen_overlay
@@ -190,7 +190,12 @@
 				: reference_paper
 
 			var/mutable_appearance/paper_overlay = mutable_appearance(current_paper.icon, current_paper.icon_state)
-			paper_overlay.color = current_paper.color
+			if(current_paper == reference_paper)
+				paper_overlay.color = initial(papertype.color)
+				if(initial(papertype.show_written_words) && initial(papertype.default_raw_text))
+					paper_overlay.icon_state += "_words"
+			else
+				paper_overlay.color = current_paper.color
 			paper_overlay.pixel_z = paper_number/PAPERS_PER_OVERLAY - PAPER_OVERLAY_PIXEL_SHIFT //gives the illusion of stacking
 			. += paper_overlay
 			if(paper_number == total_paper) //this is our top paper

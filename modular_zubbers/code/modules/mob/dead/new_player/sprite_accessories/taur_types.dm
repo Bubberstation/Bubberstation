@@ -130,6 +130,12 @@
 	icon_state = "drider"
 	organ_type = /obj/item/organ/taur_body/spider
 
+/datum/sprite_accessory/taur/broodmother
+	name = "Broodmother"
+	icon_state = "broodmother"
+	organ_type = /obj/item/organ/taur_body/spider
+	icon = 'modular_zubbers/icons/customization/taur.dmi'
+
 /datum/sprite_accessory/taur/insect
 	name = "Insect"
 	icon_state = "ant"

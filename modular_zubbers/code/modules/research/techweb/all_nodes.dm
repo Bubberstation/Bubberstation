@@ -69,6 +69,19 @@
 	design_ids += list(
 		"limbdesign_hemophage",
 		"limbdesign_tajaran",
+		"limbdesign_teshari",
+	)
+
+/datum/techweb_node/cyber/cyber_implants/New()
+	. = ..()
+	design_ids += list(
+		"wound_scanner_internal"
+	)
+
+/datum/techweb_node/medbay_equip/New()
+	. = ..()
+	design_ids += list(
+		"defibrillator",
 	)
 
 //ENGINEERING
@@ -157,6 +170,8 @@
 		"minesweeper",
 	)
 
+// Security Tech
+
 /datum/techweb_node/riot_supression/New()
 	design_ids += "s12g_rubber"
 	design_ids += "s12g_bslug"
@@ -166,19 +181,45 @@
 	design_ids += "m9mm_mag"
 	design_ids += "m45_mag"
 	design_ids += "solgrenade_mag"
+	design_ids += "ntusp_conversion"
+	design_ids += "ntusp_powerpack"
+	design_ids += "ntmp5_powerpack"
 	. = ..()
 
 /datum/techweb_node/exotic_ammo/New()
 	design_ids += "wt550_ammo_ap"
+	design_ids += "wt550_ammo_compressed"
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()
-	design_ids -= "mag_autorifle"
-	design_ids -= "mag_autorifle_ap"
-	design_ids -= "mag_autorifle_ic"
 	design_ids += "wt550_ammo_incendiary"
+	design_ids += "s12g_db"
 	design_ids += "mod_mind_transfer"
 	. = ..()
+
+/datum/techweb_node/bullet_weapons //This is for advanced bullet weapon designs and upgrades
+	id = TECHWEB_NODE_BULLET_WEAPONS
+	display_name = "Advanced Ballistic Weaponry"
+	description = "As if shooting a bullet could get any more complicated."
+	prereq_ids = list(TECHWEB_NODE_EXOTIC_AMMO)
+	design_ids = list(
+		"wt550_burst",
+		"wt550_long",
+		"battle_rifle_basic",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SECURITY)
+
+/datum/techweb_node/advanced_armor //This is for advanced armor and shields
+	id = TECHWEB_NODE_ADVANCED_ARMOR
+	display_name = "Advanced Security Protection"
+	description = "If we can't hurt them, we can outlast them."
+	prereq_ids = list(TECHWEB_NODE_RIOT_SUPRESSION, TECHWEB_NODE_GAS_COMPRESSION)
+	design_ids = list(
+		"security_juggernaut"
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SECURITY)
 
 // Modsuit tech
 /datum/techweb_node/mod_equip/New()

@@ -13,7 +13,7 @@
 /datum/status_effect/crucible_soul/on_apply()
 	to_chat(owner,span_notice("You phase through reality, nothing is out of bounds!"))
 	owner.alpha = 180
-	owner.pass_flags |= PASSCLOSEDTURF | PASSGLASS | PASSGRILLE | PASSMACHINE | PASSSTRUCTURE | PASSTABLE | PASSMOB | PASSDOORS | PASSVEHICLE
+	owner.pass_flags |= PASSGLASS | PASSGRILLE | PASSMACHINE | PASSSTRUCTURE | PASSTABLE | PASSMOB | PASSDOORS | PASSVEHICLE // BUBBER EDIT CHANGE - removed PASSCLOSEDTURF
 	location = get_turf(owner)
 	var/datum/action/cancel_crucible_soul/cancel_button = new(src)
 	cancel_button.Grant(owner)
@@ -22,7 +22,7 @@
 /datum/status_effect/crucible_soul/on_remove()
 	to_chat(owner,span_notice("You regain your physicality, returning you to your original location..."))
 	owner.alpha = initial(owner.alpha)
-	owner.pass_flags &= ~(PASSCLOSEDTURF | PASSGLASS | PASSGRILLE | PASSMACHINE | PASSSTRUCTURE | PASSTABLE | PASSMOB | PASSDOORS | PASSVEHICLE)
+	owner.pass_flags &= ~(PASSGLASS | PASSGRILLE | PASSMACHINE | PASSSTRUCTURE | PASSTABLE | PASSMOB | PASSDOORS | PASSVEHICLE) // BUBBER EDIT CHANGE - removed PASSCLOSEDTURF
 	owner.forceMove(location)
 	owner.apply_status_effect(/datum/status_effect/crucible_soul_cooldown)
 	location = null
@@ -87,7 +87,7 @@
 	if(!iscarbon(owner))
 		return
 	var/mob/living/carbon/drinker = owner
-	for(var/obj/item/bodypart/potentially_wounded as anything in drinker.bodyparts)
+	for(var/obj/item/bodypart/potentially_wounded as anything in drinker.get_bodyparts())
 		for(var/datum/wound/found_wound as anything in potentially_wounded.wounds)
 			found_wound.remove_wound()
 	if(length(drinker.get_missing_limbs()))
@@ -102,7 +102,7 @@
 
 	carbie.adjust_brute_loss(-0.5 * seconds_between_ticks, updating_health = FALSE)
 	carbie.adjust_fire_loss(-0.5 * seconds_between_ticks, updating_health = FALSE)
-	for(var/BP in carbie.bodyparts)
+	for(var/BP in carbie.get_bodyparts())
 		var/obj/item/bodypart/part = BP
 		for(var/W in part.wounds)
 			var/datum/wound/wound = W
@@ -322,7 +322,7 @@
 	)
 
 /datum/status_effect/caretaker_refuge/get_examine_text()
-	return span_warning("[owner.p_Theyre()] enveloped in an unholy haze!")
+	return span_warning("[owner.p_Theyre()] enveloped in an unholy haze! They cant be touched! Wait it our or hit them with antimagic!") // BUBBER EDIT ADDITION - added They cant be touched! Wait it our or hit them with antimagic!
 
 /datum/status_effect/caretaker_refuge/proc/nullrod_handler(datum/source, obj/item/weapon)
 	SIGNAL_HANDLER

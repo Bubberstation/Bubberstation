@@ -59,6 +59,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
 	icon_state = "pinwheel"
+	base_icon_state = "pinwheel"
 	inhand_icon_state = null
 	lefthand_file = null
 	righthand_file = null
@@ -80,9 +81,9 @@
 
 /obj/item/clothing/head/helmet/toggleable/pinwheel/gold
 	name = "magnificent pinwheel hat"
-	desc = "The strongest possible pinwheel pinwheel hat. Such is fate that the silliest things in the world are also the most beautiful; others may not see the shine in you, but the magnificent pinwheel hat does. It appreciates you for who you are and what you've done. It feels alive, and makes you feel alive too. You see the totality of existence reflected in the golden shimmer of the pin." //Does literally nothing more than the regular pinwheel hat. Just for emphasis.
+	desc = "The strongest possible pinwheel hat. Such is fate that the silliest things in the world are also the most beautiful; others may not see the shine in you, but the magnificent pinwheel hat does. It appreciates you for who you are and what you've done. It feels alive, and makes you feel alive too. You see the totality of existence reflected in the golden shimmer of the pin." //Does literally nothing more than the regular pinwheel hat. Just for emphasis.
 	icon_state = "pinwheel_gold"
-
+	base_icon_state = "pinwheel_gold"
 
 //Clussy and Jester sprites from Splurt.
 /obj/item/clothing/head/costume/bubber/jester
@@ -642,8 +643,32 @@
 	icon_state = "security_maid"
 	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
 	armor_type = /datum/armor/head_helmet
 	strip_delay = 60
+
+//BEGIN HAT SPRITES BY APRIL
+
+/obj/item/clothing/head/security_kepi
+	name = "security kepi"
+	desc = "Bonjour, inspecteur. A kepi police cap first popularized by planetary police on Pluto. This one appears armored."
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "kepi_sec_red"
+	armor_type = /datum/armor/head_helmet
+	strip_delay = 60
+	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
+
+/obj/item/clothing/head/hos_kepi
+	name = "HoS kepi"
+	desc = "Bonjour, commandante. A kepi for the Head of Security. It has a embroidered pattern going around it. This one appears well armored."
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "kepi_sec_red_hos"
+	armor_type = /datum/armor/hats_hos
+	strip_delay = 60
+
+// END HATS ADDED BY APRIL
 
 /obj/item/clothing/head/helmet/elder_atmosian
 	desc = "The pinnacle of atmospherics equipment, an expensive modified atmospherics fire helmet plated in one of the most luxurous and durable metals known to man. Providing full atmos coverage without the heavy materials to slow the user down, it also offers far greater protection to most sources of damage, even offering great protection against gases, and other nasty things that try to get into your face."
@@ -680,3 +705,54 @@
 	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
 	armor_type = /datum/armor/none
 	resistance_flags = FIRE_PROOF
+
+// Ablative hood
+/obj/item/clothing/head/hooded/ablative
+	// new teshari sprites
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/head/helmet/space/plasmaman/plasmax_black
+	name = "plasMAX envirosuit helmet"
+	desc = "Extra large version of plasmaman helmet, made to fit those with non-humanoid skulls."
+	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
+	icon_state = "plasmax_black"
+	light_color = "#f399ff"
+	visor_icon = "plasmax_black-envisor"
+
+// virosec helmets, sprites by axietheaxolotl
+
+/obj/item/clothing/head/helmet/sec/viro
+	name = "helmet"
+	desc = "Standard Security gear. Protects the head from impacts."
+	base_icon_state = "security_helmet"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "security_helmet"
+
+/obj/item/clothing/head/helmet/sec/viro/hos
+	name = "head of security's helmet"
+	desc = "Standard Security gear. Protects the head from impacts. This one has a golden stripe."
+	base_icon_state = "hos_helmet"
+	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	icon_state = "hos_helmet"
+	armor_type = /datum/armor/hats_hos
+
+/obj/item/clothing/head/helmet/blueshirt
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/head/utility/hardhat
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/utility_teshari.dmi'
+
+/obj/item/clothing/head/helmet/space/emergency
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/head/syndicatefake
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/head/helmet/space/syndicate/black/red
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'
+
+/obj/item/clothing/head/helmet/sec
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/helmet_teshari.dmi'

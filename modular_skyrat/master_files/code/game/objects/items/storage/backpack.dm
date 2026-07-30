@@ -100,6 +100,16 @@
 	icon_state = "messenger_hydroponics"
 	inhand_icon_state = "messenger_hydroponics"
 
+/obj/item/storage/backpack/messenger/sec
+	name = "security messenger bag"
+	desc = "A robust messenger bag for security related needs."
+	icon = 'icons/obj/storage/backpack.dmi'
+	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
+	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
+	icon_state = "messenger_security"
+	inhand_icon_state = "messenger_security"
+
 /obj/item/storage/backpack/messenger/explorer
 	name = "explorer messenger bag"
 	desc = "A robust messenger bag for stashing your loot, as well as making a remarkably cute accessory for your drakebone armor."

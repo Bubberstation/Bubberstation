@@ -63,6 +63,19 @@
 	..()
 	blacklist += subtypesof(/obj/item/clothing/mask/gas)
 
+/datum/crafting_recipe/muzzle_medical_mask
+	name = "Surgery Mask"
+	result = /obj/item/clothing/mask/breath/muzzle
+	reqs = list(/obj/item/clothing/mask/breath = 1,
+				/obj/item/clothing/mask/muzzle = 1)
+	time = 3 SECONDS
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/muzzle_medical_mask/New()
+	..()
+	blacklist += typesof(/obj/item/clothing/mask/breath/muzzle)
+	blacklist += subtypesof(/obj/item/clothing/mask/muzzle)
+
 /datum/crafting_recipe/hudsunciv
 	name = "Civilian HUDsunglasses"
 	result = /obj/item/clothing/glasses/hud/civilian/sunglasses
@@ -99,4 +112,22 @@
 	time = 40 SECONDS
 	reqs = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 3,
 	/obj/item/clothing/head/utility/hardhat/welding/atmos = 1)
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/security_juggernaut
+	name = "Security Juggernaut Suit"
+	result = /obj/item/clothing/suit/hooded/secjuggernaut
+	time = 60
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER, TOOL_WELDER, TOOL_WRENCH, TOOL_CROWBAR, TOOL_MULTITOOL)
+	reqs = list(
+		/obj/item/weaponcrafting/juggernaut_suit = 1,
+		/obj/item/clothing/shoes/magboots = 1,
+		/obj/item/flashlight/seclite = 2,
+		/obj/item/clothing/suit/armor/swat = 1,
+		/obj/item/clothing/head/helmet/swat = 1,
+		/obj/item/stack/cable_coil = 30,
+	)
+	blacklist = list(
+		/obj/item/clothing/shoes/magboots/advance
+	)
 	category = CAT_CLOTHING

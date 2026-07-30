@@ -41,3 +41,18 @@
 	cost = PAYCHECK_COMMAND * 2
 	contains = list(/obj/item/ammo_box/magazine/security = 1)
 	access_view = ACCESS_WEAPONS
+
+/datum/supply_pack/security/armory/protector_revolver
+	name = "'Protector' Service Revolver Crate"
+	desc = "Contains three 'Protector' service revolvers pre-loaded with lethal rounds. Additional ammo sold seperately."
+	cost = CARGO_CRATE_VALUE * 4
+	contains = list(/obj/item/gun/ballistic/revolver/protector_revolver = 3)
+	crate_name = "'Protector' service revolver crate"
+	access_view = ACCESS_WEAPONS
+
+/datum/supply_pack/goody/protector_revolver_single
+	name = "'Protector' Service Revolver Single-Pack"
+	desc = "A single 'Protector' revolver. Uses 'Murphy' ammo, sold separately"
+	cost = PAYCHECK_COMMAND * 6
+	contains = list(/obj/item/gun/ballistic/revolver/protector_revolver = 1)
+	access_view = ACCESS_WEAPONS

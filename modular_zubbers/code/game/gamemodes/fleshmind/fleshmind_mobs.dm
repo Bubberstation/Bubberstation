@@ -801,7 +801,7 @@
 	playsound(src, 'modular_skyrat/modules/horrorform/sound/horror_scream.ogg', 100, TRUE)
 	manual_emote("screams violently!")
 	for(var/mob/living/iterating_mob in get_hearers_in_range(scream_effect_range, src))
-		if(!iterating_mob.can_hear())
+		if(HAS_TRAIT(iterating_mob, TRAIT_DEAF))
 			continue
 		if(faction_check(faction, iterating_mob.faction))
 			continue
@@ -1156,8 +1156,6 @@
 	var/list/possible_targets = list()
 	for(var/mob/living/possible_target in view(DEFAULT_VIEW_RANGE, phaser_owner))
 		if(possible_target == src)
-			continue
-		if(faction_check(phaser_owner.faction, possible_target.faction))
 			continue
 		possible_targets += possible_target
 

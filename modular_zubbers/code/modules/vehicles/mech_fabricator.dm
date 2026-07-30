@@ -6,7 +6,7 @@
 /obj/machinery/mecha_part_fabricator/interdyne/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
-	if(ROLE_SYNDICATE in user.faction)
+	if(user.has_faction(ROLE_SYNDICATE))
 		obj_flags |= EMAGGED
 		for(var/found_illegal_mech_nods in SSresearch.techweb_nodes)
 			var/datum/techweb_node/illegal_mech_node = SSresearch.techweb_nodes[found_illegal_mech_nods]

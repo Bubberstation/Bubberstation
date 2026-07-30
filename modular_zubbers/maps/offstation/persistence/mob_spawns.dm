@@ -2,7 +2,6 @@
 	title = ROLE_PERSISTENCE
 	policy_index = ROLE_PERSISTENCE
 	akula_outfit = /datum/outfit/akula
-	antagonist_restricted = TRUE
 
 // Persistence mining rig Ghost Spawners
 
@@ -72,8 +71,8 @@
 /obj/effect/mob_spawn/ghost_role/robot/persistence/special(mob/living/silicon/robot/new_spawn)
 	. = ..()
 	if(new_spawn.client) //It should have a client, right?
-		new_spawn.faction += ROLE_SYNDICATE
-		new_spawn.faction += ROLE_PERSISTENCE //This is the one to select the cyborg model.
+		new_spawn.add_faction(ROLE_SYNDICATE)
+		new_spawn.add_faction(ROLE_PERSISTENCE) //This is the one to select the cyborg model.
 		new_spawn.radio.keyslot = new /obj/item/encryptionkey/headset_syndicate/cybersun(src)
 		new_spawn.radio.recalculateChannels()
 		new_spawn.UnlinkSelf() //This should prevent AI linking and consoles to see or lock them down.
@@ -188,7 +187,7 @@
 		/obj/item/retractor/advanced,
 		/obj/item/cautery/advanced,
 		/obj/item/scalpel/advanced,
-		/obj/item/stack/medical/gauze,
+		/obj/item/stack/medical/wrap/gauze,
 		/obj/item/borg/cyborghug/medical,
 		/obj/item/borg/lollipop,
 		/obj/item/borg/apparatus/beaker,
@@ -290,7 +289,7 @@
 		/obj/item/choice_beacon/syndicateoffstation = 1,
 		)
 	head = /obj/item/clothing/head/helmet/swat/ds
-	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
 	mask = /obj/item/clothing/mask/gas/syndicate
 	ears = /obj/item/radio/headset/syndicateciv/staff
 
@@ -301,7 +300,7 @@
 	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/cargo
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/bulletproof/old
-	back = /obj/item/storage/backpack/satchel/explorer
+	back = /obj/item/storage/backpack/satchel/sec
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
 		/obj/item/crowbar = 1,
@@ -328,7 +327,7 @@
 
 //gives syndicate role so turrets don't shoot operative
 /datum/outfit/persistence/syndicate/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 	return ..()
 
 // Dauntless Command
@@ -354,7 +353,7 @@
 	id_trim = /datum/id_trim/syndicom/bubberstation/persistence/masteratarms
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/vest/warden/syndicate
-	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
 	back = /obj/item/storage/backpack/satchel/sec
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
@@ -394,7 +393,7 @@
 
 //gives syndicate role so turrets don't shoot operatives
 /datum/outfit/persistence/command/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 	return ..()
 
 //Give cyborg a specific chameleon item that do not disrupt, still lose power though.

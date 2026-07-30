@@ -7,3 +7,8 @@
 	name = "Slug Scream"
 	male_screamsounds = list('modular_zubbers/sound/emotes/screams/slug_scream.ogg') // From Splurt, further credit to https://www.youtube.com/watch?v=AdGk4PHQDOE
 	female_screamsounds = null
+
+/datum/scream_type/serpentid
+	name = "Ascent Scream"
+	male_screamsounds = list('modular_skyrat/modules/emotes/sound/emotes/serpentidscream.ogg')
+	female_screamsounds = null

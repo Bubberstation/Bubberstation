@@ -12,7 +12,7 @@
 
 /turf/closed/indestructible/normal_wall
 	name = "wall"
-	icon = 'modular_skyrat/modules/aesthetics/walls/icons/wall.dmi'
+	icon = 'modular_zubbers/icons/turf/walls/wall.dmi'
 	icon_state = "wall-0"
 	base_icon_state = "wall"
 	smoothing_flags = SMOOTH_BITMASK

@@ -3,6 +3,7 @@
 	desc = "Dissolves restraints or other objects preventing free movement. Costs 30 chemicals."
 	helptext = "This is obvious to nearby people, and can destroy standard restraints and closets. Works against grabs."
 	button_icon_state = "biodegrade"
+	category = "utility"
 	chemical_cost = 30
 	dna_cost = 2
 	req_human = TRUE
@@ -70,9 +71,11 @@
 		playsound(user, 'sound/items/tools/welder.ogg', 50, TRUE)
 		. = TRUE
 
-	if(space_invader)
-		punish_with_acid(user, space_invader)
-		. = TRUE
+//----------------BUBBER CHANGE------------------------
+	//if(space_invader)
+		//punish_with_acid(user, space_invader)
+		//. = TRUE
+//---------------END OF BUBBER CHANGE------------------
 	return .
 
 /// Spawn green acid puddle underneath obj, used for callback

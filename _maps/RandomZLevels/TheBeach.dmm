@@ -697,6 +697,26 @@
 	},
 /turf/open/floor/wood/large,
 /area/awaymission/beach)
+"iO" = (
+/obj/structure/sign/directions/dorms/directional/north{
+	pixel_y = 35
+	},
+/obj/structure/sign/directions/medical/directional/north{
+	pixel_y = 29
+	},
+/obj/effect/spawner/random/entertainment/slot_machine,
+/turf/open/floor/wood/large,
+/area/awaymission/beach)
+"iS" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Temporary Holding Cell"
+	},
+/obj/effect/mapping_helpers/airlock/unres/delayed{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
+/turf/open/floor/iron/dark/textured_large,
+/area/awaymission/beach)
 "iU" = (
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks/fullupgrade{
@@ -715,27 +735,6 @@
 	pixel_x = -32
 	},
 /turf/open/floor/wood/large,
-/area/awaymission/beach)
-"jm" = (
-/obj/structure/table/reinforced,
-/obj/machinery/cell_charger{
-	pixel_y = 13;
-	pixel_x = 21
-	},
-/obj/item/clothing/glasses/hud/health{
-	pixel_y = 1;
-	pixel_x = 18
-	},
-/obj/item/stack/medical/gauze{
-	pixel_x = -15;
-	pixel_y = 10
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 3;
-	pixel_x = -3
-	},
-/obj/machinery/light/directional/north,
-/turf/open/floor/iron/white/textured_large,
 /area/awaymission/beach)
 "jF" = (
 /obj/machinery/vending/boozeomat{
@@ -1246,16 +1245,6 @@
 /obj/machinery/hydroponics/constructable,
 /turf/open/misc/beach/sand,
 /area/awaymission/beach)
-"pE" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Temporary Holding Cell"
-	},
-/obj/effect/mapping_helpers/airlock/unres/delayed{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
-/turf/open/floor/iron/dark/textured_large,
-/area/awaymission/beach)
 "pF" = (
 /obj/structure/flora/tree/palm/style_2{
 	pixel_y = 3;
@@ -1692,6 +1681,27 @@
 "vc" = (
 /obj/structure/dresser,
 /turf/open/floor/wood,
+/area/awaymission/beach)
+"vm" = (
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger{
+	pixel_y = 13;
+	pixel_x = 21
+	},
+/obj/item/clothing/glasses/hud/health{
+	pixel_y = 1;
+	pixel_x = 18
+	},
+/obj/item/stack/medical/wrap/gauze{
+	pixel_x = -15;
+	pixel_y = 10
+	},
+/obj/item/storage/belt/medical{
+	pixel_y = 3;
+	pixel_x = -3
+	},
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron/white/textured_large,
 /area/awaymission/beach)
 "vq" = (
 /obj/effect/decal/cleanable/dirt,
@@ -4017,16 +4027,6 @@
 /turf/open/floor/iron/white/textured_large,
 /area/awaymission/beach)
 "Zp" = (
-/turf/open/floor/wood/large,
-/area/awaymission/beach)
-"Zs" = (
-/obj/structure/sign/directions/dorms/directional/north{
-	pixel_y = 35
-	},
-/obj/structure/sign/directions/medical/directional/north{
-	pixel_y = 29
-	},
-/obj/machinery/computer/slot_machine,
 /turf/open/floor/wood/large,
 /area/awaymission/beach)
 "Zt" = (
@@ -13243,7 +13243,7 @@ xv
 xv
 xv
 xv
-Zs
+iO
 Zp
 Zp
 mb
@@ -14773,7 +14773,7 @@ eT
 un
 Pk
 xv
-jm
+vm
 bi
 bi
 TK
@@ -15794,7 +15794,7 @@ XB
 XB
 XB
 xv
-pE
+iS
 aB
 aB
 xv

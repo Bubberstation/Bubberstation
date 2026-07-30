@@ -83,7 +83,7 @@
 	id = /obj/item/card/id/advanced/chameleon/ghost_cafe
 	back = /obj/item/storage/backpack/chameleon
 	backpack_contents = list(/obj/item/storage/box/syndie_kit/chameleon/ghostcafe = 1)
-	skillchips = list(/obj/item/skillchip/job/roboticist, /obj/item/skillchip/job/engineer)
+	skillchips = list(/obj/item/skillchip/job/roboticist)
 
 /datum/outfit/ghostcafe/pre_equip(mob/living/carbon/human/visitor, visuals_only = FALSE)
 	..()

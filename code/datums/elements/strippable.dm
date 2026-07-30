@@ -333,11 +333,14 @@
 
 	/// A lazy list of user mobs to a list of strip menu keys that they're interacting with
 	var/list/interactions
+	/// Bubber variable - Primarily for Proteans.
+	var/needs_view = TRUE
 
-/datum/strip_menu/New(atom/movable/owner, datum/element/strippable/strippable)
+/datum/strip_menu/New(atom/movable/owner, datum/element/strippable/strippable, needs_view) // Bubber edit: needs_view arg
 	. = ..()
 	src.owner = owner
 	src.strippable = strippable
+	src.needs_view = needs_view // Bubber edit
 
 /datum/strip_menu/Destroy()
 	owner = null
@@ -520,7 +523,7 @@
 	return min(
 		ui_status_only_living(user, owner),
 		ui_status_user_has_free_hands(user, owner),
-		ui_status_user_is_adjacent(user, owner, allow_tk = FALSE),
+		ui_status_user_is_adjacent(user, owner, allow_tk = FALSE, viewcheck = needs_view), // Bubber edit: Needs_view arg
 		HAS_TRAIT(user, TRAIT_CAN_STRIP) ? UI_INTERACTIVE : UI_UPDATE,
 		max(
 			ui_status_user_is_conscious_and_lying_down(user),

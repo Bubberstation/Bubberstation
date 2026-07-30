@@ -108,7 +108,7 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	greyscale_config = /datum/greyscale_config/duster
 	greyscale_config_worn = /datum/greyscale_config/duster/worn
-	greyscale_colors = "#954b21"
+	greyscale_colors = "#8f6349"
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/suit/toggle/peacoat

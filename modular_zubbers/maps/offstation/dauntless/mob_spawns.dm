@@ -2,7 +2,6 @@
 	title = ROLE_DAUNTLESS
 	policy_index = ROLE_DAUNTLESS
 	akula_outfit = /datum/outfit/akula
-	antagonist_restricted = TRUE
 
 // Dauntless Ghost Spawners (Lava)
 
@@ -269,7 +268,7 @@
 		/obj/item/crowbar = 1,
 		)
 	head = /obj/item/clothing/head/helmet/swat/ds
-	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
 	mask = /obj/item/clothing/mask/gas/syndicate
 	ears = /obj/item/radio/headset/syndicateciv/staff
 
@@ -297,7 +296,7 @@
 	head = /obj/item/clothing/head/soft/black
 
 /datum/outfit/dauntless/syndicate/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 	return ..()
 
 // Dauntless Command
@@ -322,7 +321,7 @@
 	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/masteratarms
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/vest/warden/syndicate
-	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
 	back = /obj/item/storage/backpack/satchel/sec
 	head = /obj/item/clothing/head/hats/hos/beret/syndicate
 	r_pocket = /obj/item/flashlight/seclite
@@ -356,5 +355,5 @@
 	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/stationadmiral
 
 /datum/outfit/dauntless/command/post_equip(mob/living/carbon/human/syndicate)
-	syndicate.faction |= ROLE_SYNDICATE
+	syndicate.add_faction(ROLE_SYNDICATE)
 	return ..()

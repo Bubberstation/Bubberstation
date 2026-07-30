@@ -12,6 +12,8 @@
 	sheet_type = /obj/item/stack/sheet/plasteel
 	sheet_amount = 1
 	girder_type = /obj/structure/girder/reinforced
+	girder_state = GIRDER_REINF
+	make_delay = 5 SECONDS
 	explosive_resistance = 2
 	rad_insulation = RAD_HEAVY_INSULATION
 	rust_resistance = RUST_RESISTANCE_REINFORCED
@@ -202,7 +204,7 @@
 // We don't react to smoothing changing here because this else exists only to "revert" intact changes
 /turf/closed/wall/r_wall/update_icon_state()
 	if(d_state != INTACT)
-		icon = 'modular_skyrat/modules/aesthetics/walls/icons/reinforced_wall.dmi' // SKYRAT EDIT CHANGE - ORIGINAL: icon = 'icons/turf/walls/reinforced_states.dmi'
+		icon = 'modular_zubbers/icons/turf/walls/reinforced_states.dmi' // BUBBER EDIT CHANGE - ORIGINAL: icon = 'icons/turf/walls/reinforced_states.dmi'
 		icon_state = "[base_decon_state]-[d_state]"
 	else
 		icon = initial(icon)
@@ -227,10 +229,10 @@
 	if(the_rcd.canRturf || rcd_data[RCD_DESIGN_MODE] == RCD_WALLFRAME)
 		return ..()
 
-/turf/closed/wall/r_wall/rust_turf()
+/turf/closed/wall/r_wall/rust_turf(magic = FALSE)
 	if(HAS_TRAIT(src, TRAIT_RUSTY))
 		ChangeTurf(/turf/closed/wall/rust)
-		return
+		return TRUE
 	return ..()
 
 /turf/closed/wall/r_wall/plastitanium

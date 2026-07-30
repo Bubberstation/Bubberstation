@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(condos)
 	name = "Condos"
-	flags = SS_NO_FIRE
+	ss_flags = SS_NO_FIRE
 	init_stage = INITSTAGE_LAST
 	/// All possible condo templates.
 	var/list/condo_templates = list()
@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(condos)
 		/obj/item/clothing/suit/hooded/ablative, \
 		/obj/item/nuke_core, \
 		/obj/item/nuke_core_container, \
-		/obj/item/computer_disk/hdd_theft, \
+		/obj/item/disk/computer/hdd_theft, \
 		/obj/item/nuke_core_container/supermatter, \
 		/obj/item/aicard, \
 		/obj/item/gun/energy/temperature/security, \

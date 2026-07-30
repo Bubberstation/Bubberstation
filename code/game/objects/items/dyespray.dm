@@ -1,11 +1,9 @@
 /obj/item/dyespray
 	name = "hair dye spray"
-	desc = "A spray to dye your hair any colors and gradients you'd like." // SKYRAT EDIT - Making the dyespray change hair color
+	desc = "A spray to dye your hair any gradients you'd like."
 	w_class = WEIGHT_CLASS_TINY
 	icon = 'icons/obj/cosmetic.dmi'
 	icon_state = "dyespray"
-
-	var/uses = 40 //SKYRAT EDIT ADDITION
 
 /obj/item/dyespray/attack_self(mob/user)
 	dye(user, user)
@@ -20,14 +18,11 @@
  * Arguments:
  * * target - The mob who we will apply the gradient and gradient color to.
  */
-/* SKYRAT EDIT REMOVAL - MOVED TO MODULAR (modular_skyrat\master_files\code\game\objects\items\dyekit.dm)
+
+/* BUBBER EDIT - REMOVAL - MOVED TO MODULAR (modular_skyrat\master_files\code\game\objects\items\dyekit.dm)
 /obj/item/dyespray/proc/dye(mob/target, mob/user)
 	if(!ishuman(target))
 		return
-
-	if(!uses) //SKYRAT EDIT ADDITION
-		return //SKYRAT EDIT ADDITION
-
 	var/mob/living/carbon/human/human_target = target
 	var/list/dyables = list("Hair", "Facial Hair")
 	for(var/obj/item/organ/organ as anything in human_target.organs)
@@ -63,8 +58,7 @@
 	if(!user.can_perform_action(src, NEED_DEXTERITY))
 		return
 
-	var/new_grad_color = input(user, "Choose a secondary hair color:", "Character Preference", human_target.get_hair_gradient_color()) as color|null
-
+	var/new_grad_color = tgui_color_picker(user, "Choose a secondary hair color:", "Character Preference", human_target.get_hair_gradient_color())
 	if(!new_grad_color || !user.can_perform_action(src, NEED_DEXTERITY) || !target.IsReachableBy(user))
 		return
 
@@ -78,6 +72,7 @@
 		human_target.set_facial_hair_gradient_style(new_grad_style, update = FALSE)
 		human_target.set_facial_hair_gradient_color(new_grad_color, update = TRUE)
 	playsound(src, 'sound/effects/spray.ogg', 10, vary = TRUE)
+*/
 
 /obj/item/dyespray/proc/dye_organ(mob/living/carbon/human/target, mob/user)
 	var/list/dyables = list()
@@ -112,7 +107,7 @@
 			return
 
 	var/default_color = overlay.dye_color || overlay.draw_color
-	var/new_color = input(user, "Choose a color for [selected]:", "Character Preference", default_color) as color|null
+	var/new_color = tgui_color_picker(user, "Choose a color for [selected]:", "Character Preference", default_color)
 	if(isnull(new_color) || new_color == default_color || !user.can_perform_action(src, NEED_DEXTERITY))
 		return
 	if(QDELETED(selected) || !(selected in target.organs))
@@ -122,4 +117,3 @@
 	if(QDELETED(selected) || !(selected in target.organs))
 		return
 	overlay.set_dye_color(new_color, selected)
-*/

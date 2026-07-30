@@ -15,3 +15,11 @@
 	item = /obj/item/storage/box/syndibunny
 	cost = 8
 
+/datum/uplink_item/bundles_tc/tactical_naptime
+	name = "Sleepy Time Pajama Bundle"
+	desc = "Even soldiers need to get a good nights rest. Comes with blood-red pajamas, a blankie, a hot mug of cocoa and a fuzzy friend."
+	item = /obj/item/storage/box/syndie_kit/sleepytime
+	cost = 1
+	uplink_item_flags = NONE
+
+

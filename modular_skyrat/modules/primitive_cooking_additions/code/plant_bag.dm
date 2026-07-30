@@ -20,14 +20,14 @@
 	new_worn_icon = 'modular_skyrat/modules/primitive_cooking_additions/icons/plant_bag_worn.dmi'
 
 // This is so the linen reskin shows properly in the suit storage.
-/obj/item/storage/bag/plants/build_worn_icon(default_layer, default_icon_file, isinhands, female_uniform, override_state, override_file, mutant_styles)
+/* /obj/item/storage/bag/plants/build_worn_icon(...)
 	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
 	if(default_layer == SUIT_STORE_LAYER)
 		for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
 			if(reskin_component.is_using_skin(/datum/atom_skin/plant_bag/linen))
 				override_file = 'modular_skyrat/modules/primitive_cooking_additions/icons/plant_bag_worn_mirror.dmi'
 				break
-	return ..()
+	return ..() */
 
 /// Simple helper to reskin this item into its primitive variant.
 /obj/item/storage/bag/plants/proc/make_primitive()

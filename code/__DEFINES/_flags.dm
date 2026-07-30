@@ -13,6 +13,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define DF_ISPROCESSING (1<<2)
 /// Placed on datums that have a static, constant reference. Primarily only used for turfs.
 #define DF_STATIC_OBJECT (1<<3)
+/// Set on datums that should be tracked by the event logger.
+#define DF_EVLOGGING (1<<4)
 
 //FLAGS BITMASK
 // scroll down before changing the numbers on these
@@ -239,6 +241,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define ZAP_DEFAULT_FLAGS ZAP_MOB_STUN | ZAP_MOB_DAMAGE | ZAP_OBJ_DAMAGE
 #define ZAP_FUSION_FLAGS ZAP_OBJ_DAMAGE | ZAP_MOB_DAMAGE | ZAP_MOB_STUN
 #define ZAP_SUPERMATTER_FLAGS ZAP_GENERATES_POWER
+#define ZAP_GIZMO_FLAGS ZAP_MOB_DAMAGE | ZAP_OBJ_DAMAGE
 
 ///Object will protect itself.
 #define EMP_PROTECT_SELF (1<<0)
@@ -323,6 +326,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define IGNORE_INCAPACITATED (1<<3)
 /// Used to prevent important slowdowns from being abused by drugs like kronkaine
 #define IGNORE_SLOWDOWNS (1<<4)
+/// Cancel the action if the user does another action (mainly via clicking)
+#define DO_AFTER_CHECK_NEXT_MOVE (1<<5)
 
 // Spacevine-related flags
 /// Is the spacevine / flower bud heat resistant

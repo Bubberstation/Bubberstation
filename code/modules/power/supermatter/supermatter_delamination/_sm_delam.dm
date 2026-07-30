@@ -9,6 +9,10 @@ GLOBAL_LIST_INIT(sm_delam_list, list(
 /// Logic holder for supermatter delaminations, goes off the strategy design pattern.
 /// Selected by [/obj/machinery/power/supermatter_crystal/proc/set_delam]
 /datum/sm_delam
+	/// User friendly name for messages and logging
+	var/name
+	/// Has a priority announcement been sent since this delam strategy was initialized
+	var/announcement_triggered = FALSE
 
 /// Whether we are eligible for this delamination or not. TRUE if valid, FALSE if not.
 /// [/obj/machinery/power/supermatter_crystal/proc/set_delam]
@@ -37,17 +41,9 @@ GLOBAL_LIST_INIT(sm_delam_list, list(
 	if(sm.damage <= sm.warning_point) // Damage is too low, lets not
 		return FALSE
 
-	// BUBBER EDIT ADDITION BEGIN - DELAM_SCRAM
-	if(!sm.station_notified && sm.damage >= sm.danger_point - 29) // 69%. Nice.
-		if(SSjob.is_skeleton_engineering(3)) // Notify early for a skeleton crew
-			notify_delam_suppression(sm)
-		else if(sm.damage >= sm.danger_point)
-			notify_delam_suppression(sm)
-	// BUBBER EDIT ADDITION END
-
 	if (sm.damage >= sm.emergency_point && sm.damage_archived < sm.emergency_point)
-		sm.investigate_log("has entered the emergency point.", INVESTIGATE_ENGINE)
-		message_admins("[sm] has entered the emergency point [ADMIN_VERBOSEJMP(sm)].")
+		sm.investigate_log("has entered the emergency point: Pending [sm.delamination_strategy.name].", INVESTIGATE_ENGINE)
+		message_admins("[ADMIN_VERBOSEJMP(sm)] has entered the emergency point: Pending [sm.delamination_strategy.name].")
 
 	if((REALTIMEOFDAY - sm.lastwarning) < SUPERMATTER_WARNING_DELAY)
 		return FALSE
@@ -88,15 +84,24 @@ GLOBAL_LIST_INIT(sm_delam_list, list(
 	SEND_SIGNAL(sm, COMSIG_SUPERMATTER_DELAM_ALARM)
 	return TRUE
 
+/// Generates an admin message and creates an investigate log.
+/datum/sm_delam/proc/log_delamination(obj/machinery/power/supermatter_crystal/sm)
+	message_admins("[ADMIN_VERBOSEJMP(sm)] triggered a [name].")
+	sm.investigate_log("triggered a [name].", INVESTIGATE_ENGINE)
+
 /// Called when a supermatter switches its strategy from another one to us.
 /// [/obj/machinery/power/supermatter_crystal/proc/set_delam]
 /datum/sm_delam/proc/on_select(obj/machinery/power/supermatter_crystal/sm)
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	sm.investigate_log("functional strategy is now [name].", INVESTIGATE_ENGINE)
+	if(SSticker.HasRoundStarted())
+		message_admins("[ADMIN_VERBOSEJMP(sm)] functional strategy is now [name].")
 
 /// Called when a supermatter switches its strategy from us to something else.
 /// [/obj/machinery/power/supermatter_crystal/proc/set_delam]
 /datum/sm_delam/proc/on_deselect(obj/machinery/power/supermatter_crystal/sm)
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	sm.investigate_log("previous strategy was [name].", INVESTIGATE_ENGINE)
 
 /// Added to an examine return value.
 /// [/obj/machinery/power/supermatter_crystal/examine]

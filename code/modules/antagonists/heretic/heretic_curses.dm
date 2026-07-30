@@ -3,7 +3,7 @@
  */
 
 /datum/heretic_knowledge/curse
-	abstract_parent_type = /datum/heretic_knowledge/curse
+	abstract_type = /datum/heretic_knowledge/curse
 	/// How far can we curse people?
 	var/max_range = 64
 	/// The duration of the curse
@@ -80,6 +80,8 @@
 	log_combat(user, to_curse, "cursed via heretic ritual", addition = "([name])")
 	var/obj/item/codex_cicatrix/morbus/cursed_book = locate() in selected_atoms
 	curse(to_curse, cursed_book)
+	var/datum/antagonist/heretic/our_heretic = GET_HERETIC(user)
+	SEND_SIGNAL(our_heretic, COMSIG_HERETIC_CURSED_TARGET, to_curse) // BUBBER EDIT ADDITION
 	to_chat(user, span_hierophant("You cast a [name] upon [to_curse.real_name]."))
 
 	fingerprints = null
@@ -134,7 +136,7 @@
 //---- Curse of Paralysis
 
 /datum/heretic_knowledge/curse/paralysis
-	abstract_parent_type = /datum/heretic_knowledge/curse/paralysis
+	abstract_type = /datum/heretic_knowledge/curse/paralysis
 	name = "Curse of Paralysis"
 	desc = "Allows you to transmute a hatchet and both a left and right leg to cast a curse of immobility on a crew member. \
 		While cursed, the victim will be unable to walk. You can additionally supply an item that a victim has touched \
@@ -169,7 +171,7 @@
 //---- Curse of Corrosion
 
 /datum/heretic_knowledge/curse/corrosion
-	abstract_parent_type = /datum/heretic_knowledge/curse/corrosion
+	abstract_type = /datum/heretic_knowledge/curse/corrosion
 	name = "Curse of Corrosion"
 	desc = "Allows you to transmute wirecutters, a pool of vomit, and a heart to cast a curse of sickness on a crew member. \
 		While cursed, the victim will repeatedly vomit while their organs will take constant damage. You can additionally supply an item \
@@ -198,7 +200,7 @@
 //---- Curse of Transmutation
 
 /datum/heretic_knowledge/curse/transmutation
-	abstract_parent_type = /datum/heretic_knowledge/curse/transmutation
+	abstract_type = /datum/heretic_knowledge/curse/transmutation
 	name = "Curse of Transmutation"
 	duration = 0 // Infinite curse, it breaks when our codex is destroyed
 	curse_color = NONE
@@ -266,7 +268,7 @@
 //---- Curse of Indulgence
 
 /datum/heretic_knowledge/curse/indulgence
-	abstract_parent_type = /datum/heretic_knowledge/curse/indulgence
+	abstract_type = /datum/heretic_knowledge/curse/indulgence
 	name = "Curse of Indulgence"
 	duration = 8 MINUTES
 	curse_color = COLOR_MAROON
