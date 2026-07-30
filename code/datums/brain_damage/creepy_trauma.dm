@@ -228,7 +228,7 @@
 
 		var/job = crewmember.assigned_role.title
 		// SKYRAT EDIT ADDITION START - Players in the interlink can't be obsession targets
-		if(SSticker.IsRoundInProgress() && istype(get_area(player), /area/centcom/interlink))
+		if(SSticker.IsRoundInProgress() && istype(get_area(crewmember), /area/centcom/interlink))
 			continue
 		// SKYRAT EDIT END
 		if (trait_obsessions[job] && HAS_MIND_TRAIT(owner, trait_obsessions[job]))
