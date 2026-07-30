@@ -5,6 +5,7 @@
 	icon_state = "shrimp"
 	tastes = list("raw shrimp" = 1)
 	bite_consumption = 3
+	fillet_name = "raw %NAME"
 
 /obj/item/food/fishmeat/shrimp/make_grillable()
 	AddComponent(/datum/component/grillable, /obj/item/food/fried_shrimp, rand(40 SECONDS, 50 SECONDS), TRUE, TRUE)
