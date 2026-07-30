@@ -257,3 +257,9 @@
 	cost = PAYCHECK_COMMAND * 1.5
 	contains = list(/obj/item/ammo_box/magazine/lanca)
 	order_flags = ORDER_CONTRABAND
+
+/datum/supply_pack/goody/hueboy
+	name = "Nanotrasen HueBoy Single-Pack"
+	desc = "A handheld recoloring console. Batteries included, for once."
+	cost = PAYCHECK_CREW * 2
+	contains = list(/obj/item/colortron)

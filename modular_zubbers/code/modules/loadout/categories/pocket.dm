@@ -139,3 +139,7 @@
 /datum/loadout_item/pocket_items/lustwish_theme
 	name = "Lustwish MOD Plating"
 	item_path = /obj/item/mod/construction/plating/lustwish
+
+/datum/loadout_item/pocket_items/colortron
+	name = "Nanotrasen HueBoy"
+	item_path = /obj/item/colortron
