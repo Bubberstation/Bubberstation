@@ -20,15 +20,14 @@ GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 
 /// Any actual room. Hallways and maintenance are excluded for being unfunny.
 /proc/vitezstvi_crash_areas()
-	var/static/list/excluded = list(
-		/area/station/hallway,
-		/area/station/maintenance,
-	)
+	// matched on the name, since maps branch their maintenance wherever they like
+	var/static/list/excluded_words = list("maintenance", "hallway")
 	var/list/candidates = list()
 	for(var/area/station_area_path as anything in GLOB.the_station_areas)
+		var/area_name = initial(station_area_path.name)
 		var/skip = FALSE
-		for(var/area_path in excluded)
-			if(ispath(station_area_path, area_path))
+		for(var/word in excluded_words)
+			if(findtext(area_name, word))
 				skip = TRUE
 				break
 		if(!skip)
@@ -41,6 +40,9 @@ GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "vodkabottle"
 
+/// Hull's long axis. The dock point is kept at least this far from the map edge.
+#define VITEZSTVI_EDGE_MARGIN 44
+
 /// Any floor will do. We are crashing a shuttle, not parking it.
 /proc/vitezstvi_crash_turf(list/areas_to_pick_from)
 	if(!length(areas_to_pick_from))
@@ -51,9 +53,17 @@ GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 			var/index = rand(1, length(turf_list))
 			var/turf/candidate = turf_list[index]
 			if(!candidate.density && !isgroundlessturf(candidate))
-				return candidate
+				return vitezstvi_pull_inbounds(candidate)
 			turf_list.Cut(index, index + 1)
 	return null
+
+/// An overhanging hull fails to dock and retries forever, so drag the target back inside instead.
+/proc/vitezstvi_pull_inbounds(turf/candidate)
+	var/inbound_x = clamp(candidate.x, VITEZSTVI_EDGE_MARGIN, world.maxx - VITEZSTVI_EDGE_MARGIN)
+	var/inbound_y = clamp(candidate.y, VITEZSTVI_EDGE_MARGIN, world.maxy - VITEZSTVI_EDGE_MARGIN)
+	if(inbound_x == candidate.x && inbound_y == candidate.y)
+		return candidate
+	return locate(inbound_x, inbound_y, candidate.z)
 
 /// Aims the drunks at a turf. Used by the opening roll and by admins.
 /proc/vitezstvi_place_crash_target(turf/target)
@@ -97,3 +107,4 @@ GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 		return ..()
 
 #undef VITEZSTVI_FUNNY_LANDING_CHANCE
+#undef VITEZSTVI_EDGE_MARGIN
