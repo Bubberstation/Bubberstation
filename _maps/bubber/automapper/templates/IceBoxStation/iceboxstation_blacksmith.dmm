@@ -1,49 +1,50 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/window{
-	id = "blacksmithworkshop";
-	name = "Blacksmith's Workshop"
-	},
-/turf/open/floor/iron/dark,
-/area/station/cargo/blacksmith)
-"b" = (
+"ab" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
+/obj/machinery/button/door/directional/east{
+	name = "Front Desk Shutters";
+	id = "blacksmithworkshop";
+	req_access = list("blacksmith")
 	},
-/turf/open/floor/stone,
-/area/station/cargo/blacksmith)
-"c" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
+/turf/open/floor/wood/large,
+/area/station/cargo/blacksmith)
+"ac" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/central)
+"ad" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/airlock/maintenance{
+	name = "Maintenance Hatch"
 	},
-/obj/effect/landmark/start/blacksmith,
-/turf/open/floor/stone,
-/area/station/cargo/blacksmith)
-"d" = (
-/obj/structure/reagent_forge,
-/obj/machinery/space_heater/wall_mounted/with_cell/directional/east,
-/turf/open/floor/stone,
-/area/station/cargo/blacksmith)
-"e" = (
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
+/turf/open/floor/plating,
+/area/station/hallway/primary/central)
+"ae" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/light/directional/north,
+/obj/machinery/airalarm/directional/north,
 /turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
-"f" = (
+"af" = (
 /obj/item/radio/intercom/directional/west,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/dark,
+/area/station/hallway/primary/central)
+"ag" = (
+/obj/structure/reagent_dispensers/reagent_smithing_basin/prefilled,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/stone,
 /area/station/cargo/blacksmith)
-"h" = (
+"ah" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -52,34 +53,44 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/any/supply/blacksmith,
 /obj/machinery/door/firedoor,
-/turf/open/floor/iron,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
-"i" = (
+"ai" = (
 /turf/closed/wall,
 /area/station/cargo/blacksmith)
-"j" = (
+"aj" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
 /obj/machinery/disposal/bin,
-/turf/open/floor/wood/large,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
 /area/station/cargo/blacksmith)
-"l" = (
+"ak" = (
+/obj/structure/reagent_crafting_bench,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/station/cargo/blacksmith)
+"al" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/firealarm/directional/north,
+/obj/machinery/light/directional/north,
 /turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
-"m" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/window{
-	id = "blacksmithworkshop";
-	name = "Blacksmith's Workshop"
-	},
+"am" = (
 /turf/open/floor/iron/dark,
-/area/station/cargo/blacksmith)
-"n" = (
+/area/station/hallway/primary/central)
+"an" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -88,116 +99,125 @@
 /obj/effect/mapping_helpers/airlock/access/any/supply/blacksmith,
 /turf/open/floor/plating,
 /area/station/cargo/blacksmith)
-"o" = (
+"ao" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/sign/poster/contraband/random/directional/north,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
-"p" = (
-/obj/structure/closet/crate/wooden/blacksmith,
-/turf/open/floor/stone,
-/area/station/cargo/blacksmith)
-"q" = (
+"ap" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/central)
+"aq" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/wood/large,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
 /area/station/cargo/blacksmith)
-"r" = (
+"ar" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/button/door/directional/north{
-	name = "Workshop Shutters Control";
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/window{
 	id = "blacksmithworkshop";
-	req_access = list("blacksmith")
+	name = "Blacksmith's Workshop";
+	dir = 4
 	},
-/obj/machinery/light/directional/north,
-/turf/open/floor/stone,
+/turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
-"s" = (
+"as" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/turf/open/floor/stone,
-/area/station/cargo/blacksmith)
-"t" = (
-/obj/structure/closet/crate/wooden,
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/south,
-/turf/open/floor/wood/large,
-/area/station/cargo/blacksmith)
-"u" = (
-/obj/structure/rack/wooden,
-/turf/open/floor/wood/large,
-/area/station/cargo/blacksmith)
-"v" = (
-/turf/open/floor/stone,
-/area/station/cargo/blacksmith)
-"w" = (
 /turf/open/floor/iron/dark,
-/area/station/cargo/blacksmith)
-"x" = (
-/obj/machinery/airalarm/directional/east,
-/turf/open/floor/iron/dark,
-/area/station/cargo/blacksmith)
-"z" = (
-/turf/open/floor/wood/large,
-/area/station/cargo/blacksmith)
-"A" = (
-/obj/structure/closet/crate/wooden,
-/obj/structure/cable,
+/area/station/hallway/primary/central)
+"at" = (
 /obj/machinery/light/directional/south,
-/turf/open/floor/wood/large,
-/area/station/cargo/blacksmith)
-"B" = (
+/obj/structure/reagent_forge,
+/obj/machinery/space_heater/wall_mounted/with_cell/directional/south,
 /obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/station/cargo/blacksmith)
+"au" = (
 /obj/structure/reagent_anvil,
-/obj/machinery/light/directional/south,
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
-"C" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
+"av" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/window{
+	id = "blacksmithworkshop";
+	name = "Blacksmith's Workshop";
+	dir = 4
 	},
-/obj/structure/reagent_dispensers/reagent_smithing_basin/prefilled,
-/turf/open/floor/stone,
+/turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
-"D" = (
+"ay" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/central)
+"az" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/airalarm/directional/east,
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
-"E" = (
+"aA" = (
+/obj/structure/cable,
+/obj/structure/closet/crate/wooden/blacksmith,
+/obj/machinery/power/apc/auto_name/directional/south,
+/turf/open/floor/stone,
+/area/station/cargo/blacksmith)
+"aB" = (
+/turf/closed/wall,
+/area/station/hallway/primary/central)
+"aC" = (
+/obj/structure/disposalpipe/junction/flip{
+	dir = 1
+	},
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/central)
+"aD" = (
+/obj/machinery/airalarm/directional/east,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/central)
+"aE" = (
 /obj/structure/mannequin/wood,
 /turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
-"G" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt/dust,
+"aF" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/stone,
-/area/station/cargo/blacksmith)
-"H" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
-"I" = (
-/obj/machinery/camera{
-	network = list("ss13","cargo");
-	c_tag = "Cargo - Blacksmith's Workshop"
-	},
-/obj/structure/rack/wooden,
-/turf/open/floor/stone,
+"aG" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/central)
+"aH" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
-"J" = (
+"aJ" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -205,78 +225,80 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/stone,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
-"K" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/siding/wood{
-	dir = 9
-	},
-/turf/open/floor/stone,
-/area/station/cargo/blacksmith)
-"L" = (
+"aL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
 /obj/effect/landmark/start/blacksmith,
 /turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
-"M" = (
-/obj/structure/mannequin/wood,
+"aM" = (
 /obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/window{
+	id = "blacksmithworkshop";
+	name = "Blacksmith's Workshop";
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
+/area/station/cargo/blacksmith)
+"aN" = (
+/obj/structure/table/wood,
+/obj/item/paper/pamphlet/blacksmith_tutorial,
+/turf/open/floor/wood/large,
+/area/station/cargo/blacksmith)
+"aO" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/station/cargo/blacksmith)
+"aP" = (
+/obj/structure/cable,
+/obj/machinery/camera{
+	network = list("ss13","cargo");
+	c_tag = "Cargo - Blacksmith's Workshop"
+	},
+/obj/machinery/light/directional/south,
+/obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
-"N" = (
-/obj/structure/table/wood,
-/obj/item/paper/pamphlet/blacksmith_tutorial,
-/obj/item/paper/pamphlet/blacksmith_tutorial,
-/turf/open/floor/wood/large,
-/area/station/cargo/blacksmith)
-"O" = (
-/obj/effect/spawner/structure/window,
+"aQ" = (
+/turf/closed/wall,
+/area/station/maintenance/port/aft)
+"aR" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
 /turf/open/floor/plating,
-/area/station/cargo/blacksmith)
-"P" = (
-/obj/structure/rack/wooden,
-/obj/structure/cable,
-/turf/open/floor/wood/large,
-/area/station/cargo/blacksmith)
-"S" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/engineering/material,
-/turf/open/floor/wood/large,
-/area/station/cargo/blacksmith)
-"T" = (
+/area/station/maintenance/port/aft)
+"aT" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/stone,
 /area/station/cargo/blacksmith)
-"U" = (
+"aU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/stone,
+/turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
-"V" = (
+"aV" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/machinery/door/airlock/maintenance,
-/obj/effect/mapping_helpers/airlock/access/any/supply/blacksmith,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
+/obj/machinery/door/airlock/maintenance{
+	name = "Maintenance Hatch"
+	},
 /turf/open/floor/plating,
-/area/station/cargo/blacksmith)
-"W" = (
+/area/station/hallway/primary/central)
+"aW" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/machinery/door/airlock/mining/glass{
@@ -284,113 +306,136 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/any/supply/blacksmith,
 /obj/machinery/door/firedoor,
-/turf/open/floor/iron,
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
-"Y" = (
-/obj/effect/landmark/start/blacksmith,
-/turf/open/floor/wood/large,
-/area/station/cargo/blacksmith)
-"Z" = (
-/obj/structure/reagent_crafting_bench,
+"aX" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/stone,
+/area/station/cargo/blacksmith)
+"aY" = (
+/obj/effect/landmark/start/blacksmith,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/station/cargo/blacksmith)
+"aZ" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/central)
+"KK" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/iron/dark,
+/area/station/hallway/primary/central)
+"RN" = (
+/obj/item/paper/pamphlet/blacksmith_tutorial,
+/obj/structure/rack/wooden,
+/turf/open/floor/wood/large,
 /area/station/cargo/blacksmith)
 
 (1,1,1) = {"
-i
-h
-i
-O
-O
-O
-i
+ai
+ah
+ai
+aO
+aO
+aO
+ai
 "}
 (2,1,1) = {"
-i
-H
-z
-z
-z
-u
-i
+ai
+aH
+RN
+ak
+az
+au
+ai
 "}
 (3,1,1) = {"
-i
-e
-S
-E
-Y
-t
-i
+ai
+ae
+aE
+ag
+aY
+at
+ai
 "}
 (4,1,1) = {"
-i
-o
-N
-j
-z
-A
-i
+ai
+ao
+aN
+aj
+aT
+aA
+ai
 "}
 (5,1,1) = {"
-i
-l
-L
-q
-z
-P
-i
+ai
+al
+aL
+aq
+aX
+aP
+ai
 "}
 (6,1,1) = {"
-W
-K
-U
-J
-b
-b
-n
+aW
+aU
+aU
+aJ
+aF
+ab
+an
 "}
 (7,1,1) = {"
-i
-i
-r
-M
-v
-I
-i
+ai
+ai
+ar
+aM
+av
+ai
+ai
 "}
 (8,1,1) = {"
-f
-a
-G
-C
-v
-p
-i
+af
+ay
+aG
+aC
+ay
+ap
+aQ
 "}
 (9,1,1) = {"
-w
-m
-s
-T
-c
-B
-i
+am
+am
+as
+KK
+ac
+aB
+aQ
 "}
 (10,1,1) = {"
-x
-m
-s
-Z
-D
-d
-i
+am
+am
+as
+aZ
+aD
+ad
+aR
 "}
 (11,1,1) = {"
-i
-i
-V
-i
-i
-i
-i
+aB
+aB
+aV
+aB
+aB
+aB
+aQ
 "}
