@@ -32,6 +32,8 @@
 		default_color = hsv2rgb(default_color)
 
 	quirk_holder.makeHologram(0.62, default_color)
-
+	quirk_holder.AddComponent(/datum/component/holographic_nature)
 /datum/quirk/holographic_nature/remove(client/client_source)
 	quirk_holder.remove_filter(list("HOLO: Color and Transparent", "HOLO: Scanline"))
+	var/datum/component/holo_component = quirk_holder.GetComponent(/datum/component/holographic_nature)
+	holo_component?.Destroy()
