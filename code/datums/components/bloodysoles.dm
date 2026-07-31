@@ -289,11 +289,11 @@
 
 	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(on_clean))
 	RegisterSignal(parent, COMSIG_STEP_ON_BLOOD, PROC_REF(on_step_blood))
+	RegisterSignals(parent, list(COMSIG_MOB_EQUIPPED_ITEM, COMSIG_MOB_UNEQUIPPED_ITEM), PROC_REF(shoecover))
 	// BUBBER ADDITION BEGIN - Species specific blood icons.
 	RegisterSignal(parent, COMSIG_SPECIES_GAIN, PROC_REF(on_species_change))
 	RegisterSignal(parent, COMSIG_SPECIES_LOSS, PROC_REF(on_species_change))
 	// BUBBER ADDITION END
-	RegisterSignals(parent, list(COMSIG_MOB_EQUIPPED_ITEM, COMSIG_MOB_UNEQUIPPED_ITEM), PROC_REF(shoecover))
 
 	if(new_blood)
 		blood_DNA = new_blood

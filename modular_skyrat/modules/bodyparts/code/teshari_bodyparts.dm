@@ -85,7 +85,6 @@
 	brute_modifier = TESHARI_BRUTE_MODIFIER
 	burn_modifier = TESHARI_BURN_MODIFIER
 
-
 /obj/item/bodypart/arm/right/mutant/teshari
 	icon_greyscale = BODYPART_ICON_TESHARI
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
@@ -95,7 +94,6 @@
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
 	brute_modifier = TESHARI_BRUTE_MODIFIER
 	burn_modifier = TESHARI_BURN_MODIFIER
-
 
 /obj/item/bodypart/leg/left/mutant/teshari
 	icon_greyscale = BODYPART_ICON_TESHARI

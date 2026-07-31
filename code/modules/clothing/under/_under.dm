@@ -116,7 +116,17 @@
 		return
 
 	if(damaged_clothes)
-		. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform")
+		//BUBBER EDIT BEGIN
+		//. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform") //ORIGINAL
+		var/icon/damage_icon_file = 'icons/effects/item_damage.dmi'
+		var/damage_icon_state = "damageduniform"
+		var/mob/living/carbon/human/species_target = loc
+		if(ishuman(species_target) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damageduniform_[species_target.dna.species.id]"))
+			damage_icon_file = 'modular_zubbers/icons/effects/item_damage_species.dmi'
+			damage_icon_state  = "damageduniform_[species_target.dna.species.id]"
+
+		. += mutable_appearance(damage_icon_file, damage_icon_state)
+		//BUBBER EDIT END
 	if(accessory_overlay)
 		. += modify_accessory_overlay() // SKYRAT EDIT CHANGE - ORIGINAL: . += accessory_overlay
 

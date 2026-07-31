@@ -60,7 +60,17 @@
 	if(isinhands)
 		return
 	if(damaged_clothes)
-		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedhelmet")
+		//BUBBER EDIT BEGIN
+		//. += mutable_appearance('icons/effects/item_damage.dmi', "damagedhelmet") //ORIGINAL
+		var/icon/damage_icon_file = 'icons/effects/item_damage.dmi'
+		var/damage_icon_state = "damagedhelmet"
+		var/mob/living/carbon/human/species_target = loc
+		if(ishuman(species_target) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedhelmet_[species_target.dna.species.id]"))
+			damage_icon_file = 'modular_zubbers/icons/effects/item_damage_species.dmi'
+			damage_icon_state  = "damagedhelmet_[species_target.dna.species.id]"
+
+		. += mutable_appearance(damage_icon_file, damage_icon_state)
+		//BUBBER EDIT END
 
 /obj/item/clothing/head/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file)
 	. = ..()
