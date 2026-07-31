@@ -5,6 +5,7 @@
 
 	applied_core = /obj/item/mod/core/protean
 	applied_cell = null // Goes off stomach
+	applied_modules = list(/obj/item/mod/module/storage/large_capacity)
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | INDESTRUCTIBLE // funny nanite
 	drag_pickup = FALSE
 	/// Whether or not the wearer can undeploy parts.
@@ -22,16 +23,12 @@
 	AddElement(/datum/element/strippable/protean, GLOB.strippable_human_items)
 
 /obj/item/mod/control/pre_equipped/protean/Destroy()
+	var/obj/item/mod/core/protean/p_core = core
 	if(stored_modsuit)
-		for(var/obj/item/mod/module/modules in cached_modules)
-			if(!modules.removable)
-				qdel(modules)
-				continue
-			modules.forceMove(get_turf(src))
-
-		cached_modules = null
-		drop_suit()
-		INVOKE_ASYNC(src, PROC_REF(unassimilate_modsuit), null, forced = TRUE)
+		if(p_core?.linked_species)
+			stored_modsuit.forceMove(get_turf(src))
+			INVOKE_ASYNC(p_core.linked_species, TYPE_PROC_REF(/datum/species/protean, unassimilate_modsuit), null, TRUE)
+	cached_modules = null
 	return ..()
 
 /obj/item/mod/control/pre_equipped/protean/wrench_act(mob/living/user, obj/item/wrench)
@@ -140,7 +137,7 @@
 		to_chat(user, span_notice("You begin to copy [tool], destroying it in the process!"))
 		if(!do_after(user, 4 SECONDS))
 			return ITEM_INTERACT_BLOCKING
-		assimilate_theme(user, tool)
+		protean_core.linked_species.assimilate_theme(user, tool)
 		qdel(tool)
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_SUCCESS
@@ -163,7 +160,7 @@
 		to_chat(user, span_notice("The suit begins to slowly absorb [tool]!"))
 		if(!do_after(user, 4 SECONDS))
 			return ITEM_INTERACT_BLOCKING
-		assimilate_modsuit(user, tool)
+		protean_core.linked_species.assimilate_modsuit(user, tool)
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_SUCCESS
 
@@ -193,117 +190,13 @@
 		return UI_INTERACTIVE
 	. = ..()
 
-/obj/item/mod/control/pre_equipped/protean/proc/assimilate_theme(mob/user, plating)
-	var/obj/item/mod/construction/plating/plates = plating
-	var/datum/mod_theme/the_theme = GLOB.mod_themes[plates.theme]
-
-	name = initial(name)
-	desc = initial(desc)
-
-	for(var/obj/item/part as anything in get_parts())
-		part.name = initial(name)
-		part.desc = initial(desc)
-		if(part.loc == src)
-			continue
-		retract(null, part, instant = TRUE)
-
-	theme = the_theme
-	the_theme.set_up_parts(src, the_theme.default_skin)
-	update_static_data_for_all_viewers()
-
-/obj/item/mod/control/pre_equipped/protean/proc/assimilate_modsuit(mob/user, modsuit, forced)
-	var/obj/item/mod/control/to_assimilate = modsuit
-	if(stored_modsuit)
-		to_chat(user, span_warning("Can't absorb two modsuits!"))
-		if(forced)
-			stack_trace("assimilate_modsuit: Tried to assimilate modsuit while there's already a stored modsuit. stored_modsuit: [stored_modsuit], new_modsuit: [to_assimilate]")
-		return
-	if(!user?.transferItemToLoc(to_assimilate, src, forced))
-		balloon_alert(user, "stuck!")
-		return
-	if(!forced)
-		for(var/obj/item/part as anything in get_parts())
-			if(part.loc == src)
-				continue
-			retract(null, part, instant = TRUE)
-	stored_modsuit = to_assimilate
-	stored_theme = theme // Store the old theme in cache
-	theme = to_assimilate.theme // Set new theme
-	skin = to_assimilate.skin // Inheret skin
-	theme.set_up_parts(src, skin) // Put everything together
-	name = to_assimilate.name
-	desc = to_assimilate.desc
-	extended_desc = to_assimilate.extended_desc
-	for(var/obj/item/mod/module/module in to_assimilate.modules) // Insert every module
-		if(istype(module, /obj/item/mod/module/storage))
-			var/obj/item/mod/module/storage/existing_storage = locate() in modules
-			if(existing_storage)
-				cached_modules += existing_storage
-				to_chat(user, span_notice("[existing_storage] has been pushed aside!"))
-				uninstall(existing_storage)
-		if(install(module, user, TRUE))
-			continue
-		if(!module.removable) // Just leave it inside the original suit if it doesn't transfer.
-			continue
-		to_assimilate.uninstall(module) // Drop it
-		module.forceMove(get_turf(src))
-		to_chat(user, span_warning("[module] has dropped onto the floor!"))
-	update_static_data_for_all_viewers()
-
-/obj/item/mod/control/pre_equipped/protean/proc/unassimilate_modsuit(mob/living/user, forced = FALSE)
-	if(!stored_modsuit)
-		to_chat(user, span_warning("There is no assimilated suit."))
-		return
-	if(active && !forced)
-		balloon_alert(user, "deactivate modsuit")
-		return
-	if(!(user?.has_active_hand()) && !forced)
-		balloon_alert(user, "need active hand")
-		return
-
-	if(!forced)
-		to_chat(user, span_notice("You begin to pry the assimilated modsuit away."))
-		if(!do_after(user, 4 SECONDS))
-			return
-
-	for(var/obj/item/part as anything in get_parts())
-		if(part.loc == src)
-			continue
-		retract(null, part, instant = TRUE)
-
-	complexity_max = initial(complexity_max)
-	for(var/obj/item/mod/module in modules) // Transfer back every module
-		if(stored_modsuit.install(module, user, TRUE))
-			continue
-		uninstall(module)
-		to_chat(user, span_notice("[module] has fallen to the floor!"))
-		module.forceMove(get_turf(src))
-
-	for(var/obj/item/mod/module/cached in cached_modules)
-		if(!install(cached, user, TRUE))
-			to_chat(user, span_warning("[cached] failed to return to its original place! REPORT THIS"))
-			stack_trace("Modsuit Unassimilate: cached module [cached] failed to return to original modsuit! [src]")
-		cached_modules -= cached
-
-	theme = stored_theme
-	stored_theme = null
-	skin = initial(skin)
-	theme.set_up_parts(src, skin)
-	name = initial(name)
-	desc = initial(desc)
-	extended_desc = initial(extended_desc)
-	//if(forced)
-	//	stored_modsuit.forceMove(get_turf(src))
-	//	stored_modsuit = null
-	if(user.can_put_in_hand(stored_modsuit, user.active_hand_index))
-		user.put_in_hand(stored_modsuit, user.active_hand_index)
-		stored_modsuit = null
-	update_static_data_for_all_viewers()
-
 /obj/item/mod/control/pre_equipped/protean/verb/remove_modsuit()
 	set name = "Remove Assimilated Modsuit"
-
-	unassimilate_modsuit(usr)
+	var/obj/item/mod/core/protean/p_core = core
+	to_chat(usr, span_notice("You begin to pry at the [stored_modsuit] to seperate it."))
+	if(!do_after(usr, 5 SECONDS))
+		return
+	p_core.linked_species.unassimilate_modsuit(usr)
 
 /obj/item/mod/control/pre_equipped/protean/examine(mob/user)
 	. = ..()

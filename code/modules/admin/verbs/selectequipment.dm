@@ -213,6 +213,8 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", mob/ta
 	BLACKBOX_LOG_ADMIN_VERB("Select Equipment")
 	var/includes_flags = delete_pocket ? INCLUDE_POCKETS : NONE
 	for(var/obj/item/item in human_target.get_equipped_items(includes_flags))
+		if(isprotean(human_target) && human_target.get_item_by_slot(ITEM_SLOT_BACK) == item) // BUBBER EDIT
+			continue	// BUBBER EDIT
 		qdel(item)
 
 	var/obj/item/organ/brain/human_brain = human_target.get_organ_slot(BRAIN)
