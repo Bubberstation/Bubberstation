@@ -656,13 +656,9 @@ BLIND     // can't see anything
 	else
 		/*BUBBER EDIT BEGIN - Species specific blood icons.
 		blood_overlay = mutable_appearance('icons/effects/blood.dmi', "[blood_state]blood") ORIGNAL*/
-		var/icon/blood_icon_file = 'icons/effects/blood.dmi'
-		var/blood_icon_state = "[blood_state]blood"
-		var/mob/living/wearer = loc
-		var/mob/living/carbon/human/species_target = wearer
-		if(ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/blood_species.dmi', "[blood_state]blood_[species_target.dna.species.id]"))
-			blood_icon_file = 'modular_zubbers/icons/effects/blood_species.dmi'
-			blood_icon_state = "[blood_state]blood_[species_target.dna.species.id]"
+		var/mob/living/carbon/human/wearer = loc
+		var/icon/blood_icon_file = ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/blood_species.dmi', "[blood_state]blood_[wearer.dna.species.id]") ? 'modular_zubbers/icons/effects/blood_species.dmi' : 'icons/effects/blood.dmi'
+		var/blood_icon_state = ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/blood_species.dmi', "[blood_state]blood_[wearer.dna.species.id]") ? "[blood_state]blood_[wearer.dna.species.id]" : "[blood_state]blood"
 
 		blood_overlay = mutable_appearance(blood_icon_file, blood_icon_state)
 		//BUBBER EDIT END

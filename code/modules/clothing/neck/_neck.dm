@@ -15,12 +15,9 @@
 	if(damaged_clothes)
 		//BUBBER EDIT BEGIN
 		//. += mutable_appearance('icons/effects/item_damage.dmi', "damagedmask") //ORIGINAL
-		var/icon/damage_icon_file = 'icons/effects/item_damage.dmi'
-		var/damage_icon_state = "damagedmask"
-		var/mob/living/carbon/human/species_target = loc
-		if(ishuman(species_target) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedmask_[species_target.dna.species.id]"))
-			damage_icon_file = 'modular_zubbers/icons/effects/item_damage_species.dmi'
-			damage_icon_state  = "damagedmask_[species_target.dna.species.id]"
+		var/mob/living/carbon/human/wearer = loc
+		var/icon/damage_icon_file = ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedmask_[wearer.dna.species.id]") ? 'modular_zubbers/icons/effects/item_damage_species.dmi' : 'icons/effects/item_damage.dmi'
+		var/damage_icon_state = ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedmask_[wearer.dna.species.id]") ? "damagedmask_[wearer.dna.species.id]" : "damagedmask"
 
 		. += mutable_appearance(damage_icon_file, damage_icon_state)
 		//BUBBER EDIT END
