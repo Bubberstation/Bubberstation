@@ -246,6 +246,8 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
+// BUBBER EDIT REMOVE BEGIN - LIMB GROWERS INCLUDE ALL LIMB TYPES
+/*
 /obj/item/disk/design_disk/limbs/felinid
 	name = "Felinid Organ Design Disk"
 	limb_designs = list(/datum/design/cat_tail, /datum/design/cat_ears, /datum/design/cat_tongue)
@@ -285,3 +287,5 @@
 	desc = "Contains designs for ethereal organs for the limbgrower - Ethereal tongue and stomach."
 	id = "limbdesign_ethereal"
 	build_path = /obj/item/disk/design_disk/limbs/ethereal
+*/
+// BUBBER EDIT REMOVE END - LIMB GROWERS INCLUDE ALL LIMB TYPES
