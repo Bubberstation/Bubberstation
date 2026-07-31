@@ -49,4 +49,13 @@
 	crate_name = "EVA Suit Crate"
 	crate_type = /obj/structure/closet/crate/secure
 
-
+/datum/supply_pack/emergency/voskhod
+	name = "VOSKHOD" Modular Combat Suit crate"
+	desc = "Contains one 'brand new' MODular VOSKHOD suit, refitted by one of the many nations under the banner of the CIN."
+	contains = list(
+			/obj/item/mod/control/pre_equipped/voskhod
+	)
+	cost = CARGO_CRATE_VALUE * 12
+	access = ACCESS_EVA
+	crate_name = "Combat Suit Crate"
+	crate_type = /obj/structure/closet/crate/secure

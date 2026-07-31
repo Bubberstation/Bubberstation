@@ -58,4 +58,4 @@
 		/obj/item/clothing/head/helmet/space/voskhod,
 		/obj/item/clothing/suit/space/voskhod,
 	)
-	order_flags = ORDER_CONTRABAND
+
