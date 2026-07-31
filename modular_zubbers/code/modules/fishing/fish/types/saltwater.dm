@@ -15,7 +15,7 @@
 	required_temperature_min = MIN_AQUARIUM_TEMP
 	required_temperature_max = MIN_AQUARIUM_TEMP + 12
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
-	fillet_type = null
+	fillet_type = /obj/item/food/fishmeat/shrimp
 
 /obj/item/fish/shrimp/get_fish_taste()
 	return list("raw shrimp" = 2)
