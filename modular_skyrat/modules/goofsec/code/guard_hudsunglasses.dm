@@ -8,10 +8,12 @@
 #define GUN_SPOTTER_RANGE 7
 #define GUN_SPOTTER_ICON_OFFSET -8
 #define EXECUTIVE_SWITCH_COOLDOWN (2 SECONDS)
-#define EXECUTIVE_ABUSE_LIMIT 5
 #define EXECUTIVE_MALFUNCTION_INTERVAL (4 SECONDS)
-#define EXECUTIVE_REPAIR_TIME (6 SECONDS)
-#define EXECUTIVE_REPAIR_CABLE 5
+#define EXECUTIVE_MALFUNCTION_TIME (45 SECONDS)
+// High capacity cell, lasts about an hour.
+#define EXECUTIVE_POWER_DRAW 56
+// Thermal mode doubles the draw.
+#define EXECUTIVE_HEAT_DRAW 111
 #define EXECUTIVE_PINPOINTER_DIRECT 1
 #define EXECUTIVE_MODE_MEDICAL 1
 #define EXECUTIVE_MODE_DIAGNOSTIC 2
@@ -21,6 +23,7 @@
 #define EXECUTIVE_MODE_BOOZE 6
 #define EXECUTIVE_MODE_FORTUNE 7
 #define EXECUTIVE_MODE_APPRAISAL 8
+#define EXECUTIVE_MODE_HEAT 9
 
 /datum/greyscale_config/guard_hudsunglasses
 	name = "Guard HUDsunglasses"
@@ -66,6 +69,10 @@
 	greyscale_config_worn = /datum/greyscale_config/guard_hudsunglasses/worn
 	greyscale_colors = "#585858#9aa0a6"
 	flags_1 = IS_PLAYER_COLORABLE_1
+
+/obj/item/clothing/glasses/hud/security/sunglasses/guard/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/gags_recolorable)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/equipped(mob/living/user, slot)
 	. = ..()
@@ -153,20 +160,40 @@
 	glass_colour_type = /datum/client_colour/glass_colour/guard/command
 	actions_types = list(/datum/action/item_action/toggle_wearable_hud, /datum/action/item_action/toggle/executive_hud)
 	var/mode = EXECUTIVE_MODE_MEDICAL
+	// this happpens if you emp it 
 	var/malfunctioning = FALSE
-	var/abuse_count = 0
+	// the execuHUDs can run out of power
+	var/depleted = FALSE
+	// whether emagging has unlocked the heat vision
+	var/heat_unlocked = FALSE
+	var/obj/item/stock_parts/power_store/cell/cell
+	var/cell_type = /obj/item/stock_parts/power_store/cell/high
 	COOLDOWN_DECLARE(switch_cooldown)
 	custom_materials = list(/datum/material/gold = SHEET_MATERIAL_AMOUNT * 5, /datum/material/diamond = SHEET_MATERIAL_AMOUNT, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.55, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 
+/obj/item/clothing/glasses/hud/security/sunglasses/guard/command/Initialize(mapload)
+	. = ..()
+	if(cell_type)
+		cell = new cell_type(src)
+	START_PROCESSING(SSobj, src)
+
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/Destroy()
-	STOP_PROCESSING(SSprocessing, src)
+	STOP_PROCESSING(SSobj, src)
+	QDEL_NULL(cell)
 	return ..()
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/examine(mob/user)
 	. = ..()
+	if(depleted)
+		. += span_warning("The battery is dead; you can remove the cell with a <b>screwdriver</b>.")
+		return
 	. += span_notice("Auxiliary suite: [get_mode_name()].")
+	if(cell)
+		. += span_notice("The glasses' battery level is [round(cell.percent())]%. You can eject the cell with a <b>screwdriver</b>.")
+	else
+		. += span_warning("There is no cell installed!")
 	if(malfunctioning)
-		. += span_warning("Some idiot broke it. You could try resetting it to factory settings with a <b>Multitool</b> and some <b>cable</b>.")
+		. += span_warning("The suite selector is glitching out...")
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/proc/get_mode_name()
 	switch(mode)
@@ -184,6 +211,8 @@
 			return "Asset Locator"
 		if(EXECUTIVE_MODE_APPRAISAL)
 			return "Appraisal"
+		if(EXECUTIVE_MODE_HEAT)
+			return "Thermal"
 	return "Medical"
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/update_extras(mob/living/wearer)
@@ -193,8 +222,9 @@
 	wearer.remove_status_effect(/datum/status_effect/agent_pinpointer/executive/fortune)
 
 	vision_flags = NONE
+	REMOVE_TRAIT(wearer, TRAIT_THERMAL_VISION, REF(src))
 	qdel(wearer.GetComponent(/datum/component/money_sense/customs))
-	if(!display_active)
+	if(!display_active || depleted)
 		wearer.update_sight()
 		return
 
@@ -207,11 +237,14 @@
 			wearer.apply_status_effect(/datum/status_effect/agent_pinpointer/executive/fortune)
 		if(EXECUTIVE_MODE_APPRAISAL)
 			wearer.AddComponent(/datum/component/money_sense/customs)
+		if(EXECUTIVE_MODE_HEAT)
+			ADD_TRAIT(wearer, TRAIT_THERMAL_VISION, REF(src))
 	wearer.update_sight()
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/clear_extras(mob/living/wearer)
 	wearer.remove_status_effect(/datum/status_effect/agent_pinpointer/executive/booze)
 	wearer.remove_status_effect(/datum/status_effect/agent_pinpointer/executive/fortune)
+	REMOVE_TRAIT(wearer, TRAIT_THERMAL_VISION, REF(src))
 	qdel(wearer.GetComponent(/datum/component/money_sense/customs))
 	wearer.update_sight()
 
@@ -219,29 +252,35 @@
 	if(!istype(wearer) || wearer.glasses != src)
 		return
 
-	for(var/trait in clothing_traits)
-		REMOVE_CLOTHING_TRAIT(wearer, trait)
+	// only ever touch the suite traits we own. anything added from outside (prescription lenses, say) stays put.
+	var/static/list/owned_traits = list(TRAIT_SECURITY_HUD, TRAIT_MEDICAL_HUD, TRAIT_DIAGNOSTIC_HUD, TRAIT_RESEARCH_SCANNER, TRAIT_REAGENT_SCANNER)
+	for(var/trait in owned_traits)
+		if(trait in clothing_traits)
+			REMOVE_CLOTHING_TRAIT(wearer, trait)
+			clothing_traits -= trait
 
-	clothing_traits = list(TRAIT_SECURITY_HUD)
+	var/list/new_traits = list(TRAIT_SECURITY_HUD)
 	switch(mode)
 		if(EXECUTIVE_MODE_MEDICAL)
-			clothing_traits += TRAIT_MEDICAL_HUD
+			new_traits += TRAIT_MEDICAL_HUD
 		if(EXECUTIVE_MODE_DIAGNOSTIC)
-			clothing_traits += TRAIT_DIAGNOSTIC_HUD
+			new_traits += TRAIT_DIAGNOSTIC_HUD
 		if(EXECUTIVE_MODE_RESEARCH)
-			clothing_traits += TRAIT_RESEARCH_SCANNER
+			new_traits += TRAIT_RESEARCH_SCANNER
 		if(EXECUTIVE_MODE_REAGENT)
-			clothing_traits += TRAIT_REAGENT_SCANNER
+			new_traits += TRAIT_REAGENT_SCANNER
 
+	clothing_traits |= new_traits
 	if(display_active)
-		for(var/trait in clothing_traits)
+		for(var/trait in new_traits)
 			ADD_CLOTHING_TRAIT(wearer, trait)
 
 	update_extras(wearer)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/proc/cycle_mode(mob/living/carbon/wearer, silent = FALSE)
+	var/top_mode = heat_unlocked ? EXECUTIVE_MODE_HEAT : EXECUTIVE_MODE_APPRAISAL
 	mode++
-	if(mode > EXECUTIVE_MODE_APPRAISAL)
+	if(mode > top_mode)
 		mode = EXECUTIVE_MODE_MEDICAL
 	apply_mode(wearer)
 	if(silent)
@@ -250,68 +289,115 @@
 	playsound(src, 'sound/machines/terminal/terminal_select.ogg', 25, vary = TRUE)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/proc/on_action(mob/living/carbon/wearer)
-	if(malfunctioning)
-		balloon_alert(wearer, "selector jammed!")
+	if(depleted)
+		balloon_alert(wearer, "cell flat!")
 		return
-
+	if(malfunctioning)
+		balloon_alert(wearer, "selector glitching!")
+		return
 	if(!COOLDOWN_FINISHED(src, switch_cooldown))
-		abuse_count++
-		if(abuse_count >= EXECUTIVE_ABUSE_LIMIT)
-			start_malfunction(wearer)
-			return
-	else
-		abuse_count = 0
+		return
 
 	COOLDOWN_START(src, switch_cooldown, EXECUTIVE_SWITCH_COOLDOWN)
 	cycle_mode(wearer)
 
-/obj/item/clothing/glasses/hud/security/sunglasses/guard/command/proc/start_malfunction(mob/living/carbon/wearer)
+// EMP defect: the suite selector scrambles on its own for a while, then settles.
+/obj/item/clothing/glasses/hud/security/sunglasses/guard/command/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	if(malfunctioning || depleted)
+		return
 	malfunctioning = TRUE
-	abuse_count = 0
-	playsound(src, 'sound/effects/snap.ogg', 60, vary = TRUE)
+	COOLDOWN_START(src, switch_cooldown, EXECUTIVE_MALFUNCTION_INTERVAL)
 	playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, vary = TRUE)
-	to_chat(wearer, span_warning("Something inside [src] gives a distinctly unpremium snap."))
-	START_PROCESSING(SSprocessing, src)
+	var/mob/living/carbon/wearer = loc
+	if(istype(wearer) && wearer.glasses == src)
+		to_chat(wearer, span_warning("[src] fizzes and starts flipping through suites on its own."))
+	addtimer(CALLBACK(src, PROC_REF(settle)), EXECUTIVE_MALFUNCTION_TIME)
+
+/obj/item/clothing/glasses/hud/security/sunglasses/guard/command/proc/settle()
+	if(!malfunctioning)
+		return
+	malfunctioning = FALSE
+	var/mob/living/carbon/wearer = loc
+	if(istype(wearer) && wearer.glasses == src)
+		balloon_alert(wearer, "selector settled")
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/process(seconds_per_tick)
-	if(!malfunctioning)
-		STOP_PROCESSING(SSprocessing, src)
-		return
-	if(!COOLDOWN_FINISHED(src, switch_cooldown))
-		return
-
-	COOLDOWN_START(src, switch_cooldown, EXECUTIVE_MALFUNCTION_INTERVAL)
 	var/mob/living/carbon/wearer = loc
-	if(!istype(wearer) || wearer.glasses != src)
+	var/worn = istype(wearer) && wearer.glasses == src
+
+	// if EMPed the glasses glitch out for 45s
+	if(malfunctioning && worn && COOLDOWN_FINISHED(src, switch_cooldown))
+		COOLDOWN_START(src, switch_cooldown, EXECUTIVE_MALFUNCTION_INTERVAL)
+		var/top_mode = heat_unlocked ? EXECUTIVE_MODE_HEAT : EXECUTIVE_MODE_APPRAISAL
+		mode = rand(EXECUTIVE_MODE_MEDICAL, top_mode)
+		apply_mode(wearer)
+		balloon_alert(wearer, get_mode_name())
+
+	// power draw only happens while actually worn and running.
+	if(depleted || !worn || !display_active)
 		return
-	mode = rand(EXECUTIVE_MODE_MEDICAL, EXECUTIVE_MODE_APPRAISAL)
-	apply_mode(wearer)
-	balloon_alert(wearer, get_mode_name())
-
-/obj/item/clothing/glasses/hud/security/sunglasses/guard/command/multitool_act(mob/living/user, obj/item/multitool/tool)
-	. = ..()
-	if(!malfunctioning)
+	if(!cell)
+		deplete(wearer)
 		return
+	var/draw = (mode == EXECUTIVE_MODE_HEAT) ? EXECUTIVE_HEAT_DRAW : EXECUTIVE_POWER_DRAW
+	if(!cell.use(draw))
+		deplete(wearer)
 
-	var/obj/item/stack/cable_coil/coil = locate() in user.get_all_contents()
-	if(!coil)
-		balloon_alert(user, "no cable!")
-		return ITEM_INTERACT_BLOCKING
+/obj/item/clothing/glasses/hud/security/sunglasses/guard/command/proc/deplete(mob/living/carbon/wearer)
+	depleted = TRUE
+	mode = EXECUTIVE_MODE_MEDICAL
+	if(istype(wearer) && wearer.glasses == src)
+		clear_extras(wearer)
+		for(var/trait in clothing_traits)
+			REMOVE_CLOTHING_TRAIT(wearer, trait)
+		balloon_alert(wearer, "cell flat")
+		to_chat(wearer, span_warning("[src] powers down. They're just sunglasses until you replace the cell."))
 
-	balloon_alert(user, "resetting...")
-	if(!do_after(user, EXECUTIVE_REPAIR_TIME, target = src))
-		return ITEM_INTERACT_BLOCKING
-	if(!malfunctioning)
-		return ITEM_INTERACT_BLOCKING
-	if(!coil.use(EXECUTIVE_REPAIR_CABLE))
-		balloon_alert(user, "not enough cable!")
-		return ITEM_INTERACT_BLOCKING
-
-	malfunctioning = FALSE
-	STOP_PROCESSING(SSprocessing, src)
-	balloon_alert(user, "selector reseated")
-	playsound(src, 'sound/machines/terminal/terminal_select.ogg', 25, vary = TRUE)
+/obj/item/clothing/glasses/hud/security/sunglasses/guard/command/screwdriver_act(mob/living/user, obj/item/tool)
+	. = ITEM_INTERACT_BLOCKING
+	if(!cell)
+		balloon_alert(user, "no cell to remove!")
+		return
+	tool.play_tool_sound(src)
+	var/obj/item/stock_parts/power_store/cell/removed = cell
+	cell = null
+	removed.forceMove(drop_location())
+	if(user.put_in_hands(removed))
+		balloon_alert(user, "cell removed")
+	var/mob/living/carbon/wearer = loc
+	if(istype(wearer) && wearer.glasses == src)
+		update_extras(wearer)
 	return ITEM_INTERACT_SUCCESS
+
+/obj/item/clothing/glasses/hud/security/sunglasses/guard/command/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
+	if(!istype(attacking_item, /obj/item/stock_parts/power_store/cell))
+		return ..()
+	if(cell)
+		balloon_alert(user, "already has a cell!")
+		return TRUE
+	if(!user.transferItemToLoc(attacking_item, src))
+		return TRUE
+	cell = attacking_item
+	balloon_alert(user, "cell installed")
+	if(cell.charge > 0)
+		depleted = FALSE
+	var/mob/living/carbon/wearer = loc
+	if(istype(wearer) && wearer.glasses == src)
+		apply_mode(wearer)
+	return TRUE
+
+// emagging unlocks thermal vision, you know, not that you would
+/obj/item/clothing/glasses/hud/security/sunglasses/guard/command/emag_act(mob/user, obj/item/card/emag/emag_card)
+	. = ..()
+	if(heat_unlocked)
+		return .
+	heat_unlocked = TRUE
+	balloon_alert(user, "thermal suite unlocked")
+	playsound(src, 'sound/machines/terminal/terminal_select.ogg', 25, vary = TRUE)
+	return TRUE
 
 /datum/action/item_action/toggle/executive_hud
 	name = "Cycle Sensor Suite"
@@ -744,10 +830,10 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 #undef GUN_SPOTTER_RANGE
 #undef GUN_SPOTTER_ICON_OFFSET
 #undef EXECUTIVE_SWITCH_COOLDOWN
-#undef EXECUTIVE_ABUSE_LIMIT
 #undef EXECUTIVE_MALFUNCTION_INTERVAL
-#undef EXECUTIVE_REPAIR_TIME
-#undef EXECUTIVE_REPAIR_CABLE
+#undef EXECUTIVE_MALFUNCTION_TIME
+#undef EXECUTIVE_POWER_DRAW
+#undef EXECUTIVE_HEAT_DRAW
 #undef EXECUTIVE_PINPOINTER_DIRECT
 #undef EXECUTIVE_MODE_MEDICAL
 #undef EXECUTIVE_MODE_DIAGNOSTIC
@@ -757,3 +843,4 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 #undef EXECUTIVE_MODE_BOOZE
 #undef EXECUTIVE_MODE_FORTUNE
 #undef EXECUTIVE_MODE_APPRAISAL
+#undef EXECUTIVE_MODE_HEAT
