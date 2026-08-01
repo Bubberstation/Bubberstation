@@ -222,12 +222,9 @@
 	//o, the humanity (of code debt that i don't want to bother refactoring)
 	var/datum/memory/smithing/actual_memory
 	for(var/smithing_subtype in subtypesof(/datum/memory/smithing))
-		actual_memory = new smithing_subtype
+		actual_memory = smithing_subtype
 		if(istype(product, initial(actual_memory.smithed_item_type)))
-			qdel(actual_memory)
-			return smithing_subtype
-		else
-			qdel(actual_memory)
+			return new smithing_subtype
 	stack_trace("[product] doesn't have an assigned brain memory type in modular_skyrat/modules/reagent_forging/code/memories.dm !")
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
