@@ -55,6 +55,7 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/cursekin, /datum/quirk/prosthetic_organ),
 	list(/datum/quirk/cursekin, /datum/quirk/transhumanist),
 	list(/datum/quirk/cursekin, /datum/quirk/equipping/entombed),
+	list(/datum/quirk/hemophage, /datum/quirk/prosthetic_organ, /datum/quirk/tin_man)
 	// BUBBER EDIT - ADDITION - END
 ))
 
