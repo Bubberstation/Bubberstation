@@ -737,9 +737,7 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cx" = (
-/obj/structure/broken_flooring/pile/always_floorplane{
-	dir = 8
-	},
+/obj/item/stack/tile/iron/base,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cy" = (
@@ -789,12 +787,11 @@
 "cI" = (
 /obj/structure/safe/floor,
 /obj/item/tank/internals/oxygen/red,
+/obj/item/clothing/head/helmet/space/eva,
+/obj/item/clothing/suit/space/eva,
 /obj/item/reagent_containers/cup/glass/bottle/rum,
 /obj/item/reagent_containers/cup/glass/bottle/rum,
 /obj/item/folder/syndicate/mining,
-/obj/effect/mapping_helpers/broken_floor,
-/obj/item/clothing/head/helmet/space/eva,
-/obj/item/clothing/suit/space/eva,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cJ" = (
@@ -802,7 +799,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cK" = (
@@ -830,8 +826,6 @@
 "cS" = (
 /obj/structure/chair/office,
 /obj/structure/cable,
-/obj/structure/broken_flooring/corner/directional/north,
-/obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cU" = (
@@ -898,31 +892,16 @@
 /obj/item/stack/cable_coil/cut,
 /turf/template_noop,
 /area/space/nearstation)
-"dG" = (
-/obj/structure/frame/computer,
-/obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/onehalf/bridge)
-"hD" = (
-/obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/onehalf/bridge)
 "ms" = (
+/obj/item/stack/tile/iron/base,
 /obj/structure/cable,
-/obj/structure/broken_flooring/corner/directional/east,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/onehalf/bridge)
 "nu" = (
 /obj/item/crowbar/red,
 /obj/item/multitool,
 /obj/structure/cable,
-/obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/onehalf/bridge)
-"sG" = (
-/obj/structure/broken_flooring/corner/directional/south,
-/obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/iron,
 /area/ruin/space/has_grav/onehalf/bridge)
 "sZ" = (
 /obj/structure/bed{
@@ -943,11 +922,6 @@
 "KC" = (
 /obj/structure/frame/computer,
 /obj/structure/cable,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/onehalf/bridge)
-"Ll" = (
-/obj/structure/cable,
-/obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/onehalf/bridge)
 "Vh" = (
@@ -1409,10 +1383,10 @@ bU
 ce
 cn
 cn
-Ll
+Vh
 cI
-hD
-dG
+cn
+ce
 cq
 ad
 aa
@@ -1430,10 +1404,10 @@ bp
 bU
 cf
 Vh
-Ll
+Vh
 cJ
-hD
-sG
+cn
+cn
 cn
 cq
 ad
