@@ -91,6 +91,7 @@
 		"Staff" = /obj/item/forging/incomplete/staff,
 		"Pickaxe" = /obj/item/forging/incomplete/pickaxe,
 		"Shovel" = /obj/item/forging/incomplete/shovel,
+		"Baseball Bat" = /obj/item/forging/incomplete/baseball_bat,
 		"Rail Nail" = /obj/item/forging/incomplete/rail_nail,
 		"Rail Cart" = /obj/item/forging/incomplete/rail_cart,
 	)

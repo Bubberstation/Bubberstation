@@ -189,7 +189,7 @@
 /datum/crafting_bench_recipe/weapon_completion_recipe //Exists so I don't have to modify the code too much for weapon completion
 	recipe_name = "generic weapon completion recipe (should not be visible)"
 	recipe_requirements = list(
-		/obj/item/stack/sheet/mineral/wood = 2,
+		/obj/item/stack/sheet/mineral/wood = 1,
 	)
 
 /datum/crafting_bench_recipe/weapon_completion_recipe/create_using_item_list(list/item_list, mob/living/user, construction_location)
@@ -198,6 +198,7 @@
 	if(isnull(weapon_head))
 		stack_trace("[src] didn't contain a valid reagent smithing weapon head when its recipe was completed!")
 		return
+	set_recipe_requirements(weapon_head)
 	var/obj/item/returner = new weapon_head.spawning_item(construction_location)
 	apply_perfect_and_completion_bonuses(item_list, returner)
 	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner, user)
@@ -207,6 +208,15 @@
 
 	consume_crafting_ingredients(item_list, returner)
 	return returner
+
+/datum/crafting_bench_recipe/weapon_completion_recipe/get_recipe_requirements_description(obj/item/forging/complete/complete_item = null)
+	if(isnull(complete_item))
+		stack_trace("[src] had its recipe requirements called without a complete item, this should not happen!")
+	set_recipe_requirements(complete_item)
+	. = ..()
+
+/datum/crafting_bench_recipe/weapon_completion_recipe/proc/set_recipe_requirements(obj/item/forging/complete/complete_item)
+	recipe_requirements = complete_item.recipe_requirements
 
 /datum/crafting_bench_recipe/weapon_completion_recipe/get_smithing_memory(obj/item/product)
 	//o, the humanity (of code debt that i don't want to bother refactoring)

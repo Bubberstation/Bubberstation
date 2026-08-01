@@ -105,7 +105,7 @@
 
 	if(!isnull(forged_item_on_surface))
 		if(istype(forged_item_on_surface, /obj/item/forging/complete))
-			var/obj/item/forging/complete/complete_item
+			var/obj/item/forging/complete/complete_item = forged_item_on_surface
 			. += span_notice("[src] has a <b>[initial(complete_item.name)]</b> sitting on it, awaiting completion. <br>")
 			var/obj/item/completion_item = complete_item.spawning_item
 			. += span_notice("With <b>[WEAPON_COMPLETION_WOOD_AMOUNT]</b> sheets of <b>wood</b> nearby, and some <b>hammering</b>, it could be completed into a <b>[initial(completion_item.name)]</b>.")
@@ -120,7 +120,7 @@
 				. += span_boldwarning("Somehow, this recipe has no requirements, report this as this shouldn't happen.")
 				return
 
-		. += selected_recipe.get_recipe_requirements_description()
+		. += selected_recipe?.get_recipe_requirements_description()
 	return .
 
 /obj/structure/reagent_crafting_bench/update_appearance(updates)
@@ -343,23 +343,19 @@
 		balloon_alert(user, "[forged_item_on_surface] cannot be completed")
 		return ITEM_INTERACT_BLOCKING
 
-	var/list/wood_required_for_weapons = list(
-		/obj/item/stack/sheet/mineral/wood = WEAPON_COMPLETION_WOOD_AMOUNT,
-	)
-
-	if(!can_we_craft_this(wood_required_for_weapons))
-		balloon_alert(user, "not enough wood")
+	if(!can_we_craft_this(complete_item.recipe_requirements))
+		balloon_alert(user, "not enough materials")
 		return ITEM_INTERACT_BLOCKING
 
 	playsound(src, 'sound/items/hammering_wood.ogg', 50, vary = TRUE)
 	if(!do_after(user, WEAPON_ASSEMBLY_SPEED, target = src, interaction_key = DOAFTER_SMITHING_TABLE))
 		return ITEM_INTERACT_BLOCKING
 
-	var/list/things_to_use = can_we_craft_this(wood_required_for_weapons, TRUE)
-	if(!can_we_craft_this(wood_required_for_weapons))
-		balloon_alert(user, "not enough wood")
+	if(!can_we_craft_this(complete_item.recipe_requirements))
+		balloon_alert(user, "not enough materials")
 		return ITEM_INTERACT_BLOCKING
 
+	var/list/things_to_use = can_we_craft_this(complete_item.recipe_requirements, TRUE)
 	var/obj/thing_just_made = create_thing_from_requirements(things_to_use, user = user, skill_to_grant = /datum/skill/smithing, skill_amount = 30, completing_a_weapon = TRUE)
 
 	if(!thing_just_made)
@@ -436,7 +432,9 @@
 		return FALSE
 
 	if(completing_a_weapon)
+		var/obj/item/forging/complete/complete_item = forged_item_on_surface
 		recipe_to_follow = new /datum/crafting_bench_recipe/weapon_completion_recipe
+		recipe_to_follow.recipe_requirements = complete_item.recipe_requirements
 
 	var/obj/newly_created_thing
 

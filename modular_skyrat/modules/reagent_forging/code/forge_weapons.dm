@@ -744,4 +744,34 @@
 	. = ..()
 	AddComponent(/datum/component/two_hand_reach, unwield_reach = 1, wield_reach = 2)
 
+/obj/item/melee/baseball_bat/reagent_forged
+	name = "reagent forged baseball bat"
+	desc = "A legendary weapon forged by an at-least-okay blacksmith. It's perfect for a game of Ye Olde Based Balle."
+	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
+	inhand_icon_state = "baseball_bat"
+	lefthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_l.dmi'
+	righthand_file = 'modular_skyrat/modules/reagent_forging/icons/mob/forge_weapon_r.dmi'
+	icon_state = "baseball_bat"
+	custom_materials = list()
+	resistance_flags = NONE
+	force = 12
+
+/obj/item/melee/baseball_bat/reagent_forged/Initialize(mapload)
+	. = ..()
+	apply_reagent_component()
+	apply_smithing_component()
+
+/obj/item/melee/baseball_bat/reagent_forged/proc/apply_reagent_component()
+	AddComponent(/datum/component/reagent_imbued/weapon, oil_effects = list(FORGE_EFFECT_ARMORPEN = 10))
+
+/obj/item/melee/baseball_bat/reagent_forged/proc/apply_smithing_component()
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_WEAPON_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_WEAPON_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_WEAPON_REFORGING_MAX_BAD_HITS, \
+		FORGING_WEAPON_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_FORCE = MAX_PERFECT_FORCE_BONUS), \
+		incompletion_effects = list(FORGE_EFFECT_FORCE, FORGE_EFFECT_ARMORPEN))
+
 #undef STUN_ATTACK
