@@ -183,11 +183,6 @@
 
 	name = "[initial(loaded_nifsoft.name)] datadisk"
 
-/// Datadisks use their own icon file, so the coloured skins inherited from /obj/item/disk do not
-/// exist for them. Applying one blanks the sprite, so don't offer them at all.
-/obj/item/disk/nifsoft_uploader/setup_reskins()
-	return
-
 /obj/item/disk/nifsoft_uploader/examine(mob/user)
 	. = ..()
 

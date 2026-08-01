@@ -25,9 +25,6 @@
 /datum/loadout_item/uniform/black_turtleneck
 	name = "Black turtleneck"
 	item_path = /obj/item/clothing/under/syndicate/tacticool/black
-	// This variant has its own icon file. The skins it inherits from tacticool point at states in the
-	// parent's file, so applying one breaks its sprite.
-	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_RESKIN
 	//ckeywhitelist = list("thedragmeme")
 
 /datum/loadout_item/suit/ryddid
