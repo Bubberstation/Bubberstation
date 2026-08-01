@@ -195,7 +195,6 @@
 				stun_chance *= human_user.gloves.siemens_coefficient
 
 			if (ishuman(user))
-				var/mob/living/carbon/human/human_user = user
 				stun_chance *= human_user.physiology.siemens_coeff
 			stun_chance *= human_user.dna.species.siemens_coeff
 

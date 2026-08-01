@@ -168,8 +168,7 @@
 			target.AddComponent( \
 				/datum/component/omen, \
 				incidents_left = 7, \
-				on_death = CALLBACK(src, PROC_REF(on_death)), \
-				bless_fixable = incidents != INFINITY, \
+				bless_fixable = TRUE, \
 			)
 			to_chat(target, span_warning("You get a bad feeling about this..."))
 		if(1)
