@@ -63,10 +63,22 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 			creation = null
 
 		//There's a lot of stuff that either spawns stuff in on create, or removes stuff on destroy. Let's cut it all out so things are easier to deal with
+		// BUBBER EDIT REMOVAL START - this loop leaves refs on the stack, see the addition below
+		/*
 		var/list/to_del = spawn_at.contents - cached_contents
 		if(length(to_del))
 			for(var/atom/to_kill in to_del)
 				qdel(to_kill)
+		*/
+		// BUBBER EDIT REMOVAL END
+		// BUBBER EDIT ADDITION START - stack refs held across the gc sleep hard delete the last atom in our slice
+		var/list/to_del = spawn_at.contents - cached_contents
+		for(var/i in 1 to length(to_del))
+			qdel(to_del[i])
+			//the list outlives the loop and byond won't drop it for us
+			to_del[i] = null
+		to_del = null
+		// BUBBER EDIT ADDITION END
 
 	GLOB.running_create_and_destroy = FALSE
 
