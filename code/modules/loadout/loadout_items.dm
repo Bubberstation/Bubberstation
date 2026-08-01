@@ -55,9 +55,6 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	/// Base typepath to what reskin datum this item can use to reskin into
 	/// Doesn't verify that the item_path actually has these reskins
 	var/datum/atom_skin/reskin_datum
-	// BUBBER EDIT ADDITION - Tracks whether reskin auto detection has already run for this datum.
-	var/reskin_datum_checked = FALSE
-	// BUBBER EDIT ADDITION END
 	/// A list of greyscale colors that are used for items that have greyscale support, but don't allow full customization.
 	/// This is an assoc list of /datum/job_department -> colors, or /datum/job -> colors, allowing for preset colors based on player chosen job.
 	/// Jobs are prioritized over departments.
@@ -336,7 +333,6 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 /datum/loadout_item/proc/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/outfit, visuals_only = FALSE)
 	if(isnull(equipped_item))
 		return NONE
-	try_detect_reskin() // BUBBER EDIT ADDITION - Populate reskin_datum before applying a saved skin
 
 	if(!visuals_only)
 		ADD_TRAIT(equipped_item, TRAIT_ITEM_OBJECTIVE_BLOCKED, TRAIT_SOURCE_LOADOUT)
@@ -368,18 +364,14 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 
 	if(reskin_datum && item_details?[INFO_RESKIN])
 		var/skin_chosen = item_details[INFO_RESKIN]
-		// BUBBER EDIT CHANGE START - Prefer the component when the item has one
-		// Applying a skin directly leaves the component untouched: current_skin stays null and
-		// COMSIG_OBJ_RESKIN never fires, so items that track their own colour var never learn about
-		// the change and revert the moment something calls update_icon_state(). Going through the
-		// component takes the same path an in game alt click would.
-		var/datum/component/reskinable_item/reskin_comp = equipped_item.GetComponent(/datum/component/reskinable_item)
-		if(reskin_comp)
-			reskin_comp.set_skin_by_name(skin_chosen)
-			// Mirror reskin_obj(): a component that only allows one skin is spent once that skin is
-			// picked, so drop it. Leaving it alive would swallow every later alt click on the item.
-			if(!reskin_comp.get_infinite_reskin())
-				qdel(reskin_comp)
+		var/list/atom_skins = get_atom_skins()
+		for(var/datum/atom_skin/skin_path as anything in valid_subtypesof(reskin_datum))
+			if(skin_path::preview_name != skin_chosen)
+				continue
+			if(skin_path::preview_name != skin_chosen)
+				continue
+			var/datum/atom_skin/skin_instance = atom_skins[skin_path]
+			skin_instance.apply(equipped_item)
 			if(istype(equipped_item, /obj/item/clothing/accessory))
 				// Snowflake handing for accessories, because we need to update the thing it's attached to instead
 				if(isclothing(equipped_item.loc))
@@ -388,63 +380,15 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 					update_flag |= (ITEM_SLOT_OCLOTHING|ITEM_SLOT_ICLOTHING)
 			else
 				update_flag |= equipped_item.slot_flags
-		else
-			var/list/atom_skins = get_atom_skins()
-			for(var/datum/atom_skin/skin_path as anything in valid_subtypesof(reskin_datum))
-				if(skin_path::preview_name != skin_chosen)
-					continue
-				var/datum/atom_skin/skin_instance = atom_skins[skin_path]
-				skin_instance.apply(equipped_item)
-				if(istype(equipped_item, /obj/item/clothing/accessory))
-					// Snowflake handing for accessories, because we need to update the thing it's attached to instead
-					if(isclothing(equipped_item.loc))
-						var/obj/item/clothing/under/attached_to = equipped_item.loc
-						attached_to.update_accessory_overlay()
-						update_flag |= (ITEM_SLOT_OCLOTHING|ITEM_SLOT_ICLOTHING)
-				else
-					update_flag |= equipped_item.slot_flags
-				break
-		// BUBBER EDIT CHANGE END
+			break
 
 	return update_flag
-
-// BUBBER EDIT ADDITION START - Automatic reskin detection
-/**
- * Checks item_path for a reskinable_item component and adopts its skin type, so that any item
- * which supports alt click reskinning in game also offers skin selection in the loadout.
- *
- * This cannot run in New(). Loadout datums are built by GLOBAL_LIST_INIT, which fires before
- * SSatoms initialises, and at that point atom/New() deliberately skips Initialize(). No
- * Initialize means no setup_reskins(), so the component would not exist yet to be found.
- * Running on first use instead means SSatoms has long since finished.
- *
- * Only probes once per datum. Datums that declare reskin_datum themselves are left alone,
- * as are those flagged LOADOUT_FLAG_BLOCK_RESKIN.
- */
-/datum/loadout_item/proc/try_detect_reskin()
-	if(reskin_datum_checked || reskin_datum || (loadout_flags & LOADOUT_FLAG_BLOCK_RESKIN))
-		return
-	reskin_datum_checked = TRUE
-	if(!ispath(item_path, /obj/item))
-		return
-	var/obj/item/probe = new item_path(null)
-	// Some items delete themselves during Initialize (a lewd NIFSoft datadisk does exactly this when
-	// the lewd content config is off), and new() still hands back the reference. Touching it would
-	// runtime, and qdel'ing it a second time would throw.
-	if(QDELETED(probe))
-		return
-	var/datum/component/reskinable_item/reskin_comp = probe.GetComponent(/datum/component/reskinable_item)
-	if(reskin_comp)
-		reskin_datum = reskin_comp.get_base_reskin_type()
-	qdel(probe)
-// BUBBER EDIT ADDITION END
 
 /**
  * Returns a formatted list of data for this loadout item.
  */
 /datum/loadout_item/proc/to_ui_data() as /list
 	SHOULD_CALL_PARENT(TRUE)
-	try_detect_reskin() // BUBBER EDIT ADDITION - Populate reskin_datum before the UI data is built
 
 	var/list/formatted_item = list()
 	var/list/information = list()
