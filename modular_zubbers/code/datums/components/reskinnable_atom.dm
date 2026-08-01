@@ -35,3 +35,12 @@
 
 /datum/component/reskinable_item/proc/has_skin()
 	return current_skin != null
+
+/// Returns the abstract skin type this component was set up with.
+/// Lets the loadout system detect reskin support without every loadout datum declaring it by hand.
+/datum/component/reskinable_item/proc/get_base_reskin_type()
+	return base_reskin_type
+
+/// Returns whether this component permits unlimited reskins.
+/datum/component/reskinable_item/proc/get_infinite_reskin()
+	return infinite_reskin
