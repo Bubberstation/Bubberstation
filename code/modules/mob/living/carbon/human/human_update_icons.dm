@@ -97,7 +97,6 @@ There are several things that need to be remembered:
 		var/icon_file
 		var/woman
 		var/female_sprite_flags = uniform.female_sprite_flags
-		var/digi // SKYRAT EDIT ADDITION - Digi female gender shaping
 		var/mutant_styles = NONE // SKYRAT EDIT ADDITON - mutant styles to pass down to build_worn_icon.
 		//BEGIN SPECIES HANDLING
 		if(digi && (uniform.supports_variations_flags & CLOTHING_DIGITIGRADE_VARIATION))

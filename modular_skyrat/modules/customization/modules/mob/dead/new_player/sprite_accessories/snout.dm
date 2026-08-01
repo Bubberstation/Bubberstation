@@ -51,8 +51,7 @@
 	bodypart_overlay = /datum/bodypart_overlay/mutant/snout/top_adj
 
 /datum/bodypart_overlay/mutant/snout/top_adj
-	layers = EXTERNAL_FRONT | EXTERNAL_ADJACENT
-
+	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER, EXTERNAL_ADJACENT = BODY_ADJ_LAYER)
 
 /datum/sprite_accessory/snouts/none
 	name = SPRITE_ACCESSORY_NONE
