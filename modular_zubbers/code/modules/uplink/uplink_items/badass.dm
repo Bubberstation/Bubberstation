@@ -24,3 +24,12 @@
 	desc = "A set of five armored henchmen outfits! Each set comes with a cap, coat, uniform, gloves, shoes, and a switchblade!"
 	item = /obj/item/storage/backpack/duffelbag/henchmen_traitor_outfits
 	cost = 4
+
+/datum/uplink_item/badass/foam_sword_traitor
+	name = "Lead-cored Foam Force Claymore"
+	desc = "Looks just like the toy! Filled with lead! Deflect blows (sometimes)! Not usable as a bludgeon."
+	item = /obj/item/foam_baton/sword/traitor
+	cost = 2
+	surplus = 50
+	cant_discount = TRUE
+	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
