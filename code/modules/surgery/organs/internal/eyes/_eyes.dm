@@ -513,11 +513,6 @@
 	if (!blink_animation || HAS_TRAIT(parent, TRAIT_PREVENT_BLINKING))
 		return
 
-	// BUBBER EDIT ADDITION START - eyes that spawn without eyelids can have blink_animation flipped on later, don't blink with nothing
-	if (isnull(eyelid_left) || isnull(eyelid_right))
-		return
-	// BUBBER EDIT ADDITION END
-
 	eyelid_left.color = eyelid_color
 	eyelid_right.color = eyelid_color
 	eyelid_left.render_target = "*[REF(parent)]_eyelid_left"

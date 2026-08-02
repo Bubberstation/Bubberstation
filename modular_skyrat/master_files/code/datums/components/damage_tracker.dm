@@ -100,13 +100,13 @@
 				wound_list[limb.type] = list()
 			wound_list[limb.type] |= limb_wound.type
 
-	heart_damage = human_parent.check_organ_damage(/obj/item/organ/heart, ORGAN_SLOT_HEART)
-	liver_damage = human_parent.check_organ_damage(/obj/item/organ/liver, ORGAN_SLOT_LIVER)
-	lung_damage = human_parent.check_organ_damage(/obj/item/organ/lungs, ORGAN_SLOT_LUNGS)
-	stomach_damage = human_parent.check_organ_damage(/obj/item/organ/stomach, ORGAN_SLOT_STOMACH)
-	brain_damage = human_parent.check_organ_damage(/obj/item/organ/brain, ORGAN_SLOT_BRAIN)
-	eye_damage = human_parent.check_organ_damage(/obj/item/organ/eyes, ORGAN_SLOT_EYES)
-	ear_damage = human_parent.check_organ_damage(/obj/item/organ/ears, ORGAN_SLOT_EARS)
+	heart_damage = human_parent.check_organ_damage(/obj/item/organ/heart)
+	liver_damage = human_parent.check_organ_damage(/obj/item/organ/liver)
+	lung_damage = human_parent.check_organ_damage(/obj/item/organ/lungs)
+	stomach_damage = human_parent.check_organ_damage(/obj/item/organ/stomach)
+	brain_damage = human_parent.check_organ_damage(/obj/item/organ/brain)
+	eye_damage = human_parent.check_organ_damage(/obj/item/organ/eyes)
+	ear_damage = human_parent.check_organ_damage(/obj/item/organ/ears)
 
 	return TRUE
 
@@ -152,13 +152,13 @@
 	return ..()
 
 /// Returns the damage of the `organ_to_check`, or a sentinel describing why the organ isn't there.
-/mob/living/carbon/human/proc/check_organ_damage(obj/item/organ/organ_to_check, organ_slot)
+/mob/living/carbon/human/proc/check_organ_damage(obj/item/organ/organ_to_check)
 	var/obj/item/organ/organ_to_track = get_organ_by_type(organ_to_check)
 	if(organ_to_track)
 		return organ_to_track.damage
 
 	// a species that never grows this organ isn't hurt, it's just built that way, so there's no injury to carry across
-	if(organ_slot && isnull(dna?.species?.get_mutant_organ_type_for_slot(organ_slot)))
+	if(isnull(dna?.species?.get_mutant_organ_type_for_slot(organ_to_check::slot)))
 		return ORGAN_ABSENCE_SPECIES_NORMAL
 
 	return ORGAN_ABSENCE_INJURY

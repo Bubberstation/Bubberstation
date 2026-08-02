@@ -68,7 +68,12 @@
 
 	var/obj/item/organ/replaced = receiver.get_organ_slot(slot)
 	if(replaced)
-		replaced.Remove(receiver, special = TRUE)
+		// BUBBER EDIT ADDITION START - an organ we are about to delete must not hand anything off on the way out, there is nothing left to hand it to
+		var/replaced_movement_flags = movement_flags
+		if(movement_flags & DELETE_IF_REPLACED)
+			replaced_movement_flags |= NO_ID_TRANSFER
+		replaced.Remove(receiver, special = TRUE, movement_flags = replaced_movement_flags)
+		// BUBBER EDIT ADDITION END - original: replaced.Remove(receiver, special = TRUE)
 		if(movement_flags & DELETE_IF_REPLACED)
 			qdel(replaced)
 		else
