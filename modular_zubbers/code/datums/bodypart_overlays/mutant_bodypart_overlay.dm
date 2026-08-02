@@ -34,7 +34,7 @@
 	if(isnull(mutantparts_list[feature_key]))
 		return FALSE
 	var/datum/sprite_accessory/mutant_part = mutantparts_list[feature_key]
-	sprite_datum = fetch_sprite_datum_from_name(accessory_name ? accessory_name : mutant_part.name)
+	sprite_datum = fetch_sprite_datum_from_name(accessory_name ? accessory_name : mutant_part["name"])
 	modsuit_affected = sprite_datum.use_custom_mod_icon
 	draw_color = mutantparts_list[feature_key][MUTANT_INDEX_COLOR_LIST]
 	build_emissive_eligibility(mutantparts_list[feature_key][MUTANT_INDEX_EMISSIVE_LIST])
