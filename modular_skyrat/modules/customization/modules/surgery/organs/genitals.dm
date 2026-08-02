@@ -109,6 +109,7 @@
 /datum/bodypart_overlay/mutant/genital/get_base_icon_state()
 	return sprite_suffix
 
+/*
 /datum/bodypart_overlay/mutant/genital/get_color_layer_names(icon_state_to_lookup)
 	if(length(sprite_datum.color_layer_names))
 		return sprite_datum.color_layer_names
@@ -131,6 +132,7 @@
 			sprite_datum.color_layer_names["3"] = "tertiary"
 
 	return sprite_datum.color_layer_names
+*/
 
 /obj/item/organ/genital/penis
 	name = "penis"
