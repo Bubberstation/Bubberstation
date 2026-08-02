@@ -21,10 +21,9 @@
 	cost = 2
 
 /datum/uplink_item/role_restricted/gatfruit
-	category = /datum/uplink_category/role_restricted
-	restricted_roles = list(JOB_BOTANIST)
 	name = "Gatfruit seed packet"
 	desc = "An exotic packet of seeds that grows into a nifty peashooter-bearing tree!"
 	item = /obj/item/seeds/gatfruit
 	cost = 13
 	surplus = 0
+	restricted_roles = list(JOB_BOTANIST)
