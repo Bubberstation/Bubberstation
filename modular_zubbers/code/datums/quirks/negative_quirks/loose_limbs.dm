@@ -1,3 +1,5 @@
+// I don't think the component this uses exists any more. Commenting it out for now. -xPokee
+/*
 /datum/quirk/loose_limbs
 	name = "Loose Limbs"
 	desc = "Your limbs aren't as resilient as others! When you die, they are likely to fall off."
@@ -10,3 +12,4 @@
 
 /datum/quirk/loose_limbs/add(client/client_source)
 	quirk_holder.AddComponent(/datum/component/omen/loose_limbs)
+*/
