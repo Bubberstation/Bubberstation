@@ -4,7 +4,7 @@
 	description = "Opens up a rift and throws a mess of clown items out of it"
 	typepath = /datum/round_event/clown_rift
 	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_CLOWN)
+	tags = list(TAG_CLOWN, TAG_NEUTRAL)
 	admin_setup = list(/datum/event_admin_setup/set_location/clown_rift)
 
 	weight = 50
