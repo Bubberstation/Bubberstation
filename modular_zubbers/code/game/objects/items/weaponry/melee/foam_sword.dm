@@ -31,7 +31,7 @@
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE
 	special_desc = "This foam force sword has had a lightweight lead core put in place within the foam blade, giving a lot more weight to your strikes. \
 					Additionally provides minor ability to block incoming attacks. Not usable as a bludgeon though."
-	force = 25 \\stamcrit in 4-5 hits but does not knock down or stun or hurt
+	force = 25 //stamcrit in 4-5 hits but does not knock down or stun or hurt
 	throwforce = 20
 	force_string = "robust?"
 	block_chance = 20
