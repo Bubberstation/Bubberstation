@@ -24,6 +24,6 @@
 	name = "Gatfruit seed packet"
 	desc = "An exotic packet of seeds that grows into a nifty peashooter-bearing tree!"
 	item = /obj/item/seeds/gatfruit
-	cost = 13
+	cost = 15
 	surplus = 0
 	restricted_roles = list(JOB_BOTANIST)
