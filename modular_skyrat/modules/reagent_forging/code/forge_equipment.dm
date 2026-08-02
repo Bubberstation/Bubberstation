@@ -15,7 +15,7 @@
 /obj/item/forging/tongs/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	update_appearance()
-	
+
 /obj/item/forging/tongs/Exited(atom/movable/gone, direction)
 	. = ..()
 	update_appearance()
@@ -59,7 +59,12 @@
 
 /obj/item/forging/hammer/debug
 	name = "debugging fast forging hammer"
+	desc = "Use it inhand to set your skill level to 7."
 	toolspeed = 0.1
+
+/obj/item/forging/hammer/debug/attack_self(mob/user, modifiers)
+	. = ..()
+	user.mind.set_level(/datum/skill/smithing, 7)
 
 /obj/item/forging/billow
 	name = "forging billow"

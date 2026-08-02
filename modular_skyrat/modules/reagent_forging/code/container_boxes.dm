@@ -27,3 +27,18 @@
 	new /obj/item/stack/sheet/iron/ten(src)
 	new /obj/item/stack/sheet/leather/five(src)
 	new /obj/item/stack/sheet/cloth/five(src)
+
+/obj/item/survivalcapsule/debug_smithing_pod
+	name = "deployable debug smithing capsule"
+	desc = "You probably shouldn't see this."
+	icon_state = "capsule"
+	icon = 'icons/obj/mining.dmi'
+	w_class = WEIGHT_CLASS_TINY
+	template_id = "debug_smithing"
+	used = FALSE
+
+/datum/map_template/shelter/debug_smithing
+	name = "debug smithing capsule deployer"
+	shelter_id = "debug_smithing"
+	description = "i am so fed up with having to build a smithing setup every time"
+	mappath = "_maps/bubber/pods/debug_smithing.dmm"
