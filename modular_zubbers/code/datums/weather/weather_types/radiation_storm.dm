@@ -21,6 +21,7 @@
 	if(!GLOB.emergency_access)
 		maint_flipped = TRUE
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(make_maint_all_access), TRUE), 0.5 SECONDS) // timed to match the status display
+	dorms_check()
 
 /datum/weather/rad_storm/end()
 	. = ..()

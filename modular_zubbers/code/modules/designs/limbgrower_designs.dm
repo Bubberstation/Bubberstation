@@ -4,7 +4,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10, /datum/reagent/blood = 10)
 	build_path = /obj/item/organ/heart/hemophage
-	category = list(SPECIES_HEMOPHAGE)
+	category = list("hemophage")
 
 /datum/design/hemophage_liver
 	name = "Corrupted Liver"
@@ -12,7 +12,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10, /datum/reagent/blood = 10)
 	build_path = /obj/item/organ/liver/hemophage
-	category = list(SPECIES_HEMOPHAGE)
+	category = list("hemophage")
 
 /datum/design/hemophage_stomach
 	name = "Corrupted Stomach"
@@ -20,7 +20,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10, /datum/reagent/blood = 10)
 	build_path = /obj/item/organ/stomach/hemophage
-	category = list(SPECIES_HEMOPHAGE)
+	category = list("hemophage")
 
 /datum/design/hemophage_tongue
 	name = "Corrupted Tongue"
@@ -28,7 +28,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10, /datum/reagent/blood = 10)
 	build_path = /obj/item/organ/tongue/hemophage
-	category = list(SPECIES_HEMOPHAGE)
+	category = list("hemophage")
 
 /obj/item/disk/design_disk/limbs/hemophage
 	name = "Hemophage Organ Design Disk"
@@ -137,7 +137,7 @@
 
 /obj/machinery/limbgrower/Initialize(mapload)
 	categories += list(
-		SPECIES_HEMOPHAGE,
+		"hemophage",
 		SPECIES_TAJARAN,
 		SPECIES_TESHARI
 	)
