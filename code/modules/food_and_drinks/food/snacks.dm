@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(safe_peanut_types, populate_safe_peanut_types())
 	)
 	tastes = list("chocolate candy" = 3)
 	junkiness = 25
-	foodtypes = JUNKFOOD
+	foodtypes = JUNKFOOD | SUGAR // BUBBER EDIT
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
 
