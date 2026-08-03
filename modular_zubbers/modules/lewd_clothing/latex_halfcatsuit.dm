@@ -58,7 +58,7 @@
 				breasts_overlay = get_accessory_overlays()
 				add_overlay(breasts_icon_overlay)
 
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 
 	affected_human.regenerate_icons()
 
