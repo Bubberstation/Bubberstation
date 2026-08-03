@@ -72,9 +72,9 @@
 	armor_type = /datum/armor/superparticlegen
 	interaction_flags_click = ALLOW_SILICON_REACH
 	use_power = IDLE_POWER_USE
-	///The cell we spawn with
+	/// The cell we spawn with
 	var/obj/item/stock_parts/power_store/cell/cell = /obj/item/stock_parts/power_store/cell/high
-	///Is the machine on?
+	/// Is the machine on?
 	var/on = FALSE
 	/// field range
 	var/range = 0
