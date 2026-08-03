@@ -350,7 +350,7 @@
 				incomplete_maximum_penalty = initial(parent_item.force) * -1
 			if(FORGE_EFFECT_REAGENT_INJECT)
 				var/datum/component/reagent_imbued/reagent_component = parent_item.GetComponent(/datum/component/reagent_imbued)
-				if(!isnull(reagent_component))
+				if(isnull(reagent_component))
 					stack_trace("[parent_item] has an invalid reagent imbue-enhancing effect, because it has no reagent component!")
 				incomplete_maximum_penalty = initial(reagent_component.inject_amount) * -1
 			if(FORGE_EFFECT_TOOLSPEED)
