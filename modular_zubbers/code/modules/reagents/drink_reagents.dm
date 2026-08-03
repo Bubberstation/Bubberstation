@@ -37,7 +37,7 @@
 	if(!(methods & INGEST))
 		return
 	var/obj/item/organ/stomach/stomach = affected_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(stomach) || !ishemophage(affected_mob) || reac_volume <= 0)
+	if(!istype(stomach) || !affected_mob.has_quirk(/datum/quirk/hemophage) || reac_volume <= 0)
 		return
 	affected_mob.blood_volume = min(affected_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
@@ -63,7 +63,7 @@
 	if(!(methods & INGEST))
 		return
 	var/obj/item/organ/stomach/stomach = affected_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(stomach) || !ishemophage(affected_mob) || reac_volume <= 0)
+	if(!istype(stomach) || !affected_mob.has_quirk(/datum/quirk/hemophage) || reac_volume <= 0)
 		return
 	affected_mob.blood_volume = min(affected_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
@@ -89,7 +89,7 @@
 	if(!(methods & INGEST))
 		return
 	var/obj/item/organ/stomach/stomach = affected_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(stomach) || !ishemophage(affected_mob) || reac_volume <= 0)
+	if(!istype(stomach) || !affected_mob.has_quirk(/datum/quirk/hemophage) || reac_volume <= 0)
 		return
 	affected_mob.blood_volume = min(affected_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
@@ -116,7 +116,7 @@
 	if(!(methods & INGEST))
 		return
 	var/obj/item/organ/stomach/stomach = affected_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(stomach) || !ishemophage(affected_mob) || reac_volume <= 0)
+	if(!istype(stomach) || !affected_mob.has_quirk(/datum/quirk/hemophage) || reac_volume <= 0)
 		return
 	affected_mob.blood_volume = min(affected_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
@@ -143,7 +143,7 @@
 	if(!(methods & INGEST))
 		return
 	var/obj/item/organ/stomach/stomach = affected_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(stomach) || !ishemophage(affected_mob) || reac_volume <= 0)
+	if(!istype(stomach) || !affected_mob.has_quirk(/datum/quirk/hemophage) || reac_volume <= 0)
 		return
 	affected_mob.blood_volume = min(affected_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
@@ -170,7 +170,7 @@
 	if(!(methods & INGEST))
 		return
 	var/obj/item/organ/stomach/stomach = affected_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(stomach) || !ishemophage(affected_mob) || reac_volume <= 0)
+	if(!istype(stomach) || !affected_mob.has_quirk(/datum/quirk/hemophage) || reac_volume <= 0)
 		return
 	affected_mob.blood_volume = min(affected_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
@@ -210,7 +210,7 @@
 	if(!(methods & INGEST))
 		return
 	var/obj/item/organ/stomach/stomach = affected_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(stomach) || !ishemophage(affected_mob) || reac_volume <= 0)
+	if(!istype(stomach) || !affected_mob.has_quirk(/datum/quirk/hemophage) || reac_volume <= 0)
 		return
 	affected_mob.blood_volume = min(affected_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
@@ -256,7 +256,7 @@
 	if(!(methods & INGEST))
 		return
 	var/obj/item/organ/stomach/stomach = affected_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(stomach) || !ishemophage(affected_mob) || reac_volume <= 0)
+	if(!istype(stomach) || !affected_mob.has_quirk(/datum/quirk/hemophage) || reac_volume <= 0)
 		return
 	affected_mob.blood_volume = min(affected_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
