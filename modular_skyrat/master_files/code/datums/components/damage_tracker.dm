@@ -151,7 +151,7 @@
 
 	return ..()
 
-/// Returns the damage of the `organ_to_check`, or a sentinel describing why the organ isn't there.
+/// Returns the damage of the `organ_to_check`, or a special value describing why the organ isn't there.
 /mob/living/carbon/human/proc/check_organ_damage(obj/item/organ/organ_to_check)
 	var/obj/item/organ/organ_to_track = get_organ_by_type(organ_to_check)
 	if(organ_to_track)
