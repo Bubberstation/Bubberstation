@@ -172,7 +172,6 @@
 	if(!organ_to_damage)
 		return
 
-	// the organ was genuinely gone, so the replacement arrives wrecked rather than free, but stops short of outright failing
 	if(stored_damage == ORGAN_ABSENCE_INJURY)
 		stored_damage = max(organ_to_damage.maxHealth - 1, 0)
 
