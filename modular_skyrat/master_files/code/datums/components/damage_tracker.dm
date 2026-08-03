@@ -1,6 +1,6 @@
-/// Stored instead of a damage value when the organ was absent because the species simply doesn't have one.
+/// The organ was absent because the species simply doesn't have one.
 #define ORGAN_ABSENCE_SPECIES_NORMAL -1
-/// Stored instead of a damage value when the organ should have been there and wasn't.
+/// The organ should have been there and wasn't.
 #define ORGAN_ABSENCE_INJURY -2
 
 /// This component tracks the original damage values of a mob when it is attached.
