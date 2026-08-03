@@ -1,6 +1,6 @@
-//Amount of burn and brute damage healed per second
+/// Amount of burn and brute damage healed per second
 #define SUPERPARTICLE_HEALIUM_HEALING_PER_SECOND (0.2)
-//Damage treshhold below which healing effect works
+/// Damage treshhold below which healing effect works
 #define SUPERPARTICLE_HEALIUM_HEALING_DMG_TRESHHOLD (30)
 
 /atom/movable/screen/alert/status_effect/atmosgenbuff
