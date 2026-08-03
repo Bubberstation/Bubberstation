@@ -85,14 +85,12 @@
 	examine_list += span_notice("It can be safely picked up with tongs.")
 	examine_list += span_notice("It can be heated by being inserted into a forge.")
 	examine_list += span_notice("It can be quenched in any open container that's large enough.")
-	if(USER_CAN_SEE_SMITHING_INFO(user))
+	if(COOLDOWN_FINISHED(src, heating_remainder))
+		examine_list += span_notice("The metal needs to be reheated before it is malleable again.")
+	else if(USER_CAN_SEE_SMITHING_INFO(user))
+		examine_list += span_notice("The metal is hot enough to work.")
 		examine_list += span_notice("You'd estimate that it's about [round(get_completion_ratio() * 100)]% complete.")
 		examine_list += span_notice("The careful smithing makes it look about [round(get_perfect_ratio() * 100)]% perfected.")
-		if(COOLDOWN_FINISHED(src, heating_remainder))
-			examine_list += span_notice("The metal needs to be reheated before it is malleable again.")
-		else
-			examine_list += span_notice("The metal is hot enough to work.")
-
 	else
 		examine_list += span_notice("If you were more skilled at smithing you could discern more information from it...")
 
@@ -271,7 +269,6 @@
 	dunk_reagents.expose_temperature(HEAT_GIVEN_FROM_QUENCHING_METAL)
 	COOLDOWN_RESET(src, heating_remainder)
 	playsound(parent_item, 'modular_skyrat/modules/reagent_forging/sound/hot_hiss.ogg', 50, TRUE)
-
 	if(!isnull(heat_color))
 		parent_item.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 	parent_item.update_integrity(max(round(lerp(0, parent_item.max_integrity, get_completion_ratio())), parent_item.get_integrity()))
@@ -286,6 +283,8 @@
 
 	if(!isnull(quench_callback))
 		quench_callback.Invoke(dunk_reagents, dunk_object, user)
+	reset(FALSE)
+
 	return TRUE
 
 /* Heats the item up for smithing -- and also colors the item with heat colors if applicable.
