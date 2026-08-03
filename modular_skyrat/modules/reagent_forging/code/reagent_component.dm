@@ -104,7 +104,7 @@
 		var/new_color = mix_color_from_reagents(color_reagents_list.reagent_list)
 		if(length(new_color) > 7) //remove the transparency stuff
 			new_color = copytext(new_color, 1, 8) + "FF"
-		parent_item.add_atom_colour(color_transition_filter(new_color, SATURATION_MULTIPLY), WASHABLE_COLOUR_PRIORITY)
+		parent_item.add_atom_colour(new_color, WASHABLE_COLOUR_PRIORITY)
 
 
 ///This function modifies the parent item based on how much smithing oil is in our imbued reagent list. Needs to be defined in child subtypes.
