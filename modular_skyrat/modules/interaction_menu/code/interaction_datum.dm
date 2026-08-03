@@ -122,7 +122,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 			sound_possible = list(sound_possible)
 		sound_cache = pick(sound_possible)
 		for(var/mob/mob in view(sound_range, user))
-			SEND_SOUND(sound_cache, mob)
+			SEND_SOUND(mob, sound(sound_cache))
 
 	if(lewd)
 		user.adjust_pleasure(user_pleasure)
