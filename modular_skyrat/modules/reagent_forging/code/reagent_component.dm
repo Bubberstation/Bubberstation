@@ -91,15 +91,21 @@
 	new_reagents.trans_to(imbued_reagent, amount = new_reagents.total_volume, copy_only = TRUE, no_react = TRUE)
 
 	apply_smithing_oil_bonus()
-	parent_item.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-	if(length(imbued_reagent.reagent_list) > 0)
-		var/new_color = mix_color_from_reagents(imbued_reagent.reagent_list)
-		if(length(new_color) > 7) //remove the transparency stuff
-			new_color = copytext(new_color, 1, 8) + "FF"
-		parent_item.add_atom_colour(color_transition_filter(new_color, SATURATION_OVERRIDE), WASHABLE_COLOUR_PRIORITY)
-
+	set_reagent_colors(new_reagents)
 	if(clear_source_reagents)
 		new_reagents.clear_reagents()
+
+/datum/component/reagent_imbued/proc/set_reagent_colors(datum/reagents/new_reagents)
+	var/datum/reagents/color_reagents_list = new /datum/reagents()
+	new_reagents.trans_to(color_reagents_list, amount = new_reagents.total_volume, copy_only = TRUE, no_react = TRUE)
+	color_reagents_list.remove_reagent(/datum/reagent/fuel/oil/smithing, color_reagents_list.maximum_volume, FALSE)
+
+	if(length(color_reagents_list.reagent_list) > 0)
+		var/new_color = mix_color_from_reagents(color_reagents_list.reagent_list)
+		if(length(new_color) > 7) //remove the transparency stuff
+			new_color = copytext(new_color, 1, 8) + "FF"
+		parent_item.add_atom_colour(color_transition_filter(new_color, SATURATION_MULTIPLY), WASHABLE_COLOUR_PRIORITY)
+
 
 ///This function modifies the parent item based on how much smithing oil is in our imbued reagent list. Needs to be defined in child subtypes.
 /datum/component/reagent_imbued/proc/apply_smithing_oil_bonus()
