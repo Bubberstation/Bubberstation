@@ -1,12 +1,3 @@
-#define BAC_STAGE_1_ACTIVE 0.01
-#define BAC_STAGE_2_WARN 0.05
-#define BAC_STAGE_2_ACTIVE 0.07
-#define BAC_STAGE_3_WARN 0.11
-#define BAC_STAGE_3_ACTIVE 0.13
-#define BAC_STAGE_4_WARN 0.17
-#define BAC_STAGE_4_ACTIVE 0.19
-#define BAC_STAGE_5_WARN 0.23
-
 /datum/reagent/consumable/ethanol
 	metabolization_rate = 0.3 * REAGENTS_METABOLISM
 
@@ -42,12 +33,3 @@
 			return span_bolddanger("I'm not feeling so hot...")
 		if(BAC_STAGE_5_WARN to INFINITY)
 			return span_bolddanger("Is there a doctor around? I really don't feel good...")
-
-#undef BAC_STAGE_1_ACTIVE
-#undef BAC_STAGE_2_WARN
-#undef BAC_STAGE_2_ACTIVE
-#undef BAC_STAGE_3_WARN
-#undef BAC_STAGE_3_ACTIVE
-#undef BAC_STAGE_4_WARN
-#undef BAC_STAGE_4_ACTIVE
-#undef BAC_STAGE_5_WARN
