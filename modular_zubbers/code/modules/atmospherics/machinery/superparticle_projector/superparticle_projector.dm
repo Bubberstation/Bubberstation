@@ -90,8 +90,6 @@
 	fire = 100
 	melee = 10
 	bomb = 40
-
-
 /obj/machinery/power/superparticlegen/update_overlays()
 	. = ..()
 	icon_state = panel_open ? "[base_icon_state]-o" : base_icon_state
