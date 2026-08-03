@@ -193,8 +193,6 @@
 		if(superparticle_gas_flags & SP_GAS_FLAG_HEALIUM)
 			superparticle_gas_flags ^= SP_GAS_FLAG_HEALIUM
 			update_appearance()
-
-
 	if(connected_supermatter.internal_energy < SUPERPARTICLE_STOP_POWER)
 		if(connected_supermatter.internal_energy < SUPERPARTICLE_MAX_POWER)
 			for(var/mob/living/carbon/target in range(src, range))
