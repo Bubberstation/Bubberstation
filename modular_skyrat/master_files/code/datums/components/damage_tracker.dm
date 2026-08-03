@@ -163,7 +163,7 @@
 
 	return ORGAN_ABSENCE_INJURY
 
-/// Puts a tracked damage value back onto an organ, translating the absence sentinels from [check_organ_damage].
+/// Puts a tracked damage value back onto an organ
 /mob/living/carbon/human/proc/restore_tracked_organ_damage(organ_slot, stored_damage)
 	if(stored_damage == ORGAN_ABSENCE_SPECIES_NORMAL)
 		return
