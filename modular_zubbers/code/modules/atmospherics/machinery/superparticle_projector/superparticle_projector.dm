@@ -1,17 +1,17 @@
-//What's the maximum range of the field?
+/// What's the maximum range of the field?
 #define SUPERPARTICLE_MAX_RANGE (20)
-//What's the maximum internal power? If its above this value, the field will affect everyone on same Z level
+/// What's the maximum internal power? If its above this value, the field will affect everyone on same Z level
 #define SUPERPARTICLE_MAX_POWER (4500)
-//Past this internal power, the machine will stop working
+/// Past this internal power, the machine will stop working
 #define SUPERPARTICLE_STOP_POWER (5500)
-//Percentage of CO2 required for effects to apply
+/// Percentage of CO2 required for effects to apply
 #define SUPERPARTICLE_CARBON_GAS_TRESHHOLD (0.2)
-//Percentage of Healium required for effects to apply
+/// Percentage of Healium required for effects to apply
 #define SUPERPARTICLE_HEALIUM_GAS_TRESHHOLD (0.2)
-///Flags for gas treshholds
-// Is Carbon Dioxide treshhold reached?
+//Flags for gas treshholds
+/// Is Carbon Dioxide treshhold reached?
 #define SP_GAS_FLAG_CARBON (1<<0)
-// Is Healium treshhold reached?
+/// Is Healium treshhold reached?
 #define SP_GAS_FLAG_HEALIUM (1<<1)
 
 /obj/item/paper/guides/jobs/atmos/superparticlegen
