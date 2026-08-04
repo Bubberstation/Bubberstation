@@ -12,7 +12,7 @@
 
 /obj/item/food/fried_shrimp
 	name = "fried shrimp"
-	desc = "A finger of fish."
+	desc = "Shrimp that someone has fried."
 	icon = 'modular_zubbers/icons/obj/food/meat.dmi'
 	icon_state = "shrimp_cooked"
 	food_reagents = list(
