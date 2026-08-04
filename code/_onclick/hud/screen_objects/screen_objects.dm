@@ -1029,7 +1029,6 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 	plane = SPLASHSCREEN_PLANE
 	var/client/holder
 
-/* SKYRAT EDIT REMOVAL
 /atom/movable/screen/splash/Initialize(mapload, datum/hud/hud_owner, client/C, visible, use_previous_title)
 	. = ..()
 	if(!istype(C))
@@ -1049,7 +1048,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen) // I hate this place
 		icon = SStitle.previous_icon
 
 	holder.screen += src
-*/ // SKYRAT EDIT END
+
 /atom/movable/screen/splash/proc/fade(out, qdel_after = TRUE)
 	if(QDELETED(src))
 		return

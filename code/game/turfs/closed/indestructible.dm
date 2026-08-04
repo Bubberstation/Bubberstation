@@ -76,7 +76,7 @@
 	bullet_bounce_sound = null
 
 INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
-/* SKYRAT EDIT REMOVAL
+
 /turf/closed/indestructible/splashscreen/Initialize(mapload)
 	. = ..()
 	SStitle.splash_turf = src
@@ -104,7 +104,6 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/splashscreen/examine()
 	desc = pick(strings(SPLASH_FILE, "splashes"))
 	return ..()
-SKYRAT EDIT REMOVAL END */
 
 /turf/closed/indestructible/reinforced
 	name = "reinforced wall"

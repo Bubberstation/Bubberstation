@@ -1,4 +1,3 @@
-/* SKYRAT EDIT REMOVAL - Custom HTML Lobby Screen
 /// Maximum number of station trait buttons we will display, please think hard before creating scenarios where there are more than this
 #define MAX_STATION_TRAIT_BUTTONS_VERTICAL 3
 #define TRAIT_BUTTON_Y_ORIGIN 397
@@ -96,4 +95,3 @@
 #undef TRAIT_BUTTON_X_ORIGIN
 #undef TRAIT_BUTTON_OFFSET
 #undef SQUARE_VIEWPORT_OFFSET
-*/ // SKYRAT EDIT END

@@ -1,6 +1,14 @@
 #define SHUTTER_MOVEMENT_DURATION 0.4 SECONDS
 #define SHUTTER_WAIT_DURATION 0.2 SECONDS
 
+// BUBBER EDIT - ADDITION - START - CUSTOM LOBBY
+#define LOBBY_ICON_FILE 'modular_zubbers/icons/hud/lobby/lobby_256x24.dmi'
+#define LOBBY_MAPTEXT_HEIGHT 32
+#define LOBBY_MAPTEXT_WIDTH 256
+#define LOBBY_MAPTEXT_X 6
+#define LOBBY_MAPTEXT_Y 2
+// BUBBER EDIT - ADDITION - END - CUSTOM LOBBY
+
 /atom/movable/screen/lobby
 	plane = SPLASHSCREEN_PLANE
 	layer = LOBBY_MENU_LAYER
@@ -9,6 +17,12 @@
 	var/always_shown = FALSE
 	/// If true we will create this button every time the HUD is generated
 	var/always_available = TRUE
+	// BUBBER EDIT - ADDITION - START - CUSTOM LOBBY
+	maptext_height = LOBBY_MAPTEXT_HEIGHT
+	maptext_width = LOBBY_MAPTEXT_WIDTH
+	maptext_x = LOBBY_MAPTEXT_X
+	maptext_y = LOBBY_MAPTEXT_Y
+	// BUBBER EDIT - ADDITION - END - CUSTOM LOBBY
 
 ///Set the HUD in New, as lobby screens are made before Atoms are Initialized.
 /atom/movable/screen/lobby/New(loc, datum/hud/our_hud, ...)
@@ -33,11 +47,15 @@
 	//the buttons are off-screen, so we sync them up to come down with the shutter
 	animate(src, transform = matrix(), time = SHUTTER_MOVEMENT_DURATION, easing = CUBIC_EASING|EASE_OUT)
 
+// BUBBER EDIT - REMOVE - START - CUSTOM LOBBY
+/* TODO: implement once the loading screen is completed
 /atom/movable/screen/lobby/background
 	icon = 'icons/hud/lobby/background.dmi'
 	icon_state = "background"
 	layer = LOBBY_BACKGROUND_LAYER
 	screen_loc = "TOP,CENTER:-61"
+*/
+// BUBBER EDIT - REMOVE - END - CUSTOM LOBBY
 
 /atom/movable/screen/lobby/button
 	mouse_over_pointer = MOUSE_HAND_POINTER
@@ -47,6 +65,9 @@
 	var/highlighted = FALSE
 	///Should this button play the select sound?
 	var/select_sound_play = TRUE
+	// BUBBER EDIT - ADDITION - START- CUSTOM LOBBY
+	var/enabled_maptext
+	// BUBBER EDIT - ADDITION - END - CUSTOM LOBBY
 
 /atom/movable/screen/lobby/button/Click(location, control, params)
 	if(usr != get_mob())
@@ -106,19 +127,40 @@
 	enabled = status
 	update_appearance(UPDATE_ICON)
 	mouse_over_pointer = enabled ? MOUSE_HAND_POINTER : MOUSE_INACTIVE_POINTER
+	maptext = enabled ? enabled_maptext : null // BUBBER EDIT - ADDITION - CUSTOM LOBBY
 	return TRUE
 
 ///Prefs menu
 /atom/movable/screen/lobby/button/character_setup
+	// BUBBER EDIT - CHANGE - START - CUSTOM LOBBY
+	/*
 	name = "View Character Setup"
 	screen_loc = "TOP:-70,CENTER:-54"
 	icon = 'icons/hud/lobby/character_setup.dmi'
 	icon_state = "character_setup_disabled"
 	base_icon_state = "character_setup"
+	*/
 	enabled = FALSE
+	name = "Character Preferences"
+	icon = LOBBY_ICON_FILE
+	icon_state = "button_disabled"
+	base_icon_state = "button"
+	screen_loc = "BOTTOM:+136,CENTER:-112"
+	maptext_width = 575
+	enabled_maptext = "<span style='font-family: \"Pixellari\"; font-size: 12pt; -dm-text-outline: 1px #000000'>Setup: Felinid Example</span>"
+	// BUBBER EDIT - CHANGE - END - CUSTOM LOBBY
 
 /atom/movable/screen/lobby/button/character_setup/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
+	// BUBBER EDIT - ADDITION - START - CUSTOM LOBBY
+	if(!isnull(hud))
+		var/datum/preferences/character_prefs = hud.mymob.canon_client?.prefs
+		if(!isnull(character_prefs))
+			var/character_name = character_prefs.read_preference(/datum/preference/name/real_name)
+			update_character_name(new_name = character_name)
+			//RegisterSignal(character_prefs, COMSIG_PREFERENCES_NAME_APPLIED, PROC_REF(update_character_name))
+	// BUBBER EDIT - ADDITION - END - CUSTOM LOBBY
+
 	// We need IconForge and the assets to be ready before allowing the menu to open
 	if(SSearly_assets.initialized == INITIALIZATION_INNEW_REGULAR || SSatoms.initialized == INITIALIZATION_INNEW_REGULAR)
 		flick("[base_icon_state]_enabled", src)
@@ -145,13 +187,30 @@
 	UnregisterSignal(SSearly_assets, COMSIG_SUBSYSTEM_POST_INITIALIZE)
 	UnregisterSignal(SSatoms, COMSIG_SUBSYSTEM_POST_INITIALIZE)
 
+// BUBBER EDIT - ADDITION - START - CUSTOM LOBBY
+/atom/movable/screen/lobby/button/character_setup/proc/update_character_name(source, new_name)
+	SIGNAL_HANDLER
+	enabled_maptext = "<span style='font-family: \"Pixellari\"; font-size: 12pt; -dm-text-outline: 1px #000000'>Setup: [new_name]</span>"
+	maptext = enabled_maptext
+// BUBBER EDIT - ADDITION - END - CUSTOM LOBBY
+
 ///Button that appears before the game has started
 /atom/movable/screen/lobby/button/ready
+	// BUBBER EDIT - CHANGE - START - CUSTOM LOBBY
+	/*
 	name = "Toggle Readiness"
 	screen_loc = "TOP:-8,CENTER:-65"
 	icon = 'icons/hud/lobby/ready.dmi'
 	icon_state = "not_ready"
 	base_icon_state = "not_ready"
+	*/
+	name = "Toggle Ready Status"
+	icon = LOBBY_ICON_FILE
+	icon_state = "button"
+	base_icon_state = "button"
+	screen_loc = "BOTTOM:+184,CENTER:-112"
+	enabled_maptext = "<span style='font-family: \"Pixellari\"; font-size: 12pt; -dm-text-outline: 1px #000000'>Not Ready</span>"
+	// BUBBER EDIT - CHANGE - END - CUSTOM LOBBY
 
 /atom/movable/screen/lobby/button/ready/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
@@ -186,22 +245,34 @@
 	if(new_player.ready == PLAYER_NOT_READY)
 		new_player.auto_deadmin_on_ready_or_latejoin()
 		new_player.ready = PLAYER_READY_TO_PLAY
-		base_icon_state = "ready"
+		// base_icon_state = "ready" // BUBBER EDIT - REMOVE - CUSTOM LOBBY
+		maptext = "<span style='font-family: \"Pixellari\"; font-size: 12pt; color: #d270ff; -dm-text-outline: 1px #000000'>Ready</span>"
 	else
 		new_player.ready = PLAYER_NOT_READY
-		base_icon_state = "not_ready"
+		// base_icon_state = "not_ready" // BUBBER EDIT - REMOVE - CUSTOM LOBBY
+		maptext = "<span style='font-family: \"Pixellari\"; font-size: 12pt; -dm-text-outline: 1px #000000'>Not Ready</span>"
 
 	update_appearance(UPDATE_ICON)
 	SEND_SIGNAL(hud, COMSIG_HUD_PLAYER_READY_TOGGLE)
 
 ///Shown when the game has started
 /atom/movable/screen/lobby/button/join
+	// BUBBER EDIT - CHANGE - START - CUSTOM LOBBY
+	/*
 	name = "Join Game"
 	screen_loc = "TOP:-13,CENTER:-58"
 	icon = 'icons/hud/lobby/join.dmi'
 	icon_state = "" //Default to not visible
 	base_icon_state = "join_game"
+	*/
 	enabled = null // set in init
+	name = "Join Game"
+	icon = LOBBY_ICON_FILE
+	icon_state = "button_disabled"
+	base_icon_state = "button"
+	screen_loc = "BOTTOM:+184,CENTER:-112"
+	enabled_maptext = "<span style='font-family: \"Pixellari\"; font-size: 12pt; color: #ffffff; -dm-text-outline: 1px #000000'>Join Game</span>"
+	// BUBBER EDIT - CHANGE - END - CUSTOM LOBBY
 
 /atom/movable/screen/lobby/button/join/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
@@ -270,12 +341,22 @@
 	RegisterSignal(SSticker, COMSIG_TICKER_ENTER_SETTING_UP, PROC_REF(show_join_button))
 
 /atom/movable/screen/lobby/button/observe
+	// BUBBER EDIT - CHANGE - START - CUSTOM LOBBY
+	/*
 	name = "Observe"
 	screen_loc = "TOP:-40,CENTER:-54"
 	icon = 'icons/hud/lobby/observe.dmi'
 	icon_state = "observe_disabled"
 	base_icon_state = "observe"
+	*/
 	enabled = null // set in init
+	name = "Observe"
+	icon = LOBBY_ICON_FILE
+	icon_state = "button_disabled"
+	base_icon_state = "button"
+	screen_loc = "BOTTOM:+88,CENTER:-112"
+	enabled_maptext = "<span style='font-family: \"Pixellari\"; font-size: 12pt; -dm-text-outline: 1px #000000'>Observe</span>"
+	// BUBBER EDIT - CHANGE - END - CUSTOM LOBBY
 
 /atom/movable/screen/lobby/button/observe/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
@@ -304,11 +385,21 @@
 	icon = 'icons/hud/lobby/bottom_buttons.dmi'
 
 /atom/movable/screen/lobby/button/bottom/settings
+	// BUBBER EDIT - CHANGE - START - CUSTOM LOBBY
+	/*
 	name = "View Game Preferences"
 	icon_state = "settings_disabled"
 	base_icon_state = "settings"
 	screen_loc = "TOP:-122,CENTER:+29"
+	*/
 	enabled = FALSE
+	name = "Game Preferences"
+	icon = LOBBY_ICON_FILE
+	icon_state = "button_disabled"
+	base_icon_state = "button"
+	screen_loc = "BOTTOM:+64,CENTER:-112"
+	enabled_maptext = "<span style='font-family: \"Pixellari\"; font-size: 12pt; -dm-text-outline: 1px #000000'>Game Preferences</span>"
+	// BUBBER EDIT - CHANGE - END - CUSTOM LOBBY
 
 /atom/movable/screen/lobby/button/bottom/settings/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
@@ -336,6 +427,8 @@
 	UnregisterSignal(SSearly_assets, COMSIG_SUBSYSTEM_POST_INITIALIZE)
 	UnregisterSignal(SSatoms, COMSIG_SUBSYSTEM_POST_INITIALIZE)
 
+// BUBBER EDIT - REMOVE - START - CUSTOM LOBBY
+/*
 /atom/movable/screen/lobby/button/bottom/changelog_button
 	name = "View Changelog"
 	icon_state = "changelog"
@@ -345,12 +438,25 @@
 /atom/movable/screen/lobby/button/bottom/changelog_button/Click(location, control, params)
 	. = ..()
 	usr.client?.changelog()
+*/
+// BUBBER EDIT - REMOVE - END - CUSTOM LOBBY
 
 /atom/movable/screen/lobby/button/bottom/crew_manifest
+	// BUBBER EDIT - CHANGE - START - CUSTOM LOBBY
+	/*
 	name = "View Crew Manifest"
 	icon_state = "crew_manifest"
 	base_icon_state = "crew_manifest"
 	screen_loc = "TOP:-122,CENTER:+2"
+	*/
+	name = "Crew Manifest"
+	icon = LOBBY_ICON_FILE
+	icon_state = "button_disabled"
+	base_icon_state = "button"
+	screen_loc = "BOTTOM:+112,CENTER:-112"
+	enabled = null // set in init
+	enabled_maptext = "<span style='font-family: \"Pixellari\"; font-size: 12pt; -dm-text-outline: 1px #000000'>Crew Manifest</span>"
+	// BUBBER EDIT - CHANGE - END - CUSTOM LOBBY
 
 /atom/movable/screen/lobby/button/bottom/crew_manifest/Click(location, control, params)
 	. = ..()
@@ -359,6 +465,23 @@
 	var/mob/dead/new_player/new_player = hud.mymob
 	new_player.ViewManifest()
 
+// BUBBER EDIT - ADDITION - START - CUSTOM LOBBY
+/atom/movable/screen/lobby/button/bottom/crew_manifest/Initialize(mapload, datum/hud/hud_owner)
+	. = ..()
+	if(SSticker.current_state >= GAME_STATE_SETTING_UP)
+		set_button_status(TRUE)
+	else
+		set_button_status(FALSE)
+		RegisterSignal(SSticker, COMSIG_TICKER_ROUND_STARTING, PROC_REF(show_manifest_button))
+
+/atom/movable/screen/lobby/button/bottom/crew_manifest/proc/show_manifest_button()
+	SIGNAL_HANDLER
+	set_button_status(TRUE)
+	UnregisterSignal(SSticker, COMSIG_TICKER_ROUND_STARTING)
+// BUBBER EDIT - ADDITION - END - CUSTOM LOBBY
+
+// BUBBER EDIT - REMOVE - START - CUSTOM LOBBY
+/* TODO: IMPLEMENT VOTING
 /atom/movable/screen/lobby/button/bottom/poll
 	name = "View Available Polls"
 	icon_state = "poll"
@@ -422,6 +545,8 @@
 		return
 	var/mob/dead/new_player/new_player = hud.mymob
 	new_player.handle_player_polling()
+*/
+// BUBBER EDIT - REMOVE - END - CUSTOM LOBBY
 
 /// A generic "sign up" button used by station traits
 /atom/movable/screen/lobby/button/sign_up
@@ -440,6 +565,8 @@
 	. = ..()
 	closeToolTip(usr)
 
+// BUBBER EDIT - REMOVE - START - CUSTOM LOBBY
+/*
 /atom/movable/screen/lobby/button/collapse
 	name = "Collapse Lobby Menu"
 	icon = 'icons/hud/lobby/collapse_expand.dmi'
@@ -470,7 +597,6 @@
 	. = ..()
 	. += get_blip_overlay()
 
-/* BUBBER REMOVAL START - Custom HTML Lobby Screen
 /atom/movable/screen/lobby/button/collapse/Click(location, control, params)
 	. = ..()
 	if(!.)
@@ -499,9 +625,6 @@
 	//we use sleep here so it can work during game setup, as addtimer would not work until the game would finish setting up
 	sleep(2 * SHUTTER_MOVEMENT_DURATION + SHUTTER_WAIT_DURATION)
 	set_button_status(TRUE)
-
-BUBBER REMOVAL END
-*/
 
 ///Proc to update the ready blip state upon new player's ready status change
 /atom/movable/screen/lobby/button/collapse/proc/on_player_ready_toggle()
@@ -570,11 +693,13 @@ BUBBER REMOVAL END
 
 	//pull the shutter back off-screen
 	animate(transform = matrix(), time = SHUTTER_MOVEMENT_DURATION, easing = CUBIC_EASING|EASE_IN)
+*/
+// BUBBER EDIT - REMOVE - END - CUSTOM LOBBY
 
 /// LOCALHOST ONLY - Start Now button
 /atom/movable/screen/lobby/button/start_now
 	name = "Start Now (LOCALHOST ONLY)"
-	screen_loc = "TOP:-146,CENTER:-54"
+	screen_loc = "TOP:-128,RIGHT:+3" // BUBBER EDIT - CHANGE - CUSTOM LOBBY - Original: "TOP:-146,CENTER:-54"
 	icon = 'icons/hud/lobby/start_now.dmi'
 	icon_state = "start_now"
 	base_icon_state = "start_now"
@@ -590,13 +715,28 @@ BUBBER REMOVAL END
 	if(SSticker.current_state == GAME_STATE_STARTUP)
 		to_chat(usr, span_admin("The server is still setting up, but the round will be started as soon as possible."))
 
+// BUBBER EDIT - ADDITION - START - CUSTOM LOBBY
+/atom/movable/screen/lobby/button/start_now/Initialize(mapload, datum/hud/hud_owner)
+	. = ..()
+	if(SSticker?.current_state > GAME_STATE_PREGAME)
+		set_button_status(FALSE)
+		return
+
+	RegisterSignal(SSticker, COMSIG_TICKER_ROUND_STARTING, PROC_REF(enter_pregame))
+
+/atom/movable/screen/lobby/button/start_now/proc/enter_pregame(source)
+	SIGNAL_HANDLER
+	set_button_status(FALSE)
+	UnregisterSignal(SSticker, COMSIG_TICKER_ROUND_STARTING)
+// BUBBER EDIT - ADDITION - END - CUSTOM LOBBY
+
 #define OVERLAY_X_DIFF 12
 #define OVERLAY_Y_DIFF 5
 
 ///Lobby screen that appears before the game has started showing how many players there are and who is ready.
 /atom/movable/screen/lobby/new_player_info
 	name = "New Player Info"
-	screen_loc = "EAST-3,CENTER:140"
+	screen_loc = "TOP-1,RIGHT" // BUBBER EDIT - CHANGE - CUSTOM LOBBY - Original: "EAST-3,CENTER:140"
 	icon = 'icons/hud/lobby/newplayer.dmi'
 	icon_state = null //we only show up when we get update appearance called, cause we need our overlay to not look bad.
 	base_icon_state = "newplayer"
@@ -702,6 +842,8 @@ BUBBER REMOVAL END
 			[round_timestamp()] in<br />"
 		new_maptext += "</span>"
 	else
+		// BUBBER EDIT - CHANGE - START - CUSTOM LOBBY
+		/*
 		if(hud.mymob.client?.holder)
 			new_maptext = "<span style='text-align: center; vertical-align: middle'>Starting in [time_remaining_str()]<br /> \
 				[LAZYLEN(GLOB.clients)] player\s<br /> \
@@ -710,6 +852,27 @@ BUBBER REMOVAL END
 		else
 			new_maptext = "<span style='text-align: center; vertical-align: middle; font-size: 18px'>[time_remaining_str()]</span><br /> \
 				<span style='text-align: center; vertical-align: middle'>[LAZYLEN(GLOB.clients)] player\s</span>"
+		*/
+		var/font_size
+		var/time_remaining = SSticker.GetTimeLeft()
+		if(time_remaining > 0)
+			time_remaining = "[round(time_remaining/10)]s"
+			font_size = "18px"
+		else if(time_remaining == -10)
+			time_remaining = "DELAYED<br />by admin"
+			font_size = "9px"
+		else
+			time_remaining = "Starting<br />SOON"
+			font_size = "9px"
+
+		if(hud.mymob.client?.holder)
+			new_maptext = "<span style='text-align: center; vertical-align: middle'>[time_remaining]<br /> \
+				[SSticker.totalPlayersReady] / [LAZYLEN(GLOB.clients)] players ready<br /> \
+				[SSticker.total_admins_ready] / [length(GLOB.admins)] admins ready</span>"
+		else
+			new_maptext = "<span style='text-align: center; vertical-align: middle; line-height: 1.1; [font_size ? "font-size: [font_size]" : ""]'>[time_remaining]</span><br /> \
+				<span style='text-align: center; vertical-align: middle'>[SSticker.totalPlayersReady] players ready</span>"
+		// BUBBER EDIT - CHANGE - END - CUSTOM LOBBY
 
 	maptext = MAPTEXT(new_maptext)
 
@@ -720,6 +883,63 @@ BUBBER REMOVAL END
 	if(time_remaining == -10)
 		return "DELAYED"
 	return "SOON"
+
+// BUBBER EDIT ADDITION - START - CUSTOM LOBBY
+/atom/movable/screen/lobby/button/antagonist
+	enabled = FALSE
+	name = "Toggle Antag Status"
+	icon = LOBBY_ICON_FILE
+	icon_state = "button_disabled"
+	base_icon_state = "button"
+	screen_loc = "BOTTOM:+160,CENTER:-112"
+	maptext_width = 575
+	enabled_maptext = "<span style='font-family: \"Pixellari\"; font-size: 12pt; color: #21fa90; -dm-text-outline: 1px #000000'>Antag Enabled</span>"
+
+/atom/movable/screen/lobby/button/antagonist/Initialize(mapload, datum/hud/hud_owner)
+	. = ..()
+	// We display it at the same time as character preferences
+	if(SSearly_assets.initialized == INITIALIZATION_INNEW_REGULAR || SSatoms.initialized == INITIALIZATION_INNEW_REGULAR)
+		set_button_status(TRUE)
+		update_antag_status()
+	else
+		set_button_status(FALSE)
+		RegisterSignal(SSearly_assets, COMSIG_SUBSYSTEM_POST_INITIALIZE, PROC_REF(enable_antag_button))
+		RegisterSignal(SSatoms, COMSIG_SUBSYSTEM_POST_INITIALIZE, PROC_REF(enable_antag_button))
+
+/atom/movable/screen/lobby/button/antagonist/Click(location, control, params)
+	. = ..()
+	if(!.)
+		return
+
+	var/datum/preferences/preferences = hud.mymob.canon_client.prefs
+	var/antag_preference = preferences.read_preference(/datum/preference/toggle/be_antag)
+	preferences.write_preference(GLOB.preference_entries[/datum/preference/toggle/be_antag], !antag_preference)
+	preferences.save_preferences()
+	update_antag_status()
+
+/atom/movable/screen/lobby/button/antagonist/proc/enable_antag_button()
+	SIGNAL_HANDLER
+	set_button_status(TRUE)
+	update_antag_status()
+	UnregisterSignal(SSearly_assets, COMSIG_SUBSYSTEM_POST_INITIALIZE)
+	UnregisterSignal(SSatoms, COMSIG_SUBSYSTEM_POST_INITIALIZE)
+
+/atom/movable/screen/lobby/button/antagonist/proc/update_antag_status()
+	if(isnull(hud))
+		return
+
+	var/datum/preferences/preferences = hud.mymob.canon_client.prefs
+	var/antag_enabled = preferences.read_preference(/datum/preference/toggle/be_antag)
+	if(antag_enabled)
+		maptext = "<span style='font-family: \"Pixellari\"; font-size: 12pt; color: #21fa90; -dm-text-outline: 1px #000000'>Antag Enabled</span>"
+	else
+		maptext = "<span style='font-family: \"Pixellari\"; font-size: 12pt; color: #ffe45e; -dm-text-outline: 1px #000000'>Antag Disabled</span>"
+
+#undef LOBBY_MAPTEXT_HEIGHT
+#undef LOBBY_MAPTEXT_WIDTH
+#undef LOBBY_MAPTEXT_X
+#undef LOBBY_MAPTEXT_Y
+// BUBBER EDIT ADDITION - END - CUSTOM LOBBY
 
 #undef OVERLAY_X_DIFF
 #undef OVERLAY_Y_DIFF

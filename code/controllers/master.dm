@@ -334,8 +334,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 	init_stage_completed = 0
 	var/mc_started = FALSE
 
-	add_startup_message("Initializing subsystems...") //SKYRAT EDIT CHANGE - Custom HTML Lobby Screen
-	// to_chat(world, span_boldannounce("Initializing subsystems..."), MESSAGE_TYPE_DEBUG) SKYRAT EDIT ORIGINAL
+	to_chat(world, span_boldannounce("Initializing subsystems..."))
 
 	var/list/stage_sorted_subsystems = new(INITSTAGE_MAX)
 	for (var/i in 1 to INITSTAGE_MAX)
@@ -452,7 +451,6 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 				SetRunLevel(1) // Intentionally not using the defines here because the MC doesn't care about them
 			// Loop.
 			Master.StartProcessing(0)
-			add_startup_message("Clearing clutter...") //SKYRAT EDIT ADDITION
 
 
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
@@ -551,13 +549,10 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 			chat_warning = TRUE
 
 	var/message = "[message_prefix] [seconds] second[seconds == 1 ? "" : "s"]!"
-	// SKYRAT EDIT REMOVAL BEGIN -- chat_message not used anymore due to change below
-	// var/chat_message = chat_warning ? span_boldwarning(message) : span_boldannounce(message)
-	// SKYRAT EDIT REMOVAL END
+	var/chat_message = chat_warning ? span_boldwarning(message) : span_boldannounce(message)
 
 	if(result != SS_INIT_NO_MESSAGE)
-		add_startup_message(message, chat_warning) //SKYRAT EDIT CHANGE
-		//to_chat(world, chat_message, MESSAGE_TYPE_DEBUG) //SKYRAT EDIT ORIGINAL
+		to_chat(world, chat_message, MESSAGE_TYPE_DEBUG)
 	log_world(message)
 
 /datum/controller/master/proc/SetRunLevel(new_runlevel)

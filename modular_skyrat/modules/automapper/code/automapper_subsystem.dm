@@ -81,7 +81,7 @@ SUBSYSTEM_DEF(automapper)
 		else if(!(iterating_template.required_map in map_names))
 			continue
 		if(iterating_template.load(iterating_template.load_turf, FALSE))
-			add_startup_message("Loaded [iterating_template.name] at [iterating_template.load_turf.x], [iterating_template.load_turf.y], [iterating_template.load_turf.z]!")
+			to_chat(world, span_boldannounce("Loaded [iterating_template.name] at [iterating_template.load_turf.x], [iterating_template.load_turf.y], [iterating_template.load_turf.z]!"))
 			log_world("AUTOMAPPER: Successfully loaded map template [iterating_template.name] at [iterating_template.load_turf.x], [iterating_template.load_turf.y], [iterating_template.load_turf.z]!")
 
 /**

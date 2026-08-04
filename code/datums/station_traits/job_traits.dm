@@ -18,7 +18,7 @@
 	. = ..()
 	blacklist += subtypesof(/datum/station_trait/job) - type // All but ourselves
 	RegisterSignal(SSdcs, COMSIG_GLOB_PRE_JOBS_ASSIGNED, PROC_REF(pre_jobs_assigned))
-/* SKYRAT EDIT REMOVAL
+
 /datum/station_trait/job/setup_lobby_button(atom/movable/screen/lobby/button/sign_up/lobby_button)
 	RegisterSignal(lobby_button, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(on_lobby_button_update_overlays))
 	lobby_button.desc = button_desc
@@ -44,7 +44,7 @@
 /datum/station_trait/job/proc/on_lobby_button_update_overlays(atom/movable/screen/lobby/button/sign_up/lobby_button, list/overlays)
 	SIGNAL_HANDLER
 	overlays += LAZYFIND(lobby_candidates, lobby_button.get_mob()) ? "tick" : "cross"
-*/
+
 /// Called before we start assigning roles, assign ours first
 /datum/station_trait/job/proc/pre_jobs_assigned()
 	SIGNAL_HANDLER
