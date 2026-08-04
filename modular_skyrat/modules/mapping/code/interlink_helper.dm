@@ -5,7 +5,7 @@
 	. = ..()
 #ifndef ABSOLUTE_MINIMUM
 	var/list/FailedZsRat = list()
-	LoadGroup(FailedZsRat, "The Interlink", "map_files/generic", "CentCom_skyrat_z2.dmm", default_traits = ZTRAITS_CENTCOM)
+	LoadGroup(FailedZsRat, "The Interlink", "map_files/generic", "CentCom_metastruct_z2.dmm", default_traits = ZTRAITS_CENTCOM)
 	if(LAZYLEN(FailedZsRat)) //but seriously, unless the server's filesystem is messed up this will never happen
 		var/msg = "RED ALERT! The following map files failed to load: [FailedZsRat[1]]"
 		if(FailedZsRat.len > 1)
