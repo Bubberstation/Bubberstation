@@ -32,7 +32,7 @@
 
 /obj/item/organ/brain/synth/Remove(mob/living/carbon/organ_owner, special = FALSE, movement_flags)
 	. = ..()
-	if(!istype(stored_mmi) || special)
+	if(!istype(stored_mmi) || special || loc == null)
 		return
 	stored_mmi.brain = src
 	organ_flags |= ORGAN_FROZEN
