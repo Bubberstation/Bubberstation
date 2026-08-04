@@ -62,7 +62,7 @@
 	name = "chap mix"
 	desc = "A mass of seasoned meat, ready to be processed."
 	icon_state = "raw_meatloaf"
-	foodtypes = MEAT
+	foodtypes = MEAT | VEGETABLES | RAW
 
 /// Healthy foods that the food processor pops out. Mostly to get the food_processor unit test all happy.
 /obj/item/food/peanuts/healthy
@@ -117,7 +117,7 @@
 	name = "snail mix"
 	desc = "A mass of seasoned meat, ready to be processed... DO NOT CONFUSE WITH TRAIL MIX!"
 	icon_state = "raw_meatloaf"
-	foodtypes = MEAT | GORE
+	foodtypes = MEAT | VEGETABLES | RAW | BUGS
 
 /datum/food_processor_process/desertsnails
 	input = /obj/item/food/meat/snailmix
