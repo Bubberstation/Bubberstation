@@ -2,8 +2,8 @@
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "body_size"
-	minimum = BODY_SIZE_MIN
-	maximum = BODY_SIZE_MAX
+	minimum = RESIZE_DEFAULT_SIZE * 0.8
+	maximum = RESIZE_DEFAULT_SIZE * 1.5
 	step = 0.01
 
 /datum/preference/numeric/body_size/is_accessible(datum/preferences/preferences)
@@ -11,7 +11,7 @@
 	return passed_initial_check
 
 /datum/preference/numeric/body_size/apply_to_human(mob/living/carbon/human/target, value)
-	target.dna.features["body_size"] = value
+	target.update_transform(value)
 
 /datum/preference/numeric/body_size/create_default_value()
-	return BODY_SIZE_NORMAL
+	return RESIZE_DEFAULT_SIZE
