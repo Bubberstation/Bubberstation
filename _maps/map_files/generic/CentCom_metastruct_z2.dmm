@@ -13294,13 +13294,6 @@
 	dir = 1
 	},
 /area/cruiser_dock)
-"kit" = (
-/obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible,
-/obj/machinery/airalarm/directional/west,
-/turf/open/floor/pod/light/edge{
-	dir = 8
-	},
-/area/centcom/holding/cafe/station/engineering)
 "kiD" = (
 /obj/structure/curtain/bounty,
 /obj/structure/stone_tile/block/burnt{
@@ -15847,7 +15840,7 @@
 /area/centcom/holding/cafe/dorms)
 "mCg" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible,
-/obj/structure/fireaxecabinet/directional/west,
+/obj/machinery/airalarm/directional/west,
 /turf/open/floor/pod/light/edge{
 	dir = 8
 	},
@@ -18969,6 +18962,13 @@
 /obj/machinery/light/cold/directional/west,
 /turf/open/floor/iron/dark/textured_large,
 /area/cruiser_dock)
+"psY" = (
+/obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible,
+/obj/structure/fireaxecabinet/directional/west,
+/turf/open/floor/pod/light/edge{
+	dir = 8
+	},
+/area/centcom/holding/cafe/station/engineering)
 "ptt" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -24556,6 +24556,14 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/interlink)
+"ujP" = (
+/mob/living/basic/slime{
+	name = "rob"
+	},
+/turf/open/indestructible{
+	icon_state = "engine"
+	},
+/area/centcom/holding/cafe/station/science/robotics/augments)
 "ujQ" = (
 /obj/item/toy/plush/lizard_plushie/green{
 	name = "Breaks-The-Maps"
@@ -85674,8 +85682,8 @@ eHL
 bvw
 aRd
 lmG
-kit
 mCg
+psY
 lWc
 jIu
 ker
@@ -87708,7 +87716,7 @@ ubY
 wxY
 tnA
 dEh
-dEh
+ujP
 kQP
 gVj
 dYF
