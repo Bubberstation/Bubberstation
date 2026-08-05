@@ -11,7 +11,7 @@
 	return passed_initial_check
 
 /datum/preference/numeric/body_size/apply_to_human(mob/living/carbon/human/target, value)
-	target.update_transform(value)
+	target.update_transform(value / target.current_size)
 
 /datum/preference/numeric/body_size/create_default_value()
 	return RESIZE_DEFAULT_SIZE
