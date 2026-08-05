@@ -18,7 +18,7 @@
 	species_whitelist = list(SPECIES_HEMOPHAGE)
 	COOLDOWN_DECLARE(sun_burn)
 
-/datum/quirk/sol_weakness/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source, unique = TRUE)
+/datum/quirk/sol_weakness/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source, unique = TRUE, announce = TRUE)
 	if(IS_BLOODSUCKER(new_holder))
 		return FALSE
 	return ..()
@@ -62,7 +62,7 @@
 			sun_burn_message(span_warning("The sun is up, but you safely rest in your [quirk_holder.loc.name]."))
 		else
 			quirk_holder.add_mood_event("vampsleep", /datum/mood_event/daylight_bad_sleep)
-			quirk_holder.adjustFireLoss(1)
+			quirk_holder.adjust_fire_loss(1)
 			sun_burn_message(span_warning("[quirk_holder.loc] is not a coffin, but it keeps you safe enough."))
 
 /datum/quirk/sol_weakness/proc/sun_burn()
@@ -70,10 +70,10 @@
 	if(quirk_holder.blood_volume > BLOOD_VOLUME_NORMAL * 0.71) // 397.6
 		quirk_holder.blood_volume -= 5
 		sun_burn_message(span_warning("The sun burns your skin, but your blood protects you from the worst of it..."))
-		quirk_holder.adjustFireLoss(1)
+		quirk_holder.adjust_fire_loss(1)
 		return
 	sun_burn_message(span_userdanger("THE SUN, IT BURNS!"))
-	quirk_holder.adjustFireLoss(2)
+	quirk_holder.adjust_fire_loss(2)
 	quirk_holder.adjust_fire_stacks(1)
 	quirk_holder.ignite_mob()
 

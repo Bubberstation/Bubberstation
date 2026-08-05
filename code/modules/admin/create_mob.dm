@@ -1,15 +1,3 @@
-
-/datum/admins/proc/create_mob(mob/user)
-	var/static/create_mob_html
-	if (!create_mob_html)
-		var/mobjs = null
-		mobjs = jointext(typesof(/mob), ";")
-		create_mob_html = file2text('html/create_object.html')
-		create_mob_html = replacetext(create_mob_html, "Create Object", "Create Mob")
-		create_mob_html = replacetext(create_mob_html, "null; /* object types */", "\"[mobjs]\";")
-
-	user << browse(create_panel_helper(create_mob_html), "window=create_mob;size=425x475")
-
 /**
  * Fully randomizes everything about a human, including DNA and name.
  */
@@ -34,12 +22,6 @@
 	// Snowflake for Ethereals
 	human.updatehealth()
 	human.updateappearance(mutcolor_update = TRUE)
-	// BUBBER EDIT ADDITION BEGIN - Bloopers
-	human.set_blooper(pick(GLOB.blooper_list))
-	human.blooper_pitch = BLOOPER_PITCH_RAND(human.gender)
-	human.blooper_pitch_range = BLOOPER_VARIANCE_RAND
-	human.blooper_speed = rand(BLOOPER_DEFAULT_MINSPEED, BLOOPER_DEFAULT_MAXSPEED)
-	// BUBBER EDIT ADDITION END - Bloopers
 
 /**
  * Randomizes a human, but produces someone who looks exceedingly average (by most standards).
@@ -52,6 +34,7 @@
 	human.physique = human.gender
 	human.real_name = human.generate_random_mob_name()
 	human.name = human.get_visible_name()
+	human.voice = SStts.random_tts_voice(human.gender)
 	human.set_eye_color(random_eye_color())
 	human.skin_tone = pick(GLOB.skin_tones)
 	// No underwear generation handled here

@@ -63,7 +63,8 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 			var/obj/item/melee/sickly_blade/training/new_blade = new(get_turf(human_in_range))
 			welfare_blades += new_blade
 			INVOKE_ASYNC(human_in_range, TYPE_PROC_REF(/mob, put_in_hands), new_blade)
-			human_in_range.mind?.add_antag_datum(/datum/antagonist/heretic_arena_participant)
+			to_chat(human_in_range, span_boldbig("Escape is impossible. The only way out is to defeat another participant in this battle to the death."))
+			human_in_range.balloon_alert(human_in_range, "start killing!")
 		human_in_range.apply_status_effect(/datum/status_effect/arena_tracker)
 		RegisterSignal(human_in_range, COMSIG_CAN_Z_MOVE, PROC_REF(on_try_z_move))
 		RegisterSignal(human_in_range, COMSIG_LADDER_TRAVEL, PROC_REF(on_try_ladder))
@@ -75,8 +76,8 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 		mob.remove_traits(given_immunities, HERETIC_ARENA_TRAIT)
 		mob.remove_status_effect(/datum/status_effect/arena_tracker)
 		UnregisterSignal(mob, list(COMSIG_CAN_Z_MOVE, COMSIG_LADDER_TRAVEL, COMSIG_MOVABLE_PRE_MOVE, COMSIG_MOVABLE_POST_TELEPORT))
-		if(mob.mind?.has_antag_datum(/datum/antagonist/heretic_arena_participant))
-			mob.mind.remove_antag_datum(/datum/antagonist/heretic_arena_participant)
+		to_chat(mob, span_boldbig("Your bloodlust is sated."))
+		mob.balloon_alert(mob, "escape the arena!")
 	for(var/turf/to_restore in border_walls)
 		to_restore.ChangeTurf(border_walls[to_restore])
 	for(var/obj/to_refund as anything in welfare_blades)
@@ -155,14 +156,19 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 	owner.cut_overlay(crown_overlay)
 	crown_overlay = mutable_appearance('icons/mob/effects/crown.dmi', "arena_victor", -HALO_LAYER)
 	crown_overlay.pixel_z = 24
+	if(ishuman(owner))
+		var/mob/living/carbon/human/human_parent = owner
+		human_parent.apply_height_offsets(crown_overlay, UPPER_BODY)
+		var/obj/item/bodypart/head/human_head = human_parent.get_bodypart(BODY_ZONE_HEAD)
+		human_head?.worn_head_offset?.apply_offset(crown_overlay)
 	owner.add_overlay(crown_overlay)
 	owner.remove_traits(list(TRAIT_ELDRITCH_ARENA_PARTICIPANT, TRAIT_NO_TELEPORT), TRAIT_STATUS_EFFECT(id))
 
 	// The mansus celebrates your efforts
 	if(IS_HERETIC(owner))
 		owner.heal_overall_damage(60, 60, 60)
-		owner.adjustToxLoss(-60, forced = TRUE) // Slime heretics everywhere...
-		owner.adjustOxyLoss(-60)
+		owner.adjust_tox_loss(-60, forced = TRUE) // Slime heretics everywhere...
+		owner.adjust_oxy_loss(-60)
 		if(iscarbon(owner))
 			var/mob/living/carbon/carbon_owner = owner
 			for(var/datum/wound/wound as anything in carbon_owner.all_wounds)
@@ -202,6 +208,11 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 	owner.add_traits(list(TRAIT_ELDRITCH_ARENA_PARTICIPANT, TRAIT_NO_TELEPORT), TRAIT_STATUS_EFFECT(id))
 	crown_overlay = mutable_appearance('icons/mob/effects/crown.dmi', "arena_fighter", -HALO_LAYER)
 	crown_overlay.pixel_z = 24
+	if(ishuman(owner))
+		var/mob/living/carbon/human/human_parent = owner
+		human_parent.apply_height_offsets(crown_overlay, UPPER_BODY)
+		var/obj/item/bodypart/head/human_head = human_parent.get_bodypart(BODY_ZONE_HEAD)
+		human_head?.worn_head_offset?.apply_offset(crown_overlay)
 	owner.add_overlay(crown_overlay)
 	return TRUE
 
@@ -231,7 +242,7 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 	def_zone,
 	blocked,
 	wound_bonus,
-	bare_wound_bonus,
+	exposed_wound_bonus,
 	sharpness,
 	attack_direction,
 	attacking_item,
@@ -262,7 +273,7 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 	// Track being hit by a mob throwing a stick
 	if(!isitem(throwingdatum.thrownthing))
 		return
-	var/thrown_by = throwingdatum.get_thrower()
+	var/thrown_by = throwingdatum?.get_thrower()
 	if(ismob(thrown_by))
 		last_attacker = WEAKREF(thrown_by)
 
@@ -272,7 +283,7 @@ GLOBAL_LIST_EMPTY(heretic_arenas)
 	replace_banned = FALSE
 	objectives = list()
 	antag_hud_name = "brainwashed"
-	block_midrounds = FALSE
+	antag_flags = ANTAG_FAKE
 
 /datum/antagonist/heretic_arena_participant/on_gain()
 	forge_objectives()

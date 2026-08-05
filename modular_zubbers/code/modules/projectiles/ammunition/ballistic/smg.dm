@@ -19,19 +19,17 @@
 	advanced_print_req = TRUE
 	custom_materials = AMMO_MATS_TEMP
 
-/obj/item/ammo_casing/c46x30mm/flathead
-	name = "4.6x30mm flathead bullet casing"
-	desc = "A 4.6x30mm flathead bullet casing."
-	projectile_type = /obj/projectile/bullet/c46x30mm/flathead
-	can_be_printed = TRUE
-	advanced_print_req = FALSE
-	custom_materials = AMMO_MATS_RIPPER
+/obj/item/ammo_casing/caseless/c22hl/ntmp5
+	projectile_type = /obj/projectile/bullet/c22hl/ntmp5
 
-/obj/item/ammo_casing/c46x30mm/rubber
-	name = "4.6x30mm rubber-tipped bullet casing"
-	desc = "A 4.6x30mm rubber-tipped bullet casing."
-	projectile_type = /obj/projectile/bullet/c46x30mm/rubber
-	can_be_printed = TRUE
-	advanced_print_req = FALSE
-	harmful = FALSE
-	custom_materials = AMMO_MATS_BASIC
+/obj/projectile/bullet/c22hl/ntmp5
+	stamina = 16
+
+/obj/item/ammo_casing/caseless/c22ls/ntmp5
+	projectile_type = /obj/projectile/bullet/c22ls/ntmp5
+
+/obj/projectile/bullet/c22ls/ntmp5
+	damage = 14
+
+/obj/item/ammo_casing/c45/reaper
+	projectile_type = /obj/projectile/bullet/c45/lesser_reaper

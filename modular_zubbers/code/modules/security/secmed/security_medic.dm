@@ -2,7 +2,6 @@
 	title = JOB_SECURITY_MEDIC
 	description = "Patch up officers and prisoners, realize you don't have the tools to Tend Wounds, barge into Medbay and tell them how to do their jobs"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	department_head = list(JOB_HEAD_OF_SECURITY)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -11,7 +10,7 @@
 	exp_requirements = 120
 	exp_required_type = EXP_TYPE_CREW
 	exp_required_type_department = EXP_TYPE_MEDICAL
-	exp_granted_type = EXP_TYPE_CREW
+	exp_granted_type = EXP_TYPE_SECURITY
 	config_tag = "SECURITY_MEDIC"
 
 	outfit = /datum/outfit/job/security_medic
@@ -47,6 +46,11 @@
 	name = "Security Medic"
 	jobtype = /datum/job/security_medic
 
+	backpack_contents = list(
+		/obj/item/security_voucher/primary = 1,
+		/obj/item/security_voucher/utility = 1
+		)
+	suit_store = /obj/item/flashlight/seclite
 	belt = /obj/item/modular_computer/pda/security
 	ears = /obj/item/radio/headset/headset_medsec
 	uniform = /obj/item/clothing/under/rank/security/peacekeeper/security_medic
@@ -55,8 +59,7 @@
 	glasses = /obj/item/clothing/glasses/hud/medsechud
 	suit = /obj/item/clothing/suit/armor/vest/peacekeeper/security_medic
 	l_hand = /obj/item/storage/medkit/brute
-	head = /obj/item/clothing/head/beret/sec/peacekeeper/security_medic
-	suit_store = /obj/item/gun/energy/e_gun/advtaser
+	head = /obj/item/clothing/head/beret/sec/security_medic
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
@@ -117,9 +120,7 @@
 /obj/item/storage/bag/garment/secmed/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic(src)
-	new /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic/blue(src)
 	new /obj/item/clothing/suit/hazardvest/security_medic(src)
-	new /obj/item/clothing/suit/hazardvest/security_medic/blue(src)
 	new /obj/item/clothing/head/helmet/sec/peacekeeper/security_medic(src)
 	new /obj/item/clothing/under/rank/medical/scrubs/skyrat/red/sec(src)
 	new /obj/item/clothing/under/rank/security/peacekeeper/security_medic/alternate(src)

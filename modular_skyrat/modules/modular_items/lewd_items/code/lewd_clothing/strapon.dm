@@ -108,6 +108,8 @@
 	desc = "Put the strapon in your hand in order to use it properly."
 
 /datum/action/item_action/take_strapon/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/obj/item/clothing/strapon/affected_item = target
 	if(istype(affected_item))
 		affected_item.check()
@@ -223,7 +225,7 @@
 					message = pick("fucks [hit_mob]'s mouth with [src]", "chokes [hit_mob] by inserting [src] into [hit_mob.p_their()] throat", "forces [hit_mob] to suck [src]", "inserts [src] into [hit_mob]'s throat")
 					hit_mob.adjust_arousal(4)
 					hit_mob.adjust_pleasure(1)
-					hit_mob.adjustOxyLoss(1.5)
+					hit_mob.adjust_oxy_loss(1.5)
 					if(prob(70))
 						hit_mob.try_lewd_autoemote(pick("gasp", "moan"))
 					user.visible_message(span_purple("[user] [message]!"))

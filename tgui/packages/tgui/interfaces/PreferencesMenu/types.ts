@@ -1,11 +1,12 @@
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
-import { sendAct } from '../../backend';
-import {
+import type { sendAct } from '../../events/act';
+import type {
   LoadoutCategory,
   LoadoutList,
+  typePath,
 } from './CharacterPreferences/loadout/base';
-import { Gender } from './preferences/gender';
+import type { Gender } from './preferences/gender';
 
 export enum Food {
   Alcohol = 'ALCOHOL',
@@ -29,6 +30,7 @@ export enum Food {
   Sugar = 'SUGAR',
   Toxic = 'TOXIC',
   Vegetables = 'VEGETABLES',
+  Egg = 'EGG',
   Bloody = 'BLOODY', // SKYRAT EDIT ADDITION - Hemophage Food
 }
 
@@ -49,6 +51,8 @@ export type Species = {
   desc: string[];
   lore: string[];
   icon: string;
+  sort_bottom: BooleanLike;
+  //BUBBER EDIT ADD: Sort_bottom, whether a species is sorted to the bottom of the list.
 
   use_skintones: BooleanLike;
   sexes: BooleanLike;
@@ -142,6 +146,16 @@ export type QuirkInfo = {
   points_enabled: boolean;
 };
 
+export type Personality = {
+  name: string;
+  description: string;
+  pos_gameplay_description: string | null;
+  neg_gameplay_description: string | null;
+  neut_gameplay_description: string | null;
+  path: typePath;
+  groups: string[] | null;
+};
+
 export enum RandomSetting {
   AntagOnly = 1,
   Disabled = 2,
@@ -173,39 +187,44 @@ export enum PrefsWindow {
   Keybindings = 2,
 }
 
+export type CharacterPreferencesData = {
+  preview_options: string[]; // SKYRAT EDIT ADDITION
+  preview_selection: string; // SKYRAT EDIT ADDITION
+
+  clothing: Record<string, string>;
+  features: Record<string, string>;
+  game_preferences: Record<string, unknown>;
+  non_contextual: {
+    random_body: RandomSetting;
+    [otherKey: string]: unknown;
+  };
+  secondary_features: Record<string, unknown>;
+  character_basics: Record<string, unknown>; // BUBBER EDIT ADDITION: more character setup tabs
+  ooc_preferences: Record<string, unknown>; // BUBBER EDIT ADDITION: more character setup tabs
+  silicon_preferences: Record<string, unknown>; // BUBBER EDIT ADDITION: more character setup tabs
+  supplemental_features: Record<string, unknown>;
+  manually_rendered_features: Record<string, string>;
+
+  names: Record<string, string>;
+
+  misc: {
+    gender: Gender;
+    joblessrole: JoblessRole;
+    species: string;
+    loadout_lists: LoadoutList; // BUBBER EDIT: Multiple loadout presets: ORIGINAL: loadout_list: LoadoutList;
+    job_clothes: BooleanLike;
+    loadout_index: string; // BUBBER EDIT ADDITION: Multiple loadout presets
+    background_state: string; // BUBBER EDIT ADDITION: Swappable character editor backgrounds
+  };
+
+  randomization: Record<string, RandomSetting>;
+};
+
 export type PreferencesMenuData = {
   character_preview_view: string;
   character_profiles: (string | null)[];
 
-  preview_options: string[]; // SKYRAT EDIT ADDITION
-  preview_selection: string; // SKYRAT EDIT ADDITION
-
-  character_preferences: {
-    clothing: Record<string, string>;
-    features: Record<string, string>;
-    game_preferences: Record<string, unknown>;
-    non_contextual: {
-      random_body: RandomSetting;
-      [otherKey: string]: unknown;
-    };
-    secondary_features: Record<string, unknown>;
-    supplemental_features: Record<string, unknown>;
-    manually_rendered_features: Record<string, string>;
-
-    names: Record<string, string>;
-
-    misc: {
-      gender: Gender;
-      joblessrole: JoblessRole;
-      species: string;
-      loadout_lists: LoadoutList; // BUBBER EDIT: Multiple loadout presets: ORIGINAL: loadout_list: LoadoutList;
-      job_clothes: BooleanLike;
-      loadout_index: string; // BUBBER EDIT ADDITION: Multiple loadout presets
-      background_state: string; // BUBBER EDIT ADDITION: Swappable character editor backgrounds
-    };
-
-    randomization: Record<string, RandomSetting>;
-  };
+  character_preferences: CharacterPreferencesData;
 
   content_unlocked: BooleanLike;
 
@@ -239,7 +258,11 @@ export type PreferencesMenuData = {
 
   keybindings: Record<string, string[]>;
   overflow_role: string;
+  default_quirk_balance: number;
   selected_quirks: string[];
+  selected_personalities: typePath[] | null;
+  max_personalities: number;
+  mood_enabled: BooleanLike;
   species_disallowed_quirks: string[];
 
   antag_bans?: string[];
@@ -261,6 +284,10 @@ export type ServerData = {
     types: Record<string, Name>;
   };
   quirks: QuirkInfo;
+  personality: {
+    personalities: Personality[];
+    personality_incompatibilities: Record<string, string[]>;
+  };
   random: {
     randomizable: string[];
   };

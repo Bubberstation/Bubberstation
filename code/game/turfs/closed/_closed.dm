@@ -1,6 +1,7 @@
 /turf/closed
 	layer = CLOSED_TURF_LAYER
 	plane = WALL_PLANE
+	abstract_type = /turf/closed
 	turf_flags = IS_SOLID
 	opacity = TRUE
 	density = TRUE
@@ -8,6 +9,7 @@
 	init_air = FALSE
 	rad_insulation = RAD_MEDIUM_INSULATION
 	pass_flags_self = PASSCLOSEDTURF
+	tacmap_color = TACMAP_BLACK
 
 /turf/closed/AfterChange()
 	. = ..()

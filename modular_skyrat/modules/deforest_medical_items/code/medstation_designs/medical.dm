@@ -14,7 +14,7 @@
 	id = "organic_gauze"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 50)
-	build_path = /obj/item/stack/medical/gauze/sterilized
+	build_path = /obj/item/stack/medical/wrap/gauze/sterilized
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_DEFOREST_MEDICAL,
@@ -113,7 +113,7 @@
 	id = "organic_surgical_tape"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
-	build_path = /obj/item/stack/sticky_tape/surgical
+	build_path = /obj/item/stack/medical/wrap/sticky_tape/surgical
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_DEFOREST_MEDICAL,

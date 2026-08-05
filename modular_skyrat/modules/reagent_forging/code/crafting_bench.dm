@@ -12,6 +12,7 @@
 
 	anchored = TRUE
 	density = TRUE
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 
 	/// What the currently picked recipe is
 	var/datum/crafting_bench_recipe/selected_recipe
@@ -182,7 +183,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reagent_crafting_bench/hammer_act(mob/living/user, obj/item/tool)
-	playsound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', 50, TRUE)
+	conditional_pref_sound(src, 'modular_skyrat/modules/reagent_forging/sound/forge.ogg', vol = 35, vary = TRUE, extrarange = MEDIUM_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE, pref_to_check = /datum/preference/numeric/volume/sound_ambience_volume)
 	if(length(contents))
 		if(!istype(contents[1], /obj/item/forging/complete))
 			balloon_alert(user, "invalid item")
@@ -304,7 +305,7 @@
 
 	var/materials_to_transfer = list()
 	var/list/temporary_materials_list = use_or_delete_recipe_requirements(things_to_use, recipe_to_follow)
-	for(var/material as anything in temporary_materials_list)
+	for(var/material in temporary_materials_list)
 		materials_to_transfer[material] += temporary_materials_list[material]
 
 	var/obj/newly_created_thing
@@ -344,7 +345,7 @@
 	for(var/obj/requirement_item as anything in things_to_use)
 		if(isstack(requirement_item))
 			var/stack_type
-			for(var/recipe_thing_to_reference as anything in recipe_to_follow.recipe_requirements)
+			for(var/recipe_thing_to_reference in recipe_to_follow.recipe_requirements)
 				if(!istype(requirement_item, recipe_thing_to_reference))
 					continue
 				stack_type = recipe_thing_to_reference
@@ -364,7 +365,7 @@
 				qdel(requirement_item)
 				continue
 
-			for(var/custom_material as anything in requirement_item.custom_materials)
+			for(var/custom_material in requirement_item.custom_materials)
 				materials_to_transfer += custom_material
 			qdel(requirement_item)
 

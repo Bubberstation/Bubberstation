@@ -10,13 +10,16 @@
 	icon_state = "biochure"
 	pages_to_mastery = 2 //so you can see a few remarks each time
 	remarks = list(
+		"Take a scenic tour through the Biodome skybridge, looking down upon the tamed wilderness!",
+		"Relax by the fountain in the expanded Biodome service department!",
 		"Now with live, open-air entertainment (entertainment is still largely clown-based)...",
 		"See the dome in style with our new 'BioTube' transit system...",
-		"Get all the tools you could ever need from 'The Grotto'... but watch your step! (Nanotrasen is not liable for injuries related to use of The Grotto(tm).)",
 		"Take a calming river ride across the scenic Biodome Lake! (Minimum speed 70 kph).",
 		"Research in style in our state-of-the-art 'VapoRnDwave' facilities!",
-		"See such exciting zoo exhibits as axolotls, endangered lagomorphs, or even the rare Amoungs!",
+		"Now with safety measures to prevent turbine exhaust from destroying atmosian windows!",
+		"See such exciting zoo exhibits as axolotls, endangered lagomorphs, or even the rare Gondolas! (Gondola flesh not included)",
 		"Note: due to construction expenses, transfers to 'Biodome'-class stations currently comes with a 20% pay cut...",
+		"All the comforts of living on a planet without actually being on a planet!",
 		"Too warm? Take a trip to the wintery medical bay, kept at a bracing 62 degrees Fahrenheit (17 C) at all times...",
 		"All employee breakrooms equipped with cozy fireplaces (fuel supplies minimal to prevent smoke inhalation)...",
 		"There is nothing behind the walls.",

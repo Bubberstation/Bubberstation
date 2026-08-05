@@ -5,4 +5,10 @@
 
 #define PROTEAN_TRAIT "protean"
 
+#define PROTEAN_SERVO_TRAIT "protean_servo"
+
 #define TRAIT_SOURCE_TAURLAY "taur-laydown"
+#define TRAIT_SOURCE_TAURCROP "taur-crop"
+
+/// Transformation component
+#define TRAIT_TRANSFORMATION "transformation"

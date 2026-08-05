@@ -9,12 +9,12 @@
 	telegraph_overlay = "sandstorm_light"
 
 	weather_message = "<span class='userdanger'><i>Smoldering particles of sand billow down around you! Get inside!</i></span>"
-	weather_duration_lower = 2 MINUTES
-	weather_duration_upper = 4 MINUTES
+	weather_duration_lower = 1 MINUTES
+	weather_duration_upper = 3 MINUTES
 	weather_overlay = "sandstorm"
 
 	end_message = "<span class='boldannounce'>The shrieking wind whips away the last of the sand and falls to its usual murmur. It should be safe to go outside now.</span>"
-	end_duration = 60 SECONDS
+	end_duration = 30 SECONDS
 	end_overlay = "sandstorm_light"
 
 	area_type = /area
@@ -22,7 +22,7 @@
 
 	immunity_type = TRAIT_ASHSTORM_IMMUNE
 
-	probability = 40
+	probability = 20
 
 	weather_flags = (WEATHER_MOBS | WEATHER_BAROMETER)
 	var/list/weak_sounds = list()
@@ -101,9 +101,10 @@
 		glow_overlay.color = weather_color
 		gen_overlay_cache += glow_overlay
 
-		var/mutable_appearance/weather_overlay = mutable_appearance('modular_zubbers/icons/effects/weather_effects.dmi', weather_state, overlay_layer, plane = overlay_plane, offset_const = offset)
-		weather_overlay.color = weather_color
-		gen_overlay_cache += weather_overlay
+		for(var/overlay_plane in overlay_planes)
+			var/mutable_appearance/weather_overlay = mutable_appearance('modular_zubbers/icons/effects/weather_effects.dmi', weather_state, overlay_layer, plane = overlay_plane, alpha = weather_alpha, offset_const = offset)
+			weather_overlay.color = weather_color
+			gen_overlay_cache += weather_overlay
 
 	return gen_overlay_cache
 
@@ -187,8 +188,8 @@
 			victim_as_human.apply_damage(WEATHER_BASE_DAMAGE*(1/6)*0.5, BURN, BODY_ZONE_R_LEG)
 
 	else
-		victim.adjustBruteLoss(WEATHER_BASE_DAMAGE*0.5)
-		victim.adjustFireLoss(WEATHER_BASE_DAMAGE*0.5)
+		victim.adjust_brute_loss(WEATHER_BASE_DAMAGE*0.5)
+		victim.adjust_fire_loss(WEATHER_BASE_DAMAGE*0.5)
 
 #undef WEATHER_BASE_DAMAGE
 

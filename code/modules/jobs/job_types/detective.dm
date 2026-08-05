@@ -3,7 +3,6 @@
 	description = "Investigate crimes, gather evidence, perform interrogations, \
 		look badass, smoke cigarettes."
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
-	department_head = list(JOB_HEAD_OF_SECURITY)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -23,25 +22,26 @@
 	paycheck = PAYCHECK_CREW
 	paycheck_department = ACCOUNT_SEC
 
+	desensitized_base = DESENSITIZED_THRESHOLD
 	liver_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
 
 	mail_goodies = list(
 		/obj/item/storage/fancy/cigarettes = 25,
-		/obj/item/ammo_box/c38 = 20,
-		/obj/item/ammo_box/c38/dumdum = 5,
-		/obj/item/ammo_box/c38/hotshot = 5,
-		/obj/item/ammo_box/c38/iceblox = 5,
-		/obj/item/ammo_box/c38/match = 5,
-		/obj/item/ammo_box/c38/trac = 5,
+		/obj/item/ammo_box/speedloader/c38 = 20,
+		/obj/item/ammo_box/speedloader/c38/dumdum = 5,
+		/obj/item/ammo_box/speedloader/c38/hotshot = 5,
+		/obj/item/ammo_box/speedloader/c38/iceblox = 5,
+		/obj/item/ammo_box/speedloader/c38/match = 5,
+		/obj/item/ammo_box/speedloader/c38/trac = 5,
 		/obj/item/card/id/advanced/plainclothes = 5,
 		/obj/item/storage/belt/holster/detective/full = 1,
 	)
 
 	family_heirlooms = list(/obj/item/reagent_containers/cup/glass/bottle/whiskey)
 	rpg_title = "Thiefcatcher" //I guess they caught them all rip thief...
-	job_flags = STATION_JOB_FLAGS
+	job_flags = STATION_JOB_FLAGS | JOB_ANTAG_PROTECTED
 
 	job_tone = "objection"
 
@@ -59,16 +59,15 @@
 		/obj/item/detective_scanner = 1,
 		/obj/item/melee/baton = 1,
 		/obj/item/storage/box/evidence = 1,
-		/obj/item/flashlight/seclite = 1, // BUBBER EDIT ADDITION
 		)
-	belt = /obj/item/storage/belt/holster/detective/full // SKYRAT EDIT CHANGE - ORIGINAL: /obj/item/modular_computer/pda/detective
+	belt = /obj/item/modular_computer/pda/detective
 	ears = /obj/item/radio/headset/headset_sec/alt
 	gloves = /obj/item/clothing/gloves/color/black
 	head = /obj/item/clothing/head/fedora/det_hat
 	mask = /obj/item/cigarette
 	neck = /obj/item/clothing/neck/tie/detective
 	shoes = /obj/item/clothing/shoes/sneakers/brown
-	l_pocket = /obj/item/modular_computer/pda/detective // SKYRAT EDIT CHANGE - ORIGINAL: /obj/item/toy/crayon/white
+	l_pocket = /obj/item/toy/crayon/white
 	r_pocket = /obj/item/lighter
 
 	chameleon_extras = list(

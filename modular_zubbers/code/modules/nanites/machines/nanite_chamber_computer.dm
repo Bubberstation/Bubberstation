@@ -1,6 +1,7 @@
 /obj/machinery/computer/nanite_chamber_control
 	name = "nanite chamber control console"
 	desc = "Controls a connected nanite chamber. Can inoculate nanites, load programs, and analyze existing nanite swarms."
+	icon = 'modular_zubbers/icons/obj/machines/computer.dmi'
 	icon_screen = "nanite_chamber_control"
 	circuit = /obj/item/circuitboard/computer/nanite_chamber_control
 	var/obj/machinery/nanite_chamber/chamber
@@ -108,7 +109,7 @@
 		UnregisterSignal(chamber, COMSIG_PREQDELETED)
 	chamber = new_chamber
 	if(chamber)
-		RegisterSignal(chamber, COMSIG_PREQDELETED, .proc/react_to_chamber_del)
+		RegisterSignal(chamber, COMSIG_PREQDELETED, PROC_REF(react_to_chamber_del))
 
 /obj/machinery/computer/nanite_chamber_control/proc/react_to_chamber_del(datum/source)
 	SIGNAL_HANDLER

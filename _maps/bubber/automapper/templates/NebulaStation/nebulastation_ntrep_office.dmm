@@ -36,6 +36,7 @@
 /area/station/command/heads_quarters/nt_rep)
 "h" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "i" = (
@@ -85,6 +86,13 @@
 	},
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/nt_rep)
+"p" = (
+/obj/structure/chair/comfy/beige{
+	dir = 8
+	},
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/nt_rep)
 "q" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/wood{
@@ -127,7 +135,7 @@
 	pixel_x = -4;
 	pixel_y = 6
 	},
-/obj/item/stamp{
+/obj/item/stamp/granted{
 	pixel_x = 8;
 	pixel_y = 8
 	},
@@ -293,7 +301,7 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/access/all/cent_com/rep_door,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -380,7 +388,7 @@ D
 L
 A
 J
-J
+p
 D
 D
 "}

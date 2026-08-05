@@ -1,27 +1,3 @@
-/datum/design/wt550_ammo_rubber
-	name = "WT-550/WT-551 Magazine (4.6x30mm Rubber-Tipped) (Less-Lethal)"
-	desc = "A magazine for the WT-550/WT-551 Autorifle. Contains less-lethal rubber-tipped ammo."
-	id = "wt550_ammo_rubber"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6)
-	build_path = /obj/item/ammo_box/magazine/wt550m9/rubber
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
-/datum/design/wt550_ammo_flat
-	name = "WT-550/WT-551 Magazine (4.6x30mm FlatHead) (Lethal)"
-	desc = "A magazine for the WT-550/WT-551 Autorifle. Contains lethal surplus-tier flathead ammo."
-	id = "wt550_ammo_flathead"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 8)
-	build_path = /obj/item/ammo_box/magazine/wt550m9/flathead
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
 /datum/design/wt550_ammo
 	name = "WT-550/WT-551 Magazine (4.6x30mm Regular) (Lethal)"
 	desc = "A magazine for the WT-550/WT-551 Autorifle. Contains lethal regular ammo."

@@ -107,6 +107,10 @@
 
 	if(href_list["toggle_ready"])
 		play_lobby_button_sound()
+		// Prevent readying up after the round has begun setting up or is already playing
+		if(SSticker.current_state >= GAME_STATE_SETTING_UP)
+			to_chat(src, span_notice("The round is starting. You cannot ready up at this time."))
+			return FALSE
 		if(CONFIG_GET(flag/min_flavor_text))
 			var/datum/preferences/preferences = client.prefs
 			var/uses_silicon_flavortext = (is_silicon_job(preferences?.get_highest_priority_job()) && length_char(client?.prefs?.read_preference(/datum/preference/text/silicon_flavor_text)) < CONFIG_GET(number/silicon_flavor_text_character_requirement))
@@ -120,7 +124,7 @@
 
 		if(!unvetted_notified && !trigger_unvetted_warning())
 			return FALSE
-		ready = !ready
+		ready = is_ready_to_play() ? PLAYER_NOT_READY : PLAYER_READY_TO_PLAY
 		client << output(ready, "title_browser:toggle_ready")
 		return
 

@@ -17,51 +17,79 @@ endmap
 
 # Production-level maps.
 
-map birdshot
-	#default
-	maxplayers 66
-	votable
-endmap
-
 map deltastation
 	votable
+	webmap_url https://webmap.affectedarc07.co.uk/maps/tgstation/deltastation/
 endmap
 
 map icebox
 	votable
+	webmap_url https://webmap.affectedarc07.co.uk/maps/tgstation/icebox/
 endmap
 
 map catwalkstation
-	minplayers 25
-	votable
+#	votable
 endmap
 
 map metastation
-	minplayers 25
-	#voteweight 0.5
 	votable
-	#feedbacklink https://www.youtube.com/watch?v=XG8b7WhANNA
-	#webmap_url https://webmap.affectedarc07.co.uk/maps/tgstation/metastation
+	webmap_url https://webmap.affectedarc07.co.uk/maps/tgstation/metastation/
 endmap
 
 map tramstation
-	minplayers 35
 	votable
+	webmap_url https://webmap.affectedarc07.co.uk/maps/tgstation/tramstation/
 endmap
 
 map nebulastation
-	minplayers 35
-	votable
-endmap
-
-map nebulastation
-	minplayers 35
 	votable
 endmap
 
 map wawastation
 	votable
-	minplayers 40
+	webmap_url https://webmap.affectedarc07.co.uk/maps/tgstation/wawastation/
+endmap
+
+# Bubberstation maps.
+
+map biodome
+	votable
+	webmap_url https://webmap.affectedarc07.co.uk/maps/bubber/biodome/
+endmap
+
+map blueshift
+	votable
+	webmap_url https://webmap.affectedarc07.co.uk/maps/bubber/blueshift/
+endmap
+
+map boxstation
+	votable
+	webmap_url https://webmap.affectedarc07.co.uk/maps/bubber/boxstation/
+endmap
+
+map kilostation
+	votable
+	webmap_url https://webmap.affectedarc07.co.uk/maps/bubber/kilostation/
+endmap
+
+map PubbyStation
+	votable
+	webmap_url https://webmap.affectedarc07.co.uk/maps/fulp/pubbystation/
+endmap
+
+map moonstation
+	votable
+	webmap_url https://webmap.affectedarc07.co.uk/maps/bubber/moonstation/
+endmap
+
+map voidraptor
+	votable
+	webmap_url https://webmap.affectedarc07.co.uk/maps/bubber/voidraptor/
+endmap
+
+map northstar
+	votable
+	webmap_url https://webmap.affectedarc07.co.uk/maps/tgstation/northstar/
 endmap
 
 # Debug-only maps.
@@ -75,31 +103,8 @@ endmap
 map runtimestation
 endmap
 
-##SKYRAT MAPS##
-
-map voidraptor
-	votable
+map runtimestation_minimal
 endmap
 
-map biodome
-	votable
-endmap
-
-##BUBBERSTATION MAPS##
-
-map boxstation
-	votable
-endmap
-
-map moonstation
-	votable
-endmap
-
-map kilostation
-	votable
-endmap
-
-map kilostation
-	maxplayers 75
-	votable
+map eventmap
 endmap

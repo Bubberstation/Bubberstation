@@ -13,6 +13,13 @@
 	..()
 	syndicate_name = syndicate_name()
 
+	var/datum/objective/maingoal = new core_objective()
+	maingoal.team = src
+	objectives += maingoal
+
+	// when a nuke team is created, the infiltrator has not loaded in yet - it takes some time. so no nuke, we have to wait
+	addtimer(CALLBACK(src, PROC_REF(assign_nuke_delayed)), 5 SECONDS)
+
 /datum/team/nuclear/roundend_report()
 	var/list/parts = list()
 	parts += span_header("[syndicate_name] Operatives:")
@@ -102,7 +109,7 @@
 
 	var/war_declared = FALSE
 	for(var/obj/item/circuitboard/computer/syndicate_shuttle/board as anything in GLOB.syndicate_shuttle_boards)
-		if(board.challenge)
+		if(board.challenge_start_time)
 			war_declared = TRUE
 
 	var/force_war_button = ""
@@ -129,14 +136,9 @@
 /datum/team/nuclear/proc/rename_team(new_name)
 	syndicate_name = new_name
 	name = "[syndicate_name] Team"
-	for(var/I in members)
-		var/datum/mind/synd_mind = I
-		var/mob/living/carbon/human/human_to_rename = synd_mind.current
-		if(!istype(human_to_rename))
-			continue
-		var/first_name = human_to_rename.client?.prefs?.read_preference(/datum/preference/name/operative_alias) || pick(GLOB.operative_aliases)
-		var/chosen_name = "[first_name] [syndicate_name]"
-		human_to_rename.fully_replace_character_name(human_to_rename.real_name, chosen_name)
+	for(var/datum/mind/synd_mind in members)
+		var/datum/antagonist/nukeop/synd_datum = synd_mind.has_antag_datum(/datum/antagonist/nukeop)
+		synd_datum?.give_alias()
 
 /datum/team/nuclear/proc/admin_spawn_reinforcement(mob/admin)
 	if(!check_rights_for(admin.client, R_ADMIN))
@@ -190,7 +192,7 @@
 			infil_or_nukebase = SPAWN_AT_BASE
 
 	if(infil_or_nukebase == SPAWN_AT_BASE)
-		spawn_loc = pick(GLOB.nukeop_start)
+		spawn_loc = pick(GLOB.nukeop_base_start)
 
 	var/mob/living/carbon/human/nukie = new(spawn_loc)
 	chosen_one.client.prefs.safe_transfer_prefs_to(nukie, is_antag = TRUE)
@@ -198,6 +200,7 @@
 
 	var/datum/antagonist/nukeop/antag_datum = new()
 	antag_datum.send_to_spawnpoint = FALSE
+	antag_datum.give_bonus_tc = FALSE
 	antag_datum.nukeop_outfit = /datum/outfit/syndicate/reinforcement
 
 	nukie.mind.add_antag_datum(antag_datum, src)
@@ -212,12 +215,6 @@
 	playsound(spawn_loc, 'sound/effects/phasein.ogg', 50, TRUE)
 
 	tgui_alert(admin, "Reinforcement spawned at [infil_or_nukebase] with [tc_to_spawn].", "Reinforcements have arrived", list("God speed"))
-
-/datum/team/nuclear/proc/update_objectives()
-	if(core_objective)
-		var/datum/objective/O = new core_objective
-		O.team = src
-		objectives += O
 
 /datum/team/nuclear/proc/is_disk_rescued()
 	for(var/obj/item/disk/nuclear/nuke_disk in SSpoints_of_interest.real_nuclear_disks)
@@ -317,5 +314,48 @@
 	..()
 	SEND_SIGNAL(src, COMSIG_NUKE_TEAM_ADDITION, new_member.current)
 
+/datum/team/nuclear/proc/assign_nuke_delayed(attempts = 0)
+	if(!assign_nuke())
+		if(attempts > 5)
+			stack_trace("Failed to assign nuke to team after multiple attempts. \
+				This likely means the nuke was not found. Please investigate.")
+		else
+			addtimer(CALLBACK(src, PROC_REF(assign_nuke_delayed), attempts + 1), 5 SECONDS)
+		return
+
+	for(var/datum/mind/synd_mind as anything in members)
+		var/datum/antagonist/nukeop/synd_datum = synd_mind.has_antag_datum(/datum/antagonist/nukeop)
+		synd_datum?.memorize_code()
+
+/datum/team/nuclear/proc/assign_nuke()
+	var/obj/machinery/nuclearbomb/syndicate/nuke = locate() in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb/syndicate)
+	if(!nuke)
+		return FALSE
+
+	memorized_code = random_nukecode()
+	tracked_nuke = nuke
+	if(nuke.r_code == NUKE_CODE_UNSET)
+		nuke.r_code = memorized_code
+	else //Already set by admins/something else?
+		memorized_code = nuke.r_code
+	for(var/obj/machinery/nuclearbomb/beer/beernuke as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb/beer))
+		beernuke.r_code = memorized_code
+	return TRUE
+
 #undef SPAWN_AT_BASE
 #undef SPAWN_AT_INFILTRATOR
+
+/datum/team/nuclear/loneop
+
+/datum/team/nuclear/loneop/assign_nuke()
+	var/obj/machinery/nuclearbomb/selfdestruct/nuke = locate() in SSmachines.get_machines_by_type(/obj/machinery/nuclearbomb/selfdestruct)
+	if(!nuke)
+		return FALSE
+
+	memorized_code = random_nukecode()
+	tracked_nuke = nuke
+	if(nuke.r_code == NUKE_CODE_UNSET)
+		nuke.r_code = memorized_code
+	else //Already set by admins/something else?
+		memorized_code = nuke.r_code
+	return TRUE

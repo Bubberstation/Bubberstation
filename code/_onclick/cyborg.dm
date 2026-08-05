@@ -14,7 +14,7 @@
 	if(check_click_intercept(params,A))
 		return
 
-	if(stat || (lockcharge) || IsParalyzed() || IsStun() || istype(loc, /obj/item/clothing/head/mob_holder)) //BUBBER EDIT - makes it so cyborgs that are holdable can not interact wile being held
+	if(stat || (lockcharge) || IsParalyzed() || IsStun() || istype(loc, /obj/item/mob_holder)) //BUBBER EDIT - makes it so cyborgs that are holdable can not interact wile being held
 		return
 
 	var/list/modifiers = params2list(params)
@@ -73,7 +73,7 @@
 			return
 
 		if(W == A)
-			W.attack_self(src)
+			W.attack_self(src, modifiers)
 			return
 
 		// cyborgs are prohibited from using storage items so we can I think safely remove (A.loc in contents)
@@ -85,7 +85,7 @@
 			return
 
 		// cyborg rightclick code, allowing borgos to use weapons at range
-		if(CanReach(A,W))
+		if(A.IsReachableBy(src, W?.reach))
 			W.melee_attack_chain(src, A, modifiers)
 			return
 		else if(isturf(A) || isturf(A.loc))

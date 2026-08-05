@@ -23,7 +23,7 @@
 	mutantlungs = null
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	examine_limb_id = SPECIES_HUMAN
-	skinned_type = /obj/item/stack/sheet/animalhide/human
+	skinned_type = /obj/item/stack/sheet/animalhide/carbon/human
 
 /datum/species/hemophage/allows_food_preferences()
 	return FALSE
@@ -103,12 +103,12 @@
 
 
 /datum/species/hemophage/prepare_human_for_preview(mob/living/carbon/human/human)
-	human.skin_tone = "albino"
+	human.dna.features["mcolor"] = "#fff4e6"
+	human.set_eye_color(COLOR_RED)
 	human.hair_color = "#1d1d1d"
-	human.hairstyle = "Pompadour (Big)"
+	human.hairstyle = "Royal Curls"
 	regenerate_organs(human, src, visual_only = TRUE)
 	human.update_body(TRUE)
-
 
 /datum/species/hemophage/create_pref_unique_perks()
 	var/list/to_add = list()
@@ -176,3 +176,6 @@
 
 
 #undef HEMOPHAGE_SPAWN_TEXT
+
+/mob/living/carbon/human/species/hemophage //Why was this never added?
+	race = /datum/species/hemophage

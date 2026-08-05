@@ -10,7 +10,7 @@
 
 		var/datum/universal_icon/head_accessory_icon = uni_icon(sprite_accessory.icon, sprite_accessory.icon_state)
 		if(y_offset)
-			head_accessory_icon.shift(NORTH, y_offset, ICON_SIZE_X, ICON_SIZE_Y)
+			head_accessory_icon.shift(NORTH, y_offset)
 		head_accessory_icon.blend_color(COLOR_DARK_BROWN, ICON_MULTIPLY)
 		final_icon.blend_icon(head_accessory_icon, ICON_OVERLAY)
 
@@ -23,7 +23,7 @@
 	priority = PREFERENCE_PRIORITY_BODYPARTS
 	savefile_key = "eye_color"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS // BUBBER EDIT CHANGE - Original: PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	relevant_head_flag = HEAD_EYECOLOR
 
 /datum/preference/color/eye_color/apply_to_human(mob/living/carbon/human/target, value)

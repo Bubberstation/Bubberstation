@@ -9,7 +9,6 @@ import {
   KEY_Z,
 } from 'tgui-core/keycodes';
 
-import { useBackend } from '../../backend';
 import { InputButtons } from '../common/InputButtons';
 
 type ListInputModalProps = {
@@ -21,8 +20,6 @@ type ListInputModalProps = {
 };
 
 export const ListInputModal = (props: ListInputModalProps) => {
-  const { act } = useBackend();
-
   const { items = [], default_item, message, on_selected, on_cancel } = props;
 
   const [selected, setSelected] = useState(items.indexOf(default_item));
@@ -36,18 +33,24 @@ export const ListInputModal = (props: ListInputModalProps) => {
     if (key === KEY_DOWN) {
       if (selected === null || selected === len) {
         setSelected(0);
-        document!.getElementById('0')?.scrollIntoView();
+        document!.getElementById('0')?.scrollIntoView({ behavior: 'smooth' });
       } else {
         setSelected(selected + 1);
-        document!.getElementById((selected + 1).toString())?.scrollIntoView();
+        document!
+          .getElementById((selected + 1).toString())
+          ?.scrollIntoView({ behavior: 'smooth' });
       }
     } else if (key === KEY_UP) {
       if (selected === null || selected === 0) {
         setSelected(len);
-        document!.getElementById(len.toString())?.scrollIntoView();
+        document!
+          .getElementById(len.toString())
+          ?.scrollIntoView({ behavior: 'smooth' });
       } else {
         setSelected(selected - 1);
-        document!.getElementById((selected - 1).toString())?.scrollIntoView();
+        document!
+          .getElementById((selected - 1).toString())
+          ?.scrollIntoView({ behavior: 'smooth' });
       }
     }
   };
@@ -74,7 +77,9 @@ export const ListInputModal = (props: ListInputModalProps) => {
     if (foundItem) {
       const foundIndex = items.indexOf(foundItem);
       setSelected(foundIndex);
-      document!.getElementById(foundIndex.toString())?.scrollIntoView();
+      document!
+        .getElementById(foundIndex.toString())
+        ?.scrollIntoView({ behavior: 'smooth' });
     }
   };
   // User types into search bar
@@ -84,7 +89,7 @@ export const ListInputModal = (props: ListInputModalProps) => {
     }
     setSearchQuery(query);
     setSelected(0);
-    document!.getElementById('0')?.scrollIntoView();
+    document!.getElementById('0')?.scrollIntoView({ behavior: 'smooth' });
   };
   // User presses the search button
   const onSearchBarToggle = () => {
@@ -143,6 +148,7 @@ export const ListInputModal = (props: ListInputModalProps) => {
           <ListDisplay
             filteredItems={filteredItems}
             onClick={onClick}
+            onDoubleClick={on_selected}
             onFocusSearch={onFocusSearch}
             searchBarVisible={searchBarVisible}
             selected={selected}
@@ -153,9 +159,7 @@ export const ListInputModal = (props: ListInputModalProps) => {
             autoFocus
             autoSelect
             fluid
-            onEnter={() => {
-              act('submit', { entry: filteredItems[selected] });
-            }}
+            onEnter={() => on_selected(filteredItems[selected])}
             onChange={onSearch}
             placeholder="Search..."
             value={searchQuery}
@@ -173,14 +177,28 @@ export const ListInputModal = (props: ListInputModalProps) => {
   );
 };
 
+interface ListDisplayProps {
+  filteredItems: string[];
+  onClick: (itemIndex: number) => void;
+  onDoubleClick: (entry: string) => void;
+  onFocusSearch: () => void;
+  searchBarVisible: boolean;
+  selected: number;
+}
+
 /**
  * Displays the list of selectable items.
  * If a search query is provided, filters the items.
  */
-const ListDisplay = (props) => {
-  const { act } = useBackend();
-  const { filteredItems, onClick, onFocusSearch, searchBarVisible, selected } =
-    props;
+const ListDisplay = (props: ListDisplayProps) => {
+  const {
+    filteredItems,
+    onClick,
+    onDoubleClick,
+    onFocusSearch,
+    searchBarVisible,
+    selected,
+  } = props;
 
   return (
     <Section fill scrollable>
@@ -190,13 +208,10 @@ const ListDisplay = (props) => {
           className="candystripe"
           color="transparent"
           fluid
-          id={index}
+          id={`${index}`}
           key={index}
           onClick={() => onClick(index)}
-          onDoubleClick={(event) => {
-            event.preventDefault();
-            act('submit', { entry: filteredItems[selected] });
-          }}
+          onDoubleClick={() => onDoubleClick(item)}
           onKeyDown={(event) => {
             const keyCode = window.event ? event.which : event.keyCode;
             if (searchBarVisible && keyCode >= KEY_A && keyCode <= KEY_Z) {

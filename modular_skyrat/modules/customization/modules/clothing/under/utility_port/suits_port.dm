@@ -13,83 +13,16 @@
 	toggle_noun = "zipper"
 
 //Job Jackets
-/obj/item/clothing/suit/toggle/jacket/engi
-	name = "engineering jacket"
-	desc = "A comfortable jacket in engineering yellow."
-	icon_state = "engi_dep_jacket"
-	armor_type = /datum/armor/jacket_engi
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/t_scanner, /obj/item/construction/rcd, /obj/item/pipe_dispenser, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter)
-
-/obj/item/clothing/suit/toggle/jacket/tcomm
-	name = "telecomms jacket"
-	desc = "A comfortable jacket in engineering yellow with blue telecomms trim."
-	icon_state = "tcomm_dep_jacket"
-	armor_type = /datum/armor/jacket_engi
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/tank/internals,
-		/obj/item/t_scanner,
-		/obj/item/construction/rcd,
-		/obj/item/pipe_dispenser,
-		/obj/item/toy,
-		/obj/item/storage/fancy/cigarettes,
-		/obj/item/lighter,
-	)
 
 // do not have the new sprites for these
 /obj/item/clothing/suit/toggle/jacket/det_trench
 	icon = 'icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'icons/mob/clothing/suits/jacket.dmi'
 
-/datum/armor/jacket_engi
-	fire = 30
-	acid = 45
-
-/obj/item/clothing/suit/toggle/jacket/sci
-	name = "science jacket"
-	desc = "A comfortable jacket in science purple."
-	icon_state = "sci_dep_jacket"
-	armor_type = /datum/armor/jacket_sci
-
-/datum/armor/jacket_sci
-	bomb = 10
-
-/obj/item/clothing/suit/toggle/jacket/supply
-	name = "cargo jacket"
-	desc = "A comfortable jacket in supply brown."
-	icon_state = "supply_dep_jacket"
-
-/obj/item/clothing/suit/toggle/jacket/assistant
-	name = "non-departmental jacket"
-	desc = "A comfortable jacket in a neutral black"
-	icon_state = "off_dep_jacket"
-
 /obj/item/clothing/suit/toggle/jacket/supply/head
 	name = "quartermaster's jacket"
 	desc = "Even if people refuse to recognize you as a head, they can recognize you as a badass."
 	icon_state = "qmjacket"
-
-/obj/item/clothing/suit/toggle/jacket/sec
-	name = "security jacket"
-	desc = "A comfortable jacket in security blue. Probably against uniform regulations."
-	icon_state = "sec_dep_jacket"
-	armor_type = /datum/armor/sec_dep_jacket
-
-/obj/item/clothing/suit/toggle/jacket/sec/Initialize(mapload)
-	. = ..()
-	allowed = GLOB.security_vest_allowed
-
-/datum/armor/sec_dep_jacket
-	melee = 30
-	bullet = 20
-	laser = 30
-	energy = 40
-	bomb = 25
-	fire = 30
-	acid = 45
-
-/obj/item/clothing/suit/toggle/jacket/sec/old	//Oldsec (Red)
-	icon_state = "sec_dep_jacket_old"
 
 //Flannels
 /obj/item/clothing/suit/toggle/jacket/flannel

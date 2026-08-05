@@ -56,8 +56,11 @@
 		. += span_notice("It seems like you could use an <b>empty hand</b> to remove the magazine.")
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/attack_hand_secondary(mob/user, list/modifiers)
-	if(!user.can_perform_action(src))
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
+	if(!user.can_perform_action(src))
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	cover_open = !cover_open
 	to_chat(user, span_notice("You [cover_open ? "open" : "close"] [src]'s cover."))
 	playsound(src, 'sound/items/weapons/gun/l6/l6_door.ogg', 60, TRUE)
@@ -106,14 +109,6 @@
 
 /obj/item/ammo_casing/smart/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_CHAMBERED_BULLET_FIRE, PROC_REF(iff_transfer))
-
-/obj/item/ammo_casing/smart/proc/iff_transfer(datum/source, list/iff_factions)
-	SIGNAL_HANDLER
-
-	if(istype(loaded_projectile, /obj/projectile/bullet/smart))
-		var/obj/projectile/bullet/smart/smart_proj = loaded_projectile
-		smart_proj.ignored_factions = iff_factions.Copy()
 
 /obj/item/ammo_casing/smart
 	firing_effect_type = null

@@ -14,10 +14,10 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { removeAllSkiplines } from '../../../TextInputModal';
-import { PreferencesMenuData } from '../../types';
+import type { PreferencesMenuData } from '../../types';
 import { useServerPrefs } from '../../useServerPrefs';
 import type {
   LoadoutCategory,

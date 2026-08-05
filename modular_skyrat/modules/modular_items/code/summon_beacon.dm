@@ -139,6 +139,7 @@
 	allowed_areas = list(
 		/area/station/engineering/atmos,
 		/area/station/engineering/atmospherics_engine,
+		/area/ruin/space/has_grav/port_tarkon/atmos,
 	)
 
 	selectable_atoms = list(

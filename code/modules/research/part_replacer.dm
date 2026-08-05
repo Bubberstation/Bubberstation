@@ -24,9 +24,10 @@
 
 	return attacked_machinery.exchange_parts(user, src) ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_FAILURE
 
-///Plays the sound for RPED exhanging or installing parts.
-/obj/item/storage/part_replacer/proc/play_rped_sound()
+///Plays the sound & flick animation for RPED exhanging or installing parts.
+/obj/item/storage/part_replacer/proc/play_rped_effect()
 	playsound(src, 'sound/items/tools/rped.ogg', 40, TRUE)
+	flick("[icon_state]_active", src)
 
 /**
  * Gets parts sorted in order of their tier
@@ -72,11 +73,12 @@
 /obj/item/storage/part_replacer/bluespace/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	return interact_with_atom(interacting_with, user, modifiers)
 
-/obj/item/storage/part_replacer/bluespace/play_rped_sound()
+/obj/item/storage/part_replacer/bluespace/play_rped_effect()
 	if(prob(1))
 		playsound(src, 'sound/items/pshoom/pshoom_2.ogg', 40, TRUE)
-		return
-	playsound(src, 'sound/items/pshoom/pshoom.ogg', 40, TRUE)
+	else
+		playsound(src, 'sound/items/pshoom/pshoom.ogg', 40, TRUE)
+	flick("[icon_state]_active", src)
 
 /**
  * Signal handler for when a part has been inserted into the BRPED.
@@ -88,10 +90,10 @@
 
 	if(istype(inserted_component, /obj/item/stock_parts/power_store))
 		var/obj/item/stock_parts/power_store/inserted_cell = inserted_component
-		if(inserted_cell.rigged || inserted_cell.corrupted)
-			message_admins("[ADMIN_LOOKUPFLW(usr)] has inserted rigged/corrupted [inserted_cell] into [src].")
-			usr.log_message("has inserted rigged/corrupted [inserted_cell] into [src].", LOG_GAME)
-			usr.log_message("inserted rigged/corrupted [inserted_cell] into [src]", LOG_ATTACK)
+		if(inserted_cell.corrupted)
+			message_admins("[ADMIN_LOOKUPFLW(usr)] has inserted corrupted [inserted_cell] into [src].")
+			usr.log_message("has inserted corrupted [inserted_cell] into [src].", LOG_GAME)
+			usr.log_message("inserted corrupted [inserted_cell] into [src]", LOG_ATTACK)
 		return
 
 	var/datum/reagents/target_holder = inserted_component.reagents
@@ -121,6 +123,7 @@
 		new /obj/item/stock_parts/micro_laser(src)
 		new /obj/item/stock_parts/matter_bin(src)
 		new /obj/item/stock_parts/power_store/cell/high(src)
+		new /obj/item/stock_parts/power_store/battery/high(src)
 
 /obj/item/storage/part_replacer/bluespace/tier2/PopulateContents()
 	for(var/i in 1 to 10)
@@ -130,6 +133,7 @@
 		new /obj/item/stock_parts/micro_laser/high(src)
 		new /obj/item/stock_parts/matter_bin/adv(src)
 		new /obj/item/stock_parts/power_store/cell/super(src)
+		new /obj/item/stock_parts/power_store/battery/super(src)
 
 /obj/item/storage/part_replacer/bluespace/tier3/PopulateContents()
 	for(var/i in 1 to 10)
@@ -139,6 +143,7 @@
 		new /obj/item/stock_parts/micro_laser/ultra(src)
 		new /obj/item/stock_parts/matter_bin/super(src)
 		new /obj/item/stock_parts/power_store/cell/hyper(src)
+		new /obj/item/stock_parts/power_store/battery/hyper(src)
 
 /obj/item/storage/part_replacer/bluespace/tier4/PopulateContents()
 	for(var/i in 1 to 10)
@@ -148,6 +153,18 @@
 		new /obj/item/stock_parts/micro_laser/quadultra(src)
 		new /obj/item/stock_parts/matter_bin/bluespace(src)
 		new /obj/item/stock_parts/power_store/cell/bluespace(src)
+		new /obj/item/stock_parts/power_store/battery/bluespace(src)
+		new /obj/item/stack/cable_coil/thirty(src)
+
+/obj/item/storage/part_replacer/bluespace/AdminDebug/PopulateContents()
+	for(var/i in 1 to 40)
+		new /obj/item/stock_parts/capacitor/quadratic(src)
+		new /obj/item/stock_parts/scanning_module/triphasic(src)
+		new /obj/item/stock_parts/servo/femto(src)
+		new /obj/item/stock_parts/micro_laser/quadultra(src)
+		new /obj/item/stock_parts/matter_bin/bluespace(src)
+		new /obj/item/stock_parts/power_store/cell/bluespace(src)
+		new /obj/item/stack/cable_coil/thirty(src)
 
 //used in a cargo crate
 /obj/item/storage/part_replacer/cargo/PopulateContents()
@@ -167,3 +184,8 @@
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	storage_type = /datum/storage/rped/bluespace
+
+/obj/item/storage/part_replacer/cyborg/small
+	desc = "Special mechanical module made to store, sort, and apply standard machine parts. This one has as much space, as your regular RPED"
+	icon_state = "RPED"
+	storage_type = /datum/storage/rped

@@ -1,4 +1,4 @@
-import { Antagonist, Category } from '../base';
+import { type Antagonist, Category } from '../base';
 
 export const VAMPIRE_MECHANICAL_DESCRIPTION = `
 After your death, you awaken to see yourself as an undead monster.

@@ -33,6 +33,7 @@
 /obj/item/construction/plumbing/mining
 	name = "mining plumbing constructor"
 	desc = "A type of plumbing constructor designed to harvest from geysers and collect their fluids."
+	icon = 'modular_skyrat/modules/aesthetics/tools/tools.dmi'
 	icon_state = "plumberer_mining"
 	var/static/list/mining_design_types = list(
 		//category 1 Synthesizers i.e devices which creates , reacts & destroys chemicals
@@ -88,3 +89,22 @@
 /obj/item/construction/rcd/robotics_rcd/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	balloon_alert(user, "no deconstruction mode")
 	return NONE
+
+//Research cyborg RCD upgrade
+/obj/item/construction/rcd/borg/robotics_rcd
+	name = "Robotics RCD"
+	desc = "A modified RCD designed specifically for synthetic repairs."
+	icon = 'modular_skyrat/master_files/icons/obj/tools.dmi'
+	icon_state = "roborcd"
+	worn_icon_state = "RCD"
+	lefthand_file = 'modular_skyrat/modules/aesthetics/tools/tools_lefthand.dmi'
+	righthand_file = 'modular_skyrat/modules/aesthetics/tools/tools_righthand.dmi'
+	action_slots = NONE
+	banned_upgrades = RCD_ALL_UPGRADES
+
+/obj/item/construction/rcd/borg/robotics_rcd/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+	return ITEM_INTERACT_BLOCKING
+
+/obj/item/construction/rcd/borg/robotics_rcd/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	SHOULD_CALL_PARENT(FALSE)
+	return ITEM_INTERACT_BLOCKING

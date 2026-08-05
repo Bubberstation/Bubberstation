@@ -1,3 +1,5 @@
+//Title Capitalization for names please!!!
+
 /*
 *	BOOZE
 */
@@ -25,6 +27,10 @@
 /datum/loadout_item/pocket_items/cigarettesleary
 	name = "Mindbreaker Cigs"
 	item_path = /obj/item/storage/fancy/cigarettes/cigpack_mindbreaker
+
+/datum/loadout_item/pocket_items/paintingprinter
+	name = "instant painting printer"
+	item_path = /obj/item/modular_computer/mini_painting_printer
 
 /*
 *	FLAGS
@@ -55,7 +61,7 @@
 	item_path = /obj/item/sign/flag/pride/trans
 
 /datum/loadout_item/pocket_items/flag_galfed //sprites by Crumpaloo
-	name = "Folded Galactic Federation Flag"
+	name = "Galactic Federation Flag"
 	item_path = /obj/item/sign/flag/galfed
 
 /*
@@ -127,3 +133,9 @@
 /datum/loadout_item/pocket_items/lunchbox_amongus
 	name = "Suspicious Red Lunchbox"
 	item_path = /obj/item/storage/lunchbox/amongus
+
+/// Lustwish stuff
+
+/datum/loadout_item/pocket_items/lustwish_theme
+	name = "Lustwish MOD Plating"
+	item_path = /obj/item/mod/construction/plating/lustwish

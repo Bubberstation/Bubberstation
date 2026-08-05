@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(opposing_force)
 	name = "Opposing Force"
-	flags = SS_NO_FIRE
+	ss_flags = SS_NO_FIRE
 
 	/// A precompiled list of all equipment datums, processed on init
 	var/list/equipment_list = list()
@@ -66,7 +66,7 @@ SUBSYSTEM_DEF(opposing_force)
 	if(!(opposing_force in submitted_applications))
 		return "ERROR"
 	var/position = 1
-	for(var/opfor as anything in submitted_applications)
+	for(var/opfor in submitted_applications)
 		if(opposing_force == opfor)
 			break
 		position++

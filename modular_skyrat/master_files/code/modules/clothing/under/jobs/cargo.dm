@@ -1,5 +1,6 @@
 /obj/item/clothing/under/rank/cargo
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/cargo_digi.dmi' // Anything that was in the cargo.dmi, should be in the cargo_digi.dmi
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/cargo/tech/skyrat
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/cargo.dmi'
@@ -29,6 +30,12 @@
 	name = "cargo technician's long jumpsuit"
 	desc = "For crate-pushers who'd rather protect their legs than show them off."
 	icon_state = "cargo_long"
+	alt_covers_chest = FALSE
+
+/obj/item/clothing/under/rank/cargo/tech/skyrat/long/skirt
+	name = "cargo technician's long jumpskirt"
+	desc = "For crate-pushers who'd rather protect their legs than show them off, but with a skirt that doesn't protect the legs."
+	icon_state = "cargo_long_skirt"
 	alt_covers_chest = FALSE
 
 /obj/item/clothing/under/rank/cargo/tech/skyrat/gorka

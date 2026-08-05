@@ -45,7 +45,6 @@
 	if (!atom_parent.reagents && !replacement)
 		return COMPONENT_INCOMPATIBLE
 
-	atom_parent.flags_1 |= HAS_CONTEXTUAL_SCREENTIPS_1
 
 	src.replacement = replacement
 	src.fill_type = fill_type
@@ -59,7 +58,7 @@
 	ingredient_names = processed_holder.ingredient_names
 	custom_name = processed_holder.custom_name
 	atom_parent.name = "[custom_adjective()] [custom_name] [atom_parent.name]"
-	for(var/fillcol as anything in processed_holder.filling_colors)
+	for(var/fillcol in processed_holder.filling_colors)
 		apply_fill(fillcol)
 
 /datum/component/ingredients_holder/Destroy(force)
@@ -67,21 +66,23 @@
 	return ..()
 
 /datum/component/ingredients_holder/RegisterWithParent()
-	. = ..()
+	var/atom/atom_parent = parent
+	atom_parent.flags_1 |= HAS_CONTEXTUAL_SCREENTIPS_1
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(customizable_attack))
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent, COMSIG_ATOM_EXITED, PROC_REF(food_exited))
 	RegisterSignal(parent, COMSIG_ATOM_PROCESSED, PROC_REF(on_processed))
+	RegisterSignal(parent, COMSIG_PIZZA_SLICE_TAKEN, PROC_REF(on_slice_taken))
 	RegisterSignal(parent, COMSIG_ATOM_REQUESTING_CONTEXT_FROM_ITEM, PROC_REF(on_requesting_context_from_item))
 	ADD_TRAIT(parent, TRAIT_INGREDIENTS_HOLDER, INNATE_TRAIT)
 
 /datum/component/ingredients_holder/UnregisterFromParent()
-	. = ..()
 	UnregisterSignal(parent, list(
 		COMSIG_ATOM_ATTACKBY,
 		COMSIG_ATOM_EXAMINE,
 		COMSIG_ATOM_EXITED,
 		COMSIG_ATOM_PROCESSED,
+		COMSIG_PIZZA_SLICE_TAKEN,
 		COMSIG_ATOM_REQUESTING_CONTEXT_FROM_ITEM,
 	))
 	REMOVE_TRAIT(parent, TRAIT_INGREDIENTS_HOLDER, INNATE_TRAIT)
@@ -205,9 +206,9 @@
 		ingredient.forceMove(replacement_parent)
 		replacement = null
 		replacement_parent.TakeComponent(src)
-		atom_parent = parent
-		handle_reagents(atom_parent)
+		handle_reagents(parent)
 		qdel(atom_parent)
+		atom_parent = parent
 
 	handle_reagents(ingredient)
 
@@ -287,6 +288,11 @@
 	// while custom materials are already transferred evenly between results by atom/proc/StartProcessingAtom()
 	for (var/atom/result as anything in results)
 		result.AddComponent(/datum/component/ingredients_holder, null, fill_type, ingredient_type = ingredient_type, max_ingredients = max_ingredients, processed_holder = src)
+
+/// Pizzas have unique slicing interaction so we need to do this
+/datum/component/ingredients_holder/proc/on_slice_taken(datum/source, mob/living/user, obj/item/slice)
+	SIGNAL_HANDLER
+	slice.AddComponent(/datum/component/ingredients_holder, null, fill_type, ingredient_type = ingredient_type, max_ingredients = max_ingredients, processed_holder = src)
 
 /**
  * Adds context sensitivy directly to the customizable reagent holder file for screentips

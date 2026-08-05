@@ -258,16 +258,16 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 		var/datum/hud/H = M.hud_used
 		var/atom/movable/screen/wanted/giving_wanted_lvl = new /atom/movable/screen/wanted(null, H)
 		H.wanted_lvl = giving_wanted_lvl
-		H.infodisplay += giving_wanted_lvl
-		H.mymob.client.screen += giving_wanted_lvl
+		H.add_screen_object(giving_wanted_lvl, null, HUD_GROUP_INFO)
+		H.show_hud(H.hud_version)
 
 
 /datum/antagonist/ert/request_911/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	if(M.hud_used)
 		var/datum/hud/H = M.hud_used
-		H.infodisplay -= H.wanted_lvl
-		QDEL_NULL(H.wanted_lvl)
+		H.remove_screen_object(H.wanted_lvl)
+		H.wanted_lvl = null
 	..()
 
 /datum/antagonist/ert/request_911/greet()
@@ -307,7 +307,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 			ID_to_give.registered_age = human_to_equip.age
 		ID_to_give.update_label()
 		ID_to_give.update_icon()
-		human_to_equip.sec_hud_set_ID()
+		human_to_equip.update_ID_card()
 
 /obj/item/modular_computer/pda/request_911
 	name = "Terragov PDA"
@@ -375,6 +375,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	r_pocket = /obj/item/flashlight/seclite
 	l_pocket = /obj/item/gun/ballistic/revolver/sol
 	id = /obj/item/card/id/advanced/terragov
+	accessory = /obj/item/clothing/accessory/bubber/acc_medal/neckpin/galfed911
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
 		/obj/item/ammo_box/c35sol = 1,
@@ -410,6 +411,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	id = /obj/item/card/id/advanced/terragov
 	r_pocket = /obj/item/modular_computer/pda/request_911/atmos
 	l_pocket = /obj/item/holosign_creator/atmos
+	accessory = /obj/item/clothing/accessory/bubber/acc_medal/neckpin/galfed811
 	backpack_contents = list(/obj/item/storage/box/rcd_ammo = 1,
 		/obj/item/storage/box/smart_metal_foam = 1,
 		/obj/item/multitool = 1,
@@ -463,6 +465,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	r_pocket = /obj/item/flashlight/seclite
 	l_pocket = /obj/item/storage/medkit/civil_defense
 	r_hand = /obj/item/storage/backpack/duffelbag/deforest_surgical/stocked
+	accessory = /obj/item/clothing/accessory/bubber/acc_medal/neckpin/galfed
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
 		/obj/item/emergency_bed = 1,
@@ -513,6 +516,7 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 	l_pocket = /obj/item/restraints/handcuffs
 	id = /obj/item/card/id/advanced/terragov
 	l_hand = /obj/item/gun/ballistic/automatic/sol_rifle
+	accessory = /obj/item/clothing/accessory/bubber/galfedribbon/rank4
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
 		/obj/item/melee/baton/telescopic = 1,
@@ -825,17 +829,11 @@ GLOBAL_LIST_INIT(call911_do_and_do_not, list(
 					message_admins("[ADMIN_LOOKUPFLW(user)] has beamed out [living_user.pulling] alongside them.")
 				var/turf/pulling_turf = get_turf(living_user.pulling)
 				playsound(pulling_turf, 'sound/effects/magic/Repulse.ogg', 100, 1)
-				var/datum/effect_system/spark_spread/quantum/sparks = new
-				sparks.set_up(10, 1, pulling_turf)
-				sparks.attach(pulling_turf)
-				sparks.start()
+				do_sparks(10, 1, pulling_turf)
 				qdel(living_user.pulling)
 			var/turf/user_turf = get_turf(living_user)
 			playsound(user_turf, 'sound/effects/magic/Repulse.ogg', 100, 1)
-			var/datum/effect_system/spark_spread/quantum/sparks = new
-			sparks.set_up(10, 1, user_turf)
-			sparks.attach(user_turf)
-			sparks.start()
+			do_sparks(10, 1, user_turf)
 			qdel(user)
 	else
 		user.balloon_alert(user, "beam-out cancelled")

@@ -49,7 +49,6 @@
 	overlay_icon_state = "bg_spell_border"
 	active_overlay_icon_state = "bg_spell_border_active_red"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_PHASED
-	panel = "Spells"
 
 	/// The sound played on cast.
 	var/sound = null
@@ -154,6 +153,9 @@
 	if(!owner)
 		CRASH("[type] - can_cast_spell called on a spell without an owner!")
 
+	if(SEND_SIGNAL(src, COMSIG_SPELL_CAN_CAST_CHECK, feedback) & SPELL_CANCEL_CAST)
+		return FALSE
+
 	// Certain spells are not allowed on the centcom zlevel
 	var/turf/caster_turf = get_turf(owner)
 	// Spells which require being on the station
@@ -172,6 +174,12 @@
 			to_chat(owner, span_warning("You must dedicate yourself to silence first!"))
 		return FALSE
 
+	// BUBBER EDIT ADDITION - focusless spells can be inhibited
+	if ((focusless_inhibitable || school == SCHOOL_FORBIDDEN) && HAS_TRAIT(owner, TRAIT_MANSUS_INHIBITION))
+		owner.balloon_alert(owner, "inhibited! cant cast!")
+		return FALSE
+	// BUBBER EDIT END
+
 	// If the spell requires the user has no antimagic equipped, and they're holding antimagic
 	// that corresponds with the spell's antimagic, then they can't actually cast the spell
 	if((spell_requirements & SPELL_REQUIRES_NO_ANTIMAGIC) && !owner.can_cast_magic(antimagic_flags))
@@ -189,7 +197,7 @@
 				if(feedback)
 					to_chat(owner, span_warning("You don't feel strong enough without your robe!"))
 				return FALSE
-			if(!(human_owner.head?.clothing_flags & CASTING_CLOTHES) && !(human_owner.glasses?.clothing_flags & CASTING_CLOTHES))
+			if(!(astype(human_owner.head, /obj/item/clothing)?.clothing_flags & CASTING_CLOTHES) && !(human_owner.glasses?.clothing_flags & CASTING_CLOTHES))
 				if(feedback)
 					to_chat(owner, span_warning("You don't feel strong enough without your hat!"))
 				return FALSE
@@ -311,6 +319,8 @@
 				if(!caster.get_organ_slot(ORGAN_SLOT_TONGUE))
 					invocation(caster)
 					to_chat(caster, span_warning("Your lack of tongue is making it difficult to say the correct words to cast [src]..."))
+					if(caster.click_intercept == src)
+						unset_click_ability(caster, refund_cooldown = TRUE)
 					StartCooldown(2 SECONDS)
 					return SPELL_CANCEL_CAST
 
@@ -322,6 +332,8 @@
 						ignored_mobs = caster,
 					)
 					to_chat(caster, span_warning("You can't position your hands correctly to invoke [src][caster.num_hands > 0 ? "" : ", as you have none"]..."))
+					if(caster.click_intercept == src)
+						unset_click_ability(caster, refund_cooldown = TRUE)
 					StartCooldown(2 SECONDS)
 					return SPELL_CANCEL_CAST
 
@@ -363,9 +375,7 @@
 	if(sparks_amt)
 		do_sparks(sparks_amt, FALSE, get_turf(owner))
 	if(ispath(smoke_type, /datum/effect_system/fluid_spread/smoke))
-		var/datum/effect_system/fluid_spread/smoke/smoke = new smoke_type()
-		smoke.set_up(smoke_amt, holder = owner, location = get_turf(owner))
-		smoke.start()
+		do_smoke(smoke_amt, owner, get_turf(owner))
 
 	// Send signals last in case they delete the spell
 	SEND_SIGNAL(owner, COMSIG_MOB_AFTER_SPELL_CAST, src, cast_on)
@@ -405,8 +415,8 @@
 
 		if(INVOCATION_EMOTE)
 			invoker.visible_message(
-				capitalize(REPLACE_PRONOUNS(replacetext(used_invocation_message, "%CASTER", invoker.name), invoker)),
-				capitalize(REPLACE_PRONOUNS(replacetext(invocation_self_message, "%CASTER", invoker.name), invoker)),
+				capitalize(REPLACE_PRONOUNS(replacetext(used_invocation_message, "%CASTER", "[invoker]"), invoker)),
+				capitalize(REPLACE_PRONOUNS(replacetext(invocation_self_message, "%CASTER", "[invoker]"), invoker)),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 

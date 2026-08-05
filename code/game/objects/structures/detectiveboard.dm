@@ -14,6 +14,7 @@
 	density = FALSE
 	anchored = TRUE
 	max_integrity = 150
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT) // BUBBER EDIT ADDITION - Needed for crafting recipe material parity
 
 	/// When player attaching evidence to board this will become TRUE
 	var/attaching_evidence = FALSE
@@ -34,9 +35,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/detectiveboard, 32)
 			if(istype(item, /obj/item/paper) || istype(item, /obj/item/photo))
 				item.forceMove(src)
 				cases[current_case].notices++
+		find_and_mount_on_atom()
 
 	register_context()
-	find_and_hang_on_wall()
 
 /// Attaching evidences: photo and papers
 

@@ -1,17 +1,6 @@
-/obj/item/ammo_box
-	w_class = WEIGHT_CLASS_NORMAL
-
-/obj/item/ammo_box/magazine
-	w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/ammo_box/strilka310
-	w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/ammo_box/a357
-	w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/ammo_box/c38
-	w_class = WEIGHT_CLASS_SMALL
+/obj/item/ammo_box/c9mm/security
+	name = "ammo box (9mm security)"
+	ammo_type = /obj/item/ammo_casing/c9mm/security
 
 /obj/item/ammo_box/c9mm/ap
 	name = "ammo box (9mm AP)"
@@ -40,6 +29,11 @@
 	ammo_type = /obj/item/ammo_casing/c10mm/fire
 	max_ammo = 20
 
+/obj/item/ammo_box/c9mm/security //Bubberstation sourced, because I'll finalize all the moving once I merge the adjacent PR's
+	name = "ammo box (9mm Murphy)"
+	ammo_type = /obj/item/ammo_casing/security
+	caliber = CALIBER_9MM_SEC
+
 /obj/item/ammo_box/c46x30mm
 	name = "ammo box (4.6x30mm)"
 	icon = 'modular_skyrat/modules/company_imports/icons/ammo.dmi'
@@ -50,10 +44,6 @@
 /obj/item/ammo_box/c46x30mm/ap
 	name = "ammo box (4.6x30mm AP)"
 	ammo_type = /obj/item/ammo_casing/c46x30mm/ap
-
-/obj/item/ammo_box/c46x30mm/rubber
-	name = "ammo box (4.6x30mm rubber)"
-	ammo_type = /obj/item/ammo_casing/c46x30mm/rubber
 
 /obj/item/ammo_box/c34
 	name = "ammo box (.34)"
@@ -66,27 +56,6 @@
 	name = "ammo box (.34 AP)"
 	ammo_type = /obj/item/ammo_casing/c34/ap
 
-/obj/item/ammo_box/c34/rubber
-	name = "ammo box (.34 rubber)"
-	ammo_type = /obj/item/ammo_casing/c34/rubber
-
 /obj/item/ammo_box/c34/fire
 	name = "ammo box (.34 incendiary)"
 	ammo_type = /obj/item/ammo_casing/c34_incendiary
-
-/obj/item/storage/box/ammo_box/microfusion/bluespace
-	name = "bluespace microfusion cell container"
-	desc = "A box filled with microfusion cells."
-
-/obj/item/storage/box/ammo_box/microfusion/bluespace/PopulateContents()
-	new /obj/item/storage/pouch/ammo(src)
-	new /obj/item/stock_parts/power_store/cell/microfusion/bluespace(src)
-	new /obj/item/stock_parts/power_store/cell/microfusion/bluespace(src)
-	new /obj/item/stock_parts/power_store/cell/microfusion/bluespace(src)
-
-
-/obj/item/storage/box/ammo_box/microfusion/bluespace/bagless/PopulateContents()
-	new /obj/item/stock_parts/power_store/cell/microfusion/bluespace(src)
-	new /obj/item/stock_parts/power_store/cell/microfusion/bluespace(src)
-	new /obj/item/stock_parts/power_store/cell/microfusion/bluespace(src)
-

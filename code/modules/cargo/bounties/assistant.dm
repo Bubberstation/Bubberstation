@@ -1,3 +1,6 @@
+// Bounties moved to modular zubbers folder so it isn't a commented out nightmare of individual removals.
+
+/*
 /datum/bounty/item/assistant/strange_object
 	name = "Strange Object"
 	description = "Nanotrasen has taken an interest in strange objects. Find one in maintenance, and ship it off to CentCom right away."
@@ -122,7 +125,7 @@
 	name = "Monkey Hide"
 	description = "One of the scientists at CentCom is interested in testing products on monkey skin. Your mission is to acquire monkey's hide and ship it."
 	reward = CARGO_CRATE_VALUE * 3
-	wanted_types = list(/obj/item/stack/sheet/animalhide/monkey = TRUE)
+	wanted_types = list(/obj/item/stack/sheet/animalhide/carbon/monkey = TRUE)
 
 /datum/bounty/item/assistant/dead_mice
 	name = "Dead Mice"
@@ -281,3 +284,4 @@
 
 /datum/bounty/item/assistant/fish/fluid/can_ship_fish(obj/item/fish/fishie)
 	return (fluid_type in GLOB.fish_compatible_fluid_types[fishie.required_fluid_type])
+*/

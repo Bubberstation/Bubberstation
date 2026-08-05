@@ -3,7 +3,7 @@
 /datum/wound_pregen_data/burnt_metal
 	abstract = TRUE
 	required_limb_biostate = BIO_METAL
-	required_wounding_types = list(WOUND_BURN)
+	required_wounding_type = WOUND_BURN
 	wound_series = WOUND_SERIES_METAL_BURN_OVERHEAT
 
 /datum/wound_pregen_data/burnt_metal/generate_scar_priorities()
@@ -11,7 +11,7 @@
 
 /datum/wound/burn/robotic/overheat
 	treat_text = "Introduction of a cold environment or lowering of body temperature."
-
+	treat_text_short = "Cool the patient down with low temperature chemicals or put them under a shower."
 	simple_desc = "Metals are overheated, increasing damage taken significantly and raising body temperature!"
 	simple_treat_text = "Ideally <b>cryogenics</b>, but any source of <b>low body temperature</b> can work. <b>Spraying</b> with <b>spray bottles/extinguishers/showers</b> \
 	will quickly cool the limb, but <b>cause damage</b>. <b>Hercuri</b> is <b>especially effective</b> in quick cooling. \
@@ -131,7 +131,7 @@
 
 	set_highest_scar(null)
 
-/datum/wound/burn/robotic/overheat/remove_wound(ignore_limb, replaced)
+/datum/wound/burn/robotic/overheat/remove_wound(ignore_limb, replaced, destroying)
 	if (!replaced && highest_scar)
 		already_scarred = TRUE
 		highest_scar.lazy_attach(limb)
@@ -147,12 +147,12 @@
 	if (victim)
 		QDEL_NULL(mob_glow)
 		UnregisterSignal(victim, COMSIG_MOB_AFTER_APPLY_DAMAGE)
-		UnregisterSignal(victim, COMSIG_ATOM_AFTER_EXPOSE_REAGENTS)
+		UnregisterSignal(victim, COMSIG_ATOM_EXPOSE_REAGENTS)
 	if (new_victim)
 		mob_glow = new_victim.mob_light(light_range, light_power, light_color)
 		mob_glow.set_light_on(TRUE)
 		RegisterSignal(new_victim, COMSIG_MOB_AFTER_APPLY_DAMAGE, PROC_REF(victim_attacked))
-		RegisterSignal(new_victim, COMSIG_ATOM_AFTER_EXPOSE_REAGENTS, PROC_REF(victim_exposed_to_reagents))
+		RegisterSignal(new_victim, COMSIG_ATOM_EXPOSE_REAGENTS, PROC_REF(victim_exposed_to_reagents))
 
 	return ..()
 
@@ -162,7 +162,7 @@
 /datum/wound/burn/robotic/get_limb_examine_description()
 	return span_warning("The metal on this limb is glowing radiantly.")
 
-/datum/wound/burn/robotic/overheat/handle_process(seconds_per_tick, times_fired)
+/datum/wound/burn/robotic/overheat/handle_process(seconds_per_tick)
 	if (isnull(victim))
 		var/turf/our_turf = get_turf(limb)
 		if (!isnull(our_turf))
@@ -186,7 +186,7 @@
 	victim.adjust_bodytemperature(amount_to_adjust)
 
 /// Signal proc for when our victim is externally attacked. Increases chassis temp based on burn damage received.
-/datum/wound/burn/robotic/overheat/proc/victim_attacked(datum/source, damage, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction, attacking_item)
+/datum/wound/burn/robotic/overheat/proc/victim_attacked(datum/source, damage, damagetype, def_zone, blocked, wound_bonus, exposed_wound_bonus, sharpness, attack_direction, attacking_item)
 	SIGNAL_HANDLER
 
 	if (def_zone != limb.body_zone) // use this proc since receive damage can also be called for like, chems and shit
@@ -217,11 +217,11 @@
 	SIGNAL_HANDLER
 
 	var/reagent_coeff = base_reagent_temp_coefficient
-	if (!get_location_accessible(victim, limb.body_zone))
+	if(!victim.is_location_accessible(limb.body_zone))
 		if (ishuman(victim))
-			// hi! its niko! small rant
+			// hi! it's niko! small rant
 			// this proc has no goddamn reason to be on human, it could so easily just have used a proc on carbon that would get the required bodyparts to check
-			// but no. it had to hardcode the list in the proc itself so its impossible to modularly fix this
+			// but no. it had to hardcode the list in the proc itself so it's impossible to modularly fix this
 			// so instead we just say fuck it and hope to god only human subtypes get this wound
 			// tldr; ryll why
 			var/mob/living/carbon/human/human_victim = victim
@@ -271,7 +271,7 @@
 
 	if (heat_shock && abs(temp_delta) > heat_shock_minimum_delta)
 		var/gauze_mult = 1
-		var/obj/item/stack/gauze = limb.current_gauze
+		var/obj/item/stack/medical/wrap/gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
 		if (gauze)
 			gauze_mult *= (gauze.splint_factor) * 0.4 // very very effective
 
@@ -280,7 +280,7 @@
 
 		if (victim)
 			var/gauze_or_not = (!isnull(gauze) ? ", but [gauze] helps to keep it together" : "")
-			var/clothing_text = (!get_location_accessible(victim, limb.body_zone) ? ", [victim.p_their()] clothing absorbing some of the liquid" : "")
+			var/clothing_text = (!victim.is_location_accessible(limb.body_zone) ? ", [victim.p_their()] clothing absorbing some of the liquid" : "")
 			victim.visible_message(span_warning("[victim]'s [limb.plaintext_zone] strains from the thermal shock[clothing_text][gauze_or_not]!"))
 			playsound(victim, 'sound/items/tools/welder.ogg', 25)
 
@@ -343,6 +343,7 @@
 	occur_text = "lets out a slight groan as it turns a dull shade of thermal red"
 	examine_desc = "is glowing a dull thermal red and giving off heat"
 	treat_text = "Reduction of body temperature to expedite the passive heat dissipation - or, if thermal shock is to be risked, application of a fire extinguisher/shower."
+	treat_text_short = "Apply gauze or grasp limb before spraying the wound with coolant, lower body temperature, or wait."
 	severity = WOUND_SEVERITY_MODERATE
 
 	damage_multiplier_penalty = 1.15 //1.15x damage taken
@@ -393,6 +394,7 @@
 	examine_desc = "appears discolored and polychromatic, parts of it glowing a dull orange"
 	treat_text = "Isolation from physical hazards, and accommodation of passive heat dissipation - active cooling may be used, but temperature differentials significantly \
 		raise the risk of thermal shock."
+	treat_text_short = "Apply gauze and grasp limb before spraying the wound with coolant, or lower body temperature and wait."
 	severity = WOUND_SEVERITY_SEVERE
 
 	a_or_from = "from"
@@ -437,6 +439,7 @@
 	examine_desc = "is a blinding shade of white, almost melting from the heat"
 	treat_text = "Immediate confinement to cryogenics, as rapid overheating and physical vulnerability may occur. Active cooling is not advised, \
 		since the thermal shock may be lethal with such a temperature differential."
+	treat_text_short = "Apply cryogenics or lower body temperature without direct exposure to cold liquid."
 	severity = WOUND_SEVERITY_CRITICAL
 
 	a_or_from = "from"

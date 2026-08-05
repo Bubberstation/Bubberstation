@@ -2,7 +2,7 @@ import { Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { GhoulProps } from './AntagInfoBloodsucker';
+import type { GhoulProps } from './AntagInfoBloodsucker';
 import { ObjectivePrintout } from './common/Objectives';
 import { PowerDetails } from './PowerInfo';
 

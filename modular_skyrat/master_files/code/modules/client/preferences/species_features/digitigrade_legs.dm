@@ -2,9 +2,7 @@
 /datum/preference/choiced/digitigrade_legs
 	savefile_key = "digitigrade_legs"
 	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
-	relevant_mutant_bodypart = "legs"
-
+	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 
 /datum/preference/choiced/digitigrade_legs/create_default_value()
 	return NORMAL_LEGS
@@ -31,11 +29,11 @@
 	if(!preferences || !is_usable(preferences))
 		return FALSE
 
-	var/old_value = target.dna.features["legs"]
+	var/old_value = target.dna.features[FEATURE_LEGS]
 	if(value == old_value)
 		return FALSE
 
-	target.dna.features["legs"] = value
+	target.dna.features[FEATURE_LEGS] = value
 
 	if(value == DIGITIGRADE_LEGS)
 		target.dna.species.try_make_digitigrade(target)

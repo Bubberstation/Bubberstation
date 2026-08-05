@@ -2,7 +2,7 @@
 	name = "4.6x30mm bullet"
 	damage = 20
 	wound_bonus = -5
-	bare_wound_bonus = 5
+	exposed_wound_bonus = 5
 	embed_falloff_tile = -4
 
 /obj/projectile/bullet/c46x30mm/ap
@@ -16,34 +16,10 @@
 	damage = 10
 	fire_stacks = 1
 
-/obj/projectile/bullet/c46x30mm/flathead
-	name = "4.6x30mm flathead bullet"
-
-	damage = 18
-	stamina = 5 //Knocks the wind out of you.
-
-	wound_bonus = CANT_WOUND
-	bare_wound_bonus = CANT_WOUND
-
-	weak_against_armour = TRUE
-	sharpness = NONE
-	shrapnel_type = null
-	embed_type = null
-
-/obj/projectile/bullet/c46x30mm/rubber
-	name = "4.6x30mm rubber-tipped bullet"
-	damage = 5
-	stamina = 15
-
-	wound_bonus = CANT_WOUND
-	bare_wound_bonus = CANT_WOUND
-
-	weak_against_armour = TRUE
-	sharpness = NONE
-	shrapnel_type = null
-	embed_type = null
-
-	ricochets_max = 3
-	ricochet_incidence_leeway = 0
-	ricochet_chance = 75
-	ricochet_decay_damage = 0.8
+/obj/projectile/bullet/c45/lesser_reaper
+	name = ".45 reaper pellet"
+	icon = 'modular_zubbers/icons/obj/weapons/guns/projectiles.dmi'
+	icon_state = "reaper"
+	damage = 50
+	armour_penetration = 30
+	speed = 1.75

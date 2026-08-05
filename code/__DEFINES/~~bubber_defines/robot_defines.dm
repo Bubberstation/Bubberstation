@@ -5,6 +5,7 @@
 *************************************************************/
 
 //CENTCOM BORG ICON DEFINES
+#define CYBORG_ICON_CENTCOM 'modular_zubbers/code/modules/silicons/borgs/sprites/robot_cc.dmi'
 #define CYBORG_ICON_CENTCOM_WIDE_BUBBER 'modular_zubbers/code/modules/silicons/borgs/sprites/widerobot_cc.dmi'
 #define CYBORG_ICON_CENTCOM_LARGE_BUBBER 'modular_zubbers/code/modules/silicons/borgs/sprites/largerobot_cc.dmi'
 
@@ -165,6 +166,46 @@
 #define CYBORG_ICON_SERV_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_service.dmi'
 #define CYBORG_ICON_SYNDI_DRAGONBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/dragonborg/dragon_syndi.dmi'
 
+// MYOMER DOGBORG ICON DEFINES - Spritework done by Toriate, commissioned by The Sharkenning
+
+#define CYBORG_ICON_BASE_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerBase.dmi'
+#define CYBORG_ICON_CARGO_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerCargo.dmi'
+#define CYBORG_ICON_ENGI_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerEngi.dmi'
+#define CYBORG_ICON_JANI_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerJani.dmi'
+#define CYBORG_ICON_MED_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerMedical.dmi'
+#define CYBORG_ICON_MINING_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerMining.dmi'
+#define CYBORG_ICON_NINJA_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerNinja.dmi'
+#define CYBORG_ICON_SCI_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerSci.dmi'
+#define CYBORG_ICON_SEC_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerSec.dmi'
+#define CYBORG_ICON_PK_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerPeaceKeeper.dmi'
+#define CYBORG_ICON_SERVICE_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerService.dmi'
+#define CYBORG_ICON_SYNDI_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerSyndi.dmi'
+
+//WAGECAGE CARGOBORG DEFINES - Sprites by Boviro
+
+#define CYBORG_ICON_CARGO_WAGECAGE 'modular_zubbers/code/modules/silicons/borgs/sprites/wagecage.dmi'
+#define CYBORG_ICON_TYPE_WAGECAGE "wagecage"
+
+//MERMAID BORG ICON DEFINES
+#define CYBORG_ICON_MED_MERMAID 'modular_zubbers/code/modules/silicons/borgs/sprites/merborg/mermaidbot_med.dmi'
+#define CYBORG_ICON_SCI_MERMAID 'modular_zubbers/code/modules/silicons/borgs/sprites/merborg/mermaidbot_sci.dmi'
+#define CYBORG_ICON_ENG_MERMAID 'modular_zubbers/code/modules/silicons/borgs/sprites/merborg/mermaidbot_eng.dmi'
+
+// XENOBORG ICON DEFINES - Spritework done by Octopus King
+#define CYBORG_ICON_TYPE_XENOBORG "xenoborg"
+#define CYBORG_ICON_ENGI_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_engi.dmi'
+#define CYBORG_ICON_CARGO_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_cargo.dmi'
+#define CYBORG_ICON_JANI_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_jani.dmi'
+#define CYBORG_ICON_MED_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_med.dmi'
+#define CYBORG_ICON_MINING_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_mining.dmi'
+#define CYBORG_ICON_NINJA_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_ninja.dmi'
+#define CYBORG_ICON_PK_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_pk.dmi'
+#define CYBORG_ICON_SCI_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_sci.dmi'
+#define CYBORG_ICON_SERVICE_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_service.dmi'
+#define CYBORG_ICON_SYNDI_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_syndi.dmi'
+#define CYBORG_ICON_CC_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_CC.dmi'
+#define CYBORG_ICON_SEC_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_sec.dmi'
+#define CYBORG_ICON_CLOWN_XENOBORG 'modular_zubbers/code/modules/silicons/borgs/sprites/xenomorphborgs/xenoborg_clown.dmi'
 /************************************************************
 				CYBORG HAT OFFSETS GO BELOW
 *************************************************************/
@@ -213,3 +254,11 @@
 #define CORRUPT_HAT_OFFSET \
 	SKIN_HAT_OFFSET = list("north" = list(16, -4), "south" = list(16, -15), "east" = list(35, -7), "west" = list(-3, -7)), \
 	SKIN_HAT_REST_OFFSET = list("north" = list(16, -6), "south" = list(16, -17), "east" = list(35, -14), "west" = list(-3, -14))
+#define WAGECAGE_HAT_OFFSET \
+	SKIN_HAT_OFFSET = list("north" = list(10, 20), "south" = list(-5, 15), "east" = list(13, 15), "west" = list(-13, 15))
+#define MYOMER_HAT_OFFSET \
+	SKIN_HAT_OFFSET = list("north" = list(16, 1), "south" = list(16, 1), "east" = list(26, 1), "west" = list(6, 1)), \
+	SKIN_HAT_REST_OFFSET = list("north" = list(16, -11), "south" = list(16, -11), "east" = list(26, -11), "west" = list(6, -11))
+#define XENOBORG_HAT_OFFSET \
+	SKIN_HAT_OFFSET = list("north" = list(16, 10), "south" = list(16, 5), "east" = list(32, 7), "west" = list(0, 7)), \
+	SKIN_HAT_REST_OFFSET = list("north" = list(16, 6), "south" = list(16, 6), "east" = list(31, 6), "west" = list(1, 6))

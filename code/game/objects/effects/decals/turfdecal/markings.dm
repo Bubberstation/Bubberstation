@@ -219,6 +219,9 @@
 	icon_state = "synd3,3"
 
 
+/obj/effect/turf_decal/roroco
+	icon_state = "roroco"
+
 /obj/effect/turf_decal/mining
 	icon_state = "mining"
 
@@ -250,7 +253,7 @@
 	icon_state = "siding_plain_end"
 
 /obj/effect/turf_decal/siding/red
-	color = "#486091" //SKYRAT EDIT CHANGE
+	color = "#DE3A3A"
 
 /obj/effect/turf_decal/siding/red/corner
 	icon_state = "siding_plain_corner"
@@ -585,3 +588,5 @@
 /obj/effect/turf_decal/board_letter/h
 	icon_state = "board_h"
 
+/obj/effect/turf_decal/recharge
+	icon_state = "recharge"

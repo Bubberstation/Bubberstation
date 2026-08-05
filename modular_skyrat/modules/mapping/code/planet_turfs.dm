@@ -8,7 +8,7 @@
 	barefootstep = FOOTSTEP_SAND
 	clawfootstep = FOOTSTEP_SAND
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-	tiled_dirt = FALSE
+	tiled_turf = FALSE
 // We don't want to create chasms upon destruction, as this is too easy to abuse.
 // For some reason, the dirt used Lavaland atmos (OPENTURF_LOW_PRESSURE), this would suck whilst on the planet.
 
@@ -84,15 +84,14 @@
 
 /turf/closed/mineral/random/asteroid/rockplanet	//A version that can be used on the mining planet without destroying atmos - starts with Low_Pressure, along with the rest of the planet.
 	name = "iron rock"
-	icon = MAP_SWITCH('icons/turf/walls/red_wall.dmi', 'icons/turf/mining.dmi')
-	icon = 'icons/turf/mining.dmi'
-	icon_state = "redrock"
-	base_icon_state = "red_wall"
+	icon = MAP_SWITCH('icons/turf/walls/red_rock.dmi', 'icons/turf/mining.dmi')
+	icon_state = "red_rock"
+	base_icon_state = "red_rock"
 	turf_type = /turf/open/misc/asteroid/lowpressure
 	baseturfs = /turf/open/misc/asteroid/lowpressure
 	initial_gas_mix = OPENTURF_LOW_PRESSURE
 	defer_change = TRUE
-	mineralChance = 25	//Higher mineral chance than normal
+	mineral_chance = 25	//Higher mineral chance than normal
 
 /turf/closed/mineral/random/asteroid/rockplanet/mineral_chances()
 	return list(

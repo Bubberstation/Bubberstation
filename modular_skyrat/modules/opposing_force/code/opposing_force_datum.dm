@@ -546,7 +546,7 @@
 	to_chat(mind_reference.current, custom_boxed_message("red_box", span_redtext("Your OPFOR application has been denied by [denier ? get_admin_ckey(denier) : "the OPFOR subsystem"]!")))
 	send_system_message(get_admin_ckey(denier) + " has denied the application with the following reason: [reason]")
 	send_admins_opfor_message("[span_red("DENIED")]: [ADMIN_LOOKUPFLW(denier)] has denied [ckey]'s application([reason ? reason : "No reason specified"])")
-	ticket_counter_add_handled(denier.key, 1)
+	ticket_counter_add_handled(denier.ckey, 1)
 
 /datum/opposing_force/proc/approve(mob/approver)
 	if(status == OPFOR_STATUS_APPROVED)
@@ -565,7 +565,7 @@
 	to_chat(mind_reference.current, custom_boxed_message("green_box", span_greentext("Your OPFOR application has been [objective_denied ? span_bold("partially approved (please view your OPFOR for details)") : span_bold("fully approved")] by [approver ? get_admin_ckey(approver) : "the OPFOR subsystem"]!")))
 	send_system_message("[approver ? get_admin_ckey(approver) : "The OPFOR subsystem"] has approved the application")
 	send_admins_opfor_message("[span_green("APPROVED")]: [ADMIN_LOOKUPFLW(approver)] has approved [ckey]'s application")
-	ticket_counter_add_handled(approver.key, 1)
+	ticket_counter_add_handled(approver.ckey, 1)
 
 /datum/opposing_force/proc/close_application(mob/user)
 	if(status == OPFOR_STATUS_NOT_SUBMITTED)
@@ -814,7 +814,7 @@
 	send_system_message("Weak against armor: [initial(processed_item.weak_against_armour) ? "Yes" : "No"]")
 	send_system_message("Damage type: [initial(processed_item.damtype)]")
 	send_system_message("Wound bonus: [initial(processed_item.wound_bonus)]")
-	send_system_message("Bare wound bonus: [initial(processed_item.bare_wound_bonus)]")
+	send_system_message("Bare wound bonus: [initial(processed_item.exposed_wound_bonus)]")
 	send_system_message("Force: [initial(processed_item.force)]")
 
 /datum/opposing_force/proc/unlock_equipment(mob/user)

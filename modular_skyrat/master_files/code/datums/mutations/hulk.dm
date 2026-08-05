@@ -1,3 +1,3 @@
 
-/datum/mutation/human/hulk
+/datum/mutation/hulk
 	disabled = TRUE

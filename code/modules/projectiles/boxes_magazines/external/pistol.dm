@@ -14,6 +14,25 @@
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 	multiple_sprite_use_base = TRUE
 
+/obj/item/ammo_box/magazine/m9mm/security
+	name = "pistol magazine (9mm Security)"
+	desc = "A 9mm handgun magazine, suitable for the Service Pistol."
+	ammo_type = /obj/item/ammo_casing/c9mm/security
+	max_ammo = 10
+
+/obj/item/ammo_box/magazine/m9mm/security/rocket
+	name = "pistol magazine (9mm Security)"
+	desc = "A 9mm handgun magazine, suitable for the Service Pistol."
+	ammo_type = /obj/item/ammo_casing/c9mm/security
+	max_ammo = 8
+
+/obj/item/ammo_box/magazine/m9mm/security/rocket/throw_impact(mob/living/hit_mob, datum/thrownthing/throwingdatum)
+	. = ..()
+	if(!QDELETED(hit_mob))
+		hit_mob.Knockdown(2 SECONDS)
+		hit_mob.adjust_brute_loss(40)
+	qdel()
+
 /obj/item/ammo_box/magazine/m9mm/fire
 	name = "pistol magazine (9mm incendiary)"
 	MAGAZINE_TYPE_INCENDIARY
@@ -92,19 +111,6 @@
 	MAGAZINE_TYPE_ARMORPIERCE
 	ammo_type = /obj/item/ammo_casing/c10mm/ap
 
-// Regal Condor (10mm) //
-
-/obj/item/ammo_box/magazine/r10mm
-	name = "regal condor magazine (10mm Reaper)"
-	desc = "A very expensive 10mm handgun magazine, suitable for the Regal Condor. Loaded with \"reaper\" rounds, which are dangerously effective against everything."
-	icon_state = "r10mm-8"
-	base_icon_state = "r10mm"
-	ammo_type = /obj/item/ammo_casing/c10mm/reaper
-	caliber = CALIBER_10MM
-	max_ammo = 8
-	multiple_sprites = AMMO_BOX_PER_BULLET
-	multiple_sprite_use_base = TRUE
-
 // M1911 (.45) //
 
 /obj/item/ammo_box/magazine/m45
@@ -128,3 +134,22 @@
 	caliber = CALIBER_50AE
 	max_ammo = 7
 	multiple_sprites = AMMO_BOX_PER_BULLET
+
+// Regal Condor (.45) //
+
+/obj/item/ammo_box/magazine/r45
+	name = "regal condor magazine (.45 Reaper)"
+	desc = "A very expensive .45 handgun magazine, suitable for the Regal Condor. Loaded with \"reaper\" rounds, which are dangerously effective against everything."
+	icon_state = "r45-8"
+	base_icon_state = "r45"
+	ammo_type = /obj/item/ammo_casing/c45/reaper
+	caliber = CALIBER_10MM
+	max_ammo = 8
+	multiple_sprites = AMMO_BOX_PER_BULLET
+	multiple_sprite_use_base = TRUE
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 10,
+	)

@@ -16,3 +16,8 @@
 			return ITEM_INTERACT_BLOCKING
 
 	return ..()
+
+/obj/item/flatpack/materials_market
+	name = "materials import market"
+	board = /obj/item/circuitboard/machine/materials_market
+	custom_premium_price = PAYCHECK_CREW * 1.5

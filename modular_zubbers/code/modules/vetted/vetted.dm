@@ -5,7 +5,6 @@ GLOBAL_PROTECT(vetted_list)
 
 /datum/player_rank_controller/vetted
 	rank_title = "vetted user"
-	var/file_path_vetted
 
 /client/
 	var/is_vetted = null
@@ -26,6 +25,8 @@ GLOBAL_PROTECT(vetted_list)
 
 /datum/controller/subsystem/player_ranks/proc/get_user_vetted_status_hot(ckey)
 	if(IsAdminAdvancedProcCall())
+		return
+	if(!SSdbcore.Connect())
 		return
 	var/datum/db_query/query_load_player_rank = SSdbcore.NewQuery("SELECT ckey FROM vetted_list WHERE ckey = :ckey", list("ckey" = ckey))
 	if(!query_load_player_rank.warn_execute())

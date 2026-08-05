@@ -1,5 +1,5 @@
 /datum/quirk/equipping
-	abstract_parent_type = /datum/quirk/equipping
+	abstract_type = /datum/quirk/equipping
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
 	icon = FA_ICON_BOX_OPEN
 	/// the items that will be equipped, formatted in the way of [item_path = list of slots it can be equipped to], will not equip over nodrop items
@@ -23,19 +23,19 @@
 		var/item = new item_path(carbon_holder.loc)
 		var/success = FALSE
 		// Checking for nodrop and seeing if there's an empty slot
-		for (var/slot as anything in all_items[item_path])
+		for (var/slot in all_items[item_path])
 			success = force_equip_item(carbon_holder, item, slot, check_item = FALSE)
 			if (success)
 				break
 		// Checking for nodrop
-		for (var/slot as anything in all_items[item_path])
+		for (var/slot in all_items[item_path])
 			success = force_equip_item(carbon_holder, item, slot)
 			if (success)
 				break
 
 		if ((item_path in forced_items) && !success)
 			// Checking for nodrop failed, shove it into the first available slot, even if it has nodrop
-			for (var/slot as anything in all_items[item_path])
+			for (var/slot in all_items[item_path])
 				success = force_equip_item(carbon_holder, item, slot, FALSE)
 				if (success)
 					break
@@ -45,13 +45,13 @@
 			continue
 		var/item = new item_path(carbon_holder.loc)
 		var/success = FALSE
-		for(var/slot as anything in stored_items[item_path])
+		for(var/slot in stored_items[item_path])
 			success = carbon_holder.equip_to_storage(item, slot, indirect_action = TRUE)
 			if(success)
 				break
 		equipped_items[item] = success
 
-	for (var/item as anything in equipped_items)
+	for (var/item in equipped_items)
 		on_equip_item(item, equipped_items[item])
 
 /datum/quirk/equipping/proc/force_equip_item(mob/living/carbon/target, obj/item/item, slot, check_nodrop = TRUE, check_item = TRUE)

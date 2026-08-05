@@ -2,22 +2,22 @@
 
 //(Most) of Security has inverted IDs, with custom blue-on-black icons. This is to distinguish them from their head, who has a white-on-blue icon
 /datum/id_trim/job/head_of_security
-	subdepartment_color = COLOR_ASSEMBLY_BLACK
+	subdepartment_color = COLOR_SECURITY_RED
 
 /datum/id_trim/job/warden
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
-	department_color = COLOR_ASSEMBLY_BLACK
-	subdepartment_color = COLOR_ASSEMBLY_BLACK
+	department_color = COLOR_SECURITY_RED
+	subdepartment_color = COLOR_SECURITY_RED
 
 /datum/id_trim/job/security_officer
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
-	department_color = COLOR_ASSEMBLY_BLACK
-	subdepartment_color = COLOR_ASSEMBLY_BLACK
+	department_color = COLOR_SECURITY_RED
+	subdepartment_color = COLOR_SECURITY_RED
 
 /datum/id_trim/job/detective
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
-	department_color = COLOR_ASSEMBLY_BLACK
-	subdepartment_color = COLOR_ASSEMBLY_BLACK
+	department_color = COLOR_SECURITY_RED
+	subdepartment_color = COLOR_SECURITY_RED
 
 
 /datum/id_trim/job/chief_engineer/New()
@@ -53,10 +53,11 @@
 	department_color = COLOR_COMMAND_BLUE
 	subdepartment_color = COLOR_CENTCOM_BLUE // Not the other way around. I think.
 	sechud_icon_state = SECHUD_BLUESHIELD
-	extra_access = list(ACCESS_BRIG, ACCESS_CARGO, ACCESS_COURT, ACCESS_SECURITY)
+	extra_access = list()
 	minimal_access = list(
 		ACCESS_CAPTAIN, ACCESS_BRIG_ENTRANCE, ACCESS_COMMAND, ACCESS_CONSTRUCTION, ACCESS_DETECTIVE, ACCESS_ENGINEERING,
-		ACCESS_GATEWAY, ACCESS_MAINT_TUNNELS, ACCESS_MEDICAL, ACCESS_RC_ANNOUNCE, ACCESS_RESEARCH, ACCESS_WEAPONS,
+		ACCESS_GATEWAY, ACCESS_MAINT_TUNNELS, ACCESS_MEDICAL, ACCESS_RC_ANNOUNCE, ACCESS_SCIENCE, ACCESS_WEAPONS,
+		ACCESS_BRIG, ACCESS_CARGO, ACCESS_COURT, ACCESS_SECURITY, ACCESS_HOP, ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_BUDGET
 	)
 	minimal_wildcard_access = list()
 	template_access = list(ACCESS_CAPTAIN)
@@ -69,13 +70,10 @@
 	sechud_icon_state = SECHUD_NT_CONSULTANT
 	extra_access = list()
 	minimal_access = list(
-				ACCESS_AI_UPLOAD, ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_AUX_BASE, ACCESS_BAR, ACCESS_BRIG_ENTRANCE,
-				ACCESS_CENT_GENERAL, ACCESS_CHANGE_IDS, ACCESS_CHAPEL_OFFICE, ACCESS_COMMAND, ACCESS_CONSTRUCTION,
-				ACCESS_COURT, ACCESS_ENGINEERING, ACCESS_EVA, ACCESS_GATEWAY, ACCESS_HOP, ACCESS_HYDROPONICS,
-				ACCESS_JANITOR, ACCESS_KEYCARD_AUTH, ACCESS_SERVICE, ACCESS_KITCHEN, ACCESS_LAWYER, ACCESS_LIBRARY, ACCESS_MAINT_TUNNELS,
-				ACCESS_MEDICAL, ACCESS_MECH_ENGINE, ACCESS_MECH_MEDICAL, ACCESS_MECH_SCIENCE, ACCESS_MECH_SECURITY,
-				ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_MORGUE, ACCESS_PSYCHOLOGY, ACCESS_RC_ANNOUNCE,
-				ACCESS_RESEARCH, ACCESS_SECURITY, ACCESS_TELEPORTER, ACCESS_THEATRE, ACCESS_VAULT, ACCESS_WEAPONS
+				ACCESS_BRIG_ENTRANCE, ACCESS_MINERAL_STOREROOM, ACCESS_EVA,
+				ACCESS_CENT_GENERAL, ACCESS_COMMAND, ACCESS_COURT, ACCESS_GATEWAY,
+				ACCESS_KEYCARD_AUTH, ACCESS_LAWYER, ACCESS_MAINT_TUNNELS, ACCESS_RC_ANNOUNCE,
+				ACCESS_SECURITY, ACCESS_TELEPORTER, ACCESS_VAULT, ACCESS_WEAPONS, ACCESS_SERVICE
 				)
 	minimal_wildcard_access = list()
 	template_access = list(ACCESS_CAPTAIN)
@@ -84,8 +82,8 @@
 	assignment = "Corrections Officer"
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	trim_state = "trim_corrections_officer"
-	department_color = COLOR_ASSEMBLY_BLACK
-	subdepartment_color = COLOR_ASSEMBLY_BLACK
+	department_color = COLOR_SECURITY_RED
+	subdepartment_color = COLOR_SECURITY_RED
 	sechud_icon_state = SECHUD_CORRECTIONS_OFFICER
 	extra_access = list()
 	minimal_access = list(

@@ -258,7 +258,7 @@
 				'modular_skyrat/modules/emotes/sound/emotes/clap4.ogg')
 
 /datum/emote/living/clap/can_run_emote(mob/living/carbon/user, status_check = TRUE , intentional)
-	if(user.usable_hands < 2)
+	if(!istype(user) || user.usable_hands < 2)
 		return FALSE
 	return ..()
 
@@ -275,8 +275,14 @@
 	return pick('modular_zubbers/sound/emotes/claponce1.ogg',
 				'modular_zubbers/sound/emotes/claponce2.ogg')
 
+/datum/emote/living/slowclap
+	key = "slowclap"
+	message = "activates their slow clap processor."
+	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/machines/slowclap.ogg'
+
 /datum/emote/living/clap1/can_run_emote(mob/living/carbon/user, status_check = TRUE , intentional)
-	if(user.usable_hands < 2)
+	if(!istype(user) || user.usable_hands < 2)
 		return FALSE
 	return ..()
 
@@ -415,7 +421,7 @@
 	sound = 'modular_skyrat/modules/emotes/sound/voice/howl.ogg'
 
 /datum/emote/living/howl/can_run_emote(mob/living/carbon/user, status_check = TRUE , intentional)
-	if(!HAS_TRAIT(user, TRAIT_CANINE))
+	if(!HAS_TRAIT(user, TRAIT_CANINE) && !islycan(user))
 		return FALSE
 	return ..()
 
@@ -558,3 +564,27 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/voice/mggaow.ogg'
+
+/datum/emote/living/teshchirp
+	key = "teshchirp"
+	key_third_person = "chirps!"
+	message = "chirps!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/teshchirp.ogg' // Credits to Virgo Station for the files.
+
+/datum/emote/living/teshsqueak
+	key = "teshsqueak"
+	key_third_person = "squeaks!"
+	message = "squeaks!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/teshsqueak.ogg' // Credits to Virgo Station for the files.
+
+/datum/emote/living/teshtrill
+	key = "teshtrill"
+	key_third_person = "trills!"
+	message = "trills!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/teshtrill.ogg' // Credits to Virgo Station for the files.

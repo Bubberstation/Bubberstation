@@ -75,7 +75,7 @@ GLOBAL_DATUM_INIT(language_holder_adjustor, /datum/language_holder_adjustor, new
 		/datum/language/voltaic = list(LANGUAGE_ATOM),
 		/datum/language/nekomimetic = list(LANGUAGE_ATOM),
 		/datum/language/gutter = list(LANGUAGE_ATOM),
-		/datum/language/panslavic = list(LANGUAGE_ATOM),
+		/datum/language/spinwarder = list(LANGUAGE_ATOM),
 		/datum/language/skrell = list(LANGUAGE_ATOM),
 		/datum/language/spacer = list(LANGUAGE_ATOM),
 		/datum/language/xerxian = list(LANGUAGE_ATOM),
@@ -95,7 +95,7 @@ GLOBAL_DATUM_INIT(language_holder_adjustor, /datum/language_holder_adjustor, new
 		/datum/language/akulan = list(LANGUAGE_ATOM),
 		/datum/language/marish = list(LANGUAGE_ATOM),
 		/datum/language/carptongue = list(LANGUAGE_ATOM),
-		/datum/language/chitinclick = list(LANGUAGE_ATOM),
+		/datum/language/buzzwords = list(LANGUAGE_ATOM),
 	)
 	spoken_languages = list(
 		/datum/language/common = list(LANGUAGE_ATOM),
@@ -107,7 +107,7 @@ GLOBAL_DATUM_INIT(language_holder_adjustor, /datum/language_holder_adjustor, new
 		/datum/language/voltaic = list(LANGUAGE_ATOM),
 		/datum/language/nekomimetic = list(LANGUAGE_ATOM),
 		/datum/language/gutter = list(LANGUAGE_ATOM),
-		/datum/language/panslavic = list(LANGUAGE_ATOM),
+		/datum/language/spinwarder = list(LANGUAGE_ATOM),
 		/datum/language/skrell = list(LANGUAGE_ATOM),
 		/datum/language/spacer = list(LANGUAGE_ATOM),
 		/datum/language/xerxian = list(LANGUAGE_ATOM),
@@ -127,5 +127,5 @@ GLOBAL_DATUM_INIT(language_holder_adjustor, /datum/language_holder_adjustor, new
 		/datum/language/akulan = list(LANGUAGE_ATOM),
 		/datum/language/marish = list(LANGUAGE_ATOM),
 		/datum/language/carptongue = list(LANGUAGE_ATOM),
-		/datum/language/chitinclick = list(LANGUAGE_ATOM),
+		/datum/language/buzzwords = list(LANGUAGE_ATOM),
 	)

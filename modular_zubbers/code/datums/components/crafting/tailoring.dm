@@ -29,6 +29,7 @@
 				/obj/item/stack/ore/glass/basalt = 5)
 	time = 5 SECONDS
 	category = CAT_CLOTHING
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/bonesuit_ochre
 	name = "ochre Bone Armor"
@@ -37,6 +38,7 @@
 				/obj/item/stack/ore/glass/basalt = 5)
 	time = 5 SECONDS
 	category = CAT_CLOTHING
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/skullhelm_ochre
 	name = "Ochre Skull"
@@ -45,6 +47,7 @@
 				/obj/item/stack/ore/glass/basalt = 5)
 	time = 5 SECONDS
 	category = CAT_CLOTHING
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/modulator_gasmask
 	name = "Voice Modulator Gasmask"
@@ -60,11 +63,53 @@
 	..()
 	blacklist += subtypesof(/obj/item/clothing/mask/gas)
 
-/datum/crafting_recipe/berserker_reskin
-	name = "Marked One Grafting"
-	result = /obj/item/clothing/suit/hooded/berserker/gladiator
-	reqs = list(/obj/item/clothing/suit/hooded/berserker = 1,
-				/obj/item/stack/ore/glass/basalt = 5,
-				/obj/item/stack/ore/titanium =5)
-	time = 5 SECONDS
+/datum/crafting_recipe/muzzle_medical_mask
+	name = "Surgery Mask"
+	result = /obj/item/clothing/mask/breath/muzzle
+	reqs = list(/obj/item/clothing/mask/breath = 1,
+				/obj/item/clothing/mask/muzzle = 1)
+	time = 3 SECONDS
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/muzzle_medical_mask/New()
+	..()
+	blacklist += typesof(/obj/item/clothing/mask/breath/muzzle)
+	blacklist += subtypesof(/obj/item/clothing/mask/muzzle)
+
+/datum/crafting_recipe/hudsunciv
+	name = "Civilian HUDsunglasses"
+	result = /obj/item/clothing/glasses/hud/civilian/sunglasses
+	time = 2 SECONDS
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	reqs = list(/obj/item/clothing/glasses/hud/civilian = 1,
+				/obj/item/clothing/glasses/sunglasses = 1,
+				/obj/item/stack/cable_coil = 5)
+	category = CAT_EQUIPMENT
+
+/datum/crafting_recipe/hudsuncivremoval
+	name = "Civilian HUD removal"
+	result = /obj/item/clothing/glasses/sunglasses
+	time = 2 SECONDS
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	reqs = list(/obj/item/clothing/glasses/hud/civilian/sunglasses = 1)
+	category = CAT_EQUIPMENT
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
+
+// Metal H2 Rework by Xiska
+
+/datum/crafting_recipe/atmos_armor_crafting
+	name = "Elder Atmosian Armor"
+	result = /obj/item/clothing/suit/armor/elder_atmosian
+	time = 40 SECONDS
+	reqs = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 5,
+	/obj/item/clothing/suit/utility/fire/atmos = 1)
+	category = CAT_CLOTHING
+
+
+/datum/crafting_recipe/atmos_helmet_crafting
+	name = "Elder Atmosian Helmet"
+	result = /obj/item/clothing/head/helmet/elder_atmosian
+	time = 40 SECONDS
+	reqs = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 3,
+	/obj/item/clothing/head/utility/hardhat/welding/atmos = 1)
 	category = CAT_CLOTHING

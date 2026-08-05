@@ -4,7 +4,7 @@
 	singular_name = "robotic repair spray"
 	desc = "A needle-tip foam gun filled with an advanced synthetic foam that rapidly \
 		fills and stabilizes structural damage in synthetics. The damaged area will be \
-		vulnerable to further damage while the foam hardens"
+		vulnerable to further damage while the foam hardens."
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/stack_items.dmi'
 	icon_state = "robofoam"
 	inhand_icon_state = "implantcase"

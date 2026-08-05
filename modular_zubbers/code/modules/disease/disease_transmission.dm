@@ -1,6 +1,6 @@
 /datum/controller/subsystem/disease
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
-	flags = SS_BACKGROUND
+	ss_flags = SS_BACKGROUND
 	wait = 16 SECONDS
 	/// List of event created diseases in all mobs
 	var/list/event_diseases = list()

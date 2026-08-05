@@ -1,5 +1,5 @@
 // THIS IS A SKYRAT SECTOR UI FILE
-import { Feature, FeatureNumberInput } from '../../base';
+import { type Feature, FeatureNumberInput } from '../../base';
 
 export const chrono_age: Feature<number> = {
   name: 'Age (Chronological)',

@@ -17,6 +17,9 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/ruins_templates = list()
 
+	///Assoc list of all ruins spawned, key center of ruin spawn -> value ruin instance
+	var/list/active_ruins = alist()
+
 	///List of ruins, separated by their theme
 	var/list/themed_ruins = list()
 
@@ -132,10 +135,19 @@ SUBSYSTEM_DEF(mapping)
 	while (space_levels_so_far < current_map.space_ruin_levels)
 		add_new_zlevel("Ruin Area [space_levels_so_far+1]", ZTRAITS_SPACE)
 		++space_levels_so_far
+
 	// Create empty space levels
 	while (space_levels_so_far < current_map.space_empty_levels + current_map.space_ruin_levels)
 		empty_space = add_new_zlevel("Empty Area [space_levels_so_far+1]", list(ZTRAIT_LINKAGE = CROSSLINKED))
 		++space_levels_so_far
+
+	if(current_map.wilderness_levels)
+		var/list/FailedZs = list()
+
+		LoadGroup(FailedZs, "Wilderness Area", current_map.wilderness_directory, current_map.wilderness_maps_to_spawn, default_traits = current_map.wilderness_z_traits, height_autosetup = FALSE)
+
+		if(LAZYLEN(FailedZs))
+			CRASH("Ice wilds failed to load!")
 
 	// Pick a random away mission.
 	if(CONFIG_GET(flag/roundstart_away))
@@ -147,8 +159,8 @@ SUBSYSTEM_DEF(mapping)
 	loading_ruins = TRUE
 	setup_ruins()
 	loading_ruins = FALSE
-
 #endif
+
 	// Run map generation after ruin generation to prevent issues
 	run_map_terrain_generation()
 	// Generate our rivers, we do this here so the map doesn't load on top of them
@@ -237,7 +249,6 @@ SUBSYSTEM_DEF(mapping)
 	gravity_by_z_level[z_level_number] = max_gravity
 	return max_gravity
 
-
 /**
  * ##setup_ruins
  *
@@ -271,12 +282,11 @@ SUBSYSTEM_DEF(mapping)
 	// Generate mining ruins
 	var/list/lava_ruins = levels_by_trait(ZTRAIT_LAVA_RUINS)
 	for (var/lava_z in lava_ruins)
-		spawn_rivers(lava_z, 4, /turf/open/lava/smooth/lava_land_surface, /area/lavaland/surface/outdoors/unexplored)
+		spawn_rivers(lava_z, 3, /turf/open/lava/smooth/lava_land_surface, /area/lavaland/surface/outdoors/unexplored) // +1 from the mapped in waypoint
 
 	var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
 	for (var/ice_z in ice_ruins)
-		var/river_type = HAS_TRAIT(SSstation, STATION_TRAIT_FORESTED) ? /turf/open/lava/plasma/ice_moon : /turf/open/openspace/icemoon
-		spawn_rivers(ice_z, 4, river_type, /area/icemoon/surface/outdoors/unexplored/rivers)
+		spawn_rivers(ice_z, 6, /turf/open/lava/plasma/ice_moon, /area/icemoon/surface/outdoors/unexplored/rivers)
 
 	var/list/ice_ruins_underground = levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND)
 	for (var/ice_z in ice_ruins_underground)
@@ -344,7 +354,7 @@ Used by the AI doomsday and the self-destruct nuke.
 
 
 /datum/controller/subsystem/mapping/Recover()
-	flags |= SS_NO_INIT
+	ss_flags |= SS_NO_INIT
 	initialized = SSmapping.initialized
 	map_templates = SSmapping.map_templates
 	ruins_templates = SSmapping.ruins_templates
@@ -487,7 +497,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 /// Generates the global station area list, filling it with typepaths of unique areas found on the station Z.
 /datum/controller/subsystem/mapping/proc/generate_station_area_list()
 	for(var/area/station/station_area in GLOB.areas)
-		if (!(station_area.area_flags & UNIQUE_AREA))
+		if (!(station_area.area_flags_mapping & UNIQUE_AREA))
 			continue
 		if (is_station_level(station_area.z))
 			GLOB.the_station_areas += station_area.type
@@ -745,11 +755,6 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	if(contain_turfs)
 		build_area_turfs(z_value, filled_with_space)
 
-	// And finally, misc global generation
-
-	// We'll have to update this if offsets change, because we load lowest z to highest z
-	generate_lighting_appearance_by_z(z_value)
-
 /datum/controller/subsystem/mapping/proc/build_area_turfs(z_level, space_guaranteed)
 	// If we know this is filled with default tiles, we can use the default area
 	// Faster
@@ -785,11 +790,6 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	for(var/datum/space_level/level_to_update in levels_checked)
 		z_level_to_lowest_plane_offset[level_to_update.z_value] = plane_offset
 		z_level_to_stack[level_to_update.z_value] = z_stack
-
-	// This can be affected by offsets, so we need to update it
-	// PAIN
-	for(var/i in 1 to length(z_list))
-		generate_lighting_appearance_by_z(i)
 
 	var/old_max = max_plane_offset
 	max_plane_offset = max(max_plane_offset, plane_offset)
@@ -875,11 +875,6 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	if(!target)
 		CRASH("Attempted to lazy load a template key that does not exist: '[template_key]'")
 	return target.lazy_load()
-
-/proc/generate_lighting_appearance_by_z(z_level)
-	if(length(GLOB.default_lighting_underlays_by_z) < z_level)
-		GLOB.default_lighting_underlays_by_z.len = z_level
-	GLOB.default_lighting_underlays_by_z[z_level] = mutable_appearance(LIGHTING_ICON, "transparent", z_level * 0.01, null, LIGHTING_PLANE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM, offset_const = GET_Z_PLANE_OFFSET(z_level))
 
 /// Returns true if the map we're playing on is on a planet
 /datum/controller/subsystem/mapping/proc/is_planetary()

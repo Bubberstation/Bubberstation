@@ -15,7 +15,12 @@
 	icon_state = "plasma_glob"
 	damage = 10
 	speed = 0.6
-	bare_wound_bonus = 55 // Lasers have a wound bonus of 40, this is a bit higher
+	exposed_wound_bonus = 55 // Lasers have a wound bonus of 40, this is a bit higher
 	wound_bonus = -50 // However we do not very much against armor
 	pass_flags = PASSTABLE | PASSGRILLE // His ass does NOT pass through glass!
 	weak_against_armour = TRUE
+
+/obj/projectile/beam/laser/plasma_glob/supercharged
+	name = "overcharged plasma globule"
+	icon_state = "plasma_glob_super"
+	weak_against_armour = FALSE

@@ -117,7 +117,7 @@
 
 	var/obj/structure/closet/supplypod/extractionpod/pod = source
 	// Handle the pod returning
-	pod.startExitSequence(pod)
+	pod.start_exit_sequence(pod)
 
 	if(ishuman(person_sent))
 		var/mob/living/carbon/human/target = person_sent
@@ -141,7 +141,7 @@
 		return
 	contractor_id.registered_account.adjust_money(ransom * 0.35)
 	contractor_id.registered_account.bank_card_talk("We've processed the ransom, agent. \
-		Here's your cut - your balance is now [contractor_id.registered_account.account_balance] cr.", TRUE)
+		Here's your cut - your balance is now [contractor_id.registered_account.account_balance] [MONEY_SYMBOL].", TRUE)
 
 #define VICTIM_EXPERIENCE_START 0
 #define VICTIM_EXPERIENCE_FIRST_HIT 1
@@ -254,3 +254,5 @@
 	victim.adjust_eye_blur(3 SECONDS)
 	victim.adjust_dizzy(3.5 SECONDS)
 	victim.adjust_confusion(2 SECONDS)
+	//Bubberstation change, adds flavourtext that they forget who contracted them.
+	to_chat(victim, span_big(span_hypnophrase("You don't remember anything leading up to being abducted by the syndicate - All you can remember is a million voices echoing through your mind and pain whenever you try to think of anything further.")))

@@ -150,8 +150,8 @@
 	return
 
 ///Get active players who are playing in the round
-/proc/get_active_player_count(alive_check = FALSE, afk_check = FALSE, human_check = FALSE)
-	var/active_players = 0
+/proc/get_active_player_list(alive_check = FALSE, afk_check = FALSE, human_check = FALSE)
+	var/list/active_players = list()
 	for(var/mob/player_mob as anything in GLOB.player_list)
 		if(!player_mob?.client)
 			continue
@@ -167,8 +167,12 @@
 			var/mob/dead/observer/ghost_player = player_mob
 			if(ghost_player.started_as_observer) // Exclude people who started as observers
 				continue
-		active_players++
+		active_players += player_mob
 	return active_players
+
+///Counts active players who are playing in the round
+/proc/get_active_player_count(alive_check = FALSE, afk_check = FALSE, human_check = FALSE)
+	return length(get_active_player_list(alive_check, afk_check, human_check))
 
 ///Uses stripped down and bastardized code from respawn character
 /proc/make_body(mob/dead/observer/ghost_player)
@@ -199,7 +203,7 @@
 			flashed_client = player_mob.client
 	if(!flashed_client || (!flashed_client.prefs.read_preference(/datum/preference/toggle/window_flashing) && !ignorepref))
 		return
-	winset(flashed_client, "mainwindow", "flash=5")
+	winset(flashed_client, SKIN_MAINWINDOW, "flash=5")
 
 /**
  * Recursively checks if an item is inside a given type/atom, even through layers of storage.
@@ -254,6 +258,10 @@
 	var/pressure = environment.return_pressure()
 	if(pressure <= LAVALAND_EQUIPMENT_EFFECT_PRESSURE)
 		. = TRUE
+	//BUBBERSTATION ADDITION MOONSTATION COMPATIBILITY
+	else if(environment.gases[/datum/gas/water_vapor] && environment.gases[/datum/gas/water_vapor][MOLES] >= 1)
+		. = TRUE
+	//BUBBERSTATION ADDITION MOONSTATION COMPATIBILITY END.
 
 ///Find an obstruction free turf that's within the range of the center. Can also condition on if it is of a certain area type.
 /proc/find_obstruction_free_location(range, atom/center, area/specific_area)
@@ -303,17 +311,20 @@
 
 	return FALSE
 
-///Disable power in the station APCs
+/**
+ * Disables power in most station APCs temporarily
+ *
+ * * duration_min - the minimum duration of the power failure in seconds (not deciseconds)
+ * * duration_max - the maximum duration of the power failure in seconds (not deciseconds)
+ */
 /proc/power_fail(duration_min, duration_max)
 	for(var/obj/machinery/power/apc/current_apc as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/power/apc))
-		if(!current_apc.cell || !SSmapping.level_trait(current_apc.z, ZTRAIT_STATION))
-			continue
-		var/area/apc_area = current_apc.area
-		if(is_type_in_typecache(apc_area, GLOB.typecache_powerfailure_safe_areas))
+		if(!current_apc.cell || !SSmapping.level_trait(current_apc.z, ZTRAIT_STATION) || HAS_TRAIT(current_apc.area, TRAIT_AREA_BLOCK_POWER_FAIL))
 			continue
 
-		var/duration = rand(duration_min,duration_max)
+		var/duration = rand(duration_min, duration_max)
 		current_apc.energy_fail(duration)
+		CHECK_TICK
 
 /**
  * Sends a round tip to a target. If selected_tip is null, a random tip will be sent instead (5% chance of it being silly).
@@ -327,6 +338,8 @@
 	else
 		var/list/randomtips = world.file2list("strings/tips.txt")
 		var/list/memetips = world.file2list("strings/sillytips.txt")
+		var/list/bubbertips = world.file2list("strings/bubbertips.txt") // BUBBER EDIT - OUR TIPS OF THE ROUND
+		randomtips += bubbertips // BUBBER EDIT
 		if(randomtips.len && prob(95))
 			message = pick(randomtips)
 		else if(memetips.len)

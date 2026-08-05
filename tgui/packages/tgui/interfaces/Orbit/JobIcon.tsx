@@ -1,7 +1,7 @@
 import { DmIcon, Icon } from 'tgui-core/components';
 
 import { JOB2ICON } from '../common/JobToIcon';
-import { Antagonist, Observable } from './types';
+import type { Antagonist, Observable } from './types';
 
 // BUBBER EDIT ADDITION BEGIN - Custom observe menu icons
 const customJobs = [

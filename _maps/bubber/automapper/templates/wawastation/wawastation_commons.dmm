@@ -50,7 +50,7 @@
 /area/station/commons)
 "bm" = (
 /obj/machinery/door/airlock/maintenance/external,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
@@ -299,6 +299,7 @@
 /obj/item/toy/crayon/spraycan{
 	pixel_x = -4
 	},
+/obj/machinery/firealarm/directional/west,
 /turf/open/floor/carpet/purple,
 /area/station/service/library)
 "kc" = (
@@ -421,6 +422,7 @@
 	dir = 4
 	},
 /obj/item/kirbyplants/random,
+/obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/commons)
 "nj" = (
@@ -495,7 +497,7 @@
 	name = "Tram Maintenance"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -695,7 +697,9 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/hangover,
-/obj/machinery/newscaster/directional/east,
+/obj/structure/closet/emcloset/wall{
+	pixel_x = 32
+	},
 /turf/open/floor/iron/white,
 /area/station/commons)
 "vw" = (
@@ -712,7 +716,7 @@
 	name = "Tram Guideway";
 	desc = "There's always a light at the end of the tunnel. It may seem hard to get to it, but you can do it! Just keep working towards it and you'll find the positive side of things. Alternatively, you'll find a tram to the face."
 	},
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -725,6 +729,7 @@
 	dir = 4;
 	pixel_x = 9
 	},
+/obj/effect/landmark/firealarm_sanity,
 /turf/open/floor/iron/white,
 /area/station/commons)
 "vJ" = (
@@ -738,6 +743,7 @@
 	dir = 8;
 	pixel_x = -9
 	},
+/obj/effect/landmark/firealarm_sanity,
 /turf/open/floor/iron/white,
 /area/station/commons)
 "vT" = (
@@ -847,6 +853,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
+/obj/machinery/firealarm/directional/east,
 /turf/open/floor/carpet/purple,
 /area/station/service/library)
 "zd" = (
@@ -932,6 +939,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/wood/parquet,
 /area/station/service/library)
 "AD" = (
@@ -1440,7 +1448,7 @@
 "Pq" = (
 /obj/machinery/door/airlock/maintenance/external,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/effect/mapping_helpers/airlock/unres{
+/obj/effect/mapping_helpers/airlock/unres/delayed{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -1475,6 +1483,7 @@
 	dir = 4;
 	pixel_x = 9
 	},
+/obj/effect/landmark/firealarm_sanity,
 /turf/open/floor/iron/white,
 /area/station/commons)
 "Qf" = (
@@ -1705,14 +1714,12 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/station/commons)
 "Yz" = (
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 4
+/obj/structure/fluff/tram_rail/electric{
+	dir = 1
 	},
-/obj/structure/closet/emcloset/wall{
-	pixel_x = 32
-	},
-/turf/open/floor/iron/white,
-/area/station/commons)
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tram/guideway,
+/area/station/maintenance/central/greater)
 "YC" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Quiet Room"
@@ -1794,6 +1801,7 @@
 	dir = 8;
 	pixel_x = -9
 	},
+/obj/effect/landmark/firealarm_sanity,
 /turf/open/floor/iron/white,
 /area/station/common/cryopods)
 
@@ -1901,7 +1909,7 @@ sq
 vv
 uC
 pk
-Yz
+TN
 OO
 CP
 GR
@@ -1947,7 +1955,7 @@ zS
 Bc
 Zs
 Fo
-xA
+Yz
 Bc
 ia
 Ok

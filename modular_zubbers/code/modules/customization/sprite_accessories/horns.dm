@@ -111,3 +111,19 @@
 /datum/sprite_accessory/horns/bubber/brimstone //End of sprites by thgvr
 	name = "Brimstone"
 	icon_state = "brimstone"
+
+/datum/sprite_accessory/horns/bubber/big/cryptid /// Sprite by Maggotbait of Splurt
+	name = "Cryptid Antlers"
+	icon_state = "cryptid"
+
+/datum/sprite_accessory/horns/bubber/antennae/insectoidcrest
+	name = "Sharp Insectoid Crest"
+	icon_state = "sharp_crest"
+
+/datum/sprite_accessory/horns/bubber/deathclaw
+	name = "Mutant Lizard"
+	icon_state = "deathclaw"
+
+/datum/sprite_accessory/horns/bubber/deathclawinverted
+	name = "Mutant Lizard (Inverted)"
+	icon_state = "deathclawinverted"

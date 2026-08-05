@@ -23,7 +23,7 @@
 		/datum/language/common = list(LANGUAGE_ATOM)
 	)
 	spoken_languages = list(/datum/language/drone = list(LANGUAGE_ATOM))
-	blocked_languages = list()
+	blocked_understanding = list()
 
 /mob/living/basic/drone
 	//So that drones can do things without worrying about stuff

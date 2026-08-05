@@ -6,6 +6,7 @@
 	icon = 'modular_skyrat/modules/primitive_cooking_additions/icons/stone_kitchen_machines.dmi'
 	circuit = null
 	use_power = FALSE
+	custom_materials = list(/datum/material/stone = SHEET_MATERIAL_AMOUNT * 5)
 
 	/// A list of the different oven trays we can spawn with
 	var/static/list/random_oven_tray_types = list(
@@ -47,7 +48,6 @@
 	if(!open)
 		oven_tray.vis_flags |= VIS_HIDE
 	vis_contents += oven_tray
-	oven_tray.flags_1 |= IS_ONTOP_1
 	oven_tray.vis_flags |= VIS_INHERIT_PLANE
 	oven_tray.pixel_y = OVEN_TRAY_Y_OFFSET
 

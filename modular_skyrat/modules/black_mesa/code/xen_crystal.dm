@@ -52,15 +52,15 @@
 	var/factions = list(FACTION_STATION, "neutral")
 	/// Mobs in this list will not be affected by this grenade.
 	var/list/blacklisted_mobs = list(
-		/mob/living/simple_animal/hostile/blackmesa/xen/headcrab_zombie/gordon_freeman,
-		/mob/living/simple_animal/hostile/blackmesa/xen/nihilanth,
+		/mob/living/basic/blackmesa/xen/gordon_freeman,
+		/mob/living/basic/blackmesa/xen/nihilanth,
 	)
 
 /obj/item/grenade/xen_crystal/detonate(mob/living/lanced_by)
 	for(var/mob/living/mob_to_neutralize in view(src, effect_range))
 		if(is_type_in_list(mob_to_neutralize, blacklisted_mobs))
 			return
-		mob_to_neutralize.faction |= factions
+		mob_to_neutralize.add_faction(factions)
 		mob_to_neutralize.visible_message(span_green("[mob_to_neutralize] is overcome by a wave of peace and tranquility!"))
 		new /obj/effect/particle_effect/sparks/quantum(get_turf(mob_to_neutralize))
 	qdel(src)

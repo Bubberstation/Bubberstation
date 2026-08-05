@@ -8,14 +8,13 @@
 /obj/item/clothing/neck/mantle
 	name = "mantle"
 	desc = "A decorative drape over the shoulders. This one has a simple, dry color."
-	icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/neck.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "mantle"
 
 /obj/item/clothing/neck/mantle/regal
 	name = "regal mantle"
 	desc = "A colorful felt mantle. You feel posh just holding this thing."
-	icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "regal-mantle"
 
 /obj/item/clothing/neck/mantle/qm
@@ -26,50 +25,51 @@
 /obj/item/clothing/neck/mantle/hopmantle
 	name = "\proper the head of personnel's mantle"
 	desc = "A decorative draping of blue and red over your shoulders, signifying your stamping prowess."
-	icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "hopmantle"
 
 /obj/item/clothing/neck/mantle/cmomantle
 	name = "\proper the chief medical officer's mantle"
 	desc = "A light blue shoulder draping for THE medical professional. Contrasts well with blood."
-	icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "cmomantle"
 
 /obj/item/clothing/neck/mantle/rdmantle
 	name = "\proper the research director's mantle"
 	desc = "A terribly comfortable shoulder draping for the discerning scientist of fashion."
-	icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "rdmantle"
 
 /obj/item/clothing/neck/mantle/cemantle
 	name = "\proper the chief engineer's mantle"
 	desc = "A bright white and yellow striped mantle. Do not wear around active machinery."
-	icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "cemantle"
 
 /obj/item/clothing/neck/mantle/hosmantle
 	name = "\proper the head of security's mantle"
 	desc = "A plated mantle that one might wrap around the upper torso. The 'scales' of the garment signify the members of security and how you're carrying them on your shoulders."
-	icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
-	icon_state = "hosmantle_blue" //There's a red version if you remove the _blue, but its not coded in currently.
+	icon_state = "hosmantle"
+
+/obj/item/clothing/neck/mantle/hosmantle/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_mantle)
+
+/datum/atom_skin/hos_mantle
+	abstract_type = /datum/atom_skin/hos_mantle
+
+/datum/atom_skin/hos_mantle/red
+	preview_name = "Red Variant"
+	new_icon_state = "hosmantle"
+
+/datum/atom_skin/hos_mantle/blue
+	preview_name = "Blue Variant"
+	new_icon_state = "hosmantle_blue"
 
 /obj/item/clothing/neck/mantle/bsmantle
 	name = "\proper the blueshield's mantle"
 	desc = "A plated mantle with command colors. Suitable for the one assigned to making sure they're still breathing."
-	icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "bsmantle"
 
 /obj/item/clothing/neck/mantle/capmantle
 	name = "\proper the captain's mantle"
 	desc = "A formal mantle to drape around the shoulders. Others stand on the shoulders of giants. You're the giant they stand on."
-	icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "capmantle"
 
 /obj/item/clothing/neck/mantle/recolorable
@@ -104,14 +104,15 @@
 
 /obj/item/clothing/neck/face_scarf/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/toggle_icon, toggle_noun = "scarf")
+	AddComponent(/datum/component/toggle_clothes, "face_scarf_t")
 
-/obj/item/clothing/neck/face_scarf/click_alt(mob/user) //Make sure that toggling actually hides the snout so that it doesn't clip
+/obj/item/clothing/neck/face_scarf/update_icon(updates) //Make sure that toggling actually hides the snout so that it doesn't clip
+	. = ..()
 	if(icon_state != "face_scarf_t")
 		flags_inv = HIDEFACIALHAIR | HIDESNOUT
 	else
 		flags_inv = HIDEFACIALHAIR
-	return CLICK_ACTION_SUCCESS
+
 
 /obj/item/clothing/neck/maid_neck_cover
 	name = "maid neck cover"
@@ -119,7 +120,7 @@
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/maid_neck_cover"
 	post_init_icon_state = "maid_neck_cover"
-	greyscale_config = /datum/greyscale_config/maid_neck_cover
-	greyscale_config_worn = /datum/greyscale_config/maid_neck_cover/worn
+	greyscale_config = /datum/greyscale_config/bubber_maid_neck_cover
+	greyscale_config_worn = /datum/greyscale_config/bubber_maid_neck_cover/worn
 	greyscale_colors = "#7b9ab5#edf9ff"
 	flags_1 = IS_PLAYER_COLORABLE_1

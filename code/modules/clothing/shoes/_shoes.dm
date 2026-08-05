@@ -3,13 +3,13 @@
 	icon = 'icons/obj/clothing/shoes.dmi'
 	lefthand_file = 'icons/mob/inhands/clothing/shoes_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/clothing/shoes_righthand.dmi'
+	abstract_type = /obj/item/clothing/shoes
 	desc = "Comfortable-looking shoes."
 	pickup_sound = 'sound/items/handling/shoes/sneakers_pickup1.ogg'
 	drop_sound = 'sound/items/handling/shoes/sneakers_drop1.ogg'
 	equip_sound = 'sound/items/equip/sneakers_equip1.ogg'
 	sound_vary = TRUE
 	gender = PLURAL //Carn: for grammarically correct text-parsing
-	clothing_flags = CLOTHING_MOD_OVERSLOTTING
 	body_parts_covered = FEET
 	slot_flags = ITEM_SLOT_FEET
 	armor_type = /datum/armor/clothing_shoes
@@ -29,6 +29,18 @@
 	///An active alert
 	var/datum/weakref/our_alert_ref
 	var/footprint_sprite = FOOTPRINT_SPRITE_SHOES
+
+/obj/item/clothing/shoes/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	context[SCREENTIP_CONTEXT_ALT_RMB] = "Toggle shoes under uniforms"
+	return CONTEXTUAL_SCREENTIP_SET
+
+/obj/item/clothing/shoes/click_alt_secondary(mob/user)
+	alternate_worn_layer = (alternate_worn_layer == UNDER_UNIFORM_LAYER) ? NONE : UNDER_UNIFORM_LAYER
+
+	update_slot_icon()
+	balloon_alert(user, "wearing [alternate_worn_layer == UNDER_UNIFORM_LAYER ? "under" : "over"] uniforms")
+	return CLICK_ACTION_SUCCESS
 
 /datum/armor/clothing_shoes
 	bio = 50
@@ -78,7 +90,7 @@
 		. += "The [fastening_type] are all knotted together."
 
 /obj/item/clothing/shoes/visual_equipped(mob/user, slot)
-	..()
+	. = ..()
 	if(offset && (slot_flags & slot))
 		user.pixel_z += offset
 		worn_y_dimension -= (offset * 2)

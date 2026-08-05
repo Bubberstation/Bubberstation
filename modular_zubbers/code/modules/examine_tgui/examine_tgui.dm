@@ -1,8 +1,19 @@
+/atom/movable/screen/map_view/examine_panel_screen/proc/update_character(mob/target)
+	var/mutable_appearance/current_mob_appearance = new(target.appearance)
+	current_mob_appearance.setDir(SOUTH)
+	current_mob_appearance.transform = matrix() // We reset their rotation, in case they're lying down.
+
+	// In case they're pixel-shifted, we bring 'em back!
+	current_mob_appearance.pixel_x = 0
+	current_mob_appearance.pixel_y = 0
+	cut_overlays()
+	add_overlay(current_mob_appearance)
+
 /datum/examine_panel
 	/// Mob that the examine panel belongs to.
 	var/mob/living/holder
-	/// The screen containing the appearance of the mob
-	var/atom/movable/screen/map_view/examine_panel_screen
+	/// Lazy assoc list of viewers to screens
+	var/list/viewer_screens
 
 
 /mob/living/carbon/human/Destroy()
@@ -17,37 +28,28 @@
 	return GLOB.always_state
 
 /datum/examine_panel/ui_close(mob/user)
-	examine_panel_screen.hide_from(user)
+	var/viewer_screen = LAZYACCESS(viewer_screens, user)
+	LAZYREMOVE(viewer_screens, user)
+	qdel(viewer_screen)
 
 /datum/examine_panel/Destroy(force)
 	holder = null
-	QDEL_NULL(examine_panel_screen)
+	QDEL_LIST_ASSOC_VAL(viewer_screens)
 	. = ..()
 
 /datum/examine_panel/ui_interact(mob/user, datum/tgui/ui)
-	if(!examine_panel_screen)
-		examine_panel_screen = new
-		examine_panel_screen.name = "screen"
-		examine_panel_screen.assigned_map = "examine_panel_[REF(holder)]_map"
-		examine_panel_screen.del_on_map_removal = FALSE
-		examine_panel_screen.screen_loc = "[examine_panel_screen.assigned_map]:1,1"
-
-	var/mutable_appearance/current_mob_appearance = new(holder)
-	current_mob_appearance.setDir(SOUTH)
-	current_mob_appearance.transform = matrix() // We reset their rotation, in case they're lying down.
-
-	// In case they're pixel-shifted, we bring 'em back!
-	current_mob_appearance.pixel_x = 0
-	current_mob_appearance.pixel_y = 0
-
-	examine_panel_screen.cut_overlays()
-	examine_panel_screen.add_overlay(current_mob_appearance)
+	var/atom/movable/screen/map_view/examine_panel_screen/viewer_screen = LAZYACCESS(viewer_screens, user)
+	if(isnull(viewer_screen))
+		viewer_screen = new
+		viewer_screen.generate_view("examine_panel_[REF(holder)]_[REF(user)]_map")
+		viewer_screen.update_character(holder)
+		LAZYSET(viewer_screens, user, viewer_screen)
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ExaminePanel")
 		ui.open()
-		examine_panel_screen.display_to(user, ui.window)
+		viewer_screen.display_to(user, ui.window)
 
 
 /datum/examine_panel/ui_data(mob/user)
@@ -70,6 +72,8 @@
 	var/art_ref_nsfw = preferences?.read_preference(/datum/preference/toggle/art_ref_nsfw)
 	var/character_ad = ""
 
+	var/attraction = preferences?.read_preference(/datum/preference/choiced/attraction)
+	var/display_gender = preferences?.read_preference(/datum/preference/choiced/display_gender)
 	var/emote_length = preferences?.read_preference(/datum/preference/choiced/emote_length)
 	var/approach = preferences?.read_preference(/datum/preference/choiced/approach_pref)
 	var/furries = preferences?.read_preference(/datum/preference/choiced/directory_character_prefs/furry_pref)
@@ -83,17 +87,22 @@
 	if(preferences)
 		if(preferences.read_preference(/datum/preference/toggle/master_erp_preferences))
 			var/e_prefs = preferences.read_preference(/datum/preference/choiced/erp_status)
+			var/e_prefs_free_use = preferences.read_preference(/datum/preference/toggle/erp_free_use)
 			var/e_prefs_hypno = preferences.read_preference(/datum/preference/choiced/erp_status_hypno)
 			var/e_prefs_v = preferences.read_preference(/datum/preference/choiced/erp_status_v)
 			var/e_prefs_nc = preferences.read_preference(/datum/preference/choiced/erp_status_nc)
 			var/e_prefs_mechanical = preferences.read_preference(/datum/preference/choiced/erp_status_mechanics)
-			ooc_notes += "ERP: [e_prefs]\n"
+			ooc_notes += "ERP: [e_prefs][e_prefs_free_use ? " - Free Use" : ""]\n"
 			ooc_notes += "Hypnosis: [e_prefs_hypno]\n"
 			ooc_notes += "Vore: [e_prefs_v]\n"
 			ooc_notes += "Non-Con: [e_prefs_nc]\n"
 			ooc_notes += "ERP Mechanics: [e_prefs_mechanical]\n"
 			ooc_notes += "\n"
 
+		if(display_gender != "Unset")
+			character_ad += "Gender: [display_gender]\n"
+		if(attraction != "Unset")
+			character_ad += "Sexuality: [attraction]\n"
 		character_ad += "Preferred Emote Length: [emote_length]\n"
 		character_ad += "How to Approach: [approach]\n"
 		character_ad += "Furries: [furries] | Scalies: [scalies] | Other: [others]\n"
@@ -124,9 +133,7 @@
 
 	if(ishuman(holder))
 		var/mob/living/carbon/human/holder_human = holder
-		obscured = (holder_human.wear_mask && (holder_human.wear_mask.flags_inv & HIDEFACE)) && \
-		obscurity_examine_pref || \
-		(holder_human.head && (holder_human.head.flags_inv & HIDEFACE) && obscurity_examine_pref)
+		obscured = (holder_human.covered_slots & HIDEFACE) && obscurity_examine_pref
 
 		//Check if the mob is obscured, then continue to headshot and species lore
 		ooc_notes += holder_human.dna?.features["ooc_notes"]
@@ -159,9 +166,11 @@
 			else
 				custom_species_lore = holder_human.dna.features["custom_species_lore"]
 
+	var/atom/movable/screen/map_view/examine_panel_screen/viewer_screen = LAZYACCESS(viewer_screens, user)
+
 	data["obscured"] = obscured ? TRUE : FALSE
 	data["character_name"] = name
-	data["assigned_map"] = examine_panel_screen.assigned_map
+	data["assigned_map"] = viewer_screen?.assigned_map
 	data["flavor_text"] = flavor_text
 	data["flavor_text_nsfw"] = flavor_text_nsfw
 	data["ooc_notes"] = ooc_notes

@@ -1,6 +1,5 @@
 /obj/item/organ/horns
 	desc = "Why do some people even have horns? Well, this one obviously doesn't."
-	preference = "feature_horns"
 	mutantpart_key = "horns"
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Simple", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))
 	organ_flags = ORGAN_EXTERNAL
@@ -14,6 +13,8 @@
 	return draw_color
 
 /datum/bodypart_overlay/mutant/horns/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
+	if(!..(bodypart_owner))
+		return FALSE
 	var/mob/living/carbon/human/human = bodypart_owner.owner
 	if(!human)
 		return TRUE

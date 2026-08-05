@@ -1,5 +1,6 @@
 /obj/item/clothing/under/rank/engineering
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/engineering_digi.dmi' // Anything that was in the engineering.dmi, should be in the engineering_digi.dmi
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/engineering/engineer/skyrat
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/engineering.dmi'
@@ -60,11 +61,6 @@
 /datum/armor/clothing_under/hazard_chem_emt
 	fire = 10
 	acid = 50
-
-/obj/item/clothing/under/rank/engineering/chief_engineer/skyrat/imperial
-	desc = "A gray naval suit with a lead-lined vest and a rank badge denoting the Officer of the Internal Engineering Division. Doesn't come with a death machine building guide."
-	name = "chief engineer's naval jumpsuit"
-	icon_state = "impce"
 
 /*
 *	ATMOS TECH

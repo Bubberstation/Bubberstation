@@ -144,6 +144,7 @@
 	icon_state = "throw_wheel_empty"
 	density = TRUE
 	anchored = TRUE
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 	///if the structure has clay
 	var/has_clay = FALSE
 	//if the structure is in use or not

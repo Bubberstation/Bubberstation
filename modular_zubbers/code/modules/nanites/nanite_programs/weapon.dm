@@ -12,7 +12,7 @@
 		var/mob/living/carbon/C = host_mob
 		C.take_bodypart_damage(1, 0, TRUE)
 	else
-		host_mob.adjustBruteLoss(1, TRUE)
+		host_mob.adjust_brute_loss(1, TRUE)
 	if(prob(3))
 		to_chat(host_mob, span_warning("You feel a stab of pain from somewhere inside you."))
 
@@ -23,7 +23,7 @@
 	rogue_types = list(/datum/nanite_program/toxic)
 
 /datum/nanite_program/poison/active_effect()
-	host_mob.adjustToxLoss(1)
+	host_mob.adjust_tox_loss(1)
 	if(prob(2))
 		to_chat(host_mob, span_warning("You feel nauseous."))
 		if(iscarbon(host_mob))
@@ -54,7 +54,7 @@
 /datum/nanite_program/aggressive_replication/active_effect()
 	var/extra_regen = round(nanites.nanite_volume / 200, 0.1)
 	nanites.adjust_nanites(null, extra_regen)
-	host_mob.adjustBruteLoss(extra_regen / 2, TRUE)
+	host_mob.adjust_brute_loss(extra_regen / 2, TRUE)
 
 /datum/nanite_program/meltdown
 	name = "Meltdown"
@@ -64,7 +64,7 @@
 	rogue_types = list(/datum/nanite_program/glitch)
 
 /datum/nanite_program/meltdown/active_effect()
-	host_mob.adjustFireLoss(3.5)
+	host_mob.adjust_fire_loss(3.5)
 
 /datum/nanite_program/meltdown/enable_passive_effect()
 	. = ..()
@@ -86,7 +86,7 @@
 /datum/nanite_program/explosive/on_trigger(comm_message)
 	host_mob.visible_message(span_warning("[host_mob] starts emitting a high-pitched buzzing, and [host_mob.p_their()] skin begins to glow..."),\
 							span_userdanger("You start emitting a high-pitched buzzing, and your skin begins to glow..."))
-	addtimer(CALLBACK(src, .proc/boom), clamp((nanites.nanite_volume * 0.35), 25, 150))
+	addtimer(CALLBACK(src, PROC_REF(boom)), clamp((nanites.nanite_volume * 0.35), 25, 150))
 
 /datum/nanite_program/explosive/proc/boom()
 	dyn_explosion(host_mob, nanites.nanite_volume / 50)
@@ -174,7 +174,7 @@
 	brainwash(host_mob, sent_directive)
 	log_game("A mind control nanite program brainwashed [key_name(host_mob)] with the objective '[sent_directive]'.")
 	host_mob.log_message("has been brainwashed with the objective '[sent_directive]' triggered by a mind control nanite program.", LOG_ATTACK)
-	addtimer(CALLBACK(src, .proc/end_brainwashing), 600)
+	addtimer(CALLBACK(src, PROC_REF(end_brainwashing)), 600)
 
 /datum/nanite_program/comm/mind_control/proc/end_brainwashing()
 	if(host_mob.mind && host_mob.mind.has_antag_datum(/datum/antagonist/brainwashed))

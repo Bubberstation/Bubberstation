@@ -24,7 +24,11 @@
 	owner.update_icon(UPDATE_OVERLAYS)
 
 /datum/status_effect/void_chill/on_apply()
+	if(owner.can_block_magic())
+		return FALSE
 	if(issilicon(owner))
+		return FALSE
+	if(IS_HERETIC_OR_MONSTER(owner))
 		return FALSE
 	return TRUE
 
@@ -73,7 +77,7 @@
 /datum/status_effect/void_chill/proc/adjust_stacks(new_stacks)
 	stacks = max(0, min(stack_limit, stacks + new_stacks))
 	update_movespeed(stacks)
-	if(stacks >= 5)
+	if(stacks >= 5 && !owner.has_reagent(/datum/reagent/medicine/leporazine)) // BUBBER EDIT ADDITION - leporazine makes it managable
 		ADD_TRAIT(owner, TRAIT_HYPOTHERMIC, TRAIT_STATUS_EFFECT(id))
 
 ///Updates the movespeed of owner based on the amount of stacks of the debuff
@@ -94,20 +98,21 @@
 /atom/movable/screen/alert/status_effect/void_chill
 	name = "Void Chill"
 	desc = "There's something freezing you from within and without. You've never felt cold this oppressive before..."
-	icon_state = "void_chill_minor"
+	icon_state = "heretic_template"
+	overlay_state = "void_chill_minor"
 
-/atom/movable/screen/alert/status_effect/void_chill/update_icon_state()
+/atom/movable/screen/alert/status_effect/void_chill/update_overlays()
+	if(!istype(attached_effect, /datum/status_effect/void_chill))
+		return ..()
+	var/datum/status_effect/void_chill/chill_effect = attached_effect
+	if(chill_effect.stacks >= 5)
+		overlay_state = "void_chill_oh_fuck"
+	return ..()
+// BUBBER EDIT REMOVAL - Static desc
+/*/atom/movable/screen/alert/status_effect/void_chill/update_desc(updates)
 	. = ..()
 	if(!istype(attached_effect, /datum/status_effect/void_chill))
 		return
 	var/datum/status_effect/void_chill/chill_effect = attached_effect
 	if(chill_effect.stacks >= 5)
-		icon_state = "void_chill_oh_fuck"
-
-/atom/movable/screen/alert/status_effect/void_chill/update_desc(updates)
-	. = ..()
-	if(!istype(attached_effect, /datum/status_effect/void_chill))
-		return
-	var/datum/status_effect/void_chill/chill_effect = attached_effect
-	if(chill_effect.stacks >= 5)
-		desc = "You had your chance to run, now it's too late. You may never feel warmth again..."
+		desc = "You had your chance to run, now it's too late. You may never feel warmth again..."*/

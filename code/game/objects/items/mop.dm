@@ -36,6 +36,7 @@
 /obj/item/mop/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/cleaner, mopspeed, pre_clean_callback=CALLBACK(src, PROC_REF(should_clean)), on_cleaned_callback=CALLBACK(src, PROC_REF(apply_reagents)))
+	AddComponent(/datum/component/walking_aid)
 	create_reagents(max_reagent_volume)
 	GLOB.janitor_devices += src
 
@@ -52,7 +53,7 @@
 		return CLEAN_BLOCKED
 	if(reagents.has_reagent(amount = 1, chemical_flags = REAGENT_CLEANS))
 		return CLEAN_ALLOWED
-	return CLEAN_BLOCKED|CLEAN_NO_XP
+	return CLEAN_ALLOWED|CLEAN_NO_XP|CLEAN_NO_WASH
 
 /**
  * Applies reagents to the cleaned floor and removes them from the mop.

@@ -20,7 +20,8 @@ export type LoadoutList = { loadouts: string[]; loadout: LoadoutListInfo }; // B
 export type ReskinOption = {
   name: string;
   tooltip: string;
-  skin_icon_state: DmIconState; // The icon is the same as the item icon
+  skin_icon: DmIconFile | null;
+  skin_icon_state: DmIconState;
 };
 
 export type LoadoutTooltip = {
@@ -35,6 +36,7 @@ export type LoadoutItem = {
   path: typePath;
   icon: DmIconFile | null;
   icon_state: DmIconState | null;
+  image?: string;
   buttons: LoadoutButton[];
   reskins: ReskinOption[] | null;
   information: LoadoutTooltip[];

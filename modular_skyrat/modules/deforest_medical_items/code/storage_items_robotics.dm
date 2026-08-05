@@ -35,7 +35,7 @@
 
 /obj/item/storage/medkit/robotic_repair/stocked/PopulateContents()
 	var/static/items_inside = list(
-		/obj/item/stack/medical/gauze = 1,
+		/obj/item/stack/medical/wrap/gauze = 1,
 		/obj/item/reagent_containers/applicator/pill/robotic_patch/synth_repair = 2,
 		/obj/item/stack/medical/wound_recovery/robofoam = 1,
 		/obj/item/reagent_containers/hypospray/medipen/deforest/robot_system_cleaner = 1,
@@ -47,20 +47,20 @@
 /obj/item/storage/medkit/robotic_repair/preemo
 	name = "premium robotic repair equipment kit"
 	desc = "An industrial-strength plastic box filled with supplies for repairing synthetics from critical damage. \
-		This one has extra storage on the sides for even more equipment than the standard medkit model."
+		This one has extra storage on the sides for even more equipment than the standard medkit model, \
+		and can also fit smaller tools and welding gear inside."
 	icon_state = "synth_medkit_super"
 
 /obj/item/storage/medkit/robotic_repair/preemo/Initialize(mapload)
 	. = ..()
-	atom_storage.max_specific_storage = WEIGHT_CLASS_NORMAL
 	atom_storage.max_slots = 12
-	atom_storage.max_total_storage = 12 * WEIGHT_CLASS_NORMAL
+	atom_storage.max_total_storage = 12 * WEIGHT_CLASS_SMALL
 
 /obj/item/storage/medkit/robotic_repair/preemo/stocked
 
 /obj/item/storage/medkit/robotic_repair/preemo/stocked/PopulateContents()
 	var/static/items_inside = list(
-		/obj/item/stack/medical/gauze/twelve = 1,
+		/obj/item/stack/medical/wrap/gauze/twelve = 1,
 		/obj/item/stack/cable_coil/thirty = 1,
 		/obj/item/reagent_containers/applicator/pill/robotic_patch/synth_repair = 4,
 		/obj/item/stack/medical/wound_recovery/robofoam = 1,

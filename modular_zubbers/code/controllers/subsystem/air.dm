@@ -4,34 +4,24 @@
 	var/datum/reagent/chosen_goblin_reagent_toxic
 
 /datum/controller/subsystem/air/Initialize()
-
 	. = ..()
 
-	var/list/possible_medicine_reagents = subtypesof(/datum/reagent/medicine)
-	while(!chosen_goblin_reagent_medicine && length(possible_medicine_reagents))
-		var/datum/reagent/R = pick_n_take(possible_medicine_reagents)
-		if(!(initial(R.chemical_flags) & REAGENT_CAN_BE_SYNTHESIZED))
-			continue
-		chosen_goblin_reagent_medicine = R
-	if(!chosen_goblin_reagent_medicine)
-		chosen_goblin_reagent_medicine = /datum/reagent/consumable/salt
+	// Precompute these for the entire round - fallback on salt.
+	chosen_goblin_reagent_medicine = pick(get_synthesizable_reagent_subtypes(/datum/reagent/medicine)) || /datum/reagent/consumable/salt
+	chosen_goblin_reagent_drug = pick(get_synthesizable_reagent_subtypes(/datum/reagent/drug)) || /datum/reagent/consumable/salt
+	chosen_goblin_reagent_toxic = pick(get_synthesizable_reagent_subtypes(/datum/reagent/toxin)) || /datum/reagent/consumable/salt
 
-	var/list/possible_drug_reagents = subtypesof(/datum/reagent/drug)
-	while(!chosen_goblin_reagent_drug && length(possible_drug_reagents))
-		var/datum/reagent/R = pick_n_take(possible_drug_reagents)
-		if(!(initial(R.chemical_flags) & REAGENT_CAN_BE_SYNTHESIZED))
-			continue
-		chosen_goblin_reagent_drug = R
-	if(!chosen_goblin_reagent_drug)
-		chosen_goblin_reagent_drug = /datum/reagent/consumable/salt
+/// Returns a list of all subtypes of base_type reagent that can be synthesized.
+/// If none qualify, returns an empty list — caller should handle fallback.
+/proc/get_synthesizable_reagent_subtypes(base_type)
+	var/list/reagent_subtypes = subtypesof(base_type)
+	if(!reagent_subtypes.len)
+		return list()
 
+	// Filter in-place
+	for(var/i = reagent_subtypes.len; i >= 1; i--)
+		var/datum/reagent/reagent = reagent_subtypes[i]
+		if (!(initial(reagent.chemical_flags) & REAGENT_CAN_BE_SYNTHESIZED))
+			reagent_subtypes.Cut(i, i+1) // remove this entry
 
-	var/list/possible_toxic_reagents = subtypesof(/datum/reagent/toxin)
-	while(!chosen_goblin_reagent_toxic && length(possible_toxic_reagents))
-		var/datum/reagent/R = pick_n_take(possible_toxic_reagents)
-		if(!(initial(R.chemical_flags) & REAGENT_CAN_BE_SYNTHESIZED))
-			continue
-		chosen_goblin_reagent_toxic = R
-	if(!chosen_goblin_reagent_toxic)
-		chosen_goblin_reagent_toxic = /datum/reagent/consumable/salt
-
+	return reagent_subtypes

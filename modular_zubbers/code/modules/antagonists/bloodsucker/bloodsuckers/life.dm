@@ -78,32 +78,12 @@
 #undef MASQUERADE
 
 /// mult: SILENT feed is 1/3 the amount
-/datum/antagonist/bloodsucker/proc/handle_feeding(mob/living/carbon/target, mult=1, power_level, already_drunk = 0)
-	// Starts at 15 (now 8 since we doubled the Feed time)
-	var/feed_amount = 15 + (power_level * 2)
-	var/blood_taken = feed_amount * mult
-	target.blood_volume = max(target.blood_volume - blood_taken, 0)
-
-	///////////
-	// Shift Body Temp (toward Target's temp, by volume taken)
-	owner.current.bodytemperature = ((bloodsucker_blood_volume * owner.current.bodytemperature) + (blood_taken * target.bodytemperature)) / (bloodsucker_blood_volume + blood_taken)
-	// our volume * temp, + their volume * temp, / total volume
-	///////////
-	// Reduce Value Quantity
-	if(target.stat == DEAD) // Penalty for Dead Blood
-		blood_taken /= 3
-	if(!ishuman(target)) // Penalty for Non-Human Blood
-		blood_taken /= 2
-	else if(!target?.mind) // Penalty for Mindless Blood
-		blood_taken /= 2
+/datum/antagonist/bloodsucker/proc/handle_feeding(mob/living/carbon/target, blood_taken, already_drunk = 0)
 	// Apply to Volume
 	AdjustBloodVolume(blood_taken)
 	total_blood_drank += blood_taken
 	OverfeedHealing(blood_taken)
 	// Reagents (NOT Blood!)
-	if(target.reagents && target.reagents.total_volume)
-		target.reagents.trans_to(owner.current, INGEST, 1) // Run transfer of 1 unit of reagent from them to me.
-	owner.current.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, 1) // Play THIS sound for user only. The "null" is where turf would go if a location was needed. Null puts it right in their head.
 	if(target.mind) // Checks if the target has a mind
 		// closer it is to max, the less level up blood you get
 		var/blood_for_leveling = blood_taken
@@ -127,13 +107,13 @@
 	// Garlic in you? No healing for you!
 	if(HAS_TRAIT(owner.current, TRAIT_GARLIC_REAGENT))
 		return FALSE
-	owner.current.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1 * actual_regen * mult) //adjustBrainLoss(-1 * (actual_regen * 4) * mult, 0)
+	owner.current.adjust_organ_loss(ORGAN_SLOT_BRAIN, -1 * actual_regen * mult) //adjustBrainLoss(-1 * (actual_regen * 4) * mult, 0)
 	if(!iscarbon(owner.current)) // Damage Heal: Do I have damage to ANY bodypart?
 		return FALSE
 	var/mob/living/carbon/user = owner.current
 	var/costMult = 1 // Coffin makes it cheaper
 	// If you're a synth, you heal prosthetic damage.
-	var/bruteLoss = getBruteLoss()
+	var/bruteLoss = get_brute_loss()
 	var/bruteheal = min(bruteLoss, actual_regen) // BRUTE: Always Heal
 	var/fireheal = 0 // BURN: Heal in Coffin while Fakedeath, or when damage above maxhealth (you can never fully heal fire)
 	// Checks if you're in a coffin here, additionally checks for Torpor right below it.
@@ -145,7 +125,7 @@
 			to_chat(user, span_alert("You do not heal while your Masquerade ability is active."))
 			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_MASQUERADE)
 			return FALSE
-		fireheal = min(getFireLoss(), actual_regen)
+		fireheal = min(get_fire_loss(), actual_regen)
 		mult *= 5 // Increase multiplier if we're sleeping in a coffin.
 		costMult *= COFFIN_HEAL_COST_MULT // Decrease cost if we're sleeping in a coffin.
 		user.extinguish_mob()
@@ -158,13 +138,13 @@
 			return TRUE
 	// In Torpor, but not in a Coffin? Heal faster anyways.
 	else if(is_in_torpor())
-		var/fireloss = getFireLoss()
+		var/fireloss = get_fire_loss()
 		fireheal = min(fireloss, actual_regen) / 1.2 // 20% slower than being in a coffin
 		mult *= 3
 	// Heal if Damaged
 	if((bruteheal + fireheal) && mult != 0) // Just a check? Don't heal/spend, and return.
 		// We have damage. Let's heal (one time), and don't cost any blood if we cannot
-		if(!user.adjustBruteLoss(-bruteheal * mult, updating_health = FALSE) && !user.adjustFireLoss(-fireheal * mult, updating_health = FALSE)) // Heal BRUTE / BURN in random portions throughout the body.
+		if(!user.adjust_brute_loss(-bruteheal * mult, updating_health = FALSE) && !user.adjust_fire_loss(-fireheal * mult, updating_health = FALSE)) // Heal BRUTE / BURN in random portions throughout the body.
 			return FALSE
 		user.updatehealth()
 		AdjustBloodVolume(((bruteheal * -0.5) + (fireheal * -1)) * costMult * mult) // Costs blood to heal
@@ -173,15 +153,15 @@
 /datum/antagonist/bloodsucker/proc/OverfeedHealing(drunk)
 	var/mob/living/carbon/user = owner.current
 	if(blood_over_cap > 0) //Checks if you are over your blood cap
-		var/overbruteheal = user.getBruteLoss_nonProsthetic()
-		var/overfireheal = user.getFireLoss_nonProsthetic()
+		var/overbruteheal = user.get_brute_loss_nonProsthetic()
+		var/overfireheal = user.get_fire_loss_nonProsthetic()
 		var/heal_amount = drunk / 3
 		if(overbruteheal > 0 && heal_amount > 0)
-			user.adjustBruteLoss(-heal_amount, updating_health = FALSE, forced = TRUE) // Heal BRUTE / BURN in random portions throughout the body; prioritising BRUTE.
+			user.adjust_brute_loss(-heal_amount, updating_health = FALSE, forced = TRUE) // Heal BRUTE / BURN in random portions throughout the body; prioritising BRUTE.
 			heal_amount = (heal_amount - overbruteheal) // Removes the amount of BRUTE we've healed from the heal amount
 		else if(overfireheal > 0 && heal_amount > 0)
 			heal_amount /= 1.5 // Burn should be more difficult to heal
-			user.adjustFireLoss(-heal_amount, updating_health = FALSE, forced = TRUE)
+			user.adjust_fire_loss(-heal_amount, updating_health = FALSE, forced = TRUE)
 		user.updatehealth()
 
 /datum/antagonist/bloodsucker/proc/check_limbs(costMult = 1)
@@ -213,8 +193,8 @@
 /datum/antagonist/bloodsucker/proc/heal_vampire_organs()
 	var/mob/living/carbon/bloodsuckeruser = owner.current
 	// please don't poison or asphyxiate the immune
-	bloodsuckeruser.setToxLoss(0, forced = TRUE)
-	bloodsuckeruser.setOxyLoss(0, forced = TRUE)
+	bloodsuckeruser.set_tox_loss(0, forced = TRUE)
+	bloodsuckeruser.set_oxy_loss(0, forced = TRUE)
 
 	if(QDELETED(bloodsuckeruser))
 		return
@@ -280,7 +260,7 @@
 		ghouls = list()
 		return
 	// Fire Damage? (above double health)
-	if(owner.current.getFireLoss() >= owner.current.maxHealth * FINAL_DEATH_HEALTH_TO_BURN) // 337.5 burn with 135 maxHealth
+	if(owner.current.get_fire_loss() >= owner.current.maxHealth * FINAL_DEATH_HEALTH_TO_BURN) // 337.5 burn with 135 maxHealth
 		FinalDeath()
 		return
 	// Temporary Death? Convert to Torpor.

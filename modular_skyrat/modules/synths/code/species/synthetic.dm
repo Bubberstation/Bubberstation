@@ -52,6 +52,7 @@
 
 	/// Set to TRUE if the species was emagged before
 	var/emag_effect = FALSE
+	language_prefs_whitelist = list(/datum/language/monkey)
 
 /datum/species/synthetic/allows_food_preferences()
 	return FALSE
@@ -68,11 +69,11 @@
 		MUTANT_SYNTH_HEAD = list("Default Head", FALSE),
 	)
 
-/datum/species/synthetic/spec_life(mob/living/carbon/human/human)
-	. = ..()
+/datum/species/synthetic/proc/on_life(mob/living/carbon/human/human)
+	SIGNAL_HANDLER
 
 	if(human.stat == SOFT_CRIT || human.stat == HARD_CRIT)
-		human.adjustFireLoss(1) //Still deal some damage in case a cold environment would be preventing us from the sweet release to robot heaven
+		human.adjust_fire_loss(1) //Still deal some damage in case a cold environment would be preventing us from the sweet release to robot heaven
 		human.adjust_bodytemperature(13) //We're overheating!!
 		if(prob(10))
 			to_chat(human, span_warning("Alert: Critical damage taken, all systems failing."))
@@ -82,7 +83,7 @@
 	if(!lungs || (lungs.organ_flags & ORGAN_FAILING))
 		// No lungs or failing lungs present, apply overheating
 		human.adjust_bodytemperature(50)
-		human.adjustFireLoss(1)
+		human.adjust_fire_loss(1)
 		if(prob(10))
 			to_chat(human, span_warning("Alert: Cooling system is non-functional or missing, OVERHEATING is imminent."))
 			do_sparks(3, TRUE, human)
@@ -120,7 +121,7 @@
 	if(!screen && screen_mutant_bodypart && screen_mutant_bodypart[MUTANT_INDEX_NAME] && screen_mutant_bodypart[MUTANT_INDEX_NAME] != "None")
 
 		if(eyes)
-			eyes.eye_icon_state = "None"
+			eyes.eye_icon_state = null
 
 		screen = new(human_who_gained_species)
 		screen.Grant(human_who_gained_species)
@@ -256,6 +257,13 @@
 		SPECIES_PERK_ICON = "music",
 		SPECIES_PERK_NAME = "Tone Synthesizer",
 		SPECIES_PERK_DESC = "[plural_form] can sing musical tones using an internal synthesizer.",
+	))
+
+	perk_descriptions += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+		SPECIES_PERK_ICON = "band-aid",
+		SPECIES_PERK_NAME = "Structural Damage",
+		SPECIES_PERK_DESC = "[plural_form] are weak to blunt objects.",
 	))
 
 	return perk_descriptions

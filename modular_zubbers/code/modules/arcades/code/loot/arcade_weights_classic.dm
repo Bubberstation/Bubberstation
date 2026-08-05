@@ -96,7 +96,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool_classic, list(
 		/obj/item/grenade/chem_grenade/colorful = 1,
 		/obj/item/grenade/chem_grenade/glitter/pink = 1,
 		/obj/item/grenade/chem_grenade/glitter/blue = 1,
-		/obj/item/grenade/chem_grenade/glitter/white = 1,
+		/obj/item/grenade/chem_grenade/glitter = 1,
 	) = 100,
 	list(
 		/obj/item/gun/ballistic/automatic/toy = 50,

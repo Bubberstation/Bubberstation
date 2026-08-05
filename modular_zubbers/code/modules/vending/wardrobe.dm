@@ -101,7 +101,12 @@
 
 /obj/machinery/vending/wardrobe/chem_wardrobe
 	zubbers_products = list(
+		/obj/item/clothing/head/beret/medical/chemist = 2,
 		/obj/item/clothing/head/playbunnyears/chemist = 2,
+		/obj/item/clothing/neck/tie/bunnytie/chemist = 2,
+		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science/chem = 2,
+		/obj/item/clothing/suit/toggle/labcoat/chemist/doctor_tailcoat = 2,
+		/obj/item/clothing/suit/toggle/labcoat/chemist/skyrat/pharmacist = 2,
 		/obj/item/clothing/under/rank/medical/chemist/bunnysuit = 2,
 		/obj/item/clothing/suit/toggle/labcoat/chemist/tailcoat = 2,
 		/obj/item/clothing/neck/tie/bunnytie/chemist = 2,
@@ -109,6 +114,7 @@
 
 /obj/machinery/vending/wardrobe/viro_wardrobe
 	zubbers_products = list(
+		/obj/item/clothing/head/beret/medical/virologist = 2,
 		/obj/item/clothing/head/playbunnyears/pathologist = 2,
 		/obj/item/clothing/under/rank/medical/virologist/bunnysuit = 2,
 		/obj/item/clothing/suit/toggle/labcoat/virologist/tailcoat = 2,
@@ -123,10 +129,13 @@
 		/obj/item/clothing/neck/tie/bunnytie/coroner = 2,
 	)
 
-
 /obj/machinery/vending/wardrobe/science_wardrobe
 	zubbers_products = list(
 		/obj/item/clothing/head/playbunnyears/scientist = 3,
+		/obj/item/clothing/neck/tie/bunnytie/scientist = 3,
+		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/science = 3,
+		/obj/item/clothing/suit/toggle/labcoat/science/doctor_tailcoat = 3,
+		/obj/item/clothing/suit/toggle/labcoat/technical/science = 3,
 		/obj/item/clothing/under/rank/rnd/scientist/bunnysuit = 3,
 		/obj/item/clothing/suit/toggle/labcoat/science/tailcoat = 3,
 		/obj/item/clothing/neck/tie/bunnytie/scientist = 3,
@@ -141,10 +150,22 @@
 	/obj/item/clothing/suit/toggle/labcoat/roboticist/tailcoat = 2,
 	/obj/item/clothing/neck/tie/bunnytie/roboticist = 2,
 	)
+	extra_price = PAYCHECK_COMMAND * 2.0 // This ensures the protean organs are ~200 credits each.
+
+/obj/machinery/vending/wardrobe/robo_wardrobe/Initialize(mapload)
+	product_categories[1]["products"] += products
+
+	products.Cut()
+	. = ..()
+
+/obj/item/vending_refill/wardrobe/robo_wardrobe
+	machine_name = "RoboVend"
 
 /obj/machinery/vending/wardrobe/gene_wardrobe
 	zubbers_products = list(
 	/obj/item/clothing/head/playbunnyears/geneticist = 2,
+	/obj/item/clothing/neck/tie/bunnytie/geneticist = 2,
+	/obj/item/clothing/suit/toggle/labcoat/genetics/doctor_tailcoat = 2,
 	/obj/item/clothing/under/rank/rnd/geneticist/bunnysuit = 2,
 	/obj/item/clothing/suit/toggle/labcoat/genetics/tailcoat = 2,
 	/obj/item/clothing/neck/tie/bunnytie/geneticist = 2,
@@ -152,6 +173,9 @@
 
 /obj/machinery/vending/wardrobe/det_wardrobe
 	zubbers_products = list(
+		/obj/item/clothing/head/fedora/beige = 2,
+		/obj/item/clothing/head/fedora/det_hat/cybergoggles = 2,
+		/obj/item/clothing/head/fedora/white = 2,
 		/obj/item/clothing/head/playbunnyears/detective = 2,
 		/obj/item/clothing/under/rank/security/detective/bunnysuit = 2,
 		/obj/item/clothing/suit/jacket/det_suit/tailcoat = 2,
@@ -161,33 +185,52 @@
 		/obj/item/clothing/suit/jacket/det_suit/tailcoat/noir = 2,
 	)
 
-
 /obj/machinery/vending/wardrobe/cargo_wardrobe
 	zubbers_products = list(
+		/obj/item/clothing/glasses/hud/gun_permit = 5, //from company imports module
 		/obj/item/clothing/head/caligram_cap_tan = 3,
-		/obj/item/clothing/under/jumpsuit/caligram_fatigues_tan = 3,
-		/obj/item/clothing/suit/jacket/caligram_parka_tan = 3,
+		/obj/item/clothing/head/playbunnyears/bitrunner = 3,
 		/obj/item/clothing/head/playbunnyears/cargo = 3,
 		/obj/item/clothing/under/rank/cargo/tech/bunnysuit = 3,
 		/obj/item/clothing/suit/toggle/cargo_tech/tailcoat = 3,
 		/obj/item/clothing/neck/tie/bunnytie/cargo = 3,
 		/obj/item/clothing/head/playbunnyears/mailman = 1,
-		/obj/item/clothing/under/rank/cargo/mailman_bunnysuit = 1,
-		/obj/item/clothing/neck/tie/bunnytie/mailman = 1,
-		/obj/item/clothing/head/playbunnyears/bitrunner = 3,
-		/obj/item/clothing/under/rank/cargo/bitrunner/bunnysuit = 3,
 		/obj/item/clothing/neck/tie/bunnytie/bitrunner = 3,
+		/obj/item/clothing/neck/tie/bunnytie/cargo = 3,
+		/obj/item/clothing/neck/tie/bunnytie/mailman = 1,
+		/obj/item/clothing/suit/jacket/caligram_parka_tan = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/bitrunner = 3,
+		/obj/item/clothing/suit/jacket/tailcoat/cargo = 3,
+		/obj/item/clothing/suit/toggle/jacket/supply = 3,
+		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/cargo = 3,
+		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/cargo/smith = 3,
+		/obj/item/clothing/suit/toggle/labcoat/technical/cargo = 3,
+		/obj/item/clothing/under/jumpsuit/caligram_fatigues_tan = 3,
+		/obj/item/clothing/under/rank/cargo/bitrunner/bunnysuit = 3,
+		/obj/item/clothing/under/rank/cargo/cargo_bunnysuit = 3,
+		/obj/item/clothing/under/rank/cargo/mailman_bunnysuit = 1,
+		/obj/item/clothing/under/rank/cargo/tech/skyrat/casualman = 3,
+		/obj/item/clothing/under/rank/cargo/tech/skyrat/gorka = 3,
+		/obj/item/clothing/under/rank/cargo/tech/skyrat/long = 3,
+		/obj/item/clothing/under/rank/cargo/tech/skyrat/turtleneck = 3,
+		/obj/item/clothing/under/rank/cargo/tech/skyrat/turtleneck/skirt = 3,
+		/obj/item/clothing/under/rank/cargo/tech/skyrat/utility = 3,
+		/obj/item/storage/backpack/messenger = 3,
+	)
+	zubbers_contraband = list(
+		/obj/item/clothing/under/rank/cargo/tech/skyrat/evil = 2,
+		/obj/item/clothing/under/suit/skyrat/scarface = 2,
 	)
 	zubbers_premium = list(
 		/obj/item/flatpack/export_gate = 1,
+		/obj/item/flatpack/materials_market = 1,
 	)
 
 /obj/machinery/vending/wardrobe/chap_wardrobe
 	zubbers_products = list(
-		/obj/item/clothing/suit/jacket/brasspriest = 1,
-		/obj/item/clothing/neck/cross = 5,
 		/obj/item/clothing/head/anubite = 1,
+		/obj/item/clothing/head/costume/nemes = 1,
+		/obj/item/clothing/head/costume/pharaoh = 1, //dont google camel by camel worst mistake of my life
 		/obj/item/clothing/head/playbunnyears/chaplain = 1,
 		/obj/item/clothing/under/rank/civilian/chaplain/bunnysuit = 1,
 		/obj/item/clothing/suit/chaplainsuit/tailcoat = 1,
@@ -211,12 +254,13 @@
 
 /obj/machinery/vending/wardrobe/jani_wardrobe
 	zubbers_products = list(
-		/obj/item/clothing/under/costume/dragon_maid = 3,
 		/obj/item/clothing/head/playbunnyears/janitor = 3,
-		/obj/item/clothing/under/rank/civilian/janitor/bunnysuit = 3,
-		/obj/item/clothing/suit/jacket/tailcoat/janitor = 3,
 		/obj/item/clothing/neck/tie/bunnytie/janitor = 3,
 		/obj/item/clothing/shoes/galoshes/heeled = 3,
+		/obj/item/clothing/suit/jacket/tailcoat/janitor = 3,
+		/obj/item/clothing/suit/toggle/labcoat/technical/service = 3,
+		/obj/item/clothing/under/costume/dragon_maid = 3,
+		/obj/item/clothing/under/rank/civilian/janitor/bunnysuit = 3,
 	)
 
 /obj/machinery/vending/wardrobe/bar_wardrobe
@@ -229,6 +273,8 @@
 
 /obj/machinery/vending/wardrobe/chef_wardrobe
 	zubbers_products = list(
+		/obj/item/clothing/gloves/latex = 2,
+		/obj/item/clothing/gloves/latex/allamerican = 3,
 		/obj/item/clothing/head/playbunnyears/cook = 2,
 		/obj/item/clothing/under/rank/civilian/cook/bunnysuit = 2,
 		/obj/item/clothing/suit/toggle/chef/tailcoat = 2,
@@ -236,16 +282,15 @@
 		/obj/item/clothing/gloves/latex = 2,
 		/obj/item/clothing/head/soft/allamerican = 3,
 		/obj/item/clothing/under/costume/allamerican = 2,
-		/obj/item/clothing/suit/misc/allamerican = 1,
-		/obj/item/clothing/neck/tie/allamerican = 1,
 		/obj/item/clothing/under/costume/allamerican/manager = 1,
-		/obj/item/clothing/gloves/latex/allamerican = 3,
-		/obj/item/clothing/shoes/laceup = 1,
+		/obj/item/clothing/under/rank/civilian/cook_bunnysuit = 2,
 	)
 
 /obj/machinery/vending/wardrobe/hydro_wardrobe
 	zubbers_products = list(
 		/obj/item/clothing/head/playbunnyears/botanist = 2,
+		/obj/item/clothing/neck/tie/bunnytie/botanist = 2,
+		/obj/item/clothing/suit/jacket/tailcoat/botanist = 2,
 		/obj/item/clothing/under/rank/civilian/hydroponics/bunnysuit = 2,
 		/obj/item/clothing/suit/apron/botanist_tailcoat = 2,
 		/obj/item/clothing/neck/tie/bunnytie/botanist = 2,
@@ -276,15 +321,19 @@
 	zubbers_products = list(
 		/obj/item/clothing/head/playbunnyears/syndicate = 3,
 		/obj/item/clothing/neck/tie/bunnytie/syndicate = 3,
-		/obj/item/clothing/under/syndicate/syndibunny = 3,
 		/obj/item/clothing/suit/jacket/tailcoat/syndicate = 3,
+		/obj/item/clothing/under/syndicate/boss = 1,
+		/obj/item/clothing/gloves/combat/boss = 1,
+		/obj/item/clothing/shoes/combat/boss = 1,
+		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/syndicate = 3,
+		/obj/item/clothing/under/syndicate/syndibunny = 3,
 	)
 
 /obj/machinery/vending/magivend
 	zubbers_products = list(
 		/obj/item/clothing/neck/tie/bunnytie/magician = 3,
-		/obj/item/clothing/under/costume/playbunny/magician = 3,
 		/obj/item/clothing/suit/wizrobe/magician = 3,
+		/obj/item/clothing/under/costume/playbunny/magician = 3,
 	)
 
 /obj/machinery/vending/wardrobe/engi_wardrobe
@@ -294,13 +343,115 @@
 		/obj/item/clothing/suit/jacket/tailcoat/engineer = 3,
 		/obj/item/clothing/neck/tie/bunnytie/engineer = 3,
 		/obj/item/clothing/shoes/workboots/heeled = 3,
+		/obj/item/clothing/shoes/workboots/toeless = 3,
+		/obj/item/clothing/suit/jacket/tailcoat/engineer = 3,
+		/obj/item/clothing/suit/toggle/jacket/zubber/bomber/engi = 3,
+		/obj/item/clothing/suit/toggle/labcoat/technical/engineer = 3,
+		/obj/item/clothing/suit/toggle/labcoat/technical/engineer/tcomm = 3,
+		/obj/item/clothing/suit/toggle/labcoat/skyrat/highvis = 3,
+		/obj/item/clothing/under/misc/overalls = 3,
+		/obj/item/clothing/under/rank/engineering/engineer_bunnysuit = 3,
+		/obj/item/clothing/under/rank/engineering/engineer/skyrat/hazard_chem = 3,
+		/obj/item/clothing/under/rank/engineering/engineer/skyrat/trouser = 3,
+		/obj/item/clothing/under/rank/engineering/engineer/skyrat/utility = 3,
+		/obj/item/clothing/under/rank/engineering/engineer/skyrat/utility/telecomm = 3,
+		/obj/item/clothing/under/rank/engineering/engineer/skyrat/utility/telecomm/skirt = 3,
+		/obj/item/radio/headset/headset_eng = 3,
+		/obj/item/storage/backpack/messenger/eng = 3,
 	)
 
 /obj/machinery/vending/wardrobe/atmos_wardrobe
 	zubbers_products = list(
+		/obj/item/clothing/glasses/meson/engine = 2,
+		/obj/item/clothing/head/beret/atmos = 4,
 		/obj/item/clothing/head/playbunnyears/atmos_tech = 3,
 		/obj/item/clothing/under/rank/engineering/atmospheric_technician/bunnysuit = 3,
 		/obj/item/clothing/suit/utility/fire/atmos_tech_tailcoat = 3,
 		/obj/item/clothing/neck/tie/bunnytie/atmos_tech = 3,
 		/obj/item/clothing/shoes/workboots/heeled = 3,
+		/obj/item/clothing/suit/utility/fire/atmos_tech_tailcoat = 3,
+		/obj/item/clothing/suit/utility/fire/atmosbomber = 3,
+		/obj/item/clothing/under/rank/engineering/atmos_tech_bunnysuit = 3,
+		/obj/item/storage/backpack/messenger/eng = 3,
+	)
+
+// GHOST CAFE WARDROBES
+
+/obj/machinery/vending/wardrobe/cargo_wardrobe/ghost_cafe
+	excluded_products = list(
+		/obj/item/radio/headset,
+	)
+
+/obj/machinery/vending/wardrobe/science_wardrobe/ghost_cafe
+	excluded_products = list(
+		/obj/item/radio/headset,
+	)
+
+/obj/machinery/vending/wardrobe/bar_wardrobe/ghost_cafe
+	excluded_products = list(
+		/obj/item/radio/headset,
+	)
+
+/obj/machinery/vending/wardrobe/chef_wardrobe/ghost_cafe
+	excluded_products = list(
+		/obj/item/radio/headset,
+	)
+
+/obj/machinery/vending/wardrobe/medi_wardrobe/ghost_cafe
+	excluded_products = list(
+		/obj/item/radio/headset,
+	)
+
+/obj/machinery/vending/wardrobe/engi_wardrobe/ghost_cafe
+	excluded_products = list(
+		/obj/item/radio/headset,
+	)
+
+/obj/machinery/vending/wardrobe/law_wardrobe/ghost_cafe
+	excluded_products = list(
+		/obj/item/radio/headset,
+	)
+
+/obj/machinery/vending/wardrobe/jani_wardrobe/ghost_cafe
+	excluded_products = list(
+		/obj/item/radio/headset,
+	)
+
+/obj/machinery/vending/wardrobe/coroner_wardrobe/ghost_cafe
+	excluded_products = list(
+		/obj/item/radio/headset,
+	)
+
+/obj/machinery/vending/wardrobe/curator_wardrobe/ghost_cafe
+	excluded_products = list(
+		/obj/item/radio/headset,
+	)
+/obj/machinery/vending/wardrobe/chap_wardrobe/unholy/ghost_cafe
+	excluded_products = list(
+		/obj/item/radio/headset,
+	)
+
+/obj/machinery/vending/wardrobe/gene_wardrobe/ghost_cafe
+	excluded_products = list(
+		/obj/item/radio/headset,
+	)
+
+/obj/machinery/vending/wardrobe/chem_wardrobe/ghost_cafe
+	excluded_products = list(
+		/obj/item/radio/headset,
+	)
+
+/obj/machinery/vending/wardrobe/viro_wardrobe/ghost_cafe
+	excluded_products = list(
+		/obj/item/radio/headset,
+	)
+
+/obj/machinery/vending/wardrobe/robo_wardrobe/ghost_cafe
+	excluded_products = list(
+		/obj/item/radio/headset,
+	)
+
+/obj/machinery/vending/wardrobe/hydro_wardrobe/ghost_cafe
+	excluded_products = list(
+		/obj/item/radio/headset,
 	)

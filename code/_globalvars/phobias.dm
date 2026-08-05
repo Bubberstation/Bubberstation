@@ -2,29 +2,30 @@
 
 /// Phobia types that can be pulled randomly for brain traumas.
 /// Also determines what phobias you can choose as your preference with the quirk.
-GLOBAL_LIST_INIT(phobia_types, sort_list(list(
-	"aliens",
-	"anime",
-	"authority",
-	"birds",
-	"blood",
-	"clowns",
-	"doctors",
-	"falling",
-	"fish",
-	"greytide",
-	"guns",
-	"insects",
-	"lizards",
-	"robots",
-	"security",
-	"skeletons",
-	"snakes",
-	"space",
-	"spiders",
-	"strangers",
-	"the supernatural",
-)))
+GLOBAL_LIST_INIT(phobia_types, list(
+	"aliens" = "Astroxenophobia",
+	"anime" = "Nihongophobia",
+	"authority" = "Authoritophobia",
+	"birds" = "Ornithophobia",
+	"blood" = "Hemophobia",
+	"clowns" = "Coulrophobia",
+	"doctors" = "Iatrophobia",
+	"falling" = "Basiphobia",
+	"fish" = "Ichthyophobia",
+	"greytide" = "Glaucophobia",
+	"guns" = "Ballistophobia",
+	"insects" = "Entomophobia",
+	"lizards" = "Herpetophobia",
+	"robots" = "Automatonophobia",
+	"security" = "Scopophobia",
+	"skeletons" = "Osteophobia",
+	"snakes" = "Ophidiophobia",
+	"space" = "Astrophobia",
+	"spiders" = "Arachnophobia",
+	"strangers" = "Xenophobia",
+	"the supernatural" = "Phasmophobia",
+	"mouse traps" = "Cleithrophobia", // BUBBER ADDITION
+))
 
 GLOBAL_LIST_INIT(phobia_regexes, list(
 	"aliens" = construct_phobia_regex("aliens"),
@@ -50,6 +51,7 @@ GLOBAL_LIST_INIT(phobia_regexes, list(
 	"spiders" = construct_phobia_regex("spiders"),
 	"strangers" = construct_phobia_regex("strangers"),
 	"the supernatural" = construct_phobia_regex("the supernatural"),
+	"mouse traps" = construct_phobia_regex("mouse traps"), // BUBBER ADDITION
 ))
 
 GLOBAL_LIST_INIT(phobia_mobs, list(
@@ -64,7 +66,7 @@ GLOBAL_LIST_INIT(phobia_mobs, list(
 	)),
 	"authority" = typecacheof(list(
 		/mob/living/basic/trooper/nanotrasen,
-		/mob/living/simple_animal/bot/secbot,
+		/mob/living/basic/bot/secbot,
 	)),
 	"birds" = typecacheof(list(
 		/mob/living/basic/chick,
@@ -77,7 +79,7 @@ GLOBAL_LIST_INIT(phobia_mobs, list(
 	"conspiracies" = typecacheof(list(
 		/mob/living/basic/drone,
 		/mob/living/basic/pet/penguin,
-		/mob/living/simple_animal/bot/secbot,
+		/mob/living/basic/bot/secbot,
 	)),
 	"doctors" = typecacheof(list(/mob/living/basic/bot/medbot)),
 	"fish" = typecacheof(list(
@@ -98,9 +100,8 @@ GLOBAL_LIST_INIT(phobia_mobs, list(
 		/mob/living/basic/drone,
 		/mob/living/silicon/ai,
 		/mob/living/silicon/robot,
-		/mob/living/simple_animal/bot,
 	)),
-	"security" = typecacheof(list(/mob/living/simple_animal/bot/secbot)),
+	"security" = typecacheof(list(/mob/living/basic/bot/secbot)),
 	"spiders" = typecacheof(list(
 		/mob/living/basic/flesh_spider,
 		/mob/living/basic/mega_arachnid,
@@ -108,6 +109,7 @@ GLOBAL_LIST_INIT(phobia_mobs, list(
 	)),
 	"skeletons" = typecacheof(list(/mob/living/basic/skeleton)),
 	"snakes" = typecacheof(list(/mob/living/basic/snake)),
+	"space" = typecacheof(list(/mob/living/basic/voidwalker)),
 	"the supernatural" = typecacheof(list(
 		/mob/dead/observer,
 		/mob/living/basic/bat,
@@ -122,7 +124,8 @@ GLOBAL_LIST_INIT(phobia_mobs, list(
 		/mob/living/basic/skeleton,
 		/mob/living/basic/wizard,
 		/mob/living/basic/zombie,
-		/mob/living/simple_animal/bot/mulebot/paranormal,
+		/mob/living/basic/bot/mulebot/paranormal,
+		/mob/living/basic/voidwalker,
 	)),
 ))
 
@@ -166,12 +169,15 @@ GLOBAL_LIST_INIT(phobia_objs, list(
 		/obj/item/clothing/head/costume/kitty/genuine,
 		/obj/item/clothing/mask/gas/ninja,
 		/obj/item/clothing/under/syndicate/ninja,
-		/obj/item/clothing/under/costume/schoolgirl,
+		/obj/item/clothing/under/costume/seifuku,
 		/obj/item/energy_katana,
 		/obj/item/food/chawanmushi,
 		/obj/item/food/sashimi,
 		/obj/item/highfrequencyblade,
 		/obj/item/katana,
+		/obj/item/storage/belt/sheath/katana,
+		/obj/item/storage/belt/sheath/ninja,
+		/obj/item/storage/belt/sheath/hanzo_katana,
 		/obj/item/nullrod/claymore/katana,
 		/obj/item/nullrod/vibro,
 		/obj/item/reagent_containers/cup/glass/bottle/sake,
@@ -387,7 +393,6 @@ GLOBAL_LIST_INIT(phobia_objs, list(
 		/obj/item/grenade/clusterbuster/spawner_spesscarp,
 		/obj/item/grenade/spawnergrenade/spesscarp,
 		/obj/item/knife/carp,
-		/obj/item/nullrod/carp,
 		/obj/item/organ/brain/carp,
 		/obj/item/organ/heart/carp,
 		/obj/item/organ/liver/fish,
@@ -530,6 +535,11 @@ GLOBAL_LIST_INIT(phobia_objs, list(
 		/obj/structure/destructible/eldritch_crucible,
 		/obj/structure/spirit_board,
 	)),
+	// BUBBER ADDITION START
+	"mouse traps" = typecacheof(list(
+		/obj/item/assembly/mousetrap,
+	)),
+	// BUBBER ADDITION END
 ))
 
 GLOBAL_LIST_INIT(phobia_turfs, list(
@@ -577,8 +587,6 @@ GLOBAL_LIST_INIT(phobia_species, list(
 		/datum/species/plasmaman,
 		/datum/species/skeleton,
 	)),
-	"space" = typecacheof(list(/datum/species/voidwalker)),
-	"supernatural" = typecacheof(list(/datum/species/voidwalker))
 ))
 
 /// Creates a regular expression to match against the given phobia

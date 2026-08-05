@@ -15,8 +15,10 @@
 				return TRUE
 			if((reagent.process_flags & REAGENT_ORGANIC) && (processor_flags & PROCESS_ORGANIC))		//ORGANIC-oriented reagents require PROCESS_ORGANIC
 				return TRUE
+			if((reagent.process_flags & REAGENT_PROTEAN) && (processor_flags & PROCESS_PROTEAN))		//PROTEAN-oriented reagents require PROCESS_PROTEAN
+				return TRUE
 		return FALSE
-	else if(reagent.process_flags == REAGENT_SYNTHETIC)
-		//We'll assume that non-human mobs lack the ability to process synthetic-oriented reagents (adjust this if we need to change that assumption)
+	else if(reagent.process_flags & (REAGENT_SYNTHETIC | REAGENT_PROTEAN))
+		//We'll assume that non-human mobs lack the ability to process synthetic/protean-oriented reagents (adjust this if we need to change that assumption)
 		return FALSE
 	return TRUE

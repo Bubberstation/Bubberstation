@@ -124,6 +124,12 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	toolspeed = 0.7
 
+/obj/item/blood_filter/advanced/attack_self_secondary(mob/user)
+	ui_interact(user)
+
+/obj/item/blood_filter/advanced/BorgCtrlClick(mob/user)
+	ui_interact(user)
+
 /obj/item/blood_filter/advanced/get_all_tool_behaviours()
 	return list(TOOL_BLOODFILTER, TOOL_BONESET)
 

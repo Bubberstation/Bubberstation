@@ -1,5 +1,6 @@
 //heels item
 /obj/item/clothing/shoes/latex_heels
+	parent_type = /obj/item/clothing/shoes/jackboots //Inherits from the Jackboots
 	name = "latex heels"
 	desc = "Lace up before use. It's pretty difficult to walk in these."
 	icon_state = "latexheels"
@@ -12,7 +13,7 @@
 
 /obj/item/clothing/shoes/latex_heels/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/squeak, list('modular_skyrat/modules/modular_items/lewd_items/sounds/highheel1.ogg' = 1, 'modular_skyrat/modules/modular_items/lewd_items/sounds/highheel2.ogg' = 1), 70)
+	AddComponent(/datum/component/squeak, list('modular_zubbers/sound/effects/footstep/highheel1.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel2.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel3.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel4.ogg' = 1), 70)
 
 /obj/item/clothing/shoes/latex_heels/domina_heels
 	name = "dominant heels"
@@ -32,3 +33,9 @@
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_shoes.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes.dmi'
 	worn_icon_digi = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes_digi.dmi'
+
+// Ballet Heels
+/obj/item/clothing/shoes/latex_heels/ballet_heels
+	name = "ballet heels"
+	desc = "A pair of ballet dancing heels."
+	icon_state = "balletheels"

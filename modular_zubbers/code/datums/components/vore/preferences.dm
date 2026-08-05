@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(vore_preference_entries_by_key, init_vore_preference_entries_by
 	return output
 
 /datum/vore_pref
-	var/abstract_type = /datum/vore_pref
+	abstract_type = /datum/vore_pref
 	var/savefile_key = ""
 
 /// Checks that a given value is valid.

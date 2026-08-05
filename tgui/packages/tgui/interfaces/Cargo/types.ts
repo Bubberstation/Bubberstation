@@ -1,13 +1,14 @@
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 export type CargoData = {
-  amount_by_name: Record<string, number> | undefined;
   app_cost?: number;
   away: BooleanLike;
   can_approve_requests: BooleanLike;
   can_send: BooleanLike;
   cart: CartEntry[];
   department: string;
+  displayed_currency_full_name: string;
+  displayed_currency_name: string;
   docked: BooleanLike;
   grocery: number;
   loan_dispatched: BooleanLike;
@@ -19,6 +20,8 @@ export type CargoData = {
   requests: Request[];
   requestonly: BooleanLike;
   self_paid: BooleanLike;
+  // BUBBER EDIT ADDITION
+  allow_private_purchases?: BooleanLike;
   supplies: Record<string, SupplyCategory>;
 };
 
@@ -38,6 +41,7 @@ export type Supply = {
   name: string;
   small_item: BooleanLike;
   contraband: BooleanLike;
+  subcategory: string; // BUBBER EDIT
   contains: SupplyItem[];
 };
 
@@ -65,5 +69,6 @@ type Request = {
   id: string;
   object: string;
   orderer: string;
+  account: string;
   reason: string;
 };

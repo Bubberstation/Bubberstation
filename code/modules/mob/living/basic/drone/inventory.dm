@@ -58,8 +58,8 @@
 	if(equipping.pulledby)
 		equipping.pulledby.stop_pulling()
 
-	equipping.screen_loc = null // will get moved if inventory is visible
-	equipping.forceMove(src)
+	hud_used?.update_inventory_slot(slot)
+	equipping.forceMove(src) //This has to come before has_equipped is called.
 	SET_PLANE_EXPLICIT(equipping, ABOVE_HUD_PLANE, src)
 
 	switch(slot)
@@ -74,7 +74,7 @@
 			return
 
 	//Call back for item being equipped to drone
-	equipping.on_equipped(src, slot)
+	has_equipped(equipping, slot)
 
 /mob/living/basic/drone/getBackSlot()
 	return ITEM_SLOT_DEX_STORAGE

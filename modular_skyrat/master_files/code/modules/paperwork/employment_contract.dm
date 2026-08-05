@@ -53,5 +53,8 @@
 	<font size=1>Under Corporate Law section 201 subsection B.3. Defacement, publication, or theft of this document is punishable by demerit or immediate contractual termination. \
 	Central Command Representives are not responsible for possible loss of life, extermination, or bluespace occurances related to any sort of actions ordered to commit to."
 	)
+
 /obj/structure/filingcabinet/employment/addFile(mob/living/carbon/human/employee)
+	if(!employee || !employee.mind)
+		return
 	new /obj/item/paper/work_contract(src, employee.mind.name)

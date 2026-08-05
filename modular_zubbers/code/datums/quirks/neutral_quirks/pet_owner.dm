@@ -23,7 +23,7 @@
 		pet_type = GLOB.possible_player_pet[desired_pet]
 
 	if(pet_type == NONE) // Pet not set, we're picking one for them.
-		pet_type = pick(flatten_list(GLOB.possible_player_pet))
+		pet_type = pick(assoc_to_values(GLOB.possible_player_pet))
 
 	var/obj/item/pet_carrier/carrier = new /obj/item/pet_carrier(get_turf(quirk_holder))
 	var/mob/living/basic/pet/pet = new pet_type(carrier)
@@ -95,6 +95,7 @@ GLOBAL_LIST_INIT(possible_player_pet, list(
 	"Sloth" = /mob/living/basic/sloth,
 	"Snake" = /mob/living/basic/snake,
 	"Spider" = /mob/living/basic/spider/maintenance,
+	"Stoat" = /mob/living/basic/stoat,
 	"Tegu" = /mob/living/basic/lizard/tegu,
 	"Tiger" = /mob/living/basic/pet/cat/tiger,
 )) //some of these are too big to be put back into the pet carrier once taken out, so I put a warning on the carrier.

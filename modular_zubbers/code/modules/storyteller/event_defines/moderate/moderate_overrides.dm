@@ -57,3 +57,8 @@
 
 /datum/round_event_control/operative
 	track = EVENT_TRACK_MODERATE
+	min_players = 20
+
+/datum/round_event_control/radiation_storm
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_COMMUNAL)

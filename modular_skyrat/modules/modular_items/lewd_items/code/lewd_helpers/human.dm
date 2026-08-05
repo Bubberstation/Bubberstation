@@ -2,6 +2,7 @@
 	var/arousal = 0
 	var/pleasure = 0
 	var/pain = 0
+	var/arousal_goal = 0
 
 	var/pain_limit = 0
 	var/arousal_status = AROUSAL_NONE
@@ -355,15 +356,6 @@
 /*
 *	MISC LOGIC
 */
-
-// Handles breaking out of gloves that restrain people.
-/mob/living/carbon/human/resist_restraints()
-	if(gloves?.breakouttime)
-		changeNext_move(CLICK_CD_BREAKOUT)
-		last_special = world.time + CLICK_CD_BREAKOUT
-		cuff_resist(gloves)
-	else
-		..()
 
 /// Checks if the human is wearing a condom, and also hasn't broken it.
 /mob/living/carbon/human/proc/is_wearing_condom()

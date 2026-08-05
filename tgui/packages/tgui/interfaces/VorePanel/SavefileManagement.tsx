@@ -13,7 +13,7 @@ import {
   Table,
 } from 'tgui-core/components';
 
-import * as types from './types';
+import type * as types from './types';
 
 export const Savefile = (props: {
   setTab: React.Dispatch<React.SetStateAction<number>>;

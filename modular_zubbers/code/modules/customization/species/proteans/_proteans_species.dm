@@ -6,7 +6,7 @@
 	sexes = TRUE
 
 	siemens_coeff = 1.5 // Electricty messes you up.
-	payday_modifier = 0.7 // 30 percent poorer
+	payday_modifier = 1.0 // the normal amount
 
 	exotic_bloodtype = BLOOD_TYPE_NANITE_SLURRY
 	digitigrade_customization = DIGITIGRADE_OPTIONAL
@@ -18,7 +18,7 @@
 	mutantheart = /obj/item/organ/heart/protean
 	mutantstomach = /obj/item/organ/stomach/protean
 	mutantlungs = null
-	mutantliver = null
+	mutantliver = /obj/item/organ/liver/protean
 	mutantappendix = null
 	mutanteyes = /obj/item/organ/eyes/robotic/protean
 	mutantears = /obj/item/organ/ears/cybernetic/protean
@@ -44,7 +44,6 @@
 
 		// Needed to exist without dying and robot specific stuff.
 		TRAIT_NOBREATH,
-		TRAIT_LIVERLESS_METABOLISM,
 		TRAIT_ROCK_EATER,
 		TRAIT_STABLEHEART, // TODO: handle orchestrator code
 		TRAIT_NOHUNGER, // They will have metal stored in the stomach. Fuck nutrition code.
@@ -57,6 +56,7 @@
 		TRAIT_SYNTHETIC, // Not used in any code, but just in case
 		TRAIT_TOXIMMUNE,
 		TRAIT_NEVER_WOUNDED, // Does not wound.
+		TRAIT_VIRUSIMMUNE, // So they can't roll for fake virus, they can't get sick anyways
 
 		// Extra cool stuff
 		TRAIT_RADIMMUNE,
@@ -71,19 +71,23 @@
 	)
 
 	inherent_biotypes = MOB_ROBOTIC | MOB_HUMANOID
-	reagent_flags = null
+	reagent_flags = PROCESS_PROTEAN
 
 	/// Reference to the
 	var/obj/item/mod/control/pre_equipped/protean/species_modsuit
 
 	/// Reference to the species owner
 	var/mob/living/carbon/human/owner
+	var/list/organ_slots = list(ORGAN_SLOT_BRAIN, ORGAN_SLOT_HEART, ORGAN_SLOT_STOMACH, ORGAN_SLOT_EYES)
+	var/datum/action/protean/protean_action
+	language_prefs_whitelist = list(/datum/language/monkey)
 
 /mob/living/carbon/human/species/protean
 	race = /datum/species/protean
 
 /datum/species/protean/Destroy(force)
 	QDEL_NULL(species_modsuit)
+	QDEL_NULL(protean_action)
 	owner = null
 	. = ..()
 
@@ -92,24 +96,41 @@
 	owner = gainer
 	equip_modsuit(gainer)
 	RegisterSignal(src, COMSIG_OUTFIT_EQUIP, PROC_REF(outfit_handling))
+	RegisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(organ_reject))
 	var/obj/item/mod/core/protean/core = species_modsuit.core
 	core?.linked_species = src
-	var/static/protean_verbs = list(
-		/mob/living/carbon/proc/protean_ui,
-		/mob/living/carbon/proc/protean_heal,
-		/mob/living/carbon/proc/lock_suit,
-		/mob/living/carbon/proc/suit_transformation,
-		/mob/living/carbon/proc/low_power
-	)
-	add_verb(gainer, protean_verbs)
+	protean_action = new(src)
+	protean_action.Grant(owner)
+
+/datum/species/protean/proc/organ_reject(mob/living/source, obj/item/organ/inserted)
+	SIGNAL_HANDLER
+
+	if(isnull(source))
+		return
+	var/obj/item/organ/insert_organ = inserted
+	if(!(insert_organ.slot in organ_slots))
+		return
+	if(insert_organ.organ_flags & (ORGAN_ROBOTIC | ORGAN_NANOMACHINE | ORGAN_UNREMOVABLE))
+		return
+	addtimer(CALLBACK(src, PROC_REF(reject_now), source, inserted), 1 SECONDS)
+
+/datum/species/protean/proc/reject_now(mob/living/source, obj/item/organ/organ)
+
+	organ.Remove(source)
+	organ.forceMove(get_turf(source))
+	to_chat(source, span_danger("Your mass rejected [organ]!"))
+	organ.balloon_alert_to_viewers("rejected!", vision_distance = 1)
 
 /datum/species/protean/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
 	. = ..()
+	if(gainer)
+		UnregisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN)
 	if(species_modsuit.stored_modsuit)
 		species_modsuit.unassimilate_modsuit(owner, TRUE)
 	gainer.dropItemToGround(species_modsuit, TRUE)
 	if(species_modsuit)
 		QDEL_NULL(species_modsuit)
+	protean_action.Remove(owner)
 	owner = null
 
 /datum/species/protean/proc/equip_modsuit(mob/living/carbon/human/gainer)
@@ -141,7 +162,7 @@
 
 	var/obj/item/mod/module/storage/storage = locate() in species_modsuit.modules // Give a storage if we don't have one.
 	if(!storage)
-		storage = new()
+		storage = new /obj/item/mod/module/storage/large_capacity()
 		species_modsuit.install(storage, owner, TRUE)
 
 	if(outfit.backpack_contents)
@@ -169,3 +190,22 @@
 			Proteans are unkillable. Instead, they shunt themselves away into their core when catastrophic losses to their swarm occur. Their cores also mimic the functions of a modsuit and can even assimilate more functional suits to use. \
 			Proteans only have a few vital organs, which can only be replaced via cargo. Their refactory is a miniature factory, and without it, they will face slow, agonizing degradation. Their Orchestrator is a miniature processor required for ease of movement. \
 			Proteans are an extremely fragile species, weak in combat, but a powerful aid, or a puppeteer pulling the strings.")
+
+/datum/species/protean/create_pref_unique_perks()
+	var/list/perk_descriptions = list()
+
+	perk_descriptions += list(list(
+		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+		SPECIES_PERK_ICON = FA_ICON_REFRESH,
+		SPECIES_PERK_NAME = "MODsuit Mode",
+		SPECIES_PERK_DESC = "[plural_form] are able to turn into MODsuits, and have some special components available to them. When [plural_form] enter a critical state, they instead withdraw into MODsuit form until a refactory is inserted into them."
+	))
+
+	perk_descriptions += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+		SPECIES_PERK_ICON = FA_ICON_SQUARE_VIRUS,
+		SPECIES_PERK_NAME = "Protean Oddities",
+		SPECIES_PERK_DESC = "[plural_form] are inorganic beings. They are unable to gain nutrition from traditional foods. Instead, they must consume metals - Primarily, iron. \ In addition to this, [plural_form] are unable to be surgically or chemically headed; [plural_form] regenerate their body over time, consuming their nutrition to do so."
+	))
+
+	return perk_descriptions

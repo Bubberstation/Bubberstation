@@ -44,3 +44,48 @@
 	name = "Porcine + Tusks"
 	icon = 'modular_zubbers/icons/customization/snouts.dmi'
 	icon_state = "boar"
+
+/datum/sprite_accessory/snouts/mammal/synth_shark
+	name = "Synthetic Shark"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+	icon_state = "synthshark"
+
+/datum/sprite_accessory/snouts/mammal/synth_moth
+	name = "Synthetic Moth"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+	icon_state = "synthmoth"
+
+/datum/sprite_accessory/snouts/mammal/cryptid /// Sprite by Maggotbait of Splurt
+	name = "Cryptid skull"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+	icon_state = "cryptid"
+	organ_type = /obj/item/organ/snout/top_adj
+
+/datum/sprite_accessory/snouts/mammal/easterndragon
+	name = "Eastern Dragon"
+	icon_state = "easternd"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+
+/datum/sprite_accessory/snouts/mammal/easterndragon/alt
+	name = "Eastern Dragon (Alt)"
+	icon_state = "easterndalt"
+
+/datum/sprite_accessory/snouts/mammal/extra_haydeemedical
+	name = "Haydee"
+	icon_state = "extra_haydeemedical"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+
+/datum/sprite_accessory/snouts/mammal/beaktiny
+	name = "Beak (Tiny)"
+	icon_state = "beaktiny"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+
+/datum/sprite_accessory/snouts/mammal/seikret
+	name = "seikret"
+	icon_state = "seikret"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+
+/datum/sprite_accessory/snouts/mammal/stubbyalt
+	name = "Stubby ALT"
+	icon_state = "stubbyalt"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'

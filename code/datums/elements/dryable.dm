@@ -14,6 +14,17 @@
 	RegisterSignal(target, COMSIG_ITEM_DRIED, PROC_REF(finish_drying))
 	ADD_TRAIT(target, TRAIT_DRYABLE, ELEMENT_TRAIT(type))
 
+	var/atom/atom_target = target
+	if(!PERFORM_ALL_TESTS(focus_only/check_materials_when_processed) || !atom_target.custom_materials || !dry_result || isstack(atom_target))
+		return
+
+	var/atom/result = new dry_result
+	if(!atom_target.compare_materials(result))
+		var/warning = "custom_materials of [result.type] when dried compared to just spawned don't match"
+		var/what_it_should_be = atom_target.transcribe_materials_list()
+		stack_trace("[warning]. should be: custom_materials = [what_it_should_be].")
+	qdel(result)
+
 
 /datum/element/dryable/Detach(datum/target)
 	. = ..()
@@ -52,4 +63,4 @@
 	ADD_TRAIT(target, TRAIT_DRIED, ELEMENT_TRAIT(type))
 	var/datum/mind/user_mind = drying_user?.resolve()
 	if(drying_user && istype(target, /obj/item/food))
-		ADD_TRAIT(target, TRAIT_FOOD_CHEF_MADE, REF(user_mind))
+		ADD_TRAIT(target, TRAIT_HANDMADE, REF(user_mind))

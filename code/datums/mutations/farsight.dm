@@ -1,4 +1,4 @@
-/datum/mutation/human/farsight
+/datum/mutation/farsight
 	name = "Farsight"
 	desc = "The subject's eyes are able to see further than normal."
 	quality = POSITIVE
@@ -9,7 +9,7 @@
 	power_coeff = 1
 	power_path = /datum/action/cooldown/spell/farsight
 
-/datum/mutation/human/farsight/setup()
+/datum/mutation/farsight/setup()
 	. = ..()
 	var/datum/action/cooldown/spell/farsight/to_modify = .
 	if(istype(to_modify))
@@ -56,6 +56,9 @@
 		active = TRUE
 		cooldown_time *= 0.5
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
+
+/datum/action/cooldown/spell/farsight/get_caster_from_target(atom/target)
+	return target // This ability only effect's the caster's client, no reason to try and fail to effect the closet or mech we're inside.
 
 /datum/action/cooldown/spell/farsight/is_action_active(atom/movable/screen/movable/action_button/current_button)
 	return active

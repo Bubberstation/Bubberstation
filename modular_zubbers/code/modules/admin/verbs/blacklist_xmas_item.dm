@@ -1,0 +1,8 @@
+ADMIN_VERB(blacklist_xmas_item, R_ADMIN, "Blacklist Xmas Gift Item", "Take away a gift, you monster.", ADMIN_CATEGORY_GAME)
+	var/item_to_ban = tgui_input_text(user, "Typepath to blacklist from the tree?", "Grinching Time...", max_length = 128)
+	var/pathed_item = text2path(item_to_ban)
+	if(ispath(pathed_item))
+		LAZYADD(GLOB.xmas_gift_blacklist, item_to_ban)
+		log_admin("[key_name(user)] added [item_to_ban] to the Christmas blacklist.")
+		message_admins("[key_name(user)] added [item_to_ban] to the Christmas blacklist!")
+	BLACKBOX_LOG_ADMIN_VERB("Blacklist Xmas Gift Item")

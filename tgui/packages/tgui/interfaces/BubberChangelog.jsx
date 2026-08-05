@@ -46,8 +46,13 @@ const icons = {
 };
 
 const DateDropdown = (props) => {
-  const { dates, selectedDate, setSelectedDate } = props;
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const {
+    dates,
+    selectedDate,
+    setSelectedDate,
+    selectedDateIndex,
+    setSelectedDateIndex,
+  } = props;
 
   return (
     dates.length > 0 && (
@@ -55,12 +60,12 @@ const DateDropdown = (props) => {
         <Stack.Item>
           <Button
             className="Changelog__Button"
-            disabled={selectedIndex === 0}
+            disabled={selectedDateIndex === 0}
             icon={'chevron-left'}
             onClick={() => {
-              const index = selectedIndex - 1;
+              const index = selectedDateIndex - 1;
 
-              setSelectedIndex(index);
+              setSelectedDateIndex(index);
               setSelectedDate(dates[index]);
               window.scrollTo(
                 0,
@@ -77,7 +82,7 @@ const DateDropdown = (props) => {
             onSelected={(value) => {
               const index = dates.indexOf(value);
 
-              setSelectedIndex(index);
+              setSelectedDateIndex(index);
               setSelectedDate(value);
               window.scrollTo(
                 0,
@@ -92,12 +97,12 @@ const DateDropdown = (props) => {
         <Stack.Item>
           <Button
             className="Changelog__Button"
-            disabled={selectedIndex === dates.length - 1}
+            disabled={selectedDateIndex === dates.length - 1}
             icon={'chevron-right'}
             onClick={() => {
-              const index = selectedIndex + 1;
+              const index = selectedDateIndex + 1;
 
-              setSelectedIndex(index);
+              setSelectedDateIndex(index);
               setSelectedDate(dates[index]);
               window.scrollTo(
                 0,
@@ -182,12 +187,12 @@ const BubberChangelogEntry = (props) => {
                     color={
                       icons[changeType]
                         ? icons[changeType].color
-                        : icons['unknown'].color
+                        : icons.unknown.color
                     }
                     name={
                       icons[changeType]
                         ? icons[changeType].icon
-                        : icons['unknown'].icon
+                        : icons.unknown.icon
                     }
                     verticalAlign="middle"
                   />
@@ -231,12 +236,12 @@ const ChangelogEntry = (props) => {
                     color={
                       icons[changeType]
                         ? icons[changeType].color
-                        : icons['unknown'].color
+                        : icons.unknown.color
                     }
                     name={
                       icons[changeType]
                         ? icons[changeType].icon
-                        : icons['unknown'].icon
+                        : icons.unknown.icon
                     }
                     verticalAlign="middle"
                   />
@@ -259,6 +264,7 @@ export const BubberChangelog = (props) => {
   const [contents, setContents] = useState('');
   const [bubberContents, setBubberContents] = useState('');
   const [selectedDate, setSelectedDate] = useState(dates[0]);
+  const [selectedDateIndex, setSelectedDateIndex] = useState(0);
 
   useEffect(() => {
     setContents('Loading changelog data...');
@@ -271,15 +277,15 @@ export const BubberChangelog = (props) => {
     const maxAttempts = 6;
 
     if (attemptNumber > maxAttempts) {
-      setContents('Failed to load data after ' + maxAttempts + ' attempts.');
+      setContents(`Failed to load data after ${maxAttempts} attempts.`);
       return;
     }
 
     act('get_month', { date });
 
     Promise.all([
-      fetch(resolveAsset(date + '.yml')),
-      fetch(resolveAsset('bubber_' + date + '.yml')),
+      fetch(resolveAsset(`${date}.yml`)),
+      fetch(resolveAsset(`bubber_${date}.yml`)),
     ]).then(async (links) => {
       const result = await links[0].text();
       const bubberResult = await links[1].text();
@@ -287,9 +293,9 @@ export const BubberChangelog = (props) => {
       if (links[0].status !== 200 && links[1].status !== 200) {
         const timeout = 50 + attemptNumber * 50;
 
-        setContents('Loading changelog data' + '.'.repeat(attemptNumber + 3));
+        setContents(`Loading changelog data${'.'.repeat(attemptNumber + 3)}`);
         setBubberContents(
-          'Loading changelog data' + '.'.repeat(attemptNumber + 3),
+          `Loading changelog data${'.'.repeat(attemptNumber + 3)}`,
         );
         setTimeout(() => {
           getData(date, attemptNumber + 1);
@@ -334,6 +340,8 @@ export const BubberChangelog = (props) => {
         dates={dates}
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
+        selectedDateIndex={selectedDateIndex}
+        setSelectedDateIndex={setSelectedDateIndex}
       />
     </Section>
   );
@@ -344,6 +352,8 @@ export const BubberChangelog = (props) => {
         dates={dates}
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
+        selectedDateIndex={selectedDateIndex}
+        setSelectedDateIndex={setSelectedDateIndex}
       />
       <h2>Licenses</h2>
       <Section title="Bubberstation 13">

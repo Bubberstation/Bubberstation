@@ -12,6 +12,7 @@
 	integrity_failure = 0.75
 	// This layer only matters for determining when you click it vs other objects
 	layer = BELOW_OPEN_DOOR_LAYER
+	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5)
 	/// If TRUE, we can't pass through unless the mob is resting (or fulfills more specific requirements)
 	var/require_resting = TRUE
 	/// Layer the flaps render on
@@ -84,7 +85,7 @@
 
 /obj/structure/plasticflaps/proc/check_melt(turf/source, datum/gas_mixture/air, temperature)
 	SIGNAL_HANDLER
-	if(temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
+	if(temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST * 1.5)
 		return
 	if(!COOLDOWN_FINISHED(src, burn_damage_cd))
 		return
@@ -223,7 +224,7 @@
 
 	else if(isliving(mover)) // You Shall Not Pass!
 		var/mob/living/living_mover = mover
-		if(istype(living_mover.buckled, /mob/living/simple_animal/bot/mulebot)) // mulebot passenger gets a free pass.
+		if(istype(living_mover.buckled, /mob/living/basic/bot/mulebot)) // mulebot passenger gets a free pass.
 			return TRUE
 
 		if(living_mover.body_position == STANDING_UP && living_mover.mob_size != MOB_SIZE_TINY && !(HAS_TRAIT(living_mover, TRAIT_VENTCRAWLER_ALWAYS) || HAS_TRAIT(living_mover, TRAIT_VENTCRAWLER_NUDE)))

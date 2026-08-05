@@ -22,6 +22,7 @@
 
 	ai_controller = /datum/ai_controller/robot_customer
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)
+	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 
 	/// The clothes that we draw on this tourist.
 	var/clothes_set = "amerifat_clothes"
@@ -42,7 +43,8 @@
 
 	add_traits(list(TRAIT_NOMOBSWAP, TRAIT_NO_TELEPORT, TRAIT_STRONG_GRABBER), INNATE_TRAIT) // never suffer a bitch to fuck with you
 	AddElement(/datum/element/footstep, FOOTSTEP_OBJ_ROBOT, 1, -6, sound_vary = TRUE)
-
+	if(SStts.tts_enabled)
+		voice = pick(strings("robot_voices.json", "[customer_data.type]", "config"))
 	ai_controller.set_blackboard_key(BB_CUSTOMER_CUSTOMERINFO, customer_info)
 	ai_controller.set_blackboard_key(BB_CUSTOMER_ATTENDING_VENUE, attending_venue)
 	ai_controller.set_blackboard_key(BB_CUSTOMER_PATIENCE, customer_info.total_patience)
@@ -65,10 +67,6 @@
 		attending_venue.linked_seats[our_seat] = null
 	QDEL_NULL(hud_to_show_on_hover)
 	return ..()
-
-///Robots need robot gibs...!
-/mob/living/basic/robot_customer/spawn_gibs()
-	new /obj/effect/gibspawner/robot(drop_location(), src)
 
 /mob/living/basic/robot_customer/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	. = ..()
@@ -122,3 +120,8 @@
 		order = attending_venue.order_food_line(wanted_item)
 
 	. += span_notice("Their order was: \"[order].\"")
+
+/mob/living/basic/robot_customer/death()
+	new /obj/effect/gibspawner/robot(drop_location())
+
+	return ..()

@@ -651,13 +651,52 @@
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_worn = null
-	obj_flags = UNIQUE_RENAME | INFINITE_RESKIN
-	unique_reskin = list(
-		"Rainbow Scarf" = "scarf_rainbow",
-		"Bisexual Scarf" = "scarf_bi",
-		"Pansexual Scarf" = "scarf_pan",
-		"Asexual Scarf" = "scarf_ace",
-		"Gay Scarf" = "scarf_gay",
-		"Transgender Scarf" = "scarf_trans",
-		"Lesbian Scarf" = "scarf_lesbian",
-	)
+	obj_flags = UNIQUE_RENAME
+
+/obj/item/clothing/neck/scarf/pride/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/pride_scarf, infinite = TRUE)
+
+/datum/atom_skin/pride_scarf
+	abstract_type = /datum/atom_skin/pride_scarf
+
+/datum/atom_skin/pride_scarf/rainbow
+	preview_name = "Rainbow Scarf"
+	new_icon_state = "scarf_rainbow"
+
+/datum/atom_skin/pride_scarf/bisexual
+	preview_name = "Bisexual Scarf"
+	new_icon_state = "scarf_bi"
+
+/datum/atom_skin/pride_scarf/pansexual
+	preview_name = "Pansexual Scarf"
+	new_icon_state = "scarf_pan"
+
+/datum/atom_skin/pride_scarf/asexual
+	preview_name = "Asexual Scarf"
+	new_icon_state = "scarf_ace"
+
+/datum/atom_skin/pride_scarf/gay
+	preview_name = "Gay Scarf"
+	new_icon_state = "scarf_gay"
+
+/datum/atom_skin/pride_scarf/transgender
+	preview_name = "Transgender Scarf"
+	new_icon_state = "scarf_trans"
+
+/datum/atom_skin/pride_scarf/lesbian
+	preview_name = "Lesbian Scarf"
+	new_icon_state = "scarf_lesbian"
+
+//Shadekin Fur Scarf Sprites by Boviro of Bubberstation
+/obj/item/clothing/neck/scarf/shadekin
+	name = "shadekin fur scarf"
+	desc = "An unethical scarf made from the soft fur and supple hides of Shadekin. Illegal in almost all areas of occupied space, but highly sought after by elites and pirates nonetheless."
+	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	icon_preview = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
+	icon_state = "scarf_unethical"
+	post_init_icon_state = null
+	greyscale_colors = null
+	greyscale_config = null
+	greyscale_config_worn = null
