@@ -56,3 +56,7 @@
 #define PENIS_LAYER_OFFSET 0.03
 #define BELLY_LAYER_OFFSET 0.02
 #define BREASTS_LAYER_OFFSET 0.01
+
+// Maximum and minimum size we can set in the character creator
+#define BODY_SIZE_MIN (RESIZE_DEFAULT_SIZE * 0.8)
+#define BODY_SIZE_MAX (RESIZE_DEFAULT_SIZE * 1.5)
