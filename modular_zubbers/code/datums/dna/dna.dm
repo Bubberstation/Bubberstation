@@ -4,7 +4,6 @@
 	///Body markings of the DNA's owner. This is for storing their original state for re-creating the character. They'll get changed on species mutation
 	var/list/list/body_markings = list()
 	///Current body size, used for proper re-sizing and keeping track of that
-	var/current_body_size = RESIZE_DEFAULT_SIZE
 
 /mob/living/carbon/proc/apply_customizable_dna_features_to_species()
 	if(!has_dna())
