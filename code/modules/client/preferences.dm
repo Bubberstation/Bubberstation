@@ -500,7 +500,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// Being a taur, or over 1.1 scales it up
 	if (body.dna.mutant_bodyparts[FEATURE_TAUR] && body.dna.mutant_bodyparts[FEATURE_TAUR][MUTANT_INDEX_NAME] != "None")
 		canvas_size = 1
-	else if (!isnull(body.dna.features["body_size"]) && body.dna.features["body_size"] > 1.1)
+	else if (!isnull(body.current_size) && body.current_size > 1.1)
 		canvas_size = 1
 	// Add extra level if we're oversized
 	if (preferences.all_quirks.Find("Oversized"))
