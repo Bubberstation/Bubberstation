@@ -78,7 +78,7 @@
 	uniform = /obj/item/clothing/under/costume/playbunny/centcom
 	back = /obj/item/storage/backpack/satchel/leather
 	box = /obj/item/storage/box/survival
-	suit = /obj/item/clothing/suit/jacket/tailcoat/centcom
+	suit = /obj/item/clothing/suit/armor/centcom_formal/nt_consultant/tailcoat
 	gloves = /obj/item/clothing/gloves/color/white
 	shoes = /obj/item/clothing/shoes/fancy_heels/cc
 	head = /obj/item/clothing/head/playbunnyears/centcom

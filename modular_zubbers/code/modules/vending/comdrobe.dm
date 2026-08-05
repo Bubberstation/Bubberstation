@@ -9,7 +9,7 @@
 		/obj/item/clothing/under/bimpcap = 1,
 		/obj/item/clothing/head/hats/caphat/bunnyears_captain = 1,
 		/obj/item/clothing/under/rank/captain/bunnysuit = 1,
-		/obj/item/clothing/suit/armor/vest/capcarapace/tailcoat_captain = 1,
+		/obj/item/clothing/suit/armor/vest/capcarapace/tailcoat = 1,
 		/obj/item/clothing/neck/tie/bunnytie/captain = 1,
 	)
 
@@ -26,28 +26,28 @@
 		/obj/item/clothing/shoes/jackboots/elofy = 1,
 		/obj/item/clothing/head/playbunnyears/hos = 1,
 		/obj/item/clothing/under/rank/security/head_of_security/bunnysuit = 1,
-		/obj/item/clothing/suit/armor/hos_tailcoat = 1,
+		/obj/item/clothing/suit/armor/hos/tailcoat = 1,
 		/obj/item/clothing/under/rank/security/peacekeeper/skirt_hos = 1,
 	)
 
 	access_lists["[ACCESS_HOP]"] += list(
 		/obj/item/clothing/head/playbunnyears/hop = 1,
 		/obj/item/clothing/under/rank/civilian/head_of_personnel/bunnysuit = 1,
-		/obj/item/clothing/suit/armor/hop_tailcoat = 1,
+		/obj/item/clothing/suit/armor/vest/hop/tailcoat = 1,
 		/obj/item/clothing/neck/tie/bunnytie/hop = 1,
 	)
 
 	access_lists["[ACCESS_CMO]"] += list(
 		/obj/item/clothing/head/playbunnyears/cmo = 1,
 		/obj/item/clothing/under/rank/medical/chief_medical_officer/bunnysuit = 1,
-		/obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/cmo = 1,
+		/obj/item/clothing/suit/toggle/labcoat/cmo/tailcoat = 1,
 		/obj/item/clothing/neck/tie/bunnytie/cmo = 1,
 	)
 
 	access_lists["[ACCESS_RD]"] += list(
 		/obj/item/clothing/head/playbunnyears/rd = 1,
 		/obj/item/clothing/under/rank/rnd/research_director/bunnysuit = 1,
-		/obj/item/clothing/suit/jacket/research_director/tailcoat = 1,
+		/obj/item/clothing/suit/toggle/labcoat/research_director/tailcoat = 1,
 		/obj/item/clothing/neck/tie/bunnytie/rd = 1,
 	)
 
@@ -61,7 +61,7 @@
 	access_lists["[ACCESS_QM]"] += list(
 		/obj/item/clothing/head/playbunnyears/quartermaster = 1,
 		/obj/item/clothing/under/rank/cargo/qm/bunnysuit = 1,
-		/obj/item/clothing/suit/jacket/tailcoat/quartermaster = 1,
+		/obj/item/clothing/suit/jacket/quartermaster/tailcoat = 1,
 		/obj/item/clothing/neck/tie/bunnytie/cargo = 1,
 	)
 
@@ -76,7 +76,7 @@
 		/obj/item/clothing/suit/razurathcoat = 1,
 		/obj/item/clothing/head/playbunnyears/centcom = 1,
 		/obj/item/clothing/neck/tie/bunnytie/centcom = 1,
-		/obj/item/clothing/suit/jacket/tailcoat/centcom = 1,
+		/obj/item/clothing/suit/armor/centcom_formal/nt_consultant/tailcoat = 1,
 		/obj/item/clothing/under/costume/playbunny/centcom = 1,
 	)
 

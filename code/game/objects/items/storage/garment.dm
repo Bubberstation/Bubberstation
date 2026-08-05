@@ -67,7 +67,7 @@
 //Duplication from Commdrobe
 	new /obj/item/clothing/head/playbunnyears/hop(src)
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel/bunnysuit(src) //BUBBER EDIT - Bunnysuits
-	new /obj/item/clothing/suit/armor/hop_tailcoat(src)
+	new /obj/item/clothing/suit/armor/vest/hop/tailcoat(src)
 	new /obj/item/clothing/neck/tie/bunnytie/hop(src)
 	new /obj/item/clothing/head/hopcap/beret(src)
 	new /obj/item/clothing/head/hopcap/beret/alt(src)
@@ -118,7 +118,8 @@
 	new	/obj/item/clothing/shoes/jackboots/elofy(src)
 	new	/obj/item/clothing/head/playbunnyears/hos(src)
 	new	/obj/item/clothing/under/rank/security/head_of_security/bunnysuit(src)
-	new	/obj/item/clothing/suit/armor/hos_tailcoat(src)
+	new	/obj/item/clothing/suit/armor/hos/tailcoat(src)
+	new /obj/item/clothing/neck/tie/bunnytie/security(src)
 	new /obj/item/clothing/head/hats/hos/beret/navyhos(src)
 	new /obj/item/clothing/head/hats/imperial/hos(src)
 	new /obj/item/clothing/under/rank/security/head_of_security/peacekeeper(src)
@@ -138,6 +139,12 @@
 	new /obj/item/clothing/gloves/krav_maga/sec(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/clothing/mask/gas/sechailer(src)
+	///BUBBER EDIT START
+	new /obj/item/clothing/head/playbunnyears/warden(src)
+	new /obj/item/clothing/under/rank/security/warden/bunnysuit(src)
+	new /obj/item/clothing/suit/armor/vest/warden/tailcoat(src)
+	new /obj/item/clothing/neck/tie/bunnytie/security(src)
+	///BUBBER EDIT END
 
 /obj/item/storage/bag/garment/research_director/PopulateContents()
 	new /obj/item/clothing/under/rank/rnd/research_director(src)
@@ -163,7 +170,7 @@
 	new /obj/item/clothing/suit/toggle/labcoat/research_director(src)
 	new	/obj/item/clothing/head/playbunnyears/rd(src)
 	new /obj/item/clothing/under/rank/rnd/research_director/bunnysuit(src)
-	new /obj/item/clothing/suit/jacket/research_director/tailcoat(src)
+	new /obj/item/clothing/suit/toggle/labcoat/research_director/tailcoat(src)
 	new /obj/item/clothing/neck/tie/bunnytie/rd(src)
 
 
@@ -187,7 +194,7 @@
 	new /obj/item/clothing/neck/mantle/cmomantle(src)
 	new /obj/item/clothing/head/playbunnyears/cmo(src)
 	new /obj/item/clothing/under/rank/medical/chief_medical_officer/bunnysuit(src) //BUBBER EDIT - Bunnysuits
-	new /obj/item/clothing/suit/toggle/labcoat/doctor_tailcoat/cmo(src)
+	new /obj/item/clothing/suit/toggle/labcoat/cmo/tailcoat(src)
 	new /obj/item/clothing/neck/tie/bunnytie/cmo(src)
 
 /obj/item/storage/bag/garment/engineering_chief/PopulateContents()
@@ -237,6 +244,6 @@
 	new /obj/item/clothing/under/rank/cargo/qm/skyrat/formal/skirt(src)
 	new /obj/item/clothing/head/playbunnyears/quartermaster(src)
 	new /obj/item/clothing/under/rank/cargo/qm/bunnysuit(src) //BUBBER EDIT - Bunnysuits
-	new /obj/item/clothing/suit/jacket/tailcoat/quartermaster(src)
+	new /obj/item/clothing/suit/toggle/cargo_tech/tailcoat(src)
 	new /obj/item/clothing/neck/tie/bunnytie/cargo(src)
 
