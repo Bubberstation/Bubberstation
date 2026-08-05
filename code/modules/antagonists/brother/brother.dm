@@ -1,3 +1,4 @@
+/* MOVED TO modular_zubbers/code/modules/antagonists/brother/brother.dm
 /datum/antagonist/brother
 	name = "\improper Brother"
 	antagpanel_category = "Brother"
@@ -319,3 +320,4 @@
 
 /datum/objective/convert_brother/check_completion()
 	return length(team?.members) > 1
+*/

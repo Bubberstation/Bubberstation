@@ -74,6 +74,7 @@
 /datum/dynamic_ruleset/roundstart/malf_ai/can_be_selected()
 	return ..() && !HAS_TRAIT(SSstation, STATION_TRAIT_HUMAN_AI)
 
+/* BUBBER EDIT REMOVAL - START
 /datum/dynamic_ruleset/roundstart/blood_brother
 	name = "Blood Brothers"
 	config_tag = "Roundstart Blood Brothers"
@@ -85,6 +86,7 @@
 
 /datum/dynamic_ruleset/roundstart/blood_brother/assign_role(datum/mind/candidate)
 	candidate.add_antag_datum(/datum/antagonist/brother)
+*/
 
 /datum/dynamic_ruleset/roundstart/changeling
 	name = "Changelings"
