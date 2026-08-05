@@ -111,7 +111,7 @@
 /obj/item/storage/backpack/duffelbag/syndie/lone_gunman/PopulateContents()
 	new /obj/item/clothing/under/pants/track/robohand(src)
 	new /obj/item/clothing/glasses/sunglasses/robohand(src)
-	new /obj/item/clothing/suit/jacket/trenchcoat/gunman(src)
+	new /obj/item/clothing/suit/toggle/jacket/trenchcoat/gunman(src) // BUBBER EDIT - Fix trenchcoat path
 	new /obj/item/clothing/shoes/combat(src)
 	new /obj/item/radio/headset/syndicate/alt(src)
 	new /obj/item/card/id/advanced/chameleon(src)
