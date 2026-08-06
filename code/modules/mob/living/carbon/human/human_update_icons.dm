@@ -663,7 +663,10 @@ There are several things that need to be remembered:
 		var/held_index = get_held_index_of_item(worn_item)
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			worn_item.screen_loc = ui_hand_position(held_index)
-			client.screen += worn_item
+			// BUBBER EDIT REMOVAL BEGIN - pushing the held item onto our own client's screen here is how
+			// hand slots worked before the inventory slot rewrite. This alternate behavior is needed to stop duplicate item sprites appearing inhand.
+			// ORIGINAL: client.screen += worn_item
+			// BUBBER EDIT REMOVAL END
 			if(observers?.len)
 				for(var/M in observers)
 					var/mob/dead/observe = M

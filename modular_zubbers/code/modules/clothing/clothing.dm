@@ -9,8 +9,8 @@
 	resizer.visible_message(span_warning("A flash of purple light engulfs [resizer], before they change to normal!"), span_notice("You feel warm for a moment, before everything scales to your size..."))
 	if(resizer.get_quirk(/datum/quirk/oversized))
 		resizer.remove_quirk(/datum/quirk/oversized)
-	resizer.dna.features["body_size"] = RESIZE_DEFAULT_SIZE
-	resizer.dna.update_body_size()
+	else
+		resizer.update_transform(RESIZE_DEFAULT_SIZE / resizer?.client?.prefs?.read_preference(/datum/preference/numeric/body_size))
 	resizer.normalized = TRUE
 
 /// For removing a normalization, and reverting back to normal
@@ -23,6 +23,5 @@
 			if(oversized)
 				resizer.add_quirk(/datum/quirk/oversized, announce = FALSE)
 		if(!resizer.get_quirk(/datum/quirk/oversized))
-			resizer.dna.features["body_size"] = resizer?.client?.prefs?.read_preference(/datum/preference/numeric/body_size)
-			resizer.dna.update_body_size()
+			resizer.update_transform(resizer?.client?.prefs?.read_preference(/datum/preference/numeric/body_size))
 		resizer.normalized = FALSE
