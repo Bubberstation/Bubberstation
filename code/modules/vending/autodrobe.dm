@@ -157,15 +157,15 @@ GLOBAL_LIST_INIT(autodrobe_entretainers_items, list(
 	/obj/item/clothing/shoes/clown_shoes/bubber/jester = 3,
 	/obj/item/clothing/shoes/clown_shoes/heeled = 3,
 	/obj/item/clothing/suit/jacket/tailcoat/clown = 3,
-	/obj/item/clothing/suit/jacket/tailcoat/mime = 3,
+	/obj/item/clothing/suit/toggle/suspenders/tailcoat = 3,
 	/obj/item/clothing/under/rank/civilian/clown/jesteralt = 1,
 	/obj/item/clothing/under/bubbly_clown/skirt = 3,
 	/obj/item/clothing/under/rank/civilian/bubber/clown/jester = 3,
 	/obj/item/clothing/under/rank/civilian/bubber/clown/skirt = 3,
 	/obj/item/clothing/under/rank/civilian/bubber/clown/skirt/clussy = 3,
 	/obj/item/clothing/under/rank/civilian/clown/britches = 3,
-	/obj/item/clothing/under/rank/civilian/clown/clown_bunnysuit = 3,
-	/obj/item/clothing/under/rank/civilian/mime_bunnysuit = 3,
+	/obj/item/clothing/under/rank/civilian/clown/bunnysuit = 3,
+	/obj/item/clothing/under/rank/civilian/mime/bunnysuit = 3,
 	// BUBBER EDIT ADDITION END - Extra stuff
 ))
 

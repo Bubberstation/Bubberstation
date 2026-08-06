@@ -56,7 +56,7 @@
 	set_items = list(
 		/obj/item/clothing/head/playbunnyears/miner,
 		/obj/item/clothing/neck/tie/bunnytie/miner,
-		/obj/item/clothing/suit/jacket/tailcoat/miner,
+		/obj/item/clothing/suit/hooded/explorer/tailcoat,
 		/obj/item/clothing/under/rank/cargo/miner/bunnysuit,
 		/obj/item/clothing/shoes/workboots/mining/heeled,
 		/obj/item/clothing/mask/gas/explorer, //No bunny mask, this'll have to do.

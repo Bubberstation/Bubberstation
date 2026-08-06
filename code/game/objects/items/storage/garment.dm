@@ -106,34 +106,10 @@
 	new /obj/item/clothing/head/hats/hos/cap(src)
 	new /obj/item/clothing/mask/gas/sechailer/swat(src)
 	new /obj/item/clothing/neck/cloak/hos(src)
-//BUBBER ADDITION BEGIN
-	new /obj/item/clothing/neck/cloak/hos/redsec(src)
-	new /obj/item/clothing/under/rank/security/head_of_security/redsec(src)
-	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch/redsec(src)
-	new /obj/item/clothing/shoes/jackboots/sec/redsec(src)
-	new /obj/item/clothing/head/hos_kepi(src)
-	new /obj/item/clothing/under/rank/security/peacekeeper/skirt_hos(src)
-//BUBBER ADDITION END
-//Duplication from Commdrobe
-	new /obj/item/clothing/head/hats/warden/drill/hos(src)
-	new	/obj/item/clothing/under/rank/security/head_of_security/alt/roselia(src)
-	new	/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia(src)
-	new	/obj/item/clothing/under/rank/security/head_of_security/parade/redsec(src)
-	new	/obj/item/clothing/under/rank/security/head_of_security/parade/female/redsec(src)
-	new	/obj/item/clothing/head/hats/hos/elofy(src)
-	new	/obj/item/clothing/suit/armor/hos/elofy(src)
-	new	/obj/item/clothing/gloves/elofy(src)
-	new	/obj/item/clothing/shoes/jackboots/elofy(src)
 	new	/obj/item/clothing/head/playbunnyears/hos(src)
 	new	/obj/item/clothing/under/rank/security/head_of_security/bunnysuit(src)
 	new	/obj/item/clothing/suit/armor/hos/tailcoat(src)
 	new /obj/item/clothing/neck/tie/bunnytie/security(src)
-	new /obj/item/clothing/head/hats/hos/beret/navyhos(src)
-	new /obj/item/clothing/head/hats/imperial/hos(src)
-	new /obj/item/clothing/under/rank/security/head_of_security/peacekeeper(src)
-	new /obj/item/clothing/under/rank/security/head_of_security/skyrat/imperial(src)
-	new /obj/item/clothing/suit/jacket/hos/blue(src)
-	new /obj/item/clothing/neck/mantle/hosmantle(src)
 
 /obj/item/storage/bag/garment/warden/PopulateContents()
 	new /obj/item/clothing/suit/armor/vest/warden(src)
@@ -202,10 +178,12 @@
 //Duplication from Commdrobe
 	new /obj/item/clothing/head/beret/medical/cmo/alt(src)
 	new /obj/item/clothing/neck/mantle/cmomantle(src)
+	//BUBBER EDIT START - Bunnysuits
 	new /obj/item/clothing/head/playbunnyears/cmo(src)
-	new /obj/item/clothing/under/rank/medical/chief_medical_officer/bunnysuit(src) //BUBBER EDIT - Bunnysuits
+	new /obj/item/clothing/under/rank/medical/chief_medical_officer/bunnysuit(src)
 	new /obj/item/clothing/suit/toggle/labcoat/cmo/tailcoat(src)
 	new /obj/item/clothing/neck/tie/bunnytie/cmo(src)
+	//BUBBER EDIT END
 
 /obj/item/storage/bag/garment/engineering_chief/PopulateContents()
 	new /obj/item/clothing/under/rank/engineering/chief_engineer(src)

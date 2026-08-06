@@ -746,7 +746,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	body_parts_covered = CHEST|ARMS
 	slowdown = 0
-	armor_type = /datum/armor/atmos_tech_tailcoat
 	flags_inv = null
 	clothing_flags = null
 	min_cold_protection_temperature = null

@@ -99,7 +99,6 @@
 	return list(
 		PREF_SUIT,
 		PREF_SKIRT,
-		PREF_BUNNY,
 	)
 
 /datum/preference/choiced/jumpsuit/create_default_value()
@@ -111,8 +110,6 @@
 			return /obj/item/clothing/under/color/grey
 		if (PREF_SKIRT)
 			return /obj/item/clothing/under/color/jumpskirt/grey
-		if (PREF_BUNNY) //BUBBER EDIT START - Bunnysuits
-			return /obj/item/clothing/under/color/playbunny/grey //BUBBER EDIT END - Bunnysuits
 
 /datum/preference/choiced/jumpsuit/apply_to_human(mob/living/carbon/human/target, value)
 	target.jumpsuit_style = value

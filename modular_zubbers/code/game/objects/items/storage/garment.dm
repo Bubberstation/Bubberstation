@@ -30,7 +30,7 @@
 	new	/obj/item/clothing/shoes/jackboots/elofy(src)
 	new	/obj/item/clothing/head/playbunnyears/hos(src)
 	new	/obj/item/clothing/under/rank/security/head_of_security/bunnysuit(src)
-	new	/obj/item/clothing/suit/armor/hos_tailcoat(src)
+	new	/obj/item/clothing/suit/armor/hos/tailcoat(src)
 	new	/obj/item/clothing/under/rank/security/head_of_security/suit/red(src)
 	new /obj/item/clothing/head/hats/hos/beret/navyhos(src)
 	new /obj/item/clothing/suit/jacket/hos/blue(src)

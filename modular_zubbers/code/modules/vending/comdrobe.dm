@@ -205,7 +205,7 @@
 		/obj/item/clothing/shoes/jackboots/elofy = 1,
 		/obj/item/clothing/head/playbunnyears/hos = 1,
 		/obj/item/clothing/under/rank/security/head_of_security/bunnysuit = 1,
-		/obj/item/clothing/suit/armor/hos_tailcoat = 1,
+		/obj/item/clothing/suit/armor/hos/tailcoat = 1,
 		/obj/item/clothing/under/rank/security/viro/head_of_security/viro = 1,
 		/obj/item/clothing/under/rank/security/viro/head_of_security/skirt = 1,
 		/obj/item/clothing/under/rank/security/viro/head_of_security/alt = 1,
