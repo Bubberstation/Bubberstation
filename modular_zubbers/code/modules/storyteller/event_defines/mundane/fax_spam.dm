@@ -2,7 +2,7 @@
 	name = "Fax Spam"
 	description = "Sends spam pamphlets to all station fax machines"
 	typepath = /datum/round_event/fax_spam
-	weight = 15
+	weight = 25
 	min_players = 10 // Better chance of there being heads of staff that get annoyed by this
 	max_occurrences = 2
 	category = EVENT_CATEGORY_BUREAUCRATIC
