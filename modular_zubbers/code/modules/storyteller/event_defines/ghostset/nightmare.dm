@@ -14,7 +14,7 @@
 /datum/round_event_control/nightmare/can_spawn_event(players_amt, allow_magic = FALSE)
 	. = ..()
 	if(!.)
-		return .
+		return FALSE
 
 	// Nightmares can only spawn in unlit maintenance, so don't offer the event
 	// (and burn a ghost poll on it) when the station has nowhere dark to put one.
