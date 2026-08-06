@@ -890,7 +890,7 @@
 	inhand_icon_state = "milky"
 
 /obj/item/toy/plush/fox_protogen
-	name = "Silly Protogen Plushie"
+	name = "\improper Silly Protogen plushie"
 	desc = "A silly looking fox protogen made to be extremly squishable with folding tails, the inside being fluffier then the outside, seems to pair wonderfully with the Suspicious Protogen Plushie."
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "foxproot"
