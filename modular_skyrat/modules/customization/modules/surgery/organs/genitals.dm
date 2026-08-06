@@ -700,11 +700,7 @@
 /datum/bodypart_overlay/mutant/genital/belly/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_BELLY]
 
-/mob/living/carbon/human/verb/toggle_genitals()
-	set category = "IC"
-	set name = "Expose/Hide genitals"
-	set desc = "Allows you to toggle which genitals should show through clothes or not."
-
+GAME_VERB_DESC(/mob/living/carbon/human, toggle_genitals, "Expose/Hide genitals", "Change which genitals show through clothes and how they layer.", "IC")
 	if(stat != CONSCIOUS)
 		to_chat(usr, span_warning("You can't toggle genitals visibility right now..."))
 		return
@@ -740,14 +736,10 @@
 /mob/living/carbon/human/Initialize(mapload)
 	. = ..()
 	if(CONFIG_GET(flag/disable_erp_preferences))
-		verbs -= /mob/living/carbon/human/verb/toggle_genitals
-		verbs -= /mob/living/carbon/human/verb/toggle_arousal
+		UNASSIGN_GAME_VERB(src, /mob/living/carbon/human, toggle_genitals)
+		UNASSIGN_GAME_VERB(src, /mob/living/carbon/human, toggle_arousal)
 
-/mob/living/carbon/human/verb/toggle_arousal()
-	set category = "IC"
-	set name = "Toggle Arousal"
-	set desc = "Allows you to toggle how aroused your private parts are."
-
+GAME_VERB_DESC(/mob/living/carbon/human, toggle_arousal, "Toggle Arousal", "Allows you to toggle how aroused your private parts are.", "IC")
 	if(stat != CONSCIOUS)
 		to_chat(usr, span_warning("You can't toggle arousal right now..."))
 		return

@@ -10,11 +10,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 	temporary_flavor_text_indicator.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
 	return temporary_flavor_text_indicator
 
-/mob/living/verb/set_temporary_flavor()
-	set category = "IC"
-	set name = "Set Temporary Flavor Text"
-	set desc = "Allows you to set a temporary flavor text."
-
+GAME_VERB_DESC(/mob/living, set_temporary_flavor, "Set Temporary Flavor Text", "Allows you to set a temporary flavor text.", "IC")
 	if(stat != CONSCIOUS)
 		to_chat(src, span_warning("You can't set your temporary flavor text now..."))
 		return
@@ -33,10 +29,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 	if (temporary_flavor_text)
 		. += GLOB.temporary_flavor_text_indicator
 
-/mob/living/verb/narrate()
-	set name = "Narrate"
-	set category = "IC"
-	set desc = "Allows you to send a narration message to a target or area"
+GAME_VERB_DESC(/mob/living, narrate, "Narrate", "Allows you to send a narration message to a target or area", "IC")
 	usr.emote("narrate")
 
 /datum/emote/narrate

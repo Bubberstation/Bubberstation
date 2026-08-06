@@ -1,7 +1,4 @@
-/mob/living/carbon/verb/army_crawl()
-	set name = "Army Crawl"
-	set category = "IC"
-
+GAME_VERB(/mob/living/carbon, army_crawl, "Army Crawl", "IC")
 	var/mob/living/carbon/crawler = src
 
 	if(HAS_TRAIT(crawler, TRAIT_PRONE))
