@@ -67,28 +67,6 @@ SUBSYSTEM_DEF(gamemode)
 		EVENT_TRACK_CREWSET = 1,
 		EVENT_TRACK_GHOSTSET = 1
 		)
-	/// Whether we allow pop scaling. This is configured by config, or the storyteller UI
-	var/allow_pop_scaling = TRUE
-
-	/// Associative list of pop scale thresholds.
-	var/list/pop_scale_thresholds = list(
-		EVENT_TRACK_MUNDANE = MUNDANE_POP_SCALE_THRESHOLD,
-		EVENT_TRACK_MODERATE = MODERATE_POP_SCALE_THRESHOLD,
-		EVENT_TRACK_MAJOR = MAJOR_POP_SCALE_THRESHOLD,
-		EVENT_TRACK_CREWSET = CREWSET_POP_SCALE_THRESHOLD,
-		EVENT_TRACK_GHOSTSET = GHOSTSET_POP_SCALE_THRESHOLD
-		)
-
-	/// Associative list of pop scale penalties.
-	var/list/pop_scale_penalties = list(
-		EVENT_TRACK_MUNDANE = MUNDANE_POP_SCALE_PENALTY,
-		EVENT_TRACK_MODERATE = MODERATE_POP_SCALE_PENALTY,
-		EVENT_TRACK_MAJOR = MAJOR_POP_SCALE_PENALTY,
-		EVENT_TRACK_CREWSET = CREWSET_POP_SCALE_PENALTY,
-		EVENT_TRACK_GHOSTSET = GHOSTSET_POP_SCALE_PENALTY
-		)
-
-
 
 	/// Associative list of control events by their track category. Compiled in Init
 	var/list/event_pools = list()
