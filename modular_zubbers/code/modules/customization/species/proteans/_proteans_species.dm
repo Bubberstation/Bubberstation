@@ -85,14 +85,6 @@
 /mob/living/carbon/human/species/protean
 	race = /datum/species/protean
 
-/datum/species/protean/Destroy(force)
-	if(!QDELETED(species_modsuit))
-		INVOKE_ASYNC(src, PROC_REF(unassimilate_modsuit), null, TRUE)
-	QDEL_NULL(species_modsuit)
-	QDEL_NULL(protean_action)
-	owner = null
-	return ..()
-
 /datum/species/protean/on_species_gain(mob/living/carbon/human/gainer, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
 	owner = gainer
@@ -126,16 +118,18 @@
 	organ.balloon_alert_to_viewers("rejected!", vision_distance = 1)
 
 /datum/species/protean/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
+	. = ..()
 	if(gainer)
 		UnregisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN)
 	if(species_modsuit.stored_modsuit)
 		species_modsuit.stored_modsuit.forceMove(get_turf(gainer))
 		unassimilate_modsuit(null, TRUE)
 	if(species_modsuit)
+		if(species_modsuit.atom_storage)
+			species_modsuit.atom_storage.remove_all(owner.drop_location())
 		QDEL_NULL(species_modsuit)
 	protean_action.Remove(owner)
 	owner = null
-	return ..()
 
 /datum/species/protean/proc/equip_modsuit(mob/living/carbon/human/gainer)
 	species_modsuit = new()
@@ -166,13 +160,7 @@
 			assimilate_modsuit(owner, suit, TRUE)
 			species_modsuit.quick_activation()
 
-	LAZYINITLIST(outfit.backpack_contents)
-	if(istype(outfit, /datum/outfit/job))
-		owner.equip_to_storage(SSwardrobe.provide_type(/obj/item/stack/sheet/iron/twenty, owner), ITEM_SLOT_BACK, TRUE, FALSE)
-		return
-	outfit.backpack_contents += /obj/item/stack/sheet/iron/twenty
-	for(var/path in outfit.backpack_contents)
-		owner.equip_to_storage(SSwardrobe.provide_type(path, owner), ITEM_SLOT_BACK, TRUE, TRUE)
+	owner.equip_to_storage(SSwardrobe.provide_type(/obj/item/stack/sheet/iron/twenty, owner), ITEM_SLOT_BACK, TRUE, FALSE)
 	if(outfit.suit_store)
 		owner.equip_to_slot_if_possible(SSwardrobe.provide_type(outfit.suit_store, owner), ITEM_SLOT_SUITSTORE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE)
 
