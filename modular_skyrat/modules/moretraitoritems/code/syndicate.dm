@@ -91,7 +91,7 @@
 	new /obj/item/clothing/gloves/combat(src)
 	new /obj/item/clothing/shoes/combat(src)
 	new /obj/item/clothing/glasses/sunglasses/robohand(src)
-	new /obj/item/clothing/suit/toggle/jacket/trenchcoat/gunman(src) // BUBBER EDIT - Fix trenchcoat path
+	new /obj/item/clothing/suit/toggle/jacket/trenchcoat/gunman(src)
 	new /obj/item/autosurgeon/bodypart/r_arm_robotic(src)
 	new /obj/item/autosurgeon/syndicate/esword_arm(src)
 	new /obj/item/autosurgeon/syndicate/nodrop(src)
@@ -101,7 +101,7 @@
 	name = "gunman clothing bundle"
 	desc = "A box filled with armored and stylish clothing for the aspiring gunmans."
 
-/obj/item/clothing/suit/toggle/jacket/trenchcoat/gunman // BUBBER EDIT - Fix trenchcoat path
+/obj/item/clothing/suit/toggle/jacket/trenchcoat/gunman
 	name = "leather overcoat"
 	desc = "An armored leather overcoat, intended as the go-to wear for any aspiring gunman."
 	body_parts_covered = CHEST|GROIN|ARMS
