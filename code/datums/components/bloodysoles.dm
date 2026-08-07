@@ -334,7 +334,7 @@
 		wielder.update_worn_shoes()
 		return
 
-	bloody_feet = get_blood_appearance()
+	bloody_feet = get_blood_appearance() // BUBBER EDIT ADDITION
 	bloody_feet.color = wielder.get_blood_dna_color()
 	wielder.overlays_standing[SHOES_LAYER] = bloody_feet
 	wielder.apply_overlay(SHOES_LAYER)
