@@ -5,17 +5,13 @@ GLOBAL_LIST_EMPTY(dorms_areas)
 	. = ..()
 	GLOB.dorms_areas[src] = TRUE
 
-/datum/weather/proc/enhanced_roleplay_filter(list/affectareas)
-	return affectareas
+/datum/weather/rad_storm/proc/dorms_check(mob/player)
+	var/turf/player_turf = get_turf(player)
 
-/datum/weather/rad_storm/enhanced_roleplay_filter(list/affectareas)
-	var/list/filtered_areas = affectareas
-	for(var/area/engaged_roleplay_area as anything in GLOB.dorms_areas)
-		for(var/mob/living/carbon/human/roleplayer in engaged_roleplay_area.contents)
-			if(engaged_role_play_check(player = roleplayer, station = FALSE, dorms = TRUE))
-				LAZYREMOVE(filtered_areas, engaged_roleplay_area)
-				break
-	return filtered_areas
+	if(player_turf && length(GLOB.dorms_areas))
+		var/area/player_area = player_turf.loc
+		if(GLOB.dorms_areas[player_area])
+			protected_areas += player_area
 
 /datum/weather/rad_storm/send_alert(alert_msg, alert_sfx, alert_sfx_vol = 100)
 	for(var/area/impacted_area as anything in impacted_areas)
