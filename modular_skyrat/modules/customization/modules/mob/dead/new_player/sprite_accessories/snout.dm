@@ -4,7 +4,7 @@
 	flags_for_organ = SPRITE_ACCESSORY_USE_MUZZLED_SPRITE
 	organ_type = /obj/item/organ/snout
 	recommended_species = list(SPECIES_MAMMAL, SPECIES_LIZARD, SPECIES_UNATHI, SPECIES_LIZARD_ASH, SPECIES_LIZARD_SILVER)
-	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
+	relevent_layers = list(EXTERNAL_ADJACENT, EXTERNAL_FRONT)
 
 /datum/sprite_accessory/snouts/is_hidden(mob/living/carbon/human/human)
 	if(human.covered_slots & HIDESNOUT)
@@ -257,7 +257,7 @@
 /datum/sprite_accessory/snouts/mammal/top
 	flags_for_organ = SPRITE_ACCESSORY_USE_MUZZLED_SPRITE | SPRITE_ACCESSORY_USE_ALT_FACEWEAR_LAYER
 	organ_type = /obj/item/organ/snout/top
-	relevent_layers = list(BODY_FRONT_LAYER)
+	relevent_layers = list(EXTERNAL_FRONT)
 
 /datum/sprite_accessory/snouts/mammal/top/fbird
 	name = "Beak (Top)"
@@ -273,7 +273,7 @@
 	flags_for_organ = NONE
 	color_src = USE_MATRIXED_COLORS
 	organ_type = /obj/item/organ/snout/top_adj
-	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
+	relevent_layers = list(EXTERNAL_ADJACENT, EXTERNAL_FRONT)
 
 /datum/sprite_accessory/snouts/mammal/top/felephant
 	name = "Elephant (Top)"
