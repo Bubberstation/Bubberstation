@@ -51,23 +51,18 @@ GAME_VERB(/mob/living/soulcatcher_soul, leave_soulcatcher, "Leave Soulcatcher", 
 	return soul_component.me_verb(message)
 
 /mob/living/soulcatcher_soul/subtle()
-	set hidden = TRUE
 	return FALSE
 
 /mob/living/soulcatcher_soul/subtler()
-	set hidden = TRUE
 	return FALSE
 
 /mob/living/soulcatcher_soul/whisper_verb()
-	set hidden = TRUE
 	return FALSE
 
 /mob/living/soulcatcher_soul/container_emote()
-	set hidden = TRUE
 	return FALSE
 
 /mob/living/soulcatcher_soul/resist()
-	set hidden = TRUE
 	return FALSE
 
 /// Assuming we have a previous body a present mind on our soul, we are going to transfer the mind back to the old body.

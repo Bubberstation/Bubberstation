@@ -43,9 +43,9 @@
 // We do this here like this so that we handle matrixed color bodypart overlays and emissives.
 /datum/bodypart_overlay/mutant/get_overlay(obj/item/bodypart/limb, layer_index, layer_real)
 	inherit_color(limb) // If draw_color is not set yet, go ahead and do that (matches upstream, needed for ORGAN_COLOR_INHERIT overlays)
-	. = get_images(limb, layer_index, layer_real)
-	color_images(., limb, layer_index)
-	. = add_emissives(., limb)
+	var/gotten_images = get_images(limb, layer_index, layer_real)
+	color_images(gotten_images, limb, layer_index)
+	return add_emissives(gotten_images, limb)
 
 /// Generate a unique key based on our sprites. So that if we've aleady drawn these sprites,
 /// they can be found in the cache and wont have to be drawn again (blessing and curse, but mostly curse)
