@@ -1,8 +1,9 @@
 /datum/heretic_knowledge/lycan_booster
 	name = "Lycanthropy Awakening"
-	desc = "Sacrifice a heart, a slab of meat, and a dead mouse to massively improve the combat performance of a cursekin's lycan form, including \
+	desc = "Massively improve the combat performance of a cursekin's lycan form, including \
 	significant health regeneration, extremely sharp claws, and more."
 	gain_text = "The Light grants Luna's blessing to those that would seek it out."
+	transmute_text = "Sacrifice a heart, a slab of meat, and a dead mouse."
 	research_tree_icon_path = 'modular_skyrat/modules/implants/icons/razorclaws.dmi'
 	research_tree_icon_state = "wolverine"
 	drafting_tier = 4

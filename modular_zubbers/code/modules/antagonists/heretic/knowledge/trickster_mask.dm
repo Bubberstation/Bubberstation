@@ -1,7 +1,8 @@
 /datum/heretic_knowledge/tricksters_mask
 	name = "Trickster's Mask"
-	desc = "Sacrifice a bandana and a spray can to create a shapeshifting mask that makes you sound like whatever your ID card is set to."
+	desc = "Create a shapeshifting mask that makes you sound like whatever your ID card is set to."
 	gain_text = "The Masquerade has always been dominated by the Bleeding Trickster, with its shifting face and form."
+	transmute_text = "Transmute a bandana and a spray can."
 	required_atoms = list(
 		/obj/item/clothing/mask/bandana = 1,
 		/obj/item/toy/crayon/spraycan = 1,

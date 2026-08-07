@@ -2,9 +2,10 @@ GLOBAL_VAR_INIT(processors_cursed, FALSE)
 
 /datum/heretic_knowledge/telecomms_corruption
 	name = "The Owl's Secrets"
-	desc = "Allows you to combine a radio, ears, and a bluespace crystal to cast a curse on the station's telecommunication processors. \
+	desc = "Cast a curse on the station's telecommunication processors. \
 	This curse will drain sanity on anyone wearing a radio and garble messages for five minutes. Can only be used twice."
 	gain_text = "The Owl is a great listener. But a whisper of the knowledge it has gained is enough to send a man to an asylum."
+	transmute_text = "Sacrifice a radio, ears, and a bluespace crystal."
 	required_atoms = list(
 		/obj/item/radio = 1,
 		/obj/item/organ/ears = 1,
