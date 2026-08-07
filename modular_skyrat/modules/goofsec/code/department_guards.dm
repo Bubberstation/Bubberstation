@@ -214,6 +214,7 @@
 	belt = /obj/item/modular_computer/pda/science
 	ears = /obj/item/radio/headset/guard_bowman/science
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/guard/science
 	shoes = /obj/item/clothing/shoes/jackboots
 	head =  /obj/item/clothing/head/beret/sec/science
 	suit = /obj/item/clothing/suit/armor/vest/alt
@@ -321,7 +322,7 @@
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/orderly
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	head = /obj/item/clothing/head/beret/sec/medical
-	glasses = /obj/item/clothing/glasses/hud/medsechud/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/guard/medical
 	suit = /obj/item/clothing/suit/armor/vest/blueshirt/skyrat/orderly
 	r_pocket = /obj/item/reagent_containers/spray/pepper
 	l_pocket = /obj/item/restraints/handcuffs
@@ -427,6 +428,7 @@
 	ears = /obj/item/radio/headset/guard_bowman/engineering
 	shoes = /obj/item/clothing/shoes/workboots
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/engineering_guard
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering
 	head =  /obj/item/clothing/head/beret/sec/engineering
 	suit = /obj/item/clothing/suit/armor/vest/blueshirt/skyrat/engineering_guard
 	r_pocket = /obj/item/reagent_containers/spray/pepper
@@ -535,7 +537,7 @@
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/customs_agent
 	head = /obj/item/clothing/head/beret/sec/cargo
 	suit = /obj/item/clothing/suit/armor/vest/blueshirt/skyrat/customs_agent
-	glasses = /obj/item/clothing/glasses/hud/gun_permit
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/guard/customs
 	r_pocket = /obj/item/reagent_containers/spray/pepper
 	l_pocket = /obj/item/restraints/handcuffs
 	backpack_contents = list(
@@ -643,7 +645,7 @@
 		/obj/item/security_voucher/primary = 1,
 		/obj/item/holosign_creator/security = 1
 	)
-	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/guard/service
 
 	backpack = /obj/item/storage/backpack
 	satchel = /obj/item/storage/backpack/satchel
@@ -850,7 +852,8 @@
 		/obj/item/clothing/head/beret/sec/science = 2,
 		/obj/item/clothing/suit/armor/vest/blueshirt/skyrat = 2,
 		/obj/item/clothing/suit/toggle/labcoat/technical/science/guard = 1,
-		/obj/item/clothing/glasses/hud/security = 2,
+		/obj/item/clothing/glasses/hud/security = 1,
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/science = 1,
 	), src)
 
 /obj/item/storage/bag/garment/orderly
@@ -871,6 +874,7 @@
 		/obj/item/clothing/suit/toggle/labcoat/technical/medical/black/guard = 1,
 		/obj/item/clothing/under/rank/security/peacekeeper/miniskirt = 1,
 		/obj/item/clothing/glasses/hud/medsechud = 1,
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/medical = 1,
 	), src)
 
 /obj/item/storage/bag/garment/engineering_guard
@@ -886,7 +890,8 @@
 		/obj/item/clothing/head/beret/sec/engineering = 2,
 		/obj/item/clothing/suit/armor/vest/blueshirt/skyrat/engineering_guard = 2,
 		/obj/item/clothing/suit/toggle/labcoat/technical/engineer/guard = 1,
-		/obj/item/clothing/glasses/hud/security = 2,
+		/obj/item/clothing/glasses/hud/security = 1,
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering = 1,
 	), src)
 
 /obj/item/storage/bag/garment/customs_agent
@@ -902,6 +907,6 @@
 		/obj/item/clothing/head/beret/sec/cargo = 2,
 		/obj/item/clothing/suit/armor/vest/blueshirt/skyrat/customs_agent = 2,
 		/obj/item/clothing/suit/toggle/labcoat/technical/cargo/guard = 1,
-		/obj/item/clothing/glasses/hud/security = 2,
-		/obj/item/clothing/glasses/hud/gun_permit = 2,
+		/obj/item/clothing/glasses/hud/security = 1,
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/customs = 1,
 	), src)

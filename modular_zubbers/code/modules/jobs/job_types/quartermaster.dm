@@ -1,2 +1,2 @@
 /datum/outfit/job/quartermaster
-	glasses = /obj/item/clothing/glasses/hud/gun_permit/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/guard/customs
