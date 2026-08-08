@@ -149,7 +149,7 @@
 
 	/// MODULES ///
 
-/obj/item/borg/upgrade/tarkon_medical
+/obj/item/borg/upgrade/tarkon/tarkon_medical
 	name = "Tarkon Medical Module"
 	desc = "Contains medical tools for first aid, diagnostics, and healing."
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
@@ -184,7 +184,7 @@
 		/obj/item/blood_filter
 						)
 
-/obj/item/borg/upgrade/tarkon_engineering
+/obj/item/borg/upgrade/tarkon/tarkon_engineering
 	name = "Tarkon Engineering Module"
 	desc = "Contains tools for repairs, construction, and maintenance."
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
@@ -221,7 +221,7 @@
 		/obj/item/lightreplacer
 	)
 
-/obj/item/borg/upgrade/tarkon_security
+/obj/item/borg/upgrade/tarkon/tarkon_security
 	name = "Tarkon Security Module"
 	desc = "Provides enhanced lethal and non-lethal security options." // Sec and Peacekeeper modules
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
@@ -236,7 +236,7 @@
 		/obj/item/gun/energy/laser/cyborg // The nature of tarkon requires a gun.
 						)
 
-/obj/item/borg/upgrade/tarkon_cargo
+/obj/item/borg/upgrade/tarkon/tarkon_cargo
 	name = "Tarkon Cargo Module"
 	desc = "Provides basic manipulation equipment, and abilities such as stamps, paper dispensing, and improved mining gear."
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
@@ -272,7 +272,7 @@
 		/obj/item/storage/bag/ore/cyborg
 		)
 
-/obj/item/borg/upgrade/tarkon_research
+/obj/item/borg/upgrade/tarkon/tarkon_research
 	name = "Tarkon Research Module"
 	desc = "Provides research tools, sensors, and data collection capabilites for experiments."
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
@@ -288,7 +288,7 @@
 				/obj/item/storage/bag/xenoarch/adv
 				)
 
-/obj/item/borg/upgrade/tarkon_utility // Lesser used on tarkon things like chef upgrades, and janitorial. Might get subdivided further since my GOD theres alot here
+/obj/item/borg/upgrade/tarkon/tarkon_utility // Lesser used on tarkon things like chef upgrades, and janitorial. Might get subdivided further since my GOD theres alot here
 	name = "Tarkon Utility Module"
 	desc = "Adds multi-purpose tools, including cleaning supplies, and basic service gear."
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
@@ -338,6 +338,17 @@
 		/obj/item/mop
 		)
 
+///Prevents tarkon borgs from taking too many tarkon upgrades.
+/obj/item/borg/upgrade/tarkon/action(mob/living/silicon/robot/borg, mob/user)
+	var/tarkon_upgrade_count
+	for(var/obj/item/borg/upgrade/tarkon/tarkon_upgrade as anything in borg.upgrades)
+		if(istype(tarkon_upgrade, /obj/item/borg/upgrade/tarkon))
+			tarkon_upgrade_count ++
+	if(tarkon_upgrade_count >= 3)
+		to_chat(user, span_danger("Warning: The borg's components cannot handle any more upgrades."))
+		return FALSE
+	return ..()
+
 	/// EXOFAB DATUMS ///
 
 /datum/design/borg_upgrade_tarkon_main
@@ -361,7 +372,7 @@
 	name = "Port Tarkon Medical Upgrades"
 	id = "borg_upgrade_tarkon_medical"
 	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/tarkon_medical
+	build_path = /obj/item/borg/upgrade/tarkon/tarkon_medical
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD
@@ -377,7 +388,7 @@
 	name = "Port Tarkon Engineering Upgrades"
 	id = "borg_upgrade_tarkon_engineering"
 	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/tarkon_engineering
+	build_path = /obj/item/borg/upgrade/tarkon/tarkon_engineering
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD
@@ -393,7 +404,7 @@
 	name = "Port Tarkon Security Upgrades"
 	id = "borg_upgrade_tarkon_security"
 	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/tarkon_security
+	build_path = /obj/item/borg/upgrade/tarkon/tarkon_security
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD
@@ -409,7 +420,7 @@
 	name = "Port Tarkon Cargo Upgrades"
 	id = "borg_upgrade_tarkon_cargo"
 	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/tarkon_cargo
+	build_path = /obj/item/borg/upgrade/tarkon/tarkon_cargo
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD
@@ -425,7 +436,7 @@
 	name = "Port Tarkon Research Upgrades"
 	id = "borg_upgrade_tarkon_research"
 	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/tarkon_research
+	build_path = /obj/item/borg/upgrade/tarkon/tarkon_research
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD
@@ -441,7 +452,7 @@
 	name = "Port Tarkon Service Upgrades"
 	id = "borg_upgrade_tarkon_utility"
 	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/tarkon_utility
+	build_path = /obj/item/borg/upgrade/tarkon/tarkon_utility
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD
