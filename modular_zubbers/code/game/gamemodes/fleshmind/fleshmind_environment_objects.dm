@@ -143,6 +143,6 @@
 			to_chat(human_mob, span_green("[src] shoots a mechanical limb right into your missing limb!"))
 
 /obj/effect/temp_visual/wireweed_spread
-	icon = 'modular_zubbers/icons/fleshmind/wireweed_floor.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/fleshmind_structures.dmi'
 	icon_state = "spread_anim"
 	duration = 1.7 SECONDS

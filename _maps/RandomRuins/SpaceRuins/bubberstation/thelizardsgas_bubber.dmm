@@ -472,9 +472,6 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/thelizardsgas)
 "oZ" = (
-/obj/machinery/atmospherics/pipe/smart/simple/pink/hidden{
-	dir = 6
-	},
 /obj/item/toy/plush/lizard_plushie/space/green{
 	desc = "How the fuck did he get in there?!";
 	name = "Zingo"
@@ -511,6 +508,9 @@
 /area/ruin/space/has_grav/thelizardsgas)
 "rC" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
+/obj/machinery/atmospherics/pipe/smart/simple/pink/hidden{
+	dir = 9
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/thelizardsgas)
 "rL" = (
@@ -1293,8 +1293,7 @@
 /area/ruin/space/has_grav/thelizardsgas)
 "Pb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored{
-	chamber_id = "lizardgas";
-	dir = 8
+	chamber_id = "lizardgas"
 	},
 /turf/open/floor/engine/plasma{
 	initial_gas_mix = "plasma=35000;TEMP=293.15"
@@ -1384,8 +1383,10 @@
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/thelizardsgas)
 "Tj" = (
+/obj/machinery/atmospherics/pipe/smart/simple/pink/hidden{
+	dir = 6
+	},
 /obj/effect/spawner/structure/window/reinforced/plasma,
-/obj/machinery/atmospherics/pipe/smart/simple/pink/hidden,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/thelizardsgas)
 "TZ" = (
