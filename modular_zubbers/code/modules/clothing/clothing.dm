@@ -20,8 +20,9 @@
 		flash_lighting_fx(3, 3, LIGHT_COLOR_YELLOW)
 		resizer.visible_message(span_warning("Golden light engulfs [resizer], and they shoot back to their default height!"), span_notice("Energy rushes through your body, and you return to normal."))
 		for(var/datum/quirk/oversized/oversized as anything in resizer?.client?.prefs?.all_quirks)
-			if(oversized)
+			if(istype(oversized))
 				resizer.add_quirk(/datum/quirk/oversized, announce = FALSE)
+				break
 		if(!resizer.get_quirk(/datum/quirk/oversized))
 			resizer.update_transform(resizer?.client?.prefs?.read_preference(/datum/preference/numeric/body_size))
 		resizer.normalized = FALSE
