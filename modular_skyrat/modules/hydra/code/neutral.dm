@@ -52,7 +52,7 @@
 /datum/preference/text/hydra/name3
 	savefile_key = "hydra__head_name3"
 
-/datum/preference/text/hydra/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences) //Unsure what this does. Revisit later
+/datum/preference/text/hydra/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
 
 /datum/action/innate/hydra_head
