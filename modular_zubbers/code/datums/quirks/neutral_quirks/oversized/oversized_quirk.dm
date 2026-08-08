@@ -17,7 +17,7 @@
 
 /datum/quirk/oversized/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	human_holder.update_transform(2 * RESIZE_DEFAULT_SIZE)
+	human_holder.update_transform(2 * RESIZE_DEFAULT_SIZE / human_holder.current_size)
 	human_holder.maxHealth = HUMAN_MAXHEALTH * OVERSIZED_HEALTH_BUFF
 	human_holder.health += ((HUMAN_MAXHEALTH * OVERSIZED_HEALTH_BUFF) - HUMAN_MAXHEALTH)
 
