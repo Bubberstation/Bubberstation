@@ -1,5 +1,6 @@
 /client/verb/toggle_stat_panel()
 	set name = "Toggle Stat Panel"
+	set category = "OOC" // BUBBER EDIT ADDITION - SHOW STAT PANEL TOGGLE
 	// set hidden = TRUE // BUBBER EDIT CHANGE - SHOW STAT PANEL TOGGLE
 
 	//Flip it
