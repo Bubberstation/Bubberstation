@@ -8,7 +8,7 @@ import {
   Slider,
 } from 'tgui-core/components';
 import { formatPower } from 'tgui-core/format';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -79,7 +79,7 @@ export const BluespaceArtillerySkyrat = (props) => {
                     step={100000}
                     stepPixelSize={1}
                     format={(value) => formatPower(value, 1)}
-                    onDrag={(e, value) =>
+                    onChange={(e, value) =>
                       act('capacitor_target_change', {
                         capacitor_target: value,
                       })

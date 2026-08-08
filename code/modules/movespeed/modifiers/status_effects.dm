@@ -23,7 +23,7 @@
 	multiplicative_slowdown = 4
 
 /datum/movespeed_modifier/status_effect/lobster_rush
-	multiplicative_slowdown = -0.5
+	multiplicative_slowdown = -0.2
 	blacklisted_movetypes = (FLYING|FLOATING)
 
 /datum/movespeed_modifier/status_effect/brimdust_concussion
@@ -40,6 +40,9 @@
 
 /datum/movespeed_modifier/status_effect/tired_post_charge/lesser
 	multiplicative_slowdown = 2
+
+/datum/movespeed_modifier/status_effect/saw_slashes_slowdown
+	multiplicative_slowdown = 0.5
 
 /// Get slower the more gold is in your system.
 /datum/movespeed_modifier/status_effect/midas_blight
@@ -62,6 +65,10 @@
 
 /datum/movespeed_modifier/status_effect/guardian_shield
 	multiplicative_slowdown = 1
+
+/datum/movespeed_modifier/status_effect/yellow_orb
+	multiplicative_slowdown = -0.65
+	blacklisted_movetypes = (FLYING|FLOATING)
 
 ///movespeed modifier that makes you go faster when wet and lying on the floor once past the fish organ set threshold.
 /datum/movespeed_modifier/fish_flopping

@@ -3,10 +3,9 @@
 	show_in_antagpanel = TRUE
 	roundend_category = "bloodsuckers"
 	antagpanel_category = "Bloodsucker"
-	job_rank = ROLE_BLOODSUCKER
+	pref_flag = ROLE_BLOODSUCKER
 	antag_hud_name = "bloodsucker"
 	show_name_in_check_antagonists = TRUE
-	can_coexist_with_others = FALSE
 	hijack_speed = 0.5
 	hud_icon = 'modular_zubbers/icons/mob/huds/bloodsucker.dmi'
 	ui_name = "AntagInfoBloodsucker"
@@ -164,10 +163,11 @@
 	handle_clown_mutation(current_mob, removing = FALSE)
 	if(current_mob.hud_used)
 		var/datum/hud/hud_used = current_mob.hud_used
-		hud_used.infodisplay -= blood_display
-		hud_used.infodisplay -= vamprank_display
-		QDEL_NULL(blood_display)
-		QDEL_NULL(vamprank_display)
+		hud_used.remove_screen_object(blood_display, update = FALSE)
+		hud_used.remove_screen_object(vamprank_display, update = FALSE)
+		hud_used.show_hud(hud_used.hud_version)
+		blood_display = null
+		vamprank_display = null
 
 	SSsunlight.remove_sun_sufferer(current_mob) //check if sunlight should end
 	if(iscarbon(current_mob))
@@ -182,10 +182,10 @@
 	var/datum/hud/bloodsucker_hud = owner.current.hud_used
 
 	blood_display = new(null, bloodsucker_hud)
-	bloodsucker_hud.infodisplay += blood_display
+	bloodsucker_hud.add_screen_object(blood_display, null, HUD_GROUP_INFO)
 
 	vamprank_display = new(null, bloodsucker_hud)
-	bloodsucker_hud.infodisplay += vamprank_display
+	bloodsucker_hud.add_screen_object(vamprank_display, null, HUD_GROUP_INFO)
 
 	bloodsucker_hud.show_hud(bloodsucker_hud.hud_version)
 	SSsunlight.add_sun_sufferer(owner.current)
@@ -337,10 +337,10 @@
 
 /datum/antagonist/bloodsucker/get_preview_icon()
 
-	var/icon/outfit_icon = render_preview_outfit(preview_outfit)
-	var/icon/blood_icon = icon('icons/effects/blood.dmi', "uniformblood")
-	blood_icon.Blend(BLOOD_COLOR_RED, ICON_MULTIPLY)
-	outfit_icon.Blend(blood_icon, ICON_OVERLAY)
+	var/datum/universal_icon/outfit_icon = render_preview_outfit(preview_outfit)
+	var/datum/universal_icon/blood_icon = uni_icon('icons/effects/blood.dmi', "uniformblood")
+	blood_icon.blend_color(BLOOD_COLOR_RED, ICON_MULTIPLY)
+	outfit_icon.blend_icon(blood_icon, ICON_OVERLAY)
 
 	return finish_preview_icon(outfit_icon)
 
@@ -504,12 +504,12 @@
 	user.update_sight()
 
 /datum/antagonist/bloodsucker/proc/remove_invalid_quirks(mob/target)
-	var/datum/quirk/bad_quirk = owner.current.get_quirk(/datum/quirk/sol_weakness)
+	var/datum/quirk/bad_quirk = owner.current.get_quirk(/datum/quirk/hemophage)
 	if(!bad_quirk)
 		return
 	// silently remove the quirk if it's not valid
 	bad_quirk.remove_from_current_holder(TRUE)
-	owner.current.remove_quirk(/datum/quirk/sol_weakness)
+	owner.current.remove_quirk(/datum/quirk/hemophage)
 
 /// Name shown on antag list
 /datum/antagonist/bloodsucker/antag_listing_name()

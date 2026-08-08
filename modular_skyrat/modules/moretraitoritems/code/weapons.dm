@@ -8,13 +8,13 @@
 	icon_state = "c38_panther"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder
 
-/obj/item/ammo_casing/a357/peacemaker
+/obj/item/ammo_casing/c357/peacemaker
 	name = ".357 Peacemaker bullet casing"
 	desc = "A .357 Peacemaker bullet casing."
 	caliber = CALIBER_357
-	projectile_type = /obj/projectile/bullet/a357/peacemaker
+	projectile_type = /obj/projectile/bullet/c357/peacemaker
 
-/obj/projectile/bullet/a357/peacemaker
+/obj/projectile/bullet/c357/peacemaker
 	name = ".357 Peacemaker bullet"
 	damage = 25
 	wound_bonus = 0
@@ -25,24 +25,24 @@
 	ricochet_incidence_leeway = 80
 	ricochet_decay_chance = 1
 
-/datum/design/a357/peacemaker
+/datum/design/c357/peacemaker
 	name = "Speed Loader (.357 Peacemaker)"
 	id = "a357PM"
 	build_type = AUTOLATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
 	)
-	build_path = /obj/item/ammo_box/a357/peacemaker
+	build_path = /obj/item/ammo_box/speedloader/c357/peacemaker
 	category = list(
 		RND_CATEGORY_HACKED,
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO,
 	)
 
-/obj/item/ammo_box/a357/peacemaker
+/obj/item/ammo_box/speedloader/c357/peacemaker
 	name = "speed loader (.357 Peacemaker)"
 	desc = "Designed to quickly reload revolvers."
 	icon_state = "357"
-	ammo_type = /obj/item/ammo_casing/a357/peacemaker
+	ammo_type = /obj/item/ammo_casing/c357/peacemaker
 	max_ammo = 7
 	multiple_sprites = AMMO_BOX_PER_BULLET
 	item_flags = NO_MAT_REDEMPTION

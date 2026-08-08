@@ -1,19 +1,16 @@
 // Sabres, including the cargo variety
 
-/obj/item/storage/belt/sabre/cargo
+/obj/item/storage/belt/sheath/sabre/cargo
 	name = "authentic shamshir leather sheath"
 	desc = "A good-looking sheath that is advertised as being made of real Venusian black leather. It feels rather plastic-like to the touch, and it looks like it's made to fit a British cavalry sabre."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
-
-/obj/item/storage/belt/sabre/cargo/PopulateContents()
-	new /obj/item/melee/sabre/cargo(src)
-	update_appearance()
+	stored_blade = /obj/item/melee/sabre/cargo
 
 /obj/item/melee/sabre
 	force = 20 // Original: 15
 	wound_bonus = 5 // Original: 10
-	bare_wound_bonus = 20 // Original: 25 Both down slightly, to make up for the damage buff, since it'd get a bit wacky ontop of the armor pen.
+	exposed_wound_bonus = 20 // Original: 25 Both down slightly, to make up for the damage buff, since it'd get a bit wacky ontop of the armor pen.
 
 /obj/item/melee/sabre/cargo
 	name = "authentic shamshir sabre"
@@ -23,6 +20,7 @@
 	righthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/inhands/weapons/swords_righthand.dmi'
 	block_chance = 20
 	armour_penetration = 25
+	force = 15
 
 
 // This is here so that people can't buy the Sabres and craft them into powercrepes

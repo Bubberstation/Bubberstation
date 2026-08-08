@@ -163,6 +163,11 @@
 /obj/structure/closet/crate/secure/owned/examine(mob/user)
 	. = ..()
 	. += span_notice("It's locked with a privacy lock, and can only be unlocked by the buyer's ID.")
+	// BUBBER EDIT START - show department account on examine if bought with departmental funds
+	if(department_purchase)
+		. += span_notice("This crate was purchased with departmental funds from [department_account.account_holder], and can be opened by anyone who has an ID linked to an account with a paycheck from that department.")
+		. += span_notice("Or overriden by someone with captain access.")
+	// BUBBER EDIT END
 
 /obj/structure/closet/crate/secure/owned/Initialize(mapload, datum/bank_account/_buyer_account)
 	. = ..()
@@ -170,6 +175,8 @@
 	if(IS_DEPARTMENTAL_ACCOUNT(buyer_account))
 		department_purchase = TRUE
 		department_account = buyer_account
+		// captain access override that ignores lockout
+		req_access = list(ACCESS_CAPTAIN)
 
 /obj/structure/closet/crate/secure/owned/togglelock(mob/living/user, silent)
 	if(privacy_lock)
@@ -177,7 +184,9 @@
 			var/obj/item/card/id/id_card = user.get_idcard(TRUE)
 			if(id_card)
 				if(id_card.registered_account)
-					if(id_card.registered_account == buyer_account || (department_purchase && (id_card.registered_account?.account_job?.paycheck_department) == (department_account.department_id)))
+					// BUBBER EDIT START - allow captain access override for departmental private crates
+					if(id_card.registered_account == buyer_account || (department_purchase && ((id_card.registered_account?.account_job?.paycheck_department) == (department_account.department_id) || check_access(id_card))))
+					// BUBBER EDIT END
 						if(iscarbon(user))
 							add_fingerprint(user)
 						locked = !locked

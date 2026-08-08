@@ -1,4 +1,8 @@
-import { Feature, FeatureChoiced, FeatureShortTextInput } from '../../base';
+import {
+  type Feature,
+  type FeatureChoiced,
+  FeatureShortTextInput,
+} from '../../base';
 import { FeatureDropdownInput } from '../../dropdowns';
 
 export const hypnotic_quirk_text: Feature<string> = {

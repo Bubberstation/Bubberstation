@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `citation` (
   `sender_ic` varchar(64) NOT NULL DEFAULT '' COMMENT 'Longer because this is the character name, not the ckey',
   `recipient` varchar(64) NOT NULL DEFAULT '' COMMENT 'Longer because this is the character name, not the ckey',
   `crime` text NOT NULL,
-	`crime_desc` text NULL DEFAULT NULL,
+  `crime_desc` text NULL DEFAULT NULL,
   `fine` int(4) DEFAULT NULL,
   `paid` int(4) DEFAULT 0,
   `timestamp` datetime NOT NULL,
@@ -141,7 +141,7 @@ CREATE TABLE `connection_log` (
   `server_ip` int(10) unsigned NOT NULL,
   `server_port` smallint(5) unsigned NOT NULL,
   `round_id` int(11) unsigned NULL,
-  `ckey` varchar(45) DEFAULT NULL,
+  `ckey` varchar(32) DEFAULT NULL,
   `ip` int(10) unsigned NOT NULL,
   `computerid` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -311,8 +311,8 @@ CREATE TABLE `manifest` (
   `server_ip` int(10) unsigned NOT NULL,
   `server_port` smallint(5) NOT NULL,
   `round_id` int(11) NOT NULL,
-  `ckey` text NOT NULL,
-  `character` text NOT NULL,
+  `ckey` varchar(32) NOT NULL,
+  `character_name` text NOT NULL,
   `job` text NOT NULL,
   `special` text DEFAULT NULL,
   `latejoin` tinyint(1) NOT NULL DEFAULT 0,
@@ -632,6 +632,14 @@ CREATE TABLE `fish_progress` (
   PRIMARY KEY (`ckey`,`progress_entry`)
 ) ENGINE=InnoDB;
 
+DROP TABLE IF EXISTS `pda_themes_progress`;
+CREATE TABLE `pda_themes_progress` (
+  `ckey` VARCHAR(32) NOT NULL,
+  `progress_entry` VARCHAR(32) NOT NULL,
+  `datetime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ckey`,`progress_entry`)
+) ENGINE=InnoDB;
+
 --
 -- Table structure for table `ticket`
 --
@@ -655,7 +663,7 @@ CREATE TABLE `ticket` (
   KEY `idx_ticket_act_time_rid` (`action`, `timestamp`, `round_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DELIMITER $$
+DELIMITER //
 CREATE PROCEDURE `set_poll_deleted`(
 	IN `poll_id` INT
 )
@@ -666,16 +674,16 @@ UPDATE `poll_option` SET deleted = 1 WHERE pollid = poll_id;
 UPDATE `poll_vote` SET deleted = 1 WHERE pollid = poll_id;
 UPDATE `poll_textreply` SET deleted = 1 WHERE pollid = poll_id;
 END
-$$
+//
 CREATE TRIGGER `role_timeTlogupdate` AFTER UPDATE ON `role_time` FOR EACH ROW BEGIN INSERT into role_time_log (ckey, job, delta) VALUES (NEW.CKEY, NEW.job, NEW.minutes-OLD.minutes);
 END
-$$
+//
 CREATE TRIGGER `role_timeTloginsert` AFTER INSERT ON `role_time` FOR EACH ROW BEGIN INSERT into role_time_log (ckey, job, delta) VALUES (NEW.ckey, NEW.job, NEW.minutes);
 END
-$$
+//
 CREATE TRIGGER `role_timeTlogdelete` AFTER DELETE ON `role_time` FOR EACH ROW BEGIN INSERT into role_time_log (ckey, job, delta) VALUES (OLD.ckey, OLD.job, 0-OLD.minutes);
 END
-$$
+//
 DELIMITER ;
 
 --

@@ -58,7 +58,7 @@
 	var/list/options = list()
 	var/list/picks_to_instances = list()
 	var/list/rat_styles = subtypesof(/datum/rat_fashion)
-	for (var/style_path as anything in rat_styles)
+	for (var/style_path in rat_styles)
 		var/datum/rat_fashion/style = new style_path()
 		var/datum/radial_menu_choice/choice = style.get_radial_select()
 		options += list("[choice.name]" = choice)
@@ -126,6 +126,14 @@
 	allow_random = FALSE
 	icon_state_living = "classic"
 	icon_state_dead = "classic_dead"
+
+/// Rat KING (ported from PR #10294 of space-wizards/space-station-14)
+
+/datum/rat_fashion/swole
+	name = "swoleking"
+	allow_random = FALSE
+	icon_state_living = "buffking"
+	icon_state_dead = "buffking_dead"
 
 /// Rat queen (thicc rat)
 

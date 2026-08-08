@@ -101,6 +101,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/flag/syndicate, 32)
 	icon_state = "folded_coder"
 	sign_path = /obj/structure/sign/flag
 	is_editable = FALSE
+	custom_materials = null
 
 ///Since all of the signs rotate themselves on initialisation, this made folded flags look ugly (and more importantly rotated).
 ///And thus, it gets removed to make them aesthetically pleasing once again.

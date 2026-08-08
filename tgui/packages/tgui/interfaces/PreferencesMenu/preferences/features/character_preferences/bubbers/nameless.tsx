@@ -1,4 +1,4 @@
-import { Feature, FeatureShortTextInput } from '../../base';
+import { type Feature, FeatureShortTextInput } from '../../base';
 
 export const nameless_quirk_name: Feature<string> = {
   name: 'Prefix Name',

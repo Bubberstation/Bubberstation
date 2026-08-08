@@ -36,7 +36,7 @@
 
 /datum/loadout_item/pocket_items/rag
 	name = "Rag"
-	item_path = /obj/item/reagent_containers/cup/rag
+	item_path = /obj/item/rag
 
 /datum/loadout_item/pocket_items/razor
 	name = "Razor"
@@ -189,6 +189,10 @@
 /datum/loadout_item/pocket_items/drugs_liberty
 	name = "Liberty Cap Seeds"
 	item_path = /obj/item/seeds/liberty
+
+/datum/loadout_item/pocket_items/hand_labeler
+	name = "Hand Labeler"
+	item_path = /obj/item/hand_labeler
 
 /*
 *	DONATOR

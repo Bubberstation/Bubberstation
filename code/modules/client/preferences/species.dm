@@ -32,11 +32,9 @@
 	return values
 
 /datum/preference/choiced/species/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/prefs)
-	target.set_species(value, FALSE, FALSE, prefs?.features.Copy(), prefs?.mutant_bodyparts.Copy(), prefs?.body_markings.Copy()) // SKYRAT EDIT - Customization
+	target.set_species(value, icon_update = FALSE, pref_load = FALSE, override_features = prefs?.features.Copy(), override_mutantparts = prefs?.mutant_bodyparts.Copy(), override_markings = prefs?.body_markings.Copy()) // SKYRAT EDIT - Customization
 
 	//SKYRAT EDIT ADDITION
-	target.dna.update_body_size()
-
 	for(var/organ_key in list(ORGAN_SLOT_VAGINA, ORGAN_SLOT_PENIS, ORGAN_SLOT_BREASTS, ORGAN_SLOT_ANUS))
 		var/obj/item/organ/genital/gent = target.get_organ_slot(organ_key)
 		if(gent)
@@ -61,5 +59,6 @@
 		data[species_id]["enabled_features"] = species.get_features()
 		data[species_id]["perks"] = species.get_species_perks()
 		data[species_id]["diet"] =  species.get_species_diet()
+		data[species_id]["sort_bottom"] = species.sort_bottom //BUBBER EDIT ADDITION: Do we sort the species to the bottom?
 
 	return data

@@ -114,7 +114,7 @@
 	. = ..()
 	. += "You can use a [EXAMINE_HINT("spoon")] or [EXAMINE_HINT("soup ladle")] to spill reagents."
 
-/obj/machinery/icecream_vat/attackby(obj/item/weapon, mob/user, list/modifiers)
+/obj/machinery/icecream_vat/attackby(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	if(.)
 		return
@@ -140,7 +140,7 @@
 	balloon_alert(user, "beaker inserted")
 	custom_ice_cream_beaker = beaker
 
-/obj/machinery/icecream_vat/attackby_secondary(obj/item/reagent_containers/beaker, mob/user, list/modifiers)
+/obj/machinery/icecream_vat/attackby_secondary(obj/item/reagent_containers/beaker, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
@@ -276,7 +276,7 @@
 		if(isnull(cone.crafted_food_buff))
 			cone.crafted_food_buff = /datum/status_effect/food/chilling
 		if(user.mind)
-			ADD_TRAIT(cone, TRAIT_FOOD_CHEF_MADE, REF(user.mind))
+			ADD_TRAIT(cone, TRAIT_HANDMADE, REF(user.mind))
 
 ///Swaps the mode to the next one meant to be selected, then tells the user who changed it.
 /obj/machinery/icecream_vat/proc/swap_modes(mob/user)

@@ -1,6 +1,5 @@
 /// Some defines for items the daemon forge can create.
 #define NARSIE_ARMOR "Nar'Sien Hardened Armor"
-#define FLAGELLANT_ARMOR "Flagellant's Robe"
 #define ELDRITCH_SWORD "Eldritch Longsword"
 #define CURSED_BLADE "Cursed Ritual Blade"
 
@@ -8,26 +7,25 @@
 /obj/structure/destructible/cult/item_dispenser/forge
 	name = "daemon forge"
 	desc = "A forge used in crafting the unholy weapons used by the armies of Nar'Sie."
-	cult_examine_tip = "Can be used to create Nar'Sien hardened armor, flagellant's robes, and eldritch longswords."
+	cult_examine_tip = "Can be used to create Nar'Sien hardened armor and eldritch longswords."
 	icon_state = "forge"
 	light_range = 2
 	light_color = LIGHT_COLOR_LAVA
 	break_message = span_warning("The forge breaks apart into shards with a howling scream!")
 	mansus_conversion_path = /obj/structure/destructible/eldritch_crucible
+	custom_materials = list(/datum/material/runedmetal = SHEET_MATERIAL_AMOUNT * 3)
 
 /obj/structure/destructible/cult/item_dispenser/forge/setup_options()
 	var/static/list/forge_items = list(
 		NARSIE_ARMOR = list(
 			PREVIEW_IMAGE = image(icon = 'icons/obj/clothing/suits/armor.dmi', icon_state = "cult_armor"),
 			OUTPUT_ITEMS = list(/obj/item/clothing/suit/hooded/cultrobes/hardened),
-			),
-		FLAGELLANT_ARMOR = list(
-			PREVIEW_IMAGE = image(icon = 'icons/obj/clothing/suits/armor.dmi', icon_state = "cultrobes"),
-			OUTPUT_ITEMS = list(/obj/item/clothing/suit/hooded/cultrobes/berserker),
+			RADIAL_DESC = "Smiths a set of [/obj/item/clothing/suit/hooded/cultrobes/hardened::name], a robust suit of armor that can withstand space.",
 			),
 		ELDRITCH_SWORD = list(
 			PREVIEW_IMAGE = image(icon = 'icons/obj/weapons/sword.dmi', icon_state = "cultblade"),
 			OUTPUT_ITEMS = list(/obj/item/melee/cultblade),
+			RADIAL_DESC = "Smiths \a [/obj/item/melee/cultblade::name], a powerful blade that can cleave through the toughest of armor.",
 			),
 	)
 
@@ -43,6 +41,7 @@
 	return list(CURSED_BLADE = list(
 			PREVIEW_IMAGE = image(icon = 'icons/obj/weapons/khopesh.dmi', icon_state = "cursed_blade"),
 			OUTPUT_ITEMS = list(/obj/item/melee/sickly_blade/cursed),
+			RADIAL_DESC = "Smiths a [/obj/item/melee/sickly_blade/cursed::name], an upgraded dagger that can be broken for an emergency teleport.",
 			),
 	)
 
@@ -56,6 +55,5 @@
 	debris = list()
 
 #undef NARSIE_ARMOR
-#undef FLAGELLANT_ARMOR
 #undef ELDRITCH_SWORD
 #undef CURSED_BLADE

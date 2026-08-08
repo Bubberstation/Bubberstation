@@ -23,9 +23,9 @@
 	name = "Skateboard"
 	item_path = /obj/item/melee/skateboard
 
-/datum/loadout_item/inhand/toolbox
-	name = "Full Toolbox"
-	item_path = /obj/item/storage/toolbox/mechanical
+/datum/loadout_item/inhand/emergency_toolbox
+	name = "Emergency Toolbox"
+	item_path = /obj/item/storage/toolbox/emergency
 	blacklisted_roles = list(JOB_PRISONER)
 
 /datum/loadout_item/inhand/bouquet_mixed
@@ -57,7 +57,7 @@
 	item_path = /obj/item/sign/flag/terragov
 
 /datum/loadout_item/inhand/flag_moghes
-	name = "Folded Republic Of Northern Moghes Flag"
+	name = "Folded Tiziran Empire Flag"
 	item_path = /obj/item/sign/flag/tizira
 
 /datum/loadout_item/inhand/flag_mothic
@@ -69,7 +69,7 @@
 	item_path = /obj/item/sign/flag/mars
 
 /datum/loadout_item/inhand/flag_nri
-	name = "Folded Novaya Rossiyskaya Imperiya Flag"
+	name = "Folded Pan-Slavic Commonwealth Flag"
 	item_path = /obj/item/sign/flag/nri
 
 /datum/loadout_item/inhand/flag_azulea

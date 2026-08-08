@@ -52,7 +52,7 @@ export function LaunchpadConsole(props) {
   const { launchpads = [], selected_id } = data;
 
   return (
-    <Window width={475} height={260}>
+    <Window width={475} height={275}>
       <Window.Content>
         {launchpads.length === 0 ? (
           <NoticeBox>No Pads Connected</NoticeBox>
@@ -135,10 +135,9 @@ function LaunchpadTitle(props) {
       <Stack fill>
         <Stack.Item grow>
           <Input
-            expensive
             value={pad_name}
             width="170px"
-            onChange={(value) =>
+            onBlur={(value) =>
               act('rename', {
                 name: value,
               })

@@ -27,20 +27,29 @@
 	var/traits = null
 	var/space_ruin_levels = DEFAULT_SPACE_RUIN_LEVELS
 	var/space_empty_levels = DEFAULT_SPACE_EMPTY_LEVELS
+
 	/// Boolean that tells us if this is a planetary station. (like IceBoxStation)
 	var/planetary = FALSE
+	/// How many z's to generate around a planetary station
+	var/wilderness_levels = 0
+	/// Directory to the wilderness area we can spawn in
+	var/wilderness_directory
+	/// Z-Level traits our wilderness maps will get, ice box traits by default
+	var/list/wilderness_z_traits = ZTRAITS_ICY_WILDS
+	/// Index of map names (inside wilderness_directory) with the amount to spawn. ("ice_planes" = 1) for one ice spawn
+	var/list/wilderness_maps_to_spawn = list()
 
 	///The type of mining Z-level that should be loaded.
-	var/minetype = "lavaland"
+	var/minetype = MINETYPE_LAVALAND
 	///If no minetype is set, this will be the blacklist file used
 	var/blacklist_file
 
 	var/allow_custom_shuttles = TRUE
 	var/shuttles = list(
-		"cargo" = "cargo_skyrat",
+		"cargo" = "cargo_box",
 		"ferry" = "ferry_fancy",
 		"whiteship" = "whiteship_meta",
-		"emergency" = "emergency_skyrat", //SKYRAT EDIT CHANGE
+		"emergency" = "emergency_meta",
 	)
 
 	/// Dictionary of job sub-typepath to template changes dictionary
@@ -53,11 +62,18 @@
 	/// Boolean - if TRUE, players spawn with grappling hooks in their bags
 	var/give_players_hooks = FALSE
 
+#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
 	/// List of unit tests that are skipped when running this map
 	var/list/skipped_tests
+	/// If TRUE, only unit tests with UNIT_TEST_DEBUG_MAP_ONLY will run on this map
+	var/is_unit_test_map = FALSE
+#endif
 
 	/// Boolean that tells SSmapping to load all away missions in the codebase.
 	var/load_all_away_missions = FALSE
+
+	/// Number of additional weakpoints to spawn for SSminor_mapping
+	var/bonus_weakpoints = 0
 
 /**
  * Proc that simply loads the default map config, which should always be functional.
@@ -162,11 +178,6 @@
 		log_world("map_config shuttles is not a list!")
 		return
 
-	//BUBBERSTATION CHANGE: FIXES DUMB SKYRAT OVERRIDE. HOLY SHIT. THIS WASN'T EVEN MARKED AS MODULAR.
-	if(!json["emergency_override"])
-		shuttles["emergency"] = "emergency_skyrat"
-	//BUBBERSTATION CHANGE END
-
 	traits = json["traits"]
 	// "traits": [{"Linkage": "Cross"}, {"Space Ruins": true}]
 	if (islist(traits))
@@ -194,6 +205,13 @@
 		log_world("map_config space_empty_levels is not a number!")
 		return
 
+	temp = json["wilderness_levels"]
+	if (isnum(temp))
+		wilderness_levels = temp
+	else if (!isnull(temp))
+		log_world("map_config wilderness_levels is not a number!")
+		return
+
 	if ("minetype" in json)
 		minetype = json["minetype"]
 
@@ -208,6 +226,10 @@
 
 	if ("give_players_hooks" in json)
 		give_players_hooks = json["give_players_hooks"]
+
+	if ("bonus_weakpoints" in json)
+		bonus_weakpoints = json["bonus_weakpoints"]
+
 
 	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE
 
@@ -231,6 +253,21 @@
 	if ("height_autosetup" in json)
 		height_autosetup = json["height_autosetup"]
 
+	var/list/wilderness = json["wilderness"]
+	// If we got wilderness levels, fetch them from the config
+	if (islist(wilderness))
+		wilderness_directory = wilderness["directory"]
+		wilderness.Remove("directory")
+
+		// Just pick and take based on weight
+		for(var/i in 1 to wilderness_levels)
+			wilderness_maps_to_spawn += pick_weight_take(wilderness)
+		shuffle(wilderness_maps_to_spawn)
+
+	var/list/wilderness_level_traits = json["wilderness_level_traits"]
+	if (islist(wilderness_level_traits))
+		wilderness_z_traits = wilderness_level_traits
+
 #ifdef UNIT_TESTS
 	// Check for unit tests to skip, no reason to check these if we're not running tests
 	for(var/path_as_text in json["ignored_unit_tests"])
@@ -239,6 +276,9 @@
 			stack_trace("Invalid path in mapping config for ignored unit tests: \[[path_as_text]\]")
 			continue
 		LAZYADD(skipped_tests, path_real)
+
+	if ("is_unit_test_map" in json)
+		is_unit_test_map = json["is_unit_test_map"]
 #endif
 
 	defaulted = FALSE

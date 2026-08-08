@@ -4,10 +4,7 @@
 /datum/unit_test/quirk_icons/Run()
 	var/list/used_icons = list()
 
-	for (var/datum/quirk/quirk_type as anything in subtypesof(/datum/quirk))
-		if (initial(quirk_type.abstract_parent_type) == quirk_type)
-			continue
-
+	for (var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
 		var/icon = initial(quirk_type.icon)
 
 		if (isnull(icon))
@@ -26,10 +23,7 @@
 /datum/unit_test/quirk_initial_medical_records/Run()
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human/consistent)
 
-	for(var/datum/quirk/quirk_type as anything in subtypesof(/datum/quirk))
-		if (initial(quirk_type.abstract_parent_type) == quirk_type)
-			continue
-
+	for(var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
 		if(!isnull(quirk_type.medical_record_text))
 			continue
 
@@ -88,10 +82,7 @@
 	// Assigning this manually as config is empty
 	GLOB.uncommon_roundstart_languages = list(/datum/language/uncommon)
 
-	for (var/datum/quirk/quirk_type as anything in subtypesof(/datum/quirk))
-		if (initial(quirk_type.abstract_parent_type) == quirk_type)
-			continue
-
+	for (var/datum/quirk/quirk_type as anything in valid_subtypesof(/datum/quirk))
 		var/mob/dead/new_player/abstract_player = allocate(/mob/dead/new_player)
 		var/datum/client_interface/roundstart_mock_client = new()
 		abstract_player.mock_client = roundstart_mock_client
@@ -99,11 +90,6 @@
 		var/mob/living/carbon/human/new_character = allocate(/mob/living/carbon/human/consistent)
 		new_character.mind_initialize()
 		abstract_player.new_character = new_character
-		// BUBBER EDIT ADDITION BEGIN - Code to support testing our species-locked quirks
-		var/datum/quirk/quirk_instance = allocate(quirk_type)
-		if(length(quirk_instance.species_whitelist))
-			new_character.set_species(GLOB.species_list[quirk_instance.species_whitelist[1]])
-		// BUBBER EDIT ADDITION END - Code to support testing our species-locked quirks
 		if (!new_character.add_quirk(quirk_type, roundstart_mock_client))
 			TEST_FAIL("Failed to initialize quirk [quirk_type] on a roundstart character!")
 
@@ -112,10 +98,6 @@
 		latejoin_mock_client.prefs = new(latejoin_mock_client)
 		latejoin_character.mock_client = latejoin_mock_client
 		latejoin_character.mind_initialize()
-		// BUBBER EDIT ADDITION BEGIN - Code to support testing our species-locked quirks
-		if(length(quirk_instance.species_whitelist))
-			latejoin_character.set_species(GLOB.species_list[quirk_instance.species_whitelist[1]])
-		// BUBBER EDIT ADDITION END - Code to support testing our species-locked quirks
 		if (!latejoin_character.add_quirk(quirk_type, latejoin_mock_client))
 			TEST_FAIL("Failed to initialize quirk [quirk_type] on a latejoin character!")
 

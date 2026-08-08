@@ -32,7 +32,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn_digi.dmi'
-	uses_advanced_reskins = FALSE
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/under/rank/idma_utility
@@ -43,6 +42,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn_teshari.dmi'
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/under/rank/security/idma_fatigue/alt
@@ -130,6 +130,6 @@
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	attack_verb_continuous = list ("cuddles", "meows", "hisses")
 	attack_verb_simple = list ("cuddle", "meow", "hiss")
-	squeak_override = list ('modular_skyrat/modules/customization/game/objects/items/sound/merowr.ogg' = 1)
+	squeak_override = list ('modular_zubbers/sound/voice/merowr.ogg' = 1)
 	resistance_flags = FIRE_PROOF
 

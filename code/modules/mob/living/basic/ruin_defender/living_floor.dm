@@ -25,7 +25,7 @@
 	icon_state = "floor"
 	icon_living = "floor"
 	mob_size = MOB_SIZE_HUGE
-	mob_biotypes = MOB_SPECIAL
+	mob_biotypes = MOB_SPECIAL|MOB_MINERAL
 	status_flags = NONE
 	death_message = ""
 	unsuitable_atmos_damage = 0
@@ -81,7 +81,7 @@
 /mob/living/basic/living_floor/med_hud_set_status()
 	return
 
-/mob/living/basic/living_floor/attackby(obj/item/weapon, mob/user, list/modifiers)
+/mob/living/basic/living_floor/attackby(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)
 	if(weapon.tool_behaviour != TOOL_CROWBAR)
 		return ..()
 	balloon_alert(user, "prying...")

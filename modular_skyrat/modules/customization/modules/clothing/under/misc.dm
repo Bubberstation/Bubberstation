@@ -3,7 +3,11 @@
 	desc = "Found on a dead homeless man squatting in an alleyway, the classic design has been mass produced to bring terror to the galaxy."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/uniforms.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/uniform.dmi'
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/uniform_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
 	icon_state = "tracksuit_blue"
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	can_adjust = FALSE
 
 /obj/item/clothing/under/tachawaiian
 	name = "orange tactical hawaiian outfit"

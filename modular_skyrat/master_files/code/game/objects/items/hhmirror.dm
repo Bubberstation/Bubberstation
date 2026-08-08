@@ -66,17 +66,17 @@
 
 				if(new_s_tone)
 					human_user.skin_tone = new_s_tone
-					human_user.dna.update_ui_block(DNA_SKIN_TONE_BLOCK)
+					human_user.dna.update_ui_block(/datum/dna_block/identity/skin_tone)
 
 			#define MIN_MCOLOR_VALUE 50
 
 			if(HAS_TRAIT(human_user, TRAIT_MUTANT_COLORS) && !HAS_TRAIT(human_user, TRAIT_FIXED_MUTANT_COLORS))
-				var/new_mutantcolor = tgui_color_picker(user, "Choose your skin color:", "Race change", human_user.dna.features["mcolor"]) // BUBBERSTATION EDIT: TGUI COLOR PICKER
+				var/new_mutantcolor = tgui_color_picker(user, "Choose your skin color:", "Race change", human_user.dna.features[FEATURE_MUTANT_COLOR])
 				if(new_mutantcolor)
 					var/mutantcolor_hsv = rgb2hsv(new_mutantcolor)
 
 					if(mutantcolor_hsv[3] >= MIN_MCOLOR_VALUE) // mutantcolors must be bright
-						human_user.dna.features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
+						human_user.dna.features[FEATURE_MUTANT_COLOR] = sanitize_hexcolor(new_mutantcolor)
 
 					else
 						to_chat(human_user, span_notice("Invalid color. Your color is not bright enough."))
@@ -84,7 +84,6 @@
 			#undef MIN_MCOLOR_VALUE
 
 			human_user.update_body()
-			human_user.update_mutations_overlay() // no hulk lizard
 
 		if("gender")
 			if(!(human_user.gender in list("male", "female"))) // blame the patriarchy
@@ -104,9 +103,8 @@
 					to_chat(human_user, span_notice("Whoa man, you feel like a man!"))
 				else
 					return
-			human_user.dna.update_ui_block(DNA_GENDER_BLOCK)
+			human_user.dna.update_ui_block(/datum/dna_block/identity/gender)
 			human_user.update_body()
-			human_user.update_mutations_overlay() // (hulk male/female)
 
 		if("hair")
 			var/hairchoice = tgui_alert(human_user, "Hair style or hair color?", "Change Hair", list("Style", "Color"))
@@ -118,12 +116,12 @@
 				var/new_hair_color = tgui_color_picker(human_user, "Choose your hair color", "Hair Color", human_user.hair_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 				if(new_hair_color)
 					human_user.hair_color = sanitize_hexcolor(new_hair_color)
-					human_user.dna.update_ui_block(DNA_HAIR_COLOR_BLOCK)
+					human_user.dna.update_ui_block(/datum/dna_block/identity/hair_color)
 				if(human_user.gender == "male")
 					var/new_face_color = tgui_color_picker(human_user, "Choose your facial hair color", "Hair Color", human_user.facial_hair_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 					if(new_face_color)
 						human_user.facial_hair_color = sanitize_hexcolor(new_face_color)
-						human_user.dna.update_ui_block(DNA_FACIAL_HAIR_COLOR_BLOCK)
+						human_user.dna.update_ui_block(/datum/dna_block/identity/facial_color)
 				human_user.update_body_parts()
 
 		if(BODY_ZONE_PRECISE_EYES)
@@ -131,10 +129,8 @@
 			if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 				return TRUE
 			if(new_eye_color)
-				human_user.eye_color_left = sanitize_hexcolor(new_eye_color)
-				human_user.eye_color_right = sanitize_hexcolor(new_eye_color)
-				human_user.dna.update_ui_block(DNA_EYE_COLOR_LEFT_BLOCK)
-				human_user.dna.update_ui_block(DNA_EYE_COLOR_RIGHT_BLOCK)
+				human_user.set_eye_color(sanitize_hexcolor(new_eye_color))
+				human_user.dna.update_ui_block(/datum/dna_block/identity/eye_colors)
 				human_user.update_body()
 
 /obj/item/hhmirror/wracemagic
@@ -188,9 +184,8 @@
 						to_chat(human_user, span_notice("Whoa man, you feel like a man!"))
 					else
 						return
-				human_user.dna.update_ui_block(DNA_GENDER_BLOCK)
+				human_user.dna.update_ui_block(/datum/dna_block/identity/gender)
 				human_user.update_body()
-				human_user.update_mutations_overlay() // (hulk male/female)
 
 			if("hair")
 				var/hairchoice = tgui_alert(human_user, "Hair style or hair color?", "Change Hair", list("Style", "Color"))
@@ -202,12 +197,12 @@
 					var/new_hair_color = tgui_color_picker(human_user, "Choose your hair color", "Hair Color", human_user.hair_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 					if(new_hair_color)
 						human_user.hair_color = sanitize_hexcolor(new_hair_color)
-						human_user.dna.update_ui_block(DNA_HAIR_COLOR_BLOCK)
+						human_user.dna.update_ui_block(/datum/dna_block/identity/hair_color)
 					if(human_user.gender == "male")
 						var/new_face_color = tgui_color_picker(human_user, "Choose your facial hair color", "Hair Color", human_user.facial_hair_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 						if(new_face_color)
 							human_user.facial_hair_color = sanitize_hexcolor(new_face_color)
-							human_user.dna.update_ui_block(DNA_FACIAL_HAIR_COLOR_BLOCK)
+							human_user.dna.update_ui_block(/datum/dna_block/identity/facial_color)
 					human_user.update_body_parts()
 
 			if(BODY_ZONE_PRECISE_EYES)
@@ -215,10 +210,8 @@
 				if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 					return TRUE
 				if(new_eye_color)
-					human_user.eye_color_left = sanitize_hexcolor(new_eye_color)
-					human_user.eye_color_right = sanitize_hexcolor(new_eye_color)
-					human_user.dna.update_ui_block(DNA_EYE_COLOR_LEFT_BLOCK)
-					human_user.dna.update_ui_block(DNA_EYE_COLOR_RIGHT_BLOCK)
+					human_user.set_eye_color(sanitize_hexcolor(new_eye_color))
+					human_user.dna.update_ui_block(/datum/dna_block/identity/eye_colors)
 					human_user.update_body()
 		charges--
 	if(charges == 0)

@@ -13,7 +13,7 @@
 		return
 
 	//check for genetics telepathy
-	if(check.dna.check_mutation(/datum/mutation/human/telepathy))
+	if(check.dna.check_mutation(/datum/mutation/telepathy))
 		return TRUE
 
 	//check for shadekin organs

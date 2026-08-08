@@ -128,7 +128,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	icon_state = template.icon_state
 	return ..()
 
-/obj/item/tcgcard/attackby(obj/item/item, mob/living/user, list/modifiers)
+/obj/item/tcgcard/attackby(obj/item/item, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(istype(item, /obj/item/tcgcard))
 		var/obj/item/tcgcard/second_card = item
 		var/obj/item/tcgcard_deck/new_deck = new /obj/item/tcgcard_deck(drop_location())
@@ -162,7 +162,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	else
 		ntransform.TurnTo(UNTAPPED_ANGLE , TAPPED_ANGLE)
 	tapped = !tapped
-	animate(src, transform = ntransform, time = 2, easing = (EASE_IN|EASE_OUT))
+	animate(src, transform = ntransform, time = 2, easing = SINE_EASING)
 
 /obj/item/tcgcard/proc/flip_card(mob/user)
 	to_chat(user, span_notice("You turn the card over."))
@@ -188,6 +188,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	icon_state = "deck_up"
 	base_icon_state = "deck"
 	obj_flags = UNIQUE_RENAME
+	spawn_blacklisted = TRUE
 	var/flipped = FALSE
 	var/static/radial_draw = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_draw")
 	var/static/radial_shuffle = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_shuffle")
@@ -253,7 +254,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 		return FALSE
 	return TRUE
 
-/obj/item/tcgcard_deck/attackby(obj/item/item, mob/living/user, list/modifiers)
+/obj/item/tcgcard_deck/attackby(obj/item/item, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	if(istype(item, /obj/item/tcgcard))
 		if(contents.len >= 30)

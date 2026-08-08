@@ -1,5 +1,5 @@
 // THIS IS A SKYRAT UI FILE
-import { CheckboxInput, FeatureToggle } from '../../base';
+import { CheckboxInput, type FeatureToggle } from '../../base';
 
 export const face_cursor_combat_mode: FeatureToggle = {
   name: 'Face cursor with combat mode',

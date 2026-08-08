@@ -25,3 +25,40 @@ GLOBAL_LIST_INIT(carp_colors, list(
 	COLOR_CARP_PALE_GREEN = 7,
 	COLOR_CARP_SILVER = 1, // The rare silver carp
 ))
+
+/// List of possible ethereal colours
+GLOBAL_LIST_INIT(color_list_ethereal, list(
+	"Blue" = "#3399ff",
+	"Bright Yellow" = "#ffff99",
+	"Burnt Orange" = "#cc4400",
+	"Cyan Blue" = "#00ffff",
+	"Dark Blue" = "#6666ff",
+	"Dark Fuschia" = "#cc0066",
+	"Dark Green" = "#37835b",
+	"Dark Red" = "#9c3030",
+	"Dull Yellow" = "#fbdf56",
+	"Faint Blue" = "#b3d9ff",
+	"Faint Green" = "#ddff99",
+	"Faint Red" = "#ffb3b3",
+	"Green" = "#97ee63",
+	"Orange" = "#ffa64d",
+	"Pink" = "#ff99cc",
+	"Purple" = "#ee82ee",
+	"Red" = "#ff4d4d",
+	"Seafoam Green" = "#00fa9a",
+	"White" = "#f2f2f2",
+	// BUBBER EDIT START - Add some new ethereal colors
+	"Burnt Charcoal" = "#5d5c69",
+	"Lavender Purple" = "#d28fff",
+	"Dark Purple" = "#66369c",
+	// BUBBER EDIT END
+))
+
+/// List of possible lustrous ethereal colours
+GLOBAL_LIST_INIT(color_list_lustrous, list(
+	"Cyan Blue" = "#00ffff",
+	"Sky Blue" = "#37c0ff",
+	"Blue" = "#3374ff",
+	"Dark Blue" = "#5b5beb",
+	"Bright Red" = "#fa2d2d",
+))

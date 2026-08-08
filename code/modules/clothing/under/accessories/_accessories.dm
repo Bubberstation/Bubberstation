@@ -15,9 +15,12 @@
 	worn_icon = 'icons/mob/clothing/accessories.dmi'
 	icon_state = "plasma"
 	inhand_icon_state = "" //no inhands
+	abstract_type = /obj/item/clothing/accessory
 	slot_flags = NONE
 	w_class = WEIGHT_CLASS_SMALL
 	item_flags = NOBLUDGEON
+	/// Whether the icon_state is also the worn_icon_state. If false, don't forget to set worn_icon_state.
+	var/icon_state_is_worn = TRUE
 	/// Whether or not the accessory displays through suits and the like.
 	var/above_suit = TRUE
 	/// TRUE if shown as a small icon in corner, FALSE if overlayed
@@ -29,13 +32,6 @@
 /obj/item/clothing/accessory/Initialize(mapload)
 	. = ..()
 	register_context()
-
-/obj/item/clothing/accessory/setup_reskinning()
-	if(!check_setup_reskinning())
-		return
-
-	// We already register context regardless in Initialize.
-	RegisterSignal(src, COMSIG_CLICK_ALT, PROC_REF(on_click_alt_reskin))
 
 /**
  * Can we be attached to the passed clothing article?
@@ -78,11 +74,11 @@
 	attached_to.update_accessory_overlay()
 
 /**
- * Actually attach this accessory to the passed clothing article.
+ * Try to attach this accessory to the passed clothing article.
  *
  * The accessory is not yet within the clothing's loc at this point, this hapens after success.
  */
-/obj/item/clothing/accessory/proc/attach(obj/item/clothing/under/attach_to, mob/living/attacher)
+/obj/item/clothing/accessory/proc/try_attach(obj/item/clothing/under/attach_to, mob/living/attacher)
 	SHOULD_CALL_PARENT(TRUE)
 
 	if(atom_storage)
@@ -107,9 +103,16 @@
 
 	return TRUE
 
-/// Called after attach is completely successful and the accessory is in the clothing's loc
-/obj/item/clothing/accessory/proc/successful_attach(obj/item/clothing/under/attached_to)
+/// Called after try_attach returns TRUE and thus the accessory can be finally be moved into its target
+/obj/item/clothing/accessory/proc/attach(obj/item/clothing/under/attached_to)
 	SHOULD_CALL_PARENT(TRUE)
+
+	LAZYADD(attached_to.attached_accessories, src)
+	forceMove(attached_to)
+
+	if(!attached_to.accessory_overlay)
+		attached_to.accessory_overlay = mutable_appearance()
+	attached_to.accessory_overlay.overlays += generate_accessory_overlay(attached_to) //uniform appearance will be updated by the caller
 
 	// Do on-equip effects if we're already equipped
 	var/mob/worn_on = attached_to.loc
@@ -118,6 +121,14 @@
 
 	SEND_SIGNAL(src, COMSIG_ACCESSORY_ATTACHED, attached_to)
 	SEND_SIGNAL(attached_to, COMSIG_CLOTHING_ACCESSORY_ATTACHED, src)
+
+/obj/item/clothing/accessory/proc/generate_accessory_overlay(obj/item/clothing/under/attached_to)
+	SHOULD_CALL_PARENT(TRUE)
+	var/mutable_appearance/appearance = mutable_appearance(worn_icon, (icon_state_is_worn ? icon_state : worn_icon_state))
+	appearance.overlays += worn_overlays(appearance, FALSE, worn_icon) // we're assuming it's being worn.
+	appearance.alpha = alpha
+	appearance.color = color
+	return appearance
 
 /**
  * Detach this accessory from the passed clothing article
@@ -171,12 +182,14 @@
 /// Called when the uniform this accessory is pinned to is equipped in a valid slot
 /obj/item/clothing/accessory/proc/accessory_equipped(obj/item/clothing/under/clothes, mob/living/user)
 	equipped(user, user.get_slot_by_item(clothes)) // so we get any actions, item_flags get set, etc
+	for(var/trait in clothing_traits) // Accessory don't have slot flags by def, but they still apply clothing traits when the suit is equipped in the right slot.
+		ADD_CLOTHING_TRAIT(user, trait)
 	user.update_clothing(ITEM_SLOT_OCLOTHING|ITEM_SLOT_NECK)
 	return
 
 /// Called when the uniform this accessory is pinned to is dropped
 /obj/item/clothing/accessory/proc/accessory_dropped(obj/item/clothing/under/clothes, mob/living/user)
-	dropped(user)
+	dropped(user) //This handles removing clothing traits from the user by default everytime.
 	return
 
 /// Signal proc for [COMSIG_CLOTHING_UNDER_ADJUSTED] on the uniform we're pinned to
@@ -187,8 +200,7 @@
 	if(can_attach_accessory(source))
 		return
 
-	source.remove_accessory(src)
-	forceMove(source.drop_location())
+	forceMove(source.drop_location()) //This calls remove_accessory()
 	source.visible_message(span_warning("[src] falls off of [source]!"))
 
 /// Signal proc for [COMSIG_ATOM_UPDATE_OVERLAYS] on the uniform we're pinned to to add our overlays to the inventory icon

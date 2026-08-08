@@ -30,25 +30,25 @@ GLOBAL_LIST_INIT(ticket_counter, list())
 /datum/admin_help/Close(key_name = key_name_admin(usr), silent = FALSE)
 	. = ..()
 	if(!previously_closed)
-		ticket_counter_add_handled(usr.key, 1)
+		ticket_counter_add_handled(usr.ckey, 1)
 		previously_closed = TRUE
 
 /datum/admin_help/Resolve(key_name = key_name_admin(usr), silent = FALSE)
 	. = ..()
 	if(!previously_closed)
-		ticket_counter_add_handled(usr.key, 1)
+		ticket_counter_add_handled(usr.ckey, 1)
 		previously_closed = TRUE
 
 /datum/admin_help/Reject(key_name = key_name_admin(usr))
 	. = ..()
 	if(!previously_closed)
-		ticket_counter_add_handled(usr.key, 1)
+		ticket_counter_add_handled(usr.ckey, 1)
 		previously_closed = TRUE
 
 /datum/admin_help/ICIssue(key_name = key_name_admin(usr))
 	. = ..()
 	if(!previously_closed)
-		ticket_counter_add_handled(usr.key, 1)
+		ticket_counter_add_handled(usr.ckey, 1)
 		previously_closed = TRUE
 
 /obj/effect/statclick/opfor_list

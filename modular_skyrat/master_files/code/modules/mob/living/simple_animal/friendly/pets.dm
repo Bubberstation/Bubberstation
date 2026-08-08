@@ -48,8 +48,9 @@
 		"honk!",
 		"mrow!",
 		"henk!",
-	emote_see = list("plays tricks.", "slips.", "honks a tiny horn.")
 	)
+	emote_see = list("plays tricks.", "slips.", "honks a tiny horn.")
+
 
 /mob/living/basic/pet/cat/mime
 	name = "mime cat"
@@ -81,8 +82,9 @@
 	speak = list(
 		"...",
 		"....",
-	emote_see = list("cowers in fear.", "surrenders.", "plays dead.","looks as though there is a tiny cat shaped wall in front of them.")
 	)
+	emote_see = list("cowers in fear.", "surrenders.", "plays dead.","looks as though there is a tiny cat shaped wall in front of them.")
+
 
 /mob/living/basic/pet/cat/tiger
 	name = "tiger cat"

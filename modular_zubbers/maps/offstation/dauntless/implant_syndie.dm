@@ -15,7 +15,7 @@
 	var/mob/living/living_target = target
 	var/obj/item/implant/weapons_auth/weapons_authorisation = new/obj/item/implant/weapons_auth(living_target)
 	weapons_authorisation.implant(living_target)
-	living_target.faction |= ROLE_SYNDICATE
+	living_target.add_faction(ROLE_SYNDICATE)
 	return TRUE
 
 /obj/item/implant/interdyne/removed(mob/target, silent = FALSE, special = FALSE)
@@ -25,7 +25,7 @@
 	var/mob/living/living_target = target
 	var/obj/item/implant/weapons_auth/weapons_authorisation = new/obj/item/implant/weapons_auth(living_target)
 	weapons_authorisation.removed(living_target)
-	living_target.faction &= ROLE_SYNDICATE
+	living_target.remove_faction(ROLE_SYNDICATE)
 	return TRUE
 
 /obj/item/implanter/interdyne

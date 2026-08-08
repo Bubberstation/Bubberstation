@@ -9,15 +9,16 @@
 	real_name = "Cyborg"
 	icon = 'icons/mob/silicon/robots.dmi' //SKYRAT EDIT - Modified in modular_skyrat\modules\altborgs\code\robot_defines.dm (to allow for custom transformation animations)
 	icon_state = "robot"
-	maxHealth = 135 // Bubber Edit
-	health = 135 // Bubber Edit
+	maxHealth = 100
+	health = 100
 	bubble_icon = "robot"
 	designation = "Default" //used for displaying the prefix & getting the current model of cyborg
-	has_limbs = TRUE
 	hud_type = /datum/hud/robot
 	unique_name = TRUE
 	mouse_drop_zone = TRUE
+	held_items = list(null, null, null) //we use held_items for the module holding, because that makes sense to do!
 	default_hand_amount = 3
+	examine_thats = "This is"
 
 	///Represents the cyborg's model (engineering, medical, etc.)
 	var/obj/item/robot_model/model = null
@@ -67,34 +68,14 @@
 	// Overlay for borg hat
 	var/mutable_appearance/hat_overlay
 
-
-	// Hud
-	var/atom/movable/screen/inv1 = null
-	var/atom/movable/screen/inv2 = null
-	var/atom/movable/screen/inv3 = null
-	var/atom/movable/screen/hands = null
-
-	///Used to determine whether they have the module menu shown or not
-	var/shown_robot_modules = FALSE
-	var/atom/movable/screen/robot_modules_background
-
-	///Lamp button reference
-	var/atom/movable/screen/robot/lamp/lampButton
-
-	///The reference to the built-in tablet that borgs carry.
-	var/atom/movable/screen/robot/modpc/interfaceButton
-
 	var/sight_mode = 0
 	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_BATT_HUD, DIAG_TRACK_HUD)
 
-
 	// Modules (tool slots)
 	var/obj/item/module_active = null
-	held_items = list(null, null, null) //we use held_items for the module holding, because that makes sense to do!
 
 	///For checking which modules are disabled or not.
 	var/disabled_modules
-
 
 	// Status
 	var/mob/living/silicon/ai/connected_ai = null
@@ -119,7 +100,7 @@
 	///Whether the robot has no charge left.
 	var/low_power_mode = FALSE
 	///So they can initialize sparks whenever/N
-	var/datum/effect_system/spark_spread/spark_system
+	var/datum/effect_system/basic/spark_spread/spark_system
 	///Smoke particle type for brute damage
 	var/smoke_particles
 	///Spark particle type for burn damage

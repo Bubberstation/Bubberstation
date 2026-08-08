@@ -1,8 +1,9 @@
 /obj/item/clothing/gloves/shibari_hands
 	name = "shibari arms bondage"
 	desc = "Bondage ropes that cover arms."
-	icon_state = "shibari_arms"
-	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_gloves.dmi'
+	icon = 'icons/map_icons/clothing/_clothing.dmi'
+	icon_state = "/obj/item/clothing/gloves/shibari_hands"
+	post_init_icon_state = "shibari_arms"
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_gloves.dmi'
 	worn_icon_teshari = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_gloves_teshari.dmi'
 	body_parts_covered = NONE

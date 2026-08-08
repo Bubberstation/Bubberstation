@@ -76,10 +76,10 @@
 /obj/item/clothing/head/beret/sec/peacekeeper/armadyne
 	greyscale_config_worn_vox = /datum/greyscale_config/beret_badge_fancy/worn/vox
 
-/obj/item/clothing/head/beret/sec/peacekeeper
+/obj/item/clothing/head/beret/sec
 	greyscale_config_worn_vox = /datum/greyscale_config/beret_badge/worn/vox
 
-/obj/item/clothing/head/beret/sec/peacekeeper/white
+/obj/item/clothing/head/beret/sec/white
 	greyscale_config_worn_vox = null
 
 /obj/item/clothing/head/beret/sec/navywarden/peacekeeper

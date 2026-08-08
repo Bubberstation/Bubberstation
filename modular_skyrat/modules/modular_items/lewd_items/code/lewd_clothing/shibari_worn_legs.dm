@@ -1,8 +1,9 @@
 /obj/item/clothing/shoes/shibari_legs
 	name = "shibari legs bondage"
 	desc = "Bondage ropes that cover legs."
-	icon_state = "shibari_legs"
-	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_shoes.dmi'
+	icon = 'icons/map_icons/clothing/shoes.dmi'
+	icon_state = "/obj/item/clothing/shoes/shibari_legs"
+	post_init_icon_state = "shibari_legs"
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes.dmi'
 	worn_icon_digi = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes_digi.dmi'
 	worn_icon_teshari = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_shoes_teshari.dmi'

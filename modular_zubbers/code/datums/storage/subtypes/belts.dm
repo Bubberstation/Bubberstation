@@ -9,15 +9,7 @@
 		/obj/item/handheld_soulcatcher,
 		)
 	)
-
-/datum/storage/belt/security/New()
-	. = ..()
-	add_holdable(list(
-		/obj/item/gun,
-		/obj/item/stock_parts/power_store/cell/microfusion,
-		)
-	)
-
+	
 /datum/storage/belt/janitor/New()
 	. = ..()
 	var/static/list/exception_cache = typecacheof(list(

@@ -6,7 +6,6 @@
 	icon_state = "hudpatch"
 	base_icon_state = "hudpatch"
 	inhand_icon_state = "sunhudmed"
-	uses_advanced_reskins = TRUE
 	can_switch_eye = TRUE	//See modular_skyrat\modules\customization\modules\clothing\glasses\glasses.dm
 	actions_types = list(/datum/action/item_action/flip)
 
@@ -16,23 +15,6 @@
 	icon_state = (icon_state == base_icon_state) ? "[base_icon_state]_flipped" : base_icon_state
 	user.update_worn_glasses()
 
-
-/obj/item/clothing/glasses/hud/eyepatch/sec
-	name = "security eyepatch HUD"
-	desc = "Lost your eye beating an innocent clown? Thankfully your corporate overlords have made something to make up for this. May not do well against flashes."
-	clothing_traits = list(TRAIT_SECURITY_HUD)
-	glass_colour_type = /datum/client_colour/glass_colour/blue
-
-	unique_reskin = list(
-		"Eyepatch" = list(
-			RESKIN_ICON_STATE = "hudpatch",
-			RESKIN_WORN_ICON_STATE = "hudpatch"
-		),
-		"Fake Blindfold" = list(
-			RESKIN_ICON_STATE = "secfold",
-			RESKIN_WORN_ICON_STATE = "secfold"
-		)
-	)
 /obj/item/clothing/glasses/hud/eyepatch/med
 	name = "medical eyepatch HUD"
 	desc = "Do no harm, maybe harm has befell to you, or your poor eyeball, thankfully there's a way to continue your oath, thankfully it didn't mention sleepdarts or monkey men."
@@ -41,16 +23,20 @@
 	clothing_traits = list(TRAIT_MEDICAL_HUD)
 	glass_colour_type = /datum/client_colour/glass_colour/lightblue
 
-	unique_reskin = list(
-		"Eyepatch" = list(
-			RESKIN_ICON_STATE = "medpatch",
-			RESKIN_WORN_ICON_STATE = "medpatch"
-		),
-		"Fake Blindfold" = list(
-			RESKIN_ICON_STATE = "medfold",
-			RESKIN_WORN_ICON_STATE = "medfold"
-		)
-	)
+/obj/item/clothing/glasses/hud/eyepatch/med/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/medpatch)
+
+/datum/atom_skin/medpatch
+	abstract_type = /datum/atom_skin/medpatch
+
+/datum/atom_skin/medpatch/eyepatch
+	preview_name = "Eyepatch"
+	new_icon_state = "medpatch"
+
+/datum/atom_skin/medpatch/fake_blindfold
+	preview_name = "Fake Blindfold"
+	new_icon_state = "medfold"
 
 /obj/item/clothing/glasses/hud/eyepatch/meson
 	name = "mesons eyepatch HUD"
@@ -63,16 +49,20 @@
 	lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 
-	unique_reskin = list(
-		"Eyepatch" = list(
-			RESKIN_ICON_STATE = "mesonpatch",
-			RESKIN_WORN_ICON_STATE = "mesonpatch"
-		),
-		"Fake Blindfold" = list(
-			RESKIN_ICON_STATE = "mesonfold",
-			RESKIN_WORN_ICON_STATE = "mesonfold"
-		)
-	)
+/obj/item/clothing/glasses/hud/eyepatch/meson/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/mesonpatch)
+
+/datum/atom_skin/mesonpatch
+	abstract_type = /datum/atom_skin/mesonpatch
+
+/datum/atom_skin/mesonpatch/eyepatch
+	preview_name = "Eyepatch"
+	new_icon_state = "mesonpatch"
+
+/datum/atom_skin/mesonpatch/fake_blindfold
+	preview_name = "Fake Blindfold"
+	new_icon_state = "mesonfold"
 
 /obj/item/clothing/glasses/hud/eyepatch/diagnostic
 	name = "diagnostic eyepatch HUD"
@@ -82,16 +72,20 @@
 	clothing_traits = list(TRAIT_DIAGNOSTIC_HUD)
 	glass_colour_type = /datum/client_colour/glass_colour/lightorange
 
-	unique_reskin = list(
-		"Eyepatch" = list(
-			RESKIN_ICON_STATE = "robopatch",
-			RESKIN_WORN_ICON_STATE = "robopatch"
-		),
-		"Fake Blindfold" = list(
-			RESKIN_ICON_STATE = "robofold",
-			RESKIN_WORN_ICON_STATE = "robofold"
-		)
-	)
+/obj/item/clothing/glasses/hud/eyepatch/diagnostic/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/robopatch)
+
+/datum/atom_skin/robopatch
+	abstract_type = /datum/atom_skin/robopatch
+
+/datum/atom_skin/robopatch/eyepatch
+	preview_name = "Eyepatch"
+	new_icon_state = "robopatch"
+
+/datum/atom_skin/robopatch/fake_blindfold
+	preview_name = "Fake Blindfold"
+	new_icon_state = "robofold"
 
 /obj/item/clothing/glasses/hud/eyepatch/sci
 	name = "science eyepatch HUD"
@@ -100,17 +94,20 @@
 	base_icon_state = "scipatch"
 	clothing_traits = list(TRAIT_REAGENT_SCANNER, TRAIT_RESEARCH_SCANNER)
 
-	unique_reskin = list(
-		"Eyepatch" = list(
-			RESKIN_ICON_STATE = "scipatch",
-			RESKIN_WORN_ICON_STATE = "scipatch"
-		),
-		"Fake Blindfold" = list(
-			RESKIN_ICON_STATE = "scifold",
-			RESKIN_WORN_ICON_STATE = "scifold"
-		)
-	)
+/obj/item/clothing/glasses/hud/eyepatch/sci/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/scipatch)
 
+/datum/atom_skin/scipatch
+	abstract_type = /datum/atom_skin/scipatch
+
+/datum/atom_skin/scipatch/eyepatch
+	preview_name = "Eyepatch"
+	new_icon_state = "scipatch"
+
+/datum/atom_skin/scipatch/fake_blindfold
+	preview_name = "Fake Blindfold"
+	new_icon_state = "scifold"
 
 /// BLINDFOLD HUDS ///
 /obj/item/clothing/glasses/trickblindfold/obsolete
@@ -121,12 +118,6 @@
 	icon_state = "obsoletefold"
 	base_icon_state = "obsoletefold"
 	can_switch_eye = TRUE
-
-/obj/item/clothing/glasses/hud/eyepatch/sec/blindfold
-	name = "sec blindfold HUD"
-	desc = "a fake blindfold with a security HUD inside, helps you look like blind justice. This won't provide the same protection that you'd get from sunglasses."
-	icon_state =  "secfold"
-	base_icon_state =  "secfold"
 
 /obj/item/clothing/glasses/hud/eyepatch/med/blindfold
 	name = "medical blindfold HUD"

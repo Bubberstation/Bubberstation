@@ -6,14 +6,11 @@
 		"ci-medhud",
 		"ci-sechud",
 		"ci-diaghud",
+		"ci-civhud",
 		"ci-botany",
 		"ci-janitor",
 		"ci-lighter",
 		"ci-razor",
-	)
-	// thrusters in combat_implants
-	design_ids -= list(
-		"ci-thrusters",
 	)
 	return ..()
 
@@ -28,7 +25,6 @@
 	design_ids += list(
 		"ci-mantis",
 		"ci-flash",
-		"ci-thrusters",
 		"ci-antisleep",
 	)
 	return ..()

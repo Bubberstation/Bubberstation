@@ -14,3 +14,10 @@
 /datum/round_event_control/antagonist/solo/bloodsucker/midround
 	name = "Vampiric Accident"
 	roundstart = FALSE
+
+/datum/round_event_control/antagonist/solo/bloodsucker/event
+	name = "Event Generated Bloodsucker"
+	roundstart = FALSE
+	tags = list(TAG_ANTAG_REROLL)
+	max_occurrences = 0
+	maximum_antags = 1

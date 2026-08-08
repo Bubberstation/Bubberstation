@@ -1,6 +1,6 @@
 /obj/item/organ/eyes
 	var/is_emissive = FALSE
-	var/eyes_layer = BODY_LAYER
+	var/eyes_layer = EYES_LAYER
 
 /obj/item/organ/eyes/night_vision/ashwalker
 	//give ashwalker darkvision a reddish-blue tint

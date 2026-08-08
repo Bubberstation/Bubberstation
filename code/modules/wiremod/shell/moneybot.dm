@@ -16,7 +16,8 @@
 	var/locked = FALSE
 
 /obj/structure/money_bot/atom_deconstruct(disassembled = TRUE)
-	new /obj/item/holochip(drop_location(), stored_money)
+	if(stored_money)
+		new /obj/item/holochip(drop_location(), stored_money)
 
 /obj/structure/money_bot/proc/add_money(to_add)
 	stored_money += to_add
@@ -161,7 +162,7 @@
 		return
 
 	attached_bot.add_money(amount_to_insert)
-	balloon_alert(attacker, "inserted [amount_to_insert] credits.")
+	balloon_alert(attacker, "inserted [amount_to_insert] [MONEY_NAME].")
 	money_input.set_output(amount_to_insert)
 	entity.set_output(attacker)
 	money_trigger.set_output(COMPONENT_SIGNAL)

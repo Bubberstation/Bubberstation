@@ -9,7 +9,6 @@
 	var/crank_speed = 1 SECONDS
 	/// how much gets discharged every process
 	var/discharge_amount = STANDARD_CELL_CHARGE * 0.01
-	charge_light_type = "old"
 
 /obj/item/stock_parts/power_store/cell/crank/examine(mob/user)
 	. = ..()
@@ -39,7 +38,6 @@
 	icon = 'modular_skyrat/modules/new_cells/icons/power.dmi'
 	icon_state = "chargecell"
 	maxcharge = STANDARD_CELL_CHARGE * 2.5
-	charge_light_type = "old"
 	/// how much is recharged every process
 	var/recharge_amount = STANDARD_CELL_CHARGE * 0.2
 

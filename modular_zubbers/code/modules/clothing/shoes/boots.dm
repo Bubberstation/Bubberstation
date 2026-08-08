@@ -1,6 +1,8 @@
 /obj/item/clothing/shoes/boots/diver //Donor item for patriot210
-	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
-	worn_icon = 'modular_zubbers/icons/mob/clothing/feet.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
 	name = "black divers boots"
 	desc = "An old pair of boots used by a now-defunct mining coalition, it seems close to the ones used by Nanotrasen miners, but without the compartments for fitting small items."
 	icon_state = "diver"
@@ -9,12 +11,14 @@
 /obj/item/clothing/shoes/fancy_heels/cc
 	name = "nanotrasen heels"
 	desc = "Surely these aren't official. Right?"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/cc"
 	greyscale_colors = "#316E4A"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/syndi
 	name = "syndiheels"
 	desc = "Heel in more way than one."
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/syndi"
 	greyscale_colors = "#18191E"
 	body_parts_covered = parent_type::body_parts_covered | LEGS
 	armor_type = /datum/armor/shoes_combat
@@ -32,6 +36,7 @@
 /obj/item/clothing/shoes/fancy_heels/wizard
 	name = "magical heels"
 	desc = "A pair of heels that seem to magically solve all the problems with walking in heels."
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/wizard"
 	strip_delay = 2 SECONDS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	greyscale_colors = "#291A69"
@@ -40,16 +45,19 @@
 /obj/item/clothing/shoes/fancy_heels/red
 	name = "red heels"
 	desc = "A pair of classy red heels."
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/red"
 	greyscale_colors = "#921C25"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/blue
 	name = "blue heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/blue"
 	greyscale_colors = "#41579a"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/lightgrey
 	name = "light grey heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/lightgrey"
 	greyscale_colors = "#d0d7da"
 	flags_1 = null
 
@@ -66,6 +74,7 @@
 
 /obj/item/clothing/shoes/fancy_heels/navyblue
 	name = "navy blue heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/navyblue"
 	greyscale_colors = "#362f68"
 	flags_1 = null
 
@@ -82,11 +91,13 @@
 
 /obj/item/clothing/shoes/fancy_heels/white
 	name = "white heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/white"
 	greyscale_colors = "#ffffff"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/darkblue
 	name = "dark blue heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/darkblue"
 	greyscale_colors = "#364660"
 	flags_1 = null
 
@@ -94,10 +105,13 @@
 
 /obj/item/clothing/shoes/fancy_heels/black
 	name = "black heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/black"
 	greyscale_colors = "#39393f"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/purple
+	name = "purple heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/purple"
 	greyscale_colors = "#7e1980"
 	flags_1 = null
 
@@ -105,21 +119,25 @@
 
 /obj/item/clothing/shoes/fancy_heels/red
 	name = "red heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/red"
 	greyscale_colors = "#a52f29"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/grey
 	name = "grey heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/grey"
 	greyscale_colors = "#918f8c"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/brown
 	name = "brown heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/brown"
 	greyscale_colors = "#784f44"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/orange
 	name = "orange heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/orange"
 	greyscale_colors = "#ff8d1e"
 	flags_1 = null
 
@@ -132,11 +150,13 @@
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
 
 //SERVICE
 
 /obj/item/clothing/shoes/fancy_heels/lightblue
 	name = "light blue heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/lightblue"
 	greyscale_colors = "#3e6588"
 	flags_1 = null
 
@@ -153,6 +173,7 @@
 
 /obj/item/clothing/shoes/fancy_heels/green
 	name = "green heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/green"
 	greyscale_colors = "#50d967"
 	flags_1 = null
 
@@ -168,37 +189,43 @@
 
 /obj/item/clothing/shoes/fancy_heels/darkgreen
 	name = "dark green heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/darkgreen"
 	greyscale_colors = "#47853a"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/teal
 	name = "teal heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/teal"
 	greyscale_colors = "#5cbfaa"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/mutedblack
 	name = "muted black heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/mutedblack"
 	greyscale_colors = "#2f3038"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/mutedblue
 	name = "muted blue heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/mutedblue"
 	greyscale_colors = "#1165c5"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/beige
 	name = "beige heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/beige"
 	greyscale_colors = "#a69e9a"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/darkgrey
 	name = "dark grey heels"
+	icon_state = "/obj/item/clothing/shoes/fancy_heels/darkgrey"
 	greyscale_colors = "#46464d"
 	flags_1 = null
 
 // Syndicate slippers, guaranteed slipping for whoever wears them.
 /obj/item/clothing/shoes/banana_slippers
-	icon = 'modular_zubbers/icons/obj/clothing/shoes.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	name = "banana slippers"
@@ -292,9 +319,15 @@
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
 	icon_state = "heel-jackboots"
-	uses_advanced_reskins = FALSE
-	unique_reskin = NONE
+
+/obj/item/clothing/shoes/jackboots/heel/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/squeak, list('modular_zubbers/sound/effects/footstep/highheel1.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel2.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel3.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel4.ogg' = 1), 70)
+	var/list/reskin_components = GetComponents(/datum/component/reskinable_item)
+	for(var/datum/component/reskinable_item/reskin_component as anything in reskin_components)
+		qdel(reskin_component)
 
 // Diesel Boots | Sprites by Fluff from Bad Deathclaw
 /obj/item/clothing/shoes/jackboots/diesel_m
@@ -312,3 +345,97 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	icon_state = "diesel_f"
+
+/obj/item/clothing/shoes/jackboots/toeless // Ported from SPLURT
+	name = "toe-less jackboots"
+	desc = "Modified pair of jackboots, particularly friendly to those species whose toes hold claws."
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	icon_state = "jackboots-toeless"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/obj/item/clothing/shoes/workboots/toeless // Ported from SPLURT
+	name = "toe-less workboots"
+	desc = "A pair of toe-less work boots designed for use in industrial settings. Modified for species whose toes have claws."
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	icon_state = "workboots-toeless"
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+
+/obj/item/clothing/shoes/jackboots/combine
+	name = "union jackboots"
+	desc = "Crushing cans and crushing skulls."
+	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS)
+
+/obj/item/clothing/shoes/jackboots/combine/Initialize(mapload)
+	. = ..()
+	var/list/combine_sounds = list(
+		'modular_zubbers/sound/effects/combine/gear1.ogg'= 1,
+		'modular_zubbers/sound/effects/combine/gear2.ogg'= 1,
+		'modular_zubbers/sound/effects/combine/gear3.ogg'= 1,
+		'modular_zubbers/sound/effects/combine/gear4.ogg'= 1,
+		'modular_zubbers/sound/effects/combine/gear5.ogg'= 1,
+		'modular_zubbers/sound/effects/combine/gear6.ogg'= 1,
+		)
+	AddComponent(/datum/component/squeak, combine_sounds, 75)
+
+
+//MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.
+/obj/item/clothing/shoes/combat/boss
+	name = "patriot's boots"
+	desc = "There is nothing left inside me now. Nothing at all. No hatred, not even regret."
+	icon_state = "boss"
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS) //Stealth suit.
+
+/obj/item/clothing/shoes/jackboots/boss
+	name = "mecury woman's boots"
+	desc = "There is nothing left inside me now. Nothing at all. No hatred, not even regret."
+	icon_state = "boss"
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+
+/obj/item/clothing/shoes/jackboots/snake
+	name = "stealth boots"
+	desc = "We will leave our motherlands behind us."
+	icon_state = "snake"
+	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
+	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS)
+
+/obj/item/clothing/shoes/workboots/black
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/obj/item/clothing/shoes/pirate
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/obj/item/clothing/shoes/jackboots/netra
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/obj/item/clothing/shoes/jackboots/noble
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/obj/item/clothing/shoes/jackboots/elofy
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/obj/item/clothing/shoes/workboots
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/obj/item/clothing/shoes/winterboots/ice_boots/primitive_catgirl_boots
+	greyscale_config_worn_digi = /datum/greyscale_config/primitive_catgirl_boots/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/primitive_catgirl_boots/worn/teshari
+
+/obj/item/clothing/shoes/wraps/colourable
+	greyscale_config_worn_teshari = /datum/greyscale_config/legwraps/worn/teshari
+
+/obj/item/clothing/shoes/sandal
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'

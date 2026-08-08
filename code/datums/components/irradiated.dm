@@ -10,6 +10,8 @@
 // Showers process on SSmachines
 #define RADIATION_CLEAN_IMMUNITY_TIME (SSMACHINES_DT + (1 SECONDS))
 
+#define RADIATION_TOX_DAMAGE_FROM_QUIRK 10 // BUBBER EDIT - Isotropic Stability quirk
+
 /// This atom is irradiated, and will glow green.
 /// Humans will take toxin damage until all their toxin damage is cleared.
 /datum/component/irradiated
@@ -25,6 +27,13 @@
 /datum/component/irradiated/Initialize()
 	if (!CAN_IRRADIATE(parent))
 		return COMPONENT_INCOMPATIBLE
+
+	// BUBBER EDIT - Isotropic Stability quirk
+	if(HAS_TRAIT(parent, TRAIT_IRRADIATED))
+		return
+	if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE))
+		RegisterSignal(parent, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
+	// BUBBER EDIT END
 
 	// This isn't incompatible, it's just wrong
 	if (HAS_TRAIT(parent, TRAIT_RADIMMUNE))
@@ -61,7 +70,14 @@
 	))
 
 /datum/component/irradiated/Destroy(force)
-	var/atom/movable/parent_movable = parent
+	// BUBBER EDIT- Prevent double-whammies for Isotropic Stability quirk
+	if(src != parent.GetComponent(/datum/component/irradiated))
+		return ..()
+	if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE))
+		UnregisterSignal(parent, COMSIG_IN_RANGE_OF_IRRADIATION)
+	// BUBBER EDIT END
+
+	var/mob/living/parent_movable = parent //BUBBERSTATION CHANGE: MOVABLE TO LIVING
 	if (istype(parent_movable))
 		parent_movable.remove_filter("rad_glow")
 
@@ -85,12 +101,21 @@
 		return PROCESS_KILL
 
 	var/mob/living/carbon/human/human_parent = parent
-	if (human_parent.getToxLoss() == 0)
+	if (human_parent.get_tox_loss() == 0)
 		qdel(src)
 		return PROCESS_KILL
 
 	if (should_halt_effects(parent))
 		return
+
+	// BUBBER EDIT BEGIN
+	// Mob is radiation resistant but still metabolizes sources into toxins
+	if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE))
+		if(exposed_to_danger)
+			process_tox_damage(parent, seconds_per_tick)
+			exposed_to_danger = FALSE
+		return
+	// BUBBER EDIT END
 
 	if (human_parent.stat != DEAD)
 		human_parent.dna?.species?.handle_radiation(human_parent, world.time - beginning_of_irradiation, seconds_per_tick)
@@ -113,7 +138,12 @@
 	if (!COOLDOWN_FINISHED(src, last_tox_damage))
 		return
 
-	target.apply_damage(RADIATION_TOX_DAMAGE_PER_INTERVAL, TOX)
+	// BUBBER EDIT BEGIN - Isotropic Stability
+	var/damage_to_apply = RADIATION_TOX_DAMAGE_PER_INTERVAL
+	if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE))
+		damage_to_apply = RADIATION_TOX_DAMAGE_FROM_QUIRK
+	target.apply_damage(damage_to_apply, TOX) // BUBBER EDIT - Original: target.apply_damage(RADIATION_TOX_DAMAGE_PER_INTERVAL, TOX)
+	// BUBBER EDIT END
 	COOLDOWN_START(src, last_tox_damage, RADIATION_TOX_INTERVAL)
 
 /datum/component/irradiated/proc/start_burn_splotch_timer()
@@ -130,6 +160,11 @@
 
 	if (should_halt_effects(parent))
 		return
+
+	// BUBBER EDIT BEGIN - Isotropic Stability
+	if(HAS_TRAIT(parent, TRAIT_RAD_RESISTANCE) && prob(75))
+		return
+	// BUBBER EDIT END
 
 	var/obj/item/bodypart/affected_limb = human_parent.get_bodypart(human_parent.get_random_valid_zone())
 	human_parent.visible_message(
@@ -149,7 +184,7 @@
 	)
 
 /datum/component/irradiated/proc/create_glow()
-	var/atom/movable/parent_movable = parent
+	var/mob/living/parent_movable = parent //BUBBERSTATION CHANGE: MOVABLE TO LIVING.
 	if (!istype(parent_movable))
 		return
 
@@ -168,11 +203,11 @@
 	SIGNAL_HANDLER
 
 	if (!(clean_types & CLEAN_TYPE_RADIATION))
-		return
+		return NONE
 
 	if (isitem(parent))
 		qdel(src)
-		return COMPONENT_CLEANED
+		return COMPONENT_CLEANED|COMPONENT_CLEANED_GAIN_XP
 
 	COOLDOWN_START(src, clean_cooldown, RADIATION_CLEAN_IMMUNITY_TIME)
 
@@ -181,7 +216,7 @@
 
 	if (isliving(source))
 		var/mob/living/living_source = source
-		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Subject is irradiated. Contamination traces back to roughly [DisplayTimeText(world.time - beginning_of_irradiation, 5)] ago. Current toxin levels: [living_source.getToxLoss()]."))
+		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Subject is irradiated. Contamination traces back to roughly [DisplayTimeText(world.time - beginning_of_irradiation, 5)] ago. Current toxin levels: [living_source.get_tox_loss()]."))
 	else
 		// In case the green wasn't obvious enough...
 		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Target is irradiated."))
@@ -191,13 +226,15 @@
 /datum/component/irradiated/proc/on_healthscan(datum/source, list/render_list, advanced, mob/user, mode, tochat)
 	SIGNAL_HANDLER
 
-	render_list += conditional_tooltip("<span class='alert ml-1'>Subject is irradiated.</span>", "Supply antiradiation or antitoxin, such as [/datum/reagent/medicine/potass_iodide::name] or [/datum/reagent/medicine/pen_acid::name].", tochat)
-	render_list += "<br>"
+	render_list += "<span class='alert ml-1'>"
+	render_list += conditional_tooltip("Subject is irradiated.", "Supply antiradiation or antitoxin, such as [/datum/reagent/medicine/potass_iodide::name] or [/datum/reagent/medicine/pen_acid::name].", tochat)
+	render_list += "</span><br>"
 
 /atom/movable/screen/alert/irradiated
 	name = "Irradiated"
 	desc = "You're irradiated! Heal your toxins quick, and stand under a shower to halt the incoming damage."
-	icon_state = ALERT_IRRADIATED
+	use_user_hud_icon = USER_HUD_STYLE_INHERIT
+	overlay_state = "irradiated"
 
 #undef RADIATION_BURN_SPLOTCH_DAMAGE
 #undef RADIATION_BURN_INTERVAL_MIN
@@ -206,3 +243,4 @@
 #undef RADIATION_IMMEDIATE_TOX_DAMAGE
 #undef RADIATION_TOX_INTERVAL
 #undef RADIATION_TOX_DAMAGE_PER_INTERVAL
+#undef RADIATION_TOX_DAMAGE_FROM_QUIRK // BUBBER EDIT - Isotropic Stability quirk

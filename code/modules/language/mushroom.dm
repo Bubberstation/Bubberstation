@@ -12,3 +12,8 @@
 	syllables = list("poof", "pff", "pFfF", "piff", "puff", "pooof", "pfffff", "piffpiff", "puffpuff", "poofpoof", "pifpafpofpuf")
 	default_name_syllable_min = 1
 	default_name_syllable_max = 2
+
+//Bubber Edit - Icon
+	icon_state = "mushroom"
+	icon = 'modular_zubbers/icons/misc/language.dmi'
+//Bubber Edit End

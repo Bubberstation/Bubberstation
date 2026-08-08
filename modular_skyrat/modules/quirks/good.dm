@@ -13,7 +13,7 @@
 /datum/quirk/linguist
 	name = "Linguist"
 	desc = "You're a student of numerous languages and come with an additional language point."
-	value = 4
+	value = 2
 	mob_trait = TRAIT_LINGUIST
 	gain_text = span_notice("Your brain seems more equipped to handle different modes of conversation.")
 	lose_text = span_danger("Your grasp of the finer points of Draconic idioms fades away.")
@@ -54,7 +54,7 @@
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	var/obj/item/bodypart/arm/left/left_arm = human_holder.get_bodypart(BODY_ZONE_L_ARM)
 	if(left_arm)
-		left_arm.unarmed_attack_verbs = initial(left_arm.unarmed_attack_verbs)
+		left_arm.unarmed_attack_verbs = list("punch")
 		left_arm.unarmed_attack_effect = initial(left_arm.unarmed_attack_effect)
 		left_arm.unarmed_attack_sound = initial(left_arm.unarmed_attack_sound)
 		left_arm.unarmed_miss_sound = initial(left_arm.unarmed_miss_sound)
@@ -62,7 +62,7 @@
 
 	var/obj/item/bodypart/arm/right/right_arm = human_holder.get_bodypart(BODY_ZONE_R_ARM)
 	if(right_arm)
-		right_arm.unarmed_attack_verbs = initial(right_arm.unarmed_attack_verbs)
+		right_arm.unarmed_attack_verbs = list("punch")
 		right_arm.unarmed_attack_effect = initial(right_arm.unarmed_attack_effect)
 		right_arm.unarmed_attack_sound = initial(right_arm.unarmed_attack_sound)
 		right_arm.unarmed_miss_sound = initial(right_arm.unarmed_miss_sound)
@@ -72,7 +72,7 @@
 	name = "Water breathing"
 	desc = "You are able to breathe underwater!"
 	value = 2
-	mob_trait = TRAIT_WATER_BREATHING
+	mob_trait = TRAIT_NODROWN
 	gain_text = span_notice("You become acutely aware of the moisture in your lungs and in the air. It feels nice.")
 	lose_text = span_danger("You suddenly realize the moisture in your lungs feels <i>really weird</i>, and you almost choke on it!")
 	medical_record_text = "Patient possesses biology compatible with aquatic respiration."

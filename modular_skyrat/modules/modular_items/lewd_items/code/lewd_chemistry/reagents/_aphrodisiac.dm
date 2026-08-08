@@ -3,7 +3,7 @@
 	name = "liquid ERP"
 	description = "ERP in its liquified form. Complain to a coder."
 	chemical_flags = REAGENT_NO_RANDOM_RECIPE
-	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
+	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC | REAGENT_PROTEAN
 
 	/// What preference you need enabled for effects on life
 	var/life_pref_datum = /datum/preference/toggle/erp
@@ -245,7 +245,7 @@
 	if((mob_breasts?.genital_size >= (TAKE_DAMAGE_THRESHOLD_BREASTS)) && (exposed_mob.w_uniform || exposed_mob.wear_suit))
 		if(prob(damage_chance))
 			to_chat(exposed_mob, span_danger("Your breasts begin to strain against your clothes!"))
-			exposed_mob.adjustOxyLoss(5)
+			exposed_mob.adjust_oxy_loss(5)
 			exposed_mob.apply_damage(1, BRUTE, exposed_mob.get_bodypart(BODY_ZONE_CHEST))
 
 /** ---- Genital Shrinkage ----
@@ -600,7 +600,7 @@
 	if(exposed_mob)
 		exposed_mob.update_body()
 		if(mutations_overlay)
-			exposed_mob.update_mutations_overlay()
+			exposed_mob.update_appearance(UPDATE_OVERLAYS)
 
 #undef TAKE_DAMAGE_THRESHOLD_PENIS
 #undef TAKE_DAMAGE_THRESHOLD_BREASTS

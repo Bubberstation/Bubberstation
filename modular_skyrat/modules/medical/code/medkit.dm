@@ -25,7 +25,7 @@
 	new /obj/item/reagent_containers/spray/hercuri/chilled(src) // Highly effective (specifically coded to be) against burn wounds
 	new /obj/item/reagent_containers/spray/dinitrogen_plasmide(src) // same
 	// Generic medical items
-	new /obj/item/stack/medical/gauze/twelve(src)
+	new /obj/item/stack/medical/wrap/gauze/twelve(src)
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/healthanalyzer/simple(src) // Buffs wound treatment and gives details of wounds it scans
 	// "Ghetto" tools, things you shouldnt ideally use but you might have to
@@ -51,7 +51,7 @@
 		can_hold_list = list(
 			// Stacks
 			/obj/item/stack/cable_coil,
-			/obj/item/stack/medical/gauze,
+			/obj/item/stack/medical/wrap/gauze,
 			/obj/item/stack/medical/bone_gel,
 			// Reagent containers, for synth medicine
 			/obj/item/reagent_containers/spray,
@@ -87,7 +87,7 @@
 		exception_hold_list = list(
 			// Mainly just stacks, with the exception of pill bottles and sprays
 			/obj/item/stack/cable_coil,
-			/obj/item/stack/medical/gauze,
+			/obj/item/stack/medical/wrap/gauze,
 			/obj/item/reagent_containers/spray,
 			/obj/item/stack/medical/bone_gel,
 			/obj/item/rcd_ammo,
@@ -116,7 +116,7 @@
 	new /obj/item/reagent_containers/spray/hercuri/chilled(src) // Highly effective (specifically coded to be) against burn wounds
 	new /obj/item/reagent_containers/spray/dinitrogen_plasmide(src) // same
 	// Generic medical items
-	new /obj/item/stack/medical/gauze/twelve(src)
+	new /obj/item/stack/medical/wrap/gauze/twelve(src)
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/healthanalyzer/simple(src) // Buffs wound treatment and gives details of wounds it scans
 	// "Ghetto" tools, things you shouldnt ideally use but you might have to
@@ -162,7 +162,7 @@
 	new /obj/item/storage/pill_bottle/liquid_solder(src) // Heals brain damage
 	new /obj/item/storage/pill_bottle/system_cleaner(src) // Heals toxin damage and purges chems
 	// Generic medical items
-	new /obj/item/stack/medical/gauze/twelve(src)
+	new /obj/item/stack/medical/wrap/gauze/twelve(src)
 	new /obj/item/healthanalyzer/advanced(src) // advanced, not a normal analyzer
 	new /obj/item/healthanalyzer/simple(src) // Buffs wound treatment and gives details of wounds it scans
 	// "Ghetto" tools, things you shouldn't ideally use but you might have to

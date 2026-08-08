@@ -42,6 +42,7 @@
 	)
 
 /datum/emote/mothroach
+	abstract_type = /datum/emote/mothroach
 	mob_type_allowed_typecache = /mob/living/basic/mothroach
 	mob_type_blacklist_typecache = list()
 
@@ -79,7 +80,7 @@
 	else
 		playsound(loc, 'sound/mobs/humanoids/moth/scream_moth.ogg', 50, TRUE)
 
-/mob/living/basic/mothroach/attackby(obj/item/attacking_item, mob/living/user, list/modifiers)
+/mob/living/basic/mothroach/attackby(obj/item/attacking_item, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	if(src.stat == DEAD)
 		return

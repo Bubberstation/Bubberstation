@@ -10,13 +10,17 @@
 
 /obj/item/robot_model/proc/update_tallborg()
 	var/mob/living/silicon/robot/cyborg = robot || loc
-	if (!istype(robot))
+	if(!istype(robot))
 		return
-	if (model_features && (TRAIT_R_TALL in model_features))
+	if(model_features && (TRAIT_R_TALL in model_features))
 		cyborg.maptext_height = 48 //Runechat blabla
 		switch(cyborg_base_icon)
 			if("mekamine")
 				cyborg.AddComponent(/datum/component/robot_smoke)
+		return
+	if(model_features && (TRAIT_R_BIG in model_features))
+		cyborg.maptext_height = 64
+		return
 	else
 		cyborg.maptext_height = initial(cyborg.maptext_height)
 		if(cyborg.GetComponent(/datum/component/robot_smoke))
@@ -360,14 +364,13 @@
 	name = "Syndicate"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/borg/sight/thermal,
 		/obj/item/extinguisher,
 		/obj/item/weldingtool/electric,
 		/obj/item/borg/cyborg_omnitool/engineering,
 		/obj/item/crowbar/cyborg/power,
 		/obj/item/screwdriver/cyborg/power,
 		/obj/item/construction/rcd/borg/syndicate,
-		/obj/item/lightreplacer/cyborg,
+		/obj/item/lightreplacer,
 		/obj/item/stack/sheet/iron,
 		/obj/item/stack/sheet/glass,
 		/obj/item/borg/apparatus/sheet_manipulator,
@@ -375,7 +378,7 @@
 		/obj/item/stack/tile/iron,
 		/obj/item/stack/cable_coil,
 		/obj/item/restraints/handcuffs/cable/zipties,
-		/obj/item/stack/medical/gauze,
+		/obj/item/stack/medical/wrap/gauze,
 		/obj/item/shockpaddles/cyborg,
 		/obj/item/healthanalyzer/advanced,
 		/obj/item/surgical_drapes,
@@ -464,11 +467,11 @@
 /obj/item/robot_model/ninja/rebuild_modules()
 	. = ..()
 	var/mob/living/silicon/robot/Ninja = loc
-	Ninja.faction  -= "silicon" //ai turrets hostile against assault and medical
+	Ninja.remove_faction("silicon") //ai turrets hostile against assault and medical
 
 /obj/item/robot_model/ninja/remove_module(obj/item/I, delete_after)
 	var/mob/living/silicon/robot/Ninja = loc
-	Ninja.faction += "silicon"
+	Ninja.add_faction("silicon")
 	. = ..()
 
 /obj/item/robot_model/ninja/ninja_medical
@@ -487,7 +490,7 @@
 		/obj/item/card/emag,
 		/obj/item/crowbar/cyborg,
 		/obj/item/extinguisher/mini,
-		/obj/item/stack/medical/gauze,
+		/obj/item/stack/medical/wrap/gauze,
 		/obj/item/gun/medbeam,
 		/obj/item/borg/apparatus/organ_storage,
 		/obj/item/surgical_processor
@@ -501,7 +504,6 @@
 	name = "Spider Clan Saboteur"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/borg/sight/thermal,
 		/obj/item/katana/ninja_blade,
 		/obj/item/construction/rcd/borg/syndicate,
 		/obj/item/pipe_dispenser,

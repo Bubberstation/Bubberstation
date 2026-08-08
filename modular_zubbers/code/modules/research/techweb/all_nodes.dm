@@ -26,9 +26,34 @@
 /datum/techweb_node/parts_bluespace/New()
 	. = ..()
 	design_ids += list(
-		"bs_experi_scanner",
-		"bs_experi_scanner_cyborg",
+		"bs_experi_scanner"
 	)
+
+//Research borg tech node
+/datum/techweb_node/borg_research
+	id = TECHWEB_NODE_BORG_RESEARCH
+	display_name = "Research Cyborg Upgrades"
+	description = "They are taking our jobs now!"
+	prereq_ids = list(TECHWEB_NODE_BORG_ENGI, TECHWEB_NODE_BORG_MEDICAL)
+	design_ids = list(
+		"bs_experi_scanner_cyborg",
+		"borg_upgrade_advancedanalyzer",
+		"borg_upgrade_inducer_sci",
+		"borg_upgrade_brped",
+		"borg_upgrade_surgicalprocessor_sci",
+		"borg_upgrade_research_rcd"
+	)
+	announce_channels = list(RADIO_CHANNEL_SCIENCE)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+
+//Mining borg upgrades
+/datum/techweb_node/borg_mining/New()
+	.=..()
+	design_ids += list(
+		"borg_upgrade_advcutter",
+		"borg_upgrade_welding",
+	)
+
 
 /datum/techweb_node/ai_laws/New()
 	. = ..()
@@ -39,17 +64,24 @@
 	)
 
 // MEDICAL
-/datum/techweb_node/medbay_equip_adv/New()
-	. = ..()
-	design_ids += list(
-		"borg_upgrade_advancedanalyzer",
-	)
-
 /datum/techweb_node/xenobiology/New()
 	. = ..()
 	design_ids += list(
 		"limbdesign_hemophage",
 		"limbdesign_tajaran",
+		"limbdesign_teshari",
+	)
+
+/datum/techweb_node/cyber/cyber_implants/New()
+	. = ..()
+	design_ids += list(
+		"wound_scanner_internal"
+	)
+
+/datum/techweb_node/medbay_equip/New()
+	. = ..()
+	design_ids += list(
+		"defibrillator",
 	)
 
 //ENGINEERING
@@ -74,15 +106,19 @@
 /datum/techweb_node/borg_engi/New()
 	. = ..()
 	design_ids += list(
-		"borg_upgrade_advcutter",
-		"borg_upgrade_inducer_sci",
-		"borg_upgrade_brped",
 		"rld_cyborg"
 	)
 
+/datum/techweb_node/borg_utility/New()
+	design_ids += list(
+		"borg_upgrade_detailer",
+		"rld_cyborg_janitor",
+		"cable_coil_cyborg"
+	)
+	return ..()
+
 /datum/techweb_node/borg_medical/New()
 	design_ids += list(
-		"borg_upgrade_surgicalprocessor_sci",
 		"borg_upgrade_pinpointer",
 	)
 	return ..()
@@ -92,6 +128,7 @@
 	design_ids += list(
 		"blanksynth",
 		"dominatrixmodule",
+		"obediencemodule",
 		"borg_upgrade_expand",
 		"borg_upgrade_shrink",
 	)
@@ -106,8 +143,25 @@
 	. = ..()
 	design_ids += list(
 		"pinpointer_vent_cyborg",
-		"adv_xenoarchbag_cyborg"
+		"adv_xenoarchbag_cyborg",
+		"pka_railgun_cyborg",
+		"pka_repeater_cyborg",
+		"pka_shotgun_cyborg",
+		"pka_pistol_cyborg",
+		"pka_shockwave_cyborg",
+		"pka_m79_cyborg",
 	)
+/datum/techweb_node/mechlaunchpad
+	id = TECHWEB_NODE_MECHLAUNCHPAD
+	display_name = "Mech Logistics Solutions"
+	description = "Advancements in utilizing bluespace technology allow us to rapidly deliver mechs from workshop to destination."
+	prereq_ids = list(TECHWEB_NODE_BLUESPACE_TRAVEL, TECHWEB_NODE_MECH_EQUIPMENT)
+	design_ids = list(
+		"mechlauncher_pad",
+		"mechlauncher_console",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SCIENCE)
 
 // Computer Tech
 /datum/techweb_node/gaming/New()
@@ -116,35 +170,61 @@
 		"minesweeper",
 	)
 
+// Security Tech
+
 /datum/techweb_node/riot_supression/New()
-	design_ids += "wt550_ammo_rubber"
-	design_ids += "wt550_ammo_flathead"
-	design_ids += "sol35_shortmag"
-	design_ids += "m45_mag"
-	design_ids += "s12g_hornet"
-	design_ids += "s12g_antitide"
 	design_ids += "s12g_rubber"
 	design_ids += "s12g_bslug"
+	design_ids += "s12g_br"
 	design_ids += "s12g_incinslug"
 	design_ids += "wt550_ammo_normal"
-	design_ids += "sol35_shortextmag"
-	design_ids += "sol40_riflemag"
+	design_ids += "m9mm_mag"
+	design_ids += "m45_mag"
 	design_ids += "solgrenade_mag"
+	design_ids += "ntusp_conversion"
+	design_ids += "ntusp_powerpack"
+	design_ids += "ntmp5_powerpack"
 	. = ..()
 
 /datum/techweb_node/exotic_ammo/New()
 	design_ids += "wt550_ammo_ap"
+	design_ids += "wt550_ammo_compressed"
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()
-	design_ids -= "mag_autorifle"
-	design_ids -= "mag_autorifle_ap"
-	design_ids -= "mag_autorifle_ic"
 	design_ids += "wt550_ammo_incendiary"
-	design_ids += "s12g_magnum"
-	design_ids += "s12g_express"
+	design_ids += "s12g_db"
 	design_ids += "mod_mind_transfer"
 	. = ..()
+
+/datum/techweb_node/bullet_weapons //This is for advanced bullet weapon designs and upgrades
+	id = TECHWEB_NODE_BULLET_WEAPONS
+	display_name = "Advanced Ballistic Weaponry"
+	description = "As if shooting a bullet could get any more complicated."
+	prereq_ids = list(TECHWEB_NODE_EXOTIC_AMMO)
+	design_ids = list(
+		"wt550_burst",
+		"wt550_long",
+		"battle_rifle_basic",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SECURITY)
+
+/datum/techweb_node/advanced_armor //This is for advanced armor and shields
+	id = TECHWEB_NODE_ADVANCED_ARMOR
+	display_name = "Advanced Security Protection"
+	description = "If we can't hurt them, we can outlast them."
+	prereq_ids = list(TECHWEB_NODE_RIOT_SUPRESSION, TECHWEB_NODE_GAS_COMPRESSION)
+	design_ids = list(
+		"security_juggernaut"
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SECURITY)
+
+// Modsuit tech
+/datum/techweb_node/mod_equip/New()
+	. = ..()
+	design_ids += list("mod_remote_module")
 
 /datum/techweb_node/nerd
 	id = TECHWEB_NODE_NERD
@@ -180,3 +260,8 @@
 	research_costs = list(
 		TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS
 	)
+
+/datum/techweb_node/mod_equip/New()
+	design_ids += list("mod_protean_servo", "mod_hat_stabilizer",
+	)
+	. = ..()

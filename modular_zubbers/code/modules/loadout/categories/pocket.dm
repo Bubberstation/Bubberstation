@@ -1,3 +1,5 @@
+//Title Capitalization for names please!!!
+
 /*
 *	BOOZE
 */
@@ -25,6 +27,16 @@
 /datum/loadout_item/pocket_items/cigarettesleary
 	name = "Mindbreaker Cigs"
 	item_path = /obj/item/storage/fancy/cigarettes/cigpack_mindbreaker
+
+/datum/loadout_item/pocket_items/paintingprinter
+	name = "Instant Painting Printer"
+	item_path = /obj/item/modular_computer/mini_painting_printer
+
+/datum/loadout_item/pocket_items/protean_match
+	name = "Protean Match Tags"
+	item_path = /obj/item/clothing/accessory/dogtags/protean_match
+	blacklisted_species = list(SPECIES_SNAIL) //They can't wear proteans
+	blacklisted_roles = list(JOB_PRISONER) //no, prisoners do not get a spaceproof suit
 
 /*
 *	FLAGS
@@ -55,7 +67,7 @@
 	item_path = /obj/item/sign/flag/pride/trans
 
 /datum/loadout_item/pocket_items/flag_galfed //sprites by Crumpaloo
-	name = "Folded Galactic Federation Flag"
+	name = "Galactic Federation Flag"
 	item_path = /obj/item/sign/flag/galfed
 
 /*
@@ -127,3 +139,9 @@
 /datum/loadout_item/pocket_items/lunchbox_amongus
 	name = "Suspicious Red Lunchbox"
 	item_path = /obj/item/storage/lunchbox/amongus
+
+/// Lustwish stuff
+
+/datum/loadout_item/pocket_items/lustwish_theme
+	name = "Lustwish MOD Plating"
+	item_path = /obj/item/mod/construction/plating/lustwish

@@ -133,6 +133,10 @@
 			return get_simple_winner()
 		if(VOTE_WINNER_METHOD_WEIGHTED_RANDOM)
 			return get_random_winner()
+		// BUBBER EDIT ADDITION BEGIN - RANKED CHOICE VOTING
+		if(VOTE_WINNER_METHOD_RANKED)
+			return get_ranked_winner()
+		// BUBBER EDIT ADDITION END
 
 	stack_trace("invalid select winner method: [winner_method]. Defaulting to simple.")
 	return get_simple_winner()
@@ -183,6 +187,10 @@
 			returned_text += "None"
 		if(VOTE_WINNER_METHOD_WEIGHTED_RANDOM)
 			returned_text += "Weighted Random"
+		// BUBBER EDIT ADDITION BEGIN - RANKED CHOICE VOTING
+		if(VOTE_WINNER_METHOD_RANKED)
+			returned_text += "Ranked"
+		// BUBBER EDIT ADDITION END
 		else
 			returned_text += "Simple"
 

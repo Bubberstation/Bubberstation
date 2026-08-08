@@ -1,5 +1,5 @@
 import { Button, LabeledList, Section } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -30,6 +30,8 @@ export const Crayon = (props) => {
     selected_stencil,
     is_literate_user,
     text_buffer,
+    washable_coloring_mode,
+    remove_coloring,
   } = data;
   const capOrChanges = has_cap || can_change_colour;
 
@@ -52,6 +54,17 @@ export const Crayon = (props) => {
                 <Button
                   content="Custom color"
                   onClick={() => act('custom_color')}
+                />
+              </LabeledList.Item>
+              <LabeledList.Item>
+                <Button
+                  content={washable_coloring_mode ? 'Washable paint' : 'Permanent paint'}
+                  onClick={() => act('change_color_mode')}
+                />
+                <Button
+                  content={remove_coloring ? 'Remove paint mode' : 'Paint mode'}
+                  selected={remove_coloring}
+                  onClick={() => act('toggle_remove_coloring')}
                 />
               </LabeledList.Item>
             </LabeledList>

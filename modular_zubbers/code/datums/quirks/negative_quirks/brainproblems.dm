@@ -19,7 +19,7 @@
 
 // If brainproblems is added to a synth, this detours to the brainproblems/synth quirk.
 // TODO: Add more brain-specific detours when PR #16105 is merged
-/datum/quirk/item_quirk/brainproblems/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source, unique = TRUE)
+/datum/quirk/item_quirk/brainproblems/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source, unique = TRUE, announce = TRUE)
 	if(!issynthetic(new_holder) || type != /datum/quirk/item_quirk/brainproblems)
 		// Defer to TG brainproblems if the character isn't robotic.
 		return ..()

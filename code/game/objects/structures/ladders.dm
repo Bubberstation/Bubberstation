@@ -7,6 +7,7 @@
 	base_icon_state = "ladder"
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT | BLOCK_Z_OUT_DOWN
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5)
 	///the ladder below this one
 	VAR_FINAL/obj/structure/ladder/down
 	///the ladder above this one
@@ -164,6 +165,7 @@
 
 	down.up = null
 	down.update_appearance(UPDATE_ICON_STATE)
+	down.update_minimap_blip()
 	down = null
 	update_appearance(UPDATE_ICON_STATE)
 	clear_base_transparency()
@@ -187,6 +189,7 @@
 	up.down = null
 	up.clear_base_transparency()
 	up.update_appearance(UPDATE_ICON_STATE)
+	up.update_minimap_blip()
 	up = null
 	update_appearance(UPDATE_ICON_STATE)
 
@@ -194,6 +197,11 @@
 /obj/structure/ladder/proc/disconnect()
 	unlink_down()
 	unlink_up()
+
+/obj/structure/ladder/proc/update_minimap_blip()
+	remove_minimap_blip(MINIMAP_LADDER_BLIP, src)
+	if(up || down)
+		add_minimap_blip(src, MINIMAP_LADDER_BLIP, "ladder")
 
 /obj/structure/ladder/LateInitialize()
 	// By default, discover ladders above and below us vertically
@@ -212,6 +220,7 @@
 	// Linking updates our icon, so if we failed both links we need a manual update
 	if(isnull(down) && isnull(up))
 		update_appearance(UPDATE_ICON_STATE)
+	update_minimap_blip()
 
 /obj/structure/ladder/update_icon_state()
 	icon_state = "[base_icon_state][!!up][!!down]"
@@ -277,7 +286,8 @@
 	user.zMove(target = target, z_move_flags = ZMOVE_CHECK_PULLEDBY|ZMOVE_ALLOW_BUCKLED|ZMOVE_INCLUDE_PULLED)
 
 	if(grant_exp)
-		user.mind?.adjust_experience(/datum/skill/athletics, 10) //get a little experience for our trouble
+		var/fitness_level = user.mind?.get_skill_level(/datum/skill/athletics)
+		user.mind?.adjust_experience(/datum/skill/athletics, round(ATHLETICS_SKILL_MISC_EXP/(fitness_level || 1), 1)) //get a little experience for our trouble
 
 	if(!is_ghost)
 		show_final_fluff_message(user, ladder, going_up)
@@ -378,11 +388,11 @@
 	use(user, going_up = FALSE)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-/obj/structure/ladder/attackby(obj/item/item, mob/user, list/modifiers)
+/obj/structure/ladder/attackby(obj/item/item, mob/user, list/modifiers, list/attack_modifiers)
 	use(user)
 	return TRUE
 
-/obj/structure/ladder/attackby_secondary(obj/item/item, mob/user, list/modifiers)
+/obj/structure/ladder/attackby_secondary(obj/item/item, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return

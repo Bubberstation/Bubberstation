@@ -60,7 +60,7 @@
 	icon_state = "bag_of_holding"
 	inhand_icon_state = "holdingpack"
 	resistance_flags = FIRE_PROOF
-	item_flags = NO_MAT_REDEMPTION
+	item_flags = NO_MAT_REDEMPTION | BLUESPACE_INTERFERENCE
 	armor_type = /datum/armor/backpack_holding
 	storage_type = /datum/storage/bag_of_holding
 	pickup_sound = null
@@ -104,7 +104,7 @@
 		return
 	if(HAS_MIND_TRAIT(user, TRAIT_CANNOT_OPEN_PRESENTS))
 		var/turf/floor = get_turf(src)
-		var/obj/item/thing = new /obj/item/gift/anything(floor)
+		var/obj/item/thing = new /obj/item/gift/mostly_anything(floor) // BUBBER EDIT - Previous: var/obj/item/thing = new /obj/item/gift/anything(floor)
 		if(!atom_storage.attempt_insert(thing, user, override = TRUE, force = STORAGE_SOFT_LOCKED))
 			qdel(thing)
 
@@ -138,6 +138,12 @@
 	name = "medical backpack"
 	desc = "It's a backpack especially designed for use in a sterile environment."
 	icon_state = "backpack-medical"
+	inhand_icon_state = "medicalpack"
+
+/obj/item/storage/backpack/chief_medic
+	name = "chief medical officer's backpack"
+	desc = "A backpack with just enough pockets to carry the chief medical officer's equipment."
+	icon_state = "backpack-chiefmedical"
 	inhand_icon_state = "medicalpack"
 
 /obj/item/storage/backpack/coroner
@@ -250,20 +256,16 @@
 	inhand_icon_state = "meatmeatmeat"
 	force = 15
 	throwforce = 15
+	material_flags = MATERIAL_EFFECTS | MATERIAL_AFFECT_STATISTICS
 	attack_verb_continuous = list("MEATS", "MEAT MEATS")
 	attack_verb_simple = list("MEAT", "MEAT MEAT")
-	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 25) // MEAT
+	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 15) // MEAT
 	///Sounds used in the squeak component
 	var/list/meat_sounds = list('sound/effects/blob/blobattack.ogg' = 1)
-	///Reagents added to the edible component, ingested when you EAT the MEAT
+	///Reagents added to the edible component on top of the meat material, ingested when you EAT the MEAT
 	var/list/meat_reagents = list(
-		/datum/reagent/consumable/nutriment/protein = 10,
-		/datum/reagent/consumable/nutriment/vitamin = 10,
+		/datum/reagent/consumable/nutriment/vitamin = 15,
 	)
-	///The food types of the edible component
-	var/foodtypes = MEAT | RAW
-	///How our MEAT tastes. It tastes like MEAT
-	var/list/tastes = list("MEAT" = 1)
 	///Eating verbs when consuming the MEAT
 	var/list/eatverbs = list("MEAT", "absorb", "gnaw", "consume")
 
@@ -273,23 +275,16 @@
 		SOURCE_EDIBLE_INNATE, \
 		/datum/component/edible,\
 		initial_reagents = meat_reagents,\
-		foodtypes = foodtypes,\
-		tastes = tastes,\
+		tastes = list("meat" = 1),\
 		eatverbs = eatverbs,\
 	)
+
 	AddComponent(/datum/component/squeak, meat_sounds)
-	AddComponent(
-		/datum/component/blood_walk,\
-		blood_type = /obj/effect/decal/cleanable/blood,\
-		blood_spawn_chance = 15,\
-		max_blood = custom_materials[custom_materials[1]] / SHEET_MATERIAL_AMOUNT,\
-	)
-	AddComponent(
-		/datum/component/bloody_spreader,\
-		blood_left = custom_materials[custom_materials[1]] / SHEET_MATERIAL_AMOUNT,\
-		blood_dna = list("MEAT DNA" = "MT+"),\
-		diseases = null,\
-	)
+
+/obj/item/storage/backpack/meat/change_material_strength(datum/material/material, mat_amount, multiplier, remove)
+	// Our base 15 force includes the implied meat force
+	if (!istype(material, /datum/material/meat))
+		return ..()
 
 /*
  * Satchel Types
@@ -324,6 +319,12 @@
 	name = "medical satchel"
 	desc = "A sterile satchel used in medical departments."
 	icon_state = "satchel-medical"
+	inhand_icon_state = "satchel-med"
+
+/obj/item/storage/backpack/satchel/chief_medic
+	name = "chief medical officer's satchel"
+	desc = "A satchel with barely enough pockets to carry the chief medical officer's equipment."
+	icon_state = "satchel-chiefmedical"
 	inhand_icon_state = "satchel-med"
 
 /obj/item/storage/backpack/satchel/vir
@@ -429,6 +430,12 @@
 	name = "medical messenger bag"
 	desc = "A sterile messenger bag well loved by medics for its portability and sleek profile."
 	icon_state = "messenger_medical"
+	inhand_icon_state = "messenger_medical"
+
+/obj/item/storage/backpack/messenger/chief_medic
+	name = "chief medical officer's messenger bag"
+	desc = "A slim messenger bag appreciated by chief medical officers for staying out of their way while working - unlike their chemists."
+	icon_state = "messenger_chiefmedical"
 	inhand_icon_state = "messenger_medical"
 
 /obj/item/storage/backpack/messenger/vir

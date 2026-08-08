@@ -11,7 +11,7 @@
 	emote_see = list("jiggles", "bounces in place")
 	speak_emote = list("blorbles")
 	atmos_requirements = null
-	hud_type = /datum/hud/ooze
+	hud_type = /datum/hud/living/ooze
 	minbodytemp = 250
 	maxbodytemp = INFINITY
 	faction = list(FACTION_SLIME)
@@ -43,16 +43,18 @@
 
 	grant_actions_by_list(get_innate_actions())
 
-/mob/living/simple_animal/hostile/ooze/attacked_by(obj/item/I, mob/living/user)
-	if(!eat_atom(I, TRUE))
-		return ..()
+/mob/living/simple_animal/hostile/ooze/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(eat_atom(tool, TRUE))
+		return ITEM_INTERACT_SUCCESS
+	return ..()
 
-/mob/living/simple_animal/hostile/ooze/AttackingTarget(atom/attacked_target)
-	if(!eat_atom(attacked_target))
-		return ..()
+/mob/living/simple_animal/hostile/ooze/resolve_unarmed_attack(atom/attack_target, list/modifiers)
+	if(eat_atom(attack_target))
+		return ITEM_INTERACT_SUCCESS
+	return ..()
 
 ///Handles nutrition gain/loss of mob and also makes it take damage if it's too low on nutrition, only happens for sentient mobs.
-/mob/living/simple_animal/hostile/ooze/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+/mob/living/simple_animal/hostile/ooze/Life(seconds_per_tick = SSMOBS_DT)
 	. = ..()
 
 	if(!.) //dead or deleted
@@ -74,7 +76,7 @@
 	adjust_ooze_nutrition(nutrition_change)
 
 	if(ooze_nutrition <= 0)
-		adjustBruteLoss(0.25 * seconds_per_tick)
+		adjust_brute_loss(0.25 * seconds_per_tick)
 
 /// Returns an applicable list of actions to grant to the mob. Will return a list or null.
 /mob/living/simple_animal/hostile/ooze/proc/get_innate_actions()
@@ -83,23 +85,20 @@
 ///Does ooze_nutrition + supplied amount and clamps it within 0 and 500
 /mob/living/simple_animal/hostile/ooze/proc/adjust_ooze_nutrition(amount)
 	ooze_nutrition = clamp(ooze_nutrition + amount, 0, 500)
-	updateNutritionDisplay()
+	hud_used?.screen_objects[HUD_OOZE_NUTRITION_DISPLAY]?.maptext = MAPTEXT( \
+		"<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='green'>[round(ooze_nutrition)]</font></div>" \
+	)
 
 ///Tries to transfer the atoms reagents then delete it
 /mob/living/simple_animal/hostile/ooze/proc/eat_atom(atom/eat_target, silent)
 	if(isnull(eat_target))
-		return
+		return FALSE
 	if(SEND_SIGNAL(eat_target, COMSIG_OOZE_EAT_ATOM, src, edible_food_types) & COMPONENT_ATOM_EATEN)
-		return
+		return TRUE
 	if(silent || !isitem(eat_target)) //Don't bother reporting it for everything
-		return
+		return FALSE
 	to_chat(src, span_warning("[eat_target] cannot be eaten!"))
-
-///Updates the display that shows the mobs nutrition
-/mob/living/simple_animal/hostile/ooze/proc/updateNutritionDisplay()
-	if(hud_used) //clientless oozes
-		hud_used.alien_plasma_display.maptext = MAPTEXT("<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='green'>[round(ooze_nutrition)]</font></div>")
-
+	return FALSE
 
 ///* Gelatinious Ooze code below *\\\\
 
@@ -218,7 +217,7 @@
 	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(stop_consuming))
 
 ///Try to consume the pulled mob
-/datum/action/consume/Trigger(trigger_flags)
+/datum/action/consume/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	if(!.)
 		return
@@ -265,7 +264,7 @@
 ///Gain health for the consumption and dump some brute loss on the target.
 /datum/action/consume/process()
 	var/mob/living/simple_animal/hostile/ooze/gelatinous/ooze = owner
-	vored_mob.adjustBruteLoss(5)
+	vored_mob.adjust_brute_loss(5)
 	ooze.heal_ordered_damage((ooze.maxHealth * 0.03), list(BRUTE, BURN, OXY)) ///Heal 6% of these specific damage types each process
 	if(istype(ooze))
 		ooze.adjust_ooze_nutrition(3)
@@ -324,7 +323,7 @@
 ///Ability that allows the owner to fire healing globules at mobs, targeting specific limbs.
 /datum/action/cooldown/globules
 	name = "Fire Mending globule"
-	desc = "Fires a mending globule at someone, healing a specific limb of theirs."
+	desc = "Fires a mending globule at someone, healing a specific limb of theirs. Costs 5 nutrition."
 	background_icon_state = "bg_hive"
 	overlay_icon_state = "bg_hive_border"
 	button_icon = 'icons/mob/actions/actions_slime.dmi'
@@ -334,10 +333,16 @@
 	click_to_activate = TRUE
 
 /datum/action/cooldown/globules/set_click_ability(mob/on_who)
+	var/mob/living/simple_animal/hostile/ooze/oozy_owner = owner
+	if(istype(oozy_owner))
+		if(oozy_owner.ooze_nutrition < 5)
+			to_chat(oozy_owner, span_warning("You need at least 5 nutrition to launch a mending globule."))
+			return
 	. = ..()
 	if(!.)
 		return
 
+	oozy_owner.adjust_ooze_nutrition(-5)
 	to_chat(on_who, span_notice("You prepare to launch a mending globule. <B>Left-click to fire at a target!</B>"))
 
 /datum/action/cooldown/globules/unset_click_ability(mob/on_who, refund_cooldown = TRUE)
@@ -346,20 +351,9 @@
 		return
 
 	if(refund_cooldown)
+		var/mob/living/simple_animal/hostile/ooze/oozy_owner = owner
+		oozy_owner.adjust_ooze_nutrition(5)
 		to_chat(on_who, span_notice("You stop preparing your mending globules."))
-
-/datum/action/cooldown/globules/Activate(atom/target)
-	. = ..()
-	if(!.)
-		return FALSE
-
-	var/mob/living/simple_animal/hostile/ooze/oozy_owner = owner
-	if(istype(oozy_owner))
-		if(oozy_owner.ooze_nutrition < 5)
-			to_chat(oozy_owner, span_warning("You need at least 5 nutrition to launch a mending globule."))
-			return FALSE
-
-	return TRUE
 
 /datum/action/cooldown/globules/InterceptClickOn(mob/living/clicker, params, atom/target)
 	. = ..()
@@ -428,7 +422,7 @@
 ///This action lets you put a mob inside of a cacoon that will inject it with some chemicals.
 /datum/action/cooldown/gel_cocoon
 	name = "Gel Cocoon"
-	desc = "Puts a mob inside of a cocoon, allowing it to slowly heal."
+	desc = "Puts a mob inside of a cocoon, allowing it to slowly heal. Costs 30 nutrition."
 	background_icon_state = "bg_hive"
 	overlay_icon_state = "bg_hive_border"
 	button_icon = 'icons/mob/actions/actions_slime.dmi'

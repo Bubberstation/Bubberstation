@@ -68,16 +68,16 @@
 /datum/action/item_action/hev_toggle/nri
 	name = "Toggle VOSKHOD Suit"
 	button_icon = 'modular_skyrat/modules/novaya_ert/icons/toggles.dmi'
+	button_icon_state = "system_off"
+	background_icon = 'modular_skyrat/modules/novaya_ert/icons/toggles.dmi'
 	background_icon_state = "bg_nri"
-	button_icon = 'modular_skyrat/modules/novaya_ert/icons/toggles.dmi'
-	button_icon_state = "toggle"
 
 /datum/action/item_action/hev_toggle_notifs/nri
 	name = "Toggle VOSKHOD Suit Notifications"
 	button_icon = 'modular_skyrat/modules/novaya_ert/icons/toggles.dmi'
+	button_icon_state = "sound_VOICE_AND_TEXT"
+	background_icon = 'modular_skyrat/modules/novaya_ert/icons/toggles.dmi'
 	background_icon_state = "bg_nri"
-	button_icon = 'modular_skyrat/modules/novaya_ert/icons/toggles.dmi'
-	button_icon_state = "sound"
 
 /obj/item/clothing/suit/space/hev_suit/nri/captain
 	name = "\improper VOSKHOD-2 powered combat armor"

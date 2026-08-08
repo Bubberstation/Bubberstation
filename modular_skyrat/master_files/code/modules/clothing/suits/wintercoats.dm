@@ -24,7 +24,7 @@
 	allowed = list(
 		/obj/item/reagent_containers/cup/glass/shaker,
 		/obj/item/reagent_containers/cup/glass/flask,
-		/obj/item/reagent_containers/cup/rag
+		/obj/item/rag
 	)
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/skyrat/bartender
 

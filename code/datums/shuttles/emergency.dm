@@ -3,6 +3,7 @@
 /datum/map_template/shuttle/emergency // SKYRAT EDIT OVERRIDE - OVERRIDDEN IN ADVANCED_SHUTTLES - shuttles.dm
 	port_id = "emergency"
 	name = "Base Shuttle Template (Emergency)"
+	prefix = "_maps/shuttles/emergency/"
 	///assoc list of shuttle events to add to this shuttle on spawn (typepath = weight)
 	var/list/events
 	///pick all events instead of random
@@ -40,7 +41,6 @@
 			mobile.add_shuttle_event(path)
 
 /datum/map_template/shuttle/emergency/backup
-	prefix = "_maps/shuttles/"
 	suffix = "backup"
 	name = "Backup Shuttle"
 	who_can_purchase = null
@@ -48,11 +48,20 @@
 /datum/map_template/shuttle/emergency/construction
 	suffix = "construction"
 	name = "Build your own shuttle kit"
-	description = "For the enterprising shuttle engineer! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials. Unlocks the ability to buy shuttle engine crates from cargo, which allow you to speed up shuttle transit time."
+	description = "For the enterprising shuttle engineer! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials."
 	admin_notes = "No brig, no medical facilities."
 	credit_cost = CARGO_CRATE_VALUE * 5
 	who_can_purchase = list(ACCESS_CAPTAIN, ACCESS_CE)
 	occupancy_limit = "Flexible"
+
+/datum/map_template/shuttle/emergency/constructionbig
+	suffix = "constructionbig"
+	name = "Build your own CRUISER kit"
+	description = "This is the big brother of the construction kit, with more space for your shuttle-building ideas! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials."
+	admin_notes = "No brig, no medical facilities."
+	credit_cost = CARGO_CRATE_VALUE * 30
+	who_can_purchase = list(ACCESS_CAPTAIN, ACCESS_CE)
+	occupancy_limit = "Flexible and more"
 
 /datum/map_template/shuttle/emergency/asteroid
 	suffix = "asteroid"

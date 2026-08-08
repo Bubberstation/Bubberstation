@@ -86,30 +86,8 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 	return FALSE
 
-/// Procs to return holiday themed colors for recoloring atoms
-/datum/holiday/proc/get_holiday_colors(atom/thing_to_color, pattern = holiday_pattern)
-	if(!holiday_colors)
-		return
-	switch(pattern)
-		if(PATTERN_DEFAULT)
-			return holiday_colors[(thing_to_color.y % holiday_colors.len) + 1]
-		if(PATTERN_VERTICAL_STRIPE)
-			return holiday_colors[(thing_to_color.x % holiday_colors.len) + 1]
-
-/proc/request_holiday_colors(atom/thing_to_color, pattern)
-	switch(pattern)
-		if(PATTERN_RANDOM)
-			return "#[random_short_color()]"
-		if(PATTERN_RAINBOW)
-			var/datum/holiday/pride_week/rainbow_datum = new()
-			return rainbow_datum.get_holiday_colors(thing_to_color, PATTERN_DEFAULT)
-	if(!length(GLOB.holidays))
-		return
-	for(var/holiday_key in GLOB.holidays)
-		var/datum/holiday/holiday_real = GLOB.holidays[holiday_key]
-		if(!holiday_real.holiday_colors)
-			continue
-		return holiday_real.get_holiday_colors(thing_to_color, pattern || holiday_real.holiday_pattern)
+/datum/holiday/proc/get_holiday_colors(atom/thing_to_color, pattern)
+	return get_decoration_color_from_pattern(thing_to_color, pattern || holiday_pattern, holiday_colors)
 
 // The actual holidays
 
@@ -298,10 +276,6 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	. = ..()
 	SSjob.set_overflow_role(/datum/job/clown)
 	SSticker.set_lobby_music('sound/music/lobby_music/clown.ogg', override = TRUE)
-	for(var/i in GLOB.new_player_list)
-		var/mob/dead/new_player/P = i
-		if(P.client)
-			P.client.playtitlemusic()
 
 /datum/holiday/april_fools/get_holiday_colors(atom/thing_to_color)
 	return "#[random_short_color()]"
@@ -321,9 +295,9 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	begin_month = APRIL
 	holiday_hat = /obj/item/clothing/head/rasta
 	holiday_colors = list(
-		COLOR_ETHIOPIA_GREEN,
-		COLOR_ETHIOPIA_YELLOW,
 		COLOR_ETHIOPIA_RED,
+		COLOR_ETHIOPIA_YELLOW,
+		COLOR_ETHIOPIA_GREEN,
 	)
 	holiday_mail = list(/obj/item/cigarette/rollie/cannabis)
 
@@ -353,6 +327,21 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 /datum/holiday/anz/getStationPrefix()
 	return pick("Australian","New Zealand","Poppy", "Southern Cross")
+
+/datum/holiday/chernobyl
+	name = CHERNOBYL_ANNIVERSARY
+	begin_day = 26
+	begin_month = APRIL
+
+/datum/holiday/chernobyl/getStationPrefix()
+	if(prob(3))
+		return "Not Great, Not Terrible"
+
+	return pick("Atomic", "Nuclear", "Radiation", "Plutonium", "Uranium", "Corium", "Zirconium", "Graphite", "Scram", "Explosion")
+
+/datum/holiday/chernobyl/greet()
+	return "On this day in 1986, the Chernobyl nuclear power plant melted down, causing one of the worst nuclear disasters in human history. \
+		Today serves as a reminder to the lives lost and to the rigorous safety standards our engineers must adhere to when providing power to the station."
 
 // MAY
 
@@ -399,6 +388,23 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 /datum/holiday/bee/getStationPrefix()
 	return pick("Bee","Honey","Hive","Africanized","Mead","Buzz")
 
+/datum/holiday/goth
+	name = "Goth Day"
+	begin_day = 22
+	begin_month = MAY
+	holiday_mail = list(
+		/obj/item/lipstick,
+		/obj/item/lipstick/black,
+		/obj/item/clothing/suit/costume/gothcoat,
+	)
+	holiday_colors = list(
+		COLOR_WHITE,
+		COLOR_BLACK,
+	)
+
+/datum/holiday/goth/getStationPrefix()
+	return pick("Goth", "Sanguine", "Tenebris", "Lacrimosa", "Umbra", "Noctis")
+
 // JUNE
 
 //The Festival of Atrakor's Might (Tizira's Moon) is celebrated on June 15th, the date on which the lizard visual revamp was merged (#9808)
@@ -439,14 +445,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	// Stonewall was June 28th, this captures its week.
 	begin_day = 23
 	end_day = 29
-	holiday_colors = list(
-		COLOR_PRIDE_PURPLE,
-		COLOR_PRIDE_BLUE,
-		COLOR_PRIDE_GREEN,
-		COLOR_PRIDE_YELLOW,
-		COLOR_PRIDE_ORANGE,
-		COLOR_PRIDE_RED,
-	)
+	holiday_colors = PRIDE_FLAG_COLORS
 	holiday_mail = list(
 		/obj/item/bedsheet/rainbow,
 		/obj/item/clothing/accessory/pride,
@@ -462,6 +461,12 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 		/obj/item/toy/crayon/rainbow,
 	)
 
+/datum/holiday/pride_week/New()
+	. = ..()
+	if(prob(30))
+		return
+	holiday_colors = pick(LESBIAN_FLAG_COLORS, GAY_MAN_FLAG_COLORS, TRANS_FLAG_COLORS, BI_FLAG_COLORS, ACE_FLAG_COLORS, PAN_FLAG_COLORS)
+
 // JULY
 
 /datum/holiday/doctor
@@ -470,7 +475,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	begin_month = JULY
 	holiday_hat = /obj/item/clothing/head/costume/nursehat
 	holiday_mail = list(
-		/obj/item/stack/medical/gauze,
+		/obj/item/stack/medical/wrap/gauze,
 		/obj/item/stack/medical/ointment,
 		/obj/item/storage/box/bandages,
 	)
@@ -498,11 +503,11 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	no_mail_holiday = TRUE
 	holiday_hat = /obj/item/clothing/head/cowboy/brown
 	holiday_colors = list(
+		COLOR_WHITE,
+		COLOR_OLD_GLORY_RED,
+		COLOR_WHITE,
+		COLOR_OLD_GLORY_RED,
 		COLOR_OLD_GLORY_BLUE,
-		COLOR_OLD_GLORY_RED,
-		COLOR_WHITE,
-		COLOR_OLD_GLORY_RED,
-		COLOR_WHITE,
 	)
 
 
@@ -830,7 +835,13 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	begin_month = DECEMBER
 	end_day = 27
 	holiday_hat = /obj/item/clothing/head/costume/santa
-	no_mail_holiday = TRUE
+	holiday_mail = list(
+		/obj/item/clothing/head/beanie/christmas,
+		/obj/item/clothing/neck/scarf/christmas,
+		/obj/item/food/cookie/sugar,
+		/obj/item/gift/anything,
+		/obj/item/toy/xmas_cracker,
+	)
 	holiday_colors = list(
 		COLOR_CHRISTMAS_GREEN,
 		COLOR_CHRISTMAS_RED,
@@ -858,6 +869,27 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 /datum/holiday/xmas/greet()
 	return "Have a merry Christmas!"
+
+/datum/holiday/xmas/celebrate()
+	. = ..()
+	SSticker.OnRoundstart(CALLBACK(src, PROC_REF(roundstart_celebrate)))
+	GLOB.maintenance_loot += list(
+		list(
+			/obj/item/clothing/head/costume/santa = 1,
+			/obj/item/gift/mostly_anything = 1, // BUBBER EDIT - Previous: /obj/item/gift/anything
+			/obj/item/toy/xmas_cracker = 3,
+		) = maint_holiday_weight,
+	)
+
+/datum/holiday/xmas/proc/roundstart_celebrate()
+	for(var/obj/machinery/computer/security/telescreen/entertainment/Monitor as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/computer/security/telescreen/entertainment))
+		Monitor.icon_state_on = "entertainment_xmas"
+
+	for(var/mob/living/basic/pet/dog/corgi/ian/Ian in GLOB.mob_living_list)
+		Ian.place_on_head(new /obj/item/clothing/head/helmet/space/santahat(Ian))
+
+	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/costumes_toys/christmas]
+	pack.order_flags |= ORDER_SPECIAL_ENABLED
 
 /datum/holiday/boxing
 	name = "Boxing Day"
@@ -966,27 +998,6 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 /datum/holiday/hebrew/passover/getStationPrefix()
 	return pick("Matzah", "Moses", "Red Sea")
-
-// HOLIDAY ADDONS
-
-/datum/holiday/xmas/celebrate()
-	. = ..()
-	SSticker.OnRoundstart(CALLBACK(src, PROC_REF(roundstart_celebrate)))
-	GLOB.maintenance_loot += list(
-		list(
-			/obj/item/clothing/head/costume/santa = 1,
-			/obj/item/gift/anything = 1,
-			/obj/item/toy/xmas_cracker = 3,
-		) = maint_holiday_weight,
-	)
-
-/datum/holiday/xmas/proc/roundstart_celebrate()
-	for(var/obj/machinery/computer/security/telescreen/entertainment/Monitor as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/computer/security/telescreen/entertainment))
-		Monitor.icon_state_on = "entertainment_xmas"
-
-	for(var/mob/living/basic/pet/dog/corgi/ian/Ian in GLOB.mob_living_list)
-		Ian.place_on_head(new /obj/item/clothing/head/helmet/space/santahat(Ian))
-
 
 // EASTER (this having its own spot should be understandable)
 

@@ -1,4 +1,5 @@
 /datum/emote/silicon
+	abstract_type = /datum/emote/silicon
 	trait_required = TRAIT_SILICON_EMOTES_ALLOWED
 	emote_type = EMOTE_AUDIBLE
 
@@ -63,9 +64,3 @@
 	message = "blares an alarm!"
 	emote_type = EMOTE_AUDIBLE
 	sound = 'sound/machines/warning-buzzer.ogg'
-
-/datum/emote/silicon/slowclap
-	key = "slowclap"
-	message = "activates their slow clap processor."
-	emote_type = EMOTE_AUDIBLE
-	sound = 'sound/machines/slowclap.ogg'

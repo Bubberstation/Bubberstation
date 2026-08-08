@@ -14,7 +14,7 @@
 	*/ // SKYRAT EDIT REMOVAL END
 	target.gender = value
 
-/datum/preference/choiced/gender/create_informed_default_value(datum/preferences/preferences)
+/datum/preference/choiced/gender/create_default_value()
 	// The only reason I'm limiting this to male or female
 	// is that hairstyle randomization handles enbies poorly
 	return pick(MALE, FEMALE)

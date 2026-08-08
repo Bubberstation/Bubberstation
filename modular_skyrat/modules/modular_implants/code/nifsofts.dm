@@ -56,7 +56,7 @@
 	///Is it a lewd item?
 	var/lewd_nifsoft = FALSE
 
-/datum/nifsoft/New(obj/item/organ/cyberimp/brain/nif/recipient_nif, no_rewards_points = FALSE)
+/datum/nifsoft/New(obj/item/organ/cyberimp/brain/nif/recipient_nif, no_rewards_points = FALSE, skip_calibration = FALSE)
 	. = ..()
 
 	if(no_rewards_points) //This is mostly so that credits can't be farmed through printed or stolen NIFSoft disks
@@ -65,8 +65,9 @@
 	compatible_nifs += /obj/item/organ/cyberimp/brain/nif/debug
 	program_name = name
 
-	if(!recipient_nif.install_nifsoft(src))
+	if(!recipient_nif.install_nifsoft(src, skip_calibration))
 		qdel(src)
+		return
 
 	parent_nif = WEAKREF(recipient_nif)
 	linked_mob = recipient_nif.linked_mob
@@ -168,6 +169,7 @@
 	desc = "A datadisk that can be used to upload a loaded NIFSoft to the user's NIF"
 	icon = 'modular_skyrat/modules/modular_implants/icons/obj/disks.dmi'
 	icon_state = "base_disk"
+	sticker_icon_state = null
 	///What NIFSoft is currently loaded in?
 	var/datum/nifsoft/loaded_nifsoft = /datum/nifsoft
 	///Is the datadisk reusable?

@@ -8,11 +8,13 @@
 /datum/loadout_item/head/pinwheel_hat/gold //sprites by Keila.
 	name = "Magnificent Pinwheel Hat"
 	item_path = /obj/item/clothing/head/helmet/toggleable/pinwheel/gold
-	ckeywhitelist = list("malice69", "miniusAreas", "gavla", "hydrosatan", "nevimer", "naruga", "OmegaTracing", "KeRSe", "CprlEvergreen", "RiskyBusiness", "Slouista", "SapphoQueer", "LordGingy", "ARandomHyena", "LiuJr", "jamiemundy", "snajper202", "snaffle15", "sonicgotnuked", "fellis", "laetex", "especiallystrange", "ghostie_dwagons", "Kidkirby",)
+	ckeywhitelist = list("malice69", "miniusAreas", "gavla", "hydrosatan", "nevimer", "naruga", "OmegaTracing", "KeRSe", "CprlEvergreen", "RiskyBusiness", "Slouista", "SapphoQueer", "LordGingy", "ARandomHyena", "LiuJr", "jamiemundy", "snajper202", "snaffle15", "sonicgotnuked", "fellis", "laetex", "especiallystrange", "ghostie_dwagons", "Kidkirby", "Destrucktoid", "Vulpesishot", "cababge", "leathergnome", "Dawn.JPG", "Guardianofthestars", "ABoxFox", "2bro2b", "JohnPawson", "user_interface143")
 
 //11/08/23: Added as a reward to people who have recommended friends to Bubberstation. Add to this list as you please, you can offer this as a reward for basically anything.
 //Please mark the date and what this was awarded for in code comments here. For example:
 //XX/XX/XX: Added as a reward for EXAMPLE EVENT's winners.
+//6/21/2025: Given as a reward to the duo winners of toolbox tournament held on the same day. Vulpesishot and Destrucktoid.
+//7/17/2026: Given to the winners of the Bubberguessr tournament: cababge, leathergnome, Dawn.JPG, Guardian of the stars, ABoxFox, 2bro2b, JohnPawson, and user_interface143
 
 /datum/loadout_item/head/idmaberet
 	name = "IDMA Beret"
@@ -33,7 +35,7 @@
 *	GLASSES
 */
 
-/datum/loadout_item/glasses/silk_blindfold
+/datum/loadout_item/glasses/costume/silk_blindfold
 	name = "Silk Blindfold"
 	item_path = /obj/item/clothing/glasses/trickblindfold/lace
 	ckeywhitelist = list("thedragmeme")
@@ -123,12 +125,12 @@
 *	SHOES
 */
 
-/datum/loadout_item/shoes/lace_heels
+/datum/loadout_item/shoes/formal/lace_heels
 	name = "Elegant Heels"
 	item_path = /obj/item/clothing/shoes/heels/drag/lace
 	ckeywhitelist = list("thedragmeme")
 
-/datum/loadout_item/shoes/diver //Donor item for patriot210
+/datum/loadout_item/shoes/boots/diver //Donor item for patriot210
 	name = "Black Divers Boots"
 	item_path = /obj/item/clothing/shoes/boots/diver
 	//ckeywhitelist = list("sexmaster", "leafydasurvivor")

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Box, Button, Icon, Input, Section, Table } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
@@ -90,6 +90,15 @@ const areaSort = (a: CrewSensor, b: CrewSensor) => {
   return 0;
 };
 
+const getHealthLevel = (healthSum: number): number => {
+  if (healthSum <= 56) return 0;
+  if (healthSum <= 72) return 1;
+  if (healthSum <= 85) return 2;
+  if (healthSum <= 100) return 3;
+  if (healthSum <= 115) return 4;
+  return 5; // over 116 (near crit)
+};
+
 const healthToAttribute = (
   oxy: number,
   tox: number,
@@ -98,7 +107,7 @@ const healthToAttribute = (
   attributeList: string[],
 ) => {
   const healthSum = oxy + tox + burn + brute;
-  const level = Math.min(Math.max(Math.ceil(healthSum / 25), 0), 5);
+  const level = getHealthLevel(healthSum);
   return attributeList[level];
 };
 
@@ -141,7 +150,6 @@ type CrewSensor = {
   brutedam: number;
   area: string | undefined;
   health: number;
-  can_track: BooleanLike;
   ref: string;
 };
 
@@ -241,7 +249,6 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
     burndam,
     brutedam,
     area,
-    can_track,
   } = sensor_data;
 
   return (
@@ -306,7 +313,6 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
       {!!link_allowed && (
         <Table.Cell collapsing>
           <Button
-            disabled={!can_track}
             onClick={() =>
               act('select_person', {
                 name: name,

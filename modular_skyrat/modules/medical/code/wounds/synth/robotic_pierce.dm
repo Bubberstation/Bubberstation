@@ -8,7 +8,7 @@
 /datum/wound_pregen_data/electrical_damage/pierce
 	abstract = TRUE
 	wound_series = WOUND_SERIES_WIRE_PIERCE_ELECTRICAL_DAMAGE
-	required_wounding_types = list(WOUND_PIERCE)
+	required_wounding_type = WOUND_PIERCE
 
 /datum/wound/burn/electrical_damage/pierce/get_limb_examine_description()
 	return span_warning("The metal on this limb is pierced open.")
@@ -20,6 +20,7 @@
 	examine_desc = "is shuddering gently, movements a little weak"
 	treat_text = "Replacing of damaged wiring, though repairs via wirecutting instruments or sutures may suffice, albeit at limited efficiency. In case of emergency, \
 				subject may be subjected to high temperatures to allow solder to reset."
+	treat_text_short = "Replace damaged wiring."
 
 	sound_effect = 'modular_skyrat/modules/medical/sound/robotic_slash_T1.ogg'
 
@@ -63,6 +64,7 @@
 	occur_text = "sputters and goes limp for a moment as it ejects a stream of sparks"
 	examine_desc = "is shuddering significantly, its servos briefly giving way in a rythmic pattern"
 	treat_text = "Containment of damaged wiring via gauze, then application of fresh wiring/sutures, or resetting of displaced wiring via wirecutter/retractor."
+	treat_text_short = "Apply gauze and replace wires."
 
 	sound_effect = 'modular_skyrat/modules/medical/sound/robotic_slash_T2.ogg'
 
@@ -107,6 +109,7 @@
 	examine_desc = "'s PSU is visible, with a sizable hole in the center"
 	treat_text = "Immediate securing via gauze, followed by emergency cable replacement and securing via wirecutters or hemostat. \
 		If the fault has become uncontrollable, extreme heat therapy is recommended."
+	treat_text_short = "Apply gauze, replace wires, and use wirecutters or a hemostat."
 
 	severity = WOUND_SEVERITY_CRITICAL
 	wound_flags = (ACCEPTS_GAUZE|MANGLES_EXTERIOR|CAN_BE_GRASPED|SPLINT_OVERLAY)

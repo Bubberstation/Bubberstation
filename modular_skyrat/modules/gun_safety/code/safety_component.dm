@@ -39,11 +39,19 @@
 /// Checks if the safety is currently on, if it is then stops the gun from firing
 /datum/component/gun_safety/proc/check_if_we_can_actually_shooty(obj/item/gun/source, mob/living/user, atom/target, flag, params)
 	SIGNAL_HANDLER
+	if(!safety_currently_on)
+		return // safety's off, we don't care
 
-	if(safety_currently_on)
-		user.balloon_alert(user, "the safety disengages!")
-		toggle_safeties(user)
-		return COMPONENT_CANCEL_GUN_FIRE
+	if(flag) // user clicked adjacent target
+		if(target in user.contents) // clicking something in inventory
+			return
+		if(!ismob(target)) // trying to place the gun somewhere/melee attack
+			return
+
+	// they are actually trying to shoot something
+	user.balloon_alert(user, "the safety disengages!")
+	toggle_safeties(user)
+	return COMPONENT_CANCEL_GUN_FIRE
 
 /// Calls toggle_safeties if the action type for doing so is used
 /datum/component/gun_safety/proc/we_may_be_toggling_safeties(source, user, datum/actiontype)

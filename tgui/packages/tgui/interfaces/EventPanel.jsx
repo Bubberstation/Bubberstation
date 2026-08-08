@@ -31,12 +31,10 @@ export const EventPanel = (props) => {
             <Stack.Item>
               <Section title={'Event Control'}>
                 <NoticeBox color="blue">
-                  {'Next vote in ' + toFixed(next_vote_time, 0) + ' seconds.'}
+                  {`Next vote in ${toFixed(next_vote_time, 0)} seconds.`}
                 </NoticeBox>
                 <NoticeBox color="blue">
-                  {'Low chaos event in ' +
-                    toFixed(next_low_chaos_time, 0) +
-                    ' seconds.'}
+                  {`Low chaos event in ${toFixed(next_low_chaos_time, 0)} seconds.`}
                 </NoticeBox>
                 <Button
                   icon="plus"
@@ -104,7 +102,7 @@ export const EventPanel = (props) => {
               grow
               title={
                 vote_in_progress
-                  ? 'Available Events (' + toFixed(end_time) + ' seconds) '
+                  ? `Available Events (${toFixed(end_time)} seconds) `
                   : 'Available Events'
               }
             >

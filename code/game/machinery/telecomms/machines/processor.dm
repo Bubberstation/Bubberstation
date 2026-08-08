@@ -29,6 +29,12 @@
 	// Otherwise we just fully decompress it if it was compressed to begin with.
 	else if(signal.data["compression"])
 		signal.data["compression"] = COMPRESSION_AMOUNT_DECOMPRESSING
+		// BUBBER EDIT BEGIN - Heretic Corruption Ritual
+		if (GLOB.processors_cursed && istype(signal, /datum/signal/subspace/vocal))
+			signal.data["spans"] += "hypnophrase"
+			signal.data["message"] = pick_list(HERETIC_INFLUENCE_FILE, "drain_message")
+			signal.data["cursed"] = TRUE
+		// BUBBER EDIT END
 
 	if(istype(machine_from, /obj/machinery/telecomms/bus))
 		relay_direct_information(signal, machine_from) // send the signal back to the machine

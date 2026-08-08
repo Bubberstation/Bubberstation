@@ -12,6 +12,8 @@
 	throw_speed = 2
 	throw_range = 4
 	item_flags = NO_PIXEL_RANDOM_DROP
+	drop_sound = SFX_POTTED_PLANT_DROP
+	pickup_sound = SFX_POTTED_PLANT_PICKUP
 
 	/// Can this plant be trimmed by someone with TRAIT_BONSAI
 	var/trimmable = TRUE
@@ -52,7 +54,7 @@
 	. = ..()
 	icon_state = dead ? "plant-25" : base_icon_state
 
-/obj/item/kirbyplants/attackby(obj/item/I, mob/living/user, list/modifiers)
+/obj/item/kirbyplants/attackby(obj/item/I, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 	if(!dead && trimmable && HAS_TRAIT(user,TRAIT_BONSAI) && isturf(loc) && I.get_sharpness())
 		to_chat(user,span_notice("You start trimming [src]."))

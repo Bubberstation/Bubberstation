@@ -17,7 +17,8 @@ import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type ColorEntry = {
-  index: Number;
+  index: number;
+  label?: string; //BUBBER ADDITION - dynamic uniforms
   value: string;
 };
 
@@ -25,7 +26,7 @@ type SpriteData = {
   icon_states: string[];
   finished: string;
   steps: SpriteEntry[];
-  time_spent: Number;
+  time_spent: number;
 };
 
 type SpriteEntry = {
@@ -37,6 +38,11 @@ type SpriteEntry = {
 type GreyscaleMenuData = {
   greyscale_config: string;
   colors: ColorEntry[];
+  //BUBBER ADDITION START - dynamic uniforms
+  full_color_string?: string;
+  hide_full_color_string?: boolean;
+  component_style?: ComponentStyleData;
+  //BUBBER ADDITION END - dynamic uniforms
   sprites: SpriteData;
   generate_full_preview: boolean;
   unlocked: boolean;
@@ -45,6 +51,25 @@ type GreyscaleMenuData = {
   icon_state: string;
   refreshing: boolean;
 };
+
+//BUBBER ADDITION START - dynamic uniforms
+type ComponentStyleOption = {
+  name: string;
+  value: string;
+  selected: boolean;
+};
+
+type ComponentStyleCore = {
+  name: string;
+  key: string;
+  options: ComponentStyleOption[];
+};
+
+type ComponentStyleData = {
+  core_components: ComponentStyleCore[];
+  accessories: ComponentStyleOption[];
+};
+//BUBBER ADDITION END - dynamic uniforms
 
 enum Direction {
   North = 'north',
@@ -77,8 +102,7 @@ const ConfigDisplay = (props) => {
           <Button icon="cogs" onClick={() => act('select_config')} />
           <Input
             value={data.greyscale_config}
-            expensive
-            onChange={(value) =>
+            onBlur={(value) =>
               act('load_config_from_string', { config_string: value })
             }
           />
@@ -87,6 +111,68 @@ const ConfigDisplay = (props) => {
     </Section>
   );
 };
+//BUBBER ADDITION START - dynamic uniforms
+const ComponentStyleDisplay = (props) => {
+  const { act, data } = useBackend<GreyscaleMenuData>();
+  const style = data.component_style;
+
+  if (!style) {
+    return null;
+  }
+
+  return (
+    <Section title="Style">
+      <LabeledList>
+        {style.core_components.map((component) => (
+          <LabeledList.Item key={component.key} label={component.name}>
+            <Flex wrap>
+              {component.options.map((item) => (
+                <Flex.Item
+                  key={`${component.key}-${item.value}`}
+                  mr={0.5}
+                  mb={0.5}
+                >
+                  <Button.Checkbox
+                    checked={item.selected}
+                    onClick={() =>
+                      act('component_style_set_core', {
+                        component: component.key,
+                        value: item.value,
+                      })
+                    }
+                  >
+                    {item.name}
+                  </Button.Checkbox>
+                </Flex.Item>
+              ))}
+            </Flex>
+          </LabeledList.Item>
+        ))}
+        {!!style.accessories.length && (
+          <LabeledList.Item label="Accessories">
+            <Flex wrap>
+              {style.accessories.map((item) => (
+                <Flex.Item key={item.value} mr={0.5} mb={0.5}>
+                  <Button.Checkbox
+                    checked={item.selected}
+                    onClick={() =>
+                      act('component_style_toggle_accessory', {
+                        accessory: item.value,
+                      })
+                    }
+                  >
+                    {item.name}
+                  </Button.Checkbox>
+                </Flex.Item>
+              ))}
+            </Flex>
+          </LabeledList.Item>
+        )}
+      </LabeledList>
+    </Section>
+  );
+};
+//BUBBER ADDITION END - dynamic uniforms
 
 const ColorDisplay = (props) => {
   const { act, data } = useBackend<GreyscaleMenuData>();
@@ -94,24 +180,37 @@ const ColorDisplay = (props) => {
   return (
     <Section title="Colors">
       <LabeledList>
-        <LabeledList.Item label="Full Color String">
-          <Button
-            icon="dice"
-            onClick={() => act('random_all_colors')}
-            tooltip="Randomizes all color groups."
-          />
-          <Input
-            value={colors.map((item) => item.value).join('')}
-            expensive
-            onChange={(value) =>
-              act('recolor_from_string', { color_string: value })
-            }
-          />
-        </LabeledList.Item>
+        {/* BUBBER EDIT START - dynamic uniforms */}
+        {!data.hide_full_color_string && (
+          <LabeledList.Item label="Full Color String">
+            <Button
+              icon="dice"
+              onClick={() => act('random_all_colors')}
+              tooltip="Randomizes all color groups."
+            />
+            {!!data.component_style && (
+              <Button
+                icon="undo"
+                onClick={() => act('component_style_reset_all')}
+                tooltip="Resets colors and style options to their defaults."
+              />
+            )}
+            <Input
+              value={
+                data.full_color_string ||
+                colors.map((item) => item.value).join('')
+              }
+              onBlur={(value) =>
+                act('recolor_from_string', { color_string: value })
+              }
+            />
+          </LabeledList.Item>
+        )}
+        {/* BUBBER EDIT END - dynamic uniforms */}
         {colors.map((item) => (
           <LabeledList.Item
             key={`colorgroup${item.index}${item.value}`}
-            label={`Color Group ${item.index}`}
+            label={item.label || `Color Group ${item.index}`} //BUBBER EDIT
             color={item.value}
           >
             <ColorBox color={item.value} />{' '}
@@ -125,11 +224,23 @@ const ColorDisplay = (props) => {
               onClick={() => act('random_color', { color_index: item.index })}
               tooltip="Randomizes the color for this color group."
             />
+            {/* BUBBER EDIT START - dynamic uniforms */}
+            {!!data.component_style && (
+              <Button
+                icon="undo"
+                onClick={() =>
+                  act('component_style_reset_color', {
+                    color_index: item.index,
+                  })
+                }
+                tooltip="Resets this color group to its default."
+              />
+            )}
+            {/* BUBBER EDIT END - dynamic uniforms */}
             <Input
               value={item.value}
               width={7}
-              expensive
-              onChange={(value) =>
+              onBlur={(value) =>
                 act('recolor', { color_index: item.index, new_color: value })
               }
             />
@@ -141,7 +252,6 @@ const ColorDisplay = (props) => {
 };
 
 const PreviewCompassSelect = (props) => {
-  const { act, data } = useBackend<GreyscaleMenuData>();
   return (
     <Box>
       <Stack vertical>
@@ -175,15 +285,16 @@ const SingleDirection = (props) => {
   return (
     <Flex.Item grow={1} basis={0}>
       <Button
-        content={DirectionAbbreviation[dir]}
         tooltip={`Sets the direction of the preview sprite to ${dir}`}
-        disabled={`${dir}` === data.sprites_dir ? true : false}
+        disabled={`${dir}` === data.sprites_dir}
         textAlign="center"
         onClick={() => act('change_dir', { new_sprite_dir: dir })}
         lineHeight={3}
         m={-0.2}
         fluid
-      />
+      >
+        {DirectionAbbreviation[dir]}
+      </Button>
     </Flex.Item>
   );
 };
@@ -287,6 +398,9 @@ export const GreyscaleModifyMenu = (props) => {
     <Window title="Color Configuration" width={325} height={800}>
       <Window.Content scrollable>
         <ConfigDisplay />
+        {/* BUBBER ADDITION START - dynamic uniforms */}
+        <ComponentStyleDisplay />
+        {/* BUBBER ADDITION END - dynamic uniforms */}
         <ColorDisplay />
         <IconStatesDisplay />
         <Flex direction="column">

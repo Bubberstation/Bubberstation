@@ -155,9 +155,8 @@
 		to_chat(user, "Step into the Tear before using it.")
 		return
 	for(var/obj/item/implant/tracking/imp in user.implants)
-		if(imp)
-			to_chat(user, span_warning("[imp] gives you the sense that you're being watched."))
-			return
+		to_chat(user, span_warning("[imp] gives you the sense that you're being watched."))
+		return
 	// Is this, or linked, stream being watched?
 	if(check_location_seen(user, get_turf(user)))
 		to_chat(user, span_warning("Not while you're being watched."))

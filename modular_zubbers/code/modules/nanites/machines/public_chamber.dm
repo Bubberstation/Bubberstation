@@ -47,9 +47,9 @@
 
 	//TODO OMINOUS MACHINE SOUNDS
 	set_busy(TRUE, "[initial(icon_state)]_raising")
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "[initial(icon_state)]_active"),20)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "[initial(icon_state)]_falling"),60)
-	addtimer(CALLBACK(src, .proc/complete_injection, locked_state, attacker),80)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "[initial(icon_state)]_active"), 20)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "[initial(icon_state)]_falling"), 60)
+	addtimer(CALLBACK(src, PROC_REF(complete_injection), locked_state, attacker), 80)
 
 /obj/machinery/public_nanite_chamber/proc/complete_injection(locked_state, mob/living/attacker)
 	//TODO MACHINE DING
@@ -74,9 +74,9 @@
 	locked = TRUE
 
 	set_busy(TRUE, "[initial(icon_state)]_raising")
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "[initial(icon_state)]_active"),20)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "[initial(icon_state)]_falling"),40)
-	addtimer(CALLBACK(src, .proc/complete_cloud_change, locked_state, attacker),60)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "[initial(icon_state)]_active"), 20)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "[initial(icon_state)]_falling"), 40)
+	addtimer(CALLBACK(src, PROC_REF(complete_cloud_change), locked_state, attacker), 60)
 
 /obj/machinery/public_nanite_chamber/proc/complete_cloud_change(locked_state, mob/living/attacker)
 	locked = locked_state
@@ -153,7 +153,7 @@
 
 	. = TRUE
 
-	addtimer(CALLBACK(src, .proc/try_inject_nanites, user), 3 SECONDS) //If someone is shoved in give them a chance to get out before the injection starts
+	addtimer(CALLBACK(src, PROC_REF(try_inject_nanites), user), 3 SECONDS) //If someone is shoved in give them a chance to get out before the injection starts
 
 /obj/machinery/public_nanite_chamber/proc/try_inject_nanites(mob/living/attacker)
 	if(occupant)
@@ -183,11 +183,14 @@
 		return
 	open_machine()
 
-/obj/machinery/public_nanite_chamber/attackby(obj/item/I, mob/user, params)
-	if(!occupant && default_deconstruction_screwdriver(user, icon_state, icon_state, I))//sent icon_state is irrelevant...
-		update_appearance()//..since we're updating the icon here, since the scanner can be unpowered when opened/closed
-		return
+/obj/machinery/public_nanite_chamber/screwdriver_act(mob/living/user, obj/item/tool)
+	. = ..()
+	if(occupant)
+		balloon_alert(user, "occupied!")
+		return ITEM_INTERACT_BLOCKING
+	return default_deconstruction_screwdriver(user, tool)
 
+/obj/machinery/public_nanite_chamber/attackby(obj/item/I, mob/user, params)
 	if(default_pry_open(I))
 		return
 

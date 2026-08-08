@@ -74,21 +74,20 @@
 	icon_state = "transponder"
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
-	var/datum/effect_system/spark_spread/sparks
+	var/datum/effect_system/basic/spark_spread/sparks
 	var/current_state = TURN_DIAL
 	var/next_activate = 0
 
 /obj/item/donator/transponder/Initialize(mapload)
 	. = ..()
-	sparks = new
-	sparks.set_up(2, 0, src)
+	sparks = new(src, 2, FALSE)
 	sparks.attach(src)
+	sparks.start()
 
 /obj/item/donator/transponder/Destroy()
 	if(sparks)
-		qdel(sparks)
-	sparks = null
-	. = ..()
+		QDEL_NULL(sparks)
+	return ..()
 
 /obj/item/donator/transponder/attack_self(mob/user)
 	if(QDELETED(src) || (next_activate > world.time))
@@ -232,7 +231,9 @@
 /obj/item/instrument/piano_synth/headphones/catear_headphone
 	name = "Cat-Ear Headphones"
 	desc = "Merch of their Electric Guitarist Demi Galgan from the Singularity Shredders. It's heavily customizable and even comes with a holographic tail!"
-	icon_state = "catear_headphone"
+	icon = 'icons/map_icons/items/_item.dmi'
+	icon_state = "/obj/item/instrument/piano_synth/headphones/catear_headphone"
+	post_init_icon_state = "catear_headphone"
 	worn_icon = 'modular_skyrat/modules/GAGS/icons/head/catear_headphone.dmi'
 	lefthand_file = 'modular_skyrat/modules/GAGS/icons/head/catear_headphone_inhand.dmi'
 	righthand_file = 'modular_skyrat/modules/GAGS/icons/head/catear_headphone_inhand.dmi'

@@ -13,8 +13,6 @@
 	var/filename = "virtual_domain.dmm"
 	/// The start time of the map. Used to calculate time taken
 	var/start_time
-	/// This map is specifically for unit tests. Shouldn't display in game
-	var/test_only = FALSE
 
 	/**
 	 * Generic settings / UI
@@ -32,13 +30,13 @@
 	var/name = "Virtual Domain"
 	/// Points to reward for completion. Used to purchase new domains and calculate ore rewards.
 	var/reward_points = BITRUNNER_REWARD_MIN
+	/// Any additional flags for this domain
+	var/domain_flags = NONE
 
 	/**
 	 * Player customization
 	 */
 
-	/// Any restrictions this domain has on what external sources can load in
-	var/external_load_flags = NONE
 	/// Any outfit that you wish to force on avatars. Overrides preferences
 	var/datum/outfit/forced_outfit
 
@@ -54,6 +52,12 @@
 	var/secondary_loot_generated
 	/// Has this domain been beaten with high enough score to spawn a tech disk?
 	var/disk_reward_spawned = FALSE
+	/// The amount of points towards the spawning of the main crate, on maps using points.
+	var/main_crate_points = 0
+	/// The amount of points required to spawn the main crate, on maps using points.
+	var/main_crate_point_goal = 10
+	/// The location the crate will spawn when enough points are accumulated, on maps using points.
+	var/main_crate_loc
 
 	/**
 	 * Modularity
@@ -74,12 +78,58 @@
 	var/list/custom_spawns = list()
 	/// Set TRUE if you want reusable custom spawners
 	var/keep_custom_spawns = FALSE
+	/// The domain must have this many ghost candidates willing to join as entities, or else it will not load.
+	var/mission_min_candidates = 0
+	/// Maximum amount possible of above.
+	var/mission_max_candidates = 0
+	/// Ghosts that will be spawned as, presumably, an antagonist in the map.
+	var/list/chosen_ghosts
+	/// List of spawners used for candidates.
+	var/list/obj/effect/mob_spawn/ghost_role/ghost_spawners
+	/// Current domain mobs being held by ghosts
+	var/list/mob/living/ghost_mobs
+	/// The role that ghosts will get. Only used for poll text.
+	var/spawner_role = "Antagonist"
 
+
+/datum/lazy_template/virtual_domain/proc/can_view_name(scanner_tier, server_points)
+	return difficulty < scanner_tier && cost <= server_points + 5
+
+/datum/lazy_template/virtual_domain/proc/can_view_reward(scanner_tier, server_points)
+	return difficulty < (scanner_tier + 1) && cost <= server_points + 3
+
+/datum/lazy_template/virtual_domain/Destroy(force)
+	QDEL_NULL(ghost_spawners)
+	QDEL_NULL(ghost_mobs)
+	. = ..()
 
 /// Sends a point to any loot signals on the map
-/datum/lazy_template/virtual_domain/proc/add_points(points_to_add)
-	SEND_SIGNAL(src, COMSIG_BITRUNNER_GOAL_POINT, points_to_add)
+/datum/lazy_template/virtual_domain/proc/add_points(points_to_add = 1)
+	main_crate_points += points_to_add
+	if(main_crate_points >= main_crate_point_goal)
+		reveal()
 
+/datum/lazy_template/virtual_domain/proc/reveal()
+	if(!main_crate_loc)
+		return
+	var/turf/spawn_loc = get_turf(main_crate_loc)
+	playsound(spawn_loc, 'sound/effects/magic/blink.ogg', 50, TRUE)
+	var/obj/structure/closet/crate/secure/bitrunning/encrypted/crate = new()
+	crate.forceMove(spawn_loc) // Triggers any on-move effects on that turf
+	do_sparks(5, FALSE, spawn_loc, spark_type = /datum/effect_system/basic/spark_spread/quantum)
+	main_crate_loc = null
+
+/// Loads the ghost candidates.
+/datum/lazy_template/virtual_domain/proc/load_advanced_npcs(list/mob/lucky_ghosts)
+	for(var/mob/lucky_ghost as anything in lucky_ghosts)
+		var/obj/effect/mob_spawn/ghost_role/ghost_spawner = pick(ghost_spawners)
+		LAZYREMOVE(ghost_spawners, ghost_spawner)
+
+		var/mob/new_mob = ghost_spawner.create(lucky_ghost, lucky_ghost.real_name)
+		LAZYADD(ghost_mobs, new_mob)
+
+		var/ghostname = lucky_ghost.name
+		notify_ghosts("[ghostname] has been selected to be a [ghost_spawner.prompt_name]!", source = new_mob, header = "001010110")
 
 /// Overridable proc to be called after the map is loaded.
 /datum/lazy_template/virtual_domain/proc/setup_domain(list/created_atoms)

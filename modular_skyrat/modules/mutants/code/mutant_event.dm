@@ -2,7 +2,6 @@
 	name = "HNZ-1 Pathogen Outbreak"
 	typepath = /datum/round_event/mutant_infestation
 	weight = 0
-	dynamic_should_hijack = TRUE
 
 /datum/round_event/mutant_infestation
 	announce_when = 300

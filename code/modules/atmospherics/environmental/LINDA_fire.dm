@@ -26,6 +26,9 @@
 		SSliquids.processing_fire[src] = TRUE
 	//SKYRAT EDIT END
 
+	if(exposed_temperature < TCMB)
+		exposed_temperature = TCMB
+		CRASH("[src].hotspot_expose() called with exposed_temperature < [TCMB]")
 	//If the air doesn't exist we just return false
 	var/list/air_gases = air?.gases
 	if(!air_gases)
@@ -108,6 +111,8 @@
 		volume = starting_volume
 	if(!isnull(starting_temperature))
 		temperature = starting_temperature
+		if(temperature <= FREON_MAXIMUM_BURN_TEMPERATURE)
+			cold_fire = TRUE
 
 	var/turf/open/our_turf = loc
 	//on creation we check adjacent turfs for hot spot to start grouping, if surrounding do not have hot spots we create our own
@@ -115,12 +120,15 @@
 		if(!to_check.active_hotspot)
 			continue
 		var/obj/effect/hotspot/enemy_spot = to_check.active_hotspot
+		// Safeguard to prevent infectious init runtimes for hotspots if we somehow end up with a hotspot without a group
+		if(!enemy_spot.our_hot_group)
+			continue
 		if(!our_hot_group)
 			enemy_spot.our_hot_group.add_to_group(src)
-		else if(our_hot_group != enemy_spot.our_hot_group && enemy_spot.our_hot_group) //if we belongs to a hot group from prior loop and we encounter another hot spot with a group then we merge
+		else if(our_hot_group != enemy_spot.our_hot_group) //if we belongs to a hot group from prior loop and we encounter another hot spot with a group then we merge
 			our_hot_group.merge_hot_groups(enemy_spot.our_hot_group)
 
-	if(!our_hot_group)//if after loop through all the adjacents turfs and we havent belong to a group yet, make our own
+	if(QDELETED(our_hot_group))//if after loop through all the adjacents turfs and we havent belong to a group yet, make our own
 		our_hot_group = new
 		our_hot_group.add_to_group(src)
 
@@ -147,6 +155,7 @@
 
 	// Remove just_spawned protection if no longer processing the parent cell
 	just_spawned = (our_turf.current_cycle < SSair.times_fired)
+	update_color()
 
 /obj/effect/hotspot/set_smoothed_icon_state(new_junction)
 
@@ -454,11 +463,13 @@
 	var/turf/open/sound_turf = locate(average_x, average_y, average_Z)
 	if(sound)
 		sound.falloff_distance = drop_off_dist
+		sound.extra_range = drop_off_dist
 		if(sound_turf != current_sound_loc)
 			sound.parent = sound_turf
 		return
 	sound = new(sound_turf, TRUE)
 	sound.falloff_distance = drop_off_dist
+	sound.extra_range = drop_off_dist
 	current_sound_loc = sound_turf
 
 #undef MIN_SIZE_SOUND

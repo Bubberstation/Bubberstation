@@ -28,11 +28,6 @@
 	circuit = /obj/item/circuitboard/machine/syndiepad
 	var/warmup_reduction = 0
 
-/obj/machinery/piratepad/syndiepad/screwdriver_act(mob/living/user, obj/item/tool)
-	. = ..()
-	if(!.)
-		return default_deconstruction_screwdriver(user, "lpad-idle-open", "lpad-idle-off", tool)
-
 /obj/machinery/piratepad/syndiepad/crowbar_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(!.)
@@ -132,8 +127,7 @@
 /obj/machinery/computer/piratepad_control/syndiepad/proc/reset_icon(obj/machinery/piratepad/syndiepad/pad)
 	if(!pad)
 		return
-	flick(pad.sending_state,pad)
-	pad.icon_state = pad.idle_state
+	pad.finish_sending()
 
 #undef SYN_BOUNTY_PAD_WARM_TIME
 

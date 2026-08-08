@@ -23,7 +23,7 @@
 	damage = 20
 
 	wound_bonus = 5 // Normal bullets are 20
-	bare_wound_bonus = 25
+	exposed_wound_bonus = 25
 
 
 /obj/item/ammo_box/c35sol
@@ -60,7 +60,7 @@
 	stamina = 30
 
 	wound_bonus = -40
-	bare_wound_bonus = -20
+	exposed_wound_bonus = -20
 
 	weak_against_armour = TRUE
 
@@ -109,7 +109,7 @@
 	sharpness = SHARP_EDGED
 
 	wound_bonus = 25
-	bare_wound_bonus = 25
+	exposed_wound_bonus = 25
 
 	embed_type = /datum/embedding/c35sol_ripper
 

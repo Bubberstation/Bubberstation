@@ -64,11 +64,11 @@
 
 	//TODO OMINOUS MACHINE SOUNDS
 	set_busy(TRUE, "Initializing injection protocol...", "[initial(icon_state)]_raising")
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Analyzing host bio-structure...", "[initial(icon_state)]_active"),20)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Priming nanites...", "[initial(icon_state)]_active"),40)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Injecting...", "[initial(icon_state)]_active"),70)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Activating nanites...", "[initial(icon_state)]_falling"),110)
-	addtimer(CALLBACK(src, .proc/complete_injection, locked_state), 130)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Analyzing host bio-structure...", "[initial(icon_state)]_active"), 20)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Priming nanites...", "[initial(icon_state)]_active"), 40)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Injecting...", "[initial(icon_state)]_active"), 70)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Activating nanites...", "[initial(icon_state)]_falling"), 110)
+	addtimer(CALLBACK(src, PROC_REF(complete_injection), locked_state), 130)
 
 /obj/machinery/nanite_chamber/proc/complete_injection(locked_state)
 	//TODO MACHINE DING
@@ -91,11 +91,11 @@
 
 	//TODO OMINOUS MACHINE SOUNDS
 	set_busy(TRUE, "Initializing cleanup protocol...", "[initial(icon_state)]_raising")
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Analyzing host bio-structure...", "[initial(icon_state)]_active"),20)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Pinging nanites...", "[initial(icon_state)]_active"),40)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Initiating graceful self-destruct sequence...", "[initial(icon_state)]_active"),70)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Removing debris...", "[initial(icon_state)]_falling"),110)
-	addtimer(CALLBACK(src, .proc/complete_removal, locked_state),130)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Analyzing host bio-structure...", "[initial(icon_state)]_active"), 20)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Pinging nanites...", "[initial(icon_state)]_active"), 40)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Initiating graceful self-destruct sequence...", "[initial(icon_state)]_active"), 70)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Removing debris...", "[initial(icon_state)]_falling"), 110)
+	addtimer(CALLBACK(src, PROC_REF(complete_removal), locked_state), 130)
 
 /obj/machinery/nanite_chamber/proc/complete_removal(locked_state)
 	//TODO MACHINE DING
@@ -189,11 +189,14 @@
 		return
 	open_machine()
 
-/obj/machinery/nanite_chamber/attackby(obj/item/I, mob/user, params)
-	if(!occupant && default_deconstruction_screwdriver(user, icon_state, icon_state, I))//sent icon_state is irrelevant...
-		update_appearance()//..since we're updating the icon here, since the scanner can be unpowered when opened/closed
-		return
+/obj/machinery/nanite_chamber/screwdriver_act(mob/living/user, obj/item/tool)
+	. = ..()
+	if(occupant)
+		balloon_alert(user, "occupied!")
+		return ITEM_INTERACT_BLOCKING
+	return default_deconstruction_screwdriver(user, tool)
 
+/obj/machinery/nanite_chamber/attackby(obj/item/I, mob/user, params)
 	if(default_pry_open(I))
 		return
 

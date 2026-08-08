@@ -1,5 +1,6 @@
 /obj/item/clothing/under/rank/civilian
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/civilian_digi.dmi' //Anything that was in TG's civilian.dmi, should be in our civilian_digi.dmi
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/civilian/lawyer // Lawyers' suits are in TG's suits.dmi
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/suits_digi.dmi'
@@ -18,12 +19,6 @@
 /*
 *	HEAD OF PERSONNEL
 */
-
-/obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/imperial //Rank pins of the Grand Moff
-	name = "head of personnel's naval jumpsuit"
-	desc = "A pale green naval suit and a rank badge denoting the Personnel Officer. Target, maximum firepower."
-	icon_state = "imphop"
-	supports_variations_flags = NONE
 
 /obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/parade
 	name = "head of personnel's male formal uniform"

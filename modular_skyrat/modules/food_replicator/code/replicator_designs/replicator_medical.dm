@@ -69,7 +69,7 @@
 	id = "slavic_gauze"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
-	build_path = /obj/item/stack/medical/gauze
+	build_path = /obj/item/stack/medical/wrap/gauze
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_NRI_MEDICAL,

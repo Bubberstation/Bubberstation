@@ -7,6 +7,7 @@ import {
   Stack,
   Tooltip,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
 import type { LoadoutCategory, LoadoutItem, LoadoutManagerData } from './base';
@@ -20,6 +21,20 @@ export function ItemIcon(props: Props) {
   const { item, scale = 3 } = props;
   const icon_to_use = item.icon;
   const icon_state_to_use = item.icon_state;
+  //BUBBER EDIT START - dyamic uniforms
+  if (item.image) {
+    return (
+      <img
+        src={`data:image/png;base64,${item.image}`}
+        style={{
+          width: `${32 * scale}px`,
+          height: `${32 * scale}px`,
+          imageRendering: 'pixelated',
+        }}
+      />
+    );
+  }
+  //BUBBER EDIT END - dynamic uniforms
 
   if (!icon_to_use || !icon_state_to_use) {
     return (
@@ -66,6 +81,7 @@ export function ItemDisplay(props: DisplayProps) {
         style={{ textTransform: 'capitalize', zIndex: '1' }}
         tooltip={item.name}
         tooltipPosition={'bottom'}
+        base64={item.image} //BUBBER EDIT ADDITION: Dynamic uniform icons
         dmIcon={item.icon}
         dmIconState={item.icon_state}
         onClick={() =>
@@ -203,14 +219,20 @@ export function LoadoutTabDisplay(props: TabProps) {
 type SearchProps = {
   loadout_tabs: LoadoutCategory[];
   currentSearch: string;
+  searchingTooltips: BooleanLike; // BUBBER EDIT ADDITION: Search in tooltips
 };
 
 export function SearchDisplay(props: SearchProps) {
-  const { loadout_tabs, currentSearch } = props;
+  const { loadout_tabs, currentSearch, searchingTooltips } = props; // BUBBER EDIT CHANGE: Search in tooltips: ORIGINAL: const { loadout_tabs, currentSearch } = props;
 
   const search = createSearch(
     currentSearch,
-    (loadout_item: LoadoutItem) => loadout_item.name,
+    (loadout_item: LoadoutItem) =>
+      loadout_item.name +
+      // BUBBER EDIT ADDITION BEGIN: Search in tooltips
+      (searchingTooltips &&
+        loadout_item.information.map((entry) => entry.tooltip)),
+    // BUBBER EDIT ADDITION END: Search in tooltips
   );
 
   const validLoadoutItems = loadout_tabs

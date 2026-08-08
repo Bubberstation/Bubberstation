@@ -4,7 +4,7 @@
 /datum/opposing_force_equipment/melee/sabre
 	name = "Officer's Sabre"
 	description = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease."
-	item_type = /obj/item/storage/belt/sabre
+	item_type = /obj/item/storage/belt/sheath/sabre
 
 /datum/opposing_force_equipment/melee/katana
 	item_type = /obj/item/katana

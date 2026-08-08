@@ -7,6 +7,7 @@
 		<b>not much quicker than unpowered tools</b>."
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
 	icon_state = "drill"
+	post_init_icon_state = null
 	inside_belt_icon_state = null
 	inhand_icon_state = "drill"
 	worn_icon_state = "drill"
@@ -32,6 +33,7 @@
 	greyscale_config_belt = null
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null
+	greyscale_colors = null
 	/// Used on Initialize, how much time to cut cable restraints and zipties.
 	var/snap_time_weak_handcuffs = 0 SECONDS
 	/// Used on Initialize, how much time to cut real handcuffs. Null means it can't.

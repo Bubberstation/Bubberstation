@@ -11,6 +11,8 @@
 #define TAG_TARGETED "targeted"
 /// When the event is positive and helps the crew, in some capacity (Shuttle Loan, Supply Pod)
 #define TAG_POSITIVE "positive"
+/// Events that don't directly affect the crew and serve mostly for environmental purposes
+#define TAG_NEUTRAL "neutral"
 /// When one of the crewmembers becomes an antagonist
 #define TAG_CREW_ANTAG "crew_antag"
 /// When the antagonist event is focused around team cooperation.
@@ -25,6 +27,8 @@
 #define TAG_SPACE "space"
 /// When the event requires the station to be on planetary.
 #define TAG_PLANETARY "planetary"
+/// When the event is used for re-rolling antagonists
+#define TAG_ANTAG_REROLL "antag_reroll"
 
 
 #define EVENT_TRACK_MUNDANE "Mundane"
@@ -57,20 +61,6 @@
 #define MAJOR_MIN_POP 20
 #define CREWSET_MIN_POP 0
 #define GHOSTSET_MIN_POP 0
-
-/// Defines for how much pop do we need to stop applying a pop scalling penalty to event frequency.
-#define MUNDANE_POP_SCALE_THRESHOLD 25
-#define MODERATE_POP_SCALE_THRESHOLD 32
-#define MAJOR_POP_SCALE_THRESHOLD 45
-#define CREWSET_POP_SCALE_THRESHOLD 45
-#define GHOSTSET_POP_SCALE_THRESHOLD 45
-
-/// The maximum penalty coming from pop scalling, when we're at the most minimum point, easing into 0 as we reach the SCALE_THRESHOLD. This is treated as a percentage.
-#define MUNDANE_POP_SCALE_PENALTY 35
-#define MODERATE_POP_SCALE_PENALTY 35
-#define MAJOR_POP_SCALE_PENALTY 35
-#define CREWSET_POP_SCALE_PENALTY 35
-#define GHOSTSET_POP_SCALE_PENALTY 35
 
 #define STORYTELLER_VOTE "storyteller"
 

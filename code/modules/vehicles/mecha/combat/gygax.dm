@@ -45,10 +45,9 @@
 	overclock_coeff = 2
 	overclock_temp_danger = 20
 	force = 30
-	can_be_tracked = FALSE
 	accesses = list(ACCESS_SYNDICATE)
 	wreckage = /obj/structure/mecha_wreckage/gygax/dark
-	mecha_flags = ID_LOCK_ON | CAN_STRAFE | IS_ENCLOSED | HAS_LIGHTS | MMI_COMPATIBLE
+	mecha_flags = ID_LOCK_ON | CAN_STRAFE | IS_ENCLOSED | HAS_LIGHTS | MMI_COMPATIBLE | AI_COMPATIBLE
 	max_equip_by_category = list(
 		MECHA_L_ARM = 1,
 		MECHA_R_ARM = 1,
@@ -73,6 +72,10 @@
 	bomb = 20
 	fire = 100
 	acid = 100
+
+/obj/vehicle/sealed/mecha/gygax/dark/Initialize(mapload)
+	. = ..()
+	add_minimap_blip(src, MINIMAP_SYNDICATE_MECH_BLIP, "syndiemech")
 
 /obj/vehicle/sealed/mecha/gygax/dark/loaded/Initialize(mapload)
 	. = ..()

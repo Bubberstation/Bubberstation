@@ -1,7 +1,7 @@
-import { range } from 'common/collections';
-import { CSSProperties } from 'react';
+import { range } from 'es-toolkit';
+import type { CSSProperties } from 'react';
 import { Box, Button, Icon, Image, Stack } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
@@ -59,13 +59,18 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
     text: 'Unknot',
   },
 
+  remove_item_cuffs: {
+    icon: 'handcuffs',
+    text: 'Remove Handcuffs',
+  },
+
   enable_internals: {
-    icon: 'lungs', // SKYRAT EDIT - TGFONT IS FUCKED AND I DUNNO WHY SO HERE'S A BANDAID - original "tg-air-tank"
+    icon: 'tg-air-tank',
     text: 'Enable internals',
   },
 
   disable_internals: {
-    icon: 'lungs-virus', // SKYRAT EDIT - TGFONT IS FUCKED AND I DUNNO WHY SO HERE'S A BANDAID - original "tg-air-tank-slash"
+    icon: 'tg-air-tank-slash',
     text: 'Disable internals',
   },
 
@@ -83,6 +88,35 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
     icon: 'power-off',
     text: 'Emergency MODsuit reactivation',
   }, // BUBBER EDIT END
+
+  strip_accessory: {
+    icon: 'ribbon',
+    text: 'Strip accessory',
+  },
+
+  deploy: {
+    icon: 'plus',
+    text: 'Deploy MOD',
+  },
+
+  undeploy: {
+    icon: 'minus',
+    text: 'Undeploy MOD',
+  },
+
+  activate_mod: {
+    icon: 'power-off',
+    text: 'Activate MOD',
+  },
+  deactivate_mod: {
+    icon: 'power-off',
+    text: 'Deactivate MOD',
+  },
+
+  adjust_bridle: {
+    icon: 'mask',
+    text: 'Adjust bridle',
+  },
 };
 
 const SLOTS: Record<
@@ -343,7 +377,7 @@ export const StripMenu = (props) => {
                     );
 
                     tooltip = item.name;
-                    if (item.alternate) {
+                    if (item.alternate?.length) {
                       alternateActions = item.alternate.map(
                         (alternateKey, idx) => {
                           const alternateAction =
@@ -359,6 +393,7 @@ export const StripMenu = (props) => {
                             zIndex: '2',
                             left: `${idx === 0 ? '0' : undefined}`,
                             right: `${idx === 1 ? '0' : undefined}`,
+                            top: `${idx === 2 ? '0' : undefined}`,
                             bottom: '0',
                             padding: '0',
                             textAlign: 'center',
