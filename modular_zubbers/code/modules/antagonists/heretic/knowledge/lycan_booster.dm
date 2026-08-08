@@ -15,14 +15,14 @@
 		return FALSE
 
 	var/mob/living/carbon/human/found_human = locate() in range(loc, 1)
-	if (!iscursekin(found_human))
+	if (!found_human.get_quirk(/datum/quirk/cursekin))
 		loc.balloon_alert(user, "target must be a cursekin!")
 		return FALSE
 	return TRUE
 
 /datum/heretic_knowledge/lycan_booster/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	var/mob/living/carbon/human/found_human = locate() in range(loc, 1)
-	if (!iscursekin(found_human))
+	if (!found_human.get_quirk(/datum/quirk/cursekin))
 		loc.balloon_alert(user, "target must be a cursekin!")
 		return FALSE
 
