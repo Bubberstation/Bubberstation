@@ -24,6 +24,8 @@
 		new_spawn.updatename(new_spawn.client)
 		new_spawn.transfer_emote_pref(new_spawn.client)
 		new_spawn.gender = NEUTER // No balls.
+		var/obj/item/borg/upgrade/transform/tarkon/upgrade = new /obj/item/borg/upgrade/transform/tarkon(new_spawn)
+		upgrade.action(new_spawn)
 
 /datum/ai_laws/tarkon
 	name = "Port Tarkon"
