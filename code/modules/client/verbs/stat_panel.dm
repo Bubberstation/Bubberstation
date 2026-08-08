@@ -1,6 +1,6 @@
 /client/verb/toggle_stat_panel()
 	set name = "Toggle Stat Panel"
-	set hidden = TRUE
+	// set hidden = TRUE // BUBBER EDIT CHANGE - SHOW STAT PANEL TOGGLE
 
 	//Flip it
 	prefs.write_preference(GLOB.preference_entries[/datum/preference/toggle/statpanel], !prefs.read_preference(/datum/preference/toggle/statpanel))
