@@ -31,7 +31,14 @@
 	if(isinhands || !(body_parts_covered & HEAD))
 		return
 	if(damaged_clothes)
-		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedmask")
+		//BUBBER EDIT BEGIN - Species specific damage states.
+		//. += mutable_appearance('icons/effects/item_damage.dmi', "damagedmask") //ORIGINAL
+		var/mob/living/carbon/human/wearer = loc
+		var/icon/damage_icon_file = ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedmask_[wearer.dna.species.id]") ? 'modular_zubbers/icons/effects/item_damage_species.dmi' : 'icons/effects/item_damage.dmi'
+		var/damage_icon_state = ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedmask_[wearer.dna.species.id]") ? "damagedmask_[wearer.dna.species.id]" : "damagedmask"
+
+		. += mutable_appearance(damage_icon_file, damage_icon_state)
+		//BUBBER EDIT END
 
 /obj/item/clothing/mask/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file)
 	. = ..()

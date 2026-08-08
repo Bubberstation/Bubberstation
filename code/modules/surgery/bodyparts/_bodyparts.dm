@@ -1354,14 +1354,14 @@
 	if(dropped && dmg_overlay_type)
 		if(brutestate)
 			// divided into two overlays: one that gets colored and one that doesn't.
-			var/image/brute_blood_overlay = image('icons/mob/effects/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, dir = SOUTH)
+			var/image/brute_blood_overlay = image('modular_zubbers/icons/mob/effects/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, dir = SOUTH) //BUBBER EDIT: Extra species damage icons. Original: 'icons/mob/effects/dam_mob.dmi'
 			brute_blood_overlay.color = get_color_from_blood_list(blood_dna_info)
-			var/mutable_appearance/brute_damage_overlay = mutable_appearance('icons/mob/effects/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0_overlay", -DAMAGE_LAYER, appearance_flags = RESET_COLOR)
+			var/mutable_appearance/brute_damage_overlay = mutable_appearance('modular_zubbers/icons/mob/effects/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0_overlay", -DAMAGE_LAYER, appearance_flags = RESET_COLOR) //BUBBER EDIT: Extra species damage icons. Original: 'icons/mob/effects/dam_mob.dmi'
 			if(brute_damage_overlay)
 				brute_blood_overlay.overlays += brute_damage_overlay
 			. += brute_blood_overlay
 		if(burnstate)
-			. += image('icons/mob/effects/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_0[burnstate]", -DAMAGE_LAYER, dir = SOUTH)
+			. += image('modular_zubbers/icons/mob/effects/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_0[burnstate]", -DAMAGE_LAYER, dir = SOUTH) //BUBBER EDIT: Extra species damage icons. Original: 'icons/mob/effects/dam_mob.dmi'
 
 	if(is_husked)
 		. += huskify_image(thing_to_husk = limb)
