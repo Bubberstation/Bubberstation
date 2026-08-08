@@ -537,6 +537,11 @@
 				if(required_access in origin_dept_access)
 					return LOWER_TEXT(target_dept)
 
+	//BUBBER ADDITION START - RETA PDA app addition
+	var/supplemental_reta_access = reta_supplemental_area_access_for_door(src)
+	if(supplemental_reta_access)
+		return supplemental_reta_access
+	//BUBBER ADDITION END
 	return FALSE
 
 /**
