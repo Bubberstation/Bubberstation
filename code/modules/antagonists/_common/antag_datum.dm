@@ -409,7 +409,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 		CRASH("Antagonist datum without owner")
 
 	report += printplayer(owner)
-
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	var/objectives_complete = TRUE
 	if(objectives.len)
 		report += printobjectives(objectives)
@@ -422,7 +422,10 @@ GLOBAL_LIST_EMPTY(antagonists)
 		report += "<span class='greentext big'>The [name] was successful!</span>"
 	else
 		report += "<span class='redtext big'>The [name] has failed!</span>"
-
+	*/
+	if(objectives.len)
+		report += printobjectives(objectives)
+	//BUBBER EDIT END
 	return report.Join("<br>")
 
 /**

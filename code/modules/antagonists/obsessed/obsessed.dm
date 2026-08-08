@@ -153,7 +153,7 @@
 		CRASH("antagonist datum without owner")
 
 	report += "<b>[printplayer(owner)]</b>"
-
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	var/objectives_complete = TRUE
 	if(objectives.len)
 		report += printobjectives(objectives)
@@ -161,6 +161,7 @@
 			if(!objective.check_completion())
 				objectives_complete = FALSE
 				break
+	BUBBER EDIT END */
 	if(trauma)
 		if(trauma.total_time_creeping > 0)
 			report += span_greentext("The [name] spent a total of [DisplayTimeText(trauma.total_time_creeping)] being near [trauma.obsession]!")
@@ -168,12 +169,12 @@
 			report += span_redtext("The [name] did not go near their obsession the entire round! That's extremely impressive!")
 	else
 		report += span_redtext("The [name] had no trauma attached to their antagonist ways! Either it bugged out or an admin incorrectly gave this good samaritan antag and it broke! You might as well show yourself!!")
-
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	if(objectives.len == 0 || objectives_complete)
 		report += "<span class='greentext big'>The [name] was successful!</span>"
 	else
 		report += "<span class='redtext big'>The [name] has failed!</span>"
-
+	BUBBER EDIT END */
 	return report.Join("<br>")
 
 //////////////////////////////////////////////////

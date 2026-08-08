@@ -387,16 +387,17 @@
 		report += "They were part of the <b>[my_clan.name]</b>!"
 
 	// Default Report
-	var/objectives_complete = TRUE
+	// Removing green text - var/objectives_complete = TRUE
 	if(objectives.len)
 		report += printobjectives(objectives)
+		/* removing greentext, keeping code
 		for(var/datum/objective/objective in objectives)
 			if(objective.objective_name == "Optional Objective")
 				continue
 			if(!objective.check_completion())
 				objectives_complete = FALSE
 				break
-
+		*/
 	// Now list their ghouls
 	if(ghouls.len)
 		report += "<span class='header'>Their Ghouls were...</span>"
@@ -413,12 +414,12 @@
 			else if(IS_REVENGE_GHOUL(all_ghouls.owner.current))
 				ghoul_report += " and was the <b>Revenge Ghoul</b>"
 			report += ghoul_report.Join()
-
+	/* removing greentext, keeping code for if it ever comes back
 	if(objectives.len == 0 || objectives_complete)
 		report += "<span class='greentext big'>The [name] was successful!</span>"
 	else
 		report += "<span class='redtext big'>The [name] has failed!</span>"
-
+	*/
 	return report.Join("<br>")
 
 /datum/antagonist/bloodsucker/proc/give_starting_powers()
