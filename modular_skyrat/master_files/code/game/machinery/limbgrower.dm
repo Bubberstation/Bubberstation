@@ -1,7 +1,7 @@
 /obj/machinery/limbgrower/Initialize(mapload)
 	categories += list(
 		SPECIES_FELINE,
-		SPECIES_HEMOPHAGE,
+		HEMOPHAGE,
 		SPECIES_TAJARAN,
 		SPECIES_TESHARI,
 		SPECIES_SHADEKIN,
