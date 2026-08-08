@@ -246,12 +246,11 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
-// BUBBER EDIT REMOVE BEGIN - LIMB GROWERS INCLUDE ALL LIMB TYPES
-/*
 /obj/item/disk/design_disk/limbs/felinid
 	name = "Felinid Organ Design Disk"
 	limb_designs = list(/datum/design/cat_tail, /datum/design/cat_ears, /datum/design/cat_tongue)
-
+// BUBBER EDIT REMOVE BEGIN - LIMB GROWERS INCLUDE ALL LIMB TYPES
+/*
 /datum/design/limb_disk/felinid
 	name = "Felinid Organ Design Disk"
 	desc = "Contains designs for felinid organs for the limbgrower - Felinid ears, tail and tongue."
