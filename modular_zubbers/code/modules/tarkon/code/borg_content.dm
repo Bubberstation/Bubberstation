@@ -50,8 +50,7 @@
 	name = "Port Tarkon Prototype"
 	basic_modules = list( // A hideous amalgamation of all of the modules, as tarkon needs a lot of everything, and is often short staffed.
 		/obj/item/assembly/flash/cyborg, // Tarkon borgs were designed to be more "Modular" so you just print what you need for upgrades rather than everything.
-		/obj/item/borg/sight/meson, // As such, the inital borg model might seem "Barren" but they get the tech rather early.
-		/obj/item/extinguisher,
+		/obj/item/extinguisher, // As such, the inital borg model might seem "Barren" but they get the tech rather early.
 		/obj/item/weldingtool/largetank/cyborg,
 		/obj/item/screwdriver/cyborg/power, //
 		/obj/item/crowbar/cyborg/power, // these three are replaced by two omnitools once upgraded
@@ -61,15 +60,15 @@
 		/obj/item/stack/sheet/iron,
 		/obj/item/stack/sheet/glass,
 		/obj/item/stack/cable_coil,
-		/obj/item/lightreplacer/cyborg, // Group one - Engineering (Groups are the sections above)
+		/obj/item/lightreplacer, // Group one - Engineering (Groups are the sections above)
 		/obj/item/soap/nanotrasen/cyborg,
-		/obj/item/storage/bag/trash/cyborg,
-		/obj/item/mop/cyborg,
+		/obj/item/storage/bag/trash,
+		/obj/item/mop,
 		/obj/item/reagent_containers/spray/cyborg_drying, // Group two - Janitorial
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/borghypo/medical,// Group three - Medical
 		/obj/item/storage/bag/ore/cyborg,
-		/obj/item/pickaxe/drill/cyborg,
+		/obj/item/pickaxe/drill,
 		/obj/item/gps/cyborg, // Group four - Mining
 		/obj/item/harmalarm/bubbers, // Group five - Peacekeeper
 		/obj/item/restraints/handcuffs/cable/zipties,
@@ -165,7 +164,7 @@
 		/obj/item/blood_filter,
 		/obj/item/emergency_bed/silicon,
 		/obj/item/borg/cyborghug/medical,
-		/obj/item/stack/medical/gauze,
+		/obj/item/stack/medical/wrap/gauze,
 		/obj/item/stack/medical/bone_gel,
 		/obj/item/borg/apparatus/organ_storage,
 		/obj/item/shockpaddles/cyborg,
@@ -204,7 +203,7 @@
 		/obj/item/construction/rcd/borg,
 		/obj/item/pipe_dispenser,
 		/obj/item/storage/bag/sheetsnatcher/borg,
-		/obj/item/lightreplacer/cyborg/advanced,
+		/obj/item/lightreplacer/advanced,
 		/obj/item/storage/part_replacer/bluespace,
 		/obj/item/inducer/cyborg,
 		/obj/item/borg/apparatus/circuit,
@@ -217,7 +216,7 @@
 		/obj/item/screwdriver/cyborg/power, //
 		/obj/item/crowbar/cyborg/power, // these three are replaced by two omnitools once upgraded
 		/obj/item/multitool/cyborg,
-		/obj/item/lightreplacer/cyborg
+		/obj/item/lightreplacer
 	)
 
 /obj/item/borg/upgrade/tarkon_security
@@ -247,7 +246,7 @@
 		/obj/item/kinetic_crusher,
 		/obj/item/storage/bag/sheetsnatcher/borg,
 		/obj/item/gun/energy/recharge/kinetic_accelerator/cyborg,
-		/obj/item/pickaxe/drill/cyborg/diamond,
+		/obj/item/pickaxe/drill/diamonddrill,
 		/obj/item/storage/bag/ore/holding,
 		/obj/item/stamp,
 		/obj/item/stamp/denied,
@@ -267,7 +266,7 @@
 		/obj/item/borg/forging_setup
 						)
 	items_to_remove = list(
-		/obj/item/pickaxe/drill/cyborg,
+		/obj/item/pickaxe/drill,
 		/obj/item/storage/bag/ore/cyborg
 		)
 
@@ -307,13 +306,13 @@
 		/obj/item/storage/bag/tray,
 		/obj/item/hand_labeler/cyborg,
 		/obj/item/razor,
-		/obj/item/reagent_containers/cup/rag,
+		/obj/item/rag,
 		/obj/item/lighter,
 		/obj/item/storage/bag/trash/bluespace/cyborg,
-		/obj/item/mop/advanced/cyborg,
+		/obj/item/mop/advanced,
 		/obj/item/cautery/prt,
-		/obj/item/plunger/cyborg,
-		/obj/item/pushbroom/cyborg,
+		/obj/item/plunger,
+		/obj/item/pushbroom,
 		/obj/item/reagent_containers/borghypo/condiment_synthesizer, // Service borgs get 30+ upgrades. Woe.
 		/obj/item/knife/kitchen/silicon,
 		/obj/item/borg/apparatus/service,
@@ -333,8 +332,8 @@
 		/obj/item/storage/bag/plants
 						)
 	items_to_remove = list(
-		/obj/item/storage/bag/trash/cyborg,
-		/obj/item/mop/cyborg
+		/obj/item/storage/bag/trash,
+		/obj/item/mop
 		)
 
 	/// EXOFAB DATUMS ///
