@@ -17,6 +17,7 @@
 		"flatpack_solar_tracker",
 		"flatpack_arc_furnace",
 		"flatpack_colony_fab",
+		"flatpack_flatpacker",
 		"flatpack_station_battery",
 		"flatpack_station_battery_large",
 		"flatpack_fuel_generator",
@@ -53,6 +54,24 @@
 		FABRICATOR_CATEGORY_FLATPACK_MACHINES + FABRICATOR_SUBCATEGORY_MANUFACTURING,
 	)
 	construction_time = 2 MINUTES
+
+/datum/design/flatpack_flatpacker
+	name = "Flat-Packed Flatpacker"
+	desc = "A deployable flatpacker for packaging machine circuit boards, components, and materials into portable flatpacks."
+	id = "flatpack_flatpacker"
+	build_type = COLONY_FABRICATOR
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/flatpacked_machine/flatpacker
+	category = list(
+		RND_CATEGORY_INITIAL,
+		FABRICATOR_CATEGORY_FLATPACK_MACHINES + FABRICATOR_SUBCATEGORY_MANUFACTURING,
+	)
+	construction_time = 1 MINUTES
 
 // Solar panels and trackers
 
