@@ -56,8 +56,8 @@
 
 /datum/controller/subsystem/ticker/declare_completion(was_forced = END_ROUND_AS_NORMAL)
 	handle_antag_tickets()
-	handle_credits()
 	handle_quote_of_the_round()
+	handle_credits()
 
 	. = ..()
 
