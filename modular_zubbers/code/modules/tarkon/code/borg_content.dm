@@ -14,7 +14,7 @@
 /obj/effect/mob_spawn/ghost_role/robot/tarkon/special(mob/living/silicon/robot/new_spawn)
 	. = ..()
 	if(new_spawn.client) //It should have a client, right?
-		new_spawn.faction += ROLE_PORT_TARKON //This is the one to select the cyborg model.
+		new_spawn.add_faction(ROLE_PORT_TARKON) //This is the one to select the cyborg model.
 		new_spawn.radio.keyslot = new /obj/item/encryptionkey/headset_cargo/tarkon
 		new_spawn.radio.recalculateChannels()
 		new_spawn.UnlinkSelf() //This should prevent AI linking and consoles to see or lock them down.
