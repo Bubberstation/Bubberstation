@@ -15,9 +15,9 @@
 
 /datum/quirk/hydra/add(client/client_source)
 	heads = list(
-		quirk_holder.client.prefs.read_preference(/datum/preference/text/hydra/name1),
-		quirk_holder.client.prefs.read_preference(/datum/preference/text/hydra/name2),
-		quirk_holder.client.prefs.read_preference(/datum/preference/text/hydra/name3),
+		client_source.prefs.read_preference(/datum/preference/text/hydra/name1),
+		client_source.prefs.read_preference(/datum/preference/text/hydra/name2),
+		client_source.prefs.read_preference(/datum/preference/text/hydra/name3),
 	)
 	head_spell = new()
 	reset_spell = new()
