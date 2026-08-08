@@ -42,6 +42,105 @@
 	desc = "Central's beloved pet mothroach, Mr. Fluff. He looks so happy to be here!"
 	gender = MALE
 	icon = 'modular_zubbers/icons/mob/donator_pets.dmi'
+	ai_controller = /datum/ai_controller/basic_controller/mothroach/mr_fluff
+
+/// Mr. Fluff's controller. Uses not_friends for fleeing so he won't panic at his own owner.
+/datum/ai_controller/basic_controller/mothroach/mr_fluff
+	blackboard = list(
+		BB_FLEE_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
+		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
+		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
+		BB_EAT_FOOD_COOLDOWN = 1 MINUTES,
+	)
+
+/mob/living/basic/mothroach/mr_fluff
+	/// His command list. Separate var - base pet_commands is static, so assigning it would hit every mothroach.
+	var/static/list/fluff_pet_commands = list(
+		/datum/pet_command/idle,
+		/datum/pet_command/free,
+		/datum/pet_command/follow/start_active,
+		/datum/pet_command/nuzzle,
+		/datum/pet_command/good_boy,
+	)
+
+/mob/living/basic/mothroach/mr_fluff/Initialize(mapload)
+	. = ..()
+	// obeys_commands is DUPE_UNIQUE, so the stock list has to go before his goes on.
+	qdel(GetComponent(/datum/component/obeys_commands))
+	AddComponent(/datum/component/obeys_commands, fluff_pet_commands)
+	remove_udder()
+
+/// No udder for my moff. Stop trying to milk him, you weirdo. Component has no Destroy(), so the
+/// udder object needed its own qdel or we'd have a hard delete!
+/mob/living/basic/mothroach/mr_fluff/proc/remove_udder()
+	var/datum/component/udder/moth_udder = GetComponent(/datum/component/udder)
+	if(isnull(moth_udder))
+		return
+	var/obj/item/udder/discarded_udder = moth_udder.udder
+	qdel(moth_udder)
+	qdel(discarded_udder)
+
+/// Pick this from his radial menu and click someone, and he'll trundle over to say hi.
+/datum/pet_command/nuzzle
+	command_name = "Nuzzle"
+	command_desc = "Send Mr. Fluff over to nuzzle someone."
+	radial_icon_state = "move"
+	requires_pointing = TRUE
+	command_feedback = "flutters"
+	pointed_reaction = "affectionately"
+
+/datum/pet_command/nuzzle/add_new_friend(mob/living/tamer)
+	. = ..()
+	// Ignore plain pointing - don't want him bolting at whoever I'm gesturing at mid-conversation.
+	UnregisterSignal(tamer, COMSIG_MOVABLE_POINTED)
+
+/datum/pet_command/nuzzle/look_for_target(mob/living/pointing_friend, atom/pointed_atom)
+	if(!isliving(pointed_atom))
+		return FALSE
+	if(pointed_atom == weak_parent.resolve())
+		return FALSE
+	return ..()
+
+/datum/pet_command/nuzzle/execute_action(datum/ai_controller/controller)
+	// Don't clear BB_ACTIVE_PET_COMMAND here. The radial wipes the target and waits for the click,
+	// so cancelling early kills the command before the click lands.
+	// Typed local because dreamchecker won't take QDELETED() straight off the blackboard.
+	var/atom/nuzzle_target = controller.blackboard[BB_CURRENT_PET_TARGET]
+	if(QDELETED(nuzzle_target))
+		return
+	controller.queue_behavior(/datum/ai_behavior/nuzzle_target, BB_CURRENT_PET_TARGET)
+	return SUBTREE_RETURN_FINISH_PLANNING
+
+/// Walks him over to whoever got clicked, then does the nuzzle.
+/datum/ai_behavior/nuzzle_target
+	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT|AI_BEHAVIOR_REQUIRE_REACH
+
+/datum/ai_behavior/nuzzle_target/setup(datum/ai_controller/controller, target_key)
+	. = ..()
+	var/atom/nuzzle_target = controller.blackboard[target_key]
+	if(QDELETED(nuzzle_target))
+		return FALSE
+	set_movement_target(controller, nuzzle_target)
+
+/datum/ai_behavior/nuzzle_target/perform(seconds_per_tick, datum/ai_controller/controller, target_key)
+	var/mob/living/nuzzler = controller.pawn
+	var/atom/nuzzle_target = controller.blackboard[target_key]
+	if(QDELETED(nuzzle_target))
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+	nuzzler.manual_emote(pick(
+		"nuzzles up against [nuzzle_target], wings fluttering happily!",
+		"bonks his head against [nuzzle_target] and squeaks in delight!",
+		"flutters excitedly and nuzzles [nuzzle_target]!",
+		"burrows into [nuzzle_target] for a moment, chirping contentedly!",
+		"nuzzles [nuzzle_target] with his entire fluffy being!",
+	))
+	new /obj/effect/temp_visual/heart(nuzzler.loc)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+
+/datum/ai_behavior/nuzzle_target/finish_action(datum/ai_controller/controller, succeeded, target_key)
+	. = ..()
+	controller.clear_blackboard_key(target_key)
+	controller.clear_blackboard_key(BB_ACTIVE_PET_COMMAND)
 
 /obj/item/mob_holder/pet/donator/centralsmith
 	name = "Mr. Fluff"
