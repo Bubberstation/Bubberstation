@@ -26,6 +26,11 @@
 	src.give_objectives = give_objectives
 
 /datum/antagonist/malf_ai/on_gain()
+	//BUBBER EDIT START - Shells get malf
+	if(owner.current && istype(owner.current, /mob/living/silicon/robot/shell))
+		var/mob/living/silicon/robot/shell/chosen_one = owner.current
+		chosen_one.undeploy()
+	//BUBBER EDIT END
 	if(owner.current && !isAI(owner.current))
 		stack_trace("Attempted to give malf AI antag datum to \[[owner]\], who did not meet the requirements.")
 		return ..()

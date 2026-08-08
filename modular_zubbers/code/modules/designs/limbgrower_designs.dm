@@ -8,7 +8,7 @@
 		SPECIES_PLASMAMAN,
 		SPECIES_ETHEREAL,
 		SPECIES_TAJARAN,
-		SPECIES_HEMOPHAGE,
+		HEMOPHAGE,
 		SPECIES_SHADEKIN,
 		SPECIES_TESHARI,
 	)
@@ -23,7 +23,7 @@
 		SPECIES_PLASMAMAN,
 		SPECIES_ETHEREAL,
 		SPECIES_TAJARAN,
-		SPECIES_HEMOPHAGE,
+		HEMOPHAGE,
 		SPECIES_SHADEKIN,
 		SPECIES_TESHARI,
 	)
@@ -38,7 +38,7 @@
 		SPECIES_PLASMAMAN,
 		SPECIES_ETHEREAL,
 		SPECIES_TAJARAN,
-		SPECIES_HEMOPHAGE,
+		HEMOPHAGE,
 		SPECIES_SHADEKIN,
 		SPECIES_TESHARI,
 	)
@@ -53,7 +53,7 @@
 		SPECIES_PLASMAMAN,
 		SPECIES_ETHEREAL,
 		SPECIES_TAJARAN,
-		SPECIES_HEMOPHAGE,
+		HEMOPHAGE,
 		SPECIES_SHADEKIN,
 		SPECIES_TESHARI,
 	)
@@ -160,7 +160,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 25, /datum/reagent/blood = 10)
 	build_path = /obj/item/organ/heart/hemophage
-	category = list(SPECIES_HEMOPHAGE, RND_CATEGORY_INITIAL)
+	category = list(HEMOPHAGE, RND_CATEGORY_INITIAL)
 
 /datum/design/hemophage_liver
 	name = "Corrupted Liver"
@@ -168,7 +168,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 15, /datum/reagent/blood = 10)
 	build_path = /obj/item/organ/liver/hemophage
-	category = list(SPECIES_HEMOPHAGE, RND_CATEGORY_INITIAL)
+	category = list(HEMOPHAGE, RND_CATEGORY_INITIAL)
 
 /datum/design/hemophage_stomach
 	name = "Corrupted Stomach"
@@ -176,7 +176,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10, /datum/reagent/blood = 10)
 	build_path = /obj/item/organ/stomach/hemophage
-	category = list(SPECIES_HEMOPHAGE, RND_CATEGORY_INITIAL)
+	category = list(HEMOPHAGE, RND_CATEGORY_INITIAL)
 
 /datum/design/hemophage_tongue
 	name = "Corrupted Tongue"
@@ -184,7 +184,7 @@
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 5, /datum/reagent/blood = 10)
 	build_path = /obj/item/organ/tongue/hemophage
-	category = list(SPECIES_HEMOPHAGE, RND_CATEGORY_INITIAL)
+	category = list(HEMOPHAGE, RND_CATEGORY_INITIAL)
 
 //Shadekin organs
 /datum/design/shadekin_ears

@@ -37,6 +37,10 @@
 	greyscale_config_worn_digi = /datum/greyscale_config/jester_shoes/worn/digi
 	greyscale_config_worn_teshari = /datum/greyscale_config/jester_shoes/worn/teshari
 
+/obj/item/clothing/shoes/clown_shoes/jester
+	greyscale_config_worn_digi = /datum/greyscale_config/jester_shoes/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/jester_shoes/worn/teshari
+
 /obj/item/clothing/shoes/clown_shoes/britches
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
