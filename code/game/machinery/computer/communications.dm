@@ -475,19 +475,33 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 			SSjob.safe_code_timer_id = addtimer(CALLBACK(SSjob, TYPE_PROC_REF(/datum/controller/subsystem/job, send_spare_id_safe_code), pod_location), 120 SECONDS, TIMER_UNIQUE | TIMER_STOPPABLE)
 			minor_announce("Due to staff shortages, your station has been approved for delivery of access codes to secure the Captain's Spare ID. Delivery via drop pod at [get_area(pod_location)]. ETA 120 seconds.")
 
+		// BUBBER EDIT START - Designated Centcom Backup Message
+		if("callCentcomBackup")
+			if (!authenticated_as_ai_or_captain(usr)) //Skyrat edit | Allows AI and Captain to send messages
+				return
+			if (!COOLDOWN_FINISHED(src, important_action_cooldown))
+				return
+
+			playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
+			var/input = tgui_input_text(user, "Message to send to CentCom", "Backup Request", max_length = MAX_MESSAGE_LEN)
+
+			var/emagged = obj_flags & EMAGGED
+			if (emagged)
+				message_syndicate(input, user)
+				to_chat(user, span_danger("SYSERR @l(19833)of(transmit.dm): !@$ MESSAGE TRANSMITTED TO SYNDICATE COMMAND."))
+			else if(syndicate)
+				message_syndicate(input, user)
+				to_chat(user, span_danger("Message transmitted to Syndicate Command."))
+			else
+				message_centcom(input, user)
+				to_chat(user, span_notice("Message transmitted to Central Command."))
+
+			var/associates = (emagged || syndicate) ? "the Syndicate": "CentCom"
+			user.log_talk(input, LOG_SAY, tag = "message to [associates]")
+			deadchat_broadcast(" has messaged [associates], \"[input]\" at [span_name("[get_area_name(user, TRUE)]")].", span_name("[user.real_name]"), user, message_type = DEADCHAT_ANNOUNCEMENT)
+			COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
+
 		// SKYRAT EDIT ADDITION START
-		if ("callThePolice")
-			if(!pre_911_check(usr))
-				return
-			calling_911(usr, "Marshals", EMERGENCY_RESPONSE_POLICE)
-		if ("callTheCatmos")
-			if(!pre_911_check(usr))
-				return
-			calling_911(usr, "Advanced Atmospherics", EMERGENCY_RESPONSE_ATMOS)
-		if ("callTheParameds")
-			if(!pre_911_check(usr))
-				return
-			calling_911(usr, "EMTs", EMERGENCY_RESPONSE_EMT)
 		if("callThePizza")
 			if(!(obj_flags & EMAGGED))
 				return
