@@ -12,6 +12,20 @@
 	icon_state = "tong_empty"
 	tool_behaviour = TOOL_TONG
 
+/obj/item/forging/tongs/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	update_appearance()
+
+/obj/item/forging/tongs/Exited(atom/movable/gone, direction)
+	. = ..()
+	update_appearance()
+
+/obj/item/forging/tongs/update_icon(updates)
+	. = ..()
+	if(length(contents) > 0)
+		icon_state = "tong_full"
+	else
+		icon_state = initial(icon_state)
 /obj/item/forging/tongs/primitive
 	name = "primitive forging tongs"
 	toolspeed = 1.2
@@ -45,7 +59,12 @@
 
 /obj/item/forging/hammer/debug
 	name = "debugging fast forging hammer"
+	desc = "Use it inhand to set your skill level to 7."
 	toolspeed = 0.1
+
+/obj/item/forging/hammer/debug/attack_self(mob/user, modifiers)
+	. = ..()
+	user.mind.set_level(/datum/skill/smithing, 7)
 
 /obj/item/forging/billow
 	name = "forging billow"

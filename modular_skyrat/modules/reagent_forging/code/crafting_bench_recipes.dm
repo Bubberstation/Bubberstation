@@ -39,7 +39,7 @@
 	put_materials_in_product_from_ingredients(item_list, returner)
 	consume_crafting_ingredients(item_list, returner)
 	move_to_world(returner, construction_location)
-	give_experience(user)
+	give_experience(user, item_list, returner)
 	return returner
 
 /datum/crafting_bench_recipe/proc/transfer_reagent_imbues_from_ingredients_to_product(list/ingredients, obj/item/product, mob/living/user)
@@ -189,7 +189,7 @@
 /datum/crafting_bench_recipe/weapon_completion_recipe //Exists so I don't have to modify the code too much for weapon completion
 	recipe_name = "generic weapon completion recipe (should not be visible)"
 	recipe_requirements = list(
-		/obj/item/stack/sheet/mineral/wood = 2,
+		/obj/item/stack/sheet/mineral/wood = 1,
 	)
 
 /datum/crafting_bench_recipe/weapon_completion_recipe/create_using_item_list(list/item_list, mob/living/user, construction_location)
@@ -198,6 +198,7 @@
 	if(isnull(weapon_head))
 		stack_trace("[src] didn't contain a valid reagent smithing weapon head when its recipe was completed!")
 		return
+	set_recipe_requirements(weapon_head)
 	var/obj/item/returner = new weapon_head.spawning_item(construction_location)
 	apply_perfect_and_completion_bonuses(item_list, returner)
 	transfer_reagent_imbues_from_ingredients_to_product(item_list, returner, user)
@@ -208,16 +209,22 @@
 	consume_crafting_ingredients(item_list, returner)
 	return returner
 
+/datum/crafting_bench_recipe/weapon_completion_recipe/get_recipe_requirements_description(obj/item/forging/complete/complete_item = null)
+	if(isnull(complete_item))
+		stack_trace("[src] had its recipe requirements called without a complete item, this should not happen!")
+	set_recipe_requirements(complete_item)
+	. = ..()
+
+/datum/crafting_bench_recipe/weapon_completion_recipe/proc/set_recipe_requirements(obj/item/forging/complete/complete_item)
+	recipe_requirements = complete_item.recipe_requirements
+
 /datum/crafting_bench_recipe/weapon_completion_recipe/get_smithing_memory(obj/item/product)
 	//o, the humanity (of code debt that i don't want to bother refactoring)
 	var/datum/memory/smithing/actual_memory
 	for(var/smithing_subtype in subtypesof(/datum/memory/smithing))
-		actual_memory = new smithing_subtype
+		actual_memory = smithing_subtype
 		if(istype(product, initial(actual_memory.smithed_item_type)))
-			qdel(actual_memory)
 			return smithing_subtype
-		else
-			qdel(actual_memory)
 	stack_trace("[product] doesn't have an assigned brain memory type in modular_skyrat/modules/reagent_forging/code/memories.dm !")
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -416,7 +423,7 @@
 		/obj/item/stack/sheet/mineral/gold = 1,
 		/obj/item/stack/sheet/mineral/silver = 1,
 	)
-	resulting_item = /obj/item/storage/belt/hip_holster/cowboy
+	resulting_item = /obj/item/storage/belt/holster/hip_holster/cowboy
 	relevant_skill_level = 5
 	time_to_assemble = 3 SECONDS
 	completion_memory_given = /datum/memory/smithing/cowboy_holster
@@ -431,7 +438,7 @@
 		/obj/item/stack/sheet/bluespace_crystal = 1,
 		/obj/item/circuitboard/machine/recharger = 1,
 	)
-	resulting_item = /obj/item/storage/belt/hip_holster/charging
+	resulting_item = /obj/item/storage/belt/holster/hip_holster/charging
 	relevant_skill_level = 7
 	exp_give = 20
 	time_to_assemble = 3 SECONDS
@@ -453,7 +460,7 @@
 		/obj/item/stack/sheet/cloth = 2,
 		/obj/item/stack/sheet/mineral/gold = 1,
 	)
-	resulting_item = /obj/item/storage/belt/crusader
+	resulting_item =  /obj/item/storage/belt/sheath/hip_only/crusader
 	relevant_skill_level = 4
 	time_to_assemble = 3 SECONDS
 	completion_memory_given = /datum/memory/smithing/crusader_belt
@@ -466,7 +473,7 @@
 		/obj/item/stack/sheet/leather = 6,
 		/obj/item/stack/sheet/cloth = 6,
 	)
-	resulting_item = /obj/item/storage/belt/sheath/multi
+	resulting_item = /obj/item/storage/belt/sheath/hip_only/multi
 	relevant_skill_level = 4
 	time_to_assemble = 3 SECONDS
 	completion_memory_given = /datum/memory/smithing/multi_scabbard
@@ -480,7 +487,7 @@
 		/obj/item/stack/sheet/mineral/silver = 1,
 		/obj/item/stack/sheet/bluespace_crystal = 1,
 	)
-	resulting_item = /obj/item/storage/belt/sheath/repairing
+	resulting_item = /obj/item/storage/belt/sheath/hip_only/repairing
 	relevant_skill_level = 5
 	time_to_assemble = 3 SECONDS
 	completion_memory_given = /datum/memory/smithing/repairing_scabbard
@@ -493,7 +500,7 @@
 		/obj/item/stack/sheet/leather = 3,
 		/obj/item/stack/sheet/cloth = 2,
 	)
-	resulting_item = /obj/item/storage/belt/knifethrowers_belt
+	resulting_item = /obj/item/storage/belt/sheath/hip_only/knifethrowers_belt
 	relevant_skill_level = 4
 	time_to_assemble = 3 SECONDS
 	completion_memory_given = /datum/memory/smithing/knifethrower
