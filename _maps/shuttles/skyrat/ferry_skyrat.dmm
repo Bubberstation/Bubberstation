@@ -22,14 +22,16 @@
 /turf/open/floor/iron/shuttle/evac,
 /area/shuttle/transport)
 "fT" = (
-/obj/structure/closet/emcloset/wall{
-	pixel_x = -25
-	},
 /obj/effect/turf_decal/bot,
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
+/obj/machinery/light/no_nightlight/directional/south,
+/obj/structure/closet/emcloset/wall/empty{
+	pixel_x = 26
 	},
-/obj/structure/window/reinforced/spawner/directional/north,
+/obj/item/storage/toolbox/emergency,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/clothing/mask/gas/alt,
+/obj/item/clothing/mask/gas/alt,
 /turf/open/floor/iron/shuttle/evac,
 /area/shuttle/transport)
 "go" = (
@@ -46,9 +48,11 @@
 	},
 /area/shuttle/transport)
 "gS" = (
-/obj/structure/fans/tiny/forcefield,
-/obj/machinery/door/airlock/grunge,
-/turf/open/floor/iron/shuttle/ferry,
+/obj/structure/marker_beacon/burgundy,
+/obj/structure/fluff/metalpole/end{
+	pixel_y = -32
+	},
+/turf/closed/wall/mineral/titanium/spaceship/nodiagonal,
 /area/shuttle/transport)
 "ht" = (
 /obj/structure/chair/comfy/shuttle{
@@ -69,6 +73,13 @@
 /obj/effect/spawner/structure/window/reinforced/shuttle,
 /turf/open/indestructible/plating,
 /area/shuttle/transport)
+"jG" = (
+/obj/machinery/light/no_nightlight/directional/west,
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/iron/shuttle/evac,
+/area/shuttle/transport)
 "jP" = (
 /turf/open/floor/iron/shuttle/ferry{
 	dir = 4;
@@ -80,16 +91,14 @@
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/transport)
 "oR" = (
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/emcloset/wall/empty{
+/obj/machinery/light/no_nightlight/directional/north,
+/obj/structure/closet/emcloset/wall{
 	pixel_x = 26
 	},
-/obj/item/storage/toolbox/emergency,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/clothing/mask/gas/alt,
-/obj/item/clothing/mask/gas/alt,
-/obj/structure/window/reinforced/spawner/directional/south,
+/obj/effect/turf_decal/bot,
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
 /turf/open/floor/iron/shuttle/evac,
 /area/shuttle/transport)
 "rq" = (
@@ -133,10 +142,12 @@
 /turf/open/floor/iron/shuttle/evac,
 /area/shuttle/transport)
 "zs" = (
-/obj/machinery/power/shuttle_engine/propulsion{
-	pixel_y = -12
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 2;
+	color = "#ffff81"
 	},
-/turf/closed/wall/mineral/titanium/spaceship/nodiagonal,
+/obj/machinery/power/shuttle_engine/propulsion,
+/turf/open/indestructible/plating,
 /area/shuttle/transport)
 "By" = (
 /obj/structure/fans/tiny/forcefield{
@@ -173,23 +184,11 @@
 /turf/open/floor/iron/shuttle/evac,
 /area/shuttle/transport)
 "Ei" = (
-/obj/machinery/door/window/brigdoor/left/directional{
-	pixel_y = -3;
-	req_access = list("cent_general")
-	},
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 2;
-	color = "#ffff81"
-	},
-/turf/open/floor/iron/shuttle/ferry{
-	dir = 8;
-	icon_state = "floor"
-	},
-/area/shuttle/transport)
-"El" = (
-/obj/machinery/light/no_nightlight/directional/west,
 /obj/structure/closet/crate,
 /turf/open/floor/iron/shuttle/evac,
+/area/shuttle/transport)
+"El" = (
+/turf/closed/wall/mineral/titanium/spaceship,
 /area/shuttle/transport)
 "Fz" = (
 /obj/machinery/power/shuttle_engine/heater,
@@ -209,14 +208,7 @@
 	},
 /area/shuttle/transport)
 "Hn" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 2;
-	color = "#ffff81"
-	},
-/obj/effect/turf_decal/caution{
-	pixel_y = -12
-	},
-/turf/open/floor/iron/shuttle/ferry,
+/turf/closed/wall/mineral/titanium/spaceship/nodiagonal,
 /area/shuttle/transport)
 "Io" = (
 /obj/structure/chair/comfy/shuttle{
@@ -236,15 +228,8 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/transport)
 "ON" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 1;
-	color = "#ffff81"
-	},
-/turf/open/floor/iron/shuttle/ferry{
-	dir = 4;
-	icon_state = "floor"
-	},
-/area/shuttle/transport)
+/turf/template_noop,
+/area/template_noop)
 "Qg" = (
 /obj/structure/fans/tiny/forcefield{
 	dir = 8
@@ -262,10 +247,17 @@
 	},
 /area/shuttle/transport)
 "Ql" = (
-/obj/machinery/power/shuttle_engine/heater{
-	pixel_y = -12
+/obj/effect/turf_decal/bot,
+/obj/machinery/light/no_nightlight/directional/south,
+/obj/structure/closet/generic/wall/empty{
+	pixel_x = -25;
+	name = "first-aid closet";
+	desc = "It's a storage unit for emergency medical supplies."
 	},
-/turf/closed/wall/mineral/titanium/spaceship,
+/obj/item/storage/medkit/emergency,
+/obj/item/healthanalyzer,
+/obj/item/reagent_containers/hypospray,
+/turf/open/floor/iron/shuttle/evac,
 /area/shuttle/transport)
 "SN" = (
 /obj/structure/chair/comfy/shuttle{
@@ -283,16 +275,14 @@
 /turf/open/floor/iron/shuttle/evac,
 /area/shuttle/transport)
 "SQ" = (
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/generic/wall/empty{
-	pixel_x = -25;
-	name = "first-aid closet";
-	desc = "It's a storage unit for emergency medical supplies."
+/obj/machinery/light/no_nightlight/directional/north,
+/obj/structure/closet/emcloset/wall{
+	pixel_x = -25
 	},
-/obj/item/storage/medkit/emergency,
-/obj/item/healthanalyzer,
-/obj/item/reagent_containers/hypospray,
-/obj/structure/window/reinforced/spawner/directional/south,
+/obj/effect/turf_decal/bot,
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
 /turf/open/floor/iron/shuttle/evac,
 /area/shuttle/transport)
 "Tk" = (
@@ -306,15 +296,12 @@
 	},
 /area/shuttle/transport)
 "UD" = (
-/obj/effect/turf_decal/bot,
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
+/obj/machinery/door/airlock/shuttle/glass{
+	req_access = list("cent_general")
 	},
-/obj/structure/closet/emcloset/wall{
-	pixel_x = 26
+/turf/open/floor/iron/stairs{
+	color = "#777d88"
 	},
-/obj/structure/window/reinforced/spawner/directional/north,
-/turf/open/floor/iron/shuttle/evac,
 /area/shuttle/transport)
 "YJ" = (
 /obj/machinery/power/shuttle_engine/propulsion,
@@ -332,23 +319,27 @@ CC
 CC
 CC
 CC
+CC
 Tk
 By
-nC
+CC
 Fz
 YJ
+ON
 "}
 (2,1,1) = {"
 hw
 aF
 cz
 Ed
+Ql
+CC
 SQ
-fT
 go
 rq
+jG
 El
-Ql
+Fz
 zs
 "}
 (3,1,1) = {"
@@ -356,11 +347,13 @@ CC
 Io
 CM
 jP
-Ei
-ON
+CM
+UD
+jP
 CM
 jP
 CM
+Ei
 Hn
 gS
 "}
@@ -369,12 +362,14 @@ hw
 sk
 ht
 SN
+fT
+CC
 oR
-UD
 GQ
 tB
 yF
-Ql
+El
+Fz
 zs
 "}
 (5,1,1) = {"
@@ -384,9 +379,11 @@ CC
 CC
 CC
 CC
+CC
 Tk
 Qg
-nC
+CC
 Fz
 YJ
+ON
 "}
