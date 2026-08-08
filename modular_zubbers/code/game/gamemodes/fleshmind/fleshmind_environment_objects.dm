@@ -89,6 +89,7 @@
 /obj/structure/fleshmind/wireweed/update_icon_state()
 	. = ..()
 	if(vent_burrow)
+		icon = 'modular_zubbers/icons/fleshmind/fleshmind_structures.dmi'
 		icon_state = "vent_burrow"
 
 /obj/structure/fleshmind/wireweed/emp_act(severity)
@@ -102,7 +103,7 @@
 	for(var/wall_dir in GLOB.cardinals)
 		var/turf/new_turf = get_step(src, wall_dir)
 		if(new_turf && new_turf.density) // Assume we are a wall!
-			var/image/new_wall_overlay = image(icon, icon_state = "wall_hug", dir = wall_dir)
+			var/image/new_wall_overlay = image('modular_zubbers/icons/fleshmind/fleshmind_structures.dmi', icon_state = "wall_hug", dir = wall_dir)
 			switch(wall_dir) //offset to make it be on the wall rather than on the floor
 				if(NORTH)
 					new_wall_overlay.pixel_y = 32
@@ -142,6 +143,6 @@
 			to_chat(human_mob, span_green("[src] shoots a mechanical limb right into your missing limb!"))
 
 /obj/effect/temp_visual/wireweed_spread
-	icon = 'modular_zubbers/icons/fleshmind/wireweed_floor.dmi'
+	icon = 'modular_zubbers/icons/fleshmind/fleshmind_structures.dmi'
 	icon_state = "spread_anim"
 	duration = 1.7 SECONDS

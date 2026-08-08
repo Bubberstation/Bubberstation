@@ -9,6 +9,7 @@
 	cost = 5
 	allow_duplicates = FALSE
 
+/* BUBBER EDIT REMOVAL BEGIN - Zero sauce! Zero zesty roleplay! Out you go!
 /datum/map_template/ruin/lavaland/biodome/beach
 	name = "Lava-Ruin Biodome Beach"
 	id = "biodome-beach"
@@ -16,6 +17,7 @@
 	Comes with a rustic wooden bar and suicidal bartender."
 	suffix = "lavaland_biodome_beach.dmm"
 	enclosed_for_terrain = TRUE
+BUBBER REMOVAL END */
 
 /datum/map_template/ruin/lavaland/biodome/winter
 	name = "Lava-Ruin Biodome Winter"

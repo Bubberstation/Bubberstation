@@ -24,6 +24,15 @@
 	icon_state = "unberet"
 	dog_fashion = null
 
+/obj/item/clothing/head/beret/lizardgas
+	name = "Veteran Lizard Gas Beret"
+	desc = "A beret awarded to team members who have lasted a full year or more under the employment of the Lizard Gas brand! A pizza party is sure to be held on their anniversary."
+	icon_state = "/obj/item/clothing/head/beret/science/rd"
+	post_init_icon_state = "beret_badge"
+	greyscale_config = /datum/greyscale_config/beret_badge
+	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
+	greyscale_colors = "#7e1980#c9cbcb"
+
 //Ported from Kuro020 of TGMC.
 /obj/item/clothing/head/bandana/snake
 	name = "soldier's bandana"

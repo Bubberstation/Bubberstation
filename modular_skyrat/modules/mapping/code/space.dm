@@ -169,6 +169,7 @@
 	name = "Space-Ruin Port Tarkon"
 	id = "escapefromtarkon"
 	description = "An ambitious goal, A step forward, A trial run for the Tarkon drill, ment to implant mining stations within meteors. Decades of disaster have, however, left this one... Unattended for far too long."
+	cost = 0
 	always_place = TRUE
 
 /obj/modular_map_root/port_tarkon

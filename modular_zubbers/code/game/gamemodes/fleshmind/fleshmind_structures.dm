@@ -51,8 +51,6 @@
 	. = ..()
 	if(disabled && disabled_sprite)
 		icon_state = "[icon_state]-disabled"
-	else
-		icon_state = base_icon_state
 
 /obj/structure/fleshmind/structure/attacked_by(obj/item/attacking_item, mob/living/user)
 	. = ..()
@@ -165,10 +163,11 @@
  */
 /obj/structure/fleshmind/structure/wireweed_wall
 	name = "wireweed wall"
-	desc = "A wall made of wireweed."
-	icon = 'modular_zubbers/icons/fleshmind/fleshmind_structures.dmi'
-	icon_state = "wireweed_wall"
+	desc = "A strange wall of pulsating, organic wires."
+	icon = 'modular_zubbers/icons/fleshmind/wireweed_wall.dmi'
+	icon_state = "wireweed_wall-0"
 	base_icon_state = "wireweed_wall"
+	color = "#90a1b1" //Slight contrast so it doesn't blend in with the floors.
 	density = TRUE
 	opacity = TRUE
 	smoothing_flags = SMOOTH_BITMASK
@@ -182,6 +181,23 @@
 	. = ..()
 	var/turf/my_turf = get_turf(src)
 	my_turf.immediate_calculate_adjacent_turfs()
+
+/**
+ * I found you, faker!
+ *
+ * Hah, faker? I think you're the real fake wall around here.
+ * You're comparing yourself to me... ha! You're not good enough to be /turf/closed/.
+ */
+/turf/closed/indestructible/wireweed
+	name = "dense wireweed wall"
+	desc = "A strange mass of organic wires. They seemed to have hardened into a neigh indestructable wall."
+	icon = 'modular_zubbers/icons/fleshmind/wireweed_wall.dmi'
+	icon_state = "wireweed_wall-0"
+	base_icon_state = "wireweed_wall"
+	color = "#627f97"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_WIREWEED_WALLS + SMOOTH_GROUP_WALLS
+	canSmoothWith = SMOOTH_GROUP_WIREWEED_WALLS + SMOOTH_GROUP_WALLS
 
 /**
  * Le wireweed door
@@ -202,6 +218,7 @@
 	max_integrity = 150
 	disabled_sprite = FALSE
 	color = "#CCFFFF"
+	smoothing_groups = SMOOTH_GROUP_WIREWEED_WALLS
 	/// Are we open(FALSE), or are we closed(TRUE)?
 	var/door_state = TRUE
 	/// The sound we play when changing states
