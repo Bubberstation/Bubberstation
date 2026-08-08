@@ -9,10 +9,16 @@
 	icon = FA_ICON_HORSE_HEAD
 	// remember what the name was before activation
 	var/original_name
+	var/list/heads
 	var/datum/action/innate/hydra_head/head_spell
 	var/datum/action/innate/hydra_reset/reset_spell
 
 /datum/quirk/hydra/add(client/client_source)
+	heads = list(
+		quirk_holder.client.prefs.read_preference(/datum/preference/text/hydra/name1),
+		quirk_holder.client.prefs.read_preference(/datum/preference/text/hydra/name2),
+		quirk_holder.client.prefs.read_preference(/datum/preference/text/hydra/name3),
+	)
 	head_spell = new()
 	reset_spell = new()
 	head_spell.Grant(quirk_holder)
@@ -25,6 +31,30 @@
 	QDEL_NULL(reset_spell)
 	quirk_holder.real_name = original_name
 
+/datum/quirk_constant_data/hydra
+	associated_typepath = /datum/quirk/hydra
+	customization_options = list(
+		/datum/preference/text/hydra/name1,
+		/datum/preference/text/hydra/name2,
+		/datum/preference/text/hydra/name3,
+	)
+/datum/preference/text/hydra
+	abstract_type = /datum/preference/text/hydra
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_identifier = PREFERENCE_CHARACTER
+
+/datum/preference/text/hydra/name1
+	savefile_key = "hydra__head_name1"
+
+/datum/preference/text/hydra/name2
+	savefile_key = "hydra__head_name2"
+
+/datum/preference/text/hydra/name3
+	savefile_key = "hydra__head_name3"
+
+/datum/preference/text/hydra/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences) //Unsure what this does. Revisit later
+	return FALSE
+
 /datum/action/innate/hydra_head
 	name = "Switch head"
 	desc = "Switch between each of the heads on your body."
@@ -36,8 +66,7 @@
 	var/datum/quirk/hydra/hydra_quirk = hydra.get_quirk(/datum/quirk/hydra)
 	if(!hydra_quirk.original_name) // sets the archived 'real' name if not set.
 		hydra_quirk.original_name = hydra.real_name
-	var/list/names = splittext(hydra_quirk.original_name,"-")
-	var/selhead = input("Who would you like to speak as?","Heads:") in names
+	var/selhead = tgui_input_list(hydra, "Who would you like to speak as?", "Head Selection", hydra_quirk.heads)
 	hydra.real_name = selhead
 	hydra.visible_message(span_notice("[hydra.name] pulls the rest of their heads back; and puts [selhead]'s forward."), \
 							span_notice("You are now talking as [selhead]!"), ignored_mobs=owner)
