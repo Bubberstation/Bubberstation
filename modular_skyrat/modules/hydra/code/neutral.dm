@@ -24,7 +24,7 @@
 	head_spell.Grant(quirk_holder)
 	reset_spell.Grant(quirk_holder)
 
-/datum/quirk/hydra/remove()
+/datum/quirk/hydra/remove(client/client_source)
 	head_spell.Remove(quirk_holder)
 	reset_spell.Remove(quirk_holder)
 	QDEL_NULL(head_spell)
