@@ -3,7 +3,7 @@
 	desc = "Plutonian Franco-Castilian is a constructed Romance language that was developed early on out of necessity for communication between Pluto's first colonists. \
 		It comes off as elegant but is an ugly Mediterannean creole, often correlated with criminal groups. Today, it is a core part of the planet's culture."
 	key = "G"
-	flags = TONGUELESS_SPEECH
+	flags = LANGUAGE_TONGUELESS_SPEECH
 	syllables = list (
 		"bai", "cai", "jai", "quai", "vai", "dei", "lei", "quei", "sei", "noi", "quoi", "voi", "beu", "queu", "seu", "gan", "zan", "quan", "len", "ten",
 		"ba", "be", "bi", "bo", "bu", "ca", "ce", "ci", "co", "cu", "da", "de", "di", "do", "du", "fa", "fe", "fi", "fo", "fu", "ga", "gue", "gui", "go",

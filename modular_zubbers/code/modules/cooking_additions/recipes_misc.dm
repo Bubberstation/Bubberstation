@@ -62,7 +62,17 @@
 	name = "chap mix"
 	desc = "A mass of seasoned meat, ready to be processed."
 	icon_state = "raw_meatloaf"
-	foodtypes = MEAT|VEGETABLES|RAW
+	foodtypes = MEAT | VEGETABLES | RAW
+
+/// Healthy foods that the food processor pops out. Mostly to get the food_processor unit test all happy.
+/obj/item/food/peanuts/healthy
+	name = "organic peanuts"
+	foodtypes = NUTS
+
+/obj/item/food/chips/healthy
+	name = "organic chips"
+	desc = "These chips are for when you want to convince yourself that you're eating a healthy alternative."
+	foodtypes = FRIED | VEGETABLES
 
 /datum/food_processor_process/chap
 	input = /obj/item/food/meat/chapmix
@@ -74,11 +84,11 @@
 
 /datum/food_processor_process/peanut
 	input = /obj/item/food/grown/peanut
-	output = /obj/item/food/peanuts
+	output = /obj/item/food/peanuts/healthy
 
 /datum/food_processor_process/chips
 	input = /obj/item/food/tatortot
-	output = /obj/item/food/chips
+	output = /obj/item/food/chips/healthy
 
 /datum/food_processor_process/tinnedtomatoes
 	input = /obj/item/food/grown/tomato
@@ -107,7 +117,7 @@
 	name = "snail mix"
 	desc = "A mass of seasoned meat, ready to be processed... DO NOT CONFUSE WITH TRAIL MIX!"
 	icon_state = "raw_meatloaf"
-	foodtypes = MEAT|VEGETABLES|RAW|BUGS
+	foodtypes = MEAT | VEGETABLES | RAW | BUGS
 
 /datum/food_processor_process/desertsnails
 	input = /obj/item/food/meat/snailmix

@@ -82,7 +82,7 @@
 	color_src = USE_MATRIXED_COLORS
 	always_color_customizable = TRUE
 	has_skintone_shading = TRUE
-	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
+	relevent_layers = list(EXTERNAL_ADJACENT, EXTERNAL_FRONT)
 
 /datum/sprite_accessory/genital/butt/none
 	icon_state = "none"
@@ -103,7 +103,7 @@
 	color_src = USE_ONE_COLOR
 	always_color_customizable = TRUE
 	has_skintone_shading = TRUE
-	relevent_layers = list(BODY_FRONT_LAYER, BODY_BEHIND_LAYER)
+	relevent_layers = list(EXTERNAL_BEHIND, EXTERNAL_FRONT)
 
 /datum/sprite_accessory/genital/belly/none
 	icon_state = "none"

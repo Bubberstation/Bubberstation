@@ -1,9 +1,7 @@
 /datum/preference_middleware/jobs
 	action_delegations = list(
 		"set_job_preference" = PROC_REF(set_job_preference),
-		// SKYRAT EDIT
-		"set_job_title" = PROC_REF(set_job_title),
-		// SKYRAT EDIT END
+		"set_job_to_profile" = PROC_REF(set_job_to_profile),
 	)
 
 /datum/preference_middleware/jobs/proc/set_job_preference(list/params, mob/user)
@@ -28,23 +26,16 @@
 
 	return TRUE
 
-// SKYRAT EDIT
-/datum/preference_middleware/jobs/proc/set_job_title(list/params, mob/user)
+/datum/preference_middleware/jobs/proc/set_job_to_profile(list/params, mob/user)
 	var/job_title = params["job"]
-	var/new_job_title = params["new_title"]
+	var/profile_slot = params["profile"]
 
-	var/datum/job/job = SSjob.get_job(job_title)
+	if (!isnum(profile_slot) || profile_slot == -1)
+		LAZYREMOVE(preferences.job_assigned_profiles, job_title)
+		return TRUE
 
-	if (isnull(job))
-		return FALSE
-
-	if (!(new_job_title in job.alt_titles))
-		return FALSE
-
-	preferences.alt_job_titles[job_title] = new_job_title
-
+	LAZYSET(preferences.job_assigned_profiles, job_title, profile_slot)
 	return TRUE
-// SKYRAT EDIT END
 
 /datum/preference_middleware/jobs/get_constant_data()
 	var/list/data = list()
@@ -70,6 +61,7 @@
 
 			departments[department_name] = list(
 				"head" = department_head_type && initial(department_head_type.title),
+				"color" = department_type.ui_color, // Prob shouldnt be here.
 			)
 
 		jobs[job.title] = list(
@@ -85,15 +77,21 @@
 
 /datum/preference_middleware/jobs/get_ui_data(mob/user)
 	var/list/data = list()
-	// SKYRAT EDIT
-	if(isnull(preferences.alt_job_titles))
-		preferences.alt_job_titles = list()
-	// SKYRAT EDIT END
-	data["job_preferences"] = preferences.job_preferences
-	// SKYRAT EDIT
-	data["job_alt_titles"] = preferences.alt_job_titles
-	data["species_restricted_jobs"] = get_unavailable_jobs_for_species()
-	// SKYRAT EDIT END
+
+	data["job_preferences"] = list()
+	for(var/job, priority in preferences.job_preferences)
+		data["job_preferences"] += list(list(
+			"job" = job,
+			"priority" = priority,
+			"assigned_profile_slot" = LAZYACCESS(preferences.job_assigned_profiles, job),
+		))
+
+	for(var/job, slot in SANITIZE_LIST(preferences.job_assigned_profiles) - SANITIZE_LIST(preferences.job_preferences))
+		data["job_preferences"] += list(list(
+			"job" = job,
+			"priority" = null,
+			"assigned_profile_slot" = slot,
+		))
 
 	return data
 

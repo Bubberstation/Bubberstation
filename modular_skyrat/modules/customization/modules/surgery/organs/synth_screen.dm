@@ -15,7 +15,7 @@
 
 /datum/bodypart_overlay/mutant/synth_screen
 	feature_key = MUTANT_SYNTH_SCREEN
-	layers = EXTERNAL_FRONT_UNDER_CLOTHES
+	layers = list(EXTERNAL_FRONT = 19.1)
 	color_source = ORGAN_COLOR_OVERRIDE
 
 /datum/bodypart_overlay/mutant/synth_screen/override_color(rgb_value)
