@@ -30,8 +30,6 @@
 	QDEL_NULL(head_spell)
 	QDEL_NULL(reset_spell)
 	quirk_holder.real_name = original_name
-	QDEL_NULL(original_name)
-	QDEL_LIST(heads)
 
 /datum/quirk_constant_data/hydra
 	associated_typepath = /datum/quirk/hydra
