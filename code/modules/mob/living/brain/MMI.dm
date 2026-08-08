@@ -22,7 +22,7 @@
 	. = ..()
 	radio = new(src) //Spawns a radio inside the MMI.
 	radio.set_broadcasting(FALSE) //researching radio mmis turned the robofabs into radios because this didnt start as 0.
-	laws.set_laws_config()
+	//laws.set_laws_config() BUBBERSTATION REMOVAL
 
 /obj/item/mmi/Destroy()
 	set_mecha(null)
