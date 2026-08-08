@@ -19,7 +19,7 @@
 		playsound(resizer,'sound/items/weapons/emitter2.ogg', 50, 1)
 		flash_lighting_fx(3, 3, LIGHT_COLOR_YELLOW)
 		resizer.visible_message(span_warning("Golden light engulfs [resizer], and they shoot back to their default height!"), span_notice("Energy rushes through your body, and you return to normal."))
-		for(var/quirk as anything in resizer?.client?.prefs?.all_quirks)
+		for(var/quirk in resizer?.client?.prefs?.all_quirks)
 			if(quirk == "Oversized")
 				resizer.add_quirk(/datum/quirk/oversized, announce = FALSE)
 				break
