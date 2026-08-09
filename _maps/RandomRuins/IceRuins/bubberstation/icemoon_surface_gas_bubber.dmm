@@ -13,6 +13,7 @@
 	pixel_x = 5;
 	pixel_y = 11
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "aV" = (
@@ -200,6 +201,7 @@
 "cU" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
@@ -330,6 +332,10 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/end,
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -342,6 +348,14 @@
 /turf/open/floor/iron/shuttle/exploration/side{
 	dir = 8
 	},
+/area/ruin/thelizardsgas_lavaland)
+"fm" = (
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tram/plate,
 /area/ruin/thelizardsgas_lavaland)
 "fr" = (
 /obj/effect/turf_decal/weather/snow,
@@ -362,7 +376,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "fC" = (
 /obj/structure/sign/warning/fire/directional/north,
@@ -542,7 +556,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "gP" = (
 /obj/effect/turf_decal/weather/snow,
@@ -636,6 +650,7 @@
 /obj/effect/turf_decal/siding/thinplating_new{
 	color = "#595959"
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/corner{
 	dir = 4
 	},
@@ -655,6 +670,7 @@
 /area/ruin/thelizardsgas_lavaland)
 "iY" = (
 /obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
@@ -690,7 +706,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -741,6 +760,9 @@
 	name = "Plasma Hook-Up"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/lizard_gas,
+/obj/effect/turf_decal/weather/snow/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/weather/snow,
 /turf/open/floor/plating/lavaland_atmos,
 /area/ruin/thelizardsgas_lavaland)
 "kr" = (
@@ -748,6 +770,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/white/textured_large,
 /area/ruin/thelizardsgas_lavaland)
 "kH" = (
@@ -842,6 +865,8 @@
 /obj/effect/turf_decal/stripes/end{
 	dir = 8
 	},
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -882,12 +907,13 @@
 	pixel_x = -5;
 	pixel_y = -2
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "mi" = (
 /obj/structure/cable,
 /obj/structure/bookcase/random,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "ms" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
@@ -919,6 +945,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
@@ -928,15 +955,7 @@
 /obj/structure/window/reinforced/spawner/directional/east{
 	pixel_x = 3
 	},
-/obj/structure/decorative{
-	icon_state = "siding_plain";
-	pixel_y = 0;
-	icon = 'icons/turf/decals.dmi';
-	base_icon_state = "elevatorshaft";
-	color = "#36373a";
-	dir = 2;
-	anchored = 1
-	},
+/obj/effect/turf_decal/siding/dark,
 /obj/item/reagent_containers/condiment/mayonnaise{
 	pixel_x = 6;
 	pixel_y = 6
@@ -968,6 +987,7 @@
 /area/ruin/thelizardsgas_lavaland)
 "mQ" = (
 /obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "mR" = (
@@ -1001,9 +1021,12 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/components/unary/passive_vent/layer4{
 	dir = 1
+	},
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
 	},
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
@@ -1024,7 +1047,7 @@
 /area/ruin/thelizardsgas_lavaland)
 "ns" = (
 /obj/machinery/door/window/left/directional/north{
-	req_access = list(9512)
+	req_access = list("lzgas")
 	},
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
@@ -1040,7 +1063,10 @@
 	normaldoorcontrol = 1;
 	id = "corpooffice";
 	name = "Door Bolt Control";
-	req_access = list(9512)
+	req_access = list("lzgas")
+	},
+/obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner{
+	dir = 1
 	},
 /turf/open/floor/iron/dark/smooth_corner,
 /area/ruin/thelizardsgas_lavaland)
@@ -1146,6 +1172,7 @@
 	color = "#595959"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
@@ -1156,7 +1183,8 @@
 /obj/effect/turf_decal/stripes/end{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1174,6 +1202,7 @@
 	color = "#595959"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
@@ -1212,12 +1241,14 @@
 	color = "#878787"
 	},
 /obj/structure/marker_beacon/burgundy,
+/obj/structure/sign/warning/electric_shock/directional/east,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "qr" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/shuttle/exploration/side{
 	dir = 4
 	},
@@ -1234,6 +1265,7 @@
 "qI" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "qT" = (
@@ -1246,12 +1278,10 @@
 	color = "#595959"
 	},
 /obj/machinery/light/directional/east,
-/obj/machinery/space_heater/wall_mounted/directional/east{
-	cell = /obj/item/stock_parts/power_store/cell/high
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
+/obj/machinery/space_heater/wall_mounted/with_cell/directional/east,
 /turf/open/floor/iron/edge{
 	dir = 4
 	},
@@ -1373,6 +1403,7 @@
 	name = "wallmount";
 	pixel_x = 32
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "sW" = (
@@ -1453,12 +1484,12 @@
 	dir = 4;
 	color = "#595959"
 	},
-/obj/machinery/space_heater/wall_mounted/directional/east{
-	cell = /obj/item/stock_parts/power_store/cell/high
-	},
 /obj/machinery/light/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
+	},
+/obj/machinery/space_heater/wall_mounted/with_cell/directional/east{
+	pixel_x = 25
 	},
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
@@ -1536,7 +1567,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/wood,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "vN" = (
 /obj/structure/sign/warning/fire/directional/south,
@@ -1580,6 +1611,10 @@
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/end,
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1603,6 +1638,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/meter/layer2,
 /obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "xh" = (
@@ -1616,7 +1652,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/wood/tile,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "xB" = (
 /obj/effect/turf_decal/siding/thinplating_new{
@@ -1679,7 +1715,7 @@
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/underground/unexplored)
 "xW" = (
-/obj/effect/spawner/random/structure/crate_abandoned,
+/obj/structure/closet/crate/secure/loot,
 /turf/open/misc/asteroid/snow/icemoon,
 /area/icemoon/underground/unexplored)
 "xY" = (
@@ -1700,7 +1736,7 @@
 	id = "lizardshutters";
 	pixel_y = 7;
 	name = "Exterior Shutters";
-	req_access = list(9512);
+	req_access = list("lzgas");
 	pixel_x = -24
 	},
 /obj/machinery/button/door/directional/east{
@@ -1709,7 +1745,7 @@
 	id = "lizardgasbolt";
 	normaldoorcontrol = 1;
 	specialfunctions = 4;
-	req_access = list(9512);
+	req_access = list("lzgas");
 	pixel_x = -24
 	},
 /turf/open/floor/iron/dark/smooth_corner{
@@ -1748,7 +1784,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner,
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -1812,7 +1849,7 @@
 	dir = 1
 	},
 /obj/machinery/door/window/left/directional/south{
-	req_access = list(9512)
+	req_access = list("lzgas")
 	},
 /turf/open/floor/iron/textured_large,
 /area/ruin/thelizardsgas_lavaland)
@@ -1868,7 +1905,7 @@
 	icon_state = "tram";
 	base_icon_state = "tram";
 	pixel_x = 26;
-	req_access = list(9512)
+	req_access = list("lzgas")
 	},
 /obj/effect/turf_decal/trimline/dark_green/filled/line{
 	dir = 6
@@ -1939,6 +1976,7 @@
 	color = "#595959";
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/edge{
 	dir = 4
 	},
@@ -1946,6 +1984,7 @@
 "Af" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/edge{
 	dir = 4
 	},
@@ -1972,6 +2011,7 @@
 /turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/thelizardsgas_lavaland)
 "AD" = (
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
@@ -1980,6 +2020,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
@@ -1995,6 +2036,7 @@
 	pixel_x = -8;
 	pixel_y = 17
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/white/small,
 /area/ruin/thelizardsgas_lavaland)
 "AT" = (
@@ -2002,6 +2044,7 @@
 	dir = 1;
 	color = "#595959"
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
@@ -2057,17 +2100,6 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/ruin/thelizardsgas_lavaland)
-"BG" = (
-/obj/structure/cable,
-/obj/structure/railing,
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating/lavaland_atmos{
-	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
-	},
-/area/ruin/thelizardsgas_lavaland)
 "BH" = (
 /obj/effect/spawner/random/trash/crushed_can,
 /turf/open/misc/asteroid/snow/icemoon,
@@ -2082,15 +2114,7 @@
 "BZ" = (
 /obj/structure/table/reinforced,
 /obj/structure/cable,
-/obj/structure/decorative{
-	icon_state = "siding_plain";
-	pixel_y = 0;
-	icon = 'icons/turf/decals.dmi';
-	base_icon_state = "elevatorshaft";
-	color = "#36373a";
-	dir = 2;
-	anchored = 1
-	},
+/obj/effect/turf_decal/siding/dark,
 /obj/machinery/light/directional/west,
 /obj/structure/noticeboard/directional/west{
 	pixel_x = -32;
@@ -2133,6 +2157,10 @@
 	desc = "Strange, what is the menu of Lizard's Gas doing here?"
 	},
 /turf/open/floor/iron/textured_large,
+/area/ruin/thelizardsgas_lavaland)
+"Cf" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/shuttle/exploration/side,
 /area/ruin/thelizardsgas_lavaland)
 "CC" = (
 /obj/machinery/computer/security/telescreen/lizgas/directional/south,
@@ -2185,7 +2213,7 @@
 "DS" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/holopad,
-/turf/open/floor/wood,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "DU" = (
 /obj/effect/turf_decal/weather/snow/corner{
@@ -2262,6 +2290,7 @@
 /area/ruin/thelizardsgas_lavaland)
 "Er" = (
 /obj/machinery/light/small/dim/directional/north,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/noslip,
 /area/ruin/thelizardsgas_lavaland)
 "Ey" = (
@@ -2303,6 +2332,10 @@
 	},
 /obj/effect/turf_decal/stripes/end{
 	dir = 1
+	},
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
 	},
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
@@ -2353,15 +2386,7 @@
 	pixel_x = 6;
 	pixel_y = 0
 	},
-/obj/structure/decorative{
-	icon_state = "siding_plain";
-	pixel_y = 0;
-	icon = 'icons/turf/decals.dmi';
-	base_icon_state = "elevatorshaft";
-	color = "#36373a";
-	dir = 2;
-	anchored = 1
-	},
+/obj/effect/turf_decal/siding/dark,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "lizardshutters_counter";
 	dir = 1
@@ -2383,6 +2408,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
@@ -2456,6 +2482,18 @@
 	color = "#595959"
 	},
 /obj/structure/extinguisher_cabinet/directional/west,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
+	},
+/area/ruin/thelizardsgas_lavaland)
+"GO" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 4;
+	color = "#595959"
+	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
@@ -2470,7 +2508,6 @@
 "Ho" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/closet,
 /obj/item/clothing/mask/breath,
 /obj/item/pickaxe,
 /obj/item/storage/box/coffeepack/robusta,
@@ -2482,38 +2519,13 @@
 /obj/item/pickaxe,
 /obj/item/tank/internals/emergency_oxygen/double,
 /obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/storage/backpack/satchel/science{
-	name = "lizard gas satchel";
-	desc = "Useful for holding work materials."
-	},
-/obj/item/storage/backpack/satchel/science{
-	name = "lizard gas satchel";
-	desc = "Useful for holding work materials."
-	},
-/obj/item/clothing/head/beret/science/rd{
-	desc = "A beret awarded to team members who have lasted a full year or more under the employment of the Lizard Gas brand! A pizza party is sure to be held on their anniversary.";
-	name = "Veteran Lizard Gas Beret"
-	},
-/obj/item/clothing/head/beret/science/rd{
-	desc = "A beret awarded to team members who have lasted a full year or more under the employment of the Lizard Gas brand! A pizza party is sure to be held on their anniversary.";
-	name = "Veteran Lizard Gas Beret"
-	},
 /obj/item/clothing/gloves/color/yellow,
 /obj/item/clothing/gloves/color/yellow,
-/obj/item/clothing/suit/apron/chef/colorable_apron{
-	greyscale_colors = "#8e1dd6";
-	name = "Lizard Gas Apron";
-	desc = "A purple apron imprinted with the signature little green lizard of Lizard Gas! This cute outfit is surely reflected by its underpaid drop-out wearer."
-	},
-/obj/item/clothing/suit/apron/chef/colorable_apron{
-	greyscale_colors = "#8e1dd6";
-	name = "Lizard Gas Apron";
-	desc = "A purple apron imprinted with the signature little green lizard of Lizard Gas! This cute outfit is surely reflected by its underpaid drop-out wearer."
-	},
 /obj/item/storage/box/nif_ghost_box/ghost_role,
 /obj/item/storage/box/nif_ghost_box/ghost_role,
 /obj/item/gps,
 /obj/item/gps,
+/obj/structure/closet/lizardgas,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/thelizardsgas_lavaland)
 "Hw" = (
@@ -2572,6 +2584,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
@@ -2587,13 +2600,12 @@
 /area/ruin/thelizardsgas_lavaland)
 "Iq" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/structure/closet/emcloset/wall{
-	pixel_y = 32
-	},
 /obj/structure/cable,
 /obj/item/tank/internals/nitrogen/belt/full,
 /obj/item/tank/internals/nitrogen/belt/full,
 /obj/item/tank/internals/nitrogen/belt/full,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/emcloset/wall/directional/north,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "IB" = (
@@ -2620,8 +2632,8 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner{
 	dir = 8
 	},
-/obj/machinery/space_heater/wall_mounted/directional/west{
-	cell = /obj/item/stock_parts/power_store/cell/high
+/obj/machinery/space_heater/wall_mounted/with_cell/directional/west{
+	pixel_x = -25
 	},
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 8
@@ -2709,6 +2721,7 @@
 /area/icemoon/underground/unexplored)
 "JS" = (
 /obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet,
 /area/ruin/thelizardsgas_lavaland)
 "JT" = (
@@ -2717,6 +2730,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
@@ -2765,6 +2779,7 @@
 /turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/thelizardsgas_lavaland)
 "Kj" = (
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/shuttle/exploration/uside{
 	dir = 1
 	},
@@ -2796,6 +2811,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/edge{
 	dir = 4
 	},
@@ -2803,7 +2819,7 @@
 "KX" = (
 /obj/structure/table/wood/fancy/green,
 /obj/machinery/door/window/right/directional/north{
-	req_access = list(9512)
+	req_access = list("lzgas")
 	},
 /obj/item/stamp/denied{
 	pixel_x = -12;
@@ -2834,7 +2850,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/wood/tile,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "La" = (
 /obj/structure/safe/floor,
@@ -2922,6 +2938,7 @@
 /area/ruin/thelizardsgas_lavaland)
 "Mn" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
@@ -2938,6 +2955,7 @@
 	dir = 10;
 	color = "#595959"
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
@@ -2978,6 +2996,7 @@
 	dir = 4;
 	color = "#595959"
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/large,
 /area/ruin/thelizardsgas_lavaland)
 "MK" = (
@@ -2997,10 +3016,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/button/door/directional/south{
-	req_access = list(9512);
+	req_access = list("lzgas");
 	name = "Front Counter Shutters";
 	id = "lizardshutters_counter"
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/large,
 /area/ruin/thelizardsgas_lavaland)
 "MW" = (
@@ -3058,6 +3078,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/edge{
 	dir = 8
 	},
@@ -3104,15 +3125,16 @@
 	base_icon_state = "tram";
 	icon_state = "tram";
 	light_color = "#6496FA";
-	req_access = list(9512)
+	req_access = list("lzgas")
 	},
 /obj/machinery/button/door/directional/east{
 	pixel_y = 28;
 	name = "Reinforced Gate Toggle";
 	id = "lizardshutters_garage_reinforcement";
 	pixel_x = 6;
-	req_access = list(9512)
+	req_access = list("lzgas")
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/shuttle/exploration/corner,
 /area/ruin/thelizardsgas_lavaland)
 "NB" = (
@@ -3154,6 +3176,7 @@
 	pixel_x = 4;
 	pixel_y = -4
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "NL" = (
@@ -3203,9 +3226,12 @@
 /obj/effect/turf_decal/stripes/end{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -3410,6 +3436,7 @@
 	name = "plasma storage tank";
 	tank_volume = 2500
 	},
+/obj/effect/turf_decal/weather/snow,
 /turf/open/floor/plating/lavaland_atmos,
 /area/ruin/thelizardsgas_lavaland)
 "Sm" = (
@@ -3423,7 +3450,7 @@
 	id = "lizardshutters_breakroom";
 	pixel_y = 0;
 	name = "Privacy Shutters";
-	req_access = list(9512);
+	req_access = list("lzgas");
 	pixel_x = 24
 	},
 /obj/structure/towel_bin{
@@ -3435,15 +3462,7 @@
 "Su" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced/spawner/directional/east,
-/obj/structure/decorative{
-	icon_state = "siding_plain";
-	pixel_y = 0;
-	icon = 'icons/turf/decals.dmi';
-	base_icon_state = "elevatorshaft";
-	color = "#36373a";
-	dir = 2;
-	anchored = 1
-	},
+/obj/effect/turf_decal/siding/dark,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "lizardshutters_counter";
 	dir = 1
@@ -3474,6 +3493,7 @@
 /area/ruin/thelizardsgas_lavaland)
 "SI" = (
 /obj/machinery/light/floor,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/thelizardsgas_lavaland)
 "SZ" = (
@@ -3499,6 +3519,7 @@
 	color = "#595959";
 	dir = 1
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
@@ -3587,6 +3608,7 @@
 /obj/effect/turf_decal/siding/thinplating_new{
 	color = "#595959"
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron{
 	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
 	},
@@ -3650,11 +3672,6 @@
 /obj/effect/turf_decal/trimline/dark_green/filled/mid_joiner{
 	dir = 8
 	},
-/obj/structure/closet/secure_closet/wall{
-	pixel_x = -32;
-	req_access = list(9512);
-	name = "Manager's Locker"
-	},
 /obj/item/clothing/head/beret/science/rd{
 	desc = "A beret awarded to team members who have lasted a full year or more under the employment of the Lizard Gas brand! A pizza party is sure to be held on their anniversary.";
 	name = "Veteran Lizard Gas Beret"
@@ -3670,6 +3687,11 @@
 /obj/item/storage/box/nif_ghost_box/ghost_role,
 /obj/item/gps,
 /obj/item/card/id/faction_budget/lizgas,
+/obj/structure/closet/secure_closet/wall/directional/west{
+	name = "Manager's Locker";
+	req_access = list("lzgas");
+	pixel_x = -27
+	},
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 8
 	},
@@ -3682,6 +3704,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/textured_large,
 /area/ruin/thelizardsgas_lavaland)
 "Vc" = (
@@ -3705,7 +3728,7 @@
 	dir = 6
 	},
 /obj/structure/cable,
-/turf/open/floor/wood/large,
+/turf/open/floor/wood/parquet,
 /area/ruin/thelizardsgas_lavaland)
 "Vh" = (
 /obj/structure/sign/warning/fire/directional/north,
@@ -3811,6 +3834,7 @@
 	dir = 10
 	},
 /obj/machinery/light/directional/west,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/white/small,
 /area/ruin/thelizardsgas_lavaland)
 "Wl" = (
@@ -3837,6 +3861,17 @@
 	},
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/carpet,
+/area/ruin/thelizardsgas_lavaland)
+"WQ" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 1;
+	color = "#595959"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron{
+	baseturfs = /turf/open/floor/plating/snowed/smoothed/icemoon
+	},
 /area/ruin/thelizardsgas_lavaland)
 "Xh" = (
 /obj/structure/cable,
@@ -3948,6 +3983,7 @@
 	pixel_y = -4;
 	name = "lift switch"
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/shuttle/exploration/side,
 /area/ruin/thelizardsgas_lavaland)
 "YP" = (
@@ -3962,12 +3998,15 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1;
 	filter_types = list(/datum/gas/oxygen)
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/weather/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
 /turf/open/floor/plating/lavaland_atmos{
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	},
@@ -4004,6 +4043,7 @@
 /obj/item/storage/box/beakers,
 /obj/item/reagent_containers/cup/watering_can,
 /obj/machinery/light/small/red/directional/south,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "Zg" = (
@@ -4062,6 +4102,7 @@
 	dir = 8
 	},
 /obj/item/mop,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/thelizardsgas_lavaland)
 "ZQ" = (
@@ -4091,15 +4132,15 @@ Gr
 Gr
 Gr
 Gr
+Bv
+Bv
+Bv
+Bv
 Gr
 Gr
-Gr
-Gr
-Gr
-Gr
-Gr
-Gr
-Gr
+Bv
+Bv
+Bv
 LJ
 uc
 Ey
@@ -4110,7 +4151,7 @@ Ey
 Ey
 di
 sF
-Gr
+Bv
 Gr
 Gr
 Gr
@@ -4121,16 +4162,16 @@ Gr
 Gr
 Gr
 Gr
-Gr
-Gr
-Gr
-Gr
 Bv
 Bv
 Bv
 Bv
-Gr
-Gr
+Bv
+Bv
+Bv
+Bv
+Bv
+Bv
 Rv
 Lx
 XZ
@@ -4141,9 +4182,9 @@ Lx
 XZ
 Lx
 jz
-Gr
-Gr
-Gr
+Bv
+Bv
+Bv
 Gr
 Gr
 Gr
@@ -4174,7 +4215,7 @@ Lx
 dC
 DU
 xZ
-Gr
+Bv
 fr
 Gr
 Gr
@@ -4206,13 +4247,13 @@ dC
 xO
 iE
 VR
-Gr
+Bv
 Gr
 Gr
 "}
 (5,1,1) = {"
 Gr
-Gr
+Bv
 cN
 Bv
 Bv
@@ -4268,8 +4309,8 @@ dK
 BH
 cb
 Bv
-Gr
-Gr
+Bv
+Bv
 Gr
 "}
 (7,1,1) = {"
@@ -4300,8 +4341,8 @@ sG
 Bv
 Bv
 Bv
-Gr
-Gr
+Bv
+Bv
 "}
 (8,1,1) = {"
 Gr
@@ -4428,7 +4469,7 @@ yq
 Bv
 "}
 (12,1,1) = {"
-Gr
+Bv
 Vw
 MW
 He
@@ -4486,7 +4527,7 @@ ZV
 of
 of
 AV
-BG
+yq
 Bv
 "}
 (14,1,1) = {"
@@ -4494,7 +4535,7 @@ Gr
 Bv
 MW
 yO
-FE
+Cf
 de
 SI
 de
@@ -4517,7 +4558,7 @@ fC
 ce
 ce
 AV
-BG
+yq
 Bv
 "}
 (15,1,1) = {"
@@ -4525,8 +4566,8 @@ Gr
 Vw
 MW
 PE
-FE
-Vy
+Cf
+fm
 hI
 NE
 EA
@@ -4535,7 +4576,7 @@ Wp
 gg
 Vr
 mG
-Un
+WQ
 AD
 oZ
 ci
@@ -4568,7 +4609,7 @@ pq
 tt
 uq
 dw
-dw
+GO
 dw
 dw
 Aw
@@ -4904,7 +4945,7 @@ Gr
 MW
 uC
 MW
-Gr
+Bv
 MW
 MW
 uC
