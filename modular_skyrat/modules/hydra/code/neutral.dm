@@ -67,8 +67,6 @@
 	if(!hydra_quirk.check_heads())
 		to_chat(hydra, "Please set up all of your head names in the quirk menu to use this ability.")
 		return
-
-
 	var/selhead = tgui_input_list(hydra, "Who would you like to speak as?", "Head Selection", hydra_quirk.heads)
 	hydra.real_name = selhead
 	hydra.visible_message(span_notice("[hydra.name] pulls the rest of their heads back; and puts [selhead]'s forward."), \
