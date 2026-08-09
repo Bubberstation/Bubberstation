@@ -1,6 +1,6 @@
 /obj/item/organ/cyberimp/arm/toolkit/power_cord
-	name = "charging implant"
-	desc = "An internal power cord. Useful if you run on elecricity. Not so much otherwise."
+	name = "synth interfacing hardware"
+	desc = "Stores an interfacing tool that provides various functions for synths."
 	items_to_create = list(/obj/item/synth_powercord)
 	attack_verb_continuous = list("pokes")
 	attack_verb_simple = list("poke")
@@ -11,8 +11,8 @@
 // Synth powercord -- plugs into APCs and charges with them
 //
 /obj/item/synth_powercord
-	name = "power cord"
-	desc = "An extendible power cord that can plug into APCs and batteries for charge. Useful if you run on electricity. Not so much otherwise."
+	name = "interfacing tool"
+	desc = "An interfacing tool used to pull charge from APCs and function as hardware for the user's virtual PDA. Try it out with the camera app!"
 	icon = 'icons/obj/clothing/modsuit/mod_modules.dmi'
 	icon_state = "shooting_assistant"
 	sharpness = SHARP_POINTY //this is just so that you can poke things with your poke finger really
