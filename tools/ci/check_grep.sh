@@ -22,14 +22,14 @@ if command -v rg >/dev/null 2>&1; then
 	code_files=( . -g '*.dm' -g '!DMCompiler_linux-x64/**' -g '!tools/ci/od_lints.dm' -g '!tools/CatchUnescapedBrackets/**' -g '!html/changelogs/**' )
 	map_files="_maps/**/**.dmm"
 	shuttle_map_files="_maps/shuttles/**.dmm"
-	code_x_515="code/**/!(__byond_version_compat).dm modular_skyrat/**/**.dm modular_zubbers/**/**.dm" # BUBBER EDIT - Adds modular folders
+	code_x_515="code/**/!(__byond_version_compat).dm modular_skyrat/**/**.dm modular_zubbers/**/**.dm modular_zzmeta/**/**.dm" # BUBBER EDIT - Adds modular folders
 else
 	pcre2_support=0
 	grep=grep
 	code_files=( -r --include='*.dm' --exclude-dir='DMCompiler_linux-x64' --exclude='od_lints.dm' --exclude-dir='CatchUnescapedBrackets' --exclude-dir='changelogs' . )
 	map_files="-r --include=_maps/**/**.dmm"
 	shuttle_map_files="-r --include=_maps/shuttles/**.dmm"
-	code_x_515="-r --include=code/**/!(__byond_version_compat).dm --include=modular_skyrat/**/**.dm --include=modular_zubbers/**/**.dm" # BUBBER EDIT - Adds modular folders
+	code_x_515="-r --include=code/**/!(__byond_version_compat).dm --include=modular_skyrat/**/**.dm --include=modular_zubbers/**/**.dm --include=modular_zzmeta/**/**.dm" # BUBBER EDIT - Adds modular folders
 fi
 
 echo -e "${BLUE}Using grep provider at $(which $grep)${NC}"
