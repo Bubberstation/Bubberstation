@@ -66,6 +66,7 @@
 		/obj/item/soap/nanotrasen/cyborg,
 		/obj/item/storage/bag/trash,
 		/obj/item/mop,
+		/obj/item/reagent_containers/cup/bucket
 		/obj/item/reagent_containers/spray/cyborg_drying, // Group two - Janitorial
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/borghypo/medical,// Group three - Medical
