@@ -10,22 +10,3 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
-
-//Limb Grower
-/datum/design/nitrogen_lungs
-	name = "Standard Nitrogen Lungs"
-	id = "nitrogenlunggeneric"
-	build_type = LIMBGROWER
-	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
-	build_path = /obj/item/organ/lungs/nitrogen
-	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
-
-/datum/design/vox_nitrogen_lungs
-	name = "Vox Nitrogen Lungs"
-	id = "nitrogenlungvox"
-	build_type = LIMBGROWER
-	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
-	build_path = /obj/item/organ/lungs/nitrogen/vox
-	category = list(SPECIES_HUMAN, RND_CATEGORY_INITIAL)
-
-
