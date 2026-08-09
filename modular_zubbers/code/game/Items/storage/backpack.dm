@@ -21,3 +21,9 @@
 	new_left_inhand = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
 	new_right_inhand = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	new_inhand_icon_state = "duffel-med"
+
+/obj/item/storage/backpack/satchel/lizardgas
+	name = "lizard gas satchel"
+	desc = "Useful for holding work materials."
+	icon_state = "satchel-science"
+	inhand_icon_state = "satchel-sci"
