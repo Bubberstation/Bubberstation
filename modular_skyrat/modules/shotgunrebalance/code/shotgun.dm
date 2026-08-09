@@ -19,12 +19,8 @@
 	desc = "A 12 gauge magnesium slug meant for \"setting shit on fire and looking cool while you do it\".\
 	<br><br>\
 	<i>INCENDIARY: Leaves a trail of fire when shot, sets targets aflame.</i>"
-	custom_materials = AMMO_MATS_SHOTGUN_PLASMA
 
 /obj/item/ammo_casing/shotgun/ion
-	custom_materials = AMMO_MATS_SHOTGUN_TIDE
-
-/obj/item/ammo_casing/shotgun/scatterlaser
 	custom_materials = AMMO_MATS_SHOTGUN_TIDE
 
 /obj/item/ammo_casing/shotgun/techshell

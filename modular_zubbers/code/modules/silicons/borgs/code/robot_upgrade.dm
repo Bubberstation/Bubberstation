@@ -69,6 +69,8 @@
 	model_flags = BORG_MODEL_RESEARCH
 	items_to_add = list(/obj/item/experi_scanner/bluespace)
 	items_to_remove = list(/obj/item/experi_scanner)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 2.5)
+
 
 // Borg Dom Aura :)
 /obj/item/borg/upgrade/dominatrixmodule/action(mob/living/silicon/robot/borg, mob/living/user)

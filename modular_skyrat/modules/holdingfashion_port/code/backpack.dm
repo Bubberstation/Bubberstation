@@ -8,6 +8,7 @@
 	item_flags = NO_MAT_REDEMPTION
 
 /obj/item/storage/backpack/holding/satchel
+	custom_materials = null
 	name = "satchel of holding"
 	desc = "A satchel that opens into a localized pocket of bluespace."
 	icon = 'modular_skyrat/modules/holdingfashion_port/icons/storage.dmi'
@@ -25,6 +26,7 @@
 	item_flags = NO_MAT_REDEMPTION
 
 /obj/item/storage/backpack/holding/duffel
+	custom_materials = null
 	name = "duffel bag of holding"
 	desc = "A duffel bag that opens into a localized pocket of bluespace."
 	icon = 'modular_skyrat/modules/holdingfashion_port/icons/storage.dmi'

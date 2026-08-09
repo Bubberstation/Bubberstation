@@ -605,7 +605,7 @@
 	name = "borg expander"
 	desc = "A cyborg resizer, it makes a cyborg huge."
 	icon_state = "module_general"
-	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 100, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2.5)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2.5) //Bubber edit 100 iron -> 1 iron
 
 /obj/item/borg/upgrade/expand/action(mob/living/silicon/robot/borg, mob/living/user = usr)
 	. = ..()

@@ -107,6 +107,11 @@
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_CHASSIS,
 	)
 
+/obj/item/robot_suit
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
+	)
+
 /datum/design/borg_chest
 	name = "Cyborg Torso"
 	id = "borg_chest"
@@ -118,6 +123,11 @@
 	construction_time = 12 SECONDS
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_CHASSIS,
+	)
+
+/obj/item/bodypart/chest/robot
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 8,
 	)
 
 /datum/design/borg_head
@@ -133,6 +143,11 @@
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_CHASSIS,
 	)
 
+/obj/item/bodypart/head/robot
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+	)
+
 /datum/design/borg_l_arm
 	name = "Cyborg Left Arm"
 	id = "borg_l_arm"
@@ -144,6 +159,11 @@
 	construction_time = 8 SECONDS
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_CHASSIS,
+	)
+
+/obj/item/bodypart/arm/left/robot
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
 	)
 
 /datum/design/borg_r_arm
@@ -159,6 +179,11 @@
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_CHASSIS,
 	)
 
+/obj/item/bodypart/arm/right/robot
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
+	)
+
 /datum/design/borg_l_leg
 	name = "Cyborg Left Leg"
 	id = "borg_l_leg"
@@ -170,6 +195,11 @@
 	construction_time = 8 SECONDS
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_CHASSIS,
+	)
+
+/obj/item/bodypart/leg/left/robot
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
 	)
 
 /datum/design/borg_r_leg
@@ -184,3 +214,9 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_CHASSIS,
 	)
+
+/obj/item/bodypart/leg/right/robot
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
+	)
+
