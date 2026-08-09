@@ -1,12 +1,3 @@
-/datum/job
-	var/sec_antag_cap = 0
-
-/datum/job/security_officer
-	sec_antag_cap = 1.5
-
-/datum/job/warden
-	sec_antag_cap = 1
-
 /datum/job/head_of_security
 	sec_antag_cap = 1.5
 

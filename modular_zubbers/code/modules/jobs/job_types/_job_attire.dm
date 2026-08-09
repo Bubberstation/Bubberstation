@@ -16,9 +16,6 @@
 /datum/job/captain
 	akula_outfit = /datum/outfit/akula/command
 
-/datum/job/cargo_technician
-	akula_outfit = /datum/outfit/akula/cargo_technician
-
 /datum/job/chaplain
 	akula_outfit = /datum/outfit/akula
 
@@ -69,9 +66,6 @@
 /datum/job/paramedic
 	akula_outfit = /datum/outfit/akula/doctor
 
-/datum/job/prisoner
-	akula_outfit = /datum/outfit/akula
-
 /datum/job/quartermaster
 	akula_outfit = /datum/outfit/akula/cargo_technician
 
@@ -84,9 +78,6 @@
 /datum/job/scientist
 	akula_outfit = /datum/outfit/akula/scientist
 
-/datum/job/security_officer
-	akula_outfit = /datum/outfit/akula/security_officer
-
 /datum/job/shaft_miner
 	akula_outfit = /datum/outfit/akula/cargo_technician
 
@@ -95,9 +86,6 @@
 
 /datum/job/virologist
 	akula_outfit = /datum/outfit/akula/doctor
-
-/datum/job/warden
-	akula_outfit = /datum/outfit/akula/security_officer
 
 // Im not certain if having these matter
 /datum/job/syndicate_cybersun_captain

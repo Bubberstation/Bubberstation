@@ -74,21 +74,9 @@
 	blacklist_dresscode_slots = list(ITEM_SLOT_EARS,ITEM_SLOT_BELT,ITEM_SLOT_ID,ITEM_SLOT_BACK) //headset, PDA, ID, backpack are important items
 	required_languages = null
 
-/datum/job/prisoner
-	required_languages = null
-
 //Security
-/datum/job/security_officer
-	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
-	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
-	is_hand_required = TRUE
 
 /datum/job/detective
-	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
-	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
-	is_hand_required = TRUE
-
-/datum/job/warden
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
 	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
 	is_hand_required = TRUE
@@ -158,9 +146,6 @@
 /datum/job/janitor
 	required_languages = null
 
-/datum/job/prisoner
-	required_languages = null
-
 /datum/job/orderly
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
@@ -200,8 +185,6 @@
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
 // CARGO
-/datum/job/cargo_technician
-	required_languages = null
 
 /datum/job/shaft_miner
 	required_languages = null

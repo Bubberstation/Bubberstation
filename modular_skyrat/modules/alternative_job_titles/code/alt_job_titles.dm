@@ -4,9 +4,7 @@
  * time at all to add more or add some for a job that doesn't have any.
  */
 
-/datum/job
-	/// The list of alternative job titles people can pick from, null by default.
-	var/list/alt_titles = null
+
 
 
 /datum/job/ai
@@ -139,25 +137,6 @@
 		"Station Commander",
 		"Facility Director",
 		"Chief Executive Officer",
-	)
-
-/datum/job/cargo_technician
-	alt_titles = list(
-		"Cargo Technician",
-		"Warehouse Technician",
-		"Commodities Trader",
-		"Deck Worker",
-		"Inventory Associate",
-		"Mailman",
-		"Mailwoman",
-		"Mail Carrier",
-		"Merchantman",
-		"Merchantwoman",
-		"Postman",
-		"Postwoman",
-		"Receiving Clerk",
-		"Union Associate",
-		"Crate Pusher",
 	)
 
 /datum/job/chaplain
@@ -391,15 +370,6 @@
 		"Trauma Team Responder",
 	)
 
-/datum/job/prisoner
-	alt_titles = list(
-		"Prisoner",
-		"Minimum Security Prisoner",
-		"Maximum Security Prisoner",
-		"SuperMax Security Prisoner",
-		"Protective Custody Prisoner",
-	)
-
 /datum/job/psychologist
 	alt_titles = list(
 		"Psychologist",
@@ -465,21 +435,6 @@
 		"Research Assistant",
 	)
 
-/datum/job/security_officer
-	alt_titles = list(
-		"Security Officer",
-		"Guard",
-		"Security Guard",
-		"Security Constable",
-		"Peacekeeper",
-		"Security Operative",
-		"Security Cadet",
-		"Junior Officer",
-		"Security Assistant",
-		"Security Specialist",
-		"Defense Contractor",
-	)
-
 /datum/job/shaft_miner
 	alt_titles = list(
 		"Shaft Miner",
@@ -512,19 +467,4 @@
 		"Network Engineer",
 		"Sysadmin",
 		"Tram Technician",
-	)
-
-
-/datum/job/warden
-	alt_titles = list(
-		"Warden",
-		"Armory Superintendent",
-		"Brig Sergeant",
-		"Brig Sentry",
-		"Brig Governor",
-		"Deputy Commissioner of Security",
-		"Dispatch Officer",
-		"Deputy Commissioner",
-		"Jailer",
-		"Master-at-Arms",
 	)
