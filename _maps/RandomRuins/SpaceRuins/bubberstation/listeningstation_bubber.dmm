@@ -360,6 +360,9 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation)
 "lu" = (
@@ -1168,10 +1171,6 @@
 /area/ruin/space/has_grav/listeningstation)
 "OW" = (
 /obj/structure/barricade/wooden/crude,
-/obj/structure/cable,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/broken_floor,
@@ -1180,9 +1179,7 @@
 /obj/machinery/door/airlock/hatch{
 	name = "Emergency Backup"
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/plating,
+/turf/open/floor/iron/grimy,
 /area/ruin/space/has_grav/listeningstation)
 "PH" = (
 /obj/structure/table/wood,
