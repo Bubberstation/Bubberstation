@@ -366,7 +366,6 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/mod/construction/plating/engineering = 3,
 		/obj/item/mod/construction/plating/medical = 3,
 		/obj/item/mod/construction/plating/security = 1,
-		/obj/item/mod/module/ash_accretion = 5,
 		/obj/item/mod/module/atrocinator = 5,
 		/obj/item/mod/module/balloon = 100,
 		/obj/item/mod/module/bikehorn = 75,
