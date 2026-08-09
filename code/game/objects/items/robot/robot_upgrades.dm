@@ -385,7 +385,7 @@
 	icon_state = "module_medical"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/medical)
-	model_flags = list(BORG_MODEL_MEDICAL)
+	model_flags = BORG_MODEL_MEDICAL
 	var/list/additional_reagents = list()
 
 /obj/item/borg/upgrade/hypospray/action(mob/living/silicon/robot/borg, mob/living/user = usr)
