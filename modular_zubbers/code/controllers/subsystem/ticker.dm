@@ -15,6 +15,13 @@
 	)
 	log_runtime("The quote of the round will be chosen in [DisplayTimeText(quote_of_the_round_record_start,1)].")
 
+/datum/controller/subsystem/ticker/declare_completion(was_forced = END_ROUND_AS_NORMAL)
+	handle_antag_tickets()
+	handle_quote_of_the_round()
+	handle_credits()
+
+	. = ..()
+
 /datum/controller/subsystem/ticker/proc/get_job_estimation(list/players)
 	var/list/player_ready_data = list()
 	sortTim(players, GLOBAL_PROC_REF(cmp_text_asc))
@@ -53,13 +60,6 @@
 		player_ready_data.Insert(1, "Job Estimation:")
 		player_ready_data.Insert(1, "")
 	return player_ready_data
-
-/datum/controller/subsystem/ticker/declare_completion(was_forced = END_ROUND_AS_NORMAL)
-	handle_antag_tickets()
-	handle_quote_of_the_round()
-	handle_credits()
-
-	. = ..()
 
 /datum/controller/subsystem/ticker/proc/handle_antag_tickets()
 	set waitfor = FALSE
