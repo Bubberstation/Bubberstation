@@ -64,10 +64,9 @@
 	if(!hydra_quirk.original_name) // sets the archived 'real' name if not set.
 		hydra_quirk.original_name = hydra.real_name
 
-	if(!hydra_quirk.heads_checked)
-		if(!hydra_quirk.check_heads())
-			to_chat(hydra, "Please set up all of your head names in the quirk menu to use this ability.")
-			return
+	if(!hydra_quirk.check_heads())
+		to_chat(hydra, "Please set up all of your head names in the quirk menu to use this ability.")
+		return
 
 
 	var/selhead = tgui_input_list(hydra, "Who would you like to speak as?", "Head Selection", hydra_quirk.heads)
@@ -76,6 +75,8 @@
 							span_notice("You are now talking as [selhead]!"), ignored_mobs=owner)
 
 /datum/quirk/hydra/proc/check_heads()
+	if(hydra_quirk.heads_checked)
+		return TRUE
 	heads = list(
 		quirk_holder?.client?.prefs?.read_preference(/datum/preference/text/hydra/name1),
 		quirk_holder?.client?.prefs?.read_preference(/datum/preference/text/hydra/name2),
