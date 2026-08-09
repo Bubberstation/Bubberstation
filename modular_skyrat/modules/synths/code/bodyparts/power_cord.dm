@@ -38,7 +38,6 @@
 	var/obj/item/modular_computer/synthpda = get_user_brain_pda(user)
 	if(!isnull(synthpda))
 		return synthpda.interact_with_atom(interacting_with, user, modifiers)
-
 	. = ..()
 
 /obj/item/synth_powercord/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
