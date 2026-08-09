@@ -38,6 +38,7 @@
 		/datum/preference/text/hydra/name2,
 		/datum/preference/text/hydra/name3,
 	)
+
 /datum/preference/text/hydra
 	abstract_type = /datum/preference/text/hydra
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
