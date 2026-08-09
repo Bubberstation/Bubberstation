@@ -288,9 +288,9 @@
 				/obj/item/storage/bag/xenoarch/adv
 				)
 
-/obj/item/borg/upgrade/tarkon/tarkon_utility // Lesser used on tarkon things like chef upgrades, and janitorial. Might get subdivided further since my GOD theres alot here
-	name = "Tarkon Utility Module"
-	desc = "Adds multi-purpose tools, including cleaning supplies, and basic service gear."
+/obj/item/borg/upgrade/tarkon/tarkon_service // Lesser used on tarkon things like chef upgrades, and janitorial. Might get subdivided further since my GOD theres alot here
+	name = "Tarkon Service Module"
+	desc = "Adds multi-purpose tools, including cooking supplies, and basic service gear."
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_tarkon"
 	require_model = TRUE
@@ -310,17 +310,11 @@
 		/obj/item/razor,
 		/obj/item/rag,
 		/obj/item/lighter,
-		/obj/item/storage/bag/trash/bluespace/cyborg,
-		/obj/item/mop/advanced,
-		/obj/item/cautery/prt,
-		/obj/item/plunger,
-		/obj/item/pushbroom,
 		/obj/item/reagent_containers/borghypo/condiment_synthesizer, // Service borgs get 30+ upgrades. Woe.
 		/obj/item/knife/kitchen/silicon,
 		/obj/item/borg/apparatus/service,
 		/obj/item/rolling_table_dock,
 		/obj/item/borg/cookbook,
-		/obj/item/robot_model/service,
 		/obj/item/pen,
 		/obj/item/toy/crayon/spraycan/borg,
 		/obj/item/instrument/guitar,
@@ -332,7 +326,25 @@
 		/obj/item/shovel/spade,
 		/obj/item/plant_analyzer,
 		/obj/item/storage/bag/plants
-						)
+		)
+
+/obj/item/borg/upgrade/tarkon/tarkon_janitor
+	name = "Tarkon Janitorial Module"
+	desc = "Adds cleaning suppplies, and essential janitorial gear."
+	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
+	icon_state = "module_tarkon"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/tarkon)
+	model_flags = BORG_MODEL_TARKON
+	items_to_add = list(
+		/obj/item/hand_labeler/cyborg,
+		/obj/item/rag,
+		/obj/item/storage/bag/trash/bluespace/cyborg,
+		/obj/item/mop/advanced,
+		/obj/item/cautery/prt,
+		/obj/item/plunger,
+		/obj/item/pushbroom
+		)
 	items_to_remove = list(
 		/obj/item/storage/bag/trash,
 		/obj/item/mop
@@ -448,11 +460,27 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_TARKON
 	)
 
-/datum/design/borg_upgrade_tarkon_utility
+/datum/design/borg_upgrade_tarkon_service
 	name = "Port Tarkon Service Upgrades"
-	id = "borg_upgrade_tarkon_utility"
+	id = "borg_upgrade_tarkon_service"
 	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/tarkon/tarkon_utility
+	build_path = /obj/item/borg/upgrade/tarkon/tarkon_service
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 5,
+	)
+	construction_time = 40
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_TARKON
+	)
+
+/datum/design/borg_upgrade_tarkon_janitor
+	name = "Port Tarkon Janitorial Upgrades"
+	id = "borg_upgrade_tarkon_janitor"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/tarkon/tarkon_janitor
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD

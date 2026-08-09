@@ -67,7 +67,8 @@
 		"borg_upgrade_tarkon_security",
 		"borg_upgrade_tarkon_cargo",
 		"borg_upgrade_tarkon_research",
-		"borg_upgrade_tarkon_utility",
+		"borg_upgrade_tarkon_service",
+		"borg_upgrade_tarkon_janitor",
 		"borg_upgrade_tarkon_main"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS) // They will likely have all other borg tech by now, no need to gate it further
