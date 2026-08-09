@@ -73,7 +73,7 @@
 							span_notice("You are now talking as [selhead]!"), ignored_mobs=owner)
 
 /datum/quirk/hydra/proc/check_heads()
-	if(hydra_quirk.heads_checked)
+	if(heads_checked)
 		return TRUE
 	heads = list(
 		quirk_holder?.client?.prefs?.read_preference(/datum/preference/text/hydra/name1),
