@@ -49,6 +49,3 @@
 		)
 
 ////////// JOBS BELOW ///////////
-
-/datum/job/head_of_security
-	head_announce = list(RADIO_CHANNEL_SECURITY)

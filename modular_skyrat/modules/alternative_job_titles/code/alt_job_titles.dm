@@ -129,16 +129,6 @@
 		"Prison Guard",
 	)
 
-/datum/job/captain
-	alt_titles = list(
-		"Captain",
-		"Commanding Officer",
-		"Site Manager",
-		"Station Commander",
-		"Facility Director",
-		"Chief Executive Officer",
-	)
-
 /datum/job/chaplain
 	alt_titles = list(
 		"Chaplain",
@@ -253,17 +243,6 @@
 		"Synthetic",
 	)
 
-/datum/job/detective
-	alt_titles = list(
-		"Detective",
-		"Forensic Scientist",
-		"Forensic Technician",
-		"Private Investigator",
-		"CID Officer",
-		"Criminal Investigator",
-		"Gumshoe",
-	)
-
 /datum/job/doctor
 	alt_titles = list(
 		"Medical Doctor",
@@ -295,19 +274,6 @@
 		"Crew Supervisor",
 		"Employment Officer",
 		"Executive Officer",
-	)
-
-/datum/job/head_of_security
-	alt_titles = list(
-		"Head of Security",
-		"Commander of the Guard",
-		"Commissioner of Security",
-		"Chief Constable",
-		"Chief of Security",
-		"Security Commander",
-		"Chief Security Officer",
-		"Sheriff",
-		"Security Commissioner",
 	)
 
 /datum/job/janitor

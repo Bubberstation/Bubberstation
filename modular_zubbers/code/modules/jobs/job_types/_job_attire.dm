@@ -13,9 +13,6 @@
 /datum/job/botanist
 	akula_outfit = /datum/outfit/akula
 
-/datum/job/captain
-	akula_outfit = /datum/outfit/akula/command
-
 /datum/job/chaplain
 	akula_outfit = /datum/outfit/akula
 
@@ -38,17 +35,11 @@
 /datum/job/curator
 	akula_outfit = /datum/outfit/akula
 
-/datum/job/detective
-	akula_outfit = /datum/outfit/akula/security_officer
-
 /datum/job/geneticist
 	akula_outfit = /datum/outfit/akula/scientist
 
 /datum/job/head_of_personnel
 	akula_outfit = /datum/outfit/akula/command
-
-/datum/job/head_of_security
-	akula_outfit = /datum/outfit/akula/security_officer
 
 /datum/job/janitor
 	akula_outfit = /datum/outfit/akula

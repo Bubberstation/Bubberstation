@@ -6,11 +6,6 @@
 
 //Security
 
-/datum/job/detective
-	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
-	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
-	is_hand_required = TRUE
-
 /datum/job/blueshield
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
 	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
@@ -22,17 +17,9 @@
 	is_hand_required = TRUE
 
 // Command
-/datum/job/captain
-	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
-	is_hand_required = TRUE
 
 /datum/job/nanotrasen_consultant
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
-	is_hand_required = TRUE
-
-/datum/job/head_of_security
-	banned_quirks = list(SEC_RESTRICTED_QUIRKS, HEAD_RESTRICTED_QUIRKS)
-	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
 	is_hand_required = TRUE
 
 /datum/job/chief_medical_officer
