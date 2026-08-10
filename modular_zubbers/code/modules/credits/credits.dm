@@ -9,31 +9,6 @@ GLOBAL_VAR_INIT(end_credits_song, null)
 GLOBAL_VAR_INIT(end_credits_title, null)
 GLOBAL_LIST(end_titles)
 
-/datum/controller/subsystem/ticker/declare_completion(force_ending)
-
-	if(!GLOB.end_titles)
-		GLOB.end_titles = generate_titles()
-
-	for(var/client/C)
-		if(!C?.credits)
-			C?.RollCredits()
-
-/* 	for(var/thing in GLOB.clients)
-		var/client/C = thing
-		if (!C)
-			continue */
-	. = ..()
-
-/* /datum/controller/subsystem/ticker/show_roundend_report(client/C, report_type = null)
-	. = ..()
-	for(var/iteration in GLOB.clients)
-		var/client/clients = iteration
-		if(!clients.credits)
-			clients.RollCredits() */
-/* /client
-	var/list/credits */
-
-
 /client/proc/RollCredits()
 	set waitfor = FALSE
 	var/credit_pref = mob.client?.prefs?.read_preference(/datum/preference/toggle/see_credits)

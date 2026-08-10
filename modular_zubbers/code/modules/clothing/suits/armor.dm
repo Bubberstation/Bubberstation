@@ -99,6 +99,7 @@
 	allowed += list(
 		/obj/item/fireaxe/metal_h2_axe,
 	)
+	AddElement(/datum/element/radiation_protected_clothing)
 
 /datum/armor/armor_elder_atmosian
 	melee = 40
