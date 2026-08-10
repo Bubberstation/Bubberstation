@@ -754,7 +754,8 @@
 	icon_state = "baseball_bat"
 	custom_materials = list()
 	resistance_flags = NONE
-	force = 12
+	force = 11
+	obj_flags = UNIQUE_RENAME
 
 /obj/item/melee/baseball_bat/reagent_forged/Initialize(mapload)
 	. = ..()

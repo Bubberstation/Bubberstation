@@ -22,6 +22,7 @@
 	throwforce = 14
 	force = 8
 	material_flags = MATERIAL_EFFECTS | MATERIAL_AFFECT_STATISTICS | MATERIAL_ADD_PREFIX
+	obj_flags = UNIQUE_RENAME
 
 	//is the hammer primed (ready to fire) or released (safe)?
 	var/hammer_is_primed = FALSE
