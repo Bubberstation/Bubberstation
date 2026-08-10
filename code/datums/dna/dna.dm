@@ -92,7 +92,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	//BUBBER EDIT ADDITION BEGIN - CUSTOMIZATION
 	new_dna.mutant_bodyparts = LAZYCOPY(mutant_bodyparts)
 	new_dna.body_markings = body_markings.Copy()
-	new_dna.update_body_size()
 	//BUBBER EDIT ADDITION END
 	new_dna.temporary_mutations = LAZYLISTDUPLICATE(temporary_mutations)
 	new_dna.mutation_index = mutation_index
@@ -443,8 +442,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 
 	apply_customizable_dna_features_to_species()
 	dna.unique_features = dna.generate_unique_features()
-
-	dna.update_body_size()
 	// BUBBER EDIT ADDITION END
 	dna.species.on_species_gain(src, old_species, pref_load, icon_update, replace_missing)
 	log_mob_tag("TAG: [tag] SPECIES: [key_name(src)] \[[mrace]\]")

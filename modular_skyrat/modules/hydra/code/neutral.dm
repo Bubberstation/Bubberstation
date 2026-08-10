@@ -9,38 +9,29 @@
 	icon = FA_ICON_HORSE_HEAD
 	// remember what the name was before activation
 	var/original_name
+	var/datum/action/innate/hydra_head/head_spell
+	var/datum/action/innate/hydra_reset/reset_spell
 
 /datum/quirk/hydra/add(client/client_source)
-	var/mob/living/carbon/human/hydra = quirk_holder
-	var/datum/action/innate/hydra/spell = new(hydra)
-	var/datum/action/innate/hydrareset/resetspell = new(hydra)
-	spell.Grant(hydra)
-	spell.owner = hydra
-	resetspell.Grant(hydra)
-	resetspell.owner = hydra
+	head_spell = new()
+	reset_spell = new()
+	head_spell.Grant(quirk_holder)
+	reset_spell.Grant(quirk_holder)
 
-/datum/action/innate/hydra
+/datum/quirk/hydra/remove()
+	head_spell.Remove(quirk_holder)
+	reset_spell.Remove(quirk_holder)
+	QDEL_NULL(head_spell)
+	QDEL_NULL(reset_spell)
+	quirk_holder.real_name = original_name
+
+/datum/action/innate/hydra_head
 	name = "Switch head"
 	desc = "Switch between each of the heads on your body."
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "art_summon"
 
-/datum/action/innate/hydrareset
-	name = "Reset Speech"
-	desc = "Go back to speaking as a whole."
-	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
-	button_icon_state = "art_summon"
-
-/datum/action/innate/hydrareset/Activate()
-	var/mob/living/carbon/human/hydra = owner
-	var/datum/quirk/hydra/hydra_quirk = hydra.get_quirk(/datum/quirk/hydra)
-	if(!hydra_quirk.original_name) // sets the archived 'real' name if not set.
-		hydra_quirk.original_name = hydra.real_name
-	hydra.real_name = hydra_quirk.original_name
-	hydra.visible_message(span_notice("[hydra.name] pushes all three heads forwards; they seem to be talking as a collective."), \
-							span_notice("You are now talking as [hydra_quirk.original_name]!"), ignored_mobs=owner)
-
-/datum/action/innate/hydra/Activate() //Oops, all hydra!
+/datum/action/innate/hydra_head/Activate() //Oops, all hydra!
 	var/mob/living/carbon/human/hydra = owner
 	var/datum/quirk/hydra/hydra_quirk = hydra.get_quirk(/datum/quirk/hydra)
 	if(!hydra_quirk.original_name) // sets the archived 'real' name if not set.
@@ -50,3 +41,18 @@
 	hydra.real_name = selhead
 	hydra.visible_message(span_notice("[hydra.name] pulls the rest of their heads back; and puts [selhead]'s forward."), \
 							span_notice("You are now talking as [selhead]!"), ignored_mobs=owner)
+
+/datum/action/innate/hydra_reset
+	name = "Reset Speech"
+	desc = "Go back to speaking as a whole."
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon_state = "art_summon"
+
+/datum/action/innate/hydra_reset/Activate()
+	var/mob/living/carbon/human/hydra = owner
+	var/datum/quirk/hydra/hydra_quirk = hydra.get_quirk(/datum/quirk/hydra)
+	if(!hydra_quirk.original_name) // sets the archived 'real' name if not set.
+		hydra_quirk.original_name = hydra.real_name
+	hydra.real_name = hydra_quirk.original_name
+	hydra.visible_message(span_notice("[hydra.name] pushes all three heads forwards; they seem to be talking as a collective."), \
+							span_notice("You are now talking as [hydra_quirk.original_name]!"), ignored_mobs=owner)

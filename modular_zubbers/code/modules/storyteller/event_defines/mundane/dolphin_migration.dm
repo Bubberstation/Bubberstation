@@ -5,7 +5,6 @@
 /datum/round_event_control/dolphin_migration
 	name = "Dolphin Migration"
 	typepath = /datum/round_event/dolphin_migration
-	weight = 15
 	min_players = 0 // Neutral mobs, no destruction, just spawn whenever
 	earliest_start = 10 MINUTES
 	max_occurrences = 6
@@ -14,6 +13,8 @@
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 3
 
+	weight = 5
+	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_SPACE, TAG_NEUTRAL)
 
 /datum/round_event/dolphin_migration

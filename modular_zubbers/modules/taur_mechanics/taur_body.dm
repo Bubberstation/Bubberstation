@@ -193,7 +193,7 @@
 	return ..()
 
 /obj/item/organ/taur_body/proc/get_riding_offset(oversized = FALSE)
-	var/size_scaling = (owner.dna.features["body_size"] / BODY_SIZE_NORMAL) - 1
+	var/size_scaling = (owner.current_size / RESIZE_DEFAULT_SIZE) - 1
 	var/scaling_mult = 1 + (size_scaling * riding_offset_scaling_mult)
 
 	return list(
