@@ -49,5 +49,3 @@
 	)
 	crate_name = "Battle Rifle Crate"
 	order_flags = ORDER_CONTRABAND
-
-
