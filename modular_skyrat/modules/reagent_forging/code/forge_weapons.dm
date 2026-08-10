@@ -12,6 +12,7 @@
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 	obj_flags = UNIQUE_RENAME
 	abstract_type = /obj/item/melee/forged_reagent_weapon
+	demolition_mod = 0.7
 
 	//keeps track of how much force was taken away from incomplete forging
 	var/completion_force_penalty = 0
