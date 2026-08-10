@@ -1225,13 +1225,19 @@
 		limb_alpha = human_owner.dna.features[limb_alpha_key]
 	// BUBBER EDIT ADDITION END
 
+	// BUBBER EDIT ADDITION START - Hand marking fixes
+	markings_alpha = owner_species.markings_alpha // Has no default, and a null alpha renders nothing
+
 	if(body_zone in owner_species.body_markings)
 		markings = LAZYCOPY(owner_species.body_markings[body_zone])
-		if(aux_zone && (aux_zone in owner_species.body_markings))
-			aux_zone_markings = LAZYCOPY(owner_species.body_markings[aux_zone])
-		markings_alpha = owner_species.markings_alpha
 	else
 		markings = list()
+
+	if(aux_zone && (aux_zone in owner_species.body_markings))
+		aux_zone_markings = LAZYCOPY(owner_species.body_markings[aux_zone])
+	else
+		aux_zone_markings = list()
+	// BUBBER EDIT ADDITION END
 	// SKYRAT EDIT END
 	return TRUE
 
