@@ -1,8 +1,4 @@
 // Misc
-/datum/job/assistant
-	no_dresscode = TRUE
-	blacklist_dresscode_slots = list(ITEM_SLOT_EARS,ITEM_SLOT_BELT,ITEM_SLOT_ID,ITEM_SLOT_BACK) //headset, PDA, ID, backpack are important items
-	required_languages = null
 
 //Security
 
@@ -80,12 +76,6 @@
 
 /datum/job/bouncer
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
-
-/datum/job/barber
-	required_languages = null
-
-/datum/job/bartender
-	required_languages = null
 
 /datum/job/chaplain
 	required_languages = null

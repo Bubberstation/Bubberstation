@@ -87,8 +87,6 @@
 
 
 // Service
-/datum/job/bartender
-	internship_use_self_exp_type = TRUE
 
 /datum/job/janitor
 	internship_use_self_exp_type = TRUE
@@ -98,6 +96,3 @@
 
 /datum/job/cook
 	internship_use_self_exp_type = TRUE
-
-/datum/job/assistant
-	can_be_intern = FALSE

@@ -14,38 +14,6 @@
 		"Station Intelligence",
 	)
 
-/datum/job/assistant
-	alt_titles = list(
-		"Assistant",
-		"Ambassador",
-		"Artist",
-		"Actor",
-		"Businessman",
-		"Businesswoman",
-		"Butler",
-		"Colonist",
-		"Contractor",
-		"Civilian",
-		"Duchess",
-		"Duke",
-		"Diplomat",
-		"Entertainer",
-		"Freelancer",
-		"Fitness Instructor",
-		"Fisher",
-		"Fisherman",
-		"Fisherwoman",
-		"Hobbyist",
-		"Tourist",
-		"Trader",
-		"Performer",
-		"Personal Physician",
-		"Off-Duty Crew",
-		"Off-Duty Staff",
-		"Musician",
-		"Waiter",
-	)
-
 /datum/job/atmospheric_technician
 	alt_titles = list(
 		"Atmospheric Technician",
@@ -54,26 +22,6 @@
 		"Life Support Technician",
 		"HVAC Engineer",
 		"Habitability Technician",
-	)
-
-/datum/job/barber
-	alt_titles = list(
-		"Barber",
-		"Aethestician",
-		"Colorist",
-		"Masseuse",
-		"Salon Manager",
-		"Salon Technician",
-		"Stylist",
-	)
-
-/datum/job/bartender
-	alt_titles = list(
-		"Bartender",
-		"Barista",
-		"Barkeeper",
-		"Tavernkeeper",
-		"Mixologist",
 	)
 
 /datum/job/bitrunner
