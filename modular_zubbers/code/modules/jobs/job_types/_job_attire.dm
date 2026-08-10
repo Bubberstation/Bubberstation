@@ -1,6 +1,3 @@
-/datum/job/atmospheric_technician
-	akula_outfit = /datum/outfit/akula/station_engineer
-
 /datum/job/bitrunner
 	akula_outfit = /datum/outfit/akula/cargo_technician
 
@@ -12,9 +9,6 @@
 
 /datum/job/chemist
 	akula_outfit = /datum/outfit/akula
-
-/datum/job/chief_engineer
-	akula_outfit = /datum/outfit/akula/station_engineer
 
 /datum/job/chief_medical_officer
 	akula_outfit = /datum/outfit/akula/doctor
@@ -65,9 +59,6 @@
 
 /datum/job/shaft_miner
 	akula_outfit = /datum/outfit/akula/cargo_technician
-
-/datum/job/station_engineer
-	akula_outfit = /datum/outfit/akula/station_engineer
 
 /datum/job/virologist
 	akula_outfit = /datum/outfit/akula/doctor
@@ -129,9 +120,6 @@
 	akula_outfit = /datum/outfit/akula/security_officer
 
 /datum/job/bouncer
-	akula_outfit = /datum/outfit/akula/security_officer
-
-/datum/job/engineering_guard
 	akula_outfit = /datum/outfit/akula/security_officer
 
 /datum/job/fleetmaster

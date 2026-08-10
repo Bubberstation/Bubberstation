@@ -1,9 +1,3 @@
-/datum/job/engineering_guard
-	alt_titles = list(
-		"Engineering Guard",
-		"Atmospheric Security",
-	)
-
 /datum/job/orderly/New()
 	alt_titles |= list(
 		"Medical Attendant",

@@ -22,9 +22,7 @@
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
 	is_hand_required = TRUE
 
-/datum/job/chief_engineer
-	banned_quirks = list(HEAD_RESTRICTED_QUIRKS, "Paraplegic" = TRUE)
-	is_hand_required = TRUE
+
 
 /datum/job/research_director
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
@@ -79,17 +77,6 @@
 
 /datum/job/chaplain
 	required_languages = null
-
-// ENGINEERING
-
-/datum/job/station_engineer
-	required_languages = null
-
-/datum/job/atmospheric_technician
-	required_languages = null
-
-/datum/job/engineering_guard
-	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
 // CARGO
 

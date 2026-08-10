@@ -14,16 +14,6 @@
 		"Station Intelligence",
 	)
 
-/datum/job/atmospheric_technician
-	alt_titles = list(
-		"Atmospheric Technician",
-		"Emergency Fire Technician",
-		"Firefighter",
-		"Life Support Technician",
-		"HVAC Engineer",
-		"Habitability Technician",
-	)
-
 /datum/job/bitrunner
 	alt_titles = list(
 		"Bitrunner",
@@ -107,15 +97,6 @@
 		"Pharmacist",
 		"Pharmacologist",
 		"Trainee Pharmacist",
-	)
-
-/datum/job/chief_engineer
-	alt_titles = list(
-		"Chief Engineer",
-		"Head Crystallomancer",
-		"Engineering Foreman",
-		"Head of Engineering",
-		"Chief Technical Officer",
 	)
 
 /datum/job/chief_medical_officer
@@ -360,25 +341,4 @@
 		"Apprentice Miner",
 		"Dredger",
 		"Contract Miner",
-	)
-
-/datum/job/station_engineer
-	alt_titles = list(
-		"Station Engineer",
-		"Electrician",
-		"Emergency Damage Control Technician",
-		"Engine Technician",
-		"EVA Technician",
-		"Mechanic",
-		"Apprentice Engineer",
-		"Repairs Technician",
-	)
-
-/datum/job/telecomms_specialist
-	alt_titles = list(
-		"Telecomms Specialist",
-		"Wireless Operator",
-		"Network Engineer",
-		"Sysadmin",
-		"Tram Technician",
 	)
