@@ -36,7 +36,7 @@
 /datum/species/create_pref_traits_perks()
 	. = ..()
 
-	if (TRAIT_WATER_BREATHING in inherent_traits)
+	if (TRAIT_NODROWN in inherent_traits)
 		. += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_FISH,
