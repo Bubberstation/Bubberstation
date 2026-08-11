@@ -2,7 +2,7 @@
 	name = "trauma surgery"
 	rnd_name = "Neurectomy (Advanced Brain Surgery)"
 	desc = "An invasive surgical procedure which guarantees removal of deep-rooted brain traumas, but takes a while for the body to recover..."
-	operation_flags = parent_type::operation_flags &~OPERATION_LOOPING
+	operation_flags = OPERATION_AFFECTS_MOOD | OPERATION_NOTABLE | OPERATION_PRIORITY_NEXT_STEP
 	time = 15 SECONDS
 	var/resilience_level = TRAUMA_RESILIENCE_LOBOTOMY
 	var/reagent_1_type = /datum/reagent/medicine/neurine
