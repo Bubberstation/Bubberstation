@@ -13,7 +13,7 @@
 	var/datum/reagent/reagent_1 = reagent_1_type
 	var/datum/reagent/reagent_2 = reagent_2_type
 	if(!isnull(reagent_2_type))
-		return ..() + list("the patient must be dosed with >= [reagent_1_amount]u [reagent_1.name] and >= [reagent_2_amount]u [reagent_2.name]")
+		return ..() + list("the patient must be dosed with >= [reagent_1_amount]u [reagent_1.name]", "the patient must be dosed with >= [reagent_2_amount]u [reagent_2.name]")
 	else
 		return ..() + list("the patient must be dosed with >= [reagent_1_amount]u [reagent_1.name]")
 
