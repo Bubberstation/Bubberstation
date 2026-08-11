@@ -4,47 +4,73 @@
 	desc = "An invasive surgical procedure which guarantees removal of deep-rooted brain traumas, but takes a while for the body to recover..."
 	operation_flags = OPERATION_AFFECTS_MOOD | OPERATION_NOTABLE | OPERATION_PRIORITY_NEXT_STEP
 	time = 15 SECONDS
+	implements = list(
+		TOOL_SCALPEL = 1.05,
+		/obj/item/melee/energy/sword = 0.55,
+		TOOL_SCREWDRIVER = 2.85,
+		/obj/item/pen = 6.67,
+	)
 	var/resilience_level = TRAUMA_RESILIENCE_LOBOTOMY
-	var/reagent_1_type = /datum/reagent/medicine/neurine
+	var/datum/reagent/reagent_1_type = /datum/reagent/medicine/neurine
 	var/reagent_1_amount = 3
-	var/reagent_2_type
+	var/datum/reagent/reagent_2_type
 	var/reagent_2_amount
 
 /datum/surgery_operation/organ/repair/brain/advanced/all_required_strings()
-	var/datum/reagent/reagent_1 = reagent_1_type
-	var/datum/reagent/reagent_2 = reagent_2_type
 	if(!isnull(reagent_2_type))
-		return ..() + list("the patient must be dosed with >= [reagent_1_amount]u [reagent_1.name]", "the patient must be dosed with >= [reagent_2_amount]u [reagent_2.name]")
+		return ..() + list("the patient must be dosed with >= [reagent_1_amount]u [reagent_1_type.name]", "the patient must be dosed with >= [reagent_2_amount]u [reagent_2_type.name]")
 	else
-		return ..() + list("the patient must be dosed with >= [reagent_1_amount]u [reagent_1.name]")
+		return ..() + list("the patient must be dosed with >= [reagent_1_amount]u [reagent_1_type.name]")
 
 /datum/surgery_operation/organ/repair/brain/advanced/state_check(obj/item/organ/brain/organ)
 	var/mob/living/carbon/human/brain_owner = organ.owner
 	if(!istype(brain_owner))
 		return FALSE
 
+	var/max_trauma_level = 0
+	if(length(brain_owner.get_traumas()))
+		for(var/active_trauma in brain_owner.get_traumas())
+			var/datum/brain_trauma/trauma = active_trauma
+			if(trauma.resilience > max_trauma_level)
+				max_trauma_level = trauma.resilience
+		if(max_trauma_level == resilience_level)
+			return TRUE
+
+	return FALSE
+
+/datum/surgery_operation/organ/repair/brain/advanced/pre_preop(atom/movable/operating_on, mob/living/surgeon, tool, list/operation_args)
+	var/obj/item/organ/brain/human_brain = operating_on
+	var/mob/living/carbon/human/brain_owner = human_brain.owner
 	if(brain_owner.reagents?.get_reagent_amount(reagent_1_type) < reagent_1_amount)
+		surgeon.balloon_alert(surgeon, "missing [LOWER_TEXT(reagent_1_type.name)]!")
 		return FALSE
 
 	if(reagent_2_type && (brain_owner.reagents?.get_reagent_amount(reagent_2_type) < reagent_2_amount))
+		surgeon.balloon_alert(surgeon, "missing [LOWER_TEXT(reagent_2_type.name)]!")
 		return FALSE
 
-	if(LAZYLEN(brain_owner.get_traumas()))
-		for(var/active_trauma in brain_owner.get_traumas())
-			var/datum/brain_trauma/trauma = active_trauma
-			if(trauma.resilience == TRAUMA_RESILIENCE_WOUND)
-				continue
-			if(trauma.resilience <= resilience_level)
-				return TRUE
+	surgeon.balloon_alert_to_viewers("applying chemicals...", vision_distance = COMBAT_MESSAGE_RANGE)
+	if(do_after(surgeon, 1.5 SECONDS))
+		return TRUE
 
 	return FALSE
+
+/datum/surgery_operation/organ/repair/brain/advanced/on_preop(obj/item/organ/brain/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
+	display_results(
+		surgeon,
+		organ.owner,
+		span_notice("You begin to excise the failed nerve in [FORMAT_ORGAN_OWNER(organ)]'s brain..."),
+		span_notice("[surgeon] begins to fix [FORMAT_ORGAN_OWNER(organ)]'s brain."),
+		span_notice("[surgeon] begins to perform surgery on [FORMAT_ORGAN_OWNER(organ)]'s brain."),
+	)
+	display_pain(organ.owner, "Your mind feels like it's being defragmented!")
 
 /datum/surgery_operation/organ/repair/brain/advanced/on_success(obj/item/organ/brain/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
 		surgeon,
 		organ.owner,
-		span_notice("You succeed in fixing [FORMAT_ORGAN_OWNER(organ)]'s traumas."),
-		span_notice("[surgeon] successfully fixes [FORMAT_ORGAN_OWNER(organ)]'s traumas!"),
+		span_notice("You succeed in excising [FORMAT_ORGAN_OWNER(organ)]'s failed nerve, curing the trauma."),
+		span_notice("[surgeon] successfully cures [FORMAT_ORGAN_OWNER(organ)]'s trauma!"),
 		span_notice("[surgeon] completes the surgery on [FORMAT_ORGAN_OWNER(organ)]'s brain."),
 	)
 	display_pain(organ.owner, "Your mind feels normal again. As normal as it ever was, at least.")
@@ -75,7 +101,7 @@
 	rnd_name = "Neural Defragmentation (Neurectomy)"
 	implements = list(
 		TOOL_MULTITOOL = 1.15,
-		TOOL_HEMOSTAT = 1.05,
+		TOOL_SCALPEL = 1.05,
 		TOOL_SCREWDRIVER = 2.85,
 		/obj/item/pen = 6.67,
 	)
