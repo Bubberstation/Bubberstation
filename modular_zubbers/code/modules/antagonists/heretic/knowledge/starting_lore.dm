@@ -7,6 +7,9 @@
 	drafting_tier = 1
 	drafting_cost = 0.5
 
+/datum/heretic_knowledge/codex_cicatrix
+	is_starting_knowledge = TRUE
+
 /datum/heretic_knowledge/enable_blades
 	name = "Khopesh Crafting"
 	desc = "Enables you to craft your path's blade. The blades are very robust and have good armor pen, but can't block and can NOT be used to teleport."

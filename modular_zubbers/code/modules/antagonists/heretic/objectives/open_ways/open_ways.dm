@@ -39,6 +39,9 @@
 				/area/station/science/lobby,
 				/area/station/science/lab,
 				/area/station/service/kitchen,
+				/area/station/service/hydroponics,
+				/area/station/service/chapel,
+				/area/station/security/courtroom,
 			)
 		important_areas |= typesof(/area/station/security/brig)
 		important_areas |= subtypesof(/area/station/ai)
@@ -82,8 +85,8 @@
 			location_sanity++
 			continue
 
-		// We don't want them close to each other - at least 1 tile of separation
-		var/list/nearby_things = range(1, chosen_location)
+		// We don't want them close to each other - at least 2 tiles of separation
+		var/list/nearby_things = range(2, chosen_location)
 		var/obj/effect/unopened_way/what_if_i_have_one = locate() in nearby_things
 		if(what_if_i_have_one)
 			location_sanity++
@@ -270,28 +273,29 @@
 		/obj/item/toy/crayon,
 		/obj/item/flashlight,
 		/obj/item/clipboard,
+		/obj/item/storage/toolbox,
 	)
+	var/list/easy_copy = potential_easy_items.Copy()
 
-	var/static/list/potential_uncommoner_items = list(
+	var/static/list/potential_uncommon_items = list(
 		/obj/item/melee/baton/security/cattleprod, // makeshift weapon, illegal, bulky. sorta culty
 		/obj/item/circular_saw, // culty
 		/obj/item/scalpel, // culty
 		/obj/item/camera, // culty
 		/obj/item/food/meat/slab, // culty
 		/obj/item/relic, // culty
+		/obj/item/clothing/suit/armor/vest, // illegal, warish
+		/obj/item/restraints/legcuffs/beartrap, // spooky, culty
 	)
+	var/list/uncommons_copy = potential_uncommon_items.Copy()
 
 	// harder items
-	var/static/list/potential_secondary_items = list(
+	var/static/list/potential_exotic_items = list(
 		/obj/item/spear, // illegal, bulky, a makeshift waepon. sorta culty?
 		/mob/living/carbon/human, // a fucking corpse lol
 		/obj/item/stock_parts/subspace/crystal, // niche, if you get one ppl know what ur doing + bluespace
 		/obj/effect/decal/cleanable/blood, // culty + you need blood
 		/obj/item/stack/sheet/animalhide/carbon/human, // human skin. lol.
-	)
-
-	// harder items
-	var/static/list/potential_tertiary_items = list(
 		list(/obj/item/stack/sheet/bone, /obj/item/food/meat/slab/human/mutant/skeleton), // lavaland + culty
 		/obj/item/stack/sheet/sinew, // lavaland + culty
 		/obj/item/restraints/handcuffs/cable/zipties, // have to break into sec or get arrested by beepsky (lol)
@@ -299,13 +303,16 @@
 		///obj/item/raw_anomaly_core, // hard to get, definitely culty, if youre not science you have no reason to seek out a raw core
 		///obj/item/mod/core/ethereal, // craftable if you grind a high energy bar
 	)
+	var/list/exotics_copy = potential_exotic_items.Copy()
 
-	open_requirements[pick_n_take(organs_copy)] += 1
-	open_requirements[pick_n_take(organs_copy)] += 1
-	open_requirements[pick(potential_easy_items)] += 1
-	open_requirements[pick(potential_uncommoner_items)] += 1
-	open_requirements[pick(potential_secondary_items)] += 1
-	open_requirements[pick(potential_tertiary_items)] += 1
+	if(prob(50)) // "easier" set of items
+		open_requirements[pick(organs_copy)] += 1
+		open_requirements[pick_n_take(easy_copy)] += 2
+		open_requirements[pick_n_take(uncommons_copy)] += 2
+	else // "harder" set of items
+		open_requirements[pick_n_take(organs_copy)] += 2
+		open_requirements[pick(easy_copy)] += 1
+		open_requirements[pick_n_take(exotics_copy)] += 2
 
 /obj/effect/unopened_way/no_announce
 	announce_opening = FALSE
