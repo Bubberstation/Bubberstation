@@ -42,14 +42,9 @@
 	akula_outfit = /datum/outfit/akula
 
 // Modular jobs
-/datum/job/blueshield
-	akula_outfit = /datum/outfit/akula
 
 /datum/job/nanotrasen_consultant
 	akula_outfit = /datum/outfit/akula
-
-/datum/job/corrections_officer
-	akula_outfit = /datum/outfit/akula/security_officer
 
 /datum/job/fleetmaster
 	akula_outfit = /datum/outfit/akula

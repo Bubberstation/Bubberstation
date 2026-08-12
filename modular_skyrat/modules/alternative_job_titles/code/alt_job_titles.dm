@@ -26,23 +26,6 @@
 		"Professional Gamer",
 	)
 
-/datum/job/blueshield
-	alt_titles = list(
-		"Blueshield",
-		"Command Bodyguard",
-		"Executive Protection Agent",
-		"Command Security Specialist",
-		"Command Protection Officer",
-		"Henchman",
-	)
-
-/datum/job/corrections_officer
-	alt_titles = list(
-		"Corrections Officer",
-		"Brig Officer",
-		"Prison Guard",
-	)
-
 /datum/job/cyborg
 	alt_titles = list(
 		"Cyborg",

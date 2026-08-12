@@ -1,17 +1,3 @@
-// Misc
-
-//Security
-
-/datum/job/blueshield
-	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
-	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
-	is_hand_required = TRUE
-
-/datum/job/corrections_officer
-	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
-	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
-	is_hand_required = TRUE
-
 // Command
 
 /datum/job/nanotrasen_consultant
