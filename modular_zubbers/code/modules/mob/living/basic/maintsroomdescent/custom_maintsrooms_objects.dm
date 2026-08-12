@@ -129,13 +129,13 @@
 	default_raw_text = "Come down to the gun dealership! We sell stuff were not supposed to! We buy energy weapons and sell ballistic weapons!"
 
 /obj/item/paper/fluff/awaymissions/maintsroom/genius
-	name = "Fucking dumbass"
+	name = "Darwin Award"
 	default_raw_text = "Is directly told not to go somewhere, goes there anyway"
 
-/obj/item/paper/fluff/awaymissions/maintsroom/illiterate//note to spawned on people who go into the hellish final section that theyre told is hellish and then die and comaplain.
+/obj/item/paper/fluff/awaymissions/maintsroom/skill_issue
 	name = "Fucking dumbass"
 	default_raw_text = "Is directly told that where they are going is the ball crusher, goes there and gets their balls crushed, complains that their balls are crushed."
-	color = rgb(15, 15, 15)
+	color = rgb(209, 29, 179)
 
 /obj/item/paper/fluff/awaymissions/maintsroom/xenomorph
 	name = "Xenomorph Warning"
@@ -154,11 +154,6 @@
 /obj/item/paper/fluff/awaymissions/maintsroom/danger_ahead_reward
 	name = "Black Note"
 	default_raw_text = "I commend you for choosing to continue on, I decided to give you some material to make the journey ahead easier- also, i reccomend climbing under the tables and not over them- and also to fallow the light, the darkness contains more rewards but is significantly more- challenging."
-	color = rgb(15, 15, 15)
-
-/obj/item/paper/fluff/awaymissions/maintsroom/voidling_intern
-	name = "Black Note"
-	default_raw_text = "Hear me well, fragment of myself, you are to only help those who have been dead and laying down alone, if somebody died but they were with a group leave them, if an entire group died- help them, but if there is a good chance that somebody will be found- then dont help them, let the mortals help themselves wherever possible, feel free to have fun watching them but never let yourself be known to them if you really- feel safe going there and letting some of them talk to you- or bringing some of them to your own quarters, ask me first."
 	color = rgb(15, 15, 15)
 
 /obj/item/paper/fluff/awaymissions/maintsroom/readfucker
