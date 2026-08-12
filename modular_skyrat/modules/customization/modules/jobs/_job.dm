@@ -32,10 +32,6 @@
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
 	is_hand_required = TRUE
 
-/datum/job/quartermaster
-	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
-	is_hand_required = TRUE
-
 //Silicon
 /datum/job/ai
 	loadout = FALSE
@@ -51,9 +47,6 @@
 /datum/job/botanist
 	required_languages = null
 
-/datum/job/curator
-	required_languages = null
-
 /datum/job/janitor
 	required_languages = null
 
@@ -63,9 +56,6 @@
 /datum/job/science_guard
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
-/datum/job/customs_agent
-	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
-
 /datum/job/mime
 	required_languages = null
 
@@ -73,20 +63,6 @@
 	required_languages = null
 
 /datum/job/bouncer
-	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
-
-/datum/job/chaplain
-	required_languages = null
-
-// CARGO
-
-/datum/job/shaft_miner
-	required_languages = null
-
-/datum/job/blacksmith
-	required_languages = null
-
-/datum/job/customs_agent
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
 // MEDICAL
@@ -112,9 +88,6 @@
 // SCIENCE
 
 /datum/job/scientist
-	required_languages = null
-
-/datum/job/roboticist
 	required_languages = null
 
 /datum/job/science_guard

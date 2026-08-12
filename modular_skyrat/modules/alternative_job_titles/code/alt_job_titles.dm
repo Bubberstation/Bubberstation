@@ -67,29 +67,6 @@
 		"Prison Guard",
 	)
 
-/datum/job/chaplain
-	alt_titles = list(
-		"Chaplain",
-		"Clockwork Priest",
-		"Cleric",
-		"High Priest",
-		"High Priestess",
-		"Imam",
-		"Magister",
-		"Monk",
-		"Nun",
-		"Oracle",
-		"Preacher",
-		"Priest",
-		"Priestess",
-		"Pontifex",
-		"Guru",
-		"Rabbi",
-		"Reverend",
-		"Shrine Maiden",
-		"Shrine Guardian",
-	)
-
 /datum/job/chemist
 	alt_titles = list(
 		"Chemist",
@@ -142,26 +119,6 @@
 		"Medical Examiner",
 		"Mortician",
 		"Undertaker",
-	)
-
-/datum/job/curator
-	alt_titles = list(
-		"Curator",
-		"Adventurer",
-		"Archivist",
-		"Conservator",
-		"Journalist",
-		"Librarian",
-		"Historian",
-		"Archaeologist",
-		"Professor",
-		"Veteran Adventurer"
-	)
-
-/datum/job/customs_agent
-	alt_titles = list(
-		"Customs Agent",
-		"Supply Guard",
 	)
 
 /datum/job/cyborg
@@ -276,17 +233,6 @@
 		"Emotional Support Animal",
 	)
 
-/datum/job/quartermaster
-	alt_titles = list(
-		"Quartermaster",
-		"Deck Chief",
-		"Head of Supply",
-		"Logistics Coordinator",
-		"Supply Foreman",
-		"Union Requisitions Officer",
-		"Warehouse Supervisor",
-	)
-
 /datum/job/research_director
 	alt_titles = list(
 		"Research Director",
@@ -295,16 +241,6 @@
 		"Lead Researcher",
 		"Research Supervisor",
 		"Silicon Administrator",
-	)
-
-/datum/job/roboticist
-	alt_titles = list(
-		"Roboticist",
-		"Biomechanical Engineer",
-		"Cyberneticist",
-		"Machinist",
-		"Mechatronic Engineer",
-		"Apprentice Roboticist",
 	)
 
 /datum/job/science_guard //See orderly
@@ -328,17 +264,4 @@
 		"Xenoarchaeologist",
 		"Xenobiologist",
 		"Research Assistant",
-	)
-
-/datum/job/shaft_miner
-	alt_titles = list(
-		"Shaft Miner",
-		"Union Miner",
-		"Excavator",
-		"Drill Technician",
-		"Prospector",
-		"Spelunker",
-		"Apprentice Miner",
-		"Dredger",
-		"Contract Miner",
 	)
