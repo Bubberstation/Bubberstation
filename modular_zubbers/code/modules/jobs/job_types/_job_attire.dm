@@ -1,31 +1,8 @@
 /datum/job/bitrunner
 	akula_outfit = /datum/outfit/akula/cargo_technician
 
-/datum/job/botanist
-	akula_outfit = /datum/outfit/akula
-
-/datum/job/clown
-	akula_outfit = /datum/outfit/akula
-	vox_outfit = /datum/outfit/vox/clown
-
-/datum/job/cook
-	akula_outfit = /datum/outfit/akula
-
 /datum/job/geneticist
 	akula_outfit = /datum/outfit/akula/scientist
-
-/datum/job/head_of_personnel
-	akula_outfit = /datum/outfit/akula/command
-
-/datum/job/janitor
-	akula_outfit = /datum/outfit/akula
-
-/datum/job/lawyer
-	akula_outfit = /datum/outfit/akula
-
-/datum/job/mime
-	akula_outfit = /datum/outfit/akula
-	vox_outfit = /datum/outfit/vox/mime
 
 /datum/job/virologist
 	akula_outfit = /datum/outfit/akula/doctor
@@ -72,9 +49,6 @@
 	akula_outfit = /datum/outfit/akula
 
 /datum/job/corrections_officer
-	akula_outfit = /datum/outfit/akula/security_officer
-
-/datum/job/bouncer
 	akula_outfit = /datum/outfit/akula/security_officer
 
 /datum/job/fleetmaster

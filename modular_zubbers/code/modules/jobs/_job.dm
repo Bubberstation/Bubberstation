@@ -27,6 +27,9 @@
 	var/list/species_whitelist
 	//Blacklist of species for this job.
 	var/list/species_blacklist
+	// BUBBER TODO - Change this mess of required languages - the vast majority of jobs have required languages
+	// set to `null`, with a few distinct ones actually having it set. It might be a good idea
+	// to revert that.
 	/// Which languages does the job require, associative to UNDERSTOOD_LANGUAGE or (UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE)
 	var/list/required_languages = list(/datum/language/common = (UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE))
 

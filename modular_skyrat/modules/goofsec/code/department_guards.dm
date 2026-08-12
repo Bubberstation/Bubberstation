@@ -651,6 +651,14 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+	akula_outfit = /datum/outfit/akula/security_officer
+	alt_titles = list(
+		"Bouncer",
+		"Service Guard",
+		"Doorman",
+		"Doorwoman",
+	)
 
 /datum/outfit/job/bouncer
 	name = "Bouncer"

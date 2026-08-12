@@ -84,15 +84,3 @@
 	else
 		assignment_string = assignment
 	return assignment_string
-
-
-// Service
-
-/datum/job/janitor
-	internship_use_self_exp_type = TRUE
-
-/datum/job/botanist
-	internship_use_self_exp_type = TRUE
-
-/datum/job/cook
-	internship_use_self_exp_type = TRUE
