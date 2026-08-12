@@ -1,6 +1,6 @@
 /datum/job/security_medic
 	title = JOB_SECURITY_MEDIC
-	description = "Patch up officers and prisoners, realize you don't have the tools to Tend Wounds, barge into Medbay and tell them how to do their jobs"
+	description = "Patch up officers and prisoners, revive the HoS after they throw themselves into battle, barge into Medbay and beg for pharmacy access"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	faction = FACTION_STATION
 	total_positions = 1
@@ -119,6 +119,7 @@
 
 /obj/item/storage/bag/garment/secmed/PopulateContents()
 	. = ..()
+	new /obj/item/clothing/glasses/hud/medsechud/sunglasses(src)
 	new /obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic(src)
 	new /obj/item/clothing/suit/hazardvest/security_medic(src)
 	new /obj/item/clothing/head/helmet/sec/peacekeeper/security_medic(src)
@@ -133,15 +134,32 @@
 	icon = 'modular_zubbers/icons/obj/closets/secmed_closet.dmi'
 	icon_state = "secmed"
 
+/*
+Adding certain items to the locker directly, like the medkits, defibs, and formaldehyde. This is to ensure that if future adjustments are
+necessary, items can be added or removed here easily. Additionally ensures the secmed spawns with their basic equipment in maps not covered
+by the automapper.
+*/
 /obj/structure/closet/secure_closet/security_medic/PopulateContents()
 	..()
 	new /obj/item/radio/headset/headset_medsec(src)
-	new /obj/item/clothing/glasses/hud/medsechud/sunglasses(src)
-	new /obj/item/storage/medkit/emergency(src)
-	new /obj/item/clothing/suit/jacket/straight_jacket(src)
 	new /obj/item/storage/belt/medical(src)
 	new /obj/item/storage/belt/security/medic/full(src)
 	new /obj/item/storage/bag/garment/secmed(src)
+	//Basic damage medkits, for treatments without surgery.
+	new /obj/item/storage/medkit/brute(src)
+	new /obj/item/storage/medkit/fire(src)
+	new /obj/item/storage/medkit/toxin(src)
+	new /obj/item/storage/medkit/o2(src)
+	//Basic robotic repair kit. Worse than a toolbox in every way possible, but at least it gives you something to use for synths.
+	new /obj/item/storage/medkit/robotic_repair/stocked(src)
+	//Moving the clothes meant for restraining patients into the locker, instead of having it be map dependent.
+	new /obj/item/clothing/suit/jacket/straight_jacket(src)
+	new /obj/item/clothing/mask/muzzle(src)
+	new /obj/item/restraints/handcuffs/cable/zipties(src)
+	//Defibs no longer can be printed, and can only be ordered. This is added to ensure the secmedic doesn't need to steal one from medbay.
+	new /obj/item/defibrillator/loaded(src)
+	//To prevent the bodies of your fellow officers from decaying, or the antag with one million implants in them.
+	new /obj/item/reagent_containers/cup/bottle/formaldehyde(src)
 
 //Prevents secmed hours from counting towards HoS
 /datum/controller/subsystem/job/setup_occupations()
