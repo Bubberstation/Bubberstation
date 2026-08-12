@@ -31,30 +31,3 @@
 
 /datum/job/hermit
 	akula_outfit = /datum/outfit/akula
-
-// Modular jobs
-
-/datum/job/fleetmaster
-	akula_outfit = /datum/outfit/akula
-
-/datum/job/operations_inspector
-	akula_outfit = /datum/outfit/akula
-
-/datum/job/deck_crew
-	akula_outfit = /datum/outfit/akula
-
-/datum/job/bridge_officer
-	akula_outfit = /datum/outfit/akula
-
-/datum/job/freighter_crew
-	akula_outfit = /datum/outfit/akula
-
-/datum/job/tarkon
-	akula_outfit = /datum/outfit/akula
-
-/datum/job/blackmarket
-	akula_outfit = /datum/outfit/akula
-
-/datum/job/ds2
-	akula_outfit = /datum/outfit/akula
-

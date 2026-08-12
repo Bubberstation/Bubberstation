@@ -8,3 +8,7 @@
 		"Anger Management",
 		"Emotional Support Animal",
 	)
+
+/datum/job/psychologist/New()
+	LAZYADDASSOC(mail_goodies, /obj/item/toy/nyamagotchi, 45)
+	. = ..()
