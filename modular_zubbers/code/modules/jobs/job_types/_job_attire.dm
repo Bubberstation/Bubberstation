@@ -39,12 +39,6 @@
 /datum/job/paramedic
 	akula_outfit = /datum/outfit/akula/doctor
 
-/datum/job/research_director
-	akula_outfit = /datum/outfit/akula/scientist
-
-/datum/job/scientist
-	akula_outfit = /datum/outfit/akula/scientist
-
 /datum/job/virologist
 	akula_outfit = /datum/outfit/akula/doctor
 
@@ -96,9 +90,6 @@
 	akula_outfit = /datum/outfit/akula/security_officer
 
 /datum/job/orderly
-	akula_outfit = /datum/outfit/akula/security_officer
-
-/datum/job/science_guard
 	akula_outfit = /datum/outfit/akula/security_officer
 
 /datum/job/bouncer

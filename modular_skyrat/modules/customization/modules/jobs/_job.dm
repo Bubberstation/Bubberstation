@@ -22,12 +22,6 @@
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
 	is_hand_required = TRUE
 
-
-
-/datum/job/research_director
-	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
-	is_hand_required = TRUE
-
 /datum/job/head_of_personnel
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
 	is_hand_required = TRUE
@@ -51,9 +45,6 @@
 	required_languages = null
 
 /datum/job/orderly
-	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
-
-/datum/job/science_guard
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
 /datum/job/mime
@@ -84,15 +75,6 @@
 
 /datum/job/orderly
 	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
-
-// SCIENCE
-
-/datum/job/scientist
-	required_languages = null
-
-/datum/job/science_guard
-	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
-
 
 // Nanotrasen Fleet
 /datum/job/fleetmaster

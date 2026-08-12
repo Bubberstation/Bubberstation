@@ -232,36 +232,3 @@
 		"Anger Management",
 		"Emotional Support Animal",
 	)
-
-/datum/job/research_director
-	alt_titles = list(
-		"Research Director",
-		"Biorobotics Director",
-		"Chief Science Officer",
-		"Lead Researcher",
-		"Research Supervisor",
-		"Silicon Administrator",
-	)
-
-/datum/job/science_guard //See orderly
-	alt_titles = list(
-		"Science Guard",
-		"Research Guard",
-	)
-
-/datum/job/scientist
-	alt_titles = list(
-		"Scientist",
-		"Anomalist",
-		"Circuitry Designer",
-		"Cytologist",
-		"Graduate Student",
-		"Lab Technician",
-		"Ordnance Technician",
-		"Plasma Researcher",
-		"Resonance Researcher",
-		"Theoretical Physicist",
-		"Xenoarchaeologist",
-		"Xenobiologist",
-		"Research Assistant",
-	)
