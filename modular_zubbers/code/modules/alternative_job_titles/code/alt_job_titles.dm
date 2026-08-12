@@ -1,10 +1,3 @@
-/datum/job/orderly/New()
-	alt_titles |= list(
-		"Medical Attendant",
-		"Medical Support Technician",
-	)
-	. = ..()
-
 /datum/job/bridge_assistant
 	alt_titles = list(
 		"Bridge Assistant",
@@ -41,9 +34,3 @@
 		"Head Assistant",
 		"Bridge Tour Coordinator",
 	)
-
-/datum/job/paramedic/New()
-	alt_titles |= list(
-		"Body Retrieval Specialist",
-	)
-	. = ..()

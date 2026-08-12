@@ -4,12 +4,6 @@
 /datum/job/botanist
 	akula_outfit = /datum/outfit/akula
 
-/datum/job/chemist
-	akula_outfit = /datum/outfit/akula
-
-/datum/job/chief_medical_officer
-	akula_outfit = /datum/outfit/akula/doctor
-
 /datum/job/clown
 	akula_outfit = /datum/outfit/akula
 	vox_outfit = /datum/outfit/vox/clown
@@ -29,15 +23,9 @@
 /datum/job/lawyer
 	akula_outfit = /datum/outfit/akula
 
-/datum/job/doctor
-	akula_outfit = /datum/outfit/akula/doctor
-
 /datum/job/mime
 	akula_outfit = /datum/outfit/akula
 	vox_outfit = /datum/outfit/vox/mime
-
-/datum/job/paramedic
-	akula_outfit = /datum/outfit/akula/doctor
 
 /datum/job/virologist
 	akula_outfit = /datum/outfit/akula/doctor
@@ -83,13 +71,7 @@
 /datum/job/nanotrasen_consultant
 	akula_outfit = /datum/outfit/akula
 
-/datum/job/coroner
-	akula_outfit = /datum/outfit/akula/doctor
-
 /datum/job/corrections_officer
-	akula_outfit = /datum/outfit/akula/security_officer
-
-/datum/job/orderly
 	akula_outfit = /datum/outfit/akula/security_officer
 
 /datum/job/bouncer

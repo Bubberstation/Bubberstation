@@ -67,24 +67,6 @@
 		"Prison Guard",
 	)
 
-/datum/job/chemist
-	alt_titles = list(
-		"Chemist",
-		"Alchemist",
-		"Pharmacist",
-		"Pharmacologist",
-		"Trainee Pharmacist",
-	)
-
-/datum/job/chief_medical_officer
-	alt_titles = list(
-		"Chief Medical Officer",
-		"Chief Physician",
-		"Head of Medical",
-		"Head Physician",
-		"Medical Director",
-	)
-
 /datum/job/clown
 	alt_titles = list(
 		"Clown",
@@ -111,37 +93,12 @@
 		"All-American Diner Employee",
 	)
 
-/datum/job/coroner
-	alt_titles = list(
-		"Coroner",
-		"Forensic Pathologist",
-		"Funeral Director",
-		"Medical Examiner",
-		"Mortician",
-		"Undertaker",
-	)
-
 /datum/job/cyborg
 	alt_titles = list(
 		"Cyborg",
 		"Android",
 		"Robot",
 		"Synthetic",
-	)
-
-/datum/job/doctor
-	alt_titles = list(
-		"Medical Doctor",
-		"General Practitioner",
-		"Medical Resident",
-		"Nurse",
-		"Physician",
-		"Surgeon",
-		"Medical Student",
-		"Virologist",
-		"Epidemiologist",
-		"Pathologist",
-		"Junior Pathologist",
 	)
 
 /datum/job/geneticist
@@ -206,29 +163,4 @@
 		"Corporate Representative",
 		"Corporate Liaison",
 		"Corporate Interest Officer",
-	)
-
-/datum/job/orderly
-	alt_titles = list(
-		"Orderly",
-		"Medical Guard",
-	) //other dept guards' alt-titles should be kept to [department] guard to avoid confusion, unless the department gets a re-do.
-
-/datum/job/paramedic
-	alt_titles = list(
-		"Paramedic",
-		"Emergency Medical Technician",
-		"Search and Rescue Technician",
-		"Trauma Team Responder",
-	)
-
-/datum/job/psychologist
-	alt_titles = list(
-		"Psychologist",
-		"Counsellor",
-		"Psychiatrist",
-		"Therapist",
-		"Shrink",
-		"Anger Management",
-		"Emotional Support Animal",
 	)

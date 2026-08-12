@@ -18,10 +18,6 @@
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
 	is_hand_required = TRUE
 
-/datum/job/chief_medical_officer
-	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
-	is_hand_required = TRUE
-
 /datum/job/head_of_personnel
 	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
 	is_hand_required = TRUE
@@ -44,9 +40,6 @@
 /datum/job/janitor
 	required_languages = null
 
-/datum/job/orderly
-	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
-
 /datum/job/mime
 	required_languages = null
 
@@ -58,23 +51,11 @@
 
 // MEDICAL
 
-/datum/job/chemist
-	required_languages = null
-
-/datum/job/doctor
-	required_languages = null
-
-/datum/job/paramedic
-	required_languages = null
-
 /datum/job/geneticist
 	required_languages = null
 
 /datum/job/virologist
 	required_languages = null // damara dent-head
-
-/datum/job/orderly
-	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
 // Nanotrasen Fleet
 /datum/job/fleetmaster
