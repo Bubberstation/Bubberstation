@@ -6,6 +6,7 @@
 	and it might just grant you its promise."
 	drafting_tier = 1
 	drafting_cost = 1 // has actual uses - free cleaning? free synth-compatible healing? yes please
+	max_charges = INFINITY
 	action_to_add = /datum/action/cooldown/spell/pointed/tricksters_cackle
 
 /datum/action/cooldown/spell/pointed/tricksters_cackle

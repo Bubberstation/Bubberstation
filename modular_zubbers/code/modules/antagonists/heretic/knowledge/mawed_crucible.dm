@@ -1,7 +1,9 @@
 /datum/heretic_knowledge/crucible
-	desc = "Allows you to transmute a portable water tank and a table to create a Mawed Crucible. \
-		The Mawed Crucible can brew powerful potions for combat and utility, but must be fed bodyparts and organs between uses. \
-		Non-heretics can drink the potions, but will suffer massive disgust."
+	desc = "Create a Mawed Crucible.<br>\
+		The Mawed Crucible can brew powerful but temporary potions for combat and utility, but must be fed bodyparts and organs between uses. \
+		<br>&bull; Brew of the Crucible Soul: Allows you to walk through non-reinforced walls. Returns you to the place you consumed the potion after it expires. \
+		<br>&bull; Brew of Dusk and Dawn: Allows you to see through walls. \
+		<br>&bull; Brew of the Wounded Soldier: Heals you over time. The more severe your wounds (such as fractures or cuts), the faster it heals you."
 	drafting_tier = 2 // its honestly kinda strong asf
 
 /obj/item/eldritch_potion/potion_effect(mob/user)

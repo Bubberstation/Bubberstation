@@ -3,7 +3,11 @@
 	desc = "Forces nearby heathens to hallucinate everyone around them as a dangerous heretic, including you. Completely obscures identities. Lasts for one minute. (Can be casted without a focus)"
 	gain_text = "The blinding light of The Open Way blinds them. It would blind me, if not for my own resolve."
 	drafting_tier = 1
+	required_atoms = list(/obj/item/book)
 	action_to_add = /datum/action/cooldown/spell/paranoias_eye
+	transmute_text = "To recharge, sacrifice a book."
+	max_charges = 5
+	recharge_amount = 5
 
 /datum/action/cooldown/spell/paranoias_eye
 	name = "Paranoia's Eye"

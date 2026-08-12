@@ -12,13 +12,14 @@ GLOBAL_LIST_INIT(mansus_eye_commands_regex, list(
 
 /datum/heretic_knowledge/limited_amount/mansus_eye
 	name = "Watching Eye"
-	desc = "Transmute a pair of eyes, a sheet of plasmaglass, and a blindfold into a Watching Eye, a small item that you can look through as if it \
+	desc = "Create a Watching Eye, a small item that you can look through as if it \
 	was a camera with x-ray vision. While the eye is not contained within anything, you can utter a phrase out of a small list - such as blind, deafen - \
 	to create a localized effect on targets the eye could see without x-ray vision. Only one eye can exist at a time - be careful with it."
 	gain_text = "It is said the Owl gifted mankind sight. Humans could see far more, once, until the Owl realized its mistake and plucked out our \
 	third eye. But through an elaborate process, one can still obtain - and open, that missing eye."
 	research_tree_icon_path = 'modular_zubbers/icons/obj/heretic_misc.dmi'
 	research_tree_icon_state = "watching_eye_open"
+	transmute_text = "Transmute a pair of eyes, a sheet of plasmaglass, and a blindfold."
 	required_atoms = list(/obj/item/organ/eyes = 1, /obj/item/stack/sheet/plasmaglass = 1, /obj/item/clothing/glasses/blindfold = 1)
 	result_atoms = list(/obj/item/mansus_eye)
 	limit = 1

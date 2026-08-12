@@ -1,9 +1,10 @@
 /datum/heretic_knowledge/trickster_pen
 	name = "Trickster's Pen"
-	desc = "Allows you to transmute a pen, and sheet of plasmainto a trickster's pen that can change \
+	desc = "Create a pen that can change \
 	any ID's name, job, and appearance. Clicking the pen turns you partially transparent for a moment. Best used with the Trickster's Mask."
 	gain_text = "The Bleeding Trickster rewrites language and form to better hide itself. An A becomes a Z, red becomes blue, and suddenly \
 	the smiling god appears no different than anything else."
+	transmute_text = "Transmute a pen, and sheet of plasma."
 	required_atoms = list(
 		/obj/item/pen = 1,
 		/obj/item/stack/sheet/mineral/plasma = 1,
