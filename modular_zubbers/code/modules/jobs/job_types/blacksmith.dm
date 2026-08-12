@@ -43,12 +43,10 @@
 	uniform = /obj/item/clothing/under/rank/cargo/tech/skyrat/long
 	suit = /obj/item/clothing/suit/leatherapron
 	backpack_contents = list(
-		/obj/item/crowbar = 1,
 		/obj/item/forging/hammer = 1,
 		/obj/item/forging/tongs = 1,
 		/obj/item/forging/billow = 1,
 		/obj/item/stack/sheet/mineral/wood = 25,
-		/obj/item/choice_beacon/blacksmith = 1,
 		/obj/item/paper/pamphlet/blacksmith_tutorial = 1,
 	)
 	glasses = /obj/item/clothing/glasses/hud/gun_permit
@@ -71,7 +69,7 @@
 	The <b>billows</b> blow air into your forge to accelerate its heating process.<br>\n\
 	The <b>tongs</b> let you safely insert a sheet of material into your forge, and safely handle hot items.<br>\n\
 	The <b>forging mallet</b> is used alongside an anvil to work an item into shape.<br>\n\
-	If you lack a dedicated department room and cannot summon a package of these items via your summon beacon, almost all of the above can be crafted using basic wood and iron (except the anvil, which requires plastitanium). Use the crafting menu (the hammer icon -- bottom right of your screen) to take a look.<br>\n\
+	If you lack a dedicated department room then you can purchase a 'Blacksmithing Workstation Pack' from the cargo order console for your stationary tools, and a 'Blacksmithing Tools Pack' for handheld tools. Failing that, almost all of the above can be crafted using basic wood and iron (except the anvil, which requires titanium). Click on a stack of wood, iron, or titanium while holding it to take a look.<br>\n\
 	<br> \
 	How to heat your forge:<br>\n\
 	-1: Acquire a fuel source. You can use coal or wood for this purpose.<br>\n\

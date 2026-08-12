@@ -4,10 +4,10 @@
 
 //can't be a subtype of item/storage/belt/holster -- that can be suit storaged per \code\__DEFINES\inventory.dm
 //hip holsters SHOULDN'T be able to be suit storaged.
-/obj/item/storage/belt/hip_holster
+/obj/item/storage/belt/holster/hip_holster
 	name = "hip holster"
 	desc = "you shouldn't be seeing this."
-	abstract_type = /obj/item/storage/belt/hip_holster
+	abstract_type = /obj/item/storage/belt/holster/hip_holster
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	icon_state = "cowboy_holster"
 	inhand_icon_state = "holster"
@@ -15,13 +15,19 @@
 	alternate_worn_layer = null
 	storage_type = /datum/storage/holster
 
-/obj/item/storage/belt/hip_holster/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+/obj/item/storage/belt/holster/hip_holster/mob_can_equip(mob/living/M, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE, indirect_action = FALSE)
+	if(slot == ITEM_SLOT_SUITSTORE)
+		return FALSE
+	else
+		. = ..()
+
+/obj/item/storage/belt/holster/hip_holster/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	update_label()
-/obj/item/storage/belt/hip_holster/Exited(atom/movable/gone, direction)
+/obj/item/storage/belt/holster/hip_holster/Exited(atom/movable/gone, direction)
 	. = ..()
 	update_label()
-/obj/item/storage/belt/hip_holster/proc/update_label(list/contents_to_check = null)
+/obj/item/storage/belt/holster/hip_holster/proc/update_label(list/contents_to_check = null)
 	if(isnull(contents_to_check))
 		contents_to_check = contents
 	var/list/noteworthy_contents = list()
@@ -34,17 +40,11 @@
 	else
 		name = src::name
 
-//copy of the holster/equipped proc.
-/obj/item/storage/belt/hip_holster/equipped(mob/user, slot)
-	. = ..()
-	if(slot & (ITEM_SLOT_BELT|ITEM_SLOT_SUITSTORE))
-		ADD_CLOTHING_TRAIT(user, TRAIT_GUNFLIP)
-
-/obj/item/storage/belt/hip_holster/update_overlays()
+/obj/item/storage/belt/holster/hip_holster/update_overlays()
 	. = ..()
 	. += get_guns_contained_overlays()
 
-/obj/item/storage/belt/hip_holster/proc/get_guns_contained_overlays(list/contents_to_check = null)
+/obj/item/storage/belt/holster/hip_holster/proc/get_guns_contained_overlays(list/contents_to_check = null)
 	var/list/returner = list()
 	if(contents_to_check == null)
 		contents_to_check = contents
@@ -59,7 +59,7 @@
 			returner += mutable_appearance('modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi', "belt_gun_baton")
 			return returner
 
-/obj/item/storage/belt/hip_holster/cowboy
+/obj/item/storage/belt/holster/hip_holster/cowboy
 	name = "quickdraw holster"
 	desc = "A rugged leather belt. Can carry a handgun; <b>the holster pouch makes it like reflex to draw your gun</b>. Also comes with some side pockets for speedloaders and magazines."
 	icon_state = "cowboy_holster"
@@ -116,7 +116,7 @@
 
 /////////////////////////////////////////////////
 
-/obj/item/storage/belt/hip_holster/charging
+/obj/item/storage/belt/holster/hip_holster/charging
 	name = "charging holster"
 	desc = "A sophisticated plastic holster belt. Bluespace tech allows it to store almost anything a standard weapon charger can; it can slowly charge that item."
 	icon_state = "charger_belt"
@@ -126,24 +126,24 @@
 	var/obj/machinery/recharger/belt_charger/my_charger
 	var/obj/item/storage/box/real_storage
 
-/obj/item/storage/belt/hip_holster/charging/Initialize(mapload)
+/obj/item/storage/belt/holster/hip_holster/charging/Initialize(mapload)
 	my_charger = new(src)
 	my_charger.my_belt = src
 	real_storage = new(src)
 	. = ..()
 
-/obj/item/storage/belt/hip_holster/charging/Destroy()
+/obj/item/storage/belt/holster/hip_holster/charging/Destroy()
 	QDEL_NULL(my_charger)
 	QDEL_NULL(real_storage)
 	. = ..()
 
-/obj/item/storage/belt/hip_holster/charging/update_label(list/contents_to_check = null)
+/obj/item/storage/belt/holster/hip_holster/charging/update_label(list/contents_to_check = null)
 	. = ..(real_storage.contents)
 
-/obj/item/storage/belt/hip_holster/charging/get_guns_contained_overlays(list/contents_to_check = null)
+/obj/item/storage/belt/holster/hip_holster/charging/get_guns_contained_overlays(list/contents_to_check = null)
 	. = ..(real_storage.contents)
 
-/obj/item/storage/belt/hip_holster/charging/update_overlays()
+/obj/item/storage/belt/holster/hip_holster/charging/update_overlays()
 	. = ..()
 	if(length(real_storage?.contents) > 0)
 		if(!isnull(my_charger?.charging))
@@ -164,8 +164,8 @@
 
 /datum/storage/charging_holster/New()
 	. = ..()
-	if(istype(parent, /obj/item/storage/belt/hip_holster/charging))
-		var/obj/item/storage/belt/hip_holster/charging/my_belt = parent
+	if(istype(parent, /obj/item/storage/belt/holster/hip_holster/charging))
+		var/obj/item/storage/belt/holster/hip_holster/charging/my_belt = parent
 		my_charger = my_belt.my_charger
 		set_real_location(my_belt.real_storage)
 	set_holdable(list(
@@ -200,7 +200,7 @@
 	name = "belt charger"
 	desc = "the fact that you can see this means there's an error, call a dev!"
 	recharge_coeff = 0.2
-	var/obj/item/storage/belt/hip_holster/charging/my_belt
+	var/obj/item/storage/belt/holster/hip_holster/charging/my_belt
 
 /obj/machinery/recharger/belt_charger/Destroy()
 	my_belt = null
@@ -236,9 +236,21 @@
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// SHEATHS /////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
-
-/obj/item/storage/belt/crusader	//Belt + sheath combination - still only holds one sword at a time though
+/obj/item/storage/belt/sheath/hip_only
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
+	name = "debug belt"
+	icon_state = "crusader_belt"
+	actions_types = list()
+
+/obj/item/storage/belt/sheath/hip_only/mob_can_equip(mob/living/M, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE, indirect_action = FALSE)
+	if(slot == ITEM_SLOT_SUITSTORE)
+		return FALSE
+	else
+		. = ..()
+
+////////////////////////////////////////////////////////////////////////////
+
+/obj/item/storage/belt/sheath/hip_only/crusader	//Belt + sheath combination - still only holds one sword at a time though
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
 	name = "scabbard-utility belt"
 	desc = "Holds an assortment of equipment for whatever situation an adventurer may encounter, as well as having an attached scabbard to hold a sword or bladed weapon."
@@ -249,7 +261,7 @@
 	interaction_flags_click = NEED_DEXTERITY
 	custom_materials = list(/datum/material/gold = SHEET_MATERIAL_AMOUNT)
 
-/obj/item/storage/belt/crusader/Initialize(mapload)
+/obj/item/storage/belt/sheath/hip_only/crusader/Initialize(mapload)
 	. = ..()
 
 	create_storage(
@@ -304,12 +316,12 @@
 		return
 	pouch.atom_storage.dump_content_at(dest_object, dumping_mob)
 
-/obj/item/storage/belt/crusader/item_ctrl_click(mob/user)	//Makes ctrl-click also open the inventory, so that you can open it with full hands without dropping the sword
+/obj/item/storage/belt/sheath/hip_only/crusader/item_ctrl_click(mob/user)	//Makes ctrl-click also open the inventory, so that you can open it with full hands without dropping the sword
 	. = ..()
 	atom_storage.show_contents(user)
 	return
 
-/obj/item/storage/belt/crusader/click_alt(mob/user)	//This is basically the same as the normal sheath, but because there's always an item locked in the first slot it uses the second slot for swords
+/obj/item/storage/belt/sheath/hip_only/crusader/click_alt(mob/user)	//This is basically the same as the normal sheath, but because there's always an item locked in the first slot it uses the second slot for swords
 	if(contents.len == 2)
 		var/obj/item/drawn_item = contents[2]
 		add_fingerprint(user)
@@ -326,16 +338,16 @@
 		to_chat(user, span_warning("[src] is empty!"))
 	return CLICK_ACTION_SUCCESS
 
-/obj/item/storage/belt/crusader/update_icon(updates)
+/obj/item/storage/belt/sheath/hip_only/crusader/update_icon(updates)
+	. = ..()
 	if(contents.len == 2)	//Checks for a sword/rod in the sheath slot, changes the sprite accordingly
 		icon_state = "crusader_belt_sheathed"
 		worn_icon_state = "crusader_belt_sheathed"
 	else
 		icon_state = "crusader_belt"
 		worn_icon_state = "crusader_belt"
-	. = ..()
 
-/obj/item/storage/belt/crusader/examine(mob/user)
+/obj/item/storage/belt/sheath/hip_only/crusader/examine(mob/user)
 	. = ..()
 	.+= span_notice("Ctrl-click it to easily open its inventory.")
 	if(contents.len == 2)	//If there's no sword/rod in the sheath slot it doesnt display the alt-click instruction
@@ -343,7 +355,7 @@
 		return
 
 
-/obj/item/storage/belt/crusader/PopulateContents()
+/obj/item/storage/belt/sheath/hip_only/crusader/PopulateContents()
 	. = ..()
 	new /obj/item/storage/belt/storage_pouch(src)
 
@@ -368,7 +380,7 @@
 
 /////////////////////////////////////////////////
 
-/obj/item/storage/belt/sheath/multi
+/obj/item/storage/belt/sheath/hip_only/multi
 	name = "multi-scabbard"
 	desc = "A set of harnesses that enable carrying multiple bulky swords and/or shields."
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
@@ -378,7 +390,7 @@
 	actions_types = null
 	storage_type = /datum/storage/multi_scabbard
 
-/obj/item/storage/belt/sheath/multi/update_icon(updates)
+/obj/item/storage/belt/sheath/hip_only/multi/update_icon(updates)
 	. = ..()
 	var/numswords = 0
 	if(!isnull(contents) && contents.len > 0)
@@ -388,7 +400,7 @@
 	numswords = clamp(numswords, 0, 2)
 	icon_state = "multiscabbard_swords_[numswords]"
 
-/obj/item/storage/belt/sheath/multi/update_overlays()
+/obj/item/storage/belt/sheath/hip_only/multi/update_overlays()
 	. = ..()
 	var/obj/item/shield/my_shield = null
 	for(var/obj/item/i in contents)
@@ -421,7 +433,7 @@
 
 //////////////////////////////////////////////////////////////////
 
-/obj/item/storage/belt/sheath/repairing
+/obj/item/storage/belt/sheath/hip_only/repairing
 	name = "repairing scabbard"
 	desc = "A bluespace crystal in this scabbard causes it to slowly rejuvenate whatever's stored inside it."
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
@@ -433,11 +445,11 @@
 
 	var/integ_restoration_amount_per_seconds = 0.5
 
-/obj/item/storage/belt/sheath/repairing/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+/obj/item/storage/belt/sheath/hip_only/repairing/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	START_PROCESSING(SSdcs, src)
 
-/obj/item/storage/belt/sheath/repairing/process(seconds_per_tick)
+/obj/item/storage/belt/sheath/hip_only/repairing/process(seconds_per_tick)
 	if(contents.len == 0)
 		return PROCESS_KILL
 
@@ -471,7 +483,7 @@
 
 /////////////////////////////////////////////////
 
-/obj/item/storage/belt/knifethrowers_belt
+/obj/item/storage/belt/sheath/hip_only/knifethrowers_belt
 	name = "knifethrower's belt"
 	desc = "Stores a frankly ridiculous number of knives and comparable short, bladed weapons. The shallow pocket depth makes it poor at storing other objects."
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
@@ -482,7 +494,7 @@
 	pickup_sound = 'sound/items/handling/toolbelt_pickup.ogg'
 	storage_type = /datum/storage/knifethrowers
 
-/obj/item/storage/belt/knifethrowers_belt/update_overlays()
+/obj/item/storage/belt/sheath/hip_only/knifethrowers_belt/update_overlays()
 	. = ..()
 	if(contents.len > 0)
 		var/icon_to_use = "belt_knives_[(contents.len > 8 ? 8 : contents.len)]"
