@@ -18,8 +18,11 @@
 
 /datum/action/cooldown/spell/beast_form/cast(atom/target)
 	. = ..()
-	var/obj/item/organ/brain/lycan/brain = owner?.get_organ_slot(ORGAN_SLOT_BRAIN)
-	brain.toggle_beast_form(target)
+	var/mob/living/carbon/human/human_owner = owner
+	if (!istype(human_owner))
+		return
+	var/datum/quirk/cursekin/cursekin_quirk = human_owner.get_quirk(/datum/quirk/cursekin)
+	cursekin_quirk?.toggle_beast_form(target)
 	if(!HAS_TRAIT(owner, TRAIT_BEAST_FORM))
 		update_button_state("lycan_form")
 	else

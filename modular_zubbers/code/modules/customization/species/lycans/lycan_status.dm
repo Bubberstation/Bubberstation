@@ -14,15 +14,11 @@
 	if (!istype(human_owner))
 		return FALSE
 
-	var/obj/item/organ/brain/lycan/lycan_brain = human_owner.get_organ_by_type(/obj/item/organ/brain/lycan)
-	if (!istype(lycan_brain))
+	var/datum/quirk/cursekin/cursekin_quirk = human_owner.get_quirk(/datum/quirk/cursekin)
+	if (!istype(cursekin_quirk))
 		return FALSE
 
 	initial_species = human_owner.dna.species
-
-	var/datum/species/human/cursekin/current_wolf = human_owner.dna.species
-	if(!istype(current_wolf))
-		return FALSE
 
 	human_owner.visible_message(span_warning("[human_owner] turns [human_owner.p_their()] head to the sky and howls, rapidly growing and transforming into a horrible beast!"))
 
@@ -31,27 +27,27 @@
 		var/name = human_owner.real_name
 		var/slot = target_client.prefs.read_preference(/datum/preference/numeric/cursekin_char_slot)
 		var/transfer = TRUE
-		if (isnull(lycan_brain.last_slot))
-			lycan_brain.last_slot = target_client.prefs.savefile.get_entry("default_slot")
+		if (isnull(cursekin_quirk.last_slot))
+			cursekin_quirk.last_slot = target_client.prefs.savefile.get_entry("default_slot")
 		target_client.prefs.load_character(slot)
-		if (!ispath(target_client.prefs.read_preference(/datum.preference/choiced/species), current_wolf.lycanthropy_species))
+		if (!ispath(target_client.prefs.read_preference(/datum.preference/choiced/species), /datum/species/lycan))
 			to_chat(human_owner, span_warning("Your selected slot is not a lycan! Defaulting to simply changing your species..."))
-			target_client.prefs.load_character(lycan_brain.last_slot)
-			human_owner.set_species(current_wolf.lycanthropy_species, TRUE, TRUE, FALSE)
-			lycan_brain.last_slot = null // allows for easier switching in later procs
+			target_client.prefs.load_character(cursekin_quirk.last_slot)
+			human_owner.set_species(/datum/species/lycan, TRUE, TRUE, FALSE)
+			cursekin_quirk.last_slot = null // allows for easier switching in later procs
 			transfer = FALSE
 
 		if (transfer)
 			target_client.prefs.safe_transfer_prefs_to_with_damage(human_owner)
 			human_owner.real_name = name
 			human_owner.name = name
-			SSquirks.OverrideQuirks(human_owner, target_client, spawn_items = FALSE)
+			SSquirks.OverrideQuirks(human_owner, target_client, ignored_quirks = list("Cursekin"), spawn_items = FALSE)
 			human_owner.dna.update_dna_identity()
 
-			target_client.prefs.load_character(lycan_brain.last_slot)
+			target_client.prefs.load_character(cursekin_quirk.last_slot)
 
 	ADD_TRAIT(human_owner, TRAIT_BEAST_FORM, SPECIES_TRAIT)
-	playsound(human_owner, lycan_brain.to_lycan_sfx, 50)
+	playsound(human_owner, cursekin_quirk.to_lycan_sfx, 50)
 
 /datum/status_effect/beast_form/on_remove()
 	. = ..()
@@ -60,26 +56,26 @@
 	if (!istype(human_owner))
 		return
 
-	var/obj/item/organ/brain/lycan/lycan_brain = human_owner.get_organ_by_type(/obj/item/organ/brain/lycan)
-	if (!istype(lycan_brain))
+	var/datum/quirk/cursekin/cursekin_quirk = human_owner.get_quirk(/datum/quirk/cursekin)
+	if (!istype(cursekin_quirk))
 		return
 
 	human_owner.visible_message(span_warning("[human_owner] shrinks down, their fur receding!"))
 
-	if (lycan_brain.last_slot)
+	if (cursekin_quirk.last_slot)
 		var/client/target_client = human_owner.client
 		if (isnull(target_client))
 			human_owner.set_species(initial_species, TRUE, TRUE, FALSE)
 		else
-			target_client.prefs.load_character(lycan_brain.last_slot)
+			target_client.prefs.load_character(cursekin_quirk.last_slot)
 			target_client.prefs.safe_transfer_prefs_to_with_damage(human_owner)
-			SSquirks.OverrideQuirks(human_owner, target_client, spawn_items = FALSE)
+			SSquirks.OverrideQuirks(human_owner, target_client, ignored_quirks = list("Cursekin"), spawn_items = FALSE)
 			human_owner.dna.update_dna_identity()
 	else
 		human_owner.set_species(initial_species, TRUE, TRUE, FALSE)
 
 	REMOVE_TRAIT(human_owner, TRAIT_BEAST_FORM, SPECIES_TRAIT)
-	playsound(human_owner, lycan_brain.to_human_sfx, 50)
+	playsound(human_owner, cursekin_quirk.to_human_sfx, 50)
 
 /datum/status_effect/beast_form/tick(seconds_between_ticks)
 	. = ..()
