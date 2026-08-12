@@ -47,5 +47,3 @@
 		/obj/item/security_voucher/utility = 1,
 		/obj/item/flashlight/seclite
 		)
-
-////////// JOBS BELOW ///////////
