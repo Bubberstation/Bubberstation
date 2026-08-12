@@ -21,6 +21,7 @@
 
 	outfit = /datum/outfit/job/nanotrasen_consultant
 	plasmaman_outfit = /datum/outfit/plasmaman/nanotrasen_consultant
+	akula_outfit = /datum/outfit/akula
 
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_CMD
@@ -37,6 +38,21 @@
 	)
 
 	job_flags = STATION_JOB_FLAGS | JOB_BOLD_SELECT_TEXT | HEAD_OF_STAFF_JOB_FLAGS
+	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
+	is_hand_required = TRUE
+	alt_titles = list(
+		"Nanotrasen Consultant",
+		"Nanotrasen Advisor",
+		"Nanotrasen Diplomat",
+		"Nanotrasen Representative",
+		"Nanotrasen Liaison",
+		"Command Consultant",
+		"Command Advisor",
+		"Corporate Diplomat",
+		"Corporate Representative",
+		"Corporate Liaison",
+		"Corporate Interest Officer",
+	)
 
 /datum/outfit/job/nanotrasen_consultant
 	name = "Nanotrasen Consultant"

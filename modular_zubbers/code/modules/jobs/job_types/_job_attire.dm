@@ -1,12 +1,3 @@
-/datum/job/bitrunner
-	akula_outfit = /datum/outfit/akula/cargo_technician
-
-/datum/job/geneticist
-	akula_outfit = /datum/outfit/akula/scientist
-
-/datum/job/virologist
-	akula_outfit = /datum/outfit/akula/doctor
-
 // Im not certain if having these matter
 /datum/job/syndicate_cybersun_captain
 	akula_outfit = /datum/outfit/akula
@@ -42,9 +33,6 @@
 	akula_outfit = /datum/outfit/akula
 
 // Modular jobs
-
-/datum/job/nanotrasen_consultant
-	akula_outfit = /datum/outfit/akula
 
 /datum/job/fleetmaster
 	akula_outfit = /datum/outfit/akula
