@@ -1,5 +1,3 @@
-// BUBBER EDIT ADDITION -- memory logging subsystem, ported from Rotwood-Vale/Ratwood-2.0 #2136 and #2226
-
 /// Rough ceiling of what a Dream Daemon process can address before it falls over, in MB. Display only.
 #define MEMORY_STATS_BUDGET_MB 3900
 /// File the windows background writer drops its RSS samples into, see tools/memory_stats/mem_writer.ps1
@@ -24,7 +22,7 @@ SUBSYSTEM_DEF(memory_stats)
 	wait = 30 SECONDS
 	ss_flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
-	/// RSS (in MB) of the last sample, so admins/log readers can see the delta
+	/// RSS (in MB) of the last sample, so users can see the current memory usage in the statpanel
 	var/last_rss_mb = 0
 	/// RSS in raw bytes of the last sample (float precision, ~256 byte granularity at the 4GB scale)
 	var/last_rss_bytes = 0
