@@ -90,7 +90,7 @@
 		span_warning("[surgeon] screws up, causing brain damage!"),
 		span_notice("[surgeon] completes the surgery on [FORMAT_ORGAN_OWNER(organ)]'s brain."),
 	)
-	display_pain(organ.owner, "Your head throbs with horrible pain; thinking hurts!")
+	display_pain(organ.owner, "Oh no... it does not feel like this is going as it should...")
 	if(resilience_level == TRAUMA_RESILIENCE_MAGIC)
 		organ.owner.adjust_oxy_loss(200)
 	else
