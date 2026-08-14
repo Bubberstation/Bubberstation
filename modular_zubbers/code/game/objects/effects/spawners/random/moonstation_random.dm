@@ -140,7 +140,7 @@
 	icon_state = "random_liquid"
 	loot = list(
 		/obj/structure/liquid_pump = 100,
-		/obj/structure/reagent_dispensers/beerkeg = 10,
+		/obj/structure/reagent_dispensers/keg/beer = 10,
 		/obj/structure/reagent_dispensers/cooking_oil = 5,
 		/obj/structure/reagent_dispensers/foamtank = 50,
 		/obj/structure/reagent_dispensers/fueltank = 400,

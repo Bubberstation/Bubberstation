@@ -14,7 +14,6 @@
 	mutantlungs = /obj/item/organ/lungs/nitrogen/vox
 	mutantbrain = /obj/item/organ/brain/cybernetic/cortical/vox //BUBBER EDIT - new brain dropped
 	mutanteyes = /obj/item/organ/eyes/vox_primalis
-	breathid = "n2"
 	mutant_bodyparts = list()
 	meat = /obj/item/food/meat/slab/chicken/human //item file in teshari module
 	mutanttongue = /obj/item/organ/tongue/vox
