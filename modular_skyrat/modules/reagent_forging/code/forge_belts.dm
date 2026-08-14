@@ -534,8 +534,8 @@
 		/obj/item/food/grown/cherry_bomb,
 		/obj/item/food/grown/firelemon,
 		/obj/item/food/grown/gatfruit,
-		/obj/item/food/grown/holymelon,
-		/obj/item/food/grown/barrelmelon,
+		/obj/item/food/grown/melonlike/holymelon,
+		/obj/item/food/grown/melonlike/barrelmelon,
 		/obj/item/food/grown/tomato/blue/bluespace,
 		/obj/item/food/grown/tomato/killer,
 	)

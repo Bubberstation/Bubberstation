@@ -1,6 +1,6 @@
 /datum/sprite_accessory/horns
 	key = "horns"
-	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER, BODY_ADJ_LAYER)
+	relevent_layers = list(EXTERNAL_BEHIND, EXTERNAL_ADJACENT, EXTERNAL_FRONT)
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/horns.dmi'
 	default_color = "#555555"
 	organ_type = /obj/item/organ/horns

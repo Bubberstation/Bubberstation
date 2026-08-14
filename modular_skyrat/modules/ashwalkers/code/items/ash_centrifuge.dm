@@ -28,7 +28,7 @@
 		return
 
 	reagents.del_reagent(user_input.type)
-	user.mind.adjust_experience(/datum/skill/primitive, 5)
+	user.mind?.adjust_experience(/datum/skill/primitive, 5)
 	balloon_alert(user, "removed reagent from [src]")
 
 /obj/item/reagent_containers/cup/primitive_centrifuge/click_ctrl_shift(mob/user)
@@ -51,5 +51,5 @@
 		if(!istype(remove_reagent, user_input.type))
 			reagents.del_reagent(remove_reagent.type)
 
-	user.mind.adjust_experience(/datum/skill/primitive, 5)
+	user.mind?.adjust_experience(/datum/skill/primitive, 5)
 	balloon_alert(user, "removed reagents from [src]")

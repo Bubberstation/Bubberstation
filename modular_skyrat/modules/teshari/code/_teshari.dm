@@ -80,11 +80,11 @@
 
 /datum/species/teshari/on_species_gain(mob/living/carbon/human/new_teshari, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
-	passtable_on(new_teshari, SPECIES_TRAIT)
+	ADD_TRAIT(new_teshari, TRAIT_PASSTABLE, SPECIES_TRAIT)
 
 /datum/species/teshari/on_species_loss(mob/living/carbon/C, datum/species/new_species, pref_load)
 	. = ..()
-	passtable_off(C, SPECIES_TRAIT)
+	REMOVE_TRAIT(C, TRAIT_PASSTABLE, SPECIES_TRAIT)
 
 /datum/species/teshari/create_pref_unique_perks()
 	var/list/perk_descriptions = list()

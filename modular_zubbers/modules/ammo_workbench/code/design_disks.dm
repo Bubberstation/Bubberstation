@@ -11,6 +11,7 @@
 	name = "advanced munitions datadisk"
 	desc = "An datadisk filled with advanced munition fabrication data for the ammunition workbench, including lethal ammotypes if not previously enabled. \
 	No parties are liable for any incidents that occur if safeties were circumvented beforehand."
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/disk/ammo_workbench/advanced/on_bench_install(obj/machinery/ammo_workbench/ammobench)
 	ammobench.allowed_harmful = TRUE
