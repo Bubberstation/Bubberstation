@@ -59,6 +59,7 @@
 	)
 
 /datum/job/barber
+	display_order = JOB_DISPLAY_ORDER_BARBER
 	alt_titles = list(
 		"Barber",
 		"Aethestician",

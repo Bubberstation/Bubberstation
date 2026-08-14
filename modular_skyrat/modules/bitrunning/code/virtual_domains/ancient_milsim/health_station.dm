@@ -100,7 +100,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/health_station, 32)
 
 	switch(choice)
 		if("Health Scan")
-			healthscan(user, user, advanced = TRUE)
+			healthscan(user, user, scanpower = SCANPOWER_ADVANCED)
 			chemscan(user, user)
 			balloon_alert(user, "analyzing vitals")
 			playsound(user.loc, 'sound/items/healthanalyzer.ogg', 40, TRUE)

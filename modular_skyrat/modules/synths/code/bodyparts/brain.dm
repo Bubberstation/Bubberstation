@@ -32,7 +32,7 @@
 
 /obj/item/organ/brain/synth/Remove(mob/living/carbon/organ_owner, special = FALSE, movement_flags)
 	. = ..()
-	if(!istype(stored_mmi) || special)
+	if(!istype(stored_mmi) || special || loc == null)
 		return
 	stored_mmi.brain = src
 	organ_flags |= ORGAN_FROZEN
@@ -54,6 +54,7 @@
 	. = ..()
 	if(stored_mmi?.brainmob?.mind && stored_mmi.brainmob.mind.current == stored_mmi.brainmob)
 		stored_mmi.brainmob.mind.transfer_to(brain_owner)
+		QDEL_NULL(stored_mmi.brainmob)
 
 	if(brain_owner.stat == DEAD && ishuman(brain_owner))
 		var/mob/living/carbon/human/user_human = brain_owner
@@ -65,7 +66,8 @@
 
 /obj/item/organ/brain/synth/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
-	cache_brainmob_into_stored_mmi(organ_owner)
+	if(!(movement_flags & NO_ID_TRANSFER))
+		cache_brainmob_into_stored_mmi(organ_owner)
 
 	UnregisterSignal(organ_owner, COMSIG_MOB_EQUIPPED_ITEM)
 	UnregisterSignal(organ_owner, COMSIG_HUMAN_UNEQUIPPED_ITEM)
