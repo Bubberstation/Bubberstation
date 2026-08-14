@@ -26,7 +26,7 @@
 		var/status = !(clothing_flags & VOICEBOX_DISABLED)
 		to_chat(user, span_notice("You turn the voice box in [src] [status ? "on" : "off"]."))
 
-/obj/item/clothing/mask/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
+/obj/item/clothing/mask/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file, bodyshape = NONE)
 	. = ..()
 	if(isinhands || !(body_parts_covered & HEAD))
 		return
@@ -40,11 +40,11 @@
 		. += mutable_appearance(damage_icon_file, damage_icon_state)
 		//BUBBER EDIT END
 
-/obj/item/clothing/mask/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file)
+/obj/item/clothing/mask/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
 	if (isinhands || !(body_parts_covered & HEAD))
 		return
-	var/blood_overlay = get_blood_overlay("mask")
+	var/blood_overlay = get_blood_overlay("mask", bodyshape)
 	if (blood_overlay)
 		. += blood_overlay
 

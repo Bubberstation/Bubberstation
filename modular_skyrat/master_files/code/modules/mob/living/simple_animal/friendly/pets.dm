@@ -26,7 +26,6 @@
 	mobility_flags = MOBILITY_FLAGS_REST_CAPABLE_DEFAULT
 	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_icon_state = "clowncat"
-	can_be_held = TRUE
 	ai_controller = /datum/ai_controller/basic_controller/cat/clown
 	held_state = "cat2"
 	attack_verb_continuous = "honks"
@@ -143,7 +142,6 @@
 	speak_emote = list("chirps", "huff-quacks")
 	butcher_results = list(/obj/item/food/meat/slab = 3)
 	gold_core_spawnable = FRIENDLY_SPAWN
-	can_be_held = TRUE
 	held_state = "fox"
 	melee_damage_lower = 5
 	melee_damage_upper = 5
@@ -152,7 +150,6 @@
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	ai_controller = /datum/ai_controller/basic_controller/fox/docile //he's a nice boy
-
 
 /mob/living/basic/pet/dog/corgi/robocorgo
 	name = "\improper robocorgi"

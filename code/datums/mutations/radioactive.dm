@@ -7,6 +7,7 @@
 	difficulty = 8
 	power_coeff = 1
 	mutation_icon_state = "radiation"
+	offset_location = ENTIRE_BODY
 	/// Weakref to our radiation emitter component
 	var/datum/weakref/radioactivity_source_ref
 

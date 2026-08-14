@@ -46,7 +46,10 @@
 	faction = list("neutral")
 
 	mob_size = MOB_SIZE_TINY
-	can_be_held = TRUE
+
+/mob/living/basic/pet/plush/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/can_be_held)
 
 //shell that lets people turn into the plush or poll for ghosts
 /obj/item/toy/plushie_shell
