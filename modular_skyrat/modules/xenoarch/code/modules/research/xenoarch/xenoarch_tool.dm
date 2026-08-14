@@ -51,42 +51,49 @@
 	icon_state = "hammer1"
 	dig_amount = 1
 	dig_speed = 0.5 SECONDS
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/hammer/cm2
 	name = "hammer (2cm)"
 	icon_state = "hammer2"
 	dig_amount = 2
 	dig_speed = 1 SECONDS
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/hammer/cm3
 	name = "hammer (3cm)"
 	icon_state = "hammer3"
 	dig_amount = 3
 	dig_speed = 1.5 SECONDS
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/hammer/cm4
 	name = "hammer (4cm)"
 	icon_state = "hammer4"
 	dig_amount = 4
 	dig_speed = 2 SECONDS
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/hammer/cm5
 	name = "hammer (5cm)"
 	icon_state = "hammer5"
 	dig_amount = 5
 	dig_speed = 2.5 SECONDS
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/hammer/cm6
 	name = "hammer (6cm)"
 	icon_state = "hammer6"
 	dig_amount = 6
 	dig_speed = 3 SECONDS
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/hammer/cm10
 	name = "hammer (10cm)"
 	icon_state = "hammer10"
 	dig_amount = 10
 	dig_speed = 5 SECONDS
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/hammer/adv
 	name = "advanced hammer"
@@ -94,6 +101,7 @@
 	dig_amount = 1
 	dig_speed = 1
 	advanced = TRUE
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT)
 
 // BRUSHES
 
@@ -102,11 +110,13 @@
 	desc = "A brush that is used to uncover the secrets of the past from strange rocks."
 	var/dig_speed = 3 SECONDS
 	icon_state = "brush"
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/brush/adv
 	name = "advanced brush"
 	dig_speed = 0.5 SECONDS
 	icon_state = "adv_brush"
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT)
 
 // MISC.
 
@@ -114,6 +124,7 @@
 	name = "measuring tape"
 	desc = "A measuring tape specifically produced to measure the depth that has been dug into strange rocks."
 	icon_state = "tape"
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/handheld_scanner
 	name = "handheld scanner"
@@ -121,17 +132,20 @@
 	icon_state = "scanner"
 	var/scanning_speed = 3 SECONDS
 	var/scan_advanced = FALSE
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/handheld_scanner/advanced
 	name = "advanced handheld scanner"
 	icon_state = "adv_scanner"
 	scanning_speed = 0.5 SECONDS
 	scan_advanced = TRUE
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/handheld_recoverer
 	name = "handheld recoverer"
 	desc = "An item that has the capabilities to recover items lost due to time."
 	icon_state = "recoverer"
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/xenoarch/handheld_recoverer/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	var/turf/target_turf = get_turf(interacting_with)
@@ -183,6 +197,7 @@
 	icon_state = "xenoarch_belt"
 	content_overlays = FALSE
 	custom_premium_price = PAYCHECK_CREW * 2
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/storage/belt/utility/xenoarch/Initialize(mapload)
 	. = ..()
@@ -212,6 +227,7 @@
 	var/range = null
 
 	var/spam_protection = FALSE //If this is TRUE, the holder won't receive any messages when they fail to pick up ore through crossing it
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/storage/bag/xenoarch/Initialize(mapload)
 	. = ..()
@@ -276,6 +292,7 @@
 	name = "advanced xenoarch mining satchel"
 	icon_state = "adv_satchel"
 	insert_speed = 0.1 SECONDS
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/storage/bag/xenoarch/adv/Initialize(mapload)
 	. = ..()
