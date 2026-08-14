@@ -266,13 +266,13 @@
 			if(TRAUMA_RESILIENCE_SURGERY)
 				trauma_desc = conditional_tooltip("Severe ", "Repair via brain surgery.", add_tooltips)
 			if(TRAUMA_RESILIENCE_LOBOTOMY)
-				trauma_desc = conditional_tooltip("Deep-rooted ", "Repair via Lobotomy.", add_tooltips)
+				trauma_desc = conditional_tooltip("Deep-rooted ", "Repair via advanced brain surgery.", add_tooltips) // BUBBER EDIT CHANGE - Original: Repair via Lobotomy
 			if(TRAUMA_RESILIENCE_WOUND)
 				trauma_desc = conditional_tooltip("Fracture-derived ", "Repair via treatment of wounds afflicting the head.", add_tooltips)
 			if(TRAUMA_RESILIENCE_MAGIC)
-				// BUBBER EDIT CHANGE BEGIN - Blessed lobotomy
-				trauma_desc = conditional_tooltip("Soul-bound ", "Repair via Blessed Lobotomy.", add_tooltips)
-				// BUBBER EDIT CHANGE END - Blessed lobotomy
+				// BUBBER EDIT CHANGE BEGIN - Blessed neurectomy
+				trauma_desc = conditional_tooltip("Soul-bound ", "Repair via blessed brain surgery.", add_tooltips)
+				// BUBBER EDIT CHANGE END - Blessed neurectomy
 			if(TRAUMA_RESILIENCE_ABSOLUTE)
 				trauma_desc = conditional_tooltip("Permanent ", "Irreparable under normal circumstances.", add_tooltips)
 		trauma_desc += capitalize(trauma.scan_desc)
