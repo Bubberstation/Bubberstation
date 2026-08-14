@@ -43,9 +43,15 @@
 // We do this here like this so that we handle matrixed color bodypart overlays and emissives.
 /datum/bodypart_overlay/mutant/get_overlay(obj/item/bodypart/limb, layer_index, layer_real)
 	inherit_color(limb) // If draw_color is not set yet, go ahead and do that (matches upstream, needed for ORGAN_COLOR_INHERIT overlays)
-	var/gotten_images = get_images(limb, layer_index, layer_real)
-	color_images(gotten_images, limb, layer_index)
-	return add_emissives(gotten_images, limb)
+	. = get_images(limb, layer_index, layer_real)
+	color_images(., limb, layer_index)
+	. = add_emissives(., limb)
+
+/datum/bodypart_overlay/mutant/snout/get_overlay(obj/item/bodypart/limb, layer_index, layer_real)
+	. = ..()
+
+/datum/bodypart_overlay/mutant/snout/set_appearance_from_dna(datum/dna/dna, accessory_name, feature_key, obj/item/bodypart/limb)
+	. = ..()
 
 /// Generate a unique key based on our sprites. So that if we've aleady drawn these sprites,
 /// they can be found in the cache and wont have to be drawn again (blessing and curse, but mostly curse)
@@ -245,6 +251,18 @@
 
 	return appearance
 
+/* // TO-DO: Fix this mess.
+// Special case - fish tail
+/datum/bodypart_overlay/mutant/tail/fish/get_singular_image(image_icon_state, image_layer, mob/living/carbon/human/owner, icon_override = null, obj/item/bodypart/limb)
+	var/mutable_appearance/appearance = ..()
+	// We add all appearances the parent bodypart has to the tail to inherit scales and fancy effects
+	// but most other organs don't want to inherit those so we do it here and not on parent
+	for (var/datum/bodypart_overlay/texture/texture in limb.bodypart_overlays)
+		if(texture.can_draw_on_bodypart(limb, limb.owner, limb.is_husked))
+			texture.modify_bodypart_appearance(appearance)
+	return appearance
+*/
+
 /**
  * Helper proc to add the appropriate emissives to the overlays, based on the preferences.
  *
@@ -280,11 +298,9 @@
 		return
 
 	emissive_eligibility_by_color_index = list()
-	var/i = 1
 
 	for(var/eligibility in emissive_eligibility)
-		emissive_eligibility_by_color_index[num2text(i)] = eligibility
-		i++
+		emissive_eligibility_by_color_index += eligibility
 
 #undef MAX_MATRIXED_COLORS
 #undef ALPHA_OPAQUE

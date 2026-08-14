@@ -357,8 +357,8 @@
 		eye_right.alpha = 0
 
 	if (is_emissive) // Because it was done all weird up there.
-		var/mutable_appearance/emissive_left = emissive_appearance_copy(eye_left, owner)
-		var/mutable_appearance/emissive_right = emissive_appearance_copy(eye_right, owner)
+		var/mutable_appearance/emissive_left = emissive_appearance(eye_left.icon, eye_left.icon_state, offset_spokesman = owner, layer = eye_left.layer)
+		var/mutable_appearance/emissive_right = emissive_appearance(eye_right.icon, eye_right.icon_state, offset_spokesman = owner, layer = eye_right.layer)
 		emissive_left.appearance_flags &= ~RESET_TRANSFORM
 		emissive_right.appearance_flags &= ~RESET_TRANSFORM
 

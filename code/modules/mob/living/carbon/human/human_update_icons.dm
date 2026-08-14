@@ -536,18 +536,19 @@ There are several things that need to be remembered:
 
 		// BUBBER EDIT ADDITION START
 		var/mutant_override = FALSE
+		var/mutant_override_file = null
 		if(bodyshape & BODYSHAPE_CUSTOM)
 			var/species_icon_file = dna.species.generate_custom_worn_icon(LOADOUT_ITEM_MASK, wear_mask, src)
 			if(species_icon_file)
-				icon_file = species_icon_file
+				mutant_override_file = species_icon_file
 				mutant_override = TRUE
 		if(!mutant_override && (bodyshape & BODYSHAPE_SNOUTED) && (worn_item.supports_variations_flags & CLOTHING_SNOUTED_VARIATION))
 			var/snout_icon_file = worn_item.worn_icon_muzzled || SNOUTED_MASK_FILE
 			if(snout_icon_file && icon_exists(snout_icon_file, RESOLVE_ICON_STATE(worn_item)))
-				icon_file = snout_icon_file
+				mutant_override_file = snout_icon_file
 				mutant_override = TRUE
+		var/mutable_appearance/mask_overlay = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = icon_file, bodyshape = bodyshape, override_file = mutant_override_file)
 		// BUBBER EDIT ADDITION END
-		var/mutable_appearance/mask_overlay = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = icon_file, bodyshape = bodyshape)
 		apply_height(mask_overlay, UPPER_BODY)
 		if(!mutant_override) my_head.worn_mask_offset?.apply_offset(mask_overlay) // BUBBER EDIT CHANGE - ORIGINAL: my_head.worn_mask_offset?.apply_offset(mask_overlay)
 		overlays_standing[FACEMASK_LAYER] = mask_overlay
@@ -749,9 +750,12 @@ There are several things that need to be remembered:
 	var/icon/female_clothing_icon = female_clothing_icons[index]
 	if(!female_clothing_icon) //Create standing/laying icons if they don't exist
 		var/female_icon_state = "female[type == FEMALE_UNIFORM_FULL ? "_full" : ((!type || type & FEMALE_UNIFORM_TOP_ONLY) || bodyshape & BODYSHAPE_DIGITIGRADE ? "_top" : "")][type & FEMALE_UNIFORM_NO_BREASTS ? "_no_breasts" : ""]"
-		var/icon/female_cropping_mask = icon('icons/mob/clothing/under/masking_helpers.dmi', female_icon_state)
+		// BUBBER EDIT BEGIN - Stops the dixel from appearing on teshari. We don't currently have fem icons for them so
 		female_clothing_icon = icon(icon, icon_state)
-		female_clothing_icon.Blend(female_cropping_mask, ICON_MULTIPLY)
+		if(!(bodyshape & BODYSHAPE_CUSTOM))
+			var/icon/female_cropping_mask = icon('icons/mob/clothing/under/masking_helpers.dmi', female_icon_state)
+			female_clothing_icon.Blend(female_cropping_mask, ICON_MULTIPLY)
+		// BUBBER EDIT END
 		female_clothing_icon = fcopy_rsc(female_clothing_icon)
 		female_clothing_icons[index] = female_clothing_icon
 

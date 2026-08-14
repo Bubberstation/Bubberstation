@@ -295,7 +295,7 @@
 	// BUBBER EDIT ADDITION BEGIN - Construction skill
 	var/mob/crafting_mob = crafter
 	if(istype(crafting_mob))
-		crafting_mob.mind.adjust_experience(/datum/skill/construction, 5)
+		crafting_mob.mind?.adjust_experience(/datum/skill/construction, 5)
 	// BUBBER EDIT ADDITION END - Construction skill
 	result.setDir(crafter.dir)
 	if(recipe.crafting_flags & CRAFT_CLEARS_REAGENTS)

@@ -307,11 +307,11 @@
 	)
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 44.8,
-		/datum/material/alloy/plastitanium = SHEET_MATERIAL_AMOUNT * 40,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 40,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 40,
 		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 1.25,
 		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 0.75,
-		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 3
-		)
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 3)
 
 /obj/item/clothing/suit/hooded/secjuggernaut/examine(mob/user)
 	. = ..()

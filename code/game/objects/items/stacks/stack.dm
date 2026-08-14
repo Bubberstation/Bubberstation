@@ -464,7 +464,7 @@
 		created.setDir(builder.dir)
 	created.on_craft_completion(list(used_stack), null, builder)
 
-	builder.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT: Construction Skill
+	builder.mind?.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT: Construction Skill
 
 	builder.investigate_log("crafted [recipe.title]", INVESTIGATE_CRAFTING)
 

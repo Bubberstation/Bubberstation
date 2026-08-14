@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	else
 		new/obj/structure/girder/displaced(build_on)
 		user.balloon_alert(user, "girder created")
-	user.mind.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT: Construction Skill
+	user.mind?.adjust_experience(/datum/skill/construction, 5) //SKYRAT EDIT: Construction Skill
 	return ITEM_INTERACT_SUCCESS
 
 /*

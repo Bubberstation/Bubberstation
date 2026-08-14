@@ -858,7 +858,7 @@
 	savefile_key = "feature_pod_hair"
 	main_feature_name = "Hairstyle"
 	category = PREFERENCE_CATEGORY_FEATURES
-	relevant_mutant_bodypart = "pod_hair"
+	relevant_mutant_bodypart = FEATURE_POD_HAIR
 	default_accessory_type = /datum/sprite_accessory/pod_hair/ivy
 	should_generate_icons = TRUE
 	generate_icons = TRUE

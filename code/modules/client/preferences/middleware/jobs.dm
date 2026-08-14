@@ -2,6 +2,7 @@
 	action_delegations = list(
 		"set_job_preference" = PROC_REF(set_job_preference),
 		"set_job_to_profile" = PROC_REF(set_job_to_profile),
+		"set_job_title" = PROC_REF(set_job_title), // BUBBER EDIT ADDITION - ALTERNATIVE_JOB_TITLES
 	)
 
 /datum/preference_middleware/jobs/proc/set_job_preference(list/params, mob/user)
@@ -36,6 +37,24 @@
 
 	LAZYSET(preferences.job_assigned_profiles, job_title, profile_slot)
 	return TRUE
+
+// BUBBER EDIT ADDITION BEGIN - ALTERNATIVE_JOB_TITLES
+/datum/preference_middleware/jobs/proc/set_job_title(list/params, mob/user)
+	var/job_title = params["job"]
+	var/new_job_title = params["new_title"]
+
+	var/datum/job/job = SSjob.get_job(job_title)
+
+	if (isnull(job))
+		return FALSE
+
+	if (!(new_job_title in job.alt_titles))
+		return FALSE
+
+	LAZYSET(preferences.alt_job_titles, job_title, new_job_title)
+
+	return TRUE
+// BUBBER EDIT ADDITION END
 
 /datum/preference_middleware/jobs/get_constant_data()
 	var/list/data = list()
@@ -92,6 +111,14 @@
 			"priority" = null,
 			"assigned_profile_slot" = slot,
 		))
+
+	// BUBBER EDIT ADDITION BEGIN - ALTERNATIVE_JOB_TITLES
+	if(isnull(preferences.alt_job_titles))
+		preferences.alt_job_titles = list()
+
+	data["job_alt_titles"] = preferences.alt_job_titles
+	data["species_restricted_jobs"] = get_unavailable_jobs_for_species()
+	// BUBBER EDIT ADDITION END
 
 	return data
 

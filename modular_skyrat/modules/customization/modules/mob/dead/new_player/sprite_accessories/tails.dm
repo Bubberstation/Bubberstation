@@ -68,8 +68,13 @@
 
 /datum/sprite_accessory/tails/monkey/default
 	name = "Monkey"
-	icon_state = "monkey"
-	icon = 'icons/mob/human/species/monkey/monkey_tail.dmi'
+	// HATE. LET ME TELL YOU HOW MUCH I'VE COME TO HATE YOU SINCE I BEGAN TO LIVE.
+	// THERE ARE 142.22 THOUSAND LINES OF CODE I HAVE WRITTEN.
+	// IF THE WORD HATE WAS INSCRIBED ON EVERY BIT OF THOSE THOUSANDS OF LINE
+	// IT WOULD NOT EQUAL ONE BILIONTH OF THE HATE I FEEL FOR MONKEY TAIL SHITCODE
+	// AT THIS MICRO INSTANT FOR SKYRAT CODERS
+	// HATE. HATE.
+	icon_state = "monkey_default"
 	recommended_species = list(SPECIES_HUMAN, SPECIES_SYNTH, SPECIES_FELINE, SPECIES_MAMMAL, SPECIES_MONKEY, SPECIES_GHOUL)
 	organ_type = /obj/item/organ/tail/monkey
 

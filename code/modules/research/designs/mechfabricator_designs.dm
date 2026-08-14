@@ -1,6 +1,5 @@
 //Cyborg
 
-/* //SKYRAT EDIT REMOVAL BEGIN - Costs lowered and time reduced -
 /datum/design/borg_suit
 	name = "Cyborg Endoskeleton"
 	id = "borg_suit"
@@ -77,7 +76,6 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_CHASSIS
 	)
-*///SKYRAT EDIT REMOVAL END
 
 //Advanced Robotic Limbs
 

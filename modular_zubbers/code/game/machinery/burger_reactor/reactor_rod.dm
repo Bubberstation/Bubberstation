@@ -2,6 +2,7 @@
 	name = "\improper RB-MK2 reactor rod"
 	desc = "A rod for the RB-MK2 reactor. Usually filled with a mix of tritium and an inert gas, such as nitrogen."
 	icon = 'modular_zubbers/icons/obj/equipment/burger_reactor.dmi'
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*5, /datum/material/uranium = SMALL_MATERIAL_AMOUNT*2)
 	icon_state = "platform_rod"
 	inhand_icon_state = null
 	worn_icon_state = null

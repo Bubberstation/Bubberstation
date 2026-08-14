@@ -18,6 +18,7 @@
 	feature_key = FEATURE_EARS
 	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER, EXTERNAL_ADJACENT = BODY_ADJ_LAYER, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
 	color_source = ORGAN_COLOR_OVERRIDE
+	offset_location = UPPER_BODY
 
 /datum/bodypart_overlay/mutant/ears/set_appearance_from_name(accessory_name)
 	if(isnull(accessory_name))

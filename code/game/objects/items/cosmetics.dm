@@ -185,7 +185,6 @@
 		span_notice("You wipe off [target]'s lipstick."))
 	target.update_lips(null)
 
-/* SKYRAT EDIT REMOVAL
 /obj/item/razor
 	name = "electric razor"
 	desc = "The latest and greatest power razor born from the science of shaving."
@@ -199,6 +198,7 @@
 	drop_sound = SFX_GENERIC_DEVICE_DROP
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.7)
 
+/* SKYRAT EDIT REMOVAL
 /obj/item/razor/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] begins shaving [user.p_them()]self without the razor guard! It looks like [user.p_theyre()] trying to commit suicide!"))
 	if (ishuman(user))

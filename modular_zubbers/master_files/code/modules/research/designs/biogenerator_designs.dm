@@ -71,7 +71,7 @@
 
 /datum/design/biogen/diskplantgene
 	name = "Plant Data Disk"
-	id = "diskplantgene"
+	id = "biogen-diskplantgene"
 	materials = list(/datum/material/biomass = 10)
 	build_path = /obj/item/disk/computer/plantgene
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_MATERIALS)

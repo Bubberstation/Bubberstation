@@ -16,6 +16,7 @@
 	feature_key = FEATURE_XENODORSAL
 	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
 	color_source = ORGAN_COLOR_OVERRIDE
+	offset_location = ENTIRE_BODY
 
 /datum/bodypart_overlay/mutant/xenodorsal/override_color(rgb_value)
 	return draw_color

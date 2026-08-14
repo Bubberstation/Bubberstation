@@ -168,6 +168,11 @@
 	say_mod = "says"
 	// Not as good as organic tongues, not as bad as the robotic voicebox.
 	taste_sensitivity = 20
+	custom_materials = list(
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 2,
+		/datum/material/silver = SMALL_MATERIAL_AMOUNT * 2
+		)
 
 /obj/item/organ/tongue/vox
 	name = "vox tongue"

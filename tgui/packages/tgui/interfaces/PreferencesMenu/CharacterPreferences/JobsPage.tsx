@@ -227,6 +227,10 @@ function JobRow(props: JobRowProps) {
   const experienceNeeded = job_required_experience?.[name];
   const daysLeft = job_days_left ? job_days_left[name] : 0;
 
+  // BUBBER EDIT ADDITION - ALTERNATIVE_JOB_TITLES
+  const alt_title_selected = data.job_alt_titles?.[name] ?? name;
+  // BUBBER EDIT END
+
   let rightSide: ReactNode;
 
   if (experienceNeeded) {
@@ -256,6 +260,19 @@ function JobRow(props: JobRowProps) {
         </Stack.Item>
       </Stack>
     );
+    // BUBBER EDIT ADDITION BEGIN - Species restricted jobs
+  } else if (
+    data.species_restricted_jobs &&
+    data.species_restricted_jobs.indexOf(name) !== -1
+  ) {
+    rightSide = (
+      <Stack pr={1}>
+        <Stack.Item grow textAlign="right" height="stretch">
+          <b>Bad species</b>
+        </Stack.Item>
+      </Stack>
+    );
+    // BUBBER EDIT ADDITION END
   } else {
     rightSide = (
       <PriorityButtons
@@ -301,9 +318,27 @@ function JobRow(props: JobRowProps) {
                 setHoveringOver('');
               }}
             >
+              {/* BUBBER EDIT CHANGE BEGIN - ALTERNATIVE_JOB_TITLES - ORIGINAL:
               <Tooltip content={job.description} position="bottom-start">
                 {name}
-              </Tooltip>
+              </Tooltip> */}
+              {!job.alt_titles ? (
+                <Tooltip content={job.description} position="bottom-start">
+                  {name}
+                </Tooltip>
+              ) : (
+                <Tooltip content={job.description} position="bottom-start">
+                  <Dropdown
+                    width="100%"
+                    options={job.alt_titles}
+                    selected={alt_title_selected}
+                    onSelected={(value) =>
+                      act('set_job_title', { job: name, new_title: value })
+                    }
+                  />
+                </Tooltip>
+              )}
+              {/* BUBBER EDIT CHANGE END */}
             </Stack.Item>
             {assignedProfileSlot !== null && (
               <Stack.Item grow>

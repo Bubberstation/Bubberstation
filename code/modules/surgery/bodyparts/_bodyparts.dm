@@ -1424,6 +1424,63 @@
 			// Add two masked images based on the old one
 			. += leg_source.generate_masked_leg(limb_image)
 
+	// SKYRAT EDIT ADDITION BEGIN - MARKINGS CODE
+	var/override_color
+	var/atom/offset_spokesman = owner || src
+	// First, check to see if this bodypart is husked. If so, we don't want to apply our sparkledog colors to the limb.
+	if(is_husked)
+		override_color = "#888888"
+	// We need to check that the owner exists(could be a placed bodypart) and that it's not a chainsawhand and that they're a human with usable DNA.
+	if(!(bodypart_flags & BODYPART_PSEUDOPART) && (!(bodyshape & BODYSHAPE_TAUR)) && !isnull(owner)) // taur legs never ever render
+		for(var/key in markings) // Cycle through all of our currently selected markings.
+			var/datum/body_marking/body_marking = GLOB.body_markings[key]
+			if (!body_marking) // Edge case prevention.
+				continue
+
+			var/render_limb_string = limb_id == "digitigrade" ? ("digitigrade_1_" + body_zone) : body_zone // I am not sure why there are _1 and _2 versions of digi, so, it's staying like this.
+
+			var/gender_modifier = ""
+			if(body_zone == BODY_ZONE_CHEST) // Chest markings have male and female versions.
+				if(body_marking.gendered)
+					gender_modifier = is_dimorphic ? "_[limb_gender]" : "_m"
+
+			var/mutable_appearance/accessory_overlay
+			var/mutable_appearance/emissive
+			accessory_overlay = mutable_appearance(body_marking.icon, "[body_marking.icon_state]_[render_limb_string][gender_modifier]", -BODYPARTS_LAYER)
+			accessory_overlay.alpha = markings_alpha
+			if(markings[key][2])
+				emissive = emissive_appearance(accessory_overlay.icon, accessory_overlay.icon_state, offset_spokesman, offset_spokesman = offset_spokesman, layer = accessory_overlay.layer)
+			if(override_color)
+				accessory_overlay.color = override_color
+			else
+				accessory_overlay.color = markings[key][1]
+			. += accessory_overlay
+			if (emissive)
+				. += emissive
+
+		if(aux_zone)
+			for(var/key in aux_zone_markings)
+				var/datum/body_marking/body_marking = GLOB.body_markings[key]
+				if (!body_marking) // Edge case prevention.
+					continue
+
+				var/render_limb_string = aux_zone
+
+				var/mutable_appearance/emissive
+				var/mutable_appearance/accessory_overlay
+				accessory_overlay = mutable_appearance(body_marking.icon, "[body_marking.icon_state]_[render_limb_string]", -aux_layer)
+				accessory_overlay.alpha = markings_alpha
+				if (aux_zone_markings[key][2])
+					emissive = emissive_appearance(accessory_overlay.icon, accessory_overlay.icon_state, offset_spokesman = offset_spokesman, layer = accessory_overlay.layer)
+				if(override_color)
+					accessory_overlay.color = override_color
+				else
+					accessory_overlay.color = aux_zone_markings[key][1]
+				. += accessory_overlay
+				if (emissive)
+					. += emissive
+	// SKYRAT EDIT END - MARKINGS CODE END
+
 	// Apply height to the overlays we generated so far
 	// This is done before collecting bodypart overlays so we don't apply height twice to the same overlays
 	if(!dropped && !isnull(owner))
@@ -1458,62 +1515,6 @@
 			texture.modify_bodypart_appearance(generated_overlay)
 
 	SEND_SIGNAL(src, COMSIG_BODYPART_GET_LIMB_ICON, ., dropped)
-	// SKYRAT EDIT ADDITION BEGIN - MARKINGS CODE
-	var/override_color
-	var/atom/offset_spokesman = owner || src
-	// First, check to see if this bodypart is husked. If so, we don't want to apply our sparkledog colors to the limb.
-	if(is_husked)
-		override_color = "#888888"
-	// We need to check that the owner exists(could be a placed bodypart) and that it's not a chainsawhand and that they're a human with usable DNA.
-	if(!(bodypart_flags & BODYPART_PSEUDOPART) && (!(bodyshape & BODYSHAPE_TAUR))) // taur legs never ever render
-		for(var/key in markings) // Cycle through all of our currently selected markings.
-			var/datum/body_marking/body_marking = GLOB.body_markings[key]
-			if (!body_marking) // Edge case prevention.
-				continue
-
-			var/render_limb_string = limb_id == "digitigrade" ? ("digitigrade_1_" + body_zone) : body_zone // I am not sure why there are _1 and _2 versions of digi, so, it's staying like this.
-
-			var/gender_modifier = ""
-			if(body_zone == BODY_ZONE_CHEST) // Chest markings have male and female versions.
-				if(body_marking.gendered)
-					gender_modifier = is_dimorphic ? "_[limb_gender]" : "_m"
-
-			var/mutable_appearance/accessory_overlay
-			var/mutable_appearance/emissive
-			accessory_overlay = mutable_appearance(body_marking.icon, "[body_marking.icon_state]_[render_limb_string][gender_modifier]", -BODYPARTS_LAYER)
-			accessory_overlay.alpha = markings_alpha
-			if(markings[key][2])
-				emissive = emissive_appearance_copy(accessory_overlay, offset_spokesman)
-			if(override_color)
-				accessory_overlay.color = override_color
-			else
-				accessory_overlay.color = markings[key][1]
-			. += accessory_overlay
-			if (emissive)
-				. += emissive
-
-		if(aux_zone)
-			for(var/key in aux_zone_markings)
-				var/datum/body_marking/body_marking = GLOB.body_markings[key]
-				if (!body_marking) // Edge case prevention.
-					continue
-
-				var/render_limb_string = aux_zone
-
-				var/mutable_appearance/emissive
-				var/mutable_appearance/accessory_overlay
-				accessory_overlay = mutable_appearance(body_marking.icon, "[body_marking.icon_state]_[render_limb_string]", -aux_layer)
-				accessory_overlay.alpha = markings_alpha
-				if (aux_zone_markings[key][2])
-					emissive = emissive_appearance_copy(accessory_overlay, offset_spokesman)
-				if(override_color)
-					accessory_overlay.color = override_color
-				else
-					accessory_overlay.color = aux_zone_markings[key][1]
-				. += accessory_overlay
-				if (emissive)
-					. += emissive
-	// SKYRAT EDIT END - MARKINGS CODE END
 	return .
 
 /obj/item/bodypart/proc/huskify_image(image/thing_to_husk)

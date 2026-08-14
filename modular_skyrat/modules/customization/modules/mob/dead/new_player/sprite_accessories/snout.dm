@@ -44,7 +44,7 @@
 	bodypart_overlay = /datum/bodypart_overlay/mutant/snout/top
 
 /datum/bodypart_overlay/mutant/snout/top
-	layers = EXTERNAL_FRONT
+	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER)
 
 
 /obj/item/organ/snout/top_adj

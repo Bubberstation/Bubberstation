@@ -99,6 +99,8 @@
 /datum/bodypart_overlay/mutant/genital
 	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER)
 	color_source = ORGAN_COLOR_OVERRIDE
+	offset_location = LOWER_BODY
+
 	/// The suffix appended to the feature_key for the overlays.
 	var/sprite_suffix
 	var/layer_offset = 0
@@ -150,8 +152,9 @@
 
 /datum/bodypart_overlay/mutant/genital/penis
 	feature_key = ORGAN_SLOT_PENIS
-	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
+	layers = list(EXTERNAL_FRONT = PENIS_LAYER_FRONT, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
 	layer_offset = PENIS_LAYER_OFFSET
+	layer_offset = ENTIRE_BODY
 
 /obj/item/organ/genital/penis/get_description_string(datum/sprite_accessory/genital/gas)
 	var/returned_string = ""
@@ -307,7 +310,7 @@
 
 /datum/bodypart_overlay/mutant/genital/testicles
 	feature_key = ORGAN_SLOT_TESTICLES
-	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
+	layers = list(EXTERNAL_FRONT = BALLS_LAYER_FRONT, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
 	layer_offset = TESTICLES_LAYER_OFFSET
 
 /obj/item/organ/genital/testicles/update_genital_icon_state()
@@ -379,8 +382,7 @@
 
 /datum/bodypart_overlay/mutant/genital/vagina
 	feature_key = ORGAN_SLOT_VAGINA
-	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER)
-	layer_offset = VAGINA_LAYER_OFFSET
+	layers = list(EXTERNAL_FRONT = VAGINA_FRONT_LAYER)
 
 /obj/item/organ/genital/vagina/get_description_string(datum/sprite_accessory/genital/gas)
 	var/returned_string = "You see a [LOWER_TEXT(genital_name)] vagina."
@@ -431,6 +433,7 @@
 /datum/bodypart_overlay/mutant/genital/womb
 	feature_key = ORGAN_SLOT_WOMB
 	layers = list()
+	offset_location = NO_MODIFY
 
 /datum/bodypart_overlay/mutant/genital/womb/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_WOMB]
@@ -481,8 +484,9 @@
 
 /datum/bodypart_overlay/mutant/genital/breasts
 	feature_key = ORGAN_SLOT_BREASTS
-	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
+	layers = list(EXTERNAL_FRONT = BREASTS_FRONT_LAYER, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
 	layer_offset = BREASTS_LAYER_OFFSET
+	offset_location = ENTIRE_BODY
 
 /obj/item/organ/genital/breasts/get_description_string(datum/sprite_accessory/genital/gas)
 	var/returned_string = "You see a [LOWER_TEXT(genital_name)] of breasts."
@@ -624,8 +628,9 @@
 
 /datum/bodypart_overlay/mutant/genital/butt
 	feature_key = ORGAN_SLOT_BUTT
-	layers = list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER, EXTERNAL_FRONT = BODY_FRONT_LAYER)
+	layers = list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER, EXTERNAL_FRONT = ASS_LAYER_FRONT)
 	layer_offset = BUTT_LAYER_OFFSET
+	offset_location = ENTIRE_BODY
 
 /datum/bodypart_overlay/mutant/genital/butt/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_BUTT]
@@ -694,8 +699,9 @@
 
 /datum/bodypart_overlay/mutant/genital/belly
 	feature_key = ORGAN_SLOT_BELLY
-	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
+	layers = list(EXTERNAL_FRONT = BELLY_FRONT_LAYER, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
 	layer_offset = BELLY_LAYER_OFFSET
+	offset_location = ENTIRE_BODY
 
 /datum/bodypart_overlay/mutant/genital/belly/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_BELLY]

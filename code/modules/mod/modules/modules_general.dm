@@ -723,6 +723,7 @@
 		This is a must-have for Nanotrasen Captains, enabling them to show off their authoritative hat even while in their MODsuit."
 	icon_state = "hat_holder"
 	incompatible_modules = list(/obj/item/mod/module/hat_stabilizer)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
 	required_slots = list(ITEM_SLOT_HEAD)
 	/*Intentionally left inheriting 0 complexity and removable = TRUE;
 	even though it comes inbuilt into the Magnate/Corporate MODS and spawns in maints, I like the idea of stealing them*/

@@ -150,6 +150,7 @@
 	name = "frangible slug"
 	desc = "A weak anti materiel shell intended for dislodging airlock, breaking down barricades and structures. Not effective against people."
 	icon_state = "breacher"
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1, /datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT)
 	projectile_type = /obj/projectile/bullet/frangible_slug
 
 /obj/projectile/bullet/frangible_slug

@@ -1,7 +1,6 @@
 /datum/design/biogen/food_replicator
 	name = "Food Replicator"
 	id = DESIGN_ID_IGNORE
-	build_path = /obj/item/food
 	materials = list(/datum/material/biomass = 100)
 	category = list(
 		RND_CATEGORY_INITIAL,

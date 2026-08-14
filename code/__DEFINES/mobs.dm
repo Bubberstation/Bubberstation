@@ -855,6 +855,13 @@ GLOBAL_ALIST_INIT(human_heights_to_offsets, alist(
 #define LEGCUFF_LAYER 4
 /// Handcuff layer (when your hands are cuffed)
 #define HANDCUFF_LAYER 5
+// BUBBER EDIT BEGIN
+#define PENIS_LAYER_FRONT 5.1
+#define BREASTS_FRONT_LAYER 5.2
+#define BELLY_FRONT_LAYER 5.3
+#define VAGINA_FRONT_LAYER 5.4
+#define BALLS_LAYER_FRONT 5.5
+// BUBBER EDIT END
 	/// Hair that layers out above clothing, including hats (high ponytails and such)
 	#define OUTER_HAIR_LAYER 5.9
 /// Head layer (hats, helmets, etc.)
@@ -899,6 +906,7 @@ GLOBAL_ALIST_INIT(human_heights_to_offsets, alist(
 #define ID_LAYER 18
 // BUBBER EDIT ADDITION BEGIN
 #define BANDAGE_LAYER 19
+#define ASS_LAYER_FRONT 19.9
 #define NIPPLES_LAYER 20
 #define PENIS_LAYER 21
 #define VAGINA_LAYER 22
