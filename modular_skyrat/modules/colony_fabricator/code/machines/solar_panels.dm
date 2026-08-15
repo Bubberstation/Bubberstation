@@ -38,8 +38,8 @@
 	deploy_time = 2 SECONDS
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.75,
-		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1,
 	)
 
 // Solar trackers

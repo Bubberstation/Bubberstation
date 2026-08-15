@@ -281,11 +281,11 @@
 #define OFFSET_Y 2
 
 /// Similar to get_status_text, but appends the text after the damage report, for additional status info
-/obj/item/organ/eyes/get_status_appendix(advanced, add_tooltips)
+/obj/item/organ/eyes/get_status_appendix(scanpower, add_tooltips)
 	if(owner.stat == DEAD || HAS_TRAIT(owner, TRAIT_KNOCKEDOUT))
 		return
 	if(owner.is_blind())
-		if(advanced)
+		if(scanpower >= SCANPOWER_ADVANCED)
 			if(owner.is_blind_from(QUIRK_TRAIT))
 				return conditional_tooltip("Subject is permanently blind.", "Irreparable under normal circumstances.", add_tooltips)
 			if(owner.is_blind_from(EYE_SCARRING_TRAIT))
@@ -298,7 +298,7 @@
 				return conditional_tooltip("Subject is blind from eye damage.", "Repair surgically, use medication such as [/datum/reagent/medicine/oculine::name], or protect eyes with a blindfold.", add_tooltips)
 		return "Subject is blind."
 	if(owner.is_nearsighted())
-		if(advanced)
+		if(scanpower >= SCANPOWER_ADVANCED)
 			if(owner.is_nearsighted_from(QUIRK_TRAIT))
 				return conditional_tooltip("Subject is permanently nearsighted.", "Irreparable under normal circumstances. Prescription glasses will assuage the effects.", add_tooltips)
 			if(owner.is_nearsighted_from(TRAIT_RIGHT_EYE_SCAR) || owner.is_nearsighted_from(TRAIT_LEFT_EYE_SCAR))
@@ -331,8 +331,8 @@
 		overlays += get_emissive_overlays(eye_left, eye_right, my_head)
 
 	if(my_head.head_flags & HEAD_EYECOLOR)
-		eye_right.color = eye_color_right || my_head.owner?.get_right_eye_color()
-		eye_left.color = eye_color_left || my_head.owner?.get_left_eye_color()
+		eye_right.color = my_head.owner?.get_right_eye_color() || eye_color_right
+		eye_left.color = my_head.owner?.get_left_eye_color() || eye_color_left
 		var/list/eyelids = get_eyelid_overlays(eye_left, eye_right, my_head)
 		if (LAZYLEN(eyelids))
 			overlays += eyelids
@@ -357,8 +357,8 @@
 		eye_right.alpha = 0
 
 	if (is_emissive) // Because it was done all weird up there.
-		var/mutable_appearance/emissive_left = emissive_appearance_copy(eye_left, owner)
-		var/mutable_appearance/emissive_right = emissive_appearance_copy(eye_right, owner)
+		var/mutable_appearance/emissive_left = emissive_appearance(eye_left.icon, eye_left.icon_state, offset_spokesman = owner, layer = eye_left.layer)
+		var/mutable_appearance/emissive_right = emissive_appearance(eye_right.icon, eye_right.icon_state, offset_spokesman = owner, layer = eye_right.layer)
 		emissive_left.appearance_flags &= ~RESET_TRANSFORM
 		emissive_right.appearance_flags &= ~RESET_TRANSFORM
 

@@ -28,11 +28,7 @@
 /obj/item/organ/brain/lycan/proc/leave_beast_form()
 	owner.remove_status_effect(/datum/status_effect/beast_form)
 
-/obj/item/organ/brain/lycan/proc/toggle_beast_form(mob/user)
-	set name = "Enter/Leave Lycan Form"
-	set desc = "Succumb to the rage and turn into a lycan."
-	set category = "Lycan"
-
+GAME_VERB_PROC_DESC(/obj/item/organ/brain/lycan, toggle_beast_form, "Enter/Leave Lycan Form", "Succumb to the rage and turn into a lycan.", "Lycan", mob/user)
 	if(!user)
 		return
 	if(user.has_status_effect(/datum/status_effect/beast_form))

@@ -1,6 +1,7 @@
 //Disks that let autolathes print upgraded parts!
 /obj/item/disk/design_disk/advanced_parts
 	name = "advanced components autolathe design disk"
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.5)
 
 /obj/item/disk/design_disk/advanced_parts/Initialize(mapload)
 	. = ..()
@@ -33,6 +34,7 @@
 
 /obj/item/disk/design_disk/high_tech_parts
 	name = "high-tech components autolathe design disk"
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/gold = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/silver = SMALL_MATERIAL_AMOUNT*1.5)
 
 /obj/item/disk/design_disk/high_tech_parts/Initialize(mapload)
 	. = ..()
