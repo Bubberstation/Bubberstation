@@ -75,10 +75,10 @@
 		//BUBBER EDIT BEGIN - Species specific damage states.
 		//. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe") //ORIGINAL
 		var/mob/living/carbon/human/wearer = loc
-		var/icon/damage_icon_file = ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedshoe_[wearer.dna.species.id]") ? 'modular_zubbers/icons/effects/item_damage_species.dmi' : 'icons/effects/item_damage.dmi'
-		var/damage_icon_state = ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedshoe_[wearer.dna.species.id]") ? "damagedshoe_[wearer.dna.species.id]" : "damagedshoe"
-
-		. += mutable_appearance(damage_icon_file, damage_icon_state)
+		if(ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedshoe_[wearer.dna.species.id]"))
+			. += mutable_appearance('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedshoe_[wearer.dna.species.id]")
+		else
+			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe")
 		//BUBBER EDIT END
 
 /obj/item/clothing/shoes/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands = FALSE, icon_file, bodyshape = NONE)

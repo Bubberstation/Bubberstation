@@ -299,17 +299,17 @@
 		blood_DNA = new_blood
 		update_icon()
 
-// BUBBER ADDITION BEGIN - Species specific blood icons.
+// BUBBER EDIT ADDITION BEGIN - Species specific blood icons.
 /datum/component/bloodysoles/feet/proc/on_species_change(datum/source)
 	SIGNAL_HANDLER
 	update_icon()
 
 /datum/component/bloodysoles/feet/proc/get_blood_appearance()
-	var/icon/blood_icon_file = ishuman(wielder) && icon_exists('modular_zubbers/icons/effects/blood_species.dmi', "shoeblood_[wielder.dna.species.id]") ? 'modular_zubbers/icons/effects/blood_species.dmi' : 'icons/effects/blood.dmi'
-	var/blood_icon_state = 	ishuman(wielder) && icon_exists('modular_zubbers/icons/effects/blood_species.dmi', "shoeblood_[wielder.dna.species.id]") ? "shoeblood_[wielder.dna.species.id]" : "shoeblood"
+	var/icon/blood_icon_file = icon_exists('modular_zubbers/icons/effects/blood_species.dmi', "shoeblood_[wielder.dna.species.id]") ? 'modular_zubbers/icons/effects/blood_species.dmi' : 'icons/effects/blood.dmi'
+	var/blood_icon_state = icon_exists('modular_zubbers/icons/effects/blood_species.dmi', "shoeblood_[wielder.dna.species.id]") ? "shoeblood_[wielder.dna.species.id]" : "shoeblood"
 
 	return mutable_appearance(blood_icon_file, blood_icon_state, SHOES_LAYER)
-// BUBBER ADDITION END
+// BUBBER EDIT ADDITION END
 
 /datum/component/bloodysoles/feet/InheritComponent(datum/component/bloodysoles/feet/soles, original, list/new_blood)
 	if (!length(new_blood))

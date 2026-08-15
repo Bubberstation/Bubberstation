@@ -336,8 +336,11 @@
 			wound_overlay ||= blood_overlay
 			wound_overlay.add_overlay(iter_part.bleed_overlay_icon)
 			*/
-			var/icon/bleed_overlay_icon_file = ishuman(src) && icon_exists('modular_zubbers/icons/mob/effects/bleed_overlays_species.dmi', "[iter_part.bleed_overlay_icon]_[src.dna.species.id]") ? 'modular_zubbers/icons/mob/effects/bleed_overlays_species.dmi' : 'icons/mob/effects/bleed_overlays.dmi'
-			var/bleed_overlay_icon_state = ishuman(src) && icon_exists('modular_zubbers/icons/mob/effects/bleed_overlays_species.dmi', "[iter_part.bleed_overlay_icon]_[src.dna.species.id]") ? "[iter_part.bleed_overlay_icon]_[src.dna.species.id]" : iter_part.bleed_overlay_icon
+			var/icon/bleed_overlay_icon_file = 'icons/mob/effects/bleed_overlays.dmi'
+			var/bleed_overlay_icon_state = iter_part.bleed_overlay_icon
+			if(ishuman(src) && icon_exists('modular_zubbers/icons/mob/effects/bleed_overlays_species.dmi', "[iter_part.bleed_overlay_icon]_[src.dna.species.id]"))
+				bleed_overlay_icon_file = 'modular_zubbers/icons/mob/effects/bleed_overlays_species.dmi'
+				bleed_overlay_icon_state = "[iter_part.bleed_overlay_icon]_[src.dna.species.id]"
 
 			var/mutable_appearance/blood_overlay = mutable_appearance(bleed_overlay_icon_file, "blank", -WOUND_LAYER, appearance_flags = KEEP_TOGETHER)
 			blood_overlay.color = blood_type.get_wound_color(src)
