@@ -90,6 +90,7 @@
 		. += "9mm-revolver-[inserted_ammo]"
 
 /obj/item/ammo_box/magazine/r45
+	caliber = CALIBER_45
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10,
 		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 10,
