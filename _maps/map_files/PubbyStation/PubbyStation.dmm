@@ -18670,6 +18670,11 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/gravity_generator)
+"bSF" = (
+/obj/machinery/flasher/directional/west,
+/obj/machinery/holopad/secure,
+/turf/open/floor/circuit,
+/area/station/ai/satellite/chamber)
 "bSH" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
@@ -21154,12 +21159,17 @@
 /turf/open/floor/plating,
 /area/station/engineering/transit_tube)
 "cfP" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/ai_slipper{
-	uses = 10
+/obj/docking_port/stationary{
+	dheight = 3;
+	dir = 2;
+	dwidth = 8;
+	height = 11;
+	shuttle_id = "ferry_home";
+	name = "Port Bay 2";
+	width = 20
 	},
-/turf/open/floor/circuit,
-/area/station/ai/satellite/chamber)
+/turf/open/space/basic,
+/area/space)
 "cfQ" = (
 /obj/structure/chair{
 	dir = 8
@@ -25285,18 +25295,6 @@
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
-"dnT" = (
-/obj/docking_port/stationary{
-	dheight = 3;
-	dir = 8;
-	dwidth = 8;
-	height = 11;
-	shuttle_id = "ferry_home";
-	name = "Port Bay 2";
-	width = 20
-	},
-/turf/open/space/basic,
-/area/space)
 "doe" = (
 /obj/effect/turf_decal/bot/right,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -27422,10 +27420,10 @@
 /turf/closed/wall,
 /area/station/maintenance/department/security/brig)
 "eJl" = (
-/obj/machinery/flasher/directional/east{
-	pixel_y = 10
+/obj/machinery/ai_slipper{
+	uses = 10
 	},
-/turf/open/floor/circuit,
+/turf/open/floor/iron/white,
 /area/station/ai/satellite/chamber)
 "eJq" = (
 /obj/structure/cable,
@@ -31400,11 +31398,6 @@
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/plating,
 /area/station/maintenance/department/cargo)
-"hxA" = (
-/obj/machinery/flasher/directional/east,
-/obj/machinery/holopad/secure,
-/turf/open/floor/circuit,
-/area/station/ai/satellite/chamber)
 "hyp" = (
 /obj/item/radio/intercom/directional/east,
 /obj/effect/turf_decal/tile/brown/half/contrasted{
@@ -32286,8 +32279,9 @@
 /obj/machinery/ai_slipper{
 	uses = 10
 	},
-/turf/open/floor/iron/white,
-/area/station/ai/satellite/chamber)
+/obj/effect/landmark/firealarm_sanity,
+/turf/open/floor/iron/dark,
+/area/station/ai/satellite/interior)
 "idj" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -35073,11 +35067,6 @@
 	},
 /turf/closed/wall,
 /area/station/maintenance/department/science/central)
-"jYC" = (
-/obj/machinery/flasher/directional/west,
-/obj/machinery/holopad/secure,
-/turf/open/floor/circuit,
-/area/station/ai/satellite/chamber)
 "jZC" = (
 /obj/effect/turf_decal/tile/green/half/contrasted{
 	dir = 8
@@ -35333,12 +35322,12 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
 "kjm" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/ai_slipper{
 	uses = 10
 	},
-/obj/effect/landmark/firealarm_sanity,
-/turf/open/floor/iron/dark,
-/area/station/ai/satellite/interior)
+/turf/open/floor/circuit,
+/area/station/ai/satellite/chamber)
 "kjA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -46241,10 +46230,8 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "rnQ" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/obj/machinery/ai_slipper{
-	uses = 10
+/obj/machinery/flasher/directional/east{
+	pixel_y = 10
 	},
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
@@ -47174,17 +47161,12 @@
 /turf/closed/wall/r_wall,
 /area/station/science/ordnance/burnchamber)
 "rTJ" = (
-/obj/machinery/door/firedoor/heavy,
-/obj/machinery/door/airlock/command/glass{
-	name = "AI Core"
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/ai_slipper{
+	uses = 10
 	},
-/obj/effect/mapping_helpers/airlock/access/any/science/minisat,
-/obj/machinery/door/poddoor/shutters/preopen{
-	dir = 2;
-	id = "AI Core shutters";
-	name = "AI Core Shutters"
-	},
-/turf/open/floor/iron/white,
+/turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
 "rTK" = (
 /obj/effect/turf_decal/stripes/line{
@@ -55251,6 +55233,11 @@
 	},
 /turf/open/floor/plating,
 /area/station/engineering/atmos)
+"wWZ" = (
+/obj/machinery/flasher/directional/east,
+/obj/machinery/holopad/secure,
+/turf/open/floor/circuit,
+/area/station/ai/satellite/chamber)
 "wXr" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -57052,6 +57039,19 @@
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/hfr_room)
+"yeJ" = (
+/obj/machinery/door/firedoor/heavy,
+/obj/machinery/door/airlock/command/glass{
+	name = "AI Core"
+	},
+/obj/effect/mapping_helpers/airlock/access/any/science/minisat,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 2;
+	id = "AI Core shutters";
+	name = "AI Core Shutters"
+	},
+/turf/open/floor/iron/white,
+/area/station/ai/satellite/chamber)
 "yeK" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/station/security/lockers)
@@ -76877,7 +76877,7 @@ bop
 ubq
 fLM
 aZx
-aaa
+cfP
 aaa
 aaa
 aaa
@@ -77650,7 +77650,7 @@ fLM
 aZx
 aaa
 aaa
-dnT
+aaa
 aaa
 aaa
 aaa
@@ -89122,9 +89122,9 @@ acd
 ace
 ace
 ace
-hxA
+wWZ
 amd
-rnQ
+rTJ
 acC
 acC
 acC
@@ -90145,7 +90145,7 @@ anl
 abJ
 abO
 abO
-ida
+eJl
 acf
 abO
 abO
@@ -90165,7 +90165,7 @@ sFL
 adM
 qNi
 agf
-kjm
+ida
 agf
 hQd
 aeO
@@ -90407,7 +90407,7 @@ ace
 abO
 abO
 tin
-eJl
+rnQ
 ace
 tYO
 abO
@@ -90665,7 +90665,7 @@ abO
 abO
 abO
 abO
-rTJ
+yeJ
 abO
 abO
 abO
@@ -91178,9 +91178,9 @@ acd
 ace
 ace
 ace
-jYC
+bSF
 aFc
-cfP
+kjm
 adT
 adT
 adT
