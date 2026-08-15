@@ -38502,6 +38502,18 @@
 	dir = 8
 	},
 /area/station/hallway/primary/port)
+"hqi" = (
+/obj/machinery/door/airlock/research/glass{
+	name = "Genetics Lab"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/science/genetics,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rdgene2";
+	name = "Genetics Lab Shutters"
+	},
+/turf/open/floor/iron/dark,
+/area/station/science/genetics)
 "hqo" = (
 /obj/structure/window/spawner/directional/south,
 /obj/structure/window/spawner/directional/east,
@@ -57591,25 +57603,6 @@
 	initial_gas_mix = "TEMP=2.7"
 	},
 /area/station/science/ordnance/bomb)
-"kYy" = (
-/obj/structure/table,
-/obj/effect/turf_decal/stripes{
-	dir = 5
-	},
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 10
-	},
-/obj/item/paper_bin{
-	pixel_y = 3
-	},
-/obj/item/paper_bin{
-	pixel_y = 3
-	},
-/obj/item/pen{
-	pixel_y = 3
-	},
-/turf/open/floor/iron/dark,
-/area/station/science/genetics)
 "kYB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -76577,6 +76570,7 @@
 /obj/effect/turf_decal/stripes/white/line,
 /obj/item/clipboard,
 /obj/item/toy/figure/geneticist,
+/obj/item/bouquet/rose,
 /turf/open/floor/iron/dark,
 /area/station/science/genetics)
 "oEB" = (
@@ -94061,19 +94055,24 @@
 /area/station/command/heads_quarters/rd)
 "rWn" = (
 /obj/structure/table,
-/obj/effect/turf_decal/stripes{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 4
-	},
 /obj/machinery/requests_console/directional/south{
 	department = "Genetics";
 	name = "Genetics Requests console";
 	pixel_x = -30;
 	pixel_y = 0
 	},
-/obj/item/bouquet/rose,
+/obj/item/paper_bin{
+	pixel_y = 3
+	},
+/obj/item/pen{
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 5
+	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 10
+	},
 /turf/open/floor/iron/dark,
 /area/station/science/genetics)
 "rWt" = (
@@ -124615,7 +124614,6 @@
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/storage)
 "xKN" = (
-/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 6
 	},
@@ -226625,7 +226623,7 @@ whu
 lqk
 pYm
 bcX
-pYm
+hqi
 lqk
 oEx
 vEL
@@ -226882,7 +226880,7 @@ vma
 lqk
 tNn
 rHm
-kYy
+spO
 rWn
 hxo
 rEm
