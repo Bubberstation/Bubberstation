@@ -47,6 +47,7 @@
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_tarkon"
 	new_model = /obj/item/robot_model/tarkon
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/robot_model/tarkon
 	name = "Port Tarkon Prototype"
@@ -184,6 +185,7 @@
 		/obj/item/healthanalyzer,
 		/obj/item/blood_filter
 						)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_engineering
 	name = "Tarkon Engineering Module"
@@ -221,6 +223,7 @@
 		/obj/item/multitool/cyborg,
 		/obj/item/lightreplacer
 	)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_security
 	name = "Tarkon Security Module"
@@ -236,6 +239,7 @@
 		/obj/item/borg/projectile_dampen,
 		/obj/item/gun/energy/laser/cyborg // The nature of tarkon requires a gun.
 						)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_cargo
 	name = "Tarkon Cargo Module"
@@ -272,6 +276,7 @@
 		/obj/item/pickaxe/drill,
 		/obj/item/storage/bag/ore/cyborg
 		)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_research
 	name = "Tarkon Research Module"
@@ -288,6 +293,7 @@
 				/obj/item/experi_scanner/bluespace,
 				/obj/item/storage/bag/xenoarch/adv
 				)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_service // Lesser used on tarkon things like chef upgrades, and janitorial. Might get subdivided further since my GOD theres alot here
 	name = "Tarkon Service Module"
@@ -328,6 +334,7 @@
 		/obj/item/plant_analyzer,
 		/obj/item/storage/bag/plants
 		)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_janitor
 	name = "Tarkon Janitorial Module"
@@ -350,6 +357,7 @@
 		/obj/item/storage/bag/trash,
 		/obj/item/mop
 		)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 ///Prevents tarkon borgs from taking too many tarkon upgrades.
 /obj/item/borg/upgrade/tarkon/action(mob/living/silicon/robot/borg, mob/user)
