@@ -18,7 +18,7 @@
 	var/blood_overlay_type = "suit"
 	limb_integrity = 0 // disabled for most exo-suits
 
-/obj/item/clothing/suit/worn_overlays(mutable_appearance/standing, isinhands = FALSE, file2use = null, mutant_styles = NONE) // SKYRAT EDIT CHANGE - TAURS AND TESHIS - ORIGINAL: /obj/item/clothing/suit/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
+/obj/item/clothing/suit/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file, bodyshape = NONE)
 	. = ..()
 	if(isinhands)
 		return
@@ -28,7 +28,7 @@
 	if(damaged_clothes)
 		//. += mutable_appearance('icons/effects/item_damage.dmi', "damaged[blood_overlay_type]") //ORIGINAL
 		//todo: the taur icon doesn't exist anymore. Needs replacement.
-		var/icon/damage_icon_file = (mutant_styles & STYLE_TAUR_ALL) ? 'modular_skyrat/master_files/icons/mob/64x32_item_damage.dmi' : 'icons/effects/item_damage.dmi'
+		var/icon/damage_icon_file = (bodyshape & STYLE_TAUR_ALL) ? 'modular_skyrat/master_files/icons/mob/64x32_item_damage.dmi' : 'icons/effects/item_damage.dmi'
 		var/damage_icon_state = "damaged[blood_overlay_type]"
 		if(ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damaged[blood_overlay_type]_[wearer.dna.species.id]"))
 			damage_icon_file = 'modular_zubbers/icons/effects/item_damage_species.dmi'
