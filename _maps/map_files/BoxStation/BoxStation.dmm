@@ -9672,7 +9672,9 @@
 	dir = 4
 	},
 /obj/machinery/light/small/directional/south,
-/obj/machinery/computer/slot_machine,
+/obj/effect/spawner/random/entertainment/slot_machine{
+	dir = 8
+	},
 /turf/open/floor/wood/parquet,
 /area/station/service/bar)
 "baj" = (
@@ -10956,11 +10958,10 @@
 /turf/open/floor/iron/dark/small,
 /area/station/medical/pharmacy)
 "bgI" = (
-/obj/machinery/computer/slot_machine{
-	name = "gamba";
-	desc = "CAN'T STOP WINNING"
-	},
 /obj/machinery/wall_healer/directional/south,
+/obj/effect/spawner/random/entertainment/slot_machine{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/meeting_room)
 "bgJ" = (

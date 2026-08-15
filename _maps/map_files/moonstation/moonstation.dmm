@@ -4632,8 +4632,8 @@
 /turf/open/floor/circuit/telecomms,
 /area/station/ai/satellite/chamber)
 "bfn" = (
-/obj/machinery/computer/slot_machine,
 /obj/structure/sign/poster/contraband/random/directional/east,
+/obj/effect/spawner/random/entertainment/slot_machine,
 /turf/open/floor/wood,
 /area/station/service/abandoned_gambling_den)
 "bfs" = (
@@ -12785,16 +12785,6 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/iron,
 /area/station/security/prison/visit)
-"dms" = (
-/obj/effect/mapping_helpers/broken_floor,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/plating,
-/area/station/maintenance/department/crew_quarters/dorms)
 "dmv" = (
 /obj/machinery/door/airlock/external/glass{
 	name = "External Public Airlock"
@@ -24045,7 +24035,7 @@
 /area/station/service/abandoned_gambling_den)
 "geY" = (
 /obj/machinery/light/directional/north,
-/obj/machinery/computer/slot_machine,
+/obj/effect/spawner/random/entertainment/slot_machine,
 /turf/open/floor/plating,
 /area/station/service/abandoned_gambling_den)
 "gfh" = (
@@ -32286,19 +32276,6 @@
 	name = "Holodeck Projector Floor"
 	},
 /area/station/holodeck/rec_center)
-"ilj" = (
-/obj/machinery/atmospherics/pipe/multiz/scrubbers/visible/layer2{
-	color = "#ff0000";
-	dir = 8;
-	name = "Scrubbers multi deck pipe adapter"
-	},
-/obj/machinery/atmospherics/pipe/multiz/supply/visible/layer4{
-	color = "#0000ff";
-	dir = 8;
-	name = "Supply multi deck pipe adapter"
-	},
-/turf/open/floor/plating,
-/area/station/maintenance/department/crew_quarters/bar)
 "ilp" = (
 /obj/structure/railing/wooden_fencing{
 	dir = 1
@@ -44475,8 +44452,10 @@
 "loM" = (
 /obj/structure/railing,
 /obj/effect/turf_decal/siding/dark,
-/obj/machinery/computer/slot_machine,
 /obj/machinery/airalarm/directional/west,
+/obj/effect/spawner/random/entertainment/slot_machine{
+	dir = 4
+	},
 /turf/open/floor/carpet/red,
 /area/station/commons/lounge)
 "loS" = (
@@ -53388,9 +53367,11 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/pumproom)
 "nFB" = (
-/obj/machinery/computer/slot_machine,
 /obj/item/radio/intercom/directional/west,
 /obj/machinery/barsign/directional/north,
+/obj/effect/spawner/random/entertainment/slot_machine{
+	dir = 4
+	},
 /turf/open/floor/carpet/red,
 /area/station/commons/lounge)
 "nFG" = (
@@ -81145,15 +81126,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
-"uHj" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/turf/open/floor/plating,
-/area/station/maintenance/department/medical)
 "uHk" = (
 /obj/effect/turf_decal/caution,
 /obj/effect/turf_decal/stripes/line{
@@ -93410,7 +93382,7 @@
 "xUo" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/barsign/all_access/directional/north,
-/obj/machinery/computer/slot_machine,
+/obj/effect/spawner/random/entertainment/slot_machine,
 /turf/open/floor/wood,
 /area/station/service/abandoned_gambling_den)
 "xUp" = (
