@@ -28,8 +28,8 @@ ADMIN_VERB(toggledchat, R_ADMIN, "Toggle Dead Chat", "Toggle dis bitch.", ADMIN_
 
 /datum/admin_help/ClosureLinks(ref_src)
 	. = ..()
-	. += " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=handle_issue'>HANDLE</A>)" //SKYRAT EDIT ADDITION
-	. += " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=pingmute'>PING MUTE</A>)" //SKYRAT EDIT ADDITION
+	. += " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=handle_issue'>HANDLE</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=pingmute'>PING MUTE</A>)"
 	. += " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=convert'>MHELP</A>)"
 
 //Let the initiator know their ahelp is being handled
@@ -69,7 +69,7 @@ ADMIN_VERB(toggledchat, R_ADMIN, "Toggle Dead Chat", "Toggle dis bitch.", ADMIN_
 		if(!response || response == "No")
 			return FALSE
 
-	add_verb(initiator, /client/verb/mentorhelp) // Way to override mentorhelp cooldown.
+	ASSIGN_GAME_VERB(initiator, /client, mentorhelp) // Way to override mentorhelp cooldown.
 
 	to_chat(initiator, span_adminhelp("Your ticket was converted to Mentorhelp"))
 	initiator.mentorhelp(full_text)

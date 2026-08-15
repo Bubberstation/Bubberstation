@@ -27,7 +27,6 @@
 
 	gold_core_spawnable = FRIENDLY_SPAWN
 
-	can_be_held = TRUE
 	held_w_class = WEIGHT_CLASS_TINY
 	held_state = "chinchilla_white"
 
@@ -53,6 +52,8 @@
 
 	held_state = "chinchilla_[body_color]" // not handled by variety element
 	AddElement(/datum/element/animal_variety, "chinchilla", body_color, FALSE)
+
+	AddElement(/datum/element/can_be_held)
 
 //ai behavior
 
