@@ -11475,7 +11475,7 @@
 /turf/open/floor/iron/dark,
 /area/station/commons/lounge)
 "bap" = (
-/obj/machinery/computer/slot_machine,
+/obj/effect/spawner/random/entertainment/slot_machine,
 /turf/open/floor/carpet/lone,
 /area/station/commons/lounge)
 "baq" = (
@@ -18108,7 +18108,7 @@
 /turf/open/floor/iron/dark,
 /area/station/service/abandoned_gambling_den/gaming)
 "bPr" = (
-/obj/machinery/computer/slot_machine,
+/obj/effect/spawner/random/entertainment/slot_machine,
 /turf/open/floor/iron/dark,
 /area/station/service/abandoned_gambling_den/gaming)
 "bPy" = (
@@ -18670,11 +18670,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/gravity_generator)
-"bSF" = (
-/obj/machinery/flasher/directional/west,
-/obj/machinery/holopad/secure,
-/turf/open/floor/circuit,
-/area/station/ai/satellite/chamber)
 "bSH" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
@@ -22730,6 +22725,11 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/station/commons/lounge)
+"cpG" = (
+/obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible,
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/iron,
+/area/station/engineering/atmos)
 "cpH" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "L1"
@@ -24579,16 +24579,8 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/storage/tech)
 "cJk" = (
-/obj/machinery/door/firedoor/heavy,
-/obj/machinery/door/airlock/command/glass{
-	name = "AI Core"
-	},
-/obj/effect/mapping_helpers/airlock/access/any/science/minisat,
-/obj/structure/cable,
-/obj/machinery/door/poddoor/shutters/preopen{
-	dir = 2;
-	id = "AI Core shutters";
-	name = "AI Core Shutters"
+/obj/machinery/ai_slipper{
+	uses = 10
 	},
 /turf/open/floor/iron/white,
 /area/station/ai/satellite/chamber)
@@ -27420,10 +27412,9 @@
 /turf/closed/wall,
 /area/station/maintenance/department/security/brig)
 "eJl" = (
-/obj/machinery/ai_slipper{
-	uses = 10
-	},
-/turf/open/floor/iron/white,
+/obj/machinery/flasher/directional/east,
+/obj/machinery/holopad/secure,
+/turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
 "eJq" = (
 /obj/structure/cable,
@@ -29557,6 +29548,19 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/command)
+"gip" = (
+/obj/machinery/door/firedoor/heavy,
+/obj/machinery/door/airlock/command/glass{
+	name = "AI Core"
+	},
+/obj/effect/mapping_helpers/airlock/access/any/science/minisat,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 2;
+	id = "AI Core shutters";
+	name = "AI Core Shutters"
+	},
+/turf/open/floor/iron/white,
+/area/station/ai/satellite/chamber)
 "giC" = (
 /obj/structure/bodycontainer/morgue,
 /obj/effect/turf_decal/stripes/white/line{
@@ -32276,10 +32280,12 @@
 /turf/open/floor/iron,
 /area/station/medical/treatment_center)
 "ida" = (
-/obj/machinery/ai_slipper{
-	uses = 10
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
 	},
-/obj/effect/landmark/firealarm_sanity,
+/obj/effect/turf_decal/tile/blue/half/contrasted{
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/ai/satellite/interior)
 "idj" = (
@@ -35322,9 +35328,8 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
 "kjm" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/ai_slipper{
-	uses = 10
+/obj/machinery/flasher/directional/east{
+	pixel_y = 10
 	},
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
@@ -43346,10 +43351,12 @@
 	},
 /area/station/service/chapel/storage)
 "pzy" = (
-/obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible,
-/obj/machinery/portable_atmospherics/scrubber,
-/turf/open/floor/iron,
-/area/station/engineering/atmos)
+/obj/machinery/ai_slipper{
+	uses = 10
+	},
+/obj/effect/landmark/firealarm_sanity,
+/turf/open/floor/iron/dark,
+/area/station/ai/satellite/interior)
 "pAb" = (
 /obj/machinery/power/energy_accumulator/tesla_coil,
 /obj/machinery/light/directional/west,
@@ -45436,14 +45443,13 @@
 /turf/open/floor/iron/dark,
 /area/station/security/armory)
 "qNi" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/ai_slipper{
+	uses = 10
 	},
-/obj/effect/turf_decal/tile/blue/half/contrasted{
-	dir = 1
-	},
-/turf/open/floor/iron/dark,
-/area/station/ai/satellite/interior)
+/turf/open/floor/circuit,
+/area/station/ai/satellite/chamber)
 "qNy" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/left/directional/south{
@@ -46230,9 +46236,8 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "rnQ" = (
-/obj/machinery/flasher/directional/east{
-	pixel_y = 10
-	},
+/obj/machinery/flasher/directional/west,
+/obj/machinery/holopad/secure,
 /turf/open/floor/circuit,
 /area/station/ai/satellite/chamber)
 "roa" = (
@@ -47161,8 +47166,7 @@
 /turf/closed/wall/r_wall,
 /area/station/science/ordnance/burnchamber)
 "rTJ" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/ai_slipper{
 	uses = 10
 	},
@@ -52170,12 +52174,19 @@
 /turf/open/floor/iron,
 /area/station/security/brig)
 "vap" = (
-/obj/effect/turf_decal/tile/purple,
-/obj/structure/chair{
-	dir = 8
+/obj/machinery/door/firedoor/heavy,
+/obj/machinery/door/airlock/command/glass{
+	name = "AI Core"
 	},
-/turf/open/floor/iron,
-/area/station/hallway/primary/aft)
+/obj/effect/mapping_helpers/airlock/access/any/science/minisat,
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 2;
+	id = "AI Core shutters";
+	name = "AI Core Shutters"
+	},
+/turf/open/floor/iron/white,
+/area/station/ai/satellite/chamber)
 "vau" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/chair/sofa/bench{
@@ -55233,11 +55244,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/engineering/atmos)
-"wWZ" = (
-/obj/machinery/flasher/directional/east,
-/obj/machinery/holopad/secure,
-/turf/open/floor/circuit,
-/area/station/ai/satellite/chamber)
 "wXr" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -56318,6 +56324,23 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
+"xBy" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 8;
+	id = "rdgene2";
+	name = "Genetics Lab Shutters"
+	},
+/obj/machinery/door/airlock/research/glass{
+	name = "Genetics"
+	},
+/obj/machinery/door/firedoor,
+/obj/effect/turf_decal/tile/purple/fourcorners,
+/obj/effect/mapping_helpers/airlock/access/any/science/genetics,
+/obj/effect/mapping_helpers/airlock/unres/delayed{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/station/science/genetics)
 "xBB" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
@@ -57039,19 +57062,6 @@
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos/hfr_room)
-"yeJ" = (
-/obj/machinery/door/firedoor/heavy,
-/obj/machinery/door/airlock/command/glass{
-	name = "AI Core"
-	},
-/obj/effect/mapping_helpers/airlock/access/any/science/minisat,
-/obj/machinery/door/poddoor/shutters/preopen{
-	dir = 2;
-	id = "AI Core shutters";
-	name = "AI Core Shutters"
-	},
-/turf/open/floor/iron/white,
-/area/station/ai/satellite/chamber)
 "yeK" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/station/security/lockers)
@@ -89122,9 +89132,9 @@ acd
 ace
 ace
 ace
-wWZ
+eJl
 amd
-rTJ
+qNi
 acC
 acC
 acC
@@ -89637,7 +89647,7 @@ abO
 abO
 abO
 abO
-cJk
+vap
 abO
 abO
 abO
@@ -90145,7 +90155,7 @@ anl
 abJ
 abO
 abO
-eJl
+cJk
 acf
 abO
 abO
@@ -90163,9 +90173,9 @@ adb
 ieU
 sFL
 adM
-qNi
-agf
 ida
+agf
+pzy
 agf
 hQd
 aeO
@@ -90251,7 +90261,7 @@ cCl
 bAy
 xHI
 bJG
-vap
+lLe
 nNk
 iDV
 siF
@@ -90407,7 +90417,7 @@ ace
 abO
 abO
 tin
-rnQ
+kjm
 ace
 tYO
 abO
@@ -90508,7 +90518,7 @@ bIL
 bOs
 ioH
 boe
-ioH
+xBy
 bHh
 awX
 jFN
@@ -90665,7 +90675,7 @@ abO
 abO
 abO
 abO
-yeJ
+gip
 abO
 abO
 abO
@@ -91178,9 +91188,9 @@ acd
 ace
 ace
 ace
-bSF
+rnQ
 aFc
-kjm
+rTJ
 adT
 adT
 adT
@@ -92070,7 +92080,7 @@ bPQ
 dpM
 bVf
 bWJ
-pzy
+cpG
 bXs
 pln
 fBp
