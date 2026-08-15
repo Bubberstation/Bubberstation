@@ -1,40 +1,3 @@
-/datum/job/engineering_guard
-	alt_titles = list(
-		"Engineering Guard",
-		"Atmospheric Security",
-	)
-
-/datum/job/security_medic
-	alt_titles = list(
-		"Security Medic",
-		"Field Medic",
-		"Security Corpsman",
-		"Brig Physician",
-		"Combat Medic",
-		"Special Operations Medic",
-	)
-
-/datum/job/orderly/New()
-	alt_titles |= list(
-		"Medical Attendant",
-		"Medical Support Technician",
-	)
-	. = ..()
-
-//New titles for Blacksmith
-/datum/job/blacksmith
-	alt_titles = list(
-		"Blacksmith",
-		"Ithastrist",
-		"Metalurgist",
-		"Metal Worker",
-		"Metalsmith",
-		"Forge Artisan",
-		"Forgemaster",
-		"Weaponsmith",
-		"Armorsmith",
-	)
-
 /datum/job/bridge_assistant
 	alt_titles = list(
 		"Bridge Assistant",
@@ -71,9 +34,3 @@
 		"Head Assistant",
 		"Bridge Tour Coordinator",
 	)
-
-/datum/job/paramedic/New()
-	alt_titles |= list(
-		"Body Retrieval Specialist",
-	)
-	. = ..()
