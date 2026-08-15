@@ -175,7 +175,6 @@ SUBSYSTEM_DEF(gamemode)
 
 	return SS_INIT_SUCCESS
 
-
 /datum/controller/subsystem/gamemode/fire(resumed = FALSE)
 	if(!resumed)
 		src.currentrun = running.Copy()
@@ -253,7 +252,6 @@ SUBSYSTEM_DEF(gamemode)
 	list/restricted_roles,
 	list/restricted_species,
 	)
-
 
 	var/list/candidates = list()
 	var/list/candidate_candidates = list() //lol
@@ -461,10 +459,7 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/resetFrequency()
 	event_frequency_multiplier = 1
 
-/* /client/proc/forceEvent()
-	set name = "Trigger Event"
-	set category = "Admin.Events"
-
+/* ADMIN_VERB(forceEvent, R_FUN, "Trigger Event", "Triggers an event of your choosing.", ADMIN_CATEGORY_EVENTS)
 	if(!holder ||!check_rights(R_FUN))
 		return
 
@@ -472,7 +467,6 @@ SUBSYSTEM_DEF(gamemode)
 
 /* /datum/admins/forceEvent(mob/user)
 	SSgamemode.event_panel(user) */
-
 
 //////////////
 // HOLIDAYS //
@@ -492,7 +486,6 @@ SUBSYSTEM_DEF(gamemode)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //ALSO, MOST IMPORTANTLY: Don't add stupid stuff! Discuss bonus content with Project-Heads first please!//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 //sets up the holidays and holidays list
 /datum/controller/subsystem/gamemode/proc/getHoliday()
@@ -566,7 +559,6 @@ SUBSYSTEM_DEF(gamemode)
 	pop_data_cached = FALSE // Uncache it because we'd still wrongly consider it cached from lobby pops
 	return TRUE
 
-
 ///Handles late-join antag assignments
 /datum/controller/subsystem/gamemode/proc/make_antag_chance(mob/living/carbon/human/character)
 	return
@@ -595,7 +587,6 @@ SUBSYSTEM_DEF(gamemode)
 
 		if(L.ckey && !GLOB.directory[L.ckey])
 			msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
-
 
 		if(L.ckey && L.client)
 			var/failed = FALSE
@@ -629,7 +620,6 @@ SUBSYSTEM_DEF(gamemode)
 					else
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_boldannounce("Ghosted")])\n"
 						continue //Ghosted while alive
-
 
 	for (var/C in GLOB.admins)
 		to_chat(C, msg.Join())
@@ -791,7 +781,6 @@ SUBSYSTEM_DEF(gamemode)
  *
  * Used to halt/unhalt and properly log storyteller
  */
-
 /datum/controller/subsystem/gamemode/proc/halt_storyteller(mob/user)
 	storyteller_halted = !storyteller_halted
 	if(isnull(user))

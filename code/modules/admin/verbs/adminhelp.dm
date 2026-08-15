@@ -851,10 +851,7 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 
 	new /datum/admin_help(message, user_client, FALSE, null, urgent) // SKYRAT EDIT - Handling tickets - ORIGINAL: new /datum/admin_help(message, user_client, FALSE, urgent)
 
-/client/verb/no_tgui_adminhelp(message as message)
-	set name = "NoTguiAdminhelp"
-	set hidden = TRUE
-
+GAME_VERB_HIDDEN(/client, no_tgui_adminhelp, "NoTguiAdminhelp", message as message)
 	if(adminhelptimerid)
 		return
 
@@ -862,16 +859,11 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 
 	GLOB.admin_help_ui_handler.perform_adminhelp(src, message, FALSE)
 
-/client/verb/adminhelp()
-	set category = "Admin"
-	set name = "Adminhelp"
+GAME_VERB(/client, adminhelp, "Adminhelp", "Admin")
 	GLOB.admin_help_ui_handler.ui_interact(mob)
 	to_chat(src, span_boldnotice("Adminhelp failing to open or work? <a href='byond://?src=[REF(src)];tguiless_adminhelp=1'>Click here</a>"))
 
-/client/verb/view_latest_ticket()
-	set category = "Admin"
-	set name = "View Latest Ticket"
-
+GAME_VERB(/client, view_latest_ticket, "View Latest Ticket", "Admin")
 	if(!current_ticket)
 		// Check if the client had previous tickets, and show the latest one
 		var/list/prev_tickets = list()
