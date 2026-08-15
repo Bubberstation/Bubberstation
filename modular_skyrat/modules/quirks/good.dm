@@ -72,7 +72,7 @@
 	name = "Water breathing"
 	desc = "You are able to breathe underwater!"
 	value = 2
-	mob_trait = TRAIT_WATER_BREATHING
+	mob_trait = TRAIT_NODROWN
 	gain_text = span_notice("You become acutely aware of the moisture in your lungs and in the air. It feels nice.")
 	lose_text = span_danger("You suddenly realize the moisture in your lungs feels <i>really weird</i>, and you almost choke on it!")
 	medical_record_text = "Patient possesses biology compatible with aquatic respiration."

@@ -78,8 +78,10 @@
 	desc = "The latest and greatest power razor born from the science of shaving."
 	icon = 'modular_skyrat/modules/salon/icons/items.dmi'
 	icon_state = "razor"
+	inhand_icon_state = null
 	obj_flags = CONDUCTS_ELECTRICITY
 	w_class = WEIGHT_CLASS_TINY
+	sound_vary = FALSE
 	// How long do we take to shave someone's (facial) hair?
 	var/shaving_time = 5 SECONDS
 

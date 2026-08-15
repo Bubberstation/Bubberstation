@@ -4,6 +4,7 @@
 	id = "wt550_ammo_normal"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
+	transfered_materials = list(/obj/item/ammo_box/magazine/wt550m9 = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2))
 	build_path = /obj/item/ammo_box/magazine/wt550m9
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -16,6 +17,7 @@
 	id = "wt550_ammo_ap"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
+	transfered_materials = list(/obj/item/ammo_box/magazine/wt550m9/wtap = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 0.6))
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtap
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -28,6 +30,7 @@
 	id = "wt550_ammo_incendiary"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 2, /datum/material/silver = SHEET_MATERIAL_AMOUNT , /datum/material/glass = SHEET_MATERIAL_AMOUNT)
+	transfered_materials = list(/obj/item/ammo_box/magazine/wt550m9/wtic = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 0.6, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT))
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtic
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
