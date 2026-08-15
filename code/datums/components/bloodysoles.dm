@@ -305,10 +305,9 @@
 	update_icon()
 
 /datum/component/bloodysoles/feet/proc/get_blood_appearance()
-	var/icon/blood_icon_file = icon_exists('modular_zubbers/icons/effects/blood_species.dmi', "shoeblood_[wielder.dna.species.id]") ? 'modular_zubbers/icons/effects/blood_species.dmi' : 'icons/effects/blood.dmi'
-	var/blood_icon_state = icon_exists('modular_zubbers/icons/effects/blood_species.dmi', "shoeblood_[wielder.dna.species.id]") ? "shoeblood_[wielder.dna.species.id]" : "shoeblood"
-
-	return mutable_appearance(blood_icon_file, blood_icon_state, SHOES_LAYER)
+	if(icon_exists('modular_zubbers/icons/effects/blood_species.dmi', "shoeblood_[wielder.dna.species.id]"))
+		return mutable_appearance('modular_zubbers/icons/effects/blood_species.dmi', "shoeblood_[wielder.dna.species.id]", SHOES_LAYER)
+	return mutable_appearance('icons/effects/blood.dmi', "shoeblood", SHOES_LAYER)
 // BUBBER EDIT ADDITION END
 
 /datum/component/bloodysoles/feet/InheritComponent(datum/component/bloodysoles/feet/soles, original, list/new_blood)

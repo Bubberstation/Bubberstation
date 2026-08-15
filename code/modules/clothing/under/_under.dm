@@ -115,10 +115,10 @@
 		//BUBBER EDIT BEGIN
 		//. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform") //ORIGINAL
 		var/mob/living/carbon/human/wearer = loc
-		var/icon/damage_icon_file = ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damageduniform_[wearer.dna.species.id]") ? 'modular_zubbers/icons/effects/item_damage_species.dmi' : 'icons/effects/item_damage.dmi'
-		var/damage_icon_state = ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damageduniform_[wearer.dna.species.id]") ? "damageduniform_[wearer.dna.species.id]" : "damageduniform"
-
-		. += mutable_appearance(damage_icon_file, damage_icon_state)
+		if(ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damageduniform_[wearer.dna.species.id]"))
+			. += mutable_appearance('modular_zubbers/icons/effects/item_damage_species.dmi', "damageduniform_[wearer.dna.species.id]")
+		else
+			. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform")
 		//BUBBER EDIT END
 	. += get_accessory_overlays()
 
