@@ -23,7 +23,6 @@
 /obj/machinery/status_display/evac/directional/south,
 /obj/effect/turf_decal/tile/blue/half/contrasted,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
 /obj/structure/closet/firecloset,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
@@ -150,6 +149,10 @@
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
 	},
+/obj/effect/turf_decal/box,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
 "hl" = (
@@ -187,6 +190,10 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/obj/effect/turf_decal/box,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
 "lq" = (
@@ -210,8 +217,6 @@
 /area/station/hallway/secondary/entry)
 "lv" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
 "lJ" = (
@@ -223,8 +228,6 @@
 /area/station/hallway/secondary/entry)
 "mn" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
 /obj/machinery/door/airlock/multi_tile/public{
 	name = "Arrivals Dock"
 	},
@@ -293,11 +296,6 @@
 /turf/open/floor/plating,
 /area/station/common/cryopods)
 "vF" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/box,
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
@@ -346,8 +344,9 @@
 /area/station/hallway/secondary/entry)
 "xu" = (
 /obj/effect/turf_decal/tile/yellow,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer5,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
 "xz" = (
@@ -495,9 +494,6 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
-/obj/structure/chair/sofa/bench/left{
-	dir = 8
-	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "GC" = (
@@ -567,8 +563,6 @@
 /area/station/hallway/secondary/entry)
 "Kq" = (
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "KT" = (
@@ -614,6 +608,10 @@
 	dir = 8
 	},
 /obj/machinery/light/directional/west,
+/obj/effect/turf_decal/box,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
 "Mn" = (
@@ -644,8 +642,8 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer5,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
 "Ot" = (
@@ -692,6 +690,19 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
+"PO" = (
+/obj/effect/turf_decal/tile/brown/half/contrasted{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer5,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/exit/departure_lounge)
 "QQ" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 4
@@ -699,8 +710,9 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer5,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
 "RH" = (
@@ -741,8 +753,6 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
 "TC" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
@@ -753,8 +763,8 @@
 /area/station/hallway/secondary/exit/departure_lounge)
 "TH" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer5,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/exit/departure_lounge)
 "TV" = (
@@ -809,8 +819,8 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer5,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
 "Wz" = (
@@ -846,9 +856,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
-/obj/structure/chair/sofa/bench/right{
-	dir = 8
-	},
+/obj/machinery/vending/coffee,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "Zk" = (
@@ -1126,7 +1135,7 @@ lv
 TC
 mn
 Kq
-ZB
+fW
 aC
 lr
 Bg
@@ -1261,7 +1270,7 @@ Lv
 xu
 QQ
 QQ
-QQ
+PO
 VU
 TH
 MY
