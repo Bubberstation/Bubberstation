@@ -68,6 +68,7 @@
 	ammo_x_offset = 1
 	charge_sections = 4
 	modifystate = TRUE
+	can_charge = FALSE
 
 	weapon_weight = WEAPON_MEDIUM
 	slot_flags = ITEM_SLOT_POCKETS

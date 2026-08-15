@@ -30,7 +30,7 @@
 	color = rgb(255,50,50)
 /obj/projectile/energy/syndie_raygun/heart/on_hit(mob/living/carbon/target, blocked = 0, pierce_hit)
 	. = ..()
-	target.adjust_organ_loss(ORGAN_SLOT_HEART, 1.8)
+	target.adjust_organ_loss(ORGAN_SLOT_HEART, 1.2)
 
 /obj/projectile/energy/syndie_raygun/liver
 	name = "liverworse raygun beam"
@@ -81,7 +81,7 @@
 	. = ..()
 	var/organ_selected = rand(1,7)
 	if(organ_selected == 1)
-		target.adjust_organ_loss(ORGAN_SLOT_HEART, 2.4)
+		target.adjust_organ_loss(ORGAN_SLOT_HEART, 2.0)
 	if(organ_selected == 2)
 		target.adjust_organ_loss(ORGAN_SLOT_LIVER, 2.4)
 	if(organ_selected == 3)
