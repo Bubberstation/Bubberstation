@@ -1,7 +1,4 @@
-/client/verb/check_antag_tickets()
-	set name = "Check Antag Tickets"
-	set category = "OOC"
-
+GAME_VERB(/client, check_antag_tickets, "Check Antag Tickets", "OOC")
 	var/antag_ticket_rate = CONFIG_GET(number/antag_tickets_per_update)
 
 	if(!antag_ticket_rate)
@@ -13,10 +10,7 @@
 
 	to_chat(src,span_notice("You currently have <b>[antag_ticket_count]</b> antag tickets, and are [antag_ticket_gain >= 0 ? "gaining" : "losing"] <b>[abs(antag_ticket_gain)]</b> antag tickets every [DisplayTimeText(SSblackbox.wait,1)]."))
 
-/client/verb/antag_tickets_info()
-	set name = "What are antag tickets?"
-	set category = "OOC"
-
+GAME_VERB(/client, antag_tickets_info, "What are antag tickets?", "OOC")
 	var/antag_ticket_rate = CONFIG_GET(number/antag_tickets_per_update)
 
 	if(!antag_ticket_rate)

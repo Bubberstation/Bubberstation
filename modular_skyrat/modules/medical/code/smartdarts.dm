@@ -156,6 +156,11 @@
 	icon_state = "smartdartgun"
 	worn_icon_state = "medicalsyringegun"
 	item_flags = null
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 5.3,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 2,
+	)
 
 /obj/item/gun/syringe/smartdart/Initialize(mapload)
 	. = ..()

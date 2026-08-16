@@ -40,22 +40,29 @@
 		transfer_blood = 0
 		. |= COMPONENT_CLEANED|COMPONENT_CLEANED_GAIN_XP
 
-/obj/item/clothing/gloves/suicide_act(mob/living/carbon/user)
+/obj/item/clothing/gloves/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("\the [src] are forcing [user]'s hands around [user.p_their()] neck! It looks like the gloves are possessed!"))
 	return OXYLOSS
 
-/obj/item/clothing/gloves/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
+/obj/item/clothing/gloves/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file, bodyshape = NONE)
 	. = ..()
 	if(isinhands)
 		return
 	if(damaged_clothes)
-		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedgloves")
+		//BUBBER EDIT BEGIN - Species specific damage states.
+		//. += mutable_appearance('icons/effects/item_damage.dmi', "damagedgloves") //ORIGINAL
+		var/mob/living/carbon/human/wearer = loc
+		if(ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedgloves_[wearer.dna.species.id]"))
+			. += mutable_appearance('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedgloves_[wearer.dna.species.id]")
+		else
+			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedgloves")
+		//BUBBER EDIT END
 
-/obj/item/clothing/gloves/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file)
+/obj/item/clothing/gloves/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
 	if (isinhands)
 		return
-	var/blood_overlay = get_blood_overlay("glove")
+	var/blood_overlay = get_blood_overlay("glove", bodyshape)
 	if (blood_overlay)
 		. += blood_overlay
 
