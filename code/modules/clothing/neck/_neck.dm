@@ -13,13 +13,20 @@
 	if(isinhands || !(body_parts_covered & HEAD))
 		return
 	if(damaged_clothes)
-		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedmask")
+		//BUBBER EDIT BEGIN - Species specific damage states.
+		//. += mutable_appearance('icons/effects/item_damage.dmi', "damagedmask") //ORIGINAL
+		var/mob/living/carbon/human/wearer = loc
+		if(ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedmask_[wearer.dna.species.id]"))
+			. += mutable_appearance('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedmask_[wearer.dna.species.id]")
+		else
+			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedmask")
+		//BUBBER EDIT END
 
-/obj/item/clothing/neck/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file)
+/obj/item/clothing/neck/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
 	if (isinhands || !(body_parts_covered & HEAD))
 		return
-	var/blood_overlay = get_blood_overlay("mask")
+	var/blood_overlay = get_blood_overlay("mask", bodyshape)
 	if (blood_overlay)
 		. += blood_overlay
 
@@ -145,7 +152,7 @@
 		context[SCREENTIP_CONTEXT_ALT_LMB] = "Tie"
 	return CONTEXTUAL_SCREENTIP_SET
 
-/obj/item/clothing/neck/tie/worn_overlays(mutable_appearance/standing, isinhands)
+/obj/item/clothing/neck/tie/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
 	var/mob/living/carbon/human/wearer = loc
 	if(!ishuman(wearer) || !wearer.w_uniform)
@@ -154,7 +161,7 @@
 	if(!istype(undershirt) || !LAZYLEN(undershirt.attached_accessories))
 		return
 	if(alternate_worn_layer)
-		. += undershirt.accessory_overlay
+		. += undershirt.get_accessory_overlays()
 
 /obj/item/clothing/neck/tie/blue
 	name = "blue tie"
@@ -235,12 +242,13 @@
 	name = "stethoscope"
 	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
 	icon_state = "stethoscope"
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/clothing/neck/stethoscope/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/adjust_fishing_difficulty, -3) //FISH DOCTOR?!
 
-/obj/item/clothing/neck/stethoscope/suicide_act(mob/living/carbon/user)
+/obj/item/clothing/neck/stethoscope/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] puts \the [src] to [user.p_their()] chest! It looks like [user.p_they()] won't hear much!"))
 	return OXYLOSS
 
@@ -577,23 +585,27 @@
 	color = color = pick("#ff0077","#d400ff","#2600ff","#00ccff","#00ff2a","#e5ff00","#ffae00","#ff0000", "#ffffff")
 
 /obj/item/clothing/neck/wreath
-	name = "\improper Watcher Wreath"
-	desc = "An elaborate crown made from the twisted flesh and sinew of a watcher. \
-		Wearing it makes you feel like you have eyes in the back of your head."
+	name = "\improper watcher wreath"
+	desc = "An elaborate crown made from the twisted flesh and sinew of a watcher. Wearing it makes you feel like you have eyes in the back of your head."
 	icon_state = "watcher_wreath"
 	worn_y_offset = 10
 	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 2, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 2)
 
-/obj/item/clothing/neck/wreath/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+/obj/item/clothing/neck/wreath/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
 	if(!isinhands)
 		. += emissive_appearance(icon_file, "wreath_emissive", src, alpha = src.alpha)
 
 /obj/item/clothing/neck/wreath/icewing
-	name = "\improper Icewing Wreath"
-	desc = "An elaborate crown made from the twisted flesh and sinew of an icewing watcher. \
-		Wearing it sends shivers down your spine just from being near it."
+	name = "\improper icewing wreath"
+	desc = "An elaborate crown made from the twisted flesh and sinew of an icewing watcher. You feel shivers down your spine just from being near it."
 	icon_state = "icewing_wreath"
+	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 2)
+
+/obj/item/clothing/neck/wreath/magmawing
+	name = "\improper magmawing wreath"
+	desc = "An elaborate crown made from the twisted flesh and sinew of an magmawing watcher. Wearing it sets your heart and skin ablaze."
+	icon_state = "magmawing_wreath"
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 2)

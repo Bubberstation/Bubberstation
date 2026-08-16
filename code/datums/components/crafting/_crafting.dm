@@ -251,7 +251,7 @@
 		// BUBBER EDIT ADDITION BEGIN - Construction skill
 		var/mob/crafting_mob = crafter
 		var/skill_modifier = 1
-		if(istype(crafting_mob))
+		if(istype(crafting_mob) && crafting_mob.mind)
 			skill_modifier = crafting_mob.mind.get_skill_modifier(/datum/skill/construction, SKILL_SPEED_MODIFIER)
 		// BUBBER EDIT ADDITION END - Construction skill
 		if(!do_after(crafter, round(recipe_time * skill_modifier, 0.1 SECONDS), target = crafter)) // BUBBER EDIT - Crafting Skillz
@@ -295,7 +295,7 @@
 	// BUBBER EDIT ADDITION BEGIN - Construction skill
 	var/mob/crafting_mob = crafter
 	if(istype(crafting_mob))
-		crafting_mob.mind.adjust_experience(/datum/skill/construction, 5)
+		crafting_mob.mind?.adjust_experience(/datum/skill/construction, 5)
 	// BUBBER EDIT ADDITION END - Construction skill
 	result.setDir(crafter.dir)
 	if(recipe.crafting_flags & CRAFT_CLEARS_REAGENTS)

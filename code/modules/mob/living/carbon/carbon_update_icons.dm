@@ -302,11 +302,11 @@
 		if(!iter_part.dmg_overlay_type)
 			continue
 		if(isnull(damage_overlay) && (iter_part.brutestate || iter_part.burnstate))
-			damage_overlay = mutable_appearance('icons/mob/effects/dam_mob.dmi', "blank", -DAMAGE_LAYER, appearance_flags = KEEP_TOGETHER)
+			damage_overlay = mutable_appearance('modular_zubbers/icons/mob/effects/dam_mob.dmi', "blank", -DAMAGE_LAYER, appearance_flags = KEEP_TOGETHER) //BUBBER EDIT: Extra species damage icons. Original: 'icons/mob/effects/dam_mob.dmi'
 		if(iter_part.brutestate)
-			var/mutable_appearance/blood_damage_overlay = mutable_appearance('icons/mob/effects/dam_mob.dmi', "[iter_part.dmg_overlay_type]_[iter_part.body_zone]_[iter_part.brutestate]0", appearance_flags = RESET_COLOR) //we're adding icon_states of the base image as overlays
+			var/mutable_appearance/blood_damage_overlay = mutable_appearance('modular_zubbers/icons/mob/effects/dam_mob.dmi', "[iter_part.dmg_overlay_type]_[iter_part.body_zone]_[iter_part.brutestate]0", appearance_flags = RESET_COLOR) //we're adding icon_states of the base image as overlays //BUBBER EDIT: Extra species damage icons. Original: 'icons/mob/effects/dam_mob.dmi'
 			blood_damage_overlay.color = get_bloodtype()?.get_damage_color(src)
-			var/mutable_appearance/brute_damage_overlay = mutable_appearance('icons/mob/effects/dam_mob.dmi', "[iter_part.dmg_overlay_type]_[iter_part.body_zone]_[iter_part.brutestate]0_overlay", appearance_flags = RESET_COLOR)
+			var/mutable_appearance/brute_damage_overlay = mutable_appearance('modular_zubbers/icons/mob/effects/dam_mob.dmi', "[iter_part.dmg_overlay_type]_[iter_part.body_zone]_[iter_part.brutestate]0_overlay", appearance_flags = RESET_COLOR) //BUBBER EDIT: Extra species damage icons. Original: 'icons/mob/effects/dam_mob.dmi'
 			blood_damage_overlay.overlays += brute_damage_overlay
 			damage_overlay.add_overlay(blood_damage_overlay)
 		if(iter_part.burnstate)
@@ -315,6 +315,7 @@
 	if(isnull(damage_overlay))
 		return
 
+	apply_height(damage_overlay, ENTIRE_BODY)
 	overlays_standing[DAMAGE_LAYER] = damage_overlay
 	apply_overlay(DAMAGE_LAYER)
 
@@ -329,61 +330,30 @@
 	var/mutable_appearance/wound_overlay
 	for(var/obj/item/bodypart/iter_part as anything in get_bodyparts())
 		if(iter_part.bleed_overlay_icon)
+			/*BUBBER EDIT BEGIN - Species specific bleed overlay icons.
 			var/mutable_appearance/blood_overlay = mutable_appearance('icons/mob/effects/bleed_overlays.dmi', "blank", -WOUND_LAYER, appearance_flags = KEEP_TOGETHER)
 			blood_overlay.color = blood_type.get_wound_color(src)
 			wound_overlay ||= blood_overlay
 			wound_overlay.add_overlay(iter_part.bleed_overlay_icon)
+			*/
+			var/icon/bleed_overlay_icon_file = 'icons/mob/effects/bleed_overlays.dmi'
+			var/bleed_overlay_icon_state = iter_part.bleed_overlay_icon
+			if(ishuman(src) && icon_exists('modular_zubbers/icons/mob/effects/bleed_overlays_species.dmi', "[iter_part.bleed_overlay_icon]_[src.dna.species.id]"))
+				bleed_overlay_icon_file = 'modular_zubbers/icons/mob/effects/bleed_overlays_species.dmi'
+				bleed_overlay_icon_state = "[iter_part.bleed_overlay_icon]_[src.dna.species.id]"
+
+			var/mutable_appearance/blood_overlay = mutable_appearance(bleed_overlay_icon_file, "blank", -WOUND_LAYER, appearance_flags = KEEP_TOGETHER)
+			blood_overlay.color = blood_type.get_wound_color(src)
+			wound_overlay ||= blood_overlay
+			wound_overlay.add_overlay(mutable_appearance(bleed_overlay_icon_file, bleed_overlay_icon_state))
+			//BUBBER EDIT END
 
 	if(isnull(wound_overlay))
 		return
 
+	apply_height(wound_overlay, ENTIRE_BODY)
 	overlays_standing[WOUND_LAYER] = wound_overlay
 	apply_overlay(WOUND_LAYER)
-
-//SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular)
-/*
-/mob/living/carbon/update_worn_mask()
-	remove_overlay(FACEMASK_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_MASK)
-
-	if(!get_bodypart(BODY_ZONE_HEAD)) //Decapitated
-		return
-
-	if(wear_mask && !(obscured_slots & HIDEMASK))
-		overlays_standing[FACEMASK_LAYER] = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = 'icons/mob/clothing/mask.dmi', bodyshape = bodyshape)
-
-	apply_overlay(FACEMASK_LAYER)
-
-/mob/living/carbon/update_worn_neck()
-	remove_overlay(NECK_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_NECK)
-
-	if(client && hud_used?.inv_slots[TOBITSHIFT(ITEM_SLOT_NECK) + 1])
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_NECK) + 1]
-		inv.update_appearance()
-
-	if(wear_neck)
-		if(!(obscured_slots & HIDENECK))
-			overlays_standing[NECK_LAYER] = wear_neck.build_worn_icon(default_layer = NECK_LAYER, default_icon_file = 'icons/mob/clothing/neck.dmi', bodyshape = bodyshape)
-		update_hud_neck(wear_neck)
-
-	apply_overlay(NECK_LAYER)
-*/
-//SKYRAT EDIT REMOVAL END
-
-//SKYRAT EDIT REMOVAL BEGIN - TESHARI CLOTHES (moved to modular)
-/*
-/mob/living/carbon/update_worn_back()
-	remove_overlay(BACK_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_BACK)
-
-	if(back)
-		overlays_standing[BACK_LAYER] = back.build_worn_icon(default_layer = BACK_LAYER, default_icon_file = 'icons/mob/clothing/back.dmi', bodyshape = bodyshape)
-		update_hud_back(back)
-
-	apply_overlay(BACK_LAYER)
-*/
-//SKYRAT EDIT REMOVAL END
 
 /mob/living/carbon/update_worn_legcuffs()
 	remove_overlay(LEGCUFF_LAYER)
@@ -396,30 +366,6 @@
 	apply_overlay(LEGCUFF_LAYER)
 	throw_alert("legcuffed", /atom/movable/screen/alert/restrained/legcuffed, new_master = src.legcuffed)
 
-//SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular)
-/*
-
-/mob/living/carbon/update_worn_head()
-	remove_overlay(HEAD_LAYER)
-	hud_used?.update_inventory_slot(ITEM_SLOT_HEAD)
-
-	if(!get_bodypart(BODY_ZONE_HEAD)) //Decapitated
-		return
-
-	if(client && hud_used?.inv_slots[TOBITSHIFT(ITEM_SLOT_HEAD) + 1])
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_HEAD) + 1]
-		inv.update_appearance()
-
-	if(head)
-		if(!(obscured_slots & HIDEHEADGEAR))
-			overlays_standing[HEAD_LAYER] = head.build_worn_icon(default_layer = HEAD_LAYER, default_icon_file = 'icons/mob/clothing/head/default.dmi', bodyshape = bodyshape)
-		update_hud_head(head)
-
-	apply_overlay(HEAD_LAYER)
-*/
-//SKYRAT EDIT REMOVAL END
-
-
 /mob/living/carbon/update_worn_handcuffs()
 	remove_overlay(HANDCUFF_LAYER)
 	hud_used?.update_inventory_slot(ITEM_SLOT_HANDS)
@@ -427,7 +373,7 @@
 		var/mutable_appearance/handcuff_overlay = mutable_appearance('icons/mob/simple/mob.dmi', "handcuff1", -HANDCUFF_LAYER)
 		if(handcuffed.blocks_emissive != EMISSIVE_BLOCK_NONE)
 			handcuff_overlay.overlays += emissive_blocker(handcuff_overlay.icon, handcuff_overlay.icon_state, src, alpha = handcuff_overlay.alpha)
-
+		apply_height(handcuff_overlay, LOWER_BODY) // low hanging
 		overlays_standing[HANDCUFF_LAYER] = handcuff_overlay
 		apply_overlay(HANDCUFF_LAYER)
 
@@ -436,24 +382,21 @@
 /// Overlays for the worn overlay so you can overlay while you overlay
 /// eg: ammo counters, primed grenade flashing, etc.
 /// "icon_file" is used automatically for inhands etc. to make sure it gets the right inhand file
-// SKYRAT EDIT CHANGE BEGIN - CUSTOMIZATION
-// obj/item/proc/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file) - original
-/obj/item/proc/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file, mutant_styles = NONE)
-// SKYRAT EDIT CHANGE END
+/obj/item/proc/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file, bodyshape = NONE)
 	SHOULD_CALL_PARENT(TRUE)
 	RETURN_TYPE(/list)
 
 	. = list()
 	if(blocks_emissive != EMISSIVE_BLOCK_NONE)
 		. += emissive_blocker(standing.icon, standing.icon_state, src)
-	SEND_SIGNAL(src, COMSIG_ITEM_GET_WORN_OVERLAYS, ., standing, isinhands, icon_file)
+	SEND_SIGNAL(src, COMSIG_ITEM_GET_WORN_OVERLAYS, ., standing, isinhands, icon_file, bodyshape)
 
 /// worn_overlays to use when you'd want to use KEEP_APART. Don't use KEEP_APART neither there nor here, as it would break floating overlays
-/obj/item/proc/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands = FALSE, icon_file)
+/obj/item/proc/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands = FALSE, icon_file, bodyshape = NONE)
 	SHOULD_CALL_PARENT(TRUE)
 	RETURN_TYPE(/list)
 	. = list()
-	SEND_SIGNAL(src, COMSIG_ITEM_GET_SEPARATE_WORN_OVERLAYS, ., standing, draw_target, isinhands, icon_file)
+	SEND_SIGNAL(src, COMSIG_ITEM_GET_SEPARATE_WORN_OVERLAYS, ., standing, draw_target, isinhands, icon_file, bodyshape)
 
 ///Checks to see if any bodyparts need to be redrawn, then does so. update_limb_data = TRUE redraws the limbs to conform to the owner.
 ///Returns an integer representing the number of limbs that were updated.
@@ -550,10 +493,14 @@
 		. += "alpha_[limb_alpha]"
 	// BUBBER EDIT ADDITION END
 	for(var/datum/bodypart_overlay/overlay as anything in bodypart_overlays)
-		if(!overlay.can_draw_on_bodypart(src, owner, is_husked))
-			continue
-		. += overlay.generate_icon_cache(src)
-	if(ishuman(owner))
+		if(overlay.can_draw_on_bodypart(src, owner))
+			. += overlay.icon_render_key(src)
+	for(var/datum/bodypart_texture/texture as anything in bodypart_textures)
+		if(texture.can_texture_bodypart(src))
+			. += texture.icon_render_key()
+	if(isdummy(owner)) // dummies always cache as default height because they have optimizations
+		. += "[/mob/living/carbon/human::mob_height]"
+	else if(ishuman(owner)) // otherwise cache height because we apply height filters to bodypart images
 		var/mob/living/carbon/human/human_owner = owner
 		. += "[human_owner.mob_height]"
 	SEND_SIGNAL(src, COMSIG_BODYPART_GENERATE_ICON_KEY, .)
@@ -580,11 +527,9 @@
 	if(limb_alpha != 255)
 		. += "alpha_[limb_alpha]" // BUBBER EDIT ADDITION - per-limb alpha
 	. += "[LAZYLEN(blood_dna_info) ? get_color_from_blood_list(blood_dna_info) : BLOOD_COLOR_RED]"
-	for(var/datum/bodypart_overlay/overlay as anything in bodypart_overlays)
-		if(!overlay.can_draw_on_bodypart(src, owner, TRUE))
-			continue
-		. += overlay.generate_icon_cache(src)
-	if(ishuman(owner))
+	if(isdummy(owner)) // dummies always cache as default height because they have optimizations
+		. += "[/mob/living/carbon/human::mob_height]"
+	else if(ishuman(owner)) // otherwise cache height because we apply height filters to bodypart images
 		var/mob/living/carbon/human/human_owner = owner
 		. += "[human_owner.mob_height]"
 	return .
