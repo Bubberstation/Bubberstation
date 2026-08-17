@@ -172,6 +172,8 @@
 	var/list/species_exception = null
 	///This is a bitfield that defines what variations exist for bodyparts like Digi legs. See: code\_DEFINES\inventory.dm
 	var/supports_variations_flags = NONE
+	/// This is a bitfield that defines which bodyshapes this item is capable of rendering, used by build_worn_icon()
+	var/bodyshapes_with_variations = NONE
 
 	///Items can by default thrown up to 10 tiles by TK users
 	tk_throw_range = 10
@@ -257,7 +259,7 @@
 
 	// Handle adding item associated actions
 	for(var/path in actions_types)
-		add_item_action(path)
+		INVOKE_ASYNC(src, PROC_REF(add_item_action), path)
 	actions_types = null
 
 	if(force_string)
@@ -423,9 +425,7 @@
 	// BUBBER EDIT ADDITION - Fire COMSIG_ATOM_UPDATED_ICON after all GAGS icons update so update_icon_updates_onmob can refresh worn overlays
 	SEND_SIGNAL(src, COMSIG_ATOM_UPDATED_ICON)
 
-/obj/item/verb/move_to_top()
-	set name = "Move To Top"
-	set src in oview(1)
+GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "Move To Top", null)
 
 	if(!isturf(loc) || usr.stat != CONSCIOUS || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED) || anchored)
 		return
@@ -856,9 +856,7 @@
 
 	return M.can_equip(src, slot, disable_warning, bypass_equip_delay_self, ignore_equipped, indirect_action = indirect_action)
 
-/obj/item/verb/verb_pickup()
-	set src in oview(1)
-	set name = "Pick up"
+GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "Pick up", null)
 
 	if(usr.incapacitated || !Adjacent(usr))
 		return

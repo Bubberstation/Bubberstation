@@ -6,6 +6,8 @@
 	"d" = SEC_DEPT_SUPPLY, \
 ))
 
+// BUBBER EDIT BEGIN REMOVAL - We don't distribute in a special pairing system
+/*
 /// Test that security officers with specific distributions get their departments.
 /datum/unit_test/security_officer_roundstart_distribution
 
@@ -106,6 +108,6 @@
 	test("a", list("a", "a", "b"), "b")
 	test("a", list("a", "a", "b", "b"), "c")
 	test("a", list("a", "a", "b", "b", "c", "c", "d", "d"), "a")
-
+*/
 #undef SECURITY_OFFICER_DEPARTMENTS
 #undef SECURITY_OFFICER_DEPARTMENTS_TO_NAMES

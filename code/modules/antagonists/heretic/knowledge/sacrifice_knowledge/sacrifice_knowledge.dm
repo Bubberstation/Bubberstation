@@ -350,11 +350,11 @@
 
 	var/turf/destination = get_turf(destination_landmark)
 	//BUBBERSTATION EDIT
-	if(is_species(sac_target, /datum/species/protean))
+	if(isprotean(sac_target))
 		var/obj/item/organ/brain/protean/brain = sac_target.get_organ_slot(ORGAN_SLOT_BRAIN)
 		if(brain)
 			brain.revive()
-			brain.leave_modsuit()
+			brain.leave_modsuit(TRUE)
 	//BUBBERSTATION EDIT END
 	sac_target.visible_message(span_danger("[sac_target] begins to shudder violenty as dark tendrils begin to drag them into thin air!"))
 	sac_target.equip_to_slot_or_del(new /obj/item/restraints/handcuffs/cult, ITEM_SLOT_HANDCUFFED, indirect_action = TRUE)

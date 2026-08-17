@@ -11,6 +11,16 @@
 /datum/job/roboticist
 	description = "Build cyborgs, mechs, AIs, and maintain them all. Create MODsuits for those that wish. Try to remind medical that you're \
 	actually a lot better at treating synthetic crew members than them."
+	required_languages = null
+	akula_outfit = /datum/outfit/akula/scientist
+	alt_titles = list(
+		"Roboticist",
+		"Biomechanical Engineer",
+		"Cyberneticist",
+		"Machinist",
+		"Mechatronic Engineer",
+		"Apprentice Roboticist",
+	)
 
 /datum/outfit/job/roboticist/New()
 	. = ..()

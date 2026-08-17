@@ -62,6 +62,7 @@
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 3,
 	)
 	build_path = /obj/machinery/portable_atmospherics/pump
+	inherit_materials = DESIGN_INHERIT_MATS_SPECIAL //these machines have their own hand-craft recipes
 	category = list(
 		RND_CATEGORY_INITIAL,
 		FABRICATOR_CATEGORY_APPLIANCES + FABRICATOR_SUBCATEGORY_ATMOS,
@@ -77,6 +78,7 @@
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 3,
 	)
 	build_path = /obj/machinery/portable_atmospherics/scrubber
+	inherit_materials = DESIGN_INHERIT_MATS_SPECIAL //these machines have their own hand-craft recipes
 	category = list(
 		RND_CATEGORY_INITIAL,
 		FABRICATOR_CATEGORY_APPLIANCES + FABRICATOR_SUBCATEGORY_ATMOS,
