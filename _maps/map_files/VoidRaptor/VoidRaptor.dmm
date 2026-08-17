@@ -5209,7 +5209,7 @@
 "bzu" = (
 /obj/structure/table,
 /obj/item/food/grown/wheat,
-/obj/item/food/grown/watermelon,
+/obj/item/food/grown/melonlike/watermelon,
 /obj/item/food/grown/citrus/orange,
 /obj/item/food/grown/grapes,
 /obj/item/food/grown/cocoapod,
@@ -20676,7 +20676,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "gcg" = (
-/obj/structure/closet/crate/goldcrate,
+/obj/structure/closet/crate/goldcrate/stocked,
 /obj/item/stack/spacecash/c500,
 /obj/item/stack/spacecash/c500,
 /obj/item/stack/spacecash/c500,
@@ -20898,7 +20898,7 @@
 	id = "Barshutters";
 	name = "Bar Shutters"
 	},
-/obj/structure/reagent_dispensers/beerkeg,
+/obj/effect/spawner/random/food_or_drink/keg,
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/large,
 /area/station/service/bar)
@@ -38291,9 +38291,9 @@
 "kSu" = (
 /obj/structure/table/wood,
 /obj/machinery/fax{
-	fax_name = "Bridge";
-	name = "Bridge Fax Machine";
-	pixel_y = 3
+	name = "Blueshield's Fax Machine";
+	fax_name = "Blueshield's Office";
+	pixel_y = 6
 	},
 /obj/item/radio/intercom/command/directional/east,
 /turf/open/floor/carpet/blue,
@@ -51933,9 +51933,6 @@
 /obj/effect/spawner/random/trash/garbage,
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/morgue)
-"oCl" = (
-/turf/closed/wall/r_wall,
-/area/station/engineering/supermatter/room)
 "oCo" = (
 /obj/structure/railing/corner{
 	dir = 4
@@ -118923,20 +118920,20 @@ eoX
 iTt
 eqi
 kVs
-oCl
-oCl
-oCl
+fCh
+fCh
+fCh
 bsm
 hLh
 hLh
-oCl
+fCh
 hLh
 hLh
 hLh
-oCl
+fCh
 bsm
-oCl
-oCl
+fCh
+fCh
 lFE
 xMq
 lFE
@@ -119180,7 +119177,7 @@ rQZ
 bom
 eqi
 acQ
-oCl
+fCh
 ixh
 gtd
 xFz
@@ -119193,7 +119190,7 @@ fVd
 mfg
 cZG
 ccf
-oCl
+fCh
 ejQ
 yly
 nbt
@@ -119450,10 +119447,10 @@ hwm
 wzT
 xkU
 fRw
-oCl
-oCl
-oCl
-oCl
+fCh
+fCh
+fCh
+fCh
 pEt
 pEt
 sGb
@@ -119707,7 +119704,7 @@ jko
 bZi
 iGC
 exl
-oCl
+fCh
 avM
 fZy
 vVU
@@ -120208,7 +120205,7 @@ jtJ
 xvD
 gLP
 vWI
-oCl
+fCh
 glS
 tUK
 jQL
@@ -120221,7 +120218,7 @@ aEI
 bZi
 oRP
 wKi
-oCl
+fCh
 hkh
 hkh
 dME
@@ -121249,7 +121246,7 @@ ghY
 bZi
 oRP
 hAn
-oCl
+fCh
 hkh
 hkh
 dJw
@@ -121763,7 +121760,7 @@ xHG
 bZi
 cmr
 fvl
-oCl
+fCh
 yja
 iCF
 gVA
@@ -122020,10 +122017,10 @@ tAJ
 rTZ
 hVW
 bik
-oCl
-oCl
-oCl
-oCl
+fCh
+fCh
+fCh
+fCh
 pEt
 pEt
 kux
@@ -122278,7 +122275,7 @@ bAI
 oiv
 dSB
 dRR
-oCl
+fCh
 xMq
 xMq
 pEt
@@ -122521,12 +122518,12 @@ hxy
 uxG
 trA
 sRR
-oCl
-oCl
+fCh
+fCh
 hLh
 tJQ
 hLh
-oCl
+fCh
 dRR
 gky
 gky
@@ -122783,7 +122780,7 @@ eEu
 xrd
 ive
 iOR
-oCl
+fCh
 fbg
 uZU
 uZU
@@ -122792,7 +122789,7 @@ hVH
 kYQ
 gjP
 kdd
-oCl
+fCh
 xMq
 xMq
 pEt
@@ -123040,18 +123037,18 @@ eEu
 luq
 sDw
 jKQ
-oCl
-oCl
+fCh
+fCh
 hLh
 hLh
-oCl
-oCl
+fCh
+fCh
 hLh
 wir
 hLh
-oCl
-oCl
-oCl
+fCh
+fCh
+fCh
 pEt
 gug
 kux

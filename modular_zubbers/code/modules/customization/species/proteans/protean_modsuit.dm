@@ -164,7 +164,7 @@
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_SUCCESS
 
-	///Memory Wipe Via Pen
+	// Memory Wipe Via Pen
 
 	if(brain?.dead && istype(tool, /obj/item/pen))
 		to_chat(user, span_notice("You begin to reset the protean's random access memory using a pen!"))
@@ -190,8 +190,7 @@
 		return UI_INTERACTIVE
 	. = ..()
 
-/obj/item/mod/control/pre_equipped/protean/verb/remove_modsuit()
-	set name = "Remove Assimilated Modsuit"
+GAME_VERB_HIDDEN(/obj/item/mod/control/pre_equipped/protean, remove_modsuit, "Remove Assimilated Modsuit")
 	var/obj/item/mod/core/protean/p_core = core
 	to_chat(usr, span_notice("You begin to pry at the [stored_modsuit] to seperate it."))
 	if(!do_after(usr, 5 SECONDS))
@@ -266,5 +265,3 @@
 	INVOKE_ASYNC(strip_menu, TYPE_PROC_REF(/datum/, ui_interact), user)
 
 	return COMPONENT_CANCEL_MOUSEDROP_ONTO
-
-

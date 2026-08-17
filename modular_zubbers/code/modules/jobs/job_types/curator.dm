@@ -1,6 +1,22 @@
 /datum/outfit/job/curator
 	skillchips = list(/obj/item/skillchip/xenoarch_magnifier)
 
+/datum/job/curator
+	required_languages = null
+	akula_outfit = /datum/outfit/akula
+	alt_titles = list(
+		"Curator",
+		"Adventurer",
+		"Archivist",
+		"Conservator",
+		"Journalist",
+		"Librarian",
+		"Historian",
+		"Archaeologist",
+		"Professor",
+		"Veteran Adventurer"
+	)
+
 // second fallback just in case the map is missing both the curator display case and codex gigas
 /datum/job/curator/after_spawn(mob/living/spawned, client/player_client)
 	mind_traits += (TRAIT_BLOODSUCKER_HUNTER)
