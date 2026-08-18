@@ -91,7 +91,6 @@
 
 /mob/living/basic/fleshmind/Destroy()
 	UnregisterSignal(src, COSMIG_CONTROLLER_SET_TARGET)
-	ai_controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
 	if(contained_mob)
 		contained_mob.forceMove(get_turf(src))
 		if(previous_ckey)
@@ -810,7 +809,6 @@
 		to_chat(iterating_mob, span_userdanger("A terrible howl tears through your mind, the voice senseless, soulless."))
 
 /mob/living/basic/fleshmind/himan/proc/fake_our_death()
-	ai_controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
 	ai_controller?.set_ai_status(AI_STATUS_OFF)
 	manual_emote("stops moving...")
 	faking_death = TRUE
@@ -996,26 +994,7 @@
 /mob/living/basic/fleshmind/phaser/Life(delta_time, times_fired)
 	. = ..()
 
-	var/target = ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
-	if(!.) //dead
-		return
-
-	if(COOLDOWN_FINISHED(src, closet_ability_cooldown) && !target && !key)
-		if(!istype(loc, /obj/structure/closet))
-			enter_nearby_closet()
-			COOLDOWN_START(src, closet_ability_cooldown, closet_ability_cooldown_time)
-
-	if(COOLDOWN_FINISHED(src, phase_ability_cooldown) && target && !key)
-		phase_ability(target)
-
-	if(istype(loc, /obj/structure/closet) && !key)
-		for(var/mob/living/iterating_mob in get_hearers_in_view(DEFAULT_VIEW_RANGE / 2, get_turf(src)))
-			if(faction_check(iterating_mob.faction, faction))
-				continue
-			if(iterating_mob.stat != CONSCIOUS)
-				continue
-			closet_interaction() // We exit if there are enemies nearby
-			ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, iterating_mob)
+// What was here should've been moved to the mob AI
 
 
 /mob/living/basic/fleshmind/phaser/ShiftClickOn(atom/clicked_atom)
@@ -1390,7 +1369,6 @@
 			. += "[base_icon_state]-process"
 
 /mob/living/basic/fleshmind/mechiver/proc/get_current_target()
-	return ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
 
 /mob/living/basic/fleshmind/mechiver/proc/consume_mob(mob/living/source, mob/living/target_mob)
 	SIGNAL_HANDLER

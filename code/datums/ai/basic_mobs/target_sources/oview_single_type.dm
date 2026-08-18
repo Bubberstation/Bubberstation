@@ -54,5 +54,10 @@ OVIEW_TARGET_SOURCE(cat_house, obj/structure/cat_house)
 OVIEW_TARGET_SOURCE(honeycomb, obj/item/food/honeycomb)
 OVIEW_TARGET_SOURCE(kitten, mob/living/basic/pet/cat/kitten)
 OVIEW_TARGET_SOURCE(deer_animals, mob/living/basic/deer)
+// BUBBER EDIT BEGIN - our sources
+OVIEW_TARGET_SOURCE(ash, obj/effect/decal/cleanable/ash)
+OVIEW_TARGET_SOURCE(flour, obj/effect/decal/cleanable/food/flour)
+// BUBBER EDIT END
+
 
 #undef OVIEW_TARGET_SOURCE

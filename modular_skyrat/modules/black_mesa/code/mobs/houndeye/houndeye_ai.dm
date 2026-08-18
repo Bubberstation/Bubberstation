@@ -10,47 +10,7 @@
 	)
 
 	ai_movement = /datum/ai_movement/basic_avoidance
-	idle_behavior = /datum/idle_behavior/idle_random_walk
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/simple_find_target,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree/houndeye,
-		/datum/ai_planning_subtree/target_retaliate
-	)
 
-/**
- * Custom melee attack subtree for houndeye that includes charging
- */
-/datum/ai_planning_subtree/basic_melee_attack_subtree/houndeye
-	melee_attack_behavior = /datum/ai_behavior/basic_melee_attack/houndeye
-
-/**
- * Custom melee attack behavior that includes sonic blast
- */
-/datum/ai_behavior/basic_melee_attack/houndeye
-	action_cooldown = 50 // Longer cooldown between sonic blasts
-	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT
-	required_distance = 5
-
-/datum/ai_behavior/basic_melee_attack/houndeye/perform(seconds_per_tick, datum/ai_controller/controller, target_key, targetting_datum_key, hiding_location_key)
-	var/mob/living/basic/blackmesa/xen/houndeye/living_pawn = controller.pawn
-	var/atom/target = controller.blackboard[target_key]
-
-	if(QDELETED(target))
-		finish_action(controller, FALSE)
-		return
-
-	if(living_pawn.charging_sonic || world.time < living_pawn.next_sonic_blast)
-		return
-
-	// Attempt to use sonic blast if possible
-	if(can_sonic_blast(living_pawn, target))
-		living_pawn.charging_sonic = TRUE
-		living_pawn.next_sonic_blast = world.time + action_cooldown
-		do_sonic_blast(living_pawn, target)
-		finish_action(controller, TRUE)
-		return
-
-	return ..() // Otherwise do normal melee attack
 
 /**
  * Check if we can use sonic blast on the target
