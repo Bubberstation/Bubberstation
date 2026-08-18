@@ -2,7 +2,7 @@
 	name = "Interslavic"
 	desc = "An elaborate mix of various Slavic languages with similar properties that has long since become the official language of the NRI, with a steady amount of relevance in TerraGov colonies with Slavic descendants and various types of trading posts and spaceports across Human space - it even managed to find a niche in communication with other species."
 	key = "P"
-	flags = TONGUELESS_SPEECH
+	flags = LANGUAGE_TONGUELESS_SPEECH
 	syllables = list(
 		"do", "ber", "sve", "tel", "po", "ča", "sen", "jag", "nje", "sla", "do",
 		"led", "klo", "ba", "sa", "pa", "ra", "diž", "nik", "vol", "ko", "vi", "ži",
