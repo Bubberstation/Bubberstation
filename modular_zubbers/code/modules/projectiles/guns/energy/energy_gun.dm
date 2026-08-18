@@ -55,3 +55,47 @@
 		light_overlay = "flight", \
 		overlay_x = 17, \
 		overlay_y = 8)
+
+/obj/item/gun/energy/syndie_raygun
+	name = "ray gun"
+	desc = "A dubious-looking energy emitter with a small dial on the side. Neatly fits into a pocket, but is overall kinda bulky."
+	special_desc_requirement = EXAMINE_CHECK_SYNDICATE
+	special_desc = "It's a small, pocket-sized energy-wave emitter typically issued to MI13 field agents, or so they claim. A barely noticeable label states: \
+		\"Specifically targets the selected organ, causing rapid decay and internal damage. \
+		Side effects of exposure include dizziness, slurred speech, stuttered speech, minor toxic buildup, and the aforementioned organ damage.\""
+	icon = 'modular_zubbers/icons/obj/weapons/guns/energy.dmi'
+	icon_state = "raygun"
+	ammo_x_offset = 1
+	charge_sections = 4
+	modifystate = TRUE
+	can_charge = FALSE
+
+	weapon_weight = WEAPON_MEDIUM
+	slot_flags = ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_NORMAL
+	suppressed = SUPPRESSED_VERY
+
+	dry_fire_sound = null
+	dry_fire_sound_volume = 0
+	suppressed_sound = 'sound/machines/microwave/microwave-mid1.ogg'
+	can_muzzle_flash = FALSE
+
+	selfcharge = 1
+	charge_delay = 60
+	self_charge_amount = STANDARD_ENERGY_GUN_SELF_CHARGE_RATE * 5
+
+	ammo_type = list(
+		/obj/item/ammo_casing/energy/syndie_raygun/heart,
+		/obj/item/ammo_casing/energy/syndie_raygun/liver,
+		/obj/item/ammo_casing/energy/syndie_raygun/lungs,
+		/obj/item/ammo_casing/energy/syndie_raygun/stomach,
+		/obj/item/ammo_casing/energy/syndie_raygun/brain,
+		/obj/item/ammo_casing/energy/syndie_raygun/sensory,
+		/obj/item/ammo_casing/energy/syndie_raygun/appendix,
+		/obj/item/ammo_casing/energy/syndie_raygun/random
+	)
+
+/obj/item/gun/energy/syndie_raygun/Initialize(mapload)
+	. = ..()
+	name = pick("ray gun", "death ray", "syndicate death ray", "debilitation ray", "ray of sickness", "organ-fucker X7", "LFDI stealth emitter")
+	AddComponent(/datum/component/automatic_fire, 0.2 SECONDS, allow_akimbo = FALSE)
