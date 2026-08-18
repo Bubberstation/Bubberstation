@@ -15,6 +15,10 @@
 	var/minimum_stat_key = BB_TARGET_MINIMUM_STAT
 	/// If this blackboard key is TRUE, makes us only target wounded mobs
 	var/target_wounded_key
+	// BUBBER EDIT BEGIN
+	/// If the minimum stat check is flipped
+	var/flip_stat_check = FALSE
+	// BUBBER EDIT END
 
 /datum/targeting_strategy/basic/is_valid_target(mob/living/living_mob, atom/the_target, vision_range, datum/ai_controller/controller = null)
 	// checks are ordered cheapest first so invalid targets are rejected before the expensive sight check
@@ -53,8 +57,12 @@
 			var/mob/living/living_target = the_target
 			if(custom_faction_check ? faction_check(our_controller, living_mob, living_target) : TARGETING_FACTION_CHECK(src, our_controller, living_mob, living_target))
 				return FALSE
-			if(living_target.stat > our_controller.blackboard[minimum_stat_key])
+// BUBBER EDIT START - Adds flipped checks
+			if(!flip_stat_check && living_target.stat > our_controller.blackboard[minimum_stat_key])
 				return FALSE
+			if(flip_stat_check && living_target.stat < our_controller.blackboard[minimum_stat_key])
+				return FALSE
+// BUBBER EDIT END
 			if(target_wounded_key && our_controller.blackboard[target_wounded_key] && living_target.health == living_target.maxHealth)
 				return FALSE
 

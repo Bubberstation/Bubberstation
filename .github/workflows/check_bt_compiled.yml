@@ -6,6 +6,11 @@ on:
       - "**/*.bt.json"
       - "build/behavior_trees/**"
       - "code/__DEFINES/**"
+      # BUBBER EDIT BEGIN
+      - "modular_bubber/**/*.bt.json"
+      - "modular_skyrat/**/*.bt.json"
+      - "modular_zubbers/**/*.bt.json"
+      # BUBBER EDIT END
       - "tools/build_bt.py"
 
 jobs:

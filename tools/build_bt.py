@@ -44,8 +44,6 @@ STATIC_NODES: dict[str, str] = {
 # Source JSON structural keys that are consumed/transformed during compilation. please keep these updated if u add new stuff :D
 _CONSUMED_KEYS = frozenset({'type', 'children', 'child', 'decorator', 'behavior', 'vars', 'subtype', 'dm_type', 'bindings'})
 
-
-
 def parse_defines(repo_root: Path) -> dict:
     """
     Scan all .dm files under code/__DEFINES/ and resolve every #define to a
@@ -63,8 +61,8 @@ def parse_defines(repo_root: Path) -> dict:
 
     pending: list[tuple[str, str]] = []
     seen_names: set[str] = set(defines)
-    defines_dir = repo_root / 'code'
-    for fpath in sorted(defines_dir.rglob('*.dm')):
+    dm_files = sorted(f for d in (repo_root / 'code', repo_root / 'modular_skyrat', repo_root / 'modular_zubbers') if d.is_dir() for f in d.rglob('*.dm')) # BUBBER EDIT - ORIGINAL:  defines_dir = repo_root / 'code'
+    for fpath in dm_files: # BUBBER EDIT - ORIGINAL: for fpath in sorted(defines_dir.rglob('*.dm')):
         for line in fpath.read_text(encoding='utf-8', errors='ignore').splitlines():
             line = line.strip()
             if not line.startswith('#define '):
@@ -265,6 +263,10 @@ def main() -> int:
 
     code_dirs = [
         repo_root / 'code',
+        # BUBBER EDIT BEGIN
+        repo_root / 'modular_skyrat',
+        repo_root / 'modular_zubbers'
+        # BUBBER EDIT END
     ]
 
     for code_dir in code_dirs:
