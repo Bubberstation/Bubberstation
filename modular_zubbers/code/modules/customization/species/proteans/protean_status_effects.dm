@@ -19,7 +19,7 @@
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown_low_power)
 
 /datum/movespeed_modifier/protean_slowdown_low_power
-	multiplicative_slowdown = 5
+	multiplicative_slowdown = 2
 
 /datum/status_effect/protean_low_power_mode/reform
 	duration = 7 SECONDS
