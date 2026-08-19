@@ -1,3 +1,5 @@
+#define BB_NUZZLE_GIVE_UP_TIME "BB_nuzzle_give_up_time"
+
 /// This is a special subtype of mob_holder that *spawns with a mob included* instead of being created by scooping a mob.
 /// It can override the name & description of the included mob as well.
 /obj/item/mob_holder/pet
@@ -68,17 +70,8 @@
 	// obeys_commands is DUPE_UNIQUE, so the stock list has to go before his goes on.
 	qdel(GetComponent(/datum/component/obeys_commands))
 	AddComponent(/datum/component/obeys_commands, fluff_pet_commands)
-	remove_udder()
-
-/// No udder for my moff. Stop trying to milk him, you weirdo. Component has no Destroy(), so the
-/// udder object needed its own qdel or we'd have a hard delete!
-/mob/living/basic/mothroach/mr_fluff/proc/remove_udder()
-	var/datum/component/udder/moth_udder = GetComponent(/datum/component/udder)
-	if(isnull(moth_udder))
-		return
-	var/obj/item/udder/discarded_udder = moth_udder.udder
-	qdel(moth_udder)
-	qdel(discarded_udder)
+	// No udder for my moff. Stop trying to milk him, you weirdo.
+	qdel(GetComponent(/datum/component/udder))
 
 /// Pick this from his radial menu and click someone, and he'll trundle over to say hi.
 /datum/pet_command/nuzzle
@@ -94,12 +87,15 @@
 	// Ignore plain pointing - don't want him bolting at whoever I'm gesturing at mid-conversation.
 	UnregisterSignal(tamer, COMSIG_MOVABLE_POINTED)
 
-/datum/pet_command/nuzzle/look_for_target(mob/living/pointing_friend, atom/pointed_atom)
-	if(!isliving(pointed_atom))
+/datum/pet_command/nuzzle/look_for_target(mob/living/pointing_friend, mob/living/pointed_atom)
+	var/mob/living/parent = weak_parent.resolve()
+	if(isnull(parent))
 		return FALSE
-	if(pointed_atom == weak_parent.resolve())
-		return FALSE
-	return ..()
+	if(isliving(pointed_atom) && pointed_atom != parent && pointed_atom.stat != DEAD && ..())
+		return TRUE
+	parent.balloon_alert_to_viewers("tilts head")
+	parent.visible_message(span_notice("[parent] doesn't know what to do with [pointed_atom]."))
+	return FALSE
 
 /datum/pet_command/nuzzle/execute_action(datum/ai_controller/controller)
 	// Don't clear BB_ACTIVE_PET_COMMAND here. The radial wipes the target and waits for the click,
@@ -111,21 +107,33 @@
 	controller.queue_behavior(/datum/ai_behavior/nuzzle_target, BB_CURRENT_PET_TARGET)
 	return SUBTREE_RETURN_FINISH_PLANNING
 
-/// Walks him over to whoever got clicked, then does the nuzzle.
+/// Walks him over to whoever got clicked, then does the nuzzle. Reach is checked here rather than
+/// via AI_BEHAVIOR_REQUIRE_REACH so he can give up - he can't open doors, and this blocks planning.
 /datum/ai_behavior/nuzzle_target
-	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT|AI_BEHAVIOR_REQUIRE_REACH
+	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT|AI_BEHAVIOR_MOVE_AND_PERFORM
+	/// How long he'll chase someone he can't get to before giving up.
+	var/patience = 15 SECONDS
 
 /datum/ai_behavior/nuzzle_target/setup(datum/ai_controller/controller, target_key)
 	. = ..()
 	var/atom/nuzzle_target = controller.blackboard[target_key]
 	if(QDELETED(nuzzle_target))
 		return FALSE
+	controller.set_blackboard_key(BB_NUZZLE_GIVE_UP_TIME, world.time + patience)
 	set_movement_target(controller, nuzzle_target)
 
 /datum/ai_behavior/nuzzle_target/perform(seconds_per_tick, datum/ai_controller/controller, target_key)
 	var/mob/living/nuzzler = controller.pawn
-	var/atom/nuzzle_target = controller.blackboard[target_key]
+	var/mob/living/nuzzle_target = controller.blackboard[target_key]
 	if(QDELETED(nuzzle_target))
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+	if(nuzzle_target.stat == DEAD)
+		nuzzler.manual_emote("droops his wings sadly at [nuzzle_target].")
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+	if(!nuzzle_target.IsReachableBy(nuzzler))
+		if(world.time < controller.blackboard[BB_NUZZLE_GIVE_UP_TIME])
+			return AI_BEHAVIOR_DELAY
+		nuzzler.manual_emote("droops his wings, unable to reach [nuzzle_target].")
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 	nuzzler.manual_emote(pick(
 		"nuzzles up against [nuzzle_target], wings fluttering happily!",
@@ -141,6 +149,7 @@
 	. = ..()
 	controller.clear_blackboard_key(target_key)
 	controller.clear_blackboard_key(BB_ACTIVE_PET_COMMAND)
+	controller.clear_blackboard_key(BB_NUZZLE_GIVE_UP_TIME)
 
 /obj/item/mob_holder/pet/donator/centralsmith
 	name = "Mr. Fluff"
@@ -170,3 +179,5 @@
 
 /datum/preference/choiced/pet_gender/apply_to_human(mob/living/carbon/human/target, value)
 	return
+
+#undef BB_NUZZLE_GIVE_UP_TIME
