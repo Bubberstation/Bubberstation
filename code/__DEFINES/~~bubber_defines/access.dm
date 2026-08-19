@@ -8,4 +8,4 @@
 )
 
 // Access Helpers
-#define ACCESS_LZGAS 9512
+#define ACCESS_LZGAS "lzgas"
