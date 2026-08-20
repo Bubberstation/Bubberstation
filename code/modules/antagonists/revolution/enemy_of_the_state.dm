@@ -43,11 +43,13 @@
 	report += printplayer(owner)
 
 	//needs to complete only one objective, not all
-
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	var/option_chosen = FALSE
 	var/badass = FALSE
+	BUBBER EDIT END */
 	if(objectives.len)
 		report += printobjectives(objectives)
+	/* BUBBER EDIT - REMOVE GREENTEXT
 		for(var/datum/objective/objective in objectives)
 			if(objective.check_completion())
 				option_chosen = TRUE
@@ -64,5 +66,5 @@
 			report += "<B>[name] has survived as an exile!</B>"
 	else
 		report += "<span class='redtext big'>The [name] has failed!</span>"
-
+	BUBBER EDIT END */
 	return report.Join("<br>")
