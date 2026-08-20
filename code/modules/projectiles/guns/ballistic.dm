@@ -512,10 +512,6 @@
 		return
 
 	if (!internal_magazine && istype(tool, /obj/item/ammo_box/magazine))
-		// SKYRAT EDIT ADDITION START - this return is intentional; we do not want to run TG's version of this case handling
-		if(handle_magazine(user, tool))
-			return
-		// SKYRAT EDIT ADDITION END
 		if (!magazine)
 			insert_magazine(user, tool)
 			return ITEM_INTERACT_SUCCESS
@@ -889,5 +885,6 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "suppressor"
 	w_class = WEIGHT_CLASS_TINY
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
 	/// How quiet should the gun be when we're installed?
 	var/suppression = SUPPRESSED_QUIET

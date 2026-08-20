@@ -1,88 +1,77 @@
 
-/datum/design/diethylamine
+/datum/design/biogen/diethylamine
 	name = "Diethylamine"
 	id = "diethylamine"
-	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 0.5)
 	make_reagent = /datum/reagent/diethylamine
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_CHEMICALS)
 
-/datum/design/saltpetre
+/datum/design/biogen/saltpetre
 	name = "Saltpetre"
 	id = "saltpetre"
-	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 0.5)
 	make_reagent = /datum/reagent/saltpetre
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_CHEMICALS)
 
-/datum/design/orangejuice
+/datum/design/biogen/orangejuice
 	name = "Orange Juice"
 	id = "orangejuice"
-	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 0.1)
 	make_reagent = /datum/reagent/consumable/orangejuice
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
-/datum/design/lemonjuice
+/datum/design/biogen/lemonjuice
 	name = "Lemon Juice"
 	id = "lemonjuice"
-	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 0.1)
 	make_reagent = /datum/reagent/consumable/lemonjuice
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
-/datum/design/limejuice
+/datum/design/biogen/limejuice
 	name = "Lime Juice"
 	id = "limejuice"
-	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 0.1)
 	make_reagent = /datum/reagent/consumable/limejuice
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
-/datum/design/berryjuice
+/datum/design/biogen/berryjuice
 	name = "Berry Juice"
 	id = "berryjuice"
-	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 0.1)
 	make_reagent = /datum/reagent/consumable/orangejuice
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
-/datum/design/berryjuice
+/datum/design/biogen/berryjuice
 	name = "Tomato Juice"
 	id = "tomatojuice"
-	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 0.1)
 	make_reagent = /datum/reagent/consumable/tomatojuice
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
-/datum/design/grenadine
+/datum/design/biogen/grenadine
 	name = "Grenadine Syrup"
 	id = "grenadine"
-	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 0.1)
 	make_reagent = /datum/reagent/consumable/grenadine
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
-/datum/design/soysauce //Alternative to having to make it using sulphuric acid
+/datum/design/biogen/soysauce //Alternative to having to make it using sulphuric acid
 	name = "Soy Sauce"
 	id = "soysauce"
-	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 0.5)
 	make_reagent = /datum/reagent/consumable/soysauce
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
-/datum/design/salt
+/datum/design/biogen/salt
 	name = "Salt"
 	id = "salt"
-	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 0.2)
 	make_reagent = /datum/reagent/consumable/salt
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
-/datum/design/diskplantgene
+/datum/design/biogen/diskplantgene
 	name = "Plant Data Disk"
-	id = "diskplantgene"
-	build_type = BIOGENERATOR
+	id = "biogen-diskplantgene"
 	materials = list(/datum/material/biomass = 10)
 	build_path = /obj/item/disk/computer/plantgene
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_MATERIALS)

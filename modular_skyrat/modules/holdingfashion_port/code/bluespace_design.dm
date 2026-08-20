@@ -4,11 +4,11 @@
 	id = "satchel_holding"
 	build_type = PROTOLATHE
 	materials = list(
-		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 2,
-		/datum/material/diamond = SHEET_MATERIAL_AMOUNT,
-		/datum/material/uranium = SMALL_MATERIAL_AMOUNT * 3,
-		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT,
-	)
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/uranium = SMALL_MATERIAL_AMOUNT * 2.5,
+		/datum/material/bluespace =SHEET_MATERIAL_AMOUNT
+		)
 	build_path = /obj/item/satchel_of_holding_inert
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE,
@@ -21,11 +21,11 @@
 	id = "duffel_holding"
 	build_type = PROTOLATHE
 	materials = list(
-		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 2,
-		/datum/material/diamond = SHEET_MATERIAL_AMOUNT,
-		/datum/material/uranium = SMALL_MATERIAL_AMOUNT * 3,
-		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT,
-	)
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/uranium = SMALL_MATERIAL_AMOUNT * 2.5,
+		/datum/material/bluespace =SHEET_MATERIAL_AMOUNT
+		)
 	build_path = /obj/item/duffel_of_holding_inert
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE,
