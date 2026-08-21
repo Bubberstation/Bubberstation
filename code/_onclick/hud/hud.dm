@@ -15,7 +15,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Glass" = 'icons/hud/screen_glass.dmi',
 	"Trasen-Knox" = 'icons/hud/screen_trasenknox.dmi',
 	"Detective" = 'icons/hud/screen_detective.dmi',
-	"Blue - 98" = 'modular_zubbers/master_files/icons/hud/screen_blue98.dmi' // Bubber Addition
+	"Blue - 98" = 'modular_zubbers/icons/hud/screen_blue98.dmi' // Bubber Addition
 ))
 
 //SKYRAT EDIT - ADDITION - ERP ICONS FIX
@@ -54,6 +54,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 
 	var/atom/movable/screen/ammo_counter //SKYRAT EDIT ADDITION
 	var/atom/movable/screen/text/activation_text/activation // BUBBER EDIT ADDITION
+	var/atom/movable/screen/mapvote_hud/mapvote_hud // BUBBER EDIT ADDITION
 	var/hotkey_ui_hidden = FALSE
 
 	/// Assoc list of key => "plane master groups"
@@ -134,9 +135,14 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	screentips_enabled = preferences?.read_preference(/datum/preference/choiced/enable_screentips)
 	screentip_images = preferences?.read_preference(/datum/preference/toggle/screentip_images)
 	screentip_text = add_screen_object(/atom/movable/screen/screentip, HUD_MOB_SCREENTIP)
+// BUBBER EDIT ADDITION START
+	activation = new(null, src)
+	add_screen_object(activation, null, HUD_GROUP_STATIC)
 
-	activation = new(null, src) // BUBBER EDIT ADDITION
-	add_screen_object(activation, null, HUD_GROUP_STATIC) // BUBBER EDIT ADDITION
+	if(preferences?.read_preference(/datum/preference/toggle/mapvote_hud))
+		mapvote_hud = new(null, src, preferences)
+		add_screen_object(mapvote_hud, null, HUD_GROUP_STATIC)
+// BUBBER EDIT ADDITION END
 
 	for(var/mytype in subtypesof(/atom/movable/plane_master_controller))
 		var/atom/movable/plane_master_controller/controller_instance = new mytype(null,src)
@@ -170,6 +176,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	QDEL_LIST(floating_actions)
 	screentip_text = null
 	screen_groups = null
+	mapvote_hud = null // BUBBER EDIT ADDITION
 	inventory_slots.Cut()
 	QDEL_LIST_ASSOC_VAL(screen_objects)
 	QDEL_LIST_ASSOC_VAL(master_groups)
@@ -476,7 +483,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 		var/list/slot_args = list(src, mymob) + args.Copy(2)
 		slot.update_inventory_slot(arglist(slot_args))
 
-/datum/hud/proc/update_ui_style(new_ui_style)
+/datum/hud/proc/update_ui_style(new_ui_style, new_ui_style_name)
 	// do nothing if overridden by a subtype or already on that style
 	if (initial(ui_style) || ui_style == new_ui_style)
 		return
@@ -487,6 +494,12 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 			item.icon = new_ui_style
 
 	ui_style = new_ui_style
+	if(!new_ui_style_name)
+		for(var/style_name in GLOB.available_ui_styles)
+			if(GLOB.available_ui_styles[style_name] == new_ui_style)
+				new_ui_style_name = style_name
+	if(mapvote_hud && new_ui_style_name)
+		mapvote_hud.update_ui_style(new_ui_style_name)
 	build_hand_slots(update_hud = TRUE)
 
 /datum/hud/proc/register_reuse(atom/movable/screen/reuse)
@@ -504,6 +517,17 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 			asset_refs_for_reuse -= screen_ref
 			continue
 		show_to.client?.screen += reuse
+
+//Triggered when F12 is pressed (Unless someone changed something in the DMF)
+/mob/verb/button_pressed_F12()
+	set name = "F12"
+	set hidden = TRUE
+
+	if(hud_used && client)
+		hud_used.show_hud() //Shows the next hud preset
+		to_chat(usr, span_info("Switched HUD mode. Press F12 to toggle."))
+	else
+		to_chat(usr, span_warning("This mob type does not use a HUD."))
 
 /// Rebuilds our mob's hand slot screen elements
 /datum/hud/proc/build_hand_slots(update_hud = FALSE)
