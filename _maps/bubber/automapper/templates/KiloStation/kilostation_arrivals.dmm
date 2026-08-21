@@ -12,9 +12,11 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "bw" = (
-/obj/effect/spawner/random/vending/colavend,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 1
+	},
+/obj/machinery/computer/shuttle/arrivals/recall{
 	dir = 1
 	},
 /turf/open/floor/iron/dark,
@@ -112,16 +114,6 @@
 "gw" = (
 /turf/closed/wall,
 /area/station/hallway/secondary/entry)
-"gF" = (
-/obj/structure/cable,
-/obj/effect/landmark/start/hangover,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron,
-/area/station/hallway/secondary/exit/departure_lounge)
 "gO" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/tile/brown/anticorner/contrasted{
@@ -188,6 +180,16 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden/layer5,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/exit/departure_lounge)
+"iB" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/hangover,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
 "jf" = (
@@ -302,6 +304,14 @@
 	},
 /turf/open/floor/plating/airless,
 /area/station/hallway/secondary/exit/departure_lounge)
+"sE" = (
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 1
+	},
+/obj/effect/turf_decal/delivery,
+/obj/machinery/vending/clothing,
+/turf/open/floor/iron/dark,
+/area/station/hallway/secondary/entry)
 "sP" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
@@ -381,11 +391,11 @@
 /turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
 "xF" = (
-/obj/structure/closet/emcloset,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
 	},
 /obj/effect/turf_decal/delivery,
+/obj/structure/closet/emcloset,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
 "xI" = (
@@ -525,6 +535,13 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/pen,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "GC" = (
@@ -738,10 +755,10 @@
 /area/station/hallway/secondary/exit/departure_lounge)
 "RH" = (
 /obj/effect/turf_decal/delivery,
-/obj/machinery/vending/clothing,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
 	},
+/obj/effect/spawner/random/vending/colavend,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
 "Sm" = (
@@ -1050,7 +1067,7 @@ Lv
 pA
 Lv
 Lv
-Lv
+sE
 Lv
 Lv
 Lv
@@ -1119,7 +1136,7 @@ Ho
 yA
 UL
 yF
-gF
+iB
 Lv
 Lv
 Lv
