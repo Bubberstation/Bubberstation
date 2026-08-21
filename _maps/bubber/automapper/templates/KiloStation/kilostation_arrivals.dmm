@@ -81,6 +81,7 @@
 	dir = 10
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/iron,
 /area/station/common/cryopods)
 "ex" = (
@@ -111,6 +112,16 @@
 "gw" = (
 /turf/closed/wall,
 /area/station/hallway/secondary/entry)
+"gF" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/hangover,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/exit/departure_lounge)
 "gO" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/tile/brown/anticorner/contrasted{
@@ -391,6 +402,8 @@
 "yA" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/common/cryopods)
 "yF" = (
@@ -402,6 +415,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
 "zs" = (
@@ -487,6 +502,9 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/west,
+/obj/machinery/firealarm/directional/west{
+	pixel_x = -21
+	},
 /turf/open/floor/iron/dark,
 /area/station/common/cryopods)
 "Fr" = (
@@ -550,6 +568,7 @@
 "Ho" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/common/cryopods)
 "Id" = (
@@ -1100,7 +1119,7 @@ Ho
 yA
 UL
 yF
-Lv
+gF
 Lv
 Lv
 Lv
