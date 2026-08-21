@@ -94,6 +94,7 @@
 		. += "9mm-revolver-[inserted_ammo]"
 
 /obj/item/ammo_box/magazine/r45
+	caliber = CALIBER_45
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10,
 		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 10,
@@ -101,3 +102,9 @@
 		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 10,
 		/datum/material/telecrystal = SHEET_MATERIAL_AMOUNT,
 	)
+
+/obj/item/ammo_box/speedloader/c38/c32
+	name = "speed loader (.32)"
+	desc = "Designed to quickly reload six-chamber .32 revolvers."
+	ammo_type = /obj/item/ammo_casing/c38/c32
+	caliber = CALIBER_32
