@@ -268,6 +268,15 @@ GAME_VERB_SRC(/obj/machinery/atmospherics/components/binary/circulator, circulat
 	playsound(src, 'sound/items/tools/change_drill.ogg', 50)
 	update_icon_nopipes()
 
+/obj/machinery/atmospherics/components/binary/circulator/attack_hand_secondary(mob/user, list/modifiers)
+	if(!ishuman(user))
+		return
+	flipped = !flipped
+	balloon_alert(user, "you flip [src].")
+	playsound(src, 'sound/items/tools/change_drill.ogg', 50)
+	update_icon_nopipes()
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
 /obj/machinery/atmospherics/components/binary/circulator/atom_break(damage_flag)
 	if(generator)
 		generator.null_circulators()
