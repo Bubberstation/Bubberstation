@@ -483,7 +483,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 		var/list/slot_args = list(src, mymob) + args.Copy(2)
 		slot.update_inventory_slot(arglist(slot_args))
 
-/datum/hud/proc/update_ui_style(new_ui_style, new_ui_style_name)
+/datum/hud/proc/update_ui_style(new_ui_style)
 	// do nothing if overridden by a subtype or already on that style
 	if (initial(ui_style) || ui_style == new_ui_style)
 		return
@@ -494,12 +494,6 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 			item.icon = new_ui_style
 
 	ui_style = new_ui_style
-	if(!new_ui_style_name)
-		for(var/style_name in GLOB.available_ui_styles)
-			if(GLOB.available_ui_styles[style_name] == new_ui_style)
-				new_ui_style_name = style_name
-	if(mapvote_hud && new_ui_style_name)
-		mapvote_hud.update_ui_style(new_ui_style_name)
 	build_hand_slots(update_hud = TRUE)
 
 /datum/hud/proc/register_reuse(atom/movable/screen/reuse)

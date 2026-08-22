@@ -96,7 +96,7 @@
 		else
 			button.icon_state = "[user_preference]_button"
 		button.update_theme_color(color_preference)
-	update_overlays()
+	update_appearance(UPDATE_OVERLAYS)
 
 /atom/movable/screen/mapvote_hud/proc/fade_in(time = 0.3 SECONDS)
 	if(fade_timer)
