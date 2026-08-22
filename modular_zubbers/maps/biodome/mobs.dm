@@ -24,7 +24,6 @@
 	AddElement(/datum/element/sedated_mob, /datum/ai_controller/basic_controller/creature)
 
 /datum/ai_controller/basic_controller/creature/docile
-	planning_subtrees = list()
 
 /obj/structure/closet/foxbox
 	name = "FOX BOX (DO NOT OPEN)"

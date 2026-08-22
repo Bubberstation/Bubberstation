@@ -1,21 +1,4 @@
 /datum/ai_controller/basic_controller/fleshmind/tyrant
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/travel_to_point/and_clear_target/reinforce,
-		/datum/ai_planning_subtree/target_retaliate/check_faction,
-		/datum/ai_planning_subtree/simple_find_target,
-		/datum/ai_planning_subtree/targeted_mob_ability/tyrant,
-		/datum/ai_planning_subtree/ranged_skirmish/tyrant,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree/opportunistic,
-		/datum/ai_planning_subtree/random_speech/blackboard/fleshmind,
-	)
-
-/datum/ai_planning_subtree/targeted_mob_ability/tyrant
-	ability_key = BB_TYRANT_LASER
-	use_ability_behaviour = /datum/ai_behavior/targeted_mob_ability/tyrant
-	finish_planning = FALSE
-
-/datum/ai_planning_subtree/ranged_skirmish/tyrant
-	max_range = 14
 
 /datum/ai_behavior/targeted_mob_ability/tyrant
 	var/secondary_ability_key = BB_TYRANT_ROCKET

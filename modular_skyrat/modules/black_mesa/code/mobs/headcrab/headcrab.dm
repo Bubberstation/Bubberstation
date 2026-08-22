@@ -61,15 +61,6 @@
 	RegisterSignal(src, COMSIG_MOVABLE_IMPACT, PROC_REF(handle_impact))
 	ai_controller.set_blackboard_key(BB_TARGET_MINIMUM_STAT, HARD_CRIT) // Allow targeting unconscious people
 
-/// Execute the jump after the telegraph
-/datum/ai_planning_subtree/headcrab_hunt/proc/execute_jump(mob/living/basic/blackmesa/xen/headcrab/jumper, atom/target, distance, speed)
-	if(QDELETED(jumper) || QDELETED(target) || jumper.stat == DEAD)
-		return
-
-	// Make it spin during the jump! The faster the jump, the faster the spin
-	var/spin_speed = speed * 2
-	jumper.throw_at(target, distance, speed, jumper, TRUE, TRUE, null, 0.1, FALSE, spin_speed)
-
 /// Handle leap impacts
 /mob/living/basic/blackmesa/xen/headcrab/proc/handle_impact(datum/source, atom/hit_atom, datum/thrownthing/throwingdatum)
 	SIGNAL_HANDLER

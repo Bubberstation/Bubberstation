@@ -58,35 +58,45 @@
 //ai behavior
 
 /datum/ai_controller/basic_controller/chinchilla
+	behavior_tree_json = "modular_skyrat/modules/basic_mobs/code/chinchilla.bt.json"
 	blackboard = list(
+		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_CURRENT_HUNTING_TARGET = null, // dust to take dust baths
 	)
-
 	ai_traits = STOP_MOVING_WHEN_PULLED
-	ai_movement = /datum/ai_movement/basic_avoidance
-	idle_behavior = /datum/idle_behavior/idle_random_walk
-	planning_subtrees = list(
-		// chinchillas will try to look for dust to roll around in
-		/datum/ai_planning_subtree/find_and_hunt_target/look_for_dust,
-		// randomly squeak and shit
-		/datum/ai_planning_subtree/random_speech/chinchilla,
-	)
 
-/datum/ai_planning_subtree/find_and_hunt_target/look_for_dust
-	hunting_behavior = /datum/ai_behavior/hunt_target/dust_roll
-	hunt_targets = list(/obj/effect/decal/cleanable/ash, /obj/effect/decal/cleanable/food/flour)
-	hunt_range = 0 //need to be on top of anything dusty
-	hunt_chance = 50
+/datum/bt_node/subtree/roll_in_dust
+	behavior_tree_json = "modular_skyrat/modules/basic_mobs/code/roll_in_dust.bt.json"
 
-/datum/ai_behavior/hunt_target/dust_roll
-	hunt_cooldown = 20 SECONDS
+/datum/bt_node/ai_behavior/roll_in_dust
+	time_between_perform = 10 SECONDS
+	/// The smudge of dust we're chasing
+	var/target_key
+	/// The name of our target name
+	var/target_name
 
-/datum/ai_behavior/hunt_target/dust_roll/target_caught(mob/living/basic/pet/hunter, obj/effect/decal/cleanable/dust)
-	hunter.visible_message(span_notice("[hunter] starts taking a dust bath in [dust]."))
-	hunter.spin(10, 1)
-	qdel(dust)
+/datum/bt_node/ai_behavior/roll_in_dust/setup(datum/ai_controller/controller)
+	var/obj/effect/decal/cleanable/target = controller.blackboard[target_key]
+	return !QDELETED(target)
 
-/datum/ai_planning_subtree/random_speech/chinchilla
+/datum/bt_node/ai_behavior/roll_in_dust/perform(seconds_per_tick, datum/ai_controller/controller)
+	var/obj/effect/decal/cleanable/target = controller.blackboard[target_key]
+	if(QDELETED(target))
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+	target_name = target.name
+	qdel(target)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+
+/datum/bt_node/ai_behavior/roll_in_dust/finish_action(datum/ai_controller/controller, succeeded)
+	. = ..()
+	var/mob/living/living_pawn = controller.pawn
+	controller.clear_blackboard_key(target_key)
+	if(!succeeded)
+		return
+	living_pawn.manual_emote("starts taking a dust bath in [target_name].")
+	living_pawn.spin(10, 1)
+
+/datum/bt_node/ai_behavior/random_speech/chinchilla
 	speech_chance = 5
 	emote_hear = list(
 		"squeaks.",

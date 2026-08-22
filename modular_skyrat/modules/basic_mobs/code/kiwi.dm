@@ -38,14 +38,3 @@
 
 	ai_traits = STOP_MOVING_WHEN_PULLED
 	ai_movement = /datum/ai_movement/basic_avoidance
-	idle_behavior = /datum/idle_behavior/idle_random_walk
-
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/random_speech/kiwi,
-	)
-
-/datum/ai_planning_subtree/random_speech/kiwi
-	speech_chance = 5
-	emote_hear = list("makes a loud cheep.", "cheeps happily.")
-	emote_see = list("runs around.")
-	speak = list("cheep", "cheep cheep!")
