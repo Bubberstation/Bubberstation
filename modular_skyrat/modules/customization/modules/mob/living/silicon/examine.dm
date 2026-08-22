@@ -27,7 +27,7 @@
 		else
 			. += span_notice("<b>They look different than usual:</b> [copytext_char(temporary_flavor_text, 1, 37)]... <a href='byond://?src=[REF(src)];temporary_flavor=1'>More...</a>")
 
-/mob/living/carbon/human/get_chat_examine_headshot(mob/user)
+/mob/living/silicon/get_chat_examine_headshot(mob/user)
 	if(!client?.prefs || !user?.client?.prefs)
 		return null
 	if(!user.client.prefs.read_preference(/datum/preference/toggle/chat_examine_headshot))
