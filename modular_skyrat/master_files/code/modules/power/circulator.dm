@@ -37,7 +37,22 @@
 	.=..()
 	component_parts = list(new /obj/item/circuitboard/machine/circulator)
 	update_appearance()
+	register_context()
 
+/obj/machinery/atmospherics/components/binary/circulator/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	if(!held_item)
+		context[SCREENTIP_CONTEXT_RMB] = "Flip"
+		return CONTEXTUAL_SCREENTIP_SET
+	switch(held_item.tool_behaviour)
+		if(TOOL_SCREWDRIVER)
+			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+		if(TOOL_WRENCH)
+			context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unan" : "An"]chor"
+			context[SCREENTIP_CONTEXT_RMB] = "Rotate"
+		if(TOOL_MULTITOOL)
+			context[SCREENTIP_CONTEXT_LMB] = "Change to [mode ? "hot" : "cold"] mode"
+	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/atmospherics/components/binary/circulator/Destroy()
 	if(generator)
