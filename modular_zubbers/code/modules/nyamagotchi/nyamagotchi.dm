@@ -350,10 +350,6 @@
 	button_icon = 'modular_zubbers/icons/obj/toys/toys.dmi'
 	button_icon_state = "nya"
 
-/datum/job/psychologist/New()
-	LAZYADDASSOC(mail_goodies, /obj/item/toy/nyamagotchi, 45)
-	. = ..()
-
 /obj/effect/spawner/random/entertainment/dice
 	name = "dice spawner"
 	icon_state = "dice_bag"

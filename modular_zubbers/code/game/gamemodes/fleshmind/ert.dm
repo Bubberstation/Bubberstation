@@ -28,7 +28,7 @@
 
 	qdel(test_resin)
 
-	shuffle(valid_turfs)
+	shuffle_inplace(valid_turfs)
 
 	for(var/datum/mind/iterating_mind as anything in incoming_team.members)
 		var/mob/living/living_mob = iterating_mind.current

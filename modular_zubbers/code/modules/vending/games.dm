@@ -32,7 +32,6 @@
 				/obj/item/toy/plush/nukeplushie = 3,
 				/obj/item/toy/plush/pkplush = 3,
 				/obj/item/toy/plush/plasmamanplushie = 3,
-				/obj/item/toy/plush/purplecat = 3,
 				/obj/item/toy/plush/rouny = 3,
 				/obj/item/toy/plush/secoff = 3,
 				/obj/item/toy/plush/shark = 3,

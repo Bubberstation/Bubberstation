@@ -145,14 +145,16 @@
 
 // CAST EFFECT // General effect (poof, splat, etc) when you cast. Doesn't happen automatically!
 /datum/action/cooldown/bloodsucker/veil/proc/cast_effect()
-	// Effect
 	playsound(get_turf(owner), 'sound/effects/magic/smoke.ogg', 20, 1)
-	do_smoke(3, FALSE, get_turf(owner), smoke_type = /obj/effect/particle_effect/fluid/smoke/vampsmoke)
-	owner.spin(8, 1) //Spin around like a loon.
+	do_smoke(1, FALSE, get_turf(owner), smoke_type = /datum/effect_system/fluid_spread/smoke/vamp)
+	owner.spin(8, 1)
+
+/datum/effect_system/fluid_spread/smoke/vamp
+	effect_type = /obj/effect/particle_effect/fluid/smoke/vampsmoke
 
 /obj/effect/particle_effect/fluid/smoke/vampsmoke
 	opacity = FALSE
 	lifetime = 0
 
 /obj/effect/particle_effect/fluid/smoke/vampsmoke/fade_out(frames = 0.8 SECONDS)
-	..(frames)
+	. = ..()

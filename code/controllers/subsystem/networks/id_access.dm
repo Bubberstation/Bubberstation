@@ -332,7 +332,7 @@ SUBSYSTEM_DEF(id_access)
 	desc_by_access[ACCESS_CENT_BAR] = "CentCom Bar"
 	desc_by_access[ACCESS_CENT_OFFICER] = "CentCom Officer"
 	desc_by_access[ACCESS_BIT_DEN] = "Bitrunner Den"
-	desc_by_access["[ACCESS_BARBER]"] = "Barber" // SKYRAT EDIT ADD - BARBER UPDATE
+	desc_by_access[ACCESS_BARBER] = "Barber" // SKYRAT EDIT ADD - BARBER UPDATE
 
 /**
  * Returns the access bitflags associated with any given access level.

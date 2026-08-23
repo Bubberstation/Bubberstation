@@ -36,8 +36,8 @@
 	id = "smartdartgun"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
-		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 5.3,
 		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 2,
 	)
 	build_path = /obj/item/gun/syringe/smartdart
