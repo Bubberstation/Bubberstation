@@ -278,19 +278,20 @@
 GAME_VERB_SRC(/obj/machinery/atmospherics/components/binary/circulator, circulator_flip, oview(1), "Flip", "Object")
 	if(!ishuman(usr))
 		return
-	flipped = !flipped
-	balloon_alert(usr, "you flip [src].")
-	playsound(src, 'sound/items/tools/change_drill.ogg', 50)
-	update_icon_nopipes()
+	flip(usr)
 
 /obj/machinery/atmospherics/components/binary/circulator/attack_hand_secondary(mob/user, list/modifiers)
 	if(!ishuman(user))
 		return
+	flip(user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+// DO A FLIP
+/obj/machinery/atmospherics/components/binary/circulator/proc/flip(mob/living/carbon/human/user)
 	flipped = !flipped
 	balloon_alert(user, "you flip [src].")
 	playsound(src, 'sound/items/tools/change_drill.ogg', 50)
 	update_icon_nopipes()
-	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/atmospherics/components/binary/circulator/atom_break(damage_flag)
 	if(generator)
