@@ -36,9 +36,7 @@
 
 /datum/quirk/micro/post_add()
 	var/mob/living/carbon/living_as_carbon = quirk_holder
-	living_as_carbon.dna.features["body_size"] = size_reduced
-	living_as_carbon.maptext_height = 32 * living_as_carbon.dna.features["body_size"]
-	living_as_carbon.dna.update_body_size()
+	living_as_carbon.update_transform(size_reduced / quirk_holder.client?.prefs?.read_preference(/datum/preference/numeric/body_size))
 	living_as_carbon.AddComponent( \
 		/datum/component/squashable, \
 		squash_chance = squash_chance_, \

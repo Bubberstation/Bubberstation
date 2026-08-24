@@ -481,6 +481,13 @@
 	},
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532bridge)
+"jL" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 5;
+	system_id = "ship_outer_turrets"
+	},
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/shuttle8532engineering)
 "jM" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
@@ -568,6 +575,10 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532researchbay)
+"ma" = (
+/mob/living/basic/trooper/syndicate/melee/space,
+/turf/open/floor/iron/airless,
+/area/ruin/space/has_grav/shuttle8532crewquarters)
 "me" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/effect/decal/cleanable/blood/tracks,
@@ -817,6 +828,7 @@
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
 	},
+/mob/living/basic/trooper/syndicate/ranged/shotgun/space/stormtrooper,
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532bridge)
 "sh" = (
@@ -1398,6 +1410,10 @@
 /obj/structure/grille/broken,
 /turf/template_noop,
 /area/space/nearstation)
+"CL" = (
+/obj/item/mod/control/pre_equipped/policing,
+/turf/open/floor/iron/airless,
+/area/ruin/space/has_grav/shuttle8532bridge)
 "CO" = (
 /obj/item/flashlight/glowstick/red{
 	light_on = 1
@@ -1544,6 +1560,10 @@
 /obj/machinery/light/dim/directional/south,
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532engineering)
+"Fq" = (
+/mob/living/basic/trooper/syndicate/ranged/smg/space,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/shuttle8532researchbay)
 "Fu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -1559,9 +1579,13 @@
 	},
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532cargohall)
+"Gm" = (
+/mob/living/basic/trooper/syndicate/ranged/smg/space,
+/turf/open/floor/iron/airless,
+/area/ruin/space/has_grav/shuttle8532researchbay)
 "Gv" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/mob_spawn/corpse/human/syndicatecommando,
+/obj/effect/mob_spawn/corpse/human/russian,
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532bridge)
 "Gz" = (
@@ -1591,6 +1615,7 @@
 "Ha" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/vg_decals/numbers/three,
+/mob/living/basic/trooper/syndicate/ranged/smg/space,
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532engineering)
 "Hf" = (
@@ -1819,6 +1844,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine/airless,
 /area/ruin/space/has_grav/shuttle8532bridge)
+"Mx" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/syndicate/melee/space,
+/turf/open/floor/iron/airless,
+/area/ruin/space/has_grav/shuttle8532crewquarters)
 "MB" = (
 /obj/effect/decal/cleanable/blood/gibs/core,
 /turf/open/floor/iron/airless,
@@ -2173,9 +2203,12 @@
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/shuttle8532bridge)
 "Uy" = (
-/mob/living/basic/trooper/syndicate/melee/space,
-/turf/open/floor/iron/airless,
-/area/ruin/space/has_grav/shuttle8532bridge)
+/obj/machinery/porta_turret/syndicate{
+	dir = 9;
+	system_id = "ship_outer_turrets"
+	},
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/shuttle8532engineering)
 "UN" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 1
@@ -2982,7 +3015,7 @@ qb
 pu
 zA
 ZU
-Uy
+Vi
 ks
 pu
 jQ
@@ -3065,7 +3098,7 @@ SJ
 NT
 sR
 Mg
-Av
+Gm
 aM
 Av
 Mg
@@ -3108,7 +3141,7 @@ qb
 HP
 eV
 Gv
-Vi
+CL
 BS
 pu
 sH
@@ -3156,7 +3189,7 @@ qb
 qb
 qb
 qb
-QR
+Uy
 QR
 QR
 QR
@@ -3175,7 +3208,7 @@ NK
 ps
 pu
 ha
-Ds
+ma
 wU
 Ds
 Lz
@@ -3611,7 +3644,7 @@ hP
 (19,1,1) = {"
 HP
 eV
-Uy
+Vi
 Vi
 Ux
 pu
@@ -3619,7 +3652,7 @@ ac
 TM
 yv
 TJ
-TM
+Mx
 iN
 tA
 jQ
@@ -3638,7 +3671,7 @@ Mg
 Uv
 Uv
 Uv
-Uv
+Fq
 Uv
 OQ
 qb
@@ -4290,7 +4323,7 @@ qb
 qb
 qb
 qb
-QR
+jL
 QR
 QR
 QR

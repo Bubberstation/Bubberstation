@@ -12,7 +12,7 @@
 
 /obj/item/food/fried_shrimp
 	name = "fried shrimp"
-	desc = "A finger of fish."
+	desc = "Shrimp that someone has fried."
 	icon = 'modular_zubbers/icons/obj/food/meat.dmi'
 	icon_state = "shrimp_cooked"
 	food_reagents = list(
@@ -22,7 +22,7 @@
 	)
 	bite_consumption = 3
 	tastes = list("shrimp" = 1)
-	foodtypes = SEAFOOD|FRIED
+	foodtypes = JUNKFOOD | SEAFOOD | FRIED
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_EXOTIC
 	crafting_complexity = FOOD_COMPLEXITY_2

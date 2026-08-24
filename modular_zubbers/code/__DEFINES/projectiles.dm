@@ -2,3 +2,6 @@
 
 ///used by the stingball machine gun
 #define CALIBER_STINGBALL "stingball"
+
+/// Unique revolver caliber
+#define CALIBER_32 ".32"

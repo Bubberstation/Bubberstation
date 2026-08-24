@@ -31,6 +31,7 @@
 /obj/item/rbmk_upgrade/auto_vent
 	name = "\improper RB-MK2 software upgrade disk - auto vent"
 	desc = "A disk that allows you to install an upgrade into the RB-MK that automatically controls vent usage to maximize power gain at all temperature setups."
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/glass = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/silver =SHEET_MATERIAL_AMOUNT, /datum/material/titanium =SHEET_MATERIAL_AMOUNT)
 
 /obj/item/rbmk_upgrade/auto_vent/apply_upgrade(obj/machinery/power/rbmk2/machine)
 	machine.auto_vent_upgrade = TRUE
@@ -43,6 +44,7 @@
 /obj/item/rbmk_upgrade/safeties
 	name = "\improper RB-MK2 software upgrade disk - safeties optimization"
 	desc = "A disk that allows you to install an upgrade into the RB-MK that effectively decreases the safeties threshold from 75% to 95%, preventing premature ejectulation."
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/glass = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/gold =SHEET_MATERIAL_AMOUNT, /datum/material/uranium =SHEET_MATERIAL_AMOUNT)
 
 /obj/item/rbmk_upgrade/safeties/apply_upgrade(obj/machinery/power/rbmk2/machine)
 	machine.safeties_upgrade = TRUE
@@ -56,6 +58,7 @@
 /obj/item/rbmk_upgrade/overclock
 	name = "\improper RB-MK2 software upgrade disk - overclock"
 	desc = "A disk that allows you to install an upgrade into the RB-MK that enables overlocking of the reactor."
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/glass = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/bluespace =SHEET_MATERIAL_AMOUNT, /datum/material/uranium =SHEET_MATERIAL_AMOUNT)
 
 /obj/item/rbmk_upgrade/overclock/apply_upgrade(obj/machinery/power/rbmk2/machine)
 	machine.overclocked_upgrade = TRUE

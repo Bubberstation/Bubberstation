@@ -8,6 +8,10 @@
 	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD // 1.5x due to synthcode.tm being weird
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_HEART
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	var/last_message_time = 0
 
 /obj/item/organ/heart/synth/emp_act(severity)
