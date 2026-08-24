@@ -17,9 +17,9 @@
 		species_color = eth_holder.current_color
 
 /obj/item/bodypart/chest/ethereal
-	icon_greyscale = 'icons/mob/human/species/ethereal/bodyparts.dmi'
+	icon_greyscale = 'modular_zubbers/icons/mob/human/ethereal_bodyparts.dmi' // BUBBER EDIT - Use alt torso sprites
 	limb_id = SPECIES_ETHEREAL
-	is_dimorphic = FALSE
+	is_dimorphic = TRUE // BUBBER EDIT - Allow gendered torsos
 	dmg_overlay_type = null
 	brute_modifier = 1.25 //ethereal are weak to brute damages
 	wing_types = null
@@ -105,7 +105,6 @@
 		species_color = eth_holder.current_color
 
 /obj/item/bodypart/head/ethereal/lustrous
-	icon_state = "lustrous_head"
 	limb_id = SPECIES_ETHEREAL_LUSTROUS
 	head_flags = NONE
 	teeth_count = 0 // bro you seen these thinsg. they got a crystal for a head aint no teeth here

@@ -314,6 +314,7 @@
 	inserted_item = /obj/item/pen/fountain
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
+		/datum/computer_file/program/faxbond, //BUBBER EDIT - Lawyers too shall have a taste of bureaucracy
 	)
 
 /obj/item/modular_computer/pda/lawyer/Initialize(mapload)
@@ -326,6 +327,9 @@
 	icon_state = "/obj/item/modular_computer/pda/botanist"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#50E193#E26F41#71A7CA"
+	starting_programs = list(
+		/datum/computer_file/program/botanical_encyclopedia
+	)
 
 /obj/item/modular_computer/pda/cook
 	name = "cook PDA"

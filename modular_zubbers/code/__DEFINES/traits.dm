@@ -8,7 +8,5 @@
 /// Makes the cursekin's lycan form vastly more powerful.
 #define TRAIT_GAIAN_PHYSIQUE "gaian_physique"
 
-///You can now speak uwuspeak aslong as you have this trait
-#define TRAIT_UWU_SPEECH "uwu_speech"
 /// Makes the target unable to use martial arts.
 #define TRAIT_MARTIAL_ARTS_UNUSABLE "martial_arts_unusable"

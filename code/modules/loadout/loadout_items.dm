@@ -70,6 +70,8 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	var/list/blacklisted_roles
 	/// If set, is a list of species which can get the loadout item
 	var/list/restricted_species
+	/// If set, is a list of species which can't get the loadout item
+	var/list/blacklisted_species
 	/// Whether the item is restricted to supporters
 	var/donator_only
 	/// Whether the item requires a specific season in order to be available
@@ -375,9 +377,8 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 			if(istype(equipped_item, /obj/item/clothing/accessory))
 				// Snowflake handing for accessories, because we need to update the thing it's attached to instead
 				if(isclothing(equipped_item.loc))
-					var/obj/item/clothing/under/attached_to = equipped_item.loc
-					attached_to.update_accessory_overlay()
-					update_flag |= (ITEM_SLOT_OCLOTHING|ITEM_SLOT_ICLOTHING)
+					var/obj/item/clothing/attached_to = equipped_item.loc
+					update_flag |= attached_to.slot_flags
 			else
 				update_flag |= equipped_item.slot_flags
 			break

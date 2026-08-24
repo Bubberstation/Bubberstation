@@ -38,6 +38,9 @@
 
 /obj/item/storage/bag/garment/warden/PopulateContents()
 	. = ..()
+	for(var/obj/item/clothing/gloves/kaza_ruk/sec/original_gloves in src)
+		if(original_gloves.type == /obj/item/clothing/gloves/kaza_ruk/sec)
+			qdel(original_gloves)
 	new /obj/item/clothing/under/rank/security/viro/warden/skirt/(src)
 	new /obj/item/clothing/under/rank/security/viro/warden/(src)
 	new /obj/item/clothing/under/rank/security/viro/warden/formal/(src)
@@ -49,7 +52,6 @@
 	new /obj/item/clothing/under/rank/security/warden/turtleneck/red(src)
 	new /obj/item/clothing/under/rank/security/warden/turtleneck/red/skirt(src)
 	new /obj/item/clothing/under/rank/security/warden/suit/red(src)
-
 
 
 

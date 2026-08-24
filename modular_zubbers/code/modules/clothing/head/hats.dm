@@ -120,3 +120,36 @@
 	desc = "A beanie for security purposes"
 	icon_state = "security_beanie"
 	armor_type = /datum/armor/cosmetic_sec
+
+/obj/item/clothing/head/costume/mailman
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/costume_teshari.dmi'
+
+/obj/item/clothing/head/fedora/det_hat
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/obj/item/clothing/head/hats/caphat
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/obj/item/clothing/head/nanotrasen_consultant
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/obj/item/clothing/head/hats/hopcap
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/obj/item/clothing/head/hats/warden/red
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/obj/item/clothing/head/small_bow
+	greyscale_config_worn_teshari = /datum/greyscale_config/small_bow/worn/teshari
+
+/obj/item/clothing/head/large_bow
+	greyscale_config_worn_teshari = /datum/greyscale_config/large_bow/worn/teshari
+
+/obj/item/clothing/head/back_bow
+	greyscale_config_worn_teshari = /datum/greyscale_config/back_bow/worn/teshari
+
+/obj/item/clothing/head/sweet_bow
+	greyscale_config_worn_teshari = /datum/greyscale_config/sweet_bow/worn/teshari
+
+/obj/item/clothing/head/costume/jesteralt
+	greyscale_config_worn_teshari = /datum/greyscale_config/jester_hat_alt/worn/teshari

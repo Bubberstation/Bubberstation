@@ -2,7 +2,6 @@
 	title = ROLE_DAUNTLESS
 	policy_index = ROLE_DAUNTLESS
 	akula_outfit = /datum/outfit/akula
-	antagonist_restricted = TRUE
 
 // Dauntless Ghost Spawners (Lava)
 

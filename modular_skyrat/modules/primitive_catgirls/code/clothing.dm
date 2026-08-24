@@ -11,7 +11,7 @@
 	suit = /obj/item/clothing/suit/jacket/primitive_catgirl_coat
 	neck = /obj/item/clothing/neck/scarf/primitive_catgirl_scarf
 
-	back = /obj/item/forging/reagent_weapon/axe/fake_copper
+	back = /obj/item/melee/forged_reagent_weapon/axe/fake_copper
 
 // Under
 
@@ -147,5 +147,5 @@
 
 // Misc Items
 
-/obj/item/forging/reagent_weapon/axe/fake_copper
+/obj/item/melee/forged_reagent_weapon/axe/fake_copper
 	custom_materials = list(/datum/material/copporcitite = SHEET_MATERIAL_AMOUNT)

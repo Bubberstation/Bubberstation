@@ -47,8 +47,3 @@
 		/obj/item/security_voucher/utility = 1,
 		/obj/item/flashlight/seclite
 		)
-
-////////// JOBS BELOW ///////////
-
-/datum/job/head_of_security
-	head_announce = list(RADIO_CHANNEL_SECURITY)

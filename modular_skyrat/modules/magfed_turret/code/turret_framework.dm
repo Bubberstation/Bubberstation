@@ -201,6 +201,14 @@
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
+		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	////// the range it can scan at.
 	var/scan_range = 10
 	////// how many turrets it can have. changable incase of better ones wanted.
