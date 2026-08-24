@@ -1,110 +1,116 @@
-/obj/structure/reagent_water_basin
-	name = "water basin"
-	desc = "A basin full of water, ready to quench the hot metal."
+/obj/structure/reagent_dispensers/reagent_smithing_basin
+	name = "smithing trough"
+	desc = "A basin meant to quench heated smithing equipment and cool it."
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_structures.dmi'
 	icon_state = "water_basin"
 	anchored = TRUE
 	density = TRUE
+	can_be_tanked = FALSE
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
+	reagent_id = null
+	//deliberate choice -- matches the volume of a bluespace beaker
+	tank_volume = 300
 
 	/// Tracks if you can fish from this basin
 	var/datum/component/fishing_spot/fishable
 
-/obj/structure/reagent_water_basin/Initialize(mapload)
-	. = ..()
+/obj/structure/reagent_dispensers/reagent_smithing_basin/prefilled
+	reagent_id = /datum/reagent/fuel/oil/smithing
 
-/obj/structure/reagent_water_basin/Destroy()
+/obj/structure/reagent_dispensers/reagent_smithing_basin/update_overlays()
+	. = ..()
+	if(reagents.total_volume >= tank_volume)
+		var/mutable_appearance/filling = mutable_appearance(icon, "water_basin_reagent_overlay")
+		filling.color = mix_color_from_reagents(reagents.reagent_list)
+		. += filling
+		return
+
+/obj/structure/reagent_dispensers/reagent_smithing_basin/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		anchored = FALSE
+	reagents.flags = reagents.flags | REFILLABLE | DUNKABLE
+	check_fishable()
+	START_PROCESSING(SSdcs, src)
+	update_appearance()
+
+/obj/structure/reagent_dispensers/reagent_smithing_basin/proc/check_fishable()
+	if(isnull(fishable) && reagents.total_volume >= tank_volume)
+		fishable = AddComponent(/datum/component/fishing_spot, /datum/fish_source/water_basin)
+	else if(!isnull(fishable) && reagents.total_volume < tank_volume)
+		RemoveComponentSource(src, /datum/component/fishing_spot)
+
+/obj/structure/reagent_dispensers/reagent_smithing_basin/Destroy()
 	QDEL_NULL(fishable)
 	return ..()
 
-/obj/structure/reagent_water_basin/examine(mob/user)
+/obj/structure/reagent_dispensers/reagent_smithing_basin/examine(mob/user)
 	. = ..()
-	if(!fishable)
-		. += span_notice("[src] can be upgraded through a bluespace crystal or a journeyman smithy!")
-
+	if(HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
+		. += span_notice("Dipping smithed items in this trough will imbue it with its chemicals!")
 	else
-		. += span_notice("[src] looks to be a bottomless basin of water... You can even see fish swimming around down there!")
+		. += span_notice("You could use this for imbuing reagents into equipment if you knew the right trick...")
+	. += span_notice("You could secure or unsecure it with a wrench.")
+	. += span_notice("You could pry it apart with a crowbar.")
 
-/obj/structure/reagent_water_basin/attack_hand(mob/living/user, list/modifiers)
-	. = ..()
-	attempt_upgrade(user)
+//heat from the contained reagents need to go into the atmosphere over time
+/obj/structure/reagent_dispensers/reagent_smithing_basin/process(seconds_per_tick)
+	var/datum/gas_mixture/current_air = return_air()
+	if(reagents.total_volume < 1 || reagents.chem_temp == current_air.temperature)
+		return PROCESS_KILL
+	var/temp_difference = reagents.chem_temp - current_air.temperature
+	current_air.temperature += temp_difference * seconds_per_tick * SMITHING_BASIN_HEATLOSS_COEFFICIENT
+	reagents.chem_temp -= temp_difference * seconds_per_tick * SMITHING_BASIN_HEATLOSS_COEFFICIENT
+	return
 
-/obj/structure/reagent_water_basin/attack_robot(mob/living/user)
-	. = ..()
-	attempt_upgrade(user)
-
-/obj/structure/reagent_water_basin/proc/attempt_upgrade(mob/living/user)
-	var/smithing_skill = user.mind.get_skill_level(/datum/skill/smithing)
-	if(smithing_skill < SKILL_LEVEL_JOURNEYMAN || fishable)
-		return
-
-	balloon_alert(user, "the water deepens!")
-	fishable = AddComponent(/datum/component/fishing_spot, /datum/fish_source/water_basin)
-
-/obj/structure/reagent_water_basin/attackby(obj/item/attacking_item, mob/living/user, params)
-	if(istype(attacking_item, /obj/item/stack/ore/glass))
-		var/obj/item/stack/ore/glass/glass_obj = attacking_item
-		if(!glass_obj.use(1))
-			return
-
-		new /obj/item/stack/clay(get_turf(src))
-		user.mind.adjust_experience(/datum/skill/production, 1)
-		return
-
-	if(istype(attacking_item, /obj/item/stack/ore/bluespace_crystal))
-		if(fishable)
-			return
-		var/obj/item/stack/ore/bluespace_crystal/bs_crystal = attacking_item
-
-		if(!bs_crystal.use(1))
-			return
-
-		balloon_alert(user, "the water deepens!")
-		fishable = AddComponent(/datum/component/fishing_spot, /datum/fish_source/water_basin)
-		return
+/obj/structure/reagent_dispensers/attackby(obj/item/attacking_item, mob/living/user, params)
+	START_PROCESSING(SSdcs, src)
+	var/datum/component/forge_smithable/smith_component = attacking_item.GetComponent(/datum/component/forge_smithable/)
+	if(!isnull(smith_component))
+		smith_component.try_quench(reagents, src, user)
+		return ITEM_INTERACT_SUCCESS
 
 	return ..()
 
-/obj/structure/reagent_water_basin/wrench_act(mob/living/user, obj/item/tool)
+/obj/structure/reagent_dispensers/reagent_smithing_basin/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
-
-	for(var/i in 1 to 5)
-		new /obj/item/stack/sheet/mineral/wood(get_turf(src))
-
-	qdel(src)
+	set_anchored(!anchored)
+	balloon_alert_to_viewers(anchored ? "secured" : "unsecured")
 	return TRUE
 
-/obj/structure/reagent_water_basin/tong_act(mob/living/user, obj/item/tool)
-	var/obj/item/forging/incomplete/search_incomplete = locate(/obj/item/forging/incomplete) in tool.contents
-	if(!search_incomplete)
-		return ITEM_INTERACT_SUCCESS
+/obj/structure/reagent_dispensers/reagent_smithing_basin/crowbar_act(mob/living/user, obj/item/tool)
+	if(DOING_INTERACTION(user, DOAFTER_SMITHING_WATER_BASIN))
+		return
 
-	playsound(src, 'modular_skyrat/modules/reagent_forging/sound/hot_hiss.ogg', 50, TRUE)
+	tool.play_tool_sound(src)
 
-	if(search_incomplete?.times_hit < search_incomplete.average_hits)
-		to_chat(user, span_warning("You cool down [search_incomplete], but it wasn't ready yet."))
-		COOLDOWN_RESET(search_incomplete, heating_remainder)
-		return ITEM_INTERACT_SUCCESS
+	if (reagents.total_volume < 75)
+		to_chat(user, span_notice("You begin to pry apart \the [src]..."))
+	else
+		to_chat(user, span_warning("As you begin prying apart \the [src] you notice that it's full of fluid... maybe you should reconsider?"))
 
-	if(search_incomplete?.times_hit >= search_incomplete.average_hits)
-		to_chat(user, span_notice("You cool down [search_incomplete] and it's ready."))
-		user.mind.adjust_experience(/datum/skill/smithing, 10) //using the water basin on a ready item gives decent experience.
+	if(!do_after(user, 5 SECONDS, src, interaction_key = DOAFTER_SMITHING_WATER_BASIN))
+		return FALSE
 
-		var/obj/spawned_obj = new search_incomplete.spawn_item(get_turf(src))
-		if(search_incomplete.custom_materials)
-			spawned_obj.set_custom_materials(search_incomplete.custom_materials, 1) //lets set its material
+	//spill contents, then deconstruct
+	if(reagents.total_volume > 0)
+		knock_down()
+	deconstruct(TRUE)
+	return TRUE
 
-		if(istype(spawned_obj, /obj/item/forging/complete))
-			var/obj/item/forging/complete/complete_spawned = spawned_obj
-			complete_spawned.current_perfects = search_incomplete.current_perfects
-
-		qdel(search_incomplete)
-		tool.icon_state = "tong_empty"
-	return ITEM_INTERACT_SUCCESS
+/obj/structure/reagent_dispensers/tong_act(mob/living/user, obj/item/tool)
+	var/obj/item/tongs_contents = locate(/obj/item) in tool.contents
+	if(!tongs_contents)
+		to_chat(user, span_notice("No item to dip!"))
+		return ITEM_INTERACT_BLOCKING
+	else
+		. = attackby(tongs_contents, user)
+		if(tool.contents.len == 0)
+			tool.icon_state = "tong_empty"
 
 /// Fishing source for fishing out of basins that have been upgraded, contains saltwater fish (lizard fish fall under this too!)
 /datum/fish_source/water_basin
-	catalog_description = "Bottomless Water Basins"
+	catalog_description = "Filled Blacksmithing Quenching Troughs"
 	fish_table = list(
 		/obj/item/fish/clownfish = 15,
 		/obj/item/fish/pufferfish = 10,
@@ -115,6 +121,7 @@
 		/obj/item/fish/gunner_jellyfish = 15,
 		/obj/item/fish/needlefish = 10,
 		/obj/item/fish/armorfish = 10,
+		/obj/item/fish/swordfish = 10,
 		/obj/effect/spawner/random/maintenance = 10,
 		/obj/effect/spawner/random/trash/garbage = 15,
 	)

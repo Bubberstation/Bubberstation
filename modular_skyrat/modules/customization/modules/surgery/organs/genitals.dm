@@ -97,8 +97,10 @@
 
 
 /datum/bodypart_overlay/mutant/genital
-	layers = EXTERNAL_FRONT
+	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER)
 	color_source = ORGAN_COLOR_OVERRIDE
+	offset_location = LOWER_BODY
+
 	/// The suffix appended to the feature_key for the overlays.
 	var/sprite_suffix
 	var/layer_offset = 0
@@ -109,10 +111,7 @@
 /datum/bodypart_overlay/mutant/genital/get_base_icon_state()
 	return sprite_suffix
 
-/datum/bodypart_overlay/mutant/genital/mutant_bodyparts_layertext(layer)
-	layer += layer_offset
-	. = ..()
-
+/*
 /datum/bodypart_overlay/mutant/genital/get_color_layer_names(icon_state_to_lookup)
 	if(length(sprite_datum.color_layer_names))
 		return sprite_datum.color_layer_names
@@ -123,23 +122,19 @@
 
 	var/list/cached_mutant_icon_states = SSaccessories.cached_mutant_icon_files[sprite_datum.icon]
 
-	for (var/layer in all_layers)
+	for (var/layer in layers)
 		if(!(layer & layers))
 			continue
 
-		var/layertext = mutant_bodyparts_layertext(bitflag_to_layer(layer))
-		if ("m_[feature_key]_[get_base_icon_state()]_[layertext]_primary" in cached_mutant_icon_states)
+		if ("m_[feature_key]_[get_base_icon_state()]_primary" in cached_mutant_icon_states)
 			sprite_datum.color_layer_names["1"] = "primary"
-		if ("m_[feature_key]_[get_base_icon_state()]_[layertext]_secondary" in cached_mutant_icon_states)
+		if ("m_[feature_key]_[get_base_icon_state()]_secondary" in cached_mutant_icon_states)
 			sprite_datum.color_layer_names["2"] = "secondary"
-		if ("m_[feature_key]_[get_base_icon_state()]_[layertext]_tertiary" in cached_mutant_icon_states)
+		if ("m_[feature_key]_[get_base_icon_state()]_tertiary" in cached_mutant_icon_states)
 			sprite_datum.color_layer_names["3"] = "tertiary"
 
 	return sprite_datum.color_layer_names
-
-/datum/bodypart_overlay/mutant/genital/bitflag_to_layer(layer)
-	. = ..()
-	. -= layer_offset
+*/
 
 /obj/item/organ/genital/penis
 	name = "penis"
@@ -157,8 +152,9 @@
 
 /datum/bodypart_overlay/mutant/genital/penis
 	feature_key = ORGAN_SLOT_PENIS
-	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
+	layers = list(EXTERNAL_FRONT = PENIS_LAYER_FRONT, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
 	layer_offset = PENIS_LAYER_OFFSET
+	layer_offset = ENTIRE_BODY
 
 /obj/item/organ/genital/penis/get_description_string(datum/sprite_accessory/genital/gas)
 	var/returned_string = ""
@@ -314,7 +310,7 @@
 
 /datum/bodypart_overlay/mutant/genital/testicles
 	feature_key = ORGAN_SLOT_TESTICLES
-	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
+	layers = list(EXTERNAL_FRONT = BALLS_LAYER_FRONT, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
 	layer_offset = TESTICLES_LAYER_OFFSET
 
 /obj/item/organ/genital/testicles/update_genital_icon_state()
@@ -386,8 +382,7 @@
 
 /datum/bodypart_overlay/mutant/genital/vagina
 	feature_key = ORGAN_SLOT_VAGINA
-	layers = EXTERNAL_FRONT
-	layer_offset = VAGINA_LAYER_OFFSET
+	layers = list(EXTERNAL_FRONT = VAGINA_FRONT_LAYER)
 
 /obj/item/organ/genital/vagina/get_description_string(datum/sprite_accessory/genital/gas)
 	var/returned_string = "You see a [LOWER_TEXT(genital_name)] vagina."
@@ -437,7 +432,8 @@
 
 /datum/bodypart_overlay/mutant/genital/womb
 	feature_key = ORGAN_SLOT_WOMB
-	layers = NONE
+	layers = list()
+	offset_location = NO_MODIFY
 
 /datum/bodypart_overlay/mutant/genital/womb/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_WOMB]
@@ -457,7 +453,7 @@
 
 /datum/bodypart_overlay/mutant/genital/anus
 	feature_key = ORGAN_SLOT_ANUS
-	layers = BODY_FRONT_LAYER
+	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER)
 	layer_offset = ANUS_LAYER_OFFSET
 
 /obj/item/organ/genital/anus/get_description_string(datum/sprite_accessory/genital/gas)
@@ -488,8 +484,9 @@
 
 /datum/bodypart_overlay/mutant/genital/breasts
 	feature_key = ORGAN_SLOT_BREASTS
-	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
+	layers = list(EXTERNAL_FRONT = BREASTS_FRONT_LAYER, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
 	layer_offset = BREASTS_LAYER_OFFSET
+	offset_location = ENTIRE_BODY
 
 /obj/item/organ/genital/breasts/get_description_string(datum/sprite_accessory/genital/gas)
 	var/returned_string = "You see a [LOWER_TEXT(genital_name)] of breasts."
@@ -523,11 +520,10 @@
 	icon_state = passed_string
 
 /obj/item/organ/genital/breasts/get_sprite_size_string()
-	var/max_size = 5
-	if(genital_type == "pair")
-		max_size = findtext(genital_name, "(Alt)") ? 19 : 16
-	if(genital_type == "quad")
-		max_size = findtext(genital_name, "(Alt)") ? 19 : 5
+	var/max_size = 0
+	var/datum/sprite_accessory/genital/breasts/sprite_accessory = bodypart_overlay.sprite_datum
+	if (istype(sprite_accessory))
+		max_size = sprite_accessory.max_size
 	var/current_size = FLOOR(genital_size, 1)
 	if(current_size < 0)
 		current_size = 0
@@ -632,8 +628,9 @@
 
 /datum/bodypart_overlay/mutant/genital/butt
 	feature_key = ORGAN_SLOT_BUTT
-	layers = EXTERNAL_ADJACENT | EXTERNAL_FRONT
+	layers = list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER, EXTERNAL_FRONT = ASS_LAYER_FRONT)
 	layer_offset = BUTT_LAYER_OFFSET
+	offset_location = ENTIRE_BODY
 
 /datum/bodypart_overlay/mutant/genital/butt/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_BUTT]
@@ -702,17 +699,14 @@
 
 /datum/bodypart_overlay/mutant/genital/belly
 	feature_key = ORGAN_SLOT_BELLY
-	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
+	layers = list(EXTERNAL_FRONT = BELLY_FRONT_LAYER, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
 	layer_offset = BELLY_LAYER_OFFSET
+	offset_location = ENTIRE_BODY
 
 /datum/bodypart_overlay/mutant/genital/belly/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_BELLY]
 
-/mob/living/carbon/human/verb/toggle_genitals()
-	set category = "IC"
-	set name = "Expose/Hide genitals"
-	set desc = "Allows you to toggle which genitals should show through clothes or not."
-
+GAME_VERB_DESC(/mob/living/carbon/human, toggle_genitals, "Expose/Hide genitals", "Change which genitals show through clothes and how they layer.", "IC")
 	if(stat != CONSCIOUS)
 		to_chat(usr, span_warning("You can't toggle genitals visibility right now..."))
 		return
@@ -748,14 +742,10 @@
 /mob/living/carbon/human/Initialize(mapload)
 	. = ..()
 	if(CONFIG_GET(flag/disable_erp_preferences))
-		verbs -= /mob/living/carbon/human/verb/toggle_genitals
-		verbs -= /mob/living/carbon/human/verb/toggle_arousal
+		UNASSIGN_GAME_VERB(src, /mob/living/carbon/human, toggle_genitals)
+		UNASSIGN_GAME_VERB(src, /mob/living/carbon/human, toggle_arousal)
 
-/mob/living/carbon/human/verb/toggle_arousal()
-	set category = "IC"
-	set name = "Toggle Arousal"
-	set desc = "Allows you to toggle how aroused your private parts are."
-
+GAME_VERB_DESC(/mob/living/carbon/human, toggle_arousal, "Toggle Arousal", "Allows you to toggle how aroused your private parts are.", "IC")
 	if(stat != CONSCIOUS)
 		to_chat(usr, span_warning("You can't toggle arousal right now..."))
 		return

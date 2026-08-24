@@ -31,7 +31,6 @@
 	density = TRUE
 	active_power_usage = 240 KILO WATTS
 	idle_power_usage = 24 KILO WATTS
-	ignore_size = TRUE
 	/// Is someone being processed inside of the machine?
 	var/processing = FALSE
 	/// How long does the machine take to work?

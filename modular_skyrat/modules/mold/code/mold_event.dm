@@ -83,7 +83,7 @@
 
 		var/datum/mold_type/picked_type = pick(possible_mold_types)
 
-		shuffle(turfs)
+		shuffle_inplace(turfs)
 		var/turf/picked_turf = pick(turfs)
 		if(length(turfs)) //Pick a turf to spawn at if we can
 			if(locate(/obj/structure/mold/structure/core) in range(20, picked_turf))

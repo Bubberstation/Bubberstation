@@ -14,6 +14,11 @@
 // For light weight borgs
 #define TRAIT_R_LIGHT_WEIGHT "lightweight_borg"
 
+///Characters that know how to make advanced smithing equipment
+#define TRAIT_KNOW_ADVANCED_SMITHING "know_advanced_smithing"
+#define TRAIT_KNOW_GUNSMITHING "know_gunsmithing"
+#define TRAIT_KNOW_CIRCUIT_SMITHING "know_circuit_smithing"
+
 //For the hemophage quirk that allows hemophages to eat/drink normal food/drink.
 #define TRAIT_MASQUERADE_FOOD "masquerade_food"
 
@@ -80,3 +85,14 @@
 
 /// Trait used to block telepathy types (Genetics, Xenomorph, Revenant, Slime. Ideally should be all.)
 #define TRAIT_PSIONIC_DAMPENER "psionic_dampener"
+
+/// Induces a dragging slowdown to the person when applied.
+#define TRAIT_BIG_CLOTHES "trait_big_clothes" // 3 slowdown
+#define TRAIT_BULKY_CLOTHES "trait_bulky_clothes" // 4 slowdown
+#define TRAIT_HUGE_CLOTHES "trait_huge_clothes" // 5 slowdown
+
+/// Prevents a person from using vehicles.
+#define TRAIT_NO_VEHICLE "trait_no_vehicle"
+
+/// Prevents from being buckled to anything
+#define TRAIT_NO_BUCKLE "trait_no_buckle"
