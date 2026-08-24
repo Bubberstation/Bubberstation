@@ -92,7 +92,7 @@
 	name = "reptile eyes"
 	desc = "A pair of reptile eyes with thin vertical slits for pupils."
 	icon_state = "lizard_eyes"
-	synchronized_blinking = FALSE
+	synchronized_blinking = TRUE //BUBBERSTATION CHANGE: FALSE TO TRUE
 	pupils_name = "slit pupils"
 	penlight_message = "have vertically slit pupils and tinted whites"
 

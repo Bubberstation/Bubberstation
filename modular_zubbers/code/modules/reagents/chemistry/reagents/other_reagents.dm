@@ -166,14 +166,6 @@
 		"Rock begins growing on your skin. Somehow it does not feel heavy." = MUT_MSG_EXTENDED,
 		"The stony growths completely encase you. " = MUT_MSG_ABOUT2TURN)
 
-/datum/reagent/transformative_virus/hemophage
-	name = "Hemophage Corruption Virus"
-	description = "A hemophage virus."
-	color = BLOOD_COLOR_RED
-	taste_description = "blood"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
-	transformation_disease =/datum/disease/transformation_race/hemophage
-
 /datum/reagent/mutationtoxin/insect
 	name = "Insect Mutation Toxin"
 	description = "An insect toxin."

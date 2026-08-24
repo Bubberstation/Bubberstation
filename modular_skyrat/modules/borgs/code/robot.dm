@@ -39,7 +39,6 @@
 
 			table_contents.throw_at(get_ranged_target_turf(table_contents, pick(GLOB.cardinals), range = 1), range = 1, speed = 1)
 
-
 /mob/living/silicon/robot/on_standing_up()
 	if(layer == LYING_MOB_LAYER)
 		layer = initial(layer)
@@ -49,10 +48,7 @@
 	if(model && model.model_features && (TRAIT_R_BIG in model.model_features))
 		maptext_height = 64
 
-/mob/living/silicon/robot/proc/rest_style()
-	set name = "Switch Rest Style"
-	set category = "AI Commands"
-	set desc = "Select your resting pose."
+GAME_VERB_PROC_DESC(/mob/living/silicon/robot, rest_style, "Switch Rest Style", "Select your resting pose.", "AI Commands")
 	if(!can_rest())
 		to_chat(src, span_warning("You can't do that!"))
 		return
@@ -69,9 +65,7 @@
 		on_lying_down()
 	update_icons()
 
-/mob/living/silicon/robot/proc/robot_lay_down()
-	set name = "Lay down"
-	set category = "AI Commands"
+GAME_VERB_PROC(/mob/living/silicon/robot, robot_lay_down, "Lay down", "AI Commands")
 	if(!can_rest())
 		to_chat(src, span_warning("You can't do that!"))
 		return

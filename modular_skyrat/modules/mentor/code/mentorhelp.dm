@@ -1,15 +1,12 @@
-/client/verb/mentorhelp(msg as text)
-	set category = "Mentor"
-	set name = "Mentorhelp"
-
+GAME_VERB(/client, mentorhelp, "Mentorhelp", "Mentor", msg as text)
 	//clean the input msg
 	if(!msg)
 		return
 
 	//remove out mentorhelp verb temporarily to prevent spamming of mentors.
-	remove_verb(src, /client/verb/mentorhelp)
+	UNASSIGN_GAME_VERB(src, /client, mentorhelp)
 	spawn(30 SECONDS) // Gotta love BYOND, god this is disgusting
-		add_verb(src, /client/verb/mentorhelp)	// 30 second cool-down for mentorhelp
+		ASSIGN_GAME_VERB(src, /client, mentorhelp)	// 30 second cool-down for mentorhelp
 
 	msg = sanitize(copytext_char(msg, 1, MAX_MESSAGE_LEN))
 	if(!msg || !mob)

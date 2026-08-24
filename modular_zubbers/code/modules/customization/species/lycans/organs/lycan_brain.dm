@@ -3,6 +3,8 @@
 	desc = "A larger than average, albeit slightly smoother brain. The hypothalamus seems larger than normal." // I read in a random medical artical that the hypothalamus controls aggression.
 	actions_types = list(/datum/action/cooldown/spell/beast_form)
 	var/last_slot
+	var/to_human_sfx = 'modular_zubbers/code/modules/customization/species/lycans/transform.ogg'
+	var/to_lycan_sfx = 'modular_zubbers/code/modules/customization/species/lycans/transform.ogg'
 
 /obj/item/organ/brain/lycan/on_mob_insert(mob/living/carbon/brain_owner, special, movement_flags)
 	. = ..()
@@ -26,14 +28,13 @@
 /obj/item/organ/brain/lycan/proc/leave_beast_form()
 	owner.remove_status_effect(/datum/status_effect/beast_form)
 
-/obj/item/organ/brain/lycan/proc/toggle_beast_form(mob/user)
-	set name = "Enter/Leave Lycan Form"
-	set desc = "Succumb to the rage and turn into a lycan."
-	set category = "Lycan"
-
+GAME_VERB_PROC_DESC(/obj/item/organ/brain/lycan, toggle_beast_form, "Enter/Leave Lycan Form", "Succumb to the rage and turn into a lycan.", "Lycan", mob/user)
 	if(!user)
 		return
 	if(user.has_status_effect(/datum/status_effect/beast_form))
 		leave_beast_form()
 	else
+		if (HAS_TRAIT(user, TRAIT_MANSUS_INHIBITION))
+			user.balloon_alert(user, "can't transform while inhibited!")
+			return
 		enter_beast_form()

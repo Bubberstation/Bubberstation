@@ -1,14 +1,19 @@
 # This list auto requests reviews from the specified org members
+
 # when a PR that modifies the file in question is opened
+
 # This list is alphabetized by User -> Filename and separated into sections for Maintainers/Contributors KEEP IT THAT WAY
+
 # In the event that people are to be informed of changes
+
 # to the same file or dir, add them to the end of under Multiple Owners
 
-
 # Arturlang
+
 # Bloodsucker
-/code/__DEFINES/~~bubber_defines/bloodsucker.dm @arturlang
-/modular_zubbers/code/__DEFINES/bloodsucker_defines.dm @arturlang
+
+/code/**DEFINES/~~bubber_defines/bloodsucker.dm @arturlang
+/modular_zubbers/code/**DEFINES/bloodsucker_defines.dm @arturlang
 /modular_zubbers/code/controllers/subsystem/processing/sol_subsystem.dm @arturlang
 /modular_zubbers/code/modules/antagonists/bloodsucker @arturlang
 /modular_zubbers/code/modules/storyteller/event_defines/crewset/bloodsucker.dm @arturlang
@@ -18,19 +23,32 @@
 /modular_zubbers/icons/mob/inhands/weapons/bloodsucker_lefthand.dmi @arturlang
 /modular_zubbers/icons/mob/inhands/weapons/bloodsucker_righthand.dmi @arturlang
 /tgui/packages/tgui/interfaces/PreferencesMenu/antagonists/antagonists/bloodsucker.ts @arturlang
+
 # Nanites
-/code/__DEFINES/~~bubber_defines/nanites.dm @arturlang
-/code/__DEFINES/~~bubber_defines/traits/nanites.dm @arturlang
+
+/code/**DEFINES/~~bubber_defines/nanites.dm @arturlang
+/code/**DEFINES/~~bubber_defines/traits/nanites.dm @arturlang
 /modular_zubbers/code/controllers/subsystem/processing/nanites.dm @arturlang
 /modular_zubbers/code/datums/components/nanites.dm @arturlang
 /modular_zubbers/code/modules/nanites @arturlang
 
+# Odairu
+
+# Silicons
+
+/code/modules/mob/living/silicon @odairu
+/code/game/machinery/ai_core @odairu
+/code/game/machinery/camera/silicon_camera.dm @odairu
+/modular_skyrat/master_files/code/modules/mob/living/sillicon @odairu
+/modular_skyrat/modules/borg_buffs @odairu
+/modular_skyrat/modules/borgs @odairu
+/modular_skyrat/modules/SiliconQoL @odairu
+/modular_zubbers/code/modules/silicons @odairu
+
 # Ozzo
+
 /.github @nevimer
 /cfg @nevimer
 /config @nevimer
 /SQL @nevimer
 /tools @nevimer
-
-# Gavla
-/_maps @shayoki

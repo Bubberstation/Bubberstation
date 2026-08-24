@@ -157,7 +157,7 @@
 	. = ..()
 	handle_layer()
 	//SKYRAT EDIT ADDITION
-	if(HAS_TRAIT(M, TRAIT_OVERSIZED))
+	if(HAS_TRAIT(M, TRAIT_OVERSIZED) || HAS_TRAIT(M, TRAIT_NO_VEHICLE))
 		visible_message(span_warning("[src] buckles under the weight of [M] causing it to break!"))
 		playsound(src, 'modular_skyrat/modules/oversized/sound/chair_break.ogg', 70, TRUE)
 		deconstruct()
@@ -424,7 +424,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	. = ..()
 	AddElement(/datum/element/cuffable_item)
 
-/obj/item/chair/suicide_act(mob/living/carbon/user)
+/obj/item/chair/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] begins hitting [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(src,hitsound,50,TRUE)
 	return BRUTELOSS

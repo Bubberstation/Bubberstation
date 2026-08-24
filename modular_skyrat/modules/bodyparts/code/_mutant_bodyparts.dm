@@ -5,6 +5,10 @@
 	var/list/aux_zone_markings
 	/// The alpha override of our markings.
 	var/markings_alpha
+	/// The alpha the limb's sprite overlays are rendered at. Driven by the per-limb alpha
+	/// preferences (and species specific_alpha). 0 is fully invisible while worn; while dropped
+	/// the rendered sprite is floored at LIMB_DROPPED_MIN_ALPHA so the limb stays pickup-able.
+	var/limb_alpha = 255
 	/// What is our normal limb ID? used for squashing legs.
 	var/base_limb_id = SPECIES_MAMMAL
 

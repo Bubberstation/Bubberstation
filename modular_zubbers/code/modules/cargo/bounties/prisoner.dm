@@ -55,7 +55,7 @@
 	description = "Stop asking questions, send the carrots, get paid. INMATE!"
 	reward = CARGO_CRATE_VALUE * 3
 	required_count = 5
-	wanted_types = list(/obj/item/food/grown/carrot = TRUE)
+	wanted_types = list(/obj/item/food/grown/carrotlike/carrot = TRUE)
 	include_subtypes = FALSE
 
 /datum/bounty/item/prisoner/onion

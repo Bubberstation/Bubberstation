@@ -44,7 +44,6 @@ GLOBAL_LIST_INIT(erp_items, list(
 	/obj/item/reagent_containers/cup/lewd_filter,
 	/obj/item/restraints/handcuffs/lewd,
 	/obj/item/restraints/handcuffs/milker,
-	/obj/item/skillchip/mkiiultra,
 	/obj/item/spanking_pad,
 	/obj/item/storage/belt/erpbelt,
 	/obj/item/storage/box/bdsmbed_kit,
@@ -55,5 +54,7 @@ GLOBAL_LIST_INIT(erp_items, list(
 	/obj/item/strapon_dildo,
 	/obj/item/tickle_feather,
 	/obj/item/toy/plush/aeri,
+	/obj/item/toy/plush/noble,
+	/obj/item/toy/plush/protective_protogen,
 	/obj/item/vending_refill/lustwish,
 ))

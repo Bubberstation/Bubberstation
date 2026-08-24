@@ -106,10 +106,10 @@
 			human_owner.adjust_organ_loss(ORGAN_SLOT_STOMACH, 10)
 		if(60 to 70)
 			// Same with eyes
-			human_owner.adjust_organ_loss(ORGAN_SLOT_EYES, 5)
+			human_owner.adjust_organ_loss(ORGAN_SLOT_EYES, 5, 40) // BUBBER EDIT CHANGE - cant kill eyes
 		if(70 to 80)
 			// And same with ears
-			human_owner.adjust_organ_loss(ORGAN_SLOT_EARS, 10)
+			human_owner.adjust_organ_loss(ORGAN_SLOT_EARS, 10, 40) // BUBBER EDIT CHANGE - cant kill ears
 		if(80 to 90)
 			// But don't fully kill lungs that's usually important
 			human_owner.adjust_organ_loss(ORGAN_SLOT_LUNGS, 10, 90)

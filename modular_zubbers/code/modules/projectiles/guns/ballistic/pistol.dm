@@ -39,10 +39,6 @@
 		overlay_y = 13)
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/regal
-	desc = "Unlike the Desert Eagle, this weapon seems to utilize some kind of advanced internal stabilization system to significantly \
-		reduce felt recoil and increase overall accuracy, at the cost of using a smaller caliber. \
-		The smaller caliber in question however consists of custom-made high-power bullets, which makes the whole statement of it using a smaller caliber than a Desert Eagle completely pointless. \
-		This does allow it to fire a very quick 2-round burst. Uses 10mm ammo."
 	projectile_damage_multiplier = 1.0
 	custom_materials = list(
 		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 30,

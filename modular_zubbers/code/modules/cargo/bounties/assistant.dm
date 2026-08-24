@@ -281,7 +281,7 @@
 	description = "The new office craze is melon water. Send Centcom some watermelons so we can squeeze a few pitchers."
 	reward = CARGO_CRATE_VALUE * 6
 	required_count = 6
-	wanted_types = list(/obj/item/food/grown/watermelon = TRUE)
+	wanted_types = list(/obj/item/food/grown/melonlike/watermelon = TRUE)
 
 /datum/bounty/item/assistant/dogbed
 	name = "Dog Bed"

@@ -67,6 +67,7 @@
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
+	AddComponent(/datum/component/walking_aid)
 	add_headpike_component()
 	update_appearance()
 
@@ -87,7 +88,7 @@
 		worn_icon_state = null
 	return ..()
 
-/obj/item/spear/suicide_act(mob/living/carbon/user)
+/obj/item/spear/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] begins to sword-swallow \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	if (!do_after(user, 4 SECONDS, target = src))
 		return SHAME
@@ -157,7 +158,7 @@
 	tip_overlay.color = tip_material.color
 	. += tip_overlay
 
-/obj/item/spear/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file)
+/obj/item/spear/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
 	if (icon_prefix != SPEAR_CUSTOM_TIP_PREFIX || !isinhands)
 		return
@@ -336,7 +337,7 @@
 		set_explosive(nade)
 	return ..()
 
-/obj/item/spear/explosive/suicide_act(mob/living/carbon/user)
+/obj/item/spear/explosive/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] begins to sword-swallow \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	user.say("[war_cry]", forced="spear warcry")
 	explosive.forceMove(user)

@@ -98,7 +98,6 @@
 
 	AddElement(/datum/element/basic_eating, heal_amt = 2, food_types = edibles)
 	AddElement(/datum/element/venomous, /datum/reagent/toxin/cazador, 1, injection_flags = INJECT_CHECK_PENETRATE_THICK)
-	AddElement(/datum/element/ai_retaliate)
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_SNAKE, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 5)
 
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, typecacheof(edibles))

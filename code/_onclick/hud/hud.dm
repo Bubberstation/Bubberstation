@@ -450,18 +450,13 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 		// Plane masters are always shown to OUR mob, never to observers
 		group.refresh_hud()
 
+/* BUBBER EDIT - REMOVAL
 /datum/hud/human/show_hud(version = 0,mob/viewmob)
 	. = ..()
 	if(!.)
 		return
 	var/mob/screenmob = viewmob || mymob
 	inventory_update(screenmob)
-
-/* BUBBER EDIT REMOVAL - We use a different lobby hud
-/datum/hud/new_player/show_hud(version = 0, mob/viewmob)
-	. = ..()
-	if(.)
-		show_station_trait_buttons()
 */
 
 /datum/hud/proc/inventory_update(mob/viewer)
@@ -509,17 +504,6 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 			asset_refs_for_reuse -= screen_ref
 			continue
 		show_to.client?.screen += reuse
-
-//Triggered when F12 is pressed (Unless someone changed something in the DMF)
-/mob/verb/button_pressed_F12()
-	set name = "F12"
-	set hidden = TRUE
-
-	if(hud_used && client)
-		hud_used.show_hud() //Shows the next hud preset
-		to_chat(usr, span_info("Switched HUD mode. Press F12 to toggle."))
-	else
-		to_chat(usr, span_warning("This mob type does not use a HUD."))
 
 /// Rebuilds our mob's hand slot screen elements
 /datum/hud/proc/build_hand_slots(update_hud = FALSE)

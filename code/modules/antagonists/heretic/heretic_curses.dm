@@ -80,6 +80,8 @@
 	log_combat(user, to_curse, "cursed via heretic ritual", addition = "([name])")
 	var/obj/item/codex_cicatrix/morbus/cursed_book = locate() in selected_atoms
 	curse(to_curse, cursed_book)
+	var/datum/antagonist/heretic/our_heretic = GET_HERETIC(user)
+	SEND_SIGNAL(our_heretic, COMSIG_HERETIC_CURSED_TARGET, to_curse) // BUBBER EDIT ADDITION
 	to_chat(user, span_hierophant("You cast a [name] upon [to_curse.real_name]."))
 
 	fingerprints = null

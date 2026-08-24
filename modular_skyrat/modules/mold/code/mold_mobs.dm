@@ -62,7 +62,7 @@
 
 /mob/living/basic/mold/oil_shambler/Initialize(mapload)
 	. = ..()
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 
 /mob/living/basic/mold/oil_shambler/update_overlays()
 	. = ..()
@@ -264,7 +264,7 @@
 
 /mob/living/basic/mold/centaur/Initialize(mapload)
 	. = ..()
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 
 /mob/living/basic/mold/centaur/melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()

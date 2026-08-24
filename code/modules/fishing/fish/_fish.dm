@@ -816,14 +816,14 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 /obj/item/fish/apply_material_effects()
 	. = ..()
 	//Either effects aren't applied of he materials are simply being increased/decreased along with the weight. Avoids recursion.
-	if(!(material_flags & MATERIAL_EFFECTS) || (fish_flags & FISH_FLAG_UPDATING_SIZE_AND_WEIGHT) || material_weight_mult == 1)
+	if(!(material_flags & MATERIAL_EFFECTS) || (fish_flags & FISH_FLAG_UPDATING_SIZE_AND_WEIGHT) )
 		return
 	maximum_weight *= material_weight_mult
 	update_size_and_weight(size, (temp_weight || weight) * material_weight_mult, update_materials = FALSE)
 
 /obj/item/fish/remove_material_effects(replace_mats = TRUE)
 	. = ..()
-	if(replace_mats || !(material_flags & MATERIAL_EFFECTS) || material_weight_mult == 1)
+	if(replace_mats || !(material_flags & MATERIAL_EFFECTS) )
 		return
 	maximum_weight /= material_weight_mult
 	update_size_and_weight(size, weight / material_weight_mult)
@@ -1230,7 +1230,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	var/datum/gas_mixture/mixture = loc.return_air()
 	if(!mixture)
 		return FALSE
-	if(safe_air_limits && !check_gases(mixture.gases, safe_air_limits))
+	if(safe_air_limits && !mixture.check_gases(safe_air_limits))
 		return FALSE
 	if(!ISINRANGE(mixture.temperature, required_temperature_min, required_temperature_max))
 		return FALSE

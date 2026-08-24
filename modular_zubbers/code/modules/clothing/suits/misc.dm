@@ -16,6 +16,7 @@
 	icon_state = "suit_harness"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits.dmi'
 	worn_icon_state = "suit_harness"
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits.dmi' // it's an invisible sprite, doesn't need a teshari variant
 	inhand_icon_state = null
 	body_parts_covered = 0x0
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
@@ -154,3 +155,6 @@
 /obj/item/clothing/suit/costume/wellworn_shirt/messy/graphic
 	greyscale_config_worn_digi = /datum/greyscale_config/messyworn_shirt_graphic/worn/digi
 	greyscale_config_worn_teshari = /datum/greyscale_config/messyworn_shirt_graphic/worn/teshari
+
+/obj/item/clothing/suit/space/emergency
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/spacesuit_teshari.dmi'

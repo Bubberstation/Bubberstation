@@ -138,3 +138,9 @@
 	name = "big boss' gloves"
 	desc = "We will forsake our countries."
 	icon_state = "snake"
+
+/obj/item/clothing/gloves/maid_arm_covers
+	greyscale_config_worn_teshari = /datum/greyscale_config/bubber_maid_arm_covers/worn/teshari
+
+/obj/item/clothing/gloves/ring/diamond
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/gloves/gloves_teshari.dmi'

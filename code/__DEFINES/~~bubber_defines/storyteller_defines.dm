@@ -62,20 +62,6 @@
 #define CREWSET_MIN_POP 0
 #define GHOSTSET_MIN_POP 0
 
-/// Defines for how much pop do we need to stop applying a pop scalling penalty to event frequency.
-#define MUNDANE_POP_SCALE_THRESHOLD 25
-#define MODERATE_POP_SCALE_THRESHOLD 32
-#define MAJOR_POP_SCALE_THRESHOLD 45
-#define CREWSET_POP_SCALE_THRESHOLD 45
-#define GHOSTSET_POP_SCALE_THRESHOLD 45
-
-/// The maximum penalty coming from pop scalling, when we're at the most minimum point, easing into 0 as we reach the SCALE_THRESHOLD. This is treated as a percentage.
-#define MUNDANE_POP_SCALE_PENALTY 35
-#define MODERATE_POP_SCALE_PENALTY 35
-#define MAJOR_POP_SCALE_PENALTY 35
-#define CREWSET_POP_SCALE_PENALTY 35
-#define GHOSTSET_POP_SCALE_PENALTY 35
-
 #define STORYTELLER_VOTE "storyteller"
 
 #define EVENT_TRACKS list(EVENT_TRACK_MUNDANE, EVENT_TRACK_MODERATE, EVENT_TRACK_MAJOR, EVENT_TRACK_CREWSET, EVENT_TRACK_GHOSTSET)

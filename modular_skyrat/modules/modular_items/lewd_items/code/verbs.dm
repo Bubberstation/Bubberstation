@@ -1,7 +1,4 @@
-/mob/living/carbon/human/verb/climax_verb()
-	set name = "Climax"
-	set category = "IC"
-
+GAME_VERB(/mob/living/carbon/human, climax_verb, "Climax", "IC")
 	if(!has_status_effect(/datum/status_effect/climax_cooldown))
 		if(tgui_alert(usr, "Are you sure you want to cum?", "Climax", list("Yes", "No")) == "Yes")
 			if(stat != CONSCIOUS)
@@ -12,9 +9,7 @@
 	else
 		to_chat(src, span_warning("You can't cum right now!"))
 
-/mob/living/verb/reflexes_verb()
-	set name = "Toggle Reflexes"
-	set category = "IC"
+GAME_VERB(/mob/living, reflexes_verb, "Toggle Reflexes", "IC")
 	if(!HAS_TRAIT_FROM(src, TRAIT_QUICKREFLEXES, REF(src)))
 		ADD_TRAIT(src, TRAIT_QUICKREFLEXES, REF(src))
 		to_chat(src, span_notice("[get_reflexes_gain_text()]"))
@@ -37,21 +32,15 @@
 /mob/living/carbon/human/Initialize(mapload)
 	. = ..()
 	if(CONFIG_GET(flag/disable_erp_preferences))
-		verbs -= /mob/living/carbon/human/verb/climax_verb
+		UNASSIGN_GAME_VERB(src, /mob/living/carbon/human, climax_verb)
 	if(CONFIG_GET(flag/disable_lewd_items))
-		verbs -= /mob/living/carbon/human/verb/safeword
+		UNASSIGN_GAME_VERB(src, /mob/living/carbon/human, safeword)
 
-/mob/living/carbon/human/verb/remove_lewd_items()
-	set name = "Remove Lewd Items"
-	set category = "OOC"
-	set desc = "Removes any and all lewd items from you."
+GAME_VERB_DESC(/mob/living/carbon/human, remove_lewd_items, "Remove Lewd Items", "Removes any and all lewd items from you.", "OOC")
 	// literally just another way to safeword
 	safeword()
 
-/mob/living/carbon/human/verb/safeword()
-	set name = "OOC Safe Word"
-	set category = "OOC"
-	set desc = "Removes any and all lewd items from you."
+GAME_VERB_DESC(/mob/living/carbon/human, safeword, "OOC Safe Word", "Removes any and all lewd items from you.", "OOC")
 	SEND_SIGNAL(src, COMSIG_OOC_ESCAPE)
 	log_message("[key_name(src)] used the OOC Safe Word verb.", LOG_ATTACK)
 	for(var/obj/item/equipped_item in get_equipped_items())
@@ -72,10 +61,7 @@
 
 	return TRUE
 
-/mob/living/carbon/human/verb/lick(mob/living/carbon/human/target in get_adjacent_humans())
-	set name = "Lick"
-	set category = "IC"
-
+GAME_VERB(/mob/living/carbon/human, lick, "Lick", "IC", mob/living/carbon/human/target in get_adjacent_humans())
 	if(!istype(target))
 		return FALSE
 
@@ -87,10 +73,7 @@
 	to_chat(src, span_notice("[target] tastes like [taste]."))
 	to_chat(target, span_notice("[src] licks you."))
 
-/mob/living/carbon/human/verb/smell(mob/living/carbon/human/target in get_adjacent_humans())
-	set name = "Smell"
-	set category = "IC"
-
+GAME_VERB(/mob/living/carbon/human, smell, "Smell", "IC", mob/living/carbon/human/target in get_adjacent_humans())
 	if(!istype(target))
 		return FALSE
 

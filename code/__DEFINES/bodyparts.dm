@@ -1,6 +1,9 @@
 ///The standard amount of bodyparts a carbon has. Currently 6, HEAD/L_ARM/R_ARM/CHEST/L_LEG/R_LEG
 #define BODYPARTS_DEFAULT_MAXIMUM 6
 
+// The lowest alpha a dropped limb's sprite will render at, unlike a attached limb which can be 0
+#define LIMB_DROPPED_MIN_ALPHA 40 /// BUBBER EDIT ADDITION
+
 /// Limb Health
 
 /// The max damage a limb can take before it stops taking damage.
@@ -54,8 +57,6 @@
 #define LIMB_COLOR_FISH_INFUSION 15
 /// Carp infusion color priority
 #define LIMB_COLOR_CARP_INFUSION 20
-/// Untextured fish suicide color priority
-#define LIMB_COLOR_CS_SOURCE_SUICIDE 30
 /// Base priority for atom colors, gets atom priorities added to it
 #define LIMB_COLOR_ATOM_COLOR 40
 /// Voidwalker effect color priority

@@ -32,7 +32,6 @@
 				/obj/item/toy/plush/nukeplushie = 3,
 				/obj/item/toy/plush/pkplush = 3,
 				/obj/item/toy/plush/plasmamanplushie = 3,
-				/obj/item/toy/plush/purplecat = 3,
 				/obj/item/toy/plush/rouny = 3,
 				/obj/item/toy/plush/secoff = 3,
 				/obj/item/toy/plush/shark = 3,
@@ -101,6 +100,9 @@
 				/obj/item/toy/plush/tunafish = 3,
 				/obj/item/toy/plush/xenoplush = 3,
 				/obj/item/toy/plush/xenoplush/xenomaidplush = 3,
+				/obj/item/toy/plush/suspicious_protogen = 3,
+				/obj/item/toy/plush/tangerine = 3,
+				/obj/item/toy/plush/blue_synth = 3,
 			),
 		),
 		list(

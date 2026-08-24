@@ -185,6 +185,21 @@
 		real_name = owner.real_name
 		copy_appearance_from(owner)
 
+// Ensures putting organs in and removing organs from our head always updates the limb
+/obj/item/bodypart/head/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	if(isorgan(arrived) && !ismob(loc))
+		addtimer(CALLBACK(src, PROC_REF(update_head_on_organ_movement)), 1, TIMER_UNIQUE|TIMER_DELETE_ME)
+
+/obj/item/bodypart/head/Exited(atom/movable/gone, direction)
+	. = ..()
+	if(isorgan(gone) && !ismob(loc))
+		addtimer(CALLBACK(src, PROC_REF(update_head_on_organ_movement)), 1, TIMER_UNIQUE|TIMER_DELETE_ME)
+
+/obj/item/bodypart/head/proc/update_head_on_organ_movement()
+	update_limb()
+	update_icon_dropped()
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/bodypart/head/get_limb_icon(dropped)
@@ -216,59 +231,3 @@
 	if (ishuman(owner))
 		var/mob/living/carbon/human/as_human = owner
 		as_human?.update_visible_name()
-
-/obj/item/bodypart/head/monkey
-	icon = 'icons/mob/human/species/monkey/bodyparts.dmi'
-	icon_static = 'icons/mob/human/species/monkey/bodyparts.dmi'
-	icon_husk = 'icons/mob/human/species/monkey/bodyparts.dmi'
-	husk_type = "monkey"
-	icon_state = "default_monkey_head"
-	limb_id = SPECIES_MONKEY
-	bodyshape = BODYSHAPE_MONKEY
-	should_draw_greyscale = FALSE
-	dmg_overlay_type = SPECIES_MONKEY
-	is_dimorphic = FALSE
-	head_flags = HEAD_LIPS|HEAD_DEBRAIN
-
-/obj/item/bodypart/head/monkey/Initialize(mapload)
-	worn_head_offset = new(
-		attached_part = src,
-		feature_key = OFFSET_HEAD,
-		offset_y = list("south" = 1),
-	)
-	worn_glasses_offset = new(
-		attached_part = src,
-		feature_key = OFFSET_GLASSES,
-		offset_y = list("south" = 1),
-	)
-	return ..()
-
-/obj/item/bodypart/head/alien
-	icon = 'icons/mob/human/species/alien/bodyparts.dmi'
-	icon_static = 'icons/mob/human/species/alien/bodyparts.dmi'
-	icon_state = "alien_head"
-	limb_id = BODYPART_ID_ALIEN
-	is_dimorphic = FALSE
-	should_draw_greyscale = FALSE
-	px_x = 0
-	px_y = 0
-	bodypart_flags = BODYPART_UNREMOVABLE
-	max_damage = LIMB_MAX_HP_ALIEN_CORE
-	burn_modifier = LIMB_ALIEN_BURN_DAMAGE_MULTIPLIER
-	bodytype = BODYTYPE_ALIEN | BODYTYPE_ORGANIC
-	bodyshape = BODYSHAPE_HUMANOID
-	biological_state = BIO_STANDARD_ALIEN
-
-/obj/item/bodypart/head/larva
-	icon = 'icons/mob/human/species/alien/bodyparts.dmi'
-	icon_static = 'icons/mob/human/species/alien/bodyparts.dmi'
-	icon_state = "larva_head"
-	limb_id = BODYPART_ID_LARVA
-	is_dimorphic = FALSE
-	should_draw_greyscale = FALSE
-	px_x = 0
-	px_y = 0
-	bodypart_flags = BODYPART_UNREMOVABLE
-	max_damage = LIMB_MAX_HP_ALIEN_LARVA
-	burn_modifier = LIMB_ALIEN_BURN_DAMAGE_MULTIPLIER
-	bodytype = BODYTYPE_LARVA_PLACEHOLDER | BODYTYPE_ORGANIC

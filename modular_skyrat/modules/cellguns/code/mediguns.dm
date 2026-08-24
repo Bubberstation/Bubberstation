@@ -67,6 +67,12 @@
 /obj/item/device/custom_kit/medigun_fastcharge
 	name = "VeyMedical CWM-479 upgrade kit"
 	desc = "Upgrades the internal battery inside of the medigun, allowing for faster charging and a higher cell capacity. Requires the medigun's cells to be removed first!"
+	custom_materials = list(
+		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
+		/datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	// don't tinker with a loaded (medi)gun. fool
 	from_obj = /obj/item/gun/energy/cell_loaded/medigun/standard
 	to_obj = /obj/item/gun/energy/cell_loaded/medigun/upgraded
@@ -114,9 +120,9 @@
 
 /obj/item/storage/briefcase/medicalgunset/cmo/PopulateContents()
 	new /obj/item/gun/energy/cell_loaded/medigun/cmo(src)
-	new /obj/item/weaponcell/medical/brute(src)
-	new /obj/item/weaponcell/medical/burn(src)
-	new /obj/item/weaponcell/medical/toxin(src)
+	new /obj/item/weaponcell/medical/tier_1/brute(src)
+	new /obj/item/weaponcell/medical/tier_1/burn(src)
+	new /obj/item/weaponcell/medical/tier_1/toxin(src)
 	new /obj/item/book/manual/wiki/mediguns(src)
 
 /*
@@ -133,7 +139,7 @@
 	ammo_type = /obj/item/ammo_casing/energy/medical // This is the ammo type that all mediguns come with.
 	medicell_examine = TRUE
 
-/obj/item/weaponcell/medical/oxygen
+/obj/item/weaponcell/medical/tier_1/oxygen
 	name = "oxygen I medicell"
 	desc = "A small cell with a slight blue glow. Can be used on mediguns to enable basic oxygen deprivation healing functionality."
 
@@ -142,7 +148,7 @@
 */
 
 // Brute I
-/obj/item/weaponcell/medical/brute
+/obj/item/weaponcell/medical/tier_1/brute
 	name = "brute I medicell"
 	desc = "A small cell with a slight red glow. Can be used on mediguns to enable basic brute damage healing functionality."
 	icon_state = "Brute1"
@@ -152,7 +158,7 @@
 	toggle_modes = TRUE
 
 // Burn I
-/obj/item/weaponcell/medical/burn
+/obj/item/weaponcell/medical/tier_1/burn
 	name = "burn I medicell"
 	desc = "A small cell with a slight yellow glow. Can be used on mediguns to enable basic burn damage healing functionality."
 	icon_state = "Burn1"
@@ -161,7 +167,7 @@
 	primary_mode = /obj/item/ammo_casing/energy/medical/burn1/safe
 	toggle_modes = TRUE
 // Toxin I
-/obj/item/weaponcell/medical/toxin
+/obj/item/weaponcell/medical/tier_1/toxin
 	name = "toxin I medicell"
 	desc = "A small cell with a slight green glow. Can be used on mediguns to enable basic toxin damage healing functionality."
 	icon_state = "Toxin1"
@@ -171,8 +177,17 @@
 * Tier II Cells
 */
 
+/obj/item/weaponcell/medical/tier_2
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 3,
+		/datum/material/silver = SMALL_MATERIAL_AMOUNT * 3,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 3,
+		/datum/material/uranium = SMALL_MATERIAL_AMOUNT * 3,
+	)
+
 // Brute II
-/obj/item/weaponcell/medical/brute/tier_2
+/obj/item/weaponcell/medical/tier_2/brute
 	name = "brute II medicell"
 	desc = "A small cell with a noticeable red glow. Can be used on mediguns to enable improved brute damage healing functionality."
 	icon_state = "Brute2"
@@ -181,7 +196,7 @@
 	primary_mode = /obj/item/ammo_casing/energy/medical/brute2/safe
 
 // Burn II
-/obj/item/weaponcell/medical/burn/tier_2
+/obj/item/weaponcell/medical/tier_2/burn
 	name = "burn II medicell"
 	desc = "A small cell with a noticeable yellow glow. Can be used on mediguns to enable improved burn damage healing functionality."
 	icon_state = "Burn2"
@@ -190,14 +205,14 @@
 	primary_mode = /obj/item/ammo_casing/energy/medical/burn2/safe
 
 // Toxin II
-/obj/item/weaponcell/medical/toxin/tier_2
+/obj/item/weaponcell/medical/tier_2/toxin
 	name = "toxin II medicell"
 	desc = "A small cell with a noticeable green glow. Can be used on mediguns to enable improved toxin damage healing functionality."
 	icon_state = "Toxin2"
 	ammo_type = /obj/item/ammo_casing/energy/medical/toxin2
 
 // Oxygen II
-/obj/item/weaponcell/medical/oxygen/tier_2
+/obj/item/weaponcell/medical/tier_2/oxygen
 	name = "oxygen II medicell"
 	desc = "A small cell with a notable blue glow. Can be used on mediguns to enable improved oxygen deprivation healing functionality."
 	icon_state = "Oxy2"
@@ -206,9 +221,19 @@
 /*
 * Tier III Cells
 */
+/obj/item/weaponcell/medical/tier_3
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 3,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 3,
+		/datum/material/diamond = SMALL_MATERIAL_AMOUNT * 3,
+		/datum/material/uranium = SMALL_MATERIAL_AMOUNT * 3,
+		/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 3,
+		/datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 3,
+	)
 
 // Brute III
-/obj/item/weaponcell/medical/brute/tier_3
+/obj/item/weaponcell/medical/tier_3/brute
 	name = "brute III medicell"
 	desc = "A small cell with an intense red glow and a reinforced casing. Can be used on mediguns to enable advanced brute damage healing functionality."
 	icon_state = "Brute3"
@@ -217,7 +242,7 @@
 	primary_mode = /obj/item/ammo_casing/energy/medical/brute3/safe
 
 // Burn III
-/obj/item/weaponcell/medical/burn/tier_3
+/obj/item/weaponcell/medical/tier_3/burn
 	name = "burn III medicell"
 	desc = "A small cell with an intense yellow glow and a reinforced casing. Can be used on mediguns to enable advanced burn damage healing functionality."
 	icon_state = "Burn3"
@@ -226,14 +251,14 @@
 	primary_mode = /obj/item/ammo_casing/energy/medical/burn3/safe
 
 // Toxin III
-/obj/item/weaponcell/medical/toxin/tier_3
+/obj/item/weaponcell/medical/tier_3/toxin
 	name = "toxin III medicell"
 	desc = "A small cell with an intense green glow and a reinforced casing. Can be used on mediguns to enable advanced toxin damage healing functionality."
 	icon_state = "Toxin3"
 	ammo_type = /obj/item/ammo_casing/energy/medical/toxin3
 
 // Oxygen III
-/obj/item/weaponcell/medical/oxygen/tier_3
+/obj/item/weaponcell/medical/tier_3/oxygen
 	name = "oxygen III medicell"
 	desc = "A small cell with an intense blue glow and a reinforced casing. Can be used on mediguns to enable advanced oxygen deprivation healing functionality."
 	icon_state = "Oxy3"
@@ -246,6 +271,14 @@
 /obj/item/weaponcell/medical/utility
 	name = "utility class medicell"
 	desc = "You really shouldn't be seeing this. If you do, please yell at your local coders."
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 3,
+		/datum/material/silver = SMALL_MATERIAL_AMOUNT * 3,
+		/datum/material/uranium = SMALL_MATERIAL_AMOUNT * 3,
+		/datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 
 /obj/item/weaponcell/medical/utility/clotting
 	name = "clotting medicell"
@@ -263,6 +296,11 @@
 	name = "hardlight gown medicell"
 	desc = "A medicell that creates a hardlight hospital gown on the target."
 	icon_state = "gown"
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+	)
 	ammo_type = /obj/item/ammo_casing/energy/medical/utility/gown
 
 /obj/item/weaponcell/medical/utility/salve
@@ -275,6 +313,13 @@
 	name = "hardlight roller bed medicell"
 	desc = "A medicell that summons a temporary roller bed under a patient already lying on the floor."
 	icon_state = "gown"
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+		/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 3,
+		/datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 3,
+	)
 	ammo_type = /obj/item/ammo_casing/energy/medical/utility/bed
 
 /obj/item/weaponcell/medical/utility/body_teleporter
@@ -287,6 +332,14 @@
 	name = "oppressive force relocation medicell"
 	desc = "A medicell that safely relocates personnel after a given grace period, if used by someone with the appropriate access and within an appropriately designated area (usually Medbay)."
 	icon_state =  "body"
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+		/datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 3,
+	)
 	ammo_type = /obj/item/ammo_casing/energy/medical/utility/relocation/standard
 
 /obj/item/weaponcell/medical/utility/relocation/upgraded
@@ -300,6 +353,11 @@
 	icon = 'modular_skyrat/modules/cellguns/icons/obj/guns/mediguns/medicells.dmi'
 	icon_state = "empty"
 	desc = "An inactive salve medicell, use this on an aloe leaf to make this into a usable cell."
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+	)
 	from_obj = /obj/item/food/grown/aloe
 	to_obj = /obj/item/weaponcell/medical/utility/salve
 
@@ -310,6 +368,14 @@
 /obj/item/device/custom_kit/empty_cell/body_teleporter
 	name = "empty body teleporter medicell"
 	desc = "An inactive body teleporter medicell, use this on a bluespace slime extract to make this into a usable cell."
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+		/datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT,
+	)
 	from_obj = /obj/item/slime_extract/bluespace
 	to_obj = /obj/item/weaponcell/medical/utility/body_teleporter
 

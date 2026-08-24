@@ -71,3 +71,7 @@
 #define COMSIG_MECHIVER_CONVERT "mechiver_convert"
 
 //#define COMSIG_CORE_DEATH "fleshmind_core_death"
+
+#define COMSIG_HERETIC_CURSED_TARGET "heretic_cursed_target"
+#define COMSIG_HERETIC_STOLE_MONEY "heretic_stole_money"
+#define COMSIG_HERETIC_POTION_CONSUMED "heretic_potion_consumed"

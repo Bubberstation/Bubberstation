@@ -259,7 +259,7 @@
 	if(pressure <= LAVALAND_EQUIPMENT_EFFECT_PRESSURE)
 		. = TRUE
 	//BUBBERSTATION ADDITION MOONSTATION COMPATIBILITY
-	else if(environment.gases[/datum/gas/water_vapor] && environment.gases[/datum/gas/water_vapor][MOLES] >= 1)
+	else if(environment.moles[/datum/gas/water_vapor] && environment.moles[/datum/gas/water_vapor] >= 1)
 		. = TRUE
 	//BUBBERSTATION ADDITION MOONSTATION COMPATIBILITY END.
 

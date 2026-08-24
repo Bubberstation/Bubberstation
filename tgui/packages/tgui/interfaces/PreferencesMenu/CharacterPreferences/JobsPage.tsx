@@ -1,7 +1,14 @@
 import { sortBy } from 'es-toolkit';
-import type { PropsWithChildren, ReactNode } from 'react';
+import { type PropsWithChildren, type ReactNode, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Dropdown, Stack, Tooltip } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Dropdown,
+  Floating,
+  Stack,
+  Tooltip,
+} from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
 import {
@@ -34,21 +41,21 @@ function PriorityButton(props: PriorityButtonProps) {
   const className = `PreferencesMenu__Jobs__departments__priority`;
 
   return (
-    // SKYRAT EDIT START
-    <Button
-      className={classes([
-        className,
-        props.modifier && `${className}--${props.modifier}`,
-      ])}
-      color={props.enabled ? props.color : 'white'}
-      circular
-      onClick={props.onClick}
-      tooltip={props.name}
-      tooltipPosition="bottom"
-      height={PRIORITY_BUTTON_SIZE}
-      width={PRIORITY_BUTTON_SIZE}
-    />
-    // SKYRAT EDIT END
+    <Stack.Item height={PRIORITY_BUTTON_SIZE} width={PRIORITY_BUTTON_SIZE}>
+      <Button
+        className={classes([
+          className,
+          props.modifier && `${className}--${props.modifier}`,
+        ])}
+        color={props.enabled ? props.color : 'white'}
+        circular
+        onClick={props.onClick}
+        tooltip={props.name}
+        tooltipPosition="bottom"
+        height="100%"
+        width="100%"
+      />
+    </Stack.Item>
   );
 }
 
@@ -91,39 +98,38 @@ function PriorityHeaders() {
   const className = 'PreferencesMenu__Jobs__PriorityHeader';
 
   return (
-    <Stack>
-      <Stack.Item grow />
+    <Stack.Item>
+      <Stack>
+        <Stack.Item grow />
 
-      <Stack.Item className={className}>Off</Stack.Item>
+        <Stack.Item className={className}>Off</Stack.Item>
 
-      <Stack.Item className={className}>Low</Stack.Item>
+        <Stack.Item className={className}>Low</Stack.Item>
 
-      <Stack.Item className={className}>Medium</Stack.Item>
+        <Stack.Item className={className}>Med</Stack.Item>
 
-      <Stack.Item className={className}>High</Stack.Item>
-    </Stack>
+        <Stack.Item className={className}>High</Stack.Item>
+      </Stack>
+    </Stack.Item>
   );
 }
 
 type PriorityButtonsProps = {
   createSetPriority: CreateSetPriority;
   isOverflow: boolean;
-  priority: JobPriority;
+  priority: JobPriority | null;
 };
 
 function PriorityButtons(props: PriorityButtonsProps) {
   const { createSetPriority, isOverflow, priority } = props;
 
   return (
-    <Box // SKYRAT EDIT - Originally a stack
-      style={{
-        alignItems: 'center',
-        height: '100%',
-        justifyContent: 'flex-end',
-        paddingLeft: '0.3em',
-        paddingTop: '0.12em', // SKYRAT EDIT ADDITION - Add some vertical padding
-        paddingBottom: '0.12em', // SKYRAT EDIT ADDITION - To make this look nicer
-      }}
+    <Stack
+      className="options"
+      pl={'0.3em'}
+      pt={'0.2em'}
+      justify="flex-end"
+      height="stretch"
     >
       {isOverflow ? (
         <>
@@ -174,33 +180,56 @@ function PriorityButtons(props: PriorityButtonsProps) {
           />
         </>
       )}
-    </Box> // SKYRAT EDIT - Originally a stack
+    </Stack>
   );
 }
 
 type JobRowProps = {
   className?: string;
   job: Job;
+  isTop: boolean;
+  isOnly: boolean;
   name: string;
+  dragging: number;
+  setDragging: (dragging: number) => void;
+  hoveringOver: string;
+  setHoveringOver: (hoveringOver: string) => void;
 };
 
 function JobRow(props: JobRowProps) {
-  const { data, act } = useBackend<PreferencesMenuData>(); // SKYRAT EDIT CHANGE - Adds act param
-  const { className, job, name } = props;
+  const { act, data } = useBackend<PreferencesMenuData>();
+  const {
+    className,
+    job,
+    name,
+    isTop,
+    isOnly,
+    dragging,
+    setDragging,
+    hoveringOver,
+    setHoveringOver,
+  } = props;
+  const {
+    character_profiles,
+    overflow_role,
+    job_preferences,
+    job_required_experience,
+    job_days_left,
+  } = data;
 
-  const isOverflow = data.overflow_role === name;
-  const priority = data.job_preferences[name];
+  const isOverflow = overflow_role === name;
+  const job_preference = job_preferences.find((pref) => pref.job === name);
+  const priority = job_preference?.priority ?? null;
+  const assignedProfileSlot = job_preference?.assigned_profile_slot ?? null;
 
   const createSetPriority = createCreateSetPriorityFromName(name);
 
-  const experienceNeeded = data.job_required_experience?.[name];
-  const daysLeft = data.job_days_left ? data.job_days_left[name] : 0;
+  const experienceNeeded = job_required_experience?.[name];
+  const daysLeft = job_days_left ? job_days_left[name] : 0;
 
-  // SKYRAT EDIT ADDITION
-  const alt_title_selected = data.job_alt_titles[name]
-    ? data.job_alt_titles[name]
-    : name;
-  // SKYRAT EDIT END
+  // BUBBER EDIT ADDITION - ALTERNATIVE_JOB_TITLES
+  const alt_title_selected = data.job_alt_titles?.[name] ?? name;
+  // BUBBER EDIT END
 
   let rightSide: ReactNode;
 
@@ -209,41 +238,41 @@ function JobRow(props: JobRowProps) {
     const hoursNeeded = Math.ceil(required_playtime / 60);
 
     rightSide = (
-      <Stack align="center" height="100%" pr={1}>
-        <Stack.Item grow textAlign="right">
+      <Stack pr={1}>
+        <Stack.Item grow textAlign="right" height="stretch">
           <b>{hoursNeeded}h</b> as {experience_type}
         </Stack.Item>
       </Stack>
     );
   } else if (daysLeft > 0) {
     rightSide = (
-      <Stack align="center" height="100%" pr={1}>
-        <Stack.Item grow textAlign="right">
+      <Stack pr={1}>
+        <Stack.Item grow textAlign="right" height="stretch">
           <b>{daysLeft}</b> day{daysLeft === 1 ? '' : 's'} left
         </Stack.Item>
       </Stack>
     );
   } else if (data.job_bans && data.job_bans.indexOf(name) !== -1) {
     rightSide = (
-      <Stack align="center" height="100%" pr={1}>
-        <Stack.Item grow textAlign="right">
+      <Stack pr={1}>
+        <Stack.Item grow textAlign="right" height="stretch">
           <b>Banned</b>
         </Stack.Item>
       </Stack>
     );
-    // SKYRAT EDIT START
+    // BUBBER EDIT ADDITION BEGIN - Species restricted jobs
   } else if (
     data.species_restricted_jobs &&
     data.species_restricted_jobs.indexOf(name) !== -1
   ) {
     rightSide = (
-      <Stack align="center" height="100%" pr={1}>
-        <Stack.Item grow textAlign="right">
+      <Stack pr={1}>
+        <Stack.Item grow textAlign="right" height="stretch">
           <b>Bad species</b>
         </Stack.Item>
       </Stack>
     );
-    // SKYRAT EDIT END
+    // BUBBER EDIT ADDITION END
   } else {
     rightSide = (
       <PriorityButtons
@@ -255,36 +284,90 @@ function JobRow(props: JobRowProps) {
   }
 
   return (
-    <Stack.Item className={className} height="100%" mt={0}>
-      <Stack fill align="center">
-        <Tooltip content={job.description} position="bottom-start">
-          <Stack.Item
-            className="job-name"
-            width="50%"
-            style={{
-              paddingLeft: '0.3em',
-            }}
-          >
-            {
-              // SKYRAT EDIT CHANGE START - ORIGINAL: {name}
-              !job.alt_titles ? (
-                name
+    <Stack.Item
+      className={className}
+      mt={0}
+      style={{
+        borderTop: `${isTop ? null : '0px'}`,
+      }}
+    >
+      <Stack align="top" g={0}>
+        <Stack.Item grow={1.5}>
+          <Stack vertical g={0} fill>
+            <Stack.Item
+              className={`job-name${hoveringOver === name ? ' hovered' : ''}`}
+              pl={'0.3em'}
+              pt={'0.2em'}
+              pb={isOnly ? '0.2em' : 0}
+              grow
+              onDragOver={(e) => {
+                e.preventDefault();
+              }}
+              onDragEnter={(e) => {
+                setHoveringOver(name);
+              }}
+              //   onDragLeave={(e) => {
+              //     setHoveringOver('');
+              //   }}
+              onDrop={() => {
+                act('set_job_to_profile', {
+                  job: name,
+                  profile: dragging + 1, // +1 because UI is 0-indexed but DM is 1-indexed
+                });
+                setDragging(-1);
+                setHoveringOver('');
+              }}
+            >
+              {/* BUBBER EDIT CHANGE BEGIN - ALTERNATIVE_JOB_TITLES - ORIGINAL:
+              <Tooltip content={job.description} position="bottom-start">
+                {name}
+              </Tooltip> */}
+              {!job.alt_titles ? (
+                <Tooltip content={job.description} position="bottom-start">
+                  {name}
+                </Tooltip>
               ) : (
-                <Dropdown
-                  width="100%"
-                  options={job.alt_titles}
-                  selected={alt_title_selected}
-                  onSelected={(value) =>
-                    act('set_job_title', { job: name, new_title: value })
-                  }
-                />
-              )
-              // SKYRAT EDIT CHANGE END
-            }
-          </Stack.Item>
-        </Tooltip>
-
-        <Stack.Item grow className="options">
+                <Tooltip content={job.description} position="bottom-start">
+                  <Dropdown
+                    width="100%"
+                    options={job.alt_titles}
+                    selected={alt_title_selected}
+                    onSelected={(value) =>
+                      act('set_job_title', { job: name, new_title: value })
+                    }
+                  />
+                </Tooltip>
+              )}
+              {/* BUBBER EDIT CHANGE END */}
+            </Stack.Item>
+            {assignedProfileSlot !== null && (
+              <Stack.Item grow>
+                <Stack align="center">
+                  <Stack.Item
+                    ml={1}
+                    color="var(--color-secondary)"
+                    fontSize="0.95em"
+                  >
+                    ↳ <i>{character_profiles[assignedProfileSlot - 1]}</i>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      icon="times"
+                      color="transparent"
+                      onClick={() => {
+                        act('set_job_to_profile', {
+                          job: name,
+                          profile: -1,
+                        });
+                      }}
+                    />
+                  </Stack.Item>
+                </Stack>
+              </Stack.Item>
+            )}
+          </Stack>
+        </Stack.Item>
+        <Stack.Item grow height="stretch">
           {rightSide}
         </Stack.Item>
       </Stack>
@@ -294,10 +377,14 @@ function JobRow(props: JobRowProps) {
 
 type DepartmentProps = {
   department: string;
+  dragging: number;
+  setDragging: (dragging: number) => void;
+  hoveringOver: string;
+  setHoveringOver: (hoveringOver: string) => void;
 } & PropsWithChildren;
 
 function Department(props: DepartmentProps) {
-  const { children, department: name } = props;
+  const { children, department: name, dragging, setDragging } = props;
   const className = `PreferencesMenu__Jobs__departments--${name}`;
 
   const data = useServerPrefs();
@@ -320,25 +407,34 @@ function Department(props: DepartmentProps) {
   );
 
   return (
-    <Box>
+    <Stack.Item
+      style={{ '--department-color': department.color } as React.CSSProperties}
+    >
       <Stack fill vertical g={0}>
-        {jobsForDepartment.map(([name, job]) => {
+        {jobsForDepartment.map(([name, job], index) => {
           return (
-            <JobRow /* SKYRAT EDIT START - Fixing alt titles */
+            <JobRow
               className={classes([
+                'PreferencesMenu__Jobs__departments',
                 className,
                 name === department.head && 'head',
               ])}
               key={name}
               job={job}
               name={name}
-            /> /* SKYRAT EDIT END */
+              isTop={index === 0}
+              isOnly={jobsForDepartment.length === 1}
+              dragging={dragging}
+              setDragging={setDragging}
+              hoveringOver={props.hoveringOver}
+              setHoveringOver={props.setHoveringOver}
+            />
           );
         })}
       </Stack>
 
       {children}
-    </Box>
+    </Stack.Item>
   );
 }
 
@@ -377,163 +473,172 @@ function JoblessRoleDropdown(props) {
   );
 }
 
-// export function JobsPage() {
-//   return (
-//     <>
-//       <JoblessRoleDropdown />
-//       <Stack vertical fill>
-//         <Gap amount={22} />
+type CharacterSectionsProps = {
+  dragging: number;
+  setDragging: (dragging: number) => void;
+  setHoveringOver: (hoveringOver: string) => void;
+};
 
-//         <Stack.Item mt={15}>
-//           {/* BUBBER EDIT CHANGE */}
-//           {/*
-//           <Stack fill g={1} className="PreferencesMenu__Jobs">
-//             <Stack.Item mr={1}>
-//               <Gap amount={36} />
+function CharacterSection(props: CharacterSectionsProps) {
+  const { dragging, setDragging, setHoveringOver } = props;
+  const { data } = useBackend<PreferencesMenuData>();
+  const { character_profiles } = data;
 
-//               <PriorityHeaders />
+  const [characterFloating, setCharacterFloating] = useState(false);
 
-//               <Department department="Engineering">
-//                 <Gap amount={6} />
-//               </Department>
-
-//               <Department department="Science">
-//                 <Gap amount={6} />
-//               </Department>
-
-//               <Department department="Silicon">
-//                 <Gap amount={12} />
-//               </Department>
-
-//               <Department department="Assistant" />
-//             </Stack.Item>
-
-//             <Stack.Item mr={1}>
-//               <PriorityHeaders />
-
-//               <Department department="Captain">
-//                 <Gap amount={6} />
-//               </Department>
-
-//               <Department department="Service">
-//                 <Gap amount={6} />
-//               </Department>
-
-//               <Department department="Cargo" />
-//             </Stack.Item>
-
-//             <Stack.Item>
-//               <Stack vertical>
-//                 <PriorityHeaders />
-//                 <Department department="Engineering" />
-//                 <Department department="Science" />
-//                 <Department department="Silicon" />
-//                 <Department department="Assistant" />
-//               </Stack>
-//             </Stack.Item>
-//             <Stack.Item mt={-5.9}>
-//               <Stack vertical>
-//                 <PriorityHeaders />
-//                 <Department department="Captain" />
-//                 <Department department="Service" />
-//                 <Department department="Cargo" />
-//               </Stack>
-//             </Stack.Item>
-//             <Stack.Item>
-//               <Stack vertical>
-//                 <PriorityHeaders />
-//                 <Department department="Security" />
-//                 <Department department="Medical" />
-//               </Stack>
-//             </Stack.Item>
-//           </Stack>
-//           */}
-//           <Stack fill className="PreferencesMenu__Jobs">
-//             <Stack.Item mr={1}>
-//               <Gap amount={45} />
-
-//               <PriorityHeaders />
-
-//               <Department department="Engineering">
-//                 <Gap amount={11} />
-//               </Department>
-
-//               <Department department="Security">
-//                 <Gap amount={11} />
-//               </Department>
-
-//               <Department department="Silicon">
-//                 <Gap amount={11} />
-//               </Department>
-
-//               <Department department="Assistant" />
-//             </Stack.Item>
-
-//             <Stack.Item mr={1}>
-//               <Gap amount={45} />
-//               <PriorityHeaders />
-
-//               <Department department="Captain">
-//                 <Gap amount={6} />
-//               </Department>
-
-//               <Department department="Service">
-//                 <Gap amount={6} />
-//               </Department>
-//             </Stack.Item>
-
-//             <Stack.Item>
-//               <Gap amount={45} />
-
-//               <PriorityHeaders />
-
-//               <Department department="Science">
-//                 <Gap amount={6} />
-//               </Department>
-
-//               <Department department="Medical">
-//                 <Gap amount={6} />
-//               </Department>
-
-//               <Department department="Cargo" />
-//             </Stack.Item>
-//           </Stack>
-//           {/* BUBBER EDIT CHANGE END */}
-//         </Stack.Item>
-//       </Stack>
-//     </>
-//   );
-// }
+  return (
+    <Floating
+      placement="bottom-end"
+      content={
+        <Box
+          className={classes([
+            'PreferencesMenu__Jobs__characterMenu',
+            dragging !== -1 && 'PreferencesMenu__Jobs__characterMenu--hidden',
+          ])}
+          width="75%"
+        >
+          <Stack vertical p={1}>
+            <Stack.Item textAlign="center">
+              Drag a character to a job to load that character if you are
+              selected for that job.
+            </Stack.Item>
+            <Stack.Item>
+              <Stack wrap>
+                {character_profiles.map((profile, index) => {
+                  if (!profile) return null;
+                  return (
+                    <Stack.Item key={index}>
+                      <Button
+                        draggable
+                        color="transparent"
+                        onDragStart={() => {
+                          // Deferred so the browser captures the drag image
+                          // before the popup goes invisible
+                          setTimeout(() => setDragging(index), 0);
+                        }}
+                        onDragEnd={() => {
+                          setDragging(-1);
+                          setHoveringOver('');
+                        }}
+                      >
+                        {profile}
+                      </Button>
+                    </Stack.Item>
+                  );
+                })}
+              </Stack>
+            </Stack.Item>
+          </Stack>
+        </Box>
+      }
+    >
+      <Button
+        onClick={() => setCharacterFloating(!characterFloating)}
+        icon={'angle-down'}
+      >
+        Show Characters
+      </Button>
+    </Floating>
+  );
+}
 
 export function JobsPage() {
+  const [dragging, setDragging] = useState(-1);
+  const [hoveringOver, setHoveringOver] = useState('');
+
   return (
     <>
-      <JoblessRoleDropdown />
+      <Stack>
+        <Stack.Item grow>
+          <CharacterSection
+            dragging={dragging}
+            setDragging={setDragging}
+            setHoveringOver={setHoveringOver}
+          />
+        </Stack.Item>
+        <Stack.Item>
+          <JoblessRoleDropdown />
+        </Stack.Item>
+      </Stack>
       <Stack vertical fill>
         <Stack.Item mt={15}>
           <Stack fill g={1} className="PreferencesMenu__Jobs">
             <Stack.Item>
               <Stack vertical>
                 <PriorityHeaders />
-                <Department department="Engineering" />
-                <Department department="Science" />
-                <Department department="Silicon" />
-                <Department department="Assistant" />
+                <Department
+                  department="Engineering"
+                  dragging={dragging}
+                  setDragging={setDragging}
+                  hoveringOver={hoveringOver}
+                  setHoveringOver={setHoveringOver}
+                />
+                <Department
+                  department="Science"
+                  dragging={dragging}
+                  setDragging={setDragging}
+                  hoveringOver={hoveringOver}
+                  setHoveringOver={setHoveringOver}
+                />
+                <Department
+                  department="Silicon"
+                  dragging={dragging}
+                  setDragging={setDragging}
+                  hoveringOver={hoveringOver}
+                  setHoveringOver={setHoveringOver}
+                />
+                <Department
+                  department="Assistant"
+                  dragging={dragging}
+                  setDragging={setDragging}
+                  hoveringOver={hoveringOver}
+                  setHoveringOver={setHoveringOver}
+                />
               </Stack>
             </Stack.Item>
             <Stack.Item mt={-5.9}>
               <Stack vertical>
                 <PriorityHeaders />
-                <Department department="Captain" />
-                <Department department="Service" />
-                <Department department="Cargo" />
+                <Department
+                  department="Captain"
+                  dragging={dragging}
+                  setDragging={setDragging}
+                  hoveringOver={hoveringOver}
+                  setHoveringOver={setHoveringOver}
+                />
+                <Department
+                  department="Service"
+                  dragging={dragging}
+                  setDragging={setDragging}
+                  hoveringOver={hoveringOver}
+                  setHoveringOver={setHoveringOver}
+                />
+                <Department
+                  department="Cargo"
+                  dragging={dragging}
+                  setDragging={setDragging}
+                  hoveringOver={hoveringOver}
+                  setHoveringOver={setHoveringOver}
+                />
               </Stack>
             </Stack.Item>
             <Stack.Item>
               <Stack vertical>
                 <PriorityHeaders />
-                <Department department="Security" />
-                <Department department="Medical" />
+                <Department
+                  department="Security"
+                  dragging={dragging}
+                  setDragging={setDragging}
+                  hoveringOver={hoveringOver}
+                  setHoveringOver={setHoveringOver}
+                />
+                <Department
+                  department="Medical"
+                  dragging={dragging}
+                  setDragging={setDragging}
+                  hoveringOver={hoveringOver}
+                  setHoveringOver={setHoveringOver}
+                />
               </Stack>
             </Stack.Item>
           </Stack>

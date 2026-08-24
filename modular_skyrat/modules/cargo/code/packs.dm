@@ -163,9 +163,9 @@
 	cost = CARGO_CRATE_VALUE * 5
 	access = ACCESS_MEDICAL
 	contains = list(
-		/obj/item/weaponcell/medical/brute,
-		/obj/item/weaponcell/medical/burn,
-		/obj/item/weaponcell/medical/toxin,
+		/obj/item/weaponcell/medical/tier_1/brute,
+		/obj/item/weaponcell/medical/tier_1/burn,
+		/obj/item/weaponcell/medical/tier_1/toxin,
 	)
 	crate_name = "medicell replacement crate"
 

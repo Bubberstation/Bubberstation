@@ -12,7 +12,6 @@
 		)
 	ai_controller = /datum/ai_controller/basic_controller/dog/corgi
 	gender = MALE
-	can_be_held = FALSE
 	gold_core_spawnable = FRIENDLY_SPAWN
 	///can this mob breed?
 	var/can_breed = TRUE
@@ -29,6 +28,7 @@
 		can_breed_with = typecacheof(list(/mob/living/basic/pet/dog/corgi)),\
 		baby_paths = list(/mob/living/basic/pet/dog/corgi/puppy),\
 	) // no mixed breed puppies sadly
+	RemoveElement(/datum/element/can_be_held)
 
 /mob/living/basic/pet/dog/markus/treat_message(message)
 	if(client)
@@ -70,7 +70,6 @@
 	icon_dead = "borgi_dead"
 	gender = NEUTER
 	unique_pet = TRUE
-	can_be_held = FALSE
 	maxHealth = 150
 	health = 150
 	butcher_results = list(
@@ -116,6 +115,8 @@
 	RegisterSignal(src, COMSIG_ATOM_HITBY, PROC_REF(on_hitby))
 	// For traitor objectives
 	RegisterSignal(src, COMSIG_ATOM_EMAG_ACT, PROC_REF(on_emag_act))
+
+	RemoveElement(/datum/element/can_be_held)
 
 /**
  * Try to harass a target, considering if they are a friend.
@@ -350,7 +351,6 @@
 	icon_dead = "pitbull_dead"
 	icon_living = "pitbull"
 	ai_controller = /datum/ai_controller/basic_controller/pitbull
-	can_be_held = FALSE //He's too big.
 
 /datum/ai_controller/basic_controller/pitbull
 	blackboard = list(
@@ -378,4 +378,4 @@
 	AddElement(/datum/element/tiny_mob_hunter, MOB_SIZE_SMALL) //He eats anything that he sees as a toddler.
 	AddElement(/datum/element/footstep, footstep_type = FOOTSTEP_MOB_CLAW)
 
-
+	RemoveElement(/datum/element/can_be_held)

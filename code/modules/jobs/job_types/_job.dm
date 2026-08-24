@@ -1,4 +1,5 @@
 /datum/job
+	abstract_type = /datum/job
 	/// The name of the job , used for preferences, bans and more. Make sure you know what you're doing before changing this.
 	var/title = "NOPE"
 
@@ -482,7 +483,7 @@
 		pda.update_pda_prefs(equipped_client)
 		//BUBBER EDIT BEGIN
 		var/obj/item/modular_computer/pda/synth/brainpooter = locate() in equipped.get_all_contents()
-		brainpooter.update_user_settings(equipped_client)
+		brainpooter?.update_user_settings(equipped_client)
 		//BUBBER EDIT END
 /datum/outfit/job/get_chameleon_disguise_info()
 	var/list/types = ..()
@@ -573,7 +574,7 @@
 	var/mob/living/spawn_instance
 	if(ispath(spawn_type, /mob/living/silicon/ai))
 		// This is unfortunately necessary because of snowflake AI init code. To be refactored.
-		spawn_instance = new spawn_type(get_turf(spawn_point), null, player_client.mob)
+		spawn_instance = new spawn_type(get_turf(spawn_point), null, player_client.mob, TRUE)
 	else
 		spawn_instance = spawn_point.JoinPlayerHere(spawn_type, TRUE)
 	spawn_instance.apply_prefs_job(player_client, src)
@@ -725,3 +726,10 @@
 		CRASH("[src.type] has no job icon state.")
 
 	return icon('icons/mob/huds/hud.dmi', icon_state)
+
+/datum/job/proc/display_order_with_department()
+	var/datum/job_department/main_department = departments_list?[1]
+	if(!main_department)
+		main_department = /datum/job_department/undefined
+
+	return display_order + (main_department::display_order * 1000)

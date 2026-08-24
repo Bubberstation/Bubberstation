@@ -260,11 +260,7 @@
 	pixel_x = 0
 	pixel_y = 0
 
-/obj/machinery/atmospherics/components/binary/circulator/verb/circulator_flip()
-	set name = "Flip"
-	set category = "Object"
-	set src in oview(1)
-
+GAME_VERB_SRC(/obj/machinery/atmospherics/components/binary/circulator, circulator_flip, oview(1), "Flip", "Object")
 	if(!ishuman(usr))
 		return
 	flipped = !flipped

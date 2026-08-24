@@ -1,7 +1,6 @@
-#define OVERSIZED_SPEED_SLOWDOWN 0.5
+#define OVERSIZED_SPEED_SLOWDOWN 0.25
+/// 50% hungrier
 #define OVERSIZED_HUNGER_MOD 1.5
-
-// Before making any changes to oversized, please see the module's readme.md file
 
 /datum/quirk/oversized
 	name = "Oversized"
@@ -18,10 +17,7 @@
 
 /datum/quirk/oversized/add(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	human_holder.dna.features["body_size"] = 2
-	human_holder.maptext_height = 32 * human_holder.dna.features["body_size"] //Adjust runechat height
-	human_holder.dna.update_body_size()
-	human_holder.mob_size = MOB_SIZE_LARGE
+	human_holder.update_transform(2 * RESIZE_DEFAULT_SIZE / human_holder.current_size)
 	human_holder.maxHealth = HUMAN_MAXHEALTH * OVERSIZED_HEALTH_BUFF
 	human_holder.health += ((HUMAN_MAXHEALTH * OVERSIZED_HEALTH_BUFF) - HUMAN_MAXHEALTH)
 
@@ -32,21 +28,12 @@
 		on_gain_limb(src, bodypart, special = FALSE)
 
 	human_holder.blood_volume_normal = BLOOD_VOLUME_OVERSIZED
-	human_holder.physiology.hunger_mod *= OVERSIZED_HUNGER_MOD //50% hungrier
+	human_holder.physiology.hunger_mod *= OVERSIZED_HUNGER_MOD
 	human_holder.add_movespeed_modifier(/datum/movespeed_modifier/oversized)
-	var/obj/item/organ/stomach/old_stomach = human_holder.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(old_stomach) || old_stomach.organ_flags & ORGAN_ROBOTIC || old_stomach.organ_traits & TRAIT_NOHUNGER)
-		return
-	old_stomach.Remove(human_holder, special = TRUE)
-	qdel(old_stomach)
-	if(issynthetic(human_holder))
-		var/obj/item/organ/stomach/synth/oversized/new_synth_stomach = new //YOU LOOK HUGE, THAT MUST MEAN YOU HAVE HUGE reactor! RIP AND TEAR YOUR HUGE reactor!
-		new_synth_stomach.Insert(human_holder, special = TRUE)
-		to_chat(human_holder, span_warning("You feel your massive engine rumble!"))
-	else
-		var/obj/item/organ/stomach/oversized/new_stomach = new //YOU LOOK HUGE, THAT MUST MEAN YOU HAVE HUGE GUTS! RIP AND TEAR YOUR HUGE GUTS!
-		new_stomach.Insert(human_holder, special = TRUE)
-		to_chat(human_holder, span_warning("You feel your massive stomach rumble!"))
+	var/obj/item/organ/stomach/stomach = human_holder.get_organ_slot(ORGAN_SLOT_STOMACH)
+	if(stomach)
+		stomach.maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD
+		stomach.metabolism_efficiency = 0.07
 
 	// Grant the self-view action
 	self_view_action = new(human_holder)
@@ -54,28 +41,24 @@
 
 /datum/quirk/oversized/remove()
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	human_holder.dna.features["body_size"] = human_holder?.client?.prefs ?human_holder?.client?.prefs?.read_preference(/datum/preference/numeric/body_size) : 1
-	human_holder.maptext_height = 32 * human_holder.dna.features["body_size"]
-	human_holder.dna.update_body_size()
-	human_holder.mob_size = MOB_SIZE_HUMAN
+	var/body_size = human_holder.client?.prefs?.read_preference(/datum/preference/numeric/body_size)
+	if(body_size && body_size != RESIZE_DEFAULT_SIZE)
+		human_holder.update_transform(RESIZE_DEFAULT_SIZE / body_size)
+	else
+		human_holder.update_transform(RESIZE_DEFAULT_SIZE / human_holder.current_size)
 	human_holder.maxHealth = HUMAN_MAXHEALTH
 	human_holder.health -= ((HUMAN_MAXHEALTH * OVERSIZED_HEALTH_BUFF) - HUMAN_MAXHEALTH)
 
-	var/obj/item/bodypart/arm/left/left_arm = human_holder.get_bodypart(BODY_ZONE_L_ARM)
-	if(left_arm)
-		left_arm.unarmed_damage_high = initial(left_arm.unarmed_damage_high)
+	var/obj/item/organ/stomach/stomach = human_holder.get_organ_slot(ORGAN_SLOT_STOMACH)
+	if(stomach)
+		stomach.maxHealth = STANDARD_ORGAN_THRESHOLD / 1.5
+		stomach.metabolism_efficiency = initial(stomach.metabolism_efficiency)
 
-	var/obj/item/bodypart/arm/right/right_arm = human_holder.get_bodypart(BODY_ZONE_R_ARM)
-	if(right_arm)
-		right_arm.unarmed_damage_high = initial(right_arm.unarmed_damage_high)
+	for(var/obj/item/bodypart/arm/arm in human_holder.get_bodyparts())
+		arm.unarmed_damage_high = initial(arm.unarmed_damage_high)
 
-	var/obj/item/bodypart/leg/left_leg = human_holder.get_bodypart(BODY_ZONE_L_LEG)
-	if (left_leg)
-		left_leg.unarmed_effectiveness = initial(left_leg.unarmed_effectiveness)
-
-	var/obj/item/bodypart/leg/right_leg = human_holder.get_bodypart(BODY_ZONE_R_LEG)
-	if (right_leg)
-		right_leg.unarmed_effectiveness = initial(right_leg.unarmed_effectiveness)
+	for(var/obj/item/bodypart/leg/leg in human_holder.get_bodyparts())
+		leg.unarmed_effectiveness = initial(leg.unarmed_effectiveness)
 
 	for(var/obj/item/bodypart/bodypart as anything in human_holder.bodyparts)
 		bodypart.name = replacetext(bodypart.name, "oversized ", "")
@@ -102,9 +85,7 @@
 		var/obj/item/bodypart/arm/new_arm = gained
 		new_arm.unarmed_damage_high = initial(new_arm.unarmed_damage_high) + OVERSIZED_HARM_DAMAGE_BONUS
 
-	// Before this, we never actually did anything with Oversized legs.
 	// This brings their unarmed_effectiveness up to 20 from 15, which is on par with mushroom legs.
-	// Functionally, this makes their prone kicks more accurate and increases the chance of extending prone knockdown... but only while the victim is already prone.
 	else if(istype(gained, /obj/item/bodypart/leg))
 		var/obj/item/bodypart/leg/new_leg = gained
 		new_leg.unarmed_effectiveness = initial(new_leg.unarmed_effectiveness) + OVERSIZED_KICK_EFFECTIVENESS_BONUS
@@ -114,7 +95,5 @@
 /datum/movespeed_modifier/oversized
 	multiplicative_slowdown = OVERSIZED_SPEED_SLOWDOWN
 
-
 #undef OVERSIZED_HUNGER_MOD
 #undef OVERSIZED_SPEED_SLOWDOWN
-

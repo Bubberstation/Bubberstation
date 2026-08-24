@@ -13,7 +13,6 @@
 		/obj/item/food/meat/slab = 1,
 	)
 	collar_icon_state = null
-	can_be_held = TRUE
 	worn_slot_flags = ITEM_SLOT_HEAD
 	held_state = "fennec"
 	ai_controller = /datum/ai_controller/basic_controller/cat/fennec

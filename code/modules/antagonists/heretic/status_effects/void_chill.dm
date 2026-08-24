@@ -77,7 +77,7 @@
 /datum/status_effect/void_chill/proc/adjust_stacks(new_stacks)
 	stacks = max(0, min(stack_limit, stacks + new_stacks))
 	update_movespeed(stacks)
-	if(stacks >= 5)
+	if(stacks >= 5 && !owner.has_reagent(/datum/reagent/medicine/leporazine)) // BUBBER EDIT ADDITION - leporazine makes it managable
 		ADD_TRAIT(owner, TRAIT_HYPOTHERMIC, TRAIT_STATUS_EFFECT(id))
 
 ///Updates the movespeed of owner based on the amount of stacks of the debuff
@@ -108,11 +108,11 @@
 	if(chill_effect.stacks >= 5)
 		overlay_state = "void_chill_oh_fuck"
 	return ..()
-
-/atom/movable/screen/alert/status_effect/void_chill/update_desc(updates)
+// BUBBER EDIT REMOVAL - Static desc
+/*/atom/movable/screen/alert/status_effect/void_chill/update_desc(updates)
 	. = ..()
 	if(!istype(attached_effect, /datum/status_effect/void_chill))
 		return
 	var/datum/status_effect/void_chill/chill_effect = attached_effect
 	if(chill_effect.stacks >= 5)
-		desc = "You had your chance to run, now it's too late. You may never feel warmth again..."
+		desc = "You had your chance to run, now it's too late. You may never feel warmth again..."*/

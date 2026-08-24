@@ -293,6 +293,10 @@
 		path = "/obj/item/bodypart/[part_type]"
 	else
 		path = "/obj/item/bodypart/[part_type]/[species]"
+//BUBBER ADDITION BEGIN - Mutant limb types.
+		if(!text2path(path) && part_type)
+			path = "/obj/item/bodypart/[part_type]/mutant/[species]"
+//BUBBER ADDITION END
 	return text2path(path)
 
 /obj/machinery/limbgrower/RefreshParts()
@@ -345,4 +349,4 @@
 	for(var/id in SSresearch.techweb_designs)
 		var/datum/design/found_design = SSresearch.techweb_design_by_id(id)
 		if((found_design.build_type & LIMBGROWER) && !(RND_CATEGORY_HACKED in found_design.category))
-			imported_designs |= found_design.id
+			imported_designs[found_design.id] = TRUE

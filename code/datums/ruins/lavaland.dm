@@ -15,6 +15,7 @@
 	description = "Seemingly plucked from a tropical destination, this beach is calm and cool, with the salty waves roaring softly in the background. \
 	Comes with a rustic wooden bar and suicidal bartender."
 	suffix = "lavaland_biodome_beach.dmm"
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/biodome/winter
 	name = "Lava-Ruin Biodome Winter"
@@ -44,6 +45,7 @@
 	suffix = "lavaland_surface_cube.dmm"
 	cost = 10
 	allow_duplicates = FALSE
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/seed_vault
 	name = "Lava-Ruin Seed Vault"
@@ -53,6 +55,7 @@
 	suffix = "lavaland_surface_seed_vault.dmm"
 	cost = 10
 	allow_duplicates = FALSE
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/ash_walker
 	name = "Lava-Ruin Ash Walker Nest"
@@ -63,6 +66,7 @@
 	suffix = "lavaland_surface_ash_walker1_skyrat.dmm" // SKYRAT EDIT - ORIGINAL: lavaland_surface_ash_walker1.dmm
 	cost = 1000 //SKYRAT EDIT: Original: 20
 	allow_duplicates = FALSE
+	enclosed_for_terrain = TRUE
 //SKYRAT EDIT REMOVAL BEGIN - MAPPING
 /*
 /datum/map_template/ruin/lavaland/syndicate_base
@@ -91,6 +95,7 @@
 	cost = 5
 	suffix = "lavaland_surface_gaia.dmm"
 	allow_duplicates = FALSE
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/sin
 	cost = 10
@@ -128,6 +133,7 @@
 	suffix = "lavaland_surface_sloth.dmm"
 	// Generates nothing but atmos runtimes and salt
 	cost = 0
+	terrain_padding = 2
 
 /datum/map_template/ruin/lavaland/ratvar
 	name = "Lava-Ruin Dead God"
@@ -144,6 +150,7 @@
 	suffix = "lavaland_surface_hierophant.dmm"
 	always_place = TRUE
 	allow_duplicates = FALSE
+	terrain_padding = 2
 
 /datum/map_template/ruin/lavaland/blood_drunk_miner
 	name = "Lava-Ruin Blood-Drunk Miner"
@@ -152,14 +159,17 @@
 	suffix = "lavaland_surface_blooddrunk1.dmm"
 	cost = 0
 	allow_duplicates = FALSE //will only spawn one variant of the ruin
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/blood_drunk_miner/guidance
 	name = "Lava-Ruin Blood-Drunk Miner (Guidance)"
 	suffix = "lavaland_surface_blooddrunk2.dmm"
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/blood_drunk_miner/hunter
 	name = "Lava-Ruin Blood-Drunk Miner (Hunter)"
 	suffix = "lavaland_surface_blooddrunk3.dmm"
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/blood_drunk_miner/random
 	name = "Lava-Ruin Blood-Drunk Miner (Random)"
@@ -176,6 +186,7 @@
 	description = "Turns out that keeping your abductees unconscious is really important. Who knew?"
 	suffix = "lavaland_surface_ufo_crash.dmm"
 	cost = 5
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/xeno_nest
 	name = "Lava-Ruin Xenomorph Nest"
@@ -184,6 +195,7 @@
 	Quality memes."
 	suffix = "lavaland_surface_xeno_nest.dmm"
 	cost = 20
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/fountain
 	name = "Lava-Ruin Fountain Hall"
@@ -231,6 +243,7 @@
 	suffix = "lavaland_surface_random_ripley.dmm"
 	allow_duplicates = FALSE
 	cost = 5
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/dark_wizards
 	name = "Lava-Ruin Dark Wizard Altar"
@@ -238,6 +251,7 @@
 	description = "A ruin with dark wizards. What secret do they guard?"
 	suffix = "lavaland_surface_wizard.dmm"
 	cost = 5
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/strong_stone
 	name = "Lava-Ruin Strong Stone"
@@ -270,6 +284,7 @@
 	suffix = "lavaland_surface_elephant_graveyard.dmm"
 	allow_duplicates = FALSE
 	cost = 10
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/bileworm_nest
 	name = "Lava-Ruin Bileworm Nest"
@@ -278,6 +293,7 @@
 	cost = 5
 	suffix = "lavaland_surface_bileworm_nest.dmm"
 	allow_duplicates = FALSE
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/lava_phonebooth
 	name = "Lava-Ruin Phonebooth"
@@ -327,6 +343,8 @@
 	description = "Not every shuttle makes it back to CentCom."
 	suffix = "lavaland_surface_shuttle_wreckage.dmm"
 	allow_duplicates = FALSE
+	enclosed_for_terrain = TRUE
+
 
 /datum/map_template/ruin/lavaland/crashsite
 	name = "Lava-Ruin Pod Crashsite"
@@ -334,6 +352,7 @@
 	description = "They launched too early"
 	suffix = "lavaland_surface_crashsite.dmm"
 	allow_duplicates = FALSE
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/lavaland/shoe_facotry
 	name = "Lava-Ruin Shoe Factory"

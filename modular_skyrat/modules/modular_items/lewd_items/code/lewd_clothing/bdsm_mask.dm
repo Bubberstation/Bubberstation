@@ -257,7 +257,7 @@
 
 // To check if player already have this mask on and trying to change mode
 /obj/item/clothing/mask/gas/bdsm_mask/proc/check(mob/living/carbon/user)
-	if(!istype(user) || src == user.wear_mask)
+	if(!istype(user) || src == user.get_item_by_slot(ITEM_SLOT_MASK))
 		to_chat(user, span_notice("You can't reach the air filter switch!"))
 		return
 	toggle(user)
@@ -271,7 +271,7 @@
 	update_mob_action_buttonss()
 	update_icon()
 	if(mask_on)
-		if(src == user.wear_mask && user.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy))
+		if(istype(user) && src == user.get_item_by_slot(ITEM_SLOT_MASK) && user.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy))
 			START_PROCESSING(SSobj, src)
 			time_to_choke_left = time_to_choke
 	else
@@ -279,7 +279,7 @@
 
 /obj/item/clothing/mask/gas/bdsm_mask/proc/check_gag(user)
 	var/mob/living/carbon/affected_carbon = user
-	if(src == affected_carbon.wear_mask)
+	if(istype(src) && src == affected_carbon.get_item_by_slot(ITEM_SLOT_MASK))
 		to_chat(user, span_notice("You can't reach the gag switch!"))
 	else
 		toggle_gag(affected_carbon)

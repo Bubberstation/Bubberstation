@@ -14,7 +14,6 @@
 #define isunathi(A) (is_species(A,/datum/species/unathi))
 #define isvulpkanin(A) (is_species(A,/datum/species/vulpkanin))
 #define isteshari(A) (is_species(A, /datum/species/teshari))
-#define ishemophage(A) (is_species(A, /datum/species/hemophage))
 #define issnail(A) (is_species(A, /datum/species/snail))
 #define isluminescent(A) (is_species(A, /datum/species/jelly/luminescent))
 #define isprimitivedemihuman(A) (is_species(A, /datum/species/human/felinid/primitive))

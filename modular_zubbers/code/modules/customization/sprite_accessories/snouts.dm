@@ -84,3 +84,8 @@
 	name = "seikret"
 	icon_state = "seikret"
 	icon = 'modular_zubbers/icons/customization/snouts.dmi'
+
+/datum/sprite_accessory/snouts/mammal/stubbyalt
+	name = "Stubby ALT"
+	icon_state = "stubbyalt"
+	icon = 'modular_zubbers/icons/customization/snouts.dmi'

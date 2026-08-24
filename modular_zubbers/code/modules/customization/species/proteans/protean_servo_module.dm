@@ -8,7 +8,10 @@
 	complexity = 3
 	use_energy_cost = DEFAULT_CHARGE_DRAIN
 	module_type = MODULE_TOGGLE //with this the module will automaticly deactivate if it's depowered or taken off
-
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+	)
 //abilities that we'll be granting to Protean by activating the module
 	var/datum/action/cooldown/protean_servo/movement/servo_movement = new /datum/action/cooldown/protean_servo/movement
 //	var/datum/action/cooldown/protean_servo/medical/servo_medical = new /datum/action/cooldown/protean_servo/medical

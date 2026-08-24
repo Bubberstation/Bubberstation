@@ -58,11 +58,6 @@
 	required_reagents  = list(/datum/reagent/consumable/ethanol/laval_spit = 3, /datum/reagent/drug/space_drugs = 2, /datum/reagent/smart_foaming_agent = 2, /datum/reagent/mutationtoxin = 1)
 	required_temp = 320
 
-/datum/chemical_reaction/transformative_virus/hemophage
-	results = list(/datum/reagent/transformative_virus/hemophage = 1)
-	required_reagents  = list(/datum/reagent/consumable/ethanol/velvet_kiss = 3, /datum/reagent/blood = 2, /datum/reagent/consumable/ethanol/wine = 2, /datum/reagent/mutationtoxin = 1)
-	required_temp = 320
-
 /datum/chemical_reaction/mutationtoxin/insect
 	results = list(/datum/reagent/mutationtoxin/insect = 1)
 	required_reagents  = list(/datum/reagent/consumable/ethanol/bug_zapper = 3, /datum/reagent/consumable/honey = 3, /datum/reagent/medicine/mine_salve = 3, /datum/reagent/mutationtoxin = 1)

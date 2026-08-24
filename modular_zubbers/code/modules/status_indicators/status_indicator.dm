@@ -59,7 +59,6 @@
 	attached_mob = parent
 	RegisterSignals(parent, list(COMSIG_LIVING_LIFE, COMSIG_LIVING_STATUS_STUN, COMSIG_LIVING_STATUS_KNOCKDOWN, COMSIG_LIVING_STATUS_PARALYZE, COMSIG_LIVING_STATUS_IMMOBILIZE, COMSIG_LIVING_STATUS_UNCONSCIOUS), PROC_REF(status_indicator_evaluate))
 
-
 /datum/component/status_indicator/Destroy()
 	QDEL_LIST_ASSOC_VAL(status_indicators)
 	attached_mob = null
@@ -128,8 +127,6 @@
 /// Refreshes the indicators over a mob's head. Should only be called when adding or removing a status indicator with the above procs,
 /// or when the mob changes size visually for some reason.
 /datum/component/status_indicator/proc/animate_new_indicator(obj/effect/overlay/status_indicator/this_indicator)
-
-
 	var/mob/living/carbon/my_carbon_mob = attached_mob
 
 	var/icon_scale = get_icon_scale(my_carbon_mob)
@@ -162,9 +159,8 @@
 	if(!iscarbon(livingmob)) // normal mobs are always 1 for scale - hopefully all borgs and simplemobs get this one
 		return DEFAULT_MOB_SCALE
 	var/mob/living/carbon/passed_mob = livingmob // we're possibly a player! We have size prefs!
-	var/mysize = (passed_mob.dna?.current_body_size ? passed_mob.dna.current_body_size : DEFAULT_MOB_SCALE)
+	var/mysize = (passed_mob?.current_size ? passed_mob.current_size : DEFAULT_MOB_SCALE)
 	return mysize
-
 
 #undef STATUS_INDICATOR_Y_OFFSET
 #undef STATUS_INDICATOR_ICON_X_SIZE

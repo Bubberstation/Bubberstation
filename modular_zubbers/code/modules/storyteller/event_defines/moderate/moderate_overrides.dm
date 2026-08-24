@@ -2,7 +2,7 @@
 	tags = list(TAG_DESTRUCTIVE, TAG_COMMUNAL, TAG_CHAOTIC)
 
 /datum/round_event_control/carp_migration
-	tags = list(TAG_COMMUNAL)
+	tags = list(TAG_COMMUNAL, TAG_SPACE, TAG_COMBAT)
 
 /datum/round_event_control/communications_blackout
 	tags = list(TAG_COMMUNAL, TAG_SPOOKY)
@@ -62,3 +62,8 @@
 /datum/round_event_control/radiation_storm
 	track = EVENT_TRACK_MODERATE
 	tags = list(TAG_COMMUNAL)
+
+/datum/round_event_control/dynamic_tweak // no dynamic in this house
+	weight = 0
+	max_occurrences = 0
+	tags = list(TAG_CREW_ANTAG)

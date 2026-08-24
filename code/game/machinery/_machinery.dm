@@ -102,6 +102,7 @@
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	initial_language_holder = /datum/language_holder/speaking_machine
 	armor_type = /datum/armor/obj_machinery
+	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 
 	///see code/__DEFINES/stat.dm
 	var/machine_stat = NONE
@@ -455,7 +456,7 @@
 				continue
 			if(isliving(current_atom))
 				var/mob/living/current_mob = atom
-				if(current_mob.buckled || current_mob.mob_size >= MOB_SIZE_LARGE && !ignore_size) // BUBBER EDIT - ADDITION - "&& !ignore_size"
+				if(current_mob.buckled || current_mob.mob_size >= MOB_SIZE_LARGE)
 					continue
 			target = atom
 
