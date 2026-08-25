@@ -1,4 +1,3 @@
-// BUBBER EDIT ADDITION -- memory logging subsystem
 
 /datum/config_entry/flag/enable_memory_stats
 
