@@ -6,6 +6,10 @@
 	/// Do we force open the panel for people who havent voted on our reminder?
 	var/force_open_panel_on_reminder = FALSE
 
+/datum/vote/reset()
+	reminder_fired = FALSE
+	return ..()
+
 /datum/controller/subsystem/vote
 	dependencies = list(
 		/datum/controller/subsystem/persistence,
