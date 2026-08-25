@@ -11574,10 +11574,6 @@
 /area/station/security/checkpoint/customs)
 "eae" = (
 /obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/shutters{
-	dir = 8;
-	id = "blacksmith_windows"
-	},
 /turf/open/floor/plating,
 /area/station/cargo/blacksmith)
 "eaq" = (
@@ -24870,11 +24866,12 @@
 /turf/open/floor/catwalk_floor,
 /area/station/biodome/fore)
 "iPd" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "cargowarehouse"
-	},
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/shutters/window{
+	id = "blacksmithworkshop";
+	name = "Blacksmith's Workshop"
+	},
 /turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
 "iPf" = (
@@ -29710,12 +29707,7 @@
 /obj/machinery/button/door/directional/east{
 	name = "Front Desk Shutters";
 	pixel_y = -6;
-	id = "cargowarehouse"
-	},
-/obj/machinery/button/door/directional/east{
-	name = "Window Shutters";
-	pixel_y = 6;
-	id = "blacksmith_windows"
+	id = "blacksmithworkshop"
 	},
 /turf/open/floor/wood,
 /area/station/cargo/blacksmith)
@@ -42077,12 +42069,13 @@
 /turf/open/floor/plating/airless,
 /area/station/solars/port/fore)
 "oIL" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "cargowarehouse"
-	},
 /obj/machinery/door/firedoor,
 /obj/structure/table/reinforced,
 /obj/structure/wall_torch/spawns_lit/directional/west,
+/obj/machinery/door/poddoor/shutters/window{
+	id = "blacksmithworkshop";
+	name = "Blacksmith's Workshop"
+	},
 /turf/open/floor/iron/dark,
 /area/station/cargo/blacksmith)
 "oIM" = (
@@ -59877,13 +59870,7 @@
 /turf/open/floor/iron/white,
 /area/station/medical/chemistry)
 "uHg" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/shutters{
-	dir = 1;
-	id = "blacksmith_windows"
-	},
-/turf/open/floor/plating,
-/area/station/cargo/blacksmith)
+)
 "uHj" = (
 /obj/machinery/computer/security/telescreen/minisat/directional/east,
 /obj/machinery/vending/boozeomat,
@@ -101889,11 +101876,11 @@ nGl
 yhE
 jjT
 pQE
-mDV
-mDV
-mDV
-mDV
-mDV
+uHg
+uHg
+uHg
+uHg
+uHg
 oVr
 qnV
 xtD
@@ -102146,11 +102133,11 @@ vda
 kGV
 uYi
 iry
-mDV
+uHg
 vsH
 rqg
 vWl
-mDV
+uHg
 fQu
 uxT
 sPy
@@ -102407,7 +102394,7 @@ rKQ
 twq
 qDV
 rAo
-mDV
+uHg
 jiJ
 uxT
 quS
@@ -102660,11 +102647,11 @@ dQa
 pnb
 pnb
 mbr
-mDV
+uHg
 iCv
 kHH
 dGK
-mDV
+uHg
 xSx
 uxT
 iNV
@@ -102917,11 +102904,11 @@ mTt
 cwf
 dCI
 ugI
-mDV
+uHg
 hxl
 bfC
 hxl
-mDV
+uHg
 vaA
 lGg
 sIb
@@ -103175,10 +103162,10 @@ tOE
 tOE
 rvP
 tOE
-mDV
+uHg
 pGR
-mDV
-mDV
+uHg
+uHg
 iES
 cdV
 mcL
@@ -103435,7 +103422,7 @@ tOE
 eev
 axi
 bBn
-mDV
+uHg
 lOH
 lOH
 lOH
@@ -103695,7 +103682,7 @@ kZL
 iSu
 mrK
 qCC
-mDV
+uHg
 mww
 gGu
 hMJ
@@ -103703,7 +103690,7 @@ fSW
 cwC
 xqV
 xqV
-mDV
+uHg
 eMj
 szk
 qpW
@@ -104726,12 +104713,12 @@ gMZ
 gMZ
 aoF
 aoF
-mDV
+uHg
 cMI
-ttj
+uHg
 aoF
 aoF
-mDV
+uHg
 mSg
 gDs
 gDs
@@ -179175,7 +179162,7 @@ dBL
 cMT
 cZX
 wnn
-uHg
+eae
 viH
 fva
 bWh
@@ -179432,7 +179419,7 @@ xkz
 bZA
 sGo
 wnn
-uHg
+eae
 aey
 hKw
 eEi
@@ -179946,7 +179933,7 @@ xkz
 uvf
 sGo
 xEP
-uHg
+eae
 snF
 eEi
 eEi
@@ -180203,7 +180190,7 @@ oKD
 sBt
 moV
 iiH
-uHg
+eae
 xsb
 nzM
 xyN
