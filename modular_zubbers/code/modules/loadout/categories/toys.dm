@@ -59,10 +59,6 @@
 	name = "Tuna Fish Plush"
 	item_path = /obj/item/toy/plush/tunafish
 
-/datum/loadout_item/toys/plush/purplecat
-	name = "Purple Cat Plush"
-	item_path = /obj/item/toy/plush/purplecat
-
 /datum/loadout_item/toys/plush/secoff
 	name = "GalFed Secoff Plush"
 	item_path = /obj/item/toy/plush/secoff

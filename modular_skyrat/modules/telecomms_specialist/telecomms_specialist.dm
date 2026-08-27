@@ -42,6 +42,13 @@
 	)
 	rpg_title = "Code Whisperer"
 	job_flags = STATION_JOB_FLAGS
+	alt_titles = list(
+		"Telecomms Specialist",
+		"Wireless Operator",
+		"Network Engineer",
+		"Sysadmin",
+		"Tram Technician",
+	)
 
 /obj/effect/landmark/start/telecomms_specialist
 	name = "Telecomms Specialist"

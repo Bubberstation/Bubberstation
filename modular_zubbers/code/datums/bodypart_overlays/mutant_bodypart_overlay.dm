@@ -13,13 +13,9 @@
 	var/list/overlay_indexes_to_color
 	/// Whether or not this overlay can be affected by MODsuit-related procs.
 	var/modsuit_affected = FALSE
-	/// Additional information we might want to add to the cache_key, stored into a list.
-	/// Should only ever contain strings.
-	var/list/cache_key_extra_information
 	/// A simple cache of what the last icon_states built were.
 	/// It's really only there to help with debugging what's happening.
 	var/list/last_built_icon_states
-
 
 /**
  * Allows us to set the appearance from data that's located within the provided DNA,
@@ -31,35 +27,43 @@
  * * feature_key - same as with accessory_key, you can optionally pass a feature_key explicitly
  * appearance.
  */
-/datum/bodypart_overlay/mutant/proc/set_appearance_from_dna(datum/dna/dna, accessory_name, feature_key)
+/datum/bodypart_overlay/mutant/proc/set_appearance_from_dna(datum/dna/dna, accessory_name, feature_key, obj/item/bodypart/limb)
 	if(isnull(feature_key)) // if not explicitly set, just use the feature_key of the bodypart_overlay
 		feature_key = src.feature_key
-	var/list/mutantparts_list = dna.mutant_bodyparts[feature_key] ? dna.mutant_bodyparts : dna.species.mutant_bodyparts
-	if(!(feature_key in mutantparts_list) || !mutantparts_list[feature_key])
+	var/list/mutantparts_list = dna.mutant_bodyparts
+	if(isnull(mutantparts_list[feature_key]))
 		return FALSE
-	sprite_datum = fetch_sprite_datum_from_name(accessory_name ? accessory_name : mutantparts_list[feature_key][MUTANT_INDEX_NAME])
+	var/list/mutant_part = mutantparts_list[feature_key]
+	sprite_datum = fetch_sprite_datum_from_name(accessory_name ? accessory_name : mutant_part[MUTANT_INDEX_NAME])
 	modsuit_affected = sprite_datum.use_custom_mod_icon
 	draw_color = mutantparts_list[feature_key][MUTANT_INDEX_COLOR_LIST]
 	build_emissive_eligibility(mutantparts_list[feature_key][MUTANT_INDEX_EMISSIVE_LIST])
-	cache_key = jointext(generate_icon_cache(), "_")
 	return TRUE
 
 // We do this here like this so that we handle matrixed color bodypart overlays and emissives.
-/datum/bodypart_overlay/mutant/get_overlay(layer, obj/item/bodypart/limb)
-	layer = bitflag_to_layer(layer)
-	. = get_images(layer, limb)
-	color_images(., layer, limb)
+/datum/bodypart_overlay/mutant/get_overlay(obj/item/bodypart/limb, layer_index, layer_real)
+	inherit_color(limb) // If draw_color is not set yet, go ahead and do that (matches upstream, needed for ORGAN_COLOR_INHERIT overlays)
+	. = get_images(limb, layer_index, layer_real)
+	color_images(., limb, layer_index)
 	. = add_emissives(., limb)
 
+/datum/bodypart_overlay/mutant/snout/get_overlay(obj/item/bodypart/limb, layer_index, layer_real)
+	. = ..()
+
+/datum/bodypart_overlay/mutant/snout/set_appearance_from_dna(datum/dna/dna, accessory_name, feature_key, obj/item/bodypart/limb)
+	. = ..()
 
 /// Generate a unique key based on our sprites. So that if we've aleady drawn these sprites,
 /// they can be found in the cache and wont have to be drawn again (blessing and curse, but mostly curse)
-/datum/bodypart_overlay/mutant/generate_icon_cache(obj/item/bodypart/limb)
+/datum/bodypart_overlay/mutant/icon_render_key(obj/item/bodypart/limb)
 	. = list()
 	. += "[get_base_icon_state()]"
 	. += "[get_feature_key_for_overlay()]"
-	if(LAZYLEN(cache_key_extra_information))
-		. += cache_key_extra_information // We can do it like this because it's meant to be a list of strings anyway. BYOND list operations actually being useful for once.
+	. += "[sprite_datum.get_special_icon(limb?.owner)]"
+
+	// MOD overlays on mutant parts
+	if(modsuit_affected && sprite_datum?.mod_overlay_active(limb?.owner))
+		. += "MOD_[sprite_datum.get_hardlight_theme_key(limb?.owner)]"
 
 	if(islist(draw_color))
 		for(var/sub_color in draw_color)
@@ -72,11 +76,15 @@
 		. += "[alpha]"
 
 	if(emissive_eligibility_by_color_index)
-		for(var/key in emissive_eligibility_by_color_index)
-			. += emissive_eligibility_by_color_index[key]
+		for(var/emissive_boolean in emissive_eligibility_by_color_index)
+			. += emissive_boolean
+
+	if(modsuit_affected)
+		var/obj/item/mod/control/modsuit_control = locate() in limb?.owner?.get_equipped_items()
+		if(!isnull(modsuit_control))
+			. += "[modsuit_control.theme.hardlight_theme]_[modsuit_control.active]"
 
 	return .
-
 
 /**
  * Helper to fetch the `feature_key` of the bodypart_overlay, so that it can be
@@ -85,21 +93,19 @@
 /datum/bodypart_overlay/mutant/proc/get_feature_key_for_overlay()
 	return sprite_datum?.feature_key_override || feature_key
 
-
-/datum/bodypart_overlay/mutant/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner, mob/living/carbon/owner, is_husked)
+/datum/bodypart_overlay/mutant/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner, mob/living/carbon/owner)
 	if(!..())
 		return FALSE
-	var/mob/living/carbon/human/human_owner = owner
-	if(!istype(human_owner))
+	var/mob/living/carbon/human/human = owner || bodypart_owner.owner
+	if(!istype(human))
 		return TRUE
-	return !isnull(sprite_datum) && !sprite_datum.is_hidden(human_owner)
-
+	return !isnull(sprite_datum) && !sprite_datum.is_hidden(human)
 
 /// Get the images we need to draw on the person. Called from get_overlay() which is called from _bodyparts.dm.
 /// `limb` can be null.
 /// This is different from the base procs as it allows for multiple overlays to
 /// be generated for one bodypart_overlay. Useful for matrixed color mutant bodyparts.
-/datum/bodypart_overlay/mutant/proc/get_images(image_layer, obj/item/bodypart/limb)
+/datum/bodypart_overlay/mutant/proc/get_images(obj/item/bodypart/limb, layer_index, layer_real)
 	if(!sprite_datum)
 		CRASH("Trying to call get_images() on [type] while it didn't have a sprite_datum. This shouldn't happen, report it as soon as possible.")
 
@@ -110,67 +116,62 @@
 	var/index = 1
 
 	var/mob/living/carbon/human/owner = limb?.owner
-	var/mutable_appearance/mod_overlay
-	var/icon/custom_mod_icon = sprite_datum.get_custom_mod_icon(owner)
 
 	last_built_icon_states = list()
-	LAZYCLEARLIST(cache_key_extra_information)
 
-	if(custom_mod_icon)
-		mod_overlay = get_singular_image(image_layer = image_layer, owner = owner, icon_override = custom_mod_icon, limb = limb)
+	var/mutable_appearance/mod_overlay
+	if(sprite_datum.mod_overlay_active(owner))
+		mod_overlay = mutable_appearance(layer = layer_real)
+		if(sprite_datum.center)
+			center_image(mod_overlay, sprite_datum.special_x_dimension ? sprite_datum.get_special_x_dimension(owner) : sprite_datum.dimension_x, sprite_datum.dimension_y)
 
 	switch(sprite_datum.color_src)
 		if(USE_MATRIXED_COLORS)
-			var/list/color_layer_names = get_color_layer_names(build_icon_state_bubber(gender, image_layer))
+			for (var/color_index in sprite_datum.color_layer_names)
 
-			for (var/color_index in color_layer_names)
-
-				var/mutable_appearance/color_layer_image = get_singular_image(build_icon_state_bubber(gender, image_layer, color_layer_names[color_index]), image_layer, owner, limb = limb)
+				var/mutable_appearance/color_layer_image = get_singular_image(build_icon_state_bubber(gender, layer_index, sprite_datum.color_layer_names[color_index]), layer_index, layer_real, owner, limb = limb)
 				returned_images += color_layer_image
 
 				overlay_indexes_to_color += index
 				index++
 
 				if(mod_overlay)
-					mod_overlay.add_overlay(sprite_datum.get_custom_mod_icon(owner, color_layer_image))
+					var/icon/mod_icon = sprite_datum.get_custom_mod_icon(owner, color_layer_image)
+					if(mod_icon)
+						mod_overlay.add_overlay(mutable_appearance(mod_icon))
 
 		else
-			var/mutable_appearance/image_to_return = get_singular_image(build_icon_state_bubber(gender, image_layer), image_layer, owner, limb = limb)
+			var/mutable_appearance/image_to_return = get_singular_image(build_icon_state_bubber(gender, layer_index), layer_index, layer_real, owner, limb = limb)
 			returned_images = list(image_to_return)
 			overlay_indexes_to_color += index
 
 			if(mod_overlay)
-				mod_overlay.add_overlay(sprite_datum.get_custom_mod_icon(owner, image_to_return))
+				var/icon/mod_icon = sprite_datum.get_custom_mod_icon(owner, image_to_return)
+				if(mod_icon)
+					mod_overlay.add_overlay(mutable_appearance(mod_icon))
 
 	if(sprite_datum.has_inner)
-		returned_images += get_singular_image(build_icon_state_bubber(gender, image_layer, feature_key_suffix = "inner"), image_layer, owner, limb = limb)
+		returned_images += get_singular_image(build_icon_state_bubber(gender, layer_index, feature_key_suffix = "inner"), layer_index, layer_real, owner, limb = limb)
 
 	// Gets the icon_state of a single or matrix colored accessory and overlays it with a texture
 	if(mod_overlay)
 		returned_images += mod_overlay
-		LAZYADD(cache_key_extra_information, "MOD")
 
 	return returned_images
 
-
 // Cybernetic cat ears - special case - need a unique version for each inner color.
-/datum/bodypart_overlay/mutant/cat_ears/cybernetic/generate_icon_cache(obj/item/bodypart/limb)
+/datum/bodypart_overlay/mutant/cat_ears/cybernetic/icon_render_key(obj/item/bodypart/limb)
 	. = ..()
 	. += inner_color
-
-
-/**
- * Returns the color_layer_names of the sprite_datum associated with our datum.
- * Mainly here so that it can be overriden elsewhere to have other effects.
- */
-/datum/bodypart_overlay/mutant/proc/get_color_layer_names(icon_state_to_lookup)
-	return sprite_datum.color_layer_names
-
 
 /// Colors the given overlays list. Limb can be null.
 /// This is different from the base procs as it allows for multiple overlays to be colored at once.
 /// Useful for matrixed color mutant bodyparts.
-/datum/bodypart_overlay/mutant/proc/color_images(list/image/overlays, layer, obj/item/bodypart/limb)
+
+/// Colors the given overlays list. Limb can be null.
+/// This is different from the base procs as it allows for multiple overlays to be colored at once.
+/// Useful for matrixed color mutant bodyparts.
+/datum/bodypart_overlay/mutant/proc/color_images(list/image/overlays, obj/item/bodypart/limb, layer_index)
 	if(!sprite_datum || !overlays)
 		return
 
@@ -205,25 +206,24 @@
 
 		overlay.alpha = alpha
 
-
 /**
  * Helper to generate the icon_state for the bodypart_overlay we're trying to draw.
  *
  * Arguments:
  * * gender - The gender of the limb. Can be "f" or "m".
- * * image_layer - The layer on which the icon will be drawn.
+ * * layer_index - The icon state postfix of the layer being drawn (e.g. EXTERNAL_FRONT = "FRONT").
  * * color_layer - The color_layer of this icon_state, if any. Should be either "primary", "secondary", "tertiary" or `null`.
  * Defaults to `null`.
  * * feature_key_suffix - A string that will be directly appended to the result
  * of `get_feature_key_for_overlay()`. Defaults to `null`.
  */
-/datum/bodypart_overlay/mutant/proc/build_icon_state_bubber(gender, image_layer, color_layer = null, feature_key_suffix = null)
+/datum/bodypart_overlay/mutant/proc/build_icon_state_bubber(gender, layer_index, color_layer = null, feature_key_suffix = null)
 	var/list/icon_state_builder = list()
 
 	icon_state_builder += sprite_datum.gender_specific ? gender : "m" //Male is default because sprite accessories are so ancient they predate the concept of not hardcoding gender
 	icon_state_builder += get_feature_key_for_overlay() + feature_key_suffix
 	icon_state_builder += get_base_icon_state()
-	icon_state_builder += mutant_bodyparts_layertext(image_layer)
+	icon_state_builder += layer_index
 
 	if(color_layer)
 		icon_state_builder += color_layer
@@ -234,29 +234,29 @@
 
 	return built_icon_state
 
-
 /**
  * Helper to generate one individual image for a multi-image overlay.
  * Very similar to get_image(), just a little simplified.
  *
  * Arguments:
  * * image_icon_state - The icon_state of the mutable_appearance we want to get.
- * * image_layer - The layer of the mutable_appearance we want to get.
+ * * layer_index - The icon state postfix of the layer being drawn.
+ * * layer_real - The actual (negative, float) layer the appearance will be drawn on.
  * * owner - The owner of the limb this is drawn on. Can be null.
  * * icon_override - The icon to use for the mutable_appearance, rather than
  * `sprite_datum.icon`. Default is `null`, and its value will be used if it's
  * anything else.
  */
-/datum/bodypart_overlay/mutant/proc/get_singular_image(image_icon_state, image_layer, mob/living/carbon/human/owner, icon_override = null, obj/item/bodypart/limb)
+/datum/bodypart_overlay/mutant/proc/get_singular_image(image_icon_state, layer_index, layer_real, mob/living/carbon/human/owner, icon_override = null, obj/item/bodypart/limb)
 	// We get from icon_override if it is filled, and from sprite_datum.icon if not.
-	var/mutable_appearance/appearance = mutable_appearance(icon_override || sprite_datum.get_special_icon(owner), image_icon_state, layer = image_layer)
+	var/mutable_appearance/appearance = mutable_appearance(icon_override || sprite_datum.get_special_icon(owner), image_icon_state, layer = layer_real)
 
 	if(sprite_datum.center)
 		center_image(appearance, sprite_datum.special_x_dimension ? sprite_datum.get_special_x_dimension(owner) : sprite_datum.dimension_x, sprite_datum.dimension_y)
 
 	return appearance
 
-
+/* // TO-DO: Fix this mess.
 // Special case - fish tail
 /datum/bodypart_overlay/mutant/tail/fish/get_singular_image(image_icon_state, image_layer, mob/living/carbon/human/owner, icon_override = null, obj/item/bodypart/limb)
 	var/mutable_appearance/appearance = ..()
@@ -266,7 +266,7 @@
 		if(texture.can_draw_on_bodypart(limb, limb.owner, limb.is_husked))
 			texture.modify_bodypart_appearance(appearance)
 	return appearance
-
+*/
 
 /**
  * Helper proc to add the appropriate emissives to the overlays, based on the preferences.
@@ -277,36 +277,22 @@
  * there's going to be issues with how the emissives are generated, so it won't
  * add them if the limb is missing, somehow.
  */
-/datum/bodypart_overlay/mutant/proc/add_emissives(list/image/overlays, obj/item/bodypart/limb)
+/datum/bodypart_overlay/mutant/proc/add_emissives(list/mutable_appearance/overlays, obj/item/bodypart/limb)
 	if(!limb || !length(emissive_eligibility_by_color_index))
 		return overlays
 
-	var/list/image/emissives
-	var/max = min(3, length(overlays)) // only care about the first 3 indexes
+	var/list/mutable_appearance/emissives
+	var/max = min(MAX_MATRIXED_COLORS, length(overlays)) // only care about the first 3 indexes
 	for(var/index = 1 to max)
-		if(emissive_eligibility_by_color_index[num2text(index)])
-			LAZYADD(emissives, emissive_appearance_copy(overlays[index], limb))
+		if(emissive_eligibility_by_color_index[index])
+			var/mutable_appearance/overlay = overlays[index]
+			var/mutable_appearance/new_emissive = emissive_appearance(overlay.icon, overlay.icon_state, offset_spokesman = limb, layer = overlay.layer)
+			// emissive_appearance() builds a fresh appearance from scratch, so it doesn't inherit the pixel_w/pixel_z offset center_image() applies to wide sprites (taur, wings, etc.) - without
+			new_emissive.pixel_w = overlay.pixel_w
+			new_emissive.pixel_z = overlay.pixel_z
+			LAZYADD(emissives, new_emissive)
 
 	return emissives ? (overlays + emissives) : overlays
-
-/**
- * Helper to set the MOD-related info on the overlay, useful for MODsuit overlays.
- *
- * Arguments:
- * * status - boolean of whether or not this overlay should currently be under the
- * effect of MODsuit overlays.
- */
-/datum/bodypart_overlay/mutant/proc/set_modsuit_status(status)
-	if(!modsuit_affected)
-		return
-
-	// Honestly refactor this later if it's not actually useful for anything else ever (which is likely going to be the case).
-	if(status)
-		LAZYADD(cache_key_extra_information, "MOD")
-		return
-
-	LAZYREMOVE(cache_key_extra_information, "MOD")
-
 
 /**
  * Builds `emissive_eligibility_by_layer` from the input list of three booleans.
@@ -317,11 +303,9 @@
 		return
 
 	emissive_eligibility_by_color_index = list()
-	var/i = 1
 
 	for(var/eligibility in emissive_eligibility)
-		emissive_eligibility_by_color_index[num2text(i)] = eligibility
-		i++
+		emissive_eligibility_by_color_index += eligibility
 
 #undef MAX_MATRIXED_COLORS
 #undef ALPHA_OPAQUE

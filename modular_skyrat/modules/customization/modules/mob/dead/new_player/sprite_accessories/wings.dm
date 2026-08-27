@@ -11,7 +11,7 @@
 	color_src = USE_ONE_COLOR
 	recommended_species = list(SPECIES_HUMAN, SPECIES_SYNTH, SPECIES_FELINE, SPECIES_LIZARD, SPECIES_MAMMAL)
 	organ_type = /obj/item/organ/wings
-	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER, BODY_ADJ_LAYER)
+	relevent_layers = list(EXTERNAL_BEHIND, EXTERNAL_ADJACENT, EXTERNAL_FRONT)
 
 /datum/sprite_accessory/wings/is_hidden(mob/living/carbon/human/wearer)
 	if(!wearer.w_uniform && !wearer.wear_suit)
@@ -126,7 +126,7 @@
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/wings.dmi'
 	default_color = DEFAULT_PRIMARY
 	recommended_species = list(SPECIES_MAMMAL, SPECIES_LIZARD, SPECIES_INSECT)
-	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
+	relevent_layers = list(EXTERNAL_BEHIND, EXTERNAL_FRONT)
 	dimension_x = 46
 	dimension_y = 34
 	center = TRUE
@@ -314,7 +314,7 @@
 	default_color = "#FFFFFF"
 	recommended_species = list(SPECIES_MOTH, SPECIES_MAMMAL, SPECIES_INSECT) // Mammals too, I guess. They wont get flight though, see the wing organs for that logic
 	organ_type = /obj/item/organ/wings/moth
-	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
+	relevent_layers = list(EXTERNAL_BEHIND, EXTERNAL_FRONT)
 
 /datum/sprite_accessory/wings/moth/none
 	name = SPRITE_ACCESSORY_NONE

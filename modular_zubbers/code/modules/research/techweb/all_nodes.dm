@@ -1,5 +1,6 @@
 // RESEARCH NODES
 
+// cyber nodes
 /datum/techweb_node/cyber/empathy_implant
 	id = TECHWEB_NODE_EMPATHY_IMPLANT
 	display_name = "Empathic Sensor Implant"
@@ -11,6 +12,51 @@
 	required_experiments = list(/datum/experiment/scanning/people/open_minds)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_MEDICAL)
+
+/datum/techweb_node/cyber/cyber_implants/New()
+	. = ..()
+	design_ids += list(
+		"ci-scanner",
+		"ci-gloweyes",
+		"ci-welding",
+		"ci-medhud",
+		"ci-sechud",
+		"ci-diaghud",
+		"ci-civhud",
+		"ci-botany",
+		"ci-janitor",
+		"ci-lighter",
+		"ci-razor",
+	)
+
+/datum/techweb_node/cyber/cyber_organs_upgraded/New()
+	. = ..()
+	design_ids += list(
+		"limbdesign_adaptive_lungs",
+	)
+	design_ids -= list(
+		"ci-gloweyes",
+		"ci-welding",
+	)
+
+/datum/techweb_node/cyber/combat_implants/New()
+	. = ..()
+	design_ids += list(
+		"ci-mantis",
+		"ci-flash",
+		"ci-antisleep",
+	)
+
+/datum/techweb_node/cyber/night_vision_implants
+	id = TECHWEB_NODE_NIGHT_VISION_IMPLANTS
+	display_name = "Night vision implants"
+	description = "Now you can work all night, even if you lost your glasses!"
+	prereq_ids = list(TECHWEB_NODE_NIGHT_VISION, TECHWEB_NODE_CYBER_IMPLANTS)
+	design_ids = list(
+		"ci-nv",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
+
 
 /datum/techweb_node/botanygene
 	id = TECHWEB_NODE_BOTANY_ADV
@@ -64,14 +110,6 @@
 	)
 
 // MEDICAL
-/datum/techweb_node/xenobiology/New()
-	. = ..()
-	design_ids += list(
-		"limbdesign_hemophage",
-		"limbdesign_tajaran",
-		"limbdesign_teshari",
-	)
-
 /datum/techweb_node/cyber/cyber_implants/New()
 	. = ..()
 	design_ids += list(
@@ -170,6 +208,8 @@
 		"minesweeper",
 	)
 
+// Security Tech
+
 /datum/techweb_node/riot_supression/New()
 	design_ids += "s12g_rubber"
 	design_ids += "s12g_bslug"
@@ -186,12 +226,38 @@
 
 /datum/techweb_node/exotic_ammo/New()
 	design_ids += "wt550_ammo_ap"
+	design_ids += "wt550_ammo_compressed"
 	. = ..()
 
 /datum/techweb_node/syndicate_basic/New()
 	design_ids += "wt550_ammo_incendiary"
+	design_ids += "s12g_db"
 	design_ids += "mod_mind_transfer"
 	. = ..()
+
+/datum/techweb_node/bullet_weapons //This is for advanced bullet weapon designs and upgrades
+	id = TECHWEB_NODE_BULLET_WEAPONS
+	display_name = "Advanced Ballistic Weaponry"
+	description = "As if shooting a bullet could get any more complicated."
+	prereq_ids = list(TECHWEB_NODE_EXOTIC_AMMO)
+	design_ids = list(
+		"wt550_burst",
+		"wt550_long",
+		"battle_rifle_basic",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SECURITY)
+
+/datum/techweb_node/advanced_armor //This is for advanced armor and shields
+	id = TECHWEB_NODE_ADVANCED_ARMOR
+	display_name = "Advanced Security Protection"
+	description = "If we can't hurt them, we can outlast them."
+	prereq_ids = list(TECHWEB_NODE_RIOT_SUPRESSION, TECHWEB_NODE_GAS_COMPRESSION)
+	design_ids = list(
+		"security_juggernaut"
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SECURITY)
 
 // Modsuit tech
 /datum/techweb_node/mod_equip/New()
