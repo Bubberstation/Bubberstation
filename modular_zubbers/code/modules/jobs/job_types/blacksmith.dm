@@ -51,7 +51,7 @@
 		/obj/item/choice_beacon/blacksmith = 1,
 		/obj/item/paper/pamphlet/blacksmith_tutorial = 1,
 	)
-	glasses = /obj/item/clothing/glasses/welding/up
+	glasses = /obj/item/clothing/glasses/hud/permit
 	belt = /obj/item/modular_computer/pda/cargo
 	ears = /obj/item/radio/headset/headset_cargo
 	shoes = /obj/item/clothing/shoes/workboots
