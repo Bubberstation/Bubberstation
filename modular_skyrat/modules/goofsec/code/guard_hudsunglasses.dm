@@ -248,7 +248,7 @@
 	qdel(wearer.GetComponent(/datum/component/money_sense/customs))
 	wearer.update_sight()
 
-/obj/item/clothing/glasses/hud/security/sunglasses/guard/command/proc/apply_mode(mob/living/carbon/wearer)
+/obj/item/clothing/glasses/hud/security/sunglasses/guard/command/proc/apply_mode(mob/living/carbon/human/wearer)
 	if(!istype(wearer) || wearer.glasses != src)
 		return
 
@@ -311,7 +311,7 @@
 	malfunctioning = TRUE
 	COOLDOWN_START(src, switch_cooldown, EXECUTIVE_MALFUNCTION_INTERVAL)
 	playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 40, vary = TRUE)
-	var/mob/living/carbon/wearer = loc
+	var/mob/living/carbon/human/wearer = loc
 	if(istype(wearer) && wearer.glasses == src)
 		to_chat(wearer, span_warning("[src] fizzes and starts flipping through suites on its own."))
 	addtimer(CALLBACK(src, PROC_REF(settle)), EXECUTIVE_MALFUNCTION_TIME)
@@ -320,12 +320,12 @@
 	if(!malfunctioning)
 		return
 	malfunctioning = FALSE
-	var/mob/living/carbon/wearer = loc
+	var/mob/living/carbon/human/wearer = loc
 	if(istype(wearer) && wearer.glasses == src)
 		balloon_alert(wearer, "selector settled")
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/process(seconds_per_tick)
-	var/mob/living/carbon/wearer = loc
+	var/mob/living/carbon/human/wearer = loc
 	var/worn = istype(wearer) && wearer.glasses == src
 
 	// if EMPed the glasses glitch out for 45s
@@ -346,7 +346,7 @@
 	if(!cell.use(draw))
 		deplete(wearer)
 
-/obj/item/clothing/glasses/hud/security/sunglasses/guard/command/proc/deplete(mob/living/carbon/wearer)
+/obj/item/clothing/glasses/hud/security/sunglasses/guard/command/proc/deplete(mob/living/carbon/human/wearer)
 	depleted = TRUE
 	mode = EXECUTIVE_MODE_MEDICAL
 	if(istype(wearer) && wearer.glasses == src)
@@ -367,7 +367,7 @@
 	removed.forceMove(drop_location())
 	if(user.put_in_hands(removed))
 		balloon_alert(user, "cell removed")
-	var/mob/living/carbon/wearer = loc
+	var/mob/living/carbon/human/wearer = loc
 	if(istype(wearer) && wearer.glasses == src)
 		update_extras(wearer)
 	return ITEM_INTERACT_SUCCESS
@@ -384,7 +384,7 @@
 	balloon_alert(user, "cell installed")
 	if(cell.charge > 0)
 		depleted = FALSE
-	var/mob/living/carbon/wearer = loc
+	var/mob/living/carbon/human/wearer = loc
 	if(istype(wearer) && wearer.glasses == src)
 		apply_mode(wearer)
 	return TRUE
