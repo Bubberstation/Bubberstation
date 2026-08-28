@@ -742,6 +742,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 		/obj/item/stack/cable_coil = 5,
 	)
 	category = CAT_EQUIPMENT
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/hudsunguardsci
 	name = "Scisec HUDsunglasses"
@@ -754,6 +755,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 		/obj/item/stack/cable_coil = 5,
 	)
 	category = CAT_EQUIPMENT
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/hudsunguardengi
 	name = "Meson HUDsunglasses"
@@ -767,6 +769,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 		/obj/item/stack/cable_coil = 5,
 	)
 	category = CAT_EQUIPMENT
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/hudsunguardsrv
 	name = "Service HUDsunglasses"
@@ -779,6 +782,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 		/obj/item/stack/cable_coil = 5,
 	)
 	category = CAT_EQUIPMENT
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/hudsunguardcargo
 	name = "Customs HUDsunglasses"
@@ -792,6 +796,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 		/obj/item/stack/cable_coil = 5,
 	)
 	category = CAT_EQUIPMENT
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/hudsunguardblueshield
 	name = "Blueshield HUDsunglasses"
@@ -806,6 +811,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 		/obj/item/stack/cable_coil = 5,
 	)
 	category = CAT_EQUIPMENT
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/hudsunguardsilly
 	name = "Silly HUDsunglasses"
@@ -819,6 +825,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 		/obj/item/stack/cable_coil = 5,
 	)
 	category = CAT_EQUIPMENT
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
 #undef HONK_CURSE_COOLDOWN
 #undef HONK_CURSE_EMAGGED_COOLDOWN
