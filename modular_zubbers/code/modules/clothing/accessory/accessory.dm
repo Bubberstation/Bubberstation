@@ -195,7 +195,7 @@ GLOBAL_LIST_EMPTY_TYPED(all_assigned_protean_match_tags, /obj/item/clothing/acce
 	var/assignee_name
 	/// the "true" name of the assignee, source.mind.name, used to keep one person from putting a bunch of their own tags in the pool.
 	var/assignee_truename
-	/// Is the person assigned to the tag a protean? TRUE if yes
+	/// Is the person assigned to the tag a Protean? TRUE if yes
 	var/assignee_protean
 	/// What step of the matching journey
 	var/match_progress = UNASSIGNED
