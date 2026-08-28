@@ -58,7 +58,7 @@
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "biohazard",
 		SPECIES_PERK_NAME = "Chocolate Allergy",
-		SPECIES_PERK_DESC = "Vulpkanin will start rapidly taking toxic damage when consuming chocolate products.",
+		SPECIES_PERK_DESC = "Vulpkanin will start rapidly taking toxic damage when consuming coco.",
 	))
 
 	to_add += list(list(
