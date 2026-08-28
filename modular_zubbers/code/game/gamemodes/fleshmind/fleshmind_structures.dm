@@ -356,7 +356,7 @@
 /obj/structure/fleshmind/structure/core/examine(mob/user)
 	. = ..()
 	/// Level * Progress Required - Current Points
-	var/level_calculation = (our_controller.level * our_controller.level_up_progress_required) - our_controller.current_points
+	var/level_calculation = (our_controller.last_level_up_points + our_controller.level_up_progress_required) - our_controller.current_points
 	/// round Cooldown Time / 10
 	var/time_calculation = round(COOLDOWN_TIMELEFT(our_controller, level_up_cooldown) / 10)
 
