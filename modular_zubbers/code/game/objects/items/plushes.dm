@@ -879,6 +879,14 @@
 	icon_state = "milky"
 	inhand_icon_state = "milky"
 
+/obj/item/toy/plush/fox_protogen
+	name = "\improper Silly Protogen plushie"
+	desc = "A silly looking fox protogen made to be extremly squishable with folding tails, the inside being fluffier then the outside, seems to pair wonderfully with the Suspicious Protogen Plushie."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "foxproot"
+	gender = FEMALE
+	squeak_override = list('modular_zubbers/code/modules/emotes/sound/voice/foxgecker.ogg' = 1)
+
 //Plush for Slicerv
 /obj/item/toy/plush/tangerine
 	name = "\improper Citrus teshari plushie"
