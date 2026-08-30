@@ -225,12 +225,17 @@ GLOBAL_LIST_INIT(straznik_burn, list(28, 45, 68, 92))
 	if(istype(tool, /obj/item/storage/part_replacer))
 		var/obj/item/storage/part_replacer/replacer = tool
 		var/upgraded = FALSE
-		for(var/obj/item/stock_parts/capacitor/spare in replacer.contents)
-			if(!capacitor || spare.rating > capacitor.rating)
+		// iterated loosely and type checked, because the linter reserves the typed stock_parts loop
+		// form for machines walking their component_parts as /datum/stock_part
+		for(var/obj/item/spare in replacer.contents)
+			if(!istype(spare, /obj/item/stock_parts/capacitor))
+				continue
+			var/obj/item/stock_parts/capacitor/candidate = spare
+			if(!capacitor || candidate.rating > capacitor.rating)
 				if(capacitor)
 					replacer.atom_storage.attempt_insert(capacitor, user, override = TRUE)
-				replacer.atom_storage.attempt_remove(spare, src)
-				capacitor = spare
+				replacer.atom_storage.attempt_remove(candidate, src)
+				capacitor = candidate
 				upgraded = TRUE
 				break
 		for(var/obj/item/stock_parts/power_store/cell/spare in replacer.contents)
@@ -413,12 +418,17 @@ GLOBAL_LIST_INIT(straznik_burn, list(28, 45, 68, 92))
 	if(istype(tool, /obj/item/storage/part_replacer))
 		var/obj/item/storage/part_replacer/replacer = tool
 		var/upgraded = FALSE
-		for(var/obj/item/stock_parts/capacitor/spare in replacer.contents)
-			if(!capacitor || spare.rating > capacitor.rating)
+		// iterated loosely and type checked, because the linter reserves the typed stock_parts loop
+		// form for machines walking their component_parts as /datum/stock_part
+		for(var/obj/item/spare in replacer.contents)
+			if(!istype(spare, /obj/item/stock_parts/capacitor))
+				continue
+			var/obj/item/stock_parts/capacitor/candidate = spare
+			if(!capacitor || candidate.rating > capacitor.rating)
 				if(capacitor)
 					replacer.atom_storage.attempt_insert(capacitor, user, override = TRUE)
-				replacer.atom_storage.attempt_remove(spare, src)
-				capacitor = spare
+				replacer.atom_storage.attempt_remove(candidate, src)
+				capacitor = candidate
 				upgraded = TRUE
 				break
 		for(var/obj/item/stock_parts/power_store/cell/spare in replacer.contents)
