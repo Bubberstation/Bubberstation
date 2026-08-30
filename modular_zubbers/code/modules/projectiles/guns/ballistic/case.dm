@@ -315,6 +315,8 @@ GLOBAL_LIST_INIT(szot_case_blurbs, list(
 	icon = 'modular_zubbers/icons/obj/donk_shotbox.dmi'
 	icon_state = "donk"
 	ammo_type = /obj/item/ammo_casing/shotgun/flechette/donk
+	// must match /datum/design/advancedgaugeboxes_donk exactly or the design_mats unit test fails
+	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 35, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
 #undef ANIOLEK_ARMOR_PIERCING_CHANCE
 #undef SZOT_CASE_SPARE_MAGAZINES
