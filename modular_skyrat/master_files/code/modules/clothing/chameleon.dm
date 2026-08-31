@@ -29,6 +29,7 @@
 	if(istype(target, /obj/item/clothing/))
 		var/obj/item/clothing/target_clothing = target
 		var/obj/item/clothing/picked_clothing = picked_item
+		target_clothing.greyscale_colors = initial(picked_clothing.greyscale_colors)
 		target_clothing.supports_variations_flags = initial(picked_clothing.supports_variations_flags)
 		target_clothing.worn_icon_digi = initial(picked_clothing.worn_icon_digi)
 		target_clothing.worn_icon_taur_snake = initial(picked_clothing.worn_icon_taur_snake)
@@ -39,6 +40,28 @@
 		target_clothing.flags_inv = initial(picked_clothing.flags_inv)
 		target_clothing.visor_flags_cover = initial(picked_clothing.visor_flags_cover)
 		target_clothing.slowdown = 0
+
+		if(picked_item::greyscale_colors)
+			if(picked_item::greyscale_config_worn_digi)
+				target_clothing.worn_icon_digi = SSgreyscale.GetColoredIconByType(picked_item::greyscale_config_worn_digi, picked_item::greyscale_colors)
+			if(picked_item::greyscale_config_worn_taur_snake)
+				target_clothing.worn_icon_taur_snake = SSgreyscale.GetColoredIconByType(picked_item::greyscale_config_worn_taur_snake, picked_item::greyscale_colors)
+			if(picked_item::greyscale_config_worn_taur_paw)
+				target_clothing.worn_icon_taur_paw = SSgreyscale.GetColoredIconByType(picked_item::greyscale_config_worn_taur_paw, picked_item::greyscale_colors)
+			if(picked_item::greyscale_config_worn_taur_hoof)
+				target_clothing.worn_icon_taur_hoof = SSgreyscale.GetColoredIconByType(picked_item::greyscale_config_worn_taur_hoof, picked_item::greyscale_colors)
+			if(picked_item::greyscale_config_worn_taur_big)
+				target_clothing.worn_icon_taur_big = SSgreyscale.GetColoredIconByType(picked_item::greyscale_config_worn_taur_big, picked_item::greyscale_colors)
+			if(picked_item::greyscale_config_worn_muzzled)
+				target_clothing.worn_icon_muzzled = SSgreyscale.GetColoredIconByType(picked_item::greyscale_config_worn_muzzled, picked_item::greyscale_colors)
+			if(picked_item::greyscale_config_worn_monkey)
+				target_clothing.worn_icon_monkey = SSgreyscale.GetColoredIconByType(picked_item::greyscale_config_worn_monkey, picked_item::greyscale_colors)
+			if(picked_item::greyscale_config_worn_vox)
+				target_clothing.worn_icon_vox = SSgreyscale.GetColoredIconByType(picked_item::greyscale_config_worn_vox, picked_item::greyscale_colors)
+			if(picked_item::greyscale_config_worn_better_vox)
+				target_clothing.worn_icon_better_vox = SSgreyscale.GetColoredIconByType(picked_item::greyscale_config_worn_better_vox, picked_item::greyscale_colors)
+			if(picked_item::greyscale_config_worn_teshari)
+				target_clothing.worn_icon_teshari = SSgreyscale.GetColoredIconByType(picked_item::greyscale_config_worn_teshari, picked_item::greyscale_colors)
 		// var/slow = initial(picked_clothing.slowdown) /// DISABLED UNTIL YOU CAN MAKE THIS WORK WITH THE BROKEN CHAMELEON CLOTHES!!!
 		// if(slow)
 		// 	slowtoggle = new(target_clothing, slow)
