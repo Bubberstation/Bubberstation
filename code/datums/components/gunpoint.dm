@@ -31,7 +31,11 @@
 /datum/component/gunpoint/Initialize(mob/living/targ, obj/item/gun/wep)
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
-
+	//Bubber edit begin - lock on reticle
+	if(!targ.lock_on_effect)
+		targ.lock_on_effect = new
+		targ.vis_contents += targ.lock_on_effect
+	//Bubber edit end
 	var/mob/living/shooter = parent
 	target = targ
 	weapon = wep
@@ -78,6 +82,10 @@
 	shooter.remove_status_effect(/datum/status_effect/holdup)
 	target.remove_status_effect(/datum/status_effect/grouped/heldup, REF(shooter))
 	target.clear_mood_event("gunpoint")
+	//Bubber edit begin - remove reticle
+	target.vis_contents -= target.lock_on_effect
+	QDEL_NULL(target.lock_on_effect)
+	//Bubber edit end
 	return ..()
 
 /datum/component/gunpoint/RegisterWithParent()
@@ -137,6 +145,9 @@
 		to_chat(parent, span_danger("You have fully steadied [weapon] on [target]."))
 		to_chat(target, span_userdanger("[parent] has fully steadied [weapon] on you!"))
 		damage_mult = GUNPOINT_MULT_STAGE_3
+		//Bubber edit begin - fully lock on
+		if(target.lock_on_effect.icon_state != "locked")
+			target.lock_on_effect.icon_state = "locked"
 
 ///Cancel the holdup if the shooter moves out of sight or out of range of the target
 /datum/component/gunpoint/proc/check_deescalate()
@@ -156,7 +167,10 @@
 	shooter.remove_status_effect(/datum/status_effect/holdup) // try doing these before the trigger gets pulled since the target (or shooter even) may not exist after pulling the trigger, dig?
 	target.remove_status_effect(/datum/status_effect/grouped/heldup, REF(shooter))
 	target.clear_mood_event("gunpoint")
-
+	//Bubber edit begin - remove reticle
+	target.vis_contents -= target.lock_on_effect
+	QDEL_NULL(target.lock_on_effect)
+	//Bubber edit end
 	if(point_of_no_return)
 		return
 	point_of_no_return = TRUE
@@ -184,6 +198,10 @@
 	shooter.visible_message(span_danger("[shooter] breaks [shooter.p_their()] aim on [target]!"), \
 		span_danger("You are no longer aiming [weapon] at [target]."), ignored_mobs = target)
 	to_chat(target, span_userdanger("[shooter] breaks [shooter.p_their()] aim on you!"))
+	//Bubber edit begin - remove reticle
+	target.vis_contents -= target.lock_on_effect
+	QDEL_NULL(target.lock_on_effect)
+	//Bubber edit end
 	qdel(src)
 
 ///If the shooter is hit by an attack, they have a 50% chance to flinch and fire. If it hit the arm holding the trigger, it's an 80% chance to fire instead
