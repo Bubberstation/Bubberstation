@@ -26,6 +26,7 @@
 	var/damage_mult = GUNPOINT_MULT_STAGE_1
 	/// If TRUE, we're committed to firing the shot, for async purposes
 	var/point_of_no_return = FALSE
+	var/distance //Bubber edit - tracks the starting distance for the hold up
 
 // *extremely bad russian accent* no!
 /datum/component/gunpoint/Initialize(mob/living/targ, obj/item/gun/wep)
@@ -52,7 +53,7 @@
 	RegisterSignals(targ, list(COMSIG_LIVING_DISARM_HIT, COMSIG_LIVING_GET_PULLED), PROC_REF(cancel))
 	RegisterSignals(weapon, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), PROC_REF(cancel))
 
-	var/distance = max(get_dist(shooter, target), 1) // treat 0 distance as adjacent
+	distance = max(get_dist(shooter, target), 1) //var/distance = max(get_dist(shooter, target), 1) // treat 0 distance as adjacent - Bubber edit - tracking initial distance for use in damage calculations
 	var/distance_description = (distance <= 1 ? "point blank " : "")
 
 	shooter.visible_message(span_danger("[shooter] aims [weapon] [distance_description]at [target]!"),
@@ -139,12 +140,12 @@
 	if(stage == 2)
 		to_chat(parent, span_danger("You steady [weapon] on [target]."))
 		to_chat(target, span_userdanger("[parent] has steadied [weapon] on you!"))
-		damage_mult = GUNPOINT_MULT_STAGE_2
+		damage_mult = max(GUNPOINT_MULT_STAGE_2 - 0.2 * (distance - 1), 1) //Bubber edit - damage scaling with distance - prev - damage_mult = GUNPOINT_MULT_STAGE_2
 		addtimer(CALLBACK(src, PROC_REF(update_stage), 3), GUNPOINT_DELAY_STAGE_3)
 	else if(stage == 3)
 		to_chat(parent, span_danger("You have fully steadied [weapon] on [target]."))
 		to_chat(target, span_userdanger("[parent] has fully steadied [weapon] on you!"))
-		damage_mult = GUNPOINT_MULT_STAGE_3
+		damage_mult = max(GUNPOINT_MULT_STAGE_3 - 0.3 * (distance - 1), 1) //Bubber edit - damage scaling with distance - prev - damage_mult = GUNPOINT_MULT_STAGE_3
 		//Bubber edit begin - fully lock on
 		if(target.lock_on_effect.icon_state != "locked")
 			target.lock_on_effect.icon_state = "locked"
