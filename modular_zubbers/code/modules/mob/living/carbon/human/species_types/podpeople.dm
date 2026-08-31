@@ -4,7 +4,7 @@
 
 /datum/species/pod/get_species_description()
 	return list(
-	"Aeons ago, the precursor podpeople stood alone among the sea of stars. They resolved to spread the seeds of life \
+	"Aeons ago, the precursor Podpeople stood alone among the sea of stars. They resolved to spread the seeds of life \
 	that would ultimately survive them. Disease forced the last remnants into scarce few seedvaults, sequestered away. \
 	Genetic reconstruction has revived this species from bone and dust, growing new life from replica pods designed to simulate the genesis of Podpeople.",
 
@@ -32,7 +32,7 @@
 		Their technological advancements were apparently few, at least compared to contemporary examples, and no Podperson vessels have been uncovered to date. \
 		Recovered documentation and oral history suggest that the Podpeople feared diseases that would prey on their apparent lack of genetic diversity.",
 
-		"There are records of podperson vaults across the universe, typically containing one or two operators, \
+		"There are records of Podperson vaults across the universe, typically containing one or two operators, \
 		though the largest by far has recently been discovered on the surface of Indecipheres, \
-		Suggesting a connection between the Podpeople and the living nature of the asteroid. Research is currently ongoing.",
+		suggesting a connection between the Podpeople and the living nature of the asteroid. Research is currently ongoing.",
 	)
