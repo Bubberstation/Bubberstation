@@ -356,7 +356,7 @@
 	return fired
 
 /obj/item/gun/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
-	if(user.combat_mode && isliving(interacting_with))
+	if(user.combat_mode && isliving(interacting_with) && get_dist(user, interacting_with) < 2) //Bubber edit - distance check so you can hold up in combat mode
 		return ITEM_INTERACT_SKIP_TO_ATTACK // Gun bash / bayonet attack
 
 	if(!can_hold_up || !isliving(interacting_with))
