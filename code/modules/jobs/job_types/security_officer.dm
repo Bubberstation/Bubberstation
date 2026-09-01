@@ -320,7 +320,7 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	 * This is the function that is responsible for taking the list of preferences,
 	 * and spitting out what to put them in.
 	 *
-	 * However, it should, wherever possible, prevent solo departments.
+	 * However, it should, wherever possible, prevent solo departments. // BUBBER EDIT: This was patched out, allowing solo departments
 	 * That means that if there's one medical officer, and one engineering officer,
 	 * that they should be put onto the same department (either medical or engineering).
 	 *
@@ -463,6 +463,8 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	return selection
 
 /proc/get_distribution(candidates, departments)
+	// BUBBER EDIT BEGIN - REMOVES THE PAIRING CODE.
+	/*
 	var/number_of_twos = min(departments, round(candidates / 2))
 	var/redistribute = candidates - (2 * number_of_twos)
 
@@ -471,10 +473,18 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	for (var/index in 1 to number_of_twos)
 		distribution[index] = 2
 
+	*/
+	var/distribution_size = min(departments, candidates)
+	var/redistribute = candidates - distribution_size
+	var/distribution[max(1, distribution_size)]
+	for (var/index in 1 to distribution_size)
+		distribution[index] = 1
+
 	for (var/index in 0 to redistribute - 1)
 		distribution[(index % departments) + 1] += 1
 
 	return distribution
+	// BUBBER EDIT END
 
 /proc/get_new_officer_distribution_from_late_join(
 	preference,
@@ -516,9 +526,13 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	for (var/department in amount_in_departments)
 		var/amount = amount_in_departments[department]
 
+		// BUBBER EDIT BEGIN - REMOVES THE PAIRING CODE.
+		/*
 		if (amount == 1)
 			return department
-		else if (lowest_amount > amount)
+		else*/
+		if (lowest_amount > amount)
+		// BUBBER EDIT END
 			lowest_departments = list(department)
 			lowest_amount = amount
 		else if (lowest_amount == amount)

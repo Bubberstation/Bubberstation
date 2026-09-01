@@ -32,7 +32,7 @@
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = FA_ICON_BRAIN,
 			SPECIES_PERK_NAME = "Superior Cortical Augmentation",
-			SPECIES_PERK_DESC = "[plural_form] have an augmented brain: Their brains can be repaired with a multitool, and aren't at risk from biological processes. However, they are vulnerable to EMPs",
+			SPECIES_PERK_DESC = "[plural_form] have an augmented brain: Their brains can be repaired with a multitool, and aren't at risk from biological processes. However, they are vulnerable to EMPs.",
 		))
 
 	return to_add
