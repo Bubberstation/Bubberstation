@@ -83,16 +83,16 @@
 
 /datum/bloodsucker_clan/malkavian/on_final_death(datum/antagonist/bloodsucker/source)
 	var/mob/living/carbon/dying_malkavian = bloodsuckerdatum.owner.current
+	var/obj/item/soulstone/bloodsucker/stone = new(get_turf(dying_malkavian))
 	if(!iscarbon(dying_malkavian) || !dying_malkavian.ckey)
 		return FALSE
-	var/obj/item/soulstone/bloodsucker/stone = new(get_turf(dying_malkavian))
 	INVOKE_ASYNC(src, PROC_REF(store_soul), stone, dying_malkavian)
 	return DONT_DUST
 
 /datum/bloodsucker_clan/malkavian/proc/store_soul(obj/item/soulstone/bloodsucker/stone, mob/living/carbon/dying_malkavian)
 	if(stone.capture_soul(dying_malkavian, forced = TRUE))
 		return
-	qdel(stone)
+	// Nobody took the soul, so dust the body ourselves rather than leave it for the next LifeTick to find.
 	if(!QDELETED(dying_malkavian))
 		dying_malkavian.dust(drop_items = TRUE)
 
