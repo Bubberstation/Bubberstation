@@ -3,8 +3,11 @@
 Using RFC 2119 keywords for requirements to avoid ambiguity.
 
 PR - Pull Request
+
 FixPR - A bugfix/spellcheck/qol/internal PR.
+
 TM - Test Merge
+
 DB - Database
 
 ## TMs and Merges
