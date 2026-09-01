@@ -265,7 +265,6 @@
 	. = ..()
 	if(!old_body || !new_body)
 		CRASH("Bloodsucker on_body_transfer called with null bodies!")
-	// A whole new body means Final Death can happen again - the latch only exists to stop one death being handled twice.
 	final_death_triggered = FALSE
 	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
 		if(old_body)
