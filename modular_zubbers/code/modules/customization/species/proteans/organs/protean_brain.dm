@@ -9,8 +9,8 @@
  */
 
 /obj/item/organ/brain/protean
-	name = "protean core"
-	desc = "An advanced positronic brain, typically found in the core of a protean."
+	name = "\improper Protean core"
+	desc = "An advanced positronic brain, typically found in the core of a Protean."
 	icon = PROTEAN_ORGAN_SPRITE
 	icon_state = "posi1"
 	zone = BODY_ZONE_CHEST

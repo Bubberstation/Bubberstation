@@ -1,5 +1,6 @@
 /datum/species/human/cursekin
 	name = "\improper Cursekin"
+	plural_form = "\improper Cursekin"
 	id = SPECIES_CURSEKIN
 	inherent_traits = list(
 		TRAIT_LYCAN,
@@ -27,21 +28,21 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_ROBOT,
-			SPECIES_PERK_NAME = "Inorganic rejection",
-			SPECIES_PERK_DESC = "The curse afflicting the cursekin prevents their bodies from being augmented with cybernetic organs \
+			SPECIES_PERK_NAME = "Inorganic Rejection",
+			SPECIES_PERK_DESC = "The curse afflicting the Cursekin prevents their bodies from being augmented with cybernetic organs \
 			or implants."
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_CLOUD_MOON,
-			SPECIES_PERK_NAME = "Silver weakness",
+			SPECIES_PERK_NAME = "Silver Weakness",
 			SPECIES_PERK_DESC = "You are burnt by silver, especially the reagent. This is vastly amplified while you are in your Lycan form."
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_MOON,
-			SPECIES_PERK_NAME = "Lycan transformation",
-			SPECIES_PERK_DESC = "Due to the curse, cursekin are capable of transforming into lycans, taking on all of the perks and \
+			SPECIES_PERK_NAME = "Lycan Transformation",
+			SPECIES_PERK_DESC = "Due to the curse, Cursekin are capable of transforming into Lycans, taking on all of the perks and \
 			drawbacks of that form. See the Lycan species page for more.",
 		),
 	)

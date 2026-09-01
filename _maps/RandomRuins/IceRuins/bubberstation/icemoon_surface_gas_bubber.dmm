@@ -1024,7 +1024,7 @@
 /area/ruin/thelizardsgas_lavaland)
 "ns" = (
 /obj/machinery/door/window/left/directional/north{
-	req_access = list(9512)
+	req_access = list("lizard_gas")
 	},
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
@@ -1040,7 +1040,7 @@
 	normaldoorcontrol = 1;
 	id = "corpooffice";
 	name = "Door Bolt Control";
-	req_access = list(9512)
+	req_access = list("lizard_gas")
 	},
 /turf/open/floor/iron/dark/smooth_corner,
 /area/ruin/thelizardsgas_lavaland)
@@ -1700,7 +1700,7 @@
 	id = "lizardshutters";
 	pixel_y = 7;
 	name = "Exterior Shutters";
-	req_access = list(9512);
+	req_access = list("lizard_gas");
 	pixel_x = -24
 	},
 /obj/machinery/button/door/directional/east{
@@ -1709,7 +1709,7 @@
 	id = "lizardgasbolt";
 	normaldoorcontrol = 1;
 	specialfunctions = 4;
-	req_access = list(9512);
+	req_access = list("lizard_gas");
 	pixel_x = -24
 	},
 /turf/open/floor/iron/dark/smooth_corner{
@@ -1812,7 +1812,7 @@
 	dir = 1
 	},
 /obj/machinery/door/window/left/directional/south{
-	req_access = list(9512)
+	req_access = list("lizard_gas")
 	},
 /turf/open/floor/iron/textured_large,
 /area/ruin/thelizardsgas_lavaland)
@@ -1868,7 +1868,7 @@
 	icon_state = "tram";
 	base_icon_state = "tram";
 	pixel_x = 26;
-	req_access = list(9512)
+	req_access = list("lizard_gas")
 	},
 /obj/effect/turf_decal/trimline/dark_green/filled/line{
 	dir = 6
@@ -2803,7 +2803,7 @@
 "KX" = (
 /obj/structure/table/wood/fancy/green,
 /obj/machinery/door/window/right/directional/north{
-	req_access = list(9512)
+	req_access = list("lizard_gas")
 	},
 /obj/item/stamp/denied{
 	pixel_x = -12;
@@ -2997,7 +2997,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/button/door/directional/south{
-	req_access = list(9512);
+	req_access = list("lizard_gas");
 	name = "Front Counter Shutters";
 	id = "lizardshutters_counter"
 	},
@@ -3104,14 +3104,14 @@
 	base_icon_state = "tram";
 	icon_state = "tram";
 	light_color = "#6496FA";
-	req_access = list(9512)
+	req_access = list("lizard_gas")
 	},
 /obj/machinery/button/door/directional/east{
 	pixel_y = 28;
 	name = "Reinforced Gate Toggle";
 	id = "lizardshutters_garage_reinforcement";
 	pixel_x = 6;
-	req_access = list(9512)
+	req_access = list("lizard_gas")
 	},
 /turf/open/floor/iron/shuttle/exploration/corner,
 /area/ruin/thelizardsgas_lavaland)
@@ -3423,7 +3423,7 @@
 	id = "lizardshutters_breakroom";
 	pixel_y = 0;
 	name = "Privacy Shutters";
-	req_access = list(9512);
+	req_access = list("lizard_gas");
 	pixel_x = 24
 	},
 /obj/structure/towel_bin{
@@ -3652,7 +3652,7 @@
 	},
 /obj/structure/closet/secure_closet/wall{
 	pixel_x = -32;
-	req_access = list(9512);
+	req_access = list("lizard_gas");
 	name = "Manager's Locker"
 	},
 /obj/item/clothing/head/beret/science/rd{
