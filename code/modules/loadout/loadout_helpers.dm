@@ -44,19 +44,25 @@
 		// BUBBER EDIT ADDITION BEGIN
 		if(item.restricted_roles && equipping && !(equipping.title in item.restricted_roles))
 			if(preference_source.parent)
-				to_chat(preference_source.parent, span_warning("You were unable to get a loadout item([initial(item.item_path.name)]) due to job restrictions!"))
+				to_chat(preference_source.parent, span_warning("You were unable to get a loadout item ([initial(item.item_path.name)]) due to job restrictions!"))
 			loadout_datums -= item
 			continue
 
 		if(item.blacklisted_roles && equipping && (equipping.title in item.blacklisted_roles))
 			if(preference_source.parent)
-				to_chat(preference_source.parent, span_warning("You were unable to get a loadout item([initial(item.item_path.name)]) due to job blacklists!"))
+				to_chat(preference_source.parent, span_warning("You were unable to get a loadout item ([initial(item.item_path.name)]) due to job blacklists!"))
 			loadout_datums -= item
 			continue
 
 		if(item.restricted_species && !(dna.species.id in item.restricted_species))
 			if(preference_source.parent)
 				to_chat(preference_source.parent, span_warning("You were unable to get a loadout item ([initial(item.item_path.name)]) due to species restrictions!"))
+			loadout_datums -= item
+			continue
+
+		if(item.blacklisted_species && (dna.species.id in item.blacklisted_species))
+			if(preference_source.parent)
+				to_chat(preference_source.parent, span_warning("You were unable to get a loadout item ([initial(item.item_path.name)]) due to species blacklists!"))
 			loadout_datums -= item
 			continue
 

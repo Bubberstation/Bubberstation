@@ -858,7 +858,7 @@
 	savefile_key = "feature_pod_hair"
 	main_feature_name = "Hairstyle"
 	category = PREFERENCE_CATEGORY_FEATURES
-	relevant_mutant_bodypart = "pod_hair"
+	relevant_mutant_bodypart = FEATURE_POD_HAIR
 	default_accessory_type = /datum/sprite_accessory/pod_hair/ivy
 	should_generate_icons = TRUE
 	generate_icons = TRUE
@@ -871,8 +871,8 @@
 	var/datum/universal_icon/pod_head = uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "pod_head_m")
 	pod_head.blend_color(COLOR_GREEN, ICON_MULTIPLY)
 
-	var/datum/universal_icon/icon_adj = uni_icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_FRONT_OVER_HAIR")
-	var/datum/universal_icon/icon_front = uni_icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_FRONT_OVER")
+	var/datum/universal_icon/icon_adj = uni_icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_ADJ")
+	var/datum/universal_icon/icon_front = uni_icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_FRONT")
 	icon_front.blend_color(COLOR_MAGENTA, ICON_MULTIPLY)
 	icon_adj.blend_color(COLOR_VIBRANT_LIME, ICON_MULTIPLY)
 	icon_adj.blend_icon(icon_front, ICON_OVERLAY)

@@ -4,7 +4,7 @@
 				especially relating to their pagan practices. While Siik'Tajr is used as a trade language with outsiders, Ættmál remains sacred and mostly unknown \
 				to those outside the Hearth."
 	key = "H"
-	flags = TONGUELESS_SPEECH
+	flags = LANGUAGE_TONGUELESS_SPEECH
 	space_chance = 70
 	syllables = list(
 		"al", "an", "ar", "að", "eg", "en", "er", "ha", "he", "il", "in", "ir", "ið", "ki", "le", "na", "nd", "ng", "nn", "og", "ra", "ri",

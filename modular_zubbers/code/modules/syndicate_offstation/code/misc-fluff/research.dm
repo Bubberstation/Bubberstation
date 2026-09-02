@@ -60,6 +60,7 @@
 	id = "cargoconsole_syndicate"
 	build_type = AWAY_IMPRINTER
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)
+	transfered_materials = list(/obj/item/circuitboard/computer/cargo/express/interdyne = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT))
 	build_path = /obj/item/circuitboard/computer/cargo/express/interdyne
 	category = list(
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
@@ -72,6 +73,7 @@
 	id = "bountypad_syndicate"
 	build_type = AWAY_IMPRINTER
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)
+	transfered_materials = list(/obj/item/circuitboard/machine/syndiepad = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT))
 	build_path = /obj/item/circuitboard/machine/syndiepad
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_CONSTRUCTION_MACHINERY
@@ -84,6 +86,7 @@
 	id = "bountyconsole_syndicate"
 	build_type = AWAY_IMPRINTER
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)
+	transfered_materials = list(/obj/item/circuitboard/computer/syndiepad = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT))
 	build_path = /obj/item/circuitboard/computer/syndiepad
 	category = list(
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
@@ -96,6 +99,7 @@
 	id = "powerator_syndicate"
 	build_type = AWAY_IMPRINTER
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)
+	transfered_materials = list(/obj/item/circuitboard/machine/powerator/interdyne = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT))
 	build_path = /obj/item/circuitboard/machine/powerator/interdyne
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_CONSTRUCTION_MACHINERY
@@ -108,6 +112,7 @@
 	id = "exofab_syndicate"
 	build_type = AWAY_IMPRINTER
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)
+	transfered_materials = list(/obj/item/circuitboard/machine/mechfab/interdyne = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT))
 	build_path = /obj/item/circuitboard/machine/mechfab/interdyne
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_CONSTRUCTION_MACHINERY
@@ -120,7 +125,7 @@
 	desc = "A Syndicate Implant restricted firing pin."
 	id = "syndicate_firing_pin"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/silver = SMALL_MATERIAL_AMOUNT * 6, /datum/material/diamond = SMALL_MATERIAL_AMOUNT * 6, /datum/material/uranium =SMALL_MATERIAL_AMOUNT * 2)
+	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 3)
 	build_path =/obj/item/firing_pin/implant/pindicate
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_FIRING_PINS
@@ -132,7 +137,7 @@
 	desc = "Standard issue headset for syndicate civillians."
 	id = "syndicate_headset"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1)
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.7)
 	build_path = /obj/item/radio/headset/syndicateciv
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_TELECOMMS
@@ -145,6 +150,7 @@
 	id = "interdyne_encryption"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	build_path = /obj/item/encryptionkey/headset_syndicate/interdyne
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_TELECOMMS
@@ -157,6 +163,7 @@
 	id = "cybersun_encryption"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	build_path = /obj/item/encryptionkey/headset_syndicate/cybersun
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_TELECOMMS

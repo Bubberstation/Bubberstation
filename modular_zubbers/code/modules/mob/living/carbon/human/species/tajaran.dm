@@ -70,7 +70,7 @@
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "fire",
 			SPECIES_PERK_NAME = "Fire weakness",
-			SPECIES_PERK_DESC = "Tajara take longer to cool off when set on fire"
+			SPECIES_PERK_DESC = "Tajara take longer to cool off when set on fire."
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,

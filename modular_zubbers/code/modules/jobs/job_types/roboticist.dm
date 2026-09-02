@@ -11,6 +11,16 @@
 /datum/job/roboticist
 	description = "Build cyborgs, mechs, AIs, and maintain them all. Create MODsuits for those that wish. Try to remind medical that you're \
 	actually a lot better at treating synthetic crew members than them."
+	required_languages = null
+	akula_outfit = /datum/outfit/akula/scientist
+	alt_titles = list(
+		"Roboticist",
+		"Biomechanical Engineer",
+		"Cyberneticist",
+		"Machinist",
+		"Mechatronic Engineer",
+		"Apprentice Roboticist",
+	)
 
 /datum/outfit/job/roboticist/New()
 	. = ..()
@@ -45,11 +55,11 @@
 
 /obj/item/paper/pamphlet/roboticist_reminder
 	name = "synthetic care pamphlet"
-	default_raw_text = "Your duties include treating the synthetic and protean lifeforms aboard the station! Heres some tips and tricks to get you started...<hr><br> \n\
+	default_raw_text = "Your duties include treating the synthetic and Protean lifeforms aboard the station! Heres some tips and tricks to get you started...<hr><br> \n\
 	You can buy <b>health analyzers</b> from your vendor, as well as <b>burn wound treatment chems</b>! Generally, you'll be using the coolant bottles.<br> \n\
 	Make sure to <b>use the health analyzers in hand</b> to activate <b>wound mode</b> if you're ever confused about a wound! <b>Blunt wounds</b> even show \
 	the current treatment step!<br>\n\
-	Your <b>departmental order console</b> includes things like synthetic medicine and protean organ crates!<br>\n\
+	Your <b>departmental order console</b> includes things like synthetic medicine and Protean organ crates!<br>\n\
 	<b>Epipens</b> are an effective treatment method for synthetic slash/pierce wounds!<br>\n\
 	<b>Nanite Slurry</b> is used to heal minor synthetic <b>brute</b> and <b>burn</b> damage. \
 	overdose is at <b>10u</b>. Overdose heals synthetic organ damage in exchange of overheating and brute damage.<br>\n\
