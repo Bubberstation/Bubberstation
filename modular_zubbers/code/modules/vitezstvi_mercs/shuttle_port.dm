@@ -81,9 +81,8 @@
 
 	playsound(epicentre, 'sound/vehicles/car_crash.ogg', 100, vary = FALSE, falloff_distance = 25)
 
-	var/sound/impact = sound('sound/vehicles/car_crash.ogg', volume = 100)
 	for(var/mob/passenger as anything in passengers)
-		SEND_SOUND(passenger, impact)
+		SEND_SOUND(passenger, 'sound/vehicles/car_crash.ogg')
 
 	do_sparks(8, TRUE, epicentre)
 	do_smoke(3, epicentre, epicentre)
