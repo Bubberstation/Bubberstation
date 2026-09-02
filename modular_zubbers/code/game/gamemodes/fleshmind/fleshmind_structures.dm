@@ -355,7 +355,12 @@
 
 /obj/structure/fleshmind/structure/core/examine(mob/user)
 	. = ..()
+<<<<<<< Updated upstream
 	/// Level * Progress Required - Current Points
+=======
+	/// Last Level Up Points + the points needed to next level, default 300
+	/// typically this means per level it takes around 300 points, may be a bit more if it levelled up fast
+>>>>>>> Stashed changes
 	var/level_calculation = (our_controller.last_level_up_points + our_controller.level_up_progress_required) - our_controller.current_points
 	/// round Cooldown Time / 10
 	var/time_calculation = round(COOLDOWN_TIMELEFT(our_controller, level_up_cooldown) / 10)
