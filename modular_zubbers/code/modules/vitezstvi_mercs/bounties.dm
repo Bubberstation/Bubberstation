@@ -1,4 +1,4 @@
-/// Shared unlock: flips the shuttle purchase flag once. Idempotent.
+/// Shared unlock: flips the shuttle purchase flag for the Vítězství shuttle
 /proc/unlock_vitezstvi_shuttle()
 	if(SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_VITEZSTVI])
 		return
