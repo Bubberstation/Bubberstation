@@ -44,7 +44,7 @@
 	if(id_card && ((ACCESS_SYNDICATE in id_card.access) || (ACCESS_SYNDICATE_LEADER in id_card.access)))
 		return 10
 	var/datum/record/crew/record = find_record(perp.get_face_name(perp.get_id_name()))
-	if(record && record.wanted_status == WANTED_ARREST)
+	if(record?.wanted_status == WANTED_ARREST)
 		return 10
 	return 0
 
