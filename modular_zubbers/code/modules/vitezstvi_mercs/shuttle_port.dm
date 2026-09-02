@@ -22,7 +22,7 @@
 		var/time_left = timeLeft(1)
 		if(!early_warned && time_left <= early_warning_time)
 			early_warned = TRUE
-			var/site_line = GLOB.vitezstvi_crash_area_name || "somewhere important"
+			var/site_line = GLOB.vitezstvi_crash_area_name || "Somewhere important"
 			priority_announce(
 				text = "Station, this is VARS-7 Provodnik. Quartermaster, you old bastard, we received your tender. We are coming to get your people out. There is only small problem with approach vector. Pavel, why is station getting bigger? [site_line]? Comrades in this area, please be comrades somewhere else. Thank you for choosing Vítězství Arms.",
 				title = "COLLISION WARNING",
