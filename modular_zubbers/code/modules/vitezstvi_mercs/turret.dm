@@ -38,7 +38,7 @@
 
 /obj/machinery/porta_turret/vitezstvi/assess_perp(mob/living/carbon/human/perp)
 	// hostiles before any access check, since syndicate agents carry stolen all-access IDs
-	if("syndicate" in perp.get_faction())
+	if(ROLE_SYNDICATE in perp.get_faction())
 		return 10
 	var/obj/item/card/id/id_card = perp.wear_id?.GetID()
 	if(id_card && ((ACCESS_SYNDICATE in id_card.access) || (ACCESS_SYNDICATE_LEADER in id_card.access)))
