@@ -55,9 +55,6 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	/// Base typepath to what reskin datum this item can use to reskin into
 	/// Doesn't verify that the item_path actually has these reskins
 	var/datum/atom_skin/reskin_datum
-	// BUBBER EDIT ADDITION - Tracks whether reskin auto detection has already run for this datum.
-	var/reskin_datum_checked = FALSE
-	// BUBBER EDIT ADDITION END
 	/// A list of greyscale colors that are used for items that have greyscale support, but don't allow full customization.
 	/// This is an assoc list of /datum/job_department -> colors, or /datum/job -> colors, allowing for preset colors based on player chosen job.
 	/// Jobs are prioritized over departments.
@@ -336,7 +333,6 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 /datum/loadout_item/proc/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/outfit, visuals_only = FALSE)
 	if(isnull(equipped_item))
 		return NONE
-	try_detect_reskin() // BUBBER EDIT ADDITION - Populate reskin_datum before applying a saved skin
 
 	if(!visuals_only)
 		ADD_TRAIT(equipped_item, TRAIT_ITEM_OBJECTIVE_BLOCKED, TRAIT_SOURCE_LOADOUT)
@@ -420,23 +416,20 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
  * Checks item_path for a reskinable_item component and adopts its skin type, so that any item
  * which supports alt click reskinning in game also offers skin selection in the loadout.
  *
- * This cannot run in New(). Loadout datums are built by GLOBAL_LIST_INIT, which fires before
- * SSatoms initialises, and at that point atom/New() deliberately skips Initialize(). No
- * Initialize means no setup_reskins(), so the component would not exist yet to be found.
- * Running on first use instead means SSatoms has long since finished.
+ * This is called from to_ui_data() rather than New(), because it depends on the probe item below
+ * running its own Initialize(). Loadout datums are built by GLOBAL_LIST_INIT, which fires before
+ * SSatoms, and while SSatoms.initialized is INITIALIZATION_INSSATOMS every atom/New() skips
+ * InitAtom entirely. A probe built that early would never run setup_reskins(), so its component
+ * would not exist yet to be found. By the time the preferences data is assembled SSatoms is done.
  *
- * Only probes once per datum. Datums that declare reskin_datum themselves are left alone,
- * as are those flagged LOADOUT_FLAG_BLOCK_RESKIN.
+ * Datums that declare reskin_datum themselves are left alone, as are those flagged
+ * LOADOUT_FLAG_BLOCK_RESKIN.
  */
 /datum/loadout_item/proc/try_detect_reskin()
-	if(reskin_datum_checked || reskin_datum || (loadout_flags & LOADOUT_FLAG_BLOCK_RESKIN))
+	if(reskin_datum || (loadout_flags & LOADOUT_FLAG_BLOCK_RESKIN))
 		return
-	reskin_datum_checked = TRUE
 	if(!ispath(item_path, /obj/item))
 		return
-	// Mob holders carry a live creature. Building one spawns the creature inside it, and deleting it
-	// then tries to drop that creature on the floor. There is no floor here, so it throws. They never
-	// have skins anyway, so leave them alone.
 	if(ispath(item_path, /obj/item/mob_holder))
 		return
 	var/obj/item/probe = new item_path(null)
