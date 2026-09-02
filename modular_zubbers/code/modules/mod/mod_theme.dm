@@ -226,10 +226,10 @@
 	)
 
 /datum/armor/mod_theme_voskhod
-	melee = 20
-	bullet = 35
+	melee = 30
+	bullet = 30
 	laser = 30
-	energy = 20
+	energy = 30
 	bomb = 30
 	bio = 30
 	fire = 80
