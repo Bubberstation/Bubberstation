@@ -18,9 +18,21 @@ type Props = {
 };
 
 export function ItemIcon(props: Props) {
+  const { data } = useBackend<LoadoutManagerData>();
   const { item, scale = 3 } = props;
-  const icon_to_use = item.icon;
-  const icon_state_to_use = item.icon_state;
+  let icon_to_use = item.icon;
+  let icon_state_to_use = item.icon_state;
+  // BUBBER EDIT ADDITION START - Show the picked style on the item's icon
+  const loadout_list = data.character_preferences.misc.loadout_lists.loadout;
+  const selected = loadout_list?.[item.path];
+  if (item.reskins && selected && !Array.isArray(selected)) {
+    const picked = item.reskins.find((skin) => skin.name === selected.reskin);
+    if (picked) {
+      icon_to_use = picked.skin_icon || item.icon;
+      icon_state_to_use = picked.skin_icon_state;
+    }
+  }
+  // BUBBER EDIT ADDITION END
   //BUBBER EDIT START - dyamic uniforms
   if (item.image) {
     return (
