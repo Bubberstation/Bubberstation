@@ -4,7 +4,7 @@
 
 /obj/machinery/porta_turret/vitezstvi
 	name = "\improper Vítězství Arms sentry"
-	desc = "A mind-boggling Vítězství Arms product you've never seen on the market. No doubt cooked up as part of a half-baked, vodka-soaked scheme. An ammo box on the side indicates it's loaded with .60 Strela, the same anti-materiel round the Wyłom chambers; it will probably atomize anyone it deems insufficiently Tsarist, though that part is merely implied."
+	desc = "A mind-boggling Vítězství Arms product you've never seen on the market. No doubt cooked up as part of a half-baked, vodka-soaked scheme. An ammo box on the side indicates it's loaded with .60 Strela, the same anti-material round the Wyłom chambers; it will probably atomize anyone it deems insufficiently Tsarist, though that part is merely implied."
 	installation = null
 	uses_stored = FALSE // we hardcode projectiles, so process() must not wait on a stored_gun
 	max_integrity = 260
