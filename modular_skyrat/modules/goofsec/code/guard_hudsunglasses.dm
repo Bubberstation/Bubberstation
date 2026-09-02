@@ -116,6 +116,7 @@
 	name = "meson HUDsunglasses"
 	desc = "Sunglasses with a combined meson and security HUD. The forest green mirror lenses see straight through walls, which turns out to be less useful for catching criminals than you'd hope."
 	icon_state = "/obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering"
+	clothing_traits = list(TRAIT_SECURITY_HUD, TRAIT_MADNESS_IMMUNE)
 	greyscale_colors = "#585858#1a7a3e"
 	vision_flags = SEE_TURFS
 	glass_colour_type = /datum/client_colour/glass_colour/guard/engineering
