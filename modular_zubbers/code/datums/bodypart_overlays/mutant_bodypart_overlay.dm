@@ -79,6 +79,11 @@
 		for(var/emissive_boolean in emissive_eligibility_by_color_index)
 			. += emissive_boolean
 
+	if(modsuit_affected)
+		var/obj/item/mod/control/modsuit_control = locate() in limb?.owner?.get_equipped_items()
+		if(!isnull(modsuit_control))
+			. += "[modsuit_control.theme.hardlight_theme]_[modsuit_control.active]"
+
 	return .
 
 /**

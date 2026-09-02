@@ -9672,7 +9672,9 @@
 	dir = 4
 	},
 /obj/machinery/light/small/directional/south,
-/obj/machinery/computer/slot_machine,
+/obj/effect/spawner/random/entertainment/slot_machine{
+	dir = 8
+	},
 /turf/open/floor/wood/parquet,
 /area/station/service/bar)
 "baj" = (
@@ -10956,11 +10958,10 @@
 /turf/open/floor/iron/dark/small,
 /area/station/medical/pharmacy)
 "bgI" = (
-/obj/machinery/computer/slot_machine{
-	name = "gamba";
-	desc = "CAN'T STOP WINNING"
-	},
 /obj/machinery/wall_healer/directional/south,
+/obj/effect/spawner/random/entertainment/slot_machine{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/meeting_room)
 "bgJ" = (
@@ -27961,7 +27962,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/purple/filled/corner{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 1
@@ -28601,10 +28602,6 @@
 /obj/item/stack/tile/basalt,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
-"dJl" = (
-/obj/machinery/vending/cart,
-/turf/open/floor/iron/large,
-/area/station/hallway/primary/starboard)
 "dJm" = (
 /obj/structure/table,
 /obj/item/clothing/head/cone{
@@ -39050,7 +39047,6 @@
 	dir = 9
 	},
 /obj/structure/extinguisher_cabinet/directional/north,
-/obj/item/kirbyplants/random,
 /turf/open/floor/iron/dark/textured,
 /area/station/science/genetics)
 "hJz" = (
@@ -40574,6 +40570,7 @@
 	dir = 4
 	},
 /obj/machinery/airalarm/directional/east,
+/obj/item/kirbyplants/random,
 /turf/open/floor/iron/dark/textured,
 /area/station/science/genetics)
 "ilO" = (
@@ -57449,6 +57446,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/purple/filled/mid_joiner,
+/obj/machinery/vending/modularpc,
 /turf/open/floor/iron/corner{
 	dir = 4
 	},
@@ -58767,7 +58765,7 @@
 	alpha = 160
 	},
 /obj/effect/turf_decal/trimline/purple/filled/corner{
-	dir = 4
+	dir = 8
 	},
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -60903,6 +60901,13 @@
 /obj/structure/flora/bush/sparsegrass/style_random,
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden/abandoned)
+"pHx" = (
+/obj/machinery/light/directional/south,
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/effect/turf_decal/trimline/purple/filled/mid_joiner,
+/obj/machinery/vending/cart,
+/turf/open/floor/iron/edge,
+/area/station/hallway/primary/starboard)
 "pHy" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
@@ -62753,10 +62758,6 @@
 /turf/open/floor/iron/dark/corner{
 	dir = 1
 	},
-/area/station/hallway/primary/starboard)
-"qrp" = (
-/obj/machinery/vending/modularpc,
-/turf/open/floor/iron/large,
 /area/station/hallway/primary/starboard)
 "qrt" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
@@ -71851,13 +71852,17 @@
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "tKY" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/airlock/research/glass{
+	name = "Genetics Lab"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/science/genetics,
+/obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor/shutters/preopen{
 	dir = 8;
 	id = "gene_desk_shutters";
 	name = "Genetics Shutters"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/iron/dark,
 /area/station/science/genetics)
 "tLd" = (
 /obj/effect/turf_decal/siding/dark{
@@ -130992,7 +130997,7 @@ ggc
 vlZ
 qXW
 aYV
-ewl
+pHx
 bvx
 hWq
 bvx
@@ -132277,8 +132282,8 @@ hSf
 wbr
 vSz
 dek
-dJl
-qrp
+dek
+pQG
 pKX
 gZx
 cat

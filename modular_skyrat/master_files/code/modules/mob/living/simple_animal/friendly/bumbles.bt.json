@@ -1,0 +1,111 @@
+{
+	"dm_type": "/datum/ai_controller/basic_controller/bumbles",
+	"type": "selector",
+	"children": [
+		{
+			"type": "subtree",
+			"subtype": "/datum/bt_node/subtree/escape_captivity"
+		},
+		{
+			"type": "parallel",
+			"failure_policy": "BT_PARALLEL_FAILURE_CHILD_ONE",
+			"success_policy": "BT_PARALLEL_SUCCESS_CHILD_ONE",
+			"repeat_secondary": true,
+			"repeat_secondary_delay": "BASIC_MOB_FIND_TARGET_RATE",
+			"finish_on_primary": true,
+			"children": [
+				{
+					"type": "decorator",
+					"decorator": "/datum/bt_node/decorator/random_chance",
+					"vars": {
+						"observer_abort": "BT_ABORT_BOTH",
+						"chance": 0.1
+					},
+					"child": {
+						"type": "leaf",
+						"behavior": "/datum/bt_node/ai_behavior/bumbles_rest"
+					}
+				},
+				{
+					"type": "selector",
+					"children": [
+						{
+							"type": "decorator",
+							"decorator": "/datum/bt_node/decorator/key_off_cooldown",
+							"vars": {
+								"observer_abort": "BT_ABORT_BOTH",
+								"cooldown_key": "BB_BUMBLES_SNIFFING_COOLDOW"
+							},
+							"child": {
+								"type": "decorator",
+								"decorator": "/datum/bt_node/decorator/bb_key_set",
+								"vars": {
+									"observer_abort": "BT_ABORT_BOTH",
+									"key": "BB_CURRENT_TARGET"
+								},
+								"child": {
+									"type": "sequence",
+									"children": [
+										{
+											"type": "leaf",
+											"behavior": "/datum/bt_node/ai_behavior/move_to_target",
+											"vars": {
+												"target_key": "BB_CURRENT_TARGET",
+												"required_dist": 0
+											}
+										},
+										{
+											"type": "leaf",
+											"behavior": "/datum/bt_node/ai_behavior/basic_melee_attack",
+											"vars": {
+												"target_key": "BB_CURRENT_TARGET",
+												"targeting_strategy": "BB_TARGETING_STRATEGY"
+											}
+										},
+										{
+											"type": "leaf",
+											"behavior": "/datum/bt_node/ai_behavior/set_bb_cooldown",
+											"vars": {
+												"cooldown_key": "BB_BUMBLES_SNIFFING_COOLDOW",
+												"cooldown_duration": "20 SECONDS"
+											}
+										}
+									]
+								}
+							}
+						},
+						{
+							"type": "decorator",
+							"decorator": "/datum/bt_node/decorator/bb_key_set",
+							"vars": {
+								"observer_abort": "BT_ABORT_BOTH",
+								"invert": true,
+								"key": "BB_BUMBLES_RESTING"
+							},
+							"child": {
+								"type": "leaf",
+								"behavior": "/datum/bt_node/ai_behavior/idle_random_walk",
+								"vars": {
+									"walk_chance": 5
+								}
+							}
+						}
+					]
+				},
+				{
+					"type": "leaf",
+					"behavior": "/datum/bt_node/ai_behavior/acquire_target/update_interaction_target",
+					"vars": {
+						"target_key": "BB_CURRENT_TARGET",
+						"target_source": "/datum/target_source/oview_typed/from_bb_key/basic_foods",
+						"targeting_strategy": "BB_TARGETING_STRATEGY"
+					}
+				},
+				{
+					"type": "leaf",
+					"behavior": "/datum/bt_node/ai_behavior/random_speech/bumbles"
+				}
+			]
+		}
+	]
+}

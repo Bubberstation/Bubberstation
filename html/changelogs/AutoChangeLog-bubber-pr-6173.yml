@@ -1,0 +1,8 @@
+author: "pixelkitty286"
+delete-after: True
+changes:
+  - rscadd: "Aggressive grabbing of small silicon mobs"
+  - bugfix: "Silicons being unable to be aggressively grabbed or picked up"
+  - bugfix: "Fixed a bad instance of AddElement and RemoveElement in robot_model_traits.dm that were causing runtimes"
+  - code_imp: "grippedby was commented out in code/modules/mob/living/silicon/silicon_defense.dm and replaced with modular_zubber/code/modules/mob/living/silicon/silicon_defense.dm's own implementation of grippedby"
+  - code_imp: "changed weight class of \"cyborg.held_w_class\" to be WEIGHT_CLASS_BULKY instead of WEIGHT_CLASS_HUGE since huge is for two handed items."

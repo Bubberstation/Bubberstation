@@ -41,7 +41,7 @@
 	maximum_survivable_temperature = 1500
 	pressure_resistance = 200
 
-	ai_controller = /datum/ai_controller/basic_controller/simple
+	ai_controller = /datum/ai_controller/basic_controller/talk
 
 	faction = list("neutral")
 

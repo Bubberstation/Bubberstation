@@ -33,6 +33,7 @@
 	design_ids += "ammo_workbench"
 	design_ids += "m9mm_sec"
 	design_ids += "m9mm_sec_speedloader"
+	design_ids += "c32_speedloader"
 
 /datum/techweb_node/sec_equip/New()
 	. = ..()

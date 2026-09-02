@@ -654,7 +654,14 @@ BLIND     // can't see anything
 	if(clothing_flags & LARGE_WORN_ICON)
 		blood_overlay = mutable_appearance('icons/effects/64x64.dmi', "[blood_state]blood_large")
 	else
-		blood_overlay = mutable_appearance('icons/effects/blood.dmi', "[blood_state]blood")
+		//BUBBER EDIT BEGIN - Species specific blood icons.
+		// blood_overlay = mutable_appearance('icons/effects/blood.dmi', "[blood_state]blood") ORIGNAL
+		var/mob/living/carbon/human/wearer = loc
+		if(ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/blood_species.dmi', "[blood_state]blood_[wearer.dna.species.id]"))
+			blood_overlay = mutable_appearance('modular_zubbers/icons/effects/blood_species.dmi', "[blood_state]blood_[wearer.dna.species.id]")
+		else
+			blood_overlay = mutable_appearance('icons/effects/blood.dmi', "[blood_state]blood")
+		//BUBBER EDIT END
 
 	blood_overlay.color = get_blood_dna_color()
 
