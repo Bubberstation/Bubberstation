@@ -90,8 +90,6 @@
  * * target - The thing being attacked.
  */
 /mob/living/basic/pet/bumbles/proc/smell_flower(atom/source, atom/target)
-	SIGNAL_HANDLER
-
 	if(!is_type_in_list(target, flower_types))
 		return
 
