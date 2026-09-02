@@ -1,6 +1,6 @@
 /obj/item/encryptionkey/vitezstvi
 	name = "Vítězství Arms radio encryption key"
-	channels = list(RADIO_CHANNEL_FACTION = 1)
+	channels = list(RADIO_CHANNEL_FACTION)
 	special_channels = RADIO_SPECIAL_CENTCOM
 
 /obj/item/radio/headset/vitezstvi
