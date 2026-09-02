@@ -21,7 +21,7 @@
 			wanted_types = list(/obj/item/reagent_containers/cup/glass/bottle/vodka = TRUE)
 		if(2)
 			name = "Miecz Submachine Guns"
-			description = "We have... misplaced, several submachine guns during revelry comrade. Ask no questions. Ship us three Miecz SMGs so nobody has to find out dah?"
+			description = "We have... misplaced, several submachine guns during revelry comrade. Ask no questions. Ship us three Miecz SMGs so nobody has to find out, jasný?"
 			required_count = 3
 			wanted_types = list(/obj/item/gun/ballistic/automatic/miecz = TRUE)
 		if(3)
