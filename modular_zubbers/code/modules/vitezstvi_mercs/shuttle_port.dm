@@ -53,12 +53,11 @@
 
 /// Proximity alarm
 /obj/docking_port/mobile/emergency/vitezstvi/proc/sound_collision_klaxon()
-	var/sound/klaxon = sound('sound/machines/warning-buzzer.ogg', volume = 100)
 	for(var/mob/listener as anything in GLOB.player_list)
 		var/turf/listener_turf = get_turf(listener)
 		if(!listener_turf || !SSmapping.level_trait(listener_turf.z, ZTRAIT_STATION))
 			continue
-		SEND_SOUND(listener, klaxon)
+		SEND_SOUND(listener, 'sound/machines/warning-buzzer.ogg')
 
 /// Spoomy boomy
 /obj/docking_port/mobile/emergency/vitezstvi/proc/play_landing_impact()
