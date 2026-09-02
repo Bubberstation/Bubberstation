@@ -42,6 +42,7 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "secmed_vest"
 	worn_icon_state = "secmed_vest"
+	armor_type = /datum/armor/hazardvest_security_medic
 
 /obj/item/clothing/suit/armor/vest/peacekeeper/security_medic
 	name = "security medic armor vest"
