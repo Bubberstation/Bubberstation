@@ -47,6 +47,7 @@
 		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
 	)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	build_path = /obj/item/flatpacked_machine
 	category = list(
 		RND_CATEGORY_INITIAL,

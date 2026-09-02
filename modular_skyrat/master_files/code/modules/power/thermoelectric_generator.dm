@@ -37,7 +37,21 @@
 	SSair.start_processing_machine(src, mapload)
 	update_appearance()
 	component_parts = list(new /obj/item/circuitboard/machine/thermoelectric_generator)
+	register_context()
 
+/obj/machinery/power/thermoelectric_generator/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	if (!held_item)
+		return CONTEXTUAL_SCREENTIP_SET
+	switch(held_item.tool_behaviour)
+		if(TOOL_SCREWDRIVER)
+			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+		if(TOOL_WRENCH)
+			if (panel_open)
+				context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unan" : "An"]chor"
+			else
+				context[SCREENTIP_CONTEXT_LMB] = "Connect circulators"
+	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/power/thermoelectric_generator/Destroy()
 	null_circulators()

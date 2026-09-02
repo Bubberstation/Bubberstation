@@ -206,6 +206,12 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	akula_outfit = /datum/outfit/akula/security_officer
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+	alt_titles = list(
+		"Science Guard",
+		"Research Guard",
+	)
 
 /datum/outfit/job/science_guard
 	name = "Science Guard"
@@ -311,6 +317,14 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	akula_outfit = /datum/outfit/akula/security_officer
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+	alt_titles = list(
+		"Orderly",
+		"Medical Guard",
+		"Medical Attendant",
+		"Medical Support Technician",
+	) //other dept guards' alt-titles should be kept to [department] guard to avoid confusion, unless the department gets a re-do.	// I came across this comment while I was cleaning up job datums. IDFK what it is refering to because apparently having like 5 separate overrides for each job datum (and sometimes even fucking `New` procs just to add alt-titles) wasn't confusing enough I guess, but I'll leave it just in case
 
 /datum/outfit/job/orderly
 	name = "Orderly"
@@ -418,6 +432,12 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	akula_outfit = /datum/outfit/akula/security_officer
+	alt_titles = list(
+		"Engineering Guard",
+		"Atmospheric Security",
+	)
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
 /datum/outfit/job/engineering_guard
 	name = "Engineering Guard"
@@ -524,6 +544,12 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+	akula_outfit = /datum/outfit/akula/security_officer
+	alt_titles = list(
+		"Customs Agent",
+		"Supply Guard",
+	)
 
 /datum/outfit/job/customs_agent
 	name = "Customs Agent"
@@ -625,6 +651,14 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+	akula_outfit = /datum/outfit/akula/security_officer
+	alt_titles = list(
+		"Bouncer",
+		"Service Guard",
+		"Doorman",
+		"Doorwoman",
+	)
 
 /datum/outfit/job/bouncer
 	name = "Bouncer"

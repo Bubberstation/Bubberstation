@@ -57,7 +57,7 @@
 			qdel(src)
 			return
 		locked = TRUE
-		log_combat(target, source, "locked onto with aiming")
+		log_combat(source, target, "locked onto with aiming", aimed_gun)
 		playsound(get_turf(source), 'modular_skyrat/modules/gunpoint/sound/targeton.ogg', 50,1)
 		to_chat(source, span_notice("<b>You lock onto [target.name]!</b>"))
 		target.visible_message(span_warning("<b>[source.name] holds [target.name] at gunpoint with the [aimed_gun.name]!</b>"), span_userdanger("[source.name] holds you at gunpoint with the [aimed_gun.name]!"))

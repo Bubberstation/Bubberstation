@@ -14,6 +14,10 @@
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_TONGUE
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 
 /obj/item/organ/tongue/synth/can_speak_language(language)
 	return TRUE

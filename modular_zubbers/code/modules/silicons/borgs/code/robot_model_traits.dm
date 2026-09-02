@@ -54,12 +54,12 @@
 	if (!istype(robot))
 		return
 	if (model_features && (TRAIT_R_LIGHT_WEIGHT in model_features))
-		cyborg.can_be_held = TRUE
-		cyborg.held_w_class = WEIGHT_CLASS_HUGE
+		cyborg.AddElement(/datum/element/can_be_held)
+		cyborg.held_w_class = WEIGHT_CLASS_BULKY
 		cyborg.add_traits(list(TRAIT_CATLIKE_GRACE), INNATE_TRAIT)
 		cyborg.mob_size = MOB_SIZE_SMALL
 	else
-		cyborg.can_be_held = FALSE
+		cyborg.RemoveElement(/datum/element/can_be_held)
 		cyborg.held_w_class = WEIGHT_CLASS_NORMAL
 		cyborg.remove_traits(list(TRAIT_CATLIKE_GRACE), INNATE_TRAIT)
 		cyborg.mob_size = MOB_SIZE_HUMAN
