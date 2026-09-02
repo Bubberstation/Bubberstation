@@ -14,5 +14,5 @@
 	melee_damage_lower = 30
 	melee_damage_upper = 40
 	obj_damage = 100
-	faction = list(FACTION_VITEZSTVI, "russian", "bear")
+	faction = list(FACTION_VITEZSTVI, FACTION_RUSSIAN, FACTION_BEAR)
 	ai_controller = /datum/ai_controller/basic_controller/bear/guard
