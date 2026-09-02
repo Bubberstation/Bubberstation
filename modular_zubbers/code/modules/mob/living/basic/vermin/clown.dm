@@ -12,7 +12,6 @@
 	mob_size = MOB_SIZE_TINY
 	mob_biotypes = MOB_ORGANIC|MOB_BUG
 	// God forbid you let the clown create them in xenobio and carry a horde of them
-	can_be_held = TRUE
 	held_w_class = WEIGHT_CLASS_SMALL
 	gold_core_spawnable = HOSTILE_SPAWN
 
@@ -40,6 +39,7 @@
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg' = 1), 100, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 	AddComponent(/datum/component/slippery, 10, (SLIDE | GALOSHES_DONT_HELP))
 	AddElement(/datum/element/ai_retaliate) // Do not the clown bug
+	AddElement(/datum/element/can_be_held)
 	RegisterSignal(src, COMSIG_HOSTILE_POST_ATTACKINGTARGET, PROC_REF(post_attack))
 
 /mob/living/basic/clown_bug/proc/post_attack(datum/source, mob/living/carbon/human/target, result)

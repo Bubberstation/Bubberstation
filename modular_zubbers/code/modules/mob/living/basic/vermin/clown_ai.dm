@@ -1,15 +1,8 @@
 /datum/ai_controller/basic_controller/clown_bug
+	behavior_tree_json = "modular_zubbers/code/modules/mob/living/basic/vermin/clown_bug.bt.json"
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
-		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
+		BB_TARGET_MINIMUM_STAT = SOFT_CRIT,
 	)
 
 	ai_movement = /datum/ai_movement/basic_avoidance
-	idle_behavior = /datum/idle_behavior/idle_random_walk
-
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/escape_captivity,
-		/datum/ai_planning_subtree/simple_find_target,
-		/datum/ai_planning_subtree/target_retaliate,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree,
-	)
