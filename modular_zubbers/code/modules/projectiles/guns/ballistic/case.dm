@@ -91,11 +91,11 @@ GLOBAL_LIST_INIT(szot_case_blurbs, list(
 /obj/item/storage/toolbox/guncase/skyrat/szot_warstory/Initialize(mapload)
 	. = ..()
 	atom_storage.set_locked(STORAGE_FULLY_LOCKED)
-	atom_storage.max_slots = 5 // a gun, its ammunition, and the beret
+	atom_storage.max_slots = 6 // a gun, its ammunition, and the beret, with room to shuffle
 	max_integrity = 250
 	integrity_failure = 0.4
 	resistance_flags |= INDESTRUCTIBLE
-	atom_storage.max_total_storage = 12
+	atom_storage.max_total_storage = 16
 	atom_storage.set_holdable(list(
 		/obj/item/ammo_box,
 		/obj/item/gun/ballistic/automatic/lanca,

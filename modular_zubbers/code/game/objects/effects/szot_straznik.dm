@@ -293,9 +293,10 @@ GLOBAL_LIST_INIT(straznik_burn, list(28, 45, 68, 92))
 		return
 	triggermine(arrived)
 
-/// It takes a person's weight to close the plate. Thrown hats, shoved lockers and mice do not.
+/// It takes a person's weight to close the plate. Thrown hats, shoved lockers and mice do not,
+/// and neither does somebody sailing over it mid-throw.
 /obj/effect/mine/straznik/proc/presses_the_plate(atom/movable/candidate)
-	if(!isliving(candidate))
+	if(!isliving(candidate) || candidate.throwing)
 		return FALSE
 	var/mob/living/stepper = candidate
 	return stepper.mob_size >= MOB_SIZE_HUMAN
@@ -365,6 +366,9 @@ GLOBAL_LIST_INIT(straznik_burn, list(28, 45, 68, 92))
 	. += span_notice("The maintenance panel is [panel_open ? "open" : "screwed shut"].")
 
 /obj/item/minespawner/straznik/attack_self(mob/user)
+	if(locate(/obj/effect/mine) in get_turf(user))
+		balloon_alert(user, "already a mine here!")
+		return
 	if(!cell?.charge)
 		balloon_alert(user, "no charge!")
 		return
@@ -463,6 +467,11 @@ GLOBAL_LIST_INIT(straznik_burn, list(28, 45, 68, 92))
 	return null
 
 /obj/item/minespawner/straznik/deploy_mine()
+	// it may have been thrown onto a tile that was clear when it was armed
+	if(locate(/obj/effect/mine) in get_turf(src))
+		visible_message(span_warning("\The [src] refuses to arm; there is already a mine here."))
+		active = FALSE
+		return
 	var/obj/effect/mine/straznik/planted = new mine_type(get_turf(src))
 	planted.set_greyscale(greyscale_colors)
 	if(cell)
