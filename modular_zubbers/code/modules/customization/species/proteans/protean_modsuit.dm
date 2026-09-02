@@ -190,7 +190,8 @@
 		return UI_INTERACTIVE
 	. = ..()
 
-GAME_VERB_HIDDEN(/obj/item/mod/control/pre_equipped/protean, remove_modsuit, "Remove Assimilated Modsuit")
+/obj/item/mod/control/pre_equipped/protean/verb/remove_modsuit()
+	set name = "Remove Assimilated Modsuit"
 	var/obj/item/mod/core/protean/p_core = core
 	to_chat(usr, span_notice("You begin to pry at the [stored_modsuit] to seperate it."))
 	if(!do_after(usr, 5 SECONDS))
