@@ -404,3 +404,15 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/advancedgaugeboxes_donk
+	name = "12 Gauge Advanced Donk Spike Ammunition Box(Lethal)"
+	desc = "A 12 gauge ammunition box for shotgun shells."
+	id = "s12g_donk"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 35)
+	build_path = /obj/item/ammo_box/advanced/s12gauge/donk
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
