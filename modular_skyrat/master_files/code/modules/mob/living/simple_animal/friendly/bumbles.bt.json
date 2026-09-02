@@ -15,35 +15,63 @@
 			"finish_on_primary": true,
 			"children": [
 				{
+					"type": "decorator",
+					"decorator": "/datum/bt_node/decorator/random_chance",
+					"vars": {
+						"observer_abort": "BT_ABORT_BOTH",
+						"chance": 0.1
+					},
+					"child": {
+						"type": "leaf",
+						"behavior": "/datum/bt_node/ai_behavior/bumbles_rest"
+					}
+				},
+				{
 					"type": "selector",
 					"children": [
 						{
 							"type": "decorator",
-							"decorator": "/datum/bt_node/decorator/bb_key_set",
+							"decorator": "/datum/bt_node/decorator/key_off_cooldown",
 							"vars": {
 								"observer_abort": "BT_ABORT_BOTH",
-								"key": "BB_CURRENT_TARGET"
+								"cooldown_key": "BB_BUMBLES_SNIFFING_COOLDOW"
 							},
 							"child": {
-								"type": "sequence",
-								"children": [
-									{
-										"type": "leaf",
-										"behavior": "/datum/bt_node/ai_behavior/move_to_target",
-										"vars": {
-											"target_key": "BB_CURRENT_TARGET",
-											"required_dist": 1
+								"type": "decorator",
+								"decorator": "/datum/bt_node/decorator/bb_key_set",
+								"vars": {
+									"observer_abort": "BT_ABORT_BOTH",
+									"key": "BB_CURRENT_TARGET"
+								},
+								"child": {
+									"type": "sequence",
+									"children": [
+										{
+											"type": "leaf",
+											"behavior": "/datum/bt_node/ai_behavior/move_to_target",
+											"vars": {
+												"target_key": "BB_CURRENT_TARGET",
+												"required_dist": 0
+											}
+										},
+										{
+											"type": "leaf",
+											"behavior": "/datum/bt_node/ai_behavior/basic_melee_attack",
+											"vars": {
+												"target_key": "BB_CURRENT_TARGET",
+												"targeting_strategy": "BB_TARGETING_STRATEGY"
+											}
+										},
+										{
+											"type": "leaf",
+											"behavior": "/datum/bt_node/ai_behavior/set_bb_cooldown",
+											"vars": {
+												"cooldown_key": "BB_BUMBLES_SNIFFING_COOLDOW",
+												"cooldown_duration": "20 SECONDS"
+											}
 										}
-									},
-									{
-										"type": "leaf",
-										"behavior": "/datum/bt_node/ai_behavior/basic_melee_attack",
-										"vars": {
-											"target_key": "BB_CURRENT_TARGET",
-											"targeting_strategy": "BB_TARGETING_STRATEGY"
-										}
-									}
-								]
+									]
+								}
 							}
 						},
 						{
@@ -63,18 +91,6 @@
 							}
 						}
 					]
-				},
-				{
-					"type": "decorator",
-					"decorator": "/datum/bt_node/decorator/random_chance",
-					"vars": {
-						"observer_abort": "BT_ABORT_NONE",
-						"chance": 0.1
-					},
-					"child": {
-						"type": "leaf",
-						"behavior": "/datum/bt_node/ai_behavior/bumbles_rest"
-					}
 				},
 				{
 					"type": "leaf",

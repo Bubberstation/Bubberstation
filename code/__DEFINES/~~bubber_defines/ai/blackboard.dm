@@ -2,6 +2,8 @@
 #define BB_DUST_TARGET "bb_dust_target"
 /// Whether bumbles is currently resting
 #define BB_BUMBLES_RESTING "bb_bumbles_resting"
+/// Bumbles' flower sniffing cooldown
+#define BB_BUMBLES_SNIFFING_COOLDOW "bb_bumbles_sniffing_cooldown"
 
 // Houndeye AI keys
 #define BB_HOUNDEYE_BLAST "bb_houndeye_blast"
