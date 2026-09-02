@@ -355,8 +355,11 @@
 
 /obj/structure/fleshmind/structure/core/examine(mob/user)
 	. = ..()
-	/// Level * Progress Required - Current Points
-	var/level_calculation = (our_controller.level * our_controller.level_up_progress_required) - our_controller.current_points
+
+	/// Last Level Up Points + the points needed to next level, default 300
+	/// typically this means per level it takes around 300 points to level up, may be a bit more if it levelled up fast
+
+	var/level_calculation = (our_controller.last_level_up_points + our_controller.level_up_progress_required) - our_controller.current_points
 	/// round Cooldown Time / 10
 	var/time_calculation = round(COOLDOWN_TIMELEFT(our_controller, level_up_cooldown) / 10)
 
@@ -365,7 +368,7 @@
 			. += span_notice("Your GPS tracks to this thing!")
 		if(isobserver(user))
 			if(COOLDOWN_FINISHED(our_controller, level_up_cooldown) || level_calculation > 0)
-				. += "Level: [our_controller.level] | Progress to Next Level: [level_calculation]"
+				. += "Level: [our_controller.level] | Points to Next Level: [level_calculation]"
 			else
 				. += "Level: [our_controller.level] | Time to Next Level: [time_calculation] Seconds"
 
