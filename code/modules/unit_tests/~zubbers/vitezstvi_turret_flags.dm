@@ -1,5 +1,3 @@
-#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
-
 /// The Vítězství sentry re-declares TURRET_FLAG_SHOOT_ANOMALOUS locally because the
 /// TG define is file-local to portable_turret.dm. If TG ever renumbers that bit, our
 /// copy would silently point at the wrong flag, so this test fails loudly the moment
@@ -13,5 +11,3 @@
 
 	var/obj/machinery/porta_turret/vitezstvi/sentry = allocate(/obj/machinery/porta_turret/vitezstvi)
 	TEST_ASSERT_EQUAL(sentry.turret_flags, expected, "The Vítězství sentry's turret_flags no longer equals TG's TURRET_FLAG_SHOOT_ANOMALOUS.")
-
-#endif
