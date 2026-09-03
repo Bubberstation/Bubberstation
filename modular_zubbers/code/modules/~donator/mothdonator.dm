@@ -1,5 +1,3 @@
-#define BB_NUZZLE_GIVE_UP_TIME "BB_nuzzle_give_up_time"
-
 /// This is a special subtype of mob_holder that *spawns with a mob included* instead of being created by scooping a mob.
 /// It can override the name & description of the included mob as well.
 /obj/item/mob_holder/pet
@@ -98,43 +96,26 @@
 	return FALSE
 
 /datum/pet_command/nuzzle/execute_action(datum/ai_controller/controller)
-	// Don't clear BB_ACTIVE_PET_COMMAND here. The radial wipes the target and waits for the click,
-	// so cancelling early kills the command before the click lands.
-	// Typed local because dreamchecker won't take QDELETED() straight off the blackboard.
 	var/atom/nuzzle_target = controller.blackboard[BB_CURRENT_PET_TARGET]
 	if(QDELETED(nuzzle_target))
 		return
-	controller.queue_behavior(/datum/ai_behavior/nuzzle_target, BB_CURRENT_PET_TARGET)
-	return SUBTREE_RETURN_FINISH_PLANNING
+	controller.set_behavior_tree_override(SUBPLAN_ID_PET_COMMAND, /datum/bt_node/subtree/pet_command/nuzzle)
 
-/// Walks him over to whoever got clicked, then does the nuzzle. Reach is checked here rather than
-/// via AI_BEHAVIOR_REQUIRE_REACH so he can give up - he can't open doors, and this blocks planning.
-/datum/ai_behavior/nuzzle_target
-	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT|AI_BEHAVIOR_MOVE_AND_PERFORM
-	/// How long he'll chase someone he can't get to before giving up.
-	var/patience = 15 SECONDS
+/datum/bt_node/subtree/pet_command/nuzzle
+	behavior_tree_json = "modular_zubbers/code/modules/~donator/mothdonator_nuzzle.bt.json"
 
-/datum/ai_behavior/nuzzle_target/setup(datum/ai_controller/controller, target_key)
-	. = ..()
-	var/atom/nuzzle_target = controller.blackboard[target_key]
-	if(QDELETED(nuzzle_target))
-		return FALSE
-	controller.set_blackboard_key(BB_NUZZLE_GIVE_UP_TIME, world.time + patience)
-	set_movement_target(controller, nuzzle_target)
+/// The nuzzle itself. He's already standing next to them by the time this runs.
+/datum/bt_node/ai_behavior/nuzzle_target
+	var/target_key
 
-/datum/ai_behavior/nuzzle_target/perform(seconds_per_tick, datum/ai_controller/controller, target_key)
+/datum/bt_node/ai_behavior/nuzzle_target/perform(seconds_per_tick, datum/ai_controller/controller)
 	var/mob/living/nuzzler = controller.pawn
 	var/mob/living/nuzzle_target = controller.blackboard[target_key]
-	if(QDELETED(nuzzle_target))
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	if(nuzzle_target.stat == DEAD)
-		nuzzler.manual_emote("droops his wings sadly at [nuzzle_target].")
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+	if(QDELETED(nuzzle_target) || nuzzle_target.stat == DEAD)
+		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
+	// Being next to someone isn't the same as being able to touch them. Windows exist.
 	if(!nuzzle_target.IsReachableBy(nuzzler))
-		if(world.time < controller.blackboard[BB_NUZZLE_GIVE_UP_TIME])
-			return AI_BEHAVIOR_DELAY
-		nuzzler.manual_emote("droops his wings, unable to reach [nuzzle_target].")
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
 	nuzzler.manual_emote(pick(
 		"nuzzles up against [nuzzle_target], wings fluttering happily!",
 		"bonks his head against [nuzzle_target] and squeaks in delight!",
@@ -143,13 +124,21 @@
 		"nuzzles [nuzzle_target] with his entire fluffy being!",
 	))
 	new /obj/effect/temp_visual/heart(nuzzler.loc)
-	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+	return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
 
-/datum/ai_behavior/nuzzle_target/finish_action(datum/ai_controller/controller, succeeded, target_key)
-	. = ..()
-	controller.clear_blackboard_key(target_key)
-	controller.clear_blackboard_key(BB_ACTIVE_PET_COMMAND)
-	controller.clear_blackboard_key(BB_NUZZLE_GIVE_UP_TIME)
+/// Nuzzle's off. Target died, wandered out of reach, or he couldn't path to them.
+/datum/bt_node/ai_behavior/nuzzle_give_up
+	var/target_key
+
+/datum/bt_node/ai_behavior/nuzzle_give_up/perform(seconds_per_tick, datum/ai_controller/controller)
+	var/mob/living/nuzzler = controller.pawn
+	var/mob/living/nuzzle_target = controller.blackboard[target_key]
+	if(!QDELETED(nuzzle_target))
+		if(nuzzle_target.stat == DEAD)
+			nuzzler.manual_emote("droops his wings sadly at [nuzzle_target].")
+		else
+			nuzzler.manual_emote("droops his wings, unable to reach [nuzzle_target].")
+	return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
 
 /obj/item/mob_holder/pet/donator/centralsmith
 	name = "Mr. Fluff"
@@ -180,4 +169,3 @@
 /datum/preference/choiced/pet_gender/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
-#undef BB_NUZZLE_GIVE_UP_TIME
