@@ -10,12 +10,13 @@
 			var/mutable_appearance/underwear_overlay
 			var/female_sprite_flags = FEMALE_UNIFORM_FULL // the default gender shaping
 			if(underwear_accessory)
+				var/icon_file_path = underwear_accessory.greyscale_config ? SSgreyscale.GetColoredIconByType(underwear_accessory.greyscale_config, underwear_accessory.greyscale_colors) : underwear_accessory.icon
 				var/underwear_icon_state = underwear_accessory.icon_state
 				if(underwear_accessory.has_digitigrade && (bodyshape & BODYSHAPE_DIGITIGRADE))
 					underwear_icon_state += "_d"
 					female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY // for digi gender shaping
 				if(dna.species.sexes && physique == FEMALE && underwear_accessory.gender == MALE)
-					underwear_overlay = mutable_appearance(wear_female_version(underwear_icon_state, underwear_accessory.icon, female_sprite_flags), layer = -BODY_LAYER)
+					underwear_overlay = mutable_appearance(wear_female_version(underwear_icon_state, icon_file_path, underwear_accessory.icon, female_sprite_flags), layer = -BODY_LAYER)
 				else
 					underwear_overlay = mutable_appearance(underwear_accessory.icon, underwear_icon_state, -BODY_LAYER)
 				if(!underwear_accessory.use_static)
@@ -35,9 +36,10 @@
 		if(undershirt && !(underwear_visibility & UNDERWEAR_HIDE_SHIRT))
 			var/datum/sprite_accessory/clothing/undershirt/undershirt_accessory = SSaccessories.undershirt_list[undershirt]
 			if(undershirt_accessory)
+				var/icon_file_path = undershirt_accessory.greyscale_config ? SSgreyscale.GetColoredIconByType(undershirt_accessory.greyscale_config, undershirt_accessory.greyscale_colors) : undershirt_accessory.icon
 				var/mutable_appearance/undershirt_overlay
 				if(dna.species.sexes && physique == FEMALE)
-					undershirt_overlay = mutable_appearance(wear_female_version(undershirt_accessory.icon_state, undershirt_accessory.icon), layer = -BODY_LAYER)
+					undershirt_overlay = mutable_appearance(wear_female_version(undershirt_accessory.icon_state, icon_file_path, undershirt_accessory.icon), layer = -BODY_LAYER)
 				else
 					undershirt_overlay = mutable_appearance(undershirt_accessory.icon, undershirt_accessory.icon_state, -BODY_LAYER)
 				if(!undershirt_accessory.use_static)

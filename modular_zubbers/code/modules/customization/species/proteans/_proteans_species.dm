@@ -2,7 +2,7 @@
 	id = SPECIES_PROTEAN
 	examine_limb_id = SPECIES_PROTEAN
 
-	name = "Protean"
+	name = "\improper Protean"
 	sexes = TRUE
 
 	siemens_coeff = 1.5 // Electricty messes you up.
@@ -85,22 +85,18 @@
 /mob/living/carbon/human/species/protean
 	race = /datum/species/protean
 
-/datum/species/protean/Destroy(force)
-	QDEL_NULL(species_modsuit)
-	QDEL_NULL(protean_action)
-	owner = null
-	. = ..()
-
 /datum/species/protean/on_species_gain(mob/living/carbon/human/gainer, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
 	owner = gainer
 	equip_modsuit(gainer)
 	RegisterSignal(src, COMSIG_OUTFIT_EQUIP, PROC_REF(outfit_handling))
 	RegisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(organ_reject))
-	var/obj/item/mod/core/protean/core = species_modsuit.core
-	core?.linked_species = src
 	protean_action = new(src)
 	protean_action.Grant(owner)
+	var/obj/item/mod/core/protean/core = species_modsuit.core
+	if(!core)
+		CRASH("Protean: [gainer] failed to link to a core, and thus, have a functional suit!")
+	core.linked_species = src
 
 /datum/species/protean/proc/organ_reject(mob/living/source, obj/item/organ/inserted)
 	SIGNAL_HANDLER
@@ -126,9 +122,11 @@
 	if(gainer)
 		UnregisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN)
 	if(species_modsuit.stored_modsuit)
-		species_modsuit.unassimilate_modsuit(owner, TRUE)
-	gainer.dropItemToGround(species_modsuit, TRUE)
+		species_modsuit.stored_modsuit.forceMove(get_turf(gainer))
+		unassimilate_modsuit(null, TRUE)
 	if(species_modsuit)
+		if(species_modsuit.atom_storage)
+			species_modsuit.atom_storage.remove_all(owner.drop_location())
 		QDEL_NULL(species_modsuit)
 	protean_action.Remove(owner)
 	owner = null
@@ -152,29 +150,120 @@
 
 /datum/species/protean/proc/outfit_handling(datum/species/protean, datum/outfit/outfit, visuals_only) // Very snowflakey code. I'm not making outfits for every job.
 	SIGNAL_HANDLER
-	var/get_a_job = istype(outfit, /datum/outfit/job)
-	var/obj/item/mod/control/suit
-	if(ispath(outfit.back, /obj/item/mod/control))
-		var/control_path = outfit.back
-		suit = new control_path()
-		INVOKE_ASYNC(species_modsuit, TYPE_PROC_REF(/obj/item/mod/control/pre_equipped/protean, assimilate_modsuit), owner, suit, TRUE)
-		INVOKE_ASYNC(species_modsuit, TYPE_PROC_REF(/obj/item/mod/control, quick_activation))
+	if(visuals_only)
+		return
 
-	var/obj/item/mod/module/storage/storage = locate() in species_modsuit.modules // Give a storage if we don't have one.
-	if(!storage)
-		storage = new /obj/item/mod/module/storage/large_capacity()
-		species_modsuit.install(storage, owner, TRUE)
+	var/obj/item/mod/control/suit = outfit.back
+	if(ispath(suit, /obj/item/mod/control))
+		suit = new outfit.back
+		ASYNC // Not INVOKE_ASYNC to prevent race conditions.
+			assimilate_modsuit(owner, suit, TRUE)
+			species_modsuit.quick_activation()
 
-	if(outfit.backpack_contents)
-		outfit.backpack_contents += /obj/item/stack/sheet/iron/twenty
-		for(var/path in outfit.backpack_contents)
-			if(!get_a_job)
+	owner.equip_to_storage(SSwardrobe.provide_type(/obj/item/stack/sheet/iron/twenty, owner), ITEM_SLOT_BACK, TRUE, FALSE)
+	if(outfit.suit_store)
+		owner.equip_to_slot_if_possible(SSwardrobe.provide_type(outfit.suit_store, owner), ITEM_SLOT_SUITSTORE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE)
+
+/datum/species/protean/proc/assimilate_modsuit(mob/living/user, obj/item/mod/control/to_assimilate, forced = FALSE)
+	if(species_modsuit.stored_modsuit)
+		to_chat(user, span_warning("Can't absorb two modsuits!"))
+		if(forced)
+			stack_trace("assimilate_modsuit() tried to assimilate two modsuits. stored_modsuit: [species_modsuit.stored_modsuit], new_modsuit: [to_assimilate]")
+		return
+	if(!user?.transferItemToLoc(to_assimilate, species_modsuit, forced))
+		owner.balloon_alert(user, "stuck!")
+	if(!forced)
+		for(var/obj/item/part as anything in species_modsuit.get_parts())
+			if(part.loc == src)
 				continue
-			var/number = outfit.backpack_contents[path]
-			if(!isnum(number))//Default to 1
-				number = 1
-			for(var/i in 1 to number) // Copy and paste of EQUIP_OUTFIT_ITEM
-				owner.equip_to_storage(SSwardrobe.provide_type(path, owner), ITEM_SLOT_BACK, TRUE, TRUE)
+			species_modsuit.retract(null, part, TRUE)
+
+	species_modsuit.cached_modules += species_modsuit.modules
+	species_modsuit.stored_modsuit = to_assimilate
+	species_modsuit.stored_theme = species_modsuit.theme
+	species_modsuit.complexity_max = species_modsuit.stored_modsuit.complexity_max
+	species_modsuit.theme = species_modsuit.stored_modsuit.theme
+	species_modsuit.name = species_modsuit.stored_modsuit.name
+	species_modsuit.desc = species_modsuit.stored_modsuit.desc
+	species_modsuit.extended_desc = species_modsuit.stored_modsuit.extended_desc
+	/// module handling
+	for(var/obj/item/mod/module/module in species_modsuit.stored_modsuit.modules)
+		if(istype(module, /obj/item/mod/module/storage))
+			var/obj/item/mod/module/storage/existing_storage = locate() in species_modsuit.modules
+			if(existing_storage)
+				continue
+		if(locate(module.type) in species_modsuit.modules)
+			continue
+		species_modsuit.stored_modsuit.uninstall(module)
+		if(species_modsuit.install(module, owner, TRUE))
+			continue
+	species_modsuit.theme.set_up_parts(species_modsuit, species_modsuit.theme.default_skin)
+	species_modsuit.update_static_data_for_all_viewers()
+
+/datum/species/protean/proc/unassimilate_modsuit(mob/living/user, forced = FALSE)
+	if(!species_modsuit.stored_modsuit)
+		to_chat(user, span_warning("There is no assimilated suit."))
+		return
+	if(species_modsuit.active && !forced)
+		user.balloon_alert(user, "deactivate modsuit")
+		return
+	if(!(user?.has_active_hand()) && !forced)
+		user.balloon_alert(user, "need active hand")
+		return
+
+	for(var/obj/item/part in species_modsuit.get_parts())
+		if(part.loc == src)
+			continue
+		species_modsuit.retract(null, part, instant = TRUE)
+	species_modsuit.complexity_max = initial(species_modsuit.complexity_max)
+
+	// Module handling
+	for(var/obj/item/mod/module in species_modsuit.modules) // Transfer back every module
+		if(locate(module) in species_modsuit.cached_modules)
+			continue
+		species_modsuit.uninstall(module, user)
+		if(!species_modsuit.stored_modsuit.install(module, user, TRUE))
+			to_chat(user, span_notice("[module] has fallen to the floor!"))
+			module.forceMove(get_turf(species_modsuit))
+		species_modsuit.cached_modules -= module
+
+	// Item handling
+	for(var/obj/item/stuff in species_modsuit.atom_storage?.real_location.contents)
+		if(!species_modsuit.stored_modsuit.atom_storage)
+			species_modsuit.atom_storage.remove_all(owner)
+			break
+		species_modsuit.stored_modsuit.atom_storage.attempt_insert(stuff, owner, TRUE, messages = FALSE)
+
+	species_modsuit.theme = species_modsuit.stored_theme
+	species_modsuit.stored_theme = null
+	species_modsuit.theme.set_up_parts(species_modsuit, species_modsuit.theme.default_skin)
+	species_modsuit.name = initial(species_modsuit.name)
+	species_modsuit.desc = initial(species_modsuit.desc)
+	species_modsuit.extended_desc = initial(species_modsuit.extended_desc)
+
+	if(user?.can_put_in_hand(species_modsuit.stored_modsuit, user.active_hand_index))
+		user.put_in_hand(species_modsuit.stored_modsuit, user.active_hand_index)
+
+	species_modsuit.stored_modsuit = null
+	update_static_data_for_all_viewers()
+
+/datum/species/protean/proc/assimilate_theme(mob/user, plating)
+	var/obj/item/mod/construction/plating/plates = plating
+	var/datum/mod_theme/the_theme = GLOB.mod_themes[plates.theme]
+
+	species_modsuit.name = initial(species_modsuit.name)
+	species_modsuit.desc = initial(species_modsuit.desc)
+
+	for(var/obj/item/part in species_modsuit.get_parts())
+		part.name = initial(part.name)
+		part.desc = initial(part.desc)
+		if(part.loc == src)
+			continue
+		species_modsuit.retract(null, part, instant = TRUE)
+
+	species_modsuit.theme = the_theme
+	species_modsuit.theme.set_up_parts(species_modsuit, the_theme.default_skin)
+	update_static_data_for_all_viewers()
 
 /datum/species/protean/get_default_mutant_bodyparts()
 	return list(
@@ -205,7 +294,7 @@
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SQUARE_VIRUS,
 		SPECIES_PERK_NAME = "Protean Oddities",
-		SPECIES_PERK_DESC = "[plural_form] are inorganic beings. They are unable to gain nutrition from traditional foods. Instead, they must consume metals - Primarily, iron. \ In addition to this, [plural_form] are unable to be surgically or chemically headed; [plural_form] regenerate their body over time, consuming their nutrition to do so."
+		SPECIES_PERK_DESC = "[plural_form] are inorganic beings. They are unable to gain nutrition from traditional foods. Instead, they must consume metals - Primarily, iron. \ In addition to this, [plural_form] are unable to be surgically or chemically healed; [plural_form] regenerate their body over time, consuming their nutrition to do so."
 	))
 
 	return perk_descriptions

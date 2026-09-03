@@ -61,7 +61,7 @@
 	acid = 50
 	wound = 4
 
-/obj/item/clothing/head/utility/surgerycap/black
+/obj/item/clothing/head/utility/surgerycap
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/utility_teshari.dmi'
 
 /obj/item/clothing/head/utility/chefhat
