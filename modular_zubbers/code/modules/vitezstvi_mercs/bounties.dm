@@ -1,13 +1,3 @@
-/// Shared unlock: flips the shuttle purchase flag for the Vítězství shuttle
-/proc/unlock_vitezstvi_shuttle()
-	if(SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_VITEZSTVI])
-		return
-	SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_VITEZSTVI] = TRUE
-	priority_announce(
-		"VARS-7 'Provodnik' to Cargo. Shipment received in excellent condition. Quartermaster, you remain a bastard of exceptional quality and a true friend of Vítězství Arms. Should your station ever require assistance we will come running, perhaps faster than is wise.",
-		"VARS-7 'Provodnik'",
-	)
-
 /datum/bounty/item/special/vitezstvi
 	name = "Vítězství Arms Requisition"
 	reward = CARGO_CRATE_VALUE * 12
@@ -33,4 +23,10 @@
 
 /datum/bounty/item/special/vitezstvi/on_claimed(obj/item/card/id/id_card)
 	. = ..()
-	unlock_vitezstvi_shuttle()
+	if(SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_VITEZSTVI])
+		return
+	SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_VITEZSTVI] = TRUE
+	priority_announce(
+		"VARS-7 'Provodnik' to Cargo. Shipment received in excellent condition. Quartermaster, you remain a bastard of exceptional quality and a true friend of Vítězství Arms. Should your station ever require assistance we will come running, perhaps faster than is wise.",
+		"VARS-7 'Provodnik'",
+	)

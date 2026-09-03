@@ -14,17 +14,11 @@
 	registered_name = "Vítězství Arms Contractor"
 	trim = /datum/id_trim/nri/vitezstvi
 
-/obj/item/card/id/advanced/centcom/ert/nri/vitezstvi/GetAccess()
-	// doors read GetAccess(), not the raw list, so this survives trim and spawn ordering
-	return ..() | vitezstvi_contractor_access()
-
 /datum/outfit/vitezstvi_merc
 	name = "Vítězství Arms SRT Contractor"
 	head = /obj/item/clothing/head/helmet/space/beret/vitezstvi
 	glasses = /obj/item/clothing/glasses/hud/medsechud
 	ears = /obj/item/radio/headset/vitezstvi
-	mask = null
-	neck = null
 	uniform = /obj/item/clothing/under/costume/nri/captain
 	suit = /obj/item/clothing/suit/armor/vest/marine
 	gloves = /obj/item/clothing/gloves/combat
@@ -42,6 +36,7 @@
 	r_pocket = /obj/item/ammo_box/speedloader/c357
 	id = /obj/item/card/id/advanced/centcom/ert/nri/vitezstvi
 	id_trim = /datum/id_trim/nri/vitezstvi
+	implants = list(/obj/item/implant/mindshield)
 
 /// Literal rather than a region lookup, which can come up empty depending on init order.
 /proc/vitezstvi_contractor_access()
@@ -82,25 +77,23 @@
 	if(visuals_only)
 		return
 	stamp_contractor_id(user)
-	var/obj/item/implant/mindshield/loyalty = new()
-	loyalty.implant(user, null, silent = TRUE, force = TRUE)
 	var/obj/item/organ/liver/cybernetic/tier3/iron_liver = new()
 	iron_liver.Insert(user, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 	user.reagents.add_reagent(/datum/reagent/consumable/ethanol/vodka, 15)
 
-/// Forces access and name onto the worn ID. Run more than once, as prefs can swap the card.
+/// Syncs the worn ID's registered name to the contractor's assigned codename. The
+/// trim carries the access, so this only touches the name, and runs again after
+/// spawn because preference application can swap the card out from under the outfit.
 /proc/stamp_contractor_id(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
 	var/obj/item/card/id/id_card = user.wear_id?.GetID()
-	if(!id_card)
+	if(isnull(id_card))
 		id_card = user.get_idcard(hand_first = FALSE)
-	if(!id_card)
+	if(isnull(id_card))
 		return
-	id_card.access |= vitezstvi_contractor_access()
 	if(user.real_name)
 		id_card.registered_name = user.real_name
-	id_card.assignment = "Vítězství Arms Contractor"
 	id_card.update_label()
 
 /obj/item/storage/belt/military/nri/soldier/vitezstvi/PopulateContents()

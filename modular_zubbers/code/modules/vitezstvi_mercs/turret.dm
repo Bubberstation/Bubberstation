@@ -1,6 +1,11 @@
-// Copied from portable_turret.dm, where these are file-local and #undef'd out of reach.
+// TURRET_LETHAL and TURRET_FLAG_SHOOT_ANOMALOUS are file-local in portable_turret.dm
+// (#undef'd out of reach there), so they are re-declared here and #undef'd at the end.
+// The unit test in vitezstvi_turret_flags.dm guards the anomalous value against drift.
 #define TURRET_LETHAL 1
 #define TURRET_FLAG_SHOOT_ANOMALOUS (1<<4)
+
+/// Shared id that links the shuttle's sentries to their bridge control console.
+#define VITEZSTVI_TURRET_ID "vitezstvi_sentry"
 
 /obj/machinery/porta_turret/vitezstvi
 	name = "\improper Vítězství Arms sentry"
@@ -16,6 +21,7 @@
 	icon = 'modular_skyrat/modules/encounters/icons/turrets.dmi'
 	icon_state = "gun_turret_off"
 	base_icon_state = "gun_turret"
+	system_id = VITEZSTVI_TURRET_ID
 	stun_projectile = /obj/projectile/bullet/p60strela
 	lethal_projectile = /obj/projectile/bullet/p60strela
 	lethal_projectile_sound = 'modular_skyrat/modules/novaya_ert/sound/amr_fire.ogg'
@@ -37,7 +43,8 @@
 	return
 
 /obj/machinery/porta_turret/vitezstvi/assess_perp(mob/living/carbon/human/perp)
-	// hostiles before any access check, since syndicate agents carry stolen all-access IDs
+	// Hostiles are judged before any access check, because syndicate agents routinely
+	// carry stolen all-access IDs that would otherwise clear the whitelist.
 	if(ROLE_SYNDICATE in perp.get_faction())
 		return 10
 	var/obj/item/card/id/id_card = perp.wear_id?.GetID()
@@ -51,14 +58,10 @@
 /obj/machinery/turretid/vitezstvi
 	name = "sentry control"
 	desc = "Used to control the Vítězství Arms shuttle's automated defenses. The labelling is confident about which way they point."
+	system_id = VITEZSTVI_TURRET_ID
 	req_access = list()
 	req_one_access = list(ACCESS_MERC, ACCESS_COMMAND)
 
-/obj/machinery/turretid/vitezstvi/Initialize(mapload)
-	. = ..()
-	// stock controller only binds turrets in its own area instance, so sweep the whole hull
-	for(var/obj/machinery/porta_turret/vitezstvi/sentry in range(30, src))
-		turrets |= WEAKREF(sentry)
-
 #undef TURRET_LETHAL
 #undef TURRET_FLAG_SHOOT_ANOMALOUS
+#undef VITEZSTVI_TURRET_ID

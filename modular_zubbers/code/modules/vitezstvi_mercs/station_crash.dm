@@ -18,19 +18,15 @@ GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 		/area/station/command/heads_quarters/captain,
 	)
 
-/// Any actual room. Hallways and maintenance are excluded for being unfunny.
+/// Any actual room. Hallways and maintenance are blacklisted by type for being unfunny and also because there are a shitload of them.
 /proc/vitezstvi_crash_areas()
-	// matched on the name, since maps branch their maintenance wherever they like
-	var/static/list/excluded_words = list("maintenance", "hallway")
+	var/static/list/excluded = list(
+		/area/station/maintenance,
+		/area/station/hallway,
+	)
 	var/list/candidates = list()
 	for(var/area/station_area_path as anything in GLOB.the_station_areas)
-		var/area_name = initial(station_area_path.name)
-		var/skip = FALSE
-		for(var/word in excluded_words)
-			if(findtext(area_name, word))
-				skip = TRUE
-				break
-		if(!skip)
+		if(!is_path_in_list(station_area_path, excluded))
 			candidates += station_area_path
 	return candidates
 
@@ -96,13 +92,13 @@ GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 	message_admins("VARS-7 Provodnik is inbound to [site]. (<a href='byond://?src=[REF(port)];vitezstvi_retarget=1'>CHANGE LANDING ZONE</a>)")
 
 /obj/effect/station_crash/oh_no/shuttle_crash()
-	var/list/candidates = prob(VITEZSTVI_FUNNY_LANDING_CHANCE) ? vitezstvi_funny_areas() : vitezstvi_crash_areas()
-	var/turf/target = vitezstvi_crash_turf(candidates)
-	// comedic picks can miss on some maps, so fall back
-	if(!target)
-		target = vitezstvi_crash_turf(vitezstvi_crash_areas())
-	if(!target)
-		target = get_safe_random_station_turf()
+	// Try the comedic pick first (it can miss on maps lacking that room), then any real
+	// room, then any station turf at all. First hit wins.
+	var/turf/target
+	if(prob(VITEZSTVI_FUNNY_LANDING_CHANCE))
+		target = vitezstvi_crash_turf(vitezstvi_funny_areas())
+	target ||= vitezstvi_crash_turf(vitezstvi_crash_areas())
+	target ||= get_safe_random_station_turf()
 	if(!vitezstvi_place_crash_target(target))
 		return ..()
 

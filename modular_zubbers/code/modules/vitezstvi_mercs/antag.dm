@@ -22,7 +22,7 @@
 
 /datum/antagonist/ert/vitezstvi/greet()
 	var/list/orders = list()
-	orders += span_infoplain("<span class='big bold'>VÍTĚZSTVÍ ARMS EMERGENCY EXTRACTION ORDERS</span>")
+	orders += span_boldbig("VÍTĚZSTVÍ ARMS EMERGENCY EXTRACTION ORDERS")
 	var/count = 1
 	for(var/datum/objective/contract in objectives)
 		orders += span_notice("<b>Objective #[count]</b>: [contract.explanation_text]")

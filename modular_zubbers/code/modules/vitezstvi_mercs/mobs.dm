@@ -1,10 +1,3 @@
-/datum/ai_controller/basic_controller/bear/guard
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/target_retaliate,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree,
-		/datum/ai_planning_subtree/random_speech/bear,
-	)
-
 /mob/living/basic/bear/russian/boris
 	name = "Boris"
 	real_name = "Boris"
@@ -15,4 +8,6 @@
 	melee_damage_upper = 40
 	obj_damage = 100
 	faction = list(FACTION_VITEZSTVI, FACTION_RUSSIAN, FACTION_BEAR)
-	ai_controller = /datum/ai_controller/basic_controller/bear/guard
+	// Retaliate-only: Boris defends himself and his handlers but will not charge off
+	// to hunt boarding crew, so a friendly evac does not turn into a bear attack.
+	ai_controller = /datum/ai_controller/basic_controller/simple/simple_retaliate
