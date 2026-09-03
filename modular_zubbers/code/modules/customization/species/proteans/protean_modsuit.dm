@@ -1,5 +1,5 @@
 /obj/item/mod/control/pre_equipped/protean
-	name = "protean modsuit"
+	name = "\improper Protean modsuit"
 	desc = "The modsuit unit of a Protean, allowing them to retract into it, or to deploy a suit that protects against various environments."
 	theme = /datum/mod_theme // Standard theme. TODO: Can be changed with standard mod armors
 
@@ -54,7 +54,7 @@
 		return TRUE
 
 	to_chat(stripper, span_warning("This suit seems to be a part of them. You can't remove it!"))
-	stripper.balloon_alert(stripper, "can't strip a protean's suit!")
+	stripper.balloon_alert(stripper, "can't strip a Protean's suit!")
 	return ..()
 
 /obj/item/mod/control/pre_equipped/protean/proc/drop_suit()
@@ -164,10 +164,10 @@
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_SUCCESS
 
-	///Memory Wipe Via Pen
+	// Memory Wipe Via Pen
 
 	if(brain?.dead && istype(tool, /obj/item/pen))
-		to_chat(user, span_notice("You begin to reset the protean's random access memory using a pen!"))
+		to_chat(user, span_notice("You begin to reset the Protean's random access memory using a pen!"))
 		user.balloon_alert_to_viewers("resetting memory")
 		user.visible_message(span_boldwarning("[user] is reaching a pen into [protean_in_suit] to find the reset button!"))
 		playsound(src, 'sound/machines/synth/synth_no.ogg', 100)
@@ -190,8 +190,7 @@
 		return UI_INTERACTIVE
 	. = ..()
 
-/obj/item/mod/control/pre_equipped/protean/verb/remove_modsuit()
-	set name = "Remove Assimilated Modsuit"
+GAME_VERB_HIDDEN(/obj/item/mod/control/pre_equipped/protean, remove_modsuit, "Remove Assimilated Modsuit")
 	var/obj/item/mod/core/protean/p_core = core
 	to_chat(usr, span_notice("You begin to pry at the [stored_modsuit] to seperate it."))
 	if(!do_after(usr, 5 SECONDS))
@@ -211,7 +210,7 @@
 	if(!isnull(brain) || istype(brain))
 		if(brain.dead)
 			if(!open)
-				. += isnull(refactory) ? span_warning("This Protean requires critical repairs! <b>Screwdriver them open.</b>... There does seem to be a tiny reset hole on the top of the Protean, it seems a <b>Pen</b> might fit in there.. ") : span_notice("<b>Repairing systems...</b>") //Small line for how to memory reset a protean here too.
+				. += isnull(refactory) ? span_warning("This Protean requires critical repairs! <b>Screwdriver them open.</b>... There does seem to be a tiny reset hole on the top of the Protean, it seems a <b>Pen</b> might fit in there.. ") : span_notice("<b>Repairing systems...</b>") //Small line for how to memory reset a Protean here too.
 			else
 				. += isnull(refactory) ? span_warning("<b>Insert a new refactory</b>") : span_notice("<b>Refactory Installed! Repairing systems...</b>")
 		if(protean_in_suit.key && !protean_in_suit.client)  // We have to put these here because you're examining an object, and not a carbon, and players otherwise can't tell if anyone is home.
@@ -266,5 +265,3 @@
 	INVOKE_ASYNC(strip_menu, TYPE_PROC_REF(/datum/, ui_interact), user)
 
 	return COMPONENT_CANCEL_MOUSEDROP_ONTO
-
-

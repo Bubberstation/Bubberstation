@@ -9,8 +9,8 @@
  */
 
 /obj/item/organ/brain/protean
-	name = "protean core"
-	desc = "An advanced positronic brain, typically found in the core of a protean."
+	name = "\improper Protean core"
+	desc = "An advanced positronic brain, typically found in the core of a Protean."
 	icon = PROTEAN_ORGAN_SPRITE
 	icon_state = "posi1"
 	zone = BODY_ZONE_CHEST
@@ -67,7 +67,7 @@
 /datum/movespeed_modifier/protean_slowdown
 	variable = TRUE
 
-/obj/item/organ/brain/protean/proc/go_into_suit(forced)
+/obj/item/organ/brain/protean/proc/go_into_suit(forced = FALSE)
 	var/datum/species/protean/protean = owner.dna?.species
 	if(!istype(protean) || owner.loc == protean.species_modsuit)
 		return
@@ -84,10 +84,11 @@
 	owner.remove_status_effect(/datum/status_effect/protean_low_power_mode/low_power)
 	suit.drop_suit()
 	owner.forceMove(suit)
-	sleep(12) //Sleep is fine here because I'm not returning anything and if the brain gets deleted within 12 ticks of this being ran, we have some other serious issues.
+	if(!forced)
+		sleep(12) //Sleep is fine here because I'm not returning anything and if the brain gets deleted within 12 ticks of this being ran, we have some other serious issues.
 	owner.invisibility = initial(owner.invisibility)
 
-/obj/item/organ/brain/protean/proc/leave_modsuit()
+/obj/item/organ/brain/protean/proc/leave_modsuit(forced = FALSE)
 	var/datum/species/protean/protean = owner.dna?.species
 	if(!istype(protean))
 		return
@@ -95,8 +96,9 @@
 	if(dead)
 		to_chat(owner, span_warning("Your mass is destroyed. You are unable to leave."))
 		return
-	if(!do_after(owner, 5 SECONDS, suit, IGNORE_INCAPACITATED))
-		return
+	if(!forced)
+		if(!do_after(owner, 5 SECONDS, suit, IGNORE_INCAPACITATED))
+			return
 	if(istype(suit.loc, /obj/item/reagent_containers/cup/soup_pot)) // If protean inside of soup pot
 		var/obj/item/reagent_containers/cup/soup_pot/pot = suit.loc
 		pot.remove_first_ingredient(null)
@@ -108,7 +110,8 @@
 		storage.remove_single(null, suit, get_turf(suit), TRUE)
 	suit.invisibility = 101
 	new /obj/effect/temp_visual/protean_from_suit(suit.loc, owner.dir)
-	sleep(12) //Same as above
+	if(!forced)
+		sleep(12) //Same as above
 	suit.drop_suit()
 	owner.forceMove(suit.loc)
 	if(owner.get_item_by_slot(ITEM_SLOT_BACK))

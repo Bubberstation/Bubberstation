@@ -1,8 +1,7 @@
 /datum/ai_controller/basic_controller/coded_moonsnake
+	behavior_tree_json = "modular_zubbers/code/modules/mob/living/basic/moonstation/coded_moonsnake.bt.json"
 
 	ai_movement = /datum/ai_movement/basic_avoidance
-	idle_behavior = /datum/idle_behavior/idle_random_walk
-
 	blackboard = list(
 		BB_ALWAYS_IGNORE_FACTION = FALSE,
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
@@ -10,17 +9,6 @@
 		BB_BASIC_MOB_STOP_FLEEING = TRUE, //We only flee from scary fishermen
 	)
 
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/escape_captivity,
-		/datum/ai_planning_subtree/pet_planning,
-		/datum/ai_planning_subtree/target_retaliate,
-		/datum/ai_planning_subtree/simple_find_target,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree/no_fisherman,
-		/datum/ai_planning_subtree/flee_target/from_fisherman,
-		/datum/ai_planning_subtree/find_food,
-		/datum/ai_planning_subtree/go_for_swim,
-		/datum/ai_planning_subtree/random_speech/snake
-	)
 
 /mob/living/basic/mining/moonsnake
 
@@ -98,7 +86,6 @@
 
 	AddElement(/datum/element/basic_eating, heal_amt = 2, food_types = edibles)
 	AddElement(/datum/element/venomous, /datum/reagent/toxin/cazador, 1, injection_flags = INJECT_CHECK_PENETRATE_THICK)
-	AddElement(/datum/element/ai_retaliate)
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_SNAKE, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 5)
 
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, typecacheof(edibles))

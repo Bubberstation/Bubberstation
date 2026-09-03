@@ -70,6 +70,8 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	var/list/blacklisted_roles
 	/// If set, is a list of species which can get the loadout item
 	var/list/restricted_species
+	/// If set, is a list of species which can't get the loadout item
+	var/list/blacklisted_species
 	/// Whether the item is restricted to supporters
 	var/donator_only
 	/// Whether the item requires a specific season in order to be available
@@ -364,31 +366,93 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 
 	if(reskin_datum && item_details?[INFO_RESKIN])
 		var/skin_chosen = item_details[INFO_RESKIN]
-		var/list/atom_skins = get_atom_skins()
-		for(var/datum/atom_skin/skin_path as anything in valid_subtypesof(reskin_datum))
-			if(skin_path::preview_name != skin_chosen)
-				continue
-			if(skin_path::preview_name != skin_chosen)
-				continue
-			var/datum/atom_skin/skin_instance = atom_skins[skin_path]
-			skin_instance.apply(equipped_item)
+		// BUBBER EDIT CHANGE START - Prefer the component when the item has one
+		// Applying a skin directly leaves the component untouched: current_skin stays null and
+		// COMSIG_OBJ_RESKIN never fires, so items that track their own colour var never learn about
+		// the change and revert the moment something calls update_icon_state(). Going through the
+		// component takes the same path an in game alt click would.
+		// The item can carry more than one of these. The pride pin does: it has the base game's set of
+		// flags plus a second set added downstream. Match on the skin type we actually want, or we
+		// might hand the chosen name to the wrong set and get nothing.
+		var/datum/component/reskinable_item/reskin_comp
+		for(var/datum/component/reskinable_item/candidate as anything in equipped_item.GetComponents(/datum/component/reskinable_item))
+			if(candidate.get_base_reskin_type() == reskin_datum)
+				reskin_comp = candidate
+				break
+		if(reskin_comp)
+			reskin_comp.set_skin_by_name(skin_chosen)
+			// Mirror reskin_obj(): a component that only allows one skin is spent once that skin is
+			// picked, so drop it. Leaving it alive would swallow every later alt click on the item.
+			if(!reskin_comp.get_infinite_reskin())
+				qdel(reskin_comp)
 			if(istype(equipped_item, /obj/item/clothing/accessory))
 				// Snowflake handing for accessories, because we need to update the thing it's attached to instead
 				if(isclothing(equipped_item.loc))
-					var/obj/item/clothing/under/attached_to = equipped_item.loc
-					attached_to.update_accessory_overlay()
-					update_flag |= (ITEM_SLOT_OCLOTHING|ITEM_SLOT_ICLOTHING)
+					var/obj/item/clothing/attached_to = equipped_item.loc
+					update_flag |= attached_to.slot_flags
 			else
 				update_flag |= equipped_item.slot_flags
-			break
+		else
+			var/list/atom_skins = get_atom_skins()
+			for(var/datum/atom_skin/skin_path as anything in valid_subtypesof(reskin_datum))
+				if(skin_path::preview_name != skin_chosen)
+					continue
+				var/datum/atom_skin/skin_instance = atom_skins[skin_path]
+				skin_instance.apply(equipped_item)
+				if(istype(equipped_item, /obj/item/clothing/accessory))
+					// Snowflake handing for accessories, because we need to update the thing it's attached to instead
+					if(isclothing(equipped_item.loc))
+						var/obj/item/clothing/attached_to = equipped_item.loc
+						update_flag |= attached_to.slot_flags
+				else
+					update_flag |= equipped_item.slot_flags
+				break
+		// BUBBER EDIT CHANGE END
 
 	return update_flag
+
+// BUBBER EDIT ADDITION START - Automatic reskin detection
+/**
+ * Checks item_path for a reskinable_item component and adopts its skin type, so that any item
+ * which supports alt click reskinning in game also offers skin selection in the loadout.
+ *
+ * This is called from to_ui_data() rather than New(), because it depends on the probe item below
+ * running its own Initialize(). Loadout datums are built by GLOBAL_LIST_INIT, which fires before
+ * SSatoms, and while SSatoms.initialized is INITIALIZATION_INSSATOMS every atom/New() skips
+ * InitAtom entirely. A probe built that early would never run setup_reskins(), so its component
+ * would not exist yet to be found. By the time the preferences data is assembled SSatoms is done.
+ *
+ * Datums that declare reskin_datum themselves are left alone, as are those flagged
+ * LOADOUT_FLAG_BLOCK_RESKIN.
+ */
+/datum/loadout_item/proc/try_detect_reskin()
+	if(reskin_datum || (loadout_flags & LOADOUT_FLAG_BLOCK_RESKIN))
+		return
+	if(!ispath(item_path, /obj/item))
+		return
+	if(ispath(item_path, /obj/item/mob_holder))
+		return
+	var/obj/item/probe = new item_path(null)
+	// Some items delete themselves during Initialize (a lewd NIFSoft datadisk does exactly this when
+	// the lewd content config is off), and new() still hands back the reference. Touching it would
+	// runtime, and qdel'ing it a second time would throw.
+	if(QDELETED(probe))
+		return
+	// An item is allowed more than one of these, so ask for the list. If there is more than one we
+	// take the first, since the loadout menu only has room for a single set of styles.
+	var/list/found = probe.GetComponents(/datum/component/reskinable_item)
+	if(length(found))
+		var/datum/component/reskinable_item/reskin_comp = found[1]
+		reskin_datum = reskin_comp.get_base_reskin_type()
+	qdel(probe)
+// BUBBER EDIT ADDITION END
 
 /**
  * Returns a formatted list of data for this loadout item.
  */
 /datum/loadout_item/proc/to_ui_data() as /list
 	SHOULD_CALL_PARENT(TRUE)
+	try_detect_reskin() // BUBBER EDIT ADDITION - Populate reskin_datum before the UI data is built
 
 	var/list/formatted_item = list()
 	var/list/information = list()

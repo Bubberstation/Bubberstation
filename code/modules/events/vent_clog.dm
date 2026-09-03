@@ -81,6 +81,7 @@
 		/mob/living/basic/spider/maintenance,
 		/mob/living/basic/mouse,
 		/mob/living/basic/snail,
+		/mob/living/basic/clown_bug, // BUBBER EDIT - clown bugs! :DDD
 	)
 	return pick(mob_list)
 

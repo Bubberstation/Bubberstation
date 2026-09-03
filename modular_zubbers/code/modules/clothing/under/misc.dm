@@ -638,6 +638,7 @@
 	desc = "We may all be headed straight to hell. But what better place for us than this?"
 	icon = 'modular_zubbers/icons/obj/clothing/under/syndicate.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/syndicate_digi.dmi'
 	icon_state = "snake"
 
 /obj/item/clothing/under/rank/civilian/bubber/camo

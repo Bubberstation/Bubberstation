@@ -127,6 +127,7 @@
 #include "blood_volume_procs.dm"
 #include "bloody_footprints.dm"
 #include "borg_tools.dm"
+#include "boulder_processing.dm"
 #include "breath.dm"
 #include "buckle.dm"
 #include "burning.dm"
@@ -178,7 +179,6 @@
 #include "embedding.dm"
 #include "emoting.dm"
 #include "emp_flashlight.dm"
-#include "ensure_subtree_operational_datum.dm"
 #include "ethereal_revival.dm"
 #include "explosion_action.dm"
 #include "firedoor_regions.dm"
@@ -187,6 +187,7 @@
 #include "focus_only_tests.dm"
 #include "font_awesome_icons.dm"
 #include "food_edibility_check.dm"
+#include "food_processor.dm"
 #include "full_heal.dm"
 #include "gas_transfer.dm"
 #include "get_turf_pixel.dm"
@@ -218,6 +219,7 @@
 #include "interaction_door.dm"
 #include "interaction_silicon.dm"
 #include "interaction_structures.dm"
+#include "job_display_order.dm"
 #include "json_savefile_importing.dm"
 #include "keybinding_init.dm"
 #include "kinetic_crusher.dm"
@@ -234,6 +236,7 @@
 #include "lungs.dm"
 #include "machine_disassembly.dm"
 #include "mafia.dm"
+#include "make_vegan_wellington.dm"
 #include "map_landmarks.dm"
 #include "mapload_space_verification.dm"
 #include "mapping.dm"
@@ -369,6 +372,7 @@
 #include "~skyrat\digitigrade_sprites.dm"
 #include "~skyrat\nanite_designs.dm"
 #include "~skyrat\opposing_force.dm"
+#include "~skyrat\proteans.dm"
 // SKYRAT EDIT END
 // END_INCLUDE
 #ifdef REFERENCE_TRACKING_DEBUG //Don't try and parse this file if ref tracking isn't turned on. IE: don't parse ref tracking please mr linter

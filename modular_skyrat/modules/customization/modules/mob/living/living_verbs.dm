@@ -10,11 +10,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 	temporary_flavor_text_indicator.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
 	return temporary_flavor_text_indicator
 
-/mob/living/verb/set_temporary_flavor()
-	set category = "IC"
-	set name = "Set Temporary Flavor Text"
-	set desc = "Allows you to set a temporary flavor text."
-
+GAME_VERB_DESC(/mob/living, set_temporary_flavor, "Set Temporary Flavor Text", "Allows you to set a temporary flavor text.", "IC")
 	if(stat != CONSCIOUS)
 		to_chat(src, span_warning("You can't set your temporary flavor text now..."))
 		return
@@ -33,10 +29,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 	if (temporary_flavor_text)
 		. += GLOB.temporary_flavor_text_indicator
 
-/mob/living/verb/narrate()
-	set name = "Narrate"
-	set category = "IC"
-	set desc = "Allows you to send a narration message to a target or area"
+GAME_VERB_DESC(/mob/living, narrate, "Narrate", "Allows you to send a narration message to a target or area", "IC")
 	usr.emote("narrate")
 
 /datum/emote/narrate
@@ -87,7 +80,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 		return
 
 	user.log_message(message, LOG_EMOTE)
-	user.show_message(span_cyan("[message]"))
+	user.show_message(span_narrate("[message]"))
 
 	// Handle target = range
 	if(isnum(target))
@@ -98,7 +91,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 				viewers |= holo.Impersonation
 
 		for(var/mob/receiver in viewers)
-			receiver.show_message(span_cyan("[message] \n\ (Narration: [user])"), MSG_VISUAL)
+			receiver.show_message(span_narrate("[message] \n\ (Narration: [user])"), MSG_VISUAL)
 	// Handle target = an individual
 	else
 		var/mob/target_mob = astype(target, /obj/effect/overlay/holo_pad_hologram)?.Impersonation || target
@@ -107,7 +100,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 		if(get_dist(user_mob_or_hologram.loc, target_mob.loc) > world.view)
 			to_chat(user, span_warning("Your narration was unable to be sent to your target: Too far away."))
 			return
-		target_mob.show_message(span_cyan("[message] \n\ (Narration: [user])"), MSG_VISUAL)
+		target_mob.show_message(span_narrate("[message] \n\ (Narration: [user])"), MSG_VISUAL)
 
 #undef NARRATE_RANGE_MAX
 #undef NARRATE_RANGE_SAME_TILE

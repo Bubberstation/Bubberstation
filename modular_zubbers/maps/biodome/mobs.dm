@@ -21,10 +21,11 @@
 
 /mob/living/basic/creature/docile/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/sedated_mob, /datum/ai_controller/basic_controller/creature)
+	AddElement(/datum/element/sedated_mob, /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles)
 
+// Just shift around with random movement, doesn't break out of grabs
 /datum/ai_controller/basic_controller/creature/docile
-	planning_subtrees = list()
+	behavior_tree_json = "modular_zubbers/maps/biodome/docile.bt.json"
 
 /obj/structure/closet/foxbox
 	name = "FOX BOX (DO NOT OPEN)"

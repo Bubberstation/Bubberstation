@@ -62,7 +62,7 @@
 
 /mob/living/basic/mold/oil_shambler/Initialize(mapload)
 	. = ..()
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 
 /mob/living/basic/mold/oil_shambler/update_overlays()
 	. = ..()
@@ -82,24 +82,17 @@
 	ignite_target.ignite_mob()
 
 /datum/ai_controller/basic_controller/oil_shambler
+	behavior_tree_json = "modular_skyrat/modules/mold/code/oil_shambler.bt.json"
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 	)
 
 	ai_movement = /datum/ai_movement/basic_avoidance
-	idle_behavior = /datum/idle_behavior/idle_random_walk
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/simple_find_target,
-		/datum/ai_planning_subtree/attack_obstacle_in_path,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree,
-		/datum/ai_planning_subtree/random_speech/oil_shambler,
-	)
 
-/datum/ai_planning_subtree/random_speech/oil_shambler
+/datum/bt_node/ai_behavior/random_speech/oil_shambler
 	speech_chance = 3
 	emote_hear = list("bubbles.", "crackles.", "groans.")
 	emote_see = list("bubbles.")
-
 
 /**
  * DISEASE MOLD
@@ -147,24 +140,17 @@
 		disease_target.ForceContractDisease(new given_disease(), FALSE, TRUE)
 
 /datum/ai_controller/basic_controller/diseased_rat
+	behavior_tree_json = "modular_skyrat/modules/mold/code/diseased_rat.bt.json"
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 	)
 
 	ai_movement = /datum/ai_movement/basic_avoidance
-	idle_behavior = /datum/idle_behavior/idle_random_walk
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/simple_find_target,
-		/datum/ai_planning_subtree/attack_obstacle_in_path,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree,
-		/datum/ai_planning_subtree/random_speech/diseased_rat,
-	)
 
-/datum/ai_planning_subtree/random_speech/diseased_rat
+/datum/bt_node/ai_behavior/random_speech/diseased_rat
 	speech_chance = 3
 	emote_hear = list("squeaks.", "gnashes.", "hisses.")
 	emote_see = list("drools.")
-
 
 /**
  * ELECTRIC MOLD
@@ -205,20 +191,14 @@
 	AddElement(/datum/element/venomous, inject_reagent, inject_amount)
 
 /datum/ai_controller/basic_controller/electric_mosquito
+	behavior_tree_json = "modular_skyrat/modules/mold/code/electric_mosquito.bt.json"
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 	)
 
 	ai_movement = /datum/ai_movement/basic_avoidance
-	idle_behavior = /datum/idle_behavior/idle_random_walk
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/simple_find_target,
-		/datum/ai_planning_subtree/attack_obstacle_in_path,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree,
-		/datum/ai_planning_subtree/random_speech/electric_mosquito,
-	)
 
-/datum/ai_planning_subtree/random_speech/electric_mosquito
+/datum/bt_node/ai_behavior/random_speech/electric_mosquito
 	speech_chance = 3
 	emote_hear = list("zaps.", "buzzes.", "crackles.")
 	emote_see = list("arcs.")
@@ -264,7 +244,7 @@
 
 /mob/living/basic/mold/centaur/Initialize(mapload)
 	. = ..()
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 
 /mob/living/basic/mold/centaur/melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
@@ -278,24 +258,17 @@
 		playsound(src, 'modular_skyrat/modules/horrorform/sound/horror_scream.ogg', CENTAUR_ATTACK_SCREAM_VOLUME, TRUE)
 
 /datum/ai_controller/basic_controller/centaur
+	behavior_tree_json = "modular_skyrat/modules/mold/code/centaur.bt.json"
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 	)
 
 	ai_movement = /datum/ai_movement/basic_avoidance
-	idle_behavior = /datum/idle_behavior/idle_random_walk
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/simple_find_target,
-		/datum/ai_planning_subtree/attack_obstacle_in_path,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree,
-		/datum/ai_planning_subtree/random_speech/centaur,
-	)
 
-/datum/ai_planning_subtree/random_speech/centaur
+/datum/bt_node/ai_behavior/random_speech/centaur
 	speech_chance = 3
 	emote_hear = list("chitters.", "groans.", "wails.")
 	emote_see = list("writhes.")
-
 
 
 #undef OIL_SHAMBLER_OVERLAY
