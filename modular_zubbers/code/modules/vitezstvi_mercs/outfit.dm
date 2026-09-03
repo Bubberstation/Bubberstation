@@ -18,6 +18,7 @@
 	name = "Vítězství Arms SRT Contractor"
 	head = /obj/item/clothing/head/helmet/space/beret/vitezstvi
 	glasses = /obj/item/clothing/glasses/hud/medsechud
+	mask = /obj/item/clothing/mask/gas/sechailer
 	ears = /obj/item/radio/headset/vitezstvi
 	uniform = /obj/item/clothing/under/costume/nri/captain
 	suit = /obj/item/clothing/suit/armor/vest/marine
@@ -29,11 +30,11 @@
 	backpack_contents = list(
 		/obj/item/storage/box/nri_survival_pack = 1,
 		/obj/item/storage/medkit/emergency = 1,
-		/obj/item/ammo_box/speedloader/c357 = 2,
+		/obj/item/ammo_box/speedloader/c357 = 1,
 		/obj/item/reagent_containers/cup/glass/flask/vitezstvi = 1,
 	)
-	l_pocket = /obj/item/ammo_box/speedloader/c357
-	r_pocket = /obj/item/ammo_box/speedloader/c357
+	l_pocket = /obj/item/storage/fancy/cigarettes/cigpack_robust
+	r_pocket = /obj/item/lighter
 	id = /obj/item/card/id/advanced/centcom/ert/nri/vitezstvi
 	id_trim = /datum/id_trim/nri/vitezstvi
 	implants = list(/obj/item/implant/mindshield)
