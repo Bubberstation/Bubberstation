@@ -374,7 +374,9 @@
 #include "~skyrat\opposing_force.dm"
 #include "~skyrat\proteans.dm"
 // SKYRAT EDIT END
+// BUBBER EDIT BEGIN
 #include "~zubbers\vitezstvi_turret_flags.dm"
+// BUBBER EDIT END
 // END_INCLUDE
 #ifdef REFERENCE_TRACKING_DEBUG //Don't try and parse this file if ref tracking isn't turned on. IE: don't parse ref tracking please mr linter
 #include "find_reference_sanity.dm"
