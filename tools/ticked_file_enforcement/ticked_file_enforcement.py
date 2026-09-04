@@ -88,6 +88,10 @@ for code_file in scannable_files:
         if("~skyrat/" in code_file):
             dm_path = "~skyrat\\" + dm_path
         # SKYRAT EDIT END
+        # BUBBER EDIT START - same problem, our own modular unit test subfolder
+        if("~zubbers/" in code_file):
+            dm_path = "~zubbers\\" + dm_path
+        # BUBBER EDIT END
 
     included = f"#include \"{dm_path}\"" in lines
 
