@@ -114,7 +114,6 @@
 	return TRUE
 
 /datum/component/temporary_size/Destroy(force, silent)
-	var/mob/living/carbon/human/human_parent = parent
 	apply_size(original_size)
 
 	UnregisterSignal(parent, COMSIG_ENTER_AREA)
