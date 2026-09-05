@@ -1,5 +1,7 @@
 /// Room the drunks are arriving through, for the klaxon.
 GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
+/// The real dock's position before we ever touched it, so it can be put back.
+GLOBAL_VAR_INIT(vitezstvi_home_dock_original, null)
 
 /// Chance of picking a comedic target instead of any real room.
 #define VITEZSTVI_FUNNY_LANDING_CHANCE 10
@@ -29,12 +31,6 @@ GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 		if(!is_path_in_list(station_area_path, excluded))
 			candidates += station_area_path
 	return candidates
-
-/obj/effect/station_crash/oh_no
-	name = "drunken station crash"
-	desc = "Go home Ivan, you're drunk. (The shuttle will pick a room completely at random to crash land on. Oh, the humanity.)"
-	icon = 'icons/obj/drinks/bottles.dmi'
-	icon_state = "vodkabottle"
 
 /// Hull's long axis. The dock point is kept at least this far from the map edge.
 #define VITEZSTVI_EDGE_MARGIN 44
@@ -70,12 +66,37 @@ GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 		var/obj/docking_port/stationary/home_port = station_port
 		if(home_port.shuttle_id != "emergency_home")
 			continue
+		if(isnull(GLOB.vitezstvi_home_dock_original))
+			GLOB.vitezstvi_home_dock_original = list(home_port.x, home_port.y, home_port.z, home_port.dir)
 		home_port.forceMove(target)
 		// shuttle rotates to match its dock, so a random facing varies the angle of entry
 		home_port.setDir(pick(GLOB.cardinals))
 		GLOB.vitezstvi_crash_area_name = crash_area?.name || "an unknown compartment"
 		return TRUE
 	return FALSE
+
+/// Rolls this call's crash site. Only called from a genuine request(), never a preview.
+/proc/vitezstvi_roll_crash_target()
+	var/turf/target
+	if(prob(VITEZSTVI_FUNNY_LANDING_CHANCE))
+		target = vitezstvi_crash_turf(vitezstvi_funny_areas())
+	target ||= vitezstvi_crash_turf(vitezstvi_crash_areas())
+	target ||= get_safe_random_station_turf()
+	vitezstvi_place_crash_target(target)
+
+/// Hands the real dock back once our own ship has already landed on it.
+/proc/vitezstvi_restore_home_dock()
+	if(isnull(GLOB.vitezstvi_home_dock_original))
+		return
+	var/list/original = GLOB.vitezstvi_home_dock_original
+	for(var/station_port in SSshuttle.stationary_docking_ports)
+		var/obj/docking_port/stationary/home_port = station_port
+		if(home_port.shuttle_id != "emergency_home")
+			continue
+		home_port.forceMove(locate(original[1], original[2], original[3]))
+		home_port.setDir(original[4])
+		break
+	GLOB.vitezstvi_home_dock_original = null
 
 /// Ghosts get a seat, admins get a veto.
 /proc/vitezstvi_announce_target(rerouted = FALSE)
@@ -90,17 +111,6 @@ GLOBAL_VAR_INIT(vitezstvi_crash_area_name, null)
 		message_admins("VARS-7 Provodnik is inbound to [site].")
 		return
 	message_admins("VARS-7 Provodnik is inbound to [site]. (<a href='byond://?src=[REF(port)];vitezstvi_retarget=1'>CHANGE LANDING ZONE</a>)")
-
-/obj/effect/station_crash/oh_no/shuttle_crash()
-	// Try the comedic pick first (it can miss on maps lacking that room), then any real
-	// room, then any station turf at all. First hit wins.
-	var/turf/target
-	if(prob(VITEZSTVI_FUNNY_LANDING_CHANCE))
-		target = vitezstvi_crash_turf(vitezstvi_funny_areas())
-	target ||= vitezstvi_crash_turf(vitezstvi_crash_areas())
-	target ||= get_safe_random_station_turf()
-	if(!vitezstvi_place_crash_target(target))
-		return ..()
 
 #undef VITEZSTVI_FUNNY_LANDING_CHANCE
 #undef VITEZSTVI_EDGE_MARGIN
