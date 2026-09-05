@@ -73,7 +73,6 @@
 	/obj/item/storage/hypospraykit/cmo/preloaded, \
 	/obj/item/mod/control/pre_equipped/rescue, \
 	/obj/item/gun/ballistic/rifle/boltaction/sporterized, \
-	/obj/item/clothing/glasses/hud/gun_permit/sunglasses, \
 	/obj/item/card/id/departmental_budget/car, \
 	/obj/item/clothing/suit/armor/reactive/teleport, \
 	/obj/item/mod/control/pre_equipped/research, \

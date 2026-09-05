@@ -1,28 +1,10 @@
-/obj/item/clothing/glasses/hud/gun_permit
+// Legacy permit HUD, I cannot believe we are keeping this thing in the code for one guy
+/obj/item/clothing/glasses/hud/permit
 	name = "permit HUD"
-	desc = "A heads-up display that scans humanoids in view, and displays if their current ID possesses a firearms permit or not."
-	icon = 'modular_skyrat/modules/company_imports/icons/hud_goggles.dmi'
-	worn_icon = 'modular_skyrat/modules/company_imports/icons/hud_goggles_worn.dmi'
-	icon_state = "permithud"
+	desc = "A basic piece of legacy HUD-ware kept around for reasons known but to god. Because when was the last time anyone cared if you had a license for a sword?"
+	icon = 'modular_skyrat/modules/company_imports/icons/permithud.dmi'
+	icon_state = "permithud_brown"
+	worn_icon = 'modular_skyrat/modules/company_imports/icons/permithud_worn.dmi'
+	worn_icon_state = "permithud_brown"
 	clothing_traits = list(TRAIT_PERMIT_HUD)
-
-/obj/item/clothing/glasses/hud/gun_permit/sunglasses
-	name = "permit HUD sunglasses"
-	desc = "A pair of sunglasses with a heads-up display that scans humanoids in view, and displays if their current ID possesses a firearms permit or not."
-	flash_protect = FLASH_PROTECTION_FLASH
-	tint = 1
-
-/datum/design/permit_hud
-	name = "Gun Permit HUD glasses"
-	desc = "A heads-up display that scans humanoids in view, and displays if their current ID possesses a firearms permit or not."
-	id = "permit_glasses"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(
-		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
-		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
-	)
-	build_path = /obj/item/clothing/glasses/hud/gun_permit
-	category = list(
-		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC,
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_CARGO
+	glass_colour_type = null
