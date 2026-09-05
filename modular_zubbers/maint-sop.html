@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><base href="../"><link rel="stylesheet" href="dmdoc.css"><title>modular_zubbers/maint-sop.md - /tg/ Station 13</title></head><body><header><a href="index.html">/tg/ Station 13</a> - <a href="index.html#modules">Modules</a> - <a href="index.html#types">Types</a></header><main><h1>Maintainer SOP <aside>modular_zubbers/maint-sop.md</aside> <a href="https://github.com/Bubberstation/Bubberstation/blob/d862af6a0c92976b6110b9c167a9869161db1f68/modular_zubbers/maint-sop.md"><img src="git.png" width="16" height="16" title="modular_zubbers/maint-sop.md"></a></h1><table class="summary" cellspacing="0"><tr><td colspan="2"><p>Using RFC 2119 keywords for requirements to avoid ambiguity.</p>
+<p>PR - Pull Request</p>
+<p>FixPR - A bugfix/spellcheck/qol/internal PR.</p>
+<p>TM - Test Merge</p>
+<p>DB - Database</p>
+<h2 id="tms-and-merges">TMs and Merges</h2>
+<ul>
+<li>A single maintainer is enough for approval and merging/TMing a PR. They may request more reviews if they deem it necessary.</li>
+<li>With the exception of FixPRs, TMs and Merges must be approved by someone other than the person who created the PR.</li>
+<li>Any PR that isn't a FixPR must not be merged before at least 24 hours have passed since the last major adjustment was made to its player facing features. This is to allow time for secondary reviews and feedback.</li>
+</ul>
+<h2 id="upstreams">Upstreams</h2>
+<ul>
+<li>The playerbase must be informed ahead of time that an upstream will be TMd.</li>
+<li>Backups of player and DB data must be made before each upstream</li>
+<li>An upstream should be TMd first in order to squash all the fixes for it in a single commit under the upstream, and to not bog down our contributors with a buggy mess.</li>
+<li>An upstream must not be squash merged.</li>
+</ul>
+<h2 id="reviewing-prs">Reviewing PRs</h2>
+<ul>
+<li>Reviews should be clear and concise, explaining issues with the changes. Rewiews are not required to provide direct solutions.</li>
+<li>A maintainer may ask the contributor for clarification of their changes</li>
+</ul>
+<h2 id="closing-prs">Closing PRs</h2>
+<ul>
+<li>The below doesn't apply for feature freezes and clearly spam/abuse PRs</li>
+<li>A PR may be closed for any reason, but must not be closed before at least 24 hours have passed since it was put up</li>
+<li>A maintainer must provide a reasoning for the closure of a PR</li>
+</ul></td></tr></table></main><footer>tgstation.dme <a href="https://github.com/Bubberstation/Bubberstation/tree/d862af6a0c92976b6110b9c167a9869161db1f68">d862af6</a> (master) — <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.11.0</a></footer></body></html>
