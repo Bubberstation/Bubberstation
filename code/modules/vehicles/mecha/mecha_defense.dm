@@ -121,7 +121,7 @@
 		return ..()
 	if (def_zone != BODY_ZONE_HEAD && def_zone != BODY_ZONE_CHEST)
 		return ..()
-	if ((mecha_flags & IS_ENCLOSED) && !(kill_the_meat && prob(kill_the_meat) && !(mecha_flags & CANNOT_OVERPENETRATE)) && !(hitting_projectile.pass_flags & (PASSSTRUCTURE|PASSVEHICLE)))
+	if (((mecha_flags & IS_ENCLOSED) && !(kill_the_meat && prob(kill_the_meat) && !(mecha_flags & CANNOT_OVERPENETRATE)) && !(hitting_projectile.pass_flags & (PASSSTRUCTURE|PASSVEHICLE))) || (hitting_projectile.projectile_flags & MECH_HIT_PASSENGER)) // BUBBER EDIT CHANGE - ORIGINAL: if ((mecha_flags & IS_ENCLOSED) && !(kill_the_meat && prob(kill_the_meat) && !(mecha_flags & CANNOT_OVERPENETRATE)) && !(hitting_projectile.pass_flags & (PASSSTRUCTURE|PASSVEHICLE)))
 		return ..()
 	var/mob/living/hitmob = pick(occupants)
 	return hitmob.projectile_hit(hitting_projectile, def_zone, piercing_hit) //If we've passed any of the above conditions, the pilot can be hit
