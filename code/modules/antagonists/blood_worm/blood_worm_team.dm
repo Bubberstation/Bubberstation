@@ -69,7 +69,7 @@
 
 	report += ""
 
-	report += did_we_win() ? span_greentext("The [name] were successful!") : span_redtext("The [name] have failed!")
+	//BUBBER EDIT REMOVE GREENTEXT report += did_we_win() ? span_greentext("The [name] were successful!") : span_redtext("The [name] have failed!")
 
 	return "<div class='panel redborder'>[report.Join("<br>")]</div>"
 

@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(objectives) //SKYRAT EDIT ADDITION
 	var/name = "generic objective" //Name for admin prompts
 	var/explanation_text = "Nothing" //What that person is supposed to do.
 	///if this objective doesn't print failure or success in the roundend report
-	var/no_failure = FALSE
+	var/no_failure = TRUE //BUBBER EDIT - REMOVE GREENTEXT
 	///name used in printing this objective (Objective #1)
 	var/objective_name = "Objective"
 	var/team_explanation_text //For when there are multiple owners.
