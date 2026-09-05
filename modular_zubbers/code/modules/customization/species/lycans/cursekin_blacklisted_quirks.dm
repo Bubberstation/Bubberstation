@@ -10,5 +10,7 @@
 	species_blacklist = list(/datum/species/lycan, /datum/species/human/cursekin)
 
 /// Blacklisting entombed as well as I can see issues coming from it.
-/datum/quirk/equipping/entombed
+/*
+/datum/quirk/equipping/entombed	//moved to modular_zubbers\code\modules\customization\species\entombed_blacklist.dm
 	species_blacklist = list(/datum/species/lycan, /datum/species/human/cursekin)
+*/
