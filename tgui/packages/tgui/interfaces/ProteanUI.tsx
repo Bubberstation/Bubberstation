@@ -28,7 +28,7 @@ type ProteanData = {
 
 export const ProteanUI = () => {
   return (
-    <Window width={400} height={320}>
+    <Window width={430} height={290}>
       <Protean />
     </Window>
   );
@@ -124,25 +124,27 @@ export const Protean = () => {
       </Table>
       <Divider />
       <Stack
-        style={{ display: 'flex', justifyContent: 'left', width: '100%' }}
+        align="center"
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          width: '100%',
+        }}
       >
-        <Button
+        <Button.Confirm
           icon="right-from-bracket"
+          color="bad"
           disabled={!assimilated || !is_owner}
           tooltip={
             assimilated
-              ? 'Pry the modsuit you absorbed back out of yourself'
+              ? 'Extract the modsuit you absorbed from your body'
               : 'No assimilated modsuit'
           }
+          confirmContent="Are you sure?"
           onClick={() => act('eject_modsuit')}
         >
           Eject Assimilated Modsuit
-        </Button>
-      </Stack>
-      <Divider />
-      <Stack
-        style={{ display: 'flex', justifyContent: 'right', width: '100%' }}
-      >
+        </Button.Confirm>
         <ImageButton
           dmIcon={icon}
           dmIconState={icon_state}

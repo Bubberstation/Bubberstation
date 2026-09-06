@@ -64,7 +64,7 @@
 	return TRUE
 
 /datum/species/protean/proc/pry_suit_loose()
-	to_chat(owner, span_notice("You begin to eject [species_modsuit.stored_modsuit] from your body."))
+	to_chat(owner, span_notice("You begin to extract [species_modsuit.stored_modsuit] from your body."))
 	if(!do_after(owner, 5 SECONDS))
 		return
 	if(!species_modsuit?.stored_modsuit)
