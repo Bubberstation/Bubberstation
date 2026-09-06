@@ -29,10 +29,6 @@
 	AddComponent(/datum/component/squashable, squash_chance = 50, squash_damage = 1)
 
 /datum/ai_controller/basic_controller/cockroach/banana_spider
-	idle_behavior = /datum/idle_behavior/idle_random_walk/banana_spider
-
-/datum/idle_behavior/idle_random_walk/banana_spider
-	walk_chance = 10
 
 /obj/item/food/deadbanana_spider
 	name = "dead banana spider"

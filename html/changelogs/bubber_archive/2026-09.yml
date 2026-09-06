@@ -1,0 +1,85 @@
+2026-09-01:
+  Danielance:
+  - bugfix: added digi sprites to the "worn casually" version of the security, warden,
+      and hos uniforms
+  - rscdel: removed SecDrobe duplicates of bomber jacket, security uniform
+  - bugfix: fixed missing icon on futuristic security helmet when an attached seclite
+      is turned on
+  - bugfix: fixed virosec clothes (updated colors, readded missing digi sprites, softcap
+      now appears, corrected icons)
+  - bugfix: added digi sprites to stealth suit, big boss' stealth suit, stealth boots,
+      patriot's/mecury woman's boots, warden jumpsuit (non-toggle)
+  - bugfix: fixed stray line on patriot's/mecury woman's boots (non-digi)
+  SapphoQueer:
+  - balance: Shields can no longer be cuffed to your arm.
+  Swan:
+  - qol: Makes the TEGs circulator flip behavior happen on right click. Also adds
+      context info to it.
+  - qol: the narrate verb doesn't have its disgusting white-ish glow anymore
+  Techbot121:
+  - bugfix: chameleon outfit (ghost cafe) looking wrong
+2026-09-02:
+  Arturlang:
+  - bugfix: malkavinas will no longer when dying, be in soulstone-looping
+2026-09-03:
+  ArrisFairburne:
+  - rscadd: Replaces the synth charging cord with the synth interfacing tool; this
+      tool has all existing functionality for the cord, but also functions as a standin
+      for PDA click-object functions (ex. taking photos with the camera app)
+  - rscadd: 'Restores features unintentionally removed by PR #5527 (restores higher
+      disk space on synth PDAs and automatic job app downloads)'
+  - qol: Removes automatic PDA imprinting so that every synth on the station no longer
+      manages two PDAs chat logs, if they only wanted their handheld's
+  - balance: Increases the number of active programs that brain PDAs can run (5, up
+      from 3)
+  KateAnbolho:
+  - rscadd: independent voskhod suit order
+  - balance: rebalanced voskhod suit armor values
+  Lucky:
+  - bugfix: Fixed a bug where examining the fleshmind core gave an incorrect points
+      needed to level up
+  Maia-J:
+  - rscadd: The station might now be affected by spam being sent to their fax machines.
+  - bugfix: Bumbles is no longer sniffing lines of pollen from flowers in rapid succession
+  - rscadd: Clownbugs might now appear out of vents on the station
+  - rscadd: Clown rifts might impact the station and cover it in clown items
+  MintyPhresh:
+  - bugfix: '"Taur (Synthetic)" checkbox in the character creator now properly makes
+      your legs synthetic.'
+  Robwo:
+  - image: Fixed ai not being able to use additional status displays
+  StrangeWeirdKitten:
+  - balance: Houndeye melee damage 15 -> 1. The mob never used it unless player controlled,
+      and its blast is now an ability that player controlled houndeyes can also use.
+  - bugfix: headcrabs no longer damage eachother when leaping
+  - bugfix: player controlled headcrabs now transfer control into the zombie upon
+      zombification
+  - bugfix: Player controlled houndeyes and headcrabs now have full control over the
+      blast and jump abilities
+  pixelkitty286:
+  - rscadd: Aggressive grabbing of small silicon mobs
+  - bugfix: Silicons being unable to be aggressively grabbed or picked up
+  - bugfix: Fixed a bad instance of AddElement and RemoveElement in robot_model_traits.dm
+      that were causing runtimes
+  - code_imp: grippedby was commented out in code/modules/mob/living/silicon/silicon_defense.dm
+      and replaced with modular_zubber/code/modules/mob/living/silicon/silicon_defense.dm's
+      own implementation of grippedby
+  - code_imp: changed weight class of "cyborg.held_w_class" to be WEIGHT_CLASS_BULKY
+      instead of WEIGHT_CLASS_HUGE since huge is for two handed items.
+  xPokee:
+  - rscdel: The Die of Fate can no longer be found via maintenance loot (trash, random
+      maints spawns, etc.)
+2026-09-04:
+  Aeri:
+  - qol: You can set an item's alternate skin in the loadout menu now, in the same
+      place you rename it or pick its colors. Anything you could alt-click to reskin
+      in game will offer its skins up front.
+2026-09-05:
+  NanoCats:
+  - rscadd: The VARS-7 'Provodnik' is now available on the shuttle console.
+  - image: "Added sprites relevant to the new V\xEDt\u011Bzstv\xED Arms contractor\
+      \ role."
+  SomeCabbage:
+  - refactor: Renamed the map file for the extra CentCom Z-level, along with moving
+      the interlink helper to modular_zubbers and removing a redundant automapper.
+  - rscdel: Removes outfit headsets from the bitrunning milsim.

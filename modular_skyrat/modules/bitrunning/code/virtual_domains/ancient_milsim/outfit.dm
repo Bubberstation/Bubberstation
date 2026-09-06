@@ -9,7 +9,7 @@
 	shoes = /obj/item/clothing/shoes/jackboots/frontier_colonist
 	back = /obj/item/storage/backpack/industrial/frontier_colonist
 	glasses = null
-	ears = /obj/item/radio/headset/headset_faction/bowman
+	ears = null
 	id = /obj/item/card/id/advanced/terragov
 	r_hand = null
 	l_hand = null
@@ -36,7 +36,7 @@
 	suit = /obj/item/clothing/suit/armor/vest/cin_surplus_vest
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/fingerless
-	ears = /obj/item/radio/headset/cybersun
+	ears = null
 	mask = /obj/item/clothing/mask/balaclava
 	head = /obj/item/clothing/head/helmet/cin_surplus_helmet/forest
 	back = /obj/item/storage/backpack/industrial/cin_surplus/forest
@@ -50,7 +50,7 @@
 	suit = /obj/item/clothing/suit/armor/vest/cin_surplus_vest
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/fingerless
-	ears = /obj/item/radio/headset/cybersun
+	ears = null
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	mask = /obj/item/clothing/mask/balaclava
 	head = /obj/item/clothing/head/helmet/cin_surplus_helmet/forest

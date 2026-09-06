@@ -376,6 +376,9 @@
 	// If we have no body, end here.
 	if(QDELETED(owner.current) || isbrain(owner.current))
 		return
+	if(final_death_triggered)
+		return
+	final_death_triggered = TRUE
 	unregister_body_signals()
 	unregister_sol_signals()
 	free_all_ghouls()

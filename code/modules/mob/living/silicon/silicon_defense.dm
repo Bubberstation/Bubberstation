@@ -1,6 +1,8 @@
 
+/* BUBBER EDIT BEGIN - moved to <modular_zubber/code/modules/mob/living/silicon/silicon_defense.dm.
 /mob/living/silicon/grippedby(mob/living/carbon/user, instant = FALSE)
 	return //can't upgrade a simple pull into a more aggressive grab.
+*/ // BUBBER EDIT END
 
 /mob/living/silicon/get_ear_protection(ignore_deafness = FALSE)
 	return ..() + EAR_PROTECTION_HEAVY //no ears

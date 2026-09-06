@@ -99,7 +99,7 @@
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SHIELD,
 		SPECIES_PERK_NAME = "Durable Chitin",
-		SPECIES_PERK_DESC = "The Giant Armored Serpentid chitin is very robust and protects them from pressure and low temperature hazards, while also providing decent brute resistance."
+		SPECIES_PERK_DESC = "Giant Armored Serpentid chitin is very robust and protects them from pressure and low temperature hazards, while also providing decent brute resistance."
 	))
 
 	perk_descriptions += list(list(
@@ -148,13 +148,13 @@
 
 /datum/species/gas/get_species_description()
 	return list(
-		"Giant Armoured Serpentids, or GAS as they are often called are large insectoids hailing from a planet in the Tiziran Empire. \
+		"Giant Armoured Serpentids, or GAS as they are often called, are large insectoids hailing from a planet in the Tiziran Empire. \
 		They are excellent hunters, with phenomenal stealth capabilities, but are lacking in communication skills."
 	)
 
 /datum/species/gas/get_species_lore()
 	return list(
-		"The Giant Armoured Serpentids are an old race, of insectoid creatures from a high gravity world in the Tiziran Empire. \
+		"The Giant Armoured Serpentids are an old race of insectoid creatures from a high gravity world in the Tiziran Empire. \
 		Covered in intersecting scales, with a pair of huge claws as their main limbs, they vaguely resemble Terran mantids, though they've more \
 		in common with snakes and other reptiles from a Terran point of view.",
 		"Living in a semi-hive/colony state, GAS, as they're referred to by Nanotrasen, have a lack of self identity compared to most species, \
