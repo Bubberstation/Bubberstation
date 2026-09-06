@@ -28,7 +28,7 @@ type ProteanData = {
 
 export const ProteanUI = () => {
   return (
-    <Window width={430} height={290}>
+    <Window width={400} height={300}>
       <Protean />
     </Window>
   );
@@ -123,36 +123,40 @@ export const Protean = () => {
         </Table.Row>
       </Table>
       <Divider />
-      <Stack
-        align="center"
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          width: '100%',
-        }}
-      >
-        <Button.Confirm
-          icon="right-from-bracket"
-          color="bad"
-          disabled={!assimilated || !is_owner}
-          tooltip={
-            assimilated
-              ? 'Extract the modsuit you absorbed from your body'
-              : 'No assimilated modsuit'
-          }
-          confirmContent="Are you sure?"
-          onClick={() => act('eject_modsuit')}
-        >
-          Eject Assimilated Modsuit
-        </Button.Confirm>
-        <ImageButton
-          dmIcon={icon}
-          dmIconState={icon_state}
-          style={{ display: 'inline-flex' }}
-          tooltipPosition="top"
-          tooltip="Modsuit UI"
-          onClick={() => act('openui')}
-        />
+      <Stack justify="flex-end">
+        <Stack.Item>
+          <Stack vertical align="center">
+            <Stack.Item>
+              <ImageButton
+                dmIcon={icon}
+                dmIconState={icon_state}
+                style={{ display: 'inline-flex' }}
+                tooltipPosition="top"
+                tooltip="Modsuit UI"
+                onClick={() => act('openui')}
+              />
+            </Stack.Item>
+            <Stack.Item>
+              <Button.Confirm
+                fluid
+                textAlign="center"
+                icon="right-from-bracket"
+                color="good"
+                confirmColor="bad"
+                confirmContent="Are you sure?"
+                disabled={!assimilated || !is_owner}
+                tooltip={
+                  assimilated
+                    ? 'Extract the modsuit you absorbed from your body'
+                    : 'No assimilated modsuit'
+                }
+                onClick={() => act('eject_modsuit')}
+              >
+                Eject Suit
+              </Button.Confirm>
+            </Stack.Item>
+          </Stack>
+        </Stack.Item>
       </Stack>
     </Section>
   );
