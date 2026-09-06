@@ -20,13 +20,15 @@ type ProteanData = {
   low_power: boolean;
   transformation: boolean;
   lock: boolean;
+  assimilated: boolean;
+  is_owner: boolean;
   icon: string;
   icon_state: string;
 };
 
 export const ProteanUI = () => {
   return (
-    <Window width={400} height={270}>
+    <Window width={400} height={320}>
       <Protean />
     </Window>
   );
@@ -42,6 +44,8 @@ export const Protean = () => {
     icon_state,
     low_power,
     transformation,
+    assimilated,
+    is_owner,
   } = data;
 
   return (
@@ -118,6 +122,23 @@ export const Protean = () => {
           </Table.Cell>
         </Table.Row>
       </Table>
+      <Divider />
+      <Stack
+        style={{ display: 'flex', justifyContent: 'left', width: '100%' }}
+      >
+        <Button
+          icon="right-from-bracket"
+          disabled={!assimilated || !is_owner}
+          tooltip={
+            assimilated
+              ? 'Pry the modsuit you absorbed back out of yourself'
+              : 'No assimilated modsuit'
+          }
+          onClick={() => act('eject_modsuit')}
+        >
+          Eject Assimilated Modsuit
+        </Button>
+      </Stack>
       <Divider />
       <Stack
         style={{ display: 'flex', justifyContent: 'right', width: '100%' }}
