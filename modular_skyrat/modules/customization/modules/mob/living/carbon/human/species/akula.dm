@@ -7,6 +7,7 @@
 
 /datum/species/akula
 	name = "Akula"
+	plural_form = "Akula"
 	id = SPECIES_AKULA
 	lore_protected = TRUE
 	offset_features = list(
@@ -22,7 +23,7 @@
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_CAN_STRIP,
 		TRAIT_LITERATE,
-		TRAIT_WATER_BREATHING,
+		TRAIT_NODROWN,
 		TRAIT_SLICK_SKIN,
 		TRAIT_MUTANT_COLORS,
 	)
@@ -56,10 +57,10 @@
 	)
 
 /datum/species/akula/get_species_lore()
-	return list("the Akula, once known as the Azuleans for their homeworld, are known for their pride and their martial prowess. They are a democratic people, who overthrew the old feudal monarchy that once governed them, and now live as a democratic vassal under the mysterious Soato Empire.",
+	return list("The Akula, once known as the Azuleans for their homeworld, are known for their pride and their martial prowess. They are a democratic people, who overthrew the old feudal monarchy that once governed them, and now live as a democratic vassal under the mysterious Soato Empire.",
 	"In the times before the Democratic Union, the Akula were ruled by a longstanding royal line, the Line of Agurrkal, dating back to the ancient times. This line was often carried by very corrupt and very mentally unwell rulers due to several queens not wishing to reproduce with anyone and undergoing parthenogenesis, causing mental and physical deformities in their offspring. To this day, the reputation of the Old Nobility as a bunch of degenerate, unstable, feckless hedonists is still held by the surviving Nobles who fled to the fringes of Akulaspace.",
-	"In the modern day, the Akula people are split into three factions: the Akula Democratic Union, the main government of the Akula people; the Old Nobles, who have fled to the edge of Akulaspace and still squabble with eachother over who would logically succeed the dead line of Agurrkal; the Border Principalities, who are largely independent border fiefdoms that consist of merchant princes, Old Nobles, and the occasional Mercenary Bandit Kingdom.",
-	"The Akula Democratic Union is the largest of the three, and comprises most of Akulaspace, headquartered on Azulea. It is a Representative Democracy, with delegates from each world coming together alongside the elected President and VP to govern the Akula. ADU Akula tend to be very community-minded and close, often forming tight webs of association, and are known for their large and common celebrations. The ADU, also, hilariously, has a galaxy-famous wrestling entertainment industry.",
+	"In the modern day, the Akula people are split into three factions: the Akula Democratic Union, the main government of the Akula people; the Old Nobles, who have fled to the edge of Akulaspace and still squabble with eachother over who would logically succeed the dead line of Agurrkal; and the Border Principalities, who are largely independent border fiefdoms that consist of merchant princes, Old Nobles, and the occasional Mercenary Bandit Kingdom.",
+	"The Akula Democratic Union is the largest of the three, and comprises most of Akulaspace, headquartered on Azulea. It is a representative democracy, with delegates from each world coming together alongside the elected President and VP to govern the Akula. ADU Akula tend to be very community-minded and close, often forming tight webs of association, and are known for their large and common celebrations. The ADU, also, hilariously, has a galaxy-famous wrestling entertainment industry.",
 	"The Old Nobles, once the lords and masters of the old Azulean people, are now consigned to the fringes of Akulaspace, having fled the persecutions of the revolution that overthrew their rule. These Old Nobles are widely seen as a bunch of vile, backwards, hedonistic fops, obsessed with honor and genetics. They routinely espouse views of Azulean genetic supremacy, attempt to genetically transform their subjects into Azuleans, and endlessly squabble with eachother over who should rightfully succeed the broken Line of Agurrkal. While most of these deplorable beings of pomp and circumstance fit this reputation, there are a few who were, and are, not as reprehensible.",
 	"The Border Principalities consist of various relatively small fiefdoms that, in one way or another, refuse governance by the ADU or the Kingdom of Agurrkal before them. These principalities are ruled by merchant princes, independent-minded lesser nobles, and other independents, the largest of which is the wealthy and opportunistic Principality of Hakonen, who has brokered deals with the ADU to be their one trade inroad to the rest of the galaxy. The cultures of these border states are as varied as their rulers; some are capitalist paradises where everything has a price, and others are cruel despotic dictatorships ruled by madmen or wealthy retired mercenaries.",
 	"These three factions have deep divides, and those who belong to them often tend to clash. Regardless of faction, however, most Akula are known rather well for their pride, their loyalty to friends, family, and ideals, and their love of the oceans they come from, and the whales they once lived beside.",

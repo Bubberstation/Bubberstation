@@ -59,10 +59,6 @@
 	name = "Tuna Fish Plush"
 	item_path = /obj/item/toy/plush/tunafish
 
-/datum/loadout_item/toys/plush/purplecat
-	name = "Purple Cat Plush"
-	item_path = /obj/item/toy/plush/purplecat
-
 /datum/loadout_item/toys/plush/secoff
 	name = "GalFed Secoff Plush"
 	item_path = /obj/item/toy/plush/secoff
@@ -150,6 +146,10 @@
 /datum/loadout_item/toys/plush/milky
 	name = "Milky Plushie"
 	item_path = /obj/item/toy/plush/expie/milky
+
+/datum/loadout_item/toys/plush/fox_protogen
+	name = "Silly Protogen Plushie"
+	item_path = /obj/item/toy/plush/fox_protogen
 
 /datum/loadout_item/toys/plush/tangerine
 	name = "Citrus Teshari Plushie"

@@ -30,6 +30,11 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	worn_icon = 'modular_skyrat/modules/cargo_teleporter/icons/cargo_teleporter.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_SUITSTORE
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	///the beacons staked out by this teleporter
 	var/list/marker_children = list()
 	///what colour the next beacon staked out by this teleporter will be painted

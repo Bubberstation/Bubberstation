@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(skyrat_cloth_recipes, list(
 	new/datum/stack_recipe("towel", /obj/item/towel, 2, category = CAT_CLOTHING),
 	new/datum/stack_recipe("eyepatch wrap", /obj/item/clothing/glasses/eyepatch/wrap, 2, category = CAT_CLOTHING),
 	new/datum/stack_recipe("eyepatch", /obj/item/clothing/glasses/eyepatch, 2, category = CAT_CLOTHING),
-	new/datum/stack_recipe("xenoarch bag", /obj/item/storage/bag/xenoarch, 4, category = CAT_CONTAINERS),
+	new/datum/stack_recipe("xenoarch bag", /obj/item/storage/bag/xenoarch,  4, crafting_flags = CRAFT_SKIP_MATERIALS_PARITY, category = CAT_CONTAINERS),
 	new/datum/stack_recipe("saddlebags", /obj/item/storage/backpack/saddlebags, 5, category = CAT_CONTAINERS),
 ))
 
@@ -116,7 +116,7 @@ GLOBAL_LIST_INIT(skyrat_leather_recipes, list(
 ))
 
 GLOBAL_LIST_INIT(skyrat_leather_belt_recipes, list(
-	new/datum/stack_recipe("xenoarch belt", /obj/item/storage/belt/utility/xenoarch, 4, category = CAT_CONTAINERS),
+	new/datum/stack_recipe("xenoarch belt", /obj/item/storage/belt/utility/xenoarch, 4, crafting_flags = CRAFT_SKIP_MATERIALS_PARITY, category = CAT_CONTAINERS),
 	new/datum/stack_recipe("medical bandolier", /obj/item/storage/belt/medbandolier, 5, category = CAT_CONTAINERS),
 	new/datum/stack_recipe("gear harness", /obj/item/clothing/under/misc/skyrat/gear_harness, 6, category = CAT_CLOTHING),
 	new/datum/stack_recipe("ammo pouch", /obj/item/storage/pouch/ammo, 4, category = CAT_CONTAINERS),

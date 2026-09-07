@@ -136,6 +136,7 @@
 	name = "tarkon bounty pad"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/piratepad/syndiepad/tarkon
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT)
 
 /obj/machinery/piratepad/syndiepad/tarkon
 	name = "Tarkon bounty pad"
@@ -144,10 +145,10 @@
 	for processing. No returns!"
 	circuit = /obj/item/circuitboard/machine/syndiepad/tarkon
 
-
 /obj/item/circuitboard/computer/syndiepad/tarkon
 	name = "tarkon bounty control terminal"
 	build_path = /obj/machinery/computer/piratepad_control/syndiepad/tarkon
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT)
 
 /obj/machinery/computer/piratepad_control/syndiepad/tarkon
 	name = "Tarkon bounty control terminal"

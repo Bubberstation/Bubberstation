@@ -2,7 +2,7 @@
 	name = "Ashtongue"
 	desc = "A language derived from Draconic, altered and morphed into a strange tongue by the enigmatic will of the Necropolis, a half-successful attempt at patterning its own alien communication methods onto mundane races. It's become nigh-incomprehensible to speakers of the original language."
 	key = "l"
-	flags = TONGUELESS_SPEECH
+	flags = LANGUAGE_TONGUELESS_SPEECH
 	space_chance = 70
 	syllables = list(
 		"za", "az", "ze", "ez", "zi", "iz", "zo", "oz", "zu", "uz", "zs", "sz",

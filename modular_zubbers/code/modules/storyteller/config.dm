@@ -93,61 +93,6 @@
 	integer = TRUE
 	min_val = 0
 
-
-/datum/config_entry/flag/allow_storyteller_pop_scaling // Allows storyteller to scale down the event frequency by population
-
-// Pop scalling thresholds
-/datum/config_entry/number/mundane_pop_scale_threshold
-	default = MUNDANE_POP_SCALE_THRESHOLD
-	integer = TRUE
-	min_val = 0
-
-/datum/config_entry/number/moderate_pop_scale_threshold
-	default = MODERATE_POP_SCALE_THRESHOLD
-	integer = TRUE
-	min_val = 0
-
-/datum/config_entry/number/major_pop_scale_threshold
-	default = MAJOR_POP_SCALE_THRESHOLD
-	integer = TRUE
-	min_val = 0
-
-/datum/config_entry/number/crewset_pop_scale_threshold
-	default = CREWSET_POP_SCALE_THRESHOLD
-	integer = TRUE
-	min_val = 0
-
-/datum/config_entry/number/ghostset_pop_scale_threshold
-	default = GHOSTSET_POP_SCALE_THRESHOLD
-	integer = TRUE
-	min_val = 0
-
-// Pop scalling penalties
-/datum/config_entry/number/mundane_pop_scale_penalty
-	default = MUNDANE_POP_SCALE_PENALTY
-	integer = TRUE
-	min_val = 0
-
-/datum/config_entry/number/moderate_pop_scale_penalty
-	default = MODERATE_POP_SCALE_PENALTY
-	integer = TRUE
-	min_val = 0
-
-/datum/config_entry/number/major_pop_scale_penalty
-	default = MAJOR_POP_SCALE_PENALTY
-	integer = TRUE
-	min_val = 0
-
-/datum/config_entry/number/crewset_pop_scale_penalty
-	default = CREWSET_POP_SCALE_PENALTY
-	integer = TRUE
-	min_val = 0
-
-/datum/config_entry/number/ghostset_pop_scale_penalty
-	default = GHOSTSET_POP_SCALE_PENALTY
-	integer = TRUE
-	min_val = 0
-
 /datum/config_entry/number/disallow_crew_antags_time_threshold
 	default = -1
 	integer = TRUE

@@ -41,7 +41,7 @@
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 3,
 		/datum/material/uranium = SMALL_MATERIAL_AMOUNT * 3,
 	)
-	build_path = /obj/item/weaponcell/medical/brute/tier_2
+	build_path = /obj/item/weaponcell/medical/tier_2/brute
 
 /datum/design/medicell/burn2
 	name = "Burn II Medicell"
@@ -54,7 +54,7 @@
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 3,
 		/datum/material/uranium = SMALL_MATERIAL_AMOUNT * 3,
 	)
-	build_path = /obj/item/weaponcell/medical/burn/tier_2
+	build_path = /obj/item/weaponcell/medical/tier_2/burn
 
 /datum/design/medicell/toxin2
 	name = "Toxin II Medicell"
@@ -67,7 +67,7 @@
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 3,
 		/datum/material/uranium = SMALL_MATERIAL_AMOUNT * 3,
 	)
-	build_path = /obj/item/weaponcell/medical/toxin/tier_2
+	build_path = /obj/item/weaponcell/medical/tier_2/toxin
 
 /datum/design/medicell/oxy2
 	name = "Oxygen II Medicell"
@@ -80,7 +80,7 @@
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 3,
 		/datum/material/uranium = SMALL_MATERIAL_AMOUNT * 3,
 	)
-	build_path = /obj/item/weaponcell/medical/oxygen/tier_2
+	build_path = /obj/item/weaponcell/medical/tier_2/oxygen
 
 //Tier 3 Medicells//
 
@@ -97,7 +97,7 @@
 		/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 3,
 		/datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 3,
 	)
-	build_path = /obj/item/weaponcell/medical/brute/tier_3
+	build_path = /obj/item/weaponcell/medical/tier_3/brute
 
 /datum/design/medicell/burn3
 	name = "Burn III Medicell"
@@ -112,7 +112,7 @@
 		/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 3,
 		/datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 3,
 	)
-	build_path = /obj/item/weaponcell/medical/burn/tier_3
+	build_path = /obj/item/weaponcell/medical/tier_3/burn
 
 /datum/design/medicell/toxin3
 	name = "Toxin III Medicell"
@@ -127,7 +127,7 @@
 		/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 3,
 		/datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 3,
 	)
-	build_path = /obj/item/weaponcell/medical/toxin/tier_3
+	build_path = /obj/item/weaponcell/medical/tier_3/toxin
 
 /datum/design/medicell/oxy3
 	name = "Oxygen III Medicell"
@@ -142,7 +142,7 @@
 		/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 3,
 		/datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 3,
 	)
-	build_path = /obj/item/weaponcell/medical/oxygen/tier_3
+	build_path = /obj/item/weaponcell/medical/tier_3/oxygen
 
 //Utility Medicells
 

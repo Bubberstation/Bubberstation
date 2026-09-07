@@ -4,11 +4,13 @@
 	id = "ci_empathic_sensor"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(
-	/datum/material/iron = SMALL_MATERIAL_AMOUNT * 6,
-	/datum/material/glass = SMALL_MATERIAL_AMOUNT * 6,
-	/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
-	/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT,
-	/datum/material/bluespace = SHEET_MATERIAL_AMOUNT,)
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 6,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 6,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT,
+		)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	build_path = /obj/item/organ/cyberimp/brain/empathic_sensor
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_UTILITY
@@ -22,10 +24,11 @@
 	id = "wound_scanner_internal"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(
-	/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5,
-	/datum/material/glass =SHEET_MATERIAL_AMOUNT*2,
-	/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
-	)
+		/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/glass =SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT,
+		)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	build_path = /obj/item/organ/cyberimp/brain/wound_scanner
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_HEALTH
@@ -39,10 +42,11 @@
 	id = "surgical_processor"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
-	/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5,
-	/datum/material/glass =SHEET_MATERIAL_AMOUNT*2,
-	/datum/material/silver =SHEET_MATERIAL_AMOUNT*2,
-	)
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 2,
+		)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	build_path = /obj/item/surgical_processor
 	category = list(
 	RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ALIEN
@@ -55,7 +59,13 @@
 	id = "defibrillator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/defibrillator
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*4, /datum/material/glass = SHEET_MATERIAL_AMOUNT*2, /datum/material/silver =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/gold =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/silver =SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/gold =HALF_SHEET_MATERIAL_AMOUNT * 1.5,
+		)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL
 	)

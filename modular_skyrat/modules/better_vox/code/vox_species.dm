@@ -14,7 +14,6 @@
 	mutantlungs = /obj/item/organ/lungs/nitrogen/vox
 	mutantbrain = /obj/item/organ/brain/cybernetic/cortical/vox //BUBBER EDIT - new brain dropped
 	mutanteyes = /obj/item/organ/eyes/vox_primalis
-	breathid = "n2"
 	mutant_bodyparts = list()
 	meat = /obj/item/food/meat/slab/chicken/human //item file in teshari module
 	mutanttongue = /obj/item/organ/tongue/vox
@@ -68,9 +67,9 @@
 
 /datum/species/vox_primalis/get_species_description()
 	return list(
-		"By the account of those unaware, the vox seem to be a nomadic race of avianoid creatures that operate in and around human space at the behest of “crazed, dreaming gods.“ \
-		The true vox are the wholly reclusive Vox Auralis, vastly powerful psychics and bio-engineers. They are a distant race at the best of times. \
-		These vox, the Primalis, are the laboring underclass that the Auralis use to sustain the Arkships, following a convoluted trail throughout the Milky Way."
+		"By the account of those unaware, the Vox seem to be a nomadic race of avianoid creatures that operate in and around human space at the behest of “crazed, dreaming gods.“ \
+		The true Vox are the wholly reclusive Vox Auralis, vastly powerful psychics and bio-engineers. They are a distant race at the best of times. \
+		These Vox, the Primalis, are the laboring underclass that the Auralis use to sustain the Arkships, following a convoluted trail throughout the Milky Way."
 	)
 
 /datum/species/vox_primalis/get_species_lore()

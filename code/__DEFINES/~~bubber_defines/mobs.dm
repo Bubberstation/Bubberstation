@@ -56,3 +56,10 @@
 #define PENIS_LAYER_OFFSET 0.03
 #define BELLY_LAYER_OFFSET 0.02
 #define BREASTS_LAYER_OFFSET 0.01
+
+// Body Sizes
+#define BODY_SIZE_MAX 1.5
+#define BODY_SIZE_MIN 0.8
+
+///Checks if a mob is in crit specifically
+#define IS_CRITICAL(mob) (mob.stat >= SOFT_CRIT && mob.stat != DEAD)

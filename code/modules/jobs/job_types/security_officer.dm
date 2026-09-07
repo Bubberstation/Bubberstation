@@ -59,18 +59,10 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 
 /datum/job/security_officer/after_spawn(mob/living/spawned, client/player_client)
 	. = ..()
-	if(!ishuman(spawned) || !prob(PIG_COP_PROBABILITY))
+	if(!prob(PIG_COP_PROBABILITY))
 		return
-	var/mob/living/carbon/human/piggy = spawned
-	for (var/obj/item/bodypart/ham as anything in piggy.get_bodyparts())
-		// These are string lists
-		ham.butcher_drops = ham.butcher_drops.Copy()
-		for (var/meat_type in ham.butcher_drops)
-			if (!ispath(meat_type, /obj/item/food/meat/slab))
-				continue
-			ham.butcher_drops[/obj/item/food/meat/slab/pig] = ham.butcher_drops[meat_type]
-			ham.butcher_drops -= meat_type
-		ham.butcher_drops = string_list(ham.butcher_drops)
+	for (var/obj/item/bodypart/ham as anything in spawned.get_bodyparts())
+		ham.butcher_drops_override = list(/obj/item/food/meat/slab/pig = ham.base_meat_amount)
 
 /datum/job/security_officer/after_roundstart_spawn(mob/living/spawning, client/player_client)
 	. = ..()
@@ -279,6 +271,8 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 		//The helmet is necessary because /obj/item/clothing/head/helmet/sec is overwritten in the chameleon list by the standard helmet, which has the same name and icon state
 	implants = list(/obj/item/implant/mindshield)
 
+	wintercoat = /obj/item/clothing/suit/hooded/wintercoat/security
+
 /datum/outfit/job/security/mod
 	name = "Security Officer (MODsuit)"
 
@@ -320,7 +314,7 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	 * This is the function that is responsible for taking the list of preferences,
 	 * and spitting out what to put them in.
 	 *
-	 * However, it should, wherever possible, prevent solo departments.
+	 * However, it should, wherever possible, prevent solo departments. // BUBBER EDIT: This was patched out, allowing solo departments
 	 * That means that if there's one medical officer, and one engineering officer,
 	 * that they should be put onto the same department (either medical or engineering).
 	 *
@@ -463,6 +457,8 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	return selection
 
 /proc/get_distribution(candidates, departments)
+	// BUBBER EDIT BEGIN - REMOVES THE PAIRING CODE.
+	/*
 	var/number_of_twos = min(departments, round(candidates / 2))
 	var/redistribute = candidates - (2 * number_of_twos)
 
@@ -471,10 +467,18 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	for (var/index in 1 to number_of_twos)
 		distribution[index] = 2
 
+	*/
+	var/distribution_size = min(departments, candidates)
+	var/redistribute = candidates - distribution_size
+	var/distribution[max(1, distribution_size)]
+	for (var/index in 1 to distribution_size)
+		distribution[index] = 1
+
 	for (var/index in 0 to redistribute - 1)
 		distribution[(index % departments) + 1] += 1
 
 	return distribution
+	// BUBBER EDIT END
 
 /proc/get_new_officer_distribution_from_late_join(
 	preference,
@@ -516,9 +520,13 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	for (var/department in amount_in_departments)
 		var/amount = amount_in_departments[department]
 
+		// BUBBER EDIT BEGIN - REMOVES THE PAIRING CODE.
+		/*
 		if (amount == 1)
 			return department
-		else if (lowest_amount > amount)
+		else*/
+		if (lowest_amount > amount)
+		// BUBBER EDIT END
 			lowest_departments = list(department)
 			lowest_amount = amount
 		else if (lowest_amount == amount)

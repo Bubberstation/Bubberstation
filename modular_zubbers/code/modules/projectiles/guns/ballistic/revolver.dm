@@ -45,3 +45,33 @@
 	projectile_damage_multiplier = 0.8
 	spread = 10
 	force = 9.5 //slightly worse than murphy/batong
+
+
+/obj/item/gun/ballistic/revolver/consultant
+	name = "The Verdict"
+	desc = "A beautiful revolver inspired by the renowned Unica, commissioned for Nanotrasen officials who needed the style of a hand cannon without the burden of carrying one. This polished imitation offers less raw stopping power than its Slavic cousin, but it's much lighter and more comfortable to use."
+	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
+	icon_state = "niimconsultantrevolver"
+	base_icon_state = "niimconsultantrevolver"
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rev32
+	projectile_damage_multiplier = 0.7
+
+/obj/item/gun/ballistic/revolver/consultant/give_manufacturer_examine()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_NANOTRASEN)
+
+/obj/item/gun/ballistic/revolver/consultant/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/examine_lore, \
+		lore_hint = span_notice("You can " + EXAMINE_HINT("look closer") + " to learn a little more about [src]."), \
+			lore = "The Verdict is a somewhat experimental design. It was first drafted up by Nanotrasen Armories as a ceremonial sidearm for Commanders, Admirals, and other authoritative Central Command roles. It's an instrument of authority first, and a tool of self-defense second, whose actual capabilities were only addressed after its silhouette had been given a design which the procurement board described as 'appropriately authoritative'.<br>\
+<br>\
+The Verdict has been given a cast in a high-polish, chrome-nickel alloy and finished by hand, a process that Nanotrasen never dared to automate, instead being worked on by theoretically paid Interns. It uses .32 magnum rounds, more than sufficient to end a confrontation should the need arise.<br>\
+<br>\
+The Verdict is distributed exclusively through commendation and promotion; engraved along its barrel is the recipient's name and division. This one does not have any name on it yet, but you may just be able to earn the right to have it bear yours..." \
+	)
+
+/obj/item/ammo_box/magazine/internal/cylinder/rev32
+	name = ".32 revolver cylinder"
+	ammo_type = /obj/item/ammo_casing/c38/c32
+	caliber = CALIBER_32
+	max_ammo = 6

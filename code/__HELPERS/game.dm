@@ -43,9 +43,7 @@
 
 			if(player_mob.stat == DEAD)
 				return FALSE
-			if(issilicon(player_mob) || isbrain(player_mob))
-				return FALSE
-			if(istype(player_mob) && (player_mob.dna?.species?.id == SPECIES_ZOMBIE_INFECTIOUS))
+			if(HAS_TRAIT(player_mob, TRAIT_NEVER_CONSIDERED_ALIVE))
 				return FALSE
 			return TRUE
 
@@ -259,7 +257,7 @@
 	if(pressure <= LAVALAND_EQUIPMENT_EFFECT_PRESSURE)
 		. = TRUE
 	//BUBBERSTATION ADDITION MOONSTATION COMPATIBILITY
-	else if(environment.gases[/datum/gas/water_vapor] && environment.gases[/datum/gas/water_vapor][MOLES] >= 1)
+	else if(environment.moles[/datum/gas/water_vapor] && environment.moles[/datum/gas/water_vapor] >= 1)
 		. = TRUE
 	//BUBBERSTATION ADDITION MOONSTATION COMPATIBILITY END.
 

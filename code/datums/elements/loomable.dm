@@ -86,7 +86,7 @@
 				break
 
 			spawning_amount++
-			user.mind.adjust_experience(/datum/skill/production, 5) //SKYRAT EDIT
+			user.mind?.adjust_experience(/datum/skill/production, 5) //SKYRAT EDIT
 
 	else
 		if(!do_after(user, loom_time * skill_modifier, target)) //SKYRAT EDIT
@@ -95,7 +95,7 @@
 
 		qdel(source)
 		spawning_amount++
-		user.mind.adjust_experience(/datum/skill/production, 5) //SKYRAT EDIT
+		user.mind?.adjust_experience(/datum/skill/production, 5) //SKYRAT EDIT
 
 	if(spawning_amount == 0)
 		return

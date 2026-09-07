@@ -34,6 +34,18 @@
 
 	voice_of_god_silence_power = 3
 	rpg_title = "Smithy"
+	required_languages = null
+	alt_titles = list(
+		"Blacksmith",
+		"Ithastrist",
+		"Metalurgist",
+		"Metal Worker",
+		"Metalsmith",
+		"Forge Artisan",
+		"Forgemaster",
+		"Weaponsmith",
+		"Armorsmith",
+	)
 
 /datum/outfit/job/blacksmith
 	name = "Blacksmith"

@@ -5,13 +5,18 @@ GLOBAL_LIST_EMPTY(dorms_areas)
 	. = ..()
 	GLOB.dorms_areas[src] = TRUE
 
-/datum/weather/rad_storm/proc/dorms_check(mob/player)
-	var/turf/player_turf = get_turf(player)
+/datum/weather/proc/engaged_roleplay_filter(area/engaged_roleplay_area)
+	return FALSE
 
-	if(player_turf && length(GLOB.dorms_areas))
-		var/area/player_area = player_turf.loc
-		if(GLOB.dorms_areas[player_area])
-			protected_areas += player_area
+/datum/weather/rad_storm/engaged_roleplay_filter(area/engaged_roleplay_area)
+	if(!is_type_in_list(engaged_roleplay_area, GLOB.dorms_areas))
+		return FALSE
+
+	for(var/mob/living/carbon/human/roleplayer in engaged_roleplay_area.contents)
+		if(engaged_role_play_check(player = roleplayer, station = FALSE, dorms = TRUE))
+			return TRUE
+
+	return FALSE
 
 /datum/weather/rad_storm/send_alert(alert_msg, alert_sfx, alert_sfx_vol = 100)
 	for(var/area/impacted_area as anything in impacted_areas)
