@@ -199,9 +199,7 @@
 /**
  * Some kind of debug verb that gives atmosphere environment details
  */
-/mob/proc/Cell()
-	set category = "Admin"
-	set hidden = TRUE
+GAME_VERB_PROC(/mob, Cell, "Cell", "Admin")
 
 	if(!loc)
 		return
@@ -210,10 +208,10 @@
 
 	var/t = "[span_notice("Coordinates: [x],[y] ")]\n"
 	t += "[span_danger("Temperature: [environment.temperature] ")]\n"
-	for(var/id in environment.gases)
-		var/gas = environment.gases[id]
-		if(gas[MOLES])
-			t+="[span_notice("[gas[GAS_META][META_GAS_NAME]]: [gas[MOLES]] ")]\n"
+	var/list/cached_gas_name = GAS_META[META_GAS_NAME]
+	for(var/gas_id, gas_moles in environment.moles)
+		if(gas_moles)
+			t += "[span_notice("[cached_gas_name[gas_id]]: [gas_moles] ")]\n"
 
 	to_chat(usr, t)
 
@@ -253,7 +251,7 @@
 				if(type & MSG_VISUAL && is_blind())
 					return FALSE
 	// voice muffling
-	if(stat == UNCONSCIOUS || stat == HARD_CRIT)
+	if(IS_UNCONSCIOUS(src))
 		if(type & MSG_AUDIBLE) //audio
 			to_chat(src, "<I>... You can almost hear something ...</I>")
 		return FALSE
@@ -479,6 +477,11 @@
 /mob/proc/get_item_by_slot(slot_id) as /obj/item
 	return null
 
+/mob/proc/get_items_by_slots(slot_ids)
+	. = list()
+	for (var/slot_id in bitfield_to_list(slot_ids))
+		. += get_item_by_slot(slot_id)
+
 /// Gets what slot the item on the mob is held in.
 /// Returns null if the item isn't in any slots on our mob.
 /// Does not check if the passed item is null, which may result in unexpected outcoms.
@@ -576,8 +579,8 @@
  * [this byond forum post](https://secure.byond.com/forum/?post=1326139&page=2#comment8198716)
  * for why this isn't atom/verb/examine()
  */
-/mob/verb/examinate(atom/examinify as mob|obj|turf in view()) //It used to be oview(12), but I can't really say why
-	set name = "Examine"
+GAME_VERB_CONTEXT(/mob, examinate, "Examine", "", null, /atom)
+	VERB_ARG_TYPED(examinify, VERB_ARG_TYPE_MOB | VERB_ARG_TYPE_OBJ | VERB_ARG_TYPE_TURF, VERB_ARG_SOURCE_VIEW, /atom)
 
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(run_examinate), examinify))
 
@@ -593,7 +596,7 @@
 	if(is_blind()) //blind people see things differently (through touch)
 		if(!blind_examine_check(examinify))
 			return
-	else if(examine_turf && !(examine_turf.luminosity || examine_turf.dynamic_lumcount) && \
+	else if(examine_turf && !(examine_turf.luminosity || examine_turf.get_dynamic_lumcount()) && \
 		get_dist(src, examine_turf) > 1 && \
 		!has_nightvision()) // If you aren't blind, it's in darkness (that you can't see) and farther then next to you
 		return
@@ -730,7 +733,7 @@
 	return
 
 /mob/living/handle_eye_contact(mob/living/examined_mob)
-	if(!istype(examined_mob) || src == examined_mob || examined_mob.stat >= UNCONSCIOUS || !client || is_blind())
+	if(!istype(examined_mob) || src == examined_mob || IS_UNCONSCIOUS(examined_mob) || !client || is_blind())
 		return
 
 	var/imagined_eye_contact = FALSE
@@ -847,9 +850,7 @@
  *
  * Only works if flag/allow_respawn is allowed in config
  */
-/mob/verb/abandon_mob()
-	set name = "Respawn"
-	set category = "OOC"
+GAME_VERB(/mob, abandon_mob, "Respawn", "OOC")
 
 	switch(CONFIG_GET(flag/allow_respawn))
 		if(RESPAWN_FLAG_NEW_CHARACTER)
@@ -927,31 +928,21 @@
 /**
  * Sometimes helps if the user is stuck in another perspective or camera
  */
-/mob/verb/cancel_camera()
-	set name = "Cancel Camera View"
-	set category = "OOC"
+GAME_VERB(/mob, cancel_camera, "Cancel Camera View", "OOC")
 	reset_perspective(null)
 
 /**
  * Helpful for when a players uplink window gets glitched to above their screen.
  * preventing them from moving the UPLINK window.
  */
-/mob/verb/reset_ui_positions_for_mob()
-	set name = "Reset UI Positions"
-	set category = "OOC"
+GAME_VERB(/mob, reset_ui_positions_for_mob, "Reset UI Positions", "OOC")
 	SStgui.reset_ui_position(src)
 
 //suppress the .click/dblclick macros so people can't use them to identify the location of items or aimbot
-/mob/verb/DisClick(argu = null as anything, sec = "" as text, number1 = 0 as num  , number2 = 0 as num)
-	set name = ".click"
-	set hidden = TRUE
-	set category = null
+GAME_VERB_NATIVE(/mob, DisClick, ".click", null, argu = null as anything, sec = "" as text, number1 = 0 as num, number2 = 0 as num)
 	return
 
-/mob/verb/DisDblClick(argu = null as anything, sec = "" as text, number1 = 0 as num  , number2 = 0 as num)
-	set name = ".dblclick"
-	set hidden = TRUE
-	set category = null
+GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, sec = "" as text, number1 = 0 as num, number2 = 0 as num)
 	return
 
 /// Adds this list to the output to the stat browser
@@ -1191,18 +1182,13 @@
  *
  * Calling this proc without an oldname will only update the mob and skip updating the pda, id and records ~Carn
  */
-/mob/proc/fully_replace_character_name(oldname, newname)
+/mob/proc/fully_replace_character_name(oldname, newname, log_new_name = FALSE)
 	if(!newname)
-		log_message("[src] failed name change from [oldname] as no new name was specified", LOG_OWNERSHIP)
 		return FALSE
 	if(oldname == newname)
-		log_message("[src] failed name change as the new name was the same as the old one: [oldname]", LOG_OWNERSHIP)
 		return FALSE
 	if(!istext(newname) && !isnull(newname))
-		stack_trace("[src] attempted to change its name from [oldname] to the non string value [newname]")
 		return FALSE
-
-	log_message("[src] name changed from [oldname] to [newname]", LOG_OWNERSHIP)
 
 	log_played_names(
 		ckey,
@@ -1224,6 +1210,8 @@
 			) //Just in case the mind is unsynced at the moment.
 
 	if(oldname)
+		log_message("[src] name changed from [oldname] to [newname]", LOG_OWNERSHIP)
+
 		//update the datacore records! This is goig to be a bit costly.
 		replace_records_name(oldname,newname)
 
@@ -1242,7 +1230,11 @@
 	if(client)
 		GLOB.chat_colors_by_mob_name[name] = list(chat_color, chat_color_darkened)
 	// SKYRAT EDIT END
+	else if(log_new_name)
+		log_message("[src] name set to [newname]", LOG_OWNERSHIP)
+
 	log_mob_tag("TAG: [tag] RENAMED: [key_name(src)]")
+	SEND_SIGNAL(src, COMSIG_MOB_FULLY_RENAMED, oldname, newname)
 
 	return TRUE
 
@@ -1279,6 +1271,7 @@
 				search_pda = 0
 
 /mob/proc/update_stat()
+	SIGNAL_HANDLER
 	return
 
 /mob/proc/update_health_hud()
@@ -1290,6 +1283,7 @@
 
 ///Update the lighting plane and sight of this mob (sends COMSIG_MOB_UPDATE_SIGHT)
 /mob/proc/update_sight()
+	SIGNAL_HANDLER
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_MOB_UPDATE_SIGHT)
 	sync_lighting_plane_cutoff()
@@ -1377,7 +1371,7 @@
 	var/turf/mob_location = get_turf(src)
 	var/area/mob_area = get_area(src)
 
-	if(mob_location.get_lumcount() > light_amount)
+	if(mob_location.check_lumcount_above(light_amount))
 		return TRUE
 	else if(!mob_area.static_lighting)
 		return TRUE
@@ -1449,9 +1443,6 @@
 
 	if(href_list[VV_HK_GIVE_AI])
 		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/give_ai_controller, src)
-
-	if(href_list[VV_HK_GIVE_AI_SPEECH])
-		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/give_ai_speech, src)
 
 	if(href_list[VV_HK_GIVE_MOB_ACTION])
 		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/give_mob_action, src)
@@ -1556,8 +1547,15 @@
 /mob/proc/update_equipment_speed_mods()
 	var/speedies = 0
 	var/immutable_speedies = 0
+	//Bubber Addition
+	var/true_immute_speedies = 0
+	//Bubber Addition End
 	for(var/obj/item/thing in get_equipped_speed_mod_items())
-		if(thing.item_flags & IMMUTABLE_SLOW)
+		//Bubber Addition
+		if(thing.bubber_obj_flags & TRUE_IMMUTABLE_SLOW)
+			true_immute_speedies += thing.slowdown
+		//Bubber Addition End
+		else if(thing.item_flags & IMMUTABLE_SLOW)
 			immutable_speedies += thing.slowdown
 		else
 			speedies += thing.slowdown
@@ -1565,6 +1563,15 @@
 	//if  we have TRAIT_STURDY_FRAME, we reduce our overall speed penalty UNLESS that penalty would be a negative value, and therefore a speed boost.
 	if(speedies > 0 && HAS_TRAIT(src, TRAIT_STURDY_FRAME))
 		speedies *= 0.2
+	//Bubber Addition
+	if(true_immute_speedies)
+		add_or_update_variable_movespeed_modifier(
+			/datum/movespeed_modifier/equipment_speedmod/true_immutable,
+			multiplicative_slowdown = true_immute_speedies,
+		)
+	else
+		remove_movespeed_modifier(/datum/movespeed_modifier/equipment_speedmod/true_immutable)
+	//Bubber Addition End
 
 	if(immutable_speedies)
 		add_or_update_variable_movespeed_modifier(

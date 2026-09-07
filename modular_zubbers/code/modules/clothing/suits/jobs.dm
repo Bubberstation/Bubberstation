@@ -30,3 +30,6 @@
 
 /obj/item/clothing/suit/toggle/chef
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
+
+/obj/item/clothing/suit/toggle/lawyer/greyscale
+	greyscale_config_worn_teshari = /datum/greyscale_config/jacket_lawyer/worn/teshari

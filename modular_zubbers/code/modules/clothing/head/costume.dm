@@ -8,3 +8,6 @@
 // new maid headband - teshari
 /obj/item/clothing/head/costume/maid_headband
 	greyscale_config_worn_teshari = /datum/greyscale_config/maid_headband/worn/teshari
+
+/obj/item/clothing/head/costume/jesteralt
+	greyscale_config_worn_teshari = /datum/greyscale_config/jester_hat_alt/worn/teshari

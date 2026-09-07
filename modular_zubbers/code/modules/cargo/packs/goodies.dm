@@ -10,15 +10,15 @@
 	contains = list(/obj/item/gun/energy/laser/carbine)
 
 /datum/supply_pack/goody/wt550_single
-	name = "WT-551 Autorifle Single-Pack"
-	desc = "An NT-security grade autorifle, it comes with excellent heating and poses no health-related risks for the user. Comes as a single-pack with one WT-551 locked and loaded."
+	name = "WT-550 Autorifle Single-Pack"
+	desc = "A surplus-grade autorifle, it comes with excellent heating and poses no health-related risks for the user. Comes as a single-pack with one WT-550 locked and loaded."
 	cost = PAYCHECK_COMMAND * 8 //Nvm these are stronger than lasers in most scenarios so let's get them a bit of an edge. Plus gun price variety looks better
 	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/gun/ballistic/automatic/wt550/security)
+	contains = list(/obj/item/gun/ballistic/automatic/wt550)
 
 /datum/supply_pack/goody/wt550_ammo
-	name = "WT-550/WT-551 Autorifle Magazine Single-Pack"
-	desc = "A single-pack magazine with lethal regular rounds for the WT-551."
+	name = "WT-550 Autorifle Magazine Single-Pack"
+	desc = "A single-pack magazine with lethal regular rounds for the WT-550."
 	cost = PAYCHECK_CREW * 5 //Scale it like all guns
 	contains = list(/obj/item/ammo_box/magazine/wt550m9 = 1)
 

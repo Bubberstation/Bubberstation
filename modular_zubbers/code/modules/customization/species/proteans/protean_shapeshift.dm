@@ -38,4 +38,8 @@
 		if("Markings")
 			alter_markings(alterer)
 		if("Character")
+			var/mob/living/carbon/person = owner
+			var/datum/species/protean/species = person.dna.species
+			if(owner.loc == species.species_modsuit)
+				return to_chat(owner, span_notice("You must leave your suit first!"))
 			begin_character_alteration(alterer)

@@ -41,6 +41,8 @@
 	var/masquerade_infractions = 0
 	///If we are currently in a Frenzy
 	var/frenzied = FALSE
+	///Have we already gone through Final Death? Prevents FinalDeath() from running more than once.
+	var/final_death_triggered = FALSE
 	/// sired by a ventrue
 	var/ventrue_sired
 
@@ -263,6 +265,7 @@
 	. = ..()
 	if(!old_body || !new_body)
 		CRASH("Bloodsucker on_body_transfer called with null bodies!")
+	final_death_triggered = FALSE
 	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
 		if(old_body)
 			all_powers.Remove(old_body)
@@ -504,12 +507,12 @@
 	user.update_sight()
 
 /datum/antagonist/bloodsucker/proc/remove_invalid_quirks(mob/target)
-	var/datum/quirk/bad_quirk = owner.current.get_quirk(/datum/quirk/sol_weakness)
+	var/datum/quirk/bad_quirk = owner.current.get_quirk(/datum/quirk/hemophage)
 	if(!bad_quirk)
 		return
 	// silently remove the quirk if it's not valid
 	bad_quirk.remove_from_current_holder(TRUE)
-	owner.current.remove_quirk(/datum/quirk/sol_weakness)
+	owner.current.remove_quirk(/datum/quirk/hemophage)
 
 /// Name shown on antag list
 /datum/antagonist/bloodsucker/antag_listing_name()

@@ -9,7 +9,7 @@
 /obj/item/storage/belt/security
 	icon = 'icons/obj/clothing/belts.dmi'
 	worn_icon = 'icons/mob/clothing/belt.dmi'
-	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/belts/belts_teshari.dmi'
 	icon_state = "security"
 	worn_icon_state = "security"
 
@@ -386,6 +386,7 @@
 	desc = "A tactical security uniform for officers, complete with a Lopland belt buckle."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
 	icon_state = "rsecurity"
 	alt_covers_chest = TRUE
 

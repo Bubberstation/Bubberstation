@@ -5,12 +5,6 @@
 	savefile_identifier = PREFERENCE_PLAYER
 	default_value = TRUE
 
-/datum/job
-	/// Whether the ID of the job can be tagged as an intern at all
-	var/can_be_intern = TRUE
-	/// Whether the job uses its own EXP to define the internship status
-	var/internship_use_self_exp_type = FALSE
-
 /// Returns the highest priority department this job belongs to
 /datum/job/proc/get_highest_priority_department()
 	if(!length(departments_list))
@@ -71,40 +65,6 @@
 		return FALSE
 	else
 		return TRUE // I am too lazy to fix this, let's just respect the prefs so we can RP being new
-/* 	var/required_time
-	var/playtime
-	if(internship_use_self_exp_type)
-		var/list/play_records = player_client?.prefs?.exp
-		if(!play_records || !islist(play_records))
-			stack_trace("[src] client [player_client] checking for play records resulted in invalid record data")
-			return FALSE
-		playtime = play_records[title] ? text2num(play_records[title]) : 0
-		required_time = get_intern_time_threshold()
-/* 	else if(CONFIG_GET(flag/use_intern_master_job_unlock_threshold) && length(department_head) && SSjob.get_job(department_head[1]))
-		// Use first department head job as our master job to compare to
-		var/datum/job/master_job = SSjob.get_job(department_head[1])
-		playtime = player_client?.calc_exp_type(master_job.get_exp_req_type())
-		required_time = master_job.get_exp_req_amount()
-		*/ // REWRITE NEEDED
-	else
-		var/exp_type = get_intern_exp_type()
-		if(!exp_type)
-			stack_trace("[src] failed to get intern exp type")
-			return FALSE
-		required_time = get_intern_time_threshold()
-		playtime = player_client?.calc_exp_type(exp_type)
-	if(isnull(playtime))
-		if(!player_client)
-			stack_trace("[src] tried to check playtime against no player client")
-		else
-			stack_trace("[src] client [player_client] checking for playtime resulted in null")
-		return FALSE
-	if(!required_time /* && SSjob.get_job(department_head[1]) */) //Jobs lacking a department head shouldn't runtime
-		stack_trace("[src] job failed to set intern time threshold")
-		return FALSE
-	if(playtime >= required_time)
-		return FALSE
-	return TRUE */
 
 /obj/item/card/id
 	var/intern_status = FALSE
@@ -124,23 +84,3 @@
 	else
 		assignment_string = assignment
 	return assignment_string
-
-
-// Service
-/datum/job/bartender
-	internship_use_self_exp_type = TRUE
-
-/datum/job/janitor
-	internship_use_self_exp_type = TRUE
-
-/datum/job/botanist
-	internship_use_self_exp_type = TRUE
-
-/datum/job/cook
-	internship_use_self_exp_type = TRUE
-
-/datum/job/prisoner
-	can_be_intern = FALSE
-
-/datum/job/assistant
-	can_be_intern = FALSE

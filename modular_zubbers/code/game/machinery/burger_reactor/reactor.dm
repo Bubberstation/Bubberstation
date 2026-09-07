@@ -458,7 +458,7 @@ GLOBAL_VAR_INIT(active_rbmk_machines, list())
 	// Used as a comparison point for the progress bar
 	data["rod_pressure_limit"] = stored_rod?.pressure_limit || 0
 	// Look for specifically tritium, don't need to show moderators.
-	var/trit_left = stored_rod?.air_contents.gases[/datum/gas/tritium][MOLES] || 0
+	var/trit_left = stored_rod?.air_contents.moles[/datum/gas/tritium] || 0
 	data["rod_trit_moles"] = trit_left
 	// rod temperature
 	data["rod_mix_temperature"] = stored_rod?.air_contents.temperature || 0

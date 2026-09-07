@@ -80,6 +80,7 @@
 	icon_state = icon_state = "[initial(base_icon_state)]_[current_color]"
 	inhand_icon_state = "[initial(base_icon_state)]_[current_color]"
 
+/* // Someone else can unfuck this - xPokee
 /obj/item/clothing/under/costume/lewdmaid/attach_accessory(obj/item/attack_item, mob/living/user, attach_message = TRUE)
 	. = ..()
 	var/obj/item/clothing/accessory/prime_accessory = attached_accessories[1]
@@ -87,6 +88,7 @@
 	accessory_overlay = mutable_appearance('modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_items/lewd_items.dmi', "[accessory_color]", ABOVE_MOB_LAYER + 0.1)
 	accessory_overlay.alpha = prime_accessory.alpha
 	accessory_overlay.color = prime_accessory.color
+
 	if(!ishuman(loc))
 		return TRUE
 	var/mob/living/carbon/human/wearer = loc
@@ -94,6 +96,7 @@
 	wearer.update_worn_oversuit()
 	wearer.fan_hud_set_fandom()
 	return TRUE
+*/
 
 //Not a maid, yeah. I dont care, it's going with the other lewd stuff, and there WONT be a whole new file just for it.
 /obj/item/clothing/under/costume/bunnylewd

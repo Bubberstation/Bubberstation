@@ -26,6 +26,11 @@
 	src.give_objectives = give_objectives
 
 /datum/antagonist/malf_ai/on_gain()
+	//BUBBER EDIT START - Shells get malf
+	if(owner.current && istype(owner.current, /mob/living/silicon/robot/shell))
+		var/mob/living/silicon/robot/shell/chosen_one = owner.current
+		chosen_one.undeploy()
+	//BUBBER EDIT END
 	if(owner.current && !isAI(owner.current))
 		stack_trace("Attempted to give malf AI antag datum to \[[owner]\], who did not meet the requirements.")
 		return ..()
@@ -56,7 +61,7 @@
 /datum/antagonist/malf_ai/on_removal()
 	if(owner.current && isAI(owner.current))
 		var/mob/living/silicon/ai/malf_ai = owner.current
-		malf_ai.set_zeroth_law("")
+		malf_ai.laws.clear_zeroth_law(force = TRUE)
 		malf_ai.remove_malf_abilities()
 		// SKYRAT EDIT START - Moving voice changing to Malf only
 #ifdef AI_VOX
@@ -161,9 +166,10 @@
 	//very purposefully not changing this with flavor, i don't want cyborgs throwing the round for their AI's roleplay suggestion
 	var/law_borg = "Accomplish your AI's objectives at all costs."
 
-	malf_ai.set_zeroth_law(law, law_borg)
+	malf_ai.laws.set_zeroth_law(law, law_borg, force = TRUE)
 	malf_ai.laws.protected_zeroth = TRUE
 	malf_ai.set_syndie_radio()
+	malf_ai.try_sync_laws()
 
 	to_chat(malf_ai, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
 
@@ -258,14 +264,14 @@
 	if(!boss)
 		return
 	var/mob/living/silicon/ai/malf_ai = owner.current
-
-	malf_ai.laws = new /datum/ai_laws/syndicate_override
-
 	var/mob/living/boss_mob = boss.current
 
-	malf_ai.set_zeroth_law("Only [boss_mob.real_name] and people [boss_mob.p_they()] designate[boss_mob.p_s()] as being such are Syndicate Agents.")
-	malf_ai.set_syndie_radio()
+	malf_ai.no_law_rack_link = TRUE
+	malf_ai.replace_law_set(/datum/ai_laws/syndicate_override)
+	malf_ai.laws.set_zeroth_law("Only [boss_mob.real_name] and people [boss_mob.p_they()] designate[boss_mob.p_s()] as being such are Syndicate Agents.", force = TRUE)
+	malf_ai.laws.protected_zeroth = TRUE
 
+	malf_ai.set_syndie_radio()
 	to_chat(malf_ai, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
 
 	malf_ai.add_malf_picker()

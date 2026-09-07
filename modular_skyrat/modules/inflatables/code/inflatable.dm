@@ -85,11 +85,7 @@
 		new deflated_type(get_turf(src))
 	qdel(src)
 
-/obj/structure/inflatable/verb/hand_deflate()
-	set name = "Deflate"
-	set category = "Object"
-	set src in oview(1)
-
+GAME_VERB_SRC(/obj/structure/inflatable, hand_deflate, oview(1), "Deflate", "Object")
 	if(usr.stat || usr.can_interact())
 		return
 	deflate(FALSE)

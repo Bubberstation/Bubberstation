@@ -22,6 +22,8 @@
 /datum/round_event_control/antagonist/solo/malf/get_candidates()
 	var/list/candidates = list()
 	for(var/mob/living/silicon/ai/candidate as anything in GLOB.ai_list)
+		if(candidate.deployed_shell)
+			candidate = candidate.deployed_shell
 		if(QDELETED(candidate) || !candidate.key || !candidate.client || !candidate.mind)
 			continue
 		if(!(candidate.client.prefs) || !(antag_flag in candidate.client.prefs.be_special))

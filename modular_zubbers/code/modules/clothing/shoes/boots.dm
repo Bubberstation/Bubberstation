@@ -245,26 +245,26 @@
 	if(LAZYLEN(contents))
 		return
 	if(iscarbon(hit_atom))
-		var/mob/living/carbon/hit_carbon = hit_atom
-		if(istype(hit_carbon.shoes, /obj/item))
-			var/obj/item/hit_carbon_shoes = hit_carbon.shoes
+		var/mob/living/carbon/human/hit_human = hit_atom
+		if(istype(hit_human.shoes, /obj/item))
+			var/obj/item/hit_human_shoes = hit_human.shoes
 			// check if the item has NODROP
-			if(HAS_TRAIT(hit_carbon_shoes, TRAIT_NODROP))
-				hit_carbon.visible_message(span_warning("[src] bounces off [hit_carbon]'s [hit_carbon_shoes.name]!"), span_warning("[src] bounces off your [hit_carbon_shoes.name], falling to the floor."))
+			if(HAS_TRAIT(hit_human_shoes, TRAIT_NODROP))
+				hit_human.visible_message(span_warning("[src] bounces off [hit_human]'s [hit_human_shoes.name]!"), span_warning("[src] bounces off your [hit_human_shoes.name], falling to the floor."))
 				return
 			// check if the item is an actual clothing feet item, since some non-clothing items can be worn
-			if(istype(hit_carbon_shoes, /obj/item/clothing/shoes))
-				var/obj/item/clothing/head/hit_carbon_shoes_confirmed = hit_carbon_shoes
+			if(istype(hit_human_shoes, /obj/item/clothing/shoes))
+				var/obj/item/clothing/head/hit_human_shoes_confirmed = hit_human_shoes
 				// SNUG_FIT shoes are immune to being knocked off
-				if(hit_carbon_shoes_confirmed.clothing_flags & SNUG_FIT)
-					hit_carbon.visible_message(span_warning("[src] bounces off [hit_carbon]'s [hit_carbon_shoes_confirmed.name]!"), span_warning("[src] bounces off your [hit_carbon_shoes_confirmed.name], falling to the floor."))
+				if(hit_human_shoes_confirmed.clothing_flags & SNUG_FIT)
+					hit_human.visible_message(span_warning("[src] bounces off [hit_human]'s [hit_human_shoes_confirmed.name]!"), span_warning("[src] bounces off your [hit_human_shoes_confirmed.name], falling to the floor."))
 					return
 			// if the slippers manages to knock something off
-			if(hit_carbon.dropItemToGround(hit_carbon_shoes))
-				hit_carbon.visible_message(span_warning("[src] slips [hit_carbon_shoes] off [hit_carbon]'s feet!"), span_warning("[hit_carbon_shoes] is suddenly slipped off your feet by [src]!"))
-		if(hit_carbon.equip_to_slot_if_possible(src, ITEM_SLOT_FEET, 0, 1, 1))
-			hit_carbon.visible_message(span_notice("[src] lands neatly on [hit_carbon]'s feet!"), span_notice("[src] lands perfectly onto your feet!"))
-			hit_carbon.update_held_items() //force update hands to prevent ghost sprites appearing when throw mode is on
+			if(hit_human.dropItemToGround(hit_human_shoes))
+				hit_human.visible_message(span_warning("[src] slips [hit_human_shoes] off [hit_human]'s feet!"), span_warning("[hit_human_shoes] is suddenly slipped off your feet by [src]!"))
+		if(hit_human.equip_to_slot_if_possible(src, ITEM_SLOT_FEET, 0, 1, 1))
+			hit_human.visible_message(span_notice("[src] lands neatly on [hit_human]'s feet!"), span_notice("[src] lands perfectly onto your feet!"))
+			hit_human.update_held_items() //force update hands to prevent ghost sprites appearing when throw mode is on
 		return
 	if(iscyborg(hit_atom))
 		return
@@ -353,6 +353,7 @@
 	icon_state = "jackboots-toeless"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
 
 /obj/item/clothing/shoes/workboots/toeless // Ported from SPLURT
 	name = "toe-less workboots"
@@ -361,6 +362,7 @@
 	icon_state = "workboots-toeless"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
 
 
 /obj/item/clothing/shoes/jackboots/combine
@@ -388,6 +390,7 @@
 	icon_state = "boss"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS) //Stealth suit.
 
 /obj/item/clothing/shoes/jackboots/boss
@@ -396,6 +399,7 @@
 	icon_state = "boss"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 
 /obj/item/clothing/shoes/jackboots/snake
 	name = "stealth boots"
@@ -403,6 +407,7 @@
 	icon_state = "snake"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS)
 
 /obj/item/clothing/shoes/workboots/black
@@ -431,3 +436,9 @@
 /obj/item/clothing/shoes/winterboots/ice_boots/primitive_catgirl_boots
 	greyscale_config_worn_digi = /datum/greyscale_config/primitive_catgirl_boots/worn/digi
 	greyscale_config_worn_teshari = /datum/greyscale_config/primitive_catgirl_boots/worn/teshari
+
+/obj/item/clothing/shoes/wraps/colourable
+	greyscale_config_worn_teshari = /datum/greyscale_config/legwraps/worn/teshari
+
+/obj/item/clothing/shoes/sandal
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'

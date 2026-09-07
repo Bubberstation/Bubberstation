@@ -1,109 +1,65 @@
-/datum/design/pocket_medkit
+/datum/design/biogen/medical_replicator
+	name = "Medical Replicator"
+	id = DESIGN_ID_IGNORE
+	build_path = /obj/item/storage/pouch
+	materials = list(/datum/material/biomass = 250)
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_NRI_MEDICAL,
+	)
+
+/datum/design/biogen/medical_replicator/pocket_medkit
 	name = "Empty Pocket First Aid Kit"
 	id = "slavic_cfap"
-	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 250)
 	build_path = /obj/item/storage/pouch/cin_medkit
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_NRI_MEDICAL,
-	)
 
-/datum/design/medipouch
+/datum/design/biogen/medical_replicator/medipouch
 	name = "Empty Medipen Pouch"
 	id = "slavic_medipouch"
-	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 250)
 	build_path = /obj/item/storage/pouch/cin_medipens
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_NRI_MEDICAL,
-	)
 
-/datum/design/sutures
+/datum/design/biogen/medical_replicator/sutures
 	name = "Hemostatic Sutures"
 	id = "slavic_suture"
-	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 150)
 	build_path = /obj/item/stack/medical/suture/bloody
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_NRI_MEDICAL,
-	)
 
-/datum/design/mesh
+/datum/design/biogen/medical_replicator/mesh
 	name = "Hemostatic Mesh"
 	id = "slavic_mesh"
-	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 150)
 	build_path = /obj/item/stack/medical/mesh/bloody
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_NRI_MEDICAL,
-	)
 
-/datum/design/bruise_patch
+/datum/design/biogen/medical_replicator/bruise_patch
 	name = "Bruise Patch"
 	id = "slavic_bruise"
-	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 250)
 	build_path = /obj/item/reagent_containers/applicator/patch/libital
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_NRI_MEDICAL,
-	)
 
-/datum/design/burn_patch
+/datum/design/biogen/medical_replicator/burn_patch
 	name = "Burn Patch"
 	id = "slavic_burn"
-	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 250)
 	build_path = /obj/item/reagent_containers/applicator/patch/aiuri
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_NRI_MEDICAL,
-	)
 
-/datum/design/gauze
+/datum/design/biogen/medical_replicator/gauze
 	name = "Medical Gauze"
 	id = "slavic_gauze"
-	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
 	build_path = /obj/item/stack/medical/wrap/gauze
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_NRI_MEDICAL,
-	)
 
-/datum/design/epi_pill
+/datum/design/biogen/medical_replicator/epi_pill
 	name = "Epinephrine Pill"
 	id = "slavic_epi"
-	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/reagent_containers/applicator/pill/epinephrine
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_NRI_MEDICAL,
-	)
 
-/datum/design/conv_pill
+/datum/design/biogen/medical_replicator/conv_pill
 	name = "Convermol Pill"
 	id = "slavic_conv"
-	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/reagent_containers/applicator/pill/convermol
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_NRI_MEDICAL,
-	)
 
-/datum/design/multiver_pill
+/datum/design/biogen/medical_replicator/multiver_pill
 	name = "Multiver Pill"
 	id = "slavic_multiver"
-	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/reagent_containers/applicator/pill/multiver
-	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_NRI_MEDICAL,
-	)

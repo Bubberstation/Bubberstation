@@ -6,7 +6,7 @@
 	power_channel = AREA_USAGE_EQUIP
 	circuit = /obj/item/circuitboard/machine/cell_charger
 	pass_flags = PASSTABLE
-	var/obj/item/stock_parts/power_store/cell/charging = null
+	var/obj/item/stock_parts/power_store/charging = null	// BUBBER EDIT CHANGE: generalized the type from /obj/item/stock_parts/power_store/cell
 	var/charge_rate = 0.5 * STANDARD_CELL_RATE //SKYRAT EDIT CHANGE - ORIGINAL: 0.25 * STANDARD_CELL_RATE
 
 /* OVERWRITTEN IN modular_skyrat\modules\aesthetics\cells\cell.dm

@@ -206,13 +206,19 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	akula_outfit = /datum/outfit/akula/security_officer
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+	alt_titles = list(
+		"Science Guard",
+		"Research Guard",
+	)
 
 /datum/outfit/job/science_guard
 	name = "Science Guard"
 	jobtype = /datum/job/science_guard
 
 	belt = /obj/item/modular_computer/pda/science
-	ears = /obj/item/radio/headset/headset_sci
+	ears = /obj/item/radio/headset/guard_bowman/science
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat
 	shoes = /obj/item/clothing/shoes/jackboots
 	head =  /obj/item/clothing/head/beret/sec/science
@@ -311,13 +317,21 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	akula_outfit = /datum/outfit/akula/security_officer
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+	alt_titles = list(
+		"Orderly",
+		"Medical Guard",
+		"Medical Attendant",
+		"Medical Support Technician",
+	) //other dept guards' alt-titles should be kept to [department] guard to avoid confusion, unless the department gets a re-do.	// I came across this comment while I was cleaning up job datums. IDFK what it is refering to because apparently having like 5 separate overrides for each job datum (and sometimes even fucking `New` procs just to add alt-titles) wasn't confusing enough I guess, but I'll leave it just in case
 
 /datum/outfit/job/orderly
 	name = "Orderly"
 	jobtype = /datum/job/orderly
 
 	belt = /obj/item/modular_computer/pda/medical
-	ears = /obj/item/radio/headset/headset_med
+	ears = /obj/item/radio/headset/guard_bowman/medical
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/orderly
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	head = /obj/item/clothing/head/beret/sec/medical
@@ -418,13 +432,19 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	akula_outfit = /datum/outfit/akula/security_officer
+	alt_titles = list(
+		"Engineering Guard",
+		"Atmospheric Security",
+	)
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
 /datum/outfit/job/engineering_guard
 	name = "Engineering Guard"
 	jobtype = /datum/job/engineering_guard
 
 	belt = /obj/item/modular_computer/pda/engineering
-	ears = /obj/item/radio/headset/headset_eng
+	ears = /obj/item/radio/headset/guard_bowman/engineering
 	shoes = /obj/item/clothing/shoes/workboots
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/engineering_guard
 	head =  /obj/item/clothing/head/beret/sec/engineering
@@ -524,13 +544,19 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+	akula_outfit = /datum/outfit/akula/security_officer
+	alt_titles = list(
+		"Customs Agent",
+		"Supply Guard",
+	)
 
 /datum/outfit/job/customs_agent
 	name = "Customs Agent"
 	jobtype = /datum/job/customs_agent
 
 	belt = /obj/item/modular_computer/pda/cargo
-	ears = /obj/item/radio/headset/headset_cargo
+	ears = /obj/item/radio/headset/guard_bowman/cargo
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/customs_agent
 	head = /obj/item/clothing/head/beret/sec/cargo
@@ -625,13 +651,21 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+	akula_outfit = /datum/outfit/akula/security_officer
+	alt_titles = list(
+		"Bouncer",
+		"Service Guard",
+		"Doorman",
+		"Doorwoman",
+	)
 
 /datum/outfit/job/bouncer
 	name = "Bouncer"
 	jobtype = /datum/job/bouncer
 
 	belt = /obj/item/modular_computer/pda/bar
-	ears = /obj/item/radio/headset/headset_srv
+	ears = /obj/item/radio/headset/guard_bowman/service
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/bouncer
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	head =  /obj/item/clothing/head/beret/sec/service
@@ -843,7 +877,7 @@
 
 /obj/item/storage/bag/garment/science_guard/PopulateContents()
 	generate_items_inside(list(
-		/obj/item/radio/headset/headset_sci = 2,
+		/obj/item/radio/headset/guard_bowman/science = 2,
 		/obj/item/clothing/shoes/sneakers/black = 2,
 		/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat = 2,
 		/obj/item/clothing/head/helmet/blueshirt/skyrat = 2,
@@ -859,7 +893,7 @@
 
 /obj/item/storage/bag/garment/orderly/PopulateContents()
 	generate_items_inside(list(
-		/obj/item/radio/headset/headset_med = 1,
+		/obj/item/radio/headset/guard_bowman/medical = 1,
 		/obj/item/clothing/shoes/sneakers/white = 1,
 		/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/orderly = 1,
 		/obj/item/clothing/head/helmet/blueshirt/skyrat/guard = 1,
@@ -879,7 +913,7 @@
 
 /obj/item/storage/bag/garment/engineering_guard/PopulateContents()
 	generate_items_inside(list(
-		/obj/item/radio/headset/headset_eng = 2,
+		/obj/item/radio/headset/guard_bowman/engineering = 2,
 		/obj/item/clothing/shoes/workboots = 2,
 		/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/engineering_guard = 2,
 		/obj/item/clothing/head/helmet/blueshirt/skyrat/guard = 2,
@@ -895,7 +929,7 @@
 
 /obj/item/storage/bag/garment/customs_agent/PopulateContents()
 	generate_items_inside(list(
-		/obj/item/radio/headset/headset_cargo = 2,
+		/obj/item/radio/headset/guard_bowman/cargo = 2,
 		/obj/item/clothing/shoes/sneakers/black = 2,
 		/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/customs_agent = 2,
 		/obj/item/clothing/head/helmet/blueshirt/skyrat/guard = 2,

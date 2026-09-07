@@ -4,6 +4,7 @@
 	name = "alien bonesetter"
 	desc = "A reversed engineered bonesetter... <b> This does not look nice to be on the receiving end of... </b>."
 	icon = 'modular_skyrat/modules/filtersandsetters/icons/surgery_tools.dmi'
+	custom_materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma =SMALL_MATERIAL_AMOUNT*5, /datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
 	icon_state = "bonesetter"
 	toolspeed = 0.25
 
@@ -97,6 +98,7 @@
 	name = "alien bloodfilter"
 	desc = "A reversed engineered bloodfilter... <b> This does not look nice to be on the receiving end of... </b>."
 	icon = 'modular_skyrat/modules/filtersandsetters/icons/surgery_tools.dmi'
+	custom_materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma =SMALL_MATERIAL_AMOUNT*5, /datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
 	icon_state = "bloodfilter"
 	toolspeed = 0.25
 

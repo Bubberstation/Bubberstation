@@ -32,13 +32,13 @@
 	var/datum/gas_mixture/consumed_mix = rod_mix.remove_specific(/datum/gas/tritium,amount_to_consume/1000000)
 	if(consumed_mix)
 		consumed_mix.assert_gas(/datum/gas/tritium)
-	if(!consumed_mix || !consumed_mix.gases || !consumed_mix.gases[/datum/gas/tritium])
+	if(!consumed_mix || !consumed_mix.moles || !consumed_mix.moles[/datum/gas/tritium])
 		if(meltdown) //If we're melting down, and we run out of tritium, trigger a voidout.
 			trigger_voidout()
 		else
 			toggle_active(null,FALSE)
 		return
-	last_tritium_consumption = consumed_mix.gases[/datum/gas/tritium][MOLES]
+	last_tritium_consumption = consumed_mix.moles[/datum/gas/tritium]
 	var/last_tritium_consumption_as_moles = last_tritium_consumption
 	last_tritium_consumption *= 1000000 //Converts this back to micromoles
 
@@ -60,13 +60,13 @@
 		//In order to directly power the supermatter, at least 30 moles of hyper-noblium is required (does not get consumed).
 		if(linked_supermatter)
 			rod_mix.assert_gas(/datum/gas/hypernoblium)
-			if(rod_mix.gases[/datum/gas/hypernoblium][MOLES] >= 30)
+			if(rod_mix.moles[/datum/gas/hypernoblium] >= 30)
 				linked_supermatter.external_power_immediate += last_power_generation*0.0075
 				last_power_generation = 0
 
 		//Create the goblin gas and increase the temperature.
 		consumed_mix.assert_gas(/datum/gas/goblin)
-		consumed_mix.gases[/datum/gas/goblin][MOLES] += last_tritium_consumption_as_moles*goblin_multiplier
+		consumed_mix.moles[/datum/gas/goblin] += last_tritium_consumption_as_moles*goblin_multiplier
 		var/our_heat_capacity = consumed_mix.heat_capacity()
 		if(our_heat_capacity > 0)
 			var/temperature_mod = clamp(2 - consumed_mix.temperature/200,1,2) //Colder temperatures actually increases temperature generation.
@@ -142,17 +142,17 @@
 			var/total_ion_amount = 0
 			for(var/turf/ion_turf as anything in RANGE_TURFS(ionize_air_range,T))
 				var/datum/gas_mixture/ion_turf_mix = ion_turf.return_air()
-				if(!ion_turf_mix || !ion_turf_mix.gases || !ion_turf_mix.gases[/datum/gas/oxygen] || !ion_turf_mix.gases[/datum/gas/oxygen][MOLES])
+				if(!ion_turf_mix || !ion_turf_mix.moles || !ion_turf_mix.moles[/datum/gas/oxygen])
 					continue
 				ion_turf_mix.assert_gas(/datum/gas/oxygen)
-				var/gas_to_convert = max(0,min(ionize_air_amount,ion_turf_mix.gases[/datum/gas/oxygen][MOLES] - rand(20,30)))
+				var/gas_to_convert = max(0,min(ionize_air_amount,ion_turf_mix.moles[/datum/gas/oxygen] - rand(20,30)))
 				if(gas_to_convert <= 0)
 					continue
 				var/datum/gas_mixture/oxygen_removed_mix = ion_turf_mix.remove_specific(/datum/gas/oxygen, ionize_air_amount)
-				if(oxygen_removed_mix && oxygen_removed_mix.gases[/datum/gas/oxygen] && oxygen_removed_mix.gases[/datum/gas/oxygen][MOLES] > 0)
-					var/ion_amount = oxygen_removed_mix.gases[/datum/gas/oxygen][MOLES] * 0.25
+				if(oxygen_removed_mix && oxygen_removed_mix.moles[/datum/gas/oxygen] > 0)
+					var/ion_amount = oxygen_removed_mix.moles[/datum/gas/oxygen] * 0.25
 					ion_turf_mix.assert_gas(/datum/gas/tritium)
-					ion_turf_mix.gases[/datum/gas/tritium][MOLES] += ion_amount
+					ion_turf_mix.moles[/datum/gas/tritium] += ion_amount
 					total_ion_amount += ion_amount
 
 			var/ionization_amount_ratio = total_ion_amount/ionize_air_amount

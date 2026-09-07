@@ -203,3 +203,11 @@
 /datum/loadout_item/gloves/latex_gloves
 	name = "Latex Gloves"
 	item_path = /obj/item/clothing/gloves/latex_gloves
+
+/datum/loadout_item/gloves/normalizer
+	name = "Normalizer Ring"
+	item_path = /obj/item/clothing/gloves/ring/syntech
+
+/datum/loadout_item/gloves/normalizer/band
+	name = "Normalizer Wristband"
+	item_path = /obj/item/clothing/gloves/ring/syntech/band

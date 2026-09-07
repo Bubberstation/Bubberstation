@@ -70,6 +70,11 @@
 				/obj/item/clothing/neck/robe_cape = 5,
 				/obj/item/clothing/neck/scarf/pride = 5,
 				/obj/item/clothing/neck/wide_cape = 5,
+				/obj/item/clothing/neck/syntech = 5,
+				/obj/item/clothing/neck/syntech/choker = 5,
+				/obj/item/clothing/neck/syntech/collar = 5,
+				/obj/item/clothing/gloves/ring/syntech = 5,
+				/obj/item/clothing/gloves/ring/syntech/band = 5,
 			),
 		),
 

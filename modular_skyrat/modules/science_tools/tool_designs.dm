@@ -16,6 +16,9 @@
 	desc = "A modified RCD that has less storage than your usual NT RCD is and has less construction options and has lost the ability to deconstruct in favor of being more accessible for synthetic repairs. Reload using metal, glass, or plasteel."
 	id = SCIENCE_ROBORCD_DESIGN_ID
 	build_type = PROTOLATHE | AWAY_LATHE
+	transfered_materials = list(
+		/obj/item/construction/rcd/robotics_rcd = /obj/item/construction/rcd/robotics_rcd::custom_materials, //The RCD has less materials than what's used, as some is converted to charge/matter
+	)
 	build_path = /obj/item/construction/rcd/robotics_rcd
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 

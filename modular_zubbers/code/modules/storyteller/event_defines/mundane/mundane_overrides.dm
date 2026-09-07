@@ -68,6 +68,7 @@
 	tags = list(TAG_DESTRUCTIVE, TAG_SPOOKY)
 
 /datum/round_event_control/gravity_generator_blackout
+	weight = 9
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_COMMUNAL, TAG_SPACE)
 

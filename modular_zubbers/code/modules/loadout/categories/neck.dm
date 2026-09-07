@@ -85,3 +85,15 @@
 /datum/loadout_item/suit/dagger_mantle
 	name = "'Dagger' Designer Mantle"
 	item_path = /obj/item/clothing/suit/dagger_mantle
+
+/datum/loadout_item/neck/normalizer
+	name = "Normalizer Pendant"
+	item_path = /obj/item/clothing/neck/syntech
+
+/datum/loadout_item/neck/normalizer/choker
+	name = "Normalizer Choker"
+	item_path = /obj/item/clothing/neck/syntech/choker
+
+/datum/loadout_item/neck/normalizer/collar
+	name = "Normalizer Collar"
+	item_path = /obj/item/clothing/neck/syntech/collar

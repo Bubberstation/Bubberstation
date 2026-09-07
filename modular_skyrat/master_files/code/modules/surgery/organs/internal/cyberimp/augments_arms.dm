@@ -10,6 +10,7 @@
 		/obj/item/wirecutters/abductor,
 		/obj/item/multitool/abductor,
 	)
+	custom_materials = list (/datum/material/iron =SHEET_MATERIAL_AMOUNT * 15.5, /datum/material/silver =SHEET_MATERIAL_AMOUNT*8.25, /datum/material/plasma =SHEET_MATERIAL_AMOUNT * 8.5, /datum/material/titanium =SHEET_MATERIAL_AMOUNT * 3, /datum/material/diamond =SHEET_MATERIAL_AMOUNT * 3)
 
 /obj/item/organ/cyberimp/arm/toolkit/surgery/alien
 	name = "alien surgical toolset implant"
@@ -26,6 +27,7 @@
 		/obj/item/bonesetter/alien,
 		/obj/item/blood_filter/alien,
 	)
+	custom_materials = list (/datum/material/iron = SHEET_MATERIAL_AMOUNT*10.25, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT * 10.5, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 10.5, /datum/material/plasma =SMALL_MATERIAL_AMOUNT * 10, /datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT * 4.5)
 
 /obj/item/organ/cyberimp/arm/toolkit/surgery
 	items_to_create = list(

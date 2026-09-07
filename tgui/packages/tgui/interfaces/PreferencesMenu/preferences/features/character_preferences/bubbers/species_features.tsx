@@ -4,6 +4,7 @@ import {
   type FeatureChoiced,
   FeatureShortTextInput,
   FeatureTextInput,
+  FeatureTriColorInput,
   type FeatureToggle,
 } from '../../base';
 import { FeatureDropdownInput } from '../../dropdowns';
@@ -185,4 +186,10 @@ export const art_ref_nsfw: FeatureToggle = {
   name: 'Art Reference (NSFW)',
   description: 'Is your reference picture NSFW?',
   component: CheckboxInput,
+};
+
+export const mutant_colors_color: Feature<string[]> = {
+  name: 'Body Colors',
+  component: FeatureTriColorInput,
+  description: 'Body color used for non-human species.',
 };

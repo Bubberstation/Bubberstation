@@ -1,7 +1,7 @@
 /obj/item/stock_parts/power_store/cell
 	icon = 'modular_skyrat/modules/aesthetics/cells/cell.dmi'
 	/// The charge overlay icon file for the cell charge lights
-	var/charging_icon = "cell_in"
+	charging_icon = "cell_in"
 	connector_type = null
 
 /obj/item/stock_parts/power_store/cell/upgraded
@@ -72,10 +72,10 @@
 	if(!charging)
 		return
 
-	if(!(machine_stat & (BROKEN|NOPOWER)))
-		var/newlevel = round(charging.percent() * 4 / 100)
-		. += "ccharger-o[newlevel]"
 	if(!charging.charging_icon)
 		. += image(charging.icon, charging.icon_state)
 	else
 		.+= image('modular_skyrat/modules/aesthetics/cells/cell.dmi', charging.charging_icon)
+	if(!(machine_stat & (BROKEN|NOPOWER)))
+		var/newlevel = round(charging.percent() * 4 / 100)
+		. += "[icon_state]-o[newlevel]"

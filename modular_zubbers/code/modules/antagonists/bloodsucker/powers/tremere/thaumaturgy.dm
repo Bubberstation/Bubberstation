@@ -61,7 +61,7 @@
 	. = "<br>Projectile can seek for [get_shot_range()] tiles.<br>"
 	. += "Fire a slow seeking blood bolt at your enemy.<br>"
 	if(level_current >= THAUMATURGY_SHIELD_LEVEL)
-		. += "Right click the button to create a blood shield<br>"
+		. += "Click the button to create a blood shield<br>"
 	if(level_current >= THAUMATURGY_DOOR_BREAK_LEVEL)
 		. += "The projectile will open doors/lockers"
 	if(level_current >= THAUMATURGY_BLOOD_STEAL_LEVEL)
@@ -74,7 +74,7 @@
 	. += "If the Blood blast hits a person, it will deal [get_blood_bolt_damage()] [initial(magic_9ball.damage_type)] damage, and is blocked by [initial(magic_9ball.armor_flag)] armor."
 	. += "You can use Blood blast [get_max_charges()] times before needing to recast Thaumaturgy. After each shot you will have to wait [DisplayTimeText(get_shot_cooldown())]."
 	. += "At level [THAUMATURGY_SHIELD_LEVEL] it will grant you a shield that will block [BLOOD_SHIELD_BLOCK_CHANCE]% of incoming damage, costing you [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood each time."
-	. += "To activate the shield, right click the action button."
+	. += "To activate the shield, simply click the action button. You can then fire projectiles by rightclicking."
 	. += "At level [THAUMATURGY_DOOR_BREAK_LEVEL], it will also break open lockers and doors."
 	. += "At level [THAUMATURGY_BLOOD_STEAL_LEVEL], it will also steal blood to feed yourself, just as much as each charge costs."
 	. += "The cooldown increases by [DisplayTimeText(THAUMATURGY_COOLDOWN_PER_CHARGE)] per charge used, and each blast costs [THAUMATURGY_BLOOD_COST_PER_CHARGE] blood."
