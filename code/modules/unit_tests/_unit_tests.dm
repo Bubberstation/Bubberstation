@@ -179,7 +179,6 @@
 #include "embedding.dm"
 #include "emoting.dm"
 #include "emp_flashlight.dm"
-#include "ensure_subtree_operational_datum.dm"
 #include "ethereal_revival.dm"
 #include "explosion_action.dm"
 #include "firedoor_regions.dm"
@@ -374,6 +373,7 @@
 #include "~skyrat\nanite_designs.dm"
 #include "~skyrat\opposing_force.dm"
 #include "~skyrat\proteans.dm"
+#include "~zubbers\vitezstvi_turret_flags.dm"
 // SKYRAT EDIT END
 // END_INCLUDE
 #ifdef REFERENCE_TRACKING_DEBUG //Don't try and parse this file if ref tracking isn't turned on. IE: don't parse ref tracking please mr linter

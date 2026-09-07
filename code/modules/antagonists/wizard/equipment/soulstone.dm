@@ -314,6 +314,7 @@
 
 /// Transfer the mind of a carbon mob (which is then dusted) into a shade mob inside src.
 /// If forced, sacrificial and stat checks are skipped.
+/// Returns TRUE only if a shade was actually created. Note that this can sleep for the length of a ghost poll. // BUBBER EDIT ADDITION
 /obj/item/soulstone/proc/capture_soul(mob/living/carbon/victim, mob/user, forced = FALSE)
 	if(!iscarbon(victim)) //TODO: Add sacrifice stoning for non-organics, just because you have no body doesn't mean you don't have a soul
 		return FALSE
@@ -350,8 +351,9 @@
 		role_name_text = "a shade",
 		chat_text_border_icon = /mob/living/basic/shade,
 	)
-	on_poll_concluded(user, victim, chosen_one)
-	return TRUE //it'll probably get someone ;)
+	// BUBBER EDIT CHANGE START - Original: on_poll_concluded(user, victim, chosen_one) / return TRUE //it'll probably get someone ;)
+	return on_poll_concluded(user, victim, chosen_one)
+	// BUBBER EDIT CHANGE END
 
 ///captures a shade that was previously released from a soulstone.
 /obj/item/soulstone/proc/capture_shade(mob/living/basic/shade/shade, mob/living/user)
@@ -470,15 +472,21 @@
 
 /// Called when a ghost is chosen to become a shade.
 /obj/item/soulstone/proc/on_poll_concluded(mob/living/master, mob/living/victim, mob/dead/observer/ghost)
-	if(isnull(victim) || master.incapacitated || !master.is_holding(src) || !victim.IsReachableBy(master, reach))
+	// BUBBER EDIT CHANGE START - Original: if(isnull(victim) || master.incapacitated || !master.is_holding(src) || !victim.IsReachableBy(master, reach))
+	if(QDELETED(victim)) //They were destroyed some other way while we were polling
+		return FALSE
+	if(!isnull(master) && (master.incapacitated || !master.is_holding(src) || !victim.IsReachableBy(master, reach)))
 		return FALSE
 	if(isnull(ghost?.client))
-		to_chat(master, span_danger("There were no spirits willing to become a shade."))
+		if(!isnull(master))
+			to_chat(master, span_danger("There were no spirits willing to become a shade."))
 		return FALSE
 	if(length(contents)) //If they used the soulstone on someone else in the meantime
 		return FALSE
-	to_chat(master, "[span_info("<b>Capture successful!</b>:")] A spirit has entered [src], \
-		taking upon the identity of [victim].")
+	if(!isnull(master))
+		to_chat(master, "[span_info("<b>Capture successful!</b>:")] A spirit has entered [src], \
+			taking upon the identity of [victim].")
+	// BUBBER EDIT CHANGE END
 	init_shade(victim, master, shade_controller = ghost)
 
 	return TRUE

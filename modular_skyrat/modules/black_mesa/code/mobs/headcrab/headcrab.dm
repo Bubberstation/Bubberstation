@@ -60,22 +60,17 @@
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_IMPACT, PROC_REF(handle_impact))
 	ai_controller.set_blackboard_key(BB_TARGET_MINIMUM_STAT, HARD_CRIT) // Allow targeting unconscious people
-
-/// Execute the jump after the telegraph
-/datum/ai_planning_subtree/headcrab_hunt/proc/execute_jump(mob/living/basic/blackmesa/xen/headcrab/jumper, atom/target, distance, speed)
-	if(QDELETED(jumper) || QDELETED(target) || jumper.stat == DEAD)
-		return
-
-	// Make it spin during the jump! The faster the jump, the faster the spin
-	var/spin_speed = speed * 2
-	jumper.throw_at(target, distance, speed, jumper, TRUE, TRUE, null, 0.1, FALSE, spin_speed)
+	var/static/list/actions_to_grant = list(
+		/datum/action/cooldown/mob_cooldown/headcrab_jump = BB_TARGETED_ACTION
+	)
+	grant_actions_by_list(actions_to_grant)
 
 /// Handle leap impacts
 /mob/living/basic/blackmesa/xen/headcrab/proc/handle_impact(datum/source, atom/hit_atom, datum/thrownthing/throwingdatum)
 	SIGNAL_HANDLER
 	if(!hit_atom || stat == DEAD)
 		return
-	if(!isliving(hit_atom))
+	if(!isliving(hit_atom) || istype(hit_atom, type))
 		return
 
 	playsound(src, 'modular_skyrat/modules/black_mesa/sound/mobs/headcrab/attack1.ogg', 100, FALSE)
@@ -156,6 +151,10 @@
 	playsound(new_zombie, 'modular_skyrat/modules/black_mesa/sound/mobs/headcrab/attack1.ogg', 100, FALSE)
 	visible_message(span_warning("The corpse of [target_human.name] suddenly rises, a headcrab controlling its lifeless body!"))
 
+	// Move the mind into the zombie, if we have one
+	if(!isnull(mind))
+		mind.transfer_to(new_zombie, 1)
+
 	// Delete the original headcrab
 	qdel(src)
 	return TRUE
@@ -172,3 +171,50 @@
 /mob/living/basic/blackmesa/xen/headcrab/fast
 	speed = -2
 	desc = "Don't let it latch onto your hea-... hey, that's kinda cool. This one looks faster than usual."
+
+/datum/action/cooldown/mob_cooldown/headcrab_jump
+	name = "Headcrab Leap"
+	desc = "Jump at your target"
+	cooldown_time = 1 SECONDS
+	click_to_activate = TRUE
+	button_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon_state = "lace" // I love it when it's an upstream and I don't wanna sprite
+
+	var/maximum_distance = 10
+
+/datum/action/cooldown/mob_cooldown/headcrab_jump/PreActivate(atom/target)
+	var/dist = get_dist(owner, target)
+	if(dist > maximum_distance)
+		var/mob/living/living_owner = owner
+		if(istype(living_owner))
+			living_owner.balloon_alert(living_owner, "too far!")
+		return FALSE
+	. = ..()
+
+/datum/action/cooldown/mob_cooldown/headcrab_jump/Activate(atom/target)
+	var/dist = get_dist(owner, target)
+	dist = min(dist + 2, 10)
+	var/new_target = null
+
+	var/mob/living/living_target = target
+	if(istype(living_target) && living_target.stat >= SOFT_CRIT)
+		// Special case to allow zombification
+		new_target = living_target
+	else
+		// This makes them leap further behind their target, overshooting similar to actual headcrabs
+		new_target = get_ranged_target_turf_direct(owner.loc, target, dist)
+	var/jump_speed = 3
+	if(dist <= 4)
+		jump_speed = 4 // Faster at close range
+	else if(dist >= 8)
+		jump_speed = 2 // Slower at long range
+
+	playsound(owner, 'modular_skyrat/modules/black_mesa/sound/mobs/headcrab/attack2.ogg', 50, TRUE)
+
+	addtimer(CALLBACK(src, PROC_REF(leap), new_target, dist, jump_speed), 0.3 SECONDS)
+	. = ..()
+
+/datum/action/cooldown/mob_cooldown/headcrab_jump/proc/leap(atom/target, distance, speed)
+	if(QDELETED(owner) || QDELETED(target) || owner.stat == DEAD)
+		return
+	owner.throw_at(target, distance, speed, owner, TRUE, TRUE, null, 0.1, FALSE, speed * 2)

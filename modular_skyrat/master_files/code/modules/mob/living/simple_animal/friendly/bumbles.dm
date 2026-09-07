@@ -46,7 +46,7 @@
 	AddElement(/datum/element/simple_flying)
 	add_verb(src, /mob/living/proc/toggle_resting)
 
-	ai_controller.set_blackboard_key(BB_BASIC_FOODS, flower_types)
+	ai_controller.set_blackboard_key(BB_BASIC_FOODS, typecacheof(flower_types))
 
 	RegisterSignal(src, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, PROC_REF(smell_flower))
 
@@ -57,16 +57,14 @@
 	if (resting)
 		icon_state = "[icon_living]_rest"
 
-		ai_controller.idle_behavior = null
+		ai_controller.set_blackboard_key(BB_BUMBLES_RESTING, TRUE)
 
 		manual_emote(pick("curls up on the surface below.", "is looking very sleepy.", "buzzes happily.", "looks around for a flower nap."))
 		REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 	else
 		icon_state = "[icon_living]"
 
-		var/idle_behavior_type = initial(ai_controller.idle_behavior)
-		if(idle_behavior_type)
-			ai_controller.idle_behavior = new idle_behavior_type()
+		ai_controller.clear_blackboard_key(BB_BUMBLES_RESTING)
 
 		manual_emote(pick("wakes up with a smiling buzz.", "rolls upside down before waking up.", "stops resting."))
 		ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
@@ -92,15 +90,12 @@
  * * target - The thing being attacked.
  */
 /mob/living/basic/pet/bumbles/proc/smell_flower(atom/source, atom/target)
-	SIGNAL_HANDLER
-
 	if(!is_type_in_list(target, flower_types))
 		return
 
 	manual_emote(pick("smells [target].", "sniffs [target].", "collects some nectar."))
 
 	// Clear the target, if any or we'll stunlock on a flower.
-	ai_controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
 
 	return TRUE
 
@@ -116,61 +111,36 @@
 
 // Bumble AI controller that adds find flowers, resting, and buzzing subtrees.
 /datum/ai_controller/basic_controller/bumbles
+	behavior_tree_json = "modular_skyrat/master_files/code/modules/mob/living/simple_animal/friendly/bumbles.bt.json"
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic/allow_items,
+		BB_BASIC_MOB_MELEE_DELAY = 30 SECONDS,
 	)
 
 	ai_traits = STOP_MOVING_WHEN_PULLED
 	ai_movement = /datum/ai_movement/basic_avoidance
-	idle_behavior = /datum/idle_behavior/idle_random_walk
 
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/find_food,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree/bumbles,
-		/datum/ai_planning_subtree/bumbles_rest,
-		/datum/ai_planning_subtree/random_speech/bumbles,
-	)
+/datum/bt_node/ai_behavior/bumbles_rest
+	time_between_perform = 200 SECONDS
 
-/// Attack with a 30 second cooldown.
-/datum/ai_planning_subtree/basic_melee_attack_subtree/bumbles
-	melee_attack_behavior = /datum/ai_behavior/basic_melee_attack/bumbles
-
-/// Attack with a 30 second cooldown.
-/datum/ai_behavior/basic_melee_attack/bumbles
-	action_cooldown = 30 SECONDS
-
-/// Plan to rest or sit up.
-/datum/ai_planning_subtree/bumbles_rest
-	var/chance = 0.5
-
-/datum/ai_planning_subtree/bumbles_rest/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
+/datum/bt_node/ai_behavior/bumbles_rest/setup(datum/ai_controller/controller)
 	. = ..()
+	var/mob/living/living_pawn = controller.pawn
+	if(!istype(living_pawn) || living_pawn.buckled)
+		return FALSE
 
+/datum/bt_node/ai_behavior/bumbles_rest/perform(seconds_per_tick, datum/ai_controller/controller)
 	var/mob/living/living_pawn = controller.pawn
 	if(!istype(living_pawn))
-		return
-
-	if(living_pawn.buckled || !SPT_PROB(chance, seconds_per_tick))
-		return
-
-	controller.queue_behavior(/datum/ai_behavior/bumbles_rest)
-
-/// Bumbles rests or sits up.
-/datum/ai_behavior/bumbles_rest
-
-/datum/ai_behavior/bumbles_rest/perform(seconds_per_tick, datum/ai_controller/controller)
-	. = ..()
-
-	var/mob/living/living_pawn = controller.pawn
-	if(!istype(living_pawn))
-		return
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
 	living_pawn.set_resting(!living_pawn.resting)
-	finish_action(controller, TRUE)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /// Buzz
-/datum/ai_planning_subtree/random_speech/bumbles
+/datum/bt_node/ai_behavior/random_speech/bumbles
 	speech_chance = 1
 
 	emote_hear = list("buzzes.", "makes a loud buzz.", "buzzes happily.")
 	emote_see = list("rolls several times.")
+

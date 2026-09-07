@@ -13,6 +13,7 @@
 	mob_biotypes = MOB_ROBOTIC
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind
 	armour_penetration = 10
+	combat_mode = TRUE
 	/// A link to our controller
 	var/datum/fleshmind_controller/our_controller
 	/// If we have been converted from another mob, here is our reference.
@@ -32,6 +33,7 @@
 	var/list/attack_emote
 	/// Used for passive emotes and sounds when the AI is idle. Attack emotes are handled with component/aggro_emote
 	var/list/emotes = list(
+		BB_EMOTE_CHANCE = 5,
 		BB_EMOTE_SAY = list("The flesh yearns for your soul.", "The flesh is broken without you.", "The flesh does not discriminate.", "Join the flesh."),
 		BB_EMOTE_HEAR = list(),
 		BB_EMOTE_SOUND = list(
@@ -91,7 +93,6 @@
 
 /mob/living/basic/fleshmind/Destroy()
 	UnregisterSignal(src, COSMIG_CONTROLLER_SET_TARGET)
-	ai_controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
 	if(contained_mob)
 		contained_mob.forceMove(get_turf(src))
 		if(previous_ckey)
@@ -326,7 +327,7 @@
 /mob/living/basic/fleshmind/floater
 	name = "Floater"
 	desc = "A small organ robot. It has a fucking bomb on it."
-	ai_controller = /datum/ai_controller/basic_controller/fleshmind/floater
+	ai_controller = /datum/ai_controller/basic_controller/fleshmind/fleshmind_melee
 	icon_state = "bomber"
 	attack_speak = list(
 		"COME GIVE US A HUG!",
@@ -425,7 +426,7 @@
 	name = "Globber"
 	desc = "A small robot that resembles a cleanbot, this one is dripping with acid."
 	icon_state = "lobber"
-	ai_controller = /datum/ai_controller/basic_controller/fleshmind/globber
+	ai_controller = /datum/ai_controller/basic_controller/fleshmind/fleshmind_ranged
 	malfunction_chance = MALFUNCTION_CHANCE_MEDIUM
 	melee_damage_lower = 1 // Ranged only
 	melee_damage_upper = 1
@@ -493,7 +494,7 @@
 	name = "Stunner"
 	desc = "A small robot that resembles a secbot, it rumbles with hatred."
 	icon_state = "stunner"
-	ai_controller = /datum/ai_controller/basic_controller/fleshmind/stunner
+	ai_controller = /datum/ai_controller/basic_controller/fleshmind/fleshmind_melee
 	malfunction_chance = MALFUNCTION_CHANCE_MEDIUM
 	melee_damage_lower = 1 // Not very harmful, just annoying.
 	melee_damage_upper = 2
@@ -810,7 +811,6 @@
 		to_chat(iterating_mob, span_userdanger("A terrible howl tears through your mind, the voice senseless, soulless."))
 
 /mob/living/basic/fleshmind/himan/proc/fake_our_death()
-	ai_controller.clear_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET)
 	ai_controller?.set_ai_status(AI_STATUS_OFF)
 	manual_emote("stops moving...")
 	faking_death = TRUE
@@ -958,7 +958,7 @@
 	name = "Phaser"
 	icon_state = "phaser-1"
 	base_icon_state = "phaser"
-	ai_controller = /datum/ai_controller/basic_controller/fleshmind/phaser
+	ai_controller = /datum/ai_controller/basic_controller/fleshmind/fleshmind_melee
 	health = 105
 	maxHealth = 105
 	malfunction_chance = null
@@ -996,26 +996,7 @@
 /mob/living/basic/fleshmind/phaser/Life(delta_time, times_fired)
 	. = ..()
 
-	var/target = ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
-	if(!.) //dead
-		return
-
-	if(COOLDOWN_FINISHED(src, closet_ability_cooldown) && !target && !key)
-		if(!istype(loc, /obj/structure/closet))
-			enter_nearby_closet()
-			COOLDOWN_START(src, closet_ability_cooldown, closet_ability_cooldown_time)
-
-	if(COOLDOWN_FINISHED(src, phase_ability_cooldown) && target && !key)
-		phase_ability(target)
-
-	if(istype(loc, /obj/structure/closet) && !key)
-		for(var/mob/living/iterating_mob in get_hearers_in_view(DEFAULT_VIEW_RANGE / 2, get_turf(src)))
-			if(faction_check(iterating_mob.faction, faction))
-				continue
-			if(iterating_mob.stat != CONSCIOUS)
-				continue
-			closet_interaction() // We exit if there are enemies nearby
-			ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, iterating_mob)
+// What was here should've been moved to the mob AI
 
 
 /mob/living/basic/fleshmind/phaser/ShiftClickOn(atom/clicked_atom)
@@ -1345,7 +1326,7 @@
 	. = ..()
 	var/list/loot = string_list(list(/obj/effect/gibspawner/robot))
 	AddElement(/datum/element/death_drops, loot)
-	RegisterSignal(src, COMSIG_MECHIVER_CONVERT, PROC_REF(consume_mob))
+	RegisterSignal(src, COMSIG_LIVING_EARLY_UNARMED_ATTACK, PROC_REF(try_consume_mob))
 
 /mob/living/basic/fleshmind/mechiver/Destroy()
 	UnregisterSignal(src, COMSIG_MECHIVER_CONVERT)
@@ -1355,6 +1336,23 @@
 	. = ..()
 	if(contained_mob && contained_mob.stat != DEAD && prob(25) && !suffering_malfunction)
 		INVOKE_ASYNC(src, PROC_REF(torment_passenger))
+
+/mob/living/basic/fleshmind/mechiver/proc/try_consume_mob(mob/living/source, mob/living/target, proximity, modifiers)
+	SIGNAL_HANDLER
+	if(!proximity || LAZYACCESS(modifiers, RIGHT_CLICK))
+		return NONE
+	if(!source.can_unarmed_attack())
+		return COMPONENT_SKIP_ATTACK
+	if(!istype(target))
+		return NONE
+	if(faction_check_atom(target))
+		return NONE
+	if(target.health > (target.maxHealth * MECHIVER_CONSUME_HEALTH_THRESHOLD))
+		return NONE
+	source.do_attack_animation(target, ATTACK_EFFECT_SLASH)
+	if(consume_mob(target))
+		return COMPONENT_SKIP_ATTACK
+	return NONE
 
 /mob/living/basic/fleshmind/mechiver/proc/torment_passenger()
 	if(!contained_mob)
@@ -1378,7 +1376,8 @@
 	if(isnull(ai_controller))
 		. += "[base_icon_state]-closed"
 		return
-	if(get_current_target() && (get_dist(get_current_target(), src) <= 4))
+	var/mob/living/current_target = ai_controller.blackboard[BB_MECHIVER_TARGET_STAT]
+	if(current_target && (get_dist(current_target, src) <= 4))
 		if(contained_mob)
 			. += "[base_icon_state]-chief"
 			. += "[base_icon_state]-hands"
@@ -1389,26 +1388,19 @@
 		if(contained_mob)
 			. += "[base_icon_state]-process"
 
-/mob/living/basic/fleshmind/mechiver/proc/get_current_target()
-	return ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
-
-/mob/living/basic/fleshmind/mechiver/proc/consume_mob(mob/living/source, mob/living/target_mob)
-	SIGNAL_HANDLER
-
+/mob/living/basic/fleshmind/mechiver/proc/consume_mob(mob/living/target_mob)
 	if(contained_mob)
-		return
-	if(!istype(target_mob))
-		return
+		return FALSE
 	if(!our_controller)
-		return
+		return FALSE
 	if(target_mob.health > (target_mob.maxHealth * MECHIVER_CONSUME_HEALTH_THRESHOLD))
-		return
+		return FALSE
 
 	ai_controller.set_blackboard_key(BB_MECHIVER_CONTAINED_MOB, target_mob)
-	ai_controller.set_blackboard_key(BB_BASIC_MOB_STOP_FLEEING, FALSE)
 	hatch_open = TRUE
 	update_appearance()
 	flick("[base_icon_state]-opening_wires", src)
+	Immobilize(1 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(close_hatch)), 1 SECONDS)
 	contained_mob = target_mob
 	target_mob.forceMove(src)
