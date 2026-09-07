@@ -41,12 +41,12 @@
 		if("heal")
 			owner.protean_heal()
 		if("eject_modsuit")
-			if(usr != owner) 
+			if(usr != owner)
 				return TRUE
 			if(!species_modsuit?.stored_modsuit)
 				owner.balloon_alert(owner, "no assimilated suit")
 				return TRUE
-			INVOKE_ASYNC(src, PROC_REF(pry_suit_loose))
+			INVOKE_ASYNC(src, PROC_REF(eject_stored_modsuit))
 		if("protean_transform")
 			if(COOLDOWN_FINISHED(src, transform_cooldown)) // Anti-spam
 				var/component = species_modsuit.wearer?.GetComponent(/datum/component/transformation)
@@ -63,7 +63,7 @@
 				COOLDOWN_START(src, transform_cooldown, 1 SECONDS)
 	return TRUE
 
-/datum/species/protean/proc/pry_suit_loose()
+/datum/species/protean/proc/eject_stored_modsuit()
 	to_chat(owner, span_notice("You begin to extract [species_modsuit.stored_modsuit] from your body."))
 	if(!do_after(owner, 5 SECONDS))
 		return
