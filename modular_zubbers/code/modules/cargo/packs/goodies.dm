@@ -257,3 +257,9 @@
 	cost = PAYCHECK_COMMAND * 1.5
 	contains = list(/obj/item/ammo_box/magazine/lanca)
 	order_flags = ORDER_CONTRABAND
+
+/datum/supply_pack/goody/combatgloves
+	name = "Combat Gloves Single-Pack"
+	desc = "Contains a single pair of tactical, shock-resistant gloves. Ever since Centcomm finally stopped cheaping out with RoroCo, normal insuls have been able to fit in triggers, but combat gloves are still... cool..."\
+	cost = PAYCHECK_COMMAND * 3 // LARP TAX
+	contains = list(/obj/item/clothing/gloves/combat)
