@@ -550,27 +550,27 @@
 
 /datum/loadout_item/head/poppy
 	name = "Poppy Flower"
-	item_path = /obj/item/food/grown/poppy
+	item_path = /obj/item/food/grown/flower/poppy
 
 /datum/loadout_item/head/lily
 	name = "Lily Flower"
-	item_path = /obj/item/food/grown/poppy/lily
+	item_path = /obj/item/food/grown/flower/poppy/lily
 
 /datum/loadout_item/head/geranium
 	name = "Geranium Flower"
-	item_path = /obj/item/food/grown/poppy/geranium
+	item_path = /obj/item/food/grown/flower/poppy/geranium
 
 /datum/loadout_item/head/fraxinella
 	name = "Fraxinella Flower"
-	item_path = /obj/item/food/grown/poppy/geranium/fraxinella
+	item_path = /obj/item/food/grown/flower/poppy/geranium/fraxinella
 
 /datum/loadout_item/head/harebell
 	name = "Harebell Flower"
-	item_path = /obj/item/food/grown/harebell
+	item_path = /obj/item/food/grown/flower/harebell
 
 /datum/loadout_item/head/rose
 	name = "Rose Flower"
-	item_path = /obj/item/food/grown/rose
+	item_path = /obj/item/food/grown/flower/rose
 
 /datum/loadout_item/head/carbon_rose
 	name = "Carbon Rose Flower"
@@ -578,11 +578,11 @@
 
 /datum/loadout_item/head/sunflower
 	name = "Sunflower"
-	item_path = /obj/item/food/grown/sunflower
+	item_path = /obj/item/food/grown/flower/sunflower
 
 /datum/loadout_item/head/rainbow_bunch
 	name = "Rainbow Bunch"
-	item_path = /obj/item/food/grown/rainbow_flower
+	item_path = /obj/item/food/grown/flower/rainbow_flower
 
 // Legacy unpaintable cowboy hat because it fits a character better
 /datum/loadout_item/head/cowboyhat_legacy

@@ -83,12 +83,31 @@
 
 
 //pod floor variants
+/obj/item/stack/tile/pod
+	name = "pod tile"
+	desc = "this probably shouldn't be obtainable, bug coders"
+	icon_state = "tile_pod"
+	merge_type = /obj/item/stack/tile/pod
+
+/obj/item/stack/tile/pod/dark
+	name = "dark pod tile"
+	desc = "this probably shouldn't be obtainable, bug coders"
+	icon_state = "tile_poddark"
+	merge_type = /obj/item/stack/tile/pod/dark
+
+/obj/item/stack/tile/pod/light
+	name = "light pod tile"
+	desc = "this probably shouldn't be obtainable, bug coders"
+	icon_state = "tile_podlight"
+	merge_type = /obj/item/stack/tile/pod/light
+
+
 /obj/item/stack/tile/pod/edge
 	name = "pod edge tile"
 	singular_name = "edged pod floor tile"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "tile_pod_edge"
-	turf_type = /turf/open/floor/pod/edge
+	turf_type = /turf/open/floor/mineral/plastitanium/pod/edge
 	merge_type = /obj/item/stack/tile/pod/edge
 	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST)
 
@@ -97,7 +116,7 @@
 	singular_name = "halved pod floor tile"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "tile_pod_half"
-	turf_type = /turf/open/floor/pod/half
+	turf_type = /turf/open/floor/mineral/plastitanium/pod/half
 	merge_type = /obj/item/stack/tile/pod/half
 	tile_rotate_dirs = list(SOUTH, NORTH)
 
@@ -106,7 +125,7 @@
 	singular_name = "cornered pod floor tile"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "tile_pod_corner"
-	turf_type = /turf/open/floor/pod/corner
+	turf_type = /turf/open/floor/mineral/plastitanium/pod/corner
 	merge_type = /obj/item/stack/tile/pod/corner
 	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST)
 
@@ -115,7 +134,7 @@
 	singular_name = "large pod floor tile"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "tile_pod_large"
-	turf_type = /turf/open/floor/pod/large
+	turf_type = /turf/open/floor/mineral/plastitanium/pod/large
 	merge_type = /obj/item/stack/tile/pod/large
 
 /obj/item/stack/tile/pod/light/edge
@@ -123,7 +142,7 @@
 	singular_name = "edged light pod floor tile"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "tile_podlight_edge"
-	turf_type = /turf/open/floor/pod/light/edge
+	turf_type = /turf/open/floor/mineral/plastitanium/pod/light/edge
 	merge_type = /obj/item/stack/tile/pod/light/edge
 	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST)
 
@@ -132,7 +151,7 @@
 	singular_name = "halved light pod floor tile"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "tile_podlight_half"
-	turf_type = /turf/open/floor/pod/light/half
+	turf_type = /turf/open/floor/mineral/plastitanium/pod/light/half
 	merge_type = /obj/item/stack/tile/pod/light/half
 	tile_rotate_dirs = list(SOUTH, NORTH)
 
@@ -141,7 +160,7 @@
 	singular_name = "cornered light pod floor tile"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "tile_podlight_corner"
-	turf_type = /turf/open/floor/pod/light/corner
+	turf_type = /turf/open/floor/mineral/plastitanium/pod/light/corner
 	merge_type = /obj/item/stack/tile/pod/light/corner
 	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST)
 
@@ -150,7 +169,7 @@
 	singular_name = "large light pod floor tile"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "tile_podlight_large"
-	turf_type = /turf/open/floor/pod/light/large
+	turf_type = /turf/open/floor/mineral/plastitanium/pod/light/large
 	merge_type = /obj/item/stack/tile/pod/light/large
 
 /obj/item/stack/tile/pod/dark/edge
@@ -158,7 +177,7 @@
 	singular_name = "edged dark pod floor tile"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "tile_poddark_edge"
-	turf_type = /turf/open/floor/pod/dark/edge
+	turf_type = /turf/open/floor/mineral/plastitanium/pod/dark/edge
 	merge_type = /obj/item/stack/tile/pod/dark/edge
 	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST)
 
@@ -167,7 +186,7 @@
 	singular_name = "halved dark pod floor tile"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "tile_poddark_half"
-	turf_type = /turf/open/floor/pod/dark/half
+	turf_type = /turf/open/floor/mineral/plastitanium/pod/dark/half
 	merge_type = /obj/item/stack/tile/pod/dark/half
 	tile_rotate_dirs = list(SOUTH, NORTH)
 
@@ -176,7 +195,7 @@
 	singular_name = "cornered dark pod floor tile"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "tile_poddark_corner"
-	turf_type = /turf/open/floor/pod/dark/corner
+	turf_type = /turf/open/floor/mineral/plastitanium/pod/dark/corner
 	merge_type = /obj/item/stack/tile/pod/dark/corner
 	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST)
 
@@ -185,5 +204,5 @@
 	singular_name = "large dark pod floor tile"
 	icon = 'modular_zubbers/icons/obj/tiles_misc.dmi'
 	icon_state = "tile_poddark_large"
-	turf_type = /turf/open/floor/pod/dark/large
+	turf_type = /turf/open/floor/mineral/plastitanium/pod/dark/large
 	merge_type = /obj/item/stack/tile/pod/dark/large

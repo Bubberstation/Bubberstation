@@ -46,6 +46,7 @@
 	desc = "Let's make this the greatest 10 minutes of our lives, Jack."
 	icon = 'modular_zubbers/icons/obj/clothing/under/syndicate.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/syndicate_digi.dmi'
 	icon_state = "boss"
 	has_sensor = HAS_SENSORS
 
@@ -54,6 +55,7 @@
 	desc = "Let's make this the greatest 10 minutes of our lives, Jack."
 	icon = 'modular_zubbers/icons/obj/clothing/under/syndicate.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/syndicate_digi.dmi'
 	icon_state = "boss"
 
 // overrides "supports_variations_flags = NONE" in base code/.../syndicate.dm
