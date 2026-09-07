@@ -21,10 +21,12 @@
 /obj/effect/magical_light/Initialize(mapload)
 	. = ..()
 	var/turf/our_turf = get_turf(src)
-	if(locate(/obj/effect/blessing) in our_turf.contents)
+	if(HAS_TRAIT(our_turf, TRAIT_TURF_BLESSED))
 		return INITIALIZE_HINT_QDEL
 	RegisterSignal(our_turf, COMSIG_ATOM_ENTERED, PROC_REF(on_enter))
 	RegisterSignal(our_turf, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON, PROC_REF(on_initialized))
+	RegisterSignal(our_turf, SIGNAL_ADDTRAIT(TRAIT_TURF_BLESSED), PROC_REF(on_bless))
+	RegisterSignal(our_turf, COMSIG_BIBLE_SMACKED, PROC_REF(on_bless))
 
 	var/randomized_color = rgb2hsv("#" + random_color())
 	randomized_color[2] = clamp(randomized_color[2], 5, 50)
@@ -57,11 +59,12 @@
 	SIGNAL_HANDLER
 	handle_new_entry(initialized)
 
+/obj/effect/magical_light/proc/on_bless(datum/source)
+	SIGNAL_HANDLER
+	src.visible_message(span_notice("The sparkling lights fizzle out of existence."))
+	qdel(src)
+
 /obj/effect/magical_light/proc/handle_new_entry(atom/movable/entered)
-	if(istype(entered, /obj/effect/blessing))
-		src.visible_message(span_notice("The sparkling lights fizzle out of existence."))
-		qdel(src)
-		return
 	if(istype(entered, /mob/living))
 		var/mob/living/entered_living
 		for(var/datum/status_effect/magical_light/to_apply in effect_types)
