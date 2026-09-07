@@ -261,5 +261,5 @@
 /datum/supply_pack/goody/combatgloves
 	name = "Combat Gloves Single-Pack"
 	desc = "Contains a single pair of tactical, shock-resistant gloves. Ever since Centcomm finally stopped cheaping out with RoroCo, normal insuls have been able to fit in triggers, but combat gloves are still... cool..."\
-	cost = PAYCHECK_COMMAND * 3 // LARP TAX
+	cost = PAYCHECK_COMMAND * 3
 	contains = list(/obj/item/clothing/gloves/combat)
