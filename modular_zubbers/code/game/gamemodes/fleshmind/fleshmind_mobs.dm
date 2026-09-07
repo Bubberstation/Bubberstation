@@ -379,7 +379,7 @@
 /mob/living/basic/fleshmind/floater/melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
 	var/mob/living/target_mob = target
-	if(ishuman(target_mob) && target_mob.stat < UNCONSCIOUS)
+	if(ishuman(target_mob) && !IS_UNCONSCIOUS(target_mob))
 		pre_detonate()
 
 /mob/living/basic/fleshmind/floater/death()

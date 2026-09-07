@@ -89,7 +89,7 @@
 
 	var/mob/living/arriving_mob = arrived
 
-	if(arriving_mob.stat != CONSCIOUS)
+	if(IS_UNCONSCIOUS(arriving_mob))
 		return
 
 	if(faction_check_atom(arriving_mob)) // A friend :)
@@ -313,7 +313,7 @@
 	if(QDELETED(src))
 		return
 	var/mob/living/carbon/human/target = locate() in view(5, src)
-	if(target && target.stat == CONSCIOUS)
+	if(target && !IS_UNCONSCIOUS(target))
 		if(get_dist(src, target) <= 1)
 			icon_state = "core-fear"
 		else
@@ -610,7 +610,7 @@
 	for(var/mob/living/carbon/human/iterating_human in GLOB.player_list)
 		if(iterating_human.z != z)
 			continue
-		if(iterating_human.stat != CONSCIOUS)
+		if(!IS_UNCONSCIOUS_OR_CRIT(iterating_human))
 			continue
 		if(faction_check_atom(iterating_human))
 			continue
@@ -757,7 +757,7 @@
 	for(var/mob/living/target_mob in view(activation_range, src))
 		if(faction_check_atom(target_mob))
 			continue
-		if(target_mob.stat != CONSCIOUS)
+		if(!IS_UNCONSCIOUS(target_mob))
 			continue
 		targets += target_mob
 

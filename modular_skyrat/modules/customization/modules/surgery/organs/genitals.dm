@@ -707,7 +707,7 @@
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_BELLY]
 
 GAME_VERB_DESC(/mob/living/carbon/human, toggle_genitals, "Expose/Hide genitals", "Change which genitals show through clothes and how they layer.", "IC")
-	if(stat != CONSCIOUS)
+	if(IS_UNCONSCIOUS_OR_CRIT(src))
 		to_chat(usr, span_warning("You can't toggle genitals visibility right now..."))
 		return
 
@@ -746,7 +746,7 @@ GAME_VERB_DESC(/mob/living/carbon/human, toggle_genitals, "Expose/Hide genitals"
 		UNASSIGN_GAME_VERB(src, /mob/living/carbon/human, toggle_arousal)
 
 GAME_VERB_DESC(/mob/living/carbon/human, toggle_arousal, "Toggle Arousal", "Allows you to toggle how aroused your private parts are.", "IC")
-	if(stat != CONSCIOUS)
+	if(IS_UNCONSCIOUS_OR_CRIT(usr))
 		to_chat(usr, span_warning("You can't toggle arousal right now..."))
 		return
 

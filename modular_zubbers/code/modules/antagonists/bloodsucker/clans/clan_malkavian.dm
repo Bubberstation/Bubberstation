@@ -51,7 +51,7 @@
 		humanity_lost_modifier = 1
 	var/interpolated_chance = max_madness_chance + humanity_lost_modifier * (min_madness_chance - max_madness_chance)
 	var/madness_chance = clamp(interpolated_chance, min_madness_chance, max_madness_chance)
-	if(!prob(madness_chance) || source.owner.current.stat != CONSCIOUS || HAS_TRAIT(source.owner.current, TRAIT_MASQUERADE))
+	if(!prob(madness_chance) || IS_UNCONSCIOUS_OR_CRIT(source.owner.current) || HAS_TRAIT(source.owner.current, TRAIT_MASQUERADE))
 		return
 	var/message = pick(strings("malkavian_revelations.json", "revelations", "modular_zubbers/strings/bloodsuckers"))
 	INVOKE_ASYNC(source.owner.current, TYPE_PROC_REF(/atom/movable, say), message, forced = CLAN_MALKAVIAN)
