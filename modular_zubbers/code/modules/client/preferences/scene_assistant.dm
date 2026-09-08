@@ -20,6 +20,7 @@
 	default_value = TRUE
 
 /datum/preference/toggle/scene_assistant_show_avatars/is_accessible(datum/preferences/preferences)
+	. = ..()
 	return FALSE
 
 /datum/preference/toggle/scene_assistant_show_images
@@ -29,6 +30,7 @@
 	default_value = TRUE
 
 /datum/preference/toggle/scene_assistant_show_images/is_accessible(datum/preferences/preferences)
+	. = ..()
 	return FALSE
 
 /datum/preference/numeric/scene_assistant_avatar_size
@@ -43,6 +45,7 @@
 	return 64
 
 /datum/preference/numeric/scene_assistant_avatar_size/is_accessible(datum/preferences/preferences)
+	. = ..()
 	return FALSE
 
 /datum/preference/text/scene_assistant_font
@@ -58,6 +61,7 @@
 	return sanitize_scene_assistant_font(..())
 
 /datum/preference/text/scene_assistant_font/is_accessible(datum/preferences/preferences)
+	. = ..()
 	return FALSE
 
 /datum/preference/numeric/scene_assistant_font_size
@@ -72,6 +76,7 @@
 	return 100
 
 /datum/preference/numeric/scene_assistant_font_size/is_accessible(datum/preferences/preferences)
+	. = ..()
 	return FALSE
 
 /datum/preference/numeric/scene_assistant_line_spacing
@@ -86,6 +91,7 @@
 	return 1.35
 
 /datum/preference/numeric/scene_assistant_line_spacing/is_accessible(datum/preferences/preferences)
+	. = ..()
 	return FALSE
 
 /datum/preference/choiced/scene_assistant_theme
@@ -104,6 +110,7 @@
 	return
 
 /datum/preference/choiced/scene_assistant_theme/is_accessible(datum/preferences/preferences)
+	. = ..()
 	return FALSE
 
 /datum/preference/choiced/scene_assistant_soundpack
@@ -122,6 +129,7 @@
 	return
 
 /datum/preference/choiced/scene_assistant_soundpack/is_accessible(datum/preferences/preferences)
+	. = ..()
 	return FALSE
 
 /datum/preference/toggle/scene_assistant_sound_message
@@ -131,6 +139,7 @@
 	default_value = TRUE
 
 /datum/preference/toggle/scene_assistant_sound_message/is_accessible(datum/preferences/preferences)
+	. = ..()
 	return FALSE
 
 /datum/preference/toggle/scene_assistant_sound_join
@@ -140,6 +149,7 @@
 	default_value = TRUE
 
 /datum/preference/toggle/scene_assistant_sound_join/is_accessible(datum/preferences/preferences)
+	. = ..()
 	return FALSE
 
 /datum/preference/toggle/scene_assistant_sound_leave
@@ -149,6 +159,7 @@
 	default_value = TRUE
 
 /datum/preference/toggle/scene_assistant_sound_leave/is_accessible(datum/preferences/preferences)
+	. = ..()
 	return FALSE
 
 /datum/preference/numeric/scene_assistant_volume_message
@@ -163,6 +174,7 @@
 	return 50
 
 /datum/preference/numeric/scene_assistant_volume_message/is_accessible(datum/preferences/preferences)
+	. = ..()
 	return FALSE
 
 /datum/preference/numeric/scene_assistant_volume_join
@@ -177,6 +189,7 @@
 	return 50
 
 /datum/preference/numeric/scene_assistant_volume_join/is_accessible(datum/preferences/preferences)
+	. = ..()
 	return FALSE
 
 /datum/preference/numeric/scene_assistant_volume_leave
@@ -191,6 +204,7 @@
 	return 50
 
 /datum/preference/numeric/scene_assistant_volume_leave/is_accessible(datum/preferences/preferences)
+	. = ..()
 	return FALSE
 
 /proc/default_scene_assistant_name_color(seed)
@@ -216,4 +230,5 @@
 	return
 
 /datum/preference/color/scene_assistant_name_color/is_accessible(datum/preferences/preferences)
+	. = ..()
 	return FALSE

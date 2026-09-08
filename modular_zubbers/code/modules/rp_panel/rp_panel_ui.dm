@@ -885,11 +885,3 @@ img {
 	DIRECT_OUTPUT(holder, ftp(file(tmp_path), filename))
 	fdel(tmp_path)
 	to_chat(holder, span_notice("Scene log download started ([filename])."))
-
-#undef SCENE_ASSISTANT_RANGE
-#undef SCENE_ASSISTANT_MAX_CHARS
-#undef SCENE_ASSISTANT_MAX_LOG
-#undef SCENE_ASSISTANT_INVITE_TIMEOUT
-#undef SCENE_ASSISTANT_RANGE_CHECK_INTERVAL
-#undef SCENE_ASSISTANT_INTERACTION_CACHE
-#undef SCENE_ASSISTANT_NEARBY_CACHE

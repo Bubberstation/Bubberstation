@@ -1,11 +1,3 @@
-#define SCENE_ASSISTANT_RANGE 3
-#define SCENE_ASSISTANT_MAX_CHARS 2000
-#define SCENE_ASSISTANT_MAX_LOG 250
-#define SCENE_ASSISTANT_INVITE_TIMEOUT (2 MINUTES)
-#define SCENE_ASSISTANT_RANGE_CHECK_INTERVAL (5 SECONDS)
-#define SCENE_ASSISTANT_INTERACTION_CACHE (2 SECONDS)
-#define SCENE_ASSISTANT_NEARBY_CACHE (1 SECONDS)
-
 /**
  * Scene Assistant - a shared writing room for nearby living mobs.
  * Messages still go through real say/emote/subtle. This window is the scene, not a replacement for IC speech.
@@ -708,7 +700,7 @@
 	var/url_no_query = splittext(value, "?")[1]
 	url_no_query = splittext(url_no_query, "#")[1]
 	var/list/value_split = splittext(url_no_query, ".")
-	var/extension = lowertext(value_split[length(value_split)])
+	var/extension = LOWER_TEXT(value_split[length(value_split)])
 	var/static/list/valid_extensions = list("jpg", "png", "jpeg", "gif", "webp")
 	if(!(extension in valid_extensions))
 		return FALSE
