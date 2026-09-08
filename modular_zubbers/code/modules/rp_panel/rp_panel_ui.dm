@@ -80,6 +80,7 @@
 		"volume_join" = volume_join,
 		"volume_leave" = volume_leave,
 		"show_avatars" = show_avatars,
+		"show_images" = show_images,
 		"avatar_size" = avatar_size,
 		"font" = log_font,
 		"font_size" = log_font_size,
@@ -531,6 +532,10 @@
 		if("toggle_avatars")
 			show_avatars = !show_avatars
 			write_player_pref(/datum/preference/toggle/scene_assistant_show_avatars, show_avatars)
+			return TRUE
+		if("toggle_images")
+			show_images = !show_images
+			write_player_pref(/datum/preference/toggle/scene_assistant_show_images, show_images)
 			return TRUE
 		if("set_avatar_size")
 			var/new_size = text2num(params["size"])

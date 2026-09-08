@@ -97,6 +97,7 @@ export type SettingsData = {
   volume_join: number;
   volume_leave: number;
   show_avatars: BooleanLike;
+  show_images: BooleanLike;
   avatar_size: number;
   font: string;
   font_size: number;

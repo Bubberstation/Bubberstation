@@ -124,6 +124,12 @@ export function SettingsModal(props: SettingsModalProps) {
             >
               Show Avatars
             </Button.Checkbox>
+            <Button.Checkbox
+              checked={!!settings.show_images}
+              onClick={() => act('toggle_images')}
+            >
+              Show Images
+            </Button.Checkbox>
             <Stack mt={0.4}>
               <Stack.Item grow>Avatar Size</Stack.Item>
               <Stack.Item>

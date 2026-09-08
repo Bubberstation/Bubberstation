@@ -22,6 +22,15 @@
 /datum/preference/toggle/scene_assistant_show_avatars/is_accessible(datum/preferences/preferences)
 	return FALSE
 
+/datum/preference/toggle/scene_assistant_show_images
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_key = "scene_assistant_show_images"
+	savefile_identifier = PREFERENCE_PLAYER
+	default_value = TRUE
+
+/datum/preference/toggle/scene_assistant_show_images/is_accessible(datum/preferences/preferences)
+	return FALSE
+
 /datum/preference/numeric/scene_assistant_avatar_size
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_key = "scene_assistant_avatar_size"

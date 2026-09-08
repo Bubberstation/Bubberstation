@@ -69,6 +69,7 @@ export function SceneLog(props: SceneLogProps) {
       font_size: 100,
       line_spacing: 1.35,
       show_avatars: 1,
+      show_images: 1,
       avatar_size: 64,
     },
     max_chars = 2000,
@@ -327,15 +328,20 @@ export function SceneLog(props: SceneLogProps) {
                         {!!entry.message && (
                           <Box dangerouslySetInnerHTML={formatMessageHtml(entry)} />
                         )}
-                        {isHttpsUrl(entry.image) && (
-                          <img
-                            src={entry.image}
-                            className="SceneAssistant__logImage"
-                            onClick={() =>
-                              act('open_image', { url: entry.image })
-                            }
-                          />
-                        )}
+                        {isHttpsUrl(entry.image) &&
+                          (!!settings.show_images ? (
+                            <img
+                              src={entry.image}
+                              className="SceneAssistant__logImage"
+                              onClick={() =>
+                                act('open_image', { url: entry.image })
+                              }
+                            />
+                          ) : (
+                            <Box italic color="label">
+                              [image]
+                            </Box>
+                          ))}
                       </>
                     )}
                   </Stack.Item>

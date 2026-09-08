@@ -32,6 +32,7 @@
 	var/volume_join = 50
 	var/volume_leave = 50
 	var/show_avatars = TRUE
+	var/show_images = TRUE
 	var/avatar_size = 64
 	var/log_font = "Verdana"
 	var/log_font_size = 100
@@ -123,6 +124,7 @@
 		name_color = default_scene_assistant_name_color(holder?.name || holder?.ckey)
 		return
 	show_avatars = prefs.read_preference(/datum/preference/toggle/scene_assistant_show_avatars)
+	show_images = prefs.read_preference(/datum/preference/toggle/scene_assistant_show_images)
 	avatar_size = prefs.read_preference(/datum/preference/numeric/scene_assistant_avatar_size)
 	log_font = prefs.read_preference(/datum/preference/text/scene_assistant_font)
 	log_font_size = prefs.read_preference(/datum/preference/numeric/scene_assistant_font_size)
