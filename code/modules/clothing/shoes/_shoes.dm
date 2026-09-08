@@ -72,7 +72,14 @@
 	if(isinhands)
 		return
 	if(damaged_clothes)
-		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe")
+		//BUBBER EDIT BEGIN - Species specific damage states.
+		//. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe") //ORIGINAL
+		var/mob/living/carbon/human/wearer = loc
+		if(ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedshoe_[wearer.dna.species.id]"))
+			. += mutable_appearance('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedshoe_[wearer.dna.species.id]")
+		else
+			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe")
+		//BUBBER EDIT END
 
 /obj/item/clothing/shoes/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands = FALSE, icon_file, bodyshape = NONE)
 	. = ..()
@@ -214,7 +221,7 @@
 		if(HAS_TRAIT(user, TRAIT_STICKY_FINGERS)) // Clowns with thieving gloves will be a menace
 			mod_time *= 0.5
 		// SKYRAT EDIT ADDITION END
-		if(do_after(user, mod_time, target = our_guy, extra_checks = CALLBACK(src, PROC_REF(still_shoed), our_guy), hidden = TRUE))
+		if(do_after(user, mod_time, target = our_guy, extra_checks = CALLBACK(src, PROC_REF(still_shoed), our_guy), cog_icon = null))
 			to_chat(user, span_notice("You [tied ? "un[fasten_verb()]" : "knot"] the [fastening_type] on [loc]'s [src.name]."))
 			if(tied == SHOES_UNTIED)
 				adjust_laces(SHOES_KNOTTED, user)

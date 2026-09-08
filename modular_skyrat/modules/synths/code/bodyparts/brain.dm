@@ -77,11 +77,13 @@
 	if(isnull(internal_computer))
 		return
 	if(slot == ITEM_SLOT_ID)
-		internal_computer.handle_id_slot(owner)
+		internal_computer.handle_id_slot(owner, item)
 
 /obj/item/organ/brain/synth/proc/on_unequip_signal(datum/source, obj/item/dropped_item, force, new_location)
 	SIGNAL_HANDLER
 	if(isnull(internal_computer))
+		return
+	if(!isnull(owner.get_item_by_slot(ITEM_SLOT_ID)))
 		return
 	internal_computer.handle_id_slot(owner)
 
@@ -105,7 +107,7 @@
 	stored_mmi.set_brainmob(brainmob_to_store)
 	brainmob_to_store.doMove(stored_mmi)
 	brainmob_to_store.container = stored_mmi
-	brainmob_to_store.set_stat(CONSCIOUS)
+	brainmob_to_store.set_stat(STABLE)
 	brainmob_to_store.reset_perspective()
 	if(brainmob == brainmob_to_store)
 		brainmob = null

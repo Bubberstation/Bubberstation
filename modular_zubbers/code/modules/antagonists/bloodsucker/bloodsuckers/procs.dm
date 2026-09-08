@@ -283,7 +283,7 @@
 
 /datum/antagonist/bloodsucker/proc/allow_head_to_talk(mob/speaker, message, ignore_spam, forced)
 	SIGNAL_HANDLER
-	if(!is_head(speaker) || speaker.stat >= UNCONSCIOUS)
+	if(!is_head(speaker) || IS_UNCONSCIOUS(speaker))
 		return
 	return COMPONENT_IGNORE_CAN_SPEAK
 
@@ -296,7 +296,7 @@
 	head.Shake(duration = animation_time)
 
 /datum/antagonist/bloodsucker/proc/stake_can_kill()
-	if(owner.current.IsSleeping() || owner.current.stat >= UNCONSCIOUS || is_in_torpor())
+	if(owner.current.IsSleeping() || IS_UNCONSCIOUS(owner) || is_in_torpor())
 		for(var/stake in get_stakes())
 			var/obj/item/stake/killin_stake = stake
 			if(killin_stake?.kills_blodsuckers)

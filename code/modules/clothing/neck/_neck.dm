@@ -13,7 +13,14 @@
 	if(isinhands || !(body_parts_covered & HEAD))
 		return
 	if(damaged_clothes)
-		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedmask")
+		//BUBBER EDIT BEGIN - Species specific damage states.
+		//. += mutable_appearance('icons/effects/item_damage.dmi', "damagedmask") //ORIGINAL
+		var/mob/living/carbon/human/wearer = loc
+		if(ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedmask_[wearer.dna.species.id]"))
+			. += mutable_appearance('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedmask_[wearer.dna.species.id]")
+		else
+			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedmask")
+		//BUBBER EDIT END
 
 /obj/item/clothing/neck/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
@@ -148,7 +155,7 @@
 /obj/item/clothing/neck/tie/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
 	var/mob/living/carbon/human/wearer = loc
-	if(!ishuman(wearer) || !wearer.w_uniform)
+	if(!ishuman(wearer))
 		return
 	var/obj/item/clothing/under/undershirt = wearer.w_uniform
 	if(!istype(undershirt) || !LAZYLEN(undershirt.attached_accessories))
@@ -328,7 +335,7 @@
 				render_list += "<span class='danger ml-1'>You can't feel anything where [target.p_their()] appendix would be.</span>\n"
 				appendix_okay = FALSE
 			else
-				if(appendix.damage > 10 && carbon_patient.stat == CONSCIOUS)
+				if(appendix.damage > 10 && !IS_UNCONSCIOUS_OR_CRIT(carbon_patient))
 					render_list += "<span class='danger ml-1'>[target] screams when you lift your hand from [target.p_their()] appendix!</span>\n"//scream if their appendix is damaged and they're awake
 					target.emote("scream")
 					appendix_okay = FALSE

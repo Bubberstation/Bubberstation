@@ -25,5 +25,5 @@
 
 	return /datum/quirk/item_quirk/nearsighted::name in preferences.all_quirks
 
-/datum/preference/choiced/glasses/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/glasses/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return

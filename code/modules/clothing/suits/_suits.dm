@@ -23,20 +23,20 @@
 	if(isinhands)
 		return
 
-	if(damaged_clothes)
-		//SKYRAT EDIT CHANGE BEGIN
-		//. += mutable_appearance('icons/effects/item_damage.dmi', "damaged[blood_overlay_type]") //ORIGINAL
-		var/damagefile2use = (bodyshape & STYLE_TAUR_ALL) ? 'modular_skyrat/master_files/icons/mob/64x32_item_damage.dmi' : 'icons/effects/item_damage.dmi'
-		. += mutable_appearance(damagefile2use, "damaged[blood_overlay_type]")
-		//SKYRAT EDIT CHANGE END
-	if(GET_ATOM_BLOOD_DNA_LENGTH(src))
-		//SKYRAT EDIT CHANGE BEGIN
-		//. += mutable_appearance('icons/effects/blood.dmi', "[blood_overlay_type]blood") //ORIGINAL
-		var/bloodfile2use = (bodyshape & STYLE_TAUR_ALL) ? 'modular_skyrat/master_files/icons/mob/64x32_blood.dmi' : 'icons/effects/blood.dmi'
-		. += mutable_appearance(bloodfile2use, "[blood_overlay_type]blood")
-		//SKYRAT EDIT CHANGE END
-
+	//BUBBER EDIT BEGIN - Species specific damage states.
 	var/mob/living/carbon/human/wearer = loc
+	if(damaged_clothes)
+		//. += mutable_appearance('icons/effects/item_damage.dmi', "damaged[blood_overlay_type]") //ORIGINAL
+		//todo: the taur icon doesn't exist anymore. Needs replacement.
+		var/icon/damage_icon_file = (bodyshape & STYLE_TAUR_ALL) ? 'modular_skyrat/master_files/icons/mob/64x32_item_damage.dmi' : 'icons/effects/item_damage.dmi'
+		var/damage_icon_state = "damaged[blood_overlay_type]"
+		if(ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damaged[blood_overlay_type]_[wearer.dna.species.id]"))
+			damage_icon_file = 'modular_zubbers/icons/effects/item_damage_species.dmi'
+			damage_icon_state  = "damaged[blood_overlay_type]_[wearer.dna.species.id]"
+
+		. += mutable_appearance(damage_icon_file, damage_icon_state)
+	//BUBBER EDIT END
+
 	if(!ishuman(wearer) || !wearer.w_uniform)
 		return
 	var/obj/item/clothing/under/undershirt = wearer.w_uniform

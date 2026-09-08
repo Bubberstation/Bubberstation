@@ -273,6 +273,10 @@
 			continue
 		if(!(weather_flags & WEATHER_INDOORS) && !affected_area.outdoors)
 			continue
+		// BUBBER EDIT - ADDITION - START - DORMS WEATHER PROTECTION
+		if(engaged_roleplay_filter(affected_area))
+			continue
+		// BUBBER EDIT - ADDITION - END
 
 		for(var/z in impacted_z_levels)
 			var/total_turfs = length(affected_area.turfs_by_zlevel) >= z && length(affected_area.turfs_by_zlevel[z])

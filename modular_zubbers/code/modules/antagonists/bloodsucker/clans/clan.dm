@@ -236,7 +236,7 @@
 	bloodsuckerdatum.update_static_data_for_all_viewers()
 
 	// unlock ghoulizing if we have a ghoul slot
-	if(bloodsuckerdatum.max_ghouls() >= 1 && !(/datum/crafting_recipe/ghoulrack in bloodsuckerdatum.owner?.learned_recipes))
+	if(bloodsuckerdatum.max_ghouls() >= 1 && !(/datum/crafting_recipe/ghoulrack in bloodsuckerdatum.owner?.learned_crafting_recipes))
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/ghoulrack)
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/candelabrum)
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)

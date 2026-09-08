@@ -49,7 +49,14 @@
 	if(isinhands)
 		return
 	if(damaged_clothes)
-		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedgloves")
+		//BUBBER EDIT BEGIN - Species specific damage states.
+		//. += mutable_appearance('icons/effects/item_damage.dmi', "damagedgloves") //ORIGINAL
+		var/mob/living/carbon/human/wearer = loc
+		if(ishuman(wearer) && icon_exists('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedgloves_[wearer.dna.species.id]"))
+			. += mutable_appearance('modular_zubbers/icons/effects/item_damage_species.dmi', "damagedgloves_[wearer.dna.species.id]")
+		else
+			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedgloves")
+		//BUBBER EDIT END
 
 /obj/item/clothing/gloves/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
@@ -72,19 +79,23 @@
 		return FALSE // We don't want to cut dyed gloves.
 	return TRUE
 
-/obj/item/clothing/gloves/attackby(obj/item/tool, mob/user, list/modifiers, list/attack_modifiers)
+/obj/item/clothing/gloves/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
-	if(.)
-		return
+	if(ITEM_INTERACT_ANY_BLOCKER & .)
+		return .
+
 	if(tool.tool_behaviour != TOOL_WIRECUTTER && !tool.get_sharpness())
-		return
+		return .
+
 	if (!can_cut_with(tool))
-		return
+		return ITEM_INTERACT_BLOCKING
+
 	balloon_alert(user, "cutting off fingertips...")
 
 	if(!do_after(user, 3 SECONDS, target=src, extra_checks = CALLBACK(src, PROC_REF(can_cut_with), tool)))
-		return
+		return ITEM_INTERACT_BLOCKING
+
 	balloon_alert(user, "cut fingertips off")
 	qdel(src)
 	user.put_in_hands(new cut_type)
-	return TRUE
+	return ITEM_INTERACT_SUCCESS
