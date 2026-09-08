@@ -141,6 +141,15 @@
   padding: 0.35em 0.4em;
 }
 
+.SceneAssistant__nameColor {
+  width: 2.2em;
+  height: 1.6em;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  cursor: pointer;
+}
+
 .SceneAssistant__logImage {
   display: block;
   max-width: 100%;
@@ -225,7 +234,7 @@
   --color-text: hsl(340, 88%, 90%);
   --color-label: hsl(340, 58%, 78%);
   --color-text-translucent: hsl(340, 42%, 70%);
-  --button-color: hsl(340, 88%, 90%);
+  --button-color: var(--color-black, hsl(0, 0%, 0%));
   --notice-box-color: hsl(340, 88%, 90%);
   --tab-color-selected: hsl(130, 100%, 62%);
   --color-border-primary: hsl(130, 95%, 42%);

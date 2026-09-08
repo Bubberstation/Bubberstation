@@ -174,3 +174,28 @@
 
 /datum/preference/numeric/scene_assistant_volume_leave/is_accessible(datum/preferences/preferences)
 	return FALSE
+
+/proc/default_scene_assistant_name_color(seed)
+	var/static/list/palette = list("#6ea8fe", "#c084fc", "#fb7185", "#4ade80", "#fbbf24", "#22d3ee")
+	if(!seed)
+		seed = "unknown"
+	var/index = (text2ascii("[seed]", 1) % length(palette)) + 1
+	return palette[index]
+
+/datum/preference/color/scene_assistant_name_color
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_key = "scene_assistant_name_color"
+	savefile_identifier = PREFERENCE_CHARACTER
+	should_update_preview = FALSE
+
+/datum/preference/color/scene_assistant_name_color/create_informed_default_value(datum/preferences/preferences)
+	var/chat_color = preferences.read_preference(/datum/preference/color/chat_color)
+	if(chat_color)
+		return sanitize_hexcolor(chat_color)
+	return default_scene_assistant_name_color(preferences.read_preference(/datum/preference/name/real_name) || preferences.parent?.ckey)
+
+/datum/preference/color/scene_assistant_name_color/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return
+
+/datum/preference/color/scene_assistant_name_color/is_accessible(datum/preferences/preferences)
+	return FALSE

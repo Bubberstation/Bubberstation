@@ -29,6 +29,7 @@
 	var/log_font = "Verdana"
 	var/log_font_size = 100
 	var/log_line_spacing = 1.35
+	var/name_color = "#c084fc"
 	var/range_check_queued = FALSE
 
 /datum/rp_panel/New(mob/living/new_holder)
@@ -70,9 +71,18 @@
 	set_typing(FALSE)
 	return ..()
 
+/datum/asset/simple/scene_assistant
+	assets = list(
+		"scene_assistant.png" = 'tgui/packages/tgui/interfaces/RpPanel/scene_assistant.png',
+	)
+
+/datum/rp_panel/ui_assets(mob/user)
+	return list(get_asset_datum(/datum/asset/simple/scene_assistant))
+
 /datum/rp_panel/proc/load_prefs()
 	var/datum/preferences/prefs = holder?.client?.prefs
 	if(!prefs)
+		name_color = default_scene_assistant_name_color(holder?.name || holder?.ckey)
 		return
 	show_avatars = prefs.read_preference(/datum/preference/toggle/scene_assistant_show_avatars)
 	avatar_size = prefs.read_preference(/datum/preference/numeric/scene_assistant_avatar_size)
@@ -87,13 +97,74 @@
 	volume_message = prefs.read_preference(/datum/preference/numeric/scene_assistant_volume_message)
 	volume_join = prefs.read_preference(/datum/preference/numeric/scene_assistant_volume_join)
 	volume_leave = prefs.read_preference(/datum/preference/numeric/scene_assistant_volume_leave)
+	var/saved_color = read_mob_character_pref(holder, /datum/preference/color/scene_assistant_name_color)
+	name_color = sanitize_hexcolor(saved_color) || default_scene_assistant_name_color(holder?.name || holder?.ckey)
 
-/datum/rp_panel/proc/write_player_pref(pref_type, value)
-	var/datum/preferences/prefs = holder?.client?.prefs
+/datum/rp_panel/proc/get_played_character_slot(mob/living/target)
+	if(!target)
+		return null
+	if(target.mind?.original_character_slot_index)
+		return target.mind.original_character_slot_index
+	return target.client?.prefs?.default_slot
+
+/datum/rp_panel/proc/read_mob_character_pref(mob/living/target, pref_type)
+	var/datum/preferences/prefs = target?.client?.prefs
 	if(!prefs)
-		return
+		return null
 	var/datum/preference/preference_entry = GLOB.preference_entries[pref_type]
 	if(!preference_entry)
+		return null
+	if(preference_entry.savefile_identifier != PREFERENCE_CHARACTER)
+		return prefs.read_preference(pref_type)
+	var/slot = get_played_character_slot(target)
+	if(!slot || slot == prefs.default_slot)
+		return prefs.read_preference(pref_type)
+	var/list/save_data = prefs.savefile.get_entry("character[slot]")
+	var/value = preference_entry.read(save_data, prefs)
+	if(isnull(value))
+		return preference_entry.create_informed_default_value(prefs)
+	return value
+
+/datum/rp_panel/proc/write_mob_character_pref(mob/living/target, pref_type, value)
+	var/datum/preferences/prefs = target?.client?.prefs
+	if(!prefs)
+		return FALSE
+	var/datum/preference/preference_entry = GLOB.preference_entries[pref_type]
+	if(!preference_entry)
+		return FALSE
+	if(preference_entry.savefile_identifier != PREFERENCE_CHARACTER)
+		if(!prefs.write_preference(preference_entry, value))
+			return FALSE
+		prefs.recently_updated_keys |= preference_entry.type
+		prefs.save_preferences()
+		return TRUE
+	var/slot = get_played_character_slot(target)
+	if(!slot || slot == prefs.default_slot)
+		if(!prefs.write_preference(preference_entry, value))
+			return FALSE
+		prefs.recently_updated_keys |= preference_entry.type
+		prefs.save_character(TRUE)
+		return TRUE
+	var/tree_key = "character[slot]"
+	var/list/save_data = prefs.savefile.get_entry(tree_key)
+	if(isnull(save_data))
+		prefs.savefile.set_entry(tree_key, list())
+		save_data = prefs.savefile.get_entry(tree_key)
+	var/new_value = preference_entry.deserialize(value, prefs)
+	if(!preference_entry.write(save_data, new_value, prefs))
+		return FALSE
+	prefs.savefile.save()
+	return TRUE
+
+/datum/rp_panel/proc/write_player_pref(pref_type, value)
+	var/datum/preference/preference_entry = GLOB.preference_entries[pref_type]
+	if(!preference_entry)
+		return
+	if(preference_entry.savefile_identifier == PREFERENCE_CHARACTER)
+		write_mob_character_pref(holder, pref_type, value)
+		return
+	var/datum/preferences/prefs = holder?.client?.prefs
+	if(!prefs)
 		return
 	if(prefs.write_preference(preference_entry, value))
 		prefs.recently_updated_keys |= preference_entry.type
@@ -107,7 +178,7 @@
 /datum/rp_panel/proc/erp_content_enabled(mob/living/target)
 	if(!erp_enabled(target))
 		return FALSE
-	var/erp_status = target.client?.prefs?.read_preference(/datum/preference/choiced/erp_status)
+	var/erp_status = read_mob_character_pref(target, /datum/preference/choiced/erp_status)
 	if(!erp_status || erp_status == "No" || erp_status == "None")
 		return FALSE
 	return TRUE
@@ -125,10 +196,28 @@
 	return ""
 
 /datum/rp_panel/proc/get_member_color(mob/living/target)
-	var/static/list/palette = list("#6ea8fe", "#c084fc", "#fb7185", "#4ade80", "#fbbf24", "#22d3ee")
-	var/seed = target?.ckey || target?.name || "unknown"
-	var/index = (text2ascii(seed, 1) % length(palette)) + 1
-	return palette[index]
+	if(!target || QDELETED(target))
+		return "#c084fc"
+	if(target.rp_panel?.name_color)
+		return target.rp_panel.name_color
+	var/saved_color = read_mob_character_pref(target, /datum/preference/color/scene_assistant_name_color)
+	if(saved_color)
+		return sanitize_hexcolor(saved_color)
+	return default_scene_assistant_name_color(target.name || target.ckey)
+
+/datum/rp_panel/proc/apply_name_color(raw_color)
+	var/sanitized = sanitize_hexcolor(raw_color)
+	if(!sanitized)
+		return FALSE
+	name_color = sanitized
+	write_player_pref(/datum/preference/color/scene_assistant_name_color, name_color)
+	var/holder_ref = REF(holder)
+	for(var/datum/rp_panel/panel as anything in get_linked_panels())
+		for(var/list/entry as anything in panel.messages)
+			if(entry["ref"] == holder_ref)
+				entry["color"] = name_color
+		SStgui.update_uis(panel)
+	return TRUE
 
 /datum/rp_panel/proc/get_scene_members()
 	var/list/members = list()
@@ -527,6 +616,7 @@
 		add_weakref_unique(typing_participants, holder)
 		if(holder.client?.typing_indicators)
 			ADD_TRAIT(holder, TRAIT_THINKING_IN_CHARACTER, CURRENTLY_TYPING_TRAIT)
+			holder.remove_thinking_indicator()
 			holder.create_typing_indicator()
 	else
 		clear_typing()
@@ -540,9 +630,7 @@
 
 /datum/rp_panel/proc/clear_typing()
 	drop_weakref(typing_participants, holder)
-	holder.remove_typing_indicator()
-	if(!holder.active_thinking_indicator)
-		REMOVE_TRAIT(holder, TRAIT_THINKING_IN_CHARACTER, CURRENTLY_TYPING_TRAIT)
+	holder?.remove_all_indicators()
 
 /datum/rp_panel/proc/get_preference_status(choice)
 	if(!choice || choice == "No" || choice == "None")

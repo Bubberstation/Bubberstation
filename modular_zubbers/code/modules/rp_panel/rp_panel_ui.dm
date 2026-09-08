@@ -84,6 +84,7 @@
 		"font" = log_font,
 		"font_size" = log_font_size,
 		"line_spacing" = log_line_spacing,
+		"name_color" = name_color,
 	)
 	return data
 
@@ -253,12 +254,11 @@
 	var/list/tags = list()
 	if(!target.client?.prefs)
 		return tags
-	var/datum/preferences/prefs = target.client.prefs
-	tags += list(list("label" = "ERP", "value" = get_preference_status(prefs.read_preference(/datum/preference/choiced/erp_status))))
-	tags += list(list("label" = "HYPNOSIS", "value" = get_preference_status(prefs.read_preference(/datum/preference/choiced/erp_status_hypno))))
-	tags += list(list("label" = "VORE", "value" = get_preference_status(prefs.read_preference(/datum/preference/choiced/erp_status_v))))
-	tags += list(list("label" = "NON-CON", "value" = get_preference_status(prefs.read_preference(/datum/preference/choiced/erp_status_nc))))
-	var/mechanics = prefs.read_preference(/datum/preference/choiced/erp_status_mechanics)
+	tags += list(list("label" = "ERP", "value" = get_preference_status(read_mob_character_pref(target, /datum/preference/choiced/erp_status))))
+	tags += list(list("label" = "HYPNOSIS", "value" = get_preference_status(read_mob_character_pref(target, /datum/preference/choiced/erp_status_hypno))))
+	tags += list(list("label" = "VORE", "value" = get_preference_status(read_mob_character_pref(target, /datum/preference/choiced/erp_status_v))))
+	tags += list(list("label" = "NON-CON", "value" = get_preference_status(read_mob_character_pref(target, /datum/preference/choiced/erp_status_nc))))
+	var/mechanics = read_mob_character_pref(target, /datum/preference/choiced/erp_status_mechanics)
 	tags += list(list("label" = "MECHANICS", "value" = (!mechanics || mechanics == "None") ? "NO" : uppertext(mechanics)))
 	return tags
 
@@ -336,8 +336,7 @@
 	)
 	if(!data["show_erp"] || !holder.client?.prefs)
 		return data
-	var/datum/preferences/prefs = holder.client.prefs
-	data["autocum"] = prefs.read_preference(/datum/preference/toggle/erp/autocum)
+	data["autocum"] = holder.client.prefs.read_preference(/datum/preference/toggle/erp/autocum)
 	var/static/list/pref_map = list(
 		"erp_status" = /datum/preference/choiced/erp_status,
 		"erp_status_nc" = /datum/preference/choiced/erp_status_nc,
@@ -349,7 +348,7 @@
 	for(var/key in pref_map)
 		var/datum/preference/choiced/pref = GLOB.preference_entries[pref_map[key]]
 		pref_payload[key] = list(
-			"value" = prefs.read_preference(pref_map[key]),
+			"value" = read_mob_character_pref(holder, pref_map[key]),
 			"options" = pref.get_choices(),
 		)
 	data["prefs"] = pref_payload
@@ -508,6 +507,16 @@
 			log_line_spacing = clamp(new_spacing, 1, 2)
 			write_player_pref(/datum/preference/numeric/scene_assistant_line_spacing, log_line_spacing)
 			return TRUE
+		if("pick_name_color")
+			var/chosen = tgui_color_picker(usr, "Choose your name color in Scene Assistant.", "Name Color", name_color)
+			if(QDELETED(src) || usr != holder)
+				return TRUE
+			if(chosen)
+				apply_name_color(chosen)
+			return TRUE
+		if("set_name_color")
+			apply_name_color(params["color"])
+			return TRUE
 		if("export_log")
 			export_log()
 			return TRUE
@@ -611,11 +620,7 @@
 	var/pref_path = pref_map[pref_type]
 	if(!pref_path)
 		return
-	var/datum/preferences/prefs = holder.client.prefs
-	var/datum/preference/preference_entry = GLOB.preference_entries[pref_path]
-	if(prefs.write_preference(preference_entry, pref_value))
-		prefs.recently_updated_keys |= preference_entry.type
-		prefs.save_character(TRUE)
+	write_mob_character_pref(holder, pref_path, pref_value)
 
 /datum/rp_panel/proc/set_genital_visibility(organ_slot, visibility)
 	if(!ishuman(holder) || !organ_slot)

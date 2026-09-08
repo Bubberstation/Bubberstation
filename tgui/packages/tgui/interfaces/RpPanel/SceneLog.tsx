@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   Box,
   Button,
@@ -8,9 +8,9 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
+import { resolveAsset } from '../../assets';
 import { sanitizeText } from '../../sanitize';
 import { asArray, type LogEntry, type RpPanelData } from './types';
-import sceneAssistantIcon from './scene_assistant.png';
 
 const MODE_CLASS: Record<string, string> = {
   say: 'say',
@@ -124,6 +124,12 @@ export function SceneLog(props: SceneLogProps) {
     }
   }, [messages.length, typing.length]);
 
+  useEffect(() => {
+    return () => {
+      act('set_typing', { typing: 0 });
+    };
+  }, []);
+
   const fontStyle = useMemo(
     () => ({
       fontFamily: settings.font,
@@ -189,7 +195,7 @@ export function SceneLog(props: SceneLogProps) {
                     <Stack.Item>
                       {entry.mode === 'system' ? (
                         <img
-                          src={sceneAssistantIcon}
+                          src={resolveAsset('scene_assistant.png')}
                           className="SceneAssistant__avatar SceneAssistant__avatar--system"
                           style={{
                             width: `${settings.avatar_size}px`,
@@ -287,7 +293,7 @@ export function SceneLog(props: SceneLogProps) {
           onChange={(event) => {
             const value = event.target.value;
             setDraft(value);
-            act('set_typing', { typing: value.length > 0 ? 1 : 0 });
+            act('set_typing', { typing: value.trim().length > 0 ? 1 : 0 });
           }}
           onKeyDown={(event) => {
             if (event.key !== 'Enter') {
@@ -355,9 +361,11 @@ export function SceneLog(props: SceneLogProps) {
             <Button icon="download" tooltip="Export log" onClick={() => act('export_log')} />
           </Stack.Item>
           <Stack.Item>
-            <Button
+            <Button.Confirm
               icon="eraser"
               tooltip="Clear log"
+              confirmContent="Clear?"
+              confirmColor="bad"
               onClick={() => act('clear_log')}
             />
           </Stack.Item>

@@ -12,6 +12,13 @@ import {
 import { useBackend } from '../../backend';
 import { asArray, type RpPanelData } from './types';
 
+function toCssColor(color: string | undefined): string {
+  if (!color) {
+    return '#c084fc';
+  }
+  return color.startsWith('#') ? color : `#${color}`;
+}
+
 type SettingsModalProps = {
   onClose: () => void;
 };
@@ -191,6 +198,29 @@ export function SettingsModal(props: SettingsModalProps) {
                     }
                   }}
                 />
+              </Stack.Item>
+            </Stack>
+            <Stack mt={0.4} align="center">
+              <Stack.Item grow>Name Color</Stack.Item>
+              <Stack.Item>
+                <input
+                  type="color"
+                  className="SceneAssistant__nameColor"
+                  value={toCssColor(settings.name_color)}
+                  title="Name color"
+                  onChange={(event) =>
+                    act('set_name_color', { color: event.target.value })
+                  }
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  icon="palette"
+                  tooltip="Open color picker"
+                  onClick={() => act('pick_name_color')}
+                >
+                  Change
+                </Button>
               </Stack.Item>
             </Stack>
           </Stack.Item>

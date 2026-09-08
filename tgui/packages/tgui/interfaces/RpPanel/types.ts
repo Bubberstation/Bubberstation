@@ -101,6 +101,7 @@ export type SettingsData = {
   font: string;
   font_size: number;
   line_spacing: number;
+  name_color: string;
 };
 
 export type RpPanelData = {
