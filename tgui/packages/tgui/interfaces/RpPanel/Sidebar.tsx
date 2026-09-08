@@ -282,10 +282,14 @@ type DropdownSelectProps = {
 
 function DropdownSelect(props: DropdownSelectProps) {
   const selectedRef = props.selected || props.people[0]?.ref || '';
+  const selectedPerson =
+    props.people.find((person) => person.ref === selectedRef) ||
+    props.people[0];
   return (
     <Dropdown
       width="100%"
       selected={selectedRef}
+      displayText={selectedPerson?.name || 'Select...'}
       options={props.people.map((person) => ({
         displayText: person.name,
         value: person.ref,

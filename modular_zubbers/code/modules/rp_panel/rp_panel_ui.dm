@@ -62,7 +62,8 @@
 	)
 	data["scene_details"] = scene_details
 	data["draft"] = draft_text
-	data["messages"] = build_formatted_messages()
+	// Raw messages — TGUI escapes/formats so quotes don't become visible &#34; entities.
+	data["messages"] = messages
 	data["participants"] = build_participant_list()
 	data["nearby"] = build_nearby_list()
 	data["typing"] = build_typing_list()
@@ -102,6 +103,7 @@
 	check_and_remove_out_of_range()
 
 /datum/rp_panel/proc/build_formatted_messages()
+	// Kept for HTML export. The live TGUI log formats client-side.
 	if(!formatted_messages_dirty && cached_formatted_messages)
 		return cached_formatted_messages
 	var/list/formatted = list()
@@ -164,8 +166,14 @@
 	var/list/names = list()
 	for(var/datum/weakref/typing_ref as anything in typing_participants)
 		var/mob/living/typer = typing_ref.resolve()
-		if(typer && !QDELETED(typer))
-			names += typer.name
+		if(!typer || QDELETED(typer))
+			typing_participants -= typing_ref
+			continue
+		// Drop stale entries if their own panel is no longer flagged as typing.
+		if(typer.rp_panel && !typer.rp_panel.holder_is_typing)
+			typing_participants -= typing_ref
+			continue
+		names += typer.name
 	return names
 
 /datum/rp_panel/proc/build_target_data()
@@ -448,7 +456,7 @@
 			return TRUE
 		if("set_typing")
 			set_typing(!!text2num(params["typing"]))
-			return TRUE
+			return FALSE // set_typing pushes a typing-only patch itself
 		if("set_draft")
 			draft_text = copytext_char("[params["text"]]", 1, SCENE_ASSISTANT_MAX_CHARS + 1)
 			return FALSE // store only; reconnect reads it from ui_data

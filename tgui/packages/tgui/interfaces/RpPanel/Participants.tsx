@@ -106,6 +106,13 @@ export function Participants() {
             value={details}
             onChange={(event) => setDetails(event.target.value)}
             onBlur={() => act('set_scene_details', { details })}
+            onKeyDown={(event) => {
+              if (event.key !== 'Enter' || event.shiftKey) {
+                return;
+              }
+              event.preventDefault();
+              act('set_scene_details', { details });
+            }}
           />
         </Section>
       </Stack.Item>

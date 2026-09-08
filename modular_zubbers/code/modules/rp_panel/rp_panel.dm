@@ -16,6 +16,8 @@
 	var/list/pending_invites = list()
 	var/list/messages = list()
 	var/list/typing_participants = list()
+	/// True while this panel's holder has composer text (drives sprite + chat typing).
+	var/holder_is_typing = FALSE
 	var/mob/living/selected_participant
 	var/emote_mode = "say"
 	var/scene_details = ""
@@ -65,6 +67,9 @@
 /datum/rp_panel/Destroy()
 	stop_range_watch()
 	if(holder)
+		if(holder_is_typing)
+			holder.remove_all_indicators()
+			holder_is_typing = FALSE
 		UnregisterSignal(holder, list(COMSIG_MOB_SAY, COMSIG_MOB_EMOTE, COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
 		if(holder.rp_panel == src)
 			holder.rp_panel = null
@@ -411,8 +416,22 @@
 	start_range_watch()
 	var/join_button = "<a href='byond://?src=[REF(src)];join=1'>Join</a>"
 	to_chat(target, boxed_message(span_notice("You have been invited to [holder]'s Scene! [join_button]")))
+	play_scene_invite_sound(target)
 	to_chat(holder, span_notice("Invited [target] to your Scene."))
 	return TRUE
+
+/// Alert sound for the invitee only (not gated by scene sound toggles).
+/datum/rp_panel/proc/play_scene_invite_sound(mob/living/target)
+	if(!target?.client)
+		return
+	target.playsound_local(
+		get_turf(target),
+		'modular_zubbers/sound/misc/rppanelsounds/messagechime.ogg',
+		65,
+		FALSE,
+		pressure_affected = FALSE,
+		use_reverb = FALSE,
+	)
 
 /datum/rp_panel/proc/complete_add_participant(mob/living/target)
 	if(!target || QDELETED(target) || QDELETED(src) || QDELETED(holder) || target == holder)
@@ -513,6 +532,7 @@
 			member.rp_panel.selected_participant = member
 		drop_weakref(member.rp_panel?.typing_participants, target)
 	if(target.rp_panel)
+		target.rp_panel.set_typing(FALSE)
 		target.rp_panel.participants = list()
 		target.rp_panel.typing_participants = list()
 		target.rp_panel.selected_participant = target
@@ -638,7 +658,7 @@
 	var/caption = trim(copytext_char("[raw_caption]", 1, SCENE_ASSISTANT_MAX_CHARS + 1))
 	if(holder.client?.autopunctuation && length(caption))
 		caption = autopunct_bare(caption)
-	clear_typing()
+	set_typing(FALSE)
 	draft_text = ""
 	append_scene_message(build_log_entry(holder, caption, "subtler", image_url))
 	play_sound_to_participants("message")
@@ -709,7 +729,7 @@
 		return
 	if(!can_send_scene_speech(emote_mode))
 		return
-	clear_typing()
+	set_typing(FALSE)
 	draft_text = ""
 	if(holder.client?.autopunctuation)
 		message = autopunct_bare(message)
@@ -761,9 +781,7 @@
 		if(istype(receiver, /mob/eye/camera/ai))
 			continue
 		receiver.show_message(subtler_message, alt_msg = subtler_message)
-		var/datum/preferences/prefs = receiver.client?.prefs
-		if(prefs?.read_preference(/datum/preference/toggle/subtler_sound))
-			receiver.playsound_local(get_turf(receiver), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
+		// Scene Assistant plays its own message chime — no subtler glockenspiel here.
 	holder.log_message(message, LOG_SUBTLER)
 
 /datum/rp_panel/proc/play_sound_to_participants(sound_type)
@@ -819,6 +837,7 @@
 			return
 	holder.playsound_local(get_turf(holder), sound_file, volume, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 
+/// HTML-safe formatting for exported logs. Live TGUI formatting is client-side.
 /datum/rp_panel/proc/format_scene_text(raw_text)
 	if(isnull(raw_text) || raw_text == "")
 		return ""
@@ -851,33 +870,42 @@
 	append_scene_message(build_log_entry(source, message, emote.key))
 
 /datum/rp_panel/proc/is_holder_typing()
-	for(var/datum/weakref/typing_ref as anything in typing_participants)
-		if(typing_ref.resolve() == holder)
-			return TRUE
-	return FALSE
+	return holder_is_typing
 
+/// Content-driven typing: on while the composer has text, off when empty.
+/// Early-outs when unchanged, and pushes a typing-only UI patch (no full refresh).
 /datum/rp_panel/proc/set_typing(is_typing)
-	if(!!is_typing == is_holder_typing())
+	is_typing = !!is_typing
+	if(is_typing == holder_is_typing)
 		return
+	holder_is_typing = is_typing
 	if(is_typing)
 		add_weakref_unique(typing_participants, holder)
-		if(holder.client?.typing_indicators)
+		if(holder?.client?.typing_indicators)
 			ADD_TRAIT(holder, TRAIT_THINKING_IN_CHARACTER, CURRENTLY_TYPING_TRAIT)
 			holder.remove_thinking_indicator()
 			holder.create_typing_indicator()
 	else
-		clear_typing()
+		drop_weakref(typing_participants, holder)
+		holder?.remove_all_indicators()
 	for(var/datum/rp_panel/panel as anything in get_linked_panels())
 		if(panel != src)
 			if(is_typing)
 				add_weakref_unique(panel.typing_participants, holder)
 			else
 				drop_weakref(panel.typing_participants, holder)
-		SStgui.update_uis(panel)
+		panel.push_typing_update()
 
-/datum/rp_panel/proc/clear_typing()
-	drop_weakref(typing_participants, holder)
-	holder?.remove_all_indicators()
+/// Lightweight partial update so typing toggles do not rebuild the whole scene payload.
+/datum/rp_panel/proc/push_typing_update()
+	if(!LAZYLEN(open_uis))
+		return
+	var/list/names = build_typing_list()
+	// BYOND JSON omits empty lists, which would leave a stale "X is typing" after merge.
+	// null still serializes, and the UI treats non-arrays as [].
+	var/list/payload = list("typing" = length(names) ? names : null)
+	for(var/datum/tgui/ui as anything in open_uis)
+		ui.send_update(payload, force = TRUE)
 
 /datum/rp_panel/proc/get_preference_status(choice)
 	if(!choice || choice == "No" || choice == "None")

@@ -23,12 +23,15 @@ const MODE_CLASS: Record<string, string> = {
 };
 
 function applyChatEmphasis(raw: string): string {
-  let input = raw
+  let input = `${raw ?? ''}`
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
   const wrap = (marker: string, tag: string) => {
-    const pattern = new RegExp(`(?<!\\\\)${marker}(.+?)(?<!\\\\)${marker}`, 'g');
+    const pattern = new RegExp(
+      `(?<!\\\\)${marker}(.+?)(?<!\\\\)${marker}`,
+      'g',
+    );
     input = input.replace(pattern, `<${tag}>$1</${tag}>`);
   };
   wrap('\\|', 'i');
@@ -47,7 +50,7 @@ function formatMessageHtml(entry: LogEntry) {
   ) {
     message = `"${message}"`;
   }
-  return { __html: sanitizeText(message) };
+  return { __html: applyChatEmphasis(message) };
 }
 
 function isHttpsUrl(url: string | undefined): url is string {
@@ -81,7 +84,6 @@ export function SceneLog(props: SceneLogProps) {
   const logRef = useRef<HTMLDivElement>(null);
   const stickToBottomRef = useRef(true);
   const prevCountRef = useRef(0);
-  const typingDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const typingSentRef = useRef(false);
   const draftDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const draftRef = useRef(serverDraft);
@@ -114,34 +116,16 @@ export function SceneLog(props: SceneLogProps) {
     }
     setDraft('');
     persistDraft('');
+    syncTyping(false);
   };
 
-  const clearTypingNow = () => {
-    if (typingDebounceRef.current) {
-      clearTimeout(typingDebounceRef.current);
-      typingDebounceRef.current = null;
-    }
-    if (typingSentRef.current) {
-      act('set_typing', { typing: 0 });
-      typingSentRef.current = false;
-    }
-  };
-
-  const scheduleTyping = (hasText: boolean) => {
-    if (!hasText) {
-      clearTypingNow();
+  /** Edge-triggered: ON while composer has text, OFF when empty. No linger debounce. */
+  const syncTyping = (hasText: boolean) => {
+    if (hasText === typingSentRef.current) {
       return;
     }
-    if (typingDebounceRef.current) {
-      clearTimeout(typingDebounceRef.current);
-    }
-    typingDebounceRef.current = setTimeout(() => {
-      typingDebounceRef.current = null;
-      if (!typingSentRef.current) {
-        act('set_typing', { typing: 1 });
-        typingSentRef.current = true;
-      }
-    }, 300);
+    typingSentRef.current = hasText;
+    act('set_typing', { typing: hasText ? 1 : 0 });
   };
 
   const scrollToBottom = () => {
@@ -189,18 +173,16 @@ export function SceneLog(props: SceneLogProps) {
       return;
     }
     hydratedRef.current = true;
+    const initial = draftRef.current || serverDraft || '';
     if (!draftRef.current && serverDraft) {
       draftRef.current = serverDraft;
       setDraft(serverDraft);
     }
+    syncTyping(initial.trim().length > 0);
   }, [serverDraft]);
 
   useEffect(() => {
     return () => {
-      if (typingDebounceRef.current) {
-        clearTimeout(typingDebounceRef.current);
-        typingDebounceRef.current = null;
-      }
       if (draftDebounceRef.current) {
         clearTimeout(draftDebounceRef.current);
         draftDebounceRef.current = null;
@@ -228,7 +210,6 @@ export function SceneLog(props: SceneLogProps) {
       clearDraftNow();
       setImageDraft('');
       setImageOpen(false);
-      clearTypingNow();
       stickToBottomRef.current = true;
       setUnread(0);
       return;
@@ -238,7 +219,6 @@ export function SceneLog(props: SceneLogProps) {
     }
     act('send_message', { message: trimmed });
     clearDraftNow();
-    clearTypingNow();
     stickToBottomRef.current = true;
     setUnread(0);
   };
@@ -313,7 +293,7 @@ export function SceneLog(props: SceneLogProps) {
                         italic
                         color="purple"
                         dangerouslySetInnerHTML={{
-                          __html: sanitizeText(entry.message || ''),
+                          __html: applyChatEmphasis(entry.message || ''),
                         }}
                       />
                     ) : (
@@ -380,7 +360,7 @@ export function SceneLog(props: SceneLogProps) {
             const value = event.target.value;
             setDraft(value);
             scheduleDraftSave(value);
-            scheduleTyping(value.trim().length > 0);
+            syncTyping(value.trim().length > 0);
           }}
           onKeyDown={(event) => {
             if (event.key !== 'Enter') {
@@ -392,6 +372,7 @@ export function SceneLog(props: SceneLogProps) {
                 setDraft((value) => {
                   const next = `${value} `;
                   scheduleDraftSave(next);
+                  syncTyping(next.trim().length > 0);
                   return next;
                 });
               }
@@ -422,6 +403,10 @@ export function SceneLog(props: SceneLogProps) {
           <Stack.Item>
             <Dropdown
               selected={emote_mode}
+              displayText={
+                emote_modes.find((mode) => String(mode.id) === emote_mode)
+                  ?.label || emote_mode
+              }
               options={emote_modes.map((mode) => ({
                 displayText: mode.label,
                 value: String(mode.id),
