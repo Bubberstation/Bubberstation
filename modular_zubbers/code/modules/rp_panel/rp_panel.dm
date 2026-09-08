@@ -129,11 +129,44 @@
 	return members
 
 /datum/rp_panel/proc/get_linked_panels()
-	var/list/panels = list(src)
-	for(var/mob/living/member as anything in get_scene_members())
+	var/list/panels = list()
+	for(var/mob/living/member as anything in collect_scene_members())
 		if(member.rp_panel && !(member.rp_panel in panels))
 			panels += member.rp_panel
+	if(!(src in panels))
+		panels += src
 	return panels
+
+/// Walk every connected participant list so the scene is one shared group.
+/datum/rp_panel/proc/collect_scene_members()
+	var/list/seen = list()
+	var/list/queue = get_scene_members()
+	while(length(queue))
+		var/mob/living/member = queue[1]
+		queue.Cut(1, 2)
+		if(!member || QDELETED(member) || (member in seen))
+			continue
+		seen += member
+		if(!member.rp_panel)
+			continue
+		for(var/mob/living/other as anything in member.rp_panel.get_scene_members())
+			if(!(other in seen))
+				queue += other
+	return seen
+
+/// Write the same member set onto every panel so joins/leaves stay in sync.
+/datum/rp_panel/proc/sync_scene_membership(list/members)
+	for(var/mob/living/member as anything in members)
+		if(!member || QDELETED(member))
+			continue
+		if(!member.rp_panel)
+			member.rp_panel = new(member)
+		member.rp_panel.participants = list()
+		for(var/mob/living/other as anything in members)
+			if(!other || QDELETED(other) || other == member)
+				continue
+			add_weakref_unique(member.rp_panel.participants, other)
+		member.rp_panel.scene_details = scene_details
 
 /datum/rp_panel/proc/add_weakref_unique(list/refs, mob/living/target)
 	for(var/datum/weakref/ref as anything in refs)
@@ -186,7 +219,7 @@
 	if(!can_invite_kind(target))
 		to_chat(holder, span_warning("You cannot invite [target] to the scene."))
 		return FALSE
-	if(is_in_scene(target))
+	if(target in collect_scene_members())
 		to_chat(holder, span_notice("[target] is already in the scene."))
 		return FALSE
 	if(!in_scene_range(target))
@@ -203,26 +236,23 @@
 /datum/rp_panel/proc/complete_add_participant(mob/living/target)
 	if(!target || QDELETED(target) || QDELETED(src) || QDELETED(holder) || target == holder)
 		return FALSE
-	if(!can_invite_kind(target) || is_in_scene(target))
+	if(!can_invite_kind(target))
+		return FALSE
+	var/list/members = collect_scene_members()
+	if(target in members)
+		to_chat(holder, span_notice("[target] is already in the scene."))
 		return FALSE
 	if(!in_scene_range(target))
 		to_chat(target, span_warning("You are too far away to join [holder]'s Scene."))
 		return FALSE
 
-	var/list/members = get_scene_members()
-	if(!target.rp_panel)
-		target.rp_panel = new(target)
-	for(var/mob/living/member as anything in members)
-		if(!member.rp_panel)
-			member.rp_panel = new(member)
-		add_weakref_unique(member.rp_panel.participants, target)
-		add_weakref_unique(target.rp_panel.participants, member)
-
+	members += target
+	sync_scene_membership(members)
 	target.rp_panel.messages = deep_copy_list(messages)
 	target.rp_panel.scene_details = scene_details
 
 	to_chat(holder, span_notice("[target] joined the scene."))
-	to_chat(target, span_notice("You joined [holder]'s Scene."))
+	to_chat(target, span_notice("You joined the scene."))
 	append_scene_message(list(
 		"name" = "Scene",
 		"message" = "[target.name] joined the scene.",
@@ -233,26 +263,30 @@
 		"color" = "#c084fc",
 	))
 	play_sound_to_participants("join")
+	for(var/mob/living/member as anything in members)
+		if(member.rp_panel)
+			SStgui.update_uis(member.rp_panel)
 	target.rp_panel.ui_interact(target)
 	return TRUE
 
 /datum/rp_panel/proc/remove_participant(mob/living/target)
-	if(!target || target == holder || !is_in_scene(target))
+	if(!target || QDELETED(target) || target == holder)
 		return FALSE
-	var/list/members = get_scene_members()
+	var/list/members = collect_scene_members()
+	if(!(target in members))
+		return FALSE
 	play_sound_to_participants("leave")
+	members -= target
 	for(var/mob/living/member as anything in members)
-		if(!member?.rp_panel)
-			continue
-		drop_weakref(member.rp_panel.participants, target)
-		drop_weakref(member.rp_panel.typing_participants, target)
-		if(member.rp_panel.selected_participant == target)
+		if(member.rp_panel?.selected_participant == target)
 			member.rp_panel.selected_participant = member
+		drop_weakref(member.rp_panel?.typing_participants, target)
 	if(target.rp_panel)
 		target.rp_panel.participants = list()
 		target.rp_panel.typing_participants = list()
 		target.rp_panel.selected_participant = target
 		SStgui.close_uis(target.rp_panel)
+	sync_scene_membership(members)
 	append_scene_message(list(
 		"name" = "Scene",
 		"message" = "[target.name] left the scene.",
@@ -263,7 +297,7 @@
 		"color" = "#c084fc",
 	))
 	to_chat(holder, span_notice("Removed [target] from the scene."))
-	to_chat(target, span_notice("[holder] removed you from the scene."))
+	to_chat(target, span_notice("You were removed from the scene."))
 	return TRUE
 
 /datum/rp_panel/proc/check_and_remove_out_of_range()
