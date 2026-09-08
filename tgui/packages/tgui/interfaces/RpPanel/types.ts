@@ -1,6 +1,6 @@
 import type { BooleanLike } from 'tgui-core/react';
 
-export function asArray<T>(value: T[] | unknown): T[] {
+export function asArray<T>(value: T[] | null | undefined): T[] {
   return Array.isArray(value) ? value : [];
 }
 

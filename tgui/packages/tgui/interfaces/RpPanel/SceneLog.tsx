@@ -318,7 +318,7 @@ export function SceneLog(props: SceneLogProps) {
                           <Box dangerouslySetInnerHTML={formatMessageHtml(entry)} />
                         )}
                         {isHttpsUrl(entry.image) &&
-                          (!!settings.show_images ? (
+                          (settings.show_images ? (
                             <img
                               src={entry.image}
                               className="SceneAssistant__logImage"

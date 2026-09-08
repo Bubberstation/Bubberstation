@@ -153,7 +153,7 @@ function PersonRow(props: PersonRowProps) {
         >
           {person.name}
           {person.is_you ? ' (You)' : ''}
-          {!!person.inactive ? ' (Inactive)' : ''}
+          {person.inactive ? ' (Inactive)' : ''}
         </Box>
       </Stack.Item>
       {!!actionLabel && (
