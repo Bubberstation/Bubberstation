@@ -46,6 +46,7 @@ function formatMessageHtml(entry: LogEntry) {
   let message = entry.message || '';
   if (
     (entry.mode === 'say' || entry.mode === 'whisper') &&
+    !entry.far_hear &&
     !message.startsWith('"')
   ) {
     message = `"${message}"`;
@@ -67,6 +68,7 @@ export function SceneLog(props: SceneLogProps) {
   const {
     scene_details,
     draft: serverDraft = '',
+    scene_inactive,
     settings = {
       font: 'Verdana',
       font_size: 100,
@@ -232,6 +234,13 @@ export function SceneLog(props: SceneLogProps) {
           style={fontStyle}
           onScroll={onLogScroll}
         >
+            {!!scene_inactive && (
+              <NoticeBox danger className="SceneAssistant__inactivePin">
+                You are out of scene range and inactive. Return within range of
+                another participant to receive updates again. Missed messages
+                will not be backfilled.
+              </NoticeBox>
+            )}
             {!!scene_details && (
               <NoticeBox className="SceneAssistant__scenePin">
                 <span

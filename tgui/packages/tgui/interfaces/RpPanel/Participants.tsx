@@ -27,16 +27,26 @@ export function Participants() {
               <Button
                 icon="plus"
                 tooltip="Invite"
-                onClick={() =>
-                  setPicking(picking === 'invite' ? null : 'invite')
-                }
+                selected={picking === 'invite'}
+                onClick={() => {
+                  const next = picking === 'invite' ? null : 'invite';
+                  setPicking(next);
+                  if (next) {
+                    act('refresh_roster');
+                  }
+                }}
               />
               <Button
                 icon="minus"
                 tooltip="Remove"
-                onClick={() =>
-                  setPicking(picking === 'remove' ? null : 'remove')
-                }
+                selected={picking === 'remove'}
+                onClick={() => {
+                  const next = picking === 'remove' ? null : 'remove';
+                  setPicking(next);
+                  if (next) {
+                    act('refresh_roster');
+                  }
+                }}
               />
               {participants.length > 1 && (
                 <Button
@@ -133,11 +143,17 @@ function PersonRow(props: PersonRowProps) {
     <Stack>
       <Stack.Item grow>
         <Box
-          style={{ color: person.color, cursor: onClick ? 'pointer' : 'default' }}
+          style={{
+            color: person.inactive ? undefined : person.color,
+            cursor: onClick ? 'pointer' : 'default',
+            opacity: person.inactive ? 0.65 : 1,
+          }}
+          color={person.inactive ? 'label' : undefined}
           onClick={onClick}
         >
           {person.name}
           {person.is_you ? ' (You)' : ''}
+          {!!person.inactive ? ' (Inactive)' : ''}
         </Box>
       </Stack.Item>
       {!!actionLabel && (

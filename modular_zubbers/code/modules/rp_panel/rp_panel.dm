@@ -1,4 +1,4 @@
-#define SCENE_ASSISTANT_RANGE 2
+#define SCENE_ASSISTANT_RANGE 3
 #define SCENE_ASSISTANT_MAX_CHARS 2000
 #define SCENE_ASSISTANT_MAX_LOG 250
 #define SCENE_ASSISTANT_INVITE_TIMEOUT (2 MINUTES)
@@ -18,6 +18,8 @@
 	var/list/typing_participants = list()
 	/// True while this panel's holder has composer text (drives sprite + chat typing).
 	var/holder_is_typing = FALSE
+	/// True while holder is in the scene but out of range of every other member.
+	var/scene_inactive = FALSE
 	var/mob/living/selected_participant
 	var/emote_mode = "say"
 	var/scene_details = ""
@@ -376,6 +378,72 @@
 		return FALSE
 	return get_dist(holder_turf, target_turf) <= SCENE_ASSISTANT_RANGE
 
+/// Active if alone in the scene, or within SCENE_ASSISTANT_RANGE of at least one other member.
+/datum/rp_panel/proc/is_scene_active_member(mob/living/member, list/members)
+	if(!member || QDELETED(member))
+		return FALSE
+	if(length(members) <= 1)
+		return TRUE
+	var/turf/member_turf = get_turf(member)
+	if(!member_turf)
+		return FALSE
+	for(var/mob/living/other as anything in members)
+		if(other == member || QDELETED(other))
+			continue
+		var/turf/other_turf = get_turf(other)
+		if(!other_turf)
+			continue
+		if(get_dist(member_turf, other_turf) <= SCENE_ASSISTANT_RANGE)
+			return TRUE
+	return FALSE
+
+/datum/rp_panel/proc/set_scene_inactive(inactive)
+	inactive = !!inactive
+	if(inactive == scene_inactive)
+		return
+	scene_inactive = inactive
+	if(inactive)
+		set_typing(FALSE)
+		if(holder)
+			to_chat(holder, span_notice("You left the scene's range and are now inactive. Return within [SCENE_ASSISTANT_RANGE] tiles of another participant to receive updates again."))
+			holder.balloon_alert(holder, "scene inactive")
+	else if(holder)
+		to_chat(holder, span_notice("You returned to the scene's range and are receiving updates again."))
+		holder.balloon_alert(holder, "scene active")
+	for(var/datum/rp_panel/panel as anything in get_linked_panels())
+		panel.invalidate_participant_cache()
+		SStgui.update_uis(panel)
+
+/datum/rp_panel/proc/refresh_member_activity()
+	var/list/members = collect_scene_members()
+	if(!length(members))
+		if(scene_inactive)
+			set_scene_inactive(FALSE)
+		return
+	for(var/mob/living/member as anything in members)
+		if(!member?.rp_panel)
+			continue
+		var/should_be_inactive = !is_scene_active_member(member, members)
+		member.rp_panel.set_scene_inactive(should_be_inactive)
+
+/// IC whisper bands for the scene log: clear / stars / far-hear line.
+/// Returns list(message, far_hear) where far_hear is TRUE for the too-far narrative line.
+/datum/rp_panel/proc/format_whisper_for_listener(mob/living/speaker, mob/living/listener, raw_message)
+	if(!speaker || !listener || speaker == listener)
+		return list(raw_message, FALSE)
+	var/turf/speaker_turf = get_turf(speaker)
+	var/turf/listener_turf = get_turf(listener)
+	if(!speaker_turf || !listener_turf)
+		return list(raw_message, FALSE)
+	var/dist = get_dist(speaker_turf, listener_turf)
+	var/outside_dist = max(dist - WHISPER_RANGE, 0)
+	if(outside_dist <= 0)
+		return list(raw_message, FALSE)
+	if(outside_dist <= EAVESDROP_RANGE)
+		// stars() sanitizes for chat; decode so TGUI can format client-side.
+		return list(html_decode(stars(raw_message)), FALSE)
+	return list("[speaker.name] [speaker.verb_whisper] something, but you are too far away to hear [speaker.p_them()].", TRUE)
+
 /datum/rp_panel/proc/can_invite_kind(mob/living/target)
 	return iscarbon(target) || issilicon(target)
 
@@ -450,6 +518,7 @@
 	sync_scene_membership(members)
 	// Joiners keep their own log. Do not copy missed messages from the live scene.
 	target.rp_panel.scene_details = scene_details
+	target.rp_panel.scene_inactive = FALSE
 
 	to_chat(holder, span_notice("[target] joined the scene."))
 	to_chat(target, span_notice("You joined the scene."))
@@ -463,6 +532,7 @@
 		"color" = "#c084fc",
 	))
 	play_sound_to_participants("join")
+	refresh_member_activity()
 	for(var/mob/living/member as anything in members)
 		if(member.rp_panel)
 			member.rp_panel.start_range_watch()
@@ -533,6 +603,7 @@
 		drop_weakref(member.rp_panel?.typing_participants, target)
 	if(target.rp_panel)
 		target.rp_panel.set_typing(FALSE)
+		target.rp_panel.scene_inactive = FALSE
 		target.rp_panel.participants = list()
 		target.rp_panel.typing_participants = list()
 		target.rp_panel.selected_participant = target
@@ -553,7 +624,7 @@
 		"color" = "#c084fc",
 	)
 	for(var/mob/living/member as anything in members)
-		if(!member.rp_panel)
+		if(!member.rp_panel || member.rp_panel.scene_inactive)
 			continue
 		member.rp_panel.add_log_entry(leave_entry)
 		if(length(member.rp_panel.participants))
@@ -565,31 +636,42 @@
 		to_chat(target, span_notice("You left the scene."))
 	else
 		to_chat(holder, span_notice("Removed [target] from the scene."))
-		to_chat(target, span_notice("You were removed from the scene."))
+		to_chat(target, span_warning("You were removed from the scene."))
+		target.balloon_alert(target, "removed from scene")
+	refresh_member_activity()
 	return TRUE
 
 /datum/rp_panel/proc/leave_scene()
 	return remove_participant(holder, TRUE)
 
 /datum/rp_panel/proc/check_and_remove_out_of_range()
-	var/list/leaving = list()
-	for(var/datum/weakref/participant_ref as anything in participants)
+	// Legacy name kept for call sites — out of range now marks inactive instead of kicking.
+	refresh_member_activity()
+	// Drop dead weakrefs from participant lists without removing living members.
+	for(var/datum/weakref/participant_ref as anything in participants.Copy())
 		var/mob/living/participant = participant_ref.resolve()
-		if(!participant || QDELETED(participant) || !in_scene_range(participant))
-			leaving += participant_ref
-	for(var/datum/weakref/ref_to_drop as anything in leaving)
-		var/mob/living/gone = ref_to_drop.resolve()
-		if(gone)
-			to_chat(holder, span_notice("[gone] left the scene's range."))
-			to_chat(gone, span_notice("You left [holder]'s Scene range."))
-			remove_participant(gone)
-		else
-			participants -= ref_to_drop
-			invalidate_participant_cache()
+		if(participant && !QDELETED(participant))
+			continue
+		participants -= participant_ref
+		invalidate_participant_cache()
 
 /datum/rp_panel/proc/append_scene_message(list/message_entry)
+	var/mob/living/speaker = null
+	if(message_entry["ref"])
+		speaker = locate(message_entry["ref"])
+	var/is_whisper = (message_entry["mode"] == "whisper")
 	for(var/datum/rp_panel/panel as anything in get_linked_panels())
-		panel.add_log_entry(message_entry)
+		// Inactive members do not receive updates, except their own outbound lines.
+		if(panel.scene_inactive && !(speaker && panel.holder == speaker))
+			continue
+		var/list/entry_for_panel = message_entry
+		if(is_whisper && speaker && panel.holder && panel.holder != speaker)
+			var/list/whisper_result = format_whisper_for_listener(speaker, panel.holder, message_entry["message"])
+			entry_for_panel = message_entry.Copy()
+			entry_for_panel["message"] = whisper_result[1]
+			if(whisper_result[2])
+				entry_for_panel["far_hear"] = TRUE
+		panel.add_log_entry(entry_for_panel)
 		SStgui.update_uis(panel)
 
 /datum/rp_panel/proc/add_log_entry(list/message_entry)
@@ -786,6 +868,8 @@
 
 /datum/rp_panel/proc/play_sound_to_participants(sound_type)
 	for(var/datum/rp_panel/panel as anything in get_linked_panels())
+		if(panel.scene_inactive)
+			continue
 		panel.play_own_scene_sound(sound_type)
 
 /datum/rp_panel/proc/play_own_scene_sound(sound_type)
@@ -876,6 +960,8 @@
 /// Early-outs when unchanged, and pushes a typing-only UI patch (no full refresh).
 /datum/rp_panel/proc/set_typing(is_typing)
 	is_typing = !!is_typing
+	if(is_typing && scene_inactive)
+		is_typing = FALSE
 	if(is_typing == holder_is_typing)
 		return
 	holder_is_typing = is_typing
@@ -889,6 +975,8 @@
 		drop_weakref(typing_participants, holder)
 		holder?.remove_all_indicators()
 	for(var/datum/rp_panel/panel as anything in get_linked_panels())
+		if(panel.scene_inactive)
+			continue
 		if(panel != src)
 			if(is_typing)
 				add_weakref_unique(panel.typing_participants, holder)

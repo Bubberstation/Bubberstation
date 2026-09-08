@@ -62,6 +62,7 @@
 	)
 	data["scene_details"] = scene_details
 	data["draft"] = draft_text
+	data["scene_inactive"] = scene_inactive
 	// Raw messages — TGUI escapes/formats so quotes don't become visible &#34; entities.
 	data["messages"] = messages
 	data["participants"] = build_participant_list()
@@ -123,6 +124,7 @@
 			"headshot" = "",
 			"color" = "#c084fc",
 			"is_you" = is_you,
+			"inactive" = FALSE,
 		)
 	return list(
 		"name" = person.name,
@@ -130,6 +132,7 @@
 		"headshot" = get_headshot(person),
 		"color" = get_member_color(person),
 		"is_you" = is_you,
+		"inactive" = !!person.rp_panel?.scene_inactive,
 	)
 
 /datum/rp_panel/proc/build_participant_list()
@@ -363,6 +366,7 @@
 	var/list/data = list(
 		"show_erp" = erp_enabled(holder),
 		"autocum" = FALSE,
+		"inactive" = scene_inactive,
 		"prefs" = list(),
 		"genitals" = list(),
 		"underwear" = list(),
@@ -460,6 +464,10 @@
 		if("set_draft")
 			draft_text = copytext_char("[params["text"]]", 1, SCENE_ASSISTANT_MAX_CHARS + 1)
 			return FALSE // store only; reconnect reads it from ui_data
+		if("refresh_roster")
+			invalidate_participant_cache()
+			refresh_member_activity()
+			return TRUE
 		if("invite_participant")
 			invite_living(locate(params["ref"]))
 			return TRUE

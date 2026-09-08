@@ -10,6 +10,7 @@ export type Person = {
   headshot: string;
   color: string;
   is_you?: BooleanLike;
+  inactive?: BooleanLike;
 };
 
 export type LogEntry = {
@@ -21,6 +22,7 @@ export type LogEntry = {
   ref: string;
   color: string;
   image?: string;
+  far_hear?: BooleanLike;
 };
 
 export type StatusTag = {
@@ -77,6 +79,7 @@ export type TargetData = {
 export type SelfData = {
   show_erp: BooleanLike;
   autocum: BooleanLike;
+  inactive?: BooleanLike;
   prefs: Record<string, PrefChoice>;
   genitals: GenitalEntry[];
   underwear: {
@@ -118,6 +121,7 @@ export type RpPanelData = {
   emote_modes: Option[];
   scene_details: string;
   draft: string;
+  scene_inactive?: BooleanLike;
   messages: LogEntry[];
   participants: Person[];
   nearby: Person[];
