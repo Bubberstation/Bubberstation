@@ -44,8 +44,11 @@
 /obj/effect/magical_light/Destroy(force)
 	. = ..()
 	var/turf/our_turf = get_turf(src)
-	UnregisterSignal(our_turf, COMSIG_ATOM_ENTERED)
-	UnregisterSignal(our_turf, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON)
+	UnregisterSignal(our_turf, list(COMSIG_ATOM_ENTERED,
+		COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON,
+		SIGNAL_ADDTRAIT(TRAIT_TURF_BLESSED),
+		COMSIG_BIBLE_SMACKED,
+		))
 
 /obj/effect/magical_light/examine(mob/user)
 	. = ..()
