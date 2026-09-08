@@ -45,8 +45,11 @@ ANTAG_PROMPT_TIME 30
 ## Whether or all valid candidates are polled, instead of just exactly as many as is needed.
 ANTAG_PROMPT_POLL_EVERYONE 1
 
+## Prompt crew for crewset antags even if they never enabled that antag in their preferences, requires ANTAG_PROMPT_ENABLED
+ANTAG_PROMPT_POLLS_REGARDLESS_OF_PREFS
+
 ## Percent chance for any one polled candidate to be shown a decoy antagonist instead of a real roll.
-## doesn't work if ANTAG_PROMPT_POLL_EVERYONE is not enabnled
+## doesn't work if ANTAG_PROMPT_POLL_EVERYONE is not enabled
 ANTAG_PROMPT_FAKE_CHANCE 15
 
 ## Storyteller types configs

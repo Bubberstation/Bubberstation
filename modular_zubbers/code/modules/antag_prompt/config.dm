@@ -14,3 +14,6 @@
 
 /datum/config_entry/flag/antag_prompt_poll_everyone
 	default = TRUE
+
+/datum/config_entry/flag/antag_prompt_polls_regardless_of_prefs
+	default = FALSE

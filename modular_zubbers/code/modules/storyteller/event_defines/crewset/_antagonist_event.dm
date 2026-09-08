@@ -92,7 +92,7 @@
 		JOB_RESEARCH_DIRECTOR,
 		JOB_QUARTERMASTER,
 		)
-	var/list/candidates = SSgamemode.get_candidates(antag_flag, pick_roundstart_players = !round_started, restricted_roles = restricted_roles, restricted_species = restricted_species)
+	var/list/candidates = SSgamemode.get_candidates(antag_flag, pick_roundstart_players = !round_started, restricted_roles = restricted_roles, restricted_species = restricted_species, ignore_antag_prefs = ignoring_antag_prefs())
 	return candidates
 
 /datum/round_event_control/antagonist/solo

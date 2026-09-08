@@ -64,7 +64,7 @@
 		return list()
 	var/icon/preview = get_antag_prompt_icon(role_flag)
 	var/list/signed_up = SSpolling.poll_candidates(
-		role = role_flag,
+		role = ignoring_antag_prefs() ? null : role_flag,
 		check_jobban = role_flag,
 		poll_time = poll_time,
 		ignore_category = ANTAG_PROMPT_IGNORE_CATEGORY,
@@ -132,3 +132,6 @@
 
 /datum/round_event/antagonist/proc/should_prompt_candidates(datum/round_event_control/antagonist/cast_control)
 	return CONFIG_GET(flag/antag_prompt_enabled) && SSticker.HasRoundStarted()
+
+/proc/ignoring_antag_prefs()
+	return CONFIG_GET(flag/antag_prompt_polls_regardless_of_prefs) && CONFIG_GET(flag/antag_prompt_enabled) && SSticker.HasRoundStarted()

@@ -1030,7 +1030,7 @@
 	if(!. || isnull(poll))
 		return
 	var/list/modifiers = params2list(params)
-	//BUBBER EDIT ADDITION BEGIN - ANTAG PROMPT - right click dismisses the prompt and opts you out for the round
+	//BUBBER EDIT ADDITION BEGIN - ANTAG PROMPT - right click closes the prompt
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		dismiss_poll()
 		return
