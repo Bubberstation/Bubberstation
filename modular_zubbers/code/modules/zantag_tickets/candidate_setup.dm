@@ -1,7 +1,16 @@
 /datum/round_event/antagonist/candidate_setup(datum/round_event_control/antagonist/cast_control)
 
-	var/list/candidates_tickets = candidates_to_tickets(cast_control.get_candidates())
+	var/list/possible_candidates = cast_control.get_candidates()
+	var/prompted = should_prompt_candidates(cast_control)
+	if(prompted)
+		possible_candidates = prompt_candidates(cast_control, possible_candidates)
+
+	var/list/candidates_tickets = candidates_to_tickets(possible_candidates)
 	if(!length(candidates_tickets))
+		if(prompted)
+			message_admins(span_yellowteamradio("Nobody accepted the [cast_control.name] prompt."))
+			log_game("Nobody accepted the [cast_control.name] antagonist prompt.")
+			return
 		message_admins(span_yellowteamradio("Antag tickets system failed to find any candidates!"))
 		log_game("Antag tickets system failed to find any candidates!")
 		return
