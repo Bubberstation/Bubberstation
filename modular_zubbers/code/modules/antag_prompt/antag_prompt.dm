@@ -28,29 +28,70 @@
 
 	var/poll_time = CONFIG_GET(number/antag_prompt_time) SECONDS
 	if(length(decoy_candidates))
-		log_antag_tickets("Antag prompt for [cast_control.name] showed [length(decoy_candidates)] candidate(s) a decoy [decoy_flag] prompt.")
-		INVOKE_ASYNC(src, PROC_REF(run_prompt), decoy_candidates, decoy_flag, poll_time)
+		INVOKE_ASYNC(src, PROC_REF(run_decoy_prompt), decoy_candidates, decoy_flag, poll_time)
 
+	var/prompted = length(real_candidates)
 	var/list/accepted = run_prompt(real_candidates, cast_control.antag_flag, poll_time)
-	log_antag_tickets("Antag prompt for [cast_control.name]: [length(real_candidates)] prompted, [length(accepted)] accepted.")
+	// Both polls start together and last the same time, so this waits a tick at most.
+	if(length(decoy_candidates))
+		var/deadline = world.time + 10 SECONDS
+		UNTIL(decoy_finished || world.time > deadline)
+
+	log_antag_tickets("Antag prompt for [cast_control.name] ([cast_control.antag_flag]): [prompted] prompted, [length(accepted)] accepted, [prompted - length(accepted)] declined. Decoy [decoy_flag || "none"]: [length(decoy_candidates)] prompted, [length(decoy_accepted)] accepted.")
+	SSblackbox.record_feedback("associative", "antag_prompt", 1, list(
+		"antag" = cast_control.antag_flag,
+		"eligible" = length(candidates),
+		"needed" = antag_count,
+		"prompted" = prompted,
+		"accepted" = length(accepted),
+		"decoy_antag" = decoy_flag || "none",
+		"decoy_prompted" = length(decoy_candidates),
+		"decoy_accepted" = length(decoy_accepted),
+	))
 	return accepted
 
-/// Runs a single prompt and returns everyone who signed up. The decoy prompt throws its result away.
+/// Set by the decoy prompt so the real poll can report both in one log line.
+/datum/round_event/antagonist/var/list/decoy_accepted
+/datum/round_event/antagonist/var/decoy_finished = FALSE
+
+/datum/round_event/antagonist/proc/run_decoy_prompt(list/group, decoy_flag, poll_time)
+	decoy_accepted = run_prompt(group, decoy_flag, poll_time)
+	decoy_finished = TRUE
+
+/// Runs a single prompt and returns everyone who signed up.
 /datum/round_event/antagonist/proc/run_prompt(list/group, role_flag, poll_time)
 	if(!length(group))
 		return list()
-	// Worded off the antag flag so a real and a decoy prompt read identically.
+	var/icon/preview = get_antag_prompt_icon(role_flag)
 	var/list/signed_up = SSpolling.poll_candidates(
 		role = role_flag,
 		check_jobban = role_flag,
 		poll_time = poll_time,
 		ignore_category = ANTAG_PROMPT_IGNORE_CATEGORY,
 		group = group,
+		alert_pic = preview ? image(preview) : null,
 		role_name_text = LOWER_TEXT(role_flag),
+		chat_text_border_icon = preview,
 		announce_chosen = FALSE,
 		show_candidate_amount = FALSE,
 	)
 	return signed_up || list()
+
+/proc/get_antag_prompt_icon(antag_flag)
+	RETURN_TYPE(/icon)
+	var/static/list/cached_icons = list()
+	var/icon/cached = cached_icons[antag_flag]
+	if(isnull(cached))
+		var/datum/asset/spritesheet_batched/antagonists/sheet = get_asset_datum(/datum/asset/spritesheet_batched/antagonists)
+		var/datum/universal_icon/preview = LAZYACCESS(sheet?.antag_icons, serialize_antag_name(antag_flag))
+		if(isnull(preview))
+			return null
+		// Copy first, the sheet's icons are shared with the preferences UI.
+		var/datum/universal_icon/scaled = preview.copy()
+		scaled.scale(ICON_SIZE_X, ICON_SIZE_Y)
+		cached = scaled.to_icon()
+		cached_icons[antag_flag] = cached
+	return cached
 
 /// Picks an antagonist that could have rolled but isn't the one that did, filling `believable` with the pollees it would really have polled.
 /datum/round_event/antagonist/proc/get_decoy_control(datum/round_event_control/antagonist/real_control, list/pool, list/believable)
@@ -70,7 +111,6 @@
 
 	while(length(options))
 		var/datum/round_event_control/antagonist/decoy = pick_n_take(options)
-		// A decoy nobody in the pool could have been polled for gives itself away.
 		var/list/audience = pool & decoy.get_candidates()
 		if(!length(audience))
 			continue
@@ -90,6 +130,5 @@
 		picked += candidate
 	return picked
 
-/// Prompt only once the round is live; cast_control.roundstart only marks roundstart eligibility, and such events still fire midround.
 /datum/round_event/antagonist/proc/should_prompt_candidates(datum/round_event_control/antagonist/cast_control)
 	return CONFIG_GET(flag/antag_prompt_enabled) && SSticker.HasRoundStarted()
