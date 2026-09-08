@@ -65,12 +65,10 @@
 /mob/living/silicon/ai/update_stat()
 	if(HAS_TRAIT(src, TRAIT_GODMODE))
 		return
-	if(stat != DEAD)
-		if(health <= HEALTH_THRESHOLD_DEAD)
-			death()
-			return
-		else if(stat >= UNCONSCIOUS)
-			set_stat(CONSCIOUS)
+	if(stat != DEAD && health <= HEALTH_THRESHOLD_DEAD)
+		death()
+	else if(stat < DEAD)//Bubber edit early pull - remove at #97730
+		set_stat(STABLE)//Bubber edit early pull
 	diag_hud_set_status()
 
 /mob/living/silicon/ai/update_sight()

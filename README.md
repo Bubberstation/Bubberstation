@@ -7,6 +7,7 @@
 | Website                 | Link                                                              |
 | ----------------------- | ----------------------------------------------------------------- |
 | Git / GitHub cheatsheet | https://www.notion.so/Git-GitHub-61bc81766b2e4c7d9a346db3078ce833 |
+| Maintainer SOP          | [./modular_zubbers/maint-sop.md](./modular_zubbers/maint-sop.md)  |
 | Guide to Modularization | [./modular_zubbers/readme.md](./modular_zubbers/readme.md)        |
 | Website                 | https://wiki.bubberstation.org/index.php?title=Main_Page          |
 | Code                    | https://github.com/Bubberstation/Bubberstation                    |
