@@ -61,6 +61,7 @@
 		list("id" = "subtler_antighost", "label" = "subtler anti-ghost"),
 	)
 	data["scene_details"] = scene_details
+	data["draft"] = draft_text
 	data["messages"] = build_formatted_messages()
 	data["you"] = build_person_entry(holder, TRUE)
 	data["participants"] = build_participant_list()
@@ -101,11 +102,15 @@
 	check_and_remove_out_of_range()
 
 /datum/rp_panel/proc/build_formatted_messages()
+	if(!formatted_messages_dirty && cached_formatted_messages)
+		return cached_formatted_messages
 	var/list/formatted = list()
 	for(var/list/entry as anything in messages)
 		var/list/copy = entry.Copy()
 		copy["message"] = format_scene_text(entry["message"])
 		formatted += list(copy)
+	cached_formatted_messages = formatted
+	formatted_messages_dirty = FALSE
 	return formatted
 
 /datum/rp_panel/proc/build_person_entry(mob/living/person, is_you = FALSE)
@@ -207,10 +212,30 @@
 			data["their_arousal"] = human_target.arousal
 			data["their_pain"] = human_target.pain
 	if(ishuman(target) && ishuman(holder))
-		var/list/verb_data = build_interaction_data(target, allow_lewd)
+		var/list/verb_data = get_cached_interaction_data(target, allow_lewd)
 		for(var/key in verb_data)
 			data[key] = verb_data[key]
 	return data
+
+/datum/rp_panel/proc/invalidate_interaction_cache()
+	cached_interaction_ref = null
+	cached_interaction_lewd = null
+	cached_interaction_at = 0
+	cached_interaction_data = null
+
+/datum/rp_panel/proc/get_cached_interaction_data(mob/living/target, allow_lewd = FALSE)
+	var/target_ref = REF(target)
+	if(cached_interaction_data && cached_interaction_ref == target_ref && cached_interaction_lewd == allow_lewd && world.time < cached_interaction_at + SCENE_ASSISTANT_INTERACTION_CACHE)
+		var/list/cached = cached_interaction_data.Copy()
+		var/datum/component/interactable/interaction_component = target.GetComponent(/datum/component/interactable)
+		cached["block_interact"] = interaction_component ? (interaction_component.interact_next >= world.time) : FALSE
+		return cached
+	var/list/verb_data = build_interaction_data(target, allow_lewd)
+	cached_interaction_ref = target_ref
+	cached_interaction_lewd = allow_lewd
+	cached_interaction_at = world.time
+	cached_interaction_data = verb_data
+	return verb_data
 
 /datum/rp_panel/proc/build_anatomy_details(mob/living/target)
 	var/list/details = list()
@@ -401,15 +426,22 @@
 		if("set_selected")
 			var/mob/living/picked = locate(params["ref"])
 			selected_participant = (picked && is_in_scene(picked)) ? picked : holder
+			invalidate_interaction_cache()
 			return TRUE
 		if("set_typing")
 			set_typing(!!text2num(params["typing"]))
 			return TRUE
+		if("set_draft")
+			draft_text = copytext_char("[params["text"]]", 1, SCENE_ASSISTANT_MAX_CHARS + 1)
+			return FALSE // store only; reconnect reads it from ui_data
 		if("invite_participant")
 			invite_living(locate(params["ref"]))
 			return TRUE
 		if("remove_participant")
 			remove_participant(locate(params["ref"]))
+			return TRUE
+		if("leave_scene")
+			leave_scene()
 			return TRUE
 		if("open_examine")
 			open_examine(locate(params["ref"]) || get_target())
@@ -559,6 +591,9 @@
 	holder << browse("<html><body style='margin:0;background:#111;text-align:center'><img src='[html_encode(image_url)]' style='max-width:100%'></body></html>", "window=scene_assistant_img;size=800x800")
 
 /datum/rp_panel/proc/run_interaction(interaction_name)
+	if(holder_cannot_emote())
+		notify_cannot_act("interact")
+		return
 	var/mob/living/target = get_target()
 	if(!ishuman(target) || !ishuman(holder) || !interaction_name)
 		return
@@ -577,12 +612,12 @@
 		if(interaction_component.body_relay && !can_see(holder, target))
 			msg = replacetext(msg, "%TARGET%", "\the [interaction_component.body_relay.name]")
 		interaction_message = trim(replacetext(replacetext(msg, "%TARGET%", "[target]"), "%USER%", ""), INTERACTION_MAX_CHAR)
-	sending_message = TRUE
+	begin_sending_message()
 	if(interaction_component.body_relay && !can_see(holder, target))
 		found_interaction.act(holder, target, interaction_component.body_relay)
 	else
 		found_interaction.act(holder, target)
-	sending_message = FALSE
+	end_sending_message()
 	var/datum/component/interactable/holder_component = holder.GetComponent(/datum/component/interactable)
 	if(holder_component)
 		holder_component.interact_last = world.time
@@ -591,21 +626,55 @@
 	if(length(interaction_message))
 		append_scene_message(build_log_entry(holder, interaction_message, found_interaction.lewd ? "subtle" : "emote"))
 	play_sound_to_participants("message")
+	invalidate_interaction_cache()
 
 /datum/rp_panel/proc/remove_lewd_item(item_slot)
+	if(holder_cannot_emote())
+		notify_cannot_act("interact")
+		return
 	var/mob/living/target = get_target()
-	if(!ishuman(target) || !item_slot)
+	if(!ishuman(target) || !ishuman(holder) || !item_slot)
 		return
 	if(!erp_content_enabled(holder) || (target != holder && !erp_content_enabled(target)))
 		return
 	var/datum/component/interactable/interaction_component = target.GetComponent(/datum/component/interactable)
 	if(!interaction_component)
 		return
-	interaction_component.ui_act("remove_lewd_item", list(
-		"item_slot" = item_slot,
-		"userref" = REF(holder),
-		"selfref" = REF(target),
-	), null, null)
+	var/mob/living/carbon/human/source = holder
+	var/mob/living/carbon/human/human_target = target
+	var/obj/item/clothing/sextoy/new_item = source.get_active_held_item()
+	var/obj/item/clothing/sextoy/existing_item = human_target.vars[item_slot]
+	if(!existing_item && !new_item)
+		source.show_message(span_warning("No item to insert or remove!"))
+		return
+	if(!existing_item && !istype(new_item))
+		source.show_message(span_warning("The item you're holding is not a toy!"))
+		return
+	if(!interaction_component.can_lewd_strip(source, human_target, item_slot) || !interaction_component.is_toy_compatible(new_item, item_slot))
+		source.show_message(span_warning("Failed to adjust [human_target.name]'s toys!"))
+		return
+	var/internal = (item_slot in list(ORGAN_SLOT_VAGINA, ORGAN_SLOT_ANUS))
+	var/insert_or_attach = internal ? "insert" : "attach"
+	var/into_or_onto = internal ? "into" : "onto"
+	if(existing_item)
+		source.visible_message(span_purple("[source.name] starts trying to remove something from [human_target.name]'s [item_slot]."), span_purple("You start to remove [existing_item.name] from [human_target.name]'s [item_slot]."), span_purple("You hear someone trying to remove something from someone nearby."), vision_distance = 1, ignored_mobs = list(human_target))
+	else if(new_item)
+		source.visible_message(span_purple("[source.name] starts trying to [insert_or_attach] the [new_item.name] [into_or_onto] [human_target.name]'s [item_slot]."), span_purple("You start to [insert_or_attach] the [new_item.name] [into_or_onto] [human_target.name]'s [item_slot]."), span_purple("You hear someone trying to [insert_or_attach] something [into_or_onto] someone nearby."), vision_distance = 1, ignored_mobs = list(human_target))
+	if(source != human_target)
+		human_target.show_message(span_warning("[source.name] is trying to [existing_item ? "remove the [existing_item.name] [internal ? "in" : "on"]" : new_item ? "is trying to [insert_or_attach] the [new_item.name] [into_or_onto]" : span_alert("What the fuck, impossible condition? rp_panel_ui.dm!")] your [item_slot]!"))
+	if(!do_after(source, 5 SECONDS, human_target, interaction_key = "interaction_[item_slot]") || !interaction_component.can_lewd_strip(source, human_target, item_slot))
+		return
+	if(existing_item)
+		source.visible_message(span_purple("[source.name] removes [existing_item.name] from [human_target.name]'s [item_slot]."), span_purple("You remove [existing_item.name] from [human_target.name]'s [item_slot]."), span_purple("You hear someone remove something from someone nearby."), vision_distance = 1)
+		human_target.dropItemToGround(existing_item, force = TRUE)
+		human_target.vars[item_slot] = null
+	else if(new_item)
+		source.visible_message(span_purple("[source.name] [internal ? "inserts" : "attaches"] the [new_item.name] [into_or_onto] [human_target.name]'s [item_slot]."), span_purple("You [insert_or_attach] the [new_item.name] [into_or_onto] [human_target.name]'s [item_slot]."), span_purple("You hear someone [insert_or_attach] something [into_or_onto] someone nearby."), vision_distance = 1)
+		human_target.vars[item_slot] = new_item
+		new_item.forceMove(human_target)
+		new_item.lewd_equipped(human_target, item_slot)
+	human_target.update_inv_lewd()
+	invalidate_interaction_cache()
 
 /datum/rp_panel/proc/set_self_preference(pref_type, pref_value)
 	if(!holder.client?.prefs || !pref_type || isnull(pref_value) || !erp_enabled(holder))
@@ -666,6 +735,7 @@
 
 /datum/rp_panel/proc/clear_scene_log()
 	messages = list()
+	invalidate_formatted_log()
 	SStgui.update_uis(src)
 
 /datum/rp_panel/proc/export_log()
@@ -777,3 +847,7 @@ img {
 
 #undef SCENE_ASSISTANT_RANGE
 #undef SCENE_ASSISTANT_MAX_CHARS
+#undef SCENE_ASSISTANT_MAX_LOG
+#undef SCENE_ASSISTANT_INVITE_TIMEOUT
+#undef SCENE_ASSISTANT_RANGE_CHECK_INTERVAL
+#undef SCENE_ASSISTANT_INTERACTION_CACHE

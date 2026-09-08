@@ -281,19 +281,18 @@ type DropdownSelectProps = {
 };
 
 function DropdownSelect(props: DropdownSelectProps) {
-  const selectedName =
-    props.people.find((person) => person.ref === props.selected)?.name ||
-    props.people[0]?.name ||
-    '';
+  const selectedRef = props.selected || props.people[0]?.ref || '';
   return (
     <Dropdown
       width="100%"
-      selected={selectedName}
-      options={props.people.map((person) => person.name)}
-      onSelected={(name: string) => {
-        const match = props.people.find((person) => person.name === name);
-        if (match) {
-          props.onSelect(match.ref);
+      selected={selectedRef}
+      options={props.people.map((person) => ({
+        displayText: person.name,
+        value: person.ref,
+      }))}
+      onSelected={(ref: string) => {
+        if (ref) {
+          props.onSelect(ref);
         }
       }}
     />

@@ -116,6 +116,7 @@ export type RpPanelData = {
   emote_mode: string;
   emote_modes: Option[];
   scene_details: string;
+  draft: string;
   messages: LogEntry[];
   you: Person;
   participants: Person[];

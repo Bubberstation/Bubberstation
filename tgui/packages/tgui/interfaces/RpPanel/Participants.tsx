@@ -38,6 +38,16 @@ export function Participants() {
                   setPicking(picking === 'remove' ? null : 'remove')
                 }
               />
+              {participants.length > 1 && (
+                <Button
+                  icon="sign-out-alt"
+                  color="bad"
+                  tooltip="Leave scene"
+                  onClick={() => act('leave_scene')}
+                >
+                  Leave
+                </Button>
+              )}
             </>
           }
         >

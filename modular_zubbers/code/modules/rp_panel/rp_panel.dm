@@ -1,5 +1,9 @@
 #define SCENE_ASSISTANT_RANGE 2
 #define SCENE_ASSISTANT_MAX_CHARS 2000
+#define SCENE_ASSISTANT_MAX_LOG 250
+#define SCENE_ASSISTANT_INVITE_TIMEOUT (2 MINUTES)
+#define SCENE_ASSISTANT_RANGE_CHECK_INTERVAL (5 SECONDS)
+#define SCENE_ASSISTANT_INTERACTION_CACHE (2 SECONDS)
 
 /**
  * Scene Assistant - a shared writing room for nearby living mobs.
@@ -14,6 +18,8 @@
 	var/mob/living/selected_participant
 	var/emote_mode = "say"
 	var/scene_details = ""
+	/// Unsent composer text. Restored if the holder reconnects to this mob.
+	var/draft_text = ""
 	var/sending_message = FALSE
 
 	var/theme = "default"
@@ -30,7 +36,16 @@
 	var/log_font_size = 100
 	var/log_line_spacing = 1.35
 	var/name_color = "#c084fc"
+	/// Character save slot this mob was spawned from. Never use the client's currently selected prefs slot.
+	var/character_slot = 0
 	var/range_check_queued = FALSE
+	var/range_watch_timer
+	var/cached_interaction_ref
+	var/cached_interaction_lewd
+	var/cached_interaction_at = 0
+	var/list/cached_interaction_data
+	var/list/cached_formatted_messages
+	var/formatted_messages_dirty = TRUE
 
 /datum/rp_panel/New(mob/living/new_holder)
 	. = ..()
@@ -39,24 +54,38 @@
 	RegisterSignal(holder, COMSIG_MOB_SAY, PROC_REF(on_say))
 	RegisterSignal(holder, COMSIG_MOB_EMOTE, PROC_REF(on_emote))
 	RegisterSignal(holder, COMSIG_QDELETING, PROC_REF(on_holder_qdeleting))
+	RegisterSignal(holder, COMSIG_MOVABLE_MOVED, PROC_REF(on_holder_moved))
 	load_prefs()
 
 /datum/rp_panel/Destroy()
+	stop_range_watch()
 	if(holder)
-		UnregisterSignal(holder, list(COMSIG_MOB_SAY, COMSIG_MOB_EMOTE, COMSIG_QDELETING))
-	holder = null
+		UnregisterSignal(holder, list(COMSIG_MOB_SAY, COMSIG_MOB_EMOTE, COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
+		if(holder.rp_panel == src)
+			holder.rp_panel = null
+		holder = null
 	selected_participant = null
 	participants = null
 	pending_invites = null
 	messages = null
 	typing_participants = null
+	cached_interaction_data = null
+	cached_formatted_messages = null
 	return ..()
 
 /datum/rp_panel/proc/on_holder_qdeleting(datum/source)
 	SIGNAL_HANDLER
 	SStgui.close_uis(src)
+	if(holder?.rp_panel == src)
+		holder.rp_panel = null
 	holder = null
 	qdel(src)
+
+/datum/rp_panel/proc/on_holder_moved(atom/movable/source)
+	SIGNAL_HANDLER
+	if(length(participants) || length(pending_invites))
+		expire_stale_invites()
+		queue_range_check()
 
 /datum/rp_panel/ui_state(mob/user)
 	return GLOB.always_state
@@ -89,41 +118,74 @@
 	log_font = prefs.read_preference(/datum/preference/text/scene_assistant_font)
 	log_font_size = prefs.read_preference(/datum/preference/numeric/scene_assistant_font_size)
 	log_line_spacing = prefs.read_preference(/datum/preference/numeric/scene_assistant_line_spacing)
-	theme = prefs.read_preference(/datum/preference/choiced/scene_assistant_theme)
-	soundpack = prefs.read_preference(/datum/preference/choiced/scene_assistant_soundpack)
 	sound_message_enabled = prefs.read_preference(/datum/preference/toggle/scene_assistant_sound_message)
 	sound_join_enabled = prefs.read_preference(/datum/preference/toggle/scene_assistant_sound_join)
 	sound_leave_enabled = prefs.read_preference(/datum/preference/toggle/scene_assistant_sound_leave)
 	volume_message = prefs.read_preference(/datum/preference/numeric/scene_assistant_volume_message)
 	volume_join = prefs.read_preference(/datum/preference/numeric/scene_assistant_volume_join)
 	volume_leave = prefs.read_preference(/datum/preference/numeric/scene_assistant_volume_leave)
+	character_slot = get_played_character_slot(holder)
+	theme = read_mob_character_pref(holder, /datum/preference/choiced/scene_assistant_theme) || "default"
+	soundpack = read_mob_character_pref(holder, /datum/preference/choiced/scene_assistant_soundpack) || "default"
 	var/saved_color = read_mob_character_pref(holder, /datum/preference/color/scene_assistant_name_color)
-	name_color = sanitize_hexcolor(saved_color) || default_scene_assistant_name_color(holder?.name || holder?.ckey)
+	name_color = sanitize_hexcolor(saved_color) || default_scene_assistant_name_color(holder?.real_name || holder?.name || holder?.ckey)
 
 /datum/rp_panel/proc/get_played_character_slot(mob/living/target)
 	if(!target)
-		return null
+		return 0
+	if(target.rp_panel && target.rp_panel.character_slot)
+		return target.rp_panel.character_slot
+	var/slot = 0
 	if(target.mind?.original_character_slot_index)
-		return target.mind.original_character_slot_index
-	return target.client?.prefs?.default_slot
+		slot = target.mind.original_character_slot_index
+	else
+		slot = find_character_slot_by_name(target)
+	if(slot && target.rp_panel)
+		target.rp_panel.character_slot = slot
+	return slot
+
+/datum/rp_panel/proc/find_character_slot_by_name(mob/living/target)
+	var/datum/preferences/prefs = target?.client?.prefs
+	if(!prefs?.savefile)
+		return 0
+	var/mob_name = target.real_name || target.name
+	if(!mob_name)
+		return 0
+	for(var/slot in 1 to prefs.max_save_slots)
+		var/list/save_data = prefs.savefile.get_entry("character[slot]")
+		if(!islist(save_data))
+			continue
+		if(save_data["real_name"] == mob_name)
+			return slot
+	return 0
+
+/datum/rp_panel/proc/prefs_cache_belongs_to_mob(mob/living/target, datum/preferences/prefs)
+	if(!target || !prefs || !prefs.value_cache)
+		return FALSE
+	var/cached_name = prefs.value_cache[/datum/preference/name/real_name]
+	if(!cached_name)
+		return FALSE
+	return cached_name == (target.real_name || target.name)
 
 /datum/rp_panel/proc/read_mob_character_pref(mob/living/target, pref_type)
 	var/datum/preferences/prefs = target?.client?.prefs
-	if(!prefs)
-		return null
 	var/datum/preference/preference_entry = GLOB.preference_entries[pref_type]
 	if(!preference_entry)
 		return null
 	if(preference_entry.savefile_identifier != PREFERENCE_CHARACTER)
-		return prefs.read_preference(pref_type)
+		return prefs?.read_preference(pref_type)
 	var/slot = get_played_character_slot(target)
-	if(!slot || slot == prefs.default_slot)
-		return prefs.read_preference(pref_type)
-	var/list/save_data = prefs.savefile.get_entry("character[slot]")
-	var/value = preference_entry.read(save_data, prefs)
-	if(isnull(value))
-		return preference_entry.create_informed_default_value(prefs)
-	return value
+	if(slot && prefs?.savefile)
+		var/list/save_data = prefs.savefile.get_entry("character[slot]")
+		var/value = preference_entry.read(save_data, prefs)
+		if(!isnull(value))
+			return value
+	return character_pref_fallback(preference_entry, target)
+
+/datum/rp_panel/proc/character_pref_fallback(datum/preference/preference_entry, mob/living/target)
+	if(istype(preference_entry, /datum/preference/color/scene_assistant_name_color))
+		return default_scene_assistant_name_color(target?.real_name || target?.name || target?.ckey)
+	return preference_entry.create_default_value()
 
 /datum/rp_panel/proc/write_mob_character_pref(mob/living/target, pref_type, value)
 	var/datum/preferences/prefs = target?.client?.prefs
@@ -139,12 +201,8 @@
 		prefs.save_preferences()
 		return TRUE
 	var/slot = get_played_character_slot(target)
-	if(!slot || slot == prefs.default_slot)
-		if(!prefs.write_preference(preference_entry, value))
-			return FALSE
-		prefs.recently_updated_keys |= preference_entry.type
-		prefs.save_character(TRUE)
-		return TRUE
+	if(!slot)
+		return FALSE
 	var/tree_key = "character[slot]"
 	var/list/save_data = prefs.savefile.get_entry(tree_key)
 	if(isnull(save_data))
@@ -153,6 +211,8 @@
 	var/new_value = preference_entry.deserialize(value, prefs)
 	if(!preference_entry.write(save_data, new_value, prefs))
 		return FALSE
+	if(prefs.default_slot == slot && prefs_cache_belongs_to_mob(target, prefs))
+		prefs.value_cache[preference_entry.type] = new_value
 	prefs.savefile.save()
 	return TRUE
 
@@ -216,6 +276,7 @@
 		for(var/list/entry as anything in panel.messages)
 			if(entry["ref"] == holder_ref)
 				entry["color"] = name_color
+		panel.invalidate_formatted_log()
 		SStgui.update_uis(panel)
 	return TRUE
 
@@ -308,8 +369,13 @@
 	if(QDELETED(src) || QDELETED(holder))
 		to_chat(joiner, span_warning("That scene invite is no longer valid."))
 		return
-	if(!joiner.ckey || !pending_invites[joiner.ckey])
+	if(!joiner.ckey || !is_invite_valid(joiner))
+		pending_invites -= joiner.ckey
 		to_chat(joiner, span_warning("That scene invite is no longer valid."))
+		return
+	if(!in_scene_range(joiner))
+		pending_invites -= joiner.ckey
+		to_chat(joiner, span_warning("You are too far away to join [holder]'s Scene."))
 		return
 	pending_invites -= joiner.ckey
 	complete_add_participant(joiner)
@@ -328,7 +394,8 @@
 		return FALSE
 	if(!target.ckey)
 		return complete_add_participant(target)
-	pending_invites[target.ckey] = TRUE
+	pending_invites[target.ckey] = list("time" = world.time, "ref" = WEAKREF(target))
+	start_range_watch()
 	var/join_button = "<a href='byond://?src=[REF(src)];join=1'>Join</a>"
 	to_chat(target, boxed_message(span_notice("You have been invited to [holder]'s Scene! [join_button]")))
 	to_chat(holder, span_notice("Invited [target] to your Scene."))
@@ -366,12 +433,62 @@
 	play_sound_to_participants("join")
 	for(var/mob/living/member as anything in members)
 		if(member.rp_panel)
+			member.rp_panel.start_range_watch()
 			SStgui.update_uis(member.rp_panel)
 	target.rp_panel.ui_interact(target)
 	return TRUE
 
-/datum/rp_panel/proc/remove_participant(mob/living/target)
-	if(!target || QDELETED(target) || target == holder)
+/datum/rp_panel/proc/is_invite_valid(mob/living/target)
+	if(!target?.ckey)
+		return FALSE
+	var/list/invite = pending_invites[target.ckey]
+	if(!islist(invite))
+		return FALSE
+	if(world.time > invite["time"] + SCENE_ASSISTANT_INVITE_TIMEOUT)
+		return FALSE
+	return TRUE
+
+/datum/rp_panel/proc/expire_stale_invites()
+	if(!length(pending_invites))
+		return
+	for(var/invite_ckey in pending_invites.Copy())
+		var/list/invite = pending_invites[invite_ckey]
+		if(!islist(invite) || world.time > invite["time"] + SCENE_ASSISTANT_INVITE_TIMEOUT)
+			pending_invites -= invite_ckey
+			continue
+		var/datum/weakref/target_ref = invite["ref"]
+		var/mob/living/target = target_ref?.resolve()
+		if(!target || QDELETED(target) || !in_scene_range(target))
+			pending_invites -= invite_ckey
+
+/datum/rp_panel/proc/start_range_watch()
+	if(range_watch_timer || QDELETED(src))
+		return
+	if(!length(participants) && !length(pending_invites))
+		return
+	range_watch_timer = addtimer(CALLBACK(src, PROC_REF(range_watch_tick)), SCENE_ASSISTANT_RANGE_CHECK_INTERVAL, TIMER_STOPPABLE | TIMER_DELETE_ME)
+
+/datum/rp_panel/proc/stop_range_watch()
+	if(!range_watch_timer)
+		return
+	deltimer(range_watch_timer)
+	range_watch_timer = null
+
+/datum/rp_panel/proc/range_watch_tick()
+	range_watch_timer = null
+	if(QDELETED(src))
+		return
+	expire_stale_invites()
+	if(length(participants))
+		queue_range_check()
+	if(length(participants) || length(pending_invites))
+		start_range_watch()
+
+/// Anyone in the scene may remove anyone else. Pass voluntary = TRUE to leave yourself.
+/datum/rp_panel/proc/remove_participant(mob/living/target, voluntary = FALSE)
+	if(!target || QDELETED(target))
+		return FALSE
+	if(!voluntary && target == holder)
 		return FALSE
 	var/list/members = collect_scene_members()
 	if(!(target in members))
@@ -386,9 +503,13 @@
 		target.rp_panel.participants = list()
 		target.rp_panel.typing_participants = list()
 		target.rp_panel.selected_participant = target
-		SStgui.close_uis(target.rp_panel)
+		target.rp_panel.stop_range_watch()
+		if(voluntary)
+			SStgui.update_uis(target.rp_panel)
+		else
+			SStgui.close_uis(target.rp_panel)
 	sync_scene_membership(members)
-	append_scene_message(list(
+	var/list/leave_entry = list(
 		"name" = "Scene",
 		"message" = "[target.name] left the scene.",
 		"headshot" = "",
@@ -396,10 +517,25 @@
 		"timestamp" = time2text(world.timeofday, "HH:MM:SS"),
 		"ref" = "",
 		"color" = "#c084fc",
-	))
-	to_chat(holder, span_notice("Removed [target] from the scene."))
-	to_chat(target, span_notice("You were removed from the scene."))
+	)
+	for(var/mob/living/member as anything in members)
+		if(!member.rp_panel)
+			continue
+		member.rp_panel.add_log_entry(leave_entry)
+		if(length(member.rp_panel.participants))
+			member.rp_panel.start_range_watch()
+		else
+			member.rp_panel.stop_range_watch()
+		SStgui.update_uis(member.rp_panel)
+	if(voluntary)
+		to_chat(target, span_notice("You left the scene."))
+	else
+		to_chat(holder, span_notice("Removed [target] from the scene."))
+		to_chat(target, span_notice("You were removed from the scene."))
 	return TRUE
+
+/datum/rp_panel/proc/leave_scene()
+	return remove_participant(holder, TRUE)
 
 /datum/rp_panel/proc/check_and_remove_out_of_range()
 	var/list/leaving = list()
@@ -418,8 +554,18 @@
 
 /datum/rp_panel/proc/append_scene_message(list/message_entry)
 	for(var/datum/rp_panel/panel as anything in get_linked_panels())
-		panel.messages += list(message_entry)
+		panel.add_log_entry(message_entry)
 		SStgui.update_uis(panel)
+
+/datum/rp_panel/proc/add_log_entry(list/message_entry)
+	messages += list(message_entry)
+	if(length(messages) > SCENE_ASSISTANT_MAX_LOG)
+		messages.Cut(1, length(messages) - SCENE_ASSISTANT_MAX_LOG + 1)
+	invalidate_formatted_log()
+
+/datum/rp_panel/proc/invalidate_formatted_log()
+	formatted_messages_dirty = TRUE
+	cached_formatted_messages = null
 
 /datum/rp_panel/proc/build_log_entry(mob/living/speaker, message, mode, image_url = "")
 	return list(
@@ -463,6 +609,9 @@
 	return replacetext("[raw_text]", regex("(?:\\r\\n?|\\n)", "g"), " ")
 
 /datum/rp_panel/proc/send_scene_image(raw_url, raw_caption = "")
+	if(holder_cannot_emote())
+		notify_cannot_act("emote")
+		return
 	var/image_url = sanitize_scene_image_url(raw_url)
 	if(!image_url)
 		return
@@ -470,9 +619,66 @@
 	if(holder.client?.autopunctuation && length(caption))
 		caption = autopunct_bare(caption)
 	clear_typing()
+	draft_text = ""
 	append_scene_message(build_log_entry(holder, caption, "subtler", image_url))
 	play_sound_to_participants("message")
 	holder.log_message("scene image: [image_url][length(caption) ? " - [caption]" : ""]", LOG_SUBTLER)
+
+/datum/rp_panel/proc/notify_cannot_act(action_word)
+	if(!holder)
+		return
+	holder.balloon_alert(holder, "can't [action_word]!")
+	var/reason = "unconscious"
+	if(holder.stat == DEAD)
+		reason = "dead"
+	else if(holder.stat >= SOFT_CRIT)
+		reason = "in crit"
+	to_chat(holder, span_warning("You cannot [action_word] while [reason]."))
+
+/datum/rp_panel/proc/holder_cannot_emote()
+	return QDELETED(holder) || holder.stat == DEAD || IS_UNCONSCIOUS_OR_CRIT(holder)
+
+/// Mirror living_say: dead never speaks IC; unconscious only whispers in hard crit.
+/datum/rp_panel/proc/holder_can_speak_ic(whispering)
+	if(QDELETED(holder))
+		return FALSE
+	if(holder.stat == DEAD)
+		notify_cannot_act("speak")
+		return FALSE
+	if(IS_UNCONSCIOUS(holder) && (!whispering || holder.stat != HARD_CRIT))
+		notify_cannot_act("speak")
+		return FALSE
+	return TRUE
+
+/datum/rp_panel/proc/can_send_scene_speech(mode)
+	if(GLOB.say_disabled)
+		to_chat(holder, span_danger("Speech is currently admin-disabled."))
+		return FALSE
+	if(holder.client?.prefs?.muted & MUTE_IC)
+		to_chat(holder, span_warning("You cannot send IC messages (muted)."))
+		return FALSE
+	switch(mode)
+		if("emote", "subtle", "subtler", "subtler_antighost")
+			if(holder_cannot_emote())
+				notify_cannot_act("emote")
+				return FALSE
+			if(SSdbcore.IsConnected() && holder.ckey && is_banned_from(holder.ckey, "emote"))
+				to_chat(holder, span_warning("You cannot send emotes (banned)."))
+				return FALSE
+		if("say")
+			if(!holder_can_speak_ic(FALSE))
+				return FALSE
+		if("whisper")
+			if(!holder_can_speak_ic(TRUE))
+				return FALSE
+	return TRUE
+
+/datum/rp_panel/proc/begin_sending_message()
+	sending_message = TRUE
+	addtimer(VARSET_CALLBACK(src, sending_message, FALSE), 10 SECONDS, TIMER_DELETE_ME)
+
+/datum/rp_panel/proc/end_sending_message()
+	sending_message = FALSE
 
 /datum/rp_panel/proc/send_scene_message(raw_message)
 	var/message = trim(copytext_char("[raw_message]", 1, SCENE_ASSISTANT_MAX_CHARS + 1))
@@ -481,7 +687,10 @@
 	if(is_scene_image_url(message))
 		send_scene_image(message)
 		return
+	if(!can_send_scene_speech(emote_mode))
+		return
 	clear_typing()
+	draft_text = ""
 	if(holder.client?.autopunctuation)
 		message = autopunct_bare(message)
 	var/ic_message = message
@@ -492,7 +701,7 @@
 			log_message = ic_message
 		if("emote", "subtle", "subtler", "subtler_antighost")
 			ic_message = newlines_to_html(message)
-	sending_message = TRUE
+	begin_sending_message()
 	switch(emote_mode)
 		if("say")
 			holder.say(ic_message)
@@ -507,24 +716,34 @@
 		if("subtler_antighost")
 			send_subtler_message(ic_message, 0)
 		else
-			sending_message = FALSE
+			end_sending_message()
 			return
 	append_scene_message(build_log_entry(holder, log_message, emote_mode))
 	play_sound_to_participants("message")
-	sending_message = FALSE
+	end_sending_message()
 
+/// Subtler params skip the picker but force world.view, so we send with the intended range ourselves.
+/// subtler = 1-tile anti-ghost; subtler_antighost = same-tile anti-ghost.
 /datum/rp_panel/proc/send_subtler_message(message, range)
 	var/decoded = html_decode(message)
-	var/space = (length(decoded) && should_have_space_before_emote(decoded[1])) ? " " : ""
+	if(!length(decoded))
+		return
+	var/space = should_have_space_before_emote(decoded[1]) ? " " : ""
 	var/subtler_message = span_subtler("<b>[holder]</b>[space]<i>[holder.apply_message_emphasis(message)]</i>")
-	var/list/in_view = get_hearers_in_view(range, holder)
-	in_view -= GLOB.dead_mob_list
-	for(var/mob/viewer as anything in in_view)
-		if(!isliving(viewer) || istype(viewer, /mob/eye/camera/ai))
+	var/list/ghostless = get_hearers_in_view(range, holder) - GLOB.dead_mob_list
+	var/obj/effect/overlay/holo_pad_hologram/hologram = GLOB.hologram_impersonators[holder]
+	if(hologram)
+		ghostless |= get_hearers_in_view(range, hologram)
+	for(var/obj/effect/overlay/holo_pad_hologram/holo in ghostless)
+		if(holo?.Impersonation?.client)
+			ghostless |= holo.Impersonation
+	for(var/mob/receiver in ghostless)
+		if(istype(receiver, /mob/eye/camera/ai))
 			continue
-		if(!viewer.client && viewer != holder)
-			continue
-		viewer.show_message(subtler_message, alt_msg = subtler_message)
+		receiver.show_message(subtler_message, alt_msg = subtler_message)
+		var/datum/preferences/prefs = receiver.client?.prefs
+		if(prefs?.read_preference(/datum/preference/toggle/subtler_sound))
+			receiver.playsound_local(get_turf(receiver), 'sound/effects/achievement/glockenspiel_ping.ogg', 50)
 	holder.log_message(message, LOG_SUBTLER)
 
 /datum/rp_panel/proc/play_sound_to_participants(sound_type)
@@ -611,7 +830,15 @@
 		return
 	append_scene_message(build_log_entry(source, message, emote.key))
 
+/datum/rp_panel/proc/is_holder_typing()
+	for(var/datum/weakref/typing_ref as anything in typing_participants)
+		if(typing_ref.resolve() == holder)
+			return TRUE
+	return FALSE
+
 /datum/rp_panel/proc/set_typing(is_typing)
+	if(!!is_typing == is_holder_typing())
+		return
 	if(is_typing)
 		add_weakref_unique(typing_participants, holder)
 		if(holder.client?.typing_indicators)

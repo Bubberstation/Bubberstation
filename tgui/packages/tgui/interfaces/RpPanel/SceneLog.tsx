@@ -63,6 +63,7 @@ export function SceneLog(props: SceneLogProps) {
   const { onExamine } = props;
   const {
     scene_details,
+    draft: serverDraft = '',
     settings = {
       font: 'Verdana',
       font_size: 100,
@@ -79,10 +80,68 @@ export function SceneLog(props: SceneLogProps) {
   const logRef = useRef<HTMLDivElement>(null);
   const stickToBottomRef = useRef(true);
   const prevCountRef = useRef(0);
-  const [draft, setDraft] = useState('');
+  const typingDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const typingSentRef = useRef(false);
+  const draftDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const draftRef = useRef(serverDraft);
+  const hydratedRef = useRef(false);
+  const [draft, setDraft] = useState(serverDraft);
   const [unread, setUnread] = useState(0);
   const [imageOpen, setImageOpen] = useState(false);
   const [imageDraft, setImageDraft] = useState('');
+
+  const persistDraft = (value: string) => {
+    draftRef.current = value;
+    act('set_draft', { text: value });
+  };
+
+  const scheduleDraftSave = (value: string) => {
+    draftRef.current = value;
+    if (draftDebounceRef.current) {
+      clearTimeout(draftDebounceRef.current);
+    }
+    draftDebounceRef.current = setTimeout(() => {
+      draftDebounceRef.current = null;
+      persistDraft(value);
+    }, 300);
+  };
+
+  const clearDraftNow = () => {
+    if (draftDebounceRef.current) {
+      clearTimeout(draftDebounceRef.current);
+      draftDebounceRef.current = null;
+    }
+    setDraft('');
+    persistDraft('');
+  };
+
+  const clearTypingNow = () => {
+    if (typingDebounceRef.current) {
+      clearTimeout(typingDebounceRef.current);
+      typingDebounceRef.current = null;
+    }
+    if (typingSentRef.current) {
+      act('set_typing', { typing: 0 });
+      typingSentRef.current = false;
+    }
+  };
+
+  const scheduleTyping = (hasText: boolean) => {
+    if (!hasText) {
+      clearTypingNow();
+      return;
+    }
+    if (typingDebounceRef.current) {
+      clearTimeout(typingDebounceRef.current);
+    }
+    typingDebounceRef.current = setTimeout(() => {
+      typingDebounceRef.current = null;
+      if (!typingSentRef.current) {
+        act('set_typing', { typing: 1 });
+        typingSentRef.current = true;
+      }
+    }, 300);
+  };
 
   const scrollToBottom = () => {
     const node = logRef.current;
@@ -125,8 +184,29 @@ export function SceneLog(props: SceneLogProps) {
   }, [messages.length, typing.length]);
 
   useEffect(() => {
+    if (hydratedRef.current) {
+      return;
+    }
+    hydratedRef.current = true;
+    if (!draftRef.current && serverDraft) {
+      draftRef.current = serverDraft;
+      setDraft(serverDraft);
+    }
+  }, [serverDraft]);
+
+  useEffect(() => {
     return () => {
+      if (typingDebounceRef.current) {
+        clearTimeout(typingDebounceRef.current);
+        typingDebounceRef.current = null;
+      }
+      if (draftDebounceRef.current) {
+        clearTimeout(draftDebounceRef.current);
+        draftDebounceRef.current = null;
+      }
+      act('set_draft', { text: draftRef.current });
       act('set_typing', { typing: 0 });
+      typingSentRef.current = false;
     };
   }, []);
 
@@ -144,10 +224,10 @@ export function SceneLog(props: SceneLogProps) {
     const imageUrl = imageDraft.trim();
     if (imageUrl) {
       act('send_image', { url: imageUrl, caption: trimmed });
-      setDraft('');
+      clearDraftNow();
       setImageDraft('');
       setImageOpen(false);
-      act('set_typing', { typing: 0 });
+      clearTypingNow();
       stickToBottomRef.current = true;
       setUnread(0);
       return;
@@ -156,8 +236,8 @@ export function SceneLog(props: SceneLogProps) {
       return;
     }
     act('send_message', { message: trimmed });
-    setDraft('');
-    act('set_typing', { typing: 0 });
+    clearDraftNow();
+    clearTypingNow();
     stickToBottomRef.current = true;
     setUnread(0);
   };
@@ -293,7 +373,8 @@ export function SceneLog(props: SceneLogProps) {
           onChange={(event) => {
             const value = event.target.value;
             setDraft(value);
-            act('set_typing', { typing: value.trim().length > 0 ? 1 : 0 });
+            scheduleDraftSave(value);
+            scheduleTyping(value.trim().length > 0);
           }}
           onKeyDown={(event) => {
             if (event.key !== 'Enter') {
@@ -302,7 +383,11 @@ export function SceneLog(props: SceneLogProps) {
             if (event.shiftKey) {
               if (emote_mode === 'say' || emote_mode === 'whisper') {
                 event.preventDefault();
-                setDraft((value) => `${value} `);
+                setDraft((value) => {
+                  const next = `${value} `;
+                  scheduleDraftSave(next);
+                  return next;
+                });
               }
               return;
             }
