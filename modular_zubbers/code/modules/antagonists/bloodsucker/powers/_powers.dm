@@ -239,7 +239,7 @@
 		DeactivatePower()
 		return FALSE
 	// We can keep this up (For now), so Pay Cost!
-	if(power_flags & BP_AM_COSTLESS_UNCONSCIOUS && owner.stat != CONSCIOUS)
+	if(power_flags & BP_AM_COSTLESS_UNCONSCIOUS && IS_UNCONSCIOUS(owner))
 		return TRUE
 	if(constant_bloodcost < 0)
 		return TRUE

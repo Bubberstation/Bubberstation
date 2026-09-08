@@ -24,6 +24,9 @@ SUBSYSTEM_DEF(automapper)
 	var/loaded_config
 	/// Our preloaded map templates
 	var/list/preloaded_map_templates = list()
+	/// Blacklisted turfs - Blocks the mapping, and template system from overriding
+	/// Cleaned right before actual automapper templates are placed
+	var/list/turf_blacklists
 
 /datum/controller/subsystem/automapper/Initialize()
 	loaded_config = rustg_read_toml_file(config_file)
@@ -143,7 +146,7 @@ SUBSYSTEM_DEF(automapper)
  *
  * Not really useful outside of load groups.
  */
-/datum/controller/subsystem/automapper/proc/get_turf_blacklists(map_names)
+/datum/controller/subsystem/automapper/proc/gen_turf_blacklists(map_names)
 	if(!islist(map_names))
 		map_names = list(map_names)
 
@@ -163,4 +166,9 @@ SUBSYSTEM_DEF(automapper)
 				continue
 
 			blacklisted_turfs[blacklisted_turf] = TRUE
-	return blacklisted_turfs
+	turf_blacklists = blacklisted_turfs
+
+/// Called from SSmapping, once the actual generation of everything is done
+/// This is to save on memory and also to not leave turfs hanging around in harddel territory
+/datum/controller/subsystem/automapper/proc/drop_turf_blacklists()
+	turf_blacklists = null

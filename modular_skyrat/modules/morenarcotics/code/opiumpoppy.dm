@@ -8,11 +8,11 @@
 	icon_grow = "opiumpoppy-grow"
 	icon_dead = "opiumpoppy-dead"
 	plantname = "Opium Poppy Plants"
-	product = /obj/item/food/grown/poppy/opiumpoppy
+	product = /obj/item/food/grown/flower/poppy/opiumpoppy
 	reagents_add = list(/datum/reagent/drug/opium = 0.3, /datum/reagent/toxin/fentanyl = 0.075, /datum/reagent/consumable/nutriment = 0.05)
 	slot_flags = null
 
-/obj/item/food/grown/poppy/opiumpoppy
+/obj/item/food/grown/flower/poppy/opiumpoppy
 	seed = /obj/item/seeds/poppy/opiumpoppy
 	name = "opium poppy seedpod"
 	desc = "The seedpod of the opium poppy plant, which contain opium latex."
