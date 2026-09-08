@@ -50,11 +50,6 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 	var/color = "blue"
 	/// What sexuality preference do we display for.
 	var/sexuality = ""
-	/// Optional attitude-keyed message lists so live JSON still loads. Scene Assistant does not expose these.
-	var/list/message_by_attitude = list()
-	var/list/message_by_attitude_submissive = list()
-	var/list/description_by_attitude = list()
-	var/list/description_by_attitude_submissive = list()
 
 /datum/interaction/proc/allow_act(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(target == user && usage == INTERACTION_OTHER)
@@ -173,10 +168,6 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 	target_pain = sanitize_integer(json["target_pain"], 0, 100, 0)
 	lewd = sanitize_integer(json["lewd"], 0, 1, 0)
 	sexuality = sanitize_text(json["sexuality"])
-	message_by_attitude = sanitize_islist(json["message_by_attitude"], list())
-	message_by_attitude_submissive = sanitize_islist(json["message_by_attitude_submissive"], list())
-	description_by_attitude = sanitize_islist(json["description_by_attitude"], list())
-	description_by_attitude_submissive = sanitize_islist(json["description_by_attitude_submissive"], list())
 	return TRUE
 
 /datum/interaction/proc/json_save(path)
@@ -277,10 +268,6 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 		interaction.target_pain = sanitize_integer(ijson["target_pain"], 0, 100, 0)
 		interaction.lewd = sanitize_integer(ijson["lewd"], 0, 1, 0)
 		interaction.sexuality = sanitize_text(ijson["sexuality"])
-		interaction.message_by_attitude = sanitize_islist(ijson["message_by_attitude"], list())
-		interaction.message_by_attitude_submissive = sanitize_islist(ijson["message_by_attitude_submissive"], list())
-		interaction.description_by_attitude = sanitize_islist(ijson["description_by_attitude"], list())
-		interaction.description_by_attitude_submissive = sanitize_islist(ijson["description_by_attitude_submissive"], list())
 
 		GLOB.interaction_instances[iname] = interaction
 
