@@ -43,7 +43,9 @@
 	return data
 
 /datum/rp_panel/ui_data(mob/user)
-	check_and_remove_out_of_range()
+	queue_range_check()
+	if(QDELETED(holder))
+		return list()
 	if(!(emote_mode in list("say", "emote", "subtle", "subtler", "subtler_antighost")))
 		emote_mode = "say"
 
@@ -62,7 +64,8 @@
 	data["participants"] = build_participant_list()
 	data["nearby"] = build_nearby_list()
 	data["typing"] = build_typing_list()
-	data["selected_ref"] = REF(get_target())
+	var/mob/living/current_target = get_target()
+	data["selected_ref"] = current_target ? REF(current_target) : ""
 	data["target"] = build_target_data()
 	data["self"] = build_self_data()
 	data["settings"] = list(
@@ -82,7 +85,27 @@
 	)
 	return data
 
+/datum/rp_panel/proc/queue_range_check()
+	if(range_check_queued || QDELETED(src))
+		return
+	range_check_queued = TRUE
+	addtimer(CALLBACK(src, PROC_REF(run_queued_range_check)), 1)
+
+/datum/rp_panel/proc/run_queued_range_check()
+	range_check_queued = FALSE
+	if(QDELETED(src))
+		return
+	check_and_remove_out_of_range()
+
 /datum/rp_panel/proc/build_person_entry(mob/living/person, is_you = FALSE)
+	if(!person || QDELETED(person))
+		return list(
+			"name" = "Unknown",
+			"ref" = "",
+			"headshot" = "",
+			"color" = "#c084fc",
+			"is_you" = is_you,
+		)
 	return list(
 		"name" = person.name,
 		"ref" = REF(person),
@@ -99,6 +122,8 @@
 
 /datum/rp_panel/proc/build_nearby_list()
 	var/list/result = list()
+	if(!holder || QDELETED(holder))
+		return result
 	var/is_admin = !!holder.client?.holder
 	for(var/mob/living/nearby in view(SCENE_ASSISTANT_RANGE, holder))
 		if(nearby == holder || !can_invite_kind(nearby) || is_in_scene(nearby))
@@ -120,6 +145,23 @@
 
 /datum/rp_panel/proc/build_target_data()
 	var/mob/living/target = get_target()
+	if(!target)
+		return list(
+			"name" = "",
+			"ref" = "",
+			"headshot" = "",
+			"is_self" = FALSE,
+			"details" = list(),
+			"tags" = list(),
+			"has_reference" = FALSE,
+			"show_erp" = FALSE,
+			"block_interact" = FALSE,
+			"categories" = list(),
+			"interactions" = list(),
+			"descriptions" = list(),
+			"colors" = list(),
+			"lewd_slots" = list(),
+		)
 	var/list/data = list(
 		"name" = target.name,
 		"ref" = REF(target),

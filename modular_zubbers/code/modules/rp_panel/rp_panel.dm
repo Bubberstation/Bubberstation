@@ -29,6 +29,7 @@
 	var/log_font = "Verdana"
 	var/log_font_size = 100
 	var/log_line_spacing = 1.35
+	var/range_check_queued = FALSE
 
 /datum/rp_panel/New(mob/living/new_holder)
 	. = ..()
@@ -52,6 +53,7 @@
 
 /datum/rp_panel/proc/on_holder_qdeleting(datum/source)
 	SIGNAL_HANDLER
+	SStgui.close_uis(src)
 	holder = null
 	qdel(src)
 
@@ -117,7 +119,9 @@
 	return palette[index]
 
 /datum/rp_panel/proc/get_scene_members()
-	var/list/members = list(holder)
+	var/list/members = list()
+	if(holder && !QDELETED(holder))
+		members += holder
 	for(var/datum/weakref/participant_ref as anything in participants)
 		var/mob/living/member = participant_ref.resolve()
 		if(member && !QDELETED(member) && !(member in members))
@@ -138,7 +142,9 @@
 	refs += WEAKREF(target)
 
 /datum/rp_panel/proc/drop_weakref(list/refs, mob/living/target)
-	for(var/datum/weakref/ref as anything in refs)
+	if(!refs)
+		return
+	for(var/datum/weakref/ref as anything in refs.Copy())
 		if(ref.resolve() == target)
 			refs -= ref
 
@@ -234,16 +240,28 @@
 	if(!target || target == holder || !is_in_scene(target))
 		return FALSE
 	var/list/members = get_scene_members()
+	play_sound_to_participants("leave")
 	for(var/mob/living/member as anything in members)
-		if(!member.rp_panel)
+		if(!member?.rp_panel)
 			continue
 		drop_weakref(member.rp_panel.participants, target)
-		if(target.rp_panel)
-			drop_weakref(target.rp_panel.participants, member)
+		drop_weakref(member.rp_panel.typing_participants, target)
 		if(member.rp_panel.selected_participant == target)
 			member.rp_panel.selected_participant = member
-		SStgui.update_uis(member.rp_panel)
-	play_sound_to_participants("leave")
+	if(target.rp_panel)
+		target.rp_panel.participants = list()
+		target.rp_panel.typing_participants = list()
+		target.rp_panel.selected_participant = target
+		SStgui.close_uis(target.rp_panel)
+	append_scene_message(list(
+		"name" = "Scene",
+		"message" = "[target.name] left the scene.",
+		"headshot" = "",
+		"mode" = "system",
+		"timestamp" = time2text(world.timeofday, "HH:MM:SS"),
+		"ref" = "",
+		"color" = "#c084fc",
+	))
 	to_chat(holder, span_notice("Removed [target] from the scene."))
 	to_chat(target, span_notice("[holder] removed you from the scene."))
 	return TRUE
@@ -424,6 +442,8 @@
 /datum/rp_panel/proc/get_target()
 	if(!selected_participant || QDELETED(selected_participant) || !is_in_scene(selected_participant))
 		selected_participant = holder
+	if(QDELETED(holder))
+		return null
 	return selected_participant
 
 /mob/living/proc/open_scene_assistant(mob/living/invite_target)

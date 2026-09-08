@@ -1,5 +1,9 @@
 import type { BooleanLike } from 'tgui-core/react';
 
+export function asArray<T>(value: T[] | unknown): T[] {
+  return Array.isArray(value) ? value : [];
+}
+
 export type Person = {
   name: string;
   ref: string;

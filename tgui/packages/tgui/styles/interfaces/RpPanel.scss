@@ -36,7 +36,28 @@
   padding-top: 0.3em;
 }
 
+.SceneAssistant__main,
+.SceneAssistant__logColumn,
+.SceneAssistant__logStack,
+.SceneAssistant__logPane {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.SceneAssistant__logColumn,
+.SceneAssistant__logStack {
+  height: 100%;
+}
+
+.SceneAssistant__logPane {
+  position: relative;
+}
+
 .SceneAssistant__log {
+  position: absolute;
+  inset: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
   padding-right: 0.4em;
 }
 

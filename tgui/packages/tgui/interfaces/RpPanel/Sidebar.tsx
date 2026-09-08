@@ -14,7 +14,7 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import type { RpPanelData } from './types';
+import { asArray, type RpPanelData } from './types';
 
 type SidebarProps = {
   onOpenSettings: () => void;
@@ -24,7 +24,8 @@ type SidebarProps = {
 export function Sidebar(props: SidebarProps) {
   const { act, data } = useBackend<RpPanelData>();
   const { onOpenSettings, onOpenManageSelf } = props;
-  const { target, participants = [], selected_ref, self, arousal_limit } = data;
+  const { target, selected_ref, self, arousal_limit } = data;
+  const participants = asArray(data.participants);
   const [tab, setTab] = useState(0);
   const [search, setSearch] = useState('');
   const searchLower = search.toLowerCase();
@@ -62,7 +63,7 @@ export function Sidebar(props: SidebarProps) {
               <Box bold mb={0.5}>
                 {target.name}
               </Box>
-              {(target.details || []).map((line) => (
+              {asArray(target.details).map((line) => (
                 <Box key={line} color="label" fontSize="0.85em">
                   {line}
                 </Box>
@@ -70,7 +71,7 @@ export function Sidebar(props: SidebarProps) {
             </Stack.Item>
           </Stack>
           <Box mt={0.75}>
-            {(target.tags || []).map((tag) => (
+            {asArray(target.tags).map((tag) => (
               <Box key={tag.label} inline mr={1} fontSize="0.8em">
                 <Box inline color="label">
                   {tag.label}:
@@ -184,8 +185,8 @@ export function Sidebar(props: SidebarProps) {
               <NoticeBox>
                 {target.block_interact ? 'Unable to Interact' : 'Able to Interact'}
               </NoticeBox>
-              {(target.categories || []).map((category) => {
-                const verbs = (target.interactions[category] || []).filter(
+              {asArray(target.categories).map((category) => {
+                const verbs = asArray(target.interactions?.[category]).filter(
                   (name) => name.toLowerCase().includes(searchLower),
                 );
                 if (!verbs.length) {
@@ -214,10 +215,10 @@ export function Sidebar(props: SidebarProps) {
             </Box>
           ) : (
             <Box mt={0.5}>
-              {(target.lewd_slots || [])
+              {asArray(target.lewd_slots)
                 .filter(
                   (slot) =>
-                    slot.name.toLowerCase().includes(searchLower),
+                    slot?.name?.toLowerCase().includes(searchLower),
                 )
                 .map((slot) => (
                   <Button
@@ -278,10 +279,14 @@ type DropdownSelectProps = {
 };
 
 function DropdownSelect(props: DropdownSelectProps) {
+  const selectedName =
+    props.people.find((person) => person.ref === props.selected)?.name ||
+    props.people[0]?.name ||
+    '';
   return (
     <Dropdown
       width="100%"
-      selected={props.people.find((person) => person.ref === props.selected)?.name}
+      selected={selectedName}
       options={props.people.map((person) => person.name)}
       onSelected={(name: string) => {
         const match = props.people.find((person) => person.name === name);

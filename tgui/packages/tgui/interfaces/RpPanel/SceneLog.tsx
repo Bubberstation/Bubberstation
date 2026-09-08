@@ -1,15 +1,14 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   Box,
   Button,
   Dropdown,
   NoticeBox,
-  Section,
   Stack,
 } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import type { LogEntry, RpPanelData } from './types';
+import { asArray, type LogEntry, type RpPanelData } from './types';
 
 const MODE_CLASS: Record<string, string> = {
   say: 'say',
@@ -35,9 +34,7 @@ export function SceneLog(props: SceneLogProps) {
   const { data, act } = useBackend<RpPanelData>();
   const { onExamine } = props;
   const {
-    messages = [],
     scene_details,
-    typing = [],
     settings = {
       font: 'Verdana',
       font_size: 100,
@@ -47,17 +44,20 @@ export function SceneLog(props: SceneLogProps) {
     },
     max_chars = 2000,
     emote_mode,
-    emote_modes = [],
   } = data;
+  const messages = asArray<LogEntry>(data.messages);
+  const typing = asArray<string>(data.typing);
+  const emote_modes = asArray(data.emote_modes);
   const logRef = useRef<HTMLDivElement>(null);
   const [draft, setDraft] = useState('');
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const node = logRef.current;
-    if (node) {
-      node.scrollTop = node.scrollHeight;
+    if (!node) {
+      return;
     }
-  }, [messages.length]);
+    node.scrollTop = node.scrollHeight;
+  }, [messages.length, typing.length]);
 
   const fontStyle = useMemo(
     () => ({
@@ -79,16 +79,13 @@ export function SceneLog(props: SceneLogProps) {
   };
 
   return (
-    <Stack fill vertical>
-      <Stack.Item grow>
-        <Section fill>
-          <Box
-            ref={logRef}
-            className="SceneAssistant__log"
-            style={fontStyle}
-            height="100%"
-            overflow="auto"
-          >
+    <Stack fill vertical className="SceneAssistant__logStack">
+      <Stack.Item grow className="SceneAssistant__logPane">
+        <div
+          ref={logRef}
+          className="SceneAssistant__log"
+          style={fontStyle}
+        >
             {!!scene_details && (
               <NoticeBox className="SceneAssistant__scenePin">
                 {scene_details}
@@ -158,8 +155,7 @@ export function SceneLog(props: SceneLogProps) {
                 …
               </Box>
             )}
-          </Box>
-        </Section>
+          </div>
       </Stack.Item>
       <Stack.Item className="SceneAssistant__composerWrap">
         <textarea

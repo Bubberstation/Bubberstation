@@ -41,12 +41,12 @@ export function RpPanel() {
               onOpenManageSelf={() => setManageSelfOpen(true)}
             />
           </Stack.Item>
-          <Stack.Item grow>
+          <Stack.Item grow className="SceneAssistant__main">
             <Stack fill vertical>
               <Stack.Item basis="160px" className="SceneAssistant__header">
                 <Participants />
               </Stack.Item>
-              <Stack.Item grow>
+              <Stack.Item grow className="SceneAssistant__logColumn">
                 <SceneLog
                   onExamine={(ref) => act('open_examine', { ref })}
                 />
