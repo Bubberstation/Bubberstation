@@ -1,0 +1,185 @@
+.SceneAssistant {
+  -webkit-app-region: no-drag;
+  app-region: no-drag;
+}
+
+.theme-scene_assistant,
+.theme-scene_frost,
+.theme-scene_cream,
+.theme-scene_strawberry,
+.theme-scene_super_dark,
+.theme-scene_apple {
+  .TitleBar__dragZone {
+    -webkit-app-region: drag;
+    app-region: drag;
+  }
+
+  .TitleBar__buttons,
+  .TitleBar__close {
+    -webkit-app-region: no-drag;
+    app-region: no-drag;
+  }
+}
+
+.SceneAssistant__sidebar,
+.SceneAssistant__header,
+.SceneAssistant__composerWrap {
+  box-sizing: border-box;
+  padding: 0.4em;
+}
+
+.SceneAssistant__header {
+  padding-bottom: 0.3em;
+}
+
+.SceneAssistant__composerWrap {
+  padding-top: 0.3em;
+}
+
+.SceneAssistant__log {
+  padding-right: 0.4em;
+}
+
+.SceneAssistant__logEntry {
+  margin-bottom: 0.55em;
+  padding: 0.35em 0.5em;
+  border-left: 3px solid #64748b;
+}
+
+.SceneAssistant__logEntry--say {
+  border-left-color: #6ea8fe;
+}
+
+.SceneAssistant__logEntry--emote {
+  border-left-color: #c084fc;
+}
+
+.SceneAssistant__logEntry--subtle,
+.SceneAssistant__logEntry--subtler {
+  border-left-color: #a78bfa;
+}
+
+.SceneAssistant__logEntry--system {
+  border-left-color: #c084fc;
+}
+
+.SceneAssistant__avatar {
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+
+.SceneAssistant__avatar--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  color: #94a3b8;
+  font-size: 0.7em;
+  text-align: center;
+}
+
+.SceneAssistant__composer {
+  width: 100%;
+  height: 6em;
+  resize: vertical;
+  background: rgba(0, 0, 0, 0.35);
+  color: inherit;
+  border: 1px solid rgba(168, 85, 247, 0.45);
+  padding: 0.4em;
+}
+
+.SceneAssistant__details {
+  width: 100%;
+  height: 7em;
+  resize: vertical;
+  background: rgba(0, 0, 0, 0.35);
+  color: inherit;
+  border: 1px solid rgba(168, 85, 247, 0.45);
+  padding: 0.4em;
+}
+
+// Scene Assistant (formerly Default): inherit stock TGUI dark chrome, no NT watermark.
+.theme-scene_assistant:root {
+  --color-base: hsl(230, 18%, 13%);
+  --color-primary: hsl(226, 62%, 52%);
+  --color-secondary: hsl(248, 22%, 18%);
+  --color-border-primary: hsl(258, 45%, 42%);
+}
+
+.theme-scene_frost:root {
+  --color-base: hsl(210, 20%, 90%);
+  --color-primary: hsl(210, 55%, 42%);
+  --color-secondary: hsl(210, 16%, 78%);
+  --color-section: hsl(210, 22%, 95%);
+  --color-text: var(--color-black, hsl(0, 0%, 0%));
+  --color-label: hsl(210, 18%, 22%);
+  --color-text-translucent: hsl(210, 12%, 28%);
+  --button-color: var(--color-black, hsl(0, 0%, 0%));
+  --notice-box-color: var(--color-black, hsl(0, 0%, 0%));
+  --tab-color-selected: hsl(210, 20%, 12%);
+  --input-background-lightness: 92;
+  --input-color: var(--color-black, hsl(0, 0%, 0%));
+  --titlebar-background: hsl(220, 18%, 14%);
+  --titlebar-text: hsl(0, 0%, 92%);
+}
+
+.theme-scene_cream:root {
+  --color-base: hsl(36, 40%, 84%);
+  --color-primary: hsl(24, 55%, 42%);
+  --color-secondary: hsl(30, 32%, 70%);
+  --color-section: hsl(36, 38%, 90%);
+  --color-text: var(--color-black, hsl(0, 0%, 0%));
+  --color-label: hsl(24, 28%, 18%);
+  --color-text-translucent: hsl(24, 18%, 24%);
+  --button-color: var(--color-black, hsl(0, 0%, 0%));
+  --notice-box-color: var(--color-black, hsl(0, 0%, 0%));
+  --tab-color-selected: hsl(24, 30%, 12%);
+  --input-background-lightness: 92;
+  --input-color: var(--color-black, hsl(0, 0%, 0%));
+  --titlebar-background: hsl(24, 30%, 16%);
+  --titlebar-text: hsl(0, 0%, 92%);
+}
+
+.theme-scene_strawberry:root {
+  --color-base: hsl(340, 28%, 22%);
+  --color-primary: hsl(340, 70%, 52%);
+}
+
+.theme-scene_super_dark:root {
+  --color-base: hsl(220, 16%, 8%);
+  --color-primary: hsl(210, 40%, 40%);
+}
+
+.theme-scene_apple:root {
+  --color-base: hsl(140, 18%, 16%);
+  --color-primary: hsl(140, 50%, 38%);
+}
+
+.theme-scene_assistant .Layout__content,
+.theme-scene_frost .Layout__content,
+.theme-scene_cream .Layout__content,
+.theme-scene_strawberry .Layout__content,
+.theme-scene_super_dark .Layout__content,
+.theme-scene_apple .Layout__content {
+  background-image: none;
+}
+
+.theme-scene_frost,
+.theme-scene_cream {
+  .SceneAssistant__composer,
+  .SceneAssistant__details {
+    background: rgba(255, 255, 255, 0.55);
+    color: var(--color-black, hsl(0, 0%, 0%));
+    border-color: rgba(0, 0, 0, 0.28);
+  }
+
+  .SceneAssistant__avatar--empty {
+    background: rgba(0, 0, 0, 0.08);
+    color: hsl(0, 0%, 20%);
+  }
+
+  .ProgressBar {
+    color: var(--color-black, hsl(0, 0%, 0%));
+  }
+}
