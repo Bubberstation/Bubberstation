@@ -22,7 +22,7 @@
 	color_src = USE_ONE_COLOR
 
 	///Which layers does this accessory affect
-	var/relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER, BODY_FRONT_LAYER, BODY_FRONT_UNDER_CLOTHES, ABOVE_BODY_FRONT_HEAD_LAYER)
+	var/relevent_layers = list(EXTERNAL_BEHIND, EXTERNAL_ADJACENT, EXTERNAL_FRONT, EXTERNAL_FRONT_UNDER_CLOTHES, EXTERNAL_FRONT_OVER_HEAD)
 
 	///This is used to determine whether an accessory gets added to someone. This is important for accessories that are "None", which should have this set to false
 	var/factual = TRUE
@@ -67,14 +67,22 @@
 		color_layer_names = list()
 		if (!SSaccessories.cached_mutant_icon_files[icon])
 			SSaccessories.cached_mutant_icon_files[icon] = icon_states(new /icon(icon))
+		var/state_prefix = "m_[key]_[get_sprite_suffix()]"
 		for (var/layer in relevent_layers)
-			var/layertext = layer == BODY_BEHIND_LAYER ? "BEHIND" : (layer == BODY_ADJ_LAYER ? "ADJ" : "FRONT")
-			if ("m_[key]_[icon_state]_[layertext]_primary" in SSaccessories.cached_mutant_icon_files[icon])
+			if ("[state_prefix]_[layer]_primary" in SSaccessories.cached_mutant_icon_files[icon])
 				color_layer_names["1"] = "primary"
-			if ("m_[key]_[icon_state]_[layertext]_secondary" in SSaccessories.cached_mutant_icon_files[icon])
+			if ("[state_prefix]_[layer]_secondary" in SSaccessories.cached_mutant_icon_files[icon])
 				color_layer_names["2"] = "secondary"
-			if ("m_[key]_[icon_state]_[layertext]_tertiary" in SSaccessories.cached_mutant_icon_files[icon])
+			if ("[state_prefix]_[layer]_tertiary" in SSaccessories.cached_mutant_icon_files[icon])
 				color_layer_names["3"] = "tertiary"
+
+/datum/sprite_accessory/proc/get_sprite_suffix()
+	// TODO FIX: Yell at Waterpig to fix this proper
+	// This is an ugly patch for a problem that's so deeply rooted in our threecolor sprite system
+	// that we inherited from skyrat and just kinda adjusted, fixing it proper requires a genuine
+	// refactor, renaming every icon state, and just overall fixing this bullshit.
+	// There isn't time to do this during an upstream, so enjoy the technical debt ~ Waterpig
+	return icon_state
 
 /datum/sprite_accessory/proc/is_hidden(mob/living/carbon/human/owner)
 	return FALSE
@@ -84,10 +92,6 @@
 
 /datum/sprite_accessory/proc/get_special_x_dimension(mob/living/carbon/human/H, passed_state)
 	return 0
-
-// A proc for accessories which have 'use_custom_mod_icon' set to TRUE
-/datum/sprite_accessory/proc/get_custom_mod_icon(mob/living/carbon/human/owner, mutable_appearance/appearance_to_use = null)
-	return null
 
 /datum/sprite_accessory/proc/get_default_color(list/features, datum/species/pref_species) //Needs features for the color information
 	var/list/colors
@@ -160,7 +164,7 @@
 /datum/sprite_accessory/caps
 	key = "caps"
 	icon = 'icons/mob/human/species/mush_cap.dmi'
-	relevent_layers = list(BODY_ADJ_LAYER)
+	relevent_layers = list(EXTERNAL_ADJACENT)
 	color_src = USE_ONE_COLOR
 	organ_type = /obj/item/organ/mushroom_cap
 

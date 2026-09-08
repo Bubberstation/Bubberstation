@@ -169,7 +169,10 @@
 		/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 3
 		)
-	build_path = /obj/item/construction/rcd/arcd/tarkon
+	transfered_materials = list(
+		/obj/item/construction/rcd/arcd/tarkon/loaded = /obj/item/construction/rcd/arcd/tarkon::custom_materials
+	)
+	build_path = /obj/item/construction/rcd/arcd/tarkon/loaded
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
 	)

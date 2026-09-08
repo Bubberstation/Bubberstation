@@ -26,7 +26,6 @@
 	mobility_flags = MOBILITY_FLAGS_REST_CAPABLE_DEFAULT
 	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_icon_state = "clowncat"
-	can_be_held = TRUE
 	ai_controller = /datum/ai_controller/basic_controller/cat/clown
 	held_state = "cat2"
 	attack_verb_continuous = "honks"
@@ -35,21 +34,6 @@
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 
 /datum/ai_controller/basic_controller/cat/clown
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/random_speech/catclown,
-	)
-
-/datum/ai_planning_subtree/random_speech/catclown
-	speech_chance = 10
-	sound = list('sound/effects/footstep/clownstep1.ogg', 'sound/effects/footstep/clownstep2.ogg', 'sound/items/bikehorn.ogg',)
-	speak = list(
-		"hoooonk!",
-		"meow!",
-		"honk!",
-		"mrow!",
-		"henk!",
-	)
-	emote_see = list("plays tricks.", "slips.", "honks a tiny horn.")
 
 
 /mob/living/basic/pet/cat/mime
@@ -73,17 +57,6 @@
 	)
 
 /datum/ai_controller/basic_controller/cat/mime
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/random_speech/catmime,
-	)
-
-/datum/ai_planning_subtree/random_speech/catmime
-	speech_chance = 1
-	speak = list(
-		"...",
-		"....",
-	)
-	emote_see = list("cowers in fear.", "surrenders.", "plays dead.","looks as though there is a tiny cat shaped wall in front of them.")
 
 
 /mob/living/basic/pet/cat/tiger
@@ -107,17 +80,6 @@
 	)
 
 /datum/ai_controller/basic_controller/cat/tiger
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/random_speech/cattiger,
-	)
-
-/datum/ai_planning_subtree/random_speech/cattiger
-	speech_chance = 10
-	speak = list(
-		"roar!",
-		"meow!",
-		"grrr!",
-	)
 
 /mob/living/basic/carp/clarp
 	name = "clarp"
@@ -143,7 +105,6 @@
 	speak_emote = list("chirps", "huff-quacks")
 	butcher_results = list(/obj/item/food/meat/slab = 3)
 	gold_core_spawnable = FRIENDLY_SPAWN
-	can_be_held = TRUE
 	held_state = "fox"
 	melee_damage_lower = 5
 	melee_damage_upper = 5
@@ -152,7 +113,6 @@
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	ai_controller = /datum/ai_controller/basic_controller/fox/docile //he's a nice boy
-
 
 /mob/living/basic/pet/dog/corgi/robocorgo
 	name = "\improper robocorgi"

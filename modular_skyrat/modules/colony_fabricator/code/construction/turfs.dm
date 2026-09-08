@@ -80,7 +80,7 @@ GLOBAL_LIST_INIT(plastic_wall_panel_recipes, list(
 /obj/item/stack/tile/catwalk_tile/colony_lathe
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/tiles_item.dmi'
 	icon_state = "prefab_catwalk"
-	mats_per_unit = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2.5)
 	turf_type = /turf/open/floor/catwalk_floor/colony_fabricator
 	merge_type = /obj/item/stack/tile/catwalk_tile/colony_lathe
 	tile_reskin_types = null

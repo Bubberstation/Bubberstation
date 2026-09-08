@@ -212,10 +212,12 @@
 /// Golem's wacky rocky limbs
 #define BODYSHAPE_GOLEM (1<<4)
 
-/// List of body part flags that can not be bioscrambled
-#define BODYTYPE_BIOSCRAMBLE_INCOMPATIBLE (BODYTYPE_ROBOTIC | BODYTYPE_LARVA_PLACEHOLDER | BODYTYPE_GOLEM | BODYTYPE_PEG)
 /// Check to see if a bodypart limb can be bioscrambled
-#define BODYPART_CAN_BE_BIOSCRAMBLED(bodypart) (!(bodypart.bodytype & BODYTYPE_BIOSCRAMBLE_INCOMPATIBLE) && !(bodypart.flags_1 & HOLOGRAM_1))
+#define BODYPART_CAN_BE_BIOSCRAMBLED(bodypart) ( \
+	!(bodypart.bodytype & (BODYTYPE_ROBOTIC | BODYTYPE_LARVA_PLACEHOLDER | BODYTYPE_GOLEM | BODYTYPE_PEG)) \
+	&& !(bodypart.flags_1 & HOLOGRAM_1) \
+	&& !(bodypart.bodypart_flags & BODYPART_STUMP) \
+)
 
 // Defines for Species IDs. Used to refer to the name of a species, for things like bodypart names or species preferences.
 #define SPECIES_ABDUCTOR "abductor"
@@ -247,9 +249,6 @@
 #define SPECIES_SNAIL "snail"
 #define SPECIES_VAMPIRE "vampire"
 #define SPECIES_ZOMBIE "zombie"
-#define SPECIES_ZOMBIE_INFECTIOUS "memezombie"
-#define SPECIES_ZOMBIE_INFECTIOUS_MINDLESS "mindless_memezombie"
-#define SPECIES_ZOMBIE_KROKODIL "krokodil_zombie"
 #define SPECIES_VOIDWALKER "voidwalker"
 
 // Like species IDs, but not specifically attached a species.
@@ -289,12 +288,15 @@
 ///Heartbeat is gone... He's dead Jim :(
 #define BEAT_NONE 0
 
-#define HUMAN_MAX_OXYLOSS 3
-#define HUMAN_CRIT_MAX_OXYLOSS (SSMOBS_DT/3)
+/// Damage dealt every life tick on suffocation
+#define SUFFOCATION_OXYLOSS 3
+/// Modifier to damage dealt every life tick on suffocation when the suffocator is in crit
+#define SUFFOCATION_OXYLOSS_CRIT_MODIFIER 0.22
 
 /// Combined brute and burn damage states on a human's head after which they become disfigured
 #define HUMAN_DISFIGURATION_HEAD_DAMAGE_STATES 3
 
+/// Lung temperature defines
 #define HEAT_DAMAGE_LEVEL_1 1 //Amount of damage applied when your body temperature just passes the 360.15k safety point
 #define HEAT_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when your body temperature passes the 400K point
 #define HEAT_DAMAGE_LEVEL_3 4 //Amount of damage applied when your body temperature passes the 460K point and you are on fire
@@ -311,6 +313,14 @@
 #define COLD_GAS_DAMAGE_LEVEL_1 0.5 //Amount of damage applied when the current breath's temperature just passes the 260.15k safety point
 #define COLD_GAS_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when the current breath's temperature passes the 200K point
 #define COLD_GAS_DAMAGE_LEVEL_3 3 //Amount of damage applied when the current breath's temperature passes the 120K point
+
+/// These are for the default lungs
+#define COLD_LEVEL_1_THRESHOLD 260
+#define COLD_LEVEL_2_THRESHOLD 200
+#define COLD_LEVEL_3_THRESHOLD 120
+#define HEAT_LEVEL_1_THRESHOLD 360
+#define HEAT_LEVEL_2_THRESHOLD 400
+#define HEAT_LEVEL_3_THRESHOLD 1000
 
 //Brain Damage defines
 #define BRAIN_DAMAGE_MILD 20
@@ -357,6 +367,9 @@
 
 #define NUTRITION_LEVEL_START_MIN 250
 #define NUTRITION_LEVEL_START_MAX 400
+
+// After this amount of time overeating carbons become fat
+#define OVEREAT_TIME_LIMIT 200 SECONDS
 
 //Disgust levels for humans
 #define DISGUST_LEVEL_MAXEDOUT 150
@@ -560,6 +573,14 @@
 #define EAR_PROTECTION_FULL INFINITY
 
 /**
+ * EMP protection
+ * These values are additive to determine your overall emp protection
+ */
+#define EMP_PROTECTION_NONE 0
+#define EMP_PROTECTION_MODERATE 1
+#define EMP_PROTECTION_HIGH 2
+
+/**
  * Soundbang defines
  * These values are used as argument to determine the strength of the soundbang_act call
  */
@@ -674,7 +695,7 @@
 #define SILENCE_RANGED_MESSAGE (1<<0)
 
 /// Returns whether or not the given mob can succumb
-#define CAN_SUCCUMB(target) (HAS_TRAIT(target, TRAIT_CRITICAL_CONDITION) && !HAS_TRAIT(target, TRAIT_NODEATH))
+#define CAN_SUCCUMB(target) ((target.stat == SOFT_CRIT || target.stat == HARD_CRIT) && !HAS_TRAIT(target, TRAIT_NODEATH))
 
 // Body position defines.
 /// Mob is standing up, usually associated with lying_angle value of 0.
@@ -764,6 +785,16 @@
 #define GRADIENT_APPLIES_TO_HAIR (1<<0)
 #define GRADIENT_APPLIES_TO_FACIAL_HAIR (1<<1)
 
+// Used in applying height
+/// Used for overlays centered around the upper half of the human sprite
+#define UPPER_BODY "upper body"
+/// Used for overlays centered around the lower half of the human sprite
+#define LOWER_BODY "lower body"
+/// Used for overlays that should not offset at all
+#define NO_MODIFY "do not modify"
+/// Used for overlays that stretch the full body and thus need a filter
+#define ENTIRE_BODY "full body"
+
 // Height defines
 // - They are numbers so you can compare height values (x height < y height)
 // - They do not start at 0 for futureproofing
@@ -779,20 +810,19 @@
 #define HUMAN_HEIGHT_TALL 14
 #define HUMAN_HEIGHT_TALLER 16
 #define HUMAN_HEIGHT_TALLEST 18
+// If you add a height here update human_heights_to_offsets as well!
 
-/// Assoc list of all heights, cast to strings, to """"tuples"""""
-/// The first """tuple""" index is the upper body offset
-/// The second """tuple""" index is the lower body offset
-GLOBAL_LIST_INIT(human_heights_to_offsets, list(
-	"[MONKEY_HEIGHT_DWARF]" = list(-9, -3),
-	"[MONKEY_HEIGHT_MEDIUM]" = list(-7, -4),
-	"[HUMAN_HEIGHT_DWARF]" = list(-5, -4),
-	"[HUMAN_HEIGHT_SHORTEST]" = list(-2, -1),
-	"[HUMAN_HEIGHT_SHORT]" = list(-1, -1),
-	"[HUMAN_HEIGHT_MEDIUM]" = list(0, 0),
-	"[HUMAN_HEIGHT_TALL]" = list(1, 1),
-	"[HUMAN_HEIGHT_TALLER]" = list(2, 1),
-	"[HUMAN_HEIGHT_TALLEST]" = list(3, 2),
+/// Assoc list of all heights, to offset values
+GLOBAL_ALIST_INIT(human_heights_to_offsets, alist(
+	MONKEY_HEIGHT_DWARF   = list("[UPPER_BODY]" = -9, "[LOWER_BODY]" = -3),
+	MONKEY_HEIGHT_MEDIUM  = list("[UPPER_BODY]" = -7, "[LOWER_BODY]" = -4),
+	HUMAN_HEIGHT_DWARF    = list("[UPPER_BODY]" = -5, "[LOWER_BODY]" = -4),
+	HUMAN_HEIGHT_SHORTEST = list("[UPPER_BODY]" = -2, "[LOWER_BODY]" = -1),
+	HUMAN_HEIGHT_SHORT    = list("[UPPER_BODY]" = -1, "[LOWER_BODY]" = -1),
+	HUMAN_HEIGHT_MEDIUM   = list("[UPPER_BODY]" =  0, "[LOWER_BODY]" =  0),
+	HUMAN_HEIGHT_TALL     = list("[UPPER_BODY]" =  1, "[LOWER_BODY]" =  1),
+	HUMAN_HEIGHT_TALLER   = list("[UPPER_BODY]" =  2, "[LOWER_BODY]" =  1),
+	HUMAN_HEIGHT_TALLEST  = list("[UPPER_BODY]" =  3, "[LOWER_BODY]" =  2),
 ))
 
 /*
@@ -830,6 +860,13 @@ GLOBAL_LIST_INIT(human_heights_to_offsets, list(
 #define LEGCUFF_LAYER 4
 /// Handcuff layer (when your hands are cuffed)
 #define HANDCUFF_LAYER 5
+// BUBBER EDIT BEGIN
+#define PENIS_LAYER_FRONT 5.1
+#define BREASTS_FRONT_LAYER 5.2
+#define BELLY_FRONT_LAYER 5.3
+#define VAGINA_FRONT_LAYER 5.4
+#define BALLS_LAYER_FRONT 5.5
+// BUBBER EDIT END
 	/// Hair that layers out above clothing, including hats (high ponytails and such)
 	#define OUTER_HAIR_LAYER 5.9
 /// Head layer (hats, helmets, etc.)
@@ -874,6 +911,7 @@ GLOBAL_LIST_INIT(human_heights_to_offsets, list(
 #define ID_LAYER 18
 // BUBBER EDIT ADDITION BEGIN
 #define BANDAGE_LAYER 19
+#define ASS_LAYER_FRONT 19.9
 #define NIPPLES_LAYER 20
 #define PENIS_LAYER 21
 #define VAGINA_LAYER 22
@@ -910,54 +948,15 @@ GLOBAL_LIST_INIT(human_heights_to_offsets, list(
 /// (You ONLY need to update this if you add a standing overlay, adding an integer.)
 #define TOTAL_LAYERS 29
 
-#define UPPER_BODY "upper body"
-#define LOWER_BODY "lower body"
-#define NO_MODIFY "do not modify"
-
-/// Used for human height overlay adjustments
-/// Certain standing overlay layers shouldn't have a filter applied and should instead just offset by a pixel y
-/// This list contains all the layers that must offset, with its value being whether it's a part of the upper half of the body (TRUE) or not (FALSE)
-GLOBAL_LIST_INIT(layers_to_offset, list(
-	// Weapons commonly cross the middle of the sprite so they get cut in half by the filter
-	"[HANDS_LAYER]" = LOWER_BODY,
-	// Very tall hats will get cut off by filter
-	"[HEAD_LAYER]" = UPPER_BODY,
-	// Hair will get cut off by filter
-	"[HAIR_LAYER]" = UPPER_BODY,
-	// Doesn't do much
-	"[EYES_LAYER]" = UPPER_BODY,
-	"[BENEATH_HAIR_LAYER]" = UPPER_BODY,
-	"[OUTER_HAIR_LAYER]" = UPPER_BODY, // BUBBER EDIT - ADDITION
-	// Long belts (sabre sheathe) will get cut off by filter
-	"[BELT_LAYER]" = LOWER_BODY,
-	// Everything below looks fine with or without a filter, so we can skip it and just offset
-	// (In practice they'd be fine if they got a filter but we can optimize a bit by not.)
-	"[NECK_LAYER]" = UPPER_BODY,
-	"[GLASSES_LAYER]" = UPPER_BODY,
-	"[GLOVES_LAYER]" = LOWER_BODY,
-	"[HANDCUFF_LAYER]" = LOWER_BODY,
-	"[ID_LAYER]" = UPPER_BODY,
-	"[FACEMASK_LAYER]" = UPPER_BODY,
-))
-
-//Bitflags for the layers an external organ can draw on (organs can be drawn on multiple layers)
-/// Draws organ on the BODY_FRONT_LAYER
-#define EXTERNAL_FRONT (1 << 1)
-/// Draws organ on the BODY_ADJ_LAYER
-#define EXTERNAL_ADJACENT (1 << 2)
-/// Draws organ on the BODY_BEHIND_LAYER
-#define EXTERNAL_BEHIND (1 << 3)
-// SKYRAT EDIT ADDITION - Customization
-/// Draws organ on the BODY_FRONT_UNDER_CLOTHES
-#define EXTERNAL_FRONT_UNDER_CLOTHES (1 << 4)
-/// Draws organ on the ABOVE_BODY_FRONT_HEAD_LAYER
-#define EXTERNAL_FRONT_OVER (1 << 5)
-/// Draws organ on the HEAD_LAYER, for things that need to be above hair but below hats.
-#define EXTERNAL_FRONT_ABOVE_HAIR (1 << 6)
-// SKYRAT EDIT END (not touching what comes next because we don't actually have to (nor want to))
-/// Draws organ on all EXTERNAL layers
-#define ALL_EXTERNAL_OVERLAYS EXTERNAL_FRONT | EXTERNAL_ADJACENT | EXTERNAL_BEHIND
-
+// Legacy mutant bodypart layering defines for icon states
+// Don't change these without updating all relevant icon states
+#define EXTERNAL_FRONT "FRONT"
+#define EXTERNAL_ADJACENT "ADJ"
+#define EXTERNAL_BEHIND "BEHIND"
+// BUBBER EDIT BEGIN - Our legacy iconstate layers
+#define EXTERNAL_FRONT_UNDER_CLOTHES "FRONT_UNDER"
+#define EXTERNAL_FRONT_OVER_HEAD "FRONT_OVER"
+// BUBBER EDIT END
 // Bitflags for external organs restylability
 #define EXTERNAL_RESTYLE_ALL ALL
 /// This organ allows restyle through plant restyling (like secateurs)
@@ -1172,3 +1171,12 @@ GLOBAL_LIST_INIT(regal_rat_minion_commands, list(
 	/datum/pet_command/follow,
 	/datum/pet_command/attack/mouse
 ))
+
+/// Checks if the mob is unconscious (or in other words, has [TRAIT_KNOCKEDOUT]) - note dead mobs are considered unconscious
+#define IS_UNCONSCIOUS(mob) (HAS_TRAIT(mob, TRAIT_KNOCKEDOUT))
+/// Checks if the mob is in soft crit, hard crit, dead, or is otherwise unconscious (which hard crit and death apply anyways)
+#define IS_UNCONSCIOUS_OR_CRIT(mob) (IS_UNCONSCIOUS(mob) || mob.stat >= SOFT_CRIT)
+/// Checks if the mob is unconscious but not dead
+#define IS_UNCONSCIOUS_AND_ALIVE(mob) (IS_UNCONSCIOUS(mob) && mob.stat != DEAD)
+/// Checks if the mob is dead or faking death (via [TRAIT_FAKEDEATH])
+#define IS_DEAD_OR_FAKING(mob) (mob.stat == DEAD || HAS_TRAIT(mob, TRAIT_FAKEDEATH))

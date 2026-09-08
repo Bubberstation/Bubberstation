@@ -20,6 +20,9 @@ SUBSYSTEM_DEF(mapping)
 	///Assoc list of all ruins spawned, key center of ruin spawn -> value ruin instance
 	var/list/active_ruins = alist()
 
+	///Ordered list of ruins that have been reserved. Each entry is list(ruin template, central turf, clear_below). Populated by seedRuins(), consumed by load_reserved_ruins().
+	var/list/reserved_ruins = list()
+
 	///List of ruins, separated by their theme
 	var/list/themed_ruins = list()
 
@@ -55,7 +58,6 @@ SUBSYSTEM_DEF(mapping)
 	/// The largest plane offset we've generated so far
 	var/max_plane_offset = 0
 
-	var/loading_ruins = FALSE
 	var/list/turf/unused_turfs = list() //Not actually unused turfs they're unused but reserved for use for whatever requests them. "[zlevel_of_turf]" = list(turfs)
 	var/list/datum/turf_reservations //list of turf reservations
 	var/list/used_turfs = list() //list of turf = datum/turf_reservation
@@ -130,7 +132,7 @@ SUBSYSTEM_DEF(mapping)
 	process_teleport_locs() //Sets up the wizard teleport locations
 	preloadTemplates()
 
-#ifndef LOWMEMORYMODE
+#ifndef SKIP_SPACE_LEVELS
 	// Create space ruin levels
 	while (space_levels_so_far < current_map.space_ruin_levels)
 		add_new_zlevel("Ruin Area [space_levels_so_far+1]", ZTRAITS_SPACE)
@@ -156,15 +158,15 @@ SUBSYSTEM_DEF(mapping)
 	else if (SSmapping.current_map.load_all_away_missions) // we're likely in a local testing environment, so punch it.
 		load_all_away_missions()
 
-	loading_ruins = TRUE
 	setup_ruins()
-	loading_ruins = FALSE
 #endif
 
-	// Run map generation after ruin generation to prevent issues
+	// Run map generation after ruin space is reserved, since this space is used for the cave gen.
 	run_map_terrain_generation()
 	// Generate our rivers, we do this here so the map doesn't load on top of them
 	setup_rivers()
+	// Now that terrain generation is done, actually load the ruin maps in.
+	load_reserved_ruins()
 	// now that the terrain is generated, including rivers, we can safely populate it with objects and mobs
 	run_map_terrain_population()
 	// Add the first transit level
@@ -275,6 +277,26 @@ SUBSYSTEM_DEF(mapping)
 		// Create a proportional budget by multiplying the amount of space ruin levels in the current map over the default amount
 		var/proportional_budget = round(CONFIG_GET(number/space_budget) * (space_ruins.len / DEFAULT_SPACE_RUIN_LEVELS))
 		seedRuins(space_ruins, proportional_budget, list(/area/space), themed_ruins[ZTRAIT_SPACE_RUINS], mineral_budget = 0, ruins_type = ZTRAIT_SPACE_RUINS)
+
+///loads all of the ruins we previously reserved space for
+/datum/controller/subsystem/mapping/proc/load_reserved_ruins()
+	for(var/list/reservation in reserved_ruins)
+		var/datum/map_template/ruin/reserved_ruin = reservation[1]
+		var/turf/central_turf = reservation[2]
+		var/clear_below = reservation[3]
+		load_ruin_now(reserved_ruin, central_turf, clear_below)
+	reserved_ruins.Cut()
+
+/**
+ * Immediately loads a single reserved ruin's map, and runs terrain generation for any
+ * of the areas, since they get spawned AFTER normal terrain gen runs its pass
+ */
+/datum/controller/subsystem/mapping/proc/load_ruin_now(datum/map_template/ruin/reserved_ruin, turf/central_turf, clear_below)
+	var/starting_area_count = GLOB.areas.len
+	reserved_ruin.load_reserved(central_turf, clear_below)
+	for(var/i in starting_area_count + 1 to GLOB.areas.len)
+		var/area/ruin_area = GLOB.areas[i]
+		ruin_area.RunTerrainGeneration()
 
 /// Sets up rivers, and things that behave like rivers. So lava/plasma rivers, and chasms
 /// It is important that this happens AFTER generating mineral walls and such, since we rely on them for river logic
@@ -426,18 +448,19 @@ Used by the AI doomsday and the self-destruct nuke.
 		++i
 
 	SSautomapper.preload_templates_from_toml(files) // SKYRAT EDIT ADDITION - We need to load our templates AFTER the Z level exists, otherwise, there is no z level to preload.
-	var/turf_blacklist = SSautomapper.get_turf_blacklists(files) // SKYRAT EDIT ADDITION - We use blacklisted turfs to carve out places for our templates.
+	SSautomapper.gen_turf_blacklists(files) // SKYRAT EDIT ADDITION - We use blacklisted turfs to carve out places for our templates.
 
 	// load the maps
 	for (var/P in parsed_maps)
 		var/datum/parsed_map/pm = P
-		pm.turf_blacklist = turf_blacklist // SKYRAT EDIT ADDITION - apply blacklist
+		pm.turf_blacklist += SSautomapper.turf_blacklists // SKYRAT EDIT ADDITION - apply blacklist
 		var/bounds = pm.bounds
 		var/x_offset = bounds ? round(world.maxx / 2 - bounds[MAP_MAXX] / 2) + 1 : 1
 		var/y_offset = bounds ? round(world.maxy / 2 - bounds[MAP_MAXY] / 2) + 1 : 1
 		if (!pm.load(x_offset, y_offset, start_z + parsed_maps[P], no_changeturf = TRUE, new_z = TRUE))
 			errorList |= pm.original_path
 	// SKYRAT EDIT ADDITION BEGIN - We need to load our templates from cache after our space has been carved out.
+	SSautomapper.drop_turf_blacklists()
 	if(!LAZYLEN(errorList))
 		SSautomapper.load_templates_from_cache(files)
 	// SKYRAT EDIT ADDITION END
@@ -464,7 +487,7 @@ Used by the AI doomsday and the self-destruct nuke.
 		query_round_map_name.Execute()
 		qdel(query_round_map_name)
 
-#ifndef LOWMEMORYMODE
+#ifndef SKIP_LAVALAND
 
 	if(current_map.minetype == MINETYPE_LAVALAND)
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
@@ -810,10 +833,9 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 		GLOB.starlight_objects += starlight_object(offset)
 		GLOB.starlight_overlays += starlight_overlay(offset)
 
-	for(var/datum/gas/gas_type as anything in GLOB.meta_gas_info)
-		var/list/gas_info = GLOB.meta_gas_info[gas_type]
+	for(var/datum/gas/gas_type as anything in GLOB.meta_gas_info[META_GAS_ID])
 		if(initial(gas_type.moles_visible) != null)
-			gas_info[META_GAS_OVERLAY] += generate_gas_overlays(gen_from, new_offset, gas_type)
+			GLOB.meta_gas_info[META_GAS_OVERLAY][gas_type] += generate_gas_overlays(gen_from, new_offset, gas_type)
 
 /datum/controller/subsystem/mapping/proc/create_plane_offsets(gen_from, new_offset)
 	for(var/plane_offset in gen_from to new_offset)

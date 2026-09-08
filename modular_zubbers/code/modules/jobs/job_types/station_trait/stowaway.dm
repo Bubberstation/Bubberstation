@@ -10,8 +10,8 @@
 	exp_required_type = EXP_TYPE_CREW
 	exp_granted_type = EXP_TYPE_SPECIAL
 	config_tag = "STOWAWAY"
-
 	liver_traits = list(TRAIT_MAINTENANCE_METABOLISM)
+	display_order = JOB_DISPLAY_ORDER_STOWAWAY
 
 	allow_bureaucratic_error = FALSE
 	job_flags = JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CANNOT_OPEN_SLOTS | STATION_TRAIT_JOB_FLAGS

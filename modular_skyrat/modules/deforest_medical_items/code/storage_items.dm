@@ -480,6 +480,7 @@
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
 		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
 	)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	build_path = /obj/item/storage/backpack/duffelbag/deforest_medkit
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -495,6 +496,7 @@
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
 		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
 	)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	build_path = /obj/item/storage/backpack/duffelbag/deforest_paramedic
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -510,6 +512,7 @@
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
 		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
 	)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	build_path = /obj/item/storage/backpack/duffelbag/deforest_surgical
 	category = list(
 		RND_CATEGORY_INITIAL,

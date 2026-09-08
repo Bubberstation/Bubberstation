@@ -100,7 +100,7 @@
 		owner.balloon_alert(owner, "bloodsuckers are immune to [src].")
 		return FALSE
 	// Dead/Unconscious
-	if(current_target.stat > CONSCIOUS)
+	if(IS_UNCONSCIOUS_OR_CRIT(current_target))
 		owner.balloon_alert(owner, "[current_target] is not [(current_target.stat == DEAD || HAS_TRAIT(current_target, TRAIT_FAKEDEATH)) ? "alive" : "conscious"].")
 		return FALSE
 	// Target has eyes?
@@ -219,7 +219,7 @@
 	REMOVE_TRAIT(target, TRAIT_NO_TRANSFORM, MESMERIZE_TRAIT)
 	target.cure_blind(MESMERIZE_TRAIT)
 	// They Woke Up! (Notice if within view)
-	if(istype(user) && target.stat == CONSCIOUS && (target in view(target_range, get_turf(user))))
+	if(istype(user) && !IS_UNCONSCIOUS_OR_CRIT(target) && (target in view(target_range, get_turf(user))))
 		target.balloon_alert(owner, "[target] snapped out of their trance.")
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/ContinueActive(mob/living/user, mob/living/target)

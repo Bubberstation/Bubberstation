@@ -9,8 +9,6 @@
 	var/obj/item/clothing/mask/paper/paper_mask = target
 	if(trigger_flags & TRIGGER_SECONDARY_ACTION)
 		paper_mask.adjust_mask(usr)
-	else
-		paper_mask.check_pen(usr)
 
 /obj/item/clothing/mask/paper
 	name = "paper mask"
@@ -30,18 +28,30 @@
 	/// Whether or not the strap is currently hidden or visible
 	var/strap_hidden
 
+/obj/item/clothing/mask/paper/setup_reskins()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/paper_mask, infinite = TRUE)
+
 /obj/item/clothing/mask/paper/Initialize(mapload)
 	. = ..()
 	if(wear_hair_over)
 		alternate_worn_layer = BACK_LAYER
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/paper_mask, infinite = TRUE)
-	RegisterSignal(src, COMSIG_CLICK_ALT, PROC_REF(check_pen))
-	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
 
 /datum/atom_skin/paper_mask
 	abstract_type = /datum/atom_skin/paper_mask
 
-/datum/atom_skin/paper_mask/blank
+/datum/atom_skin/paper_mask/apply(atom/apply_to, mob/user)
+	. = ..()
+	if(!user.is_holding_item_of_type(/obj/item/pen))
+		user.balloon_alert(user, "must be holding a pen!")
+		return
+
+	var/mob/living/carbon/carbon_user
+	if(iscarbon(user))
+		carbon_user = user
+	if(carbon_user && carbon_user.get_item_by_slot(ITEM_SLOT_MASK) == src)
+		carbon_user.update_worn_mask()
+
+/datum/atom_skin/paper_mask/paper
 	preview_name = "Blank"
 	new_icon_state = "mask_paper"
 
@@ -121,7 +131,7 @@
 	preview_name = "Cat"
 	new_icon_state = "mask_cat"
 
-/datum/atom_skin/paper_mask/big_eye
+/datum/atom_skin/paper_mask/bigeye
 	preview_name = "Big Eye"
 	new_icon_state = "mask_bigeye"
 
@@ -147,14 +157,11 @@
 		. += mutable_appearance(icon_file, "mask_paper_strap")
 
 /obj/item/clothing/mask/paper/click_alt_secondary(mob/user)
-		adjust_mask(user)
+	adjust_mask(user)
 
 /obj/item/clothing/mask/paper/item_ctrl_click(mob/user)
-	. = ..()
-	if(.)
-		return
-	if(user.can_perform_action(src, NEED_DEXTERITY))
-		adjust_strap(user)
+	adjust_strap(user)
+	return CLICK_ACTION_SUCCESS
 
 /obj/item/clothing/mask/paper/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -162,21 +169,6 @@
 	context[SCREENTIP_CONTEXT_ALT_RMB] = "Adjust Mask"
 	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Hide/Show Strap"
 	return CONTEXTUAL_SCREENTIP_SET
-
-/obj/item/clothing/mask/paper/proc/check_pen(datum/source, mob/user)
-	SIGNAL_HANDLER
-	if(!user.is_holding_item_of_type(/obj/item/pen))
-		balloon_alert(user, "must be holding a pen!")
-		return CLICK_ACTION_BLOCKING
-	return NONE
-
-/obj/item/clothing/mask/paper/proc/on_reskin(datum/source, skin_name)
-	SIGNAL_HANDLER
-	var/mob/living/carbon/carbon_user
-	if(ismob(loc) && iscarbon(loc))
-		carbon_user = loc
-	if(carbon_user && carbon_user.wear_mask == src)
-		carbon_user.update_worn_mask()
 
 /obj/item/clothing/mask/paper/proc/adjust_mask(mob/living/carbon/human/user)
 	if(!istype(user))

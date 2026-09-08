@@ -82,11 +82,11 @@
 
 /obj/vehicle/ridden/rail_cart/post_buckle_mob(mob/living/M)
 	. = ..()
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 
 /obj/vehicle/ridden/rail_cart/post_unbuckle_mob(mob/living/M)
 	. = ..()
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 
 /obj/vehicle/ridden/rail_cart/update_overlays()
 	. = ..()

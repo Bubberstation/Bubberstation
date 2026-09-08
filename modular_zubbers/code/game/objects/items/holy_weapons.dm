@@ -146,7 +146,7 @@ means that you'll be forced to move carefully while it's on. Fits in pockets, an
 			return
 		set_light_color(energy_color_input)
 		update_icon()
-		update_overlays()
+		update_overlays(UPDATE_OVERLAYS)
 	return TRUE
 
 /obj/item/dualsaber/chaplain/process()

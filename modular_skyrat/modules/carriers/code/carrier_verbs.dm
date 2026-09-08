@@ -10,22 +10,20 @@
 	if(!istype(parent_mob))
 		return COMPONENT_INCOMPATIBLE
 
-	add_verb(parent_mob, list(/mob/living/proc/carrier_say, /mob/living/proc/carrier_emote))
+	ASSIGN_GAME_VERB(src, /mob/living, carrier_say)
+	ASSIGN_GAME_VERB(src, /mob/living, carrier_emote)
 
 /datum/component/carrier_communicator/Destroy(force)
 	var/mob/living/holder = parent
 	if(!istype(holder))
 		return FALSE
 
-	remove_verb(holder, list(/mob/living/proc/carrier_say, /mob/living/proc/carrier_emote))
+	UNASSIGN_GAME_VERB(src, /mob/living, carrier_say)
+	UNASSIGN_GAME_VERB(src, /mob/living, carrier_emote)
 	return ..()
 
 /// Prompts the parent mob to send a say message to the soulcatcher. Returns False if no soulcatcher or message could be found.
-/mob/living/proc/carrier_say()
-	set name = "Carrier Say"
-	set category = "IC"
-	set desc = "Send a Say message to your currently targeted carrier room."
-
+GAME_VERB_PROC_DESC(/mob/living, carrier_say, "Carrier Say", "Send a Say message to your currently targeted carrier room.", "IC")
 	var/datum/carrier_room/room_to_send_to = get_current_carrier_room()
 	if(!istype(room_to_send_to))
 		to_chat(src, span_warning("You do not have a carrier you can send messages to!"))
@@ -45,11 +43,7 @@
 	return TRUE
 
 /// Prompts the parent mob to send a emote to the soulcatcher. Returns False if no soulcatcher or emote could be found.
-/mob/living/proc/carrier_emote()
-	set name = "Carrier Me"
-	set category = "IC"
-	set desc = "Send a emote to your currently targeted carrier room."
-
+GAME_VERB_PROC_DESC(/mob/living, carrier_emote, "Carrier Me", "Send a emote to your currently targeted carrier room.", "IC")
 	var/datum/carrier_room/room_to_send_to = get_current_carrier_room()
 	if(!istype(room_to_send_to))
 		to_chat(src, span_warning("You do not have a carrier you can send emotes to!"))

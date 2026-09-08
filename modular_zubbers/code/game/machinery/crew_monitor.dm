@@ -35,7 +35,7 @@
 		if(!istype(uniform) || uniform.has_sensor <= NO_SENSORS || !uniform.sensor_mode)
 			GLOB.suit_sensors_list -= mob
 			continue
-		if(uniform.sensor_mode == SENSOR_COORDS && (uniform.has_sensor != BROKEN_SENSORS) && (HAS_TRAIT(mob, TRAIT_CRITICAL_CONDITION) || mob.stat == DEAD))
+		if(uniform.sensor_mode == SENSOR_COORDS && (uniform.has_sensor != BROKEN_SENSORS) && IS_CRITICAL(mob) || mob.stat == DEAD)
 			if(mob.get_dnr()) // DNR won't beep anymore
 				continue
 			canalarm = TRUE

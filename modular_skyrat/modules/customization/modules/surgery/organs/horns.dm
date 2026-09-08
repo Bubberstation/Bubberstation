@@ -5,7 +5,7 @@
 	organ_flags = ORGAN_EXTERNAL
 
 /datum/bodypart_overlay/mutant/horns
-	layers = EXTERNAL_FRONT | EXTERNAL_ADJACENT | EXTERNAL_BEHIND
+	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER, EXTERNAL_ADJACENT = BODY_ADJ_LAYER, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
 	feature_key = "horns"
 	color_source = ORGAN_COLOR_OVERRIDE
 

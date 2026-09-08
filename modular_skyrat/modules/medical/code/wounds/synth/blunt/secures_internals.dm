@@ -190,14 +190,13 @@
 			stun_chance = 0
 
 		else if (iscarbon(user)) // doesn't matter if we're shock immune, it's set to 0 anyway
-			var/mob/living/carbon/carbon_user = user
-			if (carbon_user.gloves)
-				stun_chance *= carbon_user.gloves.siemens_coefficient
+			var/mob/living/carbon/human/human_user = user
+			if (human_user.gloves)
+				stun_chance *= human_user.gloves.siemens_coefficient
 
 			if (ishuman(user))
-				var/mob/living/carbon/human/human_user = user
 				stun_chance *= human_user.physiology.siemens_coeff
-			stun_chance *= carbon_user.dna.species.siemens_coeff
+			stun_chance *= human_user.dna.species.siemens_coeff
 
 		if (stun_chance && prob(stun_chance))
 			electrocute_flags &= ~SHOCK_KNOCKDOWN

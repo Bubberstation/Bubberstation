@@ -15,6 +15,12 @@
 	name = "mining cyborg advanced plasma cutter"
 	desc = "An upgrade for the mining cyborgs plasma cutter, bringing it to advanced operation."
 	icon_state = "module_miner"
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 5,
+	)
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER

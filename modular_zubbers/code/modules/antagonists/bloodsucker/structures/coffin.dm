@@ -273,12 +273,12 @@
 		return TRUE
 	. = ..()
 
-/obj/structure/closet/crate/coffin/tool_interact(obj/item/weapon, mob/living/user)
-	if(locked && (weapon.tool_behaviour == TOOL_CROWBAR))
-		var/pry_time = pry_lid_timer * weapon.toolspeed // Pry speed must be affected by the speed of the tool.
+/obj/structure/closet/crate/coffin/crowbar_act(mob/living/user, obj/item/tool)
+	if(locked)
+		var/pry_time = pry_lid_timer * tool.toolspeed // Pry speed must be affected by the speed of the tool.
 		user.visible_message(
-			span_notice("[user] tries to pry the lid off of [src] with [weapon]."),
-			span_notice("You begin prying the lid off of [src] with [weapon]. This should take about [DisplayTimeText(pry_time)].")
+			span_notice("[user] tries to pry the lid off of [src] with [tool]."),
+			span_notice("You begin prying the lid off of [src] with [tool]. This should take about [DisplayTimeText(pry_time)].")
 		)
 		if(!do_after(user, pry_time, src))
 			return TRUE
@@ -290,8 +290,10 @@
 		return TRUE
 	if(!resident)
 		. = ..()
+
+/obj/structure/closet/crate/coffin/welder_act(mob/living/user, obj/item/tool)
 	if(user != resident)
-		if(istype(weapon, cutting_tool))
+		if(istype(tool, cutting_tool))
 			to_chat(user, span_notice("This is a much more complex mechanical structure than you thought. You don't know where to begin cutting [src]."))
 			return TRUE
 	. = ..()

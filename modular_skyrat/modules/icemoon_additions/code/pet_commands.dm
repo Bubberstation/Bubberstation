@@ -14,7 +14,7 @@
 /datum/component/obeys_commands/proc/on_examine_more(mob/living/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	if (IS_DEAD_OR_INCAP(source))
+	if (source.incapacitated)
 		return
 	if (!(user in source.ai_controller?.blackboard[BB_FRIENDS_LIST]))
 		return

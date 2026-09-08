@@ -5,7 +5,7 @@
 	space_chance = 40
 	default_priority = 90
 
-	flags = TONGUELESS_SPEECH | LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD
+	flags = LANGUAGE_TONGUELESS_SPEECH | LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD
 	syllables = list(
 		"luk","cha","no","kra","pru","chi","busi","tam","pol","spu","och",
 		"umf","ora","stu","si","ri","li","ka","red","ani","lup","ala","pro",

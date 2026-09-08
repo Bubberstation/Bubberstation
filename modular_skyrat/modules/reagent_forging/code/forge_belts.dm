@@ -189,7 +189,7 @@
 		parent.update_overlays()
 		timer_id = addtimer(CALLBACK(my_charger, TYPE_PROC_REF(/obj/machinery/recharger/belt_charger, activate_with_item)), delay_before_charging, TIMER_STOPPABLE | TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_DELETE_ME)
 
-/datum/storage/charging_holster/remove_and_refresh(atom/movable/gone)
+/datum/storage/charging_holster/handle_exit(datum/source, atom/movable/gone)
 	. = ..()
 	parent.name = initial(parent.name)
 	my_charger.charging = null
@@ -534,8 +534,8 @@
 		/obj/item/food/grown/cherry_bomb,
 		/obj/item/food/grown/firelemon,
 		/obj/item/food/grown/gatfruit,
-		/obj/item/food/grown/holymelon,
-		/obj/item/food/grown/barrelmelon,
+		/obj/item/food/grown/melonlike/holymelon,
+		/obj/item/food/grown/melonlike/barrelmelon,
 		/obj/item/food/grown/tomato/blue/bluespace,
 		/obj/item/food/grown/tomato/killer,
 	)
