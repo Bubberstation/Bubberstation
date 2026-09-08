@@ -134,14 +134,14 @@
 
 
 // SURVIVAL
-/turf/closed/wall/mineral/titanium/survival
+/turf/closed/wall/mineral/plastitanium/survival
 	icon = 'modular_zubbers/icons/turf/walls/survival_pod_walls.dmi'
 	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_TITANIUM_WALLS + SMOOTH_GROUP_WALLS
 
-/turf/closed/wall/mineral/titanium/survival/nodiagonal
+/turf/closed/wall/mineral/plastitanium/survival/nodiagonal
 	icon = 'modular_zubbers/icons/turf/walls/survival_pod_walls.dmi'
 
-/turf/closed/wall/mineral/titanium/survival/pod
+/turf/closed/wall/mineral/plastitanium/survival/pod
 	icon = 'modular_zubbers/icons/turf/walls/survival_pod_walls.dmi'
 	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_SURVIVAL_TITANIUM_POD
 

@@ -493,7 +493,7 @@
 	var/list/modifiers = params2list(params)
 	if(!LAZYACCESS(modifiers, RIGHT_CLICK) || !IS_BLOODSUCKER(user) || !istype(user))
 		return
-	if(user.stat >= UNCONSCIOUS)
+	if(IS_UNCONSCIOUS_OR_CRIT(user))
 		return
 	user.balloon_alert_to_viewers("motions their hand at [src]")
 	toggle(user)
