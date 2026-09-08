@@ -9,8 +9,6 @@
 /mob/living/basic/blackmesa/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/ai_retaliate)
-	if(alert_sounds)
-		RegisterSignal(src, COMSIG_AI_BLACKBOARD_KEY_SET(BB_BASIC_MOB_CURRENT_TARGET), PROC_REF(handle_alert))
 
 /// Play a sound when spotting an enemy
 /mob/living/basic/blackmesa/proc/handle_alert(datum/source, key, value)
