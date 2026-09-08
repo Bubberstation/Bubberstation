@@ -152,24 +152,24 @@
 
 /turf/open/floor/mineral/plastitanium/pod/redlight/edge
 	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
-	icon_state = "podfloor_redlight_edge"
-	base_icon_state = "podfloor_redlight_edge"
+	icon_state = "podfloor_red_light_edge"
+	base_icon_state = "podfloor_red_light_edge"
 	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/redlight/edge
 
 /turf/open/floor/mineral/plastitanium/pod/redlight/half
 	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
-	icon_state = "podfloor_redlight_half"
-	base_icon_state = "podfloor_redlight_half"
+	icon_state = "podfloor_red_light_half"
+	base_icon_state = "podfloor_red_light_half"
 	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/redlight/half
 
 /turf/open/floor/mineral/plastitanium/pod/redlight/corner
 	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
-	icon_state = "podfloor_redlight_corner"
-	base_icon_state = "podfloor_redlight_corner"
+	icon_state = "podfloor_red_light_corner"
+	base_icon_state = "podfloor_red_light_corner"
 	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/redlight/corner
 
 /turf/open/floor/mineral/plastitanium/pod/redlight/large
 	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
-	icon_state = "podfloor_redlight_large"
-	base_icon_state = "podfloor_redlight_large"
+	icon_state = "podfloor_red_light_large"
+	base_icon_state = "podfloor_red_light_large"
 	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/redlight/large
