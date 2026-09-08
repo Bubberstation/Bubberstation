@@ -63,7 +63,6 @@
 	data["scene_details"] = scene_details
 	data["draft"] = draft_text
 	data["messages"] = build_formatted_messages()
-	data["you"] = build_person_entry(holder, TRUE)
 	data["participants"] = build_participant_list()
 	data["nearby"] = build_nearby_list()
 	data["typing"] = build_typing_list()
@@ -131,14 +130,21 @@
 	)
 
 /datum/rp_panel/proc/build_participant_list()
+	if(cached_participants)
+		return cached_participants
 	var/list/result = list()
 	for(var/mob/living/member as anything in get_scene_members())
 		result += list(build_person_entry(member, member == holder))
+	cached_participants = result
 	return result
 
 /datum/rp_panel/proc/build_nearby_list()
+	if(cached_nearby && world.time < cached_nearby_at + SCENE_ASSISTANT_NEARBY_CACHE)
+		return cached_nearby
 	var/list/result = list()
 	if(!holder || QDELETED(holder))
+		cached_nearby = result
+		cached_nearby_at = world.time
 		return result
 	var/is_admin = !!holder.client?.holder
 	for(var/mob/living/nearby in view(SCENE_ASSISTANT_RANGE, holder))
@@ -149,6 +155,8 @@
 		if(!nearby.client && !is_admin)
 			continue
 		result += list(build_person_entry(nearby))
+	cached_nearby = result
+	cached_nearby_at = world.time
 	return result
 
 /datum/rp_panel/proc/build_typing_list()
@@ -414,18 +422,27 @@
 			open_scene_image(params["url"])
 			return TRUE
 		if("set_emote_mode")
-			if(params["mode"] in list("say", "whisper", "emote", "subtle", "subtler", "subtler_antighost"))
-				emote_mode = params["mode"]
+			if(!(params["mode"] in list("say", "whisper", "emote", "subtle", "subtler", "subtler_antighost")))
+				return FALSE
+			if(emote_mode == params["mode"])
+				return FALSE
+			emote_mode = params["mode"]
 			return TRUE
 		if("set_scene_details")
-			scene_details = copytext_char("[params["details"]]", 1, SCENE_ASSISTANT_MAX_CHARS + 1)
+			var/new_details = copytext_char("[params["details"]]", 1, SCENE_ASSISTANT_MAX_CHARS + 1)
+			if(scene_details == new_details)
+				return FALSE
+			scene_details = new_details
 			for(var/datum/rp_panel/panel as anything in get_linked_panels())
 				panel.scene_details = scene_details
 				SStgui.update_uis(panel)
 			return TRUE
 		if("set_selected")
 			var/mob/living/picked = locate(params["ref"])
-			selected_participant = (picked && is_in_scene(picked)) ? picked : holder
+			var/mob/living/next_target = (picked && is_in_scene(picked)) ? picked : holder
+			if(selected_participant == next_target)
+				return FALSE
+			selected_participant = next_target
 			invalidate_interaction_cache()
 			return TRUE
 		if("set_typing")
@@ -851,3 +868,4 @@ img {
 #undef SCENE_ASSISTANT_INVITE_TIMEOUT
 #undef SCENE_ASSISTANT_RANGE_CHECK_INTERVAL
 #undef SCENE_ASSISTANT_INTERACTION_CACHE
+#undef SCENE_ASSISTANT_NEARBY_CACHE

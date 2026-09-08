@@ -118,7 +118,6 @@ export type RpPanelData = {
   scene_details: string;
   draft: string;
   messages: LogEntry[];
-  you: Person;
   participants: Person[];
   nearby: Person[];
   typing: string[];

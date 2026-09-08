@@ -4,6 +4,7 @@
 #define SCENE_ASSISTANT_INVITE_TIMEOUT (2 MINUTES)
 #define SCENE_ASSISTANT_RANGE_CHECK_INTERVAL (5 SECONDS)
 #define SCENE_ASSISTANT_INTERACTION_CACHE (2 SECONDS)
+#define SCENE_ASSISTANT_NEARBY_CACHE (1 SECONDS)
 
 /**
  * Scene Assistant - a shared writing room for nearby living mobs.
@@ -46,6 +47,9 @@
 	var/list/cached_interaction_data
 	var/list/cached_formatted_messages
 	var/formatted_messages_dirty = TRUE
+	var/list/cached_participants
+	var/list/cached_nearby
+	var/cached_nearby_at = 0
 
 /datum/rp_panel/New(mob/living/new_holder)
 	. = ..()
@@ -71,6 +75,8 @@
 	typing_participants = null
 	cached_interaction_data = null
 	cached_formatted_messages = null
+	cached_participants = null
+	cached_nearby = null
 	return ..()
 
 /datum/rp_panel/proc/on_holder_qdeleting(datum/source)
@@ -83,6 +89,8 @@
 
 /datum/rp_panel/proc/on_holder_moved(atom/movable/source)
 	SIGNAL_HANDLER
+	cached_nearby = null
+	cached_nearby_at = 0
 	if(length(participants) || length(pending_invites))
 		expire_stale_invites()
 		queue_range_check()
@@ -94,6 +102,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "RpPanel", "Scene Assistant")
+		ui.set_autoupdate(FALSE)
 		ui.open()
 
 /datum/rp_panel/ui_close(mob/user)
@@ -277,6 +286,7 @@
 			if(entry["ref"] == holder_ref)
 				entry["color"] = name_color
 		panel.invalidate_formatted_log()
+		panel.invalidate_participant_cache()
 		SStgui.update_uis(panel)
 	return TRUE
 
@@ -329,6 +339,7 @@
 				continue
 			add_weakref_unique(member.rp_panel.participants, other)
 		member.rp_panel.scene_details = scene_details
+		member.rp_panel.invalidate_participant_cache()
 
 /datum/rp_panel/proc/add_weakref_unique(list/refs, mob/living/target)
 	for(var/datum/weakref/ref as anything in refs)
@@ -504,6 +515,7 @@
 		target.rp_panel.typing_participants = list()
 		target.rp_panel.selected_participant = target
 		target.rp_panel.stop_range_watch()
+		target.rp_panel.invalidate_participant_cache()
 		if(voluntary)
 			SStgui.update_uis(target.rp_panel)
 		else
@@ -551,6 +563,7 @@
 			remove_participant(gone)
 		else
 			participants -= ref_to_drop
+			invalidate_participant_cache()
 
 /datum/rp_panel/proc/append_scene_message(list/message_entry)
 	for(var/datum/rp_panel/panel as anything in get_linked_panels())
@@ -566,6 +579,11 @@
 /datum/rp_panel/proc/invalidate_formatted_log()
 	formatted_messages_dirty = TRUE
 	cached_formatted_messages = null
+
+/datum/rp_panel/proc/invalidate_participant_cache()
+	cached_participants = null
+	cached_nearby = null
+	cached_nearby_at = 0
 
 /datum/rp_panel/proc/build_log_entry(mob/living/speaker, message, mode, image_url = "")
 	return list(
