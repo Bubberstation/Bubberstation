@@ -58,70 +58,118 @@
 	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
 	icon_state = "podfloor_edge"
 	base_icon_state = "podfloor_edge"
-	floor_tile = /obj/item/stack/tile/pod/edge
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/edge
 
 /turf/open/floor/mineral/plastitanium/pod/half
 	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
 	icon_state = "podfloor_half"
 	base_icon_state = "podfloor_half"
-	floor_tile = /obj/item/stack/tile/pod/half
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/half
 
 /turf/open/floor/mineral/plastitanium/pod/corner
 	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
 	icon_state = "podfloor_corner"
 	base_icon_state = "podfloor_corner"
-	floor_tile = /obj/item/stack/tile/pod/corner
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/corner
 
 /turf/open/floor/mineral/plastitanium/pod/large
 	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
 	icon_state = "podfloor_large"
 	base_icon_state = "podfloor_large"
-	floor_tile = /obj/item/stack/tile/pod/large
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/large
 
 /turf/open/floor/mineral/plastitanium/pod/light/edge
 	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
 	icon_state = "podfloor_light_edge"
 	base_icon_state = "podfloor_light_edge"
-	floor_tile = /obj/item/stack/tile/pod/light/edge
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/light/edge
 
 /turf/open/floor/mineral/plastitanium/pod/light/half
 	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
 	icon_state = "podfloor_light_half"
 	base_icon_state = "podfloor_light_half"
-	floor_tile = /obj/item/stack/tile/pod/light/half
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/light/half
 
 /turf/open/floor/mineral/plastitanium/pod/light/corner
 	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
 	icon_state = "podfloor_light_corner"
 	base_icon_state = "podfloor_light_corner"
-	floor_tile = /obj/item/stack/tile/pod/light/corner
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/light/corner
 
 /turf/open/floor/mineral/plastitanium/pod/light/large
 	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
 	icon_state = "podfloor_light_large"
 	base_icon_state = "podfloor_light_large"
-	floor_tile = /obj/item/stack/tile/pod/light/large
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/light/large
 
 /turf/open/floor/mineral/plastitanium/pod/dark/edge
 	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
 	icon_state = "podfloor_dark_edge"
 	base_icon_state = "podfloor_dark_edge"
-	floor_tile = /obj/item/stack/tile/pod/dark/edge
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/dark/edge
 
 /turf/open/floor/mineral/plastitanium/pod/dark/half
 	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
 	icon_state = "podfloor_dark_half"
 	base_icon_state = "podfloor_dark_half"
-	floor_tile = /obj/item/stack/tile/pod/dark/half
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/dark/half
 
 /turf/open/floor/mineral/plastitanium/pod/dark/corner
 	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
 	icon_state = "podfloor_dark_corner"
 	base_icon_state = "podfloor_dark_corner"
-	floor_tile = /obj/item/stack/tile/pod/dark/corner
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/dark/corner
 
 /turf/open/floor/mineral/plastitanium/pod/dark/large
 	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
 	icon_state = "podfloor_dark_large"
 	base_icon_state = "podfloor_dark_large"
-	floor_tile = /obj/item/stack/tile/pod/dark/large
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/dark/large
+
+/turf/open/floor/mineral/plastitanium/pod/red/edge
+	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
+	icon_state = "podfloor_red_edge"
+	base_icon_state = "podfloor_red_edge"
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/red/edge
+
+/turf/open/floor/mineral/plastitanium/pod/red/half
+	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
+	icon_state = "podfloor_red_half"
+	base_icon_state = "podfloor_red_half"
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/red/half
+
+/turf/open/floor/mineral/plastitanium/pod/red/corner
+	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
+	icon_state = "podfloor_red_corner"
+	base_icon_state = "podfloor_red_corner"
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/red/corner
+
+/turf/open/floor/mineral/plastitanium/pod/red/large
+	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
+	icon_state = "podfloor_red_large"
+	base_icon_state = "podfloor_red_large"
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/red/large
+
+/turf/open/floor/mineral/plastitanium/pod/redlight/edge
+	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
+	icon_state = "podfloor_redlight_edge"
+	base_icon_state = "podfloor_redlight_edge"
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/redlight/edge
+
+/turf/open/floor/mineral/plastitanium/pod/redlight/half
+	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
+	icon_state = "podfloor_redlight_half"
+	base_icon_state = "podfloor_redlight_half"
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/redlight/half
+
+/turf/open/floor/mineral/plastitanium/pod/redlight/corner
+	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
+	icon_state = "podfloor_redlight_corner"
+	base_icon_state = "podfloor_redlight_corner"
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/redlight/corner
+
+/turf/open/floor/mineral/plastitanium/pod/redlight/large
+	icon = 'modular_zubbers/icons/turf/floors/floors_misc.dmi'
+	icon_state = "podfloor_redlight_large"
+	base_icon_state = "podfloor_redlight_large"
+	floor_tile = /obj/item/stack/tile/mineral/plastitanium/pod/redlight/large
