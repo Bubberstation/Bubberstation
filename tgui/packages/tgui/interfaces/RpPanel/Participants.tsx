@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import type { Person, RpPanelData } from './types';
+import { asArray, type Person, type RpPanelData } from './types';
 
 export function Participants() {
   const { act, data } = useBackend<RpPanelData>();
-  const { participants = [], nearby = [], scene_details } = data;
+  const { scene_details } = data;
+  const participants = asArray(data.participants);
+  const nearby = asArray(data.nearby);
   const [picking, setPicking] = useState<'invite' | 'remove' | null>(null);
   const [details, setDetails] = useState(scene_details || '');
 

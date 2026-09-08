@@ -10,7 +10,7 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import type { RpPanelData } from './types';
+import { asArray, type RpPanelData } from './types';
 
 type SettingsModalProps = {
   onClose: () => void;
@@ -19,8 +19,16 @@ type SettingsModalProps = {
 export function SettingsModal(props: SettingsModalProps) {
   const { act, data } = useBackend<RpPanelData>();
   const { onClose } = props;
-  const { settings, themes, soundpacks, avatar_sizes, fonts, font_sizes, line_spacings } =
-    data;
+  const { settings } = data;
+  const themes = asArray(data.themes);
+  const soundpacks = asArray(data.soundpacks);
+  const avatar_sizes = asArray(data.avatar_sizes);
+  const fonts = asArray(data.fonts);
+  const font_sizes = asArray(data.font_sizes);
+  const line_spacings = asArray(data.line_spacings);
+  if (!settings) {
+    return null;
+  }
 
   return (
     <Modal>

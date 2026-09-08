@@ -25,6 +25,9 @@ export function ManageSelfModal(props: ManageSelfModalProps) {
   const { act, data } = useBackend<RpPanelData>();
   const { onClose } = props;
   const { self } = data;
+  if (!self) {
+    return null;
+  }
 
   return (
     <Modal>
