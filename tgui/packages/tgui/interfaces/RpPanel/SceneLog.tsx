@@ -443,7 +443,11 @@ export function SceneLog(props: SceneLogProps) {
             </Button>
           </Stack.Item>
           <Stack.Item>
-            <Button icon="download" tooltip="Export log" onClick={() => act('export_log')} />
+            <Button
+              icon="download"
+              tooltip="Download log"
+              onClick={() => act('export_log')}
+            />
           </Stack.Item>
           <Stack.Item>
             <Button.Confirm

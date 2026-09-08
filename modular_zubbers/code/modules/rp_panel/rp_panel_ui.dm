@@ -814,13 +814,6 @@ h1 {
 	color: #94a3b8;
 	font-size: 12px;
 }
-.details {
-	background: #1f2330;
-	border-left: 3px solid #a78bfa;
-	padding: 10px 14px;
-	margin-bottom: 18px;
-	color: #ddd6fe;
-}
 .entry {
 	margin: 0 0 10px;
 	padding: 8px 12px;
@@ -860,15 +853,13 @@ img {
 <h1>Scene Assistant</h1>
 "})
 	lines += "<p class='subtitle'>Exported [time2text(world.timeofday, "YYYY-MM-DD HH:MM:SS")]</p>"
-	if(length(scene_details))
-		lines += "<div class='details'><b>Scene details</b><div class='msg'>[format_scene_text(scene_details)]</div></div>"
 	if(!length(messages))
 		lines += "<p class='empty'>No messages.</p>"
 	for(var/list/entry as anything in messages)
 		var/mode = "[entry["mode"]]"
 		var/css_class = mode_classes[mode] || "emote"
 		var/body = format_scene_text(entry["message"])
-		if((mode == "say" || mode == "whisper") && copytext("[entry["message"]]", 1, 2) != "\"")
+		if((mode == "say" || mode == "whisper") && !entry["far_hear"] && copytext("[entry["message"]]", 1, 2) != "\"")
 			body = "\"[body]\""
 		lines += "<div class='entry [css_class]'>"
 		if(mode == "system")
@@ -881,7 +872,19 @@ img {
 			lines += "<img src='[html_encode(entry["image"])]'>"
 		lines += "</div>"
 	lines += "</body></html>"
-	holder << browse(jointext(lines, ""), "window=scene_assistant_export;size=760x620")
+
+	if(!holder?.client)
+		return
+	var/filename = "scene_assistant_[time2text(world.timeofday, "YYYY-MM-DD_HH-MM-SS")].html"
+	var/tmp_path = "tmp/scene_assistant_export_[REF(holder)].html"
+	fdel(tmp_path)
+	rustg_file_write(jointext(lines, ""), tmp_path)
+	if(!fexists(tmp_path))
+		to_chat(holder, span_warning("Failed to prepare the scene log download."))
+		return
+	DIRECT_OUTPUT(holder, ftp(file(tmp_path), filename))
+	fdel(tmp_path)
+	to_chat(holder, span_notice("Scene log download started ([filename])."))
 
 #undef SCENE_ASSISTANT_RANGE
 #undef SCENE_ASSISTANT_MAX_CHARS
