@@ -46,20 +46,21 @@
 	queue_range_check()
 	if(QDELETED(holder))
 		return list()
-	if(!(emote_mode in list("say", "emote", "subtle", "subtler", "subtler_antighost")))
+	if(!(emote_mode in list("say", "whisper", "emote", "subtle", "subtler", "subtler_antighost")))
 		emote_mode = "say"
 
 	var/list/data = list()
 	data["emote_mode"] = emote_mode
 	data["emote_modes"] = list(
 		list("id" = "say", "label" = "say"),
+		list("id" = "whisper", "label" = "whisper"),
 		list("id" = "emote", "label" = "emote"),
 		list("id" = "subtle", "label" = "subtle"),
 		list("id" = "subtler", "label" = "subtler"),
 		list("id" = "subtler_antighost", "label" = "subtler anti-ghost"),
 	)
 	data["scene_details"] = scene_details
-	data["messages"] = messages
+	data["messages"] = build_formatted_messages()
 	data["you"] = build_person_entry(holder, TRUE)
 	data["participants"] = build_participant_list()
 	data["nearby"] = build_nearby_list()
@@ -96,6 +97,14 @@
 	if(QDELETED(src))
 		return
 	check_and_remove_out_of_range()
+
+/datum/rp_panel/proc/build_formatted_messages()
+	var/list/formatted = list()
+	for(var/list/entry as anything in messages)
+		var/list/copy = entry.Copy()
+		copy["message"] = format_scene_text(entry["message"])
+		formatted += list(copy)
+	return formatted
 
 /datum/rp_panel/proc/build_person_entry(mob/living/person, is_you = FALSE)
 	if(!person || QDELETED(person))
@@ -181,23 +190,24 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/human_target = target
 		data["has_reference"] = !!length(human_target.dna?.features["art_ref"])
-	if(!erp_enabled(holder) || !ishuman(target))
-		return data
-	data["show_erp"] = TRUE
-	var/mob/living/carbon/human/human_holder = holder
-	data["your_name"] = holder.name
-	data["pleasure"] = human_holder.pleasure
-	data["arousal"] = human_holder.arousal
-	data["pain"] = human_holder.pain
-	if(target != holder && ishuman(target))
-		var/mob/living/carbon/human/human_target = target
-		data["their_name"] = target.name
-		data["their_pleasure"] = human_target.pleasure
-		data["their_arousal"] = human_target.arousal
-		data["their_pain"] = human_target.pain
-	var/list/verb_data = build_interaction_data(target)
-	for(var/key in verb_data)
-		data[key] = verb_data[key]
+	var/allow_lewd = ishuman(target) && ishuman(holder) && erp_content_enabled(holder) && (target == holder || erp_content_enabled(target))
+	data["show_erp"] = allow_lewd
+	if(allow_lewd)
+		var/mob/living/carbon/human/human_holder = holder
+		data["your_name"] = holder.name
+		data["pleasure"] = human_holder.pleasure
+		data["arousal"] = human_holder.arousal
+		data["pain"] = human_holder.pain
+		if(target != holder && ishuman(target))
+			var/mob/living/carbon/human/human_target = target
+			data["their_name"] = target.name
+			data["their_pleasure"] = human_target.pleasure
+			data["their_arousal"] = human_target.arousal
+			data["their_pain"] = human_target.pain
+	if(ishuman(target) && ishuman(holder))
+		var/list/verb_data = build_interaction_data(target, allow_lewd)
+		for(var/key in verb_data)
+			data[key] = verb_data[key]
 	return data
 
 /datum/rp_panel/proc/build_anatomy_details(mob/living/target)
@@ -251,7 +261,7 @@
 	tags += list(list("label" = "MECHANICS", "value" = (!mechanics || mechanics == "None") ? "NO" : uppertext(mechanics)))
 	return tags
 
-/datum/rp_panel/proc/build_interaction_data(mob/living/target)
+/datum/rp_panel/proc/build_interaction_data(mob/living/target, allow_lewd = FALSE)
 	var/list/data = list(
 		"categories" = list(),
 		"interactions" = list(),
@@ -271,6 +281,8 @@
 	var/list/colors = list()
 	for(var/interaction_id in GLOB.interaction_instances)
 		var/datum/interaction/interaction = GLOB.interaction_instances[interaction_id]
+		if(interaction.lewd && !allow_lewd)
+			continue
 		if(!interaction_component.can_interact(interaction, holder))
 			continue
 		if(!categories[interaction.category])
@@ -288,6 +300,8 @@
 	data["descriptions"] = descriptions
 	data["colors"] = colors
 
+	if(!allow_lewd)
+		return data
 	var/mob/living/carbon/human/human_holder = holder
 	var/mob/living/carbon/human/human_target = target
 	if(interaction_component.can_lewd_strip(human_holder, human_target) && human_target.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy))
@@ -368,8 +382,14 @@
 		if("send_message")
 			send_scene_message(params["message"])
 			return TRUE
+		if("send_image")
+			send_scene_image(params["url"], params["caption"])
+			return TRUE
+		if("open_image")
+			open_scene_image(params["url"])
+			return TRUE
 		if("set_emote_mode")
-			if(params["mode"] in list("say", "emote", "subtle", "subtler", "subtler_antighost"))
+			if(params["mode"] in list("say", "whisper", "emote", "subtle", "subtler", "subtler_antighost"))
 				emote_mode = params["mode"]
 			return TRUE
 		if("set_scene_details")
@@ -413,10 +433,11 @@
 			toggle_underwear(params["kind"])
 			return TRUE
 		if("toggle_autocum")
-			toggle_autocum()
+			if(erp_content_enabled(holder))
+				toggle_autocum()
 			return TRUE
 		if("trigger_climax")
-			if(ishuman(holder))
+			if(erp_content_enabled(holder) && ishuman(holder))
 				var/mob/living/carbon/human/human_holder = holder
 				human_holder.climax(manual = TRUE)
 			return TRUE
@@ -518,6 +539,12 @@
 		return
 	holder << browse("<html><body style='margin:0;background:#111;text-align:center'><img src='[html_encode(reference_url)]' style='max-width:100%'></body></html>", "window=scene_assistant_ref;size=800x600")
 
+/datum/rp_panel/proc/open_scene_image(raw_url)
+	var/image_url = sanitize_scene_image_url(raw_url)
+	if(!image_url)
+		return
+	holder << browse("<html><body style='margin:0;background:#111;text-align:center'><img src='[html_encode(image_url)]' style='max-width:100%'></body></html>", "window=scene_assistant_img;size=800x800")
+
 /datum/rp_panel/proc/run_interaction(interaction_name)
 	var/mob/living/target = get_target()
 	if(!ishuman(target) || !ishuman(holder) || !interaction_name)
@@ -525,6 +552,8 @@
 	var/datum/component/interactable/interaction_component = target.GetComponent(/datum/component/interactable)
 	var/datum/interaction/found_interaction = GLOB.interaction_instances[interaction_name]
 	if(!interaction_component || !found_interaction)
+		return
+	if(found_interaction.lewd && (!erp_content_enabled(holder) || !erp_content_enabled(target)))
 		return
 	if(!interaction_component.can_interact(found_interaction, holder))
 		to_chat(holder, span_warning("You cannot perform '[interaction_name]' on [target]."))
@@ -553,6 +582,8 @@
 /datum/rp_panel/proc/remove_lewd_item(item_slot)
 	var/mob/living/target = get_target()
 	if(!ishuman(target) || !item_slot)
+		return
+	if(!erp_content_enabled(holder) || (target != holder && !erp_content_enabled(target)))
 		return
 	var/datum/component/interactable/interaction_component = target.GetComponent(/datum/component/interactable)
 	if(!interaction_component)
@@ -627,9 +658,11 @@
 /datum/rp_panel/proc/export_log()
 	var/list/lines = list("<html><head><title>Scene Log</title></head><body>")
 	if(length(scene_details))
-		lines += "<p><b>Scene Details:</b> [html_encode(scene_details)]</p><hr>"
+		lines += "<p><b>Scene Details:</b> [format_scene_text(scene_details)]</p><hr>"
 	for(var/list/entry as anything in messages)
-		lines += "<p><b>[html_encode(entry["name"])]</b> ([html_encode("[entry["mode"]]")]) [html_encode("[entry["message"]]")]</p>"
+		lines += "<p><b>[html_encode(entry["name"])]</b> ([html_encode("[entry["mode"]]")]) [format_scene_text(entry["message"])]</p>"
+		if(entry["image"])
+			lines += "<p><img src='[html_encode(entry["image"])]' style='max-width:100%'></p>"
 	lines += "</body></html>"
 	holder << browse(jointext(lines, ""), "window=scene_assistant_export;size=700x500")
 

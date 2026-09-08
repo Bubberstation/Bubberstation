@@ -8,10 +8,13 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
+import { sanitizeText } from '../../sanitize';
 import { asArray, type LogEntry, type RpPanelData } from './types';
+import sceneAssistantIcon from './scene_assistant.png';
 
 const MODE_CLASS: Record<string, string> = {
   say: 'say',
+  whisper: 'whisper',
   emote: 'emote',
   subtle: 'subtle',
   subtler: 'subtler',
@@ -19,11 +22,36 @@ const MODE_CLASS: Record<string, string> = {
   system: 'system',
 };
 
-function formatMessage(entry: LogEntry) {
-  if (entry.mode === 'say' && !entry.message.startsWith('"')) {
-    return `"${entry.message}"`;
+function applyChatEmphasis(raw: string): string {
+  let input = raw
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+  const wrap = (marker: string, tag: string) => {
+    const pattern = new RegExp(`(?<!\\\\)${marker}(.+?)(?<!\\\\)${marker}`, 'g');
+    input = input.replace(pattern, `<${tag}>$1</${tag}>`);
+  };
+  wrap('\\|', 'i');
+  wrap('\\+', 'b');
+  wrap('_', 'u');
+  wrap('\\^', 'small');
+  input = input.replace(/\\(_|\+|\||\^)/g, '$1');
+  return sanitizeText(input.replace(/\r\n|\n|\r/g, '<br>'));
+}
+
+function formatMessageHtml(entry: LogEntry) {
+  let message = entry.message || '';
+  if (
+    (entry.mode === 'say' || entry.mode === 'whisper') &&
+    !message.startsWith('"')
+  ) {
+    message = `"${message}"`;
   }
-  return entry.message;
+  return { __html: sanitizeText(message) };
+}
+
+function isHttpsUrl(url: string | undefined): url is string {
+  return !!url && url.startsWith('https://') && !/[<>"']/.test(url);
 }
 
 type SceneLogProps = {
@@ -49,14 +77,51 @@ export function SceneLog(props: SceneLogProps) {
   const typing = asArray<string>(data.typing);
   const emote_modes = asArray(data.emote_modes);
   const logRef = useRef<HTMLDivElement>(null);
+  const stickToBottomRef = useRef(true);
+  const prevCountRef = useRef(0);
   const [draft, setDraft] = useState('');
+  const [unread, setUnread] = useState(0);
+  const [imageOpen, setImageOpen] = useState(false);
+  const [imageDraft, setImageDraft] = useState('');
+
+  const scrollToBottom = () => {
+    const node = logRef.current;
+    if (!node) {
+      return;
+    }
+    node.scrollTop = node.scrollHeight;
+    stickToBottomRef.current = true;
+    setUnread(0);
+  };
+
+  const onLogScroll = () => {
+    const node = logRef.current;
+    if (!node) {
+      return;
+    }
+    const nearBottom =
+      node.scrollHeight - node.scrollTop - node.clientHeight <= 48;
+    stickToBottomRef.current = nearBottom;
+    if (nearBottom) {
+      setUnread(0);
+    }
+  };
 
   useLayoutEffect(() => {
     const node = logRef.current;
     if (!node) {
       return;
     }
-    node.scrollTop = node.scrollHeight;
+    const added = messages.length - prevCountRef.current;
+    prevCountRef.current = messages.length;
+    if (stickToBottomRef.current) {
+      node.scrollTop = node.scrollHeight;
+      setUnread(0);
+      return;
+    }
+    if (added > 0) {
+      setUnread((count) => count + added);
+    }
   }, [messages.length, typing.length]);
 
   const fontStyle = useMemo(
@@ -70,12 +135,25 @@ export function SceneLog(props: SceneLogProps) {
 
   const send = () => {
     const trimmed = draft.trim();
+    const imageUrl = imageDraft.trim();
+    if (imageUrl) {
+      act('send_image', { url: imageUrl, caption: trimmed });
+      setDraft('');
+      setImageDraft('');
+      setImageOpen(false);
+      act('set_typing', { typing: 0 });
+      stickToBottomRef.current = true;
+      setUnread(0);
+      return;
+    }
     if (!trimmed) {
       return;
     }
     act('send_message', { message: trimmed });
     setDraft('');
     act('set_typing', { typing: 0 });
+    stickToBottomRef.current = true;
+    setUnread(0);
   };
 
   return (
@@ -85,10 +163,15 @@ export function SceneLog(props: SceneLogProps) {
           ref={logRef}
           className="SceneAssistant__log"
           style={fontStyle}
+          onScroll={onLogScroll}
         >
             {!!scene_details && (
               <NoticeBox className="SceneAssistant__scenePin">
-                {scene_details}
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: applyChatEmphasis(scene_details),
+                  }}
+                />
               </NoticeBox>
             )}
             {!messages.length && (
@@ -104,7 +187,16 @@ export function SceneLog(props: SceneLogProps) {
                 <Stack>
                   {!!settings.show_avatars && (
                     <Stack.Item>
-                      {entry.headshot ? (
+                      {entry.mode === 'system' ? (
+                        <img
+                          src={sceneAssistantIcon}
+                          className="SceneAssistant__avatar SceneAssistant__avatar--system"
+                          style={{
+                            width: `${settings.avatar_size}px`,
+                            height: `${settings.avatar_size}px`,
+                          }}
+                        />
+                      ) : entry.headshot ? (
                         <img
                           src={entry.headshot}
                           className="SceneAssistant__avatar"
@@ -130,9 +222,13 @@ export function SceneLog(props: SceneLogProps) {
                   )}
                   <Stack.Item grow>
                     {entry.mode === 'system' ? (
-                      <Box italic color="purple">
-                        {entry.message}
-                      </Box>
+                      <Box
+                        italic
+                        color="purple"
+                        dangerouslySetInnerHTML={{
+                          __html: sanitizeText(entry.message || ''),
+                        }}
+                      />
                     ) : (
                       <>
                         <Box
@@ -142,7 +238,18 @@ export function SceneLog(props: SceneLogProps) {
                         >
                           {entry.name}
                         </Box>
-                        <Box>{formatMessage(entry)}</Box>
+                        {!!entry.message && (
+                          <Box dangerouslySetInnerHTML={formatMessageHtml(entry)} />
+                        )}
+                        {isHttpsUrl(entry.image) && (
+                          <img
+                            src={entry.image}
+                            className="SceneAssistant__logImage"
+                            onClick={() =>
+                              act('open_image', { url: entry.image })
+                            }
+                          />
+                        )}
                       </>
                     )}
                   </Stack.Item>
@@ -156,12 +263,26 @@ export function SceneLog(props: SceneLogProps) {
               </Box>
             )}
           </div>
+        {unread > 0 && (
+          <Button
+            className="SceneAssistant__newMessage"
+            icon="arrow-down"
+            color="blue"
+            onClick={scrollToBottom}
+          >
+            {unread === 1 ? 'New Message' : `New Messages (${unread})`}
+          </Button>
+        )}
       </Stack.Item>
       <Stack.Item className="SceneAssistant__composerWrap">
         <textarea
           className="SceneAssistant__composer"
           maxLength={max_chars}
-          placeholder="This is a resizeable text box to write in!"
+          placeholder={
+            imageOpen
+              ? 'Optional caption for the image (scene log only)'
+              : 'This is a resizeable text box to write in!'
+          }
           value={draft}
           onChange={(event) => {
             const value = event.target.value;
@@ -173,7 +294,7 @@ export function SceneLog(props: SceneLogProps) {
               return;
             }
             if (event.shiftKey) {
-              if (emote_mode === 'say') {
+              if (emote_mode === 'say' || emote_mode === 'whisper') {
                 event.preventDefault();
                 setDraft((value) => `${value} `);
               }
@@ -183,6 +304,20 @@ export function SceneLog(props: SceneLogProps) {
             send();
           }}
         />
+        {imageOpen && (
+          <input
+            className="SceneAssistant__imageUrl"
+            placeholder="https:// direct image link (Catbox, Imgbox, Gyazo, Lensdump, F-List)"
+            value={imageDraft}
+            onChange={(event) => setImageDraft(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                event.preventDefault();
+                send();
+              }
+            }}
+          />
+        )}
         <Stack mt={0.5}>
           <Stack.Item grow color="label">
             {draft.length} / {max_chars} characters
@@ -195,6 +330,20 @@ export function SceneLog(props: SceneLogProps) {
                 value: String(mode.id),
               }))}
               onSelected={(value) => act('set_emote_mode', { mode: value })}
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="image"
+              color={imageOpen ? 'blue' : undefined}
+              selected={imageOpen}
+              tooltip="Attach an image. Logged as subtler in the scene, not in IC chat."
+              onClick={() => {
+                setImageOpen((open) => !open);
+                if (imageOpen) {
+                  setImageDraft('');
+                }
+              }}
             />
           </Stack.Item>
           <Stack.Item>

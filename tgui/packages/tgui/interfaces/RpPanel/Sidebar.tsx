@@ -28,6 +28,8 @@ export function Sidebar(props: SidebarProps) {
   const participants = asArray(data.participants);
   const [tab, setTab] = useState(0);
   const [search, setSearch] = useState('');
+  const showErp = !!target?.show_erp;
+  const activeTab = showErp ? tab : 0;
   const searchLower = search.toLowerCase();
   if (!target) {
     return null;
@@ -164,11 +166,11 @@ export function Sidebar(props: SidebarProps) {
       <Stack.Item grow>
         <Section fill>
           <Tabs>
-            <Tabs.Tab selected={tab === 0} onClick={() => setTab(0)}>
+            <Tabs.Tab selected={activeTab === 0} onClick={() => setTab(0)}>
               Interactions
             </Tabs.Tab>
-            {!!target.show_erp && (
-              <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
+            {!!showErp && (
+              <Tabs.Tab selected={activeTab === 1} onClick={() => setTab(1)}>
                 Lewd Items
               </Tabs.Tab>
             )}
@@ -180,7 +182,7 @@ export function Sidebar(props: SidebarProps) {
             value={search}
             onChange={setSearch}
           />
-          {tab === 0 ? (
+          {activeTab === 0 ? (
             <Box mt={0.5}>
               <NoticeBox>
                 {target.block_interact ? 'Unable to Interact' : 'Able to Interact'}

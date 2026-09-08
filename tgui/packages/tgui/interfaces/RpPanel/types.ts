@@ -20,6 +20,7 @@ export type LogEntry = {
   timestamp: string;
   ref: string;
   color: string;
+  image?: string;
 };
 
 export type StatusTag = {

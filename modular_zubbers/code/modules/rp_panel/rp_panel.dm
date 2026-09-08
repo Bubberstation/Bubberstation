@@ -66,6 +66,10 @@
 		ui = new(user, src, "RpPanel", "Scene Assistant")
 		ui.open()
 
+/datum/rp_panel/ui_close(mob/user)
+	set_typing(FALSE)
+	return ..()
+
 /datum/rp_panel/proc/load_prefs()
 	var/datum/preferences/prefs = holder?.client?.prefs
 	if(!prefs)
@@ -99,6 +103,14 @@
 	if(CONFIG_GET(flag/disable_erp_preferences))
 		return FALSE
 	return target?.client?.prefs?.read_preference(/datum/preference/toggle/master_erp_preferences) && target.client.prefs.read_preference(/datum/preference/toggle/erp)
+
+/datum/rp_panel/proc/erp_content_enabled(mob/living/target)
+	if(!erp_enabled(target))
+		return FALSE
+	var/erp_status = target.client?.prefs?.read_preference(/datum/preference/choiced/erp_status)
+	if(!erp_status || erp_status == "No" || erp_status == "None")
+		return FALSE
+	return TRUE
 
 /datum/rp_panel/proc/get_headshot(mob/living/target)
 	if(!target)
@@ -248,7 +260,7 @@
 
 	members += target
 	sync_scene_membership(members)
-	target.rp_panel.messages = deep_copy_list(messages)
+	// Joiners keep their own log. Do not copy missed messages from the live scene.
 	target.rp_panel.scene_details = scene_details
 
 	to_chat(holder, span_notice("[target] joined the scene."))
@@ -320,7 +332,7 @@
 		panel.messages += list(message_entry)
 		SStgui.update_uis(panel)
 
-/datum/rp_panel/proc/build_log_entry(mob/living/speaker, message, mode)
+/datum/rp_panel/proc/build_log_entry(mob/living/speaker, message, mode, image_url = "")
 	return list(
 		"name" = speaker.name,
 		"message" = message,
@@ -329,31 +341,90 @@
 		"timestamp" = time2text(world.timeofday, "HH:MM:SS"),
 		"ref" = REF(speaker),
 		"color" = get_member_color(speaker),
+		"image" = image_url,
 	)
+
+/datum/rp_panel/proc/is_scene_image_url(raw_url)
+	var/value = trim("[raw_url]")
+	if(!length(value) || copytext(value, 1, 9) != "https://")
+		return FALSE
+	var/url_no_query = splittext(value, "?")[1]
+	url_no_query = splittext(url_no_query, "#")[1]
+	var/list/value_split = splittext(url_no_query, ".")
+	var/extension = lowertext(value_split[length(value_split)])
+	var/static/list/valid_extensions = list("jpg", "png", "jpeg", "gif", "webp")
+	if(!(extension in valid_extensions))
+		return FALSE
+	var/datum/preference/text/headshot/headshot_pref = GLOB.preference_entries[/datum/preference/text/headshot]
+	if(!headshot_pref)
+		return FALSE
+	return findtext(value, headshot_pref.link_regex) == 9
+
+/datum/rp_panel/proc/sanitize_scene_image_url(raw_url)
+	var/value = trim("[raw_url]")
+	if(is_scene_image_url(value))
+		return value
+	to_chat(holder, span_warning("Images must be a direct https jpg, png, jpeg, gif, or webp link from Catbox, Imgbox, Gyazo, Lensdump, or F-List."))
+	return ""
+
+/datum/rp_panel/proc/newlines_to_html(raw_text)
+	var/converted = replacetext("[raw_text]", "\r\n", "\n")
+	converted = replacetext(converted, "\r", "\n")
+	return replacetext(converted, "\n", "<br>")
+
+/datum/rp_panel/proc/flatten_newlines(raw_text)
+	var/converted = replacetext("[raw_text]", "\r\n", " ")
+	converted = replacetext(converted, "\n", " ")
+	return replacetext(converted, "\r", " ")
+
+/datum/rp_panel/proc/send_scene_image(raw_url, raw_caption = "")
+	var/image_url = sanitize_scene_image_url(raw_url)
+	if(!image_url)
+		return
+	var/caption = trim(copytext_char("[raw_caption]", 1, SCENE_ASSISTANT_MAX_CHARS + 1))
+	if(holder.client?.autopunctuation && length(caption))
+		caption = autopunct_bare(caption)
+	clear_typing()
+	append_scene_message(build_log_entry(holder, caption, "subtler", image_url))
+	play_sound_to_participants("message")
+	holder.log_message("scene image: [image_url][length(caption) ? " - [caption]" : ""]", LOG_SUBTLER)
 
 /datum/rp_panel/proc/send_scene_message(raw_message)
 	var/message = trim(copytext_char("[raw_message]", 1, SCENE_ASSISTANT_MAX_CHARS + 1))
 	if(!length(message))
 		return
+	if(is_scene_image_url(message))
+		send_scene_image(message)
+		return
 	clear_typing()
 	if(holder.client?.autopunctuation)
 		message = autopunct_bare(message)
+	var/ic_message = message
+	var/log_message = message
+	switch(emote_mode)
+		if("say", "whisper")
+			ic_message = flatten_newlines(message)
+			log_message = ic_message
+		if("emote", "subtle", "subtler", "subtler_antighost")
+			ic_message = newlines_to_html(message)
 	sending_message = TRUE
 	switch(emote_mode)
 		if("say")
-			holder.say(message)
+			holder.say(ic_message)
+		if("whisper")
+			holder.whisper(ic_message)
 		if("emote")
-			holder.emote("me", message = message, intentional = TRUE)
+			holder.emote("me", message = ic_message, intentional = TRUE)
 		if("subtle")
-			holder.emote("subtle", null, message, TRUE)
+			holder.emote("subtle", null, ic_message, TRUE)
 		if("subtler")
-			send_subtler_message(message, 1)
+			send_subtler_message(ic_message, 1)
 		if("subtler_antighost")
-			send_subtler_message(message, 0)
+			send_subtler_message(ic_message, 0)
 		else
 			sending_message = FALSE
 			return
-	append_scene_message(build_log_entry(holder, message, emote_mode))
+	append_scene_message(build_log_entry(holder, log_message, emote_mode))
 	play_sound_to_participants("message")
 	sending_message = FALSE
 
@@ -372,6 +443,12 @@
 	holder.log_message(message, LOG_SUBTLER)
 
 /datum/rp_panel/proc/play_sound_to_participants(sound_type)
+	for(var/datum/rp_panel/panel as anything in get_linked_panels())
+		panel.play_own_scene_sound(sound_type)
+
+/datum/rp_panel/proc/play_own_scene_sound(sound_type)
+	if(!holder?.client)
+		return
 	var/static/list/message_sounds = list(
 		"default" = 'modular_zubbers/sound/misc/rppanelsounds/messagechime.ogg',
 		"simpleandsweet" = 'modular_zubbers/sound/misc/rppanelsounds/simpleandsweetmessage.ogg',
@@ -416,9 +493,15 @@
 			volume = volume_leave
 		else
 			return
-	for(var/mob/living/member as anything in get_scene_members())
-		if(member.client)
-			member.playsound_local(get_turf(holder), sound_file, volume, FALSE)
+	holder.playsound_local(get_turf(holder), sound_file, volume, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
+
+/datum/rp_panel/proc/format_scene_text(raw_text)
+	if(isnull(raw_text) || raw_text == "")
+		return ""
+	var/encoded = newlines_to_html(html_encode("[raw_text]"))
+	if(!holder)
+		return encoded
+	return holder.apply_message_emphasis(encoded)
 
 /datum/rp_panel/proc/on_say(mob/living/source, list/speech_args)
 	SIGNAL_HANDLER
@@ -430,7 +513,8 @@
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(!message)
 		return
-	append_scene_message(build_log_entry(source, message, "say"))
+	var/mode = message_mods[WHISPER_MODE] ? "whisper" : "say"
+	append_scene_message(build_log_entry(source, message, mode))
 
 /datum/rp_panel/proc/on_emote(mob/living/source, datum/emote/emote, act, type_override, message, intentional)
 	SIGNAL_HANDLER
