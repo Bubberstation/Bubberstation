@@ -17,6 +17,7 @@ const THEME_MAP: Record<string, string> = {
   strawberry: 'scene_strawberry',
   super_dark: 'scene_super_dark',
   apple: 'scene_apple',
+  syndicate: 'scene_syndicate',
 };
 
 export function RpPanel() {

@@ -8,7 +8,8 @@
 .theme-scene_cream,
 .theme-scene_strawberry,
 .theme-scene_super_dark,
-.theme-scene_apple {
+.theme-scene_apple,
+.theme-scene_syndicate {
   .TitleBar__dragZone {
     -webkit-app-region: drag;
     app-region: drag;
@@ -216,12 +217,30 @@
   --color-primary: hsl(140, 50%, 38%);
 }
 
+.theme-scene_syndicate:root {
+  --color-base: hsl(0, 48%, 6%);
+  --color-primary: hsl(130, 100%, 46%);
+  --color-secondary: hsl(0, 42%, 10%);
+  --color-section: hsl(0, 38%, 8%);
+  --color-text: hsl(340, 88%, 90%);
+  --color-label: hsl(340, 58%, 78%);
+  --color-text-translucent: hsl(340, 42%, 70%);
+  --button-color: hsl(340, 88%, 90%);
+  --notice-box-color: hsl(340, 88%, 90%);
+  --tab-color-selected: hsl(130, 100%, 62%);
+  --color-border-primary: hsl(130, 95%, 42%);
+  --titlebar-background: hsl(0, 60%, 4%);
+  --titlebar-text: hsl(340, 88%, 90%);
+  --input-color: hsl(340, 88%, 90%);
+}
+
 .theme-scene_assistant .Layout__content,
 .theme-scene_frost .Layout__content,
 .theme-scene_cream .Layout__content,
 .theme-scene_strawberry .Layout__content,
 .theme-scene_super_dark .Layout__content,
-.theme-scene_apple .Layout__content {
+.theme-scene_apple .Layout__content,
+.theme-scene_syndicate .Layout__content {
   background-image: none;
 }
 
@@ -241,5 +260,30 @@
 
   .ProgressBar {
     color: var(--color-black, hsl(0, 0%, 0%));
+  }
+}
+
+.theme-scene_syndicate {
+  .SceneAssistant__composer,
+  .SceneAssistant__details,
+  .SceneAssistant__imageUrl {
+    background: rgba(28, 0, 4, 0.72);
+    color: hsl(340, 88%, 90%);
+    border-color: rgba(40, 255, 90, 0.55);
+    box-shadow: 0 0 8px rgba(40, 255, 90, 0.18);
+  }
+
+  .SceneAssistant__avatar--empty {
+    background: rgba(80, 0, 10, 0.45);
+    color: hsl(130, 90%, 70%);
+  }
+
+  .TitleBar {
+    box-shadow: 0 0 10px rgba(40, 255, 90, 0.2);
+  }
+
+  .Button--selected,
+  .Button--color--blue {
+    box-shadow: 0 0 8px rgba(40, 255, 90, 0.35);
   }
 }

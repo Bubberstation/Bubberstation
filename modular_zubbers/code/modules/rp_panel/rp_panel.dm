@@ -368,14 +368,10 @@
 	return ""
 
 /datum/rp_panel/proc/newlines_to_html(raw_text)
-	var/converted = replacetext("[raw_text]", "\r\n", "\n")
-	converted = replacetext(converted, "\r", "\n")
-	return replacetext(converted, "\n", "<br>")
+	return replacetext("[raw_text]", regex("(?:\\r\\n?|\\n)", "g"), "<br>")
 
 /datum/rp_panel/proc/flatten_newlines(raw_text)
-	var/converted = replacetext("[raw_text]", "\r\n", " ")
-	converted = replacetext(converted, "\n", " ")
-	return replacetext(converted, "\r", " ")
+	return replacetext("[raw_text]", regex("(?:\\r\\n?|\\n)", "g"), " ")
 
 /datum/rp_panel/proc/send_scene_image(raw_url, raw_caption = "")
 	var/image_url = sanitize_scene_image_url(raw_url)

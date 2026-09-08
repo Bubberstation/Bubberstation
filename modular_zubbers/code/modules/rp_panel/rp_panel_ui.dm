@@ -9,6 +9,7 @@
 		list("id" = "strawberry", "label" = "Strawberry"),
 		list("id" = "super_dark", "label" = "Super Dark"),
 		list("id" = "apple", "label" = "Apple"),
+		list("id" = "syndicate", "label" = "Syndicate Red"),
 	)
 	data["soundpacks"] = list(
 		list("id" = "default", "label" = "Scene Assistant"),
@@ -442,7 +443,7 @@
 				human_holder.climax(manual = TRUE)
 			return TRUE
 		if("set_theme")
-			if(params["theme"] in list("default", "light", "cream", "strawberry", "super_dark", "apple"))
+			if(params["theme"] in list("default", "light", "cream", "strawberry", "super_dark", "apple", "syndicate"))
 				theme = params["theme"]
 				write_player_pref(/datum/preference/choiced/scene_assistant_theme, theme)
 			return TRUE
@@ -509,6 +510,9 @@
 			return TRUE
 		if("export_log")
 			export_log()
+			return TRUE
+		if("clear_log")
+			clear_scene_log()
 			return TRUE
 
 /datum/rp_panel/proc/open_examine(mob/living/target)
@@ -655,16 +659,116 @@
 		autocum_pref.apply_to_client_updated(holder.client, new_value)
 		prefs.save_preferences()
 
+/datum/rp_panel/proc/clear_scene_log()
+	messages = list()
+	SStgui.update_uis(src)
+
 /datum/rp_panel/proc/export_log()
-	var/list/lines = list("<html><head><title>Scene Log</title></head><body>")
+	var/static/list/mode_classes = list(
+		"say" = "say",
+		"whisper" = "whisper",
+		"emote" = "emote",
+		"subtle" = "subtle",
+		"subtler" = "subtle",
+		"subtler_antighost" = "subtle",
+		"system" = "system",
+	)
+	var/list/lines = list({"
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Scene Assistant Log</title>
+<style>
+body {
+	margin: 0;
+	padding: 20px 24px 32px;
+	background: #161822;
+	color: #e8e6ef;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	line-height: 1.45;
+}
+h1 {
+	margin: 0 0 4px;
+	font-size: 20px;
+	font-weight: normal;
+	color: #c4b5fd;
+	letter-spacing: 0.03em;
+}
+.subtitle {
+	margin: 0 0 18px;
+	color: #94a3b8;
+	font-size: 12px;
+}
+.details {
+	background: #1f2330;
+	border-left: 3px solid #a78bfa;
+	padding: 10px 14px;
+	margin-bottom: 18px;
+	color: #ddd6fe;
+}
+.entry {
+	margin: 0 0 10px;
+	padding: 8px 12px;
+	background: #1c1f2b;
+	border-left: 3px solid #64748b;
+}
+.say { border-left-color: #6ea8fe; }
+.whisper { border-left-color: #94a3b8; font-style: italic; }
+.emote { border-left-color: #c084fc; }
+.subtle { border-left-color: #a78bfa; }
+.system { border-left-color: #c084fc; color: #e9d5ff; font-style: italic; }
+.name {
+	font-weight: bold;
+}
+.meta {
+	color: #7c8499;
+	font-size: 11px;
+	margin-left: 8px;
+}
+.msg {
+	margin-top: 4px;
+}
+img {
+	display: block;
+	max-width: 100%;
+	max-height: 360px;
+	margin-top: 8px;
+	border-radius: 4px;
+}
+.empty {
+	color: #7c8499;
+	font-style: italic;
+}
+</style>
+</head>
+<body>
+<h1>Scene Assistant</h1>
+"})
+	lines += "<p class='subtitle'>Exported [time2text(world.timeofday, "YYYY-MM-DD HH:MM:SS")]</p>"
 	if(length(scene_details))
-		lines += "<p><b>Scene Details:</b> [format_scene_text(scene_details)]</p><hr>"
+		lines += "<div class='details'><b>Scene details</b><div class='msg'>[format_scene_text(scene_details)]</div></div>"
+	if(!length(messages))
+		lines += "<p class='empty'>No messages.</p>"
 	for(var/list/entry as anything in messages)
-		lines += "<p><b>[html_encode(entry["name"])]</b> ([html_encode("[entry["mode"]]")]) [format_scene_text(entry["message"])]</p>"
+		var/mode = "[entry["mode"]]"
+		var/css_class = mode_classes[mode] || "emote"
+		var/body = format_scene_text(entry["message"])
+		if((mode == "say" || mode == "whisper") && copytext("[entry["message"]]", 1, 2) != "\"")
+			body = "\"[body]\""
+		lines += "<div class='entry [css_class]'>"
+		if(mode == "system")
+			lines += "<div class='msg'>[body]</div>"
+		else
+			lines += "<div><span class='name' style='color:[html_encode("[entry["color"]]")]'>[html_encode(entry["name"])]</span><span class='meta'>[html_encode(mode)] · [html_encode("[entry["timestamp"]]")]</span></div>"
+			if(length("[entry["message"]]"))
+				lines += "<div class='msg'>[body]</div>"
 		if(entry["image"])
-			lines += "<p><img src='[html_encode(entry["image"])]' style='max-width:100%'></p>"
+			lines += "<img src='[html_encode(entry["image"])]'>"
+		lines += "</div>"
 	lines += "</body></html>"
-	holder << browse(jointext(lines, ""), "window=scene_assistant_export;size=700x500")
+	holder << browse(jointext(lines, ""), "window=scene_assistant_export;size=760x620")
 
 #undef SCENE_ASSISTANT_RANGE
 #undef SCENE_ASSISTANT_MAX_CHARS

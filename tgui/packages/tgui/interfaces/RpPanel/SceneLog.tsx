@@ -354,6 +354,13 @@ export function SceneLog(props: SceneLogProps) {
           <Stack.Item>
             <Button icon="download" tooltip="Export log" onClick={() => act('export_log')} />
           </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="eraser"
+              tooltip="Clear log"
+              onClick={() => act('clear_log')}
+            />
+          </Stack.Item>
         </Stack>
       </Stack.Item>
     </Stack>

@@ -84,7 +84,7 @@
 	savefile_identifier = PREFERENCE_PLAYER
 
 /datum/preference/choiced/scene_assistant_theme/init_possible_values()
-	return list("default", "light", "cream", "strawberry", "super_dark", "apple")
+	return list("default", "light", "cream", "strawberry", "super_dark", "apple", "syndicate")
 
 /datum/preference/choiced/scene_assistant_theme/create_default_value()
 	return "default"
