@@ -29,7 +29,6 @@
 	no_equip_flags = ITEM_SLOT_FEET | ITEM_SLOT_OCLOTHING | ITEM_SLOT_SUITSTORE
 	inherent_biotypes = MOB_ORGANIC | MOB_HUMANOID
 	no_gender_shaping = TRUE
-	mutanttongue = /obj/item/organ/tongue/insect
 
 	always_customizable = FALSE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
@@ -42,7 +41,7 @@
 	mutantheart = /obj/item/organ/heart/serpentid
 	mutantliver = /obj/item/organ/liver/serpentid
 	mutantears = /obj/item/organ/ears/serpentid
-	mutanttongue = /obj/item/organ/tongue/synth
+	mutanttongue = /obj/item/organ/tongue/synth/serpentid
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/mutant/serpentid,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/mutant/serpentid,

@@ -138,7 +138,7 @@
 
 /datum/opposing_force_equipment/gadget_stealth/ai_module
 	name = "Syndicate AI Law Module"
-	item_type = /obj/item/ai_module/syndicate
+	item_type = /obj/item/ai_module/law/syndicate
 	description = "When used with an upload console, this module allows you to upload priority laws to an artificial intelligence. \
 			Be careful with wording, as artificial intelligences may look for loopholes to exploit."
 

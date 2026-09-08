@@ -11557,11 +11557,7 @@
 	name = "High-Risk Modules";
 	req_access = list("ai_upload")
 	},
-/obj/item/ai_module/supplied/protect_station,
-/obj/item/ai_module/reset/purge{
-	pixel_x = -3;
-	pixel_y = -3
-	},
+/obj/item/ai_module/law/supplied/protect_station,
 /turf/open/floor/iron,
 /area/station/ai/upload/chamber)
 "clo" = (
@@ -23041,8 +23037,8 @@
 /obj/item/clothing/under/misc/burial,
 /obj/item/clothing/under/misc/burial,
 /obj/item/clothing/under/misc/burial,
-/obj/item/food/grown/harebell,
-/obj/item/food/grown/harebell,
+/obj/item/food/grown/flower/harebell,
+/obj/item/food/grown/flower/harebell,
 /obj/machinery/newscaster/directional/west,
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/iron/dark,
@@ -25234,12 +25230,12 @@
 /obj/structure/table,
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/window/reinforced/spawner/directional/east,
-/obj/item/ai_module/core/freeformcore{
+/obj/item/ai_module/law/core/freeformcore{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/ai_module/core/full/custom,
-/obj/item/ai_module/core/full/asimov{
+/obj/item/ai_module/law/core/full/custom,
+/obj/item/ai_module/law/core/full/asimov{
 	pixel_x = -3;
 	pixel_y = -3
 	},
@@ -31893,9 +31889,6 @@
 /area/station/maintenance/abandon_exam/cat)
 "gbL" = (
 /obj/effect/turf_decal/delivery/white,
-/obj/machinery/computer/upload/borg{
-	dir = 4
-	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/ai/upload/chamber)
 "gbM" = (
@@ -63592,10 +63585,7 @@
 	name = "Secure Tech Cabinet"
 	},
 /obj/structure/cable,
-/obj/item/ai_module/reset{
-	pixel_y = 8
-	},
-/obj/item/ai_module/core/full/custom{
+/obj/item/ai_module/law/core/full/custom{
 	pixel_y = -4
 	},
 /obj/machinery/camera/autoname/engineering/directional/east,
@@ -65092,11 +65082,11 @@
 /area/station/medical/break_room)
 "mwI" = (
 /obj/structure/table/wood,
-/obj/item/food/grown/poppy/geranium{
+/obj/item/food/grown/flower/poppy/geranium{
 	pixel_x = 6;
 	pixel_y = 6
 	},
-/obj/item/food/grown/poppy/lily,
+/obj/item/food/grown/flower/poppy/lily,
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/station/service/chapel/funeral)
@@ -74115,7 +74105,6 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
 	},
-/obj/item/storage/photo_album/captain,
 /obj/item/camera,
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
@@ -77954,10 +77943,10 @@
 /obj/item/seeds/cotton/durathread,
 /obj/item/seeds/potato/sweet,
 /obj/item/grown/cotton,
-/obj/item/food/grown/poppy,
-/obj/item/food/grown/poppy/geranium,
-/obj/item/food/grown/poppy/lily,
-/obj/item/food/grown/harebell,
+/obj/item/food/grown/flower/poppy,
+/obj/item/food/grown/flower/poppy/geranium,
+/obj/item/food/grown/flower/poppy/lily,
+/obj/item/food/grown/flower/harebell,
 /obj/item/food/grown/garlic,
 /obj/item/food/grown/onion,
 /obj/item/food/grown/peas,
@@ -78346,15 +78335,11 @@
 /area/station/command/gateway)
 "oWl" = (
 /obj/structure/table,
-/obj/item/ai_module/supplied/quarantine{
+/obj/item/ai_module/law/supplied/quarantine{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/ai_module/supplied/freeform,
-/obj/item/ai_module/reset{
-	pixel_x = -3;
-	pixel_y = -3
-	},
+/obj/item/ai_module/law/supplied/freeform,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
 /turf/open/floor/iron,
@@ -84224,7 +84209,7 @@
 /area/station/maintenance/starboard/fore)
 "qeB" = (
 /obj/effect/turf_decal/delivery/white,
-/obj/machinery/computer/upload/ai{
+/obj/machinery/ai_law_rack/base/core{
 	dir = 8
 	},
 /turf/open/floor/iron/dark/smooth_large,
@@ -92966,7 +92951,7 @@
 /area/station/hallway/primary/central)
 "rJL" = (
 /obj/structure/table/wood,
-/obj/item/food/grown/harebell,
+/obj/item/food/grown/flower/harebell,
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/station/service/chapel/funeral)
@@ -95485,8 +95470,8 @@
 	name = "High-Risk Modules";
 	req_access = list("ai_upload")
 	},
-/obj/item/ai_module/zeroth/onehuman,
-/obj/item/ai_module/supplied/oxygen{
+/obj/item/ai_module/law/zeroth/onehuman,
+/obj/item/ai_module/law/supplied/oxygen{
 	pixel_x = -3;
 	pixel_y = -3
 	},
@@ -109346,6 +109331,11 @@
 	},
 /turf/open/floor/iron/dark/side,
 /area/station/commons/dorms)
+"uQT" = (
+/obj/structure/table/wood,
+/obj/item/storage/photo_album/prison,
+/turf/open/floor/iron,
+/area/station/security/prison/mess)
 "uQZ" = (
 /obj/structure/chair/stool/directional/west,
 /obj/effect/landmark/start/hangover,
@@ -165637,7 +165627,7 @@ sSP
 sSI
 sSP
 tRe
-eZn
+uQT
 caC
 xOu
 xOu
