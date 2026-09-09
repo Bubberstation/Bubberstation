@@ -146,64 +146,6 @@
 		if(prob(30))
 			new /obj/item/storage/bag/trash/filled(src)
 
-/obj/structure/closet/crate/secure/owned
-	name = "private crate"
-	desc = "A crate cover designed to only open for who purchased its contents."
-	icon_state = "privatecrate"
-	base_icon_state = "privatecrate"
-	///Account of the person buying the crate if private purchasing.
-	var/datum/bank_account/buyer_account
-	///Department of the person buying the crate if buying via the NIRN app.
-	var/datum/bank_account/department/department_account
-	///Is the secure crate opened or closed?
-	var/privacy_lock = TRUE
-	///Is the crate being bought by a person, or a budget card?
-	var/department_purchase = FALSE
-
-/obj/structure/closet/crate/secure/owned/examine(mob/user)
-	. = ..()
-	. += span_notice("It's locked with a privacy lock, and can only be unlocked by the buyer's ID.")
-	// BUBBER EDIT START - show department account on examine if bought with departmental funds
-	if(department_purchase)
-		. += span_notice("This crate was purchased with departmental funds from [department_account.account_holder], and can be opened by anyone who has an ID linked to an account with a paycheck from that department.")
-		. += span_notice("Or overriden by someone with captain access.")
-	// BUBBER EDIT END
-
-/obj/structure/closet/crate/secure/owned/Initialize(mapload, datum/bank_account/_buyer_account)
-	. = ..()
-	buyer_account = _buyer_account
-	if(IS_DEPARTMENTAL_ACCOUNT(buyer_account))
-		department_purchase = TRUE
-		department_account = buyer_account
-		// captain access override that ignores lockout
-		req_access = list(ACCESS_CAPTAIN)
-
-/obj/structure/closet/crate/secure/owned/togglelock(mob/living/user, silent)
-	if(privacy_lock)
-		if(!broken)
-			var/obj/item/card/id/id_card = user.get_idcard(TRUE)
-			if(id_card)
-				if(id_card.registered_account)
-					// BUBBER EDIT START - allow captain access override for departmental private crates
-					if(id_card.registered_account == buyer_account || (department_purchase && ((id_card.registered_account?.account_job?.paycheck_department) == (department_account.department_id) || check_access(id_card))))
-					// BUBBER EDIT END
-						if(iscarbon(user))
-							add_fingerprint(user)
-						locked = !locked
-						user.visible_message(span_notice("[user] unlocks [src]'s privacy lock."),
-										span_notice("You unlock [src]'s privacy lock."))
-						privacy_lock = FALSE
-						update_appearance()
-					else if(!silent)
-						to_chat(user, span_warning("Bank account does not match with buyer!"))
-				else if(!silent)
-					to_chat(user, span_warning("No linked bank account detected!"))
-			else if(!silent)
-				to_chat(user, span_warning("No ID detected!"))
-		else if(!silent)
-			to_chat(user, span_warning("[src] is broken!"))
-	else ..()
-
 /obj/structure/closet/crate/secure/freezer/interdyne
 	name = "\improper Interdyne freezer"
 	desc = "This is an Interdyne Pharmaceuticals branded freezer. May or may not contain fresh organs."

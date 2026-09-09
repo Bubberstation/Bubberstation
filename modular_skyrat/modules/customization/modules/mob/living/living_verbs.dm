@@ -11,7 +11,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 	return temporary_flavor_text_indicator
 
 GAME_VERB_DESC(/mob/living, set_temporary_flavor, "Set Temporary Flavor Text", "Allows you to set a temporary flavor text.", "IC")
-	if(stat != CONSCIOUS)
+	if(IS_UNCONSCIOUS_OR_CRIT(src))
 		to_chat(src, span_warning("You can't set your temporary flavor text now..."))
 		return
 
@@ -42,7 +42,7 @@ GAME_VERB_DESC(/mob/living, narrate, "Narrate", "Allows you to send a narration 
 		to_chat(user, span_danger("Speech is currently admin-disabled."))
 		return
 
-	if(user.stat != CONSCIOUS)
+	if(!IS_UNCONSCIOUS_OR_CRIT(user))
 		to_chat(user, span_warning("You can't narrate right now..."))
 		return
 

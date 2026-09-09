@@ -461,7 +461,7 @@
 	if(HAS_TRAIT(target, TRAIT_FLOORED) || target.resting) //Is the person already on the floor to begin with? Mostly a measure to prevent spamming.
 		var /obj/structure/bed/medical/medigun/created_bed = new /obj/structure/bed/medical/medigun(target.loc)
 
-		if(!target.stat == CONSCIOUS)
+		if(!IS_UNCONSCIOUS_OR_CRIT(target))
 			created_bed.buckle_mob(target)
 		return TRUE
 	else
@@ -674,7 +674,7 @@
 	if(area_locked && length(teleport_areas) && !is_type_in_list(get_area(teleportee), teleport_areas))
 		return ..()
 
-	if(!teleportee.stat == CONSCIOUS) // This is mostly here to stop medical from accidentally teleporting out people they otherwise wouldn't want to.
+	if(IS_UNCONSCIOUS_OR_CRIT(teleportee)) // This is mostly here to stop medical from accidentally teleporting out people they otherwise wouldn't want to.
 		return ..()
 
 	var/list/turf_list

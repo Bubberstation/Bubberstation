@@ -1062,7 +1062,7 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	remove_overlay(EYES_LAYER)
 
 	var/obj/item/bodypart/head/noggin = get_bodypart(BODY_ZONE_HEAD)
-	if(isnull(noggin) || noggin.is_husked || noggin.is_invisible)
+	if(isnull(noggin) || noggin.is_invisible)
 		return
 
 	if(refresh)

@@ -18,6 +18,10 @@
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
 	)
+	emote_sounds = list(
+		/datum/emote/living/scream::key = 'modular_skyrat/modules/emotes/sound/voice/scream_silicon.ogg',
+		/datum/emote/living/deathgasp::key = 'sound/mobs/non-humanoids/cyborg/borg_deathsound.ogg'
+	)
 
 /obj/item/organ/tongue/synth/can_speak_language(language)
 	return TRUE
