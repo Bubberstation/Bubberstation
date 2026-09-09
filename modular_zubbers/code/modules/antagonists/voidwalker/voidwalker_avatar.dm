@@ -102,6 +102,7 @@
 		owner.mind.transfer_to(real_body)
 	real_body = null
 	summon_action.current_avatar = null
+	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE)
 	new /obj/effect/temp_visual/circle_wave/unsettle(get_turf(owner))
 
 	qdel(owner)
@@ -113,42 +114,18 @@
 
 /datum/action/voidwalker_swap_bodies/Grant(mob/grant_to)
 	. = ..()
-	owner.AddComponent(/datum/component/relay_mob_perception, real_body)
+	RegisterSignal(owner, COMSIG_MOVABLE_HEAR, PROC_REF(relay_speech))
 
-/datum/action/voidwalker_swap_bodies/Remove(mob/remove_from)
-	. = ..()
-	//UnregisterSignal(remove_from, COMSIG_MOVABLE_HEAR)
-	var/datum/component/to_delete = owner.GetComponent(/datum/component/relay_mob_perception)
-	qdel(to_delete)
-
-/datum/action/voidwalker_swap_bodies/Trigger(mob/clicker, trigger_flags)
-	. = ..()
-	owner.mind.transfer_to(real_body)
-	//Try adding a backup mind that takes it's place when swapping bodies?
-	owner.mind = new /datum/mind()
-
-
-/datum/component/relay_mob_perception
-	var/mob/linked_mob
-
-/datum/component/relay_mob_perception/New(...)
-	.=..()
-
-/datum/component/relay_mob_perception/Initialize(mob/relayed)
-	. = ..()
-	linked_mob = relayed
-	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, PROC_REF(relay_speech))
-
-/datum/component/relay_mob_perception/Destroy(force)
-	. = ..()
-	UnregisterSignal(parent, COMSIG_MOVABLE_HEAR)
-
-/datum/component/relay_mob_perception/proc/relay_speech(atom/source, list/hear_args)
+/datum/action/voidwalker_swap_bodies/proc/relay_speech(atom/source, list/hear_args)
 	SIGNAL_HANDLER
 
-	if(!linked_mob?.client)
+	if(!real_body?.client)
 		return
 
 	var/list/new_args = hear_args.Copy()
 	new_args[HEARING_RANGE] = INFINITY // so we can hear it from any distance away
-	linked_mob.Hear(new_args)
+	real_body.Hear(arglist(new_args))
+
+/datum/action/voidwalker_swap_bodies/Trigger(mob/clicker, trigger_flags)
+	. = ..()
+	owner.mind.transfer_to(real_body)
