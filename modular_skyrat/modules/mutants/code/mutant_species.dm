@@ -17,7 +17,7 @@
 		TRAIT_RADIMMUNE,
 		TRAIT_LIMBATTACHMENT,
 		TRAIT_NOBREATH,
-		TRAIT_NO_ZOMBIFY,
+		TRAIT_NEVER_CONSIDERED_ALIVE,
 	)
 	inherent_biotypes = MOB_UNDEAD | MOB_HUMANOID
 	mutanttongue = /obj/item/organ/tongue/zombie
@@ -156,7 +156,7 @@
 	//mutants never actually die, they just fall down until they regenerate enough to rise back up.
 	if(COOLDOWN_FINISHED(src, regen_cooldown))
 		var/heal_amt = heal_rate
-		if(HAS_TRAIT(carbon_mob, TRAIT_CRITICAL_CONDITION))
+		if(IS_CRITICAL(carbon_mob))
 			heal_amt *= 2
 		carbon_mob.heal_overall_damage(heal_amt * seconds_per_tick, heal_amt * seconds_per_tick)
 		carbon_mob.adjust_stamina_loss(-heal_amt * seconds_per_tick)
@@ -165,7 +165,7 @@
 			var/datum/wound/iter_wound = i
 			if(SPT_PROB(2-(iter_wound.severity/2), seconds_per_tick))
 				iter_wound.remove_wound()
-	if(!HAS_TRAIT(carbon_mob, TRAIT_CRITICAL_CONDITION) && SPT_PROB(2, seconds_per_tick))
+	if(!IS_CRITICAL(carbon_mob) && SPT_PROB(2, seconds_per_tick))
 		playsound(carbon_mob, pick(spooks), 50, TRUE, 10)
 
 #undef REGENERATION_DELAY
@@ -219,7 +219,7 @@ GLOBAL_VAR_INIT(mutant_infection_chance, 40)
 		target.AddComponent(/datum/component/mutant_infection)
 		return TRUE
 
-	if(HAS_TRAIT(target, TRAIT_NO_ZOMBIFY) || HAS_TRAIT(target, TRAIT_MUTANT_IMMUNE))
+	if(HAS_TRAIT(target, TRAIT_NEVER_CONSIDERED_ALIVE) || HAS_TRAIT(target, TRAIT_MUTANT_IMMUNE))
 		// cannot infect any NOZOMBIE subspecies (such as high functioning
 		// mutants)
 		return FALSE

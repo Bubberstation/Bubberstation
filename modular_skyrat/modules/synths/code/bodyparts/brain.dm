@@ -107,7 +107,7 @@
 	stored_mmi.set_brainmob(brainmob_to_store)
 	brainmob_to_store.doMove(stored_mmi)
 	brainmob_to_store.container = stored_mmi
-	brainmob_to_store.set_stat(CONSCIOUS)
+	brainmob_to_store.set_stat(STABLE)
 	brainmob_to_store.reset_perspective()
 	if(brainmob == brainmob_to_store)
 		brainmob = null

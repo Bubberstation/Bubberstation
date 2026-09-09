@@ -297,12 +297,12 @@
 		return FALSE
 
 	if(time_to_choke_left < time_to_choke/2 && breath_status == TRUE)
-		if(temp_check == FALSE && affected_carbon.stat == CONSCIOUS) // If user passed out while wearing this we should continue when he wakes up
+		if(temp_check == FALSE && !IS_UNCONSCIOUS(affected_carbon)) // If user passed out while wearing this we should continue when he wakes up
 			breath_status = FALSE
 			time_to_choke_left = time_to_choke
 			temp_check = TRUE
 
-		if(affected_carbon.stat == CONSCIOUS)
+		if(!IS_UNCONSCIOUS(affected_carbon))
 			affected_carbon.try_lewd_autoemote("exhale")
 			breath_status = FALSE
 			if(rand(0, 3) == 0)
@@ -313,7 +313,7 @@
 
 	if(time_to_choke_left <= 0)
 		if(tt <= 0)
-			if(affected_carbon.stat == CONSCIOUS)
+			if(!IS_UNCONSCIOUS(affected_carbon))
 				affected_carbon.adjust_oxy_loss(rand(4, 8)) // Oxy dmg
 				affected_carbon.try_lewd_autoemote(pick("gasp", "choke", "moan"))
 				tt = time

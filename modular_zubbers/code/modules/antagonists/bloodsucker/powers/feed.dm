@@ -129,7 +129,7 @@
 
 	owner.balloon_alert(owner, "feeding off [feed_target]...")
 	owner.face_atom(feed_target)
-	if(!do_after(owner, get_feed_start_time(), feed_target, hidden = TRUE))
+	if(!do_after(owner, get_feed_start_time(), feed_target, show_progress = FALSE))
 		owner.balloon_alert(owner, "feed stopped")
 		target_ref = null
 		return FALSE
