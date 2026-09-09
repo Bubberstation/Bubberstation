@@ -1,10 +1,10 @@
 /// A small twinkling shining light that imbues people and things
 /// with magical effects upon walking through.
 /obj/effect/magical_light
-	name = "\improper sparkles"
+	name = "sparkles"
 	icon = 'modular_zubbers/icons/effects/magic_lights.dmi'
 	icon_state = "lights"
-	desc = null
+	desc = "A set of nice sparkling lights."
 	light_range = 0.8
 	light_power = 0.3
 	light_system = OVERLAY_LIGHT
@@ -14,14 +14,14 @@
 	/// things, see the /datum/status_effect/magical_light types
 	var/potency = 1
 	/// Amount of effects this light initializes with at maximum.
-	var/effect_count = 1
+	var/initial_effect_count = 1
 	/// The list of effects this light has on all mobs that pass through
-	var/list/effect_types = list()
+	var/list/datum/status_effect/magical_light/effect_types = list()
 
 /obj/effect/magical_light/Initialize(mapload)
 	. = ..()
 	var/turf/our_turf = get_turf(src)
-	if(HAS_TRAIT(our_turf, TRAIT_TURF_BLESSED))
+	if(HAS_TRAIT(our_turf, TRAIT_TURF_BLESSED) | isnull(our_turf))
 		return INITIALIZE_HINT_QDEL
 	RegisterSignal(our_turf, COMSIG_ATOM_ENTERED, PROC_REF(on_enter))
 	RegisterSignal(our_turf, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON, PROC_REF(on_initialized))
@@ -35,8 +35,8 @@
 	color = final_color
 	set_light_color(final_color)
 
-	for(var/i in 1 to effect_count)
-		var/type = pick(typesof(/datum/status_effect/magical_light) - effect_types) // Change to subtypesof later
+	for(var/i in 1 to initial_effect_count)
+		var/type = pick(subtypesof(/datum/status_effect/magical_light) - effect_types) // Change to subtypesof later
 		if(isnull(type))
 			break
 		effect_types += type
@@ -44,14 +44,30 @@
 /obj/effect/magical_light/Destroy(force)
 	. = ..()
 	var/turf/our_turf = get_turf(src)
-	UnregisterSignal(our_turf, list(COMSIG_ATOM_ENTERED,
-		COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON,
-		SIGNAL_ADDTRAIT(TRAIT_TURF_BLESSED),
-		COMSIG_BIBLE_SMACKED,
-		))
+	if(!isnull(our_turf))
+		UnregisterSignal(our_turf, list(COMSIG_ATOM_ENTERED,
+			COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON,
+			SIGNAL_ADDTRAIT(TRAIT_TURF_BLESSED),
+			COMSIG_BIBLE_SMACKED,
+			))
 
 /obj/effect/magical_light/examine(mob/user)
 	. = ..()
+	if(effect_types.len <= 0)
+		return
+	if(user.mind?.holy_role >= HOLY_ROLE_PRIEST || IS_WIZARD(user) || isobserver(user))
+		var/magic_desc = ""
+		for(var/i in 1 to effect_types.len)
+			var/datum/status_effect/magical_light/light_eff = effect_types[i]
+			if(i != 1 && i != effect_types.len)
+				magic_desc += ","
+			else if (i == effect_types.len)
+				magic_desc += ", and" // Oxford comma :)
+			magic_desc += " [light_eff::special_description]"
+			if (i == effect_types.len)
+				magic_desc += "."
+
+		. += span_notice("The lights are charged with magic that has[magic_desc]")
 
 
 /obj/effect/magical_light/proc/on_enter(datum/source, atom/movable/entered)
@@ -69,6 +85,22 @@
 
 /obj/effect/magical_light/proc/handle_new_entry(atom/movable/entered)
 	if(istype(entered, /mob/living))
-		var/mob/living/entered_living
-		for(var/datum/status_effect/magical_light/to_apply in effect_types)
-			UNLINT(entered_living.apply_status_effect(to_apply, potency = src.potency)) // Sadly spacemanDMM wont shutup
+		var/mob/living/entered_living = entered
+		if(entered_living.can_block_magic(MAGIC_RESISTANCE | MAGIC_RESISTANCE_HOLY))
+			return
+		for(var/to_apply in src.effect_types)
+			if(prob(25))
+				entered_living.apply_status_effect(to_apply, src.potency)
+
+// *-----------------------------------------------*
+// |Special types meant for mostly EVIL ADMIN DEEDS|
+// |or future use in like, wizard rituals.         |
+// |Not for the random event, holy shit            |
+// *-----------------------------------------------*
+
+/obj/effect/magical_light/potent
+	potency = 3
+
+// Todo: Give this thing like a mixed color filter/overlay
+/obj/effect/magical_light/mixed
+	initial_effect_count = 3
