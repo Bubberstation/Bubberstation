@@ -13,10 +13,7 @@
 	fish_source_type = /datum/fish_source/lavaland/cafe
 
 /turf/open/lava/fake/Initialize(mapload)
-	// burn_stuff() only checks TRAIT_LAVA_STOPPED. Zeroing lava_damage/temperature_damage does not
-	// spare objects, because do_burn() force-flags them FLAMMABLE and strips FIRE_PROOF regardless.
-	// Added before the parent call, which runs Entered() on anything already mapped onto us.
-	ADD_TRAIT(src, TRAIT_LAVA_STOPPED, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_LAVA_STOPPED, INNATE_TRAIT) // Doesn't burn items
 	return ..()
 
 /// The cafe's lava is decoration, so it fishes like lavaland minus everything that surfaces wanting to kill you.
