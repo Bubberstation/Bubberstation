@@ -190,13 +190,6 @@
 		return UI_INTERACTIVE
 	. = ..()
 
-GAME_VERB_HIDDEN(/obj/item/mod/control/pre_equipped/protean, remove_modsuit, "Remove Assimilated Modsuit")
-	var/obj/item/mod/core/protean/p_core = core
-	to_chat(usr, span_notice("You begin to pry at the [stored_modsuit] to seperate it."))
-	if(!do_after(usr, 5 SECONDS))
-		return
-	p_core.linked_species.unassimilate_modsuit(usr)
-
 /obj/item/mod/control/pre_equipped/protean/examine(mob/user)
 	. = ..()
 	var/obj/item/mod/core/protean/protean_core = core

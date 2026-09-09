@@ -241,8 +241,8 @@
 	species_modsuit.desc = initial(species_modsuit.desc)
 	species_modsuit.extended_desc = initial(species_modsuit.extended_desc)
 
-	if(user?.can_put_in_hand(species_modsuit.stored_modsuit, user.active_hand_index))
-		user.put_in_hand(species_modsuit.stored_modsuit, user.active_hand_index)
+	if(!user?.put_in_hand(species_modsuit.stored_modsuit, user.active_hand_index) && species_modsuit.stored_modsuit.loc == species_modsuit)
+		species_modsuit.stored_modsuit.forceMove(species_modsuit.drop_location()) // Never leave it orphaned inside us.
 
 	species_modsuit.stored_modsuit = null
 	update_static_data_for_all_viewers()

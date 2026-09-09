@@ -73,6 +73,6 @@
 /datum/status_effect/frenzy/tick()
 	var/mob/living/carbon/human/user = owner
 	// If duration is not -1, that means we're about to loose frenzy, let's give them some safe time.
-	if(!bloodsuckerdatum.frenzied || duration > 0 || user.stat != CONSCIOUS )
+	if(!bloodsuckerdatum.frenzied || duration > 0 || IS_UNCONSCIOUS_OR_CRIT(user))
 		return
 	user.adjust_fire_loss(1 + (bloodsuckerdatum.GetHumanityLost() / 10))
