@@ -46,13 +46,15 @@
 /obj/effect/turf_decal/trimline/red/real_red/filled/line{
 	dir = 1
 	},
-/obj/machinery/stasis,
 /obj/item/bedsheet/medical,
 /obj/machinery/iv_drip,
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
 /obj/machinery/wall_healer/directional/north,
+/obj/structure/bed/medical{
+	dir = 4
+	},
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "m" = (
@@ -159,10 +161,15 @@
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/effect/turf_decal/trimline/red/real_red/filled/line,
 /obj/structure/table/reinforced,
-/obj/machinery/computer/crew{
-	dir = 1
-	},
 /obj/effect/turf_decal/siding/dark,
+/obj/item/folder/red{
+	pixel_x = -3;
+	pixel_y = 1
+	},
+/obj/item/folder/white{
+	pixel_x = 4;
+	pixel_y = 1
+	},
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "D" = (
@@ -218,14 +225,6 @@
 	dir = 10
 	},
 /obj/structure/table/reinforced,
-/obj/item/folder/red{
-	pixel_x = 7;
-	pixel_y = 1
-	},
-/obj/item/folder/white{
-	pixel_x = 11;
-	pixel_y = 1
-	},
 /obj/item/paper_bin{
 	pixel_x = -7;
 	pixel_y = 3
@@ -234,18 +233,18 @@
 	pixel_x = -8;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/cup/glass/mug/nanotrasen{
-	pixel_x = 9;
-	pixel_y = 16
-	},
-/obj/item/healthanalyzer{
-	pixel_x = -7;
-	pixel_y = 20
-	},
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
 	},
 /obj/item/radio/intercom/directional/west,
+/obj/item/healthanalyzer{
+	pixel_x = 10;
+	pixel_y = 0
+	},
+/obj/item/reagent_containers/cup/glass/mug/nanotrasen{
+	pixel_x = 6;
+	pixel_y = 15
+	},
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "S" = (

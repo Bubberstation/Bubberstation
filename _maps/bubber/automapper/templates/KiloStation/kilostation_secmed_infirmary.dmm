@@ -13,8 +13,15 @@
 /area/station/security/office)
 "b" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/crew,
 /obj/structure/window/reinforced/spawner/directional/north,
+/obj/item/folder/red{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/folder/white{
+	pixel_x = 0;
+	pixel_y = 3
+	},
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "e" = (
@@ -204,14 +211,6 @@
 	pixel_x = -5;
 	pixel_y = 3
 	},
-/obj/item/folder/white{
-	pixel_x = -2;
-	pixel_y = -12
-	},
-/obj/item/folder/red{
-	pixel_x = -6;
-	pixel_y = -12
-	},
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
@@ -299,9 +298,6 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 4
 	},
-/obj/machinery/stasis{
-	dir = 4
-	},
 /obj/item/bedsheet/medical{
 	dir = 4
 	},
@@ -309,6 +305,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
+/obj/structure/bed/medical,
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "Z" = (

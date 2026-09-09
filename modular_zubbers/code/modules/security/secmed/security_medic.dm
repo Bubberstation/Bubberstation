@@ -41,7 +41,7 @@
 	)
 	rpg_title = "Battle Cleric"
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
-	
+
 	sec_antag_cap = 1.25
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
 	alt_titles = list(
@@ -59,7 +59,8 @@
 
 	backpack_contents = list(
 		/obj/item/security_voucher/primary = 1,
-		/obj/item/security_voucher/utility = 1
+		/obj/item/security_voucher/utility = 1,
+		/obj/item/sensor_device/secmed = 1
 		)
 	suit_store = /obj/item/flashlight/seclite
 	belt = /obj/item/modular_computer/pda/security
@@ -146,7 +147,7 @@
 	icon_state = "secmed"
 
 /*
-Adding certain items to the locker directly, like the medkits, defibs, and formaldehyde. This is to ensure that if future adjustments are
+Adding certain items to the locker directly, like the medkits, restraints, and formaldehyde. This is to ensure that if future adjustments are
 necessary, items can be added or removed here easily. Additionally ensures the secmed spawns with their basic equipment in maps not covered
 by the automapper.
 */
@@ -167,8 +168,6 @@ by the automapper.
 	new /obj/item/clothing/suit/jacket/straight_jacket(src)
 	new /obj/item/clothing/mask/muzzle(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
-	//Defibs no longer can be printed, and can only be ordered. This is added to ensure the secmedic doesn't need to steal one from medbay.
-	new /obj/item/defibrillator/loaded(src)
 	//To prevent the bodies of your fellow officers from decaying, or the antag with one million implants in them.
 	new /obj/item/reagent_containers/cup/bottle/formaldehyde(src)
 
