@@ -271,7 +271,7 @@
 
 	if (heat_shock && abs(temp_delta) > heat_shock_minimum_delta)
 		var/gauze_mult = 1
-		var/obj/item/stack/gauze = limb.current_gauze
+		var/obj/item/stack/medical/wrap/gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
 		if (gauze)
 			gauze_mult *= (gauze.splint_factor) * 0.4 // very very effective
 

@@ -28,6 +28,8 @@
 	COOLDOWN_DECLARE(export_payout)
 	/// Internal timer for scanlines
 	var/scanline_timer
+	/// Current scanline icon state
+	var/scanline_state
 	/// Bool to check if the scanner's controls are locked by an ID.
 	var/locked = FALSE
 	/// The holding bank account used for the export gate
@@ -132,16 +134,29 @@
 	return TRUE
 
 /obj/machinery/export_gate/screwdriver_act(mob/living/user, obj/item/tool)
-	return default_deconstruction_screwdriver(user, "[initial(icon_state)]_open", initial(icon_state), tool)
+	return default_deconstruction_screwdriver(user, tool)
+
+/obj/machinery/export_gate/update_icon_state()
+	. = ..()
+	if(panel_open)
+		icon_state = "[initial(icon_state)]_open"
+		return
+	icon_state = initial(icon_state)
+
+/obj/machinery/export_gate/update_overlays()
+	. = ..()
+	if(scanline_state && !panel_open)
+		. += scanline_state
 
 /obj/machinery/export_gate/proc/clear_scanline()
-	cut_overlays()
+	scanline_state = null
 	deltimer(scanline_timer)
+	update_appearance()
 
 /obj/machinery/export_gate/proc/set_scanline(type, duration)
-	cut_overlays()
+	scanline_state = type
 	deltimer(scanline_timer)
-	add_overlay(type)
+	update_appearance()
 	if(duration)
 		scanline_timer = addtimer(CALLBACK(src, PROC_REF(set_scanline), "passive"), duration, TIMER_STOPPABLE)
 	if(COOLDOWN_FINISHED(src, scanner_beep) && type != "passive")

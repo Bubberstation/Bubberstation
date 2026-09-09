@@ -23,6 +23,12 @@ imbued reagents into the targets.
 
 - N/A
 
+### Todo:
+
+- Change the reagent component and forge smithable component to (instead of having referenced procs) have defined "X effect upon imbuing smithing oil/quenching with X completion and Y perfection. The current
+  implementation relies too much on calling a type's proc, so there's a lot of code reuse...
+
 ### Credits:
 
 Jake Park
+Arris Fairburne

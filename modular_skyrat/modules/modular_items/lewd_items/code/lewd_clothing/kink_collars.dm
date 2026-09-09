@@ -317,7 +317,7 @@
 	else
 		to_chat(user, span_warning("This isn't the correct key!"))
 
-/obj/item/circular_saw/attack(mob/living/carbon/target, mob/living/user, params)
+/obj/item/circular_saw/attack(mob/living/carbon/human/target, mob/living/user, params)
 	if(!istype(target))
 		return ..()
 	if(!istype(target.wear_neck, /obj/item/clothing/neck/kink_collar/locked))

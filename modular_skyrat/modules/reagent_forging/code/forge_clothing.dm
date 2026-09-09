@@ -1,3 +1,24 @@
+/datum/armor/perfect_forged_armor_bonus
+	melee = 20
+	bullet = 20
+	fire = 25
+	laser = 10
+	wound = 20
+
+/datum/armor/smithing_oil_armor_bonus
+	melee = 10
+	bullet = 10
+
+/datum/armor/armor_forging_plate_armor
+	melee = 20
+	bullet = 10
+	fire = 50
+	wound = 10
+	laser = 15
+	bomb = 25
+	acid = 50
+	wound = 50
+
 // Vests
 /obj/item/clothing/suit/armor/forging_plate_armor
 	name = "reagent plate vest"
@@ -10,22 +31,27 @@
 	icon_state = "plate_vest"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	resistance_flags = FIRE_PROOF
-	skyrat_obj_flags = ANVIL_REPAIR
 	armor_type = /datum/armor/armor_forging_plate_armor
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
-
-/datum/armor/armor_forging_plate_armor
-	melee = 40
-	bullet = 40
-	fire = 50
-	wound = 30
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 
 /obj/item/clothing/suit/armor/forging_plate_armor/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/armor_plate, 4)
-	AddComponent(/datum/component/reagent_clothing, ITEM_SLOT_OCLOTHING)
+	allowed += /obj/item/melee/forged_reagent_weapon
+	AddComponent(/datum/component/reagent_imbued/clothing, list(FORGE_EFFECT_ARMOR = /datum/armor/smithing_oil_armor_bonus), set_slot = ITEM_SLOT_OCLOTHING)
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_ARMOR = /datum/armor/perfect_forged_armor_bonus), \
+		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY))
 
-	allowed += /obj/item/forging/reagent_weapon
+/obj/item/clothing/suit/armor/forging_plate_armor/change_material_integrity(datum/material/material, amount, multiplier, removing = FALSE)
+	blacksmithing_change_material_integrity(src, material, amount, multiplier, removing)
+
+/obj/item/clothing/suit/armor/forging_plate_armor/change_material_strength(datum/material/material, mat_amount, multiplier, remove = FALSE)
+	blacksmithing_change_material_strength(src, material, mat_amount, multiplier, remove)
 
 // Gloves
 /obj/item/clothing/gloves/forging_plate_gloves
@@ -38,22 +64,28 @@
 	worn_icon_teshari = 'modular_skyrat/modules/reagent_forging/icons/mob/clothing/forge_clothing_teshari.dmi'
 	icon_state = "plate_gloves"
 	resistance_flags = FIRE_PROOF
-	skyrat_obj_flags = ANVIL_REPAIR
 
 	body_parts_covered = parent_type::body_parts_covered | ARMS
-	armor_type = /datum/armor/gloves_forging_plate_gloves
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
-
-/datum/armor/gloves_forging_plate_gloves
-	melee = 40
-	bullet = 40
-	fire = 50
-	wound = 30
+	armor_type = /datum/armor/armor_forging_plate_armor
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 
 /obj/item/clothing/gloves/forging_plate_gloves/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/armor_plate, 4)
-	AddComponent(/datum/component/reagent_clothing, ITEM_SLOT_GLOVES)
+	AddComponent(/datum/component/reagent_imbued/clothing, list(FORGE_EFFECT_ARMOR = /datum/armor/smithing_oil_armor_bonus), set_slot = ITEM_SLOT_GLOVES)
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_ARMOR = /datum/armor/perfect_forged_armor_bonus), \
+		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY))
+
+/obj/item/clothing/gloves/forging_plate_gloves/change_material_integrity(datum/material/material, amount, multiplier, removing = FALSE)
+	blacksmithing_change_material_integrity(src, material, amount, multiplier, removing)
+
+/obj/item/clothing/gloves/forging_plate_gloves/change_material_strength(datum/material/material, mat_amount, multiplier, remove = FALSE)
+	blacksmithing_change_material_strength(src, material, mat_amount, multiplier, remove)
 
 // Helmets
 /obj/item/clothing/head/helmet/forging_plate_helmet
@@ -68,20 +100,26 @@
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 	resistance_flags = FIRE_PROOF
 	flags_inv = null
-	skyrat_obj_flags = ANVIL_REPAIR
-	armor_type = /datum/armor/helmet_forging_plate_helmet
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
-
-/datum/armor/helmet_forging_plate_helmet
-	melee = 40
-	bullet = 40
-	fire = 50
-	wound = 30
+	armor_type = /datum/armor/armor_forging_plate_armor
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 
 /obj/item/clothing/head/helmet/forging_plate_helmet/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/armor_plate, 4)
-	AddComponent(/datum/component/reagent_clothing, ITEM_SLOT_HEAD)
+	AddComponent(/datum/component/reagent_imbued/clothing, list(FORGE_EFFECT_ARMOR = /datum/armor/smithing_oil_armor_bonus), set_slot = ITEM_SLOT_HEAD)
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_ARMOR = /datum/armor/perfect_forged_armor_bonus), \
+		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY))
+
+/obj/item/clothing/head/helmet/forging_plate_helmet/change_material_integrity(datum/material/material, amount, multiplier, removing = FALSE)
+	blacksmithing_change_material_integrity(src, material, amount, multiplier, removing)
+
+/obj/item/clothing/head/helmet/forging_plate_helmet/change_material_strength(datum/material/material, mat_amount, multiplier, remove = FALSE)
+	blacksmithing_change_material_strength(src, material, mat_amount, multiplier, remove)
 
 // Boots
 /obj/item/clothing/shoes/forging_plate_boots
@@ -97,39 +135,57 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 	body_parts_covered = parent_type::body_parts_covered | LEGS
-	armor_type = /datum/armor/shoes_forging_plate_boots
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
+	armor_type = /datum/armor/armor_forging_plate_armor
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 	resistance_flags = FIRE_PROOF
-	skyrat_obj_flags = ANVIL_REPAIR
 	fastening_type = SHOES_SLIPON
-
-/datum/armor/shoes_forging_plate_boots
-	melee = 20
-	bullet = 20
 
 /obj/item/clothing/shoes/forging_plate_boots/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/armor_plate, 2)
-	AddComponent(/datum/component/reagent_clothing, ITEM_SLOT_FEET)
+	AddComponent(/datum/component/reagent_imbued/clothing, list(FORGE_EFFECT_ARMOR = /datum/armor/smithing_oil_armor_bonus), set_slot = ITEM_SLOT_FEET)
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_ARMOR = /datum/armor/perfect_forged_armor_bonus), \
+		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY))
+
+/obj/item/clothing/shoes/forging_plate_boots/change_material_integrity(datum/material/material, amount, multiplier, removing = FALSE)
+	blacksmithing_change_material_integrity(src, material, amount, multiplier, removing)
+
+/obj/item/clothing/shoes/forging_plate_boots/change_material_strength(datum/material/material, mat_amount, multiplier, remove = FALSE)
+	blacksmithing_change_material_strength(src, material, mat_amount, multiplier, remove)
 
 /obj/item/clothing/shoes/horseshoe/reagent_clothing
 	name = "reagent horseshoes"
 	desc = "A pair of horseshoes made out of chains."
-
-	armor_type = /datum/armor/shoes_horseshoe
-	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
-	skyrat_obj_flags = ANVIL_REPAIR
-
-/datum/armor/shoes_horseshoe
-	melee = 20
-	bullet = 20
+	armor_type = /datum/armor/armor_forging_plate_armor
+	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 
 /obj/item/clothing/shoes/horseshoe/reagent_clothing/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/armor_plate, 2)
-	AddComponent(/datum/component/reagent_clothing, ITEM_SLOT_FEET)
+	AddComponent(/datum/component/reagent_imbued/clothing, list(FORGE_EFFECT_ARMOR = /datum/armor/smithing_oil_armor_bonus), set_slot = ITEM_SLOT_FEET)
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_ARMOR = /datum/armor/perfect_forged_armor_bonus), \
+		incompletion_effects = list(FORGE_EFFECT_ARMOR, FORGE_EFFECT_DURABILITY))
 
-// Misc
+/obj/item/clothing/shoes/horseshoe/reagent_clothing/change_material_integrity(datum/material/material, amount, multiplier, removing = FALSE)
+	blacksmithing_change_material_integrity(src, material, amount, multiplier, removing)
+
+/obj/item/clothing/shoes/horseshoe/reagent_clothing/change_material_strength(datum/material/material, mat_amount, multiplier, remove = FALSE)
+	blacksmithing_change_material_strength(src, material, mat_amount, multiplier, remove)
+
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////// MISC ////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+
 /obj/item/clothing/gloves/ring/reagent_clothing
 	name = "reagent ring"
 	desc = "A tiny ring, sized to wrap around a finger."
@@ -137,15 +193,26 @@
 	worn_icon_state = "sring"
 	inhand_icon_state = null
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
-	skyrat_obj_flags = ANVIL_REPAIR
+	var/current_perfection_bonus = 0
+	var/current_completion_penalty = 0
 
 /obj/item/clothing/gloves/ring/reagent_clothing/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_clothing, ITEM_SLOT_GLOVES)
+	AddComponent(/datum/component/reagent_imbued/clothing, list(FORGE_EFFECT_DURABILITY = 50), set_slot = ITEM_SLOT_GLOVES)
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_REAGENT_INJECT = 0.2), \
+		incompletion_effects = list(FORGE_EFFECT_REAGENT_INJECT, FORGE_EFFECT_DURABILITY))
+
+////////////////////////////////////////////////////////////////////////////
 
 /obj/item/clothing/neck/collar/reagent_clothing
 	name = "reagent collar"
-	desc = "A collar that is ready to be worn for certain individuals."
+	desc = "A collar that is ready to be worn for... certain individuals."
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_neck.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 	icon_state = "collar_cyan"
@@ -154,18 +221,24 @@
 	slot_flags = ITEM_SLOT_NECK
 	w_class = WEIGHT_CLASS_SMALL
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
-	skyrat_obj_flags = ANVIL_REPAIR
 
 /obj/item/clothing/neck/collar/reagent_clothing/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_clothing, ITEM_SLOT_NECK)
+	AddComponent(/datum/component/reagent_imbued/clothing, list(FORGE_EFFECT_DURABILITY = 50), set_slot = ITEM_SLOT_NECK)
+	AddComponent(/datum/component/forge_smithable, \
+		FORGING_CLOTHING_REFORGING_MAX_QUALITY, \
+		TRUE, \
+		FORGING_CLOTHING_REFORGING_MAX_PERFECT_HITS, \
+		FORGING_CLOTHING_REFORGING_MAX_BAD_HITS, \
+		FORGING_CLOTHING_REFORGING_AVERAGE_WAIT, \
+		perfection_effects = list(FORGE_EFFECT_REAGENT_INJECT = 0.2), \
+		incompletion_effects = list(FORGE_EFFECT_REAGENT_INJECT, FORGE_EFFECT_DURABILITY))
 
 /obj/item/restraints/handcuffs/reagent_clothing
 	name = "reagent handcuffs"
 	desc = "A pair of handcuffs that are ready to keep someone captive."
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
-	skyrat_obj_flags = ANVIL_REPAIR
 
 /obj/item/restraints/handcuffs/reagent_clothing/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reagent_clothing, ITEM_SLOT_HANDCUFFED)
+	AddComponent(/datum/component/reagent_imbued/clothing, ITEM_SLOT_HANDCUFFED)

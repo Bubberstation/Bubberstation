@@ -32,7 +32,7 @@
 				regen_time_elapsed += 1 SECONDS
 
 		var/effective_damage = ((gel_damage / (regen_time_needed / 10)) * seconds_per_tick)
-		var/obj/item/stack/gauze = limb.current_gauze
+		var/obj/item/stack/medical/wrap/gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
 		if (gauze)
 			effective_damage *= gauze.splint_factor
 		limb.receive_damage(effective_damage, wound_bonus = CANT_WOUND, damage_source = src)
@@ -55,7 +55,7 @@
 
 	var/use_exclamation = FALSE
 
-	if (!limb.current_gauze) // gauze covers it up
+	if (!LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)) // gauze covers it up
 		if (crowbarred_open)
 			. += ", [span_notice("and is violently torn open, internals visible to the outside")]"
 			use_exclamation = TRUE
@@ -190,14 +190,13 @@
 			stun_chance = 0
 
 		else if (iscarbon(user)) // doesn't matter if we're shock immune, it's set to 0 anyway
-			var/mob/living/carbon/carbon_user = user
-			if (carbon_user.gloves)
-				stun_chance *= carbon_user.gloves.siemens_coefficient
+			var/mob/living/carbon/human/human_user = user
+			if (human_user.gloves)
+				stun_chance *= human_user.gloves.siemens_coefficient
 
 			if (ishuman(user))
-				var/mob/living/carbon/human/human_user = user
 				stun_chance *= human_user.physiology.siemens_coeff
-			stun_chance *= carbon_user.dna.species.siemens_coeff
+			stun_chance *= human_user.dna.species.siemens_coeff
 
 		if (stun_chance && prob(stun_chance))
 			electrocute_flags &= ~SHOCK_KNOCKDOWN
@@ -210,8 +209,9 @@
 				victim_message = span_userdanger("[user] is shocked by your [limb.plaintext_zone] in [user.p_their()] efforts to tear it open!")
 
 		var/shock_damage = CROWBAR_OPEN_SHOCK_POWER
-		if (limb.current_gauze)
-			shock_damage *= limb.current_gauze.splint_factor // always good to let gauze do something
+		var/obj/item/stack/medical/wrap/gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
+		if (gauze)
+			shock_damage *= gauze.splint_factor // always good to let gauze do something
 		user.electrocute_act(shock_damage, limb, flags = electrocute_flags)
 
 	if (!stunned)

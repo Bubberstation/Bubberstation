@@ -106,6 +106,25 @@
 	name = "Xenomorph Warning"
 	default_raw_text = "The fallowing area has xenomorphs in it- do NOT under ANY circumstances break those turrets- otherwise, the xenomorphs inside COULD GET OUT"
 
+/obj/item/paper/fluff/awaymissions/maintsroom/go_to_the_xenos
+	name = "Black Note"
+	default_raw_text = "Sorry for stopping you here- but before I let you continue on further I would like to request you go help out some creatures that are stuck in a pen- i put the keycard to unlock this door behind them."
+	color = rgb(15, 15, 15)
+
+/obj/item/paper/fluff/awaymissions/maintsroom/danger_ahead
+	name = "Black Note"
+	default_raw_text = "Be warned, the area up ahead is- dangerous, imagine your world like a vast ship, the place you are currently in is the equivalent to an ocean, and going any further will have you go into the abyss."
+	color = rgb(15, 15, 15)
+
+/obj/item/paper/fluff/awaymissions/maintsroom/danger_ahead_reward
+	name = "Black Note"
+	default_raw_text = "I commend you for choosing to continue on, I decided to give you some material to make the journey ahead easier- also, i reccomend climbing under the tables and not over them- and also to fallow the light, the darkness contains more rewards but is significantly more- challenging."
+	color = rgb(15, 15, 15)
+
+/obj/item/paper/fluff/awaymissions/maintsroom/voidling_intern
+	name = "Black Note"
+	default_raw_text = "Hear me well, fragment of myself, you are to only help those who have been dead and laying down alone, if somebody died but they were with a group leave them, if an entire group died- help them, but if there is a good chance that somebody will be found- then dont help them, let the mortals help themselves wherever possible, feel free to have fun watching them but never let yourself be known to them if you really- feel safe going there and letting some of them talk to you- or bringing some of them to your own quarters, ask me first."
+	color = rgb(15, 15, 15)
 
 /obj/item/paper/fluff/awaymissions/maintsroom/readfucker
 	name = "Read Me"
@@ -120,3 +139,13 @@
 	<li>Third things last- take things slow, this place tends to be forgiving if you are slow, you wont die, if you see a red light and want to take it on, plan out a course</li> \
 	<li>to run to in case you need space to shoot them down while theyre chasing you- make sure to take note of where dead ends are and where the doors are too, i reccomend</li> \
 	<li>bolting the doors open as that way you wont lose precious time running from -it- from having to stop and re-open doors. Also, dont listen to the Void, I learnt that quickly. It likes to pretend to be your loved ones.</li>"
+
+/obj/item/keycard/claw_card
+	name = "Biometric keycard"
+	desc = "A keycard that looks more complex than the already other complex keycards, it a simple design of a skull on it."
+	color = "#4b4b4b"
+	puzzle_id = "claw_card"
+
+/obj/machinery/door/puzzle/keycard/claw_door
+	name = "secure airlock"
+	puzzle_id = "claw_card"

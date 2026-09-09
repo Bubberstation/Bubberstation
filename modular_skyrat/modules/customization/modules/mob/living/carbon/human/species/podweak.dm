@@ -29,9 +29,9 @@
 
 	always_customizable = FALSE
 
-/datum/species/pod/podweak/spec_life(mob/living/carbon/human/H, seconds_per_tick, times_fired)
-	. = ..()
-	if(H.stat != CONSCIOUS)
+/datum/species/pod/podweak/proc/on_life(mob/living/carbon/human/H, seconds_per_tick)
+	SIGNAL_HANDLER
+	if(IS_UNCONSCIOUS(H))
 		return
 
 	var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing

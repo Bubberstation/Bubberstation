@@ -2,6 +2,7 @@
 	name = "\improper RB-MK2 reactor rod"
 	desc = "A rod for the RB-MK2 reactor. Usually filled with a mix of tritium and an inert gas, such as nitrogen."
 	icon = 'modular_zubbers/icons/obj/equipment/burger_reactor.dmi'
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*5, /datum/material/uranium = SMALL_MATERIAL_AMOUNT*2)
 	icon_state = "platform_rod"
 	inhand_icon_state = null
 	worn_icon_state = null
@@ -31,14 +32,14 @@
 /obj/item/tank/rbmk2_rod/preloaded/populate_gas()
 	air_contents.assert_gas(/datum/gas/tritium)
 	air_contents.assert_gas(/datum/gas/nitrogen)
-	air_contents.gases[/datum/gas/tritium][MOLES] = 40
-	air_contents.gases[/datum/gas/nitrogen][MOLES] = 10
+	air_contents.moles[/datum/gas/tritium] = 40
+	air_contents.moles[/datum/gas/nitrogen] = 10
 
 /obj/item/tank/rbmk2_rod/supermatter/populate_gas()
 	air_contents.assert_gas(/datum/gas/tritium)
 	air_contents.assert_gas(/datum/gas/hypernoblium)
-	air_contents.gases[/datum/gas/tritium][MOLES] = 20
-	air_contents.gases[/datum/gas/hypernoblium][MOLES] = 30
+	air_contents.moles[/datum/gas/tritium] = 20
+	air_contents.moles[/datum/gas/hypernoblium] = 30
 
 /obj/item/tank/rbmk2_rod/atom_destruction(damage_flag)
 

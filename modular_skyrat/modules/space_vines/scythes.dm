@@ -39,12 +39,20 @@
 /obj/item/scythe/tier1
 	name = "scythe (tier 1)"
 	icon_state = "scythe_t1"
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 
 /obj/item/scythe/tier2
 	name = "scythe (tier 2)"
 	icon_state = "scythe_t2"
 	force = 15
 	hit_range = 1
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 
 /obj/item/scythe/tier3
 	name = "scythe (tier 3)"

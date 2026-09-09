@@ -2,7 +2,6 @@
 	title = ROLE_DAUNTLESS
 	policy_index = ROLE_DAUNTLESS
 	akula_outfit = /datum/outfit/akula
-	antagonist_restricted = TRUE
 
 // Dauntless Ghost Spawners (Lava)
 
@@ -262,7 +261,7 @@
 	id_trim = /datum/id_trim/syndicom/bubberstation/dauntless/brigofficer
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/bulletproof/old
-	back = /obj/item/storage/backpack/security/redsec
+	back = /obj/item/storage/backpack/security
 	backpack_contents = list(
 		/obj/item/flashlight/seclite = 1,
 		/obj/item/storage/box/survival = 1,
@@ -323,7 +322,7 @@
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	suit = /obj/item/clothing/suit/armor/vest/warden/syndicate
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/redsec
-	back = /obj/item/storage/backpack/satchel/sec/redsec
+	back = /obj/item/storage/backpack/satchel/sec
 	head = /obj/item/clothing/head/hats/hos/beret/syndicate
 	r_pocket = /obj/item/flashlight/seclite
 	implants = list(

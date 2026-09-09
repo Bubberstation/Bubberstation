@@ -13,6 +13,8 @@
 //Bubber addition start
 /// Module is compatible with Research Cyborg model
 #define BORG_MODEL_RESEARCH (1<<6)
+/// Module is compatible with Tarkon Cyborg model
+#define BORG_MODEL_TARKON (1<<7)
 //Bubber addition end
 
 /// Module is compatible with Ripley Exosuit models
@@ -39,6 +41,8 @@
 #define EXOSUIT_MODULE_MARAUDER (1<<10)
 /// Module is compatible with Paddy models
 #define EXOSUIT_MODULE_PADDY (1<<11)
+/// Module is compatible with VIM models
+#define EXOSUIT_MODULE_VIM (1<<12)
 
 /// Module is compatible with "Working" Exosuit models - Ripley and Clarke
 #define EXOSUIT_MODULE_WORKING (EXOSUIT_MODULE_RIPLEY | EXOSUIT_MODULE_CLARKE)

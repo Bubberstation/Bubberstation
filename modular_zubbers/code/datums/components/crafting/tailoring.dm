@@ -113,3 +113,21 @@
 	reqs = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 3,
 	/obj/item/clothing/head/utility/hardhat/welding/atmos = 1)
 	category = CAT_CLOTHING
+
+/datum/crafting_recipe/security_juggernaut
+	name = "Security Juggernaut Suit"
+	result = /obj/item/clothing/suit/hooded/secjuggernaut
+	time = 60
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER, TOOL_WELDER, TOOL_WRENCH, TOOL_CROWBAR, TOOL_MULTITOOL)
+	reqs = list(
+		/obj/item/weaponcrafting/juggernaut_suit = 1,
+		/obj/item/clothing/shoes/magboots = 1,
+		/obj/item/flashlight/seclite = 2,
+		/obj/item/clothing/suit/armor/swat = 1,
+		/obj/item/clothing/head/helmet/swat = 1,
+		/obj/item/stack/cable_coil = 30,
+	)
+	blacklist = list(
+		/obj/item/clothing/shoes/magboots/advance
+	)
+	category = CAT_CLOTHING

@@ -95,7 +95,7 @@
 
 	update_icon()
 	update_appearance()
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 
 /obj/item/clothing/mask/leatherwhip/examine(mob/user)
 	. = ..()
@@ -152,7 +152,7 @@
 
 	update_icon()
 	update_appearance()
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 
 /obj/item/clothing/mask/leatherwhip/update_icon_state()
 	. = ..()

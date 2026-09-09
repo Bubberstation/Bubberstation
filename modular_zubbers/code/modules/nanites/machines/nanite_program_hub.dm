@@ -50,6 +50,13 @@
 	. += "nanite_program_hub_on"
 	. += emissive_appearance(icon, "nanite_program_hub_on", src, alpha = src.alpha)
 
+/obj/machinery/nanite_program_hub/update_icon_state()
+	. = ..()
+	if(panel_open)
+		icon_state = "[initial(icon_state)]_t"
+		return
+	icon_state = initial(icon_state)
+
 /obj/machinery/nanite_program_hub/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
 	if(!istype(tool, /obj/item/disk/nanite_program))
@@ -71,11 +78,8 @@
 		update_static_data_for_all_viewers()
 	return TRUE
 
-/obj/machinery/nanite_program_hub/screwdriver_act(mob/living/user, obj/item/I)
-	if(..())
-		return TRUE
-
-	return default_deconstruction_screwdriver(user, "nanite_program_hub_t", "nanite_program_hub", I)
+/obj/machinery/nanite_program_hub/screwdriver_act(mob/living/user, obj/item/tool)
+	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/nanite_program_hub/crowbar_act(mob/living/user, obj/item/I)
 	if(..())

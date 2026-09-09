@@ -94,6 +94,16 @@
 	restricted_roles += list(JOB_HEAD_OF_SECURITY, JOB_BLUESHIELD, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_ENGINEER, JOB_CAPTAIN, JOB_QUARTERMASTER, JOB_CHIEF_MEDICAL_OFFICER)
 	return ..()
 
+/datum/loadout_item/suit/command/blueshield_jacket
+	name = "Blueshield's Jacket"
+	item_path = /obj/item/clothing/suit/armor/vest/blueshield/jacket
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/suit/command/blueshield_armor
+	name = "Blueshield's Armor"
+	item_path = /obj/item/clothing/suit/armor/vest/blueshield
+	restricted_roles = list(JOB_BLUESHIELD)
+
 // Fancy crop-top jackets
 
 /datum/loadout_item/suit/crop_jacket
@@ -235,3 +245,57 @@
 /datum/loadout_item/suit/trenchcoat
 	name = "Trenchcoat"
 	item_path = /obj/item/clothing/suit/toggle/jacket/trenchcoat
+
+/datum/loadout_item/suit/greyscale/sweater
+	name = "Big Sweater"
+	item_path = /obj/item/clothing/suit/greyscale/sweater
+
+/datum/loadout_item/suit/greyscale/sweater_bow
+	name = "Big Sweater with Bow"
+	item_path = /obj/item/clothing/suit/greyscale/sweater/bow
+
+/datum/loadout_item/suit/greyscale/furred_trench
+	name = "Furred Trenchcoat"
+	item_path = /obj/item/clothing/suit/greyscale/furred_trenchcoat
+
+/datum/loadout_item/suit/coat_chemist
+	name = "Chemistry winter coat"
+	item_path = /obj/item/clothing/suit/hooded/wintercoat/medical/chemistry
+
+/datum/loadout_item/suit/coat_coroner
+	name = "Coroner winter coat"
+	item_path = /obj/item/clothing/suit/hooded/wintercoat/medical/coroner
+
+/datum/loadout_item/suit/coat_virologist
+	name = "Virologists winter coat"
+	item_path = /obj/item/clothing/suit/hooded/wintercoat/medical/viro
+
+/datum/loadout_item/suit/coat_ce
+	name = "Chief Engineers winter coat"
+	item_path = /obj/item/clothing/suit/hooded/wintercoat/engineering/ce
+	restricted_roles = list(JOB_CHIEF_ENGINEER)
+
+/datum/loadout_item/suit/coat_cmo
+	name = "Chief Medical Officers winter coat"
+	item_path = /obj/item/clothing/suit/hooded/wintercoat/medical/cmo
+	restricted_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
+
+/datum/loadout_item/suit/coat_rd
+	name = "Research Directors winter coat"
+	item_path = /obj/item/clothing/suit/hooded/wintercoat/science/rd
+	restricted_roles = list(JOB_RESEARCH_DIRECTOR)
+
+/datum/loadout_item/suit/coat_qm
+	name = "Quartermasters winter coat"
+	item_path = /obj/item/clothing/suit/hooded/wintercoat/cargo/qm
+	restricted_roles = list(JOB_QUARTERMASTER)
+
+/datum/loadout_item/suit/coat_hop
+	name = "Head of Personnel winter coat"
+	item_path = /obj/item/clothing/suit/hooded/wintercoat/hop
+	restricted_roles = list(JOB_HEAD_OF_PERSONNEL)
+
+/datum/loadout_item/suit/coat_captain
+	name = "Captains winter coat"
+	item_path = /obj/item/clothing/suit/hooded/wintercoat/captain
+	restricted_roles = list(JOB_CAPTAIN)

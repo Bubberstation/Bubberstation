@@ -25,6 +25,9 @@
 
 /datum/job/ai/after_spawn(mob/living/spawned, client/player_client)
 	. = ..()
+	if(!isAI(spawned))
+		return
+
 	/* SKYRAT EDIT REMOVAL START
 	//we may have been created after our borg
 	if(SSticker.current_state == GAME_STATE_SETTING_UP)
@@ -37,8 +40,12 @@
 		ai_spawn.set_gender(player_client)
 	ai_spawn.log_current_laws()
 	// SKYRAT EDIT ADDITION START
+	var/list/turf/adj_turfs = get_adjacent_open_turfs(ai_spawn)
+	var/turf/picked_turf = pick(adj_turfs)
+	new /mob/living/silicon/robot/shell(picked_turf)
+
 	for(var/mob/living/silicon/robot/sync_target in GLOB.silicon_mobs)
-		if(!(sync_target.z in SSmapping.levels_by_trait(ZTRAIT_STATION)) || (sync_target.z in SSmapping.levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND))) // Skip ghost cafe, interlink, and other cyborgs.
+		if(!(sync_target.registered_z in SSmapping.levels_by_trait(ZTRAIT_STATION)) || (sync_target.registered_z in SSmapping.levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND))) // Skip ghost cafe, interlink, and other cyborgs.
 			continue
 		if(sync_target.emagged) // Skip emagged cyborgs, they don't sync up to the AI anyways and emagged borgs are already outed by just looking at a robotics console.
 			continue
@@ -59,6 +66,16 @@
 		sync_target.show_laws()
 	// SKYRAT EDIT ADDITION END
 
+	// when a cyborg is instantiated they will automatically try to link to us
+	// but if the cyborg was made first, they will not have an us to link to!
+	// gamestart borgs definitely want to be linked to the gamestart ai, so let's clean that up here
+	if(SSticker.current_state == GAME_STATE_SETTING_UP)
+		for(var/mob/living/silicon/robot/gamestart_borg in GLOB.silicon_mobs)
+			if(!gamestart_borg.connected_ai)
+				gamestart_borg.try_connect_to_ai(spawned)
+
+	ai_spawn.log_current_laws()
+	ai_spawn.show_laws(player_client.mob)
 
 /datum/job/ai/get_roundstart_spawn_point()
 	return get_latejoin_spawn_point()

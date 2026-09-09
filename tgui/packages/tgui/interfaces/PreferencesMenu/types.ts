@@ -30,6 +30,7 @@ export enum Food {
   Sugar = 'SUGAR',
   Toxic = 'TOXIC',
   Vegetables = 'VEGETABLES',
+  Egg = 'EGG',
   Bloody = 'BLOODY', // SKYRAT EDIT ADDITION - Hemophage Food
 }
 
@@ -38,6 +39,12 @@ export enum JobPriority {
   Medium = 2,
   High = 3,
 }
+
+type JobPreference = {
+  job: string;
+  priority: JobPriority | null;
+  assigned_profile_slot: number | null;
+};
 
 export type Name = {
   can_randomize: BooleanLike;
@@ -79,6 +86,7 @@ export type Perk = {
 
 export type Department = {
   head?: string;
+  color?: string;
 };
 
 export type Job = {
@@ -236,7 +244,7 @@ export type PreferencesMenuData = {
       required_playtime: number;
     }
   >;
-  job_preferences: Record<string, JobPriority>;
+  job_preferences: JobPreference[];
 
   // SKYRAT EDIT
   job_alt_titles: Record<string, string>;
@@ -278,6 +286,7 @@ export type ServerData = {
   jobs: {
     departments: Record<string, Department>;
     jobs: Record<string, Job>;
+    jobs_sorted: string[];
   };
   names: {
     types: Record<string, Name>;

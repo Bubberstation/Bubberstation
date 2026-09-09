@@ -153,6 +153,11 @@
 	// Not as good as organic tongues, not as bad as the robotic voicebox.
 	taste_sensitivity = 20
 	modifies_speech = TRUE
+	custom_materials = list(
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 2,
+		/datum/material/silver = SMALL_MATERIAL_AMOUNT * 2,
+	)
 
 /obj/item/organ/tongue/cybernetic
 	name = "cybernetic tongue"
@@ -163,12 +168,20 @@
 	say_mod = "says"
 	// Not as good as organic tongues, not as bad as the robotic voicebox.
 	taste_sensitivity = 20
+	custom_materials = list(
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 2,
+		/datum/material/silver = SMALL_MATERIAL_AMOUNT * 2
+		)
 
 /obj/item/organ/tongue/vox
 	name = "vox tongue"
 	desc = "A fleshy muscle mostly used for skreeing."
 	say_mod = "skrees"
 	liked_foodtypes = MEAT | FRIED
+	emote_sounds = list(
+		/datum/emote/living/scream::key = 'modular_skyrat/modules/emotes/sound/emotes/voxscream.ogg'
+	)
 
 /obj/item/organ/tongue/dwarven
 	name = "dwarven tongue"
@@ -192,6 +205,9 @@
 	liked_foodtypes = GROSS | RAW | TOXIC | GORE
 	disliked_foodtypes = CLOTH | GRAIN | FRIED
 	toxic_foodtypes = DAIRY
+	emote_sounds = list(
+		/datum/emote/living/scream::key = 'sound/mobs/humanoids/moth/scream_moth.ogg'
+	)
 
 /obj/item/organ/tongue/xeno_hybrid
 	name = "alien tongue"
@@ -200,6 +216,9 @@
 	say_mod = "hisses"
 	taste_sensitivity = 10
 	liked_foodtypes = MEAT
+	emote_sounds = list(
+		/datum/emote/living/scream::key = 'sound/mobs/non-humanoids/hiss/hiss6.ogg'
+	)
 
 /obj/item/organ/tongue/xeno_hybrid/Initialize(mapload)
 	. = ..()

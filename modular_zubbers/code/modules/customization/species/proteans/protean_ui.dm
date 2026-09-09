@@ -1,3 +1,5 @@
+/datum/species/protean
+	COOLDOWN_DECLARE(transform_cooldown)
 /datum/species/protean/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -13,6 +15,9 @@
 	data["lock"] = species_modsuit?.modlocked
 	data["icon"] = species_modsuit?.icon
 	data["icon_state"] = species_modsuit?.icon_state
+	data["transform"] = species_modsuit?.wearer?.GetComponent(/datum/component/transformation)
+	data["assimilated"] = !isnull(species_modsuit?.stored_modsuit)
+	data["is_owner"] = user == owner
 	return data
 
 /datum/species/protean/ui_status(mob/user) // Protean's UI
@@ -35,7 +40,44 @@
 			owner.suit_transformation(owner == usr ? FALSE : TRUE) // Others can force the protean to fold.
 		if("heal")
 			owner.protean_heal()
+		if("eject_modsuit")
+			if(usr != owner)
+				return TRUE
+			if(!species_modsuit?.stored_modsuit)
+				owner.balloon_alert(owner, "no assimilated suit")
+				return TRUE
+			INVOKE_ASYNC(src, PROC_REF(eject_stored_modsuit))
+		if("protean_transform")
+			if(COOLDOWN_FINISHED(src, transform_cooldown)) // Anti-spam
+				var/component = species_modsuit.wearer?.GetComponent(/datum/component/transformation)
+				if(component)
+					playsound(owner, 'sound/machines/click.ogg', 25)
+					UnregisterSignal(species_modsuit, COMSIG_ITEM_PRE_UNEQUIP)
+					qdel(component)
+				else if(species_modsuit.wearer == owner)
+					to_chat(owner, span_notice("You already look like yourself!"))
+				else
+					playsound(owner, 'sound/machines/click.ogg', 25)
+					species_modsuit.wearer.AddComponent(/datum/component/transformation, source = owner)
+					RegisterSignal(species_modsuit, COMSIG_ITEM_PRE_UNEQUIP, PROC_REF(protean_transform_unequip))
+				COOLDOWN_START(src, transform_cooldown, 1 SECONDS)
 	return TRUE
+
+/datum/species/protean/proc/eject_stored_modsuit()
+	to_chat(owner, span_notice("You begin to extract [species_modsuit.stored_modsuit] from your body."))
+	if(!do_after(owner, 5 SECONDS))
+		return
+	if(!species_modsuit?.stored_modsuit)
+		return
+	unassimilate_modsuit(owner)
+
+/datum/species/protean/proc/protean_transform_unequip(/obj/item/source)
+	SIGNAL_HANDLER
+
+	var/component = species_modsuit.wearer.GetComponent(/datum/component/transformation)
+	if(component)
+		UnregisterSignal(species_modsuit, COMSIG_ITEM_PRE_UNEQUIP)
+		qdel(component)
 
 /datum/action/protean
 	name = "Protean Interface"

@@ -40,6 +40,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 #define GOODY_FREE_SHIPPING_MAX 5
 /// How much to charge oversized goody orders
 #define CRATE_TAX 700
+#define REFILL_RANGE_DEFAULT 10
 
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
@@ -123,11 +124,16 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(getDockedId() == "cargo_away") // Buy when we leave home.
 		buy()
 		create_mail()
+		if(SSshuttle.renew_cargo_air)
+			refill_air()
 	. = ..() // Fly/enter transit.
 	if(. != DOCKING_SUCCESS)
 		return
 	if(getDockedId() == "cargo_away") // Sell when we get home
 		sell()
+		if(SSshuttle.renew_cargo_air)
+			refill_air()
+
 
 /obj/docking_port/mobile/supply/proc/buy()
 	SEND_SIGNAL(SSshuttle, COMSIG_SUPPLY_SHUTTLE_BUY)
@@ -193,7 +199,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				paying_for_this = spawning_order.paying_account
 				// note this is before we increment, so this is the GOODY_FREE_SHIPPING_MAX + 1th goody to ship. also note we only increment off this step if they successfully pay the fee, so there's no way around it
 				if(spawning_order.pack.order_flags & ORDER_GOODY)
-					var/list/current_buyer_orders = goodies_by_buyer[spawning_order.paying_account]
+					var/list/current_buyer_orders = goodies_by_buyer[paying_for_this] // BUBBER EDIT
 					if(LAZYLEN(current_buyer_orders) == GOODY_FREE_SHIPPING_MAX)
 						price = round(price + CRATE_TAX)
 						paying_for_this.bank_card_talk("Goody order size exceeds free shipping limit: Assessing [CRATE_TAX] [MONEY_NAME_SINGULAR] S&H fee.")
@@ -210,10 +216,16 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 					continue
 
 		pack_cost = spawning_order.pack.get_cost()
+		// BUBBER EDIT START - include cargo-funded goodies in per-buyer goody packaging
+		if(spawning_order.charge_on_purchase && (spawning_order.pack.order_flags & ORDER_GOODY) && paying_for_this)
+			LAZYADD(goodies_by_buyer[paying_for_this], spawning_order)
+		// BUBBER EDIT END
 		if(spawning_order.paying_account && spawning_order.charge_on_purchase) // SKYRAT EDIT CHANGE - ORIGINAL: if(spawning_order.paying_account)
 			paying_for_this = spawning_order.paying_account
-			if(spawning_order.pack.order_flags & ORDER_GOODY)
-				LAZYADD(goodies_by_buyer[spawning_order.paying_account], spawning_order)
+			// BUBBER REMOVAL START
+			// if(spawning_order.pack.order_flags & ORDER_GOODY)
+			// 	LAZYADD(goodies_by_buyer[spawning_order.paying_account], spawning_order)
+			// BUBBER REMOVAL END
 			var/receiver_message = "Cargo order #[spawning_order.id] has shipped."
 			if(spawning_order.charge_on_purchase)
 				receiver_message += " [price] [MONEY_NAME] have been charged to your bank account"
@@ -244,20 +256,15 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	for(var/buyer_key in goodies_by_buyer)
 		var/list/buying_account_orders = goodies_by_buyer[buyer_key]
 		var/datum/bank_account/buying_account = buyer_key
-		var/buyer = buying_account.account_holder
+		var/buyer = buying_account.account_holder || "Account ID: [buying_account.account_id]" // BUBBER EDIT - allow goodies to be bought privately
 
 		if(buying_account_orders.len > GOODY_FREE_SHIPPING_MAX) // no free shipping, send a crate
-			var/obj/structure/closet/crate/secure/owned/our_crate = new /obj/structure/closet/crate/secure/owned(pick_n_take(empty_turfs))
-			our_crate.buyer_account = buying_account
-			/// SKYRAT EDIT ADDITION START - FIXES COMMAND BUDGET CASES BEING UNOPENABLE
-			if(istype(our_crate.buyer_account, /datum/bank_account/department))
-				our_crate.department_purchase = TRUE
-				our_crate.department_account = our_crate.buyer_account
-			/// SKYRAT EDIT ADDITION END
+			var/obj/structure/closet/crate/secure/our_crate = new /obj/structure/closet/crate/secure(pick_n_take(empty_turfs))
+			our_crate.AddComponent(/datum/component/locked_to_account, buying_account)
 			our_crate.name = "goody crate - purchased by [buyer]"
 			miscboxes[buyer] = our_crate
 		else //free shipping in a case
-			miscboxes[buyer] = new /obj/item/storage/lockbox/order(pick_n_take(empty_turfs))
+			miscboxes[buyer] = new /obj/item/storage/lockbox/order(pick_n_take(empty_turfs), buying_account) // BUBBER EDIT - add init arg
 			var/obj/item/storage/lockbox/order/our_case = miscboxes[buyer]
 			our_case.buyer_account = buying_account
 			/// SKYRAT EDIT ADDITION START - FIXES COMMAND BUDGET CASES BEING UNOPENABLE
@@ -266,6 +273,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				our_case.department_account = our_case.buyer_account
 			/// SKYRAT EDIT ADDITION END
 			miscboxes[buyer].name = "goody case - purchased by [buyer]"
+		//BUBBER EDIT BEGIN // Populate the contents for purchased orders
 		misc_contents[buyer] = list()
 
 		for(var/datum/supply_order/our_order as anything in buying_account_orders)
@@ -273,6 +281,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				misc_contents[buyer] += item
 			misc_costs[buyer] += our_order.pack.cost
 			misc_order_num[buyer] = "[misc_order_num[buyer]]#[our_order.id] "
+		////BUBBER EDIT END
 
 	for(var/miscbox in miscboxes)
 		var/datum/supply_order/order = new/datum/supply_order()
@@ -301,6 +310,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			for(var/turf/shuttle_turf as anything in zlevel_turfs)
 				for(var/atom/movable/exporting_atom in shuttle_turf)
 					if(iseyemob(exporting_atom))
+						continue
+					if(isobserver(exporting_atom))
 						continue
 					if(exporting_atom.anchored)
 						continue
@@ -350,5 +361,22 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 	return similar_count
 
+
+/**
+ * This proc collects all turfs on a shuttle, then replaces the air with the initial gas mix across the shuttle.
+ * Used by the shuttle air upgrade.
+ */
+/obj/docking_port/mobile/supply/proc/refill_air()
+	for(var/area/shuttle/shuttle_area as anything in shuttle_areas)
+		for(var/turf/open/floor/shuttle_floor in shuttle_area.get_turfs_from_all_zlevels())
+			if(shuttle_floor.blocks_air)
+			//skip walls
+				continue
+			var/datum/gas_mixture/GM = SSair.parse_gas_string(shuttle_floor.initial_gas_mix, /datum/gas_mixture/turf)
+			shuttle_floor.copy_air(GM)
+			shuttle_floor.temperature = initial(shuttle_floor.temperature)
+			shuttle_floor.update_visuals()
+
 #undef GOODY_FREE_SHIPPING_MAX
 #undef CRATE_TAX
+#undef REFILL_RANGE_DEFAULT

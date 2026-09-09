@@ -27,6 +27,7 @@
 	bodypart_trait_source = HEAD_TRAIT
 	butcher_replacement = /obj/item/bodypart/head/skeleton/nonfunctional
 	base_meat_amount = 0
+	stump_typepath = /obj/item/bodypart/head/stump
 
 	/// Do we show the information about missing organs upon being examined? Defaults to TRUE, useful for Dullahan heads.
 	var/show_organs_on_examine = TRUE
@@ -43,10 +44,6 @@
 	var/hair_color = COLOR_BLACK
 	/// Hair alpha
 	var/hair_alpha = 255
-	/// Is the hair currently hidden by something?
-	var/hair_hidden = FALSE
-	/// Lazy initialized hashset of all hair mask types that should be applied
-	var/list/hair_masks
 
 	///Facial hair style
 	var/facial_hairstyle = "Shaved"
@@ -54,8 +51,6 @@
 	var/facial_hair_color = COLOR_BLACK
 	///Facial hair alpha
 	var/facial_hair_alpha = 255
-	///Is the facial hair currently hidden by something?
-	var/facial_hair_hidden = FALSE
 
 	/// Gradient styles, if any
 	var/list/gradient_styles
@@ -88,15 +83,8 @@
 	/// Offset to apply to overlays placed on the face
 	var/datum/worn_feature_offset/worn_face_offset
 
-	VAR_PROTECTED
-		/// Draw this head as "debrained"
-		show_debrained = FALSE
-
-		/// Draw this head as missing eyes
-		show_eyeless = FALSE
-
-		/// Can this head be dismembered normally?
-		can_dismember = FALSE
+	/// Can this head be dismembered normally?
+	var/can_dismember = FALSE
 
 /obj/item/bodypart/head/Initialize(mapload)
 	. = ..()
@@ -111,15 +99,19 @@
 	QDEL_NULL(worn_face_offset)
 	return ..()
 
-/obj/item/bodypart/head/get_butcher_drops(force = FALSE)
-	if(!isnull(butcher_drops) && !force)
-		return butcher_drops
-	if (butcher_drop_cache[type] && !force)
-		return butcher_drop_cache[type]
+/obj/item/bodypart/head/get_butcher_drops()
+	. = ..()
 	var/datum/species/species = GLOB.species_list[species_id || limb_id]
-	if (!species || !species.skinned_type)
-		return null
-	return list(species.skinned_type = 1)
+	if (!isnull(species?.skinned_type))
+		. ||= list()
+		.[species.skinned_type] = 1
+
+/obj/item/bodypart/head/animate_atom_living(mob/living/owner)
+	var/mob/living/basic/animated = ..()
+	animated.attack_vis_effect = ATTACK_EFFECT_BITE
+	animated.attack_verb_continuous = "bites"
+	animated.attack_verb_simple = "bite"
+	return animated
 
 /obj/item/bodypart/head/grind_results()
 	return null
@@ -176,64 +168,44 @@
 	if(brain && violent_removal && prob(90)) //ghetto surgery can damage the brain.
 		to_chat(user, span_warning("[brain] was damaged in the process!"))
 		brain.set_organ_damage(brain.maxHealth)
-
-	update_limb()
 	return ..()
 
 /obj/item/bodypart/head/update_limb(dropping_limb, is_creating)
 	. = ..()
-	if(!isnull(owner))
+	if(isnull(owner))
+		return
+	if(is_husked && is_husked != HUSKED_ZOMBIE)
+		ADD_TRAIT(src, TRAIT_DISFIGURED, HUSK_TRAIT)
+	else
+		REMOVE_TRAIT(src, TRAIT_DISFIGURED, HUSK_TRAIT)
+	if(is_creating)
 		real_name = owner.real_name
-		if(is_husked)
-			ADD_TRAIT(src, TRAIT_DISFIGURED, HUSK_TRAIT)
-		else
-			REMOVE_TRAIT(src, TRAIT_DISFIGURED, HUSK_TRAIT)
-	update_hair_and_lips(dropping_limb, is_creating)
+		copy_appearance_from(owner)
+
+// Ensures putting organs in and removing organs from our head always updates the limb
+/obj/item/bodypart/head/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	if(isorgan(arrived) && !ismob(loc))
+		addtimer(CALLBACK(src, PROC_REF(update_head_on_organ_movement)), 1, TIMER_UNIQUE|TIMER_DELETE_ME)
+
+/obj/item/bodypart/head/Exited(atom/movable/gone, direction)
+	. = ..()
+	if(isorgan(gone) && !ismob(loc))
+		addtimer(CALLBACK(src, PROC_REF(update_head_on_organ_movement)), 1, TIMER_UNIQUE|TIMER_DELETE_ME)
+
+/obj/item/bodypart/head/proc/update_head_on_organ_movement()
+	update_limb()
+	update_icon_dropped()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/bodypart/head/get_limb_icon(dropped, mob/living/carbon/update_on)
+/obj/item/bodypart/head/get_limb_icon(dropped)
 	. = ..()
-	. += get_hair_and_lips_icon(dropped)
-	// We need to get the eyes if we are dropped (ugh)
-	if(!dropped)
-		return
+	if(dropped) // These overlays are applied as standing overlays so we only need them if dropped
+		. += get_hair_overlays(dropped)
+		. += get_eye_overlays(dropped)
 
-	var/obj/item/organ/eyes/eyes = locate(/obj/item/organ/eyes) in src
-	if(!eyes)
-		if (!(head_flags & HEAD_EYEHOLES))
-			return
-		var/image/no_eyes = image('icons/mob/human/human_eyes.dmi', "eyes_missing", -EYES_LAYER, SOUTH)
-		worn_face_offset?.apply_offset(no_eyes)
-		. += no_eyes
-		return
-
-	if(!eyes.eye_icon_state || !(head_flags & HEAD_EYESPRITES))
-		return
-
-	// This is a bit of copy/paste code from eyes.dm:generate_body_overlay
-	var/image/eye_left = image(eyes.eye_icon, "[eyes.eye_icon_state]_l", -EYES_LAYER, SOUTH)
-	var/image/eye_right = image(eyes.eye_icon, "[eyes.eye_icon_state]_r", -EYES_LAYER, SOUTH)
-	if(head_flags & HEAD_EYECOLOR)
-		if(eyes.eye_color_left)
-			eye_left.color = eyes.eye_color_left
-		if(eyes.eye_color_right)
-			eye_right.color = eyes.eye_color_right
-
-	var/list/emissive_overlays = eyes.get_emissive_overlays(eye_left, eye_right, src)
-	if(length(emissive_overlays))
-		eye_left.overlays += image(emissive_overlays[1], dir = SOUTH)
-		eye_right.overlays += image(emissive_overlays[2], dir = SOUTH)
-	else if(blocks_emissive != EMISSIVE_BLOCK_NONE)
-		eye_left.overlays += image(emissive_blocker(eye_left.icon, eye_left.icon_state, src, alpha = eye_left.alpha), dir = SOUTH)
-		eye_right.overlays += image(emissive_blocker(eye_right.icon, eye_right.icon_state, src, alpha = eye_right.alpha), dir = SOUTH)
-
-	if(worn_face_offset)
-		worn_face_offset.apply_offset(eye_left)
-		worn_face_offset.apply_offset(eye_right)
-
-	. += eye_left
-	. += eye_right
+	. += get_lips_overlays(dropped)
 
 /obj/item/bodypart/head/get_voice(add_id_name)
 	return "The head of [get_face_name()]"
@@ -256,59 +228,3 @@
 	if (ishuman(owner))
 		var/mob/living/carbon/human/as_human = owner
 		as_human?.update_visible_name()
-
-/obj/item/bodypart/head/monkey
-	icon = 'icons/mob/human/species/monkey/bodyparts.dmi'
-	icon_static = 'icons/mob/human/species/monkey/bodyparts.dmi'
-	icon_husk = 'icons/mob/human/species/monkey/bodyparts.dmi'
-	husk_type = "monkey"
-	icon_state = "default_monkey_head"
-	limb_id = SPECIES_MONKEY
-	bodyshape = BODYSHAPE_MONKEY
-	should_draw_greyscale = FALSE
-	dmg_overlay_type = SPECIES_MONKEY
-	is_dimorphic = FALSE
-	head_flags = HEAD_LIPS|HEAD_DEBRAIN
-
-/obj/item/bodypart/head/monkey/Initialize(mapload)
-	worn_head_offset = new(
-		attached_part = src,
-		feature_key = OFFSET_HEAD,
-		offset_y = list("south" = 1),
-	)
-	worn_glasses_offset = new(
-		attached_part = src,
-		feature_key = OFFSET_GLASSES,
-		offset_y = list("south" = 1),
-	)
-	return ..()
-
-/obj/item/bodypart/head/alien
-	icon = 'icons/mob/human/species/alien/bodyparts.dmi'
-	icon_static = 'icons/mob/human/species/alien/bodyparts.dmi'
-	icon_state = "alien_head"
-	limb_id = BODYPART_ID_ALIEN
-	is_dimorphic = FALSE
-	should_draw_greyscale = FALSE
-	px_x = 0
-	px_y = 0
-	bodypart_flags = BODYPART_UNREMOVABLE
-	max_damage = LIMB_MAX_HP_ALIEN_CORE
-	burn_modifier = LIMB_ALIEN_BURN_DAMAGE_MULTIPLIER
-	bodytype = BODYTYPE_ALIEN | BODYTYPE_ORGANIC
-	bodyshape = BODYSHAPE_HUMANOID
-	biological_state = BIO_STANDARD_ALIEN
-
-/obj/item/bodypart/head/larva
-	icon = 'icons/mob/human/species/alien/bodyparts.dmi'
-	icon_static = 'icons/mob/human/species/alien/bodyparts.dmi'
-	icon_state = "larva_head"
-	limb_id = BODYPART_ID_LARVA
-	is_dimorphic = FALSE
-	should_draw_greyscale = FALSE
-	px_x = 0
-	px_y = 0
-	bodypart_flags = BODYPART_UNREMOVABLE
-	max_damage = LIMB_MAX_HP_ALIEN_LARVA
-	burn_modifier = LIMB_ALIEN_BURN_DAMAGE_MULTIPLIER
-	bodytype = BODYTYPE_LARVA_PLACEHOLDER | BODYTYPE_ORGANIC

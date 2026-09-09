@@ -26,7 +26,7 @@
 	switch(SSticker.current_state)
 		if(GAME_STATE_STARTUP, GAME_STATE_PREGAME, GAME_STATE_SETTING_UP)
 			set_messages("CASH", "", "")
-			update_overlays()
+			update_overlays(UPDATE_OVERLAYS)
 			return
 
 	if(display_reset_state)
@@ -38,13 +38,13 @@
 		display_reset_state = 0 // we now return to our regularly scheduled programming
 		text_color = COLOR_DISPLAY_GREEN
 		set_messages("CASH", " ", " ")
-		update_overlays()
+		update_overlays(UPDATE_OVERLAYS)
 		return
 	else if(!display_reset_state && prob(1)) // force a reset of the display randomly (resolves red text when power is lost)
 		display_reset_state = 1
 		text_color = COLOR_DISPLAY_GREEN
 		set_messages(" ", " ", " ")
-		update_overlays()
+		update_overlays(UPDATE_OVERLAYS)
 		return
 
 	if(isnull(synced_bank_account))
@@ -70,7 +70,7 @@
 		set_messages("CASH", "[round(balance / 1000)].[balance_remainer]K", "")
 	else
 		set_messages("CASH", "[balance]", "")
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 
 /obj/machinery/status_display/department_balance/process(seconds_per_tick)
 	update_balance()

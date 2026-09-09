@@ -25,6 +25,51 @@
 	item_path = /obj/item/clothing/under/rank/nanotrasen_consultant/stripper
 	restricted_roles = list(JOB_NT_REP)
 
+/datum/loadout_item/uniform/command/blueshield_suit
+	name = "Blueshield's Suit"
+	item_path = /obj/item/clothing/under/rank/blueshield
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/command/blueshield_suitskirt
+	name = "Blueshield's Suitskirt"
+	item_path = /obj/item/clothing/under/rank/blueshield/skirt
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/command/blueshield_turtleneck
+	name = "Blueshield's Turtleneck"
+	item_path = /obj/item/clothing/under/rank/blueshield/turtleneck
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/command/blueshield_turtleneckskirt
+	name = "Blueshield's Skirtleneck"
+	item_path = /obj/item/clothing/under/rank/blueshield/turtleneck/skirt
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/command/blueshield_consult
+	name = "Blueshield's Consulting Suit"
+	item_path = /obj/item/clothing/under/rank/blueshield/consult
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/command/blueshield_consultskirt
+	name = "Blueshield's Consulting Skirt"
+	item_path = /obj/item/clothing/under/rank/blueshield/consult/skirt
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/command/blueshield_sweat
+	name = "Blueshield's Sweatsuit"
+	item_path = /obj/item/clothing/under/rank/blueshield/russian
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/command/blueshield_formal
+	name = "Blueshield's Formal Uniform"
+	item_path = /obj/item/clothing/under/rank/blueshield/formal
+	restricted_roles = list(JOB_BLUESHIELD)
+
+/datum/loadout_item/uniform/command/blueshield_naval
+	name = "Blueshield's Naval Uniform"
+	item_path = /obj/item/clothing/under/rank/blueshield/naval
+	restricted_roles = list(JOB_BLUESHIELD)
+
 /datum/loadout_item/uniform/medrscrubs
 	name = "Security Medic's Scrubs"
 	item_path = /obj/item/clothing/under/rank/medical/scrubs/skyrat/red/sec
@@ -34,6 +79,21 @@
 	name = "Security Red Uniform"
 	item_path = /obj/item/clothing/under/rank/security/officer/redsec
 	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/officer/recolorable
+	name = "Recolorable Security Uniform"
+	item_path = /obj/item/clothing/under/rank/security/officer/recolorable
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/uniform/security/officer/recolorable/set_item_color(datum/preference_middleware/loadout/manager, mob/user)
+	return set_component_style_item_color(manager, user)
+
+/datum/loadout_item/uniform/security/officer/recolorable/set_slot_greyscale(datum/preference_middleware/loadout/manager, datum/greyscale_modify_menu/open_menu)
+	return set_component_style_slot_greyscale(manager, open_menu)
+
+/datum/loadout_item/uniform/security/officer/recolorable/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/outfit, visuals_only = FALSE)
+	. = ..()
+	apply_component_style_to_equipped_item(equipped_item, item_details)
 
 /datum/loadout_item/uniform/security/peacekeeper/armadyne
 	name = "Armadyne Corporate Uniform"
@@ -65,25 +125,34 @@
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/security_medic/alternate
 	restricted_roles = list(JOB_SECURITY_MEDIC)
 
-/datum/loadout_item/uniform/security/corrections_officer
+/datum/loadout_item/uniform/security/corrections_officer_jumpsuit
 	name = "Correction's Officer Jumpsuit"
 	item_path = /obj/item/clothing/under/rank/security/corrections_officer
 	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
 
-/datum/loadout_item/uniform/security/corrections_officer
+/datum/loadout_item/uniform/security/corrections_officer_jumpskirt
 	name = "Correction's Officer Jumpskirt"
 	item_path = /obj/item/clothing/under/rank/security/corrections_officer/skirt
 	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
 
-/datum/loadout_item/uniform/security/corrections_officer
+/datum/loadout_item/uniform/security/corrections_officer_sweater
 	name = "Correction's Officer Sweater"
 	item_path = /obj/item/clothing/under/rank/security/corrections_officer/sweater
 	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
 
-/datum/loadout_item/uniform/security/corrections_officer
+/datum/loadout_item/uniform/security/corrections_officer_sweaterskirt
 	name = "Correction's Officer Sweater Skirt"
 	item_path = /obj/item/clothing/under/rank/security/corrections_officer/sweater/skirt
 	restricted_roles = list(JOB_CORRECTIONS_OFFICER, JOB_WARDEN)
+
+/datum/loadout_item/uniform/miscellaneous/ba_cheerleader
+	name = "NT Cheerleading Outfit"
+	item_path = /obj/item/clothing/under/costume/ba_cheerleader
+
+/datum/loadout_item/uniform/command/ba_cheerleader
+	name = "NT Command Cheerleading Uniform"
+	item_path = /obj/item/clothing/under/rank/centcom/ba_cheerleader
+	restricted_roles = list(JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_ENGINEER, JOB_CHIEF_MEDICAL_OFFICER, JOB_QUARTERMASTER, JOB_NT_REP)
 
 /datum/loadout_item/uniform/miscellaneous/tactical_maid //Donor item for skyefree
 	name = "Tactical Maid Costume"
@@ -187,3 +256,43 @@
 /datum/loadout_item/uniform/miscellaneous/stripper_outfit
 	name = "Stripper Outfit"
 	item_path = /obj/item/clothing/under/stripper_outfit
+
+/datum/loadout_item/uniform/miscellaneous/greyscale_turtleneck
+	name = "Greyscale Turtleneck and Pants"
+	item_path = /obj/item/clothing/under/greyscale/turtleneck
+
+/datum/loadout_item/uniform/miscellaneous/greyscale_turtleneck_skirt
+	name = "Greyscale Skirtleneck"
+	item_path = /obj/item/clothing/under/greyscale/turtleneck/skirt
+
+/datum/loadout_item/uniform/miscellaneous/greyscale_gorka
+	name = "Greyscale Gorka"
+	item_path = /obj/item/clothing/under/greyscale/gorkas
+
+/datum/loadout_item/uniform/miscellaneous/greyscale_overalls
+	name = "Greyscale Turtleneck with Overalls"
+	item_path = /obj/item/clothing/under/greyscale/overalls
+
+/datum/loadout_item/uniform/miscellaneous/greyscale_overalls_skirt
+	name = "Greyscale Skirtleneck with Overalls"
+	item_path = /obj/item/clothing/under/greyscale/overalls/skirt
+
+/datum/loadout_item/uniform/miscellaneous/playsuit
+	name = "Greyscale Playsuit"
+	item_path = /obj/item/clothing/under/greyscale/playsuit
+
+/datum/loadout_item/uniform/miscellaneous/colonial_outfit
+	name = "Colonial Outfit"
+	item_path = /obj/item/clothing/under/colonial
+
+/datum/loadout_item/uniform/miscellaneous/big_pants
+	name = "JUNCO Megacargo Pants"
+	item_path = /obj/item/clothing/under/pants/greyscale/big_pants
+
+/datum/loadout_item/uniform/miscellaneous/wide_leg
+	name = "Loose Pants"
+	item_path = /obj/item/clothing/under/pants/greyscale/loose_pants
+
+/datum/loadout_item/uniform/miscellaneous/wide_leg
+	name = "Wide Pants"
+	item_path = /obj/item/clothing/under/pants/greyscale/wide_leg

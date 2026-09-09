@@ -2,7 +2,7 @@
 
 SUBSYSTEM_DEF(blooper)
 	name = "Blooper"
-	flags = SS_NO_FIRE | SS_NO_INIT
+	ss_flags = SS_NO_FIRE | SS_NO_INIT
 
 	var/list/blooper_list
 

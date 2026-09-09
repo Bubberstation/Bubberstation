@@ -21,8 +21,11 @@
 /datum/component/toggle_clothes/proc/clothing_toggle(obj/item/clothing/source, mob/living/clicker)
 	SIGNAL_HANDLER
 
+	var/original_icon_state = initial(source.icon_state)
+	if(source.post_init_icon_state)
+		original_icon_state = initial(source.post_init_icon_state)
 	toggled = !toggled
-	source.icon_state = (toggled ? toggled_icon_state : initial(source.icon_state))
+	source.icon_state = (toggled ? toggled_icon_state : original_icon_state)
 	to_chat(clicker, "You toggle \the [source]!")
 	if(source.loc == clicker)
 		clicker.update_clothing(source.slot_flags)

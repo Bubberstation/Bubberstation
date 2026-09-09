@@ -1,6 +1,6 @@
 
 /// The number of influences spawned per heretic
-#define NUM_INFLUENCES_PER_HERETIC 5
+#define NUM_INFLUENCES_PER_HERETIC 10 // BUBBER EDIT CHANGE - was 5
 
 /**
  * #Reality smash tracker
@@ -145,14 +145,13 @@
 
 	// A very elaborate way to suicide
 	visible_message(span_userdanger("Psychic tendrils lash out from [src], psychically grabbing onto [user]'s psychically sensitive mind and tearing [user.p_their()] head off!"))
-	var/obj/item/bodypart/head/head = locate() in human_user.bodyparts
+	var/obj/item/bodypart/head/head = human_user.get_bodypart(BODY_ZONE_HEAD)
 	if(head?.dismember())
 		head.forceMove(src) // stored for later fishage
 	else
 		human_user.gib(DROP_ALL_REMAINS)
 	human_user.investigate_log("has died from using telekinesis on a heretic influence.", INVESTIGATE_DEATHS)
-	var/datum/effect_system/reagents_explosion/explosion = new(get_turf(human_user), 1, 1, 1)
-	explosion.start(src)
+	dyn_explosion(get_turf(human_user), 1, flash_range = 1, flame_range = 1)
 */
 
 /obj/effect/visible_heretic_influence/examine(mob/living/user)
@@ -211,14 +210,12 @@
 
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-/obj/effect/heretic_influence/attackby(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)
-	. = ..()
-	if(.)
-		return
-
+/obj/effect/heretic_influence/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	// Using a codex will give you two knowledge points for draining.
-	if(drain_influence_with_codex(user, weapon))
-		return TRUE
+	if(drain_influence_with_codex(user, tool))
+		return ITEM_INTERACT_SUCCESS
+
+	return ..()
 
 /obj/effect/heretic_influence/proc/drain_influence_with_codex(mob/user, obj/item/codex_cicatrix/codex)
 	if(!istype(codex) || being_drained)
@@ -236,16 +233,27 @@
  */
 /obj/effect/heretic_influence/proc/drain_influence(mob/living/user, knowledge_to_gain, drain_speed = HERETIC_RIFT_DEFAULT_DRAIN_SPEED)
 
+	// BUBBER EDIT ADDITION - inhibition/no heart = no draining
+	if (HAS_TRAIT(user, TRAIT_MANSUS_INHIBITION))
+		user.balloon_alert(user, "inhibited! cant drain!")
+		return
+
+	var/datum/antagonist/heretic/our_heretic = GET_HERETIC(user)
+	if (our_heretic.has_living_heart() != HERETIC_HAS_LIVING_HEART)
+		user.balloon_alert(user, "no living heart!")
+		return
+	// BUBBER EDIT ADDITION END
+
 	being_drained = TRUE
 	loc.balloon_alert(user, "draining influence...")
 
 	// Only gives you the dripping eye effect if you have faster drain speed than default
 	var/mutable_appearance/draining_overlay = mutable_appearance('icons/mob/effects/heretic_aura.dmi', "heretic_eye_dripping")
-	if(drain_speed < HERETIC_RIFT_DEFAULT_DRAIN_SPEED)
+	if(drain_speed >= 0) // BUBBER EDIT CAHNGE - was HERETIC_RIFT_DEFAULT_DRAIN_SPEED - now always displays it
 		draining_overlay.pixel_y = 16
 		user.add_overlay(draining_overlay)
 
-	if(!do_after(user, drain_speed, src, hidden = TRUE))
+	if(!do_after(user, drain_speed, src, cog_icon = null))
 		being_drained = FALSE
 		loc.balloon_alert(user, "interrupted!")
 		user.cut_overlay(draining_overlay)
@@ -257,6 +265,7 @@
 
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
 	heretic_datum.adjust_knowledge_points(knowledge_to_gain)
+	SEND_SIGNAL(heretic_datum, COMSIG_HERETIC_INFLUENCE_DRAINED)
 
 	// Aaand now we delete it
 	after_drain(user)

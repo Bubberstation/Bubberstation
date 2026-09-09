@@ -2,7 +2,7 @@
 	key = "tail"
 	organ_type = /obj/item/organ/tail
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/tails.dmi'
-	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
+	relevent_layers = list(EXTERNAL_BEHIND, EXTERNAL_FRONT)
 	/// Can we use this tail for the fluffy tail turf emote?
 	var/fluffy = FALSE
 
@@ -39,7 +39,7 @@
 	color_src = USE_ONE_COLOR
 
 /datum/sprite_accessory/tails/fish
-	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/fish_tails.dmi'
+	organ_type = /obj/item/organ/tail/fake_fish //copypasta of dna infusion fish tails but without the quirks (beside butchering)
 
 /datum/sprite_accessory/tails/xeno/default
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/xeno_tail.dmi'
@@ -68,8 +68,13 @@
 
 /datum/sprite_accessory/tails/monkey/default
 	name = "Monkey"
-	icon_state = "monkey"
-	icon = 'icons/mob/human/species/monkey/monkey_tail.dmi'
+	// HATE. LET ME TELL YOU HOW MUCH I'VE COME TO HATE YOU SINCE I BEGAN TO LIVE.
+	// THERE ARE 142.22 THOUSAND LINES OF CODE I HAVE WRITTEN.
+	// IF THE WORD HATE WAS INSCRIBED ON EVERY BIT OF THOSE THOUSANDS OF LINE
+	// IT WOULD NOT EQUAL ONE BILIONTH OF THE HATE I FEEL FOR MONKEY TAIL SHITCODE
+	// AT THIS MICRO INSTANT FOR SKYRAT CODERS
+	// HATE. HATE.
+	icon_state = "monkey_default"
 	recommended_species = list(SPECIES_HUMAN, SPECIES_SYNTH, SPECIES_FELINE, SPECIES_MAMMAL, SPECIES_MONKEY, SPECIES_GHOUL)
 	organ_type = /obj/item/organ/tail/monkey
 

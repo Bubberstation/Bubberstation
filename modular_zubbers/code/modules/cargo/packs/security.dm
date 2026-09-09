@@ -1,13 +1,13 @@
-/datum/supply_pack/security/armory/wt551
-	name = "WT-551 Autorifle Crate"
-	desc = "Contains a pair of WT-551 Autorifles pre-loaded with less-lethal rubber-tipped rounds. Additional ammo sold seperately. Backwards-compatible with WT-550 magazines. Nanotrasen reminds you that the other weapon is for a friend, and not for going guns akimbo."
+/datum/supply_pack/security/armory/wt550
+	name = "WT-550 Autorifle Crate"
+	desc = "Contains a trifecta of pre-loaded WT-550 Autorifles. Additional ammo sold seperately."
 	cost = CARGO_CRATE_VALUE * 10
-	contains = list(/obj/item/gun/ballistic/automatic/wt550/security = 3)
+	contains = list(/obj/item/gun/ballistic/automatic/wt550 = 3)
 	crate_name = "wt-550 autorifle crate"
 
 /datum/supply_pack/security/armory/wt550_ammo_regular
-	name = "WT-550/WT-551 Autorifle Ammo Crate (Regular)"
-	desc = "Contains 4 magazines with lethal regular rounds for the WT-551."
+	name = "WT-550 Autorifle Ammo Crate (Regular)"
+	desc = "Contains 4 magazines with lethal regular rounds for the WT-550."
 	cost = CARGO_CRATE_VALUE * 4 //these are printable, price can be lowered safely to 800ish
 	contains = list(/obj/item/ammo_box/magazine/wt550m9 = 4)
 	crate_name = "wt-550 magazine crate (regular)"
@@ -20,7 +20,6 @@
 					/obj/item/ammo_box/speedloader/c38/iceblox,
 				)
 //This makes the Security ammo crate use the cool advanced ammo boxes instead of the old ones
-
 
 /datum/supply_pack/security/secmed_technician
 	name = "Security Medic Kit Crate - Technician"
@@ -132,11 +131,11 @@
 	crate_name = "nt22-hcs-mp crate"
 
 /datum/supply_pack/security/miecz
-	name = "Miecz Submachine Gun Single-Pack"
+	name = "Miecz Submachine Gun Crate"
 	crate_name = "Miecz submachine gun crate"
-	desc = "Contains a Miecz submachine gun and a spare magazine for it."
-	contains = list(/obj/item/gun/ballistic/automatic/miecz = 1,
-	/obj/item/ammo_box/magazine/miecz = 1)
+	desc = "Contains two Miecz submachine guns and a spare magazine for both."
+	contains = list(/obj/item/gun/ballistic/automatic/miecz = 2,
+	/obj/item/ammo_box/magazine/miecz = 2)
 	cost = CARGO_CRATE_VALUE * 10
 	access = ACCESS_SECURITY
 
@@ -147,6 +146,7 @@
 	contains = list(/obj/item/ammo_box/magazine/miecz = 4)
 	cost = CARGO_CRATE_VALUE * 4
 	access = ACCESS_SECURITY
+
 /datum/supply_pack/security/armory/archery_kit
 	name = "Archery Crate"
 	desc = "Two hardlight bows capable of defeating armor, alongside a mix of lethal and non/less-than-lethal arrows."
@@ -206,4 +206,52 @@
 		/obj/item/gun/energy/tacticool,
 		/obj/item/gun/energy/tacticool,
 		/obj/item/gun/energy/tacticool,
+	)
+
+/datum/supply_pack/security/armory/peacekeepers
+	name = "Renoster Shotgun Crate"
+	desc = "Three Renoster pump-action shotguns to restock your armories with."
+	cost = CARGO_CRATE_VALUE * 10
+	contains = list(
+		/obj/item/gun/ballistic/shotgun/riot/sol,
+		/obj/item/gun/ballistic/shotgun/riot/sol,
+		/obj/item/gun/ballistic/shotgun/riot/sol,
+	)
+
+/datum/supply_pack/security/armory/hoshis
+	name = "Hoshi Modular Laser Carbine crate"
+	desc = "This crate includes 3 of Terra's newest addition to their armories, produced by... 'Saibasan'. These modular weapons have multiple fire modes that can be switched to, and an onboard AI."
+	cost = CARGO_CRATE_VALUE * 20
+	contains = list(
+		/obj/item/gun/energy/modular_laser_rifle/carbine,
+		/obj/item/gun/energy/modular_laser_rifle/carbine,
+		/obj/item/gun/energy/modular_laser_rifle/carbine,
+	)
+
+/datum/supply_pack/security/armory/stingballer
+	name = "Stingball Rifle crate"
+	crate_name = "stingball rifle crate"
+	desc = "A single unit of a prototype rifle designed to rapidly shoot stingball pellets. Comes preloaded, but additional ammunition is sold seperately."
+	cost = CARGO_CRATE_VALUE * 22.5
+	contains = list(
+		/obj/item/gun/ballistic/rifle/stingballer,
+	)
+
+/datum/supply_pack/security/armory/kiboko
+	name = "Kiboko Grenade Launcher Crate"
+	crate_name = "Kiboko grenade launcher crate"
+	desc = "A brand-new loaded Kiboko grenade launcher just for you, in case you somehow lost the issued one."
+	cost = CARGO_CRATE_VALUE * 37.5
+	contains = list(
+		/obj/item/gun/ballistic/automatic/sol_grenade_launcher
+	)
+
+/datum/supply_pack/security/armory/grenadelauncher
+	name = "Pneumatic Grenade Launcher Crate"
+	crate_name = "grenade launcher crate"
+	desc = "A truly diabolical weapon for rapid deployment of any standard grenade. Comes with a complimentary box of flashbangs."
+	cost = CARGO_CRATE_VALUE * 75
+	contains = list(
+		/obj/item/gun/grenadelauncher,
+		/obj/item/storage/box/flashbangs,
 	)

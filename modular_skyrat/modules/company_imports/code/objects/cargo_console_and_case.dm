@@ -1,6 +1,3 @@
-/obj/machinery/computer/cargo/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/armament/company_imports, subtypesof(/datum/armament_entry/company_import), 0)
 
 /obj/item/storage/lockbox/order
 	/// Bool if this was departmentally ordered or not

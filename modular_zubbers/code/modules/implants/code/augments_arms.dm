@@ -14,18 +14,6 @@
 	righthand_file = 'modular_zubbers/icons/mob/inhands/seclite_implant_righthand.dmi'
 	force = 0
 
-/obj/item/pillow_weak
-	name = "cyberpillow™"
-	desc = "An inflatable pillow installed in your arm. Makes locker naps (up to) 73% more comfortable!"
-	icon = 'icons/obj/bed.dmi'
-	icon_state = "pillow_1_t"
-	inhand_icon_state = "pillow_t"
-	lefthand_file = 'icons/mob/inhands/items/pillow_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/items/pillow_righthand.dmi'
-	force = 1
-	damtype = STAMINA
-	hitsound = 'sound/items/pillow/pillow_hit.ogg'
-
 /obj/item/organ/cyberimp/arm/toolkit/seclite
 	name = "seclite implant"
 	desc = "An implanted model of seclite installed in the palm."

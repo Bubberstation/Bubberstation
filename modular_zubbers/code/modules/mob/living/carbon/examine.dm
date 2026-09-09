@@ -20,5 +20,30 @@
 	return flavor_text_link
 
 
+/atom/proc/get_chat_examine_headshot(mob/user)
+	return null
+
+/mob/living/carbon/human/get_chat_examine_headshot(mob/user)
+	if(!user?.client)
+		return null
+	if(!user.client.prefs?.read_preference(/datum/preference/toggle/chat_examine_headshot))
+		return null
+
+	var/is_unidentified = is_face_obscured() && !length(get_id_name(""))
+	if(is_unidentified)
+		return null
+
+	var/headshot = dna?.features?["headshot"]
+	if(!length(headshot))
+		return null
+
+	var/obscurity_examine_pref = client?.prefs?.read_preference(/datum/preference/toggle/obscurity_examine)
+	var/face_obscured = (covered_slots & HIDEFACE) && obscurity_examine_pref
+	if(face_obscured && !isobserver(user))
+		return null
+
+	return "<div class='chat_headshot_top chat_headshot_frame'>[chat_headshot(html_encode(headshot))]</div>"
+
+
 /mob/living/carbon/alien/get_flavor_text()
 	return desc

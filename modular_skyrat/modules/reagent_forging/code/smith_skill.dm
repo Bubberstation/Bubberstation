@@ -3,7 +3,7 @@
 	title = "Smithy"
 	desc = "The desperate artist who strives after the flames of the forge."
 	modifiers = list(
-		SKILL_SPEED_MODIFIER = list(1, 0.95, 0.9, 0.85, 0.75, 0.6, 0.5),
+		SKILL_SPEED_MODIFIER = list(1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7),
 		SKILL_PROBS_MODIFIER = list(0, 5, 10, 20, 40, 80, 100)
 	)
 	skill_item_path = /obj/item/clothing/neck/cloak/skill_reward/smithing

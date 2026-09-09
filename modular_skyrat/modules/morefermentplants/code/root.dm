@@ -1,7 +1,7 @@
-/obj/item/food/grown/carrot
+/obj/item/food/grown/carrotlike/carrot
 	distill_reagent = /datum/reagent/consumable/shamblers //The real shambler was the carrot all along!
 
-/obj/item/food/grown/parsnip
+/obj/item/food/grown/carrotlike/parsnip
 	distill_reagent = /datum/reagent/consumable/parsnipjuice
 
 /obj/item/food/grown/whitebeet

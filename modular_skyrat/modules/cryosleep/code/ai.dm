@@ -1,8 +1,4 @@
-/mob/living/silicon/ai/verb/ai_cryo()
-	set name = "AI Cryogenic Stasis"
-	set desc = "Puts the current AI personality into cryogenic stasis, freeing the space for another."
-	set category = "AI Commands"
-
+GAME_VERB_DESC(/mob/living/silicon/ai, ai_cryo, "AI Cryogenic Stasis", "Puts the current AI personality into cryogenic stasis, freeing the space for another.", "AI Commands")
 	if(incapacitated)
 		return
 	switch(alert("Would you like to enter cryo? This will ghost you. Remember to AHELP before cryoing out of important roles, even with no admins online.",,"Yes.","No."))

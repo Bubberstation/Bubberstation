@@ -117,6 +117,7 @@
 	override_state = null,
 	override_file = null,
 	mutant_styles = NONE,
+	bodyshape = null
 )
 
 	var/mutable_appearance/standing = ..()

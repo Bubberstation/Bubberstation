@@ -56,7 +56,7 @@
 	if(!(equipped_slot & ITEM_SLOT_ICLOTHING))
 		return FALSE
 
-	return !isnull(wielder.shoes)
+	return !isnull(wielder.get_item_by_slot(ITEM_SLOT_FEET))
 
 /**
  * Run to update the icon of the parent
@@ -271,7 +271,7 @@
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 
 	equipped_slot = ITEM_SLOT_FEET
-	var/static/mutable_appearance/bloody_feet
+	var/mutable_appearance/bloody_feet //BUBBER EDIT - ORIGINAL: var/static/mutable_appearance/bloody_feet
 
 	/// List of DNA on mob's feet, so we can handle it separately from blood on mob's hands
 	var/list/blood_DNA = null
@@ -282,16 +282,33 @@
 
 	wielder = parent
 
+	/*BUBBER EDIT BEGIN - Species specific blood icons.
 	if(!bloody_feet)
 		bloody_feet = mutable_appearance('icons/effects/blood.dmi', "shoeblood", SHOES_LAYER)
+	*/
 
 	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(on_clean))
 	RegisterSignal(parent, COMSIG_STEP_ON_BLOOD, PROC_REF(on_step_blood))
 	RegisterSignals(parent, list(COMSIG_MOB_EQUIPPED_ITEM, COMSIG_MOB_UNEQUIPPED_ITEM), PROC_REF(shoecover))
+	// BUBBER ADDITION BEGIN - Species specific blood icons.
+	RegisterSignal(parent, COMSIG_SPECIES_GAIN, PROC_REF(on_species_change))
+	RegisterSignal(parent, COMSIG_SPECIES_LOSS, PROC_REF(on_species_change))
+	// BUBBER ADDITION END
 
 	if(new_blood)
 		blood_DNA = new_blood
 		update_icon()
+
+// BUBBER EDIT ADDITION BEGIN - Species specific blood icons.
+/datum/component/bloodysoles/feet/proc/on_species_change(datum/source)
+	SIGNAL_HANDLER
+	update_icon()
+
+/datum/component/bloodysoles/feet/proc/get_blood_appearance()
+	if(icon_exists('modular_zubbers/icons/effects/blood_species.dmi', "shoeblood_[wielder.dna.species.id]"))
+		return mutable_appearance('modular_zubbers/icons/effects/blood_species.dmi', "shoeblood_[wielder.dna.species.id]", SHOES_LAYER)
+	return mutable_appearance('icons/effects/blood.dmi', "shoeblood", SHOES_LAYER)
+// BUBBER EDIT ADDITION END
 
 /datum/component/bloodysoles/feet/InheritComponent(datum/component/bloodysoles/feet/soles, original, list/new_blood)
 	if (!length(new_blood))
@@ -316,6 +333,7 @@
 		wielder.update_worn_shoes()
 		return
 
+	bloody_feet = get_blood_appearance() // BUBBER EDIT ADDITION
 	bloody_feet.color = wielder.get_blood_dna_color()
 	wielder.overlays_standing[SHOES_LAYER] = bloody_feet
 	wielder.apply_overlay(SHOES_LAYER)
@@ -326,12 +344,12 @@
 		return
 
 	// Find any leg of our human and add that to the footprint, instead of the default which is to just add the human type
-	for(var/obj/item/bodypart/leg/affecting in wielder.bodyparts)
+	for(var/obj/item/bodypart/leg/affecting in wielder.get_bodyparts())
 		if(!affecting.bodypart_disabled)
 			LAZYSET(footprint.species_types, affecting.limb_id, TRUE)
 
 /datum/component/bloodysoles/feet/is_under_feet_covered()
-	return !isnull(wielder.shoes)
+	return !isnull(wielder.get_item_by_slot(ITEM_SLOT_FEET))
 
 /datum/component/bloodysoles/feet/on_moved(datum/source, OldLoc, Dir, Forced)
 	if(wielder.num_legs >= 2)

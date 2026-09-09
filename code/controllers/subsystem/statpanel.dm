@@ -3,7 +3,7 @@ SUBSYSTEM_DEF(statpanels)
 	wait = 4
 	priority = FIRE_PRIORITY_STATPANEL
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
-	flags = SS_NO_INIT
+	ss_flags = SS_NO_INIT
 	var/list/currentrun = list()
 	var/list/global_data
 	var/list/mc_data
@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(statpanels)
 		var/real_round_time = world.timeofday - SSticker.real_round_start_time
 		var/active_players = get_active_player_count(alive_check = FALSE, afk_check = TRUE, human_check = FALSE) //This is a list of all active players, including players who are dead
 		var/observing_players = length(GLOB.current_observers_list) //This is a list of all players that started as an observer-- dead and lobby players are not included.
-		var/current_date = "[time2text(world.realtime, "DDD Month DD")], [CURRENT_STATION_YEAR]"
+		//var/current_date = "[time2text(world.realtime, "DDD Month DD")], [CURRENT_STATION_YEAR]" //Unused var for now.
 		// BUBBER EDIT ADDITION END - Extra stat panel info
 
 		global_data += list(
@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(statpanels)
 			"OOC: [GLOB.ooc_allowed ? "Enabled" : "Disabled"]", // BUBBER EDIT ADDITION - Extra stat panel info
 			" ", // BUBBER EDIT ADDITION - Extra stat panel info
 			"Storyteller: [SSgamemode.storyteller ? SSgamemode.storyteller.name : "N/A"]", // BUBBER EDIT ADDITION - Extra stat panel info
-			"Station Time: [station_time_timestamp(format = "hh:mm")], [current_date]", // BUBBER EDIT CHANGE - Extra stat panel info - ORIGINAL: "Station Time: [station_time_timestamp()]"
+			"Station Time: [server_timestamp(format = "YYYY-MM-DD hh:mm:ss", ic_time = TRUE)]",
 			"Round Time: [time2text(real_round_time, "hh:mm:ss", 0)]", // BUBBER EDIT CHANGE - Extra stat panel info - ORIGINAL: "Round Time: [ROUND_TIME()]"
 			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss", world.timezone)]",
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)",
@@ -58,14 +58,6 @@ SUBSYSTEM_DEF(statpanels)
 			var/ETA = SSshuttle.emergency.getModeStr()
 			if(ETA)
 				global_data += "[ETA] [SSshuttle.emergency.getTimerStr()]"
-
-		if(SSticker.reboot_timer)
-			var/reboot_time = timeleft(SSticker.reboot_timer)
-			if(reboot_time)
-				global_data += "Reboot: [DisplayTimeText(reboot_time, 1)]"
-		// admin must have delayed round end
-		else if(SSticker.ready_for_reboot)
-			global_data += "Reboot: DELAYED"
 
 		src.currentrun = GLOB.clients.Copy()
 		mc_data = null
@@ -101,23 +93,6 @@ SUBSYSTEM_DEF(statpanels)
 			else if(length(GLOB.sdql2_queries) && (target.stat_tab == "SDQL2" || !("SDQL2" in target.panel_tabs)) && num_fires % default_wait == 0)
 				set_SDQL2_tab(target)
 
-		if(target.mob)
-			var/mob/target_mob = target.mob
-
-			// Handle the action panels of the stat panel
-
-			var/update_actions = FALSE
-			// We're on a spell tab, update the tab so we can see cooldowns progressing and such
-			if(target.stat_tab in target.spell_tabs)
-				update_actions = TRUE
-			// We're not on a spell tab per se, but we have cooldown actions, and we've yet to
-			// set up our spell tabs at all
-			if(!length(target.spell_tabs) && locate(/datum/action/cooldown) in target_mob.actions)
-				update_actions = TRUE
-
-			if(update_actions && num_fires % default_wait == 0)
-				set_action_tabs(target, target_mob)
-
 		if(MC_TICK_CHECK)
 			return
 
@@ -135,7 +110,6 @@ SUBSYSTEM_DEF(statpanels)
 		return
 	target.stat_panel.send_message("update_stat", list(
 		"global_data" = global_data,
-		"ping_str" = "Ping: [round(target.lastping, 1)]ms (Average: [round(target.avgping, 1)]ms)",
 		"other_str" = target.mob?.get_status_tab_items(),
 	))
 
@@ -188,17 +162,6 @@ SUBSYSTEM_DEF(statpanels)
 	sdql2A += sdql2B
 	target.stat_panel.send_message("update_sdql2", sdql2A)
 
-/// Set up the various action tabs.
-/datum/controller/subsystem/statpanels/proc/set_action_tabs(client/target, mob/target_mob)
-	var/list/actions = target_mob.get_actions_for_statpanel()
-	target.spell_tabs.Cut()
-
-	for(var/action_data in actions)
-		target.spell_tabs |= action_data[1]
-
-	target.stat_panel.send_message("update_spells", list(spell_tabs = target.spell_tabs, actions = actions))
-
-
 /datum/controller/subsystem/statpanels/proc/generate_mc_data()
 	mc_data = list(
 		list("", "CPU:", world.cpu),
@@ -241,21 +204,6 @@ SUBSYSTEM_DEF(statpanels)
 		set_status_tab(target)
 		return TRUE
 
-	var/mob/target_mob = target.mob
-
-	// Handle actions
-
-	var/update_actions = FALSE
-	if(target.stat_tab in target.spell_tabs)
-		update_actions = TRUE
-
-	if(!length(target.spell_tabs) && locate(/datum/action/cooldown) in target_mob.actions)
-		update_actions = TRUE
-
-	if(update_actions)
-		set_action_tabs(target, target_mob)
-		return TRUE
-
 	if(!target.holder)
 		return FALSE
 
@@ -272,6 +220,3 @@ SUBSYSTEM_DEF(statpanels)
 
 	else if(length(GLOB.sdql2_queries) && target.stat_tab == "SDQL2")
 		set_SDQL2_tab(target)
-
-/// Stat panel window declaration
-/client/var/datum/tgui_window/stat_panel

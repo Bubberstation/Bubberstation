@@ -43,14 +43,14 @@
 
 /datum/armor/hev_suit_nri
 	melee = 25
-	bullet = 25
-	laser = 25
+	bullet = 35
+	laser = 30
 	energy = 25
 	bomb = 25
 	bio = 25
 	fire = 30
 	acid = 30
-	wound = 30
+	wound = 20
 	consume = 10
 
 /datum/armor/hev_suit_nri/powered

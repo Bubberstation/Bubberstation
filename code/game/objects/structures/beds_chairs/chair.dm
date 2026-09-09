@@ -157,7 +157,7 @@
 	. = ..()
 	handle_layer()
 	//SKYRAT EDIT ADDITION
-	if(HAS_TRAIT(M, TRAIT_OVERSIZED))
+	if(HAS_TRAIT(M, TRAIT_OVERSIZED) || HAS_TRAIT(M, TRAIT_NO_VEHICLE))
 		visible_message(span_warning("[src] buckles under the weight of [M] causing it to break!"))
 		playsound(src, 'modular_skyrat/modules/oversized/sound/chair_break.ogg', 70, TRUE)
 		deconstruct()
@@ -241,6 +241,10 @@
 	resistance_flags = FIRE_PROOF
 	max_integrity = 120
 	custom_materials = list(/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2)
+
+/obj/structure/chair/comfy/shuttle/Initialize(mapload)
+	. = ..()
+	update_appearance()
 
 /obj/structure/chair/comfy/shuttle/electrify_self(obj/item/assembly/shock_kit/input_shock_kit, mob/user, list/overlays_from_child_procs)
 	if(!overlays_from_child_procs)
@@ -420,7 +424,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	. = ..()
 	AddElement(/datum/element/cuffable_item)
 
-/obj/item/chair/suicide_act(mob/living/carbon/user)
+/obj/item/chair/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] begins hitting [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(src,hitsound,50,TRUE)
 	return BRUTELOSS
@@ -471,7 +475,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	if(remaining_mats)
 		for(var/M=1 to remaining_mats)
 			new stack_type(get_turf(loc))
-	else if(custom_materials[GET_MATERIAL_REF(/datum/material/iron)])
+	else if(custom_materials[SSmaterials.get_material(/datum/material/iron)])
 		new /obj/item/stack/rods(get_turf(loc), 2)
 	qdel(src)
 
@@ -625,8 +629,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	fishing_modifier = -21 //it only lives for 25 seconds, so we make them worth it.
 	custom_materials = null
 
-/obj/structure/chair/mime/wrench_act_secondary(mob/living/user, obj/item/weapon)
-	return NONE
+/obj/structure/chair/mime/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/tool_blocker, TOOL_WRENCH, TOOL_ACT_SECONDARY)
 
 /obj/structure/chair/mime/post_buckle_mob(mob/living/M)
 	M.add_offsets(type, z_add = 5)
@@ -658,7 +663,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 /obj/structure/chair/plastic/proc/snap_check(mob/living/carbon/Mob)
 	if (Mob.nutrition >= NUTRITION_LEVEL_FAT)
 		to_chat(Mob, span_warning("The chair begins to pop and crack, you're too heavy!"))
-		if(do_after(Mob, 6 SECONDS, progress = FALSE))
+		if(do_after(Mob, 6 SECONDS, show_progress = FALSE))
 			Mob.visible_message(span_notice("The plastic chair snaps under [Mob]'s weight!"))
 			new /obj/effect/decal/cleanable/plastic(loc)
 			qdel(src)

@@ -1,7 +1,7 @@
 // Max amounts of cores you can make
-#define MAX_CORES_BLUESPACE 3
-#define MAX_CORES_GRAVITATIONAL 6
-#define MAX_CORES_FLUX 5
+#define MAX_CORES_BLUESPACE 5 // BUBBER EDIT - CHANGE - PREVIOUS: 3
+#define MAX_CORES_GRAVITATIONAL 8 // BUBBER EDIT - CHANGE - PREVIOUS:  6
+#define MAX_CORES_FLUX 8 // BUBBER EDIT - CHANGE - PREVIOUS: 5
 #define MAX_CORES_VORTEX 3
 #define MAX_CORES_PYRO 8
 #define MAX_CORES_HALLUCINATION 8
@@ -20,8 +20,13 @@
 
 /// Blacklist of parts which should not appear when bioscrambled, largely because they will make you look totally fucked up
 GLOBAL_LIST_INIT(bioscrambler_parts_blacklist, typecacheof(list(
-	/obj/item/bodypart/chest/larva,
-	/obj/item/bodypart/head/larva,
+	/obj/item/bodypart/head/psyker,
+	/obj/item/bodypart/arm/left/skeleton/nonfunctional,
+	/obj/item/bodypart/arm/right/skeleton/nonfunctional,
+	/obj/item/bodypart/chest/skeleton/nonfunctional,
+	/obj/item/bodypart/head/skeleton/nonfunctional,
+	/obj/item/bodypart/leg/left/skeleton/nonfunctional,
+	/obj/item/bodypart/leg/right/skeleton/nonfunctional,
 )))
 
 /// Blacklist of organs which should not appear when bioscrambled.
@@ -30,7 +35,6 @@ GLOBAL_LIST_INIT(bioscrambler_organs_blacklist, typecacheof(list (
 	/obj/item/organ/pod_hair,
 	/obj/item/organ/spines,
 	/obj/item/organ/wings,
-	/obj/item/organ/wings/functional,
 	/obj/item/organ/alien,
 	/obj/item/organ/brain,
 	/obj/item/organ/body_egg,
@@ -47,7 +51,8 @@ GLOBAL_LIST_INIT(bioscrambler_organs_blacklist, typecacheof(list (
 	/obj/item/organ/empowered_borer_egg, // SKYRAT EDIT ADDITION
 	/obj/item/organ/eyes/robotic, // SKYRAT EDIT ADDITION
 	/obj/item/organ/eyes/night_vision/cyber, // SKYRAT EDIT ADDITION
-	/obj/item/organ/taur_body // BUBBER EDIT ADDITION
+	/obj/item/organ/taur_body, // BUBBER EDIT ADDITION
+	/obj/item/organ/genital // BUBBER EDIT - ADDITION
 )))
 
 /// List of body parts we can apply to people

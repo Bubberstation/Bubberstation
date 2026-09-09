@@ -236,7 +236,7 @@
 	bloodsuckerdatum.update_static_data_for_all_viewers()
 
 	// unlock ghoulizing if we have a ghoul slot
-	if(bloodsuckerdatum.max_ghouls() >= 1 && !(/datum/crafting_recipe/ghoulrack in bloodsuckerdatum.owner?.learned_recipes))
+	if(bloodsuckerdatum.max_ghouls() >= 1 && !(/datum/crafting_recipe/ghoulrack in bloodsuckerdatum.owner?.learned_crafting_recipes))
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/ghoulrack)
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/candelabrum)
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)
@@ -276,6 +276,9 @@
 		return FALSE
 	if(!ghouldatum.owner.can_make_special(creator = bloodsuckerdatum.owner))
 		to_chat(master, span_notice("This Ghoul is unable to gain a Special rank due to innate features."))
+		return FALSE
+	if(isprotean(servant))
+		to_chat(master, span_notice("You are unable to make this species your favorite Ghoul."))
 		return FALSE
 	if(bloodsuckerdatum.GetBloodVolume() < SPECIAL_GHOUL_COST)
 		to_chat(master, span_notice("You need at least 150 blood to make a Ghoul a Favorite Ghoul."))

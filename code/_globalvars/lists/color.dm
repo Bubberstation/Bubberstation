@@ -47,6 +47,11 @@ GLOBAL_LIST_INIT(color_list_ethereal, list(
 	"Red" = "#ff4d4d",
 	"Seafoam Green" = "#00fa9a",
 	"White" = "#f2f2f2",
+	// BUBBER EDIT START - Add some new ethereal colors
+	"Burnt Charcoal" = "#5d5c69",
+	"Lavender Purple" = "#d28fff",
+	"Dark Purple" = "#66369c",
+	// BUBBER EDIT END
 ))
 
 /// List of possible lustrous ethereal colours

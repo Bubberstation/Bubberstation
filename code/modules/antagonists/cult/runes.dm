@@ -158,7 +158,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 				continue
 			if(!cultist.can_speak(allow_mimes = TRUE))
 				continue
-			if(cultist.stat != CONSCIOUS)
+			if(IS_UNCONSCIOUS_OR_CRIT(cultist))
 				continue
 			invokers += cultist
 
@@ -313,8 +313,6 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 	if(check_holidays(APRIL_FOOLS) && prob(10))
 		convertee.Paralyze(10 SECONDS)
-		if(istype(human_convertee))
-			human_convertee.force_say()
 		convertee.say("You son of a bitch! I'm in.", forced = "That son of a bitch! They're in. (April Fools)")
 
 	else
@@ -823,7 +821,9 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 
 /obj/effect/rune/wall/Destroy()
 	if(barrier)
-		QDEL_NULL(barrier)
+		if(!QDELING(barrier))
+			qdel(barrier)
+		barrier = null
 	return ..()
 
 /obj/effect/rune/wall/invoke(list/invokers)
@@ -1038,7 +1038,6 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 			new_human.AddComponent( \
 				/datum/component/temporary_body, \
 				old_mind = ghost_to_spawn.mind, \
-				old_body = ghost_to_spawn.mind.current, \
 			)
 		new_human.PossessByPlayer(ghost_to_spawn.key)
 		var/datum/antagonist/cult/created_cultist = new_human.mind?.add_antag_datum(/datum/antagonist/cult)
@@ -1046,7 +1045,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 		to_chat(new_human, span_cult_italic("<b>You are a servant of the Geometer. You have been made semi-corporeal by the cult of Nar'Sie, and you are to serve them at all costs.</b>"))
 
 		while(!QDELETED(src) && !QDELETED(user) && !QDELETED(new_human) && (user in T))
-			if(user.stat != CONSCIOUS || HAS_TRAIT(new_human, TRAIT_CRITICAL_CONDITION))
+			if(IS_UNCONSCIOUS_OR_CRIT(user))
 				break
 			user.apply_damage(0.1, BRUTE)
 			sleep(0.1 SECONDS)

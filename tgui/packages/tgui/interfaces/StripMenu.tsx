@@ -94,6 +94,25 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
     text: 'Strip accessory',
   },
 
+  deploy: {
+    icon: 'plus',
+    text: 'Deploy MOD',
+  },
+
+  undeploy: {
+    icon: 'minus',
+    text: 'Undeploy MOD',
+  },
+
+  activate_mod: {
+    icon: 'power-off',
+    text: 'Activate MOD',
+  },
+  deactivate_mod: {
+    icon: 'power-off',
+    text: 'Deactivate MOD',
+  },
+
   adjust_bridle: {
     icon: 'mask',
     text: 'Adjust bridle',

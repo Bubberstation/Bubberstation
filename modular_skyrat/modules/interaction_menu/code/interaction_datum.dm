@@ -121,8 +121,9 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 			message_admins("Deprecated sound handling for '[name]'. Correct format is a list with one entry. This message will only show once.")
 			sound_possible = list(sound_possible)
 		sound_cache = pick(sound_possible)
-		for(var/mob/mob in view(sound_range, user))
-			SEND_SOUND(sound_cache, mob)
+		// playsound()'s range is always SOUND_RANGE (15) + extrarange, so we offset by -SOUND_RANGE to make
+		// extrarange effectively equal to the JSON-defined sound_range instead of stacking on top of it.
+		playsound(source = user, soundin = sound_cache, vol = 50, vary = FALSE, extrarange = sound_range - SOUND_RANGE, ignore_walls = FALSE, volume_preference = /datum/preference/numeric/volume/sound_emote)
 
 	if(lewd)
 		user.adjust_pleasure(user_pleasure)

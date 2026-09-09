@@ -2,7 +2,6 @@
 	name = "MOD Neural Transference module"
 	desc = "Swaps the MOD wearer's and Assistant AI's neural pathways."
 	removable = FALSE
-	required_slots = list(ITEM_SLOT_FEET, ITEM_SLOT_GLOVES, ITEM_SLOT_OCLOTHING, ITEM_SLOT_HEAD)
 	module_type = MODULE_ACTIVE
 	//Who's in control of the wearer's body
 	var/ai_control = FALSE
@@ -11,6 +10,10 @@
 	//Ckey of the original wearer
 	var/wearer_key
 	cooldown_time = 30 SECONDS
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/diamond = SMALL_MATERIAL_AMOUNT * 5,
+	)
 
 /obj/item/mod/module/mind_swap/on_select()
 	if(!mod.ai_assistant)
