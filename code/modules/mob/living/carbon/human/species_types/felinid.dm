@@ -13,7 +13,6 @@
 	)
 	*/ // SKYRAT EDIT REMOVAL END
 	inherent_traits = list(
-		TRAIT_CATLIKE_GRACE,
 		TRAIT_HATED_BY_DOGS,
 		TRAIT_USES_SKINTONES,
 		TRAIT_WATER_HATER,
@@ -39,9 +38,6 @@
 	if(human_who_gained_species.dna.features[FEATURE_EARS] == SPRITE_ACCESSORY_NONE)
 		mutantears = /obj/item/organ/ears
 	return ..()
-
-/datum/species/human/felinid/get_hiss_sound(mob/living/carbon/human/felinid)
-	return 'sound/mobs/humanoids/felinid/felinid_hiss.ogg'
 
 /proc/mass_purrbation()
 	for(var/mob in GLOB.human_list)

@@ -9,6 +9,8 @@
 #define TAG_COMMUNAL "communal"
 /// When the event targets a person for something (appendix, heart attack)
 #define TAG_TARGETED "targeted"
+/// When the event is somehow clown based
+#define TAG_CLOWN "clown"
 /// When the event is positive and helps the crew, in some capacity (Shuttle Loan, Supply Pod)
 #define TAG_POSITIVE "positive"
 /// Events that don't directly affect the crew and serve mostly for environmental purposes

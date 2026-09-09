@@ -6827,6 +6827,7 @@
 /obj/item/stack/cable_coil,
 /obj/structure/table/wood,
 /obj/item/wrench,
+/obj/item/storage/photo_album/bar,
 /turf/open/floor/wood,
 /area/station/service/bar)
 "aNE" = (
@@ -7092,6 +7093,7 @@
 /obj/item/pen/invisible,
 /obj/item/taperecorder,
 /obj/item/camera,
+/obj/item/storage/photo_album/library,
 /turf/open/floor/engine/cult,
 /area/station/service/library)
 "aPj" = (
@@ -15996,7 +15998,6 @@
 "bEX" = (
 /obj/structure/table,
 /obj/item/aicard,
-/obj/item/ai_module/reset,
 /turf/open/floor/iron/dark,
 /area/station/engineering/storage/tech)
 "bEY" = (
@@ -24450,6 +24451,7 @@
 	pixel_y = 3;
 	pixel_x = 5
 	},
+/obj/item/storage/photo_album/chapel,
 /turf/open/floor/iron/grimy,
 /area/station/service/chapel/office)
 "cCb" = (
@@ -24998,6 +25000,11 @@
 	},
 /turf/open/floor/iron/dark/small,
 /area/station/cargo/bitrunning/den)
+"cFm" = (
+/obj/structure/table/wood,
+/obj/item/storage/photo_album/prison,
+/turf/open/floor/wood,
+/area/station/security/prison)
 "cFu" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -36652,8 +36659,8 @@
 "gPR" = (
 /obj/structure/table/glass,
 /obj/item/book/bible,
-/obj/item/food/grown/poppy,
-/obj/item/food/grown/harebell,
+/obj/item/food/grown/flower/poppy,
+/obj/item/food/grown/flower/harebell,
 /turf/open/floor/iron/dark,
 /area/station/service/chapel)
 "gPY" = (
@@ -38431,7 +38438,7 @@
 	dir = 6
 	},
 /obj/structure/table/reinforced/rglass,
-/obj/item/ai_module/core{
+/obj/item/ai_module/law/core{
 	pixel_x = 6;
 	pixel_y = 9
 	},
@@ -39779,7 +39786,7 @@
 	},
 /obj/item/book/bible,
 /obj/item/clothing/under/misc/burial,
-/obj/item/food/grown/harebell{
+/obj/item/food/grown/flower/harebell{
 	pixel_x = -3;
 	pixel_y = 4
 	},
@@ -41067,11 +41074,11 @@
 /obj/item/seeds/corn,
 /obj/item/seeds/cotton,
 /obj/item/seeds/potato/sweet,
-/obj/item/food/grown/poppy/geranium,
-/obj/item/food/grown/poppy,
-/obj/item/food/grown/poppy/lily,
+/obj/item/food/grown/flower/poppy/geranium,
+/obj/item/food/grown/flower/poppy,
+/obj/item/food/grown/flower/poppy/lily,
 /obj/item/food/grown/peas,
-/obj/item/food/grown/harebell,
+/obj/item/food/grown/flower/harebell,
 /obj/item/food/grown/garlic,
 /obj/item/food/grown/onion,
 /obj/item/grown/log,
@@ -55595,8 +55602,8 @@
 /area/station/hallway/primary/fore)
 "nGa" = (
 /obj/structure/table/wood,
-/obj/item/food/grown/poppy,
-/obj/item/food/grown/poppy{
+/obj/item/food/grown/flower/poppy,
+/obj/item/food/grown/flower/poppy{
 	pixel_y = 3;
 	pixel_x = 4
 	},
@@ -57509,7 +57516,7 @@
 /turf/open/floor/iron,
 /area/station/science/ordnance)
 "otH" = (
-/obj/machinery/computer/upload/ai{
+/obj/machinery/ai_law_rack/base/core{
 	dir = 1
 	},
 /obj/machinery/flasher{
@@ -75214,7 +75221,6 @@
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/effect/spawner/random/aimodule/harmful,
-/obj/item/ai_module/reset/purge,
 /obj/machinery/door/window/right/directional/west{
 	name = "High-Risk Modules"
 	},
@@ -77598,8 +77604,8 @@
 /area/station/commons/fitness)
 "vRa" = (
 /obj/structure/table/wood,
-/obj/item/food/grown/harebell,
-/obj/item/food/grown/harebell{
+/obj/item/food/grown/flower/harebell,
+/obj/item/food/grown/flower/harebell{
 	pixel_x = -3;
 	pixel_y = 4
 	},
@@ -83034,9 +83040,6 @@
 	},
 /area/station/engineering/supermatter/room)
 "xLm" = (
-/obj/machinery/computer/upload/borg{
-	dir = 1
-	},
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/ai/upload/chamber)
@@ -108316,7 +108319,7 @@ hAm
 sNC
 smy
 ykf
-jst
+cFm
 rzh
 wJE
 aaw

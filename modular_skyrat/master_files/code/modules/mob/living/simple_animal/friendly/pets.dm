@@ -34,21 +34,6 @@
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 
 /datum/ai_controller/basic_controller/cat/clown
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/random_speech/catclown,
-	)
-
-/datum/ai_planning_subtree/random_speech/catclown
-	speech_chance = 10
-	sound = list('sound/effects/footstep/clownstep1.ogg', 'sound/effects/footstep/clownstep2.ogg', 'sound/items/bikehorn.ogg',)
-	speak = list(
-		"hoooonk!",
-		"meow!",
-		"honk!",
-		"mrow!",
-		"henk!",
-	)
-	emote_see = list("plays tricks.", "slips.", "honks a tiny horn.")
 
 
 /mob/living/basic/pet/cat/mime
@@ -72,17 +57,6 @@
 	)
 
 /datum/ai_controller/basic_controller/cat/mime
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/random_speech/catmime,
-	)
-
-/datum/ai_planning_subtree/random_speech/catmime
-	speech_chance = 1
-	speak = list(
-		"...",
-		"....",
-	)
-	emote_see = list("cowers in fear.", "surrenders.", "plays dead.","looks as though there is a tiny cat shaped wall in front of them.")
 
 
 /mob/living/basic/pet/cat/tiger
@@ -106,17 +80,6 @@
 	)
 
 /datum/ai_controller/basic_controller/cat/tiger
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/random_speech/cattiger,
-	)
-
-/datum/ai_planning_subtree/random_speech/cattiger
-	speech_chance = 10
-	speak = list(
-		"roar!",
-		"meow!",
-		"grrr!",
-	)
 
 /mob/living/basic/carp/clarp
 	name = "clarp"

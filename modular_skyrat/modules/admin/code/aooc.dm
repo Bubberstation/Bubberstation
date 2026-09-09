@@ -5,7 +5,9 @@ GLOBAL_LIST_EMPTY(ckey_to_aooc_name)
 #define AOOC_LISTEN_PLAYER 1
 #define AOOC_LISTEN_ADMIN 2
 
-GAME_VERB(/client, aooc, "AOOC", "OOC", msg as text)
+//GAME_VERB(/client, aooc, "AOOC", "OOC", msg as text)
+GAME_VERB(/client, aooc, "AOOC", "OOC")
+	VERB_ARG(msg, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return

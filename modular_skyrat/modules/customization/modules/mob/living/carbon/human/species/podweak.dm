@@ -31,7 +31,7 @@
 
 /datum/species/pod/podweak/proc/on_life(mob/living/carbon/human/H, seconds_per_tick)
 	SIGNAL_HANDLER
-	if(H.stat != CONSCIOUS)
+	if(IS_UNCONSCIOUS(H))
 		return
 
 	var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing

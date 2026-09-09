@@ -51,7 +51,7 @@
 		humanity_lost_modifier = 1
 	var/interpolated_chance = max_madness_chance + humanity_lost_modifier * (min_madness_chance - max_madness_chance)
 	var/madness_chance = clamp(interpolated_chance, min_madness_chance, max_madness_chance)
-	if(!prob(madness_chance) || source.owner.current.stat != CONSCIOUS || HAS_TRAIT(source.owner.current, TRAIT_MASQUERADE))
+	if(!prob(madness_chance) || IS_UNCONSCIOUS_OR_CRIT(source.owner.current) || HAS_TRAIT(source.owner.current, TRAIT_MASQUERADE))
 		return
 	var/message = pick(strings("malkavian_revelations.json", "revelations", "modular_zubbers/strings/bloodsuckers"))
 	INVOKE_ASYNC(source.owner.current, TYPE_PROC_REF(/atom/movable, say), message, forced = CLAN_MALKAVIAN)
@@ -82,12 +82,19 @@
 		carbonowner.gain_trauma(/datum/brain_trauma/special/bluespace_prophet, TRAUMA_RESILIENCE_ABSOLUTE)
 
 /datum/bloodsucker_clan/malkavian/on_final_death(datum/antagonist/bloodsucker/source)
-	var/obj/item/soulstone/bloodsucker/stone = new /obj/item/soulstone/bloodsucker(get_turf(bloodsuckerdatum.owner.current))
-	if(!bloodsuckerdatum.owner.current.ckey)
-		return
-	ASYNC
-		stone.capture_soul(bloodsuckerdatum.owner.current, forced = TRUE)
+	var/mob/living/carbon/dying_malkavian = bloodsuckerdatum.owner.current
+	var/obj/item/soulstone/bloodsucker/stone = new(get_turf(dying_malkavian))
+	if(!iscarbon(dying_malkavian) || !dying_malkavian.ckey)
+		return FALSE
+	INVOKE_ASYNC(src, PROC_REF(store_soul), stone, dying_malkavian)
 	return DONT_DUST
+
+/datum/bloodsucker_clan/malkavian/proc/store_soul(obj/item/soulstone/bloodsucker/stone, mob/living/carbon/dying_malkavian)
+	if(stone.capture_soul(dying_malkavian, forced = TRUE))
+		return
+	// Nobody took the soul, so dust the body ourselves rather than leave it for the next LifeTick to find.
+	if(!QDELETED(dying_malkavian))
+		dying_malkavian.dust(drop_items = TRUE)
 
 /datum/bloodsucker_clan/malkavian/proc/on_bloodsucker_broke_masquerade(datum/source, datum/antagonist/bloodsucker/masquerade_breaker)
 	SIGNAL_HANDLER

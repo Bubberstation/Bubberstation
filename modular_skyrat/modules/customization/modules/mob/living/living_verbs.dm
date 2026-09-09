@@ -11,7 +11,7 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 	return temporary_flavor_text_indicator
 
 GAME_VERB_DESC(/mob/living, set_temporary_flavor, "Set Temporary Flavor Text", "Allows you to set a temporary flavor text.", "IC")
-	if(stat != CONSCIOUS)
+	if(IS_UNCONSCIOUS_OR_CRIT(src))
 		to_chat(src, span_warning("You can't set your temporary flavor text now..."))
 		return
 
@@ -42,7 +42,7 @@ GAME_VERB_DESC(/mob/living, narrate, "Narrate", "Allows you to send a narration 
 		to_chat(user, span_danger("Speech is currently admin-disabled."))
 		return
 
-	if(user.stat != CONSCIOUS)
+	if(!IS_UNCONSCIOUS_OR_CRIT(user))
 		to_chat(user, span_warning("You can't narrate right now..."))
 		return
 
@@ -80,7 +80,7 @@ GAME_VERB_DESC(/mob/living, narrate, "Narrate", "Allows you to send a narration 
 		return
 
 	user.log_message(message, LOG_EMOTE)
-	user.show_message(span_cyan("[message]"))
+	user.show_message(span_narrate("[message]"))
 
 	// Handle target = range
 	if(isnum(target))
@@ -91,7 +91,7 @@ GAME_VERB_DESC(/mob/living, narrate, "Narrate", "Allows you to send a narration 
 				viewers |= holo.Impersonation
 
 		for(var/mob/receiver in viewers)
-			receiver.show_message(span_cyan("[message] \n\ (Narration: [user])"), MSG_VISUAL)
+			receiver.show_message(span_narrate("[message] \n\ (Narration: [user])"), MSG_VISUAL)
 	// Handle target = an individual
 	else
 		var/mob/target_mob = astype(target, /obj/effect/overlay/holo_pad_hologram)?.Impersonation || target
@@ -100,7 +100,7 @@ GAME_VERB_DESC(/mob/living, narrate, "Narrate", "Allows you to send a narration 
 		if(get_dist(user_mob_or_hologram.loc, target_mob.loc) > world.view)
 			to_chat(user, span_warning("Your narration was unable to be sent to your target: Too far away."))
 			return
-		target_mob.show_message(span_cyan("[message] \n\ (Narration: [user])"), MSG_VISUAL)
+		target_mob.show_message(span_narrate("[message] \n\ (Narration: [user])"), MSG_VISUAL)
 
 #undef NARRATE_RANGE_MAX
 #undef NARRATE_RANGE_SAME_TILE

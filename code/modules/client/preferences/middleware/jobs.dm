@@ -61,6 +61,7 @@
 
 	var/list/departments = list()
 	var/list/jobs = list()
+	var/list/jobs_sorted = list()
 
 	for (var/datum/job/job as anything in SSjob.joinable_occupations)
 		if (job.job_flags & JOB_LATEJOIN_ONLY)
@@ -83,6 +84,9 @@
 				"color" = department_type.ui_color, // Prob shouldnt be here.
 			)
 
+		// Use the built in sorting of the main occupation list to keep it sorted how we want instead of asc
+		jobs_sorted += job.title
+
 		jobs[job.title] = list(
 			"description" = job.description,
 			"department" = department_name,
@@ -91,6 +95,7 @@
 
 	data["departments"] = departments
 	data["jobs"] = jobs
+	data["jobs_sorted"] = jobs_sorted
 
 	return data
 

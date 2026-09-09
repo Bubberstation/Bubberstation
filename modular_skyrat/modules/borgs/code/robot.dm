@@ -69,7 +69,7 @@ GAME_VERB_PROC(/mob/living/silicon/robot, robot_lay_down, "Lay down", "AI Comman
 	if(!can_rest())
 		to_chat(src, span_warning("You can't do that!"))
 		return
-	if(stat != CONSCIOUS) //Make sure we don't enable movement when not concious
+	if(IS_UNCONSCIOUS_OR_CRIT(src)) //Make sure we don't enable movement when not concious
 		return
 	if(robot_resting)
 		to_chat(src, span_notice("You are now getting up."))

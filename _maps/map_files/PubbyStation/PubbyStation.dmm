@@ -7188,7 +7188,7 @@
 /turf/open/floor/iron/dark,
 /area/station/ai/upload/chamber)
 "aEF" = (
-/obj/machinery/computer/upload/ai{
+/obj/machinery/ai_law_rack/base/core{
 	dir = 1
 	},
 /turf/open/floor/circuit,
@@ -7199,12 +7199,6 @@
 	pixel_y = -6
 	},
 /turf/closed/wall/r_wall,
-/area/station/ai/upload/chamber)
-"aEH" = (
-/obj/machinery/computer/upload/borg{
-	dir = 1
-	},
-/turf/open/floor/circuit,
 /area/station/ai/upload/chamber)
 "aEI" = (
 /obj/structure/window/reinforced/spawner/directional/north,
@@ -18260,7 +18254,6 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/cobweb,
 /obj/item/aicard,
-/obj/item/ai_module/reset,
 /obj/item/assembly/flash/handheld,
 /obj/machinery/light/directional/north,
 /obj/structure/extinguisher_cabinet/directional/west,
@@ -20754,6 +20747,7 @@
 	pixel_y = 4
 	},
 /obj/item/pen,
+/obj/item/storage/photo_album/chapel,
 /turf/open/floor/carpet/black,
 /area/station/service/chapel/office)
 "cds" = (
@@ -23729,8 +23723,8 @@
 /area/station/service/library/lounge)
 "cww" = (
 /obj/structure/table/wood,
-/obj/item/food/grown/poppy,
-/obj/item/food/grown/harebell,
+/obj/item/food/grown/flower/poppy,
+/obj/item/food/grown/flower/harebell,
 /obj/machinery/airalarm/directional/west,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
@@ -36031,6 +36025,7 @@
 	name = "Bar Requests console"
 	},
 /obj/effect/mapping_helpers/requests_console/supplies,
+/obj/item/storage/photo_album/bar,
 /turf/open/floor/wood,
 /area/station/service/bar/backroom)
 "kFR" = (
@@ -39989,11 +39984,10 @@
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 1
 	},
-/obj/item/ai_module/supplied/freeform{
+/obj/item/ai_module/law/supplied/freeform{
 	pixel_x = -1;
 	pixel_y = 8
 	},
-/obj/item/ai_module/reset,
 /turf/open/floor/iron/dark,
 /area/station/ai/upload/chamber)
 "nrW" = (
@@ -43612,6 +43606,7 @@
 	pixel_y = 8
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/item/storage/photo_album/library,
 /turf/open/floor/iron/dark,
 /area/station/service/library)
 "pHb" = (
@@ -47414,6 +47409,7 @@
 "saL" = (
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /obj/structure/table,
+/obj/item/storage/photo_album/prison,
 /turf/open/floor/iron/white,
 /area/station/security/prison/mess)
 "saS" = (
@@ -51993,7 +51989,7 @@
 /area/station/security/brig)
 "uVi" = (
 /obj/structure/table/wood,
-/obj/item/food/grown/poppy,
+/obj/item/food/grown/flower/poppy,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/service/chapel)
@@ -56511,7 +56507,7 @@
 /area/station/service/lawoffice)
 "xJU" = (
 /obj/structure/table/wood,
-/obj/item/food/grown/harebell,
+/obj/item/food/grown/flower/harebell,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/service/chapel)
@@ -88158,7 +88154,7 @@ aAB
 fLI
 mtB
 wEJ
-aEH
+wEJ
 aAB
 aGr
 awd
