@@ -112,20 +112,6 @@
 	desc = "Transfer you consciousness back to your real voidwalker body while still hearing what this avatar hears."
 	var/mob/living/basic/voidwalker/real_body
 
-/datum/action/voidwalker_swap_bodies/Grant(mob/grant_to)
-	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_HEAR, PROC_REF(relay_speech))
-
-/datum/action/voidwalker_swap_bodies/proc/relay_speech(atom/source, list/hear_args)
-	SIGNAL_HANDLER
-
-	if(!real_body?.client)
-		return
-
-	var/list/new_args = hear_args.Copy()
-	new_args[HEARING_RANGE] = INFINITY // so we can hear it from any distance away
-	real_body.Hear(arglist(new_args))
-
 /datum/action/voidwalker_swap_bodies/Trigger(mob/clicker, trigger_flags)
 	. = ..()
 	owner.mind.transfer_to(real_body)
