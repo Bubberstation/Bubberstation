@@ -20,10 +20,6 @@
 	var/medical_record_text
 	///Appears in medical guides for this quirk, but only if the quirk has QUIRK_TRAUMALIKE flag.
 	var/medical_symptom_text
-	//BUBBER ADDITION START
-	///This text will appear in security records for the trait
-	var/security_record_text
-	//BUBBER ADDITION END
 	/// if applicable, apply and remove this mob trait
 	var/mob_trait
 	/// Amount of points this trait is worth towards the hardcore character mode.
