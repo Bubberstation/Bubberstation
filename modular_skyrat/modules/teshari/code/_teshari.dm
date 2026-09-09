@@ -63,6 +63,9 @@
 	name = "teshari tongue"
 	liked_foodtypes = SEAFOOD | VEGETABLES | NUTS
 	disliked_foodtypes = GROSS | GRAIN
+	emote_sounds = list(
+		/datum/emote/living/scream::key = 'modular_skyrat/modules/emotes/sound/emotes/raptorscream.ogg'
+	)
 
 /obj/item/organ/eyes/teshari
 	name = "teshari eyes"

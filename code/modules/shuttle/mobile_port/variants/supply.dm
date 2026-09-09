@@ -259,12 +259,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/buyer = buying_account.account_holder || "Account ID: [buying_account.account_id]" // BUBBER EDIT - allow goodies to be bought privately
 
 		if(buying_account_orders.len > GOODY_FREE_SHIPPING_MAX) // no free shipping, send a crate
-			var/obj/structure/closet/crate/secure/owned/our_crate = new /obj/structure/closet/crate/secure/owned(pick_n_take(empty_turfs), buying_account) // BUBBER EDIT - add init arg
-			/// SKYRAT EDIT ADDITION START - FIXES COMMAND BUDGET CASES BEING UNOPENABLE
-			if(istype(our_crate.buyer_account, /datum/bank_account/department))
-				our_crate.department_purchase = TRUE
-				our_crate.department_account = our_crate.buyer_account
-			/// SKYRAT EDIT ADDITION END
+			var/obj/structure/closet/crate/secure/our_crate = new /obj/structure/closet/crate/secure(pick_n_take(empty_turfs))
+			our_crate.AddComponent(/datum/component/locked_to_account, buying_account)
 			our_crate.name = "goody crate - purchased by [buyer]"
 			miscboxes[buyer] = our_crate
 		else //free shipping in a case
@@ -277,6 +273,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				our_case.department_account = our_case.buyer_account
 			/// SKYRAT EDIT ADDITION END
 			miscboxes[buyer].name = "goody case - purchased by [buyer]"
+		//BUBBER EDIT BEGIN // Populate the contents for purchased orders
 		misc_contents[buyer] = list()
 
 		for(var/datum/supply_order/our_order as anything in buying_account_orders)
@@ -284,6 +281,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				misc_contents[buyer] += item
 			misc_costs[buyer] += our_order.pack.cost
 			misc_order_num[buyer] = "[misc_order_num[buyer]]#[our_order.id] "
+		////BUBBER EDIT END
 
 	for(var/miscbox in miscboxes)
 		var/datum/supply_order/order = new/datum/supply_order()

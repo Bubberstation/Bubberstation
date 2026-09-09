@@ -379,3 +379,22 @@
 						/obj/item/clothing/erp_leash,
 						/obj/item/clicker
 						)
+
+/// Cyborgs are bad at dancing too
+/obj/item/borg/upgrade/waddle_module
+	name = "borg waddle module"
+	desc = "A module that puts a little spring in each borg's step"
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+	)
+
+/obj/item/borg/upgrade/waddle_module/action(mob/living/silicon/robot/borg, mob/living/user)
+	. = ..()
+	if(.)
+		borg.add_quirk(/datum/quirk/waddle)
+
+/obj/item/borg/upgrade/waddle_module/deactivate(mob/living/silicon/robot/borg, mob/living/user)
+	. = ..()
+	if(.)
+		borg.remove_quirk(/datum/quirk/waddle)
