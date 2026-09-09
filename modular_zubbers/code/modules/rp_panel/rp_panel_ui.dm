@@ -258,54 +258,10 @@
 	return verb_data
 
 /datum/rp_panel/proc/build_anatomy_details(mob/living/target)
-	var/list/details = list()
-	if(!ishuman(target))
-		return details
-	var/mob/living/carbon/human/human_target = target
-	if(human_target.has_arms(REQUIRE_GENITAL_ANY) > 0)
-		details += human_target.is_hands_uncovered() ? "has covered hands" : "has uncovered hands"
-	if(human_target.has_feet(REQUIRE_GENITAL_ANY) > 0)
-		if(human_target.is_barefoot() && (!human_target.socks || human_target.socks == "Nude" || (human_target.underwear_visibility & UNDERWEAR_HIDE_SOCKS)))
-			details += "is barefoot"
-		else if(human_target.is_barefoot())
-			details += "is wearing socks"
-		else
-			details += "has feet covered"
-	var/obj/item/bodypart/head/head_part = human_target.get_bodypart(BODY_ZONE_HEAD)
-	if(head_part)
-		var/mouth_covered = (human_target.wear_mask?.flags_inv & HIDEFACE) || (human_target.head?.flags_inv & HIDEFACE)
-		details += mouth_covered ? "has a mouth, which is covered" : "has a mouth, which is uncovered"
-	details += human_target.is_head_uncovered() ? "has head covered" : "has head uncovered"
-	if(human_target.is_topless() && human_target.is_bottomless())
-		details += "is naked"
-	else if(human_target.is_topless())
-		details += "is topless"
-	else if(human_target.is_bottomless())
-		details += "is bottomless"
-	var/static/list/genital_lines = list(
-		ORGAN_SLOT_PENIS = "has a penis",
-		ORGAN_SLOT_TESTICLES = "has testicles",
-		ORGAN_SLOT_VAGINA = "has a vagina",
-		ORGAN_SLOT_BREASTS = "has breasts",
-		ORGAN_SLOT_ANUS = "has an anus",
-	)
-	for(var/slot in genital_lines)
-		var/obj/item/organ/genital/genital = human_target.get_organ_slot(slot)
-		if(istype(genital) && genital.is_exposed())
-			details += genital_lines[slot]
-	return details
+	return interaction_panel_build_anatomy_details(target)
 
 /datum/rp_panel/proc/build_status_tags(mob/living/target)
-	var/list/tags = list()
-	if(!target.client?.prefs)
-		return tags
-	tags += list(list("label" = "ERP", "value" = get_preference_status(read_mob_character_pref(target, /datum/preference/choiced/erp_status))))
-	tags += list(list("label" = "HYPNOSIS", "value" = get_preference_status(read_mob_character_pref(target, /datum/preference/choiced/erp_status_hypno))))
-	tags += list(list("label" = "VORE", "value" = get_preference_status(read_mob_character_pref(target, /datum/preference/choiced/erp_status_v))))
-	tags += list(list("label" = "NON-CON", "value" = get_preference_status(read_mob_character_pref(target, /datum/preference/choiced/erp_status_nc))))
-	var/mechanics = read_mob_character_pref(target, /datum/preference/choiced/erp_status_mechanics)
-	tags += list(list("label" = "MECHANICS", "value" = (!mechanics || mechanics == "None") ? "NO" : uppertext(mechanics)))
-	return tags
+	return interaction_panel_build_status_tags(target)
 
 /datum/rp_panel/proc/build_interaction_data(mob/living/target, allow_lewd = FALSE)
 	var/list/data = list(
@@ -363,59 +319,8 @@
 	return data
 
 /datum/rp_panel/proc/build_self_data()
-	var/list/data = list(
-		"show_erp" = erp_enabled(holder),
-		"autocum" = FALSE,
-		"inactive" = scene_inactive,
-		"prefs" = list(),
-		"genitals" = list(),
-		"underwear" = list(),
-	)
-	if(!ishuman(holder))
-		return data
-	var/mob/living/carbon/human/human_holder = holder
-	data["underwear"] = list(
-		"underwear" = !!(human_holder.underwear_visibility & UNDERWEAR_HIDE_UNDIES),
-		"bra" = !!(human_holder.underwear_visibility & UNDERWEAR_HIDE_BRA),
-		"undershirt" = !!(human_holder.underwear_visibility & UNDERWEAR_HIDE_SHIRT),
-		"socks" = !!(human_holder.underwear_visibility & UNDERWEAR_HIDE_SOCKS),
-	)
-	if(!data["show_erp"] || !holder.client?.prefs)
-		return data
-	data["autocum"] = holder.client.prefs.read_preference(/datum/preference/toggle/erp/autocum)
-	var/static/list/pref_map = list(
-		"erp_status" = /datum/preference/choiced/erp_status,
-		"erp_status_nc" = /datum/preference/choiced/erp_status_nc,
-		"erp_status_v" = /datum/preference/choiced/erp_status_v,
-		"erp_status_hypno" = /datum/preference/choiced/erp_status_hypno,
-		"erp_status_mechanics" = /datum/preference/choiced/erp_status_mechanics,
-	)
-	var/list/pref_payload = list()
-	for(var/key in pref_map)
-		var/datum/preference/choiced/pref = GLOB.preference_entries[pref_map[key]]
-		pref_payload[key] = list(
-			"value" = read_mob_character_pref(holder, pref_map[key]),
-			"options" = pref.get_choices(),
-		)
-	data["prefs"] = pref_payload
-	var/static/list/genital_slots = list(
-		ORGAN_SLOT_PENIS = "Penis",
-		ORGAN_SLOT_TESTICLES = "Testicles",
-		ORGAN_SLOT_VAGINA = "Vagina",
-		ORGAN_SLOT_ANUS = "Anus",
-		ORGAN_SLOT_BREASTS = "Breasts",
-	)
-	var/list/genitals = list()
-	for(var/slot in genital_slots)
-		var/obj/item/organ/genital/genital = human_holder.get_organ_slot(slot)
-		if(!istype(genital) || genital.visibility_preference == GENITAL_SKIP_VISIBILITY)
-			continue
-		genitals += list(list(
-			"slot" = slot,
-			"name" = genital_slots[slot],
-			"visibility" = genital.visibility_preference,
-		))
-	data["genitals"] = genitals
+	var/list/data = interaction_panel_build_self_data(holder)
+	data["inactive"] = scene_inactive
 	return data
 
 /datum/rp_panel/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -715,50 +620,13 @@
 	invalidate_interaction_cache()
 
 /datum/rp_panel/proc/set_self_preference(pref_type, pref_value)
-	if(!holder.client?.prefs || !pref_type || isnull(pref_value) || !erp_enabled(holder))
-		return
-	var/static/list/pref_map = list(
-		"erp_status" = /datum/preference/choiced/erp_status,
-		"erp_status_nc" = /datum/preference/choiced/erp_status_nc,
-		"erp_status_v" = /datum/preference/choiced/erp_status_v,
-		"erp_status_hypno" = /datum/preference/choiced/erp_status_hypno,
-		"erp_status_mechanics" = /datum/preference/choiced/erp_status_mechanics,
-	)
-	var/pref_path = pref_map[pref_type]
-	if(!pref_path)
-		return
-	write_mob_character_pref(holder, pref_path, pref_value)
+	return interaction_panel_set_self_preference(holder, pref_type, pref_value)
 
 /datum/rp_panel/proc/set_genital_visibility(organ_slot, visibility)
-	if(!ishuman(holder) || !organ_slot)
-		return
-	if(!(visibility in list(GENITAL_NEVER_SHOW, GENITAL_HIDDEN_BY_CLOTHES, GENITAL_ALWAYS_SHOW)))
-		return
-	var/mob/living/carbon/human/human_holder = holder
-	var/obj/item/organ/genital/genital = human_holder.get_organ_slot(organ_slot)
-	if(!genital)
-		return
-	genital.visibility_preference = visibility
-	human_holder.update_body()
-	SEND_SIGNAL(human_holder, COMSIG_HUMAN_TOGGLE_GENITALS)
+	return interaction_panel_set_genital_visibility(holder, organ_slot, visibility)
 
 /datum/rp_panel/proc/toggle_underwear(kind)
-	if(!ishuman(holder))
-		return
-	var/mob/living/carbon/human/human_holder = holder
-	switch(kind)
-		if("underwear")
-			human_holder.underwear_visibility ^= UNDERWEAR_HIDE_UNDIES
-		if("bra")
-			human_holder.underwear_visibility ^= UNDERWEAR_HIDE_BRA
-		if("undershirt")
-			human_holder.underwear_visibility ^= UNDERWEAR_HIDE_SHIRT
-		if("socks")
-			human_holder.underwear_visibility ^= UNDERWEAR_HIDE_SOCKS
-		else
-			return
-	human_holder.update_body()
-	SEND_SIGNAL(human_holder, COMSIG_HUMAN_TOGGLE_UNDERWEAR, kind)
+	return interaction_panel_toggle_underwear(holder, kind)
 
 /datum/rp_panel/proc/toggle_autocum()
 	if(!ishuman(holder) || !holder.client?.prefs || !erp_enabled(holder))

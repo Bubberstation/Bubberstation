@@ -8,23 +8,14 @@ import { Participants } from './Participants';
 import { SceneLog } from './SceneLog';
 import { SettingsModal } from './SettingsModal';
 import { Sidebar } from './Sidebar';
+import { sceneTheme } from './themes';
 import type { RpPanelData } from './types';
-
-const THEME_MAP: Record<string, string> = {
-  default: 'scene_assistant',
-  light: 'scene_frost',
-  cream: 'scene_cream',
-  strawberry: 'scene_strawberry',
-  super_dark: 'scene_super_dark',
-  apple: 'scene_apple',
-  syndicate: 'scene_syndicate',
-};
 
 export function RpPanel() {
   const { act, data } = useBackend<RpPanelData>();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [manageSelfOpen, setManageSelfOpen] = useState(false);
-  const theme = THEME_MAP[data.settings?.theme || 'default'] || 'scene_assistant';
+  const theme = sceneTheme(data.settings?.theme || 'default');
 
   return (
     <Window title="Scene Assistant" width={1180} height={740} theme={theme}>
@@ -48,9 +39,7 @@ export function RpPanel() {
                 <Participants />
               </Stack.Item>
               <Stack.Item grow className="SceneAssistant__logColumn">
-                <SceneLog
-                  onExamine={(ref) => act('open_examine', { ref })}
-                />
+                <SceneLog onExamine={(ref) => act('open_examine', { ref })} />
               </Stack.Item>
             </Stack>
           </Stack.Item>

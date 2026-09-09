@@ -141,90 +141,22 @@
 	name_color = sanitize_hexcolor(saved_color) || default_scene_assistant_name_color(holder?.real_name || holder?.name || holder?.ckey)
 
 /datum/rp_panel/proc/get_played_character_slot(mob/living/target)
-	if(!target)
-		return 0
-	if(target.rp_panel && target.rp_panel.character_slot)
-		return target.rp_panel.character_slot
-	var/slot = 0
-	if(target.mind?.original_character_slot_index)
-		slot = target.mind.original_character_slot_index
-	else
-		slot = find_character_slot_by_name(target)
-	if(slot && target.rp_panel)
-		target.rp_panel.character_slot = slot
-	return slot
+	return interaction_panel_get_played_character_slot(target)
 
 /datum/rp_panel/proc/find_character_slot_by_name(mob/living/target)
-	var/datum/preferences/prefs = target?.client?.prefs
-	if(!prefs?.savefile)
-		return 0
-	var/mob_name = target.real_name || target.name
-	if(!mob_name)
-		return 0
-	for(var/slot in 1 to prefs.max_save_slots)
-		var/list/save_data = prefs.savefile.get_entry("character[slot]")
-		if(!islist(save_data))
-			continue
-		if(save_data["real_name"] == mob_name)
-			return slot
-	return 0
+	return interaction_panel_find_character_slot_by_name(target)
 
 /datum/rp_panel/proc/prefs_cache_belongs_to_mob(mob/living/target, datum/preferences/prefs)
-	if(!target || !prefs || !prefs.value_cache)
-		return FALSE
-	var/cached_name = prefs.value_cache[/datum/preference/name/real_name]
-	if(!cached_name)
-		return FALSE
-	return cached_name == (target.real_name || target.name)
+	return interaction_panel_prefs_cache_belongs_to_mob(target, prefs)
 
 /datum/rp_panel/proc/read_mob_character_pref(mob/living/target, pref_type)
-	var/datum/preferences/prefs = target?.client?.prefs
-	var/datum/preference/preference_entry = GLOB.preference_entries[pref_type]
-	if(!preference_entry)
-		return null
-	if(preference_entry.savefile_identifier != PREFERENCE_CHARACTER)
-		return prefs?.read_preference(pref_type)
-	var/slot = get_played_character_slot(target)
-	if(slot && prefs?.savefile)
-		var/list/save_data = prefs.savefile.get_entry("character[slot]")
-		var/value = preference_entry.read(save_data, prefs)
-		if(!isnull(value))
-			return value
-	return character_pref_fallback(preference_entry, target)
+	return interaction_panel_read_mob_character_pref(target, pref_type)
 
 /datum/rp_panel/proc/character_pref_fallback(datum/preference/preference_entry, mob/living/target)
-	if(istype(preference_entry, /datum/preference/color/scene_assistant_name_color))
-		return default_scene_assistant_name_color(target?.real_name || target?.name || target?.ckey)
-	return preference_entry.create_default_value()
+	return interaction_panel_character_pref_fallback(preference_entry, target)
 
 /datum/rp_panel/proc/write_mob_character_pref(mob/living/target, pref_type, value)
-	var/datum/preferences/prefs = target?.client?.prefs
-	if(!prefs)
-		return FALSE
-	var/datum/preference/preference_entry = GLOB.preference_entries[pref_type]
-	if(!preference_entry)
-		return FALSE
-	if(preference_entry.savefile_identifier != PREFERENCE_CHARACTER)
-		if(!prefs.write_preference(preference_entry, value))
-			return FALSE
-		prefs.recently_updated_keys |= preference_entry.type
-		prefs.save_preferences()
-		return TRUE
-	var/slot = get_played_character_slot(target)
-	if(!slot)
-		return FALSE
-	var/tree_key = "character[slot]"
-	var/list/save_data = prefs.savefile.get_entry(tree_key)
-	if(isnull(save_data))
-		prefs.savefile.set_entry(tree_key, list())
-		save_data = prefs.savefile.get_entry(tree_key)
-	var/new_value = preference_entry.deserialize(value, prefs)
-	if(!preference_entry.write(save_data, new_value, prefs))
-		return FALSE
-	if(prefs.default_slot == slot && prefs_cache_belongs_to_mob(target, prefs))
-		prefs.value_cache[preference_entry.type] = new_value
-	prefs.savefile.save()
-	return TRUE
+	return interaction_panel_write_mob_character_pref(target, pref_type, value)
 
 /datum/rp_panel/proc/write_player_pref(pref_type, value)
 	var/datum/preference/preference_entry = GLOB.preference_entries[pref_type]
@@ -241,9 +173,7 @@
 		prefs.save_preferences()
 
 /datum/rp_panel/proc/erp_enabled(mob/living/target)
-	if(CONFIG_GET(flag/disable_erp_preferences))
-		return FALSE
-	return target?.client?.prefs?.read_preference(/datum/preference/toggle/master_erp_preferences) && target.client.prefs.read_preference(/datum/preference/toggle/erp)
+	return interaction_panel_erp_enabled(target)
 
 /datum/rp_panel/proc/erp_content_enabled(mob/living/target)
 	if(!erp_enabled(target))
@@ -254,16 +184,7 @@
 	return TRUE
 
 /datum/rp_panel/proc/get_headshot(mob/living/target)
-	if(!target)
-		return ""
-	if(ishuman(target))
-		var/mob/living/carbon/human/human_target = target
-		return human_target.dna?.features["headshot"] || ""
-	if(target.client?.ckey)
-		var/datum/preference/text/headshot/pref = GLOB.preference_entries[/datum/preference/text/headshot]
-		if(pref?.stored_link)
-			return pref.stored_link[target.client.ckey] || ""
-	return ""
+	return interaction_panel_get_headshot(target)
 
 /datum/rp_panel/proc/get_member_color(mob/living/target)
 	if(!target || QDELETED(target))
@@ -486,7 +407,7 @@
 		return
 	target.playsound_local(
 		get_turf(target),
-		'modular_zubbers/sound/misc/rppanelsounds/messagechime.ogg',
+		'sound/effects/achievement/glockenspiel_ping.ogg',
 		65,
 		FALSE,
 		pressure_affected = FALSE,
@@ -988,13 +909,7 @@
 		ui.send_update(payload, force = TRUE)
 
 /datum/rp_panel/proc/get_preference_status(choice)
-	if(!choice || choice == "No" || choice == "None")
-		return "NO"
-	if(findtext(choice, "Ask"))
-		return "L(OOC)"
-	if(findtext(choice, "Check"))
-		return "NOTE"
-	return "YES"
+	return interaction_panel_get_preference_status(choice)
 
 /datum/rp_panel/proc/get_target()
 	if(!selected_participant || QDELETED(selected_participant) || !is_in_scene(selected_participant))

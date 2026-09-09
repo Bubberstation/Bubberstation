@@ -113,6 +113,26 @@
 	. = ..()
 	return FALSE
 
+/// Interaction Menu appearance is saved independently for the played character.
+/datum/preference/choiced/interaction_menu_theme
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_key = "interaction_menu_theme"
+	savefile_identifier = PREFERENCE_CHARACTER
+	should_update_preview = FALSE
+
+/datum/preference/choiced/interaction_menu_theme/init_possible_values()
+	return list("default", "light", "cream", "strawberry", "super_dark", "apple", "syndicate")
+
+/datum/preference/choiced/interaction_menu_theme/create_default_value()
+	return "default"
+
+/datum/preference/choiced/interaction_menu_theme/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return
+
+/datum/preference/choiced/interaction_menu_theme/is_accessible(datum/preferences/preferences)
+	. = ..()
+	return FALSE
+
 /datum/preference/choiced/scene_assistant_soundpack
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_key = "scene_assistant_soundpack"

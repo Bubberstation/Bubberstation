@@ -1,7 +1,7 @@
 import { Box, Button, Modal, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import type { RpPanelData } from './types';
+import type { RpPanelData, SelfData } from './types';
 
 const PREF_LABELS: Record<string, string> = {
   erp_status: 'ERP',
@@ -19,19 +19,33 @@ const VISIBILITY_OPTIONS = [
 
 type ManageSelfModalProps = {
   onClose: () => void;
+  selfData?: SelfData;
+  width?: string;
 };
 
 export function ManageSelfModal(props: ManageSelfModalProps) {
   const { act, data } = useBackend<RpPanelData>();
   const { onClose } = props;
-  const { self } = data;
+  const self = props.selfData ?? data.self;
   if (!self) {
     return null;
   }
 
   return (
-    <Modal>
-        <Section title="Manage Self" width="640px" scrollable height={46}>
+    <Modal onEscape={onClose} style={{ maxWidth: 'calc(100vw - 4rem)' }}>
+      <Section
+        title="Manage Self"
+        width={props.width ?? '640px'}
+        fill
+        scrollable
+        height="min(46em, calc(100vh - 8rem))"
+        style={{ maxWidth: 'calc(100vw - 6rem)' }}
+        buttons={
+          <Button icon="times" onClick={onClose}>
+            Close
+          </Button>
+        }
+      >
         {self.show_erp ? (
           <>
             {Object.entries(PREF_LABELS).map(([key, label]) => {
@@ -66,7 +80,11 @@ export function ManageSelfModal(props: ManageSelfModalProps) {
               Genital Visibility
             </Box>
             {(self.genitals || []).map((genital) => (
-              <Stack key={genital.slot} mb={0.3}>
+              <Stack
+                key={genital.slot}
+                mb={0.3}
+                style={props.width ? { flexWrap: 'wrap' } : undefined}
+              >
                 <Stack.Item width="7em">{genital.name}</Stack.Item>
                 {VISIBILITY_OPTIONS.map((option) => (
                   <Stack.Item key={option.id}>
