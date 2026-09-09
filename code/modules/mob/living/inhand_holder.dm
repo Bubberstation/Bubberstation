@@ -94,8 +94,6 @@
 			UnregisterSignal(released_mob, COMSIG_QDELETING)
 			held_mob = null
 			qdel(released_mob)
-			if(!QDELETED(src))
-				qdel(src)
 			return TRUE
 		released_mob.forceMove(drop_target)
 		// BUBBER EDIT ADDITION END
