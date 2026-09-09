@@ -11,6 +11,15 @@
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7
 
+/datum/round_event_control/nightmare/can_spawn_event(players_amt, allow_magic = FALSE)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	// Nightmares can only spawn in unlit maintenance, so don't offer the event
+	// (and burn a ghost poll on it) when the station has nowhere dark to put one.
+	return !isnull(find_maintenance_spawn(atmos_sensitive = TRUE, require_darkness = TRUE))
+
 /datum/round_event/ghost_role/nightmare
 	minimum_required = 1
 	role_name = "nightmare"

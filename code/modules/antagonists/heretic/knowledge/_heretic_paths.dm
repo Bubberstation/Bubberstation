@@ -62,6 +62,8 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 	var/guaranteed_side_tier2
 	/// Knowledge guaranteed to show up in the third draft
 	var/guaranteed_side_tier3
+	/// Discount applied to shop knowledge costs for this path (subtracted from each tier cost, minimum 1)
+	var/shop_cost_discount = 0
 
 
 /datum/heretic_knowledge_tree_column/proc/get_ui_data(datum/antagonist/heretic/our_heretic, category)
@@ -88,6 +90,7 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 	var/datum/status_effect/heretic_passive/passive = new start.eldritch_passive()
 	data["passive"] = list(
 		"name" = initial(passive.name),
+		"recharge" = initial(passive.recharge_description),
 		"description" = passive.passive_descriptions.Copy(),
 	)
 	qdel(passive)
@@ -178,13 +181,18 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 	var/list/tree_paths = list()
 
 	tree_paths += list(
+		heretic_path.passive_upgrade1, // BUBBER EDIT ADDITION
+		heretic_path.passive_upgrade2, // BUBBER EDIT ADDITION
+		heretic_path.passive_upgrade3, // BUBBER EDIT ADDITION
+		/datum/heretic_knowledge/enable_blades, // BUBBER EDIT ADDITION
+		heretic_path.mark_upgrade, // BUBBER EDIT ADDITION
 		heretic_path.knowledge_tier1,
 		heretic_path.knowledge_tier2,
 		heretic_path.knowledge_tier3,
 		heretic_path.knowledge_tier4,
 		heretic_path.robes,
 		heretic_path.blade,
-		heretic_path.ascension,
+		//heretic_path.ascension, // BUBBER EDIT REMOVAL
 	)
 
 	for(var/datum/heretic_knowledge/type as anything in tree_paths)
@@ -208,13 +216,21 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 
 	heretic_research_tree[knowledge_tier4][HKT_DEPTH] = HKT_DEPTH_TIER_4
 	heretic_research_tree[heretic_path.blade][HKT_NEXT] += heretic_research_tree[knowledge_tier4][HKT_ID]
-	heretic_research_tree[knowledge_tier4][HKT_NEXT] += heretic_research_tree[heretic_path.ascension][HKT_ID]
+	//heretic_research_tree[knowledge_tier4][HKT_NEXT] += heretic_research_tree[heretic_path.ascension][HKT_ID] // BUBBER EDIT REMOVAL - no ascensions
 
 	//depth stuff
 	heretic_research_tree[heretic_path.robes][HKT_DEPTH] = HKT_DEPTH_ROBES
 	heretic_research_tree[heretic_path.blade][HKT_DEPTH] = HKT_DEPTH_ARMOR
-	heretic_research_tree[heretic_path.ascension][HKT_DEPTH] = HKT_DEPTH_ASCENSION
+	//heretic_research_tree[heretic_path.ascension][HKT_DEPTH] = HKT_DEPTH_ASCENSION // BUBBER EDIT REMOVAL - no ascensions
 	//and we're done
+	// BUBBER EDIT ADDITION BEGIN - Starting upgrades
+	heretic_research_tree[heretic_path.passive_upgrade1][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.1
+	heretic_research_tree[heretic_path.passive_upgrade2][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.2
+	heretic_research_tree[heretic_path.passive_upgrade3][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.3
+
+	heretic_research_tree[/datum/heretic_knowledge/enable_blades][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.4
+	heretic_research_tree[heretic_path.mark_upgrade][HKT_DEPTH] = HKT_DEPTH_TIER_1 - 0.5
+	// BUBBER EDIT ADDITION END
 	return heretic_research_tree
 
 /**
@@ -232,6 +248,10 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 
 	/// costs by index mapped to depth
 	var/list/shop_costs = list(1, 2, 2, 2, 3)
+	var/discount = heretic_path.shop_cost_discount
+	if(discount)
+		for(var/i in 1 to length(shop_costs))
+			shop_costs[i] = max(1, shop_costs[i] - discount)
 
 	// Relevant variables that we pull from the path
 	var/knowledge_tier1 = heretic_path.knowledge_tier1
@@ -251,11 +271,11 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 	var/datum/heretic_knowledge/guaranteed_draft_t2 = heretic_path.guaranteed_side_tier2
 	var/datum/heretic_knowledge/guaranteed_draft_t3 = heretic_path.guaranteed_side_tier3
 
-	var/list/guaranteed_drafts = list(
+	/*var/list/guaranteed_drafts = list(
 		guaranteed_draft_t1,
 		guaranteed_draft_t2,
 		guaranteed_draft_t3,
-	)
+	)*/ // BUBBER EDIT REMOVAL
 
 	var/list/shop_unlock_order = list(
 		knowledge_tier1,
@@ -266,7 +286,7 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 	)
 
 	var/list/draft_ineligible = path_knowledges.Copy()
-	draft_ineligible += guaranteed_drafts
+	//draft_ineligible += guaranteed_drafts // BUBBER EDIT ADDITION - this puts these in the shop
 
 	var/list/elligible_knowledge = list()
 	var/list/shop_knowledge = list()
@@ -288,6 +308,7 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 		list(
 			"parent_knowledge" = knowledge_tier1,
 			"guaranteed_knowledge" = guaranteed_draft_t1,
+			"supplementary_knowledge" = list(/datum/heretic_knowledge/spell/cloak_of_shadows),
 			"probabilities" = list("1" = 50, "2" = 50, "3" = 0, "4" = 0, "5" = 0),
 			HKT_DEPTH = HKT_DEPTH_DRAFT_1,
 		),
@@ -309,13 +330,21 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 			HKT_DEPTH = HKT_DEPTH_DRAFT_4,
 		)
 	)
+	drafts.Cut() // BUBBER EDIT ADDITION - no drafts
 	/// generate 3 drafts for each draft tier, while banning you from picking multiple drafts
-	for(var/draft in drafts)
+	for(var/list/draft as anything in drafts)
 		var/parent_knowledge_path = draft["parent_knowledge"]
 		var/datum/heretic_knowledge/guaranteed_draft = draft["guaranteed_knowledge"]
 		var/list/probabilities = draft["probabilities"]
 		var/depth = draft[HKT_DEPTH]
 		var/list/draft_blacklist = list()
+
+		for(var/datum/heretic_knowledge/supplementary as anything in draft["supplementary_knowledge"])
+			final_draft[supplementary] = make_knowledge_entry(supplementary, null, HERETIC_KNOWLEDGE_DRAFT, depth, 0)
+			final_draft[supplementary][HKT_PURCHASED_DEPTH] = supplementary::drafting_tier
+			var/supplementary_id = final_draft[supplementary][HKT_ID]
+			draft_blacklist[supplementary] = supplementary_id
+			heretic_research_tree[parent_knowledge_path][HKT_NEXT] |= supplementary_id
 
 		for(var/cycle in 1 to 3)
 			var/datum/heretic_knowledge/selected_knowledge
@@ -337,34 +366,28 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 				stack_trace("Failed to select a knowledge for heretic path [heretic_path] at depth [depth]. This should never happen.")
 				continue
 
-			final_draft[selected_knowledge] = make_knowledge_entry(
-				selected_knowledge,
-				null,
-				HERETIC_KNOWLEDGE_DRAFT,
-				depth,
-				0,
-			)
+			final_draft[selected_knowledge] = make_knowledge_entry(selected_knowledge, null, HERETIC_KNOWLEDGE_DRAFT, depth, 0)
 			final_draft[selected_knowledge][HKT_PURCHASED_DEPTH] = selected_knowledge::drafting_tier
 			var/draft_id = final_draft[selected_knowledge][HKT_ID]
 			draft_blacklist[selected_knowledge] = draft_id
 			heretic_research_tree[parent_knowledge_path][HKT_NEXT] |= draft_id
 
 		var/list/blacklist_ids = assoc_to_values(draft_blacklist)
-		for(var/blacklist_path in draft_blacklist)
-			var/id = draft_blacklist[blacklist_path]
+		for(var/blacklist_path, id in draft_blacklist)
 			final_draft[blacklist_path][HKT_BAN] += (blacklist_ids - id)
 
 	// all possible drafts are added to the shop, this time with costs
 	for(var/drafting_tier in 1 to length(shop_knowledge))
 		var/unlocked_by = shop_unlock_order[drafting_tier]
 		var/list/eligible_tier = shop_knowledge[drafting_tier]
-		for(var/knowledge_type in eligible_tier)
+		for(var/datum/heretic_knowledge/knowledge_type as anything in eligible_tier) // BUBBER EDIT CHANGE - was for(var/knowledge_type in eligible_tier)
 			shop[knowledge_type] = make_knowledge_entry(
 				knowledge_type,
 				null,
 				HERETIC_KNOWLEDGE_SHOP,
 				drafting_tier,
-				shop_costs[drafting_tier],
+				//shop_costs[drafting_tier],// BUBBER EDIT CHANGE - based on types now
+				knowledge_type::drafting_cost ? knowledge_type::drafting_cost : shop_costs[drafting_tier] // BUBBER EDIT ADDITION
 			)
 			var/shop_id = shop[knowledge_type][HKT_ID]
 			heretic_research_tree[unlocked_by][HKT_NEXT] |= shop_id
@@ -376,7 +399,7 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 
 	var/gun_path = /datum/heretic_knowledge/rifle
 	var/ammo_path = /datum/heretic_knowledge/rifle_ammo
-	shop[ammo_path] = make_knowledge_entry(ammo_path, null, HERETIC_KNOWLEDGE_SHOP, 2)
+	shop[ammo_path] = make_knowledge_entry(ammo_path, null, HERETIC_KNOWLEDGE_SHOP, 2, /datum/heretic_knowledge/rifle_ammo::drafting_cost) // BUBBER EDIT CHANGE - was shop[ammo_path] = make_knowledge_entry(ammo_path, null, HERETIC_KNOWLEDGE_SHOP, 2)
 	var/ammo_id = shop[ammo_path][HKT_ID]
 	shop[gun_path][HKT_NEXT] |= ammo_id
 

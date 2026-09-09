@@ -46,9 +46,12 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 
 /obj/item/organ/borer_body/on_mob_insert(mob/living/carbon/carbon_target, special, movement_flags)
 	. = ..()
+	carbon_target.apply_status_effect(/datum/status_effect/grouped/screwy_hud/fake_healthy, type)
+	if (isnull(borer))
+		return
+
 	for(var/datum/borer_focus/body_focus as anything in borer.body_focuses)
 		body_focus.on_add()
-	carbon_target.apply_status_effect(/datum/status_effect/grouped/screwy_hud/fake_healthy, type)
 
 //on removal, force the borer out
 /obj/item/organ/borer_body/on_mob_remove(mob/living/carbon/carbon_target, special, movement_flags)
@@ -81,8 +84,6 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 	//corticals are tiny
 	mob_size = MOB_SIZE_TINY
 	mob_biotypes = MOB_ORGANIC|MOB_BUG
-	//because they are small, why can't they be held?
-	can_be_held = TRUE
 	///what chemicals borers know, starting with none
 	var/list/known_chemicals = list()
 	///what chemicals the borer can learn
@@ -239,6 +240,8 @@ GLOBAL_LIST_EMPTY(cortical_borers)
 		possible_focuses += new focus_path
 
 	do_evolution(/datum/borer_evolution/base)
+
+	AddElement(/datum/element/can_be_held)
 
 /mob/living/basic/cortical_borer/Destroy()
 	if(human_host)

@@ -4,7 +4,7 @@
 	savefile_key = "footstep_sound"
 
 /datum/preference/choiced/footstep_sound/init_possible_values()
-	return list("Default", "Shoes", "Highheels", "Claws", "Hooves")
+	return list("Default", "Shoes", "Slither", "Highheels", "Claws", "Hooves")
 
 /datum/preference/choiced/footstep_sound/create_default_value()
 	return "Default"
@@ -21,6 +21,8 @@
 	var/static/list/value_to_define = list(
 		"Shoes" = FOOTSTEP_MOB_SHOE,
 		"Claws" = FOOTSTEP_MOB_CLAW,
+		"Slither" = list(list(
+			'sound/effects/footstep/crawl1.ogg'), 40, 1),
 		"Highheels" = list(list(
 			'modular_zubbers/sound/effects/footstep/highheel1.ogg',
 			'modular_zubbers/sound/effects/footstep/highheel2.ogg',

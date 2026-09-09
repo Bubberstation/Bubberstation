@@ -1,5 +1,5 @@
 // Extended PDA cells to compensate for increased round length
-/obj/item/modular_computer
+/obj/item/modular_computer/pda
 	internal_cell = /obj/item/stock_parts/power_store/cell/upgraded
 
 /obj/item/modular_computer/processor

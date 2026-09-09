@@ -249,6 +249,7 @@
 /datum/techweb_node/exp_tools/New()
 	design_ids += list(
 		"multi_cell_charger",
+		"megacell_charger",
 	)
 
 	design_ids -= list(

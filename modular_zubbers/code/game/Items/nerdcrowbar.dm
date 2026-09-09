@@ -7,3 +7,8 @@
 
 	toolspeed = 0.25
 	demolition_mod = 2
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/uranium = SHEET_MATERIAL_AMOUNT,
+		)

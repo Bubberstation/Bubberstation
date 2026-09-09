@@ -60,10 +60,37 @@
 	donator_only = TRUE
 	restricted_roles = list(JOB_NT_REP)
 
+/datum/loadout_item/head/hats/blueshield_beret
+	name = "Blueshield's Beret"
+	item_path = /obj/item/clothing/head/beret/blueshield
+	restricted_roles = list(JOB_BLUESHIELD)
+
+
+/datum/loadout_item/head/hats/blueshield_beret_navy
+	name = "Navy Blueshield's Beret"
+	item_path = /obj/item/clothing/head/beret/blueshield/navy
+	restricted_roles = list(JOB_BLUESHIELD)
+
 /datum/loadout_item/head/security_cap/soft
 	name = "Security Soft Cap"
 	item_path = /obj/item/clothing/head/soft/sec
 	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/head/security_cap/recolorable
+	name = "Recolorable Security Cap"
+	item_path = /obj/item/clothing/head/soft/sec/recolorable
+	restricted_roles = list(ALL_JOBS_SEC)
+	greyscale_component_preview_icon_file = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+
+/datum/loadout_item/head/security_cap/recolorable/set_item_color(datum/preference_middleware/loadout/manager, mob/user)
+	return set_component_style_item_color(manager, user)
+
+/datum/loadout_item/head/security_cap/recolorable/set_slot_greyscale(datum/preference_middleware/loadout/manager, datum/greyscale_modify_menu/open_menu)
+	return set_component_style_slot_greyscale(manager, open_menu)
+
+/datum/loadout_item/head/security_cap/recolorable/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/outfit, visuals_only = FALSE)
+	. = ..()
+	apply_component_style_to_equipped_item(equipped_item, item_details)
 
 /datum/loadout_item/head/security_cap/veteran
 	name = "Veteran's Soft Security Cap"
@@ -157,3 +184,7 @@
 /datum/loadout_item/head/soft/plasmax_black
 	name = "PlasMAX Envirosuit Helmet"
 	item_path = /obj/item/clothing/head/helmet/space/plasmaman/plasmax_black
+
+/datum/loadout_item/head/colonial
+	name = "Colonial Cap"
+	item_path = /obj/item/clothing/head/hats/colonial

@@ -9,23 +9,16 @@
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/energy/laser/carbine)
 
-/datum/supply_pack/goody/miniegun_single
-	name = "Mini E-Gun Single-Pack"
-	desc = "Contains one mini e-gun, for when your Bridge Officer loses theirs to the clown."
-	cost = PAYCHECK_COMMAND * 5
-	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/gun/energy/e_gun/mini)
-
 /datum/supply_pack/goody/wt550_single
-	name = "WT-551 Autorifle Single-Pack"
-	desc = "An NT-security grade autorifle, it comes with excellent heating and poses no health-related risks for the user. Comes as a single-pack with one WT-551 locked and loaded."
+	name = "WT-550 Autorifle Single-Pack"
+	desc = "A surplus-grade autorifle, it comes with excellent heating and poses no health-related risks for the user. Comes as a single-pack with one WT-550 locked and loaded."
 	cost = PAYCHECK_COMMAND * 8 //Nvm these are stronger than lasers in most scenarios so let's get them a bit of an edge. Plus gun price variety looks better
 	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/gun/ballistic/automatic/wt550/security)
+	contains = list(/obj/item/gun/ballistic/automatic/wt550)
 
 /datum/supply_pack/goody/wt550_ammo
-	name = "WT-550/WT-551 Autorifle Magazine Single-Pack"
-	desc = "A single-pack magazine with lethal regular rounds for the WT-551."
+	name = "WT-550 Autorifle Magazine Single-Pack"
+	desc = "A single-pack magazine with lethal regular rounds for the WT-550."
 	cost = PAYCHECK_CREW * 5 //Scale it like all guns
 	contains = list(/obj/item/ammo_box/magazine/wt550m9 = 1)
 
@@ -223,3 +216,44 @@
 	desc = "Donksoft's pop-up blaster is great for annoying coworkers. Pack contains one implant and a mini box of spare darts."
 	cost = PAYCHECK_CREW * 8
 	contains = list(/obj/item/organ/cyberimp/arm/toolkit/foamforce_implant, /obj/item/ammo_box/foambox/mini)
+
+/datum/supply_pack/goody/defender_revolver
+	name = "'Defender' Revolver Single-Pack"
+	desc = "Contains one 'Defender' revolver. Cheap and prone to the occasional misfire. Fires .38 rounds.'"
+	cost = PAYCHECK_COMMAND * 3
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/ballistic/revolver/defender_revolver)
+
+/datum/supply_pack/goody/miecz
+	name = "Miecz Submachinegun Single-Pack"
+	desc = "Contains one Miecz Submachinegun, one of the newest guns to make it out of the PSC. Due to import fees and general rarity, this one's gonna be expensive. Contains two magazines, as well."
+	cost = PAYCHECK_COMMAND * 10*1.25
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/ballistic/automatic/miecz, /obj/item/ammo_box/magazine/miecz, /obj/item/ammo_box/magazine/miecz)
+
+/datum/supply_pack/goody/mieczmag
+	name = "Miecz Submachinegun Magazine Goodie Pack"
+	desc = "Contains a single magazine for the Miecz Submachinegun."
+	cost = PAYCHECK_COMMAND * 1.5
+	contains = list(/obj/item/ammo_box/magazine/miecz)
+
+/datum/supply_pack/goody/security_bow
+	name = "Hardlight Bow Single-Pack"
+	desc = "Contains a hardlight bow capable of defeating armor, alongside a quiver with nonlethal arrows. Ask your blacksmith for lethal arrows."
+	cost = PAYCHECK_COMMAND * 5
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/gun/ballistic/bow/security, /obj/item/storage/bag/quiver/lesser/security)
+
+/datum/supply_pack/goody/russianammo
+	name = ".310 Ammo Box Single-Pack"
+	desc = "Contains a single pack of .310 rounds."
+	cost = PAYCHECK_COMMAND * 2.5
+	access_view = ACCESS_WEAPONS
+	contains = list(/obj/item/ammo_box/c310_cargo_box)
+
+/datum/supply_pack/goody/lancamag
+	name = "Lanca Magazine Single-Pack"
+	desc = "Contains a single Lanca rifle magazine"
+	cost = PAYCHECK_COMMAND * 1.5
+	contains = list(/obj/item/ammo_box/magazine/lanca)
+	order_flags = ORDER_CONTRABAND

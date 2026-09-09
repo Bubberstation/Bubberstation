@@ -38,6 +38,10 @@
 	var/atom/admin_override_turf
 	///Admin setable override to spawn a specific cargo pack type
 	var/admin_override_contents
+	/// Set to use a crate of a specific type irregardless of supply pack.
+	var/crate_type
+	/// Set to TRUE to emag the launched crate rather than just unlocking it.
+	var/emag_crate = FALSE
 
 /datum/round_event/stray_cargo/announce(fake)
 	if(fake)
@@ -96,12 +100,21 @@
 			supply_pack = admin_override_contents //Syndicate crates create a new datum while being customized which will result in this being triggered. Outside of this situation this should never trigger
 		else
 			supply_pack = SSshuttle.supply_packs[pack_type]
-	var/obj/structure/closet/crate/crate = supply_pack.generate(null)
-	if(crate) //empty supply packs are a thing! get memed on.
-		crate.locked = FALSE //Unlock secure crates
-		crate.update_appearance()
+
+	var/storage_override
+	if(initial(supply_pack.order_flags) & ORDER_GOODY) // We offer goody items inside of briefcases, but regular crates still default to their standard crates.
+		storage_override = /obj/item/storage/briefcase/empty
+	var/obj/container = supply_pack.generate(null, crate_override = (crate_type || storage_override))
+
+	if(container && istype(container, /obj/structure/closet/crate)) //empty supply packs are a thing! get memed on.
+		var/obj/structure/closet/crate/crate = container
+		if(emag_crate)
+			crate.emag_act() // `emag_act()` already calls `update_appeance()`
+		else
+			crate.locked = FALSE //Unlock secure crates
+			crate.update_appearance()
 	var/obj/structure/closet/supplypod/pod = make_pod()
-	var/obj/effect/pod_landingzone/landing_marker = new(landing_zone, pod, crate)
+	var/obj/effect/pod_landingzone/landing_marker = new(landing_zone, pod, container)
 	var/static/mutable_appearance/target_appearance = mutable_appearance('icons/obj/supplypods_32x32.dmi', "LZ")
 	notify_ghosts("[control.name] has summoned a supply crate!", source = get_turf(landing_marker), header = "Cargo Inbound", alert_overlay = target_appearance)
 
@@ -185,6 +198,8 @@
 
 /datum/round_event/stray_cargo/syndicate
 	possible_pack_types = list(/datum/supply_pack/misc/syndicate)
+	crate_type = /obj/structure/closet/crate/secure/syndicate
+	emag_crate = TRUE
 
 ///Apply the syndicate pod skin
 /datum/round_event/stray_cargo/syndicate/make_pod()

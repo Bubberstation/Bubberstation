@@ -59,10 +59,6 @@
 	name = "Tuna Fish Plush"
 	item_path = /obj/item/toy/plush/tunafish
 
-/datum/loadout_item/toys/plush/purplecat
-	name = "Purple Cat Plush"
-	item_path = /obj/item/toy/plush/purplecat
-
 /datum/loadout_item/toys/plush/secoff
 	name = "GalFed Secoff Plush"
 	item_path = /obj/item/toy/plush/secoff
@@ -142,6 +138,27 @@
 /datum/loadout_item/toys/plush/myrthel_plush
 	name = "Extra Hot Moth Plush"
 	item_path = /obj/item/toy/plush/myrthel_plush
+
+/datum/loadout_item/toys/plush/expie
+	name = "Experiment Plushie"
+	item_path = /obj/item/toy/plush/expie
+
+/datum/loadout_item/toys/plush/milky
+	name = "Milky Plushie"
+	item_path = /obj/item/toy/plush/expie/milky
+
+/datum/loadout_item/toys/plush/fox_protogen
+	name = "Silly Protogen Plushie"
+	item_path = /obj/item/toy/plush/fox_protogen
+
+/datum/loadout_item/toys/plush/tangerine
+	name = "Citrus Teshari Plushie"
+	item_path = /obj/item/toy/plush/tangerine
+
+/datum/loadout_item/toys/plush/blue_synth
+	name = "Blue Synth Plushie"
+	item_path = /obj/item/toy/plush/blue_synth
+
 /*
 *	SEX TOYS AND OTHER STUFF THAT NEEDS PREFS TO USE (otherwise fails to render on the character preview)
 */
@@ -181,6 +198,26 @@
 	name = "Dildo"
 	item_path = /obj/item/clothing/sextoy/dildo
 
+/datum/loadout_item/toys/lewd/double_dildo
+	name = "Double Dildo"
+	item_path = /obj/item/clothing/sextoy/dildo/double_dildo
+
+/datum/loadout_item/toys/lewd/recolorable_dildo
+	name = "Custom Dildo"
+	item_path = /obj/item/clothing/sextoy/dildo/custom_dildo
+
+/datum/loadout_item/toys/lewd/strapon
+	name = "Strapon"
+	item_path = /obj/item/clothing/strapon
+
+/datum/loadout_item/toys/lewd/vibrator
+	name = "Vibrator"
+	item_path = /obj/item/clothing/sextoy/vibrator
+
+/datum/loadout_item/toys/lewd/magic_wand
+	name = "Magic Wand"
+	item_path = /obj/item/clothing/sextoy/magic_wand
+
 /datum/loadout_item/toys/lewd/fleshlight
 	name = "Fleshlight"
 	item_path = /obj/item/clothing/sextoy/fleshlight
@@ -197,6 +234,55 @@
 	name = "Venom Siphon"
 	item_path = /obj/item/reagent_containers/venom_milker
 
-/datum/loadout_item/toys/lewd/strapon
-	name = "Strapon"
-	item_path = /obj/item/clothing/strapon
+/datum/loadout_item/toys/lewd/ball_mittens
+	name = "Ball Mittens"
+	item_path = /obj/item/clothing/gloves/ball_mittens
+	erp_item = TRUE
+
+/datum/loadout_item/toys/lewd/aeri
+	name = "Interdimensional Terrorist Plushie"
+	item_path = /obj/item/toy/plush/aeri
+
+/datum/loadout_item/toys/lewd/noble
+	name = "Medical Skulldog Plushie"
+	item_path = /obj/item/toy/plush/noble
+
+/datum/loadout_item/toys/lewd/protective_protogen
+	name = "Protective Protogen Plushie"
+	item_path = /obj/item/toy/plush/protective_protogen
+
+/datum/loadout_item/toys/lewd/clicker
+	name = "Clicker"
+	item_path = /obj/item/clicker
+
+/datum/loadout_item/toys/lewd/size_collar
+	name = "Size Collar"
+	item_path = /obj/item/clothing/neck/size_collar
+
+/datum/loadout_item/toys/lewd/spanking_pad
+	name = "Spanking Pad"
+	item_path = /obj/item/spanking_pad
+
+/datum/loadout_item/toys/lewd/ball_gag
+	name = "Ball Gag"
+	item_path = /obj/item/clothing/mask/ballgag
+
+/datum/loadout_item/toys/lewd/ring_gag
+	name = "Ring Gag"
+	item_path = /obj/item/clothing/mask/muzzle/ring
+
+/datum/loadout_item/toys/lewd/choking_gag
+	name = "Phallic Ball Gag (Dangerous)"
+	item_path = /obj/item/clothing/mask/ballgag/choking
+
+/datum/loadout_item/toys/lewd/mkiiultra_skillchip
+	name = "ENT-PET Mk.II ULTRA skillchip"
+	item_path = /obj/item/skillchip/mkiiultra
+
+/datum/loadout_item/toys/lewd/latex_straight_jacket
+	name = "Latex Straight Jacket"
+	item_path = /obj/item/clothing/suit/straight_jacket/latex_straight_jacket
+
+/datum/loadout_item/toys/lewd/kinky_sleepbag
+	name = "Latex Sleeping Bag"
+	item_path = /obj/item/clothing/suit/straight_jacket/kinky_sleepbag

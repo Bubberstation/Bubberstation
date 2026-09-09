@@ -91,7 +91,7 @@
 	new /obj/item/clothing/gloves/combat(src)
 	new /obj/item/clothing/shoes/combat(src)
 	new /obj/item/clothing/glasses/sunglasses/robohand(src)
-	new /obj/item/clothing/suit/jacket/trenchcoat/gunman(src)
+	new /obj/item/clothing/suit/toggle/jacket/trenchcoat/gunman(src)
 	new /obj/item/autosurgeon/bodypart/r_arm_robotic(src)
 	new /obj/item/autosurgeon/syndicate/esword_arm(src)
 	new /obj/item/autosurgeon/syndicate/nodrop(src)
@@ -101,7 +101,7 @@
 	name = "gunman clothing bundle"
 	desc = "A box filled with armored and stylish clothing for the aspiring gunmans."
 
-/obj/item/clothing/suit/jacket/trenchcoat/gunman
+/obj/item/clothing/suit/toggle/jacket/trenchcoat/gunman
 	name = "leather overcoat"
 	desc = "An armored leather overcoat, intended as the go-to wear for any aspiring gunman."
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -162,10 +162,10 @@
 
 	to_chat(user, span_boldannounce("You start skimming through [src], and feel suddenly imparted with the knowledge of the following code words:"))
 
-	user.AddComponent(/datum/component/codeword_hearing, GLOB.syndicate_code_phrase_regex, "blue", src)
-	user.AddComponent(/datum/component/codeword_hearing, GLOB.syndicate_code_response_regex, "red", src)
-	to_chat(user, "<b>Code Phrases</b>: [jointext(GLOB.syndicate_code_phrase, ", ")]")
-	to_chat(user, "<b>Code Responses</b>: [span_red("[jointext(GLOB.syndicate_code_response, ", ")]")]")
+	user.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_phrase_regex, "blue", src)
+	user.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_response_regex, "red", src)
+	to_chat(user, "<b>Code Phrases</b>: [jointext(SStraitor.syndicate_code_phrase, ", ")]")
+	to_chat(user, "<b>Code Responses</b>: [span_red("[jointext(SStraitor.syndicate_code_response, ", ")]")]")
 
 	use_charge(user)
 
@@ -184,11 +184,11 @@
 		attacked_mob.visible_message(span_danger("[user] smacks [attacked_mob]'s lifeless corpse with [src]."), span_userdanger("[user] smacks your lifeless corpse with [src]."), span_hear("You hear smacking."))
 	else
 		attacked_mob.visible_message(span_notice("[user] teaches [attacked_mob] by beating [attacked_mob.p_them()] over the head with [src]!"), span_boldnotice("As [user] hits you with [src], you feel suddenly imparted with the knowledge of some [span_red("specific words")]."), span_hear("You hear smacking."))
-		attacked_mob.AddComponent(/datum/component/codeword_hearing, GLOB.syndicate_code_phrase_regex, "blue", src)
-		attacked_mob.AddComponent(/datum/component/codeword_hearing, GLOB.syndicate_code_response_regex, "red", src)
+		attacked_mob.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_phrase_regex, "blue", src)
+		attacked_mob.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_response_regex, "red", src)
 		to_chat(attacked_mob, span_boldnotice("You feel suddenly imparted with the knowledge of the following code words:"))
-		to_chat(attacked_mob, "<b>Code Phrases</b>: [span_blue("[jointext(GLOB.syndicate_code_phrase, ", ")]")]")
-		to_chat(attacked_mob, "<b>Code Responses</b>: [span_red("[jointext(GLOB.syndicate_code_response, ", ")]")]")
+		to_chat(attacked_mob, "<b>Code Phrases</b>: [span_blue("[jointext(SStraitor.syndicate_code_phrase, ", ")]")]")
+		to_chat(attacked_mob, "<b>Code Responses</b>: [span_red("[jointext(SStraitor.syndicate_code_response, ", ")]")]")
 		use_charge(user)
 
 

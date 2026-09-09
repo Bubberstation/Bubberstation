@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(condos)
 	name = "Condos"
-	flags = SS_NO_FIRE
+	ss_flags = SS_NO_FIRE
 	init_stage = INITSTAGE_LAST
 	/// All possible condo templates.
 	var/list/condo_templates = list()

@@ -83,9 +83,10 @@
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "secdrobe"
 	products = list(/obj/item/clothing/suit/hooded/wintercoat/security/redsec = 3,
-					/obj/item/storage/backpack/security/redsec = 3,
-					/obj/item/storage/backpack/satchel/sec/redsec = 3,
-					/obj/item/storage/backpack/duffelbag/sec/redsec = 3,
+					/obj/item/storage/backpack/security = 3,
+					/obj/item/storage/backpack/satchel/sec = 3,
+					/obj/item/storage/backpack/duffelbag/sec = 3,
+					/obj/item/storage/backpack/messenger/sec = 3,
 					/obj/item/clothing/under/rank/security/officer/redsec = 3,
 					/obj/item/clothing/shoes/jackboots = 3,
 					/obj/item/clothing/head/beret/sec = 3,

@@ -144,10 +144,10 @@
 	// Generate all the waste gas
 	var/datum/gas_mixture/merger = new
 	merger.assert_gas(/datum/gas/carbon_dioxide)
-	merger.gases[/datum/gas/carbon_dioxide][MOLES] = MOLES_CELLSTANDARD
+	merger.moles[/datum/gas/carbon_dioxide] = MOLES_CELLSTANDARD
 	if(obj_flags & EMAGGED)
 		merger.assert_gas(/datum/gas/tritium)
-		merger.gases[/datum/gas/tritium][MOLES] = MOLES_CELLSTANDARD
+		merger.moles[/datum/gas/tritium] = MOLES_CELLSTANDARD
 	merger.temperature = (T20C + gas_temp)
 	var/turf/src_turf = get_turf(src)
 	src_turf.assume_air(merger)
@@ -206,7 +206,7 @@
 	. = TRUE
 	if(..())
 		return
-	if(default_deconstruction_screwdriver(user, icon_state, icon_state, tool))
+	if(default_deconstruction_screwdriver(user, tool))
 		update_appearance()
 		return
 	return FALSE

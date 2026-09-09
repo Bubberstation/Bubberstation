@@ -20,6 +20,7 @@
 	name = "Research cyborg advanced Health Analyzer"
 	desc = "An upgrade to the Research model cyborg's standard health analyzer."
 	icon_state = "module_medical"
+	custom_materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.25, /datum/material/silver = SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT * 1.5)
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/sci)
 	model_flags = BORG_MODEL_RESEARCH
@@ -31,6 +32,7 @@
 /obj/item/borg/upgrade/inducer_sci
 	name = "Research integrated power inducer"
 	desc = "An integrated inducer that can charge a device's internal cell from power provided by the cyborg."
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/sci)
 	model_flags = BORG_MODEL_RESEARCH
@@ -41,6 +43,10 @@
 	name = "Research cyborg Rapid Part Exchange Device Upgrade"
 	desc = "An upgrade to the Research model cyborg's standard RPED."
 	icon_state = "module_engineer"
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5,
+	)
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/sci)
 	model_flags = BORG_MODEL_RESEARCH
@@ -69,6 +75,8 @@
 	model_flags = BORG_MODEL_RESEARCH
 	items_to_add = list(/obj/item/experi_scanner/bluespace)
 	items_to_remove = list(/obj/item/experi_scanner)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 2.5)
+
 
 // Borg Dom Aura :)
 /obj/item/borg/upgrade/dominatrixmodule/action(mob/living/silicon/robot/borg, mob/living/user)
@@ -92,6 +100,7 @@
 	name = "Engineering Cyborg Rapid Lighting Device Upgrade"
 	desc = "An upgrade to allow a cyborg to use a Rapid Lighting Device."
 	icon_state = "module_engineer"
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 2.5)
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/engineering, /obj/item/robot_model/janitor)
 	model_flags = list(BORG_MODEL_ENGINEERING, BORG_MODEL_JANITOR)
@@ -107,7 +116,7 @@
 	model_type = list(/obj/item/robot_model/miner, /obj/item/robot_model/sci)
 	model_flags = list(BORG_MODEL_MINER, BORG_MODEL_RESEARCH)
 	items_to_add = list(/obj/item/storage/bag/xenoarch/adv)
-
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 2.5)
 
 // Mining Borg Vent Pinpointer
 
@@ -119,6 +128,7 @@
 	model_type = list(/obj/item/robot_model/miner)
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/pinpointer/vent)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/plastic = SHEET_MATERIAL_AMOUNT)
 
 //Borg Proto-Kinetic Accelerators
 
@@ -169,6 +179,7 @@
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/railgun/cyborg)
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/uranium = SHEET_MATERIAL_AMOUNT * 3, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2, /datum/material/plastic = SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/kinetic_accelerator/repeater/cyborg
 	name = /obj/item/gun/energy/recharge/kinetic_accelerator/repeater::name
@@ -179,6 +190,7 @@
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/repeater/cyborg)
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/borg/upgrade/kinetic_accelerator/shotgun/cyborg
 	name = /obj/item/gun/energy/recharge/kinetic_accelerator/shotgun::name
@@ -189,6 +201,7 @@
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/shotgun/cyborg)
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2, /datum/material/plastic = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/kinetic_accelerator/glock/cyborg
 	name = /obj/item/gun/energy/recharge/kinetic_accelerator/glock::name
@@ -199,6 +212,7 @@
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/glock/cyborg)
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 2, /datum/material/plastic = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/kinetic_accelerator/shockwave/cyborg
 	name = /obj/item/gun/energy/recharge/kinetic_accelerator/shockwave::name
@@ -209,6 +223,7 @@
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/shockwave/cyborg)
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 2, /datum/material/plastic = SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/kinetic_accelerator/m79/cyborg
 	name = /obj/item/gun/energy/recharge/kinetic_accelerator/m79::name
@@ -219,6 +234,7 @@
 	model_flags = BORG_MODEL_MINER
 	items_to_add = list(/obj/item/gun/energy/recharge/kinetic_accelerator/m79/cyborg)
 	items_to_remove = list(/obj/item/gun/energy/recharge/kinetic_accelerator)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/uranium = SHEET_MATERIAL_AMOUNT * 3, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2, /datum/material/plastic = SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = SHEET_MATERIAL_AMOUNT)
 
 /// "Good Borg" Obedience Training
 /mob/living/silicon/robot
@@ -229,6 +245,10 @@
 	desc = "A module that greatly upgrades the ability of borgs to display affection."
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_lust"
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+	)
 	custom_price = 0
 
 	items_to_add = list(/obj/item/kinky_shocker,
@@ -260,6 +280,10 @@
 	name = "janitor detailing toolset"
 	desc = "Upgrades a janitor cyborgs tiling capabilities while adding the ability to modify floor decals."
 	icon_state = "module_janitor"
+	custom_materials = list(
+		/datum/material/iron =SHEET_MATERIAL_AMOUNT*15.25,
+		/datum/material/glass =SHEET_MATERIAL_AMOUNT*1.5,
+	)
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/janitor)
 	model_flags = BORG_MODEL_JANITOR
@@ -272,6 +296,10 @@
 	name = "integrated cable coil"
 	desc = "Condensed spooling technology allows cabling technology in janitorial modules."
 	icon_state = "module_janitor"
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+	)
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/janitor)
 	model_flags = BORG_MODEL_JANITOR
@@ -283,7 +311,17 @@
 /obj/item/borg/upgrade/robotics_rcd
 	name = "Research cyborg synthetic repair tool"
 	desc = "A cut down RCD designed to assist in synthetic repairs."
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 5,
+	)
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/sci)
 	model_flags = BORG_MODEL_RESEARCH
 	items_to_add = list(/obj/item/construction/rcd/borg/robotics_rcd)
+
+/obj/item/borg/upgrade/hypospray
+	model_type = list(/obj/item/robot_model/medical, /obj/item/robot_model/tarkon)
+	model_flags = list(BORG_MODEL_MEDICAL, BORG_MODEL_TARKON)

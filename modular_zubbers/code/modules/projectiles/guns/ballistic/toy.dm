@@ -26,7 +26,7 @@
 			return FALSE
 	return ..()
 
-/obj/item/gun/ballistic/toy/foamforce_implant/process_fire(mob/user)
+/obj/item/gun/ballistic/toy/foamforce_implant/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(can_jam)
 		if(chambered.loaded_projectile)
 			if(prob(jamming_chance))

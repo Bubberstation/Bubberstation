@@ -3,8 +3,6 @@
 	var/alt_icons = FALSE
 	/// What the icon state is for the on-back guns
 	var/alt_icon_state
-	/// How long it takes to reload a magazine.
-	var/reload_time = 2 SECONDS
 	/// if this gun has a penalty for reloading with an ammo_box type
 	var/box_reload_penalty = TRUE
 	/// reload penalty inflicted by using an ammo box instead of an individual cartridge, if not outright exchanging the magazine
@@ -47,19 +45,6 @@
 			else
 				inhand_icon_state = "[initial(icon_state)]"
 				worn_icon_state = "[initial(icon_state)]"
-
-/obj/item/gun/ballistic/proc/handle_magazine(mob/user, obj/item/ammo_box/magazine/inserting_magazine)
-	if(magazine) // If we already have a magazine inserted, we're going to begin tactically reloading it.
-		if(reload_time && !HAS_TRAIT(user, TRAIT_INSTANT_RELOAD)) // Check if we have a reload time to tactical reloading, or if we have the instant reload trait.
-			to_chat(user, span_notice("You start to insert the magazine into [src]!"))
-			if(!do_after(user, reload_time, src, IGNORE_USER_LOC_CHANGE)) // We are allowed to move while reloading.
-				to_chat(user, span_danger("You fail to insert the magazine into [src]!"))
-				return TRUE
-		eject_magazine(user, FALSE, inserting_magazine) // We eject the magazine then insert the new one, while putting the old one in hands.
-	else
-		insert_magazine(user, inserting_magazine) // Otherwise, just insert it.
-
-	return TRUE
 
 /// Reloading with ammo box can incur penalty with some guns
 /obj/item/gun/ballistic/proc/handle_box_reload(mob/user, obj/item/ammo_box/ammobox, num_loaded)

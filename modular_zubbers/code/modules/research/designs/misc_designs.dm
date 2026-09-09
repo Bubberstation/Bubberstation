@@ -3,7 +3,11 @@
 	desc = "A disk for storing plant genetic data."
 	id = "diskplantgene"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron=200, /datum/material/glass = 100)
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1,
+		)
+	transfered_materials = list(/obj/item/disk/computer/plantgene = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass = SMALL_MATERIAL_AMOUNT))
 	build_path = /obj/item/disk/computer/plantgene
 	category = list("Electronics")
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
@@ -13,7 +17,7 @@
 	desc = "An empty nitrogen tank."
 	id = "nitrogen_tank"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT)
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/tank/internals/nitrogen/empty
 	category = list(RND_CATEGORY_INITIAL,
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_GAS_TANKS,
@@ -69,10 +73,11 @@
 	construction_time = 5 SECONDS
 	//just about half the materials of a sechudimplant but no silver
 	materials = list(
-		/datum/material/iron = SMALL_MATERIAL_AMOUNT*3,
-		/datum/material/glass = SMALL_MATERIAL_AMOUNT*3,
-		/datum/material/gold = SMALL_MATERIAL_AMOUNT*4,
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 3,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 4,
 	)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	build_path = /obj/item/organ/cyberimp/eyes/hud/civilian
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_UTILITY
@@ -84,6 +89,7 @@
 	id = "umbrella"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.75, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.25)
+	transfered_materials = list(/obj/item/umbrella = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5))
 	build_path = /obj/item/umbrella
 	category = list(
 		RND_CATEGORY_INITIAL,

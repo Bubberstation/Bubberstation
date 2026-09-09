@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(area_spawn)
 	name = "Area Spawn"
-	flags = SS_NO_FIRE
+	ss_flags = SS_NO_FIRE
 	dependencies = list(
 		/datum/controller/subsystem/mapping
 	)
@@ -266,7 +266,7 @@ SUBSYSTEM_DEF(area_spawn)
 	/// See code/__DEFINES/~skyrat_defines/automapper.dm
 	var/mode = AREA_SPAWN_MODE_OPEN
 	/// Map blacklist, this is used to determine what maps we should not spawn on.
-	var/list/blacklisted_stations = list("Void Raptor", "Ouroboros", "Runtime Station", "Minimal Runtime Station", "MultiZ Debug", "Gateway Test", "Blueshift", "Biodome", "Moon Station", "Box Station")
+	var/list/blacklisted_stations = list("Void Raptor", "Ouroboros", "Runtime Station", "Minimal Runtime Station", "MultiZ Debug", "Gateway Test", "Blueshift", "Biodome", "Moon Station", "Box Station", "NorthStar", "Pubby Station")
 	/// If failing to find a suitable area is OK, then this should be TRUE or CI will fail.
 	/// Should probably be true if the target_areas are random, such as ruins.
 	var/optional = FALSE
@@ -361,7 +361,8 @@ SUBSYSTEM_DEF(area_spawn)
 /**
  * Show overlay over area of priorities. Wall priority over open priority.
  */
-ADMIN_VERB(test_area_spawner, R_DEBUG, "Test Area Spawner", "Show area spawner placement candidates as an overlay.", ADMIN_CATEGORY_DEBUG, area/area)
+ADMIN_VERB(test_area_spawner, R_DEBUG, "Test Area Spawner", "Show area spawner placement candidates as an overlay.", ADMIN_CATEGORY_DEBUG)
+	VERB_ARG_TYPED(area, VERB_ARG_TYPE_AREA, VERB_ARG_SOURCE_WORLD, /area)
 	for(var/obj/effect/turf_test/old_test in area)
 		qdel(old_test)
 

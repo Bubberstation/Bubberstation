@@ -12,6 +12,7 @@
 	icon = 'modular_zubbers/icons/obj/devices/nanite_devices.dmi'
 	icon_state = "nanite_remote"
 	item_flags = NOBLUDGEON
+	custom_materials = list(/datum/material/glass = 500, /datum/material/iron = 500)
 	var/locked = FALSE //Can be locked, so it can be given to users with a set code and mode
 	var/mode = REMOTE_MODE_OFF
 	var/list/saved_settings = list()
@@ -184,6 +185,7 @@
 	name = "nanite communication remote"
 	desc = "A device that can send text messages to specific programs."
 	icon_state = "nanite_comm_remote"
+	custom_materials = list(/datum/material/glass = 500, /datum/material/iron = 500)
 	var/comm_message = ""
 
 /obj/item/nanite_remote/comm/afterattack(atom/target, mob/user, etc)

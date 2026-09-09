@@ -638,6 +638,7 @@
 	desc = "We may all be headed straight to hell. But what better place for us than this?"
 	icon = 'modular_zubbers/icons/obj/clothing/under/syndicate.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/syndicate_digi.dmi'
 	icon_state = "snake"
 
 /obj/item/clothing/under/rank/civilian/bubber/camo
@@ -713,3 +714,44 @@
 /obj/item/clothing/under/rank/security/armadyne/tactical
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom_digi.dmi'
 	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
+
+/obj/item/clothing/under/akula_wetsuit
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/akula_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/akula_teshari.dmi' // for the fishari out there
+
+/obj/item/clothing/under/blastwave
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/uniform_teshari.dmi'
+
+/obj/item/clothing/under/colonial/nri_police
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/uniform_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/orderly
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/medical_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/engineering_guard
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/engineering_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/rnd_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/bouncer
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/civilian_teshari.dmi'
+
+/obj/item/clothing/under/sweater
+	greyscale_config_worn_teshari = /datum/greyscale_config/cableknit_sweater/worn/teshari
+
+/obj/item/clothing/under/trek
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/costume_teshari.dmi'
+
+/obj/item/clothing/under/trek/command
+	greyscale_config_worn_teshari = /datum/greyscale_config/trek/worn/teshari
+
+/obj/item/clothing/under/trek/engsec
+	greyscale_config_worn_teshari = /datum/greyscale_config/trek/worn/teshari
+
+/obj/item/clothing/under/trek/medsci
+	greyscale_config_worn_teshari = /datum/greyscale_config/trek/worn/teshari
+
+/obj/item/clothing/under/rank/barber
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/civilian_teshari.dmi'

@@ -6,13 +6,13 @@
 	maximum_antags = 1
 	maximum_antags_global = 1
 
-	min_players = 20
+	min_players = 25
 	roundstart = FALSE
 	alert_observers = TRUE
 
 	antag_datum = /datum/antagonist/malf_ai
 	antag_flag = ROLE_MALF
-	weight = 4
+	weight = 2
 	tags = list(TAG_CREW_ANTAG, TAG_COMBAT, TAG_CHAOTIC)
 	restricted_roles = list("Cyborg")
 
@@ -22,6 +22,8 @@
 /datum/round_event_control/antagonist/solo/malf/get_candidates()
 	var/list/candidates = list()
 	for(var/mob/living/silicon/ai/candidate as anything in GLOB.ai_list)
+		if(candidate.deployed_shell)
+			candidate = candidate.deployed_shell
 		if(QDELETED(candidate) || !candidate.key || !candidate.client || !candidate.mind)
 			continue
 		if(!(candidate.client.prefs) || !(antag_flag in candidate.client.prefs.be_special))
@@ -40,7 +42,7 @@
 
 	roundstart = TRUE
 	typepath = /datum/round_event/antagonist/solo/malf_ai/roundstart
-	weight = 6
+	weight = 3
 
 // God has abandoned us
 /datum/round_event_control/antagonist/solo/malf/roundstart/get_candidates()

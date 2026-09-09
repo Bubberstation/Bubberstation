@@ -1,5 +1,5 @@
 GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
-	/obj/item/ai_module/toy_ai = 50,
+	/obj/item/ai_module/law/toy_ai = 50,
 	/obj/item/anomaly_releaser = 25,
 	/obj/item/bombcore/training = 10,
 	list(
@@ -107,8 +107,8 @@ GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
 	/obj/item/hot_potato/harmless = 1,
 	/obj/item/grenade/stingbang/mega = 1,
 	/obj/item/card/emag/one_shot = 5,
-	/obj/item/stack/sticky_tape/pointy = 10,
-	/obj/item/stack/sticky_tape/pointy/super = 1,
+	/obj/item/stack/medical/wrap/sticky_tape/pointy = 10,
+	/obj/item/stack/medical/wrap/sticky_tape/pointy/super = 1,
 	/obj/item/dnainjector/timed/hulk = 1,
 	/obj/item/extinguisher/anti = 5,
 	/obj/item/gift/anything = 50,

@@ -90,7 +90,7 @@
 	var/activating = FALSE
 
 	///Defines the current user (duh), current helmet, internals tank and built-in radio.
-	var/mob/living/carbon/current_user
+	var/mob/living/carbon/human/current_user
 	var/obj/item/clothing/head/helmet/space/hev_suit/current_helmet
 	var/obj/item/tank/internals/current_internals_tank
 	var/obj/item/radio/internal_radio
@@ -227,6 +227,8 @@
 	background_icon_state = "bg_hl"
 
 /datum/action/item_action/hev_toggle_notifs/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/obj/item/clothing/suit/space/hev_suit/my_suit = target
 	var/new_setting = tgui_input_list(my_suit.current_user, "Please select your notification settings.", "HEV Notification Settings", HEV_NOTIFICATIONS)
 
@@ -244,6 +246,8 @@
 	build_all_button_icons()
 
 /datum/action/item_action/hev_toggle/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/obj/item/clothing/suit/space/hev_suit/my_suit = target
 	if(my_suit.activated)
 		my_suit.deactivate()

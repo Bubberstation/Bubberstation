@@ -43,10 +43,10 @@
 		color = selected_color,
 		dir = selected_dir,
 	)
-
+// BUBBER EDIT: overriden with our own decal icons. I hate it but it's what we must do.
 	target.AddElement( \
 		/datum/element/decal, \
-		_icon = 'icons/turf/decals.dmi', \
+		_icon = 'modular_zubbers/icons/turf/decals/decals.dmi', \
 		_icon_state = decal_data[DECAL_INFO_ICON_STATE], \
 		_dir = decal_data[DECAL_INFO_DIR], \
 		_alpha = decal_data[DECAL_INFO_ALPHA], \

@@ -37,16 +37,37 @@
 	var/cell_wired = FALSE
 	/// Visual y-offset for the assembly on our lid
 	var/assembly_pixel_y = 0
+	/// If TRUE, after we finish drinking, we try to drink again after do_after
+	var/loop_drink = FALSE
 
 /obj/item/reagent_containers/cup/Initialize(mapload, vol)
 	. = ..()
 	if(heatable)
 		AddElement(/datum/element/reagents_item_heatable)
+	register_context()
 
 /obj/item/reagent_containers/cup/Destroy(force)
 	QDEL_NULL(lid_assembly)
 	QDEL_NULL(attached_cell)
 	return ..()
+
+/obj/item/reagent_containers/cup/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	if(cell_wired && held_item.tool_behaviour == TOOL_WIRECUTTER)
+		context[SCREENTIP_CONTEXT_LMB] = "Cut wires"
+		return CONTEXTUAL_SCREENTIP_SET
+
+	if(!can_lid)
+		return
+	if(isnull(held_item))
+		context[SCREENTIP_CONTEXT_ALT_LMB] = lid_assembly ? "Detach assembly" : "Toggle lid"
+		return CONTEXTUAL_SCREENTIP_SET
+	if(isnull(lid_assembly) && istype(held_item, /obj/item/assembly_holder))
+		context[SCREENTIP_CONTEXT_LMB] = "Attach assembly"
+		return CONTEXTUAL_SCREENTIP_SET
+	if(isnull(attached_cell) && !isnull(lid_assembly) && istype(held_item, /obj/item/stock_parts/power_store/cell))
+		context[SCREENTIP_CONTEXT_LMB] = "Attach cell"
+		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/reagent_containers/cup/examine(mob/user)
 	. = ..()
@@ -96,6 +117,8 @@
 
 	user.changeNext_move(CLICK_CD_MELEE)
 	if(target_mob != user)
+		if(DOING_INTERACTION_WITH_TARGET(user, target_mob))
+			return ITEM_INTERACT_BLOCKING
 		target_mob.visible_message(
 			span_danger("[user] attempts to feed [target_mob] something from [src]."),
 			span_userdanger("[user] attempts to feed you something from [src]."),
@@ -108,30 +131,48 @@
 			span_danger("[user] feeds [target_mob] something from [src]."),
 			span_userdanger("[user] feeds you something from [src]."),
 		)
+		if(target_mob.is_blind())
+			to_chat(target_mob, span_notice("You feel someone feed you something."))
 		log_combat(user, target_mob, "fed", reagents.get_reagent_log_string())
+
 	else
+		if(loop_drink)
+			if(DOING_INTERACTION_WITH_TARGET(user, user))
+				return ITEM_INTERACT_BLOCKING
+			user.visible_message(
+				span_notice("[user] attempts to drink from [src]."),
+				ignored_mobs = list(user),
+			)
+			to_chat(user, span_notice("You attempt to drink from [src]."))
+			if(!do_after(user, 1.25 SECONDS, user))
+				return ITEM_INTERACT_BLOCKING
+			if(!reagents || !reagents.total_volume)
+				return ITEM_INTERACT_BLOCKING
+			user.visible_message(
+				span_notice("[user] drinks from [src]."),
+				ignored_mobs = list(user),
+			)
 		to_chat(user, span_notice("You swallow a gulp of [src]."))
 
-	. = ITEM_INTERACT_SUCCESS
 	SEND_SIGNAL(src, COMSIG_GLASS_DRANK, target_mob, user)
 	SEND_SIGNAL(target_mob, COMSIG_GLASS_DRANK, src, user) // SKYRAT EDIT ADDITION - Hemophages can't casually drink what's not going to regenerate their blood
-	var/fraction = min(gulp_size/reagents.total_volume, 1)
+	var/fraction = min(gulp_size / reagents.total_volume, 1)
 	reagents.trans_to(target_mob, gulp_size, transferred_by = user, methods = reagent_consumption_method)
+	var/atom/movable/screen/hunger/hunger_bar = user.hud_used?.screen_objects[HUD_MOB_HUNGER]
+	if (istype(hunger_bar))
+		hunger_bar.update_hunger_bar()
 	checkLiked(fraction, target_mob)
-	playsound(target_mob.loc, consumption_sound, rand(10,50), TRUE)
-	if(!iscarbon(target_mob))
-		return .
-	var/mob/living/carbon/carbon_drinker = target_mob
-	var/list/diseases = carbon_drinker.get_static_viruses()
-	if(!LAZYLEN(diseases))
-		return .
-	var/list/datum/disease/diseases_to_add = list()
-	for(var/datum/disease/malady as anything in diseases)
+	playsound(target_mob, consumption_sound, rand(10, 50), TRUE)
+	var/list/datum/disease/diseases_to_add
+	for(var/datum/disease/malady as anything in target_mob.get_static_viruses())
 		if(malady.spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS)
-			diseases_to_add += malady
+			LAZYADD(diseases_to_add, malady)
 	if(LAZYLEN(diseases_to_add))
 		AddComponent(/datum/component/infective, diseases_to_add)
-	return .
+	if(loop_drink)
+		return try_drink(target_mob, user) | ITEM_INTERACT_SUCCESS
+
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/cup/interact_with_atom(atom/target, mob/living/user, list/modifiers)
 	. = ..()
@@ -149,7 +190,38 @@
 	if(isliving(target))
 		return try_drink(target, user)
 
+	if(is_drainable())
+		return pour_concrete(target, user)
+
 	return NONE
+
+/// QoL helper for pouring concrete directly from container just by clicking.
+/// Easier than splashing onto turf or object, but requires a little delay.
+/obj/item/reagent_containers/cup/proc/pour_concrete(atom/target, mob/living/user)
+	var/datum/reagent/concrete/concrete = reagents.has_reagent(/datum/reagent/concrete, check_subtypes=TRUE)
+	if (!concrete)
+		return NONE
+	var/pour_amount = concrete.pour_amount(target, user)
+	if (!pour_amount)
+		return NONE
+	if (concrete.volume < pour_amount)
+		user.balloon_alert(user, "not enough to pour")
+		return ITEM_INTERACT_FAILURE
+	user.balloon_alert(user, "pouring...")
+	user.visible_message(
+		span_notice("[user] starts pouring concrete onto \a [target]."),
+		span_notice("You start pouring concrete onto \a [target]..."),
+	)
+	if (!do_after(user, 1 SECONDS, target=target))
+		user.balloon_alert(user, "interrupted")
+		return ITEM_INTERACT_FAILURE
+	if(concrete.volume < pour_amount) // check if volume has changed during do_after
+		user.balloon_alert(user, "not enough to pour")
+		return ITEM_INTERACT_FAILURE
+	playsound(src, 'sound/effects/slosh.ogg', 25, TRUE)
+	concrete.expose_atom(target, pour_amount, TOUCH)
+	reagents.remove_reagent(concrete.type, pour_amount)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/cup/interact_with_atom_secondary(atom/target, mob/living/user, list/modifiers)
 	. = ..()
@@ -232,7 +304,7 @@
  */
 /obj/item/reagent_containers/cup/on_accidental_consumption(mob/living/carbon/M, mob/living/carbon/user, obj/item/source_item, discover_after = TRUE)
 	if(isGlass && !custom_materials)
-		set_custom_materials(list(GET_MATERIAL_REF(/datum/material/glass) = 5))//sets it to glass so, later on, it gets picked up by the glass catch (hope it doesn't 'break' things lol)
+		set_custom_materials(list(SSmaterials.get_material(/datum/material/glass) = 5))//sets it to glass so, later on, it gets picked up by the glass catch (hope it doesn't 'break' things lol)
 	return ..()
 
 /// Callback for [datum/component/takes_reagent_appearance] to inherent style footypes
@@ -333,6 +405,10 @@
 	log_bomber(user, "attached [lid_assembly.name] to", src)
 	update_appearance()
 	return TRUE
+
+/obj/item/reagent_containers/cup/on_found(mob/finder)
+	. = ..()
+	lid_assembly?.on_found(finder)
 
 /obj/item/reagent_containers/cup/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -449,7 +525,7 @@
 		300 units."
 	icon_state = "beakerbluespace"
 	inhand_icon_state = "beaker_bluespace"
-	custom_materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/plasma =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/diamond =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace =HALF_SHEET_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT)
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,100,300)
@@ -678,8 +754,7 @@
 	if(grinded)
 		to_chat(user, span_warning("There is something inside already!"))
 		return ITEM_INTERACT_BLOCKING
-	if(!tool.blend_requirements(src))
-		to_chat(user, span_warning("Cannot grind this!"))
+	if(!tool.blend_requirements(src, user))
 		return ITEM_INTERACT_BLOCKING
 	if((length(tool.grind_results()) || tool.reagents?.total_volume) && user.transferItemToLoc(tool, src))
 		grinded = tool
@@ -726,6 +801,7 @@
 	icon_state = "coffeepot"
 	fill_icon_state = "coffeepot"
 	fill_icon_thresholds = list(0, 1, 30, 60, 100)
+	custom_materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/reagent_containers/cup/coffeepot/bluespace
 	name = "bluespace coffeepot"
@@ -733,6 +809,7 @@
 	volume = 240
 	icon_state = "coffeepot_bluespace"
 	fill_icon_thresholds = null
+	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT)
 
 ///Test tubes created by chem master and pandemic and placed in racks
 /obj/item/reagent_containers/cup/tube

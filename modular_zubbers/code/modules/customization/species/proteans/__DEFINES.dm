@@ -79,6 +79,9 @@ PROTEAN_BODYPART_DEFINE(/obj/item/bodypart/head/mutant/protean, 120)
 PROTEAN_DELIMB_DEFINE(/obj/item/bodypart/head/mutant/protean)
 PROTEAN_LIMB_ATTACH(/obj/item/bodypart/head/mutant/protean)
 
+/obj/item/bodypart/head/mutant/protean
+	head_flags = HEAD_DEFAULT_FEATURES & (~HEAD_DEBRAIN)
+
 PROTEAN_BODYPART_DEFINE(/obj/item/bodypart/chest/mutant/protean, LIMB_MAX_HP_CORE)
 
 /obj/item/bodypart/chest/mutant/protean

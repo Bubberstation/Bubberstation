@@ -372,13 +372,13 @@
 	return ITEM_INTERACT_SUCCESS
 
 
-/obj/item/borg/paperplane_crossbow/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+/obj/item/borg/paperplane_crossbow/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	check_amount()
 	if(!iscyborg(user))
 		return ITEM_INTERACT_BLOCKING
 
 	var/mob/living/silicon/robot/robot_user = user
-	if(!robot_user.cell.use(10))
+	if(!robot_user.cell.use(STANDARD_CELL_CHARGE * 0.1))
 		to_chat(user, span_warning("Not enough power."))
 		return ITEM_INTERACT_BLOCKING
 	return shoot(interacting_with, user)
@@ -887,7 +887,7 @@
 		if("Anvil")
 			new /obj/structure/reagent_anvil(src_turf)
 		if("Water Basin")
-			new /obj/structure/reagent_water_basin(src_turf)
+			new /obj/structure/reagent_dispensers/reagent_smithing_basin(src_turf)
 		if("Crafting Bench")
 			new /obj/structure/reagent_crafting_bench(src_turf)
 

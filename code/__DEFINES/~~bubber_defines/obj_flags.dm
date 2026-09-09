@@ -1,0 +1,1 @@
+#define TRUE_IMMUTABLE_SLOW (1<<22)

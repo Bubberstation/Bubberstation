@@ -1,6 +1,9 @@
 #define BLOOD_VOLUME_OVERSIZED 1120
 
 #define PULL_OVERSIZED_SLOWDOWN 2
+#define PULL_BIG_CLOTHES_SLOWDOWN 3
+#define PULL_BULKY_CLOTHES_SLOWDOWN 4
+#define PULL_HUGE_CLOTHES_SLOWDOWN 5
 
 #define HUMAN_MAXHEALTH MAX_LIVING_HEALTH
 
@@ -43,3 +46,20 @@
 #define	AI_HOLOGRAM_FENNEC "Fennec"
 
 #define BODYPART_ICON_GAS 'modular_skyrat/modules/bodyparts/icons/serpentid_parts_greyscale.dmi'
+
+// Genital Layers
+#define BUTT_LAYER_OFFSET 0.08
+#define ANUS_LAYER_OFFSET  0.07
+#define VAGINA_LAYER_OFFSET 0.06
+#define TESTICLES_LAYER_OFFSET 0.05
+#define GENITAL_LAYER_OFFSET 0.04
+#define PENIS_LAYER_OFFSET 0.03
+#define BELLY_LAYER_OFFSET 0.02
+#define BREASTS_LAYER_OFFSET 0.01
+
+// Body Sizes
+#define BODY_SIZE_MAX 1.5
+#define BODY_SIZE_MIN 0.8
+
+///Checks if a mob is in crit specifically
+#define IS_CRITICAL(mob) (mob.stat >= SOFT_CRIT && mob.stat != DEAD)

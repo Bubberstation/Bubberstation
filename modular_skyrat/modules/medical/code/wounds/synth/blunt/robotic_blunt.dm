@@ -192,7 +192,7 @@
 
 	var/effective_damage = (damage - blocked)
 
-	var/obj/item/stack/gauze = limb.current_gauze
+	var/obj/item/stack/medical/wrap/gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
 	if(gauze)
 		effective_damage *= gauze.splint_factor
 
@@ -348,7 +348,7 @@
 
 	var/overall_mult = 1
 
-	var/obj/item/stack/gauze = limb.current_gauze
+	var/obj/item/stack/medical/wrap/gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
 	if (gauze)
 		overall_mult *= gauze.splint_factor
 	if (!victim.has_gravity(get_turf(victim)))

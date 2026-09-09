@@ -69,7 +69,10 @@
 	/// If TRUE, the mob will always be considered "escaped" if they are alive and not exiled.
 	var/force_escaped = FALSE
 
-	var/list/learned_recipes //List of learned recipe TYPES.
+	/// List of crafting recipes learned, references to the singleton datums
+	VAR_FINAL/list/learned_crafting_recipes
+	/// List of cooking recipes learned, references to the singleton datums
+	VAR_FINAL/list/learned_cooking_recipes
 
 	///List of skills the user has received a reward for. Should not be used to keep track of currently known skills. Lazy list because it shouldnt be filled often
 	var/list/skills_rewarded
@@ -474,7 +477,7 @@
 			to_chat(usr, span_warning("Invalid antagonist ref to be removed."))
 			return
 
-		SSgamemode.reroll_antagonist(antag_name = name)
+		SSgamemode.reroll_antagonist(antag_name = name, existing_antag = antag)
 		antag.admin_remove(usr)
 	// BUBBER EDIT ADDITION END - ANTAG RE-ROLLING
 
@@ -490,6 +493,7 @@
 			if(G.can_reenter_corpse || even_if_they_cant_reenter)
 				return G
 			break
+	return null
 
 /datum/mind/proc/grab_ghost(force)
 	var/mob/dead/observer/G = get_ghost(even_if_they_cant_reenter = force)
@@ -499,15 +503,19 @@
 
 ///Adds addiction points to the specified addiction
 /datum/mind/proc/add_addiction_points(type, amount)
+	var/last_amount = LAZYACCESS(addiction_points, type) || 0
 	LAZYSET(addiction_points, type, min(LAZYACCESS(addiction_points, type) + amount, MAX_ADDICTION_POINTS))
-	var/datum/addiction/affected_addiction = SSaddiction.all_addictions[type]
-	return affected_addiction.on_gain_addiction_points(src)
+	var/new_amount = LAZYACCESS(addiction_points, type)
+	return GLOB.addictions[type].on_gain_addiction_points(src, new_amount, last_amount)
 
 ///Adds addiction points to the specified addiction
 /datum/mind/proc/remove_addiction_points(type, amount)
+	var/last_amount = LAZYACCESS(addiction_points, type) || 0
 	LAZYSET(addiction_points, type, max(LAZYACCESS(addiction_points, type) - amount, 0))
-	var/datum/addiction/affected_addiction = SSaddiction.all_addictions[type]
-	return affected_addiction.on_lose_addiction_points(src)
+	var/new_amount = LAZYACCESS(addiction_points, type)
+	if(new_amount <= 0)
+		LAZYREMOVE(addiction_points, type)
+	return GLOB.addictions[type].on_lose_addiction_points(src, new_amount, last_amount)
 
 /// Setter for the assigned_role job datum.
 /datum/mind/proc/set_assigned_role(datum/job/new_role)
@@ -519,6 +527,7 @@
 	assigned_role = new_role
 	if(!isnull(current))
 		SEND_SIGNAL(current, COMSIG_MOB_MIND_SET_ROLE, new_role)
+		current.client?.tgui_panel?.send_player_info()
 
 ///Sets your holy role, giving/taking away traits related to if you're gaining/losing it.
 /datum/mind/proc/set_holy_role(new_holy_role)

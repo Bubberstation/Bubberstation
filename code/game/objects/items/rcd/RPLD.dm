@@ -15,6 +15,7 @@
 	drop_sound = 'sound/items/handling/tools/rcd_drop.ogg'
 	pickup_sound = 'sound/items/handling/tools/rcd_pickup.ogg'
 	sound_vary = TRUE
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 38, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 18, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 
 	///category of design selected
 	var/selected_category
@@ -44,7 +45,6 @@
 			/obj/machinery/plumbing/fermenter = 30,
 			/obj/machinery/plumbing/liquid_pump = 35, //extracting chemicals from ground is one way of creation
 			/obj/machinery/plumbing/disposer = 10,
-			/obj/machinery/plumbing/buffer = 10, //creates chemicals as it waits for other buffers containing other chemicals and when mixed creates new chemicals
 		),
 
 		//category 2 distributors i.e devices which inject , move around , remove chemicals from the network
@@ -62,9 +62,10 @@
 		"Storage" = list(
 			/obj/machinery/plumbing/tank = 20,
 			/obj/machinery/plumbing/acclimator = 10,
+			/obj/machinery/plumbing/buffer = 10,
 			/obj/machinery/plumbing/bottler = 50,
 			/obj/machinery/plumbing/pill_press = 20,
-			/obj/machinery/iv_drip/plumbing = 20
+			/obj/machinery/iv_drip/plumbing = 20,
 		),
 		// SKYRAT EDIT ADDITION START - static list so we have no choice but to skyrat edit these here
 
@@ -305,6 +306,7 @@
 	icon_state = "plumberer_service"
 	///Extra price because it appears in bartender's vendor
 	custom_premium_price = PAYCHECK_CREW * 6
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 37.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 18.75, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 	///Design types for plumbing service constructor
 	var/static/list/service_design_types = list(
 		//Category 1 synthesizers

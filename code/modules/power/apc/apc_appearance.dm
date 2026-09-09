@@ -111,7 +111,11 @@
 /obj/machinery/power/apc/proc/flicker_hacked_icon()
 	if(opened != APC_COVER_CLOSED)
 		return
+	/* BUBBER EDIT BEGIN - Fix for override not showing on apc
 	var/image/hacker_image = image(icon = 'icons/obj/machines/wallmounts.dmi', loc = src, icon_state = "apcemag", layer = FLOAT_LAYER)
+	*/
+	var/image/hacker_image = image(icon = 'modular_skyrat/modules/aesthetics/apc/icons/apc.dmi', loc = src, icon_state = "apcemag", layer = FLOAT_LAYER)
+	//BUBBER EDIT END
 	var/list/mobs_to_show = list()
 	// Collecting mobs the APC can see for this animation, rather than mobs that can see the APC. Important distinction, intended such that mobs on camera / with XRAY cannot see the flicker.
 	for(var/mob/viewer in view(src))

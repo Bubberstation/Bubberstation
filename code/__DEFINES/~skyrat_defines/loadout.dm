@@ -10,3 +10,6 @@
 
 // Used for custom item descriptions
 #define INFO_DESCRIBED "description"
+
+#define INFO_CUSTOM_COLOR "custom_color"
+#define INFO_COLOR_MODE "color_mode"

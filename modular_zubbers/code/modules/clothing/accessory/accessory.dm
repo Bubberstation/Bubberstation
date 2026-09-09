@@ -23,7 +23,7 @@
 
 /obj/item/clothing/accessory/pocketwatch/examine(mob/user)
 	. = ..()
-	. += span_info("The current CST (local) time is: [station_time_timestamp()].")
+	. += span_info("The current CST (local) time is: [round_timestamp()].")
 	. += span_info("The current TCT (galactic) time is: [time2text(world.realtime, "hh:mm:ss")].")
 
 /obj/item/storage/backpack/kanken //Donor item for LT3
@@ -172,6 +172,185 @@
 	attachment_slot = NONE
 	above_suit = TRUE
 
+/// This list is for Protean Match tags, and stores how many tags are waiting to be matched.
+GLOBAL_LIST_EMPTY_TYPED(protean_match_tag_pool, /obj/item/clothing/accessory/dogtags/protean_match)
+/// This list is for Protean Match tags, and stores every tag that's currently assigned to someone. Intended to be used to prevent one person having multiple tags.
+GLOBAL_LIST_EMPTY_TYPED(all_assigned_protean_match_tags, /obj/item/clothing/accessory/dogtags/protean_match)
+
+// The tag pool, contains either unmatched Wearers or unmatched Proteans, waiting for the opposite type to join and match them.
+// It should never ever ever contain both, since if the second type tries to join the list it'll just get paired.
+// So if we need to differentiate between if there's Proteans or Wearers in the pool, we just check the first entry.
+#define POOL GLOB.protean_match_tag_pool
+#define ASSIGNED_TAGS GLOB.all_assigned_protean_match_tags
+#define UNASSIGNED "0"
+#define IN_POOL "1"
+#define MATCHED "2"
+
+/obj/item/clothing/accessory/dogtags/protean_match
+	name = "\improper Protean Match tag"
+	desc = "A small tag from NT's Protean Match program, which pairs Protean crew with interested wearers."
+	worn_icon = null // People shouldn't have to abandon 5 pixels of swag and aura to wear this
+	custom_premium_price = PAYCHECK_CREW * 0.4
+	/// Name of the person assigned to the tag
+	var/assignee_name
+	/// the "true" name of the assignee, source.mind.name, used to keep one person from putting a bunch of their own tags in the pool.
+	var/assignee_truename
+	/// Is the person assigned to the tag a protean? TRUE if yes
+	var/assignee_protean
+	/// What step of the matching journey
+	var/match_progress = UNASSIGNED
+	var/datum/weakref/paired_tag_weakref
+
+///This is how a person can assign a tag to themself, or switch if they're in the candidate pool
+/obj/item/clothing/accessory/dogtags/protean_match/attack_self(mob/user)
+	switch(match_progress)
+		if(UNASSIGNED)
+			assign(user)
+			// match_progress and sounds are set within assign()
+		if(IN_POOL)
+			to_chat(user, "You press the button on the tag, removing it from the Protean Match candidate pool and unclaiming it.")
+			playsound(src, "modular_skyrat/modules/emotes/sound/emotes/synth_no.ogg", 20, FALSE)
+			balloon_alert(user, "tag unassigned")
+
+			unassign()
+			return
+		if(MATCHED)
+			var/obj/item/clothing/accessory/dogtags/protean_match/paired_tag = paired_tag_weakref?.resolve()
+			var/safety = (tgui_alert(user, "You are currently matched with [paired_tag?.assignee_name]. Are you sure you want to unclaim your tag? This will unassign both tags.", "Unclaim tag?", list("Unclaim", "Cancel")))
+			if(safety == "Cancel" || !in_range(src, user))
+				return
+			to_chat(user, "You press the button on the tag, unmatching with [paired_tag?.assignee_name] and exiting the Protean Match candidate pool.")
+			playsound(src, "modular_skyrat/modules/emotes/sound/emotes/synth_no.ogg", 20, FALSE)
+			balloon_alert(user, "unmatched tag")
+
+			paired_tag.unassign("matched tag deactivated")
+			unassign()
+			return
+
+/obj/item/clothing/accessory/dogtags/protean_match/click_alt(mob/user)
+	if(length(POOL) ? (assignee_protean == POOL[1].assignee_protean) : TRUE)
+		playsound(src, "sound/machines/buzz/buzz-sigh.ogg", 20, FALSE)
+		balloon_alert(user, "no other valid matches in pool")
+		return
+	if(match_progress == MATCHED)
+		var/obj/item/clothing/accessory/dogtags/protean_match/paired_tag = paired_tag_weakref?.resolve()
+		var/safety = (tgui_alert(user, "You are currently matched with [paired_tag?.assignee_name]. Are you sure you want to attempt to match with someone else in the pool? This will unassign the other user's tag.", "Re-match tag?", list("Re-match", "Cancel")))
+		if(safety == "Cancel" || !in_range(src, user))
+			return
+		unassign()
+		assign(user) //This comes before the paired tag is unassigned so that it doesn't consider the existing pairing as a valid candidate
+		paired_tag.unassign("matched tag deactivated")
+
+/obj/item/clothing/accessory/dogtags/protean_match/Destroy()
+	POOL -= src
+	ASSIGNED_TAGS -= src
+	if(match_progress == MATCHED)
+		var/obj/item/clothing/accessory/dogtags/protean_match/paired_tag = paired_tag_weakref?.resolve()
+		paired_tag.unassign("paired tag destroyed")
+	return ..()
+
+///Filters out crew that can't wear Proteans or shouldn't have them.
+/obj/item/clothing/accessory/dogtags/protean_match/proc/assign(mob/source)
+	. = TRUE
+	/// If this ends up not being null, the assignment fails and returns the reason
+	var/ineligibility_reason = null
+	var/mob/living/user
+	var/obj/item/card/id/user_id
+	var/user_id_name
+
+	///Runs through a bunch of reasons why you shouldn't get to be in the pool. If it finds one it sets the ineligibility_reason to a string, which makes the assignment fail
+	if(isliving(source))
+		user = source
+		user_id = user.get_idcard(TRUE)
+		user_id_name = user_id?.get_displayed_name()
+		var/turf/station_check = get_turf(user)
+
+		for(var/obj/item/clothing/accessory/dogtags/protean_match/tag as anything in ASSIGNED_TAGS)
+			if(user_id_name == tag.assignee_name)
+				ineligibility_reason = "existing tag has that name"
+				break
+			if(source.mind.name == tag.assignee_truename) //Checks the user's "true name" to prevent trolling with multiple cardboard IDs
+				ineligibility_reason = "one per person, please"
+				break
+		if(isnull(user_id))
+			ineligibility_reason = "no ID found"
+		else if(!station_check || !is_station_level(station_check.z))
+			ineligibility_reason = "not on station Z-level"
+		else if(user.has_quirk(/datum/quirk/equipping/entombed))
+			ineligibility_reason = "MOD entombed"
+		else if(iscarbon(user))
+			var/mob/living/carbon/carbon_user = user
+			if(carbon_user.dna.species.id == SPECIES_SNAIL)
+				ineligibility_reason = "snailperson"
+	else
+		ineligibility_reason = "invalid being"
+
+	if(ineligibility_reason)
+		playsound(src, "sound/machines/buzz/buzz-sigh.ogg", 20, FALSE)
+		balloon_alert(source, "ineligible: [ineligibility_reason]")
+		return
+
+///From here, we assign a name and species to the tag, and try to match it. If it fails, adds it to the pool.
+	assignee_name = user_id_name
+	assignee_truename = source.mind.name
+	assignee_protean = isprotean(source)
+	ASSIGNED_TAGS += src
+	name += " - [assignee_name] ([assignee_protean ? "Protean" : "Wearer"])"
+	update_static_data_for_all_viewers()
+//If you aren't the same as the other people in the pool, you get matched with one of them
+	if(length(POOL))
+		if(assignee_protean != POOL[1].assignee_protean)
+			var/obj/item/clothing/accessory/dogtags/protean_match/matched_wearer_tag = pick(POOL)
+			matched_wearer_tag.handle_match(src) //Makes the match's tag ping
+			handle_match(matched_wearer_tag) //Makes our tag ping
+			return
+	// This should only run if the code block above fails
+	POOL += src
+	match_progress = IN_POOL
+	say("No match found, added to candidate pool! There are [(length(POOL) - 1) ? "[length(POOL) - 1]" : "no" ] other [assignee_protean ? "Proteans" : "Wearers"] in the pool.")
+
+///Handles the logistics of matching tags. Done by both sets of tags.
+/obj/item/clothing/accessory/dogtags/protean_match/proc/handle_match(obj/item/clothing/accessory/dogtags/protean_match/other_tag)
+	match_progress = MATCHED
+	POOL -= src
+	playsound(src, "modular_skyrat/modules/emotes/sound/emotes/synth_yes.ogg", 20, FALSE)
+	say("Matched with [(other_tag.assignee_protean == TRUE) ? "Protean" : "Wearer"]: [other_tag.assignee_name]!")
+	paired_tag_weakref = other_tag.create_weakref()
+
+/// Used both when unmatching with a person and when leaving the match pool.
+/obj/item/clothing/accessory/dogtags/protean_match/proc/unassign(unmatch_reason)
+	match_progress = UNASSIGNED
+	POOL -= src
+	ASSIGNED_TAGS -= src
+	assignee_name = null
+	assignee_truename = null
+	assignee_protean = null
+	name = initial(name)
+	paired_tag_weakref = null
+	update_static_data_for_all_viewers()
+	if(unmatch_reason)
+		say("You have been unmatched. Reason: [unmatch_reason].")
+
+/obj/item/clothing/accessory/dogtags/protean_match/examine(mob/user)
+	. = ..()
+	if(!(in_range(user, src)))
+		return
+	if(assignee_name)
+		. += span_notice("This set is assigned to [assignee_name], a [assignee_protean ? "Protean" : "Wearer"].")
+	switch(match_progress)
+		if(UNASSIGNED)
+			. += span_notice("You can join the program by using it in-hand.")
+		if(IN_POOL)
+			. += span_notice("It's currently in the candidate pool, alongside [length(POOL) - 1] others. Leave the pool by using it in-hand.")
+		if(MATCHED)
+			var/obj/item/clothing/accessory/dogtags/protean_match/paired_tag = paired_tag_weakref?.resolve()
+			. += span_notice("It's currently matched with [paired_tag.assignee_name], and can be unmatched by using it in-hand. To match with a different person in the queue, alt-click.")
+
+#undef POOL
+#undef ASSIGNED_TAGS
+#undef UNASSIGNED
+#undef IN_POOL
+#undef MATCHED
 
 /*
 Greyscaled Medals

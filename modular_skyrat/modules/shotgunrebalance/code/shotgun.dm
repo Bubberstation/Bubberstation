@@ -19,12 +19,8 @@
 	desc = "A 12 gauge magnesium slug meant for \"setting shit on fire and looking cool while you do it\".\
 	<br><br>\
 	<i>INCENDIARY: Leaves a trail of fire when shot, sets targets aflame.</i>"
-	custom_materials = AMMO_MATS_SHOTGUN_PLASMA
 
 /obj/item/ammo_casing/shotgun/ion
-	custom_materials = AMMO_MATS_SHOTGUN_TIDE
-
-/obj/item/ammo_casing/shotgun/scatterlaser
 	custom_materials = AMMO_MATS_SHOTGUN_TIDE
 
 /obj/item/ammo_casing/shotgun/techshell
@@ -154,6 +150,7 @@
 	name = "frangible slug"
 	desc = "A weak anti materiel shell intended for dislodging airlock, breaking down barricades and structures. Not effective against people."
 	icon_state = "breacher"
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1, /datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT)
 	projectile_type = /obj/projectile/bullet/frangible_slug
 
 /obj/projectile/bullet/frangible_slug
@@ -182,10 +179,25 @@
 /obj/projectile/bullet/shotgun_slug/hunter
 	name = "12g hunter slug"
 	damage = 20
+	range = 12
+	/// How much the damage is multiplied by when we hit a mob with the correct biotype
+	var/biotype_damage_multiplier = 5
+	/// What biotype we look for
+	var/biotype_we_look_for = MOB_BEAST
 
-/obj/projectile/bullet/shotgun_slug/hunter/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/bane, mob_biotypes = MOB_BEAST, damage_multiplier = 6)
+/obj/projectile/bullet/shotgun_slug/hunter/on_hit(atom/target, blocked, pierce_hit)
+	if(ismineralturf(target))
+		var/turf/closed/mineral/mineral_turf = target
+		mineral_turf.gets_drilled(firer)
+		if(range > 0)
+			return BULLET_ACT_FORCE_PIERCE
+		return ..()
+	if(!isliving(target) || (damage > initial(damage)))
+		return ..()
+	var/mob/living/target_mob = target
+	if(target_mob.mob_biotypes & biotype_we_look_for || istype(target_mob, /mob/living/simple_animal/hostile/megafauna))
+		damage *= biotype_damage_multiplier
+	return ..()
 
 /obj/item/ammo_casing/shotgun/honkshot
 	name = "confetti shell"

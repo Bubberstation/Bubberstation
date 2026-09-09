@@ -24,3 +24,28 @@
 	icon_state = "card_rainbow"
 	trim = /datum/id_trim/away/lizardgas
 	wildcard_slots = WILDCARD_LIMIT_GREY
+
+/// Experimental faction budget cards, essentially budget cards you can withdraw from, intended for ghost roles.
+/obj/item/card/id/faction_budget
+	name = "departmental card (ERROR)"
+	desc = "Provides access to the departmental budget."
+	icon_state = "budgetcard"
+	var/department_ID = ACCOUNT_CIV
+	var/department_name = ACCOUNT_CIV_NAME
+	registered_age = null
+
+/obj/item/card/id/faction_budget/Initialize(mapload)
+	. = ..()
+	var/datum/bank_account/department_account = SSeconomy.get_dep_account(department_ID)
+	if(department_account)
+		set_account(department_account)
+		name = "departmental card ([department_name])"
+		desc = "Provides access to the [department_name]."
+	SSeconomy.dep_cards += src
+
+/obj/item/card/id/faction_budget/Destroy()
+	SSeconomy.dep_cards -= src
+	return ..()
+
+/obj/item/card/id/faction_budget/update_label()
+	return

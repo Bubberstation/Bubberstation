@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(gamemode)
 	name = "Storyteller"
 	init_order = INIT_ORDER_GAMEMODE
 	runlevels = RUNLEVEL_GAME
-	flags = SS_BACKGROUND | SS_KEEP_TIMING
+	ss_flags = SS_BACKGROUND | SS_KEEP_TIMING
 	wait = 2 SECONDS
 
 	/// List of our event tracks for fast access during for loops.
@@ -67,28 +67,6 @@ SUBSYSTEM_DEF(gamemode)
 		EVENT_TRACK_CREWSET = 1,
 		EVENT_TRACK_GHOSTSET = 1
 		)
-	/// Whether we allow pop scaling. This is configured by config, or the storyteller UI
-	var/allow_pop_scaling = TRUE
-
-	/// Associative list of pop scale thresholds.
-	var/list/pop_scale_thresholds = list(
-		EVENT_TRACK_MUNDANE = MUNDANE_POP_SCALE_THRESHOLD,
-		EVENT_TRACK_MODERATE = MODERATE_POP_SCALE_THRESHOLD,
-		EVENT_TRACK_MAJOR = MAJOR_POP_SCALE_THRESHOLD,
-		EVENT_TRACK_CREWSET = CREWSET_POP_SCALE_THRESHOLD,
-		EVENT_TRACK_GHOSTSET = GHOSTSET_POP_SCALE_THRESHOLD
-		)
-
-	/// Associative list of pop scale penalties.
-	var/list/pop_scale_penalties = list(
-		EVENT_TRACK_MUNDANE = MUNDANE_POP_SCALE_PENALTY,
-		EVENT_TRACK_MODERATE = MODERATE_POP_SCALE_PENALTY,
-		EVENT_TRACK_MAJOR = MAJOR_POP_SCALE_PENALTY,
-		EVENT_TRACK_CREWSET = CREWSET_POP_SCALE_PENALTY,
-		EVENT_TRACK_GHOSTSET = GHOSTSET_POP_SCALE_PENALTY
-		)
-
-
 
 	/// Associative list of control events by their track category. Compiled in Init
 	var/list/event_pools = list()
@@ -134,6 +112,8 @@ SUBSYSTEM_DEF(gamemode)
 	var/sec_antag_cap = 0
 	/// A list of event controls to re-roll antagonists
 	var/list/antag_rerolls
+	/// A assoc list of event controls by pref flag, used for accurately rerolling antags. (flag -> /datum/round_control_event)
+	var/list/antag_rerolls_by_pref
 
 	/// Whether we looked up pop info in this process tick
 	var/pop_data_cached = FALSE
@@ -185,13 +165,15 @@ SUBSYSTEM_DEF(gamemode)
 		var/list/event_tags = event.tags
 		if(LAZYLEN(event_tags))
 			if(LAZYFIND(event_tags, TAG_ANTAG_REROLL))
-				LAZYADDASSOC(antag_rerolls, event.type, event.weight)
+				LAZYADDASSOC(antag_rerolls, event, event.weight)
+				if (istype(event, /datum/round_event_control/antagonist))
+					var/datum/round_event_control/antagonist/antag_event = event
+					LAZYADDASSOC(antag_rerolls_by_pref, antag_event.antag_flag, antag_event)
 				continue
 
 		event_pools[event.track] += event //Add it to the categorized event pools
 
 	return SS_INIT_SUCCESS
-
 
 /datum/controller/subsystem/gamemode/fire(resumed = FALSE)
 	if(!resumed)
@@ -200,7 +182,7 @@ SUBSYSTEM_DEF(gamemode)
 	if(EMERGENCY_AT_LEAST_DOCKED)
 		//Don't run any events if the shuttle is docked with the station (or in transit towards central command.
 		return
-	if( (SSshuttle.emergency_no_recall && !SSshuttle.admin_emergency_no_recall) && EMERGENCY_IDLE_OR_RECALLED)
+	if((SSshuttle.emergency_no_recall && !SSshuttle.admin_emergency_no_recall) && EMERGENCY_IDLE_OR_RECALLED)
 		//Don't run any events if the shuttle is in transit in a non-admin no-recall state.
 		return
 
@@ -270,7 +252,6 @@ SUBSYSTEM_DEF(gamemode)
 	list/restricted_roles,
 	list/restricted_species,
 	)
-
 
 	var/list/candidates = list()
 	var/list/candidate_candidates = list() //lol
@@ -478,10 +459,7 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/resetFrequency()
 	event_frequency_multiplier = 1
 
-/* /client/proc/forceEvent()
-	set name = "Trigger Event"
-	set category = "Admin.Events"
-
+/* ADMIN_VERB(forceEvent, R_FUN, "Trigger Event", "Triggers an event of your choosing.", ADMIN_CATEGORY_EVENTS)
 	if(!holder ||!check_rights(R_FUN))
 		return
 
@@ -489,7 +467,6 @@ SUBSYSTEM_DEF(gamemode)
 
 /* /datum/admins/forceEvent(mob/user)
 	SSgamemode.event_panel(user) */
-
 
 //////////////
 // HOLIDAYS //
@@ -509,7 +486,6 @@ SUBSYSTEM_DEF(gamemode)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //ALSO, MOST IMPORTANTLY: Don't add stupid stuff! Discuss bonus content with Project-Heads first please!//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 //sets up the holidays and holidays list
 /datum/controller/subsystem/gamemode/proc/getHoliday()
@@ -583,7 +559,6 @@ SUBSYSTEM_DEF(gamemode)
 	pop_data_cached = FALSE // Uncache it because we'd still wrongly consider it cached from lobby pops
 	return TRUE
 
-
 ///Handles late-join antag assignments
 /datum/controller/subsystem/gamemode/proc/make_antag_chance(mob/living/carbon/human/character)
 	return
@@ -613,7 +588,6 @@ SUBSYSTEM_DEF(gamemode)
 		if(L.ckey && !GLOB.directory[L.ckey])
 			msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
 
-
 		if(L.ckey && L.client)
 			var/failed = FALSE
 			if(L.client.inactivity >= (15 MINUTES)) //Connected, but inactive (alt+tabbed or something)
@@ -623,7 +597,7 @@ SUBSYSTEM_DEF(gamemode)
 				if(H.get_dnr()) //Suicider
 					msg += "<b>[L.name]</b> ([L.key]), the [L.job] ([span_boldannounce("Suicide")])\n"
 					failed = TRUE //Disconnected client
-				if(!failed && (L.stat == UNCONSCIOUS || L.stat == HARD_CRIT))
+				if(!failed && (IS_UNCONSCIOUS_OR_CRIT(L)))
 					msg += "<b>[L.name]</b> ([L.key]), the [L.job] (Dying)\n"
 					failed = TRUE //Unconscious
 				if(!failed && L.stat == DEAD)
@@ -646,7 +620,6 @@ SUBSYSTEM_DEF(gamemode)
 					else
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_boldannounce("Ghosted")])\n"
 						continue //Ghosted while alive
-
 
 	for (var/C in GLOB.admins)
 		to_chat(C, msg.Join())
@@ -808,7 +781,6 @@ SUBSYSTEM_DEF(gamemode)
  *
  * Used to halt/unhalt and properly log storyteller
  */
-
 /datum/controller/subsystem/gamemode/proc/halt_storyteller(mob/user)
 	storyteller_halted = !storyteller_halted
 	if(isnull(user))
@@ -867,9 +839,11 @@ SUBSYSTEM_DEF(gamemode)
 
 	event.run_event(admin_forced = TRUE)
 
-/datum/controller/subsystem/gamemode/proc/reroll_antagonist(datum/round_event_control/event_control, antag_name)
+/datum/controller/subsystem/gamemode/proc/reroll_antagonist(datum/round_event_control/event_control, antag_name, datum/antagonist/existing_antag)
 	message_admins(span_yellowteamradio("[key_name_admin(usr)] requested a new antagonist to replace [antag_name]."))
 	log_admin("[key_name_admin(usr)] requested a new antagonist to replace [antag_name].")
+	if (isnull(event_control) && !isnull(existing_antag))
+		event_control = SSgamemode.antag_rerolls_by_pref[existing_antag.pref_flag]
 	if(isnull(event_control))
 		event_control = pick_weight(SSgamemode.antag_rerolls)
 	SSgamemode.inject_event(event_control = event_control)
@@ -877,8 +851,7 @@ SUBSYSTEM_DEF(gamemode)
 ADMIN_VERB(create_antagonist, R_FUN, "Create Antagonist", "Inject a little more action into the round.", ADMIN_CATEGORY_EVENTS)
 	var/list/available_antags = list()
 	for(var/datum/round_event_control/event_control as anything in SSgamemode.antag_rerolls)
-		var/datum/round_event_control/event = locate(event_control) in SSevents.control
-		LAZYADD(available_antags, event)
+		LAZYADD(available_antags, event_control)
 
 	var/datum/round_event_control/selected_event = tgui_input_list(user, "Choose a crew antagonist type to spawn.", "Create Antagonist", available_antags)
 	if(isnull(selected_event))

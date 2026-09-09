@@ -85,11 +85,7 @@
 		new deflated_type(get_turf(src))
 	qdel(src)
 
-/obj/structure/inflatable/verb/hand_deflate()
-	set name = "Deflate"
-	set category = "Object"
-	set src in oview(1)
-
+GAME_VERB_SRC(/obj/structure/inflatable, hand_deflate, oview(1), "Deflate", "Object")
 	if(usr.stat || usr.can_interact())
 		return
 	deflate(FALSE)
@@ -168,12 +164,12 @@
 		qdel(src)
 
 /obj/item/inflatable/attackby(obj/item/attacking_item, mob/user)
-	if(!istype(attacking_item, /obj/item/stack/sticky_tape))
+	if(!istype(attacking_item, /obj/item/stack/medical/wrap/sticky_tape))
 		return ..()
 	if(!torn)
 		to_chat(user, span_notice("[src] does not need repairing!"))
 		return
-	var/obj/item/stack/sticky_tape/attacking_tape = attacking_item
+	var/obj/item/stack/medical/wrap/sticky_tape/attacking_tape = attacking_item
 	if(attacking_tape.use(TAPE_REQUIRED_TO_FIX, check = TRUE))
 		to_chat(user, span_danger("There is not enough of [attacking_tape]! You need at least [TAPE_REQUIRED_TO_FIX] pieces!"))
 		return
