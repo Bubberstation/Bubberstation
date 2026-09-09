@@ -100,6 +100,10 @@
 	. = ..()
 	if(owner.mind)
 		owner.mind.transfer_to(real_body)
+
+	var/mob/living/lively = owner
+	if(lively)
+		lively.drop_everything(del_on_drop = FALSE, force = TRUE, del_if_nodrop = TRUE)
 	real_body = null
 	summon_action.current_avatar = null
 	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE)
@@ -109,7 +113,7 @@
 
 /datum/action/voidwalker_swap_bodies
 	name = "Transfer Consciousness"
-	desc = "Transfer you consciousness back to your real voidwalker body while still hearing what this avatar hears."
+	desc = "Transfer you consciousness back to your real voidwalker body while preserving this avatar, allowing you to quickly return"
 	var/mob/living/basic/voidwalker/real_body
 
 /datum/action/voidwalker_swap_bodies/Trigger(mob/clicker, trigger_flags)
