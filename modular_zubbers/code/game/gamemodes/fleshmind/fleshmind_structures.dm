@@ -89,7 +89,7 @@
 
 	var/mob/living/arriving_mob = arrived
 
-	if(arriving_mob.stat != CONSCIOUS)
+	if(IS_UNCONSCIOUS(arriving_mob))
 		return
 
 	if(faction_check_atom(arriving_mob)) // A friend :)
@@ -175,6 +175,7 @@
 	smoothing_groups = SMOOTH_GROUP_WIREWEED_WALLS
 	canSmoothWith = SMOOTH_GROUP_WIREWEED_WALLS
 	can_atmos_pass = ATMOS_PASS_DENSITY
+	pass_flags_self = parent_type::pass_flags_self | PASSBLOB
 	max_integrity = 150
 	disabled_sprite = FALSE
 
@@ -312,7 +313,7 @@
 	if(QDELETED(src))
 		return
 	var/mob/living/carbon/human/target = locate() in view(5, src)
-	if(target && target.stat == CONSCIOUS)
+	if(target && !IS_UNCONSCIOUS(target))
 		if(get_dist(src, target) <= 1)
 			icon_state = "core-fear"
 		else
@@ -355,8 +356,11 @@
 
 /obj/structure/fleshmind/structure/core/examine(mob/user)
 	. = ..()
-	/// Level * Progress Required - Current Points
-	var/level_calculation = (our_controller.level * our_controller.level_up_progress_required) - our_controller.current_points
+
+	/// Last Level Up Points + the points needed to next level, default 300
+	/// typically this means per level it takes around 300 points to level up, may be a bit more if it levelled up fast
+
+	var/level_calculation = (our_controller.last_level_up_points + our_controller.level_up_progress_required) - our_controller.current_points
 	/// round Cooldown Time / 10
 	var/time_calculation = round(COOLDOWN_TIMELEFT(our_controller, level_up_cooldown) / 10)
 
@@ -365,7 +369,7 @@
 			. += span_notice("Your GPS tracks to this thing!")
 		if(isobserver(user))
 			if(COOLDOWN_FINISHED(our_controller, level_up_cooldown) || level_calculation > 0)
-				. += "Level: [our_controller.level] | Progress to Next Level: [level_calculation]"
+				. += "Level: [our_controller.level] | Points to Next Level: [level_calculation]"
 			else
 				. += "Level: [our_controller.level] | Time to Next Level: [time_calculation] Seconds"
 
@@ -396,7 +400,7 @@
 	whip_those_fuckers()
 	rally_troops()
 	build_a_wall()
-	spawn_mob_at_core(/mob/living/basic/fleshmind/mechiver)
+	spawn_mob_at_core(/mob/living/basic/fleshmind/mechiver) // TODO: make an assault variant that actually fights
 
 // Tries to place mobs outside of the walls. But it will spawn on the core if it can't find a place.
 
@@ -606,7 +610,7 @@
 	for(var/mob/living/carbon/human/iterating_human in GLOB.player_list)
 		if(iterating_human.z != z)
 			continue
-		if(iterating_human.stat != CONSCIOUS)
+		if(!IS_UNCONSCIOUS_OR_CRIT(iterating_human))
 			continue
 		if(faction_check_atom(iterating_human))
 			continue
@@ -656,6 +660,8 @@
 	max_integrity = 260
 	activation_range = DEFAULT_VIEW_RANGE
 	ability_cooldown_time = 20 SECONDS
+	automatic_trigger_time_lower = 20 SECONDS
+	automatic_trigger_time_upper = 60 SECONDS
 	/// The max amount of mobs we can have at any one time.
 	var/max_mobs = 2
 	/// The current amount of spawned mobs
@@ -670,10 +676,10 @@
 		/mob/living/basic/fleshmind/treader = 3,
 		/mob/living/basic/fleshmind/himan = 3,
 		/mob/living/basic/fleshmind/phaser = 2,
-		/mob/living/basic/fleshmind/mechiver = 4,
+		/mob/living/basic/fleshmind/mechiver = 3,
 	)
 	/// Our override type, if manually set.
-	var/override_monser_type
+	var/override_monster_type
 
 
 /obj/structure/fleshmind/structure/assembler/activate_ability(mob/living/triggered_mob)
@@ -698,7 +704,7 @@
 	if(!chosen_override_type)
 		return
 
-	override_monser_type = chosen_override_type
+	override_monster_type = chosen_override_type
 
 /obj/structure/fleshmind/structure/assembler/proc/spawn_mob()
 	if(!our_controller)
@@ -708,7 +714,7 @@
 	do_squish(0.8, 1.2)
 
 	spawned_mobs++
-	var/chosen_mob_type = override_monser_type ? override_monser_type : pick_weight(monster_types)
+	var/chosen_mob_type = override_monster_type ? override_monster_type : pick_weight(monster_types)
 
 	var/mob/living/basic/fleshmind/spawned_mob = our_controller.spawn_mob(get_turf(src), chosen_mob_type)
 
@@ -751,7 +757,7 @@
 	for(var/mob/living/target_mob in view(activation_range, src))
 		if(faction_check_atom(target_mob))
 			continue
-		if(target_mob.stat != CONSCIOUS)
+		if(!IS_UNCONSCIOUS(target_mob))
 			continue
 		targets += target_mob
 

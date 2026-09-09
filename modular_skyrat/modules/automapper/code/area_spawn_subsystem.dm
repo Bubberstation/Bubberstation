@@ -361,7 +361,8 @@ SUBSYSTEM_DEF(area_spawn)
 /**
  * Show overlay over area of priorities. Wall priority over open priority.
  */
-ADMIN_VERB(test_area_spawner, R_DEBUG, "Test Area Spawner", "Show area spawner placement candidates as an overlay.", ADMIN_CATEGORY_DEBUG, area/area)
+ADMIN_VERB(test_area_spawner, R_DEBUG, "Test Area Spawner", "Show area spawner placement candidates as an overlay.", ADMIN_CATEGORY_DEBUG)
+	VERB_ARG_TYPED(area, VERB_ARG_TYPE_AREA, VERB_ARG_SOURCE_WORLD, /area)
 	for(var/obj/effect/turf_test/old_test in area)
 		qdel(old_test)
 

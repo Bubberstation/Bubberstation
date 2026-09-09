@@ -1,4 +1,6 @@
-GAME_VERB(/client, mentorhelp, "Mentorhelp", "Mentor", msg as text)
+//GAME_VERB(/client, mentorhelp, "Mentorhelp", "Mentor", msg as text)
+GAME_VERB(/client, mentorhelp, "Mentorhelp", "Mentor")
+	VERB_ARG(msg, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	//clean the input msg
 	if(!msg)
 		return

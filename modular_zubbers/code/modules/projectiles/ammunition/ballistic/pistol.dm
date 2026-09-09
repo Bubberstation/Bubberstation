@@ -77,3 +77,15 @@
 	if(istype(magazine, /obj/item/ammo_box/magazine/recharge/ntusp/laser))
 		icon_state = "ntusp-l"
 	..()
+
+/obj/item/ammo_casing/c38/c32 //They will never know
+	name = ".32 bullet casing"
+	desc = "A .32 bullet casing."
+	projectile_type = /obj/projectile/bullet/c38/c32
+	caliber = CALIBER_32
+
+/obj/item/ammo_casing/c38/c32/spent
+	projectile_type = null
+
+/obj/projectile/bullet/c38/c32
+	name = ".32 bullet"
