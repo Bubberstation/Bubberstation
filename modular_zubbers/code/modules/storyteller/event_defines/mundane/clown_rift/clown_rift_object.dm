@@ -106,7 +106,7 @@
 	to_throw.throw_at(pick(turf_targets), 5, 2)
 	return
 
-/obj/effect/clown_rift/proc/pie_victim(var/mob/living/carbon/victim)
+/obj/effect/clown_rift/proc/pie_victim(mob/living/carbon/victim)
 	var/obj/item/food/pie/cream/evil_pie = new(src.loc)
 	evil_pie.throw_at(victim, 7, 5)
 
