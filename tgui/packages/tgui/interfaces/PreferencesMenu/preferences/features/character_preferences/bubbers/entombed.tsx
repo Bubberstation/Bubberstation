@@ -20,6 +20,11 @@ export const entombed_skin: FeatureChoiced = {
   component: FeatureDropdownInput,
 };
 
+export const entombed_hardlight_theme: FeatureChoiced = {
+  name: 'MODsuit Hardlight Theme',
+  component: FeatureDropdownInput,
+};
+
 export const entombed_mod_name: Feature<string> = {
   name: 'MODsuit Control Unit Name',
   component: FeatureShortTextInput,

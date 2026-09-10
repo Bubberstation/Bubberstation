@@ -75,7 +75,7 @@
 	race = /datum/species/gas
 
 GAME_VERB_DESC(/mob/living/carbon/human, toggle_undies, "Toggle underwear visibility", "Allows you to toggle which underwear should show or be hidden. Underwear will obscure genitals.", "IC")
-	if(stat != CONSCIOUS)
+	if(IS_UNCONSCIOUS_OR_CRIT(src))
 		to_chat(usr, span_warning("You can't toggle underwear visibility right now..."))
 		return
 
@@ -129,7 +129,7 @@ GAME_VERB_DESC(/mob/living/carbon/human, toggle_mutant_part_visibility, "Show/Hi
 	)
 
 	// Stat check
-	if(stat != CONSCIOUS)
+	if(IS_UNCONSCIOUS_OR_CRIT(usr))
 		to_chat(usr, span_warning("You can't do this right now..."))
 		return
 
@@ -198,7 +198,7 @@ GAME_VERB_DESC(/mob/living/carbon/human, toggle_mutant_part_visibility, "Show/Hi
 #define MAX_TIME 36000 // 10 hours
 
 GAME_VERB_DESC(/mob/living/carbon/human, acting, "Feign Impairment", "Pretend to be impaired for a defined duration.", "IC")
-	if(stat != CONSCIOUS)
+	if(IS_UNCONSCIOUS_OR_CRIT(usr))
 		to_chat(usr, span_warning("You can't do this right now..."))
 		return
 
