@@ -532,7 +532,7 @@
 
 	if(!length(dat))
 		return "No prior security issues."
-	return dat.Join(", ")
+	return dat.Join(" ")
 //Bubber Addition END
 
 /mob/living/proc/cleanse_quirk_datums() //removes all trait datums
