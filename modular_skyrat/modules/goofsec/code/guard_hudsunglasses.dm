@@ -828,6 +828,73 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	category = CAT_EQUIPMENT
 	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
+
+// Removal recipes. Breaking a guard pair back down returns the security HUD plus every donor component
+// (the specialty HUD and, where one was used, the plain sunglasses) so parts can be recombined into a
+// different variant instead of being thrown away. Raw materials (cable, gemstone/mineral sheets) are not
+// recovered, same as any other disassembly - only the actual component items come back.
+/datum/crafting_recipe/hudsunguard_removal
+	result = /obj/item/clothing/glasses/hud/security
+	time = 2 SECONDS
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	category = CAT_EQUIPMENT
+	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
+	/// Extra component types spawned alongside result on completion. Assoc list of type path to amount.
+	var/list/extra_parts
+
+/datum/crafting_recipe/hudsunguardmed_removal
+	name = "Medsec HUD removal"
+	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/medical = 1)
+	extra_parts = list(/obj/item/clothing/glasses/hud/health = 1, /obj/item/clothing/glasses/sunglasses = 1)
+
+/datum/crafting_recipe/hudsunguardsci_removal
+	name = "Scisec HUD removal"
+	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/science = 1)
+	extra_parts = list(/obj/item/clothing/glasses/sunglasses/chemical = 1)
+
+/datum/crafting_recipe/hudsunguardengi_removal
+	name = "Meson HUD removal"
+	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering = 1)
+	extra_parts = list(/obj/item/clothing/glasses/meson = 1, /obj/item/clothing/glasses/sunglasses = 1)
+
+/datum/crafting_recipe/hudsunguardsrv_removal
+	name = "Service HUD removal"
+	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/service = 1)
+	extra_parts = list(/obj/item/clothing/glasses/sunglasses/reagent = 1)
+
+/datum/crafting_recipe/hudsunguardcargo_removal
+	name = "Customs HUD removal"
+	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/customs = 1)
+	extra_parts = list(/obj/item/universal_scanner = 1, /obj/item/clothing/glasses/sunglasses = 1)
+
+/datum/crafting_recipe/hudsunguardblueshield_removal
+	name = "Blueshield HUD removal"
+	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/blueshield = 1)
+	extra_parts = list(/obj/item/clothing/glasses/sunglasses = 1)
+
+/datum/crafting_recipe/hudsunguardsilly_removal
+	name = "Silly HUD removal"
+	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/silly = 1)
+	extra_parts = list(/obj/item/clothing/glasses/sunglasses = 1)
+
+// Scoped completion hook: only guard-removal recipes carry extra_parts, so this is a no-op for every
+// other recipe that results in a plain security HUD (there currently are none, but future-proofed anyway).
+/obj/item/clothing/glasses/hud/security/on_craft_completion(list/components, datum/crafting_recipe/current_recipe, atom/crafter)
+	. = ..()
+	if(!istype(current_recipe, /datum/crafting_recipe/hudsunguard_removal))
+		return
+	var/datum/crafting_recipe/hudsunguard_removal/removal_recipe = current_recipe
+	if(!length(removal_recipe.extra_parts))
+		return
+	var/turf/drop_turf = get_turf(crafter)
+	for(var/part_type in removal_recipe.extra_parts)
+		var/amount = removal_recipe.extra_parts[part_type]
+		for(var/i in 1 to amount)
+			var/obj/item/part = new part_type(drop_turf)
+			if(isliving(crafter))
+				var/mob/living/living_crafter = crafter
+				living_crafter.put_in_hands(part)
+
 #undef HONK_CURSE_COOLDOWN
 #undef HONK_CURSE_EMAGGED_COOLDOWN
 #undef HONK_CURSE_DURATION

@@ -162,6 +162,7 @@
 		"nifsoft_hud_security",
 		"nifsoft_hud_diagnostic",
 		"nifsoft_hud_cargo",
+		"permit_hud",
 	)
 
 	design_ids -= list(

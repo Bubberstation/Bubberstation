@@ -182,6 +182,7 @@
 
 /obj/machinery/vending/wardrobe/cargo_wardrobe
 	zubbers_products = list(
+		/obj/item/clothing/glasses/hud/permit = 2,
 		/obj/item/clothing/head/caligram_cap_tan = 3,
 		/obj/item/clothing/head/playbunnyears/bitrunner = 3,
 		/obj/item/clothing/head/playbunnyears/cargo = 3,
