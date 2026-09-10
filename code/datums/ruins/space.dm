@@ -238,7 +238,8 @@
 
 /datum/map_template/ruin/space/listeningstation
 	id = "listeningstation"
-	suffix = "listeningstation.dmm"
+	prefix = "_maps/RandomRuins/SpaceRuins/bubberstation/" //BUBBER ADDITION
+	suffix = "listeningstation_bubber.dmm" //BUBBER EDIT - ORIGINAL: listeningstation.dmm
 	name = "Space-Ruin Syndicate Listening Station"
 	description = "Listening stations form the backbone of the syndicate's information-gathering operations. \
 	Assignment to these stations is dreaded by most agents, as it entails long and lonely shifts listening to nearby stations chatter incessantly about the most meaningless things."
