@@ -825,21 +825,6 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	category = CAT_EQUIPMENT
 	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
 
-/datum/crafting_recipe/hudsunguardblueshield
-	name = "Blueshield HUDsunglasses"
-	result = /obj/item/clothing/glasses/hud/security/sunglasses/guard/blueshield
-	time = 2 SECONDS
-	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
-	reqs = list(
-		/obj/item/clothing/glasses/hud/security = 1,
-		/obj/item/clothing/glasses/sunglasses = 1,
-		/obj/item/stack/sheet/mineral/diamond = 1,
-		/obj/item/stack/sheet/mineral/silver = 5,
-		/obj/item/stack/cable_coil = 5,
-	)
-	category = CAT_EQUIPMENT
-	crafting_flags = parent_type::crafting_flags | CRAFT_SKIP_MATERIALS_PARITY
-
 /datum/crafting_recipe/hudsunguardsilly
 	name = "Silly HUDsunglasses"
 	result = /obj/item/clothing/glasses/hud/security/sunglasses/guard/silly
@@ -859,7 +844,19 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 // (the specialty HUD and, where one was used, the plain sunglasses) so parts can be recombined into a
 // different variant instead of being thrown away. Raw materials (cable, gemstone/mineral sheets) are not
 // recovered, same as any other disassembly - only the actual component items come back.
+// The vanilla "Security HUD removal" recipe asks for /obj/item/clothing/glasses/hud/security/sunglasses,
+// and requirement matching is by ispath(), so every guard pair qualifies as a subtype - including the two
+// that should never be disassembled. Blacklisting them leaves the vanilla recipe working for everything else.
+/datum/crafting_recipe/hudsunsecremoval
+	blacklist = list(
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/blueshield,
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/command,
+	)
+
 /datum/crafting_recipe/hudsunguard_removal
+	// Abstract parent for the per-variant removals. It has no reqs of its own, so it must never be
+	// craftable in its own right or it reads as "make a security HUD out of thin air".
+	non_craftable = TRUE
 	result = /obj/item/clothing/glasses/hud/security
 	time = 2 SECONDS
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
@@ -892,11 +889,6 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	name = "Customs HUD removal"
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/customs = 1)
 	extra_parts = list(/obj/item/universal_scanner = 1, /obj/item/clothing/glasses/sunglasses = 1)
-
-/datum/crafting_recipe/hudsunguard_removal/blueshield
-	name = "Blueshield HUD removal"
-	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/blueshield = 1)
-	extra_parts = list(/obj/item/clothing/glasses/sunglasses = 1)
 
 /datum/crafting_recipe/hudsunguard_removal/silly
 	name = "Silly HUD removal"
