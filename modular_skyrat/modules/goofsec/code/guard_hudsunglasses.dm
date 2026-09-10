@@ -125,6 +125,8 @@
 	clothing_traits = list(TRAIT_SECURITY_HUD, TRAIT_MADNESS_IMMUNE)
 	greyscale_colors = "#585858#1a7a3e"
 	vision_flags = SEE_TURFS
+	// Matches the optical meson scanner's faint see-in-the-dark, so this isn't a strictly worse meson.
+	color_cutoffs = list(5, 15, 5)
 	glass_colour_type = /datum/client_colour/glass_colour/guard/engineering
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.8, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 
@@ -229,6 +231,7 @@
 	wearer.remove_status_effect(/datum/status_effect/agent_pinpointer/executive/fortune)
 
 	vision_flags = NONE
+	color_cutoffs = null
 	REMOVE_TRAIT(wearer, TRAIT_THERMAL_VISION, REF(src))
 	qdel(wearer.GetComponent(/datum/component/money_sense/customs))
 	if(!display_active || depleted)
@@ -238,6 +241,7 @@
 	switch(mode)
 		if(EXECUTIVE_MODE_MESON)
 			vision_flags = SEE_TURFS
+			color_cutoffs = list(5, 15, 5)
 		if(EXECUTIVE_MODE_BOOZE)
 			wearer.apply_status_effect(/datum/status_effect/agent_pinpointer/executive/booze)
 		if(EXECUTIVE_MODE_FORTUNE)
@@ -251,6 +255,8 @@
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/clear_extras(mob/living/wearer)
 	wearer.remove_status_effect(/datum/status_effect/agent_pinpointer/executive/booze)
 	wearer.remove_status_effect(/datum/status_effect/agent_pinpointer/executive/fortune)
+	vision_flags = NONE
+	color_cutoffs = null
 	REMOVE_TRAIT(wearer, TRAIT_THERMAL_VISION, REF(src))
 	qdel(wearer.GetComponent(/datum/component/money_sense/customs))
 	wearer.update_sight()
@@ -262,7 +268,7 @@
 	// Only ever touch the suite traits we own; anything added from outside (prescription lenses, say) stays put.
 	// We copy the list before mutating so we never poison a shared string_list cache that any other item
 	// (guard glasses or otherwise) might be pointing at.
-	var/static/list/owned_traits = list(TRAIT_SECURITY_HUD, TRAIT_MEDICAL_HUD, TRAIT_DIAGNOSTIC_HUD, TRAIT_RESEARCH_SCANNER, TRAIT_REAGENT_SCANNER)
+	var/static/list/owned_traits = list(TRAIT_SECURITY_HUD, TRAIT_MEDICAL_HUD, TRAIT_DIAGNOSTIC_HUD, TRAIT_RESEARCH_SCANNER, TRAIT_REAGENT_SCANNER, TRAIT_MADNESS_IMMUNE)
 	var/list/updated = LAZYLISTDUPLICATE(clothing_traits)
 	for(var/trait in owned_traits)
 		if(display_active && (trait in clothing_traits))
@@ -277,9 +283,13 @@
 		if(EXECUTIVE_MODE_DIAGNOSTIC)
 			updated |= TRAIT_DIAGNOSTIC_HUD
 		if(EXECUTIVE_MODE_RESEARCH)
+			// The scisec pair carries both scanners, so the do-it-all glasses have to as well.
 			updated |= TRAIT_RESEARCH_SCANNER
+			updated |= TRAIT_REAGENT_SCANNER
 		if(EXECUTIVE_MODE_REAGENT)
 			updated |= TRAIT_REAGENT_SCANNER
+		if(EXECUTIVE_MODE_MESON)
+			updated |= TRAIT_MADNESS_IMMUNE
 
 	clothing_traits = string_list(updated)
 
