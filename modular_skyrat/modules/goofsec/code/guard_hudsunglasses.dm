@@ -72,6 +72,15 @@
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/Initialize(mapload)
 	. = ..()
+	// The base clothing Initialize() runs clothing_traits through string_list(), which hands back a
+	// GLOBALLY SHARED list cached by content. That cache can be silently poisoned by ANY code anywhere
+	// in the game that mutates a shared list in place (this file used to be one of the culprits). Once
+	// poisoned, every future item with matching declared traits inherits the corruption at construction,
+	// before any of our own code runs. Rebuilding from initial() sidesteps the cache entirely: initial()
+	// reflects this type's compile-time declared value, unaffected by any runtime cache corruption, and
+	// LAZYLISTDUPLICATE gives each instance its own private list so we can never poison or be poisoned
+	// by anything else that happens to share our declared trait set.
+	clothing_traits = LAZYLISTDUPLICATE(initial(clothing_traits))
 	AddElement(/datum/element/gags_recolorable)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/equipped(mob/living/user, slot)
@@ -253,28 +262,32 @@
 	if(!istype(wearer) || wearer.glasses != src)
 		return
 
-	// only ever touch the suite traits we own. anything added from outside (prescription lenses, say) stays put.
+	// Only ever touch the suite traits we own; anything added from outside (prescription lenses, say) stays put.
+	// We copy the list before mutating so we never poison a shared string_list cache that any other item
+	// (guard glasses or otherwise) might be pointing at.
 	var/static/list/owned_traits = list(TRAIT_SECURITY_HUD, TRAIT_MEDICAL_HUD, TRAIT_DIAGNOSTIC_HUD, TRAIT_RESEARCH_SCANNER, TRAIT_REAGENT_SCANNER)
+	var/list/updated = LAZYLISTDUPLICATE(clothing_traits)
 	for(var/trait in owned_traits)
-		if(trait in clothing_traits)
+		if(display_active && (trait in clothing_traits))
 			REMOVE_CLOTHING_TRAIT(wearer, trait)
-			clothing_traits -= trait
+		updated -= trait
 
-	var/list/new_traits = list(TRAIT_SECURITY_HUD)
 	switch(mode)
 		if(EXECUTIVE_MODE_MEDICAL)
-			new_traits += TRAIT_MEDICAL_HUD
+			updated |= TRAIT_MEDICAL_HUD
 		if(EXECUTIVE_MODE_DIAGNOSTIC)
-			new_traits += TRAIT_DIAGNOSTIC_HUD
+			updated |= TRAIT_DIAGNOSTIC_HUD
 		if(EXECUTIVE_MODE_RESEARCH)
-			new_traits += TRAIT_RESEARCH_SCANNER
+			updated |= TRAIT_RESEARCH_SCANNER
 		if(EXECUTIVE_MODE_REAGENT)
-			new_traits += TRAIT_REAGENT_SCANNER
+			updated |= TRAIT_REAGENT_SCANNER
 
-	clothing_traits |= new_traits
+	clothing_traits = string_list(updated)
+
 	if(display_active)
-		for(var/trait in new_traits)
-			ADD_CLOTHING_TRAIT(wearer, trait)
+		for(var/trait in clothing_traits)
+			if(trait in owned_traits)
+				ADD_CLOTHING_TRAIT(wearer, trait)
 
 	update_extras(wearer)
 
