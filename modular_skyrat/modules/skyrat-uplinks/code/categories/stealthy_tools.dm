@@ -1,7 +1,7 @@
 /datum/uplink_item/stealthy_tools/announcement
 	name = "Fake Announcement"
 	desc = "A device that allows you to spoof an announcement to the station of your choice."
-	item = /obj/item/device/traitor_announcer
+	item = /obj/item/traitor_announcer
 	surplus = 0
 	progression_minimum = 20 MINUTES
 	cost = 3
