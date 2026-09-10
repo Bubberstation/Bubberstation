@@ -47,7 +47,6 @@
 		/obj/item/food/donut/laugh,
 		/obj/item/food/donut/jelly/laugh,
 		/obj/item/food/canned,
-		/obj/item/food/pie/cream,
 		/obj/item/grenade/chem_grenade/colorful,
 		/obj/item/grenade/chem_grenade/glitter,
 		/obj/item/implanter/sad_trombone,
@@ -84,8 +83,13 @@
 /obj/effect/clown_rift/process(seconds_per_tick)
 	if(formed)
 		pick_and_throw(seconds_per_tick)
+		for(var/mob/living/carbon/victim in view(5, src))
+			if(prob(33))
+				pie_victim(victim)
 		if(death_time < world.time)
 			explode()
+		else if(prob(10))
+			playsound(src, 'sound/items/bikehorn.ogg', 100, TRUE)
 	else if(form_time < world.time)
 		form()
 
@@ -96,26 +100,25 @@
 		var/obj/item/grenade/nade = to_throw
 		if(prob(5))
 			nade.arm_grenade() // I am an evil girl
-	var/list/victims = list()
-	for(var/mob/living/carbon/human/potential_victim in viewers(5, src))
-		victims += (potential_victim)
-	var/mob/living/carbon/human/victim = null
-	if(victims.len >= 3)
-		victim = pick(victims)
-	if(isnull(victim))
-		var/list/turf_targets = list()
-		for(var/turf/target in oview(5, src))
-			turf_targets += target
-		to_throw.throw_at(pick(turf_targets), 5, 2)
-		return
-	to_throw.throw_at(victim, 7, 5)
+	var/list/turf_targets = list()
+	for(var/turf/target in oview(5, src))
+		turf_targets += target
+	to_throw.throw_at(pick(turf_targets), 5, 2)
+	return
+
+/obj/effect/clown_rift/proc/pie_victim(mob/living/carbon/victim)
+	var/obj/item/food/pie/cream/evil_pie = new(src.loc)
+	evil_pie.throw_at(victim, 7, 5)
 
 /// create a last hail mary of clown items and qdel self
 /obj/effect/clown_rift/proc/explode()
 	playsound(src, 'modular_zubbers/sound/effects/clown/clown_rift_fade.ogg', 60, TRUE)
 	for(var/i=0, i<5, i++)
 		pick_and_throw()
+	for(var/mob/living/carbon/victim in view(5, src))
+		pie_victim(victim)
 	sleep(10)
+	new /mob/living/basic/clown_bug(src.loc)
 	qdel(src)
 
 /obj/effect/clown_rift/Destroy(force)
