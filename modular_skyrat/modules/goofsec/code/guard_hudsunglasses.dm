@@ -842,37 +842,37 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	/// Extra component types spawned alongside result on completion. Assoc list of type path to amount.
 	var/list/extra_parts
 
-/datum/crafting_recipe/hudsunguardmed_removal
+/datum/crafting_recipe/hudsunguard_removal/med
 	name = "Medsec HUD removal"
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/medical = 1)
 	extra_parts = list(/obj/item/clothing/glasses/hud/health = 1, /obj/item/clothing/glasses/sunglasses = 1)
 
-/datum/crafting_recipe/hudsunguardsci_removal
+/datum/crafting_recipe/hudsunguard_removal/sci
 	name = "Scisec HUD removal"
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/science = 1)
 	extra_parts = list(/obj/item/clothing/glasses/sunglasses/chemical = 1)
 
-/datum/crafting_recipe/hudsunguardengi_removal
+/datum/crafting_recipe/hudsunguard_removal/engi
 	name = "Meson HUD removal"
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering = 1)
 	extra_parts = list(/obj/item/clothing/glasses/meson = 1, /obj/item/clothing/glasses/sunglasses = 1)
 
-/datum/crafting_recipe/hudsunguardsrv_removal
+/datum/crafting_recipe/hudsunguard_removal/srv
 	name = "Service HUD removal"
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/service = 1)
 	extra_parts = list(/obj/item/clothing/glasses/sunglasses/reagent = 1)
 
-/datum/crafting_recipe/hudsunguardcargo_removal
+/datum/crafting_recipe/hudsunguard_removal/cargo
 	name = "Customs HUD removal"
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/customs = 1)
 	extra_parts = list(/obj/item/universal_scanner = 1, /obj/item/clothing/glasses/sunglasses = 1)
 
-/datum/crafting_recipe/hudsunguardblueshield_removal
+/datum/crafting_recipe/hudsunguard_removal/blueshield
 	name = "Blueshield HUD removal"
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/blueshield = 1)
 	extra_parts = list(/obj/item/clothing/glasses/sunglasses = 1)
 
-/datum/crafting_recipe/hudsunguardsilly_removal
+/datum/crafting_recipe/hudsunguard_removal/silly
 	name = "Silly HUD removal"
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/silly = 1)
 	extra_parts = list(/obj/item/clothing/glasses/sunglasses = 1)
