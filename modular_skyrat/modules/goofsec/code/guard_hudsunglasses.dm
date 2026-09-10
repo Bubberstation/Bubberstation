@@ -7,7 +7,9 @@
 #define HONK_GAG_SLIP "Slip"
 #define GUN_SPOTTER_RANGE 7
 #define GUN_SPOTTER_ICON_OFFSET -8
-#define EXECUTIVE_SWITCH_COOLDOWN (2 SECONDS)
+#define EXECUTIVE_SWITCH_COOLDOWN (1.2 SECONDS)
+/// How often the locator suites re-scan. The base pinpointer pings every 4 seconds, which feels sluggish on a HUD you cycle by hand.
+#define EXECUTIVE_PINPOINTER_PING (1 SECONDS)
 #define EXECUTIVE_MALFUNCTION_INTERVAL (4 SECONDS)
 #define EXECUTIVE_MALFUNCTION_TIME (45 SECONDS)
 // High capacity cell, lasts about an hour.
@@ -111,7 +113,7 @@
 	name = "scisec HUDsunglasses"
 	desc = "Sunglasses with a combined research and security HUD. The deep purple mirror lenses are perfect for working out exactly how far away you should be from whatever station-killing disaster the lab boys are cooking up today."
 	icon_state = "/obj/item/clothing/glasses/hud/security/sunglasses/guard/science"
-	clothing_traits = list(TRAIT_SECURITY_HUD, TRAIT_RESEARCH_SCANNER)
+	clothing_traits = list(TRAIT_SECURITY_HUD, TRAIT_RESEARCH_SCANNER, TRAIT_REAGENT_SCANNER)
 	greyscale_colors = "#585858#9900ff"
 	glass_colour_type = /datum/client_colour/glass_colour/guard/science
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.85, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 1)
@@ -267,6 +269,8 @@
 			REMOVE_CLOTHING_TRAIT(wearer, trait)
 		updated -= trait
 
+	// The security HUD is the baseline every mode keeps; the switch below only adds the mode's extra suite.
+	updated |= TRAIT_SECURITY_HUD
 	switch(mode)
 		if(EXECUTIVE_MODE_MEDICAL)
 			updated |= TRAIT_MEDICAL_HUD
@@ -455,6 +459,9 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 
 /atom/movable/screen/alert/status_effect/agent_pinpointer/executive
 	icon = 'modular_skyrat/modules/goofsec/icons/executive_pinpointer.dmi'
+	// Start on the "no lock yet" state so the locator is visible the instant it appears rather than
+	// rendering blank until the first scan resolves.
+	icon_state = "pinonnull"
 
 /atom/movable/screen/alert/status_effect/agent_pinpointer/executive/booze
 	name = "Refreshment Locator"
@@ -468,6 +475,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer/executive
 	minimum_range = EXECUTIVE_PINPOINTER_DIRECT
 	range_fuzz_factor = 0
+	tick_interval = EXECUTIVE_PINPOINTER_PING
 
 /datum/status_effect/agent_pinpointer/executive/on_apply()
 	. = ..()
@@ -913,6 +921,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 #undef GUN_SPOTTER_RANGE
 #undef GUN_SPOTTER_ICON_OFFSET
 #undef EXECUTIVE_SWITCH_COOLDOWN
+#undef EXECUTIVE_PINPOINTER_PING
 #undef EXECUTIVE_MALFUNCTION_INTERVAL
 #undef EXECUTIVE_MALFUNCTION_TIME
 #undef EXECUTIVE_POWER_DRAW
