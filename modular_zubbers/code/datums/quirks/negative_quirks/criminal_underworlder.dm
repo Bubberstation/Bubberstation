@@ -1,10 +1,9 @@
 /datum/quirk/criminal_underworlder
 	name = "Criminal Underworlder"
-	desc = "You have criminal connections and experience 'encountering' the law which makes you able to exploit others. You are suspicious to law enforcement and have existing security records. Expect random searches and questioning."
+	desc = "You have documented criminal connections and experience 'encountering' the law which makes you able to exploit others."
 	value = -2
 	medical_record_text = "Patient has been observed to have an inclination towards run-ins with the law."
 	security_record_text = "Person is known to have previous connections with criminals. DO NOT provide them with firearms or weapons!"
-	mob_trait = TRAIT_ALWAYS_SUSPICIOUS
 	icon = FA_ICON_PEOPLE_ROBBERY
 
 /datum/quirk/criminal_underworlder/add(client/client_source)

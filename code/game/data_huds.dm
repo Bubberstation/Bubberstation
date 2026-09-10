@@ -312,13 +312,6 @@ Security HUDs! Basic mode shows only the job.
 		set_hud_image_active(WANTED_HUD)
 		return
 
-//BUBBER EDIT BEGIN
-	if (HAS_TRAIT(src, TRAIT_ALWAYS_SUSPICIOUS))
-		set_hud_image_state(WANTED_HUD, "hudsuspected")
-		set_hud_image_active(WANTED_HUD)
-		return
-//BUBBER EDIT END
-
 	var/perp_name = get_face_name(get_id_name(""))
 
 	if(!perp_name || !GLOB.manifest)

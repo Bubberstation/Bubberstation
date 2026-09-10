@@ -1447,11 +1447,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 ///Trait given when a mob has been tipped
 #define TRAIT_MOB_TIPPED "mob_tipped"
 
-//BUBBER EDIT BEGIN
-/// Trait which self-identifies as a person of suspicion
-#define TRAIT_ALWAYS_SUSPICIOUS "always_suspicious"
-//BUBBER EDIT END
-
 /// Trait which self-identifies as an enemy of the law
 #define TRAIT_ALWAYS_WANTED "always_wanted"
 
