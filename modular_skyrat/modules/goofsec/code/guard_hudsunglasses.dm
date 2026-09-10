@@ -73,14 +73,9 @@
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/Initialize(mapload)
 	. = ..()
 	// The base clothing Initialize() runs clothing_traits through string_list(), which hands back a
-	// GLOBALLY SHARED list cached by content. That cache can be silently poisoned by ANY code anywhere
-	// in the game that mutates a shared list in place (this file used to be one of the culprits). Once
-	// poisoned, every future item with matching declared traits inherits the corruption at construction,
-	// before any of our own code runs. Rebuilding from initial() sidesteps the cache entirely: initial()
-	// reflects this type's compile-time declared value, unaffected by any runtime cache corruption, and
-	// LAZYLISTDUPLICATE gives each instance its own private list so we can never poison or be poisoned
-	// by anything else that happens to share our declared trait set.
-	clothing_traits = LAZYLISTDUPLICATE(initial(clothing_traits))
+	// GLOBALLY SHARED list cached by content. Take our own private copy of it so that nothing we do
+	// later can mutate the shared instance other items are reading from.
+	clothing_traits = LAZYLISTDUPLICATE(clothing_traits)
 	AddElement(/datum/element/gags_recolorable)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/equipped(mob/living/user, slot)
