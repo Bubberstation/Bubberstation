@@ -83,3 +83,6 @@
 // new maid outfit
 /obj/item/clothing/under/costume/maid
 	greyscale_config_worn_teshari = /datum/greyscale_config/maid/worn/teshari
+
+/obj/item/clothing/under/costume/villain
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/costume_teshari.dmi'
