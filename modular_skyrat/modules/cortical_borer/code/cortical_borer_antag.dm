@@ -67,11 +67,13 @@
 	var/list/parts = list()
 	parts += span_header("The [name] were:")
 	parts += printborerlist(members)
+	/* BUBBER EDIT - REMOVE GREENTEXT
 	var/survival = FALSE
 	for(var/mob/living/basic/cortical_borer/check_borer in GLOB.cortical_borers)
 		if(check_borer.stat == DEAD)
 			continue
 		survival = TRUE
+
 	if(survival)
 		parts += span_greentext("Borers were able to survive the shift!")
 	else
@@ -87,7 +89,7 @@
 	if(GLOB.successful_blood_chem >= GLOB.objective_blood_borer)
 		parts += span_greentext("Borers were able to learn enough chemicals through the blood!")
 	else
-		parts += span_redtext("Borers were unable to learn enough chemicals through the blood!")
+		parts += span_redtext("Borers were unable to learn enough chemicals through the blood!") BUBBER EDIT END */
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
 /datum/round_event_control/cortical_borer
