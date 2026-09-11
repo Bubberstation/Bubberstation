@@ -84,13 +84,16 @@
 	qdel(src)
 
 /obj/effect/magical_light/proc/handle_new_entry(atom/movable/entered)
-	if(istype(entered, /mob/living))
+	if(effect_types.len && istype(entered, /mob/living))
 		var/mob/living/entered_living = entered
 		if(entered_living.can_block_magic(MAGIC_RESISTANCE | MAGIC_RESISTANCE_HOLY))
 			return
 		for(var/to_apply in src.effect_types)
-			if(prob(25))
+			if(prob(50/effect_types.len))
 				entered_living.apply_status_effect(to_apply, src.potency)
+
+/obj/effect/magical_light/impotent
+	initial_effect_count = 0
 
 // *-----------------------------------------------*
 // |Special types meant for mostly EVIL ADMIN DEEDS|
