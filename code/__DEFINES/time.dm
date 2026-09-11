@@ -36,6 +36,7 @@
 #define PRIDE_WEEK "Pride Month" // BUBBER EDIT CHANGE - Pride Month
 #define MOTH_WEEK "Moth Week"
 #define IAN_HOLIDAY "Ian's Birthday"
+#define ACCURACY_INTERNATIONAL_DAY "Accuracy International Day"
 #define HOTDOG_DAY "National Hot Dog Day"
 #define ICE_CREAM_DAY "National Ice Cream Day"
 #define CHERNOBYL_ANNIVERSARY "Chernobyl Disaster Remembrance Day"

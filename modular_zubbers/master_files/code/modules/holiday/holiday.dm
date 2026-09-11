@@ -150,6 +150,16 @@
 /datum/holiday/pride_week
 	begin_day = 1
 
+/datum/holiday/accuracyinternationalday
+	name = ACCURACY_INTERNATIONAL_DAY
+	begin_day = 10
+	end_day = 11
+	begin_month = SEPTEMBER
+	holiday_mail = list(
+		/obj/effect/spawner/random/exotic/accuracyinternationalday,
+		/obj/item/toy/plush/narplush,
+	)
+
 #undef COLOR_PURPLE_LIGHT
 #undef COLOR_PURPLE_DARK
 #undef COLOR_ORANGE_LIGHT
