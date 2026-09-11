@@ -854,9 +854,11 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	)
 
 /datum/crafting_recipe/hudsunguard_removal
-	// Abstract parent for the per-variant removals. It has no reqs of its own, so it must never be
-	// craftable in its own right or it reads as "make a security HUD out of thin air".
-	non_craftable = TRUE
+	// Abstract parent for the per-variant removals. It has no reqs of its own, so it must be kept out of
+	// the recipe list or it reads as "make a security HUD out of thin air".
+	// Do NOT use non_craftable for this: that var is INHERITED, so it also suppresses the Make button on
+	// every subtype. abstract_type excludes only this parent.
+	abstract_type = /datum/crafting_recipe/hudsunguard_removal
 	result = /obj/item/clothing/glasses/hud/security
 	time = 2 SECONDS
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
