@@ -848,9 +848,21 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 // and requirement matching is by ispath(), so every guard pair qualifies as a subtype - including the two
 // that should never be disassembled. Blacklisting them leaves the vanilla recipe working for everything else.
 /datum/crafting_recipe/hudsunsecremoval
+	// Guard glasses use the guard removal recipes; the vanilla one leaves vanilla security gear alone.
+	// It asks for /hud/security/sunglasses and matching is by ispath(), so every guard variant qualifies
+	// as a subtype unless it is excluded here. NOTE: this blacklist is an EXACT type match, not a
+	// typepath check, so the parent alone does not cover the subtypes - EVERY new guard variant must be
+	// added to this list or the vanilla recipe will silently start eating it.
 	blacklist = list(
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard,
 		/obj/item/clothing/glasses/hud/security/sunglasses/guard/blueshield,
 		/obj/item/clothing/glasses/hud/security/sunglasses/guard/command,
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/customs,
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering,
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/medical,
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/science,
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/service,
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/silly,
 	)
 
 /datum/crafting_recipe/hudsunguard_removal
@@ -896,12 +908,6 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 	desc = "Strips the appraisal suite out of a customs pair, leaving a bare security HUD, the donor scanner and the sunglasses."
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/customs = 1)
 	extra_parts = list(/obj/item/universal_scanner = 1, /obj/item/clothing/glasses/sunglasses = 1)
-
-/datum/crafting_recipe/hudsunguard_removal/silly
-	name = "Silly HUD removal"
-	desc = "Strips the bananium nonsense out of a silly pair, leaving a bare security HUD and the sunglasses."
-	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/silly = 1)
-	extra_parts = list(/obj/item/clothing/glasses/sunglasses = 1)
 
 // Scoped completion hook: only guard-removal recipes carry extra_parts, so this is a no-op for every
 // other recipe that results in a plain security HUD (there currently are none, but future-proofed anyway).
