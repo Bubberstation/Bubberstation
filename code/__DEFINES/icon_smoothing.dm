@@ -182,7 +182,6 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_CONCRETE_WALLS S_OBJ(18) ///turf/closed/wall/concrete
 
 // BUBBER EDIT ADDITION
-#define SMOOTH_GROUP_SHIPWALLS S_OBJ(19)	///turf/closed/wall/mineral/titanium/spaceship
 #define SMOOTH_GROUP_STONE_WALLS S_OBJ(20) ///turf/closed/wall/mineral/stone, /obj/structure/falsewall/stone
 //BUBBER EDIT END
 
