@@ -9,6 +9,8 @@
 	light_power = 0.3
 	light_system = OVERLAY_LIGHT
 	light_on = TRUE
+	layer = FLY_LAYER
+	plane = ABOVE_GAME_PLANE
 
 	/// The strength of the effects given out, might change length or other
 	/// things, see the /datum/status_effect/magical_light types
@@ -23,10 +25,6 @@
 	var/turf/our_turf = get_turf(src)
 	if(HAS_TRAIT(our_turf, TRAIT_TURF_BLESSED) | isnull(our_turf))
 		return INITIALIZE_HINT_QDEL
-	RegisterSignal(our_turf, COMSIG_ATOM_ENTERED, PROC_REF(on_enter))
-	RegisterSignal(our_turf, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON, PROC_REF(on_initialized))
-	RegisterSignal(our_turf, SIGNAL_ADDTRAIT(TRAIT_TURF_BLESSED), PROC_REF(on_bless))
-	RegisterSignal(our_turf, COMSIG_BIBLE_SMACKED, PROC_REF(on_bless))
 
 	var/randomized_color = rgb2hsv("#" + random_color())
 	randomized_color[2] = clamp(randomized_color[2], 5, 50)
@@ -41,6 +39,12 @@
 			break
 		effect_types += type
 
+	RegisterSignal(our_turf, COMSIG_ATOM_ENTERED, PROC_REF(on_enter))
+	RegisterSignal(our_turf, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON, PROC_REF(on_initialized))
+	RegisterSignal(our_turf, SIGNAL_ADDTRAIT(TRAIT_TURF_BLESSED), PROC_REF(on_bless))
+	RegisterSignal(our_turf, COMSIG_BIBLE_SMACKED, PROC_REF(on_bless))
+
+
 /obj/effect/magical_light/Destroy(force)
 	. = ..()
 	var/turf/our_turf = get_turf(src)
@@ -53,21 +57,21 @@
 
 /obj/effect/magical_light/examine(mob/user)
 	. = ..()
-	if(effect_types.len <= 0)
-		return
-	if(user.mind?.holy_role >= HOLY_ROLE_PRIEST || IS_WIZARD(user) || isobserver(user))
+	if(effect_types.len < 0 && user.mind?.holy_role >= HOLY_ROLE_PRIEST || IS_WIZARD(user) || isobserver(user))
 		var/magic_desc = ""
 		for(var/i in 1 to effect_types.len)
 			var/datum/status_effect/magical_light/light_eff = effect_types[i]
 			if(i != 1 && i != effect_types.len)
 				magic_desc += ","
-			else if (i == effect_types.len)
+			else if (i == effect_types.len && effect_types.len > 1)
 				magic_desc += ", and" // Oxford comma :)
 			magic_desc += " [light_eff::special_description]"
 			if (i == effect_types.len)
 				magic_desc += "."
 
 		. += span_notice("The lights are charged with magic that has[magic_desc]")
+	else
+		. += span_notice("Feels like the chaplain might know more about these.")
 
 
 /obj/effect/magical_light/proc/on_enter(datum/source, atom/movable/entered)
@@ -91,9 +95,14 @@
 		for(var/to_apply in src.effect_types)
 			if(prob(50/effect_types.len))
 				entered_living.apply_status_effect(to_apply, src.potency)
+				// TODO: Cooldown whe application procs
+
 
 /obj/effect/magical_light/impotent
 	initial_effect_count = 0
+
+/obj/effect/magical_light/potent
+	potency = 2
 
 // *-----------------------------------------------*
 // |Special types meant for mostly EVIL ADMIN DEEDS|
@@ -101,8 +110,8 @@
 // |Not for the random event, holy shit            |
 // *-----------------------------------------------*
 
-/obj/effect/magical_light/potent
-	potency = 3
+/obj/effect/magical_light/super_potent
+	potency = 4
 
 // Todo: Give this thing like a mixed color filter/overlay
 /obj/effect/magical_light/mixed

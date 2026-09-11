@@ -1,5 +1,5 @@
 #define MAGICAL_BLIND_BASE_TIME 5 SECONDS
-#define MAGICAL_HUNGER_MULTIPLIER 8
+#define MAGICAL_HUNGER_MULTIPLIER 10
 #define BLOOD_DRAIN_ON_TICK -10
 
 /datum/status_effect/magical_light/blindness
@@ -26,7 +26,7 @@
 // Makes you hungee
 /datum/status_effect/magical_light/hunger
 	id = "magical_light_hunger"
-	duration = 60 SECONDS
+	duration = 120 SECONDS
 	tick_interval = STATUS_EFFECT_NO_TICK
 	alert_type = null
 	special_description = "nutriment draining properties"
