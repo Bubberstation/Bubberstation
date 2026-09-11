@@ -867,31 +867,37 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 
 /datum/crafting_recipe/hudsunguard_removal/med
 	name = "Medsec HUD removal"
+	desc = "Strips the medical suite out of a medsec pair, leaving a bare security HUD, the donor health HUD and the sunglasses."
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/medical = 1)
 	extra_parts = list(/obj/item/clothing/glasses/hud/health = 1, /obj/item/clothing/glasses/sunglasses = 1)
 
 /datum/crafting_recipe/hudsunguard_removal/sci
 	name = "Scisec HUD removal"
+	desc = "Strips the science suite out of a scisec pair, leaving a bare security HUD and the donor science glasses."
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/science = 1)
 	extra_parts = list(/obj/item/clothing/glasses/sunglasses/chemical = 1)
 
 /datum/crafting_recipe/hudsunguard_removal/engi
 	name = "Meson HUD removal"
+	desc = "Strips the meson suite out of a meson pair, leaving a bare security HUD, the donor meson scanner and the sunglasses."
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering = 1)
 	extra_parts = list(/obj/item/clothing/glasses/meson = 1, /obj/item/clothing/glasses/sunglasses = 1)
 
 /datum/crafting_recipe/hudsunguard_removal/srv
 	name = "Service HUD removal"
+	desc = "Strips the service suite out of a service pair, leaving a bare security HUD and the donor reagent glasses."
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/service = 1)
 	extra_parts = list(/obj/item/clothing/glasses/sunglasses/reagent = 1)
 
 /datum/crafting_recipe/hudsunguard_removal/cargo
 	name = "Customs HUD removal"
+	desc = "Strips the appraisal suite out of a customs pair, leaving a bare security HUD, the donor scanner and the sunglasses."
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/customs = 1)
 	extra_parts = list(/obj/item/universal_scanner = 1, /obj/item/clothing/glasses/sunglasses = 1)
 
 /datum/crafting_recipe/hudsunguard_removal/silly
 	name = "Silly HUD removal"
+	desc = "Strips the bananium nonsense out of a silly pair, leaving a bare security HUD and the sunglasses."
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/guard/silly = 1)
 	extra_parts = list(/obj/item/clothing/glasses/sunglasses = 1)
 
