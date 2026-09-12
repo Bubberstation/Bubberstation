@@ -89,7 +89,7 @@
 	if(unrestricted_side(user))
 		return TRUE
 
-	if(engineering_override || fire_active)
+	if(engineering_override)
 		var/mob/living/carbon/human/interacting_human = user
 		if(!istype(interacting_human))
 			return ..()

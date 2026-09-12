@@ -117,6 +117,15 @@
 	job = /datum/job/paramedic
 	honorifics += list("Paramedic", "Emergency Medical Technician", "First Responder", "E.M.T.")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
+	extra_access = list(
+		ACCESS_CARGO,
+		ACCESS_SURGERY,
+		ACCESS_VIROLOGY,
+		ACCESS_PHARMACY,
+		ACCESS_MINERAL_STOREROOM,
+		ACCESS_MINING,
+		ACCESS_MINING_STATION,
+		)
 	return ..()
 
 /datum/id_trim/job/orderly/
