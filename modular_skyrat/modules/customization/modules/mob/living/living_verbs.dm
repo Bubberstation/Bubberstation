@@ -42,7 +42,7 @@ GAME_VERB_DESC(/mob/living, narrate, "Narrate", "Allows you to send a narration 
 		to_chat(user, span_danger("Speech is currently admin-disabled."))
 		return
 
-	if(!IS_UNCONSCIOUS_OR_CRIT(user))
+	if(IS_UNCONSCIOUS_OR_CRIT(user))
 		to_chat(user, span_warning("You can't narrate right now..."))
 		return
 
