@@ -1,3 +1,4 @@
+#define INTERACTION_MENU_SELECTION_RANGE 3
 
 /datum/component/interactable
 	/// A hard reference to the parent
@@ -8,6 +9,8 @@
 	var/interact_next = 0
 	///Holds a reference to a relayed body if one exists
 	var/obj/body_relay = null
+	/// Per-viewer target choices; the owning component remains unchanged.
+	var/list/selected_characters = list()
 
 /datum/component/interactable/Initialize(...)
 	if(QDELETED(parent))
@@ -41,6 +44,7 @@
 /datum/component/interactable/Destroy(force, silent)
 	self = null
 	interactions = null
+	selected_characters = null
 	return ..()
 
 /datum/component/interactable/proc/open_interaction_menu(datum/source, mob/user)
@@ -81,7 +85,39 @@
 	data["arousalLimit"] = AROUSAL_LIMIT
 	return data
 
+/// Visible nearby humans with interaction components; selection is revalidated on use.
+/datum/component/interactable/proc/get_selectable_characters(mob/user)
+	var/list/characters = list()
+	if(ishuman(user) && user.GetComponent(/datum/component/interactable))
+		characters += user
+	for(var/mob/living/carbon/human/person in view(INTERACTION_MENU_SELECTION_RANGE, user))
+		if(person == user || QDELETED(person) || !can_see(user, person))
+			continue
+		if(person.GetComponent(/datum/component/interactable))
+			characters += person
+	return characters
+
+/datum/component/interactable/ui_close(mob/user)
+	selected_characters -= REF(user)
+	return ..()
+
+/// Resolve a viewer's choice without sharing selection with other open menus.
+/datum/component/interactable/proc/get_selected_component(mob/user)
+	var/datum/weakref/selected_ref = selected_characters[REF(user)]
+	if(!selected_ref)
+		return src
+	var/mob/living/carbon/human/selected = selected_ref.resolve()
+	if(QDELETED(selected) || !(selected in get_selectable_characters(user)))
+		selected_characters -= REF(user)
+		return src
+	var/datum/component/interactable/selected_component = selected.GetComponent(/datum/component/interactable)
+	return selected_component || src
+
 /datum/component/interactable/ui_data(mob/user)
+	var/datum/component/interactable/selected_component = get_selected_component(user)
+	return selected_component.build_ui_data(user)
+
+/datum/component/interactable/proc/build_ui_data(mob/user)
 	var/list/data = list()
 	var/list/descriptions = list()
 	var/list/categories = list()
@@ -106,9 +142,23 @@
 	data["ref_user"] = REF(user)
 	data["ref_self"] = REF(self)
 	data["self"] = self.name
+	data["profile"] = list(
+		"name" = self.name,
+		"headshot" = interaction_panel_get_headshot(self),
+		"details" = interaction_panel_build_anatomy_details(self),
+		"tags" = interaction_panel_erp_enabled(user) ? interaction_panel_build_status_tags(self) : list(),
+	)
+	data["self_data"] = interaction_panel_build_self_data(user)
+	data["theme"] = interaction_panel_read_mob_character_pref(user, /datum/preference/choiced/interaction_menu_theme) || "default"
+	var/list/characters = list()
+	for(var/mob/living/carbon/human/person as anything in get_selectable_characters(user))
+		characters += list(list("name" = person.name, "ref" = REF(person)))
+	data["characters"] = characters
 	if(body_relay)
 		if(!can_see(user, self))
 			data["self"] = body_relay.name
+			// Do not reveal the identity or appearance behind a body relay.
+			data["profile"] = list("name" = body_relay.name, "headshot" = "", "details" = list(), "tags" = list())
 	data["block_interact"] = interact_next >= world.time
 	data["interactions"] = categories
 	data["erp_interaction"] = self.client?.prefs?.read_preference(/datum/preference/toggle/erp)
@@ -172,7 +222,7 @@
 		"img" = (item && can_lewd_strip(source, target, name)) ? icon2base64(icon(item.icon, item.icon_state, SOUTH, 1)) : null
 		)
 
-/datum/component/interactable/ui_act(action, list/params)
+/datum/component/interactable/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -180,16 +230,58 @@
 	if(!ishuman(usr))
 		return
 
+	if(action == "set_selected")
+		var/mob/living/carbon/human/selected = locate(params["ref"])
+		if(QDELETED(selected) || !(selected in get_selectable_characters(usr)))
+			return FALSE
+		var/datum/component/interactable/selected_component = selected.GetComponent(/datum/component/interactable)
+		if(!selected_component)
+			return FALSE
+		selected_component.build_interactions_list()
+		selected_characters[REF(usr)] = WEAKREF(selected)
+		return TRUE
+
+	var/datum/component/interactable/selected_component = get_selected_component(usr)
+	// Reject an action from a stale view after the selected character changes or leaves.
+	if(params["selfref"] && params["selfref"] != REF(selected_component.self))
+		return FALSE
+	if(params["userref"] && params["userref"] != REF(usr))
+		return FALSE
+	return selected_component.handle_ui_action(action, params, usr)
+
+/// Dispatch using the selected component and the authenticated viewer.
+/datum/component/interactable/proc/handle_ui_action(action, list/params, mob/living/carbon/human/viewer)
+	// Profile actions always act as the authenticated UI user.
+	switch(action)
+		if("set_theme")
+			var/datum/preference/choiced/theme_preference = GLOB.preference_entries[/datum/preference/choiced/interaction_menu_theme]
+			if(!(params["theme"] in theme_preference.get_choices()))
+				return FALSE
+			return interaction_panel_write_mob_character_pref(viewer, /datum/preference/choiced/interaction_menu_theme, params["theme"])
+		if("open_examine")
+			viewer.run_examinate(body_relay && !can_see(viewer, self) ? body_relay : self)
+			return TRUE
+		if("set_self_preference")
+			interaction_panel_set_self_preference(viewer, params["pref_type"], params["pref_value"])
+			return TRUE
+		if("set_genital_visibility")
+			if(interaction_panel_erp_enabled(viewer))
+				interaction_panel_set_genital_visibility(viewer, params["slot"], text2num(params["visibility"]))
+			return TRUE
+		if("toggle_underwear")
+			interaction_panel_toggle_underwear(viewer, params["kind"])
+			return TRUE
+
 	if(params["interaction"])
 		var/interaction_id = params["interaction"]
 		if(GLOB.interaction_instances[interaction_id])
-			var/mob/living/carbon/human/user = locate(params["userref"])
+			var/mob/living/carbon/human/user = viewer
 			if(!can_interact(GLOB.interaction_instances[interaction_id], user))
 				return FALSE
 			if(body_relay && !can_see(user, self))
-				GLOB.interaction_instances[interaction_id].act(user, locate(params["selfref"]), body_relay)
+				GLOB.interaction_instances[interaction_id].act(user, self, body_relay)
 			else
-				GLOB.interaction_instances[interaction_id].act(user, locate(params["selfref"]))
+				GLOB.interaction_instances[interaction_id].act(user, self)
 			var/datum/component/interactable/interaction_component = user.GetComponent(/datum/component/interactable)
 			interaction_component.interact_last = world.time
 			interact_next = interaction_component.interact_last + INTERACTION_COOLDOWN
@@ -199,8 +291,8 @@
 	if(params["item_slot"])
 		// This code should be easy enough to follow... I hope.
 		var/item_index = params["item_slot"]
-		var/mob/living/carbon/human/source = locate(params["userref"])
-		var/mob/living/carbon/human/target = locate(params["selfref"])
+		var/mob/living/carbon/human/source = viewer
+		var/mob/living/carbon/human/target = self
 		var/obj/item/clothing/sextoy/new_item = source.get_active_held_item()
 		var/obj/item/clothing/sextoy/existing_item = target.vars[item_index]
 
@@ -290,3 +382,271 @@
 			return item.lewd_slot_flags & LEWD_SLOT_NIPPLES
 		else
 			return FALSE
+
+// Shared profile helpers used by the Interaction Menu and Scene Assistant.
+
+/proc/interaction_panel_get_played_character_slot(mob/living/target)
+	if(!target)
+		return 0
+	if(target.rp_panel && target.rp_panel.character_slot)
+		return target.rp_panel.character_slot
+	var/slot = 0
+	if(target.mind?.original_character_slot_index)
+		slot = target.mind.original_character_slot_index
+	else
+		slot = interaction_panel_find_character_slot_by_name(target)
+	if(slot && target.rp_panel)
+		target.rp_panel.character_slot = slot
+	return slot
+
+/proc/interaction_panel_find_character_slot_by_name(mob/living/target)
+	var/datum/preferences/prefs = target?.client?.prefs
+	if(!prefs?.savefile)
+		return 0
+	var/mob_name = target.real_name || target.name
+	if(!mob_name)
+		return 0
+	for(var/slot in 1 to prefs.max_save_slots)
+		var/list/save_data = prefs.savefile.get_entry("character[slot]")
+		if(!islist(save_data))
+			continue
+		if(save_data["real_name"] == mob_name)
+			return slot
+	return 0
+
+/proc/interaction_panel_prefs_cache_belongs_to_mob(mob/living/target, datum/preferences/prefs)
+	if(!target || !prefs || !prefs.value_cache)
+		return FALSE
+	var/cached_name = prefs.value_cache[/datum/preference/name/real_name]
+	if(!cached_name)
+		return FALSE
+	return cached_name == (target.real_name || target.name)
+
+/proc/interaction_panel_read_mob_character_pref(mob/living/target, pref_type)
+	var/datum/preferences/prefs = target?.client?.prefs
+	var/datum/preference/preference_entry = GLOB.preference_entries[pref_type]
+	if(!preference_entry)
+		return null
+	if(preference_entry.savefile_identifier != PREFERENCE_CHARACTER)
+		return prefs?.read_preference(pref_type)
+	var/slot = interaction_panel_get_played_character_slot(target)
+	if(slot && prefs?.savefile)
+		var/list/save_data = prefs.savefile.get_entry("character[slot]")
+		var/value = preference_entry.read(save_data, prefs)
+		if(!isnull(value))
+			return value
+	return interaction_panel_character_pref_fallback(preference_entry, target)
+
+/proc/interaction_panel_character_pref_fallback(datum/preference/preference_entry, mob/living/target)
+	if(istype(preference_entry, /datum/preference/color/scene_assistant_name_color))
+		return default_scene_assistant_name_color(target?.real_name || target?.name || target?.ckey)
+	return preference_entry.create_default_value()
+
+/proc/interaction_panel_write_mob_character_pref(mob/living/target, pref_type, value)
+	var/datum/preferences/prefs = target?.client?.prefs
+	if(!prefs)
+		return FALSE
+	var/datum/preference/preference_entry = GLOB.preference_entries[pref_type]
+	if(!preference_entry)
+		return FALSE
+	if(preference_entry.savefile_identifier != PREFERENCE_CHARACTER)
+		if(!prefs.write_preference(preference_entry, value))
+			return FALSE
+		prefs.recently_updated_keys |= preference_entry.type
+		prefs.save_preferences()
+		return TRUE
+	var/slot = interaction_panel_get_played_character_slot(target)
+	if(!slot)
+		return FALSE
+	var/tree_key = "character[slot]"
+	var/list/save_data = prefs.savefile.get_entry(tree_key)
+	if(isnull(save_data))
+		prefs.savefile.set_entry(tree_key, list())
+		save_data = prefs.savefile.get_entry(tree_key)
+	var/new_value = preference_entry.deserialize(value, prefs)
+	if(!preference_entry.write(save_data, new_value, prefs))
+		return FALSE
+	if(prefs.default_slot == slot && interaction_panel_prefs_cache_belongs_to_mob(target, prefs))
+		prefs.value_cache[preference_entry.type] = new_value
+	prefs.savefile.save()
+	return TRUE
+
+/proc/interaction_panel_erp_enabled(mob/living/target)
+	if(CONFIG_GET(flag/disable_erp_preferences))
+		return FALSE
+	return target?.client?.prefs?.read_preference(/datum/preference/toggle/master_erp_preferences) && target.client.prefs.read_preference(/datum/preference/toggle/erp)
+
+/proc/interaction_panel_get_headshot(mob/living/target)
+	if(!target)
+		return ""
+	if(ishuman(target))
+		var/mob/living/carbon/human/human_target = target
+		return human_target.dna?.features["headshot"] || ""
+	if(target.client?.ckey)
+		var/datum/preference/text/headshot/pref = GLOB.preference_entries[/datum/preference/text/headshot]
+		if(pref?.stored_link)
+			return pref.stored_link[target.client.ckey] || ""
+	return ""
+
+/proc/interaction_panel_get_preference_status(choice)
+	if(!choice || choice == "No" || choice == "None")
+		return "NO"
+	if(findtext(choice, "Ask"))
+		return "L(OOC)"
+	if(findtext(choice, "Check"))
+		return "NOTE"
+	return "YES"
+
+/proc/interaction_panel_build_anatomy_details(mob/living/target)
+	var/list/details = list()
+	if(!ishuman(target))
+		return details
+	var/mob/living/carbon/human/human_target = target
+	if(human_target.has_arms(REQUIRE_GENITAL_ANY) > 0)
+		details += human_target.is_hands_uncovered() ? "has covered hands" : "has uncovered hands"
+	if(human_target.has_feet(REQUIRE_GENITAL_ANY) > 0)
+		if(human_target.is_barefoot() && (!human_target.socks || human_target.socks == "Nude" || (human_target.underwear_visibility & UNDERWEAR_HIDE_SOCKS)))
+			details += "is barefoot"
+		else if(human_target.is_barefoot())
+			details += "is wearing socks"
+		else
+			details += "has feet covered"
+	var/obj/item/bodypart/head/head_part = human_target.get_bodypart(BODY_ZONE_HEAD)
+	if(head_part)
+		var/mouth_covered = (human_target.wear_mask?.flags_inv & HIDEFACE) || (human_target.head?.flags_inv & HIDEFACE)
+		details += mouth_covered ? "has a mouth, which is covered" : "has a mouth, which is uncovered"
+	details += human_target.is_head_uncovered() ? "has head covered" : "has head uncovered"
+	if(human_target.is_topless() && human_target.is_bottomless())
+		details += "is naked"
+	else if(human_target.is_topless())
+		details += "is topless"
+	else if(human_target.is_bottomless())
+		details += "is bottomless"
+	var/static/list/genital_lines = list(
+		ORGAN_SLOT_PENIS = "has a penis",
+		ORGAN_SLOT_TESTICLES = "has testicles",
+		ORGAN_SLOT_VAGINA = "has a vagina",
+		ORGAN_SLOT_BREASTS = "has breasts",
+		ORGAN_SLOT_ANUS = "has an anus",
+	)
+	for(var/slot in genital_lines)
+		var/obj/item/organ/genital/genital = human_target.get_organ_slot(slot)
+		if(istype(genital) && genital.is_exposed())
+			details += genital_lines[slot]
+	return details
+
+/proc/interaction_panel_build_status_tags(mob/living/target)
+	var/list/tags = list()
+	if(!target.client?.prefs)
+		return tags
+	tags += list(list("label" = "ERP", "value" = interaction_panel_get_preference_status(interaction_panel_read_mob_character_pref(target, /datum/preference/choiced/erp_status))))
+	tags += list(list("label" = "HYPNOSIS", "value" = interaction_panel_get_preference_status(interaction_panel_read_mob_character_pref(target, /datum/preference/choiced/erp_status_hypno))))
+	tags += list(list("label" = "VORE", "value" = interaction_panel_get_preference_status(interaction_panel_read_mob_character_pref(target, /datum/preference/choiced/erp_status_v))))
+	tags += list(list("label" = "NON-CON", "value" = interaction_panel_get_preference_status(interaction_panel_read_mob_character_pref(target, /datum/preference/choiced/erp_status_nc))))
+	var/mechanics = interaction_panel_read_mob_character_pref(target, /datum/preference/choiced/erp_status_mechanics)
+	tags += list(list("label" = "MECHANICS", "value" = (!mechanics || mechanics == "None") ? "NO" : uppertext(mechanics)))
+	return tags
+
+/proc/interaction_panel_build_self_data(mob/living/holder)
+	var/list/data = list(
+		"show_erp" = interaction_panel_erp_enabled(holder),
+		"autocum" = FALSE,
+		"inactive" = FALSE,
+		"prefs" = list(),
+		"genitals" = list(),
+		"underwear" = list(),
+	)
+	if(!ishuman(holder))
+		return data
+	var/mob/living/carbon/human/human_holder = holder
+	data["underwear"] = list(
+		"underwear" = !!(human_holder.underwear_visibility & UNDERWEAR_HIDE_UNDIES),
+		"bra" = !!(human_holder.underwear_visibility & UNDERWEAR_HIDE_BRA),
+		"undershirt" = !!(human_holder.underwear_visibility & UNDERWEAR_HIDE_SHIRT),
+		"socks" = !!(human_holder.underwear_visibility & UNDERWEAR_HIDE_SOCKS),
+	)
+	if(!data["show_erp"] || !holder.client?.prefs)
+		return data
+	data["autocum"] = holder.client.prefs.read_preference(/datum/preference/toggle/erp/autocum)
+	var/static/list/pref_map = list(
+		"erp_status" = /datum/preference/choiced/erp_status,
+		"erp_status_nc" = /datum/preference/choiced/erp_status_nc,
+		"erp_status_v" = /datum/preference/choiced/erp_status_v,
+		"erp_status_hypno" = /datum/preference/choiced/erp_status_hypno,
+		"erp_status_mechanics" = /datum/preference/choiced/erp_status_mechanics,
+	)
+	var/list/pref_payload = list()
+	for(var/key in pref_map)
+		var/datum/preference/choiced/pref = GLOB.preference_entries[pref_map[key]]
+		pref_payload[key] = list(
+			"value" = interaction_panel_read_mob_character_pref(holder, pref_map[key]),
+			"options" = pref.get_choices(),
+		)
+	data["prefs"] = pref_payload
+	var/static/list/genital_slots = list(
+		ORGAN_SLOT_PENIS = "Penis",
+		ORGAN_SLOT_TESTICLES = "Testicles",
+		ORGAN_SLOT_VAGINA = "Vagina",
+		ORGAN_SLOT_ANUS = "Anus",
+		ORGAN_SLOT_BREASTS = "Breasts",
+	)
+	var/list/genitals = list()
+	for(var/slot in genital_slots)
+		var/obj/item/organ/genital/genital = human_holder.get_organ_slot(slot)
+		if(!istype(genital) || genital.visibility_preference == GENITAL_SKIP_VISIBILITY)
+			continue
+		genitals += list(list(
+			"slot" = slot,
+			"name" = genital_slots[slot],
+			"visibility" = genital.visibility_preference,
+		))
+	data["genitals"] = genitals
+	return data
+
+/proc/interaction_panel_set_self_preference(mob/living/holder, pref_type, pref_value)
+	if(!holder.client?.prefs || !pref_type || isnull(pref_value) || !interaction_panel_erp_enabled(holder))
+		return
+	var/static/list/pref_map = list(
+		"erp_status" = /datum/preference/choiced/erp_status,
+		"erp_status_nc" = /datum/preference/choiced/erp_status_nc,
+		"erp_status_v" = /datum/preference/choiced/erp_status_v,
+		"erp_status_hypno" = /datum/preference/choiced/erp_status_hypno,
+		"erp_status_mechanics" = /datum/preference/choiced/erp_status_mechanics,
+	)
+	var/pref_path = pref_map[pref_type]
+	if(!pref_path)
+		return
+	interaction_panel_write_mob_character_pref(holder, pref_path, pref_value)
+
+/proc/interaction_panel_set_genital_visibility(mob/living/holder, organ_slot, visibility)
+	if(!ishuman(holder) || !organ_slot)
+		return
+	if(!(visibility in list(GENITAL_NEVER_SHOW, GENITAL_HIDDEN_BY_CLOTHES, GENITAL_ALWAYS_SHOW)))
+		return
+	var/mob/living/carbon/human/human_holder = holder
+	var/obj/item/organ/genital/genital = human_holder.get_organ_slot(organ_slot)
+	if(!genital)
+		return
+	genital.visibility_preference = visibility
+	human_holder.update_body()
+	SEND_SIGNAL(human_holder, COMSIG_HUMAN_TOGGLE_GENITALS)
+
+/proc/interaction_panel_toggle_underwear(mob/living/holder, kind)
+	if(!ishuman(holder))
+		return
+	var/mob/living/carbon/human/human_holder = holder
+	switch(kind)
+		if("underwear")
+			human_holder.underwear_visibility ^= UNDERWEAR_HIDE_UNDIES
+		if("bra")
+			human_holder.underwear_visibility ^= UNDERWEAR_HIDE_BRA
+		if("undershirt")
+			human_holder.underwear_visibility ^= UNDERWEAR_HIDE_SHIRT
+		if("socks")
+			human_holder.underwear_visibility ^= UNDERWEAR_HIDE_SOCKS
+		else
+			return
+	human_holder.update_body()
+	SEND_SIGNAL(human_holder, COMSIG_HUMAN_TOGGLE_UNDERWEAR, kind)
+
+#undef INTERACTION_MENU_SELECTION_RANGE

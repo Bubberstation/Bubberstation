@@ -27,6 +27,7 @@ const defTag = [
   'hr',
   'i',
   'ins',
+  'small',
   'li',
   'menu',
   'ol',
