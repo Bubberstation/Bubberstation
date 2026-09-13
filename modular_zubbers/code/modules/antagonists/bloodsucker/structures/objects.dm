@@ -296,7 +296,7 @@
 		return
 	user.balloon_alert_to_viewers(user, "reading book...")
 	user.balloon_alert(target, "looks at you and checks their [src]...")
-	if(!do_after(user, 3 SECONDS, target, timed_action_flags = NONE, progress = TRUE))
+	if(!do_after(user, 3 SECONDS, target, timed_action_flags = NONE, show_progress = TRUE))
 		to_chat(user, span_notice("You quickly close [src]."))
 		return
 	COOLDOWN_START(src, bloodsucker_check_cooldown, cooldown_time)

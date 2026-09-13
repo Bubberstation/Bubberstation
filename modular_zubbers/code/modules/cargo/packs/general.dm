@@ -49,4 +49,26 @@
 	crate_name = "EVA Suit Crate"
 	crate_type = /obj/structure/closet/crate/secure
 
+/datum/supply_pack/emergency/voskhod
+	name = "VOSKHOD Modular Combat Suit crate"
+	desc = "Contains one 'brand new' MODular VOSKHOD suit, refitted by one of the many nations under the banner of the CIN."
+	contains = list(
+			/obj/item/mod/control/pre_equipped/voskhod
+	)
+	cost = CARGO_CRATE_VALUE * 24
+	access = ACCESS_EVA
+	crate_name = "Combat Suit Crate"
+	crate_type = /obj/structure/closet/crate/secure
+
+/datum/supply_pack/emergency/depowerarmor
+	name = "Depowered VOSKHOD Armor Set"
+	desc = "We've gotten in some of the PSC's 'finest' sets of armor, these have seen much better days. But hey, we know you guys love this shit!"
+	cost = CARGO_CRATE_VALUE * 12
+	contains = list(
+		/obj/item/clothing/head/helmet/space/voskhod,
+		/obj/item/clothing/suit/space/voskhod,
+	)
+	access = ACCESS_EVA
+	crate_name = "Combat Suit Crate"
+	crate_type = /obj/structure/closet/crate/secure
 

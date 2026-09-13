@@ -12,13 +12,14 @@
 	new /obj/item/radio/headset/heads/captain/alt(src)
 	new /obj/item/radio/headset/heads/captain(src)
 	new /obj/item/door_remote/captain(src)
-	new /obj/item/storage/photo_album/captain(src)
 	new /obj/item/megaphone/command(src)
 	new /obj/item/card/id/departmental_budget(src) //SKYRAT EDIT ADDITION
 
 /obj/structure/closet/secure_closet/captains/populate_contents_immediate()
 	new /obj/item/gun/energy/e_gun(src)
 	new /obj/item/storage/belt/sheath/sabre(src)
+
+	new /obj/item/storage/photo_album/captain(src)
 
 /obj/structure/closet/secure_closet/hop
 	name = "head of personnel's locker"
@@ -40,13 +41,14 @@
 	new /obj/item/pet_carrier(src)
 	new /obj/item/door_remote/head_of_personnel(src)
 	new /obj/item/circuitboard/machine/techfab/department/service(src)
-	new /obj/item/storage/photo_album/hop(src)
 	new /obj/item/storage/lockbox/medal/hop(src)
 	new /obj/item/storage/box/stamps(src)
 	new /obj/item/card/id/departmental_budget/srv(src) //SKYRAT EDIT ADDITION
 
 /obj/structure/closet/secure_closet/hop/populate_contents_immediate()
 	new /obj/item/gun/energy/e_gun(src)
+
+	new /obj/item/storage/photo_album/hop(src)
 
 /obj/structure/closet/secure_closet/hos
 	name = "head of security's locker"
@@ -78,6 +80,8 @@
 	// Traitor steal objectives
 	new /obj/item/gun/energy/e_gun/hos(src)
 	new /obj/item/pinpointer/nuke(src)
+
+	new /obj/item/storage/photo_album/hos(src)
 
 /obj/structure/closet/secure_closet/warden
 	name = "warden's locker"

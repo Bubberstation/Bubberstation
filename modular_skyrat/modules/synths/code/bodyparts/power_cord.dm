@@ -1,15 +1,21 @@
 /obj/item/organ/cyberimp/arm/toolkit/power_cord
-	name = "charging implant"
-	desc = "An internal power cord. Useful if you run on elecricity. Not so much otherwise."
+	name = "synth interfacing hardware"
+	desc = "Stores an interfacing tool that provides various functions for synths."
 	items_to_create = list(/obj/item/synth_powercord)
+	attack_verb_continuous = list("pokes")
+	attack_verb_simple = list("poke")
 	zone = BODY_ZONE_L_ARM
 	slot = ORGAN_SLOT_LEFT_ARM_AUG
 
+//
+// Synth powercord -- plugs into APCs and charges with them
+//
 /obj/item/synth_powercord
-	name = "power cord"
-	desc = "An internal power cord. Useful if you run on electricity. Not so much otherwise."
-	icon = 'icons/obj/stack_objects.dmi'
-	icon_state = "wire1"
+	name = "interfacing tool"
+	desc = "An interfacing tool used to pull charge from APCs and function as hardware for the user's virtual PDA. Try it out with the camera app!"
+	icon = 'icons/obj/clothing/modsuit/mod_modules.dmi'
+	icon_state = "shooting_assistant"
+	sharpness = SHARP_POINTY //this is just so that you can poke things with your poke finger really
 	///Object basetypes which the powercord is allowed to connect to.
 	var/static/list/synth_charge_whitelist = typecacheof(list(
 		/obj/item/stock_parts/power_store,
@@ -23,12 +29,32 @@
 	try_power_draw(tool, user)
 	return ITEM_INTERACT_SUCCESS
 
-// Attempt to charge from an object by using the power cord on them.
+// If you attack a cell or APC or other chargeable then try doing that. Otherwise, if a PDA exists, try calling its function.
 /obj/item/synth_powercord/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
-	if(!can_power_draw(interacting_with, user))
-		return NONE
-	try_power_draw(interacting_with, user)
-	return ITEM_INTERACT_SUCCESS
+	if(can_power_draw(interacting_with, user))
+		try_power_draw(interacting_with, user)
+		return ITEM_INTERACT_SUCCESS
+
+	var/obj/item/modular_computer/synthpda = get_user_brain_pda(user)
+	if(!isnull(synthpda))
+		return synthpda.interact_with_atom(interacting_with, user, modifiers)
+	. = ..()
+
+/obj/item/synth_powercord/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+	var/obj/item/modular_computer/synthpda = get_user_brain_pda(user)
+	if(isnull(synthpda))
+		return ..()
+	return synthpda.interact_with_atom_secondary(interacting_with, user, modifiers)
+
+/obj/item/synth_powercord/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+	var/obj/item/modular_computer/synthpda = get_user_brain_pda(user)
+	if(!isnull(synthpda))
+		SEND_SIGNAL(synthpda, COMSIG_RANGED_ITEM_INTERACTING_WITH_ATOM, user, interacting_with, modifiers)
+
+/obj/item/synth_powercord/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
+	var/obj/item/modular_computer/synthpda = get_user_brain_pda(user)
+	if(!isnull(synthpda))
+		SEND_SIGNAL(synthpda, COMSIG_RANGED_ITEM_INTERACTING_WITH_ATOM_SECONDARY, user, interacting_with, modifiers)
 
 /// Returns TRUE or FALSE depending on if the target object can be used as a power source.
 /obj/item/synth_powercord/proc/can_power_draw(obj/target, mob/user)
@@ -126,3 +152,9 @@
 	if(target_apc && !QDELETED(target_apc) && !QDELETED(target_apc.cell) && target_apc.main_status > APC_NO_POWER)
 		target_apc.charging = APC_CHARGING
 		target_apc.update_appearance()
+
+/obj/item/synth_powercord/proc/get_user_brain_pda(mob/living/user)
+	var/obj/item/organ/brain/synth/synthbrain = user.get_organ_slot(ORGAN_SLOT_BRAIN)
+	if(isnull(synthbrain))
+		return null
+	return synthbrain.internal_computer
