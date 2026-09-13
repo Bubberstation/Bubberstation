@@ -45,8 +45,8 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 	worn_icon_state = "energysurplus"
 	// exposed stays at the energy weapon standard of 20; the flat bonus sits between knife and sabre
 	wound_bonus = 5
-	// a crate takes patience, a window rather more. the inherited 1.5 was five swings on a window.
-	demolition_mod = 0.9
+	// I want this thing to be able to bust a crate open eventually, but it takes a while. Cargo genuinely has better tools for this.
+	demolition_mod = 1.4
 	/// The cell keeping the emitter fed
 	var/obj/item/stock_parts/power_store/cell/cell
 	/// Has somebody taken a screwdriver and a poor attitude to the regulator
