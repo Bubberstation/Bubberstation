@@ -23,6 +23,8 @@
 #define TAG_OUTSIDER_ANTAG "away_antag"
 /// When the event is considered chaotic by a completely non-biased coder.
 #define TAG_CHAOTIC "chaotic"
+/// Events that are somehow magical in nature
+#define TAG_MAGIC "magic"
 /// When the event impacts the overmap
 #define TAG_OVERMAP "overmap"
 /// When the event requires the station to be in space (meteors, carp)
