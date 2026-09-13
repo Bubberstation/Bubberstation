@@ -27,6 +27,9 @@
 
 /datum/atom_skin/coloured_clown_mask
 	abstract_type = /datum/atom_skin/coloured_clown_mask
+	// Masks rebuild icon_state from base_icon_state, so without this the colour is wiped
+	// the next time the mask updates its icon.
+	change_base_icon_state = TRUE
 
 /datum/atom_skin/coloured_clown_mask/down_clown
 	preview_name = "Down Clown"
