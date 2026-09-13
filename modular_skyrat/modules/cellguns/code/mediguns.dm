@@ -64,7 +64,7 @@
 // End of power cells
 
 // Upgrade Kit
-/obj/item/device/custom_kit/medigun_fastcharge
+/obj/item/custom_kit/medigun_fastcharge
 	name = "VeyMedical CWM-479 upgrade kit"
 	desc = "Upgrades the internal battery inside of the medigun, allowing for faster charging and a higher cell capacity. Requires the medigun's cells to be removed first!"
 	custom_materials = list(
@@ -77,7 +77,7 @@
 	from_obj = /obj/item/gun/energy/cell_loaded/medigun/standard
 	to_obj = /obj/item/gun/energy/cell_loaded/medigun/upgraded
 
-/obj/item/device/custom_kit/medigun_fastcharge/pre_convert_check(obj/target_obj, mob/user)
+/obj/item/custom_kit/medigun_fastcharge/pre_convert_check(obj/target_obj, mob/user)
 	var/obj/item/gun/energy/cell_loaded/medigun/standard/our_medigun = target_obj
 	if(length(our_medigun.installedcells))
 		balloon_alert(user, "unload it first!")
@@ -348,7 +348,7 @@
 	ammo_type = /obj/item/ammo_casing/energy/medical/utility/relocation
 
 //Empty Medicell//
-/obj/item/device/custom_kit/empty_cell //Having the empty cell as an upgrade kit sounds jank, but it should work well.
+/obj/item/custom_kit/empty_cell //Having the empty cell as an upgrade kit sounds jank, but it should work well.
 	name = "empty salve medicell"
 	icon = 'modular_skyrat/modules/cellguns/icons/obj/guns/mediguns/medicells.dmi'
 	icon_state = "empty"
@@ -361,11 +361,11 @@
 	from_obj = /obj/item/food/grown/aloe
 	to_obj = /obj/item/weaponcell/medical/utility/salve
 
-/obj/item/device/custom_kit/empty_cell/Initialize(mapload)
+/obj/item/custom_kit/empty_cell/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/item_scaling, 0.5, 1)
 
-/obj/item/device/custom_kit/empty_cell/body_teleporter
+/obj/item/custom_kit/empty_cell/body_teleporter
 	name = "empty body teleporter medicell"
 	desc = "An inactive body teleporter medicell, use this on a bluespace slime extract to make this into a usable cell."
 	custom_materials = list(
@@ -379,7 +379,7 @@
 	from_obj = /obj/item/slime_extract/bluespace
 	to_obj = /obj/item/weaponcell/medical/utility/body_teleporter
 
-/obj/item/device/custom_kit/empty_cell/relocator
+/obj/item/custom_kit/empty_cell/relocator
 	name = "empty oppressive force relocator medicell"
 	desc = "An inactive oppressive force relocator medicell, use this on a bluespace slime extract to make this into a usable cell."
 	from_obj = /obj/item/slime_extract/bluespace
