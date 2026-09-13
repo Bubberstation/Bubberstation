@@ -764,6 +764,7 @@
 		"steps" = list(),
 		"time_spent" = 0,
 	)
+	data["preview_generation"] = preview_generation
 	data["hide_full_color_string"] = FALSE
 	data["component_style"] = list(
 		"core_components" = component_style.core_ui_data(selected_cores),
@@ -861,6 +862,6 @@
 	time_spent = TICK_USAGE - time_spent
 
 	sprite_data["time_spent"] = TICK_DELTA_TO_MS(time_spent)
-	sprite_data["finished"] = icon2html(finished, user, dir = sprite_dir, sourceonly = TRUE)
+	set_finished_sprite(finished)
 	sprite_data["steps"] = list()
 	refreshing = FALSE
