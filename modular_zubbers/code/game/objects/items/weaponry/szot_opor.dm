@@ -33,9 +33,7 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 	inhand_icon_state = "opor"
 	flags_1 = parent_type::flags_1 | IS_PLAYER_COLORABLE_1 | NO_NEW_GAGS_PREVIEW_1
 	sword_color_icon = null
-	// benchmarked against the shamshir sabre cargo can already buy (force 15, ap 25, wound 5, block 20).
-	// the Opór trades that sword's armour penetration and wounding for raw damage and a better parry,
-	// and pays for both with a power cell. competitive with it, dominant over nothing.
+	// benchmarked against the shamshir sabre cargo can already buy: force 15, ap 25, wound 5, block 20
 	active_force = 18
 	armour_penetration = 10
 	block_chance = 30
@@ -45,11 +43,9 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 	w_class = WEIGHT_CLASS_NORMAL
 	// borrowed from the surplus sword: without a worn state the belt slot draws a missing texture
 	worn_icon_state = "energysurplus"
-	// 20 exposed is the standard across every energy weapon in the game, so it stays.
-	// the flat bonus sits at 5: above a combat knife, below the sabre, the shamshir and the scythe.
+	// exposed stays at the energy weapon standard of 20; the flat bonus sits between knife and sabre
 	wound_bonus = 5
-	// the inherited 1.5 took a window down in five swings, and 0.6 could never finish one at all.
-	// 0.9 gets through a crate with patience and a window with rather more of it.
+	// a crate takes patience, a window rather more. the inherited 1.5 was five swings on a window.
 	demolition_mod = 0.9
 	/// The cell keeping the emitter fed
 	var/obj/item/stock_parts/power_store/cell/cell
@@ -182,11 +178,8 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 	playsound(src, 'sound/machines/click.ogg', 40, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
-/// Rainbow mode swaps to a pre-rendered animated inhand state, the way the stock energy sword does.
-/// set_greyscale REPLACES lefthand_file and righthand_file with the generated icons, and those only
-/// contain the states the config declares, so the baked animation is not in them. Dropping the
-/// configs is therefore not enough: the source sheets have to be put back as well, or the inhand
-/// asks the generated icon for a state it does not have and renders nothing.
+/// Rainbow mode uses a pre-rendered animated inhand state. set_greyscale overwrites lefthand_file
+/// and righthand_file with generated icons that lack it, so the source sheets are restored here too.
 /obj/item/melee/energy/sword/opor/proc/apply_inhand_mode()
 	if(rainbow && HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		greyscale_config_inhand_left = null
@@ -221,9 +214,7 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 	apply_inhand_mode()
 	return ITEM_INTERACT_SUCCESS
 
-/// The sword itself always stays greyscale, so the hilt keeps whatever the owner painted it.
-/// Rainbow mode lays a pre-rendered blade-only animation over the top, plus a matching emissive.
-/// Nothing is generated at runtime; the frames already exist on the sheets.
+/// Rainbow mode lays a pre-rendered blade-only animation over the top so the hilt keeps its colours.
 /obj/item/melee/energy/sword/opor/proc/update_blade_colour()
 	if(!rainbow || !HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		sync_blade_light()

@@ -7,9 +7,8 @@ GLOBAL_LIST_INIT(straznik_stamina, list(55, 75, 95, 120))
 GLOBAL_LIST_INIT(straznik_burn, list(28, 45, 68, 92))
 /// Extra burn when running on a lead acid cell, which dumps far harder than it has any right to
 #define STRAZNIK_LEAD_ACID_BONUS 25
-/// Energy drawn per discharge, scaling with the square of the capacitor rating.
-/// The cell answers "how much energy have I got"; the capacitor answers "how violently do I dump it".
-/// A bigger capacitor therefore hits harder AND drains faster, so upgrading damage is never free.
+/// Energy per discharge, scaling with the square of the capacitor rating, so a bigger capacitor
+/// hits harder and drains faster. Upgrading damage is never free.
 #define STRAZNIK_DISCHARGE_COST(tier) (STANDARD_CELL_CHARGE * 0.25 * (tier) * (tier))
 /// Percentage chance of a burn wound per point of capacitor rating: 5, 10, 15 and 20 percent
 #define STRAZNIK_WOUND_CHANCE_PER_TIER 5
@@ -180,9 +179,7 @@ GLOBAL_LIST_INIT(straznik_burn, list(28, 45, 68, 92))
 	// for the jitter and the sparks. Worn armour IS respected, via run_armor_check below.
 	target.electrocute_act(0, src, siemens_coeff = 0, flags = SHOCK_NOSTUN | SHOCK_SUPPRESS_MESSAGE)
 
-	// A discharge earths itself through the whole body rather than one limb: the legs take the brunt,
-	// since that is where the current enters, the chest a moderate share, and the head and arms a real
-	// but smaller hit.
+	// earths through the whole body: legs take the brunt, chest a moderate share, head and arms less
 	var/static/list/discharge_distribution = list(
 		BODY_ZONE_L_LEG = 0.25,
 		BODY_ZONE_R_LEG = 0.25,

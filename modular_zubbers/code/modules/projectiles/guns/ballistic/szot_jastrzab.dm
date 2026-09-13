@@ -1,10 +1,7 @@
-// Szot Dynamica's Smart Drift Control prototype. An ordinary Lanca with an unreasonable amount of
-// money spent on making it reluctant to miss.
+// Szot Dynamica's Smart Drift Control prototype: a Lanca with a very expensive targeting package.
 
-/// Maximum degrees a designated shot may turn PER TICK. This is not a strength dial: a target one
-/// tile off the firing line needs 45 degrees of correction at one tile and only 6 at ten, so too low
-/// a value cannot correct at close range at all and the shot sails past. 8 rescues a near miss at
-/// realistic distances while still being nowhere near a homing missile.
+/// Maximum degrees a designated shot may turn per tick. Not a strength dial: a close target needs
+/// far more correction than a distant one, so too low a value cannot correct up close at all.
 #define JASTRZAB_TURN_SPEED 8
 /// Deliberate scatter, in pixels, so it never lands dead centre every time
 #define JASTRZAB_HOMING_SLOP_MIN 1
@@ -61,9 +58,9 @@
 
 /obj/item/gun/ballistic/automatic/lanca/jastrzab/Initialize(mapload)
 	. = ..()
-	// the Lanca parent already adds gags_recolorable; adding it again double-registers its signals
-	// the screentip hover signal is the only hook that reports what the wielder is pointing at
-	// without reaching into core code. it does mean the rangefinder needs screentips enabled.
+	// the Lanca parent already adds gags_recolorable; adding it again double-registers its signals.
+	// the hover signal below is the only hook reporting what a wielder points at, so the rangefinder
+	// needs screentips enabled.
 	register_item_context()
 	// our own scope, so the reticle is drawn in the rifle's colour from the first frame
 	qdel(GetComponent(/datum/component/scope))
@@ -157,10 +154,8 @@
 	shot.homing_inaccuracy_min = JASTRZAB_HOMING_SLOP_MIN
 	shot.homing_inaccuracy_max = JASTRZAB_HOMING_SLOP_MAX
 	shot.set_homing_target(mark)
-	// PASSMOB is deliberately NOT used here. It makes a projectile ignore every mob except its
-	// `original`, and `original` is overwritten by ready_proj after before_firing has run, so the
-	// designated target was being treated as a bystander: the shot passed through it and then homed
-	// into whatever was behind. Hitting the thing you aimed at matters more than ignoring bystanders.
+	// Do not add PASSMOB: it spares every mob except the projectile's `original`, and `original` is
+	// overwritten by ready_proj after this runs, so the designated target would be spared too.
 
 	// the rangefinder is already pointing at them, so the shot takes it over rather than duplicating it
 	var/obj/effect/temp_visual/szot_sdc_lock/lock
