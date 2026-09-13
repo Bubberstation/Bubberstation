@@ -84,7 +84,30 @@
 	if(force)
 		return NONE
 
-	// BUBBER EDIT BEGIN - ORIGINAL: these ID and account checks were written out inline here
+	// BUBBER EDIT BEGIN - the ID and account checks below were pulled out into account_matches(), so on_pre_open() and can_unlock() can share one implementation
+	/* BUBBER EDIT REMOVAL BEGIN - ORIGINAL:
+	if(isnull(user))
+		return BLOCK_OPEN
+
+	var/obj/item/card/id/id_card = user.get_idcard(TRUE) // the ID card the user is holding/wearing, used to check their linked bank account
+	if(isnull(id_card))
+		deny(source, user, "No ID detected!")
+		return BLOCK_OPEN
+
+	if(!id_card.registered_account)
+		deny(source, user, "No linked bank account detected!")
+		return BLOCK_OPEN
+
+	var/is_department = istype(buyer_account, /datum/bank_account/department) // department orders check the user's paycheck department instead of a personal account match.  TRUE if this user is allowed to open the crate
+	var/datum/bank_account/department/dept_account = buyer_account
+	var/account_matches = is_department \
+		? (id_card.registered_account?.account_job?.paycheck_department == dept_account.department_id) \
+		: (id_card.registered_account == buyer_account)
+
+	if(!account_matches)
+		deny(source, user, "Bank account does not match with buyer!")
+		return BLOCK_OPEN
+	*/ // BUBBER EDIT REMOVAL END
 	if(!account_matches(user, source, silent = FALSE))
 		return BLOCK_OPEN
 	// BUBBER EDIT END
