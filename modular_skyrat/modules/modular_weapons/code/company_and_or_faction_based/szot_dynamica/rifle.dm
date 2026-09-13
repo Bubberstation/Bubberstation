@@ -2,7 +2,7 @@
 
 /obj/item/gun/ballistic/automatic/lanca
 	name = "\improper Lanca Battle Rifle"
-	desc = "A relatively compact, long barreled bullpup battle rifle chambered for .310 Strilka."
+	desc = "A relatively compact, long-barreled bullpup battle rifle chambered for .310 Strilka."
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/guns_48.dmi'
 	icon_state = "lanca"
@@ -13,6 +13,12 @@
 	lefthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/szot_dynamica/guns_lefthand.dmi'
 	righthand_file = 'modular_skyrat/modules/modular_weapons/icons/mob/company_and_or_faction_based/szot_dynamica/guns_righthand.dmi'
 	inhand_icon_state = "lanca"
+	greyscale_config = /datum/greyscale_config/szot_dynamica_48
+	greyscale_config_worn = /datum/greyscale_config/szot_dynamica_worn
+	greyscale_config_inhand_left = /datum/greyscale_config/szot_dynamica_lefthand
+	greyscale_config_inhand_right = /datum/greyscale_config/szot_dynamica_righthand
+	greyscale_colors = "#83825E#CD445B"
+	flags_1 = parent_type::flags_1 | IS_PLAYER_COLORABLE_1 | NO_NEW_GAGS_PREVIEW_1
 
 	SET_BASE_PIXEL(-8, 0)
 
@@ -43,9 +49,19 @@
 /obj/item/gun/ballistic/automatic/lanca/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SZOT)
 
+/// Shows which magazine is actually fitted rather than one generic block
+/obj/item/gun/ballistic/automatic/lanca/update_overlays()
+	. = ..()
+	if(!magazine || internal_magazine || !mag_display)
+		return
+	if(istype(magazine, /obj/item/ammo_box/magazine/lanca/extended))
+		. -= "[icon_state]_mag"
+		. += "[icon_state]_mag_extended"
+
 /obj/item/gun/ballistic/automatic/lanca/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/scope, range_modifier = 1.25)
+	AddElement(/datum/element/gags_recolorable)
 
 /obj/item/gun/ballistic/automatic/lanca/examine(mob/user)
 	. = ..()
@@ -54,15 +70,15 @@
 /obj/item/gun/ballistic/automatic/lanca/examine_more(mob/user)
 	. = ..()
 
-	. += "The Lanca is a now relatively dated replacement for Kalashnikov pattern rifles \
+	. += "The Lanca is a now relatively dated replacement for Kalashnikov-pattern rifles \
 		adopted by states now combining to form the CIN. While the rifle that came before them \
 		had its benefits, leadership of many armies started to realize that the Kalashnikov-based \
 		rifles were really showing their age once the variants began reaching the thousands in serial. \
-		The solution was presented by a then new company, Szot Dynamica. This new rifle, not too \
-		unlike the one you are seeing now, adopted all of the latest technology of the time. Lightweight \
+		The solution was presented by a then-new company, Szot Dynamica. This new rifle, not too \
+		unlike the one you are seeing now, adopted all of the latest technology of the time: lightweight \
 		caseless ammunition, well known for its use in Sakhno rifles, as well as various electronics and \
 		other incredible technological advancements. These advancements may have already been around since \
-		before the creation of even the Sakhno, but the fact you're seeing this now fifty year old design \
+		before the creation of even the Sakhno, but the fact you're seeing this now fifty-year-old design \
 		must mean something, right?"
 
 	return .
@@ -75,8 +91,8 @@
 
 /obj/item/gun/ballistic/automatic/wylom
 	name = "\improper Wyłom Anti-Materiel Rifle"
-	desc = "A massive, outdated beast of an anti materiel rifle that was once in use by CIN military forces. Fires the devastating .60 Strela caseless round, \
-		the massively overperforming penetration of which being the reason this weapon was discontinued."
+	desc = "A massive, outdated beast of an anti-materiel rifle that was once in use by CIN military forces. Fires the devastating .60 Strela caseless round, \
+		the massively overperforming penetration of which was the reason this weapon was discontinued."
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/guns_64.dmi'
 	base_pixel_x = -16 // This baby is 64 pixels wide
 	pixel_x = -16
@@ -88,6 +104,12 @@
 	icon_state = "wylom"
 	inhand_icon_state = "wylom"
 	worn_icon_state = "wylom"
+	greyscale_config = /datum/greyscale_config/szot_dynamica_64
+	greyscale_config_worn = /datum/greyscale_config/szot_dynamica_worn
+	greyscale_config_inhand_left = /datum/greyscale_config/szot_dynamica_inhand64_right
+	greyscale_config_inhand_right = /datum/greyscale_config/szot_dynamica_inhand64_left
+	greyscale_colors = "#83825E#CD445B"
+	flags_1 = parent_type::flags_1 | IS_PLAYER_COLORABLE_1 | NO_NEW_GAGS_PREVIEW_1
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = ITEM_SLOT_BACK
 
@@ -106,6 +128,10 @@
 
 	force = 15 // I mean if you're gonna beat someone with the thing you might as well get damage appropriate for how big the fukken thing is
 
+/obj/item/gun/ballistic/automatic/wylom/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/gags_recolorable)
+
 /obj/item/gun/ballistic/automatic/wylom/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SZOT)
 	AddElement(/datum/element/gun_launches_little_guys, throwing_force = 3, throwing_range = 5)
@@ -121,8 +147,8 @@
 		The original rifle had mounting points for a specialized suit attachment system, \
 		not too much unlike heavy smartguns that can be seen across the galaxy. CIN military \
 		command, however, deemed that expensive exoskeletons and rigs for carrying an organic \
-		anti material system were simply not needed, and that soldiers should simply 'deal with it'. \
-		Unsurprisingly, soldiers assigned this weapon tend to not be a massive fan of that fact, \
+		anti-materiel system were not needed, and that soldiers should simply 'deal with it'. \
+		Unsurprisingly, soldiers assigned this weapon tend not to be massive fans of that fact, \
 		and smekalka within CIN ranks is common with troops finding novel ways to carry and use \
 		their large rifles with as little effort as possible. Most of these novel methods, of course, \
 		tend to shatter when the rifle is actually fired."
