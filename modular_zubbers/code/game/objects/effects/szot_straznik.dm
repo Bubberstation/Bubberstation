@@ -11,6 +11,8 @@ GLOBAL_LIST_INIT(straznik_burn, list(28, 45, 68, 92))
 /// The cell answers "how much energy have I got"; the capacitor answers "how violently do I dump it".
 /// A bigger capacitor therefore hits harder AND drains faster, so upgrading damage is never free.
 #define STRAZNIK_DISCHARGE_COST(tier) (STANDARD_CELL_CHARGE * 0.25 * (tier) * (tier))
+/// Percentage chance of a burn wound per point of capacitor rating: 5, 10, 15 and 20 percent
+#define STRAZNIK_WOUND_CHANCE_PER_TIER 5
 /// How long the capacitor takes to come back up after a discharge
 #define STRAZNIK_REARM_DELAY (20 SECONDS)
 /// How long the victim stays down
@@ -174,13 +176,42 @@ GLOBAL_LIST_INIT(straznik_burn, list(28, 45, 68, 92))
 
 	var/list/power = discharge_power()
 	playsound(src, 'modular_zubbers/sound/effects/szot/tesla_mine_shock.ogg', 80, FALSE)
-	// insulated gloves do not save you from a stun baton and they do not save you from this either.
-	// electrocute_act filters everything through gloves and resistances, so the shock call is kept purely
-	// for the jitter and the sparks, and the damage is applied directly where nothing can absorb it.
+	// insulated gloves are not armour and do not stop a stun baton, so electrocute_act is used purely
+	// for the jitter and the sparks. Worn armour IS respected, via run_armor_check below.
 	target.electrocute_act(0, src, siemens_coeff = 0, flags = SHOCK_NOSTUN | SHOCK_SUPPRESS_MESSAGE)
-	// a solid hit can leave a burn wound, and a better capacitor makes that likelier
-	target.apply_damage(power["burn"], BURN, spread_damage = TRUE, wound_bonus = tier * 8)
-	target.adjust_stamina_loss(power["stamina"])
+
+	// A discharge earths itself through the whole body rather than one limb: the legs take the brunt,
+	// since that is where the current enters, the chest a moderate share, and the head and arms a real
+	// but smaller hit.
+	var/static/list/discharge_distribution = list(
+		BODY_ZONE_L_LEG = 0.25,
+		BODY_ZONE_R_LEG = 0.25,
+		BODY_ZONE_CHEST = 0.25,
+		BODY_ZONE_HEAD = 0.10,
+		BODY_ZONE_L_ARM = 0.075,
+		BODY_ZONE_R_ARM = 0.075,
+	)
+	// Only a leg may take a wound, and only on its own roll: wound_bonus is honoured against a real
+	// bodypart, and the base roll scales off raw damage, so ungated almost every hit would wound.
+	var/wound_roll = prob(tier * STRAZNIK_WOUND_CHANCE_PER_TIER) ? 0 : CANT_WOUND
+	var/wounded_leg = pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	if(iscarbon(target))
+		var/mob/living/carbon/body = target
+		for(var/zone in discharge_distribution)
+			var/obj/item/bodypart/limb = body.get_bodypart(zone)
+			if(isnull(limb))
+				continue
+			var/share = round(power["burn"] * discharge_distribution[zone])
+			if(share <= 0)
+				continue
+			// armour on that limb soaks its share, so a hardsuit is worth wearing
+			var/soak = body.run_armor_check(zone, ENERGY, silent = TRUE)
+			body.apply_damage(share, BURN, def_zone = limb, blocked = soak, wound_bonus = (zone == wounded_leg) ? wound_roll : CANT_WOUND)
+	else
+		var/soak = target.run_armor_check(attack_flag = ENERGY, silent = TRUE)
+		target.apply_damage(power["burn"], BURN, blocked = soak, spread_damage = TRUE)
+	var/stam_soak = target.run_armor_check(attack_flag = ENERGY, silent = TRUE)
+	target.adjust_stamina_loss(power["stamina"] * (1 - (stam_soak / 100)))
 	target.Knockdown(STRAZNIK_STUN_DURATION)
 
 	if(!cell.charge)
@@ -318,6 +349,7 @@ GLOBAL_LIST_INIT(straznik_burn, list(28, 45, 68, 92))
 	set_light_on(FALSE)
 	update_appearance()
 
+#undef STRAZNIK_WOUND_CHANCE_PER_TIER
 #undef STRAZNIK_REARM_DELAY
 #undef STRAZNIK_LEAD_ACID_BONUS
 #undef STRAZNIK_DISCHARGE_COST

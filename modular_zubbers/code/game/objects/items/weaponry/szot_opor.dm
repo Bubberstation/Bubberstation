@@ -152,6 +152,7 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 		return ITEM_INTERACT_BLOCKING
 	user.put_in_hands(cell)
 	cell = null
+	update_appearance()
 	balloon_alert(user, "cell removed")
 	tool.play_tool_sound(src)
 	return ITEM_INTERACT_SUCCESS
@@ -169,30 +170,25 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 	cell = tool
+	update_appearance()
 	balloon_alert(user, "cell installed")
 	playsound(src, 'sound/machines/click.ogg', 40, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/item/melee/energy/sword/opor/build_worn_icon(
-	default_layer = 0,
-	default_icon_file = null,
-	isinhands = FALSE,
-	female_uniform = NO_FEMALE_UNIFORM,
-	override_state = null,
-	override_file = null,
-	bodyshape = NONE,
-	mutant_styles = NONE,
-)
+/obj/item/melee/energy/sword/opor/update_icon_state()
+	. = ..()
+	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) && isnull(cell))
+		icon_state = "[base_icon_state]_nocell"
+
+/// build_worn_icon returns a finished appearance rather than a list, so the held sprite's rainbow
+/// belongs here: worn_overlays is the hook meant for adding to it.
+/obj/item/melee/energy/sword/opor/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file, bodyshape = NONE)
 	. = ..()
 	if(!isinhands || !rainbow || !HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		return
-	// build_worn_icon returns a single appearance, not a list, so the arc rides as an overlay on it
-	var/mutable_appearance/worn = .
-	if(isnull(worn))
-		return
-	var/icon/hand_sheet = (default_icon_file == righthand_file) ? righthand_file : lefthand_file
-	worn.overlays += mutable_appearance(hand_sheet, "opor_blade_rainbow", default_layer)
-	worn.overlays += emissive_appearance(hand_sheet, "opor_blade_rainbow", src, default_layer, alpha = 200)
+	var/sheet = (icon_file == righthand_file) ? righthand_file : lefthand_file
+	. += mutable_appearance(sheet, "opor_blade_rainbow")
+	. += emissive_appearance(sheet, "opor_blade_rainbow", src, alpha = 200)
 
 /obj/item/melee/energy/sword/opor/set_greyscale(list/colors, new_config, new_worn_config, new_inhand_left, new_inhand_right)
 	. = ..()
