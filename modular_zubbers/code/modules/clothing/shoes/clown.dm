@@ -11,6 +11,7 @@
 	name = "squeaky clown heels"
 	desc = "Some Clowns have been throwing away their shoes to wear heels. This corrects that through painful nerve implanting needles! And squeaking heels. May have went a bit far in a few places..."
 	icon_state = "clussy_heels"
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
 
 //No waddle and no squeak version for all use.
 /obj/item/clothing/shoes/latex_heels/bubber/clussy/mute

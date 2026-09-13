@@ -127,3 +127,6 @@
 
 /obj/item/clothing/suit/costume/xenos
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/obj/item/clothing/suit/costume/hawaiian
+	greyscale_config_worn_teshari = /datum/greyscale_config/hawaiian_shirt/worn/teshari

@@ -388,3 +388,7 @@
 /datum/greyscale_config/guard_bowman/worn/teshari
 	name = "Guard Bowman Headset (Worn, Teshari)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/ears_teshari.dmi'
+
+/datum/greyscale_config/hawaiian_shirt/worn/teshari
+	name = "Hawaiian Overshirt (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
