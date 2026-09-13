@@ -25,16 +25,20 @@
 	/// Maximum number of boss pods to send in the final wave
 	var/max_boss_pods = 1
 	/// Helps calculate the time between droppod waves, multiplied against the current number of droppods
-	var/time_to_next_wave_droppod_factor = 20
+	var/time_to_next_wave_droppod_factor = 6
 	/// Minimum time between droppods
-	var/min_time_between_droppod_waves = 30
+	var/min_time_between_droppod_waves = 3 /// FOR FINAL BUILD: use this 30
 	/// When the next incident should happen
 	var/next_incidence_time = 0
 	/// When the next announcement should happen
 	var/next_announce_time = 0
 	/// Range of time to potentially announce the next wave (can be more or less than actual wave time)
-	var/min_announce_delay = -30
-	var/max_announce_delay = 10
+	var/min_announce_delay = -5
+	var/max_announce_delay = 3
+	/// how long to wait after announcement to start the event
+	var/start_delay = 6
+	/// how long after the last wave to announce that it's over
+	var/end_announcement_delay = 4
 
 	/// Style of droppod to send
 	var/datum/pod_style/droppod_style
@@ -76,18 +80,20 @@
 
 
 /datum/round_event/droppod_airraid/start()
-	next_announce_time = activeFor + 45
-	next_incidence_time = activeFor + rand(-10, 10)
-	//set_next_announce_time()
-	//set_next_incident_time()
+	next_announce_time = activeFor + start_delay
+	next_incidence_time = next_announce_time + rand(min_announce_delay, max_announce_delay)
 
 /datum/round_event/droppod_airraid/proc/set_next_announce_time()
-	var/droppod_count = get_droppod_count()
-	next_announce_time = activeFor + calculate_time_to_next_wave(droppod_count) + rand(min_announce_delay, max_announce_delay)
+	if(wave_to_announce <= length(selected_spawn_areas))
+		var/droppod_count = get_droppod_count()
+		next_announce_time = activeFor + calculate_time_to_next_wave(droppod_count) + rand(min_announce_delay, max_announce_delay)
 
 /datum/round_event/droppod_airraid/proc/set_next_incident_time()
-	var/droppod_count = get_droppod_count()
-	next_incidence_time = activeFor + calculate_time_to_next_wave(droppod_count)
+	if(!is_event_over())
+		var/droppod_count = get_droppod_count()
+		next_incidence_time = activeFor + calculate_time_to_next_wave(droppod_count)
+	else
+		next_incidence_time = activeFor + end_announcement_delay
 
 /datum/round_event/droppod_airraid/tick()
 	if(!is_event_over())
@@ -96,6 +102,9 @@
 		if(activeFor == next_incidence_time)
 			send_droppod_wave()
 	else
+		//if there are announvements remaining, rapidfire them
+		if(wave_to_announce <= length(selected_spawn_areas))
+			announce_wave()
 		if(activeFor == next_incidence_time)
 			end_event()
 
@@ -185,9 +194,9 @@
 	return pick(valid_turfs)
 
 /datum/round_event/droppod_airraid/proc/after_wave()
-	var/obj/structure/closet/supplypod/pod = generate_one_droppod()
-	notify_ghosts("A droppod wave is attacking [selected_spawn_areas[current_wave].name]!", source = selected_spawn_areas[current_wave], header = "Invasion in progress", alert_overlay = pod.appearance)
-	qdel(pod)
+	var/static/mutable_appearance/target_appearance = mutable_appearance('icons/obj/supplypods_32x32.dmi', "LZ")
+	var/turf/ghost_target_turf = pick(get_area_turfs(get_current_wave()))
+	notify_ghosts("A droppod wave is attacking [selected_spawn_areas[current_wave].name]!", source = ghost_target_turf, header = "Invasion in progress", alert_overlay = target_appearance)
 	current_wave++
 	set_next_incident_time()
 
@@ -203,6 +212,8 @@
 
 /////////////// adminbus customization ///////////////
 
+///TODO: implement type dictionary stuff at tgui checkboxes, it currently sets choices as strings instead of as areas and this is not viable for this event
+/*
 /datum/event_admin_setup/multiple_choice/droppod_troopers
 	input_text = "Select locations to send the droppods."
 	min_choices = 0
@@ -211,7 +222,7 @@
 	var/customize_mutations = tgui_alert(usr, "Select locations?", event_control.name, list("Custom", "Random", "Cancel"))
 	switch(customize_mutations)
 		if("Custom")
-			return ..()
+			. = ..()
 		if("Cancel")
 			return ADMIN_CANCEL_EVENT
 		else
@@ -219,11 +230,14 @@
 			choices = list()
 
 /datum/event_admin_setup/multiple_choice/droppod_troopers/get_options()
-	return GLOB.the_station_areas
+	return typecache_filter_list(GLOB.areas, make_associative(GLOB.the_station_areas))
 
 /datum/event_admin_setup/multiple_choice/droppod_troopers/apply_to_event(datum/round_event/droppod_airraid/event)
 	if(length(choices) > 0)
+		for(var/i = 1; i <= length(choices); i ++)
+			choices[i] = choices[i][1]
 		event.admin_override_selected_spawn_areas = choices
+		*/
 
 //////////////////////////////////////
 /////////////// SYNDIE ///////////////
@@ -236,7 +250,8 @@
 	weight = 6
 	max_occurrences = 2
 	min_players = 35
-	admin_setup = list(/datum/event_admin_setup/multiple_choice/droppod_troopers)
+	admin_setup = list()
+	//do this later admin_setup = list(/datum/event_admin_setup/multiple_choice/droppod_troopers)
 	category = EVENT_CATEGORY_ENTITIES
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_NPC_ANTAG)
@@ -316,7 +331,8 @@
 	weight = 4
 	max_occurrences = 2
 	min_players = 35
-	admin_setup = list(/datum/event_admin_setup/multiple_choice/droppod_troopers)
+	admin_setup = list()
+	//admin_setup = list(/datum/event_admin_setup/multiple_choice/droppod_troopers)
 	category = EVENT_CATEGORY_ENTITIES
 	track = EVENT_TRACK_MAJOR
 

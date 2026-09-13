@@ -72,7 +72,7 @@
 /datum/round_event/stray_cargo/syndie_bombsquad/announce(fake)
 	if(fake)
 		impact_area = find_event_area()
-	priority_announce("The Syndicate has dispatched a bomb squad to attack [impact_area]. \n\n Security and engineering intervention recommended to eliminate threats and defuse the bomb.", "CentCom Department of Intelligence", 'modular_zubbers/sound/alerts/amber.ogg', color_override = "yellow")
+	priority_announce("The Syndicate has dispatched a bomb squad to attack [impact_area.name]. \n\n Security and engineering intervention recommended to eliminate threats and defuse the bomb.", "CentCom Department of Intelligence", 'modular_zubbers/sound/alerts/amber.ogg', color_override = "yellow")
 
 ///Apply the syndicate pod skin
 /datum/round_event/stray_cargo/syndie_bombsquad/make_pod()
