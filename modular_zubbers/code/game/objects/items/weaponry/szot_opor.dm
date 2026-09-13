@@ -182,19 +182,26 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 	playsound(src, 'sound/machines/click.ogg', 40, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
-/// The stock energy sword handles rainbow mode by swapping inhand_icon_state to a pre-rendered
-/// animated state, with no overlays involved. This does the same. The greyscale inhand configs are
-/// dropped while it runs, because the baked animation is already coloured and must not be recoloured.
-/obj/item/melee/energy/sword/opor/update_icon_state()
-	. = ..()
+/// Rainbow mode swaps to a pre-rendered animated inhand state, the way the stock energy sword does.
+/// set_greyscale REPLACES lefthand_file and righthand_file with the generated icons, and those only
+/// contain the states the config declares, so the baked animation is not in them. Dropping the
+/// configs is therefore not enough: the source sheets have to be put back as well, or the inhand
+/// asks the generated icon for a state it does not have and renders nothing.
+/obj/item/melee/energy/sword/opor/proc/apply_inhand_mode()
 	if(rainbow && HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		greyscale_config_inhand_left = null
 		greyscale_config_inhand_right = null
+		lefthand_file = 'modular_zubbers/icons/mob/szot_opor_lefthand.dmi'
+		righthand_file = 'modular_zubbers/icons/mob/szot_opor_righthand.dmi'
 		inhand_icon_state = "opor_on_rainbow"
 		return
+	inhand_icon_state = HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) ? "opor_on" : "opor"
+	if(greyscale_config_inhand_left)
+		return
+	// coming back off rainbow: restore the configs and let them regenerate the inhand icons
 	greyscale_config_inhand_left = /datum/greyscale_config/szot_opor/lefthand
 	greyscale_config_inhand_right = /datum/greyscale_config/szot_opor/righthand
-	inhand_icon_state = HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) ? "opor_on" : "opor"
+	update_greyscale()
 
 /obj/item/melee/energy/sword/opor/set_greyscale(list/colors, new_config, new_worn_config, new_inhand_left, new_inhand_right)
 	. = ..()
@@ -211,6 +218,7 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 	rainbow = !rainbow
 	balloon_alert(user, rainbow ? "RNBW_ENGAGE" : "RNBW_DISENGAGE")
 	update_blade_colour()
+	apply_inhand_mode()
 	return ITEM_INTERACT_SUCCESS
 
 /// The sword itself always stays greyscale, so the hilt keeps whatever the owner painted it.
@@ -234,6 +242,7 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 /obj/item/melee/energy/sword/opor/on_transform(obj/item/source, mob/user, active)
 	. = ..()
 	update_blade_colour()
+	apply_inhand_mode()
 
 /obj/item/melee/energy/sword/opor/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(overclocked)
