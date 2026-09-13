@@ -2,7 +2,7 @@
 	. = ..()
 	// warning for unanesthetized surgery
 	var/mob/living/patient = get_patient(operating_on)
-	if(!(HAS_TRAIT(patient, TRAIT_ANALGESIA) || patient.stat >= UNCONSCIOUS))
+	if(!(HAS_TRAIT(patient, TRAIT_ANALGESIA) || !IS_UNCONSCIOUS_OR_CRIT(patient)))
 		patient.balloon_alert(surgeon, "not numbed!")
 
 /// Makes the organ operable again

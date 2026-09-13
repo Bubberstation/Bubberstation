@@ -4,6 +4,7 @@
 
 /datum/species/teshari
 	name = "Teshari"
+	plural_form = "Teshari"
 	id = SPECIES_TESHARI
 	no_gender_shaping = TRUE // Female uniform shaping breaks Teshari worn sprites, so this is disabled. This will not affect anything else in regards to gender however.
 	inherent_traits = list(
@@ -62,6 +63,9 @@
 	name = "teshari tongue"
 	liked_foodtypes = SEAFOOD | VEGETABLES | NUTS
 	disliked_foodtypes = GROSS | GRAIN
+	emote_sounds = list(
+		/datum/emote/living/scream::key = 'modular_skyrat/modules/emotes/sound/emotes/raptorscream.ogg'
+	)
 
 /obj/item/organ/eyes/teshari
 	name = "teshari eyes"

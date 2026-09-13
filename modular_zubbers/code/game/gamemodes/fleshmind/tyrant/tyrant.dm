@@ -4,7 +4,6 @@
 	icon = 'modular_zubbers/icons/fleshmind/tyrant.dmi'
 	icon_state = "tyrant"
 	icon_dead = "tyrant_dead"
-	basic_mob_flags = IMMUNE_TO_FISTS
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind/tyrant
 	health = 2000
 	maxHealth = 2000

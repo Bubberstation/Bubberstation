@@ -81,7 +81,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/old_lighting_corner_SW = lighting_corner_SW
 	var/old_lighting_corner_NW = lighting_corner_NW
 	var/old_directional_opacity = directional_opacity
-	var/old_dynamic_lumcount = dynamic_lumcount
 	//SKYRAT EDIT CHANGE
 	var/obj/effect/abstract/liquid_turf/old_liquids = liquids
 	if(lgroup)
@@ -155,8 +154,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	lighting_corner_SE = old_lighting_corner_SE
 	lighting_corner_SW = old_lighting_corner_SW
 	lighting_corner_NW = old_lighting_corner_NW
-
-	dynamic_lumcount = old_dynamic_lumcount
 
 	lattice_underneath = old_lattice_underneath
 

@@ -391,6 +391,7 @@
 	icon_state = "chem"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -402,6 +403,7 @@
 	icon_state = "virologist"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -413,6 +415,7 @@
 	icon_state = "coroner"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -424,6 +427,7 @@
 	icon_state = "cmo"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 //SCIENCE
 
@@ -433,6 +437,7 @@
 	icon_state = "science"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -444,6 +449,7 @@
 	icon_state = "roboticist"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -456,6 +462,7 @@
 	icon_state = "genetics"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/jacket.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	post_init_icon_state = null
 	greyscale_config = null
 	greyscale_config_worn = null
