@@ -75,6 +75,10 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 /obj/item/melee/energy/sword/opor/update_overlays()
 	. = ..()
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
+		// dead power light, bare contacts, door hanging open. drawn as an overlay rather than a
+		// greyscale state: adding a state to the config stops IconForge loading it at all.
+		if(isnull(cell))
+			. += mutable_appearance('modular_zubbers/icons/obj/szot_opor.dmi', "opor_nocell")
 		return
 	if(rainbow)
 		// the blade layer is covered exactly, so the hilt below keeps its own colours
@@ -174,11 +178,6 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 	balloon_alert(user, "cell installed")
 	playsound(src, 'sound/machines/click.ogg', 40, TRUE)
 	return ITEM_INTERACT_SUCCESS
-
-/obj/item/melee/energy/sword/opor/update_icon_state()
-	. = ..()
-	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) && isnull(cell))
-		icon_state = "[base_icon_state]_nocell"
 
 /// build_worn_icon returns a finished appearance rather than a list, so the held sprite's rainbow
 /// belongs here: worn_overlays is the hook meant for adding to it.
