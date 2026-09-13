@@ -89,7 +89,10 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 
 /obj/item/melee/energy/sword/opor/examine(mob/user)
 	. = ..()
-	. += span_notice("The power cell reads [cell ? "[round(cell.percent())]%" : "empty"]. It can be <b>screwed</b> out.")
+	if(isnull(cell))
+		. += span_notice("There is no power cell installed.")
+	else
+		. += span_notice("The power cell reads [round(cell.percent())]%. It can be <b>screwed</b> out.")
 	if(overclocked)
 		. += span_warning("The regulator has been bypassed. It draws power far faster than it ought to.")
 
@@ -179,15 +182,19 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 	playsound(src, 'sound/machines/click.ogg', 40, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
-/// build_worn_icon returns a finished appearance rather than a list, so the held sprite's rainbow
-/// belongs here: worn_overlays is the hook meant for adding to it.
-/obj/item/melee/energy/sword/opor/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file, bodyshape = NONE)
+/// The stock energy sword handles rainbow mode by swapping inhand_icon_state to a pre-rendered
+/// animated state, with no overlays involved. This does the same. The greyscale inhand configs are
+/// dropped while it runs, because the baked animation is already coloured and must not be recoloured.
+/obj/item/melee/energy/sword/opor/update_icon_state()
 	. = ..()
-	if(!isinhands || !rainbow || !HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
+	if(rainbow && HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
+		greyscale_config_inhand_left = null
+		greyscale_config_inhand_right = null
+		inhand_icon_state = "opor_on_rainbow"
 		return
-	var/sheet = (icon_file == righthand_file) ? righthand_file : lefthand_file
-	. += mutable_appearance(sheet, "opor_blade_rainbow")
-	. += emissive_appearance(sheet, "opor_blade_rainbow", src, alpha = 200)
+	greyscale_config_inhand_left = /datum/greyscale_config/szot_opor/lefthand
+	greyscale_config_inhand_right = /datum/greyscale_config/szot_opor/righthand
+	inhand_icon_state = HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) ? "opor_on" : "opor"
 
 /obj/item/melee/energy/sword/opor/set_greyscale(list/colors, new_config, new_worn_config, new_inhand_left, new_inhand_right)
 	. = ..()
