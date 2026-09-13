@@ -277,11 +277,11 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 /obj/item/clothing/head/beret/szot_surplus/examine_more(mob/user)
 	. = ..()
 
-	. += "The Coalition of Independent Nations was never a single army, and its surplus is a museum of \
-		half-remembered quartermasters. Berets like this one turn up in crate after crate of it, missing \
-		their insignia, sized for nobody in particular, and claimed by every veteran who sees one."
+	. += "The badge identifies this as an officer's beret from one of the old Coalition militaries, though \
+		nobody seems able to agree which one. Depending on the seller, it was worn by revolutionary officers, \
+		copied from something worn by revolutionary officers, or merely found in the same warehouse."
 
-	. += "The seller will tell you it is CIN. The next seller will tell you it is New Russian, and produce \
-		a stitching pattern to prove it. Both are confident. Neither has any paperwork."
+	. += "Its actual provenance is hopelessly unclear. The revolutionary reputation, however, appears to \
+		have survived intact."
 
 	return .
