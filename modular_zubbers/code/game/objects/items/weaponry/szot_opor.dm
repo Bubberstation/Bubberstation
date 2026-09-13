@@ -85,6 +85,7 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 
 /obj/item/melee/energy/sword/opor/examine(mob/user)
 	. = ..()
+	. += span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src].")
 	if(isnull(cell))
 		. += span_notice("There is no power cell installed.")
 	else
@@ -268,6 +269,10 @@ GLOBAL_LIST_INIT(opor_rainbow, list(
 /obj/item/clothing/head/beret/szot_surplus/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/gags_recolorable)
+
+/obj/item/clothing/head/beret/szot_surplus/examine(mob/user)
+	. = ..()
+	. += span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src].")
 
 /obj/item/clothing/head/beret/szot_surplus/examine_more(mob/user)
 	. = ..()

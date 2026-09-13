@@ -109,6 +109,10 @@
 	QDEL_NULL(range_sight)
 	painted = null
 
+/obj/item/gun/ballistic/automatic/lanca/jastrzab/examine(mob/user)
+	. = ..()
+	. += span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src].")
+
 /obj/item/gun/ballistic/automatic/lanca/jastrzab/examine_more(mob/user)
 	. = ..()
 

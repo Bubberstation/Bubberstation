@@ -105,6 +105,7 @@ GLOBAL_LIST_INIT(straznik_burn, list(28, 45, 68, 92))
 
 /obj/effect/mine/straznik/examine(mob/user)
 	. = ..()
+	. += span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src].")
 	if(isnull(cell))
 		. += span_notice("There is no power cell installed.")
 	else

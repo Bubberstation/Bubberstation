@@ -34,6 +34,10 @@
 /obj/item/gun/ballistic/revolver/aniolek/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SZOT)
 
+/obj/item/gun/ballistic/revolver/aniolek/examine(mob/user)
+	. = ..()
+	. += span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src].")
+
 /obj/item/gun/ballistic/revolver/aniolek/examine_more(mob/user)
 	. = ..()
 
