@@ -4,7 +4,6 @@
 
 /obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
-
 	if(connectable)
 		AddComponent(/datum/component/connectable_computer)
 

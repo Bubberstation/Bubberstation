@@ -301,7 +301,7 @@
 	transfer_fingerprints_to(new_machine)
 	// SKYRAT EDIT ADDITION BEGIN - Connecting Computers
 	for(var/obj/machinery/computer/selected in range(1,src))
-		selected.update_overlays()
+		selected.update_appearance()
 	// SKYRAT EDIT ADDITION END - Connecting Computers
 
 	if(istype(new_machine, /obj/machinery/computer))

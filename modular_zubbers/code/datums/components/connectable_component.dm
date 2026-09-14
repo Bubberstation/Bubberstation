@@ -2,7 +2,7 @@
  * If attached to a machine, adds the connectable computer overlays and smooths to other computers.
  */
 /datum/component/connectable_computer
-	var/icon/overlay_icon = 'modular_skyrat/modules/connecting_computer/icons/connectors.dmi'
+	var/icon/overlay_icon = 'modular_zubbers/icons/obj/machines/computer_connections.dmi'
 
 /datum/component/connectable_computer/Initialize()
 	if(!ismachinery(parent))
