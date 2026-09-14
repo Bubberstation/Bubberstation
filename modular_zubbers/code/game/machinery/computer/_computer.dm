@@ -1,6 +1,17 @@
 /obj/machinery/computer
+	impact_sound = SFX_BULLET_IMPACT_GLASS
 	///Determines if the computer can connect to other computers (no arcades, etc.)
 	var/connectable = TRUE
+
+	var/clicksound = "keyboard"
+	var/clickvol = 40
+	var/next_clicksound
+
+/obj/machinery/computer/interact(mob/user, special_state)
+	. = ..()
+	if(clicksound && world.time > next_clicksound && isliving(user))
+		next_clicksound = world.time + 5
+		playsound(src, get_sfx_skyrat(clicksound), clickvol)
 
 /obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
