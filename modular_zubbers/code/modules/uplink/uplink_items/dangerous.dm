@@ -32,3 +32,10 @@
 	surplus = 0
 	population_minimum = TRAITOR_POPULATION_LOWPOP + 5
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
+
+/datum/uplink_item/dangerous/pneumatic_cannon
+	name = "Syndicate-Engineered Pneumatic Cannon"
+	desc = "A finely-crafted pneumatic cannon. Has a higher capacity and better ergonomics than one you could make by hand."
+	item = /obj/item/pneumatic_cannon/syndicate
+	cost = 8
+	surplus = 5
