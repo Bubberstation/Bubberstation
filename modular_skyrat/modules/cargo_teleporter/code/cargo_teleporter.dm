@@ -195,10 +195,13 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 /obj/item/cargo_teleporter/proc/get_liftable_items(turf/target_turf)
 	var/list/liftable = list()
 	for(var/obj/movable_content in target_turf)
-		// items and structures only. Crates and lockers are /obj/structure/closet and are the point.
-		if(!istype(movable_content, /obj/item) && !istype(movable_content, /obj/structure))
+		// items, structures and machines. Anchored ones (secured machines, bolted lockers) are left
+		// behind by the anchored check below, so an unsecured GAP machine lifts but a bolted one does not.
+		if(!istype(movable_content, /obj/item) && !istype(movable_content, /obj/structure) && !istype(movable_content, /obj/machinery))
 			continue
 		if(movable_content.anchored)
+			continue
+		if(length(movable_content.get_all_contents_type(/mob/living))) // no warping away a crate with someone inside it
 			continue
 		liftable += movable_content
 	return liftable
