@@ -149,7 +149,7 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	if(isnull(beacon_turf) || isnull(target_turf))
 		return ITEM_INTERACT_BLOCKING
 	if(!length(get_liftable_items(target_turf)))
-		balloon_alert(user, turf_has_living(target_turf) ? "safety check failed!" : "no transportable cargo detected!")
+		balloon_alert(user, target_turf.has_living_contents() ? "safety check failed!" : "no transportable cargo detected!")
 		return ITEM_INTERACT_BLOCKING
 
 	lifting = TRUE
@@ -197,23 +197,16 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	for(var/obj/movable_content in target_turf)
 		// items, structures and machines. Anchored ones (secured machines, bolted lockers) are left
 		// behind by the anchored check below, so an unsecured GAP machine lifts but a bolted one does not.
-		if(!istype(movable_content, /obj/item) && !istype(movable_content, /obj/structure) && !istype(movable_content, /obj/machinery))
+		if(!isitem(movable_content) && !isstructure(movable_content) && !ismachinery(movable_content))
 			continue
-		if(movable_content.anchored)
-			continue
-		if(length(movable_content.get_all_contents_type(/mob/living))) // no warping away a crate with someone inside it
+		if(movable_content.anchored || movable_content.has_living_contents())
 			continue
 		liftable += movable_content
 	return liftable
 
-/// TRUE if anything alive is on the turf, whether standing loose or boxed inside an object on it.
-/obj/item/cargo_teleporter/proc/turf_has_living(turf/target_turf)
-	if(locate(/mob/living) in target_turf)
-		return TRUE
-	for(var/obj/movable_content in target_turf)
-		if(length(movable_content.get_all_contents_type(/mob/living)))
-			return TRUE
-	return FALSE
+/// guard clause to stop you from teleporting a box with a guy in it
+/atom/proc/has_living_contents()
+	return isliving(src) || length(get_all_contents_type(/mob/living))
 
 /obj/item/cargo_teleporter/proc/begin_recharge()
 	COOLDOWN_START(src, use_cooldown, CARGO_TELEPORTER_COOLDOWN)
