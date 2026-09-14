@@ -15,7 +15,7 @@
 	/// Static list of all goggle designs, used in the color picker radial selection menu
 	var/static/list/hypnogoggles_designs
 	/// The person wearing the goggles
-	var/mob/living/carbon/victim
+	var/mob/living/carbon/human/victim
 	/// The hypnotic codephrase. Default always required otherwise things break.
 	var/codephrase = "Obey."
 

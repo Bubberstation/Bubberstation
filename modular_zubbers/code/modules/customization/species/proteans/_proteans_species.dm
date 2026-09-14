@@ -2,7 +2,7 @@
 	id = SPECIES_PROTEAN
 	examine_limb_id = SPECIES_PROTEAN
 
-	name = "protean"
+	name = "\improper Protean"
 	sexes = TRUE
 
 	siemens_coeff = 1.5 // Electricty messes you up.
@@ -241,8 +241,8 @@
 	species_modsuit.desc = initial(species_modsuit.desc)
 	species_modsuit.extended_desc = initial(species_modsuit.extended_desc)
 
-	if(user?.can_put_in_hand(species_modsuit.stored_modsuit, user.active_hand_index))
-		user.put_in_hand(species_modsuit.stored_modsuit, user.active_hand_index)
+	if(!user?.put_in_hand(species_modsuit.stored_modsuit, user.active_hand_index) && species_modsuit.stored_modsuit.loc == species_modsuit)
+		species_modsuit.stored_modsuit.forceMove(species_modsuit.drop_location()) // Never leave it orphaned inside us.
 
 	species_modsuit.stored_modsuit = null
 	update_static_data_for_all_viewers()
@@ -294,7 +294,7 @@
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SQUARE_VIRUS,
 		SPECIES_PERK_NAME = "Protean Oddities",
-		SPECIES_PERK_DESC = "[plural_form] are inorganic beings. They are unable to gain nutrition from traditional foods. Instead, they must consume metals - Primarily, iron. \ In addition to this, [plural_form] are unable to be surgically or chemically headed; [plural_form] regenerate their body over time, consuming their nutrition to do so."
+		SPECIES_PERK_DESC = "[plural_form] are inorganic beings. They are unable to gain nutrition from traditional foods. Instead, they must consume metals - Primarily, iron. \ In addition to this, [plural_form] are unable to be surgically or chemically healed; [plural_form] regenerate their body over time, consuming their nutrition to do so."
 	))
 
 	return perk_descriptions

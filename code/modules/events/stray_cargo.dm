@@ -42,10 +42,6 @@
 	var/crate_type
 	/// Set to TRUE to emag the launched crate rather than just unlocking it.
 	var/emag_crate = FALSE
-	/// Upper bound of how many random seconds to wait before dropping the pod (replaces start_when)
-	var/upper_bound_wait_time = 40
-	/// Lower bound of how many random seconds to wait before dropping the pod (replaces start_when)
-	var/lower_bound_wait_time = 20
 
 /datum/round_event/stray_cargo/announce(fake)
 	if(fake)
@@ -126,7 +122,7 @@
 	var/storage_override
 	if(initial(supply_pack.order_flags) & ORDER_GOODY) // We offer goody items inside of briefcases, but regular crates still default to their standard crates.
 		storage_override = /obj/item/storage/briefcase/empty
-	var/obj/container = supply_pack.generate(null, crate_override = storage_override)
+	var/obj/container = supply_pack.generate(null, crate_override = (crate_type || storage_override))
 
 	if(container && istype(container, /obj/structure/closet/crate)) //empty supply packs are a thing! get memed on.
 		var/obj/structure/closet/crate/crate = container
@@ -135,10 +131,7 @@
 		else
 			crate.locked = FALSE //Unlock secure crates
 			crate.update_appearance()
-	return container
-
-///Sends the pod to the given location, containing the container
-/datum/round_event/stray_cargo/proc/send_pod(landing_zone, pod, container)
+	var/obj/structure/closet/supplypod/pod = make_pod()
 	var/obj/effect/pod_landingzone/landing_marker = new(landing_zone, pod, container)
 	create_ghost_notification(landing_marker)
 
@@ -221,6 +214,8 @@
 
 /datum/round_event/stray_cargo/syndicate
 	possible_pack_types = list(/datum/supply_pack/misc/syndicate)
+	crate_type = /obj/structure/closet/crate/secure/syndicate
+	emag_crate = TRUE
 
 ///Apply the syndicate pod skin
 /datum/round_event/stray_cargo/syndicate/make_pod()

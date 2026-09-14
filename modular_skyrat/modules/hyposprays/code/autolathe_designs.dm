@@ -7,6 +7,7 @@
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.5,
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.5,
 	)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	build_path = /obj/item/reagent_containers/cup/vial/small
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,
@@ -20,6 +21,7 @@
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.5,
 	)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	build_path = /obj/item/reagent_containers/cup/vial/large
 
 // Hypospray cases
@@ -31,6 +33,7 @@
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 3,
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
 	)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	build_path = /obj/item/storage/hypospraykit/empty
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,
@@ -45,6 +48,7 @@
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
 		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 1,
 	)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	build_path = /obj/item/storage/hypospraykit/cmo/empty
 
 // Hyposprays
@@ -73,6 +77,7 @@
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 4,
 		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 2,
 	)
+	transfered_materials = list(/obj/item/device/custom_kit/deluxe_hypo2 = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 8))
 	build_path = /obj/item/device/custom_kit/deluxe_hypo2
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,

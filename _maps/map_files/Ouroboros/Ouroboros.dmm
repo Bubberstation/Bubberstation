@@ -11552,7 +11552,7 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/science/robotics/lab)
 "dtg" = (
-/obj/structure/closet/crate/goldcrate,
+/obj/structure/closet/crate/goldcrate/stocked,
 /obj/item/stack/spacecash/c500,
 /obj/item/stack/spacecash/c500,
 /obj/effect/turf_decal/bot,
@@ -19015,15 +19015,15 @@
 "fzu" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/table/wood,
-/obj/item/food/grown/harebell{
+/obj/item/food/grown/flower/harebell{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/food/grown/harebell{
+/obj/item/food/grown/flower/harebell{
 	pixel_x = 2;
 	pixel_y = 4
 	},
-/obj/item/food/grown/harebell,
+/obj/item/food/grown/flower/harebell,
 /obj/machinery/light/warm/directional/north,
 /obj/machinery/light_switch/directional/north,
 /turf/open/floor/wood/large,
@@ -35933,9 +35933,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
-"kqN" = (
-/turf/closed/wall/r_wall,
-/area/station/engineering/supermatter/engine)
 "kqU" = (
 /obj/structure/table,
 /obj/effect/spawner/random/entertainment/lighter{
@@ -36453,6 +36450,7 @@
 "kxn" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/dark/full,
+/obj/item/storage/photo_album/prison,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/security/prison)
 "kxt" = (
@@ -39150,11 +39148,11 @@
 "lix" = (
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/structure/table/reinforced,
-/obj/item/ai_module/supplied/freeform{
+/obj/item/ai_module/law/supplied/freeform{
 	pixel_x = -2;
 	pixel_y = 8
 	},
-/obj/item/ai_module/supplied/freeform,
+/obj/item/ai_module/law/supplied/freeform,
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron/dark/side{
 	dir = 8
@@ -39957,11 +39955,6 @@
 "lvy" = (
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/structure/table/reinforced,
-/obj/item/ai_module/reset{
-	pixel_x = 2;
-	pixel_y = 8
-	},
-/obj/item/ai_module/reset/purge,
 /obj/item/radio/intercom/directional/north,
 /turf/open/floor/iron/dark/side{
 	dir = 4
@@ -41982,7 +41975,7 @@
 "lYG" = (
 /obj/effect/turf_decal/tile/blue/full,
 /obj/effect/turf_decal/box/white,
-/obj/machinery/computer/upload/ai{
+/obj/machinery/ai_law_rack/base/core{
 	dir = 4
 	},
 /obj/machinery/flasher/directional/south{
@@ -46216,9 +46209,6 @@
 /turf/open/floor/iron,
 /area/station/common/laser_tag)
 "niZ" = (
-/obj/machinery/computer/upload/borg{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/blue/full,
 /obj/effect/turf_decal/box/white,
 /obj/machinery/camera/motion/directional/south{
@@ -46263,7 +46253,7 @@
 "njr" = (
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/structure/table,
-/obj/item/ai_module/toy_ai{
+/obj/item/ai_module/law/toy_ai{
 	pixel_y = 16;
 	pixel_x = -6
 	},
@@ -46403,7 +46393,7 @@
 	pixel_y = 1;
 	pixel_x = -4
 	},
-/obj/item/food/grown/poppy{
+/obj/item/food/grown/flower/poppy{
 	pixel_x = 5;
 	pixel_y = -2
 	},
@@ -60765,7 +60755,7 @@
 /obj/item/seeds/potato,
 /obj/item/seeds/apple,
 /obj/item/grown/corncob,
-/obj/item/food/grown/carrot,
+/obj/item/food/grown/carrotlike/carrot,
 /obj/item/food/grown/wheat,
 /obj/structure/table/glass,
 /obj/item/food/grown/onion{
@@ -73225,12 +73215,12 @@
 /obj/item/flashlight/lamp/green{
 	pixel_y = 14
 	},
-/obj/item/food/grown/poppy,
-/obj/item/food/grown/poppy{
+/obj/item/food/grown/flower/poppy,
+/obj/item/food/grown/flower/poppy{
 	pixel_x = 2;
 	pixel_y = 3
 	},
-/obj/item/food/grown/poppy{
+/obj/item/food/grown/flower/poppy{
 	pixel_x = 5;
 	pixel_y = -2
 	},
@@ -82548,7 +82538,7 @@
 /obj/item/flashlight/lantern{
 	pixel_y = 3
 	},
-/obj/item/food/grown/harebell{
+/obj/item/food/grown/flower/harebell{
 	pixel_x = -7
 	},
 /obj/item/radio/intercom/directional/east,
@@ -181355,11 +181345,11 @@ fac
 jmr
 fac
 fac
-kqN
+iFU
 jZA
 gEs
 gEs
-kqN
+iFU
 vQT
 aDb
 qPA
@@ -181612,11 +181602,11 @@ ikB
 jmr
 ikB
 ikB
-kqN
+iFU
 msn
 afS
 uep
-kqN
+iFU
 ghP
 kvn
 rOa
@@ -181869,12 +181859,12 @@ fac
 eUL
 fac
 fac
-kqN
+iFU
 hmS
 oRY
 hmS
 fKM
-kqN
+iFU
 iFU
 uYL
 oDB
@@ -182126,7 +182116,7 @@ fac
 eUL
 eUL
 fac
-kqN
+iFU
 dCi
 hrK
 jbK
@@ -182383,7 +182373,7 @@ eUL
 eUL
 fac
 fac
-kqN
+iFU
 rFa
 eAP
 gnf
@@ -182640,7 +182630,7 @@ fac
 eUL
 eUL
 fac
-kqN
+iFU
 wxV
 aCw
 rvG
@@ -182897,13 +182887,13 @@ fac
 eUL
 fac
 fac
-kqN
+iFU
 gLy
 him
 gLy
 rFH
-kqN
-kqN
+iFU
+iFU
 hBb
 uJw
 cjF
@@ -183154,11 +183144,11 @@ ikB
 jmr
 ikB
 ikB
-kqN
+iFU
 nuI
 afS
 uep
-kqN
+iFU
 wiz
 kvn
 rOa
@@ -183411,11 +183401,11 @@ fac
 jmr
 fac
 fac
-kqN
+iFU
 ccQ
 tOp
 tOp
-kqN
+iFU
 xFv
 tcV
 eLf

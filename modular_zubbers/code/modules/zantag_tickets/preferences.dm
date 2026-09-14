@@ -25,15 +25,3 @@
 	savefile.set_entry("antag_tickets", antag_tickets)
 	antag_tickets_old = antag_tickets
 	. = ..()
-
-/datum/controller/subsystem/ticker/declare_completion(was_forced = END_ROUND_AS_NORMAL)
-
-	set waitfor = FALSE
-
-	for(var/ckey in GLOB.preferences_datums)
-		var/datum/preferences/prefs = GLOB.preferences_datums[ckey]
-		if(prefs.antag_tickets == prefs.antag_tickets_old)
-			continue //Only save if there has been a change.
-		prefs.save_preferences()
-
-	. = ..()

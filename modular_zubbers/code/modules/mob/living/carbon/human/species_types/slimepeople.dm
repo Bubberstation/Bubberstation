@@ -326,11 +326,11 @@
 
 			var/new_body_size = tgui_input_number(
 				alterer,
-				"Choose your desired sprite size: ([BODY_SIZE_MIN * 100]% to [BODY_SIZE_MAX * 100]%). Warning: May make your character look distorted",
+				"Choose your desired sprite size: ([(RESIZE_DEFAULT_SIZE * 0.8) * 100]% to [(RESIZE_DEFAULT_SIZE * 1.5) * 100]%). Warning: May make your character look distorted",
 				"Size Change",
-				default = min(alterer.dna.features["body_size"] * 100, BODY_SIZE_MAX * 100),
-				max_value = BODY_SIZE_MAX * 100,
-				min_value = BODY_SIZE_MIN * 100,
+				default = min(alterer.current_size * 100, (RESIZE_DEFAULT_SIZE * 1.5) * 100),
+				max_value = (RESIZE_DEFAULT_SIZE * 1.5) * 100,
+				min_value = (RESIZE_DEFAULT_SIZE * 0.8) * 100,
 			)
 			if(!new_body_size)
 				return
@@ -340,8 +340,10 @@
 				alterer.remove_quirk(/datum/quirk/oversized)
 
 			new_body_size = new_body_size * 0.01
-			alterer.dna.features["body_size"] = new_body_size
-			alterer.dna.update_body_size()
+			if(new_body_size == RESIZE_DEFAULT_SIZE)
+				alterer.update_transform(RESIZE_DEFAULT_SIZE / alterer.current_size)
+			else
+				alterer.update_transform(new_body_size / alterer.current_size)
 
 		if("Genitals")
 			alter_genitals(alterer)

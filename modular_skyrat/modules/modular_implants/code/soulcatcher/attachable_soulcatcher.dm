@@ -57,6 +57,10 @@
 	icon = 'modular_skyrat/modules/modular_implants/icons/obj/devices.dmi'
 	icon_state = "attachable-soulcatcher"
 	w_class = WEIGHT_CLASS_SMALL
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT
+		)
 	/// Do we want to destory the item once it is attached to an item?
 	var/destroy_on_use = TRUE
 	/// What items do we want to prevent the viewer from attaching this to?

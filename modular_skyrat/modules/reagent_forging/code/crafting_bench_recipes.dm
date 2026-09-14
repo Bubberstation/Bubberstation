@@ -173,7 +173,7 @@
 				memory_bonus_exp = first_time_completion_exp_bonus
 
 		var/exp_give_mult = completion * get_material_quality_points_mult(product.get_master_material())
-		user.mind.adjust_experience(relevant_skill, exp_give * exp_give_mult + memory_bonus_exp)
+		user.mind?.adjust_experience(relevant_skill, exp_give * exp_give_mult + memory_bonus_exp)
 
 /datum/crafting_bench_recipe/proc/move_to_world(obj/item/product, place_to_move_to)
 	if(istype(place_to_move_to, /obj/structure/reagent_crafting_bench))
