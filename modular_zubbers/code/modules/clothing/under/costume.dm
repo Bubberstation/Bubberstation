@@ -86,3 +86,9 @@
 
 /obj/item/clothing/under/costume/villain
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/costume_teshari.dmi'
+
+/obj/item/clothing/under/costume/pirate
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/costume_teshari.dmi'
+
+/obj/item/clothing/under/costume/sailor
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/costume_teshari.dmi'

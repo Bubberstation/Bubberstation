@@ -319,6 +319,10 @@
 	name = "Camouflage (Worn, Digi)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 
+/datum/greyscale_config/camo/worn/teshari
+	name = "Camouflage (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
+
 // Giant Scarf (Sprites by Iskawhiskers)
 /datum/greyscale_config/giant_scarf
 	name = "Giant Scarf"

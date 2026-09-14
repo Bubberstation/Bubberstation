@@ -130,3 +130,19 @@
 
 /obj/item/clothing/suit/costume/hawaiian
 	greyscale_config_worn_teshari = /datum/greyscale_config/hawaiian_shirt/worn/teshari
+
+/obj/item/clothing/suit/costume/pirate
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/obj/item/clothing/suit/costume/irs
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/costume_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/obj/item/clothing/suit/spooky_ghost_sheet
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/obj/item/clothing/suit/costume/ghost_sheet
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/obj/item/clothing/suit/hooded/carp_costume
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
