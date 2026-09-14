@@ -11,14 +11,16 @@
 		return ELEMENT_INCOMPATIBLE
 
 	RegisterSignal(target, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(on_update_overlays))
+	RegisterSignal(target, COMSIG_ATOM_POST_DIR_CHANGE, PROC_REF(on_direction_change))
 
 	update_neighbors(target)
 
-/datum/element/connectable_computer/Detach(datum/source, old_loc)
+/datum/element/connectable_computer/Detach(datum/source, loc)
 	. = ..()
 	UnregisterSignal(source, COMSIG_ATOM_UPDATE_OVERLAYS)
+	UnregisterSignal(source, COMSIG_ATOM_POST_DIR_CHANGE)
 
-	update_neighbors(old_loc)
+	update_neighbors(loc)
 
 /**
  * Checks if the given target is a modular computer or a normal computer with the connectable 
@@ -99,3 +101,8 @@
 
 	if(right_turf)
 		overlays += mutable_appearance(overlay_icon, "right")
+
+/datum/element/connectable_computer/proc/on_direction_change(atom/movable/parent_obj, old_dir, new_dir)
+	SIGNAL_HANDLER
+	
+	update_neighbors(parent_obj)
