@@ -149,7 +149,7 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	if(isnull(beacon_turf) || isnull(target_turf))
 		return ITEM_INTERACT_BLOCKING
 	if(!length(get_liftable_items(target_turf)))
-		balloon_alert(user, "nothing to lift!")
+		balloon_alert(user, turf_has_living(target_turf) ? "safety check failed!" : "no transportable cargo detected!")
 		return ITEM_INTERACT_BLOCKING
 
 	lifting = TRUE
@@ -205,6 +205,15 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 			continue
 		liftable += movable_content
 	return liftable
+
+/// TRUE if anything alive is on the turf, whether standing loose or boxed inside an object on it.
+/obj/item/cargo_teleporter/proc/turf_has_living(turf/target_turf)
+	if(locate(/mob/living) in target_turf)
+		return TRUE
+	for(var/obj/movable_content in target_turf)
+		if(length(movable_content.get_all_contents_type(/mob/living)))
+			return TRUE
+	return FALSE
 
 /obj/item/cargo_teleporter/proc/begin_recharge()
 	COOLDOWN_START(src, use_cooldown, CARGO_TELEPORTER_COOLDOWN)
