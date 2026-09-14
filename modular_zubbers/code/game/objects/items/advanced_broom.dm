@@ -11,7 +11,6 @@
 	righthand_file = 'modular_zubbers/icons/mob/inhands/equipment/advanced_broom_righthand.dmi'
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.25, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
 	push_limit = ADVANCED_BROOM_PUSH_LIMIT
-	/// Are the bristles charged, sweeping three tiles abreast
 	var/wide_sweep = FALSE
 
 /obj/item/pushbroom/advanced/examine(mob/user)
@@ -25,7 +24,6 @@
 	. += mutable_appearance(icon, "broom_charge")
 	. += emissive_appearance(icon, "broom_charge", src)
 
-// the bristles hold the debris down, so whoever is pushing it does not go over on their own soap
 /obj/item/pushbroom/advanced/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
 	if(slot & ITEM_SLOT_HANDS)
@@ -51,13 +49,13 @@
 		return
 	wide_sweep = charged
 	slowdown = wide_sweep ? ADVANCED_BROOM_SLOWDOWN : initial(slowdown)
-	if(isliving(user))
-		var/mob/living/holder = user
-		holder.update_equipment_speed_mods()
-	if(user)
-		playsound(user, wide_sweep ? 'sound/machines/synth/synth_yes.ogg' : 'sound/machines/synth/synth_no.ogg', 40, TRUE, frequency = rand(5120, 8800))
-		user.balloon_alert(user, "bristle charge [wide_sweep ? "on" : "off"]")
 	update_appearance()
+	if(!isliving(user))
+		return
+	var/mob/living/holder = user
+	holder.update_equipment_speed_mods()
+	playsound(holder, wide_sweep ? 'sound/machines/synth/synth_yes.ogg' : 'sound/machines/synth/synth_no.ogg', 40, TRUE, frequency = rand(5120, 8800))
+	holder.balloon_alert(holder, "bristle charge [wide_sweep ? "on" : "off"]")
 
 /obj/item/pushbroom/advanced/sweep(mob/user, atom/atom)
 	. = ..()
@@ -66,7 +64,7 @@
 	var/turf/center = isturf(atom) ? atom : atom?.loc
 	if(!isturf(center))
 		return
-	if(ISDIAGONALDIR(user.dir)) // a diagonal flank sits two tiles off the line, which reads as items moving on their own
+	if(ISDIAGONALDIR(user.dir)) // a diagonal flank lands two tiles off the line
 		return
 	for(var/flank_dir in list(turn(user.dir, 90), turn(user.dir, -90)))
 		var/turf/flank = get_step(center, flank_dir)
@@ -77,7 +75,7 @@
 /obj/item/pushbroom/advanced/augment
 	always_braced = TRUE
 
-// put_in_hand never calls pickup(), so the implant has to hook sweeping on equip instead
+// put_in_hand never calls pickup(), so this hooks equip instead
 /obj/item/pushbroom/advanced/augment/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
 	if(slot & ITEM_SLOT_HANDS)
@@ -89,7 +87,7 @@
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOVABLE_PRE_MOVE)
 
-// never calls parent, so the toolkit implant never sees attack_self and keeps its swap on right click, same as the welder
+// deliberately skips parent so the implant never sees attack_self, same as the welder
 /obj/item/pushbroom/advanced/augment/attack_self(mob/user, modifiers)
 	set_wide_sweep(user, !wide_sweep)
 
