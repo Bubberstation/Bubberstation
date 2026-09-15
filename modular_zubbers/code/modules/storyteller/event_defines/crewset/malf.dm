@@ -26,7 +26,7 @@
 			candidate = candidate.deployed_shell
 		if(QDELETED(candidate) || !candidate.key || !candidate.client || !candidate.mind)
 			continue
-		if(!(candidate.client.prefs) || !(antag_flag in candidate.client.prefs.be_special))
+		if(!ignoring_antag_prefs() && (!(candidate.client.prefs) || !(antag_flag in candidate.client.prefs.be_special)))
 			continue
 		if(candidate.client.get_days_to_play_antag(antag_flag) > 0)
 			continue
