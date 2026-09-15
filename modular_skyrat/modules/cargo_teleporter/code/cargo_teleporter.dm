@@ -199,7 +199,7 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 		// behind by the anchored check below, so an unsecured GAP machine lifts but a bolted one does not.
 		if(!isitem(movable_content) && !isstructure(movable_content) && !ismachinery(movable_content))
 			continue
-		if(movable_content.anchored || movable_content.has_living_contents())
+		if(movable_content.anchored || safety_check(movable_content))
 			continue
 		liftable += movable_content
 	return liftable
