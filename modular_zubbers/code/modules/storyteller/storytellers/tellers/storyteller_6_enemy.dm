@@ -1,7 +1,8 @@
 /datum/storyteller/enemy
-	name = "Higher Crewset Antag/Event Rolls"
-	desc = "Formerly known as The Enemy Within, this storyteller aims to ensure that there are only crew antagonists while also prioritizing spawns for those antagonist types."
+	name = "LV3 Events (Crew Antagonism+++)"
+	desc = "This storyteller aims to ensure that there are only crew antagonists while also prioritizing spawns for those antagonist types."
 	welcome_text = "Chat, I think there is an imposter among us on this Space Station 13. I have grown suspicious."
+	votable = FALSE
 
 	tag_multipliers = list(
 		TAG_DESTRUCTIVE = 0.25,
