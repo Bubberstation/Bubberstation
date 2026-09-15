@@ -205,8 +205,8 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	return liftable
 
 /// guard clause to stop you from teleporting a box with a guy in it
-/atom/proc/has_living_contents()
-	return isliving(src) || length(get_all_contents_type(/mob/living))
+/obj/item/cargo_teleporter/proc/safety_check(atom/to_check)
+	return isliving(to_check) || length(to_check.get_all_contents_type(/mob/living))
 
 /obj/item/cargo_teleporter/proc/begin_recharge()
 	COOLDOWN_START(src, use_cooldown, CARGO_TELEPORTER_COOLDOWN)
