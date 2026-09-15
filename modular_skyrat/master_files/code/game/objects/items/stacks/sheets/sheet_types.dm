@@ -131,16 +131,6 @@ GLOBAL_LIST_INIT(skyrat_leather_belt_recipes, list(
 	. += GLOB.skyrat_leather_recipes
 	add_recipes_to_sublist(., "belts", GLOB.skyrat_leather_belt_recipes)
 
-// Titanium
-
-GLOBAL_LIST_INIT(skyrat_titanium_recipes, list(
-	new/datum/stack_recipe("spaceship plating", /obj/item/stack/sheet/spaceship, 1, time = 5, category = CAT_MISC),
-))
-
-/obj/item/stack/sheet/mineral/titanium/get_main_recipes()
-	. = ..()
-	. += GLOB.skyrat_titanium_recipes
-
 // Snow
 
 GLOBAL_LIST_INIT(skyrat_snow_recipes, list(
