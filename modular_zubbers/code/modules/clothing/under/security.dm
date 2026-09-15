@@ -622,3 +622,6 @@
 
 /obj/item/clothing/under/rank/security/peacekeeper/miniskirt
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/detective/kim
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'

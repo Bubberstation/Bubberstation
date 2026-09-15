@@ -769,3 +769,9 @@
 
 /obj/item/clothing/under/misc/assistantformal
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/uniform_teshari.dmi'
+
+/obj/item/clothing/under/suit
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/suits_teshari.dmi'
+
+/obj/item/clothing/under/rank/civilian/curator/skirt
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/suits_teshari.dmi'
