@@ -108,3 +108,33 @@
 			return new /obj/item/modular_computer/pda/bar
 		else
 			return null
+
+/**
+ * Handles giving out the mobs alternate job title to their items
+ * 
+ * Arguments:
+ * * equipping - /mob/living/carbon/human on whom we're working
+ * * job - /datum/job of the mob
+ * * player_client - /client of equipping
+ */
+/datum/controller/subsystem/job/proc/setup_alt_job_items(mob/living/carbon/human/equipping, datum/job/job, client/player_client)
+	if(!player_client)
+		return
+
+	if(!ishuman(equipping))
+		return
+
+	var/chosen_title = player_client.prefs.alt_job_titles?[job.title] || job.title
+
+	var/obj/item/card/id/card = equipping.wear_id
+	if(istype(card))
+		card.assignment = chosen_title
+		card.update_label()
+
+	// Look for PDA in belt or L pocket
+	var/obj/item/modular_computer/pda/pda = equipping.belt
+	if(!istype(pda))
+		pda = equipping.l_store
+	if(istype(pda))
+		pda.saved_job = chosen_title
+		pda.UpdateDisplay()
