@@ -77,7 +77,7 @@
 	return S
 
 ///Puts entities in the pod
-/datum/round_event/syndicate_assassination_attempt/proc/fill_pod(var/obj/structure/closet/supplypod)
+/datum/round_event/syndicate_assassination_attempt/proc/fill_pod(obj/structure/closet/supplypod)
 	var/spawntype
 	for(var/i = 0; i < spawn_number; i ++)
 		spawntype = pick(potential_assassins)
