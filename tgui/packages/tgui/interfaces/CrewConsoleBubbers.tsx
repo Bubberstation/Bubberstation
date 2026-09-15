@@ -24,7 +24,7 @@ const SORT_NAMES = {
 };
 
 const STAT_LIVING = 0;
-const STAT_DEAD = 4;
+const STAT_DEAD = 3;
 
 const SORT_OPTIONS = ['health', 'ijob', 'name', 'area'];
 

@@ -22,16 +22,10 @@
 /obj/machinery/computer/bookmanagement
 	connectable = FALSE
 
-/obj/machinery/computer/med_data/laptop
-	connectable = FALSE
-
 /obj/machinery/computer/pandemic
 	connectable = FALSE
 
 /obj/machinery/computer/pod/old
-	connectable = FALSE
-
-/obj/machinery/computer/secure_data/laptop
 	connectable = FALSE
 
 /obj/machinery/computer/slot_machine
