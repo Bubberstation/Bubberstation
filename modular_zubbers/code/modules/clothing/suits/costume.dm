@@ -137,6 +137,7 @@
 /obj/item/clothing/suit/costume/irs
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/costume_digi.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/suit/spooky_ghost_sheet
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'

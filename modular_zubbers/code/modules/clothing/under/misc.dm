@@ -775,3 +775,6 @@
 
 /obj/item/clothing/under/rank/civilian/curator/skirt
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/suits_teshari.dmi'
+
+/obj/item/clothing/under/rank/civilian/lawyer
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/suits_teshari.dmi'
