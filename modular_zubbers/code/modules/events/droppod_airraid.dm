@@ -159,21 +159,19 @@
 	return pod
 
 /datum/round_event/droppod_airraid/proc/fill_droppod(obj/structure/pod)
-	var/mob/enemy
 	for(var/i = 0; i < droppod_density; i ++)
-		enemy = new_enemy_spawn(pod)
+		new_enemy_spawn(pod)
 
 /datum/round_event/droppod_airraid/proc/new_enemy_spawn(obj/pod)
 	. = pick(enemy_types)
 	. = new .(pod)
 
 /datum/round_event/droppod_airraid/proc/fill_bosspod(obj/structure/pod)
-	var/mob/enemy
 	for(var/i = 0; i < droppod_density; i ++)
 		if(i == 0 && boss_types.len > 0)
-			enemy = new_boss_spawn(pod)
+			new_boss_spawn(pod)
 		else
-			enemy = new_enemy_spawn(pod)
+			new_enemy_spawn(pod)
 
 /datum/round_event/droppod_airraid/proc/new_boss_spawn(obj/pod)
 	. = pick(boss_types)
