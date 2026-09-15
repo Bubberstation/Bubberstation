@@ -149,7 +149,7 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	if(isnull(beacon_turf) || isnull(target_turf))
 		return ITEM_INTERACT_BLOCKING
 	if(!length(get_liftable_items(target_turf)))
-		balloon_alert(user, target_turf.has_living_contents() ? "safety check failed!" : "no transportable cargo detected!")
+		balloon_alert(user, safety_check(target_turf) ? "safety check failed!" : "no transportable cargo detected!")
 		return ITEM_INTERACT_BLOCKING
 
 	lifting = TRUE
