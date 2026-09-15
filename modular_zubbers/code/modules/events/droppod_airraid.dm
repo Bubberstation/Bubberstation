@@ -116,7 +116,8 @@
 	after_wave_announce()
 
 /datum/round_event/droppod_airraid/proc/get_announce_wave_text()
-	return "Drop Pod trajectories calculated enroute to: [selected_spawn_areas[wave_to_announce].name]"
+	var/area/myarea = selected_spawn_areas[wave_to_announce]
+	return "Drop Pod trajectories calculated enroute to: [myarea.name]"
 
 /datum/round_event/droppod_airraid/proc/after_wave_announce()
 	wave_to_announce++
@@ -147,7 +148,7 @@
 /datum/round_event/droppod_airraid/proc/get_droppod_count()
 	return ceil(get_current_wave().areasize / turf_droppods_ratio)
 
-/datum/round_event/droppod_airraid/proc/get_current_wave()
+/datum/round_event/droppod_airraid/proc/get_current_wave() as /area
 	return selected_spawn_areas[current_wave]
 
 /datum/round_event/droppod_airraid/proc/generate_one_droppod()
@@ -196,7 +197,7 @@
 /datum/round_event/droppod_airraid/proc/after_wave()
 	var/static/mutable_appearance/target_appearance = mutable_appearance('icons/obj/supplypods_32x32.dmi', "LZ")
 	var/turf/ghost_target_turf = pick(get_area_turfs(get_current_wave()))
-	notify_ghosts("A droppod wave is attacking [selected_spawn_areas[current_wave].name]!", source = ghost_target_turf, header = "Invasion in progress", alert_overlay = target_appearance)
+	notify_ghosts("A droppod wave is attacking [get_current_wave().name]!", source = ghost_target_turf, header = "Invasion in progress", alert_overlay = target_appearance)
 	current_wave++
 	set_next_incident_time()
 
