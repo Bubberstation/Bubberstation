@@ -42,9 +42,6 @@
 	)
 
 	job_flags = STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS
-	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
-	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
-	is_hand_required = TRUE
 	alt_titles = list(
 		"Blueshield",
 		"Command Bodyguard",

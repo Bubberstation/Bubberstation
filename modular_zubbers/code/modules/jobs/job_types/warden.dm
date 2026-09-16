@@ -19,6 +19,3 @@
 	)
 	sec_antag_cap = 1
 	akula_outfit = /datum/outfit/akula/security_officer
-	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
-	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
-	is_hand_required = TRUE
