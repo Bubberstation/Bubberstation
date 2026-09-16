@@ -14,7 +14,7 @@
 
 /datum/round_event/ghost_role/lone_infiltrator
 	minimum_required = 1
-	role_name = ROLE_LONE_INFILTRATOR
+	role_name = "Syndicate Boarder"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/lone_infiltrator/spawn_role()
