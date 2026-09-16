@@ -993,9 +993,11 @@ SUBSYSTEM_DEF(job)
 		return JOB_UNAVAILABLE_AGE
 
 	//SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
-	if(possible_job.has_banned_quirk(player.client.prefs))
-		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_QUIRK)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
-		return JOB_UNAVAILABLE_QUIRK
+	// BUBBER EDIT REMOVAL START - quirks no longer gate jobs
+	//if(possible_job.has_banned_quirk(player.client.prefs))
+	//	job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_QUIRK)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+	//	return JOB_UNAVAILABLE_QUIRK
+	// BUBBER EDIT REMOVAL END
 
 	if(!possible_job.has_required_languages(player.client.prefs))
 		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_LANGUAGE)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
@@ -1017,13 +1019,15 @@ SUBSYSTEM_DEF(job)
 			job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_FLAVOUR)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 			return JOB_UNAVAILABLE_FLAVOUR
 
-	if (!possible_job.has_enough_hands(player.client.prefs))
-		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_NOHANDS)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
-		return JOB_UNAVAILABLE_NOHANDS
+	// BUBBER EDIT REMOVAL START - augments and missing limbs no longer gate jobs
+	//if (!possible_job.has_enough_hands(player.client.prefs))
+	//	job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_NOHANDS)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+	//	return JOB_UNAVAILABLE_NOHANDS
 
-	if(possible_job.has_banned_augment(player.client.prefs))
-		job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_AUGMENT)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
-		return JOB_UNAVAILABLE_AUGMENT
+	//if(possible_job.has_banned_augment(player.client.prefs))
+	//	job_debug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_AUGMENT)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
+	//	return JOB_UNAVAILABLE_AUGMENT
+	// BUBBER EDIT REMOVAL END
 
 	//SKYRAT EDIT END
 
