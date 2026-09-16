@@ -49,8 +49,6 @@
 
 // Genital Layers
 #define BUTT_LAYER_OFFSET 0.08
-/// Front butt layer while wearing a MODsuit, over the suit but under belts and backpacks
-#define ASS_LAYER_ABOVE_SUIT 13.9
 #define ANUS_LAYER_OFFSET  0.07
 #define VAGINA_LAYER_OFFSET 0.06
 #define TESTICLES_LAYER_OFFSET 0.05

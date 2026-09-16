@@ -635,19 +635,6 @@
 /datum/bodypart_overlay/mutant/genital/butt/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_BUTT]
 
-/datum/bodypart_overlay/mutant/genital/butt/get_overlay(obj/item/bodypart/limb, layer_index, layer_real)
-	// MODsuits cover everything, so an always-shown butt has to sit over the suit to be seen
-	var/mob/living/carbon/human/wearer = limb?.owner
-	if(layer_index == EXTERNAL_FRONT && istype(wearer?.wear_suit, /obj/item/clothing/suit/mod))
-		layer_real = -ASS_LAYER_ABOVE_SUIT
-	return ..()
-
-/datum/bodypart_overlay/mutant/genital/butt/icon_render_key(obj/item/bodypart/limb)
-	. = ..()
-	var/mob/living/carbon/human/wearer = limb?.owner
-	if(istype(wearer?.wear_suit, /obj/item/clothing/suit/mod))
-		. += "above_modsuit"
-
 /obj/item/organ/genital/belly
 	name = "belly"
 	desc = "You see a belly on their midsection."
