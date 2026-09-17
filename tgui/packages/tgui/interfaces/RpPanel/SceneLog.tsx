@@ -495,7 +495,7 @@ export function SceneLog(props: SceneLogProps) {
           </Stack.Item>
           <Stack.Item>
             <Dropdown
-              width="5em"
+              width="5.5em"
               selected={String(diceSides)}
               displayText={
                 DICE_OPTIONS.find((die) => die.id === diceSides)?.label ||
