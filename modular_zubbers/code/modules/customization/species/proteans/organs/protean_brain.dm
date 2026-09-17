@@ -34,7 +34,6 @@
 		owner.revive(list(HEAL_DAMAGE, HEAL_ORGANS), TRUE, TRUE) // So we dont get dead human inside of suit
 		qdel(owner.get_organ_slot(ORGAN_SLOT_STOMACH))
 		go_into_suit(TRUE)
-		owner.set_stat(HARD_CRIT)
 
 /obj/item/organ/brain/protean/proc/handle_refactory(obj/item/organ) // Slowly degrade
 	var/datum/species/protean/species = owner?.dna.species
