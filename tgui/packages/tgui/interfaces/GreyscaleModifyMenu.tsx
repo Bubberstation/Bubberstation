@@ -43,6 +43,7 @@ type GreyscaleMenuData = {
   hide_full_color_string?: boolean;
   component_style?: ComponentStyleData;
   //BUBBER ADDITION END - dynamic uniforms
+  preview_generation?: number; //BUBBER ADDITION - preview reliability
   sprites: SpriteData;
   generate_full_preview: boolean;
   unlocked: boolean;
@@ -304,7 +305,8 @@ const IconStatesDisplay = (props) => {
   return (
     <Section title="Icon States">
       <Flex>
-        {data.sprites.icon_states.map((item) => (
+        {/* BUBBER EDIT: null guard. sprites can be empty before the first preview lands. */}
+        {data.sprites?.icon_states?.map((item) => (
           <Flex.Item key={item}>
             <Button
               mx={0.5}
@@ -320,32 +322,52 @@ const IconStatesDisplay = (props) => {
 };
 
 const PreviewDisplay = (props) => {
-  const { data } = useBackend<GreyscaleMenuData>();
+  const { act, data } = useBackend<GreyscaleMenuData>(); //BUBBER EDIT: act added for reload_preview
   return (
-    <Section title={`Preview (${data.sprites_dir})`}>
+    <Section
+      title={`Preview (${data.sprites_dir})`}
+      /* BUBBER ADDITION: refresh control, top right of the section header. */
+      buttons={
+        <Button
+          icon="rotate-right"
+          onClick={() => act('reload_preview')}
+          tooltip="Refresh preview"
+        />
+      }
+    >
       <Table>
         <Table.Row>
           <Table.Cell width="50%">
             <PreviewCompassSelect />
           </Table.Cell>
-          {data.sprites?.finished ? (
-            <Table.Cell>
-              <Image m={0} mx="10%" src={data.sprites.finished} width="75%" />
-            </Table.Cell>
-          ) : (
-            <Table.Cell>
+          {/* BUBBER EDIT START - preview reliability. Was a plain Image with no retry.
+              The fixed cell height stops the row collapsing while a new image loads,
+              which used to make the compass jump up the panel. */}
+          <Table.Cell height="8rem" verticalAlign="middle">
+            {data.sprites?.finished ? (
+              <Image
+                key={data.preview_generation}
+                fixErrors
+                m={0}
+                mx="10%"
+                src={data.sprites.finished}
+                width="75%"
+              />
+            ) : (
               <Box>
                 <Icon name="image" ml="25%" size={5} />
               </Box>
-            </Table.Cell>
-          )}
+            )}
+          </Table.Cell>
+          {/* BUBBER EDIT END - preview reliability */}
         </Table.Row>
       </Table>
-      {!!data.unlocked && `Time Spent: ${data.sprites.time_spent}ms`}
+      {/* BUBBER EDIT: null guard */}
+      {!!data.unlocked && `Time Spent: ${data.sprites?.time_spent ?? 0}ms`}
       <Divider />
       {!data.refreshing && (
         <Table>
-          {!!data.generate_full_preview && data.sprites.steps !== null && (
+          {!!data.generate_full_preview && !!data.sprites?.steps && (
             <Table.Row header>
               <Table.Cell width="50%" textAlign="center">
                 Layer Source
@@ -359,7 +381,7 @@ const PreviewDisplay = (props) => {
             </Table.Row>
           )}
           {!!data.generate_full_preview &&
-            data.sprites.steps !== null &&
+            !!data.sprites?.steps &&
             data.sprites.steps.map((item) => (
               <Table.Row key={`${item.result}|${item.layer}`}>
                 <Table.Cell verticalAlign="middle">
@@ -386,8 +408,21 @@ const SingleSprite = (props) => {
 
 const LoadingAnimation = () => {
   return (
-    <Box height={0} mt="-100%">
-      <Icon name="cog" height={22.7} opacity={0.5} size={25} spin />
+    // BUBBER EDIT: was a negative-margin box, which drifted off centre at most window sizes.
+    <Box
+      position="fixed"
+      top={0}
+      left={0}
+      width="100%"
+      height="100%"
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        pointerEvents: 'none',
+      }}
+    >
+      <Icon name="cog" opacity={0.5} size={10} spin />
     </Box>
   );
 };
