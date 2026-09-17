@@ -1,0 +1,14 @@
+author: "ArrisFairburne"
+delete-after: True
+changes:
+  - rscadd: "Blacksmiths (should) now have dedicated dept. rooms in every map that we are currently running"
+  - rscadd: "Nonlethal striking with the blacksmithing weapons now has a unique \"handle bash\" animation, also they should look like they're swinging/stabbing in their normal animations"
+  - rscadd: "Adds a new reagent forged baseball bat weapon."
+  - balance: "Anvils now require titanium to make. (This prevents anvil creation from being too easy via the most common material on station, while not being CBT for offstation roles to obtain.)"
+  - balance: "Smithed gunbelts and sheaths are now belt-slot exclusive. (It was honestly too much to have two of these at once.)"
+  - balance: "Buffed reagent imbuing into plate armor so it drains integ slower."
+  - rscadd: "Anvils are now heavy and are slower to drag."
+  - rscadd: "The blacksmithing roundstart wooden crate now includes leather and cloth to help jumpstart blacksmith duties."
+  - bugfix: "Fixes the \"pull item from crafting bench with tongs\" code so that you actually can do that (was previously impossible due to a bug)"
+  - refactor: "Improved smithing tong code to update when items are moved in or out of it (instead of manually changing the sprite)"
+  - image: "Changed sprites of the held forge weapons so that they are more visible"

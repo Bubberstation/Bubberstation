@@ -164,3 +164,26 @@
       is deleted.
   Dragon Lee:
   - rscadd: The chaplain can now roll the acolyte/heretic antagonist again.
+2026-09-15:
+  Aeri:
+  - bugfix: Hand markings now work without needing an arm marking, can be removed,
+      and no longer leak onto other characters.
+  Erbot34567:
+  - bugfix: Lycans and Cursekins are once again blacklisted from Entombed quirk
+  NanoCats:
+  - bugfix: Crates bought with a department budget can be opened by that department
+      again, instead of arriving locked to nobody.
+  - bugfix: Company imports can be ordered from the NT order app again.
+  - refactor: Migrated the leftover `/obj/item/device` objects to their proper paths.
+  Odairu:
+  - bugfix: fixes an undefined variable in hacked IPC status message
+  Vanilla1040:
+  - rscadd: Adds New Malf AI ability to hack/subvert a IPC/Synthetic to their minion
+      (Has its own Preference)
+2026-09-16:
+  Aeri:
+  - bugfix: resolves feature regression in the Cargo Teleporter
+  Odairu:
+  - bugfix: Crew monitors see dead people again
+  Swan:
+  - bugfix: fixes computers not connecting to one another properly
