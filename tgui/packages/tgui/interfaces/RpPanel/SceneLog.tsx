@@ -511,7 +511,7 @@ export function SceneLog(props: SceneLogProps) {
           <Stack.Item>
             <Button
               icon="dice"
-              tooltip={`Roll a d${diceSides} (scene log only)`}
+              tooltip={`Roll a d${diceSides}`}
               onClick={() => {
                 setDiceModifier(0);
                 setDicePromptOpen(true);
