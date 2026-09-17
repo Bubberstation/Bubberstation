@@ -1,7 +1,7 @@
 /// Items the advanced broom can move per lane in one sweep, against 20 for a plain one
 #define ADVANCED_BROOM_PUSH_LIMIT 15
 /// Movement penalty while the bristles are charged
-#define ADVANCED_BROOM_SLOWDOWN 0.5
+#define ADVANCED_BROOM_SLOWDOWN 0.15
 
 /obj/item/pushbroom/advanced
 	name = "advanced push broom"
