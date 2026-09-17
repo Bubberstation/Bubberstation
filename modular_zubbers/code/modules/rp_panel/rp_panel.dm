@@ -850,7 +850,8 @@
 	var/list/message_mods = speech_args[SPEECH_MODS] || list()
 	if(message_mods[RADIO_EXTENSION])
 		return
-	var/message = speech_args[SPEECH_MESSAGE]
+	// say() sanitizes with html_encode; store decoded so TGUI can format client-side.
+	var/message = html_decode(speech_args[SPEECH_MESSAGE])
 	if(!message)
 		return
 	var/mode = message_mods[WHISPER_MODE] ? "whisper" : "say"
@@ -862,6 +863,8 @@
 		return
 	if(!istype(emote) || !(emote.key in list("me", "subtle", "subtler")))
 		return
+	// Me/subtle inputs may already be encoded; keep the live log as raw text.
+	message = html_decode(message)
 	if(!message)
 		return
 	append_scene_message(build_log_entry(source, message, emote.key))
