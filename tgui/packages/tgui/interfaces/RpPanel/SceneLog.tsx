@@ -3,7 +3,10 @@ import {
   Box,
   Button,
   Dropdown,
+  Modal,
   NoticeBox,
+  NumberInput,
+  Section,
   Stack,
 } from 'tgui-core/components';
 
@@ -21,6 +24,16 @@ const MODE_CLASS: Record<string, string> = {
   subtler_antighost: 'subtler',
   system: 'system',
 };
+
+const DICE_OPTIONS = [
+  { id: 4, label: 'd4' },
+  { id: 6, label: 'd6' },
+  { id: 8, label: 'd8' },
+  { id: 10, label: 'd10' },
+  { id: 12, label: 'd12' },
+  { id: 20, label: 'd20' },
+  { id: 100, label: 'd100' },
+];
 
 function applyChatEmphasis(raw: string): string {
   let input = `${raw ?? ''}`
@@ -94,6 +107,19 @@ export function SceneLog(props: SceneLogProps) {
   const [unread, setUnread] = useState(0);
   const [imageOpen, setImageOpen] = useState(false);
   const [imageDraft, setImageDraft] = useState('');
+  const [diceSides, setDiceSides] = useState(20);
+  const [dicePromptOpen, setDicePromptOpen] = useState(false);
+  const [diceModifier, setDiceModifier] = useState(0);
+
+  const closeDicePrompt = () => {
+    setDicePromptOpen(false);
+    setDiceModifier(0);
+  };
+
+  const confirmDiceRoll = () => {
+    act('roll_dice', { sides: diceSides, modifier: diceModifier });
+    closeDicePrompt();
+  };
 
   const persistDraft = (value: string) => {
     draftRef.current = value;
@@ -227,6 +253,36 @@ export function SceneLog(props: SceneLogProps) {
 
   return (
     <Stack fill vertical className="SceneAssistant__logStack">
+      {dicePromptOpen && (
+        <Modal onEscape={closeDicePrompt}>
+          <Section title="Add Modifier" width="260px">
+            <Box mb={1} color="label">
+              Optional bonus or penalty for this d{diceSides} roll.
+            </Box>
+            <NumberInput
+              width="100%"
+              minValue={-100}
+              maxValue={100}
+              step={1}
+              value={diceModifier}
+              format={(value) => (value > 0 ? `+${value}` : `${value}`)}
+              onChange={setDiceModifier}
+            />
+            <Stack mt={1}>
+              <Stack.Item grow>
+                <Button fluid color="good" icon="dice" onClick={confirmDiceRoll}>
+                  Roll Die
+                </Button>
+              </Stack.Item>
+              <Stack.Item grow>
+                <Button fluid color="bad" onClick={closeDicePrompt}>
+                  Cancel Die
+                </Button>
+              </Stack.Item>
+            </Stack>
+          </Section>
+        </Modal>
+      )}
       <Stack.Item grow className="SceneAssistant__logPane">
         <div
           ref={logRef}
@@ -434,6 +490,31 @@ export function SceneLog(props: SceneLogProps) {
                 if (imageOpen) {
                   setImageDraft('');
                 }
+              }}
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Dropdown
+              width="5em"
+              selected={String(diceSides)}
+              displayText={
+                DICE_OPTIONS.find((die) => die.id === diceSides)?.label ||
+                `d${diceSides}`
+              }
+              options={DICE_OPTIONS.map((die) => ({
+                displayText: die.label,
+                value: String(die.id),
+              }))}
+              onSelected={(value) => setDiceSides(Number(value))}
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="dice"
+              tooltip={`Roll a d${diceSides} (scene log only)`}
+              onClick={() => {
+                setDiceModifier(0);
+                setDicePromptOpen(true);
               }}
             />
           </Stack.Item>

@@ -48,6 +48,15 @@ export function ManageSelfModal(props: ManageSelfModalProps) {
       >
         {self.show_erp ? (
           <>
+            <Box mb={1}>
+              <Button
+                icon="eye"
+                color="pink"
+                onClick={() => act('toggle_arousal')}
+              >
+                Toggle Arousal
+              </Button>
+            </Box>
             {Object.entries(PREF_LABELS).map(([key, label]) => {
               const pref = self.prefs[key];
               if (!pref) {

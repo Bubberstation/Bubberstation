@@ -745,9 +745,10 @@ GAME_VERB_DESC(/mob/living/carbon/human, toggle_genitals, "Expose/Hide genitals"
 		UNASSIGN_GAME_VERB(src, /mob/living/carbon/human, toggle_genitals)
 		UNASSIGN_GAME_VERB(src, /mob/living/carbon/human, toggle_arousal)
 
-GAME_VERB_DESC(/mob/living/carbon/human, toggle_arousal, "Toggle Arousal", "Allows you to toggle how aroused your private parts are.", "IC")
-	if(IS_UNCONSCIOUS_OR_CRIT(usr))
-		to_chat(usr, span_warning("You can't toggle arousal right now..."))
+/// Opens the Set Arousal Amount prompt and eases toward the chosen value.
+/mob/living/carbon/human/proc/prompt_toggle_arousal()
+	if(IS_UNCONSCIOUS_OR_CRIT(src))
+		to_chat(src, span_warning("You can't toggle arousal right now..."))
 		return
 
 	var/arousal_target = tgui_input_number(src, "[AROUSAL_NONE]= No arousal, <[AROUSAL_LOW] Low/partial Arousal, [AROUSAL_LOW] - [AROUSAL_HIGH] Medium/full Arousal, >[AROUSAL_HIGH] Strong/full Arousal", "Set Arousal Amount", arousal, AROUSAL_LIMIT, AROUSAL_MINIMUM, 0)
@@ -758,4 +759,7 @@ GAME_VERB_DESC(/mob/living/carbon/human, toggle_arousal, "Toggle Arousal", "Allo
 		AddComponent(/datum/component/change_arousal_on_life)
 		arousal_goal = arousal_target
 		SEND_SIGNAL(src, COMSIG_HUMAN_TOGGLE_AROUSAL)
+
+GAME_VERB_DESC(/mob/living/carbon/human, toggle_arousal, "Toggle Arousal", "Allows you to toggle how aroused your private parts are.", "IC")
+	prompt_toggle_arousal()
 	return

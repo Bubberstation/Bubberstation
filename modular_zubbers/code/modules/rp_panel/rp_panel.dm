@@ -659,6 +659,32 @@
 	play_sound_to_participants("message")
 	holder.log_message("scene image: [image_url][length(caption) ? " - [caption]" : ""]", LOG_SUBTLER)
 
+/// Scene-log-only dice roll (no IC announce).
+/datum/rp_panel/proc/roll_scene_dice(sides, modifier = 0)
+	var/static/list/valid_sides = list(4, 6, 8, 10, 12, 20, 100)
+	if(!(sides in valid_sides))
+		return FALSE
+	if(QDELETED(holder))
+		return FALSE
+	if(!isnum(modifier))
+		modifier = 0
+	modifier = clamp(ROUND_UP(modifier), -100, 100)
+	var/roll = rand(1, sides)
+	var/total = roll + modifier
+	var/die_label = "d[sides]"
+	if(modifier > 0)
+		die_label += "+[modifier]"
+	else if(modifier < 0)
+		die_label += "[modifier]"
+	var/result_text
+	if(modifier)
+		result_text = "[roll] [modifier > 0 ? "+" : "-"] [abs(modifier)] = [total]"
+	else
+		result_text = "[roll]"
+	append_scene_message(build_log_entry(holder, "[holder.name] rolls a [die_label]: [result_text].", "system"))
+	play_sound_to_participants("message")
+	return TRUE
+
 /datum/rp_panel/proc/notify_cannot_act(action_word)
 	if(!holder)
 		return

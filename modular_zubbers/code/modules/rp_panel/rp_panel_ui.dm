@@ -412,6 +412,15 @@
 				var/mob/living/carbon/human/human_holder = holder
 				human_holder.climax(manual = TRUE)
 			return TRUE
+		if("toggle_arousal")
+			if(!erp_enabled(holder) || !ishuman(holder))
+				return TRUE
+			var/mob/living/carbon/human/human_holder = holder
+			INVOKE_ASYNC(human_holder, TYPE_PROC_REF(/mob/living/carbon/human, prompt_toggle_arousal))
+			return TRUE
+		if("roll_dice")
+			roll_scene_dice(text2num(params["sides"]), text2num(params["modifier"]))
+			return TRUE
 		if("set_theme")
 			if(params["theme"] in list("default", "light", "cream", "strawberry", "super_dark", "apple", "syndicate"))
 				theme = params["theme"]
