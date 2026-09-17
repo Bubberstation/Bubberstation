@@ -10379,9 +10379,7 @@
 "dDB" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/window/reinforced/spawner/directional/east,
-/obj/machinery/computer/crew{
-	dir = 1
-	},
+/obj/structure/table/reinforced,
 /turf/open/floor/iron/dark/textured,
 /area/station/security/medical)
 "dDC" = (
@@ -25108,8 +25106,11 @@
 /area/space/nearstation)
 "iSM" = (
 /obj/structure/window/reinforced/spawner/directional/south,
-/obj/machinery/computer/records/medical{
-	dir = 1
+/obj/structure/table/reinforced,
+/obj/machinery/computer/records/medical/laptop{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = 5
 	},
 /turf/open/floor/iron/dark/textured,
 /area/station/security/medical)
@@ -40171,14 +40172,12 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/blue/filled/corner,
-/obj/machinery/stasis{
-	dir = 4
-	},
 /obj/item/bedsheet/medical{
 	dir = 4
 	},
 /obj/machinery/iv_drip,
 /obj/machinery/vitals_reader/directional/west,
+/obj/structure/bed/medical,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 4
 	},
@@ -54203,6 +54202,8 @@
 /obj/effect/decal/cleanable/food/pie_smudge,
 /turf/open/misc/asteroid/airless,
 /area/station/asteroid)
+"sIE" = (
+)
 "sIU" = (
 /obj/structure/bookcase/random/religion,
 /obj/structure/sign/painting/library{
@@ -176398,7 +176399,7 @@ kCy
 kCy
 kCy
 kCy
-oKG
+sIE
 nqn
 cTv
 ujE
