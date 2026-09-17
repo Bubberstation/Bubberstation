@@ -50,7 +50,7 @@
 	return hardlight_color_override || theme?.hardlight_color || STANDARD_BLUE
 
 /// Returns the hardlight texture for a color, hand drawn for presets and tinted for everything else
-/proc/get_hardlight_texture(hardlight_color)
+/datum/sprite_accessory/proc/get_hardlight_theme_texture(hardlight_color)
 	var/static/list/preset_states = list(
 		STANDARD_BLUE = "standard_blue",
 		ALERT_AMBER = "alert_amber",
@@ -93,7 +93,7 @@
 	if(!special_icon)
 		special_icon = icon(appearance_to_use.icon, appearance_to_use.icon_state)
 		special_icon.Blend("#fff", ICON_ADD)
-		special_icon.Blend(get_hardlight_texture(hardlight_color), ICON_MULTIPLY)
+		special_icon.Blend(get_hardlight_theme_texture(hardlight_color), ICON_MULTIPLY)
 		special_icon = fcopy_rsc(special_icon)
 		mod_icon_cache[index] = special_icon
 
@@ -125,9 +125,9 @@
 	return data
 
 /obj/item/mod/control/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	if(action != "hardlight_color" && action != "hardlight_reset")
-		return ..()
 	. = ..()
+	if(action != "hardlight_color" && action != "hardlight_reset")
+		return
 	if(!. || !theme?.hardlight)
 		return
 	if(action == "hardlight_reset")
