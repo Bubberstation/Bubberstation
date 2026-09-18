@@ -35,6 +35,7 @@ SUBSYSTEM_DEF(polling)
  * * amount_to_pick: Lets you pick candidates and return a single mob or list of mobs that were chosen.
  * * chat_text_border_icon: Object or path to make an icon of to decorate the chat announcement.
  * * announce_chosen: Whether we should announce the chosen candidates in chat. This is ignored unless amount_to_pick is greater than 0.
+ * * show_candidate_amount: BUBBER EDIT - Whether the alert shows a running count of how many people signed up.
  *
  * Returns a list of all mobs who signed up for the poll, OR, in the case that amount_to_pick is equal to 1 the singular mob/null if no available candidates.
  */
@@ -54,6 +55,7 @@ SUBSYSTEM_DEF(polling)
 	amount_to_pick = 0,
 	chat_text_border_icon,
 	announce_chosen = TRUE,
+	show_candidate_amount = TRUE, //BUBBER EDIT ADDITION - ANTAG PROMPT
 )
 	if(group.len == 0)
 		return
@@ -76,6 +78,7 @@ SUBSYSTEM_DEF(polling)
 		jump_target = alert_pic
 
 	var/datum/candidate_poll/new_poll = new(role_name_text, question, poll_time, ignore_category, jump_target, custom_response_messages)
+	new_poll.show_candidate_amount = show_candidate_amount //BUBBER EDIT ADDITION - ANTAG PROMPT
 	LAZYADD(currently_polling, new_poll)
 
 	var/category = "[new_poll.poll_key]_poll_alert"
@@ -181,7 +184,11 @@ SUBSYSTEM_DEF(polling)
 					surrounding_image = image(chat_text_border_icon)
 				surrounding_icon = icon2html(surrounding_image, candidate_mob, extra_classes = "bigicon")
 			var/final_message =  boxed_message("<span style='text-align:center;display:block'>[surrounding_icon] <span style='font-size:1.2em'>[span_ooc(question)]</span> [surrounding_icon]\n[act_jump]      [act_signup]      [act_never]</span>")
-			to_chat(candidate_mob, final_message)
+			//BUBBER EDIT BEGIN - ANTAG PROMPT - muting the prompt sound also mutes its chat copy; the on-screen alert stays either way
+			//to_chat(candidate_mob, final_message) - BUBBER EDIT ORIGINAL
+			if(polling_sound_pref != GHOST_POLL_PROMPT_DISABLED)
+				to_chat(candidate_mob, final_message)
+			//BUBBER EDIT END - ANTAG PROMPT
 
 		// Start processing it so it updates visually the timer
 		START_PROCESSING(SSprocessing, poll_alert_button)
