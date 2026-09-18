@@ -206,6 +206,12 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	akula_outfit = /datum/outfit/akula/security_officer
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+	alt_titles = list(
+		"Science Guard",
+		"Research Guard",
+	)
 
 /datum/outfit/job/science_guard
 	name = "Science Guard"
@@ -214,6 +220,7 @@
 	belt = /obj/item/modular_computer/pda/science
 	ears = /obj/item/radio/headset/guard_bowman/science
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/guard/science
 	shoes = /obj/item/clothing/shoes/jackboots
 	head =  /obj/item/clothing/head/beret/sec/science
 	suit = /obj/item/clothing/suit/armor/vest/alt
@@ -311,6 +318,14 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	akula_outfit = /datum/outfit/akula/security_officer
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+	alt_titles = list(
+		"Orderly",
+		"Medical Guard",
+		"Medical Attendant",
+		"Medical Support Technician",
+	) //other dept guards' alt-titles should be kept to [department] guard to avoid confusion, unless the department gets a re-do.	// I came across this comment while I was cleaning up job datums. IDFK what it is refering to because apparently having like 5 separate overrides for each job datum (and sometimes even fucking `New` procs just to add alt-titles) wasn't confusing enough I guess, but I'll leave it just in case
 
 /datum/outfit/job/orderly
 	name = "Orderly"
@@ -321,7 +336,7 @@
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/orderly
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	head = /obj/item/clothing/head/beret/sec/medical
-	glasses = /obj/item/clothing/glasses/hud/medsechud/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/guard/medical
 	suit = /obj/item/clothing/suit/armor/vest/blueshirt/skyrat/orderly
 	r_pocket = /obj/item/reagent_containers/spray/pepper
 	l_pocket = /obj/item/restraints/handcuffs
@@ -418,6 +433,12 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	akula_outfit = /datum/outfit/akula/security_officer
+	alt_titles = list(
+		"Engineering Guard",
+		"Atmospheric Security",
+	)
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
 /datum/outfit/job/engineering_guard
 	name = "Engineering Guard"
@@ -427,6 +448,7 @@
 	ears = /obj/item/radio/headset/guard_bowman/engineering
 	shoes = /obj/item/clothing/shoes/workboots
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/engineering_guard
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering
 	head =  /obj/item/clothing/head/beret/sec/engineering
 	suit = /obj/item/clothing/suit/armor/vest/blueshirt/skyrat/engineering_guard
 	r_pocket = /obj/item/reagent_containers/spray/pepper
@@ -524,6 +546,12 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+	akula_outfit = /datum/outfit/akula/security_officer
+	alt_titles = list(
+		"Customs Agent",
+		"Supply Guard",
+	)
 
 /datum/outfit/job/customs_agent
 	name = "Customs Agent"
@@ -535,7 +563,7 @@
 	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt/skyrat/customs_agent
 	head = /obj/item/clothing/head/beret/sec/cargo
 	suit = /obj/item/clothing/suit/armor/vest/blueshirt/skyrat/customs_agent
-	glasses = /obj/item/clothing/glasses/hud/gun_permit
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/guard/customs
 	r_pocket = /obj/item/reagent_containers/spray/pepper
 	l_pocket = /obj/item/restraints/handcuffs
 	backpack_contents = list(
@@ -625,6 +653,14 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
+	akula_outfit = /datum/outfit/akula/security_officer
+	alt_titles = list(
+		"Bouncer",
+		"Service Guard",
+		"Doorman",
+		"Doorwoman",
+	)
 
 /datum/outfit/job/bouncer
 	name = "Bouncer"
@@ -643,7 +679,7 @@
 		/obj/item/security_voucher/primary = 1,
 		/obj/item/holosign_creator/security = 1
 	)
-	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/guard/service
 
 	backpack = /obj/item/storage/backpack
 	satchel = /obj/item/storage/backpack/satchel
@@ -850,7 +886,8 @@
 		/obj/item/clothing/head/beret/sec/science = 2,
 		/obj/item/clothing/suit/armor/vest/blueshirt/skyrat = 2,
 		/obj/item/clothing/suit/toggle/labcoat/technical/science/guard = 1,
-		/obj/item/clothing/glasses/hud/security = 2,
+		/obj/item/clothing/glasses/hud/security = 1,
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/science = 1,
 	), src)
 
 /obj/item/storage/bag/garment/orderly
@@ -871,6 +908,7 @@
 		/obj/item/clothing/suit/toggle/labcoat/technical/medical/black/guard = 1,
 		/obj/item/clothing/under/rank/security/peacekeeper/miniskirt = 1,
 		/obj/item/clothing/glasses/hud/medsechud = 1,
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/medical = 1,
 	), src)
 
 /obj/item/storage/bag/garment/engineering_guard
@@ -886,7 +924,8 @@
 		/obj/item/clothing/head/beret/sec/engineering = 2,
 		/obj/item/clothing/suit/armor/vest/blueshirt/skyrat/engineering_guard = 2,
 		/obj/item/clothing/suit/toggle/labcoat/technical/engineer/guard = 1,
-		/obj/item/clothing/glasses/hud/security = 2,
+		/obj/item/clothing/glasses/hud/security = 1,
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering = 1,
 	), src)
 
 /obj/item/storage/bag/garment/customs_agent
@@ -902,6 +941,6 @@
 		/obj/item/clothing/head/beret/sec/cargo = 2,
 		/obj/item/clothing/suit/armor/vest/blueshirt/skyrat/customs_agent = 2,
 		/obj/item/clothing/suit/toggle/labcoat/technical/cargo/guard = 1,
-		/obj/item/clothing/glasses/hud/security = 2,
-		/obj/item/clothing/glasses/hud/gun_permit = 2,
+		/obj/item/clothing/glasses/hud/security = 1,
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/customs = 1,
 	), src)

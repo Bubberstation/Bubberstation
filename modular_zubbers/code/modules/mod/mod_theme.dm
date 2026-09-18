@@ -118,7 +118,7 @@
 	name = "lustwish"
 	desc = "A specialty designed lustwish themed modsuit which is based entirely off of earlier civilian modsuits."
 	default_skin = "lustwish"
-	hardlight_theme = ROYAL_PURPLE
+	hardlight_color = ROYAL_PURPLE
 	ui_theme = "ntos_darkmode"
 	variants = list(
 		"lustwish" = list(
@@ -226,10 +226,10 @@
 	)
 
 /datum/armor/mod_theme_voskhod
-	melee = 30
-	bullet = 30
+	melee = 20
+	bullet = 35
 	laser = 30
-	energy = 30
+	energy = 20
 	bomb = 30
 	bio = 30
 	fire = 80

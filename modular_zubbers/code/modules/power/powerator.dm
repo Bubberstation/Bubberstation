@@ -240,6 +240,7 @@
 	name = "Tarkon Powerator"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/powerator/tarkon
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT)
 
 /obj/machinery/powerator/tarkon
 	name = "Tarkon powerator"

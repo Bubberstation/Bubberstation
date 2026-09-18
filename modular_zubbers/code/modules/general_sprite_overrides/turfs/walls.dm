@@ -134,16 +134,24 @@
 
 
 // SURVIVAL
-/turf/closed/wall/mineral/titanium/survival
+/turf/closed/wall/mineral/plastitanium/survival
 	icon = 'modular_zubbers/icons/turf/walls/survival_pod_walls.dmi'
-	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_TITANIUM_WALLS + SMOOTH_GROUP_WALLS
+	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_WALLS
 
-/turf/closed/wall/mineral/titanium/survival/nodiagonal
+/turf/closed/wall/mineral/plastitanium/survival/nodiagonal
 	icon = 'modular_zubbers/icons/turf/walls/survival_pod_walls.dmi'
 
-/turf/closed/wall/mineral/titanium/survival/pod
+/turf/closed/wall/mineral/plastitanium/survival/pod
 	icon = 'modular_zubbers/icons/turf/walls/survival_pod_walls.dmi'
-	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_SURVIVAL_TITANIUM_POD
+	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_WALLS
+
+/turf/closed/wall/mineral/plastitanium/darkpod
+	icon = 'modular_zubbers/icons/turf/walls/dark_pod.dmi'
+	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_WALLS
+
+/turf/closed/wall/mineral/plastitanium/redpod
+	icon = 'modular_zubbers/icons/turf/walls/red_pod.dmi'
+	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_WALLS
 
 
 // INDESTRUCTIBLE WALLS
@@ -254,6 +262,17 @@
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS
 
+// Cement, das concrete baybee
+/turf/closed/wall/concrete
+	icon = 'modular_zubbers/icons/turf/walls/concrete.dmi'
+	smoothing_groups = SMOOTH_GROUP_CONCRETE_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS
+
+/turf/closed/wall/concrete/reinforced
+	icon = 'modular_zubbers/icons/turf/walls/hexacrete.dmi'
+	smoothing_groups = SMOOTH_GROUP_CONCRETE_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
+	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_CONCRETE_WALLS + SMOOTH_GROUP_WALLS
+
 
 // FALSE WALLS
 /obj/structure/falsewall
@@ -310,6 +329,21 @@
 	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
 	fake_icon = 'modular_zubbers/icons/turf/walls/plastitanium_wall.dmi'
 	canSmoothWith = SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_WALLS
+
+/obj/structure/falsewall/plastitanium/darkpod
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/dark_pod.dmi'
+	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_WALLS
+
+/obj/structure/falsewall/plastitanium/redpod
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/red_pod.dmi'
+	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_WALLS
+
+/obj/structure/falsewall/plastitanium/survival
+	icon = 'modular_zubbers/icons/turf/false_walls.dmi'
+	fake_icon = 'modular_zubbers/icons/turf/walls/survival_pod_walls.dmi'
+	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_WALLS
 
 /obj/structure/falsewall/sandstone
 	icon = 'modular_zubbers/icons/turf/false_walls.dmi'

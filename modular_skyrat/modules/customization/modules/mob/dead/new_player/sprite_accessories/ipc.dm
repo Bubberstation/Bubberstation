@@ -6,7 +6,7 @@
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/ipc_screens.dmi'
 	color_src = null
 	key = MUTANT_SYNTH_SCREEN
-	relevent_layers = list(BODY_FRONT_UNDER_CLOTHES)
+	relevent_layers = list(EXTERNAL_FRONT_UNDER_CLOTHES)
 	organ_type = /obj/item/organ/synth_screen
 
 /datum/sprite_accessory/screen/none
@@ -148,7 +148,7 @@
 	default_color = DEFAULT_SECONDARY
 	recommended_species = list(SPECIES_SYNTH)
 	key = MUTANT_SYNTH_ANTENNA
-	relevent_layers = list(BODY_ADJ_LAYER)
+	relevent_layers = list(EXTERNAL_ADJACENT)
 	organ_type = /obj/item/organ/synth_antenna
 
 /datum/sprite_accessory/antenna/is_hidden(mob/living/carbon/human/wearer)

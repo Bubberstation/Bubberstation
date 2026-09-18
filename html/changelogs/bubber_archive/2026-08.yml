@@ -1,0 +1,203 @@
+2026-08-01:
+  NanoCats:
+  - bugfix: Certain items no longer render a doubled ghost copy in your hand slot.
+  StrangeWeirdKitten:
+  - balance: increased Protean low power mode walking speed from a modifier of 5 to
+      3 (our current walking speed)
+  - bugfix: Proteans should no longer get duplicate items when certain outfits are
+      equipped.
+  Swan:
+  - qol: Renames the "mutant body colors" pref to just "body colors", moves most genital
+      appearance settings to the visuals tab of the character creator
+  ibexgoetia:
+  - balance: Being dusted via Dusting Sickness now makes you drop your equipment.
+  - bugfix: Abductors and Plasmamen are now blacklisted from picking the Dusting Sickness
+      quirk.
+  xPokee:
+  - rscadd: Added raw shrimp, fried (cooked) shrimp, and the ability to process fried
+      shrimp into shrimp chips.
+  - rscdel: Removed the hemphage specific quirks Masquerade, Sol Weakness, and Pseudo-Respiration.
+      They are now toggles on the hemophage quirk.
+  - refactor: 'Refactored the hemophage species into being a quirk: Hemophagia.'
+2026-08-02:
+  Mintyphresh:
+  - rscadd: Added Protean Match tags to the loadout and RoboDrobe. Use them in hand
+      to search for Proteans to wear, or crew to be worn by. Or, just wear them on
+      their own to signal you're open to the idea.
+  xPokee:
+  - bugfix: Fixed the fried shrimp description.
+2026-08-03:
+  Odairu:
+  - config: ERP is now an Opt-In system, rather than an opt-out
+2026-08-04:
+  Aeri:
+  - bugfix: Gun cases now utilize their existing "open" sprites where appropriate.
+  KateAnbolho:
+  - rscadd: Re-adds the Hoshi's self-charging method in an incredibly scuffed (for
+      you) method.
+  Maia-J:
+  - bugfix: Changing back to organic from synth no longer kicks you out of your body
+  - bugfix: Getting gibbed as synth no longer fucks up your brain in ways that make
+      maintainers cry from nightmares at 3 AM
+  NanoCats:
+  - bugfix: Shapeshifting no longer breaks organs that your old species simply never
+      had, so proteans stop suffocating if Tfing into humans or similar
+  - bugfix: Cleaned up a pile of runtime errors thrown by shapeshifting.
+  StrangeWeirdKitten:
+  - balance: Actually bumps Protean movespeed multipler from 3 to 2. That is actually
+      more walking speed.
+  Techbot121:
+  - bugfix: fixed interaction sounds not working (if there was one)
+  amsy2:
+  - rscadd: Added Superparticle Projector. Machine for engineering that benefits from
+      more complex SM setups. It can be ordered from cargo or department console,
+      crate contain full guide explaining inner working of the device
+  xPokee:
+  - rscdel: Removed the oversized specific organs.
+  - balance: Bridge Assistant hours no longer count as Command hours.
+2026-08-06:
+  Techbot121:
+  - bugfix: body_size being reapplied multiple times
+  xPokee:
+  - bugfix: Fixed the size collar.
+2026-08-07:
+  Maia-J:
+  - balance: Space carp event is now actually tagged as SPACE and COMBAT
+  - balance: Space dolphins are now in a different track, at a lower weight, to make
+      them rarer.
+  Orotheim:
+  - balance: Replaces the contents of the OneHalf safe with a Surplus MOD and Advanced
+      Ion Jetpack and adds some pirates.
+  - balance: Replaces the Nukie Smartgun in infested frigate with an energy shotgun
+      and adds an SMG commando.
+  - balance: Replaces the pulverizer shell in waypointstation.dmm with a box of buckshot
+  - balance: Replaces the real syndicate modsuit shuttle8532 with a police modsuit.
+      Adds a syndicate stormstrooper with a shotgun.
+  - balance: Replaces some of the Operatives in vault tango with commando's.
+  - rscadd: Adds a heroic laser musket to the black market.
+  Swan:
+  - config: Added configs for finer control over the various storytellers, and renamed
+      wrongly named configs. Removed configs which weren't tied to anything.
+2026-08-08:
+  LT3:
+  - rscadd: Toggle Stat Panel is now available in the OOC panel
+  Maia-J:
+  - bugfix: Akulas and other waterbreathers no longer drown in deep water
+  - refactor: TRAIT_NODROWN now fully replaces TRAIT_WATER_BREATHING in the backend
+      for better consistency for when TG changes stuff.
+  - bugfix: Hydra heads now correctly reset your name and remove the spells upon being
+      removed.
+  Odairu:
+  - bugfix: Normalization items properly respect size/prefs
+  - bugfix: Oversized is limited to 2 tiles tall once again
+  SomeCabbage:
+  - rscadd: Adds welding and radiation protection to the elder atmosian armor.
+  Zeerum, Odairu:
+  - bugfix: Cargoborgs have been given their granted stamp back
+  - bugfix: Emagged cargoborgs can once again weaponize paperwork
+2026-08-09:
+  LT3:
+  - rscadd: Added shadekin eyes and ears to limb grower
+  - qol: Limb grower automatically includes species parts, no more species disks required
+  - rscadd: Adaptive hot/oxy/tox lungs can now be printed from the limb grower once
+      researched
+  Maia-J:
+  - bugfix: Ash Accretion is now consistently innate to the mining mod and can't magically
+      appear in maints
+  - bugfix: Thaumaturgy description now actually describes what thaumaturgy does.
+  - bugfix: Veil of the many faces no longer borks itself with runtimes upon casting.
+  shayoki:
+  - rscdel: Removed purple cat plush.
+  thegrb93:
+  - bugfix: Trenchcoat broken sprite
+2026-08-10:
+  MajManatee:
+  - rscadd: New Tarkon borgs, jack of all trades
+  Odairu:
+  - qol: Hydra allows for a unique whole name, and choosable head names
+2026-08-11:
+  Maia-J:
+  - balance: Sec officers no longer get forced into a department with another officer
+      when an empty department is available, making the dept preference system make
+      sense.
+2026-08-12:
+  CentralSmith:
+  - bugfix: Mr. Fluff now recognises his owner and responds to pet commands.
+  Odairu:
+  - rscadd: a station trait that allows heads of staff to be antags
+2026-08-15:
+  LT3:
+  - bugfix: Neurectomy and blessed neurectomy trauma surgeries can now be selected
+  - bugfix: Fixed dorms not being protected from radiation storms. Yes, that's what
+      we said last time but this time it's real.
+  Odairu:
+  - bugfix: latejoin AIs claim charging borgs
+  Robwo:
+  - bugfix: Teshari can now get properly bloody and bruised.
+  ibexgoetia:
+  - bugfix: The Blueshield's Fax on Void Raptor no has the same ID as the Bridge's.
+  xPokee:
+  - rscdel: Removed the loose limbs quirk (the component it used was removed by /tg/).
+  - balance: Borg part and some ammo material costs reverted to TG base
+2026-08-18:
+  Odairu:
+  - bugfix: implanted items are no longer valid heirloom targets for non-random heirlooms
+  thegrb93:
+  - bugfix: Fix digitigrade leg augments
+2026-08-19:
+  IbexGoetia, Niim:
+  - rscdel: Removed the Nanotrasen Consultant's Allstar SC-2 Carbine.
+  - rscadd: Added the Consultant's Weapon Crate, replacing the Allstar. Interacting
+      with it will grant the Consultant a weapon of their choice.
+  - rscadd: Added The Verdict, a revolver exclusive to the NTC, using unique .32 calibre
+      rounds.
+  - rscadd: Added the Consultant's sabre, a sabre unique to the NTC, a slightly more
+      powerful variant of the Cargo Sabre/Shamshir.
+  - balance: Removed Assistant's Bane from the Cargo Sabre/Shamshir because I got
+      valided once.
+  Robwo:
+  - rscadd: Readds the triple ai station trait.
+2026-08-20:
+  SomeCabbage:
+  - rscdel: Removes the ability to fabricate .45 reaper pellets in the ammunition
+      lathe.
+  - bugfix: Allows condor mags to be refilled with normal .45 after the reaper pellets
+      have been expended.
+2026-08-21:
+  ArrisFairburne:
+  - map: bubberstation specific maps now get a genetics front door and new random
+      slot machines
+  Swan:
+  - bugfix: fixes runtimes related to lizard gas station and barber access.
+2026-08-22:
+  Robwo:
+  - map: Added interlink console to KiloStation.
+  - map: The ai is far more secure now on PubbyStation.
+  - map: Head of staff intercoms have been added on PubbyStation.
+  - map: Kilostation now has proper automapper templates.
+  - map: Centcom has renovated the ferry with a back door.
+2026-08-23:
+  ibexgoetia:
+  - map: Re-added the (mistakenly removed) Communications Console in Tramstation's
+      Captain Office.
+2026-08-24:
+  Odairu:
+  - bugfix: Sizes are now consistent as intended on micro quirks
+  - bugfix: Polymorph spell no longer makes you infinitely big/small
+  SomeCabbage:
+  - bugfix: Small access issues within Lizard Gas have been fixed, allowing the manager
+      to escape their office and employees to use the shutter buttons.
+  Vanilla1040:
+  - rscadd: New customizations options for entombed
+2026-08-27:
+  Maia-J:
+  - qol: The whisper text is now high contrast and passes WCAG AAA
+2026-08-28:
+  Aeri:
+  - bugfix: The Automatic Appraisal NIFSoft no longer throws a runtime when its owner
+      is deleted.
+  thegrb93:
+  - bugfix: Fix pink heels backwards for digitigrade legs
+2026-08-29:
+  Vanilla1040:
+  - rscadd: Silly Protogen Plushie

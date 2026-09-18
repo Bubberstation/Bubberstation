@@ -48,6 +48,7 @@
 /datum/chemical_reaction/crocin
 	results = list(/datum/reagent/drug/aphrodisiac/crocin = 6)
 	required_reagents = list(/datum/reagent/carbon = 2, /datum/reagent/hydrogen = 2, /datum/reagent/oxygen = 2, /datum/reagent/water = 1)
-	required_temp = 400
+	required_temp = 250
+	is_cold_recipe = TRUE
 	mix_message = "The mixture boils off a pink vapor..."
 	erp_reaction = TRUE

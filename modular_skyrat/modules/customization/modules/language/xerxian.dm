@@ -2,7 +2,7 @@
 	name = "Xerxian"
 	desc = "An evolved, streamlined form of Semitic tongues that come from the Middle East - primarily Arabic. Despite its ancient origins, it's still spoken by many cultures and colonies that came from the Arab League and general Middle Eastern regions."
 	key = "a"
-	flags = TONGUELESS_SPEECH
+	flags = LANGUAGE_TONGUELESS_SPEECH
 	syllables = list(
 		"a", "ah", "aah", "ba", "lah", "tha", "shah", "sa", "cha", "zah", "in", "al", "an", "har", "kham",
 		"i", "ih", "bi", "lih", "thih", "sha", "shih", "sih", "chi", "zih", "ji", "nn", "jo", "ja",

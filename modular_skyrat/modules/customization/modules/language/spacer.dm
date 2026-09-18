@@ -4,7 +4,7 @@
 		and no automatic translators are available.	It relies heavily on tone, body language, signing, and a multitude of creole loanwords. While its use has fallen severely over the years, \
 		it remains in use in seedier Frontier sectors where knowledge of Common is not guaranteed, and privacy is valued."
 	key = "j"
-	flags = TONGUELESS_SPEECH
+	flags = LANGUAGE_TONGUELESS_SPEECH
 	syllables = list(
 		"ada", "zir", "bian", "ach", "usk", "ado", "ich", "cuan", "iga", "qing", "le", "que", "ki", "qaf", "dei", "eta"
 	)
