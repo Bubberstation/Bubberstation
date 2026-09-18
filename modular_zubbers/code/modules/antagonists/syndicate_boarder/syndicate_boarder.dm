@@ -1,5 +1,5 @@
 /datum/antagonist/traitor/syndicate_boarder
-	name = "Syndicate Boarder"
+	name = "\improper Syndicate Boarder"
 	var/infil_outfit = /datum/outfit/syndicateinfiltrator
 	preview_outfit = /datum/outfit/syndicate_boarder_preview
 	pref_flag = ROLE_SYNDICATE_BOARDER
