@@ -3,7 +3,6 @@
 
 #define ROLE_BORER "Borer"
 #define ROLE_SYNDICATE_BOARDER "Syndicate Boarder"
-#define ROLE_LONE_INFILTRATOR "Lone Infiltrator"
 #define ROLE_MUTANT "Mutated Abomination"
 #define ROLE_CLOCK_CULTIST "Clock Cultist"
 

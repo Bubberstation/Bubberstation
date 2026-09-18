@@ -2,7 +2,7 @@
 	name = "Syndicate Boarder"
 	var/infil_outfit = /datum/outfit/syndicateinfiltrator
 	preview_outfit = /datum/outfit/lone_infiltrator_preview
-	pref_flag = ROLE_LONE_INFILTRATOR
+	pref_flag = ROLE_SYNDICATE_BOARDER /// BUBBER EDIT - From ROLE_LONE_INFILTRATOR to ROLE_SYNDICATE_BOARDER
 
 /datum/antagonist/traitor/lone_infiltrator/on_gain()
 	var/mob/living/carbon/human/current = owner.current
