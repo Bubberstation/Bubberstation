@@ -1,6 +1,6 @@
 /datum/storyteller/bomb
-	name = "Destructive Event/Antag Rolls"
-	desc = "Formerly known as Bomb, this storyteller will try to make more destructive events. For when you have a full engineering team. Or not, because they all cryo'd."
+	name = "LV2.5 Events (Destructive)"
+	desc = "This storyteller will try to make more destructive events. For when you have a full engineering team. Or not, because they all cryo'd."
 	welcome_text = "Somebody set up us the bomb."
 	track_data = /datum/storyteller_data/tracks/bomb
 
