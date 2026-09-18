@@ -162,6 +162,7 @@
 	greyscale_config = /datum/greyscale_config/boots/christmasboots
 	greyscale_config_worn = /datum/greyscale_config/boots/christmasboots/worn
 	greyscale_config_worn_digi = /datum/greyscale_config/boots/christmasboots/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/boots/christmasboots/worn/teshari
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/winterboots/christmas/green

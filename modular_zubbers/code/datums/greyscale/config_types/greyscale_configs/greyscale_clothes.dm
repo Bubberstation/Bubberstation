@@ -8,6 +8,47 @@
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/captain.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/cso.json'
 
+/datum/greyscale_config/security_uniform
+	name = "Security Uniform"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	greyscale_component_style_type = /datum/greyscale_component_style/security_uniform
+	greyscale_component_config_states = list("recolorable_security_uniform", "rsecurity")
+
+/datum/greyscale_config/security_uniform/New()
+	InitializeGreyscaleComponentStyleConfig()
+
+/datum/greyscale_config/security_uniform/Refresh(loadFromDisk = FALSE)
+	return RefreshGreyscaleComponentStyleConfig(loadFromDisk)
+
+/datum/greyscale_config/security_uniform/worn
+	name = "Security Uniform (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+
+/datum/greyscale_config/security_uniform/worn/digi
+	name = "Security Uniform (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+
+/datum/greyscale_config/security_cap
+	name = "Security Cap"
+	icon_file = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
+	greyscale_component_style_type = /datum/greyscale_component_style/security_cap
+	greyscale_component_config_states = list("security_cap")
+
+/datum/greyscale_config/security_cap/New()
+	InitializeGreyscaleComponentStyleConfig()
+
+/datum/greyscale_config/security_cap/Refresh(loadFromDisk = FALSE)
+	return RefreshGreyscaleComponentStyleConfig(loadFromDisk)
+
+/datum/greyscale_config/security_cap/worn
+	name = "Security Cap (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/hats.dmi'
+	greyscale_component_config_state_overrides = list(
+		"security_cap" = "security_capg",
+		"security_cap_accs_front" = "security_capg_accs_backing",
+		"security_cap_accs_logo" = "security_capg_accs_logo",
+	)
+
 /datum/greyscale_config/gi/worn/digi
 	name = "Gi (Worn, Digi)"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/under/costume_digi.dmi'
@@ -31,6 +72,14 @@
 /datum/greyscale_config/jester_suit/worn/teshari
 	name = "Jester Suit (Worn, Teshari)"
 	icon_file = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
+
+/datum/greyscale_config/jester_suit_alt/worn/digi
+	name = "Jester Suit (Alt, Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/civilian_digi.dmi'
+
+/datum/greyscale_config/jester_suit_alt/worn/teshari
+	name = "Jester Suit (Alt, Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/civilian_teshari.dmi'
 
 // shirts pants shorts teshari
 /datum/greyscale_config/buttondown_slacks/worn/teshari
@@ -195,3 +244,147 @@
 /datum/greyscale_config/twee_hoodie_hood/worn/teshari
 	name = "Twee Hoodie Hood (Worn, Teshari)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/suits/dopplerhoodie_teshari.dmi'
+
+/datum/greyscale_config/wellworn_shirt/worn/digi
+	name = "Well-Worn Shirt (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_digi.dmi'
+
+/datum/greyscale_config/wellworn_shirt/worn/teshari
+	name = "Well-Worn Shirt (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/datum/greyscale_config/wellworn_shirt_skub/worn/digi
+	name = "Well-Worn Shirt (Skub)(Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_digi.dmi'
+
+/datum/greyscale_config/wellworn_shirt_skub/worn/teshari
+	name = "Well-Worn Shirt (Skub)(Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/datum/greyscale_config/wellworn_shirt_graphic/worn/digi
+	name = "Well-Worn Shirt (Graphic)(Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_digi.dmi'
+
+/datum/greyscale_config/wellworn_shirt_graphic/worn/teshari
+	name = "Well-Worn Shirt (Graphic)(Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/datum/greyscale_config/wornout_shirt_graphic/worn/digi
+	name = "Worn-Out Shirt (Graphic)(Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_digi.dmi'
+
+/datum/greyscale_config/wornout_shirt_graphic/worn/teshari
+	name = "Worn-Out Shirt (Graphic)(Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/datum/greyscale_config/messyworn_shirt_graphic/worn/digi
+	name = "Messy Shirt (Graphic (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_digi.dmi'
+
+/datum/greyscale_config/messyworn_shirt_graphic/worn/teshari
+	name = "Messy Shirt (Graphic (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/costume_teshari.dmi'
+
+/datum/greyscale_config/jester_shoes/worn/digi
+	name = "Jester Shoes (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+
+/datum/greyscale_config/jester_shoes/worn/teshari
+	name = "Jester Shoes (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/datum/greyscale_config/overalls/worn/teshari
+	name = "Overalls (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/utility_teshari.dmi'
+
+//GRAYSCALE MAID COSTUME - TESHARI
+
+/datum/greyscale_config/bubber_maid_neck_cover/worn/teshari
+	name = "Maid Neck Cover (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/neck/neck_teshari.dmi'
+
+/datum/greyscale_config/bubber_maid_arm_covers/worn/teshari
+	name = "Maid Arm Covers (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/gloves/gloves_teshari.dmi'
+
+/datum/greyscale_config/bubber_maid_costume/worn/teshari
+	name = "Maid Costume (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume_teshari.dmi'
+
+/datum/greyscale_config/bubber_maid_headband/worn/teshari
+	name = "Maid Headband (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/costume_teshari.dmi'
+
+// new maid outfit - teshari
+
+/datum/greyscale_config/maid/worn/teshari
+	name = "Maid Uniform (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume_teshari.dmi'
+
+/datum/greyscale_config/maid_headband/worn/teshari
+	name = "Maid Headband (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/costume_teshari.dmi'
+
+/datum/greyscale_config/cloak/boat/worn/teshari
+	name = "Boatcloak (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/neck/neck_teshari.dmi'
+
+/datum/greyscale_config/cloak/shroud/worn/teshari
+	name = "Shroud (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/neck/neck_teshari.dmi'
+
+/datum/greyscale_config/cableknit_sweater/worn/teshari
+	name = "Cableknit Sweater (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses_teshari.dmi'
+
+/datum/greyscale_config/trek/worn/teshari
+	name = "Trek Uniform (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/costume_teshari.dmi'
+
+/datum/greyscale_config/primitive_catgirl_boots/worn/digi
+	name = "Primitive Winter Boots (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
+
+/datum/greyscale_config/primitive_catgirl_boots/worn/teshari
+	name = "Primitive Winter Boots (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/datum/greyscale_config/ties/worn/teshari
+	name = "Ties (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/neck/neck_teshari.dmi'
+
+/datum/greyscale_config/jacket_lawyer/worn/teshari
+	name = "Formal Suit Jacket (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
+
+/datum/greyscale_config/large_bow/worn/teshari
+	name = "Large Bow (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/datum/greyscale_config/back_bow/worn/teshari
+	name = "Back Bow (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/datum/greyscale_config/sweet_bow/worn/teshari
+	name = "Sweet Bow (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/datum/greyscale_config/small_bow/worn/teshari
+	name = "Small Bow (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/hats_teshari.dmi'
+
+/datum/greyscale_config/legwraps/worn/teshari
+	name = "Leg Wraps (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
+
+/datum/greyscale_config/jester_hat_alt/worn/teshari
+	name = "Jester Hat (Alt, Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/head/costume_teshari.dmi'
+
+/datum/greyscale_config/trenchcoat/worn/teshari
+	name = "Trenchcoat (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
+
+/datum/greyscale_config/guard_bowman/worn/teshari
+	name = "Guard Bowman Headset (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/ears_teshari.dmi'

@@ -53,7 +53,7 @@
 //SURVIVAL
 /obj/structure/window/reinforced/shuttle/survival_pod
 	icon = 'modular_zubbers/icons/obj/smooth_structures/pod_window.dmi'
-	canSmoothWith =  SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS
+	canSmoothWith =  SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_SURVIVAL_TITANIUM_POD + SMOOTH_GROUP_WALLS
 
 
 //MISC

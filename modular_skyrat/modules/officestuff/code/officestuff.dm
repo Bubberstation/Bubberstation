@@ -8,7 +8,7 @@
 // stolen from the wall clock
 /obj/structure/grandfatherclock/examine(mob/user)
 	. = ..()
-	. += span_info("The current CST (local) time is: [station_time_timestamp()].")
+	. += span_info("The current CST (local) time is: [round_timestamp()].")
 	. += span_info("The current TCT (galactic) time is: [time2text(world.realtime, "hh:mm:ss")].")
 	if(soundloop)
 		. += span_notice("The hands of the clock are freely ticking away. They could be <b>screwed</b> down.")

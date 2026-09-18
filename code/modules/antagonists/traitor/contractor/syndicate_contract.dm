@@ -254,3 +254,5 @@
 	victim.adjust_eye_blur(3 SECONDS)
 	victim.adjust_dizzy(3.5 SECONDS)
 	victim.adjust_confusion(2 SECONDS)
+	//Bubberstation change, adds flavourtext that they forget who contracted them.
+	to_chat(victim, span_big(span_hypnophrase("You don't remember anything leading up to being abducted by the syndicate - All you can remember is a million voices echoing through your mind and pain whenever you try to think of anything further.")))

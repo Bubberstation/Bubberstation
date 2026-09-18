@@ -12,10 +12,3 @@
 /datum/bodypart_overlay/mutant/horns/override_color(rgb_value)
 	return draw_color
 
-/datum/bodypart_overlay/mutant/horns/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner)
-	if(!..(bodypart_owner))
-		return FALSE
-	var/mob/living/carbon/human/human = bodypart_owner.owner
-	if(!human)
-		return TRUE
-	return !sprite_datum.is_hidden(human)

@@ -52,13 +52,13 @@
 	desc = "Summons a knife that places a tracking curse on unsuspecting miners who destroy our marked tendrils."
 	required_components = list(
 		"north" = /obj/item/organ/monster_core/regenerative_core,
-		"south" = /obj/item/forging/reagent_weapon/dagger,
+		"south" = /obj/item/melee/forged_reagent_weapon/dagger,
 		"east" = /obj/item/stack/sheet/bone,
 		"west" = /obj/item/stack/sheet/sinew,
 	)
 	consumed_components = list(
 		/obj/item/organ/monster_core/regenerative_core,
-		/obj/item/forging/reagent_weapon/dagger,
+		/obj/item/melee/forged_reagent_weapon/dagger,
 		/obj/item/stack/sheet/bone,
 		/obj/item/stack/sheet/sinew,
 	)
@@ -101,7 +101,7 @@
 		/obj/item/crusher_trophy/watcher_wing,
 	)
 	ritual_success_items = list(
-		/obj/item/tendril_seed,
+	/obj/item/ash_seed/tendril,
 	)
 
 /datum/ash_ritual/incite_megafauna
@@ -109,13 +109,13 @@
 	desc = "Causes a horrible, unrecognizable sound that will attract the large fauna from around the planet."
 	required_components = list(
 		"north" = /mob/living/carbon/human,
-		"south" = /obj/item/tendril_seed,
+		"south" = /obj/item/ash_seed/tendril,
 		"east" = /mob/living/carbon/human,
 		"west" = /mob/living/carbon/human,
 	)
 	consumed_components = list(
 		/mob/living/carbon/human,
-		/obj/item/tendril_seed,
+		/obj/item/ash_seed/tendril,
 	)
 
 /datum/ash_ritual/incite_megafauna/ritual_success(obj/effect/ash_rune/success_rune)
@@ -218,7 +218,7 @@
 		/mob/living/basic/mining/ice_demon,
 		/mob/living/basic/mining/ice_whelp,
 		/mob/living/basic/mining/lobstrosity,
-		/mob/living/simple_animal/hostile/asteroid/polarbear,
+		/mob/living/basic/mining/polarbear,
 		/mob/living/basic/mining/wolf,
 	)
 	new mob_type(success_rune.loc)

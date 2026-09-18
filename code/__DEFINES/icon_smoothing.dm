@@ -128,31 +128,36 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_CARPET_SIMPLE_NEON_VIOLET_NODOTS S_TURF(50) //![turf/open/floor/carpet/neon/simple/violet/nodots]
 #define SMOOTH_GROUP_CARPET_SIMPLE_NEON_PINK_NODOTS S_TURF(51) //![turf/open/floor/carpet/neon/simple/pink/nodots]
 #define SMOOTH_GROUP_BAMBOO_FLOOR S_TURF(52) //![/turf/open/floor/bamboo]
+#define SMOOTH_GROUP_FLOOR_WATER_LAVALAND S_TURF(53) //![/turf/open/water/lavaland_atmos/basalt]
+#define SMOOTH_GROUP_FLOOR_SIDERITE S_TURF(54) //![/turf/open/misc/asteroid/basalt/smooth/siderite]
+#define SMOOTH_GROUP_FLOOR_SHALE S_TURF(55) //![/turf/open/misc/asteroid/basalt/smooth/shale]
+#define SMOOTH_GROUP_FLOOR_BASALT S_TURF(56) //![/turf/open/misc/asteroid/basalt]
 
-#define SMOOTH_GROUP_CLOSED_TURFS S_TURF(53) ///turf/closed
-#define SMOOTH_GROUP_MATERIAL_WALLS S_TURF(54) ///turf/closed/wall/material
-#define SMOOTH_GROUP_SYNDICATE_WALLS S_TURF(55) ///turf/closed/wall/r_wall/plastitanium/syndicate, /turf/closed/indestructible/syndicate
-#define SMOOTH_GROUP_HOTEL_WALLS S_TURF(56) ///turf/closed/indestructible/hotelwall
-#define SMOOTH_GROUP_MINERAL_WALLS S_TURF(57) ///turf/closed/mineral, /turf/closed/indestructible
-#define SMOOTH_GROUP_BOSS_WALLS S_TURF(58) ///turf/closed/indestructible/riveted/boss
-#define SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS S_TURF(59) ///turf/closed/wall/mineral/titanium/survival
-#define SMOOTH_GROUP_TURF_OPEN_CLIFF S_TURF(60) ///turf/open/cliff
-#define SMOOTH_GROUP_HIEROPHANT S_TURF(61) ///turf/closed/indestructible/riveted/hierophant
-#define SMOOTH_GROUP_PLASTINUM_WALLS S_TURF(62) ///turf/closed/indestructible/riveted/plastinum
+#define SMOOTH_GROUP_CLOSED_TURFS S_TURF(57) ///turf/closed
+#define SMOOTH_GROUP_MATERIAL_WALLS S_TURF(58) ///turf/closed/wall/material
+#define SMOOTH_GROUP_SYNDICATE_WALLS S_TURF(59) ///turf/closed/wall/r_wall/plastitanium/syndicate, /turf/closed/indestructible/syndicate
+#define SMOOTH_GROUP_HOTEL_WALLS S_TURF(60) ///turf/closed/indestructible/hotelwall
+#define SMOOTH_GROUP_MINERAL_WALLS S_TURF(61) ///turf/closed/mineral, /turf/closed/indestructible
+#define SMOOTH_GROUP_RED_ROCK_WALLS S_TURF(62) ///turf/closed/mineral/asteroid, /turf/closed/mineral/random/stationside/asteroid
+#define SMOOTH_GROUP_SHALE_WALLS S_TURF(63) ///turf/closed/mineral/random/volcanic/shale
+#define SMOOTH_GROUP_BOSS_WALLS S_TURF(64) ///turf/closed/indestructible/riveted/boss
+#define SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS S_TURF(65) ///turf/closed/wall/mineral/titanium/survival
+#define SMOOTH_GROUP_TURF_OPEN_CLIFF S_TURF(66) ///turf/open/cliff
+#define SMOOTH_GROUP_HIEROPHANT S_TURF(67) ///turf/closed/indestructible/riveted/hierophant
+#define SMOOTH_GROUP_PLASTINUM_WALLS S_TURF(68) ///turf/closed/indestructible/riveted/plastinum
 
 // BUBBER EDIT ADDITION
-#define SMOOTH_GROUP_ELEVATED_PLASTEEL S_TURF(63)
-#define SMOOTH_GROUP_LOWERED_PLASTEEL S_TURF(64)
+#define SMOOTH_GROUP_ELEVATED_PLASTEEL S_TURF(69)
+#define SMOOTH_GROUP_LOWERED_PLASTEEL S_TURF(70)
 
-#define SMOOTH_GROUP_FISSURE S_TURF(65)
+#define SMOOTH_GROUP_FISSURE S_TURF(71)
 
-#define SMOOTH_GROUP_MOONWATER S_TURF(66) //turf/open/water/moonstation
+#define SMOOTH_GROUP_MOONWATER S_TURF(72) //turf/open/water/moonstation
 
-#define SMOOTH_GROUP_EXPLORATION_FLOOR S_TURF(67) //turf/open/floor/iron/shuttle/exploration/smooth
+#define SMOOTH_GROUP_EXPLORATION_FLOOR S_TURF(73) //turf/open/floor/iron/shuttle/exploration/smooth
 
-#define MAX_S_TURF 67 //Always match this value with the one above it.
+#define MAX_S_TURF 73 //Always match this value with the one above it.
 //BUBBER EDIT END
-
 
 #define S_OBJ(num) ("-" + #num + ",")
 /* /obj included */

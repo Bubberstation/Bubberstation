@@ -39,7 +39,7 @@
 	color_src = USE_ONE_COLOR
 
 /datum/sprite_accessory/tails/fish
-	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/fish_tails.dmi'
+	organ_type = /obj/item/organ/tail/fake_fish //copypasta of dna infusion fish tails but without the quirks (beside butchering)
 
 /datum/sprite_accessory/tails/xeno/default
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/xeno_tail.dmi'

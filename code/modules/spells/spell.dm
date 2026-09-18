@@ -174,6 +174,12 @@
 			to_chat(owner, span_warning("You must dedicate yourself to silence first!"))
 		return FALSE
 
+	// BUBBER EDIT ADDITION - focusless spells can be inhibited
+	if ((focusless_inhibitable || school == SCHOOL_FORBIDDEN) && HAS_TRAIT(owner, TRAIT_MANSUS_INHIBITION))
+		owner.balloon_alert(owner, "inhibited! cant cast!")
+		return FALSE
+	// BUBBER EDIT END
+
 	// If the spell requires the user has no antimagic equipped, and they're holding antimagic
 	// that corresponds with the spell's antimagic, then they can't actually cast the spell
 	if((spell_requirements & SPELL_REQUIRES_NO_ANTIMAGIC) && !owner.can_cast_magic(antimagic_flags))
@@ -313,6 +319,8 @@
 				if(!caster.get_organ_slot(ORGAN_SLOT_TONGUE))
 					invocation(caster)
 					to_chat(caster, span_warning("Your lack of tongue is making it difficult to say the correct words to cast [src]..."))
+					if(caster.click_intercept == src)
+						unset_click_ability(caster, refund_cooldown = TRUE)
 					StartCooldown(2 SECONDS)
 					return SPELL_CANCEL_CAST
 
@@ -324,6 +332,8 @@
 						ignored_mobs = caster,
 					)
 					to_chat(caster, span_warning("You can't position your hands correctly to invoke [src][caster.num_hands > 0 ? "" : ", as you have none"]..."))
+					if(caster.click_intercept == src)
+						unset_click_ability(caster, refund_cooldown = TRUE)
 					StartCooldown(2 SECONDS)
 					return SPELL_CANCEL_CAST
 

@@ -552,7 +552,7 @@
 		return FALSE
 
 	// Log it in our logs
-	var/datum/pda_message/message_datum = new(message, TRUE, station_time_timestamp(PDA_MESSAGE_TIMESTAMP_FORMAT), photo_asset_key, everyone, subtle = subtle) // BUBBER EDIT CHANGE - SUBTLE MESSAGES - Original: var/datum/pda_message/message_datum = new(message, TRUE, station_time_timestamp(PDA_MESSAGE_TIMESTAMP_FORMAT), photo_asset_key, everyone)
+	var/datum/pda_message/message_datum = new(message, TRUE, round_timestamp(PDA_MESSAGE_TIMESTAMP_FORMAT), photo_asset_key, everyone, subtle = subtle) // BUBBER EDIT CHANGE - SUBTLE MESSAGES - Original: var/datum/pda_message/message_datum = new(message, TRUE, round_timestamp(PDA_MESSAGE_TIMESTAMP_FORMAT), photo_asset_key, everyone)
 	for(var/datum/pda_chat/target_chat as anything in target_chats)
 		target_chat.add_message(message_datum, show_in_recents = !everyone)
 		target_chat.unread_messages = 0
@@ -705,7 +705,7 @@
 
 	// don't create a new chat for rigged messages, make it a one off notif
 	if(!is_rigged)
-		var/datum/pda_message/message = new(signal.data["message"], FALSE, station_time_timestamp(PDA_MESSAGE_TIMESTAMP_FORMAT), signal.data["photo"], signal.data["everyone"], signal.data["subtle"]) // BUBBER EDIT CHANGE - SUBTLE MESSAGES - Original: var/datum/pda_message/message = new(signal.data["message"], FALSE, station_time_timestamp(PDA_MESSAGE_TIMESTAMP_FORMAT), signal.data["photo"], signal.data["everyone"])
+		var/datum/pda_message/message = new(signal.data["message"], FALSE, round_timestamp(PDA_MESSAGE_TIMESTAMP_FORMAT), signal.data["photo"], signal.data["everyone"], signal.data["subtle"]) // BUBBER EDIT CHANGE - SUBTLE MESSAGES - Original: var/datum/pda_message/message = new(signal.data["message"], FALSE, round_timestamp(PDA_MESSAGE_TIMESTAMP_FORMAT), signal.data["photo"], signal.data["everyone"])
 
 		chat = find_chat_by_recipient(is_fake_user ? fake_name : sender_ref, is_fake_user)
 		if(!istype(chat))
@@ -751,12 +751,20 @@
 			reply = "\[Automated Message\]"
 		else
 			reply = "(<a href='byond://?src=[REF(src)];choice=[reply_href];skiprefresh=1;target=[REF(chat)]'>Reply</a>)"
-
+		//BUBBER EDIT BEGIN - forward PDA messages to AIs to their shells
+		var/forwarded_message = FALSE
 		if (isAI(messaged_mob))
 			sender_title = "<a href='byond://?src=[REF(messaged_mob)];track=[html_encode(sender_name)]'>[sender_title]</a>"
 
-		var/inbound_message = "[signal.format_message()]"
+			var/mob/living/silicon/ai/ai_receiver = messaged_mob
+			if(ai_receiver.deployed_shell)
+				messaged_mob = ai_receiver.deployed_shell
+				forwarded_message = TRUE
 
+		var/inbound_message = "[signal.format_message()]"
+		if(forwarded_message)
+			inbound_message += " - Forwarded from the AI Core PDA"
+		//BUBBER EDIT END - forward PDA messages to AIs to their shells
 		var/photo_message = signal.data["photo"] ? " (<a href='byond://?src=[REF(src)];choice=[photo_href];skiprefresh=1;target=[REF(chat)]'>Photo Attached</a>)" : ""
 		// BUBBER EDIT CHANGE BEGIN - SUBTLE MESSAGES
 		if(is_subtle)

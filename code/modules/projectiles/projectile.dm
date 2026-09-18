@@ -646,7 +646,7 @@
 			var/mob/living/living_target = target
 			living_target.block_projectile_effects()
 		return FALSE
-	if(HAS_TRAIT(target, TRAIT_UNHITTABLE_BY_LASERS) && (armor_flag & LASER))
+	if(HAS_TRAIT(target, TRAIT_UNHITTABLE_BY_LASERS) && (armor_flag == LASER)) // BUBBER EDIT CHANGE - armor_flag == LASER was armor_flag & LASER - bugfix
 		return FALSE
 	if(!ignore_source_check && firer && !direct_target)
 		if(target == firer || (target == firer.loc && ismecha(firer.loc)) || (target in firer.buckled_mobs))
@@ -1264,8 +1264,8 @@
 	free_hitscan_forceMove = TRUE
 	forceMove(source_loc)
 	starting = source_loc
-	pixel_x = source.pixel_x
-	pixel_y = source.pixel_y
+	pixel_x = source.pixel_x - source.base_pixel_x
+	pixel_y = source.pixel_y - source.base_pixel_y
 	original = target
 
 	// Trim off excess pixel_x/y by converting them into turf offset

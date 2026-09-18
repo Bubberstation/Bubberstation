@@ -197,10 +197,10 @@
 
 //turfs
 /turf/closed/mineral/strange_rock
-	mineralAmt = 1
+	mineral_amt = 1
 	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/smoothrocks.dmi', 'modular_skyrat/modules/xenoarch/icons/mining.dmi')
 	scan_state = "rock_Strange"
-	mineralType = /obj/item/xenoarch/strange_rock
+	mineral_type = /obj/item/xenoarch/strange_rock
 
 /turf/closed/mineral/strange_rock/volcanic
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
@@ -213,7 +213,7 @@
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
-	mineralChance = 10
+	mineral_chance = 7
 
 /turf/closed/mineral/random/volcanic/mineral_chances()
 	return list(
@@ -261,7 +261,7 @@
 /turf/closed/mineral/random/snow/underground
 	baseturfs = /turf/open/misc/asteroid/snow/icemoon
 	// abundant ore
-	mineralChance = 20
+	mineral_chance = 16
 
 /turf/closed/mineral/random/snow/underground/mineral_chances()
 	return list(
@@ -302,7 +302,7 @@
 /turf/closed/mineral/random/stationside/asteroid/rockplanet
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	turf_type = /turf/open/misc/asteroid
-	mineralChance = 30
+	mineral_chance = 25
 
 /turf/closed/mineral/random/stationside/asteroid/rockplanet/mineral_chances()
 	return list(

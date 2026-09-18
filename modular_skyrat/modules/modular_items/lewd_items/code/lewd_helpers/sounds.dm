@@ -50,8 +50,6 @@
 	var/turf/above_turf = GET_TURF_ABOVE(turf_source)
 	var/turf/below_turf = GET_TURF_BELOW(turf_source)
 
-	var/audible_distance = CALCULATE_MAX_SOUND_AUDIBLE_DISTANCE(vol, maxdistance, falloff_distance, falloff_exponent)
-
 	if(ignore_walls)
 		if(above_turf && istransparentturf(above_turf))
 			listeners += SSmobs.clients_by_zlevel[above_turf.z]
@@ -60,13 +58,13 @@
 			listeners += SSmobs.clients_by_zlevel[below_turf.z]
 
 	else //these sounds don't carry through walls
-		listeners = get_hearers_in_view(audible_distance, turf_source)
+		listeners = get_hearers_in_view(maxdistance, turf_source)
 
 		if(above_turf && istransparentturf(above_turf))
-			listeners += get_hearers_in_view(audible_distance, above_turf)
+			listeners += get_hearers_in_view(maxdistance, above_turf)
 
 		if(below_turf && istransparentturf(turf_source))
-			listeners += get_hearers_in_view(audible_distance, below_turf)
+			listeners += get_hearers_in_view(maxdistance, below_turf)
 
 	for(var/mob/listening_mob in listeners)
 		if(!(get_dist(listening_mob, turf_source) <= maxdistance))

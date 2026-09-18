@@ -314,7 +314,7 @@
 
 /datum/bodypart_overlay/mutant/genital/testicles
 	feature_key = ORGAN_SLOT_TESTICLES
-	layers = EXTERNAL_ADJACENT | EXTERNAL_BEHIND
+	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
 	layer_offset = TESTICLES_LAYER_OFFSET
 
 /obj/item/organ/genital/testicles/update_genital_icon_state()
@@ -523,11 +523,10 @@
 	icon_state = passed_string
 
 /obj/item/organ/genital/breasts/get_sprite_size_string()
-	var/max_size = 5
-	if(genital_type == "pair")
-		max_size = findtext(genital_name, "(Alt)") ? 19 : 16
-	if(genital_type == "quad")
-		max_size = findtext(genital_name, "(Alt)") ? 19 : 5
+	var/max_size = 0
+	var/datum/sprite_accessory/genital/breasts/sprite_accessory = bodypart_overlay.sprite_datum
+	if (istype(sprite_accessory))
+		max_size = sprite_accessory.max_size
 	var/current_size = FLOOR(genital_size, 1)
 	if(current_size < 0)
 		current_size = 0
@@ -571,6 +570,7 @@
 	desc = "You see a pair of asscheeks."
 	icon = 'modular_skyrat/master_files/icons/obj/genitals/butt.dmi'
 	icon_state = "butt"
+	drop_when_organ_spilling = FALSE
 	slot = ORGAN_SLOT_BUTT
 	zone = BODY_ZONE_PRECISE_GROIN
 	bodypart_overlay = /datum/bodypart_overlay/mutant/genital/butt

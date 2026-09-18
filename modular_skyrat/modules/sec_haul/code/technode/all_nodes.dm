@@ -14,15 +14,17 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SECURITY)
 
+/* Commenting this out due to the fact that we don't really have anything that falls under the category of 'even more exotic ammo'. The dragon's breath can be safely moved to illegal tech where it fits alongside the incendiary WT ammo.
 /datum/techweb_node/magazineresearch
 	id = "storedmunition_tech"
-	display_name = "Ballisitic Research"
+	display_name = "Esoteric Ammunition"
 	description = "The daring do not stop at reaching the mountaintop, they go where no man has gone before" // and with that nice quote we have exotic ammo 2
 	prereq_ids = list("exotic_ammo")
 	design_ids = list(
 		"s12g_db"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+*/
 
 /datum/techweb_node/basic_arms/New()
 	design_ids += "s12c_fslug"

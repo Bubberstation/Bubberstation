@@ -470,7 +470,7 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 /datum/surgery_operation/proc/check_availability(mob/living/patient, atom/movable/operating_on, mob/living/surgeon, tool, operated_zone)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	SHOULD_NOT_SLEEP(TRUE)
-	SHOULD_BE_PURE(TRUE)
+	// BUBBER EDIT REMOVAL - SHOULD_BE_PURE(TRUE) removed to allow clothing items to override is_location_accessible
 
 	if(isnull(operating_on))
 		return FALSE

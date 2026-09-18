@@ -1,3 +1,6 @@
+#define DOAFTER_SOURCE_LYCAN_DOOR_PRY "lycan door pry"
+#define FORCE_TO_BURN_RATIO 1.5
+
 /datum/species/lycan
 	id = SPECIES_LYCAN
 	examine_limb_id = SPECIES_LYCAN
@@ -37,7 +40,6 @@
 		TRAIT_CAN_STRIP,
 		TRAIT_LITERATE,
 		TRAIT_MUTANT_COLORS_2,
-		TRAIT_NO_UNDERWEAR, // They should still be able to toggle genitals if needed.
 		// Lycan Specific Things
 		TRAIT_LUPINE,
 		TRAIT_BEAST_FORM,
@@ -169,6 +171,9 @@
 		ignore_damage_types = list(), \
 	)
 
+	var/datum/action/extend_lycan_claws/claws_action = new(src)
+	claws_action.Grant(gainer)
+
 /datum/species/lycan/proc/handle_gaian_physique_loss(mob/living/carbon/human/loser)
 	REMOVE_TRAIT(loser, TRAIT_BATON_RESISTANCE, SPECIES_TRAIT)
 	REMOVE_TRAIT(loser, TRAIT_HARDLY_WOUNDED, SPECIES_TRAIT)
@@ -181,13 +186,27 @@
 	loser.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
 	qdel(loser.GetComponent(/datum/component/regenerator))
 
+	var/datum/action/extend_lycan_claws/claws_action = locate() in loser.actions
+	if (claws_action)
+		qdel(claws_action)
+
 	loser.physiology.stamina_mod *= 4
 
 	// already lost the limb shit
 
-/datum/species/lycan/proc/on_baned(mob/living/carbon/human/baned, mob/user)
+/datum/species/lycan/proc/on_baned(mob/living/carbon/human/baned, obj/source, mob/user)
 	SIGNAL_HANDLER
 
 	baned.visible_message(span_warning("[baned] seems to react negatively to the silver, [baned.p_their()] flesh scorching and burning on contact!"), ignored_mobs = list(baned))
 	to_chat(baned, span_bolddanger("The sister moon casts its light on you, and you feel your flesh scorch!"))
 	INVOKE_ASYNC(baned, TYPE_PROC_REF(/mob, emote), "scream")
+
+	var/target_zone
+	var/mob/living/living_user = user
+	if (istype(living_user))
+		target_zone = living_user.zone_selected
+
+	baned.apply_damage(source.force * FORCE_TO_BURN_RATIO, BURN, target_zone, attacking_item = source)
+
+#undef DOAFTER_SOURCE_LYCAN_DOOR_PRY
+#undef FORCE_TO_BURN_RATIO

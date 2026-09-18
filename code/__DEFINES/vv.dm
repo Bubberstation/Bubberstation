@@ -84,6 +84,7 @@
 #define VV_HK_REMOVECOMPONENT "removecomponent"
 #define VV_HK_MASS_REMOVECOMPONENT "massremovecomponent"
 #define VV_HK_MODIFY_TRAITS "modtraits"
+#define VV_HK_DEBUG_APPEARANCE "debugappearance"
 
 // /atom
 #define VV_HK_MODIFY_TRANSFORM "atom_transform"
@@ -108,6 +109,7 @@
 #define VV_HK_DEADCHAT_PLAYS "deadchat_plays"
 #define VV_HK_ADD_REMOVE_FACTION "add_remove_faction"
 #define VV_HK_GET_FACTIONS "add_remove_factions"
+#define VV_HK_SET_TTS_VOICE "set_tts_voice"
 
 // /obj
 #define VV_HK_OSAY "osay"

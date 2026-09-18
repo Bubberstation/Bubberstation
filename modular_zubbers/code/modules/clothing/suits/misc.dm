@@ -16,6 +16,7 @@
 	icon_state = "suit_harness"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits.dmi'
 	worn_icon_state = "suit_harness"
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits.dmi' // it's an invisible sprite, doesn't need a teshari variant
 	inhand_icon_state = null
 	body_parts_covered = 0x0
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
@@ -132,3 +133,28 @@
 /obj/item/clothing/suit/space/santa
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suits/wizard_digi.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/misc_teshari.dmi'
+
+// "well-worn" shirts
+/obj/item/clothing/suit/costume/wellworn_shirt
+	greyscale_config_worn_digi = /datum/greyscale_config/wellworn_shirt/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/wellworn_shirt/worn/teshari
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
+/obj/item/clothing/suit/costume/wellworn_shirt/skub
+	greyscale_config_worn_digi = /datum/greyscale_config/wellworn_shirt_skub/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/wellworn_shirt_skub/worn/teshari
+
+/obj/item/clothing/suit/costume/wellworn_shirt/graphic
+	greyscale_config_worn_digi = /datum/greyscale_config/wellworn_shirt_graphic/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/wellworn_shirt_graphic/worn/teshari
+
+/obj/item/clothing/suit/costume/wellworn_shirt/wornout/graphic
+	greyscale_config_worn_digi = /datum/greyscale_config/wornout_shirt_graphic/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/wornout_shirt_graphic/worn/teshari
+
+/obj/item/clothing/suit/costume/wellworn_shirt/messy/graphic
+	greyscale_config_worn_digi = /datum/greyscale_config/messyworn_shirt_graphic/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/messyworn_shirt_graphic/worn/teshari
+
+/obj/item/clothing/suit/space/emergency
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/spacesuit_teshari.dmi'

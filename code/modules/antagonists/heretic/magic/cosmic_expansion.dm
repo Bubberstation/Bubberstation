@@ -9,7 +9,7 @@
 
 	sound = 'sound/effects/magic/cosmic_expansion.ogg'
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 15 SECONDS
+	cooldown_time = 60 SECONDS // BUBBER EDIT CHANGE - from 15 to 60 secs, now more of a panic button
 
 	invocation = "C'SM'S 'XP'ND!"
 	invocation_type = INVOCATION_SHOUT

@@ -92,3 +92,5 @@
 	icon_state = "pn_welder"
 	toolspeed = 0.25
 
+/obj/item/analyzer/ranged
+	w_class = WEIGHT_CLASS_SMALL
