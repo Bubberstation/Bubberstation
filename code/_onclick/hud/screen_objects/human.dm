@@ -63,6 +63,15 @@
 	hovering = FALSE
 	antagonist_datum.update_chemical_hud(antagonist_datum.chem_charges)
 
+/atom/movable/screen/ling/capacitor
+	name = "organic capacitor"
+	icon_state = "power_display"
+	screen_loc = ui_lingcapacitordisplay
+
+/atom/movable/screen/ling/capacitor/Click(location, control, params)
+	. = ..()
+	to_chat(usr, span_notice("Shows how charged our organic capacitor is. Once it's full, we can unleash a technophagic shriek."))
+
 /atom/movable/screen/ling/sting
 	name = "current sting"
 	screen_loc = ui_lingstingdisplay

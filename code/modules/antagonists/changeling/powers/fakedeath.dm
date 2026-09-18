@@ -1,3 +1,10 @@
+/// Time our first stasis takes, before we've built up any Revival Fatigue.
+#define REVIVAL_FATIGUE_BASE_DURATION (35 SECONDS)
+/// Each Revival Fatigue stack multiplies the next stasis duration by this much.
+#define REVIVAL_FATIGUE_MULTIPLIER 1.5
+/// How long, while alive and out of stasis, before a stack of Revival Fatigue decays.
+#define REVIVAL_FATIGUE_DECAY_INTERVAL (5 MINUTES)
+
 /datum/action/changeling/fakedeath
 	name = "Reviving Stasis"
 	desc = "We fall into a stasis, allowing us to regenerate and trick our enemies. Costs 15 chemicals."
@@ -9,11 +16,12 @@
 	ignores_fakedeath = TRUE
 	disabled_by_fire = FALSE
 
-	/// How long it takes for revival to ready upon entering stasis.
-	/// The changeling can opt to stay in fakedeath for longer, though.
-	var/fakedeath_duration = 40 SECONDS
 	/// If TRUE, we're ready to revive and can click the button to heal.
 	var/revive_ready = FALSE
+	/// Number of times we've revived out of stasis. Each stack makes the next stasis 1.5x longer, and decays after enough time spent alive.
+	var/revival_fatigue_stacks = 0
+	/// Timer id for the periodic Revival Fatigue decay, running while we're alive and out of stasis.
+	var/fatigue_decay_timer
 
 //Fake our own death and fully heal. You will appear to be dead but regenerate fully after a short delay.
 /datum/action/changeling/fakedeath/sting_action(mob/living/user)
@@ -39,13 +47,18 @@
 	if(revive_ready || HAS_TRAIT_FROM(changeling, TRAIT_DEATHCOMA, CHANGELING_TRAIT))
 		return
 
+	stop_fatigue_decay()
 	changeling.fakedeath(CHANGELING_TRAIT)
 	ADD_TRAIT(changeling, TRAIT_STASIS, CHANGELING_TRAIT)
-	addtimer(CALLBACK(src, PROC_REF(ready_to_regenerate), changeling), fakedeath_duration * duration_modifier, TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(ready_to_regenerate), changeling), get_stasis_duration() * duration_modifier, TIMER_UNIQUE)
 	// Basically, these let the ling exit stasis without giving away their ling-y-ness if revived through other means
 	RegisterSignal(changeling, SIGNAL_REMOVETRAIT(TRAIT_DEATHCOMA), PROC_REF(fakedeath_reset))
 	RegisterSignal(changeling, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_change))
 	return TRUE
+
+/// How long the next Reviving Stasis will take to ready, given our current Revival Fatigue.
+/datum/action/changeling/fakedeath/proc/get_stasis_duration()
+	return REVIVAL_FATIGUE_BASE_DURATION * (REVIVAL_FATIGUE_MULTIPLIER ** revival_fatigue_stacks)
 
 /// Removes the signals for fakedeath and listening for hapless doctors
 /// healing a changeling who went into stasis after actually dying, and
@@ -54,6 +67,8 @@
 	REMOVE_TRAIT(changeling, TRAIT_STASIS, CHANGELING_TRAIT)
 	UnregisterSignal(changeling, SIGNAL_REMOVETRAIT(TRAIT_DEATHCOMA))
 	UnregisterSignal(changeling, COMSIG_MOB_STATCHANGE)
+	if(changeling.stat != DEAD)
+		start_fatigue_decay(changeling)
 
 /// This proc is called to reset the chemical cost of the revival
 /// as well as the revive ready flag and button states.
@@ -97,11 +112,13 @@
 	if(!HAS_TRAIT_FROM(user, TRAIT_DEATHCOMA, CHANGELING_TRAIT))
 		return
 
+	revival_fatigue_stacks++
 	user.cure_fakedeath(CHANGELING_TRAIT)
 	// Heal all damage and some minor afflictions,
 	var/flags_to_heal = (HEAL_DAMAGE|HEAL_BODY|HEAL_STATUS|HEAL_CC_STATUS)
 	// but leave out limbs so we can do it specially
 	user.revive(flags_to_heal & ~HEAL_LIMBS)
+	user.apply_status_effect(/datum/status_effect/changeling_adrenal_surge)
 	to_chat(user, span_changeling("We have revived ourselves."))
 
 	var/static/list/dont_regenerate = list(BODY_ZONE_HEAD) // headless changelings are funny
@@ -130,6 +147,30 @@
 
 	to_chat(user, span_changeling("We are ready to revive."))
 	enable_revive(user)
+
+/// Starts the Revival Fatigue decay timer, if we have any fatigue to decay.
+/datum/action/changeling/fakedeath/proc/start_fatigue_decay(mob/living/user)
+	if(!revival_fatigue_stacks || fatigue_decay_timer)
+		return
+	fatigue_decay_timer = addtimer(CALLBACK(src, PROC_REF(decay_fatigue), user), REVIVAL_FATIGUE_DECAY_INTERVAL, TIMER_UNIQUE|TIMER_STOPPABLE)
+
+/// Cancels the Revival Fatigue decay timer, if one's running.
+/datum/action/changeling/fakedeath/proc/stop_fatigue_decay()
+	if(!fatigue_decay_timer)
+		return
+	deltimer(fatigue_decay_timer)
+	fatigue_decay_timer = null
+
+/// Removes one stack of Revival Fatigue and, if any remain, reschedules itself.
+/datum/action/changeling/fakedeath/proc/decay_fatigue(mob/living/user)
+	fatigue_decay_timer = null
+	if(QDELETED(src) || QDELETED(user))
+		return
+	if(user.stat == DEAD || HAS_TRAIT_FROM(user, TRAIT_DEATHCOMA, CHANGELING_TRAIT))
+		return // paused while dead/in stasis, resumes from disable_stasis_and_fakedeath
+	revival_fatigue_stacks = max(0, revival_fatigue_stacks - 1)
+	if(revival_fatigue_stacks)
+		start_fatigue_decay(user)
 
 /datum/action/changeling/fakedeath/can_sting(mob/living/user)
 	if(revive_ready)
@@ -172,3 +213,7 @@
 /datum/action/changeling/fakedeath/apply_button_icon(atom/movable/screen/movable/action_button/current_button, force)
 	button_icon_state = revive_ready ? "revive" : "fake_death"
 	return ..()
+
+#undef REVIVAL_FATIGUE_BASE_DURATION
+#undef REVIVAL_FATIGUE_MULTIPLIER
+#undef REVIVAL_FATIGUE_DECAY_INTERVAL

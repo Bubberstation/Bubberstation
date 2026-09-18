@@ -1,3 +1,10 @@
+/// Time in seconds for the Organic Capacitor to charge from empty to full.
+#define ORGANIC_CAPACITOR_CHARGE_SECONDS 60
+/// Capacitor charge value that counts as "full" and unlocks Dissonant Shriek.
+#define ORGANIC_CAPACITOR_MAX 100
+/// Helper to format the maptext shown on the Organic Capacitor HUD element.
+#define FORMAT_CAPACITOR_TEXT(charge) MAPTEXT("<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#28c2dd'>[round(charge)]</font></div>")
+
 /datum/action/changeling/resonant_shriek
 	name = "Resonant Shriek"
 	desc = "Our lungs and vocal cords shift, allowing us to emit a noise that deafens and confuses non-changelings, causing them to lose some control over their movements. \
@@ -34,29 +41,83 @@
 
 /datum/action/changeling/dissonant_shriek
 	name = "Technophagic Shriek"
-	desc = "We shift our vocal cords to release a high-frequency sound that overloads nearby electronics. Breaks headsets and cameras, and can sometimes break laser weaponry, doors, and modsuits. Costs 20 chemicals."
+	desc = "We shift our vocal cords to release a high-frequency sound that overloads nearby electronics. Breaks headsets and cameras, and can sometimes break laser weaponry, doors, and modsuits. \
+		Our own biology adapts to shrug off the pulse. Requires a fully charged Organic Capacitor, which consumes itself and takes a minute of remaining alive to recharge."
 	button_icon_state = "technophagic_shriek"
 	category = "combat"
-	chemical_cost = 20
+	chemical_cost = 0
 	dna_cost = 1
 	disabled_by_fire = FALSE
-	COOLDOWN_DECLARE(dissonant_shriek_cooldown) //BUBBER EDIT: DECLARES A COOLDOWN
+	/// Current charge of our Organic Capacitor, from 0 to [ORGANIC_CAPACITOR_MAX].
+	var/capacitor_charge = 0
+
+/datum/action/changeling/dissonant_shriek/on_purchase(mob/user, is_respec)
+	. = ..()
+	RegisterSignal(user, COMSIG_LIVING_LIFE, PROC_REF(on_life))
+	RegisterSignal(user, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_change))
+	RegisterSignal(user, SIGNAL_ADDTRAIT(TRAIT_DEATHCOMA), PROC_REF(drain_capacitor))
+	// Our own biology has adapted to shrug off the pulse we generate, same logic as the ninja suit's advanced EMP shield.
+	user.AddElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS)
+	var/mob/living/living_user = user
+	living_user.hud_used?.add_screen_object(/atom/movable/screen/ling/capacitor, HUD_CHANGELING_CAPACITOR, HUD_GROUP_INFO, update_screen = TRUE)
+	update_capacitor_hud(living_user)
+
+/datum/action/changeling/dissonant_shriek/Remove(mob/user)
+	UnregisterSignal(user, list(COMSIG_LIVING_LIFE, COMSIG_MOB_STATCHANGE, SIGNAL_ADDTRAIT(TRAIT_DEATHCOMA)))
+	user.RemoveElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS)
+	var/mob/living/living_user = user
+	living_user.hud_used?.remove_screen_object(HUD_CHANGELING_CAPACITOR)
+	return ..()
+
+/// The capacitor charges up while we're alive and out of stasis.
+/datum/action/changeling/dissonant_shriek/proc/on_life(mob/living/source, seconds_per_tick)
+	SIGNAL_HANDLER
+	if(capacitor_charge >= ORGANIC_CAPACITOR_MAX)
+		return
+	if(source.stat == DEAD || HAS_TRAIT_FROM(source, TRAIT_DEATHCOMA, CHANGELING_TRAIT))
+		return
+	capacitor_charge = min(capacitor_charge + (ORGANIC_CAPACITOR_MAX / ORGANIC_CAPACITOR_CHARGE_SECONDS) * DELTA_WORLD_TIME(SSmobs), ORGANIC_CAPACITOR_MAX)
+	update_capacitor_hud(source)
+
+/// Dying drains the capacitor immediately, same as entering Reviving Stasis.
+/datum/action/changeling/dissonant_shriek/proc/on_stat_change(mob/living/source, new_stat, old_stat)
+	SIGNAL_HANDLER
+	if(new_stat == DEAD)
+		drain_capacitor(source)
+
+/// Zeroes the capacitor out. Used on death and on entering Reviving Stasis.
+/datum/action/changeling/dissonant_shriek/proc/drain_capacitor(mob/living/source)
+	SIGNAL_HANDLER
+	capacitor_charge = 0
+	update_capacitor_hud(source)
+
+/// Pushes our current capacitor charge to the HUD element, if we have one.
+/datum/action/changeling/dissonant_shriek/proc/update_capacitor_hud(mob/living/user)
+	var/atom/movable/screen/ling/capacitor/capacitor = user.hud_used?.screen_objects[HUD_CHANGELING_CAPACITOR]
+	if(isnull(capacitor))
+		return
+	capacitor.maptext = FORMAT_CAPACITOR_TEXT(capacitor_charge)
+
+/datum/action/changeling/dissonant_shriek/can_sting(mob/living/user, mob/living/target)
+	if(capacitor_charge < ORGANIC_CAPACITOR_MAX)
+		user.balloon_alert(user, "capacitor at [round(capacitor_charge)]%!")
+		return FALSE
+	return ..()
 
 /datum/action/changeling/dissonant_shriek/sting_action(mob/user)
 	..()
 	if(user.movement_type & VENTCRAWLING)
 		user.balloon_alert(user, "can't shriek in pipes!")
 		return FALSE
-	//BUBBER EDIT: NO PULSE IF YOU'RE ON COOLDOWN
-	if(!COOLDOWN_FINISHED(src, dissonant_shriek_cooldown))
-		user.balloon_alert(user, "throat is sore!")
-		return FALSE
-	//BUBBER EDIT: NO PULSE IF YOU'RE ON COOLDOWN
 	empulse(get_turf(user), 2, 5, 1, emp_source = src)
-	for(var/obj/machinery/light/L in range(5, usr))
-		L.on = TRUE
-		L.break_light_tube()
+	for(var/obj/machinery/light/light in range(5, user))
+		light.on = TRUE
+		light.break_light_tube()
 		stoplag()
-		COOLDOWN_START(src, dissonant_shriek_cooldown, 10 SECONDS) //BUBBER EDIT: ADDS A COOLDOWN TO DISSONANT SHRIEK
-
+	capacitor_charge = 0
+	update_capacitor_hud(user)
 	return TRUE
+
+#undef ORGANIC_CAPACITOR_CHARGE_SECONDS
+#undef ORGANIC_CAPACITOR_MAX
+#undef FORMAT_CAPACITOR_TEXT
