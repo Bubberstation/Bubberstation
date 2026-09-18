@@ -3,7 +3,9 @@
 /// Capacitor charge value that counts as "full" and unlocks Dissonant Shriek.
 #define ORGANIC_CAPACITOR_MAX 100
 /// Helper to format the maptext shown on the Organic Capacitor HUD element.
-#define FORMAT_CAPACITOR_TEXT(charge) MAPTEXT("<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#28c2dd'>[round(charge)]</font></div>")
+#define FORMAT_CAPACITOR_TEXT(charge) MAPTEXT("<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#28c2dd'>[round(charge)]%</font></div>")
+/// As above, but for when the element is being hovered over.
+#define FORMAT_CAPACITOR_HOVER_TEXT(charge) MAPTEXT("<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#dd2828'>[round(charge)]%</font></div>")
 
 /datum/action/changeling/resonant_shriek
 	name = "Resonant Shriek"
@@ -41,8 +43,9 @@
 
 /datum/action/changeling/dissonant_shriek
 	name = "Technophagic Shriek"
-	desc = "We shift our vocal cords to release a high-frequency sound that overloads nearby electronics. Breaks headsets and cameras, and can sometimes break laser weaponry, doors, and modsuits. \
-		Our own biology adapts to shrug off the pulse. Requires a fully charged Organic Capacitor, which consumes itself and takes a minute of remaining alive to recharge."
+	desc = "We contort our vocal cords to unleash a piercing shriek that overloads nearby electronics. We grow Organic Capacitors, specialized organs that charge over time and power the pulse. \
+		Headsets and cameras fail, lights burst, and lasers, doors, and modsuits can be disrupted. We alter our biology to shield us from the pulse. \
+		A fully charged capacitor is required; shrieking drains it completely, and it takes one minute of remaining alive to recharge."
 	button_icon_state = "technophagic_shriek"
 	category = "combat"
 	chemical_cost = 0
@@ -56,6 +59,7 @@
 	RegisterSignal(user, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 	RegisterSignal(user, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_change))
 	RegisterSignal(user, SIGNAL_ADDTRAIT(TRAIT_DEATHCOMA), PROC_REF(drain_capacitor))
+	RegisterSignal(user, COMSIG_CHANGELING_UPDATE_CAPACITOR_HUD, PROC_REF(on_hud_update_request))
 	// Our own biology has adapted to shrug off the pulse we generate, same logic as the ninja suit's advanced EMP shield.
 	user.AddElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS)
 	var/mob/living/living_user = user
@@ -63,7 +67,7 @@
 	update_capacitor_hud(living_user)
 
 /datum/action/changeling/dissonant_shriek/Remove(mob/user)
-	UnregisterSignal(user, list(COMSIG_LIVING_LIFE, COMSIG_MOB_STATCHANGE, SIGNAL_ADDTRAIT(TRAIT_DEATHCOMA)))
+	UnregisterSignal(user, list(COMSIG_LIVING_LIFE, COMSIG_MOB_STATCHANGE, SIGNAL_ADDTRAIT(TRAIT_DEATHCOMA), COMSIG_CHANGELING_UPDATE_CAPACITOR_HUD))
 	user.RemoveElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS)
 	var/mob/living/living_user = user
 	living_user.hud_used?.remove_screen_object(HUD_CHANGELING_CAPACITOR)
@@ -91,12 +95,17 @@
 	capacitor_charge = 0
 	update_capacitor_hud(source)
 
+/// Signal proc for the HUD element asking to be redrawn, such as on mouse hover.
+/datum/action/changeling/dissonant_shriek/proc/on_hud_update_request(mob/living/source)
+	SIGNAL_HANDLER
+	update_capacitor_hud(source)
+
 /// Pushes our current capacitor charge to the HUD element, if we have one.
 /datum/action/changeling/dissonant_shriek/proc/update_capacitor_hud(mob/living/user)
 	var/atom/movable/screen/ling/capacitor/capacitor = user.hud_used?.screen_objects[HUD_CHANGELING_CAPACITOR]
 	if(isnull(capacitor))
 		return
-	capacitor.maptext = FORMAT_CAPACITOR_TEXT(capacitor_charge)
+	capacitor.maptext = capacitor.hovering ? FORMAT_CAPACITOR_HOVER_TEXT(capacitor_charge) : FORMAT_CAPACITOR_TEXT(capacitor_charge)
 
 /datum/action/changeling/dissonant_shriek/can_sting(mob/living/user, mob/living/target)
 	if(capacitor_charge < ORGANIC_CAPACITOR_MAX)
@@ -121,3 +130,4 @@
 #undef ORGANIC_CAPACITOR_CHARGE_SECONDS
 #undef ORGANIC_CAPACITOR_MAX
 #undef FORMAT_CAPACITOR_TEXT
+#undef FORMAT_CAPACITOR_HOVER_TEXT

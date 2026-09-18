@@ -37,7 +37,9 @@
 	if(!enable_fakedeath(user, duration_modifier = death_duration_mod))
 		CRASH("Changeling revive failed to enter fakedeath when it should have been in a valid state to.")
 
-	to_chat(user, span_changeling("We begin our stasis, preparing energy to arise once more."))
+	to_chat(user, span_changeling("We begin our stasis, preparing energy to arise once more. We will be ready in [DisplayTimeText(get_stasis_duration() * death_duration_mod, round_seconds_to = 1)]."))
+	if(revival_fatigue_stacks)
+		to_chat(user, span_changeling("We are tired. Reviving so often has worn our flesh thin."))
 	if(death_duration_mod > 1)
 		to_chat(user, span_changeling(span_bold("Our body has sustained severe damage, and will take [death_duration_mod >= 5 ? "far ":""]longer to regenerate.")))
 	return TRUE
@@ -50,7 +52,9 @@
 	stop_fatigue_decay()
 	changeling.fakedeath(CHANGELING_TRAIT)
 	ADD_TRAIT(changeling, TRAIT_STASIS, CHANGELING_TRAIT)
-	addtimer(CALLBACK(src, PROC_REF(ready_to_regenerate), changeling), get_stasis_duration() * duration_modifier, TIMER_UNIQUE)
+	var/this_stasis_duration = get_stasis_duration() * duration_modifier
+	changeling.apply_status_effect(/datum/status_effect/changeling_stasis_countdown, this_stasis_duration)
+	addtimer(CALLBACK(src, PROC_REF(ready_to_regenerate), changeling), this_stasis_duration, TIMER_UNIQUE)
 	// Basically, these let the ling exit stasis without giving away their ling-y-ness if revived through other means
 	RegisterSignal(changeling, SIGNAL_REMOVETRAIT(TRAIT_DEATHCOMA), PROC_REF(fakedeath_reset))
 	RegisterSignal(changeling, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_change))
@@ -65,6 +69,7 @@
 /// also removes changeling stasis
 /datum/action/changeling/fakedeath/proc/disable_stasis_and_fakedeath(mob/living/changeling)
 	REMOVE_TRAIT(changeling, TRAIT_STASIS, CHANGELING_TRAIT)
+	changeling.remove_status_effect(/datum/status_effect/changeling_stasis_countdown)
 	UnregisterSignal(changeling, SIGNAL_REMOVETRAIT(TRAIT_DEATHCOMA))
 	UnregisterSignal(changeling, COMSIG_MOB_STATCHANGE)
 	if(changeling.stat != DEAD)
@@ -113,13 +118,14 @@
 		return
 
 	revival_fatigue_stacks++
+	update_fatigue_display(user)
 	user.cure_fakedeath(CHANGELING_TRAIT)
 	// Heal all damage and some minor afflictions,
 	var/flags_to_heal = (HEAL_DAMAGE|HEAL_BODY|HEAL_STATUS|HEAL_CC_STATUS)
 	// but leave out limbs so we can do it specially
 	user.revive(flags_to_heal & ~HEAL_LIMBS)
 	user.apply_status_effect(/datum/status_effect/changeling_adrenal_surge)
-	to_chat(user, span_changeling("We have revived ourselves."))
+	to_chat(user, span_changeling("We have revived ourselves. Our next stasis will take [DisplayTimeText(get_stasis_duration(), round_seconds_to = 1)]."))
 
 	var/static/list/dont_regenerate = list(BODY_ZONE_HEAD) // headless changelings are funny
 	if(!length(user.get_missing_limbs() - dont_regenerate))
@@ -148,6 +154,17 @@
 	to_chat(user, span_changeling("We are ready to revive."))
 	enable_revive(user)
 
+/// Keeps the Revival Fatigue status effect and its HUD alert in step with our stack count.
+/datum/action/changeling/fakedeath/proc/update_fatigue_display(mob/living/user)
+	if(!revival_fatigue_stacks)
+		user.remove_status_effect(/datum/status_effect/changeling_revival_fatigue)
+		return
+	// apply_status_effect returns null when it refreshes an existing effect, so grab the live one ourselves.
+	var/datum/status_effect/changeling_revival_fatigue/fatigue = user.has_status_effect(/datum/status_effect/changeling_revival_fatigue)
+	if(isnull(fatigue))
+		fatigue = user.apply_status_effect(/datum/status_effect/changeling_revival_fatigue)
+	fatigue?.set_stacks(revival_fatigue_stacks)
+
 /// Starts the Revival Fatigue decay timer, if we have any fatigue to decay.
 /datum/action/changeling/fakedeath/proc/start_fatigue_decay(mob/living/user)
 	if(!revival_fatigue_stacks || fatigue_decay_timer)
@@ -169,6 +186,7 @@
 	if(user.stat == DEAD || HAS_TRAIT_FROM(user, TRAIT_DEATHCOMA, CHANGELING_TRAIT))
 		return // paused while dead/in stasis, resumes from disable_stasis_and_fakedeath
 	revival_fatigue_stacks = max(0, revival_fatigue_stacks - 1)
+	update_fatigue_display(user)
 	if(revival_fatigue_stacks)
 		start_fatigue_decay(user)
 
