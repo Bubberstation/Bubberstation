@@ -1,6 +1,6 @@
-/datum/round_event_control/lone_infiltrator
+/datum/round_event_control/syndicate_boarder
 	name = "Spawn Syndicate Boarder"
-	typepath = /datum/round_event/ghost_role/lone_infiltrator
+	typepath = /datum/round_event/ghost_role/syndicate_boarder
 	max_occurrences = 2
 	min_players = 10
 	category = EVENT_CATEGORY_ENTITIES
@@ -12,18 +12,18 @@
 	track = EVENT_TRACK_GHOSTSET
 	tags = list(TAG_COMBAT)
 
-/datum/round_event/ghost_role/lone_infiltrator
+/datum/round_event/ghost_role/syndicate_boarder
 	minimum_required = 1
-	role_name = "Syndicate Boarder"
+	role_name = ROLE_SYNDICATE_BOARDER
 	fakeable = FALSE
 
-/datum/round_event/ghost_role/lone_infiltrator/spawn_role()
+/datum/round_event/ghost_role/syndicate_boarder/spawn_role()
 	var/list/spawn_locs = list()
 	for(var/obj/effect/landmark/carpspawn/carp in GLOB.landmarks_list)
 		spawn_locs += carp.loc
 	if(!length(spawn_locs))
 		return MAP_ERROR
-	var/mob/chosen_one = SSpolling.poll_ghost_candidates(check_jobban = ROLE_LONE_INFILTRATOR, role = ROLE_LONE_INFILTRATOR, role_name_text = role_name, amount_to_pick = 1)
+	var/mob/chosen_one = SSpolling.poll_ghost_candidates(check_jobban = ROLE_SYNDICATE_BOARDER, role = ROLE_SYNDICATE_BOARDER, role_name_text = role_name, amount_to_pick = 1)
 	if(isnull(chosen_one))
 		return NOT_ENOUGH_PLAYERS
 
@@ -38,7 +38,7 @@
 
 	player_mind.transfer_to(operative)
 	player_mind.set_assigned_role(SSjob.get_job_type(/datum/job/lone_operative))
-	player_mind.add_antag_datum(/datum/antagonist/traitor/lone_infiltrator)
+	player_mind.add_antag_datum(/datum/antagonist/traitor/syndicate_boarder)
 	spawned_mobs += operative
 
 	message_admins("[ADMIN_LOOKUPFLW(operative)] has been made into a Syndicate Boarder.")
