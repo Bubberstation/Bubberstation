@@ -71432,10 +71432,12 @@
 /area/station/hallway/primary/fore)
 "tRX" = (
 /obj/machinery/light/directional/north,
-/obj/machinery/bouldertech/refinery,
 /obj/machinery/conveyor{
 	id = "mining";
 	dir = 8
+	},
+/obj/machinery/bouldertech/refinery{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/station/cargo/miningdock)
@@ -74833,10 +74835,12 @@
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/aft/lesser)
 "uLB" = (
-/obj/machinery/bouldertech/refinery/smelter,
 /obj/machinery/conveyor/inverted{
 	dir = 5;
 	id = "mining"
+	},
+/obj/machinery/bouldertech/refinery/smelter{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/station/cargo/miningdock)
