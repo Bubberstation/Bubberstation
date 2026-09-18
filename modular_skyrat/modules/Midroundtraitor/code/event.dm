@@ -3,7 +3,7 @@
 	config_tag = "Midround Lone Infiltrator"
 	preview_antag_datum = /datum/antagonist/traitor/lone_infiltrator
 	midround_type = LIGHT_MIDROUND
-	pref_flag = ROLE_SYNDICATE_BOARDER /// BUBBER EDIT - From ROLE_LONE_INFILTRATOR to ROLE_SYNDICATE_BOARDER
+	pref_flag = ROLE_SYNDICATE_BOARDER
 	blacklisted_roles = list(
 		JOB_CYBORG,
 		JOB_AI,
