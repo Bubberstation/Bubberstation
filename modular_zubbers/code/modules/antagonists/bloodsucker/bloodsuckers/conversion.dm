@@ -25,7 +25,7 @@
  * conversion_target - Person being ghouled
  */
 /datum/antagonist/bloodsucker/proc/can_make_ghoul(mob/living/conversion_target)
-	if(!iscarbon(conversion_target) || (conversion_target.stat < CONSCIOUS))
+	if(!iscarbon(conversion_target) || (conversion_target.stat > STABLE))
 		return FALSE
 	// No Mind!
 	if(!conversion_target.mind)

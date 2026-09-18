@@ -41,6 +41,17 @@
 	)
 	rpg_title = "Battle Cleric"
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
+	
+	sec_antag_cap = 1.25
+	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
+	alt_titles = list(
+		"Security Medic",
+		"Field Medic",
+		"Security Corpsman",
+		"Brig Physician",
+		"Combat Medic",
+		"Special Operations Medic",
+	)
 
 /datum/outfit/job/security_medic
 	name = "Security Medic"
@@ -102,17 +113,6 @@
 	inhand_icon_state = "trayson-t-ray"
 	glass_colour_type = /datum/client_colour/glass_colour/blue
 
-/obj/item/clothing/glasses/hud/medsechud/sunglasses
-	name = "health scanner security HUD sunglasses"
-	icon = 'modular_zubbers/icons/obj/secmed_equipment.dmi'
-	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
-	icon_state = "hud_protected"
-	worn_icon_state = "security_hud_black"
-	inhand_icon_state = "sunhudmed"
-	flash_protect = FLASH_PROTECTION_FLASH
-	flags_cover = GLASSESCOVERSEYES
-	tint = 1
-
 /obj/item/storage/bag/garment/secmed
 	name = "Security medic's garment bag"
 	desc = "A bag containing extra clothing for the security medic"
@@ -136,7 +136,7 @@
 /obj/structure/closet/secure_closet/security_medic/PopulateContents()
 	..()
 	new /obj/item/radio/headset/headset_medsec(src)
-	new /obj/item/clothing/glasses/hud/medsechud/sunglasses(src)
+	new /obj/item/clothing/glasses/hud/security/sunglasses/guard/medical(src)
 	new /obj/item/storage/medkit/emergency(src)
 	new /obj/item/clothing/suit/jacket/straight_jacket(src)
 	new /obj/item/storage/belt/medical(src)

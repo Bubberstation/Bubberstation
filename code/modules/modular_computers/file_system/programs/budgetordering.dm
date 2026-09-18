@@ -270,7 +270,7 @@
 					if(dept_choice == "Cargo Budget")
 						personal_department = null
 
-			if((pack.order_flags & ORDER_GOODY) && !self_paid)
+			if((pack.order_flags & ORDER_GOODY) && !self_paid && !pack.allow_non_private_purchase) // BUBBER EDIT - allow_non_private_purchase check, matches orderconsole.dm and expressconsole.dm
 				playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 				computer.say("ERROR: Small crates may only be purchased by private accounts.")
 				return

@@ -23,6 +23,11 @@
 	greyscale_config = /datum/greyscale_config/hypospray_mkii
 	desc = "A new development from DeForest Medical, this hypospray takes 50-unit vials as the drug supply for easy swapping."
 	w_class = WEIGHT_CLASS_TINY
+	custom_materials = list(
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT,
+	)
 	var/list/allowed_containers = list(/obj/item/reagent_containers/cup/vial/small)
 	/// Is the hypospray only able to use small vials. Relates to the loaded overlays
 	var/small_only = TRUE
@@ -72,14 +77,15 @@
 	penetrates = INJECT_CHECK_PENETRATE_THICK
 
 // Deluxe hypo upgrade Kit
-/obj/item/device/custom_kit/deluxe_hypo2
+/obj/item/custom_kit/deluxe_hypo2
 	name = "hypospray Mk. II deluxe bodykit"
 	desc = "Upgrades the DeForest Hypospray Mk. II to support larger vials."
 	// don't tinker with a loaded (medi)gun. fool
 	from_obj = /obj/item/hypospray/mkii
 	to_obj = /obj/item/hypospray/mkii/deluxe
+	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 8)
 
-/obj/item/device/custom_kit/deluxe_hypo2/pre_convert_check(obj/target_obj, mob/user)
+/obj/item/custom_kit/deluxe_hypo2/pre_convert_check(obj/target_obj, mob/user)
 	var/obj/item/hypospray/mkii/our_hypo = target_obj
 	if(our_hypo.type in subtypesof(/obj/item/hypospray/mkii/))
 		balloon_alert(user, "only works on basic mk. ii hypos!")

@@ -505,7 +505,7 @@
 	if(!cortical_owner.human_host)
 		owner.balloon_alert(owner, "host required")
 		return
-	healthscan(owner, cortical_owner.human_host, advanced = TRUE) // :thinking:
+	healthscan(owner, cortical_owner.human_host, scanpower = SCANPOWER_ADVANCED) // :thinking:
 	chemscan(owner, cortical_owner.human_host)
 	StartCooldown()
 

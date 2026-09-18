@@ -2,7 +2,7 @@
 	key = "spines"
 	default_color = DEFAULT_SECONDARY
 	recommended_species = list(SPECIES_LIZARD, SPECIES_UNATHI, SPECIES_LIZARD_ASH, SPECIES_LIZARD_SILVER)
-	relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER)
+	relevent_layers = list(EXTERNAL_BEHIND, EXTERNAL_ADJACENT)
 	organ_type = /obj/item/organ/spines
 
 /datum/sprite_accessory/spines/is_hidden(mob/living/carbon/human/wearer)
@@ -16,7 +16,7 @@
 /datum/sprite_accessory/tail_spines
 	key = "tailspines"
 	default_color = DEFAULT_SECONDARY
-	relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER)
+	relevent_layers = list(EXTERNAL_BEHIND, EXTERNAL_ADJACENT)
 
 /datum/sprite_accessory/tail_spines/none
 	name = SPRITE_ACCESSORY_NONE

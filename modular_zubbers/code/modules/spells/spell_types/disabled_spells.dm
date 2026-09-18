@@ -17,3 +17,8 @@
 // 99% of slaughter demons just target medbay and it's not really fun for anyone except the slaughter demon (and ghost chat).
 /datum/spellbook_entry/item/bloodbottle
 	category = null
+
+// Summon Ghosts: Makes ghosts visible to all living players. Ghosts being visible sounds funny on paper, but since its free it almost always gets ran.
+// This is bad for antagonists that have invisibility and gets really awkward when a ghost inevitably orbits someone ERPing.
+/datum/spellbook_entry/summon/ghosts
+	category = null

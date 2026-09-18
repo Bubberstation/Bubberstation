@@ -73,7 +73,7 @@
 	new /datum/mold_controller(src, passed_type)
 	. = ..()
 	soundloop = new(src, TRUE)
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 
 /obj/structure/mold/structure/core/Destroy()
 	if(mold_controller)
@@ -198,7 +198,7 @@
 	if(prob(7))
 		blooming = TRUE
 		set_light(2, 1, LIGHT_COLOR_LAVA)
-		update_overlays()
+		update_overlays(UPDATE_OVERLAYS)
 
 /obj/structure/mold/resin/Destroy()
 	if(mold_controller)
@@ -249,7 +249,7 @@
 	icon_state = "blob_bulb_full"
 	set_light(2, 1, LIGHT_COLOR_LAVA)
 	density = TRUE
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 
 
 /obj/structure/mold/structure/bulb/proc/discharge()
@@ -262,7 +262,7 @@
 	icon_state = "blob_bulb_empty"
 	playsound(src, 'sound/effects/bamf.ogg', 100, TRUE)
 	set_light(0)
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 	density = FALSE
 	addtimer(CALLBACK(src, PROC_REF(make_full)), 1 MINUTES, TIMER_UNIQUE|TIMER_NO_HASH_WAIT)
 

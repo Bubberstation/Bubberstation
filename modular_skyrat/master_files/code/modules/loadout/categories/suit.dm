@@ -10,10 +10,6 @@
 *	WINTER COATS
 */
 
-/datum/loadout_item/suit/winter_coat
-	name = "Winter Coat"
-	item_path = /obj/item/clothing/suit/hooded/wintercoat
-
 /datum/loadout_item/suit/winter_coat_greyscale
 	name = "Greyscale Winter Coat"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/custom

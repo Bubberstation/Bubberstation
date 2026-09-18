@@ -44,7 +44,6 @@
 
 	return TRUE
 
-
 /obj/item/organ/tail/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	if(sprite_accessory_flags & SPRITE_ACCESSORY_WAG_ABLE)
 		wag_flags |= WAG_ABLE
@@ -56,6 +55,9 @@
 /obj/item/organ/tail/monkey
 	wag_flags = WAG_ABLE // waggable monkey tails
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Monkey", MUTANT_INDEX_COLOR_LIST = list("#FFFFFF"))
+
+/datum/bodypart_overlay/mutant/tail/monkey
+	feature_key = FEATURE_TAIL_GENERIC // IM TIRED OF THESE FUCKS BREAKING EVERY FUCKING TIME
 
 /obj/item/organ/tail/lizard
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Smooth", MUTANT_INDEX_COLOR_LIST = list("#DDFFDD"))

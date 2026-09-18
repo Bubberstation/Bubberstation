@@ -163,6 +163,10 @@
 		spread = 5
 	update_appearance()
 
+/obj/item/gun/ballistic/automatic/wt550
+	desc = "A fully-automatic security firearm chambered in 4.6x30mm, the WT550 was originally recalled over a Syndicate misinformation campaign \
+		attempting to force Nanotrasen to abandon their ballistic firearms programs. Even though it was fake, the 550 is \
+		still sold with a '99% Discombubulation Removal Guarantee' sticker in the crate."
 /obj/item/gun/ballistic/automatic/wt550/burst
 	name = "\improper WT-550-B Autoburstrifle"
 	desc = "Not so much of a rifle, being modified closer to a submachine gun, but still somehow just as bulky. Outfitted with a modified frame and barrel and a two-shot burst trigger mechanism. Performs overall better than the average autorifle, but kicks a bit more. Has a threaded barrel for suppressors. Uses 4.6x30mm rounds."

@@ -9,10 +9,7 @@
 	var/datum/weakref/previous_body
 
 /// Checks if the mob wants to leave the soulcatcher. If they do and are able to leave, they are booted out.
-/mob/living/soulcatcher_soul/verb/leave_soulcatcher()
-	set name = "Leave Soulcatcher"
-	set category = "IC"
-
+GAME_VERB(/mob/living/soulcatcher_soul, leave_soulcatcher, "Leave Soulcatcher", "IC")
 	if(!able_to_leave)
 		to_chat(src, span_warning("You are unable to leave the soulcatcher."))
 		return FALSE
@@ -54,23 +51,18 @@
 	return soul_component.me_verb(message)
 
 /mob/living/soulcatcher_soul/subtle()
-	set hidden = TRUE
 	return FALSE
 
 /mob/living/soulcatcher_soul/subtler()
-	set hidden = TRUE
 	return FALSE
 
 /mob/living/soulcatcher_soul/whisper_verb()
-	set hidden = TRUE
 	return FALSE
 
 /mob/living/soulcatcher_soul/container_emote()
-	set hidden = TRUE
 	return FALSE
 
 /mob/living/soulcatcher_soul/resist()
-	set hidden = TRUE
 	return FALSE
 
 /// Assuming we have a previous body a present mind on our soul, we are going to transfer the mind back to the old body.

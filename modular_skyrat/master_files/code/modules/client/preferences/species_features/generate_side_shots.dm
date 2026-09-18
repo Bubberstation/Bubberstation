@@ -1,4 +1,4 @@
-/proc/generate_mutant_accessory_icons(list/sprite_accessories, key, direction = EAST, layer = BODY_FRONT_LAYER)
+/proc/generate_mutant_accessory_icons(list/sprite_accessories, key, direction = EAST, layer = EXTERNAL_FRONT)
 	var/list/values = list()
 
 	for (var/name in sprite_accessories)
@@ -9,17 +9,6 @@
 		if(sprite_accessory.icon_state != "none")
 			if(!(layer in sprite_accessory.relevent_layers))
 				layer = pick(sprite_accessory.relevent_layers)
-			switch(layer)
-				if(BODY_FRONT_LAYER)
-					layer = "FRONT"
-				if(BODY_ADJ_LAYER)
-					layer = "ADJ"
-				if(BODY_FRONT_UNDER_CLOTHES)
-					layer = "FRONT_UNDER"
-				if(ABOVE_BODY_FRONT_HEAD_LAYER)
-					layer = "FRONT_OVER"
-				else
-					layer = "BEHIND"
 			final_icon = icon(sprite_accessory.icon, "m_[key]_[sprite_accessory.icon_state]_[layer]", direction)
 		else
 			final_icon = icon('icons/mob/human/bodyparts_greyscale.dmi', "lizard_chest_m", direction)

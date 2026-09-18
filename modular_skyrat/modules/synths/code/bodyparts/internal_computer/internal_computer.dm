@@ -10,9 +10,9 @@
 
 	long_ranged = TRUE //Synths have good antennae
 
-	max_idle_programs = 3
+	max_idle_programs = 5
 
-	max_capacity = 64
+	max_capacity = parent_type::max_capacity * 2
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/modular_computer/pda/synth/Initialize(mapload)
@@ -22,11 +22,26 @@
 	if(!istype(loc, /obj/item/organ/brain/synth) && !istype(loc, /obj/item/organ/brain/cybernetic/cortical) && !istype(loc, /obj/item/organ/brain/cybernetic/surplus))
 		return INITIALIZE_HINT_QDEL
 
+	//this code has to be called at a delay because the required data (synth owner's job) is null when initialized
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/modular_computer/pda/synth, post_initialize)), 1 DECISECONDS)
+
+/obj/item/modular_computer/pda/synth/proc/post_initialize()
+	var/obj/item/organ/brain/synth/brain_loc = loc
+	var/mob/living/carbon/owner = brain_loc?.bodypart_owner?.owner
+	if(istype(owner))
+		var/obj/item/modular_computer/pda/job_pda = SSjob.get_pda_type_by_job(owner.job)
+		if(istype(job_pda))
+			starting_programs += job_pda.starting_programs
+			var/obj/item/modular_computer/pda/heads/head_pda = job_pda
+			if(istype(head_pda))
+				starting_programs += head_pda.head_programs
+			install_default_programs()
+		QDEL_NULL(job_pda)
+
 /obj/item/modular_computer/pda/synth/proc/update_user_settings(client/client)
 	var/obj/item/organ/brain/cybernetic/brainpooter = loc
 	var/mob/living/brain_owner = brainpooter.owner
 	if(!isnull(brain_owner))
-		imprint_id("[brain_owner.real_name] Persocom", brain_owner.job)
 		var/datum/mind/owner_mind = brain_owner?.mind
 		if(!isnull(owner_mind))
 			update_ringtone(owner_mind?.assigned_role?.job_tone)

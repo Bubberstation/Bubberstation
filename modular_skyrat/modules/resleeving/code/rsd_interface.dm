@@ -6,6 +6,11 @@
 	inhand_icon_state = "syringe_0"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.5,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT,
+	)
 
 /// Attempts to use the item on the target brain.
 /obj/item/rsd_interface/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)

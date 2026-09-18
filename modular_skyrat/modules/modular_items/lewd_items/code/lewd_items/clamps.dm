@@ -30,7 +30,7 @@
 
 	update_icon()
 	update_appearance()
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 
 /obj/item/clothing/sextoy/nipple_clamps/update_icon_state()
 	. = ..()
@@ -56,7 +56,7 @@
 
 	update_icon()
 	update_appearance()
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 
 	if(src == user.nipples)
 		START_PROCESSING(SSobj, src)

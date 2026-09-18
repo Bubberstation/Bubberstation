@@ -272,7 +272,7 @@
 
 /// Returns the scale, compared to default, our owner has.
 /obj/structure/serpentine_tail/proc/get_scale_change_mult()
-	return owner.dna.features["body_size"] / BODY_SIZE_NORMAL
+	return owner.current_size / RESIZE_DEFAULT_SIZE
 
 /// Returns the x shift for anything we constrict.
 /obj/structure/serpentine_tail/proc/get_constriction_pixel_x_shift()
