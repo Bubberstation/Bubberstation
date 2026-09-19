@@ -7,7 +7,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/on_move(atom/source, atom/new_loc)
 	SIGNAL_HANDLER
-	for(var/obj/item/food/meat/slab/drakebait in view(src, 1.5)) //Checks if the bait is on, or is next to the Ashdrake
+	for(var/obj/item/food/meat/slab/drakebait/drakebait in view(src, 1.5)) //Checks if the bait is on, or is next to the Ashdrake
 		qdel(drakebait)// bait is kil
-		new /obj/item/stack/sheet/animalhide/ashdrake(get_turf(src))
+		new /obj/item/stack/sheet/animalhide/ashdrake(get_turf(src), 7)
 		visible_message(span_notice("[src] accepts your offering."), span_notice("The drake consumes the meat."))
