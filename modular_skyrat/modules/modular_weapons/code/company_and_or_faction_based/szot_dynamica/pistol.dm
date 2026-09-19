@@ -8,6 +8,9 @@
 		Spews an inaccurate stream of searing plasma out the magnetic barrel so long as it has power and the trigger is pulled."
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/guns_32.dmi'
 	icon_state = "slonce"
+	greyscale_config = /datum/greyscale_config/szot_dynamica_32
+	greyscale_colors = "#83825E#CD445B"
+	flags_1 = parent_type::flags_1 | IS_PLAYER_COLORABLE_1 | NO_NEW_GAGS_PREVIEW_1
 
 	fire_sound = 'modular_zubbers/sound/weapons/incinerate.ogg'
 	fire_sound_volume = 40 // This thing is comically loud otherwise
@@ -26,6 +29,7 @@
 	. = ..()
 
 	AddComponent(/datum/component/automatic_fire, autofire_shot_delay = fire_delay)
+	AddElement(/datum/element/gags_recolorable)
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_thrower/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SZOT)
@@ -43,7 +47,7 @@
 		interest in the weapon as a means to counter Sol's more advanced armor technology. \
 		As it would turn out, the plasma globules created by the weapon were really not \
 		as effective against armor as the CMC had hoped, quite the opposite actually. \
-		What the plasma did do well however was inflict grevious burns upon anyone unfortunate \
+		What the plasma did do well however was inflict grievous burns upon anyone unfortunate \
 		enough to get hit by it unprotected. For this reason, the 'Słońce' saw frequent use by \
 		army officers and ship crews who needed a backup weapon to incinerate the odd space \
 		pirate or prisoner of war."
@@ -60,6 +64,9 @@
 		Fires relatively accurate globs of searing plasma."
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/guns_32.dmi'
 	icon_state = "gwiazda"
+	greyscale_config = /datum/greyscale_config/szot_dynamica_32
+	greyscale_colors = "#83825E#CD445B"
+	flags_1 = parent_type::flags_1 | IS_PLAYER_COLORABLE_1 | NO_NEW_GAGS_PREVIEW_1
 
 	fire_sound = 'modular_zubbers/sound/weapons/burn.ogg'
 	fire_sound_volume = 40 // This thing is comically loud otherwise
@@ -85,6 +92,7 @@
 	. = ..()
 
 	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, PROC_REF(shakeit))
+	AddElement(/datum/element/gags_recolorable)
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SZOT)
@@ -97,13 +105,13 @@
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/examine_more(mob/user)
 	. = ..()
-	. += "The 'Gwiazda' is a further refinement of the 'Słońce' design. with improved \
+	. += "The 'Gwiazda' is a further refinement of the 'Słońce' design, with improved \
 		energy cycling, magnetic launchers built to higher precision, and an overall more \
 		ergonomic design. While it still fails to perform against armor, the weapon is \
-		significantly more accurate and higher power, at expense of a much lower firerate. \
+		significantly more accurate and higher powered, at the expense of a much lower fire rate. \
 		Opinions on this weapon within military service were highly mixed, with many preferring \
-		the sheer stopping power a spray of plasma could produce, with others loving the new ability \
-		to hit something in front of you for once."
+		the sheer stopping power a spray of plasma could produce, and others loving the new ability \
+		to hit something in front of them for once."
 
 	return .
 
@@ -160,11 +168,12 @@
 
 /obj/item/ammo_casing/energy/laser/plasma_glob/ready_proj(atom/target, mob/living/user, quiet, zone_override, atom/fired_from)
 	var/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/gun = fired_from
-	if(istype(gun) && gun.overclocking)
-		loaded_projectile.name = "overcharged plasma globule"
-		loaded_projectile.icon_state = "plasma_glob_super"
-		loaded_projectile.weak_against_armour = FALSE
-	gun.update_projspeed(user)
+	if(istype(gun))
+		if(gun.overclocking)
+			loaded_projectile.name = "overcharged plasma globule"
+			loaded_projectile.icon_state = "plasma_glob_super"
+			loaded_projectile.weak_against_armour = FALSE
+		gun.update_projspeed(user)
 	. = ..()
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/proc/shakeit()
@@ -213,14 +222,22 @@
 
 /obj/item/gun/ballistic/revolver/shotgun_revolver
 	name = "\improper Bóbr 12 GA revolver"
-	desc = "An outdated sidearm rarely seen in use by some members of the CIN. A revolver type design with a four shell cylinder. That's right, shell, this one shoots twelve guage."
+	desc = "An outdated sidearm rarely seen in use by some members of the CIN. A revolver-type design with a four-shell cylinder. That's right, shell. This one shoots twelve gauge."
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rev12ga
+	projectile_damage_multiplier = 0.9
 	recoil = SAWN_OFF_RECOIL
 	weapon_weight = WEAPON_MEDIUM
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/guns_32.dmi'
 	icon_state = "bobr"
+	greyscale_config = /datum/greyscale_config/szot_dynamica_32
+	greyscale_colors = "#83825E#CD445B"
+	flags_1 = parent_type::flags_1 | IS_PLAYER_COLORABLE_1 | NO_NEW_GAGS_PREVIEW_1
 	fire_sound = 'modular_skyrat/modules/sec_haul/sound/revolver_fire.ogg'
 	spread = SAWN_OFF_ACC_PENALTY
+
+/obj/item/gun/ballistic/revolver/shotgun_revolver/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/gags_recolorable)
 
 /obj/item/gun/ballistic/revolver/shotgun_revolver/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SZOT)
@@ -228,12 +245,12 @@
 /obj/item/gun/ballistic/revolver/shotgun_revolver/examine_more(mob/user)
 	. = ..()
 
-	. += "The 'Bóbr' started development as a limited run sporting weapon before \
+	. += "The 'Bóbr' started development as a limited-run sporting weapon before \
 		the military took interest. The market quickly changed from sport shooting \
 		targets, to sport shooting TerraGov strike teams once the conflict broke out. \
 		This pattern is different from the original civilian version, with a military \
-		standard pistol grip and weather resistant finish. While the 'Bóbr' was not \
-		a weapon standard issued to every CIN soldier, it was available for relatively \
-		cheap, and thus became rather popular among the ranks."
+		standard pistol grip and a weather-resistant finish. While the 'Bóbr' was not \
+		a weapon standard issued to every CIN soldier, it was available relatively \
+		cheaply, and thus became rather popular among the ranks."
 
 	return .
