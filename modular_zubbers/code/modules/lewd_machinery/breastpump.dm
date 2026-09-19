@@ -1,7 +1,7 @@
 /obj/item/breastpump
 	name = "breast pump"
-	icon = 'modular_skyrat/modules/hyposprays/icons/hypokits.dmi'
-	icon_state = "hypo2"
+	icon = 'modular_zubbers/modules/modular_items/lewd_items/icons/breastpump.dmi'
+	icon_state = "Breastpump"
 	greyscale_config = /datum/greyscale_config/hypospray_mkii
 	desc = "A breast pump, designed to take beakers to help assist lactating patients."
 	w_class = WEIGHT_CLASS_SMALL
@@ -17,7 +17,7 @@
 	/// Does it penetrate clothing? - We probably want it to be used with clothing
 	var/penetrates = null
 	/// The original icon file where our overlays reside.
-	var/original_icon = 'modular_skyrat/modules/hyposprays/icons/hypokits.dmi'
+	var/original_icon = 'modular_zubbers/modules/modular_items/lewd_items/icons/breastpump.dmi'
 
 /obj/item/breastpump/Initialize(mapload)
 	. = ..()
@@ -94,8 +94,11 @@
 
 // this is what syringes do so lets try to copy that lol
 /obj/item/breastpump/interact_with_atom(atom/target, mob/living/user, list/modifiers)
-	if(!src.beaker)
+	if(!target.reagents)
 		return NONE
+	if(!src.beaker)
+		to_chat(user, span_warning("No beaker loaded!"))
+		return ITEM_INTERACT_BLOCKING
 	if(!try_pump(target, user))
 		return ITEM_INTERACT_BLOCKING
 	if(target != user)
@@ -118,13 +121,12 @@
 		to_chat(user, span_notice("[user]'s breast's are empty."))
 		return ITEM_INTERACT_BLOCKING
 
-	var/fluid_multiplier = 2
+	var/fluid_multiplier = 3
 
 	if(user.has_status_effect(/datum/status_effect/climax))
-		fluid_multiplier = 3
+		fluid_multiplier = 5
 
-	//breasts.reagents.trans_to(reagents, 1 * fluid_multiplier)
-
+	to_chat(user, span_notice("[src] whirs.."))
 	var/trans = breasts.reagents.trans_to(src.beaker, 1 * fluid_multiplier, transferred_by = user) // transfer from, transfer to - who cares?
 	if(trans)
 		to_chat(user, span_notice("You fill [src.beaker] with [trans] units of the solution. It now contains [src.beaker.reagents.total_volume] units."))
