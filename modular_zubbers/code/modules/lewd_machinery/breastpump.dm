@@ -9,6 +9,8 @@
 	var/list/allowed_containers = list(/obj/item/reagent_containers/cup/beaker)
 	/// The presently-inserted beaker.
 	var/obj/item/reagent_containers/cup/beaker/beaker
+	/// Flags used by the injection
+	var/inject_flags = NONE
 
 	/// Can you hotswap beakers? - Yes
 	var/quickload = TRUE
@@ -69,6 +71,7 @@
 
 
 
+/*
 // Must be used on self only, to prevent abuse
 /obj/item/reagent_containers/breastpump/attack_self(mob/user)
 	. = ..()
@@ -76,42 +79,56 @@
 		beaker.attack_self(user)
 		return TRUE
 
-// Breast Pump Workflow Processor
-/obj/item/breastpump/process(seconds_per_tick, mob/living/user)
-	//Get the breasts
-	var/obj/item/organ/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
+*/
 
-	if(!breasts || !breasts.lactates || !user)
+/obj/item/breastpump/proc/try_pump(atom/target, mob/user)
+	if(!target.reagents)
 		return FALSE
 
-	// Hard stop at 120 so it doesn't go forever
-	if(beaker.reagents.total_volume == 120)
-		return FALSE
-
-	retrieve_liquids_from_breasts(seconds_per_tick)
-	increase_current_mob_arousal(seconds_per_tick)
+	if(isliving(target))
+		var/mob/living/living_target = target
+		if(!living_target.try_inject(user, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE|inject_flags))
+			return FALSE
 
 	return TRUE
 
-/obj/item/breastpump/proc/retrieve_liquids_from_breasts(seconds_per_tick, mob/living/user)
+// this is what syringes do so lets try to copy that lol
+/obj/item/breastpump/interact_with_atom(atom/target, mob/living/user, list/modifiers)
+	if(!src.beaker)
+		return NONE
+	if(!try_pump(target, user))
+		return ITEM_INTERACT_BLOCKING
+	if(target != user)
+		to_chat(user, span_warning("You cannot use the breast pump on someone else!"))
+		return ITEM_INTERACT_BLOCKING
+
+	SEND_SIGNAL(target, COMSIG_LIVING_TRY_SYRINGE_WITHDRAW, user)
+
+	if(src.beaker.reagents.holder_full())
+		to_chat(user, span_notice("[src] is full."))
+		return ITEM_INTERACT_BLOCKING
+
 	var/obj/item/organ/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
-	var/fluid_multiplier = 1
+
+	if (breasts == null)
+		to_chat(user, span_notice("[user]'s does not have compatible breasts."))
+		return ITEM_INTERACT_BLOCKING
+
+	if (breasts.reagents.total_volume <= 0)
+		to_chat(user, span_notice("[user]'s breast's are empty."))
+		return ITEM_INTERACT_BLOCKING
+
+	var/fluid_multiplier = 2
 
 	if(user.has_status_effect(/datum/status_effect/climax))
-		fluid_multiplier = 2
+		fluid_multiplier = 3
 
-	if(!beaker || breasts.reagents.total_volume <= 0)
-		return FALSE
+	//breasts.reagents.trans_to(reagents, 1 * fluid_multiplier)
 
-	breasts.reagents.trans_to(beaker, 1 * fluid_multiplier * seconds_per_tick)
-	return TRUE
-
-// Handling the process of the impact of the machine on the organs of the mob
-/obj/item/breastpump/proc/increase_current_mob_arousal(seconds_per_tick, mob/living/user)
-	var/mob/living/carbon/human/producer = user
-	producer.adjust_arousal(1 * seconds_per_tick)
-	producer.adjust_pleasure(0.2 * seconds_per_tick)
-
+	var/trans = breasts.reagents.trans_to(src.beaker, 1 * fluid_multiplier, transferred_by = user) // transfer from, transfer to - who cares?
+	if(trans)
+		to_chat(user, span_notice("You fill [src.beaker] with [trans] units of the solution. It now contains [src.beaker.reagents.total_volume] units."))
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/breastpump/attack_hand(mob/living/user)
 	if(user && loc == user && user.is_holding(src))
@@ -127,6 +144,6 @@
 
 /obj/item/breastpump/examine(mob/user)
 	. = ..()
-	. += span_notice("<b>Left-Click</b> on yourself to SUCC, <b>Right-Click</b> to inject.")
+	. += span_notice("A personal breast pump machine, useable on one's self with a functioning pair of breasts. <b>Left-Click</b> on yourself to use.")
 
 
