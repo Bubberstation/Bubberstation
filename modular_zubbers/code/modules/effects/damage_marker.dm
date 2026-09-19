@@ -45,3 +45,56 @@
 	animate(src, pixel_z = rand(-64,64), pixel_w = rand(-64,64), time = 1 SECONDS, easing = BOUNCE_EASING, alpha = 255)
 	animate(alpha = 0, time = 0.5 SECONDS)
 	QDEL_IN(src, 1.5 SECONDS)
+
+/mob/living/carbon/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_USER_PRE_ITEM_ATTACK, PROC_REF(try_sweep_weapon))
+
+/mob/living/carbon/proc/try_sweep_weapon(mob/living/source, mob/living/target, obj/item/used_weapon)
+	SIGNAL_HANDLER
+	if (isliving(target))
+		return COMPONENT_CANCEL_ATTACK_CHAIN
+	ASYNC
+		var/obj/effect/overlay/sweep/sweep = new()
+		sweep.item = used_weapon
+
+
+/obj/effect/overlay/sweep
+	icon = 'icons/effects/96x160.dmi'
+	plane = GAME_PLANE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	alpha = 64
+	var/obj/item
+	var/mob/living/carbon/owner_mob
+
+
+/obj/effect/overlay/sweep
+
+/obj/effect/overlay/sweep/proc/animate_sweep(mob/living/carbon/target)
+
+	if(!istype(target))
+		return
+
+	icon = item.icon
+	icon_state = item.icon_state
+	owner_mob = target
+	appearance_flags |= (KEEP_TOGETHER | RESET_COLOR | RESET_TRANSFORM)
+	owner_mob.vis_contents |= src
+	switch(owner_mob.dir)
+		if (NORTH)
+			animate(src, pixel_z = 32, time = 1 SECONDS, easing = BOUNCE_EASING, alpha = 255)
+			animate(alpha = 0, time = 0.5 SECONDS)
+		if (SOUTH)
+			animate(src, pixel_z = -32, time = 1 SECONDS, easing = BOUNCE_EASING, alpha = 255)
+			animate(alpha = 0, time = 0.5 SECONDS)
+		if (EAST)
+			animate(src, pixel_w = 64, time = 1 SECONDS, easing = BOUNCE_EASING, alpha = 255)
+			animate(alpha = 0, time = 0.5 SECONDS)
+		if (WEST)
+			animate(src, pixel_w = -64, time = 1 SECONDS, easing = BOUNCE_EASING, alpha = 255)
+			animate(alpha = 0, time = 0.5 SECONDS)
+//	var/word = pick(display["words"])
+
+	animate(src, pixel_z = rand(-64,64), pixel_w = rand(-64,64), time = 1 SECONDS, easing = BOUNCE_EASING, alpha = 255)
+	animate(alpha = 0, time = 0.5 SECONDS)
+	QDEL_IN(src, 1.5 SECONDS)
