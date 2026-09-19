@@ -15,7 +15,7 @@
 				/obj/item/stack/medical/ointment/red_sun = 4,
 				/obj/item/stack/medical/ointment = 4,
 				/obj/item/stack/medical/bruise_pack = 4,
-				/obj/item/stack/medical/gauze/sterilized = 4,
+				/obj/item/stack/medical/wrap/gauze/sterilized = 4,
 				/obj/item/stack/medical/suture/coagulant = 4,
 				/obj/item/stack/medical/suture = 4,
 				/obj/item/stack/medical/suture/bloody = 2,

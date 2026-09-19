@@ -29,7 +29,7 @@
 
 	ammo_type = /obj/item/ammo_casing/c27_54cesarzowa
 	caliber = CALIBER_CESARZOWA
-	max_ammo = 18
+	max_ammo = 20
 
 /obj/item/ammo_box/magazine/miecz/spawns_empty
 	start_empty = TRUE

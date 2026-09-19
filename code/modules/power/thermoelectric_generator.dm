@@ -92,8 +92,7 @@ Skyrat removal START, moved to modular file
 	return TRUE
 
 /obj/machinery/power/thermoelectric_generator/crowbar_act(mob/living/user, obj/item/tool)
-	default_deconstruction_crowbar(tool)
-	return TRUE
+	return default_deconstruction_crowbar(user, tool)
 
 /obj/machinery/power/thermoelectric_generator/process()
 	//Setting this number higher just makes the change in power output slower, it doesnt actualy reduce power output cause **math**

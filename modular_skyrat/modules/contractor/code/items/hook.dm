@@ -15,7 +15,7 @@
 	stamina = 25
 	chain_icon = 'modular_skyrat/modules/contractor/icons/hook_projectile.dmi'
 
-/obj/item/gun/magic/hook/contractor/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
+/obj/item/gun/magic/hook/contractor/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(prob(1))
 		user.say("+GET OVER HERE!+", forced = "scorpion hook")
 	return ..()

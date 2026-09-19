@@ -50,8 +50,6 @@
 	var/turf/above_turf = GET_TURF_ABOVE(turf_source)
 	var/turf/below_turf = GET_TURF_BELOW(turf_source)
 
-	var/audible_distance = CALCULATE_MAX_SOUND_AUDIBLE_DISTANCE(vol, maxdistance, falloff_distance, falloff_exponent)
-
 	if(ignore_walls)
 		if(above_turf && istransparentturf(above_turf))
 			listeners += SSmobs.clients_by_zlevel[above_turf.z]
@@ -60,13 +58,13 @@
 			listeners += SSmobs.clients_by_zlevel[below_turf.z]
 
 	else //these sounds don't carry through walls
-		listeners = get_hearers_in_view(audible_distance, turf_source)
+		listeners = get_hearers_in_view(maxdistance, turf_source)
 
 		if(above_turf && istransparentturf(above_turf))
-			listeners += get_hearers_in_view(audible_distance, above_turf)
+			listeners += get_hearers_in_view(maxdistance, above_turf)
 
 		if(below_turf && istransparentturf(turf_source))
-			listeners += get_hearers_in_view(audible_distance, below_turf)
+			listeners += get_hearers_in_view(maxdistance, below_turf)
 
 	for(var/mob/listening_mob in listeners)
 		if(!(get_dist(listening_mob, turf_source) <= maxdistance))
@@ -88,7 +86,7 @@
 	/// What preference are we going to check with our looping sound when we play it for people?
 	var/pref_to_check = /datum/preference/toggle/erp/sex_toy_sounds
 
-/datum/looping_sound/lewd/play(soundfile, volume_override)
+/datum/looping_sound/lewd/play(soundfile, volume_override, delete_when_finished, repeat_sound)
 	var/sound/sound_to_play = sound(soundfile)
 	if(direct)
 		sound_to_play.channel = sound_channel || SSsounds.random_available_channel()

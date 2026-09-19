@@ -219,7 +219,7 @@
 
 /obj/structure/closet/crate/coffin/close(mob/living/user)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
-	if(bloodsuckerdatum && user.mob_size > max_mob_size)
+	if(bloodsuckerdatum && user.has_quirk(/datum/quirk/oversized))
 		if(!HAS_TRAIT_FROM_ONLY(src, TRAIT_COFFIN_ENLARGED, "bloodsucker_coffin"))
 			if(prompt_coffin_claim(bloodsuckerdatum))
 				enlarge(user)
@@ -253,10 +253,9 @@
 // some fatass bloodsucker is trying to fit in a too-small coffin, how about we make some room?
 /obj/structure/closet/crate/proc/enlarge(mob/living/user)
 	ADD_TRAIT(src, TRAIT_COFFIN_ENLARGED, "bloodsucker_coffin")
-	max_mob_size = user.mob_size
 	to_chat(user, span_warning("The coffin creaks and squeaks as you try to squeeze into it. It's a tight fit but you manage it make it fit you."))
 	playsound(src, 'modular_skyrat/modules/aesthetics/airlock/sound/creaking.ogg')
-	animate(src, 1 SECONDS, FALSE, BOUNCE_EASING, transform = transform.Scale(user.mob_size * COFFIN_ENLARGE_MULT))
+	animate(src, 1 SECONDS, FALSE, BOUNCE_EASING, transform = transform.Scale(1.5))
 
 /obj/structure/closet/crate/proc/un_enlarge(mob/living/user)
 	if(!HAS_TRAIT_FROM_ONLY(src, TRAIT_COFFIN_ENLARGED, "bloodsucker_coffin"))
@@ -274,12 +273,12 @@
 		return TRUE
 	. = ..()
 
-/obj/structure/closet/crate/coffin/tool_interact(obj/item/weapon, mob/living/user)
-	if(locked && (weapon.tool_behaviour == TOOL_CROWBAR))
-		var/pry_time = pry_lid_timer * weapon.toolspeed // Pry speed must be affected by the speed of the tool.
+/obj/structure/closet/crate/coffin/crowbar_act(mob/living/user, obj/item/tool)
+	if(locked)
+		var/pry_time = pry_lid_timer * tool.toolspeed // Pry speed must be affected by the speed of the tool.
 		user.visible_message(
-			span_notice("[user] tries to pry the lid off of [src] with [weapon]."),
-			span_notice("You begin prying the lid off of [src] with [weapon]. This should take about [DisplayTimeText(pry_time)].")
+			span_notice("[user] tries to pry the lid off of [src] with [tool]."),
+			span_notice("You begin prying the lid off of [src] with [tool]. This should take about [DisplayTimeText(pry_time)].")
 		)
 		if(!do_after(user, pry_time, src))
 			return TRUE
@@ -291,8 +290,10 @@
 		return TRUE
 	if(!resident)
 		. = ..()
+
+/obj/structure/closet/crate/coffin/welder_act(mob/living/user, obj/item/tool)
 	if(user != resident)
-		if(istype(weapon, cutting_tool))
+		if(istype(tool, cutting_tool))
 			to_chat(user, span_notice("This is a much more complex mechanical structure than you thought. You don't know where to begin cutting [src]."))
 			return TRUE
 	. = ..()

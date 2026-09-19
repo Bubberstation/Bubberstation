@@ -8,6 +8,11 @@
  * * target - The mob who we will apply the hair color / gradient and gradient color to.
  * * user - The mob that is applying the hair color / gradient and gradient color.
  */
+
+/obj/item/dyespray
+	desc = "A spray to dye hair, as well as giving it any gradient you'd like."
+	var/uses = 40
+
 /obj/item/dyespray/proc/dye(mob/target, mob/user)
 	if(!ishuman(target))
 		return
@@ -22,40 +27,40 @@
 	if(!gradient_or_hair || !user.can_perform_action(src, NEED_DEXTERITY))
 		return
 
-	var/dying_themselves = target == user
+	var/dyeing_themselves = target == user
 	if(gradient_or_hair == DYE_OPTION_HAIR_COLOR)
-		var/new_color = tgui_color_picker(usr, "Choose a hair color:", "Character Preference", "#" + human_target.hair_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
+		var/new_color = tgui_color_picker(user, "Choose a hair color:", "Character Preference", "#" + human_target.hair_color)
 
 		if(!new_color || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 
-
-		human_target.visible_message(span_notice("[user] starts applying hair dye to [dying_themselves ? "their own" : "[human_target]'s"] hair..."), span_notice("[dying_themselves ? "You start" : "[user] starts"] applying hair dye to [dying_themselves ? "your own" : "your"] hair..."), ignored_mobs = user)
-		if(!dying_themselves)
+		human_target.visible_message(span_notice("[user] starts applying hair dye to [dyeing_themselves ? "their own" : "[human_target]'s"] hair..."), span_notice("[dyeing_themselves ? "You start" : "[user] starts"] applying hair dye to [dyeing_themselves ? "your own" : "your"] hair..."), ignored_mobs = user)
+		if(!dyeing_themselves)
 			balloon_alert(user, "dyeing...")
-		if(!do_after(usr, 3 SECONDS, target))
+		if(!do_after(user, 3 SECONDS, target))
 			return
 
 		human_target.set_haircolor(sanitize_hexcolor(new_color), update = TRUE)
 
 	else
-		var/beard_or_hair = input(user, "What do you want to dye?", "Character Preference")  as null|anything in list("Hair", "Facial Hair")
+		var/beard_or_hair = tgui_input_list(user, "What do you want to dye?", "Character Preference", list("Hair", "Facial Hair"))
 		if(!beard_or_hair || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 
 		var/list/choices = beard_or_hair == "Hair" ? SSaccessories.hair_gradients_list : SSaccessories.facial_hair_gradients_list
-		var/new_grad_style = tgui_input_list(usr, "Choose a color pattern:", "Dye Spray", choices)
+		var/new_grad_style = tgui_input_list(user, "Choose a color pattern:", "Dye Spray", choices)
 		if(!new_grad_style || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 
-		var/new_grad_color = tgui_color_picker(usr, "Choose a secondary hair color:", "Dye Spray", human_target.grad_color) // BUBBERSTATION EDIT: TGUI COLOR PICKER
+		var/hair_key = beard_or_hair == "Hair" ? GRADIENT_HAIR_KEY : GRADIENT_FACIAL_HAIR_KEY
+		var/new_grad_color = tgui_color_picker(user, "Choose a secondary hair color:", "Dye Spray", human_target.get_hair_gradient_color(hair_key))
 		if(!new_grad_color || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 
-		human_target.visible_message(span_notice("[user] starts applying hair dye to [dying_themselves ? "their own" : "[human_target]'s"] hair..."), span_notice("[dying_themselves ? "You start" : "[user] starts"] applying hair dye to [dying_themselves ? "your own" : "your"] hair..."), ignored_mobs = user)
-		if(!dying_themselves)
+		human_target.visible_message(span_notice("[user] starts applying hair dye to [dyeing_themselves ? "their own" : "[human_target]'s"] hair..."), span_notice("[dyeing_themselves ? "You start" : "[user] starts"] applying hair dye to [dyeing_themselves ? "your own" : "your"] hair..."), ignored_mobs = user)
+		if(!dyeing_themselves)
 			balloon_alert(user, "dyeing...")
-		if(!do_after(usr, 3 SECONDS, target))
+		if(!do_after(user, 3 SECONDS, target))
 			return
 
 		if(beard_or_hair == "Hair")
@@ -67,8 +72,10 @@
 
 	playsound(src, 'sound/effects/spray.ogg', 10, vary = TRUE)
 
-	human_target.visible_message(span_notice("[user] finishes applying hair dye to [dying_themselves ? "their own" : "[human_target]'s"] hair, changing its color!"), span_notice("[dying_themselves ? "You finish" : "[user] finishes"] applying hair dye to [dying_themselves ? "your own" : "your"] hair, changing its color!"), ignored_mobs = user)
-	if(!dying_themselves)
+	human_target.visible_message(
+		span_notice("[user] finishes applying hair dye to [dyeing_themselves ? "their own" : "[human_target]'s"] hair, changing its color!"),
+		span_notice("[dyeing_themselves ? "You finish" : "[user] finishes"] applying hair dye to [dyeing_themselves ? "your own" : "your"] hair, changing its color!"), ignored_mobs = user)
+	if(!dyeing_themselves)
 		balloon_alert(user, "dyeing complete!")
 
 	uses--

@@ -25,7 +25,7 @@
 		/obj/item/katana/ninja_blade = list("dragon-ninja", "katana"),
 		/obj/item/kinetic_crusher = list("dragon-mining", "hammer"),
 		/obj/item/gun/energy/recharge/kinetic_accelerator/cyborg = list("dragon-mining", "pka"),
-		/obj/item/melee/energy/sword/cyborg = list("dragon-syndi", "esword"),
+		/obj/item/melee/energy/sword/saber/cyborg = list("dragon-syndi", "esword"),
 		/obj/item/gun/energy/laser/cyborg = list("all-sec", "laser"),
 		/obj/item/gun/energy/disabler/cyborg = list("all-sec", "disabler"),
 		/obj/item/gun/energy/e_gun/advtaser/cyborg = list("all-sec", "disabler"),

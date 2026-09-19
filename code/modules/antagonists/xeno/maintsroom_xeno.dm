@@ -74,10 +74,10 @@
 	mob_type = chosen_beno
 
 	new_mob_name = initial(new_mob_name)
-	new_mob_name = sanitize_name(tgui_input_text(user, "Who are you again?", new_mob_name, MAX_NAME_LEN))
+	new_mob_name = sanitize_name(tgui_input_text(user, "Set your name.", new_mob_name, max_length = MAX_NAME_LEN))
 
 	new_mob_desc = initial(new_mob_desc)
-	new_mob_desc = tgui_input_text(user, "What has happened to you?", new_mob_desc, MAX_MESSAGE_LEN)
+	new_mob_desc = tgui_input_text(user, "Set your description.", new_mob_desc, max_length = MAX_MESSAGE_LEN)
 
 	return TRUE
 

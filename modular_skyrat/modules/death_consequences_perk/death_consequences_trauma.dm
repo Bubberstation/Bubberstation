@@ -142,6 +142,7 @@
 	. = ..()
 
 	RegisterSignal(owner, COMSIG_LIVING_POST_FULLY_HEAL, PROC_REF(victim_ahealed))
+	RegisterSignal(owner, COMSIG_LIVING_HEALTHSCAN, PROC_REF(append_analyzer_info))
 
 	update_variables()
 	START_PROCESSING(SSprocessing, src)
@@ -154,6 +155,7 @@
 		REMOVE_TRAIT(owner, TRAIT_DNR, TRAUMA_TRAIT)
 
 	UnregisterSignal(owner, COMSIG_LIVING_POST_FULLY_HEAL)
+	UnregisterSignal(owner, COMSIG_LIVING_HEALTHSCAN)
 
 	return ..()
 
@@ -406,7 +408,7 @@
 
 /// Returns a short-ish string containing an href to [get_specific_data].
 /datum/brain_trauma/severe/death_consequences/proc/get_health_analyzer_link_text(mob/user)
-	var/message = span_bolddanger("\nSubject suffers from death degradation disorder.")
+	var/message = span_bolddanger("Subject suffers from death degradation disorder.")
 	if (final_death_delivered)
 		message += span_purple("<i>\nNeural patterns are equivalent to the consciousness zero-point. Subject has likely succumbed.</i>")
 		return message
@@ -420,6 +422,8 @@
 		if (isnull(time_til_scan_expires[user]))
 			RegisterSignal(user, COMSIG_QDELETING, PROC_REF(scanning_user_qdeleting))
 		time_til_scan_expires[user] = (world.time + time_to_view_extra_data_after_scan)
+
+	message += "\n"
 
 	return message
 
@@ -437,6 +441,11 @@
 			to_chat(usr, boxed_message(get_specific_data()), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
 		else
 			to_chat(usr, span_warning("Your scan has expired! Try scanning again!"))
+
+/datum/brain_trauma/severe/death_consequences/proc/append_analyzer_info(datum/signal_source, list/scan_results, advanced, mob/user, mode)
+	SIGNAL_HANDLER
+
+	scan_results += get_health_analyzer_link_text(user)
 
 /// Returns a large string intended to show specifics of how this degradation work.
 /datum/brain_trauma/severe/death_consequences/proc/get_specific_data()

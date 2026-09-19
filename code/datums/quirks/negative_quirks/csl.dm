@@ -10,13 +10,14 @@
 	lose_text = span_notice("Common starts to click for you.")
 	medical_record_text = "Patient is CSL."
 	/// What language typepath is our primary language?
-	var/native_language
+	VAR_PRIVATE/native_language
 
 /datum/quirk/csl/add(client/client_source)
-	if(iscarbon(quirk_holder))
-		quirk_holder.remove_language(/datum/language/common, UNDERSTOOD_LANGUAGE, LANGUAGE_SPECIES)
-	else
-		quirk_holder.remove_language(/datum/language/common, UNDERSTOOD_LANGUAGE, LANGUAGE_ATOM)
+	quirk_holder.remove_language(/datum/language/common, UNDERSTOOD_LANGUAGE, LANGUAGE_MIND) // BUBBER EDIT - CHANGE - PREVIOUS: (/datum/language/common, UNDERSTOOD_LANGUAGE, LANGUAGE_SPECIES)
+	quirk_holder.remove_language(/datum/language/common, UNDERSTOOD_LANGUAGE, LANGUAGE_ATOM)
+	if(length(quirk_holder.get_understood_languages()) < 1)
+		quirk_holder.grant_language(/datum/language/uncommon, SPOKEN_LANGUAGE|UNDERSTOOD_LANGUAGE, LANGUAGE_QUIRK)
+
 	quirk_holder.grant_partial_language(/datum/language/common, text2num(client_source?.prefs?.read_preference(/datum/preference/choiced/csl_strength)) || 90, type)
 	RegisterSignal(quirk_holder, COMSIG_SPECIES_GAIN, PROC_REF(reremove_common))
 	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, PROC_REF(translate_parts))
@@ -30,21 +31,26 @@
 		return
 
 	quirk_holder.remove_partial_language(/datum/language/common, type)
+	quirk_holder.remove_language(/datum/language/uncommon, SPOKEN_LANGUAGE|UNDERSTOOD_LANGUAGE, LANGUAGE_QUIRK)
 	var/mob/living/carbon/carbon_quirk_holder = quirk_holder
 	if(istype(carbon_quirk_holder) && carbon_quirk_holder.dna.species)
 		// only give back common if they're a species that should speak it
 		var/datum/language_holder/species_holder = GLOB.prototype_language_holders[carbon_quirk_holder.dna.species.species_language_holder]
 		if(LAZYACCESS(species_holder.spoken_languages, /datum/language/common))
-			quirk_holder.grant_language(/datum/language/common, UNDERSTOOD_LANGUAGE, LANGUAGE_SPECIES)
+			quirk_holder.grant_language(/datum/language/common, UNDERSTOOD_LANGUAGE, LANGUAGE_MIND) // BUBBER EDIT - CHANGE - PREVIOUS: (/datum/language/common, UNDERSTOOD_LANGUAGE, LANGUAGE_SPECIES)
 	else
 		quirk_holder.grant_language(/datum/language/common, UNDERSTOOD_LANGUAGE, LANGUAGE_ATOM)
 
 /datum/quirk/csl/is_species_appropriate(datum/species/mob_species)
+// BUBBER EDIT - REMOVAL - START
+	/*
 	var/datum/language_holder/species_holder = GLOB.prototype_language_holders[mob_species.species_language_holder]
 	if(isnull(species_holder))
 		return FALSE
 	if(length(species_holder.spoken_languages) < 2)
 		return FALSE
+	*/
+// BUBBER EDIT - REMOVAL - END
 	return ..()
 
 /// Gets our native language from our list of spoken languages
@@ -69,7 +75,7 @@
 // Every time we change species we need to re-remove common from our list
 /datum/quirk/csl/proc/reremove_common(...)
 	SIGNAL_HANDLER
-	quirk_holder.remove_language(/datum/language/common, UNDERSTOOD_LANGUAGE, LANGUAGE_SPECIES)
+	quirk_holder.remove_language(/datum/language/common, UNDERSTOOD_LANGUAGE, LANGUAGE_MIND) // BUBBER EDIT - CHANGE - PREVIOUS: (/datum/language/common, UNDERSTOOD_LANGUAGE, LANGUAGE_SPECIES)
 	native_language = get_native_language()
 
 // At low sanity we translate everything to our native language
@@ -78,10 +84,9 @@
 
 	if(say_args[SPEECH_FORCED] || isnull(native_language) || quirk_holder.mob_mood?.sanity > 75)
 		return
-	// init this list if nothing else has
-	LAZYINITLIST(say_args[SPEECH_MODS][LANGUAGE_MUTUAL_BONUS])
 	// force speak language, add mutual bonuses so everyone else can understand
 	say_args[SPEECH_LANGUAGE] = native_language
+	say_args[SPEECH_MODS][LANGUAGE_MUTUAL_BONUS] ||= list()
 	say_args[SPEECH_MODS][LANGUAGE_MUTUAL_BONUS][native_language] = max(round(8 * sqrt(quirk_holder.mob_mood?.sanity), 5), say_args[SPEECH_MODS][LANGUAGE_MUTUAL_BONUS][native_language])
 
 /datum/quirk_constant_data/csl

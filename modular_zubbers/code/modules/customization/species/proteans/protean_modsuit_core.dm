@@ -1,11 +1,15 @@
 /obj/item/mod/core/protean
-	name = "MOD protean core"
+	name = "\improper MOD Protean core"
 	icon_state = "mod-core-ethereal"
 	desc = "If you see this, go scream at a coder and tell them how you managed to do this."
 
 	/// We handle as many interactions as possible through the species datum
 	/// The species handles cleanup on this
 	var/datum/species/protean/linked_species
+
+/obj/item/mod/core/protean/Destroy()
+	linked_species = null
+	return ..()
 
 /obj/item/mod/core/protean/charge_source()
 	if(isnull(linked_species))
@@ -28,10 +32,10 @@
 
 /// We don't charge in a standard way
 /obj/item/mod/core/protean/add_charge(amount)
-	return FALSE
+	return TRUE
 
 /obj/item/mod/core/protean/subtract_charge(amount)
-	return FALSE
+	return TRUE
 
 /obj/item/mod/core/protean/check_charge(amount)
 	var/obj/item/organ/stomach/protean/stomach = charge_source()

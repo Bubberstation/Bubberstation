@@ -320,14 +320,10 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/microwave/crowbar_act(mob/living/user, obj/item/tool)
-	if(!default_deconstruction_crowbar(tool))
-		return
-	return ITEM_INTERACT_SUCCESS
+	return default_deconstruction_crowbar(user, tool)
 
 /obj/machinery/microwave/screwdriver_act(mob/living/user, obj/item/tool)
-	if(default_deconstruction_screwdriver(user, icon_state, icon_state, tool))
-		update_appearance()
-	return ITEM_INTERACT_SUCCESS
+	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/microwave/wirecutter_act(mob/living/user, obj/item/tool)
 	if(broken != REALLY_BROKEN)
@@ -524,7 +520,7 @@
 
 	if(!length(ingredients))
 		if(HAS_AI_ACCESS(user))
-			examine(user)
+			user.examinate(src)
 		else
 			balloon_alert(user, "it's empty!")
 		return
@@ -547,7 +543,7 @@
 			vampire_charging_enabled = TRUE
 			start_cycle(user)
 		if("examine")
-			examine(user)
+			user.examinate(src)
 
 /obj/machinery/microwave/wash(clean_types)
 	. = ..()
@@ -700,7 +696,7 @@
 		for(var/mob/living/victim in microwave_contents)
 			if(victim.electrocute_act(shock_damage = 100, source = src, siemens_coeff = 1, flags = SHOCK_NOGLOVES))
 				successful_shock = TRUE
-				if(victim.stat == DEAD) //This is mostly so humans that can_be_held don't get gibbed from one microwave run alone, but mice become burnt messes
+				if(victim.stat == DEAD) //This is mostly so humans that have the can_be_held element don't get gibbed from one microwave run alone, but mice become burnt messes
 					victim.gib()
 					muck()
 		if(successful_shock) //We only want to give feedback once, regardless of how many mobs got shocked
@@ -750,7 +746,7 @@
 			else
 				dirty++
 
-		metal_amount += (cooked_item.custom_materials?[GET_MATERIAL_REF(/datum/material/iron)] || 0)
+		metal_amount += (cooked_item.custom_materials?[SSmaterials.get_material(/datum/material/iron)] || 0)
 
 	if(cursed_chef && (metal_amount || prob(5)))  // If we're unlucky and have metal, we're guaranteed to explode
 		spark()
@@ -858,7 +854,12 @@
 		pre_fail()
 		return
 
-	if(!vampire_charge_amount || !length(ingredients) || isnull(cell) || !cell.charge || vampire_charge_amount < 25)
+	if(cell_powered && (isnull(cell) || !cell.charge))
+		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
+		balloon_alert(cooker, "no power draw!")
+		return
+
+	if(!vampire_charge_amount || !length(ingredients) || vampire_charge_amount < 25)
 		vampire_cell = null
 		charge_loop_finish(cooker)
 		return

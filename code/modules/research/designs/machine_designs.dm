@@ -299,8 +299,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/board/chem_dispenser
-	name = "Portable Chem Dispenser Board"
-	desc = "The circuit board for a portable chem dispenser."
+	name = "Chem Dispenser Board"
+	desc = "The circuit board for a chem dispenser."
 	id = "chem_dispenser"
 	build_path = /obj/item/circuitboard/machine/chem_dispenser
 	category = list(
@@ -1351,6 +1351,7 @@
 	desc = "The circuit for a propulsion engine."
 	id = "propulsion_engine"
 	build_path = /obj/item/circuitboard/machine/engine/propulsion
+	build_type = IMPRINTER
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)

@@ -197,6 +197,8 @@
 	)
 	/// Combined lists
 	var/static/list/all_drawables = graffiti + symbols + drawings + oriented + runes + graffiti_large_h
+	var/washable_coloring_mode = TRUE //bubber addition
+	var/remove_coloring = FALSE //bubber addition
 
 /obj/item/toy/crayon/proc/isValidSurface(surface)
 	return isfloorturf(surface)
@@ -385,6 +387,8 @@
 	.["can_change_colour"] = can_change_colour
 	.["selected_color"] = GLOB.pipe_color_name[paint_color] || paint_color
 	.["paint_colors"] = GLOB.pipe_paint_colors
+	.["washable_coloring_mode"] = washable_coloring_mode //bubber addition
+	.["remove_coloring"] = remove_coloring //bubber addition
 
 /obj/item/toy/crayon/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -427,6 +431,15 @@
 			. = TRUE
 			paint_mode = PAINT_NORMAL
 			drawtype = "a"
+		if("change_color_mode") //bubber addition
+			if(has_cap)
+				washable_coloring_mode = !washable_coloring_mode
+				. = TRUE
+		if("toggle_remove_coloring") //bubber addition
+			if(has_cap)
+				remove_coloring = !remove_coloring
+				. = TRUE
+
 	update_appearance()
 
 /obj/item/toy/crayon/proc/crayon_text_strip(text)
@@ -609,7 +622,7 @@
 		return NONE
 
 	var/mob/living/carbon/human/pwned_human = interacting_with
-	if(!(pwned_human.stat == DEAD || HAS_TRAIT(pwned_human, TRAIT_FAKEDEATH)))
+	if(!IS_DEAD_OR_FAKING(pwned_human))
 		return NONE
 
 	interacting_with.balloon_alert(user, "drawing outline...")
@@ -770,6 +783,7 @@
 	name = "spray can"
 	icon_state = "spraycan"
 	worn_icon_state = "spraycan"
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT)
 
 	icon_capped = "spraycan_cap"
 	icon_uncapped = "spraycan"
@@ -863,7 +877,7 @@
 		set_painting_tool_color(COLOR_SILVER)
 	update_appearance()
 	if(actually_paints)
-		user.AddComponent(/datum/component/face_decal, "spray", EXTERNAL_ADJACENT, paint_color)
+		user.AddComponent(/datum/component/face_decal, "spray", list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER), paint_color)
 	reagents.trans_to(user, used, volume_multiplier, transferred_by = user, methods = VAPOR)
 	return OXYLOSS
 
@@ -897,6 +911,10 @@
 	if(check_empty(user))
 		return ITEM_INTERACT_BLOCKING
 
+	if(remove_coloring && isitem(target)) //bubber addition
+		target.remove_atom_colour(FIXED_COLOUR_PRIORITY)
+		return ITEM_INTERACT_SUCCESS
+
 	if (isbodypart(target))
 		if (color_limb(target, user))
 			return ITEM_INTERACT_SUCCESS
@@ -921,12 +939,12 @@
 			flash_color(carbon_target, flash_color=paint_color, flash_time=40)
 		if(ishuman(carbon_target) && actually_paints)
 			var/mob/living/carbon/human/human_target = carbon_target
-			human_target.AddComponent(/datum/component/face_decal, "spray", EXTERNAL_ADJACENT, paint_color)
+			human_target.AddComponent(/datum/component/face_decal, "spray", list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER), paint_color)
 		use_charges(user, 10, FALSE)
 		var/fraction = min(1, . / reagents.maximum_volume)
 		reagents.expose(carbon_target, VAPOR, fraction * volume_multiplier)
 
-	else if(actually_paints && target.is_atom_colour(paint_color, min_priority_index = WASHABLE_COLOUR_PRIORITY))
+	else if(actually_paints && target.is_atom_colour(paint_color, min_priority_index = washable_coloring_mode ? WASHABLE_COLOUR_PRIORITY : FIXED_COLOUR_PRIORITY)) //bubber edit
 		balloon_alert(user, "[target.p_theyre()] already that color!")
 		return ITEM_INTERACT_BLOCKING
 
@@ -978,11 +996,11 @@
 			return ITEM_INTERACT_BLOCKING
 		var/obj/machinery/atmospherics/target_pipe = target
 		target_pipe.paint(paint_color)
-		balloon_alert(user, "painted in  [GLOB.pipe_color_name[paint_color]] color")
+		balloon_alert(user, "painted in [GLOB.pipe_color_name[paint_color]] color")
 	else if (is_type_in_typecache(target, direct_color_types))
-		target.add_atom_colour(paint_color, WASHABLE_COLOUR_PRIORITY)
+		target.add_atom_colour(paint_color, washable_coloring_mode ? WASHABLE_COLOUR_PRIORITY : FIXED_COLOUR_PRIORITY) //bubber edit
 	else
-		target.add_atom_colour(color_transition_filter(paint_color, saturation_mode), WASHABLE_COLOUR_PRIORITY)
+		target.add_atom_colour(color_transition_filter(paint_color, saturation_mode), washable_coloring_mode ? WASHABLE_COLOUR_PRIORITY : FIXED_COLOUR_PRIORITY) //bubber edit
 
 	if(isitem(target) && isliving(target.loc))
 		var/obj/item/target_item = target

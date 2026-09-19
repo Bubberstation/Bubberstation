@@ -179,7 +179,7 @@
 /obj/structure/lewd_portal/proc/head_only()
 	SIGNAL_HANDLER
 	current_mob.cut_overlays()
-	current_mob.update_body_parts_head_only()
+	current_mob.update_body_parts()
 	var/obj/item/clothing/glasses = current_mob.glasses
 	if(glasses)
 		current_mob.update_worn_glasses()
@@ -408,7 +408,7 @@
 /obj/lewd_portal_relay/proc/penis_only()
 	cut_overlays()
 	var/obj/item/organ/genital/penis/penis_reference = owner.get_organ_slot(ORGAN_SLOT_PENIS)
-	var/mutable_appearance/penis_image = penis_reference.bodypart_overlay.get_overlay(EXTERNAL_FRONT)
+	var/mutable_appearance/penis_image = penis_reference.bodypart_overlay.get_images(EXTERNAL_FRONT)
 	add_overlay(penis_image)
 
 /obj/lewd_portal_relay/proc/lower_body_only()

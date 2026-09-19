@@ -153,7 +153,6 @@
 		"diagnostic_hud_projector",
 		"meson_hud_projector",
 		"science_hud_projector",
-		"permit_glasses",
 		"civ_hud",
 		"nifsoft_money_sense",
 		"nifsoft_hud_kit",
@@ -163,6 +162,7 @@
 		"nifsoft_hud_security",
 		"nifsoft_hud_diagnostic",
 		"nifsoft_hud_cargo",
+		"permit_hud",
 	)
 
 	design_ids -= list(
@@ -249,6 +249,7 @@
 /datum/techweb_node/exp_tools/New()
 	design_ids += list(
 		"multi_cell_charger",
+		"megacell_charger",
 	)
 
 	design_ids -= list(

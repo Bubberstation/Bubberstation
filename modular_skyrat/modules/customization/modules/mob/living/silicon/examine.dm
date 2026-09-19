@@ -15,10 +15,26 @@
 
 	if(client)
 		var/erp_status_pref = client.prefs.read_preference(/datum/preference/choiced/erp_status)
+		var/free_use_pref = client.prefs.read_preference(/datum/preference/toggle/erp_free_use)
 		if(erp_status_pref && !CONFIG_GET(flag/disable_erp_preferences))
-			. += span_notice("ERP STATUS: [erp_status_pref]")
+			. += span_info("ERP Status: [span_revenboldnotice(erp_status_pref)][free_use_pref ? "[span_revenboldnotice(" - Free Use")]" : ""]")
+		var/line = get_gender_attraction_string(client.prefs.read_preference(/datum/preference/choiced/display_gender), client.prefs.read_preference(/datum/preference/choiced/attraction))
+		if(line)
+			. += span_info(line)
 	if(temporary_flavor_text)
 		if(length_char(temporary_flavor_text) <= 40)
 			. += span_notice("<b>They look different than usual:</b> [temporary_flavor_text]")
 		else
 			. += span_notice("<b>They look different than usual:</b> [copytext_char(temporary_flavor_text, 1, 37)]... <a href='byond://?src=[REF(src)];temporary_flavor=1'>More...</a>")
+
+/mob/living/silicon/get_chat_examine_headshot(mob/user)
+	if(!client?.prefs || !user?.client?.prefs)
+		return null
+	if(!user.client.prefs.read_preference(/datum/preference/toggle/chat_examine_headshot))
+		return null
+
+	var/headshot = client.prefs.read_preference(/datum/preference/text/headshot/silicon)
+	if(!length(headshot))
+		return null
+
+	return "<div class='chat_headshot_top chat_headshot_frame'>[chat_headshot(html_encode(headshot))]</div>"

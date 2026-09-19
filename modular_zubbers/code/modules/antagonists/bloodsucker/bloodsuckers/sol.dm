@@ -107,7 +107,7 @@
 		torpor_begin(TRUE)
 		return TRUE
 	/// Prevent Torpor whilst frenzied.
-	if(!(SkipChecks & TORPOR_SKIP_CHECK_FRENZY) && (frenzied || (IS_DEAD_OR_INCAP(user) && bloodsucker_blood_volume == 0)))
+	if(!(SkipChecks & TORPOR_SKIP_CHECK_FRENZY) && (frenzied || user.incapacitated && bloodsucker_blood_volume == 0))
 		to_chat(user, span_userdanger("Your frenzy prevents you from entering torpor!"))
 		return FALSE
 	// sometimes you might incur these damage types when you really, should not, important to check for it here so we can heal it later

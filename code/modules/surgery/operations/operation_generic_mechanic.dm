@@ -11,17 +11,18 @@
 		/obj/item = 10, // i think this amounts to a 180% chance of failure (clamped to 99%)
 	)
 	operation_flags = OPERATION_SELF_OPERABLE | OPERATION_MECHANIC | OPERATION_NO_PATIENT_REQUIRED
-	required_bodytype = BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER EDIT CHANGE - NANO FLAGS  -Original: required_bodytype = BODYTYPE_ROBOTIC
 	time = 2.4 SECONDS
 	preop_sound = 'sound/items/tools/screwdriver.ogg'
 	success_sound = 'sound/items/tools/screwdriver2.ogg'
 	any_surgery_states_blocked = ALL_SURGERY_SKIN_STATES
+	allow_stumps = TRUE
 
 /datum/surgery_operation/limb/mechanical_incision/get_any_tool()
 	return "Any sharp item"
 
 /datum/surgery_operation/limb/mechanical_incision/get_default_radial_image()
-	return image(/obj/item/screwdriver)
+	return image('icons/hud/surgery_radial.dmi', "unscrew_shell")
 
 /datum/surgery_operation/limb/mechanical_incision/tool_check(obj/item/tool)
 	// Require any sharpness OR a tool behavior match
@@ -46,7 +47,7 @@
 	name = "open hatch"
 	desc = "Open the hatch of a mechanical patient to access its internals. \
 		Causes \"skin open\" and \"vessels clamped\" surgical states."
-	required_bodytype = BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER EDIT CHANGE - NANO FLAGS  -Original: required_bodytype = BODYTYPE_ROBOTIC
 	implements = list(
 		IMPLEMENT_HAND = 1,
 		TOOL_CROWBAR = 1,
@@ -56,9 +57,10 @@
 	preop_sound = 'sound/items/tools/ratchet.ogg'
 	success_sound = 'sound/machines/airlock/doorclick.ogg'
 	all_surgery_states_required = SURGERY_SKIN_CUT
+	allow_stumps = TRUE
 
 /datum/surgery_operation/limb/mechanical_open/get_default_radial_image()
-	return image('icons/hud/screen_gen.dmi', "arrow_large_still")
+	return image('icons/hud/surgery_radial.dmi', "open_hatch")
 
 /datum/surgery_operation/limb/mechanical_open/on_preop(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
@@ -81,7 +83,7 @@
 	name = "screw shell"
 	desc = "Screw the shell of a mechanical patient back into place. \
 		Clears most surgical states."
-	required_bodytype = BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER EDIT CHANGE - NANO FLAGS  -Original: required_bodytype = BODYTYPE_ROBOTIC
 	implements = list(
 		TOOL_SCREWDRIVER = 1,
 		TOOL_SCALPEL = 1.33,
@@ -93,12 +95,13 @@
 	preop_sound = 'sound/items/tools/screwdriver.ogg'
 	success_sound = 'sound/items/tools/screwdriver2.ogg'
 	any_surgery_states_required = ALL_SURGERY_SKIN_STATES
+	allow_stumps = TRUE
 
 /datum/surgery_operation/limb/mechanical_close/get_any_tool()
 	return "Any sharp item"
 
 /datum/surgery_operation/limb/mechanical_close/get_default_radial_image()
-	return image(/obj/item/screwdriver)
+	return image('icons/hud/surgery_radial.dmi', "screw_shell")
 
 /datum/surgery_operation/limb/mechanical_close/tool_check(obj/item/tool)
 	// Require any sharpness OR a tool behavior match
@@ -126,7 +129,7 @@
 	name = "prepare electronics"
 	desc = "Prepare the internal electronics of a mechanical patient for surgery. \
 		Causes \"organs cut\" surgical state."
-	required_bodytype = BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER EDIT CHANGE - NANO FLAGS  -Original: required_bodytype = BODYTYPE_ROBOTIC
 	implements = list(
 		TOOL_MULTITOOL = 1,
 		TOOL_HEMOSTAT = 1.33,
@@ -137,9 +140,10 @@
 	success_sound = 'sound/items/taperecorder/taperecorder_close.ogg'
 	all_surgery_states_required = SURGERY_SKIN_OPEN
 	any_surgery_states_blocked = SURGERY_ORGANS_CUT
+	allow_stumps = TRUE
 
 /datum/surgery_operation/limb/prepare_electronics/get_default_radial_image()
-	return image(/obj/item/multitool)
+	return image('icons/hud/surgery_radial.dmi', "prepare_electronics")
 
 /datum/surgery_operation/limb/prepare_electronics/on_preop(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
@@ -160,7 +164,7 @@
 	name = "unwrench endoskeleton"
 	desc = "Unwrench a mechanical patient's endoskeleton to access its internals. \
 		Clears \"bone sawed\" surgical state."
-	required_bodytype = BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER EDIT CHANGE - NANO FLAGS  -Original: required_bodytype = BODYTYPE_ROBOTIC
 	implements = list(
 		TOOL_WRENCH = 1,
 		TOOL_RETRACTOR = 1.33,
@@ -170,9 +174,10 @@
 	preop_sound = 'sound/items/tools/ratchet.ogg'
 	all_surgery_states_required = SURGERY_SKIN_OPEN
 	any_surgery_states_blocked = SURGERY_BONE_SAWED|SURGERY_BONE_DRILLED
+	allow_stumps = TRUE
 
 /datum/surgery_operation/limb/mechanic_unwrench/get_default_radial_image()
-	return image(/obj/item/wrench)
+	return image('icons/hud/surgery_radial.dmi', "unwrench_endoskeleton")
 
 /datum/surgery_operation/limb/mechanic_unwrench/on_preop(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
@@ -193,15 +198,16 @@
 	name = "wrench endoskeleton"
 	desc = "Wrench a mechanical patient's endoskeleton back into place. \
 		Clears \"bone sawed\" surgical state."
-	required_bodytype = BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ROBOTIC | BODYTYPE_NANO // BUBBER EDIT CHANGE - NANO FLAGS  -Original: required_bodytype = BODYTYPE_ROBOTIC
 	implements = list(
 		TOOL_WRENCH = 1,
 		TOOL_RETRACTOR = 1.33,
 	)
-	operation_flags = OPERATION_SELF_OPERABLE | OPERATION_MECHANIC
+	operation_flags = OPERATION_SELF_OPERABLE | OPERATION_MECHANIC | OPERATION_NO_PATIENT_REQUIRED
 	time = 2.4 SECONDS
 	preop_sound = 'sound/items/tools/ratchet.ogg'
-	all_surgery_states_required = SURGERY_SKIN_OPEN|SURGERY_BONE_SAWED | OPERATION_NO_PATIENT_REQUIRED
+	all_surgery_states_required = SURGERY_SKIN_OPEN|SURGERY_BONE_SAWED
+	allow_stumps = TRUE
 
 /datum/surgery_operation/limb/mechanic_wrench/state_check(obj/item/bodypart/limb)
 	return LIMB_HAS_BONES(limb)
@@ -210,7 +216,7 @@
 	return ..() + list("the limb must have bones")
 
 /datum/surgery_operation/limb/mechanic_wrench/get_default_radial_image()
-	return image(/obj/item/wrench)
+	return image('icons/hud/surgery_radial.dmi', "wrench_endoskeleton")
 
 /datum/surgery_operation/limb/mechanic_wrench/on_preop(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(

@@ -37,6 +37,8 @@
 	COOLDOWN_DECLARE(dash_cooldown)
 
 /datum/action/cooldown/spell/moth_and_dash/Trigger(trigger_flags, action, atom/target)
+	if(!..())
+		return FALSE
 	if (!isliving(owner))
 		return
 

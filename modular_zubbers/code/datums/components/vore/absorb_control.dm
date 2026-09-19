@@ -8,6 +8,8 @@
 	button_icon_state = "soulcatcher_exit"
 
 /datum/action/innate/absorb_control/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/datum/component/absorb_control/AC = target
 	AC.revert()
 
@@ -123,7 +125,7 @@
 
 /mob/living/pred_backseat/Initialize(mapload, datum/component/absorb_control/new_absorb_control)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_SOFTSPOKEN, TRAIT_SOURCE_VORE)
+	ADD_TRAIT(src, TRAIT_FORCE_WHISPER, TRAIT_SOURCE_VORE)
 	if(isliving(loc))
 		body = loc
 		absorb_control = new_absorb_control

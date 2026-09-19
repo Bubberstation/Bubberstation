@@ -5,3 +5,6 @@
 	icon_state = "eye_implant_civilian"
 	HUD_traits = list(TRAIT_SECURITY_HUD_ID_ONLY)
 	hud_color = "#25aa3b"
+
+/obj/item/organ/cyberimp/eyes/hud/civilian/invisible
+	hud_color = null

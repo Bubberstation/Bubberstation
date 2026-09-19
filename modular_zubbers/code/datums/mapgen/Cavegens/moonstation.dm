@@ -29,10 +29,10 @@
 	flora_spawn_chance = 4
 	feature_spawn_chance = 0.1
 	mob_spawn_chance = 0.3
-	initial_closed_chance = 30
-	smoothing_iterations = 50
+	//initial_closed_chance = 30
+	//smoothing_iterations = 50
 	birth_limit = 4
-	death_limit = 3
+	//death_limit = 3
 
 //Underground
 /datum/map_generator/cave_generator/moonstation/cave
@@ -76,10 +76,10 @@
 	flora_spawn_chance = 2
 	feature_spawn_chance = 0.4
 	mob_spawn_chance = 1.5
-	initial_closed_chance = 40
-	smoothing_iterations = 50
+	//initial_closed_chance = 40
+	//smoothing_iterations = 50
 	birth_limit = 4
-	death_limit = 3
+	//death_limit = 3
 
 
 /* Here lies dead code that I wish to get working again. Because of how changeturf works, this cannot work without causing runtimes. Maybe in the future this can be re-added.  ~ Burger

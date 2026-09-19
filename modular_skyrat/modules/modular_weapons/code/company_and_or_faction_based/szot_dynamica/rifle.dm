@@ -2,8 +2,7 @@
 
 /obj/item/gun/ballistic/automatic/lanca
 	name = "\improper Lanca Battle Rifle"
-	desc = "A relatively compact, long barreled bullpup battle rifle chambered for .310 Strilka. Has an integrated sight with \
-		a surprisingly functional amount of magnification, given its place of origin."
+	desc = "A relatively compact, long barreled bullpup battle rifle chambered for .310 Strilka."
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/guns_48.dmi'
 	icon_state = "lanca"
@@ -34,19 +33,19 @@
 	suppressor_y_offset = 0
 
 	burst_size = 1
-	fire_delay = 1.2 SECONDS
+	fire_delay = 1 SECONDS
 	actions_types = list()
 
 	recoil = 0.5
 	spread = 2.5
 	projectile_wound_bonus = -20
 
-/obj/item/gun/ballistic/automatic/lanca/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/scope, range_modifier = 1.5)
-
 /obj/item/gun/ballistic/automatic/lanca/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SZOT)
+
+/obj/item/gun/ballistic/automatic/lanca/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/scope, range_modifier = 1.25)
 
 /obj/item/gun/ballistic/automatic/lanca/examine(mob/user)
 	. = ..()

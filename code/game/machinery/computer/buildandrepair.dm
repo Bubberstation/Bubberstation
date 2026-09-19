@@ -31,7 +31,7 @@
 	switch(state)
 		if(FRAME_COMPUTER_STATE_EMPTY)
 			if(held_item.tool_behaviour == TOOL_WRENCH)
-				context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Un" : ""]anchor"
+				context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unan" : "An"]chor"
 				return CONTEXTUAL_SCREENTIP_SET
 			else if(anchored && istype(held_item, /obj/item/circuitboard/computer))
 				context[SCREENTIP_CONTEXT_LMB] = "Install board"
@@ -299,10 +299,12 @@
 	new_machine.balloon_alert(user, "monitor connected")
 	new_machine.setDir(dir)
 	transfer_fingerprints_to(new_machine)
-	// SKYRAT EDIT ADDITION BEGIN - Connecting Computers
-	for(var/obj/machinery/computer/selected in range(1,src))
-		selected.update_overlays()
-	// SKYRAT EDIT ADDITION END - Connecting Computers
+	// BUBBER EDIT - Connecting Computers
+	for(var/obj/machinery/computer/selected in range(1, src))
+		selected.update_appearance()
+	for (var/obj/machinery/modular_computer/selected in range(1, src))
+		selected.update_appearance()
+	// BUBBER EDIT END - Connecting Computers
 
 	if(istype(new_machine, /obj/machinery/computer))
 		var/obj/machinery/computer/new_computer = new_machine

@@ -22,7 +22,7 @@
 
 /datum/chemical_reaction/medicine/taste_suppressor/maint
 	results = list(/datum/reagent/medicine/taste_suppressor = 3, /datum/reagent/chlorine = 1) // The chlorine dissociated from the sodium to allow for the synthesis of the taste suppressor
-	required_reagents = list(/datum/reagent/consumable/salt = 2, /datum/reagent/sulfur = 1, /datum/reagent/water = 1)
+	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/water/salt = 1)
 	required_temp = 300
 
 /datum/chemical_reaction/medicine/dermagen

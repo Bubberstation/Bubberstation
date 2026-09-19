@@ -9,7 +9,7 @@
 		/obj/item/reagent_containers/condiment = 1,
 	)
 	result = /obj/item/reagent_containers/condiment/red_bay
-	category = CAT_MISCFOOD
+	dish_category = DISH_CONDIMENT
 
 /datum/crafting_recipe/food/curry_powder
 	name = "Curry powder"
@@ -21,7 +21,7 @@
 		/obj/item/reagent_containers/condiment = 1,
 	)
 	result = /obj/item/reagent_containers/condiment/curry_powder
-	category = CAT_MISCFOOD
+	dish_category = DISH_CONDIMENT
 
 /datum/crafting_recipe/food/worcestershire
 	name = "Worcestershire Sauce"
@@ -34,7 +34,7 @@
 		/obj/item/reagent_containers/condiment = 1,
 	)
 	result = /obj/item/reagent_containers/condiment/worcestershire
-	category = CAT_MISCFOOD
+	dish_category = DISH_CONDIMENT
 
 /datum/crafting_recipe/food/dashiconcentrate
 	name = "Concentrated Dashi"
@@ -45,7 +45,7 @@
 		/obj/item/reagent_containers/condiment = 1,
 	)
 	result = /obj/item/reagent_containers/condiment/dashi_concentrate
-	category = CAT_MISCFOOD
+	dish_category = DISH_CONDIMENT
 
 /datum/crafting_recipe/food/chapmix
 	name = "Chap mix"
@@ -56,29 +56,45 @@
 		/datum/reagent/consumable/salt = 15,
 	)
 	result = /obj/item/food/meat/chapmix
-	category = CAT_MISCFOOD
+	meal_category = MEAL_COMPONENT
 
 /obj/item/food/meat/chapmix
 	name = "chap mix"
 	desc = "A mass of seasoned meat, ready to be processed."
 	icon_state = "raw_meatloaf"
-	foodtypes = MEAT|VEGETABLES|RAW
+	foodtypes = MEAT | VEGETABLES | RAW
+
+/obj/item/food/canned/chap/processed
+	foodtypes = MEAT | VEGETABLES | RAW
+
+/obj/item/food/cnds/processed
+	foodtypes = JUNKFOOD | SUGAR
+
+/// Healthy foods that the food processor pops out. Mostly to get the food_processor unit test all happy.
+/obj/item/food/peanuts/healthy
+	name = "organic peanuts"
+	foodtypes = NUTS
+
+/obj/item/food/chips/healthy
+	name = "organic chips"
+	desc = "These chips are for when you want to convince yourself that you're eating a healthy alternative."
+	foodtypes = FRIED | VEGETABLES
 
 /datum/food_processor_process/chap
 	input = /obj/item/food/meat/chapmix
-	output = /obj/item/food/canned/chap
+	output = /obj/item/food/canned/chap/processed
 
 /datum/food_processor_process/chocolate
 	input = /obj/item/food/chocolatebar
-	output = /obj/item/food/cnds
+	output = /obj/item/food/cnds/processed
 
 /datum/food_processor_process/peanut
 	input = /obj/item/food/grown/peanut
-	output = /obj/item/food/peanuts
+	output = /obj/item/food/peanuts/healthy
 
 /datum/food_processor_process/chips
 	input = /obj/item/food/tatortot
-	output = /obj/item/food/chips
+	output = /obj/item/food/chips/healthy
 
 /datum/food_processor_process/tinnedtomatoes
 	input = /obj/item/food/grown/tomato
@@ -101,17 +117,20 @@
 		/datum/reagent/consumable/salt = 15,
 	)
 	result = /obj/item/food/meat/snailmix
-	category = CAT_MISCFOOD
+	meal_category = MEAL_COMPONENT
 
 /obj/item/food/meat/snailmix
 	name = "snail mix"
 	desc = "A mass of seasoned meat, ready to be processed... DO NOT CONFUSE WITH TRAIL MIX!"
 	icon_state = "raw_meatloaf"
-	foodtypes = MEAT|VEGETABLES|RAW|BUGS
+	foodtypes = MEAT | VEGETABLES | RAW | BUGS
+
+/obj/item/food/canned/desert_snails/processed
+	foodtypes = MEAT | VEGETABLES | RAW | BUGS
 
 /datum/food_processor_process/desertsnails
 	input = /obj/item/food/meat/snailmix
-	output = /obj/item/food/canned/desert_snails
+	output = /obj/item/food/canned/desert_snails/processed
 	food_multiplier = 2 //Giving a 2x multiplier as bug meat is slightly rarer to come across once you've killed all the snails.
 
 /datum/crafting_recipe/food/mac_balls_fresh
@@ -124,4 +143,4 @@
 	result = /obj/item/food/mac_balls
 	removed_foodtypes = JUNKFOOD
 	added_foodtypes = FRIED
-	category = CAT_MOTH
+	meal_category = MEAL_APPETIZER

@@ -3,7 +3,7 @@
  */
 SUBSYSTEM_DEF(id_access)
 	name = "IDs and Access"
-	flags = SS_NO_FIRE
+	ss_flags = SS_NO_FIRE
 
 	/// Dictionary of access flags. Keys are accesses. Values are their associated bitflags.
 	var/list/flags_by_access = list()
@@ -332,7 +332,7 @@ SUBSYSTEM_DEF(id_access)
 	desc_by_access[ACCESS_CENT_BAR] = "CentCom Bar"
 	desc_by_access[ACCESS_CENT_OFFICER] = "CentCom Officer"
 	desc_by_access[ACCESS_BIT_DEN] = "Bitrunner Den"
-	desc_by_access["[ACCESS_BARBER]"] = "Barber" // SKYRAT EDIT ADD - BARBER UPDATE
+	desc_by_access[ACCESS_BARBER] = "Barber" // SKYRAT EDIT ADD - BARBER UPDATE
 
 /**
  * Returns the access bitflags associated with any given access level.

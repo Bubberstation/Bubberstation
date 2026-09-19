@@ -14,15 +14,6 @@
 	reqs = list(/obj/item/paper = 5)
 	category = CAT_CLOTHING
 
-/datum/crafting_recipe/crusader_belt
-	name = "Crusader Belt and Sheath"
-	result = /obj/item/storage/belt/crusader
-	reqs = list(/obj/item/storage/belt/utility = 1, /obj/item/stack/sheet/leather = 3, /obj/item/stack/sheet/cloth = 2, /obj/item/stack/sheet/mineral/gold = 1)
-	tool_behaviors = list(TOOL_WIRECUTTER, TOOL_SCREWDRIVER, TOOL_WELDER)	//To cut the leather and fasten/weld the sheath detailing
-	time = 30
-	category = CAT_CLOTHING
-	delete_contents = FALSE // Otherwise the storage pouch gets deleted when crafted.
-
 /datum/crafting_recipe/crusader_satchel
 	name = "Crusader Satchel"
 	result = /obj/item/storage/backpack/satchel/crusader
@@ -34,19 +25,21 @@
 //Eyepatches//
 /datum/crafting_recipe/secpatch
 	name = "Security Eyepatch HUD"
-	result = /obj/item/clothing/glasses/hud/eyepatch/sec
+	result = /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch
 	reqs = list(/obj/item/clothing/glasses/hud/security = 1, /obj/item/clothing/glasses/eyepatch = 1, /obj/item/stack/cable_coil = 5)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER) //Tools needed and requirements are kept the same as craftable HUD sunglasses//
 	category = CAT_CLOTHING
+	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY
 	requirements_mats_blacklist = list(/obj/item/stack/cable_coil)
 
 /datum/crafting_recipe/secpatchremoval
 	name = "Security Eyepatch HUD removal"
 	result = /obj/item/clothing/glasses/eyepatch
-	reqs = list(/obj/item/clothing/glasses/hud/eyepatch/sec = 1)
+	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses/eyepatch = 1)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	category = CAT_CLOTHING
-	requirements_mats_blacklist = list(/obj/item/clothing/glasses/hud/eyepatch/sec)
+	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY
+	requirements_mats_blacklist = list(/obj/item/clothing/glasses/hud/security/sunglasses/eyepatch)
 
 /datum/crafting_recipe/medpatch
 	name = "Medical Eyepatch HUD"

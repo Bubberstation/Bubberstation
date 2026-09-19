@@ -204,11 +204,19 @@
 
 	if(greyscale_colors)
 		vended_item.set_greyscale(colors=greyscale_colors)
-	if(IsReachableBy(user) && user.put_in_hands(vended_item))
+	//BUBBER ADDITION START - dynamic uniforms
+	var/list/component_style_details = greyscale_component_style_vend_details?[REF(user)]
+	if(component_style_details && vended_item.greyscale_component_style_type)
+		vended_item.apply_greyscale_component_style(component_style_details)
+	//BUBBER ADDITION END
+
+	var/sigreturn = SEND_SIGNAL(user, COMSIG_MOB_VENDING_PURCHASE, src, vended_item)
+	if(!(sigreturn & VENDING_NO_PICKUP) && IsReachableBy(user) && user.put_in_hands(vended_item))
 		to_chat(user, span_notice("You take [item_record.name] out of the slot."))
 		vended_item.do_pickup_animation(user, src)
 	else
 		to_chat(user, span_warning("[capitalize(format_text(item_record.name))] falls onto the floor!"))
+
 	SSblackbox.record_feedback("nested tally", "vending_machine_usage", 1, list("[type]", "[item_record.product_path]"))
 
 /**
@@ -238,6 +246,8 @@
 
 	on_dispense(vended_item, dispense_returned)
 	use_energy(active_power_usage)
+
+	SEND_SIGNAL(src, COMSIG_VENDING_DISPENSED, vended_item)
 
 	return vended_item
 

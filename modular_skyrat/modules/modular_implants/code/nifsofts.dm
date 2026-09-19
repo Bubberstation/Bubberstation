@@ -56,7 +56,7 @@
 	///Is it a lewd item?
 	var/lewd_nifsoft = FALSE
 
-/datum/nifsoft/New(obj/item/organ/cyberimp/brain/nif/recipient_nif, no_rewards_points = FALSE)
+/datum/nifsoft/New(obj/item/organ/cyberimp/brain/nif/recipient_nif, no_rewards_points = FALSE, skip_calibration = FALSE)
 	. = ..()
 
 	if(no_rewards_points) //This is mostly so that credits can't be farmed through printed or stolen NIFSoft disks
@@ -65,8 +65,9 @@
 	compatible_nifs += /obj/item/organ/cyberimp/brain/nif/debug
 	program_name = name
 
-	if(!recipient_nif.install_nifsoft(src))
+	if(!recipient_nif.install_nifsoft(src, skip_calibration))
 		qdel(src)
+		return
 
 	parent_nif = WEAKREF(recipient_nif)
 	linked_mob = recipient_nif.linked_mob
@@ -181,6 +182,11 @@
 		return INITIALIZE_HINT_QDEL
 
 	name = "[initial(loaded_nifsoft.name)] datadisk"
+
+/// Datadisks use their own icon file, so the coloured skins inherited from /obj/item/disk do not
+/// exist for them. Applying one blanks the sprite, so don't offer them at all.
+/obj/item/disk/nifsoft_uploader/setup_reskins()
+	return
 
 /obj/item/disk/nifsoft_uploader/examine(mob/user)
 	. = ..()

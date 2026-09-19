@@ -37,7 +37,7 @@
 	if(!(methods & INGEST))
 		return
 	var/obj/item/organ/stomach/stomach = affected_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(stomach) || !ishemophage(affected_mob) || reac_volume <= 0)
+	if(!istype(stomach) || !affected_mob.has_quirk(/datum/quirk/hemophage) || reac_volume <= 0)
 		return
 	affected_mob.blood_volume = min(affected_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
@@ -63,7 +63,7 @@
 	if(!(methods & INGEST))
 		return
 	var/obj/item/organ/stomach/stomach = affected_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(stomach) || !ishemophage(affected_mob) || reac_volume <= 0)
+	if(!istype(stomach) || !affected_mob.has_quirk(/datum/quirk/hemophage) || reac_volume <= 0)
 		return
 	affected_mob.blood_volume = min(affected_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
@@ -89,7 +89,7 @@
 	if(!(methods & INGEST))
 		return
 	var/obj/item/organ/stomach/stomach = affected_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(stomach) || !ishemophage(affected_mob) || reac_volume <= 0)
+	if(!istype(stomach) || !affected_mob.has_quirk(/datum/quirk/hemophage) || reac_volume <= 0)
 		return
 	affected_mob.blood_volume = min(affected_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
@@ -116,7 +116,7 @@
 	if(!(methods & INGEST))
 		return
 	var/obj/item/organ/stomach/stomach = affected_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(stomach) || !ishemophage(affected_mob) || reac_volume <= 0)
+	if(!istype(stomach) || !affected_mob.has_quirk(/datum/quirk/hemophage) || reac_volume <= 0)
 		return
 	affected_mob.blood_volume = min(affected_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
@@ -143,7 +143,7 @@
 	if(!(methods & INGEST))
 		return
 	var/obj/item/organ/stomach/stomach = affected_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(stomach) || !ishemophage(affected_mob) || reac_volume <= 0)
+	if(!istype(stomach) || !affected_mob.has_quirk(/datum/quirk/hemophage) || reac_volume <= 0)
 		return
 	affected_mob.blood_volume = min(affected_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
@@ -170,7 +170,7 @@
 	if(!(methods & INGEST))
 		return
 	var/obj/item/organ/stomach/stomach = affected_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(stomach) || !ishemophage(affected_mob) || reac_volume <= 0)
+	if(!istype(stomach) || !affected_mob.has_quirk(/datum/quirk/hemophage) || reac_volume <= 0)
 		return
 	affected_mob.blood_volume = min(affected_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
@@ -210,7 +210,7 @@
 	if(!(methods & INGEST))
 		return
 	var/obj/item/organ/stomach/stomach = affected_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(stomach) || !ishemophage(affected_mob) || reac_volume <= 0)
+	if(!istype(stomach) || !affected_mob.has_quirk(/datum/quirk/hemophage) || reac_volume <= 0)
 		return
 	affected_mob.blood_volume = min(affected_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
@@ -241,7 +241,7 @@
 
 /datum/reagent/consumable/ethanol/bat_outta_hell/overdose_process(mob/living/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
-	affected_mob.add_traits(list(TRAIT_GOOD_HEARING, TRAIT_MINOR_NIGHT_VISION),"Overdose:/datum/reagent/consumable/ethanol/bat_outta_hell")
+	affected_mob.add_traits(list(TRAIT_GOOD_HEARING, TRAIT_NIGHT_VISION),"Overdose:/datum/reagent/consumable/ethanol/bat_outta_hell")
 	metabolization_rate = 4.5 * REAGENTS_METABOLISM
 	affected_mob.set_jitter_if_lower(5 SECONDS * REM * seconds_per_tick)
 	affected_mob.set_dizzy_if_lower(5 SECONDS * REM * seconds_per_tick)
@@ -249,14 +249,14 @@
 
 /datum/reagent/consumable/ethanol/bat_outta_hell/on_mob_end_metabolize(mob/living/affected_mob)
 	. = ..()
-	affected_mob.remove_traits(list(TRAIT_GOOD_HEARING, TRAIT_MINOR_NIGHT_VISION),"Overdose:/datum/reagent/consumable/ethanol/bat_outta_hell")
+	affected_mob.remove_traits(list(TRAIT_GOOD_HEARING, TRAIT_NIGHT_VISION),"Overdose:/datum/reagent/consumable/ethanol/bat_outta_hell")
 
 /datum/reagent/consumable/ethanol/bat_outta_hell/expose_mob(mob/living/affected_mob, methods, reac_volume)
 	. = ..()
 	if(!(methods & INGEST))
 		return
 	var/obj/item/organ/stomach/stomach = affected_mob.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(stomach) || !ishemophage(affected_mob) || reac_volume <= 0)
+	if(!istype(stomach) || !affected_mob.has_quirk(/datum/quirk/hemophage) || reac_volume <= 0)
 		return
 	affected_mob.blood_volume = min(affected_mob.blood_volume + reac_volume, BLOOD_VOLUME_MAXIMUM)
 
@@ -600,3 +600,18 @@
 	icon_state = "ira_de_zeus"
 	name = "Ira De Zeus"
 	desc = "A radiant ethereal drink that warms the body and tickles the tongue. The original recipie, fabled to have originated from the tables of Sprout's upper-caste clergy, would imply heresy of the highest order. Good thing it's only a fable... May shock non-ethereals."
+
+/datum/reagent/consumable/ethanol/orange_creamsicle
+	name = "Orange Creamsicle"
+	color = "#f8dd64" //(248, 221, 100)
+	description = "A sweet, tangy, and fruity orange drink with a creamy finish."
+	boozepwr = 40
+	taste_description = "sweet creamy citrus and nostalgia"
+	quality = DRINK_VERYGOOD
+
+/datum/glass_style/drinking_glass/orange_creamsicle
+	required_drink_type = /datum/reagent/consumable/ethanol/orange_creamsicle
+	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
+	icon_state = "orange_creamsicle"
+	name = "Orange Creamsicle"
+	desc = "A refreshing orange creamsicle drink in a glass, topped with a swirl of whipped cream and a slice of orange. The perfect drink for a hot station day, or whenever you want to feel like you're on a tropical vacation."

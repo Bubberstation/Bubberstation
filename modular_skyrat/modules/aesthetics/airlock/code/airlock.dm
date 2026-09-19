@@ -33,6 +33,10 @@
 
 /obj/machinery/door/airlock/update_overlays()
 	. = ..()
+	if(QDELETED(src))
+		return
+	if(isnull(overlays_file))
+		return
 	var/frame_state
 	var/light_state = AIRLOCK_LIGHT_POWERON
 	if(machine_stat & MAINT) // in the process of being emagged
@@ -142,7 +146,7 @@
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/command.dmi'
 
 /obj/machinery/door/airlock/security
-	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/security.dmi'
+	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/security2.dmi'
 
 /obj/machinery/door/airlock/security/old
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/security2.dmi'

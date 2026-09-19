@@ -142,13 +142,13 @@
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/vox_spines.dmi'
 	default_color = DEFAULT_TERTIARY
 	recommended_species = list(SPECIES_VOX)
-	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
+	relevent_layers = list(EXTERNAL_BEHIND, EXTERNAL_FRONT)
 
 /datum/sprite_accessory/tail_spines/vox
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/vox_spines.dmi'
 	default_color = DEFAULT_TERTIARY
 	recommended_species = list(SPECIES_VOX)
-	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
+	relevent_layers = list(EXTERNAL_BEHIND, EXTERNAL_FRONT)
 
 /datum/sprite_accessory/spines/vox/vox_bands
 	name = "Vox Bands"

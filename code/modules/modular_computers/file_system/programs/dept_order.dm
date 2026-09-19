@@ -111,7 +111,7 @@ GLOBAL_VAR(department_cd_override)
 		return FALSE
 	if((to_check.order_flags & ORDER_SPECIAL) && !(to_check.order_flags & ORDER_SPECIAL_ENABLED))
 		return FALSE
-	if(to_check.order_flags & (ORDER_INVISIBLE | ORDER_POD_ONLY | ORDER_GOODY | ORDER_NOT_DEPARTMENTAL))
+	if(to_check.order_flags & (ORDER_INVISIBLE | ORDER_POD_ONLY | ORDER_GOODY | ORDER_NOT_DEPARTMENTAL | ORDER_INTERDYNE_ONLY)) // BUBBER EDIT
 		return FALSE
 	return TRUE
 

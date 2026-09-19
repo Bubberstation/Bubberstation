@@ -56,7 +56,7 @@
 	baseturfs = /turf/open/misc/moonstation_rock
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS
-	proximity_based = FALSE
+	exposure_based = FALSE
 
 /turf/closed/mineral/random/lunar_cave/mineral_chances()
 	return list(
@@ -81,11 +81,11 @@
 	baseturfs = /turf/open/misc/moonstation_rock
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS
-	proximity_based = FALSE
+	exposure_based = FALSE
 
 /turf/closed/mineral/random/labormineral/lunar_cave/mineral_chances()
 	return list(
-		/obj/item/boulder/gulag_expanded = 166,
+		/obj/item/boulder/gulag = 166,
 		/turf/closed/mineral/gibtonite/lunar_cave = 2,
 	)
 
@@ -98,7 +98,7 @@
 	baseturfs = /turf/open/misc/moonstation_rock
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS
-	proximity_based = FALSE
+	exposure_based = FALSE
 
 /turf/closed/mineral/random/high_chance/lunar_cave/mineral_chances()
 	return list(
@@ -121,7 +121,7 @@
 	baseturfs = /turf/open/misc/moonstation_rock
 	defer_change = TRUE
 	initial_gas_mix = MOONSTATION_ATMOS
-	proximity_based = FALSE
+	exposure_based = FALSE
 
 /turf/closed/mineral/random/low_chance/lunar_cave/mineral_chances()
 	return list(

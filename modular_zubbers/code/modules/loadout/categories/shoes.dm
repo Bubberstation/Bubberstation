@@ -43,9 +43,25 @@
 	name = "High-Heel Jackboots"
 	item_path = /obj/item/clothing/shoes/jackboots/heel
 
+/datum/loadout_item/shoes/boots/jackboots/rax_armadyne_boots
+	name = "Tactical Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne/rax
+	//ckeywhitelist = list("raxraus")
+	restricted_roles = list(ALL_JOBS_SEC)
+
 /datum/loadout_item/shoes/boots/jackboots/kneeboots
 	name = "Knee Boots"
 	item_path = /obj/item/clothing/shoes/jackboots/knee
+
+/datum/loadout_item/shoes/boots/jackboots/peacekeeper
+	name = "Armadyne Combat Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne
+	restricted_roles = list(ALL_JOBS_SEC)
+
+/datum/loadout_item/shoes/boots/jackboots/gogo_boots
+	name = "Tactical Go-Go boots"
+	item_path = /obj/item/clothing/shoes/jackboots/gogo_boots
+	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/shoes/boots/diesel_m
 	name = "Male Diesel Boots"
@@ -70,6 +86,15 @@
 /datum/loadout_item/shoes/boots/jackboots/black
 	name = "Black Jackboots"
 	item_path = /obj/item/clothing/shoes/jackboots/black
+
+/datum/loadout_item/shoes/boots/elofy
+	name = "Solar Admiral Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/elofy
+//	ckeywhitelist = list("october23")
+
+/datum/loadout_item/shoes/boots/jackboots/colonial_boots
+	name = "Colonial Half-Boots"
+	item_path = /obj/item/clothing/shoes/jackboots/colonial
 
 /*
 *	MISC BOOTS
@@ -323,6 +348,15 @@
 	item_path = /obj/item/clothing/shoes/clown_shoes/britches
 	restricted_roles = list(JOB_CLOWN)
 	//ckeywhitelist = list("bloodrite")
+
+/datum/loadout_item/shoes/ba_cheerleader
+	name = "NT Cheerleading Sneakers"
+	item_path = /obj/item/clothing/shoes/sneakers/ba_cheerleader
+
+/datum/loadout_item/shoes/ba_cheerleader_command
+	name = "NT Command Cheerleading Sneakers"
+	item_path = /obj/item/clothing/shoes/sneakers/ba_cheerleader/command
+	restricted_roles = list(JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_CHIEF_ENGINEER, JOB_CHIEF_MEDICAL_OFFICER, JOB_QUARTERMASTER, JOB_NT_REP)
 
 /datum/loadout_item/shoes/fun/bubber/clown/pink/squeak //Unlike the rest, these make noise. Job locked.
 	name = "Pink Clown Heels"

@@ -25,3 +25,27 @@
 	)
 	crate_name = "lizard goods crate"
 	order_flags = ORDER_CONTRABAND
+
+/datum/supply_pack/imports/antimatcrate
+	name = "Wylom Anti-Material Rifle Crate"
+	desc = "Do you have a hard target that you need dead? That ion gun not stopping the bad guy with a mech? Buy this to aquire a singular Wylom, with two spare magazines."
+	cost = 7500
+	contains = list(
+		/obj/item/gun/ballistic/automatic/wylom,
+		/obj/item/ammo_box/magazine/wylom,
+		/obj/item/ammo_box/magazine/wylom,
+	)
+	crate_name = "AMR Crate"
+	order_flags = ORDER_CONTRABAND
+
+/datum/supply_pack/imports/riflecrate
+	name = "Lanca Battle Rifle Crate"
+	desc = "Need some more reliable firepower than the standard Sakhno? Look no further than these bad boys. Featuring a more modern semi-automatic action, these bad babies will be sure to make anyone regret messing with you. Don't mind the fees..."
+	cost = 2500
+	contains = list(
+		/obj/item/gun/ballistic/automatic/lanca,
+		/obj/item/ammo_box/magazine/lanca,
+		/obj/item/ammo_box/magazine/lanca,
+	)
+	crate_name = "Battle Rifle Crate"
+	order_flags = ORDER_CONTRABAND

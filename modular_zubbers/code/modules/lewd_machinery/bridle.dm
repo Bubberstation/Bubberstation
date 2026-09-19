@@ -326,6 +326,8 @@
 	desc = "Adjust the bridle blinders."
 
 /datum/action/item_action/bridle_toggle_blinders/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/obj/item/clothing/mask/bridle/bridle = target
 	if(istype(bridle))
 		bridle.toggle_blinders(owner)
@@ -335,6 +337,8 @@
 	desc = "Adjust the bridle bit."
 
 /datum/action/item_action/bridle_toggle_gag/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/obj/item/clothing/mask/bridle/bridle = target
 	if(istype(bridle))
 		bridle.toggle_gag(owner)

@@ -5,7 +5,7 @@
 	name = "organ manipulation"
 	abstract_type = /datum/surgery_operation/limb/organ_manipulation
 	operation_flags = OPERATION_MORBID | OPERATION_NOTABLE | OPERATION_NO_PATIENT_REQUIRED
-	required_bodytype = (~BODYTYPE_ROBOTIC & ~BODYTYPE_SYNTHETIC) // BUBBER EDIT CHANGE - SYNTH FLAGS  -Orginal: required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = (~BODYTYPE_ROBOTIC & ~BODYTYPE_SYNTHETIC) // BUBBER EDIT CHANGE - SYNTH FLAGS  -Original: required_bodytype = ~BODYTYPE_ROBOTIC
 	/// Radial slice datums for every organ type we can manipulate
 	VAR_PRIVATE/list/cached_organ_manipulation_options
 
@@ -95,9 +95,13 @@
 	return TRUE
 
 /datum/surgery_operation/limb/organ_manipulation/snowflake_check_availability(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, operated_zone)
+	if(istype(tool, /obj/item/mmi)) //Bubber Edit
+		return TRUE
 	return isorgan(tool) ? is_insert_available(limb, tool, operated_zone) : is_remove_available(limb, operated_zone)
 
 /datum/surgery_operation/limb/organ_manipulation/get_radial_options(obj/item/bodypart/limb, obj/item/tool, operating_zone)
+	if(istype(tool, /obj/item/mmi)) //Bubber Edit
+		return get_insert_options(limb, tool, operating_zone)
 	return isorgan(tool) ? get_insert_options(limb, tool, operating_zone) : get_remove_options(limb, operating_zone)
 
 /datum/surgery_operation/limb/organ_manipulation/proc/get_remove_options(obj/item/bodypart/limb, operating_zone)
@@ -106,7 +110,7 @@
 		var/datum/radial_menu_choice/option = LAZYACCESS(cached_organ_manipulation_options, "[organ.type]_remove")
 		if(!option)
 			option = new()
-			option.image = get_generic_limb_radial_image(limb.body_zone)
+			option.image = image('icons/hud/surgery_radial.dmi', "base")
 			option.image.overlays += add_radial_overlays(organ.type)
 			option.name = "remove [initial(organ.name)]"
 			option.info = "Remove [initial(organ.name)] from the [limb.owner ? "patient" : "limb"]."
@@ -120,7 +124,7 @@
 	var/datum/radial_menu_choice/option = LAZYACCESS(cached_organ_manipulation_options, "[organ.type]_insert")
 	if(!option)
 		option = new()
-		option.image = get_generic_limb_radial_image(limb.body_zone)
+		option.image = image('icons/hud/surgery_radial.dmi', "base")
 		option.image.overlays += add_radial_overlays(list(image('icons/hud/screen_gen.dmi', "arrow_large_still"), organ.type))
 		option.name = "insert [initial(organ.name)]"
 		option.info = "insert [initial(organ.name)] into the [limb.owner ? "patient" : "limb"]."
@@ -200,6 +204,14 @@
 	organ.on_surgical_removal(surgeon, limb, tool)
 
 /datum/surgery_operation/limb/organ_manipulation/proc/on_success_insert_organ(obj/item/bodypart/limb, mob/living/surgeon, obj/item/organ/organ)
+	//Bubber Edit Start, Checks if the type attempted to be inserted is a positronic or not
+	if(istype(organ, /obj/item/mmi))
+		organ = new /obj/item/organ/brain/synth/mmi(null, organ)
+	else if(istype(organ, /obj/item/mmi/posibrain))
+		organ = new /obj/item/organ/brain/synth(null, organ)
+	else if(istype(organ, /obj/item/mmi/posibrain/circuit))
+		organ = new /obj/item/organ/brain/synth/circuit(null, organ)
+	//Bubber Edit End
 	surgeon.temporarilyRemoveItemFromInventory(organ, TRUE)
 	organ.pre_surgical_insertion(surgeon, limb, limb.body_zone)
 	if (limb.owner)
@@ -240,7 +252,7 @@
 
 /datum/surgery_operation/limb/organ_manipulation/internal/mechanic
 	name = "prosthetic organ manipulation"
-	required_bodytype = (BODYTYPE_ROBOTIC| BODYTYPE_SYNTHETIC) // NOVA EDIT CHANGE - SYNTH FLAGS  -Orginal: required_bodytype = BODYTYPE_ROBOTIC
+	required_bodytype = (BODYTYPE_ROBOTIC | BODYTYPE_SYNTHETIC | BODYTYPE_NANO) // NOVA EDIT CHANGE - SYNTH FLAGS  -Original: required_bodytype = BODYTYPE_ROBOTIC // BUBBER EDIT CHANGE - NANO FLAGS  -Original: required_bodytype = (BODYTYPE_ROBOTIC | BODYTYPE_SYNTHETIC)
 	remove_implements = list(
 		TOOL_CROWBAR = 1,
 		TOOL_HEMOSTAT = 1,
@@ -272,7 +284,7 @@
 
 /datum/surgery_operation/limb/organ_manipulation/external/mechanic
 	name = "prosthetic feature manipulation"
-	required_bodytype = (BODYTYPE_ROBOTIC| BODYTYPE_SYNTHETIC) // NOVA EDIT CHANGE - SYNTH FLAGS  -Orginal: required_bodytype = BODYTYPE_ROBOTIC
+	required_bodytype = (BODYTYPE_ROBOTIC | BODYTYPE_SYNTHETIC | BODYTYPE_NANO) // NOVA EDIT CHANGE - SYNTH FLAGS  -Original: required_bodytype = BODYTYPE_ROBOTIC // BUBBER EDIT CHANGE - NANO FLAGS  -Original: required_bodytype = (BODYTYPE_ROBOTIC | BODYTYPE_SYNTHETIC)
 	remove_implements = list(
 		TOOL_CROWBAR = 1,
 		TOOL_HEMOSTAT = 1,
@@ -280,6 +292,10 @@
 	)
 	operation_flags = parent_type::operation_flags | OPERATION_SELF_OPERABLE
 	replaced_by = null
+	insert_implements = list(
+		/obj/item/organ = 1,
+		/obj/item/mmi = 1,
+	)
 
 /// Abductor subtype that works through clothes
 /datum/surgery_operation/limb/organ_manipulation/external/abductor

@@ -74,11 +74,12 @@
 	if(panel_open)
 		. += "dnamod-open"
 
+/obj/machinery/plantgenes/screwdriver_act(mob/living/user, obj/item/tool)
+	. = ..()
+	return default_deconstruction_screwdriver(user, tool)
+
 /obj/machinery/plantgenes/attackby(obj/item/I, mob/user, params)
-	if(default_deconstruction_screwdriver(user, "dnamod", "dnamod", I))
-		update_icon()
-		return
-	else if(default_unfasten_wrench(user, I))
+	if(default_unfasten_wrench(user, I))
 		return
 	if(default_deconstruction_crowbar(I))
 		return

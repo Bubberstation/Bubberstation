@@ -4,7 +4,7 @@
 		The older form has much more flow and cadence, while the current popular form is more quick and harsh, making it easy to find most Old Nobles and hardliners just by dialect. \
 		One could compare the sound of Akko to that of the Terran Maori language."
 	key = "Z"
-	flags = TONGUELESS_SPEECH
+	flags = LANGUAGE_TONGUELESS_SPEECH
 	space_chance = 70
 	// Syllables derived from the Maori language.
 	syllables = list (

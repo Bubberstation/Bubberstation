@@ -47,7 +47,7 @@
 		. += " (as [get_id_name("Unknown", honorifics = TRUE)])"
 
 /mob/living/carbon/human/binarycheck()
-	if(stat >= SOFT_CRIT)
+	if(IS_UNCONSCIOUS_OR_CRIT(src))
 		return FALSE
 	var/area/our_area = get_area(src)
 	if(our_area.area_flags & BINARY_JAMMING)
@@ -56,6 +56,11 @@
 	if(istype(brain))
 		return TRUE
 	var/obj/item/radio/headset/dongle = ears
+	//Bubber Edit Start
+	for(var/obj/item/implant/radio/implant in src.implants)
+		if(implant.radio.special_channels & RADIO_SPECIAL_BINARY)
+			return TRUE
+	//Bubber Edit End
 	if(!istype(dongle))
 		return FALSE
 	return dongle.special_channels & RADIO_SPECIAL_BINARY

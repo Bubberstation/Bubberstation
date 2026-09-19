@@ -34,14 +34,14 @@
 	// Let's compare it to our original list (all_possible_knowledge). If they're not identical,
 	// then somewhere we missed a knowledge somewhere, and should throw a fail.
 	var/list/unreachables = list()
-	for(var/knowledge_path in all_possible_knowledge)
+	for(var/datum/heretic_knowledge/knowledge_path in all_possible_knowledge) // BUBBER EDIT CHANGE - typed to heretic_knowledge
 		var/found = FALSE
 		for(var/list/knowledge_node as anything in list_to_check)
 			var/type = knowledge_node["type"]
 			if(type == knowledge_path)
 				found = TRUE
 				break
-		if(!found)
+		if(!found && !knowledge_path::unreachable) // BUBBER EDIT ADDITION - allows us to mark nodes as unreachable intentionally
 			unreachables += knowledge_path
 	// Unreachables is a list of typepaths - all paths that cannot be obtained.
 	for(var/datum/heretic_knowledge/lost_knowledge as anything in unreachables)

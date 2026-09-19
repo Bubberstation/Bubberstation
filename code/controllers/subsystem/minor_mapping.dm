@@ -6,12 +6,13 @@ SUBSYSTEM_DEF(minor_mapping)
 		/datum/controller/subsystem/mapping,
 		/datum/controller/subsystem/atoms,
 	)
-	flags = SS_NO_FIRE
+	ss_flags = SS_NO_FIRE
 	///a list of vermin we pick from to spawn.
 	var/list/vermin_chances = list(
 		/mob/living/basic/mouse = 72,
 		/mob/living/basic/snail = 16,
-		/mob/living/basic/stoat = 10,
+		/mob/living/basic/stoat = 7,
+		/mob/living/basic/stoat/kit = 3,
 		/mob/living/basic/regal_rat/controlled = 2,
 	)
 

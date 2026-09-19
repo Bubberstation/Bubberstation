@@ -44,9 +44,9 @@
 
 /obj/item/storage/box/medicells/PopulateContents()
 	. = ..()
-	new /obj/item/weaponcell/medical/brute(src)
-	new /obj/item/weaponcell/medical/burn(src)
-	new /obj/item/weaponcell/medical/toxin/tier_2(src)
+	new /obj/item/weaponcell/medical/tier_1/brute(src)
+	new /obj/item/weaponcell/medical/tier_1/burn(src)
+	new /obj/item/weaponcell/medical/tier_2/toxin(src)
 	new /obj/item/weaponcell/medical/utility/temperature(src)
 	new /obj/item/weaponcell/medical/utility/bed(src)
 
@@ -82,7 +82,7 @@
 	desc = "I hope you've got insurance, because the Trauma Team's premiums are HIGH."
 
 /obj/item/storage/medkit/tactical/ntrauma/PopulateContents()
-	new /obj/item/stack/medical/gauze(src)
+	new /obj/item/stack/medical/wrap/gauze(src)
 	new /obj/item/defibrillator/compact/combat/loaded/nanotrasen(src)
 	new /obj/item/reagent_containers/applicator/patch/libital(src)
 	new /obj/item/reagent_containers/applicator/patch/libital(src)

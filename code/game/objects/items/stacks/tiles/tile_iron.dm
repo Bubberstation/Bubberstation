@@ -22,6 +22,11 @@
 		/obj/item/stack/tile/iron/corner,
 		/obj/item/stack/tile/iron/large,
 		/obj/item/stack/tile/iron/small,
+		// BUBBER ADDITION BEGIN
+		/obj/item/stack/tile/iron/small_checker,
+		/obj/item/stack/tile/iron/small_corner,
+		/obj/item/stack/tile/iron/small_edge,
+		// BUBBER ADDITION END
 		/obj/item/stack/tile/iron/diagonal,
 		/obj/item/stack/tile/iron/herringbone,
 		/obj/item/stack/tile/iron/textured,
@@ -35,6 +40,11 @@
 		/obj/item/stack/tile/iron/dark/smooth_corner,
 		/obj/item/stack/tile/iron/dark/smooth_large,
 		/obj/item/stack/tile/iron/dark/small,
+		// BUBBER ADDITION BEGIN
+		/obj/item/stack/tile/iron/dark/small_checker,
+		/obj/item/stack/tile/iron/dark/small_corner,
+		/obj/item/stack/tile/iron/dark/small_edge,
+		// BUBBER ADDITION END
 		/obj/item/stack/tile/iron/dark/diagonal,
 		/obj/item/stack/tile/iron/dark/herringbone,
 		/obj/item/stack/tile/iron/dark_side,
@@ -51,6 +61,11 @@
 		/obj/item/stack/tile/iron/white/smooth_corner,
 		/obj/item/stack/tile/iron/white/smooth_large,
 		/obj/item/stack/tile/iron/white/small,
+		// BUBBER ADDITION BEGIN
+		/obj/item/stack/tile/iron/white/small_checker,
+		/obj/item/stack/tile/iron/white/small_corner,
+		/obj/item/stack/tile/iron/white/small_edge,
+		// BUBBER ADDITION END
 		/obj/item/stack/tile/iron/white/diagonal,
 		/obj/item/stack/tile/iron/white/herringbone,
 		/obj/item/stack/tile/iron/white_side,

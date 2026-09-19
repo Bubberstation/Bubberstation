@@ -13,6 +13,7 @@
 	clumsy_check = FALSE
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL // Has no trigger at all, uses magic instead
 	pin = /obj/item/firing_pin/magic
+	about_to_shoot_inside_mail_text = "It's humming with energy!"
 	/// If true, our fire sound gets lower as our charges decrease
 	var/pitch_with_charges = TRUE
 	/// What kind of magic is this
@@ -106,8 +107,10 @@
 	return charges
 
 /obj/item/gun/magic/recharge_newshot()
-	if (charges && chambered && !chambered.loaded_projectile)
-		chambered.newshot()
+	if (!charges || !chambered || chambered.loaded_projectile)
+		return
+	chambered.newshot()
+	return ..()
 
 /obj/item/gun/magic/handle_chamber()
 	if(chambered && !chambered.loaded_projectile) //if BB is null, i.e the shot has been fired...
@@ -141,7 +144,7 @@
 		recharge_newshot()
 	return 1
 
-/obj/item/gun/magic/shoot_with_empty_chamber(mob/living/user as mob|obj)
+/obj/item/gun/magic/shoot_with_empty_chamber(mob/living/user)
 	to_chat(user, span_warning("\The [src] whizzles quietly."))
 
 /obj/item/gun/magic/suicide_act(mob/living/user)

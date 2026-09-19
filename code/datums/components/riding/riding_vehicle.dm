@@ -29,7 +29,6 @@
 		if(z_move_flags & ZMOVE_FEEDBACK)
 			to_chat(rider, span_warning("You can't seem to hold onto [movable_parent] to move it..."))
 		return COMPONENT_RIDDEN_STOP_Z_MOVE
-
 	return COMPONENT_RIDDEN_ALLOW_Z_MOVE
 
 /datum/component/riding/vehicle/driver_move(atom/movable/movable_parent, mob/living/user, direction)
@@ -79,8 +78,27 @@
 			COOLDOWN_START(src, message_cooldown, 5 SECONDS)
 		return COMPONENT_DRIVER_BLOCK_MOVE
 
+	//BUBBER EDIT
+	if(HAS_TRAIT(user, TRAIT_NO_VEHICLE))
+		if(ride_check_flags & UNBUCKLE_DISABLED_RIDER)
+			vehicle_parent.unbuckle_mob(user, TRUE)
+			user.visible_message(span_danger("[user] falls off \the [vehicle_parent]."),\
+			span_danger("You get thrown off \the [vehicle_parent] as you are incapable of operating it!"))
+
+			user.adjust_stamina_loss(35)
+			playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
+			var/atom/throw_target = get_edge_target_turf(user, pick(GLOB.cardinals))
+			user.throw_at(throw_target, 1, 1)
+			user.Stun(2 SECONDS)
+
+		if(COOLDOWN_FINISHED(src, message_cooldown))
+			to_chat(user, span_warning("You cannot operate \the [vehicle_parent] right now!"))
+			COOLDOWN_START(src, message_cooldown, 5 SECONDS)
+		return COMPONENT_DRIVER_BLOCK_MOVE
+
 	handle_ride(user, direction)
 	return ..()
+	//BUBBER EDIT END
 
 /// This handles the actual movement for vehicles once [/datum/component/riding/vehicle/proc/driver_move] has given us the green light
 /datum/component/riding/vehicle/proc/handle_ride(mob/user, direction)
@@ -160,6 +178,7 @@
 
 /datum/component/riding/vehicle/lavaboat/dragonboat
 	vehicle_move_delay = 1
+	keytype = null
 
 /datum/component/riding/vehicle/lavaboat/dragonboat/get_rider_offsets_and_layers(pass_index, mob/offsetter)
 	return list(
@@ -168,11 +187,6 @@
 		TEXT_EAST =  list(1, 2),
 		TEXT_WEST =  list(1, 2),
 	)
-
-/datum/component/riding/vehicle/lavaboat/dragonboat
-	vehicle_move_delay = 1
-	keytype = null
-
 
 /datum/component/riding/vehicle/janicart
 	keytype = /obj/item/key/janitor

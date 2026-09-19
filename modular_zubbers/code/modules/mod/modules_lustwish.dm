@@ -141,6 +141,10 @@
 	required_slots = list(ITEM_SLOT_OCLOTHING)
 	overlay_state_inactive = "module_remote_overlay"
 	overlay_icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT *3 ,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.5,
+	)
 
 /obj/item/mod/module/remote_control/Initialize(mapload)
 	. = ..()
@@ -175,6 +179,11 @@
 
 /obj/item/remote_controller/ui_data(mob/user)
 	var/list/data = list()
+	var/obj/item/mod/core/protean/core = module.mod.core
+	if(istype(core)) // Checks if it's connected to a protean core
+		data["protean"] = !!module.mod.core
+		data += core.linked_species.ui_data()
+
 	data["linked_suit"] = !!module?.mod
 	data["wearer"] = !!module.mod?.wearer
 	data["erp_pref_check"] = module.mod?.wearer?.client?.prefs.read_preference(/datum/preference/toggle/erp/sex_toy)
@@ -190,8 +199,6 @@
 		if("emote")
 			module.mod.wearer.emote("me", 1, params["emote"], TRUE)
 
-/obj/item/remote_controller/proc/forced_emote(emoter, user)
-
 /obj/item/remote_controller/Initialize(mapload, module_init)
 	. = ..()
 	src.module = module_init
@@ -201,6 +208,9 @@
 
 /obj/item/remote_controller/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
+	var/obj/item/mod/core/protean/core = module.mod.core
+	if(istype(core))
+		core.linked_species?.ui_act(action, params, ui, state)
 	return module?.mod?.ui_act(action, params, ui, state)
 
 /obj/item/remote_controller/Destroy(force)

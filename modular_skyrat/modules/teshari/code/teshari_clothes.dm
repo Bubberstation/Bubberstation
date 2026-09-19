@@ -38,7 +38,7 @@
 	species_clothing_color_coords = list(list(THICKROBE_COLORPIXEL_X_1, THICKROBE_COLORPIXEL_Y_1), list(THICKROBE_COLORPIXEL_X_2, THICKROBE_COLORPIXEL_Y_2), list(THICKROBE_COLORPIXEL_X_3, THICKROBE_COLORPIXEL_Y_3), list(THICKROBE_COLORPIXEL_X_4, THICKROBE_COLORPIXEL_Y_4), list(THICKROBE_COLORPIXEL_X_5, THICKROBE_COLORPIXEL_Y_5), list(THICKROBE_COLORPIXEL_X_6, THICKROBE_COLORPIXEL_Y_6))
 	greyscale_config_worn_teshari_fallback = /datum/greyscale_config/teshari/thickrobe/wiz
 
-/obj/item/clothing/suit/jacket/trenchcoat
+/obj/item/clothing/suit/toggle/jacket/trenchcoat
 	species_clothing_color_coords = list(list(LONGCOAT_COLORPIXEL_X_1, LONGCOAT_COLORPIXEL_Y_1), list(THICKROBE_COLORPIXEL_X_2, THICKROBE_COLORPIXEL_Y_2), list(THICKROBE_COLORPIXEL_X_3, THICKROBE_COLORPIXEL_Y_3), list(LONGCOAT_COLORPIXEL_X_4, LONGCOAT_COLORPIXEL_Y_4))
 	greyscale_config_worn_teshari_fallback = /datum/greyscale_config/teshari/thickrobe/longcoat
 
@@ -156,10 +156,10 @@
 /obj/item/clothing/head/nanotrasen_consultant/beret
 	greyscale_config_worn_teshari = /datum/greyscale_config/beret_badge/worn/teshari
 
-/obj/item/clothing/head/beret/sec/armadyne
+/obj/item/clothing/head/beret/sec/peacekeeper/armadyne
 	greyscale_config_worn_teshari = /datum/greyscale_config/beret_badge_fancy/worn/teshari
 
-/obj/item/clothing/head/beret/sec/peacekeeper
+/obj/item/clothing/head/beret/sec
 	greyscale_config_worn_teshari = /datum/greyscale_config/beret_badge/worn/teshari
 
 /obj/item/clothing/neck/ranger_poncho

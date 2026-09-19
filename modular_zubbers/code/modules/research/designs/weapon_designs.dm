@@ -3,18 +3,19 @@
 	desc = "A standard magazine for compatible grenade launcher."
 	id = "solgrenade_mag"
 	build_type = PROTOLATHE | AWAY_LATHE
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 	build_path = /obj/item/ammo_box/magazine/c980_grenade/starts_empty
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
 /datum/design/kiboko_box_mag
 	name = "Kiboko Grenade Box Magazine"
 	desc = "An extended capacity box magazine for compatible grenade launcher."
 	id = "solgrenade_extmag"
 	build_type = PROTOLATHE | AWAY_LATHE
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 	build_path = /obj/item/ammo_box/magazine/c980_grenade/drum/starts_empty
 	category = list(
@@ -57,6 +58,7 @@
 	id = "s12g_buckshot"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	transfered_materials = list(/obj/item/ammo_box/advanced/s12gauge/buckshot = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15))
 	build_path = /obj/item/ammo_box/advanced/s12gauge/buckshot
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -69,6 +71,7 @@
 	id = "s12g_slug"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 25, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	transfered_materials = list(/obj/item/ammo_box/advanced/s12gauge = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15))
 	build_path = /obj/item/ammo_box/advanced/s12gauge
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -81,6 +84,7 @@
 	id = "s12g_flechette"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 6, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	transfered_materials = list(/obj/item/ammo_box/advanced/s12gauge/flechette = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15))
 	build_path = /obj/item/ammo_box/advanced/s12gauge/flechette
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -93,6 +97,7 @@
 	id = "s12g_incinslug"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 25, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	transfered_materials = list(/obj/item/ammo_box/advanced/s12gauge/incendiary = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15))
 	build_path = /obj/item/ammo_box/advanced/s12gauge/incendiary
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -104,7 +109,8 @@
 	desc = "A 12 gauge ammunition box for shotgun shells."
 	id = "s12g_bslug"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	transfered_materials = list(/obj/item/ammo_box/advanced/s12gauge/bean = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15))
 	build_path = /obj/item/ammo_box/advanced/s12gauge/bean
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -116,7 +122,8 @@
 	desc = "A 12 gauge ammunition box for shotgun shells."
 	id = "s12g_rubber"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	transfered_materials = list(/obj/item/ammo_box/advanced/s12gauge/rubber = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15))
 	build_path = /obj/item/ammo_box/advanced/s12gauge/rubber
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -129,6 +136,7 @@
 	id = "s12g_db"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20,  /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 15 , /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	transfered_materials = list(/obj/item/ammo_box/advanced/s12gauge/dragonsbreath = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15))
 	build_path = /obj/item/ammo_box/advanced/s12gauge/dragonsbreath
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -141,6 +149,7 @@
 	id = "s12g_br"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20,  /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 35 , /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
+	transfered_materials = list(/obj/item/ammo_box/advanced/s12gauge/frangible = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15))
 	build_path = /obj/item/ammo_box/advanced/s12gauge/frangible
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -153,6 +162,7 @@
 	id = "s12g_laser"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 15, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 10)
+	transfered_materials = list(/obj/item/ammo_box/advanced/s12gauge/laser = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15))
 	build_path = /obj/item/ammo_box/advanced/s12gauge/laser
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -164,7 +174,7 @@
 	desc = "A 12 gauge ammunition box for shotgun shells."
 	id = "s12g_huntingslug"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 8)
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15)
 	build_path = /obj/item/ammo_box/advanced/s12gauge/hunter
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -176,7 +186,7 @@
 	desc = "A standard magazine for pistol using 9x25mm Mk2."
 	id = "m9mm_mag"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12)
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15)
 	build_path = /obj/item/ammo_box/magazine/m9mm
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -190,9 +200,10 @@
 	id = "m9mm_sec"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
-		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 30,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15,
 		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 3,
 	)
+	transfered_materials = list(/obj/item/ammo_box/magazine/security = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15))
 	build_path = /obj/item/ammo_box/magazine/security
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -205,9 +216,10 @@
 	id = "m9mm_sec_rocket"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
-		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15,
 		/datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT * 5,
 	)
+	transfered_materials = list(/obj/item/ammo_box/magazine/security/rocket = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15))
 	build_path = /obj/item/ammo_box/magazine/security/rocket
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -215,11 +227,11 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/m45_mag
-	name = ".460 Ceres Pistol Magazine(Lethal)"
-	desc = "A standard magazine for pistol using .460 Ceres."
+	name = ".45 Pistol Magazine(Lethal)"
+	desc = "A standard magazine for pistol using .45 rounds."
 	id = "m45_mag"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15)
 	build_path = /obj/item/ammo_box/magazine/m45
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -227,12 +239,206 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/ntusp_conversion
-	name = "NT-USP Conversion Kit"
-	desc = "A standard conversion kit for use in converting NT-USP magazines to be more lethal or less lethal."
+	name = "NT-HCS Conversion Kit"
+	desc = "A standard conversion kit for use in converting NT-HCS magazines to be more lethal or less lethal."
 	id = "ntusp_conversion"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
 	build_path = /obj/item/ntusp_conversion_kit
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/ntusp_powerpack
+	name = "NT22-HCS Power Pack"
+	desc = "A small, rechargeable power pack for the NT22-HCS 'Enforcer'. Synthesizes up to twelve .22HL bullets that tire targets."
+	id = "ntusp_powerpack"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 0.75,
+		/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 0.25,
+	)
+	transfered_materials = list(/obj/item/ammo_box/magazine/recharge/ntusp = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT))
+	build_path = /obj/item/ammo_box/magazine/recharge/ntusp
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/ntmp5_powerpack
+	name = "NT22-HCS-MP Power Pack"
+	desc = "A rechargeable power pack for the NT22-HCS-MP 'Lancer'. Synthesizes up to twenty .22HL bullets that tire targets."
+	id = "ntmp5_powerpack"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 0.75,
+		/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 0.25,
+	)
+	inherit_materials = DESIGN_DONT_INHERIT_MATS
+	build_path = /obj/item/ammo_box/magazine/recharge/ntmp5
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/m9mm_sec_speedloader
+	name = "Speed Loader (9x25mm Murphy) (Lethal)"
+	desc = "Designed to quickly reload five-chambered 9mm revolvers."
+	id = "m9mm_sec_speedloader"
+	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 15,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 2,
+	)
+	build_path = /obj/item/ammo_box/speedloader/security
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/wt550kit_burst
+	name = "WT-550 Burst-Fire Parts Kit"
+	desc = "A kit to modify a WT-550 to shoot burst-fire."
+	id = "wt550_burst"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 3,
+	)
+	build_path = /obj/item/weaponcrafting/gunkit/wt550_burst
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_KITS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	autolathe_exportable = FALSE
+
+/datum/design/wt550kit_long
+	name = "WT-550 Long-Range Parts Kit"
+	desc = "A kit to modify a WT-550 to be more effective at long ranges."
+	id = "wt550_long"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 5,
+	)
+	build_path = /obj/item/weaponcrafting/gunkit/wt550_long
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_KITS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	autolathe_exportable = FALSE
+
+/datum/design/wt550_ammo_compressed
+	name = "WT-550 Magazine (4.6x30mm Compressed) (Lethal)"
+	desc = "A magazine for the WT-550 Autorifle. Contains a high amount of lower power ammunition."
+	id = "wt550_ammo_compressed"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 1,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 1,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 1,
+		/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 1,
+		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 3,
+	)
+	transfered_materials = list(/obj/item/ammo_box/magazine/wt550m9/compressed = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2))
+	build_path = /obj/item/ammo_box/magazine/wt550m9/compressed
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	autolathe_exportable = FALSE
+
+/datum/design/simple_battle_rifle
+	name = "NT-38 Battle Rifle Simplification Kit"
+	desc = "A kit to simplify an NT-38 Battle Rifle, making it much less complicated."
+	id = "battle_rifle_basic"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 2,
+	)
+	build_path = /obj/item/weaponcrafting/gunkit/simple_battle_rifle
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_KITS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	autolathe_exportable = FALSE
+
+/datum/design/juggernaut_suit_parts
+	name = "Security Juggernaut Plates"
+	desc = "An expensive set of incredibly dense armor plates."
+	id = "security_juggernaut"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 40,
+		/datum/material/titanium =SHEET_MATERIAL_AMOUNT * 40,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 40,
+	)
+	build_path = /obj/item/weaponcrafting/juggernaut_suit
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	autolathe_exportable = FALSE
+
+/datum/design/c32_speedloader
+	name = "Speed Loader (.32) (Lethal)"
+	desc = "Designed to quickly reload six-chambered .32 revolvers."
+	id = "c32_speedloader"
+	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*3)
+	build_path = /obj/item/ammo_box/speedloader/c38/c32
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/wt550_ammo
+	name = "WT-550 Magazine (4.6x30mm Regular) (Lethal)"
+	desc = "A magazine for the WT-550 Autorifle. Contains lethal regular ammo."
+	id = "wt550_ammo_normal"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
+	transfered_materials = list(/obj/item/ammo_box/magazine/wt550m9 = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2))
+	build_path = /obj/item/ammo_box/magazine/wt550m9
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/wt550_ammo_ap
+	name = "WT-550 Magazine (4.6x30mm Armor-Piercing) (Lethal)"
+	desc = "A magazine for the WT-550 Autorifle. Contains lethal armor-piercing ammo. Nanotrasen prefers you didn't use these on your pressurized space station."
+	id = "wt550_ammo_ap"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
+	transfered_materials = list(/obj/item/ammo_box/magazine/wt550m9/wtap = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 0.6))
+	build_path = /obj/item/ammo_box/magazine/wt550m9/wtap
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/wt550_ammo_incendiary
+	name = "WT-550 Magazine (4.6x30mm Incendiary) (Extremely Lethal)"
+	desc = "A magazine for the WT-550 Autorifle. Contains very lethal incendiary ammo. Consult your local laws for warcrime status before use."
+	id = "wt550_ammo_incendiary"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 2, /datum/material/silver = SHEET_MATERIAL_AMOUNT , /datum/material/glass = SHEET_MATERIAL_AMOUNT)
+	transfered_materials = list(/obj/item/ammo_box/magazine/wt550m9/wtic = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 0.6, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT))
+	build_path = /obj/item/ammo_box/magazine/wt550m9/wtic
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)

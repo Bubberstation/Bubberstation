@@ -13,11 +13,10 @@
 	variant = 1
 	custom_materials = list(/datum/material/stone = SHEET_MATERIAL_AMOUNT * 5)
 
-/obj/machinery/griddle/Initialize(mapload)
+/obj/machinery/griddle/stone/Initialize(mapload)
 	. = ..()
-	grill_loop = new(src, FALSE)
-	if(isnum(variant))
-		variant = 1
+	variant = 1
+	update_appearance()
 
 /obj/machinery/griddle/stone/examine(mob/user)
 	. = ..()

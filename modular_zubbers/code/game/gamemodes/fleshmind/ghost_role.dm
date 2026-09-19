@@ -15,19 +15,23 @@
 	suicide_cry = "FOR THE FLESHMIND!!"
 	var/datum/outfit/outfit = /datum/outfit/wire_priest
 	var/datum/fleshmind_controller/brain_jack
+	var/initial_pass_flags
 
 /datum/antagonist/wire_priest/on_gain()
 	. = ..()
 	owner.current.AddComponent(/datum/component/human_corruption, brain_jack)
 	equip_wire_priest()
+	initial_pass_flags = owner.current.pass_flags
+	owner.current.pass_flags = owner.current.pass_flags | PASSBLOB
 
 /datum/antagonist/wire_priest/Destroy()
+	owner?.current.pass_flags = initial_pass_flags
 	. = ..()
 	brain_jack = null
 
 /datum/antagonist/wire_priest/get_preview_icon()
-	var/icon/icon = icon('modular_zubbers/icons/fleshmind/fleshmind_machines.dmi', "core")
-	icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+	var/datum/universal_icon/icon = uni_icon('modular_zubbers/icons/fleshmind/fleshmind_machines.dmi', "core")
+	icon.scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
 	return icon
 
 // DYNAMIC (If we ever use it)

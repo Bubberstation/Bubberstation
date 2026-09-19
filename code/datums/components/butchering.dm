@@ -138,7 +138,7 @@
 	var/speed_modifier = 1
 	if (!target.owner)
 		speed_modifier = 0.5
-	else if (target.owner.stat < UNCONSCIOUS)
+	else if (!IS_UNCONSCIOUS(target))
 		speed_modifier = 1.5 // yeowch
 
 	var/limb_descriptor = (target.owner ? "[target.owner]'s [target.plaintext_zone]" : target)
@@ -161,14 +161,17 @@
 		target.drop_organs(user, TRUE)
 		return
 
-	if (!length(target.butcher_drops))
+	var/list/target_butcher_drops = target.get_butcher_drops()
+	if (!LAZYLEN(target_butcher_drops))
 		to_chat(user, span_warning("There is nothing left inside [limb_descriptor]!"))
 		return
 
 	if (target.body_zone == BODY_ZONE_CHEST && target.owner)
 		// Cannot butcher the chest until we hack off all the other limbs
-		for (var/obj/item/bodypart/limb as anything in target.owner.bodyparts)
-			if (limb != target && limb.butcher_drops && limb.butcher_replacement)
+		for (var/obj/item/bodypart/limb as anything in target.owner.get_bodyparts())
+			if(limb == target)
+				continue
+			if (LAZYLEN(limb.get_butcher_drops()) && limb.butcher_replacement)
 				to_chat(user, span_warning("You need to butcher all other limbs first!"))
 				return
 
@@ -187,8 +190,8 @@
 	var/list/failures = list()
 	var/list/bonuses = list()
 
-	for (var/obj/item/drop_type as anything in target.butcher_drops)
-		var/amount = target.butcher_drops[drop_type] || 1
+	for (var/obj/item/drop_type as anything in target_butcher_drops)
+		var/amount = target_butcher_drops[drop_type] || 1
 		var/is_stack = ispath(drop_type, /obj/item/stack)
 
 		for (var/i in 1 to amount)
@@ -249,7 +252,7 @@
 		for(var/obj/item/result as anything in results)
 			if (reagents_in_produced)
 				if (target.owner.reagents)
-					target.owner.reagents.trans_to(result, target.owner.reagents.total_volume / reagents_in_produced / length(target.owner.bodyparts), remove_blacklisted = TRUE)
+					target.owner.reagents.trans_to(result, target.owner.reagents.total_volume / reagents_in_produced / length(target.owner.get_bodyparts()), remove_blacklisted = TRUE)
 				result.reagents?.add_reagent(/datum/reagent/consumable/nutriment/fat, target.owner.nutrition / /datum/reagent/consumable/nutriment/fat::nutriment_factor / reagents_in_produced)
 
 			if(LAZYLEN(diseases))
@@ -266,7 +269,7 @@
 
 		for (var/obj/item/food/meat/meat in results)
 			meat.name = "[target.owner.real_name]'s [meat.name]"
-			meat.set_custom_materials(list(GET_MATERIAL_REF(/datum/material/meat/mob_meat, target.owner) = 4 * SHEET_MATERIAL_AMOUNT))
+			meat.set_custom_materials(list(SSmaterials.get_material(/datum/material/meat/mob_meat, target.owner) = 4 * SHEET_MATERIAL_AMOUNT))
 			meat.subjectname = target.owner.real_name
 			meat.subjectjob = target.owner.job
 
@@ -318,6 +321,7 @@
 		wound.remove_wound()
 		wound.apply_wound(replacement, silent = TRUE)
 
+	SEND_SIGNAL(target, COMSIG_BODYPART_BUTCHERED, replacement)
 	return replacement
 
 /datum/component/butchering/proc/start_butcher(obj/item/source, mob/living/target, mob/living/user)
@@ -450,7 +454,7 @@
 		var/list/meat_mats = carrion.has_material_type(/datum/material/meat)
 		if (!length(meat_mats))
 			continue
-		carrion.set_custom_materials((carrion.custom_materials - meat_mats) + list(GET_MATERIAL_REF(/datum/material/meat/mob_meat, target) = counterlist_sum(meat_mats)))
+		carrion.set_custom_materials((carrion.custom_materials - meat_mats) + list(SSmaterials.get_material(/datum/material/meat/mob_meat, target) = counterlist_sum(meat_mats)))
 
 	// Transfer delicious reagents to meat
 	if (target.reagents)

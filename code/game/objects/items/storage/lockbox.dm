@@ -274,15 +274,33 @@
 	if(istype(buyer_account, /datum/bank_account/department))
 		department_purchase = TRUE
 		department_account = buyer_account
+		// captain access override that ignores lockout
+		req_access = list(ACCESS_CAPTAIN)
 	//SKYRAT EDIT END
+
+
+// BUBBER EDIT START - show department account on examine if bought with departmental funds
+/obj/item/storage/lockbox/order/examine(mob/user)
+	. = ..()
+	if(department_purchase)
+		. += span_notice("This crate was purchased with departmental funds from [department_account.account_holder], and can be opened by anyone who has an ID linked to an account with a paycheck from that department.")
+		. += span_notice("Or overriden by someone with captain access.")
+// BUBBER EDIT END
 
 /obj/item/storage/lockbox/order/can_unlock(mob/living/user, obj/item/card/id/id_card, silent = FALSE)
 	if(id_card.registered_account == buyer_account)
 		return TRUE
 
 	//SKYRAT EDIT ADDITION START - private department orders
-	if(department_purchase && id_card.registered_account?.account_job?.paycheck_department == department_account.department_id)
-		return TRUE
+	if(department_purchase)
+		if(id_card.registered_account?.account_job?.paycheck_department == department_account.department_id)
+			return TRUE
+		if(..())
+			return TRUE
+
+		if(!silent)
+			balloon_alert(user, "incorrect bank account!")
+		return FALSE
 	//SKYRAT EDIT ADDITION END
 
 	if(!silent)

@@ -156,7 +156,7 @@
 	healed_mob.reagents.add_reagent(/datum/reagent/medicine/lidocaine, 2)
 
 // Gauze that are especially good at treating burns, but are terrible splints
-/obj/item/stack/medical/gauze/sterilized
+/obj/item/stack/medical/wrap/gauze/sterilized
 	name = "sealed aseptic gauze"
 	singular_name = "sealed aseptic gauze"
 	desc = "A small roll of elastic material specially treated to be entirely sterile, and sealed in plastic just to be sure. \
@@ -170,10 +170,10 @@
 	amount = 6
 	splint_factor = 1.2
 	burn_cleanliness_bonus = 0.1
-	merge_type = /obj/item/stack/medical/gauze/sterilized
+	merge_type = /obj/item/stack/medical/wrap/gauze/sterilized
 	custom_price = PAYCHECK_LOWER * 1.5
 
-/obj/item/stack/medical/gauze/sterilized/post_heal_effects(amount_healed, mob/living/carbon/healed_mob, mob/user)
+/obj/item/stack/medical/wrap/gauze/sterilized/post_heal_effects(amount_healed, mob/living/carbon/healed_mob, mob/user)
 	. = ..()
 	healed_mob.reagents.add_reagent(/datum/reagent/space_cleaner/sterilizine, 5)
 	healed_mob.reagents.expose(healed_mob, TOUCH, 1)

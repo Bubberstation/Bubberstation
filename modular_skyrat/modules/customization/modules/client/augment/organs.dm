@@ -44,6 +44,12 @@
 	path = /obj/item/organ/brain/cybernetic/cortical
 	cost = 1 // technically a downgrade in most applications, but has uses.
 
+/datum/augment_item/organ/brain/surplus
+	name = "Surplus Augmented Brain"
+	slot = AUGMENT_SLOT_BRAIN
+	path = /obj/item/organ/brain/cybernetic/surplus
+	cost = -1
+
 //HEARTS
 /datum/augment_item/organ/heart
 	slot = AUGMENT_SLOT_HEART

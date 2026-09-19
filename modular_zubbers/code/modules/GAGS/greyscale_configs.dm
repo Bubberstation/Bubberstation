@@ -113,6 +113,10 @@
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/miniskirt_worn.json'
 
+/datum/greyscale_config/miniskirt_worn/teshari
+	name = "Worn Miniskirt (Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses_teshari.dmi'
+
 // SHORT-SLEEVED CROPPED JACKET
 
 /datum/greyscale_config/crop_jacket
@@ -312,3 +316,192 @@
 /datum/greyscale_config/giant_scarf/worn
 	name = "Giant Scarf (Worn)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses.dmi'
+
+/// Greyscale clothing Nova port
+/datum/greyscale_config/turtlenecks
+	name = "Turtlenecks"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/turtlenecks.json'
+
+/datum/greyscale_config/turtlenecks/worn
+	name = "Turtlenecks (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/turtlenecks_worn.json'
+
+/datum/greyscale_config/turtlenecks/worn/digi
+	name = "Turtlenecks (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
+
+/datum/greyscale_config/gorkas
+	name = "Gorkas"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/gorkas.json'
+
+/datum/greyscale_config/gorkas/worn
+	name = "Gorkas (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
+
+/datum/greyscale_config/gorkas/worn/digi
+	name = "Gorkas (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
+
+/// Has to be named this to avoid problems
+/datum/greyscale_config/sus_overalls
+	name = "Overalls"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/overalls.json'
+
+/datum/greyscale_config/sus_overalls/worn
+	name = "Overalls (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/overalls_worn.json'
+
+/datum/greyscale_config/sus_overalls/worn/digi
+	name = "Overalls (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
+
+/datum/greyscale_config/playsuit
+	name = "Playsuit"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/playsuit.json'
+
+/datum/greyscale_config/playsuit/worn
+	name = "Playsuit (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
+
+/datum/greyscale_config/playsuit/worn/digi
+	name = "Playsuit (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
+
+/datum/greyscale_config/camo_pants
+	name = "Camo Pants"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/camo_pants.json'
+
+/datum/greyscale_config/camo_pants/worn
+	name = "Camo Pants (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
+
+/datum/greyscale_config/camo_pants/worn/digi
+	name = "Camo Pants (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
+
+/datum/greyscale_config/big_pants
+	name = "'JUNCO' megacargo pants"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/big_pants.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/big_pants/big_pants.json'
+
+/datum/greyscale_config/big_pants/worn
+	name = "'JUNCO' megacargo pants (Worn)"
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/big_pants/big_pants_worn.json'
+
+/datum/greyscale_config/big_pants/worn/digi
+	name = "'JUNCO' megacargo pants (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
+
+/datum/greyscale_config/loose_pants
+	name = "Loose pants"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/loose_pants.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/loose_pants/loose_pants.json'
+
+/datum/greyscale_config/loose_pants/worn
+	name = "Loose pants (Worn)"
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/loose_pants/loose_pants_worn.json'
+
+/datum/greyscale_config/wide_leg
+	name = "Wide Pants"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/wide_leg.json'
+
+/datum/greyscale_config/wide_leg/worn
+	name = "Wide Pants (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing.dmi'
+
+/datum/greyscale_config/wide_leg/worn/digi
+	name = "Wide Pants (Worn, Digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/greyscale_clothing_digi.dmi'
+
+/datum/greyscale_config/sweater_greyscale_1
+	name = "Big Sweater"
+	icon_file = 'modular_zubbers/icons/obj/clothing/suits/greyscale_suits.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/suit/sweater/sweater.json'
+
+/datum/greyscale_config/sweater_greyscale_1/worn
+	name = "Big Sweater (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/greyscale_suits.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/suit/sweater/sweater.json'
+
+/datum/greyscale_config/sweater_greyscale_2
+	name = "Big Sweater With Bow"
+	icon_file = 'modular_zubbers/icons/obj/clothing/suits/greyscale_suits.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/suit/sweater/sweaterbow.json'
+
+/datum/greyscale_config/sweater_greyscale_2/worn
+	name = "Big Sweater With Bow (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/greyscale_suits.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/suit/sweater/sweaterbow.json'
+
+/datum/greyscale_config/fluffywintercoat
+	name = "Fluffy Coat"
+	icon_file = 'modular_zubbers/icons/obj/clothing/suits/greyscale_suits.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/suit/fluffywintercoat/coat.json'
+
+/datum/greyscale_config/fluffywintercoat/worn
+	name = "Fluffy Coat (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/greyscale_suits.dmi'
+
+/datum/greyscale_config/dagger_mantle
+	name = "'Dagger' Designer Mantle"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/greyscale_suits.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/neck/dagger_mantle/dagger_mantle.json'
+
+/datum/greyscale_config/dagger_mantle/worn
+	name = "'Dagger' Designer Mantle (Worn)"
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/neck/dagger_mantle/dagger_mantle_worn.json'
+///Greyscale clothing Nova port end
+
+// Aeri's Cheerleader Outfit
+// Sprites by Onule
+
+/datum/greyscale_config/ba_cheerleader
+	name = "BA Cheerleader Outfit"
+	icon_file = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/outfit.json'
+
+/datum/greyscale_config/ba_cheerleader/worn
+	name = "BA Cheerleader Outfit (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/outfit_worn.json'
+
+/datum/greyscale_config/ba_cheerleader/inhand_left
+	name = "BA Cheerleader Outfit (Left Hand)"
+	icon_file = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/inhand_left.json'
+
+/datum/greyscale_config/ba_cheerleader/inhand_right
+	name = "BA Cheerleader Outfit (Right Hand)"
+	icon_file = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/inhand_right.json'
+
+/datum/greyscale_config/ba_cheerleader_gloves
+	name = "BA Cheerleader Gloves"
+	icon_file = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/gloves.json'
+
+/datum/greyscale_config/ba_cheerleader_gloves/worn
+	name = "BA Cheerleader Gloves (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/gloves_worn.json'
+
+/datum/greyscale_config/ba_cheerleader_shoes
+	name = "BA Cheerleader Sneakers"
+	icon_file = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/shoes.json'
+
+/datum/greyscale_config/ba_cheerleader_shoes/worn
+	name = "BA Cheerleader Sneakers (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/under/ba_cheerleader/shoes_worn.json'
+
+/datum/greyscale_config/ba_cheerleader_shoes/worn/digi
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/ba_cheerleader_digi.dmi'

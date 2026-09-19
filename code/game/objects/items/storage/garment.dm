@@ -47,6 +47,7 @@
 	new /obj/item/clothing/under/rank/captain(src)
 	new /obj/item/clothing/under/rank/captain/skirt(src)
 	new /obj/item/clothing/under/rank/captain/parade(src)
+	new /obj/item/clothing/under/rank/captain/royal(src)
 	new /obj/item/clothing/suit/armor/vest/capcarapace(src)
 	new /obj/item/clothing/suit/armor/vest/capcarapace/captains_formal(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/captain(src)
@@ -56,6 +57,7 @@
 	new /obj/item/clothing/head/costume/crown/fancy(src)
 	new /obj/item/clothing/head/hats/caphat(src)
 	new /obj/item/clothing/head/hats/caphat/parade(src)
+	new /obj/item/clothing/head/hats/caphat/bicorne(src)
 	new /obj/item/clothing/neck/cloak/cap(src)
 	new /obj/item/clothing/shoes/laceup(src)
 	new /obj/item/storage/backpack/captain(src)
@@ -86,7 +88,7 @@
 	new /obj/item/clothing/suit/armor/vest/hop/hop_formal(src)
 	new /obj/item/clothing/neck/mantle/hopmantle(src)
 
-/obj/item/storage/bag/garment/hos/PopulateContents() /* BUBBER EDIT - OVERWRITTEN IN modular_zubbers\code\modules\security\sec_garment_overrides.dm
+/obj/item/storage/bag/garment/hos/PopulateContents()
 	new /obj/item/clothing/under/rank/security/head_of_security/skirt(src)
 	new /obj/item/clothing/under/rank/security/head_of_security/alt(src)
 	new /obj/item/clothing/under/rank/security/head_of_security/alt/skirt(src)
@@ -104,25 +106,8 @@
 	new /obj/item/clothing/head/hats/hos/cap(src)
 	new /obj/item/clothing/mask/gas/sechailer/swat(src)
 	new /obj/item/clothing/neck/cloak/hos(src)
-//Duplication from Commdrobe
-	new /obj/item/clothing/head/hats/warden/drill/hos(src)
-	new	/obj/item/clothing/under/rank/security/head_of_security/alt/roselia(src)
-	new	/obj/item/clothing/glasses/hud/security/sunglasses/gars/giga/roselia(src)
-	new	/obj/item/clothing/under/rank/security/head_of_security/parade(src)
-	new	/obj/item/clothing/under/rank/security/head_of_security/parade/female(src)
-	new	/obj/item/clothing/head/hats/hos/elofy(src)
-	new	/obj/item/clothing/suit/armor/hos/elofy(src)
-	new	/obj/item/clothing/gloves/elofy(src)
-	new	/obj/item/clothing/shoes/jackboots/elofy(src)
-	new	/obj/item/clothing/head/playbunnyears/hos(src)
-	new	/obj/item/clothing/under/rank/security/head_of_security/bunnysuit(src)
-	new	/obj/item/clothing/suit/armor/hos_tailcoat(src)
-	new /obj/item/clothing/head/hats/hos/beret/navyhos(src)
-	new /obj/item/clothing/suit/jacket/hos/blue(src)
-	new /obj/item/clothing/neck/mantle/hosmantle(src)
-	*/
 
-/obj/item/storage/bag/garment/warden/PopulateContents() /* BUBBER EDIT - OVERWRITTEN IN modular_zubbers\code\modules\security\sec_garment_overrides.dm
+/obj/item/storage/bag/garment/warden/PopulateContents()
 	new /obj/item/clothing/suit/armor/vest/warden(src)
 	new /obj/item/clothing/head/hats/warden(src)
 	new /obj/item/clothing/head/hats/warden/drill(src)
@@ -135,7 +120,6 @@
 	new /obj/item/clothing/gloves/kaza_ruk/sec(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/clothing/mask/gas/sechailer(src)
-	*/
 
 /obj/item/storage/bag/garment/research_director/PopulateContents()
 	new /obj/item/clothing/under/rank/rnd/research_director(src)

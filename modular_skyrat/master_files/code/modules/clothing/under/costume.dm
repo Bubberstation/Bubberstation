@@ -124,6 +124,10 @@
 	icon_state = "kimono"
 	body_parts_covered = CHEST|GROIN|ARMS
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
+	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/costume_digi.dmi'
+	worn_icon_teshari = 'modular_skyrat/master_files/icons/mob/clothing/species/teshari/uniform.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+
 
 /*
 *	CHRISTMAS CLOTHES

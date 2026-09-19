@@ -3,6 +3,10 @@
 	desc = "A tool that is used to not only create the conveyor sorters, but give lists to the conveyor sorters."
 	icon = 'modular_skyrat/modules/conveyor_sorter/icons/conveyor_sorter.dmi'
 	icon_state = "lister"
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	///the list of conveyor sorters spawned by
 	var/list/spawned_sorters = list()
 	///the list of things that are currently within the sorting list
@@ -166,6 +170,12 @@
 	name = "improved conveyor sorter lister"
 	desc = "A tool that is used to not only create the conveyor sorters, but give lists to the conveyor sorters."
 	icon_state = "lister_improved"
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	max_sorters = 8
 	max_items = 10
 	conveyor_type = /obj/effect/decal/conveyor_sorter/improved

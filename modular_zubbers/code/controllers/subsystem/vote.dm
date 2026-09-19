@@ -3,6 +3,8 @@
 	var/vote_reminder = FALSE
 	/// Has the vote reminder fired yet
 	var/reminder_fired = FALSE
+	/// Do we force open the panel for people who havent voted on our reminder?
+	var/force_open_panel_on_reminder = FALSE
 
 /datum/controller/subsystem/vote
 	dependencies = list(
@@ -37,6 +39,8 @@
 			SEND_SOUND(late_voter, sound(current_vote.vote_sound))
 
 		to_chat(late_voter, vote_font(fieldset_block("[current_vote.name] Vote", "It's time to make your choices! Type 'vote' or click <a href='byond://winset?command=vote'>here</a> to place your votes.", "boxed_message purple_box")))
+		if (current_vote.force_open_panel_on_reminder)
+			SSvote.ui_interact(late_voter.mob)
 
 /**
  * Ranked choice voting, where voters rank options in order of preference.

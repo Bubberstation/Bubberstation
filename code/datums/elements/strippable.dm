@@ -36,6 +36,9 @@
 /datum/element/strippable/proc/mouse_drop_onto(datum/source, atom/over, mob/user)
 	SIGNAL_HANDLER
 
+	if(SEND_SIGNAL(source, COMSIG_MOB_STRIP_MENU_OPEN, over, user) & COMPONENT_BLOCK_STRIP_MENU_OPEN)
+		return
+
 	if (user == source)
 		return
 	if (over != user)
@@ -56,12 +59,6 @@
 
 	if (!isnull(should_strip_proc_path) && !call(source, should_strip_proc_path)(user))
 		return
-
-	// Snowflake for mob scooping
-	if (isliving(source))
-		var/mob/living/mob = source
-		if (mob.can_be_held && (user.grab_state == GRAB_AGGRESSIVE) && (user.pulling == source))
-			return
 
 	var/datum/strip_menu/strip_menu = LAZYACCESS(strip_menus, source)
 
@@ -167,7 +164,7 @@
 	if(ishuman(source) && !is_silent) //SKYRAT EDIT ADDITION - THIEVING GLOVES ORIGINAL if(ishuman(source))
 		var/mob/living/carbon/human/victim_human = source
 		if(victim_human.key && !victim_human.client) // AKA braindead
-			if(victim_human.stat <= SOFT_CRIT && LAZYLEN(victim_human.afk_thefts) <= AFK_THEFT_MAX_MESSAGES)
+			if(!IS_UNCONSCIOUS(victim_human) && LAZYLEN(victim_human.afk_thefts) <= AFK_THEFT_MAX_MESSAGES)
 				var/list/new_entry = list(list(user.name, "tried unequipping your [item.name]", world.time))
 				LAZYADD(victim_human.afk_thefts, new_entry)
 
@@ -310,7 +307,7 @@
 
 /// A utility function for `/datum/strippable_item`s to start unequipping an item from a mob.
 /proc/start_unequip_mob(obj/item/item, mob/source, mob/user, strip_delay, hidden = FALSE)
-	if (!do_after(user, (strip_delay || item.strip_delay) * (HAS_TRAIT(user, TRAIT_STICKY_FINGERS) ? THIEVING_GLOVES_STRIP_SLOWDOWN : NORMAL_STRIP_SLOWDOWN), source, interaction_key = REF(item), hidden = hidden)) // SKYRAT EDIT CHANGE - ORIGINAL: if (!do_after(user, strip_delay || item.strip_delay, source, interaction_key = REF(item), hidden = hidden))
+	if (!do_after(user, (strip_delay || item.strip_delay) * (HAS_TRAIT(user, TRAIT_STICKY_FINGERS) ? THIEVING_GLOVES_STRIP_SLOWDOWN : NORMAL_STRIP_SLOWDOWN), source, interaction_key = REF(item), cog_icon = hidden ? null : 'icons/effects/progressbar.dmi')) // SKYRAT EDIT CHANGE - ORIGINAL: if (!do_after(user, strip_delay || item.strip_delay, source, interaction_key = REF(item), hidden = hidden))
 		return FALSE
 
 	return TRUE
@@ -333,11 +330,14 @@
 
 	/// A lazy list of user mobs to a list of strip menu keys that they're interacting with
 	var/list/interactions
+	/// Bubber variable - Primarily for Proteans.
+	var/needs_view = TRUE
 
-/datum/strip_menu/New(atom/movable/owner, datum/element/strippable/strippable)
+/datum/strip_menu/New(atom/movable/owner, datum/element/strippable/strippable, needs_view) // Bubber edit: needs_view arg
 	. = ..()
 	src.owner = owner
 	src.strippable = strippable
+	src.needs_view = needs_view // Bubber edit
 
 /datum/strip_menu/Destroy()
 	owner = null
@@ -520,7 +520,7 @@
 	return min(
 		ui_status_only_living(user, owner),
 		ui_status_user_has_free_hands(user, owner),
-		ui_status_user_is_adjacent(user, owner, allow_tk = FALSE),
+		ui_status_user_is_adjacent(user, owner, allow_tk = FALSE, viewcheck = needs_view), // Bubber edit: Needs_view arg
 		HAS_TRAIT(user, TRAIT_CAN_STRIP) ? UI_INTERACTIVE : UI_UPDATE,
 		max(
 			ui_status_user_is_conscious_and_lying_down(user),

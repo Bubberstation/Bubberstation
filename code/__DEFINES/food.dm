@@ -19,7 +19,8 @@
 #define BUGS (1<<18)
 #define GORE (1<<19)
 #define STONE (1<<20)
-#define BLOODY (1<<21) // SKYRAT EDIT - Hemophage Food
+#define EGG (1<<21)
+#define BLOODY (1<<22) // SKYRAT EDIT - Hemophage Food
 
 DEFINE_BITFIELD(foodtypes, list(
 	"MEAT" = MEAT,
@@ -43,6 +44,7 @@ DEFINE_BITFIELD(foodtypes, list(
 	"BUGS" = BUGS,
 	"GORE" = GORE,
 	"STONE" = STONE,
+	"EGG" = EGG,
 	"BLOODY" = BLOODY, // SKYRAT EDIT - Hemophage Food
 ))
 
@@ -69,6 +71,7 @@ DEFINE_BITFIELD(foodtypes, list(
 	"BUGS", \
 	"GORE", \
 	"STONE", \
+	"EGG", \
 	"BLOODY", /* SKYRAT EDIT - Hemophage Food */ \
 )
 
@@ -95,6 +98,7 @@ DEFINE_BITFIELD(foodtypes, list(
 	"Bugs", \
 	"Gore", \
 	"Rocks", \
+	"Eggs", \
 	"Bloody", /* SKYRAT EDIT - Hemophage Food */ \
 )
 
@@ -133,7 +137,7 @@ GLOBAL_ALIST_INIT(food_quality_description, alist(
 	FOOD_QUALITY_VERYGOOD = "very good",
 	FOOD_QUALITY_FANTASTIC = "fantastic",
 	FOOD_QUALITY_AMAZING = "amazing",
-	FOOD_QUALITY_TOP = "godlike",
+	FOOD_QUALITY_TOP = "divine",
 ))
 
 /// Weighted lists of crafted food buffs randomly given according to crafting_complexity unless the food has a specific buff

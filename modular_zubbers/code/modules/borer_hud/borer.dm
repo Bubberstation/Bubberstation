@@ -1,29 +1,13 @@
 /mob/living/basic/cortical_borer
 	hud_type = /datum/hud/borer
-///Hud type with targetting dol and a nutrition bar
-/datum/hud/borer/New(mob/living/owner)
+
+///Hud type with targetting doll and a nutrition bar
+/datum/hud/borer/initialize_screen_objects()
 	. = ..()
-	var/atom/movable/screen/using
-
-	action_intent = new /atom/movable/screen/combattoggle/flashy()
-	action_intent.hud = src
-	action_intent.icon = ui_style
-	action_intent.screen_loc = ui_combat_toggle
-	static_inventory += action_intent
-
-	using = new /atom/movable/screen/language_menu()
-	using.icon = ui_style
-	using.hud = src
-	using.update_appearance()
-	static_inventory += using
-
-	using = new /atom/movable/screen/navigate
-	using.hud = src
-	static_inventory += using
-
-	healthdoll = new /atom/movable/screen/healthdoll/living()
-	healthdoll.hud = src
-	infodisplay += healthdoll
+	add_screen_object(/atom/movable/screen/combattoggle/flashy, HUD_MOB_INTENTS, HUD_GROUP_INFO, ui_style, ui_basic_combat_toggle)
+	add_screen_object(/atom/movable/screen/language_menu, HUD_MOB_LANGUAGE_MENU, HUD_GROUP_STATIC, ui_style)
+	add_screen_object(/atom/movable/screen/navigate, HUD_MOB_NAVIGATE_MENU)
+	add_screen_object(/atom/movable/screen/healthdoll/living, HUD_MOB_HEALTHDOLL, HUD_GROUP_INFO)
 
 /mob/living/basic/cortical_borer/Life(seconds_per_tick, times_fired)
 	. = ..()
@@ -44,11 +28,12 @@
 		var/oxy = "<span style=color:blue>[human_host.oxyloss]</span>"
 		var/blood = "<span style=color:magenta>[human_host.blood_volume]</span>"
 		string += "[brute] | [burn] | [tox] | [oxy] | [blood]u"
-	if(hud_used?.action_intent)
-		hud_used.action_intent.maptext = MAPTEXT(string)
-		hud_used.action_intent.maptext_height = 400
-		hud_used.action_intent.maptext_width = 400
-		hud_used.action_intent.maptext_y = 64
-		hud_used.action_intent.maptext_x = -64
+	var/atom/movable/screen/combattoggle/action_intent = hud_used?.screen_objects[HUD_MOB_INTENTS]
+	if(action_intent)
+		action_intent.maptext = MAPTEXT(string)
+		action_intent.maptext_height = 400
+		action_intent.maptext_width = 400
+		action_intent.maptext_y = 64
+		action_intent.maptext_x = -64
 
 

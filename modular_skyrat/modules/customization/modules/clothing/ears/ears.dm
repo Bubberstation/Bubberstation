@@ -30,6 +30,8 @@
 	desc = "UNTZ UNTZ UNTZ"
 
 /datum/action/item_action/toggle_headphones/Trigger(trigger_flags)
+	if(!..())
+		return FALSE
 	var/obj/item/clothing/ears/headphones/H = target
 	if(istype(H))
 		H.toggle(owner)

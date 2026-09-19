@@ -19,6 +19,7 @@
 
 	outfit = /datum/outfit/job/blueshield
 	plasmaman_outfit = /datum/outfit/plasmaman/blueshield
+	akula_outfit = /datum/outfit/akula
 	display_order = JOB_DISPLAY_ORDER_BLUESHIELD
 	bounty_types = CIV_JOB_SEC
 
@@ -41,6 +42,17 @@
 	)
 
 	job_flags = STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS
+	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
+	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
+	is_hand_required = TRUE
+	alt_titles = list(
+		"Blueshield",
+		"Command Bodyguard",
+		"Executive Protection Agent",
+		"Command Security Specialist",
+		"Command Protection Officer",
+		"Henchman",
+	)
 
 /datum/outfit/job/blueshield
 	name = "Blueshield"
@@ -51,7 +63,7 @@
 	id = /obj/item/card/id/advanced/platinum
 	shoes = /obj/item/clothing/shoes/jackboots
 	ears = /obj/item/radio/headset/headset_bs/alt
-	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/guard/blueshield
 	implants = list(/obj/item/implant/mindshield)
 	backpack = /obj/item/storage/backpack/blueshield
 	satchel = /obj/item/storage/backpack/satchel/blueshield
@@ -81,4 +93,5 @@
 		/datum/computer_file/program/crew_manifest,
 		/datum/computer_file/program/robocontrol,
 		/datum/computer_file/program/radar/lifeline,
+		/datum/computer_file/program/faxbond,
 	)
