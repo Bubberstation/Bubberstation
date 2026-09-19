@@ -2,7 +2,6 @@
 	name = "breast pump"
 	icon = 'modular_zubbers/modules/modular_items/lewd_items/icons/breastpump.dmi'
 	icon_state = "Breastpump"
-	greyscale_config = /datum/greyscale_config/hypospray_mkii
 	desc = "A breast pump, designed to take beakers to help assist lactating patients."
 	w_class = WEIGHT_CLASS_SMALL
 	/// Only allowed to input beaker type objects
@@ -69,18 +68,6 @@
 	to_chat(user, span_warning("[src] is only able to hold one beaker!"))
 	return ITEM_INTERACT_BLOCKING
 
-
-
-/*
-// Must be used on self only, to prevent abuse
-/obj/item/reagent_containers/breastpump/attack_self(mob/user)
-	. = ..()
-	if(beaker)
-		beaker.attack_self(user)
-		return TRUE
-
-*/
-
 /obj/item/breastpump/proc/try_pump(atom/target, mob/user)
 	if(!target.reagents)
 		return FALSE
@@ -92,7 +79,6 @@
 
 	return TRUE
 
-// this is what syringes do so lets try to copy that lol
 /obj/item/breastpump/interact_with_atom(atom/target, mob/living/user, list/modifiers)
 	if(!target.reagents)
 		return NONE
