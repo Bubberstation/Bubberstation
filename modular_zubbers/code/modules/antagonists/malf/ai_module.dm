@@ -88,7 +88,6 @@
 		var/custom_law = tgui_input_text(owner_AI, "Override Laws", "Enter a custom law you wish to override with your own.", "", max_length = 128, multiline = TRUE)
 		if(custom_law)
 			chosen_laws += custom_law
-			i++
 		else if(!chosen_laws)
 			return
 		else
