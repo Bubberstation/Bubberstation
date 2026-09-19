@@ -1,8 +1,8 @@
 /obj/effect/overlay/damage_marker
 	icon = 'icons/effects/96x160.dmi'
-	plane = BALLOON_CHAT_PLANE
+	plane = GAME_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	alpha = 64
+	alpha = 0
 
 	var/mob/living/carbon/owner_mob
 
@@ -33,7 +33,7 @@
 
 	if(scale == 2)
 		var/image/blood = image('icons/effects/blood.dmi', icon_state = pick(splat))
-		blood.alpha = 180
+		blood.alpha = 120
 		blood.color = damage_display[damagetype]["colour"]
 		blood.filters = outline_filter(1, "#000000")
 		blood.layer = src.layer - 1
@@ -42,6 +42,6 @@
 //	var/word = pick(display["words"])
 	maptext = MAPTEXT_SPESSFONT("<span style='color:[display["colour"]];'>[ROUND_UP(damage)]</span>")
 
-	animate(src, pixel_z = rand(-64,64), pixel_w = rand(-64,64), time = 1 SECONDS, easing = BOUNCE_EASING, alpha = 255)
+	animate(src, pixel_z = rand(clamp(-32, -64), clamp(32, 64)), pixel_w = rand(clamp(-32, -64), clamp(32, 64)), time = 1 SECONDS, easing = BOUNCE_EASING, alpha = 200)
 	animate(alpha = 0, time = 0.5 SECONDS)
 	QDEL_IN(src, 1.5 SECONDS)
