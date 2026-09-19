@@ -139,3 +139,101 @@
 2026-09-12:
   Danielance:
   - bugfix: fixed some med/sci tailcoats being missing textured for digitgrade legs
+2026-09-13:
+  SomeCabbage:
+  - rscadd: Adds a foam force baton and sword. Avaliable from arcade machines, toy
+      vendors, cargo, and loadout selection.
+  - rscadd: Adds a special foam force sword to traitor uplinks for 2tc.
+  - rscadd: Adds a syndicate pneumatic cannon to traitor uplinks for 8tc.
+  - rscadd: Adds gatfruit seeds to botanist traitor uplinks for 15tc.
+  Swan:
+  - bugfix: Fixes being unable to narrate while concious
+  thegrb93:
+  - bugfix: Fix broken quantum lipstick
+2026-09-14:
+  Aeri:
+  - rscadd: Every departmental guard now spawns with their own HUDsunglasses. Solving
+      the parity issue of Engineering and science guards previously having no eyewear
+      at all.
+  - rscadd: The Captain now wears executive HUDsunglasses, a new steal objective.
+  - rscadd: Customs agents can appraise cargo and flag contraband and undeclared firearms
+      in containers.
+  - rscdel: Removed the permit HUDsunglasses.
+  - image: New sprites for the HUDsunglasses line.
+  - bugfix: The Automatic Appraisal NIFSoft no longer throws a runtime when its owner
+      is deleted.
+  Dragon Lee:
+  - rscadd: The chaplain can now roll the acolyte/heretic antagonist again.
+2026-09-15:
+  Aeri:
+  - bugfix: Hand markings now work without needing an arm marking, can be removed,
+      and no longer leak onto other characters.
+  Erbot34567:
+  - bugfix: Lycans and Cursekins are once again blacklisted from Entombed quirk
+  NanoCats:
+  - bugfix: Crates bought with a department budget can be opened by that department
+      again, instead of arriving locked to nobody.
+  - bugfix: Company imports can be ordered from the NT order app again.
+  - refactor: Migrated the leftover `/obj/item/device` objects to their proper paths.
+  Odairu:
+  - bugfix: fixes an undefined variable in hacked IPC status message
+  Vanilla1040:
+  - rscadd: Adds New Malf AI ability to hack/subvert a IPC/Synthetic to their minion
+      (Has its own Preference)
+2026-09-16:
+  Aeri:
+  - bugfix: resolves feature regression in the Cargo Teleporter
+  Odairu:
+  - bugfix: Crew monitors see dead people again
+  Swan:
+  - bugfix: fixes computers not connecting to one another properly
+2026-09-17:
+  ArrisFairburne:
+  - rscadd: Blacksmiths (should) now have dedicated dept. rooms in every map that
+      we are currently running
+  - rscadd: Nonlethal striking with the blacksmithing weapons now has a unique "handle
+      bash" animation, also they should look like they're swinging/stabbing in their
+      normal animations
+  - rscadd: Adds a new reagent forged baseball bat weapon.
+  - balance: Anvils now require titanium to make. (This prevents anvil creation from
+      being too easy via the most common material on station, while not being CBT
+      for offstation roles to obtain.)
+  - balance: Smithed gunbelts and sheaths are now belt-slot exclusive. (It was honestly
+      too much to have two of these at once.)
+  - balance: Buffed reagent imbuing into plate armor so it drains integ slower.
+  - rscadd: Anvils are now heavy and are slower to drag.
+  - rscadd: The blacksmithing roundstart wooden crate now includes leather and cloth
+      to help jumpstart blacksmith duties.
+  - bugfix: Fixes the "pull item from crafting bench with tongs" code so that you
+      actually can do that (was previously impossible due to a bug)
+  - refactor: Improved smithing tong code to update when items are moved in or out
+      of it (instead of manually changing the sprite)
+  - image: Changed sprites of the held forge weapons so that they are more visible
+  Swan:
+  - rscdel: removes the ability to add arc shielding to APCs, since apc arching was
+      disabled anyway
+2026-09-18:
+  Aeri:
+  - bugfix: MODsuit hardlight covers show up on tails, ears, wings and other parts
+      again.
+  - rscadd: Every MODsuit has its own hardlight color, and you can change it from
+      the MODsuit panel.
+  - bugfix: Entombed hardlight color choices no longer change every other Entombed
+      suit.
+  - bugfix: Resolved a minor issue where butts weren't migrated to behave like other
+      genitals
+  BingusTheClown:
+  - qol: changed offensive station name into Applesauce
+  Danielance:
+  - bugfix: fixed research jumpsuit digi sprites
+  NanoCats:
+  - balance: Reverted the Marked One / berserker armor nerf; it uses the stock upstream
+      values
+  Odairu:
+  - bugfix: round start AI shells have cells now
+  - bugfix: proteans die in the manner they were intended to again
+2026-09-19:
+  ibexgoetia:
+  - map: The Ancient Milsim Bitrunning Domain now longer has missing walls that cause
+      it to be spaced.
+  - map: The Void Raptor Boulder Machines in Cargo are now set to the proper direction.
