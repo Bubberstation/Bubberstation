@@ -60,6 +60,7 @@
 	RegisterSignal(user, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_change))
 	RegisterSignal(user, SIGNAL_ADDTRAIT(TRAIT_DEATHCOMA), PROC_REF(drain_capacitor))
 	RegisterSignal(user, COMSIG_CHANGELING_UPDATE_CAPACITOR_HUD, PROC_REF(on_hud_update_request))
+	RegisterSignal(user, COMSIG_CHANGELING_ADJUST_CAPACITOR, PROC_REF(on_capacitor_adjusted))
 	// Our own biology has adapted to shrug off the pulse we generate, same logic as the ninja suit's advanced EMP shield.
 	user.AddElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS)
 	var/mob/living/living_user = user
@@ -67,7 +68,7 @@
 	update_capacitor_hud(living_user)
 
 /datum/action/changeling/dissonant_shriek/Remove(mob/user)
-	UnregisterSignal(user, list(COMSIG_LIVING_LIFE, COMSIG_MOB_STATCHANGE, SIGNAL_ADDTRAIT(TRAIT_DEATHCOMA), COMSIG_CHANGELING_UPDATE_CAPACITOR_HUD))
+	UnregisterSignal(user, list(COMSIG_LIVING_LIFE, COMSIG_MOB_STATCHANGE, SIGNAL_ADDTRAIT(TRAIT_DEATHCOMA), COMSIG_CHANGELING_UPDATE_CAPACITOR_HUD, COMSIG_CHANGELING_ADJUST_CAPACITOR))
 	user.RemoveElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS)
 	var/mob/living/living_user = user
 	living_user.hud_used?.remove_screen_object(HUD_CHANGELING_CAPACITOR)
@@ -93,6 +94,12 @@
 /datum/action/changeling/dissonant_shriek/proc/drain_capacitor(mob/living/source)
 	SIGNAL_HANDLER
 	capacitor_charge = 0
+	update_capacitor_hud(source)
+
+/// Signal proc for something outside the power moving our charge, such as BZ burning it off.
+/datum/action/changeling/dissonant_shriek/proc/on_capacitor_adjusted(mob/living/source, amount)
+	SIGNAL_HANDLER
+	capacitor_charge = clamp(capacitor_charge + amount, 0, ORGANIC_CAPACITOR_MAX)
 	update_capacitor_hud(source)
 
 /// Signal proc for the HUD element asking to be redrawn, such as on mouse hover.
