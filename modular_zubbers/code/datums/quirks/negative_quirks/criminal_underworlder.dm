@@ -12,6 +12,6 @@
 	human_holder.mind.handle_exploitables()
 
 /datum/quirk/criminal_underworlder/post_add()
-	var/criminal_underworlder_policy = get_policy("[type]") || "Please note that while you may be [LOWER_TEXT(name)], this does NOT give you any additional right to attack people or cause chaos."
+	var/criminal_underworlder_policy = get_policy("[type]") || "Please note that while you may be a [LOWER_TEXT(name)], this does NOT give you any additional right to attack people or cause chaos."
 	// We shouldn't need this, but it prevents people using it as a dumb excuse in ahelps.
 	to_chat(quirk_holder, span_big(span_info(criminal_underworlder_policy)))
