@@ -132,8 +132,10 @@
 		if(JOB_UNAVAILABLE_SLOTFULL)
 			return "[jobtitle] is already filled to capacity."
 		//SKYRAT EDIT ADDITION
-		if(JOB_UNAVAILABLE_QUIRK)
-			return "[jobtitle] is restricted due to your selected quirks."
+		// BUBBER EDIT REMOVAL START - quirks no longer gate jobs
+		//if(JOB_UNAVAILABLE_QUIRK)
+		//	return "[jobtitle] is restricted due to your selected quirks."
+		// BUBBER EDIT REMOVAL END
 		if(JOB_UNAVAILABLE_LANGUAGE)
 			return "[jobtitle] is restricted due to your selected languages."
 		if(JOB_UNAVAILABLE_SPECIES)
@@ -144,10 +146,12 @@
 		if(JOB_UNAVAILABLE_FLAVOUR_SILICON)
 			return "[jobtitle] requires you to have [CONFIG_GET(number/silicon_flavor_text_character_requirement)] characters of Silicon Flavor Text. Go to the character setup and write more."
 		//BUBBER EDIT END: Silicon flavor text
-		if(JOB_UNAVAILABLE_AUGMENT)
-			return "[jobtitle] is restricted due to your selected body augments."
-		if(JOB_UNAVAILABLE_NOHANDS)
-			return "[jobtitle] requires at least one hand."
+		// BUBBER EDIT REMOVAL START - augments and missing limbs no longer gate jobs
+		//if(JOB_UNAVAILABLE_AUGMENT)
+		//	return "[jobtitle] is restricted due to your selected body augments."
+		//if(JOB_UNAVAILABLE_NOHANDS)
+		//	return "[jobtitle] requires at least one hand."
+		// BUBBER EDIT REMOVAL END
 		//SKYRAT EDIT END
 		if(JOB_UNAVAILABLE_ANTAG_INCOMPAT)
 			return "[jobtitle] is not compatible with some antagonist role assigned to you."
@@ -179,8 +183,10 @@
 	//SKYRAT EDIT ADDITION
 	if(!job.has_required_languages(client.prefs))
 		return JOB_UNAVAILABLE_LANGUAGE
-	if(job.has_banned_quirk(client.prefs))
-		return JOB_UNAVAILABLE_QUIRK
+	// BUBBER EDIT REMOVAL START - quirks no longer gate jobs
+	//if(job.has_banned_quirk(client.prefs))
+	//	return JOB_UNAVAILABLE_QUIRK
+	// BUBBER EDIT REMOVAL END
 	if(job.has_banned_species(client.prefs))
 		return JOB_UNAVAILABLE_SPECIES
 	//SKYRAT EDIT END

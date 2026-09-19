@@ -207,7 +207,6 @@
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
 	akula_outfit = /datum/outfit/akula/security_officer
-	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 	alt_titles = list(
 		"Science Guard",
 		"Research Guard",
@@ -319,7 +318,6 @@
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
 	akula_outfit = /datum/outfit/akula/security_officer
-	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 	alt_titles = list(
 		"Orderly",
 		"Medical Guard",
@@ -438,7 +436,6 @@
 		"Engineering Guard",
 		"Atmospheric Security",
 	)
-	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 
 /datum/outfit/job/engineering_guard
 	name = "Engineering Guard"
@@ -546,7 +543,6 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
-	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 	akula_outfit = /datum/outfit/akula/security_officer
 	alt_titles = list(
 		"Customs Agent",
@@ -653,7 +649,6 @@
 	)
 
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
-	banned_quirks = list(GUARD_RESTRICTED_QUIRKS)
 	akula_outfit = /datum/outfit/akula/security_officer
 	alt_titles = list(
 		"Bouncer",

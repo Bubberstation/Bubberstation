@@ -38,8 +38,6 @@
 	)
 
 	job_flags = STATION_JOB_FLAGS | JOB_BOLD_SELECT_TEXT | HEAD_OF_STAFF_JOB_FLAGS
-	banned_quirks = list(HEAD_RESTRICTED_QUIRKS)
-	is_hand_required = TRUE
 	alt_titles = list(
 		"Nanotrasen Consultant",
 		"Nanotrasen Advisor",
