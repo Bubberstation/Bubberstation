@@ -732,6 +732,14 @@
 	icon_file = 'modular_zubbers/icons/obj/weapons/guard_baton.dmi'
 	json_config = 'code/datums/greyscale/json_configs/guard_baton.json'
 
+/datum/greyscale_config/guard_baton/inhand_left
+	name = "Guard Baton (Left Hand)"
+	icon_file = 'modular_zubbers/icons/mob/inhands/guard_baton_lefthand.dmi'
+
+/datum/greyscale_config/guard_baton/inhand_right
+	name = "Guard Baton (Right Hand)"
+	icon_file = 'modular_zubbers/icons/mob/inhands/guard_baton_righthand.dmi'
+
 /datum/atom_skin/guard_baton
 	abstract_type = /datum/atom_skin/guard_baton
 	change_base_icon_state = TRUE
@@ -753,9 +761,15 @@
 	icon_state = "modernbaton" // BUBBER EDIT CHANGE - KATGUARDS
 	base_icon_state = "modernbaton" // BUBBER EDIT CHANGE - KATGUARDS
 	greyscale_config = /datum/greyscale_config/guard_baton // BUBBER EDIT ADDITION - KATGUARDS
+	// BUBBER EDIT ADDITION START - KATGUARDS - the baton carries its colours into the hand too
+	greyscale_config_inhand_left = /datum/greyscale_config/guard_baton/inhand_left
+	greyscale_config_inhand_right = /datum/greyscale_config/guard_baton/inhand_right
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/guard_baton_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/guard_baton_righthand.dmi'
+	// BUBBER EDIT ADDITION END
 	/// BUBBER EDIT ADDITION - KATGUARDS - department handle, conductive tip, electric halo. Subtypes override the first colour.
 	greyscale_colors = "#999999#C7CBD6#78C8FF"
-	base_inhand_state = "stunbaton"
+	base_inhand_state = "guardbaton_inhand" // BUBBER EDIT CHANGE - KATGUARDS - Original: "stunbaton"
 	var/list/valid_areas = list()
 	var/emagged = FALSE
 	var/non_departmental_uses_left = 4
