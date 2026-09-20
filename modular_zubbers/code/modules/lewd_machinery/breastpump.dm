@@ -40,9 +40,6 @@
 	playsound(loc, 'sound/items/weapons/empty.ogg', 50, 1)
 
 /obj/item/breastpump/proc/insert_container(obj/item/new_container, mob/living/user)
-	if(!is_type_in_list(new_container, allowed_containers))
-		to_chat(user, span_notice("[src] doesn't accept this type of container."))
-		return FALSE
 	var/atom/quickswap_loc = new_container.loc
 	if(!user.transferItemToLoc(new_container, src))
 		return FALSE
@@ -58,6 +55,7 @@
 
 /obj/item/breastpump/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!is_type_in_list(tool, allowed_containers))
+		to_chat(user, span_notice("[src] doesn't accept this type of container."))
 		return NONE
 	if(isnull(container) || quickload)
 		insert_container(tool, user)
