@@ -7,6 +7,7 @@
 	earliest_start = 40 MINUTES
 	description = "Syndicate goons appear from a drop pod and attack a targeted player."
 	tags = list(TAG_COMBAT, TAG_NPC_ANTAG)
+	track = EVENT_TRACK_MODERATE
 
 ///Spawns a cargo pod containing a random cargo supply pack on a random area of the station
 /datum/round_event/syndicate_assassination_attempt
@@ -94,6 +95,7 @@
 	max_occurrences = 1
 	description = "Syndicate goons appear from a drop pod and attack a targeted player with hammers."
 	tags = list(TAG_COMBAT, TAG_NPC_ANTAG)
+	track = EVENT_TRACK_MODERATE
 
 /datum/round_event/syndicate_assassination_attempt/hammers
 	potential_assassins = list(

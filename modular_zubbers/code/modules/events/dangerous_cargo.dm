@@ -3,7 +3,7 @@
 /datum/round_event_control/stray_cargo/ape_escape
 	name = "Escaped Gorilla Pod"
 	typepath = /datum/round_event/stray_cargo/ape_escape
-	weight = 2
+	weight = 1
 	min_players = 30
 	max_occurrences = 1
 	earliest_start = 45 MINUTES
@@ -11,6 +11,7 @@
 	admin_setup = list(/datum/event_admin_setup/set_location/stray_cargo,)
 	category = EVENT_CATEGORY_ENTITIES
 	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_NPC_ANTAG)
+	track = EVENT_TRACK_MODERATE
 
 /datum/round_event/stray_cargo/ape_escape
 	announce_when = 0
@@ -48,6 +49,7 @@
 	admin_setup = list(/datum/event_admin_setup/set_location/stray_cargo,)
 	category = EVENT_CATEGORY_ENTITIES
 	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_NPC_ANTAG, TAG_DESTRUCTIVE)
+	track = EVENT_TRACK_MODERATE
 
 /datum/round_event/stray_cargo/syndie_bombsquad
 	announce_when = 0

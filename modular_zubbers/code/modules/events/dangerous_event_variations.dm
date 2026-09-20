@@ -9,6 +9,7 @@
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 6
 	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_NPC_ANTAG)
+	track = EVENT_TRACK_MODERATE
 
 /datum/round_event/vent_clog/extreme/setup()
 	. = ..()
