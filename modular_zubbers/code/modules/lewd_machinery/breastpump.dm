@@ -8,15 +8,13 @@
 	var/list/allowed_containers = list(/obj/item/reagent_containers/cup/beaker)
 	/// The presently-inserted beaker.
 	var/obj/item/reagent_containers/cup/beaker/beaker
-	/// Flags used by the injection
+	/// Flags used by the injection/draw
 	var/inject_flags = NONE
-
 	/// Can you hotswap beakers? - Yes
 	var/quickload = TRUE
 	/// Does it penetrate clothing? - We probably want it to be used with clothing
 	var/penetrates = null
-	/// The original icon file where our overlays reside.
-	var/original_icon = 'modular_zubbers/icons/obj/lewd.dmi'
+
 
 /obj/item/breastpump/Initialize(mapload)
 	. = ..()
