@@ -1,5 +1,5 @@
 /datum/storyteller/default
-	name = "LV2 Events"
+	name = "LV2 Events (Default Andy)"
 	desc = "This is the default Storyteller, and the comparison point for every other Storyteller. \
 	It's a midpoint between the other event storytellers. Best for an average, varied experience."
 	welcome_text = "If I chopped you up in a meat grinder..."
