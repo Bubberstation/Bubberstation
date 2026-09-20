@@ -10,6 +10,15 @@
 	AddElement(/datum/element/repackable, repacked_type, 1 SECONDS)
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
 
+// Our icon file names the panel states without the material suffix that TG's vis_contents panel overlays ask for
+/obj/machinery/power/solar/deployable/add_panel_overlay(icon_state, z_offset)
+	return ..(replacetext(icon_state, "_glass", ""), z_offset)
+
+/obj/machinery/power/solar/deployable/update_overlays()
+	. = ..()
+	panel.icon_state = "solar_panel[(machine_stat & BROKEN) ? "-b" : null]"
+	panel_edge.icon_state = "solar_panel[(machine_stat & BROKEN) ? "-b" : "_edge"]"
+
 /obj/machinery/power/solar/deployable/crowbar_act(mob/user, obj/item/I)
 	return
 

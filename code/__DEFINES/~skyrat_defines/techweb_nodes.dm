@@ -4,6 +4,7 @@
 #define TECHWEB_NODE_BORG_SHAPESHIFTER "borg_shapeshifter"
 #define TECHWEB_NODE_CARGO_TELEPORTER "cargoteleporter"
 #define TECHWEB_NODE_COLONY_APPLIANCES "colony_fabricator_appliances"
+#define TECHWEB_NODE_COLONY_CONTRABAND "colony_fabricator_contraband" // BUBBER EDIT ADDITION - hacked RCF designs
 #define TECHWEB_NODE_COLONY_FLATPACKS "colony_fabricator_flatpacks"
 #define TECHWEB_NODE_COLONY_STRUCTURES "colony_fabricator_structures"
 #define TECHWEB_NODE_COLONY_TOOLS "colony_fabricator_tools"

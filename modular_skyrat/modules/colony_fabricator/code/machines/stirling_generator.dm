@@ -49,6 +49,7 @@
 
 
 /obj/machinery/power/stirling_generator/Destroy()
+	QDEL_NULL(soundloop)
 	QDEL_NULL(connected_chamber)
 	return ..()
 
@@ -85,7 +86,7 @@
 
 /obj/machinery/power/stirling_generator/process()
 	var/power_output = round(current_power_generation)
-	add_avail(power_output)
+	add_avail(power_to_energy(power_output))
 	var/new_icon_state = (power_output ? "stirling_on" : "stirling")
 	icon_state = new_icon_state
 	if(soundloop.is_active() && !power_output)
@@ -116,10 +117,6 @@
 	SEND_SIGNAL(src, COMSIG_MACHINERY_DEFAULT_ROTATE_WRENCH, user, wrench)
 	return TRUE
 
-
-/obj/machinery/power/stirling_generator/Destroy()
-	QDEL_NULL(connected_chamber)
-	return ..()
 
 
 // Item for creating stirling generators
