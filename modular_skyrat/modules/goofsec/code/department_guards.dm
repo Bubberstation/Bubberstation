@@ -732,13 +732,15 @@
 	icon_file = 'modular_zubbers/icons/obj/weapons/guard_baton.dmi'
 	json_config = 'code/datums/greyscale/json_configs/guard_baton.json'
 
-/datum/greyscale_config/guard_baton/inhand_left
+/datum/greyscale_config/guard_baton_inhand_left
 	name = "Guard Baton (Left Hand)"
 	icon_file = 'modular_zubbers/icons/mob/inhands/guard_baton_lefthand.dmi'
+	json_config = 'code/datums/greyscale/json_configs/guard_baton_inhand.json'
 
-/datum/greyscale_config/guard_baton/inhand_right
+/datum/greyscale_config/guard_baton_inhand_right
 	name = "Guard Baton (Right Hand)"
 	icon_file = 'modular_zubbers/icons/mob/inhands/guard_baton_righthand.dmi'
+	json_config = 'code/datums/greyscale/json_configs/guard_baton_inhand.json'
 
 /datum/atom_skin/guard_baton
 	abstract_type = /datum/atom_skin/guard_baton
@@ -762,8 +764,8 @@
 	base_icon_state = "modernbaton" // BUBBER EDIT CHANGE - KATGUARDS
 	greyscale_config = /datum/greyscale_config/guard_baton // BUBBER EDIT ADDITION - KATGUARDS
 	// BUBBER EDIT ADDITION START - KATGUARDS - the baton carries its colours into the hand too
-	greyscale_config_inhand_left = /datum/greyscale_config/guard_baton/inhand_left
-	greyscale_config_inhand_right = /datum/greyscale_config/guard_baton/inhand_right
+	greyscale_config_inhand_left = /datum/greyscale_config/guard_baton_inhand_left
+	greyscale_config_inhand_right = /datum/greyscale_config/guard_baton_inhand_right
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/guard_baton_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/guard_baton_righthand.dmi'
 	// BUBBER EDIT ADDITION END
