@@ -5,9 +5,9 @@
 	desc = "A breast pump, designed to take beakers to help assist lactating patients."
 	w_class = WEIGHT_CLASS_SMALL
 	/// Only allowed to input beaker type objects
-	var/list/allowed_containers = list(/obj/item/reagent_containers/cup/beaker)
+	var/list/allowed_containers = list(/obj/item/reagent_containers/cup/beaker, /obj/item/reagent_containers/cup/glass)
 	/// The presently-inserted beaker.
-	var/obj/item/reagent_containers/cup/beaker/beaker
+	var/obj/item/reagent_containers/cup/container
 	/// Flags used by the injection/draw
 	var/inject_flags = NONE
 	/// Can you hotswap beakers? - Yes
@@ -22,48 +22,47 @@
 
 /obj/item/breastpump/examine(mob/user)
 	. = ..()
-	if(beaker)
-		. += "[beaker] contains [beaker.reagents.total_volume]u of liquids."
+	if(container)
+		. += "[container] contains [container.reagents.total_volume]u of liquids."
 	else
-		. += "It has no beaker loaded in."
+		. += "It has no container loaded in."
 
-/obj/item/breastpump/proc/unload_beaker(obj/object, mob/user)
-	if((istype(object, /obj/item/reagent_containers/cup/beaker)))
-		var/obj/item/reagent_containers/cup/beaker/container = object
-		container.forceMove(user.loc)
-		user.put_in_hands(container)
-		to_chat(user, span_notice("You remove [object] from [src]."))
-		beaker = null
-		update_icon()
-		playsound(loc, 'sound/items/weapons/empty.ogg', 50, 1)
-	else
-		to_chat(user, span_notice("This beaker isn't loaded!"))
+/obj/item/breastpump/proc/unload_container(obj/object, mob/user)
+	if(!object)
+		to_chat(user, span_notice("This container isn't loaded!"))
 		return
 
-/obj/item/breastpump/proc/insert_beaker(obj/item/new_beaker, mob/living/user)
-	if(!is_type_in_list(new_beaker, allowed_containers))
-		to_chat(user, span_notice("[src] doesn't accept this type of beaker."))
+	container.forceMove(user.loc)
+	user.put_in_hands(container)
+	to_chat(user, span_notice("You remove [object] from [src]."))
+	container = null
+	update_icon()
+	playsound(loc, 'sound/items/weapons/empty.ogg', 50, 1)
+
+/obj/item/breastpump/proc/insert_container(obj/item/new_container, mob/living/user)
+	if(!is_type_in_list(new_container, allowed_containers))
+		to_chat(user, span_notice("[src] doesn't accept this type of container."))
 		return FALSE
-	var/atom/quickswap_loc = new_beaker.loc
-	if(!user.transferItemToLoc(new_beaker, src))
+	var/atom/quickswap_loc = new_container.loc
+	if(!user.transferItemToLoc(new_container, src))
 		return FALSE
-	if(!isnull(beaker))
+	if(!isnull(container))
 		if(quickswap_loc == user)
-			user.put_in_hands(beaker)
+			user.put_in_hands(container)
 		else
-			beaker.forceMove(quickswap_loc)
-	beaker = new_beaker
-	user.visible_message(span_notice("[user] has loaded a beaker into [src]."), span_notice("You have loaded [beaker] into [src]."))
+			container.forceMove(quickswap_loc)
+	container = new_container
+	user.visible_message(span_notice("[user] has loaded a continer into [src]."), span_notice("You have loaded [container] into [src]."))
 	playsound(loc, 'sound/items/weapons/autoguninsert.ogg', 35, 1)
 	update_appearance()
 
 /obj/item/breastpump/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	if(!istype(tool, /obj/item/reagent_containers/cup/beaker))
+	if(!is_type_in_list(tool, allowed_containers))
 		return NONE
-	if(isnull(beaker) || quickload)
-		insert_beaker(tool, user)
+	if(isnull(container) || quickload)
+		insert_container(tool, user)
 		return ITEM_INTERACT_SUCCESS
-	to_chat(user, span_warning("[src] is only able to hold one beaker!"))
+	to_chat(user, span_warning("[src] is only able to hold one container!"))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/breastpump/proc/try_pump(atom/target, mob/user)
@@ -80,8 +79,8 @@
 /obj/item/breastpump/interact_with_atom(atom/target, mob/living/user, list/modifiers)
 	if(!target.reagents)
 		return NONE
-	if(!src.beaker)
-		to_chat(user, span_warning("No beaker loaded!"))
+	if(!src.container)
+		to_chat(user, span_warning("No container loaded!"))
 		return ITEM_INTERACT_BLOCKING
 	if(!try_pump(target, user))
 		return ITEM_INTERACT_BLOCKING
@@ -91,7 +90,7 @@
 
 	SEND_SIGNAL(target, COMSIG_LIVING_TRY_SYRINGE_WITHDRAW, user)
 
-	if(src.beaker.reagents.holder_full())
+	if(src.container.reagents.holder_full())
 		to_chat(user, span_notice("[src] is full."))
 		return ITEM_INTERACT_BLOCKING
 
@@ -111,20 +110,20 @@
 		fluid_multiplier = 5
 
 	to_chat(user, span_notice("[src] whirs.."))
-	var/trans = breasts.reagents.trans_to(src.beaker, 1 * fluid_multiplier, transferred_by = user) // transfer from, transfer to - who cares?
+	var/trans = breasts.reagents.trans_to(src.container, 1 * fluid_multiplier, transferred_by = user) // transfer from, transfer to - who cares?
 	if(trans)
-		to_chat(user, span_notice("You fill [src.beaker] with [trans] units of the solution. It now contains [src.beaker.reagents.total_volume] units."))
+		to_chat(user, span_notice("You fill [src.container] with [trans] units of the solution. It now contains [src.container.reagents.total_volume] units."))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/breastpump/attack_hand(mob/living/user)
 	if(user && loc == user && user.is_holding(src))
 		if(user.incapacitated)
 			return
-		else if(!beaker)
+		else if(!container)
 			. = ..()
 			return
 		else
-			unload_beaker(beaker,user)
+			unload_container(container,user)
 	else
 		. = ..()
 
