@@ -10,7 +10,7 @@
 	description = "Sends one violent gorilla to the station."
 	admin_setup = list(/datum/event_admin_setup/set_location/stray_cargo,)
 	category = EVENT_CATEGORY_ENTITIES
-	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_NPC_ANTAG)
+	tags = list(TAG_COMBAT, TAG_NPC_ANTAG)
 	track = EVENT_TRACK_MODERATE
 
 /datum/round_event/stray_cargo/ape_escape
