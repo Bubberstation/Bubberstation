@@ -742,6 +742,11 @@
 	icon_file = 'modular_zubbers/icons/mob/inhands/guard_baton_righthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/guard_baton_inhand.json'
 
+/datum/greyscale_config/guard_baton_worn
+	name = "Guard Baton (Worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/guard_baton_worn.dmi'
+	json_config = 'code/datums/greyscale/json_configs/guard_baton_worn.json'
+
 /datum/atom_skin/guard_baton
 	abstract_type = /datum/atom_skin/guard_baton
 	change_base_icon_state = TRUE
@@ -768,6 +773,9 @@
 	greyscale_config_inhand_right = /datum/greyscale_config/guard_baton_inhand_right
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/guard_baton_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/guard_baton_righthand.dmi'
+	greyscale_config_worn = /datum/greyscale_config/guard_baton_worn
+	worn_icon = 'modular_zubbers/icons/mob/clothing/guard_baton_worn.dmi'
+	worn_icon_state = "guardbaton_worn"
 	// BUBBER EDIT ADDITION END
 	/// BUBBER EDIT ADDITION - KATGUARDS - department handle, conductive tip, electric halo. Subtypes override the first colour.
 	greyscale_colors = "#999999#C7CBD6#78C8FF"
@@ -780,6 +788,7 @@
 /obj/item/melee/baton/security/loaded/departmental/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/guard_baton)
+	AddElement(/datum/element/gags_recolorable)
 // BUBBER EDIT ADDITION END
 
 /obj/item/melee/baton/security/loaded/departmental/pre_attack(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
