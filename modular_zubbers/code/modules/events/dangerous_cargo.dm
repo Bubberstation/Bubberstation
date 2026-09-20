@@ -78,10 +78,10 @@
 
 ///Apply the syndicate pod skin
 /datum/round_event/stray_cargo/syndie_bombsquad/make_pod()
-	var/obj/structure/closet/supplypod/S = new
-	S.set_style(/datum/pod_style/syndicate)
-	fill_pod(S)
-	return S
+	var/obj/structure/closet/supplypod/mypod = new
+	mypod.set_style(/datum/pod_style/syndicate)
+	fill_pod(mypod)
+	return mypod
 
 ///don't use this; instead use custom logic to put syndies in the pod
 /datum/round_event/stray_cargo/syndie_bombsquad/get_contents()
