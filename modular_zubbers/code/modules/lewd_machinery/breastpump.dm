@@ -1,7 +1,7 @@
 /obj/item/breastpump
 	name = "breast pump"
-	icon = 'modular_zubbers/modules/modular_items/lewd_items/icons/breastpump.dmi'
-	icon_state = "Breastpump"
+	icon = 'modular_zubbers/icons/obj/lewd.dmi'
+	icon_state = "breastpump"
 	desc = "A breast pump, designed to take beakers to help assist lactating patients."
 	w_class = WEIGHT_CLASS_SMALL
 	/// Only allowed to input beaker type objects
@@ -16,7 +16,7 @@
 	/// Does it penetrate clothing? - We probably want it to be used with clothing
 	var/penetrates = null
 	/// The original icon file where our overlays reside.
-	var/original_icon = 'modular_zubbers/modules/modular_items/lewd_items/icons/breastpump.dmi'
+	var/original_icon = 'modular_zubbers/icons/obj/lewd.dmi'
 
 /obj/item/breastpump/Initialize(mapload)
 	. = ..()
