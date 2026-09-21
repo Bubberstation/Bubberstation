@@ -56,7 +56,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// The trait which is applied when a `slick skin` trait haver actually gets wet_stacks
 #define TRAIT_SLIPPERY "slippery"
 
-/// The trait assigned to players who wish to use Akula gear without the benfits of TRAIT_SLIPPERY
+/// The trait that is used by the "moist_skin" quirk to prevent stacking of water particles
 #define TRAIT_MOIST_SKIN "moist_skin"
 
 /// When someone is fixing electrical damage, this trait is set and prevents the wound from worsening.
