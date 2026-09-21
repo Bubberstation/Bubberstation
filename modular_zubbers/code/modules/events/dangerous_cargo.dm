@@ -118,10 +118,10 @@
 
 /obj/machinery/syndicatebomb/ezbomb
 	name = "Syndicate EZ-Bomb"
-	desc = "An off-the-shelf bomb stolen from Nanotrasen. Whoever assembled this did a shitty job; the wires follow a textbook example of a bomb, so anyone with a passing knowledge in circuitry knows how to disassemble this..."
+	desc = "An off-the-shelf bomb stolen from Nanotrasen. An entry-level engineer can defuse this by snipping the 'Activate' wire."
 	color = "#33bb33"
-	minimum_timer = 300 // 300 seconds
-	timer_set = 300
+	minimum_timer = 500
+	timer_set = 500
 	anchored = TRUE
 
 /obj/machinery/syndicatebomb/ezbomb/Initialize(mapload)
