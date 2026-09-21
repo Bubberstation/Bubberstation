@@ -400,6 +400,10 @@
 
 /obj/item/mod/control/on_outfit_equip(mob/living/carbon/human/outfit_wearer, visuals_only, item_slot)
 	. = ..()
+	//Bubber Edit Start
+	if(src.no_outfit_deploy)
+		return
+	//Bubber Edit End
 	quick_activation()
 
 /obj/item/mod/control/doStrip(mob/stripper, mob/owner)
