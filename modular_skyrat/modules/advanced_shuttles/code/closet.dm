@@ -147,6 +147,11 @@
 /obj/structure/closet/firecloset/wall/empty/PopulateContents()
 	return
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/closet/generic/wall, 28)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/closet/emcloset/wall, 28)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/closet/firecloset/wall, 28)
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/closet/secure_closet/wall, 28)
+
 //Wallmounts, for rebuilding the wall lockers above
 /obj/item/wallframe/closet
 	name = "wall mounted closet"
