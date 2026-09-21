@@ -37,9 +37,9 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	var/list/blacklist = list()
 	for(var/datum/job/job as anything in SSjob.all_occupations)
-		var/protected = (job.job_flags & JOB_ANTAG_PROTECTED)
-		var/blacklisted = (job.job_flags & JOB_ANTAG_BLACKLISTED)
-		if((CONFIG_GET(flag/protect_roles_from_antagonist) && protected) || blacklisted)
+		var/is_protected = (job.job_flags & JOB_ANTAG_PROTECTED)
+		var/is_blacklisted = (job.job_flags & JOB_ANTAG_BLACKLISTED)
+		if(is_blacklisted || (CONFIG_GET(flag/protect_roles_from_antagonist) && is_protected))
 			blacklist |= job.title
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_roles |= JOB_ASSISTANT
