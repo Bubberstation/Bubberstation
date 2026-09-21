@@ -2,18 +2,16 @@
 	name = "breast pump"
 	icon = 'modular_zubbers/icons/obj/lewd.dmi'
 	icon_state = "breastpump"
-	desc = "A breast pump, designed to take beakers to help assist lactating patients."
+	desc = "A breast pump, designed to take beakers or cups to help assist lactating patients."
 	w_class = WEIGHT_CLASS_SMALL
-	/// Only allowed to input beaker type objects
+	/// Only allowed to input beaker or cup type objects
 	var/list/allowed_containers = list(/obj/item/reagent_containers/cup/beaker, /obj/item/reagent_containers/cup/glass)
-	/// The presently-inserted beaker.
+	/// The presently-inserted container.
 	var/obj/item/reagent_containers/cup/container
 	/// Flags used by the injection/draw
 	var/inject_flags = NONE
 	/// Can you hotswap beakers? - Yes
 	var/quickload = TRUE
-	/// Does it penetrate clothing? - We probably want it to be used with clothing
-	var/penetrates = null
 
 
 /obj/item/breastpump/Initialize(mapload)
@@ -49,7 +47,7 @@
 		else
 			container.forceMove(quickswap_loc)
 	container = new_container
-	user.visible_message(span_notice("[user] has loaded a continer into [src]."), span_notice("You have loaded [container] into [src]."))
+	user.visible_message(span_notice("[user] has loaded a container into [src]."), span_notice("You have loaded [container] into [src]."))
 	playsound(loc, 'sound/items/weapons/autoguninsert.ogg', 35, 1)
 	update_appearance()
 
@@ -95,11 +93,11 @@
 	var/obj/item/organ/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
 
 	if (breasts == null)
-		to_chat(user, span_notice("[user]'s does not have compatible breasts."))
+		to_chat(user, span_notice("[user] does not have compatible breasts."))
 		return ITEM_INTERACT_BLOCKING
 
 	if (breasts.reagents.total_volume <= 0)
-		to_chat(user, span_notice("[user]'s breast's are empty."))
+		to_chat(user, span_notice("[user]'s breasts are empty."))
 		return ITEM_INTERACT_BLOCKING
 
 	var/fluid_multiplier = 3
