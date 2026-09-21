@@ -250,7 +250,7 @@
 	typepath = /datum/round_event/droppod_airraid/syndicate
 	weight = 6
 	max_occurrences = 2
-	min_players = 35
+	min_players = 30
 	admin_setup = list()
 	//do this later admin_setup = list(/datum/event_admin_setup/multiple_choice/droppod_troopers)
 	category = EVENT_CATEGORY_ENTITIES
@@ -319,7 +319,7 @@
 	time_to_next_wave_droppod_factor = 50
 
 /datum/round_event/droppod_airraid/syndicate/lesser/announce(fake)
-	priority_announce("Alert! The Syndicate is sending a skirmishing party to [GLOB.station_name]. Please brace for impact.", "Incoming Enemy Scouts", 'sound/announcer/alarm/airraid.ogg', color_override = "orange")
+	priority_announce("Alert! The Syndicate is sending a skirmishing party to [GLOB.station_name]. Please brace for impact.", "Incoming Enemy Scouts", sound = 'sound/announcer/notice/notice1.ogg', color_override = "orange")
 
 //////////////////////////////////////
 //////////////// BOTS ////////////////
@@ -331,7 +331,7 @@
 	typepath = /datum/round_event/droppod_airraid/hivebots
 	weight = 4
 	max_occurrences = 2
-	min_players = 35
+	min_players = 20
 	admin_setup = list()
 	//admin_setup = list(/datum/event_admin_setup/multiple_choice/droppod_troopers)
 	category = EVENT_CATEGORY_ENTITIES
@@ -351,6 +351,12 @@
 	max_boss_pods = 0
 	time_to_next_wave_droppod_factor = 50
 
-	droppod_style = /datum/pod_style/missile
+	droppod_style = /datum/pod_style
 	max_droppod_dropdelay = 10
 	min_droppod_dropdelay = 30
+
+/datum/round_event/droppod_airraid/hivebots/announce(fake)
+	priority_announce("Alert! Unidentified pod signatures have been detected en-route to [GLOB.station_name]. Please brace for impact.", "Unidentified Drop Pods", sound = 'sound/announcer/notice/notice1.ogg', color_override = "orange")
+
+/datum/round_event/droppod_airraid/hivebots/announce_end()
+	priority_announce("The pod fleet colliding into [GLOB.station_name] has ceased. Please calmly return to your work tasks.")
