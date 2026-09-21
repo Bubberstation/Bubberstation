@@ -79,6 +79,7 @@
 	message,  // the text content of the message
 	spans,  // the list of spans applied to the message
 	list/message_mods, // the list of modification applied to the message. Whispering, singing, ect
+	lvls = null, // BUBBER ADDITION -- NTSL -- what z-levels is this message broadcast to? DRACULION
 )
 	src.source = source
 	src.frequency = frequency
@@ -94,7 +95,8 @@
 		"spans" = spans,
 		"mods" = message_mods,
 	)
-	levels = SSmapping.get_connected_levels(get_turf(source))
+	// levels = SSmapping.get_connected_levels(get_turf(source)) //BUBBER EDIT OLD
+	levels = lvls != null ? lvls : SSmapping.get_connected_levels(get_turf(source)) // BUBBER EDIT NEW
 
 #undef COMPRESSION_VOCAL_SIGNAL_MIN
 #undef COMPRESSION_VOCAL_SIGNAL_MAX

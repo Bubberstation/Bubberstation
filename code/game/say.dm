@@ -374,6 +374,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/job
 	var/atom/movable/source
 	var/obj/item/radio/radio
+	var/realvoice // BUBBERSTATION ADDITION -- NTSL DRACULION
 
 INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 /atom/movable/virtualspeaker/Initialize(mapload, atom/movable/M, _radio)
@@ -382,6 +383,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 	source = M
 	if(istype(M))
 		name = radio?.anonymize ? "Unknown" : M.get_voice(add_id_name = TRUE)
+		realvoice = name // BUBBER ADDITION -- NTSL
 		verb_say = M.get_default_say_verb()
 		verb_ask = M.verb_ask
 		verb_exclaim = M.verb_exclaim
@@ -418,3 +420,9 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 
 /atom/movable/virtualspeaker/GetRadio()
 	return radio
+
+/atom/movable/virtualspeaker/get_voice(add_id_name) // BUBBER ADDITION -- NTSL (this entire proc)
+	if(add_id_name && realvoice)
+		return realvoice
+	else
+		return "[src]"
