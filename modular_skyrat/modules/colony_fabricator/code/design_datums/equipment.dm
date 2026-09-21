@@ -27,8 +27,8 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
-// The autolathe's contraband list. A fabricator only shows these once its hack wire has been found,
-// but they have to live in a node or nothing can print them at all
+// The autolathe's contraband list. A fabricator only shows these once its hack wire has been found.
+// Designs another node already owns are left out, since a design can only sit in one node
 /datum/techweb_node/colony_fabricator_contraband
 	id = TECHWEB_NODE_COLONY_CONTRABAND
 	display_name = "Colony Fabricator Contraband Designs"
@@ -36,33 +36,24 @@
 	design_ids = list(
 		"a357",
 		"a357PM",
-		"buckshot_shell",
 		"c10mm",
 		"c45",
 		"c45_lethal",
 		"c46x30mm",
 		"c9mm",
 		"c9mm_sec",
-		"capbox",
 		"cleaver",
 		"confidential_biscuit",
-		"electropack",
 		"flamethrower",
 		"handcuffs",
 		"incendiary_slug",
-		"large_welding_tool",
 		"receiver",
 		"riot_dart",
 		"riot_darts",
 		"shockcollar",
 		"shotgun_dart",
-		"shotgun_slug",
 		"strilka310_surplus",
 		"tinfoil_hat",
-		"toy_armblade",
-		"toy_balloon",
-		"toy_katana",
-		"toygun",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = INFINITY)
 	hidden = TRUE
