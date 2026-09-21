@@ -1,5 +1,5 @@
 /datum/storyteller/enemy
-	name = "LV3 Events (Crew Antagonism+++)"
+	name = "Enemy Within (Crew Antag Spawns Ultra-Focus)"
 	desc = "This storyteller aims to ensure that there are only crew antagonists while also prioritizing spawns for those antagonist types."
 	welcome_text = "Chat, I think there is an imposter among us on this Space Station 13. I have grown suspicious."
 	votable = FALSE

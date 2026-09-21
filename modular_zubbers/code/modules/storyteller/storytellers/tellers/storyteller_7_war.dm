@@ -1,5 +1,5 @@
 /datum/storyteller/npc_war
-	name = "LV3 Events (Hostile NPCs)"
+	name = "PvE (Hostile NPC Events)"
 	desc = "This storyteller heavily prioritizes spawning in NPC antagonists to keep combat roles active in-round. Player antagonists have the same incidence rate."
 	welcome_text = "WAR! HOO! What is it good for? Absolutely NOTHING!"
 

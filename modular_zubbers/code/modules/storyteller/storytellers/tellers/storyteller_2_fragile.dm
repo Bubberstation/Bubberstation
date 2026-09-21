@@ -1,5 +1,5 @@
 /datum/storyteller/fragile
-	name = "LV1.5 Events (Mild)"
+	name = "Fragile (Mid-Low Event/Antag Rolls)"
 	desc = "This storyteller will limit destructive, combat-focused, and chaotic events. \
 	Spawns more events and allows for more combat than LV1, but remains lower in frequency than LV2. It will also repeat events less than LV1."
 	welcome_text = "Handle with care!"

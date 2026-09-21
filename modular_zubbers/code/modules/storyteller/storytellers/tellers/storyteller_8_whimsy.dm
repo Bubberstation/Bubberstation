@@ -1,5 +1,5 @@
 /datum/storyteller/whimsy
-	name = "LV3 Events (Whimsy)"
+	name = "Whimsy (Low Events, Silly Focus)"
 	desc = "This storyteller spawns lots of events, but de-prioritizes combat and chaos, leaving just the mundane ones that won't kill players or cause destruction."
 	welcome_text = "I'm just a silly little guy!!!!!!"
 

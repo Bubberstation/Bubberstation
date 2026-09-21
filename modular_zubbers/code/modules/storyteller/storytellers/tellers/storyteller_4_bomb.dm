@@ -1,5 +1,5 @@
 /datum/storyteller/bomb
-	name = "LV2.5 Events (Destructive)"
+	name = "Bomb (Destructive Event Focus)"
 	desc = "This storyteller will try to make more destructive events. For when you have a full engineering team. Or not, because they all cryo'd."
 	welcome_text = "Somebody set up us the bomb."
 	track_data = /datum/storyteller_data/tracks/bomb
