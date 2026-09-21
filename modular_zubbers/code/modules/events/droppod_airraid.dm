@@ -64,6 +64,8 @@
 			/area/station/ai/upload/chamber,
 			/area/station/engineering,
 			/area/shuttle,
+			/area/station/solars,
+			/area/station/maintenance,
 		))
 		blacklisted_areas += GLOB.expected_erp_areas
 		blacklisted_areas += /area/station/maintenance
