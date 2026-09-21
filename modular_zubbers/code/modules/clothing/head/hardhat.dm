@@ -30,7 +30,7 @@
 	light_power = 1.6
 	light_color = "#ffcc99"
 
-/obj/item/clothing/ears/earmuffs/Initialize(mapload)
+/obj/item/clothing/head/utility/hardhat/bluespace/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/earhealing)
 	AddComponent(/datum/component/wearertargeting/earprotection, protection_amount = EAR_PROTECTION_FULL)
