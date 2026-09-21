@@ -183,9 +183,9 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 /obj/machinery/power/colony_ore_thumper/proc/get_load_level()
 	return clamp(round((slam_jams / slam_jams_needed) * THUMPER_LOAD_SEGMENTS) + 1, 1, THUMPER_LOAD_SEGMENTS)
 
-/// The bar overlay we should be showing right now. It flashes over the last two slams of a payload
+/// The bar overlay we should be showing right now. It flashes once the counter reaches the last slam
 /obj/machinery/power/colony_ore_thumper/proc/get_load_state()
-	if(slam_jams >= slam_jams_needed - 2)
+	if(slam_jams >= slam_jams_needed - 1)
 		return "thumper_load_flash"
 	return "thumper_load[get_load_level()]"
 
