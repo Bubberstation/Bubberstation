@@ -41,12 +41,15 @@
 	maximum_survivable_temperature = 1500
 	pressure_resistance = 200
 
-	ai_controller = /datum/ai_controller/basic_controller/simple
+	ai_controller = /datum/ai_controller/basic_controller/talk
 
 	faction = list("neutral")
 
 	mob_size = MOB_SIZE_TINY
-	can_be_held = TRUE
+
+/mob/living/basic/pet/plush/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/can_be_held)
 
 //shell that lets people turn into the plush or poll for ghosts
 /obj/item/toy/plushie_shell

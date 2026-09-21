@@ -6,7 +6,7 @@
 	icon = 'modular_zubbers/icons/misc/language.dmi'
 	icon_state = "marish"
 	default_priority = 90
-	flags = LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD | NO_STUTTER
+	flags = LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD | LANGUAGE_NO_STUTTER
 	syllables = list("mar", "mwrrr", "maaAr", "'aarrr", "wrurrl", "mmar")
 
 /datum/language_holder/shadekin

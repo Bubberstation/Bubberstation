@@ -3,7 +3,7 @@
 	default_color = "#FFFFFF"
 	key = "fluff"
 	recommended_species = list(SPECIES_MOTH, SPECIES_MAMMAL, SPECIES_INSECT)
-	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
+	relevent_layers = list(EXTERNAL_ADJACENT, EXTERNAL_FRONT)
 	organ_type = /obj/item/organ/fluff
 
 /datum/sprite_accessory/fluff/moth/none

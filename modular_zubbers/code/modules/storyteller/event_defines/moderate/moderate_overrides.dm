@@ -2,7 +2,7 @@
 	tags = list(TAG_DESTRUCTIVE, TAG_COMMUNAL, TAG_CHAOTIC)
 
 /datum/round_event_control/carp_migration
-	tags = list(TAG_COMMUNAL)
+	tags = list(TAG_COMMUNAL, TAG_SPACE, TAG_COMBAT)
 
 /datum/round_event_control/communications_blackout
 	tags = list(TAG_COMMUNAL, TAG_SPOOKY)

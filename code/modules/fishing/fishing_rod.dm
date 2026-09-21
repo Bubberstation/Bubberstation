@@ -11,6 +11,7 @@
 	inhand_y_dimension = 64
 	force = 8
 	w_class = WEIGHT_CLASS_HUGE
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
 
 	/// How far can you cast this
 	var/cast_range = 3
@@ -57,8 +58,6 @@
 	///Prevents spamming the line casting, without affecting the player's click cooldown.
 	COOLDOWN_DECLARE(casting_cd)
 
-	///The chance of catching fish made of the same material of the fishing rod (if MATERIAL_EFFECTS is enabled)
-	var/material_fish_chance = 10
 	///The multiplier of how much experience is gained when fishing with this rod.
 	var/experience_multiplier = 1
 	///The multiplier of the completion gain during the minigame
@@ -161,12 +160,7 @@
 	list_clear_nulls(block)
 	. += boxed_message(block.Join("\n"))
 
-	if(get_percent && (material_flags & MATERIAL_EFFECTS) && length(custom_materials))
-		. += boxed_message(span_info("Right now, fish caught by this fishing rod have a [get_material_fish_chance(user)]% of being made of its same materials."))
-
 	block = list()
-	if(HAS_TRAIT(src, TRAIT_ROD_ATTRACT_SHINY_LOVERS))
-		block += span_info("This fishing rod will attract shiny-loving fish.")
 	if(HAS_TRAIT(src, TRAIT_ROD_IGNORE_ENVIRONMENT))
 		block += span_info("Environment and light shouldn't be an issue with this rod.")
 	if(HAS_TRAIT_NOT_FROM(src, TRAIT_ROD_REMOVE_FISHING_DUD, INNATE_TRAIT)) // Duds are innately removed by baits, we all know that.
@@ -219,12 +213,6 @@
 /obj/item/fishing_rod/proc/on_reward_caught(atom/movable/reward, mob/user)
 	if(isnull(reward))
 		return
-	var/isfish = isfish(reward)
-	if((material_flags & MATERIAL_EFFECTS) && isfish && length(custom_materials) && HAS_TRAIT(reward, TRAIT_FISH_JUST_SPAWNED))
-		if(prob(get_material_fish_chance(user)))
-			var/obj/item/fish/fish = reward
-			var/datum/material/material = get_master_material()
-			fish.set_custom_materials(list(material.type = fish.weight))
 	// catching things that aren't fish or alive mobs doesn't consume baits.
 	if(isnull(bait) || HAS_TRAIT(bait, TRAIT_BAIT_UNCONSUMABLE))
 		return
@@ -233,7 +221,7 @@
 		if(caught_mob.stat == DEAD)
 			return
 	else
-		if(!isfish)
+		if(!isfish(reward))
 			return
 		var/obj/item/fish/fish = reward
 		if(HAS_TRAIT(bait, TRAIT_POISONOUS_BAIT) && !HAS_TRAIT(fish, TRAIT_FISH_TOXIN_IMMUNE))
@@ -247,19 +235,6 @@
 
 	qdel(bait)
 	update_icon()
-
-///Returns the probability that a fish caught by this (custom material) rod will be of the same material.
-/obj/item/fishing_rod/proc/get_material_fish_chance(mob/user)
-	var/material_chance = material_fish_chance
-	if(bait)
-		if(HAS_TRAIT(bait, TRAIT_GREAT_QUALITY_BAIT))
-			material_chance += 16
-		else if(HAS_TRAIT(bait, TRAIT_GOOD_QUALITY_BAIT))
-			material_chance += 8
-		else if(HAS_TRAIT(bait, TRAIT_BASIC_QUALITY_BAIT))
-			material_chance += 4
-	material_chance += user.mind?.get_skill_level(/datum/skill/fishing) * 1.5
-	return material_chance
 
 /obj/item/fishing_rod/proc/should_bane_fish_infusions(mob/living/target)
 	return force > 0 && HAS_TRAIT(target, TRAIT_WATER_ADAPTATION)
@@ -508,11 +483,11 @@
 			bait_state = "battery_overlay"
 		. += bait_state
 
-/obj/item/fishing_rod/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+/obj/item/fishing_rod/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
-	. += get_fishing_worn_overlays(standing, isinhands, icon_file)
+	. += get_fishing_worn_overlays(standing, isinhands, icon_file, bodyshape)
 
-/obj/item/fishing_rod/proc/get_fishing_worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+/obj/item/fishing_rod/proc/get_fishing_worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	. = list()
 	var/line_color = line?.line_color || default_line_color
 	var/mutable_appearance/reel_overlay = mutable_appearance(icon_file, "reel_overlay", appearance_flags = RESET_COLOR|KEEP_APART)
@@ -525,20 +500,23 @@
 		. += line_overlay
 		. += mutable_appearance(icon_file, "hook_overlay")
 
-/obj/item/fishing_rod/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
-	if(slot_check(attacking_item,ROD_SLOT_LINE))
-		use_slot(ROD_SLOT_LINE, user, attacking_item)
+/obj/item/fishing_rod/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(slot_check(tool, ROD_SLOT_LINE))
+		use_slot(ROD_SLOT_LINE, user, tool)
 		SStgui.update_uis(src)
-		return TRUE
-	else if(slot_check(attacking_item,ROD_SLOT_HOOK))
-		use_slot(ROD_SLOT_HOOK, user, attacking_item)
+		return ITEM_INTERACT_SUCCESS
+
+	if(slot_check(tool, ROD_SLOT_HOOK))
+		use_slot(ROD_SLOT_HOOK, user, tool)
 		SStgui.update_uis(src)
-		return TRUE
-	else if(slot_check(attacking_item,ROD_SLOT_BAIT) || istype(attacking_item, /obj/item/bait_can)) //Can click on the fishing rod with bait can directly
-		use_slot(ROD_SLOT_BAIT, user, attacking_item)
+		return ITEM_INTERACT_SUCCESS
+
+	if(slot_check(tool, ROD_SLOT_BAIT) || istype(tool, /obj/item/bait_can)) //Can click on the fishing rod with bait can directly
+		use_slot(ROD_SLOT_BAIT, user, tool)
 		SStgui.update_uis(src)
-		return TRUE
-	. = ..()
+		return ITEM_INTERACT_SUCCESS
+
+	return NONE
 
 /obj/item/fishing_rod/ui_data(mob/user)
 	. = ..()
@@ -740,7 +718,7 @@
 		return list()
 	return ..()
 
-/obj/item/fishing_rod/telescopic/get_fishing_worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+/obj/item/fishing_rod/telescopic/get_fishing_worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		return list()
 	return ..()
@@ -788,7 +766,6 @@
 	deceleration_mult = 1.2
 	bounciness_mult = 0.3
 	gravity_mult = 1.2
-	material_fish_chance = 33 //if somehow you metalgen it.
 	bait_height_mult = 1.4
 
 /obj/item/fishing_rod/tech
@@ -804,6 +781,7 @@
 	bait_speed_mult = 1.1
 	deceleration_mult = 1.1
 	gravity_mult = 1.2
+	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT, /datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/fishing_rod/tech/Initialize(mapload)
 	. = ..()

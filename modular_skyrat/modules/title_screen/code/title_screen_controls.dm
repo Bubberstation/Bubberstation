@@ -35,13 +35,9 @@ ADMIN_VERB(change_title_screen_notice, R_FUN, "Title Screen: Set Notice", "Sets 
 /**
  * Reloads the titlescreen if it is bugged for someone.
  */
-/client/verb/fix_title_screen()
-	set name = "Fix Lobby Screen"
-	set desc = "Lobbyscreen broke? Press this."
-	set category = "OOC"
-
-	if(istype(mob, /mob/dead/new_player))
-		var/mob/dead/new_player/new_player = mob
+ADMIN_VERB(fix_title_screen, R_ADMIN, "Fix Lobby Screen", "Lobbyscreen broke? Press this.", ADMIN_CATEGORY_MAIN)
+	if(istype(user.mob, /mob/dead/new_player))
+		var/mob/dead/new_player/new_player = user.mob
 		new_player.show_title_screen()
 	else
 		winset(src, "title_browser", "is-disabled=true;is-visible=false")

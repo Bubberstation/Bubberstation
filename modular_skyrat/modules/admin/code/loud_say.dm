@@ -1,20 +1,22 @@
-ADMIN_VERB(cmd_loud_admin_say, R_NONE, "loudAsay", "Send a message to other admins (loudly).", ADMIN_CATEGORY_MAIN, msg as text)
-	msg = emoji_parse(copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN))
-	if(!msg)
+//ADMIN_VERB(cmd_loud_admin_say, R_NONE, "loudAsay", "Send a message to other admins (loudly).", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(cmd_loud_admin_say, R_NONE, "loudAsay", "Send a message to other admins (loudly).", ADMIN_CATEGORY_MAIN)
+	VERB_ARG(message, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
+	message = emoji_parse(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
+	if(!message)
 		return
 
-	msg = emoji_parse(msg)
-	user.mob.log_talk(msg, LOG_ASAY)
+	message = emoji_parse(message)
+	user.mob.log_talk(message, LOG_ASAY)
 
-	send_asay_to_other_server(user.ckey, span_command_headset(msg))
+	send_asay_to_other_server(user.ckey, span_command_headset(message))
 
-	msg = keywords_lookup(msg)
+	message = keywords_lookup(message)
 	var/custom_asay_color = (CONFIG_GET(flag/allow_admin_asaycolor) && user.mob.client?.prefs?.read_preference(/datum/preference/color/asay_color)) ? "<font color=[user.mob.client?.prefs?.read_preference(/datum/preference/color/asay_color)]>" : "<font color='#FF4500'>"
-	msg = span_command_headset("<span class='adminsay'><span class='prefix'>ADMIN:</span> <EM>[key_name(user, 1)]</EM> [ADMIN_FLW(user.mob)]: [custom_asay_color]<span class='message linkify'>[msg]</span></span></span>[custom_asay_color ? "</font>":null]")
+	message = span_command_headset("<span class='adminsay'><span class='prefix'>ADMIN:</span> <EM>[key_name(user, 1)]</EM> [ADMIN_FLW(user.mob)]: [custom_asay_color]<span class='message linkify'>[message]</span></span></span>[custom_asay_color ? "</font>":null]")
 
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINCHAT,
-		html = msg,
+		html = message,
 		confidential = TRUE)
 
 	for(var/client/admin_client in GLOB.admins)

@@ -155,11 +155,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 	COOLDOWN_DECLARE(char_directory_cooldown)
 
 //Make a verb to open the character directory
-/client/verb/show_character_directory()
-	set name = "Character Directory"
-	set category = "OOC"
-	set desc = "Shows a listing of all active characters, along with their associated OOC notes, flavor text, and more."
-
+GAME_VERB_DESC(/client, show_character_directory, "Character Directory", "Shows a listing of all active characters, along with their associated OOC notes, flavor text, and more.", "OOC")
 	// This is primarily to stop malicious users from trying to lag the server by spamming this verb
 	if(!COOLDOWN_FINISHED(src, char_directory_cooldown))
 		to_chat(src, span_alert("Hold your horses! It's still refreshing!"))

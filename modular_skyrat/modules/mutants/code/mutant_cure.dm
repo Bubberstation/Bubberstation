@@ -5,7 +5,7 @@
 	icon_state = "extractor"
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
-		/datum/material/gold = SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT,
 	)

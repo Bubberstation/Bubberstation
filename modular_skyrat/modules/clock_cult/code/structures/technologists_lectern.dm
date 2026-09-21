@@ -375,7 +375,7 @@
 
 /// Called after research completes, making one of a few bad things happen to the station
 /obj/structure/destructible/clockwork/gear_base/technologists_lectern/proc/side_effect(force_rand)
-	var/side_effect_num = force_rand || rand(1, 40)
+	var/side_effect_num = force_rand || rand(1, 30)
 
 	switch(side_effect_num)
 		if(1 to 10) // Cult-ify everything nearby
@@ -448,14 +448,6 @@
 					to_chat(living_mob, span_brass("You feel as if something powerful is watching over you, as you feel the power in your Clockwork Slab increase."))
 				else
 					to_chat(living_mob, span_brass("You feel as if something powerful is watching over you as a low hum of machinery fills your mind."))
-
-
-		if(31 to 40) // Fuck up the power, but in the other way instead
-			priority_announce("An extreme power surge has been detected in on-board APCs. Surge will subside in [rand(3, 8)] minutes.") // Not always accurate, are we?
-
-			force_apc_arcing(TRUE)
-			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(force_apc_arcing), FALSE), 4 MINUTES)
-
 
 /obj/effect/lectern_light
 	icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_objects.dmi'

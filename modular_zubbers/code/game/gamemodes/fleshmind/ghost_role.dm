@@ -15,13 +15,17 @@
 	suicide_cry = "FOR THE FLESHMIND!!"
 	var/datum/outfit/outfit = /datum/outfit/wire_priest
 	var/datum/fleshmind_controller/brain_jack
+	var/initial_pass_flags
 
 /datum/antagonist/wire_priest/on_gain()
 	. = ..()
 	owner.current.AddComponent(/datum/component/human_corruption, brain_jack)
 	equip_wire_priest()
+	initial_pass_flags = owner.current.pass_flags
+	owner.current.pass_flags = owner.current.pass_flags | PASSBLOB
 
 /datum/antagonist/wire_priest/Destroy()
+	owner?.current.pass_flags = initial_pass_flags
 	. = ..()
 	brain_jack = null
 

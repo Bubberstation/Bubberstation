@@ -109,7 +109,7 @@
 		if(prob(user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
 			current_food++
 
-		user.mind.adjust_experience(/datum/skill/primitive, 5)
+		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		in_use = FALSE
 		return
 
@@ -131,7 +131,7 @@
 			ate_food = TRUE
 			if(prob(user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
 				current_food++
-			user.mind.adjust_experience(/datum/skill/primitive, 5)
+			user.mind?.adjust_experience(/datum/skill/primitive, 5)
 
 		if(ate_food)
 			balloon_alert(user, "feeding the worms")

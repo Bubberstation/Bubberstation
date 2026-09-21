@@ -165,14 +165,6 @@ required_map = "builtin"
 coordinates = [128, 79, 1]
 trait_name = "CentCom"
 
-# CC Evac Docking Port Removal
-[templates.centcom_shuttle_dock]
-map_files = ["centcom_shuttle_dock.dmm"]
-directory = "_maps/bubber/automapper/templates/centcom/"
-required_map = "CentCom_skyrat_z2.dmm"
-coordinates = [51, 167, 2]
-trait_name = "CentCom"
-
 # DELTASTATION MAP EDITS
 # Deltastation Armory
 [templates.deltastation_armory]
@@ -196,6 +188,14 @@ map_files = ["deltastation_barber.dmm"]
 directory = "_maps/bubber/automapper/templates/Deltastation/"
 required_map = "DeltaStation2.dmm"
 coordinates = [121, 124, 1]
+trait_name = "Station"
+
+# Deltastation Blacksmith
+[templates.deltastation_blacksmith]
+map_files = ["deltastation_blacksmith3.dmm"]
+directory = "_maps/bubber/automapper/templates/Deltastation/"
+required_map = "DeltaStation2.dmm"
+coordinates = [150, 149, 1]
 trait_name = "Station"
 
 # Deltastation Blueshield
@@ -238,6 +238,22 @@ required_map = "DeltaStation2.dmm"
 coordinates = [123, 143, 1]
 trait_name = "Station"
 
+# Deltastation Security Infirmary
+[templates.deltastation_sec_infirmary]
+map_files = ["deltastation_secmed_infirmary.dmm"]
+directory = "_maps/bubber/automapper/templates/DeltaStation/"
+required_map = "DeltaStation2.dmm"
+coordinates = [202, 152, 1]
+trait_name = "Station"
+
+# Deltastation Perma Infirmary
+[templates.deltastation_perma_infirmary]
+map_files = ["deltastation_perma_infirmary.dmm"]
+directory = "_maps/bubber/automapper/templates/DeltaStation/"
+required_map = "DeltaStation2.dmm"
+coordinates = [194, 160, 1]
+trait_name = "Station"
+
 # ICEBOXSTATION MAP EDITS
 # IceBoxStation Aux Tool Storage
 [templates.iceboxstation_aux_toolstorage]
@@ -269,6 +285,14 @@ map_files = ["iceboxstation_barber.dmm"]
 directory = "_maps/bubber/automapper/templates/IceBoxStation/"
 required_map = "IceBoxStation.dmm"
 coordinates = [156, 130, 3]
+trait_name = "Station"
+
+# IceBoxStation Blacksmith
+[templates.iceboxstation_blacksmith]
+map_files = ["iceboxstation_blacksmith.dmm"]
+directory = "_maps/bubber/automapper/templates/IceBoxStation/"
+required_map = "IceBoxStation.dmm"
+coordinates = [91, 104, 3]
 trait_name = "Station"
 
 # IceBoxStation Book of Kindred
@@ -319,12 +343,28 @@ required_map = "IceBoxStation.dmm"
 coordinates = [141, 108, 3]
 trait_name = "Station"
 
+#IceBoxStation Meeting Room
+[templates.iceboxstation_meetingroom]
+map_files = ["iceboxstation_meetingroom.dmm"]
+directory = "_maps/bubber/automapper/templates/IceBoxStation/"
+required_map = "IceBoxStation.dmm"
+coordinates = [107, 125, 3]
+trait_name = "Station"
+
 # IceBoxStation NTC and Blueshield Office
 [templates.iceboxstation_ntc_bs]
 map_files = ["iceboxstation_ntc_bs.dmm"]
 directory = "_maps/bubber/automapper/templates/IceBoxStation/"
 required_map = "IceBoxStation.dmm"
 coordinates = [84, 128, 3]
+trait_name = "Station"
+
+# IceBoxStation Security Infirmary
+[templates.iceboxstation_sec_infirmary]
+map_files = ["iceboxstation_secmed_infirmary.dmm"]
+directory = "_maps/bubber/automapper/templates/IceBoxStation/"
+required_map = "IceBoxStation.dmm"
+coordinates = [113, 173, 3]
 trait_name = "Station"
 
 # IceBoxStation SW Persistence
@@ -344,12 +384,84 @@ coordinates = [19, 5, 2]
 trait_name = "Station"
 
 # KILOSTATION MAP EDITS
+# Kilostation Armory
+[templates.kilostation_armory]
+map_files = ["kilostation_armory.dmm"]
+directory = "_maps/bubber/automapper/templates/KiloStation/"
+required_map = "KiloStation.dmm"
+coordinates = [80, 77, 1]
+trait_name = "Station"
+
+# Kilostation Arrivals
+[templates.kilostation_arrivals]
+map_files = ["kilostation_arrivals.dmm"]
+directory = "_maps/bubber/automapper/templates/KiloStation/"
+required_map = "KiloStation.dmm"
+coordinates = [151, 80, 1]
+trait_name = "Station"
+
+# Kilostation Barber
+[templates.kilostation_barber]
+map_files = ["kilostation_barber.dmm"]
+directory = "_maps/bubber/automapper/templates/KiloStation/"
+required_map = "KiloStation.dmm"
+coordinates = [64, 116, 1]
+trait_name = "Station"
+
+# Kilostation Blueshield Lockers
+[templates.kilostation_blueshield]
+map_files = ["kilostation_blueshield.dmm"]
+directory = "_maps/bubber/automapper/templates/KiloStation/"
+required_map = "KiloStation.dmm"
+coordinates = [112, 111, 1]
+trait_name = "Station"
+
+# Kilostation Escape Pod 2
+[templates.kilostation_escape_pod_2]
+map_files = ["kilostation_escape_pod_2.dmm"]
+directory = "_maps/bubber/automapper/templates/KiloStation/"
+required_map = "KiloStation.dmm"
+coordinates = [37, 120, 1]
+trait_name = "Station"
+
+# Kilostation Medbay
+[templates.kilostation_medbay]
+map_files = ["kilostation_medbay.dmm"]
+directory = "_maps/bubber/automapper/templates/KiloStation/"
+required_map = "KiloStation.dmm"
+coordinates = [73, 131, 1]
+trait_name = "Station"
+
+# Kilostation Public Mining Dock
+[templates.kilostation_mining_public]
+map_files = ["kilostation_mining_public.dmm"]
+directory = "_maps/bubber/automapper/templates/KiloStation/"
+required_map = "KiloStation.dmm"
+coordinates = [62, 149, 1]
+trait_name = "Station"
+
+# Kilostation NTR Office
+[templates.kilostation_ntrep_office]
+map_files = ["kilostation_ntrep_office.dmm"]
+directory = "_maps/bubber/automapper/templates/KiloStation/"
+required_map = "KiloStation.dmm"
+coordinates = [102, 91, 1]
+trait_name = "Station"
+
 # KiloStation Book of Kindred
 [templates.kilostation_book_of_kindred]
 map_files = ["book_of_kindred_display.dmm"]
 directory = "_maps/bubber/automapper/templates/generic/"
 required_map = "KiloStation.dmm"
 coordinates = [97, 128, 1]
+trait_name = "Station"
+
+# KiloStation Security Infirmary
+[templates.kilostation_sec_infirmary]
+map_files = ["kilostation_secmed_infirmary.dmm"]
+directory = "_maps/bubber/automapper/templates/KiloStation/"
+required_map = "KiloStation.dmm"
+coordinates = [73, 91, 1]
 trait_name = "Station"
 
 # LAVALAND MAP EDITS
@@ -410,6 +522,14 @@ required_map = "MetaStation.dmm"
 coordinates = [57, 119, 1]
 trait_name = "Station"
 
+# Metastation Blacksmith
+[templates.metastation_blacksmith]
+map_files = ["metastation_blacksmith.dmm"]
+directory = "_maps/bubber/automapper/templates/MetaStation/"
+required_map = "MetaStation.dmm"
+coordinates = [87, 146, 1]
+trait_name = "Station"
+
 # Metastation Book of Kindred
 [templates.metastation_book_of_kindred]
 map_files = ["book_of_kindred_display.dmm"]
@@ -440,6 +560,22 @@ map_files = ["metastation_ntc_bs.dmm"]
 directory = "_maps/bubber/automapper/templates/MetaStation/"
 required_map = "MetaStation.dmm"
 coordinates = [101, 115, 1]
+trait_name = "Station"
+
+# Metastation Security Infirmary
+[templates.metastation_sec_infirmary]
+map_files = ["metastation_secmed_infirmary.dmm"]
+directory = "_maps/bubber/automapper/templates/MetaStation/"
+required_map = "MetaStation.dmm"
+coordinates = [92, 169, 1]
+trait_name = "Station"
+
+# Metastation Perma Infirmary
+[templates.metastation_perma_infirmary]
+map_files = ["metastation_perma_infirmary.dmm"]
+directory = "_maps/bubber/automapper/templates/MetaStation/"
+required_map = "MetaStation.dmm"
+coordinates = [93, 185, 1]
 trait_name = "Station"
 
 # MOONSTATION MAP EDITS
@@ -532,6 +668,22 @@ required_map = "NebulaStation.dmm"
 coordinates = [64, 108, 1]
 trait_name = "Station"
 
+# Nebulastation Security Infirmary
+[templates.nebulastation_sec_infirmary]
+map_files = ["nebulastation_secmed_infirmary.dmm"]
+directory = "_maps/bubber/automapper/templates/NebulaStation/"
+required_map = "NebulaStation.dmm"
+coordinates = [155, 101, 1]
+trait_name = "Station"
+
+# Nebulastation Perma Infirmary
+[templates.nebulastation_perma_infirmary]
+map_files = ["nebulastation_perma_infirmary.dmm"]
+directory = "_maps/bubber/automapper/templates/NebulaStation/"
+required_map = "NebulaStation.dmm"
+coordinates = [151, 95, 2]
+trait_name = "Station"
+
 # TRAMSTATION MAP EDITS
 # Tramstation Armory
 [templates.tramstation_armory]
@@ -565,6 +717,14 @@ required_map = "tramstation.dmm"
 coordinates = [49, 103, 2]
 trait_name = "Station"
 
+# Tramstation Cargo Lobby + Blacksmith
+[templates.tramstation_cargo]
+map_files = ["tramstation_cargo2.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [180, 125, 2]
+trait_name = "Station"
+
 # Tramstation Blueshield
 [templates.tramstation_blueshield]
 map_files = ["tramstation_blueshield.dmm"]
@@ -595,6 +755,14 @@ map_files = ["tramstation_ntrep_office.dmm"]
 directory = "_maps/bubber/automapper/templates/tramstation/"
 required_map = "tramstation.dmm"
 coordinates = [34, 135, 2]
+trait_name = "Station"
+
+# Tramstation Security Infirmary
+[templates.Tramstation_sec_infirmary]
+map_files = ["tramstation_secmed_infirmary.dmm"]
+directory = "_maps/bubber/automapper/templates/tramstation/"
+required_map = "tramstation.dmm"
+coordinates = [55, 147, 2]
 trait_name = "Station"
 
 # VOIDRAPTOR MAP EDITS
