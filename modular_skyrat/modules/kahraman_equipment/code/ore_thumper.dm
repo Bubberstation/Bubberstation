@@ -167,7 +167,6 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	if(!switched_on)
 		lamp_state = "thumper_light_red"
 	else if(stall_reason == THUMPER_STALL_LOCATION)
-		// nothing it can do about the ground under it, so this one reads as dead rather than waiting
 		lamp_state = "thumper_light_red_flash"
 	else if(stall_reason)
 		lamp_state = "thumper_light_yellow"
@@ -176,15 +175,19 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 
 	if(!switched_on || stall_reason)
 		return
-	var/load_state = "thumper_load[get_load_level()]"
-	if(slam_jams >= slam_jams_needed - 2)
-		load_state = "thumper_load_flash"
+	var/load_state = get_load_state()
 	. += mutable_appearance(icon, load_state)
 	. += emissive_appearance(icon, load_state, src)
 
 /// Which bar segment we are working on, 1 to THUMPER_LOAD_SEGMENTS. The first segment lights as soon as we start
 /obj/machinery/power/colony_ore_thumper/proc/get_load_level()
 	return clamp(round((slam_jams / slam_jams_needed) * THUMPER_LOAD_SEGMENTS) + 1, 1, THUMPER_LOAD_SEGMENTS)
+
+/// The bar overlay we should be showing right now. It flashes over the last two slams of a payload
+/obj/machinery/power/colony_ore_thumper/proc/get_load_state()
+	if(slam_jams >= slam_jams_needed - 2)
+		return "thumper_load_flash"
+	return "thumper_load[get_load_level()]"
 
 /obj/machinery/power/colony_ore_thumper/process(seconds_per_tick)
 	update_network_connection()
@@ -204,6 +207,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	if(work_blocker)
 		return
 
+	GLOB.working_ore_thumpers |= src
 	add_load(power_to_energy(active_power_usage))
 	sync_multiplier = get_sync_multiplier()
 	slam_progress += (seconds_per_tick SECONDS) * sync_multiplier
@@ -288,7 +292,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 		return THUMPER_STALL_LOCATION
 	if(has_thumper_neighbor())
 		return THUMPER_STALL_NEIGHBOR
-	// we only need clear ground for the slam that finishes a box
+	// only the slam that finishes a box needs clear ground
 	if(slam_jams + 1 < slam_jams_needed)
 		return null
 	return get_output_blocker()
@@ -317,6 +321,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 		return
 	stall_reason = new_reason
 	if(stall_reason)
+		sync_multiplier = 1
 		GLOB.working_ore_thumpers -= src
 		soundloop.stop()
 		balloon_alert_to_viewers(stall_reason)
@@ -356,7 +361,8 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	else
 		GLOB.working_ore_thumpers |= src
 		soundloop.start()
-		balloon_alert(user, "thumper started")
+		if(user)
+			balloon_alert(user, "thumper started")
 	update_appearance(UPDATE_OVERLAYS)
 
 
@@ -364,6 +370,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 /obj/machinery/power/colony_ore_thumper/proc/cut_that_out(mob/user)
 	switched_on = FALSE
 	stall_reason = null
+	sync_multiplier = 1
 	GLOB.working_ore_thumpers -= src
 	soundloop.stop()
 	if(user)
@@ -371,13 +378,27 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	update_appearance(UPDATE_OVERLAYS)
 
 
+/// Keeps our state honest when somebody edits our vars by hand
+/obj/machinery/power/colony_ore_thumper/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(!.)
+		return
+	switch(var_name)
+		if(NAMEOF(src, switched_on))
+			if(switched_on)
+				start_her_up()
+			else
+				cut_that_out()
+		if(NAMEOF(src, slam_jams), NAMEOF(src, slam_jams_needed), NAMEOF(src, stall_reason), NAMEOF(src, syncs_with_others))
+			update_appearance(UPDATE_OVERLAYS)
+
 /// Makes the machine slam down, producing a box of ore if it has been slamming long enough
 /obj/machinery/power/colony_ore_thumper/proc/slam_it_down()
 	flick("thumper_slam", src)
 	playsound(src, pick(list_of_thumper_sounds), 80, TRUE)
-	var/previous_load_level = get_load_level()
+	var/previous_load_state = get_load_state()
 	slam_jams++
-	if(get_load_level() != previous_load_level)
+	if(get_load_state() != previous_load_state)
 		update_appearance(UPDATE_OVERLAYS)
 	if(slam_jams < slam_jams_needed)
 		return
@@ -447,6 +468,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
 
 #undef SLAM_JAM_DELAY
+#undef THUMPER_SYNC_DEADZONE
 #undef THUMPER_QUAKE_CHANCE
 #undef THUMPER_QUAKE_COOLDOWN
 #undef THUMPER_LOAD_SEGMENTS

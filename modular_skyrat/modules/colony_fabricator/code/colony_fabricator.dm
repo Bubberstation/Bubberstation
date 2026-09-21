@@ -18,6 +18,10 @@
 	var/datum/looping_sound/colony_fabricator_running/soundloop
 	/// What the hack wire was set to when we last built our design list
 	var/designs_follow_hack = FALSE
+	/// Our internal cell, which runs the fabricator anywhere there is no powered area to draw from
+	var/obj/item/stock_parts/power_store/cell = /obj/item/stock_parts/power_store/cell/high
+	/// How much we pull off the grid each tick to top the cell back up
+	var/cell_charge_rate = STANDARD_CELL_RATE * 0.2
 
 /obj/machinery/rnd/production/colony_lathe/Initialize(mapload)
 	. = ..()
@@ -26,14 +30,17 @@
 	// We don't get new designs but can't print stuff if something's not researched, so we use the web that has everything researched
 	stored_research = locate(/datum/techweb/admin) in SSresearch.techwebs
 	soundloop = new(src, FALSE)
-	// swap the generic R&D wires for ours so we hear about the hack wire
 	QDEL_NULL(wires)
 	set_wires(new /datum/wires/rnd/colony_lathe(src))
+	if(ispath(cell))
+		cell = new cell(src)
+	START_PROCESSING(SSmachines, src)
 	if(!mapload)
 		flick("colony_lathe_deploy", src) // Sick ass deployment animation
 
 /obj/machinery/rnd/production/colony_lathe/Destroy()
 	QDEL_NULL(soundloop)
+	QDEL_NULL(cell)
 	return ..()
 
 // The screwdriver only opens the maintenance panel, since this machine repacks instead of deconstructing
@@ -54,6 +61,16 @@
 	if(panel_open && is_wire_tool(tool))
 		wires.interact(user)
 		return ITEM_INTERACT_SUCCESS
+	if(panel_open && istype(tool, /obj/item/stock_parts/power_store/cell))
+		if(!isnull(cell))
+			balloon_alert(user, "already has a cell!")
+			return ITEM_INTERACT_BLOCKING
+		if(!user.transferItemToLoc(tool, src))
+			return ITEM_INTERACT_BLOCKING
+		cell = tool
+		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
+		balloon_alert(user, "cell installed")
+		return ITEM_INTERACT_SUCCESS
 	return ..()
 
 /obj/machinery/rnd/production/colony_lathe/update_icon_state()
@@ -63,9 +80,16 @@
 
 /obj/machinery/rnd/production/colony_lathe/examine(mob/user)
 	. = ..()
+	. += span_notice("It runs off station power where it can, and off its own cell where it cannot.")
+	if(isnull(cell))
+		. += span_warning("Its cell housing is <b>empty</b>.")
+	else
+		. += span_notice("Its [cell.name] is charged to <b>[round(cell.percent())]%</b>.")
 	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
-	if(panel_open)
-		. += span_notice("The wires inside can be worked with a [EXAMINE_HINT("multitool")] or [EXAMINE_HINT("wirecutters")].")
+	if(!panel_open)
+		return
+	. += span_notice("The wires inside can be worked with a [EXAMINE_HINT("multitool")] or [EXAMINE_HINT("wirecutters")].")
+	. += span_notice("The cell can be levered out with a [EXAMINE_HINT("crowbar")].")
 
 /// Called by our wires when the hack wire changes, since the design list has to be rebuilt
 /obj/machinery/rnd/production/colony_lathe/proc/refresh_hacked_designs()
@@ -73,6 +97,51 @@
 		return
 	update_designs()
 	update_static_data_for_all_viewers()
+
+/obj/machinery/rnd/production/colony_lathe/on_deconstruction(disassembled)
+	if(isnull(cell))
+		return ..()
+	// a repack spawns the flatpack on our tile before taking us apart, so our cell goes back into the box
+	var/obj/item/flatpacked_machine/packed = locate() in drop_location()
+	if(disassembled && !isnull(packed) && ispath(packed.type_to_deploy, type))
+		QDEL_NULL(packed.cell)
+		packed.cell = cell
+		cell.forceMove(packed)
+	else
+		cell.forceMove(drop_location())
+	cell = null
+	return ..()
+
+// with a cell aboard we can work anywhere, so an unpowered area is not the end of it
+/obj/machinery/rnd/production/colony_lathe/powered(chan = power_channel, ignore_use_power = FALSE)
+	if(!isnull(cell) && cell.charge() > 0)
+		return TRUE
+	return ..()
+
+/obj/machinery/rnd/production/colony_lathe/directly_use_energy(amount, force = FALSE)
+	. = ..()
+	if(. || isnull(cell))
+		return .
+	return cell.use(amount, force = force)
+
+/obj/machinery/rnd/production/colony_lathe/process(seconds_per_tick)
+	if(isnull(cell) || !cell.used_charge())
+		return
+	var/charge_given = charge_cell(cell_charge_rate * seconds_per_tick, cell, grid_only = TRUE)
+	if(charge_given)
+		update_appearance()
+
+/obj/machinery/rnd/production/colony_lathe/crowbar_act(mob/living/user, obj/item/tool)
+	if(!panel_open)
+		return NONE
+	if(isnull(cell))
+		balloon_alert(user, "no cell!")
+		return ITEM_INTERACT_BLOCKING
+	tool.play_tool_sound(src, 50)
+	user.put_in_hands(cell)
+	balloon_alert(user, "cell removed")
+	cell = null
+	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/rnd/production/colony_lathe/default_deconstruction_crowbar(obj/item/crowbar, ignore_panel, custom_deconstruct)
 	return NONE
@@ -152,12 +221,55 @@
 	var/obj/type_to_deploy = /obj/machinery/rnd/production/colony_lathe
 	/// How long it takes to create the structure in question.
 	var/deploy_time = 4 SECONDS
+	/// Cell packed inside, for machines that run on one. A path until somebody opens the packaging
+	var/obj/item/stock_parts/power_store/cell
 
 /obj/item/flatpacked_machine/Initialize(mapload)
 	. = ..()
 	desc = initial(type_to_deploy.desc)
 	give_deployable_component()
 	give_manufacturer_examine()
+	if(ispath(type_to_deploy, /obj/machinery/rnd/production/colony_lathe))
+		cell = new /obj/item/stock_parts/power_store/cell/high(src)
+	RegisterSignal(src, COMSIG_DEPLOYABLE_DEPLOYED, PROC_REF(on_deployed))
+
+/obj/item/flatpacked_machine/Destroy()
+	QDEL_NULL(cell)
+	return ..()
+
+/obj/item/flatpacked_machine/examine(mob/user)
+	. = ..()
+	if(!ispath(type_to_deploy, /obj/machinery/rnd/production/colony_lathe))
+		return
+	if(isnull(cell))
+		. += span_warning("Its cell housing is <b>empty</b>.")
+		return
+	. += span_notice("It is packed with a [cell.name] at <b>[round(cell.percent())]%</b>, which can be swapped by <b>clicking</b> it with another cell.")
+
+/obj/item/flatpacked_machine/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(!istype(tool, /obj/item/stock_parts/power_store/cell) || !ispath(type_to_deploy, /obj/machinery/rnd/production/colony_lathe))
+		return ..()
+	if(!user.transferItemToLoc(tool, src))
+		return ITEM_INTERACT_BLOCKING
+	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
+	if(isnull(cell))
+		balloon_alert(user, "cell installed")
+	else
+		user.put_in_hands(cell)
+		balloon_alert(user, "cell swapped")
+	cell = tool
+	return ITEM_INTERACT_SUCCESS
+
+/// Hands our packed cell to the machine we just unpacked into
+/obj/item/flatpacked_machine/proc/on_deployed(datum/source, obj/machinery/rnd/production/colony_lathe/fabricator)
+	SIGNAL_HANDLER
+
+	if(!istype(fabricator) || isnull(cell))
+		return
+	QDEL_NULL(fabricator.cell)
+	fabricator.cell = cell
+	cell.forceMove(fabricator)
+	cell = null
 
 /// Adds the deployable component, so that it can be overridden in case that's wanted
 /obj/item/flatpacked_machine/proc/give_deployable_component()

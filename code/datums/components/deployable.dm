@@ -76,6 +76,7 @@
 		new_direction = direction
 
 	deployed_object = new thing_to_be_deployed(deploy_location)
+	SEND_SIGNAL(source, COMSIG_DEPLOYABLE_DEPLOYED, deployed_object) // BUBBER EDIT ADDITION - deployable deploy hook
 	if(direction_setting)
 		deployed_object.setDir(new_direction)
 		deployed_object.update_icon_state()
