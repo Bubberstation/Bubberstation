@@ -29,42 +29,6 @@
 	name = "\improper Bluespace Tech's belt"
 	w_class = WEIGHT_CLASS_TINY
 
-/datum/outfit/debug/bst_mod //Debug objs
-	name = "Bluespace Tech (Debug) (MODSuit)"
-	uniform = /obj/item/clothing/under/syndicate/combat
-	belt = /obj/item/storage/belt/utility/chief/full/debug
-	shoes = /obj/item/clothing/shoes/combat/debug
-	id = /obj/item/card/id/advanced/debug/bst
-	box = /obj/item/storage/box/debugtools
-	backpack_contents = list(
-		/obj/item/melee/energy/axe = 1,
-		/obj/item/storage/part_replacer/bluespace/tier4/bst = 1,
-		/obj/item/gun/magic/wand/resurrection/debug = 1,
-		/obj/item/gun/magic/wand/death/debug = 1,
-		/obj/item/debug/human_spawner = 1,
-		/obj/item/debug/omnitool = 1,
-		/obj/item/storage/box/stabilized = 1,
-		/obj/item/storage/hypospraykit/cmo/combat = 1,
-	)
-
-/datum/outfit/admin/bst_mod //Debug objs plus modsuit
-	name = "Bluespace Tech (Admin) (MODSuit)"
-	uniform = /obj/item/clothing/under/syndicate/combat
-	belt = /obj/item/storage/belt/utility/chief/full/debug
-	shoes = /obj/item/clothing/shoes/combat/debug
-	id = /obj/item/card/id/advanced/debug/bst
-	box = /obj/item/storage/box/debugtools
-	backpack_contents = list(
-		/obj/item/melee/energy/axe = 1,
-		/obj/item/storage/part_replacer/bluespace/tier4/bst = 1,
-		/obj/item/gun/magic/wand/resurrection/debug = 1,
-		/obj/item/gun/magic/wand/death/debug = 1,
-		/obj/item/debug/human_spawner = 1,
-		/obj/item/debug/omnitool = 1,
-		/obj/item/storage/box/stabilized = 1,
-		/obj/item/storage/hypospraykit/cmo/combat = 1,
-	)
-
 /obj/item/storage/part_replacer/bluespace/tier4/bst
 	name = "\improper Bluespace Tech RPED"
 	desc = "A specialized bluespace RPED for technicians that can manufacture stock parts on the fly. Alt-Right-Click to manufacture parts, change settings, or clear its internal storage."
