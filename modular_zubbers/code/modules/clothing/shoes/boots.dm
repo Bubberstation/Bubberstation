@@ -456,10 +456,7 @@
 	var/free_move = FALSE
 	var/list/active_traits = list(TRAIT_NO_SLIP_ICE, TRAIT_NO_SLIP_SLIDE, TRAIT_NO_SLIP_ALL, TRAIT_SPACEWALK)
 
-/obj/item/clothing/shoes/combat/bluespace/verb/toggle()
-	set name = "Toggle Freedom of Movement"
-	set desc = "Enables/disables complete no-slipping and space walking."
-	set src in usr
+GAME_VERB_SRC(/obj/item/clothing/shoes/combat/bluespace, toggle, usr, "Toggle Freedom of Movement", "Enables spacewalking and full no-slips.")
 
 	if(!can_use(usr))
 		return
@@ -472,7 +469,9 @@
 	else
 		detach_clothing_traits(active_traits)
 
-	balloon_alert(user, "Freedom of movement [free_move ? "activated" : "deactivated"].")
+	balloon_alert(user, "freedom of movement [free_move ? "activated" : "deactivated"]")
+
+
 
 /obj/item/clothing/shoes/combat/bluespace/examine(mob/user)
 	. = ..()
