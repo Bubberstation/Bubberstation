@@ -353,11 +353,9 @@ This is highly likely to cause massive amounts of lag as every object in the gam
 	sprite_data["finished"] = last_preview_url
 	preview_generation++
 
-/**
- * Drops our record of the client already holding the last preview image.
- * The server marks an asset as delivered the moment it is queued to send, so a send that fails is never retried.
- * Clearing the record lets the next refresh send the file again.
- */
+/// Drops our record of the client already holding the last preview image.
+/// The server marks an asset as delivered the moment it is queued to send, so a send that fails is never retried.
+/// Clearing the record lets the next refresh send the file again.
 /datum/greyscale_modify_menu/proc/forget_preview_asset()
 	if(!last_preview_url)
 		return
