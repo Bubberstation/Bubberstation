@@ -50,3 +50,8 @@
 		/obj/item/mod/module/auto_doc,
 	)
 
+/obj/item/mod/control/pre_equipped/administrative/no_deploy
+	worn_icon = 'modular_zubbers/icons/mob/clothing/modsuit/mod_clothing.dmi'
+
+/obj/item/mod/control/pre_equipped/administrative/no_deploy/on_outfit_equip()
+	return

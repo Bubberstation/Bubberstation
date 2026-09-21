@@ -23,7 +23,9 @@
 	var/outfit_option
 	/// Initial list of outfits
 	var/list/outfit_options = list(
-		"Bluespace Tech" = /datum/outfit/admin/bst,
+	
+		"Bluespace Technician (Admin)" = /datum/outfit/admin/bst,
+		"Bluespace Technician (Admin) (MODSuit)" = /datum/outfit/admin/bst_mod,
 		"Naked" = /datum/outfit,
 		"Show All" = "Show All",
 	)

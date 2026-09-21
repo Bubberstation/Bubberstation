@@ -29,8 +29,8 @@
 	name = "\improper Bluespace Tech's belt"
 	w_class = WEIGHT_CLASS_TINY
 
-/datum/outfit/debug/bst //Debug objs
-	name = "Bluespace Tech"
+/datum/outfit/debug/bst_mod //Debug objs
+	name = "Bluespace Tech (Debug) (MODSuit)"
 	uniform = /obj/item/clothing/under/syndicate/combat
 	belt = /obj/item/storage/belt/utility/chief/full/debug
 	shoes = /obj/item/clothing/shoes/combat/debug
@@ -47,8 +47,8 @@
 		/obj/item/storage/hypospraykit/cmo/combat = 1,
 	)
 
-/datum/outfit/admin/bst //Debug objs plus modsuit
-	name = "Bluespace Tech (MODsuit)"
+/datum/outfit/admin/bst_mod //Debug objs plus modsuit
+	name = "Bluespace Tech (Admin) (MODSuit)"
 	uniform = /obj/item/clothing/under/syndicate/combat
 	belt = /obj/item/storage/belt/utility/chief/full/debug
 	shoes = /obj/item/clothing/shoes/combat/debug

@@ -54,3 +54,27 @@
 
 	INVOKE_ASYNC(src, PROC_REF(try_auto_heal), interacting_with, user, damaged_limbs, preferred_limb)
 	return ITEM_INTERACT_SUCCESS
+
+/obj/item/weldingtool/experimental/bluespace
+	name = "bluespace welder"
+	desc = "The welding tool that you shouldn't have. Power of the (bluespace) sun, right on your hip."
+	icon = 'modular_zubbers/icons/obj/tools.dmi'
+	icon_state = "bst_welder"
+	lefthand_file = 'modular_zubbers/icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'modular_zubbers/icons/mob/inhands/equipment/tools_righthand.dmi'
+	inhand_icon_state = "bst_welder"
+	inside_belt_icon_state = null
+	toolspeed = 0.05
+	max_fuel = 100
+	w_class = WEIGHT_CLASS_SMALL
+	resistance_flags = INDESTRUCTIBLE|LAVA_PROOF|FIRE_PROOF|UNACIDABLE|ACID_PROOF
+	custom_materials = null
+
+	light_range = 1
+	light_power = 1
+	light_color = LIGHT_COLOR_HALOGEN
+
+/obj/item/weldingtool/abductor/process()
+	if(get_fuel() <= max_fuel)
+		reagents.add_reagent(/datum/reagent/fuel, 1)
+	..()
