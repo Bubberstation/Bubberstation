@@ -64,6 +64,10 @@
 			continue
 		if(!is_station_level(player.z))
 			continue
+		if(isdead(player))
+			continue
+		if(!ishuman(player))
+			continue
 		candidates += player
 
 	return pick(candidates)
