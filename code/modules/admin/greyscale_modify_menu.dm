@@ -346,10 +346,8 @@ This is highly likely to cause massive amounts of lag as every object in the gam
 	refreshing = FALSE
 
 //BUBBER ADDITION START
-/**
- * Stores the finished preview image and remembers its url.
- * The url is what the menu re-requests if the image does not load.
- */
+/// Stores the finished preview image and remembers its url.
+/// The url is what the menu re-requests if the image does not load.
 /datum/greyscale_modify_menu/proc/set_finished_sprite(image/finished)
 	last_preview_url = icon2html(finished, user, dir = sprite_dir, sourceonly = TRUE)
 	sprite_data["finished"] = last_preview_url
