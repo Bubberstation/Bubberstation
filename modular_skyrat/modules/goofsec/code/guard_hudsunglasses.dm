@@ -169,7 +169,7 @@
 	glass_colour_type = /datum/client_colour/glass_colour/guard/command
 	actions_types = list(/datum/action/item_action/toggle_wearable_hud, /datum/action/item_action/toggle/executive_hud)
 	var/mode = EXECUTIVE_MODE_MEDICAL
-	// this happpens if you emp it 
+	// this happpens if you emp it
 	var/malfunctioning = FALSE
 	// the execuHUDs can run out of power
 	var/depleted = FALSE
@@ -539,14 +539,6 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 
 /datum/status_effect/agent_pinpointer/executive/fortune/matches(atom/movable/thing)
 	return TRUE
-
-/datum/objective_item/steal/executive_hudsunglasses
-	name = "the captain's executive HUDsunglasses"
-	targetitem = /obj/item/clothing/glasses/hud/security/sunglasses/guard/command
-	excludefromjob = list(JOB_CAPTAIN)
-	exists_on_map = TRUE
-	difficulty = 3
-	steal_hint = "Gold-plated sunglasses, worn by the Captain. Eleven sensor suites, two of which find booze and money."
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/blueshield
 	name = "blueshield HUDsunglasses"

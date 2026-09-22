@@ -7,7 +7,6 @@
 	if(isnull(gimmick_list))
 		gimmick_list = list(
 			"Frame innocent crewmembers for various pretty crimes they did not do.",
-			"Get yourself arrested, then stage a mass jailbreak.",
 			"Rescue anyone caught and arrested by security.",
 			"Obstruct the flow of traffic around the station.",
 			"Wage a personal war against assistants, forcing them to get a real job.",
