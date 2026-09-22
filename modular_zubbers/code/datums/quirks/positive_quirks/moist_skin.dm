@@ -1,5 +1,5 @@
 /datum/quirk/moist_skin
-	name = "Soaked" //
+	name = "Soaked"
 	desc = "You are naturally soaked in some manner of substance. Stay away from carpets!"
 	icon = FA_ICON_DROPLET
 	quirk_flags = QUIRK_HUMAN_ONLY
@@ -25,7 +25,6 @@
 		holder.particles.color = "[chosen_color]a0"
 
 /datum/quirk/moist_skin/remove()
-	. = ..()
 	UnregisterSignal(quirk_holder, COMSIG_LIVING_IGNITED)
 	UnregisterSignal(quirk_holder, COMSIG_LIVING_EXTINGUISHED)
 	quirk_holder.remove_shared_particles(/particles/droplets)
