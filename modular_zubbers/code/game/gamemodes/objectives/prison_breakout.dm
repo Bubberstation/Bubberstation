@@ -15,7 +15,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(possible_target.assigned_role == /datum/job/prisoner)
+	if(istype(possible_target.assigned_role, /datum/job/prisoner))
 		return TRUE
 	var/area/target_area = get_area(possible_target.current)
 	var/datum/record/crew/record = find_record(possible_target.name)
