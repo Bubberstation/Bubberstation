@@ -20,7 +20,7 @@
 /datum/supply_pack/imports/hunter_rifle
 	name = "Relic Hunting Rifle Single-Order"
 	desc = "This crate includes a rifle from Donk's line of reproduction firearms, all chambered in the reproducer's caliber of choice, .310. Produced by Donk alongside Sahko for the discerning collector of antiquities. This one seems a little... Off. "
-	cost = CARGO_CRATE_VALUE * 15
+	cost = CARGO_CRATE_VALUE * 14
 	contains = list(/obj/item/gun/ballistic/rifle/boltaction/lionhunterlarp)
 	access_view = ACCESS_WEAPONS
 	crate_type = /obj/structure/closet/crate/secure/plasma
@@ -29,7 +29,7 @@
 /datum/supply_pack/imports/prime_rifle
 	name = "Modernized Bolt-Action Rifle Single-Order"
 	desc = "This crate includes a rifle from Donk's line of reproduction firearms, all chambered in the reproducer's caliber of choice, .310. Produced by Donk alongside Sahko for the discerning collector of antiquities."
-	cost = CARGO_CRATE_VALUE * 15
+	cost = CARGO_CRATE_VALUE * 17
 	contains = list(/obj/item/gun/ballistic/rifle/boltaction/prime)
 	access_view = ACCESS_WEAPONS
 	crate_type = /obj/structure/closet/crate/secure/plasma
