@@ -128,6 +128,7 @@
 		when it turns out you've downloaded some kind of horrible donk-pocket related malware that steals your Starscape password. Those bastards over at Donk Co. WILL delete your character."
 	design_ids = list(
 		"donkshell",
+		"s12g_donk", // BUBBER EDIT ADDITION - Donk Spike advanced ammo box
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	hidden = TRUE

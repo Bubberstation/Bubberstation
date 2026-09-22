@@ -77,8 +77,8 @@
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 4,
 		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 2,
 	)
-	transfered_materials = list(/obj/item/device/custom_kit/deluxe_hypo2 = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 8))
-	build_path = /obj/item/device/custom_kit/deluxe_hypo2
+	transfered_materials = list(/obj/item/custom_kit/deluxe_hypo2 = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 8))
+	build_path = /obj/item/custom_kit/deluxe_hypo2
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,
 	)
