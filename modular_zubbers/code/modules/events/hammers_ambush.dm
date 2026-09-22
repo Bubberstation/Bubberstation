@@ -73,7 +73,7 @@
 	return pick(candidates)
 
 /datum/round_event/syndicate_assassination_attempt/proc/get_blacklisted_areas()
-	return GLOB.expected_erp_areas
+	return GLOB.expected_erp_areas.Copy()
 
 ///Handles the creation of the pod, in case it needs to be modified beforehand
 /datum/round_event/syndicate_assassination_attempt/proc/make_pod()
@@ -97,6 +97,8 @@
 	typepath = /datum/round_event/syndicate_assassination_attempt/hammers
 	weight = 1
 	max_occurrences = 1
+	min_players = 30
+	earliest_start = 40 MINUTES
 	description = "Syndicate goons appear from a drop pod and attack a targeted player with hammers."
 	tags = list(TAG_COMBAT, TAG_NPC_ANTAG)
 	track = EVENT_TRACK_MODERATE
