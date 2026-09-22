@@ -1,7 +1,7 @@
 /datum/quirk/moist_skin
 	name = "Soaked"
 	desc = "You are naturally soaked in some manner of substance. Stay away from carpets!"
-	icon = FA_ICON_DROPLET
+	icon = FA_ICON_BUCKET
 	quirk_flags = QUIRK_HUMAN_ONLY
 	mob_trait = TRAIT_MOIST_SKIN
 	gain_text = span_danger("You feel wet.")
