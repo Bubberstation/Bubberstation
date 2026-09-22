@@ -74,8 +74,6 @@
 	return NONE
 
 /obj/item/disk/bitrunning/martialarts/attack_self(mob/user, modifiers)
-	. = ..()
-
 	if(choice_made)
 		return
 
