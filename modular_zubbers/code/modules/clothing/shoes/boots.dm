@@ -456,7 +456,7 @@
 	var/free_move = FALSE
 	var/list/active_traits = list(TRAIT_NO_SLIP_ICE, TRAIT_NO_SLIP_SLIDE, TRAIT_NO_SLIP_ALL, TRAIT_SPACEWALK)
 
-GAME_VERB_SRC(/obj/item/clothing/shoes/combat/bluespace, toggle, usr, "Toggle Freedom of Movement", "Enables spacewalking and full no-slips.")
+GAME_VERB_SRC(/obj/item/clothing/shoes/combat/bluespace, toggle, usr, "Toggle Freedom of Movement", null)
 
 	if(!can_use(usr))
 		return
