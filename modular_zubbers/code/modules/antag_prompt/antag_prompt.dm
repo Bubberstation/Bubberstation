@@ -3,6 +3,9 @@
 	if(!length(candidates))
 		return list()
 
+	// don't queue anything else while we pause
+	processing = FALSE
+
 	var/list/real_candidates = candidates.Copy()
 	if(!CONFIG_GET(flag/antag_prompt_poll_everyone))
 		real_candidates = pick_candidates_by_tickets(real_candidates, antag_count)
@@ -48,6 +51,7 @@
 		"decoy_prompted" = length(decoy_candidates),
 		"decoy_accepted" = length(decoy_accepted),
 	))
+	processing = TRUE
 	return accepted
 
 /// Set by the decoy prompt so the real poll can report both in one log line.
@@ -74,6 +78,7 @@
 		chat_text_border_icon = preview,
 		announce_chosen = FALSE,
 		show_candidate_amount = FALSE,
+		ghost_role_poll = FALSE,
 	)
 	return signed_up || list()
 
@@ -109,8 +114,12 @@
 		seen_flags += possible_control.antag_flag
 		options += possible_control
 
+	var/population = SSgamemode.get_correct_popcount()
 	while(length(options))
 		var/datum/round_event_control/antagonist/decoy = pick_n_take(options)
+		// Only offer something that genuinely could have rolled right now.
+		if(!decoy.can_spawn_event(population))
+			continue
 		var/list/audience = pool & decoy.get_candidates()
 		if(!length(audience))
 			continue

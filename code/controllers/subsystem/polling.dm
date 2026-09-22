@@ -36,6 +36,7 @@ SUBSYSTEM_DEF(polling)
  * * chat_text_border_icon: Object or path to make an icon of to decorate the chat announcement.
  * * announce_chosen: Whether we should announce the chosen candidates in chat. This is ignored unless amount_to_pick is greater than 0.
  * * show_candidate_amount: BUBBER EDIT - Whether the alert shows a running count of how many people signed up.
+ * * ghost_role_poll: BUBBER EDIT - Whether this poll offers a ghost role.
  *
  * Returns a list of all mobs who signed up for the poll, OR, in the case that amount_to_pick is equal to 1 the singular mob/null if no available candidates.
  */
@@ -56,6 +57,7 @@ SUBSYSTEM_DEF(polling)
 	chat_text_border_icon,
 	announce_chosen = TRUE,
 	show_candidate_amount = TRUE, //BUBBER EDIT ADDITION - ANTAG PROMPT
+	ghost_role_poll = TRUE, //BUBBER EDIT ADDITION - ANTAG PROMPT
 )
 	if(group.len == 0)
 		return
@@ -87,12 +89,14 @@ SUBSYSTEM_DEF(polling)
 		if(!candidate_mob.client)
 			continue
 		// Universal opt-out for all players.
-		if(!candidate_mob.client.prefs.read_preference(/datum/preference/toggle/ghost_roles))
+		//BUBBER EDIT CHANGE - ANTAG PROMPT
+		//if(!candidate_mob.client.prefs.read_preference(/datum/preference/toggle/ghost_roles)) - BUBBER EDIT ORIGINAL
+		if(ghost_role_poll && !candidate_mob.client.prefs.read_preference(/datum/preference/toggle/ghost_roles))
 			continue
 		// Opt-out for admins whom are currently adminned.
 		if((!candidate_mob.client.prefs.read_preference(/datum/preference/toggle/ghost_roles_as_admin)) && candidate_mob.client.holder)
 			continue
-		if(!is_eligible(candidate_mob, role, check_jobban, ignore_category))
+		if(!is_eligible(candidate_mob, role, check_jobban, ignore_category, ghost_role_poll)) //BUBBER EDIT CHANGE - ANTAG PROMPT - added ghost_role_poll
 			continue
 
 		if(start_signed_up)
@@ -290,7 +294,7 @@ SUBSYSTEM_DEF(polling)
 		return list()
 	return candidate_list
 
-/datum/controller/subsystem/polling/proc/is_eligible(mob/potential_candidate, role, check_jobban, the_ignore_category)
+/datum/controller/subsystem/polling/proc/is_eligible(mob/potential_candidate, role, check_jobban, the_ignore_category, ghost_role_poll = TRUE) //BUBBER EDIT - ANTAG PROMPT - added ghost_role_poll
 	if(isnull(potential_candidate.key) || isnull(potential_candidate.client))
 		return FALSE
 	if(the_ignore_category)
@@ -306,11 +310,14 @@ SUBSYSTEM_DEF(polling)
 		if(is_banned_from(potential_candidate.ckey, list(ROLE_SYNDICATE) + check_jobban))
 			return FALSE
 
-	//SKYRAT EDIT ADDITION BEGIN
-	if(is_banned_from(potential_candidate.ckey, BAN_GHOST_TAKEOVER) || is_banned_from(potential_candidate.ckey, BAN_ANTAGONIST))
+	//BUBBER EDIT CHANGE BEGIN - ANTAG PROMPT
+	//if(is_banned_from(potential_candidate.ckey, BAN_GHOST_TAKEOVER) || is_banned_from(potential_candidate.ckey, BAN_ANTAGONIST)) - BUBBER EDIT ORIGINAL
+	if(is_banned_from(potential_candidate.ckey, BAN_ANTAGONIST))
+		return FALSE
+	if(ghost_role_poll && is_banned_from(potential_candidate.ckey, BAN_GHOST_TAKEOVER))
 		to_chat(potential_candidate, "There was a ghost prompt for: [role], unfortunately you are banned from ghost takeovers.")
 		return FALSE
-	//SKYRAT EDIT END
+	//BUBBER EDIT CHANGE END - ANTAG PROMPT
 
 	return TRUE
 
