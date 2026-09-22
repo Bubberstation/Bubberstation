@@ -56,7 +56,6 @@
 	///The character count of the code being compiled
 	var/code_length = length(rawcode)
 	if(is_banned_from(user.ckey, JOB_TELECOMMS_SPECIALIST))
-	// if(is_banned_from(user.ckey, JOB_NETWORK_ADMIN) || is_banned_from(user.ckey, JOB_SIGNAL_TECHNICIAN)) // DRACULION EDIT
 		to_chat(user, span_warning("You are banned from using NTSL."))
 		return "Unauthorized access."
 	if(QDELETED(Compiler))
@@ -77,7 +76,6 @@
 		logger.Log(LOG_CATEGORY_NTSL, "Uploaded by [user]: [rawcode]")
 		compiledcode = rawcode
 	if(istype(user.mind?.assigned_role, /datum/job/telecomms_specialist)) //achivement description says only Signal Technician gets the achivement
-		// if(istype(user.mind?.assigned_role, /datum/job/signal_technician)) //achivement description says only Signal Technician gets the achivement DRACULION EDIT
 		var/freq = length(freq_listening) ? freq_listening[1] : 1459
 		var/atom/movable/M = new()
 		var/atom/movable/virtualspeaker/speaker = new(null, M, server_radio)

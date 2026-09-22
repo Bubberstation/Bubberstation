@@ -49,10 +49,10 @@ GLOBAL_LIST_EMPTY(telecomm_machines)
 	if(!on)
 		return
 
-	// MONKESTATION ADDITION START -- NTSL -- Make sure the NTSL actually has a path
+	// BUBBER ADDITION START -- NTSL -- Make sure the NTSL actually has a path
 	if(filter && !ispath(filter))
 		CRASH("relay_information() was given a path filter that wasn't actually a path!")
-	// MONKESTATION ADDITION END
+	// BUBBER ADDITION END
 
 	if(!filter || !ispath(filter, /obj/machinery/telecomms))
 		CRASH("null or non /obj/machinery/telecomms typepath given as the filter argument! given typepath: [filter]")

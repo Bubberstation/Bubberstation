@@ -41,7 +41,7 @@
 	if (log_entries.len >= MAX_LOG_ENTRIES)
 		log_entries.Cut(1, 2)
 
-	signal.data["server"] = src; // BUBBER ADDITION -- NTSL	DRACULION
+	signal.data["server"] = src; // BUBBER ADDITION -- NTSL
 
 	// Don't create a log if the frequency is banned from being logged
 	if(!(signal.frequency in banned_frequencies))

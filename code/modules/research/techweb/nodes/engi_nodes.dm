@@ -107,7 +107,7 @@
 		"s_filter",
 		"s_transmitter",
 		"s_treatment",
-		"s_traffic", // BUBBER ADDITION -- NTSL -- The board to actually program in NTSL DRACULION
+		"s_traffic", // BUBBER ADDITION -- NTSL -- The board to actually program in NTSL
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 

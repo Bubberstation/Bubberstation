@@ -52,7 +52,7 @@ import {
   TrackOutsideClicks,
 } from 'tgui-core/components';
 
-export { Button } from './Button';
+export { Button } from './button';
 export { KeyListener } from './KeyListener';
 export {
   AnimatedNumber,

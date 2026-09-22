@@ -13,7 +13,7 @@
 #define ASH_TONGUE 10
 #define YANGYU 11
 #define UNCOMMON 12
-#define GOBLIN 13
+#define PLUTONIAN 13
 #define FELINID 14
 #define SLIME 15
 
@@ -35,6 +35,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	/datum/language/draconic,
 	/datum/language/uncommon,
 	/datum/language/ashtongue,
+	/datum/language/gutter,
 ))
 
 /datum/n_Interpreter/TCS_Interpreter
@@ -111,8 +112,6 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 			"service" = FREQ_SERVICE,
 			"centcom" = FREQ_CENTCOM,
 			"aiprivate" = FREQ_AI_PRIVATE,
-// DRACULION			"radio" = FREQ_RADIO,
-// DRACULION			"uncommon" = FREQ_UNCOMMON,
 		))
 	)
 
@@ -154,7 +153,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 			"ash" = ASH_TONGUE,
 			"yangyu" = YANGYU,
 			"uncommon" = UNCOMMON,
-			"goblin" = GOBLIN,
+			"gutter" = PLUTONIAN,
 			"nekomimetic" = FELINID,
 			"slime" = SLIME,
 		))
@@ -206,12 +205,15 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 			oldlangbits = YANGYU
 		if(/datum/language/uncommon)
 			oldlangbits = UNCOMMON
-/* DRACULION		if(/datum/language/goblin)
-			oldlangbits = GOBLIN */
+		if(/datum/language/gutter)
+			oldlangbits = PLUTONIAN
 		if(/datum/language/nekomimetic)
 			oldlangbits = FELINID
 		if(/datum/language/slime)
 			oldlangbits = SLIME
+		if(/datum/language/gutter)
+			oldlangbits = PLUTONIAN
+		//DRACULION CONFIRM WE SUPPORT OTHER LANGS HERE TOO OR EVEN GOBLIN
 
 	// Signal data
 	var/datum/n_struct/signal/script_signal = new(list(
@@ -235,7 +237,6 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	if(!istype(script_signal))
 		signal.data["reject"] = TRUE
 		return
-	// DRACULION IT IS GETTING APPLIED CORRECTLY HERE WHICH MEANS WE ARE NOT SENDING IT RIGHT
 	// Backwards-apply variables onto signal data
 	/* sanitize EVERYTHING. fucking players can't be trusted with SHIT */
 
@@ -355,8 +356,8 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 			return /datum/language/yangyu
 		if(UNCOMMON)
 			return /datum/language/uncommon
-/*		if(GOBLIN)
-			return /datum/language/goblin */
+//		if(GOBLIN)
+//			return /datum/language/goblin
 		if(FELINID)
 			return /datum/language/nekomimetic
 		if(SLIME)

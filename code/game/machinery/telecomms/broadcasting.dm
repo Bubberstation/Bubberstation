@@ -79,7 +79,7 @@
 	message,  // the text content of the message
 	spans,  // the list of spans applied to the message
 	list/message_mods, // the list of modification applied to the message. Whispering, singing, ect
-	lvls = null, // BUBBER ADDITION -- NTSL -- what z-levels is this message broadcast to? DRACULION
+	lvls = null, // BUBBER ADDITION -- NTSL -- what z-levels is this message broadcast to?
 )
 	src.source = source
 	src.frequency = frequency

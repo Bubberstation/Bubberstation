@@ -124,7 +124,7 @@ GLOBAL_VAR_INIT(rollovercheck_last_timeofday, 0)
 	//set NO_TIMEZONE because we've already applied the timezone above.
 	return "[time2text(time, format, NO_TIMEZONE)] [am_pm]"
 
-// BUBBER EDIT BEGIN DRACULION
+// BUBBER EDIT BEGIN
 /proc/gameTimestamp(format = "hh:mm:ss", wtime=null, legend = FALSE)
 	if(!wtime)
 		wtime = world.time - SSticker.round_start_time
@@ -146,5 +146,4 @@ GLOBAL_VAR_INIT(rollovercheck_last_timeofday, 0)
 
 /proc/get_timestamp()
 	return time2text(world.time + 432000, ":ss")
-//DRACULIOn WHY WORLD.TIME INSTEAD OF world.timeofday??
 // BUBBER EDIT END

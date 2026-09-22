@@ -15,7 +15,7 @@
 /obj/machinery/computer/telecomms/traffic
 	name = "traffic control computer"
 	desc = "A computer used to interface with the programming of communication servers."
-	req_access = list(ACCESS_TCOMMS) // DRACULION EDITED - MADE IT SO ANYONE WITH ACCESS TO TCOMMS CAN DO IT MONKE HAS IT LIMITED TO CE AND TCOMMS SPECALIST
+	req_access = list(ACCESS_TCOMMS)
 	circuit = /obj/item/circuitboard/computer/comm_traffic
 
 	/// The servers located by the computer
@@ -58,7 +58,6 @@
 
 /obj/machinery/computer/telecomms/traffic/ui_interact(mob/user, datum/tgui/ui)
 	if(is_banned_from(user.ckey, JOB_TELECOMMS_SPECIALIST))
-		//	if(is_banned_from(user.ckey, JOB_NETWORK_ADMIN) || is_banned_from(user.ckey, JOB_SIGNAL_TECHNICIAN)) //DRACULION EDIT
 		to_chat(user, span_warning("You are banned from using the NTSL console"))
 		return "You are banned from using NTSL."
 
@@ -182,7 +181,6 @@
 
 /obj/machinery/computer/telecomms/traffic/proc/compile_all(mob/user)
 	if(is_banned_from(user.ckey, JOB_TELECOMMS_SPECIALIST))
-		//	if(is_banned_from(user.ckey, JOB_NETWORK_ADMIN) || is_banned_from(user.ckey, JOB_SIGNAL_TECHNICIAN)) // DRACULION EDIT
 		return list("You are banned from using NTSL.")
 	if(!length(servers))
 		return list("No servers detected.")

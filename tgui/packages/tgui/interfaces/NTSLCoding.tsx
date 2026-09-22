@@ -11,7 +11,7 @@ import {
   Stack,
   Tabs,
 } from '../bubber_components';
-import { AceEditor } from '../bubber_components/Ace/Editor';
+import { AceEditor } from '../bubber_components/ACE/Editor';
 import { RADIO_CHANNELS } from '../constants';
 import { Window } from '../layouts';
 
@@ -349,7 +349,7 @@ const Guide = (props) => {
       10 (ash) <br />
       11 (yangyu) <br />
       12 (uncommon) <br />
-      13 (goblin) <br />
+      13 (gutter) <br />
       14 (nekomimetic) <br />
       15 (slime) <br />
       <br />

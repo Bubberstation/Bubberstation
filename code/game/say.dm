@@ -172,8 +172,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/freqpart = radio_freq ? "\[[get_radio_name(radio_freq, radio_freq_name)]\] " : ""
 	//Speaker name
 	var/realnamepart = "[speaker.get_voice(TRUE)][speaker.get_alt_name()]"
-	var/namepart = "[speaker.get_voice()][speaker.get_alt_name()]"
-	// var/namepart = message_mods[MODE_SPEAKER_NAME_OVERRIDE] || speaker.get_message_voice(visible_name) DRACULION THIS IS THE CODE FUCKING UP GODDAMMIT OF COURSE ITS A BUBBER EDIT
+	var/namepart = "[speaker.get_voice()][speaker.get_alt_name()]" // BUBBER EDIT
+	// var/namepart = message_mods[MODE_SPEAKER_NAME_OVERRIDE] || speaker.get_message_voice(visible_name) BUBBER EDIT ORIGINAL
 
 	//End name span.
 	var/endspanpart = "</span></a>" //BUBBER EDIT ADD the </a>
@@ -191,7 +191,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/messagepart = speaker.generate_messagepart(raw_message, spans, message_mods)
 	messagepart = " <span class='message'>[messagepart]</span></span>"
 
-	//return "[spanpart1][spanpart2][freqpart][languageicon][compose_track_href(speaker, namepart)][namepart][compose_job(speaker, message_language, raw_message, radio_freq)][endspanpart][messagepart]" BUBBER EDIT NTSL DRACULION
+	//return "[spanpart1][spanpart2][freqpart][languageicon][compose_track_href(speaker, namepart)][namepart][compose_job(speaker, message_language, raw_message, radio_freq)][endspanpart][messagepart]" BUBBER EDIT NTSL
 	return "[spanpart1][spanpart2][freqpart][languageicon][compose_track_href(speaker, realnamepart)][namepart][compose_job(speaker, message_language, raw_message, radio_freq)][endspanpart][messagepart]"
 
 /atom/movable/proc/compose_track_href(atom/movable/speaker, message_langs, raw_message, radio_freq)
@@ -379,7 +379,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/job
 	var/atom/movable/source
 	var/obj/item/radio/radio
-	var/realvoice // BUBBERSTATION ADDITION -- NTSL DRACULION
+	var/realvoice // BUBBERSTATION ADDITION -- NTSL
 
 INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 /atom/movable/virtualspeaker/Initialize(mapload, atom/movable/M, _radio)
@@ -426,7 +426,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 /atom/movable/virtualspeaker/GetRadio()
 	return radio
 
-/atom/movable/virtualspeaker/get_voice(add_id_name) // BUBBER ADDITION -- NTSL (this entire proc) DRACULION IS THIS THE PROBLEM?
+/atom/movable/virtualspeaker/get_voice(add_id_name) // BUBBER ADDITION -- NTSL (this entire proc)
 	if(add_id_name && realvoice)
 		return realvoice
 	else

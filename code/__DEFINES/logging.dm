@@ -118,7 +118,7 @@
 #define LOG_CATEGORY_VIRUS "virus"
 #define LOG_CATEGORY_CAVE_GENERATION "cave-generation"
 #define LOG_CATEGORY_IMAGE "image"
-#define LOG_CATEGORY_NTSL "ntsl" // BUBBER ADDITION DRACULION
+#define LOG_CATEGORY_NTSL "ntsl" // BUBBER ADDITION
 
 // Admin categories
 #define LOG_CATEGORY_ADMIN "admin"
