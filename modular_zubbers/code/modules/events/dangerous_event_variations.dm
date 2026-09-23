@@ -1,8 +1,8 @@
 /datum/round_event_control/vent_clog/extreme
-	name = "Vent Clog: Extreme"
+	name = "Ventilation Clog: Extreme"
 	typepath = /datum/round_event/vent_clog/extreme
 	weight = 8
-	min_players = 30
+	min_players = 23
 	max_occurrences = 6
 	earliest_start = 25 MINUTES
 	description = "Extremely dangerous mobs climb out of a vent."
