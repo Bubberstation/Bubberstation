@@ -15,6 +15,9 @@
 	show_on_wiki = FALSE
 	starting_node = TRUE
 
+/// The iron and glass a high-capacity cell costs to build on its own, per the cell's own design
+#define CELL_MATERIAL_COST list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.6)
+
 // Screw-Wrench-Wirecutter combo machine
 
 /datum/design/colony_power_driver
@@ -27,10 +30,20 @@
 		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
 	)
+
+/datum/design/colony_power_driver/New()
+	. = ..()
+	materials[/datum/material/iron] += CELL_MATERIAL_COST[/datum/material/iron]
+	materials[/datum/material/glass] = CELL_MATERIAL_COST[/datum/material/glass]
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
 	)
+
+/datum/design/colony_power_driver/create_result(atom/drop_loc, list/custom_materials, amount)
+	var/obj/item/screwdriver/omni_drill/driver = ..()
+	give_charged_cell(driver)
+	return driver
 
 // Slow prybar that swings hard when wielded in both hands
 
@@ -48,6 +61,16 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
 	)
 
+/// Loads a charged cell straight into a tool's cell component. The cell's own build cost is already
+/// folded into the design's materials, so this isn't free, it's just built into the one print
+/datum/design/proc/give_charged_cell(obj/item/tool)
+	var/datum/component/cell/cell_component = tool.GetComponent(/datum/component/cell)
+	if(isnull(cell_component) || cell_component.inserted_cell)
+		return
+	var/obj/item/stock_parts/power_store/cell/high/fresh_cell = new(tool)
+	cell_component.inserted_cell = fresh_cell
+	cell_component.handle_cell_overlays(TRUE)
+
 // Welder that takes no fuel or power to run but is quite slow, at least it sounds cool as hell
 
 /datum/design/colony_arc_welder
@@ -64,6 +87,11 @@
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
 	)
+
+/datum/design/colony_arc_welder/create_result(atom/drop_loc, list/custom_materials, amount)
+	var/obj/item/weldingtool/electric/arc_welder/welder = ..()
+	give_charged_cell(welder)
+	return welder
 
 // Slightly slower drill that fits in backpacks
 
@@ -109,3 +137,5 @@
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING,
 	)
+
+#undef CELL_MATERIAL_COST
