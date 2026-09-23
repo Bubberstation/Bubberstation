@@ -1,7 +1,7 @@
 /datum/round_event_control/vent_clog/extreme
 	name = "Ventilation Clog: Extreme"
 	typepath = /datum/round_event/vent_clog/extreme
-	weight = 8
+	weight = 14
 	min_players = 23
 	max_occurrences = 6
 	earliest_start = 25 MINUTES

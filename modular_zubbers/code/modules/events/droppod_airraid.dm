@@ -247,7 +247,7 @@
 	name = "Drop Troopers: Syndicate"
 	description = "The Syndicate sends large numbers of drop pod soldiers to fight the station."
 	typepath = /datum/round_event/droppod_airraid/syndicate
-	weight = 6
+	weight = 20
 	max_occurrences = 2
 	min_players = 30
 	admin_setup = list()
@@ -302,7 +302,7 @@
 	name = "Drop Troopers: Syndicate (Lesser)"
 	description = "The Syndicate sends small numbers of drop pod soldiers to fight the station."
 	typepath = /datum/round_event/droppod_airraid/syndicate/lesser
-	weight = 4
+	weight = 12
 	max_occurrences = 1
 	min_players = 12
 	category = EVENT_CATEGORY_ENTITIES
@@ -328,7 +328,7 @@
 	name = "Drop Troopers: Hivebots"
 	description = "A fleet of autonomous robot invaders attacks the station."
 	typepath = /datum/round_event/droppod_airraid/hivebots
-	weight = 4
+	weight = 16
 	max_occurrences = 2
 	min_players = 20
 	admin_setup = list()
