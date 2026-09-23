@@ -1036,7 +1036,9 @@
 		return
 	//BUBBER EDIT ADDITION END - ANTAG PROMPT
 	if(LAZYACCESS(modifiers, ALT_CLICK) && poll.ignoring_category)
-		set_never_round()
+		//BUBBER EDIT CHANGE - ANTAG PROMPT - antag prompts confirm first, they blanket every roll
+		//set_never_round() - BUBBER EDIT ORIGINAL
+		confirm_never_round()
 		return
 	if(LAZYACCESS(modifiers, CTRL_CLICK) && poll.jump_to_me)
 		jump_to_jump_target()
