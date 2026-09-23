@@ -16,6 +16,14 @@
 #define PLUTONIAN 13
 #define FELINID 14
 #define SLIME 15
+#define SIIKMAAS 16
+#define SPACER 17
+#define TEVELUAKKO 18
+#define INTERSLAVIC 19
+#define CANILUNZT 20
+#define SKRELLUQ 21
+#define SCHECHI 22
+#define MARISH 23
 
 ///Span classes that players are allowed to set in a radio transmission.
 GLOBAL_LIST_INIT(allowed_custom_spans, list(
@@ -35,7 +43,6 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	/datum/language/draconic,
 	/datum/language/uncommon,
 	/datum/language/ashtongue,
-	/datum/language/gutter,
 ))
 
 /datum/n_Interpreter/TCS_Interpreter
@@ -156,6 +163,14 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 			"gutter" = PLUTONIAN,
 			"nekomimetic" = FELINID,
 			"slime" = SLIME,
+			"siikmaas" = SIIKMAAS,
+			"spacer" = SPACER,
+ 			"te velu akko" = TEVELUAKKO,
+ 			"interslavic" = INTERSLAVIC,
+			"canilunzt" = CANILUNZT,
+			"skrell" = SKRELLUQ,
+			"schechi" = SCHECHI,
+			"marish" = MARISH,
 		))
 	)
 
@@ -211,9 +226,22 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 			oldlangbits = FELINID
 		if(/datum/language/slime)
 			oldlangbits = SLIME
-		if(/datum/language/gutter)
-			oldlangbits = PLUTONIAN
-		//DRACULION CONFIRM WE SUPPORT OTHER LANGS HERE TOO OR EVEN GOBLIN
+		if(/datum/language/siiktajr)
+			oldlangbits = SIIKMAAS
+		if(/datum/language/spacer)
+			oldlangbits = SPACER
+		if(/datum/language/akulan)
+			oldlangbits = TEVELUAKKO
+		if(/datum/language/spinwarder)
+			oldlangbits = INTERSLAVIC
+		if(/datum/language/canilunzt)
+			oldlangbits = CANILUNZT
+		if(/datum/language/skrell)
+			oldlangbits = SKRELLUQ
+		if(/datum/language/schechi)
+			oldlangbits = SCHECHI
+		if(/datum/language/marish)
+			oldlangbits = MARISH
 
 	// Signal data
 	var/datum/n_struct/signal/script_signal = new(list(
@@ -356,12 +384,28 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 			return /datum/language/yangyu
 		if(UNCOMMON)
 			return /datum/language/uncommon
-//		if(GOBLIN)
-//			return /datum/language/goblin
+		if(PLUTONIAN)
+			return /datum/language/gutter
 		if(FELINID)
 			return /datum/language/nekomimetic
 		if(SLIME)
 			return /datum/language/slime
+		if(SIIKMAAS)
+			return /datum/language/siiktajr
+		if(SPACER)
+			return /datum/language/spacer
+		if(TEVELUAKKO)
+			return /datum/language/akulan
+		if(INTERSLAVIC)
+			return /datum/language/spinwarder
+		if(CANILUNZT)
+			return /datum/language/canilunzt
+		if(SKRELLUQ)
+			return /datum/language/skrell
+		if(SCHECHI)
+			return /datum/language/schechi
+		if(MARISH)
+			return /datum/language/marish
 
 ///Stores data from the script to use between radio messages.
 /datum/n_function/default/mem
@@ -544,6 +588,14 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 #undef ASH_TONGUE
 #undef YANGYU
 #undef UNCOMMON
-#undef GOBLIN
+#undef PLUTONIAN
 #undef FELINID
 #undef SLIME
+#undef SIIKMAAS
+#undef SPACER
+#undef TEVELUAKKO
+#undef INTERSLAVIC
+#undef CANILUNZT
+#undef SKRELLUQ
+#undef SCHECHI
+#undef MARISH

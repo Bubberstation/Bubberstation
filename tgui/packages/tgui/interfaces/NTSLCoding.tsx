@@ -352,6 +352,14 @@ const Guide = (props) => {
       13 (gutter) <br />
       14 (nekomimetic) <br />
       15 (slime) <br />
+      16 (siiktajr) <br />
+      17 (spacer) <br />
+      18 (akulan) <br />
+      19 (interslavic) <br />
+      20 (canilunzt) <br />
+      21 (skrell) <br />
+      22 (schechi) <br />
+      23 (marish) <br />
       <br />
       <br />
       Broadcasted signals will not run itself through Scripts.
