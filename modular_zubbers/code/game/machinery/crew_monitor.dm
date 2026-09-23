@@ -35,8 +35,15 @@
 		if(!istype(uniform) || uniform.has_sensor <= NO_SENSORS || !uniform.sensor_mode)
 			GLOB.suit_sensors_list -= mob
 			continue
-		if(uniform.sensor_mode == SENSOR_COORDS && (uniform.has_sensor != BROKEN_SENSORS) && IS_CRITICAL(mob) || mob.stat == DEAD)
+
+		if(uniform.sensor_mode == SENSOR_COORDS && (uniform.has_sensor != BROKEN_SENSORS) && IS_CRITICAL(mob) || mob.stat == DEAD || isprotean(mob))
 			if(mob.get_dnr()) // DNR won't beep anymore
+				continue
+			if(isprotean(mob))
+				var/obj/item/organ/brain/protean/protean_brain = mob.get_organ_slot(ORGAN_SLOT_BRAIN)
+				if(protean_brain?.dead)
+					canalarm = TRUE
+					break
 				continue
 			canalarm = TRUE
 			break // Why wasn't this here?

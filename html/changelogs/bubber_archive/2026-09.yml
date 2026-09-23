@@ -187,3 +187,107 @@
   - bugfix: Crew monitors see dead people again
   Swan:
   - bugfix: fixes computers not connecting to one another properly
+2026-09-17:
+  ArrisFairburne:
+  - rscadd: Blacksmiths (should) now have dedicated dept. rooms in every map that
+      we are currently running
+  - rscadd: Nonlethal striking with the blacksmithing weapons now has a unique "handle
+      bash" animation, also they should look like they're swinging/stabbing in their
+      normal animations
+  - rscadd: Adds a new reagent forged baseball bat weapon.
+  - balance: Anvils now require titanium to make. (This prevents anvil creation from
+      being too easy via the most common material on station, while not being CBT
+      for offstation roles to obtain.)
+  - balance: Smithed gunbelts and sheaths are now belt-slot exclusive. (It was honestly
+      too much to have two of these at once.)
+  - balance: Buffed reagent imbuing into plate armor so it drains integ slower.
+  - rscadd: Anvils are now heavy and are slower to drag.
+  - rscadd: The blacksmithing roundstart wooden crate now includes leather and cloth
+      to help jumpstart blacksmith duties.
+  - bugfix: Fixes the "pull item from crafting bench with tongs" code so that you
+      actually can do that (was previously impossible due to a bug)
+  - refactor: Improved smithing tong code to update when items are moved in or out
+      of it (instead of manually changing the sprite)
+  - image: Changed sprites of the held forge weapons so that they are more visible
+  Swan:
+  - rscdel: removes the ability to add arc shielding to APCs, since apc arching was
+      disabled anyway
+2026-09-18:
+  Aeri:
+  - bugfix: MODsuit hardlight covers show up on tails, ears, wings and other parts
+      again.
+  - rscadd: Every MODsuit has its own hardlight color, and you can change it from
+      the MODsuit panel.
+  - bugfix: Entombed hardlight color choices no longer change every other Entombed
+      suit.
+  - bugfix: Resolved a minor issue where butts weren't migrated to behave like other
+      genitals
+  BingusTheClown:
+  - qol: changed offensive station name into Applesauce
+  Danielance:
+  - bugfix: fixed research jumpsuit digi sprites
+  NanoCats:
+  - balance: Reverted the Marked One / berserker armor nerf; it uses the stock upstream
+      values
+  Odairu:
+  - bugfix: round start AI shells have cells now
+  - bugfix: proteans die in the manner they were intended to again
+2026-09-19:
+  ibexgoetia:
+  - map: The Ancient Milsim Bitrunning Domain now longer has missing walls that cause
+      it to be spaced.
+  - map: The Void Raptor Boulder Machines in Cargo are now set to the proper direction.
+2026-09-20:
+  Aeri:
+  - rscadd: Custom QM weapon series
+  - rscdel: "Removed the civilian B\xF3br for being stupid and redundant."
+  - qol: Every Szot Dynamica weapon can now be recoloured.
+  - bugfix: "Firing the S\u0142o\u0144ce Plasma Projector no longer spams runtime\
+      \ errors."
+  - spellcheck: Cleaned up spelling and grammar across Szot Dynamica weapon descriptions.
+  BingusTheClown:
+  - rscadd: A new negative quirk called 'Criminal Underworlder' - Player gains access
+      to player exploitables and has note in their sec records denoting they should
+      not be given weapon permits
+  - rscadd: A new positive quirk called 'Underworld Connections' - Players spawn in
+      with a Black Market Uplink
+  - bugfix: Adds proper warning text to quirk
+  Dr-arielpro:
+  - rscadd: Added all four basic damage type medkits to the security medic's locker,
+      along with a basic robotics repair kit.
+  - rscadd: Added a formaldehyde bottle to the security medic's locker, along with
+      restraints.
+  - rscadd: Added a brand new unique handheld crew monitor to the security medic,
+      which is only able to see any security related job. They start with it in their
+      bag.
+  - balance: Basically buffs Security Medic's medical role, to hopefully make them
+      more focused on the medical aspect of their job and less reliant on spending
+      half an hour setting up.
+  - image: Updated the Security Medic closet, at long last.
+  - map: Revamped all infirmaries in Security, giving them proper gear. This includes
+      a basic surgical setup (operating table, surgery computer and surgery tray),
+      a defib mount (without a defib), and a DeForest first aid station. Certain infirmaries
+      might be better equipped due to size.
+  - config: Automapper config for Security Medic closets changed, no longer automatically
+      spawns closets for all maps that received a revamped infirmary.
+  MintyPhresh:
+  - qol: Ashwalker rituals take way less time. (25s -> 10s)
+  Robwo:
+  - rscadd: Directional presets for wall closets.
+  - rscadd: "Lizard Gas branded closets! \U0001F98E"
+  - map: The syndicate have invested in a superior listening post for comms agents.
+  - map: Space Lizard Gas has received additional funding for an extra employee and
+      quality of life.
+  - map: Lavaland/Icemoon Lizard Gas is 50% dirtier now.
+  - code_imp: The comms agent spawner no longer has a 15% chance to be replaced with
+      a mob.
+  - bugfix: Morgues no longer appear open by default.
+2026-09-21:
+  Odairu:
+  - code_imp: removes depricated restricted body size variable
+  ibexgoetia:
+  - map: The Command Outfitting Station is no longer hidden under the cola vending
+      machine on Icebox Station.
+  red-creature:
+  - rscadd: Animal print underclothes (Cow (New), Zebra, Cheetah) and recolourable
+      thigh highs from Nova
