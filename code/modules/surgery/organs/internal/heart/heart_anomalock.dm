@@ -8,7 +8,7 @@
 	desc = "A cutting-edge cyberheart, originally designed for Nanotrasen killsquad usage but later declassified for normal research. \
 		Voltaic technology allows the heart to keep the body upright in dire circumstances, \
 		alongside redirecting anomalous flux energy to fully shield the user from shocks and the heart from electro-magnetic pulses. \
-		Requires a refined Flux core as a power source. Provides EMP immunity when not on cooldown."
+		Requires a refined Flux core as a power source. Provides EMP immunity when not on cooldown." // BUBBER EDIT - Mentioning of EMP resistance
 	icon_state = "anomalock_heart"
 	beat_noise = "an astonishing <b>BZZZ</b> of immense electrical power"
 	bleed_prevention = TRUE
@@ -48,16 +48,20 @@
 	add_lightning_overlay(30 SECONDS)
 	playsound(organ_owner, 'sound/items/eshield_recharge.ogg', 40)
 	RegisterSignal(organ_owner, COMSIG_MOB_STATCHANGE, PROC_REF(activate_survival_comsig))
+	// BUBBER EDIT - Application of EMP resistance
 	RegisterSignal(organ_owner, COMSIG_ATOM_EMP_ACT, PROC_REF(on_emp_act))
 	organ_owner.AddElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS|EMP_NO_EXAMINE)
+	// BUBBER EDIT END
 
 /obj/item/organ/heart/cybernetic/anomalock/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
 	if(!core)
 		return
 	clear_lightning_overlay(organ_owner)
+	// BUBBER EDIT - Removal of the addition of EMP resistance
 	organ_owner.RemoveElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS|EMP_NO_EXAMINE)
 	UnregisterSignal(organ_owner, COMSIG_ATOM_EMP_ACT)
+	// BUBBER EDIT END
 	UnregisterSignal(organ_owner, COMSIG_MOB_STATCHANGE)
 	tesla_zap(source = organ_owner, zap_range = 20, power = 2.5e5, cutoff = 1e3)
 	apply_organ_damage(INFINITY)
@@ -68,8 +72,10 @@
 
 	return self_implant(user)
 
+// BUBBER EDIT - EMP triggers the hearts ability
 /obj/item/organ/heart/cybernetic/anomalock/proc/on_emp_act(severity)
 	activate_survival(owner)
+// BUBBER EDIT END
 
 /obj/item/organ/heart/cybernetic/anomalock/proc/self_implant(mob/living/carbon/user)
 	if(DOING_INTERACTION(user, DOAFTER_IMPLANTING_HEART))
@@ -152,7 +158,9 @@
 /obj/item/organ/heart/cybernetic/anomalock/proc/notify_cooldown(mob/living/carbon/organ_owner)
 	balloon_alert(organ_owner, "your heart strengthtens")
 	playsound(organ_owner, 'sound/items/eshield_recharge.ogg', 40)
+	// BUBBER EDIT - Application of EMP resistance
 	organ_owner.AddElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS|EMP_NO_EXAMINE)
+	// BUBBER EDIT END
 
 /obj/item/organ/heart/cybernetic/anomalock/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, required_anomaly))
@@ -243,7 +251,9 @@
 	owner.remove_filter("emp_shield")
 	owner.balloon_alert(owner, "your heart weakens")
 	owner.remove_traits(list(TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_ANALGESIA), TRAIT_STATUS_EFFECT(id))
+	// BUBBER EDIT - Removal of the addition of EMP resistance
 	owner.RemoveElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS|EMP_NO_EXAMINE)
+	// BUBBER EDIT END
 
 /// Called when an organ is lost in the owner. In the event the owner just lost their voltaic (presumably, the one giving this effect), ends the buff and clears the overlay.
 /datum/status_effect/voltaic_overdrive/proc/on_organ_lost(mob/living/carbon/source, obj/item/organ/organ, special)
