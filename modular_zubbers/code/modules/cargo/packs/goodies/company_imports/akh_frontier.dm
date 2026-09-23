@@ -16,6 +16,10 @@
 	item_type = /obj/item/crowbar/large/doorforcer
 	cost = PAYCHECK_COMMAND * 5
 
+/datum/supply_pack/company_import/akh_frontier/basic/multitool
+	item_type = /obj/item/multitool/colony
+	cost = PAYCHECK_COMMAND * 2
+
 /datum/supply_pack/company_import/akh_frontier/basic/compact_drill
 	item_type = /obj/item/pickaxe/drill/compact
 	cost = PAYCHECK_COMMAND * 5

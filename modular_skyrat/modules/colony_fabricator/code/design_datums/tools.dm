@@ -7,6 +7,7 @@
 		"colony_prybar",
 		"colony_arc_welder",
 		"colony_compact_drill",
+		"colony_multitool",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = INFINITY) // God save you
 	hidden = TRUE
@@ -77,4 +78,20 @@
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING,
+	)
+
+// Field multitool
+
+/datum/design/colony_multitool
+	name = "Field Multitool"
+	id = "colony_multitool"
+	build_type = COLONY_FABRICATOR
+	build_path = /obj/item/multitool/colony
+	materials = list(
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.2,
+	)
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
 	)

@@ -46,7 +46,7 @@
 	attack_verb_simple = list("drill", "screw", "jab", "whack")
 	hitsound = 'sound/items/tools/drill_hit.ogg'
 	usesound = 'sound/items/tools/drill_use.ogg'
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 	toolspeed = 1.25
 	random_color = FALSE
 	greyscale_config = /datum/greyscale_config/colony_tools
@@ -201,6 +201,37 @@
 	)
 
 /obj/item/weldingtool/electric/arc_welder/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
+
+// A multitool built to take a beating out in the field
+
+/obj/item/multitool
+	/// Keeps the user from being shocked while this pulses live wires
+	var/insulated_probes = FALSE
+
+/obj/item/multitool/colony
+	name = "field multitool"
+	desc = "A rugged multitool built for construction and repair work far from any station. \
+		Its probes are insulated from the casing, so pulsing live wires with it will not shock you."
+	icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
+	icon_state = "multitool"
+	icon_angle = 0
+	inhand_icon_state = "colony_multitool"
+	lefthand_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_lefthand.dmi'
+	righthand_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_righthand.dmi'
+	greyscale_config = /datum/greyscale_config/colony_tools
+	greyscale_config_inhand_left = /datum/greyscale_config/colony_tools/inhand_left
+	greyscale_config_inhand_right = /datum/greyscale_config/colony_tools/inhand_right
+	greyscale_colors = COLONY_TOOL_COLORS
+	flags_1 = parent_type::flags_1 | IS_PLAYER_COLORABLE_1 | NO_NEW_GAGS_PREVIEW_1
+	insulated_probes = TRUE
+	custom_materials = list(
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.2,
+	)
+
+/obj/item/multitool/colony/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
 
