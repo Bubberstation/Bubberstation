@@ -10,7 +10,8 @@
 	return COLOR_WATERDROP_DEFAULT
 
 /datum/preference/color/input_dripping_color/is_accessible(datum/preferences/preferences)
-	if (!..(preferences))
+	. = ..()
+	if (!.)
 		return FALSE
 
 	return /datum/quirk/moist_skin::name in preferences.all_quirks

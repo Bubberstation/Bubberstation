@@ -19,8 +19,8 @@
 	. = ..()
 	RegisterSignal(quirk_holder, COMSIG_LIVING_IGNITED, PROC_REF(on_ignited))
 	RegisterSignal(quirk_holder, COMSIG_LIVING_EXTINGUISHED, PROC_REF(on_extinguish))
-	var/obj/effect/abstract/shared_particle_holder/holder = quirk_holder.add_shared_particles(/particles/droplets, "custom_drop")
 	chosen_color = client_source?.prefs.read_preference(/datum/preference/color/input_dripping_color)
+	var/obj/effect/abstract/shared_particle_holder/holder = quirk_holder.add_shared_particles(/particles/droplets, "custom_drop")
 	if(!isnull(chosen_color))
 		holder.particles.color = "[chosen_color]a0"
 
