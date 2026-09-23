@@ -102,3 +102,7 @@
 /datum/design/rped/New()
 	. = ..()
 	build_type |= COLONY_FABRICATOR
+
+/datum/design/plate/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR

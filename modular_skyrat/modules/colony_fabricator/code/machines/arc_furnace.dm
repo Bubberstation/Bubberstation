@@ -9,6 +9,8 @@
 		amounts of electricity. While not nearly as fast and efficient as other ore refining methods, the arc furnace is \
 		capable of returning <b>larger amounts of refined material</b> than a standard refining process can. \
 		A sticker on the side notes that this may <b>exhaust waste gasses to the air</b> during operation."
+	/// How much our waste gas is scaled down from the old, room-cooking amounts
+	var/exhaust_multiplier = 0.2
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/machines.dmi'
 	icon_state = "arc_furnace"
 	base_icon_state = "arc_furnace"
@@ -19,6 +21,7 @@
 	light_color = LIGHT_COLOR_BRIGHT_YELLOW
 	light_power = 10
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 10 // This baby consumes so much power
+	interaction_flags_machine = INTERACT_MACHINE_OFFLINE | INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
 	/// The item we turn into when repacked
 	var/repacked_type = /obj/item/flatpacked_machine/arc_furnace
 	/// If the furnace is currently working on smelting something
@@ -42,6 +45,7 @@
 
 /obj/machinery/arc_furnace/examine(mob/user)
 	. = ..()
+	. += span_notice("Without station power, it can run off a <b>powered cable</b> beneath it.")
 	if(length(contents))
 		. += span_notice("It has <b>[contents[1]]</b> sitting in it.")
 
@@ -129,7 +133,7 @@
 
 /// Starts the smelting process, checking if the machine has power or if its broken at all
 /obj/machinery/arc_furnace/proc/smelt_it_up(mob/user)
-	if(machine_stat & (NOPOWER|BROKEN))
+	if((machine_stat & BROKEN) || !has_smelting_power())
 		balloon_alert(user, "button doesn't respond")
 		return
 	if(operating)
@@ -152,7 +156,7 @@
 
 /// The smelting loop for checking if we're done smelting or not. If we are, then we succeed smelting. If we have to stop for whatever reason, we stop.
 /obj/machinery/arc_furnace/proc/loop(time)
-	if(machine_stat & (NOPOWER|BROKEN))
+	if((machine_stat & BROKEN) || !has_smelting_power())
 		end_smelting()
 		return
 
@@ -165,23 +169,46 @@
 		return
 
 	time -= 1 SECONDS
-	use_energy(active_power_usage)
+	draw_smelting_power()
 
 	var/turf/where_we_spawn_air = get_turf(src)
 	var/obj/item/stack/ore/ore_stack_to_check = contents[1]
 	switch(ore_stack_to_check.refined_type)
 		if(/obj/item/stack/sheet/mineral/silver)
-			where_we_spawn_air.atmos_spawn_air("n2=10;TEMP=1200")
+			where_we_spawn_air.atmos_spawn_air("n2=[10 * exhaust_multiplier];TEMP=800")
 		if(/obj/item/stack/sheet/mineral/uranium)
-			where_we_spawn_air.atmos_spawn_air("co2=50;TEMP=1200")
+			where_we_spawn_air.atmos_spawn_air("co2=[50 * exhaust_multiplier];TEMP=800")
 		if(/obj/item/stack/sheet/mineral/titanium)
-			where_we_spawn_air.atmos_spawn_air("n2=10;co2=10;TEMP=1200")
+			where_we_spawn_air.atmos_spawn_air("n2=[10 * exhaust_multiplier];co2=[10 * exhaust_multiplier];TEMP=800")
 		if(/obj/item/stack/sheet/mineral/plasma)
-			where_we_spawn_air.atmos_spawn_air("co2=75;TEMP=2000")
+			where_we_spawn_air.atmos_spawn_air("co2=[75 * exhaust_multiplier];TEMP=1200")
 		else
-			where_we_spawn_air.atmos_spawn_air("co2=20;TEMP=1200")
+			where_we_spawn_air.atmos_spawn_air("co2=[20 * exhaust_multiplier];TEMP=800")
 
 	addtimer(CALLBACK(src, PROC_REF(loop), time), 1 SECONDS)
+
+/// The powered cable under us, if there is one with enough spare power for a second of smelting
+/obj/machinery/arc_furnace/proc/get_powered_cable()
+	var/obj/structure/cable/cable = locate() in get_turf(src)
+	var/datum/powernet/grid = cable?.powernet
+	if(isnull(grid) || clamp(grid.avail - grid.load, 0, grid.avail) < active_power_usage)
+		return null
+	return cable
+
+/// Can we smelt right now, off the area or off a cable
+/obj/machinery/arc_furnace/proc/has_smelting_power()
+	if(!(machine_stat & NOPOWER))
+		return TRUE
+	return !isnull(get_powered_cable())
+
+/// Pays for one second of smelting, from the area if it is powered and from the cable otherwise
+/obj/machinery/arc_furnace/proc/draw_smelting_power()
+	if(!(machine_stat & NOPOWER))
+		use_energy(active_power_usage)
+		return
+	var/obj/structure/cable/cable = get_powered_cable()
+	if(cable)
+		cable.powernet.load += active_power_usage
 
 /// Takes the ore contained and turns it into an equal stack amount of its smelt result
 /obj/machinery/arc_furnace/proc/succeed_smelting()

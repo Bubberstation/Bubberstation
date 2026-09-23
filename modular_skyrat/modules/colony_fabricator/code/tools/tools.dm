@@ -245,7 +245,12 @@
 	. = ..()
 	var/datum/component/cell/cell_component = GetComponent(/datum/component/cell)
 	if(cell_component?.inserted_cell)
-		. += "arc_welder_cell"
+		. += mutable_appearance(icon, "arc_welder_cell")
+
+// the battery is an overlay, so it has to be rebuilt whenever the colours change
+/obj/item/weldingtool/electric/arc_welder/update_greyscale()
+	. = ..()
+	update_appearance(UPDATE_OVERLAYS)
 
 /obj/item/weldingtool/electric/arc_welder/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()

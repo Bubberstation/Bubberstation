@@ -21,12 +21,16 @@
 /datum/design/biogen/medical_replicator/sutures
 	name = "Hemostatic Sutures"
 	id = "slavic_suture"
+	research_icon = 'modular_skyrat/modules/food_replicator/icons/medicine.dmi'
+	research_icon_state = "hemo_suture_3"
 	materials = list(/datum/material/biomass = 180)
 	build_path = /obj/item/stack/medical/suture/bloody
 
 /datum/design/biogen/medical_replicator/mesh
 	name = "Hemostatic Mesh"
 	id = "slavic_mesh"
+	research_icon = 'modular_skyrat/modules/food_replicator/icons/medicine.dmi'
+	research_icon_state = "hemo_mesh_3"
 	materials = list(/datum/material/biomass = 200)
 	build_path = /obj/item/stack/medical/mesh/bloody
 
@@ -43,6 +47,8 @@
 /datum/design/biogen/medical_replicator/gauze
 	name = "Medical Gauze"
 	id = "slavic_gauze"
+	research_icon = 'icons/obj/medical/stack_medical.dmi'
+	research_icon_state = "gauze_3"
 	materials = list(/datum/material/biomass = 100)
 	build_path = /obj/item/stack/medical/wrap/gauze
 

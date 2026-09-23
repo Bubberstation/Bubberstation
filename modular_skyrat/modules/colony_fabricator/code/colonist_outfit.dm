@@ -55,6 +55,7 @@
 	r_pocket = /obj/item/flashlight
 	r_hand = /obj/item/gun/ballistic/rifle/boltaction
 	backpack_contents = list(
+		/obj/item/storage/box/survival = 1,
 		/obj/item/storage/medkit/frontier/stocked = 1,
 		/obj/item/storage/box/colonial_rations = 1,
 		/obj/item/ammo_box/speedloader/strilka310/surplus = 2,
@@ -63,5 +64,15 @@
 		/obj/item/stock_parts/power_store/cell/high = 1,
 		/obj/item/gps = 1,
 	)
+
+/datum/outfit/colonist/post_equip(mob/living/carbon/human/equipped, visuals_only = FALSE)
+	. = ..()
+	if(visuals_only)
+		return
+	var/obj/item/card/id/card = equipped.wear_id
+	if(istype(card))
+		card.registered_name = equipped.real_name
+		card.update_label()
+		card.update_icon()
 
 #undef FRONTIER_ORANGE

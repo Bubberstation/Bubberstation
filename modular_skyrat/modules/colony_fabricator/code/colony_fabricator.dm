@@ -114,9 +114,12 @@
 /obj/machinery/rnd/production/colony_lathe/on_deconstruction(disassembled)
 	if(isnull(cell))
 		return ..()
-	// a repack spawns the flatpack on our tile before taking us apart, so our cell goes back into the box
-	var/obj/item/flatpacked_machine/packed = locate() in drop_location()
-	if(disassembled && !isnull(packed) && ispath(packed.type_to_deploy, type))
+	// a repack spawns the flatpack on our tile this same tick, before taking us apart, so our cell goes back into that box
+	var/obj/item/flatpacked_machine/packed
+	for(var/obj/item/flatpacked_machine/flatpack in drop_location())
+		if(flatpack.created_at == world.time && ispath(flatpack.type_to_deploy, type))
+			packed = flatpack
+	if(disassembled && !isnull(packed))
 		QDEL_NULL(packed.cell)
 		packed.cell = cell
 		cell.forceMove(packed)
@@ -248,14 +251,17 @@
 	var/obj/type_to_deploy = /obj/machinery/rnd/production/colony_lathe
 	/// How long it takes to create the structure in question.
 	var/deploy_time = 4 SECONDS
-	/// Cell packed inside, for machines that run on one. A path until somebody opens the packaging
+	/// Cell packed inside, for machines that run on one
 	var/obj/item/stock_parts/power_store/cell
+	/// When this flatpack was made, so a repacking machine can find the box it just went into
+	var/created_at
 
 /obj/item/flatpacked_machine/Initialize(mapload)
 	. = ..()
 	desc = initial(type_to_deploy.desc)
 	give_deployable_component()
 	give_manufacturer_examine()
+	created_at = world.time
 	if(ispath(type_to_deploy, /obj/machinery/rnd/production/colony_lathe))
 		cell = new /obj/item/stock_parts/power_store/cell/high(src)
 	RegisterSignal(src, COMSIG_DEPLOYABLE_DEPLOYED, PROC_REF(on_deployed))
