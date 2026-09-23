@@ -6,6 +6,8 @@
 	circuit = null
 	/// What this packs into
 	var/packed_type = /obj/item/flatpacked_machine/ore_silo
+	/// Has somebody shut the transfer beep up
+	var/muted = FALSE
 
 /obj/machinery/ore_silo/colony_lathe/Initialize(mapload)
 	. = ..()
@@ -13,7 +15,18 @@
 
 /obj/machinery/ore_silo/colony_lathe/silo_log(obj/machinery/machinery_in_question, action, amount, noun, list/mats)
 	. = ..()
-	playsound(src, 'sound/machines/beep/beep.ogg', 30, TRUE)
+	if(!muted)
+		playsound(src, 'sound/machines/beep/beep.ogg', 30, TRUE)
+
+/obj/machinery/ore_silo/colony_lathe/examine(mob/user)
+	. = ..()
+	. += span_notice("Its transfer beep is [muted ? "muted" : "on"]. [EXAMINE_HINT("Alt-click")] to toggle it.")
+
+/obj/machinery/ore_silo/colony_lathe/click_alt(mob/user)
+	muted = !muted
+	balloon_alert(user, "beep [muted ? "muted" : "unmuted"]")
+	playsound(src, 'sound/machines/click.ogg', 30, TRUE)
+	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/ore_silo/colony_lathe/default_deconstruction_crowbar()
 	return

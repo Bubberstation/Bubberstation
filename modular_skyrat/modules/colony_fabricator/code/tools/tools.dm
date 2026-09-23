@@ -16,6 +16,22 @@
 	icon_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_inhand_greyscale_right.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/colony_tools/colony_tools_inhand_right.json'
 
+// The multitool gets a third colour for its screen
+/datum/greyscale_config/colony_multitool
+	name = "Colony Multitool"
+	icon_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_greyscale.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/colony_tools/colony_multitool.json'
+
+/datum/greyscale_config/colony_multitool/inhand_left
+	name = "Colony Multitool (Left Hand)"
+	icon_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_inhand_greyscale_left.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/colony_tools/colony_multitool_inhand_left.json'
+
+/datum/greyscale_config/colony_multitool/inhand_right
+	name = "Colony Multitool (Right Hand)"
+	icon_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_inhand_greyscale_right.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/colony_tools/colony_multitool_inhand_right.json'
+
 // Like the power drill, except no speed buff but has wirecutters as well? Just trust me on this one.
 
 /obj/item/screwdriver/omni_drill
@@ -60,6 +76,7 @@
 
 /obj/item/screwdriver/omni_drill/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/gags_recolorable)
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
 
 /obj/item/screwdriver/omni_drill/get_all_tool_behaviours()
@@ -116,7 +133,7 @@
 
 // A slow prybar that makes up for it by hitting like a length of pipe when you commit both hands
 
-/obj/item/crowbar/large/doorforcer
+/obj/item/crowbar/large/colony_prybar
 	name = "prybar"
 	desc = "A large, sturdy crowbar, painted orange. Swings hard enough to keep you a free man."
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
@@ -140,10 +157,21 @@
 		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
 	)
 
-/obj/item/crowbar/large/doorforcer/Initialize(mapload)
+/obj/item/crowbar/large/colony_prybar/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/gags_recolorable)
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
 	AddComponent(/datum/component/two_handed, force_unwielded = force, force_wielded = 18)
+	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, PROC_REF(on_wield))
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, PROC_REF(on_unwield))
+
+/obj/item/crowbar/large/colony_prybar/proc/on_wield(obj/item/source, mob/living/carbon/user)
+	SIGNAL_HANDLER
+	inhand_icon_state = "colony_prybar_wielded"
+
+/obj/item/crowbar/large/colony_prybar/proc/on_unwield(obj/item/source, mob/living/carbon/user)
+	SIGNAL_HANDLER
+	inhand_icon_state = "colony_prybar"
 
 // Backpackable mining drill
 
@@ -170,6 +198,7 @@
 
 /obj/item/pickaxe/drill/compact/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/gags_recolorable)
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
 
 // Electric welder but not quite as strong
@@ -202,7 +231,31 @@
 
 /obj/item/weldingtool/electric/arc_welder/Initialize(mapload)
 	. = ..()
+	// the cell component's own overlay keeps the colours it was made with, so we draw the battery ourselves
+	var/datum/component/cell/cell_component = GetComponent(/datum/component/cell)
+	if(cell_component)
+		cell_component.has_cell_overlays = FALSE
+		cut_overlay(cell_component.cell_overlay)
+		QDEL_NULL(cell_component.cell_overlay)
+	update_appearance(UPDATE_OVERLAYS)
+	AddElement(/datum/element/gags_recolorable)
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
+
+/obj/item/weldingtool/electric/arc_welder/update_overlays()
+	. = ..()
+	var/datum/component/cell/cell_component = GetComponent(/datum/component/cell)
+	if(cell_component?.inserted_cell)
+		. += "arc_welder_cell"
+
+/obj/item/weldingtool/electric/arc_welder/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	if(istype(arrived, /obj/item/stock_parts/power_store/cell))
+		update_appearance(UPDATE_OVERLAYS)
+
+/obj/item/weldingtool/electric/arc_welder/Exited(atom/movable/gone, direction)
+	. = ..()
+	if(istype(gone, /obj/item/stock_parts/power_store/cell))
+		update_appearance(UPDATE_OVERLAYS)
 
 // A multitool built to take a beating out in the field
 
@@ -213,17 +266,17 @@
 /obj/item/multitool/colony
 	name = "field multitool"
 	desc = "A rugged multitool built for construction and repair work far from any station. \
-		Its probes are insulated from the casing, so pulsing live wires with it will not shock you."
+		Its probes are insulated from the casing, so it can be used to check live lines without much worry."
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
 	icon_state = "multitool"
 	icon_angle = 0
 	inhand_icon_state = "colony_multitool"
 	lefthand_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_lefthand.dmi'
 	righthand_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_righthand.dmi'
-	greyscale_config = /datum/greyscale_config/colony_tools
-	greyscale_config_inhand_left = /datum/greyscale_config/colony_tools/inhand_left
-	greyscale_config_inhand_right = /datum/greyscale_config/colony_tools/inhand_right
-	greyscale_colors = COLONY_TOOL_COLORS
+	greyscale_config = /datum/greyscale_config/colony_multitool
+	greyscale_config_inhand_left = /datum/greyscale_config/colony_multitool/inhand_left
+	greyscale_config_inhand_right = /datum/greyscale_config/colony_multitool/inhand_right
+	greyscale_colors = COLONY_TOOL_COLORS + "#3EBE68"
 	flags_1 = parent_type::flags_1 | IS_PLAYER_COLORABLE_1 | NO_NEW_GAGS_PREVIEW_1
 	insulated_probes = TRUE
 	custom_materials = list(
@@ -233,6 +286,8 @@
 
 /obj/item/multitool/colony/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/gags_recolorable)
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
+
 
 #undef COLONY_TOOL_COLORS

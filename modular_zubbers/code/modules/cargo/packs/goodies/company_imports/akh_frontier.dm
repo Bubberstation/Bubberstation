@@ -13,7 +13,7 @@
 	cost = PAYCHECK_COMMAND * 3
 
 /datum/supply_pack/company_import/akh_frontier/basic/prybar
-	item_type = /obj/item/crowbar/large/doorforcer
+	item_type = /obj/item/crowbar/large/colony_prybar
 	cost = PAYCHECK_COMMAND * 5
 
 /datum/supply_pack/company_import/akh_frontier/basic/multitool

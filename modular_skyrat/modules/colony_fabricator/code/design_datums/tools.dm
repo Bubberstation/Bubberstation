@@ -8,6 +8,7 @@
 		"colony_arc_welder",
 		"colony_compact_drill",
 		"colony_multitool",
+		"colony_mining_satchel",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = INFINITY) // God save you
 	hidden = TRUE
@@ -37,7 +38,7 @@
 	name = "Prybar"
 	id = "colony_prybar"
 	build_type = COLONY_FABRICATOR
-	build_path = /obj/item/crowbar/large/doorforcer
+	build_path = /obj/item/crowbar/large/colony_prybar
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.75,
 		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
@@ -94,4 +95,19 @@
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
+	)
+
+// Plain mining satchel, until the station has researched the bluespace one
+
+/datum/design/colony_mining_satchel
+	name = "Mining Satchel"
+	id = "colony_mining_satchel"
+	build_type = COLONY_FABRICATOR
+	build_path = /obj/item/storage/bag/ore
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+	)
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING,
 	)

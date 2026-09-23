@@ -1,3 +1,6 @@
+/// How much harder printing hits the internal cell than it would the grid
+#define RCF_CELL_ENERGY_MULTIPLIER 10
+
 /obj/machinery/rnd/production/colony_lathe
 	name = "rapid construction fabricator"
 	desc = "These bad boys are seen just about anywhere someone would want or need to build fast, damn the consequences. \
@@ -132,12 +135,13 @@
 	. = ..()
 	if(. || isnull(cell))
 		return .
-	return cell.use(amount, force = force)
+	// printing off the cell is slow, inefficient work, so it drains a great deal faster than the grid would
+	return cell.use(amount * RCF_CELL_ENERGY_MULTIPLIER, force = force)
 
 /obj/machinery/rnd/production/colony_lathe/process(seconds_per_tick)
 	if(isnull(cell) || !cell.used_charge())
 		return
-	var/charge_given = charge_cell(cell_charge_rate * seconds_per_tick, cell, grid_only = TRUE)
+	var/charge_given = charge_cell(cell_charge_rate * seconds_per_tick, cell)
 	if(charge_given)
 		update_appearance()
 
@@ -325,3 +329,5 @@
 	. = ..()
 	var/obj/machinery/rnd/production/colony_lathe/fabricator = holder
 	fabricator.refresh_hacked_designs()
+
+#undef RCF_CELL_ENERGY_MULTIPLIER
