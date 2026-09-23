@@ -27,7 +27,8 @@
 /datum/quirk/moist_skin/remove()
 	UnregisterSignal(quirk_holder, COMSIG_LIVING_IGNITED)
 	UnregisterSignal(quirk_holder, COMSIG_LIVING_EXTINGUISHED)
-	quirk_holder.remove_shared_particles(/particles/droplets)
+	if(!quirk_holder.has_status_effect(/datum/status_effect/fire_handler/wet_stacks))
+		quirk_holder.remove_shared_particles(/particles/droplets)
 
 /datum/quirk/moist_skin/proc/on_ignited()
 	SIGNAL_HANDLER
