@@ -70755,7 +70755,9 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "tuE" = (
-/obj/machinery/bouldertech/refinery,
+/obj/machinery/bouldertech/refinery{
+	dir = 8
+	},
 /obj/machinery/conveyor{
 	id = "mining";
 	dir = 8
@@ -72424,7 +72426,9 @@
 /area/station/hallway/primary/fore)
 "tRX" = (
 /obj/effect/turf_decal/stripes/end,
-/obj/machinery/bouldertech/refinery/smelter,
+/obj/machinery/bouldertech/refinery/smelter{
+	dir = 1
+	},
 /obj/machinery/conveyor{
 	id = "mining";
 	dir = 2
