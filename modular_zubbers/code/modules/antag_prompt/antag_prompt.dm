@@ -43,9 +43,12 @@
 		UNTIL(decoy_finished || world.time > deadline)
 
 	var/declined = prompted - length(accepted)
-	var/disabled = length(GLOB.poll_ignore[ANTAG_PROMPT_IGNORE_CATEGORY]) - opted_out_before
+	var/disabled_total = length(GLOB.poll_ignore[ANTAG_PROMPT_IGNORE_CATEGORY])
+	var/disabled_now = disabled_total - opted_out_before
 
-	log_antag_tickets("Antag prompt for [cast_control.name] ([cast_control.antag_flag]): [length(candidates)] eligible, [prompted] offered, [length(accepted)] accepted, [declined] declined, [disabled] disabled prompts for the round. Decoy [decoy_flag || "none"]: [length(decoy_candidates)] offered, [length(decoy_accepted)] accepted.")
+	log_antag_prompt("Antag prompt for [cast_control.name] ([cast_control.antag_flag]): [length(candidates)] eligible, [prompted] offered, [length(accepted)] accepted, [declined] declined. [disabled_total] have prompts disabled for the round ([disabled_now] this prompt). Decoy [decoy_flag || "none"]: [length(decoy_candidates)] offered, [length(decoy_accepted)] accepted.")
+	if(CONFIG_GET(flag/antag_prompt_admin_messages))
+		message_admins(span_yellowteamradio("Antag prompt ([cast_control.antag_flag]): [prompted] prompted, [length(accepted)] accepted, [declined] declined. [disabled_total] player\s have antag prompts disabled for the round ([disabled_now] opted out during this one)."))
 	SSblackbox.record_feedback("associative", "antag_prompt", 1, list(
 		"antag" = cast_control.antag_flag,
 		"eligible" = length(candidates),
@@ -53,7 +56,8 @@
 		"prompted" = prompted,
 		"accepted" = length(accepted),
 		"declined" = declined,
-		"disabled" = disabled,
+		"disabled_now" = disabled_now,
+		"disabled_total" = disabled_total,
 		"decoy_antag" = decoy_flag || "none",
 		"decoy_prompted" = length(decoy_candidates),
 		"decoy_accepted" = length(decoy_accepted),

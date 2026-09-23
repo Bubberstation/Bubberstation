@@ -17,3 +17,9 @@
 
 /datum/config_entry/flag/antag_prompt_polls_regardless_of_prefs
 	default = FALSE
+
+/datum/config_entry/flag/antag_prompt_admin_messages
+	default = TRUE
+
+/datum/config_entry/flag/log_antag_prompt
+	default = TRUE

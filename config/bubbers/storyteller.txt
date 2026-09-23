@@ -52,6 +52,10 @@ ANTAG_PROMPT_POLLS_REGARDLESS_OF_PREFS
 ## doesn't work if ANTAG_PROMPT_POLL_EVERYONE is not enabled
 ANTAG_PROMPT_FAKE_CHANCE 15
 
+## Whether each antag prompt reports how many were prompted, accepted, declined and have
+## prompts disabled to admin chat. Set to 0 to keep it in the logs and feedback DB only.
+ANTAG_PROMPT_ADMIN_MESSAGES 1
+
 ## Storyteller types configs
 ## Uncomment any of these configs to adjust the point thresholds for any storyteller.
 ## The ones that don't have a track name attached to them adjust all tracks on the given storyteller.
