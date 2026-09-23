@@ -59,3 +59,15 @@
 	hidden = TRUE
 	show_on_wiki = FALSE
 	starting_node = TRUE
+
+/datum/design/frontier_radio_headset
+	name = "Frontier Radio Headset"
+	id = "frontier_radio_headset"
+	build_type = COLONY_FABRICATOR
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.75)
+	build_path = /obj/item/radio/headset/headset_frontier_colonist
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SERVICE

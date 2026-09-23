@@ -30,12 +30,12 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
 	)
 
-// Crowbar that is completely normal except it can force doors
+// Slow prybar that swings hard when wielded in both hands
 
 /datum/design/colony_door_crowbar
 	name = "Prybar"
 	id = "colony_prybar"
-	// build_type = COLONY_FABRICATOR // Zubber Edit: Takes it out of the all-too-easy to acquire RCF
+	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/crowbar/large/doorforcer
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.75,

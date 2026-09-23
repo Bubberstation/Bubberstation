@@ -21,13 +21,13 @@
 /datum/design/biogen/medical_replicator/sutures
 	name = "Hemostatic Sutures"
 	id = "slavic_suture"
-	materials = list(/datum/material/biomass = 150)
+	materials = list(/datum/material/biomass = 180)
 	build_path = /obj/item/stack/medical/suture/bloody
 
 /datum/design/biogen/medical_replicator/mesh
 	name = "Hemostatic Mesh"
 	id = "slavic_mesh"
-	materials = list(/datum/material/biomass = 150)
+	materials = list(/datum/material/biomass = 200)
 	build_path = /obj/item/stack/medical/mesh/bloody
 
 /datum/design/biogen/medical_replicator/bruise_patch

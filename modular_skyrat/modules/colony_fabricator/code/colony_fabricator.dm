@@ -20,6 +20,12 @@
 	var/designs_follow_hack = FALSE
 	/// Our internal cell, which runs the fabricator anywhere there is no powered area to draw from
 	var/obj/item/stock_parts/power_store/cell = /obj/item/stock_parts/power_store/cell/high
+	/// Designs we can only print once the station has researched them
+	var/static/list/station_research_designs = list(
+		"minerbag_holding",
+	)
+	/// The station's research, which decides when the designs above unlock
+	var/datum/techweb/station_research
 	/// How much we pull off the grid each tick to top the cell back up
 	var/cell_charge_rate = STANDARD_CELL_RATE * 0.2
 
@@ -29,6 +35,9 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
 	// We don't get new designs but can't print stuff if something's not researched, so we use the web that has everything researched
 	stored_research = locate(/datum/techweb/admin) in SSresearch.techwebs
+	station_research = locate(/datum/techweb/science) in SSresearch.techwebs
+	if(station_research)
+		RegisterSignals(station_research, list(COMSIG_TECHWEB_ADD_DESIGN, COMSIG_TECHWEB_REMOVE_DESIGN), TYPE_PROC_REF(/obj/machinery/rnd/production, on_techweb_update))
 	soundloop = new(src, FALSE)
 	QDEL_NULL(wires)
 	set_wires(new /datum/wires/rnd/colony_lathe(src))
@@ -41,6 +50,7 @@
 /obj/machinery/rnd/production/colony_lathe/Destroy()
 	QDEL_NULL(soundloop)
 	QDEL_NULL(cell)
+	station_research = null
 	return ..()
 
 // The screwdriver only opens the maintenance panel, since this machine repacks instead of deconstructing
@@ -159,6 +169,9 @@
 
 	// contraband designs are autolathe designs, so we lend ourselves the autolathe's systems for one print
 	var/datum/design/design = SSresearch.techweb_design_by_id(params["ref"])
+	if(istype(design) && !station_has_researched(design.id))
+		say("This design has not been researched by the station yet.")
+		return FALSE
 	var/borrowing_autolathe_systems = istype(design) && !(design.build_type & allowed_buildtypes)
 	if(borrowing_autolathe_systems)
 		if(!hacked || !(design in cached_designs))
@@ -185,6 +198,7 @@
 
 // We take from all nodes even unresearched ones
 /obj/machinery/rnd/production/colony_lathe/update_designs()
+	techweb_updating = FALSE
 	var/previous_design_count = cached_designs.len
 
 	cached_designs.Cut()
@@ -193,6 +207,9 @@
 
 	for(var/design_id in SSresearch.techweb_designs)
 		var/datum/design/design = SSresearch.techweb_designs[design_id]
+
+		if(!station_has_researched(design_id))
+			continue
 
 		if((isnull(allowed_department_flags) || (design.departmental_flags & allowed_department_flags)) && (design.build_type & allowed_buildtypes))
 			cached_designs |= design
@@ -209,6 +226,12 @@
 		playsound(src, 'sound/machines/beep/twobeep_high.ogg', 50, TRUE)
 
 	update_static_data_for_all_viewers()
+
+/// Most designs come unlocked. The few in station_research_designs wait for the station to research them first
+/obj/machinery/rnd/production/colony_lathe/proc/station_has_researched(design_id)
+	if(!(design_id in station_research_designs))
+		return TRUE
+	return !isnull(station_research) && station_research.researched_designs[design_id]
 
 // Item for carrying the lathe around and building it
 

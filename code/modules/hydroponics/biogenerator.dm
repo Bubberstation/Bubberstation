@@ -392,6 +392,16 @@
 		var/drop_location = drop_location()
 		if(istype(design.build_path, /obj/item/stack/sheet))
 			design.create_result(drop_location, amount = amount)
+		// BUBBER EDIT ADDITION START - stack designs make a full stack per order, same as the autolathe
+		else if(ispath(design.build_path, /obj/item/stack))
+			var/obj/item/stack/stack_item = initial(design.build_path)
+			var/max_stack_amount = initial(stack_item.max_amount)
+			var/number_to_make = initial(stack_item.amount) * amount
+			while(number_to_make > max_stack_amount)
+				design.create_result(drop_location, amount = max_stack_amount)
+				number_to_make -= max_stack_amount
+			design.create_result(drop_location, amount = number_to_make)
+		// BUBBER EDIT ADDITION END
 		else
 			for(var/i in 1 to amount)
 				design.create_result(drop_location)

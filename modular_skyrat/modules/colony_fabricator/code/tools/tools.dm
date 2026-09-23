@@ -1,18 +1,38 @@
+/// Orange body, grey metal, the colours the colony tools ship in
+#define COLONY_TOOL_COLORS "#D15B1B#7C8287"
+
+/datum/greyscale_config/colony_tools
+	name = "Colony Tools"
+	icon_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_greyscale.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/colony_tools/colony_tools.json'
+
+/datum/greyscale_config/colony_tools/inhand_left
+	name = "Colony Tools (Left Hand)"
+	icon_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_inhand_greyscale_left.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/colony_tools/colony_tools_inhand_left.json'
+
+/datum/greyscale_config/colony_tools/inhand_right
+	name = "Colony Tools (Right Hand)"
+	icon_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_inhand_greyscale_right.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/colony_tools/colony_tools_inhand_right.json'
+
 // Like the power drill, except no speed buff but has wirecutters as well? Just trust me on this one.
 
 /obj/item/screwdriver/omni_drill
 	name = "powered driver"
 	desc = "The ultimate in multi purpose construction tools. With heads for wire cutting, bolt driving, and driving \
 		screws, what's not to love? Well, the slow speed. Compared to other power drills these tend to be \
-		<b>not much quicker than unpowered tools</b>."
+		<b>slower than even unpowered tools</b>."
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
 	icon_state = "drill"
 	post_init_icon_state = null
 	inside_belt_icon_state = null
-	inhand_icon_state = "drill"
 	worn_icon_state = "drill"
-	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	inhand_icon_state = "colony_drill"
+	lefthand_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_lefthand.dmi'
+	righthand_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_righthand.dmi'
+	greyscale_config_inhand_left = /datum/greyscale_config/colony_tools/inhand_left
+	greyscale_config_inhand_right = /datum/greyscale_config/colony_tools/inhand_right
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.75,
 		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
@@ -26,14 +46,13 @@
 	attack_verb_simple = list("drill", "screw", "jab", "whack")
 	hitsound = 'sound/items/tools/drill_hit.ogg'
 	usesound = 'sound/items/tools/drill_use.ogg'
-	w_class = WEIGHT_CLASS_SMALL
-	toolspeed = 1
+	w_class = WEIGHT_CLASS_NORMAL
+	toolspeed = 1.25
 	random_color = FALSE
-	greyscale_config = null
+	greyscale_config = /datum/greyscale_config/colony_tools
 	greyscale_config_belt = null
-	greyscale_config_inhand_left = null
-	greyscale_config_inhand_right = null
-	greyscale_colors = null
+	greyscale_colors = COLONY_TOOL_COLORS
+	flags_1 = parent_type::flags_1 | IS_PLAYER_COLORABLE_1 | NO_NEW_GAGS_PREVIEW_1
 	/// Used on Initialize, how much time to cut cable restraints and zipties.
 	var/snap_time_weak_handcuffs = 0 SECONDS
 	/// Used on Initialize, how much time to cut real handcuffs. Null means it can't.
@@ -95,15 +114,27 @@
 		return FALSE
 	return TRUE
 
-// Just a completely normal crowbar except its normal sized
+// A slow prybar that makes up for it by hitting like a length of pipe when you commit both hands
 
 /obj/item/crowbar/large/doorforcer
 	name = "prybar"
-	desc = "A large, sturdy crowbar, painted orange. Nothing special, or unique about it. Waste of money, honestly."
+	desc = "A large, sturdy crowbar, painted orange. Swings hard enough to keep you a free man."
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
 	icon_state = "prybar"
+	inhand_icon_state = "colony_prybar"
+	lefthand_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_lefthand.dmi'
+	righthand_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_righthand.dmi'
+	greyscale_config_inhand_left = /datum/greyscale_config/colony_tools/inhand_left
+	greyscale_config_inhand_right = /datum/greyscale_config/colony_tools/inhand_right
+	greyscale_config = /datum/greyscale_config/colony_tools
+	greyscale_colors = COLONY_TOOL_COLORS
+	flags_1 = parent_type::flags_1 | IS_PLAYER_COLORABLE_1 | NO_NEW_GAGS_PREVIEW_1
 	toolspeed = 1.3
-	force_opens = TRUE
+	force = 12
+	throwforce = 12
+	attack_verb_continuous = list("attacks", "bashes", "batters", "bludgeons", "smashes", "whacks")
+	attack_verb_simple = list("attack", "bash", "batter", "bludgeon", "smash", "whack")
+	hitsound = SFX_SWING_HIT
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.75,
 		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
@@ -112,6 +143,7 @@
 /obj/item/crowbar/large/doorforcer/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
+	AddComponent(/datum/component/two_handed, force_unwielded = force, force_wielded = 18)
 
 // Backpackable mining drill
 
@@ -120,6 +152,14 @@
 	desc = "A powered mining drill, it drills all over the place. Compact enough to hopefully fit in a backpack."
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
 	icon_state = "drilla"
+	inhand_icon_state = "colony_compact_drill"
+	lefthand_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_lefthand.dmi'
+	righthand_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_righthand.dmi'
+	greyscale_config_inhand_left = /datum/greyscale_config/colony_tools/inhand_left
+	greyscale_config_inhand_right = /datum/greyscale_config/colony_tools/inhand_right
+	greyscale_config = /datum/greyscale_config/colony_tools
+	greyscale_colors = COLONY_TOOL_COLORS
+	flags_1 = parent_type::flags_1 | IS_PLAYER_COLORABLE_1 | NO_NEW_GAGS_PREVIEW_1
 	worn_icon_state = "drill"
 	w_class = WEIGHT_CLASS_NORMAL
 	toolspeed = 0.6
@@ -141,10 +181,18 @@
 		but it still gets the job done and chances are you printed this bad boy off for free."
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
 	icon_state = "arc_welder"
+	inhand_icon_state = "colony_arc_welder"
+	lefthand_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_lefthand.dmi'
+	righthand_file = 'modular_skyrat/modules/colony_fabricator/icons/tools_righthand.dmi'
+	greyscale_config_inhand_left = /datum/greyscale_config/colony_tools/inhand_left
+	greyscale_config_inhand_right = /datum/greyscale_config/colony_tools/inhand_right
+	greyscale_config = /datum/greyscale_config/colony_tools
+	greyscale_colors = COLONY_TOOL_COLORS
+	flags_1 = parent_type::flags_1 | IS_PLAYER_COLORABLE_1 | NO_NEW_GAGS_PREVIEW_1
 	usesound = 'modular_skyrat/modules/colony_fabricator/sound/arc_welder/arc_welder.ogg'
 	light_range = 2
 	light_power = 0.75
-	toolspeed = 1
+	toolspeed = 1.25
 	power_use_amount = POWER_CELL_USE_INSANE
 	custom_materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -155,3 +203,5 @@
 /obj/item/weldingtool/electric/arc_welder/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
+
+#undef COLONY_TOOL_COLORS

@@ -19,6 +19,7 @@
 		"portable_scrubbs",
 		"survival_knife", // I just don't want to make a whole new node for this one sorry
 		"colony_soup_pot",
+		"frontier_radio_headset",
 		"water_synth",
 		"hydro_synth",
 		"frontier_sustenance_dispenser",

@@ -150,10 +150,14 @@
 
 // Headset
 
+/// How much charge the headset spends pushing one message out with no relay to carry it
+#define FRONTIER_RADIO_TRANSMIT_COST (STANDARD_CELL_CHARGE * 0.02)
+
 /obj/item/radio/headset/headset_frontier_colonist
 	name = "frontier radio headset"
 	desc = "A bulky headset that should hopefully survive exposure to the elements better than station headsets might. \
-		Has a built-in antenna allowing the headset to work independently of a communications network. Unable to use encryption keys."
+		Has a battery-powered antenna allowing the headset to work independently of a communications network, \
+		and room for a single encryption key."
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
 	icon_state = "radio"
 	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
@@ -165,6 +169,8 @@
 	radiosound = 'modular_skyrat/modules/kahraman_equipment/sound/morse_signal.wav'
 	radio_sound_volume = 20
 	freqlock = RADIO_FREQENCY_LOCKED
+	/// Powers the antenna whenever there is no relay to carry our signal
+	var/obj/item/stock_parts/power_store/cell = /obj/item/stock_parts/power_store/cell
 
 /obj/item/radio/headset/headset_frontier_colonist/wide
 	worn_icon_state = "radio_wide"
@@ -172,6 +178,77 @@
 /obj/item/radio/headset/headset_frontier_colonist/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
+	if(ispath(cell))
+		cell = new cell(src)
+
+/obj/item/radio/headset/headset_frontier_colonist/Destroy()
+	QDEL_NULL(cell)
+	return ..()
+
+/obj/item/radio/headset/headset_frontier_colonist/Exited(atom/movable/gone, direction)
+	. = ..()
+	if(gone == cell)
+		cell = null
+
+/obj/item/radio/headset/headset_frontier_colonist/examine(mob/user)
+	. = ..()
+	if(isnull(cell))
+		. += span_warning("Its battery compartment is <b>empty</b>.")
+	else
+		. += span_notice("Its [cell.name] is charged to <b>[round(cell.percent())]%</b>. Talking with no relay in range drains it.")
+	. += span_notice("The battery and key can be removed with a <b>screwdriver</b>.")
+
+// one key, and the frequency lock only guards the dial, not the keyslot
+/obj/item/radio/headset/headset_frontier_colonist/install_key(mob/living/user, obj/item/encryptionkey/key)
+	if(keyslot)
+		loc.balloon_alert(user, "only fits one key!")
+		return ITEM_INTERACT_BLOCKING
+	if(!user.transferItemToLoc(key, src))
+		loc.balloon_alert(user, "cannot install!")
+		return ITEM_INTERACT_BLOCKING
+	keyslot = key
+	recalculateChannels()
+	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
+	loc.balloon_alert(user, "encryption key installed")
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/radio/headset/headset_frontier_colonist/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(!istype(tool, /obj/item/stock_parts/power_store/cell))
+		return ..()
+	if(!isnull(cell))
+		loc.balloon_alert(user, "already has a battery!")
+		return ITEM_INTERACT_BLOCKING
+	if(!user.transferItemToLoc(tool, src))
+		return ITEM_INTERACT_BLOCKING
+	cell = tool
+	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
+	loc.balloon_alert(user, "battery installed")
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/radio/headset/headset_frontier_colonist/screwdriver_act(mob/living/user, obj/item/tool)
+	var/removed_anything = length(remove_keys(user)) > 0
+	if(!isnull(cell))
+		user.put_in_hands(cell)
+		removed_anything = TRUE
+	if(!removed_anything)
+		loc.balloon_alert(user, "nothing to remove!")
+		return ITEM_INTERACT_BLOCKING
+	tool.play_tool_sound(src, 10)
+	loc.balloon_alert(user, "battery and key removed")
+	return ITEM_INTERACT_SUCCESS
+
+// only called when no relay picked the message up, so this is the only time we pay for it
+/obj/item/radio/headset/headset_frontier_colonist/backup_transmission(datum/signal/subspace/vocal/signal)
+	var/turf/our_turf = get_turf(src)
+	if(signal.data["done"] && (our_turf?.z in signal.levels))
+		return
+	if(isnull(cell) || !cell.use(FRONTIER_RADIO_TRANSMIT_COST))
+		if(ismob(loc))
+			to_chat(loc, span_warning("[src] crackles. There is no relay in range and not enough charge to reach anyone."))
+		return
+	return ..()
+
+#undef FRONTIER_RADIO_TRANSMIT_COST
 
 // Gloves
 

@@ -6,16 +6,29 @@
 
 /datum/supply_pack/company_import/akh_frontier/basic/omni_drill
 	item_type = /obj/item/screwdriver/omni_drill
+	cost = PAYCHECK_COMMAND * 5
 
 /datum/supply_pack/company_import/akh_frontier/basic/arc_welder
 	item_type = /obj/item/weldingtool/electric/arc_welder
+	cost = PAYCHECK_COMMAND * 3
+
+/datum/supply_pack/company_import/akh_frontier/basic/prybar
+	item_type = /obj/item/crowbar/large/doorforcer
+	cost = PAYCHECK_COMMAND * 5
 
 /datum/supply_pack/company_import/akh_frontier/basic/compact_drill
 	item_type = /obj/item/pickaxe/drill/compact
+	cost = PAYCHECK_COMMAND * 5
 
 /datum/supply_pack/company_import/akh_frontier/deployables_fab/rapid_construction_fabricator
 	item_type = /obj/item/flatpacked_machine
-	cost = CARGO_CRATE_VALUE * 6
+	cost = CARGO_CRATE_VALUE * 37.5
+
+// nobody is buying these by the six-pack
+/datum/supply_pack/company_import/akh_frontier/deployables_fab/rapid_construction_fabricator/New()
+	. = ..()
+	name = "Rapid Construction Fabricator"
+	desc = "Contains one flat-packed rapid construction fabricator, with a charged cell to get it running anywhere."
 
 /datum/supply_pack/company_import/akh_frontier/deployables_fab/foodricator
 	item_type = /obj/item/flatpacked_machine/organics_ration_printer
