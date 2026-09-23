@@ -39,8 +39,6 @@
 	var/broke_masquerade = FALSE
 	///How many Masquerade Infractions do we have?
 	var/masquerade_infractions = 0
-	///If we are currently in a Frenzy
-	var/frenzied = FALSE
 	///Have we already gone through Final Death? Prevents FinalDeath() from running more than once.
 	var/final_death_triggered = FALSE
 	/// sired by a ventrue

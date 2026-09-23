@@ -27,10 +27,6 @@
 /datum/status_effect/frenzy/get_examine_text()
 	return span_notice("They seem... inhumane, and feral!")
 
-/atom/movable/screen/alert/status_effect/masquerade/MouseEntered(location,control,params)
-	desc = initial(desc)
-	return ..()
-
 /datum/status_effect/frenzy/on_apply()
 	var/mob/living/carbon/human/user = owner
 	bloodsuckerdatum = IS_BLOODSUCKER(user)
@@ -54,11 +50,13 @@
 	if((user.handcuffed && cuffs) || (user.legcuffed && legcuffs))
 		user.clear_cuffs(cuffs, TRUE)
 		user.clear_cuffs(legcuffs, TRUE)
-	bloodsuckerdatum.frenzied = TRUE
+	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(on_death))
+	RegisterSignal(owner, COMSIG_MOB_REMOVING_CUFFS, PROC_REF(on_removing_cuffs))
 	return ..()
 
 /datum/status_effect/frenzy/on_remove()
 	owner.balloon_alert(owner, "you come back to your senses.")
+	UnregisterSignal(owner, list(COMSIG_LIVING_DEATH, COMSIG_MOB_REMOVING_CUFFS))
 	owner.remove_traits(trait_list, FRENZY_TRAIT)
 	if(was_tooluser)
 		ADD_TRAIT(owner, TRAIT_ADVANCEDTOOLUSER, SPECIES_TRAIT)
@@ -67,12 +65,15 @@
 	owner.remove_client_colour(REF(src))
 
 	SEND_SIGNAL(bloodsuckerdatum, COMSIG_BLOODSUCKER_EXITS_FRENZY)
-	bloodsuckerdatum.frenzied = FALSE
 	return ..()
 
-/datum/status_effect/frenzy/tick()
-	var/mob/living/carbon/human/user = owner
-	// If duration is not -1, that means we're about to loose frenzy, let's give them some safe time.
-	if(!bloodsuckerdatum.frenzied || duration > 0 || IS_UNCONSCIOUS_OR_CRIT(user))
-		return
-	user.adjust_fire_loss(1 + (bloodsuckerdatum.GetHumanityLost() / 10))
+/datum/status_effect/frenzy/proc/on_death(mob/living/source, gibbed)
+	SIGNAL_HANDLER
+	qdel(src)
+
+/datum/status_effect/frenzy/proc/on_removing_cuffs(mob/living/carbon/source, obj/item/cuffs)
+	SIGNAL_HANDLER
+	if(cuffs != source.handcuffed && cuffs != source.legcuffed)
+		return NONE
+	source.clear_cuffs(cuffs, INSTANT_CUFFBREAK)
+	return COMSIG_MOB_BLOCK_CUFF_REMOVAL

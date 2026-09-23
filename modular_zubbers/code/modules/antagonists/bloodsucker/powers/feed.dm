@@ -210,7 +210,7 @@
 	var/feed_strength_mult = 0.3
 	if(aggressive_feed)
 		feed_strength_mult = 1
-	if(bloodsuckerdatum_power?.frenzied)
+	if(bloodsuckerdatum_power?.is_frenzied())
 		feed_strength_mult *= 2
 
 	var/already_drunk = targets_and_blood[target_ref] || 0
@@ -327,7 +327,7 @@
 		return TRUE
 	if(safe_set_target(owner.pulledby))
 		return TRUE
-	if(bloodsuckerdatum_power?.frenzied)
+	if(bloodsuckerdatum_power?.is_frenzied())
 		owner.balloon_alert(owner, "beast active! must grab someone to feed!")
 		return FALSE
 	var/mob/living/carbon/carbon = owner
@@ -413,7 +413,7 @@
 /datum/action/cooldown/bloodsucker/feed/proc/can_drink_from_mindless(mob/living/target)
 	if(!bloodsuckerdatum_power?.my_clan)
 		return TRUE
-	if(snobby_drinking_check() && !bloodsuckerdatum_power.frenzied)
+	if(snobby_drinking_check() && !bloodsuckerdatum_power.is_frenzied())
 		return FALSE
 	return TRUE
 
@@ -423,7 +423,7 @@
 /datum/action/cooldown/bloodsucker/feed/proc/get_feed_start_time()
 	var/bloodsucker_level_divider = 1.25 * (bloodsuckerdatum_power?.GetRank() || 1)
 	var/feed_time = FEED_DEFAULT_TIMER / bloodsucker_level_divider
-	if(bloodsuckerdatum_power?.frenzied)
+	if(bloodsuckerdatum_power?.is_frenzied())
 		feed_time *= 0.5
 	var/mob/living/carbon/carbon = owner
 	if(iscarbon(carbon) && carbon.handcuffed)

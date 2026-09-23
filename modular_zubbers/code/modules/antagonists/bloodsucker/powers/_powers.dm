@@ -99,7 +99,7 @@
 		return TRUE
 
 	// Have enough blood? Bloodsuckers in a Frenzy don't need to pay them
-	if(bloodsuckerdatum_power.frenzied)
+	if(bloodsuckerdatum_power.is_frenzied())
 		return TRUE
 	if(bloodsuckerdatum_power.GetBloodVolume() < bloodcost)
 		to_chat(owner, span_warning("You need at least [bloodcost] blood to activate [name]"))
@@ -145,7 +145,7 @@
 		to_chat(user, span_warning("You can't do this while transformed!"))
 		return FALSE
 	// Frenzy?
-	if((bloodsucker_check_flags & BP_CANT_USE_IN_FRENZY) && (bloodsuckerdatum_power?.frenzied))
+	if((bloodsucker_check_flags & BP_CANT_USE_IN_FRENZY) && (bloodsuckerdatum_power?.is_frenzied()))
 		to_chat(user, span_warning("You cannot use powers while in a Frenzy!"))
 		return FALSE
 	// Stake?
@@ -187,7 +187,7 @@
 			living_owner.blood_volume = max(0, living_owner.blood_volume - blood_cost)
 		return
 	// Bloodsuckers in a Frenzy don't have enough Blood to pay it, so just don't.
-	if(bloodsuckerdatum_power.frenzied)
+	if(bloodsuckerdatum_power.is_frenzied())
 		return
 	bloodsuckerdatum_power.AdjustBloodVolume(cost_override ? -cost_override : -bloodcost)
 
