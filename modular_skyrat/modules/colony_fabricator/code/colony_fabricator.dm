@@ -21,7 +21,7 @@
 	var/datum/looping_sound/colony_fabricator_running/soundloop
 	/// What the hack wire was set to when we last built our design list
 	var/designs_follow_hack = FALSE
-	/// Our internal cell, which runs the fabricator anywhere there is no powered area to draw from
+	/// Runs the fabricator where there is no powered area
 	var/obj/item/stock_parts/power_store/cell = /obj/item/stock_parts/power_store/cell/high
 	/// Designs we can only print once the station has researched them
 	var/static/list/station_research_designs = list(
@@ -56,7 +56,7 @@
 	station_research = null
 	return ..()
 
-// The screwdriver only opens the maintenance panel, since this machine repacks instead of deconstructing
+// The screwdriver only opens the panel, since this machine repacks instead of deconstructing
 /obj/machinery/rnd/production/colony_lathe/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/screwdriver)
 	return NONE
 
@@ -104,7 +104,7 @@
 	. += span_notice("The wires inside can be worked with a [EXAMINE_HINT("multitool")] or [EXAMINE_HINT("wirecutters")].")
 	. += span_notice("The cell can be levered out with a [EXAMINE_HINT("crowbar")].")
 
-/// Called by our wires when the hack wire changes, since the design list has to be rebuilt
+/// Rebuilds the design list when the hack wire changes
 /obj/machinery/rnd/production/colony_lathe/proc/refresh_hacked_designs()
 	if(hacked == designs_follow_hack)
 		return
@@ -114,7 +114,7 @@
 /obj/machinery/rnd/production/colony_lathe/on_deconstruction(disassembled)
 	if(isnull(cell))
 		return ..()
-	// a repack spawns the flatpack on our tile this same tick, before taking us apart, so our cell goes back into that box
+	// a repack spawns the flatpack on our tile this tick, before taking us apart, so our cell goes back in it
 	var/obj/item/flatpacked_machine/packed
 	for(var/obj/item/flatpacked_machine/flatpack in drop_location())
 		if(flatpack.created_at == world.time && ispath(flatpack.type_to_deploy, type))
@@ -128,7 +128,7 @@
 	cell = null
 	return ..()
 
-// with a cell aboard we can work anywhere, so an unpowered area is not the end of it
+// with a cell aboard we can work in an unpowered area
 /obj/machinery/rnd/production/colony_lathe/powered(chan = power_channel, ignore_use_power = FALSE)
 	if(!isnull(cell) && cell.charge() > 0)
 		return TRUE
@@ -138,7 +138,7 @@
 	. = ..()
 	if(. || isnull(cell))
 		return .
-	// printing off the cell is slow, inefficient work, so it drains a great deal faster than the grid would
+	// printing off the cell costs far more than printing off the grid
 	return cell.use(amount * RCF_CELL_ENERGY_MULTIPLIER, force = force)
 
 /obj/machinery/rnd/production/colony_lathe/process(seconds_per_tick)
@@ -174,7 +174,7 @@
 		say("Fabrication systems are offline.")
 		return FALSE
 
-	// contraband designs are autolathe designs, so we lend ourselves the autolathe's systems for one print
+	// contraband designs are autolathe designs, so we borrow those systems for one print
 	var/datum/design/design = SSresearch.techweb_design_by_id(params["ref"])
 	if(istype(design) && !station_has_researched(design.id))
 		say("This design has not been researched by the station yet.")
@@ -234,7 +234,7 @@
 
 	update_static_data_for_all_viewers()
 
-/// Most designs come unlocked. The few in station_research_designs wait for the station to research them first
+/// Designs in station_research_designs wait for the station to research them
 /obj/machinery/rnd/production/colony_lathe/proc/station_has_researched(design_id)
 	if(!(design_id in station_research_designs))
 		return TRUE
@@ -320,7 +320,7 @@
 	. = ..()
 	storable += /obj/item/flatpacked_machine
 
-// The R&D wires already carry a hack wire, we just have to hear about it to rebuild our design list
+// The R&D wires already carry a hack wire, we only need to hear about it
 
 /datum/wires/rnd/colony_lathe
 	holder_type = /obj/machinery/rnd/production/colony_lathe

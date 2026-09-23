@@ -1,5 +1,7 @@
 /// Orange body, grey metal, the colours the colony tools ship in
 #define COLONY_TOOL_COLORS "#D15B1B#7C8287"
+/// The same, plus a green screen
+#define COLONY_MULTITOOL_COLORS (COLONY_TOOL_COLORS + "#3EBE68")
 
 /datum/greyscale_config/colony_tools
 	name = "Colony Tools"
@@ -64,6 +66,7 @@
 	usesound = 'sound/items/tools/drill_use.ogg'
 	w_class = WEIGHT_CLASS_SMALL
 	toolspeed = 1.25
+	power_use_amount = POWER_CELL_USE_LOW
 	random_color = FALSE
 	greyscale_config = /datum/greyscale_config/colony_tools
 	greyscale_config_belt = null
@@ -76,8 +79,14 @@
 
 /obj/item/screwdriver/omni_drill/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/cell, /obj/item/stock_parts/power_store/cell/high, _has_cell_overlays = FALSE)
+	AddElement(/datum/element/cell_overlay, "drill_cell")
 	AddElement(/datum/element/gags_recolorable)
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
+
+/obj/item/screwdriver/omni_drill/update_greyscale()
+	. = ..()
+	update_appearance(UPDATE_OVERLAYS)
 
 /obj/item/screwdriver/omni_drill/get_all_tool_behaviours()
 	return list(TOOL_WIRECUTTER, TOOL_SCREWDRIVER, TOOL_WRENCH)
@@ -130,6 +139,17 @@
 	if(user.incapacitated || !user.Adjacent(src))
 		return FALSE
 	return TRUE
+
+/obj/item/screwdriver/omni_drill/tool_use_check(mob/living/user, amount, heat_required)
+	if(!(item_use_power(power_use_amount, user, TRUE) & COMPONENT_POWER_SUCCESS))
+		balloon_alert(user, "no charge!")
+		return FALSE
+	return ..()
+
+/obj/item/screwdriver/omni_drill/use_tool(atom/target, mob/living/user, delay, amount = 0, volume = 0, datum/callback/extra_checks)
+	. = ..()
+	if(.)
+		item_use_power(power_use_amount, user)
 
 // A slow prybar that makes up for it by hitting like a length of pipe when you commit both hands
 
@@ -237,30 +257,14 @@
 		cell_component.has_cell_overlays = FALSE
 		cut_overlay(cell_component.cell_overlay)
 		QDEL_NULL(cell_component.cell_overlay)
-	update_appearance(UPDATE_OVERLAYS)
+	AddElement(/datum/element/cell_overlay, "arc_welder_cell")
 	AddElement(/datum/element/gags_recolorable)
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
-
-/obj/item/weldingtool/electric/arc_welder/update_overlays()
-	. = ..()
-	var/datum/component/cell/cell_component = GetComponent(/datum/component/cell)
-	if(cell_component?.inserted_cell)
-		. += mutable_appearance(icon, "arc_welder_cell")
 
 // the battery is an overlay, so it has to be rebuilt whenever the colours change
 /obj/item/weldingtool/electric/arc_welder/update_greyscale()
 	. = ..()
 	update_appearance(UPDATE_OVERLAYS)
-
-/obj/item/weldingtool/electric/arc_welder/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	. = ..()
-	if(istype(arrived, /obj/item/stock_parts/power_store/cell))
-		update_appearance(UPDATE_OVERLAYS)
-
-/obj/item/weldingtool/electric/arc_welder/Exited(atom/movable/gone, direction)
-	. = ..()
-	if(istype(gone, /obj/item/stock_parts/power_store/cell))
-		update_appearance(UPDATE_OVERLAYS)
 
 // A multitool built to take a beating out in the field
 
@@ -281,7 +285,7 @@
 	greyscale_config = /datum/greyscale_config/colony_multitool
 	greyscale_config_inhand_left = /datum/greyscale_config/colony_multitool/inhand_left
 	greyscale_config_inhand_right = /datum/greyscale_config/colony_multitool/inhand_right
-	greyscale_colors = COLONY_TOOL_COLORS + "#3EBE68"
+	greyscale_colors = COLONY_MULTITOOL_COLORS
 	flags_1 = parent_type::flags_1 | IS_PLAYER_COLORABLE_1 | NO_NEW_GAGS_PREVIEW_1
 	insulated_probes = TRUE
 	custom_materials = list(
@@ -295,4 +299,36 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
 
 
+/// Draws an overlay while a cell is fitted, so the battery reads as part of the tool and follows its colours
+/datum/element/cell_overlay
+	element_flags = ELEMENT_BESPOKE
+	argument_hash_start_idx = 2
+	/// The icon state drawn over the item while it holds a cell
+	var/overlay_state
+
+/datum/element/cell_overlay/Attach(datum/target, overlay_state)
+	. = ..()
+	if(!isitem(target))
+		return ELEMENT_INCOMPATIBLE
+	src.overlay_state = overlay_state
+	RegisterSignal(target, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(on_update_overlays))
+	RegisterSignals(target, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED), PROC_REF(on_contents_changed))
+	var/obj/item/item_target = target
+	item_target.update_appearance(UPDATE_OVERLAYS)
+
+/datum/element/cell_overlay/Detach(datum/source)
+	UnregisterSignal(source, list(COMSIG_ATOM_UPDATE_OVERLAYS, COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED))
+	return ..()
+
+/datum/element/cell_overlay/proc/on_update_overlays(obj/item/source, list/overlays)
+	SIGNAL_HANDLER
+	if(locate(/obj/item/stock_parts/power_store/cell) in source)
+		overlays += mutable_appearance(source.icon, overlay_state)
+
+/datum/element/cell_overlay/proc/on_contents_changed(obj/item/source, atom/movable/thing)
+	SIGNAL_HANDLER
+	if(istype(thing, /obj/item/stock_parts/power_store/cell))
+		source.update_appearance(UPDATE_OVERLAYS)
+
 #undef COLONY_TOOL_COLORS
+#undef COLONY_MULTITOOL_COLORS

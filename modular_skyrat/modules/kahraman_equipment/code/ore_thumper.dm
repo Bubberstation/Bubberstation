@@ -8,7 +8,7 @@
 #define THUMPER_STALL_ORE "nearby ore too saturated"
 #define THUMPER_STALL_NEIGHBOR "too close to another thumper"
 
-/// How far either side of normal cadence counts as running level, rather than braking or overclocking
+/// Cadence within this of normal counts as level
 #define THUMPER_SYNC_DEADZONE 0.02
 
 /// The most a thumper will speed up or slow down while it matches the others
@@ -23,10 +23,10 @@
 /// How many segments the payload bar on the base is split into
 #define THUMPER_LOAD_SEGMENTS 4
 
-/// Thumpers spaced perfectly evenly around the cycle average out to nothing, so below this we leave them alone
+/// Below this much agreement the group has no shared rhythm to match
 #define THUMPER_SYNC_MIN_AGREEMENT 0.02
 
-/// What each stall reads as on examine, since the balloon alerts have to stay short
+/// What each stall reads as on examine
 GLOBAL_LIST_INIT(thumper_stall_descriptions, list(
 	THUMPER_STALL_LOCATION = "unsuitable terrain",
 	THUMPER_STALL_NO_WIRE = "a missing wire connection",
@@ -179,11 +179,11 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	. += mutable_appearance(icon, load_state)
 	. += emissive_appearance(icon, load_state, src)
 
-/// Which bar segment we are working on, 1 to THUMPER_LOAD_SEGMENTS. The first segment lights as soon as we start
+/// Which bar segment we are working on, 1 to THUMPER_LOAD_SEGMENTS
 /obj/machinery/power/colony_ore_thumper/proc/get_load_level()
 	return clamp(round((slam_jams / slam_jams_needed) * THUMPER_LOAD_SEGMENTS) + 1, 1, THUMPER_LOAD_SEGMENTS)
 
-/// The bar overlay we should be showing right now. It flashes once the counter reaches the last slam
+/// The bar overlay to show. It flashes on the last slam
 /obj/machinery/power/colony_ore_thumper/proc/get_load_state()
 	if(slam_jams >= slam_jams_needed - 1)
 		return "thumper_load_flash"
@@ -297,7 +297,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 		return null
 	return get_output_blocker()
 
-/// Is another thumper standing inside our clearance? We skip ourselves by identity rather than trusting the range proc
+/// Is another thumper inside our clearance? We skip ourselves by identity, not by trusting range()
 /obj/machinery/power/colony_ore_thumper/proc/has_thumper_neighbor()
 	for(var/obj/machinery/power/colony_ore_thumper/other_thumper in range(minimum_thumper_clearance, src))
 		if(other_thumper == src)
@@ -351,7 +351,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	return attack_hand(user)
 
 
-/// Switches the thumper on. If something is wrong it waits and starts by itself when that is fixed
+/// Switches the thumper on. It waits out any problem and starts once it clears
 /obj/machinery/power/colony_ore_thumper/proc/start_her_up(mob/user)
 	switched_on = TRUE
 	power_grace_remaining = THUMPER_POWER_GRACE
@@ -408,7 +408,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	addtimer(CALLBACK(src, PROC_REF(make_some_ore)), 3 SECONDS, TIMER_DELETE_ME)
 
 
-/// Fracking has consequences. Every box of materials is a small roll for an earthquake centered on us
+/// Every box of materials is a small roll for an earthquake
 /obj/machinery/power/colony_ore_thumper/proc/try_to_cause_earthquake()
 	if(!prob(THUMPER_QUAKE_CHANCE))
 		return

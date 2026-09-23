@@ -12,7 +12,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
-// Upstream took the soup pot out of the autolathe, which took it out of the fabricator with it
+// Upstream removed the autolathe's soup pot, which removed ours with it
 /datum/design/colony_soup_pot
 	name = "Soup Pot"
 	id = "colony_soup_pot"

@@ -9,7 +9,7 @@
 		amounts of electricity. While not nearly as fast and efficient as other ore refining methods, the arc furnace is \
 		capable of returning <b>larger amounts of refined material</b> than a standard refining process can. \
 		A sticker on the side notes that this may <b>exhaust waste gasses to the air</b> during operation."
-	/// How much our waste gas is scaled down from the old, room-cooking amounts
+	/// Scales the waste gas we exhaust while smelting
 	var/exhaust_multiplier = 0.2
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/machines.dmi'
 	icon_state = "arc_furnace"
@@ -145,6 +145,7 @@
 		balloon_alert(user, "nothing to smelt")
 
 	operating = TRUE
+	update_use_power(ACTIVE_POWER_USE)
 	/// How long the smelting is going to take based off the stack size
 	var/smelting_time = ore_to_smelt.amount * 1 SECONDS
 	loop(smelting_time)
@@ -201,10 +202,9 @@
 		return TRUE
 	return !isnull(get_powered_cable())
 
-/// Pays for one second of smelting, from the area if it is powered and from the cable otherwise
+/// Pays for a second of smelting off the cable. Area power is covered by the active draw
 /obj/machinery/arc_furnace/proc/draw_smelting_power()
 	if(!(machine_stat & NOPOWER))
-		use_energy(active_power_usage)
 		return
 	var/obj/structure/cable/cable = get_powered_cable()
 	if(cable)
@@ -237,6 +237,7 @@
 /// Turns the arc furnace off, removing its lights, sounds, so on.
 /obj/machinery/arc_furnace/proc/end_smelting()
 	operating = FALSE
+	update_use_power(IDLE_POWER_USE)
 	soundloop.stop()
 	set_light(l_range = 0)
 	update_appearance()

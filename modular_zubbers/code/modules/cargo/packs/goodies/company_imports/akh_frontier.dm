@@ -28,7 +28,6 @@
 	item_type = /obj/item/flatpacked_machine
 	cost = CARGO_CRATE_VALUE * 37.5
 
-// nobody is buying these by the six-pack
 /datum/supply_pack/company_import/akh_frontier/deployables_fab/rapid_construction_fabricator/New()
 	. = ..()
 	name = "Rapid Construction Fabricator"

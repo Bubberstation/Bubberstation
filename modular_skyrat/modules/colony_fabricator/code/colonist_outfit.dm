@@ -34,7 +34,7 @@
 	name = "colonist ID"
 	trim = /datum/id_trim/colonist
 
-// Everything one colonist needs to set foot on a new world and not die of being undergeared
+// A colonist with enough gear to survive a new world
 
 /datum/outfit/colonist
 	name = "Colonist (Frontier)"

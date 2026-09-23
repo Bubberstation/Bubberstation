@@ -81,8 +81,6 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING,
 	)
 
-// Field multitool
-
 /datum/design/colony_multitool
 	name = "Field Multitool"
 	id = "colony_multitool"
