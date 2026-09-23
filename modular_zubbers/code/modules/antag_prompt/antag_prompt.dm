@@ -30,6 +30,8 @@
 			decoy_headroom--
 
 	var/poll_time = CONFIG_GET(number/antag_prompt_time) SECONDS
+	// Anyone opting out lands in the shared ignore list, so the delta over the poll counts them.
+	var/opted_out_before = length(GLOB.poll_ignore[ANTAG_PROMPT_IGNORE_CATEGORY])
 	if(length(decoy_candidates))
 		INVOKE_ASYNC(src, PROC_REF(run_decoy_prompt), decoy_candidates, decoy_flag, poll_time)
 
@@ -40,13 +42,18 @@
 		var/deadline = world.time + 10 SECONDS
 		UNTIL(decoy_finished || world.time > deadline)
 
-	log_antag_tickets("Antag prompt for [cast_control.name] ([cast_control.antag_flag]): [prompted] prompted, [length(accepted)] accepted, [prompted - length(accepted)] declined. Decoy [decoy_flag || "none"]: [length(decoy_candidates)] prompted, [length(decoy_accepted)] accepted.")
+	var/declined = prompted - length(accepted)
+	var/disabled = length(GLOB.poll_ignore[ANTAG_PROMPT_IGNORE_CATEGORY]) - opted_out_before
+
+	log_antag_tickets("Antag prompt for [cast_control.name] ([cast_control.antag_flag]): [length(candidates)] eligible, [prompted] offered, [length(accepted)] accepted, [declined] declined, [disabled] disabled prompts for the round. Decoy [decoy_flag || "none"]: [length(decoy_candidates)] offered, [length(decoy_accepted)] accepted.")
 	SSblackbox.record_feedback("associative", "antag_prompt", 1, list(
 		"antag" = cast_control.antag_flag,
 		"eligible" = length(candidates),
 		"needed" = antag_count,
 		"prompted" = prompted,
 		"accepted" = length(accepted),
+		"declined" = declined,
+		"disabled" = disabled,
 		"decoy_antag" = decoy_flag || "none",
 		"decoy_prompted" = length(decoy_candidates),
 		"decoy_accepted" = length(decoy_accepted),
