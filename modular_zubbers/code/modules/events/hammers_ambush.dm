@@ -1,7 +1,7 @@
 /datum/round_event_control/syndicate_assassination_attempt
 	name = "Syndicate Assasination Attempt"
 	typepath = /datum/round_event/syndicate_assassination_attempt
-	weight = 8
+	weight = 16
 	min_players = 30
 	max_occurrences = 4
 	earliest_start = 40 MINUTES

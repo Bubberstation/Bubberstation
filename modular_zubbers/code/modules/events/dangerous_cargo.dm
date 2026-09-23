@@ -41,7 +41,7 @@
 /datum/round_event_control/stray_cargo/syndie_bombsquad
 	name = "Syndicate Bomb Squad"
 	typepath = /datum/round_event/stray_cargo/syndie_bombsquad
-	weight = 5
+	weight = 10
 	min_players = 30
 	max_occurrences = 1
 	earliest_start = 45 MINUTES
