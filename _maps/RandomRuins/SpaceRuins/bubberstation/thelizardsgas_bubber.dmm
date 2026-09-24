@@ -114,7 +114,7 @@
 	name = "lizgas"
 	},
 /obj/machinery/door/window/left/directional/west{
-	req_access = list("lzgas")
+	req_access = list("lizard_gas")
 	},
 /turf/open/floor/circuit,
 /area/ruin/space/has_grav/thelizardsgas)
@@ -398,7 +398,7 @@
 	name = "Criminal Shutters";
 	id = "spacelizardshutters";
 	pixel_y = -6;
-	req_access = list("lzgas")
+	req_access = list("lizard_gas")
 	},
 /obj/structure/table/reinforced,
 /obj/item/flatpack{
@@ -1110,14 +1110,13 @@
 /obj/machinery/power/apc/auto_name/directional/west{
 	cable_layer = 1
 	},
-/obj/machinery/power/terminal{
-	dir = 8;
-	cable_layer = 1
-	},
 /obj/effect/mapping_helpers/apc/cell_10k,
 /obj/effect/mapping_helpers/apc/unlocked,
-/obj/structure/cable/layer1,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/ruin/space/has_grav/thelizardsgas)
 "KH" = (
@@ -1261,10 +1260,10 @@
 "OI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/window/left/directional/north{
-	req_access = list("lzgas")
+	req_access = list("lizard_gas")
 	},
 /obj/machinery/door/window/left/directional/south{
-	req_access = list("lzgas")
+	req_access = list("lizard_gas")
 	},
 /turf/open/floor/iron/dark/small,
 /area/ruin/space/has_grav/thelizardsgas)
@@ -1286,6 +1285,7 @@
 /obj/structure/cable/layer1,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable/multilayer/connected,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/ruin/space/has_grav/thelizardsgas)
 "Pb" = (
