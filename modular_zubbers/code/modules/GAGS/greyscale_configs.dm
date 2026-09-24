@@ -128,6 +128,10 @@
 	name = "Tailored Jacket (Worn)"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket_worn.dmi'
 
+/datum/greyscale_config/crop_jacket/worn/teshari
+	name = "Tailored Jacket (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
+
 /datum/greyscale_config/shortsleeve_crop_jacket
 	name = "Tailored Jacket (Short-Sleeved)"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket.dmi'
@@ -136,6 +140,10 @@
 /datum/greyscale_config/shortsleeve_crop_jacket/worn
 	name = "Tailored Jacket (Short-Sleeved, Worn)"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket_worn.dmi'
+
+/datum/greyscale_config/shortsleeve_crop_jacket/worn/teshari
+	name = "Tailored Jacket (Short-Sleeved, Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
 
 // SLEEVELESS CROPPED JACKET
 
@@ -147,6 +155,10 @@
 /datum/greyscale_config/sleeveless_crop_jacket/worn
 	name = "Tailored Jacket (Sleeveless, Worn)"
 	icon_file = 'modular_zubbers/icons/obj/clothing/suits/crop_jacket_worn.dmi'
+
+/datum/greyscale_config/sleeveless_crop_jacket/worn/teshari
+	name = "Tailored Jacket (Sleeveless, Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/suits/jacket_teshari.dmi'
 
 //ITEMS
 /datum/greyscale_config/umbrella
@@ -307,6 +319,10 @@
 	name = "Camouflage (Worn, Digi)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 
+/datum/greyscale_config/camo/worn/teshari
+	name = "Camouflage (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
+
 // Giant Scarf (Sprites by Iskawhiskers)
 /datum/greyscale_config/giant_scarf
 	name = "Giant Scarf"
@@ -316,6 +332,10 @@
 /datum/greyscale_config/giant_scarf/worn
 	name = "Giant Scarf (Worn)"
 	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses.dmi'
+
+/datum/greyscale_config/giant_scarf/worn/teshari
+	name = "Giant Scarf (Worn, Teshari)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/under/skirts_dresses_teshari.dmi'
 
 /// Greyscale clothing Nova port
 /datum/greyscale_config/turtlenecks
