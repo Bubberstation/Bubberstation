@@ -17,6 +17,15 @@
 #define THUMPER_SYNC_GAIN 6
 /// Percent chance, per box of materials, that a thumper's fracking sets off an earthquake
 #define THUMPER_QUAKE_CHANCE 0.1
+/// but the dwarves delved too deep and too greedily
+#define THUMPER_EMAG_QUAKE_MULTIPLIER 3
+/// Percent chance, per box of materials, of striking mythril
+#define THUMPER_MYTHRIL_CHANCE 0.05
+/// Sheets of mythril in a strike, approximately as rare as it is from regular mining
+#define THUMPER_MYTHRIL_AMOUNT 5
+/// An emagged thumper brings something up its wellbore every few boxes, somewhere in this range
+#define THUMPER_CLOWN_BOXES_MIN 3
+#define THUMPER_CLOWN_BOXES_MAX 6
 /// No thumper can set off another quake until this long after the last one
 #define THUMPER_QUAKE_COOLDOWN (30 MINUTES)
 
@@ -99,6 +108,23 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 		/obj/item/stack/ore/titanium = 10,
 		/obj/item/stack/ore/diamond = 5,
 		/obj/item/stack/ore/bluespace_crystal = 1,
+		/obj/item/stack/ore/bananium = 5,
+	)
+	/// Boxes of materials left before an emagged thumper digs up something horrible
+	var/boxes_until_clown = 0
+	/// What an emagged thumper can dig up besides ore
+	var/static/list/wellbore_clowns = list(
+		/mob/living/basic/clown_bug = 10,
+		/mob/living/basic/clown = 6,
+		/mob/living/basic/clown/lube = 4,
+		/mob/living/basic/clown/honkling = 4,
+		/mob/living/basic/clown/banana = 3,
+		/mob/living/basic/clown/longface = 3,
+		/mob/living/basic/clown/fleshclown = 2,
+		/mob/living/basic/clown/clownhulk/honkmunculus = 2,
+		/mob/living/basic/clown/clownhulk = 1,
+		/mob/living/basic/clown/clownhulk/chlown = 1,
+		/mob/living/basic/clown/mutant/glutton = 1,
 	)
 	/// What's the limit for ore near us? Counts by stacks, not individual amounts of ore
 	var/nearby_ore_limit = 5
@@ -155,6 +181,8 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	. += span_notice("It will pause operation if there are <b>too many piles of ore</b> near it, and resume once they are cleared.")
 	. += span_notice("The thumper cannot operate <b>too close to another thumper</b>; it requires at least <b>[minimum_thumper_clearance] spaces</b> of clearance.")
 	. += span_notice("It will adjust its cadence to <b>synchronize</b> with nearby ore thumpers.")
+	if(obj_flags & EMAGGED)
+		. += span_warning("Its safety interlocks have been burned out. It is driving far deeper than it should.")
 	. += span_notice("Its status lamp glows <b>green</b> when operating normally, flashes <b>yellow</b> when ready to operate but prevented by external conditions, flashes <b>red</b> when it cannot work where it stands, and glows <b>red</b> when switched off.")
 	if(switched_on && stall_reason == THUMPER_STALL_LOCATION)
 		. += span_warning("It has stopped: <b>it cannot operate on this terrain and must be redeployed</b>.")
@@ -408,9 +436,18 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	addtimer(CALLBACK(src, PROC_REF(make_some_ore)), 3 SECONDS, TIMER_DELETE_ME)
 
 
+/obj/machinery/power/colony_ore_thumper/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
+		return FALSE
+	obj_flags |= EMAGGED
+	boxes_until_clown = rand(THUMPER_CLOWN_BOXES_MIN, THUMPER_CLOWN_BOXES_MAX)
+	do_sparks(3, FALSE, src)
+	balloon_alert(user, "safety interlocks fried")
+	return TRUE
+
 /// Every box of materials is a small roll for an earthquake
 /obj/machinery/power/colony_ore_thumper/proc/try_to_cause_earthquake()
-	if(!prob(THUMPER_QUAKE_CHANCE))
+	if(!prob(THUMPER_QUAKE_CHANCE * ((obj_flags & EMAGGED) ? THUMPER_EMAG_QUAKE_MULTIPLIER : 1)))
 		return
 	if(world.time < GLOB.next_thumper_quake)
 		return
@@ -436,9 +473,24 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	if(!length(nearby_valid_turfs))
 		nearby_valid_turfs.Add(get_turf(src))
 
+	if(prob(THUMPER_MYTHRIL_CHANCE))
+		new /obj/item/stack/sheet/mineral/mythril(pick(nearby_valid_turfs), THUMPER_MYTHRIL_AMOUNT)
+
+	var/list/ore_weights = ore_weight_list
+	if(obj_flags & EMAGGED)
+		ore_weights = ore_weight_list.Copy()
+		ore_weights[/obj/item/stack/ore/bananium] = ore_weight_list[/obj/item/stack/ore/diamond]
+		boxes_until_clown--
+		if(boxes_until_clown <= 0)
+			boxes_until_clown = rand(THUMPER_CLOWN_BOXES_MIN, THUMPER_CLOWN_BOXES_MAX)
+			var/mob_type = pick_weight(wellbore_clowns)
+			new mob_type(pick(nearby_valid_turfs))
+			playsound(src, 'sound/items/bikehorn.ogg', 75, TRUE)
+			visible_message(span_danger("Something horrible scurries out of [src]'s wellbore!"))
+
 	for(var/iteration in 1 to rand(2, 4))
 		var/turf/target_turf = pick(nearby_valid_turfs)
-		var/obj/item/stack/ore/ore_type = pick_weight(ore_weight_list)
+		var/obj/item/stack/ore/ore_type = pick_weight(ore_weights)
 		var/obj/new_ore_pile = new ore_type(target_turf, ore_spawn_values[ore_type])
 		new /obj/effect/temp_visual/mook_dust/robot(target_turf)
 		playsound(new_ore_pile, 'modular_skyrat/master_files/sound/effects/robot_sit.ogg', 25, TRUE)
@@ -470,6 +522,11 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 #undef SLAM_JAM_DELAY
 #undef THUMPER_SYNC_DEADZONE
 #undef THUMPER_QUAKE_CHANCE
+#undef THUMPER_EMAG_QUAKE_MULTIPLIER
+#undef THUMPER_MYTHRIL_CHANCE
+#undef THUMPER_MYTHRIL_AMOUNT
+#undef THUMPER_CLOWN_BOXES_MIN
+#undef THUMPER_CLOWN_BOXES_MAX
 #undef THUMPER_QUAKE_COOLDOWN
 #undef THUMPER_LOAD_SEGMENTS
 #undef THUMPER_SYNC_MAX_SHIFT
