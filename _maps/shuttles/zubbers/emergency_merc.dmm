@@ -195,6 +195,13 @@
 	},
 /turf/open/floor/mineral/plastitanium/pod/dark,
 /area/shuttle/escape)
+"bY" = (
+/obj/machinery/door/airlock/medical/glass{
+	name = "Escape Shuttle Infirmary"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
+/turf/open/floor/iron/dark/smooth_large,
+/area/shuttle/escape)
 "ca" = (
 /obj/effect/spawner/random/vending/colavend,
 /turf/open/floor/iron/dark/textured_large,
@@ -370,7 +377,6 @@
 /obj/machinery/light/directional/south,
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/food/burger/rat,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden,
 /obj/item/reagent_containers/cup/soda_cans/cola{
 	pixel_x = -7;
 	pixel_y = 13
@@ -392,7 +398,6 @@
 /obj/structure/toilet/secret{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/east,
 /obj/machinery/door/window/survival_pod/left/directional/north,
 /obj/effect/turf_decal/trimline/white/warning{
@@ -524,7 +529,6 @@
 "if" = (
 /obj/machinery/airalarm/directional/south,
 /obj/structure/sink/directional/north,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden,
 /obj/effect/turf_decal/trimline/white/line{
 	dir = 2;
 	color = "#FE7300"
@@ -582,10 +586,11 @@
 /turf/open/floor/wood/tile,
 /area/shuttle/escape)
 "iT" = (
-/obj/machinery/portable_atmospherics/canister/anesthetic_mix,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	dir = 4
 	},
+/obj/effect/turf_decal/bot_red,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/mineral/plastitanium/pod/dark,
 /area/shuttle/escape)
 "iX" = (
@@ -824,6 +829,14 @@
 	},
 /turf/open/floor/wood/tile,
 /area/shuttle/escape)
+"mB" = (
+/obj/machinery/atmospherics/components/trinary/filter/atmos/co2{
+	dir = 1
+	},
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/blue/opposingcorners,
+/turf/open/floor/mineral/plastitanium/pod/light,
+/area/shuttle/escape)
 "mG" = (
 /obj/machinery/computer/communications,
 /obj/effect/turf_decal/tile/dark_blue/fourcorners,
@@ -979,8 +992,9 @@
 /turf/open/floor/mineral/plastitanium/pod/dark,
 /area/shuttle/escape/brig)
 "qx" = (
-/obj/machinery/airalarm/directional/north,
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
+/obj/machinery/cryo_cell{
+	dir = 8
+	},
 /turf/open/floor/mineral/plastitanium/pod/dark,
 /area/shuttle/escape)
 "qy" = (
@@ -1023,7 +1037,14 @@
 /turf/open/floor/mineral/plastitanium/pod/dark,
 /area/shuttle/escape)
 "rs" = (
-/obj/machinery/light/directional/north,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 4
+	},
+/obj/effect/turf_decal/box/white{
+	color = "#52B4E9"
+	},
+/obj/machinery/portable_atmospherics/canister/anesthetic_mix,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/mineral/plastitanium/pod/dark,
 /area/shuttle/escape)
 "rw" = (
@@ -1163,11 +1184,9 @@
 /turf/open/floor/mineral/plastitanium/pod/dark,
 /area/shuttle/escape)
 "uu" = (
-/obj/item/stack/medical/mesh,
-/obj/item/wrench/medical,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/screwdriver/nuke,
+/obj/machinery/cryo_cell{
+	dir = 8
+	},
 /obj/effect/turf_decal/tile/blue/opposingcorners,
 /turf/open/floor/mineral/plastitanium/pod/light,
 /area/shuttle/escape)
@@ -1292,26 +1311,29 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "wT" = (
-/obj/item/reagent_containers/cup/beaker/cryoxadone{
-	pixel_x = -6;
-	pixel_y = 10
-	},
-/obj/item/reagent_containers/cup/beaker/cryoxadone{
-	pixel_x = 6;
-	pixel_y = 10
-	},
-/obj/item/reagent_containers/cup/beaker/cryoxadone{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/cup/beaker/cryoxadone{
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/item/storage/pill_bottle/mannitol,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
-/obj/structure/table/reinforced/plastitaniumglass,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/light/cold/directional/south,
 /obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/reagent_containers/cup/beaker/cryoxadone{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/cup/beaker/cryoxadone{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/cup/beaker/cryoxadone{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/cup/beaker/cryoxadone{
+	pixel_x = 6;
+	pixel_y = 10
+	},
 /turf/open/floor/mineral/plastitanium/pod/light,
 /area/shuttle/escape)
 "wW" = (
@@ -1368,7 +1390,6 @@
 /turf/open/floor/eighties,
 /area/shuttle/escape/luxury)
 "xT" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden,
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium{
 	damage_deflection = 21;
 	desc = "A 'Titan' brand Plastitanium window, there is a small image of a cat etched into the bottom right corner"
@@ -1560,7 +1581,6 @@
 /turf/open/floor/carpet/blue,
 /area/shuttle/escape/brig)
 "Cj" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden,
 /obj/effect/turf_decal/trimline/white/corner{
 	dir = 4;
 	color = "#FE7300"
@@ -1639,21 +1659,19 @@
 /turf/open/floor/mineral/plastitanium/pod/dark,
 /area/shuttle/escape)
 "Dt" = (
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/co2{
-	dir = 8
+/obj/machinery/holopad,
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
-/obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/storage/pill_bottle/mannitol,
 /turf/open/floor/mineral/plastitanium/pod/light,
 /area/shuttle/escape)
 "DJ" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/machinery/cryo_cell{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium/pod,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/shuttle/escape)
 "DU" = (
 /obj/effect/turf_decal/trimline/white/line{
@@ -1729,6 +1747,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
 /turf/open/floor/iron/stairs{
 	dir = 8
 	},
@@ -1816,9 +1835,17 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"FD" = (
+/obj/machinery/iv_drip,
+/obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
+/turf/open/floor/mineral/plastitanium/pod/light,
+/area/shuttle/escape)
 "FJ" = (
-/obj/effect/spawner/liquids_spawner/shoulders,
-/turf/open/floor/iron/pool,
+/obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/effect/landmark/event_spawn,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
+/turf/open/floor/mineral/plastitanium/pod/light,
 /area/shuttle/escape)
 "FR" = (
 /obj/machinery/computer/aifixer{
@@ -1968,6 +1995,10 @@
 	},
 /turf/open/floor/mineral/plastitanium/pod/dark,
 /area/shuttle/escape)
+"Iu" = (
+/obj/effect/spawner/liquids_spawner/shoulders,
+/turf/open/floor/iron/pool,
+/area/shuttle/escape)
 "IG" = (
 /obj/effect/turf_decal/trimline/blue/line{
 	dir = 4
@@ -2001,13 +2032,12 @@
 /turf/open/floor/noslip,
 /area/shuttle/escape)
 "Jm" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
+/obj/structure/cable,
 /obj/effect/turf_decal/stripes/line{
-	dir = 10
+	dir = 9
 	},
-/obj/machinery/cryo_cell{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium/pod,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/shuttle/escape)
 "Js" = (
 /obj/structure/showcase/mecha/marauder{
@@ -2186,11 +2216,13 @@
 /turf/open/floor/iron/showroomfloor,
 /area/shuttle/escape)
 "Nj" = (
-/obj/structure/sign/flag/nri/directional/north,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
+/obj/structure/cable,
 /obj/effect/turf_decal/stripes/line{
-	dir = 9
+	dir = 10
 	},
-/turf/open/floor/mineral/plastitanium/pod/dark,
+/obj/effect/turf_decal/tile/blue/opposingcorners,
+/turf/open/floor/mineral/plastitanium/pod/light,
 /area/shuttle/escape)
 "Nv" = (
 /obj/structure/chair/plastic{
@@ -2290,6 +2322,13 @@
 	},
 /obj/effect/turf_decal/tile/brown/diagonal_edge,
 /turf/open/floor/iron/kitchen/diagonal,
+/area/shuttle/escape)
+"Pp" = (
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/shuttle/escape)
 "Pr" = (
 /obj/structure/chair/comfy/shuttle,
@@ -2497,6 +2536,12 @@
 	},
 /turf/open/floor/mineral/plastitanium/pod/dark,
 /area/shuttle/escape/brig)
+"Ti" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
+/obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/machinery/meter,
+/turf/open/floor/mineral/plastitanium/pod/light,
+/area/shuttle/escape)
 "Tw" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /obj/machinery/door/poddoor/preopen{
@@ -2510,15 +2555,15 @@
 /turf/open/floor/plastic,
 /area/shuttle/escape/luxury)
 "TD" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/camera{
-	c_tag = "Medbay Cryogenics";
-	dir = 9;
-	network = list("ss13","medbay")
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
 	},
-/obj/structure/sign/warning/cold_temp/directional/north,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
-/turf/open/floor/mineral/plastitanium/pod,
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/screwdriver/nuke,
+/obj/item/wrench/medical,
+/obj/item/stack/medical/mesh,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/shuttle/escape)
 "TI" = (
 /obj/effect/turf_decal/tile/blue/opposingcorners,
@@ -2617,7 +2662,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
-/obj/effect/station_crash/oh_no,
 /turf/open/floor/mineral/plastitanium/pod/dark,
 /area/shuttle/escape)
 "Vk" = (
@@ -2820,9 +2864,15 @@
 /turf/open/floor/noslip,
 /area/shuttle/escape)
 "Yv" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden,
-/turf/closed/wall/mineral/plastitanium,
-/area/shuttle/escape/brig)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/machinery/meter,
+/turf/open/floor/mineral/plastitanium/pod/light,
+/area/shuttle/escape)
 "YA" = (
 /obj/machinery/vending/wallmed/directional/south,
 /obj/structure/table/reinforced/plastitaniumglass,
@@ -2866,11 +2916,9 @@
 /turf/open/floor/mineral/plastitanium/pod/dark,
 /area/shuttle/escape)
 "ZP" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/canister/anesthetic_mix,
-/turf/open/floor/mineral/plastitanium/pod/dark,
+/obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
+/turf/open/floor/mineral/plastitanium/pod/light,
 /area/shuttle/escape)
 
 (1,1,1) = {"
@@ -2947,7 +2995,7 @@ en
 en
 en
 uV
-Nj
+Vi
 uB
 BB
 uV
@@ -3073,11 +3121,11 @@ ri
 ri
 nT
 Cj
-tB
+cf
 LA
-IG
-IG
-IG
+Pp
+Pp
+Pp
 IG
 IG
 Xs
@@ -3123,7 +3171,7 @@ rX
 Sp
 wF
 wF
-gQ
+bY
 wF
 wF
 Sp
@@ -3168,7 +3216,7 @@ eN
 rX
 rs
 iT
-ZP
+rs
 ED
 Ds
 cf
@@ -3213,9 +3261,9 @@ aa
 if
 Vm
 Jm
-lJ
-lJ
-Qu
+Yv
+Nj
+ZP
 Qu
 cf
 yn
@@ -3257,11 +3305,11 @@ SK
 kx
 aa
 eI
-Yv
+rX
 TD
 Dt
 wT
-Qu
+ZP
 Qu
 cf
 Yr
@@ -3305,9 +3353,9 @@ Fc
 Kg
 rX
 DJ
+mB
 lJ
-uu
-Qu
+ZP
 Qu
 cf
 Yr
@@ -3319,8 +3367,8 @@ MI
 de
 ld
 UF
-FJ
-FJ
+Iu
+Iu
 AQ
 vD
 gH
@@ -3351,9 +3399,9 @@ Yh
 DU
 rX
 qx
-lJ
-Qu
-Qu
+Ti
+uu
+FJ
 Qu
 cf
 Yr
@@ -3365,9 +3413,9 @@ Gv
 fD
 sk
 UF
-FJ
+Iu
 VL
-FJ
+Iu
 vD
 xf
 xf
@@ -3397,9 +3445,9 @@ OQ
 DU
 rX
 ft
+FD
 El
-El
-Qu
+ZP
 Qu
 cf
 GD
@@ -3411,9 +3459,9 @@ Gv
 pz
 qY
 UF
-FJ
-FJ
-FJ
+Iu
+Iu
+Iu
 vD
 xf
 xf
@@ -3443,9 +3491,9 @@ BT
 CK
 rX
 fA
-Qu
-Qu
-Qu
+ZP
+ZP
+ZP
 Qu
 Qu
 YA
@@ -3457,8 +3505,8 @@ Eo
 rO
 ek
 UF
-FJ
-FJ
+Iu
+Iu
 AQ
 hr
 xf
