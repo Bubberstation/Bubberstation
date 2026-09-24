@@ -72,10 +72,10 @@
 	greyscale_config_belt = null
 	greyscale_colors = COLONY_TOOL_COLORS
 	flags_1 = parent_type::flags_1 | IS_PLAYER_COLORABLE_1 | NO_NEW_GAGS_PREVIEW_1
-	/// Used on Initialize, how much time to cut cable restraints and zipties.
-	var/snap_time_weak_handcuffs = 0 SECONDS
-	/// Used on Initialize, how much time to cut real handcuffs. Null means it can't.
-	var/snap_time_strong_handcuffs = null
+/// Used on tool change to wirecutters, how much time to cut cable restraints and zipties.
+var/snap_time_weak_handcuffs = 0 SECONDS
+/// Used on tool change to wirecutters, how much time to cut real handcuffs. Null means it can't.
+var/snap_time_strong_handcuffs = null
 
 /obj/item/screwdriver/omni_drill/Initialize(mapload)
 	. = ..()
