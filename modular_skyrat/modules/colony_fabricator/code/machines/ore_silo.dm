@@ -20,7 +20,7 @@
 
 /obj/machinery/ore_silo/colony_lathe/examine(mob/user)
 	. = ..()
-	. += span_notice("Its transfer beep is [muted ? "muted" : "on"]. [EXAMINE_HINT("Alt-click")] to toggle it.")
+	. += span_notice("Its transfer beep is [muted ? "muted" : "unmuted"]. [EXAMINE_HINT("Alt-click")] to toggle it.")
 
 /obj/machinery/ore_silo/colony_lathe/click_alt(mob/user)
 	muted = !muted
