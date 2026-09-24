@@ -74,7 +74,7 @@
 	light_power = 1
 	light_color = LIGHT_COLOR_HALOGEN
 
-/obj/item/weldingtool/abductor/process()
+/obj/item/weldingtool/experimental/bluespace/process()
 	if(get_fuel() <= max_fuel)
 		reagents.add_reagent(/datum/reagent/fuel, 1)
 	..()
