@@ -1,4 +1,4 @@
-/// How much harder printing hits the internal cell than it would the grid
+/// Energy multiplier when printing off the cell
 #define RCF_CELL_ENERGY_MULTIPLIER 10
 
 /obj/machinery/rnd/production/colony_lathe
@@ -19,17 +19,17 @@
 	var/repacked_type = /obj/item/flatpacked_machine
 	/// The sound loop played while the fabricator is making something
 	var/datum/looping_sound/colony_fabricator_running/soundloop
-	/// What the hack wire was set to when we last built our design list
+	/// Hack state of the current design list
 	var/designs_follow_hack = FALSE
-	/// Runs the fabricator where there is no powered area
+	/// Internal cell
 	var/obj/item/stock_parts/power_store/cell = /obj/item/stock_parts/power_store/cell/high
-	/// Designs we can only print once the station has researched them
+	/// Designs locked behind station research
 	var/static/list/station_research_designs = list(
 		"minerbag_holding",
 	)
-	/// The station's research, which decides when the designs above unlock
+	/// The station's techweb
 	var/datum/techweb/station_research
-	/// How much we pull off the grid each tick to top the cell back up
+	/// Cell recharge rate
 	var/cell_charge_rate = STANDARD_CELL_RATE * 0.2
 
 /obj/machinery/rnd/production/colony_lathe/Initialize(mapload)
@@ -56,7 +56,7 @@
 	station_research = null
 	return ..()
 
-// The screwdriver only opens the panel, since this machine repacks instead of deconstructing
+// Screwdriver opens the panel only, this machine repacks instead
 /obj/machinery/rnd/production/colony_lathe/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/screwdriver)
 	return NONE
 
@@ -114,7 +114,7 @@
 /obj/machinery/rnd/production/colony_lathe/on_deconstruction(disassembled)
 	if(isnull(cell))
 		return ..()
-	// a repack spawns the flatpack on our tile this tick, before taking us apart, so our cell goes back in it
+	// the repack's new flatpack was made this tick
 	var/obj/item/flatpacked_machine/packed
 	for(var/obj/item/flatpacked_machine/flatpack in drop_location())
 		if(flatpack.created_at == world.time && ispath(flatpack.type_to_deploy, type))
@@ -138,7 +138,6 @@
 	. = ..()
 	if(. || isnull(cell))
 		return .
-	// printing off the cell costs far more than printing off the grid
 	return cell.use(amount * RCF_CELL_ENERGY_MULTIPLIER, force = force)
 
 /obj/machinery/rnd/production/colony_lathe/process(seconds_per_tick)
@@ -174,7 +173,7 @@
 		say("Fabrication systems are offline.")
 		return FALSE
 
-	// contraband designs are autolathe designs, so we borrow those systems for one print
+	// contraband designs are autolathe designs
 	var/datum/design/design = SSresearch.techweb_design_by_id(params["ref"])
 	if(istype(design) && !station_has_researched(design.id))
 		say("This design has not been researched by the station yet.")
@@ -222,7 +221,6 @@
 			cached_designs |= design
 			continue
 
-		// contraband only shows up once somebody has found the hack wire
 		if(hacked && (RND_CATEGORY_HACKED in design.category) && (design.build_type & AUTOLATHE))
 			cached_designs |= design
 
@@ -234,7 +232,7 @@
 
 	update_static_data_for_all_viewers()
 
-/// Designs in station_research_designs wait for the station to research them
+/// Has the station researched this design, if it needs to
 /obj/machinery/rnd/production/colony_lathe/proc/station_has_researched(design_id)
 	if(!(design_id in station_research_designs))
 		return TRUE
@@ -253,7 +251,7 @@
 	var/deploy_time = 4 SECONDS
 	/// Cell packed inside, for machines that run on one
 	var/obj/item/stock_parts/power_store/cell
-	/// When this flatpack was made, so a repacking machine can find the box it just went into
+	/// World time this flatpack was made
 	var/created_at
 
 /obj/item/flatpacked_machine/Initialize(mapload)
@@ -293,7 +291,7 @@
 	cell = tool
 	return ITEM_INTERACT_SUCCESS
 
-/// Hands our packed cell to the machine we just unpacked into
+/// Gives our cell to the deployed machine
 /obj/item/flatpacked_machine/proc/on_deployed(datum/source, obj/machinery/rnd/production/colony_lathe/fabricator)
 	SIGNAL_HANDLER
 
@@ -320,7 +318,7 @@
 	. = ..()
 	storable += /obj/item/flatpacked_machine
 
-// The R&D wires already carry a hack wire, we only need to hear about it
+// R&D wires with a hook for the hack wire
 
 /datum/wires/rnd/colony_lathe
 	holder_type = /obj/machinery/rnd/production/colony_lathe

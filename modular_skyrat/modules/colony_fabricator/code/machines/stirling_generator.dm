@@ -42,7 +42,7 @@
 
 /obj/machinery/power/stirling_generator/post_machine_initialize()
 	. = ..()
-	// the connector only half joins the pipe network when built; rotating it used to be the only fix
+	// the connector only half joins the pipe network when built
 	connected_chamber?.reconnect_connector()
 
 

@@ -188,7 +188,7 @@
 
 	addtimer(CALLBACK(src, PROC_REF(loop), time), 1 SECONDS)
 
-/// The powered cable under us, if there is one with enough spare power for a second of smelting
+/// The cable under us, if it can pay for a second of smelting
 /obj/machinery/arc_furnace/proc/get_powered_cable()
 	var/obj/structure/cable/cable = locate() in get_turf(src)
 	var/datum/powernet/grid = cable?.powernet
@@ -202,7 +202,7 @@
 		return TRUE
 	return !isnull(get_powered_cable())
 
-/// Pays for a second of smelting off the cable. Area power is covered by the active draw
+/// Pays for a second of smelting off the cable
 /obj/machinery/arc_furnace/proc/draw_smelting_power()
 	if(!(machine_stat & NOPOWER))
 		return

@@ -1,7 +1,7 @@
-/// Akhter Company Frontier Equipment orange, for the colonist ID
+/// Frontier orange
 #define FRONTIER_ORANGE "#D15B1B"
 
-// A toolbelt of the colony tools, for colonists and anyone testing them
+// Toolbelt of colony tools
 
 /obj/item/storage/belt/utility/full/colonist
 	preload = FALSE

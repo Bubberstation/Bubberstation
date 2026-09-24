@@ -150,7 +150,7 @@
 
 // Headset
 
-/// How much charge the headset spends pushing one message out with no relay to carry it
+/// Charge spent per message sent without a relay
 #define FRONTIER_RADIO_TRANSMIT_COST (STANDARD_CELL_CHARGE * 0.02)
 
 /obj/item/radio/headset/headset_frontier_colonist
@@ -169,7 +169,7 @@
 	radiosound = 'modular_skyrat/modules/kahraman_equipment/sound/morse_signal.wav'
 	radio_sound_volume = 20
 	freqlock = RADIO_FREQENCY_LOCKED
-	/// Powers the antenna whenever there is no relay to carry our signal
+	/// Powers the antenna when there is no relay
 	var/obj/item/stock_parts/power_store/cell = /obj/item/stock_parts/power_store/cell
 
 /obj/item/radio/headset/headset_frontier_colonist/wide
@@ -198,7 +198,7 @@
 		. += span_notice("Its [cell.name] is charged to <b>[round(cell.percent())]%</b>. Talking with no relay in range drains it.")
 	. += span_notice("The battery and key can be removed with a <b>screwdriver</b>.")
 
-// one key, and the frequency lock only guards the dial, not the keyslot
+// one key, ignoring the frequency lock
 /obj/item/radio/headset/headset_frontier_colonist/install_key(mob/living/user, obj/item/encryptionkey/key)
 	if(keyslot)
 		loc.balloon_alert(user, "only fits one key!")
@@ -237,7 +237,7 @@
 	loc.balloon_alert(user, "battery and key removed")
 	return ITEM_INTERACT_SUCCESS
 
-// only called when no relay picked the message up, so this is the only time we pay for it
+// only runs when no relay carried the message
 /obj/item/radio/headset/headset_frontier_colonist/backup_transmission(datum/signal/subspace/vocal/signal)
 	var/turf/our_turf = get_turf(src)
 	if(signal.data["done"] && (our_turf?.z in signal.levels))

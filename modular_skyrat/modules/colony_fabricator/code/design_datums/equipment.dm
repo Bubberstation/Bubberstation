@@ -12,7 +12,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
-// Upstream removed the autolathe's soup pot, which removed ours with it
+// Soup pot
 /datum/design/colony_soup_pot
 	name = "Soup Pot"
 	id = "colony_soup_pot"
@@ -27,8 +27,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
-// The autolathe's contraband list. A fabricator only shows these once its hack wire has been found.
-// Designs another node already owns are left out, since a design can only sit in one node
+// Autolathe contraband for hacked fabricators. Designs owned by other nodes are left out
 /datum/techweb_node/colony_fabricator_contraband
 	id = TECHWEB_NODE_COLONY_CONTRABAND
 	display_name = "Colony Fabricator Contraband Designs"

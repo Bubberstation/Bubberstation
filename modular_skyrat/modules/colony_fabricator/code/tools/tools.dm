@@ -1,4 +1,4 @@
-/// Orange body, grey metal, the colours the colony tools ship in
+/// Default colony tool colours
 #define COLONY_TOOL_COLORS "#D15B1B#7C8287"
 /// The same, plus a green screen
 #define COLONY_MULTITOOL_COLORS (COLONY_TOOL_COLORS + "#3EBE68")
@@ -151,7 +151,7 @@
 	if(.)
 		item_use_power(power_use_amount, user)
 
-// A slow prybar that makes up for it by hitting like a length of pipe when you commit both hands
+// Slow two-handed prybar
 
 /obj/item/crowbar/large/colony_prybar
 	name = "prybar"
@@ -251,7 +251,7 @@
 
 /obj/item/weldingtool/electric/arc_welder/Initialize(mapload)
 	. = ..()
-	// the cell component's own overlay keeps the colours it was made with, so we draw the battery ourselves
+	// the cell component's overlay ignores recolours, so cell_overlay draws it instead
 	var/datum/component/cell/cell_component = GetComponent(/datum/component/cell)
 	if(cell_component)
 		cell_component.has_cell_overlays = FALSE
@@ -261,15 +261,15 @@
 	AddElement(/datum/element/gags_recolorable)
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
 
-// the battery is an overlay, so it has to be rebuilt whenever the colours change
+// rebuild the battery overlay on recolour
 /obj/item/weldingtool/electric/arc_welder/update_greyscale()
 	. = ..()
 	update_appearance(UPDATE_OVERLAYS)
 
-// A multitool built to take a beating out in the field
+// Field multitool
 
 /obj/item/multitool
-	/// Keeps the user from being shocked while this pulses live wires
+	/// Pulsing wires with this can't shock the user
 	var/insulated_probes = FALSE
 
 /obj/item/multitool/colony
@@ -299,11 +299,11 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
 
 
-/// Draws an overlay while a cell is fitted, so the battery reads as part of the tool and follows its colours
+/// Draws a battery overlay while a cell is fitted
 /datum/element/cell_overlay
 	element_flags = ELEMENT_BESPOKE
 	argument_hash_start_idx = 2
-	/// The icon state drawn over the item while it holds a cell
+	/// Overlay icon state
 	var/overlay_state
 
 /datum/element/cell_overlay/Attach(datum/target, overlay_state)

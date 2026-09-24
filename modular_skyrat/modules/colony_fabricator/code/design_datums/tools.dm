@@ -15,7 +15,7 @@
 	show_on_wiki = FALSE
 	starting_node = TRUE
 
-/// The iron and glass a high-capacity cell costs to build on its own, per the cell's own design
+/// Build cost of a high-capacity cell
 #define CELL_MATERIAL_COST list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.6)
 
 // Screw-Wrench-Wirecutter combo machine
@@ -45,7 +45,7 @@
 	give_charged_cell(driver)
 	return driver
 
-// Slow prybar that swings hard when wielded in both hands
+// Prybar
 
 /datum/design/colony_door_crowbar
 	name = "Prybar"
@@ -61,8 +61,7 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
 	)
 
-/// Loads a charged cell straight into a tool's cell component. The cell's own build cost is already
-/// folded into the design's materials, so this isn't free, it's just built into the one print
+/// Fits a charged cell. Its cost is in the design's materials
 /datum/design/proc/give_charged_cell(obj/item/tool)
 	var/datum/component/cell/cell_component = tool.GetComponent(/datum/component/cell)
 	if(isnull(cell_component) || cell_component.inserted_cell)
@@ -123,7 +122,7 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
 	)
 
-// Plain mining satchel, until the station has researched the bluespace one
+// Plain mining satchel
 
 /datum/design/colony_mining_satchel
 	name = "Mining Satchel"

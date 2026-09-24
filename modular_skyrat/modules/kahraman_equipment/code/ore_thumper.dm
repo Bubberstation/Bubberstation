@@ -1,5 +1,5 @@
 #define SLAM_JAM_DELAY (15 SECONDS)
-/// How long a thumper rides out a power shortage before it stalls
+/// Power grace period
 #define THUMPER_POWER_GRACE (10 SECONDS)
 
 #define THUMPER_STALL_LOCATION "invalid location"
@@ -11,11 +11,11 @@
 /// Cadence within this of normal counts as level
 #define THUMPER_SYNC_DEADZONE 0.02
 
-/// The most a thumper will speed up or slow down while it matches the others
+/// Max cadence change while syncing
 #define THUMPER_SYNC_MAX_SHIFT 0.5
 /// How hard a thumper pulls towards the shared rhythm
 #define THUMPER_SYNC_GAIN 6
-/// Percent chance, per box of materials, that a thumper's fracking sets off an earthquake
+/// Percent chance per box of setting off an earthquake
 #define THUMPER_QUAKE_CHANCE 0.1
 /// but the dwarves delved too deep and too greedily
 #define THUMPER_EMAG_QUAKE_MULTIPLIER 3
@@ -23,16 +23,16 @@
 #define THUMPER_MYTHRIL_CHANCE 0.05
 /// Sheets of mythril in a strike, approximately as rare as it is from regular mining
 #define THUMPER_MYTHRIL_AMOUNT 5
-/// An emagged thumper brings something up its wellbore every few boxes, somewhere in this range
+/// Boxes between wellbore clowns on an emagged thumper
 #define THUMPER_CLOWN_BOXES_MIN 3
 #define THUMPER_CLOWN_BOXES_MAX 6
-/// No thumper can set off another quake until this long after the last one
+/// Cooldown between thumper quakes
 #define THUMPER_QUAKE_COOLDOWN (30 MINUTES)
 
-/// How many segments the payload bar on the base is split into
+/// Payload bar segments
 #define THUMPER_LOAD_SEGMENTS 4
 
-/// Below this much agreement the group has no shared rhythm to match
+/// Minimum agreement before a group syncs
 #define THUMPER_SYNC_MIN_AGREEMENT 0.02
 
 /// What each stall reads as on examine
@@ -44,9 +44,9 @@ GLOBAL_LIST_INIT(thumper_stall_descriptions, list(
 	THUMPER_STALL_NEIGHBOR = "another thumper within its clearance",
 ))
 
-/// Every thumper that is running right now, so they can match each other's rhythm
+/// Every working thumper
 GLOBAL_LIST_EMPTY(working_ore_thumpers)
-/// When the next thumper-caused earthquake is allowed, shared by every thumper
+/// When the next thumper quake is allowed
 GLOBAL_VAR_INIT(next_thumper_quake, 0)
 
 /obj/machinery/power/colony_ore_thumper
@@ -66,13 +66,13 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	can_change_cable_layer = FALSE
 	circuit = null
 	layer = ABOVE_MOB_LAYER
-	/// Has somebody switched us on? We can be on and still be stalled
+	/// Switched on, even if stalled
 	var/switched_on = FALSE
-	/// Why we can't work right now, one of the THUMPER_STALL defines. Null when we are working normally
+	/// Why we can't work, a THUMPER_STALL define. Null when working
 	var/stall_reason
-	/// How much of a power shortage we can still ride out before we stall
+	/// Power grace left before we stall
 	var/power_grace_remaining = THUMPER_POWER_GRACE
-	/// How much working time we have built up towards the next slam
+	/// Progress to the next slam
 	var/slam_progress = 0
 	/// Our looping fan sound that we play when turned on
 	var/datum/looping_sound/ore_thumper_fan/soundloop
@@ -110,9 +110,9 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 		/obj/item/stack/ore/bluespace_crystal = 1,
 		/obj/item/stack/ore/bananium = 5,
 	)
-	/// Boxes of materials left before an emagged thumper digs up something horrible
+	/// Boxes left until the next wellbore clown
 	var/boxes_until_clown = 0
-	/// What an emagged thumper can dig up besides ore
+	/// Clowns an emagged thumper can dig up
 	var/static/list/wellbore_clowns = list(
 		/mob/living/basic/clown_bug = 10,
 		/mob/living/basic/clown = 6,
@@ -130,13 +130,13 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	var/nearby_ore_limit = 5
 	/// How far away does ore spawn?
 	var/ore_spawn_range = 2
-	/// How many clear tiles we need between us and the next thumper
+	/// Clear tiles needed around us
 	var/minimum_thumper_clearance = 2
 	/// What do we undeploy into
 	var/undeploy_type = /obj/item/flatpacked_machine/ore_thumper
-	/// Do we try to match our rhythm to the other thumpers around us?
+	/// Syncs with other thumpers
 	var/syncs_with_others = TRUE
-	/// What our cadence was last multiplied by to match the other thumpers
+	/// Last cadence multiplier from syncing
 	var/sync_multiplier = 1
 
 /obj/machinery/power/colony_ore_thumper/Initialize(mapload)
@@ -244,12 +244,12 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	slam_progress -= SLAM_JAM_DELAY
 	slam_it_down()
 
-/// How far through a full box of materials we are, as an angle so the cycle wraps cleanly
+/// Progress through the current box, as an angle
 /obj/machinery/power/colony_ore_thumper/proc/get_cycle_angle()
 	var/cycles_done = slam_jams + (slam_progress / SLAM_JAM_DELAY)
 	return SIMPLIFY_DEGREES((cycles_done / slam_jams_needed) * 360)
 
-/// What our slam timing is multiplied by this tick so we drift towards the shared rhythm
+/// Cadence multiplier towards the shared rhythm
 /obj/machinery/power/colony_ore_thumper/proc/get_sync_multiplier()
 	if(!syncs_with_others)
 		return 1
@@ -264,13 +264,13 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	var/angle_to_cover = closer_angle_difference(get_cycle_angle(), shared_angle)
 	return 1 + clamp((angle_to_cover / 360) * THUMPER_SYNC_GAIN, -THUMPER_SYNC_MAX_SHIFT, THUMPER_SYNC_MAX_SHIFT)
 
-/// Thumpers only match thumpers on the same z level running the same length of cycle
+/// Thumpers sync by z level and cycle length
 /obj/machinery/power/colony_ore_thumper/proc/get_sync_group()
 	var/turf/our_turf = get_turf(src)
 	var/our_z = our_turf ? our_turf.z : 0
 	return "[our_z]-[slam_jams_needed]"
 
-/// Averages every running thumper's place in its cycle, once a tick for all of them
+/// Shared rhythm per sync group, built once a tick
 /obj/machinery/power/colony_ore_thumper/proc/build_thumper_rhythms()
 	var/list/sines = list()
 	var/list/cosines = list()
@@ -291,13 +291,13 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 			continue
 		var/average_sine = sines[group] / count
 		var/average_cosine = cosines[group] / count
-		// a perfectly even spread averages out to no direction at all, so nobody moves
+		// an even spread has no direction to move towards
 		if(sqrt((average_sine * average_sine) + (average_cosine * average_cosine)) < THUMPER_SYNC_MIN_AGREEMENT)
 			continue
 		rhythms[group] = delta_to_angle(average_sine, average_cosine)
 	return rhythms
 
-/// Keeps us attached to the powernet only while there is a cable under us
+/// Connects to the powernet while a cable is under us
 /obj/machinery/power/colony_ore_thumper/proc/update_network_connection()
 	if(!(locate(/obj/structure/cable) in get_turf(src)))
 		disconnect_from_network()
@@ -305,7 +305,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	if(!powernet)
 		connect_to_network()
 
-/// Returns why we have no usable power right now, or null if we have enough
+/// Why we have no usable power, or null
 /obj/machinery/power/colony_ore_thumper/proc/get_power_problem()
 	if(!powernet)
 		return THUMPER_STALL_NO_WIRE
@@ -313,7 +313,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 		return THUMPER_STALL_POWER
 	return null
 
-/// Returns why we can't work even though we have power, or null if we are clear to slam
+/// Why we can't work despite having power, or null
 /obj/machinery/power/colony_ore_thumper/proc/get_work_blocker()
 	var/area/our_area = get_area(src)
 	if(!our_area.outdoors || !ismiscturf(get_turf(src)))
@@ -325,7 +325,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 		return null
 	return get_output_blocker()
 
-/// Is another thumper inside our clearance? We skip ourselves by identity, not by trusting range()
+/// Is another thumper inside our clearance?
 /obj/machinery/power/colony_ore_thumper/proc/has_thumper_neighbor()
 	for(var/obj/machinery/power/colony_ore_thumper/other_thumper in range(minimum_thumper_clearance, src))
 		if(other_thumper == src)
@@ -333,7 +333,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 		return TRUE
 	return FALSE
 
-/// Returns why we have no room to make a box of materials, or null if there is room
+/// Why we have no room for a box, or null
 /obj/machinery/power/colony_ore_thumper/proc/get_output_blocker()
 	var/nearby_ore = 0
 	for(var/turf/nearby_turf in orange(ore_spawn_range, src))
@@ -343,7 +343,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 		return THUMPER_STALL_ORE
 	return null
 
-/// Stops or restarts our work when the reason we can't work changes
+/// Updates our stall state
 /obj/machinery/power/colony_ore_thumper/proc/set_stall_reason(new_reason)
 	if(stall_reason == new_reason)
 		return
@@ -379,7 +379,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	return attack_hand(user)
 
 
-/// Switches the thumper on. It waits out any problem and starts once it clears
+/// Switches the thumper on
 /obj/machinery/power/colony_ore_thumper/proc/start_her_up(mob/user)
 	switched_on = TRUE
 	power_grace_remaining = THUMPER_POWER_GRACE
@@ -406,7 +406,6 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	update_appearance(UPDATE_OVERLAYS)
 
 
-/// Keeps our state honest when somebody edits our vars by hand
 /obj/machinery/power/colony_ore_thumper/vv_edit_var(var_name, var_value)
 	. = ..()
 	if(!.)
@@ -445,7 +444,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	balloon_alert(user, "safety interlocks fried")
 	return TRUE
 
-/// Every box of materials is a small roll for an earthquake
+/// Quake roll per box
 /obj/machinery/power/colony_ore_thumper/proc/try_to_cause_earthquake()
 	if(!prob(THUMPER_QUAKE_CHANCE * ((obj_flags & EMAGGED) ? THUMPER_EMAG_QUAKE_MULTIPLIER : 1)))
 		return

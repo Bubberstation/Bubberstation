@@ -83,7 +83,7 @@
 		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT, // Titan for the crushing element
 	)
 
-/// Only eat what is stored in a container, never its parts (a modsuit's core and modules)
+/// Only eat stored items, never a container's parts
 /obj/machinery/colony_recycler/proc/only_stored_items(datum/source, obj/item/target_item, mob/living/user)
 	SIGNAL_HANDLER
 
