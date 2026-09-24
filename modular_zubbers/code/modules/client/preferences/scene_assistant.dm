@@ -246,6 +246,9 @@
 		return sanitize_hexcolor(chat_color)
 	return default_scene_assistant_name_color(preferences.read_preference(/datum/preference/name/real_name) || preferences.parent?.ckey)
 
+/datum/preference/color/scene_assistant_name_color/create_interaction_fallback_value(mob/living/target)
+	return default_scene_assistant_name_color(target?.real_name || target?.name || target?.ckey)
+
 /datum/preference/color/scene_assistant_name_color/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return
 

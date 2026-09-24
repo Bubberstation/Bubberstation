@@ -258,10 +258,10 @@
 	return verb_data
 
 /datum/rp_panel/proc/build_anatomy_details(mob/living/target)
-	return interaction_panel_build_anatomy_details(target)
+	return target?.build_interaction_anatomy_details() || list()
 
 /datum/rp_panel/proc/build_status_tags(mob/living/target)
-	return interaction_panel_build_status_tags(target)
+	return target?.build_interaction_status_tags() || list()
 
 /datum/rp_panel/proc/build_interaction_data(mob/living/target, allow_lewd = FALSE)
 	var/list/data = list(
@@ -319,7 +319,7 @@
 	return data
 
 /datum/rp_panel/proc/build_self_data()
-	var/list/data = interaction_panel_build_self_data(holder)
+	var/list/data = holder?.build_interaction_self_data() || list()
 	data["inactive"] = scene_inactive
 	return data
 
@@ -629,13 +629,13 @@
 	invalidate_interaction_cache()
 
 /datum/rp_panel/proc/set_self_preference(pref_type, pref_value)
-	return interaction_panel_set_self_preference(holder, pref_type, pref_value)
+	return holder?.set_interaction_self_preference(pref_type, pref_value)
 
 /datum/rp_panel/proc/set_genital_visibility(organ_slot, visibility)
-	return interaction_panel_set_genital_visibility(holder, organ_slot, visibility)
+	return holder?.set_interaction_genital_visibility(organ_slot, visibility)
 
 /datum/rp_panel/proc/toggle_underwear(kind)
-	return interaction_panel_toggle_underwear(holder, kind)
+	return holder?.toggle_interaction_underwear(kind)
 
 /datum/rp_panel/proc/toggle_autocum()
 	if(!ishuman(holder) || !holder.client?.prefs || !erp_enabled(holder))

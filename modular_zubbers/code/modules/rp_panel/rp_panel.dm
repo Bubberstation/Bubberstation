@@ -141,22 +141,13 @@
 	name_color = sanitize_hexcolor(saved_color) || default_scene_assistant_name_color(holder?.real_name || holder?.name || holder?.ckey)
 
 /datum/rp_panel/proc/get_played_character_slot(mob/living/target)
-	return interaction_panel_get_played_character_slot(target)
-
-/datum/rp_panel/proc/find_character_slot_by_name(mob/living/target)
-	return interaction_panel_find_character_slot_by_name(target)
-
-/datum/rp_panel/proc/prefs_cache_belongs_to_mob(mob/living/target, datum/preferences/prefs)
-	return interaction_panel_prefs_cache_belongs_to_mob(target, prefs)
+	return target?.get_played_character_slot()
 
 /datum/rp_panel/proc/read_mob_character_pref(mob/living/target, pref_type)
-	return interaction_panel_read_mob_character_pref(target, pref_type)
-
-/datum/rp_panel/proc/character_pref_fallback(datum/preference/preference_entry, mob/living/target)
-	return interaction_panel_character_pref_fallback(preference_entry, target)
+	return target?.read_character_preference(pref_type)
 
 /datum/rp_panel/proc/write_mob_character_pref(mob/living/target, pref_type, value)
-	return interaction_panel_write_mob_character_pref(target, pref_type, value)
+	return target?.write_character_preference(pref_type, value)
 
 /datum/rp_panel/proc/write_player_pref(pref_type, value)
 	var/datum/preference/preference_entry = GLOB.preference_entries[pref_type]
@@ -173,7 +164,7 @@
 		prefs.save_preferences()
 
 /datum/rp_panel/proc/erp_enabled(mob/living/target)
-	return interaction_panel_erp_enabled(target)
+	return target?.erp_prefs_enabled()
 
 /datum/rp_panel/proc/erp_content_enabled(mob/living/target)
 	if(!erp_enabled(target))
@@ -184,7 +175,7 @@
 	return TRUE
 
 /datum/rp_panel/proc/get_headshot(mob/living/target)
-	return interaction_panel_get_headshot(target)
+	return target?.get_interaction_headshot() || ""
 
 /datum/rp_panel/proc/get_member_color(mob/living/target)
 	if(!target || QDELETED(target))
@@ -932,9 +923,6 @@
 	var/list/payload = list("typing" = length(names) ? names : null)
 	for(var/datum/tgui/ui as anything in open_uis)
 		ui.send_update(payload, force = TRUE)
-
-/datum/rp_panel/proc/get_preference_status(choice)
-	return interaction_panel_get_preference_status(choice)
 
 /datum/rp_panel/proc/get_target()
 	if(!selected_participant || QDELETED(selected_participant) || !is_in_scene(selected_participant))
