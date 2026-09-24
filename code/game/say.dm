@@ -355,8 +355,6 @@ GLOBAL_LIST_INIT(freqtospan, list(
 /atom/proc/get_voice(add_id_name = FALSE)
 	return "[src]" //Returns the atom's name, prepended with 'The' if it's not a proper noun
 
-/atom/movable/proc/get_alt_name()
-
 /**
  * Get what this atom appears like in chat when speaking
  *
@@ -379,7 +377,6 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/job
 	var/atom/movable/source
 	var/obj/item/radio/radio
-	var/realvoice // BUBBERSTATION ADDITION -- NTSL
 
 INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 /atom/movable/virtualspeaker/Initialize(mapload, atom/movable/M, _radio)
@@ -425,9 +422,3 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 
 /atom/movable/virtualspeaker/GetRadio()
 	return radio
-
-/atom/movable/virtualspeaker/get_voice(add_id_name) // BUBBER ADDITION -- NTSL (this entire proc)
-	if(add_id_name && realvoice)
-		return realvoice
-	else
-		return "[src]"

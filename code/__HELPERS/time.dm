@@ -123,24 +123,3 @@ GLOBAL_VAR_INIT(rollovercheck_last_timeofday, 0)
 		time += 12 HOURS // e.g. 12.23 AM
 	//set NO_TIMEZONE because we've already applied the timezone above.
 	return "[time2text(time, format, NO_TIMEZONE)] [am_pm]"
-
-// BUBBER EDIT BEGIN
-/proc/gameTimestamp(format = "hh:mm:ss", wtime=null, legend = FALSE)
-	if(!wtime)
-		wtime = world.time - SSticker.round_start_time
-	var/hour = round(wtime / 36000)
-	var/minute = round(((wtime) - (hour * 36000)) / 600)
-	var/second = round(((wtime) - (hour * 36000) - (minute * 600)) / 10)
-
-	if(hour < 10)
-		hour = "0[hour]"
-	if(minute < 10)
-		minute = "0[minute]"
-	if(second < 10)
-		second = "0[second]"
-
-	if(legend)
-		return "[hour]h:[minute]m:[second]s"
-	else
-		return "[hour]:[minute]:[second]"
-// BUBBER EDIT END
