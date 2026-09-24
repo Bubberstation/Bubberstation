@@ -56,7 +56,7 @@
 /obj/machinery/computer/telecomms/traffic/proc/create_log(entry)
 	if(!user_name)
 		CRASH("[type] tried to create a log with no user_name!")
-	access_log += "\[[get_timestamp()]\] [user_name] [entry]"
+	access_log += "\[[round_timestamp()]\] [user_name] [entry]"
 
 /obj/machinery/computer/telecomms/traffic/ui_interact(mob/user, datum/tgui/ui)
 	if(is_banned_from(user.ckey, JOB_TELECOMMS_SPECIALIST))
@@ -110,7 +110,7 @@
 		var/message = "[key_name_admin(user)] has completelly cleared the NTSL console of code and re-compiled as an admin, this should only be done in severe rule infractions."
 		message_admins(message)
 		logger.Log(LOG_CATEGORY_NTSL, "[key_name(src)] [message] [loc_name(src)]")
-		access_log += "\[[get_timestamp()]\] ERR !NTSL REMOTELLY CLEARED BY NANOTRASEN STAFF!"
+		access_log += "\[[round_timestamp()]\] ERR !NTSL REMOTELLY CLEARED BY NANOTRASEN STAFF!"
 		return TRUE
 
 	if(.)

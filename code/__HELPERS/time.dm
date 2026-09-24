@@ -143,7 +143,4 @@ GLOBAL_VAR_INIT(rollovercheck_last_timeofday, 0)
 		return "[hour]h:[minute]m:[second]s"
 	else
 		return "[hour]:[minute]:[second]"
-
-/proc/get_timestamp()
-	return time2text(world.time + 432000, ":ss")
 // BUBBER EDIT END
