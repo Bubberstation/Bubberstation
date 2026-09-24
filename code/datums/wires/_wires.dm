@@ -398,12 +398,12 @@
 				var/obj/item/multitool/probe = I
 				var/insulated_pulse = istype(probe) && probe.insulated_probes
 				if(insulated_pulse)
-					ADD_TRAIT(L, TRAIT_SHOCKIMMUNE, REF(src))
+					ADD_TRAIT(L, TRAIT_SHOCKIMMUNE, INSULATED_PROBE_TRAIT)
 				// BUBBER EDIT ADDITION END
 				pulse_color(target_wire, L)
 				// BUBBER EDIT ADDITION START
 				if(insulated_pulse)
-					REMOVE_TRAIT(L, TRAIT_SHOCKIMMUNE, REF(src))
+					REMOVE_TRAIT(L, TRAIT_SHOCKIMMUNE, INSULATED_PROBE_TRAIT)
 				// BUBBER EDIT ADDITION END
 				. = TRUE
 			else

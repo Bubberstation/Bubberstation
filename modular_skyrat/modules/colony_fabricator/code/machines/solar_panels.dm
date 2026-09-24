@@ -10,19 +10,49 @@
 	AddElement(/datum/element/repackable, repacked_type, 1 SECONDS)
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
 
-// Our icon file names the panel states without the material suffix that TG's vis_contents panel overlays ask for
-/obj/machinery/power/solar/deployable/add_panel_overlay(icon_state, z_offset)
-	return ..(replacetext(icon_state, "_glass", ""), z_offset)
-
-/obj/machinery/power/solar/deployable/update_overlays()
+/obj/machinery/power/solar/deployable/examine(mob/user)
 	. = ..()
-	panel.icon_state = "solar_panel[(machine_stat & BROKEN) ? "-b" : null]"
-	panel_edge.icon_state = "solar_panel[(machine_stat & BROKEN) ? "-b" : "_edge"]"
+	. += span_notice("Its glass can be upgraded with <b>two sheets</b> of titanium, plasma, or plastitanium glass.")
+
+/obj/machinery/power/solar/deployable/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	var/static/list/glass_tiers = list(
+		/datum/material/glass = 1,
+		/datum/material/alloy/titaniumglass = 2,
+		/datum/material/alloy/plasmaglass = 3,
+		/datum/material/alloy/plastitaniumglass = 4,
+	)
+	if(!isstack(tool))
+		return NONE
+	var/obj/item/stack/sheet/glass_sheets = tool
+	var/new_tier = glass_tiers[glass_sheets.material_type]
+	if(!new_tier)
+		return NONE
+	if(new_tier <= power_tier)
+		balloon_alert(user, "already as good!")
+		return ITEM_INTERACT_BLOCKING
+	if(!glass_sheets.use(2))
+		balloon_alert(user, "need two sheets!")
+		return ITEM_INTERACT_BLOCKING
+	drop_upgrade_glass()
+	power_tier = new_tier
+	material_type = glass_sheets.material_type
+	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
+	balloon_alert(user, "glass upgraded")
+	update_appearance(UPDATE_OVERLAYS)
+	return ITEM_INTERACT_SUCCESS
+
+/// Hands back the two sheets of any upgraded glass on this panel
+/obj/machinery/power/solar/deployable/proc/drop_upgrade_glass()
+	if(power_tier <= 1)
+		return
+	new material_type.sheet_type(drop_location(), 2)
 
 /obj/machinery/power/solar/deployable/crowbar_act(mob/user, obj/item/I)
 	return
 
 /obj/machinery/power/solar/deployable/on_deconstruction(disassembled)
+	if(disassembled)
+		drop_upgrade_glass()
 	var/obj/item/solar_assembly/assembly = locate() in src
 	if(assembly)
 		qdel(assembly)

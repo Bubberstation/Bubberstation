@@ -54,15 +54,13 @@
 	l_pocket = /obj/item/knife/combat/survival
 	r_pocket = /obj/item/flashlight
 	r_hand = /obj/item/gun/ballistic/rifle/boltaction
+	l_hand = /obj/item/stack/sheet/glass/fifty
 	backpack_contents = list(
 		/obj/item/storage/box/survival = 1,
 		/obj/item/storage/medkit/frontier/stocked = 1,
 		/obj/item/storage/box/colonial_rations = 1,
-		/obj/item/ammo_box/speedloader/strilka310/surplus = 2,
+		/obj/item/ammo_box/speedloader/strilka310/surplus = 1,
 		/obj/item/stack/sheet/iron/fifty = 1,
-		/obj/item/stack/sheet/glass/fifty = 1,
-		/obj/item/stock_parts/power_store/cell/high = 1,
-		/obj/item/gps = 1,
 	)
 
 /datum/outfit/colonist/post_equip(mob/living/carbon/human/equipped, visuals_only = FALSE)

@@ -1,4 +1,5 @@
 /datum/design/biogen/medical_replicator
+	prints_full_stack = TRUE
 	name = "Medical Replicator"
 	id = DESIGN_ID_IGNORE
 	build_path = /obj/item/storage/pouch
@@ -69,3 +70,13 @@
 	id = "slavic_multiver"
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/reagent_containers/applicator/pill/multiver
+
+/datum/design/biogen
+	/// Stack designs with this print the stack's full starting amount per order
+	var/prints_full_stack = FALSE
+
+/datum/design/biogen/create_result(atom/drop_loc, list/custom_materials, amount)
+	if(!prints_full_stack || !ispath(build_path, /obj/item/stack))
+		return ..()
+	var/obj/item/stack/pack = build_path
+	return ..(drop_loc, custom_materials, initial(pack.amount))

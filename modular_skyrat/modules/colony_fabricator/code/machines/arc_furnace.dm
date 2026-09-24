@@ -9,8 +9,6 @@
 		amounts of electricity. While not nearly as fast and efficient as other ore refining methods, the arc furnace is \
 		capable of returning <b>larger amounts of refined material</b> than a standard refining process can. \
 		A sticker on the side notes that this may <b>exhaust waste gasses to the air</b> during operation."
-	/// Scales the waste gas we exhaust while smelting
-	var/exhaust_multiplier = 0.2
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/machines.dmi'
 	icon_state = "arc_furnace"
 	base_icon_state = "arc_furnace"
@@ -22,6 +20,8 @@
 	light_power = 10
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 10 // This baby consumes so much power
 	interaction_flags_machine = INTERACT_MACHINE_OFFLINE | INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
+	/// Scales the waste gas we exhaust while smelting
+	var/exhaust_multiplier = 0.2
 	/// The item we turn into when repacked
 	var/repacked_type = /obj/item/flatpacked_machine/arc_furnace
 	/// If the furnace is currently working on smelting something
@@ -198,7 +198,7 @@
 
 /// Can we smelt right now, off the area or off a cable
 /obj/machinery/arc_furnace/proc/has_smelting_power()
-	return !(machine_stat & NOPOWER) || !isnull(get_powered_cable()
+	return !(machine_stat & NOPOWER) || !isnull(get_powered_cable())
 
 /// Pays for a second of smelting off the cable
 /obj/machinery/arc_furnace/proc/draw_smelting_power()

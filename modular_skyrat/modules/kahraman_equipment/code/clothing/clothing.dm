@@ -151,7 +151,7 @@
 // Headset
 
 /// Charge spent per message sent without a relay
-#define FRONTIER_RADIO_TRANSMIT_COST (STANDARD_CELL_CHARGE * 0.02)
+#define FRONTIER_RADIO_TRANSMIT_COST LASER_SHOTS(50, STANDARD_CELL_CHARGE)
 
 /obj/item/radio/headset/headset_frontier_colonist
 	name = "frontier radio headset"

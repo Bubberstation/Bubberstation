@@ -119,10 +119,9 @@
 	for(var/obj/item/flatpacked_machine/flatpack in drop_location())
 		if(flatpack.created_at == world.time && ispath(flatpack.type_to_deploy, type))
 			packed = flatpack
-	if(disassembled && !isnull(packed))
-		QDEL_NULL(packed.cell)
-		packed.cell = cell
-		cell.forceMove(packed)
+	var/datum/component/flatpack_cell/packed_cell = packed?.GetComponent(/datum/component/flatpack_cell)
+	if(disassembled && !isnull(packed_cell))
+		packed_cell.replace_cell(cell)
 	else
 		cell.forceMove(drop_location())
 	cell = null
@@ -249,8 +248,6 @@
 	var/obj/type_to_deploy = /obj/machinery/rnd/production/colony_lathe
 	/// How long it takes to create the structure in question.
 	var/deploy_time = 4 SECONDS
-	/// Cell packed inside, for machines that run on one
-	var/obj/item/stock_parts/power_store/cell
 	/// World time this flatpack was made
 	var/created_at
 
@@ -261,46 +258,7 @@
 	give_manufacturer_examine()
 	created_at = world.time
 	if(ispath(type_to_deploy, /obj/machinery/rnd/production/colony_lathe))
-		cell = new /obj/item/stock_parts/power_store/cell/high(src)
-	RegisterSignal(src, COMSIG_DEPLOYABLE_DEPLOYED, PROC_REF(on_deployed))
-
-/obj/item/flatpacked_machine/Destroy()
-	QDEL_NULL(cell)
-	return ..()
-
-/obj/item/flatpacked_machine/examine(mob/user)
-	. = ..()
-	if(!ispath(type_to_deploy, /obj/machinery/rnd/production/colony_lathe))
-		return
-	if(isnull(cell))
-		. += span_warning("Its cell housing is <b>empty</b>.")
-		return
-	. += span_notice("It is packed with a [cell.name] at <b>[round(cell.percent())]%</b>, which can be swapped by <b>clicking</b> it with another cell.")
-
-/obj/item/flatpacked_machine/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	if(!istype(tool, /obj/item/stock_parts/power_store/cell) || !ispath(type_to_deploy, /obj/machinery/rnd/production/colony_lathe))
-		return ..()
-	if(!user.transferItemToLoc(tool, src))
-		return ITEM_INTERACT_BLOCKING
-	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
-	if(isnull(cell))
-		balloon_alert(user, "cell installed")
-	else
-		user.put_in_hands(cell)
-		balloon_alert(user, "cell swapped")
-	cell = tool
-	return ITEM_INTERACT_SUCCESS
-
-/// Gives our cell to the deployed machine
-/obj/item/flatpacked_machine/proc/on_deployed(datum/source, obj/machinery/rnd/production/colony_lathe/fabricator)
-	SIGNAL_HANDLER
-
-	if(!istype(fabricator) || isnull(cell))
-		return
-	QDEL_NULL(fabricator.cell)
-	fabricator.cell = cell
-	cell.forceMove(fabricator)
-	cell = null
+		AddComponent(/datum/component/flatpack_cell, /obj/item/stock_parts/power_store/cell/high)
 
 /// Adds the deployable component, so that it can be overridden in case that's wanted
 /obj/item/flatpacked_machine/proc/give_deployable_component()
@@ -335,3 +293,70 @@
 	fabricator.refresh_hacked_designs()
 
 #undef RCF_CELL_ENERGY_MULTIPLIER
+
+/// A cell riding in a flatpack, handed to the machine it deploys into
+/datum/component/flatpack_cell
+	/// The packed cell
+	var/obj/item/stock_parts/power_store/cell/cell
+
+/datum/component/flatpack_cell/Initialize(cell_type)
+	if(!istype(parent, /obj/item/flatpacked_machine))
+		return COMPONENT_INCOMPATIBLE
+	if(cell_type)
+		cell = new cell_type(parent)
+
+/datum/component/flatpack_cell/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_ATOM_ITEM_INTERACTION, PROC_REF(on_item_interaction))
+	RegisterSignal(parent, COMSIG_ATOM_EXITED, PROC_REF(on_exited))
+	RegisterSignal(parent, COMSIG_DEPLOYABLE_DEPLOYED, PROC_REF(on_deployed))
+
+/datum/component/flatpack_cell/UnregisterFromParent()
+	UnregisterSignal(parent, list(COMSIG_ATOM_EXAMINE, COMSIG_ATOM_ITEM_INTERACTION, COMSIG_ATOM_EXITED, COMSIG_DEPLOYABLE_DEPLOYED))
+
+/datum/component/flatpack_cell/Destroy()
+	QDEL_NULL(cell)
+	return ..()
+
+/// Swaps our cell for the one a repacking machine hands back
+/datum/component/flatpack_cell/proc/replace_cell(obj/item/stock_parts/power_store/cell/new_cell)
+	QDEL_NULL(cell)
+	new_cell.forceMove(parent)
+	cell = new_cell
+
+/datum/component/flatpack_cell/proc/on_examine(datum/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+	if(isnull(cell))
+		examine_list += span_warning("Its cell housing is <b>empty</b>.")
+		return
+	examine_list += span_notice("It is packed with a [cell.name] at <b>[round(cell.percent())]%</b>, which can be swapped by <b>clicking</b> it with another cell.")
+
+/datum/component/flatpack_cell/proc/on_item_interaction(datum/source, mob/living/user, obj/item/tool, list/modifiers)
+	SIGNAL_HANDLER
+	if(!istype(tool, /obj/item/stock_parts/power_store/cell))
+		return NONE
+	if(!user.transferItemToLoc(tool, parent))
+		return ITEM_INTERACT_BLOCKING
+	var/atom/movable/flatpack = parent
+	playsound(flatpack, 'sound/machines/click.ogg', 50, TRUE)
+	var/obj/item/stock_parts/power_store/cell/old_cell = cell
+	cell = tool
+	if(isnull(old_cell))
+		flatpack.balloon_alert(user, "cell installed")
+		return ITEM_INTERACT_SUCCESS
+	INVOKE_ASYNC(user, TYPE_PROC_REF(/mob, put_in_hands), old_cell)
+	flatpack.balloon_alert(user, "cell swapped")
+	return ITEM_INTERACT_SUCCESS
+
+/datum/component/flatpack_cell/proc/on_exited(datum/source, atom/movable/gone, direction)
+	SIGNAL_HANDLER
+	if(gone == cell)
+		cell = null
+
+/datum/component/flatpack_cell/proc/on_deployed(datum/source, obj/machinery/rnd/production/colony_lathe/fabricator)
+	SIGNAL_HANDLER
+	if(!istype(fabricator) || isnull(cell))
+		return
+	QDEL_NULL(fabricator.cell)
+	fabricator.cell = cell
+	cell.forceMove(fabricator)

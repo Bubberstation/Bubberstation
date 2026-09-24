@@ -63,7 +63,13 @@
 	name = "Frontier Radio Headset"
 	id = "frontier_radio_headset"
 	build_type = COLONY_FABRICATOR
-	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.75)
+	materials = list(
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7.75,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.5,
+	)
+	transfered_materials = list(
+		/obj/item/stock_parts/power_store/cell = /obj/item/stock_parts/power_store/cell::custom_materials,
+	)
 	build_path = /obj/item/radio/headset/headset_frontier_colonist
 	category = list(
 		RND_CATEGORY_INITIAL,

@@ -113,7 +113,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	/// Boxes left until the next wellbore clown
 	var/boxes_until_clown = 0
 	/// Clowns an emagged thumper can dig up
-	var/static/list/wellbore_clowns = list(
+	var/static/list/circus_clowns = list(
 		/mob/living/basic/clown_bug = 10,
 		/mob/living/basic/clown = 6,
 		/mob/living/basic/clown/lube = 4,
@@ -482,7 +482,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 		boxes_until_clown--
 		if(boxes_until_clown <= 0)
 			boxes_until_clown = rand(THUMPER_CLOWN_BOXES_MIN, THUMPER_CLOWN_BOXES_MAX)
-			var/mob_type = pick_weight(wellbore_clowns)
+			var/mob_type = pick_weight(circus_clowns)
 			new mob_type(pick(nearby_valid_turfs))
 			playsound(src, 'sound/items/bikehorn.ogg', 75, TRUE)
 			visible_message(span_danger("Something horrible scurries out of [src]'s wellbore!"))
