@@ -259,7 +259,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/buyer = buying_account.account_holder || "Account ID: [buying_account.account_id]" // BUBBER EDIT - allow goodies to be bought privately
 
 		if(buying_account_orders.len > GOODY_FREE_SHIPPING_MAX) // no free shipping, send a crate
-			var/obj/structure/closet/crate/secure/our_crate = new /obj/structure/closet/crate/secure(pick_n_take(empty_turfs))
+			// BUBBER EDIT BEGIN - ORIGINAL: new /obj/structure/closet/crate/secure(...)
+			var/goody_crate_type = get_account_crate_type(buying_account)
+			var/obj/structure/closet/crate/secure/our_crate = new goody_crate_type(pick_n_take(empty_turfs))
+			// BUBBER EDIT END
 			our_crate.AddComponent(/datum/component/locked_to_account, buying_account)
 			our_crate.name = "goody crate - purchased by [buyer]"
 			miscboxes[buyer] = our_crate

@@ -149,7 +149,7 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	if(isnull(beacon_turf) || isnull(target_turf))
 		return ITEM_INTERACT_BLOCKING
 	if(!length(get_liftable_items(target_turf)))
-		balloon_alert(user, "nothing to lift!")
+		balloon_alert(user, safety_check(target_turf) ? "safety check failed!" : "no transportable cargo detected!")
 		return ITEM_INTERACT_BLOCKING
 
 	lifting = TRUE
@@ -195,13 +195,18 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 /obj/item/cargo_teleporter/proc/get_liftable_items(turf/target_turf)
 	var/list/liftable = list()
 	for(var/obj/movable_content in target_turf)
-		// items and structures only. Crates and lockers are /obj/structure/closet and are the point.
-		if(!istype(movable_content, /obj/item) && !istype(movable_content, /obj/structure))
+		// items, structures and machines. Anchored ones (secured machines, bolted lockers) are left
+		// behind by the anchored check below, so an unsecured GAP machine lifts but a bolted one does not.
+		if(!isitem(movable_content) && !isstructure(movable_content) && !ismachinery(movable_content))
 			continue
-		if(movable_content.anchored)
+		if(movable_content.anchored || safety_check(movable_content))
 			continue
 		liftable += movable_content
 	return liftable
+
+/// guard clause to stop you from teleporting a box with a guy in it
+/obj/item/cargo_teleporter/proc/safety_check(atom/to_check)
+	return isliving(to_check) || length(to_check.get_all_contents_type(/mob/living))
 
 /obj/item/cargo_teleporter/proc/begin_recharge()
 	COOLDOWN_START(src, use_cooldown, CARGO_TELEPORTER_COOLDOWN)
