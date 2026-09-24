@@ -57,7 +57,7 @@
 			spasm_animation(1 SECONDS)
 			COOLDOWN_START(src, alarm_cooldown, ALARM_PERIOD)
 	else
-		icon_keyboard = "med_key"
+		icon_keyboard = initial(icon_keyboard)
 		update_appearance()
 		set_light(l_range = initial(brightness_on), l_power = initial(light_power), l_color = initial(light_color), l_on = TRUE)
 	alarm_timer = addtimer(CALLBACK(src, PROC_REF(alarm)), SENSORS_UPDATE_PERIOD)
