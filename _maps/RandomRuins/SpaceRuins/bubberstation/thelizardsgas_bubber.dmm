@@ -161,7 +161,9 @@
 /area/ruin/space/has_grav/thelizardsgas)
 "dz" = (
 /obj/structure/table/wood,
-/obj/structure/marker_beacon/bronze,
+/obj/structure/marker_beacon/bronze{
+	pixel_y = 16
+	},
 /turf/open/misc/asteroid/airless,
 /area/ruin/space/has_grav/thelizardsgas)
 "dM" = (
@@ -1021,7 +1023,7 @@
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/thelizardsgas)
 "JA" = (
 /obj/item/seeds/onion,
@@ -1091,7 +1093,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/sand/plating,
 /obj/machinery/atmospherics/components/unary/passive_vent/layer2,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/thelizardsgas)
 "Ki" = (
 /obj/effect/turf_decal/bot_white,
@@ -1353,7 +1355,7 @@
 	},
 /obj/structure/closet/crate/secure/gear{
 	name = "very important crate";
-	req_access = list("lzgas")
+	req_access = list("lizard_gas")
 	},
 /turf/closed/mineral/random/asteroid,
 /area/ruin/space/has_grav/thelizardsgas)
@@ -1405,6 +1407,10 @@
 /area/ruin/space/has_grav/thelizardsgas)
 "Um" = (
 /obj/structure/flora/rock/pile/style_random,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav/thelizardsgas)
+"Uq" = (
+/obj/structure/table/wood,
 /turf/open/misc/asteroid/airless,
 /area/ruin/space/has_grav/thelizardsgas)
 "UO" = (
@@ -1709,7 +1715,7 @@ CA
 (4,1,1) = {"
 CA
 wb
-dz
+Uq
 dz
 wb
 xy
