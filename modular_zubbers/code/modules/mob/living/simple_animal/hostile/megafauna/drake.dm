@@ -4,10 +4,27 @@
 /mob/living/simple_animal/hostile/megafauna/dragon/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+	AddComponent(/datum/component/egg_layer/ashdrake)
 
-/mob/living/simple_animal/hostile/megafauna/dragon/proc/on_move(atom/source, atom/new_loc)
-	SIGNAL_HANDLER
-	for(var/obj/item/food/meat/slab/drakebait/drakebait in view(src, 1.5)) //Checks if the bait is on, or is next to the Ashdrake
-		qdel(drakebait)// bait is kil
-		new /obj/item/stack/sheet/animalhide/ashdrake(get_turf(src), 7)
-		visible_message(span_notice("[src] accepts your offering."), span_notice("The drake consumes the meat."))
+
+/datum/component/egg_layer/ashdrake
+	egg_type = /obj/item/stack/sheet/animalhide/ashdrake
+	food_types = list(/obj/item/food/meat/slab/drakebait)
+	feed_messages = list("[src] accepts your offering.")
+	lay_messages = list(\
+			"shakes its head, letting out a pleased grumble. Dry, old scales fall off harmlessly from its hide.",\
+			"stretches its wings. Some scales shed off, settling into the ash below.",\
+			"sighs comfortably. The movement of its diaphragm loosens its spare scales, dropping them the the ground below its belly.")
+	eggs_left = 0
+	eggs_added_from_eating = 7
+	max_eggs_held = 14
+
+/datum/component/egg_layer/ashdrake/feed_food(datum/source, obj/item/food, mob/living/attacker, params)
+	var/the_drake_will_eat_the_meat = FALSE
+	for(var/mob/living/human/person_watching_this_nonsense in view(src, 5)) //Ash Drakes won't accept offerings unless a Mother Tendril-approved person is nearby
+		if(person_watching_this_nonsense.mind)
+			if(person_watching_this_nonsense.mind.has_antag_datum(/datum/antagonist/ashwalker)) //No, xenobio and stowaway ashwalkers don't count
+				the_drake_will_eat_the_meat = TRUE
+	if(!the_drake_will_eat_the_meat)
+		return
+	. = ..()
