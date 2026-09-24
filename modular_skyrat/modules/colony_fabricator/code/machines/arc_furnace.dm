@@ -198,9 +198,7 @@
 
 /// Can we smelt right now, off the area or off a cable
 /obj/machinery/arc_furnace/proc/has_smelting_power()
-	if(!(machine_stat & NOPOWER))
-		return TRUE
-	return !isnull(get_powered_cable())
+	return !(machine_stat & NOPOWER) || !isnull(get_powered_cable()
 
 /// Pays for a second of smelting off the cable
 /obj/machinery/arc_furnace/proc/draw_smelting_power()
