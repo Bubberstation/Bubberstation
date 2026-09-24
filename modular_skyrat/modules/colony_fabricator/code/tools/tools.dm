@@ -184,14 +184,21 @@
 	AddComponent(/datum/component/two_handed, force_unwielded = force, force_wielded = 18)
 	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, PROC_REF(on_wield))
 	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, PROC_REF(on_unwield))
+	tool_behaviour = null
 
 /obj/item/crowbar/large/colony_prybar/proc/on_wield(obj/item/source, mob/living/carbon/user)
 	SIGNAL_HANDLER
 	inhand_icon_state = "colony_prybar_wielded"
+	tool_behaviour = TOOL_CROWBAR
 
 /obj/item/crowbar/large/colony_prybar/proc/on_unwield(obj/item/source, mob/living/carbon/user)
 	SIGNAL_HANDLER
 	inhand_icon_state = "colony_prybar"
+	tool_behaviour = null
+
+/obj/item/crowbar/large/colony_prybar/examine(mob/user)
+	. = ..()
+	. += span_notice("It needs <b>both hands</b> to pry anything.")
 
 // Backpackable mining drill
 

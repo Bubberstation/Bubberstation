@@ -1,3 +1,6 @@
+/// Smelting off a cable only needs this share of our draw spare on the grid
+#define FURNACE_CABLE_MIN_FRACTION 0.5
+
 #define RADIAL_CHOICE_USE "use"
 #define RADIAL_CHOICE_EJECT "eject"
 
@@ -45,7 +48,7 @@
 
 /obj/machinery/arc_furnace/examine(mob/user)
 	. = ..()
-	. += span_notice("Without station power, it can run off a <b>powered cable</b> beneath it.")
+	. += span_notice("It draws <b>[display_power(active_power_usage)]</b> while smelting. Without station power, it can run off a <b>powered cable</b> beneath it.")
 	if(length(contents))
 		. += span_notice("It has <b>[contents[1]]</b> sitting in it.")
 
@@ -133,8 +136,11 @@
 
 /// Starts the smelting process, checking if the machine has power or if its broken at all
 /obj/machinery/arc_furnace/proc/smelt_it_up(mob/user)
-	if((machine_stat & BROKEN) || !has_smelting_power())
+	if(machine_stat & BROKEN)
 		balloon_alert(user, "button doesn't respond")
+		return
+	if(!has_smelting_power())
+		balloon_alert(user, "no power!")
 		return
 	if(operating)
 		balloon_alert(user, "already smelting")
@@ -183,16 +189,18 @@
 			where_we_spawn_air.atmos_spawn_air("n2=[10 * exhaust_multiplier];co2=[10 * exhaust_multiplier];TEMP=800")
 		if(/obj/item/stack/sheet/mineral/plasma)
 			where_we_spawn_air.atmos_spawn_air("co2=[75 * exhaust_multiplier];TEMP=1200")
+		if(/obj/item/stack/sheet/mineral/bananium)
+			where_we_spawn_air.atmos_spawn_air("co2=[20 * exhaust_multiplier];n2o=[1 * exhaust_multiplier];TEMP=800")
 		else
 			where_we_spawn_air.atmos_spawn_air("co2=[20 * exhaust_multiplier];TEMP=800")
 
 	addtimer(CALLBACK(src, PROC_REF(loop), time), 1 SECONDS)
 
-/// The cable under us, if it can pay for a second of smelting
+/// The cable under us, if it can cover at least FURNACE_CABLE_MIN_FRACTION of a second of smelting
 /obj/machinery/arc_furnace/proc/get_powered_cable()
 	var/obj/structure/cable/cable = locate() in get_turf(src)
 	var/datum/powernet/grid = cable?.powernet
-	if(isnull(grid) || clamp(grid.avail - grid.load, 0, grid.avail) < active_power_usage)
+	if(isnull(grid) || clamp(grid.avail - grid.load, 0, grid.avail) < active_power_usage * FURNACE_CABLE_MIN_FRACTION)
 		return null
 	return cable
 
@@ -205,8 +213,9 @@
 	if(!(machine_stat & NOPOWER))
 		return
 	var/obj/structure/cable/cable = get_powered_cable()
-	if(cable)
-		cable.powernet.load += active_power_usage
+	var/datum/powernet/grid = cable?.powernet
+	if(grid)
+		grid.load += min(active_power_usage, grid.avail - grid.load)
 
 /// Takes the ore contained and turns it into an equal stack amount of its smelt result
 /obj/machinery/arc_furnace/proc/succeed_smelting()
@@ -255,3 +264,5 @@
 #undef RADIAL_CHOICE_EJECT
 
 #undef ARC_FURNACE_ORE_MULTIPLIER
+
+#undef FURNACE_CABLE_MIN_FRACTION

@@ -29,6 +29,7 @@
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.6,
 	)
 	transfered_materials = list(
+		/obj/item/screwdriver/omni_drill = /obj/item/screwdriver/omni_drill::custom_materials,
 		/obj/item/stock_parts/power_store/cell/high = /obj/item/stock_parts/power_store/cell/high::custom_materials,
 	)
 	research_icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
@@ -67,6 +68,7 @@
 		/datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT * 1.5,
 	)
 	transfered_materials = list(
+		/obj/item/weldingtool/electric/arc_welder = /obj/item/weldingtool/electric/arc_welder::custom_materials,
 		/obj/item/stock_parts/power_store/cell/high = /obj/item/stock_parts/power_store/cell/high::custom_materials,
 	)
 	research_icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'

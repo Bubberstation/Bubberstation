@@ -68,6 +68,7 @@
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.5,
 	)
 	transfered_materials = list(
+		/obj/item/radio/headset/headset_frontier_colonist = /obj/item/radio/headset/headset_frontier_colonist::custom_materials,
 		/obj/item/stock_parts/power_store/cell = /obj/item/stock_parts/power_store/cell::custom_materials,
 	)
 	build_path = /obj/item/radio/headset/headset_frontier_colonist
