@@ -16,6 +16,14 @@
 			breasts_capacity = 2.5
 		if("sextuple")
 			breasts_capacity = 3
+		//BUBBER ADDITION START
+		if("pair_alt")
+			breasts_capacity = 2
+		if("quad_alt")
+			breasts_capacity = 2.5
+		if("sextuple_alt")
+			breasts_capacity = 3
+		//BUBBER ADDITION END
 	internal_fluid_maximum = size * breasts_capacity * 60 // This seems like it could balloon drastically out of proportion with larger breast sizes.
 
 	reagents.maximum_volume = internal_fluid_maximum
