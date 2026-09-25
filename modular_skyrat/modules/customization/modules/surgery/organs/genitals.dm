@@ -544,6 +544,7 @@
 /obj/item/organ/genital/breasts/build_from_accessory(datum/sprite_accessory/genital/accessory, datum/dna/DNA)
 	if(DNA.features["breasts_uses_skintones"])
 		uses_skintones = accessory.has_skintone_shading
+		genital_type = accessory.icon_state // BUBBER EDIT - Added to support alt breasts
 
 /datum/bodypart_overlay/mutant/genital/breasts/get_global_feature_list()
 	return SSaccessories.sprite_accessories[ORGAN_SLOT_BREASTS]

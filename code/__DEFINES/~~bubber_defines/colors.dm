@@ -4,6 +4,7 @@
 #define COLOR_NRI_POLICE_BLUE "#1f3347"
 #define COLOR_NRI_POLICE_SILVER "#c0c0c0"
 #define SOULCATCHER_DEFAULT_COLOR "#75D5E1"
+#define COLOR_WATERDROP_DEFAULT "#549EFF"
 
 GLOBAL_LIST_INIT(chat_colors_by_mob_name, list(
 	"Unknown" = list("#ffffff", "#d8d8d8"),
