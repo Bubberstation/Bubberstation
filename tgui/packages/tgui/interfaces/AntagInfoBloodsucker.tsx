@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Box, Button, Image, Section, Stack, Tabs } from 'tgui-core/components';
+import { Box, Button, DmIcon, Section, Stack, Tabs } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
-import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import type { Objective } from './common/Objectives';
@@ -17,12 +16,14 @@ export type ClanInfo = {
   clan_name: string;
   clan_description: string;
   clan_icon: string;
+  clan_icon_state: string;
 };
 
 export type PowerInfo = {
   power_name: string;
   power_explanation: string[];
   power_icon: string;
+  power_icon_state: string;
 };
 
 export type BloodsuckerProps = {
@@ -201,10 +202,11 @@ const BloodsuckerClan = (props: any) => {
             <Stack.Item>
               {clan.map((ClanInfo) => (
                 <>
-                  <Image
+                  <DmIcon
                     height="20rem"
                     opacity={0.25}
-                    src={resolveAsset(`bloodsucker.${ClanInfo.clan_icon}.png`)}
+                    icon={ClanInfo.clan_icon}
+                    icon_state={ClanInfo.clan_icon_state}
                     className="img absolute"
                     style={{ position: 'absolute' }}
                   />
