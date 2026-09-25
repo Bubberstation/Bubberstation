@@ -50,3 +50,28 @@
 		/obj/item/mod/module/auto_doc,
 	)
 
+/obj/item/mod/control/pre_equipped/tarkon
+	theme = /datum/mod_theme/tarkon
+	applied_modules = list(
+		/obj/item/mod/module/storage/large_capacity,
+		/obj/item/mod/module/welding,
+		/obj/item/mod/module/clamp,
+		/obj/item/mod/module/tether,
+	)
+	default_pins = list(
+		/obj/item/mod/module/magboot/advanced,
+		/obj/item/mod/module/clamp,
+		/obj/item/mod/module/tether,
+	)
+
+/obj/item/mod/control/pre_equipped/prototype/hauler
+	theme = /datum/mod_theme/prototype/hauler
+	req_access = list(ACCESS_TARKON)
+	applied_cell = /obj/item/stock_parts/power_store/cell/high
+	applied_modules = list(
+		/obj/item/mod/module/storage/large_capacity,
+		/obj/item/mod/module/welding,
+		/obj/item/mod/module/clamp,
+		/obj/item/mod/module/flashlight,
+		/obj/item/mod/module/tether,
+	)

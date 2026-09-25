@@ -1,4 +1,6 @@
-// Engine based key doors
+//Port Tarkon Keycards and Puzzle Doors
+
+// Generator-based key doors
 /obj/machinery/door/puzzle/keycard/rnd
 	name = "R&D Secure Airlock"
 	desc = "Tarkon industries secure storage lock. This one has purple markings on it."
@@ -19,10 +21,7 @@
 	desc = "Tarkon industries secure storage lock. This one has black markings on it."
 	puzzle_id = "tarkon4"
 
-// End Engine based key doors
-
-// Engine based Door Keys
-
+// Generator-based door keys
 /obj/item/keycard/tarkon_rnd
 	name = "Research keycard"
 	desc = "Tarkon industries secure storage lock key."
@@ -47,13 +46,7 @@
 	color = "#303030"
 	puzzle_id = "tarkon4"
 
-// End Engine based door keys
-
-/mob/living/basic/alien/drone/tarkon
-	basic_mob_flags = DEL_ON_DEATH
-
 // JOB SPECIFIC VAULT KEYS
-
 /obj/item/keycard/tarkon_job_med
 	name = "Personal keycard"
 	desc = "Tarkon industries secure storage lock key. This one has a label reading 'Medical Secure Storage'"
@@ -102,8 +95,6 @@
 	color = "#1cac40"
 	puzzle_id = "tarkon_vaultservice"
 
-// End job specific vault keys
-
 // JOB SPECIFIC VAULT DOORS
 /obj/machinery/door/puzzle/keycard/personal_med
 	name = "Personal Medical Secure Airlock"
@@ -144,10 +135,3 @@
 	name = "Personal Service Secure Airlock"
 	desc = "Tarkon industries secure storage lock. This one has dark green markings on it."
 	puzzle_id = "tarkon_vaultservice"
-
-// End job specific vault doors
-
-/obj/item/card/id/departmental_budget/tarkon
-	department_ID = ACCOUNT_TAR
-	department_name = ACCOUNT_TAR_NAME
-	icon_state = "car_budget" // looks close enough
