@@ -3,7 +3,6 @@
 
 /mob/living/simple_animal/hostile/megafauna/dragon/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	AddComponent(/datum/component/egg_layer/ashdrake)
 
 
@@ -21,7 +20,7 @@
 
 /datum/component/egg_layer/ashdrake/feed_food(datum/source, obj/item/food, mob/living/attacker, params)
 	var/the_drake_will_eat_the_meat = FALSE
-	for(var/mob/living/human/person_watching_this_nonsense in view(src, 5)) //Ash Drakes won't accept offerings unless a Mother Tendril-approved person is nearby
+	for(var/mob/living/carbon/human/person_watching_this_nonsense in view(src, 5)) //Ash Drakes won't accept offerings unless a Mother Tendril-approved person is nearby
 		if(person_watching_this_nonsense.mind)
 			if(person_watching_this_nonsense.mind.has_antag_datum(/datum/antagonist/ashwalker)) //No, xenobio and stowaway ashwalkers don't count
 				the_drake_will_eat_the_meat = TRUE
