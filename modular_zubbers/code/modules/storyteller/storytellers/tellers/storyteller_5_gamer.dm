@@ -1,7 +1,6 @@
 /datum/storyteller/gamer
-	name = "Combat/Higher Event/Antag Rolls"
-	desc = "Formerly known as Gamer, this storyteller will try to create the most combat focused events, while trying to avoid purely destructive ones. \
-	More combat-focused and frequent events than the Default, but stays ordered to avoid creating a hellshift, unlike the Clown."
+	name = "Heavy (Crew Antag Spawns Focus)"
+	desc = "This storyteller prioritizes combat-based encounters and chaos, although the actual level of chaos may be unpredictable. The number of destructive events is reduced."
 	welcome_text = "Welcome to the Gamer storyteller. Now with 50% more ahelps!"
 
 	track_data = /datum/storyteller_data/tracks/gamer
@@ -26,7 +25,6 @@
 /datum/storyteller_data/tracks/gamer
 	threshold_moderate = 1300
 	threshold_major = 4000
-	threshold_ghostset = 6000
 	threshold_crewset = 2000
 	threshold_ghostset = 4800
 
