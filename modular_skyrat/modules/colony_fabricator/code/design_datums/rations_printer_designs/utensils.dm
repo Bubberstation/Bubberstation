@@ -28,3 +28,10 @@
 	id = "frontier_ration_plastic_cup"
 	materials = list(/datum/material/biomass = 25)
 	build_path = /obj/item/reagent_containers/cup/glass/coffee_cup
+
+// Plain plastic, grown rather than drilled
+/datum/design/biogen/frontier_utensils/frontier_bioplastic
+	name = "Bioplastic Sheet"
+	id = "frontier_bioplastic"
+	materials = list(/datum/material/biomass = 25)
+	build_path = /obj/item/stack/sheet/plastic

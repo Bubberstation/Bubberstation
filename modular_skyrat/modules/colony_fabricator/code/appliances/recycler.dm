@@ -39,7 +39,10 @@
 		allowed_materials, \
 		INFINITY, \
 		MATCONTAINER_EXAMINE, \
-		container_signals = list(COMSIG_MATCONTAINER_ITEM_CONSUMED = TYPE_PROC_REF(/obj/machinery/colony_recycler, has_eaten_materials)), \
+		container_signals = list( \
+			COMSIG_MATCONTAINER_ITEM_CONSUMED = TYPE_PROC_REF(/obj/machinery/colony_recycler, has_eaten_materials), \
+			COMSIG_MATCONTAINER_PRE_USER_INSERT = TYPE_PROC_REF(/obj/machinery/colony_recycler, only_stored_items), \
+		), \
 	)
 
 /obj/machinery/colony_recycler/Destroy()
@@ -79,3 +82,11 @@
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 3,
 		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT, // Titan for the crushing element
 	)
+
+/// Only eat stored items, never a container's parts
+/obj/machinery/colony_recycler/proc/only_stored_items(datum/source, obj/item/target_item, mob/living/user)
+	SIGNAL_HANDLER
+
+	if(target_item.loc == user || (target_item.item_flags & IN_STORAGE))
+		return NONE
+	return MATCONTAINER_BLOCK_INSERT

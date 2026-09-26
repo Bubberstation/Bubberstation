@@ -4,7 +4,11 @@
 	. = ..()
 	build_type |= COLONY_FABRICATOR
 
-/datum/design/engine_goggles/New()
+/datum/design/mesons/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR
+
+/datum/design/mesons_prescription/New()
 	. = ..()
 	build_type |= COLONY_FABRICATOR
 
@@ -46,10 +50,6 @@
 	build_type |= COLONY_FABRICATOR
 
 /datum/design/plasma_tank/New()
-	. = ..()
-	build_type |= COLONY_FABRICATOR
-
-/datum/design/diagnostic_hud/New()
 	. = ..()
 	build_type |= COLONY_FABRICATOR
 
@@ -100,5 +100,9 @@
 	build_type |= COLONY_FABRICATOR
 
 /datum/design/rped/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR
+
+/datum/design/plate/New()
 	. = ..()
 	build_type |= COLONY_FABRICATOR

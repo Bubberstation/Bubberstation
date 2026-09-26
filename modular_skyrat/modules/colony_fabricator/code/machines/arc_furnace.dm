@@ -1,3 +1,6 @@
+/// Smelting off a cable only needs this share of our draw spare on the grid
+#define FURNACE_CABLE_MIN_FRACTION 0.5
+
 #define RADIAL_CHOICE_USE "use"
 #define RADIAL_CHOICE_EJECT "eject"
 
@@ -19,6 +22,9 @@
 	light_color = LIGHT_COLOR_BRIGHT_YELLOW
 	light_power = 10
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 10 // This baby consumes so much power
+	interaction_flags_machine = INTERACT_MACHINE_OFFLINE | INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
+	/// Scales the waste gas we exhaust while smelting
+	var/exhaust_multiplier = 0.2
 	/// The item we turn into when repacked
 	var/repacked_type = /obj/item/flatpacked_machine/arc_furnace
 	/// If the furnace is currently working on smelting something
@@ -42,6 +48,7 @@
 
 /obj/machinery/arc_furnace/examine(mob/user)
 	. = ..()
+	. += span_notice("It draws <b>[display_power(active_power_usage)]</b> while smelting. Without station power, it can run off a <b>powered cable</b> beneath it.")
 	if(length(contents))
 		. += span_notice("It has <b>[contents[1]]</b> sitting in it.")
 
@@ -129,8 +136,11 @@
 
 /// Starts the smelting process, checking if the machine has power or if its broken at all
 /obj/machinery/arc_furnace/proc/smelt_it_up(mob/user)
-	if(machine_stat & (NOPOWER|BROKEN))
+	if(machine_stat & BROKEN)
 		balloon_alert(user, "button doesn't respond")
+		return
+	if(!has_smelting_power())
+		balloon_alert(user, "no power!")
 		return
 	if(operating)
 		balloon_alert(user, "already smelting")
@@ -141,6 +151,7 @@
 		balloon_alert(user, "nothing to smelt")
 
 	operating = TRUE
+	update_use_power(ACTIVE_POWER_USE)
 	/// How long the smelting is going to take based off the stack size
 	var/smelting_time = ore_to_smelt.amount * 1 SECONDS
 	loop(smelting_time)
@@ -152,7 +163,7 @@
 
 /// The smelting loop for checking if we're done smelting or not. If we are, then we succeed smelting. If we have to stop for whatever reason, we stop.
 /obj/machinery/arc_furnace/proc/loop(time)
-	if(machine_stat & (NOPOWER|BROKEN))
+	if((machine_stat & BROKEN) || !has_smelting_power())
 		end_smelting()
 		return
 
@@ -165,23 +176,46 @@
 		return
 
 	time -= 1 SECONDS
-	use_energy(active_power_usage)
+	draw_smelting_power()
 
 	var/turf/where_we_spawn_air = get_turf(src)
 	var/obj/item/stack/ore/ore_stack_to_check = contents[1]
 	switch(ore_stack_to_check.refined_type)
 		if(/obj/item/stack/sheet/mineral/silver)
-			where_we_spawn_air.atmos_spawn_air("n2=10;TEMP=1200")
+			where_we_spawn_air.atmos_spawn_air("n2=[10 * exhaust_multiplier];TEMP=800")
 		if(/obj/item/stack/sheet/mineral/uranium)
-			where_we_spawn_air.atmos_spawn_air("co2=50;TEMP=1200")
+			where_we_spawn_air.atmos_spawn_air("co2=[50 * exhaust_multiplier];TEMP=800")
 		if(/obj/item/stack/sheet/mineral/titanium)
-			where_we_spawn_air.atmos_spawn_air("n2=10;co2=10;TEMP=1200")
+			where_we_spawn_air.atmos_spawn_air("n2=[10 * exhaust_multiplier];co2=[10 * exhaust_multiplier];TEMP=800")
 		if(/obj/item/stack/sheet/mineral/plasma)
-			where_we_spawn_air.atmos_spawn_air("co2=75;TEMP=2000")
+			where_we_spawn_air.atmos_spawn_air("co2=[75 * exhaust_multiplier];TEMP=1200")
+		if(/obj/item/stack/sheet/mineral/bananium)
+			where_we_spawn_air.atmos_spawn_air("co2=[20 * exhaust_multiplier];n2o=[1 * exhaust_multiplier];TEMP=800")
 		else
-			where_we_spawn_air.atmos_spawn_air("co2=20;TEMP=1200")
+			where_we_spawn_air.atmos_spawn_air("co2=[20 * exhaust_multiplier];TEMP=800")
 
 	addtimer(CALLBACK(src, PROC_REF(loop), time), 1 SECONDS)
+
+/// The cable under us, if it can cover at least FURNACE_CABLE_MIN_FRACTION of a second of smelting
+/obj/machinery/arc_furnace/proc/get_powered_cable()
+	var/obj/structure/cable/cable = locate() in get_turf(src)
+	var/datum/powernet/grid = cable?.powernet
+	if(isnull(grid) || clamp(grid.avail - grid.load, 0, grid.avail) < active_power_usage * FURNACE_CABLE_MIN_FRACTION)
+		return null
+	return cable
+
+/// Can we smelt right now, off the area or off a cable
+/obj/machinery/arc_furnace/proc/has_smelting_power()
+	return !(machine_stat & NOPOWER) || !isnull(get_powered_cable())
+
+/// Pays for a second of smelting off the cable
+/obj/machinery/arc_furnace/proc/draw_smelting_power()
+	if(!(machine_stat & NOPOWER))
+		return
+	var/obj/structure/cable/cable = get_powered_cable()
+	var/datum/powernet/grid = cable?.powernet
+	if(grid)
+		grid.load += min(active_power_usage, grid.avail - grid.load)
 
 /// Takes the ore contained and turns it into an equal stack amount of its smelt result
 /obj/machinery/arc_furnace/proc/succeed_smelting()
@@ -210,6 +244,7 @@
 /// Turns the arc furnace off, removing its lights, sounds, so on.
 /obj/machinery/arc_furnace/proc/end_smelting()
 	operating = FALSE
+	update_use_power(IDLE_POWER_USE)
 	soundloop.stop()
 	set_light(l_range = 0)
 	update_appearance()
@@ -229,3 +264,5 @@
 #undef RADIAL_CHOICE_EJECT
 
 #undef ARC_FURNACE_ORE_MULTIPLIER
+
+#undef FURNACE_CABLE_MIN_FRACTION
