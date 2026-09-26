@@ -161,3 +161,4 @@
 	required_reagents = list(/datum/reagent/medicine/salglu_solution = 1, /datum/reagent/consumable/milk = 1, /datum/reagent/medicine/c2/synthflesh = 2, /datum/reagent/silicon = 3, /datum/reagent/drug/aphrodisiac/crocin = 3)
 	mix_message = "the reaction gives off a mist of milk."
 	erp_reaction = TRUE
+	reaction_tags = REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG | REACTION_TAG_HARD
