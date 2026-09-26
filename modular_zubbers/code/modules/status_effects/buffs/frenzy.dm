@@ -18,6 +18,7 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = STATUS_EFFECT_PERMANENT
 	alert_type = /atom/movable/screen/alert/status_effect/frenzy
+	show_duration = TRUE
 	///Boolean on whether they were an AdvancedToolUser, to give the trait back upon exiting.
 	var/was_tooluser = FALSE
 	/// The stored Bloodsucker antag datum
@@ -27,10 +28,6 @@
 /datum/status_effect/frenzy/get_examine_text()
 	return span_notice("They seem... inhumane, and feral!")
 
-/atom/movable/screen/alert/status_effect/masquerade/MouseEntered(location,control,params)
-	desc = initial(desc)
-	return ..()
-
 /datum/status_effect/frenzy/on_apply()
 	var/mob/living/carbon/human/user = owner
 	bloodsuckerdatum = IS_BLOODSUCKER(user)
@@ -38,7 +35,7 @@
 	// Disable ALL Powers and notify their entry
 	bloodsuckerdatum.DisableAllPowers(forced = TRUE)
 	to_chat(owner, span_userdanger("<FONT size = 3>Blood! You need Blood, now! You enter a total Frenzy! You will DIE if you do not get BLOOD."))
-	to_chat(owner, span_announce("* Bloodsucker Tip: While in Frenzy, you quickly accrue burn damage, instantly Aggresively grab, have stun resistance, cannot speak, hear, or use any powers outside of Feed and Trespass (If you have it)."))
+	to_chat(owner, span_announce("* Bloodsucker Tip: While in Frenzy, you instantly Aggresively grab, have stun resistance, cannot speak, hear, or use any powers outside of Feed, Trespass, Lunge, Brawn and Haste (If you have them)."))
 	owner.balloon_alert(owner, "you enter a frenzy! Drink blood, or you will die!")
 	SEND_SIGNAL(bloodsuckerdatum, COMSIG_BLOODSUCKER_ENTERS_FRENZY)
 
@@ -54,11 +51,13 @@
 	if((user.handcuffed && cuffs) || (user.legcuffed && legcuffs))
 		user.clear_cuffs(cuffs, TRUE)
 		user.clear_cuffs(legcuffs, TRUE)
-	bloodsuckerdatum.frenzied = TRUE
+	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(on_death))
+	RegisterSignal(owner, COMSIG_MOB_REMOVING_CUFFS, PROC_REF(on_removing_cuffs))
 	return ..()
 
 /datum/status_effect/frenzy/on_remove()
 	owner.balloon_alert(owner, "you come back to your senses.")
+	UnregisterSignal(owner, list(COMSIG_LIVING_DEATH, COMSIG_MOB_REMOVING_CUFFS))
 	owner.remove_traits(trait_list, FRENZY_TRAIT)
 	if(was_tooluser)
 		ADD_TRAIT(owner, TRAIT_ADVANCEDTOOLUSER, SPECIES_TRAIT)
@@ -67,12 +66,15 @@
 	owner.remove_client_colour(REF(src))
 
 	SEND_SIGNAL(bloodsuckerdatum, COMSIG_BLOODSUCKER_EXITS_FRENZY)
-	bloodsuckerdatum.frenzied = FALSE
 	return ..()
 
-/datum/status_effect/frenzy/tick()
-	var/mob/living/carbon/human/user = owner
-	// If duration is not -1, that means we're about to loose frenzy, let's give them some safe time.
-	if(!bloodsuckerdatum.frenzied || duration > 0 || IS_UNCONSCIOUS_OR_CRIT(user))
-		return
-	user.adjust_fire_loss(1 + (bloodsuckerdatum.GetHumanityLost() / 10))
+/datum/status_effect/frenzy/proc/on_death(mob/living/source, gibbed)
+	SIGNAL_HANDLER
+	qdel(src)
+
+/datum/status_effect/frenzy/proc/on_removing_cuffs(mob/living/carbon/source, obj/item/cuffs)
+	SIGNAL_HANDLER
+	if(cuffs != source.handcuffed && cuffs != source.legcuffed)
+		return NONE
+	source.clear_cuffs(cuffs, INSTANT_CUFFBREAK)
+	return COMSIG_MOB_BLOCK_CUFF_REMOVAL

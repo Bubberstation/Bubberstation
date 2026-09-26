@@ -175,6 +175,7 @@
 	smoothing_groups = SMOOTH_GROUP_WIREWEED_WALLS
 	canSmoothWith = SMOOTH_GROUP_WIREWEED_WALLS
 	can_atmos_pass = ATMOS_PASS_DENSITY
+	pass_flags_self = parent_type::pass_flags_self | PASSBLOB
 	max_integrity = 150
 	disabled_sprite = FALSE
 
@@ -399,7 +400,7 @@
 	whip_those_fuckers()
 	rally_troops()
 	build_a_wall()
-	spawn_mob_at_core(/mob/living/basic/fleshmind/mechiver)
+	spawn_mob_at_core(/mob/living/basic/fleshmind/mechiver) // TODO: make an assault variant that actually fights
 
 // Tries to place mobs outside of the walls. But it will spawn on the core if it can't find a place.
 
@@ -659,6 +660,8 @@
 	max_integrity = 260
 	activation_range = DEFAULT_VIEW_RANGE
 	ability_cooldown_time = 20 SECONDS
+	automatic_trigger_time_lower = 20 SECONDS
+	automatic_trigger_time_upper = 60 SECONDS
 	/// The max amount of mobs we can have at any one time.
 	var/max_mobs = 2
 	/// The current amount of spawned mobs
@@ -673,10 +676,10 @@
 		/mob/living/basic/fleshmind/treader = 3,
 		/mob/living/basic/fleshmind/himan = 3,
 		/mob/living/basic/fleshmind/phaser = 2,
-		/mob/living/basic/fleshmind/mechiver = 4,
+		/mob/living/basic/fleshmind/mechiver = 3,
 	)
 	/// Our override type, if manually set.
-	var/override_monser_type
+	var/override_monster_type
 
 
 /obj/structure/fleshmind/structure/assembler/activate_ability(mob/living/triggered_mob)
@@ -701,7 +704,7 @@
 	if(!chosen_override_type)
 		return
 
-	override_monser_type = chosen_override_type
+	override_monster_type = chosen_override_type
 
 /obj/structure/fleshmind/structure/assembler/proc/spawn_mob()
 	if(!our_controller)
@@ -711,7 +714,7 @@
 	do_squish(0.8, 1.2)
 
 	spawned_mobs++
-	var/chosen_mob_type = override_monser_type ? override_monser_type : pick_weight(monster_types)
+	var/chosen_mob_type = override_monster_type ? override_monster_type : pick_weight(monster_types)
 
 	var/mob/living/basic/fleshmind/spawned_mob = our_controller.spawn_mob(get_turf(src), chosen_mob_type)
 

@@ -16,6 +16,8 @@
 	var/contractors_deployed = FALSE
 	/// What was aboard just before impact.
 	var/list/manifest
+	/// Turfs the crash site was made of, captured on arrival.
+	var/list/departure_footprint
 
 /obj/docking_port/mobile/emergency/vitezstvi/check()
 	if(mode == SHUTTLE_CALL)
@@ -45,10 +47,17 @@
 			contractors_deployed = TRUE
 			INVOKE_ASYNC(src, PROC_REF(deploy_contractors))
 	var/was_inbound = (mode == SHUTTLE_CALL)
+	var/was_grounded = (mode != SHUTTLE_ESCAPE)
 	. = ..()
 	if(was_inbound && mode == SHUTTLE_DOCKED)
 		clear_wreckage()
 		play_landing_impact()
+		// our own ship is already physically down, so give the real dock back
+		vitezstvi_restore_home_dock()
+		capture_departure_site()
+	// the hull only actually leaves on the way into escape, not at ignition
+	if(was_grounded && mode == SHUTTLE_ESCAPE)
+		devastate_departure_site()
 	return .
 
 /// Proximity alarm
@@ -118,9 +127,12 @@
 	imminent_warned = FALSE
 	contractors_deployed = FALSE
 	manifest = null
+	departure_footprint = null
 	. = ..()
 	// timeLeft(1) is deciseconds; the parent just set the timer
 	inbound_total_time = timeLeft(1)
+	// only a genuine call rolls a crash site - a preview never reaches request()
+	vitezstvi_roll_crash_target()
 	vitezstvi_announce_target()
 
 /// REF() strings, not atoms, so nothing gets held alive.
@@ -130,6 +142,33 @@
 		for(var/turf/shuttle_turf in shuttle_area)
 			for(var/atom/movable/thing in shuttle_turf)
 				manifest[REF(thing)] = TRUE
+
+/// Coordinates, not turf refs: departure swaps the turf objects out from under us.
+/obj/docking_port/mobile/emergency/vitezstvi/proc/capture_departure_site()
+	departure_footprint = list()
+	for(var/area/shuttle_area as anything in shuttle_areas)
+		for(var/turf/shuttle_turf in shuttle_area)
+			departure_footprint += list(list(shuttle_turf.x, shuttle_turf.y, shuttle_turf.z))
+
+/// A room a shuttle crashed into shouldn't look untouched once the shuttle leaves.
+/obj/docking_port/mobile/emergency/vitezstvi/proc/devastate_departure_site()
+	if(!departure_footprint)
+		return
+	var/list/footprint = departure_footprint
+	departure_footprint = null
+	for(var/list/coords as anything in footprint)
+		CHECK_TICK
+		var/turf/wrecked = locate(coords[1], coords[2], coords[3])
+		if(isnull(wrecked))
+			continue
+		if(iswallturf(wrecked))
+			var/turf/closed/wall/flattened = wrecked
+			// station walls sit on plating, so the crater never opens to space
+			flattened.dismantle_wall(devastated = TRUE)
+		else if(istype(wrecked, /turf/open/floor))
+			var/turf/open/floor/broken_floor = wrecked
+			broken_floor.break_tile_to_plating()
+		wrecked.add_overlay(image('icons/effects/effects.dmi', "scorch"))
 
 /// Docking shoves junk one tile, which lands it inside. Push it the rest of the way out.
 /obj/docking_port/mobile/emergency/vitezstvi/proc/clear_wreckage()

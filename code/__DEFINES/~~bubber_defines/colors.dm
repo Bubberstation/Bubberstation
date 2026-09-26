@@ -4,6 +4,7 @@
 #define COLOR_NRI_POLICE_BLUE "#1f3347"
 #define COLOR_NRI_POLICE_SILVER "#c0c0c0"
 #define SOULCATCHER_DEFAULT_COLOR "#75D5E1"
+#define COLOR_WATERDROP_DEFAULT "#549EFF"
 
 GLOBAL_LIST_INIT(chat_colors_by_mob_name, list(
 	"Unknown" = list("#ffffff", "#d8d8d8"),
@@ -22,11 +23,11 @@ GLOBAL_LIST_INIT(chat_colors_by_mob_name, list(
 
 /// Modsuit hardlight colors
 
-#define STANDARD_BLUE "standard_blue"
-#define ALERT_AMBER "alert_amber"
-#define CONTRACTOR_RED "contractor_red"
-#define EXTRASHIELD_GREEN "extrashield_green"
-#define EVIL_GREEN "evil_green"
-#define ROYAL_PURPLE "royal_purple"
-#define HAZARD_ORANGE "hazard_orange"
-#define COSMIC_BLUE "cosmic_blue"
+#define STANDARD_BLUE "#7FD4E6"
+#define ALERT_AMBER "#E5E75B"
+#define CONTRACTOR_RED "#F3756E"
+#define EXTRASHIELD_GREEN "#79F3D0"
+#define EVIL_GREEN "#83D928"
+#define ROYAL_PURPLE "#C39BEF"
+#define HAZARD_ORANGE "#E6A956"
+#define COSMIC_BLUE "#2DDAF7"

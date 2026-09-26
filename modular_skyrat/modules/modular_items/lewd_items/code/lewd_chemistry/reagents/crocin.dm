@@ -52,3 +52,4 @@
 	is_cold_recipe = TRUE
 	mix_message = "The mixture boils off a pink vapor..."
 	erp_reaction = TRUE
+	reaction_tags = REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG | REACTION_TAG_EASY

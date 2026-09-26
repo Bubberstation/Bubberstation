@@ -169,6 +169,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		minor_disabilities_desc = person.get_quirk_string(TRUE, CAT_QUIRK_MINOR_DISABILITY),
 		quirk_notes = person.get_quirk_string(TRUE, CAT_QUIRK_NOTES),
 		// SKYRAT EDIT START - RP Records
+		security_note = person.get_quirk_security_string(CAT_QUIRK_NOTES),
 		past_general_records = person_client?.prefs.read_preference(/datum/preference/text/general) || "",
 		past_medical_records = person_client?.prefs.read_preference(/datum/preference/text/medical) || "",
 		past_security_records = person_client?.prefs.read_preference(/datum/preference/text/security) || "",

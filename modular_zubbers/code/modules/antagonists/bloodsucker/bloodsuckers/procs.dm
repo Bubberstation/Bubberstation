@@ -100,7 +100,7 @@
 ///Disables all powers, accounting for torpor
 /datum/antagonist/bloodsucker/proc/DisableAllPowers(forced = FALSE)
 	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
-		if(forced || ((power.check_flags & BP_CANT_USE_IN_TORPOR) && is_in_torpor()))
+		if(forced || ((power.bloodsucker_check_flags & BP_CANT_USE_IN_TORPOR) && is_in_torpor()))
 			if(power.active)
 				power.DeactivatePower()
 
@@ -208,6 +208,9 @@
 
 /datum/antagonist/bloodsucker/proc/frenzy_exit_threshold()
 	return FRENZY_THRESHOLD_EXIT + (humanity_lost * 10)
+
+/datum/antagonist/bloodsucker/proc/is_frenzied()
+	return !!owner.current?.has_status_effect(/datum/status_effect/frenzy)
 
 /datum/antagonist/bloodsucker/proc/on_organ_removal(mob/living/carbon/old_owner, obj/item/organ/organ, special)
 	SIGNAL_HANDLER
@@ -358,7 +361,7 @@
 	if(!my_clan)
 		user.balloon_alert(user, "enter a clan!")
 		to_chat(user, span_notice("You must enter a Clan to rank up. Do it in the antag menu, which you can see by pressing the action button in the top left."))
-	else if(!frenzied)
+	else if(!is_frenzied())
 		if(GetUnspentRank() < 1)
 			blood_level_gain()
 		// Level ups cost 30% of your max blood volume, which scales with your rank.
