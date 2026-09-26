@@ -1,8 +1,8 @@
 // THIS IS A SKYRAT UI FILE
 import { type Antagonist, Category } from '../base';
 
-const LoneInfiltrator: Antagonist = {
-  key: 'loneinfiltrator',
+const SyndicateBoarder: Antagonist = {
+  key: 'syndicateboarder',
   name: 'Syndicate Boarder',
   description: [
     `A midround traitor that can spawn near the station, equipped with
@@ -14,4 +14,4 @@ const LoneInfiltrator: Antagonist = {
   category: Category.Midround,
 };
 
-export default LoneInfiltrator;
+export default SyndicateBoarder;
