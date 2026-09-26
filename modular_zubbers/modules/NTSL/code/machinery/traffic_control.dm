@@ -97,6 +97,10 @@
 	. = ..()
 	var/mob/living/user = ui.user
 
+	if(issilicon(user) || isAI(user) || iscyborg(user) || ispAI(user))
+		to_chat(user, span_warning("There seems to be a firewall preventing silicon access!"))
+		return
+
 	if(action == "admin_reset") // something to note, this will runtime when clicked on by an admin ghost. But still works.
 		if(!user.client.holder)
 			message_admins("[key_name_admin(user)] has attempted to call \"admin_reset\" on a traffic console, this should not be possible as a non-admin and could have been an attempted javascript injection.")
