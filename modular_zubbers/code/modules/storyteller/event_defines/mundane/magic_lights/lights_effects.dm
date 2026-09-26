@@ -57,19 +57,22 @@
 
 /obj/effect/magical_light/examine(mob/user)
 	. = ..()
-	if(effect_types.len < 0 && user.mind?.holy_role >= HOLY_ROLE_PRIEST || IS_WIZARD(user) || isobserver(user))
-		var/magic_desc = ""
-		for(var/i in 1 to effect_types.len)
-			var/datum/status_effect/magical_light/light_eff = effect_types[i]
-			if(i != 1 && i != effect_types.len)
-				magic_desc += ","
-			else if (i == effect_types.len && effect_types.len > 1)
-				magic_desc += ", and" // Oxford comma :)
-			magic_desc += " [light_eff::special_description]"
-			if (i == effect_types.len)
-				magic_desc += "."
+	if(user.mind?.holy_role >= HOLY_ROLE_PRIEST || IS_WIZARD(user) || isobserver(user))
+		if(effect_types.len > 0)
+			var/magic_desc = ""
+			for(var/i in 1 to effect_types.len)
+				var/datum/status_effect/magical_light/light_eff = effect_types[i]
+				if(i != 1 && i != effect_types.len)
+					magic_desc += ","
+				else if (i == effect_types.len && effect_types.len > 1)
+					magic_desc += ", and" // Oxford comma :)
+				magic_desc += " [light_eff::special_description]"
+				if (i == effect_types.len)
+					magic_desc += "."
 
-		. += span_notice("The lights are charged with magic that has[magic_desc]")
+			. += span_notice("The lights are charged with magic that has[magic_desc]")
+		else
+			. += span_notice("The lights are charged with magic that has no effect in this plane.")
 	else
 		. += span_notice("Feels like the chaplain might know more about these.")
 
