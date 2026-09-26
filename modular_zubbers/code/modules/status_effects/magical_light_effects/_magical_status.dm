@@ -3,7 +3,7 @@
 /datum/status_effect/magical_light
 	id = "magical_light"
 	duration = 10 SECONDS
-	status_type = STATUS_EFFECT_REPLACE
+	status_type = STATUS_EFFECT_UNIQUE
 	show_duration = TRUE
 	alert_type = /atom/movable/screen/alert/status_effect/magical_light
 	/// A description shown when the magical light is examined by someone
