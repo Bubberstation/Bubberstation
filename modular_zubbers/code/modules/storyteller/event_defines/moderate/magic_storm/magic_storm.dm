@@ -6,7 +6,7 @@
 	typepath = /datum/round_event/magic_storm
 	description = "Pummels the station in spell projectiles, targeting \
 	those unlucky enough to be in space."
-	weight = 6 // Not as destructive as meteors but still plenty dangerous
+	weight = 40 // Fairly common (Comms failure common)
 	min_players = 20
 	max_occurrences = 3
 	earliest_start = 15 MINUTES
