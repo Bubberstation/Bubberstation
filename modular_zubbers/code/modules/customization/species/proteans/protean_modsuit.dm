@@ -21,6 +21,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, "protean")
 	AddElement(/datum/element/strippable/protean, GLOB.strippable_human_items)
+	resistance_flags = FIRE_PROOF //GS13 fix, proteans are fireproof to prevent them from having their modsuit destroyed by fire, round removing them unintentionally.
 
 /obj/item/mod/control/pre_equipped/protean/Destroy()
 	var/obj/item/mod/core/protean/p_core = core

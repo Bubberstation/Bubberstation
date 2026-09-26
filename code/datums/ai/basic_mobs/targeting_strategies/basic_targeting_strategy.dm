@@ -48,6 +48,12 @@
 		if(container.resistance_flags & INDESTRUCTIBLE)
 			return FALSE
 
+	if(isprotean(the_target)) // GS13 fix, ignore Proteans withdrawn into their own MODsuit.
+		var/mob/living/carbon/human/protean_target = the_target
+		var/datum/species/protean/protean_species = protean_target.dna.species
+		if(protean_species.species_modsuit && protean_target.loc == protean_species.species_modsuit) // If the target is a Protean and is inside their own modsuit, ignore them as a valid target.
+			return FALSE
+
 	if(ismob(the_target)) //Target is in godmode, ignore it.
 		if(living_mob.loc == the_target)
 			return FALSE // We've either been eaten or are shapeshifted, let's assume the latter because we're still alive
