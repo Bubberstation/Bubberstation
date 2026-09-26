@@ -380,6 +380,7 @@
 #include "~skyrat\nanite_designs.dm"
 #include "~skyrat\opposing_force.dm"
 #include "~skyrat\proteans.dm"
+#include "~zubbers\antag_prompt_timing.dm"
 #include "~zubbers\vitezstvi_turret_flags.dm"
 // SKYRAT EDIT END
 // END_INCLUDE
