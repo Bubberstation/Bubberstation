@@ -194,6 +194,7 @@
 	ammo_type = /obj/item/ammo_casing/energy/medical/brute2/safe
 	secondary_mode = /obj/item/ammo_casing/energy/medical/brute2
 	primary_mode = /obj/item/ammo_casing/energy/medical/brute2/safe
+	toggle_modes = TRUE
 
 // Burn II
 /obj/item/weaponcell/medical/tier_2/burn
@@ -203,6 +204,7 @@
 	ammo_type = /obj/item/ammo_casing/energy/medical/burn2/safe
 	secondary_mode = /obj/item/ammo_casing/energy/medical/burn2
 	primary_mode = /obj/item/ammo_casing/energy/medical/burn2/safe
+	toggle_modes = TRUE
 
 // Toxin II
 /obj/item/weaponcell/medical/tier_2/toxin
@@ -240,6 +242,7 @@
 	ammo_type = /obj/item/ammo_casing/energy/medical/brute3/safe
 	secondary_mode = /obj/item/ammo_casing/energy/medical/brute3
 	primary_mode = /obj/item/ammo_casing/energy/medical/brute3/safe
+	toggle_modes = TRUE
 
 // Burn III
 /obj/item/weaponcell/medical/tier_3/burn
@@ -249,6 +252,7 @@
 	ammo_type = /obj/item/ammo_casing/energy/medical/burn3/safe
 	secondary_mode = /obj/item/ammo_casing/energy/medical/burn3
 	primary_mode = /obj/item/ammo_casing/energy/medical/burn3/safe
+	toggle_modes = TRUE
 
 // Toxin III
 /obj/item/weaponcell/medical/tier_3/toxin
