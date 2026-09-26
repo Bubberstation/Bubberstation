@@ -639,6 +639,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/syndicate.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/syndicate_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/syndicate_teshari.dmi'
 	icon_state = "snake"
 
 /obj/item/clothing/under/rank/civilian/bubber/camo
@@ -652,6 +653,7 @@
 	greyscale_config = /datum/greyscale_config/camo
 	greyscale_config_worn = /datum/greyscale_config/camo/worn
 	greyscale_config_worn_digi = /datum/greyscale_config/camo/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/camo/worn/teshari
 	greyscale_colors = "#4d4d4d#333333#292929"
 	flags_1 = IS_PLAYER_COLORABLE_1
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
@@ -755,3 +757,24 @@
 
 /obj/item/clothing/under/rank/barber
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/civilian_teshari.dmi'
+
+/obj/item/clothing/under/rank/azulean
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/centcom_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/centcom_teshari.dmi'
+	can_adjust = FALSE
+
+/obj/item/clothing/under/misc/overalls
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/uniform_teshari.dmi'
+
+/obj/item/clothing/under/misc/assistantformal
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/uniform_teshari.dmi'
+
+/obj/item/clothing/under/suit
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/suits_teshari.dmi'
+
+/obj/item/clothing/under/rank/civilian/curator/skirt
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/suits_teshari.dmi'
+
+/obj/item/clothing/under/rank/civilian/lawyer
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/suits_teshari.dmi'
