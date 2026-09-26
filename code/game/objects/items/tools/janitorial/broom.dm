@@ -19,17 +19,24 @@
 	attack_verb_simple = list("sweep", "brush off", "bludgeon", "whack")
 	resistance_flags = FLAMMABLE
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
+	// BUBBER EDIT ADDITION START - implanted broom variant
+	/// How many items this broom can move in one sweep
+	var/push_limit = BROOM_PUSH_LIMIT
+	/// Skips the two handed grip and leaves sweeping to the subtype
+	var/always_braced = FALSE
+	// BUBBER EDIT ADDITION END
 
 /obj/item/pushbroom/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/jousting, damage_boost_per_tile = 1)
-	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 8, \
-		force_wielded = 12, \
-		icon_wielded = "[base_icon_state]1", \
-		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
-		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
-	)
+	if(!always_braced) // BUBBER EDIT ADDITION - implanted broom variant
+		AddComponent(/datum/component/two_handed, \
+			force_unwielded = 8, \
+			force_wielded = 12, \
+			icon_wielded = "[base_icon_state]1", \
+			wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
+			unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
+		)
 	AddComponent(/datum/component/walking_aid)
 
 /obj/item/pushbroom/update_icon_state()
@@ -62,7 +69,7 @@
 	return NONE // I guess
 
 /**
- * Attempts to push up to BROOM_PUSH_LIMIT atoms from a given location the user's faced direction
+ * Attempts to push up to push_limit atoms from a given location the user's faced direction
  *
  * Arguments:
  * * user - The user of the pushbroom
@@ -71,7 +78,7 @@
 /obj/item/pushbroom/proc/sweep(mob/user, atom/atom)
 	SIGNAL_HANDLER
 
-	do_sweep(src, user, atom, user.dir)
+	do_sweep(src, user, atom, user.dir, push_limit) // BUBBER EDIT CHANGE - ORIGINAL: do_sweep(src, user, atom, user.dir)
 
 /**
 * Sweep objects in the direction we're facing towards our direction
@@ -80,8 +87,9 @@
 * * user - The person who is brooming
 * * target - The object or tile that's target of a broom click or being moved into
 * * sweep_dir - The directions in which we sweep objects
+* * push_limit - How many items we can move at once
 */
-/proc/do_sweep(obj/broomer, mob/user, atom/target, sweep_dir)
+/proc/do_sweep(obj/broomer, mob/user, atom/target, sweep_dir, push_limit = BROOM_PUSH_LIMIT) // BUBBER EDIT CHANGE - ORIGINAL: /proc/do_sweep(obj/broomer, mob/user, atom/target, sweep_dir)
 	var/turf/current_item_loc = isturf(target) ? target : target.loc
 	if (!isturf(current_item_loc))
 		return
@@ -94,7 +102,7 @@
 			continue
 		items_to_sweep += garbage
 		i++
-		if(i > BROOM_PUSH_LIMIT)
+		if(i > push_limit) // BUBBER EDIT CHANGE - ORIGINAL: if(i > BROOM_PUSH_LIMIT)
 			break
 
 	SEND_SIGNAL(new_item_loc, COMSIG_TURF_RECEIVE_SWEEPED_ITEMS, broomer, user, items_to_sweep)
