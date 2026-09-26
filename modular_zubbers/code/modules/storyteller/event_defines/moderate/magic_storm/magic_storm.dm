@@ -12,7 +12,7 @@
 	earliest_start = 15 MINUTES
 	category = EVENT_CATEGORY_SPACE
 	map_flags = EVENT_SPACE_ONLY
-	track = EVENT_TRACK_MAJOR // Consider this for moderate instead
+	track = EVENT_TRACK_MODERATE
 	tags = list(TAG_SPACE, TAG_DESTRUCTIVE, TAG_CHAOTIC, TAG_MAGIC)
 
 	// Commonly summoned by wizards
@@ -60,10 +60,12 @@
 
 /datum/round_event/magic_storm/tick()
 	var/list/potential_victims = list()
-	for(var/mob/living/player in GLOB.alive_mob_list)
-		var/turf/victim_turf = get_turf(player)
+	for(var/mob/living/target in GLOB.mob_list)
+		if(istype(target, /mob/living/basic/mimic)) // Skip mimics created by animate bolts
+			continue
+		var/turf/victim_turf = get_turf(target)
 		if(victim_turf && is_station_level(victim_turf.z) && istype(victim_turf, /turf/open/space))
-			potential_victims += player
+			potential_victims += target
 		continue
 	if(!length(potential_victims))
 		potential_victims = null
