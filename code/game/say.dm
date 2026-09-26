@@ -171,10 +171,12 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	//Radio freq/name display
 	var/freqpart = radio_freq ? "\[[get_radio_name(radio_freq, radio_freq_name)]\] " : ""
 	//Speaker name
-	var/namepart = message_mods[MODE_SPEAKER_NAME_OVERRIDE] || speaker.get_message_voice(visible_name)
+	var/realnamepart = "[speaker.get_voice(TRUE)][speaker.get_alt_name()]"
+	var/namepart = "[speaker.get_voice()][speaker.get_alt_name()]" // BUBBER EDIT
+	// var/namepart = message_mods[MODE_SPEAKER_NAME_OVERRIDE] || speaker.get_message_voice(visible_name) BUBBER EDIT ORIGINAL
 
 	//End name span.
-	var/endspanpart = "</span>"
+	var/endspanpart = "</span></a>" //BUBBER EDIT ADD the </a>
 
 	// Language icon.
 	var/languageicon = ""
@@ -189,7 +191,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/messagepart = speaker.generate_messagepart(raw_message, spans, message_mods)
 	messagepart = " <span class='message'>[messagepart]</span></span>"
 
-	return "[spanpart1][spanpart2][freqpart][languageicon][compose_track_href(speaker, namepart)][namepart][compose_job(speaker, message_language, raw_message, radio_freq)][endspanpart][messagepart]"
+	//return "[spanpart1][spanpart2][freqpart][languageicon][compose_track_href(speaker, namepart)][namepart][compose_job(speaker, message_language, raw_message, radio_freq)][endspanpart][messagepart]" BUBBER EDIT NTSL
+	return "[spanpart1][spanpart2][freqpart][languageicon][compose_track_href(speaker, realnamepart)][namepart][compose_job(speaker, message_language, raw_message, radio_freq)][endspanpart][messagepart]"
 
 /atom/movable/proc/compose_track_href(atom/movable/speaker, message_langs, raw_message, radio_freq)
 	return ""
@@ -382,6 +385,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 	source = M
 	if(istype(M))
 		name = radio?.anonymize ? "Unknown" : M.get_voice(add_id_name = TRUE)
+		realvoice = name // BUBBER ADDITION -- NTSL
 		verb_say = M.get_default_say_verb()
 		verb_ask = M.verb_ask
 		verb_exclaim = M.verb_exclaim
