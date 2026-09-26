@@ -11,6 +11,6 @@
 #define OBJECTIVE_HEIRLOOM_STEAL_WEIGHT 10
 // The below have the exact same text. Good luck metagaming this
 /// Chance to be forced to help another traitor escape
-#define OBJECTIVE_HELP_ESCAPE_TRAITOR_WEIGHT 25
+#define OBJECTIVE_HELP_ESCAPE_TRAITOR_WEIGHT 30
 /// Chance to be forced to help a random person escape
-#define OBJECTIVE_HELP_ESCAPE_WEIGHT 20
+#define OBJECTIVE_HELP_ESCAPE_WEIGHT 10
