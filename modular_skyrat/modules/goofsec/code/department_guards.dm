@@ -767,10 +767,13 @@
 // BUBBER EDIT ADDITION END
 
 /obj/item/melee/baton/security/loaded/departmental
-	name = "departmental stun baton"
-	desc = "A stun baton fitted with a departmental area-lock, based off the station's blueprint layout - outside of its department, it only has three uses."
-	icon = 'modular_zubbers/icons/obj/weapons/guard_baton.dmi' // BUBBER EDIT CHANGE - KATGUARDS - Original: modular_skyrat/modules/goofsec/icons/departmental_batons.dmi
-	icon_state = "modernbaton" // BUBBER EDIT CHANGE - KATGUARDS
+	// BUBBER EDIT CHANGE START - KATGUARDS - the unkeyed baton belongs to maintenance now. Original name: "departmental stun baton", original desc described a generic area-lock.
+	name = "maintenance stun baton"
+	desc = "A stun baton fitted with a departmental area-lock. Whoever filed the requisition keyed this one to the maintenance shafts, so it works beautifully in a crawlspace and almost nowhere else. Three uses outside before it has to go home."
+	// BUBBER EDIT CHANGE END
+	icon = 'modular_zubbers/icons/map_icons/guard_baton.dmi' // BUBBER EDIT CHANGE - KATGUARDS - map icon only, GAGS swaps in the real bundle at init. Original: modular_skyrat/modules/goofsec/icons/departmental_batons.dmi
+	icon_state = "/obj/item/melee/baton/security/loaded/departmental" // BUBBER EDIT CHANGE - KATGUARDS
+	post_init_icon_state = "modernbaton" // BUBBER EDIT ADDITION - KATGUARDS
 	base_icon_state = "modernbaton" // BUBBER EDIT CHANGE - KATGUARDS
 	greyscale_config = /datum/greyscale_config/guard_baton // BUBBER EDIT ADDITION - KATGUARDS
 	// BUBBER EDIT ADDITION START - KATGUARDS - the baton carries its colours into the hand too
@@ -788,7 +791,7 @@
 	/// BUBBER EDIT ADDITION - KATGUARDS - department handle, conductive tip, electric halo. Subtypes override the first colour.
 	greyscale_colors = "#999999#C7CBD6#78C8FF"
 	base_inhand_state = "guardbaton_inhand" // BUBBER EDIT CHANGE - KATGUARDS - Original: "stunbaton"
-	var/list/valid_areas = list()
+	var/list/valid_areas = list(/area/station/maintenance, /area/shuttle/escape) // BUBBER EDIT CHANGE - KATGUARDS - Original: list()
 	var/emagged = FALSE
 	var/non_departmental_uses_left = 4
 
@@ -797,6 +800,29 @@
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/guard_baton)
 	AddElement(/datum/element/gags_recolorable)
+
+/**
+ * The worn bar and the belt overlay are too small to carry the department stripe, so they only tint
+ * the conductive head. A greyscale config has to number its colours from one, which means those two
+ * sheets use id 1 and we hand them the conductor colour rather than the whole string.
+ */
+/obj/item/melee/baton/security/loaded/departmental/proc/get_conductor_color()
+	if(!greyscale_colors)
+		return null
+	var/list/colors = SSgreyscale.ParseColorString(greyscale_colors)
+	return length(colors) >= 2 ? colors[2] : null
+
+/obj/item/melee/baton/security/loaded/departmental/update_greyscale()
+	. = ..()
+	var/conductor = get_conductor_color()
+	if(conductor && greyscale_config_worn)
+		worn_icon = SSgreyscale.GetColoredIconByType(greyscale_config_worn, conductor)
+
+/obj/item/melee/baton/security/loaded/departmental/get_belt_overlay()
+	var/conductor = get_conductor_color()
+	if(!greyscale_config_belt || !conductor)
+		return ..()
+	return mutable_appearance(SSgreyscale.GetColoredIconByType(greyscale_config_belt, conductor), inside_belt_icon_state)
 
 /**
  * GAGS hands an item exactly one worn sheet, but the belt slot and the suit storage slot
@@ -870,36 +896,42 @@
 /obj/item/melee/baton/security/loaded/departmental/medical
 	name = "medical stun baton"
 	desc = "A stun baton that doesn't operate outside of the Medical department, based off the station's blueprint layout. Can be used outside of Medical up to three times before needing to return!"
+	icon_state = "/obj/item/melee/baton/security/loaded/departmental/medical" // BUBBER EDIT ADDITION - KATGUARDS - map icon preview
 	greyscale_colors = "#5B97BC#C7CBD6#78C8FF" // BUBBER EDIT CHANGE - KATGUARDS
 	valid_areas = list(/area/station/medical, /area/station/maintenance/department/medical, /area/shuttle/escape)
 
 /obj/item/melee/baton/security/loaded/departmental/engineering
 	name = "engineering stun baton"
 	desc = "A stun baton that doesn't operate outside of the Engineering department, based off the station's blueprint layout. Can be used outside of Engineering up to three times before needing to return!"
+	icon_state = "/obj/item/melee/baton/security/loaded/departmental/engineering" // BUBBER EDIT ADDITION - KATGUARDS - map icon preview
 	greyscale_colors = "#FFA62B#C7CBD6#78C8FF" // BUBBER EDIT CHANGE - KATGUARDS
 	valid_areas = list(/area/station/engineering, /area/station/maintenance/department/engine, /area/shuttle/escape)
 
 /obj/item/melee/baton/security/loaded/departmental/science
 	name = "science stun baton"
 	desc = "A stun baton that doesn't operate outside of the Science department, based off the station's blueprint layout. Can be used outside of Science up to three times before needing to return!"
+	icon_state = "/obj/item/melee/baton/security/loaded/departmental/science" // BUBBER EDIT ADDITION - KATGUARDS - map icon preview
 	greyscale_colors = "#C96DBF#C7CBD6#78C8FF" // BUBBER EDIT CHANGE - KATGUARDS
 	valid_areas = list(/area/station/science, /area/station/maintenance/department/science, /area/shuttle/escape)
 
 /obj/item/melee/baton/security/loaded/departmental/cargo
 	name = "cargo stun baton"
 	desc = "A stun baton that doesn't operate outside of the Cargo department, based off the station's blueprint layout. Can be used outside of Cargo up to three times before needing to return!"
+	icon_state = "/obj/item/melee/baton/security/loaded/departmental/cargo" // BUBBER EDIT ADDITION - KATGUARDS - map icon preview
 	greyscale_colors = "#B18644#C7CBD6#78C8FF" // BUBBER EDIT CHANGE - KATGUARDS
 	valid_areas = list(/area/station/cargo, /area/station/maintenance/department/cargo, /area/shuttle/escape)
 
 /obj/item/melee/baton/security/loaded/departmental/service
 	name = "service stun baton"
 	desc = "A stun baton that doesn't operate outside of the Service department, based off the station's blueprint layout. Can be used outside of Service up to three times before needing to return!"
+	icon_state = "/obj/item/melee/baton/security/loaded/departmental/service" // BUBBER EDIT ADDITION - KATGUARDS - map icon preview
 	greyscale_colors = "#58C800#C7CBD6#78C8FF" // BUBBER EDIT CHANGE - KATGUARDS
 	valid_areas = list(/area/station/service, /area/station/hallway/secondary/service, /area/station/maintenance/department/chapel, /area/station/maintenance/department/crew_quarters, /area/shuttle/escape)
 
 /obj/item/melee/baton/security/loaded/departmental/prison
 	name = "prison stun baton"
 	desc = "A stun baton that doesn't operate outside of the Prison, based off the station's blueprint layout. Can be used outside of the Prison up to three times before needing to return!"
+	icon_state = "/obj/item/melee/baton/security/loaded/departmental/prison" // BUBBER EDIT ADDITION - KATGUARDS - map icon preview
 	greyscale_colors = "#A54900#C7CBD6#78C8FF" // BUBBER EDIT CHANGE - KATGUARDS
 	valid_areas = list(/area/station/security/prison, /area/station/security/processing, /area/shuttle/escape)
 
