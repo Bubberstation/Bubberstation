@@ -747,6 +747,11 @@
 	icon_file = 'modular_zubbers/icons/mob/clothing/guard_baton_worn.dmi'
 	json_config = 'code/datums/greyscale/json_configs/guard_baton_worn.json'
 
+/datum/greyscale_config/guard_baton_belt
+	name = "Guard Baton (Belt)"
+	icon_file = 'modular_zubbers/icons/obj/clothing/guard_baton_belt.dmi'
+	json_config = 'code/datums/greyscale/json_configs/guard_baton_belt.json'
+
 /datum/atom_skin/guard_baton
 	abstract_type = /datum/atom_skin/guard_baton
 	change_base_icon_state = TRUE
@@ -776,6 +781,9 @@
 	greyscale_config_worn = /datum/greyscale_config/guard_baton_worn
 	worn_icon = 'modular_zubbers/icons/mob/clothing/guard_baton_worn.dmi'
 	worn_icon_state = "guardbaton_worn"
+	greyscale_config_belt = /datum/greyscale_config/guard_baton_belt
+	inside_belt_icon_state = "guardbaton_belt"
+	inhand_icon_state = "guardbaton_inhand"
 	// BUBBER EDIT ADDITION END
 	/// BUBBER EDIT ADDITION - KATGUARDS - department handle, conductive tip, electric halo. Subtypes override the first colour.
 	greyscale_colors = "#999999#C7CBD6#78C8FF"
@@ -789,6 +797,26 @@
 	. = ..()
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/guard_baton)
 	AddElement(/datum/element/gags_recolorable)
+
+/**
+ * GAGS hands an item exactly one worn sheet, but the belt slot and the suit storage slot
+ * want the baton facing opposite ways - vanilla solves this with twin belt.dmi / belt_mirror.dmi
+ * sheets. We keep both orientations in our one sheet and pick the mirrored state when the
+ * caller asks for the suit storage file.
+ */
+/obj/item/melee/baton/security/loaded/departmental/build_worn_icon(
+	default_layer = 0,
+	default_icon_file = null,
+	isinhands = FALSE,
+	female_uniform = NO_FEMALE_UNIFORM,
+	override_state = null,
+	override_file = null,
+	bodyshape = NONE,
+	mutant_styles = NONE,
+)
+	if(!isinhands && isnull(override_state) && default_icon_file == 'icons/mob/clothing/belt_mirror.dmi')
+		override_state = "[worn_icon_state]_mirror"
+	return ..()
 // BUBBER EDIT ADDITION END
 
 /obj/item/melee/baton/security/loaded/departmental/pre_attack(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
