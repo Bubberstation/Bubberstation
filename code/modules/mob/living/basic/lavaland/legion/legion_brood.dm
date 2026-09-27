@@ -63,7 +63,7 @@
 	return
 
 /mob/living/basic/mining/legion_brood/melee_attack(mob/living/target, list/modifiers, ignore_cooldown)
-	if(ishuman(target) && !isprotean(target) && IS_UNCONSCIOUS(target))
+	if (ishuman(target) && IS_UNCONSCIOUS(target))
 		infest(target)
 		return
 
