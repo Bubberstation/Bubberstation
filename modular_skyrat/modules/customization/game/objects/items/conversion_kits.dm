@@ -1,4 +1,4 @@
-/obj/item/device/custom_kit
+/obj/item/custom_kit
 	name = "modification kit"
 	desc = "A box of parts for modifying a certain object."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/kits.dmi'
@@ -8,7 +8,7 @@
 	/// The object to turn it into.
 	var/obj/item/to_obj
 
-/obj/item/device/custom_kit/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+/obj/item/custom_kit/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(isturf(interacting_with)) //This shouldn't be needed, but apparently it throws runtimes otherwise.
 		return NONE
 	if(interacting_with.type != from_obj) //Checks whether the item is eligible to be converted
@@ -24,5 +24,5 @@
 	return ITEM_INTERACT_SUCCESS
 
 /// Override this if you have some condition you want fulfilled before allowing the conversion. Return TRUE to allow it to convert, return FALSE to prevent it.
-/obj/item/device/custom_kit/proc/pre_convert_check(obj/target_obj, mob/user)
+/obj/item/custom_kit/proc/pre_convert_check(obj/target_obj, mob/user)
 	return TRUE

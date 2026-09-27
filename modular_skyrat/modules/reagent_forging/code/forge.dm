@@ -91,6 +91,7 @@
 		"Staff" = /obj/item/forging/incomplete/staff,
 		"Pickaxe" = /obj/item/forging/incomplete/pickaxe,
 		"Shovel" = /obj/item/forging/incomplete/shovel,
+		"Baseball Bat" = /obj/item/forging/incomplete/baseball_bat,
 		"Rail Nail" = /obj/item/forging/incomplete/rail_nail,
 		"Rail Cart" = /obj/item/forging/incomplete/rail_cart,
 	)
@@ -481,7 +482,7 @@
 		smelt_ore(attacking_item, user)
 		return TRUE
 
-	if(attacking_item.GetComponent(/datum/component/reagent_imbued) && attacking_item.reagents.total_volume > 1)
+	if(attacking_item.GetComponent(/datum/component/reagent_imbued) && attacking_item?.reagents?.total_volume > 1)
 		handle_reagent_imbue(attacking_item, user)
 		return TRUE
 
@@ -822,6 +823,8 @@
 			to_chat(user, span_danger("You burn your hand putting [search_stack] in [src]!"))
 			user.add_mood_event("burnt_thumb", /datum/mood_event/burnt_thumb)
 
+	search_stack.forceMove(get_turf(src))
+
 	if(!search_stack.use(1))
 		balloon_alert(user, "not enough of [search_stack]")
 		return ITEM_INTERACT_BLOCKING
@@ -837,8 +840,6 @@
 		COOLDOWN_START(smith_component, heating_remainder, FORGE_HEATING_DURATION)
 
 	balloon_alert(user, "prepared [search_stack] into [user_choice]")
-	if(!isnull(tool) && length(tool.contents) > 0)
-		tool.icon_state = "tong_empty"
 
 	return ITEM_INTERACT_SUCCESS
 

@@ -12,7 +12,10 @@
 	. = ..()
 	if(isitem(apply_to))
 		var/obj/item/item_apply_to = apply_to
-		APPLY_VAR_OR_RESET_INITIAL(item_apply_to, worn_icon, new_worn_icon, reset_missing)
+		// Never reset a GAGS worn icon. Its generated icon is not the compile time one, so resetting
+		// here throws the coloured sprite away and leaves the mob rendering the raw source sheet.
+		if(!item_apply_to.greyscale_config_worn)
+			APPLY_VAR_OR_RESET_INITIAL(item_apply_to, worn_icon, new_worn_icon, reset_missing)
 	if(change_inhand_icon_state && isitem(apply_to))
 		var/obj/item/item_apply_to = apply_to
 		APPLY_VAR_OR_RESET_INITIAL(item_apply_to, inhand_icon_state, new_inhand_icon_state, reset_missing)
@@ -23,7 +26,8 @@
 	. = ..()
 	if(isitem(clear_from))
 		var/obj/item/item_clear_from = clear_from
-		RESET_INITIAL_IF_SET(item_clear_from, worn_icon, new_worn_icon)
+		if(!item_clear_from.greyscale_config_worn)
+			RESET_INITIAL_IF_SET(item_clear_from, worn_icon, new_worn_icon)
 	if(change_inhand_icon_state && isitem(clear_from))
 		var/obj/item/item_clear_from = clear_from
 		RESET_INITIAL_IF_SET(item_clear_from, inhand_icon_state, new_inhand_icon_state)

@@ -290,13 +290,6 @@
 		ADD_NEWLINE_IF_NECESSARY(.)
 		. += "<b>Quirks:</b> [get_quirk_string(FALSE, CAT_QUIRK_ALL)]"
 
-	//SKYRAT EDIT ADDITION BEGIN - GUNPOINT
-	if(gunpointing)
-		. += "<span class='warning'><b>[t_He] [t_is] holding [gunpointing.target.name] at gunpoint with [gunpointing.aimed_gun.name]!</b></span>\n"
-	if(length(gunpointed))
-		for(var/datum/gunpoint/GP in gunpointed)
-			. += "<span class='warning'><b>[GP.source.name] [GP.source.p_are()] holding [t_him] at gunpoint with [GP.aimed_gun.name]!</b></span>\n"
-
 	//SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
 	if(!isnull(dna?.species))
 		for(var/genital in GLOB.possible_genitals)
@@ -594,7 +587,12 @@
 		wanted_status = target_record.wanted_status
 		if(target_record.security_note)
 			security_note = target_record.security_note
-	if(ishuman(user))
+	// BUBBER EDIT ADDITION START - silly HUDsunglasses replace the criminal status field outright
+	var/mob/living/carbon/human/human_examiner = user
+	if(ishuman(user) && istype(human_examiner.glasses, /obj/item/clothing/glasses/hud/security/sunglasses/guard/silly))
+		. += "Criminal status: <a href='byond://?src=[REF(src)];hud=s;honkstatus=1;examine_time=[world.time]'>\[[wanted_status]\]</a>"
+	else if(ishuman(user))
+	// BUBBER EDIT ADDITION END
 		. += "Criminal status: <a href='byond://?src=[REF(src)];hud=s;status=1;examine_time=[world.time]'>\[[wanted_status]\]</a>"
 	else
 		. += "Criminal status: [wanted_status]"

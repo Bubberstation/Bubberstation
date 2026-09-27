@@ -114,6 +114,20 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_ALL
 	)
 
+/datum/design/borg_waddle
+	name = "Cyborg Waddle Module"
+	id = "waddle_module"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/waddle_module
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
+	)
+	construction_time = 4 SECONDS
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_ALL
+	)
+
 //so we have our own category
 /datum/design/borg_upgrade_surgical_processor_sci
 	name = "Research Surgical Processor"

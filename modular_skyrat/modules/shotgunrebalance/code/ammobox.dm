@@ -3,6 +3,7 @@
 	desc = "A box of 7 slug shells. Large, singular shots that pack a punch."
 	icon = 'modular_skyrat/modules/shotgunrebalance/icons/shotbox.dmi'
 	icon_state = "slug"
+	w_class = WEIGHT_CLASS_NORMAL
 	ammo_type = /obj/item/ammo_casing/shotgun
 	max_ammo = 7
 	multitype = FALSE // if you enable this and set the box's caliber var to CALIBER_SHOTGUN (at time of writing, "shotgun"), then you can have the fabled any-ammo shellbox

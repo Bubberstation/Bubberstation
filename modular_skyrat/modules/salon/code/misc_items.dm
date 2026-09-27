@@ -12,47 +12,15 @@
 /obj/item/lipstick/quantum
 	name = "quantum lipstick"
 
-/obj/item/lipstick/quantum/attack(mob/attacked_mob, mob/user)
-	if(!open || !ismob(attacked_mob))
-		return
-
-	if(!ishuman(attacked_mob))
-		to_chat(user, span_warning("Where are the lips on that?"))
-		return
-
-	INVOKE_ASYNC(src, PROC_REF(async_set_color), attacked_mob, user)
-
-/obj/item/lipstick/quantum/proc/async_set_color(mob/attacked_mob, mob/user)
-	// BUBBERSTATION EDIT START: TGUI COLOR PICKER
-	var/new_color = tgui_color_picker(
-			user,
-			"Select lipstick color",
-			null,
-			COLOR_WHITE,
-		)
-	// BUBBERSTATION EDIT END: TGUI COLOR PICKER
-
-	var/mob/living/carbon/human/target = attacked_mob
-	if(target.is_mouth_covered())
-		to_chat(user, span_warning("Remove [ target == user ? "your" : "[target.p_their()]" ] mask!"))
-		return
-	if(target.lip_style) //if they already have lipstick on
-		to_chat(user, span_warning("You need to wipe off the old lipstick first!"))
-		return
-
-	if(target == user)
-		user.visible_message(span_notice("[user] does [user.p_their()] lips with \the [src]."), \
-			span_notice("You take a moment to apply \the [src]. Perfect!"))
-		target.update_lips("lipstick", new_color, lipstick_trait)
-		return
-
-	user.visible_message(span_warning("[user] begins to do [target]'s lips with \the [src]."), \
-		span_notice("You begin to apply \the [src] on [target]'s lips..."))
-	if(!do_after(user, 2 SECONDS, target = target))
-		return
-	user.visible_message(span_notice("[user] does [target]'s lips with \the [src]."), \
-		span_notice("You apply \the [src] on [target]'s lips."))
-	target.update_lips("lipstick", new_color, lipstick_trait)
+/obj/item/lipstick/quantum/display_radial_menu(mob/living/carbon/human/user)
+	lipstick_color = tgui_color_picker(
+		user,
+		"Select lipstick color",
+		null,
+		COLOR_WHITE,
+	)
+	update_appearance()
+	. = ..()
 
 /obj/item/hairbrush/comb
 	name = "comb"

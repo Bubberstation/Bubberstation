@@ -1,6 +1,6 @@
 #define INFINITE_CHARGES -1
 
-/obj/item/device/traitor_announcer
+/obj/item/traitor_announcer
 	name = "odd device"
 	desc = "Hmm... what is this for?"
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE
@@ -56,7 +56,7 @@
 
 	return TRUE
 
-/obj/item/device/traitor_announcer/attack_self(mob/living/user, modifiers)
+/obj/item/traitor_announcer/attack_self(mob/living/user, modifiers)
 	. = ..()
 	//can we use this?
 	if(!isliving(user) || (uses == 0))
@@ -69,7 +69,7 @@
 			uses--
 
 // Adminbus
-/obj/item/device/traitor_announcer/infinite
+/obj/item/traitor_announcer/infinite
 	uses = -1
 
 #undef INFINITE_CHARGES

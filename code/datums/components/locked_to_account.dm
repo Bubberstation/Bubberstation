@@ -34,7 +34,46 @@
 /// adds a note to the examine text saying its account-locked
 /datum/component/locked_to_account/proc/on_examine(obj/structure/closet/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
+	// BUBBER EDIT ADDITION BEGIN - departmental locks open for a whole department, so say so
+	if(istype(buyer_account, /datum/bank_account/department))
+		examine_list += span_warning("An account lock prevents this from opening except by [buyer_account.account_holder] personnel.")
+		return
+	// BUBBER EDIT ADDITION END
 	examine_list += span_warning("An account lock prevents this from opening except by the purchasing account holder.")
+
+// BUBBER EDIT ADDITION BEGIN - the crate's own lock needs this check too, see modular_zubbers/code/modules/cargo/account_crates.dm
+/**
+ * Returns TRUE if [user] is holding an ID that satisfies this lock.
+ * A departmental lock accepts anyone paid by that department, a personal one only the buyer.
+ * * source: the crate, only used to play the denial sound. Optional.
+ * * silent: if FALSE, tells the user why they were turned away.
+ */
+/datum/component/locked_to_account/proc/account_matches(mob/living/user, obj/structure/closet/source, silent = TRUE)
+	if(isnull(user))
+		return FALSE
+
+	var/obj/item/card/id/id_card = user.get_idcard(TRUE)
+	if(isnull(id_card))
+		if(!silent)
+			deny(source, user, "No ID detected!")
+		return FALSE
+
+	if(!id_card.registered_account)
+		if(!silent)
+			deny(source, user, "No linked bank account detected!")
+		return FALSE
+
+	if(istype(buyer_account, /datum/bank_account/department))
+		var/datum/bank_account/department/department_account = buyer_account
+		if(id_card.registered_account.account_job?.paycheck_department == department_account.department_id)
+			return TRUE
+	else if(id_card.registered_account == buyer_account)
+		return TRUE
+
+	if(!silent)
+		deny(source, user, "Bank account does not match with buyer!")
+	return FALSE
+// BUBBER EDIT ADDITION END
 
 /**
  * runs when someone tries to open the crate, checks their ID against buyer_account
@@ -45,6 +84,8 @@
 	if(force)
 		return NONE
 
+	// BUBBER EDIT BEGIN - the ID and account checks below were pulled out into account_matches(), so on_pre_open() and can_unlock() can share one implementation
+	/* BUBBER EDIT REMOVAL BEGIN - ORIGINAL:
 	if(isnull(user))
 		return BLOCK_OPEN
 
@@ -66,6 +107,10 @@
 	if(!account_matches)
 		deny(source, user, "Bank account does not match with buyer!")
 		return BLOCK_OPEN
+	*/ // BUBBER EDIT REMOVAL END
+	if(!account_matches(user, source, silent = FALSE))
+		return BLOCK_OPEN
+	// BUBBER EDIT END
 
 	if(iscarbon(user))
 		source.add_fingerprint(user)

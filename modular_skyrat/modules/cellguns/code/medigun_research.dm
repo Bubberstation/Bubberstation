@@ -17,7 +17,7 @@
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,
 	)
-	build_path = /obj/item/device/custom_kit/medigun_fastcharge
+	build_path = /obj/item/custom_kit/medigun_fastcharge
 
 /datum/design/medicell
 	name = "Base Medicell Design"
@@ -213,7 +213,7 @@
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
 	)
-	build_path = /obj/item/device/custom_kit/empty_cell
+	build_path = /obj/item/custom_kit/empty_cell
 
 /datum/design/medicell/utility/body
 	name = "Empty Body Teleporter Medicell"
@@ -227,7 +227,7 @@
 		/datum/material/diamond = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT,
 	)
-	build_path = /obj/item/device/custom_kit/empty_cell/body_teleporter
+	build_path = /obj/item/custom_kit/empty_cell/body_teleporter
 
 /datum/design/medicell/utility/relocation
 	name = "Oppressive Force Relocation Medicell"

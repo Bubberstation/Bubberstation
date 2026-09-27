@@ -38,9 +38,15 @@
 
 /datum/atom_skin/paper_mask
 	abstract_type = /datum/atom_skin/paper_mask
+	// Masks rebuild icon_state from base_icon_state, so without this the drawn face is wiped
+	// the next time the mask updates its icon.
+	change_base_icon_state = TRUE
 
 /datum/atom_skin/paper_mask/apply(atom/apply_to, mob/user)
 	. = ..()
+	// The loadout applies skins with nobody holding the item, so there is no pen to check for.
+	if(isnull(user))
+		return
 	if(!user.is_holding_item_of_type(/obj/item/pen))
 		user.balloon_alert(user, "must be holding a pen!")
 		return
