@@ -767,9 +767,9 @@
 // BUBBER EDIT ADDITION END
 
 /obj/item/melee/baton/security/loaded/departmental
-	// BUBBER EDIT CHANGE START - KATGUARDS - the unkeyed baton belongs to maintenance now. Original name: "departmental stun baton", original desc described a generic area-lock.
-	name = "maintenance stun baton"
-	desc = "A stun baton fitted with a departmental area-lock. Whoever filed the requisition keyed this one to the maintenance shafts, so it works beautifully in a crawlspace and almost nowhere else. Three uses outside before it has to go home."
+	// BUBBER EDIT CHANGE START - KATGUARDS - the unkeyed baton is stolen goods, re-keyed to maintenance by someone who should not have it. Original name: "departmental stun baton", original desc described a generic area-lock.
+	name = "defaced stun baton"
+	desc = "A departmental baton with its identifying markings scratched out and every trace of department color worn away. A stencil along the handle still reads IF FOUND PLEASE RETURN TO ███. You get the feeling somebody 'customized' the area-lock on this one. Who would want a baton that only works in maintenance?"
 	// BUBBER EDIT CHANGE END
 	icon = 'modular_zubbers/icons/map_icons/guard_baton.dmi' // BUBBER EDIT CHANGE - KATGUARDS - map icon only, GAGS swaps in the real bundle at init. Original: modular_skyrat/modules/goofsec/icons/departmental_batons.dmi
 	icon_state = "/obj/item/melee/baton/security/loaded/departmental" // BUBBER EDIT CHANGE - KATGUARDS
