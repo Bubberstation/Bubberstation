@@ -307,6 +307,7 @@
 	min_players = 12
 	category = EVENT_CATEGORY_ENTITIES
 	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_NPC_ANTAG)
 
 /datum/round_event/droppod_airraid/syndicate/lesser
 	turf_droppods_ratio = 50
@@ -335,6 +336,7 @@
 	//admin_setup = list(/datum/event_admin_setup/multiple_choice/droppod_troopers)
 	category = EVENT_CATEGORY_ENTITIES
 	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_NPC_ANTAG)
 
 /datum/round_event/droppod_airraid/hivebots
 	turf_droppods_ratio = 50
