@@ -14,3 +14,14 @@
 	build_path = /obj/machinery/cell_charger/mega
 	req_components = list(/datum/stock_part/capacitor = 3)
 	needs_anchored = FALSE
+
+//Port Tarkon Exclusive Machines
+
+/obj/item/circuitboard/machine/rdserver/tarkon
+	name = "Tarkon Industries R&D Server"
+	build_path = /obj/machinery/rnd/server/tarkon
+
+/obj/item/circuitboard/machine/protolathe/tarkon
+	name = "Tarkon Industries Protolathe"
+	greyscale_colors = CIRCUIT_COLOR_SUPPLY
+	build_path = /obj/machinery/rnd/production/protolathe/tarkon

@@ -228,10 +228,10 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	can_suppress = TRUE
 	can_unsuppress = TRUE
-	recoil = 1.8
+	recoil = 2.0 //yee haw
 	weapon_weight = WEAPON_HEAVY
 	accepted_magazine_type = /obj/item/ammo_box/magazine/sniper_rounds
-	fire_delay = 55 //Slightly smaller than standard sniper
+	fire_delay = 5 //magdump that bitch
 	burst_size = 1
 	slot_flags = ITEM_SLOT_BACK
 	mag_display = TRUE
