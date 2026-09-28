@@ -384,7 +384,8 @@
 				var/alert_reason
 				if(new_status == WANTED_GUARD_ALERT && target_record.wanted_status != WANTED_GUARD_ALERT)
 					alert_reason = build_alert_incident(human_user)
-					if(!alert_reason || !target_record || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
+					// Backing out of the incident form still raises the Alert, it just files a bare crime the way a SecHUD arrest does.
+					if(!target_record || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
 						return
 				// BUBBER EDIT ADDITION END
 

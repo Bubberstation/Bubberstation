@@ -121,14 +121,12 @@ const CrewTab = (props: { record: SecurityRecord }) => {
       onClick={() => selectRecord(record)}
       selected={isSelected}
     >
-      {/* BUBBER EDIT CHANGE START - WARRANTS - status colours the text so the candystripe still shows through; black would vanish on the dark rows, so death warrants read red here */}
+      {/* BUBBER EDIT CHANGE START - WARRANTS - a flagged record reads as a white name on a coloured bar. No status means no bar, so the candystripe stays visible underneath. */}
       <Box
+        backgroundColor={CRIMESTATUS2COLOR[wanted_status]}
         bold={isSelected}
-        color={
-          CRIMESTATUS2COLOR[wanted_status] === 'black'
-            ? 'red'
-            : CRIMESTATUS2COLOR[wanted_status] || 'white'
-        }
+        color={CRIMESTATUS2COLOR[wanted_status] ? 'white' : undefined}
+        px={0.5}
       >
         <Icon name={JOB2ICON[trim] || 'question'} /> {name}
       </Box>

@@ -116,46 +116,8 @@ const RecordInfo = (props) => {
           }
         >
           <LabeledList>
-            <LabeledList.Item
-              buttons={available_statuses.map((button, index) => {
-                const isSelected = button === wanted_status;
-                // BUBBER EDIT ADDITION START - WARRANTS - icon-per-status, Execute gated to command at amber+
-                const isExecute = button === 'Execute';
-                const execBlocked =
-                  isExecute &&
-                  !(can_death_warrant && warrant_ready) &&
-                  !isSelected;
-                const disabled =
-                  (button === 'Arrest' && !hasValidCrimes) || execBlocked;
-                let tip = CRIMESTATUS2DESC[button] || '';
-                if (execBlocked) {
-                  tip =
-                    'Death warrants require Captain or Head of Security authorization at amber alert or above.';
-                }
-                return (
-                  <Button
-                    color={isSelected ? CRIMESTATUS2COLOR[button] : 'grey'}
-                    disabled={disabled}
-                    icon={CRIMESTATUS2ICON[button] || 'question'}
-                    key={index}
-                    onClick={() =>
-                      act('set_wanted', {
-                        crew_ref: crew_ref,
-                        status: button,
-                      })
-                    }
-                    selected={isSelected}
-                    tooltip={tip}
-                    tooltipPosition="bottom-start"
-                  >
-                    {button}
-                  </Button>
-                );
-                // BUBBER EDIT ADDITION END
-              })}
-              label="Status"
-            >
-              {/* BUBBER EDIT CHANGE START - WARRANTS - status is a background swatch, text stays white */}
+            {/* BUBBER EDIT CHANGE START - WARRANTS - the eight statuses do not fit one row, so they wrap under the swatch instead of running off the panel */}
+            <LabeledList.Item label="Status">
               <Box
                 backgroundColor={CRIMESTATUS2COLOR[wanted_status]}
                 color="white"
@@ -164,8 +126,47 @@ const RecordInfo = (props) => {
               >
                 {wanted_status}
               </Box>
-              {/* BUBBER EDIT CHANGE END */}
+              <Box
+                mt={0.5}
+                style={{ display: 'flex', flexWrap: 'wrap', gap: '0.25em' }}
+              >
+                {available_statuses.map((button, index) => {
+                  const isSelected = button === wanted_status;
+                  const isExecute = button === 'Execute';
+                  const execBlocked =
+                    isExecute &&
+                    !(can_death_warrant && warrant_ready) &&
+                    !isSelected;
+                  const disabled =
+                    (button === 'Arrest' && !hasValidCrimes) || execBlocked;
+                  let tip = CRIMESTATUS2DESC[button] || '';
+                  if (execBlocked) {
+                    tip =
+                      'Death warrants require Captain or Head of Security authorization at amber alert or above.';
+                  }
+                  return (
+                    <Button
+                      color={isSelected ? CRIMESTATUS2COLOR[button] : 'grey'}
+                      disabled={disabled}
+                      icon={CRIMESTATUS2ICON[button] || 'question'}
+                      key={index}
+                      onClick={() =>
+                        act('set_wanted', {
+                          crew_ref: crew_ref,
+                          status: button,
+                        })
+                      }
+                      selected={isSelected}
+                      tooltip={tip}
+                      tooltipPosition="bottom-start"
+                    >
+                      {button}
+                    </Button>
+                  );
+                })}
+              </Box>
             </LabeledList.Item>
+            {/* BUBBER EDIT CHANGE END */}
           </LabeledList>
         </Section>
       </Stack.Item>

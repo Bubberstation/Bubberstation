@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(department_guard_trims, typecacheof(list(
 	return "[category] (reported by [role])"
 
 /// Records an Alert or death warrant on the target's crime list, so the status leaves an accountable paper trail.
-/proc/log_warrant_status_change(datum/record/crew/target, new_status, mob/setter, reason)
+/proc/log_warrant_status_change(datum/record/crew/target, new_status, mob/setter, reason, source = "SecHUD")
 	var/setter_name = "Security Warrant Authority"
 	if(ishuman(setter))
 		var/mob/living/carbon/human/human_setter = setter
@@ -77,7 +77,11 @@ GLOBAL_LIST_INIT(department_guard_trims, typecacheof(list(
 	if(new_status == WANTED_EXECUTE)
 		logged = new /datum/crime(name = "Death Warrant", details = target.death_warrant_reason || "No grounds stated.", author = setter_name)
 		logged.warrant_kind = "execute"
+	else if(reason)
+		logged = new /datum/crime(name = "Security Alert", details = reason, author = setter_name)
+		logged.warrant_kind = "alert"
 	else
-		logged = new /datum/crime(name = "Security Alert", details = reason || "Flagged for questioning.", author = setter_name)
+		// Nobody filled the incident form. File it the way a SecHUD arrest does, but keep the marker so it still reads as an Alert.
+		logged = new /datum/crime(details = "Set by [source].", author = setter_name)
 		logged.warrant_kind = "alert"
 	target.crimes += logged

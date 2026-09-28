@@ -115,7 +115,9 @@ const CrimeDisplay = ({ item }: { item: Crime }) => {
   } = item;
   const showFine = fine && fine > 0 ? `: ${fine} cr` : ': PAID OFF';
 
-  let collapsibleColor = '';
+  // BUBBER EDIT CHANGE START - WARRANTS - an ordinary crime reads red now that Alert and Execute own orange and black. Citations keep the stock colour. Original: let collapsibleColor = '';
+  let collapsibleColor = fine !== undefined ? '' : 'bad';
+  // BUBBER EDIT CHANGE END
   if (!valid) {
     collapsibleColor = 'grey';
   } else if (warrant_kind === 'execute') {

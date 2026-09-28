@@ -230,10 +230,11 @@
 				if(!ishuman(user))
 					return FALSE
 				alert_reason = build_alert_incident(user)
-				if(!alert_reason || QDELETED(target))
+				// Backing out of the incident form still raises the Alert, it just files a bare crime.
+				if(QDELETED(target))
 					return FALSE
 			if((wanted_status == WANTED_GUARD_ALERT || wanted_status == WANTED_EXECUTE) && target.wanted_status != wanted_status)
-				log_warrant_status_change(target, wanted_status, user, alert_reason)
+				log_warrant_status_change(target, wanted_status, user, alert_reason, source = "the records console")
 			// BUBBER EDIT ADDITION END
 			target.wanted_status = wanted_status
 
