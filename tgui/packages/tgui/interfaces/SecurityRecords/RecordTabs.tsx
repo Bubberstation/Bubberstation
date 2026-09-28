@@ -51,7 +51,7 @@ export const SecurityRecordTabs = (props) => {
               <NoticeBox>{errorMessage}</NoticeBox>
             ) : (
               sorted.map((record, index) => (
-                <CrewTab record={record} key={index} />
+                <CrewTab index={index} record={record} key={index} />
               ))
             )}
           </Tabs>
@@ -84,14 +84,14 @@ export const SecurityRecordTabs = (props) => {
 };
 
 /** Individual record */
-const CrewTab = (props: { record: SecurityRecord }) => {
+const CrewTab = (props: { record: SecurityRecord; index: number }) => {
   const [selectedRecord, setSelectedRecord] = useLocalState<
     SecurityRecord | undefined
   >('securityRecord', undefined);
 
   const { act, data } = useBackend<SecurityRecordsData>();
   const { assigned_view } = data;
-  const { record } = props;
+  const { record, index } = props;
   const { crew_ref, name, trim, wanted_status } = record;
 
   /** Chooses a record */
@@ -114,6 +114,7 @@ const CrewTab = (props: { record: SecurityRecord }) => {
   };
 
   const isSelected = selectedRecord?.crew_ref === crew_ref;
+  const statusColor = CRIMESTATUS2COLOR[wanted_status]; // BUBBER EDIT ADDITION - WARRANTS
 
   return (
     <Tabs.Tab
@@ -121,12 +122,15 @@ const CrewTab = (props: { record: SecurityRecord }) => {
       onClick={() => selectRecord(record)}
       selected={isSelected}
     >
-      {/* BUBBER EDIT CHANGE START - WARRANTS - a flagged record reads as a white name on a coloured bar. No status means no bar, so the candystripe stays visible underneath. */}
+      {/* BUBBER EDIT CHANGE START - WARRANTS - a flagged record reads as a white name on a coloured bar. No status means no bar, so the candystripe stays visible underneath. The bar carries its own light/dark alternation, in phase with the candystripe's nth-child, so a run of ten wanted people still stripes instead of becoming one solid block. */}
       <Box
-        backgroundColor={CRIMESTATUS2COLOR[wanted_status]}
+        backgroundColor={statusColor}
         bold={isSelected}
-        color={CRIMESTATUS2COLOR[wanted_status] ? 'white' : undefined}
+        color={statusColor ? 'white' : undefined}
         px={0.5}
+        style={
+          statusColor && index % 2 ? { filter: 'brightness(0.85)' } : undefined
+        }
       >
         <Icon name={JOB2ICON[trim] || 'question'} /> {name}
       </Box>
