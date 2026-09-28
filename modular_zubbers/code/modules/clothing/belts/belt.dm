@@ -10,9 +10,6 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/belts/belts.dmi'
 	worn_icon_state = "bst_belt"
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/belts/belts_teshari.dmi'
-	lefthand_file = 'icons/mob/inhands/equipment/belt_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/belt_righthand.dmi'
-	inhand_icon_state = "bst_belt"
 	resistance_flags = INDESTRUCTIBLE|LAVA_PROOF|FIRE_PROOF|UNACIDABLE|ACID_PROOF
 	strip_delay = 60 SECONDS
 	w_class = WEIGHT_CLASS_TINY
