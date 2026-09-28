@@ -13,7 +13,7 @@ import {
 
 import { CharacterPreview } from '../common/CharacterPreview';
 import { EditableText } from '../common/EditableText';
-import { CRIMESTATUS2COLOR, CRIMESTATUS2DESC } from './constants';
+import { CRIMESTATUS2COLOR, CRIMESTATUS2DESC, CRIMESTATUS2ICON } from './constants';
 import { CrimeWatcher } from './CrimeWatcher';
 import { getSecurityRecord } from './helpers';
 import { RecordPrint } from './RecordPrint';
@@ -51,7 +51,7 @@ const RecordInfo = (props) => {
   if (!foundRecord) return <NoticeBox>Nothing selected.</NoticeBox>;
 
   const { act, data } = useBackend<SecurityRecordsData>();
-  const { available_statuses } = data;
+  const { available_statuses, can_death_warrant } = data; // BUBBER EDIT CHANGE - WARRANTS
   const [open, setOpen] = useLocalState<boolean>('printOpen', false);
 
   // const { min_age, max_age } = data; // ORIGINAL
@@ -69,6 +69,7 @@ const RecordInfo = (props) => {
     rank,
     species,
     wanted_status,
+    warrant_ready, // BUBBER EDIT ADDITION - WARRANTS
     voice,
     // SKYRAT EDIT START - RP Records
     past_general_records,
@@ -109,7 +110,7 @@ const RecordInfo = (props) => {
           }
           fill
           title={
-            <Table.Cell color={CRIMESTATUS2COLOR[wanted_status]}>
+            <Table.Cell backgroundColor={CRIMESTATUS2COLOR[wanted_status]} color="white"> {/* BUBBER EDIT CHANGE - WARRANTS - Original: color={CRIMESTATUS2COLOR[wanted_status]} */}
               {name}
             </Table.Cell>
           }
@@ -118,11 +119,24 @@ const RecordInfo = (props) => {
             <LabeledList.Item
               buttons={available_statuses.map((button, index) => {
                 const isSelected = button === wanted_status;
+                // BUBBER EDIT ADDITION START - WARRANTS - icon-per-status, Execute gated to command at amber+
+                const isExecute = button === 'Execute';
+                const execBlocked =
+                  isExecute &&
+                  !(can_death_warrant && warrant_ready) &&
+                  !isSelected;
+                const disabled =
+                  (button === 'Arrest' && !hasValidCrimes) || execBlocked;
+                let tip = CRIMESTATUS2DESC[button] || '';
+                if (execBlocked) {
+                  tip =
+                    'Death warrants require Captain or Head of Security authorization at amber alert or above.';
+                }
                 return (
                   <Button
                     color={isSelected ? CRIMESTATUS2COLOR[button] : 'grey'}
-                    disabled={button === 'Arrest' && !hasValidCrimes}
-                    icon={isSelected ? 'check' : ''}
+                    disabled={disabled}
+                    icon={CRIMESTATUS2ICON[button] || 'question'}
                     key={index}
                     onClick={() =>
                       act('set_wanted', {
@@ -130,19 +144,27 @@ const RecordInfo = (props) => {
                         status: button,
                       })
                     }
-                    pl={!isSelected ? '1.8rem' : 1}
-                    tooltip={CRIMESTATUS2DESC[button] || ''}
+                    selected={isSelected}
+                    tooltip={tip}
                     tooltipPosition="bottom-start"
                   >
-                    {button[0]}
+                    {button}
                   </Button>
                 );
+                // BUBBER EDIT ADDITION END
               })}
               label="Status"
             >
-              <Box color={CRIMESTATUS2COLOR[wanted_status]}>
+              {/* BUBBER EDIT CHANGE START - WARRANTS - status is a background swatch, text stays white */}
+              <Box
+                backgroundColor={CRIMESTATUS2COLOR[wanted_status]}
+                color="white"
+                inline
+                px={0.5}
+              >
                 {wanted_status}
               </Box>
+              {/* BUBBER EDIT CHANGE END */}
             </LabeledList.Item>
           </LabeledList>
         </Section>

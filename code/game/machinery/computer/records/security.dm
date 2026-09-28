@@ -89,7 +89,8 @@
 /obj/machinery/computer/records/security/ui_data(mob/user)
 	var/list/data = ..()
 
-	data["available_statuses"] = WANTED_STATUSES()
+	data["available_statuses"] = WANTED_STATUSES_WITH_WARRANTS() // BUBBER EDIT CHANGE - WARRANTS - Original: WANTED_STATUSES()
+	data["can_death_warrant"] = (ishuman(user) ? get_warrant_authority(user) >= WARRANT_AUTH_COMMAND : FALSE) // BUBBER EDIT ADDITION - WARRANTS - the per-record alert gate rides along on each record as warrant_ready
 	data["current_user"] = user.name
 	data["higher_access"] = has_armory_access(user)
 
@@ -119,6 +120,7 @@
 				time = crime.time,
 				valid = crime.valid,
 				voider = crime.voider,
+				warrant_kind = crime.warrant_kind, // BUBBER EDIT ADDITION - WARRANTS
 			))
 
 		records += list(list(
@@ -135,6 +137,7 @@
 			species = target.species,
 			trim = target.trim,
 			wanted_status = target.wanted_status,
+			warrant_ready = death_warrants_active(target), // BUBBER EDIT ADDITION - WARRANTS
 			// SKYRAT EDIT ADDITION - RP Records
 			past_general_records = target.past_general_records,
 			past_security_records = target.past_security_records,
@@ -195,12 +198,43 @@
 
 		if("set_wanted")
 			var/wanted_status = params["status"]
-			if(!wanted_status || !(wanted_status in WANTED_STATUSES()))
+			// BUBBER EDIT CHANGE START - WARRANTS - accept the warrant statuses too, but gate who can set them
+			if(!wanted_status || !(wanted_status in WANTED_STATUSES_WITH_WARRANTS()))
 				return FALSE
+			var/setter_authority = ishuman(user) ? get_warrant_authority(user) : WARRANT_AUTH_SECURITY
+			if(target.wanted_status == WANTED_EXECUTE && setter_authority < WARRANT_AUTH_COMMAND)
+				to_chat(user, span_warning("Death warrants may only be rescinded by the Captain or Head of Security."))
+				playsound(src, 'sound/machines/terminal/terminal_error.ogg', 75, TRUE)
+				return FALSE
+			if(wanted_status == WANTED_EXECUTE)
+				if(setter_authority < WARRANT_AUTH_COMMAND || !death_warrants_active(target))
+					to_chat(user, span_warning("Death warrants require Captain or Head of Security authorization at amber alert or above."))
+					playsound(src, 'sound/machines/terminal/terminal_error.ogg', 75, TRUE)
+					return FALSE
+				if(target.wanted_status != WANTED_EXECUTE)
+					var/stated_reason = tgui_input_text(user, "State the grounds for this death warrant. This will be broadcast to the entire station.", "Death Warrant", max_length = WARRANT_REASON_MAX_LENGTH)
+					if(!stated_reason || QDELETED(target) || !death_warrants_active(target) || (ishuman(user) && get_warrant_authority(user) < WARRANT_AUTH_COMMAND))
+						return FALSE
+					target.death_warrant_reason = stated_reason
+					distribute_wanted_order(target, stated_reason, user)
+			// BUBBER EDIT CHANGE END
 			if(wanted_status == WANTED_ARREST && !length(target.crimes))
 				return FALSE
 
 			investigate_log("[target.name] has been set from [target.wanted_status] to [wanted_status] by [key_name(usr)].", INVESTIGATE_RECORDS)
+			if(wanted_status != WANTED_EXECUTE) // BUBBER EDIT ADDITION - WARRANTS
+				target.death_warrant_reason = null
+			// BUBBER EDIT ADDITION START - WARRANTS - Alert and Execute leave a paper trail for IC accountability
+			var/alert_reason
+			if(wanted_status == WANTED_GUARD_ALERT && target.wanted_status != WANTED_GUARD_ALERT)
+				if(!ishuman(user))
+					return FALSE
+				alert_reason = build_alert_incident(user)
+				if(!alert_reason || QDELETED(target))
+					return FALSE
+			if((wanted_status == WANTED_GUARD_ALERT || wanted_status == WANTED_EXECUTE) && target.wanted_status != wanted_status)
+				log_warrant_status_change(target, wanted_status, user, alert_reason)
+			// BUBBER EDIT ADDITION END
 			target.wanted_status = wanted_status
 
 			update_matching_security_huds(target.name)

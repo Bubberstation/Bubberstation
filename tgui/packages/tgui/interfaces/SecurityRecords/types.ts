@@ -5,6 +5,7 @@ export type SecurityRecordsData = {
   authenticated: BooleanLike;
   station_z: BooleanLike;
   available_statuses: string[];
+  can_death_warrant: BooleanLike; // BUBBER EDIT ADDITION - WARRANTS
   current_user: string;
   higher_access: BooleanLike;
   records: SecurityRecord[];
@@ -27,6 +28,7 @@ export type SecurityRecord = {
   species: string;
   trim: string;
   wanted_status: string;
+  warrant_ready: BooleanLike; // BUBBER EDIT ADDITION - WARRANTS
   voice: string;
   // SKYRAT EDIT START - RP Records
   past_general_records: string;
@@ -44,6 +46,7 @@ export type Crime = {
   time: number;
   valid: BooleanLike;
   voider: string;
+  warrant_kind: string; // BUBBER EDIT ADDITION - WARRANTS
 };
 
 export enum SECURETAB {

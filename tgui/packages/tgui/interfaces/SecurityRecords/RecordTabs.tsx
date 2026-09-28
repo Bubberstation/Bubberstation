@@ -121,9 +121,18 @@ const CrewTab = (props: { record: SecurityRecord }) => {
       onClick={() => selectRecord(record)}
       selected={isSelected}
     >
-      <Box bold={isSelected} color={CRIMESTATUS2COLOR[wanted_status]}>
+      {/* BUBBER EDIT CHANGE START - WARRANTS - status colours the text so the candystripe still shows through; black would vanish on the dark rows, so death warrants read red here */}
+      <Box
+        bold={isSelected}
+        color={
+          CRIMESTATUS2COLOR[wanted_status] === 'black'
+            ? 'red'
+            : CRIMESTATUS2COLOR[wanted_status] || 'white'
+        }
+      >
         <Icon name={JOB2ICON[trim] || 'question'} /> {name}
       </Box>
+      {/* BUBBER EDIT CHANGE END */}
     </Tabs.Tab>
   );
 };
