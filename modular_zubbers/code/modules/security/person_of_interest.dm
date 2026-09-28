@@ -110,7 +110,7 @@
 	for(var/mob/living/viewer in viewers(target))
 		if(viewer == target)
 			continue
-		if(viewer.stat != CONSCIOUS)
+		if(IS_UNCONSCIOUS_OR_CRIT(viewer))
 			continue
 		if(HAS_TRAIT(viewer, TRAIT_SECURITY_HUD))
 			return TRUE
