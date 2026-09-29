@@ -94,7 +94,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 		/datum/raptor_color/blue = /datum/raptor_color/purple,
 	)
 	// Doesn't care for your excuses for friendly fire
-	ai_controller = /datum/ai_controller/basic_controller/raptor/aggressive
+	// ai_controller = /datum/ai_controller/basic_controller/raptor/aggressive // BUBBER EDIT REMOVAL: remove raptor aggression
 
 /datum/raptor_color/red/setup_raptor(mob/living/basic/raptor/raptor)
 	. = ..()
@@ -440,7 +440,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 	melee_damage_upper = 25
 	redirect_shots = FALSE
 	rideable_component = /datum/component/riding/creature/raptor/combat
-	ai_controller = /datum/ai_controller/basic_controller/raptor/aggressive
+	// ai_controller = /datum/ai_controller/basic_controller/raptor/aggressive // BUBBER EDIT REMOVAL: remove raptor aggression
 	spawn_chance = 1 // 1 in 150 chance without modifiers
 
 /datum/raptor_color/black/setup_raptor(mob/living/basic/raptor/raptor)
