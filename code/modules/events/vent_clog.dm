@@ -97,6 +97,10 @@
 	for(var/obj/machinery/atmospherics/components/unary/vent_pump/vent as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/atmospherics/components/unary/vent_pump))
 		var/turf/vent_turf = get_turf(vent)
 		var/area/vent_area = get_area(vent)
+		//BUBBER EDIT START: prevent this from going into dorms or other ERP rated areas
+		if(GLOB.expected_erp_areas.contains(vent_area))
+			continue
+		//BUBBER EDIT END
 		if(vent_turf && is_station_level(vent_turf.z) && !vent.welded && istype(vent_area, /area/station) && !vent_turf.is_blocked_turf_ignore_climbable())
 			vent_list += vent
 
