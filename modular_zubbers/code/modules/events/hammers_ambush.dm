@@ -28,7 +28,17 @@
 /datum/round_event/syndicate_assassination_attempt/announce(fake)
 	if(fake)
 		victim = find_victim()
-	priority_announce("Dear [victim], count your days left, because they are numbered. You're marked for death and we're here to collect.", "The Syndicate", 'sound/announcer/announcement/announce_syndi.ogg', ANNOUNCEMENT_TYPE_SYNDICATE, has_important_message = TRUE, color_override = "red")
+	priority_announce(get_announce_text(victim), "The Syndicate", 'sound/announcer/announcement/announce_syndi.ogg', ANNOUNCEMENT_TYPE_SYNDICATE, has_important_message = TRUE, color_override = "red")
+
+/datum/round_event/syndicate_assassination_attempt/proc/get_announce_text(victim)
+	var/list/potential_text = list( \
+		"Dear [victim], count your days left, because they are numbered. You're marked for death and we're here to collect.",\
+		"Hello, Nanotrasen scum. We are here to murder [victim]. Submit or perish.",\
+		"Knock knock, it's the Syndicate talking! We have a kill warrant for [victim]. Open up.",\
+		"[victim] is still alive; we will be arriving soon to fix that.",\
+		"We are dispatching a cruelty squad straight to [victim]. 30 minutes or it's free.",\
+	)
+	return pick(potential_text)
 
 /**
 * Tries to find a valid area, throws an error if none are found
@@ -109,8 +119,8 @@
 	)
 	spawn_number = 8
 
-/datum/round_event/syndicate_assassination_attempt/hammers/announce(fake)
-	priority_announce("We are going to kill [victim] with hammers. This is a threat.", "The Syndicate", 'sound/announcer/announcement/announce_syndi.ogg', ANNOUNCEMENT_TYPE_SYNDICATE, has_important_message = TRUE, color_override = "red")
+/datum/round_event/syndicate_assassination_attempt/hammers/get_announce_text(victim)
+	return "We are going to kill [victim] with hammers. This is a threat."
 
 /mob/living/basic/trooper/syndicate/melee/hammer
 	melee_damage_lower = 25
