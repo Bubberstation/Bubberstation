@@ -50,12 +50,17 @@ GLOBAL_LIST_INIT(department_guard_trims, typecacheof(list(
 
 /// Distributes a wanted order over the newscaster network and announces it stationwide.
 /proc/distribute_wanted_order(datum/record/crew/target, stated_reason, mob/living/issuer)
+	// The filer's name goes in the body as well as the byline. The byline sits directly under the subject's photo,
+	// which reads like a caption on the subject rather than an attribution.
+	var/filed_by = issuer?.real_name || "Nanotrasen Security Warrant Authority"
+	if(ishuman(issuer) && warrant_attribution_scrubbed(issuer))
+		filed_by = scrubbed_warrant_attribution()
 	if(GLOB.news_network)
 		var/datum/picture/photo
 		var/obj/item/photo/front = target.get_front_photo()
 		if(istype(front))
 			photo = front.picture
-		GLOB.news_network.submit_wanted(target.name, "DEATH WARRANT: [stated_reason]", issuer?.real_name, photo, newMessage = TRUE)
+		GLOB.news_network.submit_wanted(target.name, "DEATH WARRANT filed by [filed_by]: [stated_reason]", filed_by, photo, newMessage = TRUE)
 
 	priority_announce(
 		text = "A death warrant has been issued for [target.name] on the following grounds: \"[stated_reason]\" \
