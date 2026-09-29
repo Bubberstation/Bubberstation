@@ -1,9 +1,9 @@
-/// Raised by a department guard. Stop and question, not an arrest order.
+/// Set by a department guard. Stop and question, not an arrest order.
 #define WANTED_GUARD_ALERT "Alert"
 /// Death warrant. Subject is an uncontainable hostile, lethal force authorized on sight.
 #define WANTED_EXECUTE "Execute"
 
-/// Longest a stated death warrant reason may be. It goes out over the announcement system, so it stays short.
+/// Longest a stated death warrant reason may be. It goes out over the announcement system.
 #define WARRANT_REASON_MAX_LENGTH 128
 
 /// No standing to touch warrant statuses at all.
@@ -27,7 +27,7 @@
 	WANTED_DISCHARGED, \
 )
 
-/// Incident categories a guard picks when raising an Alert. Keeps guard reports structured rather than free-text.
+/// Incident categories picked when setting an Alert, so reports stay structured rather than free-text.
 #define ALERT_REASON_SUSPICIOUS "Suspicious activity"
 #define ALERT_REASON_TRESPASS "Trespass / ejected"
 #define ALERT_REASON_VIOLENT "Violent or disruptive"
@@ -42,4 +42,32 @@
 	ALERT_REASON_CONTRABAND, \
 	ALERT_REASON_ASSISTANCE, \
 	ALERT_REASON_OTHER, \
+)
+
+/// What an emagged sechud writes into a record in place of its wearer. Admin logs still record the real person.
+#define WARRANT_ANONYMOUS_REPORTERS(...) list(\
+	"NOBODY", \
+	"THE SYNDICATE", \
+	"THE CLOWN", \
+	"Ë̸̢Ŕ̷̩R̸̡̈́Ọ̴̓Ṙ̷̺", \
+	"Nar'Sie", \
+	"Ratvar", \
+	"the Honkmother", \
+	"the Supermatter", \
+	"the Singularity", \
+	"Central Command", \
+	"Beepsky", \
+	"Ian", \
+	"Poly", \
+	"Runtime", \
+	"a space carp", \
+	"several bees", \
+	"a passing moth", \
+	"the Blob", \
+	"the vending machine", \
+	"the gravity generator", \
+	"the Chaplain's null rod", \
+	"an anonymous tipster", \
+	"YOURSELF", \
+	"THE VOID", \
 )

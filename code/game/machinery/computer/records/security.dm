@@ -230,7 +230,7 @@
 				if(!ishuman(user))
 					return FALSE
 				alert_reason = build_alert_incident(user)
-				// Backing out of the incident form still raises the Alert, it just files a bare crime.
+				// Backing out of the incident form still sets the Alert, it just files a bare crime.
 				if(QDELETED(target))
 					return FALSE
 			if((wanted_status == WANTED_GUARD_ALERT || wanted_status == WANTED_EXECUTE) && target.wanted_status != wanted_status)

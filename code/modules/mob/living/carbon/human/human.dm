@@ -319,14 +319,14 @@
 					return
 				if(GetComponent(/datum/component/person_of_interest))
 					clear_person_of_interest(flagger)
-					to_chat(flagger, span_notice("Person of interest flag cleared."))
+					to_chat(flagger, span_notice("Person of interest flag cleared from [src]."))
 					return
 				flag_person_of_interest(flagger)
-				var/datum/component/person_of_interest/raised = GetComponent(/datum/component/person_of_interest)
-				if(raised?.corroborated_name)
-					to_chat(flagger, span_notice("Person of interest flag set. Facial recognition locked; the flag will hold through a change of clothes."))
+				var/datum/component/person_of_interest/flag = GetComponent(/datum/component/person_of_interest)
+				if(flag?.corroborated_name)
+					to_chat(flagger, span_notice("Person of interest flag set on [src]. Face on record."))
 				else
-					to_chat(flagger, span_notice("Person of interest flag set. Identity unconfirmed; the flag will lapse if they change their appearance."))
+					to_chat(flagger, span_notice("Person of interest flag set on [src]. Identity unconfirmed."))
 				return
 			// BUBBER EDIT ADDITION END
 
@@ -382,7 +382,7 @@
 				var/alert_reason
 				if(new_status == WANTED_GUARD_ALERT && target_record.wanted_status != WANTED_GUARD_ALERT)
 					alert_reason = build_alert_incident(human_user)
-					// Backing out of the incident form still raises the Alert, it just files a bare crime the way a SecHUD arrest does.
+					// Backing out of the incident form still sets the Alert, it just files a bare crime the way a SecHUD arrest does.
 					if(!target_record || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
 						return
 				// BUBBER EDIT ADDITION END

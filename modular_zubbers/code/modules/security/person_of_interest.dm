@@ -1,4 +1,4 @@
-/// Per-slot weight toward shedding the flag. Jumpsuit, mask and hat dominate the silhouette; the rest is noise.
+/// Per-slot weight toward shedding the flag. The jumpsuit, mask and hat carry most of the silhouette.
 /// Slot flags are numbers, and a number on the left of a list() entry is a position, not a key, so these are stringified.
 #define POI_SLOT_WEIGHTS list(\
 	"[ITEM_SLOT_ICLOTHING]" = 4, \
@@ -13,11 +13,11 @@
 #define POI_DISGUISE_THRESHOLD 4
 /// Weight of donning or shedding a whole MODsuit, treated as a major silhouette change.
 #define POI_MODSUIT_WEIGHT 4
-/// How long a corroborated flag survives without a sec-HUD wearer re-observing the target before it goes cold. Deliberately long for a first pass.
+/// How long a corroborated flag survives without a sec-HUD wearer re-observing the target.
 #define POI_DECAY_TIME (10 MINUTES)
 
 /datum/component/person_of_interest
-	/// Who last raised the flag, for the examine string.
+	/// Who set the flag, for the examine string.
 	var/flagged_by
 	/// Snapshot of the worn outfit at flag time. Only used while unidentified.
 	var/list/appearance_signature
@@ -36,8 +36,8 @@
 		return COMPONENT_INCOMPATIBLE
 	src.flagged_by = flagged_by
 	if(!ishuman(parent))
-		// An animal has no outfit to shed and no face to read, so the flag simply stays until security clears it.
-		// It also has no wanted HUD slot, so the marker is drawn straight into the watchers' clients instead.
+		// No outfit to shed and no face to read, so the flag holds until security clears it.
+		// No wanted HUD slot either, so the marker goes straight into the watchers' clients.
 		START_PROCESSING(SSprocessing, src)
 		return
 	appearance_signature = take_signature()
@@ -48,7 +48,7 @@
 	clear_beacons()
 	return ..()
 
-/// Shows the flag to sec-HUD wearers who can currently see the target, without giving every animal in the game a HUD slot.
+/// Shows the marker to sec-HUD wearers in view, so every animal in the game does not need a HUD slot.
 /datum/component/person_of_interest/process(seconds_per_tick)
 	if(QDELETED(parent))
 		return PROCESS_KILL
@@ -97,8 +97,8 @@
 	var/mob/living/carbon/human/target = parent
 	target.sec_hud_set_security_status()
 
-/// Builds the current outfit fingerprint across the weighted slots. A deployed MODsuit is one outfit, not six garments,
-/// so every MOD part collapses to a single token keyed off the control unit: deploying or retracting is not a disguise.
+/// Builds the outfit fingerprint. Every MOD part collapses to one token keyed off the control unit, so deploying
+/// or retracting a suit does not read as a change of clothes.
 /datum/component/person_of_interest/proc/take_signature()
 	var/mob/living/carbon/human/target = parent
 	var/list/weights = POI_SLOT_WEIGHTS
@@ -114,8 +114,7 @@
 	signature["modsuit"] = istype(worn_suit) ? "[worn_suit.type]" : "none"
 	return signature
 
-/// Anchors the flag to an identity. A readable face is the strong anchor; failing that, any ID the target presents is a
-/// weaker one, since a person with no record who wears an ID has volunteered a handle to hold them by.
+/// Anchors the flag to an identity. A readable face is the strong anchor, a presented ID the weak one.
 /datum/component/person_of_interest/proc/try_corroborate()
 	if(corroborated_name)
 		return TRUE
@@ -135,7 +134,7 @@
 		return TRUE
 	return FALSE
 
-/// Refreshes the decay clock. A corroborated flag stays warm while security keeps eyes on the target and goes cold once they slip away.
+/// Refreshes the decay clock. Called whenever a sec-HUD wearer re-observes the target.
 /datum/component/person_of_interest/proc/mark_seen()
 	if(!corroborated_name)
 		return
@@ -155,7 +154,7 @@
 		return
 	addtimer(CALLBACK(src, PROC_REF(check_disguise)), 1 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
-/// TRUE if any conscious sec-HUD wearer currently has eyes on the target. Changing your outfit in front of the watch does not fool it.
+/// TRUE if any conscious sec-HUD wearer can currently see the target. Changing clothes in front of them does not count.
 /datum/component/person_of_interest/proc/is_being_watched()
 	var/mob/living/carbon/human/target = parent
 	for(var/mob/living/viewer in viewers(target))
@@ -174,12 +173,10 @@
 
 /**
  * Decides whether the flag should lapse.
- * A corroborated flag is anchored to an identity security captured. A face anchor breaks only if the target becomes
- * someone else entirely (changeling transform, full identity swap). An ID anchor breaks if the presented ID changes or
- * is dropped, but upgrades to a face anchor the moment the face is readable. Clothing cannot shake either.
- * An unidentified flag is anchored to the outfit security saw. It sheds only when the target has, while unobserved,
- * changed enough of that outfit by weight. Reverting to the original outfit re-anchors, since the comparison is always
- * against the first snapshot: a disguise you take off in private was never a disguise.
+ * A face anchor breaks only on a full identity swap. An ID anchor breaks if the ID changes or is dropped, and upgrades
+ * to a face anchor as soon as the face is readable. Neither can be shaken by clothing.
+ * An uncorroborated flag is anchored to the outfit and sheds once enough of it changes unobserved. Comparison is always
+ * against the first snapshot, so changing back re-anchors.
  */
 /datum/component/person_of_interest/proc/check_disguise()
 	var/mob/living/carbon/human/target = parent
@@ -222,12 +219,16 @@
 	target.investigate_log("lost their person of interest flag by changing appearance.", INVESTIGATE_RECORDS)
 	qdel(src)
 
-/// Raises the flag. Returns TRUE if it was not already up.
+/// Sets the flag. Returns TRUE if it was not already set.
 /mob/living/proc/flag_person_of_interest(mob/living/carbon/human/flagger)
 	if(GetComponent(/datum/component/person_of_interest))
 		return FALSE
-	var/flagger_rank = flagger.get_assignment(if_no_id = "", if_no_job = "")
-	var/flagger_label = flagger_rank ? "[flagger.get_authentification_name()] ([flagger_rank])" : flagger.get_authentification_name()
+	var/flagger_label
+	if(warrant_attribution_scrubbed(flagger))
+		flagger_label = scrubbed_warrant_attribution()
+	else
+		var/flagger_rank = flagger.get_assignment(if_no_id = "", if_no_job = "")
+		flagger_label = flagger_rank ? "[flagger.get_authentification_name()] ([flagger_rank])" : flagger.get_authentification_name()
 	AddComponent(/datum/component/person_of_interest, flagged_by = flagger_label)
 	investigate_log("flagged as a person of interest by [key_name(flagger)].", INVESTIGATE_RECORDS)
 	return TRUE
@@ -241,10 +242,18 @@
 	qdel(existing)
 	return TRUE
 
-/**
- * Animals and other non-human mobs have no record and no criminal status field, so the flag is the whole interaction.
- * Only a sec-HUD wearer sees the line at all, which keeps it out of everyone else's examine text.
- */
+/// What to call this thing in a flag notice. A securitron is not an animal.
+/mob/living/proc/poi_subject_noun()
+	if(isbot(src) || issilicon(src))
+		return "robot"
+	if(isalien(src))
+		return "creature"
+	if(isanimal_or_basicmob(src))
+		return "animal"
+	return "entity"
+
+/// Non-human mobs have no record and no criminal status field, so the flag is the whole interaction.
+/// Only sec-HUD wearers see the line.
 /mob/living/examine(mob/user)
 	. = ..()
 	. += poi_examine_lines(user)
@@ -255,10 +264,10 @@
 	var/datum/component/person_of_interest/flag = GetComponent(/datum/component/person_of_interest)
 	. = list("Person of interest: <a href='byond://?src=[REF(src)];poi=1;examine_time=[world.time]'>\[[flag ? "Flagged" : "Unflagged"]\]</a>")
 	if(flag)
-		. += span_warning("Attention: flagged animal. Do not approach without escort.")
+		. += span_warning("[capitalize(poi_subject_noun())] flagged as potentially involved in criminal activity.")
 		. += span_smallnoticeital("Flagged by [flag.flagged_by].")
 
-/// Raises or drops the flag from the examine link. Guards mirror the human sechud picker.
+/// Sets or clears the flag from the examine link. Same access guards as the human sechud picker.
 /mob/living/proc/poi_topic_toggle(mob/user)
 	if(ishuman(src) || !ishuman(user))
 		return
@@ -270,10 +279,10 @@
 		return
 	if(GetComponent(/datum/component/person_of_interest))
 		clear_person_of_interest(flagger)
-		to_chat(flagger, span_notice("Person of interest flag cleared."))
+		to_chat(flagger, span_notice("Person of interest flag cleared from [src]."))
 		return
 	flag_person_of_interest(flagger)
-	to_chat(flagger, span_notice("Person of interest flag raised. The marker shows to security while they have eyes on [src]."))
+	to_chat(flagger, span_notice("Person of interest flag set on [src]."))
 
 // /mob/living/Topic is already taken by another module, and a second definition there would silently shadow it.
 /mob/living/basic/Topic(href, href_list)

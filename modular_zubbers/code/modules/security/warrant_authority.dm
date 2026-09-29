@@ -20,6 +20,18 @@ GLOBAL_LIST_INIT(department_guard_trims, typecacheof(list(
 		return WARRANT_AUTH_SECURITY
 	return WARRANT_AUTH_NONE
 
+/// TRUE when this person is wearing emagged sechuds, which scrub their name off anything they file.
+/// Only affects the IC-visible record. investigate_log and the admin logs still name the real culprit.
+/proc/warrant_attribution_scrubbed(mob/living/carbon/human/user)
+	if(!ishuman(user))
+		return FALSE
+	var/obj/item/clothing/glasses/hud/security/shades = user.glasses
+	return istype(shades) && (shades.obj_flags & EMAGGED)
+
+/// A junk name for a scrubbed record. Rolled per entry, so repeat offenders do not leave a consistent signature.
+/proc/scrubbed_warrant_attribution()
+	return pick(WARRANT_ANONYMOUS_REPORTERS())
+
 /// Whether this person carries the authority to file a death warrant. Captain, Head of Security and Warden hold it by default.
 /proc/has_death_warrant_authority(mob/living/carbon/human/user)
 	if(!ishuman(user))
@@ -29,11 +41,8 @@ GLOBAL_LIST_INIT(department_guard_trims, typecacheof(list(
 		return FALSE
 	return (ACCESS_DEATH_WARRANT in id_card.GetAccess())
 
-/**
- * Whether death warrants may currently be issued. Amber alert or above.
- * The clown is exempt from the alert requirement. Provoking someone into killing you is the height
- * of the craft, and command has long since stopped pretending otherwise.
- */
+/// Whether death warrants may currently be issued. Amber alert or above.
+/// The clown is exempt from the alert requirement, for reasons command stopped questioning years ago.
 /proc/death_warrants_active(datum/record/crew/target)
 	if(istype(target) && (target.trim == JOB_CLOWN || target.rank == JOB_CLOWN))
 		return TRUE
@@ -60,10 +69,8 @@ GLOBAL_LIST_INIT(department_guard_trims, typecacheof(list(
 	)
 	log_game("A death warrant was distributed against [target.name] by [key_name(issuer)]. Stated grounds: [stated_reason]")
 
-/**
- * Runs the guard's incident-report flow when they raise an Alert: pick a category, then optionally add a note.
- * Returns the composed detail string ("[category]: [note] (reported by [role])"), or null if they cancelled.
- */
+/// Runs the incident-report flow for an Alert: pick a category, then optionally add a note.
+/// Returns the composed detail string, or null if they cancelled.
 /proc/build_alert_incident(mob/living/carbon/human/reporter)
 	var/category = tgui_input_list(reporter, "What kind of incident is this?", "Security Alert", ALERT_REASONS())
 	if(!category || QDELETED(reporter))
@@ -71,17 +78,17 @@ GLOBAL_LIST_INIT(department_guard_trims, typecacheof(list(
 	var/note = tgui_input_text(reporter, "Add a short note (optional).", "Security Alert", max_length = WARRANT_REASON_MAX_LENGTH)
 	if(QDELETED(reporter))
 		return null
-	var/role = reporter.get_assignment(if_no_id = "an unknown party", if_no_job = "an unknown party")
+	var/role = warrant_attribution_scrubbed(reporter) ? scrubbed_warrant_attribution() : reporter.get_assignment(if_no_id = "an unknown party", if_no_job = "an unknown party")
 	if(note)
 		return "[category]: [note] (reported by [role])"
 	return "[category] (reported by [role])"
 
-/// Records an Alert or death warrant on the target's crime list, so the status leaves an accountable paper trail.
+/// Records an Alert or death warrant on the target's crime list.
 /proc/log_warrant_status_change(datum/record/crew/target, new_status, mob/setter, reason, source = "SecHUD")
 	var/setter_name = "Security Warrant Authority"
 	if(ishuman(setter))
 		var/mob/living/carbon/human/human_setter = setter
-		setter_name = human_setter.get_authentification_name()
+		setter_name = warrant_attribution_scrubbed(human_setter) ? scrubbed_warrant_attribution() : human_setter.get_authentification_name()
 	var/datum/crime/logged
 	if(new_status == WANTED_EXECUTE)
 		logged = new /datum/crime(name = "Death Warrant", details = target.death_warrant_reason || "No grounds stated.", author = setter_name)
