@@ -13,7 +13,7 @@
 	new /obj/item/radio/headset/heads/captain(src)
 	new /obj/item/door_remote/captain(src)
 	new /obj/item/megaphone/command(src)
-	new obj/item/clothing/glasses/hud/security/sunglasses/guard/command //BUBBER EDIT ADDITION
+	new/ obj/item/clothing/glasses/hud/security/sunglasses/guard/command //BUBBER EDIT ADDITION
 	new /obj/item/card/id/departmental_budget(src) //SKYRAT EDIT ADDITION
 
 /obj/structure/closet/secure_closet/captains/populate_contents_immediate()
