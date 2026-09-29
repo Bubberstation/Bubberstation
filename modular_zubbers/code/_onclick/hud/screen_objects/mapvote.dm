@@ -149,17 +149,27 @@
 	hovered = FALSE
 
 	animate(src)
+	if(!time)
+		alpha = 0
+		_finish_hide()
+		return
+
 	animate(src, alpha = 0, time = time, easing = EASE_IN)
 
 	fade_timer = addtimer(CALLBACK(src, PROC_REF(_finish_hide)), time, TIMER_STOPPABLE | TIMER_CLIENT_TIME)
 
 /atom/movable/screen/mapvote_hud/proc/show()
 	SIGNAL_HANDLER
+	var/datum/vote/vote = SSvote.current_vote
+	var/mob/voter = hud?.mymob
+	if(!vote || !voter?.client || !vote.can_mob_vote(voter))
+		fade_out(0)
+		return
+
 	clear_buttons()
 	fade_in()
 
 	invisibility = INVISIBILITY_NONE
-	var/datum/vote/vote = SSvote.current_vote
 	latest_vote_count = vote.count_method
 	var/choices = vote.choices
 	latest_vote_length = length(choices)
