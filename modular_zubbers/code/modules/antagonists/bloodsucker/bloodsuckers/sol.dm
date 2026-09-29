@@ -107,7 +107,7 @@
 		torpor_begin(TRUE)
 		return TRUE
 	/// Prevent Torpor whilst frenzied.
-	if(!(SkipChecks & TORPOR_SKIP_CHECK_FRENZY) && (frenzied || user.incapacitated && bloodsucker_blood_volume == 0))
+	if(!(SkipChecks & TORPOR_SKIP_CHECK_FRENZY) && (is_frenzied() || user.incapacitated && bloodsucker_blood_volume == 0))
 		to_chat(user, span_userdanger("Your frenzy prevents you from entering torpor!"))
 		return FALSE
 	// sometimes you might incur these damage types when you really, should not, important to check for it here so we can heal it later
@@ -134,7 +134,7 @@
 		return FALSE
 	if(bloodsucker_blood_volume == 0 || early_end || (SSsunlight.sunlight_active && !is_in_coffin))
 		// If you're frenzying, you need a bit more health to actually have a chance to do something
-		if(frenzied && total_damage >= user.maxHealth)
+		if(is_frenzied() && total_damage >= user.maxHealth)
 			return FALSE
 		torpor_end()
 	// You are in a Coffin, so instead we'll check TOTAL damage, here.

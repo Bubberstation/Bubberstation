@@ -54,13 +54,28 @@
 	return ..()
 
 /datum/action/cooldown/bloodsucker/IsAvailable(feedback = FALSE)
-	return next_use_time <= world.time
+	if(active)
+		return TRUE
+	return ..() && check_bloodsucker_flags(owner, feedback)
 
 /datum/action/cooldown/bloodsucker/Grant(mob/user)
 	. = ..()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner)
 	if(bloodsuckerdatum)
 		bloodsuckerdatum_power = bloodsuckerdatum
+	if(!owner)
+		return
+	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_TORPOR), SIGNAL_REMOVETRAIT(TRAIT_TORPOR), COMSIG_CARBON_GAIN_ORGAN, COMSIG_CARBON_LOSE_ORGAN), PROC_REF(update_status_on_signal), override = TRUE)
+	RegisterSignals(owner, list(COMSIG_LIVING_STATUS_APPLIED, COMSIG_LIVING_STATUS_REMOVED), PROC_REF(on_status_effect_changed), override = TRUE)
+
+/datum/action/cooldown/bloodsucker/Remove(mob/removed_from)
+	UnregisterSignal(removed_from, list(SIGNAL_ADDTRAIT(TRAIT_TORPOR), SIGNAL_REMOVETRAIT(TRAIT_TORPOR), COMSIG_CARBON_GAIN_ORGAN, COMSIG_CARBON_LOSE_ORGAN, COMSIG_LIVING_STATUS_APPLIED, COMSIG_LIVING_STATUS_REMOVED))
+	return ..()
+
+/datum/action/cooldown/bloodsucker/proc/on_status_effect_changed(mob/living/source, datum/status_effect/effect)
+	SIGNAL_HANDLER
+	if(istype(effect, /datum/status_effect/frenzy))
+		build_all_button_icons(UPDATE_BUTTON_STATUS)
 
 /datum/action/cooldown/bloodsucker/Trigger(trigger_flags, atom/target)
 	if(trigger_flags & TRIGGER_SECONDARY_ACTION)
@@ -99,7 +114,7 @@
 		return TRUE
 
 	// Have enough blood? Bloodsuckers in a Frenzy don't need to pay them
-	if(bloodsuckerdatum_power.frenzied)
+	if(bloodsuckerdatum_power.is_frenzied())
 		return TRUE
 	if(bloodsuckerdatum_power.GetBloodVolume() < bloodcost)
 		to_chat(owner, span_warning("You need at least [bloodcost] blood to activate [name]"))
@@ -129,32 +144,43 @@
 /datum/action/cooldown/bloodsucker/proc/can_use(mob/living/carbon/user)
 	if(QDELETED(owner))
 		return FALSE
-	if(!isliving(user))
-		return FALSE
-	if(!(bloodsucker_check_flags & BP_CAN_USE_HEARTLESS) && bloodsuckerdatum_power && !owner.get_organ_slot(ORGAN_SLOT_HEART))
-		to_chat(user, span_warning("To channel your powers you need a heart!"))
-		return FALSE
-	if(isbrain(user))
-		to_chat(user, span_warning("What are you going to do, jump on someone and suck their blood? You're just a head."))
-		return FALSE
-	// Torpor?
-	if((bloodsucker_check_flags & BP_CANT_USE_IN_TORPOR) && bloodsuckerdatum_power?.is_in_torpor())
-		to_chat(user, span_warning("Not while you're in Torpor."))
-		return FALSE
-	if(!(bloodsucker_check_flags & BP_CAN_USE_TRANSFORMED) && (user.has_status_effect(/datum/status_effect/shapechange_mob/from_spell) || user.has_status_effect(/datum/status_effect/shapechange_mob)))
-		to_chat(user, span_warning("You can't do this while transformed!"))
-		return FALSE
-	// Frenzy?
-	if((bloodsucker_check_flags & BP_CANT_USE_IN_FRENZY) && (bloodsuckerdatum_power?.frenzied))
-		to_chat(user, span_warning("You cannot use powers while in a Frenzy!"))
-		return FALSE
-	// Stake?
-	if(!(bloodsucker_check_flags & BP_CAN_USE_WHILE_STAKED) && user.am_staked())
-		to_chat(user, span_warning("You have a stake in your chest! Your powers are useless."))
+	if(!check_bloodsucker_flags(user, feedback = TRUE))
 		return FALSE
 	// Constant Cost (out of blood)
 	if(constant_bloodcost > 0 && !can_pay_blood(user))
 		to_chat(user, span_warning("You don't have the blood to upkeep [src]."))
+		return FALSE
+	return TRUE
+
+/datum/action/cooldown/bloodsucker/proc/check_bloodsucker_flags(mob/living/carbon/user, feedback = FALSE)
+	if(!isliving(user))
+		return FALSE
+	if(!(bloodsucker_check_flags & BP_CAN_USE_HEARTLESS) && bloodsuckerdatum_power && !user.get_organ_slot(ORGAN_SLOT_HEART))
+		if(feedback)
+			to_chat(user, span_warning("To channel your powers you need a heart!"))
+		return FALSE
+	if(isbrain(user))
+		if(feedback)
+			to_chat(user, span_warning("What are you going to do, jump on someone and suck their blood? You're just a head."))
+		return FALSE
+	// Torpor?
+	if((bloodsucker_check_flags & BP_CANT_USE_IN_TORPOR) && bloodsuckerdatum_power?.is_in_torpor())
+		if(feedback)
+			to_chat(user, span_warning("Not while you're in Torpor."))
+		return FALSE
+	if(!(bloodsucker_check_flags & BP_CAN_USE_TRANSFORMED) && (user.has_status_effect(/datum/status_effect/shapechange_mob/from_spell) || user.has_status_effect(/datum/status_effect/shapechange_mob)))
+		if(feedback)
+			to_chat(user, span_warning("You can't do this while transformed!"))
+		return FALSE
+	// Frenzy?
+	if((bloodsucker_check_flags & BP_CANT_USE_IN_FRENZY) && (bloodsuckerdatum_power?.is_frenzied()))
+		if(feedback)
+			to_chat(user, span_warning("You cannot use powers while in a Frenzy!"))
+		return FALSE
+	// Stake?
+	if(!(bloodsucker_check_flags & BP_CAN_USE_WHILE_STAKED) && user.am_staked())
+		if(feedback)
+			to_chat(user, span_warning("You have a stake in your chest! Your powers are useless."))
 		return FALSE
 	return TRUE
 
@@ -187,7 +213,7 @@
 			living_owner.blood_volume = max(0, living_owner.blood_volume - blood_cost)
 		return
 	// Bloodsuckers in a Frenzy don't have enough Blood to pay it, so just don't.
-	if(bloodsuckerdatum_power.frenzied)
+	if(bloodsuckerdatum_power.is_frenzied())
 		return
 	bloodsuckerdatum_power.AdjustBloodVolume(cost_override ? -cost_override : -bloodcost)
 

@@ -67,6 +67,7 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/syndicate.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/syndicate_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/syndicate_teshari.dmi'
 	icon_state = "snake"
 
 /obj/item/clothing/under/rank/security/camo
@@ -80,6 +81,7 @@
 	greyscale_config = /datum/greyscale_config/camo
 	greyscale_config_worn = /datum/greyscale_config/camo/worn
 	greyscale_config_worn_digi = /datum/greyscale_config/camo/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/camo/worn/teshari
 	greyscale_colors = "#A53228#333333#292929"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
@@ -619,4 +621,7 @@
 	greyscale_config_worn_teshari = /datum/greyscale_config/jumpsuit/prison/worn/teshari
 
 /obj/item/clothing/under/rank/security/peacekeeper/miniskirt
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/detective/kim
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'

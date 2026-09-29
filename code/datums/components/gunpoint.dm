@@ -26,12 +26,17 @@
 	var/damage_mult = GUNPOINT_MULT_STAGE_1
 	/// If TRUE, we're committed to firing the shot, for async purposes
 	var/point_of_no_return = FALSE
+	var/distance //Bubber edit - tracks the starting distance for the hold up
 
 // *extremely bad russian accent* no!
 /datum/component/gunpoint/Initialize(mob/living/targ, obj/item/gun/wep)
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
-
+	//Bubber edit begin - lock on reticle
+	if(!targ.lock_on_effect)
+		targ.lock_on_effect = new
+		targ.vis_contents += targ.lock_on_effect
+	//Bubber edit end
 	var/mob/living/shooter = parent
 	target = targ
 	weapon = wep
@@ -48,7 +53,7 @@
 	RegisterSignals(targ, list(COMSIG_LIVING_DISARM_HIT, COMSIG_LIVING_GET_PULLED), PROC_REF(cancel))
 	RegisterSignals(weapon, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), PROC_REF(cancel))
 
-	var/distance = max(get_dist(shooter, target), 1) // treat 0 distance as adjacent
+	distance = max(get_dist(shooter, target), 1) //var/distance = max(get_dist(shooter, target), 1) // treat 0 distance as adjacent - Bubber edit - tracking initial distance for use in damage calculations
 	var/distance_description = (distance <= 1 ? "point blank " : "")
 
 	shooter.visible_message(span_danger("[shooter] aims [weapon] [distance_description]at [target]!"),
@@ -78,6 +83,10 @@
 	shooter.remove_status_effect(/datum/status_effect/holdup)
 	target.remove_status_effect(/datum/status_effect/grouped/heldup, REF(shooter))
 	target.clear_mood_event("gunpoint")
+	//Bubber edit begin - remove reticle
+	target.vis_contents -= target.lock_on_effect
+	QDEL_NULL(target.lock_on_effect)
+	//Bubber edit end
 	return ..()
 
 /datum/component/gunpoint/RegisterWithParent()
@@ -131,12 +140,15 @@
 	if(stage == 2)
 		to_chat(parent, span_danger("You steady [weapon] on [target]."))
 		to_chat(target, span_userdanger("[parent] has steadied [weapon] on you!"))
-		damage_mult = GUNPOINT_MULT_STAGE_2
+		damage_mult = max(GUNPOINT_MULT_STAGE_2 - 0.2 * (distance - 1), 1) //Bubber edit - damage scaling with distance - prev - damage_mult = GUNPOINT_MULT_STAGE_2
 		addtimer(CALLBACK(src, PROC_REF(update_stage), 3), GUNPOINT_DELAY_STAGE_3)
 	else if(stage == 3)
 		to_chat(parent, span_danger("You have fully steadied [weapon] on [target]."))
 		to_chat(target, span_userdanger("[parent] has fully steadied [weapon] on you!"))
-		damage_mult = GUNPOINT_MULT_STAGE_3
+		damage_mult = max(GUNPOINT_MULT_STAGE_3 - 0.3 * (distance - 1), 1) //Bubber edit - damage scaling with distance - prev - damage_mult = GUNPOINT_MULT_STAGE_3
+		//Bubber edit begin - fully lock on
+		if(target.lock_on_effect.icon_state != "locked")
+			target.lock_on_effect.icon_state = "locked"
 
 ///Cancel the holdup if the shooter moves out of sight or out of range of the target
 /datum/component/gunpoint/proc/check_deescalate()
@@ -156,7 +168,10 @@
 	shooter.remove_status_effect(/datum/status_effect/holdup) // try doing these before the trigger gets pulled since the target (or shooter even) may not exist after pulling the trigger, dig?
 	target.remove_status_effect(/datum/status_effect/grouped/heldup, REF(shooter))
 	target.clear_mood_event("gunpoint")
-
+	//Bubber edit begin - remove reticle
+	target.vis_contents -= target.lock_on_effect
+	QDEL_NULL(target.lock_on_effect)
+	//Bubber edit end
 	if(point_of_no_return)
 		return
 	point_of_no_return = TRUE
@@ -184,6 +199,10 @@
 	shooter.visible_message(span_danger("[shooter] breaks [shooter.p_their()] aim on [target]!"), \
 		span_danger("You are no longer aiming [weapon] at [target]."), ignored_mobs = target)
 	to_chat(target, span_userdanger("[shooter] breaks [shooter.p_their()] aim on you!"))
+	//Bubber edit begin - remove reticle
+	target.vis_contents -= target.lock_on_effect
+	QDEL_NULL(target.lock_on_effect)
+	//Bubber edit end
 	qdel(src)
 
 ///If the shooter is hit by an attack, they have a 50% chance to flinch and fire. If it hit the arm holding the trigger, it's an 80% chance to fire instead
