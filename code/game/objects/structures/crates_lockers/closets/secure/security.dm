@@ -16,7 +16,6 @@
 	new obj/item/clothing/glasses/hud/security/sunglasses/guard/command //BUBBER EDIT ADDITION
 	new /obj/item/card/id/departmental_budget(src) //SKYRAT EDIT ADDITION
 
-
 /obj/structure/closet/secure_closet/captains/populate_contents_immediate()
 	new /obj/item/gun/energy/e_gun(src)
 	new /obj/item/storage/belt/sheath/sabre(src)
