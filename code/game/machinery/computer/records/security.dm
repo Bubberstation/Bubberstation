@@ -201,7 +201,6 @@
 			// BUBBER EDIT CHANGE START - WARRANTS - accept the warrant statuses too, but gate who can set them
 			if(!wanted_status || !(wanted_status in WANTED_STATUSES_WITH_WARRANTS()))
 				return FALSE
-			var/setter_authority = ishuman(user) ? get_warrant_authority(user) : WARRANT_AUTH_SECURITY
 			if(target.wanted_status == WANTED_EXECUTE && !has_death_warrant_authority(user))
 				to_chat(user, span_warning("Rescinding a death warrant requires death warrant authorization."))
 				playsound(src, 'sound/machines/terminal/terminal_error.ogg', 75, TRUE)
