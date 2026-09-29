@@ -117,24 +117,23 @@ const CrewTab = (props: { record: SecurityRecord; index: number }) => {
   const statusColor = CRIMESTATUS2COLOR[wanted_status]; // BUBBER EDIT ADDITION - WARRANTS
 
   return (
+    // BUBBER EDIT CHANGE START - WARRANTS - a flagged record fills its whole row with the status colour and a white name.
+    // The colour goes on the tab itself rather than an inner box so there is no gap around it, and the candystripe class
+    // comes off when it does, because that rule paints a gradient over any background colour underneath it. The bar then
+    // carries its own light/dark alternation on the same row parity, so ten wanted people still read as stripes.
     <Tabs.Tab
-      className="candystripe"
+      backgroundColor={statusColor}
+      className={statusColor ? undefined : 'candystripe'}
       onClick={() => selectRecord(record)}
       selected={isSelected}
+      style={
+        statusColor && index % 2 ? { filter: 'brightness(0.85)' } : undefined
+      }
     >
-      {/* BUBBER EDIT CHANGE START - WARRANTS - a flagged record reads as a white name on a coloured bar. No status means no bar, so the candystripe stays visible underneath. The bar carries its own light/dark alternation, in phase with the candystripe's nth-child, so a run of ten wanted people still stripes instead of becoming one solid block. */}
-      <Box
-        backgroundColor={statusColor}
-        bold={isSelected}
-        color={statusColor ? 'white' : undefined}
-        px={0.5}
-        style={
-          statusColor && index % 2 ? { filter: 'brightness(0.85)' } : undefined
-        }
-      >
+      <Box bold={isSelected} color={statusColor ? 'white' : undefined}>
         <Icon name={JOB2ICON[trim] || 'question'} /> {name}
       </Box>
-      {/* BUBBER EDIT CHANGE END */}
     </Tabs.Tab>
+    // BUBBER EDIT CHANGE END
   );
 };

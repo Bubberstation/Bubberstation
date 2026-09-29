@@ -349,19 +349,17 @@
 				var/obj/item/clothing/glasses/hud/security/emag_check = human_user.glasses
 				if(istype(emag_check) && (emag_check.obj_flags & EMAGGED))
 					warrant_authority = max(warrant_authority, WARRANT_AUTH_SECURITY)
-				if(target_record.wanted_status == WANTED_EXECUTE && warrant_authority < WARRANT_AUTH_COMMAND)
-					to_chat(human_user, span_warning("ERROR: Death warrants may only be rescinded by the Captain or Head of Security."))
+				if(target_record.wanted_status == WANTED_EXECUTE && !has_death_warrant_authority(human_user))
+					to_chat(human_user, span_warning("ERROR: Rescinding a death warrant requires death warrant authorization."))
 					return
 				var/list/status_options
 				switch(warrant_authority)
 					if(WARRANT_AUTH_GUARD)
 						status_options = list(WANTED_NONE, WANTED_GUARD_ALERT)
-					if(WARRANT_AUTH_COMMAND)
-						status_options = WANTED_STATUSES_WITH_WARRANTS()
-						if(!death_warrants_active(target_record))
-							status_options -= WANTED_EXECUTE
 					else
-						status_options = WANTED_STATUSES_WITH_WARRANTS() - WANTED_EXECUTE
+						status_options = WANTED_STATUSES_WITH_WARRANTS()
+						if(!has_death_warrant_authority(human_user) || !death_warrants_active(target_record))
+							status_options -= WANTED_EXECUTE
 				// BUBBER EDIT ADDITION END
 				var/new_status = tgui_input_list(human_user, "Specify a new criminal status for this person.", "Security HUD", status_options, target_record.wanted_status) // BUBBER EDIT CHANGE - WARRANTS - Original: WANTED_STATUSES()
 				if(!new_status || !target_record || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
@@ -374,7 +372,7 @@
 					var/stated_reason = tgui_input_text(human_user, "State the grounds for this death warrant. This will be broadcast to the entire station.", "Death Warrant", max_length = WARRANT_REASON_MAX_LENGTH)
 					if(!stated_reason || !target_record || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
 						return
-					if(!death_warrants_active(target_record) || get_warrant_authority(human_user) < WARRANT_AUTH_COMMAND)
+					if(!death_warrants_active(target_record) || !has_death_warrant_authority(human_user))
 						to_chat(human_user, span_warning("ERROR: Death warrant authorization withdrawn."))
 						return
 					target_record.death_warrant_reason = stated_reason

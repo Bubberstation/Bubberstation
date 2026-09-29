@@ -142,7 +142,7 @@ const RecordInfo = (props) => {
                   let tip = CRIMESTATUS2DESC[button] || '';
                   if (execBlocked) {
                     tip =
-                      'Death warrants require Captain or Head of Security authorization at amber alert or above.';
+                      'Death warrants require death warrant authorization at amber alert or above.';
                   }
                   return (
                     <Button

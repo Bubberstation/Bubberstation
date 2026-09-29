@@ -20,6 +20,15 @@ GLOBAL_LIST_INIT(department_guard_trims, typecacheof(list(
 		return WARRANT_AUTH_SECURITY
 	return WARRANT_AUTH_NONE
 
+/// Whether this person carries the authority to file a death warrant. Captain, Head of Security and Warden hold it by default.
+/proc/has_death_warrant_authority(mob/living/carbon/human/user)
+	if(!ishuman(user))
+		return FALSE
+	var/obj/item/card/id/id_card = user.get_idcard(hand_first = FALSE)
+	if(!id_card)
+		return FALSE
+	return (ACCESS_DEATH_WARRANT in id_card.GetAccess())
+
 /**
  * Whether death warrants may currently be issued. Amber alert or above.
  * The clown is exempt from the alert requirement. Provoking someone into killing you is the height

@@ -90,7 +90,7 @@
 	var/list/data = ..()
 
 	data["available_statuses"] = WANTED_STATUSES_WITH_WARRANTS() // BUBBER EDIT CHANGE - WARRANTS - Original: WANTED_STATUSES()
-	data["can_death_warrant"] = (ishuman(user) ? get_warrant_authority(user) >= WARRANT_AUTH_COMMAND : FALSE) // BUBBER EDIT ADDITION - WARRANTS - the per-record alert gate rides along on each record as warrant_ready
+	data["can_death_warrant"] = has_death_warrant_authority(user) // BUBBER EDIT ADDITION - WARRANTS - the per-record alert gate rides along on each record as warrant_ready
 	data["current_user"] = user.name
 	data["higher_access"] = has_armory_access(user)
 
@@ -202,18 +202,18 @@
 			if(!wanted_status || !(wanted_status in WANTED_STATUSES_WITH_WARRANTS()))
 				return FALSE
 			var/setter_authority = ishuman(user) ? get_warrant_authority(user) : WARRANT_AUTH_SECURITY
-			if(target.wanted_status == WANTED_EXECUTE && setter_authority < WARRANT_AUTH_COMMAND)
-				to_chat(user, span_warning("Death warrants may only be rescinded by the Captain or Head of Security."))
+			if(target.wanted_status == WANTED_EXECUTE && !has_death_warrant_authority(user))
+				to_chat(user, span_warning("Rescinding a death warrant requires death warrant authorization."))
 				playsound(src, 'sound/machines/terminal/terminal_error.ogg', 75, TRUE)
 				return FALSE
 			if(wanted_status == WANTED_EXECUTE)
-				if(setter_authority < WARRANT_AUTH_COMMAND || !death_warrants_active(target))
-					to_chat(user, span_warning("Death warrants require Captain or Head of Security authorization at amber alert or above."))
+				if(!has_death_warrant_authority(user) || !death_warrants_active(target))
+					to_chat(user, span_warning("Death warrants require death warrant authorization at amber alert or above."))
 					playsound(src, 'sound/machines/terminal/terminal_error.ogg', 75, TRUE)
 					return FALSE
 				if(target.wanted_status != WANTED_EXECUTE)
 					var/stated_reason = tgui_input_text(user, "State the grounds for this death warrant. This will be broadcast to the entire station.", "Death Warrant", max_length = WARRANT_REASON_MAX_LENGTH)
-					if(!stated_reason || QDELETED(target) || !death_warrants_active(target) || (ishuman(user) && get_warrant_authority(user) < WARRANT_AUTH_COMMAND))
+					if(!stated_reason || QDELETED(target) || !death_warrants_active(target) || !has_death_warrant_authority(user))
 						return FALSE
 					target.death_warrant_reason = stated_reason
 					distribute_wanted_order(target, stated_reason, user)
