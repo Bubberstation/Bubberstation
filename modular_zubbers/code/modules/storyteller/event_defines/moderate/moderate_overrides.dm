@@ -80,10 +80,15 @@
 	track = EVENT_TRACK_MODERATE
 	tags = list(TAG_DESTRUCTIVE, TAG_COMMUNAL, TAG_CHAOTIC)
 
-/datum/round_event_control/cme/unknown
+/datum/round_event_control/cme/minimal
+	min_players = 10
+	max_occurrences = 2
+	weight = 12
+
+/datum/round_event_control/cme/moderate
 	min_players = 20 // It's really not that bad, they lied to you GI
 	max_occurrences = 2
-	weight = 15
+	weight = 7
 
 /datum/round_event_control/wormholes
 	tags = list(TAG_COMMUNAL)
