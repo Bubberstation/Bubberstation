@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT(allergy_reagent_blacklist, typecacheof(list(
 	var/allergy_string
 
 /datum/quirk/item_quirk/allergic/add(client/client_source)
-	var/list/chem_list = valid_subtypesof(/datum/reagent/medicine) - GLOB.allergy_reagent_blacklist
+	var/list/chem_list = valid_subtypesof(/datum/reagent/medicine) - blacklist // Bubber Edit Change - use our blacklist instead of TG's
 	var/list/allergy_chem_names = list()
 	for(var/i in 0 to 5)
 		var/datum/reagent/medicine/chem_type = pick_n_take(chem_list)
