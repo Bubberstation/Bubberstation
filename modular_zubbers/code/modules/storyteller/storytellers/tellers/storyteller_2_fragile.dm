@@ -1,7 +1,7 @@
 /datum/storyteller/fragile
 	name = "Fragile (Mid-Low Event/Antag Rolls)"
 	desc = "This storyteller will limit destructive, combat-focused, and chaotic events. \
-	Spawns more events and allows for more combat than LV1, but remains lower in frequency than LV2. It will also repeat events less than LV1."
+	Spawns more events than the Light storyteller, but less than Default Andy."
 	welcome_text = "Handle with care!"
 
 	event_repetition_multiplier = 0.5
