@@ -65,7 +65,6 @@
 
 /datum/round_event/syndicate_assassination_attempt/proc/find_victim()
 	var/list/candidates = list()
-	var/list/blacklisted_areas = get_blacklisted_areas()
 	var/area/area_type
 	for(var/mob/player as anything in GLOB.player_list)
 		if(player.has_faction(ROLE_SYNDICATE) || player.has_faction(ROLE_SYNDICATE_INFILTRATOR) || player.has_faction(ROLE_LONE_OPERATIVE) || player.has_faction(ROLE_OPERATIVE) || player.has_faction(ROLE_TRAITOR))
