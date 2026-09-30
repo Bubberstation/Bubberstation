@@ -87,8 +87,9 @@
 
 ///Handles the creation of the pod, in case it needs to be modified beforehand
 /datum/round_event/syndicate_assassination_attempt/proc/make_pod()
-	var/obj/structure/closet/supplypod/S = new
-	S.set_style(/datum/pod_style/syndicate)
+	var/obj/structure/closet/supplypod/pod = new
+	pod.set_style(/datum/pod_style/syndicate)
+	pod.explosionSize = list(0,0,0,1)
 	return S
 
 ///Puts entities in the pod
