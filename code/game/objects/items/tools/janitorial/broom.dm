@@ -87,7 +87,7 @@
 * * user - The person who is brooming
 * * target - The object or tile that's target of a broom click or being moved into
 * * sweep_dir - The directions in which we sweep objects
-* * push_limit - How many items we can move at once
+* * push_limit - How many items we can move at once // BUBBER EDIT
 */
 /proc/do_sweep(obj/broomer, mob/user, atom/target, sweep_dir, push_limit = BROOM_PUSH_LIMIT) // BUBBER EDIT CHANGE - ORIGINAL: /proc/do_sweep(obj/broomer, mob/user, atom/target, sweep_dir)
 	var/turf/current_item_loc = isturf(target) ? target : target.loc
