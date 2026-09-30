@@ -69,7 +69,7 @@
 	return NONE // I guess
 
 /**
- * Attempts to push up to push_limit atoms from a given location the user's faced direction
+ * Attempts to push up to push_limit atoms from a given location the user's faced direction // BUBBER EDIT
  *
  * Arguments:
  * * user - The user of the pushbroom
