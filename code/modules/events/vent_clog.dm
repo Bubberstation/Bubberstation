@@ -98,7 +98,7 @@
 		var/turf/vent_turf = get_turf(vent)
 		var/area/vent_area = get_area(vent)
 		//BUBBER EDIT START: prevent this from going into dorms or other ERP rated areas
-		if(GLOB.expected_erp_areas.contains(vent_area))
+		if(is_type_in_list(vent_area, GLOB.expected_erp_areas))
 			continue
 		//BUBBER EDIT END
 		if(vent_turf && is_station_level(vent_turf.z) && !vent.welded && istype(vent_area, /area/station) && !vent_turf.is_blocked_turf_ignore_climbable())
