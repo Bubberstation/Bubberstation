@@ -33,6 +33,14 @@
 	weight = 10 // Lower from original 15 because it KEEPS SPAWNING THEM
 	tags = list(TAG_COMMUNAL, TAG_DESTRUCTIVE)
 
+/datum/round_event_control/anomaly/anomaly_vortex
+	tags = list(TAG_DESTRUCTIVE)
+	weight = 5
+
+/datum/round_event_control/anomaly/anomaly_pyro
+	tags = list(TAG_DESTRUCTIVE)
+	weight = 5
+
 /datum/round_event_control/spacevine
 	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_CHAOTIC)
 
@@ -67,3 +75,24 @@
 	weight = 0
 	max_occurrences = 0
 	tags = list(TAG_CREW_ANTAG)
+
+/datum/round_event_control/cme
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_DESTRUCTIVE, TAG_COMMUNAL, TAG_CHAOTIC)
+
+/datum/round_event_control/cme/minimal
+	min_players = 10
+	max_occurrences = 2
+	weight = 12
+
+/datum/round_event_control/cme/moderate
+	min_players = 20 // It's really not that bad, they lied to you GI
+	max_occurrences = 2
+	weight = 7
+
+/datum/round_event_control/wormholes
+	tags = list(TAG_COMMUNAL)
+
+/datum/round_event_control/bureaucratic_error
+	tags = list(TAG_COMMUNAL)
+	weight = 1 // Yes, it's annoying.
