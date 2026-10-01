@@ -28,7 +28,17 @@
 /datum/round_event/syndicate_assassination_attempt/announce(fake)
 	if(fake)
 		victim = find_victim()
-	priority_announce("Dear [victim], count your days left, because they are numbered. You're marked for death and we're here to collect.", "The Syndicate", 'sound/announcer/announcement/announce_syndi.ogg', ANNOUNCEMENT_TYPE_SYNDICATE, has_important_message = TRUE, color_override = "red")
+	priority_announce(get_announce_text(victim), "The Syndicate", 'sound/announcer/announcement/announce_syndi.ogg', ANNOUNCEMENT_TYPE_SYNDICATE, has_important_message = TRUE, color_override = "red")
+
+/datum/round_event/syndicate_assassination_attempt/proc/get_announce_text(victim)
+	var/list/potential_text = list( \
+		"Dear [victim], count your days left, because they are numbered. You're marked for death and we're here to collect.",\
+		"Hello, Nanotrasen scum. We are here to murder [victim]. Submit or perish.",\
+		"Knock knock, it's the Syndicate talking! We have a kill warrant for [victim]. Open up.",\
+		"[victim] is still alive; we will be arriving soon to fix that.",\
+		"We are dispatching a cruelty squad straight to [victim]. 30 minutes or it's free.",\
+	)
+	return pick(potential_text)
 
 /**
 * Tries to find a valid area, throws an error if none are found
@@ -55,12 +65,12 @@
 
 /datum/round_event/syndicate_assassination_attempt/proc/find_victim()
 	var/list/candidates = list()
-	var/list/blacklisted_areas = get_blacklisted_areas()
+	var/area/area_type
 	for(var/mob/player as anything in GLOB.player_list)
-		if(player.has_faction(ROLE_SYNDICATE))
+		if(player.has_faction(ROLE_SYNDICATE) || player.has_faction(ROLE_SYNDICATE_INFILTRATOR) || player.has_faction(ROLE_LONE_OPERATIVE) || player.has_faction(ROLE_OPERATIVE) || player.has_faction(ROLE_TRAITOR))
 			continue
-		var/area_type = get_area(player)
-		if(area_type in blacklisted_areas)
+		area_type = get_area(player)
+		if(is_type_in_list(area_type, GLOB.expected_erp_areas))
 			continue
 		if(!is_station_level(player.z))
 			continue
@@ -77,9 +87,10 @@
 
 ///Handles the creation of the pod, in case it needs to be modified beforehand
 /datum/round_event/syndicate_assassination_attempt/proc/make_pod()
-	var/obj/structure/closet/supplypod/S = new
-	S.set_style(/datum/pod_style/syndicate)
-	return S
+	var/obj/structure/closet/supplypod/pod = new
+	pod.set_style(/datum/pod_style/syndicate)
+	pod.explosionSize = list(0,0,0,1)
+	return pod
 
 ///Puts entities in the pod
 /datum/round_event/syndicate_assassination_attempt/proc/fill_pod(obj/structure/closet/supplypod)
@@ -109,8 +120,8 @@
 	)
 	spawn_number = 8
 
-/datum/round_event/syndicate_assassination_attempt/hammers/announce(fake)
-	priority_announce("We are going to kill [victim] with hammers. This is a threat.", "The Syndicate", 'sound/announcer/announcement/announce_syndi.ogg', ANNOUNCEMENT_TYPE_SYNDICATE, has_important_message = TRUE, color_override = "red")
+/datum/round_event/syndicate_assassination_attempt/hammers/get_announce_text(victim)
+	return "We are going to kill [victim] with hammers. This is a threat."
 
 /mob/living/basic/trooper/syndicate/melee/hammer
 	melee_damage_lower = 25

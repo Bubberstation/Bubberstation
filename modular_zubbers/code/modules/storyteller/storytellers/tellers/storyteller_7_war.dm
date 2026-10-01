@@ -1,7 +1,6 @@
 /datum/storyteller/npc_war
-	name = "PvE (Hostile NPC Events)"
-	name = "Swarm (Hostile NPC Events)"
-	desc = "This storyteller heavily prioritizes spawning in NPC antagonists to keep combat roles active in-round. Player antagonists have the same incidence rate."
+	name = "Swarm (Hostile NPC Focus)"
+	desc = "This storyteller heavily prioritizes spawning in NPC antagonists to keep combat roles active in-round, as a supplement to the standard rate of player-controlled antagonists."
 	welcome_text = "WAR! HOO! What is it good for? Absolutely NOTHING!"
 
 	tag_multipliers = list(
@@ -25,7 +24,7 @@
 
 /datum/storyteller_data/tracks/npc_war
 	threshold_mundane = 1200
-	threshold_moderate = 1600
-	threshold_major = 3000
+	threshold_moderate = 1350
+	threshold_major = 2700
 	threshold_crewset = 2400
 	threshold_ghostset = 6000
