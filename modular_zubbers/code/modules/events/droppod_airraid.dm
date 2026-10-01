@@ -25,9 +25,9 @@
 	/// Maximum number of boss pods to send in the final wave
 	var/max_boss_pods = 1
 	/// Helps calculate the time between droppod waves, multiplied against the current number of droppods
-	var/time_to_next_wave_droppod_factor = 6
+	var/time_to_next_wave_droppod_factor = 5
 	/// Minimum time between droppods
-	var/min_time_between_droppod_waves = 3 /// FOR FINAL BUILD: use this 30
+	var/min_time_between_droppod_waves = 3
 	/// When the next incident should happen
 	var/next_incidence_time = 0
 	/// When the next announcement should happen
@@ -197,8 +197,8 @@
 	var/static/mutable_appearance/target_appearance = mutable_appearance('icons/obj/supplypods_32x32.dmi', "LZ")
 	var/turf/ghost_target_turf = pick(get_area_turfs(get_current_wave()))
 	notify_ghosts("A droppod wave is attacking [get_current_wave().name]!", source = ghost_target_turf, header = "Invasion in progress", alert_overlay = target_appearance)
-	current_wave++
 	set_next_incident_time()
+	current_wave++
 
 /datum/round_event/droppod_airraid/proc/calculate_time_to_next_wave(current_droppod_count)
 	return current_droppod_count * time_to_next_wave_droppod_factor + min_time_between_droppod_waves
