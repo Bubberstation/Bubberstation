@@ -87,7 +87,7 @@ GLOBAL_LIST_INIT(heretic_start_knowledge, initialize_starting_knowledge())
 	name = "The Living Heart"
 	desc = "Grants you a Living Heart, allowing you to track sacrifice targets."
 	transmute_text = "Should you lose your heart, you can transmute a poppy and a pool of blood\
-		with some plasma to awaken your heart into a Living Heart."
+		with some plasma to awaken your heart into a Living Heart." // BUBBER EDIT
 	required_atoms = list(
 		/obj/effect/decal/cleanable/blood = 1,
 		/obj/item/food/grown/flower/poppy = 1,
