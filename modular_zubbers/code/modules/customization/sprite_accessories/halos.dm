@@ -14,6 +14,11 @@
 	icon_state = "none"
 	factual = FALSE
 
+// sprite from Aurora Station, formerly a horn option
+/datum/sprite_accessory/halo/classic
+	name = "Classic Halo"
+	icon_state = "classic"
+
 /datum/sprite_accessory/halo/gabriel
 	name = "Messenger Halo"
 	icon_state = "gabriel"

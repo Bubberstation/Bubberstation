@@ -3,7 +3,7 @@
  * You can't really use the non-modular version, least you eventually want asinine merge
  * conflicts and/or potentially disastrous issues to arise, so here's your own.
  */
-#define MODULAR_SAVEFILE_VERSION_MAX 8
+#define MODULAR_SAVEFILE_VERSION_MAX 9
 
 #define MODULAR_SAVEFILE_UP_TO_DATE -1
 
@@ -15,6 +15,7 @@
 #define VERSION_LANGUAGES 6
 #define VERSION_LOADOUT_PRESETS 7
 #define VERSION_INTERNAL_EXTERNAL_ORGANS 8
+#define VERSION_HORN_HALO_TO_HALO 9
 
 #define INDEX_UNDERWEAR 1
 #define INDEX_BRA 2
@@ -276,6 +277,17 @@
 			save_augments[augment_name] = "/obj/item/organ[augment_path_string_stripped]"
 		load_augments(save_augments)
 
+	// the old "Halo" horn option became a proper halo
+	if(current_version < VERSION_HORN_HALO_TO_HALO && save_data["feature_horns"] == "Halo")
+		write_preference(GLOB.preference_entries[/datum/preference/choiced/mutant_choice/horns], "None")
+		if(save_data["horns_toggle"])
+			write_preference(GLOB.preference_entries[/datum/preference/toggle/mutant_toggle/horns], FALSE)
+			write_preference(GLOB.preference_entries[/datum/preference/choiced/mutant_choice/halo], /datum/sprite_accessory/halo/classic::name)
+			var/list/horn_colors = save_data["horns_color"]
+			if(islist(horn_colors) && length(horn_colors))
+				write_preference(GLOB.preference_entries[/datum/preference/color/mutant/halo_color], horn_colors[1])
+		mutant_bodyparts -= "horns"
+
 	to_chat(parent, custom_boxed_message("green_box", span_greentext("Updated preferences!")))
 
 /datum/preferences/proc/check_migration()
@@ -360,6 +372,7 @@
 #undef VERSION_LANGUAGES
 #undef VERSION_LOADOUT_PRESETS
 #undef VERSION_INTERNAL_EXTERNAL_ORGANS
+#undef VERSION_HORN_HALO_TO_HALO
 
 #undef INDEX_UNDERWEAR
 #undef INDEX_BRA
