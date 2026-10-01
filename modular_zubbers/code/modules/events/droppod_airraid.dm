@@ -22,6 +22,8 @@
 	var/list/enemy_types = list()
 	/// Boss types; spawns during the final wave, if this has contents
 	var/list/boss_types = list()
+	/// Max droppods per wave
+	var/max_droppods_per_wave = 5
 	/// Maximum number of boss pods to send in the final wave
 	var/max_boss_pods = 1
 	/// Helps calculate the time between droppod waves, multiplied against the current number of droppods
@@ -147,7 +149,7 @@
 		. += generate_one_droppod()
 
 /datum/round_event/droppod_airraid/proc/get_droppod_count()
-	return ceil(get_current_wave().areasize / turf_droppods_ratio)
+	return min(ceil(get_current_wave().areasize / turf_droppods_ratio), max_droppods_per_wave)
 
 /datum/round_event/droppod_airraid/proc/get_current_wave() as /area
 	return selected_spawn_areas[current_wave]
