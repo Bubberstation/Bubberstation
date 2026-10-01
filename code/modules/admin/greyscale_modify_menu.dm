@@ -35,8 +35,9 @@
 	var/list/color_labels
 	///BUBBER VAR: The asset url of the last preview image we sent. Used to make the client ask for it again.
 	var/last_preview_url
-	///BUBBER VAR: Counts up on every new preview. The menu uses it to reload an image that failed.
-	var/preview_generation = 0
+	///BUBBER VAR: Counts up every time the player asks for the preview again. The menu keys the preview image on it,
+	///which rebuilds the image element and lets it start fetching from scratch.
+	var/preview_reloads = 0
 
 	/**
 	 * Whether the menu is currently locked down to prevent abuse from players.
@@ -126,7 +127,7 @@
 	data["sprites_dir"] = dir2text(sprite_dir)
 	data["icon_state"] = icon_state
 	data["sprites"] = sprite_data
-	data["preview_generation"] = preview_generation //BUBBER ADDITION
+	data["preview_reloads"] = preview_reloads //BUBBER ADDITION
 	return data
 
 /datum/greyscale_modify_menu/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -137,6 +138,7 @@
 		//BUBBER ADDITION START: Lets the menu ask for the preview image again if it did not load.
 		if("reload_preview")
 			forget_preview_asset()
+			preview_reloads++
 			queue_refresh()
 			return TRUE
 		//BUBBER ADDITION END
@@ -351,7 +353,6 @@ This is highly likely to cause massive amounts of lag as every object in the gam
 /datum/greyscale_modify_menu/proc/set_finished_sprite(image/finished)
 	last_preview_url = icon2html(finished, user, dir = sprite_dir, sourceonly = TRUE)
 	sprite_data["finished"] = last_preview_url
-	preview_generation++
 
 /// Drops our record of the client already holding the last preview image.
 /// The server marks an asset as delivered the moment it is queued to send, so a send that fails is never retried.

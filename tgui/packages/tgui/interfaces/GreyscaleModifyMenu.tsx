@@ -43,7 +43,7 @@ type GreyscaleMenuData = {
   hide_full_color_string?: boolean;
   component_style?: ComponentStyleData;
   //BUBBER ADDITION END - dynamic uniforms
-  preview_generation?: number; //BUBBER ADDITION - preview reliability
+  preview_reloads?: number; //BUBBER ADDITION - preview reliability
   sprites: SpriteData;
   generate_full_preview: boolean;
   unlocked: boolean;
@@ -341,12 +341,15 @@ const PreviewDisplay = (props) => {
             <PreviewCompassSelect />
           </Table.Cell>
           {/* BUBBER EDIT START - preview reliability. Was a plain Image with no retry.
+              Image gives up after five failed fetches and keeps that count for as long as the
+              element lives, so the key rebuilds the element whenever the sprite changes or the
+              player asks for it again. That is what lets it start fetching from scratch.
               The fixed cell height stops the row collapsing while a new image loads,
               which used to make the compass jump up the panel. */}
           <Table.Cell height="8rem" verticalAlign="middle">
             {data.sprites?.finished ? (
               <Image
-                key={data.preview_generation}
+                key={`${data.sprites.finished}|${data.preview_reloads}`}
                 fixErrors
                 m={0}
                 mx="10%"

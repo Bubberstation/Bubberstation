@@ -764,7 +764,7 @@
 		"steps" = list(),
 		"time_spent" = 0,
 	)
-	data["preview_generation"] = preview_generation
+	data["preview_reloads"] = preview_reloads
 	data["hide_full_color_string"] = FALSE
 	data["component_style"] = list(
 		"core_components" = component_style.core_ui_data(selected_cores),
