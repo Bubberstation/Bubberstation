@@ -53,7 +53,7 @@
 	limb_id = SPECIES_ABDUCTOR
 	is_dimorphic = FALSE
 	should_draw_greyscale = FALSE
-	head_flags = NONE
+	head_flags = HEAD_HAIR | HEAD_FACIAL_HAIR //Bubber Edit: Lets the abductor have hair and facial hair. Mainly intended for like, fake hair or more customization options for custom species.
 	teeth_count = 0
 
 /obj/item/bodypart/chest/abductor
