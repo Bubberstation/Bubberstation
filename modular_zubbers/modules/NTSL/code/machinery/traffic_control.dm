@@ -132,6 +132,7 @@
 		if("save_code")
 			storedcode = params["saved_code"]
 			compiler_output += "Code saved"
+			log_telecomms("[user] saved the telecomms traffic controller with the following data: \n [storedcode]")
 			return TRUE
 		if("compile_code")
 			if(!user_name)
@@ -142,6 +143,7 @@
 					server.rawcode = storedcode
 			compiler_output.Cut()
 			compiler_output = compile_all(user)
+			log_telecomms("[user] compiled the telecomms traffic controller.")
 			return TRUE
 		if("set_network")
 			if(!user_name)
