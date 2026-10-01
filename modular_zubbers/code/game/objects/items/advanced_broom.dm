@@ -45,14 +45,14 @@
 	set_wide_sweep(user, FALSE)
 
 /obj/item/pushbroom/advanced/proc/set_wide_sweep(mob/user, charged)
+	if(!isliving(user))
+		return
 	if(wide_sweep == charged)
 		return
+	var/mob/living/holder = user
 	wide_sweep = charged
 	slowdown = wide_sweep ? ADVANCED_BROOM_SLOWDOWN : initial(slowdown)
 	update_appearance()
-	if(!isliving(user))
-		return
-	var/mob/living/holder = user
 	holder.update_equipment_speed_mods()
 	playsound(holder, wide_sweep ? 'sound/machines/synth/synth_yes.ogg' : 'sound/machines/synth/synth_no.ogg', 40, TRUE, frequency = rand(5120, 8800))
 	holder.balloon_alert(holder, "bristle charge [wide_sweep ? "on" : "off"]")
