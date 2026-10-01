@@ -91,6 +91,12 @@
 	//Equip
 	var/mob/living/carbon/human/new_abductor = owner.current
 	new_abductor.set_species(/datum/species/abductor)
+	var/list/body_colors = new_abductor.client?.prefs.read_preference(/datum/preference/tri_color/mutant_colors) //Bubber edit: Apply body part updates after setting mutant colors.
+	if(length(body_colors)) //Bubber edit: Apply body part updates after setting mutant colors.
+		new_abductor.dna.features[FEATURE_MUTANT_COLOR] = body_colors[1] //Bubber edit: Apply body part updates after setting mutant colors.
+		for(var/obj/item/bodypart/part as anything in new_abductor.get_bodyparts()) //Bubber edit: Apply body part updates after setting mutant colors.
+			part.add_color_override(body_colors[1], LIMB_COLOR_AYYLMAO + 1) //Bubber edit: Apply body part updates after setting mutant colors.
+	new_abductor.update_body_parts(update_limb_data = TRUE) //Bubber edit: Apply body part updates after setting mutant colors.
 	var/obj/item/organ/tongue/abductor/abductor_tongue = new_abductor.get_organ_slot(ORGAN_SLOT_TONGUE)
 	abductor_tongue.mothership = "[team.name]"
 
@@ -98,7 +104,7 @@
 	new_abductor.equipOutfit(outfit)
 
 	// If we have a team skincolor, apply it here. Applied by admins or 2% chance of natural occurance
-	if(!isnull(team.team_skincolor))
+	if(!isnull(team.team_skincolor) && new_abductor.dna.features[FEATURE_MUTANT_COLOR] == COLOR_WHITE) //Bubber edit: Apply team skin color if the abductor has the default white color
 		for(var/obj/item/bodypart/part as anything in new_abductor.get_bodyparts())
 			part.should_draw_greyscale = TRUE
 			part.add_color_override(team.team_skincolor, LIMB_COLOR_AYYLMAO)
