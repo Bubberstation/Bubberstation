@@ -263,6 +263,9 @@
 
 	species_modsuit.theme = the_theme
 	species_modsuit.theme.set_up_parts(species_modsuit, the_theme.default_skin)
+	for(var/part in species_modsuit.mod_parts)
+		var/datum/mod_part/modsuit_part = species_modsuit.mod_parts[part]
+		modsuit_part.part_item.resistance_flags |= LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | INDESTRUCTIBLE
 	update_static_data_for_all_viewers()
 
 /datum/species/protean/get_default_mutant_bodyparts()
