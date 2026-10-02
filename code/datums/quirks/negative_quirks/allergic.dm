@@ -21,6 +21,10 @@ GLOBAL_LIST_INIT(allergy_reagent_blacklist, typecacheof(list(
 	/datum/reagent/medicine/synaphydramine,
 	/datum/reagent/medicine/synaptizine/synaptizinevirusfood,
 	/datum/reagent/medicine/syndicate_nanites,
+	// Bubber Edit Begin
+	/datum/reagent/medicine/c2,
+	/datum/reagent/medicine/coagulant,
+	// Bubber Edit End
 )))
 
 /datum/quirk/item_quirk/allergic
@@ -36,26 +40,10 @@ GLOBAL_LIST_INIT(allergy_reagent_blacklist, typecacheof(list(
 	mail_goodies = list(/obj/item/reagent_containers/hypospray/medipen) // epinephrine medipen stops allergic reactions
 	no_process_traits = list(TRAIT_STASIS)
 	var/list/allergies = list()
-	// Bubber Edit Begin
-	var/list/blacklist = list(
-		/datum/reagent/medicine/c2,
-		/datum/reagent/medicine/epinephrine,
-		/datum/reagent/medicine/adminordrazine,
-		/datum/reagent/medicine/adminordrazine/quantum_heal,
-		/datum/reagent/medicine/omnizine/godblood,
-		/datum/reagent/medicine/cordiolis_hepatico,
-		/datum/reagent/medicine/synaphydramine,
-		/datum/reagent/medicine/diphenhydramine,
-		/datum/reagent/medicine/sansufentanyl,
-		/datum/reagent/medicine/salglu_solution,
-		/datum/reagent/medicine/albuterol,
-		/datum/reagent/medicine/coagulant,
-		)
-	// Bubber Edit End
 	var/allergy_string
 
 /datum/quirk/item_quirk/allergic/add(client/client_source)
-	var/list/chem_list = valid_subtypesof(/datum/reagent/medicine) - blacklist // Bubber Edit Change - use our blacklist instead of TG's
+	var/list/chem_list = valid_subtypesof(/datum/reagent/medicine) - GLOB.allergy_reagent_blacklist
 	var/list/allergy_chem_names = list()
 	for(var/i in 0 to 5)
 		var/datum/reagent/medicine/chem_type = pick_n_take(chem_list)
