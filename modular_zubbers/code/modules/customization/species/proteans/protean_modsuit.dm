@@ -22,9 +22,9 @@
     ADD_TRAIT(src, TRAIT_NODROP, "protean")
     AddElement(/datum/element/strippable/protean, GLOB.strippable_human_items)
     resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | INDESTRUCTIBLE //GS13 fix, proteans are fireproof to prevent them from having their modsuit destroyed by fire, round removing them unintentionally.
-    for(var/part in mod_parts)
-        var/datum/mod_part/modsuit_part = mod_parts[part]
-        modsuit_part.part_item.resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | INDESTRUCTIBLE
+	for(var/part in mod_parts)
+		var/datum/mod_part/modsuit_part = mod_parts[part]
+		modsuit_part.part_item.resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | INDESTRUCTIBLE
 
 /obj/item/mod/control/pre_equipped/protean/Destroy()
 	var/obj/item/mod/core/protean/p_core = core
