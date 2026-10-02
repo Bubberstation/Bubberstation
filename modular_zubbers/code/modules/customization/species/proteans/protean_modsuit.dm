@@ -6,7 +6,7 @@
 	applied_core = /obj/item/mod/core/protean
 	applied_cell = null // Goes off stomach
 	applied_modules = list(/obj/item/mod/module/storage/large_capacity)
-	resistance_flags |= LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | INDESTRUCTIBLE // funny nanite
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | INDESTRUCTIBLE // funny nanite
 	drag_pickup = FALSE
 	/// Whether or not the wearer can undeploy parts.
 	var/modlocked = FALSE
