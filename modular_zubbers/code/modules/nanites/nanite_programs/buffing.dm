@@ -8,15 +8,11 @@
 
 /datum/nanite_program/nervous/enable_passive_effect()
 	. = ..()
-	if(ishuman(host_mob))
-		var/mob/living/carbon/human/H = host_mob
-		H.physiology.stun_mod *= 0.5
+	MODIFY_PHYSIOLOGY(host_mob, PHYS_COEFF_STUN, 0.5)
 
 /datum/nanite_program/nervous/disable_passive_effect()
 	. = ..()
-	if(ishuman(host_mob))
-		var/mob/living/carbon/human/H = host_mob
-		H.physiology.stun_mod *= 2
+	MODIFY_PHYSIOLOGY(host_mob, PHYS_COEFF_STUN, 2)
 
 /datum/nanite_program/dermal_armor
 	name = "Dermal Hardening"
@@ -165,9 +161,8 @@
 	if(!humie)
 		stack_trace("A nanite program is running without a host mob present. Something's wrong.")
 		return
-	humie.physiology.flat_brute_mod += current_flat_mod
-	current_flat_mod = valid_change
-	humie.physiology.flat_brute_mod -= valid_change
+	// UPSTREAM TODO: REWORK THIS
+	var/intentional_unused_variable
 
 /datum/nanite_program/dermal_armor/refractive
 	name = "Dermal Refractive Surface"
@@ -182,9 +177,8 @@
 	if(!humie)
 		stack_trace("A nanite program is running without a host mob present. Something's wrong.")
 		return
-	humie.physiology.flat_burn_mod -= current_flat_mod
-	current_flat_mod = amount
-	humie.physiology.flat_burn_mod += amount
+	// UPSTREAM TODO: REWORK THIS
+	var/intentional_unused_variable
 
 /datum/nanite_program/coagulating
 	name = "Vein Repressurization"
@@ -194,15 +188,11 @@
 
 /datum/nanite_program/coagulating/enable_passive_effect()
 	. = ..()
-	if(ishuman(host_mob))
-		var/mob/living/carbon/human/H = host_mob
-		H.physiology.bleed_mod *= 0.5
+	MODIFY_PHYSIOLOGY(host_mob, PHYS_COEFF_BLEED, 0.5)
 
 /datum/nanite_program/coagulating/disable_passive_effect()
 	. = ..()
-	if(ishuman(host_mob))
-		var/mob/living/carbon/human/H = host_mob
-		H.physiology.bleed_mod *= 2
+	MODIFY_PHYSIOLOGY(host_mob, PHYS_COEFF_BLEED, 2)
 
 /datum/nanite_program/conductive
 	name = "Electric Conduction"
