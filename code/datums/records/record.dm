@@ -87,6 +87,10 @@
 	var/security_note
 	/// Current arrest status
 	var/wanted_status = WANTED_NONE
+	// BUBBER EDIT ADDITION START - WARRANTS
+	/// The stated grounds for a death warrant. Set when the warrant is filed, cleared when it is rescinded.
+	var/death_warrant_reason
+	// BUBBER EDIT ADDITION END
 
 	///Photo used for records, which we store here so we don't have to constantly make more of.
 	var/list/obj/item/photo/record_photos

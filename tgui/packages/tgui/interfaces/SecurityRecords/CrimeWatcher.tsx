@@ -101,13 +101,31 @@ const CrimeDisplay = ({ item }: { item: Crime }) => {
   const { crew_ref } = foundRecord;
   const { act, data } = useBackend<SecurityRecordsData>();
   const { current_user, higher_access } = data;
-  const { author, crime_ref, details, fine, name, paid, time, valid, voider } =
-    item;
+  const {
+    author,
+    crime_ref,
+    details,
+    fine,
+    name,
+    paid,
+    time,
+    valid,
+    voider,
+    warrant_kind, // BUBBER EDIT ADDITION - WARRANTS
+  } = item;
   const showFine = fine && fine > 0 ? `: ${fine} cr` : ': PAID OFF';
 
-  let collapsibleColor = '';
+  // BUBBER EDIT CHANGE START - WARRANTS - an ordinary crime reads red now that Alert and Execute own orange and black. Citations keep the stock colour. Original: let collapsibleColor = '';
+  let collapsibleColor = fine !== undefined ? '' : 'bad';
+  // BUBBER EDIT CHANGE END
   if (!valid) {
     collapsibleColor = 'grey';
+  } else if (warrant_kind === 'execute') {
+    // BUBBER EDIT ADDITION - WARRANTS - keyed on warrant_kind, not name, so a rename keeps the colour
+    collapsibleColor = 'black';
+  } else if (warrant_kind === 'alert') {
+    // BUBBER EDIT ADDITION - WARRANTS
+    collapsibleColor = 'orange';
   } else if (fine && fine > 0) {
     collapsibleColor = 'average';
   }
