@@ -6,6 +6,10 @@
 	icon_state = "errorcrate"
 	base_icon_state = "errorcrate"
 	abstract_type = /obj/structure/closet/crate/secure/error
+	light_system = OVERLAY_LIGHT
+	light_color = COLOR_MAGENTA
+	light_power = 1.5
+	light_range = 3
 	// set when salvage() ran, meaning the order arrived incomplete and the buyer gets refunded
 	var/salvaged = FALSE
 
