@@ -190,6 +190,8 @@
 	else
 		account_holder = "Cargo"
 	var/obj/structure/closet/crate/crate = pack.generate(A, paying_account, initial(pack.storage_override))
+	if(isnull(crate)) // BUBBER EDIT ADDITION - some packs spawn nothing on purpose, like the empty supplypod
+		return
 	if(pack.order_flags & ORDER_CONTRABAND)
 		for(var/atom/movable/item_within as anything in crate.get_all_contents())
 			ADD_TRAIT(item_within, TRAIT_CONTRABAND, INNATE_TRAIT)

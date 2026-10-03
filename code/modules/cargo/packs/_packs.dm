@@ -72,17 +72,25 @@
 		fill(unique_container)
 		return unique_container
 
-	if(!crate_type)
-		CRASH("tried to generate a supply pack without a valid crate type")
-
-	// BUBBER EDIT BEGIN - ORIGINAL: C = new crate_type(A)
-	// A paid order arrives in a crate matching the account that bought it, not the pack's own crate.
+	// BUBBER EDIT REMOVAL START
+	// if(!crate_type)
+	// 	CRASH("tried to generate a supply pack without a valid crate type")
+	// C = new crate_type(A)
+	// BUBBER EDIT REMOVAL END
+	// BUBBER EDIT ADDITION START - broken packs still deliver in the error crate, paid orders use the buyer's account crate
+	var/broken_contents = !supply_contents_valid(contains)
 	var/crate_type_to_spawn = crate_type
-	if(paying_account)
+	if(!crate_type || broken_contents)
+		stack_trace("[type] is broken ([crate_type ? "invalid contents" : "no crate_type"]) and shipped in an error crate.")
+		message_admins("Supply pack [name] ([type]) is broken and shipped in an ERROR crate. Report this to a coder.")
+		crate_type_to_spawn = /obj/structure/closet/crate/secure/error
+	else if(paying_account)
 		crate_type_to_spawn = get_account_crate_type(paying_account)
 	C = new crate_type_to_spawn(A)
-	// BUBBER EDIT END
+	// BUBBER EDIT ADDITION END
 	C.name = "[crate_name || C.name][paying_account ? " - Purchased by [paying_account.account_holder]" : ""]"
+	if(crate_type_to_spawn == /obj/structure/closet/crate/secure/error) // BUBBER EDIT ADDITION - the error crate keeps its own name
+		C.name = "[initial(C.name)][paying_account ? " - Purchased by [paying_account.account_holder]" : ""]"
 	if(paying_account) // adds component for locking the crate so only the buyer (or their department) can open it
 		C.AddComponent(/datum/component/locked_to_account, paying_account)
 
@@ -92,6 +100,12 @@
 		if(access_any)
 			C.req_one_access = access_any
 
+	// BUBBER EDIT ADDITION START - spawn what we can and skip the junk
+	if(broken_contents)
+		var/obj/structure/closet/crate/secure/error/error_crate = C
+		error_crate.salvage(contains)
+		return C
+	// BUBBER EDIT ADDITION END
 	fill(C)
 	return C
 

@@ -219,7 +219,9 @@
 			var/datum/supply_pack/pack = SSshuttle.supply_packs[id]
 			if(!istype(pack))
 				return
-			if((pack.order_flags & (ORDER_EMAG_ONLY | ORDER_POD_ONLY | ORDER_INTERDYNE_ONLY | ORDER_CONTRABAND)) || ((pack.order_flags & ORDER_SPECIAL) && !(pack.order_flags & ORDER_SPECIAL_ENABLED))) // BUBBER EDIT
+			if((pack.order_flags & (ORDER_EMAG_ONLY | ORDER_POD_ONLY | ORDER_INTERDYNE_ONLY)) || ((pack.order_flags & ORDER_SPECIAL) && !(pack.order_flags & ORDER_SPECIAL_ENABLED))) // BUBBER EDIT
+				return
+			if((pack.order_flags & ORDER_CONTRABAND) && !(computer.obj_flags & EMAGGED)) // BUBBER EDIT ADDITION - an emagged app sells the contraband it lists
 				return
 
 			var/name = "*None Provided*"
