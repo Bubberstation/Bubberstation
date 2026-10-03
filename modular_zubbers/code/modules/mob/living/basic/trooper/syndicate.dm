@@ -18,3 +18,17 @@
 /mob/living/basic/trooper/syndicate/boggins/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/simple_access, ACCESS_SYNDICATE)
+
+///////////////////////////////////////
+//////// the bigg boss syndies ////////
+///////////////////////////////////////
+
+/mob/living/basic/trooper/syndicate/ranged/cowboy
+	casingtype = /obj/item/ammo_casing/c357
+	ai_controller = /datum/ai_controller/basic_controller/trooper/ranged/burst
+	ranged_cooldown = 5 SECONDS
+	burst_shots = 7
+	r_hand = /obj/item/gun/ballistic/revolver/badass/nuclear
+
+/mob/living/basic/trooper/syndicate/ranged/cowboy/Initialize(mapload)
+	. = ..()
