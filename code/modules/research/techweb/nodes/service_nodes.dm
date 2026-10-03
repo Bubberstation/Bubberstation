@@ -55,6 +55,7 @@
 		/datum/design/buffer_upgrade,
 		/datum/design/vacuum_upgrade,
 		/datum/design/board/washing_machine,
+		/datum/design/advbroom, // BUBBER EDIT ADDITION - advanced push broom
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	discount_experiments = list(/datum/experiment/scanning/random/janitor_trash = TECHWEB_TIER_2_POINTS)

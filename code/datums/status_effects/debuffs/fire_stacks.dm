@@ -352,9 +352,15 @@
 /datum/status_effect/fire_handler/wet_stacks/cache_stacks()
 	. = ..()
 	if(stacks > WET_STACKS_MINIMUM_VFX)
-		owner.add_shared_particles(/particles/droplets)
+		// BUBBER EDIT BEGIN - Moist skin quirk
+		if(!HAS_TRAIT(owner, TRAIT_MOIST_SKIN))
+			owner.add_shared_particles(/particles/droplets)
+		// BUBBER EDIT END
 	if(stacks <= WET_STACKS_MINIMUM_VFX)
-		owner.remove_shared_particles(/particles/droplets)
+		// BUBBER EDIT BEGIN - Moist skin quirk
+		if(!HAS_TRAIT(owner, TRAIT_MOIST_SKIN))
+			owner.remove_shared_particles(/particles/droplets)
+		// BUBBER EDIT END
 
 /datum/status_effect/fire_handler/wet_stacks/tick(seconds_between_ticks)
 	var/decay = HAS_TRAIT(owner, TRAIT_WET_FOR_LONGER) ? -0.035 : -0.5

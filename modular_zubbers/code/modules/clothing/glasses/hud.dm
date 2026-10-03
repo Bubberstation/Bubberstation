@@ -29,3 +29,6 @@
 
 /obj/item/clothing/glasses/meson/engine
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/eyes_teshari.dmi'
+
+/obj/item/clothing/glasses/hud/security/sunglasses/guard
+	greyscale_config_worn_teshari = /datum/greyscale_config/guard_hudsunglasses/worn/teshari

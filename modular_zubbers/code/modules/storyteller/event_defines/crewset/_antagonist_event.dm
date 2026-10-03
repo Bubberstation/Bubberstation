@@ -2,36 +2,6 @@
 	reoccurence_penalty_multiplier = 0
 	track = EVENT_TRACK_CREWSET
 	alert_observers = FALSE
-	/// Protected roles from the antag roll. People will not get those roles if a config is enabled
-	var/protected_roles = list(
-		JOB_CAPTAIN,
-		JOB_BLUESHIELD,
-		JOB_BRIDGE_ASSISTANT,
-
-		// Heads of staff
-		JOB_HEAD_OF_PERSONNEL,
-		JOB_HEAD_OF_SECURITY,
-		JOB_CHIEF_ENGINEER,
-		JOB_CHIEF_MEDICAL_OFFICER,
-		JOB_RESEARCH_DIRECTOR,
-		JOB_QUARTERMASTER,
-		JOB_NT_REP,
-
-		// Seccies
-		JOB_DETECTIVE,
-		JOB_SECURITY_OFFICER,
-		JOB_WARDEN,
-		JOB_CORRECTIONS_OFFICER,
-		JOB_PRISONER,
-		JOB_SECURITY_MEDIC,
-
-		// Department Guards-Additional
-		JOB_BOUNCER,
-		JOB_ORDERLY,
-		JOB_CUSTOMS_AGENT,
-		JOB_ENGINEERING_GUARD,
-		JOB_SCIENCE_GUARD,
-		)
 
 	/// Restricted roles from the antag roll
 	var/restricted_roles = list(JOB_AI, JOB_CYBORG)
@@ -57,11 +27,23 @@
 /datum/round_event_control/antagonist/New()
 	. = ..()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
-		restricted_roles |= protected_roles
+		restricted_roles |= get_config_blacklisted_roles()
 	restricted_roles |= SSstation.antag_restricted_roles
 	restricted_roles |= SSstation.antag_protected_roles
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_roles |= JOB_ASSISTANT
+
+/datum/round_event_control/antagonist/proc/get_config_blacklisted_roles()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/list/blacklist = list()
+	for(var/datum/job/job as anything in SSjob.all_occupations)
+		var/is_protected = (job.job_flags & JOB_ANTAG_PROTECTED)
+		var/is_blacklisted = (job.job_flags & JOB_ANTAG_BLACKLISTED)
+		if(is_blacklisted || (CONFIG_GET(flag/protect_roles_from_antagonist) && is_protected))
+			blacklist |= job.title
+	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
+		restricted_roles |= JOB_ASSISTANT
+	return blacklist
 
 /datum/round_event_control/antagonist/can_spawn_event(players_amt, allow_magic = FALSE, popchecks = TRUE)
 	. = ..()
