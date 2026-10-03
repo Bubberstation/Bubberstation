@@ -20,7 +20,6 @@
 /datum/design/board/megacell_charger
 	name = "Machine Design (Megacell Charger Board)"
 	desc = "The circuit board for a megacell charger."
-	id = "megacell_charger"
 	build_path = /obj/item/circuitboard/machine/megacell_charger
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING

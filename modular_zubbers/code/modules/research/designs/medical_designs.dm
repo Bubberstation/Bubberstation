@@ -53,7 +53,6 @@
 /datum/design/defibrillator
 	name = "Defibrillator"
 	desc = "A portable defibrillator, used for resuscitating recently deceased crew."
-	id = "defibrillator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/defibrillator
 	materials = list(

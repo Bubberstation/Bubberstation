@@ -43,6 +43,7 @@
 		/datum/design/synth_l_d_leg,
 		/datum/design/synth_r_d_leg,
 	)
+	node_flags = TECHWEB_NODE_WIKI | TECHWEB_NODE_STARTER
 
 /datum/techweb_node/android_organs
 	display_name = "Android Organs"
@@ -57,6 +58,7 @@
 		/datum/design/synth_ears,
 		/datum/design/synth_heart,
 	)
+	node_flags = TECHWEB_NODE_WIKI | TECHWEB_NODE_STARTER
 
 // MODULAR ADDITIONS AND REMOVALS
 

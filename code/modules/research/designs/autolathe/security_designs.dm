@@ -225,7 +225,6 @@
 
 /datum/design/c9mm_sec
 	name = "Ammo Box (9x25mm Mk.12) (Lethal)"
-	id = "c9mm_sec"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 150)
 	build_path = /obj/item/ammo_box/c9mm/security

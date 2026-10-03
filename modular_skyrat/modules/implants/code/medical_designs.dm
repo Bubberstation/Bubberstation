@@ -163,7 +163,6 @@
 
 /datum/design/cyberimp_reviver
 	name = "Reviver Implant"
-	id = "ci-reviver"
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_HEALTH
 	)

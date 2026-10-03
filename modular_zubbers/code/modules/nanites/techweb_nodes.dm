@@ -1,180 +1,167 @@
 /datum/techweb_node/nanite_base
-	id = "nanite_base"
 	display_name = "Basic Nanite Programming"
 	description = "The basics of nanite construction and programming. Nanites will passively generate science points based on how many are hosting them."
-	prereq_ids = list(TECHWEB_NODE_BCI)
-	design_ids = list(
-		// "access_nanites",
-		"debugging_nanites",
-		"monitoring_nanites",
-		"nanite_chamber",
-		"nanite_chamber_control",
-		"nanite_cloud_control",
-		"nanite_comm_remote",
-		"nanite_disk",
-		"nanite_program_hub",
-		"nanite_programmer",
-		"nanite_remote",
-		"nanite_scanner",
-		"public_nanite_chamber",
-		"relay_nanites",
-		"relay_repeater_nanites",
-		"repairing_nanites",
-		"repeater_nanites",
-		"sensor_nanite_volume",
+	prerequisite_nodes = list(/datum/techweb_node/bci)
+	unlocked_designs = list(
+		// /datum/design/nanites/access,
+		/datum/design/nanites/nanite_debugging,
+		/datum/design/nanites/monitoring,
+		/datum/design/board/nanite_chamber,
+		/datum/design/board/nanite_chamber_control,
+		/datum/design/board/nanite_cloud_control,
+		/datum/design/nanite_comm_remote,
+		/datum/design/nanite_disk,
+		/datum/design/board/nanite_program_hub,
+		/datum/design/board/nanite_programmer,
+		/datum/design/nanite_remote,
+		/datum/design/nanite_scanner,
+		/datum/design/board/public_nanite_chamber,
+		/datum/design/nanites/relay,
+		/datum/design/nanites/relay_repeater,
+		/datum/design/nanites/repairing,
+		/datum/design/nanites/repeater,
+		/datum/design/nanites/sensor_nanite_volume,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 
 /datum/techweb_node/nanite_smart
-	id = "nanite_smart"
 	display_name = "Smart Nanite Programming"
 	description = "Nanite programs that require nanites to perform complex actions, act independently, roam or seek targets."
-	prereq_ids = list("nanite_base", TECHWEB_NODE_PROGRAMMING)
-	design_ids = list(
-		"memleak_nanites",
-		"metabolic_nanites",
-		"purging_nanites",
-		"sensor_voice_nanites",
-		"stealth_nanites",
-		"voice_nanites",
+	prerequisite_nodes = list(/datum/techweb_node/nanite_base, /datum/techweb_node/programming)
+	unlocked_designs = list(
+		/datum/design/nanites/memory_leak,
+		/datum/design/nanites/metabolic_synthesis,
+		/datum/design/nanites/purging,
+		/datum/design/nanites/sensor_voice,
+		/datum/design/nanites/stealth,
+		/datum/design/nanites/voice,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_1_POINTS)
 
 /datum/techweb_node/nanite_mesh
-	id = "nanite_mesh"
 	display_name = "Mesh Nanite Programming"
 	description = "Nanite programs that require static structures and membranes."
-	prereq_ids = list("nanite_base", TECHWEB_NODE_MOD_ENGI_ADV)
-	design_ids = list(
-		"conductive_nanites",
-		"cryo_nanites",
-		"dermal_button_nanites",
-		"emp_nanites",
-		"hardening_nanites",
-		"refractive_nanites",
-		"shock_nanites",
-		"temperature_nanites",
+	prerequisite_nodes = list(/datum/techweb_node/nanite_base, /datum/techweb_node/mod_engi_adv)
+	unlocked_designs = list(
+		/datum/design/nanites/conductive,
+		/datum/design/nanites/cryo,
+		/datum/design/nanites/dermal_button,
+		/datum/design/nanites/emp,
+		/datum/design/nanites/hardening,
+		/datum/design/nanites/refractive,
+		/datum/design/nanites/shock,
+		/datum/design/nanites/temperature,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_2_POINTS)
 
 /datum/techweb_node/nanite_bio
-	id = "nanite_bio"
 	display_name = "Biological Nanite Programming"
 	description = "Nanite programs that require complex biological interaction."
-	prereq_ids = list("nanite_base", TECHWEB_NODE_MOD_MEDICAL_ADV)
-	design_ids = list(
-		"bloodheal_nanites",
-		"coagulating_nanites",
-		"flesheating_nanites",
-		"poison_nanites",
-		"sensor_crit_nanites",
-		"sensor_damage_nanites",
-		"sensor_death_nanites",
-		"sensor_health_nanites",
-		"sensor_species_nanites",
+	prerequisite_nodes = list(/datum/techweb_node/nanite_base, /datum/techweb_node/mod_medical_adv)
+	unlocked_designs = list(
+		/datum/design/nanites/blood_restoring,
+		/datum/design/nanites/coagulating,
+		/datum/design/nanites/flesh_eating,
+		/datum/design/nanites/poison,
+		/datum/design/nanites/sensor_crit,
+		/datum/design/nanites/sensor_damage,
+		/datum/design/nanites/sensor_death,
+		/datum/design/nanites/sensor_health,
+		/datum/design/nanites/sensor_species,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_3_POINTS)
 
 /datum/techweb_node/nanite_neural
-	id = "nanite_neural"
 	display_name = "Neural Nanite Programming"
 	description = "Nanite programs affecting nerves and brain matter."
-	prereq_ids = list("nanite_bio")
-	design_ids = list(
-		"bad_mood_nanites",
-		"brainheal_nanites",
-		"good_mood_nanites",
-		"nervous_nanites",
-		"paralyzing_nanites",
-		"selfscan_nanites",
-		"stun_nanites",
+	prerequisite_nodes = list(/datum/techweb_node/nanite_bio)
+	unlocked_designs = list(
+		/datum/design/nanites/bad_mood,
+		/datum/design/nanites/brain_heal,
+		/datum/design/nanites/good_mood,
+		/datum/design/nanites/nervous,
+		/datum/design/nanites/paralyzing,
+		/datum/design/nanites/self_scan,
+		/datum/design/nanites/stun,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_1_POINTS)
 
 /datum/techweb_node/nanite_synaptic
-	id = "nanite_synaptic"
 	display_name = "Synaptic Nanite Programming"
 	description = "Nanite programs affecting mind and thoughts."
-	prereq_ids = list("nanite_neural", TECHWEB_NODE_SURGERY_EXP)
-	design_ids = list(
-		"blinding_nanites",
-		"hallucination_nanites",
-		"mindshield_nanites",
-		"mute_nanites",
-		"pacifying_nanites",
-		"sleep_nanites",
-		// "speech_nanites",
+	prerequisite_nodes = list(/datum/techweb_node/nanite_neural, /datum/techweb_node/surgery_exp)
+	unlocked_designs = list(
+		/datum/design/nanites/blinding,
+		/datum/design/nanites/hallucination,
+		/datum/design/nanites/mindshield,
+		/datum/design/nanites/mute,
+		/datum/design/nanites/pacifying,
+		/datum/design/nanites/sleepy,
+		// /datum/design/nanites/speech,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_1_POINTS)
 
 /datum/techweb_node/nanite_harmonic
-	id = "nanite_harmonic"
 	display_name = "Harmonic Nanite Programming"
 	description = "Nanite programs that require seamless integration between nanites and biology. Passively increases nanite regeneration rate for all clouds upon researching."
-	prereq_ids = list("nanite_bio","nanite_smart","nanite_mesh")
-	design_ids = list(
-		"regenerative_nanites",
-		"aggressive_nanites",
-		"brainheal_plus_nanites",
-		"defib_nanites",
-		"fakedeath_nanites",
-		"purging_plus_nanites",
-		// "regenerative_plus_nanites",
+	prerequisite_nodes = list(/datum/techweb_node/nanite_bio, /datum/techweb_node/nanite_smart, /datum/techweb_node/nanite_mesh)
+	unlocked_designs = list(
+		/datum/design/nanites/regenerative,
+		/datum/design/nanites/aggressive_replication,
+		/datum/design/nanites/brain_heal_advanced,
+		/datum/design/nanites/defib,
+		/datum/design/nanites/fake_death,
+		/datum/design/nanites/purging_advanced,
+		// /datum/design/nanites/regenerative_advanced,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_2_POINTS)
 
 /datum/techweb_node/nanite_combat
-	id = "nanite_military"
 	display_name = "Military Nanite Programming"
 	description = "Nanite programs that perform military-grade functions."
-	prereq_ids = list("nanite_harmonic", TECHWEB_NODE_SYNDICATE_BASIC)
-	design_ids = list(
-		// "explosive_nanites",
-		"meltdown_nanites",
-		"nanite_sting_nanites",
-		"pyro_nanites",
-		"viral_nanites",
+	prerequisite_nodes = list(/datum/techweb_node/nanite_harmonic, /datum/techweb_node/syndicate_basic)
+	unlocked_designs = list(
+		// /datum/design/nanites/explosive,
+		/datum/design/nanites/meltdown,
+		/datum/design/nanites/nanite_sting,
+		/datum/design/nanites/pyro,
+		/datum/design/nanites/viral,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_3_POINTS)
 
 /datum/techweb_node/nanite_hazard
-	id = "nanite_hazard"
 	display_name = "Hazard Nanite Programs"
 	description = "Extremely advanced Nanite programs with the potential of being extremely dangerous."
-	prereq_ids = list("nanite_harmonic", /datum/techweb_node/alien/base)
-	design_ids = list(
-		"mindcontrol_nanites",
-		"mitosis_nanites",
-		// "spreading_nanites",
+	prerequisite_nodes = list(/datum/techweb_node/nanite_harmonic, /datum/techweb_node/alien/base)
+	unlocked_designs = list(
+		/datum/design/nanites/mind_control,
+		/datum/design/nanites/mitosis,
+		// /datum/design/nanites/spreading,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_2_POINTS)
 
 /datum/techweb_node/nanite_replication_protocols
-	id = "nanite_replication_protocols"
 	display_name = "Nanite Replication Protocols"
 	description = "Protocols that overwrite the default nanite replication routine to achieve more efficiency in certain circumstances."
-	prereq_ids = list("nanite_smart")
-	design_ids = list(
-		"factory_nanites",
-		"kickstart_nanites",
-		"offline_nanites",
-		"pyramid_nanites",
+	prerequisite_nodes = list(/datum/techweb_node/nanite_smart)
+	unlocked_designs = list(
+		/datum/design/nanites/factory,
+		/datum/design/nanites/kickstart,
+		/datum/design/nanites/offline,
+		/datum/design/nanites/pyramid,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_3_POINTS)
-	hidden = TRUE
-	experimental = TRUE
+	node_flags = TECHWEB_NODE_WIKI | TECHWEB_NODE_HIDDEN | TECHWEB_NODE_EXPERIMENTAL
 
 /datum/techweb_node/nanite_storage_protocols
-	id = "nanite_storage_protocols"
 	display_name = "Nanite Storage Protocols"
 	description = "Protocols that overwrite the default nanite storage routine to achieve more efficiency or greater capacity."
-	prereq_ids = list("nanite_smart")
-	design_ids = list(
-		"free_range_nanites",
-		"hive_nanites",
-		"unsafe_storage_nanites",
-		"zip_nanites",
+	prerequisite_nodes = list(/datum/techweb_node/nanite_smart)
+	unlocked_designs = list(
+		/datum/design/nanites/free_range,
+		/datum/design/nanites/hive,
+		/datum/design/nanites/unsafe_storage,
+		/datum/design/nanites/zip,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS, TECHWEB_POINT_TYPE_NANITE = TECHWEB_TIER_3_POINTS)
-	hidden = TRUE
-	experimental = TRUE
+	node_flags = TECHWEB_NODE_WIKI | TECHWEB_NODE_HIDDEN | TECHWEB_NODE_EXPERIMENTAL
