@@ -148,7 +148,7 @@
 		var/adjusted_spawn_count = 1
 		var/max_spawn_this_attempt = min(max_spawn_per_attempt, max_spawned - spawned_total)
 		var/min_spawn_this_attempt = min_spawn_per_attempt // BUBBER ADDITION
-	if (max_spawn_this_attempt > 1)
+		if (max_spawn_this_attempt > 1)
 			adjusted_spawn_count = rand(min_spawn_this_attempt, max_spawn_this_attempt) // BUBBER ADDITION - Original: adjusted_spawn_count = rand(1, max_spawn_this_attempt)
 		for(var/j in 1 to adjusted_spawn_count)
 			var/atom/created

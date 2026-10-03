@@ -233,7 +233,7 @@
 	if(!bypass && !nutrition_check())
 		return FALSE
 
-	var/hunger_modifier = linked_mob.physiology.hunger_mod
+	var/hunger_modifier = GET_PHYSIOLOGY(linked_mob, PHYS_COEFF_HUNGER_MOD)
 
 	if(nutrition_drain)
 		hunger_modifier = nutrition_drain_rate

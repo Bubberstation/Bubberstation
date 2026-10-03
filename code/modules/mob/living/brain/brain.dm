@@ -24,8 +24,8 @@
 		if(istype(loc, /obj/item/organ/brain))
 			var/obj/item/organ/brain/brain_loc = loc
 			brain_owner = brain_loc.owner
-		else if(istype(loc, /obj/item/mmi))
-			var/obj/item/mmi/mmi_loc = loc
+		else if(istype(loc, /obj/item/brain_processor))
+			var/obj/item/brain_processor/mmi_loc = loc
 			if(istype(mmi_loc.loc, /obj/item/organ/brain))
 				var/obj/item/organ/brain/brain_loc = mmi_loc.loc
 				brain_owner = brain_loc.owner

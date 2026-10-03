@@ -104,6 +104,7 @@
 		when it turns out you've downloaded some kind of horrible donk-pocket related malware that steals your Starscape password. Those bastards over at Donk Co. WILL delete your character."
 	unlocked_designs = list(
 		/datum/design/donkflechette,
+		/datum/design/advancedgaugeboxes_donk, // BUBBER EDIT ADDITION
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SECURITY)

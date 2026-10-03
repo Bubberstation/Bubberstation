@@ -460,7 +460,6 @@
 	. = ..()
 	for(var/datum/computer_file/program/messenger/msg in stored_files)
 		msg.alert_silenced = TRUE
-*/ // SKYRAT EDIT REMOVAL END
 
 /obj/item/modular_computer/pda/crew/psychologist
 	name = "psychologist PDA"

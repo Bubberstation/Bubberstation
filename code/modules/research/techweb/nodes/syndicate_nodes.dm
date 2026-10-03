@@ -9,9 +9,11 @@
 		/datum/design/borg_syndicate_module,
 		/datum/design/donksoft_refill,
 		/datum/design/largecrossbow,
+		/* BUBBER EDIT REMOVAL BEGIN
 		/datum/design/mag_autorifle,
 		/datum/design/mag_autorifle/ap_mag,
 		/datum/design/mag_autorifle/ic_mag,
+		*/// BUBBER EDIT REMOVAL END
 		/datum/design/rapidsyringe,
 		/datum/design/suppressor,
 		/datum/design/super_pointy_tape,

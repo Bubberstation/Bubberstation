@@ -157,6 +157,7 @@
 		/datum/design/cyberimp_thrusters,
 		/datum/design/cyberimp_herculean,
 		/datum/design/cyberimp_connector,
+		/datum/design/cyberimp_nutriment_plus, // BUBBER EDIT - ADDITION
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_MEDICAL)

@@ -287,12 +287,7 @@
 	if(selected_category == SPECIES_HUMAN) // Humans use the parent type
 		return being_built.build_path
 	else
-		path = "/obj/item/bodypart/[part_type]/[species]"
-//BUBBER ADDITION BEGIN - Mutant limb types.
-		if(!text2path(path) && part_type)
-			path = "/obj/item/bodypart/[part_type]/mutant/[species]"
-//BUBBER ADDITION END
-	return text2path(path)
+		return text2path("[being_built.build_path]/[selected_category]")
 
 /obj/machinery/limbgrower/RefreshParts()
 	. = ..()

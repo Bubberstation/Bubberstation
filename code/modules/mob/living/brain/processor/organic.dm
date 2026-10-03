@@ -3,7 +3,7 @@
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity, that nevertheless has become standard-issue on Nanotrasen stations."
 	icon_state = "mmi_off"
 	base_icon_state = "mmi"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL // BUBBER EDIT: Minimalizaton (This is so they can act as organs)
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT)
 
 	VAR_FINAL/obj/item/organ/brain/brain = null //The actual brain

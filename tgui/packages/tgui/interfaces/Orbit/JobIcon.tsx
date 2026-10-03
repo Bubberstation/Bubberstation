@@ -37,6 +37,7 @@ type Props = {
 };
 
 type IconSettings = {
+  dmi?: string; // BUBBER EDIT ADDITION - Custom observe menu icons
   transform: string;
 };
 
@@ -62,6 +63,8 @@ export function JobIcon(props: Props) {
   const {
     icon = '',
     icon_state = '',
+    job = '', // BUBBER EDIT ADDITION - Custom observe menu icons
+    mind_job = '', // BUBBER EDIT ADDITION - Custom observe menu icons
     mind_job_icon = '',
     mind_icon = '',
     mind_icon_state = '',
@@ -70,6 +73,7 @@ export function JobIcon(props: Props) {
   const usedIconState = realNameDisplay
     ? mind_icon_state || icon_state
     : icon_state;
+  const usedJob = realNameDisplay ? mind_job || job : job; // BUBBER EDIT ADDITION - Custom observe menu icons
 
   let iconSettings: IconSettings;
   if ('antag' in item && !realNameDisplay) {
@@ -88,7 +92,7 @@ export function JobIcon(props: Props) {
         <Icon color="lightblue" name={mind_job_icon} ml={0.3} mt={0.4} />
       ) : (
         <DmIcon
-          icon={usedIcon}
+          icon={iconSettings.dmi || usedIcon} // BUBBER EDIT CHANGE - Custom observe menu icons - Original: icon={usedIcon}
           icon_state={usedIconState}
           style={{
             transform: iconSettings.transform,

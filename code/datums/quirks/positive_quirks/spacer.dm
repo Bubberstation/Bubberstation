@@ -95,8 +95,8 @@
 	MODIFY_PHYSIOLOGY(quirk_holder, PHYS_COEFF_PRESSURE, 1 / damage_mod)
 	MODIFY_PHYSIOLOGY(quirk_holder, PHYS_COEFF_COLD, 1 / damage_mod)
 
-	var/mob/living/carbon/human/human_quirker = quirk_holder
-	//human_quirker.set_mob_height(HUMAN_HEIGHT_MEDIUM) BUBBER EDIT REMOVAL
+	//var/mob/living/carbon/human/human_quirker = quirk_holder //BUBBER EDIT REMOVAL
+	//human_quirker.set_mob_height(HUMAN_HEIGHT_MEDIUM) //BUBBER EDIT REMOVAL
 
 /// Check on Z change whether we should start or stop timers
 /datum/quirk/spacer_born/proc/spacer_moved(mob/living/source, turf/old_turf, turf/new_turf, same_z_layer)

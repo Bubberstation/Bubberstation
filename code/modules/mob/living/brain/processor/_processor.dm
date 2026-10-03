@@ -4,7 +4,7 @@
 	name = "\improper Cerebral Processing Unit"
 	desc = "Pure processing potential packed into a puny but powerful pundit."
 	icon = 'icons/obj/devices/assemblies.dmi'
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL // BUBBER EDIT: Minimalizaton (This is so they can act as organs)
 	custom_materials = null
 
 	// FIXME: This disables the buckled nag on relaymove, but ideally we shouldn't have to do this

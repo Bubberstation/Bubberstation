@@ -23,7 +23,7 @@
 /datum/preference/choiced/mob_height/is_accessible(datum/preferences/preferences)
 	if(highest_priority_job_is(preferences, list(/datum/job/cyborg, /datum/job/ai)))
 		return FALSE
-	if(/datum/quirk/settler::name in preferences.all_quirks)
+	if(/datum/quirk/item_quirk/settler::name in preferences.all_quirks) // Bubber edit - settler is an item quirk
 		return FALSE
 	if(/datum/quirk/spacer_born::name in preferences.all_quirks)
 		return FALSE
