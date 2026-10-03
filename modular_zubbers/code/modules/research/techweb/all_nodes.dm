@@ -5,8 +5,8 @@
 	display_name = "Empathic Sensor Implant"
 	description = "The result of assuredly-ethical experiments conducted on those with special minds."
 	prerequisite_nodes = list(/datum/techweb_node/cyber/cyber_implants)
-	design_ids = list(
-		"ci_empathic_sensor",
+	unlocked_designs = list(
+		/datum/design/empathic_sensor,
 	)
 	required_experiments = list(/datum/experiment/scanning/people/open_minds)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
@@ -14,44 +14,44 @@
 
 /datum/techweb_node/cyber/cyber_implants/New()
 	. = ..()
-	design_ids += list(
-		"ci-scanner",
-		"ci-gloweyes",
-		"ci-welding",
-		"ci-medhud",
-		"ci-sechud",
-		"ci-diaghud",
-		"ci-civhud",
-		"ci-botany",
-		"ci-janitor",
-		"ci-lighter",
-		"ci-razor",
+	unlocked_designs += list(
+		/datum/design/cyberimp_scanner,
+		/datum/design/cyberimp_gloweyes,
+		/datum/design/cyberimp_welding,
+		/datum/design/cyberimp_medical_hud,
+		/datum/design/cyberimp_security_hud,
+		/datum/design/cyberimp_diagnostic_hud,
+		/datum/design/cyberimp_civ_hud,
+		/datum/design/cyberimp_botany,
+		/datum/design/cyberimp_janitor,
+		/datum/design/cyberimp_lighter,
+		/datum/design/cyberimp_claws,
 	)
 
 /datum/techweb_node/cyber/cyber_organs_upgraded/New()
 	. = ..()
-	design_ids += list(
-		"limbdesign_adaptive_lungs",
+	unlocked_designs += list(
+		/datum/design/limb_disk/adaptive_lungs,
 	)
-	design_ids -= list(
-		"ci-gloweyes",
-		"ci-welding",
+	unlocked_designs -= list(
+		/datum/design/cyberimp_gloweyes,
+		/datum/design/cyberimp_welding,
 	)
 
 /datum/techweb_node/cyber/combat_implants/New()
 	. = ..()
-	design_ids += list(
-		"ci-mantis",
-		"ci-flash",
-		"ci-antisleep",
+	unlocked_designs += list(
+		/datum/design/cyberimp_mantis,
+		/datum/design/cyberimp_flash,
+		/datum/design/cyberimp_antisleep,
 	)
 
 /datum/techweb_node/cyber/night_vision_implants
 	display_name = "Night vision implants"
 	description = "Now you can work all night, even if you lost your glasses!"
 	prerequisite_nodes = list(/datum/techweb_node/night_vision, /datum/techweb_node/cyber/cyber_implants)
-	design_ids = list(
-		"ci-nv",
+	unlocked_designs = list(
+		/datum/design/cyberimp_nv,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 
@@ -59,17 +59,17 @@
 /datum/techweb_node/botanygene
 	display_name = "Experimental Botanical Engineering"
 	description = "Further advancement in plant cultivation techniques and machinery, enabling careful manipulation of plant DNA."
-	prereq_ids = list(TECHWEB_NODE_PARTS_ADV, TECHWEB_NODE_SELECTION)
-	design_ids = list(
-		"diskplantgene",
-		"plantgene",
+	prerequisite_nodes = list(/datum/techweb_node/parts_adv, /datum/techweb_node/selection)
+	unlocked_designs = list(
+		/datum/design/diskplantgene,
+		/datum/design/board/plantgenes,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 
 /datum/techweb_node/parts_bluespace/New()
 	. = ..()
-	design_ids += list(
-		"bs_experi_scanner"
+	unlocked_designs += list(
+		/datum/design/experi_scanner/bluespace,
 	)
 
 //Research borg tech node
@@ -91,55 +91,55 @@
 //Mining borg upgrades
 /datum/techweb_node/borg_mining/New()
 	.=..()
-	design_ids += list(
+	unlocked_designs += list(
 		/datum/design/borg_upgrade_advcutter,
-		"borg_upgrade_welding",
+		/datum/design/borg_upgrade_welding,
 	)
 
 
 /datum/techweb_node/ai_laws/New()
 	. = ..()
-	design_ids += list(
-		"crewsimov",
-		"crewsimovpp",
-		"ntos",
+	unlocked_designs += list(
+		/datum/design/board/crewimov,
+		/datum/design/board/crewimovpp,
+		/datum/design/board/ntosthree
 	)
 
 // MEDICAL
 /datum/techweb_node/cyber/cyber_implants/New()
 	. = ..()
-	design_ids += list(
-		"wound_scanner_internal"
+	unlocked_designs += list(
+		/datum/design/internal_wound_scanner
 	)
 
 /datum/techweb_node/medbay_equip/New()
 	. = ..()
-	design_ids += list(
-		"defibrillator",
+	unlocked_designs += list(
+		/datum/design/defibrillator,
 	)
 
 //ENGINEERING
 /datum/techweb_node/atmos/New()
 	. = ..()
-	design_ids += list(
-		"nitrogen_tank",
-		//"nitrogen_tank_belt", | Uncomment in case nitrogen internal tanks get refactored to no longer be 25L
-		"anesthetic_tank",
+	unlocked_designs += list(
+		/datum/design/nitrogen_tank,
+		///datum/design/nitrogen_tank_belt, | Uncomment in case nitrogen internal tanks get refactored to no longer be 25L
+		/datum/design/anesthetic_tank,
 	)
 
 // TOOLS
 
 /datum/techweb_node/mining/New()
 	. = ..()
-	design_ids += list(
-		"interdyne_mining_equipment_vendor",
+	unlocked_designs += list(
+		/datum/design/board/interdyne_mining_equipment_vendor,
 	)
 
 // Robotics Tech
 
 /datum/techweb_node/borg_engi/New()
 	. = ..()
-	design_ids += list(
+	unlocked_designs += list(
 		/datum/design/rld
 	)
 
@@ -152,19 +152,19 @@
 	return ..()
 
 /datum/techweb_node/borg_medical/New()
-	design_ids += list(
-		"borg_upgrade_pinpointer",
+	unlocked_designs += list(
+		/datum/design/borg_upgrade_pinpointer,
 	)
 	return ..()
 
 /datum/techweb_node/augmentation/New()
 	. = ..()
-	design_ids += list(
+	unlocked_designs += list(
 		/datum/design/synthclone,
 		/datum/design/borg_dominatrix,
 		/datum/design/borg_obedience,
-		"borg_upgrade_expand",
-		"borg_upgrade_shrink",
+		/datum/design/borg_upgrade_expand,
+		/datum/design/borg_upgrade_shrink,
 		/datum/design/borg_waddle
 	)
 
@@ -191,9 +191,9 @@
 	display_name = "Mech Logistics Solutions"
 	description = "Advancements in utilizing bluespace technology allow us to rapidly deliver mechs from workshop to destination."
 	prerequisite_nodes = list(/datum/techweb_node/bluespace_travel, /datum/techweb_node/mech_equipment)
-	design_ids = list(
-		"mechlauncher_pad",
-		"mechlauncher_console",
+	unlocked_designs = list(
+		/datum/design/board/mechpad,
+		/datum/design/board/mechpad_console,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE)
@@ -201,8 +201,8 @@
 // Computer Tech
 /datum/techweb_node/gaming/New()
 	. = ..()
-	design_ids += list(
-		"minesweeper",
+	unlocked_designs += list(
+		/datum/design/board/minesweeper,
 	)
 
 // Security Tech
@@ -263,15 +263,15 @@
 // Modsuit tech
 /datum/techweb_node/mod_equip/New()
 	. = ..()
-	design_ids += list("mod_remote_module")
+	unlocked_designs += list(/datum/design/module/mod_remote)
 
 /datum/techweb_node/nerd
 	display_name = "Theoretical Physics"
 	description = "They asked me how well I understood theoretical physics. I said I had a theoretical degree in physics."
 	prerequisite_nodes = list(/datum/techweb_node/robotics, /datum/techweb_node/chem_synthesis, /datum/techweb_node/mod_engi)
-	design_ids = list(
-		"nerd_suit",
-		"nerd_glases"
+	unlocked_designs = list(
+		/datum/design/nerd_suit,
+		/datum/design/nerd_glasses
 	)
 	research_costs = list(
 		TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS
@@ -286,9 +286,9 @@
 		/datum/techweb_node/nerd, //Previous tier
 		/datum/techweb_node/exp_tools, //Crowbar
 	)
-	design_ids = list(
-		"physgun",
-		"fast_crowbar"
+	unlocked_designs = list(
+		/datum/design/physgun,
+		/datum/design/fast_crowbar
 	)
 	research_costs = list(
 		TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS

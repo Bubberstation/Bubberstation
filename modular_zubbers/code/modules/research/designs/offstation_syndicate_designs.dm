@@ -117,7 +117,6 @@
 /datum/design/board/interdyne_mining_equipment_vendor
 	name = "Offstation Mining Rewards Vendor Board"
 	desc = "The circuit board for a offstation Mining Rewards Vendor."
-	id = "interdyne_mining_equipment_vendor"
 	build_type = AWAY_IMPRINTER
 	build_path = /obj/item/circuitboard/computer/order_console/mining/interdyne
 	category = list(
