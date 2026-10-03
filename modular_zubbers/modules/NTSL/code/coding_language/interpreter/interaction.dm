@@ -104,3 +104,4 @@
  * - <runtimeError>
  */
 /datum/n_Interpreter/proc/HandleError(datum/runtimeError/e)
+	return

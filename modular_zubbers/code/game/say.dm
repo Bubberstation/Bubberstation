@@ -1,4 +1,5 @@
 /atom/movable/proc/get_alt_name()
+	return
 
 /atom/movable/virtualspeaker
 	var/realvoice
