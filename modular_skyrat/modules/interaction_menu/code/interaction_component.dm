@@ -1,3 +1,4 @@
+#define INTERACTION_MENU_SELECTION_RANGE 3
 
 /datum/component/interactable
 	/// A hard reference to the parent
@@ -8,6 +9,8 @@
 	var/interact_next = 0
 	///Holds a reference to a relayed body if one exists
 	var/obj/body_relay = null
+	/// Per-viewer target choices. The owning component remains unchanged.
+	var/list/selected_characters = list()
 
 /datum/component/interactable/Initialize(...)
 	if(QDELETED(parent))
@@ -41,6 +44,7 @@
 /datum/component/interactable/Destroy(force, silent)
 	self = null
 	interactions = null
+	selected_characters = null
 	return ..()
 
 /datum/component/interactable/proc/open_interaction_menu(datum/source, mob/user)
@@ -81,7 +85,40 @@
 	data["arousalLimit"] = AROUSAL_LIMIT
 	return data
 
+/// Visible nearby humans with interaction components, selection is revalidated on use.
+/datum/component/interactable/proc/get_selectable_characters(mob/user)
+	var/list/characters = list()
+	if(ishuman(user) && user.GetComponent(/datum/component/interactable))
+		characters += user
+	for(var/mob/living/carbon/human/person in view(INTERACTION_MENU_SELECTION_RANGE, user))
+		if(person == user || QDELETED(person) || !can_see(user, person))
+			continue
+		if(person.GetComponent(/datum/component/interactable))
+			characters += person
+	return characters
+
+/datum/component/interactable/ui_close(mob/user)
+	selected_characters -= REF(user)
+	return ..()
+
+/// Resolve a viewer's choice without sharing selection with other open menus.
+/datum/component/interactable/proc/get_selected_component(mob/user)
+	var/datum/weakref/selected_ref = selected_characters[REF(user)]
+	if(!selected_ref)
+		return src
+	var/mob/living/carbon/human/selected = selected_ref.resolve()
+	if(QDELETED(selected) || !(selected in get_selectable_characters(user)))
+		selected_characters -= REF(user)
+		return src
+	var/datum/component/interactable/selected_component = selected.GetComponent(/datum/component/interactable)
+	return selected_component || src
+
 /datum/component/interactable/ui_data(mob/user)
+	var/datum/component/interactable/selected_component = get_selected_component(user)
+	return selected_component.build_ui_data(user)
+
+/datum/component/interactable/proc/build_ui_data(mob/user)
+	var/mob/living/living_user = user
 	var/list/data = list()
 	var/list/descriptions = list()
 	var/list/categories = list()
@@ -106,9 +143,23 @@
 	data["ref_user"] = REF(user)
 	data["ref_self"] = REF(self)
 	data["self"] = self.name
+	data["profile"] = list(
+		"name" = self.name,
+		"headshot" = self.get_interaction_headshot(),
+		"details" = self.build_interaction_anatomy_details(),
+		"tags" = living_user?.erp_prefs_enabled() ? self.build_interaction_status_tags() : list(),
+	)
+	data["self_data"] = living_user?.build_interaction_self_data() || list()
+	data["theme"] = living_user?.read_character_preference(/datum/preference/choiced/interaction_menu_theme) || "default"
+	var/list/characters = list()
+	for(var/mob/living/carbon/human/person as anything in get_selectable_characters(user))
+		characters += list(list("name" = person.name, "ref" = REF(person)))
+	data["characters"] = characters
 	if(body_relay)
 		if(!can_see(user, self))
 			data["self"] = body_relay.name
+			// Do not reveal the identity or appearance behind a body relay.
+			data["profile"] = list("name" = body_relay.name, "headshot" = "", "details" = list(), "tags" = list())
 	data["block_interact"] = interact_next >= world.time
 	data["interactions"] = categories
 	data["erp_interaction"] = self.client?.prefs?.read_preference(/datum/preference/toggle/erp)
@@ -172,7 +223,7 @@
 		"img" = (item && can_lewd_strip(source, target, name)) ? icon2base64(icon(item.icon, item.icon_state, SOUTH, 1)) : null
 		)
 
-/datum/component/interactable/ui_act(action, list/params)
+/datum/component/interactable/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -180,16 +231,53 @@
 	if(!ishuman(usr))
 		return
 
+	if(action == "set_selected")
+		var/mob/living/carbon/human/selected = locate(params["ref"])
+		if(QDELETED(selected) || !(selected in get_selectable_characters(usr)))
+			return FALSE
+		var/datum/component/interactable/selected_component = selected.GetComponent(/datum/component/interactable)
+		if(!selected_component)
+			return FALSE
+		selected_component.build_interactions_list()
+		selected_characters[REF(usr)] = WEAKREF(selected)
+		return TRUE
+
+	var/datum/component/interactable/selected_component = get_selected_component(usr)
+	return selected_component.handle_ui_action(action, params, usr)
+
+/// Run the action as the mob who clicked the UI (usr).
+/datum/component/interactable/proc/handle_ui_action(action, list/params, mob/living/carbon/human/viewer)
+	// Profile / self actions always use the clicking UI user.
+	switch(action)
+		if("set_theme")
+			var/datum/preference/choiced/theme_preference = GLOB.preference_entries[/datum/preference/choiced/interaction_menu_theme]
+			if(!(params["theme"] in theme_preference.get_choices()))
+				return FALSE
+			return viewer.write_character_preference(/datum/preference/choiced/interaction_menu_theme, params["theme"])
+		if("open_examine")
+			viewer.run_examinate(body_relay && !can_see(viewer, self) ? body_relay : self)
+			return TRUE
+		if("set_self_preference")
+			viewer.set_interaction_self_preference(params["pref_type"], params["pref_value"])
+			return TRUE
+		if("set_genital_visibility")
+			if(viewer.erp_prefs_enabled())
+				viewer.set_interaction_genital_visibility(params["slot"], text2num(params["visibility"]))
+			return TRUE
+		if("toggle_underwear")
+			viewer.toggle_interaction_underwear(params["kind"])
+			return TRUE
+
 	if(params["interaction"])
 		var/interaction_id = params["interaction"]
 		if(GLOB.interaction_instances[interaction_id])
-			var/mob/living/carbon/human/user = locate(params["userref"])
+			var/mob/living/carbon/human/user = viewer
 			if(!can_interact(GLOB.interaction_instances[interaction_id], user))
 				return FALSE
 			if(body_relay && !can_see(user, self))
-				GLOB.interaction_instances[interaction_id].act(user, locate(params["selfref"]), body_relay)
+				GLOB.interaction_instances[interaction_id].act(user, self, body_relay)
 			else
-				GLOB.interaction_instances[interaction_id].act(user, locate(params["selfref"]))
+				GLOB.interaction_instances[interaction_id].act(user, self)
 			var/datum/component/interactable/interaction_component = user.GetComponent(/datum/component/interactable)
 			interaction_component.interact_last = world.time
 			interact_next = interaction_component.interact_last + INTERACTION_COOLDOWN
@@ -199,8 +287,8 @@
 	if(params["item_slot"])
 		// This code should be easy enough to follow... I hope.
 		var/item_index = params["item_slot"]
-		var/mob/living/carbon/human/source = locate(params["userref"])
-		var/mob/living/carbon/human/target = locate(params["selfref"])
+		var/mob/living/carbon/human/source = viewer
+		var/mob/living/carbon/human/target = self
 		var/obj/item/clothing/sextoy/new_item = source.get_active_held_item()
 		var/obj/item/clothing/sextoy/existing_item = target.vars[item_index]
 
@@ -290,3 +378,5 @@
 			return item.lewd_slot_flags & LEWD_SLOT_NIPPLES
 		else
 			return FALSE
+
+#undef INTERACTION_MENU_SELECTION_RANGE
