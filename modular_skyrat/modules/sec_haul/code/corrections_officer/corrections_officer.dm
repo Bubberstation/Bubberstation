@@ -63,7 +63,7 @@
 	messenger = /obj/item/storage/backpack/messenger/sec
 	head = /obj/item/clothing/head/beret/sec
 	box = /obj/item/storage/box/survival/security
-	belt = /obj/item/modular_computer/pda/security
+	belt = /obj/item/modular_computer/pda/crew/security
 
 	id_trim = /datum/id_trim/job/corrections_officer
 

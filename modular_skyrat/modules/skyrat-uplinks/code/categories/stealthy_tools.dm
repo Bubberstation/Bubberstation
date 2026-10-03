@@ -3,7 +3,6 @@
 	desc = "A device that allows you to spoof an announcement to the station of your choice."
 	item = /obj/item/traitor_announcer
 	surplus = 0
-	progression_minimum = 20 MINUTES
 	cost = 3
 	restricted = TRUE
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)

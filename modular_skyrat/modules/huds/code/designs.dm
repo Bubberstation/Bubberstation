@@ -1,7 +1,6 @@
 /datum/design/health_hud_prescription
 	name = "Prescription Health Scanner HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status. This one has a prescription lens."
-	id = "health_hud_prescription"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -17,7 +16,6 @@
 /datum/design/security_hud_prescription
 	name = "Prescription Security HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status. This one has a prescription lens."
-	id = "security_hud_prescription"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -33,7 +31,6 @@
 /datum/design/diagnostic_hud_prescription
 	name = "Prescription Diagnostic HUD"
 	desc = "A HUD used to analyze and determine faults within robotic machinery. This one has a prescription lens."
-	id = "diagnostic_hud_prescription"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -49,7 +46,6 @@
 /datum/design/science_hud_prescription
 	name = "Prescription Science HUD"
 	desc = "These glasses scan the contents of containers and projects their contents to the user in an easy to read format. This one has a prescription lens."
-	id = "science_hud_prescription"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -65,7 +61,6 @@
 /datum/design/mesons_prescription
 	name = "Prescription Optical Meson Scanners"
 	desc = "Used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting condition. Prescription lens has been added into this design."
-	id = "mesons_prescription"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -81,7 +76,6 @@
 /datum/design/engine_goggles_prescription
 	name = "Prescription Engineering Scanner Goggles"
 	desc = "Goggles used by engineers. The Meson Scanner mode lets you see basic structural and terrain layouts through walls, regardless of lighting condition. The T-ray Scanner mode lets you see underfloor objects such as cables and pipes. Prescription lens has been added into this design."
-	id = "engine_goggles_prescription"
 	build_type = PROTOLATHE | AWAY_LATHE | COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -98,7 +92,6 @@
 /datum/design/tray_goggles_prescription
 	name = "Prescription Optical T-Ray Scanners"
 	desc = "Used by engineering staff to see underfloor objects such as cables and pipes.  Prescription lens has been added into this design."
-	id = "tray_goggles_prescription"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,

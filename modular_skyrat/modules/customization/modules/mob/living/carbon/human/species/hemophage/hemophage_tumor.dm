@@ -135,14 +135,11 @@
 /// This proc contains no check whatsoever, to avoid redundancy of null checks and such.
 /// That being said, it shouldn't be used by anything but the tumor, if you have to call it outside of that, you probably have gone wrong somewhere.
 /obj/item/organ/heart/hemophage/proc/toggle_dormant_tumor_vulnerabilities(mob/living/carbon/human/hemophage)
-	var/datum/physiology/hemophage_physiology = hemophage.physiology
 	var/damage_multiplier = is_dormant ? DORMANT_DAMAGE_MULTIPLIER : 1 / DORMANT_DAMAGE_MULTIPLIER
-
-	hemophage_physiology.brute_mod *= damage_multiplier
-	hemophage_physiology.burn_mod *= damage_multiplier
-	hemophage_physiology.tox_mod *= damage_multiplier
-	hemophage_physiology.stamina_mod *= damage_multiplier / 2 // Doing half here so that they don't instantly hit stam-crit when hit like only once.
-
+	MODIFY_PHYSIOLOGY(hemophage, BRUTE, damage_multiplier)
+	MODIFY_PHYSIOLOGY(hemophage, BURN, damage_multiplier)
+	MODIFY_PHYSIOLOGY(hemophage, TOX, damage_multiplier)
+	MODIFY_PHYSIOLOGY(hemophage, STAMINA, damage_multiplier/2)
 
 /obj/item/organ/heart/hemophage/proc/get_status_tab_item(mob/living/source, list/items)
 	SIGNAL_HANDLER

@@ -8,12 +8,11 @@
 
 /datum/techweb/interdyne/New()
 	. = ..()
-	research_node_id("oldstation_surgery", TRUE, TRUE, FALSE)
-	research_node_id(TECHWEB_NODE_INTERDYNE, TRUE, TRUE, FALSE)
+	research_node(/datum/techweb_node/oldstation_surgery, TRUE, TRUE, FALSE)
+	research_node(/datum/techweb_node/interdyne, TRUE, TRUE, FALSE)
 
 //techweb nodes
 /datum/techweb_node/interdyne
-	id = TECHWEB_NODE_INTERDYNE
 	display_name = "Syndicate Technology"
 	description = "Tools used by the Syndicate."
 	required_items_to_unlock = list(
@@ -23,33 +22,31 @@
 		/obj/item/circuitboard/machine/powerator/interdyne
 
 	)
-	design_ids = list(
-		"cargoconsole_syndicate",
-		"bountypad_syndicate",
-		"bountyconsole_syndicate",
-		"powerator_syndicate",
-		"exofab_syndicate",
-		"syndicate_firing_pin",
-		"syndicate_headset",
-		"cybersun_encryption"
+	unlocked_designs = list(
+		/datum/design/syndicate_bounty_pad,
+		/datum/design/syndicate_bounty_pad_console,
+		/datum/design/syndicate_powerator,
+		/datum/design/syndicate_exofab,
+		/datum/design/syndicate_firing_pin,
+		/datum/design/syndicateciv_headset,
+		/datum/design/cybersun_key
 
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
-	hidden = TRUE
+	node_flags = TECHWEB_NODE_WIKI | TECHWEB_NODE_HIDDEN
 
 /datum/techweb_node/encryption
-	id = TECHWEB_NODE_INTERDYNE_ENCRYPTION
 	display_name = "Advanced Syndicate Encryption"
 	description = "Provides emergency use Interdyne encryption keys in case operational comms are compromised."
 	required_items_to_unlock = list(
 		/obj/item/encryptionkey/headset_syndicate/interdyne
 	)
-	design_ids = list(
-		"interdyne_encryption",
+	unlocked_designs = list(
+		/datum/design/interdyne_key,
 	)
-	prereq_ids = list(TECHWEB_NODE_INTERDYNE)
+	prerequisite_nodes = list(/datum/techweb_node/interdyne)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
-	hidden = TRUE
+	node_flags = TECHWEB_NODE_WIKI | TECHWEB_NODE_HIDDEN
 
 //Syndicate Machinery Boards
 
@@ -95,7 +92,7 @@
 /obj/machinery/rnd/server/interdyne/attackby(obj/item/attacking_item, mob/user, params)
 	if(istype(attacking_item, /obj/item/research_notes) && stored_research)
 		var/obj/item/research_notes/research_notes = attacking_item
-		stored_research.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = research_notes.value))
+		stored_research.adjust_multiple_points(list(TECHWEB_POINT_TYPE_GENERIC = research_notes.value))
 		playsound(src, 'sound/machines/copier.ogg', 50, TRUE)
 		qdel(research_notes)
 		return

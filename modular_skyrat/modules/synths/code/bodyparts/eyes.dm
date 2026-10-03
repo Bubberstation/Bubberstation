@@ -28,7 +28,6 @@
 /datum/design/synth_eyes
 	name = "Optical Sensors"
 	desc = "A very basic set of optical sensors with no extra vision modes or functions."
-	id = "synth_eyes"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

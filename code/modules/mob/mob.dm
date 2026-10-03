@@ -1274,7 +1274,7 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 	SIGNAL_HANDLER
 	return
 
-/mob/proc/update_health_hud()
+/mob/proc/update_health_hud(healthpercent)
 	return
 
 /// Changes the stamina HUD based on new information
@@ -1631,10 +1631,6 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 
 	for(var/datum/callback/CB as anything in persistent_client.post_logout_callbacks)
 		CB.Invoke()
-
-	if(canon_client?.movingmob)
-		LAZYREMOVE(canon_client.movingmob.client_mobs_in_contents, src)
-		canon_client.movingmob = null
 
 	clear_important_client_contents()
 	canon_client = null
