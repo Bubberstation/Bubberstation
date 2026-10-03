@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 	) = 10,
 	/obj/item/lightreplacer = 25,
 	/obj/item/locator = 5,
-	/obj/item/mmi = 10,
+	/obj/item/brain_processor/organic = 10,
 	/obj/item/pinata = 20,
 	/obj/item/pinpointer/material_sniffer = 5,
 	list(

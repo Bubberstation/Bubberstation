@@ -130,12 +130,12 @@
 	return is_type_in_list(tool, insert_implements)
 
 /datum/surgery_operation/limb/organ_manipulation/snowflake_check_availability(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, operated_zone)
-	if(istype(tool, /obj/item/mmi)) //Bubber Edit
+	if(istype(tool, /obj/item/brain_processor)) //Bubber Edit
 		return TRUE
 	return is_inserting(tool) ? is_insert_available(limb, tool, operated_zone) : is_remove_available(limb, operated_zone)
 
 /datum/surgery_operation/limb/organ_manipulation/get_radial_options(obj/item/bodypart/limb, obj/item/tool, operating_zone)
-	if(istype(tool, /obj/item/mmi)) //Bubber Edit
+	if(istype(tool, /obj/item/brain_processor)) //Bubber Edit
 		return get_insert_options(limb, tool, operating_zone)
 	return is_inserting(tool) ? get_insert_options(limb, tool, operating_zone) : get_remove_options(limb, operating_zone)
 
@@ -257,11 +257,11 @@
 
 	if(organ.loc == surgeon)
 	//Bubber Edit Start, Checks if the type attempted to be inserted is a positronic or not
-	if(istype(organ, /obj/item/mmi))
+	if(istype(organ, /obj/item/brain_processor))
 		organ = new /obj/item/organ/brain/synth/mmi(null, organ)
-	else if(istype(organ, /obj/item/mmi/posibrain))
+	else if(istype(organ, /obj/item/brain_processor/positronic))
 		organ = new /obj/item/organ/brain/synth(null, organ)
-	else if(istype(organ, /obj/item/mmi/posibrain/circuit))
+	else if(istype(organ, /obj/item/brain_processor/positronic/circuit))
 		organ = new /obj/item/organ/brain/synth/circuit(null, organ)
 	//Bubber Edit End
 		surgeon.temporarilyRemoveItemFromInventory(organ, TRUE)
@@ -347,7 +347,7 @@
 	replaced_by = null
 	insert_implements = list(
 		/obj/item/organ = 1,
-		/obj/item/mmi = 1,
+		/obj/item/brain_processor = 1,
 	)
 
 /// Abductor subtype that works through clothes

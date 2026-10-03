@@ -12,10 +12,10 @@
 	var/obj/item/modular_computer/pda/synth/internal_computer
 	actions_types = list(/datum/action/item_action/synth/open_internal_computer)
 	organ_traits = list(TRAIT_SILICON_EMOTES_ALLOWED)
-	var/mmi_type = /obj/item/mmi/posibrain
-	var/obj/item/mmi/stored_mmi
+	var/mmi_type = /obj/item/brain_processor/positronic
+	var/obj/item/brain_processor/stored_mmi
 
-/obj/item/organ/brain/synth/Initialize(mapload, obj/item/mmi/brain_mmi)
+/obj/item/organ/brain/synth/Initialize(mapload, obj/item/brain_processor/brain_mmi)
 	. = ..()
 	internal_computer = new(src)
 	ADD_TRAIT(src, TRAIT_SILICON_EMOTES_ALLOWED, INNATE_TRAIT)
@@ -43,7 +43,7 @@
 	SIGNAL_HANDLER
 	if(loc == stored_mmi)
 		return
-	var/obj/item/mmi/mmi = stored_mmi
+	var/obj/item/brain_processor/mmi = stored_mmi
 	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 	stored_mmi = null
 	var/atom/destination = loc || mmi.drop_location()
@@ -157,11 +157,11 @@
 	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
-	mmi_type = /obj/item/mmi/posibrain/circuit
+	mmi_type = /obj/item/brain_processor/positronic/circuit
 
 /obj/item/organ/brain/synth/mmi
 	name = "augmented brain"
 	desc = "A augmented organic brain"
 	icon = /obj/item/organ/brain::icon
 	icon_state = "brain"
-	mmi_type = /obj/item/mmi
+	mmi_type = /obj/item/brain_processor
