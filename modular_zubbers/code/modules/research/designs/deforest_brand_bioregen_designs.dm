@@ -7,6 +7,7 @@
 // Burn Treatments
 
 /datum/design/biogen/dfbbr_balm
+	prints_full_stack = TRUE
 	name = "Red Sun Balm"
 	id = "dfbbr_sun_balm"
 	materials = list(/datum/material/biomass = 18)
@@ -14,6 +15,7 @@
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_ointment
+	prints_full_stack = TRUE
 	name = "Ointment"
 	id = "dfbbr_ointment"
 	materials = list(/datum/material/biomass = 6)
@@ -21,6 +23,7 @@
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_aseptic_gauze
+	prints_full_stack = TRUE
 	name = "Sealed Aseptic Gauze"
 	id = "dfbbr_aseptic_gauze"
 	materials = list(/datum/material/biomass = 16)
@@ -28,6 +31,7 @@
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_mesh
+	prints_full_stack = TRUE
 	name = "Regenerative Mesh"
 	id = "dfbbr_mesh"
 	materials = list(/datum/material/biomass = 12)
@@ -35,6 +39,7 @@
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_hemo_mesh
+	prints_full_stack = TRUE
 	name = "Hemostatic Mesh"
 	id = "dfbbr_slavic_mesh"
 	materials = list(/datum/material/biomass = 10)
@@ -44,6 +49,7 @@
 // Brute Treatments
 
 /datum/design/biogen/dfbbr_bruise_pack
+	prints_full_stack = TRUE
 	name = "Bruise Packs"
 	id = "dfbbr_bruise_packs"
 	materials = list(/datum/material/biomass = 8)
@@ -51,6 +57,7 @@
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_bandaid
+	prints_full_stack = TRUE
 	name = "First Aid Bandage"
 	id = "dfbbr_bandaid"
 	materials = list(/datum/material/biomass = 50)
@@ -58,6 +65,7 @@
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_sutures
+	prints_full_stack = TRUE
 	name = "Sutures"
 	id = "dfbbr_suture"
 	materials = list(/datum/material/biomass = 16)
@@ -65,6 +73,7 @@
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_hemo_sutures
+	prints_full_stack = TRUE
 	name = "Hemostatic Sutures"
 	id = "dfbbr_slavic_suture"
 	materials = list(/datum/material/biomass = 30)
@@ -74,6 +83,7 @@
 // Bleed Treatments
 
 /datum/design/biogen/dfbbr_coagulant_f
+	prints_full_stack = TRUE
 	name = "Coagulant-F Packet"
 	id = "dfbbr_coagulant_pack"
 	materials = list(/datum/material/biomass = 10)
@@ -81,6 +91,7 @@
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_coagulant_rapid
+	prints_full_stack = TRUE
 	name = "Rapid Coagulant Applicator"
 	id = "dfbbr_coagulant_rapid"
 	materials = list(/datum/material/biomass = 75)
@@ -97,6 +108,7 @@
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_repair_foam
+	prints_full_stack = TRUE
 	name = "Robotic Repair Spray"
 	id = "dfbbr_repair_foam"
 	materials = list(/datum/material/biomass = 80)
@@ -104,6 +116,7 @@
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_repair_foam_premium
+	prints_full_stack = TRUE
 	name = "Premium Robotic Repair Spray"
 	id = "dfbbr_repair_foam_premium"
 	materials = list(/datum/material/biomass = 160)
@@ -113,6 +126,7 @@
 // Fracture Treatments
 
 /datum/design/biogen/dfbbr_gauze
+	prints_full_stack = TRUE
 	name = "Medical Gauze"
 	id = "dfbbr_slavic_gauze"
 	materials = list(/datum/material/biomass = 16)
@@ -120,6 +134,7 @@
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_bone_gel
+	prints_full_stack = TRUE
 	name = "Bone Gel"
 	id = "dfbbr_bone_gel"
 	materials = list(/datum/material/biomass = 50)
@@ -127,6 +142,7 @@
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_surgical_tape
+	prints_full_stack = TRUE
 	name = "Surgical Tape"
 	id = "dfbbr_surgical_tape"
 	materials = list(/datum/material/biomass = 50)
@@ -134,6 +150,7 @@
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_splint_applicator
+	prints_full_stack = TRUE
 	name = "Subdermal Splint Applicator"
 	id = "dfbbr_splint_applicator"
 	materials = list(/datum/material/biomass = 75)
