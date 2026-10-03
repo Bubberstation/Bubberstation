@@ -62,7 +62,7 @@
 		/obj/item/paper/pamphlet/blacksmith_tutorial = 1,
 	)
 	glasses = /obj/item/clothing/glasses/hud/permit
-	belt = /obj/item/modular_computer/pda/cargo
+	belt = /obj/item/modular_computer/pda/crew/cargo
 	ears = /obj/item/radio/headset/headset_cargo
 	shoes = /obj/item/clothing/shoes/workboots
 	gloves = /obj/item/clothing/gloves/color/brown
