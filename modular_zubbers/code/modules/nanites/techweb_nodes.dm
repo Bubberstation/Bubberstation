@@ -141,7 +141,7 @@
 	id = "nanite_hazard"
 	display_name = "Hazard Nanite Programs"
 	description = "Extremely advanced Nanite programs with the potential of being extremely dangerous."
-	prereq_ids = list("nanite_harmonic", TECHWEB_NODE_ALIENTECH)
+	prereq_ids = list("nanite_harmonic", /datum/techweb_node/alien/base)
 	design_ids = list(
 		"mindcontrol_nanites",
 		"mitosis_nanites",

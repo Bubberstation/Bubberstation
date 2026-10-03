@@ -1,55 +1,39 @@
 // RESEARCH NODES
 //Weaponry Research
 /datum/techweb_node/ballistic
-	id = "ballistic_tech"
 	display_name = "Ballistic Research"
 	description = "Ballistic ammunition for shotguns."
-	prereq_ids = list(TECHWEB_NODE_RIOT_SUPRESSION)
-	design_ids = list(
-		"shotgun_slug",
-		"buckshot_shell",
-		"s12g_slug",
-		"s12g_buckshot"
+	prerequisite_nodes = list(/datum/techweb_node/riot_supression)
+	unlocked_designs = list(
+		/datum/design/shotgun_slug,
+		/datum/design/buckshot_shell,
+		/datum/design/advancedgaugeboxes_slug,
+		/datum/design/advancedgaugeboxes
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SECURITY)
 
-/* Commenting this out due to the fact that we don't really have anything that falls under the category of 'even more exotic ammo'. The dragon's breath can be safely moved to illegal tech where it fits alongside the incendiary WT ammo.
-/datum/techweb_node/magazineresearch
-	id = "storedmunition_tech"
-	display_name = "Esoteric Ammunition"
-	description = "The daring do not stop at reaching the mountaintop, they go where no man has gone before" // and with that nice quote we have exotic ammo 2
-	prereq_ids = list("exotic_ammo")
-	design_ids = list(
-		"s12g_db"
-	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
-*/
-
 /datum/techweb_node/basic_arms/New()
-	design_ids += "s12c_fslug"
-	design_ids += "s12g_huntingslug"
-	design_ids += "ammoworkbench_disk_lethal"
-	design_ids += "ammo_workbench"
-	design_ids += "m9mm_sec"
-	design_ids += "m9mm_sec_speedloader"
-	design_ids += "c32_speedloader"
-
-/datum/techweb_node/sec_equip/New()
-	. = ..()
-
-/datum/techweb_node/riot_supression/New()
+	unlocked_designs += list(
+		/datum/design/s12c_fslug,
+		/datum/design/advancedgaugeboxes_hunting,
+		/datum/design/disk/ammo_workbench_lethal,
+		/datum/design/disk/ammo_workbench_lethal,
+		/datum/design/board/ammo_workbench,
+		/datum/design/m9mm_sec,
+		/datum/design/m9mm_sec_speedloader,
+		/datum/design/c32_speedloader,
+	)
 	. = ..()
 
 /datum/techweb_node/exotic_ammo/New()
-	design_ids += "m9mm_sec_rocket"
-	design_ids += "s12g_flechette"
-	design_ids += "solgrenade_extmag"
-	. = ..()
-
-/datum/techweb_node/syndicate_basic/New()
+	unlocked_designs += list(
+		/datum/design/m9mm_sec_rocket,
+		/datum/design/advancedgaugeboxes_flech,
+		/datum/design/kiboko_box_mag,
+	)
 	. = ..()
 
 /datum/techweb_node/electric_weapons/New()
-	design_ids += "s12g_laser"
+	unlocked_designs += /datum/design/advancedgaugeboxes_laser
 	. = ..()

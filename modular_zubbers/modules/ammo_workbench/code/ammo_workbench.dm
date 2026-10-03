@@ -646,7 +646,6 @@
 /datum/design/board/ammo_workbench
 	name = "Machine Design (Ammunitions Workbench)"
 	desc = "A machine, somewhat akin to a lathe, made specifically for manufacturing ammunition. It has a slot for ammunition containers, like magazines or stripper clips."
-	id = "ammo_workbench"
 	build_path = /obj/item/circuitboard/machine/ammo_workbench
 	category = list(RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_FAB)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY

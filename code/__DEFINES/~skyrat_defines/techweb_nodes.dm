@@ -15,7 +15,6 @@
 #define TECHWEB_NODE_CYBERNETICS_TESHARI "teshari_cyber"
 #define TECHWEB_NODE_CYBERNETICS_TESHARI_ADVANCED "adv_teshari_cyber"
 #define TECHWEB_NODE_MUTANT_TECH "mutant_tech"
-#define TECHWEB_NODE_NIGHT_VISION_IMPLANTS "nv_implants"
 #define TECHWEB_NODE_ROBOTIC_SURGERY "improved_robotic_surgery"
 #define TECHWEB_NODE_ROBOTIC_SURGERY_ADVANCED "advanced_robotic_surgery"
 #define TECHWEB_NODE_ROBOTIC_SURGERY_EXPERIMENTAL "robotic_surgery_exp"
