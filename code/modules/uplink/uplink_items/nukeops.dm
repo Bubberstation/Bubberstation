@@ -618,7 +618,7 @@
 	category = /datum/uplink_category/reinforcements
 	surplus = 0
 	cost = 35
-	purchasable_from = UPLINK_SERIOUS_OPS
+	purchasable_from = UPLINK_NUKE_OPS //BUBBERSTATION CHANGE: PREVIOUSLY UPLINK_SERIOUS_OPS
 	restricted = TRUE
 	refundable = TRUE
 
