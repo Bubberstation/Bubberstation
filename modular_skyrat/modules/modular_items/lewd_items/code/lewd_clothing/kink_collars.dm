@@ -228,7 +228,9 @@
 		to_chat(user, span_warning("The collar is locked! You'll need to unlock it before you can take it off!"))
 		return
 	var/atom/movable/screen/inventory/hand/inv_hand = over_object
-	if(user.putItemFromInventoryInHandIfPossible(src, inv_hand.held_index))
+	// Dropping onto any other slot hands us the base inventory screen object, which has no
+	// held_index on it. Only take the hand path when we actually landed on a hand.
+	if(istype(inv_hand) && user.putItemFromInventoryInHandIfPossible(src, inv_hand.held_index))
 		add_fingerprint(user)
 	return ..()
 
