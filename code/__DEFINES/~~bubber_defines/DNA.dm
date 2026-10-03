@@ -49,7 +49,6 @@
 /// Organ slot external
 #define ORGAN_SLOT_EXTERNAL_CAP "cap"
 #define ORGAN_SLOT_EXTERNAL_FLUFF "fluff"
-#define ORGAN_SLOT_EXTERNAL_HALO "halo"
 #define ORGAN_SLOT_EXTERNAL_HEAD_ACCESSORY "head_accessory"
 #define ORGAN_SLOT_EXTERNAL_MOTH_MARKINGS "moth_markings"
 #define ORGAN_SLOT_EXTERNAL_NECK_ACCESSORY "neck_accessory"
