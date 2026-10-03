@@ -715,10 +715,23 @@
 	if (single_order)
 		if (istype(single_order, /datum/supply_order))
 			var/datum/supply_order/SO = single_order
-			if (SO.pack.crate_type)
-				SO.generate(pod)
-			else if (SO.pack.order_flags & ORDER_GOODY) //Goody orders lack a crate_type and need special handling
+			// BUBBER EDIT REMOVAL START
+			// if (SO.pack.crate_type)
+			// 	SO.generate(pod)
+			// else if (SO.pack.order_flags & ORDER_GOODY) //Goody orders lack a crate_type and need special handling
+			// 	SO.generateCombo(pod, SO.orderer, SO.pack.contains, SO.pack.cost)
+			// BUBBER EDIT REMOVAL END
+			// BUBBER EDIT ADDITION START - no more empty pods. broken orders land in the error crate with a refund
+			if (!SO.pack.crate_type && (SO.pack.order_flags & ORDER_GOODY) && supply_contents_valid(SO.pack.contains)) //Goody orders lack a crate_type and need special handling
 				SO.generateCombo(pod, SO.orderer, SO.pack.contains, SO.pack.cost)
+			else
+				var/obj/crate = SO.generate(pod)
+				if(!crate && length(SO.pack.contains))
+					crate = SO.ship_in_error_crate(pod)
+				var/obj/structure/closet/crate/secure/error/error_crate = astype(crate)
+				if(error_crate?.salvaged)
+					SO.refund_failed(SO.refund_account, SO.refund_amount)
+			// BUBBER EDIT ADDITION END
 		else if (istype(single_order, /atom/movable))
 			var/atom/movable/O = single_order
 			O.forceMove(pod)

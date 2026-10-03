@@ -147,7 +147,7 @@
 
 /datum/supply_pack/company_import/deforest/medpens/pentibinin
 	item_type = /obj/item/reagent_containers/hypospray/medipen/deforest/pentibinin
-	order_flags = ORDER_CONTRABAND
+	order_flags = parent_type::order_flags | ORDER_CONTRABAND
 
 /datum/supply_pack/company_import/deforest/medpens_stim
 	cost = PAYCHECK_COMMAND * 2
@@ -163,21 +163,21 @@
 
 /datum/supply_pack/company_import/deforest/medpens_stim/aranepaine
 	item_type = /obj/item/reagent_containers/hypospray/medipen/deforest/aranepaine
-	order_flags = ORDER_CONTRABAND
+	order_flags = parent_type::order_flags | ORDER_CONTRABAND
 
 /datum/supply_pack/company_import/deforest/medpens_stim/synalvipitol
 	item_type = /obj/item/reagent_containers/hypospray/medipen/deforest/synalvipitol
-	order_flags = ORDER_CONTRABAND
+	order_flags = parent_type::order_flags | ORDER_CONTRABAND
 
 /datum/supply_pack/company_import/deforest/medpens_stim/twitch
 	item_type = /obj/item/reagent_containers/hypospray/medipen/deforest/twitch
 	cost = PAYCHECK_COMMAND * 3
-	order_flags = ORDER_CONTRABAND
+	order_flags = parent_type::order_flags | ORDER_CONTRABAND
 
 /datum/supply_pack/company_import/deforest/medpens_stim/demoneye
 	item_type = /obj/item/reagent_containers/hypospray/medipen/deforest/demoneye
 	cost = PAYCHECK_COMMAND * 3
-	order_flags = ORDER_CONTRABAND
+	order_flags = parent_type::order_flags | ORDER_CONTRABAND
 
 /datum/supply_pack/company_import/deforest/equipment
 	cost = PAYCHECK_LOWER

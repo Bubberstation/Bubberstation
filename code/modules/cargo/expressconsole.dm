@@ -230,6 +230,10 @@
 
 				TIMER_COOLDOWN_START(src, COOLDOWN_EXPRESSPOD_CONSOLE, 10 SECONDS)
 				order.generateRequisition(get_turf(src))
+				// BUBBER EDIT ADDITION START - each pod refunds its own charge if it ships broken
+				order.refund_account = account
+				order.refund_amount = order.pack.get_cost() * get_discount()
+				// BUBBER EDIT ADDITION END
 				for(var/i in 1 to MAX_EMAG_ROCKETS)
 					if (!account.adjust_money(order.pack.get_cost() * -get_discount()))
 						break
@@ -257,6 +261,10 @@
 				final_cost *= 1.1
 			if (!account.adjust_money(-round(final_cost)))
 				return
+			// BUBBER EDIT ADDITION START - refund if the pod ships broken
+			order.refund_account = account
+			order.refund_amount = round(final_cost)
+			// BUBBER EDIT ADDITION END
 
 			TIMER_COOLDOWN_START(src, COOLDOWN_EXPRESSPOD_CONSOLE, 5 SECONDS)
 			if(pack.special_pod)
