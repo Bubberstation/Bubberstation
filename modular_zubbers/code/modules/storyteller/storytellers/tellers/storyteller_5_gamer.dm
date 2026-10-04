@@ -1,6 +1,6 @@
 /datum/storyteller/gamer
 	name = "Heavy (Crew Antag Spawns Focus)"
-	desc = "This storyteller prioritizes combat-based encounters and chaos, although the actual level of chaos may be unpredictable. The number of destructive events is reduced."
+	desc = "This storyteller prioritizes combat-based encounters and chaos, although the actual level of chaos may be unpredictable due to player agency. The number of destructive events is reduced."
 	welcome_text = "Welcome to the Gamer storyteller. Now with 50% more ahelps!"
 
 	track_data = /datum/storyteller_data/tracks/gamer
