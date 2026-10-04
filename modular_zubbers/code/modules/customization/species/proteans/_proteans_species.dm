@@ -159,9 +159,6 @@
 		ASYNC // Not INVOKE_ASYNC to prevent race conditions.
 			assimilate_modsuit(owner, suit, TRUE)
 			species_modsuit.quick_activation()
-			species_modsuit.theme.set_up_parts(species_modsuit, species_modsuit.theme.default_skin)
-			species_modsuit.make_indestructible()
-			species_modsuit.update_static_data_for_all_viewers()
 
 	owner.equip_to_storage(SSwardrobe.provide_type(/obj/item/stack/sheet/iron/twenty, owner), ITEM_SLOT_BACK, TRUE, FALSE)
 	if(outfit.suit_store)
@@ -201,6 +198,7 @@
 		if(species_modsuit.install(module, owner, TRUE))
 			continue
 	species_modsuit.theme.set_up_parts(species_modsuit, species_modsuit.theme.default_skin)
+	species_modsuit.make_indestructible()
 	species_modsuit.update_static_data_for_all_viewers()
 
 /datum/species/protean/proc/unassimilate_modsuit(mob/living/user, forced = FALSE)
