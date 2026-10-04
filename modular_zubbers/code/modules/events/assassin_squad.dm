@@ -25,6 +25,14 @@
 	///how many syndies to send in
 	var/spawn_number = 5
 
+/datum/round_event/syndicate_assassination_attempt/can_spawn_event(players_amt, allow_magic = FALSE)
+	. = ..()
+	if(!.)
+		return
+	if(isnull(find_victim()))
+		return FALSE
+	return TRUE
+
 /datum/round_event/syndicate_assassination_attempt/announce(fake)
 	if(fake)
 		victim = find_victim()
