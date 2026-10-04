@@ -159,7 +159,9 @@
 		ASYNC // Not INVOKE_ASYNC to prevent race conditions.
 			assimilate_modsuit(owner, suit, TRUE)
 			species_modsuit.quick_activation()
+			species_modsuit.theme.set_up_parts(species_modsuit, species_modsuit.theme.default_skin)
 			species_modsuit.make_indestructible()
+			species_modsuit.update_static_data_for_all_viewers()
 
 	owner.equip_to_storage(SSwardrobe.provide_type(/obj/item/stack/sheet/iron/twenty, owner), ITEM_SLOT_BACK, TRUE, FALSE)
 	if(outfit.suit_store)
@@ -238,6 +240,7 @@
 	species_modsuit.theme = species_modsuit.stored_theme
 	species_modsuit.stored_theme = null
 	species_modsuit.theme.set_up_parts(species_modsuit, species_modsuit.theme.default_skin)
+	species_modsuit.make_indestructible()
 	species_modsuit.name = initial(species_modsuit.name)
 	species_modsuit.desc = initial(species_modsuit.desc)
 	species_modsuit.extended_desc = initial(species_modsuit.extended_desc)
@@ -254,7 +257,6 @@
 
 	species_modsuit.name = initial(species_modsuit.name)
 	species_modsuit.desc = initial(species_modsuit.desc)
-	species_modsuit.make_indestructible()
 
 	for(var/obj/item/part in species_modsuit.get_parts())
 		part.name = initial(part.name)
@@ -265,9 +267,7 @@
 
 	species_modsuit.theme = the_theme
 	species_modsuit.theme.set_up_parts(species_modsuit, the_theme.default_skin)
-	for(var/part in species_modsuit.mod_parts)
-		var/datum/mod_part/modsuit_part = species_modsuit.mod_parts[part]
-		modsuit_part.part_item.resistance_flags |= LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | INDESTRUCTIBLE
+	species_modsuit.make_indestructible()
 	update_static_data_for_all_viewers()
 
 /datum/species/protean/get_default_mutant_bodyparts()
