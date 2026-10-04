@@ -1,7 +1,7 @@
 ///Powered Booster Modules
-/obj/item/mod/module/power_booster
+/obj/item/mod/module/powered_booster
 	name = "MOD power booster module"
-	desc = "Wuh oh"
+	desc = "Boosts a statistic in exchange for power"
 	icon = 'modular_zubbers/icons/obj/clothing/modsuit/mod_modules.dmi'
 	icon_state = "armor_booster"
 	complexity = 4
@@ -75,10 +75,10 @@
 	icon = 'modular_zubbers/icons/obj/clothing/modsuit/mod_modules.dmi'
 	icon_state = "armor_booster"
 	idle_power_cost = DEFAULT_CHARGE_DRAIN * 10
-	incompatible_modules = list(/obj/item/mod/module/powered_armor_booster)
+	incompatible_modules = list(/obj/item/mod/module/powered_booster/armor)
 	boost_prompt = "Set shield strength."
-	//What are we changing?
-	var/boost_noun = "Shield strength"
+	boost_noun = "Shield strength"
+
 	//Base armor we apply our multipliers to
 	var/datum/armor/armor_mod = /datum/armor/mod_pab_armor
 
@@ -120,15 +120,14 @@
 	desc = "A simple combat-effectiveness module, passively boosting the user's effective speed while using the module. \
 			Very high power cost, with exponentially scaling dependant on stimulant strength."
 	icon_state = "speed_booster"
-	complexity = 4
 	idle_power_cost = DEFAULT_CHARGE_DRAIN * 5
-	incompatible_modules = list(/obj/item/mod/module/powered_speed_booster)
+	incompatible_modules = list(/obj/item/mod/module/powered_booster/speed)
 	boost = 0.1
 	min_boost = 0.1
 	max_boost = 0.3
 	boost_prompt = "Set stimulant potency."
 	boost_noun = "Stimulant potency"
-	hacked_speed_mod = 0.2
+	hacked_boost_mod = 0.2
 
 /obj/item/mod/module/powered_booster/speed/on_process(seconds_per_tick)
 	if(part_process && !part_activated)
@@ -145,7 +144,7 @@
 		drain_power(sum_drain)
 
 /obj/item/mod/module/powered_booster/speed/on_part_activation()
-	mod.slowdown -= speed_boost
+	mod.slowdown -= boost
 
 /obj/item/mod/module/powered_booster/speed/on_part_deactivation(deleting = FALSE)
-	mod.slowdown -= speed_boost
+	mod.slowdown -= boost
