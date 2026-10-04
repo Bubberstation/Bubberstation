@@ -159,6 +159,7 @@
 		ASYNC // Not INVOKE_ASYNC to prevent race conditions.
 			assimilate_modsuit(owner, suit, TRUE)
 			species_modsuit.quick_activation()
+			species_modsuit.make_indestructible()
 
 	owner.equip_to_storage(SSwardrobe.provide_type(/obj/item/stack/sheet/iron/twenty, owner), ITEM_SLOT_BACK, TRUE, FALSE)
 	if(outfit.suit_store)
@@ -253,6 +254,7 @@
 
 	species_modsuit.name = initial(species_modsuit.name)
 	species_modsuit.desc = initial(species_modsuit.desc)
+	species_modsuit.make_indestructible()
 
 	for(var/obj/item/part in species_modsuit.get_parts())
 		part.name = initial(part.name)
