@@ -140,6 +140,11 @@
 
 /datum/mod_theme/proc/set_skin(obj/item/mod/control/mod, skin)
 	mod.skin = skin
+	// BUBBER EDIT ADDITION START - MODsuit GAGS
+	var/datum/mod_gags_skin/gags_entry = GLOB.mod_gags_skins[skin]
+	var/gags_colors = gags_entry ? get_gags_default_colors(gags_entry) : null
+	mod.close_gags_menu()
+	// BUBBER EDIT ADDITION END
 	var/list/used_skin = variants[skin]
 	var/list/parts = mod.get_parts()
 	for(var/obj/item/clothing/part as anything in parts)
@@ -173,6 +178,7 @@
 		part.icon = used_skin[MOD_ICON_OVERRIDE] || 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 		part.worn_icon = used_skin[MOD_WORN_ICON_OVERRIDE] || 'icons/mob/clothing/modsuit/mod_clothing.dmi'
 		part.icon_state = "[skin]-[part.base_icon_state][mod.get_part_datum(part).sealed ? "-sealed" : ""]"
+		part.apply_mod_gags(gags_entry, gags_colors) // BUBBER EDIT ADDITION - MODsuit GAGS
 		mod.wearer?.update_clothing(part.slot_flags)
 	mod.wearer?.refresh_obscured()
 

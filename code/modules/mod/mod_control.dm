@@ -323,6 +323,11 @@
 			balloon_alert(user, "unit active!")
 			return ITEM_INTERACT_BLOCKING
 		if(LAZYACCESS(modifiers, RIGHT_CLICK)) // Right click
+			// BUBBER EDIT ADDITION START - MODsuit GAGS
+			if(get_gags_skin())
+				paint_kit.open_gags_menu(src, user)
+				return ITEM_INTERACT_SUCCESS
+			// BUBBER EDIT ADDITION END
 			if(paint_kit.editing_mod == src)
 				return ITEM_INTERACT_BLOCKING
 			paint_kit.editing_mod = src
@@ -767,7 +772,14 @@
 	balloon_alert(wearer, "no power!")
 	toggle_activate(wearer, force_deactivate = TRUE)
 
-/obj/item/mod/control/proc/set_mod_color(new_color)
+/obj/item/mod/control/proc/set_mod_color(new_color, force = FALSE) // BUBBER EDIT CHANGE - MODsuit GAGS - Original: /obj/item/mod/control/proc/set_mod_color(new_color)
+	// BUBBER EDIT ADDITION START - MODsuit GAGS: suits with greyscale paint ignore tints like speed potions
+	if(!force && get_gags_skin())
+		for(var/obj/item/part as anything in get_parts(all = TRUE))
+			part.remove_atom_colour(FIXED_COLOUR_PRIORITY)
+		wearer?.regenerate_icons()
+		return
+	// BUBBER EDIT ADDITION END
 	for(var/obj/item/part as anything in get_parts(all = TRUE))
 		part.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 		part.add_atom_colour(new_color, FIXED_COLOUR_PRIORITY)

@@ -304,7 +304,8 @@ const IconStatesDisplay = (props) => {
   return (
     <Section title="Icon States">
       <Flex>
-        {data.sprites.icon_states.map((item) => (
+        {/* BUBBER EDIT CHANGE - No sprite data while the menu closes - Original: data.sprites.icon_states */}
+        {(data.sprites?.icon_states || []).map((item) => (
           <Flex.Item key={item}>
             <Button
               mx={0.5}
